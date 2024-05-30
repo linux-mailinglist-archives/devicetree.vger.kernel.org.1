@@ -1,176 +1,235 @@
-Return-Path: <devicetree+bounces-71008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BEDA8D55CE
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 00:52:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89C7D8D55D2
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 00:55:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42B11282868
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 22:52:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 00107B22D6C
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 22:55:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72B3417C7A4;
-	Thu, 30 May 2024 22:52:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59B9E17C7A4;
+	Thu, 30 May 2024 22:55:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CHDmYdw3"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="LiiV9/G6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04297770E2;
-	Thu, 30 May 2024 22:52:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABEC917545;
+	Thu, 30 May 2024 22:55:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717109523; cv=none; b=ALuaCO+OBq7pR/8b1fccksvtBTXOD0cYS3M1sfJLJarP6qCLB2F0w/r37496p8miJk2DeipiJEypO9qHKIG2yng4UBQoIR5a4zN2I9fL2SsJ0ZIr9yBedoPQNGNnY9Ur84VEvJketmbn5uKaZawwzMb3wbEDVLwH/1YnC96SUFM=
+	t=1717109704; cv=none; b=bCo93no/s7mLp1UxS7RKMvE157QwIDw9qoauuGbdpID8XqLEZmNf3xr1Hdp6nvX/w+0Yj59neGNBvaJhPLz9E4YxZ75pXNJdyp+mZNYpmavBhFL+JH/MSyXf1Q+ib59QbSyLul//mdiUWkoxCAgy9xhq6a22NsQy/Qb6VCk0ZD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717109523; c=relaxed/simple;
-	bh=esM4Ng1cjWry7Pi6WQgc+vs4PZklIwNsf8xjapEXNYw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=A3rb3mSwbD+jJkkNRFpyUQS2NwqF5WS+gkerTqPibG4X5yZ7SyqNulG8YnjYsQ4b/UhU56qyy5h8Xuz+Ub6YJes1oCaS83jxOzeLjQoGwa31CSyKxZ0hMLt0ZbYxMLNDsyPS4qvE7QKrGpfZQxoCEKuTLekrWUtoID5gbaVURA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CHDmYdw3; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-1f6134df05fso13428415ad.1;
-        Thu, 30 May 2024 15:52:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717109520; x=1717714320; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=TfMb4eq1XqctB8Z1VY0M363Pe4OUmqZl0YWn1pmmK1g=;
-        b=CHDmYdw3y86B3/KzCC4H6Uvra3W4xlVE8kXACsNfJMFvIlTV4CZhJ09IcvTT3l3CAw
-         XY1bfpcc9jpk1IUyxz8GCKXzrSrA0DeaMXsbRZ/JgDd1GmMpSRWQagpzeWzvnNglxq4D
-         rVWIaXrvvAGSAv194BrEm9B/wG1iRPUAQd3YR35T/25VlLaRIt9rbfU0Ynj986qm72k5
-         /MnmrXIfjmGja5lVV3zJL9ncV7rxPlB25gM7mMXRK0VWC0bSL+SRQ+AcCNhBSLs16IVc
-         e4sMHYmA8pm5xttLwXsaTc6rziW3RecgN2rz+AjRPpwk+Y5EGj3H0LlOpJo63jW3Giut
-         x9vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717109520; x=1717714320;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TfMb4eq1XqctB8Z1VY0M363Pe4OUmqZl0YWn1pmmK1g=;
-        b=Mx/KcyW+ucyNg/Ig+tTwzx+N5F16SkU+NZ6K2aWbnZBbvekHMjOWR3QsdtsSkdP4DZ
-         4ZJTmruFJhy31TLjY9xjZCSJBMZBgEm0UayuSyEPMOOp3PztQIXutT9BGzen2eOssF4H
-         POEgjZAkkRUiR+0LiCHO788bhR9nPV12ENGJ0wYvgYhYA6DTs3CMRN86knPgwWvcbxz7
-         1v01jGZFQomWP6QZtol+HXLsN79zfKqRmP9mCPvW+EdmxFWCe2ZKoVqk5uLsXkHDtEHS
-         Ni0ymKW8e+uJBIuxvJXxJLL1zUfpnn12+2DCVL1rjKezLLMn0he+g3MlVuk/SKBzqWYL
-         AO9w==
-X-Forwarded-Encrypted: i=1; AJvYcCUaFUB6Repxo+UF8NdFVva9rlfZw+UMb/VaqYMh1bX3M9jzNjjyRlSv6haLKFUEY6jqszeslrS46Y7Ouj4HM+8H2k6/BF4n56eO7qGn
-X-Gm-Message-State: AOJu0Yxxo1GcpVxPyw/Hnzy9JIg0TO7DORLuX1XOJtm28gAcwuvR25jQ
-	eH7OVX/RMoDWwI2p/O1J5JJywkPYqXhe5KQTS/IwR/tiQ5xEn9QGQz5W2w==
-X-Google-Smtp-Source: AGHT+IGuY0I0anEJSrBNOIsJ4SaJReLMNog8bighPuGMI1Y7afrOdbsu9nz73J3wvyAkLS85wVhukw==
-X-Received: by 2002:a17:902:e5c9:b0:1f3:39f8:7e7f with SMTP id d9443c01a7336-1f636fd9c99mr2368225ad.14.1717109520431;
-        Thu, 30 May 2024 15:52:00 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f6323f8544sm3005705ad.239.2024.05.30.15.51.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 May 2024 15:51:59 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <2520ad43-59a3-4c48-a975-08d856736942@roeck-us.net>
-Date: Thu, 30 May 2024 15:51:58 -0700
+	s=arc-20240116; t=1717109704; c=relaxed/simple;
+	bh=whRluBV3GKS+ywYXZqa7OzxXuiHvou3IvZZC/JmDv/c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L/8uha1Srip7sYC/eyrXQUS6wj2xzn1WISk+CyU4U+ZAxVMk3v+teF7JOC2mPDYkj2sOtJa+1634sOjahWCc1I4a9OyPpNOCReUfpS5l4vsKkFLsAjAwZEei7NxJ2qY9ukRjoPMGEeBeZwcH0uGxTWP/jZmoVKobkBUbcukVuQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=LiiV9/G6; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 08DEFA06;
+	Fri, 31 May 2024 00:54:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1717109696;
+	bh=whRluBV3GKS+ywYXZqa7OzxXuiHvou3IvZZC/JmDv/c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LiiV9/G6pljAL2FXCgM/zh9HLSa6etHXeQhnHYJoMUj4rJNlcmBDyf6ruIItGIrA9
+	 XyT5xVcej26EGHM2aHQvAT8/pXatOpC99wpe37GJMqX+L9T02lA44bTx81rw4hxR90
+	 BXibrRRne5ibr8Z56HR3HpkI4Qxzuny26943+VkU=
+Date: Fri, 31 May 2024 01:54:47 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Daniel Scally <dan.scally@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
+	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
+	sakari.ailus@iki.fi
+Subject: Re: [PATCH v5 16/16] Documentation: mali-c55: Document the mali-c55
+ parameter setting
+Message-ID: <20240530225447.GF5213@pendragon.ideasonboard.com>
+References: <20240529152858.183799-1-dan.scally@ideasonboard.com>
+ <20240529152858.183799-17-dan.scally@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] hwmon: Add support for SPD5118 compliant
- temperature sensors
-To: linux-hwmon@vger.kernel.org
-Cc: devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- Armin Wolf <W_Armin@gmx.de>, =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?=
- <linux@weissschuh.net>, =?UTF-8?Q?Ren=C3=A9_Rebe?= <rene@exactcode.de>
-References: <20240530223939.1027659-1-linux@roeck-us.net>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
- RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
- nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
- 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
- gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
- IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
- kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
- VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
- jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
- BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
- ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
- CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAlVcphcFCRmg06EACgkQyx8mb86fmYFg0RAA
- nzXJzuPkLJaOmSIzPAqqnutACchT/meCOgMEpS5oLf6xn5ySZkl23OxuhpMZTVX+49c9pvBx
- hpvl5bCWFu5qC1jC2eWRYU+aZZE4sxMaAGeWenQJsiG9lP8wkfCJP3ockNu0ZXXAXwIbY1O1
- c+l11zQkZw89zNgWgKobKzrDMBFOYtAh0pAInZ9TSn7oA4Ctejouo5wUugmk8MrDtUVXmEA9
- 7f9fgKYSwl/H7dfKKsS1bDOpyJlqhEAH94BHJdK/b1tzwJCFAXFhMlmlbYEk8kWjcxQgDWMu
- GAthQzSuAyhqyZwFcOlMCNbAcTSQawSo3B9yM9mHJne5RrAbVz4TWLnEaX8gA5xK3uCNCeyI
- sqYuzA4OzcMwnnTASvzsGZoYHTFP3DQwf2nzxD6yBGCfwNGIYfS0i8YN8XcBgEcDFMWpOQhT
- Pu3HeztMnF3HXrc0t7e5rDW9zCh3k2PA6D2NV4fews9KDFhLlTfCVzf0PS1dRVVWM+4jVl6l
- HRIAgWp+2/f8dx5vPc4Ycp4IsZN0l1h9uT7qm1KTwz+sSl1zOqKD/BpfGNZfLRRxrXthvvY8
- BltcuZ4+PGFTcRkMytUbMDFMF9Cjd2W9dXD35PEtvj8wnEyzIos8bbgtLrGTv/SYhmPpahJA
- l8hPhYvmAvpOmusUUyB30StsHIU2LLccUPPOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
- 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
- pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
- J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
- pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
- 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
- ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
- I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
- nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
- HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
- JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAlVcpi8FCRmg08MACgkQyx8mb86fmYHNRQ/+
- J0OZsBYP4leJvQF8lx9zif+v4ZY/6C9tTcUv/KNAE5leyrD4IKbnV4PnbrVhjq861it/zRQW
- cFpWQszZyWRwNPWUUz7ejmm9lAwPbr8xWT4qMSA43VKQ7ZCeTQJ4TC8kjqtcbw41SjkjrcTG
- wF52zFO4bOWyovVAPncvV9eGA/vtnd3xEZXQiSt91kBSqK28yjxAqK/c3G6i7IX2rg6pzgqh
- hiH3/1qM2M/LSuqAv0Rwrt/k+pZXE+B4Ud42hwmMr0TfhNxG+X7YKvjKC+SjPjqp0CaztQ0H
- nsDLSLElVROxCd9m8CAUuHplgmR3seYCOrT4jriMFBtKNPtj2EE4DNV4s7k0Zy+6iRQ8G8ng
- QjsSqYJx8iAR8JRB7Gm2rQOMv8lSRdjva++GT0VLXtHULdlzg8VjDnFZ3lfz5PWEOeIMk7Rj
- trjv82EZtrhLuLjHRCaG50OOm0hwPSk1J64R8O3HjSLdertmw7eyAYOo4RuWJguYMg5DRnBk
- WkRwrSuCn7UG+qVWZeKEsFKFOkynOs3pVbcbq1pxbhk3TRWCGRU5JolI4ohy/7JV1TVbjiDI
- HP/aVnm6NC8of26P40Pg8EdAhajZnHHjA7FrJXsy3cyIGqvg9os4rNkUWmrCfLLsZDHD8FnU
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20240530223939.1027659-1-linux@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240529152858.183799-17-dan.scally@ideasonboard.com>
 
-On 5/30/24 15:39, Guenter Roeck wrote:
-> Add support for SPD5118 (Jedec JESD300-5B.01) compliant temperature
-> sensors. Such sensors are typically found on DDR5 memory modules.
-> 
-> The first patch of the series adds SPD5118 devicetree bindings. The second
-> patch adds support for SPD5118 temperature sensors. The third patch adds
-> support for suspend/resume.
-> 
-> Note: The driver introduced with this patch series does not currently
-> support accessing the SPD5118 EEPROM, or accessing SPD5118 compatible chips
-> in I3C mode.
-> 
-> v2: Drop PEC support; it only applies to I3C mode.
->      Update documentation
->      Add suspend/resume support
-> 
-> ----------------------------------------------------------------
-> Guenter Roeck (3):
->        dt-bindings: hwmon: jedec,spd5118: Add bindings
->        hwmon: Add support for SPD5118 compliant temperature sensors
->        hwmon: (spd5118) Add suspend/resume support
-> 
->   .../devicetree/bindings/hwmon/jedec,spd5118.yaml   |  48 ++
->   Documentation/hwmon/index.rst                      |   1 +
->   Documentation/hwmon/spd5118.rst                    |  56 +++
->   drivers/hwmon/Kconfig                              |  12 +
->   drivers/hwmon/Makefile                             |   1 +
->   drivers/hwmon/spd5118.c                            | 510 +++++++++++++++++++++
->   6 files changed, 628 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/hwmon/jedec,spd5118.yaml
->   create mode 100644 Documentation/hwmon/spd5118.rst
->   create mode 100644 drivers/hwmon/spd5118.c
+Hi Dan,
 
-Obviously this should have been patch 0/3. Sory.
+Thank you for the patch.
 
-Guenter
+On Wed, May 29, 2024 at 04:28:58PM +0100, Daniel Scally wrote:
+> Document the mali-c55 parameter setting by expanding the relevant
+> pages in both admin-guide/ and userspace-api/.
+> 
+> Acked-by: Nayden Kanchev  <nayden.kanchev@arm.com>
+> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> ---
+> Changes in v5:
+> 
+> 	- New patch
+> 
+>  Documentation/admin-guide/media/mali-c55.rst  | 19 +++++-
+>  .../media/v4l/metafmt-arm-mali-c55.rst        | 65 ++++++++++++++++++-
+>  2 files changed, 79 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/admin-guide/media/mali-c55.rst b/Documentation/admin-guide/media/mali-c55.rst
+> index b75437f6e96a..c5e6ac826c99 100644
+> --- a/Documentation/admin-guide/media/mali-c55.rst
+> +++ b/Documentation/admin-guide/media/mali-c55.rst
+> @@ -380,9 +380,24 @@ the processing flow the statistics can be drawn from::
+>                         +-------------+   |    +-------------+
+>                                           +-->  AWB-1
+>  
+> -At present all statistics are drawn from the 0th tap point for each algorithm;
+> +By default all statistics are drawn from the 0th tap point for each algorithm;
+>  I.E. AEXP statistics from AEXP-0 (A), AWB statistics from AWB-0 and AF
+> -statistics from AF-0. In the future this will be configurable.
+> +statistics from AF-0. This is configurable for AEXP and AWB statsistics through
+> +programming the ISP's parameters.
+> +
+> +.. _mali-c55-3a-params:
+> +
+> +Programming ISP Parameters
+> +==========================
+> +
+> +The ISP can be programmed with various parameters from userspace to apply to the
+> +hardware before and during video stream. This allows userspace to dynamically
+> +change values such as black level, white balance and lens shading gains and so
+> +on.
+> +
+> +The buffer format and how to populate it are described by the
+> +:ref:`V4L2_META_FMT_MALI_C55_PARAMS <v4l2-meta-fmt-mali-c55-params>` format,
+> +which should be set as the data format for the `mali-c55 3a params` video node.
+>  
+>  References
+>  ==========
+> diff --git a/Documentation/userspace-api/media/v4l/metafmt-arm-mali-c55.rst b/Documentation/userspace-api/media/v4l/metafmt-arm-mali-c55.rst
+> index 219a5dd42d70..c359d2c83858 100644
+> --- a/Documentation/userspace-api/media/v4l/metafmt-arm-mali-c55.rst
+> +++ b/Documentation/userspace-api/media/v4l/metafmt-arm-mali-c55.rst
+> @@ -1,10 +1,11 @@
+>  .. SPDX-License-Identifier: GPL-2.0
+>  
+> +.. _v4l2-meta-fmt-mali-c55-params:
+>  .. _v4l2-meta-fmt-mali-c55-3a-stats:
+>  
+> -****************************************
+> -V4L2_META_FMT_MALI_C55_3A_STATS ('C55S')
+> -****************************************
+> +********************************************************************************
+> +V4L2_META_FMT_MALI_C55_3A_STATS ('C55S'), V4L2_META_FMT_MALI_C55_PARAMS ('C55P')
+> +********************************************************************************
+>  
+>  3A Statistics
+>  =============
+> @@ -22,6 +23,64 @@ of the C structure :c:type:`mali_c55_stats_buffer` defined in
+>  
+>  For details of the statistics see :c:type:`mali_c55_stats_buffer`.
+>  
+> +Configuration Parameters
+> +========================
+> +
+> +The configuration parameters are passed to the
+> +:ref:`mali-c55 3a params <mali-c55-3a-params>` metadata output video node, using
+> +the :c:type:`v4l2_meta_format` interface. Rather than a single struct containing
+> +sub-structs for each configurable area of the ISP, parameters for the Mali-C55
+> +are defined as distinct structs or "blocks" which may be added to the data
+> +member of struct mali_c55_params_buffer. Userspace is responsible for populating
+> +the data member with the blocks that need to be configured by the driver, but
+> +need not populate it with **all** the blocks, or indeed with any at all if there
+> +are no configuration changes to make. Populated blocks **must** be consecutive
+> +in the buffer. To assist both userspace and the driver in identifying the
+> +blocks each block-specific struct should embed
 
+s/should embed/embeds/
+
+> +struct mali_c55_params_block_header as its first member and userspace must
+> +populate the type member with a value from enum mali_c55_param_block_type. Once
+
+It would be nice to add references to the struct and enum.
+
+> +the blocks have been populated into the data buffer, the combined size of all
+> +populated blocks should be set in the total_size member of
+
+s/should be/is/
+
+or "must" or "shall".
+
+> +struct mali_c55_params_buffer. For example:
+> +
+> +.. code-block:: c
+> +
+> +	struct mali_c55_params_buffer *params =
+> +		(struct mali_c55_params_buffer *)buffer;
+> +
+> +	params->version = MALI_C55_PARAM_BUFFER_V0;
+
+I think applications will likely handle the size as follows:
+
+	params->total_size = 0;
+
+> +
+> +	void *data = (void *)params->data;
+> +
+> +	struct mali_c55_params_awb_gains *gains =
+> +		(struct mali_c55_params_awb_gains *)data;
+> +
+> +	gains->header.type = MALI_C55_PARAM_BLOCK_AWB_GAINS;
+> +	gains->header.enabled = true;
+> +	gains->header.size = sizeof(struct mali_c55_params_awb_gains);
+> +
+> +	gains->gain00 = 256;
+> +	gains->gain00 = 256;
+> +	gains->gain00 = 256;
+> +	gains->gain00 = 256;
+> +
+> +	data += sizeof(struct mali_c55_params_awb_gains)
+
+	params->total_size += sizeof(struct mali_c55_params_awb_gains);
+
+> +
+> +	struct mali_c55_params_sensor_off_preshading *blc =
+> +		(struct mali_c55_params_sensor_off_preshading *)data;
+> +
+> +	blc->header.type = MALI_C55_PARAM_BLOCK_SENSOR_OFFS;
+> +	blc->header.enabled = true;
+> +	blc->header.size = sizeof(struct mali_c55_params_sensor_off_preshading);
+> +
+> +	blc->chan00 = 51200;
+> +	blc->chan01 = 51200;
+> +	blc->chan10 = 51200;
+> +	blc->chan11 = 51200;
+> +
+> +	params->total_size = sizeof(struct mali_c55_params_awb_gains) +
+> +			     sizeof(struct mali_c55_params_sensor_off_preshading);
+
+	params->total_size += sizeof(struct mali_c55_params_sensor_off_preshading);
+
+I could be wrong though. Up to you.
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> +
+>  Arm Mali-C55 uAPI data types
+>  ============================
+>  
+
+-- 
+Regards,
+
+Laurent Pinchart
 
