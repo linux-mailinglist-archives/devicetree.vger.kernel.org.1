@@ -1,69 +1,69 @@
-Return-Path: <devicetree+bounces-70781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D00308D4732
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 10:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C916D8D4739
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 10:36:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A950283E7B
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 08:36:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2893B2842CF
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 08:36:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7B251C231D;
-	Thu, 30 May 2024 08:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3698F6F2E8;
+	Thu, 30 May 2024 08:35:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="bctwU5M3"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="mb7kFP4k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54AA21A38D8
-	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 08:35:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C18473DAC06
+	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 08:35:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717058132; cv=none; b=oM7uqFlJsPbVc3jhM6chW97513nvph6bRiuxJnf0ou63jUtpkUou3nswaC9eRa1LOTGqZqoJPf6dm/DjKvHawjSlQaizTGenW8UoRK3mhATlkKEGMJbiPJM1aRq0Hpya1aB5hg7NFFbmVqjHDrmJd9/XomSFTj6L+26x865gM1k=
+	t=1717058136; cv=none; b=H7rIc95hCsVGpPIqV8NY+G3sZnu0CTmyabx+1WH7dnaeKnXVooxl9Pyp7q/nOazGCJPkpd+GzZIeK+LWKWp3NLVKM3dr/jbjYRlM75QQXU2TwccxeS3b71qeFmmqcNMBP3hWs7sB9dquphHrqGAx8aWTeRK51+mH500TaIrIrw4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717058132; c=relaxed/simple;
-	bh=fOA9PRzoSPSdOmLcXpSzgPJnmVrBIbISbwQee7WCels=;
+	s=arc-20240116; t=1717058136; c=relaxed/simple;
+	bh=2jqS2JCggZmT/Bgw5cZ1HuqlhOXJkBLK/dNVeJwD90I=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ov4WK4btA6MiyKx07oiQU1jS6kkDOLNEXF91WS2dNMhCK9dEMVlpBcifOZz+EmtSp5J9DTLY4R/rh7aH8LXNQYxbVl4sk4RIY0HuEuPpWBDg3KLxuv3CtKyRMReB48nJWqEXMBUSzDykZ4uLwk2a8aPeavU4bTJJXw0zdbmYj6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=bctwU5M3; arc=none smtp.client-ip=209.85.214.177
+	 MIME-Version; b=Rv/IXwt4G0lmBWaz4PKQh+ZV4nxcz3+gkRsrCQcewrkDiI46ct5ySvsxJUh5LzpV5goLeIGlb2Cx8cmk9LZHBwl30H7luozBmvJm29aoKx6tlfXqlW83xNsFW2VAyIo7iw4KcPsLVNuoYFsdy0tkz9qkzUCzyOLR+XIU2/pTU/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=mb7kFP4k; arc=none smtp.client-ip=209.85.214.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-1f48bd643a0so4457085ad.3
-        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 01:35:31 -0700 (PDT)
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-1f480624d04so5934285ad.2
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 01:35:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1717058131; x=1717662931; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1717058134; x=1717662934; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7xwThRWWm7RGJSY39HVyy4ljf9OK8/1xd1SRHdwBmpo=;
-        b=bctwU5M331EWFWasLTXDWtsRprL4uk6qi8hPZrnKFQLPV5zdQ+AcKI9xijUe1d1CSI
-         uenStIs4Qb9q9cSH6GlkmA7dPx38xuAnuDnZQaddXJOJNz3HdqNYU1rc9CQoopDKmjkd
-         QVfnq/oIUN4Z+HdD3MwFAJt/DoJYWW4UFOshE=
+        bh=IHkwqtBAKIh1FT18Wf08tYxtDsD9mBo3yYE6cpTa5lo=;
+        b=mb7kFP4k07RT+0hqjti94eOC+fepMqNXnLQDy6aPVIElQIzcv6GHqSAijgaBmZp1ak
+         pxepHxhfiA7gG3LQAZfh/Dc/VDsTSQzrsqYtP036OYsswtaO/JQbdLLsE8uqt4miEeXc
+         Gl0AEhXWLLMOdQwroO55iN2TI68cL5VELo8Hk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717058131; x=1717662931;
+        d=1e100.net; s=20230601; t=1717058134; x=1717662934;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=7xwThRWWm7RGJSY39HVyy4ljf9OK8/1xd1SRHdwBmpo=;
-        b=P+YxYAUc8LpBK42HORV1MndQ8ivhmaF+VfjR2qTIX6LWLfEssTy0bVrg9ruT7mHyGE
-         qTTGqTEn5eupZ3opRTfDWMy2HfbPVcE+MLZQcS+1z76SNvJfK7Sf5REwRgJYnIMQnbC5
-         Lm2+hhCfJWaOB68IbNkde7D8C1G9ueLg8fdftWKk47RbdCFo13ue1jpQuh7714S28KWj
-         BED3J3KtrdJQLUonwMDCyXysKXw+ihyBDBlJVhSMhum3xlXQympYcyGjmuhyxXzKeOFi
-         Jgwi7j8M9AagO3iCMOs9RMvpzcZnc4V2Re3Vz/kL5s6lbzVQ4RaWyigsEjrhjesP1bjU
-         EHDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX3o3zOnOG5sYcDiWbc+3s6agcK6o+bfwoKJ71L0rQY3zRGxALj8dWNA/yMqK/A2LI/7j7U8ZUnvqCwOzTsePkw/zi4HASvC9bfAw==
-X-Gm-Message-State: AOJu0YzfMMWkKhrzTQoD6dpwsjWzCDJmIRSnMR6vrCXa3xRZwz7yuLil
-	oYuqsq+fDvk9wUQPlXDQCx98IuBmKSLYyOpfB05PBXuWv3m3buaGq5AODW3o1w==
-X-Google-Smtp-Source: AGHT+IEp028TMUUWRl/RXoMRYp1icLkfUsk+YnlWATTbz/4qqOD7Tx9V/9ogbJ57638g/PX+8PWjow==
-X-Received: by 2002:a17:902:c409:b0:1f5:e796:f26a with SMTP id d9443c01a7336-1f6193f2c1cmr16752955ad.5.1717058130799;
-        Thu, 30 May 2024 01:35:30 -0700 (PDT)
+        bh=IHkwqtBAKIh1FT18Wf08tYxtDsD9mBo3yYE6cpTa5lo=;
+        b=lN6XlQbQALQtxjU6p8DKNFy5NCTHYC3xe5L7BKl1+akow98vN8+b6nCJVe+W9ddLyu
+         m1xOSZdH2G2lLCyyU8m7P1Cxk6o8xQzu4ta1+uyuoCODiXSFgI0MVCNF71T7fkFSYjsS
+         JDtHs8rywspePKy+X9d3wVPLsn/T7mSw5tWWkaejAcnLOSu5V2y1Po4eYcItSQRZc3Vg
+         67QAiu+sV+rMB+Udk4zenrL1t0qoH17F/Eo4+tEmYFbttkBx+pIz34rZoNEaNwhkxbof
+         MC8Vyine6NPIW0Wh8Yd1qZ05mo0C3DfBRsxTO17OpQQNCsAaaBpLEgCeJnj83Y8fWwv8
+         2BvA==
+X-Forwarded-Encrypted: i=1; AJvYcCUpLBtPAEwjbLIGLCH+JO4KV+KH+DbFCDBgXQ3wbJqodauV9HMpRmwK+NBi5Ybbgmb4D4bEIckOPxqTj00dheWAxoISASRtwSPqXQ==
+X-Gm-Message-State: AOJu0Yy003ZWE3Ngt6DdYnB5FMJt6MAbj+S2P9UItqy6XoxpYk23thYm
+	JxgSPk3vQi8dnnZ9nxj4NRf+/NIyM590C5xo5ACmrR0ENDqUlUhlRULzG00L1Q==
+X-Google-Smtp-Source: AGHT+IGaMXKlAuHj3tKDXFrEymwDvO07A1BRFroXZlN02EvX5mN7HsOfQHvylgHcYJoSPTNjRI9s+A==
+X-Received: by 2002:a17:903:2095:b0:1f4:768b:445e with SMTP id d9443c01a7336-1f619605ee4mr11933665ad.24.1717058134222;
+        Thu, 30 May 2024 01:35:34 -0700 (PDT)
 Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:65f0:63a9:90bb:50b8])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f617390fe7sm10950635ad.146.2024.05.30.01.35.27
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f617390fe7sm10950635ad.146.2024.05.30.01.35.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 May 2024 01:35:30 -0700 (PDT)
+        Thu, 30 May 2024 01:35:33 -0700 (PDT)
 From: Chen-Yu Tsai <wenst@chromium.org>
 To: Frank Binns <frank.binns@imgtec.com>,
 	Matt Coster <matt.coster@imgtec.com>,
@@ -85,9 +85,9 @@ Cc: Chen-Yu Tsai <wenst@chromium.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/6] dt-bindings: gpu: powervr-rogue: Add MediaTek MT8173 GPU
-Date: Thu, 30 May 2024 16:35:02 +0800
-Message-ID: <20240530083513.4135052-4-wenst@chromium.org>
+Subject: [PATCH 4/6] drm/imagination: Add compatible string entry for Series6XT
+Date: Thu, 30 May 2024 16:35:03 +0800
+Message-ID: <20240530083513.4135052-5-wenst@chromium.org>
 X-Mailer: git-send-email 2.45.1.288.g0e0cd299f1-goog
 In-Reply-To: <20240530083513.4135052-1-wenst@chromium.org>
 References: <20240530083513.4135052-1-wenst@chromium.org>
@@ -99,66 +99,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The MediaTek MT8173 comes with a PowerVR Rogue GX6250, which is one
-of the Series6XT GPUs, another sub-family of the Rogue family.
-
-This was part of the very first few versions of the PowerVR submission,
-but was later dropped. The compatible string has been updated to follow
-the new naming scheme adopted for the AXE series.
-
-In a previous iteration of the PowerVR binding submission [1], the
-number of clocks required for the 6XT family was mentioned to be
-always 3. This is also reflected here.
-
-[1] https://lore.kernel.org/dri-devel/6eeccb26e09aad67fb30ffcd523c793a43c79c2a.camel@imgtec.com/
+The MediaTek MT8173 comes with a PowerVR Rogue GX6250, which is part
+of the Series6XT, another variation of the Rogue family of GPUs.
 
 Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 ---
- .../bindings/gpu/img,powervr-rogue.yaml       | 24 +++++++++++++++----
- 1 file changed, 20 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/imagination/pvr_drv.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-index 256e252f8087..48aa205b66b4 100644
---- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-+++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-@@ -12,10 +12,17 @@ maintainers:
+diff --git a/drivers/gpu/drm/imagination/pvr_drv.c b/drivers/gpu/drm/imagination/pvr_drv.c
+index 5c3b2d58d766..3d1a933c8303 100644
+--- a/drivers/gpu/drm/imagination/pvr_drv.c
++++ b/drivers/gpu/drm/imagination/pvr_drv.c
+@@ -1475,6 +1475,7 @@ pvr_remove(struct platform_device *plat_dev)
  
- properties:
-   compatible:
--    items:
--      - enum:
--          - ti,am62-gpu
--      - const: img,img-axe # IMG AXE GPU model/revision is fully discoverable
-+    oneOf:
-+      - items:
-+          - enum:
-+              - mediatek,mt8173-gpu
-+          # PowerVR 6XT GPU model/revision is fully discoverable
-+          - const: img,powervr-6xt
-+      - items:
-+          - enum:
-+              - ti,am62-gpu
-+          # IMG AXE GPU model/revision is fully discoverable
-+          - const: img,img-axe
- 
-   reg:
-     maxItems: 1
-@@ -56,6 +63,15 @@ allOf:
-       properties:
-         clocks:
-           maxItems: 1
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: img,powervr-6xt
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 3
- 
- examples:
-   - |
+ static const struct of_device_id dt_match[] = {
+ 	{ .compatible = "img,img-axe", .data = NULL },
++	{ .compatible = "img,powervr-6xt", .data = NULL },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, dt_match);
 -- 
 2.45.1.288.g0e0cd299f1-goog
 
