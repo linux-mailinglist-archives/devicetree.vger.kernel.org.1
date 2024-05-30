@@ -1,66 +1,62 @@
-Return-Path: <devicetree+bounces-70745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5D5F8D4415
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 05:27:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23C128D441B
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 05:27:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51AD728673B
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 03:27:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2EA2288874
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 03:27:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50ACF548E0;
-	Thu, 30 May 2024 03:27:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E934C5822A;
+	Thu, 30 May 2024 03:27:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="prGN8qBe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G7C5eH2x"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 250A2256A;
-	Thu, 30 May 2024 03:27:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE8B557C84;
+	Thu, 30 May 2024 03:27:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717039624; cv=none; b=mX+tRyBbUVz+w1uOkH5oj2d/AdnFk9VUGa9oRjAfM7QLrYT6sqTx9Jr10+lbjdqueu0tr47zA7T62hbiTKftbVEU26a4JX70yGkMVm4EDwLCZG0wgnlr++aTOV2l/NE9BQxB06EE2t+gQJYUi2w2uw5XUFxDuF8Ejp2+le/4dEo=
+	t=1717039625; cv=none; b=mxEdvK7vukE3/m4epyaYnImL0ID1LsB37hAtmUHL1/jjyIJootmrS9Jm4DNExNtzDVVgjS1L37cGl1/FszCD+Oe6eJglpDiK2QJc+mn3P7fOMk3Bg4AEVOsng7jCQZkYJHFSMAdWbkP+wXblMYiJ7mD3pT8+C2RqGP7lWkv6jEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717039624; c=relaxed/simple;
-	bh=DnkSvGggy9P21X2SwYE7P25c9/iaDSrDHC4Zl5Wh+mQ=;
+	s=arc-20240116; t=1717039625; c=relaxed/simple;
+	bh=jwZ9oYkRKxfEFDSryJlaynVtgPo9BfVTP5ig1cXKAKM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Os8WXIM/Rxb+t9KHhoLs227ue02hsG5r9/PXCdj5bsqHUhrr2ZpOBQAJN9H9M7bJw8vn5C3Dl/A+gjWuNK+yWMbW2Wx96Aixz57aPBm0JlCob3ziZYPENb8Cm6YEbt8oiuFKy5Nl2IyYhDLHJZ7/hT5Po8l6rFbtz66TvkktT5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=prGN8qBe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F3C9C116B1;
-	Thu, 30 May 2024 03:27:02 +0000 (UTC)
+	 MIME-Version:Content-Type; b=RJRr01MHALdj9RM9IlVY6ZhkBsN5ZrNQ0pld8Djr6Y3fjPCzkuTYDq9PylJrK/IjDwxYVywGiDVd7pdkmFdiWRI6qhWHz62ate0aFxhbjibEpqR7m6htNpK4QJcpwTJm1RURXhWizQ0xNd9uwLeC0Y+vCjITeEMfmsapR4la3SY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G7C5eH2x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D41C5C2BD10;
+	Thu, 30 May 2024 03:27:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717039623;
-	bh=DnkSvGggy9P21X2SwYE7P25c9/iaDSrDHC4Zl5Wh+mQ=;
+	s=k20201202; t=1717039625;
+	bh=jwZ9oYkRKxfEFDSryJlaynVtgPo9BfVTP5ig1cXKAKM=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=prGN8qBeY1RGuVbw5gFxJtwNcLFYYCUL9463Erys0MTGsTnPFFBMlbCzPxUZXmhpD
-	 r941MIWSGzopgHreCBCR2JJzvndTmN0X0LKqVQEV6CpwCIKRiF7+vULLO3csCABq6d
-	 NSzK3eI4bIkO09ALJFholMXQfz+MQWG3wO2CtxgOgw2hN4O6F3xJ1EwIKoCCS5kzko
-	 23vU6fRHe7er+U+2dNlDTD70n8gCM5N+aNeEa6VrmgtcDJ7atp4uQxdQod3tZcbofc
-	 IG6HmVZfLwalve60y39JWt7sM+XYee4n0gtET48C/CVO9wRTG71aYl4mcfuIHs/22K
-	 ALRG23oQff83Q==
+	b=G7C5eH2xdLCas19dKMQZh4hSTaszc46dx/ndCxUMlpz20zLeVVEnz4UGUCCvhDEXo
+	 pS0kIWFkruyX+cALsTrvV3fZ0XMNgVg0qa6qem/jJJhFH+qHCk0uhJPMuy62aVTQls
+	 F+c7VGiV222pH5S4oULUYFqCtBBB8YRCK8dJCPXRdGd2pj6Ly4MK1Ss+paxV01bclF
+	 LaKZwXjvhIqn9tSep1m+s6BS1mwbtc6UYrcZLkFAIUTU4ts/AwaRGMabj8oMCHgNvn
+	 CDIeuVdlfnNtj1q5t8tJdC0NLcDnk6CEzlgr+hSBW1pxLaQG7/pqqYc11pQQAiCVTg
+	 F16HMDCTf4RXA==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Caleb Connolly <caleb.connolly@linaro.org>
-Cc: Alexander Martinz <amartinz@shiftphones.com>,
-	Luca Weiss <luca.weiss@fairphone.com>,
-	~postmarketos/upstreaming@lists.sr.ht,
-	linux-arm-msm@vger.kernel.org,
+To: konrad.dybcio@linaro.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Tengfei Fan <quic_tengfan@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Caleb Connolly <caleb@postmarketos.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 0/2] qcom: initial support for the SHIFTphone 8
-Date: Wed, 29 May 2024 22:26:58 -0500
-Message-ID: <171703961681.615222.1022457801034628056.b4-ty@kernel.org>
+	kernel@quicinc.com
+Subject: Re: (subset) [PATCH 0/3] arm64: qcom: SA8775p: Add llcc support
+Date: Wed, 29 May 2024 22:27:00 -0500
+Message-ID: <171703961686.615222.7092607304287257293.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240530-otter-bringup-v3-0-79e7a28c1b08@linaro.org>
-References: <20240530-otter-bringup-v3-0-79e7a28c1b08@linaro.org>
+In-Reply-To: <20240529101534.3166507-1-quic_tengfan@quicinc.com>
+References: <20240529101534.3166507-1-quic_tengfan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,23 +67,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 30 May 2024 01:39:15 +0200, Caleb Connolly wrote:
-> The SHIFTphone 8 is an upcoming QCM6490 smartphone, it has the following
-> features:
+On Wed, 29 May 2024 18:15:31 +0800, Tengfei Fan wrote:
+> The SA8775p platform has LLCC as the system cache controller. It
+> includes 6 LLCC instances and 1 broadcast interface.
 > 
-> * 12GB of RAM, 512GB UFS storage
-> * 1080p display.
-> * Hardware kill switches for cameras and microphones
-> * UART access via type-c SBU pins (enabled by an internal switch)
 > 
-> [...]
 
 Applied, thanks!
 
-[1/2] dt-bindings: arm: qcom: Add QCM6490 SHIFTphone 8
-      commit: f51df82d984838b960592ec83d9ec92de8d8c094
-[2/2] arm64: dts: qcom: add QCM6490 SHIFTphone 8
-      commit: 249666e34c24aba3f12a201c79d19ab2a3ca3e17
+[3/3] arm64: dts: qcom: sa8775p: Add llcc support for the SA8775p platform
+      commit: 809c20b1ffc80200bfcbbeceb0d946a3e0eed3a4
 
 Best regards,
 -- 
