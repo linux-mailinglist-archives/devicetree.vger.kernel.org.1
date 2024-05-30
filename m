@@ -1,406 +1,299 @@
-Return-Path: <devicetree+bounces-70926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 587DD8D500C
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 18:45:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98BBE8D5009
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 18:45:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BEAD1C20F06
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 16:45:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1261E1F23DC6
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 16:45:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7D90224D4;
-	Thu, 30 May 2024 16:45:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70A101D554;
+	Thu, 30 May 2024 16:45:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="vjFCqkgc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B99901F5F6
-	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 16:45:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 130A1187576
+	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 16:45:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717087550; cv=none; b=Kfibj773xbifzmSEW0UXVH5Ze6xco026vr2jfDf3hlGFwhDFtV+4S09Vdtco8hi9dAWkCcvGmZOgjp1dlYx1jWfMmyx8PLzV2930c60vkDgx2RVUq/CJjOgHRb3wWf9mFo6YRUDl3LgIQ2EVVgmyLWFe7GeRp8Qw8YyDRVI9iSs=
+	t=1717087528; cv=none; b=gxt67qXjMnlqNJZiAtggxnRUXl9ykZYPLqVt1tyMO1ZojaDYXaYphkX2YdVDsyJaKvUmq/eKs7HWrwmt/BufbWnh6LlToIcJjbUda658zSbZoq5UMqge0Cw1WYV/EoMYfOtOAnB6RZzCxdMHc5E+dd4I2+v8VlyfAqNDYWILL54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717087550; c=relaxed/simple;
-	bh=ONrdJgthlwsc6bUEflXE1u2Fa371Y5UwDcMnBoSQNu8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hLz/qBqBl18Mu2eOpuTZnQN9Um8MZmgkNVIY6ZnPvRtxoZ2nrXegroaVmTsYPe+sr23qEwIB1X472UDmDv1LHqaYCo3pyqURu5/xKDwDEi6XTOdRsannjBHW+D1T9EHlV3FF8pKiXr7nXNXNUvdTPdOx/zLs0M2Ew7WaiiXxOU4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1sCitr-0002k7-QZ; Thu, 30 May 2024 18:45:11 +0200
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1sCitq-003cVA-U4; Thu, 30 May 2024 18:45:10 +0200
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1sCitq-0009Vg-2d;
-	Thu, 30 May 2024 18:45:10 +0200
-Date: Thu, 30 May 2024 18:45:10 +0200
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, p.zabel@pengutronix.de,
-	abelvesa@kernel.org, peng.fan@nxp.com, mturquette@baylibre.com,
-	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	kernel@pengutronix.de, festevam@gmail.com, marex@denx.de,
-	linux-clk@vger.kernel.org, imx@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, shengjiu.wang@gmail.com
-Subject: Re: [PATCH v6 3/5] reset: imx-aux: Add i.MX auxiliary reset driver
-Message-ID: <20240530164510.fyznsyzvqrbu4a4e@pengutronix.de>
-References: <1717036278-3515-1-git-send-email-shengjiu.wang@nxp.com>
- <1717036278-3515-4-git-send-email-shengjiu.wang@nxp.com>
- <20240530090558.53reobf2zea22oi2@pengutronix.de>
- <Zlig/Z7u4nxvKLoQ@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1717087528; c=relaxed/simple;
+	bh=rGzVD1YiEJQaIHQz6C6hMl2QWne24F7La2tFPhV77kM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YKQz5pwx5guztaowdsne7u3S3Gv1WLaA78LytOg5KRVHi8CdqDvZLtJ6nIzg1knAbpS4UKHhFSrBDbM6PonYvjhGuFnuhTx6zNXO0pQAQK7kZsB2FckSyzf2hbtamoBhH12AWddQNcgOWEeDSUICLm1HXJpjgCiwGcO9jO832fg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=vjFCqkgc; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-42120fc8cbfso1061525e9.2
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 09:45:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1717087522; x=1717692322; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ace5TTE0fjG/44mTn4+p1NqHztO8DZcxVDYvVq9lTpI=;
+        b=vjFCqkgcXx+nRPMpR5F2FcrVVNmiBKMoowqsHx0Pv77I2ld6TDhqfcesA9LTnkyumV
+         8MqECFUI6iogZWNy68f6OgKsWIoIZl1iNrxFkyfT6SKiiy+uZo8QosKpS9Gqu7PmqCF+
+         ZpIJI/8q1qZP6r2snZUTXdJQ6y8kD0S2A7BQ+i4KMpeh2ujwjH9QscWp0/iPKN8x/gbH
+         ggkWEm41kRH4oJtB2vW2XUyYWmlrWLvWJWaq7GazjYK1E1kdXmrWUv+29ownlm7Gf5UZ
+         GLpqS/FCeEDo/4pY/ZIBppTobswXwiFvDpwFk2KFCQUuo/Q/Z7LeFQAy3GVvyKyaRAlo
+         RAMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717087522; x=1717692322;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ace5TTE0fjG/44mTn4+p1NqHztO8DZcxVDYvVq9lTpI=;
+        b=KTWnZY7Cf16Nh+H1Q6EL2JU3XbjGPk+aq3FbP3UiSqAEpj8bnfTICQk4XrluUJRrUt
+         vTPBT1uwFzWLGvYRXIYvhm4hEF9T556pkmK20SNyBsefiqSoIiphUjlzc+jDvmm9vhTa
+         pCpAzPPbbIPe9U2qgUaDgMZHCZujlw/1CHprmqa2/cofeUABkr/pJ/98CDcuxN5/HbwA
+         cVKoB34c7fzDiMq9MvZFGxBq1eLA9wP1fft8o1xqaTHXibSIdqVnzeO3a6bxhjzgHba8
+         P56GOZyu3Qu7F204RxVfKWx7/Sn7SKbKF8cyP8r6SY/ls8FUgOBjCguRsRhxXhKHTXI8
+         RNpg==
+X-Forwarded-Encrypted: i=1; AJvYcCV0oRCPemUSF/sidJ9H6bROVAwUWLVOzNsF6msf/ZXtVWMRdf1FgnBQBnq2Sr7cQX2ACuD6gSa9LhWZBbVCeJRo+2iaCq9DNHIvOA==
+X-Gm-Message-State: AOJu0YwcEBLNV6DDKWCpuxuQ0rg+lJJ483KU0DrppwrUnkEp9Du7oG8Z
+	H6iqe4fdogEcl/fyUfYOc2CcrjAg2mAxcQlkZTBD/dazZ71J1tARyXBDHUqmorQ=
+X-Google-Smtp-Source: AGHT+IENzvhBU4JgyeiqNQGv7yoNWBxYsRULGs58iL7GFUlbBbvvsFDSOsGpHUxmRc3LEJ3+gaY+aw==
+X-Received: by 2002:a1c:771a:0:b0:41f:9ae3:57f2 with SMTP id 5b1f17b1804b1-4212792dab3mr28376655e9.37.1717087522148;
+        Thu, 30 May 2024 09:45:22 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35dbe002548sm2744667f8f.79.2024.05.30.09.45.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 May 2024 09:45:21 -0700 (PDT)
+Message-ID: <8475b07d-8d44-4969-9c15-2926a6397b1c@freebox.fr>
+Date: Thu, 30 May 2024 18:45:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zlig/Z7u4nxvKLoQ@lizhi-Precision-Tower-5810>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] arm64: dts: qcom: msm8998: add HDMI GPIOs
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>, MSM <linux-arm-msm@vger.kernel.org>,
+ DT <devicetree@vger.kernel.org>,
+ Bryan O Donoghue <bryan.odonoghue@linaro.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>
+References: <8cc61db5-2920-4dd1-8132-5af434fb05b1@freebox.fr>
+ <o6wwzb4qblelfpfsrmqhoovjnyvymf42p2ilv4bzn4le3nklbv@kj3qklez7izy>
+ <40903165-c965-4c6c-a3bf-104b1088730b@freebox.fr>
+ <CAA8EJppg9ftnQVrZhEO9Ro2Ji6whCgQLaJrr0yCzV-2hF2HEtQ@mail.gmail.com>
+Content-Language: en-US
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <CAA8EJppg9ftnQVrZhEO9Ro2Ji6whCgQLaJrr0yCzV-2hF2HEtQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 24-05-30, Frank Li wrote:
-> On Thu, May 30, 2024 at 11:05:58AM +0200, Marco Felsch wrote:
-> > Hi,
-> > 
-> > On 24-05-30, Shengjiu Wang wrote:
-> > > Add support for the resets on i.MX8MP Audio Block Control module,
-> > > which includes the EARC PHY software reset and EARC controller
-> > > software reset. The reset controller is created using the auxiliary
-> > > device framework and set up in the clock driver.
-> > > 
-> > > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > > ---
-> > >  drivers/reset/Kconfig         |   8 ++
-> > >  drivers/reset/Makefile        |   1 +
-> > >  drivers/reset/reset-imx-aux.c | 217 ++++++++++++++++++++++++++++++++++
-> > 			    ^
-> > You make use of the auxiliary bus but this isn't a aux driver, it's the
-> > i.MX8MP EARC reset driver. According the TRM only the EARC reset bits
-> > are covered by the AUDIOMIX blk-ctrl.
-> > 
-> > >  3 files changed, 226 insertions(+)
-> > >  create mode 100644 drivers/reset/reset-imx-aux.c
-> > > 
-> > > diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> > > index 7112f5932609..38fdf05b326b 100644
-> > > --- a/drivers/reset/Kconfig
-> > > +++ b/drivers/reset/Kconfig
-> > > @@ -91,6 +91,14 @@ config RESET_IMX7
-> > >  	help
-> > >  	  This enables the reset controller driver for i.MX7 SoCs.
-> > >  
-> > > +config RESET_IMX_AUX
-> > > +	tristate "i.MX Auxiliary Reset Driver"
-> > 			^
-> >               Same applies here
-> > 
-> > > +	depends on CLK_IMX8MP
-> > > +	select AUXILIARY_BUS
-> > > +	default CLK_IMX8MP
-> > > +	help
-> > > +	  This enables the auxiliary reset controller driver for i.MX.
-> > > +
-> > >  config RESET_INTEL_GW
-> > >  	bool "Intel Reset Controller Driver"
-> > >  	depends on X86 || COMPILE_TEST
-> > > diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-> > > index fd8b49fa46fc..f078da14c327 100644
-> > > --- a/drivers/reset/Makefile
-> > > +++ b/drivers/reset/Makefile
-> > > @@ -14,6 +14,7 @@ obj-$(CONFIG_RESET_BRCMSTB_RESCAL) += reset-brcmstb-rescal.o
-> > >  obj-$(CONFIG_RESET_GPIO) += reset-gpio.o
-> > >  obj-$(CONFIG_RESET_HSDK) += reset-hsdk.o
-> > >  obj-$(CONFIG_RESET_IMX7) += reset-imx7.o
-> > > +obj-$(CONFIG_RESET_IMX_AUX) += reset-imx-aux.o
-> > >  obj-$(CONFIG_RESET_INTEL_GW) += reset-intel-gw.o
-> > >  obj-$(CONFIG_RESET_K210) += reset-k210.o
-> > >  obj-$(CONFIG_RESET_LANTIQ) += reset-lantiq.o
-> > > diff --git a/drivers/reset/reset-imx-aux.c b/drivers/reset/reset-imx-aux.c
-> > > new file mode 100644
-> > > index 000000000000..61c353abc84e
-> > > --- /dev/null
-> > > +++ b/drivers/reset/reset-imx-aux.c
-> > > @@ -0,0 +1,217 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-or-later
-> > > +/*
-> > > + * Copyright 2024 NXP
-> > > + */
-> > > +
-> > > +#include <linux/auxiliary_bus.h>
-> > > +#include <linux/device.h>
-> > > +#include <linux/io.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/of.h>
-> > > +#include <linux/of_address.h>
-> > > +#include <linux/of_platform.h>
-> > > +#include <linux/platform_device.h>
-> > > +#include <linux/reset-controller.h>
-> > > +
-> > > +/*
-> > > + * The reset does not support the feature and corresponding
-> > > + * values are not valid
-> > > + */
-> > > +#define ASSERT_NONE     BIT(0)
-> > > +#define DEASSERT_NONE   BIT(1)
-> > > +#define STATUS_NONE     BIT(2)
-> > > +
-> > > +/* When set this function is activated by setting(vs clearing) this bit */
-> > > +#define ASSERT_SET      BIT(3)
-> > > +#define DEASSERT_SET    BIT(4)
-> > > +#define STATUS_SET      BIT(5)
-> > > +
-> > > +/* The following are the inverse of the above and are added for consistency */
-> > > +#define ASSERT_CLEAR    (0 << 3)
-> > > +#define DEASSERT_CLEAR  (0 << 4)
-> > > +#define STATUS_CLEAR    (0 << 5)
-> > > +
-> > > +/**
-> > > + * struct imx_reset_ctrl - reset control structure
-> > > + * @assert_offset: reset assert control register offset
-> > > + * @assert_bit: reset assert bit in the reset assert control register
-> > > + * @deassert_offset: reset deassert control register offset
-> > > + * @deassert_bit: reset deassert bit in the reset deassert control register
-> > > + * @status_offset: reset status register offset
-> > > + * @status_bit: reset status bit in the reset status register
-> > > + * @flags: reset flag indicating how the (de)assert and status are handled
-> > > + */
-> > > +struct imx_reset_ctrl {
-> > > +	u32 assert_offset;
-> > > +	u32 assert_bit;
-> > > +	u32 deassert_offset;
-> > > +	u32 deassert_bit;
-> > > +	u32 status_offset;
-> > > +	u32 status_bit;
-> > > +	u32 flags;
-> > > +};
-> > 
-> > Why do we make it this compicated for an simple EARC module reset? I
-> > understand that you want to provide a generic driver which can be
-> > re-used but there is actual no other user and may will get no other user
-> > in the future too. Therefore I would like to keep it simple at the
-> > begin and adapt the code on-demand.
-> 
-> There are many similar cases. such as
-> https://elixir.bootlin.com/linux/v6.10-rc1/source/drivers/pci/controller/dwc/pci-layerscape.c#L251
-> 
-> Previously it use syscon and regmap to a global register space region and
-> direct operate the register. Now this way will not preferred. It needs
-> export as reset driver. but actually, it just write some bits. 
+On 30/05/2024 15:06, Dmitry Baryshkov wrote:
 
-It depends, if your reset-controller is part of an complete different
-device like this EARC reset you're right else you can write to the reset
-directly within you driver.
+> This device was neither validated nor described properly in the DT
+> schema. There are several other issues here.
 
-> We face the similar problem at difference driver when do upstream.
-> 
-> One on going a discussion about sim module reset
-> https://lore.kernel.org/imx/131e46b1-61d9-41de-a225-853b09c765d1@gmail.com/
-> 
-> We hope an unified and simple method to handle these cases.
+Do you mean dtbs_check or dt_binding_check or something else?
 
-An unified driver for non-unified reset modules? This makes no sense to
-me. When it comes to possible quirk handling for different reset modules
-your code gets even more complex.
+I think I changed everything you pointed out.
+(I tried to remain as close as possible to msm8996.)
 
-I'm fine with a common code base (driver) if NXP has an common reset
-controller IP which is added to several SoC. There should be no common
-code base if this isn't the case.
+diff --git a/Documentation/devicetree/bindings/display/msm/hdmi.yaml b/Documentation/devicetree/bindings/display/msm/hdmi.yaml
+index 47e97669821c3..9fc49ae9ee387 100644
+--- a/Documentation/devicetree/bindings/display/msm/hdmi.yaml
++++ b/Documentation/devicetree/bindings/display/msm/hdmi.yaml
+@@ -19,6 +19,7 @@ properties:
+       - qcom,hdmi-tx-8974
+       - qcom,hdmi-tx-8994
+       - qcom,hdmi-tx-8996
++      - qcom,hdmi-tx-8998
+ 
+   clocks:
+     minItems: 1
+diff --git a/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml b/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml
+index 83fe4b39b56f4..78607ee3e2e84 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml
+@@ -14,6 +14,7 @@ properties:
+   compatible:
+     enum:
+       - qcom,hdmi-phy-8996
++      - qcom,hdmi-phy-8998
+ 
+   reg:
+     maxItems: 6
+diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+index e5f051f5a92de..268bb83efccce 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+@@ -1434,6 +1434,34 @@ blsp2_spi6_default: blsp2-spi6-default-state {
+ 				drive-strength = <6>;
+ 				bias-disable;
+ 			};
++
++			hdmi_cec_default: hdmi-cec-default-state {
++				pins = "gpio31";
++				function = "hdmi_cec";
++				drive-strength = <2>;
++				bias-pull-up;
++			};
++
++			hdmi_ddc_default: hdmi-ddc-default-state {
++				pins = "gpio32", "gpio33";
++				function = "hdmi_ddc";
++				drive-strength = <2>;
++				bias-pull-up;
++			};
++
++			hdmi_hpd_default: hdmi-hpd-default-state {
++				pins = "gpio34";
++				function = "hdmi_hot";
++				drive-strength = <16>;
++				bias-pull-down;
++			};
++
++			hdmi_hpd_sleep: hdmi-hpd-sleep-state {
++				pins = "gpio34";
++				function = "hdmi_hot";
++				drive-strength = <2>;
++				bias-pull-down;
++			};
+ 		};
+ 
+ 		remoteproc_mss: remoteproc@4080000 {
+@@ -2757,7 +2785,7 @@ mmcc: clock-controller@c8c0000 {
+ 				 <&mdss_dsi0_phy 0>,
+ 				 <&mdss_dsi1_phy 1>,
+ 				 <&mdss_dsi1_phy 0>,
+-				 <0>,
++				 <&hdmi_phy 0>,
+ 				 <0>,
+ 				 <0>,
+ 				 <&gcc GCC_MMSS_GPLL0_DIV_CLK>;
+@@ -2862,6 +2890,14 @@ dpu_intf2_out: endpoint {
+ 							remote-endpoint = <&mdss_dsi1_in>;
+ 						};
+ 					};
++
++					port@2 {
++						reg = <2>;
++
++						dpu_intf3_out: endpoint {
++							remote-endpoint = <&hdmi_in>;
++						};
++					};
+ 				};
+ 			};
+ 
+@@ -3017,6 +3053,90 @@ mdss_dsi1_phy: phy@c996400 {
+ 
+ 				status = "disabled";
+ 			};
++
++			hdmi: hdmi-tx@c9a0000 {
++				compatible = "qcom,hdmi-tx-8998";
++				reg =	<0x0c9a0000 0x50c>,
++					<0x00780000 0x6220>,
++					<0x0c9e0000 0x2c>;
++				reg-names = "core_physical",
++					    "qfprom_physical",
++					    "hdcp_physical";
++
++				interrupt-parent = <&mdss>;
++				interrupts = <8>;
++
++				clocks = <&mmcc MDSS_MDP_CLK>,
++					 <&mmcc MDSS_AHB_CLK>,
++					 <&mmcc MDSS_HDMI_CLK>,
++					 <&mmcc MDSS_HDMI_DP_AHB_CLK>,
++					 <&mmcc MDSS_EXTPCLK_CLK>;
++				clock-names =
++					"mdp_core",
++					"iface",
++					"core",
++					"alt_iface",
++					"extp";
++
++				phys = <&hdmi_phy>;
++				#sound-dai-cells = <1>;
++
++				pinctrl-names = "default", "sleep";
++				pinctrl-0 = <&hdmi_hpd_default
++					     &hdmi_ddc_default
++					     &hdmi_cec_default>;
++				pinctrl-1 = <&hdmi_hpd_sleep
++					     &hdmi_ddc_default
++					     &hdmi_cec_default>;
++
++				status = "disabled";
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++						hdmi_in: endpoint {
++							remote-endpoint = <&dpu_intf3_out>;
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++						hdmi_out: endpoint {
++						};
++					};
++				};
++			};
++
++			hdmi_phy: hdmi-phy@c9a0600 {
++				compatible = "qcom,hdmi-phy-8998";
++				reg = <0x0c9a0600 0x18b>,
++				      <0x0c9a0a00 0x38>,
++				      <0x0c9a0c00 0x38>,
++				      <0x0c9a0e00 0x38>,
++				      <0x0c9a1000 0x38>,
++				      <0x0c9a1200 0x0e8>;
++				reg-names = "hdmi_pll",
++					    "hdmi_tx_l0",
++					    "hdmi_tx_l1",
++					    "hdmi_tx_l2",
++					    "hdmi_tx_l3",
++					    "hdmi_phy";
++
++				#clock-cells = <0>;
++				#phy-cells = <0>;
++
++				clocks = <&mmcc MDSS_AHB_CLK>,
++					 <&gcc GCC_HDMI_CLKREF_CLK>,
++					 <&rpmcc RPM_SMD_XO_CLK_SRC>;
++				clock-names = "iface",
++					      "ref",
++					      "xo";
++
++				status = "disabled";
++			};
+ 		};
+ 
+ 		venus: video-codec@cc00000 {
 
-Regards,
-  Marco
+
+I get /dev/tty1 on the TV.
+
+And the following command displays test patterns as expected:
+# modetest -Mmsm -a -s 33:#0 -P 34@82:1920x1080+0+0@XR24 -P 40@82:200x200+35+300@AR24 -P 46@82:200x200+310+300@AR24
+setting mode 1920x1080-60.00Hz on connectors 33, crtc 82
+testing 1920x1080@XR24 on plane 34, crtc 82
+testing 200x200@AR24 on plane 40, crtc 82
+testing 200x200@AR24 on plane 46, crtc 82
 
 
-> 
-> Frank
-> 
-> > 
-> > Regards,
-> >   Marco
-> > 
-> > > +struct imx_reset_data {
-> > > +	const struct imx_reset_ctrl *rst_ctrl;
-> > > +	size_t rst_ctrl_num;
-> > > +};
-> > > +
-> > > +struct imx_aux_reset_priv {
-> > > +	struct reset_controller_dev rcdev;
-> > > +	void __iomem *base;
-> > > +	const struct imx_reset_data *data;
-> > > +};
-> > > +
-> > > +static int imx_aux_reset_assert(struct reset_controller_dev *rcdev,
-> > > +				unsigned long id)
-> > > +{
-> > > +	struct imx_aux_reset_priv *priv = container_of(rcdev,
-> > > +					struct imx_aux_reset_priv, rcdev);
-> > > +	const struct imx_reset_data *data = priv->data;
-> > > +	void __iomem *reg_addr = priv->base;
-> > > +	const struct imx_reset_ctrl *ctrl;
-> > > +	unsigned int mask, value, reg;
-> > > +
-> > > +	if (id >= data->rst_ctrl_num)
-> > > +		return -EINVAL;
-> > > +
-> > > +	ctrl = &data->rst_ctrl[id];
-> > > +
-> > > +	/* assert not supported for this reset */
-> > > +	if (ctrl->flags & ASSERT_NONE)
-> > > +		return -EOPNOTSUPP;
-> > > +
-> > > +	mask = BIT(ctrl->assert_bit);
-> > > +	value = (ctrl->flags & ASSERT_SET) ? mask : 0x0;
-> > > +
-> > > +	reg = readl(reg_addr + ctrl->assert_offset);
-> > > +	writel(reg | value, reg_addr + ctrl->assert_offset);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int imx_aux_reset_deassert(struct reset_controller_dev *rcdev,
-> > > +				  unsigned long id)
-> > > +{
-> > > +	struct imx_aux_reset_priv *priv = container_of(rcdev,
-> > > +					struct imx_aux_reset_priv, rcdev);
-> > > +	const struct imx_reset_data *data = priv->data;
-> > > +	void __iomem *reg_addr = priv->base;
-> > > +	const struct imx_reset_ctrl *ctrl;
-> > > +	unsigned int mask, value, reg;
-> > > +
-> > > +	if (id >= data->rst_ctrl_num)
-> > > +		return -EINVAL;
-> > > +
-> > > +	ctrl = &data->rst_ctrl[id];
-> > > +
-> > > +	/* deassert not supported for this reset */
-> > > +	if (ctrl->flags & DEASSERT_NONE)
-> > > +		return -EOPNOTSUPP;
-> > > +
-> > > +	mask = BIT(ctrl->deassert_bit);
-> > > +	value = (ctrl->flags & DEASSERT_SET) ? mask : 0x0;
-> > > +
-> > > +	reg = readl(reg_addr + ctrl->deassert_offset);
-> > > +	writel(reg | value, reg_addr + ctrl->deassert_offset);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int imx_aux_reset_status(struct reset_controller_dev *rcdev,
-> > > +				unsigned long id)
-> > > +{
-> > > +	struct imx_aux_reset_priv *priv = container_of(rcdev,
-> > > +					struct imx_aux_reset_priv, rcdev);
-> > > +	const struct imx_reset_data *data = priv->data;
-> > > +	void __iomem *reg_addr = priv->base;
-> > > +	const struct imx_reset_ctrl *ctrl;
-> > > +	unsigned int reset_state;
-> > > +
-> > > +	if (id >= data->rst_ctrl_num)
-> > > +		return -EINVAL;
-> > > +
-> > > +	ctrl = &data->rst_ctrl[id];
-> > > +
-> > > +	/* status not supported for this reset */
-> > > +	if (ctrl->flags & STATUS_NONE)
-> > > +		return -EOPNOTSUPP;
-> > > +
-> > > +	reset_state = readl(reg_addr + ctrl->status_offset);
-> > > +
-> > > +	return !(reset_state & BIT(ctrl->status_bit)) ==
-> > > +		!(ctrl->flags & STATUS_SET);
-> > > +}
-> > > +
-> > > +static const struct reset_control_ops imx_aux_reset_ops = {
-> > > +	.assert   = imx_aux_reset_assert,
-> > > +	.deassert = imx_aux_reset_deassert,
-> > > +	.status	  = imx_aux_reset_status,
-> > > +};
-> > > +
-> > > +static int imx_aux_reset_probe(struct auxiliary_device *adev,
-> > > +			       const struct auxiliary_device_id *id)
-> > > +{
-> > > +	struct imx_reset_data *data = (struct imx_reset_data *)(id->driver_data);
-> > > +	struct imx_aux_reset_priv *priv;
-> > > +	struct device *dev = &adev->dev;
-> > > +
-> > > +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> > > +	if (!priv)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	priv->rcdev.owner     = THIS_MODULE;
-> > > +	priv->rcdev.nr_resets = data->rst_ctrl_num;
-> > > +	priv->rcdev.ops       = &imx_aux_reset_ops;
-> > > +	priv->rcdev.of_node   = dev->parent->of_node;
-> > > +	priv->rcdev.dev	      = dev;
-> > > +	priv->rcdev.of_reset_n_cells = 1;
-> > > +	priv->base            = of_iomap(dev->parent->of_node, 0);
-> > > +	priv->data            = data;
-> > > +
-> > > +	return devm_reset_controller_register(dev, &priv->rcdev);
-> > > +}
-> > > +
-> > > +#define EARC  0x200
-> > > +
-> > > +static const struct imx_reset_ctrl imx8mp_audiomix_rst_ctrl[] = {
-> > > +	{
-> > > +		.assert_offset = EARC,
-> > > +		.assert_bit = 0,
-> > > +		.deassert_offset = EARC,
-> > > +		.deassert_bit = 0,
-> > > +		.flags  = ASSERT_CLEAR | DEASSERT_SET | STATUS_NONE,
-> > > +	},
-> > > +	{
-> > > +		.assert_offset = EARC,
-> > > +		.assert_bit = 1,
-> > > +		.deassert_offset = EARC,
-> > > +		.deassert_bit = 1,
-> > > +		.flags  = ASSERT_CLEAR | DEASSERT_SET | STATUS_NONE,
-> > > +	},
-> > > +};
-> > > +
-> > > +static const struct imx_reset_data imx8mp_audiomix_rst_data = {
-> > > +	.rst_ctrl = imx8mp_audiomix_rst_ctrl,
-> > > +	.rst_ctrl_num = ARRAY_SIZE(imx8mp_audiomix_rst_ctrl),
-> > > +};
-> > > +
-> > > +static const struct auxiliary_device_id imx_aux_reset_ids[] = {
-> > > +	{
-> > > +		.name = "clk_imx8mp_audiomix.reset",
-> > > +		.driver_data = (kernel_ulong_t)&imx8mp_audiomix_rst_data,
-> > > +	},
-> > > +	{ }
-> > > +};
-> > > +MODULE_DEVICE_TABLE(auxiliary, imx_aux_reset_ids);
-> > > +
-> > > +static struct auxiliary_driver imx_aux_reset_driver = {
-> > > +	.probe		= imx_aux_reset_probe,
-> > > +	.id_table	= imx_aux_reset_ids,
-> > > +};
-> > > +
-> > > +module_auxiliary_driver(imx_aux_reset_driver);
-> > > +
-> > > +MODULE_AUTHOR("Shengjiu Wang <shengjiu.wang@nxp.com>");
-> > > +MODULE_DESCRIPTION("Freescale i.MX auxiliary reset driver");
-> > > +MODULE_LICENSE("GPL");
-> > > -- 
-> > > 2.34.1
-> > > 
-> > > 
-> > > 
-> 
+Regards
+
 
