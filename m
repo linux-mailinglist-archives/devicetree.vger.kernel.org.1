@@ -1,131 +1,227 @@
-Return-Path: <devicetree+bounces-70820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17F578D493F
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 12:06:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B6238D4951
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 12:12:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 491431C21985
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 10:06:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 414632833F2
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 10:12:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE6891761AB;
-	Thu, 30 May 2024 10:06:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD2AA176AB6;
+	Thu, 30 May 2024 10:11:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V83AqyIs"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="NAnUriZG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBB7118399A;
-	Thu, 30 May 2024 10:06:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00F616F2E6
+	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 10:11:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717063560; cv=none; b=kIpPK2mjHXm0I2ObbHnXgzLDsiWt/i1k6lSRsCPnKUC5OSHCl4ZFqZTza6SAeYYzVS+pteUUJxr8jYuSHjr9tiSQ++nbKvJ6n/0+0wPwhbpDKseEcGGvPGH2bP1erAxTeIhEU/4DhZgZuC93vKWSZwh7J2v2++hynq/SBB4XyqM=
+	t=1717063914; cv=none; b=IGuvkyIEJMRudONruF7wuB1+A0awMLHN+Ba9ZcPOgwpYUKVp5fAziATloNo7I/8qTxcwbgk7nOFbe8GKHA/I3WDs2aR5KGv0qAb0RQujKWjdmrSuwUq/6zxDHMdlpjNJkk0VB6yt3ZbUywiN/V2MtwhiXmmfT7UiKAso0QY+rh4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717063560; c=relaxed/simple;
-	bh=2y5PSLV2MHgdFHU8JMTljUTmWYwZQZo5bjFpDf1ewGc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FjGNcmEFWlhpa8/GttWRJI1ami+7nDlZ9yztnweBtXT0BFXrFmNwSnGJyZgkZFhMsvrMwg4rYGU1yxJYqp/VkBE60R52YxiipAoB0Hxooj9elhuLhIbhzKTC0NfZFRnv408PR456S0aJfXXcmdBvjbhqLcN827AiCt8HG5pYESw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V83AqyIs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7848EC2BBFC;
-	Thu, 30 May 2024 10:05:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717063560;
-	bh=2y5PSLV2MHgdFHU8JMTljUTmWYwZQZo5bjFpDf1ewGc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V83AqyIsEU4RQhpQCNN89inqjoKbRLjNJd0VI0b+j2hILtvzCDsNTZ/Yfxp6DwIIc
-	 l3GxkKnia2EWPrDf5tMF52ke5xLj8N5DCeUDBT9rtJX6jqTUCKOiG5jEVFh4LW8njv
-	 smnM3FasCayduxxtVsxQHb0Wxu50Utv1OCBL8NuvYaIifn6P4OBwc1D2w8RGyYFpi7
-	 3NqqDKTyjB4VoKsqv4eO1PIFxfDUhqe5HxUB0b4IQZJT1BVUfjhgNuITiOcWh4L8Hd
-	 7PNxTJNL4lHViSaEBm8e2KQ2L+B66y14nMrxOenmPCl2P0uTlAp1katPOOAOZqJBFX
-	 0O3GZHh/kPhrg==
-Date: Thu, 30 May 2024 11:05:54 +0100
-From: Mark Brown <broonie@kernel.org>
-To: James Ogletree <James.Ogletree@cirrus.com>
-Cc: James Ogletree <jogletre@opensource.cirrus.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	s=arc-20240116; t=1717063914; c=relaxed/simple;
+	bh=92/FkRio4/WYku6w5ld6Cy4lbH0kdpRAHSqAB0MsR34=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ECaE0CtB51nLNqkbFuttZKgE8xFgcFzP/TpnUFA+IgTgkfU81Sm28RYcfyAjDmV+OiqMdEc9pN07kHTWIOrJZXzXlotdujvt/bMABzKDv6WQ3/qBWl5R+KlqCiLdLyEqdmja1fCS+0DdBmONL9GQrCe0YCU5bo3EXgixsm7zz/g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=NAnUriZG; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-57a1e980a65so441374a12.2
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 03:11:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1717063910; x=1717668710; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WxB6vVIAxKAJRnWfHDwiheUcKLANimvzznXfGKQj6Bk=;
+        b=NAnUriZG0gLKvDDis9XdftbiHPRbndNSK6RAxmFZAEgNYSOE70wqO7zV0k7ixVPVli
+         hYuhBTfVnj6fU9v2ssgBrNlmfayNPjQfEkm7sCm/oBQ1PKYD96rh8rz/qiV4W3fdu9xX
+         8tKxZs4xWLF+v7TSeHvr+f1uDOns7DhbL3TXyzxyzS655CKrr2yMTLrtdvHfWcX2BQRY
+         +zShPYfefJwh+IV00RE6HKXIQaV8QdWbOIxlIQVGEIeoc/AR0XJ1woDV3Q3481yXkuQY
+         3ET8FbdvZoQ5AJOd2r95YkrlftyIkRMJi1n05sPtYhhgCzC4HWY16hcCycx8aC2Q3vF8
+         zB8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717063910; x=1717668710;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WxB6vVIAxKAJRnWfHDwiheUcKLANimvzznXfGKQj6Bk=;
+        b=pBwhOa/6cK5nnYrXEMvATQ32MAHYYuZe7bDKzcRpRKizx9K9bPEr1ibweUUCfTHIS/
+         UMHpNJrhGK8zZsDYwbwn9Y7MdYdRW+ruO+X7gMPcEBd9NQqqaFhhj1u4dynF0UdDwbMg
+         Gh1/505B9+ebngpv7WimuIZCO705oyYt6JYrTihKpf9SVk3xhj0YoNHuGdU1t8xY9Gkl
+         xol4z9Lp48zofe/mWkHm/TKXtoaFBurGShZvEnaUjM0edrLlqkLu17TLGqIO5rKzGT2g
+         r+stTSeqrWUU8dXAfM2xFJmxZ7ROGQabCBKtCc1UCWUSXq+NJPRNXtYoIubDIn+Ewh3r
+         8rDg==
+X-Forwarded-Encrypted: i=1; AJvYcCXZgp5nbuOtJ4MjbDMY8kXvoaZH990seP1RAFgKc2dd/U4yq/HaErzmmbiANLO9oXoWj5n9CFteWX/LMV4pvxruQiX4MNo1yt9bww==
+X-Gm-Message-State: AOJu0YzriERqoOxEQUygiktq4MFNv7PKH/Aqrskig3N4hWxkrXkURVN1
+	rZnxm4MTyLutie/Wk8f21URBl3b+dOyUn1rXwN8CpKZsmwB9YfpdtisgzYBlD9Q=
+X-Google-Smtp-Source: AGHT+IGAqVcwnQPl/3CgZD4XLSZ6kROjcJ3UsjrJVNy/fPCBJ8FCqFEl8EuImSsnZcB+tM1Cmf75Lg==
+X-Received: by 2002:a50:9b57:0:b0:578:610d:b889 with SMTP id 4fb4d7f45d1cf-57a17806552mr1075945a12.24.1717063910225;
+        Thu, 30 May 2024 03:11:50 -0700 (PDT)
+Received: from localhost (host-87-16-233-11.retail.telecomitalia.it. [87.16.233.11])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-579c3bbee4asm6727551a12.76.2024.05.30.03.11.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 May 2024 03:11:49 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-	Jeff LaBundy <jeff@labundy.com>,
-	"open list:CIRRUS LOGIC HAPTIC DRIVERS" <patches@opensource.cirrus.com>,
-	"open list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." <linux-sound@vger.kernel.org>,
-	"open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..." <linux-input@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	David Rhodes <drhodes@opensource.cirrus.com>
-Subject: Re: [PATCH RESEND v10 5/5] ASoC: cs40l50: Support I2S streaming to
- CS40L50
-Message-ID: <f39508da-4241-46b2-a9e9-0e8b782ebf3f@sirena.org.uk>
-References: <20240408153214.42368-1-jogletre@opensource.cirrus.com>
- <20240408153214.42368-6-jogletre@opensource.cirrus.com>
- <425AC5F6-6324-41F8-993F-E8B91DDEFC23@cirrus.com>
- <61971924-D827-4F35-813A-5807466CBA14@cirrus.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Kamal Dasu <kamal.dasu@broadcom.com>,
+	Al Cooper <alcooperx@gmail.com>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org
+Cc: Andrea della Porta <andrea.porta@suse.com>
+Subject: [PATCH v5 0/4] Add minimal boot support for Raspberry Pi 5
+Date: Thu, 30 May 2024 12:11:57 +0200
+Message-ID: <cover.1717061147.git.andrea.porta@suse.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="+vduDYRBK43jhePc"
-Content-Disposition: inline
-In-Reply-To: <61971924-D827-4F35-813A-5807466CBA14@cirrus.com>
-X-Cookie: To err is human, to moo bovine.
+Content-Transfer-Encoding: 8bit
+
+Hi,
+
+This patchset adds minimal support for the Broadcom BCM2712 SoC and for
+the on-board SDHCI controller on Broadcom BCM2712 in order to make it
+possible to boot (particularly) a Raspberry Pi 5 from SD card and get a
+console through uart.
+Changes to arm64/defconfig are not needed since the actual options work
+as they are.
+This work is heavily based on downstream contributions.
+
+Tested on Tumbleweed substituting the stock kernel with upstream one,
+either chainloading uboot+grub+kernel or directly booting the kernel
+from 1st stage bootloader. Steps to reproduce:
+- prepare an SD card from a Raspberry enabled raw image, mount the first
+  FAT partition.
+- make sure the FAT partition is big enough to contain the kernel,
+  anything bigger than 64Mb is usually enough, depending on your kernel
+  config options.
+- build the kernel and dtbs making sure that the support for your root
+  fs type is compiled as builtin.
+- copy the kernel image in your FAT partition overwriting the older one
+  (e.g. kernel*.img for Raspberry Pi OS or u-boot.bin for Tumbleweed).
+- copy arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb on FAT partition.
+- make sure you have a cmdline.txt file in FAT partition with the
+  following content:
+  # cat /boot/efi/cmdline.txt
+  root=/dev/mmcblk0p3 rootwait rw console=tty ignore_loglevel earlycon
+  console=ttyAMA10,115200
+- if you experience random SD issues during boot, try to set
+  initial_turbo=0 in config.txt.
 
 
---+vduDYRBK43jhePc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes in V5:
 
-On Wed, May 29, 2024 at 10:03:00PM +0000, James Ogletree wrote:
+DTS:
+- axi node merged into soc node
+- redefined the mapping ranges of the soc node to have proper translation,
+  and a narrower address and size cell number for child nodes.Child nodes
+  reg properties adjusted accordingly
+- augemented the comment in 'gio_aon' node
 
-> This file has not had any feedback yet for this version. For the sake of =
-efficiency, I
-> would appreciate your review. That way I can make any needed changes
-> in the already-planned v11.
+sdhci-brcmstb.c:
+- removed unused 'base_clk_mhz' variable
 
-Please don't send content free pings and please allow a reasonable time
-for review.  People get busy, go on holiday, attend conferences and so=20
-on so unless there is some reason for urgency (like critical bug fixes)
-please allow at least a couple of weeks for review.  If there have been
-review comments then people may be waiting for those to be addressed.
 
-Sending content free pings adds to the mail volume (if they are seen at
-all) which is often the problem and since they can't be reviewed
-directly if something has gone wrong you'll have to resend the patches
-anyway, so sending again is generally a better approach though there are
-some other maintainers who like them - if in doubt look at how patches
-for the subsystem are normally handled.
+Changes in V4:
 
-Please delete unneeded context from mails when replying.  Doing this
-makes it much easier to find your reply in the message, helping ensure
-it won't be missed by people scrolling through the irrelevant quoted
-material.
+sdhci-brcmstb.c:
+- dropped the last 4 lines of sdhci_brcmstb_cfginit_2712() function
+  to avoid setting the SDIO_CFG_CQ_CAPABILITY register. The rationale
+  behind this can be found in [4] and subsequent comments
 
-Please don't ignore review comments, people are generally making them
-for a reason and are likely to have the same concerns if issues remain
-unaddressed.  Having to repeat the same comments can get repetitive and
-make people question the value of time spent reviewing.  If you disagree
-with the review comments that's fine but you need to reply and discuss
-your concerns so that the reviewer can understand your decisions.
+DT-bindings:
+- simplified the compatible item list for 'brcm,bcm2712-sdhci' as per [5]
 
---+vduDYRBK43jhePc
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+Changes in V3:
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZYT4EACgkQJNaLcl1U
-h9CrSAf+K9K/JlGRMOmpo/y/ORRpLSd23L7FQ2MpuVUIgxwCW85kWhvJ3G8xFTtJ
-uLrD0qGmAindSOFHI3OsSWvH1nh2w9V+0rFJMY0ilTnWSjUwQ15AQx7KEWAjmA09
-TUDEP3lAteNkvI09aimVAaiZKcu+KeB9e4E5mPFv7FbHE4qnvw6HArMCjP8EwkE9
-zhEJUzUrPHUDhzcRtsXp0GOMi3aQPTGJ1EDUCRF2Pydo78t6jnQLZ8cEBFodWUIa
-8Mo1K5zVfSItzqgfMlgtMuTbQ0NNGX7c//jOmLuu3QMmhzP02+zwYTuo95bJZJNy
-js/Z5HoEhHYYxcwXniK8XJI4ayEDtA==
-=Sw18
------END PGP SIGNATURE-----
+DTS:
+- uart0 renamed to uart10 to reflect the current indexing (ttyAMA10
+  and serial10)
+- updated the license to (GPL-2.0 OR MIT)
+- sd_io_1v8_reg 'states' property have second cells as decimal instead
+  of hex.
+- root node has size-cells=<2> now to accommodate for the DRAM controller
+  and the address bus mapping that goes beyond 4GB. As a consequence,
+  memory, axi and reserved-memory nodes have also size-cells=<2> and
+  subnodes reg and ranges properties have been updated accordingly
+- ranges property in 'axi' node has been fixed, reg properties of sdio1
+  and gicv2 subnodes have been adjusted according to the new mapping
+- 'interrupt-controller@7d517000' node is now enabled by default
+- dropped 'arm,cpu-registers-not-fw-configured' as it is no longer
+  relevant on A76 core
+- l2 cache nodes moved under respective cpus, since they are per-cpu
+- dropped psci cpu functions properties
+- added the hypervisor EL2 virtual timer interrupt to the 'timer' node
+- splitted-lines url are now on a single line
 
---+vduDYRBK43jhePc--
+sdhci-brcmstb.c:
+- simplified MMC_CAP_HSE_MASK leveraging already existing definitions
+- MMC_CAP_UHS_MASK renamed to MMC_CAP_UHS_I_SDR_MASK to better reflect
+  its purpose. Added also a comment.
+- sdhci_brcmstb_set_power() replaced with the already existing (and
+  equivalent) sdhci_set_power_and_bus_voltage()
+
+DT-bindings:
+- removed the BCM2712 specific example, as per Rob's request
+
+
+Changes in V2:
+
+- the patchshet has been considerably simplified, both in terms of dts and
+  driver code. Notably, the pinctrl/pinmux driver (and associated binding)
+  was not strictly needed to use the SD card so it has been dropped
+- dropped the optional SD express support patch
+- the patches order has been revisited
+- pass all checks (binding, dtb, checkpatch)
+
+
+Many thanks,
+Andrea
+
+References:
+[1] - Link to V1: https://lore.kernel.org/all/cover.1713036964.git.andrea.porta@suse.com/
+[2] - Link to V2: https://lore.kernel.org/all/cover.1715332922.git.andrea.porta@suse.com/
+[3] - Link to V3: https://lore.kernel.org/all/cover.1716277695.git.andrea.porta@suse.com/
+[4] - https://lore.kernel.org/all/ZlF5dQbNpZ921e66@apocalypse/
+[5] - https://lore.kernel.org/all/bc1eb98c-9d49-4424-ab89-16be6c67c3f5@gmx.net/#t
+
+Andrea della Porta (4):
+  dt-bindings: arm: bcm: Add BCM2712 SoC support
+  dt-bindings: mmc: Add support for BCM2712 SD host controller
+  mmc: sdhci-brcmstb: Add BCM2712 support
+  arm64: dts: broadcom: Add minimal support for Raspberry Pi 5
+
+ .../devicetree/bindings/arm/bcm/bcm2835.yaml  |   6 +
+ .../bindings/mmc/brcm,sdhci-brcmstb.yaml      |   1 +
+ arch/arm64/boot/dts/broadcom/Makefile         |   1 +
+ .../boot/dts/broadcom/bcm2712-rpi-5-b.dts     |  64 ++++
+ arch/arm64/boot/dts/broadcom/bcm2712.dtsi     | 283 ++++++++++++++++++
+ drivers/mmc/host/sdhci-brcmstb.c              |  60 ++++
+ 6 files changed, 415 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+ create mode 100644 arch/arm64/boot/dts/broadcom/bcm2712.dtsi
+
+-- 
+2.35.3
+
 
