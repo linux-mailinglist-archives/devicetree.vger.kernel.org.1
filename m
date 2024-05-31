@@ -1,48 +1,40 @@
-Return-Path: <devicetree+bounces-71163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67C2A8D5EA9
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 11:42:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78A6C8D5EBA
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 11:46:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 531231F210CA
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 09:42:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 345F5286C6F
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 09:46:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 465FD135A58;
-	Fri, 31 May 2024 09:42:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s7Ty+uoX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 964701465A1;
+	Fri, 31 May 2024 09:45:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BCE11422BC;
-	Fri, 31 May 2024 09:42:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93B371422D8
+	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 09:45:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717148564; cv=none; b=WwMYnvbKHkb5lYWB0rcKr1/Fh0nZnPu+UT/cLVj2IE/9hXCVDyWpfrWz3iVpZXnJqikBRyozAWLPkwIVhr8eCTDP8a1ZiPLkUtRJrEJUFNjZ5IAKhYRPpRmcUAcz+g9zJSOnwHmV/nr9oAvGZiR8oCzo3JhxrbBb+rQj1p+OD+A=
+	t=1717148748; cv=none; b=fQrQV9pxLwQuflVtWZX3FXjO+NFd3qkwaRGbfFXbZi2Njvzd5G68LamAxURiHk267buArx9Au3ifzEKjzz1cNEQBv+LZuetOxd3eMn71ug2NJmCg4zz9tV2L57rZxUq24TEeGSgRaHr2Pc83lXUxolSDdVTyRJHS5HKJp+Mvq7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717148564; c=relaxed/simple;
-	bh=fwe48fdEyxtM78DaKv0uecMaewTnPGzm3zCWWlB2UG4=;
+	s=arc-20240116; t=1717148748; c=relaxed/simple;
+	bh=2o+jR85lZr2GiKnZ8cEbswaeoXH7Lg7Ye9H1XscrZWc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Whd9vREOgRuyVvixaPCvnyKWvQ2crs+RnPRZwmserSf/77u6A5AGeRR+GkUB4iZjCYofQo8M/rELZ54dLB4HzB7b+i7gyK4m39V2jij8scjh8C+GNsiAQ9sDXB8VV8QA4oMpHdtt+k7hgvfbmu2zjel4UVRuxYvAmE+txheuP+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s7Ty+uoX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09111C116B1;
-	Fri, 31 May 2024 09:42:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717148563;
-	bh=fwe48fdEyxtM78DaKv0uecMaewTnPGzm3zCWWlB2UG4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=s7Ty+uoXLvEgVfhVx0EW1vSARSSxSra/XkurNNTOeP34hzDuhoetIFKqKe2F9qIn2
-	 GMeaa23igZdl2rgHBgv0rTJXR9p2jb8p2pB6iLEFQnOkPMcfJEYcpWam/Hqpn9+uc3
-	 7vbiMGcfa5C2ItMb9voKgRu5+zoXihCp7H5FUFYckHvLbk69Vjn6hqXa7YwO/5Hrg3
-	 0l3juHIRxYHuvYl95I2EUOXSzs3cYeUCGk6qXHj0YaxOtmRFJ5AvGmwjmbNjdkXtyZ
-	 m3kUdzhgutMDIkimA05hN9agIXLtE9NAhhJjr5KI0o0Yd8XP5PSiZKQCmkVMKmfaVn
-	 7G6V221AGMKrQ==
-Message-ID: <e63d2838-d34e-4ed7-b935-2feef0eb80ee@kernel.org>
-Date: Fri, 31 May 2024 11:42:39 +0200
+	 In-Reply-To:Content-Type; b=lkeBRjjdbJBYrm/qZbfSfHC8DSIaOmPyFGkQbZAJ8zjQTYhDh+myZiZHSnAmqCxT9/DJz/rL8pctWpUuVwhRB+wOxFI8EW4Rsdrnnhqcv2ppCDFXzRoaFJD1yAfXUp8+fQMy7d3CdPMw7eZd5rmkqBk1U+gJmSsd21ZqhyqCypk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CF4B71424;
+	Fri, 31 May 2024 02:46:09 -0700 (PDT)
+Received: from [10.57.67.251] (unknown [10.57.67.251])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4B9C93F641;
+	Fri, 31 May 2024 02:45:43 -0700 (PDT)
+Message-ID: <adb96c77-fc8b-4be1-b2f7-0a321b7ad593@arm.com>
+Date: Fri, 31 May 2024 10:45:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,74 +42,57 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: soc: qcom: add qcom,sa8775p-imem
- compatible
-To: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, quic_kbajaj@quicinc.com, kernel@quicinc.com
-References: <20240531093531.238075-1-quic_tengfan@quicinc.com>
- <20240531093531.238075-2-quic_tengfan@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240531093531.238075-2-quic_tengfan@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH 5/5] arm64: dts: allwinner: h616: add IOMMU node
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Chris Morgan <macromorgan@hotmail.com>, Ryan Walklin <ryan@testtoast.com>,
+ iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20240530233800.27705-1-andre.przywara@arm.com>
+ <20240530233800.27705-6-andre.przywara@arm.com>
+ <bc550e12-7ad6-4592-994d-dca5a95e88ca@arm.com>
+ <20240531103209.7db573c8@donnerap.manchester.arm.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20240531103209.7db573c8@donnerap.manchester.arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 31/05/2024 11:35, Tengfei Fan wrote:
-> Add qcom,sa8775p-imem compatible name support.
+On 2024-05-31 10:32 am, Andre Przywara wrote:
+> On Fri, 31 May 2024 09:42:36 +0100
+> Robin Murphy <robin.murphy@arm.com> wrote:
 > 
-> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/sram/qcom,imem.yaml | 1 +
+> Hi Robin,
+> 
+>> On 2024-05-31 12:38 am, Andre Przywara wrote:
+>>> The Allwinner H616 contains a scatter-gather IOMMU connected to some
+>>> video related devices. It's almost compatible to the one used in the H6,
+>>> though with minor incompatibilities.
+>>>
+>>> Add the DT node describing its resources, so that devices like the video
+>>> or display engine can connect to it.
+>>
+>> Without also describing those connections, though, having this node
+>> enabled in the DT means the driver will just bind, block DMA, and
+>> prevent those devices from working. That's probably not what you want.
+> 
+> The IOMMU manages the Display Engine (DE), the Deinterlacer (DI), the
+> video engine (VE) and the 2D acceleration engine (G2D).
+> None of those devices are supported for the H616 in mainline yet, but there
+> are patches out there for the DE and VE, at least. Especially the video
+> codecs benefit from scatter-gather, so with this patch they can make use
+> of it from day one.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Oh, I see - I assumed that stuff like display was more exciting and 
+likely to be supported already, so read "can connect to it" in the 
+present tense. If it's a future "can use it as soon as they are also 
+supported", then there's no concern, and indeed this is arguably the 
+ideal order of doing things.
 
-Best regards,
-Krzysztof
-
+Cheers,
+Robin.
 
