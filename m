@@ -1,144 +1,209 @@
-Return-Path: <devicetree+bounces-71090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2398D8D5B86
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 09:33:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71D3B8D5B90
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 09:33:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5D5E2867B3
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 07:33:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 954B91C2108D
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 07:33:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A37D574047;
-	Fri, 31 May 2024 07:33:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AF7C7404F;
+	Fri, 31 May 2024 07:33:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UBsUZAR3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f8NEfzpx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B8AB28F7;
-	Fri, 31 May 2024 07:33:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93981482D7;
+	Fri, 31 May 2024 07:33:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717140784; cv=none; b=l0Qy/Kx5LoquUjsCHWWGnjrXlVKdfH0wGcD2fk7Y0GxJRBnGsJZKQv0VK/YdMlN1H4jReJbCE/vMuUq1E7EooHXHxN49qJVx5KwPeuAfKArxMCs2xQzUvhy7U7SA4uzMIpVoK0aWUqojWevD3ZxaO04RD+tnYR/qiE3RSW91cYc=
+	t=1717140829; cv=none; b=r2jTUuEZWgfR1bGOVKVZ6Hin/NrEVgJmir7lBJ4x1UVgD3UfLAHOFIrqjfLi0n8g9zKSV0HLjhNPmFkIP32wFGAYez0CeSfNYbCjdrUAxMxlIUDNqOMr8opgDOI2XayT8zXXQ3iziRGvivxEMBZUmfvKjHHEizEcwQ3+Chn9n9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717140784; c=relaxed/simple;
-	bh=tGywsfHjhOeu2p5n+qc/Hs4/P2i9lhTXQiq4gDX7QDg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZPHU6aOU6unAWQwEYQKcmaDM0gudr9TPFP1S+j4I6MZEl5NfLVDbL/abfC3cnAIYkSL49k44ZDCdCEnCX5Js3fD9PXqydzHhM6FpwcNk9rluPrJyHlu04TQV8Il85xCJubtlGaE59w24kE7XvedxPeVi5HXNJ0oW356Mq98p+hY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UBsUZAR3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B1C4C116B1;
-	Fri, 31 May 2024 07:32:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717140783;
-	bh=tGywsfHjhOeu2p5n+qc/Hs4/P2i9lhTXQiq4gDX7QDg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UBsUZAR3GQApsqyTrkyZ7G0d8X1h3I4LN8MPM/8K8gtxFuveVE+GY43r3elV3mW9x
-	 iAKFjNm/vKZqu74/NM9HN8BW9K+YdMyw0ThM51aV/vyO3EHAPOqEq+OCYZSDlhxtI3
-	 1pL5fjLAigtH5udzi/YlVfw80MbID751IF447Yv0RSRnPYD7HY6I9Ye2PV1tny9w1I
-	 +omCxMFbdna+Ntvx7+Hur65jrRdTtvt8KR/6oHxCBT7TgeOpPs0gFwbwqdthcZbqS3
-	 XJkcqHeZGRsUYzsOgx/WcrzwuSJuz12RSCuXDG1wIBANFSxcxLkzVpyjGIYLfx9y0j
-	 O+fZifZeMtl3g==
-Message-ID: <7789d1dc-f0e4-4529-aeb8-63b64ba6fc7d@kernel.org>
-Date: Fri, 31 May 2024 09:32:57 +0200
+	s=arc-20240116; t=1717140829; c=relaxed/simple;
+	bh=upVR2zdmOmV2PjDOyS4rb5HI5f6pXw6b1JkflcVTmhI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=RF4GAZU0+hiEcjzvFFu7FP46+n56UiPRoVDhAUJFW55h05VZWB2/FqpRiKoOJY87b0zzy9HAjybsQajgv6/oOUKieqno5O40AvbzXnnG3Bj2V6pW/hr78s9lLlS42uzNOsi7Ofe6QPOLCLKY5c8hZr2viO1F8OCrkHNYM569GGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f8NEfzpx; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a626919d19dso327024766b.0;
+        Fri, 31 May 2024 00:33:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717140826; x=1717745626; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=upVR2zdmOmV2PjDOyS4rb5HI5f6pXw6b1JkflcVTmhI=;
+        b=f8NEfzpxPO83Qrn8VZObY0aS9qP9MrP7LktgKq7kYVZAe4MnIwnUMJipqFpS4D4j8z
+         8PxuQjl7WBJM6ezaXIFcdj3CUH2bSk4/lSP07TZX0VXdLBUODg85iIBfageUjVrnpxU5
+         AsM02n1Vhh+EtvRl7SsOMgG9rOj51BAkO1XOMzC+T2u4NSbFxebek77+XpDX8MQs/+w/
+         QwN36sKXgR8I+JGViM8z7wk1ux+cRsc2NBREDlLWxEy4sISld21MLfKcT1hPxOj83QxL
+         GbzaIwaa0idmT8jSPZf4u10ZOzCZkq1UQC8eZJdxuFUhyq6uTqXwrRWtQW9wiK4TNZPf
+         msQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717140826; x=1717745626;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=upVR2zdmOmV2PjDOyS4rb5HI5f6pXw6b1JkflcVTmhI=;
+        b=nWIDASzTLh/+8/XJxXSGbCEl2WDxyRj3JNLNYiZgKX8DM+BeK2bcUaB40NEb9SP0NO
+         iOnEbhwYH+1ID3eiYkpm7raj2AeWbd7eoPOdl3e/rBiM6d+1ZjBOIdr0q+VxuU1yLkhP
+         VfzGHqrtISYemOAzb5UhPh6ZwFlvK3v7LjMBKlC9UOr59CVJyaAjq3KAQpz7SiIn+3EC
+         OiC+7pdrTDOo1n7PApmmUU6LnvihosDa3W6pahxvahw3wG9k3d/BrnevValJ0/uPqh12
+         LPTVhay7L8J1iZ3/pK51h/4mmHp4rn/zXPNLRZNlC4eo8OikVjf5MUDjd+qjsvNofw5K
+         WcdQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUXaurMbBsXJ4gfwBJzSNsNdQ3LrzcI84k8RzkB/EQ177y2rvY4SEdOqLUBqUt2rleOoAzvMlmpPuUYK0ex/illDFsvkQGPCK11mED1v4YPmQeYW0L0CZrHXVFQG+lC2jgnKKX8e8oNldXUdcOzSjv4LPTvOHPaJ7PWNHFTJnYQmNXWQCooH1uGaG8FlR1OPhPA5VOT4tzGqpUN/0cJBA==
+X-Gm-Message-State: AOJu0Yz+J1N8Fya9zaVL9hZsQfYwRvZ20lNDcUTj9PeKcTBc1kmWbaVR
+	mJ2aBQLzt3ZiTtiL7hBp5P9fotCN+s9TNFNn7V0PGeUbOUjHcMRR
+X-Google-Smtp-Source: AGHT+IEcqkCYmBlKNw4xhgK9UqGESD/QlUTYSu/OQ9etZLHw8dS/y8lqY8GUiTOQaxlmE+E9Rhmp0g==
+X-Received: by 2002:a17:906:4313:b0:a61:7f85:e31c with SMTP id a640c23a62f3a-a6818c46ef7mr93402066b.12.1717140825572;
+        Fri, 31 May 2024 00:33:45 -0700 (PDT)
+Received: from nsa.fritz.box ([2001:a61:35f9:9001:40df:88bb:5090:7ab6])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a67e78db9b9sm57197766b.97.2024.05.31.00.33.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 May 2024 00:33:45 -0700 (PDT)
+Message-ID: <32747c84d382d5c24408bcceb885659d28f20585.camel@gmail.com>
+Subject: Re: [PATCH RFC v2 1/8] spi: dt-bindings: spi-peripheral-props: add
+ spi-offloads property
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Conor Dooley <conor@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,  Nuno =?ISO-8859-1?Q?S=E1?=
+ <nuno.sa@analog.com>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>,
+ Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-iio@vger.kernel.org
+Date: Fri, 31 May 2024 09:33:44 +0200
+In-Reply-To: <6db8ba66-841b-4425-9dd4-9d6e7b0463bf@baylibre.com>
+References: <20240513-headsman-hacking-d51fcc811695@spud>
+	 <CAMknhBE5XJzhdJ=PQUXiubw_CiCLcn1jihiscnQZUzDWMASPKw@mail.gmail.com>
+	 <20240514-aspire-ascension-449556da3615@spud>
+	 <CAMknhBFFpEGcMoLo5gsC11Syv+CwUM0mnq1yDMUzL1uutUtB+Q@mail.gmail.com>
+	 <20240516-rudder-reburial-dcf300504c0a@spud>
+	 <CAMknhBF_s0btus4yqPe-T=F3z7Asi9KkRGsGr7FHDFi=k4EQjw@mail.gmail.com>
+	 <20240519-abreast-haziness-096a57ef57d3@spud>
+	 <CAMknhBHvEse2FyDoBXR1PvymGpSGq8dotKfm+8XH+0+k+xKtQw@mail.gmail.com>
+	 <20240522-gullible-ibuprofen-cf9111c25f6f@spud>
+	 <5ad0b5782434eaf4cf565cffb0e4c14b7414ae38.camel@gmail.com>
+	 <20240526-peculiar-panama-badda4f02336@spud>
+	 <10991373cb9603803df63d8236c475807f6dde68.camel@gmail.com>
+	 <6db8ba66-841b-4425-9dd4-9d6e7b0463bf@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.1 (3.52.1-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v3,2/2] dt-bindings: hwmon: Add mps mp2891
-To: Noah Wang <noahwang.wang@outlook.com>, robh@kernel.org,
- krzk+dt@kernel.org, linux@roeck-us.net, conor+dt@kernel.org,
- jdelvare@suse.com
-Cc: corbet@lwn.net, Delphine_CC_Chiu@Wiwynn.com, peteryin.openbmc@gmail.com,
- javier.carrasco.cruz@gmail.com, patrick.rudolph@9elements.com,
- luca.ceresoli@bootlin.com, chou.cosmo@gmail.com, bhelgaas@google.com,
- lukas@wunner.de, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-i2c@vger.kernel.org
-References: <20240531072602.4806-1-noahwang.wang@outlook.com>
- <SEYPR04MB64822856CA4E461787C3593BFAFC2@SEYPR04MB6482.apcprd04.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <SEYPR04MB64822856CA4E461787C3593BFAFC2@SEYPR04MB6482.apcprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 31/05/2024 09:26, Noah Wang wrote:
-> Add support for mps mp2891 controller
-> 
-> Signed-off-by: Noah Wang <noahwang.wang@outlook.com>
-> ---
-> v2 -> v3:
->     move mp2891 dt-bindings to trivial devices
-> 
-> v1 -> v2:
->     add mp2891 dt-bindings
-> 
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index 025d50454f88..dabbc4cd089e 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -290,6 +290,8 @@ properties:
->            - mps,mp2973
->              # Monolithic Power Systems Inc. multi-phase controller mp2975
->            - mps,mp2975
-> +            # Monolithic Power Systems Inc. multi-phase controller mp2891
-> +          - mps,mp2891
+On Thu, 2024-05-30 at 14:24 -0500, David Lechner wrote:
+> On 5/29/24 3:07 AM, Nuno S=C3=A1 wrote:
+> > On Sun, 2024-05-26 at 18:35 +0100, Conor Dooley wrote:
+>=20
+>=20
+> > > It might be easy to do it this way right now, but be problematic for =
+a
+> > > future device or if someone wants to chuck away the ADI provided RTL =
+and
+> > > do their own thing for this device. Really it just makes me wonder if
+> > > what's needed to describe more complex data pipelines uses an of_grap=
+h,
+> > > just like how video pipelines are handled, rather than the implementa=
+tion
+> > > of io-backends that don't really seem to model the flow of data.
+> > >=20
+> >=20
+> > Yeah, backends is more for devices/soft-cores that extend the functiona=
+lity of
+> > the
+> > device they are connected too. Like having DACs/ADCs hdl cores for conn=
+ecting to
+> > high
+> > speed controllers. Note that in some cases they also manipulate or even=
+ create
+> > data
+> > but since they fit in IIO, having things like the DMA property in the h=
+dl binding
+> > was
+> > fairly straight.
+> >=20
+> > Maybe having an offload dedicated API (through spi) to get/share a DMA =
+handle
+> > would
+> > be acceptable. Then we could add support to "import" it in the IIO core=
+. Then it
+> > would be up to the controller to accept or not to share the handle (in =
+some cases
+> > the
+> > controller could really want to have the control of the DMA transfers).
+>=20
+> I could see this working for some SPI controllers, but for the AXI SPI En=
+gine
+> + DMA currently, the DMA has a fixed word size, so can't be used as a gen=
+eric
+> DMA with arbitrary SPI xfers. For example, if the HDL is compiled with a =
+32-bit
+> word size, then even if we are reading 16-bit sample data, the DMA is goi=
+ng to
+> put it in a 32-bit slot. So one could argue that this is still doing some=
+ data
+> manipulation similar to the CRC checker example.
+>=20
 
-Please keep the entries sorted.
+Note that what I was thinking was something very trivial... Just a way to g=
+et
+'dma_chan' out of the spi_engine to the consumer so we could import it in t=
+he IIO DMA
+infrastructure... I assume it may be a sneaky way to just get around the pr=
+oblem
+though :).
 
-Best regards,
-Krzysztof
+Another way is to come up with spi like API's to submit DMA request's (pass=
+ing an
+handler or so for completion). I guess we would somehow also need a kind of=
+ get()
+function that would give consumers some kind of info/interface like spi xfe=
+rs size
+(as in this particular case it's the DMA who defines the src/dst width). We=
+ would
+likely also need some kind of spi_dma_buffer implementation in IIO (likely =
+to share
+some code with the current stuff; at least the userspace interface should d=
+efinitely
+be the same).
 
+Anyways, the above it's just me throwing some random ideas that come to min=
+d :). They
+may be stupid but at the very least they could give you some betters ideas =
+:).
+
+> >=20
+> > Not familiar enough with of_graph so can't argue about it but likely is=
+ something
+> > worth looking at.
+> >=20
+> > - Nuno S=C3=A1
+> > > >=20
+>=20
+> I did try implementing something using graph bindings when I first starte=
+d
+> working on this, but it didn't seem to really give us any extra useful
+> information. It was just describing connections (endpoints) that I though=
+t
+> we could just implicitly assume. After this discussion though, maybe wort=
+h
+> a second look. I'll have to think about it more.
+
+Why not :)?
+
+- Nuno S=C3=A1
 
