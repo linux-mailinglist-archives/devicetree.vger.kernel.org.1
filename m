@@ -1,210 +1,179 @@
-Return-Path: <devicetree+bounces-71071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 802028D5A8D
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 08:33:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 181368D5AEB
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 08:57:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 864B8B21DFC
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 06:33:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29FC31C214A1
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 06:57:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E885C7F7F5;
-	Fri, 31 May 2024 06:32:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 322CE80BE5;
+	Fri, 31 May 2024 06:57:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="XDd2q9fC";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="lw3/VR9P"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Y1gdKvd3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C2D14CDF9;
-	Fri, 31 May 2024 06:32:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 223E180626
+	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 06:57:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717137175; cv=none; b=UedOgbINu2a2XtKNKY+V2bz23z0aaql4fLhHGo1AOxRC/BQnKHYkEdxFR6ghlayolEOO10UDROFedL/9r2GDX5YvSgXPEPB7YMEo5wiC/n+pD9/umaRQ0PHqFzRbP7IpMSlrTmSL0gAQkbGmgpKuaGQ3/1SvUalz4dFTCgAXRyM=
+	t=1717138671; cv=none; b=nN3JXLmo1jpU/YSeUJxQfLiN08I9pTdMaQ5C1BiwyXVgrOb0T/hOJwTvGGPtbwGOHCMsHE745le5uYKJ63KyeZUnHxkQJm9mk/Db2uieHcVUMM42su95CZM4xd7RTLkYO59fLZVjJs7wgFaX6KC0wkUFri15LoVILeO30xUnLn4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717137175; c=relaxed/simple;
-	bh=zYiX0AjhLTjP2O/Ol190QQL9U/qbjcmRbGaR0I9IbLU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rLli6fvINXWjrUc2AwpN2cTs0MX0Oa8U3m05qjvqGSO5Maoimshriy7dVB9hfOATOGUXV2I2PZJmIPrcqs5rutDWskZEg6U1uQW+7xXe8VAd3CNBf/3nP6p03A7LdBD3a21BGoMLOeI5lQzWAZkEUb1SJ3XvTYwj7BJJJyQfyFg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=XDd2q9fC; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=lw3/VR9P reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1717138671; c=relaxed/simple;
+	bh=KgMx0i8jbWHauAAxmwUFPZ7zQN5X1U/Huq+oKN2DlV0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=C5oiK0djNVXEOpDfBh9vle6hJIVgnoq8Y8wR/mVa04sCyPBF8Cy/oZcj1/zSpVsDGk33E02zPMRK16nrJFfumSAGii2SpNz713nZhIpYfAtsxbqDZ/e9qB8CpHi0hBhxiMCYcpL6GgnqjPnFIPoARxdx4dKmbBwCQhXuKGKgW2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Y1gdKvd3; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a6341cf2c99so171037266b.0
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 23:57:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1717137171; x=1748673171;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Yxhy+lgIkgKBNI7vIDVh7UOrpF+bSmn9/vQclJLbSlU=;
-  b=XDd2q9fCCr+h3yqke1vmBgzXtlG4Vo1LdPe6OjVaop4HG+2gGfR0/Jhs
-   l2leLCMkQ7RWV2nnFLuIaTUkERzyzI+aO6iPiEjVeHt8RfLLf7k8oY/LF
-   a1y+9mVLj4whrM+QAAYNsUpUVxVPLYCpz/iSKtMdo0BlavOmW4LmwJbjL
-   db2ig0tbcPuc7CZj7u7VgiSbyn4JS5w//N/AoYI441FBb4je6stI+xqPk
-   PkQoEKovXM0DmvWqKfWfN+BGSDSIBcxn9v4g1YO9CyzyGqMkpR1dUMyrh
-   XX+FUFJTVNw0U3nmfbFjJnstlT5f+JYE5ibJBiXgXC4zw/3t5Lm/OHbTB
-   w==;
-X-CSE-ConnectionGUID: p1+aEhYhRJKk6H/MobMNLA==
-X-CSE-MsgGUID: 333r38qDTS201iM4aUMemQ==
-X-IronPort-AV: E=Sophos;i="6.08,203,1712613600"; 
-   d="scan'208";a="37152648"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 31 May 2024 08:32:49 +0200
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 94B7E165F00;
-	Fri, 31 May 2024 08:32:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1717137165;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Yxhy+lgIkgKBNI7vIDVh7UOrpF+bSmn9/vQclJLbSlU=;
-	b=lw3/VR9PiO5roQceuizF5xXrSm48jTqU9oAnsOSp97GJS+o6w2dYuQYhkp6NvysJF5XElL
-	XFqS4ZwpnB9GiA2OHKKT8XvFCX45mL9ok547OVLdhjz6C6P3Sbtq+fz+mnzAuLwDK+6A03
-	lH0PyH4mYJ7X2NdYVeq4Nds20BIrJ9O5dHaTdf4K4uO7uSZk/eI61CCB9z5tgG7GRNoVKU
-	ZCN26HbpEvjnE1RwUanzgfuiDrD7JnI/ZgpQW3yYT8PbHIhqRnA+QVLhu4TuRvpoRIOpmE
-	6Cyc6tiR0oy4WXpc4/yC3WEnbcNXpToVQ9FWIC5iaAgcRuYoX2KfKWuAVt49Tw==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
-Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Esben Haabendal <esben@geanix.com>, Esben Haabendal <esben@geanix.com>
-Subject: Re: [PATCH] ARM: dts: ls1021a: add QUICC Engine node
-Date: Fri, 31 May 2024 08:32:44 +0200
-Message-ID: <3380831.44csPzL39Z@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20240530-arm-ls1021a-qe-dts-v1-1-2eda23bdf8c5@geanix.com>
-References: <20240530-arm-ls1021a-qe-dts-v1-1-2eda23bdf8c5@geanix.com>
+        d=tuxon.dev; s=google; t=1717138667; x=1717743467; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=56EGmWH9L29k/ghjMWDXEhOzEmTvPfbWJTBIWdqS0Ww=;
+        b=Y1gdKvd3O1JF2c5uXFqsUwH4RcyRJyHJBx88w+lKFm+YaXUsGvN94hDFjgbA5YgWuG
+         HXPZh8xErNOBiIV3/HHqClsYPxlqDmCwYHpUPE5L1KiA6gBO6up+Y4tpXEL2QQ9pHNgS
+         Hkp/Jehk6ZLqQniuSnZ0++7nVMHMLMDYgwrhrlhWEIB3PZv4zqeW+h5tsdYU31DimZYv
+         WvYJm/7yNxjvwsdBYh97/ki4d5D58Bk5sN7Pn/eRDLu4JCfS7qqmMSuD9PAgwKQJ70KL
+         NHZ9vFJ/k5C+IupHH3ajrcOkWOXatK2YLeJzseaI8rOyVd0fhBzqxRkSBWBhUdlbUAiP
+         1PWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717138667; x=1717743467;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=56EGmWH9L29k/ghjMWDXEhOzEmTvPfbWJTBIWdqS0Ww=;
+        b=KWY8V2vyq1mMocamRtJuc2MJHb9XhZCBsqH2rt5faAJjdTyLaUpbb3fOJmWR924qIJ
+         yYCLcejq17+HETlBLul3w6yaWLti+E5l5TGYEuXvKfOIfNXC1vGW8SWArp+qxZs75EUP
+         J6ptm9QGAeq2RqMQdFMwRRnsZ8sF/rSJe+DDG05+pnwhbhUdAPGalemYyHfu/r6CUqfW
+         3+8+DlngAnZUtw4A09DV88bxMXTeTACu5cuhkssYqCLtjAFYQw3hfjWxGoY2z5EBUGxv
+         AAc/zPXVPHWdb7ReOXKcyRakAOMysGBOFRGBxjt0r4wUYqGrG7LQjCWkvfnRp4J9Kqnc
+         GA+g==
+X-Forwarded-Encrypted: i=1; AJvYcCWZ6bR7SdalObTvt+aXHR431yquK0Q19CaHCM7OUvPOKOGFGAO2lAST1g1U2UDhWwfDxpy4txaVCIAVF+739yef4t6DwKCCIHFvKw==
+X-Gm-Message-State: AOJu0YyStRH/syFMZVbGGoRjVmnpCNxrwZubOQWNOqsvXqhKGz/lHDh+
+	6wpUS5+5qJYGpoGs7dwXiDHzTyInKsQXEJO39pqyrpul0TYk719TLMA1AZUOaBQyiYtQlAyKo/6
+	t
+X-Google-Smtp-Source: AGHT+IFTaU3QXdFC/RjWg9XdH4ZV+nNRXlq3bOCRsJk8YyatlQCsixKO9wvoexCAIuImUNlIrXnzOA==
+X-Received: by 2002:a17:906:2409:b0:a68:892c:ae22 with SMTP id a640c23a62f3a-a68892cc8c8mr19727266b.40.1717138667289;
+        Thu, 30 May 2024 23:57:47 -0700 (PDT)
+Received: from claudiu-X670E-Pro-RS.. ([82.78.167.157])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a67e73fc1a5sm54205566b.53.2024.05.30.23.57.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 May 2024 23:57:46 -0700 (PDT)
+From: Claudiu <claudiu.beznea@tuxon.dev>
+X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
+To: wim@linux-watchdog.org,
+	linux@roeck-us.net,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	geert+renesas@glider.be,
+	magnus.damm@gmail.com
+Cc: biju.das.jz@bp.renesas.com,
+	linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	claudiu.beznea.uj@bp.renesas.com
+Subject: [PATCH v9 0/9] watchdog: rzg2l_wdt: Add support for RZ/G3S
+Date: Fri, 31 May 2024 09:57:14 +0300
+Message-Id: <20240531065723.1085423-1-claudiu.beznea.uj@bp.renesas.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
 
-Hi Esben,
+From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-thanks for the patch.
+Hi,
 
-Would you consider current converting into YAML format?
+Series adds watchdog support for Renesas RZ/G3S (R9A08G045) SoC.
 
-Am Donnerstag, 30. Mai 2024, 16:22:54 CEST schrieb Esben Haabendal:
-> The LS1021A contains a QUICC Engine Block, so add a node to device
-> tree describing that.
->=20
-> Signed-off-by: Esben Haabendal <esben@geanix.com>
-> ---
->  arch/arm/boot/dts/nxp/ls/ls1021a.dtsi | 51 +++++++++++++++++++++++++++++=
-++++++
->  1 file changed, 51 insertions(+)
->=20
-> diff --git a/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi b/arch/arm/boot/dts/nx=
-p/ls/ls1021a.dtsi
-> index e86998ca77d6..ff7be69acdd5 100644
-> --- a/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi
-> +++ b/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi
-> @@ -460,6 +460,57 @@ gpio3: gpio@2330000 {
->  			#interrupt-cells =3D <2>;
->  		};
-> =20
-> +		uqe: uqe@2400000 {
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <1>;
-> +			device_type =3D "qe";
-> +			compatible =3D "fsl,qe", "simple-bus";
-> +			ranges =3D <0x0 0x0 0x2400000 0x40000>;
-> +			reg =3D <0x0 0x2400000 0x0 0x480>;
+Patches do the following:
+- patch 1/9 makes the driver depend on ARCH_RZG2L || ARCH_R9A09G011
+- patch 2/9 makes the driver depend on PM
+- patches 3-7/9 adds fixes and cleanups for the watchdog driver
+- patch 8/9 adds suspend to RAM to the watchdog driver (to be used by
+  RZ/G3S)
+- patch 9/9 documents the RZ/G3S support
 
-Properties please in this order:
-* compatible
-* reg
-* #address-cells
-* #size-cells
-* ranges
-* device_type
+Thank you,
+Claudiu Beznea
 
-> +			brg-frequency =3D <150000000>;
-> +			bus-frequency =3D <300000000>;
+Changes in v9:
+- dropped patch "watchdog: rzg2l_wdt: Power on the PM domain in
+  rzg2l_wdt_restart()" until further clarifications; this will not
+  impact any behavior as the RZ/G3S power domain support is not
+  instantiated
+- on patch "watchdog: rzg2l_wdt: Remove reset de-assert from probe"
+  call pm_runtime_put() in case the reset deassert fails
 
-Mh, aren't these values depending on your actual RCW configuration?
+Changes in v8:
+- added patch 9
+- collected tags
 
-> +			fsl,qe-num-riscs =3D <1>;
-> +			fsl,qe-num-snums =3D <28>;
+Changes in v7:
+- updated the dependency on patch 2/9
 
-Current bindings defines:
-> fsl,qe-snums: This property has to be specified as '/bits/ 8' value,
->   defining the array of serial number (SNUM) values for the virtual
->   threads.
+Changes in v6:
+- update patch 2/9 description
+- fixed the dependency on COMPILE_TEST previously introduced in patch
+  2/9
 
-So '/bits/ 8' is missing.
+Changes in v5:
+- updated description of patch 2/9
+- simplify the code in patch 2/9 by using on a new line:
+  depends on PM || COMPILE_TEST
 
-> +			qeic: qeic@80 {
-> +				compatible =3D "fsl,qe-ic";
-> +				reg =3D <0x80 0x80>;
-> +				#address-cells =3D <0>;
-> +				interrupt-controller;
-> +				#interrupt-cells =3D <1>;
-> +				interrupts =3D <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH
-> +					      GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>;
-> +			};
-> +
-> +			ucc@2000 {
-> +				cell-index =3D <1>;
-> +				reg =3D <0x2000 0x200>;
-> +				interrupts =3D <32>;
-> +				interrupt-parent =3D <&qeic>;
+Changes in v4:
+- added patch "watchdog: rzg2l_wdt: Restrict the driver to ARCH_RZG2L and
+  ARCH_R9A09G011"
+- collected tags
 
-Move cell-index to last position.
+Changes in v3:
+- make driver depend on PM not select it
+- drop patches already accepted (patches 1, 10, 11 from v2)
+- re-arranged the tags in patch 8/8 as they were messed by b4 am/shazam
 
-> +			};
-> +
-> +			ucc@2200 {
-> +				cell-index =3D <3>;
-> +				reg =3D <0x2200 0x200>;
-> +				interrupts =3D <34>;
-> +				interrupt-parent =3D <&qeic>;
+Changes in v2:
+- added patch "watchdog: rzg2l_wdt: Select PM"
+- propagate the return status of rzg2l_wdt_start() to it's callers
+  in patch "watchdog: rzg2l_wdt: Use pm_runtime_resume_and_get()" 
+- propagate the return status of rzg2l_wdt_stop() to it's callers
+  in patch "watchdog: rzg2l_wdt: Check return status of pm_runtime_put()" 
+- removed pm_ptr() from patch "watchdog: rzg2l_wdt: Add suspend/resume support"
+- s/G2UL/G2L in patch "dt-bindings: watchdog: renesas,wdt: Document RZ/G3S support"
+- collected tags
 
-Same here.
+Claudiu Beznea (9):
+  watchdog: rzg2l_wdt: Restrict the driver to ARCH_RZG2L and
+    ARCH_R9A09G011
+  watchdog: rzg2l_wdt: Make the driver depend on PM
+  watchdog: rzg2l_wdt: Use pm_runtime_resume_and_get()
+  watchdog: rzg2l_wdt: Check return status of pm_runtime_put()
+  watchdog: rzg2l_wdt: Remove reset de-assert from probe
+  watchdog: rzg2l_wdt: Remove comparison with zero
+  watchdog: rzg2l_wdt: Rely on the reset driver for doing proper reset
+  watchdog: rzg2l_wdt: Add suspend/resume support
+  dt-bindings: watchdog: renesas,wdt: Document RZ/G3S support
 
-> +			};
-> +
-> +			muram@10000 {
-> +				#address-cells =3D <1>;
-> +				#size-cells =3D <1>;
-> +				compatible =3D "fsl,qe-muram", "fsl,cpm-muram";
-> +				ranges =3D <0x0 0x10000 0x6000>;
+ .../bindings/watchdog/renesas,wdt.yaml        |   1 +
+ drivers/watchdog/Kconfig                      |   3 +-
+ drivers/watchdog/rzg2l_wdt.c                  | 113 ++++++++++--------
+ 3 files changed, 66 insertions(+), 51 deletions(-)
 
-Node address but no 'reg' property? I have no idea if this is okay.
-Also compatible (and possibly reg) first.
-
-Thanks and best regards.
-Alexander
-
-> +				data-only@0 {
-> +					compatible =3D "fsl,qe-muram-data",
-> +					"fsl,cpm-muram-data";
-> +					reg =3D <0x0 0x6000>;
-> +				};
-> +			};
-> +		};
-> +
->  		lpuart0: serial@2950000 {
->  			compatible =3D "fsl,ls1021a-lpuart";
->  			reg =3D <0x0 0x2950000 0x0 0x1000>;
->=20
-> ---
-> base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
-> change-id: 20240530-arm-ls1021a-qe-dts-093381110793
->=20
-> Best regards,
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+-- 
+2.39.2
 
 
