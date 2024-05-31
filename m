@@ -1,1909 +1,551 @@
-Return-Path: <devicetree+bounces-71047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3C5E8D5932
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 06:00:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E756A8D594D
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 06:28:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 965AF282A57
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 04:00:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D239282371
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 04:28:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D994339A8;
-	Fri, 31 May 2024 04:00:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13F5152F7A;
+	Fri, 31 May 2024 04:28:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="C66YSVEq"
+	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="BixtFxde"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1475D33C9
-	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 04:00:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEAD044384;
+	Fri, 31 May 2024 04:28:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.156.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717128051; cv=none; b=H9eyrRSaB1fUSUImsxP2PIi3yO/HGYPlcS1p6Up1ZGQWayVzOTEiSGfLK5PBrw8Yd31xxb5pKal7TFY/yyyfNuV3azsvItHCP2Udkh6YaUvk69DwWOXAwqdPDlcVN8jY8MuttU3ZggfL+y3XSdQ5JLFQGax8YbjfYzvJKYZ4GS0=
+	t=1717129694; cv=none; b=X7Sf2aZurCGCJqQESF4hk/rI0CbLakJIeZKL609LlTQ58NaKbzV+ySbEeT19kCt35vcXsnb6SoJpfsjyWGqpOOG8yQoYSgLLRg4UxREhVdk4799sY/7ngYWaD9N4bnhxcTuiPvGFD641onHiqgsDM6VZNZB06KcEFkTTL6dWpRU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717128051; c=relaxed/simple;
-	bh=4AdP62Sw1vgFEtedqh7RpfDuZ+O/o6bxKLbUf3WQEvA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sQOb7xSZ0NPIS4lsE3pWqE2B4t4i+3iMmwqJsexfG0xXGfD1kBk28+Fpji9yUTgEh9jj9uf4XlKMqld4WlzRBy+jQc0VFBct9xJoIVGmw+yLjyzO/0bSWbySadQWUA7Ubd1MRqBMDidpJarSDrbrBpsRVS3fSvtUi/zEka/jD1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=C66YSVEq; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52b8b638437so22134e87.3
-        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 21:00:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1717128044; x=1717732844; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=w+hOAnWHEjKFPeWrwKSC+cB2an1G2dYcTSMR+eM7fFo=;
-        b=C66YSVEq4emLF6Je1I4vZC35/UYm1rRTSiskn1iXMJY/sXBf2akxRM2JuXMEsU9VNT
-         +a1uErI+clhviy4XePQ8bcbwzi5EWeBs1PeOw651FjVG7Y5FBJD/oJhBStk8Zn7+MR7N
-         Sxt5K0GYIfcz1ldSEu8Zmh3on3o7CQiSnDbQI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717128044; x=1717732844;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=w+hOAnWHEjKFPeWrwKSC+cB2an1G2dYcTSMR+eM7fFo=;
-        b=OwGOtHLTL1hafuQ5FTZ/YPgLeNUcilBauXGEkTICVQ2FFyI1pvpsb8UEa3eu/rnWCW
-         Z3EcROFM881l7gE02aUps6agYG/onX6HqxC67UzQBPiUDSa97Y8X4/REtDRRhfo8Sgrv
-         5VmOAD8MFJMnOKOyoIP7DwXSbYECfluysqC5vW6t/0BEslAZTnoZcRq39fnKZLvk+PYC
-         J0re7Ks5BfzG+ouVcB+fmeniEBYmFPToJu2o27Ex2bXIICtm5Fm8f0CoYkoy8FXYsyip
-         nJk4iekkSUFO7MYlOH0dKiSpOmCGKW8MfNq+1ogpwWdmvdtq42jamWfNyROsA5jn6QOp
-         3Vgw==
-X-Forwarded-Encrypted: i=1; AJvYcCWarTeRxtRcLstU5593QzH7drTfeMIAUyOc4maipoSw7eeyj80WIMlEHI/HcLPyFh9sTGUlrbd5oE136dgUN7GTEPe/gZVtmwFnlw==
-X-Gm-Message-State: AOJu0YwwyKg42AsGxodp2u4YIRmp0/owGYwp1Ok2hzTK1bHlW7p2i/+I
-	0i0e9J/XQF4tQ4nXIsxjJ4bOtuQtw5Kf1m43MqP/KLhxtP47IJZO4AwDq+qRVLrAG1Wy8rATLf+
-	7K17Cd+7MqvILARB9H1zJUvTuBceZQJrznmAM
-X-Google-Smtp-Source: AGHT+IFQf2JSvhccqSSnSc1LfOZKYoGTyJF8/jMIkcY2ULB3L6VKjptVpdKoltcSqXXxOVWcuYLAA4xtOJ2TooNPS60=
-X-Received: by 2002:a19:5e5a:0:b0:52b:7b2c:2a3f with SMTP id
- 2adb3069b0e04-52b8980ae9fmr243104e87.61.1717128043607; Thu, 30 May 2024
- 21:00:43 -0700 (PDT)
+	s=arc-20240116; t=1717129694; c=relaxed/simple;
+	bh=9RtcW562hIoW5SY8NMmhGwZEjdYD2rcvUnpbwpHtnQE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=P2MTzIxGBOvRnHT5rpQ6iAJM749T+MQMm9NDP+kUZtmpKk1rn2lw6LsdAD7PRx00cr3OpJlVXnM64hr/8tENwgjHEfIIQLs/OvMU6EUZTRk4zczAQdpSWxePy9wGWhb3A8yQqxWjhJI4joXPYoSrL5RGriC9Ur+QzgQ6G88/nx0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b=BixtFxde; arc=none smtp.client-ip=67.231.156.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+	by mx0b-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44UIuf14025821;
+	Thu, 30 May 2024 21:27:58 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=pfpt0220; bh=M3HbsvO7pbb667/SSkGm/g1
+	C4HDnzhKrlfHbahJg8SE=; b=BixtFxdeX8bKT/Ql6wdDZB6w1KTs/ad1HtBR5yE
+	8q7Q7ZvkB+8lBEOtuIxCU0TBKEDGXeEYER0J6WNE/sy+WM0FvpgZerCG/QNuRV4W
+	YoL4Ewvv7jLJo1ZxgK6GUrc+HK1SnlRYUzhXUTZ2624bb6BXpYCXlCaOvQiEQxsW
+	7FV5x6/bQkFMuGqCEk3N3QU+svR8/EC8/X2Nzd/i2cqwUg4EGStbUQcXIZ58L3lb
+	xcNDJz5I9o9R9eF40D7Hm9Dh/ggcwjIGHsGdpRa7QIMab3TG0LQ9M8oob1C9YDYl
+	VSRfR0WfIkN//+u3J3mEcPTP+d/AszgPqb4Yov32+fg3QLA==
+Received: from dc6wp-exch02.marvell.com ([4.21.29.225])
+	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3yegkn4xqs-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 May 2024 21:27:58 -0700 (PDT)
+Received: from DC6WP-EXCH02.marvell.com (10.76.176.209) by
+ DC6WP-EXCH02.marvell.com (10.76.176.209) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Thu, 30 May 2024 21:27:57 -0700
+Received: from maili.marvell.com (10.69.176.80) by DC6WP-EXCH02.marvell.com
+ (10.76.176.209) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
+ Transport; Thu, 30 May 2024 21:27:57 -0700
+Received: from virtx40.. (unknown [10.28.34.196])
+	by maili.marvell.com (Postfix) with ESMTP id 4A01B3F7085;
+	Thu, 30 May 2024 21:27:53 -0700 (PDT)
+From: Linu Cherian <lcherian@marvell.com>
+To: <suzuki.poulose@arm.com>, <mike.leach@linaro.org>, <james.clark@arm.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <coresight@lists.linaro.org>,
+        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <sgoutham@marvell.com>,
+        <gcherian@marvell.com>, Linu Cherian <lcherian@marvell.com>
+Subject: [PATCH v8 0/7] Coresight for Kernel panic and watchdog reset
+Date: Fri, 31 May 2024 09:57:38 +0530
+Message-ID: <20240531042745.494222-1-lcherian@marvell.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240530083513.4135052-1-wenst@chromium.org>
-In-Reply-To: <20240530083513.4135052-1-wenst@chromium.org>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Fri, 31 May 2024 12:00:32 +0800
-Message-ID: <CAGXv+5FSDiZQDq21DnqaNVWLEU8JOR++7+BZLdON2Gp5+YyDrw@mail.gmail.com>
-Subject: Re: [PATCH 0/6] powervr: MT8173 GPU support
-To: Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: ytQQ46hbGGUQL_8WyPXPnYAfY08y-FF9
+X-Proofpoint-GUID: ytQQ46hbGGUQL_8WyPXPnYAfY08y-FF9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-30_21,2024-05-30_01,2024-05-17_01
 
-On Thu, May 30, 2024 at 4:35=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> w=
-rote:
->
-> Hi everyone,
->
-> This series enables the PowerVR GPU found in the MT8173 SoC, found in
-> some Chromebooks.
->
-> This version is different from the initial powervr driver submission [1]
-> in that it splits out the GPU glue layer support out of the powervr
-> driver and into a separate clock and power domain driver. The glue code
-> is otherwise the same, and also the same as found in the ChromeOS
-> kernels, with some extra comments and macro names added where possible.
->
-> Patch 1 adds a binding for the glue layer, called mfgtop. The glue layer
-> contains clock and power controls for the GPU.
->
-> Patch 2 adds a driver for the glue layer.
->
-> Patch 3 adds an entry for the MT8173 GPU and 6XT series to the PowerVR
-> binding.
->
-> Patch 4 adds an entry for the PowerVR 6XT series GPU to the driver.
->
-> Patch 5 corrects the clock for the GPU (called MFG) power domain.
->
-> Patch 6 adds device nodes for the GPU and glue layer to the MT8173 dtsi
-> file.
->
-> Patch 2 and 6 depend on patch 1 to build. I suppose some common
-> immutable tree would be needed from the MediaTek maintainers.
->
-> The kernel driver successfully probes the hardware and loads the
-> "rogue_4.40.2.51_v1.fw" firmware provided by Imagination Technologies [2]=
-.
-> Userspace was tested with Mesa 24.0.8 from Debian Trixie rebuilt with
-> the powervr vulkan driver enabled. `vulkaninfo` gives some information
-> about the GPU (attached at the end), but running the `triangle` example
-> from the Sascha Willems demos [3] with -DUSE_D2D_WSI=3DON as recommended =
-[4]
-> failed with:
->
->     Can't find a display and a display mode!
->
-> Same program worked correctly on a BeaglePlay and displayed a color
-> gradient triangle. Not sure what went wrong here.
+This patch series is rebased on v6.9.0.
 
-Frank mentioned over IRC that giving `triangle` a screen resolution would
-make it work, and it did! Thanks Frank!
+Changelog from v7:
+* Fixed breakage on perf test -vvvv  "arm coresight".
+  No issues seen with and without "resrv" buffer mode
+* Moved the crashdev registration into a seperate function.
+* Removed redundant variable in tmc_etr_setup_crashdata_buf
+* Avoided a redundant memcpy in tmc_panic_sync_etf.
+* Tested kernel panic with trace session started uisng perf.   
+  Please see the title "Perf based testing" below for details.
+  For this, stop_on_flush sysfs attribute is taken into 
+  consideration while starting perf sessions as well. 
 
-OTOH I'm getting some extra warnings not seen on the BeaglePlay:
+Changelog from v6:
+* Added special device files for reading crashdata, so that
+  read_prevboot mode flag is removed. 
+* Added new sysfs TMC device attribute, stop_on_flush.
+  Stop on flush trigger event is disabled by default. 
+  User need to explicitly enable this from sysfs for panic stop
+  to work.
+* Address parameter for panicstop ETM configuration is   
+  chosen as kernel "panic" address by default.
+* Added missing tmc_wait_for_tmcready during panic handling
+* Few other misc code rearrangements. 
 
-    MESA: error: No hard coded passthrough rta vertex shader.
-Returning empty shader.
-    MESA: warning: ../src/imagination/vulkan/pvr_job_context.c:71:
-FINISHME: Missing reset support for brn51764
-    MESA: warning: ../src/imagination/vulkan/pvr_job_context.c:74:
-FINISHME: Missing reset support for brn58839
-    MESA: warning: ../src/imagination/vulkan/pvr_border.c:104:
-FINISHME: Devices without tpu_border_colour_enhanced require entries
-for compressed formats to be stored in the table pre-compressed.
+Changelog from v5:
+* Fixed issues reported by CONFIG_DEBUG_ATOMIC_SLEEP
+* Fixed a memory leak while reading data from /dev/tmc_etrx in
+  READ_PREVBOOT mode
+* Tested reading trace data from crashdump kernel
 
-I also get a constant stream of kernel error messages, all the same:
+Changelog from v4:
+* Device tree binding
+  - Description is made more explicit on the usage of reserved memory
+    region
+  - Mismatch in memory region names in dts binding and driver fixed
+  - Removed "mem" suffix from the memory region names
+* Rename "struct tmc_register_snapshot" ->  "struct tmc_crash_metadata",
+  since it contains more than register snapshot.
+  Related variables are named accordingly.
+* Rename struct tmc_drvdata members
+   resrv_buf -> crash_tbuf
+   metadata  -> crash_mdata
+* Size field in metadata refers to RSZ register and hence indicates the
+  size in 32 bit words. ETR metadata follows this convention, the same
+  has been extended to ETF metadata as well.
+* Added crc32 for more robust metadata and tracedata validation.
+* Added/modified dev_dbg messages during metadata validation
+* Fixed a typo in patch 5 commit description
 
-    powervr 13000000.gpu: [drm] Received unknown FWCCB command 2abc0069
+Changelog from v3:
+* Converted the Coresight ETM driver change to a named configuration.
+  RFC tag has been removed with this change.
+* Fixed yaml issues reported by "make dt_binding_check"
+* Added names for reserved memory regions 0 and 1
+* Added prevalidation checks for metadata processing
+* Fixed a regression introduced in RFC v3
+  - TMC Status register was getting saved wrongly
+* Reverted memremap attribute changes from _WB to _WC to match
+  with the dma map attributes
+* Introduced reserved buffer mode specific .sync op.
+  This fixes a possible crash when reserved buffer mode was used in
+  normal trace capture, due to unwanted dma maintenance operations.
 
-And the first few frames seem to flicker. (Though that could also be the
-display driver that's at fault.)
+v7 is posted here:
+https://lore.kernel.org/lkml/20240307033625.325058-1-lcherian@marvell.com/
+
+Using Coresight for Kernel panic and Watchdog reset
+===================================================
+This patch series is about extending Linux coresight driver support to
+address kernel panic and watchdog reset scenarios. This would help
+coresight users to debug kernel panic and watchdog reset using
+coresight trace data.
+
+Coresight trace capture: Kernel panic
+-------------------------------------
+From the coresight driver point of view, addressing the kernel panic
+situation has four main requirements.
+
+a. Support for allocation of trace buffer pages from reserved memory area.
+   Platform can advertise this using a new device tree property added to
+   relevant coresight nodes.
+
+b. Support for stopping coresight blocks at the time of panic
+
+c. Saving required metadata in the specified format
+
+d. Support for reading trace data captured at the time of panic
+
+Allocation of trace buffer pages from reserved RAM
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A new optional device tree property "memory-region" is added to the
+ETR/ETF device nodes, that would give the base address and size of trace
+buffer.
+
+Static allocation of trace buffers would ensure that both IOMMU enabled
+and disabled cases are handled. Also, platforms that support persistent
+RAM will allow users to read trace data in the subsequent boot without
+booting the crashdump kernel.
+
+Note:
+For ETR sink devices, this reserved region will be used for both trace
+capture and trace data retrieval.
+For ETF sink devices, internal SRAM would be used for trace capture,
+and they would be synced to reserved region for retrieval.
+
+Note: Patches 1 & 2 adds support for this.
+
+Disabling coresight blocks at the time of panic
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In order to avoid the situation of losing relevant trace data after a
+kernel panic, it would be desirable to stop the coresight blocks at the
+time of panic.
+
+This can be achieved by configuring the comparator, CTI and sink
+devices as below,
+
+Comparator(triggers on kernel panic) --->External out --->CTI --
+								|
+		 ETR/ETF stop <------External In <--------------
+Note:
+
+* Patch 6 provides the necessary ETR configuration.
+* Patch 7 provides the necessary ETM configuration.
+
+Saving metadata at the time of kernel panic
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Coresight metadata involves all additional data that are required for a
+successful trace decode in addition to the trace data. This involves
+ETR/ETF, ETE register snapshot etc.
+
+A new optional device property "memory-region" is added to
+the ETR/ETF/ETE device nodes for this.
+
+Note: Patches 3 & 4 adds support for this.
+
+Reading trace data captured at the time of panic
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Trace data captured at the time of panic, can be read from rebooted kernel
+or from crashdump kernel using the below mentioned interface.
+
+Note: Patch 5 adds support for this.
+
+Steps for reading trace data captured in previous boot
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+1. cd /sys/bus/coresight/devices/tmc_etrXX/
+
+2. Dump trace buffer crashdata to a file,
+
+   #dd if=/dev/crash_tmc_etrXX of=~/cstrace.bin
 
 
-For reference, on the BeaglePlay I see:
+General flow of trace capture and decode incase of kernel panic
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. Enable source and sink on all the cores using the sysfs interface.
+   ETR sink will have trace buffers allocated from reserved memory,
+   by selecting "resrv" buffer mode from sysfs.
 
-    MESA: error: No hard coded idfwdf program. Returning empty program.
-    MESA: error: No hard coded passthrough vertex shader. Returning
-empty shader.
-    MESA: warning:
-../src/imagination/vulkan/pvr_descriptor_set.c:1073: FINISHME: Entry
-tracker for allocations?
+2. Run relevant tests.
+
+3. On a kernel panic, all coresight blocks are disabled, necessary
+   metadata is synced by kernel panic handler.
+
+   System would eventually reboot or boot a crashdump kernel.
+
+4. For  platforms that supports crashdump kernel, raw trace data can be
+   dumped using the coresight sysfs interface from the crashdump kernel
+   itself. Persistent RAM is not a requirement in this case.
+
+5. For platforms that supports persistent RAM, trace data can be dumped
+   using the coresight sysfs interface in the subsequent Linux boot.
+   Crashdump kernel is not a requirement in this case. Persistent RAM
+   ensures that trace data is intact across reboot.
+
+Coresight trace capture: Watchdog reset
+---------------------------------------
+The main difference between addressing the watchdog reset and kernel panic
+case are below,
+
+a. Saving coresight metadata need to be taken care by the
+   SCP(system control processor) firmware in the specified format,
+   instead of kernel.
+
+b. Reserved memory region given by firmware for trace buffer and metadata
+   has to be in persistent RAM.
+   Note: This is a requirement for watchdog reset case but optional
+   in kernel panic case.
+
+Watchdog reset can be supported only on platforms that meet the above
+two requirements.
+
+Testing Kernel panic on Linux 6.8
+---------------------------------
+1. Enable the preloaded ETM configuration
+
+  #echo 1 > /sys/kernel/config/cs-syscfg/configurations/panicstop/enable
+
+2. Configure CTI using sysfs interface
+
+  #./cti_setup.sh
+
+  #cat cti_setup.sh
+
+  cd /sys/bus/coresight/devices/
+
+  ap_cti_config () {
+    #ETM trig out[0] trigger to Channel 0
+    echo 0 4 > channels/trigin_attach
+  }
+
+  etf_cti_config () {
+    #ETF Flush in trigger from Channel 0
+    echo 0 1 > channels/trigout_attach
+    echo 1 > channels/trig_filter_enable
+  }
+
+  etr_cti_config () {
+    #ETR Flush in from Channel 0
+    echo 0 1 > channels/trigout_attach
+    echo 1 > channels/trig_filter_enable
+  }
+
+  ctidevs=`find . -name "cti*"`
+
+  for i in $ctidevs
+  do
+          cd $i
+
+          connection=`find . -name "ete*"`
+          if [ ! -z "$connection" ]
+          then
+                  echo "AP CTI config for $i"
+                  ap_cti_config
+          fi
+
+          connection=`find . -name "tmc_etf*"`
+          if [ ! -z "$connection" ]
+          then
+                  echo "ETF CTI config for $i"
+                  etf_cti_config
+          fi
+
+          connection=`find . -name "tmc_etr*"`
+          if [ ! -z "$connection" ]
+          then
+                  echo "ETR CTI config for $i"
+                  etr_cti_config
+          fi
+
+          cd ..
+  done
+
+Note: CTI connections are SOC specific and hence the above script is
+added just for reference.
+
+3. Choose reserved buffer mode for ETR buffer
+  #echo "resrv" > /sys/bus/coresight/devices/tmc_etr0/buf_mode_preferred
+
+4. Enable stop on flush trigger configuration
+  #echo 1 > /sys/bus/coresight/devices/tmc_etr0/stop_on_flush 
+
+4. Start Coresight tracing on cores 1 and 2 using sysfs interface
+
+5. Run some application on core 1
+  #taskset -c 1 dd if=/dev/urandom of=/dev/null &
+
+6. Invoke kernel panic on core 2
+  #echo 1 > /proc/sys/kernel/panic
+  #taskset -c 2 echo c > /proc/sysrq-trigger
+
+7. From rebooted kernel or crashdump kernel, read crashdata
+ 
+  Note: For crashdump kernel option, please make sure "crash_kexec_post_notifiers" is
+  added to the kernel bootargs.
+
+  #dd if=/dev/crash_tmc_etr0 of=/trace/cstrace.bin
+
+8. Run opencsd decoder tools/scripts to generate the instruction trace.
+
+Sample Core 1 instruction trace dump:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	A                                  etm4_enable_hw: ffff800008ae1dd4
+	CONTEXT EL2                        etm4_enable_hw: ffff800008ae1dd4
+	I                                  etm4_enable_hw: ffff800008ae1dd4:
+	d503201f   nop
+	I                                  etm4_enable_hw: ffff800008ae1dd8:
+	d503201f   nop
+	I                                  etm4_enable_hw: ffff800008ae1ddc:
+	d503201f   nop
+	I                                  etm4_enable_hw: ffff800008ae1de0:
+	d503201f   nop
+	I                                  etm4_enable_hw: ffff800008ae1de4:
+	d503201f   nop
+	I                                  etm4_enable_hw: ffff800008ae1de8:
+	d503233f   paciasp
+	I                                  etm4_enable_hw: ffff800008ae1dec:
+	a9be7bfd   stp     x29, x30, [sp, #-32]!
+	I                                  etm4_enable_hw: ffff800008ae1df0:
+	910003fd   mov     x29, sp
+	I                                  etm4_enable_hw: ffff800008ae1df4:
+	a90153f3   stp     x19, x20, [sp, #16]
+	I                                  etm4_enable_hw: ffff800008ae1df8:
+	2a0003f4   mov     w20, w0
+	I                                  etm4_enable_hw: ffff800008ae1dfc:
+	900085b3   adrp    x19, ffff800009b95000 <reserved_mem+0xc48>
+	I                                  etm4_enable_hw: ffff800008ae1e00:
+	910f4273   add     x19, x19, #0x3d0
+	I                                  etm4_enable_hw: ffff800008ae1e04:
+	f8747a60   ldr     x0, [x19, x20, lsl #3]
+	E                                  etm4_enable_hw: ffff800008ae1e08:
+	b4000140   cbz     x0, ffff800008ae1e30 <etm4_starting_cpu+0x50>
+	I    149.039572921                 etm4_enable_hw: ffff800008ae1e30:
+	a94153f3   ldp     x19, x20, [sp, #16]
+	I    149.039572921                 etm4_enable_hw: ffff800008ae1e34:
+	52800000   mov     w0, #0x0                        // #0
+	I    149.039572921                 etm4_enable_hw: ffff800008ae1e38:
+	a8c27bfd   ldp     x29, x30, [sp], #32
+
+	..snip
+
+	    149.052324811           chacha_block_generic: ffff800008642d80:
+	9100a3e0   add     x0,
+	I    149.052324811           chacha_block_generic: ffff800008642d84:
+	b86178a2   ldr     w2, [x5, x1, lsl #2]
+	I    149.052324811           chacha_block_generic: ffff800008642d88:
+	8b010803   add     x3, x0, x1, lsl #2
+	I    149.052324811           chacha_block_generic: ffff800008642d8c:
+	b85fc063   ldur    w3, [x3, #-4]
+	I    149.052324811           chacha_block_generic: ffff800008642d90:
+	0b030042   add     w2, w2, w3
+	I    149.052324811           chacha_block_generic: ffff800008642d94:
+	b8217882   str     w2, [x4, x1, lsl #2]
+	I    149.052324811           chacha_block_generic: ffff800008642d98:
+	91000421   add     x1, x1, #0x1
+	I    149.052324811           chacha_block_generic: ffff800008642d9c:
+	f100443f   cmp     x1, #0x11
 
 
-Regards
-ChenYu
+Sample Core 2 instruction trace dump(kernel panic triggered core):
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	A                                  etm4_enable_hw: ffff800008ae1dd4
+	CONTEXT EL2                        etm4_enable_hw: ffff800008ae1dd4
+	I                                  etm4_enable_hw: ffff800008ae1dd4:
+	d503201f   nop
+	I                                  etm4_enable_hw: ffff800008ae1dd8:
+	d503201f   nop
+	I                                  etm4_enable_hw: ffff800008ae1ddc:
+	d503201f   nop
+	I                                  etm4_enable_hw: ffff800008ae1de0:
+	d503201f   nop
+	I                                  etm4_enable_hw: ffff800008ae1de4:
+	d503201f   nop
+	I                                  etm4_enable_hw: ffff800008ae1de8:
+	d503233f   paciasp
+	I                                  etm4_enable_hw: ffff800008ae1dec:
+	a9be7bfd   stp     x29, x30, [sp, #-32]!
+	I                                  etm4_enable_hw: ffff800008ae1df0:
+	910003fd   mov     x29, sp
+	I                                  etm4_enable_hw: ffff800008ae1df4:
+	a90153f3   stp     x19, x20, [sp, #16]
+	I                                  etm4_enable_hw: ffff800008ae1df8:
+	2a0003f4   mov     w20, w0
+	I                                  etm4_enable_hw: ffff800008ae1dfc:
+	900085b3   adrp    x19, ffff800009b95000 <reserved_mem+0xc48>
+	I                                  etm4_enable_hw: ffff800008ae1e00:
+	910f4273   add     x19, x19, #0x3d0
+	I                                  etm4_enable_hw: ffff800008ae1e04:
+	f8747a60   ldr     x0, [x19, x20, lsl #3]
+	E                                  etm4_enable_hw: ffff800008ae1e08:
+	b4000140   cbz     x0, ffff800008ae1e30 <etm4_starting_cpu+0x50>
+	I    149.046243445                 etm4_enable_hw: ffff800008ae1e30:
+	a94153f3   ldp     x19, x20, [sp, #16]
+	I    149.046243445                 etm4_enable_hw: ffff800008ae1e34:
+	52800000   mov     w0, #0x0                        // #0
+	I    149.046243445                 etm4_enable_hw: ffff800008ae1e38:
+	a8c27bfd   ldp     x29, x30, [sp], #32
+	I    149.046243445                 etm4_enable_hw: ffff800008ae1e3c:
+	d50323bf   autiasp
+	E    149.046243445                 etm4_enable_hw: ffff800008ae1e40:
+	d65f03c0   ret
+	A                                ete_sysreg_write: ffff800008adfa18
+
+	..snip
+
+	I     149.05422547                          panic: ffff800008096300:
+	a90363f7   stp     x23, x24, [sp, #48]
+	I     149.05422547                          panic: ffff800008096304:
+	6b00003f   cmp     w1, w0
+	I     149.05422547                          panic: ffff800008096308:
+	3a411804   ccmn    w0, #0x1, #0x4, ne  // ne = any
+	N     149.05422547                          panic: ffff80000809630c:
+	540001e0   b.eq    ffff800008096348 <panic+0xe0>  // b.none
+	I     149.05422547                          panic: ffff800008096310:
+	f90023f9   str     x25, [sp, #64]
+	E     149.05422547                          panic: ffff800008096314:
+	97fe44ef   bl      ffff8000080276d0 <panic_smp_self_stop>
+	A                                           panic: ffff80000809634c
+	I     149.05422547                          panic: ffff80000809634c:
+	910102d5   add     x21, x22, #0x40
+	I     149.05422547                          panic: ffff800008096350:
+	52800020   mov     w0, #0x1                        // #1
+	E     149.05422547                          panic: ffff800008096354:
+	94166b8b   bl      ffff800008631180 <bust_spinlocks>
+	N    149.054225518                 bust_spinlocks: ffff800008631180:
+	340000c0   cbz     w0, ffff800008631198 <bust_spinlocks+0x18>
+	I    149.054225518                 bust_spinlocks: ffff800008631184:
+	f000a321   adrp    x1, ffff800009a98000 <pbufs.0+0xbb8>
+	I    149.054225518                 bust_spinlocks: ffff800008631188:
+	b9405c20   ldr     w0, [x1, #92]
+	I    149.054225518                 bust_spinlocks: ffff80000863118c:
+	11000400   add     w0, w0, #0x1
+	I    149.054225518                 bust_spinlocks: ffff800008631190:
+	b9005c20   str     w0, [x1, #92]
+	E    149.054225518                 bust_spinlocks: ffff800008631194:
+	d65f03c0   ret
+	A                                           panic: ffff800008096358
+
+Perf based testing
+------------------
+Kernel panic during perf trace sessions has been tested with this series.
+
+Starting perf session
+~~~~~~~~~~~~~~~~~~~~~
+ETF:
+./tools/perf/perf record -e cs_etm/panicstop,@tmc_etf1/ -C 1
+./tools/perf/perf record -e cs_etm/panicstop,@tmc_etf2/ -C 2
+
+ETR:
+./tools/perf/perf record -e cs_etm/panicstop,@tmc_etr0/ -C 1,2
+
+Reading trace data after panic
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Same sysfs based method explained above can be used to retrieve and
+decode the trace data after the reboot on kernel panic.
+
+Future Improvements
+-------------------
+* Explore changing CTI sysfs script to system configuration manager profile
 
 
-> Anyway, please have a look and test.
->
->
-> Thanks
-> ChenYu
->
-> [1] https://lore.kernel.org/dri-devel/20220815165156.118212-2-sarah.walke=
-r@imgtec.com/
-> [2] https://gitlab.freedesktop.org/imagination/linux-firmware/-/tree/powe=
-rvr
-> [3] https://github.com/SaschaWillems/Vulkan
-> [4] https://lore.kernel.org/dri-devel/f2b2671e-5acc-4dec-9c2e-3c9cd2e1f19=
-e@imgtec.com/
->
-> Chen-Yu Tsai (6):
->   dt-bindings: clock: mediatek: Add mt8173 mfgtop
->   clk: mediatek: Add mt8173-mfgtop driver
->   dt-bindings: gpu: powervr-rogue: Add MediaTek MT8173 GPU
->   drm/imagination: Add compatible string entry for Series6XT
->   arm64: dts: mediatek: mt8173: Fix MFG_ASYNC power domain clock
->   arm64: dts: mediatek: mt8173: Add GPU device nodes
->
->  .../clock/mediatek,mt8173-mfgtop.yaml         |  71 ++++++
->  .../bindings/gpu/img,powervr-rogue.yaml       |  24 +-
->  arch/arm64/boot/dts/mediatek/mt8173.dtsi      |  26 +-
->  drivers/clk/mediatek/Kconfig                  |   9 +
->  drivers/clk/mediatek/Makefile                 |   1 +
->  drivers/clk/mediatek/clk-mt8173-mfgtop.c      | 240 ++++++++++++++++++
->  drivers/gpu/drm/imagination/pvr_drv.c         |   1 +
->  include/dt-bindings/clock/mt8173-clk.h        |   7 +
->  8 files changed, 374 insertions(+), 5 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt81=
-73-mfgtop.yaml
->  create mode 100644 drivers/clk/mediatek/clk-mt8173-mfgtop.c
->
->
-> base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
->
-> Vulkan info output:
->
-> WARNING: [Loader Message] Code 0 : terminator_CreateInstance: Received re=
-turn code -3 from call to vkCreateInstance in ICD /usr/lib/aarch64-linux-gn=
-u/libvulkan_virtio.so. Skipping this driver.
-> 'DISPLAY' environment variable not set... skipping surface info
-> ERROR: [../src/panfrost/vulkan/panvk_device.c:386] Code 0 : WARNING: panv=
-k is not a conformant vulkan implementation, pass PAN_I_WANT_A_BROKEN_VULKA=
-N_DRIVER=3D1 if you know what you're doing. (VK_ERROR_INCOMPATIBLE_DRIVER)
-> MESA: error: No hard coded idfwdf program. Returning empty program.
-> MESA: error: No hard coded passthrough rta vertex shader. Returning empty=
- shader.
-> MESA: error: No hard coded passthrough vertex shader. Returning empty sha=
-der.
-> MESA: warning: ../src/imagination/vulkan/pvr_job_context.c:71: FINISHME: =
-Missing reset support for brn51764
-> MESA: warning: ../src/imagination/vulkan/pvr_job_context.c:74: FINISHME: =
-Missing reset support for brn58839
-> MESA: warning: ../src/imagination/vulkan/pvr_border.c:104: FINISHME: Devi=
-ces without tpu_border_colour_enhanced require entries for compressed forma=
-ts to be stored in the table pre-compressed.
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> VULKANINFO
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->
-> Vulkan Instance Version: 1.3.280
->
->
-> Instance Extensions: count =3D 23
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
->         VK_EXT_acquire_drm_display             : extension revision 1
->         VK_EXT_acquire_xlib_display            : extension revision 1
->         VK_EXT_debug_report                    : extension revision 10
->         VK_EXT_debug_utils                     : extension revision 2
->         VK_EXT_direct_mode_display             : extension revision 1
->         VK_EXT_display_surface_counter         : extension revision 1
->         VK_EXT_surface_maintenance1            : extension revision 1
->         VK_EXT_swapchain_colorspace            : extension revision 4
->         VK_KHR_device_group_creation           : extension revision 1
->         VK_KHR_display                         : extension revision 23
->         VK_KHR_external_fence_capabilities     : extension revision 1
->         VK_KHR_external_memory_capabilities    : extension revision 1
->         VK_KHR_external_semaphore_capabilities : extension revision 1
->         VK_KHR_get_display_properties2         : extension revision 1
->         VK_KHR_get_physical_device_properties2 : extension revision 2
->         VK_KHR_get_surface_capabilities2       : extension revision 1
->         VK_KHR_portability_enumeration         : extension revision 1
->         VK_KHR_surface                         : extension revision 25
->         VK_KHR_surface_protected_capabilities  : extension revision 1
->         VK_KHR_wayland_surface                 : extension revision 6
->         VK_KHR_xcb_surface                     : extension revision 6
->         VK_KHR_xlib_surface                    : extension revision 6
->         VK_LUNARG_direct_driver_loading        : extension revision 1
->
-> Layers: count =3D 2
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> VK_LAYER_MESA_device_select (Linux device selection layer) Vulkan version=
- 1.3.211, layer version 1:
->         Layer Extensions: count =3D 0
->         Devices: count =3D 2
->                 GPU id =3D 0 (Imagination PowerVR Rogue GX6250)
->                 Layer-Device Extensions: count =3D 0
->
->                 GPU id =3D 1 (llvmpipe (LLVM 17.0.6, 128 bits))
->                 Layer-Device Extensions: count =3D 0
->
-> VK_LAYER_MESA_overlay (Mesa Overlay layer) Vulkan version 1.3.211, layer =
-version 1:
->         Layer Extensions: count =3D 0
->         Devices: count =3D 2
->                 GPU id =3D 0 (Imagination PowerVR Rogue GX6250)
->                 Layer-Device Extensions: count =3D 0
->
->                 GPU id =3D 1 (llvmpipe (LLVM 17.0.6, 128 bits))
->                 Layer-Device Extensions: count =3D 0
->
-> Device Properties and Extensions:
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> GPU0:
-> VkPhysicalDeviceProperties:
-> ---------------------------
->         apiVersion        =3D 1.0.274 (4194578)
->         driverVersion     =3D 24.0.8 (100663304)
->         vendorID          =3D 0x1010
->         deviceID          =3D 0x6250
->         deviceType        =3D PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU
->         deviceName        =3D Imagination PowerVR Rogue GX6250
->         pipelineCacheUUID =3D 6ddf30eb-d118-41f1-455f-580ae751c27b
->
-> VkPhysicalDeviceLimits:
-> -----------------------
->         maxImageDimension1D                             =3D 8192
->         maxImageDimension2D                             =3D 8192
->         maxImageDimension3D                             =3D 2048
->         maxImageDimensionCube                           =3D 8192
->         maxImageArrayLayers                             =3D 2048
->         maxTexelBufferElements                          =3D 65536
->         maxUniformBufferRange                           =3D 134217728
->         maxStorageBufferRange                           =3D 134217728
->         maxPushConstantsSize                            =3D 256
->         maxMemoryAllocationCount                        =3D 4294967295
->         maxSamplerAllocationCount                       =3D 4294967295
->         bufferImageGranularity                          =3D 0x00000001
->         sparseAddressSpaceSize                          =3D 0x4000000000
->         maxBoundDescriptorSets                          =3D 4
->         maxPerStageDescriptorSamplers                   =3D 32
->         maxPerStageDescriptorUniformBuffers             =3D 64
->         maxPerStageDescriptorStorageBuffers             =3D 36
->         maxPerStageDescriptorSampledImages              =3D 48
->         maxPerStageDescriptorStorageImages              =3D 8
->         maxPerStageDescriptorInputAttachments           =3D 8
->         maxPerStageResources                            =3D 224
->         maxDescriptorSetSamplers                        =3D 256
->         maxDescriptorSetUniformBuffers                  =3D 256
->         maxDescriptorSetUniformBuffersDynamic           =3D 8
->         maxDescriptorSetStorageBuffers                  =3D 256
->         maxDescriptorSetStorageBuffersDynamic           =3D 8
->         maxDescriptorSetSampledImages                   =3D 256
->         maxDescriptorSetStorageImages                   =3D 256
->         maxDescriptorSetInputAttachments                =3D 256
->         maxVertexInputAttributes                        =3D 16
->         maxVertexInputBindings                          =3D 16
->         maxVertexInputAttributeOffset                   =3D 65535
->         maxVertexInputBindingStride                     =3D 2147483648
->         maxVertexOutputComponents                       =3D 128
->         maxTessellationGenerationLevel                  =3D 0
->         maxTessellationPatchSize                        =3D 0
->         maxTessellationControlPerVertexInputComponents  =3D 0
->         maxTessellationControlPerVertexOutputComponents =3D 0
->         maxTessellationControlPerPatchOutputComponents  =3D 0
->         maxTessellationControlTotalOutputComponents     =3D 0
->         maxTessellationEvaluationInputComponents        =3D 0
->         maxTessellationEvaluationOutputComponents       =3D 0
->         maxGeometryShaderInvocations                    =3D 0
->         maxGeometryInputComponents                      =3D 0
->         maxGeometryOutputComponents                     =3D 0
->         maxGeometryOutputVertices                       =3D 0
->         maxGeometryTotalOutputComponents                =3D 0
->         maxFragmentInputComponents                      =3D 128
->         maxFragmentOutputAttachments                    =3D 8
->         maxFragmentDualSrcAttachments                   =3D 0
->         maxFragmentCombinedOutputResources              =3D 52
->         maxComputeSharedMemorySize                      =3D 16384
->         maxComputeWorkGroupCount: count =3D 3
->                 65536
->                 65536
->                 65536
->         maxComputeWorkGroupInvocations                  =3D 512
->         maxComputeWorkGroupSize: count =3D 3
->                 512
->                 512
->                 64
->         subPixelPrecisionBits                           =3D 8
->         subTexelPrecisionBits                           =3D 8
->         mipmapPrecisionBits                             =3D 8
->         maxDrawIndexedIndexValue                        =3D 4294967295
->         maxDrawIndirectCount                            =3D 2147483648
->         maxSamplerLodBias                               =3D 16
->         maxSamplerAnisotropy                            =3D 1
->         maxViewports                                    =3D 1
->         maxViewportDimensions: count =3D 2
->                 8192
->                 8192
->         viewportBoundsRange: count =3D 2
->                 -16384
->                 16384
->         viewportSubPixelBits                            =3D 0
->         minMemoryMapAlignment                           =3D 64
->         minTexelBufferOffsetAlignment                   =3D 0x00000010
->         minUniformBufferOffsetAlignment                 =3D 0x00000004
->         minStorageBufferOffsetAlignment                 =3D 0x00000004
->         minTexelOffset                                  =3D -8
->         maxTexelOffset                                  =3D 7
->         minTexelGatherOffset                            =3D -8
->         maxTexelGatherOffset                            =3D 7
->         minInterpolationOffset                          =3D -0.5
->         maxInterpolationOffset                          =3D 0.5
->         subPixelInterpolationOffsetBits                 =3D 4
->         maxFramebufferWidth                             =3D 8192
->         maxFramebufferHeight                            =3D 8192
->         maxFramebufferLayers                            =3D 2048
->         framebufferColorSampleCounts: count =3D 4
->                 SAMPLE_COUNT_1_BIT
->                 SAMPLE_COUNT_2_BIT
->                 SAMPLE_COUNT_4_BIT
->                 SAMPLE_COUNT_8_BIT
->         framebufferDepthSampleCounts: count =3D 4
->                 SAMPLE_COUNT_1_BIT
->                 SAMPLE_COUNT_2_BIT
->                 SAMPLE_COUNT_4_BIT
->                 SAMPLE_COUNT_8_BIT
->         framebufferStencilSampleCounts: count =3D 4
->                 SAMPLE_COUNT_1_BIT
->                 SAMPLE_COUNT_2_BIT
->                 SAMPLE_COUNT_4_BIT
->                 SAMPLE_COUNT_8_BIT
->         framebufferNoAttachmentsSampleCounts: count =3D 4
->                 SAMPLE_COUNT_1_BIT
->                 SAMPLE_COUNT_2_BIT
->                 SAMPLE_COUNT_4_BIT
->                 SAMPLE_COUNT_8_BIT
->         maxColorAttachments                             =3D 8
->         sampledImageColorSampleCounts: count =3D 4
->                 SAMPLE_COUNT_1_BIT
->                 SAMPLE_COUNT_2_BIT
->                 SAMPLE_COUNT_4_BIT
->                 SAMPLE_COUNT_8_BIT
->         sampledImageIntegerSampleCounts: count =3D 4
->                 SAMPLE_COUNT_1_BIT
->                 SAMPLE_COUNT_2_BIT
->                 SAMPLE_COUNT_4_BIT
->                 SAMPLE_COUNT_8_BIT
->         sampledImageDepthSampleCounts: count =3D 4
->                 SAMPLE_COUNT_1_BIT
->                 SAMPLE_COUNT_2_BIT
->                 SAMPLE_COUNT_4_BIT
->                 SAMPLE_COUNT_8_BIT
->         sampledImageStencilSampleCounts: count =3D 4
->                 SAMPLE_COUNT_1_BIT
->                 SAMPLE_COUNT_2_BIT
->                 SAMPLE_COUNT_4_BIT
->                 SAMPLE_COUNT_8_BIT
->         storageImageSampleCounts: count =3D 4
->                 SAMPLE_COUNT_1_BIT
->                 SAMPLE_COUNT_2_BIT
->                 SAMPLE_COUNT_4_BIT
->                 SAMPLE_COUNT_8_BIT
->         maxSampleMaskWords                              =3D 1
->         timestampComputeAndGraphics                     =3D false
->         timestampPeriod                                 =3D 0
->         maxClipDistances                                =3D 8
->         maxCullDistances                                =3D 8
->         maxCombinedClipAndCullDistances                 =3D 8
->         discreteQueuePriorities                         =3D 2
->         pointSizeRange: count =3D 2
->                 1
->                 511
->         lineWidthRange: count =3D 2
->                 0.0625
->                 16
->         pointSizeGranularity                            =3D 0.0625
->         lineWidthGranularity                            =3D 0.0625
->         strictLines                                     =3D false
->         standardSampleLocations                         =3D true
->         optimalBufferCopyOffsetAlignment                =3D 0x00000004
->         optimalBufferCopyRowPitchAlignment              =3D 0x00000004
->         nonCoherentAtomSize                             =3D 0x00000001
->
-> VkPhysicalDeviceSparseProperties:
-> ---------------------------------
->         residencyStandard2DBlockShape            =3D false
->         residencyStandard2DMultisampleBlockShape =3D false
->         residencyStandard3DBlockShape            =3D false
->         residencyAlignedMipSize                  =3D false
->         residencyNonResidentStrict               =3D false
->
-> VkPhysicalDeviceTexelBufferAlignmentPropertiesEXT:
-> --------------------------------------------------
->         storageTexelBufferOffsetAlignmentBytes       =3D 0x00000010
->         storageTexelBufferOffsetSingleTexelAlignment =3D true
->         uniformTexelBufferOffsetAlignmentBytes       =3D 0x00000010
->         uniformTexelBufferOffsetSingleTexelAlignment =3D false
->
-> VkPhysicalDeviceTimelineSemaphorePropertiesKHR:
-> -----------------------------------------------
->         maxTimelineSemaphoreValueDifference =3D 18446744073709551615
->
-> Device Extensions: count =3D 20
->         VK_EXT_external_memory_dma_buf        : extension revision 1
->         VK_EXT_host_query_reset               : extension revision 1
->         VK_EXT_private_data                   : extension revision 1
->         VK_EXT_scalar_block_layout            : extension revision 1
->         VK_EXT_texel_buffer_alignment         : extension revision 1
->         VK_EXT_tooling_info                   : extension revision 1
->         VK_KHR_bind_memory2                   : extension revision 1
->         VK_KHR_copy_commands2                 : extension revision 1
->         VK_KHR_external_fence                 : extension revision 1
->         VK_KHR_external_fence_fd              : extension revision 1
->         VK_KHR_external_memory                : extension revision 1
->         VK_KHR_external_memory_fd             : extension revision 1
->         VK_KHR_external_semaphore             : extension revision 1
->         VK_KHR_external_semaphore_fd          : extension revision 1
->         VK_KHR_format_feature_flags2          : extension revision 2
->         VK_KHR_get_memory_requirements2       : extension revision 1
->         VK_KHR_image_format_list              : extension revision 1
->         VK_KHR_swapchain                      : extension revision 70
->         VK_KHR_timeline_semaphore             : extension revision 2
->         VK_KHR_uniform_buffer_standard_layout : extension revision 1
->
-> VkQueueFamilyProperties:
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->         queueProperties[0]:
->         -------------------
->                 minImageTransferGranularity =3D (1,1,1)
->                 queueCount                  =3D 2
->                 queueFlags                  =3D QUEUE_GRAPHICS_BIT | QUEU=
-E_COMPUTE_BIT | QUEUE_TRANSFER_BIT
->                 timestampValidBits          =3D 0
->                 present support             =3D false
->
-> VkPhysicalDeviceMemoryProperties:
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> memoryHeaps: count =3D 1
->         memoryHeaps[0]:
->                 size   =3D 1752969216 (0x687c3000) (1.63 GiB)
->                 flags: count =3D 1
->                         MEMORY_HEAP_DEVICE_LOCAL_BIT
-> memoryTypes: count =3D 1
->         memoryTypes[0]:
->                 heapIndex     =3D 0
->                 propertyFlags =3D 0x0007: count =3D 3
->                         MEMORY_PROPERTY_DEVICE_LOCAL_BIT
->                         MEMORY_PROPERTY_HOST_VISIBLE_BIT
->                         MEMORY_PROPERTY_HOST_COHERENT_BIT
->                 usable for:
->                         IMAGE_TILING_OPTIMAL:
->                                 color images
->                                 FORMAT_D16_UNORM
->                                 FORMAT_D32_SFLOAT
->                                 FORMAT_S8_UINT
->                                 FORMAT_D24_UNORM_S8_UINT
->                                 (non-sparse)
->                         IMAGE_TILING_LINEAR:
->                                 color images
->                                 (non-sparse)
->
-> VkPhysicalDeviceFeatures:
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D
->         robustBufferAccess                      =3D true
->         fullDrawIndexUint32                     =3D true
->         imageCubeArray                          =3D true
->         independentBlend                        =3D false
->         geometryShader                          =3D false
->         tessellationShader                      =3D false
->         sampleRateShading                       =3D true
->         dualSrcBlend                            =3D false
->         logicOp                                 =3D false
->         multiDrawIndirect                       =3D true
->         drawIndirectFirstInstance               =3D true
->         depthClamp                              =3D true
->         depthBiasClamp                          =3D true
->         fillModeNonSolid                        =3D false
->         depthBounds                             =3D false
->         wideLines                               =3D true
->         largePoints                             =3D true
->         alphaToOne                              =3D false
->         multiViewport                           =3D false
->         samplerAnisotropy                       =3D false
->         textureCompressionETC2                  =3D true
->         textureCompressionASTC_LDR              =3D false
->         textureCompressionBC                    =3D false
->         occlusionQueryPrecise                   =3D false
->         pipelineStatisticsQuery                 =3D false
->         vertexPipelineStoresAndAtomics          =3D true
->         fragmentStoresAndAtomics                =3D true
->         shaderTessellationAndGeometryPointSize  =3D false
->         shaderImageGatherExtended               =3D false
->         shaderStorageImageExtendedFormats       =3D true
->         shaderStorageImageMultisample           =3D false
->         shaderStorageImageReadWithoutFormat     =3D true
->         shaderStorageImageWriteWithoutFormat    =3D false
->         shaderUniformBufferArrayDynamicIndexing =3D true
->         shaderSampledImageArrayDynamicIndexing  =3D true
->         shaderStorageBufferArrayDynamicIndexing =3D true
->         shaderStorageImageArrayDynamicIndexing  =3D true
->         shaderClipDistance                      =3D false
->         shaderCullDistance                      =3D false
->         shaderFloat64                           =3D false
->         shaderInt64                             =3D true
->         shaderInt16                             =3D true
->         shaderResourceResidency                 =3D false
->         shaderResourceMinLod                    =3D false
->         sparseBinding                           =3D false
->         sparseResidencyBuffer                   =3D false
->         sparseResidencyImage2D                  =3D false
->         sparseResidencyImage3D                  =3D false
->         sparseResidency2Samples                 =3D false
->         sparseResidency4Samples                 =3D false
->         sparseResidency8Samples                 =3D false
->         sparseResidency16Samples                =3D false
->         sparseResidencyAliased                  =3D false
->         variableMultisampleRate                 =3D false
->         inheritedQueries                        =3D false
->
-> VkPhysicalDeviceHostQueryResetFeaturesEXT:
-> ------------------------------------------
->         hostQueryReset =3D true
->
-> VkPhysicalDevicePrivateDataFeaturesEXT:
-> ---------------------------------------
->         privateData =3D true
->
-> VkPhysicalDeviceScalarBlockLayoutFeaturesEXT:
-> ---------------------------------------------
->         scalarBlockLayout =3D true
->
-> VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT:
-> ------------------------------------------------
->         texelBufferAlignment =3D true
->
-> VkPhysicalDeviceTimelineSemaphoreFeaturesKHR:
-> ---------------------------------------------
->         timelineSemaphore =3D true
->
-> VkPhysicalDeviceUniformBufferStandardLayoutFeaturesKHR:
-> -------------------------------------------------------
->         uniformBufferStandardLayout =3D true
->
->
-> GPU1:
-> VkPhysicalDeviceProperties:
-> ---------------------------
->         apiVersion        =3D 1.3.274 (4206866)
->         driverVersion     =3D 0.0.1 (1)
->         vendorID          =3D 0x10005
->         deviceID          =3D 0x0000
->         deviceType        =3D PHYSICAL_DEVICE_TYPE_CPU
->         deviceName        =3D llvmpipe (LLVM 17.0.6, 128 bits)
->         pipelineCacheUUID =3D 32342e30-2e38-2d31-2b70-316161616161
->
-> VkPhysicalDeviceLimits:
-> -----------------------
->         maxImageDimension1D                             =3D 16384
->         maxImageDimension2D                             =3D 16384
->         maxImageDimension3D                             =3D 4096
->         maxImageDimensionCube                           =3D 32768
->         maxImageArrayLayers                             =3D 2048
->         maxTexelBufferElements                          =3D 134217728
->         maxUniformBufferRange                           =3D 65536
->         maxStorageBufferRange                           =3D 134217728
->         maxPushConstantsSize                            =3D 256
->         maxMemoryAllocationCount                        =3D 4294967295
->         maxSamplerAllocationCount                       =3D 32768
->         bufferImageGranularity                          =3D 0x00000040
->         sparseAddressSpaceSize                          =3D 0x00000000
->         maxBoundDescriptorSets                          =3D 8
->         maxPerStageDescriptorSamplers                   =3D 1000000
->         maxPerStageDescriptorUniformBuffers             =3D 1000000
->         maxPerStageDescriptorStorageBuffers             =3D 1000000
->         maxPerStageDescriptorSampledImages              =3D 1000000
->         maxPerStageDescriptorStorageImages              =3D 1000000
->         maxPerStageDescriptorInputAttachments           =3D 1000000
->         maxPerStageResources                            =3D 1000000
->         maxDescriptorSetSamplers                        =3D 1000000
->         maxDescriptorSetUniformBuffers                  =3D 1000000
->         maxDescriptorSetUniformBuffersDynamic           =3D 1000000
->         maxDescriptorSetStorageBuffers                  =3D 1000000
->         maxDescriptorSetStorageBuffersDynamic           =3D 1000000
->         maxDescriptorSetSampledImages                   =3D 1000000
->         maxDescriptorSetStorageImages                   =3D 1000000
->         maxDescriptorSetInputAttachments                =3D 1000000
->         maxVertexInputAttributes                        =3D 32
->         maxVertexInputBindings                          =3D 32
->         maxVertexInputAttributeOffset                   =3D 2047
->         maxVertexInputBindingStride                     =3D 2048
->         maxVertexOutputComponents                       =3D 128
->         maxTessellationGenerationLevel                  =3D 64
->         maxTessellationPatchSize                        =3D 32
->         maxTessellationControlPerVertexInputComponents  =3D 128
->         maxTessellationControlPerVertexOutputComponents =3D 128
->         maxTessellationControlPerPatchOutputComponents  =3D 128
->         maxTessellationControlTotalOutputComponents     =3D 4096
->         maxTessellationEvaluationInputComponents        =3D 128
->         maxTessellationEvaluationOutputComponents       =3D 128
->         maxGeometryShaderInvocations                    =3D 32
->         maxGeometryInputComponents                      =3D 64
->         maxGeometryOutputComponents                     =3D 128
->         maxGeometryOutputVertices                       =3D 1024
->         maxGeometryTotalOutputComponents                =3D 1024
->         maxFragmentInputComponents                      =3D 128
->         maxFragmentOutputAttachments                    =3D 8
->         maxFragmentDualSrcAttachments                   =3D 2
->         maxFragmentCombinedOutputResources              =3D 104
->         maxComputeSharedMemorySize                      =3D 32768
->         maxComputeWorkGroupCount: count =3D 3
->                 65535
->                 65535
->                 65535
->         maxComputeWorkGroupInvocations                  =3D 1024
->         maxComputeWorkGroupSize: count =3D 3
->                 1024
->                 1024
->                 1024
->         subPixelPrecisionBits                           =3D 8
->         subTexelPrecisionBits                           =3D 8
->         mipmapPrecisionBits                             =3D 4
->         maxDrawIndexedIndexValue                        =3D 4294967295
->         maxDrawIndirectCount                            =3D 4294967295
->         maxSamplerLodBias                               =3D 16
->         maxSamplerAnisotropy                            =3D 16
->         maxViewports                                    =3D 16
->         maxViewportDimensions: count =3D 2
->                 16384
->                 16384
->         viewportBoundsRange: count =3D 2
->                 -32768
->                 32768
->         viewportSubPixelBits                            =3D 0
->         minMemoryMapAlignment                           =3D 64
->         minTexelBufferOffsetAlignment                   =3D 0x00000010
->         minUniformBufferOffsetAlignment                 =3D 0x00000010
->         minStorageBufferOffsetAlignment                 =3D 0x00000010
->         minTexelOffset                                  =3D -32
->         maxTexelOffset                                  =3D 31
->         minTexelGatherOffset                            =3D -32
->         maxTexelGatherOffset                            =3D 31
->         minInterpolationOffset                          =3D -2
->         maxInterpolationOffset                          =3D 2
->         subPixelInterpolationOffsetBits                 =3D 8
->         maxFramebufferWidth                             =3D 16384
->         maxFramebufferHeight                            =3D 16384
->         maxFramebufferLayers                            =3D 2048
->         framebufferColorSampleCounts: count =3D 2
->                 SAMPLE_COUNT_1_BIT
->                 SAMPLE_COUNT_4_BIT
->         framebufferDepthSampleCounts: count =3D 2
->                 SAMPLE_COUNT_1_BIT
->                 SAMPLE_COUNT_4_BIT
->         framebufferStencilSampleCounts: count =3D 2
->                 SAMPLE_COUNT_1_BIT
->                 SAMPLE_COUNT_4_BIT
->         framebufferNoAttachmentsSampleCounts: count =3D 2
->                 SAMPLE_COUNT_1_BIT
->                 SAMPLE_COUNT_4_BIT
->         maxColorAttachments                             =3D 8
->         sampledImageColorSampleCounts: count =3D 2
->                 SAMPLE_COUNT_1_BIT
->                 SAMPLE_COUNT_4_BIT
->         sampledImageIntegerSampleCounts: count =3D 2
->                 SAMPLE_COUNT_1_BIT
->                 SAMPLE_COUNT_4_BIT
->         sampledImageDepthSampleCounts: count =3D 2
->                 SAMPLE_COUNT_1_BIT
->                 SAMPLE_COUNT_4_BIT
->         sampledImageStencilSampleCounts: count =3D 2
->                 SAMPLE_COUNT_1_BIT
->                 SAMPLE_COUNT_4_BIT
->         storageImageSampleCounts: count =3D 2
->                 SAMPLE_COUNT_1_BIT
->                 SAMPLE_COUNT_4_BIT
->         maxSampleMaskWords                              =3D 1
->         timestampComputeAndGraphics                     =3D true
->         timestampPeriod                                 =3D 1
->         maxClipDistances                                =3D 8
->         maxCullDistances                                =3D 8
->         maxCombinedClipAndCullDistances                 =3D 8
->         discreteQueuePriorities                         =3D 2
->         pointSizeRange: count =3D 2
->                 0
->                 255
->         lineWidthRange: count =3D 2
->                 1
->                 255
->         pointSizeGranularity                            =3D 0.125
->         lineWidthGranularity                            =3D 0.0078125
->         strictLines                                     =3D true
->         standardSampleLocations                         =3D true
->         optimalBufferCopyOffsetAlignment                =3D 0x00000080
->         optimalBufferCopyRowPitchAlignment              =3D 0x00000080
->         nonCoherentAtomSize                             =3D 0x00000040
->
-> VkPhysicalDeviceSparseProperties:
-> ---------------------------------
->         residencyStandard2DBlockShape            =3D false
->         residencyStandard2DMultisampleBlockShape =3D false
->         residencyStandard3DBlockShape            =3D false
->         residencyAlignedMipSize                  =3D false
->         residencyNonResidentStrict               =3D false
->
-> VkPhysicalDeviceCustomBorderColorPropertiesEXT:
-> -----------------------------------------------
->         maxCustomBorderColorSamplers =3D 32768
->
-> VkPhysicalDeviceDescriptorBufferDensityMapPropertiesEXT:
-> --------------------------------------------------------
->         combinedImageSamplerDensityMapDescriptorSize =3D 0
->
-> VkPhysicalDeviceDescriptorBufferPropertiesEXT:
-> ----------------------------------------------
->         combinedImageSamplerDescriptorSingleArray            =3D true
->         bufferlessPushDescriptors                            =3D true
->         allowSamplerImageViewPostSubmitCreation              =3D false
->         descriptorBufferOffsetAlignment                      =3D 0x000000=
-04
->         maxDescriptorBufferBindings                          =3D 8
->         maxResourceDescriptorBufferBindings                  =3D 8
->         maxSamplerDescriptorBufferBindings                   =3D 8
->         maxEmbeddedImmutableSamplerBindings                  =3D 8
->         maxEmbeddedImmutableSamplers                         =3D 2032
->         bufferCaptureReplayDescriptorDataSize                =3D 0
->         imageCaptureReplayDescriptorDataSize                 =3D 0
->         imageViewCaptureReplayDescriptorDataSize             =3D 0
->         samplerCaptureReplayDescriptorDataSize               =3D 0
->         accelerationStructureCaptureReplayDescriptorDataSize =3D 0
->         samplerDescriptorSize                                =3D 256
->         combinedImageSamplerDescriptorSize                   =3D 256
->         sampledImageDescriptorSize                           =3D 256
->         storageImageDescriptorSize                           =3D 256
->         uniformTexelBufferDescriptorSize                     =3D 256
->         robustUniformTexelBufferDescriptorSize               =3D 256
->         storageTexelBufferDescriptorSize                     =3D 256
->         robustStorageTexelBufferDescriptorSize               =3D 256
->         uniformBufferDescriptorSize                          =3D 256
->         robustUniformBufferDescriptorSize                    =3D 256
->         storageBufferDescriptorSize                          =3D 256
->         robustStorageBufferDescriptorSize                    =3D 256
->         inputAttachmentDescriptorSize                        =3D 256
->         accelerationStructureDescriptorSize                  =3D 0
->         maxSamplerDescriptorBufferRange                      =3D 0x080000=
-00
->         maxResourceDescriptorBufferRange                     =3D 0x100000=
-00
->         samplerDescriptorBufferAddressSpaceSize              =3D 0x080000=
-00
->         resourceDescriptorBufferAddressSpaceSize             =3D 0x080000=
-00
->         descriptorBufferAddressSpaceSize                     =3D 0x080000=
-00
->
-> VkPhysicalDeviceExtendedDynamicState3PropertiesEXT:
-> ---------------------------------------------------
->         dynamicPrimitiveTopologyUnrestricted =3D true
->
-> VkPhysicalDeviceExternalMemoryHostPropertiesEXT:
-> ------------------------------------------------
->         minImportedHostPointerAlignment =3D 0x00001000
->
-> VkPhysicalDeviceGraphicsPipelineLibraryPropertiesEXT:
-> -----------------------------------------------------
->         graphicsPipelineLibraryFastLinking                        =3D tru=
-e
->         graphicsPipelineLibraryIndependentInterpolationDecoration =3D tru=
-e
->
-> VkPhysicalDeviceLineRasterizationPropertiesKHR:
-> -----------------------------------------------
->         lineSubPixelPrecisionBits =3D 8
->
-> VkPhysicalDeviceMaintenance5PropertiesKHR:
-> ------------------------------------------
->         earlyFragmentMultisampleCoverageAfterSampleCounting =3D true
->         earlyFragmentSampleMaskTestBeforeSampleCounting     =3D false
->         depthStencilSwizzleOneSupport                       =3D false
->         polygonModePointSize                                =3D true
->         nonStrictSinglePixelWideLinesUseParallelogram       =3D false
->         nonStrictWideLinesUseParallelogram                  =3D false
->
-> VkPhysicalDeviceMaintenance6PropertiesKHR:
-> ------------------------------------------
->         blockTexelViewCompatibleMultipleLayers =3D true
->         maxCombinedImageSamplerDescriptorCount =3D 3
->         fragmentShadingRateClampCombinerInputs =3D false
->
-> VkPhysicalDeviceMeshShaderPropertiesEXT:
-> ----------------------------------------
->         maxTaskWorkGroupTotalCount            =3D 4194304
->         maxTaskWorkGroupCount: count =3D 3
->                 65536
->                 65536
->                 65536
->         maxTaskWorkGroupInvocations           =3D 1024
->         maxTaskWorkGroupSize: count =3D 3
->                 1024
->                 1024
->                 1024
->         maxTaskPayloadSize                    =3D 16384
->         maxTaskSharedMemorySize               =3D 32768
->         maxTaskPayloadAndSharedMemorySize     =3D 32768
->         maxMeshWorkGroupTotalCount            =3D 4194304
->         maxMeshWorkGroupCount: count =3D 3
->                 65536
->                 65536
->                 65536
->         maxMeshWorkGroupInvocations           =3D 1024
->         maxMeshWorkGroupSize: count =3D 3
->                 1024
->                 1024
->                 1024
->         maxMeshSharedMemorySize               =3D 28672
->         maxMeshPayloadAndSharedMemorySize     =3D 45056
->         maxMeshOutputMemorySize               =3D 32768
->         maxMeshPayloadAndOutputMemorySize     =3D 49152
->         maxMeshOutputComponents               =3D 128
->         maxMeshOutputVertices                 =3D 256
->         maxMeshOutputPrimitives               =3D 256
->         maxMeshOutputLayers                   =3D 8
->         maxMeshMultiviewViewCount             =3D 0
->         meshOutputPerVertexGranularity        =3D 1
->         meshOutputPerPrimitiveGranularity     =3D 1
->         maxPreferredTaskWorkGroupInvocations  =3D 64
->         maxPreferredMeshWorkGroupInvocations  =3D 128
->         prefersLocalInvocationVertexOutput    =3D true
->         prefersLocalInvocationPrimitiveOutput =3D true
->         prefersCompactVertexOutput            =3D true
->         prefersCompactPrimitiveOutput         =3D false
->
-> VkPhysicalDeviceMultiDrawPropertiesEXT:
-> ---------------------------------------
->         maxMultiDrawCount =3D 2048
->
-> VkPhysicalDeviceNestedCommandBufferPropertiesEXT:
-> -------------------------------------------------
->         maxCommandBufferNestingLevel =3D 4294967295
->
-> VkPhysicalDeviceProvokingVertexPropertiesEXT:
-> ---------------------------------------------
->         provokingVertexModePerPipeline                       =3D true
->         transformFeedbackPreservesTriangleFanProvokingVertex =3D true
->
-> VkPhysicalDevicePushDescriptorPropertiesKHR:
-> --------------------------------------------
->         maxPushDescriptors =3D 32
->
-> VkPhysicalDeviceRobustness2PropertiesEXT:
-> -----------------------------------------
->         robustStorageBufferAccessSizeAlignment =3D 0x00000001
->         robustUniformBufferAccessSizeAlignment =3D 0x00000001
->
-> VkPhysicalDeviceShaderObjectPropertiesEXT:
-> ------------------------------------------
->         shaderBinaryUUID     =3D 32342e30-2e38-2d31-2b70-316161616161
->         shaderBinaryVersion  =3D 1
->
-> VkPhysicalDeviceTransformFeedbackPropertiesEXT:
-> -----------------------------------------------
->         maxTransformFeedbackStreams                =3D 4
->         maxTransformFeedbackBuffers                =3D 4
->         maxTransformFeedbackBufferSize             =3D 0xffffffff
->         maxTransformFeedbackStreamDataSize         =3D 512
->         maxTransformFeedbackBufferDataSize         =3D 512
->         maxTransformFeedbackBufferDataStride       =3D 512
->         transformFeedbackQueries                   =3D true
->         transformFeedbackStreamsLinesTriangles     =3D false
->         transformFeedbackRasterizationStreamSelect =3D false
->         transformFeedbackDraw                      =3D true
->
-> VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT:
-> ----------------------------------------------------
->         maxVertexAttribDivisor =3D 4294967295
->
-> VkPhysicalDeviceVulkan11Properties:
-> -----------------------------------
->         deviceUUID                        =3D 6d657361-3234-2e30-2e38-2d3=
-12b703100
->         driverUUID                        =3D 6c6c766d-7069-7065-5555-494=
-400000000
->         deviceNodeMask                    =3D 0
->         deviceLUIDValid                   =3D false
->         subgroupSize                      =3D 4
->         subgroupSupportedStages: count =3D 4
->                 SHADER_STAGE_FRAGMENT_BIT
->                 SHADER_STAGE_COMPUTE_BIT
->                 SHADER_STAGE_TASK_BIT_EXT
->                 SHADER_STAGE_MESH_BIT_EXT
->         subgroupSupportedOperations: count =3D 7
->                 SUBGROUP_FEATURE_BASIC_BIT
->                 SUBGROUP_FEATURE_VOTE_BIT
->                 SUBGROUP_FEATURE_ARITHMETIC_BIT
->                 SUBGROUP_FEATURE_BALLOT_BIT
->                 SUBGROUP_FEATURE_SHUFFLE_BIT
->                 SUBGROUP_FEATURE_SHUFFLE_RELATIVE_BIT
->                 SUBGROUP_FEATURE_QUAD_BIT
->         subgroupQuadOperationsInAllStages =3D false
->         pointClippingBehavior             =3D POINT_CLIPPING_BEHAVIOR_ALL=
-_CLIP_PLANES
->         maxMultiviewViewCount             =3D 6
->         maxMultiviewInstanceIndex         =3D 2147483647
->         protectedNoFault                  =3D false
->         maxPerSetDescriptors              =3D 1000000
->         maxMemoryAllocationSize           =3D 0x80000000
->
-> VkPhysicalDeviceVulkan12Properties:
-> -----------------------------------
->         driverID                                             =3D DRIVER_I=
-D_MESA_LLVMPIPE
->         driverName                                           =3D llvmpipe
->         driverInfo                                           =3D Mesa 24.=
-0.8-1+p1 (LLVM 17.0.6)
->         conformanceVersion:
->                 major    =3D 1
->                 minor    =3D 3
->                 subminor =3D 1
->                 patch    =3D 1
->         denormBehaviorIndependence                           =3D SHADER_F=
-LOAT_CONTROLS_INDEPENDENCE_ALL
->         roundingModeIndependence                             =3D SHADER_F=
-LOAT_CONTROLS_INDEPENDENCE_ALL
->         shaderSignedZeroInfNanPreserveFloat16                =3D true
->         shaderSignedZeroInfNanPreserveFloat32                =3D true
->         shaderSignedZeroInfNanPreserveFloat64                =3D true
->         shaderDenormPreserveFloat16                          =3D false
->         shaderDenormPreserveFloat32                          =3D false
->         shaderDenormPreserveFloat64                          =3D false
->         shaderDenormFlushToZeroFloat16                       =3D false
->         shaderDenormFlushToZeroFloat32                       =3D false
->         shaderDenormFlushToZeroFloat64                       =3D false
->         shaderRoundingModeRTEFloat16                         =3D true
->         shaderRoundingModeRTEFloat32                         =3D true
->         shaderRoundingModeRTEFloat64                         =3D true
->         shaderRoundingModeRTZFloat16                         =3D false
->         shaderRoundingModeRTZFloat32                         =3D false
->         shaderRoundingModeRTZFloat64                         =3D false
->         maxUpdateAfterBindDescriptorsInAllPools              =3D 42949672=
-95
->         shaderUniformBufferArrayNonUniformIndexingNative     =3D true
->         shaderSampledImageArrayNonUniformIndexingNative      =3D true
->         shaderStorageBufferArrayNonUniformIndexingNative     =3D true
->         shaderStorageImageArrayNonUniformIndexingNative      =3D true
->         shaderInputAttachmentArrayNonUniformIndexingNative   =3D true
->         robustBufferAccessUpdateAfterBind                    =3D true
->         quadDivergentImplicitLod                             =3D true
->         maxPerStageDescriptorUpdateAfterBindSamplers         =3D 1000000
->         maxPerStageDescriptorUpdateAfterBindUniformBuffers   =3D 1000000
->         maxPerStageDescriptorUpdateAfterBindStorageBuffers   =3D 1000000
->         maxPerStageDescriptorUpdateAfterBindSampledImages    =3D 1000000
->         maxPerStageDescriptorUpdateAfterBindStorageImages    =3D 1000000
->         maxPerStageDescriptorUpdateAfterBindInputAttachments =3D 1000000
->         maxPerStageUpdateAfterBindResources                  =3D 1000000
->         maxDescriptorSetUpdateAfterBindSamplers              =3D 1000000
->         maxDescriptorSetUpdateAfterBindUniformBuffers        =3D 1000000
->         maxDescriptorSetUpdateAfterBindUniformBuffersDynamic =3D 1000000
->         maxDescriptorSetUpdateAfterBindStorageBuffers        =3D 1000000
->         maxDescriptorSetUpdateAfterBindStorageBuffersDynamic =3D 1000000
->         maxDescriptorSetUpdateAfterBindSampledImages         =3D 1000000
->         maxDescriptorSetUpdateAfterBindStorageImages         =3D 1000000
->         maxDescriptorSetUpdateAfterBindInputAttachments      =3D 1000000
->         supportedDepthResolveModes: count =3D 2
->                 RESOLVE_MODE_SAMPLE_ZERO_BIT
->                 RESOLVE_MODE_AVERAGE_BIT
->         supportedStencilResolveModes: count =3D 1
->                 RESOLVE_MODE_SAMPLE_ZERO_BIT
->         independentResolveNone                               =3D false
->         independentResolve                                   =3D false
->         filterMinmaxSingleComponentFormats                   =3D true
->         filterMinmaxImageComponentMapping                    =3D true
->         maxTimelineSemaphoreValueDifference                  =3D 18446744=
-073709551615
->         framebufferIntegerColorSampleCounts: count =3D 1
->                 SAMPLE_COUNT_1_BIT
->
-> VkPhysicalDeviceVulkan13Properties:
-> -----------------------------------
->         minSubgroupSize                                                  =
-             =3D 4
->         maxSubgroupSize                                                  =
-             =3D 4
->         maxComputeWorkgroupSubgroups                                     =
-             =3D 32
->         requiredSubgroupSizeStages: count =3D 2
->                 SHADER_STAGE_FRAGMENT_BIT
->                 SHADER_STAGE_COMPUTE_BIT
->         maxInlineUniformBlockSize                                        =
-             =3D 4096
->         maxPerStageDescriptorInlineUniformBlocks                         =
-             =3D 8
->         maxPerStageDescriptorUpdateAfterBindInlineUniformBlocks          =
-             =3D 8
->         maxDescriptorSetInlineUniformBlocks                              =
-             =3D 8
->         maxDescriptorSetUpdateAfterBindInlineUniformBlocks               =
-             =3D 8
->         maxInlineUniformTotalSize                                        =
-             =3D 262144
->         integerDotProduct8BitUnsignedAccelerated                         =
-             =3D false
->         integerDotProduct8BitSignedAccelerated                           =
-             =3D false
->         integerDotProduct8BitMixedSignednessAccelerated                  =
-             =3D false
->         integerDotProduct4x8BitPackedUnsignedAccelerated                 =
-             =3D false
->         integerDotProduct4x8BitPackedSignedAccelerated                   =
-             =3D false
->         integerDotProduct4x8BitPackedMixedSignednessAccelerated          =
-             =3D false
->         integerDotProduct16BitUnsignedAccelerated                        =
-             =3D false
->         integerDotProduct16BitSignedAccelerated                          =
-             =3D false
->         integerDotProduct16BitMixedSignednessAccelerated                 =
-             =3D false
->         integerDotProduct32BitUnsignedAccelerated                        =
-             =3D false
->         integerDotProduct32BitSignedAccelerated                          =
-             =3D false
->         integerDotProduct32BitMixedSignednessAccelerated                 =
-             =3D false
->         integerDotProduct64BitUnsignedAccelerated                        =
-             =3D false
->         integerDotProduct64BitSignedAccelerated                          =
-             =3D false
->         integerDotProduct64BitMixedSignednessAccelerated                 =
-             =3D false
->         integerDotProductAccumulatingSaturating8BitUnsignedAccelerated   =
-             =3D false
->         integerDotProductAccumulatingSaturating8BitSignedAccelerated     =
-             =3D false
->         integerDotProductAccumulatingSaturating8BitMixedSignednessAcceler=
-ated         =3D false
->         integerDotProductAccumulatingSaturating4x8BitPackedUnsignedAccele=
-rated        =3D false
->         integerDotProductAccumulatingSaturating4x8BitPackedSignedAccelera=
-ted          =3D false
->         integerDotProductAccumulatingSaturating4x8BitPackedMixedSignednes=
-sAccelerated =3D false
->         integerDotProductAccumulatingSaturating16BitUnsignedAccelerated  =
-             =3D false
->         integerDotProductAccumulatingSaturating16BitSignedAccelerated    =
-             =3D false
->         integerDotProductAccumulatingSaturating16BitMixedSignednessAccele=
-rated        =3D false
->         integerDotProductAccumulatingSaturating32BitUnsignedAccelerated  =
-             =3D false
->         integerDotProductAccumulatingSaturating32BitSignedAccelerated    =
-             =3D false
->         integerDotProductAccumulatingSaturating32BitMixedSignednessAccele=
-rated        =3D false
->         integerDotProductAccumulatingSaturating64BitUnsignedAccelerated  =
-             =3D false
->         integerDotProductAccumulatingSaturating64BitSignedAccelerated    =
-             =3D false
->         integerDotProductAccumulatingSaturating64BitMixedSignednessAccele=
-rated        =3D false
->         storageTexelBufferOffsetAlignmentBytes                           =
-             =3D 0x00000010
->         storageTexelBufferOffsetSingleTexelAlignment                     =
-             =3D true
->         uniformTexelBufferOffsetAlignmentBytes                           =
-             =3D 0x00000010
->         uniformTexelBufferOffsetSingleTexelAlignment                     =
-             =3D true
->         maxBufferSize                                                    =
-             =3D 0xffffffff
->
-> VkPhysicalDeviceHostImageCopyPropertiesEXT:
-> -------------------------------------------
->         copySrcLayoutCount                  =3D 23
->         pCopySrcLayouts: count =3D 23
->                 IMAGE_LAYOUT_GENERAL
->                 IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL
->                 IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL
->                 IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL
->                 IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL
->                 IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL
->                 IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL
->                 IMAGE_LAYOUT_PREINITIALIZED
->                 IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL
->                 IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL
->                 IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL
->                 IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL
->                 IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL
->                 IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL
->                 IMAGE_LAYOUT_READ_ONLY_OPTIMAL
->                 IMAGE_LAYOUT_ATTACHMENT_OPTIMAL
->                 IMAGE_LAYOUT_PRESENT_SRC_KHR
->                 IMAGE_LAYOUT_VIDEO_DECODE_DST_KHR
->                 IMAGE_LAYOUT_VIDEO_DECODE_SRC_KHR
->                 IMAGE_LAYOUT_VIDEO_DECODE_DPB_KHR
->                 IMAGE_LAYOUT_SHARED_PRESENT_KHR
->                 IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT
->                 IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR
->         copyDstLayoutCount                  =3D 23
->         pCopyDstLayouts: count =3D 23
->                 IMAGE_LAYOUT_GENERAL
->                 IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL
->                 IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL
->                 IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL
->                 IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL
->                 IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL
->                 IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL
->                 IMAGE_LAYOUT_PREINITIALIZED
->                 IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL
->                 IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL
->                 IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL
->                 IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL
->                 IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL
->                 IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL
->                 IMAGE_LAYOUT_READ_ONLY_OPTIMAL
->                 IMAGE_LAYOUT_ATTACHMENT_OPTIMAL
->                 IMAGE_LAYOUT_PRESENT_SRC_KHR
->                 IMAGE_LAYOUT_VIDEO_DECODE_DST_KHR
->                 IMAGE_LAYOUT_VIDEO_DECODE_SRC_KHR
->                 IMAGE_LAYOUT_VIDEO_DECODE_DPB_KHR
->                 IMAGE_LAYOUT_SHARED_PRESENT_KHR
->                 IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT
->                 IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR
->         optimalTilingLayoutUUID             =3D 32342e30-2e38-2d31-2b70-3=
-16161616161
->         identicalMemoryTypeRequirements     =3D false
->
-> Device Extensions: count =3D 124
->         VK_AMDX_shader_enqueue                        : extension revisio=
-n 1
->         VK_ARM_rasterization_order_attachment_access  : extension revisio=
-n 1
->         VK_EXT_4444_formats                           : extension revisio=
-n 1
->         VK_EXT_attachment_feedback_loop_dynamic_state : extension revisio=
-n 1
->         VK_EXT_attachment_feedback_loop_layout        : extension revisio=
-n 2
->         VK_EXT_border_color_swizzle                   : extension revisio=
-n 1
->         VK_EXT_calibrated_timestamps                  : extension revisio=
-n 2
->         VK_EXT_color_write_enable                     : extension revisio=
-n 1
->         VK_EXT_conditional_rendering                  : extension revisio=
-n 2
->         VK_EXT_custom_border_color                    : extension revisio=
-n 12
->         VK_EXT_depth_clip_control                     : extension revisio=
-n 1
->         VK_EXT_depth_clip_enable                      : extension revisio=
-n 1
->         VK_EXT_depth_range_unrestricted               : extension revisio=
-n 1
->         VK_EXT_descriptor_buffer                      : extension revisio=
-n 1
->         VK_EXT_descriptor_indexing                    : extension revisio=
-n 2
->         VK_EXT_dynamic_rendering_unused_attachments   : extension revisio=
-n 1
->         VK_EXT_extended_dynamic_state                 : extension revisio=
-n 1
->         VK_EXT_extended_dynamic_state2                : extension revisio=
-n 1
->         VK_EXT_extended_dynamic_state3                : extension revisio=
-n 2
->         VK_EXT_external_memory_host                   : extension revisio=
-n 1
->         VK_EXT_graphics_pipeline_library              : extension revisio=
-n 1
->         VK_EXT_host_image_copy                        : extension revisio=
-n 1
->         VK_EXT_host_query_reset                       : extension revisio=
-n 1
->         VK_EXT_image_2d_view_of_3d                    : extension revisio=
-n 1
->         VK_EXT_image_robustness                       : extension revisio=
-n 1
->         VK_EXT_image_sliced_view_of_3d                : extension revisio=
-n 1
->         VK_EXT_index_type_uint8                       : extension revisio=
-n 1
->         VK_EXT_inline_uniform_block                   : extension revisio=
-n 1
->         VK_EXT_line_rasterization                     : extension revisio=
-n 1
->         VK_EXT_load_store_op_none                     : extension revisio=
-n 1
->         VK_EXT_memory_budget                          : extension revisio=
-n 1
->         VK_EXT_memory_priority                        : extension revisio=
-n 1
->         VK_EXT_mesh_shader                            : extension revisio=
-n 1
->         VK_EXT_multi_draw                             : extension revisio=
-n 1
->         VK_EXT_multisampled_render_to_single_sampled  : extension revisio=
-n 1
->         VK_EXT_mutable_descriptor_type                : extension revisio=
-n 1
->         VK_EXT_nested_command_buffer                  : extension revisio=
-n 1
->         VK_EXT_non_seamless_cube_map                  : extension revisio=
-n 1
->         VK_EXT_pageable_device_local_memory           : extension revisio=
-n 1
->         VK_EXT_pipeline_creation_cache_control        : extension revisio=
-n 3
->         VK_EXT_pipeline_creation_feedback             : extension revisio=
-n 1
->         VK_EXT_post_depth_coverage                    : extension revisio=
-n 1
->         VK_EXT_primitive_topology_list_restart        : extension revisio=
-n 1
->         VK_EXT_primitives_generated_query             : extension revisio=
-n 1
->         VK_EXT_private_data                           : extension revisio=
-n 1
->         VK_EXT_provoking_vertex                       : extension revisio=
-n 1
->         VK_EXT_rasterization_order_attachment_access  : extension revisio=
-n 1
->         VK_EXT_robustness2                            : extension revisio=
-n 1
->         VK_EXT_sampler_filter_minmax                  : extension revisio=
-n 2
->         VK_EXT_scalar_block_layout                    : extension revisio=
-n 1
->         VK_EXT_separate_stencil_usage                 : extension revisio=
-n 1
->         VK_EXT_shader_atomic_float                    : extension revisio=
-n 1
->         VK_EXT_shader_atomic_float2                   : extension revisio=
-n 1
->         VK_EXT_shader_demote_to_helper_invocation     : extension revisio=
-n 1
->         VK_EXT_shader_object                          : extension revisio=
-n 1
->         VK_EXT_shader_stencil_export                  : extension revisio=
-n 1
->         VK_EXT_shader_subgroup_ballot                 : extension revisio=
-n 1
->         VK_EXT_shader_subgroup_vote                   : extension revisio=
-n 1
->         VK_EXT_shader_viewport_index_layer            : extension revisio=
-n 1
->         VK_EXT_subgroup_size_control                  : extension revisio=
-n 2
->         VK_EXT_texel_buffer_alignment                 : extension revisio=
-n 1
->         VK_EXT_transform_feedback                     : extension revisio=
-n 1
->         VK_EXT_vertex_attribute_divisor               : extension revisio=
-n 3
->         VK_EXT_vertex_input_dynamic_state             : extension revisio=
-n 2
->         VK_EXT_ycbcr_2plane_444_formats               : extension revisio=
-n 1
->         VK_EXT_ycbcr_image_arrays                     : extension revisio=
-n 1
->         VK_GOOGLE_decorate_string                     : extension revisio=
-n 1
->         VK_GOOGLE_hlsl_functionality1                 : extension revisio=
-n 1
->         VK_KHR_16bit_storage                          : extension revisio=
-n 1
->         VK_KHR_8bit_storage                           : extension revisio=
-n 1
->         VK_KHR_bind_memory2                           : extension revisio=
-n 1
->         VK_KHR_buffer_device_address                  : extension revisio=
-n 1
->         VK_KHR_copy_commands2                         : extension revisio=
-n 1
->         VK_KHR_create_renderpass2                     : extension revisio=
-n 1
->         VK_KHR_dedicated_allocation                   : extension revisio=
-n 3
->         VK_KHR_depth_stencil_resolve                  : extension revisio=
-n 1
->         VK_KHR_descriptor_update_template             : extension revisio=
-n 1
->         VK_KHR_device_group                           : extension revisio=
-n 4
->         VK_KHR_draw_indirect_count                    : extension revisio=
-n 1
->         VK_KHR_driver_properties                      : extension revisio=
-n 1
->         VK_KHR_dynamic_rendering                      : extension revisio=
-n 1
->         VK_KHR_external_fence                         : extension revisio=
-n 1
->         VK_KHR_external_memory                        : extension revisio=
-n 1
->         VK_KHR_external_memory_fd                     : extension revisio=
-n 1
->         VK_KHR_external_semaphore                     : extension revisio=
-n 1
->         VK_KHR_format_feature_flags2                  : extension revisio=
-n 2
->         VK_KHR_get_memory_requirements2               : extension revisio=
-n 1
->         VK_KHR_image_format_list                      : extension revisio=
-n 1
->         VK_KHR_imageless_framebuffer                  : extension revisio=
-n 1
->         VK_KHR_incremental_present                    : extension revisio=
-n 2
->         VK_KHR_maintenance1                           : extension revisio=
-n 2
->         VK_KHR_maintenance2                           : extension revisio=
-n 1
->         VK_KHR_maintenance3                           : extension revisio=
-n 1
->         VK_KHR_maintenance4                           : extension revisio=
-n 2
->         VK_KHR_maintenance5                           : extension revisio=
-n 1
->         VK_KHR_maintenance6                           : extension revisio=
-n 1
->         VK_KHR_map_memory2                            : extension revisio=
-n 1
->         VK_KHR_multiview                              : extension revisio=
-n 1
->         VK_KHR_pipeline_library                       : extension revisio=
-n 1
->         VK_KHR_push_descriptor                        : extension revisio=
-n 2
->         VK_KHR_relaxed_block_layout                   : extension revisio=
-n 1
->         VK_KHR_sampler_mirror_clamp_to_edge           : extension revisio=
-n 3
->         VK_KHR_sampler_ycbcr_conversion               : extension revisio=
-n 14
->         VK_KHR_separate_depth_stencil_layouts         : extension revisio=
-n 1
->         VK_KHR_shader_atomic_int64                    : extension revisio=
-n 1
->         VK_KHR_shader_clock                           : extension revisio=
-n 1
->         VK_KHR_shader_draw_parameters                 : extension revisio=
-n 1
->         VK_KHR_shader_float16_int8                    : extension revisio=
-n 1
->         VK_KHR_shader_float_controls                  : extension revisio=
-n 4
->         VK_KHR_shader_integer_dot_product             : extension revisio=
-n 1
->         VK_KHR_shader_non_semantic_info               : extension revisio=
-n 1
->         VK_KHR_shader_subgroup_extended_types         : extension revisio=
-n 1
->         VK_KHR_shader_terminate_invocation            : extension revisio=
-n 1
->         VK_KHR_spirv_1_4                              : extension revisio=
-n 1
->         VK_KHR_storage_buffer_storage_class           : extension revisio=
-n 1
->         VK_KHR_swapchain                              : extension revisio=
-n 70
->         VK_KHR_swapchain_mutable_format               : extension revisio=
-n 1
->         VK_KHR_synchronization2                       : extension revisio=
-n 1
->         VK_KHR_timeline_semaphore                     : extension revisio=
-n 2
->         VK_KHR_uniform_buffer_standard_layout         : extension revisio=
-n 1
->         VK_KHR_variable_pointers                      : extension revisio=
-n 1
->         VK_KHR_vulkan_memory_model                    : extension revisio=
-n 3
->         VK_KHR_zero_initialize_workgroup_memory       : extension revisio=
-n 1
->         VK_NV_device_generated_commands               : extension revisio=
-n 3
->
-> VkQueueFamilyProperties:
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->         queueProperties[0]:
->         -------------------
->                 minImageTransferGranularity =3D (1,1,1)
->                 queueCount                  =3D 1
->                 queueFlags                  =3D QUEUE_GRAPHICS_BIT | QUEU=
-E_COMPUTE_BIT | QUEUE_TRANSFER_BIT
->                 timestampValidBits          =3D 64
->                 present support             =3D false
->
-> VkPhysicalDeviceMemoryProperties:
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> memoryHeaps: count =3D 1
->         memoryHeaps[0]:
->                 size   =3D 3505938432 (0xd0f86000) (3.27 GiB)
->                 budget =3D 3505938432 (0xd0f86000) (3.27 GiB)
->                 usage  =3D 522092544 (0x1f1e8000) (497.91 MiB)
->                 flags: count =3D 1
->                         MEMORY_HEAP_DEVICE_LOCAL_BIT
-> memoryTypes: count =3D 1
->         memoryTypes[0]:
->                 heapIndex     =3D 0
->                 propertyFlags =3D 0x000f: count =3D 4
->                         MEMORY_PROPERTY_DEVICE_LOCAL_BIT
->                         MEMORY_PROPERTY_HOST_VISIBLE_BIT
->                         MEMORY_PROPERTY_HOST_COHERENT_BIT
->                         MEMORY_PROPERTY_HOST_CACHED_BIT
->                 usable for:
->                         IMAGE_TILING_OPTIMAL:
->                                 color images
->                                 FORMAT_D16_UNORM
->                                 FORMAT_X8_D24_UNORM_PACK32
->                                 FORMAT_D32_SFLOAT
->                                 FORMAT_S8_UINT
->                                 FORMAT_D24_UNORM_S8_UINT
->                                 FORMAT_D32_SFLOAT_S8_UINT
->                                 (non-sparse)
->                         IMAGE_TILING_LINEAR:
->                                 color images
->                                 (non-sparse)
->
-> VkPhysicalDeviceFeatures:
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D
->         robustBufferAccess                      =3D true
->         fullDrawIndexUint32                     =3D true
->         imageCubeArray                          =3D true
->         independentBlend                        =3D true
->         geometryShader                          =3D true
->         tessellationShader                      =3D true
->         sampleRateShading                       =3D true
->         dualSrcBlend                            =3D true
->         logicOp                                 =3D true
->         multiDrawIndirect                       =3D true
->         drawIndirectFirstInstance               =3D true
->         depthClamp                              =3D true
->         depthBiasClamp                          =3D true
->         fillModeNonSolid                        =3D true
->         depthBounds                             =3D false
->         wideLines                               =3D true
->         largePoints                             =3D true
->         alphaToOne                              =3D true
->         multiViewport                           =3D true
->         samplerAnisotropy                       =3D true
->         textureCompressionETC2                  =3D false
->         textureCompressionASTC_LDR              =3D false
->         textureCompressionBC                    =3D true
->         occlusionQueryPrecise                   =3D true
->         pipelineStatisticsQuery                 =3D true
->         vertexPipelineStoresAndAtomics          =3D true
->         fragmentStoresAndAtomics                =3D true
->         shaderTessellationAndGeometryPointSize  =3D true
->         shaderImageGatherExtended               =3D true
->         shaderStorageImageExtendedFormats       =3D true
->         shaderStorageImageMultisample           =3D true
->         shaderStorageImageReadWithoutFormat     =3D true
->         shaderStorageImageWriteWithoutFormat    =3D true
->         shaderUniformBufferArrayDynamicIndexing =3D true
->         shaderSampledImageArrayDynamicIndexing  =3D true
->         shaderStorageBufferArrayDynamicIndexing =3D true
->         shaderStorageImageArrayDynamicIndexing  =3D true
->         shaderClipDistance                      =3D true
->         shaderCullDistance                      =3D true
->         shaderFloat64                           =3D true
->         shaderInt64                             =3D true
->         shaderInt16                             =3D true
->         shaderResourceResidency                 =3D false
->         shaderResourceMinLod                    =3D false
->         sparseBinding                           =3D false
->         sparseResidencyBuffer                   =3D false
->         sparseResidencyImage2D                  =3D false
->         sparseResidencyImage3D                  =3D false
->         sparseResidency2Samples                 =3D false
->         sparseResidency4Samples                 =3D false
->         sparseResidency8Samples                 =3D false
->         sparseResidency16Samples                =3D false
->         sparseResidencyAliased                  =3D false
->         variableMultisampleRate                 =3D false
->         inheritedQueries                        =3D false
->
-> VkPhysicalDevice4444FormatsFeaturesEXT:
-> ---------------------------------------
->         formatA4R4G4B4 =3D true
->         formatA4B4G4R4 =3D true
->
-> VkPhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT:
-> --------------------------------------------------------------
->         attachmentFeedbackLoopDynamicState =3D true
->
-> VkPhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT:
-> --------------------------------------------------------
->         attachmentFeedbackLoopLayout =3D true
->
-> VkPhysicalDeviceBorderColorSwizzleFeaturesEXT:
-> ----------------------------------------------
->         borderColorSwizzle          =3D true
->         borderColorSwizzleFromImage =3D true
->
-> VkPhysicalDeviceColorWriteEnableFeaturesEXT:
-> --------------------------------------------
->         colorWriteEnable =3D true
->
-> VkPhysicalDeviceConditionalRenderingFeaturesEXT:
-> ------------------------------------------------
->         conditionalRendering          =3D true
->         inheritedConditionalRendering =3D false
->
-> VkPhysicalDeviceCustomBorderColorFeaturesEXT:
-> ---------------------------------------------
->         customBorderColors             =3D true
->         customBorderColorWithoutFormat =3D true
->
-> VkPhysicalDeviceDepthClipControlFeaturesEXT:
-> --------------------------------------------
->         depthClipControl =3D true
->
-> VkPhysicalDeviceDepthClipEnableFeaturesEXT:
-> -------------------------------------------
->         depthClipEnable =3D true
->
-> VkPhysicalDeviceDescriptorBufferFeaturesEXT:
-> --------------------------------------------
->         descriptorBuffer                   =3D true
->         descriptorBufferCaptureReplay      =3D false
->         descriptorBufferImageLayoutIgnored =3D true
->         descriptorBufferPushDescriptors    =3D true
->
-> VkPhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT:
-> -------------------------------------------------------------
->         dynamicRenderingUnusedAttachments =3D true
->
-> VkPhysicalDeviceExtendedDynamicState2FeaturesEXT:
-> -------------------------------------------------
->         extendedDynamicState2                   =3D true
->         extendedDynamicState2LogicOp            =3D true
->         extendedDynamicState2PatchControlPoints =3D true
->
-> VkPhysicalDeviceExtendedDynamicState3FeaturesEXT:
-> -------------------------------------------------
->         extendedDynamicState3TessellationDomainOrigin         =3D true
->         extendedDynamicState3DepthClampEnable                 =3D true
->         extendedDynamicState3PolygonMode                      =3D true
->         extendedDynamicState3RasterizationSamples             =3D true
->         extendedDynamicState3SampleMask                       =3D true
->         extendedDynamicState3AlphaToCoverageEnable            =3D true
->         extendedDynamicState3AlphaToOneEnable                 =3D true
->         extendedDynamicState3LogicOpEnable                    =3D true
->         extendedDynamicState3ColorBlendEnable                 =3D true
->         extendedDynamicState3ColorBlendEquation               =3D true
->         extendedDynamicState3ColorWriteMask                   =3D true
->         extendedDynamicState3RasterizationStream              =3D false
->         extendedDynamicState3ConservativeRasterizationMode    =3D false
->         extendedDynamicState3ExtraPrimitiveOverestimationSize =3D false
->         extendedDynamicState3DepthClipEnable                  =3D true
->         extendedDynamicState3SampleLocationsEnable            =3D false
->         extendedDynamicState3ColorBlendAdvanced               =3D false
->         extendedDynamicState3ProvokingVertexMode              =3D true
->         extendedDynamicState3LineRasterizationMode            =3D true
->         extendedDynamicState3LineStippleEnable                =3D true
->         extendedDynamicState3DepthClipNegativeOneToOne        =3D true
->         extendedDynamicState3ViewportWScalingEnable           =3D false
->         extendedDynamicState3ViewportSwizzle                  =3D false
->         extendedDynamicState3CoverageToColorEnable            =3D false
->         extendedDynamicState3CoverageToColorLocation          =3D false
->         extendedDynamicState3CoverageModulationMode           =3D false
->         extendedDynamicState3CoverageModulationTableEnable    =3D false
->         extendedDynamicState3CoverageModulationTable          =3D false
->         extendedDynamicState3CoverageReductionMode            =3D false
->         extendedDynamicState3RepresentativeFragmentTestEnable =3D false
->         extendedDynamicState3ShadingRateImageEnable           =3D false
->
-> VkPhysicalDeviceExtendedDynamicStateFeaturesEXT:
-> ------------------------------------------------
->         extendedDynamicState =3D true
->
-> VkPhysicalDeviceGraphicsPipelineLibraryFeaturesEXT:
-> ---------------------------------------------------
->         graphicsPipelineLibrary =3D true
->
-> VkPhysicalDeviceHostImageCopyFeaturesEXT:
-> -----------------------------------------
->         hostImageCopy =3D true
->
-> VkPhysicalDeviceImage2DViewOf3DFeaturesEXT:
-> -------------------------------------------
->         image2DViewOf3D   =3D true
->         sampler2DViewOf3D =3D true
->
-> VkPhysicalDeviceImageSlicedViewOf3DFeaturesEXT:
-> -----------------------------------------------
->         imageSlicedViewOf3D =3D true
->
-> VkPhysicalDeviceIndexTypeUint8FeaturesKHR:
-> ------------------------------------------
->         indexTypeUint8 =3D true
->
-> VkPhysicalDeviceLineRasterizationFeaturesKHR:
-> ---------------------------------------------
->         rectangularLines         =3D true
->         bresenhamLines           =3D true
->         smoothLines              =3D true
->         stippledRectangularLines =3D true
->         stippledBresenhamLines   =3D true
->         stippledSmoothLines      =3D true
->
-> VkPhysicalDeviceMaintenance5FeaturesKHR:
-> ----------------------------------------
->         maintenance5 =3D true
->
-> VkPhysicalDeviceMaintenance6FeaturesKHR:
-> ----------------------------------------
->         maintenance6 =3D true
->
-> VkPhysicalDeviceMemoryPriorityFeaturesEXT:
-> ------------------------------------------
->         memoryPriority =3D true
->
-> VkPhysicalDeviceMeshShaderFeaturesEXT:
-> --------------------------------------
->         taskShader                             =3D true
->         meshShader                             =3D true
->         multiviewMeshShader                    =3D false
->         primitiveFragmentShadingRateMeshShader =3D false
->         meshShaderQueries                      =3D true
->
-> VkPhysicalDeviceMultiDrawFeaturesEXT:
-> -------------------------------------
->         multiDraw =3D true
->
-> VkPhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT:
-> -------------------------------------------------------------
->         multisampledRenderToSingleSampled =3D true
->
-> VkPhysicalDeviceMutableDescriptorTypeFeaturesEXT:
-> -------------------------------------------------
->         mutableDescriptorType =3D true
->
-> VkPhysicalDeviceNestedCommandBufferFeaturesEXT:
-> -----------------------------------------------
->         nestedCommandBuffer                =3D true
->         nestedCommandBufferRendering       =3D true
->         nestedCommandBufferSimultaneousUse =3D true
->
-> VkPhysicalDeviceNonSeamlessCubeMapFeaturesEXT:
-> ----------------------------------------------
->         nonSeamlessCubeMap =3D true
->
-> VkPhysicalDevicePageableDeviceLocalMemoryFeaturesEXT:
-> -----------------------------------------------------
->         pageableDeviceLocalMemory =3D true
->
-> VkPhysicalDevicePrimitiveTopologyListRestartFeaturesEXT:
-> --------------------------------------------------------
->         primitiveTopologyListRestart      =3D true
->         primitiveTopologyPatchListRestart =3D true
->
-> VkPhysicalDevicePrimitivesGeneratedQueryFeaturesEXT:
-> ----------------------------------------------------
->         primitivesGeneratedQuery                      =3D true
->         primitivesGeneratedQueryWithRasterizerDiscard =3D true
->         primitivesGeneratedQueryWithNonZeroStreams    =3D true
->
-> VkPhysicalDeviceProvokingVertexFeaturesEXT:
-> -------------------------------------------
->         provokingVertexLast                       =3D true
->         transformFeedbackPreservesProvokingVertex =3D true
->
-> VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT:
-> --------------------------------------------------------------
->         rasterizationOrderColorAttachmentAccess   =3D true
->         rasterizationOrderDepthAttachmentAccess   =3D true
->         rasterizationOrderStencilAttachmentAccess =3D true
->
-> VkPhysicalDeviceRobustness2FeaturesEXT:
-> ---------------------------------------
->         robustBufferAccess2 =3D true
->         robustImageAccess2  =3D true
->         nullDescriptor      =3D true
->
-> VkPhysicalDeviceShaderAtomicFloat2FeaturesEXT:
-> ----------------------------------------------
->         shaderBufferFloat16Atomics      =3D false
->         shaderBufferFloat16AtomicAdd    =3D false
->         shaderBufferFloat16AtomicMinMax =3D false
->         shaderBufferFloat32AtomicMinMax =3D true
->         shaderBufferFloat64AtomicMinMax =3D false
->         shaderSharedFloat16Atomics      =3D false
->         shaderSharedFloat16AtomicAdd    =3D false
->         shaderSharedFloat16AtomicMinMax =3D false
->         shaderSharedFloat32AtomicMinMax =3D true
->         shaderSharedFloat64AtomicMinMax =3D false
->         shaderImageFloat32AtomicMinMax  =3D true
->         sparseImageFloat32AtomicMinMax  =3D false
->
-> VkPhysicalDeviceShaderAtomicFloatFeaturesEXT:
-> ---------------------------------------------
->         shaderBufferFloat32Atomics   =3D true
->         shaderBufferFloat32AtomicAdd =3D true
->         shaderBufferFloat64Atomics   =3D false
->         shaderBufferFloat64AtomicAdd =3D false
->         shaderSharedFloat32Atomics   =3D true
->         shaderSharedFloat32AtomicAdd =3D true
->         shaderSharedFloat64Atomics   =3D false
->         shaderSharedFloat64AtomicAdd =3D false
->         shaderImageFloat32Atomics    =3D true
->         shaderImageFloat32AtomicAdd  =3D true
->         sparseImageFloat32Atomics    =3D false
->         sparseImageFloat32AtomicAdd  =3D false
->
-> VkPhysicalDeviceShaderClockFeaturesKHR:
-> ---------------------------------------
->         shaderSubgroupClock =3D true
->         shaderDeviceClock   =3D true
->
-> VkPhysicalDeviceShaderObjectFeaturesEXT:
-> ----------------------------------------
->         shaderObject =3D true
->
-> VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT:
-> ------------------------------------------------
->         texelBufferAlignment =3D true
->
-> VkPhysicalDeviceTransformFeedbackFeaturesEXT:
-> ---------------------------------------------
->         transformFeedback =3D true
->         geometryStreams   =3D true
->
-> VkPhysicalDeviceVertexAttributeDivisorFeaturesKHR:
-> --------------------------------------------------
->         vertexAttributeInstanceRateDivisor     =3D true
->         vertexAttributeInstanceRateZeroDivisor =3D true
->
-> VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT:
-> ---------------------------------------------------
->         vertexInputDynamicState =3D true
->
-> VkPhysicalDeviceVulkan11Features:
-> ---------------------------------
->         storageBuffer16BitAccess           =3D true
->         uniformAndStorageBuffer16BitAccess =3D true
->         storagePushConstant16              =3D true
->         storageInputOutput16               =3D false
->         multiview                          =3D true
->         multiviewGeometryShader            =3D true
->         multiviewTessellationShader        =3D true
->         variablePointersStorageBuffer      =3D true
->         variablePointers                   =3D true
->         protectedMemory                    =3D false
->         samplerYcbcrConversion             =3D true
->         shaderDrawParameters               =3D true
->
-> VkPhysicalDeviceVulkan12Features:
-> ---------------------------------
->         samplerMirrorClampToEdge                           =3D true
->         drawIndirectCount                                  =3D true
->         storageBuffer8BitAccess                            =3D true
->         uniformAndStorageBuffer8BitAccess                  =3D true
->         storagePushConstant8                               =3D true
->         shaderBufferInt64Atomics                           =3D true
->         shaderSharedInt64Atomics                           =3D true
->         shaderFloat16                                      =3D true
->         shaderInt8                                         =3D true
->         descriptorIndexing                                 =3D true
->         shaderInputAttachmentArrayDynamicIndexing          =3D true
->         shaderUniformTexelBufferArrayDynamicIndexing       =3D true
->         shaderStorageTexelBufferArrayDynamicIndexing       =3D true
->         shaderUniformBufferArrayNonUniformIndexing         =3D true
->         shaderSampledImageArrayNonUniformIndexing          =3D true
->         shaderStorageBufferArrayNonUniformIndexing         =3D true
->         shaderStorageImageArrayNonUniformIndexing          =3D true
->         shaderInputAttachmentArrayNonUniformIndexing       =3D true
->         shaderUniformTexelBufferArrayNonUniformIndexing    =3D true
->         shaderStorageTexelBufferArrayNonUniformIndexing    =3D true
->         descriptorBindingUniformBufferUpdateAfterBind      =3D true
->         descriptorBindingSampledImageUpdateAfterBind       =3D true
->         descriptorBindingStorageImageUpdateAfterBind       =3D true
->         descriptorBindingStorageBufferUpdateAfterBind      =3D true
->         descriptorBindingUniformTexelBufferUpdateAfterBind =3D true
->         descriptorBindingStorageTexelBufferUpdateAfterBind =3D true
->         descriptorBindingUpdateUnusedWhilePending          =3D true
->         descriptorBindingPartiallyBound                    =3D true
->         descriptorBindingVariableDescriptorCount           =3D true
->         runtimeDescriptorArray                             =3D true
->         samplerFilterMinmax                                =3D true
->         scalarBlockLayout                                  =3D true
->         imagelessFramebuffer                               =3D true
->         uniformBufferStandardLayout                        =3D true
->         shaderSubgroupExtendedTypes                        =3D true
->         separateDepthStencilLayouts                        =3D true
->         hostQueryReset                                     =3D true
->         timelineSemaphore                                  =3D true
->         bufferDeviceAddress                                =3D true
->         bufferDeviceAddressCaptureReplay                   =3D false
->         bufferDeviceAddressMultiDevice                     =3D false
->         vulkanMemoryModel                                  =3D true
->         vulkanMemoryModelDeviceScope                       =3D true
->         vulkanMemoryModelAvailabilityVisibilityChains      =3D true
->         shaderOutputViewportIndex                          =3D true
->         shaderOutputLayer                                  =3D true
->         subgroupBroadcastDynamicId                         =3D true
->
-> VkPhysicalDeviceVulkan13Features:
-> ---------------------------------
->         robustImageAccess                                  =3D true
->         inlineUniformBlock                                 =3D true
->         descriptorBindingInlineUniformBlockUpdateAfterBind =3D true
->         pipelineCreationCacheControl                       =3D true
->         privateData                                        =3D true
->         shaderDemoteToHelperInvocation                     =3D true
->         shaderTerminateInvocation                          =3D true
->         subgroupSizeControl                                =3D true
->         computeFullSubgroups                               =3D true
->         synchronization2                                   =3D true
->         textureCompressionASTC_HDR                         =3D false
->         shaderZeroInitializeWorkgroupMemory                =3D true
->         dynamicRendering                                   =3D true
->         shaderIntegerDotProduct                            =3D true
->         maintenance4                                       =3D true
->
-> VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT:
-> -------------------------------------------------
->         ycbcr2plane444Formats =3D true
->
-> VkPhysicalDeviceYcbcrImageArraysFeaturesEXT:
-> --------------------------------------------
->         ycbcrImageArrays =3D true
->
->
-> --
-> 2.45.1.288.g0e0cd299f1-goog
->
+Linu Cherian (7):
+  dt-bindings: arm: coresight-tmc: Add "memory-region" property
+  coresight: tmc-etr: Add support to use reserved trace memory
+  coresight: core: Add provision for panic callbacks
+  coresight: tmc: Enable panic sync handling
+  coresight: tmc: Add support for reading crash data
+  coresight: tmc: Stop trace capture on FlIn
+  coresight: config: Add preloaded configuration
+
+ .../bindings/arm/arm,coresight-tmc.yaml       |  26 ++
+ drivers/hwtracing/coresight/Makefile          |   2 +-
+ .../coresight/coresight-cfg-preload.c         |   2 +
+ .../coresight/coresight-cfg-preload.h         |   2 +
+ .../hwtracing/coresight/coresight-cfg-pstop.c |  83 +++++
+ drivers/hwtracing/coresight/coresight-core.c  |  37 ++
+ .../coresight/coresight-etm4x-core.c          |   1 +
+ .../hwtracing/coresight/coresight-tmc-core.c  | 251 +++++++++++++-
+ .../hwtracing/coresight/coresight-tmc-etf.c   | 163 ++++++++-
+ .../hwtracing/coresight/coresight-tmc-etr.c   | 319 +++++++++++++++++-
+ drivers/hwtracing/coresight/coresight-tmc.h   |  83 +++++
+ include/linux/coresight.h                     |  25 ++
+ 12 files changed, 977 insertions(+), 17 deletions(-)
+ create mode 100644 drivers/hwtracing/coresight/coresight-cfg-pstop.c
+
+-- 
+2.34.1
+
 
