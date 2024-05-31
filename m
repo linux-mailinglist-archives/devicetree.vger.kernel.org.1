@@ -1,48 +1,40 @@
-Return-Path: <devicetree+bounces-71180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71181-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C7F18D5F69
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:17:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41D798D5F6F
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:19:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F3551C218C3
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 10:17:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C07061F2409E
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 10:19:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6232150980;
-	Fri, 31 May 2024 10:17:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FbrYk5H+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 691EF15098A;
+	Fri, 31 May 2024 10:19:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B88A2187554;
-	Fri, 31 May 2024 10:17:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C728A1422DA;
+	Fri, 31 May 2024 10:19:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717150662; cv=none; b=CdH17ueglrD52XMwOU7YnRz+Ylw+7iCgqNZCHyRowBpgl2qvmuHyidhB0Q/tBRqTSclcyPIDHazyJrgtuk+vFOCVlA0mgXmQP6h+/Mx6z2SV+Rk9PHem+/Q+naL7Jl8UUR2MvGBrKDRle0TdZD/OHNHhpWOhisydM6y6LrrIAQs=
+	t=1717150758; cv=none; b=DgJn14wTeDeA5E3/qCqQqX2jVyFSI5RSW8nNN3s+sVpb7H7T/wLvuMgAVblZHAFeW8SMKIaJi8Vch8mfPWNfpQ5QzCmdzh13TEuFN6mhE97YwHQfYLWV8mL8yAVnRTFZWh0uQW97MDbt05NvYKSYh/LaaUZ+lH8zYRw1C+l+xnQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717150662; c=relaxed/simple;
-	bh=IPF7KKhZrun5HUPvd9XQgv9edMKTUhcFncPoMeDroKI=;
+	s=arc-20240116; t=1717150758; c=relaxed/simple;
+	bh=Gxk63K/WzefClGNX53qjRIrlcEhoJXL8wkpq+mWqYMU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LVCv98mBQqA2PNkxBJwzn/oL3yjxFV8ig4+5bZmmw+FlJCjDRwbnpSzyLhicr385u46tQwAOBS045t3kBrHmuvItV3X57cwCri2DP78pI/6U44+AWfjxbJFx4x/i4QJ2faAuhzGSsAfdoRZOl7kNQ6HTG4oj+vy1eMJzHJ/7LXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FbrYk5H+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69C9BC116B1;
-	Fri, 31 May 2024 10:17:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717150662;
-	bh=IPF7KKhZrun5HUPvd9XQgv9edMKTUhcFncPoMeDroKI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FbrYk5H+/Ppe8ITRO8I/LMyUH8wsdltXsf+9yUxXwrB3ISqcEiMr9A5zOHvuaiDoG
-	 rxoZ5+C4+/04g49t1qG/yiKP31AhwkKrWK+2wUvbCjVLWfVc6bYXQnRqmn++nAHf1O
-	 iDDOZuEVOXRDQLU7obuvdzZiXV+LR7haOiUG6blrIYBGRLhZS6+0CHN40p9DigAxQY
-	 btP1GM1bf4EFdDlLuR2c3usk7xwL7nMjEyyNvLWowPLgitAEAG7XTAVkjrW5j+wHw3
-	 FmbpSY7bHK45Yffg2du5wSumJ07p/klxMZWy+hBRY2B30udXA2jKPyiyjB7Ay6/Fdf
-	 OEjllJQH8RORg==
-Message-ID: <e1a68ed1-b286-4a51-8e68-8c8bb2a3913f@kernel.org>
-Date: Fri, 31 May 2024 12:17:35 +0200
+	 In-Reply-To:Content-Type; b=FuOCdUr6xYKwmA8apPap8kf+I5IF/3KVQRc5kVweB+fmalNh+MsAoSqApLDOB+Vwst+46l7skUB1JB7XKGA1nsbdZ/DrpHlaOp45L4fBdCa13U6I+I43nKTe21Ls5n/qN0UHPvoxAaZTHQ5SzyKHPLeiOSQrPFG66SAwLCbW4mw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 83AE21424;
+	Fri, 31 May 2024 03:19:40 -0700 (PDT)
+Received: from [192.168.1.100] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BCAB03F641;
+	Fri, 31 May 2024 03:19:14 -0700 (PDT)
+Message-ID: <857fb9da-e12f-4496-964f-44d7ac0ad313@arm.com>
+Date: Fri, 31 May 2024 11:19:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,78 +42,178 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] dt-bindings: iommu: add new compatible strings
-To: Andre Przywara <andre.przywara@arm.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: Chris Morgan <macromorgan@hotmail.com>, Ryan Walklin
- <ryan@testtoast.com>, iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20240530233800.27705-1-andre.przywara@arm.com>
- <20240530233800.27705-4-andre.przywara@arm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v8 7/7] coresight: config: Add preloaded configuration
+To: Linu Cherian <lcherian@marvell.com>
+Cc: linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, sgoutham@marvell.com, gcherian@marvell.com,
+ suzuki.poulose@arm.com, mike.leach@linaro.org
+References: <20240531042745.494222-1-lcherian@marvell.com>
+ <20240531042745.494222-8-lcherian@marvell.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240530233800.27705-4-andre.przywara@arm.com>
+From: James Clark <james.clark@arm.com>
+In-Reply-To: <20240531042745.494222-8-lcherian@marvell.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/05/2024 01:37, Andre Przywara wrote:
-> The Allwinner H616 and A523 contain IOMMU IP very similar to the H6, but
-> use a different reset value for the bypass register, which makes them
-> strictly speaking incompatible.
+
+
+On 31/05/2024 05:27, Linu Cherian wrote:
+> Add a preloaded configuration for generating
+> external trigger on address match. This can be
+> used by CTI and ETR blocks to stop trace capture
+> on kernel panic.
 > 
-> Add a new compatible string for the H616, and a version for the A523,
-> falling back to the H616.
+> Kernel address for "panic" function is used as the
+> default trigger address.
+> 
+> This new configuration is available as,
+> /sys/kernel/config/cs-syscfg/configurations/panicstop
+> 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: James Clark <james.clark@arm.com>
 
-Best regards,
-Krzysztof
-
+> Signed-off-by: Linu Cherian <lcherian@marvell.com>
+> ---
+>  drivers/hwtracing/coresight/Makefile          |  2 +-
+>  .../coresight/coresight-cfg-preload.c         |  2 +
+>  .../coresight/coresight-cfg-preload.h         |  2 +
+>  .../hwtracing/coresight/coresight-cfg-pstop.c | 83 +++++++++++++++++++
+>  4 files changed, 88 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/hwtracing/coresight/coresight-cfg-pstop.c
+> 
+> diff --git a/drivers/hwtracing/coresight/Makefile b/drivers/hwtracing/coresight/Makefile
+> index 4ba478211b31..46ce7f39d05f 100644
+> --- a/drivers/hwtracing/coresight/Makefile
+> +++ b/drivers/hwtracing/coresight/Makefile
+> @@ -25,7 +25,7 @@ subdir-ccflags-y += $(condflags)
+>  obj-$(CONFIG_CORESIGHT) += coresight.o
+>  coresight-y := coresight-core.o  coresight-etm-perf.o coresight-platform.o \
+>  		coresight-sysfs.o coresight-syscfg.o coresight-config.o \
+> -		coresight-cfg-preload.o coresight-cfg-afdo.o \
+> +		coresight-cfg-preload.o coresight-cfg-afdo.o coresight-cfg-pstop.o \
+>  		coresight-syscfg-configfs.o coresight-trace-id.o
+>  obj-$(CONFIG_CORESIGHT_LINK_AND_SINK_TMC) += coresight-tmc.o
+>  coresight-tmc-y := coresight-tmc-core.o coresight-tmc-etf.o \
+> diff --git a/drivers/hwtracing/coresight/coresight-cfg-preload.c b/drivers/hwtracing/coresight/coresight-cfg-preload.c
+> index e237a4edfa09..4980e68483c5 100644
+> --- a/drivers/hwtracing/coresight/coresight-cfg-preload.c
+> +++ b/drivers/hwtracing/coresight/coresight-cfg-preload.c
+> @@ -13,6 +13,7 @@
+>  static struct cscfg_feature_desc *preload_feats[] = {
+>  #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X)
+>  	&strobe_etm4x,
+> +	&gen_etrig_etm4x,
+>  #endif
+>  	NULL
+>  };
+> @@ -20,6 +21,7 @@ static struct cscfg_feature_desc *preload_feats[] = {
+>  static struct cscfg_config_desc *preload_cfgs[] = {
+>  #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X)
+>  	&afdo_etm4x,
+> +	&pstop_etm4x,
+>  #endif
+>  	NULL
+>  };
+> diff --git a/drivers/hwtracing/coresight/coresight-cfg-preload.h b/drivers/hwtracing/coresight/coresight-cfg-preload.h
+> index 21299e175477..291ba530a6a5 100644
+> --- a/drivers/hwtracing/coresight/coresight-cfg-preload.h
+> +++ b/drivers/hwtracing/coresight/coresight-cfg-preload.h
+> @@ -10,4 +10,6 @@
+>  #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X)
+>  extern struct cscfg_feature_desc strobe_etm4x;
+>  extern struct cscfg_config_desc afdo_etm4x;
+> +extern struct cscfg_feature_desc gen_etrig_etm4x;
+> +extern struct cscfg_config_desc pstop_etm4x;
+>  #endif
+> diff --git a/drivers/hwtracing/coresight/coresight-cfg-pstop.c b/drivers/hwtracing/coresight/coresight-cfg-pstop.c
+> new file mode 100644
+> index 000000000000..c2bfbd07bfaf
+> --- /dev/null
+> +++ b/drivers/hwtracing/coresight/coresight-cfg-pstop.c
+> @@ -0,0 +1,83 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright(C) 2023  Marvell.
+> + * Based on coresight-cfg-afdo.c
+> + */
+> +
+> +#include "coresight-config.h"
+> +
+> +/* ETMv4 includes and features */
+> +#if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X)
+> +#include "coresight-etm4x-cfg.h"
+> +
+> +/* preload configurations and features */
+> +
+> +/* preload in features for ETMv4 */
+> +
+> +/* panic_stop feature */
+> +static struct cscfg_parameter_desc gen_etrig_params[] = {
+> +	{
+> +		.name = "address",
+> +		.value = (u64)panic,
+> +	},
+> +};
+> +
+> +static struct cscfg_regval_desc gen_etrig_regs[] = {
+> +	/* resource selector */
+> +	{
+> +		.type = CS_CFG_REG_TYPE_RESOURCE,
+> +		.offset = TRCRSCTLRn(2),
+> +		.hw_info = ETM4_CFG_RES_SEL,
+> +		.val32 = 0x40001,
+> +	},
+> +	/* single address comparator */
+> +	{
+> +		.type = CS_CFG_REG_TYPE_RESOURCE | CS_CFG_REG_TYPE_VAL_64BIT |
+> +			CS_CFG_REG_TYPE_VAL_PARAM,
+> +		.offset =  TRCACVRn(0),
+> +		.val32 = 0x0,
+> +	},
+> +	{
+> +		.type = CS_CFG_REG_TYPE_RESOURCE,
+> +		.offset = TRCACATRn(0),
+> +		.val64 = 0xf00,
+> +	},
+> +	/* Driver external output[0] with comparator out */
+> +	{
+> +		.type = CS_CFG_REG_TYPE_RESOURCE,
+> +		.offset = TRCEVENTCTL0R,
+> +		.val32 = 0x2,
+> +	},
+> +	/* end of regs */
+> +};
+> +
+> +struct cscfg_feature_desc gen_etrig_etm4x = {
+> +	.name = "gen_etrig",
+> +	.description = "Generate external trigger on address match\n"
+> +		       "parameter \'address\': address of kernel address\n",
+> +	.match_flags = CS_CFG_MATCH_CLASS_SRC_ETM4,
+> +	.nr_params = ARRAY_SIZE(gen_etrig_params),
+> +	.params_desc = gen_etrig_params,
+> +	.nr_regs = ARRAY_SIZE(gen_etrig_regs),
+> +	.regs_desc = gen_etrig_regs,
+> +};
+> +
+> +/* create a panic stop configuration */
+> +
+> +/* the total number of parameters in used features */
+> +#define PSTOP_NR_PARAMS	ARRAY_SIZE(gen_etrig_params)
+> +
+> +static const char *pstop_ref_names[] = {
+> +	"gen_etrig",
+> +};
+> +
+> +struct cscfg_config_desc pstop_etm4x = {
+> +	.name = "panicstop",
+> +	.description = "Stop ETM on kernel panic\n",
+> +	.nr_feat_refs = ARRAY_SIZE(pstop_ref_names),
+> +	.feat_ref_names = pstop_ref_names,
+> +	.nr_total_params = PSTOP_NR_PARAMS,
+> +};
+> +
+> +/* end of ETM4x configurations */
+> +#endif	/* IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X) */
 
