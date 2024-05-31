@@ -1,36 +1,36 @@
-Return-Path: <devicetree+bounces-71199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C01A8D6009
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:51:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 361038D601C
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 13:00:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD9A01F262D8
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 10:51:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF673286D10
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 11:00:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFBFE156F4A;
-	Fri, 31 May 2024 10:51:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CAEF156C7C;
+	Fri, 31 May 2024 11:00:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AF5E1420D0;
-	Fri, 31 May 2024 10:51:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A3C9156980;
+	Fri, 31 May 2024 11:00:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717152670; cv=none; b=q/IE5kO4V3XEkPnBqs66CP17Ktpuhbam2XchSs14mHi3W7m55F2i1riLj9hqDIP47WG5QZTae19tBotnPNEj5gZc2QiE67u6ROHqUYOcUUQMZf8IBHW2UwkI27QQ1KkwrThx85kyMpuBOneFiOtn2AwNMHc1lm6Knt9V03SIu3E=
+	t=1717153204; cv=none; b=TZo2evtPmyyJ/y1bed3kviyPcNLK9BQhPHlO6TrxC9JqMIjwXev4eOWxxraF3TIXSr6cDDoF+1taUmxwVNoDY3RDGNzuNWvy6LUC/dEhFqzQfreKiVyfG/owiBX+FJSGODbmPVKhVMrK7C90vThN1n/qcjc94N/Jhh4aWS668X8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717152670; c=relaxed/simple;
-	bh=WOHhcE2/uO66i+vWFu7D9FK6bePWoSV3J/vaxz7or3I=;
+	s=arc-20240116; t=1717153204; c=relaxed/simple;
+	bh=s+gECQtJy94RMybFqok+gv8BllRla9j5zHsGFKwbgLM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J7GgIv3o7h2MzvGirczMh7TIECWpRC8tlQPH6gsHn5eZiDO+123jYJYCfYQsa0Zu072zzE00WhEYJHFMIbML7GptBHmRQQWSAITurISzFjkMswkjmvw4XOGVU4Sehw3z9ZM/VVkrwYMqtoAZg0fxjtdyZ0LPDWYHR0RU1eOPWDs=
+	 In-Reply-To:Content-Type; b=cdvMUGKgPrKtuoQjGduHSz4nft3dCKSZdru7tNWnDIG2YvpKBfHqgccsUeEAry5lM093OaMs5tq2rbU96/kdk7bd30+l1jeJdUdhRIAciOx2+c5bz3MhmNjU1fPpAGQFk2eERovvjf10lOpyxbkH2nypxOXP5wottE3TgmB3fC0=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6737C32789;
-	Fri, 31 May 2024 10:51:07 +0000 (UTC)
-Message-ID: <77bb14be-cbd3-48a9-a974-9332f63c16f9@xs4all.nl>
-Date: Fri, 31 May 2024 12:51:06 +0200
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA795C116B1;
+	Fri, 31 May 2024 11:00:01 +0000 (UTC)
+Message-ID: <72bf0aef-e9a1-416c-a537-61892fb8dfa3@xs4all.nl>
+Date: Fri, 31 May 2024 13:00:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -38,8 +38,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 3/6] media: platform: visconti: Add Toshiba Visconti
- Video Input Interface driver
+Subject: Re: [PATCH v10 4/6] media: platform: visconti: add streaming
+ interface for ISP parameters and status
 To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
  Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
  Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -49,7 +49,7 @@ To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
 Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20240424024215.1624299-1-yuji2.ishikawa@toshiba.co.jp>
- <20240424024215.1624299-4-yuji2.ishikawa@toshiba.co.jp>
+ <20240424024215.1624299-5-yuji2.ishikawa@toshiba.co.jp>
 Content-Language: en-US, nl
 From: Hans Verkuil <hverkuil@xs4all.nl>
 Autocrypt: addr=hverkuil@xs4all.nl; keydata=
@@ -95,38 +95,19 @@ Autocrypt: addr=hverkuil@xs4all.nl; keydata=
  gYmkrmv0duG1FStpY+IIQn1TOkuXrciTVfZY1cZD0aVxwlxXBnUNZZNslldvXFtndxR0SFat
  sflovhDxKyhFwXOP0Rv8H378/+14TaykknRBIKEc0+lcr+EMOSUR5eg4aURb8Gc3Uc7fgQ6q
  UssTXzHPyj1hAyDpfu8DzAwlh4kKFTodxSsKAjI45SLjadSc94/5Gy8645Y1KgBzBPTH7Q==
-In-Reply-To: <20240424024215.1624299-4-yuji2.ishikawa@toshiba.co.jp>
+In-Reply-To: <20240424024215.1624299-5-yuji2.ishikawa@toshiba.co.jp>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 Hi Yuji,
 
-Some comments below:
+Some small comments:
 
 On 24/04/2024 04:42, Yuji Ishikawa wrote:
-> Add support to Video Input Interface on Toshiba Visconti ARM SoCs.
-> The interface device includes CSI2 Receiver,
-> frame grabber, video DMAC and image signal processor.
-> 
-> A driver instance provides three /dev/videoX device files;
-> one for RGB image capture, another one for optional RGB capture
-> with different parameters and the last one for RAW capture.
-> 
-> Through the device files, the driver provides streaming interface.
-> Both DMABUF and MMAP operations are supported.
-> A userland application should feed phisically continuous
-> DMA-BUF instances as capture buffers.
-> 
-> The driver is based on media controller framework.
-> Its operations are roughly mapped to three subdrivers;
-> CSI2 receiver subdevice, ISP subdevice and capture devices.
-> 
-> The Video DMACs have 32bit address space
-> and currently corresponding IOMMU driver is not provided.
-> Therefore, memory-block address for captured image is 32bit IOVA
-> which is equal to 32bit-truncated phisical address.
-> When the Visconti IOMMU driver (currently under development) is accepted,
-> the hardware layer will use 32bit IOVA mapped by the attached IOMMU.
+> Add support to Image Signal Processors of Visconti's Video Input Interface.
+> This patch adds two streaming interfaces;
+> one for passing parameters to the signal processor,
+> the other for receiving status.
 > 
 > Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
 > ---
@@ -140,122 +121,530 @@ On 24/04/2024 04:42, Yuji Ishikawa wrote:
 > - Change function name avoiding camelcase and uppercase letters
 > 
 > Changelog v4:
-> - fix style problems at the v3 patch
-> - remove "index" member
-> - update example
 > - Split patches because the v3 patch exceeds size limit
 > - Stop using ID number to identify driver instance:
->   - Use dynamically allocated structure to hold driver's context,
->     instead of static one indexed by ID number.
->   - internal functions accept context structure instead of ID number.
-> - Use pm_runtime to trigger initialization of HW
->   along with open/close of device files.
->   
+>   - Use dynamically allocated structure to hold HW specific context,
+>     instead of static one.
+>   - Call HW layer functions with the context structure instead of ID number
+> 
 > Changelog v5:
-> - Fix coding style problems in viif.c
+> - no change
 > 
 > Changelog v6:
-> - update dependency description of Kconfig
-> - bugfix: usage of buffer pointed with dma_active
 > - remove unused macros
-> - add viif_common.c for commonly used register buffer control routine
-> - add initialization of Bus Controller (HWAIF) and Memory Protection Unit
 > - removed hwd_ and HWD_ prefix
 > - update source code documentation
 > - Suggestion from Hans Verkuil
 >   - pointer to userland memory is removed from uAPI arguments
 >     - style of structure is now "nested" instead of "chained by pointer";
 >   - use div64_u64 for 64bit division
->   - define Visconti specific control IDs in v4l2-controls.h
->   - set proper initial size to v4l2_ctrl_handler_init()
->   - set all buffers to QUEUED state on an error at start_streaming
->   - use vb2_is_busy() instead of vb2_is_streaming()
->   - add parameter check for s->type and s->target in get_selection()
->   - remove ioctls related to DV format and EDID
->   - release v4l2 fh instance on and error at opening device file
->   - support VB2_MMAP mode for streaming operation 
+>   - vendor specific controls support TRY_EXT_CTRLS
+>   - add READ_ONLY flag to GET_CALIBRATION_STATUS control and similar ones
+>   - human friendry control names for vendor specific controls
 >   - add initial value to each vendor specific control
 >   - GET_LAST_CAPTURE_STATUS control is updated asyncnously from workqueue
+>   - remove EXECUTE_ON_WRITE flag of vendor specific control
+>   - uAPI: return value of GET_CALIBRATION_STATUS follows common rules of error codes
 >   - applied v4l2-compliance
 > - Suggestion from Sakari Ailus
 >   - use div64_u64 for 64bit division
 >   - update copyright's year
->   - use common definition of MIPI CSI2 DataTypes
 >   - remove redandunt cast
 >   - use bool instead of HWD_VIIF_ENABLE/DISABLE
 >   - simplify comparison to 0
 >   - simplify statements with trigram operator
 >   - remove redundant local variables
->   - simplify timeout loop
 >   - use general integer types instead of u32/s32
 > - Suggestion from Laurent Pinchart
 >   - moved VIIF driver to driver/platform/toshiba/visconti
->   - add CSI2RX subdevice
 >   - change register access: struct-style to macro-style
->   - use common definition of MIPI CSI2 DataTypes
->   - Kconfig: add SPDX header, add V4L2_ASYNC
 >   - remove unused type definitions
 >   - define enums instead of successive macro constants
 >   - remove redundant parenthesis of macro constant
 >   - embed struct hwd_res into struct viif_device
->   - turn switch-case into table lookup
 >   - use xxx_dma instead of xxx_paddr for variable names of IOVA
 >   - literal value: just 0 instead of 0x0
 >   - use literal 1 or 0 instead of HWD_VIIF_ENABLE, DISABLE for register access
 >   - use true or false instead of HWD_VIIF_ENABLE, DISABLE for function calls
->   - remove ioctl request handlers which refers subdevices
+>   - uAPI: return value of GET_CALIBRATION_STATUS follows common rules of error codes
 > 
 > Changelog v7:
-> - change compatible string to visconti5-viif
 > - remove unused variables
-> - set static to internal functions
-> - Suggestion from kernel test robot <lkp@intel.com>
->   - update references to headers
+> - split long statements which have multiple logical-OR and trigram operators
 > 
 > Changelog v8:
-> - bugfix: handling return value of visconti_viiif_parse_dt()
-> - add visconti_viif_subdev_notifier_register() to gather
->   all operations around v4l2_async_notifier
-> - update for v6.6-rc2
->   - use v4l2_async_connection instead of v4l2_async_subdev
->   - aid for devices using subdev active state
-> - add __maybe_unused for runtime_pm callbacks
-> - Suggestion from Krzysztof Kozlowski
->   - use static initialization of local variable
->   - use dev_err_probe()
->   - remove error message for DMA memory allocation failure
->   - remove unused comment messages
->   - add error handling at fail of workqueue_create()
->   - remove redundant mutex for pm_runtime callback routines
+> - define constant V4L2_CTRL_TYPE_VISCONTI_ISP for datatype
+>   of Visconti specific controls
 > - Suggestion from Hans Verkuil
->   - remove pr_info() calls
->   - build check with media_stage.git 
->   - some lacks for kerneldoc description
+>   - remove pr_info()
+>   - use pm_runtime_get_if_in_use() to get power status
 > 
 > Changelog v9:
-> - applied sparse checker
->   - add static qualifier to a file scoped local variable
->   - expand functions for acquiring/releasing locks
-> - bugfix: use NULL (instead of 0) for pad::get_fmt subdevice API
-> - fix warnings for cast between ptr and dma_addr_t
-> - call div64_u64 for 64bit division
-> - rebase to media_staging tree; update Visconti specific control IDs
+> - fix warning for cast between ptr and dma_addr_t
 > 
 > Changelog v10:
-> - remove vendor specific compound controls
-> - remove "rawpack mode" flag
->   - RAW16, RAW18, RAW20 (to be implemented and tested) should be used instead
-> - catch up to v6.9-rc4
+> - use parameter buffer instead of vendor specific compound controls
+>   - add viif_params interface for passing ISP parameters
+>   - add viif_stats interface for passing ISP status
+> - remove parameter validation routine; moved to userland library
+> 
+>  .../media/platform/toshiba/visconti/Makefile  |    2 +-
+>  .../media/platform/toshiba/visconti/viif.c    |   28 +-
+>  .../platform/toshiba/visconti/viif_isp.c      |    7 +
+>  .../platform/toshiba/visconti/viif_params.c   | 2026 +++++++++++++++++
+>  .../platform/toshiba/visconti/viif_params.h   |   19 +
+>  .../platform/toshiba/visconti/viif_stats.c    |  334 +++
+>  .../platform/toshiba/visconti/viif_stats.h    |   14 +
+>  7 files changed, 2427 insertions(+), 3 deletions(-)
+>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_params.c
+>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_params.h
+>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_stats.c
+>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_stats.h
 > 
 
 <snip>
 
-> diff --git a/drivers/media/platform/toshiba/visconti/viif_capture.c b/drivers/media/platform/toshiba/visconti/viif_capture.c
+> diff --git a/drivers/media/platform/toshiba/visconti/viif_params.c b/drivers/media/platform/toshiba/visconti/viif_params.c
 > new file mode 100644
-> index 0000000000..221b9a1ba3
+> index 0000000000..5170d371c2
 > --- /dev/null
-> +++ b/drivers/media/platform/toshiba/visconti/viif_capture.c
-> @@ -0,0 +1,1472 @@
+> +++ b/drivers/media/platform/toshiba/visconti/viif_params.c
+> @@ -0,0 +1,2026 @@
+
+<snip>
+
+> +static const struct viif_l1_hdrc_config
+> +	defval_l1_set_hdrc = { .enable = 1,
+> +			       .param = {
+> +				       .hdrc_ratio = 0x0E + VIIF_L1_HDRC_RATIO_OFFSET,
+> +				       .hdrc_pt_ratio = 7,
+> +				       .hdrc_pt_sat = 0xFFC0,
+> +				       .hdrc_tn_type = 1,
+> +			       } };
+
+Strange layout, can you write this like almost all other structs?
+
+static const struct viif_l1_hdrc_config defval_l1_set_hdrc = {
+	.enable = 1,
+        .param = {
+	       .hdrc_ratio = 0x0E + VIIF_L1_HDRC_RATIO_OFFSET,
+	       .hdrc_pt_ratio = 7,
+	       .hdrc_pt_sat = 0xFFC0,
+	       .hdrc_tn_type = 1,
+	}
+};
+
+> +
+> +static const struct viif_l1_hdrc_ltm_config defval_l1_set_hdrc_ltm = {
+> +	.tnp_max = 0x3FFFFF,
+> +	.tnp_mag = 0x40,
+> +	.tnp_fil = { 0x88, 0x84, 0x7A, 0x6A, 0x54 },
+> +};
+> +
+> +static const struct viif_l1_gamma_config defval_l1_set_gamma = {
+> +	.enable = 1,
+> +	.param = {
+> +		.gam_p = {
+> +			0x02F, 0x01B, 0x02A, 0x023, 0x020, 0x037, 0x031, 0x057, 0x04D, 0x088,
+> +			0x078, 0x0D6, 0x0BD, 0x14F, 0x12A, 0x20D, 0x1D3, 0x1AB, 0x18D, 0x2DC,
+> +			0x29E, 0x271, 0x47C, 0x41B, 0x3D4, 0x70A, 0x672, 0x601, 0xB0C, 0xA1D,
+> +			0x96C, 0x8E2, 0x874, 0xFDD, 0xEC9, 0xDF2, 0xD42, 0xCB1, 0xC35, 0xBC9,
+> +			0xB6A, 0xB16, 0xACB, 0xA86},
+> +		.blkadj = 0x1000,
+> +	},
+> +};
+> +
+> +static const struct viif_l1_img_quality_adjustment_config defval_l1_set_img_quality_adjustment = {
+> +	.enable = 0,
+> +	.coef_cb = 0x9078,
+> +	.coef_cr = 0xB699,
+> +	.brightness = 0,
+> +	.linear_contrast = 128,
+> +};
+> +
+> +static const struct viif_l1_avg_lum_generation_config defval_l1_set_avg_lum_generation = {
+> +	.enable = 0
+> +};
+> +
+> +static const struct viif_l2_undist_config defval_l2_set_undist = { .param = {
+> +									   .through_mode = 1,
+> +									   .roi_mode = { 0, 0 },
+> +									   .grid_node_num_h = 0x10,
+> +									   .grid_node_num_v = 0x10,
+> +								   } };
+
+Another weird layout.
+
+> +
+> +static const struct viif_l2_roi_config defval_l2_set_roi = {
+> +	.roi_num = 1,
+> +	.roi_scale = { 65536, 65536 },
+> +	.roi_scale_inv = { 65536, 65536 },
+> +	.corrected_wo_scale_hsize = { 0x80, 0x80 },
+> +	.corrected_hsize = { 0x80, 0x80 },
+> +	.corrected_wo_scale_vsize = { 0x80, 0x80 },
+> +	.corrected_vsize = { 0x80, 0x80 },
+> +};
+> +
+> +static const struct viif_l2_gamma_config defval_l2_set_gamma = { 0 };
+> +
+> +static void viif_apply_default_parameter(struct viif_device *viif_dev)
+> +{
+> +	viif_l1_set_input_mode(viif_dev, &defval_l1_set_input_mode);
+> +	viif_l1_set_rgb_to_y_coef(viif_dev, &defval_l1_set_rgb_to_y_coef);
+> +	viif_l1_set_ag_mode(viif_dev, &defval_l1_set_ag_mode);
+> +	viif_l1_set_ag(viif_dev, &defval_l1_set_ag);
+> +	viif_l1_set_hdre(viif_dev, &defval_l1_set_hdre);
+> +	viif_l1_set_img_extraction(viif_dev, &defval_l1_set_img_extraction);
+> +	viif_l1_set_dpc(viif_dev, &defval_l1_set_dpc);
+> +	viif_l1_set_preset_white_balance(viif_dev, &defval_l1_set_preset_white_balance);
+> +	viif_l1_set_raw_color_noise_reduction(viif_dev, &defval_l1_set_raw_color_noise_reduction);
+> +	viif_l1_set_hdrs(viif_dev, &defval_l1_set_hdrs);
+> +	viif_l1_set_black_level_correction(viif_dev, &defval_l1_set_black_level_correction);
+> +	viif_l1_set_lsc(viif_dev, &defval_l1_set_lsc);
+> +	viif_l1_set_main_process(viif_dev, &defval_l1_set_main_process);
+> +	viif_l1_set_awb(viif_dev, &defval_l1_set_awb);
+> +	viif_l1_lock_awb_gain(viif_dev, &defval_l1_lock_awb_gain);
+> +	viif_l1_set_hdrc(viif_dev, &defval_l1_set_hdrc);
+> +	viif_l1_set_hdrc_ltm(viif_dev, &defval_l1_set_hdrc_ltm);
+> +	viif_l1_set_gamma(viif_dev, &defval_l1_set_gamma);
+> +	viif_l1_set_img_quality_adjustment(viif_dev, &defval_l1_set_img_quality_adjustment);
+> +	viif_l1_set_avg_lum_generation(viif_dev, &defval_l1_set_avg_lum_generation);
+> +	viif_l2_set_undist(viif_dev, &defval_l2_set_undist);
+> +	viif_l2_set_roi_wrap(viif_dev, &defval_l2_set_roi);
+> +	viif_l2_set_gamma(viif_dev, CAPTURE_PATH_MAIN_POST0, &defval_l2_set_gamma);
+> +	viif_l2_set_gamma(viif_dev, CAPTURE_PATH_MAIN_POST1, &defval_l2_set_gamma);
+> +}
+> +
+> +/*=======================================================================*/
+> +/* parameter buffer streaming interface */
+> +/*=======================================================================*/
+> +struct viif_buffer {
+> +	struct vb2_v4l2_buffer vb;
+> +	struct list_head queue;
+> +};
+> +
+> +static bool viif_params_get_buffer(struct params_dev *params_dev, struct viif_buffer **buf,
+> +				   struct visconti_viif_isp_config **cfg)
+> +{
+> +	if (list_empty(&params_dev->params_queue))
+> +		return false;
+> +
+> +	*buf = list_first_entry(&params_dev->params_queue, struct viif_buffer, queue);
+> +	*cfg = vb2_plane_vaddr(&(*buf)->vb.vb2_buf, 0);
+> +
+> +	return true;
+> +}
+> +
+> +static int viif_apply_queued_parameter(struct viif_device *viif_dev, bool initial_cfg)
+> +{
+> +	struct params_dev *params_dev = &viif_dev->params_dev;
+> +	struct visconti_viif_isp_config *new_params;
+> +	struct viif_buffer *cur_buf;
+> +	int ret = 0;
+> +
+> +	spin_lock(&params_dev->params_lock);
+> +
+> +	if (!viif_params_get_buffer(params_dev, &cur_buf, &new_params)) {
+> +		ret = 1;
+> +		goto unlock;
+> +	}
+> +
+> +	/* evaluate new_params */
+> +	if (initial_cfg) {
+> +		if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L1_INPUT_MODE)
+> +			viif_l1_set_input_mode(viif_dev, &new_params->l1_input_mode);
+> +	}
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L1_RGB_TO_Y_COEF)
+> +		viif_l1_set_rgb_to_y_coef(viif_dev, &new_params->l1_rgb_to_y_coef);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L1_AG_MODE)
+> +		viif_l1_set_ag_mode(viif_dev, &new_params->l1_ag_mode);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L1_AG)
+> +		viif_l1_set_ag(viif_dev, &new_params->l1_ag);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L1_HDRE)
+> +		viif_l1_set_hdre(viif_dev, &new_params->l1_hdre);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L1_IMG_EXTRACTION)
+> +		viif_l1_set_img_extraction(viif_dev, &new_params->l1_img_extraction);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L1_DPC)
+> +		viif_l1_set_dpc(viif_dev, &new_params->l1_dpc);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L1_PRESET_WHITE_BALANCE)
+> +		viif_l1_set_preset_white_balance(viif_dev, &new_params->l1_preset_white_balance);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L1_RAW_COLOR_NOISE_REDUCTION)
+> +		viif_l1_set_raw_color_noise_reduction(viif_dev,
+> +						      &new_params->l1_raw_color_noise_reduction);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L1_HDRS)
+> +		viif_l1_set_hdrs(viif_dev, &new_params->l1_hdrs);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L1_BLACK_LEVEL_CORRECTION)
+> +		viif_l1_set_black_level_correction(viif_dev,
+> +						   &new_params->l1_black_level_correction);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L1_LSC)
+> +		viif_l1_set_lsc(viif_dev, &new_params->l1_lsc);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L1_MAIN_PROCESS)
+> +		viif_l1_set_main_process(viif_dev, &new_params->l1_main_process);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L1_AWB)
+> +		viif_l1_set_awb(viif_dev, &new_params->l1_awb);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L1_LOCK_AWB_GAIN)
+> +		viif_l1_lock_awb_gain(viif_dev, &new_params->lock_awb_gain);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L1_HDRC)
+> +		viif_l1_set_hdrc(viif_dev, &new_params->l1_hdrc);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L1_HDRC_LTM)
+> +		viif_l1_set_hdrc_ltm(viif_dev, &new_params->l1_hdrc_ltm);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L1_GAMMA)
+> +		viif_l1_set_gamma(viif_dev, &new_params->l1_gamma);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L1_IMG_QUALITY_ADJUSTMENT)
+> +		viif_l1_set_img_quality_adjustment(viif_dev,
+> +						   &new_params->l1_img_quality_adjustment);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L1_AVG_LUM_GENERATION)
+> +		viif_l1_set_avg_lum_generation(viif_dev, &new_params->l1_avg_lum_generation);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L2_UNDIST)
+> +		viif_l2_set_undist(viif_dev, &new_params->l2_undist);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L2_ROI)
+> +		viif_l2_set_roi_wrap(viif_dev, &new_params->l2_roi);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L2_GAMMA_POST0)
+> +		viif_l2_set_gamma(viif_dev, CAPTURE_PATH_MAIN_POST0, &new_params->l2_gamma_post0);
+> +	if (new_params->update_cfg & VISCONTI_VIIF_CFG_ISP_L2_GAMMA_POST1)
+> +		viif_l2_set_gamma(viif_dev, CAPTURE_PATH_MAIN_POST1, &new_params->l2_gamma_post1);
+> +
+> +	/* release buffer */
+> +	list_del(&cur_buf->queue);
+> +	cur_buf->vb.sequence = 0;
+> +	vb2_buffer_done(&cur_buf->vb.vb2_buf, VB2_BUF_STATE_DONE);
+> +
+> +unlock:
+> +	spin_unlock(&params_dev->params_lock);
+> +	return ret;
+> +}
+> +
+> +void visconti_viif_params_isr(struct viif_device *viif_dev)
+> +{
+> +	viif_apply_queued_parameter(viif_dev, false);
+> +}
+> +
+> +void visconti_viif_params_eval_queue(struct viif_device *viif_dev)
+> +{
+> +	if (viif_apply_queued_parameter(viif_dev, true))
+> +		viif_apply_default_parameter(viif_dev);
+> +}
+> +
+> +static int viif_params_enum_fmt_meta_out(struct file *file, void *priv, struct v4l2_fmtdesc *f)
+> +{
+> +	struct video_device *vdev = video_devdata(file);
+> +
+> +	if (f->index > 0 || f->type != vdev->queue->type)
+> +		return -EINVAL;
+> +
+> +	f->pixelformat = V4L2_META_FMT_VISCONTI_VIIF_PARAMS;
+> +
+> +	return 0;
+> +}
+> +
+> +static int viif_params_g_fmt_meta_out(struct file *file, void *fh, struct v4l2_format *f)
+> +{
+> +	struct video_device *vdev = video_devdata(file);
+> +	struct v4l2_meta_format *meta = &f->fmt.meta;
+> +
+> +	if (f->type != vdev->queue->type)
+> +		return -EINVAL;
+> +
+> +	memset(meta, 0, sizeof(*meta));
+> +	meta->dataformat = V4L2_META_FMT_VISCONTI_VIIF_PARAMS;
+> +	meta->buffersize = sizeof(struct visconti_viif_isp_config);
+> +
+> +	return 0;
+> +}
+> +
+> +static int viif_params_querycap(struct file *file, void *priv, struct v4l2_capability *cap)
+> +{
+> +	struct video_device *vdev = video_devdata(file);
+> +
+> +	strscpy(cap->driver, VIIF_DRIVER_NAME, sizeof(cap->driver));
+> +	strscpy(cap->card, vdev->name, sizeof(cap->card));
+> +	strscpy(cap->bus_info, VIIF_BUS_INFO_BASE "-0", sizeof(cap->bus_info));
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct v4l2_ioctl_ops viif_params_ioctl = {
+> +	.vidioc_reqbufs = vb2_ioctl_reqbufs,
+> +	.vidioc_querybuf = vb2_ioctl_querybuf,
+> +	.vidioc_create_bufs = vb2_ioctl_create_bufs,
+> +	.vidioc_qbuf = vb2_ioctl_qbuf,
+> +	.vidioc_dqbuf = vb2_ioctl_dqbuf,
+> +	.vidioc_prepare_buf = vb2_ioctl_prepare_buf,
+> +	.vidioc_expbuf = vb2_ioctl_expbuf,
+> +	.vidioc_streamon = vb2_ioctl_streamon,
+> +	.vidioc_streamoff = vb2_ioctl_streamoff,
+> +	.vidioc_enum_fmt_meta_out = viif_params_enum_fmt_meta_out,
+> +	.vidioc_g_fmt_meta_out = viif_params_g_fmt_meta_out,
+> +	.vidioc_s_fmt_meta_out = viif_params_g_fmt_meta_out,
+> +	.vidioc_try_fmt_meta_out = viif_params_g_fmt_meta_out,
+> +	.vidioc_querycap = viif_params_querycap,
+> +	.vidioc_subscribe_event = v4l2_ctrl_subscribe_event,
+> +	.vidioc_unsubscribe_event = v4l2_event_unsubscribe,
+> +};
+> +
+> +static const struct v4l2_file_operations viif_params_fops = { .mmap = vb2_fop_mmap,
+> +							      .unlocked_ioctl = video_ioctl2,
+> +							      .poll = vb2_fop_poll,
+> +							      .open = v4l2_fh_open,
+> +							      .release = vb2_fop_release };
+
+Weird layout.
+
+> +
+> +static int viif_params_vb2_queue_setup(struct vb2_queue *q, unsigned int *num_buffers,
+> +				       unsigned int *num_planes, unsigned int sizes[],
+> +				       struct device *alloc_devs[])
+> +{
+> +	*num_buffers = clamp_t(u32, *num_buffers, 2, 8);
+> +	*num_planes = 1;
+> +	sizes[0] = sizeof(struct visconti_viif_isp_config);
+> +	return 0;
+> +}
+> +
+> +static inline struct viif_buffer *vb2_to_viif(struct vb2_v4l2_buffer *vbuf)
+> +{
+> +	return container_of(vbuf, struct viif_buffer, vb);
+> +}
+> +
+> +static inline struct params_dev *vb2queue_to_paramsdev(struct vb2_queue *vq)
+> +{
+> +	return (struct params_dev *)vb2_get_drv_priv(vq);
+> +}
+> +
+> +static void viif_params_vb2_buf_queue(struct vb2_buffer *vb)
+> +{
+> +	struct params_dev *params_dev = vb2queue_to_paramsdev(vb->vb2_queue);
+> +	struct vb2_v4l2_buffer *vbuf = to_vb2_v4l2_buffer(vb);
+> +	struct viif_buffer *buf = vb2_to_viif(vbuf);
+> +
+> +	spin_lock_irq(&params_dev->params_lock);
+> +	list_add_tail(&buf->queue, &params_dev->params_queue);
+> +	spin_unlock_irq(&params_dev->params_lock);
+> +}
+> +
+> +static int viif_params_vb2_buf_prepare(struct vb2_buffer *vb)
+> +{
+> +	if (vb2_plane_size(vb, 0) < sizeof(struct visconti_viif_isp_config))
+> +		return -EINVAL;
+> +
+> +	vb2_set_plane_payload(vb, 0, sizeof(struct visconti_viif_isp_config));
+> +	return 0;
+> +}
+> +
+> +static int viif_params_vb2_start_streaming(struct vb2_queue *q, unsigned int arg)
+> +{
+> +	return 0;
+> +}
+> +
+> +static void viif_params_vb2_stop_streaming(struct vb2_queue *q)
+> +{
+> +	struct params_dev *params_dev = vb2queue_to_paramsdev(q);
+> +	struct viif_buffer *buf;
+> +	LIST_HEAD(tmp_list);
+> +
+> +	spin_lock_irq(&params_dev->params_lock);
+> +	list_splice_init(&params_dev->params_queue, &tmp_list);
+> +	spin_unlock_irq(&params_dev->params_lock);
+> +
+> +	list_for_each_entry(buf, &tmp_list, queue)
+> +		vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_ERROR);
+> +}
+> +
+> +static const struct vb2_ops viif_params_vb2_ops = {
+> +	.queue_setup = viif_params_vb2_queue_setup,
+> +	.wait_prepare = vb2_ops_wait_prepare,
+> +	.wait_finish = vb2_ops_wait_finish,
+> +	.buf_queue = viif_params_vb2_buf_queue,
+> +	.buf_prepare = viif_params_vb2_buf_prepare,
+> +	.start_streaming = viif_params_vb2_start_streaming,
+> +	.stop_streaming = viif_params_vb2_stop_streaming,
+> +};
+> +
+> +int visconti_viif_params_register(struct viif_device *viif_dev)
+> +{
+> +	struct params_dev *params_dev = &viif_dev->params_dev;
+> +	struct video_device *vdev = &params_dev->vdev;
+> +	struct vb2_queue *q = &params_dev->vb2_vq;
+> +	int ret;
+> +
+> +	mutex_init(&params_dev->vlock);
+> +	INIT_LIST_HEAD(&params_dev->params_queue);
+> +	spin_lock_init(&params_dev->params_lock);
+> +
+> +	strscpy(vdev->name, "viif_params", sizeof(vdev->name));
+> +
+> +	/* Register the video device */
+> +	video_set_drvdata(vdev, params_dev);
+> +	vdev->ioctl_ops = &viif_params_ioctl;
+> +	vdev->fops = &viif_params_fops;
+> +	vdev->release = video_device_release_empty;
+> +	vdev->lock = &params_dev->vlock;
+> +	vdev->v4l2_dev = &viif_dev->v4l2_dev;
+> +	vdev->queue = &params_dev->vb2_vq;
+> +	vdev->device_caps = V4L2_CAP_STREAMING | V4L2_CAP_META_OUTPUT;
+> +	vdev->vfl_dir = VFL_DIR_TX;
+> +
+> +	/* Initialize vb2 queue */
+> +	q->type = V4L2_BUF_TYPE_META_OUTPUT;
+> +	q->io_modes = VB2_MMAP | VB2_USERPTR | VB2_DMABUF;
+
+Why do you want to support VB2_USERPTR? While not officially deprecated,
+we do discourage it for new drivers.
+
+> +	q->drv_priv = params_dev;
+> +	q->ops = &viif_params_vb2_ops;
+> +	q->mem_ops = &vb2_vmalloc_memops;
+> +	q->buf_struct_size = sizeof(struct viif_buffer);
+> +	q->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_MONOTONIC;
+> +	q->lock = &params_dev->vlock;
+> +	q->dev = viif_dev->v4l2_dev.dev;
+> +
+> +	ret = vb2_queue_init(q);
+> +	if (ret)
+> +		return ret;
+> +
+> +	params_dev->params_pad.flags = MEDIA_PAD_FL_SOURCE;
+> +	ret = media_entity_pads_init(&vdev->entity, VIIF_PARAMS_PAD_NUM, &params_dev->params_pad);
+> +	if (ret)
+> +		goto error;
+> +
+> +	ret = video_register_device(vdev, VFL_TYPE_VIDEO, -1);
+> +	if (ret) {
+> +		dev_err(viif_dev->v4l2_dev.dev, "video_register_device failed: %d\n", ret);
+> +		goto error;
+> +	}
+> +
+> +	return 0;
+> +
+> +error:
+> +	media_entity_cleanup(&vdev->entity);
+> +	mutex_destroy(&params_dev->vlock);
+> +
+> +	return ret;
+> +}
+> +
+> +void visconti_viif_params_unregister(struct viif_device *viif_dev)
+> +{
+> +	struct params_dev *params = &viif_dev->params_dev;
+> +	struct video_device *vdev = &params->vdev;
+> +
+> +	if (!video_is_registered(vdev))
+> +		return;
+> +
+> +	vb2_video_unregister_device(vdev);
+> +	media_entity_cleanup(&vdev->entity);
+> +	mutex_destroy(&params->vlock);
+> +}
+
+<snip>
+
+> diff --git a/drivers/media/platform/toshiba/visconti/viif_stats.c b/drivers/media/platform/toshiba/visconti/viif_stats.c
+> new file mode 100644
+> index 0000000000..28cd879b5f
+> --- /dev/null
+> +++ b/drivers/media/platform/toshiba/visconti/viif_stats.c
+> @@ -0,0 +1,334 @@
 > +// SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
 > +/* Toshiba Visconti Video Capture Support
 > + *
@@ -267,1486 +656,357 @@ On 24/04/2024 04:42, Yuji Ishikawa wrote:
 > +#include <linux/pm_runtime.h>
 > +#include <media/v4l2-common.h>
 > +#include <media/v4l2-subdev.h>
+> +#include <media/videobuf2-vmalloc.h>
 > +
 > +#include "viif.h"
-> +#include "viif_capture.h"
-> +#include "viif_common.h"
+> +#include "viif_csi2rx.h"
 > +#include "viif_isp.h"
+> +#include "viif_common.h"
 > +#include "viif_regs.h"
+> +#include "viif_stats.h"
 > +
-> +/* single plane for RGB/Grayscale types, 3 planes for YUV types */
-> +#define VIIF_MAX_PLANE_NUM 3
-> +
-> +/* maximum horizontal/vertical position/dimension of CROP with ISP */
-> +#define VIIF_CROP_MAX_X_ISP 8062U
-> +#define VIIF_CROP_MAX_Y_ISP 3966U
-> +#define VIIF_CROP_MAX_W_ISP 8190U
-> +#define VIIF_CROP_MAX_H_ISP 4094U
-> +
-> +/* minimum horizontal/vertical dimension of CROP */
-> +#define VIIF_CROP_MIN_W 128U
-> +#define VIIF_CROP_MIN_H 128U
-> +
-> +/* maximum output size with ISP */
-> +#define VIIF_MAX_OUTPUT_IMG_WIDTH_ISP  5760U
-> +#define VIIF_MAX_OUTPUT_IMG_HEIGHT_ISP 3240U
-> +#define VIIF_MAX_PITCH_ISP	       32704U
-> +
-> +/* maximum output size for SUB path */
-> +#define VIIF_MAX_OUTPUT_IMG_WIDTH_SUB  4096U
-> +#define VIIF_MAX_OUTPUT_IMG_HEIGHT_SUB 2160U
-> +#define VIIF_MAX_PITCH		       65536U
-> +
-> +/* minimum output size */
-> +#define VIIF_MIN_OUTPUT_IMG_WIDTH  128U
-> +#define VIIF_MIN_OUTPUT_IMG_HEIGHT 128U
-> +
-> +/* DMA settings for SUB path */
-> +#define VDMAC_SRAM_BASE_ADDR_W03 0x440U
-> +#define SRAM_SIZE_W_PORT	 0x200
-> +
-> +enum viif_color_format {
-> +	VIIF_YCBCR422_8_PACKED = 0,
-> +	VIIF_RGB888_PACKED = 1U,
-> +	VIIF_ARGB8888_PACKED = 3U,
-> +	VIIF_YCBCR422_8_PLANAR = 8U,
-> +	VIIF_RGB888_YCBCR444_8_PLANAR = 9U,
-> +	VIIF_ONE_COLOR_8 = 11U,
-> +	VIIF_YCBCR422_16_PLANAR = 12U,
-> +	VIIF_RGB161616_YCBCR444_16_PLANAR = 13U,
-> +	VIIF_ONE_COLOR_16 = 15U
-> +};
-> +
-> +/**
-> + * struct viif_csc_param - color conversion information
-> + * @r_cr_in_offset: input offset of R/Cr
-> + * @g_y_in_offset: input offset of G/Y
-> + * @b_cb_in_offset: input offset of B/Cb
-> + * @coef: coefficient of matrix.
-> + * @r_cr_out_offset: output offset of R/Cr
-> + * @g_y_out_offset: output offset of G/Y
-> + * @b_cb_out_offset: output offset of B/Cb
-> + *
-> + * Range of parameters is:
-> + *
-> + * - {r_cr,g_y,b_cb}_{in,out}_offset
-> + *
-> + *   - Range: [0x0..0x1FFFF]
-> + *
-> + * - coef
-> + *
-> + *   - Range: [0x0..0xFFFF]
-> + *   - [0] : c00(YG_YG), [1] : c01(UB_YG), [2] : c02(VR_YG),
-> + *   - [3] : c10(YG_UB), [4] : c11(UB_UB), [5] : c12(VR_UB),
-> + *   - [6] : c20(YG_VR), [7] : c21(UB_VR), [8] : c22(VR_VR)
-> + */
-> +struct viif_csc_param {
-> +	u32 r_cr_in_offset;
-> +	u32 g_y_in_offset;
-> +	u32 b_cb_in_offset;
-> +	u32 coef[9];
-> +	u32 r_cr_out_offset;
-> +	u32 g_y_out_offset;
-> +	u32 b_cb_out_offset;
-> +};
-> +
-> +/**
-> + * struct viif_pixelmap - pixelmap information
-> + * @pmap_dma: start address of pixel data(DMA address). 4byte alignment.
-> + * @pitch: pitch size of pixel map [unit: byte]
-> + *
-> + * Condition of pitch in case of L2ISP output is as below.
-> + *
-> + * * max: 32704
-> + * * min: max (active width of image * k / r, 128)
-> + * * alignment: 64
-> + *
-> + * Condition of pitch in the other cases is as below.
-> + *
-> + * * max: 65536
-> + * * min: active width of image * k / r
-> + * * alignment: 4
-> + *
-> + * k is the size of 1 pixel and the value is as below.
-> + *
-> + * * VIIF_YCBCR422_8_PACKED: 2
-> + * * VIIF_RGB888_PACKED: 3
-> + * * VIIF_ARGB8888_PACKED: 4
-> + * * VIIF_YCBCR422_8_PLANAR: 1
-> + * * VIIF_RGB888_YCBCR444_8_PLANAR: 1
-> + * * VIIF_ONE_COLOR_8: 1
-> + * * VIIF_YCBCR422_16_PLANAR: 2
-> + * * VIIF_RGB161616_YCBCR444_16_PLANAR: 2
-> + * * VIIF_ONE_COLOR_16: 2
-> + *
-> + * r is the correction factor for Cb or Cr of YCbCr422 planar and the value is as below.
-> + *
-> + * * YCbCr422 Cb-planar: 2
-> + * * YCbCr422 Cr-planar: 2
-> + * * others: 1
-> + */
-> +struct viif_pixelmap {
-> +	dma_addr_t pmap_dma;
-> +	u32 pitch;
-> +};
-> +
-> +/**
-> + * struct viif_img - image information
-> + * @width: active width of image [unit: pixel]
-> + * * Range: [128..5760](output from L2ISP)
-> + * * Range: [128..4096](output from SUB unit)
-> + * * The value should be even.
-> + *
-> + * @height: active height of image[line]
-> + * * Range: [128..3240](output from L2ISP)
-> + * * Range: [128..2160](output from SUB unit)
-> + * * The value should be even.
-> + *
-> + * @format: viif_color_format "color format"
-> + * * Below color formats are supported for input and output of MAIN unit
-> + * * VIIF_YCBCR422_8_PACKED
-> + * * VIIF_RGB888_PACKED
-> + * * VIIF_ARGB8888_PACKED
-> + * * VIIF_YCBCR422_8_PLANAR
-> + * * VIIF_RGB888_YCBCR444_8_PLANAR
-> + * * VIIF_ONE_COLOR_8
-> + * * VIIF_YCBCR422_16_PLANAR
-> + * * VIIF_RGB161616_YCBCR444_16_PLANAR
-> + * * VIIF_ONE_COLOR_16
-> + * * Below color formats are supported for output of SUB unit
-> + * * VIIF_ONE_COLOR_8
-> + * * VIIF_ONE_COLOR_16
-> + *
-> + * @pixelmap: pixelmap information
-> + * * [0]: Y/G-planar, packed/Y/RAW
-> + * * [1]: Cb/B-planar
-> + * * [2]: Cr/R-planar
-> + */
-> +struct viif_img {
-> +	u32 width;
-> +	u32 height;
-> +	enum viif_color_format format;
-> +	struct viif_pixelmap pixelmap[VIIF_MAX_PLANE_NUM];
-> +};
-> +
-> +/*=============================================*/
-> +/* Low Layer Implementation */
-> +/*=============================================*/
-> +/**
-> + * viif_l2_set_output_csc() - Set output CSC parameters of L2ISP
-> + *
-> + * @viif_dev: the VIIF device
-> + * @post_id: POST ID. Range: [0..1]
-> + * @param: Pointer to output csc parameters of L2ISP
-> + */
-> +static int viif_l2_set_output_csc(struct viif_device *viif_dev, u32 post_id,
-> +				  const struct viif_csc_param *param)
-> +{
-> +	/* disable csc matrix when param is NULL */
-> +	if (!param) {
-> +		viif_capture_write(viif_dev, REG_L2_POST_X_CSC_MTB(post_id), 0);
-> +		return 0;
-> +	}
-> +
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_CSC_MTB_YG_OFFSETI(post_id),
-> +			   param->g_y_in_offset);
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_CSC_MTB_YG1(post_id),
-> +			   FIELD_CSC_MTB_LOWER(param->coef[0]));
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_CSC_MTB_YG2(post_id),
-> +			   FIELD_CSC_MTB_UPPER(param->coef[1]) |
-> +				   FIELD_CSC_MTB_LOWER(param->coef[2]));
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_CSC_MTB_YG_OFFSETO(post_id),
-> +			   param->g_y_out_offset);
-> +
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_CSC_MTB_CB_OFFSETI(post_id),
-> +			   param->b_cb_in_offset);
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_CSC_MTB_CB1(post_id),
-> +			   FIELD_CSC_MTB_LOWER(param->coef[3]));
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_CSC_MTB_CB2(post_id),
-> +			   FIELD_CSC_MTB_UPPER(param->coef[4]) |
-> +				   FIELD_CSC_MTB_LOWER(param->coef[5]));
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_CSC_MTB_CB_OFFSETO(post_id),
-> +			   param->b_cb_out_offset);
-> +
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_CSC_MTB_CR_OFFSETI(post_id),
-> +			   param->r_cr_in_offset);
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_CSC_MTB_CR1(post_id),
-> +			   FIELD_CSC_MTB_LOWER(param->coef[6]));
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_CSC_MTB_CR2(post_id),
-> +			   FIELD_CSC_MTB_UPPER(param->coef[7]) |
-> +				   FIELD_CSC_MTB_LOWER(param->coef[8]));
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_CSC_MTB_CR_OFFSETO(post_id),
-> +			   param->r_cr_out_offset);
-> +
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_CSC_MTB(post_id), 1);
-> +
-> +	return 0;
-> +}
-> +
-> +struct viif_out_format_spec {
-> +	int num_planes;
-> +	int bytes_per_px;
-> +	int pitch_align;
-> +	int skips_px[3];
-> +};
-> +
-> +static struct viif_out_format_spec out_format_spec[] = {
-> +	[VIIF_YCBCR422_8_PACKED] = {
-> +		.num_planes = 1,
-> +		.bytes_per_px = 2,
-> +		.pitch_align = 256,
-> +		.skips_px = {1},
-> +	},
-> +	[VIIF_RGB888_PACKED] = {
-> +		.num_planes = 1,
-> +		.bytes_per_px = 3,
-> +		.pitch_align = 384,
-> +		.skips_px = {1},
-> +	},
-> +	[VIIF_ARGB8888_PACKED] = {
-> +		.num_planes = 1,
-> +		.bytes_per_px = 4,
-> +		.pitch_align = 512,
-> +		.skips_px = {1},
-> +	},
-> +	[VIIF_ONE_COLOR_8] = {
-> +		.num_planes = 1,
-> +		.bytes_per_px = 1,
-> +		.pitch_align = 128,
-> +		.skips_px = {1},
-> +	},
-> +	[VIIF_ONE_COLOR_16] = {
-> +		.num_planes = 1,
-> +		.bytes_per_px = 2,
-> +		.pitch_align = 128,
-> +		.skips_px = {1},
-> +	},
-> +	[VIIF_YCBCR422_8_PLANAR] = {
-> +		.num_planes = 3,
-> +		.bytes_per_px = 1,
-> +		.pitch_align = 128,
-> +		.skips_px = {1, 2, 2},
-> +	},
-> +	[VIIF_RGB888_YCBCR444_8_PLANAR] = {
-> +		.num_planes = 3,
-> +		.bytes_per_px = 1,
-> +		.pitch_align = 128,
-> +		.skips_px = {1, 1, 1},
-> +	},
-> +	[VIIF_YCBCR422_16_PLANAR] = {
-> +		.num_planes = 3,
-> +		.bytes_per_px = 2,
-> +		.pitch_align = 128,
-> +		.skips_px = {1, 2, 2},
-> +	},
-> +	[VIIF_RGB161616_YCBCR444_16_PLANAR] = {
-> +		.num_planes = 3,
-> +		.bytes_per_px = 2,
-> +		.pitch_align = 128,
-> +		.skips_px = {1, 1, 1}
-> +	}
-> +};
-> +
-> +/**
-> + * viif_l2_set_img_transmission() - Set image transfer condition of L2ISP
-> + *
-> + * @viif_dev: the VIIF device
-> + * @post_id: POST ID. Range: [0..1]
-> + * @enable: set True to enable image transfer of MAIN unit.
-> + * @src: Pointer to crop area information
-> + * @out_process: Pointer to output process information
-> + * @img: Pointer to output image information
-> + *
-> + * see also: #viif_l2_set_roi_path
-> + */
-> +static int viif_l2_set_img_transmission(struct viif_device *viif_dev, u32 post_id, bool enable,
-> +					const struct viif_img_area *src,
-> +					const struct viif_out_process *out_process,
-> +					const struct viif_img *img)
-> +{
-> +	dma_addr_t img_start_addr[VIIF_MAX_PLANE_NUM];
-> +	u32 pitch[VIIF_MAX_PLANE_NUM];
-> +	struct viif_out_format_spec *spec;
-> +	unsigned int i;
-> +
-> +	/* pitch alignment for planar or one color format */
-> +	if (post_id >= VIIF_MAX_POST_NUM || (enable && (!src || !out_process)) ||
-> +	    (!enable && (src || out_process))) {
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* DISABLE: no DMA transmission setup, set minimum crop rectangle */
-> +	if (!enable) {
-> +		viif_dev->l2_roi_path_info.post_enable_flag[post_id] = false;
-> +		viif_dev->l2_roi_path_info.post_crop_x[post_id] = 0U;
-> +		viif_dev->l2_roi_path_info.post_crop_y[post_id] = 0U;
-> +		viif_dev->l2_roi_path_info.post_crop_w[post_id] = VIIF_CROP_MIN_W;
-> +		viif_dev->l2_roi_path_info.post_crop_h[post_id] = VIIF_CROP_MIN_H;
-> +		visconti_viif_l2_set_roi_path(viif_dev);
-> +
-> +		return 0;
-> +	}
-> +
-> +	if (out_process->select_color != VIIF_COLOR_Y_G &&
-> +	    out_process->select_color != VIIF_COLOR_U_B &&
-> +	    out_process->select_color != VIIF_COLOR_V_R &&
-> +	    out_process->select_color != VIIF_COLOR_YUV_RGB) {
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (img->format != VIIF_ARGB8888_PACKED && out_process->alpha)
-> +		return -EINVAL;
-> +
-> +	if ((img->width % 2U) || (img->height % 2U) || img->width < VIIF_MIN_OUTPUT_IMG_WIDTH ||
-> +	    img->height < VIIF_MIN_OUTPUT_IMG_HEIGHT ||
-> +	    img->width > VIIF_MAX_OUTPUT_IMG_WIDTH_ISP ||
-> +	    img->height > VIIF_MAX_OUTPUT_IMG_HEIGHT_ISP) {
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (src->x > VIIF_CROP_MAX_X_ISP || src->y > VIIF_CROP_MAX_Y_ISP ||
-> +	    src->w < VIIF_CROP_MIN_W || src->w > VIIF_CROP_MAX_W_ISP || src->h < VIIF_CROP_MIN_H ||
-> +	    src->h > VIIF_CROP_MAX_H_ISP) {
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (out_process->half_scale) {
-> +		if ((src->w != (img->width * 2U)) || (src->h != (img->height * 2U)))
-> +			return -EINVAL;
-> +	} else {
-> +		if (src->w != img->width || src->h != img->height)
-> +			return -EINVAL;
-> +	}
-> +
-> +	if (out_process->select_color == VIIF_COLOR_Y_G ||
-> +	    out_process->select_color == VIIF_COLOR_U_B ||
-> +	    out_process->select_color == VIIF_COLOR_V_R) {
-> +		if (img->format != VIIF_ONE_COLOR_8 && img->format != VIIF_ONE_COLOR_16)
-> +			return -EINVAL;
-> +	}
-> +
-> +	spec = &out_format_spec[img->format];
-> +	if (!spec->num_planes)
-> +		return -EINVAL;
-> +
-> +	for (i = 0; i < spec->num_planes; i++) {
-> +		img_start_addr[i] = (u32)img->pixelmap[i].pmap_dma;
-> +		pitch[i] = img->pixelmap[i].pitch;
-> +	}
-> +
-> +	for (i = 0; i < spec->num_planes; i++) {
-> +		u32 pitch_req = max(((img->width * spec->bytes_per_px) / spec->skips_px[i]), 128U);
-> +
-> +		if (pitch[i] < pitch_req || pitch[i] > VIIF_MAX_PITCH_ISP ||
-> +		    (pitch[i] % spec->pitch_align) || (img_start_addr[i] % 4U)) {
-> +			return -EINVAL;
-> +		}
-> +	}
-> +
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_OUT_STADR_G(post_id), (u32)img_start_addr[0]);
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_OUT_PITCH_G(post_id), pitch[0]);
-> +	if (spec->num_planes == 3) {
-> +		viif_capture_write(viif_dev, REG_L2_POST_X_OUT_STADR_B(post_id),
-> +				   (u32)img_start_addr[1]);
-> +		viif_capture_write(viif_dev, REG_L2_POST_X_OUT_STADR_R(post_id),
-> +				   (u32)img_start_addr[2]);
-> +		viif_capture_write(viif_dev, REG_L2_POST_X_OUT_PITCH_B(post_id), pitch[1]);
-> +		viif_capture_write(viif_dev, REG_L2_POST_X_OUT_PITCH_R(post_id), pitch[2]);
-> +	}
-> +
-> +	/* Set CROP */
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_CAP_OFFSET(post_id), (src->y << 16U) | src->x);
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_CAP_SIZE(post_id), (src->h << 16U) | src->w);
-> +
-> +	/* Set output process */
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_HALF_SCALE_EN(post_id),
-> +			   out_process->half_scale ? 1 : 0);
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_C_SELECT(post_id), out_process->select_color);
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_OPORTALP(post_id), (u32)out_process->alpha);
-> +	viif_capture_write(viif_dev, REG_L2_POST_X_OPORTFMT(post_id), img->format);
-> +
-> +	/* Update ROI area and input to each POST */
-> +	viif_dev->l2_roi_path_info.post_enable_flag[post_id] = true;
-> +	viif_dev->l2_roi_path_info.post_crop_x[post_id] = src->x;
-> +	viif_dev->l2_roi_path_info.post_crop_y[post_id] = src->y;
-> +	viif_dev->l2_roi_path_info.post_crop_w[post_id] = src->w;
-> +	viif_dev->l2_roi_path_info.post_crop_h[post_id] = src->h;
-> +	visconti_viif_l2_set_roi_path(viif_dev);
-> +
-> +	return 0;
-> +}
-> +
-> +/**
-> + * viif_sub_set_img_transmission() - Set image transfer condition of SUB unit
-> + *
-> + * @viif_dev: the VIIF device
-> + * @img: Pointer to output image information
-> + */
-> +static int viif_sub_set_img_transmission(struct viif_device *viif_dev, const struct viif_img *img)
-> +{
-> +	dma_addr_t img_start_addr, img_end_addr;
-> +	u32 data_width, pitch, height;
-> +	u32 bytes_px, port_control;
-> +
-> +	/* disable VDMAC when img is NULL */
-> +	if (!img) {
-> +		viif_capture_write(viif_dev, REG_IPORTS_IMGEN, 0);
-> +		port_control = ~((u32)1U << 3U) & viif_capture_read(viif_dev, REG_VDM_W_ENABLE);
-> +		viif_capture_write(viif_dev, REG_VDM_W_ENABLE, port_control);
-> +		return 0;
-> +	}
-> +
-> +	if ((img->width % 2U) || (img->height % 2U))
-> +		return -EINVAL;
-> +
-> +	if (img->width < VIIF_MIN_OUTPUT_IMG_WIDTH || img->height < VIIF_MIN_OUTPUT_IMG_HEIGHT ||
-> +	    img->width > VIIF_MAX_OUTPUT_IMG_WIDTH_SUB ||
-> +	    img->height > VIIF_MAX_OUTPUT_IMG_HEIGHT_SUB) {
-> +		return -EINVAL;
-> +	}
-> +
-> +	img_start_addr = (u32)img->pixelmap[0].pmap_dma;
-> +	pitch = img->pixelmap[0].pitch;
-> +	height = img->height;
-> +
-> +	switch (img->format) {
-> +	case VIIF_ONE_COLOR_8:
-> +		data_width = 0U;
-> +		img_end_addr = img_start_addr + img->width - 1U;
-> +		bytes_px = 1;
-> +		break;
-> +	case VIIF_ONE_COLOR_16:
-> +		data_width = 1U;
-> +		img_end_addr = img_start_addr + (img->width * 2U) - 1U;
-> +		bytes_px = 2;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (img_start_addr % 4U)
-> +		return -EINVAL;
-> +
-> +	if ((pitch < (img->width * bytes_px)) || pitch > VIIF_MAX_PITCH || (pitch % 4U))
-> +		return -EINVAL;
-> +
-> +	viif_capture_write(viif_dev, REG_VDM_WPORT_X_W_SRAM_BASE(IDX_WPORT_SUB_IMG),
-> +			   VDMAC_SRAM_BASE_ADDR_W03);
-> +	viif_capture_write(viif_dev, REG_VDM_WPORT_X_W_SRAM_SIZE(IDX_WPORT_SUB_IMG),
-> +			   SRAM_SIZE_W_PORT);
-> +	viif_capture_write(viif_dev, REG_VDM_WPORT_X_W_STADR(IDX_WPORT_SUB_IMG),
-> +			   (u32)img_start_addr);
-> +	viif_capture_write(viif_dev, REG_VDM_WPORT_X_W_ENDADR(IDX_WPORT_SUB_IMG),
-> +			   (u32)img_end_addr);
-> +	viif_capture_write(viif_dev, REG_VDM_WPORT_X_W_HEIGHT(IDX_WPORT_SUB_IMG), height);
-> +	viif_capture_write(viif_dev, REG_VDM_WPORT_X_W_PITCH(IDX_WPORT_SUB_IMG), pitch);
-> +	viif_capture_write(viif_dev, REG_VDM_WPORT_X_W_CFG0(IDX_WPORT_SUB_IMG), data_width << 8U);
-> +	port_control = BIT(3) | viif_capture_read(viif_dev, REG_VDM_W_ENABLE);
-> +	viif_capture_write(viif_dev, REG_VDM_W_ENABLE, port_control);
-> +	viif_capture_write(viif_dev, REG_IPORTS_IMGEN, 1);
-> +
-> +	return 0;
-> +}
-> +
-> +/*=============================================*/
-> +/* handling V4L2 framework */
-> +/*=============================================*/
 > +struct viif_buffer {
 > +	struct vb2_v4l2_buffer vb;
 > +	struct list_head queue;
 > +};
+> +
+> +static void read_isp_capture_regs(struct viif_l1_info *l1_info, struct viif_device *viif_dev)
+> +{
+> +	unsigned long irqflags;
+> +	int i, j;
+> +	u32 val;
+> +
+> +	spin_lock_irqsave(&viif_dev->regbuf_lock, irqflags);
+> +	hwd_viif_isp_guard_start(viif_dev);
+> +
+> +	/* change register buffer to regbuf0 where driver gets information */
+> +	viif_capture_write(viif_dev, REG_L1_CRGBF_ACC_CONF, VAL_L1_CRGBF_ACC_CONF_MODE_BUFFER0);
+> +
+> +	/* get AWB info */
+> +	l1_info->awb_ave_u = viif_capture_read(viif_dev, REG_L1_AWHB_AVE_USIG);
+> +	l1_info->awb_ave_v = viif_capture_read(viif_dev, REG_L1_AWHB_AVE_VSIG);
+> +	l1_info->awb_accumulated_pixel = viif_capture_read(viif_dev, REG_L1_AWHB_NUM_UVON);
+> +	l1_info->awb_gain_r = viif_capture_read(viif_dev, REG_L1_AWHB_AWBGAINR);
+> +	l1_info->awb_gain_g = viif_capture_read(viif_dev, REG_L1_AWHB_AWBGAING);
+> +	l1_info->awb_gain_b = viif_capture_read(viif_dev, REG_L1_AWHB_AWBGAINB);
+> +	val = viif_capture_read(viif_dev, REG_L1_AWHB_R_CTR_STOP);
+> +	l1_info->awb_status_u = (FIELD_GET(BIT(1), val) != 0);
+> +	l1_info->awb_status_v = (FIELD_GET(BIT(0), val) != 0);
+> +
+> +	/* get average luminance info */
+> +	l1_info->avg_lum_weight = viif_capture_read(viif_dev, REG_L1_AEXP_RESULT_AVE);
+> +	val = viif_capture_read(viif_dev, REG_L1_AEXP_SATUR_BLACK_PIXNUM);
+> +	l1_info->avg_satur_pixnum = FIELD_GET(GENMASK(31, 16), val);
+> +	l1_info->avg_black_pixnum = FIELD_GET(GENMASK(15, 0), val);
+> +	for (i = 0; i < 8; i++) {
+> +		for (j = 0; j < 8; j++) {
+> +			l1_info->avg_lum_block[i][j] =
+> +				viif_capture_read(viif_dev, REG_L1_AEXP_AVE(i, j));
+> +		}
+> +	}
+> +	l1_info->avg_lum_four_line_lum[0] = viif_capture_read(viif_dev, REG_L1_AEXP_AVE4LINES0);
+> +	l1_info->avg_lum_four_line_lum[1] = viif_capture_read(viif_dev, REG_L1_AEXP_AVE4LINES1);
+> +	l1_info->avg_lum_four_line_lum[2] = viif_capture_read(viif_dev, REG_L1_AEXP_AVE4LINES2);
+> +	l1_info->avg_lum_four_line_lum[3] = viif_capture_read(viif_dev, REG_L1_AEXP_AVE4LINES3);
+> +
+> +	/* revert to register access from register buffer access */
+> +	viif_capture_write(viif_dev, REG_L1_CRGBF_ACC_CONF, VAL_L1_CRGBF_ACC_CONF_MODE_BYPASS);
+> +
+> +	hwd_viif_isp_guard_end(viif_dev);
+> +	spin_unlock_irqrestore(&viif_dev->regbuf_lock, irqflags);
+> +}
+> +
+> +static const struct viif_csi2rx_dphy_calibration_status calib_status_not_streaming = {
+> +	.term_cal_with_rext = -EAGAIN,
+> +	.clock_lane_offset_cal = -EAGAIN,
+> +	.data_lane0_offset_cal = -EAGAIN,
+> +	.data_lane1_offset_cal = -EAGAIN,
+> +	.data_lane2_offset_cal = -EAGAIN,
+> +	.data_lane3_offset_cal = -EAGAIN,
+> +	.data_lane0_ddl_tuning_cal = -EAGAIN,
+> +	.data_lane1_ddl_tuning_cal = -EAGAIN,
+> +	.data_lane2_ddl_tuning_cal = -EAGAIN,
+> +	.data_lane3_ddl_tuning_cal = -EAGAIN,
+> +};
+> +
+> +static const struct viif_csi2rx_err_status csi_err_not_streaming;
+> +
+> +void visconti_viif_stats_isr(struct viif_device *viif_dev, unsigned int sequence, u64 timestamp)
+> +{
+> +	struct visconti_viif_isp_stat *cur_stat_buf;
+> +	struct stats_dev *stats_dev = &viif_dev->stats_dev;
+> +	struct viif_buffer *cur_buf;
+> +
+> +	spin_lock(&stats_dev->stats_lock);
+> +
+> +	if (list_empty(&stats_dev->stats_queue))
+> +		goto done;
+> +
+> +	cur_buf = list_first_entry(&stats_dev->stats_queue, struct viif_buffer, queue);
+> +	list_del(&cur_buf->queue);
+> +	cur_stat_buf = (struct visconti_viif_isp_stat *)vb2_plane_vaddr(&cur_buf->vb.vb2_buf, 0);
+> +
+> +	if (!vb2_start_streaming_called(&viif_dev->cap_dev0.vb2_vq)) {
+> +		cur_stat_buf->csi2rx_dphy_calibration = calib_status_not_streaming;
+> +	} else {
+> +		visconti_viif_csi2rx_get_calibration_status(viif_dev,
+> +							    &cur_stat_buf->csi2rx_dphy_calibration);
+> +	}
+> +
+> +	if (!vb2_is_streaming(&viif_dev->cap_dev0.vb2_vq))
+> +		cur_stat_buf->csi2rx_err = csi_err_not_streaming;
+> +	else
+> +		visconti_viif_csi2rx_get_err_status(viif_dev, &cur_stat_buf->csi2rx_err);
+> +
+> +	read_isp_capture_regs(&cur_stat_buf->isp_capture.l1_info, viif_dev);
+> +
+> +	cur_stat_buf->errors.main = viif_dev->reported_err_main;
+> +	cur_stat_buf->errors.sub = viif_dev->reported_err_sub;
+> +	cur_stat_buf->errors.csi2rx = viif_dev->reported_err_csi2rx;
+> +	viif_dev->reported_err_main = 0;
+> +	viif_dev->reported_err_sub = 0;
+> +	viif_dev->reported_err_csi2rx = 0;
+> +
+> +	vb2_set_plane_payload(&cur_buf->vb.vb2_buf, 0, sizeof(struct visconti_viif_isp_stat));
+> +
+> +	cur_buf->vb.sequence = sequence;
+> +	cur_buf->vb.vb2_buf.timestamp = timestamp;
+> +	vb2_buffer_done(&cur_buf->vb.vb2_buf, VB2_BUF_STATE_DONE);
+> +
+> +done:
+> +	spin_unlock(&stats_dev->stats_lock);
+> +}
+> +
+> +static int viif_stats_enum_fmt_meta_cap(struct file *file, void *priv, struct v4l2_fmtdesc *f)
+> +{
+> +	struct video_device *vdev = video_devdata(file);
+> +
+> +	if (f->index > 0 || f->type != vdev->queue->type)
+> +		return -EINVAL;
+> +
+> +	f->pixelformat = V4L2_META_FMT_VISCONTI_VIIF_STATS;
+> +
+> +	return 0;
+> +}
+> +
+> +static int viif_stats_g_fmt_meta_cap(struct file *file, void *priv, struct v4l2_format *f)
+> +{
+> +	struct video_device *vdev = video_devdata(file);
+> +	struct v4l2_meta_format *meta = &f->fmt.meta;
+> +
+> +	if (f->type != vdev->queue->type)
+> +		return -EINVAL;
+> +
+> +	memset(meta, 0, sizeof(*meta));
+> +	meta->dataformat = V4L2_META_FMT_VISCONTI_VIIF_STATS;
+> +	meta->buffersize = sizeof(struct visconti_viif_isp_stat);
+> +
+> +	return 0;
+> +}
+> +
+> +static int viif_stats_querycap(struct file *file, void *priv, struct v4l2_capability *cap)
+> +{
+> +	struct video_device *vdev = video_devdata(file);
+> +
+> +	strscpy(cap->driver, VIIF_DRIVER_NAME, sizeof(cap->driver));
+> +	strscpy(cap->card, vdev->name, sizeof(cap->card));
+> +	strscpy(cap->bus_info, VIIF_BUS_INFO_BASE "-0", sizeof(cap->bus_info));
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct v4l2_ioctl_ops viif_stats_ioctl = {
+> +	.vidioc_reqbufs = vb2_ioctl_reqbufs,
+> +	.vidioc_querybuf = vb2_ioctl_querybuf,
+> +	.vidioc_create_bufs = vb2_ioctl_create_bufs,
+> +	.vidioc_qbuf = vb2_ioctl_qbuf,
+> +	.vidioc_dqbuf = vb2_ioctl_dqbuf,
+> +	.vidioc_prepare_buf = vb2_ioctl_prepare_buf,
+> +	.vidioc_expbuf = vb2_ioctl_expbuf,
+> +	.vidioc_streamon = vb2_ioctl_streamon,
+> +	.vidioc_streamoff = vb2_ioctl_streamoff,
+> +	.vidioc_enum_fmt_meta_cap = viif_stats_enum_fmt_meta_cap,
+> +	.vidioc_g_fmt_meta_cap = viif_stats_g_fmt_meta_cap,
+> +	.vidioc_s_fmt_meta_cap = viif_stats_g_fmt_meta_cap,
+> +	.vidioc_try_fmt_meta_cap = viif_stats_g_fmt_meta_cap,
+> +	.vidioc_querycap = viif_stats_querycap,
+> +	.vidioc_subscribe_event = v4l2_ctrl_subscribe_event,
+> +	.vidioc_unsubscribe_event = v4l2_event_unsubscribe,
+> +};
+> +
+> +static const struct v4l2_file_operations viif_stats_fops = { .mmap = vb2_fop_mmap,
+> +							     .unlocked_ioctl = video_ioctl2,
+> +							     .poll = vb2_fop_poll,
+> +							     .open = v4l2_fh_open,
+> +							     .release = vb2_fop_release };
+
+Weird layout.
+
+> +
+> +static int viif_stats_vb2_queue_setup(struct vb2_queue *vq, unsigned int *num_buffers,
+> +				      unsigned int *num_planes, unsigned int sizes[],
+> +				      struct device *alloc_devs[])
+> +{
+> +	*num_planes = 1;
+> +	*num_buffers = clamp_t(u32, *num_buffers, 2, 8);
+> +	sizes[0] = sizeof(struct visconti_viif_isp_stat);
+> +
+> +	return 0;
+> +}
 > +
 > +static inline struct viif_buffer *vb2_to_viif(struct vb2_v4l2_buffer *vbuf)
 > +{
 > +	return container_of(vbuf, struct viif_buffer, vb);
 > +}
 > +
-> +static inline struct cap_dev *video_drvdata_to_capdev(struct file *file)
+> +static inline struct stats_dev *vb2queue_to_statsdev(struct vb2_queue *q)
 > +{
-> +	return (struct cap_dev *)video_drvdata(file);
+> +	return (struct stats_dev *)vb2_get_drv_priv(q);
 > +}
 > +
-> +static inline struct cap_dev *vb2queue_to_capdev(struct vb2_queue *vq)
+> +static void viif_stats_vb2_buf_queue(struct vb2_buffer *vb)
 > +{
-> +	return (struct cap_dev *)vb2_get_drv_priv(vq);
-> +}
-> +
-> +/* ----- ISRs and VB2 Operations ----- */
-> +static int viif_set_img(struct cap_dev *cap_dev, struct vb2_buffer *vb)
-> +{
-> +	struct v4l2_pix_format_mplane *pix = &cap_dev->v4l2_pix;
-> +	struct viif_device *viif_dev = cap_dev->viif_dev;
-> +	struct viif_img next_out_img;
-> +	int i, ret = 0;
-> +
-> +	next_out_img.width = pix->width;
-> +	next_out_img.height = pix->height;
-> +	next_out_img.format = cap_dev->out_format;
-> +
-> +	for (i = 0; i < pix->num_planes; i++) {
-> +		next_out_img.pixelmap[i].pitch = pix->plane_fmt[i].bytesperline;
-> +		next_out_img.pixelmap[i].pmap_dma = vb2_dma_contig_plane_dma_addr(vb, i);
-> +	}
-> +
-> +	if (cap_dev->pathid == CAPTURE_PATH_MAIN_POST0) {
-> +		spin_lock(&viif_dev->regbuf_lock);
-> +		hwd_viif_isp_guard_start(viif_dev);
-> +		ret = viif_l2_set_img_transmission(viif_dev, VIIF_L2ISP_POST_0, true,
-> +						   &cap_dev->img_area, &cap_dev->out_process,
-> +						   &next_out_img);
-> +		hwd_viif_isp_guard_end(viif_dev);
-> +		spin_unlock(&viif_dev->regbuf_lock);
-> +		if (ret)
-> +			dev_err(viif_dev->dev, "set img error. %d\n", ret);
-> +	} else if (cap_dev->pathid == CAPTURE_PATH_MAIN_POST1) {
-> +		spin_lock(&viif_dev->regbuf_lock);
-> +		hwd_viif_isp_guard_start(viif_dev);
-> +		ret = viif_l2_set_img_transmission(viif_dev, VIIF_L2ISP_POST_1, true,
-> +						   &cap_dev->img_area, &cap_dev->out_process,
-> +						   &next_out_img);
-> +		hwd_viif_isp_guard_end(viif_dev);
-> +		spin_unlock(&viif_dev->regbuf_lock);
-> +		if (ret)
-> +			dev_err(viif_dev->dev, "set img error. %d\n", ret);
-> +	} else if (cap_dev->pathid == CAPTURE_PATH_SUB) {
-> +		spin_lock(&viif_dev->regbuf_lock);
-> +		hwd_viif_isp_guard_start(viif_dev);
-> +		ret = viif_sub_set_img_transmission(viif_dev, &next_out_img);
-> +		hwd_viif_isp_guard_end(viif_dev);
-> +		spin_unlock(&viif_dev->regbuf_lock);
-> +		if (ret)
-> +			dev_err(viif_dev->dev, "set img error. %d\n", ret);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +/*
-> + * viif_capture_switch_buffer() is called from interrupt service routine
-> + * triggered by VSync with some fixed delay.
-> + * The function may switch DMA target buffer by calling viif_set_img().
-> + * The VIIF DMA HW captures the destination address at next VSync
-> + * and completes transfer at one more after.
-> + * Therefore, filled buffer is available at the one after next ISR.
-> + *
-> + * To avoid DMA HW getting stucked, we always need to set valid destination address.
-> + * If a prepared buffer is not available, we reuse the buffer currently being transferred to.
-> + *
-> + * The cap_dev structure has two pointers and a queue to handle video buffers;
-> + + Description of each item at the entry of this function:
-> + * * buf_queue:  holds prepared buffers, set by vb2_queue()
-> + * * active:     pointing at address captured (and to be filled) by DMA HW
-> + * * dma_active: pointing at buffer filled by DMA HW
-> + *
-> + * Rules to update items:
-> + * * when buf_queue is not empty, "active" buffer goes "dma_active"
-> + * * when buf_queue is empty:
-> + *   * "active" buffer stays the same (DMA HW fills the same buffer for coming two frames)
-> + *   * "dma_active" gets NULL (filled buffer will be reused; should not go "DONE" at next ISR)
-> + *
-> + * Simulation:
-> + * | buf_queue   | active  | dma_active | note |
-> + * | X           | NULL    | NULL       |      |
-> + * <QBUF BUF0>
-> + * | X           | BUF0    | NULL       | BUF0 stays |
-> + * | X           | BUF0    | NULL       | BUF0 stays |
-> + * <QBUF BUF1>
-> + * <QBUF BUF2>
-> + * | BUF2 BUF1   | BUF0    | NULL       |      |
-> + * | BUF2        | BUF1    | BUF0       | BUF0 goes DONE |
-> + * | X           | BUF2    | BUF1       | BUF1 goes DONE, BUF2 stays |
-> + * | X           | BUF2    | NULL       | BUF2 stays |
-> + */
-> +void visconti_viif_capture_switch_buffer(struct cap_dev *cap_dev, u32 status_err,
-> +					 u32 l2_transfer_status, u64 timestamp)
-> +{
-> +	spin_lock(&cap_dev->buf_lock);
-> +
-> +	if (cap_dev->dma_active) {
-> +		/* DMA has completed and another framebuffer instance is set */
-> +		struct vb2_v4l2_buffer *vbuf = cap_dev->dma_active;
-> +		enum vb2_buffer_state state;
-> +
-> +		cap_dev->buf_cnt--;
-> +		vbuf->vb2_buf.timestamp = timestamp;
-> +		vbuf->sequence = cap_dev->sequence++;
-> +		vbuf->field = V4L2_FIELD_NONE;
-> +		if (status_err || l2_transfer_status)
-> +			state = VB2_BUF_STATE_ERROR;
-> +		else
-> +			state = VB2_BUF_STATE_DONE;
-> +
-> +		vb2_buffer_done(&vbuf->vb2_buf, state);
-> +	}
-> +
-> +	/* QUEUE pop to register an instance as next DMA target; if empty, reuse current instance */
-> +	if (!list_empty(&cap_dev->buf_queue)) {
-> +		struct viif_buffer *buf =
-> +			list_entry(cap_dev->buf_queue.next, struct viif_buffer, queue);
-> +		list_del_init(&buf->queue);
-> +		viif_set_img(cap_dev, &buf->vb.vb2_buf);
-> +		cap_dev->dma_active = cap_dev->active;
-> +		cap_dev->active = &buf->vb;
-> +	} else {
-> +		cap_dev->dma_active = NULL;
-> +	}
-> +
-> +	spin_unlock(&cap_dev->buf_lock);
-> +}
-> +
-> +/* --- Capture buffer control --- */
-> +static int viif_vb2_setup(struct vb2_queue *vq, unsigned int *count, unsigned int *num_planes,
-> +			  unsigned int sizes[], struct device *alloc_devs[])
-> +{
-> +	struct cap_dev *cap_dev = vb2queue_to_capdev(vq);
-> +	struct v4l2_pix_format_mplane *pix = &cap_dev->v4l2_pix;
-> +	unsigned int i;
-> +
-> +	/* num_planes is set: just check plane sizes. */
-> +	if (*num_planes) {
-> +		for (i = 0; i < pix->num_planes; i++)
-> +			if (sizes[i] < pix->plane_fmt[i].sizeimage)
-> +				return -EINVAL;
-> +
-> +		return 0;
-> +	}
-> +
-> +	/* num_planes not set: called from REQBUFS, just set plane sizes. */
-> +	*num_planes = pix->num_planes;
-> +	for (i = 0; i < pix->num_planes; i++)
-> +		sizes[i] = pix->plane_fmt[i].sizeimage;
-> +
-> +	cap_dev->buf_cnt = 0;
-> +
-> +	return 0;
-> +}
-> +
-> +static void viif_vb2_queue(struct vb2_buffer *vb)
-> +{
-> +	struct cap_dev *cap_dev = vb2queue_to_capdev(vb->vb2_queue);
+> +	struct stats_dev *stats_dev = vb2queue_to_statsdev(vb->vb2_queue);
 > +	struct vb2_v4l2_buffer *vbuf = to_vb2_v4l2_buffer(vb);
 > +	struct viif_buffer *buf = vb2_to_viif(vbuf);
-> +	unsigned long irqflags;
 > +
-> +	spin_lock_irqsave(&cap_dev->buf_lock, irqflags);
-> +
-> +	list_add_tail(&buf->queue, &cap_dev->buf_queue);
-> +	cap_dev->buf_cnt++;
-> +
-> +	spin_unlock_irqrestore(&cap_dev->buf_lock, irqflags);
+> +	spin_lock_irq(&stats_dev->stats_lock);
+> +	list_add_tail(&buf->queue, &stats_dev->stats_queue);
+> +	spin_unlock_irq(&stats_dev->stats_lock);
 > +}
 > +
-> +static int viif_vb2_prepare(struct vb2_buffer *vb)
+> +static int viif_stats_vb2_buf_prepare(struct vb2_buffer *vb)
 > +{
-> +	struct cap_dev *cap_dev = vb2queue_to_capdev(vb->vb2_queue);
-> +	struct v4l2_pix_format_mplane *pix = &cap_dev->v4l2_pix;
-> +	struct viif_device *viif_dev = cap_dev->viif_dev;
-> +	unsigned int i;
+> +	if (vb2_plane_size(vb, 0) < sizeof(struct visconti_viif_isp_stat))
+> +		return -EINVAL;
 > +
-> +	for (i = 0; i < pix->num_planes; i++) {
-> +		if (vb2_plane_size(vb, i) < pix->plane_fmt[i].sizeimage) {
-> +			dev_err(viif_dev->dev, "Plane size too small (%lu < %u)\n",
-> +				vb2_plane_size(vb, i), pix->plane_fmt[i].sizeimage);
-
-Make this dev_info. It is a user-space problem, not a driver/hw error.
-
-> +			return -EINVAL;
-> +		}
+> +	vb2_set_plane_payload(vb, 0, sizeof(struct visconti_viif_isp_stat));
 > +
-> +		vb2_set_plane_payload(vb, i, pix->plane_fmt[i].sizeimage);
-> +	}
 > +	return 0;
 > +}
 > +
-> +static void viif_return_all_buffers(struct cap_dev *cap_dev, enum vb2_buffer_state state)
+> +static void viif_stats_vb2_stop_streaming(struct vb2_queue *q)
 > +{
-> +	struct viif_device *viif_dev = cap_dev->viif_dev;
+> +	struct stats_dev *stats_dev = vb2queue_to_statsdev(q);
 > +	struct viif_buffer *buf;
-> +	unsigned long irqflags;
+> +	unsigned int i;
 > +
-> +	spin_lock_irqsave(&cap_dev->buf_lock, irqflags);
-> +
-> +	/* buffer control */
-> +	if (cap_dev->active) {
-> +		vb2_buffer_done(&cap_dev->active->vb2_buf, state);
-> +		cap_dev->buf_cnt--;
-> +		cap_dev->active = NULL;
-> +	}
-> +	if (cap_dev->dma_active) {
-> +		vb2_buffer_done(&cap_dev->dma_active->vb2_buf, state);
-> +		cap_dev->buf_cnt--;
-> +		cap_dev->dma_active = NULL;
-> +	}
-> +
-> +	/* Release all queued buffers. */
-> +	list_for_each_entry(buf, &cap_dev->buf_queue, queue) {
+> +	spin_lock_irq(&stats_dev->stats_lock);
+> +	for (i = 0; i < 8; i++) {
+> +		if (list_empty(&stats_dev->stats_queue))
+> +			break;
+> +		buf = list_first_entry(&stats_dev->stats_queue, struct viif_buffer, queue);
+> +		list_del(&buf->queue);
 > +		vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_ERROR);
-> +		cap_dev->buf_cnt--;
 > +	}
-> +	INIT_LIST_HEAD(&cap_dev->buf_queue);
-> +	if (cap_dev->buf_cnt)
-> +		dev_err(viif_dev->dev, "Buffer count error %d\n", cap_dev->buf_cnt);
-> +
-> +	spin_unlock_irqrestore(&cap_dev->buf_lock, irqflags);
+> +	spin_unlock_irq(&stats_dev->stats_lock);
 > +}
 > +
-> +static int viif_l2_set_format(struct cap_dev *cap_dev);
-> +static int viif_start_streaming(struct vb2_queue *vq, unsigned int count)
-> +{
-> +	struct cap_dev *cap_dev = vb2queue_to_capdev(vq);
-> +	struct viif_device *viif_dev = cap_dev->viif_dev;
-> +	int ret = 0;
-> +
-> +	mutex_lock(&viif_dev->stream_lock);
-> +
-> +	/* note that pipe is shared among paths; see pipe.streaming_count member variable */
-> +	ret = video_device_pipeline_start(&cap_dev->vdev, &viif_dev->pipe);
-> +	if (ret) {
-> +		dev_err(viif_dev->dev, "start pipeline failed %d\n", ret);
-> +		goto release_lock;
-> +	}
-> +
-> +	/* buffer control */
-> +	cap_dev->sequence = 0;
-> +
-> +	if (cap_dev->pathid == CAPTURE_PATH_MAIN_POST0) {
-> +		/* Currently, only path0 (MAIN POST0) initializes ISP and Camera */
-> +		/* Possibly, initialization can be done when pipe.streaming_count==0 */
-> +		ret = visconti_viif_isp_main_set_unit(viif_dev);
-> +		if (ret) {
-> +			dev_err(viif_dev->dev, "Setting up main path0 L1ISP failed %d\n", ret);
-> +			goto config_path_end;
-> +		}
-> +		ret = viif_l2_set_format(cap_dev);
-> +		if (ret) {
-> +			dev_err(viif_dev->dev, "Setting up main path0 L2VDM failed %d\n", ret);
-> +			goto config_path_end;
-> +		}
-> +		ret = v4l2_subdev_call(&viif_dev->isp_subdev.sd, video, s_stream, true);
-> +		if (ret)
-> +			dev_err(viif_dev->dev, "Start isp subdevice stream failed. %d\n", ret);
-> +	} else if (cap_dev->pathid == CAPTURE_PATH_MAIN_POST1) {
-> +		ret = viif_l2_set_format(cap_dev);
-> +		if (ret)
-> +			dev_err(viif_dev->dev, "Setting up main path1 L2VDM failed %d\n", ret);
-> +	} else {
-> +		cap_dev->out_format = (cap_dev->v4l2_pix.pixelformat == V4L2_PIX_FMT_SRGGB8) ?
-> +						    VIIF_ONE_COLOR_8 :
-> +						    VIIF_ONE_COLOR_16;
-> +		ret = visconti_viif_isp_sub_set_unit(viif_dev);
-> +		if (ret)
-> +			dev_err(viif_dev->dev, "Setting up sub path failed %d\n", ret);
-> +	}
-> +config_path_end:
-> +	if (ret) {
-> +		viif_return_all_buffers(cap_dev, VB2_BUF_STATE_QUEUED);
-> +		video_device_pipeline_stop(&cap_dev->vdev);
-> +		ret = -EPIPE;
-> +	}
-> +release_lock:
-> +	mutex_unlock(&viif_dev->stream_lock);
-> +	return ret;
-> +}
-> +
-> +static void viif_stop_streaming(struct vb2_queue *vq)
-> +{
-> +	struct cap_dev *cap_dev = vb2queue_to_capdev(vq);
-> +	struct viif_device *viif_dev = cap_dev->viif_dev;
-> +	int ret;
-> +
-> +	mutex_lock(&viif_dev->stream_lock);
-> +
-> +	/* Currently, only path0 (MAIN POST0) stops ISP and Camera */
-> +	/* Possibly, teardown can be done when pipe.streaming_count==0 */
-> +	if (cap_dev->pathid == CAPTURE_PATH_MAIN_POST0) {
-> +		ret = v4l2_subdev_call(&viif_dev->isp_subdev.sd, video, s_stream, false);
-> +		if (ret)
-> +			dev_err(viif_dev->dev, "Stop isp subdevice stream failed %d\n", ret);
-> +	}
-> +
-> +	viif_return_all_buffers(cap_dev, VB2_BUF_STATE_ERROR);
-> +	video_device_pipeline_stop(&cap_dev->vdev);
-> +	mutex_unlock(&viif_dev->stream_lock);
-> +}
-> +
-> +static const struct vb2_ops viif_vb2_ops = {
-> +	.queue_setup = viif_vb2_setup,
-> +	.buf_queue = viif_vb2_queue,
-> +	.buf_prepare = viif_vb2_prepare,
+> +static const struct vb2_ops viif_stats_vb2_ops = {
+> +	.queue_setup = viif_stats_vb2_queue_setup,
 > +	.wait_prepare = vb2_ops_wait_prepare,
 > +	.wait_finish = vb2_ops_wait_finish,
-> +	.start_streaming = viif_start_streaming,
-> +	.stop_streaming = viif_stop_streaming,
+> +	.buf_queue = viif_stats_vb2_buf_queue,
+> +	.buf_prepare = viif_stats_vb2_buf_prepare,
+> +	.stop_streaming = viif_stats_vb2_stop_streaming,
 > +};
 > +
-> +/* --- VIIF hardware settings --- */
-> +/* L2ISP output csc setting for YUV to RGB(ITU-R BT.709) */
-> +static const struct viif_csc_param viif_csc_yuv2rgb = {
-> +	.r_cr_in_offset = 0x18000,
-> +	.g_y_in_offset = 0x1f000,
-> +	.b_cb_in_offset = 0x18000,
-> +	.coef = {
-> +			[0] = 0x1000,
-> +			[1] = 0xfd12,
-> +			[2] = 0xf8ad,
-> +			[3] = 0x1000,
-> +			[4] = 0x1d07,
-> +			[5] = 0x0000,
-> +			[6] = 0x1000,
-> +			[7] = 0x0000,
-> +			[8] = 0x18a2,
-> +		},
-> +	.r_cr_out_offset = 0x1000,
-> +	.g_y_out_offset = 0x1000,
-> +	.b_cb_out_offset = 0x1000,
-> +};
-> +
-> +/* L2ISP output csc setting for RGB to YUV(ITU-R BT.709) */
-> +static const struct viif_csc_param viif_csc_rgb2yuv = {
-> +	.r_cr_in_offset = 0x1f000,
-> +	.g_y_in_offset = 0x1f000,
-> +	.b_cb_in_offset = 0x1f000,
-> +	.coef = {
-> +			[0] = 0x0b71,
-> +			[1] = 0x0128,
-> +			[2] = 0x0367,
-> +			[3] = 0xf9b1,
-> +			[4] = 0x082f,
-> +			[5] = 0xfe20,
-> +			[6] = 0xf891,
-> +			[7] = 0xff40,
-> +			[8] = 0x082f,
-> +		},
-> +	.r_cr_out_offset = 0x8000,
-> +	.g_y_out_offset = 0x1000,
-> +	.b_cb_out_offset = 0x8000,
-> +};
-> +
-> +static int viif_l2_set_format(struct cap_dev *cap_dev)
+> +int visconti_viif_stats_register(struct viif_device *viif_dev)
 > +{
-> +	struct v4l2_pix_format_mplane *pix = &cap_dev->v4l2_pix;
-> +	struct viif_device *viif_dev = cap_dev->viif_dev;
-> +	const struct viif_csc_param *csc_param = NULL;
-> +	struct v4l2_subdev_selection sel = {
-> +		.target = V4L2_SEL_TGT_CROP,
-> +		.which = V4L2_SUBDEV_FORMAT_ACTIVE,
-> +	};
-> +	struct v4l2_subdev_format fmt = {
-> +		.which = V4L2_SUBDEV_FORMAT_ACTIVE,
-> +	};
-> +	bool inp_is_rgb = false;
-> +	bool out_is_rgb = false;
-> +	u32 postid;
+> +	struct stats_dev *stats_dev = &viif_dev->stats_dev;
+> +	struct video_device *vdev = &stats_dev->vdev;
+> +	struct vb2_queue *q = &stats_dev->vb2_vq;
 > +	int ret;
 > +
-> +	/* check path id */
-> +	if (cap_dev->pathid == CAPTURE_PATH_MAIN_POST0) {
-> +		sel.pad = VIIF_ISP_PAD_SRC_PATH0;
-> +		fmt.pad = VIIF_ISP_PAD_SRC_PATH0;
-> +		postid = VIIF_L2ISP_POST_0;
-> +	} else if (cap_dev->pathid == CAPTURE_PATH_MAIN_POST1) {
-> +		sel.pad = VIIF_ISP_PAD_SRC_PATH1;
-> +		fmt.pad = VIIF_ISP_PAD_SRC_PATH1;
-> +		postid = VIIF_L2ISP_POST_1;
-> +	} else {
-> +		return -EINVAL;
-> +	}
+> +	mutex_init(&stats_dev->vlock);
+> +	INIT_LIST_HEAD(&stats_dev->stats_queue);
+> +	spin_lock_init(&stats_dev->stats_lock);
 > +
-> +	cap_dev->out_process.half_scale = false;
-> +	cap_dev->out_process.select_color = VIIF_COLOR_YUV_RGB;
-> +	cap_dev->out_process.alpha = 0;
+> +	strscpy(vdev->name, "viif_stats", sizeof(vdev->name));
 > +
-> +	ret = v4l2_subdev_call(&viif_dev->isp_subdev.sd, pad, get_selection, NULL, &sel);
-> +	if (ret) {
-> +		cap_dev->img_area.x = 0;
-> +		cap_dev->img_area.y = 0;
-> +		cap_dev->img_area.w = pix->width;
-> +		cap_dev->img_area.h = pix->height;
-> +	} else {
-> +		cap_dev->img_area.x = sel.r.left;
-> +		cap_dev->img_area.y = sel.r.top;
-> +		cap_dev->img_area.w = sel.r.width;
-> +		cap_dev->img_area.h = sel.r.height;
-> +	}
+> +	/* Register the video device */
+> +	video_set_drvdata(vdev, stats_dev);
+> +	vdev->ioctl_ops = &viif_stats_ioctl;
+> +	vdev->fops = &viif_stats_fops;
+> +	vdev->release = video_device_release_empty;
+> +	vdev->lock = &stats_dev->vlock;
+> +	vdev->v4l2_dev = &viif_dev->v4l2_dev;
+> +	vdev->queue = &stats_dev->vb2_vq;
+> +	vdev->device_caps = V4L2_CAP_META_CAPTURE | V4L2_CAP_STREAMING;
+> +	vdev->vfl_dir = VFL_DIR_RX;
 > +
-> +	ret = v4l2_subdev_call(&viif_dev->isp_subdev.sd, pad, get_fmt, NULL, &fmt);
-> +	if (!ret)
-> +		inp_is_rgb = (fmt.format.code == MEDIA_BUS_FMT_RGB888_1X24);
-> +
-> +	switch (pix->pixelformat) {
-> +	case V4L2_PIX_FMT_RGB24:
-> +		cap_dev->out_format = VIIF_RGB888_PACKED;
-> +		out_is_rgb = true;
-> +		break;
-> +	case V4L2_PIX_FMT_ABGR32:
-> +		cap_dev->out_format = VIIF_ARGB8888_PACKED;
-> +		cap_dev->out_process.alpha = 0xff;
-> +		out_is_rgb = true;
-> +		break;
-> +	case V4L2_PIX_FMT_YUV422M:
-> +		cap_dev->out_format = VIIF_YCBCR422_8_PLANAR;
-> +		break;
-> +	case V4L2_PIX_FMT_YUV444M:
-> +		cap_dev->out_format = VIIF_RGB888_YCBCR444_8_PLANAR;
-> +		break;
-> +	case V4L2_PIX_FMT_Y16:
-> +		cap_dev->out_format = VIIF_ONE_COLOR_16;
-> +		cap_dev->out_process.select_color = VIIF_COLOR_Y_G;
-> +		break;
-> +	}
-> +
-> +	if (!inp_is_rgb && out_is_rgb)
-> +		csc_param = &viif_csc_yuv2rgb; /* YUV -> RGB */
-> +	else if (inp_is_rgb && !out_is_rgb)
-> +		csc_param = &viif_csc_rgb2yuv; /* RGB -> YUV */
-> +
-> +	return viif_l2_set_output_csc(viif_dev, postid, csc_param);
-> +}
-> +
-> +/* --- IOCTL Operations --- */
-> +static const struct viif_fmt viif_capture_fmt_list_mainpath[] = {
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_RGB24,
-> +		.bpp = { 24, 0, 0 },
-> +		.num_planes = 1,
-> +		.colorspace = V4L2_COLORSPACE_SRGB,
-> +		.pitch_align = 384,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_ABGR32,
-> +		.bpp = { 32, 0, 0 },
-> +		.num_planes = 1,
-> +		.colorspace = V4L2_COLORSPACE_SRGB,
-> +		.pitch_align = 512,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_YUV422M,
-> +		.bpp = { 8, 4, 4 },
-> +		.num_planes = 3,
-> +		.colorspace = V4L2_COLORSPACE_REC709,
-> +		.pitch_align = 128,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_YUV444M,
-> +		.bpp = { 8, 8, 8 },
-> +		.num_planes = 3,
-> +		.colorspace = V4L2_COLORSPACE_REC709,
-> +		.pitch_align = 128,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_Y16,
-> +		.bpp = { 16, 0, 0 },
-> +		.num_planes = 1,
-> +		.colorspace = V4L2_COLORSPACE_REC709,
-> +		.pitch_align = 128,
-> +	},
-> +};
-> +
-> +static const struct viif_fmt viif_capture_fmt_list_subpath[] = {
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_SRGGB8,
-> +		.bpp = { 8, 0, 0 },
-> +		.num_planes = 1,
-> +		.colorspace = V4L2_COLORSPACE_SRGB,
-> +		.pitch_align = 256,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_SRGGB10,
-> +		.bpp = { 16, 0, 0 },
-> +		.num_planes = 1,
-> +		.colorspace = V4L2_COLORSPACE_SRGB,
-> +		.pitch_align = 256,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_SRGGB12,
-> +		.bpp = { 16, 0, 0 },
-> +		.num_planes = 1,
-> +		.colorspace = V4L2_COLORSPACE_SRGB,
-> +		.pitch_align = 256,
-> +	},
-> +	{
-> +		.fourcc = V4L2_PIX_FMT_SRGGB14,
-> +		.bpp = { 16, 0, 0 },
-> +		.num_planes = 1,
-> +		.colorspace = V4L2_COLORSPACE_SRGB,
-> +		.pitch_align = 256,
-> +	},
-> +};
-> +
-> +static const struct viif_fmt *get_viif_fmt_from_fourcc(struct cap_dev *cap_dev, unsigned int fourcc)
-> +{
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < cap_dev->fmt_size; i++) {
-> +		const struct viif_fmt *fmt = &cap_dev->fmts[i];
-> +
-> +		if (fmt->fourcc == fourcc)
-> +			return fmt;
-> +	}
-> +	return NULL;
-> +}
-> +
-> +static u32 get_pixelformat_from_fourcc(struct cap_dev *cap_dev, unsigned int fourcc)
-> +{
-> +	const struct viif_fmt *fmt = get_viif_fmt_from_fourcc(cap_dev, fourcc);
-> +
-> +	return fmt ? fmt->fourcc : cap_dev->fmts[0].fourcc;
-> +}
-> +
-> +static u32 get_pixelformat_from_mbus_code(struct cap_dev *cap_dev, unsigned int mbus_code)
-> +{
-> +	const struct viif_fmt *fmt;
-> +	unsigned int fourcc;
-> +
-> +	switch (mbus_code) {
-> +	case MEDIA_BUS_FMT_SRGGB8_1X8:
-> +	case MEDIA_BUS_FMT_SGRBG8_1X8:
-> +	case MEDIA_BUS_FMT_SGBRG8_1X8:
-> +	case MEDIA_BUS_FMT_SBGGR8_1X8:
-> +		fourcc = V4L2_PIX_FMT_SRGGB8;
-> +		break;
-> +	case MEDIA_BUS_FMT_SRGGB10_1X10:
-> +	case MEDIA_BUS_FMT_SGRBG10_1X10:
-> +	case MEDIA_BUS_FMT_SGBRG10_1X10:
-> +	case MEDIA_BUS_FMT_SBGGR10_1X10:
-> +		fourcc = V4L2_PIX_FMT_SRGGB10;
-> +		break;
-> +	case MEDIA_BUS_FMT_SRGGB12_1X12:
-> +	case MEDIA_BUS_FMT_SGRBG12_1X12:
-> +	case MEDIA_BUS_FMT_SGBRG12_1X12:
-> +	case MEDIA_BUS_FMT_SBGGR12_1X12:
-> +		fourcc = V4L2_PIX_FMT_SRGGB12;
-> +		break;
-> +	case MEDIA_BUS_FMT_SRGGB14_1X14:
-> +	case MEDIA_BUS_FMT_SGRBG14_1X14:
-> +	case MEDIA_BUS_FMT_SGBRG14_1X14:
-> +	case MEDIA_BUS_FMT_SBGGR14_1X14:
-> +		fourcc = V4L2_PIX_FMT_SRGGB14;
-> +		break;
-> +	default:
-> +		return cap_dev->fmts[0].fourcc;
-> +	}
-> +
-> +	fmt = get_viif_fmt_from_fourcc(cap_dev, fourcc);
-> +	return fmt ? fmt->fourcc : cap_dev->fmts[0].fourcc;
-> +}
-> +
-> +static void viif_calc_plane_sizes(struct cap_dev *cap_dev, struct v4l2_pix_format_mplane *pix)
-> +{
-> +	const struct viif_fmt *viif_fmt = get_viif_fmt_from_fourcc(cap_dev, pix->pixelformat);
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < viif_fmt->num_planes; i++) {
-> +		struct v4l2_plane_pix_format *plane_i = &pix->plane_fmt[i];
-> +		unsigned int bpl;
-> +
-> +		memset(plane_i, 0, sizeof(*plane_i));
-> +		bpl = roundup(pix->width * viif_fmt->bpp[i] / 8, viif_fmt->pitch_align);
-> +
-> +		plane_i->bytesperline = bpl;
-> +		plane_i->sizeimage = pix->height * bpl;
-> +	}
-> +	pix->num_planes = viif_fmt->num_planes;
-> +}
-> +
-> +static int viif_querycap(struct file *file, void *priv, struct v4l2_capability *cap)
-> +{
-> +	struct viif_device *viif_dev = video_drvdata_to_capdev(file)->viif_dev;
-> +
-> +	strscpy(cap->driver, VIIF_DRIVER_NAME, sizeof(cap->driver));
-> +	snprintf(cap->card, sizeof(cap->card), "%s-%s", VIIF_DRIVER_NAME, dev_name(viif_dev->dev));
-> +	/* TODO: platform:visconti-viif-0,1,2,3 for each VIIF driver instance */
-> +	snprintf(cap->bus_info, sizeof(cap->bus_info), "%s-0", VIIF_BUS_INFO_BASE);
-> +
-> +	return 0;
-> +}
-> +
-> +static int viif_enum_fmt_vid_cap(struct file *file, void *priv, struct v4l2_fmtdesc *f)
-> +{
-> +	struct cap_dev *cap_dev = video_drvdata_to_capdev(file);
-> +
-> +	if (f->index >= cap_dev->fmt_size)
-> +		return -EINVAL;
-> +
-> +	f->pixelformat = cap_dev->fmts[f->index].fourcc;
-> +	return 0;
-> +}
-> +
-> +static void viif_try_fmt(struct cap_dev *cap_dev, struct v4l2_pix_format_mplane *pix)
-> +{
-> +	struct viif_device *viif_dev = cap_dev->viif_dev;
-> +	struct v4l2_subdev_format format = {
-> +		.which = V4L2_SUBDEV_FORMAT_ACTIVE,
-> +	};
-> +	int ret;
-> +
-> +	/* check path id */
-> +	if (cap_dev->pathid == CAPTURE_PATH_MAIN_POST0)
-> +		format.pad = VIIF_ISP_PAD_SRC_PATH0;
-> +	else if (cap_dev->pathid == CAPTURE_PATH_MAIN_POST1)
-> +		format.pad = VIIF_ISP_PAD_SRC_PATH1;
-> +	else
-> +		format.pad = VIIF_ISP_PAD_SRC_PATH2;
-> +
-> +	pix->field = V4L2_FIELD_NONE;
-> +	pix->colorspace = V4L2_COLORSPACE_DEFAULT;
-> +	pix->ycbcr_enc = V4L2_YCBCR_ENC_DEFAULT;
-> +	pix->quantization = V4L2_QUANTIZATION_DEFAULT;
-> +
-> +	ret = v4l2_subdev_call(&viif_dev->isp_subdev.sd, pad, get_fmt, NULL, &format);
-> +	if (ret) {
-> +		/* minimal default format */
-> +		pix->width = VIIF_MIN_OUTPUT_IMG_WIDTH;
-> +		pix->height = VIIF_MIN_OUTPUT_IMG_HEIGHT;
-> +		pix->pixelformat = (cap_dev->pathid == CAPTURE_PATH_SUB) ? V4L2_PIX_FMT_SRGGB8 :
-> +										 V4L2_PIX_FMT_RGB24;
-> +		viif_calc_plane_sizes(cap_dev, pix);
-> +		return;
-> +	}
-> +
-> +	pix->width = format.format.width;
-> +	pix->height = format.format.height;
-> +
-> +	/* check output format */
-> +	if (cap_dev->pathid == CAPTURE_PATH_SUB)
-> +		pix->pixelformat = get_pixelformat_from_mbus_code(cap_dev, format.format.code);
-> +	else
-> +		pix->pixelformat = get_pixelformat_from_fourcc(cap_dev, pix->pixelformat);
-> +
-> +	/* update derived parameters, such as bpp */
-> +	viif_calc_plane_sizes(cap_dev, pix);
-> +}
-> +
-> +static int viif_try_fmt_vid_cap(struct file *file, void *priv, struct v4l2_format *f)
-> +{
-> +	struct cap_dev *cap_dev = video_drvdata_to_capdev(file);
-> +
-> +	viif_try_fmt(cap_dev, &f->fmt.pix_mp);
-> +	return 0;
-> +}
-> +
-> +static int viif_s_fmt_vid_cap(struct file *file, void *priv, struct v4l2_format *f)
-> +{
-> +	struct cap_dev *cap_dev = video_drvdata_to_capdev(file);
-> +
-> +	if (vb2_is_busy(&cap_dev->vb2_vq))
-> +		return -EBUSY;
-> +
-> +	if (f->type != cap_dev->vb2_vq.type)
-> +		return -EINVAL;
+> +	/* Initialize vb2 queue */
+> +	q->type = V4L2_BUF_TYPE_META_CAPTURE;
+> +	q->io_modes = VB2_MMAP | VB2_USERPTR | VB2_DMABUF;
 
-I don't believe this test is needed.
+Same question regarding VB2_USERPTR: do you really need this?
 
-> +
-> +	viif_try_fmt(cap_dev, &f->fmt.pix_mp);
-> +	cap_dev->v4l2_pix = f->fmt.pix_mp;
-> +
-> +	return 0;
-> +}
-> +
-> +static int viif_g_fmt_vid_cap(struct file *file, void *priv, struct v4l2_format *f)
-> +{
-> +	struct cap_dev *cap_dev = video_drvdata_to_capdev(file);
-> +
-> +	f->fmt.pix_mp = cap_dev->v4l2_pix;
-> +
-> +	return 0;
-> +}
-> +
-> +static int viif_enum_framesizes(struct file *file, void *fh, struct v4l2_frmsizeenum *fsize)
-> +{
-> +	struct cap_dev *cap_dev = video_drvdata_to_capdev(file);
-> +
-> +	if (fsize->index)
-> +		return -EINVAL;
-> +
-> +	if (!get_viif_fmt_from_fourcc(cap_dev, fsize->pixel_format))
-> +		return -EINVAL;
-> +
-> +	fsize->type = V4L2_FRMSIZE_TYPE_CONTINUOUS;
-> +	fsize->stepwise.min_width = VIIF_MIN_OUTPUT_IMG_WIDTH;
-> +	fsize->stepwise.max_width = (cap_dev->pathid == CAPTURE_PATH_SUB) ?
-> +						  VIIF_MAX_OUTPUT_IMG_WIDTH_SUB :
-> +						  VIIF_MAX_OUTPUT_IMG_WIDTH_ISP;
-> +	fsize->stepwise.min_height = VIIF_MIN_OUTPUT_IMG_HEIGHT;
-> +	fsize->stepwise.max_height = (cap_dev->pathid == CAPTURE_PATH_SUB) ?
-> +						   VIIF_MAX_OUTPUT_IMG_HEIGHT_SUB :
-> +						   VIIF_MAX_OUTPUT_IMG_HEIGHT_ISP;
-> +	fsize->stepwise.step_width = 1;
-> +	fsize->stepwise.step_height = 1;
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct v4l2_ioctl_ops viif_ioctl_ops = {
-> +	.vidioc_querycap = viif_querycap,
-> +
-> +	.vidioc_enum_fmt_vid_cap = viif_enum_fmt_vid_cap,
-> +	.vidioc_try_fmt_vid_cap_mplane = viif_try_fmt_vid_cap,
-> +	.vidioc_s_fmt_vid_cap_mplane = viif_s_fmt_vid_cap,
-> +	.vidioc_g_fmt_vid_cap_mplane = viif_g_fmt_vid_cap,
-> +
-> +	.vidioc_enum_framesizes = viif_enum_framesizes,
-> +
-> +	.vidioc_reqbufs = vb2_ioctl_reqbufs,
-> +	.vidioc_querybuf = vb2_ioctl_querybuf,
-> +	.vidioc_qbuf = vb2_ioctl_qbuf,
-> +	.vidioc_expbuf = vb2_ioctl_expbuf,
-> +	.vidioc_dqbuf = vb2_ioctl_dqbuf,
-> +	.vidioc_create_bufs = vb2_ioctl_create_bufs,
-> +	.vidioc_prepare_buf = vb2_ioctl_prepare_buf,
-> +	.vidioc_streamon = vb2_ioctl_streamon,
-> +	.vidioc_streamoff = vb2_ioctl_streamoff,
-> +
-> +	.vidioc_log_status = v4l2_ctrl_log_status,
-> +	.vidioc_subscribe_event = v4l2_ctrl_subscribe_event,
-> +	.vidioc_unsubscribe_event = v4l2_event_unsubscribe,
-> +};
-> +
-> +/* --- File Operations --- */
-> +static const struct v4l2_pix_format_mplane pixm_default[3] = {
-> +	{
-> +		.pixelformat = V4L2_PIX_FMT_RGB24,
-> +		.width = 1920,
-> +		.height = 1080,
-> +		.field = V4L2_FIELD_NONE,
-> +		.colorspace = V4L2_COLORSPACE_SRGB,
-> +	},
-> +	{
-> +		.pixelformat = V4L2_PIX_FMT_RGB24,
-> +		.width = 1920,
-> +		.height = 1080,
-> +		.field = V4L2_FIELD_NONE,
-> +		.colorspace = V4L2_COLORSPACE_SRGB,
-> +	},
-> +	{
-> +		.pixelformat = V4L2_PIX_FMT_SRGGB8,
-> +		.width = 1920,
-> +		.height = 1080,
-> +		.field = V4L2_FIELD_NONE,
-> +		.colorspace = V4L2_COLORSPACE_SRGB,
-> +	}
-> +};
-> +
-> +static int viif_capture_open(struct file *file)
-> +{
-> +	struct cap_dev *cap_dev = video_drvdata_to_capdev(file);
-> +	struct viif_device *viif_dev = cap_dev->viif_dev;
-> +	int ret;
-> +
-> +	ret = v4l2_fh_open(file);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = pm_runtime_resume_and_get(viif_dev->dev);
-> +	if (ret) {
-> +		v4l2_fh_release(file);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int viif_capture_release(struct file *file)
-> +{
-> +	struct cap_dev *cap_dev = video_drvdata_to_capdev(file);
-> +	struct viif_device *viif_dev = cap_dev->viif_dev;
-> +
-> +	vb2_fop_release(file);
-> +	pm_runtime_put(viif_dev->dev);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct v4l2_file_operations viif_fops = {
-> +	.owner = THIS_MODULE,
-> +	.open = viif_capture_open,
-> +	.release = viif_capture_release,
-> +	.unlocked_ioctl = video_ioctl2,
-> +	.mmap = vb2_fop_mmap,
-> +	.poll = vb2_fop_poll,
-> +};
-> +
-> +/* ----- media control callbacks ----- */
-> +static int viif_capture_link_validate(struct media_link *link)
-> +{
-> +	/* link validation at start-stream */
-> +	return 0;
-> +}
-> +
-> +static const struct media_entity_operations viif_media_ops = {
-> +	.link_validate = viif_capture_link_validate,
-> +};
-> +
-> +/* ----- attach ctrl callbacck handler ----- */
-
-callbacck -> callback
-
-> +int visconti_viif_capture_register_ctrl_handlers(struct viif_device *viif_dev)
-> +{
-> +	struct v4l2_subdev *sensor_sd = viif_dev->sensor_sd;
-> +	int ret;
-> +
-> +	if (!sensor_sd)
-> +		return -EINVAL;
-> +
-> +	/* MAIN POST0: merge controls of ISP and sensor */
-> +	ret = v4l2_ctrl_add_handler(&viif_dev->cap_dev0.ctrl_handler, sensor_sd->ctrl_handler, NULL,
-> +				    true);
-> +	if (ret) {
-> +		dev_err(viif_dev->dev, "Failed to add sensor ctrl_handler");
-> +		return ret;
-> +	}
-> +
-> +	/* MAIN POST1: merge controls of ISP and sensor */
-> +	ret = v4l2_ctrl_add_handler(&viif_dev->cap_dev1.ctrl_handler, sensor_sd->ctrl_handler, NULL,
-> +				    true);
-> +	if (ret) {
-> +		dev_err(viif_dev->dev, "Failed to add sensor ctrl_handler");
-> +		return ret;
-> +	}
-
-For a Media Controller device you shouldn't merge the sensor controls into the
-main driver. The application software (libcamera) will handle the sensor controls
-directly through the v4l-subdevX device.
-
-> +
-> +	/* SUB: no control is exported */
-> +
-> +	return 0;
-> +}
-> +
-> +/* ----- register/remove capture device node ----- */
-> +static int visconti_viif_capture_register_node(struct cap_dev *cap_dev)
-> +{
-> +	struct viif_device *viif_dev = cap_dev->viif_dev;
-> +	struct v4l2_device *v4l2_dev = &viif_dev->v4l2_dev;
-> +	struct video_device *vdev = &cap_dev->vdev;
-> +	struct vb2_queue *q = &cap_dev->vb2_vq;
-> +	static const char *const node_name[] = {
-> +		"viif_capture_post0",
-> +		"viif_capture_post1",
-> +		"viif_capture_sub",
-> +	};
-> +	struct v4l2_pix_format_mplane pixm;
-> +	int ret;
-> +
-> +	INIT_LIST_HEAD(&cap_dev->buf_queue);
-> +
-> +	mutex_init(&cap_dev->vlock);
-> +	spin_lock_init(&cap_dev->buf_lock);
-> +
-> +	/* Initialize image format */
-> +	pixm = pixm_default[cap_dev->pathid];
-> +	viif_try_fmt(cap_dev, &pixm);
-> +	cap_dev->v4l2_pix = pixm;
-> +
-> +	/* Initialize vb2 queue. */
-> +	q->type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
-> +	q->io_modes = VB2_MMAP | VB2_DMABUF;
-> +	q->min_queued_buffers = 3;
-> +	q->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_MONOTONIC;
-> +	q->ops = &viif_vb2_ops;
-> +	q->mem_ops = &vb2_dma_contig_memops;
-> +	q->drv_priv = cap_dev;
+> +	q->drv_priv = stats_dev;
+> +	q->ops = &viif_stats_vb2_ops;
+> +	q->mem_ops = &vb2_vmalloc_memops;
 > +	q->buf_struct_size = sizeof(struct viif_buffer);
-> +	q->lock = &cap_dev->vlock;
+> +	q->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_MONOTONIC;
+> +	q->lock = &stats_dev->vlock;
 > +	q->dev = viif_dev->v4l2_dev.dev;
 > +
 > +	ret = vb2_queue_init(q);
 > +	if (ret)
 > +		return ret;
 > +
-> +	/* Register the video device. */
-> +	strscpy(vdev->name, node_name[cap_dev->pathid], sizeof(vdev->name));
-> +	vdev->v4l2_dev = v4l2_dev;
-> +	vdev->lock = &cap_dev->vlock;
-> +	vdev->queue = &cap_dev->vb2_vq;
-> +	vdev->ctrl_handler = NULL;
-> +	vdev->fops = &viif_fops;
-> +	vdev->ioctl_ops = &viif_ioctl_ops;
-> +	vdev->device_caps = V4L2_CAP_VIDEO_CAPTURE_MPLANE | V4L2_CAP_STREAMING;
-> +	vdev->device_caps |= V4L2_CAP_IO_MC;
-> +	vdev->entity.ops = &viif_media_ops;
-> +	vdev->release = video_device_release_empty;
-> +	video_set_drvdata(vdev, cap_dev);
-> +	vdev->vfl_dir = VFL_DIR_RX;
-> +	cap_dev->capture_pad.flags = MEDIA_PAD_FL_SINK;
+> +	stats_dev->stats_pad.flags = MEDIA_PAD_FL_SINK;
+> +	ret = media_entity_pads_init(&vdev->entity, VIIF_STATS_PAD_NUM, &stats_dev->stats_pad);
+> +	if (ret)
+> +		goto error;
 > +
 > +	ret = video_register_device(vdev, VFL_TYPE_VIDEO, -1);
-> +	if (ret < 0) {
-> +		dev_err(v4l2_dev->dev, "video_register_device failed: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = media_entity_pads_init(&vdev->entity, 1, &cap_dev->capture_pad);
 > +	if (ret) {
-> +		video_unregister_device(vdev);
-> +		return ret;
+> +		dev_err(viif_dev->v4l2_dev.dev, "video_register_device failed: %d\n", ret);
+> +		goto error;
 > +	}
 > +
-> +	ret = v4l2_ctrl_handler_init(&cap_dev->ctrl_handler, 30);
-> +	if (ret)
-> +		return -ENOMEM;
-> +
-> +	cap_dev->vdev.ctrl_handler = &cap_dev->ctrl_handler;
-> +
 > +	return 0;
+> +
+> +error:
+> +	media_entity_cleanup(&vdev->entity);
+> +	mutex_destroy(&stats_dev->vlock);
+> +
+> +	return ret;
 > +}
 > +
-> +int visconti_viif_capture_register(struct viif_device *viif_dev)
+> +void visconti_viif_stats_unregister(struct viif_device *viif_dev)
 > +{
-> +	int ret;
+> +	struct stats_dev *stats_dev = &viif_dev->stats_dev;
+> +	struct video_device *vdev = &stats_dev->vdev;
 > +
-> +	/* register MAIN POST0 (primary RGB)*/
-> +	viif_dev->cap_dev0.pathid = CAPTURE_PATH_MAIN_POST0;
-> +	viif_dev->cap_dev0.viif_dev = viif_dev;
-> +	viif_dev->cap_dev0.fmts = viif_capture_fmt_list_mainpath;
-> +	viif_dev->cap_dev0.fmt_size = ARRAY_SIZE(viif_capture_fmt_list_mainpath);
-> +	ret = visconti_viif_capture_register_node(&viif_dev->cap_dev0);
-> +	if (ret)
-> +		return ret;
+> +	if (!video_is_registered(vdev))
+> +		return;
 > +
-> +	/* register MAIN POST1 (additional RGB)*/
-> +	viif_dev->cap_dev1.pathid = CAPTURE_PATH_MAIN_POST1;
-> +	viif_dev->cap_dev1.viif_dev = viif_dev;
-> +	viif_dev->cap_dev1.fmts = viif_capture_fmt_list_mainpath;
-> +	viif_dev->cap_dev1.fmt_size = ARRAY_SIZE(viif_capture_fmt_list_mainpath);
-> +	ret = visconti_viif_capture_register_node(&viif_dev->cap_dev1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* register SUB (RAW) */
-> +	viif_dev->cap_dev2.pathid = CAPTURE_PATH_SUB;
-> +	viif_dev->cap_dev2.viif_dev = viif_dev;
-> +	viif_dev->cap_dev2.fmts = viif_capture_fmt_list_subpath;
-> +	viif_dev->cap_dev2.fmt_size = ARRAY_SIZE(viif_capture_fmt_list_subpath);
-> +	ret = visconti_viif_capture_register_node(&viif_dev->cap_dev2);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
+> +	vb2_video_unregister_device(vdev);
+> +	media_entity_cleanup(&vdev->entity);
+> +	mutex_destroy(&stats_dev->vlock);
 > +}
+> diff --git a/drivers/media/platform/toshiba/visconti/viif_stats.h b/drivers/media/platform/toshiba/visconti/viif_stats.h
+> new file mode 100644
+> index 0000000000..3f778c58ef
+> --- /dev/null
+> +++ b/drivers/media/platform/toshiba/visconti/viif_stats.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
+> +/* Toshiba Visconti Video Capture Support
+> + *
+> + * (C) Copyright 2023 TOSHIBA CORPORATION
+> + * (C) Copyright 2023 Toshiba Electronic Devices & Storage Corporation
+> + */
 > +
-> +static void visconti_viif_capture_unregister_node(struct cap_dev *cap_dev)
-> +{
-> +	media_entity_cleanup(&cap_dev->vdev.entity);
-> +	v4l2_ctrl_handler_free(&cap_dev->ctrl_handler);
-> +	vb2_video_unregister_device(&cap_dev->vdev);
-> +	mutex_destroy(&cap_dev->vlock);
-> +}
+> +#ifndef VIIF_STATS_H
+> +#define VIIF_STATS_H
 > +
-> +void visconti_viif_capture_unregister(struct viif_device *viif_dev)
-> +{
-> +	visconti_viif_capture_unregister_node(&viif_dev->cap_dev0);
-> +	visconti_viif_capture_unregister_node(&viif_dev->cap_dev1);
-> +	visconti_viif_capture_unregister_node(&viif_dev->cap_dev2);
-> +}
-
-<snip>
+> +void visconti_viif_stats_isr(struct viif_device *viif_dev, unsigned int sequence, u64 timestamp);
+> +int visconti_viif_stats_register(struct viif_device *viif_dev);
+> +void visconti_viif_stats_unregister(struct viif_device *viif_dev);
+> +#endif /* VIIF_STATS_H */
 
 Regards,
 
 	Hans
-
 
