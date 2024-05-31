@@ -1,104 +1,100 @@
-Return-Path: <devicetree+bounces-71042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E55DA8D58B3
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 04:45:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4975B8D58C5
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 05:03:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 223661C2362A
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 02:45:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF6441F25130
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 03:03:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C43D574E3D;
-	Fri, 31 May 2024 02:45:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91A4C78B50;
+	Fri, 31 May 2024 03:03:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="SNAYiZtN"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="BokKH45L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BAA814265;
-	Fri, 31 May 2024 02:45:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3235436134;
+	Fri, 31 May 2024 03:03:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717123535; cv=none; b=XAdOEoUR6xFF80GJEM2haPji7H8r2JMi4tph53dYZgSkqVgJqE1ldvHuL/3PrEWrxMip+yzV4kZpOokMI6SiQju+WVOBgLQ4LtryCe/46fc5QEwzWaN6NXkndJq9vI28TAxCnK/DksQeMvF8C3QCyLiyc0ZpqgJJ9UKeptDJjn4=
+	t=1717124601; cv=none; b=HNrdynhu+Z2new3WY5C67ijo7Zz7pf0Hr6O7SD4agtSOwixw/oNmAupTBVgQYWbWZgoCkflBBHziycpjoRuf7KIc4wcU67FNHFg2Vw8msI8djZ57jc30EcYL0ZSK3uxTtWT4cUIYI7zeAJ4z0ci2XbR/RGzjvyzwQ6Dfl0sPkrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717123535; c=relaxed/simple;
-	bh=ogjFpFI1mY9EkB7BS5con78jBONtmxi3wYyr48grF7c=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=CWlQRPsqXK/vzAJXXtOdaUKTifanEKjz5vu7AhYO1pKeDF7qJIfjFi7GxtaPt4uQ6Is3EfCDgDonBP6FkvXZmO14H5pbseqTxvD95kbuqttiQsDgq4A22GxnBZGuS+Dw6iF0sgwT9LtpBXJ5vZ0z+tnGa6N9hsPURfAQEVeX6uY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=SNAYiZtN; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1717124601; c=relaxed/simple;
+	bh=jHIjRLocOl4PuU0ihM4adjMxH0LEIl1BhvwvLWjKEYw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EPWlHZI5sgGR/anLDGyXR0Vdo1jmEU1FA1RPPp3KnGgRssijroGys55DDZueECtyLG+7lbsSAtbPZJ5eeTrhJvIcKIBODNFNoVTjbz/y8wpzg592gPc62G6qpJ/DWfy2T0eprDxEBL2h9zZyJOCygGVPu7mH6YzGJJXQYIWqe98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=BokKH45L; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+Received: from [127.0.1.1] (ppp118-210-171-248.adl-adc-lon-bras34.tpg.internode.on.net [118.210.171.248])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 97782200E0;
+	Fri, 31 May 2024 11:03:06 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1717124591;
+	bh=KcNJCLwnq4RAZ/qwQckgdLlOAEGHpzhWwOSzLGWplOk=;
+	h=From:Subject:Date:To:Cc;
+	b=BokKH45LooJ+L8pFLyk2x6SZnVKAuyBU+wMXbLJMDLigf4A8uxI2bMP+q8FGxgTuG
+	 SJT9EkAbkhLUd+lYfeXrInmK4XavfFBhwq8lSSOeECK4GvqV2XOfE0ytgOhhP8LC0T
+	 0jXzTaXvAMhQCQBkpqKHzf8wFdlHcClGY6wVutk4FHDskhkcdEaCTHZy6N/jN6PDGF
+	 5a49/bchnLENwDWKdbhEk06SpBaF84JWfA1S1Ypb5uEREKBGtseWVZVWEKRLwC8aUB
+	 jr+UkUjWXPN7/4au7Dg2WQkd5L0JzxW/zxYsXk/Csft/zFCDbCqRWNBCh6ZWqjakcD
+	 5hNzfUPJVCUSQ==
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+Subject: [PATCH 0/3] dt-bindings: pinctrl: aspeed: Define missing functions
+ and groups
+Date: Fri, 31 May 2024 12:32:46 +0930
+Message-Id: <20240531-dt-warnings-gpio-ast2600-pinctrl-funcs-groups-v1-0-a6fe2281a1b8@codeconstruct.com.au>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1717123530;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Q5Xxa+1pfjc83KgBzGxQW/9sLaAlfMtTgcdj5otYUxQ=;
-	b=SNAYiZtNgZqRk9A1Opklu3S3DISvQzvdiQsIwR+hxLJwn3EvkM1U0oc4W5FDaYKz5KfM6c
-	E/QhLW+EYIHy0+wN3Lk34YIaYl0fnzuTr+hGczp5TBmFjlsafAnBHmjeDmQ30NVFhL6DUa
-	mTcPkotcL1rEazPuEg8KQ44s8AsVIdwQXZbiwZqJba9gbqT7RvVwROCJAVVi2fQ5Aa/1vs
-	X0+mjKUw+xJyVBYMhvgDxVoihnSyX7qUMbEe57qOJ7dNHF/rNGV5pD74o8NdfuMXhGNH5m
-	udPdca5v8xsOKerjRU+/jdYjE1W8zgyRmv2a9rqiXHxil18UeXtkJv4VvAGx4w==
-Date: Fri, 31 May 2024 04:45:28 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Diederik de Haas <didi.debian@cknow.org>
-Cc: Alexey Charkov <alchark@gmail.com>, linux-rockchip@lists.infradead.org,
- heiko@sntech.de, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-kernel@vger.kernel.org, quentin.schulz@cherry.de,
- wens@kernel.org, daniel.lezcano@linaro.org,
- krzysztof.kozlowski+dt@linaro.org, viresh.kumar@linaro.org
-Subject: Re: [RFC PATCH] arm64: dts: rockchip: Make preparations for
- per-RK3588-variant OPPs
-In-Reply-To: <511137f077495007f467d5927f42f85d@manjaro.org>
-References: <673dcf47596e7bc8ba065034e339bb1bbf9cdcb0.1716948159.git.dsimic@manjaro.org>
- <CABjd4YxD41DEkBCZfkznLboEY9ZVOfTCLcj4S_kkcsVswbANyQ@mail.gmail.com>
- <9996796.SDjBYy7pSV@bagend> <511137f077495007f467d5927f42f85d@manjaro.org>
-Message-ID: <06452ce330f0a712e4d765475c6cbc8b@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+X-B4-Tracking: v=1; b=H4sIANY9WWYC/x2N0QoCIRAAf+XY5xbU7Ip+JXow3bOFWMX1Kjju3
+ 5Meh4GZDZQak8J12qDRm5WLDLCHCeIzSCbkNBiccd6cjhZTx09owpIVc+WCQbubjcHKEnt74bJ
+ KHKqVtSqS9bMPZ5cu/gGjWRst/P3/bvd9/wFsjBL1fwAAAA==
+To: Andrew Jeffery <andrew@codeconstruct.com.au>, 
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
+Cc: linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org, 
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-Mailer: b4 0.13.0
 
-On 2024-05-29 13:33, Dragan Simic wrote:
-> On 2024-05-29 13:09, Diederik de Haas wrote:
->> On Wednesday, 29 May 2024 11:57:45 CEST Alexey Charkov wrote:
+Hello,
 
-[...]
+This short series cleans up a collection of binding warnings concerning
+use of undefined pinctrl functions and groups. Together they make a
+reasonable dent in the volume of output from `make dtbs_check` for the
+Aspeed devicetrees.
 
->>> >  arch/arm64/boot/dts/rockchip/rk3588.dtsi      |  414 +--
->>> >  arch/arm64/boot/dts/rockchip/rk3588j.dtsi     |    6 +-
->>> >  arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 2671 +----------------
->>> 
->>> Rename detection didn't do a particularly great job here - wonder if
->>> we can do anything about it to minimize the patch size and ensure 
->>> that
->>> the change history is preserved for git blame...
->> 
->> +1
->> The diff does look awfully big for a rename operation, which was 
->> supposed to
->> (also only) "modify ... a bit".
-> 
-> I also don't like the size of the patch.  I just tried playing with
-> specifying different values for the --find-renames and --find-copies
-> options, but with no good results.  I'll have a look into the Git
-> source later, to see what's actually going on with those options.
+Please review!
 
-Yay, --break-rewrites makes the diff extremely compact. :) [1]
+Andrew
 
-[1] 
-https://git-scm.com/docs/git-diff#Documentation/git-diff.txt--Bltngtltmgt
+---
+Andrew Jeffery (3):
+      dt-bindings: pinctrl: aspeed: Use block syntax for function and groups
+      dt-bindings: pinctrl: aspeed,ast2500-pinctrl: Describe SGPM
+      dt-bindings: pinctrl: aspeed,ast2600-pinctrl: Describe I3C, USB
+
+ .../bindings/pinctrl/aspeed,ast2400-pinctrl.yaml   | 169 ++++++-
+ .../bindings/pinctrl/aspeed,ast2500-pinctrl.yaml   | 188 +++++++-
+ .../bindings/pinctrl/aspeed,ast2600-pinctrl.yaml   | 507 +++++++++++++++++++--
+ 3 files changed, 781 insertions(+), 83 deletions(-)
+---
+base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
+change-id: 20240531-dt-warnings-gpio-ast2600-pinctrl-funcs-groups-e1464a72d84b
+
+Best regards,
+-- 
+Andrew Jeffery <andrew@codeconstruct.com.au>
+
 
