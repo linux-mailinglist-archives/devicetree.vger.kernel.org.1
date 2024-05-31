@@ -1,88 +1,91 @@
-Return-Path: <devicetree+bounces-71291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAB218D6425
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 16:13:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 029D98D6439
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 16:15:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8ACA01F28092
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:13:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33B6D1C271E6
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:15:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 700E21761B9;
-	Fri, 31 May 2024 14:12:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1C7515D5B6;
+	Fri, 31 May 2024 14:13:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DNHR+J8B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B71EvWbF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40020176193;
-	Fri, 31 May 2024 14:12:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA9A9176224;
+	Fri, 31 May 2024 14:13:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717164745; cv=none; b=lyRWQJFMzJ82QlC+ebj8Y22j2ziDBaWqY25xDx023MXDFnBNlMl6eAEiNRA7h9fVBeVBwKs7nGJVV4jqm+nZ7b6ZO6pJpfRPpMz5F1oVql0+B9JJHRnT7+3EYoWZT47ad2IhCmve9tLCxSxLZErZaOljfOZj2B+isgAD3pwVw2g=
+	t=1717164827; cv=none; b=l8D8L6Lvrj7xQOwcnc1SiXXrvzhpTAyDf6hifDAViHJ0x1vwqxjF3TFhrfPi0XY2eMNq88khxDHNiIC5QNC8YwOWsKmeky7cabtkAO0zeMMGl77QTUM1Sjxwxb4jxRBmwgn/K4aNKrPV+DBS2PV/+bJsohQRemK2Ojk10JjOS+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717164745; c=relaxed/simple;
-	bh=nE28feJXr8MPuJwuEZRSEsHxpTmzh4iG2yFFSYfyIBA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=ZTrnSBkg1ytHLlZUZ98B9rptZSaLPZhAhGktyJMAssK3FGkaHDGkg6F46HDbEAhnNLY4Tem7KntWkKb/W1Vqz1kmJHIEZM9AU2+6yXvTA8IccSAtexLShu10VB2XCvnq4qrU4F631HNV/A/n2BDSPlwmRVkjfEVOBOyvD8KAjfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DNHR+J8B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2049EC4AF08;
-	Fri, 31 May 2024 14:12:21 +0000 (UTC)
+	s=arc-20240116; t=1717164827; c=relaxed/simple;
+	bh=C14r9FmYtbAymOkjt/uxZrZg8hcE5Qe7k9wAzHSGsmE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ggQUfHlEPEIzNfyqJRt7r7tlW68rNCgcU6U4WG8bD0MJSyZh0aDZtKYh40ObFijp53j4nH3DvyzZ45N6FgbPdUsa0KSGxxyCLZbiFeSFb+zGHcwFBRuweEihwjscBz01aXt0kB7X1KNQpJZeBEvQZMSqwcXzcKL/4xOuW1EEFBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B71EvWbF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89702C32789;
+	Fri, 31 May 2024 14:13:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717164744;
-	bh=nE28feJXr8MPuJwuEZRSEsHxpTmzh4iG2yFFSYfyIBA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=DNHR+J8BC5mW9id4WWWHd7JyQ+k4VIq8JWrWB1y4icmwRs26+ZlCFFDBI9SUREwac
-	 RUNKB7A6lF5higO8ga1VVxKf4p3OLjycx28XoEINCg/0Fp5ysq2QBj1TSQ/yedIT8z
-	 xuShXtCgyrYgelRbnb+4Q2tdfZKEwUS058HByGfRvvHrP1B4yBdmPzmoU8RHfOnTZC
-	 g5pGpKiuX7Z6aWYyjOyfWKfQVI4bGIxmlRrUAaUEpIMmDHic5v13kiIHWhNHr5YXDR
-	 4PFagZxclHfaMeHC1BzS1vDQXyBzzml8MeSJd2kbcNJRCFBNp/CG0nOcVRFNEJS85d
-	 UPJI01ya2jm6Q==
-From: Lee Jones <lee@kernel.org>
-To: dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-fbdev@vger.kernel.org, Patrick Gansterer <paroga@paroga.com>
-Cc: Lee Jones <lee@kernel.org>, 
- Daniel Thompson <daniel.thompson@linaro.org>, 
- Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>, 
- Sam Ravnborg <sam@ravnborg.org>
-In-Reply-To: <20240526105136.721529-1-paroga@paroga.com>
-References: <20240526105136.721529-1-paroga@paroga.com>
-Subject: Re: [PATCH v6 0/2] backlight: Add new lm3509 backlight driver
-Message-Id: <171716474187.1122706.14204003162391534648.b4-ty@kernel.org>
-Date: Fri, 31 May 2024 15:12:21 +0100
+	s=k20201202; t=1717164827;
+	bh=C14r9FmYtbAymOkjt/uxZrZg8hcE5Qe7k9wAzHSGsmE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=B71EvWbFYcnrC1s/wCyUOJm0cAfJo5IkGkcsHonkHxN7bzgqxjFwpKwhagVykzJPW
+	 uKopnOInmDG/A9CITXKMB1ktzNnvJYdWKyr05/lBhaXPXJY6JocOk86Qhhe0g356US
+	 OWUU0ClvxBVR240PrAzG6ezTVfHDXJ1bDKGCmJXNXK7uGI4BZYrb6eP79JdjucBncy
+	 318psGnoEfwVlCDAbkMzG733liaolL/GxxDYy7kwSVJYY7K0B7XQelMDyZDx7JrmY0
+	 +gc4GUYoVzdpEXnBAQoCZnb98IVwLRi5vwLbV/QSIZIGUF2K3pKkT3lPkSfjmN6jKy
+	 lVYNoWipxB0pg==
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-52b8254338dso2033918e87.2;
+        Fri, 31 May 2024 07:13:47 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVU5Kz4d5WQpeidu9CDsMlZTjAp4UEFgZWheZtXrhCiEb33utyggFaEJRl2d4NhvRT2rAW/qylqT5RPCt8LhtEnm40k1Kcf2dTgglwp68S+48hzxPrVYykbKEuZWUxdu3v5q9wtzIVxZQ==
+X-Gm-Message-State: AOJu0Yxc41RcSJe4TVK8pwQXY37MVyYmurGJuWXWk2dUmCy+srgfoie8
+	pwQIV6k9LjOqLHgJCd6gJRGPHGFfrTMGRocAmE+/VeG2pGVgtaMY/pWnIJVB9kdhypxq11jol1H
+	OHVDqvyH9cf3FqNdDpLO84b6N1A==
+X-Google-Smtp-Source: AGHT+IHUlwL3z32dD0Od1b2Bi8JNBTAypQXHyjUufMKO7fZljjcaDf6m6zg3OLTckqlZX1AxA2gLS5ds11gM5rI/2RQ=
+X-Received: by 2002:ac2:4eca:0:b0:52b:83c1:3f6c with SMTP id
+ 2adb3069b0e04-52b89576997mr1438677e87.24.1717164825951; Fri, 31 May 2024
+ 07:13:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.12.4
+References: <20240522215043.3747651-1-tharvey@gateworks.com>
+In-Reply-To: <20240522215043.3747651-1-tharvey@gateworks.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 31 May 2024 09:13:33 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKtc_65tDMFWT0WroNPmW2R0Dd-4Jw101PnyJcPb=7tJA@mail.gmail.com>
+Message-ID: <CAL_JsqKtc_65tDMFWT0WroNPmW2R0Dd-4Jw101PnyJcPb=7tJA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: rename gw7905 to gw75xx
+To: Tim Harvey <tharvey@gateworks.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Li Yang <leoyang.li@nxp.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, 26 May 2024 12:51:28 +0200, Patrick Gansterer wrote:
-> This is a general driver for LM3509 backlight chip of TI.
-> LM3509 is High Efficiency Boost for White LEDs and/or OLED Displays with
-> Dual Current Sinks. This driver supports OLED/White LED select, brightness
-> control and sub/main control.
-> The datasheet can be found at http://www.ti.com/product/lm3509.
-> 
+On Wed, May 22, 2024 at 4:50=E2=80=AFPM Tim Harvey <tharvey@gateworks.com> =
+wrote:
+>
+> The GW7905 was renamed to GW7500 before production release.
 
-Applied, thanks!
+Maybe some summary of the discussion and how this changed from one-off
+to wider availability.
 
-[1/2] dt-bindings: backlight: Add Texas Instruments LM3509
-      commit: 0aaee23d49a614b573ca51ab7758e77fcc3d7d14
-[2/2] backlight: Add new lm3509 backlight driver
-      commit: b72755f5b577357cac661cbf9048cad704eb4ad8
+>
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
---
-Lee Jones [李琼斯]
-
+Reviewed-by: Rob Herring <robh@kernel.org>
 
