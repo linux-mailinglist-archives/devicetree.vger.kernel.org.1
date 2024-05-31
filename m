@@ -1,75 +1,56 @@
-Return-Path: <devicetree+bounces-71170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CC5C8D5F1B
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 11:59:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A11D8D5F27
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:00:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 38B62B22036
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 09:59:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 82E71B25616
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 10:00:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B32F11422B8;
-	Fri, 31 May 2024 09:59:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 389207F470;
+	Fri, 31 May 2024 10:00:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h8M+6Rsj"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="rgua9hSZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 070951420A8
-	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 09:59:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C49D71422B8;
+	Fri, 31 May 2024 10:00:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717149549; cv=none; b=Qqp5h9uAJMvN0rLIYFuB3t083aaAmKVmwCjhXZbl8L/cpyFK8UPPymP07TzTlejklUqG53XiiksdJiNdxbqBc40McSx1/uDAJRPBzX5zHos2shZnKBsRXd5Ik5448EOTxL0zMBIHfK0bbP6TGqY45rfrpGF0TZnxtpenjY/LHl4=
+	t=1717149631; cv=none; b=feYn8aXkgMk+j92uhGwaORI6AaZagBDhS3AvD/gWXyE/0slbB3P0ZetZgQm8KCk2wMU9K2FZkuUcxY2CiHs2jglBfu0IXRvm03U5M2yb7XVO5kJ/b8SDl55dAW6JrmivWLM1iED5c+Q5axmS2WxE1UNnTjWMAiPE5YYYtjjp2ho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717149549; c=relaxed/simple;
-	bh=TS0aNFqbHPFsvBdQirYfOholEHMs1BHDZXm1LW+YKkA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zs0LdOmZnpQA0ibWzzR3NzUPlf5FRxYagiYI8fI8FTZoQOyzMut+iTgEMD/jHpqsGoiVeJSnIKiubTPSMdW3y1TAeliGEuOR+wGJ/HiCQDhEFKvv8xAkhBRkZp8XiSjcAM9Iz9Ogv1GHyrFdfSa7hZWJhsBv01TvaG4l/QSSLWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h8M+6Rsj; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-35dceef4227so902506f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 31 May 2024 02:59:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717149546; x=1717754346; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vi95+L4O4R0ZdGQiuRKgQLOfIqq6j8AsRKubh/zDydk=;
-        b=h8M+6Rsj9pNRtMt2noBdosQCTnA7pGb7xrdd1h7y6Qwk5olk0ktdTyJrdL4ZbtkPDB
-         Rcw+3LEqv3hKW1LenSynota8FiFg/NjaJX+g2CbsPFIBriHFs9muMjkoivaGgBZAGoXQ
-         siqn9jpNDivMOtN5G3y3b0AZi5KI4OvYVOtMBiQ7TuMLcAQVyE3Rs6vEWfvM4kBKwT9X
-         bfCRvZehydh9APRTsLmSzjhYOn6Z56iT7l8HlyNP0QkHmQYQxhCtdIABPSWo9VEEcVn4
-         NLPiVfM8hfIWB6bwvbOoJsXQPWkT9zbeihEDs6aGp81WKRhBoxH7qeaHHjIssgOBi9k0
-         hU2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717149546; x=1717754346;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Vi95+L4O4R0ZdGQiuRKgQLOfIqq6j8AsRKubh/zDydk=;
-        b=KUJjU4k0sTeD+sCyDX2bqziapLE6t3/Q+b7XWl2OjLssCFBWo/8+00hDzkfnebaQoB
-         Pb7a8W3K9+9PaZewnhvP6eMhOJYpy4XVgm4aAHG5k8VCOQfucnC4gOcNcQyiNgoaUJgm
-         v6js4LsXZYjeUSAqCvQmxgpEVGtFYX20CNidAf1wGQ9Gn+ul4NdeePLYp0vbKRKzqrN4
-         WfAufvrxCh7h1G8c+kDeZEB5RSvW/15ULCa9z41TIBJOKUSRtHTECeIWd8BFCYQF9lLK
-         kuAf4Im9OdEefd6KXMXLqSq+tF+p3MSg61pqUx+Zq+b2Toa9ZdAV7sz40wReeX5tFeGq
-         BFiA==
-X-Forwarded-Encrypted: i=1; AJvYcCXyxNU52j5qWyLgZqiCDEE/STnhwXkmSYiE4JLWlq6COSETA9nJ1/VR/GAuY8ZIAa4/pf7fEv184ZTMKx5Ba0W84dpf6EOV+KTtLA==
-X-Gm-Message-State: AOJu0YwMPE/j7oGW+sZHKetQUEeq91Tge1WTW8hXD6dsCJipujK8somV
-	YeCVeqEB6s7oqU9iera6iBSXnmnFPKfxeVHNrraNu2CwuhrQHrg5JVU8gPbCz4Y=
-X-Google-Smtp-Source: AGHT+IEwGQkcSHmWfDPU2mEKb/h+ku1J5TFHAC//bbJyV5zfCFEovQssnCVv1NEmmdQwCLE0BKx7tg==
-X-Received: by 2002:a5d:4dc6:0:b0:35e:11e2:5a5e with SMTP id ffacd0b85a97d-35e11e25c3emr621279f8f.58.1717149546401;
-        Fri, 31 May 2024 02:59:06 -0700 (PDT)
-Received: from [192.168.2.24] ([110.93.11.116])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4212b8a758csm19891385e9.36.2024.05.31.02.59.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 May 2024 02:59:05 -0700 (PDT)
-Message-ID: <0f56831e-8572-46f5-89cf-d1e990813a02@linaro.org>
-Date: Fri, 31 May 2024 11:59:04 +0200
+	s=arc-20240116; t=1717149631; c=relaxed/simple;
+	bh=GjsznghdysZp68H0iTM8WCUDR6RX6D4R9WpQ0Uw4Jfw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Aun5znI5Ka6vpWXrEfJwYbjCKuHX7M9KPmnJ0x21ak1rG3IdVgL9v+H60ga9/YE+4Akodz07udI2MLrYeeFo8FycYoA1id8M4z5Z/+x7S8nVhcbAQiL2uDmVUO4DK3LqewdqNoTyjwx1iq9iMmmbKzR5jTT3SfRx65c77yeHBaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=rgua9hSZ; arc=none smtp.client-ip=212.227.15.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1717149611; x=1717754411; i=wahrenst@gmx.net;
+	bh=SKMrSxZi6YJ6irKfb+bbvyw+6ypZ+N02Wwss1x87j0Y=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=rgua9hSZaZRfKQaAkFlyrTwkc9ISFT4I26hD62wr0fvrqgo40ejg9l5SGL4pmwVn
+	 hB3b6uZAc+5rF1SbMNWnsqPLOAOn3zwxP/NKHNP9Z0NOW8RGkTvunipbl/w4AuzSU
+	 jkiqsASmxE5HVdW6d+KvC+boVh3euSP8MmpSn6Ciqx0+qtvyycr11k10IDHST+HzV
+	 KfIxTkAWmszASYIVxWvaLbLl0UB63xBAgBwUJ1SyeD4Qrpg7TwQqavZgyui7jEhLc
+	 UZI3Lk+Ha/WJ9qxDBo7kmyBp3r57KSIibrj7WDfLyoCWDMYeIQDks6+Zbhca7u9XO
+	 7s0q38Ym/Dnh0C+6uA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.127] ([37.4.248.43]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MPXhA-1rraK83SKY-00Md8t; Fri, 31
+ May 2024 12:00:10 +0200
+Message-ID: <36642bd8-c981-4190-9f44-072ac3c97c6b@gmx.net>
+Date: Fri, 31 May 2024 12:00:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,109 +58,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/13] clk: qcom: gpucc-sa8775p: Remove the
- CLK_IS_CRITICAL and ALWAYS_ON flags
-To: Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, quic_jkona@quicinc.com,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20240531090249.10293-1-quic_tdas@quicinc.com>
- <20240531090249.10293-5-quic_tdas@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v5 0/4] Add minimal boot support for Raspberry Pi 5
+To: Andrea della Porta <andrea.porta@suse.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Ulf Hansson
+ <ulf.hansson@linaro.org>, Adrian Hunter <adrian.hunter@intel.com>,
+ Kamal Dasu <kamal.dasu@broadcom.com>, Al Cooper <alcooperx@gmail.com>,
+ devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-mmc@vger.kernel.org
+References: <cover.1717061147.git.andrea.porta@suse.com>
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240531090249.10293-5-quic_tdas@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <cover.1717061147.git.andrea.porta@suse.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:NC3U7PPJiwkY9pDq8eAw5WVvbNo2mtziqFH6WTnEhDW2yoCcFkS
+ +0IhCR/H/Xq44Pl5QAT5O/TH25E7U0auv2ztbEvHfCDuGzND/yGPdvN9p4t/5e6MSwq1DcS
+ /U6+BXowocckNKyxA/D2HXeRwOPgRitFEMY9vw4QW8uQ8vOazViSYwi5mvczuymgbUQVcvH
+ AC5wHh1FAWxf7XqLC7PvQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:2aASMyPySck=;cYE8SQEXYO6YSrrCHXAMmcampT4
+ eEw2/zrBMA7oAeTdxF6JThFFGVzhtgSS5LEtbRsHbXSpvnTZM5bOA4FSEFRzaAN2jjuUYp06M
+ mHdZoXq3ERumQcJHouZugNYY1RaKE6cZo8EQClzDdg712I6ymYtrRZWxdsMRaiFXrOyMX4GAk
+ i0lhwWfd7hLSG9NbTqOR++z+TCfKCFb5x/Z8pb/dd9AnuCxjU6EvkiGij4jbHzzuR61OX503M
+ SBbgUbwhwjeqIa8iyNweqZHCKlG+EiWrur/vyIT6FZKHT7Sr1GoBAThm5oQ4EKr3ax7GhF4mR
+ /CrMYM7J/ozCF8BGjWKjR4DqEcn2W0iAcsc6NMdhSEOE3id2lQxl4KnOXgXoBK69n8YLggDqR
+ diHf05aOQt1EUcZ3+Bdnf+++suqeJQYK2hdstduzQrQhRTtiSVeSDXdj/Kyrddz7NyqBOboyP
+ xz64yHm+j0PVTaP0sfmVIIdUWY5RmDj0QcWYXyDXiOQhc8CBGFrmWponv/Mx+gcwfdeZsoYIW
+ BBHsReMIxV5R5XywUjlHMXCQnYK8hFBmN+xwd5R1yUs4yl37jp2e28UhCc7vf3G1c5kaMZMnQ
+ We+7Rwa0ruyQPeCBfsgA2UjbYyVmBl8isCQxRU2JPgEws5tvh12SL76PR/qcp7TZxk5EKjD2n
+ REU6yjP/AUoot/2LjsLryq197AuJsi1LAS6uazyN6KY6YDIFtcMmlyVlzhZF08akiI30NCPqg
+ m33adAzpk8cWNq13pNNK0SF3UWo9r5uN3ew4qU8ahh8XvCdamBFLBK2xbUpCMYXkUQXP03DUp
+ 53Ul7kflx8f0fPh8spd0PC/IwWoCnQnzvbFBR8C14fgek=
 
-On 31/05/2024 11:02, Taniya Das wrote:
-> The gpu clocks and GDSC have been marked critical from the clock driver
-> which is not desired for functionality. Hence remove the CLK_IS_CRITICAL
-> and ALWAYS_ON flags.
-> 
-> Fixes: 0afa16afc36d ("clk: qcom: add the GPUCC driver for sa8775p")
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
->  drivers/clk/qcom/gpucc-sa8775p.c | 27 +++++++++++----------------
->  1 file changed, 11 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/clk/qcom/gpucc-sa8775p.c b/drivers/clk/qcom/gpucc-sa8775p.c
-> index 1167c42da39d..f965babf4330 100644
-> --- a/drivers/clk/qcom/gpucc-sa8775p.c
-> +++ b/drivers/clk/qcom/gpucc-sa8775p.c
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: GPL-2.0-only
->  /*
-> - * Copyright (c) 2021-2022, Qualcomm Innovation Center, Inc. All rights reserved.
-> + * Copyright (c) 2021-2022, 2024, Qualcomm Innovation Center, Inc. All rights reserved.
+Hi Andrea,
 
-That's not a fix.
+Am 30.05.24 um 12:11 schrieb Andrea della Porta:
+> Hi,
+>
+> This patchset adds minimal support for the Broadcom BCM2712 SoC and for
+> the on-board SDHCI controller on Broadcom BCM2712 in order to make it
+> possible to boot (particularly) a Raspberry Pi 5 from SD card and get a
+> console through uart.
+> Changes to arm64/defconfig are not needed since the actual options work
+> as they are.
+> This work is heavily based on downstream contributions.
+>
+> Tested on Tumbleweed substituting the stock kernel with upstream one,
+> either chainloading uboot+grub+kernel or directly booting the kernel
+> from 1st stage bootloader. Steps to reproduce:
+> - prepare an SD card from a Raspberry enabled raw image, mount the first
+>    FAT partition.
+> - make sure the FAT partition is big enough to contain the kernel,
+>    anything bigger than 64Mb is usually enough, depending on your kernel
+>    config options.
+> - build the kernel and dtbs making sure that the support for your root
+>    fs type is compiled as builtin.
+> - copy the kernel image in your FAT partition overwriting the older one
+>    (e.g. kernel*.img for Raspberry Pi OS or u-boot.bin for Tumbleweed).
+> - copy arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb on FAT partition.
+> - make sure you have a cmdline.txt file in FAT partition with the
+>    following content:
+>    # cat /boot/efi/cmdline.txt
+>    root=/dev/mmcblk0p3 rootwait rw console=tty ignore_loglevel earlycon
+>    console=ttyAMA10,115200
+> - if you experience random SD issues during boot, try to set
+>    initial_turbo=0 in config.txt.
+was this an issue since the beginning of this series?
 
->   * Copyright (c) 2023, Linaro Limited
->   */
->  
-> @@ -280,7 +280,7 @@ static struct clk_branch gpu_cc_ahb_clk = {
->  				&gpu_cc_hub_ahb_div_clk_src.clkr.hw,
->  			},
->  			.num_parents = 1,
-> -			.flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
-> +			.flags = CLK_SET_RATE_PARENT,
+What kind of SD issues?
 
-I fail to see why this is a fix. They were marked as critical on
-purpose. It was needed, wasn't it?
-
-Provide jsutification for commits, not just sprinkle Fixes tag all around.
-
-
-Best regards,
-Krzysztof
-
+Is there a downstream reference?
 
