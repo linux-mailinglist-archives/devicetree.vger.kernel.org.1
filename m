@@ -1,188 +1,192 @@
-Return-Path: <devicetree+bounces-71386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3082D8D689A
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 19:57:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EED608D6912
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 20:38:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53D431C21488
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 17:57:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69C7F1F26913
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 18:38:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B7BF17C9E5;
-	Fri, 31 May 2024 17:57:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A95637E0F4;
+	Fri, 31 May 2024 18:38:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e7yULbTB"
+	dkim=pass (1024-bit key) header.d=inadvantage.onmicrosoft.com header.i=@inadvantage.onmicrosoft.com header.b="ufcnUbOU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2103.outbound.protection.outlook.com [40.107.244.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FC6317C7D4;
-	Fri, 31 May 2024 17:57:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717178250; cv=none; b=B1WfU0Ml538vqnEQvuWD5W9/O8fL6nhxEuUlQS4fh6742r8NZ8pV1RD2gZ+LOTLxB9d/B2KoPIKagvW94dcJHDknEr1V8ygw+AFg/ilwHCTOMcwJC0NCjv4NjU0v7eUF3PfbrNzLuOVdIJptevE1wyE456i/D1xsyMDx+u1pShc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717178250; c=relaxed/simple;
-	bh=14nUOvlXzx9FwcFZnYhljHX2vE6nY1fLFbUL/vgkrwM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LcpyvsrtoVFwAXo8y0VC6/CkA/vrCZcSdmSx8GcAIRMl3JvkmY5t0qyH6HlBs+EvEE927ED3+pC0S8h1eTJAOhsFtGBdrIKmUxwK7nWopGnYnxnZh+w4wd1V/UlSN77cg1uvWih2dwlHR2bGakAXxrnRY8Xkj4EozReGckZ6LdU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e7yULbTB; arc=none smtp.client-ip=209.85.219.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-dfa6e0add60so1416567276.3;
-        Fri, 31 May 2024 10:57:28 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEA937D3E3;
+	Fri, 31 May 2024 18:38:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.244.103
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717180719; cv=fail; b=tXkGFsBxBo28vbaxheZOyBXRTjjjS4FY8xk0dIgO0JTxyVxUe1sXwagLkT6cWYY4qJrVhQQUIWkSktpSeO61zpQ8eIRGZevrFc4DoSfuSabsyaSGUz6sF7JEdYvii2x7EYAh7Er2ZJ6Oj4ZoczPlrdoK3LmkczEnXfsb09Q0V3A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717180719; c=relaxed/simple;
+	bh=mS2BxN9GCPBcQ3PTtDXyfj2UisVXbAMtzCUcXmudPP8=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=CjHVm3UEKRNBTwH2qS/voOiJOu2rscuBuREPQmH/RgC4I9ier4qbg5i2uq2JRQoBaVeD1iPo1H5vcZjV85F1nwTgkNPapceQmKlqhF7K2HxKspZafSGv/zsnU33yLkcz+4QKoVyjPjua32c5HyayOUK2oCbJg6J3bkX/r04qPM0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=in-advantage.com; spf=pass smtp.mailfrom=in-advantage.com; dkim=pass (1024-bit key) header.d=inadvantage.onmicrosoft.com header.i=@inadvantage.onmicrosoft.com header.b=ufcnUbOU; arc=fail smtp.client-ip=40.107.244.103
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=in-advantage.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=in-advantage.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kjk4Jyb3iyHYrVG3b3UDQ/gzZ24LsrPuJzl1vXp5oDkJ6EP9dLXtv1sX907Pv51Pm2cujniusm19OwOLXBibgbv8Hn9GApO08+8/hGQcnfDV0DhFyA5S3U3osjLvFWPYXWuXS1gilFUe3xsLSdoaCLSIyHtK8Aj+sxFg7hOzgzjmvkU1aqpXOnzb8fY+8naawwUL6je9lAGQMoAqXr2qi2F9UDmm1axw0tY4TdlWCh8kKKV/V4pY2Q7yhPGmsPKMS5f/PDdWUR0HWfhUFVdhIVoXXrxyO0iWAS2v6go6D8kfag1EIQMy8TNitaAHplMMIuqdhg2uM9YrySrP0EbqUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yQPghxWP00ElA4k3p9w18uUvPEIrEKXopJu+aN58cjA=;
+ b=T7L2H9QFxKxzgnirXaLsa2kMQaSYHBCoM5r7y+Is33CCZ5GkaRv3DC6Una2ayfoNq+61Rd3S8DP/77E8ZCSICsav8s9XCVowhXOMogwTw8FAj/nL0x6hNwyUBz6pi3WA++C8DtiXgKAZ3Qd1GfOWkg2KAnQYGi9CSdS5o53U4QcsTx9gHCV4K2X02mWHQWj7W/m1BBevHewjvWHrujG/Q+0uiDE5BnpNSV10BFtzc202rBGoz2F/Z4tMdAhHm8roxxv/+qN3AJBNe4Y5yZ+VrGQUKInLdjEQr67Wav6HHeMWW2bMe8FzjByNUzKi9ofvx/43KQgdht79+HuYV4pHng==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=in-advantage.com; dmarc=pass action=none
+ header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717178247; x=1717783047; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=iLsU9SrFk8jsYiYkwRmxAIdMWmUIfrvdUknMyWYRiWE=;
-        b=e7yULbTBi8fPsnGj+5gxmyqps7WiyVq6V/8R9T96B7aFSlgcwk720JnVR1w98xqh3L
-         dAf8EiGQKLDAs9r2QH1JoQcSsXB2hG3MdN3+bzmFoTMr/B4/LMQFuRbSYHDtRhTGD+ym
-         hK/GrGbfAbyuXaIjRVu6F5aABJMPPACA4A0VFgZms9DhNRBZ7swN9mQ7mwM06Zcvpojn
-         N23O57Thr3dUWr8XXJiacD3iRo9omsFUzeEgzWuCzuc1Z81oTAdjs6VcxO0ZjTyp6mOb
-         SoTP9eXGqZSN/X/KW6YWXZXPdg/W67KKfh1VSiPSLE0daUhnOSkgf02crm7eiRgr0wWu
-         yf3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717178247; x=1717783047;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iLsU9SrFk8jsYiYkwRmxAIdMWmUIfrvdUknMyWYRiWE=;
-        b=LZr2dvtb1WWoBNl2VnTc/62mokMvGtAi8qBg89aXN1wCpPenhr62yvaRkS3QdcD9x9
-         QDObzlnY/gdAKhK9GKjAFTsbEDUqC2o0c8c5fUDCU2dWDHLGEH5U7u5N045/kzkP1qkP
-         UMhtKBQidmDkvJ1SRnOkOeonilS8GxQ/p0YHazXeItWmyjtL3Y+k2uFrf6qiwcsMrf+y
-         HcvK55iNrtCBRsQcEjWGYNjwM1ktej2/Klv8BinfadOCqa46aujRIciDgMAq6FIrM2Ol
-         u+dGeMpAFctY0yrtlsBhiD3K31JfwUM8nDunCrpKVfsr4D/+KHND8byXZx10+I7oEzFD
-         QDFQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUbxy6eGRV5tP3ypRDfAc3dpD6mvGUQKBupKzFnDoEzPPz0tTIAvhqdry0tIVsj3JwUC1Q8VNZhREbtUrDNqH1m8wQYGSqxZMCq02Dx5Q+tU1R5jcb/Sf6udth4fUwXo1uhZutH/Q==
-X-Gm-Message-State: AOJu0YxtgQuGM0Bky0bIT5Wppyt9Qkr57YySlk8mrdIea9XxOMNwCuz0
-	gxFygfNErEKYj1CqHq1kgMuM/6DUW6ukCAXZUFCg306K7xYPoYQXdy41l9ojff6zGiGJZmeEHH2
-	wqWS34XhtAXaDWcvPd1bmlUBGuz8=
-X-Google-Smtp-Source: AGHT+IGJfAakWRlaze69hr1itb5DcopAVyEyNrYk8qoHbmtcEU0nuInXs6ghX0YrxFqZ+c4wgNhMQt18gfTY2R95X1Y=
-X-Received: by 2002:a5b:b86:0:b0:de5:4ab8:317f with SMTP id
- 3f1490d57ef6-dfa73c087fcmr2687449276.20.1717178247282; Fri, 31 May 2024
- 10:57:27 -0700 (PDT)
+ d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yQPghxWP00ElA4k3p9w18uUvPEIrEKXopJu+aN58cjA=;
+ b=ufcnUbOU8bWk2bWI35nBlm6LLxDnR8+sZIjFaihYWO9psmZKsbjlVWmJaJeP/lVGEBZLk93SSGIxwp12XjRqrAGC82C0QfCmphlIqlUtAMWCdB78RHs7IbEZGsJ0vl8rWcoI4gIeqzt2wIUWEL7cz0FIxzW/0/Ud0g0EPF4M+AQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=in-advantage.com;
+Received: from DS0PR10MB6974.namprd10.prod.outlook.com (2603:10b6:8:148::12)
+ by MW4PR10MB6654.namprd10.prod.outlook.com (2603:10b6:303:22f::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.25; Fri, 31 May
+ 2024 18:38:35 +0000
+Received: from DS0PR10MB6974.namprd10.prod.outlook.com
+ ([fe80::7603:d234:e4ab:3fea]) by DS0PR10MB6974.namprd10.prod.outlook.com
+ ([fe80::7603:d234:e4ab:3fea%7]) with mapi id 15.20.7633.018; Fri, 31 May 2024
+ 18:38:34 +0000
+From: Colin Foster <colin.foster@in-advantage.com>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-omap@vger.kernel.org
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Tony Lindgren <tony@atomide.com>,
+	=?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Andrew Halaney <ahalaney@redhat.com>
+Subject: [PATCH V1] ARM: dts: am335x-bone-common: Increase MDIO reset deassert time
+Date: Fri, 31 May 2024 13:38:17 -0500
+Message-Id: <20240531183817.2698445-1-colin.foster@in-advantage.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MN2PR22CA0004.namprd22.prod.outlook.com
+ (2603:10b6:208:238::9) To DS0PR10MB6974.namprd10.prod.outlook.com
+ (2603:10b6:8:148::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240531141152.327592-1-kikuchan98@gmail.com> <20240531141152.327592-6-kikuchan98@gmail.com>
- <851280ad-ac0e-47d1-99e2-4f3b5ea29f2f@kernel.org>
-In-Reply-To: <851280ad-ac0e-47d1-99e2-4f3b5ea29f2f@kernel.org>
-From: Hironori KIKUCHI <kikuchan98@gmail.com>
-Date: Sat, 1 Jun 2024 02:57:15 +0900
-Message-ID: <CAG40kxEbMQc-ni0HDVR7rtj48aFu-jz8sYUAO+fdmZSmXWrizw@mail.gmail.com>
-Subject: Re: [PATCH 5/5] dt-bindings: pwm: sun20i: Add options to select a
- clock source and DIV_M
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-kernel@vger.kernel.org, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Aleksandr Shubin <privatesub2@gmail.com>, 
-	Cheo Fusi <fusibrandon13@gmail.com>, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR10MB6974:EE_|MW4PR10MB6654:EE_
+X-MS-Office365-Filtering-Correlation-Id: 38b370d9-300e-4fc3-b25a-08dc81a0e089
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230031|366007|376005|1800799015|7416005|52116005|38350700005;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?4wME6jvLYDQPmgpSDfvYZQvp/tM9/Hpo+a6gKXDtvGP7RPSP7S7DPEgQs/zB?=
+ =?us-ascii?Q?z2CBkSHkZqHFIYBnMlV0l3hw+QBTyZSR7+KA0HPV1E3O2QdxNz8qFZtErhI5?=
+ =?us-ascii?Q?O5Ywr5J/B631iAE84ACG7JUVVG9AshBKISzkV4A1YiP9gUaCaUz4AW9oHQsF?=
+ =?us-ascii?Q?w+YQBmMhGDCMk0LMlgRRMAatakJECHxT/lJStSpunqkCGQggagZo315WHKvj?=
+ =?us-ascii?Q?Io5hbAXeTyEwTJvqDUIojyMizJPzZSfIYO8mc+duaLM5GbDxfSNNE43aHAGt?=
+ =?us-ascii?Q?+bWod2ESPVvgcNKSBeFnVecISXsazvxZ4K0COdHLIPm8SlG7ii/MHdkgvDDY?=
+ =?us-ascii?Q?x+knktLT9tcEjnCPwbrT1kX8JgTlAdRd90LsgZgPeiZPIveuRVv0itjJfBgm?=
+ =?us-ascii?Q?nq80c2C/j4FmobapECO5s/sUeKHqn8eciDTX9dcCsBCAxM/DqUnx7nNP/0Et?=
+ =?us-ascii?Q?vkg2wBH32KwaiyM1BUNgvPxMUnnolpJQ6CkLjgFrvaMATai+U0bhuuzHP1Fq?=
+ =?us-ascii?Q?Y0FBzMhv+lmkQ7x3QZF9OotWLyRK53gRV/LcKfpZt0YhSVt6gPu/6gJhNBrw?=
+ =?us-ascii?Q?qy6+IHzjkm3DxZ/mCapvEYJtUqSsLqIrLPrcQm0IswhlACHy52bgxo0AsQOP?=
+ =?us-ascii?Q?2FWgqoujOhZ1fcg3NJNSM2Tazac0PyymYVHWaUXAK2emvy5+NvpeA3+XdtcE?=
+ =?us-ascii?Q?QJNx1JD4mNYJMKFKeMtw5edFvKa/BSoad4rmuBSDlRXJOhzctLDsGIC4jMLR?=
+ =?us-ascii?Q?iJmkwUmhiLhBYojPldDIJm8ze5KJhNl36o2H1s2F0V+1DQF+jvp0dDOcCRyR?=
+ =?us-ascii?Q?Lv//DyiybsrCYhbJDsQfv7rxDEuV3UVABtBXdBAqbwDV35WBX7aiHzVR5gVd?=
+ =?us-ascii?Q?aLFmJy4GWivYnVBguSkPqzT5Rv8CfF4EoSscA4wbdcyQixhIv/PT01txJGcA?=
+ =?us-ascii?Q?HFPABYW1Qi5VdFsdfS25UTE2GJsbV+C2xwyXk8HtePTWWNJdAi6DUQ4jsYoa?=
+ =?us-ascii?Q?c1CZIqBpMczSiSXYc5rSE6HbjsXm+DPRlTzf1uhlj3tKK58J+sgIWkeP3ODR?=
+ =?us-ascii?Q?62oFo53iM8XtEfNZspk/q81ck0QyCFGdS1qFFV56osfqT5+IRjMYerC1I3Sp?=
+ =?us-ascii?Q?onXye+K/EBcZuQyZNvvBDSmDtH4weTYTKoSlT0dJSyXsIMoFLWZDdS31KLJP?=
+ =?us-ascii?Q?xIxfRJ1FYYOfSh6Mjgml6Ytbd04qBi7GOYMjH9ZC7A2EX8T5IICRQQ7SLAsY?=
+ =?us-ascii?Q?QdZU3lxi/tq/A63gvYvSwtoac7OLbailMi7SR1Mlhq+jzp4BSQe6uDFKOwV/?=
+ =?us-ascii?Q?f5J2DstXSNXJR1fEGW8PZmpechTMcQhcQwr8/IZpQF5P9Q=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR10MB6974.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(1800799015)(7416005)(52116005)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Lw66FY8EscFquDcCUnGtczZzIQsXm+REnE1pcGpGN/TAIX9Oh1B5PGwBepSW?=
+ =?us-ascii?Q?ntZgvbfKwXvD+UC2+k/45UQbNkfXJ/aq9fmTZfncociDMV/pICTZXy98ABMY?=
+ =?us-ascii?Q?7d11IL1bKDmokbKTwIIblAF+PbDRNvJXqcv/p172dYclu8NtHMUTSAYtdCpK?=
+ =?us-ascii?Q?Uxbqe1xlNmt6w9cvFd/OTwik81HaUVVDit9wfNsjClxSoMAWJGcNf8SRay/Y?=
+ =?us-ascii?Q?8+uA4HijUz8mPT7c65GevGuiLovLd/Xgqn/Q/nVbD2J6J5yvnze17QArqq7i?=
+ =?us-ascii?Q?yG/6NRFRLUkCci1YhH3SFicuSH/t/R1Z3EM+dR6asgguq9qPjrRZFEDBq4gf?=
+ =?us-ascii?Q?VGfD4JWCfVy8mo2x5xzq+xfoPL/nbeqnrSa1vHzS8I79pkLsymce9R9v/+Mt?=
+ =?us-ascii?Q?AUgQIR5k+FuX7Hp459BRgcarLTherFI1WFLEhis66qNI+2IqsNzHXIeHQ1Y7?=
+ =?us-ascii?Q?KI4argSlOpDpirOpkPX1Ord27a2A9CE3Gw9iuNqNZKJ9G3QZtoeedWyShaT7?=
+ =?us-ascii?Q?28zhBXDieaM6P/riYQtaiOz5SlAZwZ7jv8hx7F7GADOQx0rehRaXiOquLWYS?=
+ =?us-ascii?Q?qjSrf8bxhgFKnrZB/n/nj4HpIOfAd6XEKHCExr84cDgWZlcjMucN+ivKkeg7?=
+ =?us-ascii?Q?eAYXkhFthbwnZ/rg1AFq58VfN+c2ECnMLfR7wV3nZNHEteREjdE68ssya4gr?=
+ =?us-ascii?Q?cbxR6sEZZOrIdw33IWotXJ5Rh56ucv+wkGrIpMnqChKWiP2iXlmUDC/abWRM?=
+ =?us-ascii?Q?GxSijOHwTC8TsD/8PK94X4fqLOOktd+1iEl0gVe6s3g8l2hG6VOM4IVl5OQq?=
+ =?us-ascii?Q?RgI4VqC4Lj6JZjSeqGURp6WwAE7uALB8uHpF4xMDs81xvZbouX8Q+Rg+exIJ?=
+ =?us-ascii?Q?krGwvrLA4+4D77K3mNpD16gS1Bz7fB/h5yWnI21QLyxfFSTQeWJ8rpMaMeZD?=
+ =?us-ascii?Q?xjF+lC+Upv3J5jFobs6Rghjv1gjn4hNtLBbVeX5gWMVC4HRW1OmlTANu9xqD?=
+ =?us-ascii?Q?Upq8bQ1K50i/rG5VNvNU6cX/DCGPWm6CVyOaBmlZ45defc87pDfKV6esB+ls?=
+ =?us-ascii?Q?PByfOC+PfO2QQQEC6ZGTyOrVNFYUZFCV7cZB7cD730WgQ4X6SI6NPE6mYKKH?=
+ =?us-ascii?Q?FDpjqArciPmuwumslBE+jF7VsJpyuhMTyjls72MVgqhSLgvEzVxF/EBq/07X?=
+ =?us-ascii?Q?kVF6x24xfGMKDD4gzdqPaRca05TbyHr+7y0fhrzfHsyvLdhPasD5i+x3Fllo?=
+ =?us-ascii?Q?IUDl4Xr7aeEKzCdy52xMgMq5ypiGS/aDVIyPacfIyw+4a48cw8zie+pNqWlD?=
+ =?us-ascii?Q?CeDyf4NzgTg/VFWdozcIkgk7+/DWcDhHHe3kRN85wCs64Uvs90DBlYFcz/9E?=
+ =?us-ascii?Q?y/oV9xK4QfARegG9y+f013wqX/oqUeqhU+YZltW0AMXdaGO427L0nP1U/m8Y?=
+ =?us-ascii?Q?0qut+fApWhXmBF932jLSb2jxOk4Yi8fVKUrH6ADhCBQcGCZbery5opP7KHoe?=
+ =?us-ascii?Q?BcpVshbEE4jDh9+G2gWnqVWfjqmWvr4HUW359ClYD2KZgOyR+JloSsSsM/ZO?=
+ =?us-ascii?Q?YYdBrnuBy4lppNeDulM2klC6R9tefsql/JmDyEHbdlw0Vw8y6IdcJeDkdOdR?=
+ =?us-ascii?Q?EwO4++NrAvn6gXCbK3t49C8=3D?=
+X-OriginatorOrg: in-advantage.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 38b370d9-300e-4fc3-b25a-08dc81a0e089
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR10MB6974.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2024 18:38:34.3587
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: mXjfY64EwEC8Rg3FetO+3+u2SSJJr7++vCQtP1zRWSnuSp3IJR5KghomzMr8oLMSCMu5lf1RG+Da4rqRRAjNqrd5Jj5lKkG7gHASiHTqZ/8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR10MB6654
 
-Hello,
+Prior to commit df16c1c51d81 ("net: phy: mdio_device: Reset device only
+when necessary") MDIO reset deasserts were performed twice during boot.
+Now that the second deassert is no longer performed, device probe
+failures happen due to the change in timing with the following error
+message:
 
-> > This patch adds new options to select a clock source and DIV_M register
-> > value for each coupled PWM channels.
->
-> Please do not use "This commit/patch/change", but imperative mood. See
-> longer explanation here:
-> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
->
-> Bindings are before their users. This should not be last patch, because
-> this implies there is no user.
+SMSC LAN8710/LAN8720: probe of 4a101000.mdio:00 failed with error -5
 
-I'm sorry, I'll fix them.
+Restore the original effective timing, which resolves the probe
+failures.
 
-> This applies to all variants? Or the one you add? Confused...
+Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
+---
+ arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Apologies for confusing you. This applies to all variants.
+diff --git a/arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi b/arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi
+index f08f116bf75a..56418baa3e86 100644
+--- a/arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi
++++ b/arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi
+@@ -385,7 +385,7 @@ ethphy0: ethernet-phy@0 {
+ 		/* Support GPIO reset on revision C3 boards */
+ 		reset-gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
+ 		reset-assert-us = <300>;
+-		reset-deassert-us = <6500>;
++		reset-deassert-us = <13000>;
+ 	};
+ };
+ 
+-- 
+2.34.1
 
->
-> >
-> > Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
-> > ---
-> >  .../bindings/pwm/allwinner,sun20i-pwm.yaml    | 19 +++++++++++++++++++
-> >  1 file changed, 19 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
-> > index b9b6d7e7c87..436a1d344ab 100644
-> > --- a/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
-> > +++ b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
-> > @@ -45,6 +45,25 @@ properties:
-> >      description: The number of PWM channels configured for this instance
-> >      enum: [6, 9]
-> >
-> > +  allwinner,pwm-pair-clock-sources:
-> > +    description: The clock source names for each PWM pair
-> > +    items:
-> > +      enum: [hosc, apb]
-> > +    minItems: 1
-> > +    maxItems: 8
->
-> Missing type... and add 8 of such items to your example to make it complete.
-
-Thank you. I'll fix it.
-
->
-> > +
-> > +  allwinner,pwm-pair-clock-prescales:
-> > +    description: The prescale (DIV_M register) values for each PWM pair
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> > +    items:
-> > +      items:
-> > +        minimum: 0
-> > +        maximum: 8
-> > +      minItems: 1
-> > +      maxItems: 1
-> > +    minItems: 1
-> > +    maxItems: 8
->
-> This does not look like matrix but array.
-
-I wanted to specify values like this:
-
-    allwinner,pwm-pair-clock-prescales = <0>, <1>, <3>;
-    allwinner,pwm-pair-clock-sources = "hosc", "apb", "hosc":
-
-These should correspond to each PWM pair.
-This way, I thought we might be able to visually understand the relationship
-between prescalers and sources, like clock-names and clocks.
-
-Is this notation uncommon, perhaps?
-
->
-> Why clock DIV cannot be deduced from typical PWM attributes + clock
-> frequency?
-
-This SoC's PWM system has one shared prescaler and clock source for each pair
-of PWM channels. I should have noted this earlier, sorry.
-
-Actually, the original v9 patch automatically deduced the DIV value
-from the frequency.
-However, because the two channels share a single prescaler, once one channel is
-enabled, it affects and restricts the DIV value for the other channel
-in the pair.
-This introduces a problem of determining which channel should set the shared DIV
-value. The original behavior was that the first channel enabled would win.
-
-Instead, this patch try to resolve the issue by specifying these
-values for each PWM
-pairs deterministically.
-That's why it requires the new options.
-
->
-> Best regards,
-> Krzysztof
-
-Best regards,
-kikuchan.
 
