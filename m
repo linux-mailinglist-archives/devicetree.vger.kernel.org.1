@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-71162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D66798D5E9A
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 11:41:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67C2A8D5EA9
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 11:42:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6553D1F23AA9
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 09:41:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 531231F210CA
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 09:42:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FF10134402;
-	Fri, 31 May 2024 09:41:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 465FD135A58;
+	Fri, 31 May 2024 09:42:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GfJNHFn8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s7Ty+uoX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D5352C19E;
-	Fri, 31 May 2024 09:41:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BCE11422BC;
+	Fri, 31 May 2024 09:42:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717148482; cv=none; b=lmjB63ijeKjHO4tSZt5Q4dEath/Scok10/F8f9fGIHuOhQsnzPNBu30swVkw4+VwQUp9SlbqbhLMZR1eMMSaHkZx5nzR2jxkxxKAEpwLXSv9NBYhNJ0mD+aDaDQPYf78LI4DrDI+J/nrE4SatIzy3QtqRJRFw7Bb6mzWzFZEeUY=
+	t=1717148564; cv=none; b=WwMYnvbKHkb5lYWB0rcKr1/Fh0nZnPu+UT/cLVj2IE/9hXCVDyWpfrWz3iVpZXnJqikBRyozAWLPkwIVhr8eCTDP8a1ZiPLkUtRJrEJUFNjZ5IAKhYRPpRmcUAcz+g9zJSOnwHmV/nr9oAvGZiR8oCzo3JhxrbBb+rQj1p+OD+A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717148482; c=relaxed/simple;
-	bh=Q9SPW1JUV/6SbY/X8q6gkZ0tGTmR9khzAwr42DUxo1Q=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=aiEZOmWSEmsrGBpz0iuU2pM+dnZlrbyI0xfpIkK8lPkuxjetVsu4Pu8oY2+ampZsW1zrhNP3aetCVoo9QlTVXqSp6snfljOmhu9q/HDgS7p4KvyCS/EZRaXgysUUqvFf3ndoWyxNh5h4hndkX+v1WVWYInk1NaBVO12I2geyCpQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GfJNHFn8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B519C116B1;
-	Fri, 31 May 2024 09:41:18 +0000 (UTC)
+	s=arc-20240116; t=1717148564; c=relaxed/simple;
+	bh=fwe48fdEyxtM78DaKv0uecMaewTnPGzm3zCWWlB2UG4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Whd9vREOgRuyVvixaPCvnyKWvQ2crs+RnPRZwmserSf/77u6A5AGeRR+GkUB4iZjCYofQo8M/rELZ54dLB4HzB7b+i7gyK4m39V2jij8scjh8C+GNsiAQ9sDXB8VV8QA4oMpHdtt+k7hgvfbmu2zjel4UVRuxYvAmE+txheuP+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s7Ty+uoX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09111C116B1;
+	Fri, 31 May 2024 09:42:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717148481;
-	bh=Q9SPW1JUV/6SbY/X8q6gkZ0tGTmR9khzAwr42DUxo1Q=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=GfJNHFn81nLfSMS7HyRxrRrKCa3YFalKInSUckUph704MCzdH8ycDwdfS9Mq5wCj0
-	 UI4GujXhtT3YKaACIrrs11IpM06wA8iC71SJEQ0gC+YpvHvcC8xTjkk36A3Ly5OBDD
-	 IrAxXUo3bIaLa4YFExF+wMgYDjELpMpofhy76ieOGhFXgMj9XMREHe5WuRQfr1CH70
-	 QNuF2CChP/LSyaSuKgpNwQDJoSMnfZotavbwRyCRulozdWJOhqgIT1YRahRrbRP6LG
-	 AiGEZnfnizoU8DwCe8vEOUUgWiFsbjHtrz0Yy37R+gr8ILfTfrPnEPph5ok4/8onB+
-	 +9PqV7y+Xq7+g==
-Message-ID: <f9537934-fd6a-41a5-a250-3855da33e629@kernel.org>
-Date: Fri, 31 May 2024 11:41:17 +0200
+	s=k20201202; t=1717148563;
+	bh=fwe48fdEyxtM78DaKv0uecMaewTnPGzm3zCWWlB2UG4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=s7Ty+uoXLvEgVfhVx0EW1vSARSSxSra/XkurNNTOeP34hzDuhoetIFKqKe2F9qIn2
+	 GMeaa23igZdl2rgHBgv0rTJXR9p2jb8p2pB6iLEFQnOkPMcfJEYcpWam/Hqpn9+uc3
+	 7vbiMGcfa5C2ItMb9voKgRu5+zoXihCp7H5FUFYckHvLbk69Vjn6hqXa7YwO/5Hrg3
+	 0l3juHIRxYHuvYl95I2EUOXSzs3cYeUCGk6qXHj0YaxOtmRFJ5AvGmwjmbNjdkXtyZ
+	 m3kUdzhgutMDIkimA05hN9agIXLtE9NAhhJjr5KI0o0Yd8XP5PSiZKQCmkVMKmfaVn
+	 7G6V221AGMKrQ==
+Message-ID: <e63d2838-d34e-4ed7-b935-2feef0eb80ee@kernel.org>
+Date: Fri, 31 May 2024 11:42:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: iio: adc: add a7779 doc
+Subject: Re: [PATCH v2 1/2] dt-bindings: soc: qcom: add qcom,sa8775p-imem
+ compatible
+To: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, quic_kbajaj@quicinc.com, kernel@quicinc.com
+References: <20240531093531.238075-1-quic_tengfan@quicinc.com>
+ <20240531093531.238075-2-quic_tengfan@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: ranechita <ramona.nechita@analog.com>, linux-iio@vger.kernel.org
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240531092704.21255-1-ramona.nechita@analog.com>
- <0c2bb24e-f0c9-4edd-bd5e-2bf1dfb0de22@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -104,24 +104,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <0c2bb24e-f0c9-4edd-bd5e-2bf1dfb0de22@kernel.org>
+In-Reply-To: <20240531093531.238075-2-quic_tengfan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/05/2024 11:39, Krzysztof Kozlowski wrote:
-> On 31/05/2024 11:26, ranechita wrote:
->> Add dt bindings for adc ad7779.
->>
->> Signed-off-by: Ramona Alexandra Nechita <ramona.nechita@analog.com>
+On 31/05/2024 11:35, Tengfei Fan wrote:
+> Add qcom,sa8775p-imem compatible name support.
 > 
-> 1. Again v2? Nothing improved? No changelog? You are sending the same
-> over and over and expect different feedback?
-> 
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/sram/qcom,imem.yaml | 1 +
 
-If this was not clear:
-
-Provide proper changelog (as explained by submitting patches) and
-version your work correctly. 3 times v2 does not make any sense.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
