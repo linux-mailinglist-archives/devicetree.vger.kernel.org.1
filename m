@@ -1,176 +1,97 @@
-Return-Path: <devicetree+bounces-71316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1923B8D6514
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 17:00:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A0B78D6519
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 17:03:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4AB651C255A3
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 15:00:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA9AA1C243D1
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 15:03:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E534762E8;
-	Fri, 31 May 2024 15:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE88226AC2;
+	Fri, 31 May 2024 15:03:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qwLDlXCz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JyDhaIvv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64B0C757FB;
-	Fri, 31 May 2024 15:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 852FC7483;
+	Fri, 31 May 2024 15:03:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717167619; cv=none; b=i9mtkdjkjuXiYGaUC73A/1Bm6TaBYHdrOSNwyKS0lQTRYkZC8Lf+oLPlxz+ij4U/0tyt966ulDROonpCeFtAHY542+sFgXBHSgTO22otZmEmuwFctIcCDx74doMd8Au8BKBnA8tC18yc958/mgEUyOCGFuF7cfh5R0RlXh4qCd8=
+	t=1717167820; cv=none; b=dONnlUDyYfWObxVvxVn4m7DUR4JIvYjJQk7kRb9BPwbS+EUGAO/0pGJYIIdwfj8qs1qXDThGcY6gtM6vlQv56g48+6Bd2OFX/fLCPXet52otQd7BKDrcANJkQf9MX6WgHiL+cXkpvvwtNF7+SUSyQMPg3O2m9r/tfF+72R5ltj8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717167619; c=relaxed/simple;
-	bh=jDEr5raCrfCR6eBAeO+8MRA+Yj8CCxClZotDTv2HO+g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aByY1d+2gsnOyznAuKOiLoL8q5cSbn3QYZboxrrk6QNYHf5ByvQ6dlMFkT01UNvtTkOTEROKWfZwH+s793upi5o9Azbl8Keabu2AjbLZ2YTFsoSd6XoPJUh8IRlV8pZLFmXVWEyB2KdEl3za0pi7LOixoGrJSSrApSD6OFkGK5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qwLDlXCz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4418AC32781;
-	Fri, 31 May 2024 15:00:19 +0000 (UTC)
+	s=arc-20240116; t=1717167820; c=relaxed/simple;
+	bh=kzwdmdMivwWbu5Pb/8+YQ58BObGKh4rKu+UvlJwfFUQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pZFqLcl3zmTju6bXWxVnzgLxB2Aq01RHHCbcwQL9uXJNBvUfpeJLnX26zeEjTjwXGPOJKCtZYrIQGWMsoSU6v4B/3d8I8CrdJRWOayZNl5KBIGmI0FfNon5C/OJXpGqxNYtstVgeAxXFMso+LPwnoBaoReATZk8cs3dmCHBhrMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JyDhaIvv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FB00C116B1;
+	Fri, 31 May 2024 15:03:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717167619;
-	bh=jDEr5raCrfCR6eBAeO+8MRA+Yj8CCxClZotDTv2HO+g=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=qwLDlXCzq0VroxTmML89xQirHX2T5pdZNmWt4IYAz7RvH2JWKafFfHVtCXhibKjvt
-	 VgIMkCbFu8W5uZ6iJ1bEPdg/c0jl4usPRBCKrcFhtVDjji5WysFyjkIAEYVQca822V
-	 HYNJa4FhL3Elaia6ILASbeEF9jSWAmUVleGiMe9cvefe3ST+4t/R/B87RHeAfyBzJT
-	 RLa34XoGQ1wtIRJyOeOalZdZzA3gM0YGR7qdT9X/Uym95V7Q4gSnl/0N2+Le+lFC3b
-	 mGLT4sIOYD4dh5oCOyRIoyc1G+XSdZdVsXGfvRN78eAcmAcrSMVmvwKgOA8vhU4Y/I
-	 vi3AZZvqApPuQ==
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-52b89fcdcc7so998846e87.3;
-        Fri, 31 May 2024 08:00:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXIEzDfPICFZwHhiWbCWWlVxQ6h/zqVGWTdqyI5s1XIGy8W3ssbqrsWM77JvECg/bvhGh4u4wFfDrHwAwTLam6xH8jJM1xB5nDMMVKBq3pQh/YIqN+Tn8XhY8+Js6fmnOPIsy65L9oP4v13n3h5Icc=
-X-Gm-Message-State: AOJu0YyRDP3g5zGLVeAmNuc7ArZIFCZQ6OpsYTN05Gz5OoU68rrmEaBm
-	RndYawGnMD0LxXnL77WX114kr9//1ZKgv0033UBEiEHwDBO0aZAJeVyGcvr79/LlOg1LvsjLblu
-	P6Jb+t2FK3MDBE0LsIiSlJegO+A==
-X-Google-Smtp-Source: AGHT+IHUqUmsUP918QpjqzH5npNhgysIiDyHyjn5YLpGuGEUV6JHiEnoTJtkajsrCBZvKF3jmQtoyLD5HqMWTa6R2xo=
-X-Received: by 2002:ac2:47f6:0:b0:51d:8ff3:d156 with SMTP id
- 2adb3069b0e04-52b89576bc1mr1292663e87.19.1717167617696; Fri, 31 May 2024
- 08:00:17 -0700 (PDT)
+	s=k20201202; t=1717167820;
+	bh=kzwdmdMivwWbu5Pb/8+YQ58BObGKh4rKu+UvlJwfFUQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JyDhaIvvHsmyO+DgChXw9qUEqUvOzPG6r93W6GoRT5W7YUEKR0Br6mZJCujvfLrx7
+	 IIgezlL3LbNOfC3tQxupOvBrr2f8mLyaCsLqEkSNgpgnG5YI+4SYAuvi/EhcJiBIrc
+	 zG7sKPheoWI6D6wFafreEztoE71IAs1AhlyyCYZOW2vIPwryj5SI6DLpmaFPEp2RbY
+	 HoZOuxrO9C4nHuUL09pTewJQke5e3HDWyy0NygwAuyaQpNIQJjvAFSzVXZFssZXGwf
+	 G0CUsLPpoNxhVv/pabmJBP4Z+fW7E9hTRkdtJ0DSfmW2vxV5V7X4jWTXW8zp8mosvC
+	 zAP8kZz+O5urA==
+Date: Fri, 31 May 2024 16:03:35 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Guo Ren <guoren@kernel.org>
+Cc: Inochi Amaoto <inochiama@outlook.com>,
+	Jisheng Zhang <jszhang@kernel.org>, Fu Wei <wefu@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] riscv: dts: thead: th1520: Add PMU event node
+Message-ID: <20240531-reseal-sabbath-4994673eb98c@spud>
+References: <IA1PR20MB4953BA3638A0839FCB0EF86BBBF32@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <CAJF2gTRu8WUkjOOzH4MZvinZv=0cgF988c7HyzP5jw0p3w+MWQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <a770cb5acb708e6d65570a4037a376321c9e8bb0.1716977322.git.geert+renesas@glider.be>
- <CAL_JsqLL3g4+nfu2NmC0drR-m5u287EBvK9jbY43XC=bSSVSpQ@mail.gmail.com>
- <CAMuHMdWxxDu-V_drs+dMdycQHY_+v0sPH7bVO_2-ixGWQkdTjg@mail.gmail.com>
- <CAL_JsqL7Vc2T1-JMf7bFAedmz4NYTD3Efm0z_-xdd7JF+xKmQA@mail.gmail.com>
- <CAMuHMdV5q8cSz+SOry1ZJjMhTxhkb0ABNDFgCDySpKPijJjpcw@mail.gmail.com> <CAL_JsqJ0nX7EK05aC7z9i2FEB7jAf0XrPDyPY-NXr8rnEDgqZg@mail.gmail.com>
-In-Reply-To: <CAL_JsqJ0nX7EK05aC7z9i2FEB7jAf0XrPDyPY-NXr8rnEDgqZg@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 31 May 2024 10:00:04 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL9MPycDjqQfPNAuGfC6EMrdzUivr+fuOS7YgU3biGd4A@mail.gmail.com>
-Message-ID: <CAL_JsqL9MPycDjqQfPNAuGfC6EMrdzUivr+fuOS7YgU3biGd4A@mail.gmail.com>
-Subject: Re: [PATCH v2] fdtoverlay: Remove bogus type info from help text
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Devicetree Compiler <devicetree-compiler@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="hFbzC4Jn/xKf+UkR"
+Content-Disposition: inline
+In-Reply-To: <CAJF2gTRu8WUkjOOzH4MZvinZv=0cgF988c7HyzP5jw0p3w+MWQ@mail.gmail.com>
 
-Uwe's Pengutronix email is bouncing, so switched to kernel.org acct.
 
-+dtc list
+--hFbzC4Jn/xKf+UkR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Fri, May 31, 2024 at 9:38=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Fri, May 31, 2024 at 9:07=E2=80=AFAM Geert Uytterhoeven <geert@linux-m=
-68k.org> wrote:
-> >
-> > Hi Rob,
-> >
-> > On Fri, May 31, 2024 at 3:43=E2=80=AFPM Rob Herring <robh@kernel.org> w=
-rote:
-> > > On Thu, May 30, 2024 at 8:32=E2=80=AFAM Geert Uytterhoeven <geert@lin=
-ux-m68k.org> wrote:
-> > > > On Thu, May 30, 2024 at 2:31=E2=80=AFPM Rob Herring <robh@kernel.or=
-g> wrote:
-> > > > > On Wed, May 29, 2024 at 5:11=E2=80=AFAM Geert Uytterhoeven
-> > > > > <geert+renesas@glider.be> wrote:
-> > > > > >
-> > > > > > "fdtoverlay -h" shows a.o.:
-> > > > > >
-> > > > > >     <type>      s=3Dstring, i=3Dint, u=3Dunsigned, x=3Dhex
-> > > > > >             Optional modifier prefix:
-> > > > > >                     hh or b=3Dbyte, h=3D2 byte, l=3D4 byte (def=
-ault)
-> > > > > >
-> > > > > > However, unlike fdtget and fdtput, fdtoverlay does not support =
-the
-> > > > > > "-t"/"--type" option.
-> > > > > >
-> > > > > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > > > > > ---
-> > > > > > Upstream dtc has Uwe's commit 2cdf93a6d402a161 ("fdtoverlay: Fi=
-x usage
-> > > > > > string to not mention "<type>"").
-> > > > >
-> > > > > So you want me to sync upstream? That's how upstream commits get =
-into
-> > > > > the kernel. I don't take patches (unless there's some urgent
-> > > > > breakage).
-> > > >
-> > > > If that's the policy, then yes please ;-)
-> > >
-> > > With current dtc main branch, I get these errors:
-> > >
-> > > Failed to apply
-> > > 'arch/arm64/boot/dts/renesas/salvator-panel-aa104xd12.dtbo':
-> > > FDT_ERR_NOTFOUND
-> >
-> > Interesting...
-> >
-> > Do you know what's the problem?
->
-> No. Since it is conveniently platforms you care about, I thought I'd
-> leave it to you. ;)
->
-> Well, it seems that if I use the upstream built dtc and fdtoverlay it
-> works fine. Using the one in scripts/dtc/ doesn't. Looks like that
-> issue is on me...
+On Fri, May 31, 2024 at 09:43:00AM +0800, Guo Ren wrote:
+> LGTM! Reviewed-by: Guo Ren <guoren@kernel.org>
 
-I figured out the difference. The dtc tree build of fdtoverlay is
-picking up the libfdt installed on my system. The kernel tree build is
-statically linked.
+Please provide tags on a new line so that tooling picks them up.
+I had to amend this commit cos I forgot a signoff, so I added it.
 
-A bisect points to this commit:
+Thanks,
+Conor.
 
-commit 1fad065080e6cae0ec1a4ad6288733cd24c103f9
-Author: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
-Date:   Sun Feb 25 18:54:23 2024 +0100
+--hFbzC4Jn/xKf+UkR
+Content-Type: application/pgp-signature; name="signature.asc"
 
-    libfdt: overlay: ensure that existing phandles are not overwritten
+-----BEGIN PGP SIGNATURE-----
 
-    A phandle in an overlay is not supposed to overwrite a phandle that
-    already exists in the base dtb as this breaks references to the
-    respective node in the base.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlnmxwAKCRB4tDGHoIJi
+0mWyAQCtRDjlV2EDCpIRC6SNrAMNrikM8qQS5Cv/TvuW/ikVBwEA1f58SB+mNN9k
+pDLsbVdZhVH4q91F16Bt0AnC24yHAQw=
+=JZ98
+-----END PGP SIGNATURE-----
 
-    So add another iteration over the fdto that checks for such overwrites
-    and fixes the fdto phandle's value to match the fdt's.
-
-    A test is added that checks that newly added phandles and existing
-    phandles work as expected.
-
-    Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
-    Message-ID: <20240225175422.156393-2-u.kleine-koenig@pengutronix.de>
-    Signed-off-by: David Gibson <david@gibson.dropbear.id.au>
-
- libfdt/fdt_overlay.c              | 251 ++++++++++++++++++++++++++++++++++=
-++++
- tests/overlay_base_phandle.dts    |  21 ++++
- tests/overlay_overlay_phandle.dts |  34 ++++++
- tests/run_tests.sh                |  28 +++++
- 4 files changed, 334 insertions(+)
- create mode 100644 tests/overlay_base_phandle.dts
- create mode 100644 tests/overlay_overlay_phandle.dts
-
-Rob
+--hFbzC4Jn/xKf+UkR--
 
