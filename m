@@ -1,254 +1,127 @@
-Return-Path: <devicetree+bounces-71288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB5B78D6415
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 16:11:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 554F88D641E
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 16:12:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09F8D1C244D5
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:11:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F39B61F27C65
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:12:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2253915D5A0;
-	Fri, 31 May 2024 14:11:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7E4316EBFB;
+	Fri, 31 May 2024 14:12:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NhYt6pW3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="etrY+1R5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFB5915CD55;
-	Fri, 31 May 2024 14:11:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78CAC16D9AC;
+	Fri, 31 May 2024 14:12:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717164669; cv=none; b=bJ/nnVHx80gv9D/ufhhtUxYDamuhbjtt3NMo0uaT904s6DB5peoyjE8RvnQf9JdXUtjsBtok11I7u1nXnXWCrmn3m8qmJa2VGcgCoqFJ+QXwZbFVSUzyjPz2Nq4MtzX+yQ5LEEx0bJG0RdHmquBeWxvzkZT9YqTIrW0Hw3pYdw0=
+	t=1717164735; cv=none; b=Xlf9mPYPCUhjoOnF/JA5N4LNA4yvDsntXc4GRDkdGrl5JtTSjvMJfI4zR+nUaDWtf8G2ESFbU2NCiYNA0VI+5eLXZ/hW0ngfy+w0DkQpVKNj6w5JM4LXqabMQur4/C4iye38aO69SSmBNwkLnulLmcpfh+wg9DM758P8FEB0hE8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717164669; c=relaxed/simple;
-	bh=K0xHXy2q6dRipVm0n2lXko/1zCuNtyjfzp6U4rJzUsE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AuItlUwzSXPLJfCNVUQO2pjQYi2qO4ge/4AWTsttwo5N0+f72vtZ7+zQaETVlspldD30rWQL1fipXXCLT/gw2s69GzdPq3/vXZRGuGeqoaI1NUm2IX8C3TsoS49spFYIOgJgi8FBoGUjoI7jrdOlU0mVevGT2a+2JhiUwuwTgc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NhYt6pW3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1C2BC4AF07;
-	Fri, 31 May 2024 14:11:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717164668;
-	bh=K0xHXy2q6dRipVm0n2lXko/1zCuNtyjfzp6U4rJzUsE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=NhYt6pW3uY9U9PBXpWSMlo2mGQ16YCmvOUpue6pN0+vxmgGJUU6gzYL5LxzEIaTbZ
-	 yAPUPn7K88Ap2LMYhzkWUcx5JgSrEtjSixnkfRWhdj9FeKG5raD0XPjNcw8sbc5xOU
-	 EjliB0BVuJJwx47diirD3dELRQ8+N07kv/VkWvr9JwMPal/L2bbM7afkW/BzxOimjS
-	 +KqR2tXbYB0XJNEianyOIlPZfYQvGLiecap5PpRre83ZZKg8KNXatnAoDJ9e7opxgG
-	 fAZsrrDZTKmRpanIil+zt0nu38ltY0YwfWNNutu96U4OCTyN232Y45FvuntArnJ0Ig
-	 V4iJ92tkImc7A==
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-52b7e693b8aso1707525e87.1;
-        Fri, 31 May 2024 07:11:08 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUzmeIzXMKJ9N2r7cbo/R4q/TU1VBg6hMbxHitVZq1tWuqa0/BMb3nmMFQkjcUP5AEA534g4DjPW+klZmCS5p4v5eGrlhqg83zbr83GtHOWOIyVo+UW6Sn1WWm3VPxyVQvtZKlp8K8lXA==
-X-Gm-Message-State: AOJu0Yxni9yRkYHyHt+fncTpCoN1AQVr/gEL8UNPympFKQ2woqzK13qr
-	jChYJtNCgXh+xcSYImohIM+E6z4tqjdQm8o0bVuqGBCgEikDxy89+jXQtskeLefZTjTqqGKkVtL
-	9+ahrNtgUKSj4tgYcZR4hwO/MRQ==
-X-Google-Smtp-Source: AGHT+IHIqTs4eLz3G6haHEggOKQpNgNQdSLxmxdJSf8+V2cY32GWNGtHxyT5Oq/VVbYGkZbVocajtPazQcGxy+rb6oE=
-X-Received: by 2002:a05:6512:61:b0:529:5644:c1a4 with SMTP id
- 2adb3069b0e04-52b7e10bc05mr1544861e87.20.1717164667003; Fri, 31 May 2024
- 07:11:07 -0700 (PDT)
+	s=arc-20240116; t=1717164735; c=relaxed/simple;
+	bh=XLqZFjlEoqxOyPl9bFUh7Jqa2hmuAmBz32zTzjZrBpo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZyYEaKIYWaXc8LnJ6aiNKx4oWLHfyX6T/CGxqMXV44dajr67AkXsie3+qQzAwNYQC0xHxEeQQou+uJp7tDxT/cMlRDvzGb1y3Dd+5FOsCbNjhIV2RaGI3RubGNvxs6Q7oERM9rF81SVYbt7CaVGIaJ/yLLrABf3zPS1spGAB5A4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=etrY+1R5; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-701ae8698d8so1701899b3a.0;
+        Fri, 31 May 2024 07:12:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717164734; x=1717769534; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ykvp/0wm2JKYn1VhbfeNlnxDMxT2k1KfiM797oH+i0A=;
+        b=etrY+1R5LOUSB1HRNYYB/4c8RoCUD1HHCRZQ5PmTZiDeJdWD6HCfVAZKlx3pHJYSQ0
+         SQgHdbsqaQOySbeG5tv01869eBF0flTdOKMUQLMbRxhyfs0QpMeLgjIgZYTcxRoqPHXa
+         UQccCyK/8IiIfN3Lw7QozOKp7ryOim25M4GmBEb/KeSmbNRUh/pHIsGT9ru2Qwp5lwh2
+         kI4U6mJbCRNp4qmzzox0qwfiH2h+9h3/CjY/dhHn8snwjC7IncYl2AVXuabxHS3jbx6V
+         Gx05VQxHAjgREq/O6jM3CWoezVidQKxoQC3JJr7I15usUEwwifxjwMEZMGu5yA+4YOTC
+         lOIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717164734; x=1717769534;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ykvp/0wm2JKYn1VhbfeNlnxDMxT2k1KfiM797oH+i0A=;
+        b=iv0hqqewBZLg0sPJE0nad5fOIDN3mPN4Hqfvm/OkzCBqFZeIHUUz7C/kdxcD1Ox9n/
+         yOkaHfaFVIurmWkvsuBVrw0i5DyfF2mYvxeyqsWuf5/qfoN0UFEV2NdhMCr2K7pRzmsa
+         9Sn9c9/oTA9hoMvyRLOesYaCK2sxfqYQpKpBtYUr/eEUUtMx3uGKaiP5BzG1pn1raF9o
+         uuo6DCuZRtZx/L72H40bMdsdmui/RP0ZGB+b6nHSdX+axEDRi+zsooTKfgikxAvkqNqr
+         97S+BCre0GqEGjTVxScrrICD0vQ294GoYAGr3dOgbcJAfCjBFIDnHJkj2sCaLBPZyMiS
+         LKlw==
+X-Forwarded-Encrypted: i=1; AJvYcCV9JtLJ/RB8e3sTGjY9NZFu2bXEOYor/70iJ87RuzcWJ21JcKutpmnKtv9I1cd3VZgxGIvSOpww+upoZ64BVJaxK4rjD22flENU9/0tKYMCcu75zO4exHx+AbYOecCK6YWf/3x0GQ==
+X-Gm-Message-State: AOJu0Yw1/2r2tZ4Eu4OK8Vbmm5FoBBjOXex4U2poakwQuUrso+d6R4bX
+	dyuagqOpwIgaNZ8TpTNHHInb5PtCJxWg1MzhOnDd72EHXozsPBtDK959b68G7/8=
+X-Google-Smtp-Source: AGHT+IF9QK1BGyLlONfFHI2NZ/q0q6TlP168YBjy8Girmb88VacbO8e/f7OnxTM2vSORBcmJgAyihA==
+X-Received: by 2002:a05:6a00:1785:b0:6ea:f05d:d2ec with SMTP id d2e1a72fcca58-702477c2abamr2233447b3a.2.1717164733748;
+        Fri, 31 May 2024 07:12:13 -0700 (PDT)
+Received: from noel.flets-west.jp ([2405:6586:4480:a10:167:9818:d778:5c14])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70242b057besm1418103b3a.162.2024.05.31.07.12.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 May 2024 07:12:13 -0700 (PDT)
+From: Hironori KIKUCHI <kikuchan98@gmail.com>
+To: linux-kernel@vger.kernel.org
+Cc: Hironori KIKUCHI <kikuchan98@gmail.com>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Aleksandr Shubin <privatesub2@gmail.com>,
+	Cheo Fusi <fusibrandon13@gmail.com>,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev
+Subject: [PATCH 0/5] Add support for Allwinner H616 PWM
+Date: Fri, 31 May 2024 23:11:32 +0900
+Message-ID: <20240531141152.327592-1-kikuchan98@gmail.com>
+X-Mailer: git-send-email 2.45.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240522215043.3747651-1-tharvey@gateworks.com>
- <07250029-7cea-4a82-9e70-22e0e6f7fb37@linaro.org> <20240523-vividly-sequester-d85ac7bccbbd@spud>
- <CAJ+vNU3fQt=6t3a_QFU_3jb5mTVLGJiptPnGEmWvvXZYGEPOFQ@mail.gmail.com>
- <20240524-cavalier-outthink-51805f49c8fb@spud> <8007abef-38bb-4d7d-a453-00bb5e6bede5@linaro.org>
- <CAJ+vNU3Rh6f-HrFbBLxNXVP1PwsGh8OyGmmGJBv6+GRwZaTXgw@mail.gmail.com>
- <20240528155808.GA695520-robh@kernel.org> <CAJ+vNU225kyG7+AmXU8MTDArj8_6ibD-DkogXg89YpWS57ai=g@mail.gmail.com>
- <20240530-powwow-outpour-ca48b1f22a3e@spud> <CAJ+vNU1Vu9oM1W8RhBo1H+ddHUovmJGSPhmmW0aaTEfYgVoerQ@mail.gmail.com>
-In-Reply-To: <CAJ+vNU1Vu9oM1W8RhBo1H+ddHUovmJGSPhmmW0aaTEfYgVoerQ@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 31 May 2024 09:10:54 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKHs_cBJWrS6+tzoUZ5fESAsim2uasHmFRg1CT7BOjDWQ@mail.gmail.com>
-Message-ID: <CAL_JsqKHs_cBJWrS6+tzoUZ5fESAsim2uasHmFRg1CT7BOjDWQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: rename gw7905 to gw75xx
-To: Tim Harvey <tharvey@gateworks.com>
-Cc: Conor Dooley <conor@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Li Yang <leoyang.li@nxp.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Thu, May 30, 2024 at 12:36=E2=80=AFPM Tim Harvey <tharvey@gateworks.com>=
- wrote:
->
-> On Thu, May 30, 2024 at 9:54=E2=80=AFAM Conor Dooley <conor@kernel.org> w=
-rote:
-> >
-> > On Tue, May 28, 2024 at 09:23:10AM -0700, Tim Harvey wrote:
-> > > On Tue, May 28, 2024 at 8:58=E2=80=AFAM Rob Herring <robh@kernel.org>=
- wrote:
-> > > >
-> > > > On Sat, May 25, 2024 at 12:58:18PM -0700, Tim Harvey wrote:
-> > > > > On Sat, May 25, 2024 at 11:34=E2=80=AFAM Krzysztof Kozlowski
-> > > > > <krzysztof.kozlowski@linaro.org> wrote:
-> > > > > >
-> > > > > > On 24/05/2024 20:40, Conor Dooley wrote:
-> > > > > > > On Thu, May 23, 2024 at 04:04:50PM -0700, Tim Harvey wrote:
-> > > > > > >> On Thu, May 23, 2024 at 7:47=E2=80=AFAM Conor Dooley <conor@=
-kernel.org> wrote:
-> > > > > > >>>
-> > > > > > >>> On Thu, May 23, 2024 at 09:02:46AM +0200, Krzysztof Kozlows=
-ki wrote:
-> > > > > > >>>> On 22/05/2024 23:50, Tim Harvey wrote:
-> > > > > > >>>>> The GW7905 was renamed to GW7500 before production releas=
-e.
-> > > > > > >>>>>
-> > > > > > >>>>> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> > > > > > >>>>> ---
-> > > > > > >>>>>  Documentation/devicetree/bindings/arm/fsl.yaml | 4 ++--
-> > > > > > >>>>>  1 file changed, 2 insertions(+), 2 deletions(-)
-> > > > > > >>>>>
-> > > > > > >>>>> diff --git a/Documentation/devicetree/bindings/arm/fsl.ya=
-ml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > > > > >>>>> index 0027201e19f8..d8bc295079e3 100644
-> > > > > > >>>>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > > > > >>>>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > > > > >>>>> @@ -920,8 +920,8 @@ properties:
-> > > > > > >>>>>                - fsl,imx8mm-ddr4-evk       # i.MX8MM DDR4=
- EVK Board
-> > > > > > >>>>>                - fsl,imx8mm-evk            # i.MX8MM EVK =
-Board
-> > > > > > >>>>>                - fsl,imx8mm-evkb           # i.MX8MM EVKB=
- Board
-> > > > > > >>>>> +              - gateworks,imx8mm-gw75xx-0x # i.MX8MM Gat=
-eworks Board
-> > > > > > >>>>
-> > > > > > >>>> That's not even equivalent. You 7500 !=3D 75xx.
-> > > > > > >>>>
-> > > > > > >>>
-> > > > > > >>>>>                - gateworks,imx8mm-gw7904
-> > > > > > >>>>> -              - gateworks,imx8mm-gw7905-0x # i.MX8MM Gat=
-eworks Board
-> > > > > > >>>>
-> > > > > > >>>> Compatibles do not change. It's just a string. Fixed strin=
-g.
-> > > > > > >>>
-> > > > > > >>> I think there's justification here for removing it, per the=
- commit
-> > > > > > >>> message, the rename happened before the device was availabl=
-e to
-> > > > > > >>> customers.
-> > > > > > >>> Additionally, I think we can give people that upstream thin=
-gs before they're
-> > > > > > >>> publicly available a bit of slack, otherwise we're just dis=
-couraging
-> > > > > > >>> people from upstreaming early.
-> > > > > > >>
-> > > > > > >> Hi Conor,
-> > > > > > >>
-> > > > > > >> Thanks for understanding - that's exactly what happened. I'm=
- in the
-> > > > > > >> habit of submitting patches early and often and it's no fun =
-when
-> > > > > > >> something like a silly product name gets changed and breaks =
-all the
-> > > > > > >> hard work.
-> > > > > > >>
-> > > > > > >> The board model number is stored in an EEPROM at manufacturi=
-ng time
-> > > > > > >> and that EEPROM model is used to build a dt name. So instead=
- of GW7905
-> > > > > > >> which would be a one-off custom design it was decided to cha=
-nge the
-> > > > > > >> product to a GW75xx. The difference between GW7500 and GW75x=
-x is
-> > > > > > >> because we subload components on boards between GW7500/GW750=
-1/GW7502
-> > > > > > >> etc but the dt is the same.
-> > > > > > >>
-> > > > > > >> If there is resistance to a patch that renames it then I gue=
-ss I'll
-> > > > > > >> have to submit a patch that removes the obsolete board, then=
- adds back
-> > > > > > >> the same board under a different name. Shall I do that?
-> > > > > > >
-> > > > > > > I think this patch is fine - other than the inconsistency tha=
-t Krzysztof
-> > > > > > > pointed out between the "renamed to gw7500" and the "gw75xx" =
-in the new
-> > > > > > > compatible.
-> > > > > >
-> > > > > > I am not a fan of renaming compatibles because of marketing cha=
-nge,
-> > > > > > because compatible does not have to reflect the marketing name,=
- but
-> > > > > > there was already precedent from Qualcomm which I did not nak, =
-so fine
-> > > > > > here as well. Double wildcard 75xx is however a bit worrying.
-> > > > > >
-> > > > >
-> > > > > Hi Krzysztof,
-> > > > >
-> > > > > Thanks for understanding. The double-wildcard is again a marketin=
-g
-> > > > > tool. All GW75** use the same device-tree by design. The boot fir=
-mware
-> > > > > that chooses the device-tree understands this and for a GW7521 fo=
-r
-> > > > > example would look for gw7521 first, gw752x next, gw75xx last.
-> >
-> > When it is doing this matching, does it actually apply a wildcard, or
-> > does it look for "x"? IOW, if your eeprom said "gw7521" and there were
-> > no devicetrees matching "gw7521" but there was one with "gw7500" would
-> > it match?
->
-> I attempt to explain the algorithm used in the comment of the U-Boot
-> code used by U-Boot to both choose the DTB it uses as well as the
-> bootscript to choose the DTB used for Linux when booting Linux:
-> https://elixir.bootlin.com/u-boot/latest/source/board/gateworks/venice/ee=
-prom.c#L164
->
-> Consider a GW7001-F.1 SOM married to a GW7201-G.2 Baseboard (the
-> letter at len-2 is the PCB revision and the number is a BOM revision
-> and those are the full model strings in the EEPROM's of the boards):
-> fdt_file1=3Dimx8mm-venice-gw72xx-0x-g2f1.dtb
-> fdt_file2=3Dimx8mm-venice-gw72xx-0x-g2f.dtb
-> fdt_file3=3Dimx8mm-venice-gw72xx-0x-gf.dtb
-> fdt_file4=3Dimx8mm-venice-gw72xx-0x.dtb
+Add support for the Allwinner H616 PWM, building on top of Aleksandr's
+Allwinner D1 PWM driver v9.
 
-These all have the same root compatible I'm guessing? Based on recent
-discussions around firmware picking a DTB, we really want that based
-on compatibles, not filenames. After all, compatible is all about most
-specific to least specific matching. Maybe it doesn't matter for your
-products. However, that's likely the direction we're going and it may
-make your life easier to align with that.
+Additionally, the 4th and 5th patches implement the proposed method
+for delegating the clock source and DIV_M selection to the Device Tree.
+While it works well without these patches with the original behavior,
+applying them enables fine-grained control of PWM resolution and
+prevents non-deterministic behavior dependent on the enabling order.
 
-> The script that loads the fdt for booting Linux looks for fdt_file1
-> first, then fdt_file2, etc etc so that if needed a 'more specific' dtb
-> could exist with base-board and som-revision fixups. However to answer
-> your question the algorithm already assumes that baseboards have 2
-> digits worth of don't care and match specifically an 'x' for that.
-> Including the SOM and Baseboard PCB revision and BOM revision was a
-> safeguard that has never been needed so in practice we always just end
-> up with the last most generic dtb above which is the case of
-> 'imx8mm-venice-gw72xx-0x.dtb' case means a 'gw72xx' baseboard married
-> to a 'gw700x' SOM. The 'gw70' is removed from the dtb name as all
-> Venice SOM's start are GW70**.
->
-> So in my mind the dt for the baseboard above is called
-> 'imx8mm-venice-gw72xx' where 'xx' is part of the name but does have
-> implied meaning. It certainly helps our customers know that the last
-> two digits of a baseboard are don't-cares.
->
-> This is nothing new... I did this for the imx6 based Gateworks Ventana
-> boards as well most of which have been upstream since Linux 4.x:
+I have only been able to test on H700 (H616 variant) using an
+oscilloscope. I would greatly appreciate it if someone could test
+this patch series on the D1 or other models.
 
-Based on this, I'm going to say what you have is fine and let's move on.
+Regards,
+kikuchan.
 
-We'll all probably forget this and you'll have to remind us the next
-time we see wildcards.
+Hironori KIKUCHI (5):
+  pwm: sun20i: Use devm_pwmchip_alloc() helper
+  pwm: sun20i: Add support for Allwinner H616 PWM
+  dt-bindings: pwm: sun20i: Add compatible string for Allwinner H616 PWM
+  pwm: sun20i: Delegating the clock source and DIV_M to the Device Tree
+  dt-bindings: pwm: sun20i: Add options to select a clock source and
+    DIV_M
 
-Rob
+ .../bindings/pwm/allwinner,sun20i-pwm.yaml    |  20 ++
+ drivers/pwm/pwm-sun20i.c                      | 326 ++++++++++--------
+ 2 files changed, 201 insertions(+), 145 deletions(-)
+
+-- 
+2.45.1
+
 
