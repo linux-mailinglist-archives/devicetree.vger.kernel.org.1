@@ -1,208 +1,185 @@
-Return-Path: <devicetree+bounces-71226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ADE28D61BD
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:30:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC4E88D61CD
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:34:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 40543B24F39
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:30:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91976286854
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:34:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CEA1157487;
-	Fri, 31 May 2024 12:30:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87A33158206;
+	Fri, 31 May 2024 12:33:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VCbOfWAv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H36Xph5Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A632C142E90;
-	Fri, 31 May 2024 12:30:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C19821F95A
+	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 12:33:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717158613; cv=none; b=UitnJAwQuXnE18zLtkOCgr8wpe/ByP30CoKMqlYSIGkf5LdZO3KLwQWFaIqA98bYY0CHWmwFCh0qiYVedpYTOaw19m8A+qoyl6cRdb0ilIWfXtQfNStbBqXdaRFhNV8aDizRPAwHQLxbmOBXrEcxSr8W1HySN6YtW8FEsF6WxWU=
+	t=1717158836; cv=none; b=CHCUbq1fWHKPIa+SLPrYwkQtUBteSuCb9CDDHgury5PE294AFXegCCl+nhlvSt/nCJsjVMiyCTygQFZGn8D8JI6EmOW3nLROqDkV2RwwsOPnOxRYbSwIOgcLNuxawnLCSnapdEefT3Yq9/PRyAHkQsjGMDF8/gShbckIZOIIydU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717158613; c=relaxed/simple;
-	bh=BKqXlZK7XF1UJpzIlE4H+vLXVZQDJHc91wlqO8+Qta4=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=dB89G+LFTH4Nzbr58o/ghQ0FrEcPr4AqolC5gH/KWvUShLv56qlXowgPuwWC2R1792g/nFfrpzl8HC95EzI69AxdLZquYIA1OxbeERk652RPIzY4qBjf2ThOm3Elk5gFdc9syd1vSyaG4sNF3dZIajlJvAsUiupoLicr1kvFQpk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VCbOfWAv; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-6f8ec7e054dso1505793b3a.2;
-        Fri, 31 May 2024 05:30:11 -0700 (PDT)
+	s=arc-20240116; t=1717158836; c=relaxed/simple;
+	bh=s5v2zgyKyx/7jhzq4r32Kqdi2fWhYc8qhUWF6o/V9Cc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HT0yBxLpsQl2a5varKCnNyWe+m7bcuBTnGo8NH4tN46ebuDJAj6QvXpyY5YvkVPDNWK44buL603sM2pzen8eY0tJ6I+NA7le3T4It6uxbPnKAGG/l1jTSfQ/zNTSzIlSrgs2iykN84EMksIWxRoqseOd8B3MYILw93MJmk/i5Ac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H36Xph5Z; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-57a23997da3so1875987a12.3
+        for <devicetree@vger.kernel.org>; Fri, 31 May 2024 05:33:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717158611; x=1717763411; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=forXuWPFy2XsVfocDJuDgmCjaOGTlPxEs7gWnYosGQU=;
-        b=VCbOfWAv5HAjKMSduSiicoUrrSfl+0KNea+HySys2ems0r+eZbg0UUuqg64b5oYpo8
-         5sXTWbHslsEkAGGkaLkZ+cMrq7gsrG0uOdBW/bsl3oOKrpakBKq4Hwr87dp1/E2PawB/
-         3TBdjgcgRisKm+/289qYFmMnpHFi6QHv7+mcoV0Uz0RWTXWKzd/uERAZVauPyZMLEfuT
-         NWFwyTyDjfqRuPLZHV7HmH1Ffns9qmPNCG158SyK1zif6YbHZFPlqNsn6fAHqmfsfN3z
-         DfMpmRiqjOPq2HqKMqcV1e1X8mpPJZYuEaRhYq/Od5Rs5F2Zyy+1UFj395NPlgCNyPRV
-         8BJw==
+        d=linaro.org; s=google; t=1717158833; x=1717763633; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=kOG28w+Xt++8GjibapminGB/LWiUPIUiCSP8LYdYn9I=;
+        b=H36Xph5Z7dknyyzKYZ0CEmRy1CYn5YmftzZQcKFiLlxC5l8zm0/5jTskaiVsG/w1fm
+         t/+wbWhfWgfyOMCB028eeswnLVYVD8RXcTkqUvvK5Y/MAdBSd6OOHMz8WnsRGN3AP/zX
+         SFhVCXtXUuCd36XGaTk4kziInvgT54KYhhq78/hqs30O1Q1Oc8kykUbLbxnxoNN3AXja
+         EXEk7V+4nu9YGWiGxsDhH9IVWfAqCn3jJFthASVaR3y2/X47FTOWsz/2ZV3KSu9dkPtG
+         kR/INZ3hSiYJwn+5rKFQRUBvQkZe7IBr1XpQ6T9lvReNH15J3ZTYZtlTjWrScOA2ETa/
+         v4xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717158611; x=1717763411;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=forXuWPFy2XsVfocDJuDgmCjaOGTlPxEs7gWnYosGQU=;
-        b=c0wP7qpxV5dSkUDiQ1/MzvYslFjZoW/eI3D2lfcEoZzptKGv0u6fn5RV1IGGBTqNNT
-         A76t36ZeuM1rPR5Ki/+R/NCxmHJnKL8twXlvM5gE4sgZY8cihwAJLU3U52vnNiMpMXYi
-         /WtKktXB9ANk1TN8mftg+VjxRftrxS/EW71tvxFYh7uknD8HGBmdN0I6tgp67j0S7HF2
-         L+FPvPHyqh72bNZ1q8QNrLVt3fzlI7F3awYuUhHDSrwYh2AEX02Sx89Or0JztEkmfBBZ
-         vt918esJnwKkcDYJZeKEHrzvI6HcpvdaRJsvGvRvFtwOanulILxnm1eta5bTSzKi30hI
-         La1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVAbAl8dtXrjKXvMSug+pCCoGSN6CjE5qZ8hfBMEUomPzHKE3bj6bHPtAifrT64J5UUzCZaoNVfego9uN1ytmuFUL1Wt+EXkJkBTWAhv2H1c3PC0vt3onkH3EeOe95qdHMTJwNs+hGwbvaDSHS/BhNAlL6dDhykDscE70ChBSk+nBS9SA==
-X-Gm-Message-State: AOJu0Yycc6kraZFbJff9nnvXwvKdIrufC2DELczAU4HN9h5AqpsgXD6l
-	x+DH1zq8GXXybyf4n6xjp3Ks7/sAKzGTjAE520r7xtKZ6448d0J2
-X-Google-Smtp-Source: AGHT+IHrSpIGiBHstlMPdxkIWgAD6jVOeR2hwOCG67G+LZyMrCJvZ6auiVBIez1jv5QaTvEr+Bv3AQ==
-X-Received: by 2002:a05:6a00:1a91:b0:702:3174:c03d with SMTP id d2e1a72fcca58-702477bd7aemr1741085b3a.7.1717158610682;
-        Fri, 31 May 2024 05:30:10 -0700 (PDT)
-Received: from localhost.localdomain ([223.178.85.118])
-        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-70242ae88casm1280863b3a.125.2024.05.31.05.30.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 May 2024 05:30:09 -0700 (PDT)
-From: Kanak Shilledar <kanakshilledar@gmail.com>
-X-Google-Original-From: Kanak Shilledar <kanakshilledar111@protonmail.com>
-To: 
-Cc: Kanak Shilledar <kanakshilledar@gmail.com>,
-	Kanak Shilledar <kanakshilledar111@protonmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [RESEND v3] dt-bindings: spi: brcm,bcm2835-spi: convert to dtschema
-Date: Fri, 31 May 2024 17:59:37 +0530
-Message-Id: <20240531122941.3524-1-kanakshilledar111@protonmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1717158833; x=1717763633;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kOG28w+Xt++8GjibapminGB/LWiUPIUiCSP8LYdYn9I=;
+        b=INIbm8qbPgXmYs+MoijptL+saLkWlBe2XAga9MXsYUdpXej/KyXIwcwavAGT9wmoEI
+         p7DWeVIzlkdQLaPXrZZdL/UupAs5dJGMruHROb3AsvBwNnJxC9vVIWby0X66VDig/Prm
+         d5zK1j2o8pZl3CV3drI6Hro8AesUIEu1/6vjt7fohiGG/dlB3nnPbSg9bCl4cByxx9tb
+         CgUHU+Tsv4eY06KIaod/0JdU8HNe28RdSEQmD8gHU/HSTLvz+Fp/Z/gdS695xhR+RoP6
+         9ZVJZ1RB2fvuxeLxzp3JJHQlEkctUvQEv7j2N5YFGAvTxzgZsq1fFmZR/wma0r6qsSFg
+         pnIQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUaXyJC6+QaPIpT1eqWhlcy4BfhC1leTcK3Exej6iLGE/E97zRug+N1PQwdpeupJW0gTZO8VdGnjEEhs8WUzv4R3dK2iEFVh2aObg==
+X-Gm-Message-State: AOJu0Yz9W/1xx6pV+MRmNTQMYDUnMAJzApmEU3OHOfdbzof5J3llrMWJ
+	R80Z1Ak7sLETFkK2uwFinCz3Qx9z4CFgwbCQLqMar6m+wYxcU2KJKnPJ6dFq4QI=
+X-Google-Smtp-Source: AGHT+IGUEIOiw0ueXFMgATDRvPcynZKPrc4/cgdb5YbG/FgVQTRxUxntoIcA6OnBLS6XRh6vdNMMjw==
+X-Received: by 2002:a50:aad4:0:b0:56d:faa2:7aca with SMTP id 4fb4d7f45d1cf-57a3638b411mr1397407a12.17.1717158833147;
+        Fri, 31 May 2024 05:33:53 -0700 (PDT)
+Received: from [192.168.128.139] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57a31bb8225sm937435a12.24.2024.05.31.05.33.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 May 2024 05:33:52 -0700 (PDT)
+Message-ID: <e732257d-cd16-4e81-9a20-af481184ce0e@linaro.org>
+Date: Fri, 31 May 2024 14:33:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] Disable SS instances in park mode for SC7180/ SC7280
+To: Doug Anderson <dianders@chromium.org>,
+ Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc: cros-qcom-dts-watchers@chromium.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Stephen Boyd <swboyd@chromium.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Matthias Kaehlcke <mka@chromium.org>, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ quic_ppratap@quicinc.com, quic_jackp@quicinc.com
+References: <20240530082556.2960148-1-quic_kriskura@quicinc.com>
+ <CAD=FV=UhrCKCv5R-LAAugrLXFp=cDcj2=Pp9-N3qk5pk2=sGEg@mail.gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <CAD=FV=UhrCKCv5R-LAAugrLXFp=cDcj2=Pp9-N3qk5pk2=sGEg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Kanak Shilledar <kanakshilledar@gmail.com>
+On 30.05.2024 3:34 PM, Doug Anderson wrote:
+> Hi,
+> 
+> On Thu, May 30, 2024 at 1:26 AM Krishna Kurapati
+> <quic_kriskura@quicinc.com> wrote:
+>>
+>> When working in host mode, in certain conditions, when the USB
+>> host controller is stressed, there is a HC died warning that comes up.
+>> Fix this up by disabling SS instances in park mode for SC7280 and SC7180.
+>>
+>> Krishna Kurapati (2):
+>>   arm64: dts: qcom: sc7180: Disable SS instances in park mode
+>>   arm64: dts: qcom: sc7280: Disable SS instances in park mode
+>>
+>>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 1 +
+>>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 1 +
+>>  2 files changed, 2 insertions(+)
+> 
+> FWIW, the test case I used to reproduce this:
+> 
+> 1. Plug in a USB dock w/ Ethernet
+> 2. Plug a USB 3 SD card reader into the dock.
+> 3. Use lsusb -t to confirm both Ethernet and card reader are on USB3.
+> 4. From a shell, run for i in $(seq 5); do dd if=/dev/sdb of=/dev/null
+> bs=4M; done to read from the card reader.
+> 5. At the same time, stress the Internet. If you've got a very fast
+> Internet connection then running Google's "Internet speed test" did
+> it, but I could also reproduce by just running this from a PC
+> connected to the same network as my DUT: ssh ${DUT} "dd of=/dev/null"
+> < /dev/zero
+> 
+> I would also note that, though I personally reproduced this on sc7180
+> and sc7280 boards and thus Krishna posted the patch for those boards,
+> there's no reason to believe that this problem doesn't affect all of
+> Qualcomm's SoCs. It would be nice if someone at Qualcomm could post a
+> followup patch fixing this everywhere.
 
-Convert the Broadcom BCM2835 SPI0 controller to newer DT
-schema. Created DT schema based on the .txt file which had
-`comaptible`, `reg`, `interrupts`, `clocks` as required
-properties.
-Added GPL-2.0 OR BSD-2-Clause License
+Right, this sounds like a more widespread issue
 
-Signed-off-by: Kanak Shilledar <kanakshilledar111@protonmail.com>
----
-Changes in v3:
-- Updated DCO email address
-Changes in v2:
-- Updated the maintainers
----
- .../bindings/spi/brcm,bcm2835-spi.txt         | 23 ---------
- .../bindings/spi/brcm,bcm2835-spi.yaml        | 50 +++++++++++++++++++
- 2 files changed, 50 insertions(+), 23 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.txt
- create mode 100644 Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml
+That said, I couldn't reproduce it on SC8280XP / X13s (which does NOT mean
+8280 isn't affected). My setup was:
 
-diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.txt b/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.txt
-deleted file mode 100644
-index 3d55dd64b1be..000000000000
---- a/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.txt
-+++ /dev/null
-@@ -1,23 +0,0 @@
--Broadcom BCM2835 SPI0 controller
--
--The BCM2835 contains two forms of SPI master controller, one known simply as
--SPI0, and the other known as the "Universal SPI Master"; part of the
--auxiliary block. This binding applies to the SPI0 controller.
--
--Required properties:
--- compatible: Should be one of "brcm,bcm2835-spi" for BCM2835/2836/2837 or
--  "brcm,bcm2711-spi" for BCM2711 or "brcm,bcm7211-spi" for BCM7211.
--- reg: Should contain register location and length.
--- interrupts: Should contain interrupt.
--- clocks: The clock feeding the SPI controller.
--
--Example:
--
--spi@20204000 {
--	compatible = "brcm,bcm2835-spi";
--	reg = <0x7e204000 0x1000>;
--	interrupts = <2 22>;
--	clocks = <&clk_spi>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--};
-diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml b/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml
-new file mode 100644
-index 000000000000..94da68792194
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/spi/brcm,bcm2835-spi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom BCM2835 SPI0 controller
-+
-+maintainers:
-+  - Florian Fainelli <florian.fainelli@broadcom.com>
-+  - Kanak Shilledar <kanakshilledar111@protonmail.com>
-+  - Stefan Wahren <wahrenst@gmx.net>
-+
-+allOf:
-+  - $ref: spi-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - brcm,bcm2835-spi
-+      - brcm,bcm2711-spi
-+      - brcm,bcm7211-spi
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    spi@20204000 {
-+        compatible = "brcm,bcm2835-spi";
-+        reg = <0x7e204000 0x1000>;
-+        interrupts = <2 22>;
-+        clocks = <&clk_spi>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+    };
--- 
-2.34.1
+- USB3 5GB/s hub plugged into one of the side USBs
+  - on-hub 1 Gb /s network hub connected straight to my router with a
+    600 / 60 Mbps link, spamming speedtest-cli and dd-over-ssh
+  - M.2 SSD connected over a USB adapter, nearing 280 MB/s speeds (the
+    adapter isn't particularly speedy)
 
+So it stands to reason that it might not have been enough to trigger it.
+
+Konrad
 
