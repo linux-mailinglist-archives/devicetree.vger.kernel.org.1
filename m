@@ -1,159 +1,112 @@
-Return-Path: <devicetree+bounces-71208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F212B8D60B3
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 13:28:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A55188D60BE
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 13:33:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69CC2B2581E
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 11:28:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0EB711F23CEC
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 11:33:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C15D157480;
-	Fri, 31 May 2024 11:28:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 815AB157472;
+	Fri, 31 May 2024 11:33:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="SvhJgXXE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JPduiQ7G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3D88157476
-	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 11:28:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57D878173C;
+	Fri, 31 May 2024 11:33:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717154883; cv=none; b=f7p6gdo+Sy0lYmlJICclKDQTyueVDRZ6VhVTJqBy1IL3AIkuXkSjNUUxwmgG1iPQcErNxQcXrPSv5CBq2VkK7Ka7+Z0xJo9N/Klya6mNkWeIz3m2seS3FglWtCsMWBp8tOAzv3uVpCEKrYKt9qWAMUwYjA7L9FzeFvrCv4mZRCA=
+	t=1717155194; cv=none; b=pfOYhYT5xV3ow+eGJSN0MNiMewdmhSHSYoJAdlpLyyflnbalFpkBOws9BOIiJfgNGqRE/T1IcNTD92LUVHdPKorU7FCGxrT/QB5UyX5cz1NR6mMt/pyry45XxZCK6etLpx38uH68dFr91U0ArGQcfTOWE+LI70bwWlOuqknriZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717154883; c=relaxed/simple;
-	bh=7vuGhLrnij2uK2UMUCCnc7HE/x3rx+Ob66hNpdAjkBA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=H8A89EnTKQe2M+ALsHxVnVQT8BaRmgNvDY6+Y80Nt48KTrcha3C99DtfDSKtT3Ps1DebDciPJLHHG3j8h92yLLyTtF4vwZPM9VQIIKQnnirijlDW9CGX7k+tfQFKN+nQAtocYbcnqvUubVez6ucaY03lrldX7Ngz47r+WhgrBMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=SvhJgXXE; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1717154860;
- bh=N2xogLUhalbqd5Rj5JxRpBYbX5aMNbX37zbmgE6qPbM=;
- b=SvhJgXXEbHksx2zo7oz/sG9pvBBV2H5lstqyss23vfvbStqYXWBeuGiE81nb7g5TAzdJ5bI7V
- CDJWuwszcTQO7FFPGxM0J1P9QOML2y9bRsSYl+Kkx7sYHF2w53zj71m7qIFu+jVr+g0YdrRPAnd
- sQXxnGT21VHRXPBzjIKewSZgmCtwHoHCvfDOUi20nFxecImYuzhPL1JrGECa0bCvAiQs7P81ozS
- CuJwucilMKfXkhnPKlqHqU6bIVojFZPp6Iuiba5I15uNlFXTt0apRVYoynqErEn3/M77XghR/dC
- hQYs0nQ1fXeC1K21B0J8T0ixL7h6CKwJWAiEFjgT7Qlw==
-Message-ID: <607f4da8-99b2-4379-9567-4bfd2744eab3@kwiboo.se>
-Date: Fri, 31 May 2024 13:27:31 +0200
+	s=arc-20240116; t=1717155194; c=relaxed/simple;
+	bh=PDYcD/VuW+SV7ExAXgARgpwsN09SPWDnbp+i4nzDJQk=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=q6sZJo2TlZvsmHbBS/56UtlaGiNSR9L+uerjTBvkS0FG2vJzBrh30aR/MBOWjB1FtoD0EllOHM8JVccOSmhuGZ5cLSauIAr7BjxittvLWsEN8m/+d2zqtzPzMbpEJZ+KzIOGFMXyNCCHyvionYDwgY60ZkP6v8xkRiQzTNhEVQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JPduiQ7G; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93D70C116B1;
+	Fri, 31 May 2024 11:33:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717155193;
+	bh=PDYcD/VuW+SV7ExAXgARgpwsN09SPWDnbp+i4nzDJQk=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=JPduiQ7Gs3cA09tsRhbFzZJTWLRZtrjCKsLyR8Vc8iEeokYeV4ZdOqRaQ4pCeX8VH
+	 crFPAUv5wtCFXOYhkrvH5+O3JT6rRwVOxERkoZqYsxFr7qjVd/AGNVizB20Ah7IpKC
+	 8I+yKkI6U1hTFip6Wb6S06HJO9sOBUiOJdHpLy9EnMtGfCHYssb2pIaoES7qFYWMso
+	 r4rR7DcEteT2pNVBRZD2JkcwEDzIRbkSjo+VKpGdUNWwyLGTnWOuJuDNkAXhyBNeNT
+	 67siHQbO4DZtqT9IrE3aGztiE/mjrbZMgEktxXz13ka/DRjGeylwiN4lyWYIkhHaId
+	 2dzA7NblT/Qwg==
+Date: Fri, 31 May 2024 06:33:12 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH] arm64: dts: rockchip: Make preparations for
- per-RK3588-variant OPPs
-To: Dragan Simic <dsimic@manjaro.org>, Alexey Charkov <alchark@gmail.com>
-Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-kernel@vger.kernel.org, quentin.schulz@cherry.de, wens@kernel.org,
- daniel.lezcano@linaro.org, didi.debian@cknow.org,
- krzysztof.kozlowski+dt@linaro.org, viresh.kumar@linaro.org
-References: <673dcf47596e7bc8ba065034e339bb1bbf9cdcb0.1716948159.git.dsimic@manjaro.org>
- <CABjd4YxD41DEkBCZfkznLboEY9ZVOfTCLcj4S_kkcsVswbANyQ@mail.gmail.com>
- <8f8623e29a479c4108141302e708dc3b@manjaro.org>
- <CABjd4Yy4RMg+6-4ygV0MSwJj5LReY-ymbctq4PPfVZ6L+c1tsw@mail.gmail.com>
- <166cc4e46f31644a50306625b2ab18a6@manjaro.org>
- <CABjd4YzDNQa45=KC_t0xnTDrH+g-oUrcpgP55oOj7JcAuu7uFw@mail.gmail.com>
- <82db817a908b761d8c3d73ea04714314@manjaro.org>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <82db817a908b761d8c3d73ea04714314@manjaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-ForwardEmail-ID: 6659b429f6613cab14c70b44
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: angelogioacchino.delregno@collabora.com, pabeni@redhat.com, 
+ devicetree@vger.kernel.org, upstream@airoha.com, conor@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, davem@davemloft.net, will@kernel.org, 
+ nbd@nbd.name, lorenzo.bianconi83@gmail.com, catalin.marinas@arm.com, 
+ netdev@vger.kernel.org, edumazet@google.com, kuba@kernel.org, 
+ benjamin.larsson@genexis.eu, conor+dt@kernel.org, 
+ linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org
+In-Reply-To: <97946e955b05d21fe96ef8f98f794831cbd7c3b5.1717150593.git.lorenzo@kernel.org>
+References: <cover.1717150593.git.lorenzo@kernel.org>
+ <97946e955b05d21fe96ef8f98f794831cbd7c3b5.1717150593.git.lorenzo@kernel.org>
+Message-Id: <171715519233.1178488.4895515254191995557.robh@kernel.org>
+Subject: Re: [PATCH net-next 1/3] dt-bindings: net: airoha: Add EN7581
+ ethernet controller
 
-Hi Alexey and Dragan,
 
-On 2024-05-30 21:31, Dragan Simic wrote:
-> Hello Alexey,
+On Fri, 31 May 2024 12:22:18 +0200, Lorenzo Bianconi wrote:
+> Introduce device-tree binding documentation for Airoha EN7581 ethernet
+> mac controller.
+> 
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> ---
+>  .../bindings/net/airoha,en7581.yaml           | 106 ++++++++++++++++++
+>  1 file changed, 106 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/airoha,en7581.yaml
 > 
 
-[snip]
+My bot found errors running 'make dt_binding_check' on your patch:
 
->>>>> That way we'll have no roadblocks if, at some point, we end up with
->>>>> having
->>>>> different OPPs defined for the RK3588 and the RK3588S variants.  Or
->>>>> maybe
->>>>> even for the RK3582, which we don't know much about yet.
->>>>
->>>> Guess we'll deal with that one once we stumble upon an actual RK3582
->>>> board out in the wild and heading to the mainline kernel tree :)
->>>
->>> Of course, that was just an example for the future use.
->>
->> In fact, I've just discovered that Radxa has recently released Rock 5C
->> Lite which is based on RK3582, and starts at just $29 for the 1GB
->> version, making it interesting for tinkering. Especially given that
->> its GPU, one of the big-core clusters and one of the VPU cores seem to
->> be disabled in software (u-boot) rather than in hardware, which means
->> there is some chance that a particular SoC specimen would actually
->> have them in a working condition and possible to re-enable at no cost.
->> Ordered myself one to investigate :)
-> 
-> Yes, I also saw the RK3582-based ROCK 5C Lite a couple of days ago. :)
-> It seems that the disabled IP blocks are detected as defective during
-> the manufacturing, which means that they might work correctly, or might
-> actually misbehave.  It seems similar to the way old three-core AMD
-> Phenom II CPUs could sometimes be made quad-core.
-> 
+yamllint warnings/errors:
 
-I can confirm that the RK3582 include ip-state in OTP indicating
-unusable cores, any unusable cpu core cannot be taken online and stalls
-Linux kernel a few extra seconds during boot.
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/net/airoha,en7581.example.dts:27:18: fatal error: dt-bindings/reset/airoha,en7581-reset.h: No such file or directory
+   27 |         #include <dt-bindings/reset/airoha,en7581-reset.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.lib:427: Documentation/devicetree/bindings/net/airoha,en7581.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
 
-Started working on a patch for U-Boot to remove any broken cpu core
-and/or cluster nodes, similar to what vendor U-Boot does, adopted to
-work with a mainline DT for RK3588.
+doc reference errors (make refcheckdocs):
 
-On one of my ROCK 5C Lite board one of the cpu cores is unusable, U-Boot
-removes the related cpu cluster nodes. On another ROCK 5C Lite board one
-rkvdec core is only marked unusable and all cpu cores can be taken
-online, U-Boot does nothing in this case. Guessing we should apply
-similar policy as vendor U-Boot and disable cores anyway.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/97946e955b05d21fe96ef8f98f794831cbd7c3b5.1717150593.git.lorenzo@kernel.org
 
-Following commit contains early work-in-progress and some debug output.
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-https://github.com/Kwiboo/u-boot-rockchip/commit/8cdf606e616baa36751f3b4adcfaefc781126c8c
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-Booting ROCK 5C Lite boards using U-Boot generic-rk3588_defconfig:
+pip3 install dtschema --upgrade
 
-ROCK 5C Lite v1.1 (RK3582 with 1 bad cpu core):
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-  cpu-code: 3582
-  cpu-version: 08 10
-  data: fe 21
-  package: 11
-  specification: 01
-  ip-state: 10 00 00
-  bad-state: cpu core 4
-
-ROCK 5C Lite v1.1 (RK3582 with 1 bad rkvdec core):
-
-  cpu-code: 3582
-  cpu-version: 08 00
-  data: fe 21
-  package: 11
-  specification: 01
-  ip-state: 00 80 00
-  bad-state: rkvdec core 1
-
-Regards,
-Jonas
 
