@@ -1,190 +1,87 @@
-Return-Path: <devicetree+bounces-71232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 821508D6205
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:41:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 688C08D620A
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:42:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3843E288A25
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:41:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA774B247D9
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:41:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67822158D62;
-	Fri, 31 May 2024 12:40:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DBBA1586CF;
+	Fri, 31 May 2024 12:41:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ldGx+YGr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QIbLskln"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E11C158D60
-	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 12:40:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53ECE142E90;
+	Fri, 31 May 2024 12:41:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717159231; cv=none; b=qVLy6VJDSIS97jP2L04wVkY79WFSjqAPj02L5Q4XPXBzFXSOSgaMgZvkv+DwnigH9QzgQLYr8QLnpkVApnd56gmNoHS6/DaLsXofBDhBzk/kvznU+D33ntyavrNcDiQt1148088/LxFVde52jynXJzfJGkV73cGMGTwi6JY5S6M=
+	t=1717159313; cv=none; b=LMTWbHhtGNIe9tgh71V9on2Z7DwxGYdNV49popUrwhgB3ejAui/M7KpurmyEaAqku8FBQgblAEgxDc7zx/ESxM+UHoUW26LQ1GONQH/FEnrwwv1hZEHpBIphRHnM9hssHnR3J/ky+de2kj8llifz3qVB06cjl0fC044uaJxdoRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717159231; c=relaxed/simple;
-	bh=op1s5LXJeDvIiFLVtFiSUNyEX/0wUdZkoRh3R8wmvrk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=l9JQhC7bzdYYeFSCtcGDXMKLutUxdcuq0OAPT0mHJD+abafdA5w/E26jhJv7Clsx89WTwWIVG9tS+jhHFpSAtwChq6ocLWkxuvAFh2WXBv9DLFJtYD/L0SXHVma2jxkfBbJWd6FIEGt17b9J474MZn4dpZT0cZ1W5h8sewE09EA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ldGx+YGr; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a6890ace9b6so30234466b.1
-        for <devicetree@vger.kernel.org>; Fri, 31 May 2024 05:40:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717159228; x=1717764028; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xr4ROrwcZrcWqPJ95GYGx0z7Cv4z3SOwstAiFPVmsvE=;
-        b=ldGx+YGr5I2gyFGB/hW1lYOU/RzmbipqHz3s/pBE558sdnGisTYDVKC0LpmntZ9+fK
-         etR1q+iWHn9/0fAZ6wIFYRaQUOXlM+ilt1goqL14E5HKi6xmh6wRoDEaLwlYvtemtyvN
-         Kba0CDxSEmImIMPWGmwaOp8MrA+BIJcqYA+PTHgtSaPZaJaWQgYZQ/dSrm7FQZPVc24y
-         uTvtF3hRZtSiOIjE8W2bAQ6gUSk6AY5H/fp8qxghJSGyeykBnjMoRwN4Z+YKUycKH66O
-         CnbRcJA1gs+PZH3VeBbxIIVMTjTmVHCLYvMKXYFo3cgGQssSLMkdVUW9k+8F3aYgffwd
-         3gpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717159228; x=1717764028;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Xr4ROrwcZrcWqPJ95GYGx0z7Cv4z3SOwstAiFPVmsvE=;
-        b=E7rVGQJaZH+Od79rSswaLS1qK+2xstuJDTr+/vRrNDtvcFVLKG7y/Ocn0Jvc4TN8l/
-         1rjluk5Reu4hQygXhvjaXmHcwdsDoT2YqDKqQdc6L7dYBTSbCF5pFUYT7pqVCt4CRn4J
-         vq7W46Pm17dZZkAyajlKanbju+hdhc52VRn9mfI+HI/dqLnFHRavmusfVRRSe/oJDUFO
-         /hTu6LIUTnRj/E0ouuo1z3jEx2WQpDbp0s/72gb07MuhBRsqtcg2wnJUaL1oldifrF6U
-         TPryqo1EFQ1uLYFmW8ETXjPS7ipCQ9/EE9/crForoFIje4B0zgHcXtIRyC0FmpmehWOb
-         A8Sw==
-X-Forwarded-Encrypted: i=1; AJvYcCWKzA0zJw1+lhcNwfN2VDA5uNsTP94bhulrs6n6a+ZqYRx1pqExK3I9BVTodpOeTnbYA69ZxojlLSwmNP2YdzA+zpLthkB/sRSjqA==
-X-Gm-Message-State: AOJu0YwsCALIYGqgk7o8dT8tlVh7yR5e+PCmi/Z8KUzziRFwNn8MDgRa
-	atqk9dDEMLw9XAgqngW/OQHKnhLKEE52bl4pq8/O5wurW5249pLRoiazwzApCFY=
-X-Google-Smtp-Source: AGHT+IEsfT48tFHWLoL4tXmC/aQoVny3jpqEWLohZR2KED+a33g+XlLwB+vlllg6ZOS3lwfNrrYyug==
-X-Received: by 2002:a17:906:c511:b0:a68:8853:36e3 with SMTP id a640c23a62f3a-a6888533738mr73438966b.21.1717159227971;
-        Fri, 31 May 2024 05:40:27 -0700 (PDT)
-Received: from [192.168.128.139] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a67eb6214efsm82677266b.220.2024.05.31.05.40.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 May 2024 05:40:27 -0700 (PDT)
-Message-ID: <ed5754fa-29c9-4a3e-b961-decadfcd7fc9@linaro.org>
-Date: Fri, 31 May 2024 14:40:24 +0200
+	s=arc-20240116; t=1717159313; c=relaxed/simple;
+	bh=fLDVnRp2IAtKkjqB1ZtUbEIJaqZKDsXV1q6SM1xR+VY=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=bXU4+VlpNy346uT03kMQnc1aWq2TTLfWMgm+MtpQk9KSG9p8aZc9GG2XnRBUwSLDLrdOkoREz8fUDxzOhSInNlCd0XXtl5GGyB4uUIJHmujaUSfikmBbvry/zc4QcnFzctezw1EslDmlQKWfrnJ6gqTRtWvGbhB0puAscVMJgLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QIbLskln; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38218C116B1;
+	Fri, 31 May 2024 12:41:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717159312;
+	bh=fLDVnRp2IAtKkjqB1ZtUbEIJaqZKDsXV1q6SM1xR+VY=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=QIbLskln7cBxtaQm+S7TcJ1tq4kECx//N3wO8PdN2u4JxQIbloEappMANjQnfu292
+	 OYYPBZjdYls+EUgs4OqVKJRuWTB3ieijOY0TBzVs3Nj6pwDXiCpDTYTIc8pA/+N9SF
+	 pKy2PHoJmmIHattoDi8SardiF8D/FHhEyZyk9cptlotMIuk2oLN/4epRvFk2e7NVC2
+	 Wfw9tet685AR+8HWFUk9tUcVigCWxaOa8SqQb1VTNMN7llqDhRY4TMbqXA03ex/BZt
+	 vGEUDODK6v561vrRqzpUaPIMsgJs9jHxnMbiP0d+9UjAOAtcad0Cf9Jx2+ScPN/CCP
+	 NmxtZ6yN9VeHA==
+From: Lee Jones <lee@kernel.org>
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Aradhya Bhatia <a-bhatia1@ti.com>
+Cc: Devicetree List <devicetree@vger.kernel.org>, 
+ Linux Kernel List <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>, 
+ Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>, 
+ Devarsh Thakkar <devarsht@ti.com>, Jai Luthra <j-luthra@ti.com>
+In-Reply-To: <20240512143824.1862290-1-a-bhatia1@ti.com>
+References: <20240512143824.1862290-1-a-bhatia1@ti.com>
+Subject: Re: (subset) [PATCH] dt-bindings: mfd: syscon: Add
+ ti,am625-dss-oldi-io-ctrl compatible
+Message-Id: <171715930996.1070129.13768578039000408095.b4-ty@kernel.org>
+Date: Fri, 31 May 2024 13:41:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 15/15] arm64: dts: qcom: sa8775p: add a dedicated
- memory carveout for TZ
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Robert Marko <robimarko@gmail.com>,
- Das Srinagesh <quic_gurus@quicinc.com>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Maximilian Luz <luzmaximilian@gmail.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Srini Kandagatla <srinivas.kandagatla@linaro.org>,
- Arnd Bergmann <arnd@arndb.de>, Elliot Berman <quic_eberman@quicinc.com>,
- Alex Elder <elder@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, kernel@quicinc.com
-References: <20240527-shm-bridge-v10-0-ce7afaa58d3a@linaro.org>
- <20240527-shm-bridge-v10-15-ce7afaa58d3a@linaro.org>
- <8f3f1e88-426d-4254-a31c-afcb88fc08f3@linaro.org>
- <CAMRc=MdxP5MWPhbq6u8WHRpm04F0iijeTpG0q3D9q52e7xfcsw@mail.gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <CAMRc=MdxP5MWPhbq6u8WHRpm04F0iijeTpG0q3D9q52e7xfcsw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.12.4
 
-On 29.05.2024 4:39 PM, Bartosz Golaszewski wrote:
-> On Wed, May 29, 2024 at 4:26 PM Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>
->> On 27.05.2024 2:55 PM, Bartosz Golaszewski wrote:
->>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>>
->>> Add a 20MB reserved memory region for use by SCM calls.
->>>
->>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>> ---
->>>  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 7 +++++++
->>>  1 file changed, 7 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->>> index 31de73594839..c183527452d7 100644
->>> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->>> @@ -208,6 +208,7 @@ core3 {
->>>       firmware {
->>>               scm {
->>>                       compatible = "qcom,scm-sa8775p", "qcom,scm";
->>> +                     memory-region = <&tz_ffi_mem>;
->>>               };
->>>       };
->>>
->>> @@ -418,6 +419,12 @@ cdt_data_backup_mem: cdt-data-backup@91ba0000 {
->>>                       no-map;
->>>               };
->>>
->>> +             tz_ffi_mem: tz-ffi@91c00000 {
->>> +                     compatible = "shared-dma-pool";
->>> +                     reg = <0x0 0x91c00000 0x0 0x1400000>;
->>
->> How does that size relate to
->>
->> +       pool_config.max_size = SZ_256K;
->>
->> in patch 3?
->>
->> Konrad
+On Sun, 12 May 2024 20:08:24 +0530, Aradhya Bhatia wrote:
+> Add TI DSS OLDI-IO control registers compatible for AM625 DSS. This is a
+> region of 10 32bit registers found in the TI AM625 CTRL_MMR0 register
+> space[0]. They are used to control the characteristics of the OLDI
+> DATA/CLK IO as needed by the OLDI TXes controller node.
 > 
-> Short answer: it doesn't.
+> [0]: https://www.ti.com/lit/pdf/spruiv7
 > 
-> Slightly less short answer: this is the limit of *this* specific TZMem
-> pool which in turn gets its memory from the shared DMA pool. We can
-> have multiple TZMem pools and they all share this DMA pool.
+> [...]
 
-OK makes sense, thanks
+Applied, thanks!
 
-Konrad
+[1/1] dt-bindings: mfd: syscon: Add ti,am625-dss-oldi-io-ctrl compatible
+      commit: a49338cd99221f63804417838ea241290c921e39
+
+--
+Lee Jones [李琼斯]
+
 
