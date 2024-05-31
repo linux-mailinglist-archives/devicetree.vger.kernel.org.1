@@ -1,167 +1,220 @@
-Return-Path: <devicetree+bounces-71212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 059BE8D60F2
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 13:44:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95E2E8D6104
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 13:55:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 41707B223CB
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 11:44:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 135CB1F23F4C
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 11:55:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 588CE157A58;
-	Fri, 31 May 2024 11:44:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 476E9157E7A;
+	Fri, 31 May 2024 11:55:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="azpfS43w"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JmqCSz+r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1B56156967;
-	Fri, 31 May 2024 11:44:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7966D156257;
+	Fri, 31 May 2024 11:55:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717155873; cv=none; b=J7F6l48gliXIMJz8bqvbSoqoIl/Ua9s64JmA2wm5jwsk1hTaf+9w7izEnvDT5j776BQmm7tBc/FDGM2lx0ukoS+u5kYLHscIEf3sVZ4ZByyLBkDr6wa4kD7GuEipsOWpqyFEhUHl8UcPPIlqGt5rs/JJzRvGTAud9NKoqI5YT5U=
+	t=1717156528; cv=none; b=J+CKE9HKl8jM9eT5MCwk3nJ+c16Nnn7F/fDTwirgEOQ7mSX45i/omPMD/An8qfOForMq6QAapMVow17PXimB92RMpjfgwVF/yDSms573CxsFKZ6hWls8+kcdZWZCDnDXGq5BPHSHC2JbDS79vxj6xFlifFex4XnKAZSCELIT2o4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717155873; c=relaxed/simple;
-	bh=gTkrPFcPFjPmNl4EMeRF67ICZfuMGtOJ+smcsmDI0GA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VeyvzGLHqrfTwddurEO4inwslB8HRWag6P2ujKj8IZrkff0wOJedI79ItQHN/e3XUQD+VHFNoqkKarERd8JU0WAqVsaI5GSb3soKhBYefE4wzc0JF5VVtqC2i5GY0u16M1D8rW94v8X2zalqYFvuD6MT54Da8LKm97U0Il7omrw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=azpfS43w; arc=none smtp.client-ip=209.85.218.43
+	s=arc-20240116; t=1717156528; c=relaxed/simple;
+	bh=CBKzv3CRd2OOutXfqI+Jz8p5xY2ZBVrp7l2FWlg5yuU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=t0di56wJcl5AzUTGdZLuioQq5cnUW7fx3Y7LZ9M7kMRjbcHVNZQqu3uFHRmng3E1En24eCDGIM4uFDxScuAbLDlr1YEQ6LzyzfOB+/MpvnbsiUHYaD0konmG8709pQlJtgk+IvkvNh4zTw+mSrP9KoQG7opldf9cXRYgYoVAVL8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JmqCSz+r; arc=none smtp.client-ip=209.85.218.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a6762109c06so189166066b.0;
-        Fri, 31 May 2024 04:44:30 -0700 (PDT)
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a6267778b3aso168588766b.3;
+        Fri, 31 May 2024 04:55:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717155869; x=1717760669; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wqd5CJWs8bzLK+RMndMHq317X+gT2llkhqAxoGBYvLU=;
-        b=azpfS43wN2KCH4RBOJ8Do/P3ub61nW5hP2jpq/pOk+jyN2gL7bF15zpNR/wF0VhPdh
-         PYFv2+4XDBl0UHUNAqTrpxR33aDQ9uISi4/NLtoDNBZF7giY8kG0SNPxz7CHhqH7F7Wp
-         ijT+BLmesAgM9dsK9p8KFhmonKM8sdiannY0lC/6/Jlg6qAYlTH7F8CJ8A/7QT406b3+
-         Ng6MbFLgtSWEwi9a0LdVCxrcLWO/4hbZKi6yyP0ONWER4CwA9Yiop7Gz4MBIDugtfEgU
-         S9iPxuDi+Wa392gt94m0bZ0WGO2ChY8wHzC/84aqV739aHKzjHQdvsQgk0O5AMKIQdy/
-         +q6w==
+        d=gmail.com; s=20230601; t=1717156525; x=1717761325; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+4EQS2Qufu6k4fIxkqPPPmFNyZB1HQhHIFpQwHJxd/E=;
+        b=JmqCSz+rSaLUGIzYsRhSHeR0JTtikC021AzJ84mY++mAs9niq6X9v1J6kYh+tZoTQG
+         ycoTj/fdYr/Rn0SjbXwqM7WgL+HRPJtX6aOYbQeXok556C2nujHn+t9RnaV6tCKEPtv5
+         kxDWrLFDeysJ38OKTLWI83sqiIyw0Aj9yNCC209DROts8jQKhI8z3mKcSbWv5QQcBYKM
+         +3BtJc6dS7VtxLtxit0yfQ2aNmjguSXiRYrTq6CI056yOp4Uq9K97Zwvte3UZC1dJXyw
+         nacr+f0trsL10KcPSx2jL34UF0KkNfXm5r2rObq2okOGvGP9VKlYi6Q3WZI+wFG6HaP8
+         QF3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717155869; x=1717760669;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wqd5CJWs8bzLK+RMndMHq317X+gT2llkhqAxoGBYvLU=;
-        b=X/dxeuS5uopxZNDS9Ig4POPsg6K2XUe2koRqoyaE6qbBdbEGMyvixrC7xwlOTy/DpG
-         1/mTR5k7SNF89cZaZuequAfGYCRsLXOVpuvJfwR/CZYHPO2b/ISS64eyORvM9P10hepu
-         oQU7iLbFhA9ThEXUkF2+FlNDmUWzh18xBqQkI002AcZfsRtLMf/RgGvx9xvWygdf7/6d
-         81gKNONlYSGPUXWUGs0ibOHDwr/9/RJn/6yVn7X3A3peiJZnRosLiWC+TfB/hPHNuiwD
-         e4IB/5FeXz+8vFuc5h6pLvwJ0b9XKiSoxRSVdawTaPY2VaUYaHLaTiOWmNj8jVxiquWE
-         670Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXTLrGVz1PI9h4ytUpE/xa4HrLoHHoSBFPEkBFrjnFLGQ+Fq1Nlqod3y12LLrmn+ZLyL2f+tJ6gyb9hCRJoFs7MJEXZeFQTorUzfCI7XKPZPI3fkBAHyzG0NK+ZVfewN8XoIZNSiufiVQ==
-X-Gm-Message-State: AOJu0YzeqQzQOuTQ2FLaHm2T525EnsvIcWeqrNBn0374SkUFw72SJR2Z
-	XeGKGCX7OBXbA+s6Q8R+HiwOXBuYsy/qxMxhzOgwcD1pU5xPtww/wq6NTQzZSkQVedgBvctFkdX
-	zAmyE9+36byVHfwIu8+ertJWh+WI=
-X-Google-Smtp-Source: AGHT+IF0Qcu9EJQr44+eGVBolIVBmGWoyCtqb1nUMq+iFXyzHjYzB1XGjgJZdgvl6m/6O9x6S/jQYc6TUKvIW8vbQQU=
-X-Received: by 2002:a17:907:1044:b0:a68:8cf2:4985 with SMTP id
- a640c23a62f3a-a688cf249f7mr56590066b.37.1717155868742; Fri, 31 May 2024
- 04:44:28 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1717156525; x=1717761325;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+4EQS2Qufu6k4fIxkqPPPmFNyZB1HQhHIFpQwHJxd/E=;
+        b=dzd829Zf9JTqSbX97JC+83IfkiJQhpvPMhWQYtnLjl8cjNiKB53qxKJFRDHx7gCNWE
+         b6fHSm8VqPfvo/R/Q4Y7i7djDsWKt3c2LdrAvqAD4PNJD2hF54UIBM8m2cA1rJYdSG20
+         XwGDGuqlJICmSLewJvHcREIwUANVF4D0o5RjVIEkgL/BnRNTsczylq7XKlGZ8rR6KFBI
+         SJNQhQm2ckifvDIdbrWu/Z6M2OZvNPFgCarhewBkgPM1BncZI8DEkeIdqIJLyBnuPJFk
+         6hcirKJmPA5+fCslLItV+jz7dmozhsnZ5L0+XMOr/bysFHHO7DaULA7whZbG9ablEmzW
+         LkDA==
+X-Forwarded-Encrypted: i=1; AJvYcCWVlFldybqtqnXbrja1d0JNAeN3gQhfY8o2SGBdKDgMHLHB04ujXDSQ5UMy30uF6F/NCfEdmD2nckU3VUyL/F5oI5bVaIbvBYeMZeEaPOUmSdcW1aL/DQoqnZy6xwTZJmZh7GwBn9ve3n9RjNp/28OIiVykPxknm+9+8f+KF3SXGv31cCaXMER5OZAQNtp18O1GZDKITFxcT9ypFBAfT4h2fEoBowg=
+X-Gm-Message-State: AOJu0YwcW8vpfrqyU5P4sx+F0Gj0MrD6k1lwsZxNvJx4aIxNRda6Bnx9
+	YBEi4zNI3syx7doBAcbWwG6WMSdm3ahr2Qx2UcG7T7FeXVDotyfa
+X-Google-Smtp-Source: AGHT+IF5s93wOrD7fv1QbKpmM06TGIoSvHaQfAxyubxSj+LQPazSFbI1YaveD5sUsyWaTvIT4JPZOA==
+X-Received: by 2002:a17:906:d109:b0:a63:535b:b316 with SMTP id a640c23a62f3a-a68208f0f9cmr134945966b.44.1717156524515;
+        Fri, 31 May 2024 04:55:24 -0700 (PDT)
+Received: from [192.168.50.244] (83.8.128.191.ipv4.supernova.orange.pl. [83.8.128.191])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a67eb34449bsm77607466b.213.2024.05.31.04.55.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 May 2024 04:55:24 -0700 (PDT)
+Message-ID: <0b611c4b-23d2-4c33-a6be-c15a04e8b99a@gmail.com>
+Date: Fri, 31 May 2024 13:55:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <673dcf47596e7bc8ba065034e339bb1bbf9cdcb0.1716948159.git.dsimic@manjaro.org>
- <CABjd4YxD41DEkBCZfkznLboEY9ZVOfTCLcj4S_kkcsVswbANyQ@mail.gmail.com>
- <8f8623e29a479c4108141302e708dc3b@manjaro.org> <CABjd4Yy4RMg+6-4ygV0MSwJj5LReY-ymbctq4PPfVZ6L+c1tsw@mail.gmail.com>
- <166cc4e46f31644a50306625b2ab18a6@manjaro.org> <CABjd4YzDNQa45=KC_t0xnTDrH+g-oUrcpgP55oOj7JcAuu7uFw@mail.gmail.com>
- <82db817a908b761d8c3d73ea04714314@manjaro.org> <607f4da8-99b2-4379-9567-4bfd2744eab3@kwiboo.se>
-In-Reply-To: <607f4da8-99b2-4379-9567-4bfd2744eab3@kwiboo.se>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Fri, 31 May 2024 15:44:17 +0400
-Message-ID: <CABjd4YxdM+cM+z7ou3=DF2SrFM0235DSTZ45o0NsKBwGrgW8Bg@mail.gmail.com>
-Subject: Re: [RFC PATCH] arm64: dts: rockchip: Make preparations for
- per-RK3588-variant OPPs
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Dragan Simic <dsimic@manjaro.org>, linux-rockchip@lists.infradead.org, heiko@sntech.de, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-kernel@vger.kernel.org, quentin.schulz@cherry.de, wens@kernel.org, 
-	daniel.lezcano@linaro.org, didi.debian@cknow.org, 
-	krzysztof.kozlowski+dt@linaro.org, viresh.kumar@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 06/11] power: supply: max77693: Set charge current
+ limits during init
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Chanwoo Choi <cw00.choi@samsung.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, Henrik Grimler <henrik@grimler.se>,
+ Wolfgang Wiedmeyer <wolfgit@wiedmeyer.de>,
+ Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>
+References: <20240530-max77693-charger-extcon-v1-0-dc2a9e5bdf30@gmail.com>
+ <20240530-max77693-charger-extcon-v1-6-dc2a9e5bdf30@gmail.com>
+ <d740ff64-2de6-424c-9fc0-f1064f8c4f8b@kernel.org>
+Content-Language: en-US
+From: Artur Weber <aweber.kernel@gmail.com>
+In-Reply-To: <d740ff64-2de6-424c-9fc0-f1064f8c4f8b@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Jonas,
+On 31.05.2024 11:47, Krzysztof Kozlowski wrote:
+> On 30/05/2024 10:55, Artur Weber wrote:
+>> There are two charger current limit registers:
+>>
+>> - Fast charge current limit (which controls current going from the
+>>    charger to the battery);
+>> - CHGIN input current limit (which controls current going into the
+>>    charger through the cable, and is managed by the CHARGER regulator).
+>>
+>> Add functions for setting both of the values, and set them to a
+>> safe default value of 500mA at initialization.
+>>
+>> The default value for the fast charge current limit can be modified
+>> by setting the maxim,fast-charge-current-microamp DT property; the
+>> CHGIN input current limit will be set up later in the charger detection
+>> mechanism.
+>>
+>> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+>> ---
+>>   drivers/power/supply/max77693_charger.c | 45 +++++++++++++++++++++++++++++++++
+>>   1 file changed, 45 insertions(+)
+>>
+>> diff --git a/drivers/power/supply/max77693_charger.c b/drivers/power/supply/max77693_charger.c
+>> index 894c35b750b3..d59b1524b0a4 100644
+>> --- a/drivers/power/supply/max77693_charger.c
+>> +++ b/drivers/power/supply/max77693_charger.c
+>> @@ -28,6 +28,7 @@ struct max77693_charger {
+>>   	u32 min_system_volt;
+>>   	u32 thermal_regulation_temp;
+>>   	u32 batttery_overcurrent;
+>> +	u32 fast_charge_current;
+>>   	u32 charge_input_threshold_volt;
+>>   };
+>>   
+>> @@ -591,6 +592,35 @@ static int max77693_set_batttery_overcurrent(struct max77693_charger *chg,
+>>   			CHG_CNFG_12_B2SOVRC_MASK, data);
+>>   }
+>>   
+>> +static int max77693_set_input_current_limit(struct max77693_charger *chg,
+>> +		unsigned int uamp)
+>> +{
+>> +	dev_dbg(chg->dev, "CHGIN input current limit: %u\n", uamp);
+> 
+> That's quite useless debug. It duplicates
+> max77693_set_fast_charge_current(). Just drop entire wrapper.
 
-On Fri, May 31, 2024 at 3:27=E2=80=AFPM Jonas Karlman <jonas@kwiboo.se> wro=
-te:
->
-> Hi Alexey and Dragan,
->
-> On 2024-05-30 21:31, Dragan Simic wrote:
-> > Hello Alexey,
-> >
->
-> [snip]
->
-> >>>>> That way we'll have no roadblocks if, at some point, we end up with
-> >>>>> having
-> >>>>> different OPPs defined for the RK3588 and the RK3588S variants.  Or
-> >>>>> maybe
-> >>>>> even for the RK3582, which we don't know much about yet.
-> >>>>
-> >>>> Guess we'll deal with that one once we stumble upon an actual RK3582
-> >>>> board out in the wild and heading to the mainline kernel tree :)
-> >>>
-> >>> Of course, that was just an example for the future use.
-> >>
-> >> In fact, I've just discovered that Radxa has recently released Rock 5C
-> >> Lite which is based on RK3582, and starts at just $29 for the 1GB
-> >> version, making it interesting for tinkering. Especially given that
-> >> its GPU, one of the big-core clusters and one of the VPU cores seem to
-> >> be disabled in software (u-boot) rather than in hardware, which means
-> >> there is some chance that a particular SoC specimen would actually
-> >> have them in a working condition and possible to re-enable at no cost.
-> >> Ordered myself one to investigate :)
-> >
-> > Yes, I also saw the RK3582-based ROCK 5C Lite a couple of days ago. :)
-> > It seems that the disabled IP blocks are detected as defective during
-> > the manufacturing, which means that they might work correctly, or might
-> > actually misbehave.  It seems similar to the way old three-core AMD
-> > Phenom II CPUs could sometimes be made quad-core.
-> >
->
-> I can confirm that the RK3582 include ip-state in OTP indicating
-> unusable cores, any unusable cpu core cannot be taken online and stalls
-> Linux kernel a few extra seconds during boot.
->
-> Started working on a patch for U-Boot to remove any broken cpu core
-> and/or cluster nodes, similar to what vendor U-Boot does, adopted to
-> work with a mainline DT for RK3588.
+It doesn't duplicate max77693_set_fast_charge_current, they modify two
+separate registers. Quote from the commit message:
 
-Superb - it's great to have a patch for it already, thank you for working o=
-n it!
+> There are two charger current limit registers:
+> 
+> - Fast charge current limit (which controls current going from the
+>  charger to the battery);
+> - CHGIN input current limit (which controls current going into the
+>   charger through the cable, and is managed by the CHARGER regulator).
 
-> On one of my ROCK 5C Lite board one of the cpu cores is unusable, U-Boot
-> removes the related cpu cluster nodes. On another ROCK 5C Lite board one
-> rkvdec core is only marked unusable and all cpu cores can be taken
-> online, U-Boot does nothing in this case. Guessing we should apply
-> similar policy as vendor U-Boot and disable cores anyway.
+max77693_set_fast_charge_current sets up the "fast charge current"
+register (in CNFG_02, CHG_CNFG_02_CC). The CHARGER regulators sets the
+CHGIN input current (in CNFG_09, CHG_CNFG_09_CHGIN_ILIM).
 
-Is there any misbehavior / instability if you just keep all the
-unmarked cores online?
+(Apparently the CHARGER regulator is supposed to handle the fast
+charge current, but it does not; I wrote about this in the "CHARGER
+regulator" section of the patchset description.)
 
-I think from an end-user perspective it would be better to just enable
-everything that works, as the reason to unconditionally disable some
-IP blocks even when they are "good" is quite likely not a technical
-one but rather a marketing one. It's hard to justify selling chips
-with different sets of working IP blocks under the same label and the
-same price, making it easier to just trim them all to a lowest common
-denominator. On the other hand, once a person has already bought a
-device where some IP blocks work even if they are not supposed to, why
-not make use of them? It costs nothing, hurts noone...
+>> +
+>> +	return regulator_set_current_limit(chg->regu, (int)uamp, (int)uamp);
+>> +}
+>> +
+>> +static int max77693_set_fast_charge_current(struct max77693_charger *chg,
+>> +		unsigned int uamp)
+>> +{
+>> +	unsigned int data;
+>> +
+>> +	data = (uamp / 1000) * 10 / 333; /* 0.1A/3 steps */
+>> +
+>> +	if (data > CHG_CNFG_02_CC_MASK) {
+>> +		dev_err(chg->dev, "Wrong value for fast charge current\n");
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	data <<= CHG_CNFG_02_CC_SHIFT;
+>> +
+>> +	dev_dbg(chg->dev, "Fast charge current: %u (0x%x)\n", uamp, data);
+>> +
+>> +	return regmap_update_bits(chg->max77693->regmap,
+>> +			MAX77693_CHG_REG_CHG_CNFG_02,
+>> +			CHG_CNFG_02_CC_MASK, data);
+> 
+> I am surprised that you set current limit via regulator but actual
+> charging current value here. I think both should go to regulator in such
+> case.
 
-Best regards,
-Alexey
+As in, both fast charge current and input current should be set up by
+the CHARGER regulator? Sure, sounds good to me.
+
+I've noticed that on the original kernel, both of the values are
+modified together too (only exception is that fast charge current would
+be set to 0 when the cable was unplugged, but the input current stayed
+at 500mA. This doesn't seem to affect anything, though.).
+
+At one point I actually considered going the other way around - moving
+all charger register handling into the charger driver, instead of having
+it be a regulator. As far as I can tell, only some Samsung-submitted
+charger drivers (max77693, max8997, max8998, max14577) use a regulator
+to manage the charger current (if anything, some power supply drivers
+expose an OTG/VBUS regulator, might be something for us to consider as
+well...).
+
+I see you wrote at least the max14577 and part of the max77693 driver;
+out of curiosity, what's the benefit of doing it through a current
+regulator (as opposed to adding set functions for the relevant
+properties in the charger driver)? I've noticed the downstream driver
+has a very similar pattern[1], I wonder if it's just a port of that or
+if there's a more concrete reason.
+
+Best regards
+Artur
+
+[1] https://github.com/gr8nole/android_kernel_samsung_smdk4x12/blob/lineage-14.1/drivers/regulator/max77693.c (everything related to MAX77693_CHARGER)
 
