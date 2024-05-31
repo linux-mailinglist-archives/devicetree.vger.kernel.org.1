@@ -1,83 +1,83 @@
-Return-Path: <devicetree+bounces-71261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0A268D6379
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 15:50:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 152B18D6380
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 15:52:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9506D1F23BFE
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 13:50:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 836D4B22D27
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 13:52:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27E6D159216;
-	Fri, 31 May 2024 13:50:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F935158DDD;
+	Fri, 31 May 2024 13:51:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M2xOYgYI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TwEGLc+X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC9861586C8;
-	Fri, 31 May 2024 13:50:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 380E81422DC;
+	Fri, 31 May 2024 13:51:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717163423; cv=none; b=Ipt+vcpfjEf7MSLZTDfUnN0K4uuiba6UK/VbrBy2CeTrUSJ6A8x1op5dZRcPJrgcuUaIkxZbM5CF1acsFKsCyDXxwldBAc3ooQVZ/sYoWJEN7rjVHsFRtSsXMWncIL6D8ncnmY+wm0olXTOGLRLonL4UEBNTly2/SEA+BDLU2x0=
+	t=1717163518; cv=none; b=HHkXZOP5PYFImLr4SGtHrwLTUdRHlpwGyzCwO7ReVUF04jS4PhLpWqZUF2L6Pp5NlKFZJEONq583JiZrLX3vmd2i70mHp5Lr2oP5C/FEIdmNqa0XsRyb7WFYiJqb5SI81lPRvNrSdaDcdKiGgeyKl129YULlj0HjnQo795UOkE8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717163423; c=relaxed/simple;
-	bh=U72Hnfwv+pkza1MDuPQna617EZqo/kS0L8j4Zh+baKc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=syAVlK5jKhQIpX/y58yCKW0Ia7H4MkKeDxlvjGCvzb/qEBfch/Xbw7EQA0Ob8JOD2WbVeD6m7PzLs+areOBpExxz7RO9oF56a6vf+cBv69mithoyfQouwO7gIJ0eIq2fXvZkmsWt4ZyVcCN2vH4YIYaNXLL69vMwMCbc8WMlJQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M2xOYgYI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A950C116B1;
-	Fri, 31 May 2024 13:50:20 +0000 (UTC)
+	s=arc-20240116; t=1717163518; c=relaxed/simple;
+	bh=ZLFkgp0st89FLzWtvHCzJtpMDWqn9ddfK5U7FlGjMYk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=JRqY/UibeztDUYCZ3W8McSQYHKcs5JUFUu0s0osOdtw/IW5q/96E1lU2RioVvVPXXmVPfnfGgI2ZOcYtYR7tOYoCSNquMTsFgq760yzsoi69AmGA2ukRSUNNAQM5OEQLpqsgSK4lNNrJDkmKq+9rrtR1kea5baSqGZzxa7pkQB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TwEGLc+X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BAC6C116B1;
+	Fri, 31 May 2024 13:51:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717163422;
-	bh=U72Hnfwv+pkza1MDuPQna617EZqo/kS0L8j4Zh+baKc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M2xOYgYIKaq/lv6mByWSAcQ2qMB1EXPK3S+LOLoTx/og2lPbieb9jXRYv/BsE7YU7
-	 l7/rsarSSHN5yVl7M/UlnuUV1rt7IlWEdFmk1cNTQfjvFpE1ZzXKwrjEY9GwihS0Wy
-	 spRIM5mLXxnWmnb+eDQvWBnEqzETROIfKWC31nkH9PE7ihKiGCOCS6Nr4YNEUj2zhV
-	 5fFZu/+kZOHBKM0OeOaTSkJZ2QqC0NVwkgHIznz1HxoBdA16+c0XsiKu/cTuICf3dw
-	 bmoLrS+jWRYKW73UOrYSFN5LFlP6LE6YNALxRG0zdingT7ZPkRrPyq6Hdw7XqxxfdM
-	 CFcdj8OMmV/Fg==
-Date: Fri, 31 May 2024 14:50:17 +0100
+	s=k20201202; t=1717163517;
+	bh=ZLFkgp0st89FLzWtvHCzJtpMDWqn9ddfK5U7FlGjMYk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=TwEGLc+XlwUMXPYNsDsN6Ig+TdBfRDLS2l2cpDTAPxLfB7HfSvD/nJVkOds9Ryebt
+	 gyFP0C3E9IXLijews69ycBXVATbbW2e9088KOLeDLB3nQdvlrBsxtlnfmdAoki6nfJ
+	 r5KTONlV5h+k/E5PPaWH41J0A6cVYbOy9BA9JPawXz+Wn6fG5ojCH1tsXhdsvos5YD
+	 jrssIPJG9mA56h9Vb3FYB+PksD89PahVtj352Rlfj6k/muKmbdE1hZvdXcnNzojuZZ
+	 LkxoD6EA/eJSXuuGvR8Iq2bZ/Vzqm36ECAdVyC3zzJguGdh4XYDKLn2wFe/XaksUtW
+	 h7ai04owVO5sg==
 From: Lee Jones <lee@kernel.org>
-To: Roger Quadros <rogerq@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Abraham I <kishon@kernel.org>,
-	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, "Andrew F. Davis" <afd@ti.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: soc: ti: Move
- ti,j721e-system-controller.yaml to soc/ti
-Message-ID: <20240531135017.GL1005600@google.com>
-References: <20240520-for-v6-11-j721e-syscon-v1-1-f57a93e12cad@kernel.org>
+To: linux-mediatek@lists.infradead.org, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, matthias.bgg@gmail.com, mandyjh.liu@mediatek.com, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
+ jpanis@baylibre.com
+In-Reply-To: <20240527093908.97574-2-angelogioacchino.delregno@collabora.com>
+References: <20240527093908.97574-1-angelogioacchino.delregno@collabora.com>
+ <20240527093908.97574-2-angelogioacchino.delregno@collabora.com>
+Subject: Re: (subset) [PATCH 1/5] dt-bindings: mfd: mediatek,mt8195-scpsys:
+ Add support for MT8188
+Message-Id: <171716351496.1109202.13130330673737183145.b4-ty@kernel.org>
+Date: Fri, 31 May 2024 14:51:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240520-for-v6-11-j721e-syscon-v1-1-f57a93e12cad@kernel.org>
+X-Mailer: b4 0.12.4
 
-On Mon, 20 May 2024, Roger Quadros wrote:
-
-> soc/ti is the more appropriate location for the system controller
-> device tree binding documentation so move there.
+On Mon, 27 May 2024 11:39:04 +0200, AngeloGioacchino Del Regno wrote:
+> Add a compatible string for the scpsys block found in the MediaTek
+> MT8188 SoC.
 > 
-> Update Kishon's email address to a working one.
 > 
-> Signed-off-by: Roger Quadros <rogerq@kernel.org>
-> ---
->  .../bindings/{mfd => soc/ti}/ti,j721e-system-controller.yaml          | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
 
-Acked-by: Lee Jones <lee@kernel.org>
+Applied, thanks!
 
--- 
+[1/5] dt-bindings: mfd: mediatek,mt8195-scpsys: Add support for MT8188
+      commit: 5b8d73b7e1ceb2578f74d0a119a4b4a4be690d2e
+
+--
 Lee Jones [李琼斯]
+
 
