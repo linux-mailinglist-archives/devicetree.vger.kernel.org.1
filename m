@@ -1,88 +1,57 @@
-Return-Path: <devicetree+bounces-71035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BADA18D5787
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 03:05:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFB128D5834
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 03:39:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34D591F25BF4
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 01:05:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB3292869D4
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 01:39:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7828A613D;
-	Fri, 31 May 2024 01:05:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B14342A1AA;
+	Fri, 31 May 2024 01:36:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PZ2imBoO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k0BexmJa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1082FD26A
-	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 01:05:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 846062D7B8;
+	Fri, 31 May 2024 01:36:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717117514; cv=none; b=oyQPnnBas1qmIHlaNZJrgLmzF+O4adwF1byGi2oOLZOTogIAIVXJe/yqwXuLnA0+zzTcKYUwrsSMkeIWs1K4+OpUSrgKaITiLk5CWwk+37pVwLbxQj7MyiR5d4XxdkoIUDyCMNbLWS7tmeJ9nkp4aQQTHEU/NFRUugwolyLB4h8=
+	t=1717119369; cv=none; b=fpASYeLqfBnDlvxv1ga/rqSjzphl1bX5EdabkVosJPk4Joeol67j58Ufgss3aBGAjGI1tS2uLZaH6MvC6McqbuWWlUH7krByI1dhAM4ssuA2MZuOznGeu8EN8Z6a1YJRs7kkeU9LGuVZOnwFWJh8QefHEPRwbd9Gf9PvJe5bUVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717117514; c=relaxed/simple;
-	bh=uXfDEOjLv+ehvyI9BLqFEZ08MZc+Pu/2A0MFNLqubJw=;
+	s=arc-20240116; t=1717119369; c=relaxed/simple;
+	bh=yJBuR6bIVxGlNAFlMMWwvgbcjFar6UC2gGWKayrnt8c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SgQEVvCWcaAOriDIMBOt6K1ZP6SKqfCyE4pEjT9dPaP4/HyCnFwXfl4VMDidKIwNlnpHHu/4C0nG1ErU82qyTlKAPCUyQYGHpSUdX+HAwX6rZh79GhnwUnx7ArFP6EIwXG71Vb1aJ8IEnZhDFsp94CtF47yO5ZxzFDTlEbOmGfc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PZ2imBoO; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-52b0d25b54eso2171952e87.3
-        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 18:05:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717117510; x=1717722310; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LVbzQgiFaGguV//d78RBj3pAHXG3P0yCT4npYfngP5s=;
-        b=PZ2imBoOD/Gla9oPGISBS5VRkqhq4CUqBmcLJRO2cnQe+5z/wQ7vLCAr6t+0LFL9GI
-         JZviynR6AAOPVyaqj9w7lN4wf+ydNABI/O3xrrMGDrOcjpWUJXpj0gHVMqpJ0cuM3d2e
-         r9MOwBMb5aNcMx9vfb32/ldlfY0Tqr4p89tmWHXJqTe1rtaCuHecSWKLz/CK+lIf8uni
-         3/VcSepRvfxq0lMeH/O4+A8Xf4XZDVYdLlytmnnmVV3oR4Js986SJKnHvScJSdb5nHQU
-         1lK7D6kjEId1n5NiojZar5VxtGWC35D2tcPmWAG31+dAryUD1fEtG1UBcgjFon0Sbf/m
-         43wQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717117510; x=1717722310;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LVbzQgiFaGguV//d78RBj3pAHXG3P0yCT4npYfngP5s=;
-        b=oj/9Gb5uVJMfI0VZq11K68qoClzCd5KtRYYUd84y68RBC/d8/Ma5q/ekAuihv54aaL
-         92weSaZUl28egg0F/uCZVBbp1N4Z/2JHiuE6eRrv9w1w8fMqLjcPlSIEEolsqkFfubSr
-         14/6HBs5XYrj31tRYwmN2P1FQf8cMS3llv8zInNlU0q+7VmjjfItXg7n1Aok2HSe4YgT
-         3QCOgANtYLDEFYwfII9w8bJO9sdaI3rJtiM2gWm39egXZw5J7dnfqb/Abh6S6IbOoZ0+
-         GMzrhc7DsTjd4r/3EFda4PkFFjnfdxL23umWJZMIMEQhNNHuDl6Q969zlqpLCbg+MIJ3
-         5SEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXRQQ5rDbto9aEplHu59dzTFwPqTUBIxUAZLgF0AA/LL0orRwv1xwmbb74SGgeF8/P+x9SrXH8UldFBVUV7+9JQrQGNTIdd3GIpkg==
-X-Gm-Message-State: AOJu0Yy0PehG45GGnY4NIO/uZR5ldYQIhLlb7QOvBxk8cvu51dXw1GKk
-	SYt3t40siFBv0t7xuHpgYq0vBQ7aGYV4pwadTHjbxBV5DgrSRgwWxbQYolTDxcc=
-X-Google-Smtp-Source: AGHT+IHomuQLV/a1+46r2/bjrhxItgrwS1B7Si5a5leUogKwVcxPn4v1vNxtZhU6lKWRVAcVsxarfw==
-X-Received: by 2002:ac2:5548:0:b0:52b:88e8:1c82 with SMTP id 2adb3069b0e04-52b895a385fmr190738e87.47.1717117510049;
-        Thu, 30 May 2024 18:05:10 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52b84d75fd6sm142407e87.157.2024.05.30.18.05.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 May 2024 18:05:09 -0700 (PDT)
-Date: Fri, 31 May 2024 04:05:08 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Hans de Goede <hdegoede@redhat.com>, 
-	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	platform-driver-x86@vger.kernel.org, linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Nikita Travkin <nikita@trvn.ru>
-Subject: Re: [PATCH v4 4/6] power: supply: lenovo_yoga_c630_battery: add
- Lenovo C630 driver
-Message-ID: <ndrp6ghnoibfm3t7qk7zuwfcukixh6uzqykj7vitobtiqntin6@ud242mjaivfl>
-References: <20240528-yoga-ec-driver-v4-0-4fa8dfaae7b6@linaro.org>
- <20240528-yoga-ec-driver-v4-4-4fa8dfaae7b6@linaro.org>
- <6d957019-ccec-4129-9e6d-33204de88dd5@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=H2CQ+Ig7wmdspa0bYK1zgsfJ+7wuF8UNdCnsVhbKF4Wp6JhB31PK2ldVBZImOgUODCSilSPrD5EQQc5FWJTQdNgmUN5CSgF9A6l4NYvC5YKb1rQ4RersQZc8JprfjEAvDLBx/w5dIh+93oVZGfBss9HEk88556iQZNeANIrt75A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k0BexmJa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D178AC2BBFC;
+	Fri, 31 May 2024 01:36:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717119369;
+	bh=yJBuR6bIVxGlNAFlMMWwvgbcjFar6UC2gGWKayrnt8c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k0BexmJaExgl1ZplrCjGz0HjNtHSFPWVzNrtfWSaQf1fKKYJsnyg8Wx3VHuCUb32O
+	 XWDtg2icUwyUQZ5FESl7On5ww4KndEIm8IQpJ+fPGc9aI5vcIIjrPwiMPe4kDQWj2O
+	 oK3vZSaaZbos0jnC3e0/kwhHg7u1gF1lS5LhJ4LonBoxWTQnRjl61sHLvxdPoYp5Fo
+	 TFX7qoijrqnuI4XhqITNKW6RS608E5JLHffsI/4tBT+AsQunRwEH1GkabRZV8A9Uzp
+	 QiL65ARGdwZ/PRQUiJBV4tfoUeR9EMI8ZExdknqrm3O7Vw/TBIjDaG301YeMCo0R4S
+	 1F6ui8LIwaMFg==
+Date: Thu, 30 May 2024 20:36:07 -0500
+From: Rob Herring <robh@kernel.org>
+To: wangshuaijie@awinic.com
+Cc: dmitry.torokhov@gmail.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	jeff@labundy.com, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	liweilei@awinic.com, kangjiajun@awinic.com
+Subject: Re: [PATCH V1 1/5] dt-bindings: input: Add YAML to Awinic sar sensor.
+Message-ID: <20240531013607.GA3665090-robh@kernel.org>
+References: <20240529130608.783624-1-wangshuaijie@awinic.com>
+ <20240529130608.783624-2-wangshuaijie@awinic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,216 +60,169 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <6d957019-ccec-4129-9e6d-33204de88dd5@linaro.org>
+In-Reply-To: <20240529130608.783624-2-wangshuaijie@awinic.com>
 
-On Wed, May 29, 2024 at 04:51:54PM +0100, Bryan O'Donoghue wrote:
-> On 28/05/2024 21:44, Dmitry Baryshkov wrote:
-> > On the Lenovo Yoga C630 WOS laptop the EC provides access to the adapter
-> > and battery status. Add the driver to read power supply status on the
-> > laptop.
-> > 
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >   drivers/power/supply/Kconfig                    |   9 +
-> >   drivers/power/supply/Makefile                   |   1 +
-> >   drivers/power/supply/lenovo_yoga_c630_battery.c | 479 ++++++++++++++++++++++++
-> >   3 files changed, 489 insertions(+)
-> > 
-> > diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
-> > index 3e31375491d5..55ab8e90747d 100644
-> > --- a/drivers/power/supply/Kconfig
-> > +++ b/drivers/power/supply/Kconfig
-> > @@ -167,6 +167,15 @@ config BATTERY_LEGO_EV3
-> >   	help
-> >   	  Say Y here to enable support for the LEGO MINDSTORMS EV3 battery.
-> > +config BATTERY_LENOVO_YOGA_C630
-> > +	tristate "Lenovo Yoga C630 battery"
-> > +	depends on OF && EC_LENOVO_YOGA_C630
-> > +	help
-> > +	  This driver enables battery support on the Lenovo Yoga C630 laptop.
-> > +
-> > +	  To compile the driver as a module, choose M here: the module will be
-> > +	  called lenovo_yoga_c630_battery.
-> > +
-> >   config BATTERY_PMU
-> >   	tristate "Apple PMU battery"
-> >   	depends on PPC32 && ADB_PMU
-> > diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
-> > index 58b567278034..8ebbdcf92dac 100644
-> > --- a/drivers/power/supply/Makefile
-> > +++ b/drivers/power/supply/Makefile
-> > @@ -32,6 +32,7 @@ obj-$(CONFIG_BATTERY_DS2782)	+= ds2782_battery.o
-> >   obj-$(CONFIG_BATTERY_GAUGE_LTC2941)	+= ltc2941-battery-gauge.o
-> >   obj-$(CONFIG_BATTERY_GOLDFISH)	+= goldfish_battery.o
-> >   obj-$(CONFIG_BATTERY_LEGO_EV3)	+= lego_ev3_battery.o
-> > +obj-$(CONFIG_BATTERY_LENOVO_YOGA_C630) += lenovo_yoga_c630_battery.o
-> >   obj-$(CONFIG_BATTERY_PMU)	+= pmu_battery.o
-> >   obj-$(CONFIG_BATTERY_QCOM_BATTMGR)	+= qcom_battmgr.o
-> >   obj-$(CONFIG_BATTERY_OLPC)	+= olpc_battery.o
-> > diff --git a/drivers/power/supply/lenovo_yoga_c630_battery.c b/drivers/power/supply/lenovo_yoga_c630_battery.c
-> > new file mode 100644
-> > index 000000000000..76152ad38d46
-> > --- /dev/null
-> > +++ b/drivers/power/supply/lenovo_yoga_c630_battery.c
-> > @@ -0,0 +1,479 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Copyright (c) 2022-2024, Linaro Ltd
-> > + * Authors:
-> > + *    Bjorn Andersson
-> > + *    Dmitry Baryshkov
-> > + */
-> > +#include <linux/auxiliary_bus.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/module.h>
-> > +#include <linux/platform_data/lenovo-yoga-c630.h>
-> > +#include <linux/power_supply.h>
-> > +
-> > +struct yoga_c630_psy {
-> > +	struct yoga_c630_ec *ec;
-> > +	struct device *dev;
-> > +	struct device_node *of_node;
-> > +	struct notifier_block nb;
-> > +	struct mutex lock;
+On Wed, May 29, 2024 at 01:06:04PM +0000, wangshuaijie@awinic.com wrote:
+> From: shuaijie wang <wangshuaijie@awinic.com>
 > 
-> Do locks still not require a
+> Add the awinic,aw_sar.yaml file to adapt to the awinic sar sensor driver.
 > 
-> struct mutex lock; /* this mutex locks this thing */
-
-Not required, but let me add the doc.
-
+> Signed-off-by: shuaijie wang <wangshuaijie@awinic.com>
+> ---
+>  .../bindings/input/awinic,aw_sar.yaml         | 110 ++++++++++++++++++
+>  1 file changed, 110 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/awinic,aw_sar.yaml
 > 
-> > +
-> > +	struct power_supply *adp_psy;
-> > +	struct power_supply *bat_psy;
-> > +
-> > +	unsigned long last_status_update;
-> > +
-> > +	bool adapter_online;
-> > +
-> > +	bool unit_mA;
-> > +
-> > +	bool bat_present;
-> > +	unsigned int bat_status;
-> > +	unsigned int design_capacity;
-> > +	unsigned int design_voltage;
-> > +	unsigned int full_charge_capacity;
-> > +
-> > +	unsigned int capacity_now;
-> > +	unsigned int voltage_now;
-> > +
-> > +	int current_now;
-> > +	int rate_now;
-> > +};
-> > +
-> > +#define LENOVO_EC_CACHE_TIME		(10 * HZ)
-> > +
-> > +#define LENOVO_EC_ADPT_STATUS		0xa3
-> > +#define LENOVO_EC_ADPT_PRESENT		BIT(7)
-> > +#define LENOVO_EC_BAT_ATTRIBUTES	0xc0
-> > +#define LENOVO_EC_BAT_ATTR_UNIT_IS_MA	BIT(1)
-> > +#define LENOVO_EC_BAT_STATUS		0xc1
-> > +#define LENOVO_EC_BAT_REMAIN_CAPACITY	0xc2
-> > +#define LENOVO_EC_BAT_VOLTAGE		0xc6
-> > +#define LENOVO_EC_BAT_DESIGN_VOLTAGE	0xc8
-> > +#define LENOVO_EC_BAT_DESIGN_CAPACITY	0xca
-> > +#define LENOVO_EC_BAT_FULL_CAPACITY	0xcc
-> > +#define LENOVO_EC_BAT_CURRENT		0xd2
-> > +#define LENOVO_EC_BAT_FULL_FACTORY	0xd6
-> > +#define LENOVO_EC_BAT_PRESENT		0xda
-> > +#define LENOVO_EC_BAT_FULL_REGISTER	0xdb
-> > +#define LENOVO_EC_BAT_FULL_IS_FACTORY	BIT(0)
-> > +
-> > +/* the mutex should already be locked */
-> > +static int yoga_c630_psy_update_bat_info(struct yoga_c630_psy *ecbat)
-> > +{
-> > +	struct yoga_c630_ec *ec = ecbat->ec;
-> > +	int val;
-> > +
-> > +	val = yoga_c630_ec_read8(ec, LENOVO_EC_BAT_PRESENT);
-> > +	if (val < 0)
-> > +		return val;
-> > +	ecbat->bat_present = !!(val & BIT(0));
-> > +	if (!ecbat->bat_present)
-> > +		return val;
-> > +
-> > +	val = yoga_c630_ec_read8(ec, LENOVO_EC_BAT_ATTRIBUTES);
-> > +	if (val < 0)
-> > +		return val;
-> > +	ecbat->unit_mA = val & LENOVO_EC_BAT_ATTR_UNIT_IS_MA;
-> > +
-> > +	val = yoga_c630_ec_read16(ec, LENOVO_EC_BAT_DESIGN_CAPACITY);
-> > +	if (val < 0)
-> > +		return val;
-> > +	ecbat->design_capacity = val * 1000;
-> > +
-> > +	msleep(50);
+> diff --git a/Documentation/devicetree/bindings/input/awinic,aw_sar.yaml b/Documentation/devicetree/bindings/input/awinic,aw_sar.yaml
+> new file mode 100644
+> index 000000000000..ed4ec29c9b4d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/awinic,aw_sar.yaml
+> @@ -0,0 +1,110 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/awinic,aw_sar.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Awinic sar sensor driver family
+> +
+> +maintainers:
+> +  - Shuaijie Wang <wangshuaijie@awinic.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - awinic,aw_aw96103
+> +      - awinic,aw_aw96105
+> +      - awinic,aw_aw96303
+> +      - awinic,aw_aw96305
+> +      - awinic,aw_aw96308
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  sar-num:
+
+Custom properties need vendor prefix.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      set the index of the sar sensor.
+
+What is 'sar'? It's never defined.
+
+How is the index determined? We generally don't do indexes in DT unless 
+there is some correlation to the h/w.
+
+> +
+> +  vcc0-supply:
+> +    description:
+> +      Optional regulator for chip, 1.7V-3.6V.
+> +
+> +  channel_use_flag:
+
+vendor prefix needed plus use '-' rather than '_'. Here and elsewhere.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The flag of channels used.
+> +      Configure according to the specific chip channel used.
+> +      Bit[31:0] Each bit represents a channel.
+
+So a mask rather than a flag.
+
+Up to 32 channels possible? If not, add constraints.
+
+> +      If the customer uses ch0 and ch2, then channel_use_flag=<0x05>
+> +
+> +  aw_sar,update_fw:
+> +    type: boolean
+> +    description:
+> +      Choose if you want to update the firmware.
+
+DT is mostly fixed. So someone would want to update the firmware every 
+time?
+
+> +
+> +  aw_sar,monitor_esd:
+> +    type: boolean
+> +    description:
+> +      Choose if you want to monitor ESD.
+> +
+> +  aw_sar,pin_set_inter_pull-up:
+> +    type: boolean
+> +    description:
+> +      Choose if you want to set the interrupt pin to internal pull-up.
+> +
+> +  aw_sar,using_pm_ops:
+> +    type: boolean
+> +    description:
+> +      Choose if you want to use suspend and resume related function.
+
+OS configuration. Doesn't belong in DT.
+
+> +
+> +  aw_sar,use_plug_cail:
+> +    type: boolean
+> +    description:
+> +      Choose If you want to perform calibration when plugging and unplugging the charger.
+> +
+> +  start-mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      When connecting to aw963xx, select the location where the firmware starts.
+> +      set 0 if start in rom.
+> +      set 1 if start in ram
+
+Looks like constraints.
+
+> +
+> +  irq-mux:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      set csx as irq pin. config this field when connect to aw96308/aw96305BFOR
+
+Constraints? Can you imply this based on the compatible?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - sar-num
+> +  - interrupts
+> +  - channel_use_flag
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        awinic_sar@12 {
+> +            compatible = "awinic,aw_sar";
+> +            reg = <0x12>;
+> +            sar-num = < 0 >;
+> +            interrupt-parent = < &tlmm >;
+> +            interrupts = <72 0>;
+> +            //vcc0-supply = <&pm660l_l4>;
+
+Why commented?
+
+> +            channel_use_flag = <0xff>;
+> +            aw_sar,update_fw;
+> +            //aw_sar,monitor_esd;
+> +            start-mode = < 1 >;
+> +            irq-mux = < 2 >;
+> +        };
+> +    };
+> -- 
+> 2.45.1
 > 
-> What's this for ? Also do you really want to hold a mutex for 50
-> milliseconds ?
-
-DSDT has these delays after each read, so I can only assume it is required.
-Sleeping outside of the mutex() would mean that a concurrent thread
-might break into this delay and query the EC.
-
-[skipped]
-
-
-> > +static int yoga_c630_psy_probe(struct auxiliary_device *adev,
-> > +				   const struct auxiliary_device_id *id)
-> > +{
-> > +	struct yoga_c630_ec *ec = adev->dev.platform_data;
-> > +	struct power_supply_config adp_cfg = {};
-> > +	struct device *dev = &adev->dev;
-> > +	struct yoga_c630_psy *ecbat;
-> > +	int ret;
-> > +
-> > +	ecbat = devm_kzalloc(&adev->dev, sizeof(*ecbat), GFP_KERNEL);
-> > +	if (!ecbat)
-> > +		return -ENOMEM;
-> > +
-> > +	ecbat->ec = ec;
-> > +	ecbat->dev = dev;
-> > +	mutex_init(&ecbat->lock);
-> > +	ecbat->of_node = adev->dev.parent->of_node;
-> > +	ecbat->nb.notifier_call = yoga_c630_psy_notify;
-> > +
-> > +	auxiliary_set_drvdata(adev, ecbat);
-> > +
-> > +	adp_cfg.drv_data = ecbat;
-> > +	adp_cfg.of_node = ecbat->of_node;
-> > +	adp_cfg.supplied_to = (char **)&yoga_c630_psy_bat_psy_desc_mA.name;
-> > +	adp_cfg.num_supplicants = 1;
-> > +	ecbat->adp_psy = devm_power_supply_register_no_ws(dev, &yoga_c630_psy_adpt_psy_desc, &adp_cfg);
-> > +	if (IS_ERR(ecbat->adp_psy)) {
-> > +		dev_err(dev, "failed to register AC adapter supply\n");
-> > +		return PTR_ERR(ecbat->adp_psy);
-> > +	}
-> > +
-> > +	mutex_lock(&ecbat->lock);
-> 
-> Do you really need this lock here in your probe() function ? What's the
-> parallel path of execution you are mitigating against here ?
-
-Notifications from the battery driver can already happen at this point.
-Also once the fist power supply is registered, userspace can potentially
-access it, triggering EC access and updates of the PSY registration.
-
-> 
-> > +
-> > +	ret = yoga_c630_psy_update_bat_info(ecbat);
-> > +	if (ret)
-> > +		goto err_unlock;
-> > +
-> > +	ret = yoga_c630_psy_register_bat_psy(ecbat);
-> > +	if (ret)
-> > +		goto err_unlock;
-> > +
-> > +	mutex_unlock(&ecbat->lock);
-> > +
-
-
--- 
-With best wishes
-Dmitry
 
