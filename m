@@ -1,168 +1,175 @@
-Return-Path: <devicetree+bounces-71280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D12308D63CD
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 15:59:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27B7C8D639A
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 15:54:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CA562885A3
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 13:59:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 479841C274A7
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 13:54:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B6C5183A9B;
-	Fri, 31 May 2024 13:53:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA0B4176AA5;
+	Fri, 31 May 2024 13:52:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oZRgm6IQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PgOObifV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F757183A73
-	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 13:53:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A56FB16F282;
+	Fri, 31 May 2024 13:52:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717163594; cv=none; b=JvbnJJCQouZW+GzUC/T8hQYexxGeqGNfCZs5t9180UG9Nf+E8odHmF1GM30f7AjYbxGObpHGZEx5J78IQ6EXsoThyDUCcE2FjXMiUeoxdRaX2rGdx9iyYl6qRBG9rJVnFN84RW4IUdZvvdugeGlAMjYTpj+JDiTU6SmE45kAJPk=
+	t=1717163573; cv=none; b=KhIkOwVp09XOBTHgwsBuH2QFGYc8Bz533yxu8g8fb+xb/LsH4cFLHGk8tFVZwvlmt1zn8+jKPe3oZdXdSsIyb3kZ0/FlwIKvXFdocyyAls4NHNhSlT8zMCYu/vI6inE2ilAPLOGIUW/92yL6NGCvEXYd/N1jiLBVho3/h4fwerQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717163594; c=relaxed/simple;
-	bh=jPElexRLbwYi326AHGI8G3yBsY+3/avTUM0IA19IieA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=QqlH7Dn97WRt8y46LjEj3RJf2KDQ1778KQdfXjY4MSqyP8wguH6aGzRfAdOR6TLITnVB73JMg4V3v25SJDOHeFWeNNoc2cEXgtJoI6k2zG+ufn0IWdkF8Nf3p3i7FPth31iXwbwhjKjcvEdPCkSJSrScAgUBqq48QZSPOtmWLwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oZRgm6IQ; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2e78fe9fc2bso26978561fa.3
-        for <devicetree@vger.kernel.org>; Fri, 31 May 2024 06:53:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717163591; x=1717768391; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kO0h5DfS/tOmjTv2xa37X8/SeND3LWeqqvy20iP9u78=;
-        b=oZRgm6IQc6JGukg1AsTon6/drIZQ9JPU8IKnLme9ECHFwZzQswXdnGCI23/+wkN7Gu
-         fGaFphUnBwz/mxHyasA4z1XnV69cPSQkaqxLlGnQH2EtzEER0g8+8TUDwJHef40YhLld
-         LTJNlMqfoywhh9mgaNzpXbpTYaTrgzGUngtyoGyltHREkm9IE57UA8ocdWxvK4XMLnjF
-         2z305mH9ffYVnQ3wYOD2eRFh3KdEvbWtEnCQz4j5FfTYdaE5AvpNW8jE1bF26s58Por2
-         yiBHgLHruSeMWCl4PWHWTfD1e1c+du2JRlxYZ0Q+nIhuN8CMGt6ldAtKZV/qPbWMEyL7
-         /VNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717163591; x=1717768391;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kO0h5DfS/tOmjTv2xa37X8/SeND3LWeqqvy20iP9u78=;
-        b=nR4APjAN4nyW1p380ogBK8tbQwIIngzlIW60C3T3kVW0bfj+uwaseXED5n4Wo1RztP
-         tLn7LL92vt1xAdB8wt+adeMflGhEy3vk3CN4+ssVI3fHPyOpYryRhd8Dfpg5ZXlXnnVB
-         FIykOxkig51DIXtOwT+We//PH4EaiT1J1d3S38ztezVGsNLuYNK/Yzleh5BfjjXk0+kc
-         fA7TQxzwqQkvenTC/kpAVJ5ZKPVMQdBydpdxwH9ID2IDlLaGzwXySFeDnYhqXvU+Hb1T
-         ik4uF42W26w8xH8dh+bErvWvHNu/z/pyazinPbDkP6oTCAVzkTPMi44mAM09aN/V/v9m
-         pMRg==
-X-Forwarded-Encrypted: i=1; AJvYcCUVQaGeaDK16Yo6TsSDEGGjFOxdMQXKL9s7bDpEIW8HzMni4hKwsVbdqZD/q8reWP6RznBlzBQGe3jqkZpItDm6qsFG3am7VuWhkg==
-X-Gm-Message-State: AOJu0YwLgVz1Qq9b4uNmsW+uQtym9/gEXvotM/GxTnaK9cI01OULgr3i
-	1YsdhejNiOucfAXgpjTkemF1Ryb/8NrQ2mzSxJdOSnEe6R3EklBHllLx717qEbE=
-X-Google-Smtp-Source: AGHT+IHTDMz6XNfpTi+LmtTKAIY5g94GE7WhSFqjW195a2/9eQ7mQPF5ElSN/faA+zRYLtVot+5Jxg==
-X-Received: by 2002:a2e:9b56:0:b0:2df:97b1:d4f4 with SMTP id 38308e7fff4ca-2ea951dfaf6mr11700491fa.33.1717163591661;
-        Fri, 31 May 2024 06:53:11 -0700 (PDT)
-Received: from [127.0.1.1] ([110.93.11.116])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4212b85ec87sm26762735e9.27.2024.05.31.06.53.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 May 2024 06:53:10 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Fri, 31 May 2024 15:52:34 +0200
-Subject: [PATCH 16/16] dt-bindings: clock: qcom,sm8450-gpucc: reference
- qcom,gcc.yaml
+	s=arc-20240116; t=1717163573; c=relaxed/simple;
+	bh=uKE5W2MwLeT6Liv0HtH7JnSOYllTclfPZHEkgcGCaJg=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ppj+tDKsS0j8b4cmyrvHRXpce0TwOQwReb/EWAs833FhA/uyCg9cfqkJbuT3geWx8q4Q4m0LNaKDSSs+zaGlEa6VbFiPvN79GUJ1mXhqCWGcsrBe9zmTkg15foAjVd2PasSNo4VKiJOz2J2MVYIOMPwStE+nhv5Kfj+qN7ddzLI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PgOObifV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8147C4AF07;
+	Fri, 31 May 2024 13:52:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717163573;
+	bh=uKE5W2MwLeT6Liv0HtH7JnSOYllTclfPZHEkgcGCaJg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=PgOObifVO9KMfMs2CvshtwxFti9gexco3zoFmc77HOD5/t7cvg9BgKeLlQop8ktyH
+	 vNceWIvTw46xKCfD2NoWl5WN5sXd/maNsRz5FW+vFAaTGCrP6YiOAXyYZjZFYE5kv3
+	 QaU96P7JQh7UxqdJJok8B06yTxwzgfPHt1O6gTABBHFLO4LxG4K0R9R4gT+Kx4n0lg
+	 p5JNRoFWyOs35ZWr6koZ2Q6XXRA4v7xcCwZ7fkKn959ufd/SXTdW4tNDtA4oUyeJKP
+	 HVHjxFHc35dyNbzs1lhRqhZJVtFaaCfU568G00CdT4BOvCAozkJ+gR4wher6Niwb0P
+	 vuMvovnsr+51A==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1sD2gc-00HBtu-LR;
+	Fri, 31 May 2024 14:52:50 +0100
+Date: Fri, 31 May 2024 14:52:50 +0100
+Message-ID: <86sexyks0d.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Frank Li <Frank.Li@nxp.com>,	Richard Zhu <hongxing.zhu@nxp.com>,	Lucas
+ Stach <l.stach@pengutronix.de>,	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,	Rob Herring
+ <robh@kernel.org>,	Bjorn Helgaas <bhelgaas@google.com>,	Shawn Guo
+ <shawnguo@kernel.org>,	Sascha Hauer <s.hauer@pengutronix.de>,	Pengutronix
+ Kernel Team <kernel@pengutronix.de>,	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,	Philipp Zabel <p.zabel@pengutronix.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,	Mark Brown <broonie@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,	Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,	Conor Dooley
+ <conor+dt@kernel.org>,	linux-pci@vger.kernel.org,	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,	linux-kernel@vger.kernel.org,
+	bpf@vger.kernel.org,	devicetree@vger.kernel.org,	Will Deacon
+ <will@kernel.org>,	Robin Murphy <robin.murphy@arm.com>,	Joerg Roedel
+ <joro@8bytes.org>,	Jason Gunthorpe <jgg@ziepe.ca>,	Alyssa Rosenzweig
+ <alyssa@rosenzweig.io>
+Subject: Re: [PATCH v5 08/12] PCI: imx6: Config look up table(LUT) to support MSI ITS and IOMMU for i.MX95
+In-Reply-To: <20240530230832.GA474962@bhelgaas>
+References: <20240528-pci2_upstream-v5-8-750aa7edb8e2@nxp.com>
+	<20240530230832.GA474962@bhelgaas>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.2
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240531-dt-bindings-qcom-gcc-v1-16-b37d49fe1421@linaro.org>
-References: <20240531-dt-bindings-qcom-gcc-v1-0-b37d49fe1421@linaro.org>
-In-Reply-To: <20240531-dt-bindings-qcom-gcc-v1-0-b37d49fe1421@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Taniya Das <quic_tdas@quicinc.com>, 
- Konrad Dybcio <konrad.dybcio@somainline.org>, 
- Jonathan Marek <jonathan@marek.ca>, 
- Del Regno <angelogioacchino.delregno@somainline.org>, 
- Loic Poulain <loic.poulain@linaro.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1288;
- i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=jPElexRLbwYi326AHGI8G3yBsY+3/avTUM0IA19IieA=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBmWdYk/G1ReuN9dxfhXHg56tRK9Pz0Eern7567T
- RBFD1MBAMuJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZlnWJAAKCRDBN2bmhouD
- 16EUEACYkVjbL+jap8zdZYYVcEZTIC8H8YqKHT+6pko5DI9y7GfwORvU+lBl8IrZMqaULD5EHf4
- M7+UZ2LFOfSnsT3v5fYDsM9LJ+pO/gzIrkI7SbuqcR4B0HnUlHudvGj5bxSqfB4X39My8ZbPVjk
- rkueUXEgezMc6S8aRLyhUQ65LmHrZZMPLxoe26PZzO8wgMMDAy6mDMp9bV9kz9T6LmcAEJM7Fk2
- QF2+k9dbICjYGrn3vqHgflPeUuAgvUBVKQmDBUgI6OOj+PuaXskLTJDvdTgAAXF5ncb1Zwpjjor
- 57Xdi6bJkp/fjVoNhIfz3tMjgzKsk6Qxzt+9QiHYwHD/raoS2Eu6v5FiMtc8Hry/3Lah4jJ0t/Q
- qBATFkBAsbq6au5E+3VjzKMezb0POot5H3i6o6KSg3aF7RafT5NflHK43BtK7vE3Y7FykSuLC80
- cZqNfFV9mXcIJAqrD3DOepPmb9p11uXsmoxtAdHLeSh7k8QmABrmU0gzv8Uq+QPCMRUQiIHmlN1
- oQP6tj6vuQXevHAq3YzL5P7L4d0xjp0nKJOEcjPOYVGtCMQAbdp6uINZ0TKel+F3t3cwFC8op+S
- pa46itnpfD6ysQp+7elVcxUcjXXlTSm/xAJrWwL76c0yeLhBPYH6s0dF5GhBYE0a0ER5xpKgtj0
- LWtSKeHOGXdxtRg==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
- fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: helgaas@kernel.org, Frank.Li@nxp.com, hongxing.zhu@nxp.com, l.stach@pengutronix.de, lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, bhelgaas@google.com, shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com, p.zabel@pengutronix.de, lgirdwood@gmail.com, broonie@kernel.org, manivannan.sadhasivam@linaro.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux-pci@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, bpf@vger.kernel.org, devicetree@vger.kernel.org, will@kernel.org, robin.murphy@arm.com, joro@8bytes.org, jgg@ziepe.ca, alyssa@rosenzweig.io
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-Just like most of clock controllers, the SM8450 GPU clock controller
-is also some variant of standard Qualcomm GCC, so reference common
-qcom,gcc.yaml schema to simplify the binding and unify it with others.
+On Fri, 31 May 2024 00:08:32 +0100,
+Bjorn Helgaas <helgaas@kernel.org> wrote:
+> 
+> [+cc IOMMU and pcie-apple.c folks for comment]
+> 
+> On Tue, May 28, 2024 at 03:39:21PM -0400, Frank Li wrote:
+> > For the i.MX95, configuration of a LUT is necessary to convert Bus Device
+> > Function (BDF) to stream IDs, which are utilized by both IOMMU and ITS.
+> > This involves examining the msi-map and smmu-map to ensure consistent
+> > mapping of PCI BDF to the same stream IDs. Subsequently, LUT-related
+> > registers are configured. In the absence of an msi-map, the built-in MSI
+> > controller is utilized as a fallback.
+> > 
+> > Additionally, register a PCI bus notifier to trigger imx_pcie_add_device()
+> > upon the appearance of a new PCI device and when the bus is an iMX6 PCI
+> > controller. This function configures the correct LUT based on Device Tree
+> > Settings (DTS).
+> 
+> This scheme is pretty similar to apple_pcie_bus_notifier().  If we
+> have to do this, I wish it were *more* similar, i.e., copy the
+> function names, bitmap tracking, code structure, etc.
+> 
+> I don't really know how stream IDs work, but I assume they are used on
+> most or all arm64 platforms, so I'm a little surprised that of all the
+> PCI host drivers used on arm64, only pcie-apple.c and pci-imx6.c need
+> this notifier.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/clock/qcom,sm8450-gpucc.yaml | 20 ++++----------------
- 1 file changed, 4 insertions(+), 16 deletions(-)
+That's because on sane platforms, PCI's RID and the IOMMU's SID are
+the same thing, and there is no need to do anything bizarre. In the
+worse case, there is a static transformation that can be applied (IORT
+for ACPI, or iommu-map for DT).
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-gpucc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-gpucc.yaml
-index 36974309cf69..3c2cac14e6c3 100644
---- a/Documentation/devicetree/bindings/clock/qcom,sm8450-gpucc.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-gpucc.yaml
-@@ -34,27 +34,15 @@ properties:
-       - description: GPLL0 main branch source
-       - description: GPLL0 div branch source
- 
--  '#clock-cells':
--    const: 1
--
--  '#reset-cells':
--    const: 1
--
--  '#power-domain-cells':
--    const: 1
--
--  reg:
--    maxItems: 1
--
- required:
-   - compatible
--  - reg
-   - clocks
--  - '#clock-cells'
--  - '#reset-cells'
-   - '#power-domain-cells'
- 
--additionalProperties: false
-+allOf:
-+  - $ref: qcom,gcc.yaml#
-+
-+unevaluatedProperties: false
- 
- examples:
-   - |
+Some "creative" systems such as the Apple stuff require some extra
+side-band configuration because they don't know what a RID is at all
+(the RID isn't conveyed to the IOMMU), nor is there a static (baked in
+HW) transformation between RID and SID.
+
+So there is a widget on the side that performs the conversion, and
+this widget needs to be programmed. The way it works is that the
+driver parses the iommu-map to find the expected and arbitrary) SID
+on the IOMMU side for a given RID, and programs the association in the
+RID-to-SID mapper. It does so at device probe time in order to make
+sure the widget is alive (it seems to be part of the port power
+domain).
+
+Yes, this is a terrible hack, and I wish we didn't have to deal with
+this sort of crap.
+
+>
+> There's this path, which is pretty generic and does at least the
+> of_map_id() part of what you're doing in imx_pcie_add_device():
+> 
+>     __driver_probe_device
+>       really_probe
+>         pci_dma_configure                       # pci_bus_type.dma_configure
+>           of_dma_configure
+>             of_dma_configure_id
+>               of_iommu_configure
+>                 of_pci_iommu_init
+>                   of_iommu_configure_dev_id
+>                     of_map_id
+>                     of_iommu_xlate
+>                       ops = iommu_ops_from_fwnode
+>                       iommu_fwspec_init
+>                       ops->of_xlate(dev, iommu_spec)
+> 
+> Maybe this needs to be extended somehow with a hook to do the
+> device-specific work like updating the LUT?  Just speculating here,
+> the IOMMU folks will know how this is expected to work.
+
+That'd be a possibility. But this would be adding extra complexity to
+the IOMMU core, and I'm not sure it is worth it given that these
+systems are thankfully "rare".
+
+It is also something that is conceptually part of the PCIe root port,
+and not really the IOMMU, so I'm a bit reluctant to shove things
+there. In any case, it would still require callbacks into the PCIe
+host driver, and I have the feeling that we'd be reinventing the bus
+notifier wheel, only with pointier angles...
+
+Thanks,
+
+	M.
 
 -- 
-2.43.0
-
+Without deviation from the norm, progress is not possible.
 
