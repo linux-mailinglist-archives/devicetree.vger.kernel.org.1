@@ -1,154 +1,176 @@
-Return-Path: <devicetree+bounces-71315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6B428D650B
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 16:59:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1923B8D6514
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 17:00:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 322641F24A2A
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:59:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4AB651C255A3
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 15:00:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C90F15B68F;
-	Fri, 31 May 2024 14:58:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E534762E8;
+	Fri, 31 May 2024 15:00:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qwLDlXCz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EF466F2EB;
-	Fri, 31 May 2024 14:58:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64B0C757FB;
+	Fri, 31 May 2024 15:00:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717167539; cv=none; b=Ls45+0T4OchJM9U3l5UUcYpV6WHdg0KOEizmpnNXO3BACEpBhy5bB3kICNpQoluajGQFyrlimx+uGFo6sersfmc9W4gRsKPUfTlWgrUnidxBIgujkmGcUiSpKuwlbwDyQ2Sd9aLu6pJN5FEWL9fl0+Hg5INJFizpHw//zM3nbv8=
+	t=1717167619; cv=none; b=i9mtkdjkjuXiYGaUC73A/1Bm6TaBYHdrOSNwyKS0lQTRYkZC8Lf+oLPlxz+ij4U/0tyt966ulDROonpCeFtAHY542+sFgXBHSgTO22otZmEmuwFctIcCDx74doMd8Au8BKBnA8tC18yc958/mgEUyOCGFuF7cfh5R0RlXh4qCd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717167539; c=relaxed/simple;
-	bh=G/b7RyaoGodqjPBF0FsWhLwSns9WaG79sqo1CfgHyUE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T5k1zqrQxl4O/40wlCUqyxMu44QfW7iwCZVqjbOYtHwUjAlZP8C7/zxzyRBKSAJrcetMSoRlw7efCKByHXpqiyGqXb6B7WoNQ0P55Fs1hXGrHUK59tYs6TywGighL0QXehqs2lW6OJNWn70UFyQsRrSkeoI86kl9XhVUOYAEUBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6911F1424;
-	Fri, 31 May 2024 07:59:21 -0700 (PDT)
-Received: from [10.57.69.119] (unknown [10.57.69.119])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D57253F641;
-	Fri, 31 May 2024 07:58:51 -0700 (PDT)
-Message-ID: <974f1d23-aba8-432e-85b5-0e4b1c2005e7@arm.com>
-Date: Fri, 31 May 2024 15:58:49 +0100
+	s=arc-20240116; t=1717167619; c=relaxed/simple;
+	bh=jDEr5raCrfCR6eBAeO+8MRA+Yj8CCxClZotDTv2HO+g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aByY1d+2gsnOyznAuKOiLoL8q5cSbn3QYZboxrrk6QNYHf5ByvQ6dlMFkT01UNvtTkOTEROKWfZwH+s793upi5o9Azbl8Keabu2AjbLZ2YTFsoSd6XoPJUh8IRlV8pZLFmXVWEyB2KdEl3za0pi7LOixoGrJSSrApSD6OFkGK5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qwLDlXCz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4418AC32781;
+	Fri, 31 May 2024 15:00:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717167619;
+	bh=jDEr5raCrfCR6eBAeO+8MRA+Yj8CCxClZotDTv2HO+g=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=qwLDlXCzq0VroxTmML89xQirHX2T5pdZNmWt4IYAz7RvH2JWKafFfHVtCXhibKjvt
+	 VgIMkCbFu8W5uZ6iJ1bEPdg/c0jl4usPRBCKrcFhtVDjji5WysFyjkIAEYVQca822V
+	 HYNJa4FhL3Elaia6ILASbeEF9jSWAmUVleGiMe9cvefe3ST+4t/R/B87RHeAfyBzJT
+	 RLa34XoGQ1wtIRJyOeOalZdZzA3gM0YGR7qdT9X/Uym95V7Q4gSnl/0N2+Le+lFC3b
+	 mGLT4sIOYD4dh5oCOyRIoyc1G+XSdZdVsXGfvRN78eAcmAcrSMVmvwKgOA8vhU4Y/I
+	 vi3AZZvqApPuQ==
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-52b89fcdcc7so998846e87.3;
+        Fri, 31 May 2024 08:00:19 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXIEzDfPICFZwHhiWbCWWlVxQ6h/zqVGWTdqyI5s1XIGy8W3ssbqrsWM77JvECg/bvhGh4u4wFfDrHwAwTLam6xH8jJM1xB5nDMMVKBq3pQh/YIqN+Tn8XhY8+Js6fmnOPIsy65L9oP4v13n3h5Icc=
+X-Gm-Message-State: AOJu0YyRDP3g5zGLVeAmNuc7ArZIFCZQ6OpsYTN05Gz5OoU68rrmEaBm
+	RndYawGnMD0LxXnL77WX114kr9//1ZKgv0033UBEiEHwDBO0aZAJeVyGcvr79/LlOg1LvsjLblu
+	P6Jb+t2FK3MDBE0LsIiSlJegO+A==
+X-Google-Smtp-Source: AGHT+IHUqUmsUP918QpjqzH5npNhgysIiDyHyjn5YLpGuGEUV6JHiEnoTJtkajsrCBZvKF3jmQtoyLD5HqMWTa6R2xo=
+X-Received: by 2002:ac2:47f6:0:b0:51d:8ff3:d156 with SMTP id
+ 2adb3069b0e04-52b89576bc1mr1292663e87.19.1717167617696; Fri, 31 May 2024
+ 08:00:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 08/12] PCI: imx6: Config look up table(LUT) to support
- MSI ITS and IOMMU for i.MX95
-To: Bjorn Helgaas <helgaas@kernel.org>, Frank Li <Frank.Li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
- devicetree@vger.kernel.org, Will Deacon <will@kernel.org>,
- Joerg Roedel <joro@8bytes.org>, Jason Gunthorpe <jgg@ziepe.ca>,
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Marc Zyngier <maz@kernel.org>
-References: <20240530230832.GA474962@bhelgaas>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20240530230832.GA474962@bhelgaas>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <a770cb5acb708e6d65570a4037a376321c9e8bb0.1716977322.git.geert+renesas@glider.be>
+ <CAL_JsqLL3g4+nfu2NmC0drR-m5u287EBvK9jbY43XC=bSSVSpQ@mail.gmail.com>
+ <CAMuHMdWxxDu-V_drs+dMdycQHY_+v0sPH7bVO_2-ixGWQkdTjg@mail.gmail.com>
+ <CAL_JsqL7Vc2T1-JMf7bFAedmz4NYTD3Efm0z_-xdd7JF+xKmQA@mail.gmail.com>
+ <CAMuHMdV5q8cSz+SOry1ZJjMhTxhkb0ABNDFgCDySpKPijJjpcw@mail.gmail.com> <CAL_JsqJ0nX7EK05aC7z9i2FEB7jAf0XrPDyPY-NXr8rnEDgqZg@mail.gmail.com>
+In-Reply-To: <CAL_JsqJ0nX7EK05aC7z9i2FEB7jAf0XrPDyPY-NXr8rnEDgqZg@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 31 May 2024 10:00:04 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL9MPycDjqQfPNAuGfC6EMrdzUivr+fuOS7YgU3biGd4A@mail.gmail.com>
+Message-ID: <CAL_JsqL9MPycDjqQfPNAuGfC6EMrdzUivr+fuOS7YgU3biGd4A@mail.gmail.com>
+Subject: Re: [PATCH v2] fdtoverlay: Remove bogus type info from help text
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Devicetree Compiler <devicetree-compiler@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2024-05-31 12:08 am, Bjorn Helgaas wrote:
-> [+cc IOMMU and pcie-apple.c folks for comment]
-> 
-> On Tue, May 28, 2024 at 03:39:21PM -0400, Frank Li wrote:
->> For the i.MX95, configuration of a LUT is necessary to convert Bus Device
->> Function (BDF) to stream IDs, which are utilized by both IOMMU and ITS.
->> This involves examining the msi-map and smmu-map to ensure consistent
->> mapping of PCI BDF to the same stream IDs. Subsequently, LUT-related
->> registers are configured. In the absence of an msi-map, the built-in MSI
->> controller is utilized as a fallback.
->>
->> Additionally, register a PCI bus notifier to trigger imx_pcie_add_device()
->> upon the appearance of a new PCI device and when the bus is an iMX6 PCI
->> controller. This function configures the correct LUT based on Device Tree
->> Settings (DTS).
-> 
-> This scheme is pretty similar to apple_pcie_bus_notifier().  If we
-> have to do this, I wish it were *more* similar, i.e., copy the
-> function names, bitmap tracking, code structure, etc.
-> 
-> I don't really know how stream IDs work, but I assume they are used on
-> most or all arm64 platforms, so I'm a little surprised that of all the
-> PCI host drivers used on arm64, only pcie-apple.c and pci-imx6.c need
-> this notifier.
+Uwe's Pengutronix email is bouncing, so switched to kernel.org acct.
 
-This is one of those things that's mostly at the mercy of the PCIe root 
-complex implementation. Typically the SMMU StreamID and/or GIC ITS 
-DeviceID is derived directly from the PCI RID, sometimes with additional 
-high-order bits hard-wired to disambiguate PCI segments. I believe this 
-RID-translation LUT is a particular feature of the the Synopsys IP - I 
-know there's also one on the NXP Layerscape platforms, but on those it's 
-programmed by the bootloader, which also generates the appropriate 
-"msi-map" and "iommu-map" properties to match. Ideally that's what i.MX 
-should do as well, but hey.
++dtc list
 
-> There's this path, which is pretty generic and does at least the
-> of_map_id() part of what you're doing in imx_pcie_add_device():
-> 
->      __driver_probe_device
->        really_probe
->          pci_dma_configure                       # pci_bus_type.dma_configure
->            of_dma_configure
->              of_dma_configure_id
->                of_iommu_configure
->                  of_pci_iommu_init
->                    of_iommu_configure_dev_id
->                      of_map_id
->                      of_iommu_xlate
->                        ops = iommu_ops_from_fwnode
->                        iommu_fwspec_init
->                        ops->of_xlate(dev, iommu_spec)
-> 
-> Maybe this needs to be extended somehow with a hook to do the
-> device-specific work like updating the LUT?  Just speculating here,
-> the IOMMU folks will know how this is expected to work.
+On Fri, May 31, 2024 at 9:38=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Fri, May 31, 2024 at 9:07=E2=80=AFAM Geert Uytterhoeven <geert@linux-m=
+68k.org> wrote:
+> >
+> > Hi Rob,
+> >
+> > On Fri, May 31, 2024 at 3:43=E2=80=AFPM Rob Herring <robh@kernel.org> w=
+rote:
+> > > On Thu, May 30, 2024 at 8:32=E2=80=AFAM Geert Uytterhoeven <geert@lin=
+ux-m68k.org> wrote:
+> > > > On Thu, May 30, 2024 at 2:31=E2=80=AFPM Rob Herring <robh@kernel.or=
+g> wrote:
+> > > > > On Wed, May 29, 2024 at 5:11=E2=80=AFAM Geert Uytterhoeven
+> > > > > <geert+renesas@glider.be> wrote:
+> > > > > >
+> > > > > > "fdtoverlay -h" shows a.o.:
+> > > > > >
+> > > > > >     <type>      s=3Dstring, i=3Dint, u=3Dunsigned, x=3Dhex
+> > > > > >             Optional modifier prefix:
+> > > > > >                     hh or b=3Dbyte, h=3D2 byte, l=3D4 byte (def=
+ault)
+> > > > > >
+> > > > > > However, unlike fdtget and fdtput, fdtoverlay does not support =
+the
+> > > > > > "-t"/"--type" option.
+> > > > > >
+> > > > > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > > > > ---
+> > > > > > Upstream dtc has Uwe's commit 2cdf93a6d402a161 ("fdtoverlay: Fi=
+x usage
+> > > > > > string to not mention "<type>"").
+> > > > >
+> > > > > So you want me to sync upstream? That's how upstream commits get =
+into
+> > > > > the kernel. I don't take patches (unless there's some urgent
+> > > > > breakage).
+> > > >
+> > > > If that's the policy, then yes please ;-)
+> > >
+> > > With current dtc main branch, I get these errors:
+> > >
+> > > Failed to apply
+> > > 'arch/arm64/boot/dts/renesas/salvator-panel-aa104xd12.dtbo':
+> > > FDT_ERR_NOTFOUND
+> >
+> > Interesting...
+> >
+> > Do you know what's the problem?
+>
+> No. Since it is conveniently platforms you care about, I thought I'd
+> leave it to you. ;)
+>
+> Well, it seems that if I use the upstream built dtc and fdtoverlay it
+> works fine. Using the one in scripts/dtc/ doesn't. Looks like that
+> issue is on me...
 
-Note that that particular code path has fundamental issues and much of 
-it needs to go away (I'm working on it, but it's a rich ~8-year-old pile 
-of technical debt...). IOMMU configuration needs to be happening at 
-device_add() time via the IOMMU layer's own bus notifier.
+I figured out the difference. The dtc tree build of fdtoverlay is
+picking up the libfdt installed on my system. The kernel tree build is
+statically linked.
 
-If it's really necessary to do this programming from Linux, then there's 
-still no point in it being dynamic - the mappings cannot ever change, 
-since the rest of the kernel believes that what the DT said at boot time 
-was already a property of the hardware. It would be a lot more logical, 
-and likely simpler, for the driver to just read the relevant map 
-property and program the entire LUT to match, all in one go at 
-controller probe time. Rather like what's already commonly done with the 
-parsing of "dma-ranges" to program address-translation LUTs for inbound 
-windows.
+A bisect points to this commit:
 
-Plus that would also give a chance of safely dealing with bad DTs 
-specifying invalid ID mappings (by refusing to probe at all). As it is, 
-returning an error from a child's BUS_NOTIFY_ADD_DEVICE does nothing 
-except prevent any further notifiers from running at that point - the 
-device will still be added, allowed to bind a driver, and able to start 
-sending DMA/MSI traffic without the controller being correctly 
-programmed, which at best won't work and at worst may break the whole 
-system.
+commit 1fad065080e6cae0ec1a4ad6288733cd24c103f9
+Author: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
+Date:   Sun Feb 25 18:54:23 2024 +0100
 
-Thanks,
-Robin.
+    libfdt: overlay: ensure that existing phandles are not overwritten
+
+    A phandle in an overlay is not supposed to overwrite a phandle that
+    already exists in the base dtb as this breaks references to the
+    respective node in the base.
+
+    So add another iteration over the fdto that checks for such overwrites
+    and fixes the fdto phandle's value to match the fdt's.
+
+    A test is added that checks that newly added phandles and existing
+    phandles work as expected.
+
+    Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
+    Message-ID: <20240225175422.156393-2-u.kleine-koenig@pengutronix.de>
+    Signed-off-by: David Gibson <david@gibson.dropbear.id.au>
+
+ libfdt/fdt_overlay.c              | 251 ++++++++++++++++++++++++++++++++++=
+++++
+ tests/overlay_base_phandle.dts    |  21 ++++
+ tests/overlay_overlay_phandle.dts |  34 ++++++
+ tests/run_tests.sh                |  28 +++++
+ 4 files changed, 334 insertions(+)
+ create mode 100644 tests/overlay_base_phandle.dts
+ create mode 100644 tests/overlay_overlay_phandle.dts
+
+Rob
 
