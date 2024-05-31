@@ -1,140 +1,177 @@
-Return-Path: <devicetree+bounces-71172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B02CF8D5F2C
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:02:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D9D88D5F2E
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:03:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B1B5285663
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 10:02:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 030121F2331F
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 10:03:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC2671422CA;
-	Fri, 31 May 2024 10:02:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC63C1422D9;
+	Fri, 31 May 2024 10:03:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F413D150981
-	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 10:02:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10A451386B4;
+	Fri, 31 May 2024 10:03:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717149775; cv=none; b=oXrrxu7dHYx8RzvBPcdltDlMGmOQ6oA0cEhJNU3cIoxvq1eUcgyGhFHlQNWzvWOiDMSoT11WkS0bBL1BZNLeCErred0GKUTqyHb+T8vgzrRMJYYoyW1E8MEW4ylwAwNw+FNYWvWo+ccwnG/wZC+bwWZA1LUYRVQ+0+3VQ8EozEY=
+	t=1717149810; cv=none; b=QmwhyiqGavTCtwWEBENzuFFgkkmu8/l2owqJpeMKBeVaQe5Ni4TvgBo9unnDASYVFhTASPjZ0hYgQVaf3Rlyf6/4NU3e4tsWsca+8QG32F1h/tqgttd5DiRiQsdtO0cdqqovi084OT1jL1XSex7T5hkj9qZgMMhja2FocA2LqyI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717149775; c=relaxed/simple;
-	bh=K2VEOV61avaa+7AqSLryWQDEREWsMWzKx0JOpCH77D8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=I0S2MrRfb//oFOuFx2CfF2OYoY+npgj1aAYuSvG16/enpYIWr3+F1s6MYBf9dO1PiYCjXfQQnaOV3vqOZcQeN0DCZ9/u6YRjeHBdvyJQ+VDYYzcKw/gE3qthSvIsrgDahqnLg2eJiunuXIyPKrEcL/R6rKa8hLR0SyDHPwKrXtY=
+	s=arc-20240116; t=1717149810; c=relaxed/simple;
+	bh=X0ln94e4cQXmHxkpU2Ol1BQ3SCZAfewMofyqfB4pHW4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=m/46y3Vuv6pPn+ZDgCgLvulW2B8GdS8/4aJaZUzuTqPsnDlNchEjqcNgxw7o5ZOc1yQZ0nZ5tB5amARpfjhtgfvteYny8ThhpVGJl+u++sFkIgKEiKiIatG3A5ZBNxbO1AR/sdCRgokkysA2bBYIVp2+8NPrfmwMIMu8N/e9agc=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 690831424;
-	Fri, 31 May 2024 03:03:10 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0F5203F641;
-	Fri, 31 May 2024 03:02:43 -0700 (PDT)
-Date: Fri, 31 May 2024 11:02:41 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, Chen-Yu
- Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
- Holland <samuel@sholland.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, Chris
- Morgan <macromorgan@hotmail.com>, Ryan Walklin <ryan@testtoast.com>,
- iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/5] iommu: sun50i: allocate page tables from below 4
- GiB
-Message-ID: <20240531110241.6b26d072@donnerap.manchester.arm.com>
-In-Reply-To: <ecdc4d9f-a7b4-45e1-a870-e97cf4922539@arm.com>
-References: <20240530233800.27705-1-andre.przywara@arm.com>
-	<20240530233800.27705-3-andre.przywara@arm.com>
-	<ecdc4d9f-a7b4-45e1-a870-e97cf4922539@arm.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6771A1424;
+	Fri, 31 May 2024 03:03:52 -0700 (PDT)
+Received: from [192.168.1.100] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 634B63F641;
+	Fri, 31 May 2024 03:03:26 -0700 (PDT)
+Message-ID: <5fbb37f4-031b-4b8a-be7e-676cab82b180@arm.com>
+Date: Fri, 31 May 2024 11:03:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 5/7] coresight: tmc: Add support for reading crash data
+To: Linu Cherian <lcherian@marvell.com>
+Cc: linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, sgoutham@marvell.com, gcherian@marvell.com,
+ Anil Kumar Reddy <areddy3@marvell.com>, Tanmay Jagdale <tanmay@marvell.com>,
+ suzuki.poulose@arm.com, mike.leach@linaro.org
+References: <20240531042745.494222-1-lcherian@marvell.com>
+ <20240531042745.494222-6-lcherian@marvell.com>
+Content-Language: en-US
+From: James Clark <james.clark@arm.com>
+In-Reply-To: <20240531042745.494222-6-lcherian@marvell.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Fri, 31 May 2024 09:37:02 +0100
-Robin Murphy <robin.murphy@arm.com> wrote:
 
-Hi Robin,
 
-> On 2024-05-31 12:37 am, Andre Przywara wrote:
-> > The Allwinner IOMMU is a strict 32-bit device, with the page table root
-> > pointer as well as both level's page tables and also the target addresses
-> > all required to be below 4GB.
-> > The Allwinner H6 SoC only supports 32-bit worth of physical addresses
-> > anyway, so this isn't a problem so far, but the H616 and later SoCs extend
-> > the PA space beyond 32 bit to accommodate more DRAM.
-> > To make sure we stay within the 32-bit PA range required by the IOMMU,
-> > force the memory for the page tables to come from below 4GB. by using
-> > allocations with the DMA32 flag.  
+On 31/05/2024 05:27, Linu Cherian wrote:
+> * Introduce a new mode CS_MODE_READ_CRASHDATA for reading trace
+>   captured in previous crash/watchdog reset.
 > 
-> Uh-oh... what about the output addresses in sun50i_mk_pte()? Limiting 
-> its own accesses is OK, but if the IOMMU isn't capable of *mapping* any 
-> valid PA for its clients, we can't easily support that.
-
-Right, that's indeed a problem. I was hoping that the DMA32 address limit
-would somehow be enforced by the IOMMU master devices, so they would never
-issue addresses above 4GB to the IOMMU in the first place.
-Would this work if all those devices use a 32-bit DMA mask? Some of those
-devices might have that limit anyways, but those video devices are not
-my expertise, so I don't know much details.
-
-IIUC, atm the incoming PA would be masked down to 32-bit, I guess we should have a
-WARN_ONCE() there when this happens?
-The 32-bit limit would only affect boards with exactly 4GB of DRAM (the
-DRAM controller limit), and it only affects the last GB then, so using
-DMA32 wouldn't be a terrible limitation, I think.
-
-TBH, I picked this up from Jernej, so have to refer to him for further
-details.
-
-Cheers,
-Andre
-
-P.S. I agree that a 32-bit only IOMMU sounds somewhat stup^Wweird, but
-that's what we have. Maybe we would use it just for the VE only then, where
-it's really helpful to provide the illusion of large physically contiguous
-buffers.
-
-> Thanks,
-> Robin.
+> * Add special device files for reading ETR/ETF crash data.
 > 
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> >   drivers/iommu/sun50i-iommu.c | 5 +++--
-> >   1 file changed, 3 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/iommu/sun50i-iommu.c b/drivers/iommu/sun50i-iommu.c
-> > index dd3f07384624c..c3244db5ac02f 100644
-> > --- a/drivers/iommu/sun50i-iommu.c
-> > +++ b/drivers/iommu/sun50i-iommu.c
-> > @@ -682,7 +682,8 @@ sun50i_iommu_domain_alloc_paging(struct device *dev)
-> >   	if (!sun50i_domain)
-> >   		return NULL;
-> >   
-> > -	sun50i_domain->dt = iommu_alloc_pages(GFP_KERNEL, get_order(DT_SIZE));
-> > +	sun50i_domain->dt = iommu_alloc_pages(GFP_KERNEL | GFP_DMA32,
-> > +					      get_order(DT_SIZE));
-> >   	if (!sun50i_domain->dt)
-> >   		goto err_free_domain;
-> >   
-> > @@ -997,7 +998,7 @@ static int sun50i_iommu_probe(struct platform_device *pdev)
-> >   
-> >   	iommu->pt_pool = kmem_cache_create(dev_name(&pdev->dev),
-> >   					   PT_SIZE, PT_SIZE,
-> > -					   SLAB_HWCACHE_ALIGN,
-> > +					   SLAB_HWCACHE_ALIGN | SLAB_CACHE_DMA32,
-> >   					   NULL);
-> >   	if (!iommu->pt_pool)
-> >   		return -ENOMEM;  
+> * User can read the crash data as below
+> 
+>   For example, for reading crash data from tmc_etf sink
+> 
+>   #dd if=/dev/crash_tmc_etfXX of=~/cstrace.bin
+> 
+> Signed-off-by: Anil Kumar Reddy <areddy3@marvell.com>
+> Signed-off-by: Tanmay Jagdale <tanmay@marvell.com>
+> Signed-off-by: Linu Cherian <lcherian@marvell.com>
+> ---
+> Changelog from v7:
+> * Moved crash dev registration into new function,
+>   register_crash_dev_interface
+> * Removed redundant variable trace_addr in
+>   tmc_etr_setup_crashdata_buf
+> 
+>  .../coresight/coresight-etm4x-core.c          |   1 +
+>  .../hwtracing/coresight/coresight-tmc-core.c  | 148 ++++++++++++++++-
+>  .../hwtracing/coresight/coresight-tmc-etf.c   |  73 +++++++++
+>  .../hwtracing/coresight/coresight-tmc-etr.c   | 152 +++++++++++++++++-
+>  drivers/hwtracing/coresight/coresight-tmc.h   |  11 +-
+>  include/linux/coresight.h                     |  13 ++
+>  6 files changed, 391 insertions(+), 7 deletions(-)
+> 
 
+[...]
+
+> +static void register_crash_dev_interface(struct tmc_drvdata * drvdata,
+> +					 const char *name)
+> +{
+> +	drvdata->crashdev.name =
+> +		devm_kasprintf(&drvdata->csdev->dev, GFP_KERNEL, "%s_%s", "crash", name);
+> +	drvdata->crashdev.minor = MISC_DYNAMIC_MINOR;
+> +	drvdata->crashdev.fops = &tmc_crashdata_fops;
+> +	if (misc_register(&drvdata->crashdev))
+> +		dev_dbg(&drvdata->csdev->dev,
+> +			"Failed to setup user interface for crashdata\n");
+> +}
+> +
+>  static int tmc_probe(struct amba_device *adev, const struct amba_id *id)
+>  {
+>  	int ret = 0;
+> @@ -619,6 +752,10 @@ static int tmc_probe(struct amba_device *adev, const struct amba_id *id)
+>  		coresight_unregister(drvdata->csdev);
+>  	else
+>  		pm_runtime_put(&adev->dev);
+> +
+> +	if (is_tmc_reserved_region_valid(dev))
+> +		register_crash_dev_interface(drvdata, desc.name);
+> +
+
+Now that you've added an extra step to the probe you need to add a "goto
+out" when the previous step fails:
+
+  if (ret) {
+	coresight_unregister(drvdata->csdev);
++	goto out;
+  }
+
+That seems to be the pattern in the rest of the function. Otherwise you
+might register the interface on no device.
+
+There's also a conflict here and in some other places. Since this has to
+go through the coresight branch you should base it off of coresight-next.
+
+>  out:
+>  	return ret;
+>  }
+> @@ -630,7 +767,8 @@ static void tmc_shutdown(struct amba_device *adev)
+>  
+>  	spin_lock_irqsave(&drvdata->spinlock, flags);
+>  
+> -	if (coresight_get_mode(drvdata->csdev) == CS_MODE_DISABLED)
+> +	if ((coresight_get_mode(drvdata->csdev) == CS_MODE_DISABLED) ||
+> +	    (coresight_get_mode(drvdata->csdev) == CS_MODE_READ_CRASHDATA))
+>  		goto out;
+>  
+>  	if (drvdata->config_type == TMC_CONFIG_TYPE_ETR)
+> diff --git a/drivers/hwtracing/coresight/coresight-tmc-etf.c b/drivers/hwtracing/coresight/coresight-tmc-etf.c
+> index f9569585e9f8..655c0c0ba54b 100644
+> --- a/drivers/hwtracing/coresight/coresight-tmc-etf.c
+> +++ b/drivers/hwtracing/coresight/coresight-tmc-etf.c
+> @@ -657,6 +657,56 @@ static int tmc_panic_sync_etf(struct coresight_device *csdev)
+>  	return 0;
+>  }
+>  
+
+[...]
+
+> @@ -725,6 +789,7 @@ int tmc_read_prepare_etb(struct tmc_drvdata *drvdata)
+>  		__tmc_etb_disable_hw(drvdata);
+>  	}
+>  
+> +mode_valid:
+>  	drvdata->reading = true;
+>  out:
+>  	spin_unlock_irqrestore(&drvdata->spinlock, flags);
+> @@ -744,8 +809,16 @@ int tmc_read_unprepare_etb(struct tmc_drvdata *drvdata)
+>  			 drvdata->config_type != TMC_CONFIG_TYPE_ETF))
+>  		return -EINVAL;
+>  
+> +
+
+Whitespace change. There are a couple of other minor checkpatch style
+warnings.
+
+The rest looks good to me. All the tests are passing. I still think we
+should all the kself test for this mode, but that can be done later.
 
