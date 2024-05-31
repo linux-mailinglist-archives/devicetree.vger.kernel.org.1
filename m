@@ -1,140 +1,121 @@
-Return-Path: <devicetree+bounces-71151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C99EE8D5E4E
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 11:32:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 428868D5E53
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 11:32:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F0B51F218EE
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 09:32:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1EAF288153
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 09:32:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9E4181ABB;
-	Fri, 31 May 2024 09:32:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="hOWHqTxx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93A1485285;
+	Fri, 31 May 2024 09:32:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91FAE81721
-	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 09:31:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B537A81721
+	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 09:32:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717147924; cv=none; b=nntb3lIKU57b9MeVqqv3EIXeReYGo8yIJrJLU6lZGGB5LfQ/BnuznyLup2HSfIG+/+z9WXKatTY0Sf95LFR6j71rL+vJ1DqnJ3TmXuFMNtdiMAPETQ/cSF2mvIwCVHAjTbe2L1kGabUVG/v6QCYNpnDK/GUkARxu3GMCrmOab84=
+	t=1717147938; cv=none; b=o5vmn/IVOIUPgo9YWaeZU7FqqOSf7NTSmtzY1N9cv9eiJXNLKZ2gItQBaCHioK0mvgKqd+FLdlzklSeOHdaIcrby5xkVs1uHQ3Ts7uMcKYSTaAMf4IWcmk5Nj1ZdYa8yzwAiPsylUUOpgllu6F3QyTiISbtmPY/a1S0gJjA3Vc0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717147924; c=relaxed/simple;
-	bh=5U7FyklsEaq5Z77Xh71GF62p+k3mhNStH7+QJ6d8CG8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T4gK0uuEJuybxrDWxSZ045rEAu3INc7pZDFpwon1nK6dORTEJRAK7UMXJd88BfZ+my5uK0JkqbbIRqTtD8Uw13fIqZDDhflYbFpWI3CNiCBAMY8t0LkRZq0SPNET2vmkfLPZBl6uRVmSBF+uZI7I64T3r/s8L/oCJBv1c2Ra3TQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=hOWHqTxx; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=duxs
-	2uujR9NRLXhAk81tC9D0XnsOzJhWFLu0vA/jvfo=; b=hOWHqTxxNcqGINU4ZS5V
-	8MKGNRQ1ywH86zYBzxlq9zwDNbGRiiSw5RvoUrm48F2QpF0DCXRMrgO1kjOrvHzs
-	4czC037sbomdEVd9YlqOIwXxeyhEw9stc5w2H33Wdz1y61ck7YCnA6DUZG3Nahtb
-	XNQWWa/d8HSv7t8HZv5J9/+MT9/VFmZfwwa48cmWDpIkg7TvIGzISVhjTr1XaOWz
-	27CkblNe7VFsPOMdAPFv1s9oy9EfYIKgHFXApaatbxu3BnLUYeHxS8ruz8//uZMM
-	IFXNJ4LCDGR66sMqy3QBipWsNdt2fB4qCdn/V6OfG2cnFhbkSCA45K4eYexWXN0g
-	6A==
-Received: (qmail 1124244 invoked from network); 31 May 2024 11:31:55 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 31 May 2024 11:31:55 +0200
-X-UD-Smtp-Session: l3s3148p1@C1GEp7wZ4rFehhtB
-Date: Fri, 31 May 2024 11:31:54 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas@t-8ch.de>,
-	linux-hwmon@vger.kernel.org, Hristo Venev <hristo@venev.name>,
-	=?utf-8?B?UmVuw6k=?= Rebe <rene@exactcode.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Radu Sabau <radu.sabau@analog.com>,
-	Paul Menzel <pmenzel@molgen.mpg.de>
-Subject: Re: [PATCH 2/3] hwmon: Add support for SPD5118 compliant temperature
- sensors
-Message-ID: <20240531093154.rna2vwbfx7csu2sj@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas@t-8ch.de>,
-	linux-hwmon@vger.kernel.org, Hristo Venev <hristo@venev.name>,
-	=?utf-8?B?UmVuw6k=?= Rebe <rene@exactcode.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Radu Sabau <radu.sabau@analog.com>,
-	Paul Menzel <pmenzel@molgen.mpg.de>
-References: <20240529205204.81208-1-linux@roeck-us.net>
- <20240529205204.81208-3-linux@roeck-us.net>
- <34a4292e-c4db-4b40-822e-b892e1444045@t-8ch.de>
- <16e448f1-cfc9-4e88-b3f1-55e1856d1405@roeck-us.net>
- <0a2ed64d-06d9-45e8-a054-4ded4429f952@t-8ch.de>
- <ffd72953-ecd2-405a-ad6d-236143b26946@roeck-us.net>
+	s=arc-20240116; t=1717147938; c=relaxed/simple;
+	bh=BNlEZVWKmmSynJ3s+ToRZwZGUYwR1GZgOKkG1m+2oIE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=m+JYwpDT5gnKL4pVRBVlPpLrZMRcG98cw7bVijqtp6T5XZX7FYsqcP2xkydWTGfMi27qjrbodariZlqhwLVskSK1eFH26MrUlT+cX5vFea4R3tLFAVVP2mjOXjZd9osCa6OQeg2agg/Q0NVPXWibp9VmPiRPV7YgVBNPH8J0yK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5CEAC1424;
+	Fri, 31 May 2024 02:32:39 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F2CBF3F641;
+	Fri, 31 May 2024 02:32:12 -0700 (PDT)
+Date: Fri, 31 May 2024 10:32:09 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, Chen-Yu
+ Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
+ Holland <samuel@sholland.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, Chris
+ Morgan <macromorgan@hotmail.com>, Ryan Walklin <ryan@testtoast.com>,
+ iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 5/5] arm64: dts: allwinner: h616: add IOMMU node
+Message-ID: <20240531103209.7db573c8@donnerap.manchester.arm.com>
+In-Reply-To: <bc550e12-7ad6-4592-994d-dca5a95e88ca@arm.com>
+References: <20240530233800.27705-1-andre.przywara@arm.com>
+	<20240530233800.27705-6-andre.przywara@arm.com>
+	<bc550e12-7ad6-4592-994d-dca5a95e88ca@arm.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xeb7swmh4n3lar4t"
-Content-Disposition: inline
-In-Reply-To: <ffd72953-ecd2-405a-ad6d-236143b26946@roeck-us.net>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Fri, 31 May 2024 09:42:36 +0100
+Robin Murphy <robin.murphy@arm.com> wrote:
 
---xeb7swmh4n3lar4t
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Robin,
 
-Hi all,
+> On 2024-05-31 12:38 am, Andre Przywara wrote:
+> > The Allwinner H616 contains a scatter-gather IOMMU connected to some
+> > video related devices. It's almost compatible to the one used in the H6,
+> > though with minor incompatibilities.
+> > 
+> > Add the DT node describing its resources, so that devices like the video
+> > or display engine can connect to it.  
+> 
+> Without also describing those connections, though, having this node 
+> enabled in the DT means the driver will just bind, block DMA, and 
+> prevent those devices from working. That's probably not what you want.
 
-> > Wolfgang seems to think it's important:
+The IOMMU manages the Display Engine (DE), the Deinterlacer (DI), the
+video engine (VE) and the 2D acceleration engine (G2D).
+None of those devices are supported for the H616 in mainline yet, but there
+are patches out there for the DE and VE, at least. Especially the video
+codecs benefit from scatter-gather, so with this patch they can make use
+of it from day one.
 
-Wolfram, please.
+I agree that the series on its own is not very useful, but there are quite
+some H616 patches in flight out there, so this is an attempt to clean those
+up, picking the low hanging fruits first ;-)
 
-> > https://lore.kernel.org/lkml/tdia472d4pow2osabef24y2ujkkquplfajxmmtk5pn=
-xllsdxsz@wxzynz7llasr/
-> >=20
->=20
-> Ok, but that doesn't explain the reason. Wolfram, Paul, why do you
-> think this is needed ? Note that I am not opposed to adding spd
-> eeprom support, but I'd like to know why I am doing it before
-> I spend time on it.
+Cheers,
+Andre
 
-A working eeprom driver is needed to get 'decode-dimms' from the
-i2c-tools package working. Jean reported that EEPROM access for DDR5 is
-different from DDR4, so it needs a separate driver. And
-i2c_register_spd() then needs to be updated to use the new driver for
-DDR5.
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >   arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 9 +++++++++
+> >   1 file changed, 9 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> > index 9c1980e24cb21..44f04619a43ac 100644
+> > --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> > @@ -320,6 +320,15 @@ x32clk_fanout_pin: x32clk-fanout-pin {
+> >   			};
+> >   		};
+> >   
+> > +		iommu: iommu@30f0000 {
+> > +			compatible = "allwinner,sun50i-h616-iommu";
+> > +			reg = <0x030f0000 0x10000>;
+> > +			interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
+> > +			clocks = <&ccu CLK_BUS_IOMMU>;
+> > +			resets = <&ccu RST_BUS_IOMMU>;
+> > +			#iommu-cells = <1>;
+> > +		};
+> > +
+> >   		gic: interrupt-controller@3021000 {
+> >   			compatible = "arm,gic-400";
+> >   			reg = <0x03021000 0x1000>,  
+> 
 
-Happy hacking,
-
-   Wolfram
-
---xeb7swmh4n3lar4t
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmZZmQcACgkQFA3kzBSg
-KbYuTg/6A5ij4YXV/CfauyFRASldgEnInfw2WdYkuXzCtfXvsZCRvP15BLSBEH9K
-VKEnsN6sysLVyMnIJnfH8/hQ+6eOniAio8fcPIcxHQyWZOOZeqEa5pOyBuGoXZYS
-/5DTYEjeII6iOILpNCQa2s6gbK3IPZioCheK8WliLIiTYO5vpjg4QVjHO7R6MK6o
-u/Fp8goQNofhZRqijddVMVc1m3r8EAgfU5tb+DLgM3x9WWzl0IFWKAPbtkcyuTPs
-kVwaJj35pWJG6zAQKmu+6213QIlmFVZM8ODPtTvYD1lc9Msrnq366u+SCrWuu5vF
-zxmZkp8+C1uHq/jXroOEQaYZQJ9ncMDtZ/aDhwV7nZz0RfhPTGSq7PdTg/q5S1gW
-bQMt3uGdDaTGD70IAHoXZjKMBO6J2mDAmjvLX89krNCNpj9r3rqekJU8Rr6g7Bji
-XFpPaCvZHEC7QswW07/TIDhCF5dgTaUIQxtQvYcb1ioROTFFenqMk4LNkJ1zLGtb
-+lr4D6Fyqv2Is2ZEVSQi9Y6Xh9Q5zS4tYcbhiItsnxjOqGQfQF3aPRvreeauFEyk
-DdGuiSZWrub8Gg2EsOUAgrL6gJ55uu9s14Ke2UsxcS7/GWfDyK/tJACWzpW2Swdc
-8j5H3E1hxJFiXVloKf040i9jT0odS0H2fSXHyaWpjhJTJbc9e28=
-=gjGP
------END PGP SIGNATURE-----
-
---xeb7swmh4n3lar4t--
 
