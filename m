@@ -1,228 +1,98 @@
-Return-Path: <devicetree+bounces-71036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFB128D5834
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 03:39:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DA1A8D5841
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 03:40:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB3292869D4
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 01:39:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B0094B271C1
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 01:40:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B14342A1AA;
-	Fri, 31 May 2024 01:36:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC7DC10A3D;
+	Fri, 31 May 2024 01:40:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k0BexmJa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RwHOnC3j"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 846062D7B8;
-	Fri, 31 May 2024 01:36:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82047EAE7;
+	Fri, 31 May 2024 01:40:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717119369; cv=none; b=fpASYeLqfBnDlvxv1ga/rqSjzphl1bX5EdabkVosJPk4Joeol67j58Ufgss3aBGAjGI1tS2uLZaH6MvC6McqbuWWlUH7krByI1dhAM4ssuA2MZuOznGeu8EN8Z6a1YJRs7kkeU9LGuVZOnwFWJh8QefHEPRwbd9Gf9PvJe5bUVM=
+	t=1717119633; cv=none; b=k5L1GRaO6uzWzSPlHkSUA5R+HjC6ggknzXgzpKJKymV8qSGcOFZLPuLnHOXF8bCvzli9C2Ngwvbz222Nzf3xt4C6G1OVSFFt026LUL9IYPPAaHq6c9/IBpF23jehCNn8w2goSiVjxqTP76YrIy1kw9e53JaFXcRosfi+4HwRq/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717119369; c=relaxed/simple;
-	bh=yJBuR6bIVxGlNAFlMMWwvgbcjFar6UC2gGWKayrnt8c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H2CQ+Ig7wmdspa0bYK1zgsfJ+7wuF8UNdCnsVhbKF4Wp6JhB31PK2ldVBZImOgUODCSilSPrD5EQQc5FWJTQdNgmUN5CSgF9A6l4NYvC5YKb1rQ4RersQZc8JprfjEAvDLBx/w5dIh+93oVZGfBss9HEk88556iQZNeANIrt75A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k0BexmJa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D178AC2BBFC;
-	Fri, 31 May 2024 01:36:08 +0000 (UTC)
+	s=arc-20240116; t=1717119633; c=relaxed/simple;
+	bh=0QcoVA6kHXD2J3K8hFxrVZXAMa5lJRX2YC7JyYwXKB8=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=mY9vbFOKXBk4qkOZRWx0Ok73mUF5PEaCnJ1AzH7rlFv5FNhHTKUtws1ikTAx3CYi0+IIiywF0oJtgjSkBn1YHoTQaz5153ZBlirA5qLy6xSBRHhdPRvvo/pjq/qmzYgQJwwwdN84c5IFEB23MguCcSdOKLprrs19CjzjQBRkZXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RwHOnC3j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1A338C4AF08;
+	Fri, 31 May 2024 01:40:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717119369;
-	bh=yJBuR6bIVxGlNAFlMMWwvgbcjFar6UC2gGWKayrnt8c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k0BexmJaExgl1ZplrCjGz0HjNtHSFPWVzNrtfWSaQf1fKKYJsnyg8Wx3VHuCUb32O
-	 XWDtg2icUwyUQZ5FESl7On5ww4KndEIm8IQpJ+fPGc9aI5vcIIjrPwiMPe4kDQWj2O
-	 oK3vZSaaZbos0jnC3e0/kwhHg7u1gF1lS5LhJ4LonBoxWTQnRjl61sHLvxdPoYp5Fo
-	 TFX7qoijrqnuI4XhqITNKW6RS608E5JLHffsI/4tBT+AsQunRwEH1GkabRZV8A9Uzp
-	 QiL65ARGdwZ/PRQUiJBV4tfoUeR9EMI8ZExdknqrm3O7Vw/TBIjDaG301YeMCo0R4S
-	 1F6ui8LIwaMFg==
-Date: Thu, 30 May 2024 20:36:07 -0500
-From: Rob Herring <robh@kernel.org>
-To: wangshuaijie@awinic.com
-Cc: dmitry.torokhov@gmail.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	jeff@labundy.com, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	liweilei@awinic.com, kangjiajun@awinic.com
-Subject: Re: [PATCH V1 1/5] dt-bindings: input: Add YAML to Awinic sar sensor.
-Message-ID: <20240531013607.GA3665090-robh@kernel.org>
-References: <20240529130608.783624-1-wangshuaijie@awinic.com>
- <20240529130608.783624-2-wangshuaijie@awinic.com>
+	s=k20201202; t=1717119633;
+	bh=0QcoVA6kHXD2J3K8hFxrVZXAMa5lJRX2YC7JyYwXKB8=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=RwHOnC3jCNFDY2o1kGmkqDFFHKEx8K1DgJYFqW7iRywvaOtMQn66lKn2Lw///RetX
+	 yk4JuXK12EUNLxAgEzwvRDRbYOpUv+K5czj4SzmJc76m5ja5M/lEyRpxAaZc2TFraN
+	 Q4jOAC9BHWrWS0U7cUJfGJlzhsCqGHuKhqI6FMfrZnz5C5WFn2FWjUkku03mtPAgiG
+	 6N6q0PxRGlK99RpULvdMohKWbjNH2pVaBbEKIkNuBKxTJgPq5H7gxhkiYnS2OgKahE
+	 ++/FVWbvEv92GBHoPeyzLxgC1hF7cpdQxtSki31DXbEdq9meRe1vH0YVaBqLMFOJ6/
+	 3IvrNtY5Bqlzg==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 0CD4AD84BD0;
+	Fri, 31 May 2024 01:40:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240529130608.783624-2-wangshuaijie@awinic.com>
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2] dt-bindings: net: ti: icssg_prueth: Add documentation for
+ PA_STATS support
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <171711963304.18580.11844749195457939777.git-patchwork-notify@kernel.org>
+Date: Fri, 31 May 2024 01:40:33 +0000
+References: <20240529115225.630535-1-danishanwar@ti.com>
+In-Reply-To: <20240529115225.630535-1-danishanwar@ti.com>
+To: MD Danish Anwar <danishanwar@ti.com>
+Cc: conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ pabeni@redhat.com, kuba@kernel.org, edumazet@google.com, davem@davemloft.net,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, srk@ti.com,
+ vigneshr@ti.com, r-gunasekaran@ti.com, rogerq@kernel.org
 
-On Wed, May 29, 2024 at 01:06:04PM +0000, wangshuaijie@awinic.com wrote:
-> From: shuaijie wang <wangshuaijie@awinic.com>
+Hello:
+
+This patch was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Wed, 29 May 2024 17:22:25 +0530 you wrote:
+> Add documentation for ti,pa-stats property which is syscon regmap for
+> PA_STATS registers. This will be used to dump statistics maintained by
+> ICSSG firmware.
 > 
-> Add the awinic,aw_sar.yaml file to adapt to the awinic sar sensor driver.
-> 
-> Signed-off-by: shuaijie wang <wangshuaijie@awinic.com>
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
 > ---
->  .../bindings/input/awinic,aw_sar.yaml         | 110 ++++++++++++++++++
->  1 file changed, 110 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/awinic,aw_sar.yaml
+> Changes from v1 to v2:
+> *) Updated description of ti,pa-stats to explain the purpose of PA_STATS
+>    module in context of ICSSG.
 > 
-> diff --git a/Documentation/devicetree/bindings/input/awinic,aw_sar.yaml b/Documentation/devicetree/bindings/input/awinic,aw_sar.yaml
-> new file mode 100644
-> index 000000000000..ed4ec29c9b4d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/awinic,aw_sar.yaml
-> @@ -0,0 +1,110 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/awinic,aw_sar.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Awinic sar sensor driver family
-> +
-> +maintainers:
-> +  - Shuaijie Wang <wangshuaijie@awinic.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - awinic,aw_aw96103
-> +      - awinic,aw_aw96105
-> +      - awinic,aw_aw96303
-> +      - awinic,aw_aw96305
-> +      - awinic,aw_aw96308
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  sar-num:
+> [...]
 
-Custom properties need vendor prefix.
+Here is the summary with links:
+  - [v2] dt-bindings: net: ti: icssg_prueth: Add documentation for PA_STATS support
+    https://git.kernel.org/netdev/net-next/c/2f19a795e1f9
 
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      set the index of the sar sensor.
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-What is 'sar'? It's never defined.
 
-How is the index determined? We generally don't do indexes in DT unless 
-there is some correlation to the h/w.
-
-> +
-> +  vcc0-supply:
-> +    description:
-> +      Optional regulator for chip, 1.7V-3.6V.
-> +
-> +  channel_use_flag:
-
-vendor prefix needed plus use '-' rather than '_'. Here and elsewhere.
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      The flag of channels used.
-> +      Configure according to the specific chip channel used.
-> +      Bit[31:0] Each bit represents a channel.
-
-So a mask rather than a flag.
-
-Up to 32 channels possible? If not, add constraints.
-
-> +      If the customer uses ch0 and ch2, then channel_use_flag=<0x05>
-> +
-> +  aw_sar,update_fw:
-> +    type: boolean
-> +    description:
-> +      Choose if you want to update the firmware.
-
-DT is mostly fixed. So someone would want to update the firmware every 
-time?
-
-> +
-> +  aw_sar,monitor_esd:
-> +    type: boolean
-> +    description:
-> +      Choose if you want to monitor ESD.
-> +
-> +  aw_sar,pin_set_inter_pull-up:
-> +    type: boolean
-> +    description:
-> +      Choose if you want to set the interrupt pin to internal pull-up.
-> +
-> +  aw_sar,using_pm_ops:
-> +    type: boolean
-> +    description:
-> +      Choose if you want to use suspend and resume related function.
-
-OS configuration. Doesn't belong in DT.
-
-> +
-> +  aw_sar,use_plug_cail:
-> +    type: boolean
-> +    description:
-> +      Choose If you want to perform calibration when plugging and unplugging the charger.
-> +
-> +  start-mode:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      When connecting to aw963xx, select the location where the firmware starts.
-> +      set 0 if start in rom.
-> +      set 1 if start in ram
-
-Looks like constraints.
-
-> +
-> +  irq-mux:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      set csx as irq pin. config this field when connect to aw96308/aw96305BFOR
-
-Constraints? Can you imply this based on the compatible?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - sar-num
-> +  - interrupts
-> +  - channel_use_flag
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        awinic_sar@12 {
-> +            compatible = "awinic,aw_sar";
-> +            reg = <0x12>;
-> +            sar-num = < 0 >;
-> +            interrupt-parent = < &tlmm >;
-> +            interrupts = <72 0>;
-> +            //vcc0-supply = <&pm660l_l4>;
-
-Why commented?
-
-> +            channel_use_flag = <0xff>;
-> +            aw_sar,update_fw;
-> +            //aw_sar,monitor_esd;
-> +            start-mode = < 1 >;
-> +            irq-mux = < 2 >;
-> +        };
-> +    };
-> -- 
-> 2.45.1
-> 
 
