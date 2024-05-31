@@ -1,192 +1,103 @@
-Return-Path: <devicetree+bounces-71113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FF618D5CEC
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 10:39:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 018F88D5CFF
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 10:42:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B92421C20AA7
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 08:39:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 329CF1C24E83
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 08:42:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7389B150996;
-	Fri, 31 May 2024 08:39:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zDCj0g5c"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 731A2153BE8;
+	Fri, 31 May 2024 08:42:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFB21757EB
-	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 08:39:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB873153BE6
+	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 08:42:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717144743; cv=none; b=uGUb+2+1wPgUmVGWHTT3qyqvWjhffqy1WKneqH94tkZHebM01pklyM2bA/Bf0U9OlsN6prfN42SbG+kPprGJacYrqLbUhO0n8HugfiWmreil62ubBFu3+xMT0nYM2yKaVPatzQGjrB4ku/sGnDdY+YdQUAhyGkoEy7/snsQkU7o=
+	t=1717144963; cv=none; b=PVv1n1JfzE93RN2/Lg2OFOIHul6JOMz6doFuGWgvgbl9DvV26etGsmlDRwrge4dJTv7OhGK9EhM6aPhWkav5Vrky1U43k+PFN1bIa8VTqa5SYKswUyfu54u9eDPXX2YTTVKd1Nq/RicVMDR8LLPxABQeFMX5EALj8WiVHAFSPH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717144743; c=relaxed/simple;
-	bh=ZFMmpYdHQGeJ/z9gZHfYAifXybdEhkawr1UnA1qVQ4Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RDxE3lM3Lnk4zXFDUrAT3JS6XXW8bsHR5mXCu9rE3HOGcvRuofOQn5pQIWAyfTlx4bzz+B4RCPPbtRSRPAA2TXCnkQ39z+LsrlaETGNQ3p7MLx5NXwNrfvajbguPetF+ZSESkA4kocg6SkQzllm1Lma9RKkc+rNDEnts2Rz4RUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zDCj0g5c; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1f48e9414e9so15395725ad.0
-        for <devicetree@vger.kernel.org>; Fri, 31 May 2024 01:39:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717144741; x=1717749541; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=lnrY2pbNU0k+0zlhxzJD+ASA3BY00naiFRrmZ3gNEAM=;
-        b=zDCj0g5cPLeHHMm1K8ZNjnITlyqFja02cUVLPpIXwURvAehG+ss/gAgVfSB8fbQL9d
-         +muHz6OwOVjM641HWh/FLmrwxT+2aLF9nofx35ZNrLrDHa4yYYFJ82KtjCBO/3SNU0FY
-         phJICaw2bflPEPhzoYH/n6V3MatQi4l1wzNULnMRcJBiweuzILycH+ueUmdfhEtwHe0I
-         3OdwatEItB09rAHP5r/sBaRIz9YG+zBZWW/ajn4UqGgRinVu0Byp0FS8kgpu6GHfsqFi
-         yABXg669NWVP0rE3+KjVPcMVgq176gVqkjbSAfYKFffh7vxui861nI9roPnNv1o9WvkX
-         TESA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717144741; x=1717749541;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lnrY2pbNU0k+0zlhxzJD+ASA3BY00naiFRrmZ3gNEAM=;
-        b=OABYQiTbNU1Paven41nFmnX0rEEbSjq8SWUoyU6IqwipIjeoK7bzM5nBvCIHOl/r0O
-         /I2w+9Y6FGwFz1o2XDkJepa+yGiQ4hfnzMHyUB6GjfnVe00ZmW2Jebi7Zo+JuW+zXpPl
-         a4/L18QpFSubpicMiqkCgXKoWQzLAJvBDrUoBpNHHnnaU6HNKUTyzZ/rK633Vpb92ntq
-         IiGRKfCcClvOdYlZlGCx+2LpH1P6MhqYWlGROhmqUofHCQa0XwWWIbVeyLy3117lotZO
-         qvmrygKVpSgw9hjIO8DJWKbBm3Wp+uS61g7R8TdJmrsCG1heeNPdyCyWz3952Ra2jnBD
-         MbGg==
-X-Forwarded-Encrypted: i=1; AJvYcCUPDA+Mig7HTPHtC0f3p6suWG5c4+ScuqAiDsuPYlPdztGN80D9OoBac4CrfkDsOlzowU7bXC1hqDn0hXT5URvN+ExtoPiuUEPI5g==
-X-Gm-Message-State: AOJu0Yy3vybmLYETGn90Zk0FqAFjOMQtciDcWaC22O6nlBP+BZOLjltx
-	wf+OmmfUj0wtUR9luMUkGWnZB2nRgHMyBDGuQu0pJhVHu1CkViSPJ6+YnNpWbxLSpL3OA/I67zo
-	4rV+23dOUVRMs0v2E3IhRSNSsZdW/Ul3N4Ftl5w==
-X-Google-Smtp-Source: AGHT+IG8vPZtTUMBJ/SeUxjWqwTa+oxGvQfRE7eRFeFHpKg0Ap4gr+tU2wNSF5RwNuTIuL/3twCwLRR9PNjRGv0nJ00=
-X-Received: by 2002:a17:902:ec92:b0:1f3:62c:247f with SMTP id
- d9443c01a7336-1f61be15ccemr63399965ad.11.1717144741002; Fri, 31 May 2024
- 01:39:01 -0700 (PDT)
+	s=arc-20240116; t=1717144963; c=relaxed/simple;
+	bh=CF7FQcgTD5C4gVve+D4MF3p3RzrOMqyJxBAKLPvDFmY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ND72T1V2JiU6pMEKEWRb+dTig/oPUl6CdjtX138de+mvbMkJEw3OOR4MfkIJrUsVU6vhMlUa1S+AtTUh2caf0cQ5hEK/EeIJM1Gr6W99Qml/2fWe6qD1T9eaTAhbYWXLkwFabSv6eQOWaP0BVCqdRjBUAvvfQnYG51NJw+YJPtE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 315ED113E;
+	Fri, 31 May 2024 01:43:05 -0700 (PDT)
+Received: from [10.57.67.251] (unknown [10.57.67.251])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5CAAF3F792;
+	Fri, 31 May 2024 01:42:38 -0700 (PDT)
+Message-ID: <bc550e12-7ad6-4592-994d-dca5a95e88ca@arm.com>
+Date: Fri, 31 May 2024 09:42:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240529100926.3166325-1-quic_tengfan@quicinc.com>
- <20240529100926.3166325-5-quic_tengfan@quicinc.com> <s5gt3p6zsd5ebrkop4dhd33tykln33f6ahu3pibymecxsmakyd@lg5wfgec6dat>
- <205de8b7-507f-45c9-83ce-6eceb1466cb2@quicinc.com>
-In-Reply-To: <205de8b7-507f-45c9-83ce-6eceb1466cb2@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 31 May 2024 11:38:48 +0300
-Message-ID: <CAA8EJpqFq=6YFcUpjdkKikN54iQ76i8Rk_z+mLH1Tt0zFFmciQ@mail.gmail.com>
-Subject: Re: [PATCH v9 4/4] arm64: dts: qcom: aim300: add AIM300 AIoT
-To: Tengfei Fan <quic_tengfan@quicinc.com>
-Cc: andersson@kernel.org, konrad.dybcio@linaro.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@quicinc.com, 
-	Qiang Yu <quic_qianyu@quicinc.com>, Ziyue Zhang <quic_ziyuzhan@quicinc.com>, 
-	quic_chenlei@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/5] arm64: dts: allwinner: h616: add IOMMU node
+To: Andre Przywara <andre.przywara@arm.com>, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: Chris Morgan <macromorgan@hotmail.com>, Ryan Walklin
+ <ryan@testtoast.com>, iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20240530233800.27705-1-andre.przywara@arm.com>
+ <20240530233800.27705-6-andre.przywara@arm.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20240530233800.27705-6-andre.przywara@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, 31 May 2024 at 11:35, Tengfei Fan <quic_tengfan@quicinc.com> wrote:
->
->
->
-> On 5/29/2024 11:18 PM, Dmitry Baryshkov wrote:
-> > On Wed, May 29, 2024 at 06:09:26PM +0800, Tengfei Fan wrote:
-> >> Add AIM300 AIoT Carrier board DTS support, including usb, UART, PCIe,
-> >> I2C functions support.
-> >> Here is a diagram of AIM300 AIoT Carrie Board and SoM
-> >>   +--------------------------------------------------+
-> >>   |             AIM300 AIOT Carrier Board            |
-> >>   |                                                  |
-> >>   |           +-----------------+                    |
-> >>   |power----->| Fixed regulator |---------+          |
-> >>   |           +-----------------+         |          |
-> >>   |                                       |          |
-> >>   |                                       v VPH_PWR  |
-> >>   | +----------------------------------------------+ |
-> >>   | |                          AIM300 SOM |        | |
-> >>   | |                                     |VPH_PWR | |
-> >>   | |                                     v        | |
-> >>   | |   +-------+       +--------+     +------+    | |
-> >>   | |   | UFS   |       | QCS8550|     |PMIC  |    | |
-> >>   | |   +-------+       +--------+     +------+    | |
-> >>   | |                                              | |
-> >>   | +----------------------------------------------+ |
-> >>   |                                                  |
-> >>   |                    +----+          +------+      |
-> >>   |                    |USB |          | UART |      |
-> >>   |                    +----+          +------+      |
-> >>   +--------------------------------------------------+
-> >>
-> >> Co-developed-by: Qiang Yu <quic_qianyu@quicinc.com>
-> >> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
-> >> Co-developed-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-> >> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-> >> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
-> >> ---
-> >>   arch/arm64/boot/dts/qcom/Makefile             |   1 +
-> >>   .../boot/dts/qcom/qcs8550-aim300-aiot.dts     | 322 ++++++++++++++++++
-> >>   2 files changed, 323 insertions(+)
-> >>   create mode 100644 arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dts
-> >
-> > [trimmed]
-> >
-> >> +&remoteproc_adsp {
-> >> +    firmware-name = "qcom/qcs8550/adsp.mbn",
-> >> +                    "qcom/qcs8550/adsp_dtbs.elf";
-> >
-> > Please excuse me, I think I missed those on the previous run.
-> >
-> > adsp_dtb.mbn
->
-> Currently, waht we have released is adsp_dtbs.elf. If we modify it to
-> adsp_dtb.mbn, it may cause the ADSP functionality can not boot normally.
+On 2024-05-31 12:38 am, Andre Przywara wrote:
+> The Allwinner H616 contains a scatter-gather IOMMU connected to some
+> video related devices. It's almost compatible to the one used in the H6,
+> though with minor incompatibilities.
+> 
+> Add the DT node describing its resources, so that devices like the video
+> or display engine can connect to it.
 
-Released where? linux-firmware doesn't have such a file. And the modem
-partition most likely has a different path for it anyway.
+Without also describing those connections, though, having this node 
+enabled in the DT means the driver will just bind, block DMA, and 
+prevent those devices from working. That's probably not what you want.
 
->
-> >
-> >> +    status = "okay";
-> >> +};
-> >> +
-> >> +&remoteproc_cdsp {
-> >> +    firmware-name = "qcom/qcs8550/cdsp.mbn",
-> >> +                    "qcom/qcs8550/cdsp_dtbs.elf";
-> >
-> > cdsp_dtb.mbn
->
-> CDSP also as above ADSP.
->
-> >
+Thanks,
+Robin.
 
-> >> +
-> >> +    te_active: te-active-state {
-> >> +            pins = "gpio86";
-> >> +            function = "mdp_vsync";
-> >> +            drive-strength = <2>;
-> >> +            bias-pull-down;
-> >> +    };
-> >> +
-> >> +    te_suspend: te-suspend-state {
-> >> +            pins = "gpio86";
-> >> +            function = "mdp_vsync";
-> >> +            drive-strength = <2>;
-> >> +            bias-pull-down;
-> >> +    };
-> >
-> > What is the difference between these two?
->
-> TE pin needs to be pulled down for both active and suspend states. There
-> is no difference.
-
-So why do you need two different states for it?
-
-
-
-
-
--- 
-With best wishes
-Dmitry
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>   arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 9 +++++++++
+>   1 file changed, 9 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> index 9c1980e24cb21..44f04619a43ac 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> @@ -320,6 +320,15 @@ x32clk_fanout_pin: x32clk-fanout-pin {
+>   			};
+>   		};
+>   
+> +		iommu: iommu@30f0000 {
+> +			compatible = "allwinner,sun50i-h616-iommu";
+> +			reg = <0x030f0000 0x10000>;
+> +			interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&ccu CLK_BUS_IOMMU>;
+> +			resets = <&ccu RST_BUS_IOMMU>;
+> +			#iommu-cells = <1>;
+> +		};
+> +
+>   		gic: interrupt-controller@3021000 {
+>   			compatible = "arm,gic-400";
+>   			reg = <0x03021000 0x1000>,
 
