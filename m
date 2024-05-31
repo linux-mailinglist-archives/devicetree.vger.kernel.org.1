@@ -1,158 +1,123 @@
-Return-Path: <devicetree+bounces-71063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88ADA8D5A40
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 08:08:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A91328D5A55
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 08:10:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CAF52872AD
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 06:08:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 655A5285D47
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 06:10:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F55A7F7F5;
-	Fri, 31 May 2024 06:07:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAF4A7E10B;
+	Fri, 31 May 2024 06:10:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="oisY3DK8"
+	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="P+sqDvaz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BC327E0FF
-	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 06:07:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21CD918756E;
+	Fri, 31 May 2024 06:10:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717135656; cv=none; b=CYsvGsTC6r3YcgwF/5mjEcLteyQlsd+/SNtKF/TkVcLvc416E32bqJmY4FvQMLT9OraOqckoLxlnIZ43NCuKWn/EvQeBRt3r3BXsqcCsVqCEZSH24aSRjSAhgdVl6eb5AYMCrzf/8Ms9PZSuQueyBbAgASZcDDZbF+iw+bLFSXs=
+	t=1717135847; cv=none; b=r9DdjcpG0rmgKVo/Kq665LRs2kxSNeO8lWuHOsELzbyoNvYY5778Mr9zhz0Y+BqiRtkXJ3cj77TFNw3Jiw9Dq483CegtPEzb7QW2QeLJ5jOIfRxg+pexESj+7NKqXNwiobD1FjOI4wJQ39tSzAwlSUoH9ndFpNYdKFytrOTkW90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717135656; c=relaxed/simple;
-	bh=+3BZx419ZAMcAUTTU97c9t/HNAedUfsPXdqO69drvVo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:Content-Type:
-	 References; b=T0QkwHcDUlwD2XwUVm0ELanP/DxhnJvFHbK4KGlPbJvDLOR6oyoTLgYgNYGrFMfHBnV0VU9JtDWpr0IFLZF4cWvA3kGDO5vhf1BvIHKxGhKhTnL2NRnNRdrkVqehBfFsc4SmrZiW+v8fwqkHL6H9mDhavQ3tsTDtnVWk5EbIKww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=oisY3DK8; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20240531060732epoutp0162111790ab65523ffb76bf7b4421b258~UfcdT_I3y2243922439epoutp012
-	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 06:07:32 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20240531060732epoutp0162111790ab65523ffb76bf7b4421b258~UfcdT_I3y2243922439epoutp012
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1717135653;
-	bh=PRvIg4Zw3iG8OrJ9EiBqGy+QtBxM3pliyzg3yqVWZb8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=oisY3DK8MZQnFDBaRa0VYOlt6PTRwybsl0A2KNSL36KyWhNjBxC8Fa4Z4YDIa8O9I
-	 lM5+mnvYBi/RvW0Eyt57BS04BGUeoKMq5IZEhsXNXWaBqeguwMCLS9VEsX3PW8CTL/
-	 pv+0G7xOr5AyylcKsxG/HOxyfIrbzk36CiKQzp8Q=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-	epcas2p3.samsung.com (KnoxPortal) with ESMTP id
-	20240531060732epcas2p302e1af9507bd5af4044a1f27fb2a2d58~Ufcc9On681346913469epcas2p3t;
-	Fri, 31 May 2024 06:07:32 +0000 (GMT)
-Received: from epsmges2p4.samsung.com (unknown [182.195.36.99]) by
-	epsnrtp1.localdomain (Postfix) with ESMTP id 4VrCMS1fw8z4x9QJ; Fri, 31 May
-	2024 06:07:32 +0000 (GMT)
-Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
-	epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
-	D2.C2.09479.42969566; Fri, 31 May 2024 15:07:32 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-	20240531060731epcas2p4f14afae9f00a7e71e6bd3863f0a51441~UfccICfaO0345403454epcas2p4V;
-	Fri, 31 May 2024 06:07:31 +0000 (GMT)
-Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20240531060731epsmtrp2715f377978b120b5f5025b1fa85798e0~UfccHQ3GS3247032470epsmtrp2G;
-	Fri, 31 May 2024 06:07:31 +0000 (GMT)
-X-AuditID: b6c32a48-ea7ff70000002507-e4-665969248bf9
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	54.6F.07412.32969566; Fri, 31 May 2024 15:07:31 +0900 (KST)
-Received: from ubuntu.dsn.sec.samsung.com (unknown [10.229.95.128]) by
-	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20240531060731epsmtip15254132b4de1938a865da1396dad6bdd~Ufcb7193e0186201862epsmtip1L;
-	Fri, 31 May 2024 06:07:31 +0000 (GMT)
-From: Daehwan Jung <dh10.jung@samsung.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Mathias
-	Nyman <mathias.nyman@intel.com>, Felipe Balbi <balbi@kernel.org>
-Cc: linux-usb@vger.kernel.org (open list:USB SUBSYSTEM),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE
-	TREE BINDINGS), linux-kernel@vger.kernel.org (open list), Daehwan Jung
-	<dh10.jung@samsung.com>
-Subject: [PATCH v2 5/5] usb: host: xhci-plat: Add support for
- XHCI_WRITE_64_HI_LO_QUIRK
-Date: Fri, 31 May 2024 15:07:37 +0900
-Message-Id: <1717135657-120818-6-git-send-email-dh10.jung@samsung.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1717135657-120818-1-git-send-email-dh10.jung@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrKKsWRmVeSWpSXmKPExsWy7bCmua5KZmSawcrtnBbH2p6wW6zZe47J
-	Yv6Rc6wWdxZMY7JoXryezeLlrHtsFpd3zWGzWLSsldmiedMUVov/e3awW6xacIDdgdtj8Z6X
-	TB6bVnWyeeyfu4bdo2/LKkaPLfs/M3p83iQXwBaVbZORmpiSWqSQmpecn5KZl26r5B0c7xxv
-	amZgqGtoaWGupJCXmJtqq+TiE6DrlpkDdJ+SQlliTilQKCCxuFhJ386mKL+0JFUhI7+4xFYp
-	tSAlp8C8QK84Mbe4NC9dLy+1xMrQwMDIFKgwITtjwfQljAX72CqunXjJ2sB4kLWLkZNDQsBE
-	4sTHaWxdjFwcQgI7GCUm3PvADpIQEvjEKHH5LzeE/Y1R4mJ7AkzDjllHWSEa9jJK3F+7ixnC
-	+cEoMeXgWaYuRg4ONgEtie8LGUHiIgKzmCQezbkL5jALPGOUWP/nPBPIKGGBSInZ7yYwgtgs
-	AqoSJz+1MoPYvAJuEquf/YO6T07i5rlOsDingLvEgznnWEAGSQh8ZJfYde0lVJGLxKP1i5gg
-	bGGJV8e3sEPYUhKf3+1lg7CLJW49f8YM0dzCKLHiVQszRMJYYtazdkaQs5kFNCXW79IHMSUE
-	lCWO3GIBqWAW4JPoOPyXHSLMK9HRJgTRqCwx/fIEqAskJQ6+Pgc10EPi0vXZ0CCdxSgx6+Jd
-	xgmMcrMQFixgZFzFKJZaUJybnlpsVGACj7Hk/NxNjOD0p+Wxg3H22w96hxiZOBgPMUpwMCuJ
-	8P5Kj0gT4k1JrKxKLcqPLyrNSS0+xGgKDLyJzFKiyfnABJxXEm9oYmlgYmZmaG5kamCuJM57
-	r3VuipBAemJJanZqakFqEUwfEwenVANTa9Yzh8BZzq8dLu/8efjB7h28lfLvH+2c4lL8c/Lu
-	C83Mxr1PeH//C4jgWZq25P7h9wdLxA432ExduzPZSKpI9unl7Xstvv4q7d561XpT/LOSY+cn
-	7djF3NJ0c8L/3elfJOdMupp1aQbTvrvxDmrXUr762hx7s8H5kSWz9NJH9yv9i/YJehoGyx2T
-	TVs8Q93vtJlzG4P3o/7oe0+XVLBJx00odG4KCn36dcdyFs93Rf+fZ6qrn9C5JKibFne0mttN
-	5bvPwqoK7/+Mc82WPVnMtlmszXUHW3beVdaPE/1eFZw6PKvcgCshu8DhwEPV7MTALI4la9+p
-	FieaSXqXJu7m229lHN7n2vzj4Dyftm1cSizFGYmGWsxFxYkAkSrJhAgEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrALMWRmVeSWpSXmKPExsWy7bCSnK5yZmSaQUeXhsWxtifsFmv2nmOy
-	mH/kHKvFnQXTmCyaF69ns3g56x6bxeVdc9gsFi1rZbZo3jSF1eL/nh3sFqsWHGB34PZYvOcl
-	k8emVZ1sHvvnrmH36NuyitFjy/7PjB6fN8kFsEVx2aSk5mSWpRbp2yVwZSyYvoSxYB9bxbUT
-	L1kbGA+ydjFyckgImEjsmHUUyObiEBLYzSjxsH89I0RCUmLp3BvsELawxP2WI1BF3xgl+r5P
-	Zeli5OBgE9CS+L6QESQuIrCASeLatNvsIA6zwDNGiXsPWlhBioQFwiU+H40HGcQioCpx8lMr
-	M4jNK+AmsfrZP6gr5CRunusEi3MKuEs8mHOOBcQWAqrZdekA+wRGvgWMDKsYJVMLinPTc5MN
-	CwzzUsv1ihNzi0vz0vWS83M3MYIDVUtjB+O9+f/0DjEycTAeYpTgYFYS4f2VHpEmxJuSWFmV
-	WpQfX1Sak1p8iFGag0VJnNdwxuwUIYH0xJLU7NTUgtQimCwTB6dUA5PXxzWxQsr7NT6LPe2J
-	WGtgEFpxjOXpZObfnu/Or6xNeM4odFRWUC8nROTdLX3TCBeNzIPiC3pTcsriVzSzL36kmWnM
-	GC17WK3flOWgnVru0dWHe1anX3Qos5jPvc/l9C6BZxttJop7zph47+2fjg1h3TtSZdgOrd+y
-	0+aFVugFpRORP6NDjD9Ufzqm06hsu2GKTKue1qk/2gf169acuXbqbkIfY13uRZ/XWkrsd5YF
-	Stn7qLrv6xEwP6Nhf+vC/MCXx9jm7l6meOsGK1fPd8HVjY1FHeHMNdN3HjoVdEvhiZu1y4vT
-	6zcaOutJMe4/NeWjh3RM8uevwVOtjoguSDPbXXTzwLz9k/cxiazz/KvEUpyRaKjFXFScCAA+
-	KGNdwwIAAA==
-X-CMS-MailID: 20240531060731epcas2p4f14afae9f00a7e71e6bd3863f0a51441
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20240531060731epcas2p4f14afae9f00a7e71e6bd3863f0a51441
-References: <1717135657-120818-1-git-send-email-dh10.jung@samsung.com>
-	<CGME20240531060731epcas2p4f14afae9f00a7e71e6bd3863f0a51441@epcas2p4.samsung.com>
+	s=arc-20240116; t=1717135847; c=relaxed/simple;
+	bh=qB0ppgM4QBM9DfYzNLcE/5J/iC0iPummqPWvs/1rtSQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=B7T/6hVRgVMTYoKiV4zhzzKoqKa4BF7EnPnn2TJAgeucB0KiMWc0ORw3j05xosZqDL6TXw8By+Q2C4+hGcCDsLTpfQoE90vK9IX0DrSNP9Pc5A60IrjcSOmXBL/NO5zI1t7lB/yZYgc4JbM3M9ABakAZ4WOsdXpC1d0D+r5Iffc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=P+sqDvaz; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 79D5340006;
+	Fri, 31 May 2024 06:10:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+	t=1717135843;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=SRRofHQN+sZ3zin7XoMAEcDEOOv/eiLPcfVn0mruNPM=;
+	b=P+sqDvazmpYhlGevEVypSVw8Pj094VUJ2WN0YqIf19IvIOFP3PX+uciDmOd8nSBrklIM7l
+	+QM/YROYMmNiXG6JXSmCXDu060ENb3Px7vAUzyjVHfaNhxCb/A5Mn+c7yWnrZI7KfBgqzn
+	f9KeYKpjgA4nMVvxCGrZjW3kIVgExJlJP3V3i0m19tD03rVukVBO6A6m8Y3m9RQsXLTx3C
+	G56yQl/I/0oua7UVUfQzVcDytm5sTVb6Sxj/PhzAxKgzeZ9W/t8ZOFMM8TtKi25LydePc+
+	IT6pqusy5gI14Tzgz5A56iLmcwdDtKRxYtOq786wEEcPT/zHTr381qbLqEqHAQ==
+Message-ID: <0cba095c-3d55-416a-a7ad-b359129731cf@arinc9.com>
+Date: Fri, 31 May 2024 09:10:38 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
+To: Linux regressions mailing list <regressions@lists.linux.dev>,
+ Frank Wunderlich <linux@fw-web.de>, Paolo Abeni <pabeni@redhat.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Daniel Golle <daniel@makrotopia.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ frank-w@public-files.de, Rob Herring <robh@kernel.org>
+References: <20240516204847.171029-1-linux@fw-web.de>
+ <a29dd7d1-40a8-4c88-99aa-651a3305b640@arinc9.com>
+ <5AEE5668-0C8E-4EE4-A398-66CB99DF5650@public-files.de>
+ <43aacd9d-b851-4100-8ccc-878ac6ae10f8@leemhuis.info>
+ <698cf562-1ca9-4aa3-be7e-a1474b612c5b@leemhuis.info>
+Content-Language: en-US
+From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <698cf562-1ca9-4aa3-be7e-a1474b612c5b@leemhuis.info>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: arinc.unal@arinc9.com
 
-This is set by dwc3 parent node to support writing high-low order.
+On 31/05/2024 08.40, Thorsten Leemhuis wrote:
+> [adding Paolo, who committed the culprit]
+> 
+> On 23.05.24 12:44, Linux regression tracking (Thorsten Leemhuis) wrote:
+>> On 17.05.24 08:27, Frank Wunderlich wrote:
+>>> Am 17. Mai 2024 04:17:47 MESZ schrieb "Arınç ÜNAL" <arinc.unal@arinc9.com>:
+>>>> On 16/05/2024 23:48, Frank Wunderlich wrote:
+>>>>> From: Frank Wunderlich <frank-w@public-files.de>
+>>>>>
+>>>>> After commit 868ff5f4944a
+>>>>> ("net: dsa: mt7530-mdio: read PHY address of switch from device tree")
+>>>>> the mt7531 switch on Bananapi-R64 was not detected.
+>>>>>
+>>>>> mt7530-mdio mdio-bus:00: reset timeout
+>>>>> mt7530-mdio mdio-bus:00: probe with driver mt7530-mdio failed with error -110
+>>>>>
+>>>>> Fix this by adding phy address in devicetree.
+>>>>>
+> 
+> Frank, am I right assuming the regression is still present in mainline?
+> As from here it looks like for two weeks now there was no progress at
+> all to fix this (or I missed it, which is quite possible).
+> 
+> Makes me wonder if the maintainers should revert the culprit or if the
+> arm64 dts folks should accept your fix despite Arınç ÜNAL's (who from a
+> quick look on lore hasn't posted anything for two weeks now) comment.
 
-Signed-off-by: Daehwan Jung <dh10.jung@samsung.com>
----
- drivers/usb/host/xhci-plat.c | 3 +++
- 1 file changed, 3 insertions(+)
+I'm not against the patch. I'm against the logic it entails on the patch
+log. I had already submitted a patch series that would've prevented this
+issue back in 14 March 2024 [1]. I've asked numerous times for the patch
+series to be applied [2][3][4][5].
 
-diff --git a/drivers/usb/host/xhci-plat.c b/drivers/usb/host/xhci-plat.c
-index 3d071b8..31bdfa5 100644
---- a/drivers/usb/host/xhci-plat.c
-+++ b/drivers/usb/host/xhci-plat.c
-@@ -256,6 +256,9 @@ int xhci_plat_probe(struct platform_device *pdev, struct device *sysdev, const s
- 		if (device_property_read_bool(tmpdev, "xhci-sg-trb-cache-size-quirk"))
- 			xhci->quirks |= XHCI_SG_TRB_CACHE_SIZE_QUIRK;
- 
-+		if (device_property_read_bool(tmpdev, "write-64-hi-lo-quirk"))
-+			xhci->quirks |= XHCI_WRITE_64_HI_LO;
-+
- 		device_property_read_u32(tmpdev, "imod-interval-ns",
- 					 &xhci->imod_interval);
- 	}
--- 
-2.7.4
+Eventually Daniel asked for some changes [6]. But I won't have time to do
+that anytime soon and I think the patch series is good enough to be applied
+as is.
 
+[1] https://lore.kernel.org/all/20240314-for-mediatek-mt7531-phy-address-v1-0-52f58db01acd@arinc9.com/
+[2] https://lore.kernel.org/all/ff196055-ecd8-4563-bc01-ff2533a07109@arinc9.com/
+[3] https://lore.kernel.org/all/a60fc16d-4236-427c-b4a8-ec6fdf62d9f0@arinc9.com/
+[4] https://lore.kernel.org/all/facb8204-c2b3-4084-a2e3-4fbf3a3fdc9d@arinc9.com/
+[5] https://lore.kernel.org/all/44e366ea-964a-4515-9027-2a2edfe12512@arinc9.com/
+[6] https://lore.kernel.org/all/ZixU287DdhvRyZBe@makrotopia.org/
+
+Arınç
 
