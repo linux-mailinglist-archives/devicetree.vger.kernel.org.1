@@ -1,51 +1,52 @@
-Return-Path: <devicetree+bounces-71408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 163BC8D6AFC
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 22:44:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 638678D6AFD
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 22:44:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 476DB1C22B0A
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 20:44:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 195B728937E
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 20:44:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E6BC17D374;
-	Fri, 31 May 2024 20:43:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5632617D895;
+	Fri, 31 May 2024 20:44:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="VmkYZwak"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="rGiKoYII"
 X-Original-To: devicetree@vger.kernel.org
 Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A69141CA80
-	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 20:43:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5895244C64
+	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 20:43:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717188239; cv=none; b=NJGpOId2sHap/uPePMgSPFzT1TIiYr/K3khFYRhXJyPFbGA41UWyPCybtgzmmjhFzM8KE6RrEOt1iGxfMsOAqpQ2ZjfsXefka4iEZ1sM4hlSEU400OpprVSohgXsKnoFrTert8VIY9ZRbQQqaDeh4l+gdSV7VQNZ15mGtCOm+zE=
+	t=1717188240; cv=none; b=cK6w2kYNVsCLU1fvAoPqgztiMgQVBTzAAy9cLoxIHL1frjT6i/Ec4neDFNiSgV+aRE19Zfv6zXi2mZ1VTnKhJ+NBQd427G0m3Km1mG6ANPIb/KB8tAMcG+BonF6mjCLQkPhgv6WaqKmzLNOaeoi9no1xwH6XQfQ+PN4iIbt56Yc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717188239; c=relaxed/simple;
-	bh=NKFJ782geX1l+Va20YCz6+icGQDBtdKcz41LHa+AGtI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IYRlvHzq90gXqhMkorUob6dS3uIgkW++2CRrcd4iCoERNm2vy0HDjyfpWZvNtZ+2wMtv5wpvWCK9P6Z185j0il6JMSMpJCq0ZmsSFjGqsdjO011HqEi3HJ4rQ6T6fhQ2pOKogLImskeDR4Lzyus/S7R4jB8823HIm/sR2/tcHlg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=VmkYZwak; arc=none smtp.client-ip=85.214.62.61
+	s=arc-20240116; t=1717188240; c=relaxed/simple;
+	bh=FcNax6dwqL+qUsukCCoo0aMzs5mJmnULlU0UBpCrG3g=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=S4nE5ah4gLgw4o3RKN/I5SfGYGPRtqhRw26g57OvSBNbVGDCDnqa+oe8IEzDhvQIhtbO9yKRuwbzvVsz4bPjoq0C11xbTWDhHeK5GiScqs0yiZOJ5Nq2/bv8SC7n5VrcVQd610Pxbt8JB0CCVcV4ZM4bNbOFNOtcWp9tw8L/NdQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=rGiKoYII; arc=none smtp.client-ip=85.214.62.61
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
 Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
 	(No client certificate requested)
 	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 2B08C881BC;
+	by phobos.denx.de (Postfix) with ESMTPSA id EB69D882F0;
 	Fri, 31 May 2024 22:43:55 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1717188235;
-	bh=cYMhrF8MOY6++17rh4KjH+fQXPV8hL59bbGgHSa7WKU=;
-	h=From:To:Cc:Subject:Date:From;
-	b=VmkYZwakYGBrxAUEF5Ik3BNydIuNlO6F1pSy6WdBZQIt4loff4uSXXB61qoj5J9Cy
-	 cXz4FZQJd+QzZgpOiy/AC+wFVesHCkxIsHlPpQd27mDNlj5S31q1CA+B78LtnxYwns
-	 Oztv80adQzd1sm7ymjqbgh0MtplIRdNPSwP+1+74W4ZzrtBPZkenW40Rj3D04w4n+O
-	 QIBKnbo1Z90glh8ZsgpouIs5yTzpcKiAkqFVDTCRBvNyokcXVPdBOxfHLBMhQjXnh3
-	 cKOzUgiTAQc6UowqKlUhW6OvRwNDo6G7W62vCymfdhjxNkMRGxdUNi9bhLwt+/XISn
-	 C1upDcBZI3ayw==
+	s=phobos-20191101; t=1717188236;
+	bh=g3J77FB//Etu/ebYq5eZRJDfoJKtk5Scq3BO3UMEJ2I=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=rGiKoYIIY7SEmPZBas7NnKJAE2dqUiIsE+JzsYrbpnP+YO8nEoaVPsHP++q/sGwQu
+	 uAb1gqnTVer344B240TKxV/jUELQA2hbIMuikuyNE85wqrwrjKWgf1hmYXEKhKeDz6
+	 GdmaN6kIdJQr7E9XtrVA6NNb7WKvATds/yMqwM7z0SGN26tc1PJCaYUCIf2PpUG4HC
+	 NV5MMIDdexpN5O9INoOXvS5OsFc1fmwnEkcB15YICugkXrz9NzL3v8Oqhyjq0orA1O
+	 +6cr8rd7R9FStpSbMCLI13V+mwMr4cR9a7QZqdGh8DdiUJ8z1flfiLQILnGLwSRmaj
+	 YB5cjmi29hZEQ==
 From: Marek Vasut <marex@denx.de>
 To: dri-devel@lists.freedesktop.org
 Cc: Marek Vasut <marex@denx.de>,
@@ -66,10 +67,12 @@ Cc: Marek Vasut <marex@denx.de>,
 	Thomas Zimmermann <tzimmermann@suse.de>,
 	devicetree@vger.kernel.org,
 	kernel@dh-electronics.com
-Subject: [PATCH 1/2] dt-bindings: display: bridge: tc358867: Document default DP preemphasis
-Date: Fri, 31 May 2024 22:42:03 +0200
-Message-ID: <20240531204339.277848-1-marex@denx.de>
+Subject: [PATCH 2/2] drm/bridge: tc358767: Add configurable default preemphasis
+Date: Fri, 31 May 2024 22:42:04 +0200
+Message-ID: <20240531204339.277848-2-marex@denx.de>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240531204339.277848-1-marex@denx.de>
+References: <20240531204339.277848-1-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,7 +83,7 @@ Content-Transfer-Encoding: 8bit
 X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
 X-Virus-Status: Clean
 
-Document default DP port preemphasis configurable via new DT property
+Make the default DP port preemphasis configurable via new DT property
 "toshiba,pre-emphasis". This is useful in case the DP link properties
 are known and starting link training from preemphasis setting of 0 dB
 is not useful. The preemphasis can be set separately for both DP lanes
@@ -107,38 +110,137 @@ Cc: devicetree@vger.kernel.org
 Cc: dri-devel@lists.freedesktop.org
 Cc: kernel@dh-electronics.com
 ---
- .../display/bridge/toshiba,tc358767.yaml       | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ drivers/gpu/drm/bridge/tc358767.c | 49 ++++++++++++++++++++++++++-----
+ 1 file changed, 42 insertions(+), 7 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-index 2ad0cd6dd49e0..dcf56e996ee22 100644
---- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-@@ -98,6 +98,24 @@ properties:
-             reference to a valid eDP panel input endpoint node. This port is
-             optional, treated as DP panel if not defined
+diff --git a/drivers/gpu/drm/bridge/tc358767.c b/drivers/gpu/drm/bridge/tc358767.c
+index 1243918320a7d..32639865fea07 100644
+--- a/drivers/gpu/drm/bridge/tc358767.c
++++ b/drivers/gpu/drm/bridge/tc358767.c
+@@ -241,6 +241,10 @@
  
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
+ /* Link Training */
+ #define DP0_SRCCTRL		0x06a0
++#define DP0_SRCCTRL_PRE1		GENMASK(29, 28)
++#define DP0_SRCCTRL_SWG1		GENMASK(25, 24)
++#define DP0_SRCCTRL_PRE0		GENMASK(21, 20)
++#define DP0_SRCCTRL_SWG0		GENMASK(17, 16)
+ #define DP0_SRCCTRL_SCRMBLDIS		BIT(13)
+ #define DP0_SRCCTRL_EN810B		BIT(12)
+ #define DP0_SRCCTRL_NOTP		(0 << 8)
+@@ -278,6 +282,8 @@
+ #define AUDIFDATA6		0x0720	/* DP0 Audio Info Frame Bytes 27 to 24 */
+ 
+ #define DP1_SRCCTRL		0x07a0	/* DP1 Control Register */
++#define DP1_SRCCTRL_PRE			GENMASK(21, 20)
++#define DP1_SRCCTRL_SWG			GENMASK(17, 16)
+ 
+ /* PHY */
+ #define DP_PHY_CTRL		0x0800
+@@ -369,6 +375,7 @@ struct tc_data {
+ 
+ 	u32			rev;
+ 	u8			assr;
++	u8			pre_emphasis[2];
+ 
+ 	struct gpio_desc	*sd_gpio;
+ 	struct gpio_desc	*reset_gpio;
+@@ -1090,13 +1097,17 @@ static int tc_main_link_enable(struct tc_data *tc)
+ 			return ret;
+ 	}
+ 
+-	ret = regmap_write(tc->regmap, DP0_SRCCTRL, tc_srcctrl(tc));
++	ret = regmap_write(tc->regmap, DP0_SRCCTRL,
++			   tc_srcctrl(tc) |
++			   FIELD_PREP(DP0_SRCCTRL_PRE0, tc->pre_emphasis[0]) |
++			   FIELD_PREP(DP0_SRCCTRL_PRE1, tc->pre_emphasis[1]));
+ 	if (ret)
+ 		return ret;
+ 	/* SSCG and BW27 on DP1 must be set to the same as on DP0 */
+ 	ret = regmap_write(tc->regmap, DP1_SRCCTRL,
+ 		 (tc->link.spread ? DP0_SRCCTRL_SSCG : 0) |
+-		 ((tc->link.rate != 162000) ? DP0_SRCCTRL_BW27 : 0));
++		 ((tc->link.rate != 162000) ? DP0_SRCCTRL_BW27 : 0) |
++		 FIELD_PREP(DP1_SRCCTRL_PRE, tc->pre_emphasis[1]));
+ 	if (ret)
+ 		return ret;
+ 
+@@ -1188,8 +1199,10 @@ static int tc_main_link_enable(struct tc_data *tc)
+ 		goto err_dpcd_write;
+ 
+ 	/* Reset voltage-swing & pre-emphasis */
+-	tmp[0] = tmp[1] = DP_TRAIN_VOLTAGE_SWING_LEVEL_0 |
+-			  DP_TRAIN_PRE_EMPH_LEVEL_0;
++	tmp[0] = DP_TRAIN_VOLTAGE_SWING_LEVEL_0 |
++		 FIELD_PREP(DP_TRAIN_PRE_EMPHASIS_MASK, tc->pre_emphasis[0]);
++	tmp[1] = DP_TRAIN_VOLTAGE_SWING_LEVEL_0 |
++		 FIELD_PREP(DP_TRAIN_PRE_EMPHASIS_MASK, tc->pre_emphasis[1]);
+ 	ret = drm_dp_dpcd_write(aux, DP_TRAINING_LANE0_SET, tmp, 2);
+ 	if (ret < 0)
+ 		goto err_dpcd_write;
+@@ -1213,7 +1226,9 @@ static int tc_main_link_enable(struct tc_data *tc)
+ 	ret = regmap_write(tc->regmap, DP0_SRCCTRL,
+ 			   tc_srcctrl(tc) | DP0_SRCCTRL_SCRMBLDIS |
+ 			   DP0_SRCCTRL_AUTOCORRECT |
+-			   DP0_SRCCTRL_TP1);
++			   DP0_SRCCTRL_TP1 |
++			   FIELD_PREP(DP0_SRCCTRL_PRE0, tc->pre_emphasis[0]) |
++			   FIELD_PREP(DP0_SRCCTRL_PRE1, tc->pre_emphasis[1]));
+ 	if (ret)
+ 		return ret;
+ 
+@@ -1248,7 +1263,9 @@ static int tc_main_link_enable(struct tc_data *tc)
+ 	ret = regmap_write(tc->regmap, DP0_SRCCTRL,
+ 			   tc_srcctrl(tc) | DP0_SRCCTRL_SCRMBLDIS |
+ 			   DP0_SRCCTRL_AUTOCORRECT |
+-			   DP0_SRCCTRL_TP2);
++			   DP0_SRCCTRL_TP2 |
++			   FIELD_PREP(DP0_SRCCTRL_PRE0, tc->pre_emphasis[0]) |
++			   FIELD_PREP(DP0_SRCCTRL_PRE1, tc->pre_emphasis[1]));
+ 	if (ret)
+ 		return ret;
+ 
+@@ -1274,7 +1291,9 @@ static int tc_main_link_enable(struct tc_data *tc)
+ 
+ 	/* Clear Training Pattern, set AutoCorrect Mode = 1 */
+ 	ret = regmap_write(tc->regmap, DP0_SRCCTRL, tc_srcctrl(tc) |
+-			   DP0_SRCCTRL_AUTOCORRECT);
++			   DP0_SRCCTRL_AUTOCORRECT |
++			   FIELD_PREP(DP0_SRCCTRL_PRE0, tc->pre_emphasis[0]) |
++			   FIELD_PREP(DP0_SRCCTRL_PRE1, tc->pre_emphasis[1]));
+ 	if (ret)
+ 		return ret;
+ 
+@@ -2346,6 +2365,7 @@ static int tc_probe_dpi_bridge_endpoint(struct tc_data *tc)
+ static int tc_probe_edp_bridge_endpoint(struct tc_data *tc)
+ {
+ 	struct device *dev = tc->dev;
++	struct device_node *port;
+ 	struct drm_panel *panel;
+ 	int ret;
+ 
+@@ -2372,6 +2392,21 @@ static int tc_probe_edp_bridge_endpoint(struct tc_data *tc)
+ 		tc->bridge.ops |= DRM_BRIDGE_OP_DETECT;
+ 	tc->bridge.ops |= DRM_BRIDGE_OP_EDID;
+ 
++	port = of_graph_get_port_by_id(dev->of_node, 2);
++	if (!port)
++		return 0;
 +
-+            properties:
-+              toshiba,pre-emphasis:
-+                description:
-+                  Display port output Pre-Emphasis settings for both ports.
-+                $ref: /schemas/types.yaml#/definitions/uint32-array
-+                minItems: 2
-+                maxItems: 2
-+                items:
-+                  enum:
-+                    - 0 # -6dB de-emphasis
-+                    - 1 # -3.5dB de-emphasis
-+                    - 2 # No de-emphasis
++	of_property_read_u8_array(port, "toshiba,pre-emphasis",
++				  tc->pre_emphasis,
++				  ARRAY_SIZE(tc->pre_emphasis));
++	of_node_put(port);
 +
-     oneOf:
-       - required:
-           - port@0
++	if (tc->pre_emphasis[0] < 0 || tc->pre_emphasis[0] > 2 ||
++	    tc->pre_emphasis[1] < 0 || tc->pre_emphasis[1] > 2) {
++		dev_err(dev, "Incorrect Pre-Emphasis setting, use either 0=0dB 1=3.5dB 2=6dB\n");
++		return -EINVAL;
++	}
++
+ 	return 0;
+ }
+ 
 -- 
 2.43.0
 
