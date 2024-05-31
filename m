@@ -1,219 +1,150 @@
-Return-Path: <devicetree+bounces-71181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41D798D5F6F
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:19:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C5D48D5F71
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:19:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C07061F2409E
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 10:19:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6A621F2452D
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 10:19:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 691EF15098A;
-	Fri, 31 May 2024 10:19:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5465915099D;
+	Fri, 31 May 2024 10:19:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ao8LKugR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C728A1422DA;
-	Fri, 31 May 2024 10:19:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97E35150981
+	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 10:19:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717150758; cv=none; b=DgJn14wTeDeA5E3/qCqQqX2jVyFSI5RSW8nNN3s+sVpb7H7T/wLvuMgAVblZHAFeW8SMKIaJi8Vch8mfPWNfpQ5QzCmdzh13TEuFN6mhE97YwHQfYLWV8mL8yAVnRTFZWh0uQW97MDbt05NvYKSYh/LaaUZ+lH8zYRw1C+l+xnQ=
+	t=1717150767; cv=none; b=m00w2f+2cwKJw5EEn+7emJdKUD4arFqPbuJQipeXb847OWpnzW9bxaLFZm3KD9RusGupn7iXs6TYgziTWfbXafjV7U2z5IGUF0huVHp9nlCso82r+PmmPcFEDQ7oJHxqopHOZ4kOxz1ALI7vsMHnkeWFzKFCteXNNU+vUmsAtyI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717150758; c=relaxed/simple;
-	bh=Gxk63K/WzefClGNX53qjRIrlcEhoJXL8wkpq+mWqYMU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FuOCdUr6xYKwmA8apPap8kf+I5IF/3KVQRc5kVweB+fmalNh+MsAoSqApLDOB+Vwst+46l7skUB1JB7XKGA1nsbdZ/DrpHlaOp45L4fBdCa13U6I+I43nKTe21Ls5n/qN0UHPvoxAaZTHQ5SzyKHPLeiOSQrPFG66SAwLCbW4mw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 83AE21424;
-	Fri, 31 May 2024 03:19:40 -0700 (PDT)
-Received: from [192.168.1.100] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BCAB03F641;
-	Fri, 31 May 2024 03:19:14 -0700 (PDT)
-Message-ID: <857fb9da-e12f-4496-964f-44d7ac0ad313@arm.com>
-Date: Fri, 31 May 2024 11:19:13 +0100
+	s=arc-20240116; t=1717150767; c=relaxed/simple;
+	bh=tpARhdnqDejvUkHf6A6ZGltXn5u+j+vN0C/r8HohpZE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=odXR4ixRFGGKDm6z+xqlMkGxfQkW0T1rTsx22Y0ylc8TzobPLM5c4QwJ7r9KdBdiJtQZQMHsxwg/d1OPBckZVUdaTL/8AaSpsirWDZiQDSjrPstIKVmL4Rbf3h171GFS7mrdzPpoCQxRqXbI0wVi/jIsGfym8jDvbbxpUNgjX5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ao8LKugR; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5241b49c0daso2220327e87.0
+        for <devicetree@vger.kernel.org>; Fri, 31 May 2024 03:19:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717150764; x=1717755564; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=mV76t4cc6pTDC5ZC7ticoYRVaUYUCrSvGFXMf4nLI88=;
+        b=Ao8LKugRCDEOCh9jlYFBgv7KigBwXjgb9xm6JaO7ExcdC9t+LHVEV8LYkLBDKf5oPU
+         kPqD9SPesp2zuQqeqakVnsPStxpP1lsBSc8Yzuy8ugc4Ktgp9digwpb5wLg4Xp7wDe0Y
+         PH4awiaMYyC3L1xTZ8L9nKHRF4EFVq7/aOgyEN+VB4/Z56ueOATQSEcV0cOOlE8GFET7
+         IdRv5ymrZurIFhNI8u4qO1Sg/lZevFJ+GJge/LH4Qgrl72FBP1lAPfGmodxfN89Ba/1S
+         c6e190kXcaVndAL5waOsuZN2VnZ3Z7wuM208rx6NPheOGfLLXNOC/r7rvpzOXIuFavoO
+         CAUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717150764; x=1717755564;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mV76t4cc6pTDC5ZC7ticoYRVaUYUCrSvGFXMf4nLI88=;
+        b=d1tnXaSgPJhG600LzMscOh3h8W8XauivsufC8/DuN8Rtwf/oOqoZTRz6haco0SX2Sg
+         GiVtcT6nvANqjsu5oBYGluASQP6ZiwLOXTreb6y7hNU6U6eE7CMjQCmxq0CDR8QGufQa
+         V5P8Tc5YIiyz9PAr2pAa9CTJ0zFGyMcKItEyqLyIJwS4hFTtxE+lU66PsIG4o4Ep1h8U
+         MeJg+Fwd6njJAiRYnspCIygN3MhcoiQD4hL7pJZsZ5xPJdou8HvJp150a2TXXeXD+qNz
+         sk2F7WW5p3eYf7a4BwWRTbNrbmD7+2pIo6newa7fj0sz9UswG9gkmhWnAzcphDHqfiPt
+         r55w==
+X-Forwarded-Encrypted: i=1; AJvYcCVt/YiComMBK5+nNShc2iVzIHa4BX50gjr9D4mcjUaPsp6VZJotWQQwgQe69fkUXAdriD6056D5hiPOrF+SXs/hrpGOaPZ9NA7Vhg==
+X-Gm-Message-State: AOJu0Yx/MzoU+Kr7L9WdlXqoym5RXibY76VVR2oFmaCm3gQzXmiTXbfH
+	i8MmH0VQ096+IG2uYLeeh4U9twtBlrEJ35LyvjwzP/HGQSWAIkg2fXzvsOAjpt8=
+X-Google-Smtp-Source: AGHT+IEqea1VcUvpL4DaWYLaSQWOtObl3fO5LomQnajs74gEtay+IQUApjHW0XNUvR4dba5N2XbxPQ==
+X-Received: by 2002:a05:6512:74c:b0:52b:2f78:9c92 with SMTP id 2adb3069b0e04-52b895694a3mr836554e87.5.1717150763810;
+        Fri, 31 May 2024 03:19:23 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52b84d3f428sm286144e87.92.2024.05.31.03.19.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 May 2024 03:19:23 -0700 (PDT)
+Date: Fri, 31 May 2024 13:19:21 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Stephen Boyd <sboyd@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 7/8] arm64: dts: qcom: qcm6490-idp: Update protected
+ clocks list
+Message-ID: <3zpeoonngdzyubxs2t4r6izwilrqgdxk75bjhqfmov2vmrugzn@ebes3fuvskhn>
+References: <20240318053555.20405-1-quic_tdas@quicinc.com>
+ <20240318053555.20405-8-quic_tdas@quicinc.com>
+ <06c08855-3965-4d57-8bec-fba8544dee7d@linaro.org>
+ <9a2a4e55-e123-4f41-bfaa-563cf2e04f5a@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 7/7] coresight: config: Add preloaded configuration
-To: Linu Cherian <lcherian@marvell.com>
-Cc: linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, sgoutham@marvell.com, gcherian@marvell.com,
- suzuki.poulose@arm.com, mike.leach@linaro.org
-References: <20240531042745.494222-1-lcherian@marvell.com>
- <20240531042745.494222-8-lcherian@marvell.com>
-Content-Language: en-US
-From: James Clark <james.clark@arm.com>
-In-Reply-To: <20240531042745.494222-8-lcherian@marvell.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9a2a4e55-e123-4f41-bfaa-563cf2e04f5a@quicinc.com>
 
-
-
-On 31/05/2024 05:27, Linu Cherian wrote:
-> Add a preloaded configuration for generating
-> external trigger on address match. This can be
-> used by CTI and ETR blocks to stop trace capture
-> on kernel panic.
+On Fri, May 31, 2024 at 03:04:51PM +0530, Taniya Das wrote:
 > 
-> Kernel address for "panic" function is used as the
-> default trigger address.
 > 
-> This new configuration is available as,
-> /sys/kernel/config/cs-syscfg/configurations/panicstop
+> On 3/18/2024 1:24 PM, Krzysztof Kozlowski wrote:
+> > On 18/03/2024 06:35, Taniya Das wrote:
+> > > Certain clocks are not accessible on QCM6490-IDP board,
+> > > thus mark them as protected. Update the lpassaudio node to
+> > > support the new compatible.
+> > > 
+> > > Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> > > ---
+> > 
+> > > 
+> > > +&gcc {
+> > > +	protected-clocks = <GCC_AGGRE_NOC_PCIE_1_AXI_CLK> ,<GCC_PCIE_1_AUX_CLK>,
+> > > +			<GCC_PCIE_1_AUX_CLK_SRC>, <GCC_PCIE_1_CFG_AHB_CLK>,
+> > > +			<GCC_PCIE_1_MSTR_AXI_CLK>, <GCC_PCIE_1_PHY_RCHNG_CLK_SRC>,
+> > > +			<GCC_PCIE_1_PIPE_CLK>, <GCC_PCIE_1_PIPE_CLK_SRC>,
+> > > +			<GCC_PCIE_1_SLV_AXI_CLK>, <GCC_PCIE_1_SLV_Q2A_AXI_CLK>,
+> > > +			<GCC_QSPI_CNOC_PERIPH_AHB_CLK>, <GCC_QSPI_CORE_CLK>,
+> > > +			<GCC_QSPI_CORE_CLK_SRC>,<GCC_USB30_SEC_MASTER_CLK>,
+> > > +			<GCC_USB30_SEC_MASTER_CLK_SRC>, <GCC_USB30_SEC_MOCK_UTMI_CLK>,
+> > > +			<GCC_USB30_SEC_MOCK_UTMI_CLK_SRC>,
+> > > +			<GCC_USB30_SEC_MOCK_UTMI_POSTDIV_CLK_SRC>, <GCC_USB30_SEC_SLEEP_CLK>,
+> > > +			<GCC_USB3_SEC_PHY_AUX_CLK>, <GCC_USB3_SEC_PHY_AUX_CLK_SRC>,
+> > > +			<GCC_USB3_SEC_PHY_COM_AUX_CLK>, <GCC_USB3_SEC_PHY_PIPE_CLK>,
+> > > +			<GCC_USB3_SEC_PHY_PIPE_CLK_SRC>, <GCC_CFG_NOC_LPASS_CLK>,
+> > > +			<GCC_MSS_GPLL0_MAIN_DIV_CLK_SRC>, <GCC_MSS_CFG_AHB_CLK>,
+> > > +			<GCC_MSS_OFFLINE_AXI_CLK>, <GCC_MSS_SNOC_AXI_CLK>,
+> > > +			<GCC_MSS_Q6_MEMNOC_AXI_CLK>, <GCC_MSS_Q6SS_BOOT_CLK_SRC>,
+> > > +			<GCC_SEC_CTRL_CLK_SRC>, <GCC_WPSS_AHB_CLK>,
+> > > +			<GCC_WPSS_AHB_BDG_MST_CLK>, <GCC_WPSS_RSCP_CLK>;
+> > > +};
+> > > +
+> > > +&lpass_audiocc {
+> > > +	compatible = "qcom,qcm6490-lpassaudiocc";
+> > 
+> > What? Why do you override compatible for given board? This is a SoC
+> > block, not board!
 > 
+> On QCM6490-IDP and QCS690-RB3Gen2 boards, the HLOS Audio driver requires the
+> support for the reset functionality only from the LPASS region.
+> Rest of the clocks functionality is controlled from LPASS firmware.
+> 
+> Hence, in the earlier series we marked all the clocks as protected and
+> introduced new "qcom,adsp-skip-pll" flag to skip PLL configurations.
+> But as the flag was also not approved and the ask was to use the compatible
+> string, we went ahead with this approach.
 
-Reviewed-by: James Clark <james.clark@arm.com>
+Is this also applicable for the QCM6490 FairPhone5? If so, maybe it's
+time to have qcm6490.dtsi.
 
-> Signed-off-by: Linu Cherian <lcherian@marvell.com>
-> ---
->  drivers/hwtracing/coresight/Makefile          |  2 +-
->  .../coresight/coresight-cfg-preload.c         |  2 +
->  .../coresight/coresight-cfg-preload.h         |  2 +
->  .../hwtracing/coresight/coresight-cfg-pstop.c | 83 +++++++++++++++++++
->  4 files changed, 88 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/hwtracing/coresight/coresight-cfg-pstop.c
-> 
-> diff --git a/drivers/hwtracing/coresight/Makefile b/drivers/hwtracing/coresight/Makefile
-> index 4ba478211b31..46ce7f39d05f 100644
-> --- a/drivers/hwtracing/coresight/Makefile
-> +++ b/drivers/hwtracing/coresight/Makefile
-> @@ -25,7 +25,7 @@ subdir-ccflags-y += $(condflags)
->  obj-$(CONFIG_CORESIGHT) += coresight.o
->  coresight-y := coresight-core.o  coresight-etm-perf.o coresight-platform.o \
->  		coresight-sysfs.o coresight-syscfg.o coresight-config.o \
-> -		coresight-cfg-preload.o coresight-cfg-afdo.o \
-> +		coresight-cfg-preload.o coresight-cfg-afdo.o coresight-cfg-pstop.o \
->  		coresight-syscfg-configfs.o coresight-trace-id.o
->  obj-$(CONFIG_CORESIGHT_LINK_AND_SINK_TMC) += coresight-tmc.o
->  coresight-tmc-y := coresight-tmc-core.o coresight-tmc-etf.o \
-> diff --git a/drivers/hwtracing/coresight/coresight-cfg-preload.c b/drivers/hwtracing/coresight/coresight-cfg-preload.c
-> index e237a4edfa09..4980e68483c5 100644
-> --- a/drivers/hwtracing/coresight/coresight-cfg-preload.c
-> +++ b/drivers/hwtracing/coresight/coresight-cfg-preload.c
-> @@ -13,6 +13,7 @@
->  static struct cscfg_feature_desc *preload_feats[] = {
->  #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X)
->  	&strobe_etm4x,
-> +	&gen_etrig_etm4x,
->  #endif
->  	NULL
->  };
-> @@ -20,6 +21,7 @@ static struct cscfg_feature_desc *preload_feats[] = {
->  static struct cscfg_config_desc *preload_cfgs[] = {
->  #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X)
->  	&afdo_etm4x,
-> +	&pstop_etm4x,
->  #endif
->  	NULL
->  };
-> diff --git a/drivers/hwtracing/coresight/coresight-cfg-preload.h b/drivers/hwtracing/coresight/coresight-cfg-preload.h
-> index 21299e175477..291ba530a6a5 100644
-> --- a/drivers/hwtracing/coresight/coresight-cfg-preload.h
-> +++ b/drivers/hwtracing/coresight/coresight-cfg-preload.h
-> @@ -10,4 +10,6 @@
->  #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X)
->  extern struct cscfg_feature_desc strobe_etm4x;
->  extern struct cscfg_config_desc afdo_etm4x;
-> +extern struct cscfg_feature_desc gen_etrig_etm4x;
-> +extern struct cscfg_config_desc pstop_etm4x;
->  #endif
-> diff --git a/drivers/hwtracing/coresight/coresight-cfg-pstop.c b/drivers/hwtracing/coresight/coresight-cfg-pstop.c
-> new file mode 100644
-> index 000000000000..c2bfbd07bfaf
-> --- /dev/null
-> +++ b/drivers/hwtracing/coresight/coresight-cfg-pstop.c
-> @@ -0,0 +1,83 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright(C) 2023  Marvell.
-> + * Based on coresight-cfg-afdo.c
-> + */
-> +
-> +#include "coresight-config.h"
-> +
-> +/* ETMv4 includes and features */
-> +#if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X)
-> +#include "coresight-etm4x-cfg.h"
-> +
-> +/* preload configurations and features */
-> +
-> +/* preload in features for ETMv4 */
-> +
-> +/* panic_stop feature */
-> +static struct cscfg_parameter_desc gen_etrig_params[] = {
-> +	{
-> +		.name = "address",
-> +		.value = (u64)panic,
-> +	},
-> +};
-> +
-> +static struct cscfg_regval_desc gen_etrig_regs[] = {
-> +	/* resource selector */
-> +	{
-> +		.type = CS_CFG_REG_TYPE_RESOURCE,
-> +		.offset = TRCRSCTLRn(2),
-> +		.hw_info = ETM4_CFG_RES_SEL,
-> +		.val32 = 0x40001,
-> +	},
-> +	/* single address comparator */
-> +	{
-> +		.type = CS_CFG_REG_TYPE_RESOURCE | CS_CFG_REG_TYPE_VAL_64BIT |
-> +			CS_CFG_REG_TYPE_VAL_PARAM,
-> +		.offset =  TRCACVRn(0),
-> +		.val32 = 0x0,
-> +	},
-> +	{
-> +		.type = CS_CFG_REG_TYPE_RESOURCE,
-> +		.offset = TRCACATRn(0),
-> +		.val64 = 0xf00,
-> +	},
-> +	/* Driver external output[0] with comparator out */
-> +	{
-> +		.type = CS_CFG_REG_TYPE_RESOURCE,
-> +		.offset = TRCEVENTCTL0R,
-> +		.val32 = 0x2,
-> +	},
-> +	/* end of regs */
-> +};
-> +
-> +struct cscfg_feature_desc gen_etrig_etm4x = {
-> +	.name = "gen_etrig",
-> +	.description = "Generate external trigger on address match\n"
-> +		       "parameter \'address\': address of kernel address\n",
-> +	.match_flags = CS_CFG_MATCH_CLASS_SRC_ETM4,
-> +	.nr_params = ARRAY_SIZE(gen_etrig_params),
-> +	.params_desc = gen_etrig_params,
-> +	.nr_regs = ARRAY_SIZE(gen_etrig_regs),
-> +	.regs_desc = gen_etrig_regs,
-> +};
-> +
-> +/* create a panic stop configuration */
-> +
-> +/* the total number of parameters in used features */
-> +#define PSTOP_NR_PARAMS	ARRAY_SIZE(gen_etrig_params)
-> +
-> +static const char *pstop_ref_names[] = {
-> +	"gen_etrig",
-> +};
-> +
-> +struct cscfg_config_desc pstop_etm4x = {
-> +	.name = "panicstop",
-> +	.description = "Stop ETM on kernel panic\n",
-> +	.nr_feat_refs = ARRAY_SIZE(pstop_ref_names),
-> +	.feat_ref_names = pstop_ref_names,
-> +	.nr_total_params = PSTOP_NR_PARAMS,
-> +};
-> +
-> +/* end of ETM4x configurations */
-> +#endif	/* IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X) */
+-- 
+With best wishes
+Dmitry
 
