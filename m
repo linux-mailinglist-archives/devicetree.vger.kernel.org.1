@@ -1,206 +1,108 @@
-Return-Path: <devicetree+bounces-71388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FB528D6915
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 20:40:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BB5F8D6926
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 20:45:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA64B1F264E4
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 18:40:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3462B1C23EF6
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 18:45:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D807B7D40D;
-	Fri, 31 May 2024 18:40:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 576297E58F;
+	Fri, 31 May 2024 18:45:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bdXAuIEy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6FD81E498;
-	Fri, 31 May 2024 18:40:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD8501CA89;
+	Fri, 31 May 2024 18:45:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717180813; cv=none; b=ej8AHGj0QsLj/sAblNAQrB/+GSOLAFD9i0WilzGtb5HU/UiAUTK/BKNOpumat0f+XC0TDjHr5nzfGZbn3gfp2486LVSKrPBd92gd0BAHgY1TtQ6/xr3ABnI6cxudxMFg6qYprfRingMUA8ciC2gaAjO6bsDMPvbmzDVQmIL3p8A=
+	t=1717181117; cv=none; b=WhLRfFHV0NFAb+m6OZFBjZSHz6WkhGWbhJs1ymo6PMO+jz7dyC+cbKiJwykSHhc2pL0YIiAbt+X5O1gunGeAXaeYjRfayevmgU/ZdlArDl5zZIhtOT9+EOmnyDGlKtk1LKcz6QVylepHQUJ85HdpcoO8EHn1qX0VB0dc0ODHMOM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717180813; c=relaxed/simple;
-	bh=CWvKLgD3lohvx+6+tnGDOgFXdjwEyCPNuygDN7coiew=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=chX3pjVs4CjBi1tXpwMPpXCZPRaXKZmAsI+mEAuiyL4G+SOU6laWexGElQuirHRt284Hs6OwWPSRvRkVIGO9vG0mV8lA4WKIkB/Fgq9OXRTvWGylLQaW1kMnkW/GBc39JAFojCk4T72D6AwBR0GcSlPZYDO3YXK6OdASUV7485Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875a4d.versanet.de ([83.135.90.77] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sD7AW-0003V4-TM; Fri, 31 May 2024 20:40:00 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: wens@kernel.org, Dragan Simic <dsimic@manjaro.org>
-Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- Diederik de Haas <didi.debian@cknow.org>
-Subject:
- Re: [PATCH] arm64: dts: rockchip: Fix the DCDC_REG2 minimum voltage on
- Quartz64 Model B
-Date: Fri, 31 May 2024 20:40:00 +0200
-Message-ID: <1994616.CrzyxZ31qj@diego>
-In-Reply-To: <20cf041dcd6f752174bf29d2a53c61b3@manjaro.org>
-References:
- <e70742ea2df432bf57b3f7de542d81ca22b0da2f.1716225483.git.dsimic@manjaro.org>
- <CAGb2v66DPvvRcq+98vF2mCF8URW_qys1+B_FM9kcm6ppuPvyeg@mail.gmail.com>
- <20cf041dcd6f752174bf29d2a53c61b3@manjaro.org>
+	s=arc-20240116; t=1717181117; c=relaxed/simple;
+	bh=SCjsIE5+zvS9rP3n0m54mGHXZqab+yIT8w0uoj6U6sw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mfJ3Qdw3+xfWXXWLjvruac50E+fBd2hAoh7A38TaVNF7c7YB8ycxWPgxnJCYDo3OuEjfUMJvcNqyPMGLCOmFPwzgyshvdAHlL65VBD2EhIUHEKd8TREwQltVAfXhrGKcS1QeBo0nVWv3ESeihXDVlC8SI2nrJUhUwW7PNTjsu5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bdXAuIEy; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-52b894021cbso1312562e87.0;
+        Fri, 31 May 2024 11:45:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717181114; x=1717785914; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SCjsIE5+zvS9rP3n0m54mGHXZqab+yIT8w0uoj6U6sw=;
+        b=bdXAuIEyGLKzCFri4i8auI032pLiV3ZTKkpVRUEQJAxDAIvNIcSZhqEQMWD/ODWQSl
+         lOAqn5Qp8JbknC3vEAA5bAjUAk20oo4veAExuJmD3TUROeWNHiKeYqV7DQTNxqcs4RY6
+         1E78I2Oh3m1LQsjZZ9M5rorILs2WO8tBRe2/VS2g7xpo1cJDV8Neo1etoGsmOM6GnIFg
+         N6XbrpNrD+vjt0y+X5rM4kmAOqbfLkA7CifR+6ppHlXBUPNSRLDMjiHXMJaEbRIGkOD3
+         Rhtq/FFU9znwC3R9FI9/Eug4bx8+kZ37bPCYfr+lvD25vWfd2w1wtrqBhgRHD1YE79Dp
+         XT7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717181114; x=1717785914;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SCjsIE5+zvS9rP3n0m54mGHXZqab+yIT8w0uoj6U6sw=;
+        b=JPEXv1qvpELcn5w1+yei8x4MAmNr0ETGLymKW2tfv75CsFiDXiIsffDkeYxPZOkRen
+         uwKLqWUqTUsnCvgue5FxPe5a13A8nAPAtG2VIYE4lv6lCsSQAXHwRGwGRWLB9YUJ6OvT
+         0SPWiBYmVaX1kS1VDODXb5fPmNqitE0s6ILQwi+DUcCdZuze5ML6E1CtTL+jaoWDli4E
+         5BZUexNgkQNKsGGzdtEzsGIDxH3yQTtTwRoIkfZxqv1IjBCF3tY8YtB14VEVzKfUzYBO
+         dKwz6cRkQ/l/sRr5FaCOvDz0xzcM82XyYOETLrdi8nKy13tZD7KU7mof9UlsEoMiJsOS
+         kt8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCW3xAPZ6Y36CedVV66wEgi+JuKaJgvw86t3k1HNu7vyh2n66I0Cr3O8FJ9e+YzhChWU0j0aXqC9oN14pafA91o0r9qgx/NlfV+CwiOjG1BGPTxK66y9Hk3X8VtcA4JF5DkkeZuAU5GM66bQaV2yG5qM/r5BAVKhMFBaOGOMpnz1PJ3fh6lKRNrJZ7ZwXfKIW9tIgapY9CSXM8dsYhmOl66ZRWSM
+X-Gm-Message-State: AOJu0YxN0fSrrhZ9K17pGtGh7eAXo4GnvqqLo3FnYzF518a49U9WuAdX
+	785EvKHMDf3tAEqqNtwTwto41yLhXHbl3lLRtopufM3eQLtxxjyYJtBLXcIX1bea4Sy3dYGLelx
+	IcEptuL17+qkhjqiZkuLNZ3jVsfEAokea9Oo=
+X-Google-Smtp-Source: AGHT+IGPFx3SbX46u6FcgWqP3HyDQn7qBgWc59dS9IF2/z8xp+8k/UHwXL/kVWGoHL5Vft+Iz0XBX4M1m/N2R+4uAmc=
+X-Received: by 2002:a05:6512:250a:b0:52b:8728:5ea6 with SMTP id
+ 2adb3069b0e04-52b89596257mr2511384e87.19.1717181113392; Fri, 31 May 2024
+ 11:45:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+References: <20240529162958.18081-1-johan+linaro@kernel.org>
+ <20240529162958.18081-13-johan+linaro@kernel.org> <20240531170837.GC1204315@google.com>
+In-Reply-To: <20240531170837.GC1204315@google.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 31 May 2024 21:44:36 +0300
+Message-ID: <CAHp75VfMS8dYbG=bmzkaq2M8SMXu+HbT6D+BP_iY9Ep3VsR2wQ@mail.gmail.com>
+Subject: Re: [PATCH v2 12/14] mfd: pm8008: rework driver
+To: Lee Jones <lee@kernel.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>, Mark Brown <broonie@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Das Srinagesh <quic_gurus@quicinc.com>, 
+	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, Stephen Boyd <swboyd@chromium.org>, 
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Am Freitag, 31. Mai 2024, 00:48:45 CEST schrieb Dragan Simic:
-> Hello Chen-Yu,
->=20
-> On 2024-05-29 18:27, Chen-Yu Tsai wrote:
-> > On Tue, May 21, 2024 at 1:20=E2=80=AFAM Dragan Simic <dsimic@manjaro.or=
-g>=20
-> > wrote:
-> >>=20
-> >> Correct the specified regulator-min-microvolt value for the buck=20
-> >> DCDC_REG2
-> >> regulator, which is part of the Rockchip RK809 PMIC, in the Pine64=20
-> >> Quartz64
-> >> Model B board dts.  According to the RK809 datasheet, version 1.01,=20
-> >> this
-> >> regulator is capable of producing voltages as low as 0.5 V on its=20
-> >> output,
-> >> instead of going down to 0.9 V only, which is additionally confirmed=20
-> >> by the
-> >> regulator-min-microvolt values found in the board dts files for the=20
-> >> other
-> >> supported boards that use the same RK809 PMIC.
-> >>=20
-> >> This allows the DVFS to clock the GPU on the Quartz64 Model B below=20
-> >> 700 MHz,
-> >> all the way down to 200 MHz, which saves some power and reduces the=20
-> >> amount of
-> >> generated heat a bit, improving the thermal headroom and possibly=20
-> >> improving
-> >> the bursty CPU and GPU performance on this board.
-> >>=20
-> >> This also eliminates the following warnings in the kernel log:
-> >>=20
-> >>   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 825000,=
-=20
-> >> not supported by regulator
-> >>   panfrost fde60000.gpu: _opp_add: OPP not supported by regulators=20
-> >> (200000000)
-> >>   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 825000,=
-=20
-> >> not supported by regulator
-> >>   panfrost fde60000.gpu: _opp_add: OPP not supported by regulators=20
-> >> (300000000)
-> >>   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 825000,=
-=20
-> >> not supported by regulator
-> >>   panfrost fde60000.gpu: _opp_add: OPP not supported by regulators=20
-> >> (400000000)
-> >>   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 825000,=
-=20
-> >> not supported by regulator
-> >>   panfrost fde60000.gpu: _opp_add: OPP not supported by regulators=20
-> >> (600000000)
-> >>=20
-> >> Fixes: dcc8c66bef79 ("arm64: dts: rockchip: add Pine64 Quartz64-B=20
-> >> device tree")
-> >> Cc: stable@vger.kernel.org
-> >> Reported-By: Diederik de Haas <didi.debian@cknow.org>
-> >> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
-> >> ---
-> >>  arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts | 2 +-
-> >>  1 file changed, 1 insertion(+), 1 deletion(-)
-> >>=20
-> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts=20
-> >> b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-> >> index 26322a358d91..b908ce006c26 100644
-> >> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-> >> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-> >> @@ -289,7 +289,7 @@ vdd_gpu: DCDC_REG2 {
-> >>                                 regulator-name =3D "vdd_gpu";
-> >>                                 regulator-always-on;
-> >>                                 regulator-boot-on;
-> >> -                               regulator-min-microvolt =3D <900000>;
-> >> +                               regulator-min-microvolt =3D <500000>;
-> >=20
-> > The constraints here are supposed to be the constraints of the=20
-> > consumer,
-> > not the provider. The latter is already known by the implementation.
-> >=20
-> > So if the GPU can go down to 0.825V or 0.81V even (based on the=20
-> > datasheet),
-> > this should say the corresponding value. Surely the GPU can't go down=20
-> > to
-> > 0.5V?
-> >=20
-> > Can you send another fix for it?
->=20
-> I can confirm that the voltage of the power supply of GPU found inside
-> the RK3566 can be as low as 0.81 V, according to the datasheet, or as
-> low as 0.825 V, according to the GPU OPPs found in rk356x.dtsi.
->=20
-> If we want the regulator-min-microvolt parameter to reflect the=20
-> contraint
-> of the GPU as the consumer, which I agree with, we should do that for=20
-> other
-> RK3566-based boards as well, and almost surely for the boards based on=20
-> the
-> RK3568, too.
+On Fri, May 31, 2024 at 8:08=E2=80=AFPM Lee Jones <lee@kernel.org> wrote:
+>
+> Please improve the subject line.
+>
+> I'll come back to review the whole set once Andy has had his wicked way w=
+ith you!
 
-Hmm, I'm not so sure about that.
+I guess we came to the equilibrium, I still disagree on some points,
+but Johan has a strong opinion to not follow my comments. So, it's up
+to you now :)
 
-The binding does define:
-	regulator-min-microvolt:
-	    description: smallest voltage consumers may set
-
-This does not seem to describe it as a constraint solely of the consumer.
-At least the wording sounds way more flexible there.
-
-Also any regulator _could_ have multiple consumers, whose value would
-it need then.
-
-
-While true, setting it to the lowest the regulator can do in the original
-fix patch, might've been a bit much and a saner value might be better.
-
-
-
-> This would ensure consistency, but I'd like to know are all those=20
-> resulting
-> patches going to be accepted before starting to prepare them?  There=20
-> will
-> be a whole bunch of small patches.
-
-Hmm, though I'd say that would be one patch per soc?
-
-I.e. you're setting the min-voltage of _one_ regulator used
-on each board to a value to support the defined OPPs.
-
-I.e. in my mind you'd end up with:
-	arm64: dts: rockchip: set better min voltage for vdd_gpu on rk356x boards
-
-And setting the lower voltage to reach that lower OPP on all affected
-rk356x boards.
-
-
-Heiko
-
->=20
-> >>                                 regulator-max-microvolt =3D <1350000>;
-> >>                                 regulator-ramp-delay =3D <6001>;
->=20
-
-
-
-
+--=20
+With Best Regards,
+Andy Shevchenko
 
