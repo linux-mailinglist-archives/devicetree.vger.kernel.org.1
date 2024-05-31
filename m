@@ -1,108 +1,103 @@
-Return-Path: <devicetree+bounces-71197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 216738D5FC5
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:33:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 257858D5FCC
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:38:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B18D9284A46
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 10:33:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D824C1F24388
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 10:38:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BA64155C82;
-	Fri, 31 May 2024 10:33:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE98B155CA6;
+	Fri, 31 May 2024 10:38:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RmIPKbMk"
+	dkim=pass (1024-bit key) header.d=t-8ch.de header.i=@t-8ch.de header.b="I7ohPjh1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FBFF3DBB7;
-	Fri, 31 May 2024 10:33:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4BB9155C8E;
+	Fri, 31 May 2024 10:38:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.126.157
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717151581; cv=none; b=dSv1i0S9BhMMIaivz2muCNSbiK53gCQj1SLwAhBC25qunl/GTBiCG9ZMNMe5DX4NXLxRXGRLxtB69VJUf6hvjSX0njwxbRg96vRDOckYe4XQwi09jm/Ll6xw47sKgxXKI1kacs3hpc0VDQmC6t81dyY4/CsWwHxYbu4lrYs/Q58=
+	t=1717151886; cv=none; b=lXNxXnonethysvIO/V3qYAjJu2laPlzb9Xqqt4QPUyFz4AX2bG40iE8PnQwH8ZP3XuuvnYfqAtZEGcAsaKOFwQQdz5ychDunPi6mQEfHl4t0we5Y7XDHrCGMpKwqrYvgynk3yFU1qc+2kHo8P+Kgh2ud3DxMEr6+GbAtRFc83UY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717151581; c=relaxed/simple;
-	bh=zS1pUrMFJYbBgJHf7inMI3R6nDBmusfMV1wVhQY5wE4=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=GqU/NC3S3tiampSrVzI1BV06LJDpP7iUkFA3UpR7+7WtTwGU6tQ7pBsFhWA02MMfsXSIATLBUSJZPBclslTpUPMCMZ5eS51AYLNbreUMtJelORGF0a/jpq4A4GoLvItyLxS+K0aJ7IE31dmMOIy9+eR6B8LBw0OmzspYvr7WRto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RmIPKbMk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B15FC116B1;
-	Fri, 31 May 2024 10:33:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717151580;
-	bh=zS1pUrMFJYbBgJHf7inMI3R6nDBmusfMV1wVhQY5wE4=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=RmIPKbMkTl4jPWa7LwDnYhaXtpFK792OMWTGtvMq8hPunLB/AXqz1frtbHg4JTkIQ
-	 dCxGWhGRo4msS7r+0cFQcwYMIAWOTnfN5nU5VfECJCAVZNuWs9M8VihVUTKRJJUBOk
-	 CSigrA1woT9oMCZ1DUfCff+g/yUY0alMgH1VQ9EVcRca3MujEQdACR5pE3xfe8Hz0n
-	 6pR1DH5p9B5Cp56Qr5agogcRnal+Ac2jiuzjKcCmKVrX3XnseGAXrDqs1NM2eux3Qh
-	 q0h0PQ8365NmFFLH9AC+NwGTIttCCgqVVWGGl/FkqVYDeLu9qwVfCNv2TK107KkZ+6
-	 5A56fjdzLZ/uQ==
-Date: Fri, 31 May 2024 05:32:59 -0500
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=arc-20240116; t=1717151886; c=relaxed/simple;
+	bh=vGS6g45uGnxHvSSNpUZ+06i5ODxlJer7tFN7ZSsuT3o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q3Pgcc5lTEnJytAjbd87DHSVg5/wS+AX67Qlm+cIJuP5AXuavmKqS4WsSRQZwov6HxlcA2r2m4uxWr/9teIN80mBOc3GdVKCQdsjFqoQBvCCzBgCEoZWEHTw8NKcpNZ3UDPW4IUfLUApvdXKjcxyRzsBWHvaakJFm9MUjxGN5iI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=t-8ch.de; spf=pass smtp.mailfrom=t-8ch.de; dkim=pass (1024-bit key) header.d=t-8ch.de header.i=@t-8ch.de header.b=I7ohPjh1; arc=none smtp.client-ip=159.69.126.157
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=t-8ch.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=t-8ch.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=t-8ch.de; s=mail;
+	t=1717151875; bh=vGS6g45uGnxHvSSNpUZ+06i5ODxlJer7tFN7ZSsuT3o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=I7ohPjh1avznzAaPb8T6T7o4LUKfcwAdQet/t5H/NpzpKtL4FfFYE/P4ucUbW6j3T
+	 SVCdjqM8Wjgnc2pwGNtt1GO02xrFZlLwFVHFyxJZ+e9XpapKCWzfDo1XUUKQbyUt48
+	 AxPK4mJsasUNb4FlIbz/JCnDeDv20T49z8G9QMSQ=
+Date: Fri, 31 May 2024 12:37:54 +0200
+From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas@t-8ch.de>
+To: =?utf-8?B?UmVuw6k=?= Rebe <rene@exactcode.de>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org, Hristo Venev <hristo@venev.name>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Radu Sabau <radu.sabau@analog.com>, Paul Menzel <pmenzel@molgen.mpg.de>
+Subject: Re: [PATCH 2/3] hwmon: Add support for SPD5118 compliant temperature
+ sensors
+Message-ID: <2b3ca226-339e-40f3-908f-bf8adcb94504@t-8ch.de>
+References: <20240529205204.81208-1-linux@roeck-us.net>
+ <20240529205204.81208-3-linux@roeck-us.net>
+ <34a4292e-c4db-4b40-822e-b892e1444045@t-8ch.de>
+ <16e448f1-cfc9-4e88-b3f1-55e1856d1405@roeck-us.net>
+ <0a2ed64d-06d9-45e8-a054-4ded4429f952@t-8ch.de>
+ <ffd72953-ecd2-405a-ad6d-236143b26946@roeck-us.net>
+ <20240531093154.rna2vwbfx7csu2sj@ninjato>
+ <BA0B79E0-6582-45EA-8EA9-35E278B8CC42@exactcode.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Taniya Das <quic_tdas@quicinc.com>
-Cc: linux-clk@vger.kernel.org, quic_jkona@quicinc.com, 
- Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, 
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, 
- Michael Turquette <mturquette@baylibre.com>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Stephen Boyd <sboyd@kernel.org>
-In-Reply-To: <20240531090249.10293-12-quic_tdas@quicinc.com>
-References: <20240531090249.10293-1-quic_tdas@quicinc.com>
- <20240531090249.10293-12-quic_tdas@quicinc.com>
-Message-Id: <171715157923.946292.1937976037620674033.robh@kernel.org>
-Subject: Re: [PATCH 11/13] dt-bindings: clock: qcom: Add SA8775P display
- controller
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <BA0B79E0-6582-45EA-8EA9-35E278B8CC42@exactcode.de>
 
+On 2024-05-31 12:01:35+0000, René Rebe wrote:
+> On May 31, 2024, at 11:31, Wolfram Sang <wsa+renesas@sang-engineering.com> wrote:
+> >>> Wolfgang seems to think it's important:
+> > 
+> > Wolfram, please.
 
-On Fri, 31 May 2024 14:32:47 +0530, Taniya Das wrote:
-> Add device tree bindings for the display clock controller
-> on Qualcomm SA8775P platform.
+Sorry, Wolfram.
+
+> > 
+> >>> https://lore.kernel.org/lkml/tdia472d4pow2osabef24y2ujkkquplfajxmmtk5pnxllsdxsz@wxzynz7llasr/
+> >>> 
+> >> 
+> >> Ok, but that doesn't explain the reason. Wolfram, Paul, why do you
+> >> think this is needed ? Note that I am not opposed to adding spd
+> >> eeprom support, but I'd like to know why I am doing it before
+> >> I spend time on it.
+> > 
+> > A working eeprom driver is needed to get 'decode-dimms' from the
+> > i2c-tools package working. Jean reported that EEPROM access for DDR5 is
+> > different from DDR4, so it needs a separate driver. And
+> > i2c_register_spd() then needs to be updated to use the new driver for
+> > DDR5.
 > 
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
->  .../bindings/clock/qcom,sa8775p-dispcc.yaml   | 88 +++++++++++++++++++
->  .../dt-bindings/clock/qcom,sa8775p-dispcc.h   | 87 ++++++++++++++++++
->  2 files changed, 175 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sa8775p-dispcc.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,sa8775p-dispcc.h
+> Well my original downstream driver already had eeprom access:
 > 
+> 	https://svn.exactcode.de/t2/trunk/package/kernel/linux/spd-5118.patch
+> 
+> Note there are some surrounding -2, and parity patches around this patch.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+That would need to be rewritten to use the nvmem APIs though, I guess.
+If nobody wants to do it, I'm volunteering.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/clock/qcom,sa8775p-dispcc.example.dtb: /example-0/clock-controller@af00000: failed to match any schema with compatible: ['qcom,sa8755p-dispcc0']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240531090249.10293-12-quic_tdas@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Thomas
 
