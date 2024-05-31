@@ -1,152 +1,239 @@
-Return-Path: <devicetree+bounces-71240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 183A58D6258
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 15:05:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF4C88D6267
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 15:09:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF77B1F25207
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 13:05:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1564B2581B
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 13:09:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E68E158865;
-	Fri, 31 May 2024 13:05:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA70A158A0B;
+	Fri, 31 May 2024 13:09:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dsje7/cZ"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Bx1EeHyQ";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="lxByJNjO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F8D91581FB;
-	Fri, 31 May 2024 13:05:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4AD715886A;
+	Fri, 31 May 2024 13:09:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717160735; cv=none; b=c2a0+v3RO0vNEHAOyZlXjXgb7f6xuBjv7BJG9XdeqK9HtljUL6/8zyZQwm2Z2cVpFFmDke9Sbve9UqF5CVzRJshr8cfF6R/CNpyPwz8ovjAOBj6eWd7OSbw5GdJhd0spECG+Zy8Sc8Eo2NUmIE/emLb5XbjzFmrJRndDANl5gvs=
+	t=1717160956; cv=none; b=Uw2GRyVomw+GFHZGrst6s9J0TmVMTABA7JtA07VN/v+KJMs/VvuZ59SdI0WUPYXXzJfHPVAxuFPKwJQtLzpKWyENZ4fzzZXSPMBBCaGlP0YBDBlb27zpeEoyzbAlkZXx6xrs9kmp2zRkSV5VM3JrHzB1MavUIPLVhvc9hK4H5os=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717160735; c=relaxed/simple;
-	bh=dx7sosLdw/sMCS1kUDSuJ+V4bIgBHv6xTIsGonpSXe0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o2+svzElAIuJ7sCV2kABXd9gQJl+/yze23NKASOH6fTf3fPNiPW9WqwXtzY20+woxOE4ukpC1130/gCr36+T8hKem21m/UC/oJrIqWH4efzYLmXXXq/F2532QLmjQPibjzvJ5M57MMvLQchqTLKoY6lGuObuhwUdno4KmPKQtp4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dsje7/cZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20734C116B1;
-	Fri, 31 May 2024 13:05:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717160735;
-	bh=dx7sosLdw/sMCS1kUDSuJ+V4bIgBHv6xTIsGonpSXe0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dsje7/cZyyF91s/HghOChQzu65qzn4qwHQZqMG+7mokDXR7Jfvm7kxU94sajwCuJJ
-	 0uPm7PXp/wef7hqUDRdFjTZJQ+2CzrLr4Kx9J4ScNpsgNqIhHGLKwtond52tNpzA9F
-	 gtcvjFtw2rJ3AkXJE5CQR263VaNocoIdKMSy0mAFRvhtRQR5OsCRnh0jynSNMgW9qD
-	 QpWpnRN9bdws2ZYkuR3ZW5iyjv3Nk0gR/juI86Nn8hKyfMy2lIVCoyPk8LTXTIihOP
-	 MFhw/4yL/uqzYm6nmu2C5SptZZVEAsj/4fgQECPspdNjOkih6Bq/tfyhuAEfkIe0sB
-	 khJnx69J6Wa0Q==
-Date: Fri, 31 May 2024 14:05:28 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	shengjiu wang <shengjiu.wang@gmail.com>,
-	Xiubo Lee <Xiubo.Lee@gmail.com>, Fabio Estevam <festevam@gmail.com>,
-	Nicolin Chen <nicoleotsuka@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	linux-sound <linux-sound@vger.kernel.org>,
-	devicetree <devicetree@vger.kernel.org>,
-	linux-kernel <linux-kernel@vger.kernel.org>,
-	alsa-devel <alsa-devel@alsa-project.org>,
-	linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
-Subject: Re: [PATCHv4 7/9] ASoC: fsl-asoc-card: add DT clock "cpu_sysclk"
- with generic codec
-Message-ID: <826f6c22-d1f1-42ce-a8d1-2d5cb894a970@sirena.org.uk>
-References: <20240515135411.343333-1-elinor.montmasson@savoirfairelinux.com>
- <20240515135411.343333-8-elinor.montmasson@savoirfairelinux.com>
- <ffb3624f-2170-4642-aaa5-fb6736a75d59@sirena.org.uk>
- <822567441.349330.1715936735603.JavaMail.zimbra@savoirfairelinux.com>
- <da74d276-b028-448b-bb28-295de49dbcda@sirena.org.uk>
- <1660761484.701255.1717159615755.JavaMail.zimbra@savoirfairelinux.com>
+	s=arc-20240116; t=1717160956; c=relaxed/simple;
+	bh=mgmSvDEDUnSXOohlZU0FzjtDlp32E9UwOhItrFUXEAc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=VpgVhGVHHg0Z3VSM5AXVxQFX8qRc21FatsQWak6vPckd8XfNKw9ikl6tu1tRfUveMyUZTwKnYMeFTvsXI96umjOIoN4DeARgNuWSKtCnnhExi63HAAf6xDPzRFQOQ54o9j9/Z0M1Zn0NzkBBkTpOp0foE5sxIOvZfICwtxZQ+vY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Bx1EeHyQ; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=lxByJNjO reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1717160953; x=1748696953;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=cqnIZ10/tMnH14SGwTodwVLTAqEG93IVacBI//NGqKA=;
+  b=Bx1EeHyQDVnXrzZAkETD6DcjZby4ucrtGh8iDQwtqDiYjyPS2jbkQH5M
+   gYY17GJvSOH1HQ/XEJot24LG9+0kMWiU0n79UMo7Zsp+zcpDhU5xEFvEr
+   eeoOfWuwdFNMA0BBnrFy3bhmansusEG7FoVxJIX2QmKEuyFo78z3vU5qA
+   aGCuNQ/VuX2kiFiCiC12DDNNPPdoXMBbVuvEQvXtOWNGjTBKsxnu3nlKP
+   b95mmGmUdWl9K16OoXdaHpXM3GGQIwJR1umO7ZEATKMf4XZ2CeYRSPg0M
+   Z4SPB22jQolsiywGoEBZQuvi1/7wjID+5c02ybgNka3J7fp1j22eePePr
+   w==;
+X-CSE-ConnectionGUID: piIEhqDwS3G7ocBCBuNPGg==
+X-CSE-MsgGUID: /gIAaVxNR4+q09c5pb8i+g==
+X-IronPort-AV: E=Sophos;i="6.08,204,1712613600"; 
+   d="scan'208";a="37161436"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 31 May 2024 15:09:10 +0200
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 635101616BC;
+	Fri, 31 May 2024 15:09:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1717160946;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=cqnIZ10/tMnH14SGwTodwVLTAqEG93IVacBI//NGqKA=;
+	b=lxByJNjO/QtCEsNdHyiqxj0fDzf7LmTiSAOwv0ZR6WLmbtT5aqEWwnWtaf1kIVISrUh2tS
+	amIhQRmuC41kftsSyNKkfIu6tRQrcoYjFUndRuE805+LJI+u8iEndjTIE9b/zw3s7+Fv8M
+	BwtsZi2lKx3R5yjT3fmS42hLLeJxoD4WDypWrTACgaG4oARBwMsj9Bk1gsDeqYvvbXbI08
+	PcWwpaEpnV3j+/Z3OUNR4pXkh6JWGckE4C+f83KW0LEf2uy7n/vQR0/ppiuNSb25sCn+f1
+	Y/PDTIJh4R7WrbQ3sqdU+OLSyz3bGZgoFSmz7CHFatmwU92ygWu4DlXrOLUrhg==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Esben Haabendal <esben@geanix.com>
+Cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: ls1021a: add QUICC Engine node
+Date: Fri, 31 May 2024 15:09:05 +0200
+Message-ID: <5987259.31r3eYUQgx@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <87frtynpfx.fsf@geanix.com>
+References: <20240530-arm-ls1021a-qe-dts-v1-1-2eda23bdf8c5@geanix.com> <3380831.44csPzL39Z@steina-w> <87frtynpfx.fsf@geanix.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="t5IjrPd8avuXZPeL"
-Content-Disposition: inline
-In-Reply-To: <1660761484.701255.1717159615755.JavaMail.zimbra@savoirfairelinux.com>
-X-Cookie: Serving suggestion.
-
-
---t5IjrPd8avuXZPeL
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Fri, May 31, 2024 at 08:46:55AM -0400, Elinor Montmasson wrote:
-> From: "Mark Brown" <broonie@kernel.org>
-> > On Fri, May 17, 2024 at 05:05:35AM -0400, Elinor Montmasson wrote:
-> >> From: "Mark Brown" <broonie@kernel.org>
-> >> > On Wed, May 15, 2024 at 03:54:09PM +0200, Elinor Montmasson wrote:
+Hi Esben,
 
-> >> >> +		struct clk *cpu_sysclk =3D clk_get(&pdev->dev, "cpu_sysclk");
-> >> >> +		if (!IS_ERR(cpu_sysclk)) {
-> >> >> +			priv->cpu_priv.sysclk_freq[TX] =3D clk_get_rate(cpu_sysclk);
-> >> >> +			priv->cpu_priv.sysclk_freq[RX] =3D priv->cpu_priv.sysclk_freq[T=
-X];
-> >> >> +			clk_put(cpu_sysclk);
-> >> >> +		}
+Am Freitag, 31. Mai 2024, 14:20:02 CEST schrieb Esben Haabendal:
+> Alexander Stein <alexander.stein@ew.tq-group.com> writes:
+>=20
+> > Would you consider current converting into YAML format?
+>=20
+> You mean converting Documentation/devicetree/bindings/soc/fsl/qe.txt and
+> Documentation/devicetree/bindings/soc/fsl/qe/*.txt into YAML?
+>=20
+> I can consider that. I haven't done something like that before, but I
+> assume it might include some additional work other than trivially format
+> conversion. So I would prefer to do that after this patch, if that is
+> ok.
 
-> >> > I don't really understand the goal here - this is just reading whate=
-ver
-> >> > frequency happens to be set in the hardware when the driver starts up
-> >> > which if nothing else seems rather fragile?
+Getting the constraints right is probably not that easy. But having
+verifiable bindinds helps getting the .dtsi right.
 
-> >> The driver allow to set the sysclk frequency
-> >> of the CPU DAI through `priv->cpu_priv.sysclk_freq` when calling
-> >> `fsl_asoc_card_hw_params()`.
-> >> Currently it is hard-coded per use-case in the driver.
+> > Am Donnerstag, 30. Mai 2024, 16:22:54 CEST schrieb Esben Haabendal:
+> >> The LS1021A contains a QUICC Engine Block, so add a node to device
+> >> tree describing that.
+> >>=20
+> >> Signed-off-by: Esben Haabendal <esben@geanix.com>
+> >> ---
+> >>  arch/arm/boot/dts/nxp/ls/ls1021a.dtsi | 51 ++++++++++++++++++++++++++=
++++++++++
+> >>  1 file changed, 51 insertions(+)
+> >>=20
+> >> diff --git a/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi b/arch/arm/boot/dts=
+/nxp/ls/ls1021a.dtsi
+> >> index e86998ca77d6..ff7be69acdd5 100644
+> >> --- a/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi
+> >> +++ b/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi
+> >> @@ -460,6 +460,57 @@ gpio3: gpio@2330000 {
+> >>  			#interrupt-cells =3D <2>;
+> >>  		};
+> >> =20
+> >> +		uqe: uqe@2400000 {
+> >> +			#address-cells =3D <1>;
+> >> +			#size-cells =3D <1>;
+> >> +			device_type =3D "qe";
+> >> +			compatible =3D "fsl,qe", "simple-bus";
+> >> +			ranges =3D <0x0 0x0 0x2400000 0x40000>;
+> >> +			reg =3D <0x0 0x2400000 0x0 0x480>;
+> >
+> > Properties please in this order:
+> > * compatible
+> > * reg
+> > * #address-cells
+> > * #size-cells
+> > * ranges
+> > * device_type
+>=20
+> Fixing.
+>=20
+> >> +			brg-frequency =3D <150000000>;
+> >> +			bus-frequency =3D <300000000>;
+> >
+> > Mh, aren't these values depending on your actual RCW configuration?
+>=20
+> Yes, you are right. The QE bus-frequency comes from platform_clk which
+> is controlled by various bits in RCW and sys_ref_clk.
+>=20
+> So I guess it should be possible to derive bus-frequency from sysclk
+> clock-frequency attribute and RCW. But fsl,qe bus-frequency is a
+> required property...
+>=20
+> Max bus-frequency for LS1021A is 300 MHz. But it should be possible to
+> set it lower, although I suspect that many/most/everyone is running it
+> at 300 MHz.
 
-> >> My reasoning was that with a generic codec/compatible, there might
-> >> be use-cases needing to use this parameter, so I exposed it here via D=
-T.
-> >=20
-> >> Is it a bad idea to expose this parameter ? This is not a requirement =
-for the
-> >> driver to work, most of the current compatibles do not use this parame=
-ter.
-> >> It is currently used only for `fsl,imx-audio-cs42888`.
-> >> In that case I can remove this commit.
+Thanks for confirmation. I'll let DT maintainer decide how to deal with thi=
+s.
 
-> > I'm having a hard time connecting your reply here with my comment.  This
-> > isn't as far as I can see allowing the frequency to be explicitly
-> > configured, it's just using whatever value happens to be programmed in
-> > the clock when the driver starts.
+> >> +			fsl,qe-num-riscs =3D <1>;
+> >> +			fsl,qe-num-snums =3D <28>;
+> >
+> > Current bindings defines:
+> >> fsl,qe-snums: This property has to be specified as '/bits/ 8' value,
+> >>   defining the array of serial number (SNUM) values for the virtual
+> >>   threads.
+> >
+> > So '/bits/ 8' is missing.
+>=20
+> Ok, so you want me to add an array for fs,qe-snums attribute?
+> None of the existing fsl,qe devices has a fsl,qe-snums.
+> And qe_snums_init() has a fallback, so I don't think it is correct to
+> specify fsl,qe-snums to be a required property in the bindings. It
+> should be listed as optional.
 
-> In v3 I used parameters `cpu-sysclk-freq-rx/tx` to explicitly
-> set the frequency.
-> In its review Rob Herring said that the clock bindings should
-> be used, so that's why I changed it to use this `cpu_sysclk` clock.
+fsl,qe-num-snums is a deprecated property, so IMHO the replacement
+fsl,qe-snums should be used instead for new device tree entries.
+qe_snums_init() supporting 'fsl,qe-num-snums' is just to support
+"legacy bindings" as stated in the comment.
 
-So you're trying to use this as the audio clock?  There's no code that
-enables the clock which seems worrying, and I'd expect that if the
-device is using it's own clock the device would be querying it directly
-via the clock API rather than this.  This all seems really confused.
+>=20
+> >> +			qeic: qeic@80 {
+> >> +				compatible =3D "fsl,qe-ic";
+> >> +				reg =3D <0x80 0x80>;
+> >> +				#address-cells =3D <0>;
+> >> +				interrupt-controller;
+> >> +				#interrupt-cells =3D <1>;
+> >> +				interrupts =3D <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH
+> >> +					      GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>;
+> >> +			};
+> >> +
+> >> +			ucc@2000 {
+> >> +				cell-index =3D <1>;
+> >> +				reg =3D <0x2000 0x200>;
+> >> +				interrupts =3D <32>;
+> >> +				interrupt-parent =3D <&qeic>;
+> >
+> > Move cell-index to last position.
+>=20
+> Done.
+>=20
+> >> +			};
+> >> +
+> >> +			ucc@2200 {
+> >> +				cell-index =3D <3>;
+> >> +				reg =3D <0x2200 0x200>;
+> >> +				interrupts =3D <34>;
+> >> +				interrupt-parent =3D <&qeic>;
+> >
+> > Same here.
+>=20
+> Done.
+>=20
+> >> +			};
+> >> +
+> >> +			muram@10000 {
+> >> +				#address-cells =3D <1>;
+> >> +				#size-cells =3D <1>;
+> >> +				compatible =3D "fsl,qe-muram", "fsl,cpm-muram";
+> >> +				ranges =3D <0x0 0x10000 0x6000>;
+> >
+> > Node address but no 'reg' property? I have no idea if this is okay.
+> > Also compatible (and possibly reg) first.
+>=20
+> It is done in the same way for all existing fsl,qe-muram devices. So if
+> it is not okay, a tree-wide fixup would be in place.
 
---t5IjrPd8avuXZPeL
-Content-Type: application/pgp-signature; name="signature.asc"
+I can't finally say if this is okay, but at least the compatible shall be
+listed first.
 
------BEGIN PGP SIGNATURE-----
+Thanks and best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZZyxcACgkQJNaLcl1U
-h9Be4gf/YfLlU8GPgc+J8qnnUXsGMfa3hyDMKKjkChZ7Z2VgGlh61Y8j3nssb5sV
-qVQOuuv5hD2jNlTKEYoCiiHNIfmOe9GqRtYmsQkk/UYScO0NwovQ7UYpquVtkJFb
-qXgMXiPhACDh+wm1P4G3pHV9gVN/ZOLZcrPtwl2Rv1lK4j7rhZqbT/FD+9aeRu9p
-FpUiNfiwP6l6e8KIgPcDb8tBbqqnS/tLrE6xPk6EfflG+fJM9w3eUm4+tlf0uCcN
-QldOJ1GhYERqM69Sj1g7TWgh/0BZ59EVD8CtX9HPGC5SBYW7Kyf6ew79K8VCd/CR
-TxJMEZjB7AtvR8rBJYzqx8/I1/gToQ==
-=CcoA
------END PGP SIGNATURE-----
 
---t5IjrPd8avuXZPeL--
 
