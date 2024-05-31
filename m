@@ -1,181 +1,110 @@
-Return-Path: <devicetree+bounces-71175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF0518D5F3F
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:07:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 348C98D5F49
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:10:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E95F1F238BE
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 10:07:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D916A283351
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 10:10:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B837614263A;
-	Fri, 31 May 2024 10:07:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5D0D15098A;
+	Fri, 31 May 2024 10:10:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OOF5Gutv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BC0E1422DA;
-	Fri, 31 May 2024 10:07:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4742B150980
+	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 10:10:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717150045; cv=none; b=M5wlTzFQqqzPU0tZ0YGPvWVjkx0sULHthrg2VTwC1qrhotlN3Zml0DqjsdX8eLU/LCL7mRMW8/Rc+gDF/53XqeJogYd28DN1UyUQSmSnF7oqxNN4uC9/Eh6ZCq8xFSZqBvMhmkP0Rev8/UNpOVoveHKW/PW8t0zNDCEFbM7XRVg=
+	t=1717150207; cv=none; b=alkXdIGKEu2vGGj/lHdlfu2JumfPSx75pKsi+y/SQtwyMAZlXVhrBaAOouNGdNVjFbAsRsZB4xv3Pl+3h/+HDaFW2Def0OdQJkEMw/fAdbtvmx8ZmrO0s1jjeku6xa3oEL3s09BpEZqAZbij1NTgKc4wRB+Px0OpVrbwkstHdm4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717150045; c=relaxed/simple;
-	bh=j+/aZa6nejfS6aMNK75dfxOCC5uXpPdg4qUPfc2V9MQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GgQc1sqLTxxTaRIb/ln/1DvEQpDySXqIEkYB+fLfFGyDoRnevBUM2h4aeaI5EcDT3a8iOvRQyE8S0XJWrcRyGlFBY1i1VDnp8nd+GQv/a1W5S7V3DdKbFFfm5IRlCTNgeUkZhQ5F/dJAxDu3nG24YlZam6XWZR+u7lc3H7kmlJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D94F51424;
-	Fri, 31 May 2024 03:07:47 -0700 (PDT)
-Received: from [192.168.1.100] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 17E403F641;
-	Fri, 31 May 2024 03:07:21 -0700 (PDT)
-Message-ID: <069b904f-d14d-44ab-b847-f3cf4a957cd8@arm.com>
-Date: Fri, 31 May 2024 11:07:21 +0100
+	s=arc-20240116; t=1717150207; c=relaxed/simple;
+	bh=fTksmndDTvX3FXV3M5XklCCIM8WuaJli4n1k2WWdSFQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VZUOoWinZK4PvU8n9oNd/DBf89t4iHJ1a9dz6LrGhXdbCFq0Iu8RVcEj6QAnu6rW7eA/lmQeoKS30f02gUzcooDRZDNT6GkwUB2WdxgS0MFBU87UqQNew/O0PPYEWlCXzVleaNjf9PDHvcYkDqNMnf4In2ZBtknKOQvldcTLDQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OOF5Gutv; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2e95a75a90eso19403121fa.2
+        for <devicetree@vger.kernel.org>; Fri, 31 May 2024 03:10:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717150203; x=1717755003; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=mwfOQ3dECageVJLKD3vAG2UoJX5hF/uRp6wCRRPuE0w=;
+        b=OOF5GutvbZI2UqeiQBWVZ+Rzjb58volBByeBuBOpUUkggR+EUEAXnF0jGNrEEDbhRt
+         JKjnmpd9riIahy8LeBswIrJjvFbAGBh6GFfBvlGNi18C3GCiTOmCm3Okws2pIsV1hiOo
+         JGhZAxkR3+RTufw+QxlhYZtmlrIdaK3cxvFsRd9ISEFYKuV9nGOdvAnS8pe0RZckQguc
+         9wLp92yjFLmBubgaYqkQyL+tSeBy+7hOlCh/Ii/ivfMUkheRRCvEqSEXWfNm55KIsuAA
+         vnvVYElW8aNKVjxMsewL/681N9QUK/vPfbd2eS6k90KY56yArPfO345OQkEmROOX6Mty
+         m36g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717150203; x=1717755003;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mwfOQ3dECageVJLKD3vAG2UoJX5hF/uRp6wCRRPuE0w=;
+        b=wur52c+Fwy2AvV1wfVXANyLWMMYzY85YvKUHavcpNYzQCii/LCynS5tgp8wGN6jnDt
+         WHn4uYAeVnjuvmBCHzU3EftFuPszB/Cpq9kE/EQ5LjASw6Yy83e/H7LEG/e3GNeFsjTz
+         c3Tynq0ycSJEV3IB5aU4VC9P7BLeRh1qMnmmxADSR1ASGMGoc/D+kAtSfT+tZuFUL6bs
+         RazcqAlOv+MBWhDwTuw2+82ASX6iysWq4LB4/PoiNoP57NBJe1hu27tpLcSzNs7HbxhN
+         bXJOCwafuMRDCUtK3a2BukT1nEjYBDknV8LRpQchkHdSoCsHaec+5wJ/kXl/YvK3oAoH
+         A4uQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUj4S12NU9hgbkustKtmZ+bkbgzgkKayEvyABrrtQZ5B/E+//mZGfN50vAjQTY9cfqf8QWQ6ow6mJ4/5vAw5hwapFH4cSjDWfivIA==
+X-Gm-Message-State: AOJu0Yzs4gLhTOPFiTS3Vw3tBuv9mkmVuLWb3tFdkFt54StV8V4zCvGo
+	nqgv7V3Hk4UwMbwJ96UW5ws9F3MJTHObf7N1GusEWGAyiTIW0kbxgSVV5R6cemQ=
+X-Google-Smtp-Source: AGHT+IEc2ysTUGY93B1Uge/CdR+H0J0ryAE+foagqOAZWTBhmukV2jutJ1gpYzXjeDOFKZ2EHUzIGw==
+X-Received: by 2002:a2e:9c0f:0:b0:2ea:8370:8a86 with SMTP id 38308e7fff4ca-2ea950c923fmr10767981fa.10.1717150203308;
+        Fri, 31 May 2024 03:10:03 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ea91cc65cbsm2524041fa.73.2024.05.31.03.10.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 May 2024 03:10:02 -0700 (PDT)
+Date: Fri, 31 May 2024 13:10:01 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Tengfei Fan <quic_tengfan@quicinc.com>
+Cc: andersson@kernel.org, konrad.dybcio@linaro.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@quicinc.com
+Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: sm8550: Move usb-role-switch to
+ SoC dtsi
+Message-ID: <twgk3ufjkx2d5g2eoqdgcnfcch7jduihgy7iqmpaem6yryp7vt@c3e55qt7qoqo>
+References: <20240531090422.158813-1-quic_tengfan@quicinc.com>
+ <20240531090422.158813-2-quic_tengfan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 3/7] coresight: core: Add provision for panic callbacks
-To: Linu Cherian <lcherian@marvell.com>
-Cc: linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, sgoutham@marvell.com, gcherian@marvell.com,
- suzuki.poulose@arm.com, mike.leach@linaro.org
-References: <20240531042745.494222-1-lcherian@marvell.com>
- <20240531042745.494222-4-lcherian@marvell.com>
-Content-Language: en-US
-From: James Clark <james.clark@arm.com>
-In-Reply-To: <20240531042745.494222-4-lcherian@marvell.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240531090422.158813-2-quic_tengfan@quicinc.com>
 
-
-
-On 31/05/2024 05:27, Linu Cherian wrote:
-> Panic callback handlers allows coresight device drivers to sync
-> relevant trace data and trace metadata to reserved memory
-> regions so that they can be retrieved later in the subsequent
-> boot or in the crashdump kernel.
+On Fri, May 31, 2024 at 05:04:21PM +0800, Tengfei Fan wrote:
+> The usb-role-switch is SM8550 SoC property, so move it from board dts
+> to SM8550 SoC dtsi.
 > 
-> Signed-off-by: Linu Cherian <lcherian@marvell.com>
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
 > ---
-
-Reviewed-by: James Clark <james.clark@arm.com>
-
->  drivers/hwtracing/coresight/coresight-core.c | 37 ++++++++++++++++++++
->  include/linux/coresight.h                    | 12 +++++++
->  2 files changed, 49 insertions(+)
+>  arch/arm64/boot/dts/qcom/sm8550-hdk.dts                     | 1 -
+>  arch/arm64/boot/dts/qcom/sm8550-mtp.dts                     | 1 -
+>  arch/arm64/boot/dts/qcom/sm8550-qrd.dts                     | 1 -
+>  arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts | 1 -
+>  arch/arm64/boot/dts/qcom/sm8550.dtsi                        | 1 +
+>  5 files changed, 1 insertion(+), 4 deletions(-)
 > 
-> diff --git a/drivers/hwtracing/coresight/coresight-core.c b/drivers/hwtracing/coresight/coresight-core.c
-> index b83613e34289..61d75aad476b 100644
-> --- a/drivers/hwtracing/coresight/coresight-core.c
-> +++ b/drivers/hwtracing/coresight/coresight-core.c
-> @@ -19,6 +19,7 @@
->  #include <linux/property.h>
->  #include <linux/delay.h>
->  #include <linux/pm_runtime.h>
-> +#include <linux/panic_notifier.h>
->  
->  #include "coresight-etm-perf.h"
->  #include "coresight-priv.h"
-> @@ -1365,6 +1366,36 @@ const struct bus_type coresight_bustype = {
->  	.name	= "coresight",
->  };
->  
-> +static int coresight_panic_sync(struct device *dev, void *data)
-> +{
-> +	int mode;
-> +	struct coresight_device *csdev;
-> +
-> +	/* Run through panic sync handlers for all enabled devices */
-> +	csdev = container_of(dev, struct coresight_device, dev);
-> +	mode = coresight_get_mode(csdev);
-> +
-> +	if ((mode == CS_MODE_SYSFS) || (mode == CS_MODE_PERF)) {
-> +		if (panic_ops(csdev))
-> +			panic_ops(csdev)->sync(csdev);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int coresight_panic_cb(struct notifier_block *self,
-> +			       unsigned long v, void *p)
-> +{
-> +	bus_for_each_dev(&coresight_bustype, NULL, NULL,
-> +				 coresight_panic_sync);
-> +
-> +	return 0;
-> +}
-> +
-> +static struct notifier_block coresight_notifier = {
-> +	.notifier_call = coresight_panic_cb,
-> +};
-> +
->  static int __init coresight_init(void)
->  {
->  	int ret;
-> @@ -1377,6 +1408,10 @@ static int __init coresight_init(void)
->  	if (ret)
->  		goto exit_bus_unregister;
->  
-> +	/* Register function to be called for panic */
-> +	ret = atomic_notifier_chain_register(&panic_notifier_list,
-> +					     &coresight_notifier);
-> +
->  	/* initialise the coresight syscfg API */
->  	ret = cscfg_init();
->  	if (!ret)
-> @@ -1391,6 +1426,8 @@ static int __init coresight_init(void)
->  static void __exit coresight_exit(void)
->  {
->  	cscfg_exit();
-> +	atomic_notifier_chain_unregister(&panic_notifier_list,
-> +					     &coresight_notifier);
->  	etm_perf_exit();
->  	bus_unregister(&coresight_bustype);
->  }
-> diff --git a/include/linux/coresight.h b/include/linux/coresight.h
-> index 5f288d475490..b156467c9baa 100644
-> --- a/include/linux/coresight.h
-> +++ b/include/linux/coresight.h
-> @@ -315,6 +315,7 @@ enum cs_mode {
->  #define link_ops(csdev)		csdev->ops->link_ops
->  #define helper_ops(csdev)	csdev->ops->helper_ops
->  #define ect_ops(csdev)		csdev->ops->ect_ops
-> +#define panic_ops(csdev)	csdev->ops->panic_ops
->  
->  /**
->   * struct coresight_ops_sink - basic operations for a sink
-> @@ -384,11 +385,22 @@ struct coresight_ops_helper {
->  	int (*disable)(struct coresight_device *csdev, void *data);
->  };
->  
-> +
-> +/**
-> + * struct coresight_ops_panic - Generic device ops for panic handing
-> + *
-> + * @sync	: Sync the device register state/trace data
-> + */
-> +struct coresight_ops_panic {
-> +	int (*sync)(struct coresight_device *csdev);
-> +};
-> +
->  struct coresight_ops {
->  	const struct coresight_ops_sink *sink_ops;
->  	const struct coresight_ops_link *link_ops;
->  	const struct coresight_ops_source *source_ops;
->  	const struct coresight_ops_helper *helper_ops;
-> +	const struct coresight_ops_panic *panic_ops;
->  };
->  
->  static inline u32 csdev_access_relaxed_read32(struct csdev_access *csa,
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+
+-- 
+With best wishes
+Dmitry
 
