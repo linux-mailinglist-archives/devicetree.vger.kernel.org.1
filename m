@@ -1,57 +1,69 @@
-Return-Path: <devicetree+bounces-71313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F275C8D64F3
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 16:55:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0855C8D6505
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 16:58:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86BC11F21058
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:55:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2687D1C251A1
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:58:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 879A657CA7;
-	Fri, 31 May 2024 14:54:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6EE45C8FC;
+	Fri, 31 May 2024 14:58:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QtZN6to6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OmMz+4zs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F7865731B;
-	Fri, 31 May 2024 14:54:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9FA857C8E;
+	Fri, 31 May 2024 14:58:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717167299; cv=none; b=c18JkwvqlJX4kD8sXL681kV0B2tMVylp3OUMfPWd3So1H4DXRl3iyYp7e8I6B4LJoVjck5iBkK55MeIz5/2wj4y1QYXfSNUqtJdH9a9cIUBw+hTa5pqDjjBcJQsDAO8lZKSoUnatcWRdlwmoYQGg/ukv/j+J5eRne3n7/BxwCPk=
+	t=1717167512; cv=none; b=gYUJF51MlU7l4E50eyBZuX8nwEHbFdJOFIYYWitU2vb24FKNt9BET8xjHVFbnnDs4Qrb28C7x6yJbktilmPJPvO/AHCEB5tFnLTdia8YpyRXAabdp7sKZcbMOngfHhHLeSPzWlKU8AH/KpYKyxrAJLGppAZAHU5/EYcM/Bf9VFY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717167299; c=relaxed/simple;
-	bh=i1kVXZQpNzBXBNNszan6ktleQyNe1enP5ArnCCzpMqk=;
+	s=arc-20240116; t=1717167512; c=relaxed/simple;
+	bh=g1eGXHdN0kkF++pfgnz1WIShz96T3A5ZcHkmqtw/Loc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SLNOPsH0At43Cb8Vbz+Xp86sB6YEI3BS4ngvWM7WQwR9Ad9ZjxvGZgxuSa8zDZkTDSTjuDoAI2kcb/4xV2TQpTziCTX5tOt3H2Ndtw3dmkYgBG44ypQ/TUvS5n5AH/KVv8qGg1JEQlCNyPDPrH0WlF55Q+BpN4P/KdK18arM40o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QtZN6to6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 348C4C116B1;
-	Fri, 31 May 2024 14:54:57 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=O8Eg2Of1gcta+eUb3DNvk14KOk/vXp0RyJe90oHAWoRsT69ea6QRk8Mywv3ALm3guugFk60bp+vkEqcB+0VQQqtI23F+f/EOxt3zeOJvb50G64IHqzCyHAjfIEkE1gt5/Gz8ks9D/+0ZaK/2VjlfI894apRiD/4B80T1sk4Iv+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OmMz+4zs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50720C116B1;
+	Fri, 31 May 2024 14:58:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717167298;
-	bh=i1kVXZQpNzBXBNNszan6ktleQyNe1enP5ArnCCzpMqk=;
+	s=k20201202; t=1717167511;
+	bh=g1eGXHdN0kkF++pfgnz1WIShz96T3A5ZcHkmqtw/Loc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QtZN6to6qAnOPYCaKPYRf+kYwMJx5/h1kWAJXYS4jKARUAa7q1dbdK3INmKVU7aJG
-	 lEJ/RbTCPfSZg87sf08ia/5Y6NAP357hEzyQ0fg2fBn9KuzDznKgkKYm9k4KdPf1Z6
-	 vktwZsf8K3vFl7zmsWjjHtz0WIFDOLNl4vT3B5Wl63ebXDUMJqB0/DD9X/JhH9a7jG
-	 v8h9Ur+8O1cZNS+fF8u+5V9lpZarGf7T24Suh/eSb2e0YGWWL40BXceMsC1NUa+9b8
-	 qOwmJaXqdXjUNJ8qTD+Edk0w29BFn7u8lcVZqsb1i2NZxc5ZPt5ZZtTLrlOC86WeQM
-	 P9MNzlExsvkUw==
-Date: Fri, 31 May 2024 15:54:55 +0100
+	b=OmMz+4zslnz3CoeqQnw4R6MTFsDQPLnEs6swHFG8QQF9SYpF/35igdu+dIagmM9yN
+	 4A2Vkpnbrn+D8A9ONTwmM/yxSAtY+fB3+4wYewAn2xHme9a+bWLxYIb9ICJC7X+Q6s
+	 g/hBxxws2HElAZ5XTmy93gd0tFHDbycLSa4KrBHw7AUDGnLsGelmqYvdICYQyGkT0w
+	 UHtXY3hwlsppDvSryW6PhXu0rMyPGWmoOhnLjgboATs4lqNqACr2u9nMU+NTzMyzhS
+	 80r0loHtgrlHoxZbJ2b4co1qT7uj27CurSX70Lf/7mds00sRKp3Hv2BHX0n6CWe0nh
+	 i9ikqd5rw7bBA==
+Date: Fri, 31 May 2024 15:58:25 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: brgl@bgdev.pl, linus.walleij@linaro.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: gpio: pca95xx: Document the TI TCA9535
- variant
-Message-ID: <20240531-handheld-hunk-b09ce83401df@spud>
-References: <20240531121801.2161154-1-festevam@gmail.com>
- <20240531121801.2161154-2-festevam@gmail.com>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Frank Binns <frank.binns@imgtec.com>,
+	Matt Coster <matt.coster@imgtec.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	dri-devel@lists.freedesktop.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: clock: mediatek: Add mt8173 mfgtop
+Message-ID: <20240531-rubbing-gala-4104e3051425@spud>
+References: <20240530083513.4135052-1-wenst@chromium.org>
+ <20240530083513.4135052-2-wenst@chromium.org>
+ <20240530-revisit-profanity-889f1bcae21a@spud>
+ <CAGXv+5F=AEE7t=YQ0hNGtV9rbVBm75D=ftJdZKwD_JmUW9gQWQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,35 +71,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="zZuCGgq2NAC/g1/m"
+	protocol="application/pgp-signature"; boundary="Ys2BwcK/uLhX00G4"
 Content-Disposition: inline
-In-Reply-To: <20240531121801.2161154-2-festevam@gmail.com>
+In-Reply-To: <CAGXv+5F=AEE7t=YQ0hNGtV9rbVBm75D=ftJdZKwD_JmUW9gQWQ@mail.gmail.com>
 
 
---zZuCGgq2NAC/g1/m
-Content-Type: text/plain; charset=us-ascii
+--Ys2BwcK/uLhX00G4
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 31, 2024 at 09:18:01AM -0300, Fabio Estevam wrote:
-> The TI TCA9535 variant has the same programming model as the NXP PCA9535.
+On Fri, May 31, 2024 at 03:29:06PM +0800, Chen-Yu Tsai wrote:
+> On Thu, May 30, 2024 at 11:43=E2=80=AFPM Conor Dooley <conor@kernel.org> =
+wrote:
+> >
+> > On Thu, May 30, 2024 at 04:35:00PM +0800, Chen-Yu Tsai wrote:
+> > > +        #include <dt-bindings/clock/mt8173-clk.h>
+> > > +        #include <dt-bindings/power/mt8173-power.h>
+> > > +
+> > > +        mfgtop: clock-controller@13fff000 {
+> >
+> > The label here is used, so drop it.
 >=20
-> Document the "ti,tca9535" compatible string.
->=20
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+> Assume you mean _not_ used. Dropping. :D
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Correct :D
 
---zZuCGgq2NAC/g1/m
+--Ys2BwcK/uLhX00G4
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlnkvwAKCRB4tDGHoIJi
-0nuKAQDGTY//RTAau/sijCBBkfvfLnspT3HW3Bn5D/j/mfVE1AD8D3kkzIzaasjk
-n4NjJ7jIJJzLLnetYKLhCxYUYP0v/gU=
-=hGNq
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlnlkQAKCRB4tDGHoIJi
+0giRAP94G90Cq94R7lpitEm0sZWkvKgob2eHruL8ul6FkP4EuwEAnm88tB8IKALh
+7teTfUoOYj4sOcrhC/d5sE1XgPb58g8=
+=BRoX
 -----END PGP SIGNATURE-----
 
---zZuCGgq2NAC/g1/m--
+--Ys2BwcK/uLhX00G4--
 
