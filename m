@@ -1,148 +1,172 @@
-Return-Path: <devicetree+bounces-71247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 127658D62D3
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 15:20:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7EC78D62DF
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 15:22:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43BBD1C20E77
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 13:20:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4ED731F2381F
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 13:22:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEFE8156F42;
-	Fri, 31 May 2024 13:20:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EA58158A17;
+	Fri, 31 May 2024 13:22:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=exactco.de header.i=@exactco.de header.b="n2F1nR1t"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aX2aQ8Jd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.exactcode.de (mx.exactcode.de [144.76.154.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E70976026;
-	Fri, 31 May 2024 13:20:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.76.154.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDBA0158204
+	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 13:22:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717161654; cv=none; b=BvS3lOInMMGAUDxmrLW5SIERm3QtoH+TIhhxHmdpkbh57cSGGYbBEhRTSPdujI7+UmDoLyzq41PfdGAFksKvTrHtml7lLjDOIhSLTOTnqvv7MMpydjx9uvPb43KwZSfNvF191epeo2tad9rv0x1sDOWcJM2RcGYdlZ+/BY2tKLA=
+	t=1717161729; cv=none; b=iAZjPkmuHxk75li8ewTvj18K9rAOwWyS1dAlcfr2knn3Rj0ag9RcwBJPosHFl+KpJ6H/f+GKIpikEcC6Uedxa3h2KnDb4n0rryZB51sQCvVZwcRXtSyR/PFbnxkIdkqP1UCYfRt0yay7CAaCquBLQdS8HblLZru8sIwIoCr7OdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717161654; c=relaxed/simple;
-	bh=dKmNE0E7ZviqScpi94wGgebczcb90IUx8m5/5bHX5Ws=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=n/ewiA6d8Sl2LwBIsH6d7R1ykE7maIqFGldBTrpgCpMA1X53NVNnM4VpMxjDxw9O8Tt7CtDmF6N1w1dseeSRFkDs4VrMu0lUFeP+826oK/RUtekC8k3zOvm6tOcvHIUCsesieD5ojB4OQtfJq/NvGJCVZFFrKB+QTPOL1eaWBzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=exactcode.de; spf=pass smtp.mailfrom=exactcode.de; dkim=pass (1024-bit key) header.d=exactco.de header.i=@exactco.de header.b=n2F1nR1t; arc=none smtp.client-ip=144.76.154.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=exactcode.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=exactcode.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=exactco.de; s=x;
-	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:Content-Type; bh=Q6kQeXhhImb9rMJUOuoy86swbcuC/f501yBqI5RiV3g=;
-	b=n2F1nR1tSZ7c0W/+3REcThrguG+vW9GcMusMwpnJIc4qxkdYqA9heaS6Kb54r0LfqBo4tmcbO9aSHWf8oiyTz/91xlzh4JVgeKxsJXh88g6De3M1cU2wz5qaLvPaI4nC9TDFt0iS1aXFzMl98BqNg5iBLtP3nyvGvjKBzsx27Cw=;
-Received: from exactco.de ([90.187.5.221])
-	by mx.exactcode.de with esmtp (Exim 4.82)
-	(envelope-from <rene@exactcode.de>)
-	id 1sD2C8-00007J-Pt; Fri, 31 May 2024 13:21:20 +0000
-Received: from [192.168.2.131] (helo=smtpclient.apple)
-	by exactco.de with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-	(Exim 4.86_2)
-	(envelope-from <rene@exactcode.de>)
-	id 1sD2Ek-0005ig-1p; Fri, 31 May 2024 13:24:02 +0000
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1717161729; c=relaxed/simple;
+	bh=4dHB2dowiT08SV6IgdUjc53AlAF/i7AVqlLqibLtUa8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ShRz8UD1kux7fG3hjfKGeetEJBUjnORcTJG9nS8CRloMwSMIkIHPNfnS3D2xIalMX4xUKsfO2342KcHdjdcVeWS3N1GWhF2NNP5NXqcOmHW6mpCQT8q3QWsckJ6A++QBn84BsHBwJNrN0rLLf8av6n78+2BdbjSd67oXws2psAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aX2aQ8Jd; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-57a1fe63a98so1089498a12.1
+        for <devicetree@vger.kernel.org>; Fri, 31 May 2024 06:22:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717161725; x=1717766525; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=5n6R8EWpr3FnxdLpXXtMb3F/ClJ+I9eAwAdha4U+a2k=;
+        b=aX2aQ8JdlqiJd2zo9jC2GaOJTYeZHOgmSF4gadOCKfnsHv/URSEji1ncnzJUtonrD3
+         J5q7yqdlhQevaN/SzDFcrGlP80JczFZ9tJ/UpBveVhmr6ao5OsWcFuG76WubM8ylwm0+
+         HMlpdk35xfu35/AvWXpAi7U7Z01iKQVuTn3AP3VHt90P9w6vaARfKFXvnImwamdmmZFu
+         Ja3OQJStP6im38/25xmMNhNj0c7+46Yn7S2EpldYTkpRgGzv6C9aqIaESvX1zrBNcUsw
+         C4U6SCiJE7ut8InaQxcY2ElCO5WHSG4xNUI7FGJPAHBQEtKjO2Wee8pvsoJWFiXjKeZX
+         i+6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717161725; x=1717766525;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5n6R8EWpr3FnxdLpXXtMb3F/ClJ+I9eAwAdha4U+a2k=;
+        b=om/gDF6S1Ds7mqJgg7GqszHc1ha552GnZ7VDfDR43smwNKpjjwbHB8pBv62iinfHTl
+         6MeukJMdqdl3MGcHxiYsl9xPsZqfcO/UEKgrXbW3R3VJRbpfkf76RGPparxabjpvs41b
+         ujI7pLXRi2YJXxiOjStmmrANyQbWGsnt6cDoaUMXm2BLq7hq025UGKRBKaODiKS7CBDV
+         JQtwL+J+LMA3tS3lGuBBwSbdJiPo3hpPuF9lMnkS5zSCBkbOAagu6aBpZXirBWkUrU4U
+         jev0hBaKGm5neNI3FpQiqU1VdEHWg7NFmQUbqQyS6imDvl8p0QNIegApZnlc0qELiXME
+         qmAg==
+X-Forwarded-Encrypted: i=1; AJvYcCUgCP13Pk4VjPLO48b37vAGCLN/XXRSgjOkuJziOBwfdZj3349qG+ViC/WTjHC4QA7S8NKeKFlanTmi1h0MmXL80jJzTBSIefT3Tw==
+X-Gm-Message-State: AOJu0Yw6FGcG9Epkwhmq4OVBHwBdeSbZfGsKNMce5Jez0Xya/YSZSzIS
+	U50edVURX/VRk8ceWh33QqPsF37LSZ7OtASRpdNWEU3wpnAOY5aGMy4WsfKvLxk=
+X-Google-Smtp-Source: AGHT+IGuQBIu0beKUp0DIAfM6UMiMTeXT65eB+2f22NRmeuVdDnGjQURLzk7WMAAhyJKajlbiDnheQ==
+X-Received: by 2002:a17:907:1596:b0:a67:6d99:d6be with SMTP id a640c23a62f3a-a681fc5c781mr108251766b.15.1717161725098;
+        Fri, 31 May 2024 06:22:05 -0700 (PDT)
+Received: from [192.168.128.139] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57a31c6d325sm1014416a12.65.2024.05.31.06.22.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 May 2024 06:22:04 -0700 (PDT)
+Message-ID: <9163bc46-983f-4d5a-b009-c12ddd5a5c8a@linaro.org>
+Date: Fri, 31 May 2024 15:22:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.300.61.1.2\))
-Subject: Re: [PATCH 2/3] hwmon: Add support for SPD5118 compliant temperature
- sensors
-From: =?utf-8?Q?Ren=C3=A9_Rebe?= <rene@exactcode.de>
-In-Reply-To: <ea135424-841c-4a5a-b881-a3295d87b64a@roeck-us.net>
-Date: Fri, 31 May 2024 15:20:38 +0200
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- =?utf-8?Q?Thomas_Wei=C3=9Fschuh?= <thomas@t-8ch.de>,
- linux-hwmon@vger.kernel.org,
- Hristo Venev <hristo@venev.name>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Radu Sabau <radu.sabau@analog.com>,
- Paul Menzel <pmenzel@molgen.mpg.de>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <151934EE-F826-4655-BEF1-2199B1AAAD5C@exactcode.de>
-References: <20240529205204.81208-1-linux@roeck-us.net>
- <20240529205204.81208-3-linux@roeck-us.net>
- <34a4292e-c4db-4b40-822e-b892e1444045@t-8ch.de>
- <16e448f1-cfc9-4e88-b3f1-55e1856d1405@roeck-us.net>
- <0a2ed64d-06d9-45e8-a054-4ded4429f952@t-8ch.de>
- <ffd72953-ecd2-405a-ad6d-236143b26946@roeck-us.net>
- <20240531093154.rna2vwbfx7csu2sj@ninjato>
- <BA0B79E0-6582-45EA-8EA9-35E278B8CC42@exactcode.de>
- <ea135424-841c-4a5a-b881-a3295d87b64a@roeck-us.net>
-To: Guenter Roeck <linux@roeck-us.net>
-X-Mailer: Apple Mail (2.3774.300.61.1.2)
-X-Spam-Score: -0.5 (/)
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/13] clk: qcom: gcc-sa8775p: Update the GDSC wait_val
+ fields and flags
+To: Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson
+ <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, quic_jkona@quicinc.com,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20240531090249.10293-1-quic_tdas@quicinc.com>
+ <20240531090249.10293-3-quic_tdas@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240531090249.10293-3-quic_tdas@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 31.05.2024 11:02 AM, Taniya Das wrote:
+> Update the GDSC wait_val fields as per the default hardware values as
+> otherwise they would lead to GDSC FSM state to be stuck and causing
+> failures to power on/off. Also add the GDSC flags as applicable and
+> add support to control PCIE GDSC's using collapse vote registers.
+> 
+> Fixes: 08c51ceb12f7 ("clk: qcom: add the GCC driver for sa8775p")
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> ---
+>  drivers/clk/qcom/gcc-sa8775p.c | 40 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/gcc-sa8775p.c b/drivers/clk/qcom/gcc-sa8775p.c
+> index 7bb7aa3a7be5..71fa95f59a0a 100644
+> --- a/drivers/clk/qcom/gcc-sa8775p.c
+> +++ b/drivers/clk/qcom/gcc-sa8775p.c
+> @@ -4203,74 +4203,114 @@ static struct clk_branch gcc_video_axi1_clk = {
+>  
+>  static struct gdsc pcie_0_gdsc = {
+>  	.gdscr = 0xa9004,
+> +	.collapse_ctrl = 0x4b104,
+> +	.collapse_mask = BIT(0),
+> +	.en_rest_wait_val = 0x2,
+> +	.en_few_wait_val = 0x2,
+> +	.clk_dis_wait_val = 0xf,
+>  	.pd = {
+>  		.name = "pcie_0_gdsc",
+>  	},
+>  	.pwrsts = PWRSTS_OFF_ON,
+> +	.flags = VOTABLE | RETAIN_FF_ENABLE | POLL_CFG_GDSCR,
 
-> On May 31, 2024, at 15:14, Guenter Roeck <linux@roeck-us.net> wrote:
->=20
-> Hi Ren=C3=A9,
->=20
-> On 5/31/24 03:01, Ren=C3=A9 Rebe wrote:
->> Hi,
->> On May 31, 2024, at 11:31, Wolfram Sang =
-<wsa+renesas@sang-engineering.com> wrote:
->>>=20
->>> Hi all,
->>>=20
->>>>> Wolfgang seems to think it's important:
->>>=20
->>> Wolfram, please.
->>>=20
->>>>> =
-https://lore.kernel.org/lkml/tdia472d4pow2osabef24y2ujkkquplfajxmmtk5pnxll=
-sdxsz@wxzynz7llasr/
->>>>>=20
->>>>=20
->>>> Ok, but that doesn't explain the reason. Wolfram, Paul, why do you
->>>> think this is needed ? Note that I am not opposed to adding spd
->>>> eeprom support, but I'd like to know why I am doing it before
->>>> I spend time on it.
->>>=20
->>> A working eeprom driver is needed to get 'decode-dimms' from the
->>> i2c-tools package working. Jean reported that EEPROM access for DDR5 =
-is
->>> different from DDR4, so it needs a separate driver. And
->>> i2c_register_spd() then needs to be updated to use the new driver =
-for
->>> DDR5.
->> Well my original downstream driver already had eeprom access:
->> https://svn.exactcode.de/t2/trunk/package/kernel/linux/spd-5118.patch
->=20
-> Yes, but you didn't send it upstream, so I took it, fixed a couple of =
-bugs,
+I have some old dt for this platform, and it doesn't mention the downstream
+counterpart flag for it (qcom,support-cfg-gdscr), so please double-check
+whether you really want to poll gdcsr + 0x4.
 
-And I appreciate that!
+The magic values I trust you have better sources for, the collapse off/masks
+look good.
 
-> dropped eeprom support since that is secondary for my use case as well =
-as the
-
-I only said the original code had this implemented if someone wants to =
-re-add it
-to save them some time not having to re-write it from scratch ;-)
-
-> out-of-tree parity code, and submitted it. I'd be more than happy to =
-let you
-> take over if you like.
-
-I=E2=80=99m mostly out of time, so I appreciate you starting the =
-upstream process.
-
-Thank you so much,
-	Ren=C3=A9
-
---=20
-ExactCODE GmbH, Lietzenburger Str. 42, DE-10789 Berlin
-http://exactcode.com | http://exactscan.com | http://ocrkit.com
-
+Konrad
 
