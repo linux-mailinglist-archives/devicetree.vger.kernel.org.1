@@ -1,113 +1,141 @@
-Return-Path: <devicetree+bounces-71309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 607298D64C3
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 16:48:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77CF08D64E1
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 16:52:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89E15B27E53
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:48:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A955C1C2549B
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:52:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AB4A57CAC;
-	Fri, 31 May 2024 14:48:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DE896F30C;
+	Fri, 31 May 2024 14:52:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="SdiCNzQZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CUPuWP/N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B453C55E53;
-	Fri, 31 May 2024 14:48:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04EA56BB5B;
+	Fri, 31 May 2024 14:52:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717166899; cv=none; b=XH+p+KHl2TLTc8gneM61lBy3cwLWk8FTZx8fDXgBR/VB8l6FBCCrEjIkTx1SbYX9SIs7ZQ3VgtHMg5iY/FyUtoM/7tuDzaoAnQFZmFzTlqX0fm2GC80JYxHWyvfgYcSi9lCZ9iP0R/klJTIH2WD2Dn2Frtr0rPMnYV/aNQFy1go=
+	t=1717167121; cv=none; b=hPaxruyDykBhhB3YanQeaIKWZJnbHc+BZJukBkQ+eARxnWpk+8nwkYVzmu7cnFJ+Wwlb8ufIXBDRjxl2WF9yppbzNMDisDJmvclFu7rHez4Oehx/cvwFD+CYKSsc7xu2CdSRUQiupfqNCllxW5xWNIsjeRQWW0mdZ9yHozVlJA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717166899; c=relaxed/simple;
-	bh=qjG5sk5AW4DnjPOlkdayQAmvAKdwXxis0W1RtTvM0YY=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=MUBgTpwYxE13+1wcu2T7D4AQkTh/tg74KfZNrLSyG4TiJfJlSpB5A8moBB+u9ZVre55DmGIFlIXDrb4bpCL6tDnxCgDmbqoAFHQsjaYvaB+NCrY41sRZ34FYM4l3nhssnMq0o+qC1D4gcvu9l6oMULimW7hR3qmPGliWymsbNKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=SdiCNzQZ; arc=none smtp.client-ip=208.88.110.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 652479C584C;
-	Fri, 31 May 2024 10:48:15 -0400 (EDT)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id X9AwXBwr79HS; Fri, 31 May 2024 10:48:14 -0400 (EDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id CA82F9C58D5;
-	Fri, 31 May 2024 10:48:14 -0400 (EDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com CA82F9C58D5
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1717166894; bh=kchiTinbtwESPzQeP7Vb31GmvIj0rK/lVr0ouZd4gSo=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=SdiCNzQZ1hd90TLzQQg+YhNcEKlzhtyi0dMmWZsuakVAg4zC8oa8Ln/wuzFtjnZK6
-	 umuqOtoS5gkAHEBujnoCEOKYsXDvBh7k4WB/XCvwIBLWucfTHY73fNM4O9rU+BqSur
-	 biWGtwErgzOoA/ZiQJHHv24hgOQZUfQtinNump2ygkCTh6ox6DlEHxwE85rJMdAjBk
-	 cj9wBia7YVfb9fgXSVg18pbAViYC196NYW9D6jWI18BvnfTAn9m4XWsvWiwaGZEBGM
-	 NVyq3W/ZG6KUkux0S4tKghCh9c2/NGndA3PTc151uQ9mRgg9k7xn+nLrLuDs/1Kzb1
-	 s9Ne6y55WTWOg==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id f6p0tkYRN10f; Fri, 31 May 2024 10:48:14 -0400 (EDT)
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 8F58C9C584C;
-	Fri, 31 May 2024 10:48:14 -0400 (EDT)
-Date: Fri, 31 May 2024 10:48:14 -0400 (EDT)
-From: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	shengjiu wang <shengjiu.wang@gmail.com>, 
-	Xiubo Lee <Xiubo.Lee@gmail.com>, Fabio Estevam <festevam@gmail.com>, 
-	Nicolin Chen <nicoleotsuka@gmail.com>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	linux-sound <linux-sound@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	alsa-devel <alsa-devel@alsa-project.org>, 
-	linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
-Message-ID: <1220272166.706254.1717166894551.JavaMail.zimbra@savoirfairelinux.com>
-In-Reply-To: <291daed8-a2e1-44d4-9a71-5bca2c585720@sirena.org.uk>
-References: <20240515135411.343333-1-elinor.montmasson@savoirfairelinux.com> <20240515135411.343333-10-elinor.montmasson@savoirfairelinux.com> <ce9a87c6-4a5c-4f0a-a8df-1fdce8c1f5df@sirena.org.uk> <599489232.349333.1715936741672.JavaMail.zimbra@savoirfairelinux.com> <500db9de-6113-4e73-ba92-6e52ea292b32@sirena.org.uk> <1598202415.701258.1717159684103.JavaMail.zimbra@savoirfairelinux.com> <291daed8-a2e1-44d4-9a71-5bca2c585720@sirena.org.uk>
-Subject: Re: [PATCHv4 9/9] ASoC: dt-bindings: fsl-asoc-card: add compatible
- for generic codec
+	s=arc-20240116; t=1717167121; c=relaxed/simple;
+	bh=Ae/1bmVsvqbG6B0tErv/VXtZn0uXW6lgfBUNSSQ8+WY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SI6fD5geVys2M6WVbsNeAHuopYsd7LhN2RK7dp0FSzz9kgHrVwr86MRqdu7NTLkyzBaDjamb1Gqr02s0t7WRJcr1pmfGJ0KLKkXvS3Pb4JQSS07kNv+N4Jk/DOL1Y+DZ8v5pA0qjI/VBKKF1iGki7CjV+AFG0O4sekBlP8u+Wsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CUPuWP/N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A9B7C116B1;
+	Fri, 31 May 2024 14:51:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717167120;
+	bh=Ae/1bmVsvqbG6B0tErv/VXtZn0uXW6lgfBUNSSQ8+WY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CUPuWP/NDWVhvoLbj8KjV6psJrmPnhMlanG7TZaEzkQQi4aOi5CWURBgKHd3lV+dG
+	 CBD0wObeYLSplCbJTbIBTR5Nbtbbk1WwKB8fxITOqnKAdc8soCoMb6ZqfEWX6uCoBC
+	 qir5TTbY47RHYjy3CpVnb8z5k+fSyvBGYgYbXs08UXLXCprOEB8Mwb7arhsduTcp/e
+	 BCul6CSJQHh9hGc8m4qWSPiz83P1061AgFVWeAUoaAny/U6mkxvrOn/QdWnmaMZC/y
+	 f1qwAoBO6RI5P2bWY/B6wOXQwPaopyVzXI8QOEeWJzEXoiYH7fr/Im0poQyylJpA46
+	 BG2cwdEX45GMQ==
+Date: Fri, 31 May 2024 15:51:56 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Ramona Alexandra Nechita <ramona.nechita@analog.com>
+Cc: linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/1] dt-bindings: iio: adc: add a7779 doc
+Message-ID: <20240531-dairy-king-5a4e6c09b670@spud>
+References: <20240531133604.1380-1-ramona.nechita@analog.com>
+ <20240531133604.1380-2-ramona.nechita@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.8.15_GA_4581 (ZimbraWebClient - GC112 (Linux)/8.8.15_GA_4581)
-Thread-Topic: ASoC: dt-bindings: fsl-asoc-card: add compatible for generic codec
-Thread-Index: fUODjmUMbozLiD+24hweZL0h4n337g==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="rxHMfQVAKZ8I7VeB"
+Content-Disposition: inline
+In-Reply-To: <20240531133604.1380-2-ramona.nechita@analog.com>
 
-From: "Mark Brown" <broonie@kernel.org>
-Sent: Friday, 31 May, 2024 15:14:13
 
-> On Fri, May 31, 2024 at 08:48:04AM -0400, Elinor Montmasson wrote:
-> 
->> Then maybe it's not be a good idea to make this compatible generic
->> for this contribution.
->> The original intention is to bring support for the S/PDIF,
->> so maybe the contribution should focus on this use case?
->> In that case, would changing the compatible for "fsl,imx-audio-spdif-card"
->> be acceptable?
->> "fsl,imx-audio-spdif" is already used for the `imx-spdif.c`
->> which does not use the ASRC.
-> 
-> Why not just use the existing compatible - why would someone not want to
-> be able to use the ASRC if it's available in their system?
+--rxHMfQVAKZ8I7VeB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-That's true but it will be a problem if both `fsl-asoc-card.c` and
-`imx-spdif.c` drivers have the same compatible, and they don't
-have the same DT properties.
+On Fri, May 31, 2024 at 04:35:52PM +0300, Ramona Alexandra Nechita wrote:
+> Add dt bindings for adc ad7779.
+>=20
+> Signed-off-by: Ramona Alexandra Nechita <ramona.nechita@analog.com>
+> ---
+>  .../ABI/testing/sysfs-bus-iio-adc-ad777x      | 23 +++++
+>  .../bindings/iio/adc/adi,ad7779.yaml          | 87 +++++++++++++++++++
+>  2 files changed, 110 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-ad777x
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7779.=
+yaml
+>=20
+> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-adc-ad777x b/Documen=
+tation/ABI/testing/sysfs-bus-iio-adc-ad777x
+> new file mode 100644
+> index 000000000000..0a57fda598e6
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/sysfs-bus-iio-adc-ad777x
+> @@ -0,0 +1,23 @@
+> +What:		/sys/bus/iio/devices/iio:deviceX/filter_type_available
+> +KernelVersion:  6.1
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Reading returns a list with the possible filter modes. Only supported =
+by
+> +		AD7771.
+> +
+> +		  * "sinc3"	- The digital sinc3 filter implements three main notches, =
+one at
+> +				the maximum ODR (128 kHz or 32 kHz, depending on the
+> +				power mode) and another two at the ODR frequency selected to
+> +				stop noise aliasing into the pass band.
+> +
+> +		  * "sinc5"	- The sinc5 filter implements five notches, one at
+> +				the maximum ODR (128 kHz or 32 kHz, depending on the
+> +				power mode) and another four at the ODR frequency
+> +				selected to stop noise aliasing into the pass band.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/filter_type
+> +KernelVersion:  6.1
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Set the filter mode of the differential channel. The current sampling_=
+frequency
+> +		is set according to the filter range. Only supported by AD7771.
+
+This patch is really confusing to me. Why is there a file documenting
+the sysfs interface for a driver that isn't in the tree? Shouldn't this
+patch be part of a series that adds the driver? I suggest you speak to
+Nuno or another collogue about how to submit a series.
+
+Thanks,
+Conor.
+
+--rxHMfQVAKZ8I7VeB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlnkDAAKCRB4tDGHoIJi
+0ictAPsGZBONtNVkwdopjcHTZfSSRPRg2VpecEAmz7u/SHamQgEAmtnrs3jl3KAr
+cjQW7yIlAi71HXWZ6fEPLKCYc98DOgc=
+=J4bf
+-----END PGP SIGNATURE-----
+
+--rxHMfQVAKZ8I7VeB--
 
