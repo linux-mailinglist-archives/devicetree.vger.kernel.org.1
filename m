@@ -1,134 +1,113 @@
-Return-Path: <devicetree+bounces-71193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58A7E8D5FA3
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:24:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D73D8D5FA8
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:24:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC084B2544A
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 10:23:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ADEE0B2593D
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 10:24:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0905155CA6;
-	Fri, 31 May 2024 10:23:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hBQN/lY5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE52614F9EE;
+	Fri, 31 May 2024 10:24:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C86A1422C4;
-	Fri, 31 May 2024 10:23:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D8F214263B
+	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 10:24:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717151014; cv=none; b=Uq/Mj6E0R9a/4PrwrU48wKAaEeEQal/GDyU9mtSr0oEjIp0ybtFEFq1Xa9DNLtEn5rLqB7RuGJJrligOBY+vzsRSHtxK/JXFE9mrcZcSzG5QcOlmmCDcoR3edp8T751CzIItff8KpRhUTvoEwm9BF6EKJLtJPt9aBmJFr09JWBw=
+	t=1717151089; cv=none; b=Uwa2WoIqtlYry952TlTMDlZhBYqSFT/p41XSqWt1er00rzLCf4G/a7+lYRudKcTHo9p9QMNuzevwr73HUW8SaaMAoPvx++UDrwdfDNGVQ5mEAWmys1/SOKuJOYXGApN7OejMypYG/fmjJpaWTx+AwQH4+CD08Ito0y8mBgQCpl0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717151014; c=relaxed/simple;
-	bh=VV5qOddNmdGb5hbGPBWN40mCjvxeB+Een3gim9Zo6j8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VLf8v5pu33K+k+6FeIoiCRFha5tZX40OINbfaW+HiCPbRvlnw3/9Gstdkw1QFkpVgZbKrS19ChxtShyXLBCP85XL5ehwWcXOdKATDd2/8JDSHds7yh+zFLGduH1cogQL0UoA8BEqRk4/hgpgXaoonkWx/faA1nL5BLjflE/TmvY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hBQN/lY5; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44V4odpo015761;
-	Fri, 31 May 2024 10:23:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=Y5pXRlCuO0KRrfkLfNBjExbb
-	+2MXeP7nYhg/mgEQHso=; b=hBQN/lY57FbrcgBCvm7oRh7fEqkjLQtdiQgufb8i
-	cc9eXqxDqsDJgxelth3Bg7f7kK37t+VXh1WkwRo0SC9hkvlJJAm16K7xUgj1uxAE
-	PHavYDIWBFbkBrEnA8K/1oJ+P6Ink3patZgxz+g7+ASi5HeJOvXWT9CU8E2yfbhr
-	yMd4CsU930KzHtFBuzdl1in7Km8GpA+jUAOSySdQqckmWlwi3+7H+Yo5c3QCGOeM
-	ZEl6cSjQyfzTSE34o4CtMzGIeAGGr/RCedcnqxUnEHmWOHete0nXNnnvlrMeuIv1
-	YAJhHETlgpn/ovTejv66RwI/wundcOU+wsq9T56wCLlRPQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ydyws69gk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 31 May 2024 10:23:29 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44VANSqj005999
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 31 May 2024 10:23:28 GMT
-Received: from hu-tdas-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 31 May 2024 03:23:24 -0700
-From: Taniya Das <quic_tdas@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <quic_jkona@quicinc.com>, <quic_imrashai@quicinc.com>,
-        <devicetree@vger.kernel.org>, Taniya Das <quic_tdas@quicinc.com>
-Subject: [PATCH 4/4] arm64: dts: qcom: qcs6490-rb3gen2: Update the LPASS audio node
-Date: Fri, 31 May 2024 15:52:52 +0530
-Message-ID: <20240531102252.26061-5-quic_tdas@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240531102252.26061-1-quic_tdas@quicinc.com>
-References: <20240531102252.26061-1-quic_tdas@quicinc.com>
+	s=arc-20240116; t=1717151089; c=relaxed/simple;
+	bh=3iFjX4wt0DJ4oC3/Izl/t6MXl/D5UVlqWwCet2BhxPo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YOkOcHPXIaJH+WtR+2JtwDPtktwlSgbcdYlg/nVRqdxLQDDpdcKwDVLLIkPR3Kas33gtpYNEwA2c//eX/1dM3YoB7iCVsNaKa/p/XBwt/L2Dce9vaQRvMtOUi93O5PVk8/yXPlrEqJ5Kk++/+Js5Vx30xcK5Rn4eEz+xSGGY/kk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1DFA61424;
+	Fri, 31 May 2024 03:25:12 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BBC8C3F641;
+	Fri, 31 May 2024 03:24:45 -0700 (PDT)
+Date: Fri, 31 May 2024 11:24:43 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, Chen-Yu
+ Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
+ Holland <samuel@sholland.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, Chris
+ Morgan <macromorgan@hotmail.com>, Ryan Walklin <ryan@testtoast.com>,
+ iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 5/5] arm64: dts: allwinner: h616: add IOMMU node
+Message-ID: <20240531112443.319863a3@donnerap.manchester.arm.com>
+In-Reply-To: <adb96c77-fc8b-4be1-b2f7-0a321b7ad593@arm.com>
+References: <20240530233800.27705-1-andre.przywara@arm.com>
+	<20240530233800.27705-6-andre.przywara@arm.com>
+	<bc550e12-7ad6-4592-994d-dca5a95e88ca@arm.com>
+	<20240531103209.7db573c8@donnerap.manchester.arm.com>
+	<adb96c77-fc8b-4be1-b2f7-0a321b7ad593@arm.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: bOMm6E3n3ePE9Xdeg1FQHDIxLoDkk1-Z
-X-Proofpoint-GUID: bOMm6E3n3ePE9Xdeg1FQHDIxLoDkk1-Z
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-31_06,2024-05-30_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
- malwarescore=0 impostorscore=0 suspectscore=0 mlxscore=0 mlxlogscore=988
- priorityscore=1501 spamscore=0 lowpriorityscore=0 bulkscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2405310077
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Update the lpassaudio node to support the new compatible as the
-lpassaudio needs to support the reset functionality on the
-QCM6490 board and the rest of the Audio functionality would be
-provided from the LPASS firmware.
+On Fri, 31 May 2024 10:45:41 +0100
+Robin Murphy <robin.murphy@arm.com> wrote:
 
-Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+> On 2024-05-31 10:32 am, Andre Przywara wrote:
+> > On Fri, 31 May 2024 09:42:36 +0100
+> > Robin Murphy <robin.murphy@arm.com> wrote:
+> > 
+> > Hi Robin,
+> >   
+> >> On 2024-05-31 12:38 am, Andre Przywara wrote:  
+> >>> The Allwinner H616 contains a scatter-gather IOMMU connected to some
+> >>> video related devices. It's almost compatible to the one used in the H6,
+> >>> though with minor incompatibilities.
+> >>>
+> >>> Add the DT node describing its resources, so that devices like the video
+> >>> or display engine can connect to it.  
+> >>
+> >> Without also describing those connections, though, having this node
+> >> enabled in the DT means the driver will just bind, block DMA, and
+> >> prevent those devices from working. That's probably not what you want.  
+> > 
+> > The IOMMU manages the Display Engine (DE), the Deinterlacer (DI), the
+> > video engine (VE) and the 2D acceleration engine (G2D).
+> > None of those devices are supported for the H616 in mainline yet, but there
+> > are patches out there for the DE and VE, at least. Especially the video
+> > codecs benefit from scatter-gather, so with this patch they can make use
+> > of it from day one.  
+> 
+> Oh, I see - I assumed that stuff like display was more exciting and
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-index c4cde4328e3d..9d033700378d 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: BSD-3-Clause
- /*
-- * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- /dts-v1/;
-@@ -726,3 +726,8 @@
- 	function = "gpio";
- 	bias-disable;
- };
-+
-+&lpass_audiocc {
-+	compatible = "qcom,qcm6490-lpassaudiocc";
-+	/delete-property/ power-domains;
-+};
--- 
-2.17.1
+Yeah, it arguably is, and Jernej had early patches already two years ago,
+I think. However there are some changes in the IP that require some rework
+in the DE driver for proper support, IIUC, so the upstreaming is somewhat
+on hold.
+Of course this didn't prevent Armbian from taking those early patches
+anyway, so a lot of people are not even aware of the problem :-(
+
+Cheers,
+Andre
+
+> likely to be supported already, so read "can connect to it" in the 
+> present tense. If it's a future "can use it as soon as they are also 
+> supported", then there's no concern, and indeed this is arguably the 
+> ideal order of doing things.
+> 
+> Cheers,
+> Robin.
 
 
