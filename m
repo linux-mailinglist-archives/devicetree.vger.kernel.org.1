@@ -1,285 +1,146 @@
-Return-Path: <devicetree+bounces-71066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 710E28D5A64
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 08:16:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BE508D5A6D
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 08:18:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9438D1C2086A
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 06:16:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 140CF283625
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 06:18:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D154D7D07F;
-	Fri, 31 May 2024 06:16:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 208637E761;
+	Fri, 31 May 2024 06:18:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Ch+D15+1";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Y9oqFuNv"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="Gj+DNAIS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D60A736B;
-	Fri, 31 May 2024 06:16:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B180728DA5;
+	Fri, 31 May 2024 06:18:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717136215; cv=none; b=KQHF9YihQnIljBHysiUkVIgMb7xVLDYsbKGHv1GYwVls4TfH0mp5AfS/KuwIHyddfGn5ACa36QUoBMATC/+8toMh6w++yop05h3ScyQALfmoeiryKfR3cjHYKxJ56XfB4M7jW0FzQQqHMLLw1UI+DIdHvVRAInCHv+L6xampetg=
+	t=1717136304; cv=none; b=RlyeZkt0LHqGwYre9kMlyGLhakpsl/Uc0aFSS3Jqd5g3nYtwAdV8LFEX4Ve4BuspebCjBAFAGF0wJHkQjRSWFecWZ2UI4qowU/dyX6mWryU4Npm+T7lEu2WbgEvUmO2uESt+6A+hF4CgCEDpJAd3MqolmEgXSozwqPCMWyYq928=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717136215; c=relaxed/simple;
-	bh=PU9wADAmKFnxGMyTJINBlux3WHrl1/71rCrm4yjDdt0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PbQl8J7bASsh9MhcniM6ffzN4zfzpZpw+Cbb7Yexrca76HkZLsLCPX0vb8q8vJ7fzctpPSefwPjBTeCPADRynVy6WB5J4frVtDGJ/yOcLrHmx1n0T3nCTuJp9Dct6kuliIhE21dEnyWsvXABcPROn/1Qbs8UJJIytesyxAwAk44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Ch+D15+1; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Y9oqFuNv reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1717136212; x=1748672212;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=BplqydDYpMobXdQpqqvJqm0UHLjyRhrsf41yh2GGcfE=;
-  b=Ch+D15+1KTm+eEptbQtQkOqJsU/kFfIhrhyZRLGfOk4gOOJnt3eL5uej
-   C1XAcPofinYETv4jjQTfVFuB4Zmn4fQimE9Y6gAUnxV98ToFlnqkuoQgE
-   5WPpfCOtxCaFjWbvMo+wrf+Eb/kmZPGojMBM86fbKBbWBcYEyN0OkI6hC
-   ZjPXMmRYOJVXww8qzHq42oXk4KUgZPwOHeqybIOIasI7Dge8L38xgfWy4
-   JOHfmQMdNgwbaBblrMvxC/VD8SwsMlSS/eJqLHlk9YcY+5I7Y56EncJ1e
-   iRAFxOLP4V2WSnsoA8L9BIFq62DBMHCmSPtpDIPWmCJJj2Olmog3qBXfn
-   w==;
-X-CSE-ConnectionGUID: 1UsTIyD4RAyP9gPTIO8Oww==
-X-CSE-MsgGUID: yfHIr/PMTrGQsrQuGrwdeg==
-X-IronPort-AV: E=Sophos;i="6.08,203,1712613600"; 
-   d="scan'208";a="37152332"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 31 May 2024 08:16:49 +0200
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 77C9E1669A9;
-	Fri, 31 May 2024 08:16:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1717136205;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=BplqydDYpMobXdQpqqvJqm0UHLjyRhrsf41yh2GGcfE=;
-	b=Y9oqFuNvNbB9GDHQMUxmVtQ4IbFlKbdQPusTXelQmIa26dGXG8W6MbOezTfq7JIgGAZ2PM
-	HO+0OLxuQ6wfwiMRR4gfUjmHpCXwmCRXTLRwbbb/vd+Z5OZ99eLdK8UR8sSk2Wb9TzYhi8
-	yVuswT7H9OgaSBm8k+i6ps1pbHbRKUXv9grtY6YfGouWlgueYCEI/3QfstsL5CiE4wZXXZ
-	Ze1Bs3maywRBl0UXlAv8faK/JCB85YbN4qs+L7d7665OlfBAxQK/kNssmqj84YFFt9ejEg
-	OtV0OvHUIklWrOFdibgQmzywHO1J5WhIgoK0SOfxy6I6PVw5fPhik6a0CIdXlg==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: robh@kernel.org, Frank Li <Frank.Li@nxp.com>
-Cc: Frank.Li@nxp.com, brgl@bgdev.pl, conor+dt@kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, krzk+dt@kernel.org, linus.walleij@linaro.org, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/1] dt-bindings: gpio: mpc8xxx: Convert to yaml format
-Date: Fri, 31 May 2024 08:16:44 +0200
-Message-ID: <2408577.ElGaqSPkdT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20240530165424.3173673-1-Frank.Li@nxp.com>
-References: <20240530165424.3173673-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1717136304; c=relaxed/simple;
+	bh=aSfkq3WZ/4OzORejoCenRhi8w/CxYkLEASE8u3Z3luc=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=ObiwefBawR/d2zQY60/lGk7QkizLh6ixn9NaMGY9p54d/nAznh+kq3cD1hzPk3TblvSlPDkPDBAdnMNoXtX21eerR7kYmn2hMxhrc439vtltSS+5QoXSB4jyATX0GcwwzEDnYTAHREWUR4iI6kN6R7Fzib4EKhxGTkjAKJOCGWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=Gj+DNAIS; arc=none smtp.client-ip=212.227.15.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1717136285; x=1717741085; i=frank-w@public-files.de;
+	bh=M5mfRLGUirXavE2Xknh6+26eGUEzHe9b2mcXUF1hh+A=;
+	h=X-UI-Sender-Class:Date:From:To:CC:Subject:In-Reply-To:References:
+	 Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=Gj+DNAISHKXKwohz2RKllpTRiD/LPfxyF/t9UWkK22N3yGgKePR8EYLqN0R0UYq3
+	 TI+VLLaBXCIlB87TFct2cfWx2Zk169jSnWOXA6vE5v/N6ZGgwJARg99OqIPhVPYEz
+	 39ntd1yvfFRvAx9Ko8lRkMf2xa9YYySi65inqlm3B//4sL3rjBrLx6FzyM92mNuZh
+	 kDY38/xppiNQz6VtvjbDpjV90xxKrIPmVeinRFB2YhL4PAaNt9iTfCHnzE657g2Kt
+	 nFshefUQ2emtHd9z66yv1xTTcLPSPrC1AFKTbAMhdu1lVVVSeJPLqdxO76ky7VgP1
+	 mgQ39x1bhSVzN6uA7g==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [127.0.0.1] ([217.61.156.178]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MDysg-1sMnUW3Tme-00B7Xk; Fri, 31
+ May 2024 08:18:04 +0200
+Date: Fri, 31 May 2024 08:18:02 +0200
+From: Frank Wunderlich <frank-w@public-files.de>
+To: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+ Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+CC: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Daniel Golle <daniel@makrotopia.org>
+Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
+User-Agent: K-9 Mail for Android
+In-Reply-To: <aaaeb4b2-e57e-4d7b-b598-a664cc05b0cf@arinc9.com>
+References: <20240516204847.171029-1-linux@fw-web.de> <a29dd7d1-40a8-4c88-99aa-651a3305b640@arinc9.com> <5AEE5668-0C8E-4EE4-A398-66CB99DF5650@public-files.de> <aaaeb4b2-e57e-4d7b-b598-a664cc05b0cf@arinc9.com>
+Message-ID: <81944186-AFAA-4C8F-8E55-1AF4CBD97573@public-files.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain;
+ charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+X-Provags-ID: V03:K1:I8OEAuMAbo0jM2nJJPq4o2LrOd6sUZ8+mjxbaAH1HWLivRlEwTe
+ +1ltn1L3UqoZyEs4Z44oXBk8Oj6I3mL/i32vaJLKOiy2kxJHmTzScLqU4MmuCLc/Dkx6WMU
+ 2HBypx73XCI2WYtJd4DiB+v5I0apqyTxfLs1OIa7UdYlTmuWmEwK7jeb2CiW/hTm+3VvtqD
+ VHVgfQ2IFyNL4B8KfM4+w==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:yhh0q80s+ZY=;uoRfJI1nTo+W2V/J0/+kfPEodHJ
+ 0HnAeu1kDoJAeEkF9EN/6l34Fv0cNuVmKpaGwy3gqAURQ3UrvRHG9lZZgXlSNJ5gtyjLYpZ2U
+ fKaet3IMGK1IzFpm0VMUynNTs49+cTorXPtVWmCcjVFsDnJsrvKQ558DriXid/nWBhKmP39WT
+ C2Nxq7ucDj3gZ+eCgkeUQlOSAuYtUsFn09aDoL656kLziS7X6Dx/uaN7CvER7/JArgPh7e4GH
+ xi5Jhv4/M9xdHgGtOqbaZHYvJwUBxsNUT4NnTDCZM6eJ4R1Amh+m9grcSUR6ewVhuQt6DdSBT
+ tIeR5X/ynHYN1FKqex2QUOceJem7EkZ2yb2s24s0b8NMIqM4mftEkmsfTtlNpameRONtHiI/Z
+ 2y7r3LJktFgbB0LhY7H7al3zjoabme9WvEY9dcLfMT20fmZGv2QygGHHRPZx6yXwGHaoikqZ1
+ AoAN0x3CwrR+iyQjGONSc9a+5iJnSYnyHYZq8LxiZcNyfATahtMURQLfVCB+pdILwwBjQGE0b
+ JkCq7KFq/crrq4GmD+tZHZx4IOZ35+UhPlj+GYxaTFiJUaDCmeFNOw+4tqbSHOO2ioV6SLKto
+ xlKJrPVkSDDu4R+esHAFkAndBPuzJT1h0l0CWq9JtL0y+i9rvCcYy7XSfsPKUdN7yB5IIv4SD
+ mf1Ae+7BGabWet0qby5NFprrUWgLT2VIaVJ26COp/tG607cfKjul0fN5epgYKcLUQrqAUpxEq
+ Sn2eWBq0LUduyjg8mKDAMr+70NSXkc2ouo9ckdfU7tqIYKh8FbWh+5Iv5CvvuC6I9sAaK0gMq
+ eGEElmNbrDDe1m/EfYLukqSkSq9y+sfHcJwPwIgrdtmVA=
 
-Hi Frank,
+Am 31=2E Mai 2024 08:12:06 MESZ schrieb "Ar=C4=B1n=C3=A7 =C3=9CNAL" <arinc=
+=2Eunal@arinc9=2Ecom>:
+>On 17/05/2024 09=2E27, Frank Wunderlich wrote:
+>> Am 17=2E Mai 2024 04:17:47 MESZ schrieb "Ar=C4=B1n=C3=A7 =C3=9CNAL" <ar=
+inc=2Eunal@arinc9=2Ecom>:
+>>> On 16/05/2024 23:48, Frank Wunderlich wrote:
+>>>> From: Frank Wunderlich <frank-w@public-files=2Ede>
+>>>>=20
+>>>> After commit 868ff5f4944a
+>>>> ("net: dsa: mt7530-mdio: read PHY address of switch from device tree"=
+)
+>>>> the mt7531 switch on Bananapi-R64 was not detected=2E
+>>>>=20
+>>>> mt7530-mdio mdio-bus:00: reset timeout
+>>>> mt7530-mdio mdio-bus:00: probe with driver mt7530-mdio failed with er=
+ror -110
+>>>>=20
+>>>> Fix this by adding phy address in devicetree=2E
+>>>>=20
+>>>> Signed-off-by: Frank Wunderlich <frank-w@public-files=2Ede>
+>>>=20
+>>> I don't like the mention of the Linux kernel driver on the patch log=
+=2E What
+>>> you're fixing is the incorrect description of the switch's PHY address=
+ on
+>>> the DTS file=2E Whether or not any driver from any project is actually
+>>> reading it from the DTS file is irrelevant to this patch=2E That said,=
+ I
+>>> already have a patch series I've been meaning to send the next version=
+ of
+>>> that already addresses this=2E Please wait for that=2E
+>>>=20
+>>> Ar=C4=B1n=C3=A7
+>>=20
+>> Hi arinc,
+>>=20
+>>  From my PoV it is a regression in next/6=2E10 because the driver chang=
+e was merged (without "broadcast" fallback) and the dts patch [1] is not=2E
+>
+>What is a broadcast fallback? 0x1f is just another PHY address=2E
 
-thanks for your patch.
+Afaik 0x0 is some kind of broadcast address if real phy address is not kno=
+wn=2E The driver change seems not allow this 0x0 adress and forces devicetr=
+ee to have the real address=2E
 
-Am Donnerstag, 30. Mai 2024, 18:54:24 CEST schrieb Frank Li:
-> Convert binding doc from txt to yaml.
->=20
-> Remove redundated "gpio1: gpio@2300000" example.
-> Add gpio-controller at example "gpio@1100".
->=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->=20
-> Notes:
->     Change from v1 to v2
->      - Add gpio-controller at example "gpio@1100". to fix bot error.
->     Strangely, I can't reproduce locally.
->    =20
->     Pass dt_binding_check
->     make dt_binding_check DT_SCHEMA_FILES=3Dfsl,qoriq-gpio.yaml
->       SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->       CHKDT   Documentation/devicetree/bindings
->       LINT    Documentation/devicetree/bindings
->       DTC_CHK Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.examp=
-le.dtb
->=20
->  .../bindings/gpio/fsl,qoriq-gpio.yaml         | 82 +++++++++++++++++++
->  .../devicetree/bindings/gpio/gpio-mpc8xxx.txt | 53 ------------
->  2 files changed, 82 insertions(+), 53 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio=
-=2Eyaml
->  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-mpc8xxx.t=
-xt
->=20
-> diff --git a/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml b=
-/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml
-> new file mode 100644
-> index 0000000000000..adc955679d066
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml
-> @@ -0,0 +1,82 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/fsl,qoriq-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale MPC512x/MPC8xxx/QorIQ/Layerscape GPIO controller
-> +
-> +maintainers:
-> +  - Frank Li <Frank.Li@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - fsl,mpc5121-gpio
-> +          - fsl,mpc5125-gpio
-> +          - fsl,mpc8349-gpio
-> +          - fsl,mpc8572-gpio
-> +          - fsl,mpc8610-gpio
-> +          - fsl,pq3-gpio
-> +      - items:
-> +          - enum:
-> +              - fsl,ls1021a-gpio
-> +              - fsl,ls1028a-gpio
-> +              - fsl,ls1043a-gpio
-> +              - fsl,ls1088a-gpio
-> +              - fsl,ls2080a-gpio
-> +          - const: fsl,qoriq-gpio
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  gpio-controller: true
-> +
-> +  interrupt-controller: true
-> +
-> +  "#interrupt-cells":
-> +    const: 2
-> +
-> +  little-endian:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      GPIO registers are used as little endian. If not
-> +      present registers are used as big endian by default.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - "#gpio-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    gpio@1100 {
-> +        compatible =3D "fsl,mpc5125-gpio";
-> +        reg =3D <0x1100 0x080>;
-> +        interrupts =3D <78 0x8>;
-> +        gpio-controller;
-> +        #gpio-cells =3D <2>;
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    gpio@2300000 {
-> +        compatible =3D "fsl,ls2080a-gpio", "fsl,qoriq-gpio";
-> +        reg =3D <0x2300000 0x10000>;
-> +        interrupts =3D <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
-> +        gpio-controller;
-> +        little-endian;
-> +        #gpio-cells =3D <2>;
+Thats what i mean with broadcast fallback=2E Maybe the naming is wrong=2E
 
-Please keep 'gpio-controller' and '#gpio-cells' together. I would move
-little-endian either below reg directly or below interrupts.
+>Ar=C4=B1n=C3=A7
 
-Thanks
-Alexander
-
-> +        interrupt-controller;
-> +        #interrupt-cells =3D <2>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-mpc8xxx.txt b/Do=
-cumentation/devicetree/bindings/gpio/gpio-mpc8xxx.txt
-> deleted file mode 100644
-> index cd28e932bf50e..0000000000000
-> --- a/Documentation/devicetree/bindings/gpio/gpio-mpc8xxx.txt
-> +++ /dev/null
-> @@ -1,53 +0,0 @@
-> -* Freescale MPC512x/MPC8xxx/QorIQ/Layerscape GPIO controller
-> -
-> -Required properties:
-> -- compatible : Should be "fsl,<soc>-gpio"
-> -  The following <soc>s are known to be supported:
-> -	mpc5121, mpc5125, mpc8349, mpc8572, mpc8610, pq3, qoriq,
-> -	ls1021a, ls1043a, ls2080a, ls1028a, ls1088a.
-> -- reg : Address and length of the register set for the device
-> -- interrupts : Should be the port interrupt shared by all 32 pins.
-> -- #gpio-cells : Should be two.  The first cell is the pin number and
-> -  the second cell is used to specify the gpio polarity:
-> -      0 =3D active high
-> -      1 =3D active low
-> -
-> -Optional properties:
-> -- little-endian : GPIO registers are used as little endian. If not
-> -                  present registers are used as big endian by default.
-> -
-> -Example of gpio-controller node for a mpc5125 SoC:
-> -
-> -gpio0: gpio@1100 {
-> -	compatible =3D "fsl,mpc5125-gpio";
-> -	#gpio-cells =3D <2>;
-> -	reg =3D <0x1100 0x080>;
-> -	interrupts =3D <78 0x8>;
-> -};
-> -
-> -Example of gpio-controller node for a ls2080a SoC:
-> -
-> -gpio0: gpio@2300000 {
-> -	compatible =3D "fsl,ls2080a-gpio", "fsl,qoriq-gpio";
-> -	reg =3D <0x0 0x2300000 0x0 0x10000>;
-> -	interrupts =3D <0 36 0x4>; /* Level high type */
-> -	gpio-controller;
-> -	little-endian;
-> -	#gpio-cells =3D <2>;
-> -	interrupt-controller;
-> -	#interrupt-cells =3D <2>;
-> -};
-> -
-> -
-> -Example of gpio-controller node for a ls1028a/ls1088a SoC:
-> -
-> -gpio1: gpio@2300000 {
-> -	compatible =3D "fsl,ls1028a-gpio", "fsl,ls1088a-gpio", "fsl,qoriq-gpio";
-> -	reg =3D <0x0 0x2300000 0x0 0x10000>;
-> -	interrupts =3D <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
-> -	gpio-controller;
-> -	#gpio-cells =3D <2>;
-> -	interrupt-controller;
-> -	#interrupt-cells =3D <2>;
-> -	little-endian;
-> -};
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+@thorsten i have not tested again,but i have not seen any further fix for =
+it=2E
+regards Frank
 
