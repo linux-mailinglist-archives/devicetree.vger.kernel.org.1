@@ -1,253 +1,185 @@
-Return-Path: <devicetree+bounces-71529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68C558D71DE
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 22:44:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 672348D7291
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 00:49:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B7F4BB21777
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 20:44:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7EE11F2191D
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 22:49:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA72B154C14;
-	Sat,  1 Jun 2024 20:44:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E234D2BAEA;
+	Sat,  1 Jun 2024 22:49:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jRhxDNM7"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="IAoiJYPj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [167.172.40.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71D688120F;
-	Sat,  1 Jun 2024 20:44:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 557EF1CD2F
+	for <devicetree@vger.kernel.org>; Sat,  1 Jun 2024 22:49:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=167.172.40.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717274686; cv=none; b=oTbR3v1oLJ6BsVl2Csidx6SngHgaBFQLMjdQYEdk40WOPcqVfCpTbamM4fL9c6lY0bWyshVl8oIHUYrg+8wMtjoV/Ni4i4bc60HkiZ9OwmEVGcEt2Au6yvgueXzminFZG9aBFA/xIjcouuUc9VXvbKSJcf5g27dXR+5iu6naEw8=
+	t=1717282180; cv=none; b=ehRkSqKj1KMLaU6psCneTaA7fq+vVYVq7h932rJTbE8hCTwwgh3U1BQzjlKPChIkXMOM+3iWtFCX7ptvmj6LOY6hFhtFvd1l3pjXAECs/QJL0XSfuU+H44gZl4IueypNWudCciOwuD/iisEHsmEuOmH0gtOrtWvlxGmOh6wp9eQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717274686; c=relaxed/simple;
-	bh=oL/f5LFTUMhn1i0h51KvDWlGmHaSNFHJXTUDC1jxepU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=E2+QBC4XSSsqykki9UptDtKTLnE/cqJZqSBygFP0/moihkEvPlB5y7vqpSMBaadJvPhR52tsgyGlomP79ERnjyzZtsRSGTqm/KI/H+F458ZPalOj8lvzAQZm2Fim6PT2dppyC3oNU989a5+3Sz7Stkkr6jUgLeTUD+Kt92C7++g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jRhxDNM7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 074D5C4AF08;
-	Sat,  1 Jun 2024 20:44:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717274686;
-	bh=oL/f5LFTUMhn1i0h51KvDWlGmHaSNFHJXTUDC1jxepU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=jRhxDNM7ePk0nBGTUOyV0zivwwFyxTe/Woq9utdJYdNypCXeVv81ONZw6tMYqnTCm
-	 7Ahf5nTwghzuo5eGxgTulez+uvOpMtRKOOrsfrg9oaJhXX6MTrA8LqRkLWwCAvpJEC
-	 IhNaBGhb9Wf5OM6o2nzry8gQTv0yO4FeyedFUtXKOv1UumZnsvtT3xnY7v6eQ3N/Xb
-	 R1jmePgdic9r6OYqlT94TMo8D30nxQV477hepqdrCjJ+145Z/kZMLqg0g70PCvZEE4
-	 jvBL25EtWKulT0I1KqXOa0OUNU9szwooVQdX4/Ghlv7atap99h1DOMWstxm4IjIOMk
-	 TnToiL3dy8OeA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E7D23C27C53;
-	Sat,  1 Jun 2024 20:44:45 +0000 (UTC)
-From: Joel Selvaraj via B4 Relay <devnull+joelselvaraj.oss.gmail.com@kernel.org>
-Date: Sat, 01 Jun 2024 15:44:45 -0500
-Subject: [PATCH v5 3/3] Input: novatek-nvt-ts: add support for NT36672A
- touchscreen
+	s=arc-20240116; t=1717282180; c=relaxed/simple;
+	bh=Jkb8Hqv95DRnRm/NxgOPNaIghiPJOHpb1eOciF3qDFY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BCQqAOiELj2+im1n0COizGDRVMm4NTXt8Lb8dlfacKHIkc1G3gMwaW6Q8T6VRv/+G018yPMd9HYxK4s1aSzoyUcmj85PYxcC3zK5BsCzQu5cYvy+6KJ/EWA7z8QfMxkZgvLApy0RJONRTmdyrgCXr+PiV0PqzfHCdGDPhrceRm8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=IAoiJYPj; arc=none smtp.client-ip=167.172.40.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1717282140;
+ bh=/k1PnOZIBQq7/TC/41KnYN6gtYkoZOfq1Q0coM4QxJ4=;
+ b=IAoiJYPjI70b9FQJs5+yPAOaADoe2lOr7mk54a47iJK6LaeVzR2nJkjDq6UjqUQQBh16oLSWp
+ OmRJwWHT34EDXPILh1QGR5YjCTwOMH01HciscOIbH3tC6FLs/j5k9D7n3pLWGwoFcbUJQaq5oN7
+ VpL5ScVekby+AqKHPUXblKBpcs29IyoO7bkofK8WRfKZt+bUarmEqrnIRSwLEwL6o51DdjatHKw
+ 9ngdlaRlPFkozI4PqSd2Qy0ugLtd9NlQaHrFsDcOglTKQRqwcJqUYb8/AYRtV+FGGT3hxn3Bu+X
+ rm3KRfIibp1Lrn9kcPqcE1genx0e0W02xye8Dlsl8BnQ==
+Message-ID: <e4e0c2a4-0d63-434f-ba52-6aaf571e30a5@kwiboo.se>
+Date: Sat, 1 Jun 2024 01:32:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240601-nvt-ts-devicetree-regulator-support-v5-3-aa9bf986347d@gmail.com>
-References: <20240601-nvt-ts-devicetree-regulator-support-v5-0-aa9bf986347d@gmail.com>
-In-Reply-To: <20240601-nvt-ts-devicetree-regulator-support-v5-0-aa9bf986347d@gmail.com>
-To: Hans de Goede <hdegoede@redhat.com>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
- Joel Selvaraj <joelselvaraj.oss@gmail.com>
-X-Mailer: b4 0.14-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1717274685; l=5689;
- i=joelselvaraj.oss@gmail.com; s=20240420; h=from:subject:message-id;
- bh=3VXnAP6lJY2+M+2uxu95s8qsqxPyAvaz4q1AjmLeC48=;
- b=Qz1O618oBK00jaC0pV7fWbiAbJxW7yQ2Z0jWPgduxelFegorutKfOEmouD2q96iSuRR1UC5lf
- Un/y+WCP5FrDzZLarOPOSsbPW8tvbdVDh+Kp+M42JxXJDlaiHEgV46u
-X-Developer-Key: i=joelselvaraj.oss@gmail.com; a=ed25519;
- pk=qT4gsuVtlPE0Dpr+tQA/Fumm7wzVP6qfeVaY+6pX04s=
-X-Endpoint-Received: by B4 Relay for joelselvaraj.oss@gmail.com/20240420
- with auth_id=165
-X-Original-From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
-Reply-To: joelselvaraj.oss@gmail.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH] arm64: dts: rockchip: Make preparations for
+ per-RK3588-variant OPPs
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Dragan Simic <dsimic@manjaro.org>, linux-rockchip@lists.infradead.org,
+ heiko@sntech.de, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-kernel@vger.kernel.org,
+ quentin.schulz@cherry.de, wens@kernel.org, daniel.lezcano@linaro.org,
+ didi.debian@cknow.org, krzysztof.kozlowski+dt@linaro.org,
+ viresh.kumar@linaro.org
+References: <673dcf47596e7bc8ba065034e339bb1bbf9cdcb0.1716948159.git.dsimic@manjaro.org>
+ <CABjd4YxD41DEkBCZfkznLboEY9ZVOfTCLcj4S_kkcsVswbANyQ@mail.gmail.com>
+ <8f8623e29a479c4108141302e708dc3b@manjaro.org>
+ <CABjd4Yy4RMg+6-4ygV0MSwJj5LReY-ymbctq4PPfVZ6L+c1tsw@mail.gmail.com>
+ <166cc4e46f31644a50306625b2ab18a6@manjaro.org>
+ <CABjd4YzDNQa45=KC_t0xnTDrH+g-oUrcpgP55oOj7JcAuu7uFw@mail.gmail.com>
+ <82db817a908b761d8c3d73ea04714314@manjaro.org>
+ <607f4da8-99b2-4379-9567-4bfd2744eab3@kwiboo.se>
+ <CABjd4YxdM+cM+z7ou3=DF2SrFM0235DSTZ45o0NsKBwGrgW8Bg@mail.gmail.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <CABjd4YxdM+cM+z7ou3=DF2SrFM0235DSTZ45o0NsKBwGrgW8Bg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 167.172.40.54
+X-ForwardEmail-ID: 665a5e1290b1ee9784da9536
 
-From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+Hi Alexey,
 
-Extend the novatek touchscreen driver to support NT36672A chip which
-is found in phones like qcom/sdm845-xiaomi-beryllium-tianma.dts.
-Added devicetree support for the driver and used i2c chip data to handle
-the variation in chip id and wake type. Also added vcc and iovcc
-regulators which are used to power the touchscreen hardware.
+On 2024-05-31 13:44, Alexey Charkov wrote:
+> Hi Jonas,
+> 
+> On Fri, May 31, 2024 at 3:27 PM Jonas Karlman <jonas@kwiboo.se> wrote:
+>>
+>> Hi Alexey and Dragan,
+>>
+>> On 2024-05-30 21:31, Dragan Simic wrote:
+>>> Hello Alexey,
+>>>
+>>
+>> [snip]
+>>
+>>>>>>> That way we'll have no roadblocks if, at some point, we end up with
+>>>>>>> having
+>>>>>>> different OPPs defined for the RK3588 and the RK3588S variants.  Or
+>>>>>>> maybe
+>>>>>>> even for the RK3582, which we don't know much about yet.
+>>>>>>
+>>>>>> Guess we'll deal with that one once we stumble upon an actual RK3582
+>>>>>> board out in the wild and heading to the mainline kernel tree :)
+>>>>>
+>>>>> Of course, that was just an example for the future use.
+>>>>
+>>>> In fact, I've just discovered that Radxa has recently released Rock 5C
+>>>> Lite which is based on RK3582, and starts at just $29 for the 1GB
+>>>> version, making it interesting for tinkering. Especially given that
+>>>> its GPU, one of the big-core clusters and one of the VPU cores seem to
+>>>> be disabled in software (u-boot) rather than in hardware, which means
+>>>> there is some chance that a particular SoC specimen would actually
+>>>> have them in a working condition and possible to re-enable at no cost.
+>>>> Ordered myself one to investigate :)
+>>>
+>>> Yes, I also saw the RK3582-based ROCK 5C Lite a couple of days ago. :)
+>>> It seems that the disabled IP blocks are detected as defective during
+>>> the manufacturing, which means that they might work correctly, or might
+>>> actually misbehave.  It seems similar to the way old three-core AMD
+>>> Phenom II CPUs could sometimes be made quad-core.
+>>>
+>>
+>> I can confirm that the RK3582 include ip-state in OTP indicating
+>> unusable cores, any unusable cpu core cannot be taken online and stalls
+>> Linux kernel a few extra seconds during boot.
+>>
+>> Started working on a patch for U-Boot to remove any broken cpu core
+>> and/or cluster nodes, similar to what vendor U-Boot does, adopted to
+>> work with a mainline DT for RK3588.
+> 
+> Superb - it's great to have a patch for it already, thank you for working on it!
+> 
+>> On one of my ROCK 5C Lite board one of the cpu cores is unusable, U-Boot
+>> removes the related cpu cluster nodes. On another ROCK 5C Lite board one
+>> rkvdec core is only marked unusable and all cpu cores can be taken
+>> online, U-Boot does nothing in this case. Guessing we should apply
+>> similar policy as vendor U-Boot and disable cores anyway.
+> 
+> Is there any misbehavior / instability if you just keep all the
+> unmarked cores online?
 
-Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
----
- drivers/input/touchscreen/novatek-nvt-ts.c | 67 +++++++++++++++++++++++++++---
- 1 file changed, 61 insertions(+), 6 deletions(-)
+I will run some tests during the weekend and get back with results later.
 
-diff --git a/drivers/input/touchscreen/novatek-nvt-ts.c b/drivers/input/touchscreen/novatek-nvt-ts.c
-index 9bee3a0c122fb..b9ff97bf4d880 100644
---- a/drivers/input/touchscreen/novatek-nvt-ts.c
-+++ b/drivers/input/touchscreen/novatek-nvt-ts.c
-@@ -31,9 +31,6 @@
- #define NVT_TS_PARAMS_CHIP_ID		0x0e
- #define NVT_TS_PARAMS_SIZE		0x0f
- 
--#define NVT_TS_SUPPORTED_WAKE_TYPE	0x05
--#define NVT_TS_SUPPORTED_CHIP_ID	0x05
--
- #define NVT_TS_MAX_TOUCHES		10
- #define NVT_TS_MAX_SIZE			4096
- 
-@@ -51,10 +48,16 @@ static const int nvt_ts_irq_type[4] = {
- 	IRQF_TRIGGER_HIGH
- };
- 
-+struct nvt_ts_i2c_chip_data {
-+	u8 wake_type;
-+	u8 chip_id;
-+};
-+
- struct nvt_ts_data {
- 	struct i2c_client *client;
- 	struct input_dev *input;
- 	struct gpio_desc *reset_gpio;
-+	struct regulator_bulk_data regulators[2];
- 	struct touchscreen_properties prop;
- 	int max_touches;
- 	u8 buf[NVT_TS_TOUCH_SIZE * NVT_TS_MAX_TOUCHES];
-@@ -142,6 +145,13 @@ static irqreturn_t nvt_ts_irq(int irq, void *dev_id)
- static int nvt_ts_start(struct input_dev *dev)
- {
- 	struct nvt_ts_data *data = input_get_drvdata(dev);
-+	int error;
-+
-+	error = regulator_bulk_enable(ARRAY_SIZE(data->regulators), data->regulators);
-+	if (error) {
-+		dev_err(&data->client->dev, "failed to enable regulators\n");
-+		return error;
-+	}
- 
- 	enable_irq(data->client->irq);
- 	gpiod_set_value_cansleep(data->reset_gpio, 0);
-@@ -155,6 +165,7 @@ static void nvt_ts_stop(struct input_dev *dev)
- 
- 	disable_irq(data->client->irq);
- 	gpiod_set_value_cansleep(data->reset_gpio, 1);
-+	regulator_bulk_disable(ARRAY_SIZE(data->regulators), data->regulators);
- }
- 
- static int nvt_ts_suspend(struct device *dev)
-@@ -188,6 +199,7 @@ static int nvt_ts_probe(struct i2c_client *client)
- 	struct device *dev = &client->dev;
- 	int error, width, height, irq_type;
- 	struct nvt_ts_data *data;
-+	const struct nvt_ts_i2c_chip_data *chip;
- 	struct input_dev *input;
- 
- 	if (!client->irq) {
-@@ -199,12 +211,35 @@ static int nvt_ts_probe(struct i2c_client *client)
- 	if (!data)
- 		return -ENOMEM;
- 
-+	chip = device_get_match_data(&client->dev);
-+	if (!chip)
-+		return -EINVAL;
-+
- 	data->client = client;
- 	i2c_set_clientdata(client, data);
- 
-+	/*
-+	 * VCC is the analog voltage supply
-+	 * IOVCC is the digital voltage supply
-+	 */
-+	data->regulators[0].supply = "vcc";
-+	data->regulators[1].supply = "iovcc";
-+	error = devm_regulator_bulk_get(dev, ARRAY_SIZE(data->regulators), data->regulators);
-+	if (error) {
-+		dev_err(dev, "cannot get regulators: %d\n", error);
-+		return error;
-+	}
-+
-+	error = regulator_bulk_enable(ARRAY_SIZE(data->regulators), data->regulators);
-+	if (error) {
-+		dev_err(dev, "failed to enable regulators: %d\n", error);
-+		return error;
-+	}
-+
- 	data->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
- 	error = PTR_ERR_OR_ZERO(data->reset_gpio);
- 	if (error) {
-+		regulator_bulk_disable(ARRAY_SIZE(data->regulators), data->regulators);
- 		dev_err(dev, "failed to request reset GPIO: %d\n", error);
- 		return error;
- 	}
-@@ -214,6 +249,7 @@ static int nvt_ts_probe(struct i2c_client *client)
- 	error = nvt_ts_read_data(data->client, NVT_TS_PARAMETERS_START,
- 				 data->buf, NVT_TS_PARAMS_SIZE);
- 	gpiod_set_value_cansleep(data->reset_gpio, 1); /* Put back in reset */
-+	regulator_bulk_disable(ARRAY_SIZE(data->regulators), data->regulators);
- 	if (error)
- 		return error;
- 
-@@ -225,8 +261,8 @@ static int nvt_ts_probe(struct i2c_client *client)
- 	if (width > NVT_TS_MAX_SIZE || height >= NVT_TS_MAX_SIZE ||
- 	    data->max_touches > NVT_TS_MAX_TOUCHES ||
- 	    irq_type >= ARRAY_SIZE(nvt_ts_irq_type) ||
--	    data->buf[NVT_TS_PARAMS_WAKE_TYPE] != NVT_TS_SUPPORTED_WAKE_TYPE ||
--	    data->buf[NVT_TS_PARAMS_CHIP_ID] != NVT_TS_SUPPORTED_CHIP_ID) {
-+	    data->buf[NVT_TS_PARAMS_WAKE_TYPE] != chip->wake_type ||
-+	    data->buf[NVT_TS_PARAMS_CHIP_ID] != chip->chip_id) {
- 		dev_err(dev, "Unsupported touchscreen parameters: %*ph\n",
- 			NVT_TS_PARAMS_SIZE, data->buf);
- 		return -EIO;
-@@ -277,8 +313,26 @@ static int nvt_ts_probe(struct i2c_client *client)
- 	return 0;
- }
- 
-+static const struct nvt_ts_i2c_chip_data nvt_nt11205_ts_data = {
-+	.wake_type = 0x05,
-+	.chip_id = 0x05,
-+};
-+
-+static const struct nvt_ts_i2c_chip_data nvt_nt36672a_ts_data = {
-+	.wake_type = 0x01,
-+	.chip_id = 0x08,
-+};
-+
-+static const struct of_device_id nvt_ts_of_match[] = {
-+	{ .compatible = "novatek,nt11205-ts", .data = &nvt_nt11205_ts_data },
-+	{ .compatible = "novatek,nt36672a-ts", .data = &nvt_nt36672a_ts_data },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, nvt_ts_of_match);
-+
- static const struct i2c_device_id nvt_ts_i2c_id[] = {
--	{ "nt11205-ts" },
-+	{ "nt11205-ts", (unsigned long) &nvt_nt11205_ts_data },
-+	{ "nt36672a-ts", (unsigned long) &nvt_nt36672a_ts_data },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, nvt_ts_i2c_id);
-@@ -287,6 +341,7 @@ static struct i2c_driver nvt_ts_driver = {
- 	.driver = {
- 		.name	= "novatek-nvt-ts",
- 		.pm	= pm_sleep_ptr(&nvt_ts_pm_ops),
-+		.of_match_table = nvt_ts_of_match,
- 	},
- 	.probe = nvt_ts_probe,
- 	.id_table = nvt_ts_i2c_id,
+> 
+> I think from an end-user perspective it would be better to just enable
+> everything that works, as the reason to unconditionally disable some
+> IP blocks even when they are "good" is quite likely not a technical
+> one but rather a marketing one. It's hard to justify selling chips
+> with different sets of working IP blocks under the same label and the
+> same price, making it easier to just trim them all to a lowest common
+> denominator. On the other hand, once a person has already bought a
+> device where some IP blocks work even if they are not supposed to, why
+> not make use of them? It costs nothing, hurts noone...
 
--- 
-2.45.1
+I agree, it is probably more related to marketing, licensing and/or
+what is tested.
 
+Vendor U-Boot apply following logic/policy for rk3582 (and rk3583).
+
+RK3582 policy:
+- always remove gpu
+- always remove both rkvdec cores
+- remove bad rkvenc core, if both are normal, remove rkvenc1 anyway
+
+RK3583 policy:
+- always keep gpu
+- remove bad rkvdec core, if both are normal, remove rkvdec1 anyway
+- remove bad rkvenc core, if both are normal, remove rkvenc1 anyway
+
+CPU core policy:
+- remove both cores within a cluster having a bad core
+- if core4~7 are all normal, remove core6 and core7 anyway
+
+Regards,
+Jonas
+
+> 
+> Best regards,
+> Alexey
 
 
