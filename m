@@ -1,232 +1,249 @@
-Return-Path: <devicetree+bounces-71421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35C508D6C8C
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 00:41:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D5BF8D6C97
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 00:47:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51AFA1C20CEB
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 22:41:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A705B2391A
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 22:47:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48F8A81730;
-	Fri, 31 May 2024 22:41:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15FBA81ABB;
+	Fri, 31 May 2024 22:47:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="JVHMu99R"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="or/yvX3n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD6C67F7CA;
-	Fri, 31 May 2024 22:41:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 369C8168DA;
+	Fri, 31 May 2024 22:47:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717195298; cv=none; b=QiaaLVdzZS/tg6U15QtBuKQ5Wi8phf3UHEZzairJmTVO2RDYfzb0wfUiMAJZgJimBGy5eJ0zjTc9Gd2O8mBT17Gh9TvAK+gqIiu+FGAP+F8ugKDd7sxAMYQl16mu4F2HPdb969bBYqUkgZr5OTrSpR/5IBZz7KODUEVEP2MY7J4=
+	t=1717195660; cv=none; b=U1qUkj6frr09yAvUKok/Gtb5SVrFJh84ef7pfDXgAcpQSMyu5chBtT+mB+pa6Fd/VOVKH3b9XOEKNECsuE+77F2OYmtVPuyFz6NbfGQq3yQcvdscZCyqUmZNlY8/kU1R/+eQbQXpvO6TYPK+p9KnNA2fNBdOyRnwIJ/1wDf3h68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717195298; c=relaxed/simple;
-	bh=N7Pf6KBAzmgihzZBNQ1CI4c8LW381Dk5es7kBT7n4Gg=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=aP6sCKd/6yU42fwnzDQ1xPyTB6r+V110lzenfCXRHQqyai4FfH5Pp5H5Oeq6S4/uGtBB8QvzmchcOnZwCMBNMkW3ZxgVmNBkv/BdGn/RvgPtT9PmbKWsc1W8MXL5IODAUdEmTssv657rWHp7OwAKLSbneJQ5VptDSRcnyrXTmxI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=JVHMu99R; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1717195660; c=relaxed/simple;
+	bh=uZKOlUgKnrjSFFxBy8Z8UmPnM3fQN9yKu31pffqOGbw=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
+	 In-Reply-To:Content-Type; b=mFjdy1wm8mpspcz1xXpsNDE7atvpqm/nBjAufGK18wk5Ax7FVdVuI3UYCiLGzLvKh3XWCZI3b+AMbjQvZJ8RpG+R0BX/YY0C+khhW0UVVLWNXQprr+PfLX7cpUsSPCiggZ1DqPEzWdRbb4roV4TC4ry0RsXTwLj9AfNs4IJoEjo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=or/yvX3n; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44VIaxXI010054;
+	Fri, 31 May 2024 22:47:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Da3rV1n7NvWq9s/Mlb7vCLA38mBzYc0YXJJr348YQNw=; b=or/yvX3nTF15fZJ3
+	afB6InHxV56SP9YMdKtF2UGPZJFlcw2QpQqYzsqYtzxmQEqJLv9CwK9H8nWhBesy
+	b2Y0jFNyoCD8O0aTZFwh34T5dW9JRZClk2uHmpYyrBFuT7z+8DViQQD9a40Xrmpp
+	DTcvaXOT0BmaTe/MyUlplSYVaLvDwaYR2G6snFJs/hnmY/bAr7xY5V1Dcd+zhFpX
+	jG0L8GovGa+HcRcaNTuc+K7ONwnTUn4zbwcRJM5QlujDEohoSdOacnGZq2cUN8su
+	eW0KrQ2fYJBAH8OBggl5uOf2ekv+NweZ+5iNj0rke2w0yKw7iOmtqapYKE7tYaEO
+	xZnD8g==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yba2n8f62-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 31 May 2024 22:47:27 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44VMlPek023550
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 31 May 2024 22:47:25 GMT
+Received: from [10.110.6.248] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 31 May
+ 2024 15:47:24 -0700
+Message-ID: <ee4c0b2b-7a3b-43d1-90b6-369be2194a65@quicinc.com>
+Date: Fri, 31 May 2024 15:47:24 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1717195293;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=aNBMrZICb0wQxUkjNFmtIiPriop70XcjlnulR8nloS8=;
-	b=JVHMu99RoO1MT9X1bxJXfce1oVrxoIfGboFsOiNNYsbGJSC35fCmip/RkAkBd1wAfh8nzX
-	0XM1lzo9Ir/lFiD4vvDPG7Q19ymMTPLkbKtpmjwZG6aQE1XXAppO00Hwy9HdZh4MD99WKF
-	M3QM9VI58HHixZSfF91wFxXfSJ3joJ1R92puaoKSmppWd7fnhzduQb4YvdwKvPPCSR8rZj
-	dMFfx9M1N3+Y9ZWW/M/PSPdh7kYxWNCEUc1sGpF9qvuTrxEOcXrnOg/B4ESwQNuhKSjKYp
-	kjGAsBghKDDvM+CM2BQBJra4YmZjSsBjgnQS5RxdSIw2DNV9Rot2flicBCm/7w==
-Date: Sat, 01 Jun 2024 00:41:32 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: wens@kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org, Diederik de Haas
- <didi.debian@cknow.org>
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix the DCDC_REG2 minimum voltage
- on Quartz64 Model B
-In-Reply-To: <1994616.CrzyxZ31qj@diego>
-References: <e70742ea2df432bf57b3f7de542d81ca22b0da2f.1716225483.git.dsimic@manjaro.org>
- <CAGb2v66DPvvRcq+98vF2mCF8URW_qys1+B_FM9kcm6ppuPvyeg@mail.gmail.com>
- <20cf041dcd6f752174bf29d2a53c61b3@manjaro.org> <1994616.CrzyxZ31qj@diego>
-Message-ID: <99ea0e0053d3ada3325bdfaec7a937f0@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 2/2] PCI: Add Qualcomm PCIe ECAM root complex driver
+From: Mayank Rana <quic_mrana@quicinc.com>
+To: Rob Herring <robh@kernel.org>
+CC: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        <linux-pci@vger.kernel.org>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <bhelgaas@google.com>, <andersson@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <quic_ramkri@quicinc.com>, <quic_nkela@quicinc.com>,
+        <quic_shazhuss@quicinc.com>, <quic_msarkar@quicinc.com>,
+        <quic_nitegupt@quicinc.com>
+References: <1712257884-23841-1-git-send-email-quic_mrana@quicinc.com>
+ <1712257884-23841-3-git-send-email-quic_mrana@quicinc.com>
+ <20240405052918.GA2953@thinkpad>
+ <e2ff3031-bd71-4df7-a3a4-cec9c2339eaa@quicinc.com>
+ <20240406041717.GD2678@thinkpad>
+ <0b738556-0042-43ab-80f2-d78ed3b432f7@quicinc.com>
+ <20240410165829.GA418382-robh@kernel.org>
+ <c623951e-1b47-4e0b-bfa4-338672a5eeb9@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <c623951e-1b47-4e0b-bfa4-338672a5eeb9@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: odsCm4GH8CgZgZN4-1A87uFFHinUvuox
+X-Proofpoint-ORIG-GUID: odsCm4GH8CgZgZN4-1A87uFFHinUvuox
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-31_14,2024-05-30_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 adultscore=0 clxscore=1011 lowpriorityscore=0 mlxscore=0
+ malwarescore=0 spamscore=0 bulkscore=0 mlxlogscore=999 suspectscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2405310173
 
-Hello Heiko,
+Hi Rob / Mani
 
-On 2024-05-31 20:40, Heiko Stübner wrote:
-> Am Freitag, 31. Mai 2024, 00:48:45 CEST schrieb Dragan Simic:
->> On 2024-05-29 18:27, Chen-Yu Tsai wrote:
->> > On Tue, May 21, 2024 at 1:20 AM Dragan Simic <dsimic@manjaro.org>
->> > wrote:
->> >>
->> >> Correct the specified regulator-min-microvolt value for the buck
->> >> DCDC_REG2
->> >> regulator, which is part of the Rockchip RK809 PMIC, in the Pine64
->> >> Quartz64
->> >> Model B board dts.  According to the RK809 datasheet, version 1.01,
->> >> this
->> >> regulator is capable of producing voltages as low as 0.5 V on its
->> >> output,
->> >> instead of going down to 0.9 V only, which is additionally confirmed
->> >> by the
->> >> regulator-min-microvolt values found in the board dts files for the
->> >> other
->> >> supported boards that use the same RK809 PMIC.
->> >>
->> >> This allows the DVFS to clock the GPU on the Quartz64 Model B below
->> >> 700 MHz,
->> >> all the way down to 200 MHz, which saves some power and reduces the
->> >> amount of
->> >> generated heat a bit, improving the thermal headroom and possibly
->> >> improving
->> >> the bursty CPU and GPU performance on this board.
->> >>
->> >> This also eliminates the following warnings in the kernel log:
->> >>
->> >>   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 825000,
->> >> not supported by regulator
->> >>   panfrost fde60000.gpu: _opp_add: OPP not supported by regulators
->> >> (200000000)
->> >>   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 825000,
->> >> not supported by regulator
->> >>   panfrost fde60000.gpu: _opp_add: OPP not supported by regulators
->> >> (300000000)
->> >>   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 825000,
->> >> not supported by regulator
->> >>   panfrost fde60000.gpu: _opp_add: OPP not supported by regulators
->> >> (400000000)
->> >>   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 825000,
->> >> not supported by regulator
->> >>   panfrost fde60000.gpu: _opp_add: OPP not supported by regulators
->> >> (600000000)
->> >>
->> >> Fixes: dcc8c66bef79 ("arm64: dts: rockchip: add Pine64 Quartz64-B
->> >> device tree")
->> >> Cc: stable@vger.kernel.org
->> >> Reported-By: Diederik de Haas <didi.debian@cknow.org>
->> >> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
->> >> ---
->> >>  arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts | 2 +-
->> >>  1 file changed, 1 insertion(+), 1 deletion(-)
->> >>
->> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
->> >> b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
->> >> index 26322a358d91..b908ce006c26 100644
->> >> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
->> >> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
->> >> @@ -289,7 +289,7 @@ vdd_gpu: DCDC_REG2 {
->> >>                                 regulator-name = "vdd_gpu";
->> >>                                 regulator-always-on;
->> >>                                 regulator-boot-on;
->> >> -                               regulator-min-microvolt = <900000>;
->> >> +                               regulator-min-microvolt = <500000>;
->> >
->> > The constraints here are supposed to be the constraints of the
->> > consumer,
->> > not the provider. The latter is already known by the implementation.
->> >
->> > So if the GPU can go down to 0.825V or 0.81V even (based on the
->> > datasheet),
->> > this should say the corresponding value. Surely the GPU can't go down
->> > to
->> > 0.5V?
->> >
->> > Can you send another fix for it?
->> 
->> I can confirm that the voltage of the power supply of GPU found inside
->> the RK3566 can be as low as 0.81 V, according to the datasheet, or as
->> low as 0.825 V, according to the GPU OPPs found in rk356x.dtsi.
->> 
->> If we want the regulator-min-microvolt parameter to reflect the
->> contraint
->> of the GPU as the consumer, which I agree with, we should do that for
->> other
->> RK3566-based boards as well, and almost surely for the boards based on
->> the
->> RK3568, too.
+On 4/15/2024 4:30 PM, Mayank Rana wrote:
+> Hi Rob
 > 
-> Hmm, I'm not so sure about that.
+> Excuse me for late response on this (was OOO).
+> On 4/10/2024 9:58 AM, Rob Herring wrote:
+>> On Mon, Apr 08, 2024 at 11:57:58AM -0700, Mayank Rana wrote:
+>>> Hi Mani
+>>>
+>>> On 4/5/2024 9:17 PM, Manivannan Sadhasivam wrote:
+>>>> On Fri, Apr 05, 2024 at 10:41:15AM -0700, Mayank Rana wrote:
+>>>>> Hi Mani
+>>>>>
+>>>>> On 4/4/2024 10:30 PM, Manivannan Sadhasivam wrote:
+>>>>>> On Thu, Apr 04, 2024 at 12:11:24PM -0700, Mayank Rana wrote:
+>>>>>>> On some of Qualcomm platform, firmware configures PCIe controller 
+>>>>>>> into
+>>>>>>> ECAM mode allowing static memory allocation for configuration 
+>>>>>>> space of
+>>>>>>> supported bus range. Firmware also takes care of bringing up PCIe 
+>>>>>>> PHY
+>>>>>>> and performing required operation to bring PCIe link into D0. 
+>>>>>>> Firmware
+>>>>>>> also manages system resources (e.g. clocks/regulators/resets/ bus 
+>>>>>>> voting).
+>>>>>>> Hence add Qualcomm PCIe ECAM root complex driver which enumerates 
+>>>>>>> PCIe
+>>>>>>> root complex and connected PCIe devices. Firmware won't be 
+>>>>>>> enumerating
+>>>>>>> or powering up PCIe root complex until this driver invokes power 
+>>>>>>> domain
+>>>>>>> based notification to bring PCIe link into D0/D3cold mode.
+>>>>>>>
+>>>>>>
+>>>>>> Is this an in-house PCIe IP of Qualcomm or the same DWC IP that is 
+>>>>>> used in other
+>>>>>> SoCs?
+>>>>>>
+>>>>>> - Mani
+>>>>> Driver is validated on SA8775p-ride platform using PCIe DWC IP for
+>>>>> now.Although this driver doesn't need to know used PCIe controller 
+>>>>> and PHY
+>>>>> IP as well programming sequence as that would be taken care by 
+>>>>> firmware.
+>>>>>
+>>>>
+>>>> Ok, so it is the same IP but firmware is controlling the resources 
+>>>> now. This
+>>>> information should be present in the commit message.
+>>>>
+>>>> Btw, there is an existing generic ECAM host controller driver:
+>>>> drivers/pci/controller/pci-host-generic.c
+>>>>
+>>>> This driver is already being used by several vendors as well. So we 
+>>>> should try
+>>>> to extend it for Qcom usecase also.
+>>
+>> I would take it a bit further and say if you need your own driver, then
+>> just use the default QCom driver. Perhaps extend it to support ECAM.
+>> Better yet, copy your firmware setup and always configure the QCom h/w
+>> to use ECAM.
+> Good suggestion. Although here we are having 2 set of requirements:
+> 1. ECAM configuration
+> 2. Managing PCIe controller and PHY resources and programming from 
+> firmware as well
+> Hence it is not feasible to use default QCOM driver.
+>> If you want to extend the generic driver, that's fine, but we don't need
+>> a 3rd.
+> I did consider this part before coming up with new driver. Although I 
+> felt that
+> below mentioned functionality may not look more generic to be part of 
+> pci-host-generic.c driver.
+>>> I did review pci-host-generic.c driver for usage. although there are 
+>>> more
+>>> functionalityneeded for use case purpose as below:
+>>> 1. MSI functionality
+>>
+>> Pretty sure the generic driver already supports that.
+> I don't find any MSI support with pci-host-generic.c driver.
+>>> 2. Suspend/Resume
+>>
+>> Others might want that to work as well.
+> Others firmware won't have way to handle D3cold and D0 functionality 
+> handling as
+> needed here for supporting suspend/resume as I don't find any interface 
+> for pci-host-generic.c driver to notify firmware. here we are having way 
+> to talk to firmware using GenPD based power domain usage to communicate 
+> with firmware.
 > 
-> The binding does define:
-> 	regulator-min-microvolt:
-> 	    description: smallest voltage consumers may set
+>>> 3. Wakeup Functionality (not part of current change, but would be added
+>>> later)
+>>
+>> Others might want that to work as well.
+> possible if suspend/resume support is available or used.
+>>> 4. Here this driver provides way to virtualized PCIe controller. So 
+>>> VMs only
+>>> talk to a generic ECAM whereas HW is only directed accessed by 
+>>> service VM.
+>>
+>> That's the existing driver. If if doesn't work for a VM, fix the VM.
+> Correct.
+>>> 5. Adding more Auto based safety use cases related implementation
+>>
+>> Now that's just hand waving.
+> Here I am trying to provide new set of changes plan to be added as part 
+> of required functionality.
 > 
-> This does not seem to describe it as a constraint solely of the 
-> consumer.
-> At least the wording sounds way more flexible there.
-> 
-> Also any regulator _could_ have multiple consumers, whose value would
-> it need then.
+>>> Hence keeping pci-host-generic.c as generic driver where above 
+>>> functionality
+>>> may not be needed.
+>>
+>> Duplicating things to avoid touching existing drivers is not how kernel
+>> development works.
+> I shall try your suggestion and see how it looks in terms of code 
+> changes. Perhaps then we can have more clarity in terms of adding more
+> functionality into generic or having separate driver.
+I just learnt that previously dwc related PCIe ECAM driver and MSI 
+controller driver tried out as:
 
-The way I see it, the regulator-min-microvolt and 
-regulator-max-microvolt
-parameters should be configured in a way that protects the consumer(s)
-of the particular voltage regulator against undervoltage and overvoltage
-conditions, which may be useful in some corner cases.
+https://lore.kernel.org/linux-pci/20170821192907.8695-1-ard.biesheuvel@linaro.org/
 
-If there are multiple consumers, which in this case may actually happen
-(IIRC, some boards use the same regulator for the GPU and NPU portions
-of the SoC), the situation becomes far from ideal, because the consumers
-might have different voltage requirements, but that's pretty much an
-unavoidable compromise.
+Although there were few concerns at that time. Due to that having dwc 
+specific MSI functionality based driver was dropped, and 
+pci-host-generic.c driver is being updated using with dwc/snps specific 
+ECAM operation.
 
-> While true, setting it to the lowest the regulator can do in the 
-> original
-> fix patch, might've been a bit much and a saner value might be better.
+In current discussion, it seems that we are discussing to have identical 
+approach here.
 
-Agreed, but the value was selected according to what the other 
-RK3566-based
-boards use, to establish some kind of consistency.  Now, there's a good
-chance for the second pass, so to speak, which should establish another
-different state, but also consistent. :)
+Atleast on Qualcomm SA8775p platform, I don't have any other way to 
+support MSI functionality i.e. extended SPI or ITS/LPI based MSI or 
+using GICv2m functionality are not supported.
 
->> This would ensure consistency, but I'd like to know are all those
->> resulting
->> patches going to be accepted before starting to prepare them?  There
->> will
->> be a whole bunch of small patches.
-> 
-> Hmm, though I'd say that would be one patch per soc?
-> 
-> I.e. you're setting the min-voltage of _one_ regulator used
-> on each board to a value to support the defined OPPs.
-> 
-> I.e. in my mind you'd end up with:
-> 	arm64: dts: rockchip: set better min voltage for vdd_gpu on rk356x 
-> boards
-> 
-> And setting the lower voltage to reach that lower OPP on all affected
-> rk356x boards.
+I don't see any other approach other than MSI based implementation 
+within pci-host-generic.c driver for dwc/snps based MSI controller.
 
-Yes, the same thoughts have already crossed my mind, but I thought we'd
-like those patches to also include Fixes tags, so they also get 
-propagated
-into the long-term kernel versions?  In that case, we'd need one patch 
-per
-board, to have a clear relation to the commits referenced in the Fixes 
-tags.
+Do you have any suggestion on this ?
 
-OTOH, if we don't want the patches to be propagated into the long-term 
-kernel
-versions, then having one patch per SoC would be perfectly fine.
+Regards,
+Mayank
+
+
 
