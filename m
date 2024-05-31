@@ -1,146 +1,239 @@
-Return-Path: <devicetree+bounces-71067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BE508D5A6D
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 08:18:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 286938D5A7D
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 08:23:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 140CF283625
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 06:18:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8E901F246D9
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 06:23:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 208637E761;
-	Fri, 31 May 2024 06:18:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABD187E56B;
+	Fri, 31 May 2024 06:22:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="Gj+DNAIS"
+	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="HdqPBe9p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2083.outbound.protection.outlook.com [40.107.8.83])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B180728DA5;
-	Fri, 31 May 2024 06:18:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717136304; cv=none; b=RlyeZkt0LHqGwYre9kMlyGLhakpsl/Uc0aFSS3Jqd5g3nYtwAdV8LFEX4Ve4BuspebCjBAFAGF0wJHkQjRSWFecWZ2UI4qowU/dyX6mWryU4Npm+T7lEu2WbgEvUmO2uESt+6A+hF4CgCEDpJAd3MqolmEgXSozwqPCMWyYq928=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717136304; c=relaxed/simple;
-	bh=aSfkq3WZ/4OzORejoCenRhi8w/CxYkLEASE8u3Z3luc=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=ObiwefBawR/d2zQY60/lGk7QkizLh6ixn9NaMGY9p54d/nAznh+kq3cD1hzPk3TblvSlPDkPDBAdnMNoXtX21eerR7kYmn2hMxhrc439vtltSS+5QoXSB4jyATX0GcwwzEDnYTAHREWUR4iI6kN6R7Fzib4EKhxGTkjAKJOCGWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=Gj+DNAIS; arc=none smtp.client-ip=212.227.15.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1717136285; x=1717741085; i=frank-w@public-files.de;
-	bh=M5mfRLGUirXavE2Xknh6+26eGUEzHe9b2mcXUF1hh+A=;
-	h=X-UI-Sender-Class:Date:From:To:CC:Subject:In-Reply-To:References:
-	 Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=Gj+DNAISHKXKwohz2RKllpTRiD/LPfxyF/t9UWkK22N3yGgKePR8EYLqN0R0UYq3
-	 TI+VLLaBXCIlB87TFct2cfWx2Zk169jSnWOXA6vE5v/N6ZGgwJARg99OqIPhVPYEz
-	 39ntd1yvfFRvAx9Ko8lRkMf2xa9YYySi65inqlm3B//4sL3rjBrLx6FzyM92mNuZh
-	 kDY38/xppiNQz6VtvjbDpjV90xxKrIPmVeinRFB2YhL4PAaNt9iTfCHnzE657g2Kt
-	 nFshefUQ2emtHd9z66yv1xTTcLPSPrC1AFKTbAMhdu1lVVVSeJPLqdxO76ky7VgP1
-	 mgQ39x1bhSVzN6uA7g==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [127.0.0.1] ([217.61.156.178]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MDysg-1sMnUW3Tme-00B7Xk; Fri, 31
- May 2024 08:18:04 +0200
-Date: Fri, 31 May 2024 08:18:02 +0200
-From: Frank Wunderlich <frank-w@public-files.de>
-To: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
- Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-CC: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Daniel Golle <daniel@makrotopia.org>
-Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
-User-Agent: K-9 Mail for Android
-In-Reply-To: <aaaeb4b2-e57e-4d7b-b598-a664cc05b0cf@arinc9.com>
-References: <20240516204847.171029-1-linux@fw-web.de> <a29dd7d1-40a8-4c88-99aa-651a3305b640@arinc9.com> <5AEE5668-0C8E-4EE4-A398-66CB99DF5650@public-files.de> <aaaeb4b2-e57e-4d7b-b598-a664cc05b0cf@arinc9.com>
-Message-ID: <81944186-AFAA-4C8F-8E55-1AF4CBD97573@public-files.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9EB34653C;
+	Fri, 31 May 2024 06:22:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.8.83
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717136579; cv=fail; b=eOkkpO7vMYnCTE2lc6FpdPygW4l4v6KNFrmcr2Hg+WKcaPOu+E4Mypm3iXsCUmFao1zVOUfKYXAOlCdSZo9XrA5PJIkB9VUTOG3unoIF4G1OyBglpy/azTan9H6NmS4Nc8r8A5NTP+VOPA3LKn8EF4i19LgFPDo6Ax233d6M8zY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717136579; c=relaxed/simple;
+	bh=9HLlDmJzgdfzMePmXe2BpPxVIrZTT996YKwj0B0wVjs=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=gdnYJ4CThYaX2EAy/BMKMtDHDBTsjuoXSZy+tvtHqtSfSVuZhP+ciX9bmNdfT1yvtWcmeODCh3m1CMgbeoCcRWQcu5p1oPfFGpetL/c1m2CnOI9DxyqmrMzU7tSm8RAdrQ9181Bzja3xUMaG81PW4/jU+2e9aKpgamKRnV3g9+c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b=HdqPBe9p; arc=fail smtp.client-ip=40.107.8.83
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siemens.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VK2qfpEhmnLPliR54qJRRIZOgsgWTpmorx7jam2LRNl47P8R/irnamwcR+mNcfmT4sOlb54Calna1ekhRQZ6EJ2CCihWal7Lfj0CCLkwaX9h1hzv7d0EI6BGD7u6k/IU7FqMGOpfXQJOHXuk5M78HLtU88/ZhejFSt1g3WhSj4Z80CP+MN9iMUo23rD8y1Q7DUTJFPMgRQq7CYqrkZF8xDO6aNsjC9aistwoE7EOCrq9mS7SHVXLRZWkueyLGdRv9/y54h3RrxQiSobgU2+E06m3af2nzDjtlEkYYUaYNTscNw34ZdsPmBzVdtQTGYPQGr+iOBKzH7uvYKfoOKTwNA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mMxGNyPcDF3I3Ped5F1rezSNAzbigPcp6cqmz6ItibI=;
+ b=RfpC4uWEGFIwCL1CvaZxZGtiqXexd7sFHdsPxGDLVsB+tc2Q/j5cgNuX+mu3Cg8o+1BnVsIpb9sfC3pDeGMCnNEtK1RVZZXyX6AogPvwNwfTNkzREI9nw4tgUaSHbj0ZwzLlfdMhMiMjU9nrQxIhf5y4FbsOTYUAbHqGfBZKxVG+z12G2j4I/C0oPccTs3IGhTbwkVOcLCyzISHN3HV0pxCmSP1zRdyWMu4oFDlN2Xd1geGGlV6pVXg6cI2ymQvXyZ26hWJbqhh0L4yamDAoiz0RXBfwla3rdJFW4ZrBzNxeJWfdtFL1SwPo6at044s2S6IeZ0lElcC1IIfJWDBBIw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
+ dkim=pass header.d=siemens.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mMxGNyPcDF3I3Ped5F1rezSNAzbigPcp6cqmz6ItibI=;
+ b=HdqPBe9pYyuB2FEFd41zlXThfls3+VkdP90aQp4ZbVfHeGlv6mlcJIB01uq1FbVnzQ0NsazP6k+4EltUN83FKYLOAhj6mP9OWb2l2BbsOa2eIc2H+bUl8rm8nZ5LF4FeXLtXLKhfz0NRD9D/qB6VT5TU+w8evZ9WPZfYWuwoKFbye41g6H33wrFSI11qCUN4YfGozKTS6NC7wIdmGgXlGNO2PM9LHmY0WUA5mIrRocmFgn2B+foY5K+00fVrsEdlAFZbf3YrNP+Kr1WWe/QkqgZXB9gglGYKHFdh4cDb/6R6qZSOJpTwhpLBs+v5kIk6ezUIdFiGYPzePsMwJaFiAA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siemens.com;
+Received: from AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:588::19)
+ by VI1PR10MB7854.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:800:1c4::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.21; Fri, 31 May
+ 2024 06:22:52 +0000
+Received: from AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::8fe1:7e71:cf4a:7408]) by AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::8fe1:7e71:cf4a:7408%7]) with mapi id 15.20.7633.018; Fri, 31 May 2024
+ 06:22:52 +0000
+Message-ID: <9f7737a7-3e1d-4d6a-abf9-88d855fd0c9c@siemens.com>
+Date: Fri, 31 May 2024 08:22:49 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] Enable PTP timestamping/PPS for AM65x SR1.0 devices
+To: Diogo Ivo <diogo.ivo@siemens.com>, MD Danish Anwar <danishanwar@ti.com>,
+ Roger Quadros <rogerq@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Richard Cochran <richardcochran@gmail.com>,
+ Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Suman Anna <s-anna@ti.com>
+Cc: linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240529-iep-v1-0-7273c07592d3@siemens.com>
+From: Jan Kiszka <jan.kiszka@siemens.com>
+Content-Language: en-US
+In-Reply-To: <20240529-iep-v1-0-7273c07592d3@siemens.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR4P281CA0431.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:d1::19) To AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:588::19)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:I8OEAuMAbo0jM2nJJPq4o2LrOd6sUZ8+mjxbaAH1HWLivRlEwTe
- +1ltn1L3UqoZyEs4Z44oXBk8Oj6I3mL/i32vaJLKOiy2kxJHmTzScLqU4MmuCLc/Dkx6WMU
- 2HBypx73XCI2WYtJd4DiB+v5I0apqyTxfLs1OIa7UdYlTmuWmEwK7jeb2CiW/hTm+3VvtqD
- VHVgfQ2IFyNL4B8KfM4+w==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:yhh0q80s+ZY=;uoRfJI1nTo+W2V/J0/+kfPEodHJ
- 0HnAeu1kDoJAeEkF9EN/6l34Fv0cNuVmKpaGwy3gqAURQ3UrvRHG9lZZgXlSNJ5gtyjLYpZ2U
- fKaet3IMGK1IzFpm0VMUynNTs49+cTorXPtVWmCcjVFsDnJsrvKQ558DriXid/nWBhKmP39WT
- C2Nxq7ucDj3gZ+eCgkeUQlOSAuYtUsFn09aDoL656kLziS7X6Dx/uaN7CvER7/JArgPh7e4GH
- xi5Jhv4/M9xdHgGtOqbaZHYvJwUBxsNUT4NnTDCZM6eJ4R1Amh+m9grcSUR6ewVhuQt6DdSBT
- tIeR5X/ynHYN1FKqex2QUOceJem7EkZ2yb2s24s0b8NMIqM4mftEkmsfTtlNpameRONtHiI/Z
- 2y7r3LJktFgbB0LhY7H7al3zjoabme9WvEY9dcLfMT20fmZGv2QygGHHRPZx6yXwGHaoikqZ1
- AoAN0x3CwrR+iyQjGONSc9a+5iJnSYnyHYZq8LxiZcNyfATahtMURQLfVCB+pdILwwBjQGE0b
- JkCq7KFq/crrq4GmD+tZHZx4IOZ35+UhPlj+GYxaTFiJUaDCmeFNOw+4tqbSHOO2ioV6SLKto
- xlKJrPVkSDDu4R+esHAFkAndBPuzJT1h0l0CWq9JtL0y+i9rvCcYy7XSfsPKUdN7yB5IIv4SD
- mf1Ae+7BGabWet0qby5NFprrUWgLT2VIaVJ26COp/tG607cfKjul0fN5epgYKcLUQrqAUpxEq
- Sn2eWBq0LUduyjg8mKDAMr+70NSXkc2ouo9ckdfU7tqIYKh8FbWh+5Iv5CvvuC6I9sAaK0gMq
- eGEElmNbrDDe1m/EfYLukqSkSq9y+sfHcJwPwIgrdtmVA=
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4PR10MB6181:EE_|VI1PR10MB7854:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8340e9da-44da-41e2-45aa-08dc813a19fb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230031|1800799015|7416005|376005|366007|921011;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?UTR3aFJHZ2gzOXdpczBVWUFuV2pDVERaZ2M2ZFJtZjVxbDhWNWR6U3drL2kr?=
+ =?utf-8?B?S2cxV09UZUt0dm9BSFppU05lQ0U1NDdTT0tyM1FhV2RyWEhCUVEvZU1VZVM0?=
+ =?utf-8?B?djVnSjJaL3VndGVIOU1YVDI3NnJVTmFrZnJYWllhNlZIOU5GSjZJMFUrdWR5?=
+ =?utf-8?B?M0lHWE5BTUp6UXExRW1WN3FzNy85RGFPaDlJdHVXQ3BzeVlURlZNT3VCYUFO?=
+ =?utf-8?B?RjUvalJYbXRPbzY3bytKeG1lY1RMdWJ3a3NWQzJ5OWhnazRDOE5xZTYzTlZh?=
+ =?utf-8?B?RlZMTUlpQjFJUHJvT25iajFGNDZ3RU40VXkrZzlyQlRnSmUxNEN5TXJFUHhQ?=
+ =?utf-8?B?ZDdaN0xDT0cxWjNjV3FyRHZIU1MzZFY5eXZSaGtUK0hJQ1J1ZGMxODllSUxV?=
+ =?utf-8?B?bUhRU3VEVHhJWTlGbG1LdkFqZlFPVmY4Q2tlaUhkaWo0Ym1kb0lQS0ZpRXVt?=
+ =?utf-8?B?VHBJNDdEaWxYMnYyVTBnRXYzUWNVYzl4K0VPbi9RaTB2QlZYNnlidm5jSjRl?=
+ =?utf-8?B?ZkMwNUlRWkFJOWJxUmxzRGUzdmxiYi9DbDhkNjJUa0JucCsrV0VmY0RlUXYz?=
+ =?utf-8?B?azE4TUhWek1kaXNtOGFKanVsNjNRbk8wWi9XcmZOV1JWZC9xTGg1UitEK3V2?=
+ =?utf-8?B?Y0tqd2E3MTQxeExmNE1qNENzV2hQVXV4cTVpTDRQTm50M3hYeFZuSHl6NHNF?=
+ =?utf-8?B?cGF1bGR5US8wcjRjQWFESlArcUV4RnQ4QWF1RDB3MlZuTVcxNkczazRsb1lS?=
+ =?utf-8?B?cUhLV1g1UVdCTzhOOVI1N0daNURyaWF1VklGcm9iam82MWFoZ2dkQ0NQaXFs?=
+ =?utf-8?B?bEpTWVFOUTM1YzZOZ2FaaGRGN0VsSHhVWk5QVEw0ZkhZVytGL3R1ZHA4eVQw?=
+ =?utf-8?B?ell3RktQNm5NTWdJN0pjMkZKWkMzRzBTWjRNdVZJNldIUDJtTnRHb0RwNmZ5?=
+ =?utf-8?B?OUU0eXIzeU1jS043a1p1M29hcGRQNlVQcXlaWXFHYlMvc1JVdW12anlSdDdV?=
+ =?utf-8?B?K3JaZDdBWUl1NjYzcGZOVCtKUWJWTXg3OGdoZXVVbVFOUGlSbzRJMEJLY1dQ?=
+ =?utf-8?B?M2tSNVhQWjRqelpjR2RTbmxZYksyTytvMWp6YlZNOGxyTkVoRTUzc2cyYmJH?=
+ =?utf-8?B?L1JnT1ZSSkh2RGJkcFN3cjlQaGNCRWlqNjdQbldIN1EvL1FDdnVWc3hpZHVh?=
+ =?utf-8?B?NG50eFRzZjFLTmNjWmNyd0ZlOCs3S3VDZlpOeEk0TDJObTU5bE4rMXplMUI5?=
+ =?utf-8?B?NnJkZW9NRnllb1VEdWxyOWhhT2FBS2ZpNG53YTRPNGJQTlJYMk01aklCZFpD?=
+ =?utf-8?B?RGxjTWNVQjlaU0pZNGp1UXdCbFZrZXc5VVdLS1d0Z1NOOVVUMWhSSTFtSlRI?=
+ =?utf-8?B?SGtMQ1VmZVEzMjlEZ0dVYlBzektoS3gyTmhqOXF0OUxjdE9tMWQyVHZrZWdW?=
+ =?utf-8?B?ZUtkK1JncGk1TzRzdU1DKzV5ZFZoZGkvRjFvcFpVcFFCWFJVeVAwVFpTZFZl?=
+ =?utf-8?B?M1FyUWZaUFFPZDJBQ2t0bzFiZlJIL1lqMEpidWw5NzFQR3pFczU0N0M4YVYr?=
+ =?utf-8?B?Qzl0OXpuQzF0SzhqOWdiTEtnV0pra1gzbnlUVGxJemhMSzYzdVlVY01HSnhS?=
+ =?utf-8?B?T0ZSOC84b0lIZURXQ2l6cVZRdmZSYUEwS2EvSVJkR1NRRC9tQWNEbk1RT29L?=
+ =?utf-8?Q?PPbp940QMBCB4bzIa/iY?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(7416005)(376005)(366007)(921011);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?eEN4bUR1YzFHcFEyazJGZ0k3c2VpMGo1N29ucjhvVm1uc3orcXJkNUoxSjMz?=
+ =?utf-8?B?TVVrSng2VEV5RlBaL3VSRzd0cDF5cUFwMVhweEdJUUJTQ3B4VkNuVnQwajJv?=
+ =?utf-8?B?NERrWnRBOE5DTkdqRUoxa3dKU3QrTUlnNzhXMzkyOWFPNkxIMVRkVk1kaE1n?=
+ =?utf-8?B?TXBJa1JuT2RsQmtTcitRN1Z5YjdHeFNGMWt0aHJ4RWxRbDhDcHlDVEtadUNT?=
+ =?utf-8?B?VWhjeEMrRndydGphSEdybEdJVlVFNC90dmlackJucFpqdCs2cWprUDJmNlR2?=
+ =?utf-8?B?N2NCaXZ4elBuYWh2TFhJd2xuVTUyZjgyRUd5Z1JQNjlwd3ZXT1Y2YUJudmJL?=
+ =?utf-8?B?VFBOOEh0NHFpK3UwbEpNeDlvU052NGhmZ1U1a3lXeDBicy9MZERBV3VPaDFX?=
+ =?utf-8?B?YTZhMUhDTVdBOG1KQjNBNVVpMVgrWE9xOGZrdzdQL3hmQXM0cVN2ZFplTWNp?=
+ =?utf-8?B?c21Ka1Z2ZjZELzBPRUtqbHAwbUxzRTluTWErV0lsU0pXZWljYWJpVjVXTGIx?=
+ =?utf-8?B?RTZHY2Z2U3ovYUtRYXVzbXZVK293QjVJU3NONWhiTUdhd0hDSGptYW1TZmVh?=
+ =?utf-8?B?bitHNmk4YnJrUWdZTGlrMC9CTWNKVFlvTXRIQlhya0YzVkFhYUUzanRuaXUy?=
+ =?utf-8?B?SERRWUFTNnFqZHRHTTEwM3oyY0NPbnVyYTFBMGttNWNFdHJIbW5JaW5iZ1Qx?=
+ =?utf-8?B?M25nTHFMMVgvQnVDSUE4ODcxMzdVNUw3NnNENjFSSnYzanhwVDRGN0ErVjdi?=
+ =?utf-8?B?NFJMNGxyWnVMSTEwcHQ0MWtGcGI4RnRSUWRVb3dVbnZnWmw2bnBhd29wNGIr?=
+ =?utf-8?B?SVhmamZlMnd5dnl6TG9QdG9GNGtRSFllZnRMYk9OQStpMnNFMTk3U3NXTzM1?=
+ =?utf-8?B?dUxDTVFJZzRsdDdRRnpPWUx0SlVoRklVY1dBL3FuNnNSaERCOW1jZ3BUTkYx?=
+ =?utf-8?B?UzJ0ZmduZ0V6ekJWWmM1ZTY4TGJrUnlmWXhLeG5lWSt6aUZQWHY1OC9MaWNx?=
+ =?utf-8?B?a1JXa3pPcy9uNzg1YU56d2xhSG04MFRHbWkxazVRQ1NhblI4aEJkNmhwaUFO?=
+ =?utf-8?B?NWRLb1lvaW9ITGNwU3FJdmF3MUpCM0lkNXU3WW14c3NrazlMek1KOEhUY2g3?=
+ =?utf-8?B?TTZVdDBNcmpGVFZqeVY5QjlaWWV4OVp0RUg0bzZHSW9kWWJ5SjY5MmlBNEN5?=
+ =?utf-8?B?RVBWL3NNanlJdUtsaW1uQUYva1puaERMZnplQ1hNSXBXc2NKNWx1SGpaWHc4?=
+ =?utf-8?B?YUFKS1dqeVdSZTNOTVZ3S3FKeS9YNWdLSmFiV3RaZVd6c2RYbE9HQ0EwMHNr?=
+ =?utf-8?B?NDJMZHl0NGI2VHJLWnhRMndORVYxRm8raXFuZ1hxc01QUmtYaGVyekV1RU1x?=
+ =?utf-8?B?TElpeGlEMithRTl6RldQb2NkcEZHM0hJTENsRHZFNnNBRUR2cDNncnl2dnhH?=
+ =?utf-8?B?RWZaT1N3REZ5RDlSMXNXQ2NBdytwaUUyaEhrWGtGaTAxMEZaeTc3NFIyeFVi?=
+ =?utf-8?B?QlR3ZGovcW1GSEVPSDJuejhmMGwyRkR0UTNWUE9vdVhQeEpER0tQWHh3SWtW?=
+ =?utf-8?B?VXEydGVLVW5HZkNqMk1UV1FiTnRKQmhqYU1lc3NLUTRGVFV1bjFRdmZsa3lG?=
+ =?utf-8?B?SmtMWDBheXFJSzcvMVBXRUpzSDVhdzl2NXpua1EzWmpGRDJ5SXhrbTZOb1Ro?=
+ =?utf-8?B?QXY5aFRWTC9iTGYyVXlBZU81b1pDbFRpVm9ObUM2NTk2UXpzTVliK0YxMVJH?=
+ =?utf-8?B?TFFMZjgxbnY3U3ZtUGp3cVIxL3NJUW5XcjBBZkVraGxUWG9xcjUrVTJZMU5O?=
+ =?utf-8?B?bDR4eWZ2ZTJtQTJSSE5Sc05nZkU4WkxSaW1ic2lQbis2djFYNEczTUV3V3Jt?=
+ =?utf-8?B?R3YxeXpadkgxSTV1bDZqdEM3VmdCYlhFdHg5cThFMU1mcFVBSjZhV01OOVl6?=
+ =?utf-8?B?RFhySURGOThhZVpYQVdSdjNYUXN2M1o5blBQWjZBZGZlZDl1U2E1SFYxL0hy?=
+ =?utf-8?B?QkhIcWlwRDI3c1ZTclYwQTcwMS9ySjJQRlNzRElKbGEzRWFYazJ2bzJGdm9K?=
+ =?utf-8?B?dktncVFxalB2bFdxNkZxcC93Z1lMeEYvU0Vzeis2aDdpK3UvY005cWFITEU3?=
+ =?utf-8?Q?OntCjIDYtCn7YZl0EbzfsALcR?=
+X-OriginatorOrg: siemens.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8340e9da-44da-41e2-45aa-08dc813a19fb
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2024 06:22:52.4918
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: AN7vL9uVDXTFSl2eYaOnVg2QJbglhNd6qtV+/jZef5OR/j+0tg4xZkVH2bCwZ8sBrowNqYU2iN4pA0o9n+oJZQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR10MB7854
 
-Am 31=2E Mai 2024 08:12:06 MESZ schrieb "Ar=C4=B1n=C3=A7 =C3=9CNAL" <arinc=
-=2Eunal@arinc9=2Ecom>:
->On 17/05/2024 09=2E27, Frank Wunderlich wrote:
->> Am 17=2E Mai 2024 04:17:47 MESZ schrieb "Ar=C4=B1n=C3=A7 =C3=9CNAL" <ar=
-inc=2Eunal@arinc9=2Ecom>:
->>> On 16/05/2024 23:48, Frank Wunderlich wrote:
->>>> From: Frank Wunderlich <frank-w@public-files=2Ede>
->>>>=20
->>>> After commit 868ff5f4944a
->>>> ("net: dsa: mt7530-mdio: read PHY address of switch from device tree"=
-)
->>>> the mt7531 switch on Bananapi-R64 was not detected=2E
->>>>=20
->>>> mt7530-mdio mdio-bus:00: reset timeout
->>>> mt7530-mdio mdio-bus:00: probe with driver mt7530-mdio failed with er=
-ror -110
->>>>=20
->>>> Fix this by adding phy address in devicetree=2E
->>>>=20
->>>> Signed-off-by: Frank Wunderlich <frank-w@public-files=2Ede>
->>>=20
->>> I don't like the mention of the Linux kernel driver on the patch log=
-=2E What
->>> you're fixing is the incorrect description of the switch's PHY address=
- on
->>> the DTS file=2E Whether or not any driver from any project is actually
->>> reading it from the DTS file is irrelevant to this patch=2E That said,=
- I
->>> already have a patch series I've been meaning to send the next version=
- of
->>> that already addresses this=2E Please wait for that=2E
->>>=20
->>> Ar=C4=B1n=C3=A7
->>=20
->> Hi arinc,
->>=20
->>  From my PoV it is a regression in next/6=2E10 because the driver chang=
-e was merged (without "broadcast" fallback) and the dts patch [1] is not=2E
->
->What is a broadcast fallback? 0x1f is just another PHY address=2E
+On 29.05.24 18:05, Diogo Ivo wrote:
+> This patch series enables support for PTP in AM65x SR1.0 devices.
+> 
+> This feature relies heavily on the Industrial Ethernet Peripheral
+> (IEP) hardware module, which implements a hardware counter through
+> which time is kept. This hardware block is the basis for exposing
+> a PTP hardware clock to userspace and for issuing timestamps for
+> incoming/outgoing packets, allowing for time synchronization.
+> 
+> The IEP also has compare registers that fire an interrupt when the
+> counter reaches the value stored in a compare register. This feature
+> allows us to support PPS events in the kernel.
+> 
+> The changes are separated into three patches:
+>  - PATCH 01/03: Register SR1.0 devices with the IEP infrastructure to
+> 		expose a PHC clock to userspace, allowing time to be
+> 		adjusted using standard PTP tools. The code for issuing/
+> 		collecting packet timestamps is already present in the
+> 		current state of the driver, so only this needs to be
+> 		done.
+>  - PATCH 02/03: Add support for IEP compare event/interrupt handling
+> 		to enable PPS events.
+>  - PATCH 03/03: Add the interrupts to the IOT2050 device tree.
+> 
+> Currently every compare event generates two interrupts, the first
+> corresponding to the actual event and the second being a spurious
+> but otherwise harmless interrupt. The root cause of this has been
+> identified and has been solved in the platform's SDK. A forward port
+> of the SDK's patches also fixes the problem in upstream but is not
+> included here since it's upstreaming is out of the scope of this
+> series. If someone from TI would be willing to chime in and help
+> get the interrupt changes upstream that would be great!
+> 
 
-Afaik 0x0 is some kind of broadcast address if real phy address is not kno=
-wn=2E The driver change seems not allow this 0x0 adress and forces devicetr=
-ee to have the real address=2E
+IIRC, we are talking about this downstream patch:
 
-Thats what i mean with broadcast fallback=2E Maybe the naming is wrong=2E
+https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/commit/?h=ti-linux-5.10.y&id=bbe0ff82f922d368cb7e00c5905f6d4a51635c47
 
->Ar=C4=B1n=C3=A7
+Jan
 
-@thorsten i have not tested again,but i have not seen any further fix for =
-it=2E
-regards Frank
+> Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
+> ---
+> Diogo Ivo (3):
+>       net: ti: icssg-prueth: Enable PTP timestamping support for SR1.0 devices
+>       net: ti: icss-iep: Enable compare events
+>       arm64: dts: ti: iot2050: Add IEP interrupts for SR1.0 devices
+> 
+>  .../boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi    | 12 ++++
+>  drivers/net/ethernet/ti/icssg/icss_iep.c           | 71 ++++++++++++++++++++++
+>  drivers/net/ethernet/ti/icssg/icssg_prueth_sr1.c   | 49 ++++++++++++++-
+>  3 files changed, 131 insertions(+), 1 deletion(-)
+> ---
+> base-commit: 2f0e3f6a6824dfda2759225326d9c69203c06bc8
+> change-id: 20240529-iep-8bb4a3cb9068
+> 
+> Best regards,
+
+-- 
+Siemens AG, Technology
+Linux Expert Center
+
 
