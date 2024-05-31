@@ -1,119 +1,210 @@
-Return-Path: <devicetree+bounces-71070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64F4D8D5A86
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 08:27:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 802028D5A8D
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 08:33:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01F16B21EC0
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 06:27:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 864B8B21DFC
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 06:33:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A8F77F499;
-	Fri, 31 May 2024 06:27:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E885C7F7F5;
+	Fri, 31 May 2024 06:32:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="eGq3ffqp"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="XDd2q9fC";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="lw3/VR9P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D88DD2869B;
-	Fri, 31 May 2024 06:27:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C2D14CDF9;
+	Fri, 31 May 2024 06:32:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717136834; cv=none; b=NhWaMjE8FMDlndA+3rG+UCNrRVcSdUS9monSUX8udTFcfPJ1/n7QpeF7IVvC4zOviW0gvKERvBd1q1isbmHQwQaPkCZGPHaZ2LT9xsjmwpMqVNizIe1m2fMeH6JzlsJQMsdbftdb56MpyHyWNTC+3NbjXl9+DSCcqwI7XXYFJT4=
+	t=1717137175; cv=none; b=UedOgbINu2a2XtKNKY+V2bz23z0aaql4fLhHGo1AOxRC/BQnKHYkEdxFR6ghlayolEOO10UDROFedL/9r2GDX5YvSgXPEPB7YMEo5wiC/n+pD9/umaRQ0PHqFzRbP7IpMSlrTmSL0gAQkbGmgpKuaGQ3/1SvUalz4dFTCgAXRyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717136834; c=relaxed/simple;
-	bh=Abqbmbv6m7OSx4SM6pPeuwsWyCF9/dkeA5rDX1J3QDA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ehvM7/ehoG4rxWZuJdHnFBJ0/Y21usXHXgfBDheKQOSy8pOt+8RqqHYUAFhRteMN+oEfprdYyLFm/8HRs0Vf2NoHOm1tXCVOsqD4XlGIwq6oS4L2Fb6g/3Wiez2K9QW27kbWjOcnImtobD6qsAEfhDSsa02kWJygQ/V/4mOOYWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=eGq3ffqp; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 81A0420002;
-	Fri, 31 May 2024 06:27:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-	t=1717136829;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zy1cnGQvTAxJdqW7P4KyXAC1ZaEpJr7PACoUts6QosE=;
-	b=eGq3ffqp83/N1gLAgM8JYWcMvcCTRitzX5R1UGe8NF9hIj6IRPQxKc+O0DkNAUVaCRaHEK
-	Ljy4ulf7UGl9dc2UFje8M4kD7urm6hNTQpAyI7aqgF58iw+0CJTGYrhkJB8+NFbc2jTRPk
-	tt2bvi3JerB8Zs6FQaaw12LcsVgmXK6l5vbSKAH+3kJFw/G7OekLM4q8mHxZZd+JrhDe6T
-	bwyEzlBAr2T3qm2X19yE1ZmN86Qt1uMTnUIrSuzlZyw3F9vrdCMqaNd5f4k2tgEa7EkiDh
-	aTslJVDMa3bO1tkW0Ww9fsGoeYG2q7/YE70pjbutWesdQL8gsXef5idj0GV2Cg==
-Message-ID: <512c2d0d-6f4e-48b5-825b-f56a5109dee8@arinc9.com>
-Date: Fri, 31 May 2024 09:27:05 +0300
+	s=arc-20240116; t=1717137175; c=relaxed/simple;
+	bh=zYiX0AjhLTjP2O/Ol190QQL9U/qbjcmRbGaR0I9IbLU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rLli6fvINXWjrUc2AwpN2cTs0MX0Oa8U3m05qjvqGSO5Maoimshriy7dVB9hfOATOGUXV2I2PZJmIPrcqs5rutDWskZEg6U1uQW+7xXe8VAd3CNBf/3nP6p03A7LdBD3a21BGoMLOeI5lQzWAZkEUb1SJ3XvTYwj7BJJJyQfyFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=XDd2q9fC; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=lw3/VR9P reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1717137171; x=1748673171;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=Yxhy+lgIkgKBNI7vIDVh7UOrpF+bSmn9/vQclJLbSlU=;
+  b=XDd2q9fCCr+h3yqke1vmBgzXtlG4Vo1LdPe6OjVaop4HG+2gGfR0/Jhs
+   l2leLCMkQ7RWV2nnFLuIaTUkERzyzI+aO6iPiEjVeHt8RfLLf7k8oY/LF
+   a1y+9mVLj4whrM+QAAYNsUpUVxVPLYCpz/iSKtMdo0BlavOmW4LmwJbjL
+   db2ig0tbcPuc7CZj7u7VgiSbyn4JS5w//N/AoYI441FBb4je6stI+xqPk
+   PkQoEKovXM0DmvWqKfWfN+BGSDSIBcxn9v4g1YO9CyzyGqMkpR1dUMyrh
+   XX+FUFJTVNw0U3nmfbFjJnstlT5f+JYE5ibJBiXgXC4zw/3t5Lm/OHbTB
+   w==;
+X-CSE-ConnectionGUID: p1+aEhYhRJKk6H/MobMNLA==
+X-CSE-MsgGUID: 333r38qDTS201iM4aUMemQ==
+X-IronPort-AV: E=Sophos;i="6.08,203,1712613600"; 
+   d="scan'208";a="37152648"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 31 May 2024 08:32:49 +0200
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 94B7E165F00;
+	Fri, 31 May 2024 08:32:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1717137165;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=Yxhy+lgIkgKBNI7vIDVh7UOrpF+bSmn9/vQclJLbSlU=;
+	b=lw3/VR9PiO5roQceuizF5xXrSm48jTqU9oAnsOSp97GJS+o6w2dYuQYhkp6NvysJF5XElL
+	XFqS4ZwpnB9GiA2OHKKT8XvFCX45mL9ok547OVLdhjz6C6P3Sbtq+fz+mnzAuLwDK+6A03
+	lH0PyH4mYJ7X2NdYVeq4Nds20BIrJ9O5dHaTdf4K4uO7uSZk/eI61CCB9z5tgG7GRNoVKU
+	ZCN26HbpEvjnE1RwUanzgfuiDrD7JnI/ZgpQW3yYT8PbHIhqRnA+QVLhu4TuRvpoRIOpmE
+	6Cyc6tiR0oy4WXpc4/yC3WEnbcNXpToVQ9FWIC5iaAgcRuYoX2KfKWuAVt49Tw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
+Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Esben Haabendal <esben@geanix.com>, Esben Haabendal <esben@geanix.com>
+Subject: Re: [PATCH] ARM: dts: ls1021a: add QUICC Engine node
+Date: Fri, 31 May 2024 08:32:44 +0200
+Message-ID: <3380831.44csPzL39Z@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20240530-arm-ls1021a-qe-dts-v1-1-2eda23bdf8c5@geanix.com>
+References: <20240530-arm-ls1021a-qe-dts-v1-1-2eda23bdf8c5@geanix.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
-To: Frank Wunderlich <frank-w@public-files.de>,
- Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Daniel Golle <daniel@makrotopia.org>
-References: <20240516204847.171029-1-linux@fw-web.de>
- <a29dd7d1-40a8-4c88-99aa-651a3305b640@arinc9.com>
- <5AEE5668-0C8E-4EE4-A398-66CB99DF5650@public-files.de>
- <aaaeb4b2-e57e-4d7b-b598-a664cc05b0cf@arinc9.com>
- <81944186-AFAA-4C8F-8E55-1AF4CBD97573@public-files.de>
-Content-Language: en-US
-From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <81944186-AFAA-4C8F-8E55-1AF4CBD97573@public-files.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: arinc.unal@arinc9.com
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 31/05/2024 09.18, Frank Wunderlich wrote:
-> Am 31. Mai 2024 08:12:06 MESZ schrieb "Arınç ÜNAL" <arinc.unal@arinc9.com>:
->> On 17/05/2024 09.27, Frank Wunderlich wrote:
->>> Am 17. Mai 2024 04:17:47 MESZ schrieb "Arınç ÜNAL" <arinc.unal@arinc9.com>:
->>>> On 16/05/2024 23:48, Frank Wunderlich wrote:
->>>>> From: Frank Wunderlich <frank-w@public-files.de>
->>>>>
->>>>> After commit 868ff5f4944a
->>>>> ("net: dsa: mt7530-mdio: read PHY address of switch from device tree")
->>>>> the mt7531 switch on Bananapi-R64 was not detected.
->>>>>
->>>>> mt7530-mdio mdio-bus:00: reset timeout
->>>>> mt7530-mdio mdio-bus:00: probe with driver mt7530-mdio failed with error -110
->>>>>
->>>>> Fix this by adding phy address in devicetree.
->>>>>
->>>>> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
->>>>
->>>> I don't like the mention of the Linux kernel driver on the patch log. What
->>>> you're fixing is the incorrect description of the switch's PHY address on
->>>> the DTS file. Whether or not any driver from any project is actually
->>>> reading it from the DTS file is irrelevant to this patch. That said, I
->>>> already have a patch series I've been meaning to send the next version of
->>>> that already addresses this. Please wait for that.
->>>>
->>>> Arınç
->>>
->>> Hi arinc,
->>>
->>>   From my PoV it is a regression in next/6.10 because the driver change was merged (without "broadcast" fallback) and the dts patch [1] is not.
->>
->> What is a broadcast fallback? 0x1f is just another PHY address.
-> 
-> Afaik 0x0 is some kind of broadcast address if real phy address is not known. The driver change seems not allow this 0x0 adress and forces devicetree to have the real address.
+Hi Esben,
 
-That's not true. 0x0 is just another PHY address. The driver change
-actually allows reading 0x0 from the device tree and using that PHY address
-to control the switch registers, instead of using 0x1f which was hardcoded
-on the driver. But on the hardware, the switch actually listens on 0x1f.
+thanks for the patch.
 
-Arınç
+Would you consider current converting into YAML format?
+
+Am Donnerstag, 30. Mai 2024, 16:22:54 CEST schrieb Esben Haabendal:
+> The LS1021A contains a QUICC Engine Block, so add a node to device
+> tree describing that.
+>=20
+> Signed-off-by: Esben Haabendal <esben@geanix.com>
+> ---
+>  arch/arm/boot/dts/nxp/ls/ls1021a.dtsi | 51 +++++++++++++++++++++++++++++=
+++++++
+>  1 file changed, 51 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi b/arch/arm/boot/dts/nx=
+p/ls/ls1021a.dtsi
+> index e86998ca77d6..ff7be69acdd5 100644
+> --- a/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi
+> +++ b/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi
+> @@ -460,6 +460,57 @@ gpio3: gpio@2330000 {
+>  			#interrupt-cells =3D <2>;
+>  		};
+> =20
+> +		uqe: uqe@2400000 {
+> +			#address-cells =3D <1>;
+> +			#size-cells =3D <1>;
+> +			device_type =3D "qe";
+> +			compatible =3D "fsl,qe", "simple-bus";
+> +			ranges =3D <0x0 0x0 0x2400000 0x40000>;
+> +			reg =3D <0x0 0x2400000 0x0 0x480>;
+
+Properties please in this order:
+* compatible
+* reg
+* #address-cells
+* #size-cells
+* ranges
+* device_type
+
+> +			brg-frequency =3D <150000000>;
+> +			bus-frequency =3D <300000000>;
+
+Mh, aren't these values depending on your actual RCW configuration?
+
+> +			fsl,qe-num-riscs =3D <1>;
+> +			fsl,qe-num-snums =3D <28>;
+
+Current bindings defines:
+> fsl,qe-snums: This property has to be specified as '/bits/ 8' value,
+>   defining the array of serial number (SNUM) values for the virtual
+>   threads.
+
+So '/bits/ 8' is missing.
+
+> +			qeic: qeic@80 {
+> +				compatible =3D "fsl,qe-ic";
+> +				reg =3D <0x80 0x80>;
+> +				#address-cells =3D <0>;
+> +				interrupt-controller;
+> +				#interrupt-cells =3D <1>;
+> +				interrupts =3D <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH
+> +					      GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>;
+> +			};
+> +
+> +			ucc@2000 {
+> +				cell-index =3D <1>;
+> +				reg =3D <0x2000 0x200>;
+> +				interrupts =3D <32>;
+> +				interrupt-parent =3D <&qeic>;
+
+Move cell-index to last position.
+
+> +			};
+> +
+> +			ucc@2200 {
+> +				cell-index =3D <3>;
+> +				reg =3D <0x2200 0x200>;
+> +				interrupts =3D <34>;
+> +				interrupt-parent =3D <&qeic>;
+
+Same here.
+
+> +			};
+> +
+> +			muram@10000 {
+> +				#address-cells =3D <1>;
+> +				#size-cells =3D <1>;
+> +				compatible =3D "fsl,qe-muram", "fsl,cpm-muram";
+> +				ranges =3D <0x0 0x10000 0x6000>;
+
+Node address but no 'reg' property? I have no idea if this is okay.
+Also compatible (and possibly reg) first.
+
+Thanks and best regards.
+Alexander
+
+> +				data-only@0 {
+> +					compatible =3D "fsl,qe-muram-data",
+> +					"fsl,cpm-muram-data";
+> +					reg =3D <0x0 0x6000>;
+> +				};
+> +			};
+> +		};
+> +
+>  		lpuart0: serial@2950000 {
+>  			compatible =3D "fsl,ls1021a-lpuart";
+>  			reg =3D <0x0 0x2950000 0x0 0x1000>;
+>=20
+> ---
+> base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
+> change-id: 20240530-arm-ls1021a-qe-dts-093381110793
+>=20
+> Best regards,
+>=20
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
 
