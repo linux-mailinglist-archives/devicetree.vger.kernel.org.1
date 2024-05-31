@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-71227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC4E88D61CD
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:34:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7565A8D61D6
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:35:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91976286854
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:34:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACAAE1F264CD
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:35:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87A33158206;
-	Fri, 31 May 2024 12:33:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E9CC158869;
+	Fri, 31 May 2024 12:35:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H36Xph5Z"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zagwOBGT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C19821F95A
-	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 12:33:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D544156243
+	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 12:35:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717158836; cv=none; b=CHCUbq1fWHKPIa+SLPrYwkQtUBteSuCb9CDDHgury5PE294AFXegCCl+nhlvSt/nCJsjVMiyCTygQFZGn8D8JI6EmOW3nLROqDkV2RwwsOPnOxRYbSwIOgcLNuxawnLCSnapdEefT3Yq9/PRyAHkQsjGMDF8/gShbckIZOIIydU=
+	t=1717158914; cv=none; b=pxZnrM6N+a1F3vju+9YXD7kSBxHIe1vi8Pf5o0HPF0kDg3hBgR2uUjBRYmk2aE04wOU6BrO1jdbPpbN37bYhbTzZ50ly2A10CHGGIG/tmByU/PtXUT2nfFxpkDv/E+esymGmQjkp5dvTkdbVaflML3Gv17Po97BMNDlZwbaFvK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717158836; c=relaxed/simple;
-	bh=s5v2zgyKyx/7jhzq4r32Kqdi2fWhYc8qhUWF6o/V9Cc=;
+	s=arc-20240116; t=1717158914; c=relaxed/simple;
+	bh=uMPKaUChONTVDQ+J8oy2ma1uhzAjGl9q8kkU1kTPr9A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HT0yBxLpsQl2a5varKCnNyWe+m7bcuBTnGo8NH4tN46ebuDJAj6QvXpyY5YvkVPDNWK44buL603sM2pzen8eY0tJ6I+NA7le3T4It6uxbPnKAGG/l1jTSfQ/zNTSzIlSrgs2iykN84EMksIWxRoqseOd8B3MYILw93MJmk/i5Ac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H36Xph5Z; arc=none smtp.client-ip=209.85.208.42
+	 In-Reply-To:Content-Type; b=EhpBcHoIoAgmRHXDM9ixDqQjzjBxr3ks0uQCf2oP+FznyVm7JuQQEcev+2M4wWv25IwYaFXYB3imzJrWYfDmunrztpvHzV/lZi/5YSl+EEH+DO6joupucpG0paxxV38p6FhMFYPfQVw0FmX+ROQ+KZqvx3WO7JbX+4wJEABoDOw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zagwOBGT; arc=none smtp.client-ip=209.85.218.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-57a23997da3so1875987a12.3
-        for <devicetree@vger.kernel.org>; Fri, 31 May 2024 05:33:54 -0700 (PDT)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a635a74e031so256973866b.0
+        for <devicetree@vger.kernel.org>; Fri, 31 May 2024 05:35:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717158833; x=1717763633; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1717158910; x=1717763710; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=kOG28w+Xt++8GjibapminGB/LWiUPIUiCSP8LYdYn9I=;
-        b=H36Xph5Z7dknyyzKYZ0CEmRy1CYn5YmftzZQcKFiLlxC5l8zm0/5jTskaiVsG/w1fm
-         t/+wbWhfWgfyOMCB028eeswnLVYVD8RXcTkqUvvK5Y/MAdBSd6OOHMz8WnsRGN3AP/zX
-         SFhVCXtXUuCd36XGaTk4kziInvgT54KYhhq78/hqs30O1Q1Oc8kykUbLbxnxoNN3AXja
-         EXEk7V+4nu9YGWiGxsDhH9IVWfAqCn3jJFthASVaR3y2/X47FTOWsz/2ZV3KSu9dkPtG
-         kR/INZ3hSiYJwn+5rKFQRUBvQkZe7IBr1XpQ6T9lvReNH15J3ZTYZtlTjWrScOA2ETa/
-         v4xw==
+        bh=GDYzjcGN0PLy/8re/6+aReTxBk4s8Dq0U4QA3lFu9Bo=;
+        b=zagwOBGTLbqZl9vNnFZiswV9m+GwtJrJjOKzwo8bIVzHmBN7jsaHsTp/lPiDOWIpYb
+         biP7Qhbxae5r8duWWnTb8UAno1ok/hH0YbTSttHveB0zDR/UE/KdlJT2GOc/RcoX2Jso
+         dKHzLo7mS1GQN6MVf7FviE7AUzPoHxqikgHzRM00gtOEpOIaQQNN85nq5AA1t4iHOmLs
+         IjLw+KNvUVT5vH5TK2IIAJxijEJa8hkHVrZ/cNMIfJ28ZE3za3hCy7kn1AYMi8l6Yfxp
+         SyAw2ccherZmiyJ0IZuuvipp1x07r20OaA7jSzZyS7NPbeaenWKGFrd7/2XFAES7W9aw
+         7VqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717158833; x=1717763633;
+        d=1e100.net; s=20230601; t=1717158910; x=1717763710;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=kOG28w+Xt++8GjibapminGB/LWiUPIUiCSP8LYdYn9I=;
-        b=INIbm8qbPgXmYs+MoijptL+saLkWlBe2XAga9MXsYUdpXej/KyXIwcwavAGT9wmoEI
-         p7DWeVIzlkdQLaPXrZZdL/UupAs5dJGMruHROb3AsvBwNnJxC9vVIWby0X66VDig/Prm
-         d5zK1j2o8pZl3CV3drI6Hro8AesUIEu1/6vjt7fohiGG/dlB3nnPbSg9bCl4cByxx9tb
-         CgUHU+Tsv4eY06KIaod/0JdU8HNe28RdSEQmD8gHU/HSTLvz+Fp/Z/gdS695xhR+RoP6
-         9ZVJZ1RB2fvuxeLxzp3JJHQlEkctUvQEv7j2N5YFGAvTxzgZsq1fFmZR/wma0r6qsSFg
-         pnIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUaXyJC6+QaPIpT1eqWhlcy4BfhC1leTcK3Exej6iLGE/E97zRug+N1PQwdpeupJW0gTZO8VdGnjEEhs8WUzv4R3dK2iEFVh2aObg==
-X-Gm-Message-State: AOJu0Yz9W/1xx6pV+MRmNTQMYDUnMAJzApmEU3OHOfdbzof5J3llrMWJ
-	R80Z1Ak7sLETFkK2uwFinCz3Qx9z4CFgwbCQLqMar6m+wYxcU2KJKnPJ6dFq4QI=
-X-Google-Smtp-Source: AGHT+IGUEIOiw0ueXFMgATDRvPcynZKPrc4/cgdb5YbG/FgVQTRxUxntoIcA6OnBLS6XRh6vdNMMjw==
-X-Received: by 2002:a50:aad4:0:b0:56d:faa2:7aca with SMTP id 4fb4d7f45d1cf-57a3638b411mr1397407a12.17.1717158833147;
-        Fri, 31 May 2024 05:33:53 -0700 (PDT)
+        bh=GDYzjcGN0PLy/8re/6+aReTxBk4s8Dq0U4QA3lFu9Bo=;
+        b=LQdrOWCaGIiw2Suj6iIoALkaxs5EHjIglfLFN5hzVwuOyFR2eQ2OrZA5Z5BJBfCo/b
+         ZZysNq5WKFTpgGPjrK6IowGDwaEf/xpzSIqbxiYOcq8CHJsTseRL+j5qYHptxlO60gGJ
+         tGIUTG2EzptuKCLBVTgRYxH+PnABCNQojiQ92JPZrp09CAzmnpqVS1VvGPNOAh8foDsd
+         AW2lnMW4cqV2s9oeRy8ezZ4P66WnBHOF1WlYsJuHuiqNKiCC+BvzvlOHxiHO43hkWEve
+         id9VQqhgRpIxnA/Q9au+uILI2poNxA+QIDrOfSzCBEU4DgOAy5wA+mK2DP1DgLhAFvhp
+         x31w==
+X-Forwarded-Encrypted: i=1; AJvYcCXwu9HF/QLCzyvmfBn//BNre93OAEf38p3yVG62te8uxDE0LmLEVEH1Ke6t3W1ezXRq2UGuLFtS50ToLFEjlbq5g0b+zhorO9X0jA==
+X-Gm-Message-State: AOJu0YxU71DZ5rAegc/NWhiN4Y6gjWmQPa20mlj/GGB9HrtMjaoJ7fCo
+	bviF4poLSL9vgNi3ESP0Aty/7btIIgpwXhJNfli9jk/wsw1nVhTTEd6bgxjISu0=
+X-Google-Smtp-Source: AGHT+IF3yUdOvfuosYZv1R18pJI2eG0r6YCkfIqE3vD56y5kmJdDMOJZwr8kveR5ehQ/Slm7H0sutw==
+X-Received: by 2002:a17:907:b010:b0:a59:bae0:b12c with SMTP id a640c23a62f3a-a6821c6e6c6mr138685666b.48.1717158910430;
+        Fri, 31 May 2024 05:35:10 -0700 (PDT)
 Received: from [192.168.128.139] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57a31bb8225sm937435a12.24.2024.05.31.05.33.51
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a67eb34432fsm82557066b.193.2024.05.31.05.35.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 May 2024 05:33:52 -0700 (PDT)
-Message-ID: <e732257d-cd16-4e81-9a20-af481184ce0e@linaro.org>
-Date: Fri, 31 May 2024 14:33:50 +0200
+        Fri, 31 May 2024 05:35:10 -0700 (PDT)
+Message-ID: <a7390da4-d830-438f-97ab-cb1b30d86385@linaro.org>
+Date: Fri, 31 May 2024 14:35:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,19 +77,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] Disable SS instances in park mode for SC7180/ SC7280
-To: Doug Anderson <dianders@chromium.org>,
- Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc: cros-qcom-dts-watchers@chromium.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Stephen Boyd <swboyd@chromium.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Matthias Kaehlcke <mka@chromium.org>, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- quic_ppratap@quicinc.com, quic_jackp@quicinc.com
-References: <20240530082556.2960148-1-quic_kriskura@quicinc.com>
- <CAD=FV=UhrCKCv5R-LAAugrLXFp=cDcj2=Pp9-N3qk5pk2=sGEg@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: x1e80100: Describe the PCIe 6a
+ resources
+To: Abel Vesa <abel.vesa@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
+ Rajendra Nayak <quic_rjendra@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240530-x1e80100-dts-pcie6a-v1-0-ee17a9939ba5@linaro.org>
+ <20240530-x1e80100-dts-pcie6a-v1-3-ee17a9939ba5@linaro.org>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -127,59 +124,45 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <CAD=FV=UhrCKCv5R-LAAugrLXFp=cDcj2=Pp9-N3qk5pk2=sGEg@mail.gmail.com>
+In-Reply-To: <20240530-x1e80100-dts-pcie6a-v1-3-ee17a9939ba5@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 30.05.2024 3:34 PM, Doug Anderson wrote:
-> Hi,
+On 30.05.2024 5:43 PM, Abel Vesa wrote:
+> On both the CRD and QCP, on PCIe 6a sits the NVMe. Add the 3.3V
+> gpio-controlled regulator and the clkreq, perst and wake gpios as
+> resources for the PCIe 6a.
 > 
-> On Thu, May 30, 2024 at 1:26 AM Krishna Kurapati
-> <quic_kriskura@quicinc.com> wrote:
->>
->> When working in host mode, in certain conditions, when the USB
->> host controller is stressed, there is a HC died warning that comes up.
->> Fix this up by disabling SS instances in park mode for SC7280 and SC7180.
->>
->> Krishna Kurapati (2):
->>   arm64: dts: qcom: sc7180: Disable SS instances in park mode
->>   arm64: dts: qcom: sc7280: Disable SS instances in park mode
->>
->>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 1 +
->>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 1 +
->>  2 files changed, 2 insertions(+)
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 52 +++++++++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/x1e80100-qcp.dts | 52 +++++++++++++++++++++++++++++++
+>  2 files changed, 104 insertions(+)
 > 
-> FWIW, the test case I used to reproduce this:
-> 
-> 1. Plug in a USB dock w/ Ethernet
-> 2. Plug a USB 3 SD card reader into the dock.
-> 3. Use lsusb -t to confirm both Ethernet and card reader are on USB3.
-> 4. From a shell, run for i in $(seq 5); do dd if=/dev/sdb of=/dev/null
-> bs=4M; done to read from the card reader.
-> 5. At the same time, stress the Internet. If you've got a very fast
-> Internet connection then running Google's "Internet speed test" did
-> it, but I could also reproduce by just running this from a PC
-> connected to the same network as my DUT: ssh ${DUT} "dd of=/dev/null"
-> < /dev/zero
-> 
-> I would also note that, though I personally reproduced this on sc7180
-> and sc7280 boards and thus Krishna posted the patch for those boards,
-> there's no reason to believe that this problem doesn't affect all of
-> Qualcomm's SoCs. It would be nice if someone at Qualcomm could post a
-> followup patch fixing this everywhere.
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> index 3ce2c8a841ec..10ec40a193fb 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> @@ -173,6 +173,20 @@ vreg_edp_3p3: regulator-edp-3p3 {
+>  		regulator-always-on;
+>  		regulator-boot-on;
+>  	};
+> +
+> +	vreg_nvme: regulator-nvme {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "VREG_NVME_3P3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +
+> +		gpio = <&tlmm 18 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&nvme_reg_en>;
 
-Right, this sounds like a more widespread issue
-
-That said, I couldn't reproduce it on SC8280XP / X13s (which does NOT mean
-8280 isn't affected). My setup was:
-
-- USB3 5GB/s hub plugged into one of the side USBs
-  - on-hub 1 Gb /s network hub connected straight to my router with a
-    600 / 60 Mbps link, spamming speedtest-cli and dd-over-ssh
-  - M.2 SSD connected over a USB adapter, nearing 280 MB/s speeds (the
-    adapter isn't particularly speedy)
-
-So it stands to reason that it might not have been enough to trigger it.
+property-n
+property-names
 
 Konrad
 
