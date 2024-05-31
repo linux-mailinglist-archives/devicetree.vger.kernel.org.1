@@ -1,213 +1,254 @@
-Return-Path: <devicetree+bounces-71287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E9448D6412
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 16:10:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB5B78D6415
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 16:11:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 368ECB255B0
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:10:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09F8D1C244D5
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:11:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9509A15B975;
-	Fri, 31 May 2024 14:10:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2253915D5A0;
+	Fri, 31 May 2024 14:11:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ET7OlImU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NhYt6pW3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A937015B96C
-	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 14:10:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFB5915CD55;
+	Fri, 31 May 2024 14:11:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717164620; cv=none; b=UWrxYkIZC/uCsxg76qXxM0l0ypSj7eQMTYcyRQcvhC7OJYTkpe3gJe6BIFTVJaTkCRqUbLLy+ENM5Kv6tNeFvlEL8qfDNn0d6pItDi/wUTka77EvAxMTX9186VUm1LcMsnnBZjE/DM/lqmbbwd0BsXqJGxhpPUlqUJTf+BOup78=
+	t=1717164669; cv=none; b=bJ/nnVHx80gv9D/ufhhtUxYDamuhbjtt3NMo0uaT904s6DB5peoyjE8RvnQf9JdXUtjsBtok11I7u1nXnXWCrmn3m8qmJa2VGcgCoqFJ+QXwZbFVSUzyjPz2Nq4MtzX+yQ5LEEx0bJG0RdHmquBeWxvzkZT9YqTIrW0Hw3pYdw0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717164620; c=relaxed/simple;
-	bh=pl0/I3EHG1MNSwfiG2WKhtpIiXvt4CVQzdjtT0GtYA8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j7wj8gkMpx7D9miowk0EXik0HQpzeo/Slr3j/h9sbDseyltCr6yI7mOX+dmf4/zQB0J0Pb9dvEppcnwN76kgFgh8pX+FWCe0bLVSVsFfci+EDcfS3TnfDwyjeVfFc13tGt3YFO7BCc9X/PNTVxD4Ab4nHeEIz3i5LpYg87sZT8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ET7OlImU; arc=none smtp.client-ip=209.85.208.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2e95a883101so27169391fa.3
-        for <devicetree@vger.kernel.org>; Fri, 31 May 2024 07:10:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717164617; x=1717769417; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=mPR2LyWHC7V2mHiJFgdpx8J9fEtaa30lYWGVtYQNHIM=;
-        b=ET7OlImUw4gPrqHMnlCM93gUv6ePZ9IKVid+uAWY+gkhK3VAP/mi0nF1sLR26inAhf
-         wFUFJPWtw3BuzbTzHtBKOuTKjOzlGU8GBvmH5X9fu9mrlOkSxTz92SYvU56LQrO82Lp0
-         c9+z+2avmL8MCNlsQCF20/+MzKzQPLU0glj7B1CSNehMQff7t4H/I5Lok4hQiiE/Vcrz
-         gS3nz5wzxd2HCf+DNUveyHkYdWn1ojRkySa1Xom1VDSZz3yP52fKxN398Kkv0KoQFQQS
-         nHxKB3/Tj8pmF1IgnUXsahQ4TzDFYwgcO6IYQK9t1NC3b6/HmzA1SDY9FJ4dTg/iXuSi
-         IbSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717164617; x=1717769417;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mPR2LyWHC7V2mHiJFgdpx8J9fEtaa30lYWGVtYQNHIM=;
-        b=qdSjBa06g0JtPbvlxOK24hb5NXae4YG6Ug0ahFzL/NGDJD28CU7UtxM8FGwiy2m4HF
-         ayy0kIGE+Fsh49Aa4aBZXg9Lk4BqeMFQsHekHvUXdNv2GhG0y54fynAnMxvTUTyio/Li
-         cqhYVK59wiNP5arN0UcUVhKi51Grr31Q1Avqef7MjSslDi7D18rYbtMK/0IHdSUjp0eZ
-         HjlaoTG0tWQFsBk61ifCudHUES93eEZzx8JXXlbuTx1wZ/vFVd4OBI/tcbzIY6uRHHJW
-         K+Egf+m30FXmvgnxVRHGarOLM4th/atjY9bLhVOQJNNir+jK6JRZgtU4Put617aVJ4RK
-         E5/A==
-X-Forwarded-Encrypted: i=1; AJvYcCWOU/5qk/k3oSvBXDDWLR/2JXux3YG4bAL13h/qQjX1QJ0eIP9CZR5CUMMb63FL/BKVwl6i+qyC+SAYOJLf3vSFb7Pz81xbbDESLg==
-X-Gm-Message-State: AOJu0YyCjObZ/X7518xyyENojCq4YB9YqcTvwfp8lf0BTwh3GcyPDeiM
-	hICRGSSeWD2P8I5CoXoCk9TPa9N/sWEeDKdl0gth4C68T96ozuk4ZEB06Sakaqs=
-X-Google-Smtp-Source: AGHT+IFn7A4k4LEyrEzijYgpXSx5Ms0q7JVabh6m86OjALv+pELNTDwZYtDeZmRYSLYtm3cGKEvllg==
-X-Received: by 2002:a2e:9149:0:b0:2e4:14a0:4d15 with SMTP id 38308e7fff4ca-2ea951d59f4mr14325421fa.51.1717164616720;
-        Fri, 31 May 2024 07:10:16 -0700 (PDT)
-Received: from [192.168.2.24] ([110.93.11.116])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4212b101419sm20193715e9.1.2024.05.31.07.10.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 May 2024 07:10:16 -0700 (PDT)
-Message-ID: <5ee9142e-2e7a-4e5a-9225-20b71eb07ce9@linaro.org>
-Date: Fri, 31 May 2024 16:10:14 +0200
+	s=arc-20240116; t=1717164669; c=relaxed/simple;
+	bh=K0xHXy2q6dRipVm0n2lXko/1zCuNtyjfzp6U4rJzUsE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=AuItlUwzSXPLJfCNVUQO2pjQYi2qO4ge/4AWTsttwo5N0+f72vtZ7+zQaETVlspldD30rWQL1fipXXCLT/gw2s69GzdPq3/vXZRGuGeqoaI1NUm2IX8C3TsoS49spFYIOgJgi8FBoGUjoI7jrdOlU0mVevGT2a+2JhiUwuwTgc4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NhYt6pW3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1C2BC4AF07;
+	Fri, 31 May 2024 14:11:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717164668;
+	bh=K0xHXy2q6dRipVm0n2lXko/1zCuNtyjfzp6U4rJzUsE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=NhYt6pW3uY9U9PBXpWSMlo2mGQ16YCmvOUpue6pN0+vxmgGJUU6gzYL5LxzEIaTbZ
+	 yAPUPn7K88Ap2LMYhzkWUcx5JgSrEtjSixnkfRWhdj9FeKG5raD0XPjNcw8sbc5xOU
+	 EjliB0BVuJJwx47diirD3dELRQ8+N07kv/VkWvr9JwMPal/L2bbM7afkW/BzxOimjS
+	 +KqR2tXbYB0XJNEianyOIlPZfYQvGLiecap5PpRre83ZZKg8KNXatnAoDJ9e7opxgG
+	 fAZsrrDZTKmRpanIil+zt0nu38ltY0YwfWNNutu96U4OCTyN232Y45FvuntArnJ0Ig
+	 V4iJ92tkImc7A==
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-52b7e693b8aso1707525e87.1;
+        Fri, 31 May 2024 07:11:08 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUzmeIzXMKJ9N2r7cbo/R4q/TU1VBg6hMbxHitVZq1tWuqa0/BMb3nmMFQkjcUP5AEA534g4DjPW+klZmCS5p4v5eGrlhqg83zbr83GtHOWOIyVo+UW6Sn1WWm3VPxyVQvtZKlp8K8lXA==
+X-Gm-Message-State: AOJu0Yxni9yRkYHyHt+fncTpCoN1AQVr/gEL8UNPympFKQ2woqzK13qr
+	jChYJtNCgXh+xcSYImohIM+E6z4tqjdQm8o0bVuqGBCgEikDxy89+jXQtskeLefZTjTqqGKkVtL
+	9+ahrNtgUKSj4tgYcZR4hwO/MRQ==
+X-Google-Smtp-Source: AGHT+IHIqTs4eLz3G6haHEggOKQpNgNQdSLxmxdJSf8+V2cY32GWNGtHxyT5Oq/VVbYGkZbVocajtPazQcGxy+rb6oE=
+X-Received: by 2002:a05:6512:61:b0:529:5644:c1a4 with SMTP id
+ 2adb3069b0e04-52b7e10bc05mr1544861e87.20.1717164667003; Fri, 31 May 2024
+ 07:11:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 09/13] dt-bindings: clock: qcom: Add SA8775P camera
- controller
-To: Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, quic_jkona@quicinc.com,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20240531090249.10293-1-quic_tdas@quicinc.com>
- <20240531090249.10293-10-quic_tdas@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240531090249.10293-10-quic_tdas@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240522215043.3747651-1-tharvey@gateworks.com>
+ <07250029-7cea-4a82-9e70-22e0e6f7fb37@linaro.org> <20240523-vividly-sequester-d85ac7bccbbd@spud>
+ <CAJ+vNU3fQt=6t3a_QFU_3jb5mTVLGJiptPnGEmWvvXZYGEPOFQ@mail.gmail.com>
+ <20240524-cavalier-outthink-51805f49c8fb@spud> <8007abef-38bb-4d7d-a453-00bb5e6bede5@linaro.org>
+ <CAJ+vNU3Rh6f-HrFbBLxNXVP1PwsGh8OyGmmGJBv6+GRwZaTXgw@mail.gmail.com>
+ <20240528155808.GA695520-robh@kernel.org> <CAJ+vNU225kyG7+AmXU8MTDArj8_6ibD-DkogXg89YpWS57ai=g@mail.gmail.com>
+ <20240530-powwow-outpour-ca48b1f22a3e@spud> <CAJ+vNU1Vu9oM1W8RhBo1H+ddHUovmJGSPhmmW0aaTEfYgVoerQ@mail.gmail.com>
+In-Reply-To: <CAJ+vNU1Vu9oM1W8RhBo1H+ddHUovmJGSPhmmW0aaTEfYgVoerQ@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 31 May 2024 09:10:54 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKHs_cBJWrS6+tzoUZ5fESAsim2uasHmFRg1CT7BOjDWQ@mail.gmail.com>
+Message-ID: <CAL_JsqKHs_cBJWrS6+tzoUZ5fESAsim2uasHmFRg1CT7BOjDWQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: rename gw7905 to gw75xx
+To: Tim Harvey <tharvey@gateworks.com>
+Cc: Conor Dooley <conor@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Li Yang <leoyang.li@nxp.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 31/05/2024 11:02, Taniya Das wrote:
-> Add device tree bindings for the camera clock controller
-> on Qualcomm SA8775P platform.
-> 
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
->  .../bindings/clock/qcom,sa8775p-camcc.yaml    |  76 +++++++++++++
->  .../dt-bindings/clock/qcom,sa8775p-camcc.h    | 107 ++++++++++++++++++
->  2 files changed, 183 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sa8775p-camcc.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,sa8775p-camcc.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sa8775p-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sa8775p-camcc.yaml
-> new file mode 100644
-> index 000000000000..0f8e4ee5e386
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sa8775p-camcc.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,sa8775p-camcc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Camera Clock & Reset Controller on SA8775P
-> +
-> +maintainers:
-> +  - Taniya Das <quic_tdas@quicinc.com>
-> +
-> +description: |
-> +  Qualcomm camera clock control module provides the clocks, resets and power
-> +  domains on SA8775p.
-> +
-> +  See also::
-> +    include/dt-bindings/clock/qcom,sa8775p-camcc.h
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,sa8775p-camcc
-> +
-> +  clocks:
-> +    items:
-> +      - description: Camera AHB clock from GCC
-> +      - description: Board XO source
-> +      - description: Board active XO source
-> +      - description: Sleep clock source
+On Thu, May 30, 2024 at 12:36=E2=80=AFPM Tim Harvey <tharvey@gateworks.com>=
+ wrote:
+>
+> On Thu, May 30, 2024 at 9:54=E2=80=AFAM Conor Dooley <conor@kernel.org> w=
+rote:
+> >
+> > On Tue, May 28, 2024 at 09:23:10AM -0700, Tim Harvey wrote:
+> > > On Tue, May 28, 2024 at 8:58=E2=80=AFAM Rob Herring <robh@kernel.org>=
+ wrote:
+> > > >
+> > > > On Sat, May 25, 2024 at 12:58:18PM -0700, Tim Harvey wrote:
+> > > > > On Sat, May 25, 2024 at 11:34=E2=80=AFAM Krzysztof Kozlowski
+> > > > > <krzysztof.kozlowski@linaro.org> wrote:
+> > > > > >
+> > > > > > On 24/05/2024 20:40, Conor Dooley wrote:
+> > > > > > > On Thu, May 23, 2024 at 04:04:50PM -0700, Tim Harvey wrote:
+> > > > > > >> On Thu, May 23, 2024 at 7:47=E2=80=AFAM Conor Dooley <conor@=
+kernel.org> wrote:
+> > > > > > >>>
+> > > > > > >>> On Thu, May 23, 2024 at 09:02:46AM +0200, Krzysztof Kozlows=
+ki wrote:
+> > > > > > >>>> On 22/05/2024 23:50, Tim Harvey wrote:
+> > > > > > >>>>> The GW7905 was renamed to GW7500 before production releas=
+e.
+> > > > > > >>>>>
+> > > > > > >>>>> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> > > > > > >>>>> ---
+> > > > > > >>>>>  Documentation/devicetree/bindings/arm/fsl.yaml | 4 ++--
+> > > > > > >>>>>  1 file changed, 2 insertions(+), 2 deletions(-)
+> > > > > > >>>>>
+> > > > > > >>>>> diff --git a/Documentation/devicetree/bindings/arm/fsl.ya=
+ml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > > > > > >>>>> index 0027201e19f8..d8bc295079e3 100644
+> > > > > > >>>>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> > > > > > >>>>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > > > > > >>>>> @@ -920,8 +920,8 @@ properties:
+> > > > > > >>>>>                - fsl,imx8mm-ddr4-evk       # i.MX8MM DDR4=
+ EVK Board
+> > > > > > >>>>>                - fsl,imx8mm-evk            # i.MX8MM EVK =
+Board
+> > > > > > >>>>>                - fsl,imx8mm-evkb           # i.MX8MM EVKB=
+ Board
+> > > > > > >>>>> +              - gateworks,imx8mm-gw75xx-0x # i.MX8MM Gat=
+eworks Board
+> > > > > > >>>>
+> > > > > > >>>> That's not even equivalent. You 7500 !=3D 75xx.
+> > > > > > >>>>
+> > > > > > >>>
+> > > > > > >>>>>                - gateworks,imx8mm-gw7904
+> > > > > > >>>>> -              - gateworks,imx8mm-gw7905-0x # i.MX8MM Gat=
+eworks Board
+> > > > > > >>>>
+> > > > > > >>>> Compatibles do not change. It's just a string. Fixed strin=
+g.
+> > > > > > >>>
+> > > > > > >>> I think there's justification here for removing it, per the=
+ commit
+> > > > > > >>> message, the rename happened before the device was availabl=
+e to
+> > > > > > >>> customers.
+> > > > > > >>> Additionally, I think we can give people that upstream thin=
+gs before they're
+> > > > > > >>> publicly available a bit of slack, otherwise we're just dis=
+couraging
+> > > > > > >>> people from upstreaming early.
+> > > > > > >>
+> > > > > > >> Hi Conor,
+> > > > > > >>
+> > > > > > >> Thanks for understanding - that's exactly what happened. I'm=
+ in the
+> > > > > > >> habit of submitting patches early and often and it's no fun =
+when
+> > > > > > >> something like a silly product name gets changed and breaks =
+all the
+> > > > > > >> hard work.
+> > > > > > >>
+> > > > > > >> The board model number is stored in an EEPROM at manufacturi=
+ng time
+> > > > > > >> and that EEPROM model is used to build a dt name. So instead=
+ of GW7905
+> > > > > > >> which would be a one-off custom design it was decided to cha=
+nge the
+> > > > > > >> product to a GW75xx. The difference between GW7500 and GW75x=
+x is
+> > > > > > >> because we subload components on boards between GW7500/GW750=
+1/GW7502
+> > > > > > >> etc but the dt is the same.
+> > > > > > >>
+> > > > > > >> If there is resistance to a patch that renames it then I gue=
+ss I'll
+> > > > > > >> have to submit a patch that removes the obsolete board, then=
+ adds back
+> > > > > > >> the same board under a different name. Shall I do that?
+> > > > > > >
+> > > > > > > I think this patch is fine - other than the inconsistency tha=
+t Krzysztof
+> > > > > > > pointed out between the "renamed to gw7500" and the "gw75xx" =
+in the new
+> > > > > > > compatible.
+> > > > > >
+> > > > > > I am not a fan of renaming compatibles because of marketing cha=
+nge,
+> > > > > > because compatible does not have to reflect the marketing name,=
+ but
+> > > > > > there was already precedent from Qualcomm which I did not nak, =
+so fine
+> > > > > > here as well. Double wildcard 75xx is however a bit worrying.
+> > > > > >
+> > > > >
+> > > > > Hi Krzysztof,
+> > > > >
+> > > > > Thanks for understanding. The double-wildcard is again a marketin=
+g
+> > > > > tool. All GW75** use the same device-tree by design. The boot fir=
+mware
+> > > > > that chooses the device-tree understands this and for a GW7521 fo=
+r
+> > > > > example would look for gw7521 first, gw752x next, gw75xx last.
+> >
+> > When it is doing this matching, does it actually apply a wildcard, or
+> > does it look for "x"? IOW, if your eeprom said "gw7521" and there were
+> > no devicetrees matching "gw7521" but there was one with "gw7500" would
+> > it match?
+>
+> I attempt to explain the algorithm used in the comment of the U-Boot
+> code used by U-Boot to both choose the DTB it uses as well as the
+> bootscript to choose the DTB used for Linux when booting Linux:
+> https://elixir.bootlin.com/u-boot/latest/source/board/gateworks/venice/ee=
+prom.c#L164
+>
+> Consider a GW7001-F.1 SOM married to a GW7201-G.2 Baseboard (the
+> letter at len-2 is the PCB revision and the number is a BOM revision
+> and those are the full model strings in the EEPROM's of the boards):
+> fdt_file1=3Dimx8mm-venice-gw72xx-0x-g2f1.dtb
+> fdt_file2=3Dimx8mm-venice-gw72xx-0x-g2f.dtb
+> fdt_file3=3Dimx8mm-venice-gw72xx-0x-gf.dtb
+> fdt_file4=3Dimx8mm-venice-gw72xx-0x.dtb
 
-Same comments (see my patchset adding qcom,gcc.yaml ref).
+These all have the same root compatible I'm guessing? Based on recent
+discussions around firmware picking a DTB, we really want that based
+on compatibles, not filenames. After all, compatible is all about most
+specific to least specific matching. Maybe it doesn't matter for your
+products. However, that's likely the direction we're going and it may
+make your life easier to align with that.
 
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +    description:
-> +      A phandle and PM domain specifier for the MMCX power domain.
+> The script that loads the fdt for booting Linux looks for fdt_file1
+> first, then fdt_file2, etc etc so that if needed a 'more specific' dtb
+> could exist with base-board and som-revision fixups. However to answer
+> your question the algorithm already assumes that baseboards have 2
+> digits worth of don't care and match specifically an 'x' for that.
+> Including the SOM and Baseboard PCB revision and BOM revision was a
+> safeguard that has never been needed so in practice we always just end
+> up with the last most generic dtb above which is the case of
+> 'imx8mm-venice-gw72xx-0x.dtb' case means a 'gw72xx' baseboard married
+> to a 'gw700x' SOM. The 'gw70' is removed from the dtb name as all
+> Venice SOM's start are GW70**.
+>
+> So in my mind the dt for the baseboard above is called
+> 'imx8mm-venice-gw72xx' where 'xx' is part of the name but does have
+> implied meaning. It certainly helps our customers know that the last
+> two digits of a baseboard are don't-cares.
+>
+> This is nothing new... I did this for the imx6 based Gateworks Ventana
+> boards as well most of which have been upstream since Linux 4.x:
 
-Here and in other patches, just replace it with
-items:
- - description: MMCX power domain
+Based on this, I'm going to say what you have is fine and let's move on.
 
-(two lines instead of three, dropping redundant pieces of sentence)
+We'll all probably forget this and you'll have to remind us the next
+time we see wildcards.
 
-In general, please avoid making redundant code. We all understand how it
-works and efficient binding or code is better than obfuscated long
-sentence saying that phandle is a phandle.
-
-
-Best regards,
-Krzysztof
-
+Rob
 
