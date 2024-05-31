@@ -1,213 +1,122 @@
-Return-Path: <devicetree+bounces-71136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 096FC8D5DA6
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 11:07:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B2288D5D80
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 11:04:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94EB2288FC1
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 09:07:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1400B25081
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 09:04:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AFCE155A47;
-	Fri, 31 May 2024 09:04:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C76E5153BED;
+	Fri, 31 May 2024 09:03:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XQRZ20Gt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JxhA6qI2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 971E0156646;
-	Fri, 31 May 2024 09:04:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9886E14532D;
+	Fri, 31 May 2024 09:03:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717146271; cv=none; b=Jhn/3nrrIdWVNbn73yQlQ+Auq936tfagBrm2Rm257iEkN83F4JyzK0Q2r/iZl/KBncRLvTH8y5/DsFYpRD054fNUdrT4jPbbRT3C07M0wG72n9xGJ10hup32EY7C7NNJhXaEm3ktqERkDkhkQUvceZ4Be4pSBa+8/t03Uum9q+M=
+	t=1717146235; cv=none; b=Q3QqsY7gdQC2eM9jiFdUlNBHQg+3hY1+1vcWZuMU1xSIsLg+iVP0jxySdD+wlvrAnKE1WBbBX+BiK6jwKHr84uFwZI5RmTXlR6NfHLTOrkiwxGlR0vyOM1+7H1AYl2NfWfLxe58f4bGVBXfUHI5uECJMIO9QLn1SthBj1G3YegQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717146271; c=relaxed/simple;
-	bh=RQ16RDaLTXWQhQODnz91g4g1UZXiWj4A88rkCbB7RZ8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fs0wYddrrHtl0X/0Jj+27Ov3JaUpQV+Zlp05yvlKOMwXu8WEXIpCIWp3kwhzOCT/FLQy/gD13BqLwqRlpNdJA1ClluwQ1bxzYD1k1UGt0Z8Aw48KMPn/C9VysoLVbjijX2cln+I03UN11NSsxACSg9CJjoxL+xlvUyC0aN4C5eI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XQRZ20Gt; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44V12Wub003501;
-	Fri, 31 May 2024 09:04:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=4SJuNprWp3vXhTTumfGksTWu
-	F1zW7NLmnaEjDruIw3E=; b=XQRZ20GtCeNQcD9dWYPB0S/YqqHQPbpGASYWnCeX
-	A5Nffq07ro4mZDWOzLTZci8ReOwl6dGArTgf5wyNSswTMwOoo/E+VIX9zBJ/zAkd
-	S/drFVt0V7R1GDamZ07gHGlGIVYUkD2HIFUhO6BhDY/Ta+cZT26fEvjhDLvOzSKY
-	bUTJwoBtDCwFDGuF+97eQG6rFCN7iRLp2HUtTeYw1cFpc+DAQ5xOAr0oKl0DHTvH
-	7HEJsRhbynqof5KcwBABSbdhnAu3fIh6ACL5DuzVJWgQmCRR3kJn4FYzC77/ubQU
-	b8TGciSZllOJxcGRgbYBEDZroZ+gJYarXjxsvia9MV/bOQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yesw5jd4g-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 31 May 2024 09:04:25 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44V94Ooo025114
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 31 May 2024 09:04:24 GMT
-Received: from hu-tdas-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 31 May 2024 02:04:20 -0700
-From: Taniya Das <quic_tdas@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_jkona@quicinc.com>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Subject: [PATCH 13/13] arm64: dts: qcom: Add support for multimedia clock controllers
-Date: Fri, 31 May 2024 14:32:49 +0530
-Message-ID: <20240531090249.10293-14-quic_tdas@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240531090249.10293-1-quic_tdas@quicinc.com>
-References: <20240531090249.10293-1-quic_tdas@quicinc.com>
+	s=arc-20240116; t=1717146235; c=relaxed/simple;
+	bh=7oDijFUHb/SzuGN0T03N+niG7QYaHVhZCXHr291ui9c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WxJ0/l6RnEzJ2SIItKni9rmppLOYIfbSGYzYQDxM5R6T/dH5TFXuL3liBdvKOLUbxsJFSQPNvAj6RTuvN4YW+zjXlPVh6a+4/xdIydMqEnzUBDDQiu5ry3+X+jlA6fIgyUIGEYp54NB4V2shNJszmbZshvHnaQ0GYF3j4b9EBfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JxhA6qI2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8A38C116B1;
+	Fri, 31 May 2024 09:03:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717146235;
+	bh=7oDijFUHb/SzuGN0T03N+niG7QYaHVhZCXHr291ui9c=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=JxhA6qI2GZ3wBeoAQOs8MgBZI7+U0CZf+n8MyebURts/gIfiq2v8vLCrsH//Ahj1f
+	 1j3i6qm35dyRDDVqhSHxhf0mPBfg3mFsR0pJ0UQ//tx4KO38Wl62rvmEHCdek5XSIR
+	 jvspU4FEzRouBxtIC9UM9m/6LSe+EOMGUXG487OSuJGL8GeMIdEQKHSFLqoV338kjG
+	 YF44WSTV3BMRLP4bWia4Gjhp1Kp27YhSCjYdKKNfwe2vLLB7xPHL/XK835HIn5gEi0
+	 m+0N0XkXch+KqtU1zv5TVHnbM4K7KYzs6MqCB6h6H6vYbcOprQvgBQJauQiwUyLKv0
+	 16QsHrspytJ2Q==
+Message-ID: <21b8fc7a-f915-40a1-aa40-c8f91f158b1c@kernel.org>
+Date: Fri, 31 May 2024 11:03:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: mioY2dzV0aY_nowP5Im3mC8RMd5YvM8E
-X-Proofpoint-GUID: mioY2dzV0aY_nowP5Im3mC8RMd5YvM8E
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-31_05,2024-05-30_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- mlxlogscore=999 phishscore=0 malwarescore=0 impostorscore=0 bulkscore=0
- suspectscore=0 priorityscore=1501 clxscore=1015 spamscore=0 mlxscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2405310066
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: iio: adc: add a7779 doc
+To: ranechita <ramona.nechita@analog.com>, linux-iio@vger.kernel.org
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240530075914.28080-1-ramona.nechita@analog.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240530075914.28080-1-ramona.nechita@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add support for camera, display0, display1 and video clock
-controllers on SA8775P platform. While at it, update the
-sleep_clk frequency.
+On 30/05/2024 09:59, ranechita wrote:
+> Add dt bindings for adc ad7779.
+> 
+> Signed-off-by: ranechita <ramona.nechita@analog.com>
 
-Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sa8775p-ride.dts |  2 +-
- arch/arm64/boot/dts/qcom/sa8775p.dtsi     | 59 +++++++++++++++++++++++
- 2 files changed, 60 insertions(+), 1 deletion(-)
+Same v2? Nothing improved?
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-index 26ad05bd3b3f..4684da376565 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-@@ -542,7 +542,7 @@
- };
- 
- &sleep_clk {
--	clock-frequency = <32764>;
-+	clock-frequency = <32000>;
- };
- 
- &spi16 {
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index eae0de9720b5..7f62738671da 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -6,8 +6,11 @@
- #include <dt-bindings/interconnect/qcom,icc.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
-+#include <dt-bindings/clock/qcom,sa8775p-camcc.h>
-+#include <dt-bindings/clock/qcom,sa8775p-dispcc.h>
- #include <dt-bindings/clock/qcom,sa8775p-gcc.h>
- #include <dt-bindings/clock/qcom,sa8775p-gpucc.h>
-+#include <dt-bindings/clock/qcom,sa8775p-videocc.h>
- #include <dt-bindings/interconnect/qcom,sa8775p-rpmh.h>
- #include <dt-bindings/mailbox/qcom-ipcc.h>
- #include <dt-bindings/power/qcom-rpmpd.h>
-@@ -2904,6 +2907,47 @@
- 			interrupts = <GIC_SPI 580 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		videocc: clock-controller@abf0000 {
-+			compatible = "qcom,sa8775p-videocc";
-+			reg = <0x0 0x0abf0000 0x0 0x10000>;
-+			clocks = <&gcc GCC_VIDEO_AHB_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK_A>,
-+				 <&sleep_clk>;
-+			power-domains = <&rpmhpd SA8775P_MMCX>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
-+		camcc: clock-controller@ade0000 {
-+			compatible = "qcom,sa8775p-camcc";
-+			reg = <0x0 0x0ade0000 0x0 0x20000>;
-+			clocks = <&gcc GCC_CAMERA_AHB_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK_A>,
-+				 <&sleep_clk>;
-+			power-domains = <&rpmhpd SA8775P_MMCX>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
-+		dispcc0: clock-controller@af00000 {
-+			compatible = "qcom,sa8775p-dispcc0";
-+			reg = <0x0 0x0af00000 0x0 0x20000>;
-+			clocks = <&gcc GCC_DISP_AHB_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK_A>,
-+				 <&sleep_clk>,
-+				 <0>, <0>, <0>, <0>,
-+				 <0>, <0>, <0>, <0>;
-+			power-domains = <&rpmhpd SA8775P_MMCX>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		pdc: interrupt-controller@b220000 {
- 			compatible = "qcom,sa8775p-pdc", "qcom,pdc";
- 			reg = <0x0 0x0b220000 0x0 0x30000>,
-@@ -3424,6 +3468,21 @@
- 			#freq-domain-cells = <1>;
- 		};
- 
-+		dispcc1: clock-controller@22100000 {
-+			compatible = "qcom,sa8775p-dispcc1";
-+			reg = <0x0 0x22100000 0x0 0x20000>;
-+			clocks = <&gcc GCC_DISP_AHB_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK_A>,
-+				 <&sleep_clk>,
-+				 <0>, <0>, <0>, <0>,
-+				 <0>, <0>, <0>, <0>;
-+			power-domains = <&rpmhpd SA8775P_MMCX>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		ethernet1: ethernet@23000000 {
- 			compatible = "qcom,sa8775p-ethqos";
- 			reg = <0x0 0x23000000 0x0 0x10000>,
--- 
-2.17.1
+Name used is still not full name, as I asked.
+
+Best regards,
+Krzysztof
 
 
