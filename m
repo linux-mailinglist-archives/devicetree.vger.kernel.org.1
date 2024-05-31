@@ -1,249 +1,207 @@
-Return-Path: <devicetree+bounces-71221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11AC88D618D
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:18:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B12C58D6195
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:20:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1BEF2859B2
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:18:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30F721F25E32
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:20:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21278158210;
-	Fri, 31 May 2024 12:18:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B22915821F;
+	Fri, 31 May 2024 12:20:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HWRuyjUc"
+	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="ijK3t7KH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E19A153E2B;
-	Fri, 31 May 2024 12:18:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1682158218;
+	Fri, 31 May 2024 12:20:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717157909; cv=none; b=dHjaAlju82O+ROuKxqCB67MMFJsjHLNXKqv5mnEby6e6B8WpV+MavkIWyFQ5md5ai8HUfZLUtuWzaLcRpqRu+4Z4xsMVGJnZFrmrQPPlxxq/Q1VNnGbrD2ktm/z/o1akAlUOwd4qkjV0KIHGnh8igFkZ5J8R03QhFFotyHC1qEk=
+	t=1717158015; cv=none; b=VJFYmOiyGwkyRy7Faktk6sAyrAbjZViv3oP5WtTgzoh7hb7Sht8mumhNRquwJjRslX+9JDWyMcoJfFQtZuIk03eyC6PXcHHK6qhRE+NMpMlCdyFUr/36x5BPDTE8ZkNTtffLne1FJklVP0AWD7Iilj/iM+Fs7egTlFggRSQA2v4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717157909; c=relaxed/simple;
-	bh=ifVab3Wxr0lAYt4gS0iw75OZMmNpu+97JiSkGCX9p04=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YH+XjmHnDht+u6GHEgUk6qHdB2eRJGDePzpgYdx6AyjBbsthZe3NXn1YcbFO1kMVIcuIlZpaYZkf01pEmGkwe8LyaySDOhrViNPVc8TXrS8nG8cx3egzqg7B9AQ8BiQ1SHcssIk4JYv4mjMajtkER9nrrCwvaM2gamY/wBVNHws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HWRuyjUc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 871C7C32781;
-	Fri, 31 May 2024 12:18:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717157908;
-	bh=ifVab3Wxr0lAYt4gS0iw75OZMmNpu+97JiSkGCX9p04=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HWRuyjUcJGHVYgIitwOPsbNCX7MZRry6xkmWKF9DexyOs7bw3mopWMKg8/5h9+q3s
-	 lWE/nWjjkKbjBdlg0p5QhCPV5m7t6ULXRNjR9JS+1pt6VRwblmbMNGp6++uanGUjIZ
-	 JlURe3CWuMV+7CpwbQReaxOuvqMEv4WKesvG5X4OdjXtrxg9NRgxNJecOteQHelfj0
-	 +T1+bzLqaPGG71BAbi+wPGk1BsF5YyxnSJ8ZnF2FXxmLxgT2WJ/vJoDoSFIbG21gcq
-	 uQX1pPgz4z7tMjjUFGYHjfQAksvD+CCDht3Fjlzm4PGZWWxU06OkAh/Tn2xXM//QdC
-	 hFhtlwfW/RBkQ==
-Message-ID: <311c13e0-2f14-4134-afb5-128bc82111e7@kernel.org>
-Date: Fri, 31 May 2024 14:18:22 +0200
+	s=arc-20240116; t=1717158015; c=relaxed/simple;
+	bh=qCFiUUCYk0b9VZYj16TxUMHUJrac8mN5G7MjSHzTxmA=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=RNaTPhem1Qp5r8yoPnMabpFL4+StLCOuR47wbgbO2JLiBBBgHdXR7mii+yB2NNVBTcLzVHRkTovDDMyLA71qo0IDIzNJhKDa3NErJ/cr83z0T0ALlIxIGzMoIPpIGhx5/QmBPeLhqufiyZjxE/vt1QHK0Qi1EqNivY40nfXGf7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=ijK3t7KH; arc=none smtp.client-ip=188.40.30.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
+	s=default2211; h=Content-Type:MIME-Version:Message-ID:Date:References:
+	In-Reply-To:Subject:Cc:To:From:Sender:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=UWoe0J/16Ku5EFj3U5F77tdrpZFyvI4MmiD7hff0Nek=; b=ijK3t7KHG/ulEUpsXr+tbwgP6+
+	U9ebG69XhpDE2Etb+WjS75mVDzD0qf0wWnDRsI2Ud4evfmLERFy8Aqc/y34UCD8sqzXUQ+uprf8fa
+	0TwF7Y2apPVWv0oVbgfEhXar+7oVFtsNpszZadU1DyMWkEM6Z/Bddf0eex4IgCvVTYBm9g7sYBCVx
+	tK936vYQHhl7OO9iX3lSlVfsgE65MJ8a/9k+lXY84PmeRlpQEEMR9KoSzgjoFgXo6QxRax0Dz3EGb
+	3OCt+qMJ0mUBhFgpAcTsjckoqj/1kf4y3SvKItZ6zfN2xHdrYuiFM7NDeiCIoXdSB09eXBF+XqnZw
+	I6VqifXw==;
+Received: from sslproxy05.your-server.de ([78.46.172.2])
+	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <esben@geanix.com>)
+	id 1sD1Ep-000AZA-SH; Fri, 31 May 2024 14:20:03 +0200
+Received: from [87.49.42.81] (helo=localhost)
+	by sslproxy05.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <esben@geanix.com>)
+	id 1sD1Ep-0000n3-1f;
+	Fri, 31 May 2024 14:20:03 +0200
+From: Esben Haabendal <esben@geanix.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Shawn Guo <shawnguo@kernel.org>,  Rob Herring <robh@kernel.org>,
+  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
+ <conor+dt@kernel.org>,  linux-arm-kernel@lists.infradead.org,  Rasmus
+ Villemoes <linux@rasmusvillemoes.dk>,  devicetree@vger.kernel.org,
+  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: ls1021a: add QUICC Engine node
+In-Reply-To: <3380831.44csPzL39Z@steina-w> (Alexander Stein's message of "Fri,
+	31 May 2024 08:32:44 +0200")
+References: <20240530-arm-ls1021a-qe-dts-v1-1-2eda23bdf8c5@geanix.com>
+	<3380831.44csPzL39Z@steina-w>
+Date: Fri, 31 May 2024 14:20:02 +0200
+Message-ID: <87frtynpfx.fsf@geanix.com>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 06/11] power: supply: max77693: Set charge current
- limits during init
-To: Artur Weber <aweber.kernel@gmail.com>,
- Chanwoo Choi <cw00.choi@samsung.com>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht, Henrik Grimler <henrik@grimler.se>,
- Wolfgang Wiedmeyer <wolfgit@wiedmeyer.de>,
- Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>
-References: <20240530-max77693-charger-extcon-v1-0-dc2a9e5bdf30@gmail.com>
- <20240530-max77693-charger-extcon-v1-6-dc2a9e5bdf30@gmail.com>
- <d740ff64-2de6-424c-9fc0-f1064f8c4f8b@kernel.org>
- <0b611c4b-23d2-4c33-a6be-c15a04e8b99a@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <0b611c4b-23d2-4c33-a6be-c15a04e8b99a@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-Authenticated-Sender: esben@geanix.com
+X-Virus-Scanned: Clear (ClamAV 0.103.10/27292/Fri May 31 10:31:14 2024)
 
-On 31/05/2024 13:55, Artur Weber wrote:
-> On 31.05.2024 11:47, Krzysztof Kozlowski wrote:
->> On 30/05/2024 10:55, Artur Weber wrote:
->>> There are two charger current limit registers:
->>>
->>> - Fast charge current limit (which controls current going from the
->>>    charger to the battery);
->>> - CHGIN input current limit (which controls current going into the
->>>    charger through the cable, and is managed by the CHARGER regulator).
->>>
->>> Add functions for setting both of the values, and set them to a
->>> safe default value of 500mA at initialization.
->>>
->>> The default value for the fast charge current limit can be modified
->>> by setting the maxim,fast-charge-current-microamp DT property; the
->>> CHGIN input current limit will be set up later in the charger detection
->>> mechanism.
->>>
->>> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
->>> ---
->>>   drivers/power/supply/max77693_charger.c | 45 +++++++++++++++++++++++++++++++++
->>>   1 file changed, 45 insertions(+)
->>>
->>> diff --git a/drivers/power/supply/max77693_charger.c b/drivers/power/supply/max77693_charger.c
->>> index 894c35b750b3..d59b1524b0a4 100644
->>> --- a/drivers/power/supply/max77693_charger.c
->>> +++ b/drivers/power/supply/max77693_charger.c
->>> @@ -28,6 +28,7 @@ struct max77693_charger {
->>>   	u32 min_system_volt;
->>>   	u32 thermal_regulation_temp;
->>>   	u32 batttery_overcurrent;
->>> +	u32 fast_charge_current;
->>>   	u32 charge_input_threshold_volt;
->>>   };
->>>   
->>> @@ -591,6 +592,35 @@ static int max77693_set_batttery_overcurrent(struct max77693_charger *chg,
->>>   			CHG_CNFG_12_B2SOVRC_MASK, data);
->>>   }
->>>   
->>> +static int max77693_set_input_current_limit(struct max77693_charger *chg,
->>> +		unsigned int uamp)
->>> +{
->>> +	dev_dbg(chg->dev, "CHGIN input current limit: %u\n", uamp);
->>
->> That's quite useless debug. It duplicates
->> max77693_set_fast_charge_current(). Just drop entire wrapper.
-> 
-> It doesn't duplicate max77693_set_fast_charge_current, they modify two
-> separate registers. Quote from the commit message: 
+Alexander Stein <alexander.stein@ew.tq-group.com> writes:
 
-But it is the same uamp value. Debug messages should not be per register
-write, because we are not debugging here registers...
+> Would you consider current converting into YAML format?
 
-> 
->> There are two charger current limit registers:
->>
->> - Fast charge current limit (which controls current going from the
->>  charger to the battery);
->> - CHGIN input current limit (which controls current going into the
->>   charger through the cable, and is managed by the CHARGER regulator).
-> 
-> max77693_set_fast_charge_current sets up the "fast charge current"
-> register (in CNFG_02, CHG_CNFG_02_CC). The CHARGER regulators sets the
-> CHGIN input current (in CNFG_09, CHG_CNFG_09_CHGIN_ILIM).
-> 
-> (Apparently the CHARGER regulator is supposed to handle the fast
-> charge current, but it does not; I wrote about this in the "CHARGER
-> regulator" section of the patchset description.)
-> 
->>> +
->>> +	return regulator_set_current_limit(chg->regu, (int)uamp, (int)uamp);
->>> +}
->>> +
->>> +static int max77693_set_fast_charge_current(struct max77693_charger *chg,
->>> +		unsigned int uamp)
->>> +{
->>> +	unsigned int data;
->>> +
->>> +	data = (uamp / 1000) * 10 / 333; /* 0.1A/3 steps */
->>> +
->>> +	if (data > CHG_CNFG_02_CC_MASK) {
->>> +		dev_err(chg->dev, "Wrong value for fast charge current\n");
->>> +		return -EINVAL;
->>> +	}
->>> +
->>> +	data <<= CHG_CNFG_02_CC_SHIFT;
->>> +
->>> +	dev_dbg(chg->dev, "Fast charge current: %u (0x%x)\n", uamp, data);
->>> +
->>> +	return regmap_update_bits(chg->max77693->regmap,
->>> +			MAX77693_CHG_REG_CHG_CNFG_02,
->>> +			CHG_CNFG_02_CC_MASK, data);
->>
->> I am surprised that you set current limit via regulator but actual
->> charging current value here. I think both should go to regulator in such
->> case.
-> 
-> As in, both fast charge current and input current should be set up by
-> the CHARGER regulator? Sure, sounds good to me.
-> 
-> I've noticed that on the original kernel, both of the values are
-> modified together too (only exception is that fast charge current would
-> be set to 0 when the cable was unplugged, but the input current stayed
-> at 500mA. This doesn't seem to affect anything, though.).
-> 
-> At one point I actually considered going the other way around - moving
-> all charger register handling into the charger driver, instead of having
-> it be a regulator. As far as I can tell, only some Samsung-submitted
-> charger drivers (max77693, max8997, max8998, max14577) use a regulator
-> to manage the charger current (if anything, some power supply drivers
-> expose an OTG/VBUS regulator, might be something for us to consider as
-> well...).
+You mean converting Documentation/devicetree/bindings/soc/fsl/qe.txt and
+Documentation/devicetree/bindings/soc/fsl/qe/*.txt into YAML?
 
-regulator choice was to match userspace design that time (long time
-ago), but I think now preference is to use writeable properties of power
-supply class. I'll defer here to Sebastian.
+I can consider that. I haven't done something like that before, but I
+assume it might include some additional work other than trivially format
+conversion. So I would prefer to do that after this patch, if that is
+ok.
 
-> 
-> I see you wrote at least the max14577 and part of the max77693 driver;
-> out of curiosity, what's the benefit of doing it through a current
-> regulator (as opposed to adding set functions for the relevant
-> properties in the charger driver)? I've noticed the downstream driver
-> has a very similar pattern[1], I wonder if it's just a port of that or
-> if there's a more concrete reason.
-> 
+> Am Donnerstag, 30. Mai 2024, 16:22:54 CEST schrieb Esben Haabendal:
+>> The LS1021A contains a QUICC Engine Block, so add a node to device
+>> tree describing that.
+>> 
+>> Signed-off-by: Esben Haabendal <esben@geanix.com>
+>> ---
+>>  arch/arm/boot/dts/nxp/ls/ls1021a.dtsi | 51 +++++++++++++++++++++++++++++++++++
+>>  1 file changed, 51 insertions(+)
+>> 
+>> diff --git a/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi b/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi
+>> index e86998ca77d6..ff7be69acdd5 100644
+>> --- a/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi
+>> +++ b/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi
+>> @@ -460,6 +460,57 @@ gpio3: gpio@2330000 {
+>>  			#interrupt-cells = <2>;
+>>  		};
+>>  
+>> +		uqe: uqe@2400000 {
+>> +			#address-cells = <1>;
+>> +			#size-cells = <1>;
+>> +			device_type = "qe";
+>> +			compatible = "fsl,qe", "simple-bus";
+>> +			ranges = <0x0 0x0 0x2400000 0x40000>;
+>> +			reg = <0x0 0x2400000 0x0 0x480>;
+>
+> Properties please in this order:
+> * compatible
+> * reg
+> * #address-cells
+> * #size-cells
+> * ranges
+> * device_type
 
+Fixing.
 
-Best regards,
-Krzysztof
+>> +			brg-frequency = <150000000>;
+>> +			bus-frequency = <300000000>;
+>
+> Mh, aren't these values depending on your actual RCW configuration?
 
+Yes, you are right. The QE bus-frequency comes from platform_clk which
+is controlled by various bits in RCW and sys_ref_clk.
+
+So I guess it should be possible to derive bus-frequency from sysclk
+clock-frequency attribute and RCW. But fsl,qe bus-frequency is a
+required property...
+
+Max bus-frequency for LS1021A is 300 MHz. But it should be possible to
+set it lower, although I suspect that many/most/everyone is running it
+at 300 MHz.
+
+>> +			fsl,qe-num-riscs = <1>;
+>> +			fsl,qe-num-snums = <28>;
+>
+> Current bindings defines:
+>> fsl,qe-snums: This property has to be specified as '/bits/ 8' value,
+>>   defining the array of serial number (SNUM) values for the virtual
+>>   threads.
+>
+> So '/bits/ 8' is missing.
+
+Ok, so you want me to add an array for fs,qe-snums attribute?
+None of the existing fsl,qe devices has a fsl,qe-snums.
+And qe_snums_init() has a fallback, so I don't think it is correct to
+specify fsl,qe-snums to be a required property in the bindings. It
+should be listed as optional.
+
+>> +			qeic: qeic@80 {
+>> +				compatible = "fsl,qe-ic";
+>> +				reg = <0x80 0x80>;
+>> +				#address-cells = <0>;
+>> +				interrupt-controller;
+>> +				#interrupt-cells = <1>;
+>> +				interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH
+>> +					      GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>;
+>> +			};
+>> +
+>> +			ucc@2000 {
+>> +				cell-index = <1>;
+>> +				reg = <0x2000 0x200>;
+>> +				interrupts = <32>;
+>> +				interrupt-parent = <&qeic>;
+>
+> Move cell-index to last position.
+
+Done.
+
+>> +			};
+>> +
+>> +			ucc@2200 {
+>> +				cell-index = <3>;
+>> +				reg = <0x2200 0x200>;
+>> +				interrupts = <34>;
+>> +				interrupt-parent = <&qeic>;
+>
+> Same here.
+
+Done.
+
+>> +			};
+>> +
+>> +			muram@10000 {
+>> +				#address-cells = <1>;
+>> +				#size-cells = <1>;
+>> +				compatible = "fsl,qe-muram", "fsl,cpm-muram";
+>> +				ranges = <0x0 0x10000 0x6000>;
+>
+> Node address but no 'reg' property? I have no idea if this is okay.
+> Also compatible (and possibly reg) first.
+
+It is done in the same way for all existing fsl,qe-muram devices. So if
+it is not okay, a tree-wide fixup would be in place.
+
+/Esben
 
