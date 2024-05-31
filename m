@@ -1,206 +1,340 @@
-Return-Path: <devicetree+bounces-71355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 309408D66C8
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 18:27:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49DF58D6714
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 18:44:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0EE3CB26537
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 16:27:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CE201C21572
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 16:44:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A57C158D90;
-	Fri, 31 May 2024 16:27:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75A31176AA0;
+	Fri, 31 May 2024 16:44:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MyDmC47A"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="ErqaLlMp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2056.outbound.protection.outlook.com [40.107.6.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4BB0158869
-	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 16:27:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717172832; cv=none; b=fw4u/TM8fLQn1x/z3y1rEfA6cTt33M1qru1wyXIvIptEo4yNHuFNDj/514hAQwuGrE9U1AMkmJDU8+kqfpXqbsj4oByneX9pZr+Iht4WHRje2+n9eBd+7iQ2EFqF/15d3w25Jhi6hBIx5qCaJjfm2eMGd0wJg13jvkuR6z7duYA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717172832; c=relaxed/simple;
-	bh=sNKCSPrCuzjcOfTUB1GHnFmg8D6ntvI//Sawj8UioIQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gYHFafU0GBnX8Y8bcOO6lc782d8gncLpNDzxWgLS4vHQuRplDg3FFYO++jyTtJRZBfp+YoCV//28JmJ2DV4ajv9nuOD1MXzb0gHIfpzWOr92HN8oDhFRgJPNaf+SQfSvOAvSE39ZkZyflk2PgbRSlEPRa57nEvLQzTqhM9qFutY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MyDmC47A; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-42125bfa28fso28317435e9.1
-        for <devicetree@vger.kernel.org>; Fri, 31 May 2024 09:27:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717172829; x=1717777629; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=80T+r4pSrSCQfhMt1NbIZWPd23yS0UzoCuFxkMYRKZI=;
-        b=MyDmC47AM3KbV6RBwCM8r+Q9im24fIatISA3+VJsc9enFSPaVh4lrtzGjl2xHjaZ4A
-         v1/lD7KtGMfdwa6ajHjzAsKDKk+uU3fDZg6hTbIniMmbSJl6lzyupKiEjnmQ5+rOmg/1
-         hrdqPPPcKYTDXHDsb2SFkp+IdBADnNV8H+A0st3I1bS5W1COLK7OqQnhD7Z2sf9xikVC
-         8t7xd4zW3z1RyXimRNNC25CUJ58fdfSLm8IMWb3SxZQMX9MOS4H+LjbpHs/MNOFSjur2
-         yoWKxviWWFRn+XLyCPBKRZ11O6FYNIDJrOsRgZv8XjXjzMkz/GBvjxnMjFVzhOVhhDbe
-         bxKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717172829; x=1717777629;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=80T+r4pSrSCQfhMt1NbIZWPd23yS0UzoCuFxkMYRKZI=;
-        b=FmUEgL0dq2DYIVbip/ZxdJ0JxIA4EO7+jkTOSU++OH6mPAMa1vP4RFyJDHlY8bsD1r
-         7qonGfq8XN8NH/2BdKq0RieZH1MRzynGmIRqMTmhIy1TMIgCbMs8xcT3v46McoHzpbVH
-         cksulz3IiiWFM7IGKRnHj1+xxYB0zRl451EEuD4UiAYEKjGPO4MlxI7Sh1iZiPtXGQ3d
-         QlEWgq5I6pOLNj0WroSLrXt8mVjAvD52TadHMVzvPPw4nieocvkrpDgfvb6o/qynjRMO
-         LikkCrBrUwbvr4O3jFUFxXoM6VlK7rpem+k7DUWKyAflIdFWocqZaiSZNQdm47nz1LBp
-         YAFw==
-X-Forwarded-Encrypted: i=1; AJvYcCV049VVG6UuVMbxhdSxuWouossfXwzIkUjwMnHhnpaNZq7tb5ZkzoLT8hNfYiDawvZsdfhlKWKiZbcqwTKFDkfBBaVZ/jzb8oD+vw==
-X-Gm-Message-State: AOJu0YzG8z2aJPMTkN2iJK4ltG1kMl/flw0zDby6+Fu7/COxdyF5n0kr
-	1VG0AsqD9uHM0AxEWzaF4IAN2X6yu8yNg+axNAXTR2mErOibw+/itRhcr0gq70s=
-X-Google-Smtp-Source: AGHT+IE3RbUSn+ASDIFuXARWvoQfOGRNyuhsTbT4sOiJOGwou32uSiCoz195wijt8vSMdZxcwh00EA==
-X-Received: by 2002:a05:600c:1c0a:b0:420:78f:3f9b with SMTP id 5b1f17b1804b1-4212e0bfe62mr23878075e9.37.1717172829076;
-        Fri, 31 May 2024 09:27:09 -0700 (PDT)
-Received: from [192.168.2.24] ([110.93.11.116])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4212706a166sm59477465e9.25.2024.05.31.09.27.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 May 2024 09:27:08 -0700 (PDT)
-Message-ID: <9eb80c39-562c-49de-b4fd-61d138247b7f@linaro.org>
-Date: Fri, 31 May 2024 18:26:50 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60A1E16D9AC;
+	Fri, 31 May 2024 16:44:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.6.56
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717173855; cv=fail; b=ay69ToVc+bJYZRwxXg049i0vnVbaDjp131Z5ubKrK29An77RfYxaQYZVhhfjumoLF7//COn9j08chXlACQ6aat3w3bjl01K8cm3Sx3eBniMKPqLrTqwck1Vj32MHn4dNpDt/7nUOc/e72f35IQwB5M6y3Dg5qxt8tVP6OJilCQg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717173855; c=relaxed/simple;
+	bh=QfhQ0tSjtsAp3pwdL16aT4ioOSRp2kefG1/9b0svC2A=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=pHlgL7MLJeg48dWzoORYS1F4izxbuUCdBbz8Jo9bcdfGFLzUWPR8XN+eFcY3lAET39uYqVkO2IUqH6pOcOa+3Qy8vT4262/W1lHxW8wk0+Q17ziLrBYB4XLd6Alv9vxo7GfEaqLbiceqbCwagJ5sjjUDhAHRROlmQ9KC767g8oU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=ErqaLlMp; arc=fail smtp.client-ip=40.107.6.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Csz5r/EmNWj5q5MHtaz7KasD7494EST2xV/tg8o2CA5oT322kusSXVAch3nfM4eRihmq7eJF7bhSnWl/Tvx3gfZ3ExcJv143Q+TbpvGr81oVbn9anbEh218gms9pX7VPGunCvc++0WfNZhN0Vgj+0RvvWLVHrD3F/GiZph+M0GJK4loNvbkwMiXu2MjgeV7Ar1dT8Fb8G5lx3eUCB4EwgZVUF65zFca7srR1oWSOMky1XGkLmeOTsFwSw/GVHSXJmvW/khe77wKy65LN90AfrNpMoafEEjUaWj/aMEwMOEx4BPjo+fSPWlobsEl8PtPKIxz9Mx/prCMZtQ0sR3QDOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4dJxGasPJaw589fVwlksqdg1/sl0BoImJj0StJOPsy0=;
+ b=EfeKexrC4B+Q2YkVRFdgKPtyumMRmdkY+Dqqnl7pVdVesU4EjHs8wgI5FGL4UDcIgMS3ytn1T2RyIz8G+wOcBEMP//PJT9sZ+9fkbpA7oxq/oYeSdWQ0ByKTpRlrCNOoecgKOWWtTwd4CW1jOI7lvfoM5v2IMrpHezi96rpWOPwIBT2lX7O2MHz4+IeOSoQVUB8R861odDdKOjKCodz41bwJBQRCkZYr6Z4mwVgghAdgKhfH6EmaNUwmgUlEyzZszea4j4wQvdljNFAHULPowyJAPPw2ow+U9tPPm8HwF8B69VlPn19kyXp5O2Qg7CLW1R3GKN8LcivP5Js901c1Hg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4dJxGasPJaw589fVwlksqdg1/sl0BoImJj0StJOPsy0=;
+ b=ErqaLlMpJZfa+tGQO5P00nA6paZolcVAMzjZ5WPCv7KdNzmV4LszeLYdFK4GQJk/z2CxJF99rfpF2+IRe/zzN2Mn7VSnyBeeK99FET+U3kYg+bS5NavHs4GWYQzttvSd5Yei3jERk9QINOWkKmg2lpr/FOtJ/OHH5bUc8yj9toY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DB9PR04MB8316.eurprd04.prod.outlook.com (2603:10a6:10:246::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.27; Fri, 31 May
+ 2024 16:44:10 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7633.018; Fri, 31 May 2024
+ 16:44:10 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: alexander.stein@ew.tq-group.com,
+	krzk+dt@kernel.org
+Cc: Frank.Li@nxp.com,
+	brgl@bgdev.pl,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linus.walleij@linaro.org,
+	linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org
+Subject: [PATCH v3 1/1] dt-bindings: gpio: mpc8xxx: Convert to yaml format
+Date: Fri, 31 May 2024 12:43:57 -0400
+Message-Id: <20240531164357.1419858-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BY3PR05CA0044.namprd05.prod.outlook.com
+ (2603:10b6:a03:39b::19) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] clk: qcom: lpassaudiocc-sc7280: Add support for LPASS
- resets for QCM6490
-To: Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- quic_jkona@quicinc.com, quic_imrashai@quicinc.com, devicetree@vger.kernel.org
-References: <20240531102252.26061-1-quic_tdas@quicinc.com>
- <20240531102252.26061-3-quic_tdas@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240531102252.26061-3-quic_tdas@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DB9PR04MB8316:EE_
+X-MS-Office365-Filtering-Correlation-Id: 229f2d9c-5609-45d4-0ec0-08dc8190e531
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230031|376005|7416005|1800799015|52116005|366007|38350700005;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?JtqwbdKManIGVECDzGYtiHsdPxPMORiKhrxpUVRnS5TA339Mk5ZzLeNJ+VVa?=
+ =?us-ascii?Q?Z7CvyZXrgDAqbD0h3y0fzRhCL2D0NgeFfviDdl+C4QFX3nNL+xNT728r5YVk?=
+ =?us-ascii?Q?nH2tO660c8fMw/tWNIJsXKk0At2G/01qQSOw7N+V9JGpHuDGjWB36Rx0dbYU?=
+ =?us-ascii?Q?xG11oVmb1+BFr3fzcPW9GmnFWfW5BCek02M3Th7AUz6tKg7tE07blApFr84n?=
+ =?us-ascii?Q?wVSjBFbvVUYw5HByl7WPBFTziMT7ixph5bxBPlroZUtzOxGrBmNmmN2RxJdY?=
+ =?us-ascii?Q?4xLI4frOkQ4sSZYB1yE5sQghYInoLsKZ4JvozfJqnkiDD6fvCIQkNix24mDO?=
+ =?us-ascii?Q?PLEKvqLIgpGJTGPlaQr9aOuOg6dydakbiZgLgMzA7qdp6zt2gnWN3Dkkjq9M?=
+ =?us-ascii?Q?W07PiUcHqfB0lbwueXF2QZiXwj3PXt4Ky/YxwlqA++GMJ2GRb2/F+iRW6841?=
+ =?us-ascii?Q?efeTXFkdZl44F+lQviKpLOl2P6viHfi7LiXd6DLw8mAS/81FL8johlA8WfFC?=
+ =?us-ascii?Q?1nocAHucAMxGoI0ylq1E/9CLsRoHsN7Xuzg8dS/a4pFZf4VXRcy6NULwS0ii?=
+ =?us-ascii?Q?fK/+Q3CDbjLKMLBHXH8SNZXrJAJm/oK4gkoELgshZIyWlkVSIgAknF0ts1jq?=
+ =?us-ascii?Q?sOaG1SS/fq0xVXGMLv1z/71gefn53dvBUvjIrgSCZFNLblf350EBotYcA5f8?=
+ =?us-ascii?Q?w7MjiMa1m7YXRaY7ktDEjPBaZGXA+GysFDl9Hu/e5NJg6kPe6Nfpw6x65Jzb?=
+ =?us-ascii?Q?AQC2AfXZA2MoxymBKQtHwZw4Mv3X1ywBkc4e6hDG+BmmHO60h9qPV9u4uDVA?=
+ =?us-ascii?Q?tj4dDt+Y+ArgqIR39CQPz7VEva/ZGQMTCd0ggE06XGIPBViH6FdDO0sJVBkb?=
+ =?us-ascii?Q?U1/kkjPXSqrRWk36hvju6BlgooTXxSTlG1dJgllZPWGaewU+YcGEXZNTRGdn?=
+ =?us-ascii?Q?XNUlw13zDzNg4Ioqsg4KIU+86B6rZWCdhfvxKKC9pjQRqRpFBBaIAVgvxl9X?=
+ =?us-ascii?Q?mRx+6J3b1G6bkReD7SD9AW7JX3s/zFduvFK11tL3WJj6z/E911zrxgDQga1e?=
+ =?us-ascii?Q?cZoQw41i8RIt2x8Fq5czQCsgTL58KkBRCzZLkvEY7ApBrsC4t2PNLuvWanKS?=
+ =?us-ascii?Q?IX0mM0nYyRGeFfzcmFP8jFSQEVqaQPZ5BkMt0QYyktlwYM1TXatm98I89+f9?=
+ =?us-ascii?Q?3YD3iO+vhqKKHHPANabWC/XTtcWuETPFTTovjilz111nNWHy9fEArzMvp984?=
+ =?us-ascii?Q?F4wo4SoT9Lcb6djXZPWLiVbLoAQqRyQoUx1JihvcFDQtEBSZ+LJRR52NCt4d?=
+ =?us-ascii?Q?SHc=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(7416005)(1800799015)(52116005)(366007)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?KLLqIMMkvDwE9207pz7QnbLvqWVQ4TbKJNGVHo68dvsIPeC1mHnnFxuHX+Yd?=
+ =?us-ascii?Q?0MXJeJ4LckcFibhoBM+LBRNrDpFQ+VtVbrcSVL4WyU8GCKWHyYfX6Xlb2Lxa?=
+ =?us-ascii?Q?jU+sKJX1OqsZCcVQs/pOQSW33Ei2HF0iXsyx/qSkbrl0nHeTyLTidEu5tF/7?=
+ =?us-ascii?Q?3AEDfJs7a60jMpnx+tCUoMKk7jm1QWmJIX2EGdsv1e1sMv5iTD59cEW3TBtd?=
+ =?us-ascii?Q?zJPwg9CksujD/BR21jAELS8FLanBdb/trfHpVHEl0z870iq2fDCIQZa9U4ay?=
+ =?us-ascii?Q?poWsdEE/d1Azraiv7iqyxntSaOLN59SijwHzp9KBHwScEXzHL4KjZrEG7Rx9?=
+ =?us-ascii?Q?3Oiax04tuIGy5KeyXGEQyo1/VT07EuBI8WP+Kf4LjJ5Ia3IIA5xLPcxBtkJ9?=
+ =?us-ascii?Q?my2wAxHH39sEKWOzqSuRF0YIYkkTJi3u4FL1is0X3/ANVD8u0CQL/37vB8g1?=
+ =?us-ascii?Q?VPK17DqxE7f0MXbYHdnHiUPYzC/52AWvI948LBMphUCNncGdP7QN8SrHipct?=
+ =?us-ascii?Q?uUoz+r1Ftpcsf6efcAt9QEjmhCHTL6PJs8an6bft6u27A0yb+KCrDMm03qC+?=
+ =?us-ascii?Q?x53at9yn4vH0YaxpIADkht0qpq4bv21FKFTJBHGai5e1v1hBe7rHW8vPA6P+?=
+ =?us-ascii?Q?9lQbVVXwJ74n21reuapZna2PvEa5SC6f+vrEI+qTj9q9T1816SszR8stRThO?=
+ =?us-ascii?Q?AcQF8bXoacbH46OkMK9zaKYjxVmSKSgtmBXrtqgzG0BGFLKE3nlEBBIqr2It?=
+ =?us-ascii?Q?EjHVf1Mkz3HxyCHU/rnuFPc+Qj3B5JXuV0N7VHqXIcNc/waPZUxe7q9DysBa?=
+ =?us-ascii?Q?O6/onPz6RFr1/FGk1U2JHukxipTtRW3VmkAmmgCd8SsHqaUIhTzMod7YspZq?=
+ =?us-ascii?Q?1UUyl8v5cg+hVbxYWsURMU6jg+ajN2qD2Ul3owwBCsodQOEFDhlnaS70IE0K?=
+ =?us-ascii?Q?CX4VX2XBG3UmybuV5lZnFIuvWyDGTB6El361BQp3sfzndwHhiSoVDlaTwgj+?=
+ =?us-ascii?Q?wPMU7IEOGp0N07zERbFZyM4JbAiYCsszQU6KvRAKpGuqOah+79zQ7bOgrqq3?=
+ =?us-ascii?Q?eAF3jrbRE93nk+yjQODAp7djHY3ZryYmBPX6J36ZbiCuuoqKxolCENBcl44H?=
+ =?us-ascii?Q?lJ+/j9DskGN2pIiEzKfD+Pexh61mgN+LA1wBjP88uLIabSOV4zm4HMkcGOSV?=
+ =?us-ascii?Q?aX428DjtU9NePTtvoDDCE6aFzlsO68hiNX1qPo3bQ8c4yUb/yHLzda8yVxRL?=
+ =?us-ascii?Q?RepGe3C9dIMDEUKfPkm1+3BWzjhl+7JljZ6xzFXSlCsNtjzn4NIfh2EfWrge?=
+ =?us-ascii?Q?JNoUZ9Zgx/5njQ7QPztP0lQGLddZfPMC6zDoEfIMQRqY6e/pVNK6P0YAOfpf?=
+ =?us-ascii?Q?YpyfznVhO1VJBmguwtFrPzLG8EP3YIPDjHppo1SW4qKWDACzk7JuoLQJhbaB?=
+ =?us-ascii?Q?fPPl8xyh5vQesRUhaeNC1Oxx4xUz3HazsI07berBQH/NtOtD0RzEKEdBk+It?=
+ =?us-ascii?Q?LMbmzeE2MsAbri9GFwryej34ABOmOpQD+rTUSdw45FoDwmcj7W6Ck3O/fqYN?=
+ =?us-ascii?Q?J4p8QOAIYMxGNsIBmPU=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 229f2d9c-5609-45d4-0ec0-08dc8190e531
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2024 16:44:10.1394
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rwR3WlkZlXAbP6pX65tynVaarv211qI83H0Yqx+O+fzRHT8BOyy2UgVvNe5rwMSck635kKLm3CtXgeGKK8/onA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8316
 
-On 31/05/2024 12:22, Taniya Das wrote:
-> On the QCM6490 boards the LPASS firmware controls the complete clock
-> controller functionalities. But the LPASS resets are required to be
-> controlled from the high level OS. The Audio SW driver should be able to
-> assert/deassert the audio resets as required. Thus in clock driver add
-> support for the same.
-> 
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
->  drivers/clk/qcom/lpassaudiocc-sc7280.c | 28 ++++++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
-> 
-> diff --git a/drivers/clk/qcom/lpassaudiocc-sc7280.c b/drivers/clk/qcom/lpassaudiocc-sc7280.c
-> index c43d0b1af7f7..7fdfd07c111c 100644
-> --- a/drivers/clk/qcom/lpassaudiocc-sc7280.c
-> +++ b/drivers/clk/qcom/lpassaudiocc-sc7280.c
-> @@ -1,6 +1,7 @@
->  // SPDX-License-Identifier: GPL-2.0-only
->  /*
->   * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
->   */
->  
->  #include <linux/clk-provider.h>
-> @@ -869,10 +870,36 @@ static struct platform_driver lpass_aon_cc_sc7280_driver = {
->  	},
->  };
->  
-> +static const struct of_device_id lpass_audio_cc_qcm6490_match_table[] = {
-> +	{ .compatible = "qcom,qcm6490-lpassaudiocc" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, lpass_audio_cc_qcm6490_match_table);
-> +
-> +static int lpass_audio_cc_qcm6490_probe(struct platform_device *pdev)
-> +{
-> +	lpass_audio_cc_sc7280_regmap_config.name = "lpassaudio_cc_reset";
-> +	lpass_audio_cc_sc7280_regmap_config.max_register = 0xc8;
-> +
-> +	return qcom_cc_probe_by_index(pdev, 1, &lpass_audio_cc_reset_sc7280_desc);
-> +}
-> +
-> +static struct platform_driver lpass_audio_cc_qcm6490_driver = {
-> +	.probe = lpass_audio_cc_qcm6490_probe,
-> +	.driver = {
-> +		.name = "lpass_audio_cc-qcm6490",
-> +		.of_match_table = lpass_audio_cc_qcm6490_match_table,
-> +	},
-> +};
-> +
->  static int __init lpass_audio_cc_sc7280_init(void)
->  {
->  	int ret;
->  
-> +	ret = platform_driver_register(&lpass_audio_cc_qcm6490_driver);
-> +	if (ret)
-> +		return ret;
-> +
->  	ret = platform_driver_register(&lpass_aon_cc_sc7280_driver);
-Why this is a new platform driver?  There should be just one driver with
-different match data.
+Convert binding doc from txt to yaml.
 
-Best regards,
-Krzysztof
+Remove redundated "gpio1: gpio@2300000" example.
+Add gpio-controller at example "gpio@1100".
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+
+Notes:
+    Change from v2 to v3
+     - Add Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+     - keep 'gpio-controller' and '#gpio-cells' together in example.
+    
+    Change from v1 to v2
+     - Add gpio-controller at example "gpio@1100". to fix bot error.
+    Strangely, I can't reproduce locally.
+    
+    Pass dt_binding_check
+    make dt_binding_check DT_SCHEMA_FILES=fsl,qoriq-gpio.yaml
+      SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+      CHKDT   Documentation/devicetree/bindings
+      LINT    Documentation/devicetree/bindings
+      DTC_CHK Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.example.dtb
+
+ .../bindings/gpio/fsl,qoriq-gpio.yaml         | 82 +++++++++++++++++++
+ .../devicetree/bindings/gpio/gpio-mpc8xxx.txt | 53 ------------
+ 2 files changed, 82 insertions(+), 53 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml
+ delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-mpc8xxx.txt
+
+diff --git a/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml b/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml
+new file mode 100644
+index 0000000000000..eb046a48a3f59
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml
+@@ -0,0 +1,82 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/fsl,qoriq-gpio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale MPC512x/MPC8xxx/QorIQ/Layerscape GPIO controller
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - fsl,mpc5121-gpio
++          - fsl,mpc5125-gpio
++          - fsl,mpc8349-gpio
++          - fsl,mpc8572-gpio
++          - fsl,mpc8610-gpio
++          - fsl,pq3-gpio
++      - items:
++          - enum:
++              - fsl,ls1021a-gpio
++              - fsl,ls1028a-gpio
++              - fsl,ls1043a-gpio
++              - fsl,ls1088a-gpio
++              - fsl,ls2080a-gpio
++          - const: fsl,qoriq-gpio
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  "#gpio-cells":
++    const: 2
++
++  gpio-controller: true
++
++  interrupt-controller: true
++
++  "#interrupt-cells":
++    const: 2
++
++  little-endian:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      GPIO registers are used as little endian. If not
++      present registers are used as big endian by default.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - "#gpio-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    gpio@1100 {
++        compatible = "fsl,mpc5125-gpio";
++        reg = <0x1100 0x080>;
++        interrupts = <78 0x8>;
++        gpio-controller;
++        #gpio-cells = <2>;
++    };
++
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    gpio@2300000 {
++        compatible = "fsl,ls2080a-gpio", "fsl,qoriq-gpio";
++        reg = <0x2300000 0x10000>;
++        interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
++        little-endian;
++        gpio-controller;
++        #gpio-cells = <2>;
++        interrupt-controller;
++        #interrupt-cells = <2>;
++    };
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-mpc8xxx.txt b/Documentation/devicetree/bindings/gpio/gpio-mpc8xxx.txt
+deleted file mode 100644
+index cd28e932bf50e..0000000000000
+--- a/Documentation/devicetree/bindings/gpio/gpio-mpc8xxx.txt
++++ /dev/null
+@@ -1,53 +0,0 @@
+-* Freescale MPC512x/MPC8xxx/QorIQ/Layerscape GPIO controller
+-
+-Required properties:
+-- compatible : Should be "fsl,<soc>-gpio"
+-  The following <soc>s are known to be supported:
+-	mpc5121, mpc5125, mpc8349, mpc8572, mpc8610, pq3, qoriq,
+-	ls1021a, ls1043a, ls2080a, ls1028a, ls1088a.
+-- reg : Address and length of the register set for the device
+-- interrupts : Should be the port interrupt shared by all 32 pins.
+-- #gpio-cells : Should be two.  The first cell is the pin number and
+-  the second cell is used to specify the gpio polarity:
+-      0 = active high
+-      1 = active low
+-
+-Optional properties:
+-- little-endian : GPIO registers are used as little endian. If not
+-                  present registers are used as big endian by default.
+-
+-Example of gpio-controller node for a mpc5125 SoC:
+-
+-gpio0: gpio@1100 {
+-	compatible = "fsl,mpc5125-gpio";
+-	#gpio-cells = <2>;
+-	reg = <0x1100 0x080>;
+-	interrupts = <78 0x8>;
+-};
+-
+-Example of gpio-controller node for a ls2080a SoC:
+-
+-gpio0: gpio@2300000 {
+-	compatible = "fsl,ls2080a-gpio", "fsl,qoriq-gpio";
+-	reg = <0x0 0x2300000 0x0 0x10000>;
+-	interrupts = <0 36 0x4>; /* Level high type */
+-	gpio-controller;
+-	little-endian;
+-	#gpio-cells = <2>;
+-	interrupt-controller;
+-	#interrupt-cells = <2>;
+-};
+-
+-
+-Example of gpio-controller node for a ls1028a/ls1088a SoC:
+-
+-gpio1: gpio@2300000 {
+-	compatible = "fsl,ls1028a-gpio", "fsl,ls1088a-gpio", "fsl,qoriq-gpio";
+-	reg = <0x0 0x2300000 0x0 0x10000>;
+-	interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+-	gpio-controller;
+-	#gpio-cells = <2>;
+-	interrupt-controller;
+-	#interrupt-cells = <2>;
+-	little-endian;
+-};
+-- 
+2.34.1
 
 
