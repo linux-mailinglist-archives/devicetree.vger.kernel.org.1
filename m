@@ -1,424 +1,188 @@
-Return-Path: <devicetree+bounces-71385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C05318D6897
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 19:56:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3082D8D689A
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 19:57:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2B1C1C214B4
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 17:56:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53D431C21488
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 17:57:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0EEB17C7D4;
-	Fri, 31 May 2024 17:56:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B7BF17C9E5;
+	Fri, 31 May 2024 17:57:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Epwj4ibJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e7yULbTB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE0655B68F
-	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 17:56:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FC6317C7D4;
+	Fri, 31 May 2024 17:57:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717178199; cv=none; b=Yd5+44WVwV3juDXlaUSPi7hJrIMkxwmcXMF/hcTqOB1zti52uSHIh2pHcmTUzYu1ytIybg8t7WBeaxwiieJi0p/TmZVOjrm7/Lh3pbkmSZfm0ranRc2zMBrWfQCOhr+2m8v8t6WrnEt9cLUMRKaChIedrbKcV5WDZug4h4gikKo=
+	t=1717178250; cv=none; b=B1WfU0Ml538vqnEQvuWD5W9/O8fL6nhxEuUlQS4fh6742r8NZ8pV1RD2gZ+LOTLxB9d/B2KoPIKagvW94dcJHDknEr1V8ygw+AFg/ilwHCTOMcwJC0NCjv4NjU0v7eUF3PfbrNzLuOVdIJptevE1wyE456i/D1xsyMDx+u1pShc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717178199; c=relaxed/simple;
-	bh=2q5uORo84n8WBcOWxTyCxQ9dxST+KellkRafGoHI5nw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=QDN+IGCh5z3iFZ/I7v5LK1UakPr8dqbjcE/xDjVj8fok3VCFrsjztCPaVR+YmtN/3oyiQDehMZE2VeNTVEfNB1yPfLrj6wB6rN80GCNqKRNvGZiLqQhhf3oys05+oVlwk4f3haxUTq/+bkNtq+AfjM/Axokj6OKYk+ufRwPj0fU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Epwj4ibJ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44V9ponh003178;
-	Fri, 31 May 2024 17:56:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	rKex3Az0C/erIIBFXu3wei9OYFVCFWIIXHqdSTyRNTU=; b=Epwj4ibJV1NUprY9
-	LUo+6xOBLtTnvo6wYc2gLFHqG/iSIcoMUftd4LbFMKfIj3PAAuxBfLgv1c2kcLJu
-	ML7Y45h4T0mAzZaJbdD/KOrJGUOcSn9UyUjCd1Q4x5+rqCOcvHmbT4Rl/2ek2WH5
-	EMNrz/FR+Sb9wXhzjhwRIpktStloLlT/sfu3aYDGMBQmXYsyJnGX363j/QWos1Xm
-	qSpqW5GV4nqccNh2EQLCIQoy8GZj/thTOJY+M21HrREnzaZ9RDXTjMZ+c77voadN
-	50hGUhgTYG/KVQRZSoWj4OuOV5zheaHYYZuyQ+lQdZVDPn6VMCaWRzmTnMCz05xo
-	isPcHg==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yfc9nhb5g-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 31 May 2024 17:56:18 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44VHuHFQ011945
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 31 May 2024 17:56:17 GMT
-Received: from [10.71.108.229] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 31 May
- 2024 10:56:16 -0700
-Message-ID: <789b127a-c53a-4e1b-a83c-6cc666d34bc1@quicinc.com>
-Date: Fri, 31 May 2024 10:56:15 -0700
+	s=arc-20240116; t=1717178250; c=relaxed/simple;
+	bh=14nUOvlXzx9FwcFZnYhljHX2vE6nY1fLFbUL/vgkrwM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LcpyvsrtoVFwAXo8y0VC6/CkA/vrCZcSdmSx8GcAIRMl3JvkmY5t0qyH6HlBs+EvEE927ED3+pC0S8h1eTJAOhsFtGBdrIKmUxwK7nWopGnYnxnZh+w4wd1V/UlSN77cg1uvWih2dwlHR2bGakAXxrnRY8Xkj4EozReGckZ6LdU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e7yULbTB; arc=none smtp.client-ip=209.85.219.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-dfa6e0add60so1416567276.3;
+        Fri, 31 May 2024 10:57:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717178247; x=1717783047; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=iLsU9SrFk8jsYiYkwRmxAIdMWmUIfrvdUknMyWYRiWE=;
+        b=e7yULbTBi8fPsnGj+5gxmyqps7WiyVq6V/8R9T96B7aFSlgcwk720JnVR1w98xqh3L
+         dAf8EiGQKLDAs9r2QH1JoQcSsXB2hG3MdN3+bzmFoTMr/B4/LMQFuRbSYHDtRhTGD+ym
+         hK/GrGbfAbyuXaIjRVu6F5aABJMPPACA4A0VFgZms9DhNRBZ7swN9mQ7mwM06Zcvpojn
+         N23O57Thr3dUWr8XXJiacD3iRo9omsFUzeEgzWuCzuc1Z81oTAdjs6VcxO0ZjTyp6mOb
+         SoTP9eXGqZSN/X/KW6YWXZXPdg/W67KKfh1VSiPSLE0daUhnOSkgf02crm7eiRgr0wWu
+         yf3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717178247; x=1717783047;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iLsU9SrFk8jsYiYkwRmxAIdMWmUIfrvdUknMyWYRiWE=;
+        b=LZr2dvtb1WWoBNl2VnTc/62mokMvGtAi8qBg89aXN1wCpPenhr62yvaRkS3QdcD9x9
+         QDObzlnY/gdAKhK9GKjAFTsbEDUqC2o0c8c5fUDCU2dWDHLGEH5U7u5N045/kzkP1qkP
+         UMhtKBQidmDkvJ1SRnOkOeonilS8GxQ/p0YHazXeItWmyjtL3Y+k2uFrf6qiwcsMrf+y
+         HcvK55iNrtCBRsQcEjWGYNjwM1ktej2/Klv8BinfadOCqa46aujRIciDgMAq6FIrM2Ol
+         u+dGeMpAFctY0yrtlsBhiD3K31JfwUM8nDunCrpKVfsr4D/+KHND8byXZx10+I7oEzFD
+         QDFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUbxy6eGRV5tP3ypRDfAc3dpD6mvGUQKBupKzFnDoEzPPz0tTIAvhqdry0tIVsj3JwUC1Q8VNZhREbtUrDNqH1m8wQYGSqxZMCq02Dx5Q+tU1R5jcb/Sf6udth4fUwXo1uhZutH/Q==
+X-Gm-Message-State: AOJu0YxtgQuGM0Bky0bIT5Wppyt9Qkr57YySlk8mrdIea9XxOMNwCuz0
+	gxFygfNErEKYj1CqHq1kgMuM/6DUW6ukCAXZUFCg306K7xYPoYQXdy41l9ojff6zGiGJZmeEHH2
+	wqWS34XhtAXaDWcvPd1bmlUBGuz8=
+X-Google-Smtp-Source: AGHT+IGJfAakWRlaze69hr1itb5DcopAVyEyNrYk8qoHbmtcEU0nuInXs6ghX0YrxFqZ+c4wgNhMQt18gfTY2R95X1Y=
+X-Received: by 2002:a5b:b86:0:b0:de5:4ab8:317f with SMTP id
+ 3f1490d57ef6-dfa73c087fcmr2687449276.20.1717178247282; Fri, 31 May 2024
+ 10:57:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] drm: panel: nv3052c: Add WL-355608-A8 panel
-Content-Language: en-US
-To: Ryan Walklin <ryan@testtoast.com>, <dri-devel@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>
-CC: Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg
-	<sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter
-	<daniel@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Hironori KIKUCHI <kikuchan98@gmail.com>,
-        Chris Morgan <macroalpha82@gmail.com>,
-        Andre Przywara
-	<andre.przywara@arm.com>,
-        John Watts <contact@jookia.org>
-References: <20240530082318.40516-1-ryan@testtoast.com>
- <20240530082318.40516-5-ryan@testtoast.com>
-From: Jessica Zhang <quic_jesszhan@quicinc.com>
-In-Reply-To: <20240530082318.40516-5-ryan@testtoast.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: aHRk2a3bkiEHbbBCxqoSzLW7D0yopmLr
-X-Proofpoint-GUID: aHRk2a3bkiEHbbBCxqoSzLW7D0yopmLr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-31_12,2024-05-30_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
- impostorscore=0 bulkscore=0 malwarescore=0 clxscore=1011 spamscore=0
- priorityscore=1501 mlxlogscore=999 suspectscore=0 phishscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2405310136
+References: <20240531141152.327592-1-kikuchan98@gmail.com> <20240531141152.327592-6-kikuchan98@gmail.com>
+ <851280ad-ac0e-47d1-99e2-4f3b5ea29f2f@kernel.org>
+In-Reply-To: <851280ad-ac0e-47d1-99e2-4f3b5ea29f2f@kernel.org>
+From: Hironori KIKUCHI <kikuchan98@gmail.com>
+Date: Sat, 1 Jun 2024 02:57:15 +0900
+Message-ID: <CAG40kxEbMQc-ni0HDVR7rtj48aFu-jz8sYUAO+fdmZSmXWrizw@mail.gmail.com>
+Subject: Re: [PATCH 5/5] dt-bindings: pwm: sun20i: Add options to select a
+ clock source and DIV_M
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-kernel@vger.kernel.org, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Aleksandr Shubin <privatesub2@gmail.com>, 
+	Cheo Fusi <fusibrandon13@gmail.com>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
 
+Hello,
 
+> > This patch adds new options to select a clock source and DIV_M register
+> > value for each coupled PWM channels.
+>
+> Please do not use "This commit/patch/change", but imperative mood. See
+> longer explanation here:
+> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+>
+> Bindings are before their users. This should not be last patch, because
+> this implies there is no user.
 
-On 5/30/2024 1:22 AM, Ryan Walklin wrote:
-> The WL-355608-A8 is a 3.5" 640x480@60Hz RGB LCD display from an unknown
-> OEM used in a number of handheld gaming devices made by Anbernic.
-> Limited information is available online however the panel timing values
-> (below) have been obtained from the vendor BSP. The panel appears to
-> integrate a NV3052C LCD driver (or clone). Available devices address it
-> in SPI/RGB mode, with the timing signals generated from the device
-> SoC (Allwinner H700) and passed through.
-> 
-> Add a panel definition and display mode to the existing NV3502C driver.
-> 
-> It was assumed during bringup that the initialisation sequence was the
-> same as the existing Fascontek FS035VG158 panel, proved working during
-> experimentation, however subsequent dumping of the init sequence with a
-> logic analyser confirms one small change to VCOM_ADJ3 from 0x4a to 0x44,
-> therefore a separate set of registers is also added.
-> 
-> Timings:
->             | Active |  FP  | Sync |  BP  | Total
-> -----------|--------|------|------|------|-------
-> Horizontal |   640  |  64  |  20  |  46  |  770
->    Vertical |   480  |  21  |   4  |  15  |  520
-> 
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> Co-developed-by: Hironori KIKUCHI <kikuchan98@gmail.com>
-> Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
-> Reviewed-by: John Watts <contact@jookia.org>
+I'm sorry, I'll fix them.
 
-Hi Ryan,
+> This applies to all variants? Or the one you add? Confused...
 
-Acked-by: Jessica Zhang <quic_jesszhan@quicinc.com>
+Apologies for confusing you. This applies to all variants.
 
-Thanks,
+>
+> >
+> > Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
+> > ---
+> >  .../bindings/pwm/allwinner,sun20i-pwm.yaml    | 19 +++++++++++++++++++
+> >  1 file changed, 19 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
+> > index b9b6d7e7c87..436a1d344ab 100644
+> > --- a/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
+> > +++ b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
+> > @@ -45,6 +45,25 @@ properties:
+> >      description: The number of PWM channels configured for this instance
+> >      enum: [6, 9]
+> >
+> > +  allwinner,pwm-pair-clock-sources:
+> > +    description: The clock source names for each PWM pair
+> > +    items:
+> > +      enum: [hosc, apb]
+> > +    minItems: 1
+> > +    maxItems: 8
+>
+> Missing type... and add 8 of such items to your example to make it complete.
 
-Jessica Zhang
+Thank you. I'll fix it.
 
-> 
-> ---
-> 
-> Changelog v1..v2:
-> - Update .compatible string to match dt-binding
-> - Add co-developer sign-off and review tags
-> ---
->   .../gpu/drm/panel/panel-newvision-nv3052c.c   | 225 ++++++++++++++++++
->   1 file changed, 225 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-newvision-nv3052c.c b/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
-> index 1aab0c9ae52fa..ee0ce271205e3 100644
-> --- a/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
-> +++ b/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
-> @@ -433,6 +433,202 @@ static const struct nv3052c_reg fs035vg158_panel_regs[] = {
->   	{ 0x36, 0x0a }, // bgr = 1, ss = 1, gs = 0
->   };
->   
-> +
-> +static const struct nv3052c_reg wl_355608_a8_panel_regs[] = {
-> +	// EXTC Command set enable, select page 1
-> +	{ 0xff, 0x30 }, { 0xff, 0x52 }, { 0xff, 0x01 },
-> +	// Mostly unknown registers
-> +	{ 0xe3, 0x00 },
-> +	{ 0x40, 0x00 },
-> +	{ 0x03, 0x40 },
-> +	{ 0x04, 0x00 },
-> +	{ 0x05, 0x03 },
-> +	{ 0x08, 0x00 },
-> +	{ 0x09, 0x07 },
-> +	{ 0x0a, 0x01 },
-> +	{ 0x0b, 0x32 },
-> +	{ 0x0c, 0x32 },
-> +	{ 0x0d, 0x0b },
-> +	{ 0x0e, 0x00 },
-> +	{ 0x23, 0xa0 },
-> +	{ 0x24, 0x0c },
-> +	{ 0x25, 0x06 },
-> +	{ 0x26, 0x14 },
-> +	{ 0x27, 0x14 },
-> +	{ 0x38, 0xcc }, // VCOM_ADJ1
-> +	{ 0x39, 0xd7 }, // VCOM_ADJ2
-> +	{ 0x3a, 0x44 }, // VCOM_ADJ3
-> +	{ 0x28, 0x40 },
-> +	{ 0x29, 0x01 },
-> +	{ 0x2a, 0xdf },
-> +	{ 0x49, 0x3c },
-> +	{ 0x91, 0x77 }, // EXTPW_CTRL2
-> +	{ 0x92, 0x77 }, // EXTPW_CTRL3
-> +	{ 0xa0, 0x55 },
-> +	{ 0xa1, 0x50 },
-> +	{ 0xa4, 0x9c },
-> +	{ 0xa7, 0x02 },
-> +	{ 0xa8, 0x01 },
-> +	{ 0xa9, 0x01 },
-> +	{ 0xaa, 0xfc },
-> +	{ 0xab, 0x28 },
-> +	{ 0xac, 0x06 },
-> +	{ 0xad, 0x06 },
-> +	{ 0xae, 0x06 },
-> +	{ 0xaf, 0x03 },
-> +	{ 0xb0, 0x08 },
-> +	{ 0xb1, 0x26 },
-> +	{ 0xb2, 0x28 },
-> +	{ 0xb3, 0x28 },
-> +	{ 0xb4, 0x33 },
-> +	{ 0xb5, 0x08 },
-> +	{ 0xb6, 0x26 },
-> +	{ 0xb7, 0x08 },
-> +	{ 0xb8, 0x26 },
-> +	{ 0xf0, 0x00 },
-> +	{ 0xf6, 0xc0 },
-> +	// EXTC Command set enable, select page 2
-> +	{ 0xff, 0x30 }, { 0xff, 0x52 }, { 0xff, 0x02 },
-> +	// Set gray scale voltage to adjust gamma
-> +	{ 0xb0, 0x0b }, // PGAMVR0
-> +	{ 0xb1, 0x16 }, // PGAMVR1
-> +	{ 0xb2, 0x17 }, // PGAMVR2
-> +	{ 0xb3, 0x2c }, // PGAMVR3
-> +	{ 0xb4, 0x32 }, // PGAMVR4
-> +	{ 0xb5, 0x3b }, // PGAMVR5
-> +	{ 0xb6, 0x29 }, // PGAMPR0
-> +	{ 0xb7, 0x40 }, // PGAMPR1
-> +	{ 0xb8, 0x0d }, // PGAMPK0
-> +	{ 0xb9, 0x05 }, // PGAMPK1
-> +	{ 0xba, 0x12 }, // PGAMPK2
-> +	{ 0xbb, 0x10 }, // PGAMPK3
-> +	{ 0xbc, 0x12 }, // PGAMPK4
-> +	{ 0xbd, 0x15 }, // PGAMPK5
-> +	{ 0xbe, 0x19 }, // PGAMPK6
-> +	{ 0xbf, 0x0e }, // PGAMPK7
-> +	{ 0xc0, 0x16 }, // PGAMPK8
-> +	{ 0xc1, 0x0a }, // PGAMPK9
-> +	// Set gray scale voltage to adjust gamma
-> +	{ 0xd0, 0x0c }, // NGAMVR0
-> +	{ 0xd1, 0x17 }, // NGAMVR0
-> +	{ 0xd2, 0x14 }, // NGAMVR1
-> +	{ 0xd3, 0x2e }, // NGAMVR2
-> +	{ 0xd4, 0x32 }, // NGAMVR3
-> +	{ 0xd5, 0x3c }, // NGAMVR4
-> +	{ 0xd6, 0x22 }, // NGAMPR0
-> +	{ 0xd7, 0x3d }, // NGAMPR1
-> +	{ 0xd8, 0x0d }, // NGAMPK0
-> +	{ 0xd9, 0x07 }, // NGAMPK1
-> +	{ 0xda, 0x13 }, // NGAMPK2
-> +	{ 0xdb, 0x13 }, // NGAMPK3
-> +	{ 0xdc, 0x11 }, // NGAMPK4
-> +	{ 0xdd, 0x15 }, // NGAMPK5
-> +	{ 0xde, 0x19 }, // NGAMPK6
-> +	{ 0xdf, 0x10 }, // NGAMPK7
-> +	{ 0xe0, 0x17 }, // NGAMPK8
-> +	{ 0xe1, 0x0a }, // NGAMPK9
-> +	// EXTC Command set enable, select page 3
-> +	{ 0xff, 0x30 }, { 0xff, 0x52 }, { 0xff, 0x03 },
-> +	// Set various timing settings
-> +	{ 0x00, 0x2a }, // GIP_VST_1
-> +	{ 0x01, 0x2a }, // GIP_VST_2
-> +	{ 0x02, 0x2a }, // GIP_VST_3
-> +	{ 0x03, 0x2a }, // GIP_VST_4
-> +	{ 0x04, 0x61 }, // GIP_VST_5
-> +	{ 0x05, 0x80 }, // GIP_VST_6
-> +	{ 0x06, 0xc7 }, // GIP_VST_7
-> +	{ 0x07, 0x01 }, // GIP_VST_8
-> +	{ 0x08, 0x03 }, // GIP_VST_9
-> +	{ 0x09, 0x04 }, // GIP_VST_10
-> +	{ 0x70, 0x22 }, // GIP_ECLK1
-> +	{ 0x71, 0x80 }, // GIP_ECLK2
-> +	{ 0x30, 0x2a }, // GIP_CLK_1
-> +	{ 0x31, 0x2a }, // GIP_CLK_2
-> +	{ 0x32, 0x2a }, // GIP_CLK_3
-> +	{ 0x33, 0x2a }, // GIP_CLK_4
-> +	{ 0x34, 0x61 }, // GIP_CLK_5
-> +	{ 0x35, 0xc5 }, // GIP_CLK_6
-> +	{ 0x36, 0x80 }, // GIP_CLK_7
-> +	{ 0x37, 0x23 }, // GIP_CLK_8
-> +	{ 0x40, 0x03 }, // GIP_CLKA_1
-> +	{ 0x41, 0x04 }, // GIP_CLKA_2
-> +	{ 0x42, 0x05 }, // GIP_CLKA_3
-> +	{ 0x43, 0x06 }, // GIP_CLKA_4
-> +	{ 0x44, 0x11 }, // GIP_CLKA_5
-> +	{ 0x45, 0xe8 }, // GIP_CLKA_6
-> +	{ 0x46, 0xe9 }, // GIP_CLKA_7
-> +	{ 0x47, 0x11 }, // GIP_CLKA_8
-> +	{ 0x48, 0xea }, // GIP_CLKA_9
-> +	{ 0x49, 0xeb }, // GIP_CLKA_10
-> +	{ 0x50, 0x07 }, // GIP_CLKB_1
-> +	{ 0x51, 0x08 }, // GIP_CLKB_2
-> +	{ 0x52, 0x09 }, // GIP_CLKB_3
-> +	{ 0x53, 0x0a }, // GIP_CLKB_4
-> +	{ 0x54, 0x11 }, // GIP_CLKB_5
-> +	{ 0x55, 0xec }, // GIP_CLKB_6
-> +	{ 0x56, 0xed }, // GIP_CLKB_7
-> +	{ 0x57, 0x11 }, // GIP_CLKB_8
-> +	{ 0x58, 0xef }, // GIP_CLKB_9
-> +	{ 0x59, 0xf0 }, // GIP_CLKB_10
-> +	// Map internal GOA signals to GOA output pad
-> +	{ 0xb1, 0x01 }, // PANELD2U2
-> +	{ 0xb4, 0x15 }, // PANELD2U5
-> +	{ 0xb5, 0x16 }, // PANELD2U6
-> +	{ 0xb6, 0x09 }, // PANELD2U7
-> +	{ 0xb7, 0x0f }, // PANELD2U8
-> +	{ 0xb8, 0x0d }, // PANELD2U9
-> +	{ 0xb9, 0x0b }, // PANELD2U10
-> +	{ 0xba, 0x00 }, // PANELD2U11
-> +	{ 0xc7, 0x02 }, // PANELD2U24
-> +	{ 0xca, 0x17 }, // PANELD2U27
-> +	{ 0xcb, 0x18 }, // PANELD2U28
-> +	{ 0xcc, 0x0a }, // PANELD2U29
-> +	{ 0xcd, 0x10 }, // PANELD2U30
-> +	{ 0xce, 0x0e }, // PANELD2U31
-> +	{ 0xcf, 0x0c }, // PANELD2U32
-> +	{ 0xd0, 0x00 }, // PANELD2U33
-> +	// Map internal GOA signals to GOA output pad
-> +	{ 0x81, 0x00 }, // PANELU2D2
-> +	{ 0x84, 0x15 }, // PANELU2D5
-> +	{ 0x85, 0x16 }, // PANELU2D6
-> +	{ 0x86, 0x10 }, // PANELU2D7
-> +	{ 0x87, 0x0a }, // PANELU2D8
-> +	{ 0x88, 0x0c }, // PANELU2D9
-> +	{ 0x89, 0x0e }, // PANELU2D10
-> +	{ 0x8a, 0x02 }, // PANELU2D11
-> +	{ 0x97, 0x00 }, // PANELU2D24
-> +	{ 0x9a, 0x17 }, // PANELU2D27
-> +	{ 0x9b, 0x18 }, // PANELU2D28
-> +	{ 0x9c, 0x0f }, // PANELU2D29
-> +	{ 0x9d, 0x09 }, // PANELU2D30
-> +	{ 0x9e, 0x0b }, // PANELU2D31
-> +	{ 0x9f, 0x0d }, // PANELU2D32
-> +	{ 0xa0, 0x01 }, // PANELU2D33
-> +	// EXTC Command set enable, select page 2
-> +	{ 0xff, 0x30 }, { 0xff, 0x52 }, { 0xff, 0x02 },
-> +	// Unknown registers
-> +	{ 0x01, 0x01 },
-> +	{ 0x02, 0xda },
-> +	{ 0x03, 0xba },
-> +	{ 0x04, 0xa8 },
-> +	{ 0x05, 0x9a },
-> +	{ 0x06, 0x70 },
-> +	{ 0x07, 0xff },
-> +	{ 0x08, 0x91 },
-> +	{ 0x09, 0x90 },
-> +	{ 0x0a, 0xff },
-> +	{ 0x0b, 0x8f },
-> +	{ 0x0c, 0x60 },
-> +	{ 0x0d, 0x58 },
-> +	{ 0x0e, 0x48 },
-> +	{ 0x0f, 0x38 },
-> +	{ 0x10, 0x2b },
-> +	// EXTC Command set enable, select page 0
-> +	{ 0xff, 0x30 }, { 0xff, 0x52 }, { 0xff, 0x00 },
-> +	// Display Access Control
-> +	{ 0x36, 0x0a }, // bgr = 1, ss = 1, gs = 0
-> +};
-> +
->   static inline struct nv3052c *to_nv3052c(struct drm_panel *panel)
->   {
->   	return container_of(panel, struct nv3052c, panel);
-> @@ -670,6 +866,21 @@ static const struct drm_display_mode fs035vg158_modes[] = {
->   	},
->   };
->   
-> +static const struct drm_display_mode wl_355608_a8_mode[] = {
-> +	{
-> +		.clock = 24000,
-> +		.hdisplay = 640,
-> +		.hsync_start = 640 + 64,
-> +		.hsync_end = 640 + 64 + 20,
-> +		.htotal = 640 + 64 + 20 + 46,
-> +		.vdisplay = 480,
-> +		.vsync_start = 480 + 21,
-> +		.vsync_end = 480 + 21 + 4,
-> +		.vtotal = 480 + 21 + 4 + 15,
-> +		.flags = DRM_MODE_FLAG_NVSYNC | DRM_MODE_FLAG_NHSYNC,
-> +	},
-> +};
-> +
->   static const struct nv3052c_panel_info ltk035c5444t_panel_info = {
->   	.display_modes = ltk035c5444t_modes,
->   	.num_modes = ARRAY_SIZE(ltk035c5444t_modes),
-> @@ -692,9 +903,21 @@ static const struct nv3052c_panel_info fs035vg158_panel_info = {
->   	.panel_regs_len = ARRAY_SIZE(fs035vg158_panel_regs),
->   };
->   
-> +static const struct nv3052c_panel_info wl_355608_a8_panel_info = {
-> +	.display_modes = wl_355608_a8_mode,
-> +	.num_modes = ARRAY_SIZE(wl_355608_a8_mode),
-> +	.width_mm = 150,
-> +	.height_mm = 94,
-> +	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
-> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE,
-> +	.panel_regs = wl_355608_a8_panel_regs,
-> +	.panel_regs_len = ARRAY_SIZE(wl_355608_a8_panel_regs),
-> +};
-> +
->   static const struct spi_device_id nv3052c_ids[] = {
->   	{ "ltk035c5444t", },
->   	{ "fs035vg158", },
-> +	{ "wl-355608-a8", },
->   	{ /* sentinel */ }
->   };
->   MODULE_DEVICE_TABLE(spi, nv3052c_ids);
-> @@ -702,6 +925,7 @@ MODULE_DEVICE_TABLE(spi, nv3052c_ids);
->   static const struct of_device_id nv3052c_of_match[] = {
->   	{ .compatible = "leadtek,ltk035c5444t", .data = &ltk035c5444t_panel_info },
->   	{ .compatible = "fascontek,fs035vg158", .data = &fs035vg158_panel_info },
-> +	{ .compatible = "wl-355608-a8", .data = &wl_355608_a8_panel_info },
->   	{ /* sentinel */ }
->   };
->   MODULE_DEVICE_TABLE(of, nv3052c_of_match);
-> @@ -719,4 +943,5 @@ module_spi_driver(nv3052c_driver);
->   
->   MODULE_AUTHOR("Paul Cercueil <paul@crapouillou.net>");
->   MODULE_AUTHOR("Christophe Branchereau <cbranchereau@gmail.com>");
-> +MODULE_AUTHOR("Ryan Walklin <ryan@testtoast.com");
->   MODULE_LICENSE("GPL v2");
-> -- 
-> 2.45.1
-> 
+>
+> > +
+> > +  allwinner,pwm-pair-clock-prescales:
+> > +    description: The prescale (DIV_M register) values for each PWM pair
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > +    items:
+> > +      items:
+> > +        minimum: 0
+> > +        maximum: 8
+> > +      minItems: 1
+> > +      maxItems: 1
+> > +    minItems: 1
+> > +    maxItems: 8
+>
+> This does not look like matrix but array.
+
+I wanted to specify values like this:
+
+    allwinner,pwm-pair-clock-prescales = <0>, <1>, <3>;
+    allwinner,pwm-pair-clock-sources = "hosc", "apb", "hosc":
+
+These should correspond to each PWM pair.
+This way, I thought we might be able to visually understand the relationship
+between prescalers and sources, like clock-names and clocks.
+
+Is this notation uncommon, perhaps?
+
+>
+> Why clock DIV cannot be deduced from typical PWM attributes + clock
+> frequency?
+
+This SoC's PWM system has one shared prescaler and clock source for each pair
+of PWM channels. I should have noted this earlier, sorry.
+
+Actually, the original v9 patch automatically deduced the DIV value
+from the frequency.
+However, because the two channels share a single prescaler, once one channel is
+enabled, it affects and restricts the DIV value for the other channel
+in the pair.
+This introduces a problem of determining which channel should set the shared DIV
+value. The original behavior was that the first channel enabled would win.
+
+Instead, this patch try to resolve the issue by specifying these
+values for each PWM
+pairs deterministically.
+That's why it requires the new options.
+
+>
+> Best regards,
+> Krzysztof
+
+Best regards,
+kikuchan.
 
