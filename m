@@ -1,162 +1,108 @@
-Return-Path: <devicetree+bounces-71195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1F088D5FAE
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:25:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 216738D5FC5
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:33:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E3782861B7
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 10:25:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B18D9284A46
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 10:33:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 131ED155741;
-	Fri, 31 May 2024 10:24:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BA64155C82;
+	Fri, 31 May 2024 10:33:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jHg9/wm3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RmIPKbMk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA77E152188;
-	Fri, 31 May 2024 10:24:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FBFF3DBB7;
+	Fri, 31 May 2024 10:33:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717151099; cv=none; b=QTTvNW1XQ9G2o8MQIcQUrhnpCF8PENaPgYXGnqi80jolV4EvcdwdINqG4aoFhGJmuE42+w2ODQshB36nF4Hp6bXUlNVgACgpkpasT91sw1bPLBRR+jioOVCAnKYYsPHPBINOXG+EIs9brwvCtCcLAxqqMLPX2/+XQpeaZKA0S9M=
+	t=1717151581; cv=none; b=dSv1i0S9BhMMIaivz2muCNSbiK53gCQj1SLwAhBC25qunl/GTBiCG9ZMNMe5DX4NXLxRXGRLxtB69VJUf6hvjSX0njwxbRg96vRDOckYe4XQwi09jm/Ll6xw47sKgxXKI1kacs3hpc0VDQmC6t81dyY4/CsWwHxYbu4lrYs/Q58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717151099; c=relaxed/simple;
-	bh=8maQ6Q3charUiy3VU7HJTXAXtan7ZZFMKnes9nHGVx4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fNZRJC0deWggZwGB3sZwW+kNpmf31v19efbG9ds06ZtcXDI5XGZrYcgW1/Gz3bXWtFVrrQXmhHFTyLWL+FUr/1rP674KY/R+5bW7QL/NBgCrqfioPJaPYNe/x2bJlNbL69BiORFDAqF+iEGwHrwGakgazhAwgp17ObG1qAs8OUE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jHg9/wm3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C55F2C32786;
-	Fri, 31 May 2024 10:24:55 +0000 (UTC)
+	s=arc-20240116; t=1717151581; c=relaxed/simple;
+	bh=zS1pUrMFJYbBgJHf7inMI3R6nDBmusfMV1wVhQY5wE4=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=GqU/NC3S3tiampSrVzI1BV06LJDpP7iUkFA3UpR7+7WtTwGU6tQ7pBsFhWA02MMfsXSIATLBUSJZPBclslTpUPMCMZ5eS51AYLNbreUMtJelORGF0a/jpq4A4GoLvItyLxS+K0aJ7IE31dmMOIy9+eR6B8LBw0OmzspYvr7WRto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RmIPKbMk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B15FC116B1;
+	Fri, 31 May 2024 10:33:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717151098;
-	bh=8maQ6Q3charUiy3VU7HJTXAXtan7ZZFMKnes9nHGVx4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jHg9/wm3QJFLM7y46xYnGT2OcRoyqJGSga8lKn5AeWDpQCL5vgWpOT+zT3yXZuUee
-	 l2Uot/6viN949g8jOi6QZ5BsyNzFywSjNAuMidmRnrk+8/0viNTlRXvyk6U38peEcG
-	 an7pEvjzxUkadT52eQWITt0Vg4DbKGNOOfdu1RlAf5USxD3kPawNPvrEgpsowZ4fRn
-	 rmfbhmtBkkJH3woz9/UcwuOfE0+Gf5lMosbkIYrLQ2Lvx/yCDxuyXSFi3xhXD94oXH
-	 8LK+4fQJ+l3CxYFUMN0DuydYJhSHZcTahs6HQy2gNO2I8psRwsRAEjzsRf4j3dx9rE
-	 0/3I/+fdZvK2g==
-Date: Fri, 31 May 2024 11:24:52 +0100
-From: Lee Jones <lee@kernel.org>
-To: Karel Balej <balejk@matfyz.cz>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v6 2/5] mfd: add driver for Marvell 88PM886 PMIC
-Message-ID: <20240531102409.GB1005600@google.com>
-References: <20240504194632.2456-1-balejk@matfyz.cz>
- <20240504194632.2456-3-balejk@matfyz.cz>
+	s=k20201202; t=1717151580;
+	bh=zS1pUrMFJYbBgJHf7inMI3R6nDBmusfMV1wVhQY5wE4=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=RmIPKbMkTl4jPWa7LwDnYhaXtpFK792OMWTGtvMq8hPunLB/AXqz1frtbHg4JTkIQ
+	 dCxGWhGRo4msS7r+0cFQcwYMIAWOTnfN5nU5VfECJCAVZNuWs9M8VihVUTKRJJUBOk
+	 CSigrA1woT9oMCZ1DUfCff+g/yUY0alMgH1VQ9EVcRca3MujEQdACR5pE3xfe8Hz0n
+	 6pR1DH5p9B5Cp56Qr5agogcRnal+Ac2jiuzjKcCmKVrX3XnseGAXrDqs1NM2eux3Qh
+	 q0h0PQ8365NmFFLH9AC+NwGTIttCCgqVVWGGl/FkqVYDeLu9qwVfCNv2TK107KkZ+6
+	 5A56fjdzLZ/uQ==
+Date: Fri, 31 May 2024 05:32:59 -0500
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240504194632.2456-3-balejk@matfyz.cz>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: linux-clk@vger.kernel.org, quic_jkona@quicinc.com, 
+ Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Stephen Boyd <sboyd@kernel.org>
+In-Reply-To: <20240531090249.10293-12-quic_tdas@quicinc.com>
+References: <20240531090249.10293-1-quic_tdas@quicinc.com>
+ <20240531090249.10293-12-quic_tdas@quicinc.com>
+Message-Id: <171715157923.946292.1937976037620674033.robh@kernel.org>
+Subject: Re: [PATCH 11/13] dt-bindings: clock: qcom: Add SA8775P display
+ controller
 
-On Sat, 04 May 2024, Karel Balej wrote:
 
-> Marvell 88PM886 is a PMIC which provides various functions such as
-> onkey, battery, charger and regulators. It is found for instance in the
-> samsung,coreprimevelte smartphone with which this was tested. Implement
-> basic support to allow for the use of regulators and onkey.
+On Fri, 31 May 2024 14:32:47 +0530, Taniya Das wrote:
+> Add device tree bindings for the display clock controller
+> on Qualcomm SA8775P platform.
 > 
-> Signed-off-by: Karel Balej <balejk@matfyz.cz>
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
 > ---
+>  .../bindings/clock/qcom,sa8775p-dispcc.yaml   | 88 +++++++++++++++++++
+>  .../dt-bindings/clock/qcom,sa8775p-dispcc.h   | 87 ++++++++++++++++++
+>  2 files changed, 175 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sa8775p-dispcc.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,sa8775p-dispcc.h
 > 
-> Notes:
->     v6:
->     - Address Lee's comments:
->       - Don't break long line in the power off handler.
->       - Set PLATFORM_DEVID_NONE. This should be safe with respect to
->         collisions since there are no known devices with more than one of
->         these PMICs, plus given their general purpose nature it is unlikely
->         that there would ever be. Also include the corresponding header.
->       - Move all defines to the header.
->     - Give the base page's maximum register its real name.
->     - Set irq_base to 0.
->     v5:
->     - Address Mark's feedback:
->       - Move regmap config back out of the header and rename it. Also lower
->         its maximum register based on what's actually used in the downstream
->         code.
->     RFC v4:
->     - Use MFD_CELL_* macros.
->     - Address Lee's feedback:
->       - Do not define regmap_config.val_bits and .reg_bits.
->       - Drop everything regulator related except mfd_cell (regmap
->         initialization, IDs enum etc.). Drop pm886_initialize_subregmaps.
->       - Do not store regmap pointers as an array as there is now only one
->         regmap. Also drop the corresponding enum.
->       - Move regmap_config to the header as it is needed in the regulators
->         driver.
->       - pm886_chip.whoami -> chip_id
->       - Reword chip ID mismatch error message and print the ID as
->         hexadecimal.
->       - Fix includes in include/linux/88pm886.h.
->       - Drop the pm886_irq_number enum and define the (for the moment) only
->         IRQ explicitly.
->     - Have only one MFD cell for all regulators as they are now registered
->       all at once in the regulators driver.
->     - Reword commit message.
->     - Make device table static and remove comma after the sentinel to signal
->       that nothing should come after it.
->     RFC v3:
->     - Drop onkey cell .of_compatible.
->     - Rename LDO page offset and regmap to REGULATORS.
->     RFC v2:
->     - Remove some abstraction.
->     - Sort includes alphabetically and add linux/of.h.
->     - Depend on OF, remove of_match_ptr and add MODULE_DEVICE_TABLE.
->     - Use more temporaries and break long lines.
->     - Do not initialize ret in probe.
->     - Use the wakeup-source DT property.
->     - Rename ret to err.
->     - Address Lee's comments:
->       - Drop patched in presets for base regmap and related defines.
->       - Use full sentences in comments.
->       - Remove IRQ comment.
->       - Define regmap_config member values.
->       - Rename data to sys_off_data.
->       - Add _PMIC suffix to Kconfig.
->       - Use dev_err_probe.
->       - Do not store irq_data.
->       - s/WHOAMI/CHIP_ID
->       - Drop LINUX part of include guard name.
->       - Merge in the regulator series modifications in order to have more
->         devices and modify the commit message accordingly. Changes with
->         respect to the original regulator series patches:
->         - ret -> err
->         - Add temporary for dev in pm88x_initialize_subregmaps.
->         - Drop of_compatible for the regulators.
->         - Do not duplicate LDO regmap for bucks.
->     - Rewrite commit message.
-> 
->  drivers/mfd/88pm886.c       | 148 ++++++++++++++++++++++++++++++++++++
->  drivers/mfd/Kconfig         |  12 +++
->  drivers/mfd/Makefile        |   1 +
->  include/linux/mfd/88pm886.h |  69 +++++++++++++++++
->  4 files changed, 230 insertions(+)
->  create mode 100644 drivers/mfd/88pm886.c
->  create mode 100644 include/linux/mfd/88pm886.h
 
-I don't see any more issues.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Are you planning on seeing to Mark's review comments?
+yamllint warnings/errors:
 
--- 
-Lee Jones [李琼斯]
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/clock/qcom,sa8775p-dispcc.example.dtb: /example-0/clock-controller@af00000: failed to match any schema with compatible: ['qcom,sa8755p-dispcc0']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240531090249.10293-12-quic_tdas@quicinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
