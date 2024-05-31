@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-71249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 491F18D62E0
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 15:23:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E253A8D62E4
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 15:23:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79F461C24EBE
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 13:23:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 986B528B525
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 13:23:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 606C9158A1C;
-	Fri, 31 May 2024 13:23:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC43A158A2D;
+	Fri, 31 May 2024 13:23:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RcKIUPxC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PVRjEy7Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE10A158204
-	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 13:23:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D14E158204
+	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 13:23:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717161796; cv=none; b=X+vXNuqNjeoMQOBpbjSHdYEDVyzatdylbWocvY3Ee8abCGJBnZiQ+RNRNDYqBRSyfoEYA2leil6nBz/puJZJoWbUHaAhbfwb+cfzPpu7MRYzHhN99XCpxeLm3P531nXY0jXL+3vqHKBkGv6nIWy5mGU0MgBoQBoJSHHN0+dWhow=
+	t=1717161824; cv=none; b=Zh3CyR/5KEutQCrG3+AG1Pm4Vi1uJgCy+c0cTV0hRYgoEKq4ptXdfeoF6GXylvrv7uUFMwKubMV3VD9pn5fu81eV8QjCnFxBT+OIhhycSCjE8IppGgg0AO7heAI/92kLYFOgzol5fL8DTAj2bCQ1xp/8VEWnhaRsNfBcb59jR18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717161796; c=relaxed/simple;
-	bh=8r9CDem7Kd8oF4q6YPYnMih7jmdP9hI2Js+nDr9y/g8=;
+	s=arc-20240116; t=1717161824; c=relaxed/simple;
+	bh=J/5xarbHmKs23PKC0G8SvwPDfV57tQoEsVg0PBA7W6g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fBzZx8UkhfcaqUrFZAKJRbFKmCBZ8QMbRJGYq621t01xfOffTFZ9rj03FQDGd6rvqVvjmXbWIjHhvftKNJ6cHA/hZM3i4YzMGYiuWyxSI8yHRIpbTjfKVDotkwzXtU9dUfV1Dhp5xRR7XWbIU085n4sqNMdRTvotAx8usce3sOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RcKIUPxC; arc=none smtp.client-ip=209.85.218.41
+	 In-Reply-To:Content-Type; b=KZ4/HJPq9yXaAZIPU3oeceEAF41tsDUkK56kVGR6UguaKWqLh5k+W5EE5bAVqkc9GHTEqJvPsPi7cR5oCSq9vOpoV9OpO7zrC/eZmvHmcpHBtXTmCuBpwlesUC/ln13pOuTj17168o5KP0r4+hW0CNz47kYQAQWFerNLSuwPHBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PVRjEy7Z; arc=none smtp.client-ip=209.85.208.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a6266ffdba8so174146866b.1
-        for <devicetree@vger.kernel.org>; Fri, 31 May 2024 06:23:14 -0700 (PDT)
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-57a30b3a6cbso1216804a12.1
+        for <devicetree@vger.kernel.org>; Fri, 31 May 2024 06:23:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717161793; x=1717766593; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1717161821; x=1717766621; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=STix1dJXVxMghu73EX9zT2PylPHwrWELMf06LOWBhdA=;
-        b=RcKIUPxCkr1CxHnMuKwUpR2ktcnRcOz35x2EUGJekvxzO4m+fzlg+Haeu3Y0hVjVbk
-         oOgGIZDsWH4m6A3RlmPCJbQwmEvR22A/rfR4R91TvywhIhHfdKJSfIfoIBmwowLV19/P
-         4YR9iat0x8D8THInDm0GPklZHTjLN1eFw/3ByaBAbbnGCLZhaRaDGlKLQUPurqpFGN6f
-         nLcfKEXhlXO/d/OVUoplYEo5m2GRGFli2cdqW5Lvg87JxyzOTbBtJI0VS6S3wrGHnemA
-         xDSTkmgnEerOGQcPaK6d3Z7vy4TRiQGmyN4p0pE7mywvISdD+2zzQTvsZFhl4ozVKCef
-         l4ZQ==
+        bh=eOa5yFH0/hR29lSG2WYAF7/povnjbX5ZLlqA4ovF7HE=;
+        b=PVRjEy7Zleys/VXKFHqeJjXK4sNB/UPQM5f9YbXjT4dI3rbYxih+McmBe0KlGxzk+n
+         BWYkD6OUViZgL21OPT3RVxDiobO4fWalSyEuvCY3d7T5Vnma7x4CzN5kNqwu4W0fJRE1
+         PTD8QyheeYCqXaXOWXZCF1Ra6WJnl+SN6p+YwJ9OInLKCFqIR9YSXsDRy909XPcFoK6T
+         Pmu6US10H9iwxlmna7q6tRobMUndz6QGFagU5yyji5hNBjhBk8AAmMgUp1ddcQrxLPjY
+         FtR69NtZI2r8TzGlCA5N9cHBAFoDmnPjTJo4H9qdUoeGa/B3r/2EcBmAJv8th4u9q4EA
+         AQPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717161793; x=1717766593;
+        d=1e100.net; s=20230601; t=1717161821; x=1717766621;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=STix1dJXVxMghu73EX9zT2PylPHwrWELMf06LOWBhdA=;
-        b=rbAGaGyUn1nB827vjnSwlI32HXIqaWVldqluoLbx6MbJGsJQrYFiXzrPgQ90tL6rwE
-         vA87OAcIF1hoQE5KlsGacyN2nSv2awB1BRXenWlGaPvZQQXliyiYzGzVX+JHkBox3hj+
-         x2y/ipwoggudl9O8skY8MXPBiXnEBZJpXhr8Iokds4jH6p+XFOpfb8pcKEn636KHbUOo
-         d+QlWvkkiIk03msUypkjlRkossMb9RwVM8kGUzInEHK8U8Sny1pKQ0ytHTgcI5+Z7CVS
-         CUmt8PsxYtL3JuMBhvQOXIxxUovvKgQxe11JVt04d8a1bKYqInJPBV+0v0MUM1Nakvs0
-         3t6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCX0KAHhXCyDO3BZd5Przvm2IGn+E3wbWn0rbODICQlBavr3ld8zU4esZYdCZod4DPPLbLZPPW4iJDm/PEbwNN8VZlEhHZCWLd/zdw==
-X-Gm-Message-State: AOJu0Yxyy04dLf+nCCvs2r2xhvOUGIb9OsBcsCVRrnrx5tu34aTxrrD5
-	FQOyQh4vtCrz2G4ntPn1p9yiratvkDt/d7q+omdDdqYlMAXwR4TkdOW5PgbfKfY=
-X-Google-Smtp-Source: AGHT+IG6w9uC4RvKnKHCYwm6+Kwf0FjnMWOFoz/JqPbc7RNwGHUYQ4UZVR8hrtC+oxY7ezKmnlw3JQ==
-X-Received: by 2002:a17:906:4e87:b0:a66:d1a1:f92f with SMTP id a640c23a62f3a-a681fe4e434mr147770666b.14.1717161793038;
-        Fri, 31 May 2024 06:23:13 -0700 (PDT)
+        bh=eOa5yFH0/hR29lSG2WYAF7/povnjbX5ZLlqA4ovF7HE=;
+        b=DWcbsN7L9UCbpYVC5S2ypLfmkdGtoMjqMr/eoBT8ZQrJ7m6h53mDjx2DHOfVnECiw/
+         u214mRs29G6jeB4a9ULzoU9IQlLV9+Dt7ikTcPY3F2YLhkH5LQILGHJn7RowMK6LNHnW
+         aJ1zEUqw8QhbmycHdN4LRtBAC74LrQAeqhmioWvYkc3hziYx5ZAdYCd2bAU0TOhUT67O
+         8c0yPZuoramo8FoRf6GvIsdxUTqgJxR425nhsR/FMulUWI/396ISojtoLroBP24ALxN0
+         g+eu5G8aQGUde9excdPW8N03rRBomO7M7A7ab93lmHEjphFeAkqkHW1aOXL0z9elpw74
+         KXBA==
+X-Forwarded-Encrypted: i=1; AJvYcCWXbxsre2tlj7fUhED4wPL9BC1hyAKtH4Q799NMK5J7s3qXQP6ebjDpWxP06895wLf9LVmZMvPnyNtAS78h1HZzTwbHdbYhEt40ag==
+X-Gm-Message-State: AOJu0YwZVnTwc6z0FwHd6amjxi4am9kiCykbvzwoIevJRcBlel6UYrQQ
+	hXHCpitJwCnws5AAULyYkaPwFJlXIzZLOXg0z2thyZ0iTeo4DGCS5vRHEjfS81U=
+X-Google-Smtp-Source: AGHT+IFJSsR7mUw69xQl/kktYJpUkc+X/0SK8XPc2Bv2Zo9tmbdkLxz23s5OW+k4/XgihhEvkA5HpQ==
+X-Received: by 2002:a17:906:2509:b0:a63:4e95:5639 with SMTP id a640c23a62f3a-a6821d64767mr118620766b.47.1717161821417;
+        Fri, 31 May 2024 06:23:41 -0700 (PDT)
 Received: from [192.168.128.139] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a67ea67b506sm86629966b.98.2024.05.31.06.23.10
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a67eb34432fsm86771166b.193.2024.05.31.06.23.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 May 2024 06:23:12 -0700 (PDT)
-Message-ID: <2fd8bcea-8bea-48ea-8052-d7fe6c1e8f59@linaro.org>
-Date: Fri, 31 May 2024 15:23:09 +0200
+        Fri, 31 May 2024 06:23:40 -0700 (PDT)
+Message-ID: <b053edd8-2b85-4a32-ae99-c656f0b32e5a@linaro.org>
+Date: Fri, 31 May 2024 15:23:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +77,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/13] clk: qcom: gpucc-sa8775p: Park RCG's clk source at
- XO during disable
+Subject: Re: [PATCH 06/13] clk: qcom: gpucc-sa8775p: Update wait_val fields
+ for GPU GDSC's
 To: Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson
  <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
  Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
@@ -88,7 +88,7 @@ Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, quic_jkona@quicinc.com,
  Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 References: <20240531090249.10293-1-quic_tdas@quicinc.com>
- <20240531090249.10293-6-quic_tdas@quicinc.com>
+ <20240531090249.10293-7-quic_tdas@quicinc.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -126,21 +126,22 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240531090249.10293-6-quic_tdas@quicinc.com>
+In-Reply-To: <20240531090249.10293-7-quic_tdas@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 31.05.2024 11:02 AM, Taniya Das wrote:
-> The RCG's clk src has to be parked at XO while disabling as per the
-> HW recommendation, hence use clk_rcg2_shared_ops to achieve the same.
-> Also gpu_cc_cb_clk is recommended to be kept always ON, hence use
-> clk_branch2_aon_ops to keep the clock always ON.
+> Update wait_val fields as per the default hardware values of the GDSC as
+> otherwise it would lead to GDSC FSM state stuck causing power on/off
+> failures of the GSDC.
 > 
 > Fixes: 0afa16afc36d ("clk: qcom: add the GPUCC driver for sa8775p")
 > Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
 > ---
 
-Should the same fixes apply to 8350?
+Without having a good source to check the values:
+
+Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 
