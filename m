@@ -1,282 +1,183 @@
-Return-Path: <devicetree+bounces-71238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CACFC8D6224
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:48:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3336B8D6243
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 14:59:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE8CF1C21DBC
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:48:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD10B287B81
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 12:59:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81491158849;
-	Fri, 31 May 2024 12:48:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7C61158852;
+	Fri, 31 May 2024 12:59:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="CME5Ful2"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="G7lL3qDy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C888D158848;
-	Fri, 31 May 2024 12:48:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF7BE138485
+	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 12:59:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717159699; cv=none; b=aCWQZPApzitmdQ4ZAdt9tgb6Naq89KNkoY7PnzYfiyB0iXfmuC+vZ4nDiJJhza6C8Nm2acrzkHsFhkt/0vPgjWG72FX2uojaF+0uU2wJuIAT5CASbvo8oHhVpt+PMP8cudpCt4wdvOXlO+8oUgxWC4ivuRCXH0NrqENlpKWnoPg=
+	t=1717160388; cv=none; b=TOxq/XYvER2sY2/UVzmoxABDVXLXMRy2H9KSM9vF9A4r5Nz5Z3ok8q00VeCi0KicDMW/YMmWSoLM+rq0ngYnB1jG5R4Gkb1nIuaMb82f1FcNzpE7Ps/UiVjY0WALIlneiQfRtRDlEBIsAr5DY/fh0HoornKyXEW1i4ejdqWVj7E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717159699; c=relaxed/simple;
-	bh=RpjgYwPDyJuqrExpz1nNP6Ko9Qg4oE1su/7aCIq+LAM=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=QuOAiMOpxc0mzPwF2ZxJ4abxVxu2JTFEuvt1OnoX8TlehhACDblGeMWpISRgrnDCgNxsGzxKYuVESEohdRHTeuOuuI5dFlETItJ1Wd2MJC/ixiQ9QVA6LHSdVw9rCK+57w0Vdbg6VIJnK/+3pagFbBz1+kzNoAolXjTP5UtiC6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=CME5Ful2; arc=none smtp.client-ip=208.88.110.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 1F9649C096E;
-	Fri, 31 May 2024 08:48:17 -0400 (EDT)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id wsrHJO9_bBGT; Fri, 31 May 2024 08:48:15 -0400 (EDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id B31369C2CD8;
-	Fri, 31 May 2024 08:48:15 -0400 (EDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com B31369C2CD8
+	s=arc-20240116; t=1717160388; c=relaxed/simple;
+	bh=SbSIJSaxifN8ilLLlOjjSgs1ZMiaEBqAYbYSm87dysY=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JDWQCA4ATJNk9+XsnYFccJhMiAF48WuN3JWLPaAAPkJayF6rPoBNIV2/8zHxFgIjs5i8DTyTC2vYQpBwgH69xADiQmAjsCovV7EwxTPQHCW8A8EquNODONimoyYgAvJwLwlfzSsQEMbeGwub5b3TjeESYbqJ27imhbDqW+4XDcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=G7lL3qDy; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-52b7ebb2668so2379194e87.2
+        for <devicetree@vger.kernel.org>; Fri, 31 May 2024 05:59:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1717159695; bh=XHYg/xXbggBW6T/eEAZpR4M9NzidJhaQVBYe6V+5Uwo=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=CME5Ful22NGYQX5X3G/QGYkgnwUNX4QmgtRMXjjWtkoudDR5OH9Vn2oMnBk9H7Lx+
-	 oBqbJM2GPGCWTnBBVwJvtK3H9XEsrgIIro0fnNxSivQPKzby4UKlAiCdzBQmRB3i2X
-	 r+l6CIrcJ62QWiIDmyt82kiWN2SKbIlE+lRWeXMD73TBcyyBgostjPISQWIyEJxoRY
-	 8pZTcDY4/DNYag52VbveIAaUDKmCLQVmfHsxJqLnTIIQFIwm9NLq1BSVzsItkwMaBE
-	 diSMZ4X/F4wMXc0N05X4P4GoyXrlIV5lwvv1pVNGN3nT1XIcV4TjSZQYX9Ua1MU00J
-	 kkiNgxA9AeNew==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id 0-nDvHVWvAtj; Fri, 31 May 2024 08:48:15 -0400 (EDT)
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 7FDF39C096E;
-	Fri, 31 May 2024 08:48:15 -0400 (EDT)
-Date: Fri, 31 May 2024 08:48:15 -0400 (EDT)
-From: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	shengjiu wang <shengjiu.wang@gmail.com>, 
-	Xiubo Lee <Xiubo.Lee@gmail.com>, Fabio Estevam <festevam@gmail.com>, 
-	Nicolin Chen <nicoleotsuka@gmail.com>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	linux-sound <linux-sound@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	alsa-devel <alsa-devel@alsa-project.org>, 
-	linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
-Message-ID: <1712008549.701259.1717159695483.JavaMail.zimbra@savoirfairelinux.com>
-In-Reply-To: <20240520183148.GA1250699-robh@kernel.org>
-References: <20240515135411.343333-1-elinor.montmasson@savoirfairelinux.com> <20240515135411.343333-10-elinor.montmasson@savoirfairelinux.com> <20240520183148.GA1250699-robh@kernel.org>
-Subject: Re: [PATCHv4 9/9] ASoC: dt-bindings: fsl-asoc-card: add compatible
- for generic codec
+        d=suse.com; s=google; t=1717160385; x=1717765185; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:date:from:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YgAedokl3gRs935zOQgIriLiKTu9cIN2F2d3LZv5g+w=;
+        b=G7lL3qDy5+ZxjT5P/cfwMcOi1cbsdQ0w9aj4BYh+UPwTU5bqqwklbpq6cairLOC9mx
+         seoRopbpZcHFgitTeVM+kyev1WDoCpRhdYXFDsNRK/jFHY6cDVN/fd3Ncj55cyX/TZvV
+         Ztskw+DgtQZOOVLsYU3QzkPQt4GbF5ap2anSoRftnLDDH7/Ke0EJsu9aep5Hc3wS7TtQ
+         jERxHmPA/FE2C6gZRYTxZ70C5ID48SVL7MVySA+FLbv0msOYmF0bgyEGl6Dv+z5AT5A6
+         MqHYSZHyr6m/3JxLvQGB1H+SCZv6GKWev+h88u9DDbduL8lkJ9cyjrTPsTlxdR0Cgnnj
+         CqcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717160385; x=1717765185;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:date:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YgAedokl3gRs935zOQgIriLiKTu9cIN2F2d3LZv5g+w=;
+        b=UozxKPA/fGrxg66doMQLt30Od+YQB7tdfZLU9I9QgEf/pfVHzJLi5b1sO8yLhlJyHL
+         ba/qED0wmvS3NchnCA8SE2eMnLXc0cj96h7vwvT7zpMBze2UpPTD7ySPvg3yCYIU/S0j
+         ATaQ0IZxNS+ZWUDGUg2832nqntCkeNbKNsnfmKN9yX6S59wTFHh+ZBuV7Eyv3Jug6RCs
+         8k8qpX+40OjbYF1EbO7zRTQ3bmFk2Wr/Um7OjGmAg6T0smRmpX450NnRD7UTyo0lptyU
+         PWszatGlTCLKEDhqAPFzBaJeSbNpKMCdAFh/7PRq9UJTchZhQ8VYAtbkAwzS7g+cgB30
+         7oJg==
+X-Forwarded-Encrypted: i=1; AJvYcCUVhHo98HK8OQ1RozMUevu0jrTilazSaxNklflE4KBnvmSDnNWkBmno2+Hmm4ypwveKiKLklEH1Wlcf1rXDyl9kY8xjKDohW1KRQg==
+X-Gm-Message-State: AOJu0YzxZ+JjzxsqaZlrgdxbx6g/cEXnAy24RoP5OSTwolcm7JM5B52m
+	zzr/BFAGdVEeVJezwklfTtgHF/LUPeX+zBJFZ1KFsi836z/5YznAow5VB0iU8hU=
+X-Google-Smtp-Source: AGHT+IHlzlusjyEOgZJnGuSuPZL0kGHD+/XX/Cx4GjQtie8rM3SZ6VVnGyuOMCLAHH96a+kEylXvFA==
+X-Received: by 2002:ac2:5332:0:b0:52a:5551:5606 with SMTP id 2adb3069b0e04-52b895a3e7amr1619090e87.50.1717160384912;
+        Fri, 31 May 2024 05:59:44 -0700 (PDT)
+Received: from localhost (host-87-16-233-11.retail.telecomitalia.it. [87.16.233.11])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a67e6f03728sm84644066b.20.2024.05.31.05.59.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 May 2024 05:59:44 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Fri, 31 May 2024 14:59:58 +0200
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Kamal Dasu <kamal.dasu@broadcom.com>,
+	Al Cooper <alcooperx@gmail.com>, devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org
+Subject: Re: [PATCH v5 0/4] Add minimal boot support for Raspberry Pi 5
+Message-ID: <ZlnJzqnvTk70O3ap@apocalypse>
+Mail-Followup-To: Stefan Wahren <wahrenst@gmx.net>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Kamal Dasu <kamal.dasu@broadcom.com>,
+	Al Cooper <alcooperx@gmail.com>, devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org
+References: <cover.1717061147.git.andrea.porta@suse.com>
+ <36642bd8-c981-4190-9f44-072ac3c97c6b@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.8.15_GA_4581 (ZimbraWebClient - GC112 (Linux)/8.8.15_GA_4581)
-Thread-Topic: ASoC: dt-bindings: fsl-asoc-card: add compatible for generic codec
-Thread-Index: 9W7FNkO/DHfWsLN9ZmR/Fd4sK0HmGw==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <36642bd8-c981-4190-9f44-072ac3c97c6b@gmx.net>
 
-From: "Rob Herring" <robh@kernel.org>
-Sent: Monday, 20 May, 2024 20:31:48
-> On Wed, May 15, 2024 at 03:54:11PM +0200, Elinor Montmasson wrote:
->> Add documentation about new dts bindings following new support
->> for compatible "fsl,imx-audio-generic".
->> 
->> Some CPU DAI don't require a real audio codec. The new compatible
->> "fsl,imx-audio-generic" allows using the driver with codec drivers
->> SPDIF DIT and SPDIF DIR as dummy codecs.
->> It also allows using not pre-configured audio codecs which
->> don't require specific control through a codec driver.
->> 
->> The new dts properties give the possibility to set some parameters
->> about the CPU DAI usually set through the codec configuration.
->> 
->> Signed-off-by: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
->> ---
->>  .../bindings/sound/fsl-asoc-card.yaml         | 96 ++++++++++++++++++-
->>  1 file changed, 92 insertions(+), 4 deletions(-)
->> 
->> diff --git a/Documentation/devicetree/bindings/sound/fsl-asoc-card.yaml
->> b/Documentation/devicetree/bindings/sound/fsl-asoc-card.yaml
->> index 9922664d5ccc..332d8bf96e06 100644
->> --- a/Documentation/devicetree/bindings/sound/fsl-asoc-card.yaml
->> +++ b/Documentation/devicetree/bindings/sound/fsl-asoc-card.yaml
->> @@ -23,6 +23,16 @@ description:
->>    and PCM DAI formats. However, it'll be also possible to support those non
->>    AC'97/I2S/PCM type sound cards, such as S/PDIF audio and HDMI audio, as
->>    long as the driver has been properly upgraded.
->> +  To use CPU DAIs that do not require a codec such as an S/PDIF controller,
->> +  or to use a DAI to output or capture raw I2S/TDM data, you can
->> +  use the compatible "fsl,imx-audio-generic".
->> +
->> +definitions:
->> +  imx-audio-generic-dependency:
->> +    properties:
->> +      compatible:
->> +        contains:
->> +          const: fsl,imx-audio-generic
->>  
->>  maintainers:
->>    - Shengjiu Wang <shengjiu.wang@nxp.com>
->> @@ -81,6 +91,7 @@ properties:
->>                - fsl,imx-audio-wm8960
->>                - fsl,imx-audio-wm8962
->>                - fsl,imx-audio-wm8958
->> +              - fsl,imx-audio-generic
->>  
->>    model:
->>      $ref: /schemas/types.yaml#/definitions/string
->> @@ -93,8 +104,14 @@ properties:
->>        need to add ASRC support via DPCM.
->>  
->>    audio-codec:
->> -    $ref: /schemas/types.yaml#/definitions/phandle
->> -    description: The phandle of an audio codec
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->> +    description: |
->> +      The phandle of an audio codec.
->> +      If using the "fsl,imx-audio-generic" compatible, give instead a pair of
->> +      phandles with the spdif_transmitter first (driver SPDIF DIT) and the
->> +      spdif_receiver second (driver SPDIF DIR).
-> 
->       minItems: 1
->       maxItems: 2
-> 
->> +    items:
->> +      maxItems: 1
->>  
->>    audio-cpu:
->>      $ref: /schemas/types.yaml#/definitions/phandle
->> @@ -150,8 +167,8 @@ properties:
->>      description: dai-link uses bit clock inversion.
->>  
->>    mclk-id:
->> -    $ref: /schemas/types.yaml#/definitions/uint32
->> -    description: main clock id, specific for each card configuration.
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    description: Main clock id for each codec, specific for each card
->> configuration.
-> 
->       minItems: 1
->       maxItems: 2
->>  
->>    mux-int-port:
->>      $ref: /schemas/types.yaml#/definitions/uint32
->> @@ -167,10 +184,68 @@ properties:
->>      $ref: /schemas/types.yaml#/definitions/phandle
->>      description: The phandle of an CPU DAI controller
->>  
->> +  # Properties relevant only with "fsl,imx-audio-generic" compatible
->> +  dai-tdm-slot-width:
->> +    description: See tdm-slot.txt.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +
->> +  dai-tdm-slot-num:
->> +    description: See tdm-slot.txt.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +
->> +  clocks:
->> +    description: |
->> +      The CPU DAI system clock, used to retrieve
->> +      the CPU DAI system clock frequency with the generic codec.
->> +    maxItems: 1
->> +
->> +  clock-names:
->> +    items:
->> +      - const: cpu_sysclk
->> +
->> +  cpu-system-clock-direction-out:
->> +    description: |
->> +      Specifies cpu system clock direction as 'out' on initialization.
->> +      If not set, direction is 'in'.
->> +    $ref: /schemas/types.yaml#/definitions/flag
->> +
->> +dependencies:
->> +  dai-tdm-slot-width:
->> +    $ref: "#/definitions/imx-audio-generic-dependency"
->> +  dai-tdm-slot-num:
->> +    $ref: "#/definitions/imx-audio-generic-dependency"
->> +  clocks:
->> +    $ref: "#/definitions/imx-audio-generic-dependency"
->> +  cpu-system-clock-direction-out:
->> +    $ref: "#/definitions/imx-audio-generic-dependency"
-> 
-> This works, but is an unusual pattern...
-> 
->> +
->>  required:
->>    - compatible
->>    - model
->>  
->> +allOf:
->> +  - if:
->> +      $ref: "#/definitions/imx-audio-generic-dependency"
->> +    then:
->> +      properties:
->> +        audio-codec:
->> +          items:
->> +            - description: SPDIF DIT phandle
->> +            - description: SPDIF DIR phandle
->> +        mclk-id:
->> +          maxItems: 1
->> +          items:
->> +            minItems: 1
->> +            maxItems: 2
->> +    else:
->> +      properties:
->> +        audio-codec:
->> +          maxItems: 1
->> +        mclk-id:
->> +          maxItems: 1
->> +          items:
->> +            maxItems: 1
-> 
-> 
-> You can handle the dependency like this instead:
-> 
->           dai-tdm-slot-width: false
->           dai-tdm-slot-num: false
-> 
-> 
-> And then you don't need the definitions.
-> 
->> +
->>  unevaluatedProperties: false
->>  
->>  examples:
->> @@ -195,3 +270,16 @@ examples:
->>               "AIN2L", "Line In Jack",
->>               "AIN2R", "Line In Jack";
->>      };
->> +
->> +  - |
->> +    #include <dt-bindings/clock/imx8mn-clock.h>
->> +    sound-spdif-asrc {
->> +      compatible = "fsl,imx-audio-generic";
->> +      model = "spdif-asrc-audio";
->> +      audio-cpu = <&spdif>;
->> +      audio-asrc = <&easrc>;
->> +      audio-codec = <&spdifdit>, <&spdifdir>;
->> +      clocks = <&clk IMX8MN_CLK_SAI5_ROOT>;
->> +      clock-names = "cpu_sysclk";
->> +      cpu-system-clock-direction-out;
->> +    };
->> --
->> 2.34.1
+Hi Stefan,
 
-Ok, thank you for the review, I'll make these modifications in v5.
+On 12:00 Fri 31 May     , Stefan Wahren wrote:
+> Hi Andrea,
+> 
+> Am 30.05.24 um 12:11 schrieb Andrea della Porta:
+> > Hi,
+> > 
+> > This patchset adds minimal support for the Broadcom BCM2712 SoC and for
+> > the on-board SDHCI controller on Broadcom BCM2712 in order to make it
+> > possible to boot (particularly) a Raspberry Pi 5 from SD card and get a
+> > console through uart.
+> > Changes to arm64/defconfig are not needed since the actual options work
+> > as they are.
+> > This work is heavily based on downstream contributions.
+> > 
+> > Tested on Tumbleweed substituting the stock kernel with upstream one,
+> > either chainloading uboot+grub+kernel or directly booting the kernel
+> > from 1st stage bootloader. Steps to reproduce:
+> > - prepare an SD card from a Raspberry enabled raw image, mount the first
+> >    FAT partition.
+> > - make sure the FAT partition is big enough to contain the kernel,
+> >    anything bigger than 64Mb is usually enough, depending on your kernel
+> >    config options.
+> > - build the kernel and dtbs making sure that the support for your root
+> >    fs type is compiled as builtin.
+> > - copy the kernel image in your FAT partition overwriting the older one
+> >    (e.g. kernel*.img for Raspberry Pi OS or u-boot.bin for Tumbleweed).
+> > - copy arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb on FAT partition.
+> > - make sure you have a cmdline.txt file in FAT partition with the
+> >    following content:
+> >    # cat /boot/efi/cmdline.txt
+> >    root=/dev/mmcblk0p3 rootwait rw console=tty ignore_loglevel earlycon
+> >    console=ttyAMA10,115200
+> > - if you experience random SD issues during boot, try to set
+> >    initial_turbo=0 in config.txt.
+> was this an issue since the beginning of this series?
+>
+
+I experienced this even during early testing, using the complete downstream
+driver. It seems that when initual_turbo != 0, the fw can throttle the clock
+to reduce the boot time and it (directly or indirectly) may affect SD functionality.
+I believe that the probability of this to happen is likely a function of SD
+card speed, whether it requires timing tuning, initial_turbo exact value  and whether
+you are booting the kernel directly or chainloading u-boot + grub (or
+whatever combination of secondary stage bootloader). For example, your 
+boot setup may have a timeout in the grub boot menu that is large enough for the clocks
+to settle and the boot process to end successfully, while faster boot time can lead
+to the issue described. Since this behaviour seems to depend on all of this factors and
+does not necessarily arise in practice, disabling initial_turbo is just a suggestion
+in case things go haywire. 
+
+> What kind of SD issues?
+>
+
+I wasn't able to boot from SD card due to clock issues.
+ 
+> Is there a downstream reference?
+
+Some (old) reference e.g.:
+https://forums.raspberrypi.com/viewtopic.php?t=112480#:~:text=It%20sets%20turbo%20mode%20from,have%20turbo%20during%20the%20boot.
+
+but there are probably more.
+
+Many thanks,
+Andrea
 
