@@ -1,160 +1,94 @@
-Return-Path: <devicetree+bounces-71030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5179C8D576D
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 02:59:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3AEF8D5778
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 03:03:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 75C7F1C21E09
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 00:59:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0025EB22A6F
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 01:03:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71677211C;
-	Fri, 31 May 2024 00:59:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 899EC4C89;
+	Fri, 31 May 2024 01:03:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LYwyhbK3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FAv4bVuh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05F754C6D
-	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 00:59:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60780211C;
+	Fri, 31 May 2024 01:03:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717117143; cv=none; b=pRoaxMCgkE1BRXaak8D8qJVq36wx8bQdPsXTXsVcNz1g/IBOiCKncwZbCZLX77Bv3xCqbgrE3mwk1EetBFAIrNsjUJXnzjXbgH2fm+IFrQsE/zvOet+JXWfp0m+MRjd0/RejRRGKKA6VUdsHKrvnthylRS8AWOW3NmxckT2J/Bw=
+	t=1717117415; cv=none; b=MLxOteBT3HsRgS8Pm8wlFG/9h84STIbKVDUZlMQmCPHguMZvbO79REfLCPtY3GBxhrUsVZPla9hzZ3vZUCSFQkqWtZ3r7Uat7i3mXmztQBwYeSqrZGVlVQFDzxxCLG0WPM54ZneGXoxOBGmhJWsURmvxxrqZzL5mxcCmEddUSGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717117143; c=relaxed/simple;
-	bh=bG+7N/6ZBRzyPqoSKv4Si9VHH6RWf6RrJ2vJAjp+SIw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c7lz+rOMeW/+qatGIzZwPp0MCX7IexfyvW9Rf0+3VhS1QhuP5hs4vBNNpwPrX9N/dsr/lNAVIjZlXg7dZ8Ji7Vuv2Xo8l+ZoU7xpoSaxTH4QozojeWH/ZnsBDND9njO1alcHnOHKh7WP8vkW8/ESBStON26BGnNLEtoGwdcpSNo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LYwyhbK3; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-52b78ef397bso1537283e87.0
-        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 17:59:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717117139; x=1717721939; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=QnFCRKDrZ3vO/pkEAc8zl9OdD2pxO44AabYMP/pb1KM=;
-        b=LYwyhbK3t8UrsGk/nheTSAJ3TWN+Fo8uaufQ66JBi4cdbZHqUpgMTXixrqOxstULvh
-         Gb/QUDbZlKyDcnSa+fzerkNU1Ksf7w10TJw4ZNVn2iizFiVEX3thRB0kR5utUN33j9Q3
-         QX2OfgAgVbwxNUvRaWOlb0Ar6i8qviMKqFDIyGGnTXtHmk0QppRfTU84mKwGYFO4p3Km
-         5OnMl3YtCmAr9HlCz/5dpy4s8X24yWcn9ROh0accSf0bhCj4zi35j/Ens4sbgxKKszLU
-         AB4xdp9YcfpzF1OTIBh7A854fw9GaaHhkta7y968jRygOuI70Jk7Ja/Xbm35mFjua1Zr
-         bubA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717117139; x=1717721939;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QnFCRKDrZ3vO/pkEAc8zl9OdD2pxO44AabYMP/pb1KM=;
-        b=HtSrRHp9l4zEfAUkwaPP5l0m+abGnY6SyaSlW+Dz52ELEa5h4rqMu/eZ9Q2LrvIAWy
-         p3DO8rwCwwd8dviQ7B4LfbL4q2om4v2RpyqWJ80fH1jhdnag6H0zehw4X6x4y/dWuvap
-         Qcky/T9y0pRBV1ib8sWwITwT+rzcBFNKM/cZjhGFGnpgh8QdCNYxuc6F0HoSV7BttNuu
-         qyrSvwPKX3r7J5Wy6JWfbX3909aUfe86Jm0C/w//RmgdSgj5azN+zKorMDy2NgEhp9bs
-         FC4/ShOvwEtBBpCuJcUFH5RtXutlD0K9XUOfp4n8lmS3FtNXeZ5aftyQyfAowG08YhOK
-         5dhw==
-X-Forwarded-Encrypted: i=1; AJvYcCXVbUDMQ/Qp7ZM1INkgISzfpwXLab0sghSNSR0wrMUqW8QNGxjKLvXvplCEkso7umANR7wAswwd8zg7RxG0seVRtunqSIznCzJgIQ==
-X-Gm-Message-State: AOJu0Ywzgn2gCtoqRrhvvHqNX2bIHNzJ0B3r6EeuxwYNxrbq4RXPbAuC
-	x3ycbpW5jI9fSNaqGvxjfibr9KiI9hBJ3O95hRCp3d7FhXwOG0llV5fW1r0nzBE=
-X-Google-Smtp-Source: AGHT+IHW0DtGLMnQVs266dCybPR/6QxvGMTnPIV7eNFOlCzbPInTMDNv6MIo4HjAP0v2fgbbnnu7jA==
-X-Received: by 2002:ac2:46f4:0:b0:52b:8366:27c6 with SMTP id 2adb3069b0e04-52b88783f7amr136279e87.23.1717117139073;
-        Thu, 30 May 2024 17:58:59 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52b84d3f835sm143476e87.115.2024.05.30.17.58.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 May 2024 17:58:58 -0700 (PDT)
-Date: Fri, 31 May 2024 03:58:57 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Hans de Goede <hdegoede@redhat.com>, 
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
-	platform-driver-x86@vger.kernel.org, linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Nikita Travkin <nikita@trvn.ru>
-Subject: Re: [PATCH v4 4/6] power: supply: lenovo_yoga_c630_battery: add
- Lenovo C630 driver
-Message-ID: <hggfy3pwu4du7msmeg2hz6y5i4kvogpbwzw33lcubhso7angob@q7llvdyz4x2b>
-References: <20240528-yoga-ec-driver-v4-0-4fa8dfaae7b6@linaro.org>
- <20240528-yoga-ec-driver-v4-4-4fa8dfaae7b6@linaro.org>
- <d24f720d-66e1-7fa1-5a99-6fa1defebf2c@linux.intel.com>
+	s=arc-20240116; t=1717117415; c=relaxed/simple;
+	bh=4FFFXn5HEKWNE6TaKsVsrPpXEqZHIilUtoahZLs5uK0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LiSpEr9dImm/rc3vCcFLVdXPqbq4L6ofPBJCN/RKiHj0+6z15bVmYzTc7Z8eRZGX8ldCtukqPzAE3eVNsHV/e+1EdgH78sECmAIWeitrkL/KPmJW4Vh4AeNf/OQQPAH/d1hB6bQR43O9WXOrTWb2onnwisNc3KOcTGzdZGNPprw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FAv4bVuh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1854C2BBFC;
+	Fri, 31 May 2024 01:03:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717117415;
+	bh=4FFFXn5HEKWNE6TaKsVsrPpXEqZHIilUtoahZLs5uK0=;
+	h=From:Subject:Date:To:Cc:From;
+	b=FAv4bVuhU7S04E8JTAuJfZnM+i5aDj9+l0q2AKCIIEHUn7dAMtHZAsc22JKIyVs86
+	 dlxHA4a5l7XOEx3HaDr4QwFCf9TicanP0ZZOj0bntdP7eV+U3lDC3wklFyjZEqaX1/
+	 Q28IviXJRongsWF1xB2k4B/Hbiu7gmKgc3wPrW1LryFrG/rwXMFOou7O87neEhA7lX
+	 z4pxurF30Zb/wS/bT5x4c+jewwxNMHuVE/xVrwyYPDW2gzZr9YME5JTnncD8sIoTqW
+	 GGDyviHaQaeenu3Y0EVGVbJZjwSiFvDpqIuQPddGLVLSuEIws+R4gVi6ROJ4yBjFvp
+	 Ypat0rwPeCZKA==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Subject: [PATCH 0/3] of: Reimplement of_(bus_)?n_(size|addr)_cells()
+Date: Thu, 30 May 2024 20:03:26 -0500
+Message-Id: <20240530-dt-interrupt-map-fix-v1-0-2331d8732f08@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d24f720d-66e1-7fa1-5a99-6fa1defebf2c@linux.intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAN4hWWYC/x2MSQqAMAwAvyI5G2jcQL8iHqpGzcFa0iqC+HeLx
+ xmYeSCwCgfosgeULwlyuASUZzBt1q2MMieGwhSVqUuDc0RxkVVPH3G3Hhe5sWmrhgyNVLYEKfX
+ KSf/bfnjfD+WLifBmAAAA
+To: Saravana Kannan <saravanak@google.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-Mailer: b4 0.14-dev
 
-On Wed, May 29, 2024 at 06:41:36PM +0300, Ilpo Järvinen wrote:
-> On Tue, 28 May 2024, Dmitry Baryshkov wrote:
-> 
-> > On the Lenovo Yoga C630 WOS laptop the EC provides access to the adapter
-> > and battery status. Add the driver to read power supply status on the
-> > laptop.
-> > 
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  drivers/power/supply/Kconfig                    |   9 +
-> >  drivers/power/supply/Makefile                   |   1 +
-> >  drivers/power/supply/lenovo_yoga_c630_battery.c | 479 ++++++++++++++++++++++++
-> >  3 files changed, 489 insertions(+)
-> > 
+This series reworks the of_(bus_)?n_(size|addr)_cells() functions. They 
+fail to hold the DT spinlock while accessing 'parent' pointer and don't 
+hold a reference to the parent node. Neither is likely a real issue as 
+most nodes are static.
 
-> > +
-> > +	val = yoga_c630_ec_read16(ec, LENOVO_EC_BAT_DESIGN_CAPACITY);
-> > +	if (val < 0)
-> > +		return val;
-> > +	ecbat->design_capacity = val * 1000;
-> 
-> Check linux/units.h if some WATT related one matches to that literal 1000.
+With these issues fixed, we can then replace the open coded version in 
+of_irq_parse_raw().
 
-I'd rather not do that. The capacity might be either in microWatt-hours
-or in microAmp-hours. Using WATT will be confusing in the second case.
+This series depends on the fixes from this series[1].
 
-> > +	msleep(50);
-> > +
-> > +	val = yoga_c630_ec_read16(ec, LENOVO_EC_BAT_VOLTAGE);
-> > +	if (val < 0)
-> > +		return val;
-> > +	ecbat->voltage_now = val * 1000;
-> 
-> Ditto.
+Rob
 
-No, Volts and Amps don't have units in <linux/units.h>
+[1] https://lore.kernel.org/lkml/20240529-dt-interrupt-map-fix-v2-0-ef86dc5bcd2a@kernel.org/
 
-> 
-> > +	msleep(50);
-> > +
-> > +	val = yoga_c630_ec_read16(ec, LENOVO_EC_BAT_CURRENT);
-> > +	if (val < 0)
-> > +		return val;
-> > +	current_mA = sign_extend32(val, 15);
-> > +	ecbat->current_now = current_mA * 1000;
-> > +	ecbat->rate_now = current_mA * (ecbat->voltage_now / 1000);
-> 
-> Ditto.
+---
+Rob Herring (Arm) (3):
+      of: Add an iterator to walk up parent nodes
+      of: Add missing locking to of_(bus_)?n_(size|addr)_cells()
+      of/irq: Use of_bus_n_addr_cells() to retrieve "#address-cells"
 
-The same
+ drivers/of/base.c  | 18 ++++++++----------
+ drivers/of/irq.c   | 15 +++------------
+ include/linux/of.h |  5 +++++
+ 3 files changed, 16 insertions(+), 22 deletions(-)
+---
+base-commit: e7985f43609c782132f8f5794ee6cc4cdb66ca75
+change-id: 20240530-dt-interrupt-map-fix-6946101b1391
 
-> 
-> > +	msleep(50);
-> > +
-> > +	if (!ecbat->unit_mA)
-> > +		ecbat->capacity_now *= 10;
-> > +
-> > +	ecbat->last_status_update = jiffies;
-
+Best regards,
 -- 
-With best wishes
-Dmitry
+Rob Herring (Arm) <robh@kernel.org>
+
 
