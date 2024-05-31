@@ -1,247 +1,190 @@
-Return-Path: <devicetree+bounces-71409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 638678D6AFD
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 22:44:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 781638D6AF5
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 22:42:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 195B728937E
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 20:44:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3485A2891A9
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 20:42:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5632617D895;
-	Fri, 31 May 2024 20:44:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDC2B17CA1D;
+	Fri, 31 May 2024 20:42:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="rGiKoYII"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a9Bfzypu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5895244C64
-	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 20:43:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E75B1CA80;
+	Fri, 31 May 2024 20:42:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717188240; cv=none; b=cK6w2kYNVsCLU1fvAoPqgztiMgQVBTzAAy9cLoxIHL1frjT6i/Ec4neDFNiSgV+aRE19Zfv6zXi2mZ1VTnKhJ+NBQd427G0m3Km1mG6ANPIb/KB8tAMcG+BonF6mjCLQkPhgv6WaqKmzLNOaeoi9no1xwH6XQfQ+PN4iIbt56Yc=
+	t=1717188170; cv=none; b=UKE4/3YB19u5DuPqO1RYpV2dUZp2ApkJgz2RXFH3uvcfaRezn9S8U6IipyVBXVTHV4sRkqqtldBMIvIZR+4QuaHifT1XJGSwKAlcRNwc7kj52Fe9hCHzpXSyuACEh0IxcTm5mNEcbTHDFCwEmDEGlU+tKk4XwLyYcY6vXrYiaK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717188240; c=relaxed/simple;
-	bh=FcNax6dwqL+qUsukCCoo0aMzs5mJmnULlU0UBpCrG3g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=S4nE5ah4gLgw4o3RKN/I5SfGYGPRtqhRw26g57OvSBNbVGDCDnqa+oe8IEzDhvQIhtbO9yKRuwbzvVsz4bPjoq0C11xbTWDhHeK5GiScqs0yiZOJ5Nq2/bv8SC7n5VrcVQd610Pxbt8JB0CCVcV4ZM4bNbOFNOtcWp9tw8L/NdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=rGiKoYII; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id EB69D882F0;
-	Fri, 31 May 2024 22:43:55 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1717188236;
-	bh=g3J77FB//Etu/ebYq5eZRJDfoJKtk5Scq3BO3UMEJ2I=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=rGiKoYIIY7SEmPZBas7NnKJAE2dqUiIsE+JzsYrbpnP+YO8nEoaVPsHP++q/sGwQu
-	 uAb1gqnTVer344B240TKxV/jUELQA2hbIMuikuyNE85wqrwrjKWgf1hmYXEKhKeDz6
-	 GdmaN6kIdJQr7E9XtrVA6NNb7WKvATds/yMqwM7z0SGN26tc1PJCaYUCIf2PpUG4HC
-	 NV5MMIDdexpN5O9INoOXvS5OsFc1fmwnEkcB15YICugkXrz9NzL3v8Oqhyjq0orA1O
-	 +6cr8rd7R9FStpSbMCLI13V+mwMr4cR9a7QZqdGh8DdiUJ8z1flfiLQILnGLwSRmaj
-	 YB5cjmi29hZEQ==
-From: Marek Vasut <marex@denx.de>
-To: dri-devel@lists.freedesktop.org
-Cc: Marek Vasut <marex@denx.de>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	devicetree@vger.kernel.org,
-	kernel@dh-electronics.com
-Subject: [PATCH 2/2] drm/bridge: tc358767: Add configurable default preemphasis
-Date: Fri, 31 May 2024 22:42:04 +0200
-Message-ID: <20240531204339.277848-2-marex@denx.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240531204339.277848-1-marex@denx.de>
-References: <20240531204339.277848-1-marex@denx.de>
+	s=arc-20240116; t=1717188170; c=relaxed/simple;
+	bh=PmQQOgLJnwokEGexRwTsR1exmf+oVHAZYP4+TByy+p8=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=ThirfbKV41cv5xowaDxNuAwV0CCsSk+hR4/XDwdL4eNQzCBhpVFesj17t34WOjCoNkXWDGC4Hs42hWlts8i1B/HR9NSbyOgX1/tIootVAxHPl6bE6H6WRhX6LOUb0M1HJpan2Afpof9Hri/PJpGbH+1zGwvDCoUbY3HoxL2T1eI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a9Bfzypu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75DB6C116B1;
+	Fri, 31 May 2024 20:42:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717188170;
+	bh=PmQQOgLJnwokEGexRwTsR1exmf+oVHAZYP4+TByy+p8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=a9BfzypuYtA3cKVYacZV5EUUB7zGI9r1QtwtHcPQPd15rb31JAV1xxx7E5Gq4ftuj
+	 bI6pfP+Vik12+WsTDbeQxN4ADrMwuI7cGxEAO/g/uSerH5E7laglQFEw0d9w0YUJpt
+	 9A5hc7zZzStxGpSkE9uO0V/EJuxWd6zAWAiZtAMgwTr47CL3aRyq0DK3AfajXuhALo
+	 VKxJCrbYbt35VIxzBCOGTAvFHnZZCty/BfrICg3pBK+P77HcNwCiuuDK9WtBHCoyOW
+	 vNLGOaqefSmGk/nd2R9v+OVsxtk5II400eLyc415oNxmudPCFzDXNvsbh6yTbsZfKX
+	 js0gePmdrrcyg==
+Date: Fri, 31 May 2024 15:42:47 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Noah Wang <noahwang.wang@outlook.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, linux@roeck-us.net,
+	conor+dt@kernel.org, jdelvare@suse.com, corbet@lwn.net,
+	Delphine_CC_Chiu@wiwynn.com, peteryin.openbmc@gmail.com,
+	javier.carrasco.cruz@gmail.com, patrick.rudolph@9elements.com,
+	luca.ceresoli@bootlin.com, chou.cosmo@gmail.com,
+	bhelgaas@google.com, lukas@wunner.de, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-i2c@vger.kernel.org
+Subject: Re: [v3,1/2] hwmon: add MP2891 driver
+Message-ID: <20240531204247.GA608272@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SEYPR04MB648253BF01D42B24A72B0027FAFC2@SEYPR04MB6482.apcprd04.prod.outlook.com>
 
-Make the default DP port preemphasis configurable via new DT property
-"toshiba,pre-emphasis". This is useful in case the DP link properties
-are known and starting link training from preemphasis setting of 0 dB
-is not useful. The preemphasis can be set separately for both DP lanes
-in range 0=0dB, 1=3.5dB, 2=6dB .
+On Fri, May 31, 2024 at 03:26:01PM +0800, Noah Wang wrote:
+> Add support for MPS VR controller mp2891. This driver exposes
+> telemetry and limit value readings and writings.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: Jonas Karlman <jonas@kwiboo.se>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Robert Foss <rfoss@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: devicetree@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: kernel@dh-electronics.com
----
- drivers/gpu/drm/bridge/tc358767.c | 49 ++++++++++++++++++++++++++-----
- 1 file changed, 42 insertions(+), 7 deletions(-)
+> +++ b/Documentation/hwmon/index.rst
+> @@ -168,6 +168,7 @@ Hardware Monitoring Kernel Drivers
+>     mp2975
+>     mp5023
+>     mp5990
+> +   mp2891
 
-diff --git a/drivers/gpu/drm/bridge/tc358767.c b/drivers/gpu/drm/bridge/tc358767.c
-index 1243918320a7d..32639865fea07 100644
---- a/drivers/gpu/drm/bridge/tc358767.c
-+++ b/drivers/gpu/drm/bridge/tc358767.c
-@@ -241,6 +241,10 @@
- 
- /* Link Training */
- #define DP0_SRCCTRL		0x06a0
-+#define DP0_SRCCTRL_PRE1		GENMASK(29, 28)
-+#define DP0_SRCCTRL_SWG1		GENMASK(25, 24)
-+#define DP0_SRCCTRL_PRE0		GENMASK(21, 20)
-+#define DP0_SRCCTRL_SWG0		GENMASK(17, 16)
- #define DP0_SRCCTRL_SCRMBLDIS		BIT(13)
- #define DP0_SRCCTRL_EN810B		BIT(12)
- #define DP0_SRCCTRL_NOTP		(0 << 8)
-@@ -278,6 +282,8 @@
- #define AUDIFDATA6		0x0720	/* DP0 Audio Info Frame Bytes 27 to 24 */
- 
- #define DP1_SRCCTRL		0x07a0	/* DP1 Control Register */
-+#define DP1_SRCCTRL_PRE			GENMASK(21, 20)
-+#define DP1_SRCCTRL_SWG			GENMASK(17, 16)
- 
- /* PHY */
- #define DP_PHY_CTRL		0x0800
-@@ -369,6 +375,7 @@ struct tc_data {
- 
- 	u32			rev;
- 	u8			assr;
-+	u8			pre_emphasis[2];
- 
- 	struct gpio_desc	*sd_gpio;
- 	struct gpio_desc	*reset_gpio;
-@@ -1090,13 +1097,17 @@ static int tc_main_link_enable(struct tc_data *tc)
- 			return ret;
- 	}
- 
--	ret = regmap_write(tc->regmap, DP0_SRCCTRL, tc_srcctrl(tc));
-+	ret = regmap_write(tc->regmap, DP0_SRCCTRL,
-+			   tc_srcctrl(tc) |
-+			   FIELD_PREP(DP0_SRCCTRL_PRE0, tc->pre_emphasis[0]) |
-+			   FIELD_PREP(DP0_SRCCTRL_PRE1, tc->pre_emphasis[1]));
- 	if (ret)
- 		return ret;
- 	/* SSCG and BW27 on DP1 must be set to the same as on DP0 */
- 	ret = regmap_write(tc->regmap, DP1_SRCCTRL,
- 		 (tc->link.spread ? DP0_SRCCTRL_SSCG : 0) |
--		 ((tc->link.rate != 162000) ? DP0_SRCCTRL_BW27 : 0));
-+		 ((tc->link.rate != 162000) ? DP0_SRCCTRL_BW27 : 0) |
-+		 FIELD_PREP(DP1_SRCCTRL_PRE, tc->pre_emphasis[1]));
- 	if (ret)
- 		return ret;
- 
-@@ -1188,8 +1199,10 @@ static int tc_main_link_enable(struct tc_data *tc)
- 		goto err_dpcd_write;
- 
- 	/* Reset voltage-swing & pre-emphasis */
--	tmp[0] = tmp[1] = DP_TRAIN_VOLTAGE_SWING_LEVEL_0 |
--			  DP_TRAIN_PRE_EMPH_LEVEL_0;
-+	tmp[0] = DP_TRAIN_VOLTAGE_SWING_LEVEL_0 |
-+		 FIELD_PREP(DP_TRAIN_PRE_EMPHASIS_MASK, tc->pre_emphasis[0]);
-+	tmp[1] = DP_TRAIN_VOLTAGE_SWING_LEVEL_0 |
-+		 FIELD_PREP(DP_TRAIN_PRE_EMPHASIS_MASK, tc->pre_emphasis[1]);
- 	ret = drm_dp_dpcd_write(aux, DP_TRAINING_LANE0_SET, tmp, 2);
- 	if (ret < 0)
- 		goto err_dpcd_write;
-@@ -1213,7 +1226,9 @@ static int tc_main_link_enable(struct tc_data *tc)
- 	ret = regmap_write(tc->regmap, DP0_SRCCTRL,
- 			   tc_srcctrl(tc) | DP0_SRCCTRL_SCRMBLDIS |
- 			   DP0_SRCCTRL_AUTOCORRECT |
--			   DP0_SRCCTRL_TP1);
-+			   DP0_SRCCTRL_TP1 |
-+			   FIELD_PREP(DP0_SRCCTRL_PRE0, tc->pre_emphasis[0]) |
-+			   FIELD_PREP(DP0_SRCCTRL_PRE1, tc->pre_emphasis[1]));
- 	if (ret)
- 		return ret;
- 
-@@ -1248,7 +1263,9 @@ static int tc_main_link_enable(struct tc_data *tc)
- 	ret = regmap_write(tc->regmap, DP0_SRCCTRL,
- 			   tc_srcctrl(tc) | DP0_SRCCTRL_SCRMBLDIS |
- 			   DP0_SRCCTRL_AUTOCORRECT |
--			   DP0_SRCCTRL_TP2);
-+			   DP0_SRCCTRL_TP2 |
-+			   FIELD_PREP(DP0_SRCCTRL_PRE0, tc->pre_emphasis[0]) |
-+			   FIELD_PREP(DP0_SRCCTRL_PRE1, tc->pre_emphasis[1]));
- 	if (ret)
- 		return ret;
- 
-@@ -1274,7 +1291,9 @@ static int tc_main_link_enable(struct tc_data *tc)
- 
- 	/* Clear Training Pattern, set AutoCorrect Mode = 1 */
- 	ret = regmap_write(tc->regmap, DP0_SRCCTRL, tc_srcctrl(tc) |
--			   DP0_SRCCTRL_AUTOCORRECT);
-+			   DP0_SRCCTRL_AUTOCORRECT |
-+			   FIELD_PREP(DP0_SRCCTRL_PRE0, tc->pre_emphasis[0]) |
-+			   FIELD_PREP(DP0_SRCCTRL_PRE1, tc->pre_emphasis[1]));
- 	if (ret)
- 		return ret;
- 
-@@ -2346,6 +2365,7 @@ static int tc_probe_dpi_bridge_endpoint(struct tc_data *tc)
- static int tc_probe_edp_bridge_endpoint(struct tc_data *tc)
- {
- 	struct device *dev = tc->dev;
-+	struct device_node *port;
- 	struct drm_panel *panel;
- 	int ret;
- 
-@@ -2372,6 +2392,21 @@ static int tc_probe_edp_bridge_endpoint(struct tc_data *tc)
- 		tc->bridge.ops |= DRM_BRIDGE_OP_DETECT;
- 	tc->bridge.ops |= DRM_BRIDGE_OP_EDID;
- 
-+	port = of_graph_get_port_by_id(dev->of_node, 2);
-+	if (!port)
-+		return 0;
-+
-+	of_property_read_u8_array(port, "toshiba,pre-emphasis",
-+				  tc->pre_emphasis,
-+				  ARRAY_SIZE(tc->pre_emphasis));
-+	of_node_put(port);
-+
-+	if (tc->pre_emphasis[0] < 0 || tc->pre_emphasis[0] > 2 ||
-+	    tc->pre_emphasis[1] < 0 || tc->pre_emphasis[1] > 2) {
-+		dev_err(dev, "Incorrect Pre-Emphasis setting, use either 0=0dB 1=3.5dB 2=6dB\n");
-+		return -EINVAL;
-+	}
-+
- 	return 0;
- }
- 
--- 
-2.43.0
+Add in alpha order.
 
+>     mpq8785
+>     nct6683
+>     nct6775
+
+> +++ b/Documentation/hwmon/mp2891.rst
+
+> +Device supports direct and linear format for reading input voltage,
+> +output voltage, input currect, output current, input power, output
+
+s/currect/current/
+
+> +++ b/MAINTAINERS
+> @@ -22683,6 +22683,13 @@ S:	Maintained
+>  F:	Documentation/hwmon/tps546d24.rst
+>  F:	drivers/hwmon/pmbus/tps546d24.c
+>  
+> ++MPS MP2891 DRIVER
+
+Should be added in alpha order.
+
+> ++M:	Noah Wang <noahwang.wang@outlook.com>
+> ++L:	linux-hwmon@vger.kernel.org
+> ++S:	Maintained
+> ++F:	Documentation/hwmon/mp2891.rst
+> ++F:	drivers/hwmon/pmbus/mp2891.c
+> +
+>  TQ SYSTEMS BOARD & DRIVER SUPPORT
+
+> +++ b/drivers/hwmon/pmbus/Makefile
+> @@ -39,6 +39,7 @@ obj-$(CONFIG_SENSORS_MP2888)	+= mp2888.o
+>  obj-$(CONFIG_SENSORS_MP2975)	+= mp2975.o
+>  obj-$(CONFIG_SENSORS_MP5023)	+= mp5023.o
+>  obj-$(CONFIG_SENSORS_MP5990)	+= mp5990.o
+> +obj-$(CONFIG_SENSORS_MP2891)	+= mp2891.o
+
+This list as a whole isn't sorted, but I would move this so the MPxxxx
+entries remain sorted.
+
+> +++ b/drivers/hwmon/pmbus/mp2891.c
+
+> + * Vender specific registers, the register MFR_SVI3_IOUT_PRT(0x65),
+> + * MFR_VOUT_LOOP_CTRL(0xBD), READ_PIN_EST(0x94)and READ_IIN_EST(0x95)
+> + * redefine the standard PMBUS register. The MFR_SVI3_IOUT_PRT(0x65)
+> + * is used to identify the iout scale and the MFR_VOUT_LOOP_CTRL(0xBD)
+> + * is used to identify the vout scale. The READ_PIN_EST(0x94) is used
+> + * to read input power of per rail. The MP2891 does not have standard
+
+s/of per rail/per rail/ ?
+
+> +	 * The output voltage is equal to the READ_VOUT(0x8B) register value multiply
+> +	 * by vout_scale.
+
+s/multiply by/multiplied by/
+
+> +	 * The output current is equal to the READ_IOUT(0x8C) register value
+> +	 * multiply by iout_scale.
+
+s/multiply by/multiplied by/
+
+> +		 * The MP2891 does not follow standard PMBus protocol completely, the
+> +		 * PMBUS_VOUT_MODE(0x20) in MP2891 is reserved and 0x00 is always be
+> +		 * returned when the register is read. But the calculation of vout in
+
+s/always be/always/
+
+> +		 * The MP2891 has standard PMBUS_READ_PIN register(0x97), but this
+> +		 * is not used to read the input power of per rail. The input power
+
+s/of per rail/per rail/ ?
+
+> +		 * of per rail is read through the vender redefined register
+
+s/of per rail/per rail/ ?
+
+> +		 * The MP2891 PMBUS_VIN_OV_FAULT_LIMIT scale is 125mV/Lsb.
+> +		 * but the vin scale is set to 31.25mV/Lsb(using r/m/b scale).
+> +		 * As a result, the limit value should multiply by 4.
+
+s/multiply by/be multiplied by/
+
+> +		 * The scale of PMBUS_IIN_OC_WARN_LIMIT is 0.5A/Lsb, but the iin scale
+> +		 * is set to 1A/Lsb(using r/m/b scale), so the word data should divide
+> +		 * by 2.
+
+s/divide by/be divided by/
+
+> +		 * The scale of PMBUS_PIN_OP_WARN_LIMIT is 2W/Lsb, but the pin scale
+> +		 * is set to 1W/Lsb(using r/m/b scale), so the word data should multiply
+> +		 * by 2.
+
+s/multiply by/be multiplied by/
+
+> +		 * The PMBUS_VIN_OV_FAULT_LIMIT[7:0] is the limit value, and bit8-bit15
+> +		 * should not be changed. The scale of PMBUS_VIN_OV_FAULT_LIMIT is 125mV/Lsb,
+> +		 * but the vin scale is set to 31.25mV/Lsb(using r/m/b scale), so the word data
+> +		 * should divide by 4.
+
+s/divide by/be divided by/
+
+> +		 * The scale of PMBUS_IIN_OC_WARN_LIMIT is 0.5A/Lsb, but the iin scale
+> +		 * is set to 1A/Lsb(using r/m/b scale), so the word data should multiply
+> +		 * by 2.
+
+s/multiply by/be multiplied by/
+
+> +		 * The scale of PMBUS_PIN_OP_WARN_LIMIT is 2W/Lsb, but the pin scale
+> +		 * is set to 1W/Lsb(using r/m/b scale), so the word data should divide
+> +		 * by 2.
+
+s/divide by/be divided by/
 
