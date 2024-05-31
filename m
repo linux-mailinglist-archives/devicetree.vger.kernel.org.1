@@ -1,144 +1,140 @@
-Return-Path: <devicetree+bounces-71150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52FBC8D5E49
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 11:30:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C99EE8D5E4E
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 11:32:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 003861F20FA7
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 09:30:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F0B51F218EE
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 09:32:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A215081721;
-	Fri, 31 May 2024 09:30:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9E4181ABB;
+	Fri, 31 May 2024 09:32:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cd12ImHT"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="hOWHqTxx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 565B0768EA;
-	Fri, 31 May 2024 09:30:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91FAE81721
+	for <devicetree@vger.kernel.org>; Fri, 31 May 2024 09:31:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717147854; cv=none; b=DxG0mij8fqUIp/Cowh5lznAYWbJdMZI4BIwM9/j9MwSIh3Oo8LFUzM9SfvhpAfra1FFUMOyWWuqglFFdVgZXxcZWNQkpwjCm7Lrzp0HO5xAjjxA+MtZKdrBbHtR8m9O8NDky9v8OASoj00CFtMd+556gWTgBBHGLPcrECelnTT8=
+	t=1717147924; cv=none; b=nntb3lIKU57b9MeVqqv3EIXeReYGo8yIJrJLU6lZGGB5LfQ/BnuznyLup2HSfIG+/+z9WXKatTY0Sf95LFR6j71rL+vJ1DqnJ3TmXuFMNtdiMAPETQ/cSF2mvIwCVHAjTbe2L1kGabUVG/v6QCYNpnDK/GUkARxu3GMCrmOab84=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717147854; c=relaxed/simple;
-	bh=KIOXzoDM4zhlJsEhof+5gWYeeom0SgBNEnTzGH448Xw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=P6Mf6Un1puh98yymKkRg0dqx26njeY2YepoaAK1mhz8Vvu76fSlNCQ2i40G5KwVAoRy781iqTK/uTblQS/9UzzjtCFSYnlAMUFEo+Y9jD7Wn6BSugKjXkp+hQh4b1xt16Vt/UgRDYh/5A7kXXh9Edhdu3SWxO72W13ohpT0Atc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cd12ImHT; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44V62a26031687;
-	Fri, 31 May 2024 09:30:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4z6835LnByoH0M/7ANVxcOc0mQVXkQ9QylW6OHCpY7k=; b=cd12ImHT7cn02c5F
-	NZqAPcHHYMaPuZmWNhqlqGDAtBtvR1H+6kD4/uHDDT3UcrLwqQ0dOUM2Fgf+R40z
-	cbWyGLrQ14s9NoGxhotGR4TWM71RAfpMfly+fXi3wm5JdU6FHoq09BBc6OYd1zFS
-	6N5NWM8DVuAI3MtnwPLvWTltFWLsp6nV7zCVJelRxyioGzgQZCFyX1PIUUeUUxFJ
-	qpS8V78Y4RcVKJeB12dKy7d7QpKnqHJ3IqWdkM07jQm5vhKtvP2JXX7Dz9wsHdZj
-	gYYM+ib6pC5DZHWoWCqZwEdzJJg6kUAqONonPZQctcfTrbzWGCiMueJXRla0BmLo
-	LIfubQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yf8xa0gsq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 31 May 2024 09:30:49 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44V9UmrU004678
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 31 May 2024 09:30:48 GMT
-Received: from [10.217.216.152] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 31 May
- 2024 02:30:44 -0700
-Message-ID: <a671ba20-f000-425f-914f-54a9d65d79c7@quicinc.com>
-Date: Fri, 31 May 2024 15:00:40 +0530
+	s=arc-20240116; t=1717147924; c=relaxed/simple;
+	bh=5U7FyklsEaq5Z77Xh71GF62p+k3mhNStH7+QJ6d8CG8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T4gK0uuEJuybxrDWxSZ045rEAu3INc7pZDFpwon1nK6dORTEJRAK7UMXJd88BfZ+my5uK0JkqbbIRqTtD8Uw13fIqZDDhflYbFpWI3CNiCBAMY8t0LkRZq0SPNET2vmkfLPZBl6uRVmSBF+uZI7I64T3r/s8L/oCJBv1c2Ra3TQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=hOWHqTxx; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=duxs
+	2uujR9NRLXhAk81tC9D0XnsOzJhWFLu0vA/jvfo=; b=hOWHqTxxNcqGINU4ZS5V
+	8MKGNRQ1ywH86zYBzxlq9zwDNbGRiiSw5RvoUrm48F2QpF0DCXRMrgO1kjOrvHzs
+	4czC037sbomdEVd9YlqOIwXxeyhEw9stc5w2H33Wdz1y61ck7YCnA6DUZG3Nahtb
+	XNQWWa/d8HSv7t8HZv5J9/+MT9/VFmZfwwa48cmWDpIkg7TvIGzISVhjTr1XaOWz
+	27CkblNe7VFsPOMdAPFv1s9oy9EfYIKgHFXApaatbxu3BnLUYeHxS8ruz8//uZMM
+	IFXNJ4LCDGR66sMqy3QBipWsNdt2fB4qCdn/V6OfG2cnFhbkSCA45K4eYexWXN0g
+	6A==
+Received: (qmail 1124244 invoked from network); 31 May 2024 11:31:55 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 31 May 2024 11:31:55 +0200
+X-UD-Smtp-Session: l3s3148p1@C1GEp7wZ4rFehhtB
+Date: Fri, 31 May 2024 11:31:54 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas@t-8ch.de>,
+	linux-hwmon@vger.kernel.org, Hristo Venev <hristo@venev.name>,
+	=?utf-8?B?UmVuw6k=?= Rebe <rene@exactcode.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Radu Sabau <radu.sabau@analog.com>,
+	Paul Menzel <pmenzel@molgen.mpg.de>
+Subject: Re: [PATCH 2/3] hwmon: Add support for SPD5118 compliant temperature
+ sensors
+Message-ID: <20240531093154.rna2vwbfx7csu2sj@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas@t-8ch.de>,
+	linux-hwmon@vger.kernel.org, Hristo Venev <hristo@venev.name>,
+	=?utf-8?B?UmVuw6k=?= Rebe <rene@exactcode.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Radu Sabau <radu.sabau@analog.com>,
+	Paul Menzel <pmenzel@molgen.mpg.de>
+References: <20240529205204.81208-1-linux@roeck-us.net>
+ <20240529205204.81208-3-linux@roeck-us.net>
+ <34a4292e-c4db-4b40-822e-b892e1444045@t-8ch.de>
+ <16e448f1-cfc9-4e88-b3f1-55e1856d1405@roeck-us.net>
+ <0a2ed64d-06d9-45e8-a054-4ded4429f952@t-8ch.de>
+ <ffd72953-ecd2-405a-ad6d-236143b26946@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/8] clk: qcom: sc7280: Update the transition delay for
- GDSC
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Stephen Boyd
-	<sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Bjorn
- Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20240318053555.20405-1-quic_tdas@quicinc.com>
- <20240318053555.20405-5-quic_tdas@quicinc.com>
- <3293d565-ceb6-44f1-8a47-d18e9d0083a5@linaro.org>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <3293d565-ceb6-44f1-8a47-d18e9d0083a5@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Xso3tW-qjhbrnc9PP0KYlUvJQ4qk8f93
-X-Proofpoint-ORIG-GUID: Xso3tW-qjhbrnc9PP0KYlUvJQ4qk8f93
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-31_06,2024-05-30_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=766 mlxscore=0 priorityscore=1501 malwarescore=0 bulkscore=0
- impostorscore=0 clxscore=1015 lowpriorityscore=0 adultscore=0 phishscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2405310069
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="xeb7swmh4n3lar4t"
+Content-Disposition: inline
+In-Reply-To: <ffd72953-ecd2-405a-ad6d-236143b26946@roeck-us.net>
 
 
+--xeb7swmh4n3lar4t
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 3/18/2024 1:23 PM, Krzysztof Kozlowski wrote:
-> On 18/03/2024 06:35, Taniya Das wrote:
->> Update the GDSC default values of GDSC transition delay to avoid the
->> issues in the GDSC FSM state.
-> 
-> What issues?
-> 
->>
+Hi all,
 
-The GDSC FSM will be stuck and the GDSC will not be able to power on/off.
+> > Wolfgang seems to think it's important:
 
-I will update the patch commit text as well.
+Wolfram, please.
 
-> 
-> Why none of your so called "fixes" are marked as Cc-stable? If they are
-> real fixes, they should be.
-> 
->> Fixes: fae7617bb142 ("clk: qcom: Add video clock controller driver for SC7280")
->> Fixes: 1daec8cfebc2 ("clk: qcom: camcc: Add camera clock controller driver for SC7280")
->> Fixes: a3cc092196ef ("clk: qcom: Add Global Clock controller (GCC) driver for SC7280")
->> Fixes: 3e0f01d6c7e7 ("clk: qcom: Add graphics clock controller driver for SC7280")
-> 
-> No, don't combine separate fixes into one commit.
-> 
+> > https://lore.kernel.org/lkml/tdia472d4pow2osabef24y2ujkkquplfajxmmtk5pn=
+xllsdxsz@wxzynz7llasr/
+> >=20
+>=20
+> Ok, but that doesn't explain the reason. Wolfram, Paul, why do you
+> think this is needed ? Note that I am not opposed to adding spd
+> eeprom support, but I'd like to know why I am doing it before
+> I spend time on it.
 
-I will remove the fixes tag in the next patch.
+A working eeprom driver is needed to get 'decode-dimms' from the
+i2c-tools package working. Jean reported that EEPROM access for DDR5 is
+different from DDR4, so it needs a separate driver. And
+i2c_register_spd() then needs to be updated to use the new driver for
+DDR5.
 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+Happy hacking,
 
--- 
-Thanks & Regards,
-Taniya Das.
+   Wolfram
+
+--xeb7swmh4n3lar4t
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmZZmQcACgkQFA3kzBSg
+KbYuTg/6A5ij4YXV/CfauyFRASldgEnInfw2WdYkuXzCtfXvsZCRvP15BLSBEH9K
+VKEnsN6sysLVyMnIJnfH8/hQ+6eOniAio8fcPIcxHQyWZOOZeqEa5pOyBuGoXZYS
+/5DTYEjeII6iOILpNCQa2s6gbK3IPZioCheK8WliLIiTYO5vpjg4QVjHO7R6MK6o
+u/Fp8goQNofhZRqijddVMVc1m3r8EAgfU5tb+DLgM3x9WWzl0IFWKAPbtkcyuTPs
+kVwaJj35pWJG6zAQKmu+6213QIlmFVZM8ODPtTvYD1lc9Msrnq366u+SCrWuu5vF
+zxmZkp8+C1uHq/jXroOEQaYZQJ9ncMDtZ/aDhwV7nZz0RfhPTGSq7PdTg/q5S1gW
+bQMt3uGdDaTGD70IAHoXZjKMBO6J2mDAmjvLX89krNCNpj9r3rqekJU8Rr6g7Bji
+XFpPaCvZHEC7QswW07/TIDhCF5dgTaUIQxtQvYcb1ioROTFFenqMk4LNkJ1zLGtb
++lr4D6Fyqv2Is2ZEVSQi9Y6Xh9Q5zS4tYcbhiItsnxjOqGQfQF3aPRvreeauFEyk
+DdGuiSZWrub8Gg2EsOUAgrL6gJ55uu9s14Ke2UsxcS7/GWfDyK/tJACWzpW2Swdc
+8j5H3E1hxJFiXVloKf040i9jT0odS0H2fSXHyaWpjhJTJbc9e28=
+=gjGP
+-----END PGP SIGNATURE-----
+
+--xeb7swmh4n3lar4t--
 
