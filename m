@@ -1,177 +1,97 @@
-Return-Path: <devicetree+bounces-71438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3CB68D6E21
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 07:42:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D76A8D6E57
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 08:16:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D2491F235DB
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 05:42:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEFF5289ECF
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 06:16:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBE80D304;
-	Sat,  1 Jun 2024 05:42:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BC1511723;
+	Sat,  1 Jun 2024 06:16:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H2k/0D/d"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MogCg1sy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B2A0AD58;
-	Sat,  1 Jun 2024 05:42:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BABF12E55;
+	Sat,  1 Jun 2024 06:16:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717220549; cv=none; b=c83qaojhdJ3yloSy7+x5zbdK1IdMc3eKvOi+Kv1P8jxaknFQuCdR2IqE0nqOLvyWSfkXWIdk6BYTCMfRucjwYF7+ruyJ1CihdCa3ouBV1ubZzLDnMkoQRSCLBhYIDbqEt48PlfjOFXde/QN2aLBLZ1BBcj5dYD3APL2K1WtYJfQ=
+	t=1717222591; cv=none; b=Sy1LtxjOkAUbGECxRM9HE1nn3olZ8Y0LaNlMUs+kDl7hQ9abLhH9MqvLZD+OKC5YJN04mkngWqjE+Ixvm8xvnV1H3bUP98ZCke34hR4HGVkwzHRtPuzUc/fxOiEja7O9M5kVWoyvTg372uYOXlciXzfZExyu7PCq9rv4CG5cKgE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717220549; c=relaxed/simple;
-	bh=yjuDfddDC7JTFnetf1bGE6P7K3C2gfUsS56QzBWctok=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VLsIVL4Tisf5Nz/r8tYgUb2p6kC7UOwtaQO8BRtyOKhoQFUVbY1Ky0IkmavmTDH1kjSnzxvG1WO57RUZWPrIdRIpwPQLQCvMyAeyXhP9wHMsO5ze5pIKCzQgDUSNwWejFJhBqDgJ1V5XMrAx0p3wXnvRz65HkUk3DACpuHUSYMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H2k/0D/d; arc=none smtp.client-ip=209.85.215.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	s=arc-20240116; t=1717222591; c=relaxed/simple;
+	bh=rt2wx6NZb2NHXMBjUJJczmHoHOGfO0XkMtjoi+/dM58=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VhL9r70jDofinnEFSVJ01vBLt0gb93PTjCXYG4zfio2tnorncnmy2/46qKSVcq4oQibltkNdBspprLA9YLU8IRbgbNuOm7QT2+D2IyKmbsYu/tGP9TbUo8nmCgLLm8vwffC4wtfclVG4439s06N7+v6XXs3AN8stXLSyao5BxWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MogCg1sy; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-6c4f3e0e3d2so905323a12.1;
-        Fri, 31 May 2024 22:42:28 -0700 (PDT)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2e3efa18e6aso23465551fa.0;
+        Fri, 31 May 2024 23:16:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717220547; x=1717825347; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=jrraCNuXD26zSLabfLklSY8vxDEbWSHlAupYO0xbewI=;
-        b=H2k/0D/dbBW8i6xP2aYY9Vbm5G3BGdbDjZxlYnv9dmvPy/a+MS+qMPVjcE380vcay0
-         SDhE4qK+KOep4g74NVp2c8lHDF4mjrEcMW1sZjvdAlWcobuYSf7fJji+EPzjUyO88ZxG
-         jSzSrAo1KXBjSHIhjti/olANzWK6iO/KGV4fQSe9QZlTo7PZqnQJISATG/1q3ioQUNMk
-         NVPf90v/ANmB2m7HVlobsJ+eBZyUcBKs90IA7aRC/QxzONSUW6F9Qhma1sxcuaFNZy3/
-         3XmiiHlMphR0GUWMWcIrXlipjTMbDG+Pmj2ZNEzGhwRxAjljUIX97SIKq1GQEZ1eM4Ui
-         wDqA==
+        d=gmail.com; s=20230601; t=1717222587; x=1717827387; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=4Z+zOfc3+Z4hyAcfzxNHQDfSITf3TFsblhocGpkJa60=;
+        b=MogCg1syB2kZLCMBoFFqH6035Sm6AI0D7mQCvv47S9XHKRzPZ+GvYJ4pj4wR/3rmNn
+         XscrrBVfo2q1r0vcYKxkRgylY4Cygu7SE98nNo4L/uzTc7zcKvKlM+SnujTSya1RBzpl
+         THZBhB0RSZhr6TbFJDP5ZqdZXe1FtkGbb4dKu5abqgM91eRKelp0DLXccouZDI9tjmwO
+         c0w1OxTL+KYjSRloespRB8ROeQRv/cNu62Tddl9qIeRPnlOOO15XcOZEJPQ8wQQ/hz6s
+         vtndwMQ6Sj+gTYzWDFaagYlO0Fb46vicBi3oMgg8OXxgbqwTtaiLIfRo4D7ZOFqxjXUi
+         AA0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717220547; x=1717825347;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jrraCNuXD26zSLabfLklSY8vxDEbWSHlAupYO0xbewI=;
-        b=bbQ9dcu+A0JPgH5xmqma1Hc5pIXz7j91ZgBFQFaNP7Lhl4u3ZdTxi3C63LRJUwCOF1
-         Obmi9cnmR3jZXcAPNdtMUH0Fsk68aZxSJ96jt4r8kbAsgNT7BIAnV7LJsh6vj1x4Lrq3
-         LbKOWZRUo/oBXpGeF4Khr6rDAp2T3Q/0IrhET7HkNvsQ+Sp4UTtEi03yd6i3Ls5KuW1J
-         BALrIjrIFlXxLk93FVCCQGS3ykpyZ9vkeIR7++4aj6pNO/jKjj8FkTzRDR3LXm/dl9/s
-         ySzQEHX5ywu3mXjIToEv81Mh3EBTFYQy/VNvWdeSI6dOgiwTupuSrHPDAE2w/JSNFyuo
-         hQrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUQGzHc1TbOy8Zj/B0cYDe5IOxYVy36IHXU6sTlLwDQRxeat3FfOHeVvLTmxXwTkO/m+WVqlyp4v7bdTOJXatwqWda4z67pejLJVML4
-X-Gm-Message-State: AOJu0YwVe5gxc75sHUFdJT1a0Wy8jAquNwNsvfU37IlYvaAwtxwPgSVM
-	Qh2rf57FTi8YNn5QW+Nw9NpaSKQyVv5OJvB3ie2BQrl3kzFaIVHT6dOgOA==
-X-Google-Smtp-Source: AGHT+IEOxm2fF1ZwFMRPEBoD0WKTFOZ7AdlY8dV1jar+rzc54w54FnzJfgoCarfex30gaG0cE31EDw==
-X-Received: by 2002:a05:6a21:9984:b0:1af:d228:ca5b with SMTP id adf61e73a8af0-1b26f117b47mr4869671637.21.1717220546992;
-        Fri, 31 May 2024 22:42:26 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c1a77bb500sm4425340a91.49.2024.05.31.22.42.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 May 2024 22:42:26 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <4cc979c3-3ce0-4f31-b5d0-508e1af5fdf4@roeck-us.net>
-Date: Fri, 31 May 2024 22:42:24 -0700
+        d=1e100.net; s=20230601; t=1717222587; x=1717827387;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4Z+zOfc3+Z4hyAcfzxNHQDfSITf3TFsblhocGpkJa60=;
+        b=SjnYUnEte0Kfymb8kv2LxiNB09onsDB70AIdQIaUsxpPpEVYuvsw2yQh91vCum0ehF
+         xLxOcFTVniei0rbpZvtqCnlZvMlVC+UZMtRhSst44MeRcy9S763faN+qp/J4/VEJTM3p
+         zpup99QjRH5qFVlQ54Y9gm7qqC00s37Bl5jvjanPIM2GEoQTpLdipC8FGx+6tqQ60sPY
+         pdWZm6knHZNR4Qn0xQn4cvG38g2yEmdjd31oVJirlelr1Pg+1fPrXOBsxlD+XC65ulm3
+         dSEQ6v41lSAFEpTk1wm60o4Wx4iBohR/4c/K7l54/IAbWyRmGyWD0zOx1Y9pOUnc2mdJ
+         1ZKg==
+X-Forwarded-Encrypted: i=1; AJvYcCWsjosljrAwLr7COOBlvEcY1H+fBiWUmuhGwaIwnIkPBnDUdRETQgLvp0RVFB5bPk5yO/iXGJdc1uN59zmQcb3n37XbvjCbuf/7Jy4PRDmkhYNVwdchqh/mcRJdLKk3Cj2O4C7MgD9DF0cF1pscS0Sepsf9BOMafpoc5ZVkBD6U/4NbGDQJ
+X-Gm-Message-State: AOJu0YyBfxJl6Cn1bSHM0wp17xQrGFVQxNY7LynGhACCZAgwuQIKopKW
+	TqNPrRmnuUMLaS26LEzV9vEYF7Qn83DQvatAEHm7Xuaq8TRqDmp8J5UnFY6IuNJgyLYlAHVk1Ar
+	8OSkufouO13ZloGoSrBKL5+8GUhA=
+X-Google-Smtp-Source: AGHT+IHOk1mf1VFwpZSehjIBp3kE7bAhPh2O3oBk51nvzzMPb1RydE/V7nfJvxkHBEblll7CKgRRVH3DtO8HgCgHDcI=
+X-Received: by 2002:a2e:93d7:0:b0:2ea:a382:67c9 with SMTP id
+ 38308e7fff4ca-2eaa3826e00mr1118361fa.15.1717222587067; Fri, 31 May 2024
+ 23:16:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFT v3 4/4] hwmon: (spd5118) Add support for reading SPD
- data
-To: linux-hwmon@vger.kernel.org
-Cc: devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- Armin Wolf <W_Armin@gmx.de>, =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?=
- <linux@weissschuh.net>, =?UTF-8?Q?Ren=C3=A9_Rebe?= <rene@exactcode.de>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>
-References: <20240531230556.1409532-1-linux@roeck-us.net>
- <20240531230556.1409532-5-linux@roeck-us.net>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20240531230556.1409532-5-linux@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240530111205.1764-1-bavishimithil@gmail.com> <7845bb1c-47d5-41f6-bf08-bd7b357df02c@kernel.org>
+In-Reply-To: <7845bb1c-47d5-41f6-bf08-bd7b357df02c@kernel.org>
+From: Mithil <bavishimithil@gmail.com>
+Date: Sat, 1 Jun 2024 11:46:14 +0530
+Message-ID: <CAGzNGRn=e46yYrK3o8JhUmod4pGFFdEK31kUWUU4jn+JTgZjQg@mail.gmail.com>
+Subject: Re: [PATCH v6] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: peter.ujfalusi@gmail.com, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Lopez Cruz <misael.lopez@ti.com>, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 5/31/24 16:05, Guenter Roeck wrote:
-> Add support for reading SPD NVRAM data from SPD5118 (Jedec JESD300)
-> compliant memory modules. NVRAM write operation is not supported.
-> 
-> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
-> ---
-> v3: New patch
-> 
-> RFT: I'd like to get some more test coverage before moving forward
->       with this patch. decode-dimms doesn't recognize the 'spd5118'
->       driver.
-> 
+> Please mention in the commit msg all changes (and explain why!) done
+> during conversion (comparing to original binding). I am pretty sure I
+> gave this feedback already.
+I read that i'm supposed to add the changelog below the --- line, my
+bad. I'll mention the changes in the commit message itself and that
+too from v2 right?
 
-Looking for feedback:
-
-[ ... ]
-
-> +
-> +	nvmem = devm_nvmem_register(dev, &nvmem_config);
-
-This returns ERR_PTR(-EOPNOTSUPP) if CONFIG_NVRAM=n. We have two options:
-
-- Ignore -EOPNOTSUPP and continue registering the hwmon device
-
-or
-
-- Add
-	select NVRAM
-	select NVRAM_SYSFS
-   to the driver's Kconfig entry.
-
-Any preferences ?
-	
-Thanks,
-Guenter
-
+-- 
+Best Regards,
+Mithil
 
