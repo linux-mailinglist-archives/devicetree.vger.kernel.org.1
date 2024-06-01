@@ -1,56 +1,55 @@
-Return-Path: <devicetree+bounces-71441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F7EC8D6EDF
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 10:27:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53BFF8D6EEE
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 10:41:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DBA31C21EC2
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 08:27:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 848321C21FF0
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 08:41:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDE7F1BF37;
-	Sat,  1 Jun 2024 08:27:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04B7F1CF8D;
+	Sat,  1 Jun 2024 08:40:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="gqVIp9oq"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="CcxAMN5w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.smtpout.orange.fr (smtp-26.smtpout.orange.fr [80.12.242.26])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB11117736;
-	Sat,  1 Jun 2024 08:27:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9C65111AD;
+	Sat,  1 Jun 2024 08:40:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.26
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717230460; cv=none; b=kPcb5gX1/jsguUugOpnRwqUejiS76Is33+rdUajD7RUDJanFPB0BPN6nn1MP6nTUp2hdbMsge5Tg4gCLiSfOdpgAqGTUnim4yMSjWI3NWaktvX8ZhwnyGQCoU/4O0Ee5dD+h7MAu+lQu+4wYpDDEay00Lseweq6SkJDsg2hK2kk=
+	t=1717231254; cv=none; b=j/EVCrayk0D44LngwfTJD0DZ5i8L4uoJGxcr1Sz5GxBcMS2psvHLJJsQ9FDP65IxRA2J49d7O9mO9F2Eirl35EJ4esHSVZxq/gD0r8FtQ3U2KdkrFyCEcBb8Zh9rYFNGJh3Js5ebCdIT1jqZU490UZ4bbTRFJ97oOOJgtYauZbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717230460; c=relaxed/simple;
-	bh=CCGdaeCR/uSlXg0QGvO7hXoUNkCEtxBToDVRpLZJZDw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=ejlWXI72AYHLK0qQN58gLCPQiA02YppPVFnsKoalx76QlfkSOjNnaHmWPI6WWSbJ0O6PtuGMcijJ2h0Xh7fOgtGEvb/4qt+NRpawMs8KYTMd+GsEnL1cF4gKARdJ8xK+Dp8JDTR9ciZkh5Ne5BPDCFj6inXHqFh6CF2HtM9OJlY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=gqVIp9oq; arc=none smtp.client-ip=212.227.17.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1717230441; x=1717835241; i=wahrenst@gmx.net;
-	bh=CCGdaeCR/uSlXg0QGvO7hXoUNkCEtxBToDVRpLZJZDw=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=gqVIp9oqJ24/c2lzQKDkZ2QtAkJHYXEqWiawrrXMWXvw1gtOqUzsThlO3aW+gsLa
-	 tAnUH6unRCIrHm1RuZOsTxbRi1bJbiAWXvpiQRoYBIcsKe6nfnVRYIQQWwiJL6M7g
-	 lwZUWcp+kA16BjU9onxsMP2vXdlg55N++7va74VBfwBjks/gw8tL4XivnLJahCilp
-	 c72+h7RJGOu7Ku1zgNWvVTyIE3CnbC/KGyHsANbHd7xFC7mvJcNm98EAtGtHZ2F0B
-	 ZC1S980PKiWWjAk5XqRJnuaeaE0rJlCak0lYXBEKOJ+ATxvJ9lCDGtkc+NH9JnSez
-	 Ar59cDDvZb1cY0kBuA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.127] ([37.4.248.43]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MIx3C-1rstW702cE-00KSlK; Sat, 01
- Jun 2024 10:27:21 +0200
-Message-ID: <dbcd0f28-3f45-4506-aefb-b8dc6be47a43@gmx.net>
-Date: Sat, 1 Jun 2024 10:27:18 +0200
+	s=arc-20240116; t=1717231254; c=relaxed/simple;
+	bh=sF9BOyKHST//ueP1dpjJq4rkoGLKuLDyhaBu4xILE54=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MWdYyztJ63GTq+BrUshMjSpU15IKaNNMSFEu5CK65d75GPcLdDkucQcC4TyLS+P7CelZ0p4ErCB+9EPDtihrVrT0g3e6c2XZ+SgXnjA2pIky8/biJl7oFBfuhEBqW/V+mlXP7YiB+lx5TNad+hfc5g0QPZfkpp9Nn0Oq2dCjGr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=CcxAMN5w; arc=none smtp.client-ip=80.12.242.26
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([86.243.17.157])
+	by smtp.orange.fr with ESMTPA
+	id DKH2sUFIEvZ5mDKH3sPIqU; Sat, 01 Jun 2024 10:39:41 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1717231181;
+	bh=uDIWi5FqRaEs9zERfH9KwqhtLcINKRmqH7+cDO7juLM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=CcxAMN5w2n9SUWnzDnMjSIrDMG65v2mbI47yhBc7lDTBy+QT2U1zeA2Zi1+xfFA1E
+	 uovCvYQ4AVbyrGVIDqto0QFZLbqwVPyobv8ECOw9e+Qk1y/LN8ZlqLA6NRpU0Sj+sg
+	 D4jm+8QIy6/42X3QGJUj7rJHwkXYTQilB2Du8QlgWPgln7uKM9uc+vFg1+LaNERq5M
+	 Kb17JpWUQJj2K75X6Y9adyGwXBGDWQQg518Gce6Uwrfw1Eu+XC661tph7pYgrLQXNA
+	 tJC/lDguYLxMx5jvz4vYAwSb+N1RifGvitqdBNQRH2LjZQnG7dt++uCsNl1COoIKNt
+	 dlM0iW41EnxxA==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Sat, 01 Jun 2024 10:39:41 +0200
+X-ME-IP: 86.243.17.157
+Message-ID: <446b396b-753c-4114-9a8c-6f84ad3a69ba@wanadoo.fr>
+Date: Sat, 1 Jun 2024 10:39:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,51 +57,127 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/4] arm64: dts: broadcom: Add minimal support for
- Raspberry Pi 5
-To: Andrea della Porta <andrea.porta@suse.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
- <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Ulf Hansson
- <ulf.hansson@linaro.org>, Adrian Hunter <adrian.hunter@intel.com>,
- Kamal Dasu <kamal.dasu@broadcom.com>, Al Cooper <alcooperx@gmail.com>,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-mmc@vger.kernel.org
-References: <cover.1717061147.git.andrea.porta@suse.com>
- <874589f6c621036620cca944986e5be7238b4784.1717061147.git.andrea.porta@suse.com>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <874589f6c621036620cca944986e5be7238b4784.1717061147.git.andrea.porta@suse.com>
+Subject: Re: [v3,1/2] hwmon: add MP2891 driver
+To: Noah Wang <noahwang.wang@outlook.com>, robh@kernel.org,
+ krzk+dt@kernel.org, linux@roeck-us.net, conor+dt@kernel.org,
+ jdelvare@suse.com
+Cc: corbet@lwn.net, Delphine_CC_Chiu@Wiwynn.com, peteryin.openbmc@gmail.com,
+ javier.carrasco.cruz@gmail.com, patrick.rudolph@9elements.com,
+ luca.ceresoli@bootlin.com, chou.cosmo@gmail.com, bhelgaas@google.com,
+ lukas@wunner.de, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-i2c@vger.kernel.org
+References: <SEYPR04MB648253BF01D42B24A72B0027FAFC2@SEYPR04MB6482.apcprd04.prod.outlook.com>
+Content-Language: en-MW, en-GB
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <SEYPR04MB648253BF01D42B24A72B0027FAFC2@SEYPR04MB6482.apcprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:eAMNr6tyKKk5lXgBC/lHAUcrQiVwXALGXb+bV2UoQxMspC3HHqW
- /7/yOEI2IyRxgRUdmgTvVDulpss+/ExBcchPXhxue8QT0GlCXP3XU9nLMV03V/lRj4M04n5
- bw+ihcEEye0eAJkV/hwQhfScsS0+POT8kneoRJ0RgdOwuiXKHyajHIrknV00lnRchj5IjMu
- dqIExM+aSdlQJ+L0QUOcg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:U+Adulxrhug=;DQtuSnTMoCZFQSZXDz5eLyzymsi
- oD/abWDWRHWpdJVXD50f3xTYhJTvvj122R8WH9ivX4OrtyLJe19eEdzvlJjd/CbrZauN2JB5K
- S0EqQN1fGjqCgPN5KlRHqukyYLSDwgqlkxnfWNJSxN1Q7d22u2ChcDSBA4qKflRZTz36xZAct
- TWyLVodQsx7hbM/krHfjjMKM7sf9nLNpKLvgDLwEaKb+aYFxM7iwH4gfOWA8PwqithXsaunmR
- NVi+fFUVmze614RFKNHnId1zNKmDf/96NHk82Lu29F9y+0IDOEmwZnxZWZxKyJMCXBXsLmMRL
- ybfi15ZkSPZPM87t7pC36qV8jFYCpcHuhxXn16qOZVuqmx9gJJUORigEdJB9EFDZStL1RgkcB
- 13cMwHVKoELLko7aFMFunhevjK687a9qn/UlS9KZOrqG903SXAzFbMm9ORUGf7ktympYMpeCw
- doNoMtxo2adNqHAlpXfGYqPfABlI4AZewE1p6o4K5gSkETzzGfwIDtVAOCrC6ZRlfn67NJ75K
- UdmyP/hzKhOosdxIUr38Ds/nAYxUABV3LP9bREuByKU/RvU6QrAKV8T8BOsqYbqWb2Qs9m4tR
- f5lslYEl2QjXRhsCxHE2E/xaCFxelWf8u3e7FzV+n3Wo6Wi6stqf71XPxN8N6xMq97YUbEHNm
- H6IvtM51SmPymWSExS+QHJJK7JVAI3ISTe/DERQB+0KwcXCIlftWiKmxb7iWbZDKBxHjU9QBt
- 200w6Hfne8iRnnCdmGoDc4XTbgkHfuKxfUZQyx4zrpUPwvZBp4Oz4C9nAqGwdiJMDaLVmPTSe
- 2PAGPxLimnRq/cEN3gWPkYFKIjFtzUP+l4NJ0vxvK+N8E=
+Content-Transfer-Encoding: 8bit
 
-Am 30.05.24 um 12:12 schrieb Andrea della Porta:
-> The BCM2712 SoC family can be found on Raspberry Pi 5.
-> Add minimal SoC and board (Rpi5 specific) dts file to be able to
-> boot from SD card and use console on debug UART.
->
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
+Le 31/05/2024 à 09:26, Noah Wang a écrit :
+> Add support for MPS VR controller mp2891. This driver exposes
+> telemetry and limit value readings and writings.
+> 
+> Signed-off-by: Noah Wang <noahwang.wang@outlook.com>
+> ---
+
+Hi,
+
+below a few nitpicks, if it make sense to you.
+
+...
+
+> +++ b/drivers/hwmon/pmbus/mp2891.c
+> @@ -0,0 +1,608 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Hardware monitoring driver for MPS Multi-phase Digital VR Controllers(MP2891)
+> + */
+> +
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/init.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/bitfield.h>
+
+It is usually prefered to have includes sorted.
+
+> +#include "pmbus.h"
+> +
+
+...
+
+> +static struct pmbus_driver_info mp2891_info = {
+
+I think this could be const.
+
+> +	.pages = MP2891_PAGE_NUM,
+> +	.format[PSC_VOLTAGE_IN] = direct,
+> +	.format[PSC_CURRENT_IN] = direct,
+> +	.format[PSC_CURRENT_OUT] = direct,
+> +	.format[PSC_TEMPERATURE] = direct,
+> +	.format[PSC_POWER] = direct,
+> +	.format[PSC_VOLTAGE_OUT] = direct,
+> +
+> +	/* set vin scale 31.25mV/Lsb */
+> +	.m[PSC_VOLTAGE_IN] = 32,
+> +	.R[PSC_VOLTAGE_IN] = 0,
+> +	.b[PSC_VOLTAGE_IN] = 0,
+> +
+> +	/* set temp scale 1000m°C/Lsb */
+> +	.m[PSC_TEMPERATURE] = 1,
+> +	.R[PSC_TEMPERATURE] = 0,
+> +	.b[PSC_TEMPERATURE] = 0,
+> +
+> +	.m[PSC_CURRENT_IN] = 1,
+> +	.R[PSC_CURRENT_IN] = 0,
+> +	.b[PSC_CURRENT_IN] = 0,
+> +
+> +	.m[PSC_CURRENT_OUT] = 1,
+> +	.R[PSC_CURRENT_OUT] = 0,
+> +	.b[PSC_CURRENT_OUT] = 0,
+> +
+> +	.m[PSC_POWER] = 1,
+> +	.R[PSC_POWER] = 0,
+> +	.b[PSC_POWER] = 0,
+> +
+> +	.m[PSC_VOLTAGE_OUT] = 1,
+> +	.R[PSC_VOLTAGE_OUT] = 3,
+> +	.b[PSC_VOLTAGE_OUT] = 0,
+> +
+> +	.func[0] = MP2891_RAIL1_FUNC,
+> +	.func[1] = MP2891_RAIL2_FUNC,
+> +	.read_word_data = mp2891_read_word_data,
+> +	.write_word_data = mp2891_write_word_data,
+> +	.read_byte_data = mp2891_read_byte_data,
+> +	.identify = mp2891_identify,
+> +};
+> +
+> +static int mp2891_probe(struct i2c_client *client)
+> +{
+> +	struct pmbus_driver_info *info;
+> +	struct mp2891_data *data;
+> +
+> +	data = devm_kzalloc(&client->dev, sizeof(struct mp2891_data), GFP_KERNEL);
+
+sizeof(*data)?
+
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	memcpy(&data->info, &mp2891_info, sizeof(*info));
+> +	info = &data->info;
+
+'info' is not really useful. It could either be dropped, or initialised 
+1 line above, so that it can be used in the memcpy().
+
+CJ
+
+> +
+> +	return pmbus_do_probe(client, info);
+> +}
+
+...
+
 
