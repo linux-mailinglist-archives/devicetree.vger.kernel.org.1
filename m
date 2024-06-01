@@ -1,329 +1,103 @@
-Return-Path: <devicetree+bounces-71508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDEB08D7151
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 19:16:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70A0F8D715B
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 19:36:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E7D22810E2
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 17:16:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05ED81F21A66
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 17:36:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F24515445B;
-	Sat,  1 Jun 2024 17:16:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 469D715219B;
+	Sat,  1 Jun 2024 17:36:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nyuTJsmD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P+P5UhoT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7F9D8473;
-	Sat,  1 Jun 2024 17:15:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FF3EAD55;
+	Sat,  1 Jun 2024 17:36:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717262160; cv=none; b=FkcXgTg66ULbGy7SLBrADcQJ3P5ytq2Vm5rMzfF1xT/3HBdjk/ihYGzv8U3DFBmbGHndiVIYQROR3EnHCjw5034hz8SL83dJeExgAVef1LukQwBGQxtOX6Xfc9NrH1wDbPJgB65AbqphGLwcpLZ0C9cCmVDD9A6FcUv9E5Wbcww=
+	t=1717263362; cv=none; b=i/Xfx79RzTG7IF7eNg7O2UsR6j/ezVBzpQ8n4zl/B6VwPtKMZL+mWCAbJRvi2bdCZ3YgjGtSYO7xATVgFybzA8NVs15u2MBqeWLt2TfAG+FPgUpTgT0RBTRLjETmoyVsMUjeRCVkhnATAL53wilRufYOl8OqiLbRo8QEY30Qg/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717262160; c=relaxed/simple;
-	bh=QT0/E9Yiy8jGP3WrJjpfhCJZG2LSMCz7oy8UufZ8jHo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X18YfFtibB+GPejJyGxorSl2F2eLm5fy93Mz1nUl8eY6YQmIfS+3W3EJi+G9qOyBQ4O6qFKh6uJ/zp8t833GlqT/nywCRcsORZRZroKPWvJOZ+lLcNEI3zL2unaOf25HFyJOOiEljlhZ19uf5QOBBAFD3CH9KvyYNwggYS2JYfM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nyuTJsmD; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1717262157; x=1748798157;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=QT0/E9Yiy8jGP3WrJjpfhCJZG2LSMCz7oy8UufZ8jHo=;
-  b=nyuTJsmD08wZLC41cgbD6WdO6BTD3iM9k8Ms8DOYLt3oR8yJxursp4Ix
-   SSBm8t7pdkQzWi3NGPkS2MI+wytQa9DBNnGVBa5tWIYmqvZBKZ/Ac3/dQ
-   /Daq+pnIw7CLVF4y5Ws0bUdU7ABd2mF1NmXKZzzxOkd9AnLMWCIObstxh
-   7wusBhbXV76LVRbSMY57geESbVZZa85/BqcDJ7ErPgvepjREiopL2aG4M
-   aEXLWq8/i/n1ylfOMi+mpyCc8GGl9U0sgv/gFpS75l65sjUFoNhHMs38y
-   Fln1vYMfjk0K3WusMMY1zc90syvrasHLxx4RvKx9ox4G4MlWrWrfj/3Cp
-   g==;
-X-CSE-ConnectionGUID: sLRsKSMNQcmXdcizwc3Dpg==
-X-CSE-MsgGUID: 7D4AdwiuQEqbQaBZVh7eIA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11090"; a="39200154"
-X-IronPort-AV: E=Sophos;i="6.08,207,1712646000"; 
-   d="scan'208";a="39200154"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jun 2024 10:15:57 -0700
-X-CSE-ConnectionGUID: fh2X1d6hTGqjZBpzWWpz1g==
-X-CSE-MsgGUID: EPn/z0lATWOf0HFkYD5mSw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,207,1712646000"; 
-   d="scan'208";a="41004444"
-Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
-  by fmviesa004.fm.intel.com with ESMTP; 01 Jun 2024 10:15:50 -0700
-Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sDSKZ-000JAV-2x;
-	Sat, 01 Jun 2024 17:15:47 +0000
-Date: Sun, 2 Jun 2024 01:15:38 +0800
-From: kernel test robot <lkp@intel.com>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Sandy Huang <hjc@rock-chips.com>,
-	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-	Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mark Yao <markyao0591@gmail.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-	kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
-	Luis de Arquer <ldearquer@gmail.com>,
-	Algea Cao <algea.cao@rock-chips.com>
-Subject: Re: [PATCH 14/14] drm/rockchip: dw_hdmi: Add basic RK3588 support
-Message-ID: <202406020122.7LHytbS3-lkp@intel.com>
-References: <20240601-b4-rk3588-bridge-upstream-v1-14-f6203753232b@collabora.com>
+	s=arc-20240116; t=1717263362; c=relaxed/simple;
+	bh=XJyl4l5t/k3rLnQ72/yn2HQW5issWPa/CHD5pRVJm74=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=i1Uhkl08jzeNvwKxmYw2iLoz3BAXJdCEtZuHXJkdV/FQEe9p7cPoILlXgd1iGXrh/x+b5pwAaybO72i4y34A25Ef/iiY0iRTvX/QYzCKNS54dqSCmD3GvhiOVSqZqnOilFWh957EKc4k7SVPO/o7dbn343wnPiC+htyhtwcQPzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P+P5UhoT; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-52b919d214cso492455e87.2;
+        Sat, 01 Jun 2024 10:36:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717263359; x=1717868159; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XJyl4l5t/k3rLnQ72/yn2HQW5issWPa/CHD5pRVJm74=;
+        b=P+P5UhoTWRIfMPiEvbqujuEn5q2u7mWJLopu/PT66y/21ttz2XaN1eq7bjAuDTNhJR
+         dLPoSpOH4OZK30oFI4pa5VH7VtybAuGWfBpgeN0zDe2Q+qK86Lb9/7Frgxd4lWvqs3lP
+         XHdVg1Z3P4O5z/x0fMQQhfeTh9cW17HoZqHZ4fEEPsAsmriPSxf0I+fflgHAsDhjDUsp
+         jCGmvGhpoeFMhGtxBC4UMCsvcs3X09kc7if+qeYYn68U6UfLYXCf/+6ATjuyIfkyKoX0
+         krJiPYbCABUPhFyXcMLCHB/0x3f7zun/fW873lfjZOkcnTlXh3Uz7FTJwCi6QAiWTEtY
+         PAyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717263359; x=1717868159;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XJyl4l5t/k3rLnQ72/yn2HQW5issWPa/CHD5pRVJm74=;
+        b=HbCfH97ueqevRdbAjgZLDoO1jAQNow69rNtGtdWvgOxs4a9mAVMC9G1fAKErAUYziR
+         XXauYw9KTVBXCUDyovC/d6AR+t7VPLtj5ZzBSbBIy0BWSKqOn4KKXpF67Dlo3gn6zqsd
+         5VPd3T9GUwz4770Upc8uNA2tKK9k6mQY92LDadf27+L8JWDZHZyht3KNPOQwOcwo7Xi7
+         uUSIvyy2dF/w6AYyDv4Qptbyy3y7VEjGsOOApkqrQQqr0/14cx/0emX1sEDfVPy3rK1s
+         RqaNodmmRFrgV5thgqobVwHL8nHk2Sxw3OhknmWhpEGB3BFJQTOL3XwtsoiCwJ9hjXXx
+         YxAA==
+X-Forwarded-Encrypted: i=1; AJvYcCXbmPj7sCDfO0ll0c5mDzFzTHZ3YmXDrhqp5rw0wbjTa8tz56WZtKyxPbHzy96JQPbYy5+wcUax9NS17ExcZ5OclCEwkWOosvX5jeLlv+pi656dWnQVTjwBQCePD/GbgXGTU/nY8M0wS8UgkS05T5z5zG3TPw0Q+b5Nb1fBDLBpsEkKrRdz
+X-Gm-Message-State: AOJu0Yx7F+EXexeMcIwF0EUSYom25T6VpIZmGICsuWxptS8MWCGdfsMq
+	KSziZsg2t7iY3Fhh4oTiZzzB5G14kTcv3RNoOcO34ZHzCnlWHOkxyKmHX9376J1wwcxC8bY2FnG
+	+MEl94knl4R9ARSvfhnCwGvW5er0=
+X-Google-Smtp-Source: AGHT+IH04S1mTC1pbRmToifVqj/OK9AubBcLxbTT/9mdn/0C3Y2HQnsY37NvyikE6lfjaJ8pSWX+rxyxcA2IjZ4SRQY=
+X-Received: by 2002:a05:6512:3ca3:b0:521:e065:c6c5 with SMTP id
+ 2adb3069b0e04-52b8955c4bemr4195236e87.11.1717263358375; Sat, 01 Jun 2024
+ 10:35:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240601-b4-rk3588-bridge-upstream-v1-14-f6203753232b@collabora.com>
+References: <20240530111205.1764-1-bavishimithil@gmail.com>
+ <7845bb1c-47d5-41f6-bf08-bd7b357df02c@kernel.org> <CAGzNGRn=e46yYrK3o8JhUmod4pGFFdEK31kUWUU4jn+JTgZjQg@mail.gmail.com>
+ <c89d4290-1f24-4a30-9d94-f6d0dde21e80@kernel.org>
+In-Reply-To: <c89d4290-1f24-4a30-9d94-f6d0dde21e80@kernel.org>
+From: Mithil <bavishimithil@gmail.com>
+Date: Sat, 1 Jun 2024 23:05:45 +0530
+Message-ID: <CAGzNGRk8OtxY-K+3FF1UJ_mUS6Ras-FA7Es_KuLnva9jfqEPHA@mail.gmail.com>
+Subject: Re: [PATCH v6] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: peter.ujfalusi@gmail.com, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Lopez Cruz <misael.lopez@ti.com>, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Cristian,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Cristian-Ciocaltea/drm-bridge-dw-hdmi-Simplify-clock-handling/20240601-211531
-base:   1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
-patch link:    https://lore.kernel.org/r/20240601-b4-rk3588-bridge-upstream-v1-14-f6203753232b%40collabora.com
-patch subject: [PATCH 14/14] drm/rockchip: dw_hdmi: Add basic RK3588 support
-config: arm-defconfig (https://download.01.org/0day-ci/archive/20240602/202406020122.7LHytbS3-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240602/202406020122.7LHytbS3-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406020122.7LHytbS3-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c:280:26: error: implicit declaration of function 'devm_gpiod_get_optional' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
-                   hdmi->qp_enable_gpio = devm_gpiod_get_optional(hdmi->dev, "enable",
-                                          ^
-   drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c:280:26: note: did you mean 'devm_clk_get_optional'?
-   include/linux/clk.h:597:13: note: 'devm_clk_get_optional' declared here
-   struct clk *devm_clk_get_optional(struct device *dev, const char *id);
-               ^
->> drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c:281:15: error: use of undeclared identifier 'GPIOD_OUT_HIGH'
-                                                                  GPIOD_OUT_HIGH);
-                                                                  ^
->> drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c:364:3: error: implicit declaration of function 'gpiod_set_value' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
-                   gpiod_set_value(hdmi->qp_enable_gpio, 1);
-                   ^
-   3 errors generated.
+On Sat, Jun 1, 2024 at 8:44=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
+> I think you are now mixing different things. changelog and differences
+> comparing to pure 1-to-1 conversion.
+Oh my apologies, the commit message being more descriptive? Should it
+also include the changelogs, or just a general description about mcpdm
+and it being used in omap4/omap5 platforms?
 
 
-vim +/devm_gpiod_get_optional +280 drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-
-   226	
-   227	static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
-   228	{
-   229		static const char * const qp_clk_names[] = {
-   230			"pclk", "hdp", "earc", "aud", "hclk_vo1",
-   231		};
-   232		struct device_node *np = hdmi->dev->of_node;
-   233		struct clk *qp_clk;
-   234		int ret, i;
-   235	
-   236		hdmi->regmap = syscon_regmap_lookup_by_phandle(np, "rockchip,grf");
-   237		if (IS_ERR(hdmi->regmap)) {
-   238			drm_err(hdmi, "Unable to get rockchip,grf\n");
-   239			return PTR_ERR(hdmi->regmap);
-   240		}
-   241	
-   242		hdmi->ref_clk = devm_clk_get_optional_enabled(hdmi->dev, "ref");
-   243		if (!hdmi->ref_clk)
-   244			hdmi->ref_clk = devm_clk_get_optional_enabled(hdmi->dev, "vpll");
-   245	
-   246		if (IS_ERR(hdmi->ref_clk)) {
-   247			ret = PTR_ERR(hdmi->ref_clk);
-   248			if (ret != -EPROBE_DEFER)
-   249				drm_err(hdmi, "failed to get reference clock\n");
-   250			return ret;
-   251		}
-   252	
-   253		hdmi->grf_clk = devm_clk_get_optional(hdmi->dev, "grf");
-   254		if (IS_ERR(hdmi->grf_clk)) {
-   255			ret = PTR_ERR(hdmi->grf_clk);
-   256			if (ret != -EPROBE_DEFER)
-   257				drm_err(hdmi, "failed to get grf clock\n");
-   258			return ret;
-   259		}
-   260	
-   261		if (hdmi->is_hdmi_qp) {
-   262			hdmi->vo1_regmap = syscon_regmap_lookup_by_phandle(np, "rockchip,vo1_grf");
-   263			if (IS_ERR(hdmi->vo1_regmap)) {
-   264				drm_err(hdmi, "Unable to get rockchip,vo1_grf\n");
-   265				return PTR_ERR(hdmi->vo1_regmap);
-   266			}
-   267	
-   268			for (i = 0; i < ARRAY_SIZE(qp_clk_names); i++) {
-   269				qp_clk = devm_clk_get_optional_enabled(hdmi->dev, qp_clk_names[i]);
-   270	
-   271				if (IS_ERR(qp_clk)) {
-   272					ret = PTR_ERR(qp_clk);
-   273					if (ret != -EPROBE_DEFER)
-   274						drm_err(hdmi, "failed to get %s clock: %d\n",
-   275							qp_clk_names[i], ret);
-   276					return ret;
-   277				}
-   278			}
-   279	
- > 280			hdmi->qp_enable_gpio = devm_gpiod_get_optional(hdmi->dev, "enable",
- > 281								       GPIOD_OUT_HIGH);
-   282			if (IS_ERR(hdmi->qp_enable_gpio)) {
-   283				ret = PTR_ERR(hdmi->qp_enable_gpio);
-   284				drm_err(hdmi, "failed to request enable GPIO: %d\n", ret);
-   285				return ret;
-   286			}
-   287		}
-   288	
-   289		ret = devm_regulator_get_enable(hdmi->dev, "avdd-0v9");
-   290		if (ret)
-   291			return ret;
-   292	
-   293		ret = devm_regulator_get_enable(hdmi->dev, "avdd-1v8");
-   294	
-   295		return ret;
-   296	}
-   297	
-   298	static enum drm_mode_status
-   299	dw_hdmi_rockchip_mode_valid(struct dw_hdmi *dw_hdmi, void *data,
-   300				    const struct drm_display_info *info,
-   301				    const struct drm_display_mode *mode)
-   302	{
-   303		struct rockchip_hdmi *hdmi = data;
-   304		const struct dw_hdmi_mpll_config *mpll_cfg = rockchip_mpll_cfg;
-   305		int pclk = mode->clock * 1000;
-   306		bool exact_match = hdmi->plat_data->phy_force_vendor;
-   307		int i;
-   308	
-   309		if (hdmi->ref_clk) {
-   310			int rpclk = clk_round_rate(hdmi->ref_clk, pclk);
-   311	
-   312			if (abs(rpclk - pclk) > pclk / 1000)
-   313				return MODE_NOCLOCK;
-   314		}
-   315	
-   316		for (i = 0; mpll_cfg[i].mpixelclock != (~0UL); i++) {
-   317			/*
-   318			 * For vendor specific phys force an exact match of the pixelclock
-   319			 * to preserve the original behaviour of the driver.
-   320			 */
-   321			if (exact_match && pclk == mpll_cfg[i].mpixelclock)
-   322				return MODE_OK;
-   323			/*
-   324			 * The Synopsys phy can work with pixelclocks up to the value given
-   325			 * in the corresponding mpll_cfg entry.
-   326			 */
-   327			if (!exact_match && pclk <= mpll_cfg[i].mpixelclock)
-   328				return MODE_OK;
-   329		}
-   330	
-   331		return MODE_BAD;
-   332	}
-   333	
-   334	static void dw_hdmi_rockchip_encoder_disable(struct drm_encoder *encoder)
-   335	{
-   336	}
-   337	
-   338	static bool
-   339	dw_hdmi_rockchip_encoder_mode_fixup(struct drm_encoder *encoder,
-   340					    const struct drm_display_mode *mode,
-   341					    struct drm_display_mode *adj_mode)
-   342	{
-   343		return true;
-   344	}
-   345	
-   346	static void dw_hdmi_rockchip_encoder_mode_set(struct drm_encoder *encoder,
-   347						      struct drm_display_mode *mode,
-   348						      struct drm_display_mode *adj_mode)
-   349	{
-   350		struct rockchip_hdmi *hdmi = to_rockchip_hdmi(encoder);
-   351	
-   352		clk_set_rate(hdmi->ref_clk, adj_mode->clock * 1000);
-   353	}
-   354	
-   355	static void dw_hdmi_rockchip_encoder_enable(struct drm_encoder *encoder)
-   356	{
-   357		struct rockchip_hdmi *hdmi = to_rockchip_hdmi(encoder);
-   358		struct drm_crtc *crtc = encoder->crtc;
-   359		u32 val;
-   360		int ret, rate;
-   361	
-   362		if (hdmi->is_hdmi_qp) {
-   363			/* Unconditionally switch to TMDS as FRL is not yet supported */
- > 364			gpiod_set_value(hdmi->qp_enable_gpio, 1);
-   365	
-   366			if (crtc && crtc->state) {
-   367				clk_set_rate(hdmi->ref_clk,
-   368					     crtc->state->adjusted_mode.crtc_clock * 1000);
-   369				/*
-   370				 * FIXME: Temporary workaround to pass pixel clock rate
-   371				 * to the PHY driver until phy_configure_opts_hdmi
-   372				 * becomes available in the PHY API. See also the related
-   373				 * comment in rk_hdptx_phy_power_on() from
-   374				 * drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
-   375				 */
-   376				if (hdmi->phy) {
-   377					rate = crtc->state->mode.clock * 10;
-   378					phy_set_bus_width(hdmi->phy, rate);
-   379					drm_dbg(hdmi, "%s set bus_width=%u\n",
-   380						__func__, rate);
-   381				}
-   382			}
-   383		}
-   384	
-   385		if (hdmi->chip_data->lcdsel_grf_reg < 0)
-   386			return;
-   387	
-   388		ret = drm_of_encoder_active_endpoint_id(hdmi->dev->of_node, encoder);
-   389		if (ret)
-   390			val = hdmi->chip_data->lcdsel_lit;
-   391		else
-   392			val = hdmi->chip_data->lcdsel_big;
-   393	
-   394		ret = clk_prepare_enable(hdmi->grf_clk);
-   395		if (ret < 0) {
-   396			drm_err(hdmi, "failed to enable grfclk %d\n", ret);
-   397			return;
-   398		}
-   399	
-   400		ret = regmap_write(hdmi->regmap, hdmi->chip_data->lcdsel_grf_reg, val);
-   401		if (ret != 0)
-   402			drm_err(hdmi, "Could not write to GRF: %d\n", ret);
-   403	
-   404		clk_disable_unprepare(hdmi->grf_clk);
-   405		drm_dbg(hdmi, "vop %s output to hdmi\n", ret ? "LIT" : "BIG");
-   406	}
-   407	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--=20
+Best Regards,
+Mithil
 
