@@ -1,185 +1,78 @@
-Return-Path: <devicetree+bounces-71530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 672348D7291
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 00:49:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2FD08D729C
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 00:58:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7EE11F2191D
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 22:49:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A2041F2199D
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 22:58:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E234D2BAEA;
-	Sat,  1 Jun 2024 22:49:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9613F2E414;
+	Sat,  1 Jun 2024 22:58:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="IAoiJYPj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FuNjfihB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [167.172.40.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 557EF1CD2F
-	for <devicetree@vger.kernel.org>; Sat,  1 Jun 2024 22:49:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=167.172.40.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6970738FB0;
+	Sat,  1 Jun 2024 22:58:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717282180; cv=none; b=ehRkSqKj1KMLaU6psCneTaA7fq+vVYVq7h932rJTbE8hCTwwgh3U1BQzjlKPChIkXMOM+3iWtFCX7ptvmj6LOY6hFhtFvd1l3pjXAECs/QJL0XSfuU+H44gZl4IueypNWudCciOwuD/iisEHsmEuOmH0gtOrtWvlxGmOh6wp9eQ=
+	t=1717282702; cv=none; b=DMvKdAeUndrrFaXFJsNnynoSyItmX007Mr8u89uD0p3slekIiCq3fwaNc2tXEi2i4Y4pTNIuFHhriM4IWpLx5ZiK3xUdOzB2cQvngyTpsXXkQmuRClYyf/RW7QpDO6BICVqKHqcN37wNK3XoK7ODBfqhoS+IybrtjOqFZRXlU18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717282180; c=relaxed/simple;
-	bh=Jkb8Hqv95DRnRm/NxgOPNaIghiPJOHpb1eOciF3qDFY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BCQqAOiELj2+im1n0COizGDRVMm4NTXt8Lb8dlfacKHIkc1G3gMwaW6Q8T6VRv/+G018yPMd9HYxK4s1aSzoyUcmj85PYxcC3zK5BsCzQu5cYvy+6KJ/EWA7z8QfMxkZgvLApy0RJONRTmdyrgCXr+PiV0PqzfHCdGDPhrceRm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=IAoiJYPj; arc=none smtp.client-ip=167.172.40.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1717282140;
- bh=/k1PnOZIBQq7/TC/41KnYN6gtYkoZOfq1Q0coM4QxJ4=;
- b=IAoiJYPjI70b9FQJs5+yPAOaADoe2lOr7mk54a47iJK6LaeVzR2nJkjDq6UjqUQQBh16oLSWp
- OmRJwWHT34EDXPILh1QGR5YjCTwOMH01HciscOIbH3tC6FLs/j5k9D7n3pLWGwoFcbUJQaq5oN7
- VpL5ScVekby+AqKHPUXblKBpcs29IyoO7bkofK8WRfKZt+bUarmEqrnIRSwLEwL6o51DdjatHKw
- 9ngdlaRlPFkozI4PqSd2Qy0ugLtd9NlQaHrFsDcOglTKQRqwcJqUYb8/AYRtV+FGGT3hxn3Bu+X
- rm3KRfIibp1Lrn9kcPqcE1genx0e0W02xye8Dlsl8BnQ==
-Message-ID: <e4e0c2a4-0d63-434f-ba52-6aaf571e30a5@kwiboo.se>
-Date: Sat, 1 Jun 2024 01:32:29 +0200
+	s=arc-20240116; t=1717282702; c=relaxed/simple;
+	bh=nX+3VPiGwn/lXugoQSvq7Zf/3JFTiJozOIiDFqxDNXw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nALEnYc+bSPb1Xdl4ug5s0KijrGkw5qThpgJVvx/BsgXf9Z6aXhUXaVdOS8TZphaJvw1QWsHW6zSYgnKzBXrSu4NJgG8H40j7f72P1bflmwLVjDIcDCPT8YcIGC+rg279Xq+GvXJn8mEiuy+30wHBvaSIDegqPSxv+QlFqLCWKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FuNjfihB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BBC1C116B1;
+	Sat,  1 Jun 2024 22:58:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717282701;
+	bh=nX+3VPiGwn/lXugoQSvq7Zf/3JFTiJozOIiDFqxDNXw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FuNjfihB1HEPzaF9GFFqtP9XDEE9t9JZKyacw9Ryz3WaIy6jE4v8FphU3mAwbhzZd
+	 KjKDragQPKonNc4M62kRk/hSQvJWaLVnXuwstl78GlPAsYbK1o0lBB29Lqkb2ALLb+
+	 IjA6OndU7YNss4JGjFAk/G0GaN4r97BJXAcpwJS0vuPwyUd/6750A+tOcp44TAOgs+
+	 XA9A28uLxQ7I0oe2sJbc5Dv3apYJR4YULGGM/z9G/p/9q7xPJKm1s0EKbTO8ldnTDk
+	 V797HuNLTj3wElT6S+MYXVQoe4+ygfvqaxRRB3orEfPTElEhsm5lt+tY42xR7WAaV9
+	 sIqQYwQ2j+dZw==
+Date: Sat, 1 Jun 2024 17:58:19 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Rajendra Nayak <quic_rjendra@quicinc.com>, 
+	Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1e80100-qcp: Fix USB PHYs
+ regulators
+Message-ID: <fjawzjf5squniqse43r3xwshguwhcg5ofqzcjvmrn5v2ji3e7x@eve4fhsftnhw>
+References: <20240530-x1e80100-dts-fix-usb-phy-supplies-v1-0-6eb72a546227@linaro.org>
+ <20240530-x1e80100-dts-fix-usb-phy-supplies-v1-2-6eb72a546227@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH] arm64: dts: rockchip: Make preparations for
- per-RK3588-variant OPPs
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Dragan Simic <dsimic@manjaro.org>, linux-rockchip@lists.infradead.org,
- heiko@sntech.de, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-kernel@vger.kernel.org,
- quentin.schulz@cherry.de, wens@kernel.org, daniel.lezcano@linaro.org,
- didi.debian@cknow.org, krzysztof.kozlowski+dt@linaro.org,
- viresh.kumar@linaro.org
-References: <673dcf47596e7bc8ba065034e339bb1bbf9cdcb0.1716948159.git.dsimic@manjaro.org>
- <CABjd4YxD41DEkBCZfkznLboEY9ZVOfTCLcj4S_kkcsVswbANyQ@mail.gmail.com>
- <8f8623e29a479c4108141302e708dc3b@manjaro.org>
- <CABjd4Yy4RMg+6-4ygV0MSwJj5LReY-ymbctq4PPfVZ6L+c1tsw@mail.gmail.com>
- <166cc4e46f31644a50306625b2ab18a6@manjaro.org>
- <CABjd4YzDNQa45=KC_t0xnTDrH+g-oUrcpgP55oOj7JcAuu7uFw@mail.gmail.com>
- <82db817a908b761d8c3d73ea04714314@manjaro.org>
- <607f4da8-99b2-4379-9567-4bfd2744eab3@kwiboo.se>
- <CABjd4YxdM+cM+z7ou3=DF2SrFM0235DSTZ45o0NsKBwGrgW8Bg@mail.gmail.com>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <CABjd4YxdM+cM+z7ou3=DF2SrFM0235DSTZ45o0NsKBwGrgW8Bg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 167.172.40.54
-X-ForwardEmail-ID: 665a5e1290b1ee9784da9536
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240530-x1e80100-dts-fix-usb-phy-supplies-v1-2-6eb72a546227@linaro.org>
 
-Hi Alexey,
-
-On 2024-05-31 13:44, Alexey Charkov wrote:
-> Hi Jonas,
+On Thu, May 30, 2024 at 07:35:46PM GMT, Abel Vesa wrote:
+> The 1.2v HS PHY shared regulator is actually LDO2 from PM8550ve id J.
+> Also add the missing supplies to QMP PHYs.
 > 
-> On Fri, May 31, 2024 at 3:27 PM Jonas Karlman <jonas@kwiboo.se> wrote:
->>
->> Hi Alexey and Dragan,
->>
->> On 2024-05-30 21:31, Dragan Simic wrote:
->>> Hello Alexey,
->>>
->>
->> [snip]
->>
->>>>>>> That way we'll have no roadblocks if, at some point, we end up with
->>>>>>> having
->>>>>>> different OPPs defined for the RK3588 and the RK3588S variants.  Or
->>>>>>> maybe
->>>>>>> even for the RK3582, which we don't know much about yet.
->>>>>>
->>>>>> Guess we'll deal with that one once we stumble upon an actual RK3582
->>>>>> board out in the wild and heading to the mainline kernel tree :)
->>>>>
->>>>> Of course, that was just an example for the future use.
->>>>
->>>> In fact, I've just discovered that Radxa has recently released Rock 5C
->>>> Lite which is based on RK3582, and starts at just $29 for the 1GB
->>>> version, making it interesting for tinkering. Especially given that
->>>> its GPU, one of the big-core clusters and one of the VPU cores seem to
->>>> be disabled in software (u-boot) rather than in hardware, which means
->>>> there is some chance that a particular SoC specimen would actually
->>>> have them in a working condition and possible to re-enable at no cost.
->>>> Ordered myself one to investigate :)
->>>
->>> Yes, I also saw the RK3582-based ROCK 5C Lite a couple of days ago. :)
->>> It seems that the disabled IP blocks are detected as defective during
->>> the manufacturing, which means that they might work correctly, or might
->>> actually misbehave.  It seems similar to the way old three-core AMD
->>> Phenom II CPUs could sometimes be made quad-core.
->>>
->>
->> I can confirm that the RK3582 include ip-state in OTP indicating
->> unusable cores, any unusable cpu core cannot be taken online and stalls
->> Linux kernel a few extra seconds during boot.
->>
->> Started working on a patch for U-Boot to remove any broken cpu core
->> and/or cluster nodes, similar to what vendor U-Boot does, adopted to
->> work with a mainline DT for RK3588.
-> 
-> Superb - it's great to have a patch for it already, thank you for working on it!
-> 
->> On one of my ROCK 5C Lite board one of the cpu cores is unusable, U-Boot
->> removes the related cpu cluster nodes. On another ROCK 5C Lite board one
->> rkvdec core is only marked unusable and all cpu cores can be taken
->> online, U-Boot does nothing in this case. Guessing we should apply
->> similar policy as vendor U-Boot and disable cores anyway.
-> 
-> Is there any misbehavior / instability if you just keep all the
-> unmarked cores online?
+> Fixes: 22b82135c02d ("arm64: dts: qcom: x1e80100-qcp: Enable more support")
 
-I will run some tests during the weekend and get back with results later.
-
-> 
-> I think from an end-user perspective it would be better to just enable
-> everything that works, as the reason to unconditionally disable some
-> IP blocks even when they are "good" is quite likely not a technical
-> one but rather a marketing one. It's hard to justify selling chips
-> with different sets of working IP blocks under the same label and the
-> same price, making it easier to just trim them all to a lowest common
-> denominator. On the other hand, once a person has already bought a
-> device where some IP blocks work even if they are not supposed to, why
-> not make use of them? It costs nothing, hurts noone...
-
-I agree, it is probably more related to marketing, licensing and/or
-what is tested.
-
-Vendor U-Boot apply following logic/policy for rk3582 (and rk3583).
-
-RK3582 policy:
-- always remove gpu
-- always remove both rkvdec cores
-- remove bad rkvenc core, if both are normal, remove rkvenc1 anyway
-
-RK3583 policy:
-- always keep gpu
-- remove bad rkvdec core, if both are normal, remove rkvdec1 anyway
-- remove bad rkvenc core, if both are normal, remove rkvenc1 anyway
-
-CPU core policy:
-- remove both cores within a cluster having a bad core
-- if core4~7 are all normal, remove core6 and core7 anyway
+This isn't the right hash. I'm fixing this one up, but please check make
+sure your fixes are based on merged commits.
 
 Regards,
-Jonas
-
-> 
-> Best regards,
-> Alexey
-
+Bjorn
 
