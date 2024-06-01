@@ -1,198 +1,163 @@
-Return-Path: <devicetree+bounces-71431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83BFE8D6D14
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 02:10:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E9298D6D2C
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 02:34:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73F9D288130
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 00:10:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6530284D9A
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 00:34:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E36D1386;
-	Sat,  1 Jun 2024 00:10:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A6B717F7;
+	Sat,  1 Jun 2024 00:34:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FlMgNgSV"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="pP93GMMB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11olkn2045.outbound.protection.outlook.com [40.92.19.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F4C037E;
-	Sat,  1 Jun 2024 00:10:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717200624; cv=none; b=OWdWDi8vRZ1WRYjvA2dT67ed358UCggC7m+9qFg3AojUPBLdF/Sp0D2qgJhVdjGAxsjzGwFaThb5X/m2kO4VNW+7ZmLZ8gxGaJ2IBazTaZOky8xJzYDJJoncrm7Tgq30qPCL7LckG5+uHjosv+g4K5Cs3Cvcpjk9D/OmwO8/Gx4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717200624; c=relaxed/simple;
-	bh=91n2kwnI74OK5r+ydkpLfw2spS5DCQ1J5SRP6i3YAQI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AcmSzM6L3OOZ4EuPMUNIoAm++NYmQmT3uiM2odHJDyBev2X0oBcNXxknRtLm69rY8wH8yDDrb+CbRBuysWD4UlwA1JLA5PAadlG1ZQaKTsvP8dKcpVbvCW0YY7jSlFN4HlVA2ROn/Qa1/3H69hMWQLPd1+chzPPq14ZcZWfaxrU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FlMgNgSV; arc=none smtp.client-ip=209.85.219.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6ae10ec3bd7so2385236d6.1;
-        Fri, 31 May 2024 17:10:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717200622; x=1717805422; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PSzJ+L/cbNA7sYLgQBG3/PvK9MnOtIiCP0OTqTlJIHk=;
-        b=FlMgNgSVqp0FBYHbvzzEpIokXDizST/k+slfSYtgqjPVXPDqNPkxRZ0GfG4sLKQcH+
-         5pAsXkA9kprSQbjdqu7By/Zi8SUPccTIpbCdkVXwl6iMaaNyJ35J5iRij/DMyotegMTg
-         uO047Rb6LCFEjJpjzkADgauwZo9+vup0bWBYJTDPamseCPlWwWdie5G3TY5ZzQphQWnx
-         bZBmz2gatcJTUuwhJ8k3QBoha8T90H/fp6UcERTOiBIFPBwqidJL2kmYvM8XOfSzaQXc
-         4+2xqsiAAIxLy97TiwtiNQnLV7WILV1aJFUgeejKCOdVguUNG7s5idiQY9/EhQpqC6Xl
-         iwKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717200622; x=1717805422;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PSzJ+L/cbNA7sYLgQBG3/PvK9MnOtIiCP0OTqTlJIHk=;
-        b=f79vq2hSJJX2NTm5vo9D/rpThBUT/m+M+xUGAc4fUpQGb2genEXRkCGnmM/DLuCRKV
-         F5v6Gx/FtlgOf/1uG8pYASJNOM013rnq7twmjb7WbPwBNOEx1BfPZRXUAnwqbVRTuSVO
-         GwOaXEQxI4PrI52CLsuB0SSZqDcAGZNihwRfhIgBfHbgpkFcgmm+LITPtc8jXmJNPzAa
-         b6mgsmWcQXRzYESOcCIbvIO+jgUecHvwPWD0E98TuhzGWAnFh1nW5UJ6reYkDn2nV1Bi
-         3mwrSOSJnFyh+0RYQ2xBHzQ454llTL7EnpmZLIMtzEwXd3RyJvcvqibPe09v+7i+jJTH
-         voTw==
-X-Forwarded-Encrypted: i=1; AJvYcCXWd2GKj5vfCCxVrgodcAG8fG+hqndZodS8bF9vH+zCjHgTD8g/U0GBaAzXCP8FLuKZzNppUGqNdwV7g5y6EqI/hr/EeELlJsrrTLnZ5cenXRpffxJTFkeTf1vhA9n1F3v860jG/LHDU/6XTHhpW7Kn2O1gKfsjEJZTUzSdwFHDIXPyo4uifpk2RwdVffE=
-X-Gm-Message-State: AOJu0YxbzvX11eCjHFW7YFpHUzgPJdncrx25FQWPRDZI0AzHuzdIoMHz
-	cSqZTPTadu8O06VNUbOzZBWswIDt6H1vW+QpE6AoO7kpOzNOWBPi
-X-Google-Smtp-Source: AGHT+IHoL2mHJHbKUOWC5NiDcAMqLzR0pPVM700KBUPJG6vSPJONv3wJvMsi2fwBuGwxHejvntBBlw==
-X-Received: by 2002:a05:6214:c48:b0:6ab:8c3b:9032 with SMTP id 6a1803df08f44-6aecd573592mr36731136d6.1.1717200622086;
-        Fri, 31 May 2024 17:10:22 -0700 (PDT)
-Received: from [192.168.0.98] ([67.6.32.220])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6ae4a73e767sm10633516d6.1.2024.05.31.17.10.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 May 2024 17:10:21 -0700 (PDT)
-Message-ID: <a2f68c56-e6d6-4626-8d05-b5e808da60da@gmail.com>
-Date: Fri, 31 May 2024 19:10:20 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85E3017FF;
+	Sat,  1 Jun 2024 00:34:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.19.45
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717202088; cv=fail; b=aHO3M5g4jBQVEGPKS7fu8lkyfKqN0ZOov6pmom7eHdo1TuijBoIp6cGiZVW+/vQoohsvty9BFQa784LPYZWItqFKhzk03SYhB7X65vKnHuQLooLZDDlJPX51Lhr6xeNOh+NOLZ66HqfbI0NnYqUBZMgcg7rrypmOZUixjTwk0qI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717202088; c=relaxed/simple;
+	bh=UUp3zOHELAzk2ejzLoqesWFb4ASbeIcqiagB683fc/E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=e4hB3ZIOczx2syK8uNz19PZCxMi1ladP9Gltgx9o7PdgaDHpDKwenGJ9d00ylev0YmBElIyjpBJEsCUxp9ZoMv0SyYXzQ/VJZCO4IDMjkO1llNawy0X8IULvJId04QXIGK+5Gn9BKjHoB206oGWrNpuGj6jvKSrENro6/cyuJZg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=pP93GMMB; arc=fail smtp.client-ip=40.92.19.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BvJsQ+k3TAgQHtye1gsEDQz5cMUN25YUz2Y10xWlu7tJx/9Gc79Bv87GIpLfVtWYsOLu0A9BzB+A9FyJyOypjBazZ5CRSS9FSVLI9gms5tqh5USuS5M5DmYxCUfpwdGEudCw2b1FiROSw2KjT3bMRDbNNQ9rnx1DoirWXu9PN4Mn5A3qUWbqmCb0Sq8W5pMuaZmZ0DL2lo80kcSskXQEc+nhaBp05seFN8MQW6XGKhkGgydf6GQuLg8GjYA655Rv/OIhbo2bqnrx56wpK6TsCa1E8yk+kKsMwpjUKqzgXiM8V1PJQ2pBM2xGrlaPjlDlLLuFvrmbiDfq6Hrt4MytmA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YihQBVyXclUgfsxPVeL93sGTTwxjm4OzDsK076sk8wU=;
+ b=VqGOgMBp4rH33ludLiNaTuWZb22/vk97VTfX2R3dqZ7eLq+UtrsY/A00sosTMnAE6LtFJ0y6AVk1VafZbUiJdyg4lgtAHCoRWheYW8pUob9L9L0iAAZaOJRODPKSC8NLlKlFfIf7LzK2wBTF7Yr02CQv323tIKNKxDXpD1hbHwWl+UZUnuN8f/9O6/flSJrTvYJbuXtu+vvW7RxEiiswb43OdeEhuEn+TxWvRnOihsbTb/R9za4pJvMG4DOuo4nK++iQc9E/JARAAwTe7F8RPgsicOVyZqRJrjaO/0ExwsGibrRK8NN3tl8KdEOFduIgPp82Y+5/p4qQ4U6+WcN8OQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YihQBVyXclUgfsxPVeL93sGTTwxjm4OzDsK076sk8wU=;
+ b=pP93GMMBFekCqJY03G6FvfuOJJanFak18EBFNBjubmIoimxwJVQ2SM/xIgp2s2fbTGTCjEWjxEQ0/0auBfOUKXfhqiGYdVbWnDZqhOPu9BhY53vFgYx1V1UKEu1yyCUUHnTXW5tazw5gwdc7SZ7PVXRMz0/J7tiWevsmsYkKToYOtLXFmiDYBWE/OJNxbCd6CYrPZQiA0MZ6I2EkON5dw5MTI23WzJP557OXJe2TvWiCnPGyrogqlxBqn/F8soJV4k9WakTLsNvOTLPIfrS7SUB/kNrPPlnf3gvLPqRdWURLfOZfDeO3LhLJFnTrXw0vgpuJCzJIVS/4/DsLuTA4SQ==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by BY1PR20MB7509.namprd20.prod.outlook.com (2603:10b6:a03:4a8::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.22; Sat, 1 Jun
+ 2024 00:34:41 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149%6]) with mapi id 15.20.7633.021; Sat, 1 Jun 2024
+ 00:34:41 +0000
+Date: Sat, 1 Jun 2024 08:34:23 +0800
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Haylen Chu <heylenay@outlook.com>, 
+	Inochi Amaoto <inochiama@outlook.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Jisheng Zhang <jszhang@kernel.org>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 3/3] thermal: cv180x: Add cv180x thermal driver support
+Message-ID:
+ <IA1PR20MB4953523D31D45463D5A5E5CCBBFD2@IA1PR20MB4953.namprd20.prod.outlook.com>
+References: <SEYPR01MB422119B40F4CF05B823F93DCD7F32@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
+ <SEYPR01MB4221BEBBF659F8495BF0E831D7F32@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
+ <IA1PR20MB49533177BEFC431FC16D1AB8BBF32@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <SEYPR01MB4221A59D51DDA225207D23F6D7FC2@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SEYPR01MB4221A59D51DDA225207D23F6D7FC2@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
+X-TMN: [SINP3Fmt+RUNu9TEIc1/YqjmpV4Aa/ALwMhOkxcdOGc=]
+X-ClientProxiedBy: PS2PR01CA0059.apcprd01.prod.exchangelabs.com
+ (2603:1096:300:57::23) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <pd52sfhbqfvcicuyo43sgfjdafybznohsxldtpphlggmvwx46x@kyyg23wnl4c4>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] Input: novatek-nvt-ts: add support for NT36672A
- touchscreen
-To: Hans de Goede <hdegoede@redhat.com>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?=
- <ilpo.jarvinen@linux.intel.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
-References: <20240526-nvt-ts-devicetree-regulator-support-v3-0-aa88d10ccd9a@gmail.com>
- <20240526-nvt-ts-devicetree-regulator-support-v3-3-aa88d10ccd9a@gmail.com>
- <55272a3b-575d-4212-a40b-7245beed5d80@redhat.com>
-Content-Language: en-US
-From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
-In-Reply-To: <55272a3b-575d-4212-a40b-7245beed5d80@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|BY1PR20MB7509:EE_
+X-MS-Office365-Filtering-Correlation-Id: 56ac9706-139a-4fe5-9d5e-08dc81d2a066
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|461199019|440099019|3412199016|1710799017;
+X-Microsoft-Antispam-Message-Info:
+	Kl+PDBCBPVk+Fo6c+Bb3dy+oUPB0qpMvbXfAICzAHRSH328pK6v2ZMZwkG1DZosnbrLEx2pKLyaZ1t1bBXJ7zXgz+lseYnYw1gRizFoKo4nDSPFrL6M1WxZDkALnOqXAcxyQySIibMBlgRdGVBFIYXGmjAKYWwZ2GiEu/wOiRu/nKts2h3Er7+TB6AvAxRgPUulZ7jaBc8v1t72KiSDqzdW4kenNfnpSz8wiox923aCqB/vN2XmpzldjJHLJAgKQToPwUAF4hx84IJM7Uc+OU6fd1Tznyj+XN5w3iHMAD5w8z4W3y1FtcoLyukEyXXbTn49zH5RkDBL/mCW1AHU2Q9Xt/1EYcby1xYKYin2wvvsva2t7TsRMgrGEMQmPMuKB8PTiXIHFI5ZbHg68faiIjSGvQOkXT+WvvzIvNpPKn0HvAsCu29X+lDWJG8ZLY7TgfamNAtL9xf1koGB07PN5rhApQTMidmk7m6ShssYkHyFa4hCEr75xkaXlP3gJgpd2HwVeT7H8X0ydUpj7nt5mJE6SuO+9oGjlmGVH6j7lLpgGEJxFc8D/Yz0mg4Ai1o3Aga1OCLR6PH20iBU2Uv2sAmDWAccBK0YR3kDLxdrr/2caZlK10Qi7Ah6UNzDnXfug
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ZcgsEEmPFuMiRzbMmEGhcB9/qVP82Cl28163V+ftGA0BAEo6LzvTdj4tBsvH?=
+ =?us-ascii?Q?iqOla57Yf6w/uoiNuvB3usVgtvxuAgWY4BtsgLhqY7MjIA5RCzyTjKZ249uq?=
+ =?us-ascii?Q?20vigkfXhoUrhB277kHqXBTpQWUXfgX8Idj4ezmSfmy4XB+4HAG3wKZ8OEbY?=
+ =?us-ascii?Q?Rm/ShieWcfZdMlqauIMIyNNIAfj9OhI8Lxi23nCBdAwTnD7g58ia7PGaXhU3?=
+ =?us-ascii?Q?Bq055NClFN4aQ/miugSNgw2RbdmfE6P9fj6FPofrodKO7tM8m1NhkjJ5YWo/?=
+ =?us-ascii?Q?nXHICnzagaOIYJKh/xlUhpCvLJr2eKm5Ew2dpz1F2Wjeb9Yy/fOfwxcq60du?=
+ =?us-ascii?Q?4eqikapTgg2LI9uVIWbgcYOXyJMp4tMZSL1xFp2DhncrLj3pP8NAD6/0fC8f?=
+ =?us-ascii?Q?x9aabyPxMc2WJKqzDAr2C4mBbyHervMQLevjtywJ8Ft2iuJ0t/N8LdDG+tQA?=
+ =?us-ascii?Q?H5ms0CBzbwIs3NhcAYFahpTbZJYgVkyzi+OQYS+AnnG3DcKZl1MDAH0dLyW1?=
+ =?us-ascii?Q?HTEaCaWP2pNN7t2nLRdTO2d51zhaPG0dODR9kMOOPyv0zvdoeUjvE4SZDAjX?=
+ =?us-ascii?Q?Ou+VayORC5X+GmsrPaACyvziNILjjKteRAkuZBCUj7SftseFyrOzdW3DZbav?=
+ =?us-ascii?Q?5GpyxtVTGtJjFsf7k+29zHShOCmva0g2ZxrhrwDDNluOVlsMuoY/ibK2Gj/K?=
+ =?us-ascii?Q?lxD7CYO4gjQMdB9CzowSSVChXc0lie8WX+r+cntkzE7fllEKOig1NxGJc/Dg?=
+ =?us-ascii?Q?Q4n1PGRhFuS3hlxI4YSQF8SZ5Ic/kzOorNRGPb5TZHcLe7kaci3Dpctwt7MY?=
+ =?us-ascii?Q?pw73CRb/cOpYqS49qtaRZ2YYCIqhlfiCKLYb4/BD7Mh4KzoQWL0Yx+9J210y?=
+ =?us-ascii?Q?lH5oqxi/jDS1eNwyDDbqktGFZ9ovzdV+WdExunrS9EBZm7RjpE+hKoBCmezN?=
+ =?us-ascii?Q?xlNMGWeosw08WrA6mObfaE3Elw0gGAVCav0NobVvc5MdhCWSPCfpX1I0/yvi?=
+ =?us-ascii?Q?HlW5NPiLAIqE96gybelwyiUxk+EeJvdHhY3c1PTPkPsw8UzI/wwt8CsO9VMs?=
+ =?us-ascii?Q?ew4lV99u5QHYBu5/DH/YxWvgeGfVgEoYCfBvdVqdAuS9eBVAF3FjEx3ulB6A?=
+ =?us-ascii?Q?KLRhNySWpENvq9b497HLR81lGXebRTC3zc3HfLqGsBZiCzLcaOn4n8bJ0SlY?=
+ =?us-ascii?Q?3Fv62Th9zEuGsxpYcBfKGnDOBMuO1A8qvGFwSx+1Zy1do97yTJW0hl7ZpQ92?=
+ =?us-ascii?Q?f4yeJx2l6Td4M8aQDxnl?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 56ac9706-139a-4fe5-9d5e-08dc81d2a066
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jun 2024 00:34:41.6594
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR20MB7509
 
-Hi Hans de Goede,
+On Fri, May 31, 2024 at 01:37:01PM GMT, Haylen Chu wrote:
+> Sorry, I forgot add cc and to in the last email. This is a resend.
+> 
+> On Fri, May 31, 2024 at 07:45:37AM +0800, Inochi Amaoto wrote:
+> > The sensors of CV1800 support various periods, I think you should add
+> > support for all of them and let user select them. The configuration
+> > you use now can be left as the default.
+> 
+> I will make sample period configurable in next revision.
+> 
+> > > +{
+> > > +   return ((result * 1000) * 716 / 2048 - 273000);
+> > > +}
+> >
+> > Why these magic number, I have not see any info in the document.
+> 
+> Actually, there is no document of calculating real temperature from raw
+> register value. The equation above is extracted from code provided by
+> Sophgo.
+> 
+> I have figured out meaning of part of the equation and could add some
+> comments to document it.
+> 
 
-On 5/27/24 03:42, Hans de Goede wrote:
-> Hi Joel,
-> 
-> On 5/27/24 5:26 AM, Joel Selvaraj via B4 Relay wrote:
->> From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
->>
->> ---
->>   drivers/input/touchscreen/novatek-nvt-ts.c | 78 +++++++++++++++++++++++++++---
->>   1 file changed, 72 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/input/touchscreen/novatek-nvt-ts.c b/drivers/input/touchscreen/novatek-nvt-ts.c
->> index 224fd112b25a9..7a82a1b09f9d5 100644
->> --- a/drivers/input/touchscreen/novatek-nvt-ts.c
->> +++ b/drivers/input/touchscreen/novatek-nvt-ts.c
->> @@ -139,9 +143,23 @@ static irqreturn_t nvt_ts_irq(int irq, void *dev_id)
->>   	return IRQ_HANDLED;
->>   }
->>   
->> +static void nvt_ts_disable_regulators(void *_data)
->> +{
->> +	struct nvt_ts_data *data = _data;
->> +
->> +	regulator_bulk_disable(ARRAY_SIZE(data->regulators), data->regulators);
->> +}
->> +
->>   static int nvt_ts_start(struct input_dev *dev)
->>   {
->>   	struct nvt_ts_data *data = input_get_drvdata(dev);
->> +	int error;
->> +
->> +	error = regulator_bulk_enable(ARRAY_SIZE(data->regulators), data->regulators);
->> +	if (error) {
->> +		dev_err(&data->client->dev, "failed to enable regulators\n");
->> +		return error;
->> +	}
->>   
-> 
-> This is weird, you already enable the regulators in probe() and
-> those get disabled again on remove() by the devm action you add.
-> 
-> So there is no need to enable / disable the regulators on start/stop .
-> 
-> If you want the regulators to only be enabled when the touchscreen
-> is on then you should disable the regulators again in probe()
-> after the nvt_ts_read_data() call there (and drop the devm action).
-
-Yes, I want the regulators to be enabled only when the touchscreen is 
-on/active. I will disable the regulators in probe and remove the devm 
-action in v4.
-
->> @@ -277,8 +324,26 @@ static int nvt_ts_probe(struct i2c_client *client)
->>   	return 0;
->>   }
->>   
->> +static const struct nvt_ts_i2c_chip_data nvt_nt11205_ts_data = {
->> +	.wake_type = 0x05,
->> +	.chip_id = 0x05,
->> +};
->> +
->> +static const struct nvt_ts_i2c_chip_data nvt_nt36672a_ts_data = {
->> +	.wake_type = 0x01,
->> +	.chip_id = 0x08,
->> +};
->> +
->> +static const struct of_device_id nvt_ts_of_match[] = {
->> +	{ .compatible = "novatek,nt11205-ts", .data = &nvt_nt11205_ts_data },
->> +	{ .compatible = "novatek,nt36672a-ts", .data = &nvt_nt36672a_ts_data },
->> +	{ }
->> +};
->> +MODULE_DEVICE_TABLE(of, nvt_ts_of_match);
->> +
->>   static const struct i2c_device_id nvt_ts_i2c_id[] = {
->> -	{ "NT11205-ts" },
->> +	{ "NT11205-ts", (unsigned long) &nvt_nt11205_ts_data },
->> +	{ "NT36672A-ts", (unsigned long) &nvt_nt36672a_ts_data },
-> 
-> The i2c-subsystem will also match of compatible strings to i2c_device_ids
-> by looking at the partof the compatible after the ',', so for a compatible
-> of e.g. "novatek,nt36672a-ts" will match an i2c_device_id of "nt36672a-ts".
-> 
-> So if you change these to lower-case:
-> 
-> 	{ "nt11205-ts", (unsigned long) &nvt_nt11205_ts_data },
-> 	{ "nt36672a-ts", (unsigned long) &nvt_nt36672a_ts_data },
-> 
-> Then you can drop the nvt_ts_of_match table since that is not necessary
-> then.
-> 
-> Hmm I just realized that this will break module auto-loading though since that
-> does require of modaliases .
->   
-> So maybe this is not such a good idea after all. Still switching to lowercase
-> i2c_device_id-s would be good for consistency and you need to respin
-> the patch-set for the regulator issue anyways.
-
-Ok. I will change it to lowercase i2c device id in v4.
-
-Regards,
-Joel Selvaraj
+I think you misunderstood. I did not only ask for the document, but also 
+a formula that respects the configuration. It is pretty weird to use all
+fix magic number to calculate the temp value since the sensors itself
+supports various configuration, right?
 
