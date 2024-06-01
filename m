@@ -1,183 +1,118 @@
-Return-Path: <devicetree+bounces-71442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53BFF8D6EEE
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 10:41:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEEB58D6EF6
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 10:46:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 848321C21FF0
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 08:41:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D393B27837
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 08:46:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04B7F1CF8D;
-	Sat,  1 Jun 2024 08:40:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C04A1F959;
+	Sat,  1 Jun 2024 08:46:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="CcxAMN5w"
+	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="r6aF4C94"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-26.smtpout.orange.fr [80.12.242.26])
+Received: from mail-pg1-f195.google.com (mail-pg1-f195.google.com [209.85.215.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9C65111AD;
-	Sat,  1 Jun 2024 08:40:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.26
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 868241CD2F
+	for <devicetree@vger.kernel.org>; Sat,  1 Jun 2024 08:46:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717231254; cv=none; b=j/EVCrayk0D44LngwfTJD0DZ5i8L4uoJGxcr1Sz5GxBcMS2psvHLJJsQ9FDP65IxRA2J49d7O9mO9F2Eirl35EJ4esHSVZxq/gD0r8FtQ3U2KdkrFyCEcBb8Zh9rYFNGJh3Js5ebCdIT1jqZU490UZ4bbTRFJ97oOOJgtYauZbY=
+	t=1717231571; cv=none; b=PWYk0HO/7VdmVrUf6cu3PHd3FhwkWseTvxvSN0Th9il6zpodXqf49Nt4FieAgrpL7I+EsZGAnFFlKJ2DBMglQprCjZAtNxMOJaIJoYLvZQizxss2VUpeCVSyMFmFwpNN9HyVIgv1Na3LauZpMs1/0LALrPq3wWxN9Zw1Zhwk/QE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717231254; c=relaxed/simple;
-	bh=sF9BOyKHST//ueP1dpjJq4rkoGLKuLDyhaBu4xILE54=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MWdYyztJ63GTq+BrUshMjSpU15IKaNNMSFEu5CK65d75GPcLdDkucQcC4TyLS+P7CelZ0p4ErCB+9EPDtihrVrT0g3e6c2XZ+SgXnjA2pIky8/biJl7oFBfuhEBqW/V+mlXP7YiB+lx5TNad+hfc5g0QPZfkpp9Nn0Oq2dCjGr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=CcxAMN5w; arc=none smtp.client-ip=80.12.242.26
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([86.243.17.157])
-	by smtp.orange.fr with ESMTPA
-	id DKH2sUFIEvZ5mDKH3sPIqU; Sat, 01 Jun 2024 10:39:41 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1717231181;
-	bh=uDIWi5FqRaEs9zERfH9KwqhtLcINKRmqH7+cDO7juLM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=CcxAMN5w2n9SUWnzDnMjSIrDMG65v2mbI47yhBc7lDTBy+QT2U1zeA2Zi1+xfFA1E
-	 uovCvYQ4AVbyrGVIDqto0QFZLbqwVPyobv8ECOw9e+Qk1y/LN8ZlqLA6NRpU0Sj+sg
-	 D4jm+8QIy6/42X3QGJUj7rJHwkXYTQilB2Du8QlgWPgln7uKM9uc+vFg1+LaNERq5M
-	 Kb17JpWUQJj2K75X6Y9adyGwXBGDWQQg518Gce6Uwrfw1Eu+XC661tph7pYgrLQXNA
-	 tJC/lDguYLxMx5jvz4vYAwSb+N1RifGvitqdBNQRH2LjZQnG7dt++uCsNl1COoIKNt
-	 dlM0iW41EnxxA==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Sat, 01 Jun 2024 10:39:41 +0200
-X-ME-IP: 86.243.17.157
-Message-ID: <446b396b-753c-4114-9a8c-6f84ad3a69ba@wanadoo.fr>
-Date: Sat, 1 Jun 2024 10:39:29 +0200
+	s=arc-20240116; t=1717231571; c=relaxed/simple;
+	bh=j+G3sJ3EZg3XxZAvXVoFaY2rZtsC0Iflhza67llFZxY=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=mKy0+pPXANlwxGpsF69tiylNK9DNBLa8Eg3NVauAdjeo7yRytKaPCRo/0cikEltSr6DqHDI7hFtiJ8L9BX80zec5nxYgrB0XDhk21dXk+5dsJOxyF99JUo5LOpDLWst4J3DX+PQrIxUDMEs0+NureLEzocVh6l8cWIjR5JUSnr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=r6aF4C94; arc=none smtp.client-ip=209.85.215.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
+Received: by mail-pg1-f195.google.com with SMTP id 41be03b00d2f7-6c5bcb8e8edso910297a12.2
+        for <devicetree@vger.kernel.org>; Sat, 01 Jun 2024 01:46:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1717231569; x=1717836369; darn=vger.kernel.org;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8W/njC8us0KW9wHmKF1n4OA9SOaALdpb4Qdax8q7WYs=;
+        b=r6aF4C94qH81sX0jUibLUp6H+13sBFmqjsK0W0/eLZEHXqdZVrT+cmWcDHJpzoyp8D
+         q6R50pBfuzlW9QmaDA9N4ysvUABZDH6i2359XzvRp0JndkCOjSQsR+mfchTE+FqY28Vx
+         WwiRYMYjNTXK1fIyy9WJddUDr2wD5cHvUaJDu245qGGdrFAIGT2MMUxLlIRvW1ae7Oae
+         3g607quI/1sgLpVrMtQ0EwtS8WUrBZZNaFnw9Sdn+dd3Ai8Wf1DRRvlTQIaovMGHRMxS
+         tdBKplmbYcmsYvxtlOehvO2yzjfsDWnOtmrbOS2Hrk9OlXd8VopuTGn8gEUfAEds9qnL
+         6DBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717231569; x=1717836369;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8W/njC8us0KW9wHmKF1n4OA9SOaALdpb4Qdax8q7WYs=;
+        b=faRmloKyfyo9WgOYkD1M2P6YRAsxJSkJZZThhtfRxl9QYEfMVbn9Z4R6xObhHgqDTT
+         TKbZZgZTQw6jIODFe4Yv5um3yytYt9bXX1hpIy1f1YYdusdNqrTgyrbxrJKZz069rX7p
+         O4RbiFKA+OcWYdS5Tic0ySMUEIYGI86wvlrseem7byH26ZE1FC64DMhm7XegPcpEteSM
+         Ll6Lekf7M/bmUEpI/21E1xDF2Ris3Pmj/JW215bwVRy4XP+GfAkFB7RZuVlECe2x/P/m
+         zTXyg0K/6DhfgG0m0NCGRTekbiohRkzszjGkhv0PpdloR80wJlTRUA7n+bPOKcNVcgJf
+         Xq/A==
+X-Forwarded-Encrypted: i=1; AJvYcCWSvKkDyFoAKMN4pMqKB5dLF3pHyzU7vfSHZW7sKO+v5k0oc/BcE/otrHBaNt1pA60p5dKU6WRURgto9fu1FGiXW/RMk5LT6aNkHA==
+X-Gm-Message-State: AOJu0YxqZKtgKnEaxYjpY0pXY9L1eUwoMRjs3UfPexhZkPIJjW67Fo+w
+	qZXqdNcWQLoH1sdMKYZuMZaexu+DNLSUX9wVkJX/Om5KuhsOKkXKUN2ibGKk4JU=
+X-Google-Smtp-Source: AGHT+IFmDV3Jqwu0YGOOnlIeAfrrik6DTGBn2D+eeZPZ5jFdR+A2cJFQgPvdZghdlvohqml57qK3bw==
+X-Received: by 2002:a05:6a20:100e:b0:1b1:ed95:6191 with SMTP id adf61e73a8af0-1b26f3059d4mr3641718637.52.1717231568693;
+        Sat, 01 Jun 2024 01:46:08 -0700 (PDT)
+Received: from lvzhaoxiong-KLVC-WXX9.huaqin.com ([116.66.212.162])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-702423c7b49sm2512044b3a.37.2024.06.01.01.46.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 01 Jun 2024 01:46:08 -0700 (PDT)
+From: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+To: dmitry.torokhov@gmail.com,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	jikos@kernel.org,
+	benjamin.tissoires@redhat.co,
+	dianders@google.com,
+	hsinyi@google.com
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+Subject: [PATCH v2 0/4] Support Kingdisplay kd101ne3 and Starry er88577 MIPI-DSI panel
+Date: Sat,  1 Jun 2024 16:45:24 +0800
+Message-Id: <20240601084528.22502-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v3,1/2] hwmon: add MP2891 driver
-To: Noah Wang <noahwang.wang@outlook.com>, robh@kernel.org,
- krzk+dt@kernel.org, linux@roeck-us.net, conor+dt@kernel.org,
- jdelvare@suse.com
-Cc: corbet@lwn.net, Delphine_CC_Chiu@Wiwynn.com, peteryin.openbmc@gmail.com,
- javier.carrasco.cruz@gmail.com, patrick.rudolph@9elements.com,
- luca.ceresoli@bootlin.com, chou.cosmo@gmail.com, bhelgaas@google.com,
- lukas@wunner.de, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-i2c@vger.kernel.org
-References: <SEYPR04MB648253BF01D42B24A72B0027FAFC2@SEYPR04MB6482.apcprd04.prod.outlook.com>
-Content-Language: en-MW, en-GB
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <SEYPR04MB648253BF01D42B24A72B0027FAFC2@SEYPR04MB6482.apcprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
 
-Le 31/05/2024 à 09:26, Noah Wang a écrit :
-> Add support for MPS VR controller mp2891. This driver exposes
-> telemetry and limit value readings and writings.
-> 
-> Signed-off-by: Noah Wang <noahwang.wang@outlook.com>
-> ---
+Kingdisplay kd101ne3 and Starry er88577 both 10.1" WXGA TFT LCD panel,
+And the two panels have the same timing, so add compatible for Kingdisplay 
+kd101ne3 and Starry er88577 in dt-bindings and drivers.
 
-Hi,
+Changes in v2:
+- PATCH 1/4: Delete some unnecessary information.
+- PATCH 2/4: Use the new mipi_dsi_dcs_write_seq_multi() function, deleted some unnecessary functions.
+- PATCH 3/4: Add compatible for Starry-er88577.
+- PATCH 4/4: Add starry panel configuration in panel-kingdisplay-kd101ne3 driver.
+- Link to v1: https://lore.kernel.org/all/20240418081548.12160-1-lvzhaoxiong@huaqin.corp-partner.google.com/
 
-below a few nitpicks, if it make sense to you.
+Zhaoxiong Lv (4):
+  dt-bindings: display: panel: Add KD101NE3-40TI support
+  drm/panel: kd101ne3: add new panel driver
+  dt-bindings: display: panel: Add compatible for Starry-er88577
+  drm/panel: starry: add new panel driver
 
-...
+ .../panel/kingdisplay,kd101ne3-40ti.yaml      |  60 ++
+ drivers/gpu/drm/panel/Kconfig                 |   9 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../drm/panel/panel-kingdisplay-kd101ne3.c    | 625 ++++++++++++++++++
+ 4 files changed, 695 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/kingdisplay,kd101ne3-40ti.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-kingdisplay-kd101ne3.c
 
-> +++ b/drivers/hwmon/pmbus/mp2891.c
-> @@ -0,0 +1,608 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Hardware monitoring driver for MPS Multi-phase Digital VR Controllers(MP2891)
-> + */
-> +
-> +#include <linux/err.h>
-> +#include <linux/i2c.h>
-> +#include <linux/init.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/bitfield.h>
-
-It is usually prefered to have includes sorted.
-
-> +#include "pmbus.h"
-> +
-
-...
-
-> +static struct pmbus_driver_info mp2891_info = {
-
-I think this could be const.
-
-> +	.pages = MP2891_PAGE_NUM,
-> +	.format[PSC_VOLTAGE_IN] = direct,
-> +	.format[PSC_CURRENT_IN] = direct,
-> +	.format[PSC_CURRENT_OUT] = direct,
-> +	.format[PSC_TEMPERATURE] = direct,
-> +	.format[PSC_POWER] = direct,
-> +	.format[PSC_VOLTAGE_OUT] = direct,
-> +
-> +	/* set vin scale 31.25mV/Lsb */
-> +	.m[PSC_VOLTAGE_IN] = 32,
-> +	.R[PSC_VOLTAGE_IN] = 0,
-> +	.b[PSC_VOLTAGE_IN] = 0,
-> +
-> +	/* set temp scale 1000m°C/Lsb */
-> +	.m[PSC_TEMPERATURE] = 1,
-> +	.R[PSC_TEMPERATURE] = 0,
-> +	.b[PSC_TEMPERATURE] = 0,
-> +
-> +	.m[PSC_CURRENT_IN] = 1,
-> +	.R[PSC_CURRENT_IN] = 0,
-> +	.b[PSC_CURRENT_IN] = 0,
-> +
-> +	.m[PSC_CURRENT_OUT] = 1,
-> +	.R[PSC_CURRENT_OUT] = 0,
-> +	.b[PSC_CURRENT_OUT] = 0,
-> +
-> +	.m[PSC_POWER] = 1,
-> +	.R[PSC_POWER] = 0,
-> +	.b[PSC_POWER] = 0,
-> +
-> +	.m[PSC_VOLTAGE_OUT] = 1,
-> +	.R[PSC_VOLTAGE_OUT] = 3,
-> +	.b[PSC_VOLTAGE_OUT] = 0,
-> +
-> +	.func[0] = MP2891_RAIL1_FUNC,
-> +	.func[1] = MP2891_RAIL2_FUNC,
-> +	.read_word_data = mp2891_read_word_data,
-> +	.write_word_data = mp2891_write_word_data,
-> +	.read_byte_data = mp2891_read_byte_data,
-> +	.identify = mp2891_identify,
-> +};
-> +
-> +static int mp2891_probe(struct i2c_client *client)
-> +{
-> +	struct pmbus_driver_info *info;
-> +	struct mp2891_data *data;
-> +
-> +	data = devm_kzalloc(&client->dev, sizeof(struct mp2891_data), GFP_KERNEL);
-
-sizeof(*data)?
-
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	memcpy(&data->info, &mp2891_info, sizeof(*info));
-> +	info = &data->info;
-
-'info' is not really useful. It could either be dropped, or initialised 
-1 line above, so that it can be used in the memcpy().
-
-CJ
-
-> +
-> +	return pmbus_do_probe(client, info);
-> +}
-
-...
+-- 
+2.17.1
 
 
