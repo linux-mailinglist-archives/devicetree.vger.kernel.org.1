@@ -1,97 +1,191 @@
-Return-Path: <devicetree+bounces-71439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D76A8D6E57
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 08:16:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E85AC8D6ECA
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 10:17:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEFF5289ECF
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 06:16:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A8951F21E7F
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 08:17:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BC1511723;
-	Sat,  1 Jun 2024 06:16:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E44181865B;
+	Sat,  1 Jun 2024 08:17:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MogCg1sy"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="s6bYa9xp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BABF12E55;
-	Sat,  1 Jun 2024 06:16:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75247134BC;
+	Sat,  1 Jun 2024 08:17:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717222591; cv=none; b=Sy1LtxjOkAUbGECxRM9HE1nn3olZ8Y0LaNlMUs+kDl7hQ9abLhH9MqvLZD+OKC5YJN04mkngWqjE+Ixvm8xvnV1H3bUP98ZCke34hR4HGVkwzHRtPuzUc/fxOiEja7O9M5kVWoyvTg372uYOXlciXzfZExyu7PCq9rv4CG5cKgE=
+	t=1717229870; cv=none; b=YlkCWx7B4xtMjc05lUqXha4p4vgjwjn7+I4ztHYoXLBHr+qJ2MCuU/eNQDgc9BbkiO8MAHIXO1ns8SVIhodo6/P3cHVbE/d1iBHUNZd0aj5bw138quCLhxsPRLVXThb1Cc1vRmgPGkSg8kpHxxQX9mRfoHnH/YCQ1h5PDGb6k9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717222591; c=relaxed/simple;
-	bh=rt2wx6NZb2NHXMBjUJJczmHoHOGfO0XkMtjoi+/dM58=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VhL9r70jDofinnEFSVJ01vBLt0gb93PTjCXYG4zfio2tnorncnmy2/46qKSVcq4oQibltkNdBspprLA9YLU8IRbgbNuOm7QT2+D2IyKmbsYu/tGP9TbUo8nmCgLLm8vwffC4wtfclVG4439s06N7+v6XXs3AN8stXLSyao5BxWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MogCg1sy; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2e3efa18e6aso23465551fa.0;
-        Fri, 31 May 2024 23:16:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717222587; x=1717827387; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=4Z+zOfc3+Z4hyAcfzxNHQDfSITf3TFsblhocGpkJa60=;
-        b=MogCg1syB2kZLCMBoFFqH6035Sm6AI0D7mQCvv47S9XHKRzPZ+GvYJ4pj4wR/3rmNn
-         XscrrBVfo2q1r0vcYKxkRgylY4Cygu7SE98nNo4L/uzTc7zcKvKlM+SnujTSya1RBzpl
-         THZBhB0RSZhr6TbFJDP5ZqdZXe1FtkGbb4dKu5abqgM91eRKelp0DLXccouZDI9tjmwO
-         c0w1OxTL+KYjSRloespRB8ROeQRv/cNu62Tddl9qIeRPnlOOO15XcOZEJPQ8wQQ/hz6s
-         vtndwMQ6Sj+gTYzWDFaagYlO0Fb46vicBi3oMgg8OXxgbqwTtaiLIfRo4D7ZOFqxjXUi
-         AA0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717222587; x=1717827387;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4Z+zOfc3+Z4hyAcfzxNHQDfSITf3TFsblhocGpkJa60=;
-        b=SjnYUnEte0Kfymb8kv2LxiNB09onsDB70AIdQIaUsxpPpEVYuvsw2yQh91vCum0ehF
-         xLxOcFTVniei0rbpZvtqCnlZvMlVC+UZMtRhSst44MeRcy9S763faN+qp/J4/VEJTM3p
-         zpup99QjRH5qFVlQ54Y9gm7qqC00s37Bl5jvjanPIM2GEoQTpLdipC8FGx+6tqQ60sPY
-         pdWZm6knHZNR4Qn0xQn4cvG38g2yEmdjd31oVJirlelr1Pg+1fPrXOBsxlD+XC65ulm3
-         dSEQ6v41lSAFEpTk1wm60o4Wx4iBohR/4c/K7l54/IAbWyRmGyWD0zOx1Y9pOUnc2mdJ
-         1ZKg==
-X-Forwarded-Encrypted: i=1; AJvYcCWsjosljrAwLr7COOBlvEcY1H+fBiWUmuhGwaIwnIkPBnDUdRETQgLvp0RVFB5bPk5yO/iXGJdc1uN59zmQcb3n37XbvjCbuf/7Jy4PRDmkhYNVwdchqh/mcRJdLKk3Cj2O4C7MgD9DF0cF1pscS0Sepsf9BOMafpoc5ZVkBD6U/4NbGDQJ
-X-Gm-Message-State: AOJu0YyBfxJl6Cn1bSHM0wp17xQrGFVQxNY7LynGhACCZAgwuQIKopKW
-	TqNPrRmnuUMLaS26LEzV9vEYF7Qn83DQvatAEHm7Xuaq8TRqDmp8J5UnFY6IuNJgyLYlAHVk1Ar
-	8OSkufouO13ZloGoSrBKL5+8GUhA=
-X-Google-Smtp-Source: AGHT+IHOk1mf1VFwpZSehjIBp3kE7bAhPh2O3oBk51nvzzMPb1RydE/V7nfJvxkHBEblll7CKgRRVH3DtO8HgCgHDcI=
-X-Received: by 2002:a2e:93d7:0:b0:2ea:a382:67c9 with SMTP id
- 38308e7fff4ca-2eaa3826e00mr1118361fa.15.1717222587067; Fri, 31 May 2024
- 23:16:27 -0700 (PDT)
+	s=arc-20240116; t=1717229870; c=relaxed/simple;
+	bh=7eeatt4CcPmiwk7FadqALe+uBEk9RzdNLVP4oBfTTKE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=bfyJIzG1PJRzJfFaCGj3gsqeNi4K1AIqw+mq2v+pIl7GVK7eDTEs2TGaUgRxp/zYmtfQ9YCsqq+DD3zVi5gzsN4weXib4QOJZlKpd55oE53izmrb/J5ctb0sUoxUSfirBhFxY3s3SDfxYXxIv2PotjMcK06jYJfhrtjXxKJTUAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=s6bYa9xp; arc=none smtp.client-ip=212.227.17.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1717229848; x=1717834648; i=wahrenst@gmx.net;
+	bh=9g8i1E4J9Qgk8VQ+f5MzIOoR/utW2DTqj5vifxeAFu0=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=s6bYa9xp91jDDnaO2Kpu+8DRegMiTGOgaXKB5Mhg5+c0CxhX6N+KZEnbOhs284yb
+	 201Qihxzh59QbT6NLof7RVxYhmL4pyuH7gaBq4AsthocxoV14DKBRLF4tUs3WOLKf
+	 WEkW7PPdZx3/ipknLGdkZbrfqYlMEfiMg22lJJ0g+zcaJb90vbZKJFjMiF5ElEpMy
+	 q/jie6giETFV+PLeGydIgqlfu/HfaEFb5HLttNT9V6JhuprZEFpMc1GymbxLRPMR+
+	 VVB4wufjQ+f/hC9SwsS2T0SZXS0K9Ic+kqvghAuiikIb2zbzu4mXp4AY4+cJ+1MNN
+	 fIT0Jm0KATg9WbhHlw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.127] ([37.4.248.43]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1N6bfq-1sXTkM0R6U-01528i; Sat, 01
+ Jun 2024 10:17:28 +0200
+Message-ID: <0a041812-875b-42e3-b303-4d984b0f9a54@gmx.net>
+Date: Sat, 1 Jun 2024 10:17:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240530111205.1764-1-bavishimithil@gmail.com> <7845bb1c-47d5-41f6-bf08-bd7b357df02c@kernel.org>
-In-Reply-To: <7845bb1c-47d5-41f6-bf08-bd7b357df02c@kernel.org>
-From: Mithil <bavishimithil@gmail.com>
-Date: Sat, 1 Jun 2024 11:46:14 +0530
-Message-ID: <CAGzNGRn=e46yYrK3o8JhUmod4pGFFdEK31kUWUU4jn+JTgZjQg@mail.gmail.com>
-Subject: Re: [PATCH v6] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: peter.ujfalusi@gmail.com, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Lopez Cruz <misael.lopez@ti.com>, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/4] Add minimal boot support for Raspberry Pi 5
+To: Andrea della Porta <andrea.porta@suse.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Ulf Hansson
+ <ulf.hansson@linaro.org>, Adrian Hunter <adrian.hunter@intel.com>,
+ Kamal Dasu <kamal.dasu@broadcom.com>, Al Cooper <alcooperx@gmail.com>,
+ devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-mmc@vger.kernel.org
+References: <cover.1717061147.git.andrea.porta@suse.com>
+ <36642bd8-c981-4190-9f44-072ac3c97c6b@gmx.net> <ZlnJzqnvTk70O3ap@apocalypse>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <ZlnJzqnvTk70O3ap@apocalypse>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:goG2aefWUGM6HYTd+wn1rjaTrNzvf9I4cz3NFvFZ99ncYKSE6rO
+ iJQzkald9qRVqEJ2oEE2aeOE0fxuGQfDjplO0NPDzwkzUisk2+SS0IcrfHLc/bV4Ii1yKsf
+ i9ZV5Jb5zcumld0v0rACFuw8a/vtP1ZfF1j6fzo9zY6RlJdmUrDzmjmDJlyeBO7slxHXPbj
+ ZHpwb5QMnwYkjDcqWGmtQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:f4k/wUKkgVI=;4dC/SJSfIquim+tu6BbxkI3Fa50
+ 3mHopelSNKrGAnz6sAKWy+wmGFFdSoy5ZplfsfOF5qQXnZ5L9KbZfiZ8Ogm3/kMcFnBzd03ai
+ OymQOumXnn98K93p1s1DvwQD5Y+Do/lZNywUqzjt1T+dwiqHffiZqUExRyk6T2ttfi6rgZFJl
+ crBjYOLZU9PnwFxtnEYxdDsNxU0CwPzbttfoF0m/8XWrdNdg3dGdqbPrkw0Qi5jVrbkQfZeCg
+ mNd3njO/3t7g4FyRBZVzVsVxaceCqMxP1iJqRZlrD7Gqogb1BVqFa6dYa2qcY0+/DXnSH0nEa
+ ewvLP3kNv8dMyTYrf8p+52SzLV6KC5t0NIgd8IzRVSX4eo2vp7dzsKxfJYQjgIgUnSsySnwZ0
+ f/Ws409+fdIr8qWx0/FinFJlWN4HmxcpxApcEPlrxi/bmOoL3199H9f56bFWfcJ5L8aRRspus
+ cA6epR/LQxUNy0XHF7amOH9HXsBQbcpZNO1H+YE2XTdgrjggZtm1Ws/Lh6H9dJUFi5zKWyPgH
+ Pw8jnMNfpUvyCeApCUfDhhK9+6BC0annUnkfc3B6nUIJdOz3cklfDQCoVeK7N76+mADDYpbE/
+ qxGWSM87tkkUbW5T8iZjhhmrAI0VK4w2xpx9mr0s7PdQ3j2Scf+AhMnGFtplGBoRxW40/tzLe
+ CBWTsaPyyDPebTSNyotf1ALh+Kd63qISh2hWXLsM73ZxNo4+uy6tzh7BIIv7+MLUvt3Uq9xQH
+ LVVBi20eUDmQG99rWSqnzXQ4U6+z8lus8ad2ads3YjbV+z6AYGLoGkC8yY3XEV1r7evEAlAIO
+ LckLuCpPucU7wz4uGz0o7BVaZahYsfiAG6UZZNVzz6eio=
 
-> Please mention in the commit msg all changes (and explain why!) done
-> during conversion (comparing to original binding). I am pretty sure I
-> gave this feedback already.
-I read that i'm supposed to add the changelog below the --- line, my
-bad. I'll mention the changes in the commit message itself and that
-too from v2 right?
+Hi Andrea,
 
--- 
-Best Regards,
-Mithil
+Am 31.05.24 um 14:59 schrieb Andrea della Porta:
+> Hi Stefan,
+>
+> On 12:00 Fri 31 May     , Stefan Wahren wrote:
+>> Hi Andrea,
+>>
+>> Am 30.05.24 um 12:11 schrieb Andrea della Porta:
+>>> Hi,
+>>>
+>>> This patchset adds minimal support for the Broadcom BCM2712 SoC and fo=
+r
+>>> the on-board SDHCI controller on Broadcom BCM2712 in order to make it
+>>> possible to boot (particularly) a Raspberry Pi 5 from SD card and get =
+a
+>>> console through uart.
+>>> Changes to arm64/defconfig are not needed since the actual options wor=
+k
+>>> as they are.
+>>> This work is heavily based on downstream contributions.
+>>>
+>>> Tested on Tumbleweed substituting the stock kernel with upstream one,
+>>> either chainloading uboot+grub+kernel or directly booting the kernel
+>>> from 1st stage bootloader. Steps to reproduce:
+>>> - prepare an SD card from a Raspberry enabled raw image, mount the fir=
+st
+>>>     FAT partition.
+>>> - make sure the FAT partition is big enough to contain the kernel,
+>>>     anything bigger than 64Mb is usually enough, depending on your ker=
+nel
+>>>     config options.
+>>> - build the kernel and dtbs making sure that the support for your root
+>>>     fs type is compiled as builtin.
+>>> - copy the kernel image in your FAT partition overwriting the older on=
+e
+>>>     (e.g. kernel*.img for Raspberry Pi OS or u-boot.bin for Tumbleweed=
+).
+>>> - copy arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb on FAT partiti=
+on.
+>>> - make sure you have a cmdline.txt file in FAT partition with the
+>>>     following content:
+>>>     # cat /boot/efi/cmdline.txt
+>>>     root=3D/dev/mmcblk0p3 rootwait rw console=3Dtty ignore_loglevel ea=
+rlycon
+>>>     console=3DttyAMA10,115200
+>>> - if you experience random SD issues during boot, try to set
+>>>     initial_turbo=3D0 in config.txt.
+>> was this an issue since the beginning of this series?
+>>
+> I experienced this even during early testing, using the complete downstr=
+eam
+> driver. It seems that when initual_turbo !=3D 0, the fw can throttle the=
+ clock
+> to reduce the boot time and it (directly or indirectly) may affect SD fu=
+nctionality.
+> I believe that the probability of this to happen is likely a function of=
+ SD
+> card speed, whether it requires timing tuning, initial_turbo exact value=
+  and whether
+> you are booting the kernel directly or chainloading u-boot + grub (or
+> whatever combination of secondary stage bootloader). For example, your
+> boot setup may have a timeout in the grub boot menu that is large enough=
+ for the clocks
+> to settle and the boot process to end successfully, while faster boot ti=
+me can lead
+> to the issue described. Since this behaviour seems to depend on all of t=
+his factors and
+> does not necessarily arise in practice, disabling initial_turbo is just =
+a suggestion
+> in case things go haywire.
+yes in case the VPU changes the SD clock or one of the parent while the
+ARM cores tries to boot, they won't be informed about these changes
+which could ends up with the wrong SD clock frequency.
+
+Thanks for your explanations
+>
+>> What kind of SD issues?
+>>
+> I wasn't able to boot from SD card due to clock issues.
+>
+>> Is there a downstream reference?
+> Some (old) reference e.g.:
+> https://forums.raspberrypi.com/viewtopic.php?t=3D112480#:~:text=3DIt%20s=
+ets%20turbo%20mode%20from,have%20turbo%20during%20the%20boot.
+>
+> but there are probably more.
+>
+> Many thanks,
+> Andrea
+
 
