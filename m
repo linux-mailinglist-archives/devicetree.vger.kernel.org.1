@@ -1,207 +1,174 @@
-Return-Path: <devicetree+bounces-71466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B77A38D6FC6
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 14:17:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AEA28D6FF9
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 15:13:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73AF9281A10
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 12:17:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C43FB281C80
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 13:13:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD52715218E;
-	Sat,  1 Jun 2024 12:16:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 264B51509B4;
+	Sat,  1 Jun 2024 13:13:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="d6BDR0Re"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="i+8QZ1ck"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F19C14F9CA;
-	Sat,  1 Jun 2024 12:16:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 617B7AD59;
+	Sat,  1 Jun 2024 13:13:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717244198; cv=none; b=YIzONn0ryl/Wq//fF6v8RzJ1G/AC9Lg3B8W5n+dUT3zNyTW939uSwgFPOOnp7lwxI2uP/9rbKibH0/gi3Z6cGEgVVFws1VX9NG3eyCRlzZxvsP3vRK8thmbtrRW6D+Lz1kHn/5ukgMf9XwYaGCDahR+F+sNgjVfHyXFZtteZdHc=
+	t=1717247588; cv=none; b=LYxC4k0SdfK6a/hBwRvn8hWtlJ6AGZckSQSw8ZRi/S0T7DjZFBuwSbIfLgsvZXOmAcF4NWugbb1KMkPILXRTEwC1q9nOglv4QRqHwMjjACZPdH/jKOFMbP9S0+riMlN9nFsUP69sswPQFqI3+mUGUEMG/DGhfr1lFZzaVhsiKU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717244198; c=relaxed/simple;
-	bh=13mmVT1PUQiOftL33hsOPpELQyZBLcyyM2rYl9byZjg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=M6M0n7zw+pfgu/gT599dcw0tdoYLFHn7NaHT+sn6bElwIM5TufvVBZWvsP5TsyRADMMckj8+y5ywoop4hr4myWIWqxZl3GkjlkOX9T0ycdtLr+FQRKX1ukVvo597VtBBnkPFzLixIZAvJez9DWyyCK2EF6TKvU0BoZUHN4iutIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=d6BDR0Re; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 451CGUO1120010;
-	Sat, 1 Jun 2024 07:16:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1717244190;
-	bh=8B8UAkBYxOJZjWDsFXMi5T9OfURc8ZbfCGJJV5hjsLM=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=d6BDR0RevKQIQ3oKPmKZvvBHVq6ZNGtpCb7C57SGGpHwZFrWb2SNKShGWwAbrssZ+
-	 3yRV2WfOmo5h5ILrFz1Hqhr5T4JjQBFVhbSPgAG+5C2jp3z4oRK/lrs1+wEdo9z+EI
-	 qQnPudTq9FZ+FuNKu3L0LNBxS4zC2wPJWb+DKa9U=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 451CGUWi019930
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sat, 1 Jun 2024 07:16:30 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 1
- Jun 2024 07:16:30 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sat, 1 Jun 2024 07:16:30 -0500
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [172.24.227.9])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 451CFtkL009323;
-	Sat, 1 Jun 2024 07:16:26 -0500
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <afd@ti.com>, <kristo@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <rogerq@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>,
-        <danishanwar@ti.com>, <srk@ti.com>, <s-vadapalli@ti.com>
-Subject: [PATCH v4 7/7] arm64: dts: ti: k3-j722s: Enable PCIe and USB support on J722S-EVM
-Date: Sat, 1 Jun 2024 17:45:54 +0530
-Message-ID: <20240601121554.2860403-8-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20240601121554.2860403-1-s-vadapalli@ti.com>
-References: <20240601121554.2860403-1-s-vadapalli@ti.com>
+	s=arc-20240116; t=1717247588; c=relaxed/simple;
+	bh=h58JsD+SebyiyL2HCvGvq4VST8PeU6RDgSW12Kr6f70=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=e1TZQyQVUy77kl1cG8vo78RReLBNi8L/jmfUQhT5KAvy7ZaTLr8XsNzENn/eG16JcK1hv475Ysx5TccbmzJpsi6d34jlNz93H+7fcCsdaiL4JS61UIaqpe6YjpFW8+2xHfiUjgZK1zbBW250UIml1TdY5s2lLwYuqAFkiqe8f8o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=i+8QZ1ck; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1717247578;
+	bh=h58JsD+SebyiyL2HCvGvq4VST8PeU6RDgSW12Kr6f70=;
+	h=From:Subject:Date:To:Cc:From;
+	b=i+8QZ1ckn9fn0MNYXlvoDa1BwwVl3iWJXXphGhoixfP0siuIUWV+i0drhAffhWN5q
+	 Qq+dnv5IhTJALQk0gHMaUIeD1foqJWZN3iIjcR6l2xvHFk38KfSSTT9Y3tG9nSQVJN
+	 hgqpVjmUb0tIm7cymZRCxcP4NCahLJiSRngakt++NzI9ffbRfUygfciuXoq9Jt8Rt/
+	 NU2BaG+OgFRlHP2JuSVuwjMqEmxcvX0q+SEQ0lrWqcU2WtFFDDpijLqiDL06mT9JIV
+	 sqDbwWxfsqJ9PtVr0qi+CM1t165hSgP+flA9P7jt9nOXgmsg2ng0N8H5zOvlnC37Cz
+	 IDwY+6jDFWiyw==
+Received: from localhost (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5A752378203E;
+	Sat,  1 Jun 2024 13:12:58 +0000 (UTC)
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Subject: [PATCH 00/14] Add initial support for the Rockchip RK3588 HDMI TX
+ Controller
+Date: Sat, 01 Jun 2024 16:12:22 +0300
+Message-Id: <20240601-b4-rk3588-bridge-upstream-v1-0-f6203753232b@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADYeW2YC/x2MQQrDIBAAvyJ7zoLaNJF+JfSgcU2WUitrWgqSv
+ 1d6HIaZBpWEqcJNNRD6cOVX7mAGBevu80bIsTNYbUc9aYNhRHlcrs5hEI7dv0s9hPwTvZ2DT8k
+ El1bofRFK/P2/l/t5/gDw2BPpawAAAA==
+To: Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ devicetree@vger.kernel.org, kernel@collabora.com, 
+ Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>, 
+ Algea Cao <algea.cao@rock-chips.com>
+X-Mailer: b4 0.14-dev-f7c49
 
-Enable PCIe0 instance of PCIe in Root Complex mode of operation with Lane 0
-of the SERDES1 instance of SERDES. Also enable USB0 instance of USB to
-interface with the Type-C port via the USB hub, by configuring the pin P05
-of the GPIO expander on the EVM. Enable USB1 instance of USB in SuperSpeed
-mode of operation with Lane 0 of the SERDES0 instance of SERDES.
+The RK3588 SoC family integrates a Quad-Pixel (QP) variant of the
+Synopsys DesignWare HDMI TX controller used in the previous SoCs.
 
-Co-developed-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
-Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+It is HDMI 2.1 compliant and supports the following features, among
+others:
+
+* Fixed Rate Link (FRL)
+* 4K@120Hz and 8K@60Hz video modes
+* Variable Refresh Rate (VRR) including Quick Media Switching (QMS)
+* Fast Vactive (FVA)
+* SCDC I2C DDC access
+* TMDS Scrambler enabling 2160p@60Hz with RGB/YCbCr4:4:4
+* YCbCr4:2:0 enabling 2160p@60Hz at lower HDMI link speeds
+* Multi-stream audio
+* Enhanced Audio Return Channel (EARC)
+
+This is the last required component that needs to be supported in order
+to enable the HDMI output functionality on the RK3588 based SBCs, such
+as the RADXA Rock 5B. The other components are the Video Output
+Processor (VOP2) and the Samsung IP based HDMI/eDP TX Combo PHY, for
+which basic support has been already made available via [1] and [2],
+respectively.
+
+The patches are grouped as follows:
+* PATCH 1..7: DW HDMI TX driver refactor to minimize code duplication in
+  the new QP driver (no functional changes intended)
+
+* PATCH 8..11: Rockchip DW HDMI glue driver cleanup/improvements (no
+  functional changes intended)
+
+* PATCH 12..13: The new DW HDMI QP TX driver reusing the previously
+  exported functions and structs from existing DW HDMI TX driver
+
+* PATCH 14: Rockchip DW HDMI glue driver update to support RK3588 and
+  make use of DW HDMI QP TX
+
+They provide just the basic HDMI support for now, i.e. RGB output up to
+4K@60Hz, without audio, CEC or any of the HDMI 2.1 specific features.
+Also note the vop2 driver is currently not able to properly handle all
+display modes supported by the connected screens, e.g. it doesn't cope
+with non-integer refresh rates.
+
+A possible workaround consists of enabling the display controller to
+make use of the clock provided by the HDMI PHY PLL. This is still work
+in progress and will be submitted later, as well as the required DTS
+updates.
+
+To facilitate testing and experimentation, all HDMI output related
+patches, including those part of this series, are available at [3].
+So far I could only verify this on the RADXA Rock 3A and 5B boards.
+
+Thanks,
+Cristian
+
+[1]: 5a028e8f062f ("drm/rockchip: vop2: Add support for rk3588")
+[2]: 553be2830c5f ("phy: rockchip: Add Samsung HDMI/eDP Combo PHY driver")
+[3]: https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/commits/rk3588-hdmi-bridge-v6.10-rc1
+
+Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 ---
-v3:
-https://lore.kernel.org/r/20240524090514.152727-4-s-vadapalli@ti.com/
-and
-https://lore.kernel.org/r/20240524090514.152727-8-s-vadapalli@ti.com/
-Changes since v3:
-- Above patches have been squashed into this patch.
+Cristian Ciocaltea (14):
+      drm/bridge: dw-hdmi: Simplify clock handling
+      drm/bridge: dw-hdmi: Add dw-hdmi-common.h header
+      drm/bridge: dw-hdmi: Commonize dw_hdmi_i2c_adapter()
+      drm/bridge: dw-hdmi: Factor out AVI infoframe setup
+      drm/bridge: dw-hdmi: Factor out vmode setup
+      drm/bridge: dw-hdmi: Factor out hdmi_data_info setup
+      drm/bridge: dw-hdmi: Commonize dw_hdmi_connector_create()
+      drm/rockchip: dw_hdmi: Use modern drm_device based logging
+      drm/rockchip: dw_hdmi: Simplify clock handling
+      drm/rockchip: dw_hdmi: Use devm_regulator_get_enable()
+      drm/rockchip: dw_hdmi: Drop superfluous assignments of mpll_cfg, cur_ctr and phy_config
+      dt-bindings: display: rockchip,dw-hdmi: Add compatible for RK3588
+      drm/bridge: synopsys: Add DW HDMI QP TX controller driver
+      drm/rockchip: dw_hdmi: Add basic RK3588 support
 
- arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 72 +++++++++++++++++++++++++
- 1 file changed, 72 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-index bf3c246d13d1..3145e680e2d3 100644
---- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-@@ -9,7 +9,9 @@
- /dts-v1/;
- 
- #include <dt-bindings/net/ti-dp83867.h>
-+#include <dt-bindings/phy/phy.h>
- #include "k3-j722s.dtsi"
-+#include "k3-serdes.h"
- 
- / {
- 	compatible = "ti,j722s-evm", "ti,j722s";
-@@ -202,6 +204,12 @@ J722S_IOPAD(0x0130, PIN_OUTPUT, 0) /* (AG26) RGMII1_TXC */
- 			J722S_IOPAD(0x012c, PIN_OUTPUT, 0) /* (AF25) RGMII1_TX_CTL */
- 		>;
- 	};
-+
-+	main_usb1_pins_default: main-usb1-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x0258, PIN_INPUT, 0) /* (B27) USB1_DRVVBUS */
-+		>;
-+	};
- };
- 
- &cpsw3g {
-@@ -301,6 +309,13 @@ exp1: gpio@23 {
- 				  "PCIe0_1L_RC_RSTz", "PCIe0_1L_PRSNT#",
- 				  "ENET1_EXP_SPARE2", "ENET1_EXP_PWRDN",
- 				  "PD_I2ENET1_I2CMUX_SELC_IRQ", "ENET1_EXP_RESETZ";
-+
-+		p05-hog {
-+			/* P05 - USB2.0_MUX_SEL */
-+			gpio-hog;
-+			gpios = <5 GPIO_ACTIVE_HIGH>;
-+			output-high;
-+		};
- 	};
- };
- 
-@@ -384,3 +399,60 @@ &sdhci1 {
- 	status = "okay";
- 	bootph-all;
- };
-+
-+&serdes_ln_ctrl {
-+	idle-states = <J722S_SERDES0_LANE0_USB>,
-+		      <J722S_SERDES1_LANE0_PCIE0_LANE0>;
-+};
-+
-+&serdes0 {
-+	status = "okay";
-+	serdes0_usb_link: phy@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <1>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_USB3>;
-+		resets = <&serdes_wiz0 1>;
-+	};
-+};
-+
-+&serdes1 {
-+	serdes1_pcie_link: phy@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <1>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_PCIE>;
-+		resets = <&serdes_wiz1 1>;
-+	};
-+};
-+
-+&pcie0_rc {
-+	status = "okay";
-+	reset-gpios = <&exp1 18 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes1_pcie_link>;
-+	phy-names = "pcie-phy";
-+};
-+
-+&usbss0 {
-+	ti,vbus-divider;
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	dr_mode = "otg";
-+	usb-role-switch;
-+};
-+
-+&usbss1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_usb1_pins_default>;
-+	ti,vbus-divider;
-+	status = "okay";
-+};
-+
-+&usb1 {
-+	dr_mode = "host";
-+	maximum-speed = "super-speed";
-+	phys = <&serdes0_usb_link>;
-+	phy-names = "cdns3,usb3-phy";
-+};
--- 
-2.40.1
+ .../display/rockchip/rockchip,dw-hdmi.yaml         | 127 +++-
+ drivers/gpu/drm/bridge/synopsys/Makefile           |   2 +-
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-common.h   | 179 +++++
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c       | 787 +++++++++++++++++++
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.h       | 831 +++++++++++++++++++++
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          | 353 +++------
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        | 351 +++++++--
+ include/drm/bridge/dw_hdmi.h                       |   8 +
+ 8 files changed, 2290 insertions(+), 348 deletions(-)
+---
+base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
+change-id: 20240601-b4-rk3588-bridge-upstream-a27baff1b8fc
 
 
