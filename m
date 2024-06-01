@@ -1,58 +1,88 @@
-Return-Path: <devicetree+bounces-71486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 365D98D7063
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 16:08:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E53BF8D7071
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 16:33:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5B092836F9
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 14:08:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3E4ADB21D02
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 14:33:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E248815216A;
-	Sat,  1 Jun 2024 14:08:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A655152197;
+	Sat,  1 Jun 2024 14:33:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b="PLkAcVrs"
+	dkim=pass (2048-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b="sXNBlm5r";
+	dkim=permerror (0-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b="FPI6mhQl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
+Received: from mailrelay3-1.pub.mailoutpod2-cph3.one.com (mailrelay3-1.pub.mailoutpod2-cph3.one.com [46.30.211.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E8E214F9D4;
-	Sat,  1 Jun 2024 14:08:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.126.157
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1C8114F9D4
+	for <devicetree@vger.kernel.org>; Sat,  1 Jun 2024 14:33:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.30.211.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717250907; cv=none; b=fweGPyLsYbDGIlV/hrQTKVF8+UJCImnNh24jrCi8T2yEaLmTGme14+iqwr97T5Ayp17uMFeqFt9kki03etb/hmNZN/AUGfLmLCazYL31Iumz0IfdVfjkYWsY78YdiYQIRtAY3dv1jd5eeCOEL9D5yxquToO0nzhkwwtwzvu4yFk=
+	t=1717252421; cv=none; b=MjXr1Jr9bkndy0sjJUcrjZYpu6XMv/vRU4Hef8LLlPFTKyJAob9e9yOryWFwqWe955lAwjpgAAutnlWBUaSbTK+m2VMF8V3ssUVvjr5TsbMZzf/M8Y9Lua/Utc+ZTmfvYxehMueGP0s8Lj4e4SOAB+YfXcpPT/NPnDsGWj/VOgU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717250907; c=relaxed/simple;
-	bh=XdHCjPgAtnKwKDYqo1E0YVPmLCGTMK96lhXNY+SzVns=;
+	s=arc-20240116; t=1717252421; c=relaxed/simple;
+	bh=7lcCSZYjgUMhT7hjgnWq0PuqXk4GYQpRlGM9G6xmAH8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D0DrxT/qgOzXBWbt58LyXZQLfCChHniS7AO8gzfNhiBqw1RzSjvWnlIYlk6xPunkjeCdl+b4xbjRqrqpeUPmTkxF9AL8qtVpXNN8VkxalujxzeBVhk3M7nIYhI0IipPWq/cu2k25Uo8Q1EH2QWjfGMxxsquRLgtgKUGpSlJ2UIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weissschuh.net; spf=pass smtp.mailfrom=weissschuh.net; dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b=PLkAcVrs; arc=none smtp.client-ip=159.69.126.157
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weissschuh.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=weissschuh.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
-	s=mail; t=1717250902;
-	bh=XdHCjPgAtnKwKDYqo1E0YVPmLCGTMK96lhXNY+SzVns=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PLkAcVrsPQAN1EBg9x/4wvqUt5p5Id1LwI8nC3c5wwR0P/OUHRuV08TsRFq0Zbbe5
-	 OJQki1bCdZrj7tZbVEWO6U84fXFvysezdplknjgHAzKIDJr0yb9VAA/HjPviid0o+g
-	 cEByXaibwcvvatbYJITBiQBAXLnEUa8Bi/p2ds2o=
-Date: Sat, 1 Jun 2024 16:08:22 +0200
-From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, Armin Wolf <W_Armin@gmx.de>, 
-	=?utf-8?B?UmVuw6k=?= Rebe <rene@exactcode.de>, Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: Re: [PATCH RFT v3 4/4] hwmon: (spd5118) Add support for reading SPD
- data
-Message-ID: <4e4341e4-2165-40d4-909c-9d5164e97942@t-8ch.de>
-References: <20240531230556.1409532-1-linux@roeck-us.net>
- <20240531230556.1409532-5-linux@roeck-us.net>
- <4cc979c3-3ce0-4f31-b5d0-508e1af5fdf4@roeck-us.net>
- <cf9d752e-0137-4a6d-85d3-fbe69293a43e@t-8ch.de>
- <f5f28ef1-53ef-4f82-abb3-2b60dc468793@roeck-us.net>
+	 Content-Type:Content-Disposition:In-Reply-To; b=uZVdjbt3sEJM0/jjpGaX6NO2HbtXaCfKmU2sxgJApQWJ03rNmVUnI+Wu73cigKWlaXXrz6b0BDrsmmqoW+4pArv0FtkdQz1ASjVkMH5s9e88wE6cx6jh/GaSIsEsvdnhAcBIRoOlHJ4HQ+2L0n1eMW/TOe6+0XutedxYy2pQ3Ac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org; spf=none smtp.mailfrom=ravnborg.org; dkim=pass (2048-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b=sXNBlm5r; dkim=permerror (0-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b=FPI6mhQl; arc=none smtp.client-ip=46.30.211.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ravnborg.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=ravnborg.org; s=rsa1;
+	h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+	 from:date:from;
+	bh=oPiP+6Xv1rauIECXZ7PSRSg8wkxsNMowRof7mkzrmGE=;
+	b=sXNBlm5ryO6M0p5a7pA1/4QYhsHRvE38MIidYWZOfWQeTs0FdE6QWI0LGwbLCW2xdPAfIJL3CBvxV
+	 q8Iu5tbSlIJj/59QIbQbHHK7pvWFSX3sqT55cIfuEuPHYEac11ZiBgNeQl8Pef+MhCLuf60bDS4KL4
+	 Q8P/mGQ9UGP57YyhZI4HrLID4vbYsxwcTFSvQbRKXSPnGIqeczO2itnIGmlq6Rd7xV2FQiFW0Mvbs7
+	 xZDoqDciCtpBvVILXpDig22SZm5LXC7BhJiDvLdbVONuvytkC/gVFAB9EEnT7jUjwUOEwq++qosN7G
+	 AaY0R8NIb4Ng+Mmf0Mr7o9SOJCycUbg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+	d=ravnborg.org; s=ed1;
+	h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+	 from:date:from;
+	bh=oPiP+6Xv1rauIECXZ7PSRSg8wkxsNMowRof7mkzrmGE=;
+	b=FPI6mhQlC0kwcyQqIsi1QkIyx9Vj8DYZFZ2KTdLErhSprnjhhecaQvLK0h1HXbFwDA8NchK91faYb
+	 utsak4IBQ==
+X-HalOne-ID: c44c843a-2023-11ef-b19f-79f4c2873f57
+Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
+	by mailrelay3.pub.mailoutpod2-cph3.one.com (Halon) with ESMTPSA
+	id c44c843a-2023-11ef-b19f-79f4c2873f57;
+	Sat, 01 Jun 2024 14:32:28 +0000 (UTC)
+Date: Sat, 1 Jun 2024 16:32:26 +0200
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Sandy Huang <hjc@rock-chips.com>,
+	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+	Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mark Yao <markyao0591@gmail.com>, dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+	kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
+	Luis de Arquer <ldearquer@gmail.com>,
+	Algea Cao <algea.cao@rock-chips.com>
+Subject: Re: [PATCH 13/14] drm/bridge: synopsys: Add DW HDMI QP TX controller
+ driver
+Message-ID: <20240601143226.GA2003970@ravnborg.org>
+References: <20240601-b4-rk3588-bridge-upstream-v1-0-f6203753232b@collabora.com>
+ <20240601-b4-rk3588-bridge-upstream-v1-13-f6203753232b@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,52 +91,104 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f5f28ef1-53ef-4f82-abb3-2b60dc468793@roeck-us.net>
+In-Reply-To: <20240601-b4-rk3588-bridge-upstream-v1-13-f6203753232b@collabora.com>
 
-On 2024-06-01 06:48:29+0000, Guenter Roeck wrote:
+Hi Cristian,
 
-<snip>
+a few drive-by comments below.
 
-> Makes sense. Another question:
-> 
-> This:
-> 
-> +        struct nvmem_config nvmem_config = {
-> +               .type = NVMEM_TYPE_EEPROM,
-> +               .name = dev_name(dev),
-> +               .id = NVMEM_DEVID_AUTO,
-> 
-> results in:
-> 
-> $ ls /sys/bus/nvmem/devices
-> 0-00501  0-00512  0-00523  0-00534  cmos_nvram0
-> ^^^^^^^  ^^^^^^^  ^^^^^^^  ^^^^^^^
-> 
-> which really doesn't look good. My current plan is to go with NVMEM_DEVID_NONE,
-> which results in
-> 
-> $ ls /sys/bus/nvmem/devices
-> 0-0050	0-0051	0-0052	0-0053	cmos_nvram0
-> 
-> We could also used fixed strings, but "spd" results in "spd[1-4]" which
-> I think would be a bit misleading since the DDR3/4 SPD data format is
-> different, and "spd5118" would result in "spd5118[1-4]" which again would
-> look odd. Any suggestions ?
+	Sam
 
-In order of descending, personal preference:
 
-* spd-ddr5-[0-3] (.id = client->address - 0x50)
-* spd-ddr5-[0-3] (NVMEM_DEVID_AUTO)
-* Same with only "ddr5-"
-* spd5118-[0-3]
-* Your proposal from above
-* nvmem[0-3] (default handling)
-* 0-0050-[0-3]
+> +
+> +static const struct drm_connector_funcs dw_hdmi_qp_connector_funcs = {
+> +	.fill_modes = drm_helper_probe_single_connector_modes,
+> +	.detect = dw_hdmi_connector_detect,
+> +	.destroy = drm_connector_cleanup,
+> +	.force = dw_hdmi_qp_connector_force,
+> +	.reset = drm_atomic_helper_connector_reset,
+> +	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
+> +	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
+> +};
+> +
+> +static int dw_hdmi_qp_bridge_attach(struct drm_bridge *bridge,
+> +				    enum drm_bridge_attach_flags flags)
+> +{
+> +	struct dw_hdmi *hdmi = bridge->driver_private;
+> +
+> +	if (flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)
+> +		return drm_bridge_attach(bridge->encoder, hdmi->next_bridge,
+> +					 bridge, flags);
+> +
+> +	return dw_hdmi_connector_create(hdmi, &dw_hdmi_qp_connector_funcs);
+> +}
 
-Also can't a user of the eeprom already figure out which kind of module
-it is by looking at the eeprom contents?
-The first few bytes used for that seem to be compatible between at least
-DDR4 and DDR5.
+Are there any users left that requires the display driver to create the
+connector?
+In other words - could this driver fail if DRM_BRIDGE_ATTACH_NO_CONNECTOR
+is not passed and drop dw_hdmi_connector_create()?
 
-So using plain spd[1-4] could be enough.
+I did not try to verify this - just a naive question.
+
+> +
+> +static enum drm_mode_status
+> +dw_hdmi_qp_bridge_mode_valid(struct drm_bridge *bridge,
+> +			     const struct drm_display_info *info,
+> +			     const struct drm_display_mode *mode)
+> +{
+> +	struct dw_hdmi *hdmi = bridge->driver_private;
+> +	const struct dw_hdmi_plat_data *pdata = hdmi->plat_data;
+> +	enum drm_mode_status mode_status = MODE_OK;
+> +
+> +	if (pdata->mode_valid)
+> +		mode_status = pdata->mode_valid(hdmi, pdata->priv_data, info,
+> +						mode);
+> +
+> +	return mode_status;
+> +}
+> +
+> +static void dw_hdmi_qp_bridge_atomic_disable(struct drm_bridge *bridge,
+> +					     struct drm_bridge_state *old_state)
+> +{
+> +	struct dw_hdmi *hdmi = bridge->driver_private;
+> +
+> +	mutex_lock(&hdmi->mutex);
+> +	hdmi->disabled = true;
+> +	hdmi->curr_conn = NULL;
+> +	dw_hdmi_qp_update_power(hdmi);
+> +	dw_handle_plugged_change(hdmi, false);
+> +	mutex_unlock(&hdmi->mutex);
+> +}
+> +
+> +static void dw_hdmi_qp_bridge_atomic_enable(struct drm_bridge *bridge,
+> +					    struct drm_bridge_state *old_state)
+> +{
+> +	struct dw_hdmi *hdmi = bridge->driver_private;
+> +	struct drm_atomic_state *state = old_state->base.state;
+> +	struct drm_connector *connector;
+> +
+> +	connector = drm_atomic_get_new_connector_for_encoder(state,
+> +							     bridge->encoder);
+> +
+> +	mutex_lock(&hdmi->mutex);
+> +	hdmi->disabled = false;
+> +	hdmi->curr_conn = connector;
+> +	dw_hdmi_qp_update_power(hdmi);
+> +	dw_handle_plugged_change(hdmi, true);
+> +	mutex_unlock(&hdmi->mutex);
+> +}
+> +
+> +static const struct drm_bridge_funcs dw_hdmi_qp_bridge_funcs = {
+> +	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
+> +	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
+> +	.atomic_reset = drm_atomic_helper_bridge_reset,
+> +	.attach = dw_hdmi_qp_bridge_attach,
+> +	.detach = dw_hdmi_bridge_detach,
+> +	.atomic_check = dw_hdmi_bridge_atomic_check,
+> +	.atomic_enable = dw_hdmi_qp_bridge_atomic_enable,
+> +	.atomic_disable = dw_hdmi_qp_bridge_atomic_disable,
+> +	.mode_set = dw_hdmi_bridge_mode_set,
+
+The use of mode_set is deprecated - see drm_bridge.h
+
 
