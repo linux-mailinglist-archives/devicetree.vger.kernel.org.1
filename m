@@ -1,206 +1,198 @@
-Return-Path: <devicetree+bounces-71430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B07008D6CE5
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 01:40:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83BFE8D6D14
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 02:10:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D39F01C22241
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 23:40:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73F9D288130
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 00:10:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3432812FF73;
-	Fri, 31 May 2024 23:39:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E36D1386;
+	Sat,  1 Jun 2024 00:10:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="ZOGwrFSs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FlMgNgSV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A967D12F5B8;
-	Fri, 31 May 2024 23:39:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F4C037E;
+	Sat,  1 Jun 2024 00:10:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717198793; cv=none; b=P093EDzxdysDLKpf1CwsYLO6kj/IurtQ3/8OLQiYMqzY9013tzbM2NWGC/j6qgt1ydDHSRcGyO9clDPW14eNkRAAUA4R4ljmf7YMvv3jGsVUcbN3CZhK9UcWNvj+ubPNHj+NdpUrDwsuuzuB47wjp6zM3xbo4CeQqPJp11Favds=
+	t=1717200624; cv=none; b=OWdWDi8vRZ1WRYjvA2dT67ed358UCggC7m+9qFg3AojUPBLdF/Sp0D2qgJhVdjGAxsjzGwFaThb5X/m2kO4VNW+7ZmLZ8gxGaJ2IBazTaZOky8xJzYDJJoncrm7Tgq30qPCL7LckG5+uHjosv+g4K5Cs3Cvcpjk9D/OmwO8/Gx4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717198793; c=relaxed/simple;
-	bh=+B3B1B+g8fE8BJ8TASgPdm+uogD9ZfQaE+9ND0gv1pI=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=P6J4wCTIeALieCapeFQHorubRR160YEFhYZ4hr1qNFpq0I4ac6q7mzDplZkYgfQT+dqH9CqLFy02cguzewz2jmVyPUH8fZMgd5SOrL9BwbuHItwR8eNc7BTlYGMBa5bhcX3kChE5Qq2G+0nKgZ9aTjwD0Y7BBcDmH5RZH456gUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=ZOGwrFSs; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1717200624; c=relaxed/simple;
+	bh=91n2kwnI74OK5r+ydkpLfw2spS5DCQ1J5SRP6i3YAQI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AcmSzM6L3OOZ4EuPMUNIoAm++NYmQmT3uiM2odHJDyBev2X0oBcNXxknRtLm69rY8wH8yDDrb+CbRBuysWD4UlwA1JLA5PAadlG1ZQaKTsvP8dKcpVbvCW0YY7jSlFN4HlVA2ROn/Qa1/3H69hMWQLPd1+chzPPq14ZcZWfaxrU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FlMgNgSV; arc=none smtp.client-ip=209.85.219.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6ae10ec3bd7so2385236d6.1;
+        Fri, 31 May 2024 17:10:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717200622; x=1717805422; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PSzJ+L/cbNA7sYLgQBG3/PvK9MnOtIiCP0OTqTlJIHk=;
+        b=FlMgNgSVqp0FBYHbvzzEpIokXDizST/k+slfSYtgqjPVXPDqNPkxRZ0GfG4sLKQcH+
+         5pAsXkA9kprSQbjdqu7By/Zi8SUPccTIpbCdkVXwl6iMaaNyJ35J5iRij/DMyotegMTg
+         uO047Rb6LCFEjJpjzkADgauwZo9+vup0bWBYJTDPamseCPlWwWdie5G3TY5ZzQphQWnx
+         bZBmz2gatcJTUuwhJ8k3QBoha8T90H/fp6UcERTOiBIFPBwqidJL2kmYvM8XOfSzaQXc
+         4+2xqsiAAIxLy97TiwtiNQnLV7WILV1aJFUgeejKCOdVguUNG7s5idiQY9/EhQpqC6Xl
+         iwKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717200622; x=1717805422;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PSzJ+L/cbNA7sYLgQBG3/PvK9MnOtIiCP0OTqTlJIHk=;
+        b=f79vq2hSJJX2NTm5vo9D/rpThBUT/m+M+xUGAc4fUpQGb2genEXRkCGnmM/DLuCRKV
+         F5v6Gx/FtlgOf/1uG8pYASJNOM013rnq7twmjb7WbPwBNOEx1BfPZRXUAnwqbVRTuSVO
+         GwOaXEQxI4PrI52CLsuB0SSZqDcAGZNihwRfhIgBfHbgpkFcgmm+LITPtc8jXmJNPzAa
+         b6mgsmWcQXRzYESOcCIbvIO+jgUecHvwPWD0E98TuhzGWAnFh1nW5UJ6reYkDn2nV1Bi
+         3mwrSOSJnFyh+0RYQ2xBHzQ454llTL7EnpmZLIMtzEwXd3RyJvcvqibPe09v+7i+jJTH
+         voTw==
+X-Forwarded-Encrypted: i=1; AJvYcCXWd2GKj5vfCCxVrgodcAG8fG+hqndZodS8bF9vH+zCjHgTD8g/U0GBaAzXCP8FLuKZzNppUGqNdwV7g5y6EqI/hr/EeELlJsrrTLnZ5cenXRpffxJTFkeTf1vhA9n1F3v860jG/LHDU/6XTHhpW7Kn2O1gKfsjEJZTUzSdwFHDIXPyo4uifpk2RwdVffE=
+X-Gm-Message-State: AOJu0YxbzvX11eCjHFW7YFpHUzgPJdncrx25FQWPRDZI0AzHuzdIoMHz
+	cSqZTPTadu8O06VNUbOzZBWswIDt6H1vW+QpE6AoO7kpOzNOWBPi
+X-Google-Smtp-Source: AGHT+IHoL2mHJHbKUOWC5NiDcAMqLzR0pPVM700KBUPJG6vSPJONv3wJvMsi2fwBuGwxHejvntBBlw==
+X-Received: by 2002:a05:6214:c48:b0:6ab:8c3b:9032 with SMTP id 6a1803df08f44-6aecd573592mr36731136d6.1.1717200622086;
+        Fri, 31 May 2024 17:10:22 -0700 (PDT)
+Received: from [192.168.0.98] ([67.6.32.220])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6ae4a73e767sm10633516d6.1.2024.05.31.17.10.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 May 2024 17:10:21 -0700 (PDT)
+Message-ID: <a2f68c56-e6d6-4626-8d05-b5e808da60da@gmail.com>
+Date: Fri, 31 May 2024 19:10:20 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1717198788;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kc8wjIrdYAxjt7EjGwSxy0E0ldbUq9FWdaX7wPmdMFk=;
-	b=ZOGwrFSsE9140iRXKfuif9Lont71yZB0NhWcJvuZT5imXE7nlQrHys0tXYG4QEJy94qouu
-	GoeV2faCN8ClwwFWZpFobR+U3t45f4wYEIJ/OQuM6L7MOcICjOrYqt7jl+pIvQ2gLTIxKR
-	XO0gVylzWUQVGIU2r/FxPRZq7uXZUcJd9kk9UQJAwlNAq4G6pofSfZquYn9ZD6sJdg/clY
-	06GQwX8Qa+tPKqf4no/i4FxZtmn0EDm/LYYMx3CtdOS6ovidVWWY9iChB3VYRy4xPphAqo
-	HLo4mx0sNMc7s37LKs/Kv6hbDUtUFfsyeuEJionhX2Tc6+aNXBcKWAMzjrQ2tQ==
-Date: Sat, 01 Jun 2024 01:39:47 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Alexey Charkov <alchark@gmail.com>, linux-rockchip@lists.infradead.org,
- heiko@sntech.de, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-kernel@vger.kernel.org, quentin.schulz@cherry.de,
- wens@kernel.org, daniel.lezcano@linaro.org, didi.debian@cknow.org,
- krzysztof.kozlowski+dt@linaro.org, viresh.kumar@linaro.org
-Subject: Re: [RFC PATCH] arm64: dts: rockchip: Make preparations for
- per-RK3588-variant OPPs
-In-Reply-To: <33ee8446-aa01-47df-8e20-5ae2d384ed0e@kwiboo.se>
-References: <673dcf47596e7bc8ba065034e339bb1bbf9cdcb0.1716948159.git.dsimic@manjaro.org>
- <CABjd4YxD41DEkBCZfkznLboEY9ZVOfTCLcj4S_kkcsVswbANyQ@mail.gmail.com>
- <8f8623e29a479c4108141302e708dc3b@manjaro.org>
- <CABjd4Yy4RMg+6-4ygV0MSwJj5LReY-ymbctq4PPfVZ6L+c1tsw@mail.gmail.com>
- <166cc4e46f31644a50306625b2ab18a6@manjaro.org>
- <CABjd4YzDNQa45=KC_t0xnTDrH+g-oUrcpgP55oOj7JcAuu7uFw@mail.gmail.com>
- <82db817a908b761d8c3d73ea04714314@manjaro.org>
- <607f4da8-99b2-4379-9567-4bfd2744eab3@kwiboo.se>
- <66677077acf4e970444cea829436fd0a@manjaro.org>
- <33ee8446-aa01-47df-8e20-5ae2d384ed0e@kwiboo.se>
-Message-ID: <82301b2c4effe105e7238f6c3e3ffc8f@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/3] Input: novatek-nvt-ts: add support for NT36672A
+ touchscreen
+To: Hans de Goede <hdegoede@redhat.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?=
+ <ilpo.jarvinen@linux.intel.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
+References: <20240526-nvt-ts-devicetree-regulator-support-v3-0-aa88d10ccd9a@gmail.com>
+ <20240526-nvt-ts-devicetree-regulator-support-v3-3-aa88d10ccd9a@gmail.com>
+ <55272a3b-575d-4212-a40b-7245beed5d80@redhat.com>
+Content-Language: en-US
+From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+In-Reply-To: <55272a3b-575d-4212-a40b-7245beed5d80@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On 2024-06-01 01:15, Jonas Karlman wrote:
-> On 2024-05-31 23:24, Dragan Simic wrote:
->> On 2024-05-31 13:27, Jonas Karlman wrote:
->>> On 2024-05-30 21:31, Dragan Simic wrote:
->>> [snip]
->>> 
->>>>>>>> That way we'll have no roadblocks if, at some point, we end up
->>>>>>>> with
->>>>>>>> having
->>>>>>>> different OPPs defined for the RK3588 and the RK3588S variants.
->>>>>>>> Or
->>>>>>>> maybe
->>>>>>>> even for the RK3582, which we don't know much about yet.
->>>>>>> 
->>>>>>> Guess we'll deal with that one once we stumble upon an actual
->>>>>>> RK3582
->>>>>>> board out in the wild and heading to the mainline kernel tree :)
->>>>>> 
->>>>>> Of course, that was just an example for the future use.
->>>>> 
->>>>> In fact, I've just discovered that Radxa has recently released Rock
->>>>> 5C
->>>>> Lite which is based on RK3582, and starts at just $29 for the 1GB
->>>>> version, making it interesting for tinkering. Especially given that
->>>>> its GPU, one of the big-core clusters and one of the VPU cores seem
->>>>> to
->>>>> be disabled in software (u-boot) rather than in hardware, which 
->>>>> means
->>>>> there is some chance that a particular SoC specimen would actually
->>>>> have them in a working condition and possible to re-enable at no
->>>>> cost.
->>>>> Ordered myself one to investigate :)
->>>> 
->>>> Yes, I also saw the RK3582-based ROCK 5C Lite a couple of days ago. 
->>>> :)
->>>> It seems that the disabled IP blocks are detected as defective 
->>>> during
->>>> the manufacturing, which means that they might work correctly, or
->>>> might
->>>> actually misbehave.  It seems similar to the way old three-core AMD
->>>> Phenom II CPUs could sometimes be made quad-core.
->>> 
->>> I can confirm that the RK3582 include ip-state in OTP indicating
->>> unusable cores, any unusable cpu core cannot be taken online and 
->>> stalls
->>> Linux kernel a few extra seconds during boot.
->> 
->> Thanks for this confirmation!
->> 
->>> Started working on a patch for U-Boot to remove any broken cpu core
->>> and/or cluster nodes, similar to what vendor U-Boot does, adopted to
->>> work with a mainline DT for RK3588.
->> 
->> Nice, thanks for working on that. :)
->> 
->>> On one of my ROCK 5C Lite board one of the cpu cores is unusable,
->>> U-Boot
->>> removes the related cpu cluster nodes. On another ROCK 5C Lite board
->>> one
->>> rkvdec core is only marked unusable and all cpu cores can be taken
->>> online, U-Boot does nothing in this case. Guessing we should apply
->>> similar policy as vendor U-Boot and disable cores anyway.
->> 
->> Just checking, you're referring to disabling the rkvdec core only,
->> for the latter case?
+Hi Hans de Goede,
+
+On 5/27/24 03:42, Hans de Goede wrote:
+> Hi Joel,
 > 
-> No, the vendor U-Boot will remove cluster2 if no cpu core is bad.
+> On 5/27/24 5:26 AM, Joel Selvaraj via B4 Relay wrote:
+>> From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+>>
+>> ---
+>>   drivers/input/touchscreen/novatek-nvt-ts.c | 78 +++++++++++++++++++++++++++---
+>>   1 file changed, 72 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/input/touchscreen/novatek-nvt-ts.c b/drivers/input/touchscreen/novatek-nvt-ts.c
+>> index 224fd112b25a9..7a82a1b09f9d5 100644
+>> --- a/drivers/input/touchscreen/novatek-nvt-ts.c
+>> +++ b/drivers/input/touchscreen/novatek-nvt-ts.c
+>> @@ -139,9 +143,23 @@ static irqreturn_t nvt_ts_irq(int irq, void *dev_id)
+>>   	return IRQ_HANDLED;
+>>   }
+>>   
+>> +static void nvt_ts_disable_regulators(void *_data)
+>> +{
+>> +	struct nvt_ts_data *data = _data;
+>> +
+>> +	regulator_bulk_disable(ARRAY_SIZE(data->regulators), data->regulators);
+>> +}
+>> +
+>>   static int nvt_ts_start(struct input_dev *dev)
+>>   {
+>>   	struct nvt_ts_data *data = input_get_drvdata(dev);
+>> +	int error;
+>> +
+>> +	error = regulator_bulk_enable(ARRAY_SIZE(data->regulators), data->regulators);
+>> +	if (error) {
+>> +		dev_err(&data->client->dev, "failed to enable regulators\n");
+>> +		return error;
+>> +	}
+>>   
 > 
-> RK3582 policy:
-> - always remove gpu node
-> - always remove both rkvdec nodes
-> - remove bad rkvenc node, if both are normal, remove rkvenc1 anyway
+> This is weird, you already enable the regulators in probe() and
+> those get disabled again on remove() by the devm action you add.
 > 
-> RK3583 policy:
-> - remove bad rkvdec node, if both are normal, remove rkvdec1 anyway
-> - remove bad rkvenc node, if both are normal, remove rkvenc1 anyway
+> So there is no need to enable / disable the regulators on start/stop .
 > 
-> CPU core policy:
-> - remove both cores within a cluster having a bad core
-> - if core4~7 are all normal, remove core6 and core7 anyway
+> If you want the regulators to only be enabled when the touchscreen
+> is on then you should disable the regulators again in probe()
+> after the nvt_ts_read_data() call there (and drop the devm action).
 
-Thanks for the clarification.  Though, what's RK3583, is there
-really another SoC variant?  I've heard only about the RK3582.
+Yes, I want the regulators to be enabled only when the touchscreen is 
+on/active. I will disable the regulators in probe and remove the devm 
+action in v4.
 
-I think that the upstream U-Boot policy should be to follow closely
-what the OTP data says about unusable portions of the SoC.  IOW, just
-disable what OTP specifically says to be unusable, exactly as Alexey
-already proposed. [1]
+>> @@ -277,8 +324,26 @@ static int nvt_ts_probe(struct i2c_client *client)
+>>   	return 0;
+>>   }
+>>   
+>> +static const struct nvt_ts_i2c_chip_data nvt_nt11205_ts_data = {
+>> +	.wake_type = 0x05,
+>> +	.chip_id = 0x05,
+>> +};
+>> +
+>> +static const struct nvt_ts_i2c_chip_data nvt_nt36672a_ts_data = {
+>> +	.wake_type = 0x01,
+>> +	.chip_id = 0x08,
+>> +};
+>> +
+>> +static const struct of_device_id nvt_ts_of_match[] = {
+>> +	{ .compatible = "novatek,nt11205-ts", .data = &nvt_nt11205_ts_data },
+>> +	{ .compatible = "novatek,nt36672a-ts", .data = &nvt_nt36672a_ts_data },
+>> +	{ }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, nvt_ts_of_match);
+>> +
+>>   static const struct i2c_device_id nvt_ts_i2c_id[] = {
+>> -	{ "NT11205-ts" },
+>> +	{ "NT11205-ts", (unsigned long) &nvt_nt11205_ts_data },
+>> +	{ "NT36672A-ts", (unsigned long) &nvt_nt36672a_ts_data },
+> 
+> The i2c-subsystem will also match of compatible strings to i2c_device_ids
+> by looking at the partof the compatible after the ',', so for a compatible
+> of e.g. "novatek,nt36672a-ts" will match an i2c_device_id of "nt36672a-ts".
+> 
+> So if you change these to lower-case:
+> 
+> 	{ "nt11205-ts", (unsigned long) &nvt_nt11205_ts_data },
+> 	{ "nt36672a-ts", (unsigned long) &nvt_nt36672a_ts_data },
+> 
+> Then you can drop the nvt_ts_of_match table since that is not necessary
+> then.
+> 
+> Hmm I just realized that this will break module auto-loading though since that
+> does require of modaliases .
+>   
+> So maybe this is not such a good idea after all. Still switching to lowercase
+> i2c_device_id-s would be good for consistency and you need to respin
+> the patch-set for the regulator issue anyways.
 
-Though, the disabling of the GPU and the rkvdec would be an exception
-to the "disable only what OTP says" rule, but that could be justified
-by the absence of the related OTP data.
+Ok. I will change it to lowercase i2c device id in v4.
 
-[1] 
-https://lore.kernel.org/linux-rockchip/CABjd4YxdM+cM+z7ou3=DF2SrFM0235DSTZ45o0NsKBwGrgW8Bg@mail.gmail.com/
-
->>> Following commit contains early work-in-progress and some debug 
->>> output.
->>> 
->>> https://github.com/Kwiboo/u-boot-rockchip/commit/8cdf606e616baa36751f3b4adcfaefc781126c8c
->>> 
->>> Booting ROCK 5C Lite boards using U-Boot generic-rk3588_defconfig:
->>> 
->>> ROCK 5C Lite v1.1 (RK3582 with 1 bad cpu core):
->>> 
->>>   cpu-code: 3582
->>>   cpu-version: 08 10
->>>   data: fe 21
->>>   package: 11
->>>   specification: 01
->>>   ip-state: 10 00 00
->>>   bad-state: cpu core 4
->>> 
->>> ROCK 5C Lite v1.1 (RK3582 with 1 bad rkvdec core):
->>> 
->>>   cpu-code: 3582
->>>   cpu-version: 08 00
->>>   data: fe 21
->>>   package: 11
->>>   specification: 01
->>>   ip-state: 00 80 00
->>>   bad-state: rkvdec core 1
->> 
->> Thanks again for these nice details!
+Regards,
+Joel Selvaraj
 
