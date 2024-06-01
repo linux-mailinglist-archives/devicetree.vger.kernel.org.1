@@ -1,161 +1,243 @@
-Return-Path: <devicetree+bounces-71522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 991198D71AC
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 21:23:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5C6D8D71B0
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 21:31:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 00777B2141E
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 19:23:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E28A4B20D45
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 19:31:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB6B1154BE0;
-	Sat,  1 Jun 2024 19:23:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FD52179AD;
+	Sat,  1 Jun 2024 19:31:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.de header.i=w_armin@gmx.de header.b="Pxy2MPUV"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Xr9q0HRO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F744171A5;
-	Sat,  1 Jun 2024 19:23:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 472CE2582;
+	Sat,  1 Jun 2024 19:31:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717269831; cv=none; b=KKjJZVfx7XUhoxk1qZmiOxlzix/7m33GuAEAefEzUwp8+kqf0ZQQRB2LYVqaq+x8gsVKcvTn7qhtckTPAxstdE7nOVndJRJCjIKzJTYvRd5Sg/UBq25cKVgZGthjyTlDxIMBpyY9H5DXmP0kFrcqTErtCvmyoA1qdXUg8ohRDU8=
+	t=1717270295; cv=none; b=qPzO7WgtuPzho32eY7cUTa20SrVvlY9xPx/esAtkLVPNTuLBx90KiA6MXCYc6TkhpNaHTEbmXqH5MJoMCpkip67n/gvRMMu8+LxvP/s/I7u5kxw+h7rAzkk1n3CBJIVXTOLCT+J9xMhEOIW/98Ler0EAN6FmKgo4JB0qh3EdxzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717269831; c=relaxed/simple;
-	bh=An57snNAVWPM/Jd6dWaMAbWr+p4o459kcQwDlqhWjdY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UgXHsraHarcNeOmdr5F9/LyVsb0ms+uckpEzx6r8p/2n54jEJv7VTLDYkVX9TQI/vajY7lxylogSBW5/O8Jxo8a18ngmZDsKPMbRwDa6vwszBJqAkHoINYsckgYSlSEy8pJTBx8r85fKXb1Y62v6Q4mfRdRF8jaCtIV5l7l9GjE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=w_armin@gmx.de header.b=Pxy2MPUV; arc=none smtp.client-ip=212.227.17.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
-	s=s31663417; t=1717269804; x=1717874604; i=w_armin@gmx.de;
-	bh=5iWYMGr3Z9QM/GtgZJ3Kx+3BmVGKNlOjqb+ZMe0xvfE=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=Pxy2MPUVGWr3hijaYDg/yx1eCUZ9XaIp1jHq4pcGIDiAY8nnzky8HkrWsssXC71v
-	 0hLevXvTfVUhzC+mXmDZ/ndapOnZbbLTnsCKWbZrznIIVgI2ObF4pjo5W8USh+beY
-	 OP07SDy0o2a9AeOZXxeX+2+n5HOquTjyvgjtWAPO/YaIBWyUyWM6vl90dlcya8ArR
-	 tOXOVgyXrVwQttxHCUzOkWdytJTFZjR3wr8wevXaYFufzHTaRd3jJq52WwhZLajzf
-	 3/o09pwuxc6sadBawcfuTr6E3tB4Quvmv+EWiUwdjC/KZXU3ApY9zZbv9GVyVJOVt
-	 nDDKozEw8DsCjLc5+A==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [141.30.226.129] ([141.30.226.129]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1N7zFj-1sYgGd2nLf-0183qj; Sat, 01
- Jun 2024 21:23:24 +0200
-Message-ID: <b3109c26-dde1-44cf-b431-80957c97de5f@gmx.de>
-Date: Sat, 1 Jun 2024 21:23:24 +0200
+	s=arc-20240116; t=1717270295; c=relaxed/simple;
+	bh=07g1c1YULA/f44mcBqlbF85COSc0n1ZZl299/Wei0Ns=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SSqP0Mqaa/xBhSltdnpDk6Y7uA6FgYHsc2aCQH6zxFTm7pT4UYyn0pD5tUOwJSAC1KHqScerIvrZEm0M2h2m5Wfa8gaPqG+VCcZYB/TBxxZS+slR0+8mIxE29Md3/TyN5TI3wHbE/nA0BqLZSC6e4ip93CortpxgUaSEOElNMt8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Xr9q0HRO; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from localhost (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 827FF41164;
+	Sat,  1 Jun 2024 21:31:30 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+	by localhost (disroot.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id dgjq-Yvk1jWp; Sat,  1 Jun 2024 21:31:29 +0200 (CEST)
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1717270289; bh=07g1c1YULA/f44mcBqlbF85COSc0n1ZZl299/Wei0Ns=;
+	h=From:To:Cc:Subject:Date;
+	b=Xr9q0HROUOMNRkJ4NH8XyQavEF04/nr4yhqKRWxH2IyL93zV6YAqeb4ilFUJ+YxtE
+	 3MyZ96Xz2eKfRP4Pv3xwrYPi19lQC8fwnvVwI3R8q8w28cvB2ClyuFl/ydcm4zCyVP
+	 HjXHZlBmo5vGoEpWlqJaBKcBLq8uLLmAA+NpYBJG/AIEwDgmU5mDYV2SpyeH9plyvC
+	 7HWo7bHh+SwzobubXx6u9mfYWDf7SRh3IKO67PWXCAm7vhEKNP8QjGnD16qqmLxYMi
+	 Cnu3hiYqEVjHUL55Su8qEHOVY8EsWOx51DqaPxC39pGmCy++nNOfOcJgRkPJHhOZ1h
+	 XI00JSy1ulFLA==
+To: linux-iio@vger.kernel.org,
+	jic23@kernel.org,
+	denis.ciocca@st.com
+Cc: devicetree@vger.kernel.org,
+	linus.walleij@linaro.org,
+	robh+dt@kernel.org,
+	kauschluss@disroot.org
+Subject: [PATCH v3] iio: accel: st_accel: add LIS2DS12
+Date: Sun,  2 Jun 2024 00:56:41 +0530
+Message-ID: <20240601192914.141906-1-kauschluss@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFT v3 4/4] hwmon: (spd5118) Add support for reading SPD
- data
-To: =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
- Guenter Roeck <linux@roeck-us.net>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- =?UTF-8?Q?Ren=C3=A9_Rebe?= <rene@exactcode.de>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>
-References: <20240531230556.1409532-1-linux@roeck-us.net>
- <20240531230556.1409532-5-linux@roeck-us.net>
- <4cc979c3-3ce0-4f31-b5d0-508e1af5fdf4@roeck-us.net>
- <cf9d752e-0137-4a6d-85d3-fbe69293a43e@t-8ch.de>
- <f5f28ef1-53ef-4f82-abb3-2b60dc468793@roeck-us.net>
- <4e4341e4-2165-40d4-909c-9d5164e97942@t-8ch.de>
-Content-Language: en-US
-From: Armin Wolf <W_Armin@gmx.de>
-In-Reply-To: <4e4341e4-2165-40d4-909c-9d5164e97942@t-8ch.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:nl2ZL9DzOWscLAZzj4pxS/2xcRN7csMsdJN5BXRyQHPcES/oX5C
- 5EyHI0SM2GwJ5CWiFINrMGy3U5/t7pEC5MR0GsaNLbrto7Bjk88Jdeb5saIFubD1f8T4uh2
- HgBvkgPuy2yALqZQSbmmU7oAxQxGXV0S3/xhXcVDJWH2QyfPzMZAAS8qMo7s9KxMReMI5IE
- iRDGNHfWPH1i/Y2+4avQg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:RocisHFiDs0=;xJvP+AsNP0agfOEdM+8EpcR+hG5
- AoQMzvgYdj6NbdSYzdVZTCSlnP0bdUrEe7k3yBAQx6dCBZMpGaFIMnbp5Iratzzxbp3Ahf2YU
- 41+LqTduQDJm2oRRtcemp149WflnkjYtW/nVZDUu2bwkuSz5r5wK0KmrhghH8LATAb9z3BIs4
- ImQ9Nv7SqyBPP6VA2zYphJgORMSbEotG7lhhz2k9ROQc2iU40/k+sJt0QSsc56dnnJNt159/c
- feB07tytFp3BVZ7fa64SIepA3rVjOoHSHerrWyuv71+IGJp0ziSwKe7CMl2/yhUHzG/h4NmvV
- KohmjJxzgc21/lRaVgtz07vEV8zzvDuaS5KV8h8GG/vMeGbgUhJ39zFTKfwCazQj7ZRoUy3Q2
- 7JEXrUaCvO4LkgcAGID+DcN4PreR6LYzeFkRE9XlLLjekT4zOPAxT1bpSa6zwaC/Sb6ewehY0
- pxkngSnN1wGCGtdZf2vBo14xH4UupqdDzpwg6sBSpesKjQCxIS+11ieM6iMOhJc2zRTgEjwhL
- Qh2A2I4WR7WSP/khom2jbXR01X7nkLf5/MuQ8W3I3WMmH9acxeP3IrCDsxjHIgwxQ+Jhask4f
- JRy9HWgjN2oTMuBSVvoouhY3pOuRv7pnxzbLFKMFbGh5swdtFZxEYlmWlaqEBZM+lHqEIKXai
- 69WRtDPhGP1Y9VdzIyLGvklNSeuh6tXUWALuOPx6l81MR1OPnAsiJIwZwD37DVgrUz130AygH
- mgHnlfvKjaf+XtsKEw3Q1aQ/Rl1Kg6j6hT6YwAZ//ClBkLURNcKXgTyTFMVpONTdZ/uofuRcv
- 7bufuvG+4BJDiRawbSMwM44V6/LmEvhFc5ko2FrJH3v/g=
+Content-Transfer-Encoding: 8bit
 
-Am 01.06.24 um 16:08 schrieb Thomas Wei=C3=9Fschuh:
+The LIS2DS12 accelerometer by STMicroelectronics is mostly compatible
+with the LIS2DE12 variant, except the WhoAmI value (0x43).
 
-> On 2024-06-01 06:48:29+0000, Guenter Roeck wrote:
->
-> <snip>
->
->> Makes sense. Another question:
->>
->> This:
->>
->> +        struct nvmem_config nvmem_config =3D {
->> +               .type =3D NVMEM_TYPE_EEPROM,
->> +               .name =3D dev_name(dev),
->> +               .id =3D NVMEM_DEVID_AUTO,
->>
->> results in:
->>
->> $ ls /sys/bus/nvmem/devices
->> 0-00501  0-00512  0-00523  0-00534  cmos_nvram0
->> ^^^^^^^  ^^^^^^^  ^^^^^^^  ^^^^^^^
->>
->> which really doesn't look good. My current plan is to go with NVMEM_DEV=
-ID_NONE,
->> which results in
->>
->> $ ls /sys/bus/nvmem/devices
->> 0-0050	0-0051	0-0052	0-0053	cmos_nvram0
->>
->> We could also used fixed strings, but "spd" results in "spd[1-4]" which
->> I think would be a bit misleading since the DDR3/4 SPD data format is
->> different, and "spd5118" would result in "spd5118[1-4]" which again wou=
-ld
->> look odd. Any suggestions ?
-> In order of descending, personal preference:
->
-> * spd-ddr5-[0-3] (.id =3D client->address - 0x50)
+Define sensor settings for LIS2DS12, and add support in the I2C and
+SPI drivers.
 
-Hi,
+Datasheet: https://www.st.com/resource/en/datasheet/lis2ds12.pdf
 
-this will break as soon as more than 8 DDR5 DIMMs are installed.
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+---
+Changes in v3:
+- fix code formatting
 
-> * spd-ddr5-[0-3] (NVMEM_DEVID_AUTO)
-> * Same with only "ddr5-"
-> * spd5118-[0-3]
-> * Your proposal from above
-> * nvmem[0-3] (default handling)
-> * 0-0050-[0-3]
->
-> Also can't a user of the eeprom already figure out which kind of module
-> it is by looking at the eeprom contents?
-> The first few bytes used for that seem to be compatible between at least
-> DDR4 and DDR5.
->
-> So using plain spd[1-4] could be enough.
+v2: https://lore.kernel.org/linux-iio/20240601183233.118397-1-kauschluss@disroot.org/
+Changes in v2:
+- add SPI support
+- link datasheet in commit description
 
-This could cause problems when DDR6 arrives.
-Personally i would prefer the spd5118-X (NVMEM_DEVID_AUTO) format.
+v1: https://lore.kernel.org/linux-iio/20240526083302.87172-1-kauschluss@disroot.org/
+---
+ drivers/iio/accel/st_accel.h      |  1 +
+ drivers/iio/accel/st_accel_core.c | 76 +++++++++++++++++++++++++++++++
+ drivers/iio/accel/st_accel_i2c.c  |  5 ++
+ drivers/iio/accel/st_accel_spi.c  |  5 ++
+ 4 files changed, 87 insertions(+)
 
-Thanks,
-Armin Wolf
+diff --git a/drivers/iio/accel/st_accel.h b/drivers/iio/accel/st_accel.h
+index e7525615712b..2659f536cef6 100644
+--- a/drivers/iio/accel/st_accel.h
++++ b/drivers/iio/accel/st_accel.h
+@@ -35,6 +35,7 @@
+ #define LIS3DHH_ACCEL_DEV_NAME		"lis3dhh"
+ #define LIS3DE_ACCEL_DEV_NAME		"lis3de"
+ #define LIS2DE12_ACCEL_DEV_NAME		"lis2de12"
++#define LIS2DS12_ACCEL_DEV_NAME		"lis2ds12"
+ #define LIS2HH12_ACCEL_DEV_NAME		"lis2hh12"
+ #define LIS302DL_ACCEL_DEV_NAME		"lis302dl"
+ #define LSM303C_ACCEL_DEV_NAME		"lsm303c_accel"
+diff --git a/drivers/iio/accel/st_accel_core.c b/drivers/iio/accel/st_accel_core.c
+index d2104e14e255..8552faea1913 100644
+--- a/drivers/iio/accel/st_accel_core.c
++++ b/drivers/iio/accel/st_accel_core.c
+@@ -925,6 +925,82 @@ static const struct st_sensor_settings st_accel_sensors_settings[] = {
+ 		.multi_read_bit = true,
+ 		.bootime = 2,
+ 	},
++	{
++		.wai = 0x43,
++		.wai_addr = ST_SENSORS_DEFAULT_WAI_ADDRESS,
++		.sensors_supported = {
++			[0] = LIS2DS12_ACCEL_DEV_NAME,
++		},
++		.ch = (struct iio_chan_spec *)st_accel_8bit_channels,
++		.odr = {
++			.addr = 0x20,
++			.mask = 0xf0,
++			.odr_avl = {
++				{ .hz = 1, .value = 0x01, },
++				{ .hz = 10, .value = 0x02, },
++				{ .hz = 25, .value = 0x03, },
++				{ .hz = 50, .value = 0x04, },
++				{ .hz = 100, .value = 0x05, },
++				{ .hz = 200, .value = 0x06, },
++				{ .hz = 400, .value = 0x07, },
++				{ .hz = 1620, .value = 0x08, },
++				{ .hz = 5376, .value = 0x09, },
++			},
++		},
++		.pw = {
++			.addr = 0x20,
++			.mask = 0xf0,
++			.value_off = ST_SENSORS_DEFAULT_POWER_OFF_VALUE,
++		},
++		.enable_axis = {
++			.addr = ST_SENSORS_DEFAULT_AXIS_ADDR,
++			.mask = ST_SENSORS_DEFAULT_AXIS_MASK,
++		},
++		.fs = {
++			.addr = 0x23,
++			.mask = 0x30,
++			.fs_avl = {
++				[0] = {
++					.num = ST_ACCEL_FS_AVL_2G,
++					.value = 0x00,
++					.gain = IIO_G_TO_M_S_2(15600),
++				},
++				[1] = {
++					.num = ST_ACCEL_FS_AVL_4G,
++					.value = 0x01,
++					.gain = IIO_G_TO_M_S_2(31200),
++				},
++				[2] = {
++					.num = ST_ACCEL_FS_AVL_8G,
++					.value = 0x02,
++					.gain = IIO_G_TO_M_S_2(62500),
++				},
++				[3] = {
++					.num = ST_ACCEL_FS_AVL_16G,
++					.value = 0x03,
++					.gain = IIO_G_TO_M_S_2(187500),
++				},
++			},
++		},
++		.drdy_irq = {
++			.int1 = {
++				.addr = 0x22,
++				.mask = 0x10,
++			},
++			.addr_ihl = 0x25,
++			.mask_ihl = 0x02,
++			.stat_drdy = {
++				.addr = ST_SENSORS_DEFAULT_STAT_ADDR,
++				.mask = 0x07,
++			},
++		},
++		.sim = {
++			.addr = 0x23,
++			.value = BIT(0),
++		},
++		.multi_read_bit = true,
++		.bootime = 2,
++	},
+ 	{
+ 		.wai = 0x41,
+ 		.wai_addr = ST_SENSORS_DEFAULT_WAI_ADDRESS,
+diff --git a/drivers/iio/accel/st_accel_i2c.c b/drivers/iio/accel/st_accel_i2c.c
+index fd3749871121..329a4d6fb2ec 100644
+--- a/drivers/iio/accel/st_accel_i2c.c
++++ b/drivers/iio/accel/st_accel_i2c.c
+@@ -102,6 +102,10 @@ static const struct of_device_id st_accel_of_match[] = {
+ 		.compatible = "st,lis2de12",
+ 		.data = LIS2DE12_ACCEL_DEV_NAME,
+ 	},
++	{
++		.compatible = "st,lis2ds12",
++		.data = LIS2DS12_ACCEL_DEV_NAME,
++	},
+ 	{
+ 		.compatible = "st,lis2hh12",
+ 		.data = LIS2HH12_ACCEL_DEV_NAME,
+@@ -154,6 +158,7 @@ static const struct i2c_device_id st_accel_id_table[] = {
+ 	{ LIS2DW12_ACCEL_DEV_NAME },
+ 	{ LIS3DE_ACCEL_DEV_NAME },
+ 	{ LIS2DE12_ACCEL_DEV_NAME },
++	{ LIS2DS12_ACCEL_DEV_NAME },
+ 	{ LIS2HH12_ACCEL_DEV_NAME },
+ 	{ LIS302DL_ACCEL_DEV_NAME },
+ 	{ LSM303C_ACCEL_DEV_NAME },
+diff --git a/drivers/iio/accel/st_accel_spi.c b/drivers/iio/accel/st_accel_spi.c
+index f72a24f45322..825adab37105 100644
+--- a/drivers/iio/accel/st_accel_spi.c
++++ b/drivers/iio/accel/st_accel_spi.c
+@@ -64,6 +64,10 @@ static const struct of_device_id st_accel_of_match[] = {
+ 		.compatible = "st,lis2dh12-accel",
+ 		.data = LIS2DH12_ACCEL_DEV_NAME,
+ 	},
++	{
++		.compatible = "st,lis2ds12",
++		.data = LIS2DS12_ACCEL_DEV_NAME,
++	},
+ 	{
+ 		.compatible = "st,lis3l02dq",
+ 		.data = LIS3L02DQ_ACCEL_DEV_NAME,
+@@ -151,6 +155,7 @@ static const struct spi_device_id st_accel_id_table[] = {
+ 	{ LSM330_ACCEL_DEV_NAME },
+ 	{ LSM303AGR_ACCEL_DEV_NAME },
+ 	{ LIS2DH12_ACCEL_DEV_NAME },
++	{ LIS2DS12_ACCEL_DEV_NAME },
+ 	{ LIS3L02DQ_ACCEL_DEV_NAME },
+ 	{ LNG2DM_ACCEL_DEV_NAME },
+ 	{ H3LIS331DL_ACCEL_DEV_NAME },
+-- 
+2.45.1
 
 
