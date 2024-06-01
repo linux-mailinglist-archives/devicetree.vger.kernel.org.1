@@ -1,48 +1,75 @@
-Return-Path: <devicetree+bounces-71499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 286408D70EE
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 17:33:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B15DB8D70F8
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 17:40:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91C621F21725
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 15:33:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E4882B22082
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 15:40:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7269C823CE;
-	Sat,  1 Jun 2024 15:32:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F15B1514F3;
+	Sat,  1 Jun 2024 15:40:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tYYYK70Y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="z7zwW8+u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4797017BD9;
-	Sat,  1 Jun 2024 15:32:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD5F717BD9
+	for <devicetree@vger.kernel.org>; Sat,  1 Jun 2024 15:40:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717255976; cv=none; b=MONFW2YVGJAjKX7mxWNm/pZf8gdIeKrFNGyQXFWqMcfRiEMHUxX/UQ0mcqv1GVe5xD3nmHgc+5JjndjFozWSg/1/nETA/VHbr+h4rrKoAFyEwUL2V4+v6Au9F77GjCCGkFqo5SeHDo9YC08+kWXmWVxktxJhZz465OdfRJbD0S0=
+	t=1717256449; cv=none; b=poyosQhncVtPWFwmRuosVRYAVW/PMDPkoISbEJ/4KN1CDdMXGzh6XrYmmE/9wKaplkxU1GnJvl6wMc/63t1EXMtD+iEBOAfU1ZhdfnlwhQl5C+fY7eNewvFVUdgl12X6xeZnmxxGmC44155mRw4ilbsewWHu4SKlEFI2GB5/GQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717255976; c=relaxed/simple;
-	bh=4FoTUy/jB2ewyL/BKItSSopy5nZtqbaENV3Zmn4IIPo=;
+	s=arc-20240116; t=1717256449; c=relaxed/simple;
+	bh=IyJ3VXVa0MpEacpkM9avPL4WeJlRo+eai8kqUmrzhZI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HQT0dC+b1UCPpFFzwvKxFfyFNwELMxFuaNXGZHbjtm4HqwwIiX1uDrpgrjEBgvDbqAQfa7YRg6Darzuw0bHS+pgtkvr/f8P+0WYP3u1LeBpBG0gcMzcFKh7tn5ZE6B7il8RfzHtVzhSsHROuf9O8eByu8BF4H6WYQAk4zbBlsN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tYYYK70Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D616C116B1;
-	Sat,  1 Jun 2024 15:32:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717255975;
-	bh=4FoTUy/jB2ewyL/BKItSSopy5nZtqbaENV3Zmn4IIPo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tYYYK70Y1VfxXdhu8HJtcbzI9ZeIrOMGIcxacypG0pty+n750VXmCTkKtlqXNdcL8
-	 cBULeL3QxhweboRE8QnJI8c6Ow8u1575EB87Rl9ybjik4e9w1VVy4zJ+9Dw67PpBrY
-	 dje19reIi5Z+ldsxCDGxzNQ6ObYl/bg4p20cKBbJU0EYDYb8ZXgjhE5ZvNoXFbN+9T
-	 n6qRuLKuCwhdN0MeOHomJgax/9qsE1/LYQqfaa6WIgaSIPkbrt9MZZM0qR1XrT9Eyx
-	 KZ1xQvuRIZ58vzLgv6V4EqWBuwN1hfNiDtFC4P2C/JeJW3W8coFLR9oQr9KSoiUwGW
-	 4rXpMfC3DhCEA==
-Message-ID: <c2b97c8e-177e-4169-b001-ab0e3303734f@kernel.org>
-Date: Sat, 1 Jun 2024 17:32:48 +0200
+	 In-Reply-To:Content-Type; b=WSGjMP1OT9t+dbrdbF3CqBoPndKGchz8NBPQg4B5IaLRDtH8w72v+p/gptCA6k0jQl4rJ7yWDswQ2BeUh1GYI8qsqAGbJn6Lr1FyKDMOqH97PGnVSdatTqiJHMpmCQXtdHwXVXhVn5IajMnRmV1wdm2aYVR2anidSnzYX64aGVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=z7zwW8+u; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-35dcd5377c4so2154081f8f.2
+        for <devicetree@vger.kernel.org>; Sat, 01 Jun 2024 08:40:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717256446; x=1717861246; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=uwYOlWiO/vbvTp5xvEKkWAgqEi+mcev7/Et8qIK04E8=;
+        b=z7zwW8+uezDw5/2IqV+OZlYzXW0RXhd1n9pXP0pR7Wcp6vOGuIALkspPlF/+U9joC2
+         vPWSFfrf+GAczJsJQyaF0SZemQiVDulhUXhFrZusbAZdGPVyoGfm3AUEnwyWvG15/Nlx
+         OA50QUEDZEgSpdF+8TXz9vP4lTSBPI5WsJPGDMivMZNyaYfgMxL851NxH/Kc6hC3xcMy
+         fbSehKaH0/UGxQ4PU5Ydhyj3VHW3EaEXt4FeZRoajJiMSOKJ6W5CVBCks9eYecoMpHy/
+         ahJj79HiQ/jwiQvoWdLQ1Uhwh4AZdAGQPvDb7Q6l9Xs5+e2BQzk1mZ5vI2Ts6wC/n2ks
+         RcsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717256446; x=1717861246;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uwYOlWiO/vbvTp5xvEKkWAgqEi+mcev7/Et8qIK04E8=;
+        b=wnyPugZepbYU300cWyLR1kuRR5G4sJV0ETfSRWjEmAjdO8huotAm4mgENLJNLCW+xb
+         RMl0k233Llne6WmKRHb/YRdt/4/fwvHQQVk6zc0xFEHTGWKXgby7RoSjeN3EtLYnMAOg
+         HQFhCYBzHgk21y0jdSRLpvNNpVjZarzxrQOkler1eBukGDxJE4L8EhGjJM5fJUH77jlf
+         atRKV1BTzGi5AVZxHxg6uloBFyrGXVVTD7PkzBSxG+0T5OA8f0NZ+r/W0KRuZD9grmLX
+         i8e4uZPfGXvUEijsEJpcCunzNOrK8B4nUsUdeowJYhRbTe9kyj3b8VcRgM7qOVFgpBry
+         Zwnw==
+X-Forwarded-Encrypted: i=1; AJvYcCVelheK88TP9ja5Kg4wrz0LlfK1P1lKnEJSYzIttCGFC9PsVu7C/Sqc8cKl+2kq+r6zEtYgfRy2cioN4oLaJQtStgViGSJp4E1wHA==
+X-Gm-Message-State: AOJu0YxxNBqj2YqdyZHkCaPLQsrf5ODAgUX4QeqLaWTXF2zHdyTdBou7
+	qLSmFrkU1eDuHHMa0pC8xDWuPZWhXzbUPErgGG8vMs/XPZ+Crx9H5SH6YfB6yPs=
+X-Google-Smtp-Source: AGHT+IGPpjvQr6zldfB0k4BAB9m6EkPgRuNH/COKdT9uQdX/4tnRuswCPaUTcS5VIhAdrubWOpu09g==
+X-Received: by 2002:a5d:4bd1:0:b0:354:e0e8:33ea with SMTP id ffacd0b85a97d-35e0f37119cmr3519289f8f.66.1717256446219;
+        Sat, 01 Jun 2024 08:40:46 -0700 (PDT)
+Received: from [192.168.2.24] ([110.93.11.116])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35dd064bb21sm4269945f8f.102.2024.06.01.08.40.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 01 Jun 2024 08:40:45 -0700 (PDT)
+Message-ID: <2ffabfa0-3a33-4eff-823b-acb37c37fd33@linaro.org>
+Date: Sat, 1 Jun 2024 17:40:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +77,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/4] dt-bindings: iio: adc: Add MediaTek MT6359 PMIC
- AUXADC
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- jic23@kernel.org
-Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com, lee@kernel.org,
- andy@kernel.org, nuno.sa@analog.com, bigunclemax@gmail.com,
- dlechner@baylibre.com, marius.cristea@microchip.com,
- marcelo.schmitt@analog.com, fr0st61te@gmail.com, mitrutzceclan@gmail.com,
- mike.looijmans@topic.nl, marcus.folkesson@gmail.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, kernel@collabora.com
-References: <20240530093410.112716-1-angelogioacchino.delregno@collabora.com>
- <20240530093410.112716-2-angelogioacchino.delregno@collabora.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: display: panel: Add KD101NE3-40TI
+ support
+To: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>,
+ dmitry.torokhov@gmail.com, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jikos@kernel.org,
+ benjamin.tissoires@redhat.co, dianders@google.com, hsinyi@google.com
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240601084528.22502-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <20240601084528.22502-2-lvzhaoxiong@huaqin.corp-partner.google.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -77,118 +99,78 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  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
- 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 fv0=
-In-Reply-To: <20240530093410.112716-2-angelogioacchino.delregno@collabora.com>
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240601084528.22502-2-lvzhaoxiong@huaqin.corp-partner.google.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/05/2024 11:34, AngeloGioacchino Del Regno wrote:
-> Add a new binding for the MT6350 Series (MT6357/8/9) PMIC AUXADC,
-> providing various ADC channels for both internal temperatures and
-> voltages, audio accessory detection (hp/mic/hp+mic and buttons,
-> usually on a 3.5mm jack) other than some basic battery statistics
-> on boards where the battery is managed by this PMIC.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../iio/adc/mediatek,mt6359-auxadc.yaml       | 43 +++++++++++++++++++
->  .../iio/adc/mediatek,mt6357-auxadc.h          | 21 +++++++++
->  .../iio/adc/mediatek,mt6358-auxadc.h          | 22 ++++++++++
->  .../iio/adc/mediatek,mt6359-auxadc.h          | 22 ++++++++++
->  4 files changed, 108 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/mediatek,mt6359-auxadc.yaml
->  create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6357-auxadc.h
->  create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6358-auxadc.h
->  create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6359-auxadc.h
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/mediatek,mt6359-auxadc.yaml b/Documentation/devicetree/bindings/iio/adc/mediatek,mt6359-auxadc.yaml
-> new file mode 100644
-> index 000000000000..dd6c331905cf
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/mediatek,mt6359-auxadc.yaml
-> @@ -0,0 +1,43 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/mediatek,mt6359-auxadc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek MT6350 series PMIC AUXADC
-> +
-> +maintainers:
-> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> +
-> +description:
-> +  The Auxiliary Analog/Digital Converter (AUXADC) is an ADC found
-> +  in some MediaTek PMICs, performing various PMIC related measurements
-> +  such as battery and PMIC internal voltage regulators temperatures,
-> +  accessory detection resistance (usually, for a 3.5mm audio jack)
-> +  other than voltages for various PMIC internal components.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt6357-auxadc
-> +      - mediatek,mt6358-auxadc
-> +      - mediatek,mt6359-auxadc
-> +
-> +  "#io-channel-cells":
-> +    const: 1
-> +
-> +additionalProperties: false
+On 01/06/2024 10:45, Zhaoxiong Lv wrote:
+> Create a new dt-scheam for the kd101ne3-40ti.
+> The bias IC of this kindisplay-kd101ne3 panel is placed
+> on the panel side, so when the panel is powered on,
+> there is no need to control AVDD and AVEE in the driver.
 
-If there is going to be a re-spin, please move this below required: block.
-
+> +
+> +  reg:
+> +    description: the virtual channel number of a DSI peripheral
+> +
+> +  pp3300-supply:
+> +    description: core voltage supply
 > +
 > +required:
 > +  - compatible
-> +  - "#io-channel-cells"
+> +  - reg
+> +  - pp3300-supply
+> +  - enable-gpios
+> +  - backlight
+> +  - port
+> +
+> +unevaluatedProperties: false
 > +
 > +examples:
 > +  - |
-> +    pmic {
-> +        pmic_adc: adc {
-> +            compatible = "mediatek,mt6359-auxadc";
-> +            #io-channel-cells = <1>;
-> +        };
+> +    dsi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        panel: panel@0 {
+> +            compatible = "kingdisplay,kd101ne3-40ti";
+> +            reg = <0>;
+> +            enable-gpios = <&pio 98 0>;
 
-This suggests that you should grow (make complete) the parent PMIC example.
-
-Actually having this as a separate node is not really needed. Why it
-cannot be just part of the MFD/parent node?
-
+Please use the define, not drop the header.
 
 Best regards,
 Krzysztof
