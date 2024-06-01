@@ -1,177 +1,217 @@
-Return-Path: <devicetree+bounces-71450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 740F78D6F5F
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 12:41:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3F0F8D6F6A
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 12:58:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B9E31C20C4F
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 10:41:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F156282ECD
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jun 2024 10:58:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D56F014E2F7;
-	Sat,  1 Jun 2024 10:41:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CED814EC43;
+	Sat,  1 Jun 2024 10:57:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b="gKtw9kXx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RR+osAes"
 X-Original-To: devicetree@vger.kernel.org
-Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69F0D1DDEA;
-	Sat,  1 Jun 2024 10:41:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.126.157
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DCDD208A4;
+	Sat,  1 Jun 2024 10:57:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717238474; cv=none; b=GCk35K3XoGiv0pK/B0aTYteFLlt8HLHlnVnqkF5BlfnYBBhWpb5G3fk0dleALwzyC/DxGwAmOmjt/VQ3IHouODhcrBuSNLeZ7/bz9RJVey8g6mRHx/9uPWB2SAQMqBOlPOYmmE6ogF+CJ3U9nh4HNDLbudQ05nPQk9Hw5jbeYwU=
+	t=1717239476; cv=none; b=Sc+rwSQJa9o9WC16H0ZJUHXqYf5hab1PMx988nN1RPuF5bRD2PR4MdzB4u1H3oqMOzfGji5OfXzivYLkJtjp5Ga/dOCtUzqWC1RwFWIsXP6pncuxDRndOG7BIlvXLWOdyvGWmusWYzUbf20sfnEvmI2Uh1Apazwxx9dvA9qjJcg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717238474; c=relaxed/simple;
-	bh=nyxSrVcpxbGL5iI/vXuDn01y3NgVDhxDhqhSgyZeYyI=;
+	s=arc-20240116; t=1717239476; c=relaxed/simple;
+	bh=hjI6zlGmk0XqJ+6m5c0T6h3I3gacZziDQWPru7DqbYg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oT6dr35MypPgcUOLMTmbmLCNcOOUS8CN/FUA0DZH+yLoYk214rz2biomFnXyBrDK8/IZRnd50NdqkX6XAZMkE5f540waxAoDwMDRsi/1+ml3cSpdzS7GJVEehvkeZx2Nxox9fY4wR9/rDWA3RYKlZ3N2XnrbQ0d53WwX2KI9lb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weissschuh.net; spf=pass smtp.mailfrom=weissschuh.net; dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b=gKtw9kXx; arc=none smtp.client-ip=159.69.126.157
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weissschuh.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=weissschuh.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
-	s=mail; t=1717238461;
-	bh=nyxSrVcpxbGL5iI/vXuDn01y3NgVDhxDhqhSgyZeYyI=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=HEC277X5vy0JuRD1jjMR7hhb0RGc80uxX3oiqxS8g2w5FttznM6EM7kEPYFoFgTsnWHxs8lckjh+008r/uCJk6l0LQgEhJOxujgaqdbSzYh3hpFido9we0LJuEt/Ib+mn5qIEHCmXJc9uBdP5whrBpW15kQP7OYEHjFH3hPla8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RR+osAes; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05F3FC116B1;
+	Sat,  1 Jun 2024 10:57:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717239475;
+	bh=hjI6zlGmk0XqJ+6m5c0T6h3I3gacZziDQWPru7DqbYg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gKtw9kXxtAF3HxhCIXp/6uu0k66j2vOZJSvHgKe8M84aY8Ne5MhHy8rdUzQyTeS5h
-	 OczKrBMt5Y9jgqT66Fs6T2e3imtWc1T4kgrOYkxudkyRwoHY8KnWBrQCj9eJe/EjUS
-	 YWv5Bql1TEAQ1NoS4QsOMA13xeefRzatMxc/bPU8=
-Date: Sat, 1 Jun 2024 12:41:00 +0200
-From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, Armin Wolf <W_Armin@gmx.de>, 
-	=?utf-8?B?UmVuw6k=?= Rebe <rene@exactcode.de>, Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: Re: [PATCH RFT v3 4/4] hwmon: (spd5118) Add support for reading SPD
- data
-Message-ID: <cf9d752e-0137-4a6d-85d3-fbe69293a43e@t-8ch.de>
-References: <20240531230556.1409532-1-linux@roeck-us.net>
- <20240531230556.1409532-5-linux@roeck-us.net>
- <4cc979c3-3ce0-4f31-b5d0-508e1af5fdf4@roeck-us.net>
+	b=RR+osAesOUjdoXTTA0qTuMAr/2oy2KdpBDQgwFJoxN/XgIbvP/ljF8wah+ZfQMZCh
+	 7uD+sO49jt+3tXid+1jbmovedox3WD9FVA5ZvTDWcfwFCzhBmsRFiSIApqjr/0U+P/
+	 KbBhT+foqhUFl31iS/NeX2uzTvEWr18JGsJ518I1xPo+ODUBPVeRt4JL5H6XGFuFs9
+	 ems+gtnk6f2XSiABMHFe3/4gIUiBRbadXG+NR4xKAgf0ErdsYLpk8hWVN90STYsmAl
+	 xBpWjCD3s5nE61GhQ2Quf2mANrs3UKpIKddhLk6tjTsZ77A4Q/ngI0bBMtbF9EUZbK
+	 G/ZHioj/1wBQw==
+Date: Sat, 1 Jun 2024 12:57:48 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Trevor Gamblin <tgamblin@baylibre.com>
+Cc: linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	michael.hennerich@analog.com, nuno.sa@analog.com, dlechner@baylibre.com, 
+	devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Subject: Re: [PATCH 2/2 v5] pwm: Add driver for AXI PWM generator
+Message-ID: <de2trti4ilp3zw47u6qddg64ghiosvnrmknu3lkce635qushvq@qcoz3nfjuyrx>
+References: <20240424125850.4189116-1-tgamblin@baylibre.com>
+ <20240424125850.4189116-3-tgamblin@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="wyvehzs256ug4w5r"
+Content-Disposition: inline
+In-Reply-To: <20240424125850.4189116-3-tgamblin@baylibre.com>
+
+
+--wyvehzs256ug4w5r
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <4cc979c3-3ce0-4f31-b5d0-508e1af5fdf4@roeck-us.net>
 
-On 2024-05-31 22:42:24+0000, Guenter Roeck wrote:
-> On 5/31/24 16:05, Guenter Roeck wrote:
-> > Add support for reading SPD NVRAM data from SPD5118 (Jedec JESD300)
-> > compliant memory modules. NVRAM write operation is not supported.
-> > 
-> > Signed-off-by: Guenter Roeck <linux@roeck-us.net>
-> > ---
-> > v3: New patch
-> > 
-> > RFT: I'd like to get some more test coverage before moving forward
-> >       with this patch. decode-dimms doesn't recognize the 'spd5118'
-> >       driver.
-> > 
+Hello Trevor,
 
-Looks good to me.
+thanks for your patience waiting for me to come around looking at your
+patch. I only found some trivial stuff to fix this time around.
 
-Spot-checking against JSED400-5B and the embedded CRC are as expected.
+On Wed, Apr 24, 2024 at 08:58:48AM -0400, Trevor Gamblin wrote:
+> diff --git a/drivers/pwm/pwm-axi-pwmgen.c b/drivers/pwm/pwm-axi-pwmgen.c
+> new file mode 100644
+> index 000000000000..e0bf90cc2ba3
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-axi-pwmgen.c
+> @@ -0,0 +1,248 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Analog Devices AXI PWM generator
+> + *
+> + * Copyright 2024 Analog Devices Inc.
+> + * Copyright 2024 Baylibre SAS
 
-> 
-> Looking for feedback:
-> 
-> [ ... ]
-> 
-> > +
-> > +	nvmem = devm_nvmem_register(dev, &nvmem_config);
-> 
-> This returns ERR_PTR(-EOPNOTSUPP) if CONFIG_NVRAM=n. We have two options:
-> 
-> - Ignore -EOPNOTSUPP and continue registering the hwmon device
-> 
-> or
-> 
-> - Add
-> 	select NVRAM
-> 	select NVRAM_SYSFS
->   to the driver's Kconfig entry.
+If there is public documentation available for the device, extra points
+for a link to it here.
 
-s/NVRAM/NVMEM/g
+> [...]
+> +static int axi_pwmgen_setup(struct regmap *regmap, struct device *dev)
+> +{
+> +	int ret;
+> +	u32 val;
+> +
+> +	ret = regmap_read(regmap, AXI_PWMGEN_REG_CORE_MAGIC, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (val != AXI_PWMGEN_REG_CORE_MAGIC_VAL)
+> +		return dev_err_probe(dev, -ENODEV,
+> +			"failed to read expected value from register: got %08x, expected %08x\n",
+> +			val,
+> +			AXI_PWMGEN_REG_CORE_MAGIC_VAL);
 
-> Any preferences ?
+Join these two lines, please.
 
-It seems reasonable to support the module without the eeprom logic.
-When used in a fixed, embedded environment, the eeprom is of limited
-value as it's known beforehand, while the hwmon functionality is still
-useful.
+> +	ret = regmap_read(regmap, AXI_PWMGEN_REG_CORE_VERSION, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (ADI_AXI_PCORE_VER_MAJOR(val) != 2) {
+> +		return dev_err_probe(dev, -ENODEV, "Unsupported peripheral version %u.%u.%u\n",
+> +			ADI_AXI_PCORE_VER_MAJOR(val),
+> +			ADI_AXI_PCORE_VER_MINOR(val),
+> +			ADI_AXI_PCORE_VER_PATCH(val));
+> +	}
+> +
+> +	/* Enable the core */
+> +	ret = regmap_update_bits(regmap, AXI_PWMGEN_REG_CONFIG, AXI_PWMGEN_REG_CONFIG_RESET, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_read(regmap, AXI_PWMGEN_REG_NPWM, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Return the number of PWMs */
+> +	return val;
 
+If the AXI_PWMGEN_REG_NPWM register contains a value >= 0x80000000, the
+return value is considered a negative error code. Not sure how necessary
+it is to check for this case. I'll leave that to you.
 
-EEPROM dump in case anyone wants it:
+> +}
+> [...]
+> +static int axi_pwmgen_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct regmap *regmap;
+> +	struct pwm_chip *chip;
+> +	struct axi_pwmgen_ddata *ddata;
+> +	struct clk *clk;
+> +	void __iomem *io_base;
+> +	int ret;
+> +
+> +	io_base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(io_base))
+> +		return PTR_ERR(io_base);
+> +
+> +	regmap = devm_regmap_init_mmio(dev, io_base, &axi_pwmgen_regmap_config);
+> +	if (IS_ERR(regmap))
+> +		return dev_err_probe(dev, PTR_ERR(regmap),
+> +				     "failed to init register map\n");
+> +
+> +	ret = axi_pwmgen_setup(regmap, dev);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	chip = devm_pwmchip_alloc(dev, ret, sizeof(*ddata));
+> +	if (IS_ERR(chip))
+> +		return PTR_ERR(chip);
+> +	ddata = pwmchip_get_drvdata(chip);
+> +	ddata->regmap = regmap;
+> +
+> +	clk = devm_clk_get_enabled(dev, NULL);
+> +	if (IS_ERR(clk))
+> +		return dev_err_probe(dev, PTR_ERR(clk), "failed to get clock\n");
+> +
+> +	ret = devm_clk_rate_exclusive_get(dev, clk);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to get exclusive rate\n");
+> +
+> +	ret = devm_add_action_or_reset(dev, axi_pwmgen_clk_rate_exclusive_put, clk);
+> +	if (ret)
+> +		return ret;
 
-00000000: 3010 1203 0400 2062 0000 0000 b212 0d00  0..... b........
-00000010: 0000 0000 6501 f203 7aaf 0000 0000 c837  ....e...z......7
-00000020: c837 c837 906f 80bb 3075 2701 a000 8200  .7.7.o..0u'.....
-00000030: 0000 0000 0000 d400 0000 d400 0000 d400  ................
-00000040: 0000 d400 0000 8813 0888 1308 204e 2010  ............ N .
-00000050: 2710 1534 2010 2710 c409 044c 1d0c 0000  '..4 .'....L....
-00000060: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000070: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000080: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000090: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000000a0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000000b0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000000c0: 1000 8632 8015 8a8c 8213 0000 0000 0000  ...2............
-000000d0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000000e0: 0000 0000 0000 0f11 0171 0822 0000 0000  .........q."....
-000000f0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000100: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000110: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000120: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000130: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000140: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000150: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000160: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000170: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000180: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000190: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000001a0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000001b0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000001c0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000001d0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000001e0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000001f0: 0000 0000 0000 0000 0000 0000 0000 a14d  ...............M
-00000200: 0198 0823 328e 0a9b e84b 4635 3536 5334  ...#2....KF556S4
-00000210: 302d 3332 2020 2020 2020 2020 2020 2020  0-32            
-00000220: 2020 2020 2020 2000 80ad 4100 0831 3030         ...A..100
-00000230: 3139 3738 3700 0000 0000 0000 0000 0000  19787...........
-00000240: 0000 4100 0000 0000 0001 0000 0000 0000  ..A.............
-00000250: 0100 0000 0000 0000 0000 0000 0000 0000  ................
-00000260: 0000 0001 0100 0000 0000 0000 0000 0088  ................
-00000270: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000280: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000290: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000002a0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000002b0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000002c0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000002d0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000002e0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000002f0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000300: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000310: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000320: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000330: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000340: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000350: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000360: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000370: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000380: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-00000390: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000003a0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000003b0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000003c0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000003d0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000003e0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-000003f0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+this should be dropped as devm_clk_rate_exclusive_get() already takes
+care for calling clk_rate_exclusive_put().
+
+> +	ddata->clk_rate_hz = clk_get_rate(clk);
+> +	if (!ddata->clk_rate_hz || ddata->clk_rate_hz > NSEC_PER_SEC)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "Invalid clock rate: %lu\n", ddata->clk_rate_hz);
+> +
+> +	chip->ops = &axi_pwmgen_pwm_ops;
+> +	chip->atomic = true;
+> +
+> +	ret = devm_pwmchip_add(dev, chip);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "could not add PWM chip\n");
+> +
+> +	return 0;
+> +}
+
+Best regards
+Uwe
+
+--wyvehzs256ug4w5r
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmZa/poACgkQj4D7WH0S
+/k7Ccwf/XbVPD01QvCpVWIitYjlnQFA3OeXZOb78SAPUiKsNRvo4iQ+meWKOoUf8
+PGXMMBuVKNkndiKXn0AIIp4XIsmXv+8J8/p2TnTrTLE1OpB6gc3TTtdp0Y8LTRDJ
+mFsk+0jrGHwc5GG8OGehTKabJzUdCwJh5K3fYwsbinFob9ud52oiLDf6OPPQg8Wi
+m2DE3HLo2tGCzJvaioTEipN/M0vqJpmAkg+B10cNAIBqVEPn+tQxA4/HrD5GF29c
+l0YDjYj9se/IsyymwyREnm5/yEzIm6sGed+FVCowawq7P74SPBlIKtfMYEuhKJ+/
+tI16LwfQxQtdQKMqIbpdyEOJu8/A/A==
+=EJQa
+-----END PGP SIGNATURE-----
+
+--wyvehzs256ug4w5r--
 
