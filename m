@@ -1,426 +1,279 @@
-Return-Path: <devicetree+bounces-71674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8044D8D781F
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 22:33:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B44A8D783A
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 23:16:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E71F1F21993
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 20:33:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 606031C2095C
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 21:16:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2D4D76EEA;
-	Sun,  2 Jun 2024 20:33:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7BC76EB55;
+	Sun,  2 Jun 2024 21:15:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O08/lM5+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YNLfVEaK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0DDC7640E
-	for <devicetree@vger.kernel.org>; Sun,  2 Jun 2024 20:33:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD8051DDEE;
+	Sun,  2 Jun 2024 21:15:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717360405; cv=none; b=euud7zKclrQ/0leqrxBkqtgAceOtVTsL5oR7DvWXh6XJYN1ygkvM1NzQCFewDNWX4SdpwrskOJwlqfEnVTPuVq2KmVqrY2iA02DDWPsySehuTKVNEtWlpjbYFijstoeh4bkEGeDOCc0pGe6reTRWa6kUGj+9/dxQ+kwdlyZq+Gg=
+	t=1717362957; cv=none; b=JarYUjLe4q85avvT8x8QUEGwSEGNqpqz629ffFYyUUdk5UcHMMf0tZH+jAL/GAAaIL2gZW8CG1KeGXpZVYpxipxLp0NdLKzVr4x1bC9Gg6d7qyY/5a7ofqI6aGn8dxQ9yvKYwE7IsXN3CwluTYwUhsCW7jB/0H8rmmOr3VILXNM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717360405; c=relaxed/simple;
-	bh=LEH54Xss6M4fJdUT0ypflO26lqVmUNuMH4m+tTK9ZIk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=HF41oDxKGBi+So5mcPQR2GboMKFQ4xopYcCoVBt2klVUska4sHOHpqr5XF+O+MIO+LOY9DUYTrkBbYiqZV0oLMQdgff69Wc0I9RyZHm6SE5V8mq0xp2Er7lkCJ7jj/gCZfD9t9V+J7leFZn3HH0R4IjEHQzks2iJEcu6qMiTJts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O08/lM5+; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-52b88335dd7so3143278e87.1
-        for <devicetree@vger.kernel.org>; Sun, 02 Jun 2024 13:33:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717360401; x=1717965201; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9VddKJjdJ2hWtpkrc2+6Jag2VOkVNIboyOcgFS2Ya0c=;
-        b=O08/lM5+Hl6aPedScRJP4inr50ai9ng1fjObosoxap4OrAUzzY6Aoa8L/AoYHcKxcD
-         BjHJ+pKidgkX6LhDzyXPPp8Xy3X3pzXDRJHQpcsNGVy2E+vZbtoYrIe/KDQdBnR3otU8
-         KlPtFsg7DzddYkeyuzJ7jhlA8+jtvVI3A+vIvuYoEN3GDSa8Ctx4LaoH1gyZHX3+oAxD
-         PYIKBN5faB0AEgrdRZlsSc5M3nAwh8dzc8QfNMb+ca08JznS77JuF4tPbXkfX0Q8b32v
-         a/NJYWJ6iDdm19nsn1FHW7ZsEgE1T14Ysx9vumzSFHPiK0MaxUKU06N3NIsE7JImgtdc
-         ePng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717360401; x=1717965201;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9VddKJjdJ2hWtpkrc2+6Jag2VOkVNIboyOcgFS2Ya0c=;
-        b=rOf7zDLEpd2jilkEA/Ky1m1ADL8YUJ1BPCWNHxCx3oqM1m6MuJoHiNM97IYKnvdz0e
-         XbWjFWSKPb5I2C3120XiDA4EZpoZ8mcctJUKqq8l9Vgf9tPSfqFOQe2rrWOfAMEmxiLh
-         6B8uG3e3crZ5EiCUC44ahlIa8MzPH8Fy6VNI6uF+p2BXpbLrD1Yu9KgdjiNPi91i1IDf
-         9wAJerd+wOZ/gbPvX10XyLIu82FziYfm0JX9CTQY/K6GEcPQz9CTo2VArVp7Nlv+h+X+
-         GCepnyNRd88S1CDC5vWKHKeNPLHyBYETa7G9SgcSLMcHOXxvPoerb9CO8mplKk7Hxp/S
-         Qdqw==
-X-Forwarded-Encrypted: i=1; AJvYcCUgeR6ESysqsnvMN9HzE1Lhps6e30DGwBZevuAuL60irq6ppJxCrbFoj95NC4otr7b/y1xt7BY/Kw2qAvOxcmXY7ALJjkwbOGODVw==
-X-Gm-Message-State: AOJu0Yz4AFBIPsLibA1wUB2ZhdHJayfsvxiiUZ1N9hNnUDEaSSBEG9Ki
-	sjvsC15bw1LbBDn+CAWcK3aapsumW6yb2kWWvDpi7/i9CIaBgWR2G92L/l/WIEHhkLkk6cE2GWC
-	/zYs=
-X-Google-Smtp-Source: AGHT+IGvg21TUFiJusrL8v6x/FgG8eOjVDQorlu2qC+SsxyjWCxhwERsdQE9JqaI5oIxj7t8lI+guA==
-X-Received: by 2002:a05:6512:4c6:b0:52b:5f39:9221 with SMTP id 2adb3069b0e04-52b896f183fmr4342822e87.64.1717360400937;
-        Sun, 02 Jun 2024 13:33:20 -0700 (PDT)
-Received: from [192.168.1.140] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52b98845508sm245859e87.288.2024.06.02.13.33.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Jun 2024 13:33:19 -0700 (PDT)
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Sun, 02 Jun 2024 22:33:09 +0200
-Subject: [PATCH v6 2/2] pwm: Add GPIO PWM driver
+	s=arc-20240116; t=1717362957; c=relaxed/simple;
+	bh=M++0u+W4mK9MwYmOrRySBBS5cDRDB0dQj/1G68qhDeg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H22x4GmbuKMR+8x81R2sLpMJhAj1puaUPnf2lnBGkJj9REZr1glKyHXUc3aSBNRYLjz7WK3gANgWZtKLj+55s+cLLCYnebzGiBEg6ylRHTBs4XHvkkGeAtKckVtzXACVZS0DUTxItxQk+UNvsWsdFNHRa6e8UCJlwc4BNDYJzUs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YNLfVEaK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A27B9C2BBFC;
+	Sun,  2 Jun 2024 21:15:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717362957;
+	bh=M++0u+W4mK9MwYmOrRySBBS5cDRDB0dQj/1G68qhDeg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YNLfVEaKnI0TueS9xy+9VunvGyupBFb2V3bBfXXaV496NCJri1NXODSAiVx2tPQYZ
+	 32wLJzDznfWZ0IQzquJtWZIrNcnhADuR85cIs5XrogX74zjMLsq8+wpnyZ2heYxrdf
+	 DZ+IddJSYRa2tYH/fkvpgETA8zAUYnrq0+Z/Q45l1Zj54tnDeEWU4iRCkBfyuTyLge
+	 UupdbbKqemzgvJVYXQESqdophOoBrC3S79VzmRKixJEC3R8XLBsZPE6+uwAnXmimKq
+	 EKJbwllt1PTXgr6cIax/SIIkhNNqmpfC7N2aTehd+iQIbTMp6ra3UA9c07z+AKjwHO
+	 L+xrcDJzK6Jig==
+Date: Sun, 2 Jun 2024 23:15:53 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, conor@kernel.org,
+	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, catalin.marinas@arm.com,
+	will@kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu
+Subject: Re: [PATCH net-next 3/3] net: airoha: Introduce ethernet support for
+ EN7581 SoC
+Message-ID: <ZlzhCVO7WCGyYMi9@lore-desk>
+References: <cover.1717150593.git.lorenzo@kernel.org>
+ <4d63e7706ef7ae12aade49e41bb6d0bb6b429706.1717150593.git.lorenzo@kernel.org>
+ <c3207c89-2d4e-4e92-8822-f6a1f7d64e06@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240602-pwm-gpio-v6-2-e8f6ec9cc783@linaro.org>
-References: <20240602-pwm-gpio-v6-0-e8f6ec9cc783@linaro.org>
-In-Reply-To: <20240602-pwm-gpio-v6-0-e8f6ec9cc783@linaro.org>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com, 
- Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>, 
- Chris Morgan <macromorgan@hotmail.com>, Stefan Wahren <wahrenst@gmx.net>, 
- linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
- devicetree@vger.kernel.org
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
- Vincent Whitchurch <vincent.whitchurch@axis.com>
-X-Mailer: b4 0.13.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="CZ+A1N2g01IXv6oZ"
+Content-Disposition: inline
+In-Reply-To: <c3207c89-2d4e-4e92-8822-f6a1f7d64e06@lunn.ch>
 
-From: Vincent Whitchurch <vincent.whitchurch@axis.com>
 
-Add a software PWM which toggles a GPIO from a high-resolution timer.
+--CZ+A1N2g01IXv6oZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This will naturally not be as accurate or as efficient as a hardware
-PWM, but it is useful in some cases.  I have for example used it for
-evaluating LED brightness handling (via leds-pwm) on a board where the
-LED was just hooked up to a GPIO, and for a simple verification of the
-timer frequency on another platform.
+> > +static int airoha_set_gdma_port(struct airoha_eth *eth, int port, bool=
+ enable)
+> > +{
+> > +	u32 vip_port, cfg_addr, val =3D enable ? FE_DP_PPE : FE_DP_DROP;
+> > +
+> > +	switch (port) {
+> > +	case 0:
+> > +		vip_port =3D BIT(22);
+> > +		cfg_addr =3D REG_GDM3_FWD_CFG;
+> > +		break;
+> > +	case 1:
+> > +		vip_port =3D BIT(23);
+> > +		cfg_addr =3D REG_GDM3_FWD_CFG;
+> > +		break;
+> > +	case 2:
+> > +		vip_port =3D BIT(25);
+> > +		cfg_addr =3D REG_GDM4_FWD_CFG;
+> > +		break;
+> > +	case 4:
+> > +		vip_port =3D BIT(24);
+> > +		cfg_addr =3D REG_GDM4_FWD_CFG;
+> > +		break;
+>=20
+> Please add some #defines for the BIT(), so there is descriptive
+> names. Please do the same other places you have BIT macros, it makes
+> the code easier to understand.
 
-Since high-resolution timers are used, sleeping GPIO chips are not
-supported and are rejected in the probe function.
+ack, I will do in v2
 
-Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
-Co-developed-by: Stefan Wahren <wahrenst@gmx.net>
-Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-Co-developed-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- Documentation/driver-api/gpio/drivers-on-gpio.rst |   7 +-
- drivers/pwm/Kconfig                               |  11 +
- drivers/pwm/Makefile                              |   1 +
- drivers/pwm/pwm-gpio.c                            | 243 ++++++++++++++++++++++
- 4 files changed, 261 insertions(+), 1 deletion(-)
+>=20
+> > +static int airoha_set_gdma_ports(struct airoha_eth *eth, bool enable)
+> > +{
+> > +	const int port_list[] =3D { 0, 1, 2, 4 };
+> > +	int i;
+>=20
+> Maybe add a comment about port 3?
+>=20
+> > +static void airoha_fe_vip_setup(struct airoha_eth *eth)
+> > +{
+> > +	airoha_fe_wr(eth, REG_FE_VIP_PATN(3), 0x8863); /* ETH->PPP (0x8863) */
+>=20
+> Rather than a comment, use ETH_P_PPP_DISC
 
-diff --git a/Documentation/driver-api/gpio/drivers-on-gpio.rst b/Documentation/driver-api/gpio/drivers-on-gpio.rst
-index af632d764ac6..95572d2a94ce 100644
---- a/Documentation/driver-api/gpio/drivers-on-gpio.rst
-+++ b/Documentation/driver-api/gpio/drivers-on-gpio.rst
-@@ -27,7 +27,12 @@ hardware descriptions such as device tree or ACPI:
-   to the lines for a more permanent solution of this type.
- 
- - gpio-beeper: drivers/input/misc/gpio-beeper.c is used to provide a beep from
--  an external speaker connected to a GPIO line.
-+  an external speaker connected to a GPIO line. (If the beep is controlled by
-+  off/on, for an actual PWM waveform, see pwm-gpio below.)
-+
-+- pwm-gpio: drivers/pwm/pwm-gpio.c is used to toggle a GPIO with a high
-+  resolution timer producing a PWM waveform on the GPIO line, as well as
-+  Linux high resolution timers can do.
- 
- - extcon-gpio: drivers/extcon/extcon-gpio.c is used when you need to read an
-   external connector status, such as a headset line for an audio driver or an
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 1dd7921194f5..68ba28d52c4c 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -223,6 +223,17 @@ config PWM_FSL_FTM
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-fsl-ftm.
- 
-+config PWM_GPIO
-+	tristate "GPIO PWM support"
-+	depends on GPIOLIB
-+	depends on HIGH_RES_TIMERS
-+	help
-+	  Generic PWM framework driver for software PWM toggling a GPIO pin
-+	  from kernel high-resolution timers.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-gpio.
-+
- config PWM_HIBVT
- 	tristate "HiSilicon BVT PWM support"
- 	depends on ARCH_HISI || COMPILE_TEST
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index 90913519f11a..65d62cc41a8f 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -18,6 +18,7 @@ obj-$(CONFIG_PWM_DWC_CORE)	+= pwm-dwc-core.o
- obj-$(CONFIG_PWM_DWC)		+= pwm-dwc.o
- obj-$(CONFIG_PWM_EP93XX)	+= pwm-ep93xx.o
- obj-$(CONFIG_PWM_FSL_FTM)	+= pwm-fsl-ftm.o
-+obj-$(CONFIG_PWM_GPIO)		+= pwm-gpio.o
- obj-$(CONFIG_PWM_HIBVT)		+= pwm-hibvt.o
- obj-$(CONFIG_PWM_IMG)		+= pwm-img.o
- obj-$(CONFIG_PWM_IMX1)		+= pwm-imx1.o
-diff --git a/drivers/pwm/pwm-gpio.c b/drivers/pwm/pwm-gpio.c
-new file mode 100644
-index 000000000000..32ae9bba87c3
---- /dev/null
-+++ b/drivers/pwm/pwm-gpio.c
-@@ -0,0 +1,243 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Generic software PWM for modulating GPIOs
-+ *
-+ * Copyright (C) 2020 Axis Communications AB
-+ * Copyright (C) 2020 Nicola Di Lieto
-+ * Copyright (C) 2024 Stefan Wahren
-+ * Copyright (C) 2024 Linus Walleij
-+ */
-+
-+#include <linux/cleanup.h>
-+#include <linux/container_of.h>
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/hrtimer.h>
-+#include <linux/math.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/pwm.h>
-+#include <linux/spinlock.h>
-+#include <linux/time.h>
-+#include <linux/types.h>
-+
-+struct pwm_gpio {
-+	struct hrtimer gpio_timer;
-+	struct gpio_desc *gpio;
-+	struct pwm_state state;
-+	struct pwm_state next_state;
-+
-+	/* Protect internal state between pwm_ops and hrtimer */
-+	spinlock_t lock;
-+
-+	bool changing;
-+	bool running;
-+	bool level;
-+};
-+
-+static void pwm_gpio_round(struct pwm_state *dest, const struct pwm_state *src)
-+{
-+	u64 dividend;
-+	u32 remainder;
-+
-+	*dest = *src;
-+
-+	/* Round down to hrtimer resolution */
-+	dividend = dest->period;
-+	remainder = do_div(dividend, hrtimer_resolution);
-+	dest->period -= remainder;
-+
-+	dividend = dest->duty_cycle;
-+	remainder = do_div(dividend, hrtimer_resolution);
-+	dest->duty_cycle -= remainder;
-+}
-+
-+static u64 pwm_gpio_toggle(struct pwm_gpio *gpwm, bool level)
-+{
-+	const struct pwm_state *state = &gpwm->state;
-+	bool invert = state->polarity == PWM_POLARITY_INVERSED;
-+
-+	gpwm->level = level;
-+	gpiod_set_value(gpwm->gpio, gpwm->level ^ invert);
-+
-+	if (!state->duty_cycle || state->duty_cycle == state->period) {
-+		gpwm->running = false;
-+		return 0;
-+	}
-+
-+	gpwm->running = true;
-+	return level ? state->duty_cycle : state->period - state->duty_cycle;
-+}
-+
-+static enum hrtimer_restart pwm_gpio_timer(struct hrtimer *gpio_timer)
-+{
-+	struct pwm_gpio *gpwm = container_of(gpio_timer, struct pwm_gpio,
-+					     gpio_timer);
-+	u64 next_toggle;
-+	bool new_level;
-+
-+	guard(spinlock_irqsave)(&gpwm->lock);
-+
-+	/* Apply new state at end of current period */
-+	if (!gpwm->level && gpwm->changing) {
-+		gpwm->changing = false;
-+		gpwm->state = gpwm->next_state;
-+		new_level = !!gpwm->state.duty_cycle;
-+	} else {
-+		new_level = !gpwm->level;
-+	}
-+
-+	next_toggle = pwm_gpio_toggle(gpwm, new_level);
-+	if (next_toggle)
-+		hrtimer_forward(gpio_timer, hrtimer_get_expires(gpio_timer),
-+				ns_to_ktime(next_toggle));
-+
-+	return next_toggle ? HRTIMER_RESTART : HRTIMER_NORESTART;
-+}
-+
-+static int pwm_gpio_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-+			  const struct pwm_state *state)
-+{
-+	struct pwm_gpio *gpwm = pwmchip_get_drvdata(chip);
-+	bool invert = state->polarity == PWM_POLARITY_INVERSED;
-+
-+	if (state->duty_cycle && state->duty_cycle < hrtimer_resolution)
-+		return -EINVAL;
-+
-+	if (state->duty_cycle != state->period &&
-+	    (state->period - state->duty_cycle < hrtimer_resolution))
-+		return -EINVAL;
-+
-+	if (!state->enabled) {
-+		hrtimer_cancel(&gpwm->gpio_timer);
-+	} else if (!gpwm->running) {
-+		int ret;
-+
-+		/*
-+		 * This just enables the output, but pwm_gpio_toggle()
-+		 * really starts the duty cycle.
-+		 */
-+		ret = gpiod_direction_output(gpwm->gpio, invert);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	guard(spinlock_irqsave)(&gpwm->lock);
-+
-+	if (!state->enabled) {
-+		pwm_gpio_round(&gpwm->state, state);
-+		gpwm->running = false;
-+		gpwm->changing = false;
-+
-+		gpiod_set_value(gpwm->gpio, invert);
-+	} else if (gpwm->running) {
-+		pwm_gpio_round(&gpwm->next_state, state);
-+		gpwm->changing = true;
-+	} else {
-+		unsigned long next_toggle;
-+
-+		pwm_gpio_round(&gpwm->state, state);
-+		gpwm->changing = false;
-+
-+		next_toggle = pwm_gpio_toggle(gpwm, !!state->duty_cycle);
-+		if (next_toggle)
-+			hrtimer_start(&gpwm->gpio_timer, next_toggle,
-+				      HRTIMER_MODE_REL);
-+	}
-+
-+	return 0;
-+}
-+
-+static int pwm_gpio_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-+			       struct pwm_state *state)
-+{
-+	struct pwm_gpio *gpwm = pwmchip_get_drvdata(chip);
-+
-+	guard(spinlock_irqsave)(&gpwm->lock);
-+
-+	if (gpwm->changing)
-+		*state = gpwm->next_state;
-+	else
-+		*state = gpwm->state;
-+
-+	return 0;
-+}
-+
-+static const struct pwm_ops pwm_gpio_ops = {
-+	.apply = pwm_gpio_apply,
-+	.get_state = pwm_gpio_get_state,
-+};
-+
-+static void pwm_gpio_disable_hrtimer(void *data)
-+{
-+	struct pwm_gpio *gpwm = data;
-+
-+	hrtimer_cancel(&gpwm->gpio_timer);
-+}
-+
-+static int pwm_gpio_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct pwm_chip *chip;
-+	struct pwm_gpio *gpwm;
-+	int ret;
-+
-+	chip = devm_pwmchip_alloc(dev, 1, sizeof(*gpwm));
-+	if (IS_ERR(chip))
-+		return PTR_ERR(chip);
-+
-+	gpwm = pwmchip_get_drvdata(chip);
-+
-+	spin_lock_init(&gpwm->lock);
-+
-+	gpwm->gpio = devm_gpiod_get(dev, NULL, GPIOD_ASIS);
-+	if (IS_ERR(gpwm->gpio))
-+		return dev_err_probe(dev, PTR_ERR(gpwm->gpio),
-+				     "%pfw: could not get gpio\n",
-+				     dev_fwnode(dev));
-+
-+	if (gpiod_cansleep(gpwm->gpio))
-+		return dev_err_probe(dev, -EINVAL,
-+				     "%pfw: sleeping GPIO not supported\n",
-+				     dev_fwnode(dev));
-+
-+	chip->ops = &pwm_gpio_ops;
-+	chip->atomic = true;
-+
-+	hrtimer_init(&gpwm->gpio_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
-+	ret = devm_add_action_or_reset(dev, pwm_gpio_disable_hrtimer, gpwm);
-+	if (ret)
-+		return ret;
-+
-+	gpwm->gpio_timer.function = pwm_gpio_timer;
-+
-+	ret = pwmchip_add(chip);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "could not add pwmchip\n");
-+
-+	platform_set_drvdata(pdev, gpwm);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id pwm_gpio_dt_ids[] = {
-+	{ .compatible = "pwm-gpio" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, pwm_gpio_dt_ids);
-+
-+static struct platform_driver pwm_gpio_driver = {
-+	.driver = {
-+		.name = "pwm-gpio",
-+		.of_match_table = pwm_gpio_dt_ids,
-+	},
-+	.probe = pwm_gpio_probe,
-+};
-+module_platform_driver(pwm_gpio_driver);
-+
-+MODULE_DESCRIPTION("PWM GPIO driver");
-+MODULE_AUTHOR("Vincent Whitchurch");
-+MODULE_LICENSE("GPL");
+ack, I will do in v2
 
--- 
-2.45.1
+>=20
+> > +	airoha_fe_wr(eth, REG_FE_VIP_EN(3), PATN_FCPU_EN_MASK | PATN_EN_MASK);
+> > +
+> > +	airoha_fe_wr(eth, REG_FE_VIP_PATN(4), 0xc021); /* PPP->LCP (0xc021) */
+>=20
+> PPP_LCP
 
+ack, I will do in v2
+>=20
+> > +	airoha_fe_wr(eth, REG_FE_VIP_EN(4),
+> > +		     PATN_FCPU_EN_MASK | FIELD_PREP(PATN_TYPE_MASK, 1) |
+> > +		     PATN_EN_MASK);
+> > +
+> > +	airoha_fe_wr(eth, REG_FE_VIP_PATN(6), 0x8021); /* PPP->IPCP (0x8021) =
+*/
+>=20
+> PPP_IPCP
+>=20
+> etc...
+
+ack, I will do in v2
+
+>=20
+> > +static int airoha_qdma_fill_rx_queue(struct airoha_queue *q)
+> > +{
+> > +	struct airoha_eth *eth =3D q->eth;
+> > +	struct device *dev =3D eth->net_dev->dev.parent;
+> > +	int qid =3D q - &eth->q_rx[0], nframes =3D 0;
+>=20
+> Reverse Christmass tree. Which means you will need to move some of the
+> assignments into the body of the function.
+
+ack, I will fix it in v2
+>=20
+> > +static int airoha_dev_open(struct net_device *dev)
+> > +{
+> > +	struct airoha_eth *eth =3D netdev_priv(dev);
+> > +	int err;
+> > +
+> > +	if (netdev_uses_dsa(dev))
+> > +		airoha_fe_set(eth, REG_GDM1_INGRESS_CFG, GDM1_STAG_EN_MASK);
+> > +	else
+> > +		airoha_fe_clear(eth, REG_GDM1_INGRESS_CFG, GDM1_STAG_EN_MASK);
+>=20
+> Does this imply the hardware can be used in a situation where it is
+> not connected to a switch? Does it have an MII and MDIO bus? Could a
+> PHY be connected? If it can be used as a conventional NIC, we need to
+> ensure there is a path to use usage without an ABI breakage.
+
+I tested the driver removing the dsa switch from the board dts and
+resetting the switch at bootstrap in order to erase uboot running
+configuration.  Doing so the driver works fine.
+Moreover, I will add in the future connections to different phys through
+GDM{2,3,4} ports (so far we support just GDM1 that is connected the mt7530
+switch).
+
+>=20
+> > +static int airoha_register_debugfs(struct airoha_eth *eth)
+> > +{
+> > +	eth->debugfs_dir =3D debugfs_create_dir(KBUILD_MODNAME, NULL);
+> > +	if (IS_ERR(eth->debugfs_dir))
+> > +		return PTR_ERR(eth->debugfs_dir);
+>=20
+> No error checking should be performed with debugfs calls. Just keep
+> going and it will work out O.K.
+
+ack, I will fix it in v2
+
+>=20
+> > +	err =3D of_get_ethdev_address(np, dev);
+> > +	if (err) {
+> > +		if (err =3D=3D -EPROBE_DEFER)
+> > +			return err;
+> > +
+> > +		eth_hw_addr_random(dev);
+> > +		dev_err(&pdev->dev, "generated random MAC address %pM\n",
+> > +			dev->dev_addr);
+>=20
+> dev_info() would be better here, since it is not considered an error.
+
+ack, I will fix it in v2
+
+>=20
+> > +	err =3D airoha_hw_init(eth);
+> > +	if (err)
+> > +		return err;
+> > +
+> > +	airoha_qdma_start_napi(eth);
+> > +	err =3D register_netdev(dev);
+> > +	if (err)
+> > +		return err;
+> > +
+> > +	err =3D airoha_register_debugfs(eth);
+> > +	if (err)
+> > +		return err;
+> > +
+> > +	platform_set_drvdata(pdev, eth);
+>=20
+> Is this required? As soon as you call register_netdev(), the device is
+> live and in use. It can be sending the first packets before the
+> function returns. So if anything needs this connection between the
+> platform data and the eth, it will not be in place, and bad things
+> will happen.
+
+it is used just in the remove callback but I can move it before
+register_netdev() and I will set it to NULL in case of error.
+
+>=20
+> > +static inline void airoha_qdma_start_napi(struct airoha_eth *eth)
+> > +{
+> > +	int i;
+> > +
+> > +	for (i =3D 0; i < ARRAY_SIZE(eth->q_tx_irq); i++)
+> > +		napi_enable(&eth->q_tx_irq[i].napi);
+> > +
+> > +	airoha_qdma_for_each_q_rx(eth, i)
+> > +		napi_enable(&eth->q_rx[i].napi);
+> > +}
+> > +
+> > +static inline void airoha_qdma_stop_napi(struct airoha_eth *eth)
+> > +{
+> > +	int i;
+> > +
+> > +	for (i =3D 0; i < ARRAY_SIZE(eth->q_tx_irq); i++)
+> > +		napi_disable(&eth->q_tx_irq[i].napi);
+> > +
+> > +	airoha_qdma_for_each_q_rx(eth, i)
+> > +		napi_disable(&eth->q_rx[i].napi);
+> > +}
+>=20
+> These seem off to be in a header file?
+
+ack, I will move them in .c.
+
+Regards,
+Lorenzo
+
+>=20
+>     Andrew
+>=20
+> ---
+> pw-bot: cr
+
+--CZ+A1N2g01IXv6oZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZlzhCQAKCRA6cBh0uS2t
+rJzgAP47/O83h3iZRAN8AD3fUFvOiXbzDbxdVq8TOzN/nZawpwEA2gLE1PXnxaej
+ySKZz7YXr26pru9cq6r6ZjwHESA61gU=
+=5+65
+-----END PGP SIGNATURE-----
+
+--CZ+A1N2g01IXv6oZ--
 
