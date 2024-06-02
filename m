@@ -1,88 +1,79 @@
-Return-Path: <devicetree+bounces-71631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D8488D7702
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 17:54:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1A178D7709
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 18:00:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CB461C219EB
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 15:54:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 633BC1F21D4F
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 16:00:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D36547F6A;
-	Sun,  2 Jun 2024 15:54:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE58541C6A;
+	Sun,  2 Jun 2024 16:00:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E109B537FF;
-	Sun,  2 Jun 2024 15:54:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 001DE4C634;
+	Sun,  2 Jun 2024 16:00:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717343669; cv=none; b=XIsxCPwcdeB9NW6GQtMbT2naPLlM+AfatMkCexAPQxvx0oQJt2cfXMRBEV1AiG47YjSSS0tngGMiaeh+d5c5SCbfuXcu2dwaMp8OXgHWH5pVP53l7fuh3uDZ3DQFZkPvo9qAnqXx/97lbXqXqrycSI7r+pTgHR9wXsVVbS1GrWM=
+	t=1717344026; cv=none; b=BTBGjhANWLECVRX21L5zslukf7tkdCL2g3n8z5N954cmFNQkqM5SH7V44QKng/vqG9ijysTVPwhvwLZv1ZBKy3mz1W8aNFqqvQQvJeWEc7UT+gTQAhm7+plPJADtRnRyEl+hiUNl54YhwF+/FFK0tkdRuxJ2DkzPBwcPyhsRh5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717343669; c=relaxed/simple;
-	bh=Pial4zPTFNynySNton0QC3/Qd1accVop8Xud9f9QmJE=;
+	s=arc-20240116; t=1717344026; c=relaxed/simple;
+	bh=4Fmn4crQtRf3YiAQzPeyl27r+OK3btqW3qYBulXNoFo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OrCVv1NpEzmosbPKAglb2p03BVKuRXGV6M+euOODT6jg3qmW2D1hH8R0jnpE/i9wmjBdb2hD31V6O8bG9HPrCcn1a32qNm1SxOUjOjlSFKBv8GtKgbXw2yi3z+E2EFEnzhKzLLX1ponXU66bAcTk5W0nMfxdvH03YDybPYmTqWc=
+	 Content-Type:Content-Disposition:In-Reply-To; b=fLPNmbPkFs6tiw1KQyo5lYv4ZuQhBzk8UzhdHQ9trLQ+SebwVkesRk8cANUivPARR2sLjKrOb3iQaI2cF47FYafiqUuF7xN8aZOe59LLPA8SGc3cpWjE6dKZutJg4u7SKS8rrp6f76bGDq9+n32NepjoeiPjUW/YdFyNeNFpFtM=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DC4D8113E;
-	Sun,  2 Jun 2024 08:54:45 -0700 (PDT)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5F2B5113E;
+	Sun,  2 Jun 2024 09:00:48 -0700 (PDT)
 Received: from bogus (unknown [10.57.83.6])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 09DE23F792;
-	Sun,  2 Jun 2024 08:54:18 -0700 (PDT)
-Date: Sun, 2 Jun 2024 16:54:16 +0100
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D1BDC3F792;
+	Sun,  2 Jun 2024 09:00:21 -0700 (PDT)
+Date: Sun, 2 Jun 2024 17:00:20 +0100
 From: Sudeep Holla <sudeep.holla@arm.com>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Rob Herring <robh@kernel.org>,
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Liviu Dudau <liviu.dudau@arm.com>,
 	Sudeep Holla <sudeep.holla@arm.com>,
 	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: arm,juno-fpga-apb-regs: document
- FPGA syscon
-Message-ID: <20240602155416.5gkm7w3snba57vxa@bogus>
-References: <20240518203903.119608-1-krzysztof.kozlowski@linaro.org>
- <CACRpkdayDnBw0wCWffSwOX1EfPkq5TbkBH_wBJAwiZKaRbgdWA@mail.gmail.com>
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm/arm64: dts: arm: Use generic clock and regulator
+ nodenames
+Message-ID: <20240602160020.azbf7pytiu57vwo5@bogus>
+References: <20240528191536.1444649-1-robh@kernel.org>
+ <20240528191536.1444649-2-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CACRpkdayDnBw0wCWffSwOX1EfPkq5TbkBH_wBJAwiZKaRbgdWA@mail.gmail.com>
+In-Reply-To: <20240528191536.1444649-2-robh@kernel.org>
 
-On Tue, May 28, 2024 at 01:47:33PM +0200, Linus Walleij wrote:
-> On Sat, May 18, 2024 at 10:39 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
-> 
-> > Add dedicated bindings for the FPGA syscon registers on ARM Juno board,
-> > to fully document the block and also fix dtbs_check warning:
-> >
-> >   juno.dtb: apbregs@10000: compatible: ['syscon', 'simple-mfd'] is too short
-> >
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> (...)
-> > +maintainers:
-> > +  - Linus Walleij <linus.walleij@linaro.org>
-> 
-> This feels more like a Sudeep area of responsibility than
-> mine, so please use:
-> Sudeep Holla <sudeep.holla@arm.com>
+On Tue, May 28, 2024 at 02:15:32PM -0500, Rob Herring (Arm) wrote:
+> With the recent defining of preferred naming for fixed clock and
+> regulator nodes, convert the Arm Ltd. boards to use the preferred
+> names. In the cases which had a unit-address, warnings about missing
+> "reg" property are fixed.
 >
 
-Indeed, I queued them a week before -rc1 and was away last week. I plan to
-rebase and reply after applying them officially 😄
+Thanks for the cleanup.
+
+Do you want to take it through DT tree or prefer me to take it. I think
+I have one another patch from Krzysztof for Juno DTS IIRC.
+
+I am fine either way. In case you take it:
+
+Reviewed-by: Sudeep Holla <sudeep.holla@arm.com>
 
 -- 
 Regards,
