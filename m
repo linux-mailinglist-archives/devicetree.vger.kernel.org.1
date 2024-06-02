@@ -1,169 +1,184 @@
-Return-Path: <devicetree+bounces-71573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D27C08D7519
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 13:46:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08EBE8D7526
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 14:04:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0FFC81C21103
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 11:46:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2E261C20E42
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 12:04:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2358B3BBF6;
-	Sun,  2 Jun 2024 11:46:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D2E93839C;
+	Sun,  2 Jun 2024 12:04:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="h6h4b9wX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kGThGp+o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92BD039FFE;
-	Sun,  2 Jun 2024 11:45:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42470134A8
+	for <devicetree@vger.kernel.org>; Sun,  2 Jun 2024 12:04:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717328760; cv=none; b=QGqZNK0IexgKN75HZQdj16PHMUEhuZjYL8tzjhuUotW7fPzvFBcFF/j2HbEH881UB23Vx/Rptp4b1jW+RCIjQKtXx+IO4fT0wXHEa1SLy5FVgu/c3ah6LoWAZQ4wnv1pZZtoDZ/QJowKlwkCFcrwa8vxVe9Ev0OmAfXIGmYcxpo=
+	t=1717329891; cv=none; b=VgQyfeqti0qUR3ARXZmh+3xsPIvgGvksV7vj1rvWj4bM2X2S7G2NdZf56uMGakHIRAGiVcLRhEsZZjDnlZcTNfny+f7dwlR9GsiQZA8PH+BLltvtyAc1ucyuQfg6j+mAj0sMVnvXcmfANo/3PxRxYT/JgDsCGAMpIy1NPUF1fQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717328760; c=relaxed/simple;
-	bh=1UI4sAYafKNzNcveCUCONTjOn68DMUAIek7OUkdFFjM=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YTMaw8/TaXaUivYJG7jZAKnLwbc6AURz/3y7jhR8dl1bEIJPZqqpzMDhFSe4hJmDB06sTU5TdHiAdJyso0niw3Ab0pXhe4n2MQ8mR8Da/Mtmftm0o0AvSWn3nI5Ebfv0WonpYv4j+4s1xleP3+iubd9CZrGPMiC93V7nmtUMbSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=h6h4b9wX; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4529hIG0023230;
-	Sun, 2 Jun 2024 11:45:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	exztgzZs3OuubtANSB9eFm6gpGLwNC2z8voJ1HVHl0g=; b=h6h4b9wXVDMlUera
-	xl+ltgP1eHvV7d3KhMbZE0MIN4YXCxhymXgMGl1qhUWyy0LlGdlg0Q6epdZ6f8ME
-	gM/YaKw/ibQ+BPWuYlYibMVzjczVxcGZtBxcpj15QieGVHkyIEvtT6SWUWlcMLF6
-	JBKR4WuzGmpUbaxlTwcCLbikUVvmhu/M8KGErTUQbQNywkaisP6J7w1MIW+tk2hD
-	zIdNk9sivBV/u0h8gE9sFYYAqfZtOaFZKnBS+euBvdYIejECc1Rj/vGRUf+tanD9
-	NoVnS8yZ+RaSLm6cfRgg/f7H0Oqq+Rpdb0yrFxtasRf/ab8Z/wMRNnRy1SUy+57p
-	Nz5WTQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yfw4d21ae-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 02 Jun 2024 11:45:54 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 452Bjr2D024280
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 2 Jun 2024 11:45:53 GMT
-Received: from hu-jkona-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Sun, 2 Jun 2024 04:45:48 -0700
-From: Jagadeesh Kona <quic_jkona@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-CC: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Taniya Das
-	<quic_tdas@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        "Satya
- Priya Kakitapalli" <quic_skakitap@quicinc.com>,
-        Ajit Pandey
-	<quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>
-Subject: [PATCH V4 8/8] arm64: dts: qcom: sm8650: Add video and camera clock controllers
-Date: Sun, 2 Jun 2024 17:14:39 +0530
-Message-ID: <20240602114439.1611-9-quic_jkona@quicinc.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240602114439.1611-1-quic_jkona@quicinc.com>
-References: <20240602114439.1611-1-quic_jkona@quicinc.com>
+	s=arc-20240116; t=1717329891; c=relaxed/simple;
+	bh=tDhdl6ndKx1rU2B3KL4Ll+b3IGwWYDy7W+rlO1NBJB4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VwP621b357CL1CWZgk80AS736fdGmtw8SzSsEaTup00Ip3+BjMd9HJRBl9UsPmsGsWxnXY7CqzwavONSzkHYoru33d1cKcRR32AvwLmF1qWf0+foRv8LnplECD/xPQ6GWJW7vEOy0Lb/kcCJW6UNK9dmiUGMLGSnm3IYZq9YwVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kGThGp+o; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-52b8e0e98adso2411016e87.0
+        for <devicetree@vger.kernel.org>; Sun, 02 Jun 2024 05:04:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717329887; x=1717934687; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bVpQ9KTWQnvGE7mVXDOxEasU9Z/mylcYXt83Rqw6UYA=;
+        b=kGThGp+oeh4xB48mZhzWQKTMEiMuBD9H5HVZEdlt0BgX0h9v4OExkYsZcW06AYepI5
+         Yi10gXAR4dTegJBgxzOskJMtmKZJ8jlrukLUod60Nh6vAFdgpdzJhKpbvHWirKTUCd7q
+         5YKaNBaLrbhRICQ092FeWEmG4o6F4o7r94MrrpmTpQnWuRFR93k5mGA9ZkqwQ7Zr7GG+
+         Vi4oXwmIDQiSDx4m6YA4KgO+XdgZP/+owE5u75ys/TCj1Ss4O1jbm+NZEpnhS+h0SIh2
+         acGf2y2tDMVacym4v9SGg+8lw2CqvYUtyyue+hMOSDb/L2SxEqQYPnQ7sRGqFDZWW+D0
+         bdDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717329887; x=1717934687;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bVpQ9KTWQnvGE7mVXDOxEasU9Z/mylcYXt83Rqw6UYA=;
+        b=k6dVGK1ky8DsJO/5LZfBYKEE/gEsElBX5yJqrA2sSYmBJgSL/MV5Jy2C3qE7Vb4N2D
+         mNlqK2zr0qHHAmy20L5+MDUr+WFNOFWu4Vt2XnPBr5f3ycQDp/abrLcgVlLx4ZTJLxns
+         /nw80mbCkykvSuHysFrdFa2K8O/kA2uSS4/u6zaTnwANjUWrbZgouCkqSC5l9DDRChLq
+         dbYS7BmJohOkzG3+iFuMdSaIOsUrNxteXJgCY4+lOWwITT7qfdOutNaiFXFEPxm+rY2+
+         tERU+WM1hFUVmm63Yd/E+QUVt2LlvNMsLLkdHznhsu4MnJoh6I1+lIJq09P59OT0YuZr
+         PiHA==
+X-Forwarded-Encrypted: i=1; AJvYcCVhjOfIxk35LKk6oEFBaUBbrCQ7WCcT6dVm+AT2iEv++FKltr/FjzBvOi5TSbEhGiV/E40n0Snu5vNmI4jyjagUO0gBJFyYIe8B+w==
+X-Gm-Message-State: AOJu0YycP/u7y1FAT8XIEv2GC28GKRdAsK13U1a5qMr68rJXSQ5KnLiT
+	7dtgLlrLfDs1UnW3bQLXc48utbwZipxSXbedDr1h8Qsf/DLg7gogg0i30yM1rN0=
+X-Google-Smtp-Source: AGHT+IH0OCAVf7Viy0SnkcBSU+0nSO7mIL7DWaDsWecoCFeQANoteXOODsNnvtjUBpoFJrvccIysMw==
+X-Received: by 2002:a05:6512:546:b0:52b:6eef:41b5 with SMTP id 2adb3069b0e04-52b8949d408mr3880501e87.0.1717329887192;
+        Sun, 02 Jun 2024 05:04:47 -0700 (PDT)
+Received: from umbar.lan ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52b8b56867fsm759398e87.44.2024.06.02.05.04.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 02 Jun 2024 05:04:46 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH v3 00/12] drm/imx/ipuv3: switch LDB and parallel-display
+ driver to use drm_bridge_connector
+Date: Sun, 02 Jun 2024 15:04:40 +0300
+Message-Id: <20240602-drm-imx-cleanup-v3-0-e549e2a43100@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: bi5tbRWgBomQe2Sk7uhy3wp5KxFyw8o2
-X-Proofpoint-GUID: bi5tbRWgBomQe2Sk7uhy3wp5KxFyw8o2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-06-01_19,2024-05-30_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 mlxscore=0 adultscore=0 impostorscore=0 bulkscore=0
- spamscore=0 phishscore=0 clxscore=1015 mlxlogscore=999 suspectscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406020100
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANhfXGYC/23NzQrCMAzA8VcZPVtJui/15HuIh9p2W2BrR6tlM
+ vbudgNB0UMO/0B+mVkwnkxgp2xm3kQK5GyKfJcx1UnbGk46NRMgCsgRuPYDp2HiqjfSPkaOUBe
+ VPN5qbEqWrkZvGpo28XJN3VG4O//cHkRct28Lf6yIHLhBKBoolZQlnnuy0ru98y1bsSg+gPwPI
+ BKgD6hQpwFRfQHLsrwAfMNl+vAAAAA=
+To: Philipp Zabel <p.zabel@pengutronix.de>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: Chris Healy <cphealy@gmail.com>, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3478;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=tDhdl6ndKx1rU2B3KL4Ll+b3IGwWYDy7W+rlO1NBJB4=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmXF/cCUe+k6YWW2BRfgCEKRxPkjQwq57MgL+cW
+ nx3towqy1mJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZlxf3AAKCRCLPIo+Aiko
+ 1ehKB/9c5Rx2Sj/Cri3wep/fmmNJPdXkNBtkyF9Ax9+w0EJ4kQMFEhl1QfJ0fUO8wryr5IoJLdG
+ QEXgs0sNFdlTaIP3sVoUg+3ZGqm7msxoXTLmGnDsgfkCdHVdKHV3y+UPI+DgxXFyCPBL2+OmFw7
+ rm0WX+0ct3n+/bmWOu8MP4D/EASb8xhCTqyKd1uibFnjecsRVAKe2gEHQpk1ac7CS/tjuP/R6R5
+ ESDvFwpgQ3sSleY4XDaeuGB+xHKWe3l3pN14CypGdAow7C32U/2NOUP2U3TfFwZPatNU5KpLO9B
+ 9yZLh6MFdoDqIflwdVE0xlsGMTW13HsxDCNG/SrnxQw9ksZs
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-Add device nodes for video and camera clock controllers on Qualcomm
-SM8650 platform.
+The IPUv3 DRM i.MX driver contains several codepaths for different
+usescases: both LDB and paralllel-display drivers handle next-bridge,
+panel and the legacy display-timings DT node on their own.
 
-Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Drop unused ddc-i2c-bus and edid handling (none of the DT files merged
+upstream ever used these features), switch to panel-bridge driver,
+removing the need to handle drm_panel codepaths separately and finally
+switch to drm_bridge_connector, removing requirement for the downstream
+bridges to create drm_connector on their own.
+
+This has been tested on the iMX53 with the DPI panel attached to LDB via
+LVDS decoder, using all possible usecases (lvds-codec + panel, panel
+linked directly to LDB node and the display-timings node).
+
+To be able to test on the iMX53 QSRB with the HDMI cape apply [1], [2]
+
+[1] https://lore.kernel.org/all/20240514030718.533169-1-victor.liu@nxp.com/
+[2] https://lore.kernel.org/all/20240602-imx-sii902x-defconfig-v1-1-71a6c382b422@linaro.org/
+
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+Changes in v3:
+- Notice (soft) dependencies in the cover letter (Chris)
+- Select DRM_BRIDGE instead of depending on it (Philipp)
+- Dropped unused selection of DRM_PANEL (Philipp)
+- Added missing include of <drm/bridge/imx.h> to parallel-display.c
+  (Philipp)
+- Link to v2: https://lore.kernel.org/r/20240331-drm-imx-cleanup-v2-0-d81c1d1c1026@linaro.org
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index 336c54242778..d964762b0532 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -4,10 +4,12 @@
-  */
- 
- #include <dt-bindings/clock/qcom,rpmh.h>
-+#include <dt-bindings/clock/qcom,sm8650-camcc.h>
- #include <dt-bindings/clock/qcom,sm8650-dispcc.h>
- #include <dt-bindings/clock/qcom,sm8650-gcc.h>
- #include <dt-bindings/clock/qcom,sm8650-gpucc.h>
- #include <dt-bindings/clock/qcom,sm8650-tcsr.h>
-+#include <dt-bindings/clock/qcom,sm8650-videocc.h>
- #include <dt-bindings/dma/qcom-gpi.h>
- #include <dt-bindings/firmware/qcom,scm.h>
- #include <dt-bindings/gpio/gpio.h>
-@@ -3315,6 +3317,30 @@ opp-202000000 {
- 			};
- 		};
- 
-+		videocc: clock-controller@aaf0000 {
-+			compatible = "qcom,sm8650-videocc";
-+			reg = <0 0x0aaf0000 0 0x10000>;
-+			clocks = <&bi_tcxo_div2>,
-+				 <&gcc GCC_VIDEO_AHB_CLK>;
-+			power-domains = <&rpmhpd RPMHPD_MMCX>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
-+		camcc: clock-controller@ade0000 {
-+			compatible = "qcom,sm8650-camcc";
-+			reg = <0 0x0ade0000 0 0x20000>;
-+			clocks = <&gcc GCC_CAMERA_AHB_CLK>,
-+				 <&bi_tcxo_div2>,
-+				 <&bi_tcxo_ao_div2>,
-+				 <&sleep_clk>;
-+			power-domains = <&rpmhpd RPMHPD_MMCX>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		mdss: display-subsystem@ae00000 {
- 			compatible = "qcom,sm8650-mdss";
- 			reg = <0 0x0ae00000 0 0x1000>;
+Changes in v2:
+- Fixed drm_bridge_attach flags in imx/parallel-display driver.
+- Moved the legacy bridge to drivers/gpu/drm/bridge
+- Added missing EXPORT_SYMBOL_GPL to the iMX legacy bridge
+- Link to v1: https://lore.kernel.org/r/20240311-drm-imx-cleanup-v1-0-e104f05caa51@linaro.org
+
+---
+Dmitry Baryshkov (12):
+      dt-bindings: display: fsl-imx-drm: drop edid property support
+      dt-bindings: display: imx/ldb: drop ddc-i2c-bus property
+      drm/imx: cleanup the imx-drm header
+      drm/imx: parallel-display: drop edid override support
+      drm/imx: ldb: drop custom EDID support
+      drm/imx: ldb: drop custom DDC bus support
+      drm/imx: ldb: switch to drm_panel_bridge
+      drm/imx: parallel-display: switch to drm_panel_bridge
+      drm/imx: add internal bridge handling display-timings DT node
+      drm/imx: ldb: switch to imx_legacy_bridge / drm_bridge_connector
+      drm/imx: parallel-display: switch to imx_legacy_bridge / drm_bridge_connector
+      drm/imx: move imx_drm_connector_destroy to imx-tve
+
+ .../bindings/display/imx/fsl-imx-drm.txt           |   2 -
+ .../devicetree/bindings/display/imx/ldb.txt        |   1 -
+ drivers/gpu/drm/bridge/imx/Kconfig                 |  10 +
+ drivers/gpu/drm/bridge/imx/Makefile                |   1 +
+ drivers/gpu/drm/bridge/imx/imx-legacy-bridge.c     |  85 +++++++++
+ drivers/gpu/drm/imx/ipuv3/Kconfig                  |  10 +-
+ drivers/gpu/drm/imx/ipuv3/imx-drm-core.c           |   7 -
+ drivers/gpu/drm/imx/ipuv3/imx-drm.h                |  14 --
+ drivers/gpu/drm/imx/ipuv3/imx-ldb.c                | 203 +++++----------------
+ drivers/gpu/drm/imx/ipuv3/imx-tve.c                |   8 +-
+ drivers/gpu/drm/imx/ipuv3/parallel-display.c       | 139 +++-----------
+ include/drm/bridge/imx.h                           |  13 ++
+ 12 files changed, 187 insertions(+), 306 deletions(-)
+---
+base-commit: 850ca533e572247b6f71dafcbf7feb0359350963
+change-id: 20240310-drm-imx-cleanup-10746a9b71f5
+
+Best regards,
 -- 
-2.43.0
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
