@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-71557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 888308D74A0
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 11:41:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F5A18D74B7
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 12:12:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E9C5280C72
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 09:41:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE19D1F21A2B
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 10:12:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E759F2E416;
-	Sun,  2 Jun 2024 09:41:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F58E374F5;
+	Sun,  2 Jun 2024 10:11:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nVOXBDGp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k7Y8XVga"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B86E4134A8;
-	Sun,  2 Jun 2024 09:41:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E59C62570;
+	Sun,  2 Jun 2024 10:11:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717321260; cv=none; b=YVxz5TYHtnxxO9K3j9UXq5XMxbJxmtU20AMMzyonMHIYHNZpnJjIxw+OXOE3J07Na6o5HYBk5iMs7mbSXlJJBoEtfAPktJPohsDF+tXbgPoV3VSvB05ymST64pEI2W4ghbDaqxITVbhaWVADlLtGpJ1e23NPnLEPAdQ81s3+ZjE=
+	t=1717323118; cv=none; b=uD5kiJeBblEwah7ifFfeUc1WUDRSLQBFuX8k7nc+0MxYEPN1HwBAazvl44iK+zWBnKiffNwirZhlxMXe5iQB1NnNsFDXLlgoR/xZJlzNhaSF5M4omPxIi0eOxOn9W9ItU7oNZvOf4dV3zaTGL4DPnk5pfU4lLYSNeJlDrqF2boY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717321260; c=relaxed/simple;
-	bh=VMlBozhDWH6kdWLkZ7dwGtTG1UnJSOHejuxNsB0HXYU=;
+	s=arc-20240116; t=1717323118; c=relaxed/simple;
+	bh=3C7h2gGaFwe/lVnaZ1oOKP+loUwkQ1i5bmocw8U6KR0=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LPROCmO08G+iMic7hQn+1y2ZcNIw4TYeDrlWuQ4LUEZXoFivwb6C2aYf63dqn5Zuq1KwrQ80dZFHxJZmqpQYaNwPHmk1o2Mh0k6Q+7Y8snt7gc0GZsxSvI02s1HqrhrJCkht/kq7ciqiMuai3exqFZ3bAXR47QNTtS/s/Eu9mI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nVOXBDGp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E2FBC2BBFC;
-	Sun,  2 Jun 2024 09:40:53 +0000 (UTC)
+	 MIME-Version:Content-Type; b=J0B42gJn+04T2lNAzz9PlrIb3GNC5UHt3CflofbqXe8Z4MwIIDIsvbI9/RJFkrLKjFDYNX/flRa+cS6Jao3nCQkMBccMUJCZGkmC3gZr48HNBQToaN78uGmmzDjhQmkvjbTLLc84J+6nLrttEwa6tA1G68uad6DHLp3jAhOkPvM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k7Y8XVga; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79E38C2BBFC;
+	Sun,  2 Jun 2024 10:11:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717321260;
-	bh=VMlBozhDWH6kdWLkZ7dwGtTG1UnJSOHejuxNsB0HXYU=;
+	s=k20201202; t=1717323117;
+	bh=3C7h2gGaFwe/lVnaZ1oOKP+loUwkQ1i5bmocw8U6KR0=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=nVOXBDGpyyrv03WZHl6pg/rtQShiNtSOtbUdIYJ4Lmnw1W3r+kcF2AoSoGwN0FUWu
-	 JVCO3glQhtHl7POXvKz/Z+nAUypc9dm+uLQgXOcoJ9yWE1Z6ResDlVR0XUEFndiwvc
-	 Y6WHw9KV5gEFmsdY2rTE768qSRic65NB+7xwg7pC895Bm++9AM5RM6wbwNvTJwlPqD
-	 6DBtf+0NQJXpohHncSRMy0O1MnO+tVaeJo4WV+dZLxwYmehbc9YI5asmPPpIH/UuoP
-	 NDQnPxI0tLHp2e8x8BGX4meln+5lXRSQX43x4lmo2peQ1qwwx090tR3bUxO9+ZCSVk
-	 LVwg8j3EaxMUg==
-Date: Sun, 2 Jun 2024 10:40:48 +0100
+	b=k7Y8XVga2N1e+qxSmRn0mJ6rc+yQU9KpxnoGFrRMFQOfwJKtAbHTuZqTpLTVISkGh
+	 Jd/o6KGTanomCgomYtQQdUgNjxMcieir4fevBaEEZfC+J9IUAob7eX3QhkP0iTRZdT
+	 3CehY8wgphgp8idLu1rTcwvrnkbJA/iFc17pkbqpnZuqaxdV3erzjV6nVJbUuxZild
+	 v4bvu7eLChn8xncNQi+x51BZqAcxSWHEM02Ik1FyCkwpnOlM5iZjL4zxm32TDTWEgB
+	 1a0FDEp2A7sJDpnKCkKjcEK2YLa7BZScrtMI31CRh0rci5O4QNoEuOoxH4ZOAWnzUH
+	 wKG40uKVFbCQw==
+Date: Sun, 2 Jun 2024 11:11:41 +0100
 From: Jonathan Cameron <jic23@kernel.org>
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
@@ -53,12 +53,12 @@ Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
  linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-mediatek@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v1 1/4] dt-bindings: iio: adc: Add MediaTek MT6359 PMIC
- AUXADC
-Message-ID: <20240602104048.14c75d7b@jic23-huawei>
-In-Reply-To: <20240530093410.112716-2-angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v1 2/4] iio: adc: Add support for MediaTek MT6357/8/9
+ Auxiliary ADC
+Message-ID: <20240602111141.0058f39e@jic23-huawei>
+In-Reply-To: <20240530093410.112716-3-angelogioacchino.delregno@collabora.com>
 References: <20240530093410.112716-1-angelogioacchino.delregno@collabora.com>
-	<20240530093410.112716-2-angelogioacchino.delregno@collabora.com>
+	<20240530093410.112716-3-angelogioacchino.delregno@collabora.com>
 X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -69,165 +69,346 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Thu, 30 May 2024 11:34:07 +0200
+On Thu, 30 May 2024 11:34:08 +0200
 AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> wrote:
 
-> Add a new binding for the MT6350 Series (MT6357/8/9) PMIC AUXADC,
-> providing various ADC channels for both internal temperatures and
-> voltages, audio accessory detection (hp/mic/hp+mic and buttons,
-> usually on a 3.5mm jack) other than some basic battery statistics
-> on boards where the battery is managed by this PMIC.
+> Add a driver to support reading the Auxiliary ADC IP found in the
+> MediaTek MT6357, MT6358 and MT6359 Power Management ICs.
+> 
+> This driver provides multiple ADC channels for system monitoring,
+> such as battery voltage, PMIC temperature, PMIC-internal voltage
+> regulators temperature, and others.
 > 
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Hi,
 
-What are all the headers for given the binding doc doesn't use anything from
-them?
+I'll leave you to answer the 'why a new driver' in response to Andy's review
+and just assume it makes sense whilst reviewing this.
+
+What are IMP channels?
+
+A few additional comments inline.
+
+Thanks,
 
 Jonathan
 
-> ---
->  .../iio/adc/mediatek,mt6359-auxadc.yaml       | 43 +++++++++++++++++++
->  .../iio/adc/mediatek,mt6357-auxadc.h          | 21 +++++++++
->  .../iio/adc/mediatek,mt6358-auxadc.h          | 22 ++++++++++
->  .../iio/adc/mediatek,mt6359-auxadc.h          | 22 ++++++++++
->  4 files changed, 108 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/mediatek,mt6359-auxadc.yaml
->  create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6357-auxadc.h
->  create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6358-auxadc.h
->  create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6359-auxadc.h
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/mediatek,mt6359-auxadc.yaml b/Documentation/devicetree/bindings/iio/adc/mediatek,mt6359-auxadc.yaml
+> diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
+> index edb32ce2af02..da7d4452b1e0 100644
+> --- a/drivers/iio/adc/Makefile
+> +++ b/drivers/iio/adc/Makefile
+> @@ -79,6 +79,7 @@ obj-$(CONFIG_MCP320X) += mcp320x.o
+>  obj-$(CONFIG_MCP3422) += mcp3422.o
+>  obj-$(CONFIG_MCP3564) += mcp3564.o
+>  obj-$(CONFIG_MCP3911) += mcp3911.o
+> +obj-$(CONFIG_MEDIATEK_MT6359_AUXADC) += mt6359-auxadc.o
+>  obj-$(CONFIG_MEDIATEK_MT6360_ADC) += mt6360-adc.o
+>  obj-$(CONFIG_MEDIATEK_MT6370_ADC) += mt6370-adc.o
+>  obj-$(CONFIG_MEDIATEK_MT6577_AUXADC) += mt6577_auxadc.o
+> diff --git a/drivers/iio/adc/mt6359-auxadc.c b/drivers/iio/adc/mt6359-auxadc.c
 > new file mode 100644
-> index 000000000000..dd6c331905cf
+> index 000000000000..0481bd3f0144
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/mediatek,mt6359-auxadc.yaml
-> @@ -0,0 +1,43 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/mediatek,mt6359-auxadc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/drivers/iio/adc/mt6359-auxadc.c
+> @@ -0,0 +1,598 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * MediaTek MT6359 PMIC AUXADC IIO driver
+> + *
+> + * Copyright (c) 2021 MediaTek Inc.
+> + * Copyright (c) 2024 Collabora Ltd
+> + * Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> + */
 > +
-> +title: MediaTek MT6350 series PMIC AUXADC
+> +#include <linux/delay.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/mfd/mt6397/core.h>
 > +
-> +maintainers:
-> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> +
-> +description:
-> +  The Auxiliary Analog/Digital Converter (AUXADC) is an ADC found
-> +  in some MediaTek PMICs, performing various PMIC related measurements
-> +  such as battery and PMIC internal voltage regulators temperatures,
-> +  accessory detection resistance (usually, for a 3.5mm audio jack)
-> +  other than voltages for various PMIC internal components.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt6357-auxadc
-> +      - mediatek,mt6358-auxadc
-> +      - mediatek,mt6359-auxadc
-> +
-> +  "#io-channel-cells":
-> +    const: 1
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - "#io-channel-cells"
-> +
-> +examples:
-> +  - |
-> +    pmic {
-> +        pmic_adc: adc {
-> +            compatible = "mediatek,mt6359-auxadc";
-> +            #io-channel-cells = <1>;
-> +        };
-> +    };
-> +...
-> diff --git a/include/dt-bindings/iio/adc/mediatek,mt6357-auxadc.h b/include/dt-bindings/iio/adc/mediatek,mt6357-auxadc.h
-> new file mode 100644
-> index 000000000000..03ebb1d23953
-> --- /dev/null
-> +++ b/include/dt-bindings/iio/adc/mediatek,mt6357-auxadc.h
-> @@ -0,0 +1,21 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> +
-> +#ifndef _DT_BINDINGS_MEDIATEK_MT6357_AUXADC_H
-> +#define _DT_BINDINGS_MEDIATEK_MT6357_AUXADC_H
-> +
-> +/* ADC Channel Index */
-> +#define MT6357_AUXADC_BATADC		0
-> +#define MT6357_AUXADC_ISENSE		1
-> +#define MT6357_AUXADC_VCDT		2
-> +#define MT6357_AUXADC_BAT_TEMP		3
-> +#define MT6357_AUXADC_CHIP_TEMP		4
-> +#define MT6357_AUXADC_ACCDET		5
-> +#define MT6357_AUXADC_VDCXO		6
-> +#define MT6357_AUXADC_TSX_TEMP		7
-> +#define MT6357_AUXADC_HPOFS_CAL		8
-> +#define MT6357_AUXADC_DCXO_TEMP		9
-> +#define MT6357_AUXADC_VCORE_TEMP	10
-> +#define MT6357_AUXADC_VPROC_TEMP	11
-> +#define MT6357_AUXADC_VBAT		12
-> +
-> +#endif
-> diff --git a/include/dt-bindings/iio/adc/mediatek,mt6358-auxadc.h b/include/dt-bindings/iio/adc/mediatek,mt6358-auxadc.h
-> new file mode 100644
-> index 000000000000..efa08398fafd
-> --- /dev/null
-> +++ b/include/dt-bindings/iio/adc/mediatek,mt6358-auxadc.h
-> @@ -0,0 +1,22 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> +
-> +#ifndef _DT_BINDINGS_MEDIATEK_MT6358_AUXADC_H
-> +#define _DT_BINDINGS_MEDIATEK_MT6358_AUXADC_H
-> +
-> +/* ADC Channel Index */
-> +#define MT6358_AUXADC_BATADC		0
-> +#define MT6358_AUXADC_VCDT		1
-> +#define MT6358_AUXADC_BAT_TEMP		2
-> +#define MT6358_AUXADC_CHIP_TEMP		3
-> +#define MT6358_AUXADC_ACCDET		4
-> +#define MT6358_AUXADC_VDCXO		5
-> +#define MT6358_AUXADC_TSX_TEMP		6
-> +#define MT6358_AUXADC_HPOFS_CAL		7
-> +#define MT6358_AUXADC_DCXO_TEMP		8
-> +#define MT6358_AUXADC_VBIF		9
-> +#define MT6358_AUXADC_VCORE_TEMP	10
-> +#define MT6358_AUXADC_VPROC_TEMP	11
-> +#define MT6358_AUXADC_VGPU_TEMP		12
-> +#define MT6358_AUXADC_VBAT		13
-> +
-> +#endif
-> diff --git a/include/dt-bindings/iio/adc/mediatek,mt6359-auxadc.h b/include/dt-bindings/iio/adc/mediatek,mt6359-auxadc.h
-> new file mode 100644
-> index 000000000000..59826393ee7e
-> --- /dev/null
-> +++ b/include/dt-bindings/iio/adc/mediatek,mt6359-auxadc.h
-> @@ -0,0 +1,22 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> +
-> +#ifndef _DT_BINDINGS_MEDIATEK_MT6359_AUXADC_H
-> +#define _DT_BINDINGS_MEDIATEK_MT6359_AUXADC_H
-> +
-> +/* ADC Channel Index */
-> +#define MT6359_AUXADC_BATADC		0
-> +#define MT6359_AUXADC_BAT_TEMP		1
-> +#define MT6359_AUXADC_CHIP_TEMP		2
-> +#define MT6359_AUXADC_ACCDET		3
-> +#define MT6359_AUXADC_VDCXO		4
-> +#define MT6359_AUXADC_TSX_TEMP		5
-> +#define MT6359_AUXADC_HPOFS_CAL		6
-> +#define MT6359_AUXADC_DCXO_TEMP		7
-> +#define MT6359_AUXADC_VBIF		8
-> +#define MT6359_AUXADC_VCORE_TEMP	9
-> +#define MT6359_AUXADC_VPROC_TEMP	10
-> +#define MT6359_AUXADC_VGPU_TEMP		11
-> +#define MT6359_AUXADC_VBAT		12
-> +#define MT6359_AUXADC_IBAT		13
-> +
-> +#endif
+> +#include <dt-bindings/iio/adc/mediatek,mt6357-auxadc.h>
+> +#include <dt-bindings/iio/adc/mediatek,mt6358-auxadc.h>
+> +#include <dt-bindings/iio/adc/mediatek,mt6359-auxadc.h>
 
+So I 'guess' these headers are dt-bindings because you want
+to consume them from other drivers?  That's fine, but if so please
+add info on that to the DT binding patch.
+
+> +/**
+> + * struct mt6359_auxadc - Main driver structure
+> + * @dev:           Device pointer
+> + * @regmap:        Regmap from SoC PMIC Wrapper
+> + * @pdata:         PMIC specific platform data
+> + * @lock:          Mutex lock for AUXADC reads
+
+Expand on this mutex comment.  What is it protecting?
+I think it's about ensuring they are serialized to ensure configuration
+is not changed during the read sequence.
+
+> + * @timed_out:     Signals whether the last read timed out
+> + */
+> +struct mt6359_auxadc {
+> +	struct device *dev;
+> +	struct regmap *regmap;
+> +	const struct mtk_pmic_auxadc_pdata *pdata;
+> +	struct mutex lock;
+> +	bool timed_out;
+> +};
+> +
+
+> +/**
+> + * struct mtk_pmic_auxadc_pdata - PMIC specific platform data
+
+I'm not sure this is conventionally what we think of as platform
+data.  This is chip specific stuff. Platform data tends to be
+more about how things are wired up etc.  A common term for this
+stuff is chip_info.
+
+> + * @channels:       IIO specification of ADC channels
+> + * @num_channels:   Number of ADC channels
+> + * @desc:           PMIC AUXADC channel data
+> + * @regs:           List of PMIC specific registers
+> + * @sec_unlock_key: Security unlock key for HK_TOP writes
+> + * @imp_adc_num:    ADC channel for IMP readings
+> + * @read_imp:       Callback to read PMIC IMP channels
+> + */
+> +struct mtk_pmic_auxadc_pdata {
+> +	const struct iio_chan_spec *channels;
+> +	int num_channels;
+> +	const struct mtk_pmic_auxadc_chan *desc;
+> +	const u16 *regs;
+> +	u16 sec_unlock_key;
+> +	u8 imp_adc_num;
+> +	int (*read_imp)(struct mt6359_auxadc *adc_dev, int *vbat, int *ibat);
+> +};
+> +
+
+> +
+> +static const struct mtk_pmic_auxadc_chan mt6359_auxadc_ch_desc[] = {
+> +	MTK_PMIC_ADC_CHAN(BATADC, PMIC_AUXADC_RQST0, 0, 128, 7, 2),
+> +	MTK_PMIC_ADC_CHAN(BAT_TEMP, PMIC_AUXADC_RQST0, 3, 8, 5, 2),
+> +	MTK_PMIC_ADC_CHAN(CHIP_TEMP, PMIC_AUXADC_RQST0, 4, 8, 1, 1),
+> +	MTK_PMIC_ADC_CHAN(ACCDET, PMIC_AUXADC_RQST0, 5, 8, 1, 1),
+> +	MTK_PMIC_ADC_CHAN(VDCXO, PMIC_AUXADC_RQST0, 6, 8, 3, 2),
+> +	MTK_PMIC_ADC_CHAN(TSX_TEMP, PMIC_AUXADC_RQST0, 7, 128, 1, 1),
+> +	MTK_PMIC_ADC_CHAN(HPOFS_CAL, PMIC_AUXADC_RQST0, 9, 256, 1, 1),
+> +	MTK_PMIC_ADC_CHAN(DCXO_TEMP, PMIC_AUXADC_RQST0, 10, 16, 1, 1),
+> +	MTK_PMIC_ADC_CHAN(VBIF, PMIC_AUXADC_RQST0, 11, 8, 5, 2),
+> +	MTK_PMIC_ADC_CHAN(VCORE_TEMP, PMIC_AUXADC_RQST1, 8, 8, 1, 1),
+> +	MTK_PMIC_ADC_CHAN(VPROC_TEMP, PMIC_AUXADC_RQST1, 9, 8, 1, 1),
+> +	MTK_PMIC_ADC_CHAN(VGPU_TEMP, PMIC_AUXADC_RQST1, 10, 8, 1, 1),
+> +
+> +	/* IMP channels */
+What are these? Expand IMP perhaps!
+
+> +	MTK_PMIC_ADC_CHAN(VBAT, 0, 0, 128, 7, 2),
+> +	MTK_PMIC_ADC_CHAN(IBAT, 0, 0, 128, 7, 2),
+> +};
+
+
+> +static int mt6359_read_imp(struct mt6359_auxadc *adc_dev, int *vbat, int *ibat)
+> +{
+> +	const struct mtk_pmic_auxadc_pdata *pdata = adc_dev->pdata;
+> +	struct regmap *regmap = adc_dev->regmap;
+> +	int val_v, val_i, ret;
+> +	u32 val;
+> +
+> +	/* Start conversion */
+> +	regmap_write(regmap, pdata->regs[PMIC_AUXADC_IMP0], MT6359_IMP0_CONV_EN);
+> +	ret = regmap_read_poll_timeout(regmap, pdata->regs[PMIC_AUXADC_IMP1],
+> +				       val, !!(val & MT6359_IMP1_IRQ_RDY),
+
+The condition is just as true or false without the !! so drop those.
+
+> +				       IMP_POLL_DELAY_US, AUXADC_TIMEOUT_US);
+> +
+> +	/* Stop conversion regardless of the result */
+> +	regmap_write(regmap, pdata->regs[PMIC_AUXADC_IMP0], 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* If it succeeded, wait for the registers to be populated */
+> +	usleep_range(IMP_STOP_DELAY_US, IMP_STOP_DELAY_US + 50);
+> +
+> +	ret = regmap_read(regmap, pdata->regs[PMIC_AUXADC_IMP3], &val_v);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_read(regmap, pdata->regs[PMIC_FGADC_R_CON0], &val_i);
+> +	if (ret)
+> +		return ret;
+
+Why read them both if only one is wanted?  Do you need to read the data
+for some reason - i.e. to allow for fresh reads or clear some status bit
+or similar?  If so add a comment.  Otherwise easy to do
+
+	if (vbat) {
+		int val_v;
+		ret = regmap_read(regmap, pdata->regs[PMIC_AUXADC_IMP3], &val_v);
+		if (ret)
+			return ret;
+		*vbat = val_v;
+	}
+etc
+
+
+> +
+> +	*vbat = val_v;
+> +	*ibat = val_i;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct mtk_pmic_auxadc_pdata mt6357_pdata = {
+> +	.channels = mt6357_auxadc_channels,
+> +	.num_channels = ARRAY_SIZE(mt6357_auxadc_channels),
+> +	.desc = mt6357_auxadc_ch_desc,
+> +	.regs = mt6357_auxadc_regs,
+> +	.imp_adc_num = MT6357_IMP_ADC_NUM,
+> +	.read_imp = mt6358_read_imp,
+> +};
+> +
+> +static const struct mtk_pmic_auxadc_pdata mt6358_pdata = {
+> +	.channels = mt6358_auxadc_channels,
+> +	.num_channels = ARRAY_SIZE(mt6358_auxadc_channels),
+> +	.desc = mt6358_auxadc_ch_desc,
+> +	.regs = mt6358_auxadc_regs,
+> +	.imp_adc_num = MT6358_IMP_ADC_NUM,
+> +	.read_imp = mt6358_read_imp,
+> +};
+> +
+> +static const struct mtk_pmic_auxadc_pdata mt6359_pdata = {
+> +	.channels = mt6359_auxadc_channels,
+> +	.num_channels = ARRAY_SIZE(mt6359_auxadc_channels),
+> +	.desc = mt6359_auxadc_ch_desc,
+> +	.regs = mt6359_auxadc_regs,
+> +	.sec_unlock_key = 0x6359,
+> +	.read_imp = mt6359_read_imp,
+> +};
+>
+
+> +
+> +static int mt6359_auxadc_read_label(struct iio_dev *indio_dev,
+> +				    const struct iio_chan_spec *chan, char *label)
+> +{
+> +	return sysfs_emit(label, "%s\n", chan->datasheet_name);
+> +}
+> +
+> +static int mt6359_auxadc_read_raw(struct iio_dev *indio_dev,
+> +				  const struct iio_chan_spec *chan,
+> +				  int *val, int *val2, long mask)
+> +{
+> +	struct mt6359_auxadc *adc_dev = iio_priv(indio_dev);
+> +	const struct mtk_pmic_auxadc_pdata *pdata = adc_dev->pdata;
+> +	const struct mtk_pmic_auxadc_chan *desc = &pdata->desc[chan->scan_index];
+> +	int ret;
+> +
+> +	if (mask == IIO_CHAN_INFO_SCALE) {
+> +		*val = desc->r_numerator * AUXADC_VOLT_FULL;
+> +
+> +		if (desc->r_denominator > 1) {
+> +			*val2 = desc->r_denominator;
+> +			return IIO_VAL_FRACTIONAL;
+> +		}
+> +
+> +		return IIO_VAL_INT;
+> +	}
+> +
+> +	mutex_lock(&adc_dev->lock);
+> +
+> +	switch (chan->scan_index) {
+> +	case PMIC_AUXADC_CHAN_IBAT:
+> +		ret = adc_dev->pdata->read_imp(adc_dev, val2, val);
+
+This is very odd. Why reverse the parameters between the IBAT and VBAT
+channels?  I suspect you want to throw away a parameter. That's fine but
+don't use val2 for it. Either make that function handle NULL pointers
+or add a local int temp or similar for this purpose.
+
+> +		break;
+> +	case PMIC_AUXADC_CHAN_VBAT:
+> +		ret = adc_dev->pdata->read_imp(adc_dev, val, val2);
+> +		break;
+> +	default:
+> +		ret = mt6359_auxadc_read_adc(adc_dev, chan, val);
+> +		break;
+> +	}
+> +
+> +	mutex_unlock(&adc_dev->lock);
+> +
+> +	if (ret) {
+> +		/*
+> +		 * If we get more than one timeout, it's possible that the
+> +		 * AUXADC is stuck: perform a full reset to recover it.
+> +		 */
+> +		if (ret == -ETIMEDOUT) {
+> +			if (adc_dev->timed_out) {
+> +				dev_warn(adc_dev->dev, "Resetting stuck ADC!\r\n");
+> +				mt6359_auxadc_reset(adc_dev);
+> +			}
+> +			adc_dev->timed_out = true;
+> +		}
+> +		return ret;
+> +	}
+> +	adc_dev->timed_out = false;
+> +
+> +	return IIO_VAL_INT;
+> +}
+> +
+> +static const struct iio_info mt6359_auxadc_info = {
+> +	.read_label = mt6359_auxadc_read_label,
+> +	.read_raw = mt6359_auxadc_read_raw,
+> +};
+> +
+> +static int mt6359_auxadc_probe(struct platform_device *pdev)
+> +{
+> +	struct device *mt6397_mfd_dev = pdev->dev.parent;
+> +	struct mt6359_auxadc *adc_dev;
+> +	struct iio_dev *indio_dev;
+> +	struct regmap *regmap;
+> +	int ret;
+> +
+> +	/* Regmap is from SoC PMIC Wrapper, parent of the mt6397 MFD */
+> +	regmap = dev_get_regmap(mt6397_mfd_dev->parent, NULL);
+> +	if (!regmap)
+> +		return dev_err_probe(&pdev->dev, -ENODEV, "Failed to get regmap\n");
+> +
+> +	indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*adc_dev));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	adc_dev = iio_priv(indio_dev);
+> +	adc_dev->regmap = regmap;
+> +	adc_dev->dev = &pdev->dev;
+> +
+> +	adc_dev->pdata = device_get_match_data(&pdev->dev);
+> +	if (!adc_dev->pdata)
+> +		return -EINVAL;
+> +
+> +	mutex_init(&adc_dev->lock);
+> +
+> +	mt6359_auxadc_reset(adc_dev);
+> +
+> +	indio_dev->dev.parent = &pdev->dev;
+No need to set that, the IIO core does it for you in
+devm_iio_device_alloc()
+> +	indio_dev->name = dev_name(&pdev->dev);
+
+This tends to be fragile at best.  The name should be the part number, best
+way to reliably get that is either to query a whoami type register if there
+is one or put it in your pdata.
+
+> +	indio_dev->info = &mt6359_auxadc_info;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->channels = adc_dev->pdata->channels;
+> +	indio_dev->num_channels = adc_dev->pdata->num_channels;
+> +
+> +	ret = devm_iio_device_register(&pdev->dev, indio_dev);
+> +	if (ret < 0)
+> +		return dev_err_probe(&pdev->dev, ret, "failed to register iio device\n");
+> +
+> +	return 0;
+> +}
 
