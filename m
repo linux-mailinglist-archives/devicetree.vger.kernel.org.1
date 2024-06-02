@@ -1,414 +1,593 @@
-Return-Path: <devicetree+bounces-71558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F5A18D74B7
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 12:12:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B3C38D74C5
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 12:41:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE19D1F21A2B
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 10:12:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5CFA91C20CE2
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 10:41:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F58E374F5;
-	Sun,  2 Jun 2024 10:11:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k7Y8XVga"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E61C383BE;
+	Sun,  2 Jun 2024 10:41:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m1045.netease.com (mail-m1045.netease.com [154.81.10.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E59C62570;
-	Sun,  2 Jun 2024 10:11:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1089F381DE;
+	Sun,  2 Jun 2024 10:41:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=154.81.10.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717323118; cv=none; b=uD5kiJeBblEwah7ifFfeUc1WUDRSLQBFuX8k7nc+0MxYEPN1HwBAazvl44iK+zWBnKiffNwirZhlxMXe5iQB1NnNsFDXLlgoR/xZJlzNhaSF5M4omPxIi0eOxOn9W9ItU7oNZvOf4dV3zaTGL4DPnk5pfU4lLYSNeJlDrqF2boY=
+	t=1717324872; cv=none; b=JlGSUwBQeQm58a3lUU4Fw56MmbYjNhPmJVXcCwkLH5cbuOkkKcz/0CjmRC4SD/FvjNmM2/NNfu+HCt+yFMoz9bL2utCxqxN3ZhGG8SK5zCo6fhhVgoiIrXV0UuBmhl/zaU0w4+EPGHhnqhGCbxydSK6vChUOvX7Pf4I2FluJs78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717323118; c=relaxed/simple;
-	bh=3C7h2gGaFwe/lVnaZ1oOKP+loUwkQ1i5bmocw8U6KR0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=J0B42gJn+04T2lNAzz9PlrIb3GNC5UHt3CflofbqXe8Z4MwIIDIsvbI9/RJFkrLKjFDYNX/flRa+cS6Jao3nCQkMBccMUJCZGkmC3gZr48HNBQToaN78uGmmzDjhQmkvjbTLLc84J+6nLrttEwa6tA1G68uad6DHLp3jAhOkPvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k7Y8XVga; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79E38C2BBFC;
-	Sun,  2 Jun 2024 10:11:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717323117;
-	bh=3C7h2gGaFwe/lVnaZ1oOKP+loUwkQ1i5bmocw8U6KR0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=k7Y8XVga2N1e+qxSmRn0mJ6rc+yQU9KpxnoGFrRMFQOfwJKtAbHTuZqTpLTVISkGh
-	 Jd/o6KGTanomCgomYtQQdUgNjxMcieir4fevBaEEZfC+J9IUAob7eX3QhkP0iTRZdT
-	 3CehY8wgphgp8idLu1rTcwvrnkbJA/iFc17pkbqpnZuqaxdV3erzjV6nVJbUuxZild
-	 v4bvu7eLChn8xncNQi+x51BZqAcxSWHEM02Ik1FyCkwpnOlM5iZjL4zxm32TDTWEgB
-	 1a0FDEp2A7sJDpnKCkKjcEK2YLa7BZScrtMI31CRh0rci5O4QNoEuOoxH4ZOAWnzUH
-	 wKG40uKVFbCQw==
-Date: Sun, 2 Jun 2024 11:11:41 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com, lee@kernel.org,
- andy@kernel.org, nuno.sa@analog.com, bigunclemax@gmail.com,
- dlechner@baylibre.com, marius.cristea@microchip.com,
- marcelo.schmitt@analog.com, fr0st61te@gmail.com, mitrutzceclan@gmail.com,
- mike.looijmans@topic.nl, marcus.folkesson@gmail.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v1 2/4] iio: adc: Add support for MediaTek MT6357/8/9
- Auxiliary ADC
-Message-ID: <20240602111141.0058f39e@jic23-huawei>
-In-Reply-To: <20240530093410.112716-3-angelogioacchino.delregno@collabora.com>
-References: <20240530093410.112716-1-angelogioacchino.delregno@collabora.com>
-	<20240530093410.112716-3-angelogioacchino.delregno@collabora.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1717324872; c=relaxed/simple;
+	bh=GhY+Imn1e9OwETt/ifR5ZlhhgFS2q2YWhUDW4HTjV6o=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=tpU4VTQYK9G6GU/yaogcaSxfMZZ9aZVYdWkjNRjFgupJ68kEUM93UOJDKzSf/6qov7B/bqCqsdxAll74Y4DmZ1NqT934BrAv3qkrshLYgMQ7bMa7wcRHxAoWOUcZlB1YdDigU+zPqgkfo5by7wZE7c+ocrfI6EIMTwrdSfbvh6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=154.81.10.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c01:69f0:352b:5c48:c47b:2d45])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id 8B1DD7E0150;
+	Sun,  2 Jun 2024 18:40:25 +0800 (CST)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: [PATCH 2/2] arm64: dts: mediatek: Add Bananapi BPI-R3 mini
+Date: Sun,  2 Jun 2024 18:40:21 +0800
+Message-Id: <20240602104021.387713-2-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240602104021.387713-1-amadeus@jmu.edu.cn>
+References: <20240602104021.387713-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZSk4eVk9OS0xJTx4fTh8YHVUTARMWGhIXJBQOD1
+	lXWRgSC1lBWUlPSx5BSBlIQUkYS0pBTUIdS0FITkkZQU4YT0NBGE9MGUFJH09OWVdZFhoPEhUdFF
+	lBWU9LSFVKSktISkNVSktLVUtZBg++
+X-HM-Tid: 0a8fd88944ff03a2kunm8b1dd7e0150
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NRA6Eww*EzNRH0M9Cg8XTyIv
+	FBNPCQhVSlVKTEpMSElPQ0lNSENJVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
+	Sx5BSBlIQUkYS0pBTUIdS0FITkkZQU4YT0NBGE9MGUFJH09OWVdZCAFZQUpITklMNwY+
 
-On Thu, 30 May 2024 11:34:08 +0200
-AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> wrote:
+The Bananapi BPI-R3 mini is a development board with the
+MediaTek MT7986A (Filogic 830) SoC.
 
-> Add a driver to support reading the Auxiliary ADC IP found in the
-> MediaTek MT6357, MT6358 and MT6359 Power Management ICs.
-> 
-> This driver provides multiple ADC channels for system monitoring,
-> such as battery voltage, PMIC temperature, PMIC-internal voltage
-> regulators temperature, and others.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Key Features:
+  2GB DDR4 RAM
+  8GB eMMC flash
+  128MB Nand flash
+  MT7976C DBDC WiFi
+  1x FAN connector
+  1x NANO SIM slot
+  1x USB2.0 Type-A
+  1x M.2 Key B USB
+  1x M.2 Key M PCIe
+  2x 2.5GbE EN8811H Ethernet
+  Type-C PD 12V Power supply
 
-I'll leave you to answer the 'why a new driver' in response to Andy's review
-and just assume it makes sense whilst reviewing this.
+Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+---
+ arch/arm64/boot/dts/mediatek/Makefile         |   1 +
+ .../mediatek/mt7986a-bananapi-bpi-r3-mini.dts | 480 ++++++++++++++++++
+ 2 files changed, 481 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini.dts
 
-What are IMP channels?
+diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+index 37b4ca3a87c9..14af5681d0ee 100644
+--- a/arch/arm64/boot/dts/mediatek/Makefile
++++ b/arch/arm64/boot/dts/mediatek/Makefile
+@@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7981b-xiaomi-ax3000t.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-acelink-ew-7886cax.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-emmc.dtbo
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-mini.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-nand.dtbo
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-nor.dtbo
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-sd.dtbo
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini.dts
+new file mode 100644
+index 000000000000..683b7394ff79
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-mini.dts
+@@ -0,0 +1,480 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++
++/dts-v1/;
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/leds/common.h>
++
++#include "mt7986a.dtsi"
++
++/ {
++	model = "Bananapi BPI-R3 mini";
++	chassis-type = "embedded";
++	compatible = "bananapi,bpi-r3-mini", "mediatek,mt7986a";
++
++	aliases {
++		serial0 = &uart0;
++		ethernet0 = &gmac0;
++		ethernet1 = &gmac1;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	keys {
++		compatible = "gpio-keys";
++
++		key-reset {
++			label = "reset";
++			linux,code = <KEY_RESTART>;
++			gpios = <&pio 7 GPIO_ACTIVE_LOW>;
++		};
++	};
++
++	leds {
++		compatible = "gpio-leds";
++
++		led-0 {
++			function = LED_FUNCTION_STATUS;
++			color = <LED_COLOR_ID_GREEN>;
++			gpios = <&pio 19 GPIO_ACTIVE_HIGH>;
++			default-state = "on";
++		};
++	};
++
++	fan: pwm-fan {
++		compatible = "pwm-fan";
++		/* cooling level (0, 1, 2, 3) - pwm inverted */
++		cooling-levels = <255 128 64 0>;
++		pwms = <&pwm 0 10000>;
++		#cooling-cells = <2>;
++	};
++
++	rfkill {
++		compatible = "rfkill-gpio";
++		label = "rfkill-modem";
++		radio-type = "wwan";
++		reset-gpios = <&pio 15 GPIO_ACTIVE_HIGH>;
++		shutdown-gpios = <&pio 13 GPIO_ACTIVE_HIGH>;
++	};
++
++	dcin: regulator-12vd {
++		compatible = "regulator-fixed";
++		regulator-name = "12vd";
++		regulator-min-microvolt = <12000000>;
++		regulator-max-microvolt = <12000000>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
++	reg_1p8v: regulator-1p8v {
++		compatible = "regulator-fixed";
++		regulator-name = "1.8vd";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		regulator-boot-on;
++		regulator-always-on;
++		vin-supply = <&dcin>;
++	};
++
++	reg_3p3v: regulator-3p3v {
++		compatible = "regulator-fixed";
++		regulator-name = "3.3vd";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-boot-on;
++		regulator-always-on;
++		vin-supply = <&dcin>;
++	};
++
++	reg_5v_vbus: regulator-5v-vbus {
++		compatible = "regulator-fixed";
++		regulator-name = "5v_vbus1";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-boot-on;
++		regulator-always-on;
++		vin-supply = <&dcin>;
++	};
++
++	/* labeled A_EN8811_PWR in schematic */
++	reg_phya: regulator-phya {
++		compatible = "regulator-fixed";
++		gpio = <&pio 16 GPIO_ACTIVE_LOW>;
++		regulator-name = "reg_phya";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
++	/* labeled B_EN8811_PWR in schematic */
++	reg_phyb: regulator-phyb {
++		compatible = "regulator-fixed";
++		gpio = <&pio 17 GPIO_ACTIVE_LOW>;
++		regulator-name = "reg_phyb";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
++	vcc_keyb: regulator-vcc-keyb {
++		compatible = "regulator-fixed";
++		gpio = <&pio 20 GPIO_ACTIVE_LOW>;
++		regulator-name = "vcc_keyb";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&reg_3p3v>;
++	};
++};
++
++&cpu_thermal {
++	cooling-maps {
++		map-cpu-active-high {
++			/* active: set fan to cooling level 3 */
++			cooling-device = <&fan 3 3>;
++			trip = <&cpu_trip_active_high>;
++		};
++
++		map-cpu-active-med {
++			/* active: set fan to cooling level 2 */
++			cooling-device = <&fan 2 2>;
++			trip = <&cpu_trip_active_med>;
++		};
++
++		map-cpu-active-low {
++			/* active: set fan to cooling level 1 */
++			cooling-device = <&fan 1 1>;
++			trip = <&cpu_trip_active_low>;
++		};
++	};
++};
++
++&crypto {
++	status = "okay";
++};
++
++&eth {
++	pinctrl-names = "default";
++	pinctrl-0 = <&mdio_pins>;
++	status = "okay";
++
++	gmac0: mac@0 {
++		compatible = "mediatek,eth-mac";
++		reg = <0>;
++		phy-mode = "2500base-x";
++		phy-handle = <&phy14>;
++		phy-supply = <&reg_phya>;
++	};
++
++	gmac1: mac@1 {
++		compatible = "mediatek,eth-mac";
++		reg = <1>;
++		phy-mode = "2500base-x";
++		phy-handle = <&phy15>;
++		phy-supply = <&reg_phyb>;
++	};
++
++	mdio: mdio-bus {
++		#address-cells = <1>;
++		#size-cells = <0>;
++	};
++};
++
++&mdio {
++	phy14: phy@14 {
++		compatible = "ethernet-phy-ieee802.3-c45";
++		reg = <14>;
++		reset-assert-us = <10000>;
++		reset-deassert-us = <20000>;
++		reset-gpios = <&pio 49 GPIO_ACTIVE_LOW>;
++		interrupt-parent = <&pio>;
++		interrupts = <48 IRQ_TYPE_EDGE_FALLING>;
++		airoha,pnswap-rx;
++
++		leds {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			led@0 {
++				reg = <0>;
++				function = LED_FUNCTION_LAN;
++				color = <LED_COLOR_ID_AMBER>;
++				default-state = "keep";
++			};
++
++			led@1 {
++				reg = <1>;
++				function = LED_FUNCTION_LAN;
++				color = <LED_COLOR_ID_GREEN>;
++				default-state = "keep";
++			};
++		};
++	};
++
++	phy15: phy@15 {
++		compatible = "ethernet-phy-ieee802.3-c45";
++		reg = <15>;
++		reset-assert-us = <10000>;
++		reset-deassert-us = <20000>;
++		reset-gpios = <&pio 47 GPIO_ACTIVE_LOW>;
++		interrupt-parent = <&pio>;
++		interrupts = <46 IRQ_TYPE_EDGE_FALLING>;
++		airoha,pnswap-rx;
++
++		leds {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			led@0 {
++				reg = <0>;
++				function = LED_FUNCTION_WAN;
++				color = <LED_COLOR_ID_AMBER>;
++				default-state = "keep";
++			};
++
++			led@1 {
++				reg = <1>;
++				function = LED_FUNCTION_WAN;
++				color = <LED_COLOR_ID_GREEN>;
++				default-state = "keep";
++			};
++		};
++	};
++};
++
++&i2c0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c0_pins>;
++	status = "okay";
++
++	eeprom@50 {
++		compatible = "atmel,24c02";
++		reg = <0x50>;
++		pagesize = <8>;
++		size = <256>;
++	};
++};
++
++&spi0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi_flash_pins>;
++	status = "okay";
++
++	spi_nand: flash@0 {
++		compatible = "spi-nand";
++		#address-cells = <1>;
++		#size-cells = <1>;
++		reg = <0>;
++
++		spi-max-frequency = <52000000>;
++		spi-rx-bus-width = <4>;
++		spi-tx-bus-width = <4>;
++	};
++};
++
++&mmc0 {
++	bus-width = <8>;
++	cap-mmc-highspeed;
++	hs400-ds-delay = <0x14014>;
++	max-frequency = <200000000>;
++	mmc-hs200-1_8v;
++	mmc-hs400-1_8v;
++	non-removable;
++	no-sd;
++	no-sdio;
++	pinctrl-names = "default", "state_uhs";
++	pinctrl-0 = <&mmc0_pins_default>;
++	pinctrl-1 = <&mmc0_pins_uhs>;
++	vmmc-supply = <&reg_3p3v>;
++	vqmmc-supply = <&reg_1p8v>;
++	status = "okay";
++};
++
++&pcie {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pcie_pins>;
++	status = "okay";
++};
++
++&pcie_phy {
++	status = "okay";
++};
++
++&pio {
++	i2c0_pins: i2c0-pins {
++		mux {
++			function = "i2c";
++			groups = "i2c";
++		};
++	};
++
++	mdio_pins: mdio-pins {
++		mux {
++			function = "eth";
++			groups = "mdc_mdio";
++		};
++	};
++
++	spi_flash_pins: spi-flash-pins {
++		mux {
++			function = "spi";
++			groups = "spi0", "spi0_wp_hold";
++		};
++		conf-pu {
++			pins = "SPI2_CS", "SPI2_HOLD", "SPI2_WP";
++			drive-strength = <8>;
++			mediatek,pull-up-adv = <0>; /* bias-disable */
++		};
++		conf-pd {
++			pins = "SPI2_CLK", "SPI2_MOSI", "SPI2_MISO";
++			drive-strength = <8>;
++			mediatek,pull-down-adv = <0>; /* bias-disable */
++		};
++	};
++
++	mmc0_pins_default: mmc0-pins {
++		mux {
++			function = "emmc";
++			groups = "emmc_51";
++		};
++		conf-cmd-dat {
++			pins = "EMMC_DATA_0", "EMMC_DATA_1", "EMMC_DATA_2",
++			       "EMMC_DATA_3", "EMMC_DATA_4", "EMMC_DATA_5",
++			       "EMMC_DATA_6", "EMMC_DATA_7", "EMMC_CMD";
++			input-enable;
++			drive-strength = <4>;
++			mediatek,pull-up-adv = <1>; /* pull-up 10K */
++		};
++		conf-clk {
++			pins = "EMMC_CK";
++			drive-strength = <6>;
++			mediatek,pull-down-adv = <2>; /* pull-down 50K */
++		};
++		conf-ds {
++			pins = "EMMC_DSL";
++			mediatek,pull-down-adv = <2>; /* pull-down 50K */
++		};
++		conf-rst {
++			pins = "EMMC_RSTB";
++			drive-strength = <4>;
++			mediatek,pull-up-adv = <1>; /* pull-up 10K */
++		};
++	};
++
++	mmc0_pins_uhs: mmc0-uhs-pins {
++		mux {
++			function = "emmc";
++			groups = "emmc_51";
++		};
++		conf-cmd-dat {
++			pins = "EMMC_DATA_0", "EMMC_DATA_1", "EMMC_DATA_2",
++			       "EMMC_DATA_3", "EMMC_DATA_4", "EMMC_DATA_5",
++			       "EMMC_DATA_6", "EMMC_DATA_7", "EMMC_CMD";
++			input-enable;
++			drive-strength = <4>;
++			mediatek,pull-up-adv = <1>; /* pull-up 10K */
++		};
++		conf-clk {
++			pins = "EMMC_CK";
++			drive-strength = <6>;
++			mediatek,pull-down-adv = <2>; /* pull-down 50K */
++		};
++		conf-ds {
++			pins = "EMMC_DSL";
++			mediatek,pull-down-adv = <2>; /* pull-down 50K */
++		};
++		conf-rst {
++			pins = "EMMC_RSTB";
++			drive-strength = <4>;
++			mediatek,pull-up-adv = <1>; /* pull-up 10K */
++		};
++	};
++
++	pcie_pins: pcie-pins {
++		mux {
++			function = "pcie";
++			groups = "pcie_clk", "pcie_wake", "pcie_pereset";
++		};
++	};
++
++	pwm_pins: pwm-pins {
++		mux {
++			function = "pwm";
++			groups = "pwm0", "pwm1_0";
++		};
++	};
++
++	uart1_pins: uart1-pins {
++		mux {
++			function = "uart";
++			groups = "uart1";
++		};
++	};
++
++	wf_led_pins: wf-led-pins {
++		mux {
++			function = "led";
++			groups = "wifi_led";
++		};
++	};
++
++	wf_dbdc_pins: wf-dbdc-pins {
++		mux {
++			function = "wifi";
++			groups = "wf_dbdc";
++		};
++		conf {
++			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
++			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
++			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
++			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
++			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
++			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
++			       "WF1_TOP_CLK", "WF1_TOP_DATA";
++			drive-strength = <4>;
++		};
++	};
++};
++
++&pwm {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pwm_pins>;
++	status = "okay";
++};
++
++&ssusb {
++	vusb33-supply = <&vcc_keyb>;
++	vbus-supply = <&reg_5v_vbus>;
++	status = "okay";
++};
++
++&trng {
++	status = "okay";
++};
++
++&uart0 {
++	status = "okay";
++};
++
++&uart1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart1_pins>;
++	status = "okay";
++};
++
++&usb_phy {
++	status = "okay";
++};
++
++&watchdog {
++	status = "okay";
++};
++
++&wifi {
++	pinctrl-names = "dbdc";
++	pinctrl-0 = <&wf_dbdc_pins>, <&wf_led_pins>;
++	status = "okay";
++};
+-- 
+2.25.1
 
-A few additional comments inline.
-
-Thanks,
-
-Jonathan
-
-> diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-> index edb32ce2af02..da7d4452b1e0 100644
-> --- a/drivers/iio/adc/Makefile
-> +++ b/drivers/iio/adc/Makefile
-> @@ -79,6 +79,7 @@ obj-$(CONFIG_MCP320X) += mcp320x.o
->  obj-$(CONFIG_MCP3422) += mcp3422.o
->  obj-$(CONFIG_MCP3564) += mcp3564.o
->  obj-$(CONFIG_MCP3911) += mcp3911.o
-> +obj-$(CONFIG_MEDIATEK_MT6359_AUXADC) += mt6359-auxadc.o
->  obj-$(CONFIG_MEDIATEK_MT6360_ADC) += mt6360-adc.o
->  obj-$(CONFIG_MEDIATEK_MT6370_ADC) += mt6370-adc.o
->  obj-$(CONFIG_MEDIATEK_MT6577_AUXADC) += mt6577_auxadc.o
-> diff --git a/drivers/iio/adc/mt6359-auxadc.c b/drivers/iio/adc/mt6359-auxadc.c
-> new file mode 100644
-> index 000000000000..0481bd3f0144
-> --- /dev/null
-> +++ b/drivers/iio/adc/mt6359-auxadc.c
-> @@ -0,0 +1,598 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * MediaTek MT6359 PMIC AUXADC IIO driver
-> + *
-> + * Copyright (c) 2021 MediaTek Inc.
-> + * Copyright (c) 2024 Collabora Ltd
-> + * Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> + */
-> +
-> +#include <linux/delay.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/mfd/mt6397/core.h>
-> +
-> +#include <dt-bindings/iio/adc/mediatek,mt6357-auxadc.h>
-> +#include <dt-bindings/iio/adc/mediatek,mt6358-auxadc.h>
-> +#include <dt-bindings/iio/adc/mediatek,mt6359-auxadc.h>
-
-So I 'guess' these headers are dt-bindings because you want
-to consume them from other drivers?  That's fine, but if so please
-add info on that to the DT binding patch.
-
-> +/**
-> + * struct mt6359_auxadc - Main driver structure
-> + * @dev:           Device pointer
-> + * @regmap:        Regmap from SoC PMIC Wrapper
-> + * @pdata:         PMIC specific platform data
-> + * @lock:          Mutex lock for AUXADC reads
-
-Expand on this mutex comment.  What is it protecting?
-I think it's about ensuring they are serialized to ensure configuration
-is not changed during the read sequence.
-
-> + * @timed_out:     Signals whether the last read timed out
-> + */
-> +struct mt6359_auxadc {
-> +	struct device *dev;
-> +	struct regmap *regmap;
-> +	const struct mtk_pmic_auxadc_pdata *pdata;
-> +	struct mutex lock;
-> +	bool timed_out;
-> +};
-> +
-
-> +/**
-> + * struct mtk_pmic_auxadc_pdata - PMIC specific platform data
-
-I'm not sure this is conventionally what we think of as platform
-data.  This is chip specific stuff. Platform data tends to be
-more about how things are wired up etc.  A common term for this
-stuff is chip_info.
-
-> + * @channels:       IIO specification of ADC channels
-> + * @num_channels:   Number of ADC channels
-> + * @desc:           PMIC AUXADC channel data
-> + * @regs:           List of PMIC specific registers
-> + * @sec_unlock_key: Security unlock key for HK_TOP writes
-> + * @imp_adc_num:    ADC channel for IMP readings
-> + * @read_imp:       Callback to read PMIC IMP channels
-> + */
-> +struct mtk_pmic_auxadc_pdata {
-> +	const struct iio_chan_spec *channels;
-> +	int num_channels;
-> +	const struct mtk_pmic_auxadc_chan *desc;
-> +	const u16 *regs;
-> +	u16 sec_unlock_key;
-> +	u8 imp_adc_num;
-> +	int (*read_imp)(struct mt6359_auxadc *adc_dev, int *vbat, int *ibat);
-> +};
-> +
-
-> +
-> +static const struct mtk_pmic_auxadc_chan mt6359_auxadc_ch_desc[] = {
-> +	MTK_PMIC_ADC_CHAN(BATADC, PMIC_AUXADC_RQST0, 0, 128, 7, 2),
-> +	MTK_PMIC_ADC_CHAN(BAT_TEMP, PMIC_AUXADC_RQST0, 3, 8, 5, 2),
-> +	MTK_PMIC_ADC_CHAN(CHIP_TEMP, PMIC_AUXADC_RQST0, 4, 8, 1, 1),
-> +	MTK_PMIC_ADC_CHAN(ACCDET, PMIC_AUXADC_RQST0, 5, 8, 1, 1),
-> +	MTK_PMIC_ADC_CHAN(VDCXO, PMIC_AUXADC_RQST0, 6, 8, 3, 2),
-> +	MTK_PMIC_ADC_CHAN(TSX_TEMP, PMIC_AUXADC_RQST0, 7, 128, 1, 1),
-> +	MTK_PMIC_ADC_CHAN(HPOFS_CAL, PMIC_AUXADC_RQST0, 9, 256, 1, 1),
-> +	MTK_PMIC_ADC_CHAN(DCXO_TEMP, PMIC_AUXADC_RQST0, 10, 16, 1, 1),
-> +	MTK_PMIC_ADC_CHAN(VBIF, PMIC_AUXADC_RQST0, 11, 8, 5, 2),
-> +	MTK_PMIC_ADC_CHAN(VCORE_TEMP, PMIC_AUXADC_RQST1, 8, 8, 1, 1),
-> +	MTK_PMIC_ADC_CHAN(VPROC_TEMP, PMIC_AUXADC_RQST1, 9, 8, 1, 1),
-> +	MTK_PMIC_ADC_CHAN(VGPU_TEMP, PMIC_AUXADC_RQST1, 10, 8, 1, 1),
-> +
-> +	/* IMP channels */
-What are these? Expand IMP perhaps!
-
-> +	MTK_PMIC_ADC_CHAN(VBAT, 0, 0, 128, 7, 2),
-> +	MTK_PMIC_ADC_CHAN(IBAT, 0, 0, 128, 7, 2),
-> +};
-
-
-> +static int mt6359_read_imp(struct mt6359_auxadc *adc_dev, int *vbat, int *ibat)
-> +{
-> +	const struct mtk_pmic_auxadc_pdata *pdata = adc_dev->pdata;
-> +	struct regmap *regmap = adc_dev->regmap;
-> +	int val_v, val_i, ret;
-> +	u32 val;
-> +
-> +	/* Start conversion */
-> +	regmap_write(regmap, pdata->regs[PMIC_AUXADC_IMP0], MT6359_IMP0_CONV_EN);
-> +	ret = regmap_read_poll_timeout(regmap, pdata->regs[PMIC_AUXADC_IMP1],
-> +				       val, !!(val & MT6359_IMP1_IRQ_RDY),
-
-The condition is just as true or false without the !! so drop those.
-
-> +				       IMP_POLL_DELAY_US, AUXADC_TIMEOUT_US);
-> +
-> +	/* Stop conversion regardless of the result */
-> +	regmap_write(regmap, pdata->regs[PMIC_AUXADC_IMP0], 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* If it succeeded, wait for the registers to be populated */
-> +	usleep_range(IMP_STOP_DELAY_US, IMP_STOP_DELAY_US + 50);
-> +
-> +	ret = regmap_read(regmap, pdata->regs[PMIC_AUXADC_IMP3], &val_v);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_read(regmap, pdata->regs[PMIC_FGADC_R_CON0], &val_i);
-> +	if (ret)
-> +		return ret;
-
-Why read them both if only one is wanted?  Do you need to read the data
-for some reason - i.e. to allow for fresh reads or clear some status bit
-or similar?  If so add a comment.  Otherwise easy to do
-
-	if (vbat) {
-		int val_v;
-		ret = regmap_read(regmap, pdata->regs[PMIC_AUXADC_IMP3], &val_v);
-		if (ret)
-			return ret;
-		*vbat = val_v;
-	}
-etc
-
-
-> +
-> +	*vbat = val_v;
-> +	*ibat = val_i;
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct mtk_pmic_auxadc_pdata mt6357_pdata = {
-> +	.channels = mt6357_auxadc_channels,
-> +	.num_channels = ARRAY_SIZE(mt6357_auxadc_channels),
-> +	.desc = mt6357_auxadc_ch_desc,
-> +	.regs = mt6357_auxadc_regs,
-> +	.imp_adc_num = MT6357_IMP_ADC_NUM,
-> +	.read_imp = mt6358_read_imp,
-> +};
-> +
-> +static const struct mtk_pmic_auxadc_pdata mt6358_pdata = {
-> +	.channels = mt6358_auxadc_channels,
-> +	.num_channels = ARRAY_SIZE(mt6358_auxadc_channels),
-> +	.desc = mt6358_auxadc_ch_desc,
-> +	.regs = mt6358_auxadc_regs,
-> +	.imp_adc_num = MT6358_IMP_ADC_NUM,
-> +	.read_imp = mt6358_read_imp,
-> +};
-> +
-> +static const struct mtk_pmic_auxadc_pdata mt6359_pdata = {
-> +	.channels = mt6359_auxadc_channels,
-> +	.num_channels = ARRAY_SIZE(mt6359_auxadc_channels),
-> +	.desc = mt6359_auxadc_ch_desc,
-> +	.regs = mt6359_auxadc_regs,
-> +	.sec_unlock_key = 0x6359,
-> +	.read_imp = mt6359_read_imp,
-> +};
->
-
-> +
-> +static int mt6359_auxadc_read_label(struct iio_dev *indio_dev,
-> +				    const struct iio_chan_spec *chan, char *label)
-> +{
-> +	return sysfs_emit(label, "%s\n", chan->datasheet_name);
-> +}
-> +
-> +static int mt6359_auxadc_read_raw(struct iio_dev *indio_dev,
-> +				  const struct iio_chan_spec *chan,
-> +				  int *val, int *val2, long mask)
-> +{
-> +	struct mt6359_auxadc *adc_dev = iio_priv(indio_dev);
-> +	const struct mtk_pmic_auxadc_pdata *pdata = adc_dev->pdata;
-> +	const struct mtk_pmic_auxadc_chan *desc = &pdata->desc[chan->scan_index];
-> +	int ret;
-> +
-> +	if (mask == IIO_CHAN_INFO_SCALE) {
-> +		*val = desc->r_numerator * AUXADC_VOLT_FULL;
-> +
-> +		if (desc->r_denominator > 1) {
-> +			*val2 = desc->r_denominator;
-> +			return IIO_VAL_FRACTIONAL;
-> +		}
-> +
-> +		return IIO_VAL_INT;
-> +	}
-> +
-> +	mutex_lock(&adc_dev->lock);
-> +
-> +	switch (chan->scan_index) {
-> +	case PMIC_AUXADC_CHAN_IBAT:
-> +		ret = adc_dev->pdata->read_imp(adc_dev, val2, val);
-
-This is very odd. Why reverse the parameters between the IBAT and VBAT
-channels?  I suspect you want to throw away a parameter. That's fine but
-don't use val2 for it. Either make that function handle NULL pointers
-or add a local int temp or similar for this purpose.
-
-> +		break;
-> +	case PMIC_AUXADC_CHAN_VBAT:
-> +		ret = adc_dev->pdata->read_imp(adc_dev, val, val2);
-> +		break;
-> +	default:
-> +		ret = mt6359_auxadc_read_adc(adc_dev, chan, val);
-> +		break;
-> +	}
-> +
-> +	mutex_unlock(&adc_dev->lock);
-> +
-> +	if (ret) {
-> +		/*
-> +		 * If we get more than one timeout, it's possible that the
-> +		 * AUXADC is stuck: perform a full reset to recover it.
-> +		 */
-> +		if (ret == -ETIMEDOUT) {
-> +			if (adc_dev->timed_out) {
-> +				dev_warn(adc_dev->dev, "Resetting stuck ADC!\r\n");
-> +				mt6359_auxadc_reset(adc_dev);
-> +			}
-> +			adc_dev->timed_out = true;
-> +		}
-> +		return ret;
-> +	}
-> +	adc_dev->timed_out = false;
-> +
-> +	return IIO_VAL_INT;
-> +}
-> +
-> +static const struct iio_info mt6359_auxadc_info = {
-> +	.read_label = mt6359_auxadc_read_label,
-> +	.read_raw = mt6359_auxadc_read_raw,
-> +};
-> +
-> +static int mt6359_auxadc_probe(struct platform_device *pdev)
-> +{
-> +	struct device *mt6397_mfd_dev = pdev->dev.parent;
-> +	struct mt6359_auxadc *adc_dev;
-> +	struct iio_dev *indio_dev;
-> +	struct regmap *regmap;
-> +	int ret;
-> +
-> +	/* Regmap is from SoC PMIC Wrapper, parent of the mt6397 MFD */
-> +	regmap = dev_get_regmap(mt6397_mfd_dev->parent, NULL);
-> +	if (!regmap)
-> +		return dev_err_probe(&pdev->dev, -ENODEV, "Failed to get regmap\n");
-> +
-> +	indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*adc_dev));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	adc_dev = iio_priv(indio_dev);
-> +	adc_dev->regmap = regmap;
-> +	adc_dev->dev = &pdev->dev;
-> +
-> +	adc_dev->pdata = device_get_match_data(&pdev->dev);
-> +	if (!adc_dev->pdata)
-> +		return -EINVAL;
-> +
-> +	mutex_init(&adc_dev->lock);
-> +
-> +	mt6359_auxadc_reset(adc_dev);
-> +
-> +	indio_dev->dev.parent = &pdev->dev;
-No need to set that, the IIO core does it for you in
-devm_iio_device_alloc()
-> +	indio_dev->name = dev_name(&pdev->dev);
-
-This tends to be fragile at best.  The name should be the part number, best
-way to reliably get that is either to query a whoami type register if there
-is one or put it in your pdata.
-
-> +	indio_dev->info = &mt6359_auxadc_info;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->channels = adc_dev->pdata->channels;
-> +	indio_dev->num_channels = adc_dev->pdata->num_channels;
-> +
-> +	ret = devm_iio_device_register(&pdev->dev, indio_dev);
-> +	if (ret < 0)
-> +		return dev_err_probe(&pdev->dev, ret, "failed to register iio device\n");
-> +
-> +	return 0;
-> +}
 
