@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-71639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C7AB8D7755
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 19:41:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 670A68D7759
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 19:49:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB368B2110A
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 17:41:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A164E1C20943
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 17:49:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4BCC59167;
-	Sun,  2 Jun 2024 17:40:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 861435B05E;
+	Sun,  2 Jun 2024 17:49:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="1UPtJBVF"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="O8w7g2UM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1075E2A1B0;
-	Sun,  2 Jun 2024 17:40:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D9165BAD7;
+	Sun,  2 Jun 2024 17:49:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717350055; cv=none; b=tPl0kcIX91t7fIe+l9XhMdteBgv83y4XSobgxSYkjrAJOF0VvfQCAnGvopPe7jy089ifMYDZL9GC4nPJXdm985JGz57fkoTzaNWsK7hnZMleG9F0+1SkbhnDGCzUGsvsLJB1ecFOS1gSALxG8oe5vLxEzGEHsvmjJPFRa+20K74=
+	t=1717350581; cv=none; b=P/FzOQvPkG/NwBA/mAjyWBI4X+WDfD6SC1J26kNfuE9TdiTBFr1CwQuM6cM7dpbjkt8ofyQ/mxwodnPchYR7R+ashihw0SwmqMg9AsDdEVMVJE20Zyc3Pz2TwFjlfgODCRTAkawb31iRlyUSedvSjdcaUMtOIl61H7epAwjFcfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717350055; c=relaxed/simple;
-	bh=3BmgOrrjJchJf7GHFENjnfP4rkhQa1cvwI3O27JLrJc=;
+	s=arc-20240116; t=1717350581; c=relaxed/simple;
+	bh=BMaJyUYyFlrCDiq6D+RqsBfR4PTgy9fHEvtBj32ZTIc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=djDp4D0GxvGfIndcPPaQwiY4t29ueTsBNcErkeEPirP3TUBty8sFF1gQam7rbrHzrgsPEWYbOrgmn9zgGaIDMbD/sE5iJC2aA1s+vLn1OWyAqkmTj+oH56vcAIof869Ldh5sBgyY+qSEE49bcLLJDLqnKyc/3jivlJyazTBt7v4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=1UPtJBVF; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=d1rTWMJ1IeOEYCBohV3xBfkNq4L71Rul7fCaiT/whIBB+4768g28drwPQv8hlYAF1vX7WPOK9p2AFITs3KlU+D/ar98sUoM0E1sKlICS0IDFcFUggACWxUPV6/JtZW8KmqtXEaGWOuMpLKWcs2kWVRwOG0T8PzoDctdnNBCiOu0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=O8w7g2UM; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -36,13 +36,13 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=BQZdOztJv9zJbupc+nFnNkwvaoesiKaBWBz4tDGOyKU=; b=1UPtJBVF5HkvdqGjhhD6dO8D6a
-	nvj6EMNZeuaymn1t+hvWa52SatxftWE4YNz8SQTq7Jno+RNW/josUe9Xr03QP6sgD2lrNdtlzzC5z
-	BTS+DeERH3hl5QzExuLbPjF6eOjI9j3GEVA9dopKrLCV5ZgtYlDbBlgWhq9qUO2nx5cc=;
+	bh=byCtsjLVsR8MNvcIFo06ZFMO7iciMwZyIraJ52in2x4=; b=O8w7g2UMnZTu/PRptTEnTo+W7K
+	RxPLdBaW7k1UH7E3iVk1CktgE2aobT6hFnfgcHiMqQWh2XbQjBQLEkg6WNkPzXC+P21EOENF75+uN
+	x+dTQOae1KifMHVfaMdWq6Oym/gMB9ovvP6RaHXYu3qydEGKtZnXljsvK3C82K/y8Ymw=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1sDpCH-00GeHn-I0; Sun, 02 Jun 2024 19:40:45 +0200
-Date: Sun, 2 Jun 2024 19:40:45 +0200
+	id 1sDpKj-00GeK2-BY; Sun, 02 Jun 2024 19:49:29 +0200
+Date: Sun, 2 Jun 2024 19:49:29 +0200
 From: Andrew Lunn <andrew@lunn.ch>
 To: Lorenzo Bianconi <lorenzo@kernel.org>
 Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
@@ -54,11 +54,12 @@ Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
 	will@kernel.org, upstream@airoha.com,
 	angelogioacchino.delregno@collabora.com,
 	benjamin.larsson@genexis.eu
-Subject: Re: [PATCH net-next 3/3] net: airoha: Introduce ethernet support for
- EN7581 SoC
-Message-ID: <9efb0c64-d3b2-478b-953e-94ef8be3ddec@lunn.ch>
+Subject: Re: [PATCH net-next 2/3] arm64: dts: airoha: Add EN7581 ethernet node
+Message-ID: <1ffe4a56-c3fc-4553-aa32-c7a0d9780b5c@lunn.ch>
 References: <cover.1717150593.git.lorenzo@kernel.org>
- <4d63e7706ef7ae12aade49e41bb6d0bb6b429706.1717150593.git.lorenzo@kernel.org>
+ <0f4194ef6243ae0767887f25a4e661092c10fbbd.1717150593.git.lorenzo@kernel.org>
+ <e79b7180-74ef-4306-9f73-47ee54c91660@lunn.ch>
+ <ZlyuCeh9vOaZJsGy@lore-desk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,31 +68,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <4d63e7706ef7ae12aade49e41bb6d0bb6b429706.1717150593.git.lorenzo@kernel.org>
+In-Reply-To: <ZlyuCeh9vOaZJsGy@lore-desk>
 
-> +static void airoha_remove(struct platform_device *pdev)
-> +{
-> +	struct airoha_eth *eth = platform_get_drvdata(pdev);
-> +	int i;
-> +
-> +	debugfs_remove(eth->debugfs_dir);
-> +
-> +	airoha_qdma_for_each_q_rx(eth, i) {
-> +		struct airoha_queue *q = &eth->q_rx[i];
-> +
-> +		netif_napi_del(&q->napi);
-> +		airoha_qdma_clenaup_rx_queue(q);
-> +		page_pool_destroy(q->page_pool);
-> +	}
-> +
-> +	for (i = 0; i < ARRAY_SIZE(eth->q_tx_irq); i++)
-> +		netif_napi_del(&eth->q_tx_irq[i].napi);
-> +	for (i = 0; i < ARRAY_SIZE(eth->q_tx); i++)
-> +		airoha_qdma_clenaup_tx_queue(&eth->q_tx[i]);
-> +}
+On Sun, Jun 02, 2024 at 07:38:17PM +0200, Lorenzo Bianconi wrote:
+> > On Fri, May 31, 2024 at 12:22:19PM +0200, Lorenzo Bianconi wrote:
+> > > Introduce the Airoha EN7581 ethernet node in Airoha EN7581 dtsi
+> > > 
+> > > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > > ---
+> > >  arch/arm64/boot/dts/airoha/en7581-evb.dts |  4 +++
+> > >  arch/arm64/boot/dts/airoha/en7581.dtsi    | 31 +++++++++++++++++++++++
+> > >  2 files changed, 35 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/airoha/en7581-evb.dts b/arch/arm64/boot/dts/airoha/en7581-evb.dts
+> > > index cf58e43dd5b2..82da86ae00b0 100644
+> > > --- a/arch/arm64/boot/dts/airoha/en7581-evb.dts
+> > > +++ b/arch/arm64/boot/dts/airoha/en7581-evb.dts
+> > > @@ -24,3 +24,7 @@ memory@80000000 {
+> > >  		reg = <0x0 0x80000000 0x2 0x00000000>;
+> > >  	};
+> > >  };
+> > > +
+> > > +&eth0 {
+> > > +	status = "okay";
+> > > +};
+> > 
+> > Is that enough to make it useful? Don't you need a phy-handle, or
+> > phy-mode?
+> 
+> This changes is actually in a subsequent patch (not posted yet) where I will
+> add support for the mt7530 dsa switch. Do you prefer to add it here?
 
-You don't appear to unregister the netdev. remove() should basically
-be the reverse of probe().
+I would prefer you move this later when you add the switch.
 
-    Andrew
+	Andrew
 
