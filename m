@@ -1,172 +1,313 @@
-Return-Path: <devicetree+bounces-71605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AAF88D7662
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 16:40:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC5218D7677
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 16:54:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C417D281438
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 14:40:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E8B94B21AEA
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 14:54:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF0527E579;
-	Sun,  2 Jun 2024 14:37:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85EE940C03;
+	Sun,  2 Jun 2024 14:54:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MzgnCH8f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cLRxmIH9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0A6F78C79;
-	Sun,  2 Jun 2024 14:37:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55DB4B64B;
+	Sun,  2 Jun 2024 14:54:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717339026; cv=none; b=t5J+Cyz8K30jod1emSapFK/B7yCGpRXbyO6ZZZHtXwp3UdaIEnFbNQJXAEA4hCLNuTuopgIrq3+JgP+qZW26LtZpvbg0dr/eCg4lqhqFq3u7fEKJq3Cm1JhkD92n+nDrgJfFa7HUSRtCIdawG7B3BY2i9gFIpklUedJBmG0ZZLs=
+	t=1717340087; cv=none; b=hpD6JRMka//uMThKp3/8O0BvaudMJzK1jpvQG8Mb8MxpmLSytwpx9uhw8Z/by5BN/JqME6mTcQq33jNLVJ8m9Iw8ivwlre2pdHoJjuN9km9qVIejJsduRrs4C7MAYhh3NA2BFyzbTqy2mBuowlGaNuiRvafaMiTajjl7HDTJ2Vg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717339026; c=relaxed/simple;
-	bh=IgeH3NtZfgVCNuT/fZC/EjAkaOCyYtD8Ar2FpuVB4Ak=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=p8Ze5B3yKEDbBq1favrvLnHc5k0HtqAkGas2NzOh6/xk8UgpfXc85F616QtjSFLMgUd2xvgCyyWzE+tCumoWdA+s84drYbFEvZpd5pztDcpBcy8a/Gy2FPMxhJuIi+rKmLjRNehqtwUgWX5+wZ+uV5KkhRvfTfCqeDvo10V0q8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MzgnCH8f; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-52b919d1fc0so780276e87.0;
-        Sun, 02 Jun 2024 07:37:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717339023; x=1717943823; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dU7sOuoCnE7DZBaFJYawXWXaLrHsBgPyxKdpukglgGI=;
-        b=MzgnCH8fIEvlVeENCVv2NJnCW/o3q3mBfChHp334+anYG371Dpsx96kLCcsJoOM60L
-         kIPuH3NhiUvb8iN8XQfKwGF9l3fu/z+4T2UYFw816coboERULLCXjOnv65UyfpNKesek
-         zxbtHCA3riPW6eBY/smUDPnkTOHrIOwiOmix5qfvZpI8wJ17aQVc8/0y2L6GydPFvp3b
-         K5z7wsFqf7nXITQJDImA9quBf3k4N7dvWKZ3sFOjK6PVC2JFXUnbtTsG9dQaFnsRj14I
-         mjTeYreJKryUkZLFKJ/74i75HHPqKSMhYDbOKT2P5TgUx0VIH/a84KTeP1ybQ7VbXpGr
-         k8ng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717339023; x=1717943823;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dU7sOuoCnE7DZBaFJYawXWXaLrHsBgPyxKdpukglgGI=;
-        b=CnxUAcCT9QSMeGbQJ++uONbxdKWOahW3rkuj2Yzhyj4LfCcy4r6v+lRvq5M9syrJo7
-         ANlWeibIm7T3e6sI9FFjjQWcsU7qkMPUU2bcKMxH+x3pU1SonMUlHHse7JohlyxajraJ
-         QrcqdcT6Cj7NryNLiy+JjHiuv8cCRtO8BBua+DGl1VlT2C13EJuStraQYp/Ip8m0SpGP
-         L0HkQSdFIK5TDJY7P8DMTxLr0QwQNj6jjHAz6RMcSDqVOSYgOBWcj1kR2WFD1T6s/rDx
-         FLlOG3XABcoxtE0mZWSXjDCADAvxtQGd3VPp19KUoInhsuyLo5JY0pkb2Xvl2wQn+tsv
-         QiIA==
-X-Forwarded-Encrypted: i=1; AJvYcCWCphfqYwfl7ncxupRJKbc/bg4rkauhCqq+QxPVOk3EAhAjkpb7Utge5EoWv8KfCAmqBviroExvxZ4AKR7pPZIi/xy892AcbB22FuHwXvsgtPsroNHQPxfpMznSJ/4Tv1mVCWdV819QQKy7kOn/IfOeFRvkxFX7eKkcbiKqPeclJg==
-X-Gm-Message-State: AOJu0YyQ00SJlVcLURRWCw6bnAm3UYh0FW1g3WDOt33bknGBtl+by/J9
-	cS9xi1aeIs6YPRd0XqMiSYHafpDufIx04BE99NF9GQxSbMpewrNO
-X-Google-Smtp-Source: AGHT+IGG30UwFOotd/0Zdrr/C30omiONtB0LV+xIFdYgqxXQLjQdJQlWg/j2uttrnvCHheKu72hvDg==
-X-Received: by 2002:a19:5f53:0:b0:52b:8912:2843 with SMTP id 2adb3069b0e04-52b89122a59mr1943524e87.32.1717339022871;
-        Sun, 02 Jun 2024 07:37:02 -0700 (PDT)
-Received: from localhost ([178.178.142.64])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52b84d34b18sm966116e87.12.2024.06.02.07.37.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Jun 2024 07:37:02 -0700 (PDT)
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Jose Abreu <Jose.Abreu@synopsys.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: Serge Semin <fancer.lancer@gmail.com>,
-	Sagar Cheluvegowda <quic_scheluve@quicinc.com>,
-	Abhishek Chauhan <quic_abchauha@quicinc.com>,
-	Andrew Halaney <ahalaney@redhat.com>,
-	Jiawen Wu <jiawenwu@trustnetic.com>,
-	Mengyuan Lou <mengyuanlou@net-swift.com>,
-	Tomer Maimon <tmaimon77@gmail.com>,
-	openbmc@lists.ozlabs.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH net-next v2 10/10] net: stmmac: Add DW XPCS specified via "pcs-handle" support
-Date: Sun,  2 Jun 2024 17:36:24 +0300
-Message-ID: <20240602143636.5839-11-fancer.lancer@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240602143636.5839-1-fancer.lancer@gmail.com>
-References: <20240602143636.5839-1-fancer.lancer@gmail.com>
+	s=arc-20240116; t=1717340087; c=relaxed/simple;
+	bh=4U4YmaXrfCSnRq6hU0SodnHHoTrXCl2DLZ6mtKKZuSA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=olLQo6m1N0PIeTnzZSRVkikBAzGbpmUtcxU7vZoCovN88kaVA38Wc5FyF1VpfQiM99IebK3CmRTR7Rkolxu+/lrw20sQNjYyEJ6S207VbkxJwaV88wg+YPWyf9l2+Dz+VPk6Uo1f5Ju1g1M5fZLZmJvzqHhefKOVD2/G5IGuzzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cLRxmIH9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93DCCC2BBFC;
+	Sun,  2 Jun 2024 14:54:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717340086;
+	bh=4U4YmaXrfCSnRq6hU0SodnHHoTrXCl2DLZ6mtKKZuSA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=cLRxmIH9m1BuW/csKx8DXPRM7Q8FsPiXMfdtWBJDpP3kl1hpQm8ZPmSAgxE1iVosF
+	 wD7bL469WfRv+0shSH9nE5Robm0HYM5wyM/VUslwJL5CN8SHu6Igo2eCb7gBe78aIx
+	 giNTZejRLrGhRPCoAD2pVmVNWHkg3vD9WqQcJg1TxgCUWQ9f/lIDLUKG92h3tZUU6M
+	 c6UyPNAUzpmTAcSNWLalBI6bTeA6etInr0qP1nsRmPRjYVFm6swx5qxwGKHUOTy68T
+	 ivszjb0cEEzPuPmJxP1XjILczklJRbaHclX1tP6aav9JTW0YklQseCWdat9F6Q90Un
+	 e9HG3QYaI99dA==
+Date: Sun, 2 Jun 2024 15:54:33 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Francesco Dolcini <francesco@dolcini.it>, =?UTF-8?B?Sm/Do28=?= Paulo
+ =?UTF-8?B?R29uw6dhbHZlcw==?= <jpaulo.silvagoncalves@gmail.com>, Lars-Peter
+ Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ =?UTF-8?B?Sm/Do28=?= Paulo =?UTF-8?B?R29uw6dhbHZlcw==?=
+ <joao.goncalves@toradex.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Francesco Dolcini
+ <francesco.dolcini@toradex.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: iio: adc: add ti,ads1119
+Message-ID: <20240602155433.621837ec@jic23-huawei>
+In-Reply-To: <20240528-engaging-plop-e5d20a1a3fd1@spud>
+References: <20240527154050.24975-1-francesco@dolcini.it>
+	<20240527154050.24975-2-francesco@dolcini.it>
+	<20240527-ecosystem-mountable-d9a6eebc7607@spud>
+	<20240528150440.GA15947@francesco-nb>
+	<20240528-engaging-plop-e5d20a1a3fd1@spud>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Recently the DW XPCS DT-bindings have been introduced and the DW XPCS
-driver has been altered to support the DW XPCS registered as a platform
-device. In order to have the DW XPCS DT-device accessed from the STMMAC
-driver let's alter the STMMAC PCS-setup procedure to support the
-"pcs-handle" property containing the phandle reference to the DW XPCS
-device DT-node. The respective fwnode will be then passed to the
-xpcs_create_fwnode() function which in its turn will create the DW XPCS
-descriptor utilized in the main driver for the PCS-related setups.
+On Tue, 28 May 2024 17:14:38 +0100
+Conor Dooley <conor@kernel.org> wrote:
 
-Signed-off-by: Serge Semin <fancer.lancer@gmail.com>
----
- drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+> On Tue, May 28, 2024 at 05:04:40PM +0200, Francesco Dolcini wrote:
+> > On Mon, May 27, 2024 at 05:29:37PM +0100, Conor Dooley wrote: =20
+> > > On Mon, May 27, 2024 at 05:40:49PM +0200, Francesco Dolcini wrote: =20
+> > > > From: Jo=C3=A3o Paulo Gon=C3=A7alves <joao.goncalves@toradex.com>
+> > > >=20
+> > > > Add devicetree bindings for Texas Instruments ADS1119 16-bit ADC
+> > > > with I2C interface.
+> > > >=20
+> > > > Datasheet: https://www.ti.com/lit/gpn/ads1119
+> > > > Signed-off-by: Jo=C3=A3o Paulo Gon=C3=A7alves <joao.goncalves@torad=
+ex.com>
+> > > > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > > > ---
+> > > >  .../bindings/iio/adc/ti,ads1119.yaml          | 122 ++++++++++++++=
+++++
+> > > >  MAINTAINERS                                   |   7 +
+> > > >  2 files changed, 129 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ad=
+s1119.yaml
+> > > >=20
+> > > > diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1119.y=
+aml b/Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..ab4f01199dbe
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
+> > > > @@ -0,0 +1,122 @@ =20
+> >=20
+> > ...
+> >  =20
+> > > > +patternProperties:
+> > > > +  "^channel@([0-6])$":
+> > > > +    $ref: adc.yaml
+> > > > +    type: object
+> > > > +    description: |
+> > > > +      ADC channels.
+> > > > +
+> > > > +    properties:
+> > > > +      reg:
+> > > > +        description: |
+> > > > +          0: Voltage over AIN0 and AIN1.
+> > > > +          1: Voltage over AIN2 and AIN3.
+> > > > +          2: Voltage over AIN1 and AIN2.
+> > > > +          3: Voltage over AIN0 and GND.
+> > > > +          4: Voltage over AIN1 and GND.
+> > > > +          5: Voltage over AIN2 and GND.
+> > > > +          6: Voltage over AIN3 and GND. =20
+> > >=20
+> > > Take a look at diff-channels. =20
+> >=20
+> > Yes, we looked at this and at the beginning we did not think this was a
+> > right idea. This is pretty much copying what is done in
+> > Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml.
+That's a very old binding :(  We are stuck with a bunch of legacy unfortuna=
+tely.
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
-index 807789d7309a..dc040051aa53 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
-@@ -497,15 +497,22 @@ int stmmac_mdio_reset(struct mii_bus *bus)
- 
- int stmmac_pcs_setup(struct net_device *ndev)
- {
-+	struct fwnode_handle *devnode, *pcsnode;
- 	struct dw_xpcs *xpcs = NULL;
- 	struct stmmac_priv *priv;
- 	int addr, mode, ret;
- 
- 	priv = netdev_priv(ndev);
- 	mode = priv->plat->phy_interface;
-+	devnode = priv->plat->port_node;
- 
- 	if (priv->plat->pcs_init) {
- 		ret = priv->plat->pcs_init(priv);
-+	} else if (fwnode_property_present(devnode, "pcs-handle")) {
-+		pcsnode = fwnode_find_reference(devnode, "pcs-handle", 0);
-+		xpcs = xpcs_create_fwnode(pcsnode, mode);
-+		fwnode_handle_put(pcsnode);
-+		ret = PTR_ERR_OR_ZERO(xpcs);
- 	} else if (priv->plat->mdio_bus_data &&
- 		   priv->plat->mdio_bus_data->has_xpcs) {
- 		addr = priv->plat->mdio_bus_data->xpcs_addr;
-@@ -515,10 +522,8 @@ int stmmac_pcs_setup(struct net_device *ndev)
- 		return 0;
- 	}
- 
--	if (ret) {
--		dev_warn(priv->device, "No xPCS found\n");
--		return ret;
--	}
-+	if (ret)
-+		return dev_err_probe(priv->device, ret, "No xPCS found\n");
- 
- 	priv->hw->xpcs = xpcs;
- 
--- 
-2.43.0
+> >=20
+> > We could describe this using the diff-channels, however the MUX in the
+> > ADS1119 cannot do any combination, but only a subset (AIN0-AIN1,
+> > AIN2-AIN3 and AIN1-AIN2).
+
+That's fairly common. So far it's been restricted by documentation
+rather than the binding enforcing it.
+
+> >=20
+> > Are you aware of a way to validate this in the DT? =20
+>=20
+> I'm not sure of a neat way to restrict the options like that, no.
+Hmm. It's not super tidy but I think it can be done.
+
+Firstly 3-6 are single-channel anyway. There are some ways of ensuring
+we have only single-channel or differential-channels in a given channel nod=
+e.
+I took a quick look and the one binding I have that does both today doesn't
+actually restrict that :(=20
+This one that we have under review does though:=20
+https://lore.kernel.org/all/20240531-ad4111-v4-1-64607301c057@analog.com/
+(in that case the mux is fully flexible so it doesn't have this next bit)
+
+
+    diff-channels:
+      oneOf:
+        - items:
+            const: 0
+            const: 1
+        - items
+            const: 2
+            const: 3
+        - items
+            const: 1
+            const: 2
+
+>=20
+> > Would something like that work? =20
+>=20
+> This looks fine to me, but a look from Jonathan would be good.
+>=20
+> >=20
+> > adc@40 {
+> >     compatible =3D "ti,ads1119";
+> >     reg =3D <0x40>;
+> >     #address-cells =3D <1>;
+> >     #size-cells =3D <0>;
+> >     #io-channel-cells =3D <1>;
+> >    =20
+> >     channel@0 {
+> >         reg =3D <0>;
+> >         diff-channels =3D <3 4>;
+> > 	label =3D "AIN0_AIN1"
+> >     };
+> >    =20
+> >     channel@1 {
+> >         reg =3D <1>;
+> >         diff-channels =3D <5 6>;
+> > 	label =3D "AIN2_AIN3"
+> >     };
+> >    =20
+> >     channel@2 {
+> >         reg =3D <2>;
+> >         diff-channels =3D <4 5>;
+> > 	label =3D "AIN1_AIN2"
+> >     };
+> >    =20
+> >     channel@3 {
+> >         reg =3D <3>;
+> > 	label =3D "AIN0"
+
+Use the new single-channel so that 'reg' isn't a weird
+magic value. In combined cases with single ended and differential
+channels, it's better to just use reg as an index rather than assign
+it any real meaning.
+
+> >     };
+> >    =20
+> >     channel@4 {
+> >         reg =3D <4>;
+> > 	label =3D "AIN1"
+> >     };
+> >    =20
+> >     channel@5 {
+> >         reg =3D <5>;
+> > 	label =3D "AIN2"
+> >     };
+> >    =20
+> >     channel@6 {
+> >         reg =3D <6>;
+> > 	label =3D "AIN3"
+> >     };
+> > };
+> >=20
+> >  =20
+> > > > +        items:
+> > > > +          - minimum: 0
+> > > > +            maximum: 6
+> > > > +
+> > > > +      ti,gain: =20
+> > >=20
+> > > What makes this a property of the hardware?
+> > > Also, missing unit. =20
+> >=20
+> > This is a hardware gain from the ADC and it is dimensionless. =20
+>=20
+> Maybe I phrased my question incorrectly. I'll try again:
+> What makes the gain a fixed property of the hardware?
+>=20
+> I guess I was expecting to see a gain in decibels, but w/e.
+> What do 1 and 4 represent here?
+
+Agreed - this is normally userspace controlled not dt.
+>=20
+> > > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +        description:
+> > > > +          PGA gain value.
+> > > > +        enum: [1, 4]
+> > > > +        default: 1
+> > > > +
+> > > > +      ti,datarate: =20
+> > >=20
+> > > Ditto here, why's this a property of the hardware? Usually this gets =
+set
+> > > from sysfs.. =20
+> >=20
+> > The sample rate is a hardware property, you can configure the ADC device
+> > to do the acquisition at a specific rate. =20
+>=20
+> Same thing here, poorly phrased question from me I think. Why is this is
+> a fixed property of the hardware, rather than something that a user may
+> want to control? Last time I saw one of these kind of properties,
+> Jonathan commented:
+> | It's unusual for sampling rate to be a property of the hardware and hen=
+ce
+> | suitable for DT binding. Normally we make this a userspace control inst=
+ead.
+> | If there is a reason for doing it from DT, that wants to be mentioned h=
+ere.
+>=20
+> > Both these properties are inspired from
+> > Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml.
+> >=20
+> > We could do what you are suggesting here. I am just a concerned on how
+> > this interacts with the iio/afe/ bindings. Specifically, how could I
+> > configure the gain or the data rate when this ADC is used by a
+> > voltage-divider? Maybe iio-rescale driver needs to be extended for such
+> > use case? =20
+>=20
+> For configuring the gain in that scenario, you probably need Jonathan or
+> Peter to comment on, I'm not sure how the sysfs controls work for that.
+> I'm not sure what a voltage divider would have to do with the data rate,
+> so I guess this is something related to how the sysfs files are
+> structured?
+
+So this is a question of providing services.  The ADC is servicing the
+measurement of the analog front end.  So the analog front end can control
+the features of how it is serviced byt the ADC.  Those are just pass
+through controls to the underlying device (with some corner cases
+where the AFE is part of the parameter dealt with)
+
+If the AFE driver doesn't yet support this, then fine to extend it.
+Mostly they pass through standard ABI but so far read only.
+For simple cases like this should be fine to add the write path.
+Gain control will be a little fiddly as you'll need to remove the AFE compo=
+nent
+to work out what to write to the ADC + figure out how to provide
+_available info so that userspace can understand that it can control this.
+
+If you care about the voltage-divider and buffered capture there will
+be more to do as that path isn't wired up yet I think.
+
+Jonathan
+
+> Again, it'll probably be Jonathan or one of the guys that
+> actually deals with the userspace side of things (I haven't beyond a
+> trivial application) that'll have to answer that.
+>=20
+> Thanks,
+> Conor.
 
 
