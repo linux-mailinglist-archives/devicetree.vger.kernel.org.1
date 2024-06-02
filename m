@@ -1,155 +1,146 @@
-Return-Path: <devicetree+bounces-71551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F22F8D73FC
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 08:31:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 043468D7433
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 09:56:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D8E941F2178C
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 06:31:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88B981F2165D
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 07:56:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83584171A5;
-	Sun,  2 Jun 2024 06:31:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11C611CD23;
+	Sun,  2 Jun 2024 07:55:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="dHvbBrvV"
+	dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b="fssQoigk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A659386;
-	Sun,  2 Jun 2024 06:30:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 763BE171D8;
+	Sun,  2 Jun 2024 07:55:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.126.157
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717309862; cv=none; b=UiTTC9OLyO1UeMhNSeut7mGxJ20ilSe3mIxgg8PrSIjxoAt4rTMIjV8ECT4Ze1Qn6QWRp0cFrR/71EqK5OllZJeiI9Tgwfn45AGfnRaUzNO5iSiyQia27HopvN2Gm9GxpZ5KzQsOHk51AucrJQ/f6ve4NoK7wJ2KprAm280tRqE=
+	t=1717314956; cv=none; b=HPqRIfYllzeK4UtXsw4TiH241giAAI+X0LZ/AXiXZgc3/kQZrErn0seBE1Hv9mGJGa47w8mvJjf6R/4dKeiskCJeKHksgECeCtQ1aRHJDPYNZaGgKePSTySMCBCbhRF0RJyKcD9dAi6kwrFKkR2cKUZ12+HCtdm03Wena/cA5+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717309862; c=relaxed/simple;
-	bh=T3/geORPHqW4mhgsXYemSUiomgV2i2aItvdLEo2kxz0=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=M/6aulmCv0YoRIo+l5pfIbnAG7QkCz7E+MS0EuHMNzSu6SOKt6g3IpMhOyRSkY+ywTgsSRh84WdoJYu0ivISDhEwp5h6GdVMxzF5JeEnz2OqkRXTcYqBz7ywWV9h80AHs1imV6OcfmfuxwkEJtTNRXVIUjCaAn6iQ+rlop7Su64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=dHvbBrvV; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-From: Dragan Simic <dsimic@manjaro.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1717309546;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=8njZ1sdo2u2qgfKizKRY7N1OVRkmXLth5XN/Ju4y0cM=;
-	b=dHvbBrvVFZu+YDWFbkTpxPM51FTDpkZ8xAWrF4SspSJU5CeUxSur6Pm0RqSEM1e7PGVcql
-	/2sz1LYLOyr4uCqeByjP0k6uwv2IR0ZnohqF9jc9KYk3Z3aeYy+zpkfTHeYTM2MmfUKCGL
-	nw9j1WL3/lWil46v0I/5NFwpkAPXHPWaAGp4xYIRz7HwDxnss56yFy0WSzK2JfGmMt5Hx4
-	YYyJ0RaROWk6tt8WcQkES72+N2LNyxhe1xgPOieBNLz9Ypdpy4dx9QYYTjPlwdiKcY9wl0
-	N9FxPeeasY/xf3LltDwkED5/LVZ74FQm5afPO15otSelHGsTgncB4xydEEthIQ==
-To: linux-rockchip@lists.infradead.org
-Cc: heiko@sntech.de,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	robh+dt@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	alchark@gmail.com
-Subject: [PATCH] arm64: dts: rockchip: Delete the SoC variant dtsi for RK3399Pro
-Date: Sun,  2 Jun 2024 08:25:38 +0200
-Message-Id: <4449f7d4eead787308300e2d1d37b88c9d1446b2.1717308862.git.dsimic@manjaro.org>
+	s=arc-20240116; t=1717314956; c=relaxed/simple;
+	bh=IEhOxkzhslY+vd8fhusSxnVVLFBJ94oEh/JdlsM+GZ8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=D6qp4zEp9iH/XHr10+plYJizjf8akLGQi/EyqocGAzNWXR85JInE0MzQe7pBTy7hol16U2Ydn0HajWRtmiP/VifVqY7vI1rt4YIz4LkqjLfyobeA1kL4euRAyvoD8QfVqvt6FqeD+0iiz4K7EIMeBLnmUcH1jHqKqdaB6ISRP/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weissschuh.net; spf=pass smtp.mailfrom=weissschuh.net; dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b=fssQoigk; arc=none smtp.client-ip=159.69.126.157
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weissschuh.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=weissschuh.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
+	s=mail; t=1717314949;
+	bh=IEhOxkzhslY+vd8fhusSxnVVLFBJ94oEh/JdlsM+GZ8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fssQoigkKwjV0LLXf1MJ8g7wIBOattCTwEFx5/iZqlSBrF0WfJZkLtiP6kt2XUN+3
+	 X+dC0EDKXtHITVkuImH6d83cJEJxbGrmyEq8DYzq9PvzQhc1ous6+c37l49Zt6kqLb
+	 moNbTczo1mjIrtgIoQwtH+HcH18oz+jHhUE6WuEU=
+Date: Sun, 2 Jun 2024 09:55:48 +0200
+From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
+To: Armin Wolf <W_Armin@gmx.de>
+Cc: Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org, 
+	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	=?utf-8?B?UmVuw6k=?= Rebe <rene@exactcode.de>, Wolfram Sang <wsa+renesas@sang-engineering.com>
+Subject: Re: [PATCH RFT v3 4/4] hwmon: (spd5118) Add support for reading SPD
+ data
+Message-ID: <04d55009-c4a7-49e6-b098-545f20719f83@t-8ch.de>
+References: <20240531230556.1409532-1-linux@roeck-us.net>
+ <20240531230556.1409532-5-linux@roeck-us.net>
+ <4cc979c3-3ce0-4f31-b5d0-508e1af5fdf4@roeck-us.net>
+ <cf9d752e-0137-4a6d-85d3-fbe69293a43e@t-8ch.de>
+ <f5f28ef1-53ef-4f82-abb3-2b60dc468793@roeck-us.net>
+ <4e4341e4-2165-40d4-909c-9d5164e97942@t-8ch.de>
+ <b3109c26-dde1-44cf-b431-80957c97de5f@gmx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+In-Reply-To: <b3109c26-dde1-44cf-b431-80957c97de5f@gmx.de>
 
-The commit 587b4ee24fc7 ("arm64: dts: rockchip: add core dtsi file for
-RK3399Pro SoCs") describes the RK3399Pro's PCI Express interface as the way
-built-in NPU communicates with the rest of the SoC.  All available evidence
-shows this not to be accurate, as described in detail below.  Moreover, the
-rk3399pro.dtsi isn't used anywhere, so let's delete it.
+On 2024-06-01 21:23:24+0000, Armin Wolf wrote:
+> Am 01.06.24 um 16:08 schrieb Thomas Weißschuh:
+> 
+> > On 2024-06-01 06:48:29+0000, Guenter Roeck wrote:
+> > 
+> > <snip>
+> > 
+> > > Makes sense. Another question:
+> > > 
+> > > This:
+> > > 
+> > > +        struct nvmem_config nvmem_config = {
+> > > +               .type = NVMEM_TYPE_EEPROM,
+> > > +               .name = dev_name(dev),
+> > > +               .id = NVMEM_DEVID_AUTO,
+> > > 
+> > > results in:
+> > > 
+> > > $ ls /sys/bus/nvmem/devices
+> > > 0-00501  0-00512  0-00523  0-00534  cmos_nvram0
+> > > ^^^^^^^  ^^^^^^^  ^^^^^^^  ^^^^^^^
+> > > 
+> > > which really doesn't look good. My current plan is to go with NVMEM_DEVID_NONE,
+> > > which results in
+> > > 
+> > > $ ls /sys/bus/nvmem/devices
+> > > 0-0050	0-0051	0-0052	0-0053	cmos_nvram0
+> > > 
+> > > We could also used fixed strings, but "spd" results in "spd[1-4]" which
+> > > I think would be a bit misleading since the DDR3/4 SPD data format is
+> > > different, and "spd5118" would result in "spd5118[1-4]" which again would
+> > > look odd. Any suggestions ?
+> > In order of descending, personal preference:
+> > 
+> > * spd-ddr5-[0-3] (.id = client->address - 0x50)
+> 
+> Hi,
+> 
+> this will break as soon as more than 8 DDR5 DIMMs are installed.
 
-The publicly available schematics of the Radxa Rock Pi N10 carrier board [1]
-and the Vamrs VMARC RK3399Pro SoM, [2] which put together form the currently
-single supported RK3399Pro-based board, clearly show that the PCI Express x4
-interface of this SoC is fully functional and actually not used by the SoC
-to communicate with the built-in NPU.  In more detail, the VMARC SoM exports
-the SoC's PCI Express interface at its board-to-board connector, and the Rock
-Pi N10 routes it to an M.2 M-key slot with four PCI Express lanes.
+i2c_register_spd() only handles 8 DIMMs, too.
+JESD 300-5B.01 (section 2.6.5) also defines i2c addresses for 8 DIMMS only.
 
-Both the Rockchip RK3399Pro datasheet, version 1.1, [3] and the Rockchip
-RK3399Pro technical reference manual (TRM), first part of the version 1.0, [4]
-don't describe that the SoC's PCI Express interface is reserved for the NPU.
-Instead, the RK3399Pro TRM describes that the NPU uses AHB and AXI interfaces
-as the host interface (HIF).  The RK3399Pro datasheet clearly describes that
-the PCI Express x4 interface is available for general-purpose use, just like
-it's the case with the standard Rockchip RK3399 SoC, [5] albeit with a bit
-shorter feature list provided in the RK3399Pro datasheet.
+Outside of that range we could fall back to something else.
 
-Even the publicly available reference RK3399Pro schematic from Rockchip [6]
-shows the availability of a standard PCI Express slot with four lanes, which
-would be pretty much impossible if the PCI Express interface was reserved
-for the communication with the built-in NPU.
+> > * spd-ddr5-[0-3] (NVMEM_DEVID_AUTO)
+> > * Same with only "ddr5-"
+> > * spd5118-[0-3]
+> > * Your proposal from above
+> > * nvmem[0-3] (default handling)
+> > * 0-0050-[0-3]
+> > 
+> > Also can't a user of the eeprom already figure out which kind of module
+> > it is by looking at the eeprom contents?
+> > The first few bytes used for that seem to be compatible between at least
+> > DDR4 and DDR5.
+> > 
+> > So using plain spd[1-4] could be enough.
+> 
+> This could cause problems when DDR6 arrives.
+> Personally i would prefer the spd5118-X (NVMEM_DEVID_AUTO) format.
 
-Based on the RK3399Pro datasheet [3] and the board schematics, [2][6] the
-built-in NPU actually exports NPU_PCIE as a separate PCI Express x2 interface
-that's partially pinmuxed with the NPU's separate USB 3.0 interface, which is
-described further in the next paragraph.  However, the NPU's separate PCI
-Express x2 interface is left undocumented in the publicly available RK3399Pro
-documentation, in which it's clearly described as reserved for internal use
-and not intended for the communication with the NPU.  Finally, the evidently
-independent nature of the separate NPU_PCIE x2 interface makes ignoring it
-safe when it comes to determining the nature and the availability of the
-RK3399Pro's main PCI Express x4 interface.
+I have the impression that the eeprom layouts are designed to be
+forward and backward compatible.
 
-The actual application-level communication with the built-in NPU, including
-powering it up and down and uploading the NPU firmware, is performed through
-the separate USB 2.0 and USB 3.0 interfaces exported by the NPU, [7] which
-the VMARC SoM [2] and the reference board design from Rockchip [6] route to
-the SoC's standard USB 2.0 and USB 3.0 interfaces, to make the NPU accessible
-to software running on the SoC's ARM cores.
+If a non-DDR5-aware parser reads the contents of a DDR5 eeprom it will
+fail the CRC check, so there can be no accidental misinterpretation.
+(Because the CRC'ed area is larger and the CRC is at another location)
 
-[1] https://dl.radxa.com/rockpin10/docs/hw/rockpi_n10_sch_v1.1_20190909.pdf
-[2] https://dl.radxa.com/rockpin10/docs/hw/VMARC_RK3399Pro_sch_V1.1_20190619.pdf
-[3] https://www.rockchip.fr/RK3399Pro%20datasheet%20V1.1.pdf
-[4] https://www.rockchip.fr/Rockchip%20RK3399Pro%20TRM%20V1.0%20Part1.pdf
-[5] https://www.rockchip.fr/RK3399%20datasheet%20V1.8.pdf
-[6] https://opensource.rock-chips.com/images/e/e4/RK_EVB_RK3399PRO_LP3S178P332SD8_V11_20181113_RZF.pdf
-[7] https://wiki.radxa.com/RockpiN10/dev/NPU-booting
+On the other hand the first bytes of DDR4 and DDR5 are compatible, so
+even an unaware parser can recognize that a SPD eeprom is being read and
+which DIMM type and specification revision it is.
 
-Signed-off-by: Dragan Simic <dsimic@manjaro.org>
----
- arch/arm64/boot/dts/rockchip/rk3399pro.dtsi | 22 ---------------------
- 1 file changed, 22 deletions(-)
- delete mode 100644 arch/arm64/boot/dts/rockchip/rk3399pro.dtsi
+This seems intentional and therefore should also hold true for DDR5 to DDR6.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399pro.dtsi b/arch/arm64/boot/dts/rockchip/rk3399pro.dtsi
-deleted file mode 100644
-index bb5ebf6608b9..000000000000
---- a/arch/arm64/boot/dts/rockchip/rk3399pro.dtsi
-+++ /dev/null
-@@ -1,22 +0,0 @@
--// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
--// Copyright (c) 2019 Fuzhou Rockchip Electronics Co., Ltd.
--
--#include "rk3399.dtsi"
--
--/ {
--	compatible = "rockchip,rk3399pro";
--};
--
--/* Default to enabled since AP talk to NPU part over pcie */
--&pcie_phy {
--	status = "okay";
--};
--
--/* Default to enabled since AP talk to NPU part over pcie */
--&pcie0 {
--	ep-gpios = <&gpio0 RK_PB4 GPIO_ACTIVE_HIGH>;
--	num-lanes = <4>;
--	pinctrl-names = "default";
--	pinctrl-0 = <&pcie_clkreqn_cpm>;
--	status = "okay";
--};
+
+Thomas
 
