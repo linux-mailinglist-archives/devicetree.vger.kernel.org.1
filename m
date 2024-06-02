@@ -1,51 +1,76 @@
-Return-Path: <devicetree+bounces-71676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5CDD8D783E
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 23:19:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59F908D7846
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 23:31:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12BAD1C209AE
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 21:19:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E4808B20EFB
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 21:31:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 347A96F085;
-	Sun,  2 Jun 2024 21:19:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEADD28399;
+	Sun,  2 Jun 2024 21:31:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=mail.de header.i=@mail.de header.b="JiLWe6aO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m107.netease.com (mail-m107.netease.com [154.81.10.7])
+Received: from shout12.mail.de (shout12.mail.de [62.201.172.58])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 293B31DDEE;
-	Sun,  2 Jun 2024 21:19:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=154.81.10.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53859EDF;
+	Sun,  2 Jun 2024 21:31:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.201.172.58
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717363190; cv=none; b=jv3BMKaZikuRmZSxYOzPimbTaPUBWSpm2MUwV0kMYBJ3fmWmEsC7TthLW0buQ8EKhgnTO6ydKv9JfNWROYSY6KVguYYw3JE7CRO0/nLMZhGsul9j/seclzGXCTkDAOERTBfERs6oHTGcIbVlxRthy8wcQcbJDDsGyckBI+KrIaI=
+	t=1717363875; cv=none; b=heoWNSSXHP1qwqLlz232hdhLGIhwDl9duL1Wa+SZLUpDfnGRSCyufWJ2UZKGDuPVK+rQ/yBvVRRm2E8JtdV5jALaUgftPWORDKd/3ugq8Bjn2n6cQZHMRYKf0xC8tjwx5+Tawh9Jlw0kDVh7SOjuXFsUcEVNsR6s5ZTRzGHYY+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717363190; c=relaxed/simple;
-	bh=yMTUzVMmWBVXoH0tox65JM0lEHQugjIej/w2nV2KW8E=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=lCaIrR8VHkNXeBAktSuwiiv4gDJ27Go6KQ9RyJU32+PlI8swuPPscE7ccm1ESel2h9ZGFAQ4gObuzTg2M15hQLd/jF6dSH9S0vz4LHOPJ0Znu4zdkQPqkpe8lmkQYgowbT2oH3wjcRgafIjSZB5EvyQWrgWGOzF5VS+Y0qNhhQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=154.81.10.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c01:69f0:352b:5c48:c47b:2d45])
-	by smtp.qiye.163.com (Hmail) with ESMTPA id E50F37E016A;
-	Sun,  2 Jun 2024 18:40:24 +0800 (CST)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1717363875; c=relaxed/simple;
+	bh=QGydLqg5nD7goLUdbsX1bHCF1IzK/yJxggqZg1PvGhQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TURl7SBJx1jSuU9rXoK4VudqVSbaQNKF7WDXDHVsQlmbDrmqRrBpfYazmuljs6doRG5rRijQQIjn4U/GPKCWKTfqXAMOAsj1s2+Nf9DhjsINpoVbecwffELdwrkZVtmtSxEM599sRKA6Cr/8aAo+OkklQQKP+Q0OWRKdjVSzS0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mail.de; spf=pass smtp.mailfrom=mail.de; dkim=pass (2048-bit key) header.d=mail.de header.i=@mail.de header.b=JiLWe6aO; arc=none smtp.client-ip=62.201.172.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mail.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mail.de
+Received: from shout02.mail.de (unknown [10.0.120.222])
+	by shout12.mail.de (Postfix) with ESMTPS id 5EC0C240AF1;
+	Sun,  2 Jun 2024 23:22:33 +0200 (CEST)
+Received: from postfix03.mail.de (postfix03.bt.mail.de [10.0.121.127])
+	by shout02.mail.de (Postfix) with ESMTP id 3D0A3240BF0;
+	Sun,  2 Jun 2024 23:22:33 +0200 (CEST)
+Received: from smtp01.mail.de (smtp04.bt.mail.de [10.0.121.214])
+	by postfix03.mail.de (Postfix) with ESMTP id 1AC1C80065;
+	Sun,  2 Jun 2024 23:22:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mail.de;
+	s=mailde202009; t=1717363353;
+	bh=QGydLqg5nD7goLUdbsX1bHCF1IzK/yJxggqZg1PvGhQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:From:To:CC:Subject:Reply-To;
+	b=JiLWe6aOXiY8MqxPHwwnpommmxQuAzd9xnFV9HqgiODg0WYoFanwH2ubKSGTvfQAn
+	 r1EYSOfAzkEt2yOmIQmLqProJwZRKOVjSt9LEWzs2B75Q0mVv+5hCftr8cShGio/Ef
+	 K0BXKnT3UOUxAYfX98s2xDdOMHCzHDzmchEev/TkUqkUubgFs/ehDMukTuWlOX+MSO
+	 IqQco5uLmKjzJVL2aHtgGiJsoUmFUCF6xB/zA+l/6Hb2HOWq9Q9u5tSkohwQK8pNT0
+	 gclExeVxIc9FrsrZ7ipI0UViFgfF92OO67qdWre1j4AAiHeUYPlSuSTuOkNFhlnUpI
+	 1u4H5WACYCLtA==
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp01.mail.de (Postfix) with ESMTPSA id 1721F2409AB;
+	Sun,  2 Jun 2024 23:22:28 +0200 (CEST)
+From: Sebastian Kropatsch <seb-dev@mail.de>
+To: Heiko Stuebner <heiko@sntech.de>,
+	linux-rockchip@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Dragan Simic <dsimic@manjaro.org>,
 	devicetree@vger.kernel.org,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Subject: [PATCH 1/2] dt-bindings: arm: mediatek: Add Bananapi BPI-R3 mini
-Date: Sun,  2 Jun 2024 18:40:20 +0800
-Message-Id: <20240602104021.387713-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Sebastian Kropatsch <seb-dev@mail.de>
+Subject: [PATCH v2 0/2] RK3588: FriendlyElec CM3588 NAS board support
+Date: Sun,  2 Jun 2024 22:08:18 +0200
+Message-ID: <20240602211901.237769-1-seb-dev@mail.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,36 +78,79 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCHUwYVk1MSEpJHkIYGU0eTVUTARMWGhIXJBQOD1
-	lXWRgSC1lBWUlPSx5BSBlIQUkYS0pBTUIdS0FITkkZQU4YT0NBGE9MGUFJH09OWVdZFhoPEhUdFF
-	lBWU9LSFVKTU9JSklVSktLVUpCWQY+
-X-HM-Tid: 0a8fd889428d03a2kunme50f37e016a
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Nwg6ESo4IjNMA0MoTw1JTx1C
-	FhYwChFVSlVKTEpMSElPQ0lOTktKVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
-	Sx5BSBlIQUkYS0pBTUIdS0FITkkZQU4YT0NBGE9MGUFJH09OWVdZCAFZQUlLTkk3Bg++
+X-purgate: clean
+X-purgate: This mail is considered clean (visit http://www.eleven.de for further information)
+X-purgate-type: clean
+X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
+X-purgate: This mail is considered clean (visit http://www.eleven.de for further information)
+X-purgate: clean
+X-purgate-size: 2883
+X-purgate-ID: 154282::1717363352-1CB7D338-9AE4CCBC/0/0
 
-Add compatible for Bananapi BPI-R3 mini Router (Filogic 830).
+Hello!
 
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+This adds support for the FriendlyElec CM3588 NAS board.
+The board's device tree makes use of the latest upstream advances on the
+RK3588 like USB3 DRD and GPU support as well as the latest Rockchip PCIe
+driver bifurcation fixes, but some features such as thermal management
+and HDMI will have to be added later when SoC support for these features
+is merged.
+Since the hardware has similarities with FriendlyElec's NanoPC T6, the
+device tree for the CM3588 NAS took some inspirations from and also
+partially shares some sections with the NanoPC T6 tree.
+
+Minor issue:
+The device enumeration of NVMe SSDs plugged into the four PCIe M.2 slots
+does not follow the order of the slots on the board: The slots are
+physically named from 1 to 4, top to bottom. However, they do not show
+up in this same order in Linux when all slots are polulated:
+   - SSD in physical slot 1 shows up as nvme0
+   - SSD in physical slot 2 shows up as nvme2
+   - SSD in physical slot 3 shows up as nvme1
+   - SSD in physical slot 4 shows up as nvme3
+This is the same order in which the data lanes are mapped for PCIe
+bifurcation (dts property: data-lanes = <1 3 2 4>).
+I could not solve this by using aliases for the PCIe nodes in the device
+tree. Perhaps this is something that can only be solved at driver level?
+I am not sure if this behaviour is even considered a bug or if this is
+intended behaviour by design.
+
+Devicetree validation:
+`make CHECK_DTBS=y rockchip/rk3588-cm3588-nas.dtb` does not give any
+warnings or errors, tested on Linux next-20240523.
+
+Best regards,
+Sebastian Kropatsch
 ---
- Documentation/devicetree/bindings/arm/mediatek.yaml | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-index 09f9ffd3ff7b..12946e9dcd12 100644
---- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-@@ -91,6 +91,7 @@ properties:
-           - enum:
-               - acelink,ew-7886cax
-               - bananapi,bpi-r3
-+              - bananapi,bpi-r3-mini
-               - mediatek,mt7986a-rfb
-           - const: mediatek,mt7986a
-       - items:
+Changes in v2:
+- split dts into two files (CM and carrier board)
+- rename fixed regulators with preferred 'regulator-' prefix
+- use preferred 'gpios' property instead of 'gpio'
+- add 'pinctrl-names' property for every pinctrl
+- add several pwm nodes
+- drop HMDI PHY and VOP support
+- drop unneeded &wdt node
+- remove i2c4 since it's not availabe according to the schematics
+- &sdhci: drop 'full-pwr-cycle-in-suspend' flag
+- &sdmmc: drop 'cap-mmc-highspeed' flag because of no-mmc
+- &sdmmc: drop 'cd-gpios' property, unneeded w/ using sdmmc_det pinctrl
+- &usb_host0_xhci, &usb_host2_xhci: remove default 'dr_mode' property
+
+---
+Sebastian Kropatsch (2):
+  dt-bindings: arm: rockchip: Add FriendlyElec CM3588 NAS
+  arm64: dts: rockchip: Add FriendlyElec CM3588 NAS board
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   7 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../rk3588-friendlyelec-cm3588-nas.dts        | 705 ++++++++++++++++++
+ .../rockchip/rk3588-friendlyelec-cm3588.dtsi  | 660 ++++++++++++++++
+ 4 files changed, 1373 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588.dtsi
+
 -- 
-2.25.1
+2.43.0
 
 
