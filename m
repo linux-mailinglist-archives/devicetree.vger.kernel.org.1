@@ -1,75 +1,48 @@
-Return-Path: <devicetree+bounces-71620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CFFD8D76BB
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 17:28:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 495578D76C4
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 17:31:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 57CE71C20962
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 15:28:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AB12EB2194D
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 15:31:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36A4946436;
-	Sun,  2 Jun 2024 15:28:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CFFA4F5F9;
+	Sun,  2 Jun 2024 15:31:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UezuUtkT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aTHzgE4h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76DAE43ADC
-	for <devicetree@vger.kernel.org>; Sun,  2 Jun 2024 15:28:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBE704DA00;
+	Sun,  2 Jun 2024 15:31:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717342088; cv=none; b=CR04F55cAfHtFzQzguJbvAxt816N0kwZGv77fEKaExWrbbQvn1DXxX4TyejPY6uohoIZDAEZ46/6GG4uV39FJREuhzMTuNn3xBCZe+cU8IqyChZPlNHtpifcKdDMvyvNixkGZe8+N0sRpk0HSXZasdVyQXea4CUcJeXzVkfIMt4=
+	t=1717342270; cv=none; b=ump7Uig0rlWF/NXfsOdWiVcHz2L8C7xNfluufBxAwEMSo5C+YEkWVk+DbTfc9ZmeW3t6gmfZ3rDnEUo84SU695Glc51IDspkLND8E1nL36fOrKxZd2YtdoCgfXqYtxbsJ4YROXAPTSo5vIaKsSjjz5kxTA4a9Mw2NHdWwWeP9v4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717342088; c=relaxed/simple;
-	bh=IykilOMVJgaiHvIeECYjsxf3gRDr0iNjeHIVFackIyg=;
+	s=arc-20240116; t=1717342270; c=relaxed/simple;
+	bh=yKlrNeel+W0FBVodTd2JHRtUueeshhcl9m+psrBuhMs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mHYKjVH8AHhUdnP0v5MwOe72+PhBx5FITKGnCPSE/gQ0zpQueoEKeQbPWhrXS8bvlj3zh0GipLNTgxCVfItLDRZDovF01XfioR/cAMPoA4EmnhuecGufWQLN9LyXoYT6iLSoI5eYkswTEVsiQtEL2KbJPWu5sw5VflC6kk6Hdqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UezuUtkT; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-42133f8432aso9686055e9.3
-        for <devicetree@vger.kernel.org>; Sun, 02 Jun 2024 08:28:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717342085; x=1717946885; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=baPp/gJ8KPQc7AlJvsezYzdw4vqg3FUNjautDtpuOQk=;
-        b=UezuUtkT0NT6UkLamC4di2PnHFxEthOeyiOzHZ9TzDgTBgmGTmemCdOOADjHLgOO5K
-         sXx4znFyZ7CEJq6qsSUCXDPOCcn/IWUEsnD28tymcl6MI04Xrl77e+cfCgAAx9ujWzGk
-         +0Qe5/0+bVnS4okYdcRCNfQQDoNs7uZhR3WrLV8yuyhU35R4HSR8/+Rk+SPMHZIEHneM
-         Jonexa5SmVSl1nd3+KazI+CAM0wQx3ANclaz7WV7IILsSXd9C36S7ATpHs4/6Y7aAimn
-         GatJ+5rh3LlYHA+Dj+KIA5YLuvD7ztyZd74KLQm4k6oOyybtY0sGYeL6VIqvdxCvrfrf
-         owiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717342085; x=1717946885;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=baPp/gJ8KPQc7AlJvsezYzdw4vqg3FUNjautDtpuOQk=;
-        b=ufsEnUVvIMXTKX8i3KGpQC/t+TSGQ11nyXIAg7DkPhkX5RPgSRvvyHBt4/uxA4pKIr
-         tz9zqAwyz3dnqRkLqLsPEiWIhpssZwyyWH1vSf5usVco9L5CoiIMJaWFGp/llX8SnwVf
-         GRsvPa+WiT25SFOElb9R/kpn+17twMOLs8FRyFDGwyxqttp3V9Ux9yr4NiIL9LYDlwm7
-         tybb3etnpVXjEoLZsKbeCbWwzpk9/6IKFCO/WZVrty11XxM/oUaQ8h01fkM9ZM99Wgtd
-         41NO2e0/1Af1b/CtnCHTOz36xasc2ycn+CyQLWmeQssKIo5YciiKZ46s2FvPIDibDO9u
-         Pxsw==
-X-Forwarded-Encrypted: i=1; AJvYcCXHKBVU3Ckry4x30cqQ1pV3c5aYVNEqm0oYrp8oAZdWpdJmAFM3AP7g8aLcuR6eKjVWZRVjznabhESWvvL1EQCUqUwtstoOIr7n5g==
-X-Gm-Message-State: AOJu0Yx49xhwKHYnly0lM9LrKbSlJZgLI3UM7Kvs8Vo2MAHFpDwTm5jj
-	N0oOYmsffWxxO4w+N34HUa0exF/F1AZRb6JlKxYkYI2EGMy8d6/0fnPJmbE7miA=
-X-Google-Smtp-Source: AGHT+IEsWHchIXy71DI4d8HK8Hi6YOhUT1vGsSATiMHWL/C6Z4iJ3afogi0r3rUD4s+4beTE4KJ1gQ==
-X-Received: by 2002:a05:600c:4705:b0:421:2918:3d97 with SMTP id 5b1f17b1804b1-4212e0add57mr59143535e9.30.1717342084829;
-        Sun, 02 Jun 2024 08:28:04 -0700 (PDT)
-Received: from [192.168.2.24] ([110.93.11.116])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4212b84a97csm85739515e9.14.2024.06.02.08.28.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 02 Jun 2024 08:28:04 -0700 (PDT)
-Message-ID: <fa7dc574-e431-4a29-951d-1aaf4b86c37d@linaro.org>
-Date: Sun, 2 Jun 2024 17:28:02 +0200
+	 In-Reply-To:Content-Type; b=MwrIvIYvwDLRrhCb0KYcnfz1nmLwk/kfdgCWmWXod0pCM9JFIJqWqbFbBg6VOL9pjYaeb7BD/KY3on6NVT0QTkaJU23aMeE5yU0qDDVkSCkVeFyXghHX8hLyJrJX/u8vgCQIKVbxnK0aCiRL4QV7RsU1+botjCphkkK7rDMSdHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aTHzgE4h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BD64C2BBFC;
+	Sun,  2 Jun 2024 15:31:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717342269;
+	bh=yKlrNeel+W0FBVodTd2JHRtUueeshhcl9m+psrBuhMs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=aTHzgE4hR2+nt48eEltimquqCHAd53tSW3SBr7ctMtENIdteu/9n087IjxqZP6YJm
+	 E98lyJhUFP8h2OgaOPBBG4EbEKEiFzuCp2YGMIgn6vUD66uwyNrtZjhlElSN46Gosa
+	 CrFIiTpCCdVI2Mr6999+rdTM61MGelY9CiuH9FZgnpzbtxu8RoAmx1Ywd6Oi9A8R6F
+	 LevnTyKBXu1yoxRmkSzVByzuLn3ebBzvdNW+xrG1tAecFLpRNxjglsmisA7MP+gJ4Z
+	 C4agy29eWCN5Q+WXGOPC55CqVSSRnZgjkj934lg0+pv2ZIdy3j+vG5DzCUs4CaIWoV
+	 TH1zBoDs2NDfw==
+Message-ID: <de6c28c6-3139-441e-8738-c8842b9a274b@kernel.org>
+Date: Sun, 2 Jun 2024 17:31:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,24 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/13] clk: qcom: gpucc-sa8775p: Remove the
- CLK_IS_CRITICAL and ALWAYS_ON flags
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Taniya Das <quic_tdas@quicinc.com>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- quic_jkona@quicinc.com, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20240531090249.10293-1-quic_tdas@quicinc.com>
- <20240531090249.10293-5-quic_tdas@quicinc.com>
- <0f56831e-8572-46f5-89cf-d1e990813a02@linaro.org>
- <woi4vzsc2mgug26rluvzt6ayoawfsus6ow2kqnmfnnqlwf2lty@sirpsaf2anuz>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 1/4] dt-bindings: Add bindings for the Analog Devices
+ ADP5585
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+References: <20240602152412.29136-1-laurent.pinchart@ideasonboard.com>
+ <20240602152412.29136-2-laurent.pinchart@ideasonboard.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -104,98 +73,87 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  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
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <woi4vzsc2mgug26rluvzt6ayoawfsus6ow2kqnmfnnqlwf2lty@sirpsaf2anuz>
+ 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 fv0=
+In-Reply-To: <20240602152412.29136-2-laurent.pinchart@ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/06/2024 06:12, Bjorn Andersson wrote:
-> On Fri, May 31, 2024 at 11:59:04AM GMT, Krzysztof Kozlowski wrote:
->> On 31/05/2024 11:02, Taniya Das wrote:
->>> The gpu clocks and GDSC have been marked critical from the clock driver
->>> which is not desired for functionality. Hence remove the CLK_IS_CRITICAL
->>> and ALWAYS_ON flags.
->>>
->>> Fixes: 0afa16afc36d ("clk: qcom: add the GPUCC driver for sa8775p")
->>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->>> ---
->>>  drivers/clk/qcom/gpucc-sa8775p.c | 27 +++++++++++----------------
->>>  1 file changed, 11 insertions(+), 16 deletions(-)
->>>
->>> diff --git a/drivers/clk/qcom/gpucc-sa8775p.c b/drivers/clk/qcom/gpucc-sa8775p.c
->>> index 1167c42da39d..f965babf4330 100644
->>> --- a/drivers/clk/qcom/gpucc-sa8775p.c
->>> +++ b/drivers/clk/qcom/gpucc-sa8775p.c
->>> @@ -1,6 +1,6 @@
->>>  // SPDX-License-Identifier: GPL-2.0-only
->>>  /*
->>> - * Copyright (c) 2021-2022, Qualcomm Innovation Center, Inc. All rights reserved.
->>> + * Copyright (c) 2021-2022, 2024, Qualcomm Innovation Center, Inc. All rights reserved.
->>
->> That's not a fix.
->>
->>>   * Copyright (c) 2023, Linaro Limited
->>>   */
->>>  
->>> @@ -280,7 +280,7 @@ static struct clk_branch gpu_cc_ahb_clk = {
->>>  				&gpu_cc_hub_ahb_div_clk_src.clkr.hw,
->>>  			},
->>>  			.num_parents = 1,
->>> -			.flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
->>> +			.flags = CLK_SET_RATE_PARENT,
->>
->> I fail to see why this is a fix. They were marked as critical on
->> purpose. It was needed, wasn't it?
->>
->> Provide jsutification for commits, not just sprinkle Fixes tag all around.
->>
+On 02/06/2024 17:24, Laurent Pinchart wrote:
+> The ADP5585 is a 10/11 input/output port expander with a built in keypad
+> matrix decoder, programmable logic, reset generator, and PWM generator.
+> These bindings model the device as an MFD, and support the GPIO expander
+> and PWM functions.
 > 
-> This is indeed a fix, as marking clocks CLK_IS_CRITICAL prevents any
-> power-domain associated with the clock controller from suspending. In
-> other words, the current behavior is broken.
-> 
-> @Taniya, "not desired for functionality" does not carry any useful
-> information explaining why this change is made. Please update the commit
-> message.
 
-Then please provide some sort of bug explanation in the commit msg. I
-assume the clocks were marked critical to solve some particular problem,
-e.g. missing parents, so marking this as fix sounds like both incorrect
-and error-prone when backported. Maybe that's not the case, so this is
-why there is commit msg to explain such details...
+Please use subject prefixes matching the subsystem, e.g. dt-bindings: mfd:
+
+A nit, subject: drop second/last, redundant "bindings for". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+
+> These bindings support the GPIO and PWM functions.
+> 
+> Drop the existing adi,adp5585 and adi,adp5585-02 compatible strings from
+> trivial-devices.yaml. They have been added there by mistake as the
+> driver that was submitted at the same time used different compatible
+> strings. We can take them over safely.
+> 
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        mfd@34 {
+
+mfd is Linuxism, so this should be probably "io-expander" or something
+similar.
+
+> +            compatible = "adi,adp5585-00", "adi,adp5585";
+> +            reg = <0x34>;
+> +
+> +            vdd-supply = <&reg_3v3>;
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
