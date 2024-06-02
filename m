@@ -1,132 +1,178 @@
-Return-Path: <devicetree+bounces-71565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87BC48D74F1
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 13:27:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C6338D74FC
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 13:45:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2A54281FFD
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 11:27:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6BD1281C21
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jun 2024 11:45:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4793F381DE;
-	Sun,  2 Jun 2024 11:27:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B2FC38F98;
+	Sun,  2 Jun 2024 11:45:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FxteHi9a"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YmrbmibJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1913A2574D;
-	Sun,  2 Jun 2024 11:27:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AD8538DF2;
+	Sun,  2 Jun 2024 11:45:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717327667; cv=none; b=u4QTKROV5BMFSEU3t4Uq4FPVe0HNVtHlaJUeRlbShk1SwFFActH1zsV+EaRJx40eVVKM01skzgLcf6yv+/7Ff4cId3mbZps43MIn6/bKkAh0fVwNkzNCdTAWqkA7swiYZaFjCrk3AaQ8yAbrMmCc+Bq/MYuCDS+Yf7YpvM1BD0s=
+	t=1717328717; cv=none; b=TnuGAr7eCgHY4PC0Dd24yIug/Ta8P8MZdts2/F4XYcjxChGkstpZMRRJnvR2t+34KSt6BewETFJuaabzZvOcqOAMbasMtNm+ZP60muNiKxFbc53C0vhnG1OE6m+nHfIajZwKsUTZEms1e/qgWnrZZaIpxKTh21sY10gh3RcFSzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717327667; c=relaxed/simple;
-	bh=Lwha5IB5hh3/aivFQ6QRrrVvxlZpn4aDHhuG6j1fiLg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TUiWhyRuPnCQ1AmvDlWf9elTlGrvrHFDkZUXxu36WTNwONjN1Fum9yPsiyjWWS+PSabOfMgBBSdtbrEWs61ROmF2t4Af3hReSU9/Sp6RPg85yBDe1ph4c8nld1s0wmNS4oU7wfXY9zbcYVxpCpeaG5f7CnZOU7TlVRkJpZY03R0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FxteHi9a; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BFCAC2BBFC;
-	Sun,  2 Jun 2024 11:27:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717327666;
-	bh=Lwha5IB5hh3/aivFQ6QRrrVvxlZpn4aDHhuG6j1fiLg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=FxteHi9aVxAg7eNJqwBtC5wRZJh+Qupe4klOk81L4hCTTbJbnyRqY+1+LKjkfxT6c
-	 UJLvyjoKrDfleEQNaF7/d3NOLV3Y/5yjaN4i2+Pd+8Q6xPVQUWG7k+2ifh6rS+3vSg
-	 FUFVs4K+1ixX/H0ZQcHpXezLEC3UYoktLn5kbRx2js04siUTusFY+nzzRdCcpe/saE
-	 oR2D39eU7UgIURlGzNdidh00Wl8A/UwW8Tue7QqzmaGpX/dJd8Sr6Y1EWIqY9mEm0J
-	 xYIvp3iHop+R+qc7PnyvPa25/lf5V6tA1zf7gcH6vuMEpOXm0XAI2V0UJ9YwYuB+Hq
-	 W4GU9vxzK0k4Q==
-Date: Sun, 2 Jun 2024 12:27:33 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Gustavo Silva <gustavograzs@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- lars@metafoo.de, christophe.jaillet@wanadoo.fr, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/6] iio: chemical: ens160: add triggered buffer
- support
-Message-ID: <20240602122733.5935da67@jic23-huawei>
-In-Reply-To: <20240529001504.33648-4-gustavograzs@gmail.com>
-References: <20240529001504.33648-1-gustavograzs@gmail.com>
-	<20240529001504.33648-4-gustavograzs@gmail.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1717328717; c=relaxed/simple;
+	bh=wPCp7HcMegI7VYgSk7MAXbnf/xHxgUKglji2mKcI6Kw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VKd/kjziDJPHG8pIhCjE+EASO29/LvcHPv8ILRLI2wa0R0iJ8XPRTLP8sRvClloHSNMFUKaBMWGLkVJ3X4r+1bP5IWKWPb6OGqFzuGLKTa5OER2qeBsKKGHkkJ/AX/3tnKcpkO49rSggI6MJmEcr7oZjjEyvULpW5rdCOhyeYbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YmrbmibJ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4529f5qY024902;
+	Sun, 2 Jun 2024 11:45:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=7t2NXDyp026l3fKwmbHkyS
+	+wMjUw8rpzuC3VGniDBXQ=; b=YmrbmibJL1rpECYRoMhYizQh7xFGaGPe9n7xI5
+	GNXd+cUibS5irc01BILKo/IHCKAofyZjoPipFvikotcTxsnWnqYKRLi6JM9d7wpr
+	SjbkcfGAPxFPXAnDHYop+vQRhKYUDJhALv+q6ZygV97OdKPj3hosWphgdslgNMii
+	tqQYXlnDmnLw/Kn2RStkW0q8MBX8gX6ulINimdyqSrK6UoQpeeVxYvG+bsKcPEq0
+	DBRnOI+lO8Viic0KybOtZ8hpI1wlgA420F7yoaZJluPQWPAt6XXby6FUj4XLbyjV
+	3IzbKbiYEPJs2Abthavcs8VMHbP0jH2CDGuueoLCP+4I6DJw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yfw5t1xgk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 02 Jun 2024 11:45:10 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 452Bj94k029818
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 2 Jun 2024 11:45:09 GMT
+Received: from hu-jkona-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Sun, 2 Jun 2024 04:45:04 -0700
+From: Jagadeesh Kona <quic_jkona@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+CC: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Taniya Das
+	<quic_tdas@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        "Satya
+ Priya Kakitapalli" <quic_skakitap@quicinc.com>,
+        Ajit Pandey
+	<quic_ajipan@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>
+Subject: [PATCH V4 0/8] Add support for videocc and camcc on SM8650
+Date: Sun, 2 Jun 2024 17:14:31 +0530
+Message-ID: <20240602114439.1611-1-quic_jkona@quicinc.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: WP_O0fU9f4MAOc1qSntMVDrr74YSkdRC
+X-Proofpoint-GUID: WP_O0fU9f4MAOc1qSntMVDrr74YSkdRC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-06-01_19,2024-05-30_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 bulkscore=0
+ spamscore=0 suspectscore=0 priorityscore=1501 impostorscore=0
+ clxscore=1011 malwarescore=0 phishscore=0 mlxscore=0 lowpriorityscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406020099
 
-On Tue, 28 May 2024 21:14:21 -0300
-Gustavo Silva <gustavograzs@gmail.com> wrote:
+Add support for video and camera clock controllers on Qualcomm SM8650
+platform.
 
-> ENS160 supports a data ready interrupt. Use it in combination with
-> triggered buffer for continuous data readings.
-> 
-> Signed-off-by: Gustavo Silva <gustavograzs@gmail.com>
-A couple of really minor comments inline.
+Changes in V4:
+[PATCH 1/8]: Updated commit text. Replaced :: with : in SM8450 videocc
+             YAML file as Krzysztof's comment in V3
+[PATCH 5/8]: Replaced :: with : in SM8450 camcc YAML file. Updated commit
+             text and dropped Fixes tag as per Johan's comments in V3
+Added R-By tags received till V3
 
-Thanks,
+Changes in V3:
+[PATCH 1/8]: Split incorrect header file name in SM8450 videocc bindings
+             into a separate patch and added fixes tag
+[PATCH 2/8]: Added new header file for SM8650 videocc to define the extra clocks
+             and resets on top of SM8450 videocc bindings, Dropped Krzysztof
+             R-By tag due to these changes
+[PATCH 3/8]: Updated SM8550 videocc driver to use new SM8650 videocc header file,
+             added Dmitry and Konrad R-By tags
+[PATCH 4/8]: Updated offset variable name to sleep_clk_offset in probe and added
+             Dmitry R-By tag
+[PATCH 5/8]: This patch is newly added to fix the incorrect order for SC8280XP
+             camcc header file in bindings
+[PATCH 6/8]: Fixed the incorrect alphabetical order for SM8650 camcc compatible
+             and header files, added Krzysztof R-By tag and Vladimir Acked-By tags
+[PATCH 7/8]: No changes, added R-By tags received till V2 series
+[PATCH 8/8]: Dropped required-opps property in videocc and camcc nodes and
+             updated DT file to use new SM8650 videocc header file, added Vladimir R-By tag
 
-Jonathan
+Changes in V2:
+ - Updated commit text for videocc dt-bindings patch as Krzysztof suggested
+ - Moved videocc XO clk ares to a separate patch and added fixes tag as per
+   review comments
+ - Inverted the logic in videocc probe to add new SM8650 specific videocc
+   clocks based on SM8650 compatible string as Dmitry suggested
+ - Used module_platform_driver() for SM8650 camcc driver
+ - Updated driver name from cam_cc-sm8650 to camcc-sm8650 as Bryan suggested
+ - Used qcom_branch_set_clk_en() helper to enable clocks in camcc sm8650 probe
+ - Added Krzysztof and Bryan Reviewed-by tags to dt-bindings and camcc patches
+   received in V1
 
+Previous series:
+V3: https://lore.kernel.org/all/20240430142757.16872-1-quic_jkona@quicinc.com/
+V2 RESEND: https://lore.kernel.org/all/20240321092529.13362-1-quic_jkona@quicinc.com/
+V2: https://lore.kernel.org/all/20240220135121.22578-1-quic_jkona@quicinc.com/
+V1: https://lore.kernel.org/linux-kernel/20240206113145.31096-1-quic_jkona@quicinc.com/T/
 
->  #endif
-> diff --git a/drivers/iio/chemical/ens160_core.c b/drivers/iio/chemical/ens160_core.c
-> index a535f62c4..74ef7f150 100644
-> --- a/drivers/iio/chemical/ens160_core.c
-> +++ b/drivers/iio/chemical/ens160_core.c
-> @@ -10,6 +10,9 @@
->  
->  #include <linux/bitfield.h>
->  #include <linux/iio/iio.h>
-> +#include <linux/iio/trigger.h>
-> +#include <linux/iio/trigger_consumer.h>
-> +#include <linux/iio/triggered_buffer.h>
->  #include <linux/module.h>
->  #include <linux/regmap.h>
->  
-> @@ -19,9 +22,14 @@
->  
->  #define ENS160_BOOTING_TIME_MS 10U
->  
-> -#define ENS160_REG_PART_ID	0x00
+Jagadeesh Kona (8):
+  dt-bindings: clock: qcom: Update SM8450 videocc header file name
+  dt-bindings: clock: qcom: Add SM8650 video clock controller
+  clk: qcom: videocc-sm8550: Add support for videocc XO clk ares
+  clk: qcom: videocc-sm8550: Add SM8650 video clock controller
+  dt-bindings: clock: qcom: Update the order of SC8280XP camcc header
+  dt-bindings: clock: qcom: Add SM8650 camera clock controller
+  clk: qcom: camcc-sm8650: Add SM8650 camera clock controller driver
+  arm64: dts: qcom: sm8650: Add video and camera clock controllers
 
-move this in earlier patch so no need to realign here.
+ .../bindings/clock/qcom,sm8450-camcc.yaml     |    7 +-
+ .../bindings/clock/qcom,sm8450-videocc.yaml   |    6 +-
+ arch/arm64/boot/dts/qcom/sm8650.dtsi          |   26 +
+ drivers/clk/qcom/Kconfig                      |    8 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/camcc-sm8650.c               | 3591 +++++++++++++++++
+ drivers/clk/qcom/videocc-sm8550.c             |  156 +-
+ include/dt-bindings/clock/qcom,sm8650-camcc.h |  195 +
+ .../dt-bindings/clock/qcom,sm8650-videocc.h   |   23 +
+ 9 files changed, 4005 insertions(+), 8 deletions(-)
+ create mode 100644 drivers/clk/qcom/camcc-sm8650.c
+ create mode 100644 include/dt-bindings/clock/qcom,sm8650-camcc.h
+ create mode 100644 include/dt-bindings/clock/qcom,sm8650-videocc.h
 
-> +#define ENS160_REG_PART_ID		0x00
->  
-> -#define ENS160_REG_OPMODE	0x10
-> +#define ENS160_REG_OPMODE		0x10
-> +
-> +#define ENS160_REG_CONFIG		0x11
-> +#define ENS160_REG_CONFIG_INTEN		BIT(0)
-> +#define ENS160_REG_CONFIG_INTDAT	BIT(1)
-> +#define ENS160_REG_CONFIG_INT_CFG	BIT(5)
->  
->  #define ENS160_REG_MODE_DEEP_SLEEP	0x00
->  #define ENS160_REG_MODE_IDLE		0x01
-> @@ -48,7 +56,12 @@
->  
->  struct ens160_data {
->  	struct regmap *regmap;
-> -	u8 fw_version[3] __aligned(IIO_DMA_MINALIGN);
-> +	struct mutex mutex;
-
-Mutex needs a comment to say what data it is protecting.
-
-> +	struct {
-> +		__le16 chans[2];
-> +		s64 timestamp __aligned(8);
-> +	} scan __aligned(IIO_DMA_MINALIGN);
-> +	u8 fw_version[3];
->  	__le16 buf;
->  };
+-- 
+2.43.0
 
 
