@@ -1,252 +1,232 @@
-Return-Path: <devicetree+bounces-71786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A61A8D7F45
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 11:48:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9354C8D7F5C
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 11:50:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AAC111F2435C
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 09:48:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B68FD1C2182A
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 09:50:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89DFB84DFA;
-	Mon,  3 Jun 2024 09:44:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEEF7126F1F;
+	Mon,  3 Jun 2024 09:46:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jGzJgV02"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RGC/cocO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB01984D34;
-	Mon,  3 Jun 2024 09:44:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07EF183CA3;
+	Mon,  3 Jun 2024 09:46:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717407864; cv=none; b=aSZNKQT5hbwm+hlmWBGQfIE67Ni1twvH8SOGqoDZdTldy6m3ptvo2qERPf3x2fXWolaOuseS9OQDN/CKsmdpZM76SaKmCJspPLZMcbA+PwrX26KKBxb7+YnEm12h3l7OzultRo2pCBSyRn8cuXLUnTWgoLeaRFXoOV5oEY4nQU8=
+	t=1717407975; cv=none; b=ByUfHKa0ShatoFNO6We/81Qnp9M6TQ6Ky1dpINPOLCmagESPgppYSYh5HeDda7A5TGVj/pVKRO58esXoD+L9I12UlL/pzkyUnBMJTO4RmoBM3FlKXNzZcdadyKO6Ife+RdGc7u3yKhX4qTvapJoJ3j+yf/F6QJ02nqBIwiT7NMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717407864; c=relaxed/simple;
-	bh=7uk/n4LsL4k2D4WNFxDqxya/t5rndF9UtZGej2dqQGs=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BYin+FGaOjigtMvLbSbUCJHHphmZRphnJic1nLYXYlBOZx3HkBUw4UwDRAddrR8Z4abk+it41IL0+r7tobHAR01TvNJXqelwMSYSRLbhMTAm4Yrj7COxT+MU+PIM6CXdpU9VF6EkCxelVkP4LYW4Q0mEVn7dAlp/y0JIhX8BhLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jGzJgV02; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4530TNdb019792;
-	Mon, 3 Jun 2024 09:44:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	fssNGsW5ggA/7sCtA1fwddGw0A0IeOeVDefSmcXfuq0=; b=jGzJgV02dbeiqGQV
-	lEMJgOMimMIJfnSjLnDkX6r3TvUwZIJyuxBDwylXOetAY2nPPijmt5uHI1Z1tE7r
-	KB384c+yJ71taUZfTrtU68MmHqgpCyRU8vDzCUYZfnEDinwZm5qjleEOYg6IDDEP
-	S1SuISjEk64QronTKCY/3AASOVBYO1jGkfLxoGp+FTZhqSC+cQYN4RkLGVwZ8ZlF
-	tCA5pmnt3ofnlC0ifSCJ4LnjuAzaooCt47Vw+s3HHd5vuAsQ+25BIZb/p6MpX2s1
-	hkv7lY7GIzUWkd11MjE5bF3rmY7+3qLp9Ngxzx1bcWm/pG41/nKSVDKFdK44PfUN
-	8VXB4Q==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yfw6qkhue-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 03 Jun 2024 09:44:07 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4539i6T5018047
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 3 Jun 2024 09:44:06 GMT
-Received: from hu-jinlmao-lv.qualcomm.com (10.49.16.6) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 3 Jun 2024 02:44:06 -0700
-From: Mao Jinlong <quic_jinlmao@quicinc.com>
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Mao Jinlong <quic_jinlmao@quicinc.com>,
-        "Alexander
- Shishkin" <alexander.shishkin@linux.intel.com>
-CC: <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang
-	<quic_taozha@quicinc.com>,
-        songchai <quic_songchai@quicinc.com>
-Subject: [PATCH v2 3/3] coresight: dummy: Add reserve atid support for dummy source
-Date: Mon, 3 Jun 2024 02:43:52 -0700
-Message-ID: <20240603094354.2348-4-quic_jinlmao@quicinc.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20240603094354.2348-1-quic_jinlmao@quicinc.com>
-References: <20240603094354.2348-1-quic_jinlmao@quicinc.com>
+	s=arc-20240116; t=1717407975; c=relaxed/simple;
+	bh=IufiulmqMrcrRzFQ22YYMKzsGUhBoCuQetCFFGWAepY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eVP1qpxpHxlJLwlKD2zlTqJ/qZIFBJSXda6api1j6wPByT9oqZucBMBzUCwg0B+J5vbM+stlP4LDHhxfU+sjRikfHC1Tnvfe3q56yFTIj6iw+/NLFotP/KSJB2qbDy6I2PStU/DjOw3BAR4gJGd0HBMBQaVt7ZwQiZehfFggEZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RGC/cocO; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a69024f2433so108343366b.2;
+        Mon, 03 Jun 2024 02:46:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717407972; x=1718012772; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qqb3EXks2EmyRdhzocsRq7snOHHNOo7GIMpgk1sEpAY=;
+        b=RGC/cocOa7/YvnoYBRwaevgQOof6910e59Gg7C5cOvxTYX+hS/jRQ276QFGz94R+9O
+         XVH9pb2OwSu1P7dBZsstIet0Kci4UErIej22AaUVd2Dj0jWSvOpGqoAsgsqFzSB+Zi27
+         2btv/JUdwLNHSp2FI7ucDY3rS+Eu3G2RkXMuACdFONC9wpr5BHjYOilwqKZdjEF/8HCv
+         U+Dpn6k/w9inex3TR0WrUS3Dyq2/7NEXpYDsLqR6LpwD8DUhivfW5YTGkECUtojI9LuO
+         +YeK6GGJZqWJIR8aw/yntMueE2bGL5RTBNtTdBkc49U+A8u+3IzPQa8WBu9Dxa2Y84EH
+         n7tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717407972; x=1718012772;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qqb3EXks2EmyRdhzocsRq7snOHHNOo7GIMpgk1sEpAY=;
+        b=QANLCHpcgiQNxkaFs321Fyj053U1m1Q8Czgqo67lTQkXFhtbkMEdTYnemEOFjeHPOM
+         GEUF3Ff66z2ITyZqA6gkRB0+gJf6FXOuBaVJC/pnbSdoLNl59sF90odo1zm1qb57tF8N
+         FLJmmzvyGpUYZuoAGfLedlmPQLIAT7O7mRsUPkwFt84ipkKdZD6p97f0L+Lam7J/HZL7
+         oBsDwmz/eRXHoPYUCv0rqtensfLIMM7G25REcmav0LlLe9FzrYypR5xPtvV1aL1OasM9
+         GSN75h4+8Md2zLojnrFJUPHxIKphf2ruSPfUaPEO5N4G6OqtMzY4yU4XEFjrnwNSFfs7
+         ICsw==
+X-Forwarded-Encrypted: i=1; AJvYcCUBhNZyY5RhwnarhFCg9uPzXq6lJHG61kzKgSx623iH06FEoLXHFFhhfKrm7PAB3tHXdQRB0VZuyGA23JSte3ho5lYbHmJVPqvyxNnRqaP21zlnI5zabdn7QdRfMIc0Gll7pD31vIeTdPs1i4S6tEvYBdqF5U7xxTJ4xEPOG9fioZo4jQ==
+X-Gm-Message-State: AOJu0Yw2T8rfdcj2Fw798dALrRst7jUFmJES7nhAkD+WaSiX1AhwSnRr
+	RX8WS5nRrhiVxtVxjy5G/8Ce3b3JepJ2YvJFTfQA671RK9M3Qc3/
+X-Google-Smtp-Source: AGHT+IHOSOGnfAYbQBVL2r5KArH7f+QqQEcRWItCKNuRsHLbH/tMOJEGP/Rj4nccxkDrmcF4XJSZHA==
+X-Received: by 2002:a17:906:2b0e:b0:a68:f5fe:ac8a with SMTP id a640c23a62f3a-a68f5feacc4mr238139966b.64.1717407971972;
+        Mon, 03 Jun 2024 02:46:11 -0700 (PDT)
+Received: from [10.76.84.176] ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a68a9fdfb3dsm343701866b.154.2024.06.03.02.46.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Jun 2024 02:46:11 -0700 (PDT)
+Message-ID: <efa10caa-5e78-4f3f-8cca-c61d7a01e6fd@gmail.com>
+Date: Mon, 3 Jun 2024 12:46:10 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/6] dt-bindings: adc: ad7173: add support for ad411x
+To: Jonathan Cameron <jic23@kernel.org>,
+ Dumitru Ceclan via B4 Relay <devnull+dumitru.ceclan.analog.com@kernel.org>
+Cc: dumitru.ceclan@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240531-ad4111-v4-0-64607301c057@analog.com>
+ <20240531-ad4111-v4-1-64607301c057@analog.com>
+ <20240601193512.0e17992b@jic23-huawei>
+Content-Language: en-US
+From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
+In-Reply-To: <20240601193512.0e17992b@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: H8gMhTBx398ftw-Qs4hryUar8quVlxkP
-X-Proofpoint-ORIG-GUID: H8gMhTBx398ftw-Qs4hryUar8quVlxkP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-06-03_06,2024-05-30_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- bulkscore=0 mlxlogscore=999 clxscore=1015 impostorscore=0 malwarescore=0
- mlxscore=0 adultscore=0 lowpriorityscore=0 suspectscore=0 spamscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406030081
 
-Some dummy source has static trace id configured in HW and it cannot
-be changed via software programming. Configure the trace id in device
-tree and reserve the id when device probe.
+On 01/06/2024 21:35, Jonathan Cameron wrote:
+> On Fri, 31 May 2024 22:42:27 +0300
+> Dumitru Ceclan via B4 Relay <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
+> 
+>> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
+>>
+>> Add support for: AD4111, AD4112, AD4114, AD4115, AD4116.
+>>
+>> AD411x family ADCs support a VCOM pin. The purpose of this pin is to
+>> offer a dedicated common-mode voltage input for single-ended channels.
+>> This pin is specified as supporting a differential channel with VIN10 on
+>> model AD4116.
+>>
+>> AD4111/AD4112 support current channels. Support is implemented using
+>> single-channel and "adi,current-channel".
+>>
+>> Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
+> I like the common-mode-channel solution to the pseudo differential
+> description. It makes things explicit whilst avoiding an ugly differential
+> but not differential mess.
+> 
+> However, it feels like a general thing to me not a vendor specific one.
+> Perhaps makes sense to put in adc.yaml?
+> 
 
-Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
----
- .../sysfs-bus-coresight-devices-dummy-source  | 15 +++++
- drivers/hwtracing/coresight/coresight-dummy.c | 58 +++++++++++++++++--
- 2 files changed, 69 insertions(+), 4 deletions(-)
- create mode 100644 Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source
+Sure
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source b/Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source
-new file mode 100644
-index 000000000000..d93c198115c9
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source
-@@ -0,0 +1,15 @@
-+What:		/sys/bus/coresight/devices/dummy_source<N>/enable_source
-+Date:		June 2024
-+KernelVersion:	6.9
-+Contact:	Mao Jinlong <quic_jinlmao@quicinc.com>
-+Description:	(RW) Enable/disable tracing of dummy source. A sink should be activated
-+		before enabling the source. The path of coresight components linking
-+		the source to the sink is configured and managed automatically by the
-+		coresight framework.
-+
-+What:		/sys/bus/coresight/devices/dummy_source<N>/traceid
-+Date:		June 2024
-+KernelVersion:	6.9
-+Contact:	Mao Jinlong <quic_jinlmao@quicinc.com>
-+Description:	(R) Show the trace ID that will appear in the trace stream
-+		coming from this trace entity.
-diff --git a/drivers/hwtracing/coresight/coresight-dummy.c b/drivers/hwtracing/coresight/coresight-dummy.c
-index ac70c0b491be..1f7133ac2c0b 100644
---- a/drivers/hwtracing/coresight/coresight-dummy.c
-+++ b/drivers/hwtracing/coresight/coresight-dummy.c
-@@ -11,10 +11,12 @@
- #include <linux/pm_runtime.h>
+> One other question that is more me being curious and failing to understand
+> the datasheet than a request to change anything.
+>> ---
+>>  .../devicetree/bindings/iio/adc/adi,ad7173.yaml    | 192 ++++++++++++++++++++-
+>>  1 file changed, 190 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+>> index ea6cfcd0aff4..d8474eee553e 100644
+>> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+>> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+>> @@ -19,7 +19,18 @@ description: |
+>>    primarily for measurement of signals close to DC but also delivers
+>>    outstanding performance with input bandwidths out to ~10kHz.
+>>  
+>> +  Analog Devices AD411x ADC's:
+>> +  The AD411X family encompasses a series of low power, low noise, 24-bit,
+>> +  sigma-delta analog-to-digital converters that offer a versatile range of
+>> +  specifications. They integrate an analog front end suitable for processing
+>> +  fully differential/single-ended and bipolar voltage inputs.
+>> +
+>>    Datasheets for supported chips:
+>> +    https://www.analog.com/media/en/technical-documentation/data-sheets/AD4111.pdf
+>> +    https://www.analog.com/media/en/technical-documentation/data-sheets/AD4112.pdf
+>> +    https://www.analog.com/media/en/technical-documentation/data-sheets/AD4114.pdf
+>> +    https://www.analog.com/media/en/technical-documentation/data-sheets/AD4115.pdf
+>> +    https://www.analog.com/media/en/technical-documentation/data-sheets/AD4116.pdf
+>>      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7172-2.pdf
+>>      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7172-4.pdf
+>>      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7173-8.pdf
+>> @@ -31,6 +42,11 @@ description: |
+>>  properties:
+>>    compatible:
+>>      enum:
+>> +      - adi,ad4111
+>> +      - adi,ad4112
+>> +      - adi,ad4114
+>> +      - adi,ad4115
+>> +      - adi,ad4116
+>>        - adi,ad7172-2
+>>        - adi,ad7172-4
+>>        - adi,ad7173-8
+>> @@ -129,10 +145,54 @@ patternProperties:
+>>          maximum: 15
+>>  
+>>        diff-channels:
+>> +        description: |
+>> +          This property is used for defining the inputs of a differential
+>> +          voltage channel. The first value is the positive input and the second
+>> +          value is the negative input of the channel.
+>> +
+>> +          Family AD411x supports a dedicated VINCOM voltage input.
+>> +          To select it set the second channel to 16.
+>> +            (VIN2, VINCOM) -> diff-channels = <2 16>
+>> +
+>> +          There are special values that can be selected besides the voltage
+>> +          analog inputs:
+>> +            21: REF+
+>> +            22: REF−
+>> +          Supported only by AD7172-2, AD7172-4, AD7175-2, AD7175-8, AD7177-2:
+>> +            19: ((AVDD1 − AVSS)/5)+
+>> +            20: ((AVDD1 − AVSS)/5)−
+> 
+> That's what it says on the datasheet (so fine to copy that here) but I'm curious, what does
+> that mean in practice?  How can we have negative and postive signals of the difference
+> between two power supply voltages where I'm fairly sure AVDD1 always greater than AVSS.
+>
+
+I have not tested that as I do not have a model that supports this wired up.
+If I had to guess they are the same signal but one should be connected to the
+positive input, one to the negative input...but I could be wrong.
  
- #include "coresight-priv.h"
-+#include "coresight-trace-id.h"
- 
- struct dummy_drvdata {
- 	struct device			*dev;
- 	struct coresight_device		*csdev;
-+	u8				traceid;
- };
- 
- DEFINE_CORESIGHT_DEVLIST(source_devs, "dummy_source");
-@@ -67,6 +69,32 @@ static const struct coresight_ops dummy_sink_cs_ops = {
- 	.sink_ops = &dummy_sink_ops,
- };
- 
-+/* User can get the trace id of dummy source from this node. */
-+static ssize_t traceid_show(struct device *dev,
-+			    struct device_attribute *attr, char *buf)
-+{
-+	unsigned long val;
-+	struct dummy_drvdata *drvdata = dev_get_drvdata(dev->parent);
-+
-+	val = drvdata->traceid;
-+	return scnprintf(buf, PAGE_SIZE, "%#lx\n", val);
-+}
-+static DEVICE_ATTR_RO(traceid);
-+
-+static struct attribute *coresight_dummy_attrs[] = {
-+	&dev_attr_traceid.attr,
-+	NULL,
-+};
-+
-+static const struct attribute_group coresight_dummy_group = {
-+	.attrs = coresight_dummy_attrs,
-+};
-+
-+static const struct attribute_group *coresight_dummy_groups[] = {
-+	&coresight_dummy_group,
-+	NULL,
-+};
-+
- static int dummy_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -74,6 +102,11 @@ static int dummy_probe(struct platform_device *pdev)
- 	struct coresight_platform_data *pdata;
- 	struct dummy_drvdata *drvdata;
- 	struct coresight_desc desc = { 0 };
-+	int ret, trace_id;
-+
-+	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
-+	if (!drvdata)
-+		return -ENOMEM;
- 
- 	if (of_device_is_compatible(node, "arm,coresight-dummy-source")) {
- 
-@@ -85,6 +118,24 @@ static int dummy_probe(struct platform_device *pdev)
- 		desc.subtype.source_subtype =
- 					CORESIGHT_DEV_SUBTYPE_SOURCE_OTHERS;
- 		desc.ops = &dummy_source_cs_ops;
-+		desc.groups = coresight_dummy_groups;
-+
-+		ret = coresight_get_source_traceid(dev, &trace_id);
-+		if (!ret) {
-+			ret = coresight_trace_id_get_system_id(trace_id);
-+			if (ret < 0)
-+				return ret;
-+
-+			drvdata->traceid = ret;
-+		} else {
-+			trace_id = coresight_trace_id_get_system_id(0);
-+			if (trace_id < 0) {
-+				ret = trace_id;
-+				return ret;
-+			}
-+			drvdata->traceid = (u8)trace_id;
-+		}
-+
- 	} else if (of_device_is_compatible(node, "arm,coresight-dummy-sink")) {
- 		desc.name = coresight_alloc_device_name(&sink_devs, dev);
- 		if (!desc.name)
-@@ -103,10 +154,6 @@ static int dummy_probe(struct platform_device *pdev)
- 		return PTR_ERR(pdata);
- 	pdev->dev.platform_data = pdata;
- 
--	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
--	if (!drvdata)
--		return -ENOMEM;
--
- 	drvdata->dev = &pdev->dev;
- 	platform_set_drvdata(pdev, drvdata);
- 
-@@ -126,7 +173,10 @@ static void dummy_remove(struct platform_device *pdev)
- {
- 	struct dummy_drvdata *drvdata = platform_get_drvdata(pdev);
- 	struct device *dev = &pdev->dev;
-+	struct device_node *node = dev->of_node;
- 
-+	if (of_device_is_compatible(node, "arm,coresight-dummy-source"))
-+		coresight_trace_id_put_system_id(drvdata->traceid);
- 	pm_runtime_disable(dev);
- 	coresight_unregister(drvdata->csdev);
- }
--- 
-2.41.0
+> Anyhow, that's a problem for the person reading the datasheet to figure out :)
+>  
+>> +
+>>          items:
+>>            minimum: 0
+>>            maximum: 31
+>>  
+>> +      single-channel:
+>> +        description: |
+>> +          This property is used for defining a current channel or the positive
+>> +          input of a voltage channel (single-ended or pseudo-differential).
+>> +
+>> +          Models AD4111 and AD4112 support current channels.
+>> +            Example: (IIN2+, IIN2−) -> single-channel = <2>
+>> +          To correctly configure a current channel set the "adi,current-channel"
+>> +          property to true.
+>> +
+>> +          To configure a single-ended/pseudo-differential channel set the
+>> +          "adi,common-mode-channel" property to the desired negative voltage input.
+>> +
+>> +          When used as a voltage channel, special inputs are valid as well.
+>> +        minimum: 0
+>> +        maximum: 31
+>> +
+>> +      adi,common-mode-channel:
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +        description:
+>> +          This property is used for defining the negative input of a
+>> +          single-ended or pseudo-differential voltage channel.
+>> +
+>> +          Special inputs are valid as well.
+>> +        minimum: 0
+>> +        maximum: 31
+>> +
+> 
 
 
