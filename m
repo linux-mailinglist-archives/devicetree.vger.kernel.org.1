@@ -1,118 +1,149 @@
-Return-Path: <devicetree+bounces-71746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD3538D7D45
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 10:25:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5648D8D7DB5
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 10:46:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6A671B22602
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 08:25:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B0F51F23FAF
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 08:46:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FF476F533;
-	Mon,  3 Jun 2024 08:24:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="n0u0wsn5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D46F6824B7;
+	Mon,  3 Jun 2024 08:45:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC5256F073
-	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 08:24:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8484581207;
+	Mon,  3 Jun 2024 08:45:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717403078; cv=none; b=Pj3gwWussyKS3/b3D56Rw/0gZeGheHw7dSMk8DpI1RW/Eqs6DHm5uuMTltgBLGys75Od6svFQgjnkwhdiG0FSvhjCJZuDJ8rXljVQLfVM/ZSUjHYKNlab/iDSQHZS25rfTn6VmgJWW73DNU2fr039bGaEWzD65x7X3zvE2E5in0=
+	t=1717404328; cv=none; b=YVHHUGfn74nMzt/XOxguiA9A1Dug0u2el4M8U9U9ZryEPboHCdciKLQq3AaP2NEpb1ES/3FdwEnL7Yc4snRc7iARm2jHklhlMoXfYJFZXq78Whitsx38GwabfNpJcf1WINEkOM+ETf8u3Ooec2fai7e9L5+teHjtVv3ToEU3HTo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717403078; c=relaxed/simple;
-	bh=w8Flzgxr6omuysxB/zVDD/Wv2MRLsDhFqe+NdyAOjgc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oGgLcOmQxzsVIRT4W83z2dnSQnn2ndhYDlDYi1WMe1tNEjcMkzjjFWBdCLs32jv/kPDuWvsfbi88XjSUcyB8GdliDMzdqBdt/wbFDnLxg+1mxx1othqH/pLQDwVFrD7UToIAQu+d3cdTtQZMpnn7JkhYdz1QCLhl5hxysLSimrk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=n0u0wsn5; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-42136faf3aeso8235545e9.2
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2024 01:24:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1717403075; x=1718007875; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DYoD7NRleroa5h8G1WvcKj1uz39B0Rluk/+UjUyZroE=;
-        b=n0u0wsn5bsRDbK3i/YSikL1yA6QxzPexQRuCBRZe0LCF64BxLcz0PLy5Fjj/xiU41p
-         HIieliiI33pynf0t3nCLxG/1F1IkDhz4IE7EBLP73ZYKD1YwHEd+RA3OYmc9Qp1MmuMp
-         n74n/yVCZRR2KeLdJyp1fgxz8R/9LaBcpM28rDOSralgcZ6CfPreXLdKOHbSRPCdzSfc
-         V0pCOh+T+jC83cBIMk94+Oe8Rt3vtqbVmosevg5LxYuhomJ64iL7I0yOX1LiM4gO+OL4
-         Oksfu/DokF8qEl+bwvxYm2tGwW963b21AeQyN5XPG5TdUGGFjL2/L5rDxaCc/RfLLyri
-         /rZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717403075; x=1718007875;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DYoD7NRleroa5h8G1WvcKj1uz39B0Rluk/+UjUyZroE=;
-        b=X2PJ3REtE+TciVeLT2N6XTR5F/Bnoj5R4riCHESKWDLJZ9r2NEzuz2uCeIwNpT9q9K
-         82pTvPPCEDu/IaG6R8oN/ZtUPk2LYpuZ6qkZbzt0G/ZhSdCMsNvdc1aaVhOaiveYwbks
-         WdKwszkSgUfMxRHbVy7oFzIScREx2QP/acqjacr9GXcAFCfY5kZ+exZkCDhFfNhDKN8Q
-         BLFSvyJCkOheCv9iKVxac8VaGqitJBBx2aU90uEMNWCx3HYJQW9jsM2dcPFEp3vk9gM/
-         y+/KgzbeMaa2YMiJBrgVAJHuqv3Xf335Y8inDdRJ4lE1ScePjBdgfG5IW9bX53O9coou
-         DYrw==
-X-Forwarded-Encrypted: i=1; AJvYcCUcOJPy0mokVm1N7aSRkQo5QEW9VSNaB4KSM5YwhdLd+EQe6E7tr+Z20O8ienVwBeJQL7h1NO0kJ3cYDqjHy0JvNTDwVO3SZzblCA==
-X-Gm-Message-State: AOJu0YyRDLHDufz2ns4oCMIZ+ko0xH5qQOdDRyNOdYfc3OGYHAKjaf1O
-	GqubUnAYjcNmlo1AaITZSPgm2IjzLRzi7MzAnUmZx3HCKiRUKFLi71VjB30J7ZI=
-X-Google-Smtp-Source: AGHT+IHKi8KVVVFqdZsWLfi9GAnJoyzakWoKYzj9dIPgMV835EZmE5hRnkcNH43kvujeh06Rzu/jOg==
-X-Received: by 2002:a05:600c:46d3:b0:41f:e4ad:9ae4 with SMTP id 5b1f17b1804b1-4212e076433mr60992745e9.23.1717403075098;
-        Mon, 03 Jun 2024 01:24:35 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:75a:e000:5b1:48e9:27a3:7085])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4213e75eef3sm17299255e9.6.2024.06.03.01.24.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Jun 2024 01:24:34 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: brgl@bgdev.pl,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	linus.walleij@linaro.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] gpio: pca953x: Add support for TI TCA9535 variant
-Date: Mon,  3 Jun 2024 10:24:33 +0200
-Message-ID: <171740307062.11155.18104329080684685270.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240531121801.2161154-1-festevam@gmail.com>
-References: <20240531121801.2161154-1-festevam@gmail.com>
+	s=arc-20240116; t=1717404328; c=relaxed/simple;
+	bh=kYOMJ8lUSMxsB+13SlxbtNNgUEYoyE9Ax8jz0e/dWF8=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=X4ycdewZL1pVLJaVRhOeQpeUZR7gPSj3yJzk/wVam+Wwvq4g7x2vmWYrH2g5i/crI8AWJJX+vCKaXRwP2nNAIFwz+OcYPfMYFrO9kRwhou9YZz/vjWSkB34bUy4oUhJvRIMPvkUYmDOOPHRFDyjSk9G9pwlwcoeuB4hBpAo4UMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Vt6B31B6Gz6JBJg;
+	Mon,  3 Jun 2024 16:20:59 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id 586261400CD;
+	Mon,  3 Jun 2024 16:25:11 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Mon, 3 Jun
+ 2024 09:25:10 +0100
+Date: Mon, 3 Jun 2024 09:25:11 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Arthur Becker <arthur.becker@sentec.com>
+CC: Jonathan Cameron <jic23@kernel.org>, Krzysztof Kozlowski
+	<krzk@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-iio@vger.kernel.org"
+	<linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] dt-bindings: iio: light: add VEML6040 RGBW-LS
+ bindings
+Message-ID: <20240603092511.0000391e@Huawei.com>
+In-Reply-To: <ZR1P278MB1117EE8AFDD8891EE6459CEC81FF2@ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM>
+References: <20240527-veml6040-v3-0-6f3bbfd42960@sentec.com>
+	<20240527-veml6040-v3-2-6f3bbfd42960@sentec.com>
+	<e47de936-8cb4-4cef-a346-74835767e203@kernel.org>
+	<ZR1P278MB111779FE0C84DB465C54EEFF81F12@ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM>
+	<20240602141617.533558c4@jic23-huawei>
+	<ZR1P278MB1117EE8AFDD8891EE6459CEC81FF2@ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml100002.china.huawei.com (7.191.160.241) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On Mon, 3 Jun 2024 08:23:55 +0000
+Arthur Becker <arthur.becker@sentec.com> wrote:
 
-
-On Fri, 31 May 2024 09:18:00 -0300, Fabio Estevam wrote:
-> Add support for the TI TCA9535 variant.
+> From: Jonathan Cameron <jic23@kernel.org>
+> Sent: 02 June 2024 15:16
+> To: Arthur Becker
+> Cc: Krzysztof Kozlowski; Lars-Peter Clausen; Rob Herring; Krzysztof Kozlowski; Conor Dooley; linux-kernel@vger.kernel.org; linux-iio@vger.kernel.org; devicetree@vger.kernel.org
+> Subject: Re: [EXTERNAL]Re: [PATCH v3 2/2] dt-bindings: iio: light: add VEML6040 RGBW-LS bindings
 > 
-> The NXP PCA9535 is already supported by the driver.
+> > On Tue, 28 May 2024 07:23:03 +0000
+> > Arthur Becker <arthur.becker@sentec.com> wrote:
+> >   
+> > > Thanks for the Review!
+> > > Right, I wasn't sure if and how to add the veml6040 to the veml6075 dt-binding file.
+> > > I'll modify that the next time I make adjustments to the driver.  
+> >
+> > Hi Arthur,
+> >
+> > If I read the above correctly you are hoping this merges as it stands and
+> > we come back later. If we are going to combine them long term,
+> > I'd rather we avoided the churn and had a combined DT binding from the start.  
 > 
-> TCA9535 supports lower voltage operation (down to 1.65V VCC)
-> compared to PCA (down to 2.3V VCC).
+> Hi Jonathan,
 > 
-> [...]
+> I could have phrased that better, what I meant was that I was waiting for the next
+> feedback on the driver to make the adjustments all at once.
+> I'll get to it shortly!
 
-Applied, thanks!
+Great :)
 
-[1/2] gpio: pca953x: Add support for TI TCA9535 variant
-      commit: 82466bb622e921fb1a3dc552c9e3d20b3c1da8ad
-[2/2] dt-bindings: gpio: pca95xx: Document the TI TCA9535 variant
-      commit: 8fce7727a70e037002800eb5b70995a7cd337c7a
+Thanks,
 
-Best regards,
--- 
-Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Jonathan
+
+> 
+> Kind Regards,
+> Arthur
+> 
+> >
+> > Jonathan
+> >  
+> > >
+> > > Kind regards,
+> > > Arthur
+> > >
+> > > ________________________________________
+> > > From: Krzysztof Kozlowski <krzk@kernel.org>
+> > > Sent: 27 May 2024 18:31
+> > > To: Arthur Becker; Jonathan Cameron; Lars-Peter Clausen; Rob Herring; Krzysztof Kozlowski; Conor Dooley
+> > > Cc: linux-kernel@vger.kernel.org; linux-iio@vger.kernel.org; devicetree@vger.kernel.org
+> > > Subject: [EXTERNAL]Re: [PATCH v3 2/2] dt-bindings: iio: light: add VEML6040 RGBW-LS bindings
+> > >
+> > > On 27/05/2024 17:12, Arthur Becker via B4 Relay wrote:  
+> > > > From: Arthur Becker <arthur.becker@sentec.com>
+> > > >
+> > > > Device tree bindings for the vishay VEML6040 RGBW light sensor iio
+> > > > driver
+> > > >
+> > > > Signed-off-by: Arthur Becker <arthur.becker@sentec.com>
+> > > > ---
+> > > > V1 -> V3: Addressed review comments (v1 of the dt-bindings was sent
+> > > > along with v2 of the driver but not in a set)  
+> > >
+> > > It's basically the same as veml6075, so should be put there...
+> > >
+> > > Eh,
+> > >
+> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > >
+> > > Best regards,
+> > > Krzysztof
+> > >  
+> 
+
 
