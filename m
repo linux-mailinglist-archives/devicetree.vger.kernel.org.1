@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-71722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F26518D7C23
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 09:05:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45D818D7C28
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 09:06:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AF4A1F22936
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 07:05:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00DAD284A3A
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 07:06:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF3F43A268;
-	Mon,  3 Jun 2024 07:05:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 669133A29F;
+	Mon,  3 Jun 2024 07:06:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kjlhzEy2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aHAcmGoI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFD6C38DF9;
-	Mon,  3 Jun 2024 07:05:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EA1238DF9;
+	Mon,  3 Jun 2024 07:06:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717398339; cv=none; b=un9BlvtlSSNMJD4sr0sIb1oY2I68mxrEX0ZFJW70dw5MoO3lHiZRFA0Y6T3UVaQGOBBxUCwFfKOuwMM581urK9OGhDKO5sHNJ+O3LqFQwnRbzY4VKMixKeMD3jJS2C3GSEQmU8L7GEN+iO7D+fYOBx9oU51c5v662M6Q5ErofoE=
+	t=1717398408; cv=none; b=bY82Vh3Yy3RDsDAt2kSxpUvbB5eSSQheBIR4LKuyHEk1tYBsVra+DrdONL98bV/R37lB4VcIhVEfu6UySTbfZTl11+XMVJz87hZI0RkqCky8lZYzzNe02f4eKF9wVaihvNshsvVaSVvkodl6O+YO0DTO8GMBf//nJ/NL9DsNWJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717398339; c=relaxed/simple;
-	bh=iEAI7EAOa8V9rXHW4IFLiYoHk0nKOQ5XtNrKqi88ENc=;
+	s=arc-20240116; t=1717398408; c=relaxed/simple;
+	bh=ytc2oztjx72uIVbLGKeGzf0eekgPXLOlfuMKeR1hHlo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nHuTcfxVuOHtT81cXYAEptv7QlSEnCL9Hzxamd2wH5XpdRIEqvs3RGt/PeE3a/WHVAkyOk64Yj5nHzdWDEHFhNFbLveU0cNKPofRT2SUaXoubFTxX4PYHw9o8gklF7ELI05LN1CHsfCmxlK9ZZvflWwuJoRKUaYPYTvGgpIDfhU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kjlhzEy2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B30AC32786;
-	Mon,  3 Jun 2024 07:05:35 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=lpNljxwa5s1Kt06y6oZ22cLl3pooHY28uoeQKWHv2Z/5A+71wzunhLF+9w55vTyEEwnPZxVWizmqBZF2b8OL12yvAUr2z+43lsg0EZMnJ7x9BdZLUSXnrw5YVfTnTqafavwk2MdP0q4hw4cr9rDnzPBZPaGJAG5PD7M5TJ7f9zQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aHAcmGoI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A661BC2BD10;
+	Mon,  3 Jun 2024 07:06:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717398339;
-	bh=iEAI7EAOa8V9rXHW4IFLiYoHk0nKOQ5XtNrKqi88ENc=;
+	s=k20201202; t=1717398407;
+	bh=ytc2oztjx72uIVbLGKeGzf0eekgPXLOlfuMKeR1hHlo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kjlhzEy27tQhEZu9+eswQoQB/8MrY4iN9QJiA2eVtR2hk4EVZoi3hinpRjQvaLGhT
-	 EI+d1Cd6as1djXjr9r9fpZP83oo/z3SOSrNVDOB1HFXaiQXl8JsbvO77uDvjDm1lPN
-	 OXOR78UKg8qrK4/rboX+uN1ZIY7q4Nv9cBotOnmWf2nOn9J4S5U4OvVwWnfYXi7K1g
-	 6ml4ghWAxewK8VmG+7aTT33ZB8/qF/Sx8cNrejOogA2608vt3JcTj4AuXHVlbvjvIF
-	 BSikejjirYGhfCMe0Av4OtMGSSVixdx9FGc2tKEQy7xCiwrNm7I8AzdlYfI23/089d
-	 qfHwqF91o+/4A==
-Message-ID: <ef7aab23-5fd8-4f97-be3b-cbf70bd44428@kernel.org>
-Date: Mon, 3 Jun 2024 09:05:34 +0200
+	b=aHAcmGoIRXcE7qZCh0FO5G8FMG/CJ//mHrWgW1JI/khkKR1mfh5mu/rJF8vy7MqGN
+	 Hri4/HTbZhLpRWBzCQ5jEbPj+DKgJJRmwsQDrOKU2NeV065gHgqo1ovLb+S2EeeZWN
+	 nAW4u44Fwk38ge/6YnrhEkRIX25VLgAqZZkUhVYwX5lzG0EzDh1zazeUmlTtdVH1Py
+	 ByORYB6sDibYECn4Ieus5xuFWnP+Il5DFIW8sHCf2CSbmL3o2wkeyMtG2hi0+GqYXa
+	 NpaKnTo0fM/KimlHSjtklPp6euM4ku7D4OiLS/W43fu0Hc0Y7HxjMVUCBlb3KnqYJ1
+	 ta/evsCI3ldYA==
+Message-ID: <cb42b7dd-9e9f-4f0a-a074-42019768a211@kernel.org>
+Date: Mon, 3 Jun 2024 09:06:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/5] dt-bindings: iio: dac: Add adi,ltc2672.yaml
-To: Kim Seer Paller <kimseer.paller@analog.com>,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, Lars-Peter Clausen <lars@metafoo.de>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Dimitri Fedrau <dima.fedrau@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: rockchip: Add FriendlyElec
+ CM3588 NAS
+To: Sebastian Kropatsch <seb-dev@mail.de>, Heiko Stuebner <heiko@sntech.de>,
+ linux-rockchip@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>,
- Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>
-References: <20240603012200.16589-1-kimseer.paller@analog.com>
- <20240603012200.16589-5-kimseer.paller@analog.com>
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Dragan Simic <dsimic@manjaro.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Sebastian Kropatsch <seb-dev@web.de>
+References: <20240602211901.237769-1-seb-dev@mail.de>
+ <20240602202132.2012-1-seb-dev@mail.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,32 +107,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240603012200.16589-5-kimseer.paller@analog.com>
+In-Reply-To: <20240602202132.2012-1-seb-dev@mail.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/06/2024 03:21, Kim Seer Paller wrote:
-> Add documentation for ltc2672.
+On 02/06/2024 22:20, Sebastian Kropatsch wrote:
+> From: Sebastian Kropatsch <seb-dev@web.de>
 > 
-> Reported-by: Rob Herring (Arm) <robh@kernel.org>
-
-??? There was no bug report telling you the binding is missing. Drop.
-
-> Closes: https://lore.kernel.org/all/171643825573.1037396.2749703571529285460.robh@kernel.org/
-
-Drop
-
-> Co-developed-by: Michael Hennerich <michael.hennerich@analog.com>
-> Signed-off-by: Michael Hennerich <michael.hennerich@analog.com>
-> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+> Add devicetree bindings for the FriendlyElec CM3588 NAS board.
+> 
+> The CM3588 NAS by FriendlyElec pairs the CM3588 compute module, based on
+> the Rockchip RK3588 SoC, with the CM3588 NAS Kit carrier board.
+> 
+> Signed-off-by: Sebastian Kropatsch <seb-dev@mail.de>
 > ---
->  .../bindings/iio/dac/adi,ltc2672.yaml         | 158 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 159 insertions(+)
+> 
 
-With these two fixes:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
