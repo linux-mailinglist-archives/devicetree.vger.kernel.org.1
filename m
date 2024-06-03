@@ -1,72 +1,73 @@
-Return-Path: <devicetree+bounces-71840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3F4C8D82F1
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 14:54:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A19A38D831B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 15:00:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D40481C21E93
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 12:54:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EAC01F22DF9
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 13:00:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBD9712D1F6;
-	Mon,  3 Jun 2024 12:53:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F29A12D214;
+	Mon,  3 Jun 2024 12:59:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="Ez+VBXno"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="JeLo/M+t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5263612C530
-	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 12:53:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58D212D1FD
+	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 12:59:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717419193; cv=none; b=kofDCSwdHZksz9hnPE/nCjJZXpK7wtg6NObByAWi0btx+0Dg4Q5L5w3rMrlFOWSuhJuIsLgGHrwFPPvGzbeAOJVqiRExgjysoAYrv14Gr9ZtEAQfy1OsXSKVhJmkNhh/kuHoR1qZBL/ysT4cvW7Tzi3H0oIcWgixos22m6GvFFw=
+	t=1717419563; cv=none; b=jo5rdJqAU0GFZG43/QBqiwCc8g2hyTsmGQFnduCkwsU7kW/4ZOna4nujn8P1iTqg3snJ6sdYZ3A2CnxIZV4UVe2O8xS02zLpyWxEHLaE8sz+psA+5//m8QB7aes2Qn+T1ETnJZ6TFuslLmXt4NvhtSDSTeil/QRoYqDn/ONy730=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717419193; c=relaxed/simple;
-	bh=QX4iMKVssxoVyavrTllOasYtXwgAZT/oiXydBXbLzW4=;
+	s=arc-20240116; t=1717419563; c=relaxed/simple;
+	bh=FyBQj0hG8ss9ZEv8V0JnRplnqLFC/O3chXUnsMv0bk8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ON8dSeKDhouPEquMbYOyx9LS/Ng1W3y5+L05CUAWWdABvs7+hTVeLdrCQG0vQj1+M70n5IzblW+PpFgYwb/bMfkeFXNAyG3ErwMsirukHelppoNYfo0iiotkxNvwEJk2LS/T57FFIyS7vc54ek7AdsyZGSPbGW4tr9i/jJpw7uI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=Ez+VBXno; arc=none smtp.client-ip=209.85.128.43
+	 Content-Type:Content-Disposition:In-Reply-To; b=kRUQdqGTFXmSVKSd8Dp9snIs23nSGD9NqFZwA9naUuAswWuIE5mGF115xH4fJrsO71g1SWovBLTXsNvWZMw7J1B4in5kVXJABUQCKZ03jx+ZnZq9s7D1MYUMmOxjYjRYASbk/Avwjh9uE6oyT401bTURANGnycYn55GyhE15/5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=JeLo/M+t; arc=none smtp.client-ip=209.85.218.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4213be171f7so8388395e9.1
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2024 05:53:12 -0700 (PDT)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a63359aaacaso565907666b.1
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2024 05:59:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1717419191; x=1718023991; darn=vger.kernel.org;
+        d=ventanamicro.com; s=google; t=1717419560; x=1718024360; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9bimdtL/8Yb4rbSFpMqz1UL6qiGEqUPhGsLy+D1hTls=;
-        b=Ez+VBXno0jjdT76WqdiNRuzx4L/KRlRH4RvGnoJvTaZ2pFcFBs27atkXHhdVqECERZ
-         kr50I1KKC3Ntf2zGLDL7PP3XGAPxpoSREQgQLOxYEwKi967lqZh0ammmBzVYM9WNWsSH
-         pJpw9kjjGbZJBFI7wd0CP5ZsCpUphxctHj030JSZNadtshvyNmj8RS379aL0MXR4HR8n
-         Ed7l0Ph/t8duPQGBp0UPCnmPIpll6dMseZmXTDkVRJbwUv/+406ngFMx6OE0O1LQCwwB
-         0Xfej9P1xuBWgOMvkTUMnnsINd4KdR/kxLmjelkSOsbmTlLxYq8e6ecXJTrY08GmTqfo
-         IvPw==
+        bh=IcEqjvHDHPrKWRNXO1NAMZemLV5LQ0B+lnFn7VKosBA=;
+        b=JeLo/M+twDSGb/+JKEc1ziAuPex3mhlraQxyeFJDnRlEYnOe9dFET2OjkDM/OuEYjq
+         cAxAtMI/ubK5Q+nt6wgCHg1qV9t/ucAeURl1PCk3SLSlC3ZeODP/o6FSd15Tfnx6WvIC
+         lHOnw7DgNoSt2TniBXE16XR3m/B2n7f6Op5plUm/7WN9ITfODxKpPc9IlqhQUHBgTFUh
+         Oo8LOAReVvhlw8lAZv5bHZ9JcFv/mgfanQd5MjrdJX3XG/did6lsU1UJgE7J1mu9v/ND
+         TTv9a0M47y99aiqTqwBI54VN10SrVk4bq9v3T3gwzfxXOoDs4beGC0Aa1zsYVF+XpiQy
+         j3QA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717419191; x=1718023991;
+        d=1e100.net; s=20230601; t=1717419560; x=1718024360;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9bimdtL/8Yb4rbSFpMqz1UL6qiGEqUPhGsLy+D1hTls=;
-        b=gvZriAgcEbI1vUq2DvOWgS4QGqBE3chgXpV6cXTMLRIWvsVOeGfYURlP4RfXGOnB54
-         k+jlmwJOH05Uwv6dMVvTGN9ZQNv3UOwG8pPjIrJEcXuTVedIoIeijT0l34MGaHREu/Eg
-         Tdm8BLk2FJJx5WAIUNk5gXBVhPRndmr/KKrzEMEA7N1uFhdduiMdGCylrhg6EW0dL9T5
-         6frCzDDu0LlYsiz3FIAJW3dF3lL5vBC15K8ybuLQRK2rkDz1VYshsc2dOlnNISI7r9hk
-         GJ9b0UWblkDCnvuLfNSjm9ZaH/5j76aIoqqwsWsghdT9WvgneGDR2MKnbsUhlPFmB1Cy
-         obCA==
-X-Forwarded-Encrypted: i=1; AJvYcCVcponHbU6VmdQI+rrwiy1Cftvt3sU37toOvqeSgkpYdFbMv7R39RDB63GJQU5rFPGRET00VlTKnlGKBtwm2sJeEC/5/xttbcbQvg==
-X-Gm-Message-State: AOJu0YxDKXHqAkN1+pmL1sxg6HGZcqIc91v+SbyO00uY7KCsfVf33Y4z
-	NDkieWXfS61DISMzy/llqnQ0dDpslGZAXTSU6K2BjMqs+Eh8Jb9+yO9dweDSiyw=
-X-Google-Smtp-Source: AGHT+IGr2qULxcr2ltWgvnytabKWi1pfPCuyLwlDBqb6eNha2uciqvGkQ3OnCBvDSIF3/JuDzfDAZw==
-X-Received: by 2002:a05:600c:3510:b0:421:3674:7933 with SMTP id 5b1f17b1804b1-421367479e1mr41938045e9.27.1717419190599;
-        Mon, 03 Jun 2024 05:53:10 -0700 (PDT)
+        bh=IcEqjvHDHPrKWRNXO1NAMZemLV5LQ0B+lnFn7VKosBA=;
+        b=UtysZrOhOi20r1EE/MnilzAb2s5JSAxPnMdKPAWEE4Wy/NVu1WXdTRRKHfh7KgkGiz
+         xVQYKm9J75dm6KCMJrqZmAqYnhYdW1htL8JDKv/I+QbRsE1nAxkziwucbSH8W+XrjvNS
+         u38g+L5/01/VC++cnlqvAuBhV1LDe8Q+itDf9iyHHYpJ+chNvmFeRnPf7sA+eHI4wQ64
+         zaAtOFU+8rCTZJdVfoK9TtVLLQG6gRpexfBOdbqERcMT14UBbsB2StSr+Vz88sRaohqT
+         eRiHpMyqxX+2Gyjc9Uxt7R4n8MNqcAI5VNFLOkdwkibCe2k//kPnTLhHTjBp8hDnB1uc
+         R5ZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV8izm0tq2A+sUKi0JxuEEE9/TlckbsnNGv+3Y1O0iN8TD1Hf3OYW9bkwnZ2w4gCc/Jb76bWGFkEVXyK+s1thzTI6MEHKdhQAMPNg==
+X-Gm-Message-State: AOJu0YwdPS7MW40zWC/UK1VYt37Hw8VyEdx0jTsne0f9gtHBYCFsyfoG
+	hZ7TAYjOA0ThGSoIfiZFF2uRld2sAmTiiZoDHzL7L1SXhKJ3ohoxfjFaNq/q69q3MS+qDZSlkGd
+	eRH4=
+X-Google-Smtp-Source: AGHT+IHqmXxSxhfsZ5QLcPFpeXSzCRtTW99BPDOeKz6AZRkFkj434iSsteZACpuRGmGnksN+E2iRiA==
+X-Received: by 2002:a17:906:d7ac:b0:a68:bae4:d66f with SMTP id a640c23a62f3a-a68bae4e717mr359112966b.30.1717419560024;
+        Mon, 03 Jun 2024 05:59:20 -0700 (PDT)
 Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35e5e3d1902sm1783031f8f.32.2024.06.03.05.53.09
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a68b66c0c87sm347330266b.73.2024.06.03.05.59.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Jun 2024 05:53:10 -0700 (PDT)
-Date: Mon, 3 Jun 2024 14:53:09 +0200
+        Mon, 03 Jun 2024 05:59:19 -0700 (PDT)
+Date: Mon, 3 Jun 2024 14:59:18 +0200
 From: Andrew Jones <ajones@ventanamicro.com>
 To: Tomasz Jeznach <tjeznach@rivosinc.com>
 Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
@@ -80,10 +81,9 @@ Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
 	Lu Baolu <baolu.lu@linux.intel.com>
 Subject: Re: [PATCH v6 2/7] iommu/riscv: Add RISC-V IOMMU platform device
  driver
-Message-ID: <20240603-c4a8257697f83cd3bace6ce5@orel>
+Message-ID: <20240603-d622cdac0016f1f854bf2b4c@orel>
 References: <cover.1716578450.git.tjeznach@rivosinc.com>
  <7dcd9a154625704cbf9adc4b4ac07ca0b9753b31.1716578450.git.tjeznach@rivosinc.com>
- <20240529-08fd52a8e703418142bdfa84@orel>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,31 +92,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240529-08fd52a8e703418142bdfa84@orel>
+In-Reply-To: <7dcd9a154625704cbf9adc4b4ac07ca0b9753b31.1716578450.git.tjeznach@rivosinc.com>
 
+On Fri, May 24, 2024 at 12:34:42PM GMT, Tomasz Jeznach wrote:
 ...
-> > +/* 5.19 Performance monitoring counter overflow status (32bits) */
-> > +#define RISCV_IOMMU_REG_IOCOUNTOVF	0x0058
-> > +#define RISCV_IOMMU_IOCOUNTOVF_CY	BIT(0)
-> > +#define RISCV_IOMMU_IOCOUNTOVF_HPM	GENMASK_ULL(31, 1)
-> 
-> RISCV_IOMMU_REG_IOCNTOVF* for all above. It looks like this
-> got renamed and the header of the spec subsection still has
-> the old name, but otherwise the new name is referenced.
-> 
-> > +
-> > +/* 5.20 Performance monitoring counter inhibits (32bits) */
-> > +#define RISCV_IOMMU_REG_IOCOUNTINH	0x005C
-> > +#define RISCV_IOMMU_IOCOUNTINH_CY	BIT(0)
-> > +#define RISCV_IOMMU_IOCOUNTINH_HPM	GENMASK(31, 1)
-> 
-> RISCV_IOMMU_IOCNTINH* for all above. Same header with old
-> name spec issue.
->
+> +static struct platform_driver riscv_iommu_platform_driver = {
+> +	.probe = riscv_iommu_platform_probe,
+> +	.remove_new = riscv_iommu_platform_remove,
 
-Scratch these suggestions. Based on IOMMU spec PR#243 ("Clarification
-updates to IOMMU v1.0.0") it looks like the iocnt* names are getting
-fixed up to be iocount* names.
+Hi Tomasz,
+
+I think we should also support .shutdown (just turn the IOMMU off?),
+otherwise the IOMMU driver reports EBUSY and fails to initialize when
+rebooting.
+
+Same comment for the PCI driver.
 
 Thanks,
 drew
