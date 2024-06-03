@@ -1,102 +1,95 @@
-Return-Path: <devicetree+bounces-71905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 156498D8658
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 17:47:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC3738D8675
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 17:50:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9491EB240D2
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 15:47:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C0E63B21BCB
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 15:50:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71075130A4D;
-	Mon,  3 Jun 2024 15:47:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B33DA1311A1;
+	Mon,  3 Jun 2024 15:50:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IM11dwwx"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QEERog17"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45BE9320D;
-	Mon,  3 Jun 2024 15:47:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77DDB6F2F2;
+	Mon,  3 Jun 2024 15:50:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717429651; cv=none; b=RdRpwHfc6Z1FSs0cbc54agrM9aI4S/kukBiTaYjgJ/hqQrI09PzZRkALUbF1C5le3AIxQUpz6OWMIlr0AAaDpJR6dibILbDpx4Wb0vX2ABQmZ54CS3f0rfuGoyVl/QTw9z+sHSgXqdObAfudM7ZNnFqneD2KXQNefK/0VhXkhL0=
+	t=1717429821; cv=none; b=nBxbg26kHQyQquQRWDXuFOYF7/aWe+zKfiXmDZwPqzngfE/JGsjbsx14WRkKygu/qNJA6VzrCXFRnNmgwtl1tBHt8I2x2Z/uQ+/CM01cfDqI+lEuageRXWzKnC+ACx2bQAkGyeFuxUuBTJoToI0ga3uUokd9McjJfFU0gGAjTOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717429651; c=relaxed/simple;
-	bh=b+zQs7Ud84kKrfcUQbsWSU0w3CdVTZCIcIp3j/qc7Rk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a2zJ+yvc2DpCZ3gZ4cgb4jhIFhP5yEb7igqHz7hXohEN7FSZ2RBWjP9RDwu6h2rks5fV+CKOLI2rxH2MtrrZLRv3eYvnp7rO/TVvNKfUaYr6QGQIcTPssJEtHf+MCnaKAmNsV7Rfhp9sANOq2VADB/XJP2olBsALdw7Ys9nqdPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IM11dwwx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 591F6C2BD10;
-	Mon,  3 Jun 2024 15:47:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717429650;
-	bh=b+zQs7Ud84kKrfcUQbsWSU0w3CdVTZCIcIp3j/qc7Rk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IM11dwwxoZ3cpJsx6QRpjaFEQ1IdRa5bT1iAkAmiBkqDDDy60RciKWYGe/lO8ynu+
-	 PInTAgvm4JRBCTKjeQQjWZwKMcDoYSro+lPDyabMDT8CYltX5gMH2+r/8JM4TAOjS0
-	 3PXHhnuY4xYsR8RclFWyTFotekETcMlW/4U/X+fksX5ELMIeq3pNDBGfhkZ6R7kK7t
-	 7UO0+WwU+bLQ70R0TdAVHXmNbZYlrca7Nr5OXgIH9W5nbGT+i0mymPEXgzwh6CNT3x
-	 QYrFtcJ0b/OrVTXoUVnxbeuDBKDH9qjwPid6/09E+dRTkwzHd5nvwFuyF6qQJc/cIj
-	 1OhqEhhsVDiog==
-Date: Mon, 3 Jun 2024 10:47:28 -0500
-From: Rob Herring <robh@kernel.org>
-To: Amna Waseem <Amna.Waseem@axis.com>
-Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kernel@axis.com
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: ti,ina2xx: Add alert-polarity
- property
-Message-ID: <20240603154728.GA480397-robh@kernel.org>
-References: <20240529-apol-ina2xx-fix-v1-0-77b4b382190f@axis.com>
- <20240529-apol-ina2xx-fix-v1-1-77b4b382190f@axis.com>
+	s=arc-20240116; t=1717429821; c=relaxed/simple;
+	bh=Rx5a8gcjyJ7ZSiIv7XBAZ+Rj0nWbBdD3FbeUn6UvyrM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=sH3Ai1zPAvkvxeh7vKvnl6OC+Xty+cAD6rmwJ7jvlf3ZDq8PcZ/TBCZucDBv9u4P+uZFv+DZl6vQzpSW3QdJaTsSNLGYydQKxUJPe5HomqxSd+M6LNY9hIJUGZVtIk1v+hWsI2p/gh2SpR/HlCTJy+0xleqf7nLPcE/bmPZGxTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QEERog17; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 7E50EE0007;
+	Mon,  3 Jun 2024 15:50:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1717429817;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=GwTcq4IedeHLQXBXk1rloGqIPerrvErDu7RrUmu96H8=;
+	b=QEERog173eXk5OmgCX0zfGMBQMH3arOVasSjUWavLnk15brrZBeEFC8Oz8XDZQjNCkHsjR
+	sehVeAFHi50SOMGY1ea9upKz1box4M7r2hc5W/y6lx0PVzZiaBem4vgk8nLXlR3PjYKVvO
+	amy7jNuAtd8FPrH9koat0csVnxFiYiEEWXTMv/Sihxm/3y188V+Ntp+IkrBkWnbIcZkjGr
+	SUmsSY1MzbRPp5V1W09OKcHTsKdriPH2aOdFUw/Z0NB5dZgr+BTLncObHzBoZf6N7iATxp
+	BmN0CbyEQtYfnKT1LU4Mo1pS+rJF+sCWSNsRX5ZjNu3p605utwp2CfqYcqQJ5A==
+Date: Mon, 3 Jun 2024 17:50:14 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Dmitry Yashin <dmt.yashin@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Heiko Stuebner
+ <heiko@sntech.de>, Jianqun Xu <jay.xu@rock-chips.com>, Jonas Karlman
+ <jonas@kwiboo.se>, devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] pinctrl: rockchip: add rk3308b SoC support
+Message-ID: <20240603175014.6a41d3d8@booty>
+In-Reply-To: <20240529143534.32402-3-dmt.yashin@gmail.com>
+References: <20240529143534.32402-1-dmt.yashin@gmail.com>
+	<20240529143534.32402-3-dmt.yashin@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240529-apol-ina2xx-fix-v1-1-77b4b382190f@axis.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: luca.ceresoli@bootlin.com
 
-On Wed, May 29, 2024 at 08:07:14AM +0200, Amna Waseem wrote:
-> Add a property to the binding to configure the Alert Polarity.
-> Alert pin is asserted based on the value of Alert Polarity bit of
-> Mask/Enable register. It is by default 0 which means Alert pin is
-> configured to be active low. To configure it to active high, set
-> alert-polarity property value to 1.
+Hello Dmitry,
+
+On Wed, 29 May 2024 19:35:34 +0500
+Dmitry Yashin <dmt.yashin@gmail.com> wrote:
+
+> Add pinctrl support for rk3308b. This pin controller much the same as
+> rk3308's, but with additional iomux routes and 3bit iomuxes selected
+> via gpio##_sel_src_ctrl registers. Set them up in the function
+> rk3308b_soc_sel_src_init to use new 3bit iomuxes over some 2bit old
+> ones and update iomux_recalced and iomux_routes for the new SoC's.
 > 
-> Signed-off-by: Amna Waseem <Amna.Waseem@axis.com>
-> ---
->  Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-> index df86c2c92037..a3f0fd71fcc6 100644
-> --- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-> @@ -66,6 +66,14 @@ properties:
->      description: phandle to the regulator that provides the VS supply typically
->        in range from 2.7 V to 5.5 V.
->  
-> +  alert-polarity:
-> +    description: |
-> +      Alert polarity bit value of Mask/Enable register. Alert pin is asserted
-> +      based on the value of Alert polarity Bit. Default value is active low.
-> +      0 selects active low, 1 selects active high.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1]
+> Fixes: 1f3e25a06883 ("pinctrl: rockchip: fix RK3308 pinmux bits")
+> Signed-off-by: Dmitry Yashin <dmt.yashin@gmail.com>
 
-This is alert as in SMBus Alert? That's handled as an interrupt, but 
-this binding has no interrupt property. And the interrupt binding 
-provides a way already to specify active trigger state. Why do we need a 
-second way to do this?
+Thank you for adding runtime chip ID detection!
 
-Rob
+Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
