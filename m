@@ -1,122 +1,138 @@
-Return-Path: <devicetree+bounces-71935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 044648D8773
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 18:49:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E36018D87B2
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 19:11:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72C26B22C78
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 16:49:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF1531C22254
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 17:11:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22585136995;
-	Mon,  3 Jun 2024 16:49:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0636C136E0F;
+	Mon,  3 Jun 2024 17:11:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WHi/e0Oc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IskPVtkR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BBCE4A0A;
-	Mon,  3 Jun 2024 16:49:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C056012EBCA;
+	Mon,  3 Jun 2024 17:11:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717433352; cv=none; b=nA3lQRCJxXNSPZC/7EAfMGYwFS550GSzVMnFNEj7dMwssP+gPLR7FLul4/GgKwWzMzGy3CTzTYoG/d5UBLE9xtBs8LdzYXD5QY0C5dXAVRvpvZ9uk22ix1VQJ7FUZ/Tqn1Jsx9hj8YGjqeL2f4V6c2+3f6Y+WvUUf3LGj7KYYw4=
+	t=1717434711; cv=none; b=e22L1we2FdgaX3mbFu+8h8B5vdY22O4szrtOfjtSSPAeNvTlY/0tZBVlzBgSegS9nnDL3jsaBLqCTEADfjAgOK9NL5YpUgVMzOS0UmJcjXGJCO0dlSboH5P2fJxtVDLpMm2nV4WeceLabAmNpujsYi/sD+qn9vOdAHNeohAvIz8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717433352; c=relaxed/simple;
-	bh=c33fDiWFJQT75vUwqaalvIU2B7A6fRgsEaexBd0OkSk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WNnzL7n6PAY3ohJhFqPuIKcj5FOiljQBQCB5yovHE32/SsLaERAMsc9UUt83aakSMZRTwogVcQOMOl7ek9fZKRf6vaDSxBW2U7xDSG8RGZ56wc58zFP8rbUwSZ5r9cux6tBUIpzJAK52wn4uLJkarH10ZbQFZ8ZZqzLAAgFPa3I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WHi/e0Oc; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4210f0bb857so4369515e9.1;
-        Mon, 03 Jun 2024 09:49:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717433349; x=1718038149; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=v9yNx7cmxLPe/b/+oaDWP8CtyOBubgZufBr1kEUxuYY=;
-        b=WHi/e0OcUZYDm7y/yPssBqjWj4KOMq3GM319NKMWqkQ83+Hks/dSSlrUIOIkLN2DGF
-         TnOdKGp8Sqj1pWZYESC39OhPDo9AWxyfHnKDlGkNTZH1z4Eu5mSOhn1ngswflh7XD60k
-         SjVbW6liBrDLiWSKKPbhP5uNpvZqnHnSXL9F2jaL7CWvrReoR5PXqncvO6Os7N70Re/8
-         2b8BY+fPHgaKvTIAgjeT4CemqDM4XHwd8cd/h2Hc9JZTOKMxMrsMXzqsZFAbY8cgikIg
-         9BGN/vpmWXYugEvbPiTMzQxK0olVqqWfXtzv84gISaKLwr9qhXVpfz6kluGWnKIyXwL+
-         bMSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717433349; x=1718038149;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v9yNx7cmxLPe/b/+oaDWP8CtyOBubgZufBr1kEUxuYY=;
-        b=EhX4U3SK+/ZaCes1r2h65lkTffzDzzcytsTyO2e0tODko6cCyqHHXKdov+M3YvHfoL
-         7e4F1Y3ZHvWdKeJXvZYNosPVkVr3Ib6fVC1t22w2bz0eQK/MdRyNcmqXRqHHzxlBswtt
-         MphsgGnv54yNkNdbWWzQEUbM9UDpUpPnXDKsa0nRHPgUEQYmUAQpZnmpPEI/3VNo9XJw
-         mbLqg5SeP3C60lpaepADPMMYVHSnU/9BLNn/2IEnIbN0cV8sNRE6SWXSwNoGvnkzdtjb
-         p0MYZZOWrVv1cj5Cj0euie2ttCp31HlN3GN+GFqaJtcmMvgiOjabXnRzTEmS7PgyVh/V
-         rDCA==
-X-Forwarded-Encrypted: i=1; AJvYcCVqzJ0Gu9BePz2fNsFI/CRAahRYYZrY6rkTmnDlTs4RmKITuVBFapYepDdPl3OO5BzkyUBRaBPiEvG33LoaeIGuSgiTSEikx/MwfADp29VjFgX+NjSTvPsvqH7+2PuGRlWYrrs+2w==
-X-Gm-Message-State: AOJu0YzyzvAx/1Pp9TgW4yyOPNjIIEEZ6qbmxn0wSmZ31Qs0cc5+gnic
-	NR+DbstZ8eyn/1wap5Wp+e6XQE7veNL19Ww7XH+qSdCrj5mN0OJvdu6aqg==
-X-Google-Smtp-Source: AGHT+IF3VvEqdy5EfpNNHKvS//F8kPiFxL2leaLCAoXjeUi5YbkvMclGrXG3oC1gO16lp6r7MQFJdw==
-X-Received: by 2002:a05:600c:3c99:b0:41f:cfe6:3648 with SMTP id 5b1f17b1804b1-4212e0453a3mr74001955e9.1.1717433348651;
-        Mon, 03 Jun 2024 09:49:08 -0700 (PDT)
-Received: from [172.16.102.219] ([167.98.27.226])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42139688d82sm64537745e9.3.2024.06.03.09.49.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jun 2024 09:49:08 -0700 (PDT)
-Message-ID: <4c6d11d0-5e5e-4fef-b8dc-78f22bf14860@gmail.com>
-Date: Mon, 3 Jun 2024 17:49:07 +0100
+	s=arc-20240116; t=1717434711; c=relaxed/simple;
+	bh=i4qNqKBBW9MS/3cabi3B6YUjPjcvwTN3tabqpknsbok=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=GmcfXsDjsC5unGgWfPDC/O18Ld91yPErlrTvH2nBVsRfe8P/HliT9JKanHUIp4T+T+CwLGr6H9gOId6JAKpBcJJ9RfnYIN7ag31UJDE+V02d9d+qxS1ozbz+Ep+Yz66CJtd7kCRtH2obdEo2tB2QRHzwK0itkkhoH6SmV92jd/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IskPVtkR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09183C2BD10;
+	Mon,  3 Jun 2024 17:11:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717434711;
+	bh=i4qNqKBBW9MS/3cabi3B6YUjPjcvwTN3tabqpknsbok=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=IskPVtkRLcXqswqt5Z9Yt26xtJugDU7NoYLA91Xz03aHeSf/68YOcGpeyet22K/uN
+	 CGJKU4Ax6gmVP+obsNuJYi7dLS8e9l6ikQQ90IkHuNMKf5SoHLo9nE+NfggMAjev9k
+	 U/byZZkYySDjwi0TZ3xGln2UbTSnd5sfIZMNIHEm1GRs4/LSVHe5Opn7S+l9+0cJK+
+	 mu+RXG9X3oFm5sXPwDXDSO7oeIVGdYZuNtdGN8PCh3PaFXdZdk/c/pFAyZL7vdowqb
+	 +kmhi3NJoYyTFwyIQFYsz8d2bophoijGhIb0k4JqhWe7qCwFI7ZEmhzsRxx1OVoR8l
+	 yfQkIEXIb7H5Q==
+Date: Mon, 3 Jun 2024 12:11:49 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
+	devicetree@vger.kernel.org, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
+	Jason Gunthorpe <jgg@ziepe.ca>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Marc Zyngier <maz@kernel.org>
+Subject: Re: [PATCH v5 08/12] PCI: imx6: Config look up table(LUT) to support
+ MSI ITS and IOMMU for i.MX95
+Message-ID: <20240603171149.GA685507@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] iio: light: ROHM BH1745 colour sensor
-To: Mudit Sharma <muditsharma.info@gmail.com>, jic23@kernel.org,
- lars@metafoo.de, krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240603162122.165943-1-muditsharma.info@gmail.com>
- <20240603162122.165943-2-muditsharma.info@gmail.com>
-Content-Language: en-US
-From: Ivan Orlov <ivan.orlov0322@gmail.com>
-In-Reply-To: <20240603162122.165943-2-muditsharma.info@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zln3WkiHC3AUPocL@lizhi-Precision-Tower-5810>
 
-On 6/3/24 17:21, Mudit Sharma wrote:
-> Add support for BH1745, which is an I2C colour sensor with red, green,
-> blue and clear channels. It has a programmable active low interrupt pin.
-> Interrupt occurs when the signal from the selected interrupt source
-> channel crosses set interrupt threshold high or low level.
+On Fri, May 31, 2024 at 12:14:18PM -0400, Frank Li wrote:
+> On Thu, May 30, 2024 at 06:08:32PM -0500, Bjorn Helgaas wrote:
+> > On Tue, May 28, 2024 at 03:39:21PM -0400, Frank Li wrote:
+> > > For the i.MX95, configuration of a LUT is necessary to convert Bus Device
+> > > Function (BDF) to stream IDs, which are utilized by both IOMMU and ITS.
+> > > This involves examining the msi-map and smmu-map to ensure consistent
+> > > mapping of PCI BDF to the same stream IDs. Subsequently, LUT-related
+> > > registers are configured. In the absence of an msi-map, the built-in MSI
+> > > controller is utilized as a fallback.
+> > > 
+> > > Additionally, register a PCI bus notifier to trigger imx_pcie_add_device()
+> > > upon the appearance of a new PCI device and when the bus is an iMX6 PCI
+> > > controller. This function configures the correct LUT based on Device Tree
+> > > Settings (DTS).
+> > 
+> > This scheme is pretty similar to apple_pcie_bus_notifier().  If we
+> > have to do this, I wish it were *more* similar, i.e., copy the
+> > function names, bitmap tracking, code structure, etc.
 > 
-> This driver includes device attributes to configure the following:
-> - Interrupt pin latch: The interrupt pin can be configured to
->    be latched (until interrupt register (0x60) is read or initialized)
->    or update after each measurement.
-> - Interrupt source: The colour channel that will cause the interrupt
->    when channel will cross the set threshold high or low level.
-> 
-> This driver also includes device attributes to present valid
-> configuration options/values for:
-> - Integration time
-> - Interrupt colour source
-> - Hardware gain
-> 
-> Signed-off-by: Mudit Sharma <muditsharma.info@gmail.com>
-> ---
+> Actually, I refer apple_pcie_bus_notifier(). I can't direct use apple's
+> implement because in imx95 have difference PCI host controller, another one
+> is PCI ECAM netc controller. At lease function name should be similar with
+> apple. 
 
-LGTM,
+I know it's different hardware, so obviously it can't be exactly the
+same.  These are the differences that looked possibly unnecessary:
 
-Reviewed-by: Ivan Orlov <ivan.orlov0322@gmail.com>
+  - registering from initcall instead of .probe():
 
--- 
-Kind regards,
-Ivan Orlov
+      apple_pcie_probe                  # .probe() method
+        bus_register_notifier(&pci_bus_type, &apple_pcie_nb)
 
+      imx_pcie_init                     # device_initcall()
+        bus_register_notifier(&pci_bus_type, &imx_pcie_nb)
+
+  - naming BUS_NOTIFY_DEL_DEVICE function:
+
+      apple_pcie_release_device()
+      imx_pcie_del_device()
+
+  - tracking entries in use via bitmap vs scanning hardware for
+    invalid entries:
+
+      bitmap_find_free_region           # apple
+
+      imx_pcie_config_lut               # imx
+        for (i = 0; i < IMX95_MAX_LUT; i++)
+          regmap_read(imx_pcie->iomuxc_gpr, IMX95_PE0_LUT_DATA1, &data1)
+          if (data1 & IMX95_PE0_LUT_VLD)
+            continue
+
+When we fix a bug in one driver, it's easier to check whether other
+drivers also need the fix if they use the same structure and names.
+
+Bjorn
 
