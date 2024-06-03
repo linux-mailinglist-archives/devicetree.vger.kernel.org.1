@@ -1,87 +1,60 @@
-Return-Path: <devicetree+bounces-71896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A6FE8D85DB
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 17:16:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4763C8D85E9
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 17:19:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D6EA1C21933
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 15:16:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09EB3282486
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 15:19:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34C0112FB0B;
-	Mon,  3 Jun 2024 15:16:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 419B112EBD3;
+	Mon,  3 Jun 2024 15:19:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AqCUBfUJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qKOEUN4P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE8546E619;
-	Mon,  3 Jun 2024 15:16:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 099F012C530;
+	Mon,  3 Jun 2024 15:19:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717427768; cv=none; b=qG8rn4HdFCTaBYeFjtrBVrXEfRDefdhcDPxyxUo4o2qPpQCvJr4myP0BiCsMf2WONbZ0Y2/0AbbX6ohiTw8O8Jm58bmlVeZNx5hJ+Fapzxt5WNexfvqITD7F/JvEZmTyDtrPspf/Kx0H8Z7M5g/DfEAc5JKae3MLgMOrpcvqBQk=
+	t=1717427992; cv=none; b=rPGJXks/MWZL4y8gD7/LkWoVI5vcI+wNsElFJy5R5RUkqPKKxK64n4rUY6dBREAZYSsPjItu67UpH6nrqq/OxFulkwLiNCaTlcEvQHcNepTY938wbjeCC+E2GfOnKQFl47nCJCBK+1fxQQb0JZp1YVX2z5FXJyShdMmPULBNlYY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717427768; c=relaxed/simple;
-	bh=wn74DGayn2LhHF1DS4AIgDk5E4v/Hiu+0yxvri0+M6Y=;
+	s=arc-20240116; t=1717427992; c=relaxed/simple;
+	bh=ijFVnlnPe4zsomyhDg/uKsVKn4FbatsAOMaZJzU2c5I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IG7uMri/j16bKbt3ekkkACLUy+F3WhFEl7NkoK9FmnVNPUP+wojC4oGOg3LUjRKOdzAYOl5jlv97OrJq85uRwYH5NuAkUxPEvRnUdujJjFZvOXYW3ktdxjlvsH5Xyxx6Ov+UaiOxBzAyl+0sP6B3lMM8/PAef27g4ZoVReF1jbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AqCUBfUJ; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1717427766; x=1748963766;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=wn74DGayn2LhHF1DS4AIgDk5E4v/Hiu+0yxvri0+M6Y=;
-  b=AqCUBfUJmBXUJu20t9z3b6GR5o03Nr9QNdJV84tvWlcLkR+JI5yqCX3E
-   1/JRZn6zaQCfIMIhutPVrzXSKRgpg7ie77y/P2F1ObLtuntpWFDLpAjDt
-   ls2guuWEKC2Jpo5b5Nxn6HUzwAG0RoveCORHrvpiOxAaTBVP3MS/eP4fj
-   ah910qyBzW5sB/8nNrbCM4qRxHrr56Bq5wp8nbHatmcZLaTy50IKa1FXY
-   GZBdBCuIiJSopOs8KIwSMK2iQ6VU0C/xW6K1VhN0GSzCWlZ9CUEuXi7aP
-   TXRRoV5zbLLvfcwCAxXlTLTWXaqDFx0onsN4QI/5v+vha6nXd+mKmCdno
-   w==;
-X-CSE-ConnectionGUID: GbivCDjjQw6wucZg4dtJLQ==
-X-CSE-MsgGUID: mukK42OFRMmYlxyx2mQRAA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="14050604"
-X-IronPort-AV: E=Sophos;i="6.08,211,1712646000"; 
-   d="scan'208";a="14050604"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jun 2024 08:16:05 -0700
-X-CSE-ConnectionGUID: E5y3S27MSJOx6GJBW1SKRg==
-X-CSE-MsgGUID: uTkr4zqHT6Cip7CLKCXx7A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,211,1712646000"; 
-   d="scan'208";a="37493984"
-Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
-  by orviesa008.jf.intel.com with ESMTP; 03 Jun 2024 08:16:01 -0700
-Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sE9Pi-000LnG-2U;
-	Mon, 03 Jun 2024 15:15:58 +0000
-Date: Mon, 3 Jun 2024 23:15:32 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mao Jinlong <quic_jinlmao@quicinc.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@linaro.org>,
-	James Clark <james.clark@arm.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>
-Cc: oe-kbuild-all@lists.linux.dev, coresight@lists.linaro.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	Tingwei Zhang <quic_tingweiz@quicinc.com>,
-	Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-	Tao Zhang <quic_taozha@quicinc.com>,
-	songchai <quic_songchai@quicinc.com>
-Subject: Re: [PATCH v2 2/3] coresight: Add support to get preferred id for
- system trace sources
-Message-ID: <202406032259.9poyd8Ts-lkp@intel.com>
-References: <20240603094354.2348-3-quic_jinlmao@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=qiMRTBsDgrJKpLxULenIIKcjEVulVkzk+UvhvX3shE7egy3HYT07jZtAiYipZch3luqrPPK7w4JxDZUmIpJECXVUGYGqCn/P5WHDf6Lr6NroIc1QSWD/rZzluCFvlynVmeUhDQKnYmrz0yJX4UDrRgH0TgW74NH9mPUC7KOMqB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qKOEUN4P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29012C32781;
+	Mon,  3 Jun 2024 15:19:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717427991;
+	bh=ijFVnlnPe4zsomyhDg/uKsVKn4FbatsAOMaZJzU2c5I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qKOEUN4Pu+QL0in2TzHhV83HuGS3DoXq+HWMG3I5DXalhiauPyPK9E3wWuESvxWY+
+	 XR4s1HEk4jd5x9/VtXIJRWcDVuWalwN2U8WtgvaMrv/JHfFljpLK2s9a5RZT6YYjMg
+	 1gFz+RoYtaHMGVHkWBAFLE1wa8Vz41dbSxCBsyAFBgXKMnV8D45G74dML9AMrHJ1X1
+	 7CQY87wtvaH+uUJErkWK8qGhYjjdZo9T+Q3S9MyidigHGEgGRXwExz83GhMS8SiwHB
+	 NUhgjxegNKsd69aGExvSw100T+BLCwixrFqZF54bzii+LQBPw483EOYd82DUuyAOuJ
+	 AldrXeO0R5MuA==
+Date: Mon, 3 Jun 2024 10:19:48 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Ricard Wanderlof <ricard.wanderlof@axis.com>
+Cc: kernel@axis.com, Kevin Lu <kevin-lu@ti.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Shenghao Ding <shenghao-ding@ti.com>, Baojun Xu <baojun.xu@ti.com>,
+	alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+	linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: sound: tlv320adc3xxx: Fix incorrect GPIO
+ description
+Message-ID: <171742798573.458718.16069041554042584405.robh@kernel.org>
+References: <20240528-tlv320adc3xxx-dt-gpio-fix-v1-1-209fb2c2f86f@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,61 +63,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240603094354.2348-3-quic_jinlmao@quicinc.com>
-
-Hi Mao,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on atorgue-stm32/stm32-next linus/master v6.10-rc2 next-20240603]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Mao-Jinlong/dt-bindings-arm-Add-trace-id-for-coresight-dummy-source/20240603-175023
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240603094354.2348-3-quic_jinlmao%40quicinc.com
-patch subject: [PATCH v2 2/3] coresight: Add support to get preferred id for system trace sources
-config: arm-randconfig-001-20240603 (https://download.01.org/0day-ci/archive/20240603/202406032259.9poyd8Ts-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240603/202406032259.9poyd8Ts-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406032259.9poyd8Ts-lkp@intel.com/
-
-All error/warnings (new ones prefixed by >>):
-
->> drivers/hwtracing/coresight/coresight-platform.c:797:12: error: redefinition of 'of_coresight_get_trace_id'
-     797 | static int of_coresight_get_trace_id(struct device *dev, u32 *id)
-         |            ^~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/hwtracing/coresight/coresight-platform.c:191:12: note: previous definition of 'of_coresight_get_trace_id' with type 'int(struct device *, u32 *)' {aka 'int(struct device *, unsigned int *)'}
-     191 | static int of_coresight_get_trace_id(struct device *dev, u32 *id)
-         |            ^~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/hwtracing/coresight/coresight-platform.c:191:12: warning: 'of_coresight_get_trace_id' defined but not used [-Wunused-function]
---
-   drivers/hwtracing/coresight/coresight-tpda.c: In function 'tpda_init_default_data':
->> drivers/hwtracing/coresight/coresight-tpda.c:254:16: error: too few arguments to function 'coresight_trace_id_get_system_id'
-     254 |         atid = coresight_trace_id_get_system_id();
-         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   In file included from drivers/hwtracing/coresight/coresight-tpda.c:20:
-   drivers/hwtracing/coresight/coresight-trace-id.h:126:5: note: declared here
-     126 | int coresight_trace_id_get_system_id(int id);
-         |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In-Reply-To: <20240528-tlv320adc3xxx-dt-gpio-fix-v1-1-209fb2c2f86f@axis.com>
 
 
-vim +/of_coresight_get_trace_id +797 drivers/hwtracing/coresight/coresight-platform.c
+On Tue, 28 May 2024 17:40:04 +0200, Ricard Wanderlof wrote:
+> Fix the description for the ti,dmdin-gpio1 and ti,dmclk-gpio2
+> properties to correctly describe that when configured as general
+> purpose outputs (ADC3XXX_GPIO_GPO), the pins are available via
+> the GPIO framework.
+> 
+> Signed-off-by: Ricard Wanderlof <ricard.wanderlof@axis.com>
+> ---
+>  Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
 
-   796	
- > 797	static int of_coresight_get_trace_id(struct device *dev, u32 *id)
-   798	{
-   799		return -ENODEV;
-   800	}
-   801	
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
