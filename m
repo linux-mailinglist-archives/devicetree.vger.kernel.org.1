@@ -1,123 +1,184 @@
-Return-Path: <devicetree+bounces-71864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5104C8D8432
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 15:41:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46BF68D843B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 15:42:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80E8D1C21B5C
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 13:41:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A8D21C21DB4
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 13:42:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CA1012EBC2;
-	Mon,  3 Jun 2024 13:41:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 328DA12E1CE;
+	Mon,  3 Jun 2024 13:41:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hkl8LqJi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mrVLPgLC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C347312DDAE;
-	Mon,  3 Jun 2024 13:41:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0791912DD91;
+	Mon,  3 Jun 2024 13:41:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717422066; cv=none; b=VCjlDR0Q51ig4Bfy8pieOyhHeE+kzcSw1ThH4r6JzujZbH9mNp2EgK51vSyVa+8qo6LKh+N+yHi1AiSHP9mRVia3axsR7qGzXlKyupdYPXN7zqIOeZl/YYaFRshqstxIKzJxFOzzqkF7LDrUOgZ3cGIQtl7ZilkwR+0mygmfeKg=
+	t=1717422085; cv=none; b=qAdRlizbaGdT5YyPXz/X3lUGSV+6Is9TGsk6UL2/0z+qBuIdsJFOb8aPP/DJ5wTx5PCrIxE2zRd8JNcDWjXp0lswn0ZKqrmrtWwtEXyKZQ5uL3wWl4GEgopq2oYfbl60bDi6T43VH6NvI3H7Xjkr2VEP26zk3QQDYGo2veR0ogs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717422066; c=relaxed/simple;
-	bh=r5pwoduVxbJX4Ywc5rdi0LpioEmEMdP+bmmKp5Fr1CI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=TkvbieZgYRRUMM0Z2eb78pE08b07KR74GgfxgOxm8VeiTvxQCBKV1Rl29xCI4C210YgPT4CZA8vuKRtVGFG4n3u6cji0RfNQJCwOORH5s6cWKTqw45fMeJhfpgpap5apo/xFjI49kAT7IXRTHka3K5giMtkZpwaLYl1NycCfcH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hkl8LqJi; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-35dca73095aso3629300f8f.0;
-        Mon, 03 Jun 2024 06:41:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717422063; x=1718026863; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nksobxv4wDiGzDjs9z1NAwTrGKR9f/JDq3ZaL9PNEKw=;
-        b=hkl8LqJiH/FDXe4qunKwzwYjR6O7lNxLeyHqhSSqDML/2yEUR++luiYsz1X9TCQM56
-         jtZi2Ov5XKN3FTlImGIl/HV6lBWf8JPtW8dNRY7q8OLOwhlIIE1CYYlg7SM3IhatGfsE
-         382fvr4gZ/vu1SU3Vm3/dqb5jvt2/oDDM0CwgzsAjOIeSEY0IYbh00MNAoO54eaAFEQD
-         U6jWIb+mjy5rd8wH3g2Vp+AsoyU3kD/YZg0vdq9KhvMLV2en41NKPGra2SnzH7sSz4h4
-         KjcKhQv5U4Q2gFSRv6/EZg6pNFjva+9LD0lvfVjCOWJeixXq1hcsjcCSNh3bf40jVBDQ
-         i6PA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717422063; x=1718026863;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nksobxv4wDiGzDjs9z1NAwTrGKR9f/JDq3ZaL9PNEKw=;
-        b=WsCtgDyZMPCigN7sbi5k64k6I96BPzula1Ljsv+gRLl2evgUEmR2aSvKMwCeDfpxeh
-         SNSQ0JRTf0B4LJTnAP7pTT8IxMLZQa5MuMH3IW2LC/hyGUknmN0i9T8mRdr6ZdC2fgl0
-         ac5mqprUO4GflRNCgueQCrg97hxq47/Zlso6mhXEJ4i2C1lEJJ4mMwfKMS2uEYpzjnUm
-         xJzxtLOtZo4a2Qsp/wTlMPKTAkKK5fikVQcJvUYJi+iLVzxXABBNOFB9CqXoaCEgElwe
-         4z76NwgVpZnK+1C4mVqw2hn/EyOu3/2fUIeyWb90X3w9H6BHFuHjhzPFAZkLIrkK7y+v
-         CI0w==
-X-Forwarded-Encrypted: i=1; AJvYcCXMT8x3nG4ijTMbn0Dy/FQ71YlYkLy7nOfgXvpMpZcOpYNcmIkG4xgqvzi7I5xd1boSc+8Y2EK1A52f6u8P1RSBABvLQUMLBKmibENSM9okZZIbAGgxWaChyW9M8t1nmWmuHW3Ew6yaB5os1Qu3DVpfgC/31EjT45OI9yI1tyIdpDGcWg==
-X-Gm-Message-State: AOJu0YymySMyS1+hT/0pnNCH4E4cKaeg01/gHL5vdvW/Na68mYv5b7rC
-	fYdup0yUXs6iSS0CBAnucsBiTaio9LEPuGT8dPJcY2hGfruS52dU
-X-Google-Smtp-Source: AGHT+IF0VMa8sCOW1Xdd+cQOW+CCAJRSpmGwhO221NJKn9VSaj/y8ESRMClIsFwMsvbT8BXo2TGKlg==
-X-Received: by 2002:adf:ef0c:0:b0:357:8fe9:4d6c with SMTP id ffacd0b85a97d-35e0f30dfb1mr6555108f8f.49.1717422062952;
-        Mon, 03 Jun 2024 06:41:02 -0700 (PDT)
-Received: from localhost.localdomain ([167.98.27.226])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35e5e3d1902sm1868361f8f.32.2024.06.03.06.41.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Jun 2024 06:41:02 -0700 (PDT)
-From: Mudit Sharma <muditsharma.info@gmail.com>
-To: ivan.orlov0322@gmail.com,
-	jic23@kernel.org,
-	lars@metafoo.de,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	robh@kernel.org
-Cc: Mudit Sharma <muditsharma.info@gmail.com>,
-	linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 3/3] MAINTAINERS: Add maintainer for ROHM BH1745
-Date: Mon,  3 Jun 2024 14:40:15 +0100
-Message-ID: <20240603134015.70388-3-muditsharma.info@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240603134015.70388-1-muditsharma.info@gmail.com>
-References: <20240603134015.70388-1-muditsharma.info@gmail.com>
+	s=arc-20240116; t=1717422085; c=relaxed/simple;
+	bh=xJc0AqiQQy29me8ABZmN4bLw9qKXRmQk/m23w3aMWzo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XuqoFmDzkdj3e0DxbYJEfATV2FgxmqkP/v9NYo+U9yq0Xbde38xB9ffQgiz8NBrw7PTv5tqHQ+qGnZSjQnTywF9PmgNAqki1O7ZLHx+5G2kbqRiKMnwaC1DYR7niv2SDUrBDla9kNkj+azh9vYp0Do2LumRS6DX5wQ6KmtCLOM8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mrVLPgLC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AC77C32781;
+	Mon,  3 Jun 2024 13:41:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717422084;
+	bh=xJc0AqiQQy29me8ABZmN4bLw9qKXRmQk/m23w3aMWzo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mrVLPgLC5HvIM6QZDKMEmG2pQz6gMGTRQCTff9vNcCCNSJXylXLt3Gv6xP5sO+7Ks
+	 8P1Q9ERz0Xvf4zWFziee5N4XdHSvaRVJQ9Y0/0MNXScCpBEsYHHuMO1ZFTH1j4CjS6
+	 K3HnlWV5VqFdod/imHOqV2U9SPGlr/WhdYmOOt8m6BNfmnHVblKYjMlZCrN3LTteFx
+	 EwnfAqGe/lVTWeiLNguwOOBkENiY7RpjU95yZ3OE1him7TZWVpqGHNytWrVA6lsspF
+	 vts19f5E9lahhL/yFdFdiKY8Nn9sTnf8Moz7KTCylek4wevly8MyUkUkOK0lx1rQ+P
+	 g782GKVj+0SIg==
+Date: Mon, 3 Jun 2024 08:41:21 -0500
+From: Rob Herring <robh@kernel.org>
+To: Kanak Shilledar <kanakshilledar@gmail.com>
+Cc: Kanak Shilledar <kanakshilledar111@protonmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Stefan Wahren <wahrenst@gmx.net>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [RESEND v3] dt-bindings: spi: brcm,bcm2835-spi: convert to
+ dtschema
+Message-ID: <20240603134121.GA168897-robh@kernel.org>
+References: <20240531122941.3524-1-kanakshilledar111@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240531122941.3524-1-kanakshilledar111@protonmail.com>
 
-Add myself as maintainer for ROHM BH1745 colour sensor driver.
+On Fri, May 31, 2024 at 05:59:37PM +0530, Kanak Shilledar wrote:
+> From: Kanak Shilledar <kanakshilledar@gmail.com>
+> 
+> Convert the Broadcom BCM2835 SPI0 controller to newer DT
+> schema. Created DT schema based on the .txt file which had
+> `comaptible`, `reg`, `interrupts`, `clocks` as required
+> properties.
+> Added GPL-2.0 OR BSD-2-Clause License
+> 
+> Signed-off-by: Kanak Shilledar <kanakshilledar111@protonmail.com>
 
-Signed-off-by: Mudit Sharma <muditsharma.info@gmail.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+You forgot Conor's Reviewed-by tag.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d6c90161c7bf..945873321fef 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19407,6 +19407,13 @@ S:	Supported
- F:	drivers/power/supply/bd99954-charger.c
- F:	drivers/power/supply/bd99954-charger.h
- 
-+ROHM BH1745 COLOUR SENSOR
-+M:	Mudit Sharma <muditsharma.info@gmail.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/light/rohm,bh1745.yaml
-+F:	drivers/iio/light/bh1745.c
-+
- ROHM BH1750 AMBIENT LIGHT SENSOR DRIVER
- M:	Tomasz Duszynski <tduszyns@gmail.com>
- S:	Maintained
--- 
-2.43.0
-
+> ---
+> Changes in v3:
+> - Updated DCO email address
+> Changes in v2:
+> - Updated the maintainers
+> ---
+>  .../bindings/spi/brcm,bcm2835-spi.txt         | 23 ---------
+>  .../bindings/spi/brcm,bcm2835-spi.yaml        | 50 +++++++++++++++++++
+>  2 files changed, 50 insertions(+), 23 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.txt
+>  create mode 100644 Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.txt b/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.txt
+> deleted file mode 100644
+> index 3d55dd64b1be..000000000000
+> --- a/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.txt
+> +++ /dev/null
+> @@ -1,23 +0,0 @@
+> -Broadcom BCM2835 SPI0 controller
+> -
+> -The BCM2835 contains two forms of SPI master controller, one known simply as
+> -SPI0, and the other known as the "Universal SPI Master"; part of the
+> -auxiliary block. This binding applies to the SPI0 controller.
+> -
+> -Required properties:
+> -- compatible: Should be one of "brcm,bcm2835-spi" for BCM2835/2836/2837 or
+> -  "brcm,bcm2711-spi" for BCM2711 or "brcm,bcm7211-spi" for BCM7211.
+> -- reg: Should contain register location and length.
+> -- interrupts: Should contain interrupt.
+> -- clocks: The clock feeding the SPI controller.
+> -
+> -Example:
+> -
+> -spi@20204000 {
+> -	compatible = "brcm,bcm2835-spi";
+> -	reg = <0x7e204000 0x1000>;
+> -	interrupts = <2 22>;
+> -	clocks = <&clk_spi>;
+> -	#address-cells = <1>;
+> -	#size-cells = <0>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml b/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml
+> new file mode 100644
+> index 000000000000..94da68792194
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/brcm,bcm2835-spi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom BCM2835 SPI0 controller
+> +
+> +maintainers:
+> +  - Florian Fainelli <florian.fainelli@broadcom.com>
+> +  - Kanak Shilledar <kanakshilledar111@protonmail.com>
+> +  - Stefan Wahren <wahrenst@gmx.net>
+> +
+> +allOf:
+> +  - $ref: spi-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - brcm,bcm2835-spi
+> +      - brcm,bcm2711-spi
+> +      - brcm,bcm7211-spi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    spi@20204000 {
+> +        compatible = "brcm,bcm2835-spi";
+> +        reg = <0x7e204000 0x1000>;
+> +        interrupts = <2 22>;
+> +        clocks = <&clk_spi>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +    };
+> -- 
+> 2.34.1
+> 
 
