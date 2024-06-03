@@ -1,109 +1,130 @@
-Return-Path: <devicetree+bounces-71939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11C0F8D8805
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 19:34:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F5278D8820
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 19:42:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A49021F22A00
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 17:34:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 22FCCB21DD0
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 17:42:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 083EF13776F;
-	Mon,  3 Jun 2024 17:34:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8623137914;
+	Mon,  3 Jun 2024 17:42:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O1UgVgT4"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="PJrzINqc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C898513776A;
-	Mon,  3 Jun 2024 17:34:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E85D0135A6F;
+	Mon,  3 Jun 2024 17:42:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717436066; cv=none; b=JFrsGrGbsgHmcaeWXo4kqV6tvjscqfmZhaKihzPDEt9JukTRKI2pgW1hZw2JE0n33iqhRX2XQ/0tZVi5fQ3GWPSIDifpkxtJSbrqTMSfre7c70ZWj7FTSLJBWcqErdJFhSurUwj5zaanKIWmSB65ZWR9GFdI3BBl6iGkR4muJkI=
+	t=1717436529; cv=none; b=X/EGjX+b327Mn/mXuqokKFf4+c+QXqKnBg5gBalxXbxlrUJaG/u5Q5ra4/HeCfX2QVnS8M/l7t2nkEmaR2lgybDS6+XjJoui1leFGnmL3bZ3tOoSyE/6t+chhgDD27wFzsj/0ZIufi0FQTl8Se2XJ0vrKMCRsu6/iy+jWoLWQUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717436066; c=relaxed/simple;
-	bh=hWW3G0eifo7qT8oFYHPTIwPd7XmxHxx1suQ1k7AdbgY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TSw2xfvZK2q20njoBaKMKLhp3p069k7m5bVal7LNzdjzlIFSLHTYrMHkCPP2Wj38qETVbm3TH9HjXnHqtKBRfV0qGvqZdwx/8Hn1ixX+/HDqBo7FMbC841/k0gYzbOAHlG3kzjobtl/Uk9i3SWx1fFwQkqTpHvDjgdQRWXweJ+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O1UgVgT4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC063C2BD10;
-	Mon,  3 Jun 2024 17:34:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717436066;
-	bh=hWW3G0eifo7qT8oFYHPTIwPd7XmxHxx1suQ1k7AdbgY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O1UgVgT4Qr6tvNvx8llmrFJxjfAn3MdQs9s2jKLPe4Cp5AjISxZkN8C88mZkB3Q+b
-	 jPN3PBuKR7aNtefP4hFXz/XsrsOLWu/E3kq6CbvuOECGy2y4aokTrjgwDH6mPc1Kh6
-	 ul6iaIqhWTYr9Px4rlbU5vIb36PinqRbBxLXff5XKsNia6GbSlZXMjbog5BbGCy3ed
-	 k6d+JszoayNQeqmdWfW6mjaQp0bAajkm776WD+LWfjnAz/8cmeP30oMLYkz/yrCHm6
-	 zXFAA1GZD9vlsf61vkpcnVOOGi5LoHKatgvAVDCwjHDDlTOUGCRBn/fvEcmYmbO8jq
-	 XlptYZSAti+bQ==
-Date: Mon, 3 Jun 2024 18:34:19 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Kanak Shilledar <kanakshilledar@gmail.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Kanak Shilledar <kanakshilledar111@protonmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Stefan Wahren <wahrenst@gmx.net>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [RESEND v3] dt-bindings: spi: brcm,bcm2835-spi: convert to
- dtschema
-Message-ID: <72d5a275-a4ba-40cd-a05f-a47c92300b9e@sirena.org.uk>
-References: <20240603173028.2787-1-kanakshilledar111@protonmail.com>
+	s=arc-20240116; t=1717436529; c=relaxed/simple;
+	bh=FTMHYBDXrMSnzSW1m3RkobvbHdA+rKpO/+FvnIJ+Qt4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=AWKO8JNzjQjmG6TvbQYOfJkB2LqKUDAp6S0OorJbYpcs6m1jdM+6jDRJPs8aKhUWsKTfT6ABWx5RblRFOq4Uo3HTNuFgiRIxvG8Um3xzrV7b+pJ8TgjwwkKIb+cDN+3pwbczL4uzj4GlL3FVxyK9NNT5yE1VzxJGzGbtH2kzWts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=PJrzINqc; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 453HfsKw090374;
+	Mon, 3 Jun 2024 12:41:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1717436514;
+	bh=TRuU8G9/d6lkp3hInz5RWXba11O8+BAQ5y7S3nHRwEw=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=PJrzINqcZ9Rdj/ryi7UrbPQqzzmZffuvavnkkk/PnSsSErwZfikiEhpuSmLlek7lq
+	 dBP8JRq4FoevchYIgWbcsnxJsyIE/qbSEztaHvDl6FwEWkls4hBlILYfoqtaiERt6Q
+	 H2rgG3+ORj5DUoQ1YfvMGQLKcSd9QFQ1hmwjYw3M=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 453HfsgA032152
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 3 Jun 2024 12:41:54 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 3
+ Jun 2024 12:41:54 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 3 Jun 2024 12:41:54 -0500
+Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 453HfoOg069313;
+	Mon, 3 Jun 2024 12:41:51 -0500
+Message-ID: <4ac40139-eda0-4f6a-8bbe-99110605f91e@ti.com>
+Date: Mon, 3 Jun 2024 23:11:49 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="vhgvjCA3CxC/LJSF"
-Content-Disposition: inline
-In-Reply-To: <20240603173028.2787-1-kanakshilledar111@protonmail.com>
-X-Cookie: Don't let your status become too quo!
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/4] Add overlays to disable optional hardware in
+ k3-am6xx-phycore-som boards
+To: Nathan Morrisson <nmorrisson@phytec.com>, <nm@ti.com>, <kristo@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>,
+        <w.egorov@phytec.de>
+References: <20240528225137.3629698-1-nmorrisson@phytec.com>
+From: Vignesh Raghavendra <vigneshr@ti.com>
+Content-Language: en-US
+In-Reply-To: <20240528225137.3629698-1-nmorrisson@phytec.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+
+Hi Nathan,
+
+On 29/05/24 04:21, Nathan Morrisson wrote:
+> Add three overlays to disable the eth phy, rtc, and spi nor. These
+> overlays will be used to disable device tree nodes for components
+> that are optionally not populated.
+> 
+> v2:
+>   - Add build time tests in makefile
+> 
+> Nathan Morrisson (4):
+>   arm64: dts: ti: k3-am64-phycore-som: Add serial_flash label
 
 
---vhgvjCA3CxC/LJSF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+>   arm64: dts: ti: k3-am6xx-phycore-som: Add overlay to disable eth phy
+>   arm64: dts: ti: k3-am6xx-phycore-som: Add overlay to disable rtc
+>   arm64: dts: ti: k3-am6xx-phycore-som: Add overlay to disabl spi nor
+> 
+>  arch/arm64/boot/dts/ti/Makefile               | 17 +++++++++++++++++
+>  .../boot/dts/ti/k3-am64-phycore-som.dtsi      |  2 +-
+>  .../ti/k3-am6xx-phycore-disable-eth-phy.dtso  | 19 +++++++++++++++++++
+>  .../dts/ti/k3-am6xx-phycore-disable-rtc.dtso  | 15 +++++++++++++++
+>  .../ti/k3-am6xx-phycore-disable-spi-nor.dtso  | 15 +++++++++++++++
+>  5 files changed, 67 insertions(+), 1 deletion(-)
 
-On Mon, Jun 03, 2024 at 11:00:23PM +0530, Kanak Shilledar wrote:
-> From: Kanak Shilledar <kanakshilledar@gmail.com>
->=20
-> Convert the Broadcom BCM2835 SPI0 controller to newer DT
-> schema. Created DT schema based on the .txt file which had
-> `comaptible`, `reg`, `interrupts`, `clocks` as required
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am6xx-phycore-disable-eth-phy.dtso
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am6xx-phycore-disable-rtc.dtso
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am6xx-phycore-disable-spi-nor.dtso
+> 
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+I am not sure if this a common practice to have overlays to disable
+missing components (at least I dont see such dtso in kernel). I would
+like to see an what DT maintainers feel as such dtsos can explode in
+numbers.
 
---vhgvjCA3CxC/LJSF
-Content-Type: application/pgp-signature; name="signature.asc"
+Is this something that U-Boot can detect and fix up for the Linux DT?
 
------BEGIN PGP SIGNATURE-----
+Unpopulated SPI flash and RTC should ideally not be an issue as drivers
+would gracefully fail albeit with some sort of error msg.
+Not so sure about Eth PHYs though.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZd/psACgkQJNaLcl1U
-h9DrDwf/ZcVMdlLRdv4CYq05lqAZzjrck1p/12rqewZboO1aGn77HIFZsvjQvKBq
-BeY925bI+ONdrK67SF1Xw+eY5CJYV7FtUsgqgdqVTWTU/liXsKIsgyUeiOSQRtMz
-KtjlGWDGcLVx1s7brs9Lyb2Wl1F1pjkTzvg8rO3XE0GR78WILXNQF6UxgOf3aVYJ
-g0aL9Ik9yxpDBAkPfAtl6KSlTWb4/I3jabJu9M9uvaGbOfuEIYDzei6/C9sS9Zr/
-JDxKutbkF6ReYhlkd9LFXdQrkh1ZJ96d6dm+9EfH8Y21P/BT0lyT0W7HQ8oOOm9G
-hvXbNQNo/J/s4HtfNCGCW4Nq7OhI1g==
-=05Oc
------END PGP SIGNATURE-----
+Also, Are these dtso's mutually exclusive? ie can SoM have SPI flash but
+not RTC, have RTC and SPI Flash but no ETH PHY?
 
---vhgvjCA3CxC/LJSF--
+-- 
+Regards
+Vignesh
 
