@@ -1,63 +1,74 @@
-Return-Path: <devicetree+bounces-71932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAF878D875A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 18:35:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D52358D8764
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 18:39:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3B275B20B47
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 16:35:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDF231C21026
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 16:39:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B6AA12FF76;
-	Mon,  3 Jun 2024 16:35:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C258B13666F;
+	Mon,  3 Jun 2024 16:39:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dljAJy3f"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F+nZAGOD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3A397E8;
-	Mon,  3 Jun 2024 16:35:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0052B7E8;
+	Mon,  3 Jun 2024 16:39:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717432524; cv=none; b=pU6iqQ4YzVTZis6xSAN30828v+t3AfjeER7GN4HPaVSlbYR0ZOFpTddHoHr2mUtiet202qGMeuhZucgkkjO+a/lZq+dFzs+z1BP+xm/6xv9DkGocHlt7r74pj3+JOEoHTD9bltKSjP2/1eYSfTSrXr+lzYFP2ND65KxXXgnGDeM=
+	t=1717432792; cv=none; b=tjfqosIEUNuf8mMR6OxWy5k5lKEHawc4O9hZ1ReXzM8Eq+zCMaTpQbJhzIK6TBEkCZt4Jnz27D7qq6TDVK3Q3XB//Hpi7qZcrrQCOY4586rxgCW0jfz3JVck1nyD37ga4H6eVA7NdsGwF7CZqjxJ7pjU8+jm2EbdSpAJMUtY2ko=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717432524; c=relaxed/simple;
-	bh=BO3aVJ0FfkEKoNFzLUlb3mwvrU9V3ipNtcJaX7DM/Ys=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=XUVL1uwRzZhrnWq6L5pclXoxg2tQDUdMWrrgj9ra3B6SRU2APsP0xsAoRWAGT3CtwBsKmH7eMV+oWwkGxDUavMXV3KX/yvBcSMkb9xha3MR/YYaYGxYJ9j3B+JAN3S4lNJxX8xQd2Inis5AEl/2WLDadSQYt01mw07coiUxngOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dljAJy3f; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 453C5K9P009078;
-	Mon, 3 Jun 2024 16:35:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	VladUwHMx4+LGUlSn+CNhK4B9YObfz94IGIKwRIcgiM=; b=dljAJy3f/Lz929yF
-	bjSOATzpw8uaZUJ1mq6PNWEvm16PKKaFCj9BBDmAsoSsfmBCxApyaZc0Nx/btNbG
-	qfYGVOB/+VaV7TQn5ltrtumQto6i9yFeWAuyuNE02VwppoJTfqJ4M4zVlJmoXJkH
-	+Zs9xfSl/ofnIUTyLJQYX+NE93MEmFn42FscGgLO7oX33Qf/W+3cDhHJhG964H+a
-	TYNOj2BR/0OtONTqy3exSnsyLOGn8tuWU/eEdJdFLenM2HonhnUtWw2L6UbJYFr5
-	LoaCledEc3ggw5uIJPFaBAZ5TsFk5NiND7uIkHI457Et0J2m62lhw6rYAgq1t1UM
-	6cjUtQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yfw7dmesp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 03 Jun 2024 16:35:18 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 453GZGsV008159
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 3 Jun 2024 16:35:16 GMT
-Received: from [10.110.33.27] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 3 Jun 2024
- 09:35:13 -0700
-Message-ID: <5adaf1ec-7e10-49f8-9b2c-ece932a835fd@quicinc.com>
-Date: Mon, 3 Jun 2024 09:35:08 -0700
+	s=arc-20240116; t=1717432792; c=relaxed/simple;
+	bh=rnR5iPB01lsns52vG/tA2Gfh3HK2RdIOyDH7P6NAYdU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pIZ6bRUZLARwp4N/iN12xD68atgD/Xhiue0w1JPLPa0daXUgR2HU/qhOjHevepAVG6synkl678CaSONQnuYXFOW4rfyz29+I8OdmnfvTT5RdmqC+nrf6X9U78m2Jujvbqo/tJExVmwkZbPcHP69e3HkfYALz2yTMQFT5ks5D7j8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F+nZAGOD; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4214053918aso263935e9.2;
+        Mon, 03 Jun 2024 09:39:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717432789; x=1718037589; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NmucZefJaS9oSAR+UXzx3NPh83JYXnJgaWeSAXKZsFg=;
+        b=F+nZAGODw+dZ4N83cBoS4/Kz/rB4mJNKsiH6/YAJk4uhn+ORGGb6281YlTdb33S++i
+         ioie4XX2Dyi2B19WAZDHKucliax/JM/tsUSQAds4lDNxnVkwrBYftdYDpbKOd9ZrXUiP
+         IgayVKv3aJmyxHPpLa8msZ5iLAXI7QxMEWH2hP1w807ArI7vGChm1emT0sSJxeiLw5LW
+         sAhAW2LtRJrPEdFmhhmioklUYvkEGGogbA34zRzZwEiMNyYu6GqM0+UgoUyzWJcp6Wvt
+         rWOjKT9spjf9mbYjTmYIttra5L6ME9Q8xvxGdawiSF7LyOGcUxsCB414SmbDISuESjJe
+         VJeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717432789; x=1718037589;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NmucZefJaS9oSAR+UXzx3NPh83JYXnJgaWeSAXKZsFg=;
+        b=HvYGYJMdlo8jP0SKAarQEMNSg/42iWojNaCtkLI/lVDrn2kiDXnTxv0A9Y5uW8wYMf
+         tA8WygIlrqBTa9SAlNv1uhm9nhRzxHoiQDz1RgdhFIMJzg5h/hwCMrcxjcR30corZMOj
+         Db3mzBUr2ps7wMzdTrRvN51bWCgqB7waXnvaniiS86+A/561pvXYF0kU0kqB9m6o6Y7m
+         5sKHnbzjKfx29TD6/R41456v+oSWWASsMaGYMdMLp7l3hyFI2J7bwPs2Soyh8X70X+H/
+         bXjq5yZYglpeC5tlhOPr3nwAj+e6J7fPLD+vFya1qUS6+2MemGI/D/UjXtDRxj/joAjK
+         atHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUndehoYcLG/SfGYbyzNSjXKt5QYmhgaObTIwOPtzq5wl5ObYpi2w/P5bwgvmNcGVQCPZwSQ3wwq3Hva73Lj7+pXKnXAKnZJ4sq7Wf9BjE+Q0shrvj6v+qX+mUXFsKKdAdSTBwMmzNpPc7iUWajLw4QfG+PLkaFc6moQ12gCsBsgpGP0w==
+X-Gm-Message-State: AOJu0Ywnbpo8gZzjCRVB6CT77kozyWnU60HNVy2nMrr46s80aa3EG6g7
+	FqFFGr4k+KPBn6pU+so5STAzjtaW/xe52Qw3roZLUbTV5z04coJ2
+X-Google-Smtp-Source: AGHT+IGcSUsHtQDHF3KX5AZeA/IawTF2iTfkVdyvpmBBr3Hj/bs0e01mGLyruH0gX37jLzXz4SWHgg==
+X-Received: by 2002:a05:600c:4f13:b0:421:418d:8f7 with SMTP id 5b1f17b1804b1-421418d0be6mr10237555e9.12.1717432788875;
+        Mon, 03 Jun 2024 09:39:48 -0700 (PDT)
+Received: from [192.168.242.235] ([109.166.154.147])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35dd04c0e8fsm9168075f8f.2.2024.06.03.09.39.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Jun 2024 09:39:48 -0700 (PDT)
+Message-ID: <64fd8918-0c5e-462d-8ffe-964ed6404bde@gmail.com>
+Date: Mon, 3 Jun 2024 19:39:46 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,64 +76,163 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: (subset) [PATCH v6 0/5] LLCC: Support for Broadcast_AND region
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
-References: <cover.1717014052.git.quic_uchalich@quicinc.com>
- <171730042577.665897.8196444348725965878.b4-ty@kernel.org>
+Subject: Re: [PATCH v4 3/6] iio: adc: ad7173: refactor ain and vref selection
+To: David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <noname.nuno@gmail.com>, Jonathan Cameron <jic23@kernel.org>,
+ Dumitru Ceclan via B4 Relay <devnull+dumitru.ceclan.analog.com@kernel.org>
+Cc: dumitru.ceclan@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240531-ad4111-v4-0-64607301c057@analog.com>
+ <20240531-ad4111-v4-3-64607301c057@analog.com>
+ <20240601194925.23123071@jic23-huawei>
+ <e9ade241e57383d5342d377bc865046e612a7033.camel@gmail.com>
+ <d2370ad2-5fed-41b3-bdd5-c6c895283c18@gmail.com>
+ <2df46968-ff5f-43bc-98fd-506840c1aaa9@baylibre.com>
 Content-Language: en-US
-From: Unnathi Chalicheemala <quic_uchalich@quicinc.com>
-In-Reply-To: <171730042577.665897.8196444348725965878.b4-ty@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: tFYtsQJ0OHMoNJ_3SbZr_3oDYerD8arS
-X-Proofpoint-GUID: tFYtsQJ0OHMoNJ_3SbZr_3oDYerD8arS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-06-03_13,2024-05-30_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=888 impostorscore=0 malwarescore=0 phishscore=0 adultscore=0
- clxscore=1015 bulkscore=0 priorityscore=1501 lowpriorityscore=0
- spamscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406030136
+From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
+In-Reply-To: <2df46968-ff5f-43bc-98fd-506840c1aaa9@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 6/1/2024 8:53 PM, Bjorn Andersson wrote:
-> 
-> On Fri, 31 May 2024 09:45:23 -0700, Unnathi Chalicheemala wrote:
->> This series adds:
->> 1. Device tree register mapping for Broadcast_AND region in SM8450,
->> SM8550, SM8650.
->> 2. LLCC driver updates to reflect addition of Broadcast_AND regmap.
+On 03/06/2024 19:00, David Lechner wrote:
+> On 6/3/24 8:08 AM, Ceclan, Dumitru wrote:
+>> On 03/06/2024 16:00, Nuno Sá wrote:
+>>> On Sat, 2024-06-01 at 19:49 +0100, Jonathan Cameron wrote:
+>>>> On Fri, 31 May 2024 22:42:29 +0300
+>>>> Dumitru Ceclan via B4 Relay <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
+>>>>
+>>>>> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
+>>>>>
+>>>>> Move validation of analog inputs and reference voltage selection to
+>>>>> separate functions to reduce the size of the channel config parsing
+>>>>> function and improve readability.
+>>>>> Add defines for the number of analog inputs in a channel.
+>>>>>
+>>>>> Reviewed-by: David Lechner <dlechner@baylibre.com>
+>>>>> Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
+>>>>> ---
+>>>>>  drivers/iio/adc/ad7173.c | 71 ++++++++++++++++++++++++++++++++++--------------
+>>>>>  1 file changed, 50 insertions(+), 21 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
+>>>>> index 6e249628bc64..a20831d99aa5 100644
+>>>>> --- a/drivers/iio/adc/ad7173.c
+>>>>> +++ b/drivers/iio/adc/ad7173.c
+>>>>> @@ -60,6 +60,7 @@
+>>>>>  #define AD7173_CH_SETUP_AINPOS_MASK	GENMASK(9, 5)
+>>>>>  #define AD7173_CH_SETUP_AINNEG_MASK	GENMASK(4, 0)
+>>>>>  
+>>>>> +#define AD7173_NO_AINS_PER_CHANNEL	2
+>>>>>  #define AD7173_CH_ADDRESS(pos, neg) \
+>>>>>  	(FIELD_PREP(AD7173_CH_SETUP_AINPOS_MASK, pos) | \
+>>>>>  	 FIELD_PREP(AD7173_CH_SETUP_AINNEG_MASK, neg))
+>>>>> @@ -623,6 +624,7 @@ static int ad7173_setup(struct iio_dev *indio_dev)
+>>>>>  static unsigned int ad7173_get_ref_voltage_milli(struct ad7173_state *st,
+>>>>>  						 u8 reference_select)
+>>>>>  {
+>>>>> +	struct device *dev = &st->sd.spi->dev;
+>>>>>  	int vref;
+>>>>>  
+>>>>>  	switch (reference_select) {
+>>>>> @@ -646,9 +648,11 @@ static unsigned int ad7173_get_ref_voltage_milli(struct
+>>>>> ad7173_state *st,
+>>>>>  		return -EINVAL;
+>>>>>  	}
+>>>>>  
+>>>>> -	if (vref < 0)
+>>>>> +	if (vref < 0) {
+>>>>> +		dev_err(dev, "Cannot use reference %u. Error:%d\n",
+>>>>> +			reference_select, vref);
+>>>>>  		return vref;
+>>>>> -
+>>>>> +	}
+>>>>>  	return vref / (MICRO / MILLI);
+>>>>>  }
+>>>>>  
+>>>>> @@ -905,13 +909,50 @@ static int ad7173_register_clk_provider(struct iio_dev
+>>>>> *indio_dev)
+>>>>>  					   &st->int_clk_hw);
+>>>>>  }
+>>>>>  
+>>>>> +static int ad7173_validate_voltage_ain_inputs(struct ad7173_state *st,
+>>>>> +					      const unsigned int
+>>>>> ain[AD7173_NO_AINS_PER_CHANNEL])
+>>>> I was late to the game in replying to previous thread.
+>>>>
+>>>> This is neater without the loop and with 2 parameters.  Anyhow see reply to v3.
+>>>>
+>>>
+>>> Yeps, even more given that we're passing/copying the complete array which always
+>>> fells awkward to me :)
+>>>
+>>> - Nuno Sá
+>>>
+>>>
 >>
->> To support CSR programming, a broadcast interface is used to program all
->> channels in a single command. Until SM8450 there was only one broadcast
->> region (Broadcast_OR) used to broadcast write and check for status bit
->> 0. From SM8450 onwards another broadcast region (Broadcast_AND) has been
->> added which checks for status bit 1.
+>> I rewrote the function, but it feels a bit awkward, perhaps I could get a bit of
+>> advice before sending V5:
+> 
+> Maybe we could make this easier to read with macros?
+> 
 >>
->> [...]
+>> static int ad7173_validate_voltage_ain_inputs(struct ad7173_state *st,
+>> 					      unsigned int ain0, unsigned int ain1)
+>> {
+>> 	struct device *dev = &st->sd.spi->dev;
+>> 	bool special_input0, special_input1;
+>>
+>> 	special_input0 = ain0 == AD7173_AIN_REF_POS || ain0 == AD7173_AIN_REF_NEG ||
+>> 			 ((ain0 == AD7173_AIN_COM_IN_POS || ain0 == AD7173_AIN_COM_IN_NEG) &&
+>> 			 (st->info->has_common_input)) || ain0 == AD4111_VINCOM_INPUT;
+>> 	special_input1 = (ain1 == AD7173_AIN_REF_POS || ain1 == AD7173_AIN_REF_NEG) ||
+>> 			 ((ain1 == AD7173_AIN_COM_IN_POS || ain1 == AD7173_AIN_COM_IN_NEG) &&
+>> 			 (st->info->has_common_input)) || ain1 == AD4111_VINCOM_INPUT;
+>>
 > 
-> Applied, thanks!
+> 	special_input0 = AD7173_IS_SPECIAL_INPUT(ain0);
+> 	special_input1 = AD7173_IS_SPECIAL_INPUT(ain1);
 > 
-Thanks Bjorn, Krzystof and Konrad for the reviews!
-> [3/5] arm64: dts: qcom: sm8450: Add Broadcast_AND register in LLCC block
->       commit: c566143137aaacfed1af09d8710edab1971c312d
-> [4/5] arm64: dts: qcom: sm8550: Add Broadcast_AND register in LLCC block
->       commit: 2a71a2eb1f5ec438f0ac1c7e294cd7ed32119af3
-> [5/5] arm64: dts: qcom: sm8650: Add Broadcast_AND register in LLCC block
->       commit: a7823576f7f7b1cb0a595332ab6b0b38e15f45a7
+>> 	if (st->info->has_vincom_input) {
+>> 		if (ain0 == AD4111_VINCOM_INPUT &&
+>> 		    ain1 < st->info->num_voltage_in && /* Normal input */
+>> 		    ain1 >= st->info->num_voltage_in_div) /* Input without divider */
+>> 			return dev_err_probe(dev, -EINVAL,
+>> 				"VINCOM must be paired with inputs having divider.\n");
+>>
+>> 		if (ain1 == AD4111_VINCOM_INPUT &&
+>> 		    ain0 < st->info->num_voltage_in && /* Normal input */
+>> 		    ain0 >= st->info->num_voltage_in_div) /* Input without divider */
+>> 			return dev_err_probe(dev, -EINVAL,
+>> 				"VINCOM must be paired with inputs having divider.\n");
 > 
-> Best regards,
+> 		if (AD7173_IS_VINCOM_MISMATCH(ain0, ain1) ||
+> 		    AD7173_IS_VINCOM_MISMATCH(ain1, ain0)) {
+>  			return dev_err_probe(dev, -EINVAL,
+>  				"VINCOM must be paired with inputs having divider.\n");
+> 
+>> 	}
+>>
+>> 	if ((ain0 >= st->info->num_voltage_in && !special_input0) ||
+>> 	    (ain1 >= st->info->num_voltage_in && !special_input1))
+>> 		return dev_err_probe(dev, -EINVAL,
+>> 				     "Input pin number out of range for pair (%d %d).\n",
+>> 				     ain0, ain1);
+>>
+>> 	if (!special_input0 && !special_input1 &&
+>> 	    ((ain0 >= st->info->num_voltage_in_div) !=
+>> 	     (ain1 >= st->info->num_voltage_in_div)))
+>> 		return dev_err_probe(dev, -EINVAL,
+>> 			"Both inputs must either have a voltage divider or not have: (%d %d).\n",
+>> 			ain0, ain1);
+> 
+> These last two don't seem so bad.
+> 
+>>
+
+Thanks for the quick review :)
+
 
