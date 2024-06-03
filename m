@@ -1,95 +1,72 @@
-Return-Path: <devicetree+bounces-71971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 301028DAED8
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 23:22:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FD018FA391
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 23:46:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03BE71F237FB
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 21:21:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E11ACB21255
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 21:36:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F092613B7A1;
-	Mon,  3 Jun 2024 21:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F02813C68E;
+	Mon,  3 Jun 2024 21:36:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VU87A+5N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U00QJour"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3AC05028C;
-	Mon,  3 Jun 2024 21:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 216A213BAFA;
+	Mon,  3 Jun 2024 21:36:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717449708; cv=none; b=OwvMhvaljS4Gs6NXCX6XzrlcSCrHjReEBmLodC0e3hWOT22WmNZ5hvWYFrLD9ykJ6eVbkvj/F4pBPVpgiUHdSR5scBgvmIaydLiWXX834pVsMxZ50ckHwuc0VMLhXceYwnXCfYpE862o+/fLvrYy8CE85JfZtMT/FYbqbYw4gvQ=
+	t=1717450604; cv=none; b=BsX+a34pRyX4U9LwfpHC8YmlpDCKALG224uH+vQe2ZzdcMLPGav4Et7ght1BA8V67xqYpRXnDAittJgNzJt3sLBnD1LYE5FJJkUA2/FBcNv6XNGjJJ1GEgbN6dXuSez8rmahnAoVOsrgF5RDfWfPr5uE9ox/36ao3tvKrfZdy6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717449708; c=relaxed/simple;
-	bh=CfAuGO3L+Vmv0KFuM50pHrpSRbJ4K3M/mg7Isem5BlM=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=ZgFvu2zlMoapYLhp4HrgtA9a86diQpdE7aLtNkkvl1P9H893yX4N6DIJvsl4l3Cmk5Yt65NY3BeAEYYhDNcXPgGk8v16chwHOju9Ilxo8r5GFUsy2zDCs6r/4pF4RXchRVqR/GJSC4Pb2tZiaJQVOmlzKLnAgSYB5qKfW4+OOzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VU87A+5N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF7EDC2BD10;
-	Mon,  3 Jun 2024 21:21:47 +0000 (UTC)
+	s=arc-20240116; t=1717450604; c=relaxed/simple;
+	bh=1GajkzrxJWwIATnMlSQb8T/W4Z6Ei4LUQqaYzeUpUoE=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=oT6i2+Yk1hT5MQ6+WEV0FDPaLeMBZ+jFIHk3Ur7ii1qtGoJCuIf6utAz3Zs0/4sfM0Xg2qbGXnOut+dWsMcnU5dmwfXqZfgNeXqDtgsJS4NuglnNhn83EF9C/KkyCUUrU6SY/ekWFVi5Yb+rzixdXZglIxXV/LydjJYwX8t936k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U00QJour; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92E41C2BD10;
+	Mon,  3 Jun 2024 21:36:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717449708;
-	bh=CfAuGO3L+Vmv0KFuM50pHrpSRbJ4K3M/mg7Isem5BlM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=VU87A+5NyGjsW9oK77Dglj+NU97HaHx43IJY3gjN3hfDu22jmFaa9A6/mvVhB6/pq
-	 RBSbMSyyUWQFKKqIXz7/VDamsFA77LFpuw6wtLNh7bKnE1M7FxoTvKdR58QrWjY7w5
-	 bnK9l6X1JB9NEeCO/GugKGdphJJXXwyj7dVlRCZQFpA6bzZJGNrD+NE0HPrinfqBTK
-	 /Kd1aEauJ7+NwkFMLHjQRsxHMdCworsm8Gjz3V3qCwMuGKLvLB/YBaOLsgEvXA/BRk
-	 WXCqnKKcoPBp6YoDvsbklHTXEYSqWfrDS/UaF8wN9JmZb+JvvOQj1ncdJarFqkx7BI
-	 VhNkeLtoWpAUw==
-Date: Mon, 3 Jun 2024 16:21:46 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Vidya Sagar <vidyas@nvidia.com>
-Cc: bhelgaas@google.com, rafael@kernel.org, lenb@kernel.org,
-	will@kernel.org, lpieralisi@kernel.org, kw@linux.com,
-	robh@kernel.org, frowand.list@gmail.com, linux-pci@vger.kernel.org,
-	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	treding@nvidia.com, jonathanh@nvidia.com, kthota@nvidia.com,
-	mmaddireddy@nvidia.com, sagar.tv@gmail.com
-Subject: Re: [PATCH V7 0/4] PCI: Add support for preserving boot configuration
-Message-ID: <20240603212146.GA697762@bhelgaas>
+	s=k20201202; t=1717450603;
+	bh=1GajkzrxJWwIATnMlSQb8T/W4Z6Ei4LUQqaYzeUpUoE=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=U00QJour8XN4wwOSFH/cVWjQ0sCcztZR3LUU8kRQD2tKWhpj+ZIWnXfVShtbYerag
+	 XxPA9TeSz6VDHuWdNaLlRgh6ZQUOR5kisfJwtsgXxymhyQIN+FbuOXQb1d8dF5wf1g
+	 qgGPxZUD6JN8eurPq9Ffz+x6D8VLVWBnfWy/SBMoAJsGutlOP2Z89ttvM93fgM8nnK
+	 Sbs+8EDy2VitP04DtcbOArSzcRkd7XmsE0Tn1jQi2kNhll3j516YkT8Xd3UcfyCySs
+	 GY1SZg41dIopeQ++WWQDDGim29SZcfKC1Wj0Vps5qswKxO2tCmJCbbPmkknrDnS43M
+	 ZyY+xAZO97Zfw==
+Message-ID: <c776960ca7b285626366dd7ecba04018.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240508174138.3630283-1-vidyas@nvidia.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240529131310.260954-2-gabriel.fernandez@foss.st.com>
+References: <20240529131310.260954-1-gabriel.fernandez@foss.st.com> <20240529131310.260954-2-gabriel.fernandez@foss.st.com>
+Subject: Re: [RESEND PATCH v2 1/3] clk: stm32mp2: use of STM32 access controller
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+To: Alexandre Torgue <alexandre.torgue@foss.st.com>, Conor Dooley <conor+dt@kernel.org>, Dan Carpenter <dan.carpenter@linaro.or6g>, Gabriel Fernandez <gabriel.fernandez@foss.st.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Maxime Ripard <mripard@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>
+Date: Mon, 03 Jun 2024 14:36:41 -0700
+User-Agent: alot/0.10
 
-On Wed, May 08, 2024 at 11:11:34PM +0530, Vidya Sagar wrote:
-> Add support for preserving the boot configuration done by the
-> platform firmware per host bridge basis, based on the presence of
-> 'linux,pci-probe-only' property in the respective PCI host bridge
-> device-tree node. It also unifies the ACPI and DT based boot flows
-> in this regard.
-> 
-> This patch series is a complete version of the incomplete series
-> ( https://lore.kernel.org/linux-pci/20240421190914.374399-1-helgaas@kernel.org/ )
-> posted by Bjorn which in turn was an attempted split work of the single V6 patch
-> ( https://lore.kernel.org/linux-pci/20240418174043.3750240-1-vidyas@nvidia.com/ )
-> posted by me.
-> 
-> Vidya Sagar (4):
->   PCI: Move PRESERVE_BOOT_CONFIG _DSM evaluation to
->     pci_register_host_bridge()
->   PCI: of: Add of_pci_preserve_config() for per-host bridge support
->   PCI: Unify ACPI and DT 'preserve config' support
->   PCI: Use preserve_config in place of pci_flags
-> 
->  drivers/acpi/pci_root.c                  | 12 ------
->  drivers/pci/controller/pci-host-common.c |  4 --
->  drivers/pci/of.c                         | 54 +++++++++++++++++++-----
->  drivers/pci/pci-acpi.c                   | 22 ++++++++++
->  drivers/pci/pci.h                        | 12 ++++++
->  drivers/pci/probe.c                      | 34 ++++++++++-----
->  6 files changed, 101 insertions(+), 37 deletions(-)
+Quoting gabriel.fernandez@foss.st.com (2024-05-29 06:13:08)
+> From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+>=20
+> Use an STM32 access controller to filter the registration of clocks.
+> If a clock is used by the security world, then it must not registered.
+>=20
+> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+> ---
 
-Applied to pci/enumeration for v6.11, thanks!
+Applied to clk-next
 
