@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-71684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4662D8D797D
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 03:08:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F9058D7982
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 03:12:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0212E281272
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 01:08:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2C4BDB20F9E
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 01:12:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F234138C;
-	Mon,  3 Jun 2024 01:08:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35C441362;
+	Mon,  3 Jun 2024 01:12:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="VVyJN1sg"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="XvaE/y4L"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C7B810FA;
-	Mon,  3 Jun 2024 01:08:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2CB810F1;
+	Mon,  3 Jun 2024 01:12:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717376895; cv=none; b=ZM0HFxsxmGYRVM6LGsaiVNNKAmCYLRpp73kdAoH3vwyDQ5euQ8sME9ywEM9iQ+jn1+Y5qvz4FnfECRMBLiVLlptNEHbGfsTW5k6hPz6KVUV6YP8X/O4qyS1ttFKa7/vMBctZD/DJUX3q+xIW0qKDa0Xppod3TJH5W/M38P0rems=
+	t=1717377163; cv=none; b=ROa2wvA+tlfADNpHdL+LUED/A5+vFRlIMUqEPvq+hsJmrsv+WCYzMsVyBoA8fHPMjM6lrJ/8ZIA3nPXDx4Xj7Wpa4g05HDxqtBnlfaKAI7t4YdQldcwjRCC0KFv6hpzqqyJR4MfGmeQ2Rd09EoWS2z1kVtwCmD9KRUZmmqdc2Ko=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717376895; c=relaxed/simple;
-	bh=AJxGqelg0blaxEfUwaK4bxSO4X7eGYRg9Lopc0VXZiI=;
+	s=arc-20240116; t=1717377163; c=relaxed/simple;
+	bh=tIe7sgzLNNumDDE2u9rW3b9KU0lhJ9Id5HhmB1TXO74=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qxd7NmK6hcJfAPaKeu/s10mLeZo9fG8pXZI8/VtdWPkhvZJ+R29YpL8ZkUfTrj4a6vEPyVO1MDzQ7WkWADeXc4eJiHME7LDiOjm6l7yK4MJB4O2rnhqCGH2IJbpHtBpNexMpekeYnoABb0JdJEPA40YWypja8GZB2et+CyqMs+0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=VVyJN1sg; arc=none smtp.client-ip=123.58.177.132
+	 Content-Type:Content-Disposition:In-Reply-To; b=HVTUDxafVpiQ3FahBDC8TOo7wGRYDETYRX2+1YhEfoFOe75ZolDmTSdLTlh7zmWXGblKb9GJGOA0OMrKDSRdAI4qzT2NOCJ862NcfsN+bcMKbVOx4IpsyT8JP0CuauuRJ0pFE3hExyeMzzgJewXrAtKdhP26MA6jl3fQaIPGiX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=XvaE/y4L; arc=none smtp.client-ip=123.58.177.132
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=8k4gT2nqBFGqyZpCaHqPeKXyYM2eTwYAEViYCARACp4=;
-	b=VVyJN1sgTyinA5KMAya98HGWpnxuyr3WS284tcF7qj+DWguzyIUYmUGlQj7EuD
-	lT/li4MsfaK8GfxkLwiUy5Dh9XQXWvn7iTi1CpVVvLBDLBFMEIWECJN7+OCB+0Jn
-	1VHf/9HZc5z4dABzLZ4dV6+knvVq/DrH/tyn94az9O+ss=
+	Content-Type; bh=rqVP833gbfOr94xX9bKqRkcWmC/Hfc0U89o8Z84A84E=;
+	b=XvaE/y4LGl5EZ5jTqDB9jkTVKcaMPM6NBbjnvSxqafFUDFQrLGReGTcuBG8kNo
+	lbyq01MZ0nIZ+oOcouWOFEpdLqc564KQPGZ3OlR6WW/eJ1ZCZGTx2ytXIdidzP3o
+	ROJQ+8KtXGrTk5/ilY7kICG2fbKGP3yq56fzCH0rBGU1E=
 Received: from dragon (unknown [114.216.76.201])
-	by smtp2 (Coremail) with SMTP id C1UQrACHT+JiF11mjQ7sBw--.2328S3;
-	Mon, 03 Jun 2024 09:07:47 +0800 (CST)
-Date: Mon, 3 Jun 2024 09:07:46 +0800
+	by smtp2 (Coremail) with SMTP id C1UQrADX31ByGF1maB_sBw--.21248S3;
+	Mon, 03 Jun 2024 09:12:19 +0800 (CST)
+Date: Mon, 3 Jun 2024 09:12:18 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
 To: Alexander Stein <alexander.stein@ew.tq-group.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -48,9 +48,11 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Fabio Estevam <festevam@gmail.com>, linux@ew.tq-group.com,
 	devicetree@vger.kernel.org, imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: mba93xxla: Add USB support
-Message-ID: <Zl0XYo+Ls25xM/SP@dragon>
-References: <20240423093341.1927592-1-alexander.stein@ew.tq-group.com>
+Subject: Re: [PATCH 1/6] arm64: dts: freescale: tqma9352: Add partitions
+ subnode to spi-nor
+Message-ID: <Zl0YciNbjq4aDtL6@dragon>
+References: <20240423113151.2145120-1-alexander.stein@ew.tq-group.com>
+ <20240423113151.2145120-2-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,18 +61,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240423093341.1927592-1-alexander.stein@ew.tq-group.com>
-X-CM-TRANSID:C1UQrACHT+JiF11mjQ7sBw--.2328S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUIxpnUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDQPyZVszXjYKlAAAsH
+In-Reply-To: <20240423113151.2145120-2-alexander.stein@ew.tq-group.com>
+X-CM-TRANSID:C1UQrADX31ByGF1maB_sBw--.21248S3
+X-Coremail-Antispam: 1Uf129KBjvdXoWrZF17AF1fWFyrCF4xJFy8uFg_yoW3AFb_Jr
+	18Ga10qw4jyrWfK3Z09Fs7KF9rXa1UuF1UXr1fJrZrJ3WYyw1DXryvqryktrnxua1jkry3
+	uayrAr4DAw12kjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0wXo3UUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiGBPyZV6Nn2D2ZwAAsh
 
-On Tue, Apr 23, 2024 at 11:33:40AM +0200, Alexander Stein wrote:
-> This adds support for both USB host and USB Type-C ports. This includes
-> the on-board USB hub.
+On Tue, Apr 23, 2024 at 01:31:46PM +0200, Alexander Stein wrote:
+> The bootloader adds MTD partitions in this subnode if present, or in the
+> spi-nor node itself otherwise. Direct children cause warnings like:
+> 425e0000.spi: ofpart partition /soc@0/bus@42000000/spi@425e0000/flash@0/
+>   partition@600000 (/soc@0/bus@42000000/spi@425e0000/flash@0) #size-cells
+>   is wrongly set to <0>, assuming <1> for parsing partitions.
+> 
+> This is due flexspi node having #size-cells = <0>. Setting #size-cells in
+> MTD nodes itself is deprecated by mtd.yaml.
+> Fix all this by adding an empty partitions node which the bootloader will
+> fill with configured MTD partitions.
 > 
 > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Applied both, thanks!
+Applied all, thanks!
 
 
