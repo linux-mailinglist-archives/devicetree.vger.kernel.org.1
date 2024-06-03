@@ -1,61 +1,65 @@
-Return-Path: <devicetree+bounces-71910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E92E18D86B4
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 17:56:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 619DE8D86BB
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 17:58:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2F43283565
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 15:56:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5568B22358
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 15:58:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B88B130AFF;
-	Mon,  3 Jun 2024 15:56:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAEDB130AFF;
+	Mon,  3 Jun 2024 15:58:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VljIBWF+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MSgW5vz4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D45511E525;
-	Mon,  3 Jun 2024 15:56:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C91D1E525;
+	Mon,  3 Jun 2024 15:58:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717430179; cv=none; b=jynPtsd/d9naYq1/HZlP87dUbqkk0amPLl1R25u+iMZ1/1VxRvqRA+NiDuaoAL1sjBjQIw7Y4JNFYKvw3nGojDSONNvr/+ilH4TQvNc0eKyYsC1Xv/udiIUUMkYIda15vXvq0UirDcCtcc0ZIu8B8EuxNr2ZnpLsjmEKW+dzgLc=
+	t=1717430293; cv=none; b=r+z9YiUCcuujGEBlD5rLovNy1hdBhgC0Zx4k/yiNXC2RZQh/l4LYdyKIS/6UFKZsId12390Dq2UVOYeTDq4mvTl4a2z0V21H4KhLO6Trc64lKBwyAt1hk0YSFFL4APmajUaUYoTlZqoDCzFGGKfZwDFdXLTNyWxaDOc9JfNFljI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717430179; c=relaxed/simple;
-	bh=futJcvAhuekfJi6Omn7IDi2rhi/asO2I+BKkZvgElD0=;
+	s=arc-20240116; t=1717430293; c=relaxed/simple;
+	bh=IA7qcp/mduOHBaxfNuh++wQYHXKJfT/U3Y8Cbb5DK54=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LkRjDGGyUbDxMVwt+pV0TnCErnA2BP9Fc04De9siXhDxj2EhiCtH9YKepXrQ6Gp4MnIj66W74INKebmpeW1N8UoVTzZP5ghI7d1gXjH/pf7IOww1XG+hUUAoPByzCr7ESuNdLyte7aY8eFFYuY7xzw644+GpqGawnzD8ERqEXiE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VljIBWF+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13EADC2BD10;
-	Mon,  3 Jun 2024 15:56:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=n5hjhlLfXzsZ+3xc0gCwk/3bnJPfGq0n2lOEEF8jL1E1dI+DNf5L/BcZrHipjEEX7Awxc0LwR50jTQFsrvRWKGqNIhmrtSWG+byMtPlI+GGKAxEkPsaH31JwGkSBcn6Flqsu6b3z63zphbNbsQ6/Bnpag25V+xE6FaM5ff723w8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MSgW5vz4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCF51C4AF07;
+	Mon,  3 Jun 2024 15:58:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717430179;
-	bh=futJcvAhuekfJi6Omn7IDi2rhi/asO2I+BKkZvgElD0=;
+	s=k20201202; t=1717430293;
+	bh=IA7qcp/mduOHBaxfNuh++wQYHXKJfT/U3Y8Cbb5DK54=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VljIBWF+dF5NH50qa7/pjnUwX8u4zmTFEdKqAtElPselZAWfTQWGquNldjtc6QorB
-	 xLJIRbYv5GblmgpQVMRgzkud0jMZaO/wXyoaFCxSL4YB/8kVpXIB6/BuMirHRkTtQA
-	 PSwe4ewy560D80s3uy6x9rz1FK439Z+Fjv4dSs7z5/XwT6JkLHsQnvTUjlfRObv9oH
-	 O6qA5r4omEBw06am6z03aXxwI/2OCfK4uyvmypWvQ9Z2lVn7LpnAMTWZYSOoQ0xuzv
-	 cli7XbUcMs7hjGScsIeJYyAx4Y3ejoybgJyEDZOCWNKhtIrpVqoFDQ1fYFJUDi1fyH
-	 4IYRNNw9eqabQ==
-Date: Mon, 3 Jun 2024 10:56:16 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc: robh+dt@kernel.org, Xiubo.Lee@gmail.com, conor+dt@kernel.org,
-	broonie@kernel.org, nicoleotsuka@gmail.com,
-	alsa-devel@alsa-project.org, linuxppc-dev@lists.ozlabs.org,
-	devicetree@vger.kernel.org, festevam@gmail.com,
-	linux-sound@vger.kernel.org, shengjiu.wang@gmail.com,
-	krzysztof.kozlowski+dt@linaro.org, tiwai@suse.com,
-	lgirdwood@gmail.com, perex@perex.cz, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] ASoC: dt-bindings: fsl,xcvr: Add compatible
- string for i.MX95
-Message-ID: <171743017410.508888.18301786325836336214.robh@kernel.org>
-References: <1716972002-2315-1-git-send-email-shengjiu.wang@nxp.com>
- <1716972002-2315-2-git-send-email-shengjiu.wang@nxp.com>
+	b=MSgW5vz4CMZdVkzWlBdyDLFc24nRE8R8v9sVC1iBaXYcdz7xdY2B9clgbDmWAH+8L
+	 33bihTYiFUyjvEkazch54+E8fzmghkWfVp4INepjjhMFVGxREIB0Gp2zW11XNBaWso
+	 piTLP8p5iHrQKsDtLbkYn8G7JL2p/6hkNLeu0cwOUJLZeQXk5BwXvt5EfadMAmo4pc
+	 zLiMjEy3k3QFomL52y9YBpOThtSeG1JTLTVqNt0AHWKJBgqHKSapAtMyxjcgH9xOEP
+	 1OVsnXFVvpAqutW9rrUDtOc0UWE0Qz/tgSc7JrmhRXkcH4yrXYpzmxNPHe1I5dM1/c
+	 4cPO1KJMV9NVA==
+Date: Mon, 3 Jun 2024 10:58:10 -0500
+From: Rob Herring <robh@kernel.org>
+To: Peter Rosin <peda@axentia.se>
+Cc: Bastien Curutchet <bastien.curutchet@bootlin.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Peter Korsgaard <peter.korsgaard@barco.com>,
+	Wolfram Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Christopher Cordahi <christophercordahi@nanometrics.ca>
+Subject: Re: [PATCH v2 1/3] dt-bindings: i2c: gpio: Add 'transition-delay-us'
+ property
+Message-ID: <20240603155810.GA509311-robh@kernel.org>
+References: <20240529091739.10808-1-bastien.curutchet@bootlin.com>
+ <20240529091739.10808-2-bastien.curutchet@bootlin.com>
+ <718d86a7-d70a-c38a-089d-5276bcc6e88b@axentia.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,45 +68,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1716972002-2315-2-git-send-email-shengjiu.wang@nxp.com>
+In-Reply-To: <718d86a7-d70a-c38a-089d-5276bcc6e88b@axentia.se>
 
+On Wed, May 29, 2024 at 02:13:37PM +0200, Peter Rosin wrote:
+> Hi!
+> 
+> 2024-05-29 at 11:17, Bastien Curutchet wrote:
+> > I2C MUXes described by the i2c-gpio-mux sometimes need a significant
+> > amount of time to switch from a bus to another. When a new bus is
+> > selected, the first I2C transfer can fail if it occurs too early. There
+> > is no way to describe this transition delay that has to be waited before
+> > starting the first I2C transfer.
+> > 
+> > Add a 'transition-delay-us' property that indicates the delay to be
+> > respected before doing the first i2c transfer.
+> 
+> The io-channel-mux has a property with very similar intent named
+> settle-time-us [1]. I think we should use the same name here.
+> 
+> [1] Documentation/devicetree/bindings/iio/multiplexer/io-channel-mux.yaml
 
-On Wed, 29 May 2024 16:40:01 +0800, Shengjiu Wang wrote:
-> Add compatible string "fsl,imx95-xcvr" for i.MX95 platform.
-> 
-> The difference between each platform is in below table.
-> 
-> +---------+--------+----------+--------+
-> |  SOC	  |  PHY   | eARC/ARC | SPDIF  |
-> +---------+--------+----------+--------+
-> | i.MX8MP |  V1    |  Yes     |  Yes   |
-> +---------+--------+----------+--------+
-> | i.MX93  |  N/A   |  N/A     |  Yes   |
-> +---------+--------+----------+--------+
-> | i.MX95  |  V2    |  N/A     |  Yes   |
-> +---------+--------+----------+--------+
-> 
-> On i.MX95, there are two PLL clock sources, they are the parent
-> clocks of the XCVR root clock. one is for 8kHz series rates, named
-> as 'pll8k', another one is for 11kHz series rates, named as 'pll11k'.
-> They are optional clocks, if there are such clocks, then the driver
-> can switch between them to support more accurate sample rates.
-> 
-> As 'pll8k' and 'pll11k' are optional, then add 'minItems: 4' for
-> clocks and clock-names properties.
-> 
-> On i.MX95, the 'interrupts' configuration has the same constraint
-> as i.MX93.
-> 
-> Only on i.MX8MP, the 'resets' is required, but for i.MX95 and i.MX93
-> there is no such hardware setting.
-> 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> ---
->  .../devicetree/bindings/sound/fsl,xcvr.yaml   | 32 ++++++++++++++++++-
->  1 file changed, 31 insertions(+), 1 deletion(-)
-> 
+Agreed. I knew we had something and went looking... I only checked the 
+base mux and i2c mux bindings.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
+Rob
 
