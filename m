@@ -1,131 +1,196 @@
-Return-Path: <devicetree+bounces-71762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C751A8D7DDA
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 10:50:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55B378D7DDE
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 10:50:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10A61B23C82
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 08:50:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78E161C206FD
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 08:50:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 853EC74069;
-	Mon,  3 Jun 2024 08:50:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62D0C7604D;
+	Mon,  3 Jun 2024 08:50:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RvLIL4y4"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="sy6zMox2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 021D96BFA7
-	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 08:50:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 812EE3D551
+	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 08:50:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717404605; cv=none; b=RMyjBbgmQbLGUrApJP25bIAF69cVtu3JuGFJJBI+dD9DPNxSseMzQbHoXB/kAXydFmUod6MDHp6ON7Xei7BBf/xD8JCO/LsSDFMKQ2PRzz4pRjJSnjUrwxrtxm1V39grlyH8qd3y4ZcanJXmgbrAcQl8AamKH6L2kESP715hfHg=
+	t=1717404642; cv=none; b=ViDMqllLObzScRxCmP+xJEU0iPsGaveqhotg2R8IFu8P2r/Pj8CuVkAw/Im6VyCeCMNIrsLe00BFkKOI7Cdi4JcxIIdNH71/smCMYUrgEAZUQ67gfjzIaoV/xGJc5uY/skA/ocwMWTmzowL3dEhgmrXSU1NN4ECZ0oucY0JtfPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717404605; c=relaxed/simple;
-	bh=dfoQFsA6SLL4wcUbcBXpinLax5A25U36hCg32xNjGxI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dnMdaGjlSwRRA1SWvJYEDX0X/VAX2Fzef158WbPnQHK3RaJeMUSeUPb3voNutj6tpvboaCTYNVhegFbbVHGLbJW7rilJqDmTExQitnyblN4b/kPnJDfOsa43yMq2AkKXLzkUQ+jLun1zLS4tzMW+QUpxWZv5yv3MHa1y3thzh88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RvLIL4y4; arc=none smtp.client-ip=209.85.219.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-df771b45e13so4223593276.2
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2024 01:50:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717404603; x=1718009403; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=TH62Yup3G9u8vLN8Ga3Ij8RqgPg+rX8ETtG6ob+WsZQ=;
-        b=RvLIL4y4zBQ5prmsgP2CaA6A+uwEUtXRNc58oP1U+YicLPhc2aI5/s3KiTGSQwF7KK
-         K5O/j5W6WDHKqyIQ9/84Rtgw8u0kCA8Z+ZQLgby5vkyme2OgNsFTK/99CTfYet79LxyL
-         oJGv/fWzI2m1KmH8RQsneW0ppPQpAhr4Ov6D9BDE2b10cqty/2AhAq2sujraBY2tdxIs
-         L3ycutcpTMv8BcLgdy5Y8NP01OcylZ6eJfRIktv7Th1+Ny5gCZ4yf6AJerVisOt9bIQN
-         2H4wdgM1xlXB3wG6n+4A4XNu+VQ8stqT/ZfcqTIf8hqb4OCMmQVvU8L2EdMV36TDzcg/
-         tQCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717404603; x=1718009403;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TH62Yup3G9u8vLN8Ga3Ij8RqgPg+rX8ETtG6ob+WsZQ=;
-        b=RFo0r52ZXqHjynjWOmWn3yfLkBEAFyCY0vwa/fSecO7vCXboX2/+T9eTL3MnxvL88k
-         uKElEDO9diexlce0U0vbGb/CfzQHBZW+lQtTI2z9Tl7mJIu0UoCQwu6k9unUf6XCNnkM
-         Oh/93Rs0gHu5ut7607zTZl6sd46mSKgy3fAz+M4HZV74zBzG+h3C36kqseVUvFwcziAJ
-         KdKy2wsey+8+u8a1BZXWXfK7PhUGFrPdvA6cfmT2+V/QnOBqdmMG9cUlUNQUp/tc8rW5
-         8QB3TGksKSj9SnqDpg4tExRQobetzSK0SQsPsw7oeGl3yYUCs9HhY1QYXkFXM3wWQeeu
-         oF7w==
-X-Forwarded-Encrypted: i=1; AJvYcCXwVvHpvEn084/O6b5KCp9maAy07IyFwn7I3kY9+tkCKyUYbvi6za+eTimyUuI7eiq8lGpaU52p4Usc/JVNjQFaPxFHsblITs2kug==
-X-Gm-Message-State: AOJu0YyKlCk7PyuvqsOzHuxLcQbzK/t6Y2EToXs0ffWqYthtD30y045m
-	p7HYuNCg1/mwIDPARoiUhkwk/enqKv2WgplV/CPG00rtDAyJIvCMAOHyORE73Syy9Km4ID4yceT
-	J/1mYMDFB4WGgCCwYiGfboriVAc5Whm7WmC01Rw==
-X-Google-Smtp-Source: AGHT+IF8k6LvzxBQXvPeOtqCn1OCAasXTKSxbvnfog6OJ7lM/2LaGW7ZCPHxo6bcXahe6A5T83BMVLsZ3/yavZ95yUg=
-X-Received: by 2002:a25:ab45:0:b0:de8:a770:4812 with SMTP id
- 3f1490d57ef6-dfa73db2ab8mr7409755276.40.1717404602753; Mon, 03 Jun 2024
- 01:50:02 -0700 (PDT)
+	s=arc-20240116; t=1717404642; c=relaxed/simple;
+	bh=IQqnyaXr27D8iEHI83OZloKc/LvSJfx1rTCKgPLyL4M=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:In-Reply-To:
+	 Content-Type:References; b=tWcURNQg0AMR05uDnSY1ZQ/vyo8bIwH4wGkj6t4KywxSwPMQr0ibByJe98WRpX5RK6iRn5dr3dU6jN05x9beNxyixGHMpmmW+vdI23uH0hQb8wtfiIVCb1UMBJCj1AueCSbGunugZ+HrRggk2an6NQdNesHkzz52XOcUk+3VV5Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=sy6zMox2; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20240603085037epoutp016717541b8a527a4c23381b12977bebd0~VcmszEylu3012630126epoutp01R
+	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 08:50:37 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20240603085037epoutp016717541b8a527a4c23381b12977bebd0~VcmszEylu3012630126epoutp01R
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1717404637;
+	bh=7CaecCtDlW5kOsvhVVRXocMm0ooR9SmmgAcFqoXkcTQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=sy6zMox2SPwDLP/JPKwCd95EDGCDCLbYrGEVZSa4YW6sO41BAJfmnD/J0uT5a1wLL
+	 O+7vRoc6Duz31co0qgXw07RuoHRNG3Cfe0y8cAjsmtZBj4ggLCZh5Kx/BqQOVBesle
+	 IzeLcidVhog+geN4qN9nXy00RnP3/TdmR1TCrmHA=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+	20240603085037epcas2p13e036872c1de314d297e83587cab0d09~VcmsWbOlO0979009790epcas2p14;
+	Mon,  3 Jun 2024 08:50:37 +0000 (GMT)
+Received: from epsmges2p4.samsung.com (unknown [182.195.36.69]) by
+	epsnrtp1.localdomain (Postfix) with ESMTP id 4Vt6rD5mTgz4x9Ps; Mon,  3 Jun
+	2024 08:50:36 +0000 (GMT)
+Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
+	epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+	BE.EC.09479.CD38D566; Mon,  3 Jun 2024 17:50:36 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+	20240603085036epcas2p1fc4df4c804b3ce38dd5a09ac96a56924~VcmrrI27p1376813768epcas2p1X;
+	Mon,  3 Jun 2024 08:50:36 +0000 (GMT)
+Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20240603085036epsmtrp2520c78db3e0698f148723a5eb109187e~Vcmrqaekb2396223962epsmtrp2r;
+	Mon,  3 Jun 2024 08:50:36 +0000 (GMT)
+X-AuditID: b6c32a48-ea7ff70000002507-27-665d83dce810
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	2A.AE.07412.CD38D566; Mon,  3 Jun 2024 17:50:36 +0900 (KST)
+Received: from ubuntu (unknown [10.229.95.128]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20240603085036epsmtip2cfe9bf8cc9160e24eb80b72d31a6287c~Vcmrej5fl2188021880epsmtip2A;
+	Mon,  3 Jun 2024 08:50:36 +0000 (GMT)
+Date: Mon, 3 Jun 2024 17:51:11 +0900
+From: Jung Daehwan <dh10.jung@samsung.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Mathias
+	Nyman <mathias.nyman@intel.com>, Felipe Balbi <balbi@kernel.org>, "open
+ list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>, "open list:OPEN FIRMWARE
+ AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 5/5] usb: host: xhci-plat: Add support for
+ XHCI_WRITE_64_HI_LO_QUIRK
+Message-ID: <20240603085111.GF23593@ubuntu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240527-x1e80100-dts-pmic-glink-v1-0-7ea5c8eb4d2b@linaro.org>
- <20240527-x1e80100-dts-pmic-glink-v1-2-7ea5c8eb4d2b@linaro.org> <Zl2DUXWUN0088-Af@hovoldconsulting.com>
-In-Reply-To: <Zl2DUXWUN0088-Af@hovoldconsulting.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 3 Jun 2024 11:49:51 +0300
-Message-ID: <CAA8EJpp2hK1P86vrZOwXfNBz3nBXugCcERE9yBRCaCE3aDbqOA@mail.gmail.com>
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: x1e80100-crd: Add pmic-glink node
- with all 3 connectors
-To: Johan Hovold <johan@kernel.org>
-Cc: Abel Vesa <abel.vesa@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <eb1d9734-fa19-4051-9e78-a6e72ac12662@kernel.org>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrNJsWRmVeSWpSXmKPExsWy7bCmue6d5tg0g4tHtC2OtT1ht1iz9xyT
+	xfwj51gtmhevZ7N4Oesem8X58xvYLS7vmsNmsWhZK7NF86YprBb/9+xgt1i14AC7A7fH4j0v
+	mTw2repk89g/dw27x5b9nxk9Pm+SC2CNyrbJSE1MSS1SSM1Lzk/JzEu3VfIOjneONzUzMNQ1
+	tLQwV1LIS8xNtVVy8QnQdcvMATpNSaEsMacUKBSQWFyspG9nU5RfWpKqkJFfXGKrlFqQklNg
+	XqBXnJhbXJqXrpeXWmJlaGBgZApUmJCdsf7QFcaCu/wVf87FNzB283YxcnJICJhI7Pt/lq2L
+	kYtDSGAHo8T1XZfYQRJCAp8YJb5u9YBIfGOU+P28kRmmY+aWjawQib2MEm/X7IZynjBKrDv0
+	iQWkikVAReLygktgNpuAlsS9HyfAukUENCWu//0O1sAscIdZYtK6E2wgCWGBWImPd2aCFfEK
+	aEssWfyMFcIWlDg58wnYIE4BO4nTGzqYuhg5OESBFrw6WA8yR0JgJodE36N3rBDnuUhMmfwU
+	6lRhiVfHt7BD2FISn9/tZYOwiyVuPX/GDNHcwiix4lULVIOxxKxn7YwgNrNAhkTLgROsIMsk
+	BJQljtxigQjzSXQc/ssOEeaV6GgTguhUlph+eQLUCZISB1+fg5roIXHp+mxo+D5kkph88RDL
+	BEb5WUhem4VkG4StI7Fg9ye2WUArmAWkJZb/44AwNSXW79JfwMi6ilEstaA4Nz212KjABB7Z
+	yfm5mxjBqVbLYwfj7Lcf9A4xMnEwHmKU4GBWEuHtq4tOE+JNSaysSi3Kjy8qzUktPsRoCoyo
+	icxSosn5wGSfVxJvaGJpYGJmZmhuZGpgriTOe691boqQQHpiSWp2ampBahFMHxMHp1QDk32S
+	564qnv4mrm+f9tfLnAtOsnOZrH6lZ1uj9H+ZWP+cN1cmVj4Mfhub9Xvb9FMG917HCCrNlcx1
+	O3PmJqv/xKuFKrzL+r/oV8ddLS39UREUzbnszyIZ6eU26yK/K351VVI/JM9qLdwQsu6j+P+8
+	pDLPF6qquetXHih6MfnjYr6QKx/P1a/+cWu7t0pSnkxtRkXetOPHD71lUH/GtsqIQeHWq+Nx
+	hvtlpvCtfDvZ5nSG3c0H/roB6fIy535wiy3benn/gerr7idepWx4yZlyg9P3y5WmrhsfW1fs
+	qP7jb3w26PBU4xWv3ISdlt2ZsMb3X+wr7uRDqjy/VnvN3HHRVHDyTZ7AmXEFN5QKz+j3Viux
+	FGckGmoxFxUnAgCyQ9rDPgQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrILMWRmVeSWpSXmKPExsWy7bCSvO6d5tg0g2nLRS2OtT1ht1iz9xyT
+	xfwj51gtmhevZ7N4Oesem8X58xvYLS7vmsNmsWhZK7NF86YprBb/9+xgt1i14AC7A7fH4j0v
+	mTw2repk89g/dw27x5b9nxk9Pm+SC2CN4rJJSc3JLEst0rdL4MrY8/MRc8Fc3or5m1awNTA+
+	4epi5OSQEDCRmLllI2sXIxeHkMBuRokfL+8zQyQkJZbOvcEOYQtL3G85wgpiCwk8YpSY/r0O
+	xGYRUJG4vOASC4jNJqAlce/HCbBeEQFNiet/v4MNZRZ4xCwx/cUTNpCEsECsxMc7M8GKeAW0
+	JZYsfga1+SGTxM5Np5ggEoISJ2c+AZvKDDT1xr+XQHEOIFtaYvk/DpAwp4CdxOkNHWBhUaAj
+	Xh2sn8AoOAtJ8ywkzbMQmhcwMq9ilEwtKM5Nz002LDDMSy3XK07MLS7NS9dLzs/dxAiOFS2N
+	HYz35v/TO8TIxMF4iFGCg1lJhLevLjpNiDclsbIqtSg/vqg0J7X4EKM0B4uSOK/hjNkpQgLp
+	iSWp2ampBalFMFkmDk6pBiYthrin+lvLEhtmX99+eMGxvhcVwh4HVS6Exzod1uBYMrXp0b2W
+	vOakefs4VevbEnafaJq37uStn7fcVNdmHFWX3XJM7KVU74tfC8V/xSz32OCpULfOt/lee+eB
+	9z//5Pj8MpPesf6B+FKmF+1t4p9fVVzvje6ujGSRWq5YGG0zd3N+SZ/8tuWK+5d/5ZPdZKBU
+	PXOr243JMQWSbVWTvern+WjfM7F0WBtk/mirfKVp1ptdn/VCl3y/MHGXovm/o1NqTxxap82q
+	x7Q+4/C3Ng3F1R/tIy5fe5N3ZqGaffCslv7/UyylIyeuN+5LE5z53+ztEYWnah5Hda/x7NzW
+	Gzr31IIura7Si7KTyl59mLNMiaU4I9FQi7moOBEAblXuHgQDAAA=
+X-CMS-MailID: 20240603085036epcas2p1fc4df4c804b3ce38dd5a09ac96a56924
+X-Msg-Generator: CA
+Content-Type: multipart/mixed;
+	boundary="----CGP_Yo4KSd1.GMH1id3MjqccfDy5Ep7f4Yd1jhLawOabyReQ=_3b4f3_"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240531060731epcas2p4f14afae9f00a7e71e6bd3863f0a51441
+References: <1717135657-120818-1-git-send-email-dh10.jung@samsung.com>
+	<CGME20240531060731epcas2p4f14afae9f00a7e71e6bd3863f0a51441@epcas2p4.samsung.com>
+	<1717135657-120818-6-git-send-email-dh10.jung@samsung.com>
+	<9c9d74c0-72a2-418a-b3c6-a0f9716c943d@kernel.org>
+	<20240603034435.GC23593@ubuntu>
+	<eb1d9734-fa19-4051-9e78-a6e72ac12662@kernel.org>
 
-On Mon, 3 Jun 2024 at 11:48, Johan Hovold <johan@kernel.org> wrote:
->
-> On Mon, May 27, 2024 at 11:07:28AM +0300, Abel Vesa wrote:
-> > Add the pmic-glink node and describe all 3 USB Type-C connectors. Do this
-> > for USB only, for now. The DP port will come at a later stage since it
-> > uses a retimer.
-> >
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 143 ++++++++++++++++++++++++++++++
-> >  1 file changed, 143 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> > index c5c2895b37c7..2fcc994cbb89 100644
-> > --- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> > +++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> > @@ -49,6 +49,101 @@ chosen {
-> >               stdout-path = "serial0:115200n8";
-> >       };
-> >
-> > +     pmic-glink {
-> > +             compatible = "qcom,x1e80100-pmic-glink",
-> > +                          "qcom,sm8550-pmic-glink",
-> > +                          "qcom,pmic-glink";
-> > +             #address-cells = <1>;
-> > +             #size-cells = <0>;
-> > +             orientation-gpios = <&tlmm 121 GPIO_ACTIVE_HIGH>,
-> > +                                 <&tlmm 123 GPIO_ACTIVE_HIGH>,
-> > +                                 <&tlmm 125 GPIO_ACTIVE_HIGH>;
->
-> With this series applied, I'm getting the following error on boot of the
-> CRD:
->
->         ucsi_glink.pmic_glink_ucsi pmic_glink.ucsi.0: PPM init failed, stop trying
->
-> Known issue? Do you need to enable some quirk in the UCSI driver?
+------CGP_Yo4KSd1.GMH1id3MjqccfDy5Ep7f4Yd1jhLawOabyReQ=_3b4f3_
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Not that I know. The message is caused by the UCSI not responding to
-the PPM_RESET command. A trace from pmic-glink would be helpful.
+On Mon, Jun 03, 2024 at 08:56:09AM +0200, Krzysztof Kozlowski wrote:
+> On 03/06/2024 05:44, Jung Daehwan wrote:
+> > On Fri, May 31, 2024 at 10:12:36AM +0200, Krzysztof Kozlowski wrote:
+> >> On 31/05/2024 08:07, Daehwan Jung wrote:
+> >>> This is set by dwc3 parent node to support writing high-low order.
+> >>>
+> >>> Signed-off-by: Daehwan Jung <dh10.jung@samsung.com>
+> >>> ---
+> >>>  drivers/usb/host/xhci-plat.c | 3 +++
+> >>>  1 file changed, 3 insertions(+)
+> >>>
+> >>> diff --git a/drivers/usb/host/xhci-plat.c b/drivers/usb/host/xhci-plat.c
+> >>> index 3d071b8..31bdfa5 100644
+> >>> --- a/drivers/usb/host/xhci-plat.c
+> >>> +++ b/drivers/usb/host/xhci-plat.c
+> >>> @@ -256,6 +256,9 @@ int xhci_plat_probe(struct platform_device *pdev, struct device *sysdev, const s
+> >>>  		if (device_property_read_bool(tmpdev, "xhci-sg-trb-cache-size-quirk"))
+> >>>  			xhci->quirks |= XHCI_SG_TRB_CACHE_SIZE_QUIRK;
+> >>>  
+> >>> +		if (device_property_read_bool(tmpdev, "write-64-hi-lo-quirk"))
+> >>> +			xhci->quirks |= XHCI_WRITE_64_HI_LO;
+> >>
+> >> Where is any user of this property (DTS)? Just to clarify: your
+> >> downstream does not matter really.
+> >>
+> > 
+> > This is set by dwc3 parent node by software node.
+> > 
+> > [PATCH v2 1/5] dt-bindings: usb: snps,dwc3: Add 'snps,xhci-write-64-hi-lo-quirk' quirk
+> > https://lore.kernel.org/r/1717135657-120818-2-git-send-email-dh10.jung@samsung.com/
+> 
+> This is not a patch to DTS.
+> 
+> 
 
--- 
-With best wishes
-Dmitry
+This is set by software node from dwc3. That's why I think this patch doesn't
+need DTS patch. I would add DTS patch in dwc3 not xhci if it's needed.
+
+Best Regards,
+Jung Daehwan
+
+> Best regards,
+> Krzysztof
+> 
+> 
+
+------CGP_Yo4KSd1.GMH1id3MjqccfDy5Ep7f4Yd1jhLawOabyReQ=_3b4f3_
+Content-Type: text/plain; charset="utf-8"
+
+
+------CGP_Yo4KSd1.GMH1id3MjqccfDy5Ep7f4Yd1jhLawOabyReQ=_3b4f3_--
 
