@@ -1,137 +1,141 @@
-Return-Path: <devicetree+bounces-71734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CFCD8D7CB7
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 09:49:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB6ED8D7CAC
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 09:45:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE4061C20F54
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 07:49:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7818E1F22D5B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 07:45:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B82024AED1;
-	Mon,  3 Jun 2024 07:49:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=walle.cc header.i=@walle.cc header.b="mKfgfIw0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AB5B3BB24;
+	Mon,  3 Jun 2024 07:45:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6A2915E88;
-	Mon,  3 Jun 2024 07:49:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.201.130
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 923714C61C;
+	Mon,  3 Jun 2024 07:45:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717400952; cv=none; b=LTtS4GjSGh5VnqFUwvRGxzrBAP/IWut8LfcX0DkWBK2ckK15if5wuM+YYQdaum3vhbomePnAty7ami4CZK4deq3lD4mGbrqOUjd7vzaPDjzWIRE96XQOKB6M6QS1uZlvXdh5AeSxWDFKOHHowywqISA3GLE8Li2hmElIoqRLD/A=
+	t=1717400708; cv=none; b=MKULBggTAdf+hNWPP2qoJD7wcnq9efAuEAS3Z2yn5R34iouB13H5g406+6Ncc3nOHuSUrM7HSEhCpE7T9Knzy0Q9hKaXVfqyDciPQmt1mBxtg6eXa5DfdPdxpb0J32Ey7cQVzSSrJQmzFGpvq8+/SbFK4d5xWC8whqudXO6rGTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717400952; c=relaxed/simple;
-	bh=l/sXJWAR9U+t8PuJjd67PbuHh01c02nSqxd7Y8bCUpM=;
-	h=Content-Type:Date:Message-Id:From:To:Subject:Cc:References:
-	 In-Reply-To; b=iYTWTcFKXHUxV+BzKoQghOkZIizoJ47xmR+UZRomZh9TOB4JpXf1sBZ4ViUFQuG+g3WVfeG3dPodkEFa2RgENvgqX5QF60jfroPs/B3K0HEVSDwyDuHtb4+yQYo/DKp9AJGuBjGR2znTEGbon130N4XC6CAmFdHVOefthSF0UeI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=walle.cc; spf=pass smtp.mailfrom=walle.cc; dkim=pass (2048-bit key) header.d=walle.cc header.i=@walle.cc header.b=mKfgfIw0; arc=none smtp.client-ip=159.69.201.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=walle.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=walle.cc
-Received: from localhost (unknown [213.135.10.150])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.3ffe.de (Postfix) with ESMTPSA id 30CEA136A;
-	Mon,  3 Jun 2024 09:42:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-	t=1717400554;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:content-type:content-type:in-reply-to:in-reply-to:
-	 references:references; bh=l/sXJWAR9U+t8PuJjd67PbuHh01c02nSqxd7Y8bCUpM=;
-	b=mKfgfIw0rVXzUB2hP0B2WxtTyKBz9VHQ5GW0H/acJGDGO7XYNyllK5U2aU0laMQOncMNxb
-	63+o3L3cwsC9BhAZl30ZY1W9aOEIKA0BadMQEvJfy28XQnJ6+Ag1UrmyyEpsPO+vKug+un
-	VIOmTj0ewguhvmUIc59KofVhqUsJ34y4Vz9XPQBBUgMTDGUnRQXFk6+nrb3CaP/4hXmPHs
-	bCgss0RdUhLImzMiLhXc+o9Y5G8Q2Shz99/HZYYA3JDlD/Bysg/DzDX2nPvCthzELAPQCH
-	N2RKaKynB4Z4wd5LO7zIxX5MplhmoRaMzAQ9NZNTakTdQUCwqGCiLUgX0z004g==
-Content-Type: multipart/signed;
- boundary=3ed5ea633b485a24b502befa1bea475237ec606cb99637397be66d7a74b8;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Mon, 03 Jun 2024 09:42:31 +0200
-Message-Id: <D1Q7OPR0TRFG.1WLSI7EBAPUWX@walle.cc>
-From: "Michael Walle" <michael@walle.cc>
-To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>,
- <chunkuang.hu@kernel.org>
-Subject: Re: [PATCH v4 3/3] drm/mediatek: Implement OF graphs support for
- display paths
-Cc: <robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
- <conor+dt@kernel.org>, <p.zabel@pengutronix.de>, <airlied@gmail.com>,
- <daniel@ffwll.ch>, <maarten.lankhorst@linux.intel.com>,
- <mripard@kernel.org>, <tzimmermann@suse.de>, <matthias.bgg@gmail.com>,
- <shawn.sung@mediatek.com>, <yu-chang.lee@mediatek.com>,
- <ck.hu@mediatek.com>, <jitao.shi@mediatek.com>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
- <linux-arm-kernel@lists.infradead.org>, <wenst@chromium.org>,
- <kernel@collabora.com>
-X-Mailer: aerc 0.16.0
-References: <20240516081104.83458-1-angelogioacchino.delregno@collabora.com>
- <20240516081104.83458-4-angelogioacchino.delregno@collabora.com>
- <D1BTQIQ2AQIS.G12ROFB149QB@walle.cc>
- <84cd0ac7-99d9-42cb-af79-a0fba09c1ebb@collabora.com>
-In-Reply-To: <84cd0ac7-99d9-42cb-af79-a0fba09c1ebb@collabora.com>
+	s=arc-20240116; t=1717400708; c=relaxed/simple;
+	bh=jG2Qkqno7nw2YxAPdMySz0EFNj7Gm9u4EtZnUecdAN8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NMBOLY3VoegoXfHQR0RLJT9pifQHD8S+EzPdcqSeprXtKwgOQApJJvRMShyzcVEMMSK/y0aBYJgIWDlbHbifWjnhfwb41jx8zlMrL1V36lmZ3M5pLaBrkE3SXqtzhdNTHL8wf5qx8xlcJeic8Efjd1obNU6OK2O/zWMJIcU6YV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C66D81042;
+	Mon,  3 Jun 2024 00:45:28 -0700 (PDT)
+Received: from [10.57.39.221] (unknown [10.57.39.221])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 522F83F762;
+	Mon,  3 Jun 2024 00:45:00 -0700 (PDT)
+Message-ID: <ebcbc9c6-d858-4774-be48-857b7d446e15@arm.com>
+Date: Mon, 3 Jun 2024 08:45:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-
---3ed5ea633b485a24b502befa1bea475237ec606cb99637397be66d7a74b8
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/6] drm/imagination: Add compatible string entry for
+ Series6XT
+To: Chen-Yu Tsai <wenst@chromium.org>, Frank Binns <Frank.Binns@imgtec.com>
+Cc: "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ Matt Coster <Matt.Coster@imgtec.com>, "sboyd@kernel.org" <sboyd@kernel.org>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "mripard@kernel.org" <mripard@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "angelogioacchino.delregno@collabora.com"
+ <angelogioacchino.delregno@collabora.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ Boris Brezillon <boris.brezillon@collabora.com>
+References: <20240530083513.4135052-1-wenst@chromium.org>
+ <20240530083513.4135052-5-wenst@chromium.org>
+ <efdacd820d13368816973f57c4a817e039ec4a2d.camel@imgtec.com>
+ <CAGXv+5EMMNCbxaBqiBSQwGrQt-0KXWAtJU54K20sUU8PBh8faQ@mail.gmail.com>
+From: Steven Price <steven.price@arm.com>
+Content-Language: en-GB
+In-Reply-To: <CAGXv+5EMMNCbxaBqiBSQwGrQt-0KXWAtJU54K20sUU8PBh8faQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Angelo,
+On 03/06/2024 04:29, Chen-Yu Tsai wrote:
+> On Fri, May 31, 2024 at 7:18 PM Frank Binns <Frank.Binns@imgtec.com> wrote:
+>>
+>> On Thu, 2024-05-30 at 16:35 +0800, Chen-Yu Tsai wrote:
+>>> The MediaTek MT8173 comes with a PowerVR Rogue GX6250, which is part
+>>> of the Series6XT, another variation of the Rogue family of GPUs.
+>>>
+>>> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+>>> ---
+>>>  drivers/gpu/drm/imagination/pvr_drv.c | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/imagination/pvr_drv.c b/drivers/gpu/drm/imagination/pvr_drv.c
+>>> index 5c3b2d58d766..3d1a933c8303 100644
+>>> --- a/drivers/gpu/drm/imagination/pvr_drv.c
+>>> +++ b/drivers/gpu/drm/imagination/pvr_drv.c
+>>> @@ -1475,6 +1475,7 @@ pvr_remove(struct platform_device *plat_dev)
+>>>
+>>>  static const struct of_device_id dt_match[] = {
+>>>       { .compatible = "img,img-axe", .data = NULL },
+>>> +     { .compatible = "img,powervr-6xt", .data = NULL },
+>>
+>> I assume that by adding this to the list of supported devices we're essentially
+>> freezing the existing uapi. This concerns me, as we've not yet started running
+>> Vulkan conformance on any Series6XT GPUs and there's a chance we may need to
+>> make some tweaks.
+>>
+>> I'm not really sure what the accepted approach is to hardware enablement /
+>> experimental support. I'm not sure if it's sufficient to hide support behind a
+>> Kconfig option and/or module parameter or whether we just have to hold this
+>> patch back for the time being.
+> 
+> I guess this is more of a question for the DRM maintainers.
+> Added a couple Panfrost/Panthor folks for ideas.
 
-> >> Implement OF graphs support to the mediatek-drm drivers, allowing to
-> >> stop hardcoding the paths, and preventing this driver to get a huge
-> >> amount of arrays for each board and SoC combination, also paving the
-> >> way to share the same mtk_mmsys_driver_data between multiple SoCs,
-> >> making it more straightforward to add support for new chips.
-> >=20
-> > paths might be optional, see comment in mtk_drm_kms_init(). But with
-> > this patch, you'll get an -EINVAL with a disabled path. See my
-> > proposals how to fix that below.
->
-> I might not be understanding the reason behind allowing that but, per my =
-logic, if
-> a board does have a path, then it's written in devicetree and enabled - o=
-therwise,
-> it should not be there at all, in principle.
->
->
-> Can you explain a bit more extensively the reason(s) why we need to accou=
-nt
-> for disabled paths?
+I'm not sure quite what scale of "tweaks" you are expecting. Obviously
+adding new uAPI is possible at any time - the only requirement is "don't
+break user space" - i.e. don't remove old uAPI. Although obviously you
+want to be careful about adding it because that means supporting it
+forever more.
 
-Paths should be (and this was already supported before this patch
-with the hardcoded paths) disabled with the status property. This
-way you can have a common board configuration where all the paths
-are already described but are disabled. An overlay (or maybe another
-dts variant) can then just enable the pipeline/output port by
-overwriting the status property.
+Panfrost has had an "unstable_ioctls" module parameter that we've hidden
+performance counters behind. (Performance counters are hard from a uAPI
+perspective - Panthor has similar issues).
 
-Also, this is the usual DT usage, as a node with status =3D "disabled"
-should just be skipped. Without handling this, the current code will
-return -EINVAL during probe (IIRC, my vacation might have reset my
-memory :o).
+We've also added support for GPUs in a deliberately "crippled" manner
+(e.g. only one core group - see panfrost_get_core_mask()). I think we're
+mostly just hoping those 'awkward' GPUs are not interesting enough and
+we'll never implement full support for them - but if we did I expect
+we'd implement support by providing a new uAPI for enabling the second
+core group so old user space can continue working with just the single
+core group.
 
--michael
+Of course if the support for this platform is actually 'broken' (the
+talk of GPU resets makes me think so - on Mali requiring a reset is a
+"should never happen" situation, but we do have errata...) then it's
+probably best holding off merging this until you've got something which
+is minimally functional and then add support as necessary. For Vulkan
+you can always have user space require a particular DRM kernel version
+if you discover extra uAPI is needed.
 
---3ed5ea633b485a24b502befa1bea475237ec606cb99637397be66d7a74b8
-Content-Type: application/pgp-signature; name="signature.asc"
+Steve
 
------BEGIN PGP SIGNATURE-----
-
-iKcEABMJAC8WIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCZl1z6BEcbWljaGFlbEB3
-YWxsZS5jYwAKCRASJzzuPgIf+EuiAYCiS0ktYeqW3WREzRyRaWz/fZqG9E+chTLp
-Eq2F71PR2kPsrQjcJqjw9P8PJP1Tb7IBf1Xo00KNX/YZCxZd7B2+oCO6cjri7/ym
-ZBbCHMlAM8XqJvXrDFXC1OxZkA8QuPDVng==
-=F2kN
------END PGP SIGNATURE-----
-
---3ed5ea633b485a24b502befa1bea475237ec606cb99637397be66d7a74b8--
 
