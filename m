@@ -1,189 +1,166 @@
-Return-Path: <devicetree+bounces-71960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5363D8D8AEB
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 22:32:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 932518D8AF2
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 22:35:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E016D1F26163
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 20:32:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD40B1C20ACC
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 20:35:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 175CC13791B;
-	Mon,  3 Jun 2024 20:32:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDAB413B783;
+	Mon,  3 Jun 2024 20:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ma5Hv8Bz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KvGH2rg+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F7D820ED
-	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 20:32:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3426513B798;
+	Mon,  3 Jun 2024 20:35:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717446744; cv=none; b=aECkhZ7YVgPhi3LBY7ErUTZBlQiZZNMh5wTXh4Y+4vbLHKEQnEvunQtUCFhn9xUjLPFO3HjQMg72Ip4jCfGD6JqxiJrS5fSXnAMJkKzcHzHOMqzg1Z+8rrGCNVwjH7vdr3w7DD4aoK6lwrNjPzzO1TyC4eX2RltrCVbWh/hs0FI=
+	t=1717446907; cv=none; b=mb5j0tMhwL9NhiGGzFfI2UrUymquzUhDOYBK+b7sH8Kv9zFR/8M8337bJeHCDX33yQ8V7vJBRd45CeDb2IGfWQCOGrDtvCR0BePms6k0ApcPcSnBojjYvWBmcWe691BTsS5y4QvzPfQoXMfyjGlGlnaJ/PQCsQw5jGwPfSOi1c0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717446744; c=relaxed/simple;
-	bh=oMKAFRympZAtagj0tt77PNU05yPHXFb/Me7SXAReQHA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nJgY0xkuQZLGRH7KMu52yqaq/SWGSjhn3kE32XK4rIDK2TalYa8hlJqB5AemR2eAxF8+68sgGhvoiNhnnh5Zfbm6+8Z4FYbyjMCOZzg6DaTWsU6IUPsxyIqclWvgJqD53odK2ov8Q67quu2RLhVEdVRsm9z/cYWNqWqRuhALOTc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ma5Hv8Bz; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52b8b7b8698so3991038e87.1
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2024 13:32:21 -0700 (PDT)
+	s=arc-20240116; t=1717446907; c=relaxed/simple;
+	bh=KwWNQGw+2/5TNKQgZ7WcKZJkgf/QIcP8hEPwsf63tFk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Er15KXf7ig7TVttFdRtsd0jrsK+4rHvbAVxB3AVw+t5s5f2P5eDtMSSBESWrGPAgHT6d4wqj5l7N1sEOx1+DKvOovmtVyTPMHdOODVJHVOrGcWYgALSgDj4uVIR0iKoJ77QAUQ13ATVnssBuigerxNDnl4Bel+BvDNOvJqhSIK4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KvGH2rg+; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-57a2406f951so5125372a12.1;
+        Mon, 03 Jun 2024 13:35:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717446740; x=1718051540; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=j3xWHdXJHtkqPEG1gY7KE65O7IPK9mAb/+ZmZUO/aW4=;
-        b=ma5Hv8BzSScX6FEOmRxFx9lmYa2+UIfTcoytfAyRs0YMBqiVBtrA29Mgwf3m9UYlHJ
-         jAV3mdZapIlBVPBkkq1mv62iOQP5vkhoPZKPec/vFmxqZjG14nGadDi3eavlRAA7Ed0p
-         NTUetwLw38kYNauuwH4wP1a3SXSJt70AxlMrJ2k9oxncYXpGLqzsVZSuTZEKnOqq/k6Z
-         U7ZUWvXeIP2ipN9GEI9IyonZ9gXwl6civEp9TQgoWCdzDoXvEFQJkbJYT3mNtgHRQYkF
-         V2rJfFUnjjbwjsFfO81jwn2IpBZlauvU/+mtzVhOWuZZghq3lRDYFKvr5jIiyxKa1Clz
-         NKLA==
+        d=gmail.com; s=20230601; t=1717446904; x=1718051704; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7xuy1n57KIpCTHjyrkT+Tg9AxFkzW/GLX4KPPVhYwkc=;
+        b=KvGH2rg+OZkIEZ80yBo9LmwPgBBDbyUuaEZPpmdTLpCTgv5mmaC9ekNUjUapbVOYT2
+         PihC6jm5lb6qrR1Rh7JrzDyk+QpGuePGZnDzCn4b7RZMzkXvzdPSamwquMMuPBibUOEK
+         rpK69mVUgbFysbFG6BUQ5RaH1XHLHDQaG234rdk3VLjlMvwycjF70Afll8ZMDL2afd7o
+         l+Osx+TSq+XY5/GZdGlH0sFdFl03GLayZ2+wWPNzCgzY5j09N/q5Qu2YXcqxO8HS3XPz
+         2uL7lGp/F8WUnxc/pmC28sX1A36fBE7KQVIf7d0zV5cYOEzVtGBZfm2Y7AXhVNpazJbc
+         Z5zA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717446740; x=1718051540;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j3xWHdXJHtkqPEG1gY7KE65O7IPK9mAb/+ZmZUO/aW4=;
-        b=vPZHF4ZfSd9IG6e0YMYhlDUbvnW0aXK0i5XXgh7Xt0ng/gcNWbSPt7NuuQgvRG9brp
-         u10E7CcTUOvqo2c8sB/q+cshtiQKbUS60C39k9j/H4lqSS1HT3RQ4RALh3sJRdPAAsh1
-         HfJxURfy4sDrLpwpWaOc4uMisqIhOep51+PQQBk5ztxr2maHVVg8HCFNV3AYFe1hgsuw
-         2yJEsEsuAI83K8WHEvKd1IZ/zha3E03bThM1C/aIwf9q5Qv6K+lqWkvBBiGyBwy/TciV
-         O59a5QOTCOBy+XU5LO5e48j5P6Ro8c366TXLCm8OWykKrxWbA7zgVnZ+AxvmS09/i56y
-         QGpA==
-X-Forwarded-Encrypted: i=1; AJvYcCWIdMVnY3HOePC+a6gs5c388KP9FHS9N9tiQDUJ4K5Ky5bTZ01kPpoQ7erfAYfgeBeJWvzuuKlULstmcT33JVLiP/smSlNiPhk31g==
-X-Gm-Message-State: AOJu0YzB03mIwJcqYw1/vW0uVmIIMlUaTzDolCQHS4vCg/v7X/Mqe1/D
-	GQQGkuTQKCRq81PDHU446v5HbUp5HqNSU97IopZDkeH0VunTho0VuEW+NPvJMPA=
-X-Google-Smtp-Source: AGHT+IEN0ZKSc9dLsSicKTPHKeh3bX+MpeLnoaQErTFdnlruhE40PAEAx9f4Y40Xgy6T7Y3uFsAJJA==
-X-Received: by 2002:ac2:464d:0:b0:52b:7bac:476d with SMTP id 2adb3069b0e04-52b896cd271mr6412478e87.56.1717446740419;
-        Mon, 03 Jun 2024 13:32:20 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52b950c07f3sm702431e87.55.2024.06.03.13.32.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Jun 2024 13:32:20 -0700 (PDT)
-Date: Mon, 3 Jun 2024 23:32:18 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: noralf@tronnes.org
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	David Lechner <david@lechnology.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>, 
-	Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-Subject: Re: [PATCH v3 3/5] drm/mipi-dbi: Make bits per word configurable for
- pixel transfers
-Message-ID: <ymr4xlth524itfdpsj4mjgjbtc7ivqdskawj62zddxyzgne6et@xdz6twnwc2pm>
-References: <20240603-panel-mipi-dbi-rgb666-v3-0-59ed53ca73da@tronnes.org>
- <20240603-panel-mipi-dbi-rgb666-v3-3-59ed53ca73da@tronnes.org>
+        d=1e100.net; s=20230601; t=1717446904; x=1718051704;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7xuy1n57KIpCTHjyrkT+Tg9AxFkzW/GLX4KPPVhYwkc=;
+        b=stHl5QMMI2bfdkcHDCvvgUJo+acrfjPYQxNEmgcp7eIbR2T8IBRn9B5oCgRnCRuAiR
+         3Mmmdm2NhWUzVrREaU8irRITjALj0z0u8TKpc/l7LjBWNVSheVQsfOptxB9HojAF/utx
+         zvZp7+j1pkZHWRjk3nUcdfItca4lr3O0etFjkKAgu99szYFmwyDOD5peoyrZYU5V7obi
+         DHrkF1nulyO/FLOsqEwH8ZqqAMtJSHBppq74Vb89V/gPFPHDOBVabTr0+QdGgq1Ev0Fc
+         rZLVRINpiWjhXo5zXhWi0l5+gib1Q+D9ZlTSbXQKegIARLfV1YLxkJTSB/bfr4gE0XhV
+         rhHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUKrkOaj6Ivtmb8zm+rTCY/50+d+SRNzHv9SJUt6GXtYtLzWDgx0QUFfdWY+CrXMqlFJsuYG1oFMpmT2l8hwytGNQP/RelFDoxzetQwifakfPbmajbK1SgJyhgD8ofLminfHjE5ugeophtYhtleZvK8q1sQ8lxZ5hrcKghlcNqGS0Q=
+X-Gm-Message-State: AOJu0YwYpEPXYT3z5Qw43ZyhnpavntlAjQOwI6oij4fMA1G4hdIdM5qZ
+	q9UBF63rpyntF4aIrEC4U6Kmk3JbtjEtbB1AojztEAu2kd2V4Uk83U4LoSgyjHNV/1OVzlulBr+
+	HThKI0OORTSEUk3jxuLxh6YwfO5w=
+X-Google-Smtp-Source: AGHT+IH+lDMxvyFKRk7F24crRs9d1+aHL58p6J9vIYExDHMUBtOF6fP5eFn7MAR5PXhD2pmOTQ8bcx8Sf/xAnRtrwHA=
+X-Received: by 2002:a17:906:d106:b0:a68:a333:d2a6 with SMTP id
+ a640c23a62f3a-a68a333d5bcmr518193566b.65.1717446904290; Mon, 03 Jun 2024
+ 13:35:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240603-panel-mipi-dbi-rgb666-v3-3-59ed53ca73da@tronnes.org>
+References: <20240602-pwm-gpio-v6-0-e8f6ec9cc783@linaro.org> <20240602-pwm-gpio-v6-2-e8f6ec9cc783@linaro.org>
+In-Reply-To: <20240602-pwm-gpio-v6-2-e8f6ec9cc783@linaro.org>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Mon, 3 Jun 2024 23:34:27 +0300
+Message-ID: <CAHp75VfUcvz00T+12JKWPnJBK3msxgft-9fYQPU3ugtyqLBrTg@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] pwm: Add GPIO PWM driver
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>, 
+	Chris Morgan <macromorgan@hotmail.com>, Stefan Wahren <wahrenst@gmx.net>, linux-gpio@vger.kernel.org, 
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	Vincent Whitchurch <vincent.whitchurch@axis.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 03, 2024 at 01:21:34PM +0200, Noralf Trønnes via B4 Relay wrote:
-> From: Noralf Trønnes <noralf@tronnes.org>
-> 
-> This prepares for supporting other pixel formats than RGB565.
+On Sun, Jun 2, 2024 at 11:33=E2=80=AFPM Linus Walleij <linus.walleij@linaro=
+.org> wrote:
+>
+> From: Vincent Whitchurch <vincent.whitchurch@axis.com>
+>
+> Add a software PWM which toggles a GPIO from a high-resolution timer.
+>
+> This will naturally not be as accurate or as efficient as a hardware
+> PWM, but it is useful in some cases.  I have for example used it for
+> evaluating LED brightness handling (via leds-pwm) on a board where the
+> LED was just hooked up to a GPIO, and for a simple verification of the
+> timer frequency on another platform.
+>
+> Since high-resolution timers are used, sleeping GPIO chips are not
+> supported and are rejected in the probe function.
 
-Yes, the patch is pretty simple, however could you please expand the
-commit message by describing write_memory_bpw introduction.
 
-> 
-> Signed-off-by: Noralf Trønnes <noralf@tronnes.org>
-> ---
->  drivers/gpu/drm/drm_mipi_dbi.c | 14 ++++++++++----
->  include/drm/drm_mipi_dbi.h     |  5 +++++
->  2 files changed, 15 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_mipi_dbi.c b/drivers/gpu/drm/drm_mipi_dbi.c
-> index fa8aba6dc81c..77f8a828d6e0 100644
-> --- a/drivers/gpu/drm/drm_mipi_dbi.c
-> +++ b/drivers/gpu/drm/drm_mipi_dbi.c
-> @@ -1079,7 +1079,7 @@ static int mipi_dbi_typec1_command_read(struct mipi_dbi *dbi, u8 *cmd,
->  static int mipi_dbi_typec1_command(struct mipi_dbi *dbi, u8 *cmd,
->  				   u8 *parameters, size_t num)
->  {
-> -	unsigned int bpw = (*cmd == MIPI_DCS_WRITE_MEMORY_START) ? 16 : 8;
-> +	unsigned int bpw = 8;
->  	int ret;
->  
->  	if (mipi_dbi_command_is_read(dbi, *cmd))
-> @@ -1091,6 +1091,9 @@ static int mipi_dbi_typec1_command(struct mipi_dbi *dbi, u8 *cmd,
->  	if (ret || !num)
->  		return ret;
->  
-> +	if (*cmd == MIPI_DCS_WRITE_MEMORY_START)
-> +		bpw = dbi->write_memory_bpw;
+Reviewed-by: Andy Shevchenko <andy@kernel.org>
+See one question below.
+
+...
+
+> +static int pwm_gpio_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev =3D &pdev->dev;
+> +       struct pwm_chip *chip;
+> +       struct pwm_gpio *gpwm;
+> +       int ret;
 > +
->  	return mipi_dbi_spi1_transfer(dbi, 1, parameters, num, bpw);
->  }
->  
-> @@ -1184,8 +1187,8 @@ static int mipi_dbi_typec3_command(struct mipi_dbi *dbi, u8 *cmd,
->  	if (ret || !num)
->  		return ret;
->  
-> -	if (*cmd == MIPI_DCS_WRITE_MEMORY_START && !dbi->swap_bytes)
-> -		bpw = 16;
-> +	if (*cmd == MIPI_DCS_WRITE_MEMORY_START)
-> +		bpw = dbi->write_memory_bpw;
->  
->  	spi_bus_lock(spi->controller);
->  	gpiod_set_value_cansleep(dbi->dc, 1);
-> @@ -1256,12 +1259,15 @@ int mipi_dbi_spi_init(struct spi_device *spi, struct mipi_dbi *dbi,
->  
->  	dbi->spi = spi;
->  	dbi->read_commands = mipi_dbi_dcs_read_commands;
-> +	dbi->write_memory_bpw = 16;
->  
->  	if (dc) {
->  		dbi->command = mipi_dbi_typec3_command;
->  		dbi->dc = dc;
-> -		if (!spi_is_bpw_supported(spi, 16))
-> +		if (!spi_is_bpw_supported(spi, 16)) {
-> +			dbi->write_memory_bpw = 8;
->  			dbi->swap_bytes = true;
-> +		}
->  	} else {
->  		dbi->command = mipi_dbi_typec1_command;
->  		dbi->tx_buf9_len = SZ_16K;
-> diff --git a/include/drm/drm_mipi_dbi.h b/include/drm/drm_mipi_dbi.h
-> index e8e0f8d39f3a..b36596efdcc3 100644
-> --- a/include/drm/drm_mipi_dbi.h
-> +++ b/include/drm/drm_mipi_dbi.h
-> @@ -56,6 +56,11 @@ struct mipi_dbi {
->  	 */
->  	struct spi_device *spi;
->  
-> +	/**
-> +	 * @write_memory_bpw: Bits per word used on a MIPI_DCS_WRITE_MEMORY_START transfer
-> +	 */
-> +	unsigned int write_memory_bpw;
+> +       chip =3D devm_pwmchip_alloc(dev, 1, sizeof(*gpwm));
+> +       if (IS_ERR(chip))
+> +               return PTR_ERR(chip);
 > +
->  	/**
->  	 * @dc: Optional D/C gpio.
->  	 */
-> 
-> -- 
-> 2.45.1
-> 
-> 
+> +       gpwm =3D pwmchip_get_drvdata(chip);
+> +
+> +       spin_lock_init(&gpwm->lock);
+> +
+> +       gpwm->gpio =3D devm_gpiod_get(dev, NULL, GPIOD_ASIS);
+> +       if (IS_ERR(gpwm->gpio))
+> +               return dev_err_probe(dev, PTR_ERR(gpwm->gpio),
+> +                                    "%pfw: could not get gpio\n",
+> +                                    dev_fwnode(dev));
+> +
+> +       if (gpiod_cansleep(gpwm->gpio))
+> +               return dev_err_probe(dev, -EINVAL,
+> +                                    "%pfw: sleeping GPIO not supported\n=
+",
+> +                                    dev_fwnode(dev));
+> +
+> +       chip->ops =3D &pwm_gpio_ops;
+> +       chip->atomic =3D true;
+> +
+> +       hrtimer_init(&gpwm->gpio_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL=
+);
+> +       ret =3D devm_add_action_or_reset(dev, pwm_gpio_disable_hrtimer, g=
+pwm);
+> +       if (ret)
+> +               return ret;
+> +
+> +       gpwm->gpio_timer.function =3D pwm_gpio_timer;
+> +
+> +       ret =3D pwmchip_add(chip);
+> +       if (ret < 0)
+> +               return dev_err_probe(dev, ret, "could not add pwmchip\n")=
+;
 
--- 
-With best wishes
-Dmitry
+> +       platform_set_drvdata(pdev, gpwm);
+
+Do we still need this?
+
+> +       return 0;
+> +}
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
