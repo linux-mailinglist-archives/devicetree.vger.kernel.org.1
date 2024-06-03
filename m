@@ -1,241 +1,298 @@
-Return-Path: <devicetree+bounces-71802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1729C8D7FB6
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 12:08:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FB6E8D7FC4
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 12:11:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6CC78B26483
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 10:08:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B2A11F22CD6
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 10:11:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 380D482489;
-	Mon,  3 Jun 2024 10:08:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="N0PQ9kSk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02BC882487;
+	Mon,  3 Jun 2024 10:10:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-he1eur01on2078.outbound.protection.outlook.com [40.107.13.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A27B77A1E;
-	Mon,  3 Jun 2024 10:08:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.13.78
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717409324; cv=fail; b=HdlhMIovcGrE03gBxD7MiIK64zlfzi0izyz7fR3UZgZrLw9Vi9dpG23KIyv8jmOoAWgoNjO3IPZApBrXVX1SFAn+GFMUj9hiMnZkNN9RICHhUe7CVtkKeQh4+pCrxDcS1oKXQdA4o4E/YdmZt0Gk9aFzE6wxh43SldsgP8zvdtk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717409324; c=relaxed/simple;
-	bh=10WWr4BXdxpN57HgbbKe2H1s/iOU9aqVNgvZelJZb+k=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=oOp08YiIPhO/WSf79HCBvB98yrVfoLH1YerDpCRXn2QdRQ296B+5yJxlY4y3u5ny7b0kKepUsREDm+GzZWjgHi+7HUYhjBGP+fSsKzPhbpiEz9y6YagTNT5DLBhc8n8IacLUL94wS2a9NmOl7PvwL0nM/KNHKd/jxTDACy/6ulA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=N0PQ9kSk; arc=fail smtp.client-ip=40.107.13.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axis.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FSngYDkfqwfe2mggn3MMC51aUgjwCGKJ/iA7q4kIXjNPbJUvczvGD14TNF/nygMS6cyfLBT43Nzs0vfXUUEIqLIGna9do9HQ5w4YStziOYb6VgWu2cB+XIj5NcLmmi6zsC4Xv5RiAE/qvYth5rqQGjDnxC0YfH9d0+sin06FpnSFJ/2iy29YTC3XfD2ClV55SHho1qh/L1xj/+nVVOwq7nrYBb4hUCVUP1E8WvRElHE2Hg0ehQ/lGmsNo/dXuSyDbdfQHpIVsEiVOnWpXh4wXT0Wuq5pQsNEjQHTfaavhSseXBZryoZsudKBzRdJOJWYAi0SlasYC1NlsQgjEyP+nw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ShG+Kb1J/1DQQx5GG2zUHffwVEiygeVlyCc/hbFC0mk=;
- b=f4qrpnLzZjcVKBYmmewaMnrIxBCabkO5EHS1Eph/ZLLQFpv72mu9gy+Sp2kPKvigt8XaVpX1c4YZq7MYY+kxBdCo4eNhF0wwmbiEfTtYULYWOqGhma7uQkD0vHHmWiKAE8Ti6L0eI+5P54YdDeChskvlIfE9fQ9s6bfN+y16L/33jKv9KPCPjEXWFo9LSNzxkNlzy3VetdwojiAGZHzoWJIwvYARDtvbRjZzORGtenLGDlTagNSyosYO5oPG1fxbLvoF58JQn8YD1zQdA6qp1+HZmXdVQuA3scFY5V17CoMMTpaM7oQamGq1p8xLfUooc2p+GzlAJV1p8FLKw1Ud8A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 195.60.68.100) smtp.rcpttodomain=kernel.org smtp.mailfrom=axis.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=axis.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ShG+Kb1J/1DQQx5GG2zUHffwVEiygeVlyCc/hbFC0mk=;
- b=N0PQ9kSkfISg1IeUFeYT4BG6nK2JBZPdM1jLTBnBpk9W9pfGQHQIc/ycDIC2Kjuo1wy9qmZl214ajPs9iB2YRGszoicp0GgswV49kuN4ET7tuGW5YNe2N5GUDXwyUn8R4ASv3Ap1usJed80t50Og4rXW79S8gYsMm8c6KtorTso=
-Received: from DU2PR04CA0276.eurprd04.prod.outlook.com (2603:10a6:10:28c::11)
- by AM9PR02MB6546.eurprd02.prod.outlook.com (2603:10a6:20b:2ca::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.25; Mon, 3 Jun
- 2024 10:08:38 +0000
-Received: from DB3PEPF00008859.eurprd02.prod.outlook.com
- (2603:10a6:10:28c:cafe::27) by DU2PR04CA0276.outlook.office365.com
- (2603:10a6:10:28c::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.27 via Frontend
- Transport; Mon, 3 Jun 2024 10:08:38 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
- smtp.mailfrom=axis.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=axis.com;
-Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
- 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
- client-ip=195.60.68.100; helo=mail.axis.com; pr=C
-Received: from mail.axis.com (195.60.68.100) by
- DB3PEPF00008859.mail.protection.outlook.com (10.167.242.4) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7633.15 via Frontend Transport; Mon, 3 Jun 2024 10:08:37 +0000
-Received: from SE-MAILARCH01W.axis.com (10.20.40.15) by se-mail01w.axis.com
- (10.20.40.7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 3 Jun
- 2024 12:08:37 +0200
-Received: from se-mail02w.axis.com (10.20.40.8) by SE-MAILARCH01W.axis.com
- (10.20.40.15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 3 Jun
- 2024 12:08:37 +0200
-Received: from se-intmail01x.se.axis.com (10.0.5.60) by se-mail02w.axis.com
- (10.20.40.8) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Mon, 3 Jun 2024 12:08:37 +0200
-Received: from lnxamnaw.se.axis.com (unknown [10.92.129.190])
-	by se-intmail01x.se.axis.com (Postfix) with ESMTP id 2D4F72A6A;
-	Mon,  3 Jun 2024 12:08:37 +0200 (CEST)
-Received: by lnxamnaw.se.axis.com (Postfix, from userid 12778)
-	id 29296206ACE; Mon,  3 Jun 2024 12:08:37 +0200 (CEST)
-From: Amna Waseem <Amna.Waseem@axis.com>
-Date: Mon, 3 Jun 2024 12:08:35 +0200
-Subject: [PATCH v3 2/2] hwmon: (ina2xx) Add device tree support to pass
- alert polarity
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A0D28060E;
+	Mon,  3 Jun 2024 10:10:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717409456; cv=none; b=SYLX7ncyghlSRxsiuHUbav+cEH/KgQ93e6OhS+18Y0Rs4dMIDnWYH/iq62jowgrkSd0SiYrjhUfxaY2pcPJTcK1LB6kDDIJNnN70tT3NEL/uSu0L7G/qL377UvB3BXx6XejFySRwlpEFJsAJYqYBKrVtJ6ItZT6FolwGh/5yQQc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717409456; c=relaxed/simple;
+	bh=NIoo39uB+l0NFBzFJvFgX8IVg5gQNlCtaRpnRSSEThQ=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=L+kz9OCFZH2Wd/f4/xSUV78l4BNDwTavAh5jbkQRe0MCmFEVLE44WGJ1Ylhv0Kb5vhPy5qMYu0mVraIFi4jQr4izqaJ74XWHN2oFV1tblAnCPLPl3+wHsYkx/5gB+Q/hGuWS9MNJJM7VlagXxBX890Kghj/AO/x4Cd/CcZ7JO/g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 68A171042;
+	Mon,  3 Jun 2024 03:11:18 -0700 (PDT)
+Received: from [192.168.1.100] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2D08F3F792;
+	Mon,  3 Jun 2024 03:10:52 -0700 (PDT)
+Message-ID: <1957b0ee-c914-4769-a4fc-0a15539aa6d6@arm.com>
+Date: Mon, 3 Jun 2024 11:10:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] coresight: Add support to get preferred id for
+ system trace sources
+From: James Clark <james.clark@arm.com>
+To: Mao Jinlong <quic_jinlmao@quicinc.com>
+Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Tao Zhang <quic_taozha@quicinc.com>, songchai <quic_songchai@quicinc.com>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
+ <mike.leach@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>
+References: <20240603094354.2348-1-quic_jinlmao@quicinc.com>
+ <20240603094354.2348-3-quic_jinlmao@quicinc.com>
+ <e7c641ee-205f-46ef-9990-90414e50b485@arm.com>
+Content-Language: en-US
+In-Reply-To: <e7c641ee-205f-46ef-9990-90414e50b485@arm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID: <20240603-apol-ina2xx-fix-v3-2-b9eff3158e4e@axis.com>
-References: <20240603-apol-ina2xx-fix-v3-0-b9eff3158e4e@axis.com>
-In-Reply-To: <20240603-apol-ina2xx-fix-v3-0-b9eff3158e4e@axis.com>
-To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>
-CC: Krzysztof Kozlowski <krzk@kernel.org>, <linux-hwmon@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Amna Waseem
-	<Amna.Waseem@axis.com>, <kernel@axis.com>
-X-Mailer: b4 0.13.0
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB3PEPF00008859:EE_|AM9PR02MB6546:EE_
-X-MS-Office365-Filtering-Correlation-Id: 21456d1c-1f35-49d5-83fd-08dc83b522fa
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230031|1800799015|376005|82310400017|36860700004;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?M3F5K3Q3YkY1QnVPRkVLRzAyaWg3UE1YZzlrWTFLUWVXTm54WUR2YXpsUkcr?=
- =?utf-8?B?RUpOTldISjVkbUdPalVwalQ4WDI3SzI2OUE4YXkzbytrcU1VelRxeTFLclJq?=
- =?utf-8?B?SzFMTitud2QwZnFETWo2b2RONjl6Y2xiNWF4bUhXTzhxOGJCU2ZpUE5ETllW?=
- =?utf-8?B?b2p1VGN0c1dueGtDZDdFOHNVNWs2UVFERmtpd2RaTVhzRW0rUXJEcnhneGYw?=
- =?utf-8?B?WUZlSmdNVk1rMkJtWHpnT0I5a1RmaCtFTDNmL2k2VmcwNzJkdS9EUFdrZlR5?=
- =?utf-8?B?aWJpVTdVbTBBUUZNaUlyRDdQNTFPZUE2NEJwM25tNklwaGpGUWVYdSs1ZTRa?=
- =?utf-8?B?a1pDdUtYNndOMEUvcHMvNHY1dWhMRkQ1RkZ2RW5scTArdG9tZ1EvM3FzR3Ba?=
- =?utf-8?B?RnhZOGxpUUJzanNsdW5rSG4raFcwTEE0UFhZYjRPVEt4d1dNci9lSkEyVndm?=
- =?utf-8?B?VE1WUXEydGthSVZabjBYMy94b1hJb3d5cWVmUm1nTmJjSFRQNGVqdmM2VG9t?=
- =?utf-8?B?cUl5MXVEUkE1bUNCV0ZjTDlxeVZ0anhUbE40QzU3VDN3L1pLRWkwaW5ueUZl?=
- =?utf-8?B?RndwUWduVmNkU1VpTitQa2poVVJqNVMzdVJlazM5K2FlendGanAzS01WUHNn?=
- =?utf-8?B?eTA3Q0pwS0p1ZGVXeW9wTFFwRFlrMk1vTDErYWFaUVlnZi9FSThIWmNYR01m?=
- =?utf-8?B?R2dSOXRNeUJ5UytqMHl5K0NTcXlDY3NyUWlJa3V4bkFVQ0k1UDJOL1lpQVhR?=
- =?utf-8?B?SUVyL2k3VDJiL3Z2VU05Q2FLYURLVlM1YnoybkM3TGNnUkxsWUFCN21BaTBL?=
- =?utf-8?B?R1YyRDdUSERQMHpGVkNjUUdUMS9pNk1reUpoMmJwTGQ2OTV6WllydlEvcVJ3?=
- =?utf-8?B?dS9QQ3JUVlJ4VVFuNnZGRWgvbFpET01xSmVncFFCNlJiWk1qRlhRMTdSc3pX?=
- =?utf-8?B?S0x2UU1XY0FEbFJKVDRoclAzR0pCa3d4dUxHd2JXTjd6T3VRbVlsbkx5NDAw?=
- =?utf-8?B?V3RsZzhvUTRVZTdla2VLRUFpSnBJaVg1MmpKZVJCNDE0N0xsV2pTN21JMVo0?=
- =?utf-8?B?WEpLelZzNm9UdTFEckI4M0NnWGUweWRLdDFFekMzMzVraFpldnoyc1BUNlB0?=
- =?utf-8?B?SkVMa1NWWktseVpSbVh3em5CK2tCU293dkExenJLeHFKbi9GSEpmV1RpZzV2?=
- =?utf-8?B?eDRrcmNvNkcxTUlEc0FIRGFiNnBEeXBVN3NwNkdTUmhITWtvc2RDeDdmL0xQ?=
- =?utf-8?B?UllXMVRxRDdxUkl2Tkh3dkcybGJUNzYrTlV2YUlXNENoYmo3N0k0T2lrdkNG?=
- =?utf-8?B?eUJFNkRGanhTaHNOaFZKdFQ0QzZFN0ZLdmxScmV5TmQ1N3IxQjJibGtiakdR?=
- =?utf-8?B?THJvcmg1RWJiVzBENDVqVW9MODhJUHJVSi9ldGxJU1pXWlI0cXNFbS9VVHlt?=
- =?utf-8?B?MUFRRnRabVhVZngzay85dUFlbXpWdWh1TzBxblR3WGVxZS9sQzVudFM5dWNF?=
- =?utf-8?B?MTJZR3Fhd3A2UnRrNUQvT1EzYlBkQml6V3RVdEhCbXlDWGFQbUpUdnY3UTRl?=
- =?utf-8?B?c0dqRmx1UmpwbVk5V2xHazliKzBydEgyT1MxeE1veWwraldnSDJtQXFyNDlC?=
- =?utf-8?B?Q3pFV0JpRmJrOVo4ZmxHU21qS1lTNlNvZ3FLaHlQZXNhVksyTVowM2lNL3J0?=
- =?utf-8?B?VHpnakVCcUllSGFhc255a010TjNPeEY0RmZ6N0RHYnZ0WS9wRGhUWDBRTGEx?=
- =?utf-8?B?RFZXbHBkUEJIcDNVakFPcFh6T1pucnpNR2MxZ2M1TWhUSlpTNitiMC9Dbnow?=
- =?utf-8?B?OXF6RTJBNWlSYWNVZi9ldTFZc1lXWEpVVlhoS3ljUXROUUk3V3FoelByV3Nn?=
- =?utf-8?Q?pO+aZLDEFHD/r?=
-X-Forefront-Antispam-Report:
-	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(1800799015)(376005)(82310400017)(36860700004);DIR:OUT;SFP:1101;
-X-OriginatorOrg: axis.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2024 10:08:37.8148
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 21456d1c-1f35-49d5-83fd-08dc83b522fa
-X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DB3PEPF00008859.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR02MB6546
 
-The INA230 has an Alert pin which is asserted when the alert
-function selected in the Mask/Enable register exceeds the
-value programmed into the Alert Limit register. Assertion is based
-on the Alert Polarity Bit (APOL, bit 1 of the Mask/Enable register).
-It is default set to value 0 i.e Normal (active-low open collector).
-However, hardware can be designed in such a way that expects Alert pin
-to become active high if a user-defined threshold in Alert limit
-register has been exceeded. This patch adds a way to pass alert polarity
-value to the driver via device tree.
 
-Signed-off-by: Amna Waseem <Amna.Waseem@axis.com>
----
- drivers/hwmon/ina2xx.c | 35 +++++++++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
 
-diff --git a/drivers/hwmon/ina2xx.c b/drivers/hwmon/ina2xx.c
-index d8415d1f21fc..101346d26c88 100644
---- a/drivers/hwmon/ina2xx.c
-+++ b/drivers/hwmon/ina2xx.c
-@@ -73,6 +73,11 @@
- #define INA226_READ_AVG(reg)		(((reg) & INA226_AVG_RD_MASK) >> 9)
- #define INA226_SHIFT_AVG(val)		((val) << 9)
- 
-+#define INA226_ALERT_POLARITY_MASK		0x0002
-+#define INA226_SHIFT_ALERT_POLARITY(val)	((val) << 1)
-+#define INA226_ALERT_POL_LOW			0
-+#define INA226_ALERT_POL_HIGH			1
-+
- /* bit number of alert functions in Mask/Enable Register */
- #define INA226_SHUNT_OVER_VOLTAGE_BIT	15
- #define INA226_SHUNT_UNDER_VOLTAGE_BIT	14
-@@ -178,6 +183,17 @@ static u16 ina226_interval_to_reg(int interval)
- 	return INA226_SHIFT_AVG(avg_bits);
- }
- 
-+static int ina2xx_set_alert_polarity(struct ina2xx_data *data,
-+				     unsigned long val)
-+{
-+	if (!(val == 0 || val == 1))
-+		return -EINVAL;
-+
-+	return regmap_update_bits(data->regmap, INA226_MASK_ENABLE,
-+				 INA226_ALERT_POLARITY_MASK,
-+				 INA226_SHIFT_ALERT_POLARITY(val));
-+}
-+
- /*
-  * Calibration register is set to the best value, which eliminates
-  * truncation errors on calculating current register in hardware.
-@@ -659,6 +675,25 @@ static int ina2xx_probe(struct i2c_client *client)
- 	if (ret)
- 		return dev_err_probe(dev, ret, "failed to enable vs regulator\n");
- 
-+	if (chip == ina226) {
-+		if (of_property_read_bool(dev->of_node, "ti,alert-polarity-active-high")) {
-+			ret = ina2xx_set_alert_polarity(data,
-+							INA226_ALERT_POL_HIGH);
-+			if (ret < 0) {
-+				return dev_err_probe(dev, ret,
-+					"failed to set alert polarity active high\n");
-+			}
-+		} else {
-+			/* Set default value i.e active low */
-+			ret = ina2xx_set_alert_polarity(data,
-+							INA226_ALERT_POL_LOW);
-+			if (ret < 0) {
-+				return dev_err_probe(dev, ret,
-+					"failed to set alert polarity active low\n");
-+			}
-+		}
-+	}
-+
- 	ret = ina2xx_init(data);
- 	if (ret < 0) {
- 		dev_err(dev, "error configuring the device: %d\n", ret);
+On 03/06/2024 11:04, James Clark wrote:
+> 
+> 
+> On 03/06/2024 10:43, Mao Jinlong wrote:
+>> Dynamic trace id was introduced in coresight subsystem, so trace id is
+>> allocated dynamically. However, some hardware ATB source has static trace
+>> id and it cannot be changed via software programming. For such source,
+>> it can call coresight_get_source_traceid to get the fixed trace id from
+>> device node and pass id to coresight_trace_id_get_system_id to reserve
+>> the id.
+>>
+>> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+>> ---
+>>  .../hwtracing/coresight/coresight-platform.c  | 26 +++++++++++++++
+>>  drivers/hwtracing/coresight/coresight-stm.c   |  2 +-
+>>  .../hwtracing/coresight/coresight-trace-id.c  | 32 ++++++++++++-------
+>>  .../hwtracing/coresight/coresight-trace-id.h  |  5 ++-
+>>  include/linux/coresight.h                     |  1 +
+>>  5 files changed, 53 insertions(+), 13 deletions(-)
+>>
+>> diff --git a/drivers/hwtracing/coresight/coresight-platform.c b/drivers/hwtracing/coresight/coresight-platform.c
+>> index 9d550f5697fa..8dd3cbd676b8 100644
+>> --- a/drivers/hwtracing/coresight/coresight-platform.c
+>> +++ b/drivers/hwtracing/coresight/coresight-platform.c
+>> @@ -183,6 +183,17 @@ static int of_coresight_get_cpu(struct device *dev)
+>>  	return cpu;
+>>  }
+>>  
+>> +/*
+>> + * of_coresight_get_trace_id: Get the atid of a source device.
+>> + *
+>> + * Returns 0 on success.
+>> + */
+>> +static int of_coresight_get_trace_id(struct device *dev, u32 *id)
+>> +{
+>> +
+>> +	return of_property_read_u32(dev->of_node, "trace-id", id);
+>> +}
+>> +
+>>  /*
+>>   * of_coresight_parse_endpoint : Parse the given output endpoint @ep
+>>   * and fill the connection information in @pdata->out_conns
+>> @@ -782,6 +793,12 @@ static inline int acpi_coresight_get_cpu(struct device *dev)
+>>  {
+>>  	return -ENODEV;
+>>  }
+>> +
+>> +static int of_coresight_get_trace_id(struct device *dev, u32 *id)
+>> +{
+>> +	return -ENODEV;
+>> +}
+>> +
+>>  #endif
+>>  
+>>  int coresight_get_cpu(struct device *dev)
+>> @@ -794,6 +811,15 @@ int coresight_get_cpu(struct device *dev)
+>>  }
+>>  EXPORT_SYMBOL_GPL(coresight_get_cpu);
+>>  
+>> +int coresight_get_source_traceid(struct device *dev, u32 *id)
+>> +{
+>> +	if (!is_of_node(dev->fwnode))
+>> +		return -EINVAL;
+>> +
+>> +	return of_coresight_get_trace_id(dev, id);
+>> +}
+>> +EXPORT_SYMBOL_GPL(coresight_get_source_traceid);
+>> +
+>>  struct coresight_platform_data *
+>>  coresight_get_platform_data(struct device *dev)
+>>  {
+>> diff --git a/drivers/hwtracing/coresight/coresight-stm.c b/drivers/hwtracing/coresight/coresight-stm.c
+>> index e1c62820dfda..802f9e4ae570 100644
+>> --- a/drivers/hwtracing/coresight/coresight-stm.c
+>> +++ b/drivers/hwtracing/coresight/coresight-stm.c
+>> @@ -901,7 +901,7 @@ static int __stm_probe(struct device *dev, struct resource *res)
+>>  		goto stm_unregister;
+>>  	}
+>>  
+>> -	trace_id = coresight_trace_id_get_system_id();
+>> +	trace_id = coresight_trace_id_get_system_id(0);
+> 
+> I would #define 0 to "TRACE_ID_ANY" or something like that so it's
+> obvious what it means.
+> 
+>>  	if (trace_id < 0) {
+>>  		ret = trace_id;
+>>  		goto cs_unregister;
+>> diff --git a/drivers/hwtracing/coresight/coresight-trace-id.c b/drivers/hwtracing/coresight/coresight-trace-id.c
+>> index af5b4ef59cea..5c25c75a2f08 100644
+>> --- a/drivers/hwtracing/coresight/coresight-trace-id.c
+>> +++ b/drivers/hwtracing/coresight/coresight-trace-id.c
+>> @@ -75,20 +75,23 @@ static int coresight_trace_id_find_odd_id(struct coresight_trace_id_map *id_map)
+>>   * Allocate new ID and set in use
+>>   *
+>>   * if @preferred_id is a valid id then try to use that value if available.
+>> + * if @only_preferred is true, if @preferred_id is used, return error EINVAL.
+> 
+> if @only_preferred is true @preferred_id must be free, otherwise return
+> error -EINVAL
+> 
+>>   * if @preferred_id is not valid and @prefer_odd_id is true, try for odd id.
+>>   *
+>>   * Otherwise allocate next available ID.
+>>   */
+>>  static int coresight_trace_id_alloc_new_id(struct coresight_trace_id_map *id_map,
+>> -					   int preferred_id, bool prefer_odd_id)
+>> +			   int preferred_id, bool prefer_odd_id, bool only_preferred)
+>>  {
+>>  	int id = 0;
+>>  
+>>  	/* for backwards compatibility, cpu IDs may use preferred value */
+>> -	if (IS_VALID_CS_TRACE_ID(preferred_id) &&
+>> -	    !test_bit(preferred_id, id_map->used_ids)) {
+>> -		id = preferred_id;
+>> -		goto trace_id_allocated;
+>> +	if (IS_VALID_CS_TRACE_ID(preferred_id)) {
+>> +		if (!test_bit(preferred_id, id_map->used_ids)) {
+>> +			id = preferred_id;
+>> +			goto trace_id_allocated;
+>> +		} else if (WARN(only_preferred, "Trace ID %d is used.\n", preferred_id))
+>> +			return -EINVAL;
+>>  	} else if (prefer_odd_id) {
+>>  	/* may use odd ids to avoid preferred legacy cpu IDs */
+>>  		id = coresight_trace_id_find_odd_id(id_map);
+>> @@ -175,7 +178,7 @@ static int coresight_trace_id_map_get_cpu_id(int cpu, struct coresight_trace_id_
+>>  	 */
+>>  	id = coresight_trace_id_alloc_new_id(id_map,
+>>  					     CORESIGHT_LEGACY_CPU_TRACE_ID(cpu),
+>> -					     false);
+>> +					     false, false);
+>>  	if (!IS_VALID_CS_TRACE_ID(id))
+>>  		goto get_cpu_id_out_unlock;
+>>  
+>> @@ -222,14 +225,21 @@ static void coresight_trace_id_map_put_cpu_id(int cpu, struct coresight_trace_id
+>>  	DUMP_ID_MAP(id_map);
+>>  }
+>>  
+>> -static int coresight_trace_id_map_get_system_id(struct coresight_trace_id_map *id_map)
+>> +static int coresight_trace_id_map_get_system_id(struct coresight_trace_id_map *id_map,
+>> +				int preferred_id, bool only_preferred)
+> 
+> Looks like "only_preferred" was left on here by mistake and it's not
+> used. For this function preferred_id != 0 means the same.
+> 
+>>  {
+>>  	unsigned long flags;
+>>  	int id;
+>>  
+>>  	spin_lock_irqsave(&id_map_lock, flags);
+>> -	/* prefer odd IDs for system components to avoid legacy CPU IDS */
+>> -	id = coresight_trace_id_alloc_new_id(id_map, 0, true);
+>> +
+>> +	if (preferred_id > 0) {
+>> +		/* use preferred id if it is available */
+>> +		id = coresight_trace_id_alloc_new_id(id_map, preferred_id, false, true);
+>> +	} else {
+>> +		/* prefer odd IDs for system components to avoid legacy CPU IDS */
+>> +		id = coresight_trace_id_alloc_new_id(id_map, 0, true, false);
+> 
+> prefer_odd_id is different in each of these calls which I think is a
+> mistake?
+> 
+> You could do one function call to avoid that:
+> 
+>   only_preferred = preferred_id > 0
+>   coresight_trace_id_alloc_new_id(id_map, preferred_id, true,
+>                                   only_preferred);
+> 
+> 
 
--- 
-2.30.2
+Actually, even better we can have an "int flags" argument rather than
+having to work out what a load of booleans mean. And then use these:
 
+  TRACE_ID_WANT_ODD | TRACE_ID_WANT_PREFERRED
+
+  flags = TRACE_ID_WANT_ODD
+  flags |= preferred_id > 0 ? TRACE_ID_WANT_PREFERRED : 0;
+  coresight_trace_id_alloc_new_id(id_map, preferred_id, flags);
+
+>> +	}
+>>  	spin_unlock_irqrestore(&id_map_lock, flags);
+>>  
+>>  	DUMP_ID(id);
+>> @@ -269,9 +279,9 @@ int coresight_trace_id_read_cpu_id(int cpu)
+>>  }
+>>  EXPORT_SYMBOL_GPL(coresight_trace_id_read_cpu_id);
+>>  
+>> -int coresight_trace_id_get_system_id(void)
+>> +int coresight_trace_id_get_system_id(int id)
+>>  {
+>> -	return coresight_trace_id_map_get_system_id(&id_map_default);
+>> +	return coresight_trace_id_map_get_system_id(&id_map_default, id, true);
+>>  }
+>>  EXPORT_SYMBOL_GPL(coresight_trace_id_get_system_id);
+>>  
+>> diff --git a/drivers/hwtracing/coresight/coresight-trace-id.h b/drivers/hwtracing/coresight/coresight-trace-id.h
+>> index 3797777d367e..9189a33c5857 100644
+>> --- a/drivers/hwtracing/coresight/coresight-trace-id.h
+>> +++ b/drivers/hwtracing/coresight/coresight-trace-id.h
+>> @@ -118,9 +118,12 @@ int coresight_trace_id_read_cpu_id(int cpu);
+>>   *
+>>   * Used to allocate IDs for system trace sources such as STM.
+>>   *
+>> + * @id: Preferred id value. If id is 0, get a free id from id map. If id is greater
+> 
+> 0 -> TRACE_ID_ANY
+> 
+>> + *      than 0, get a preferred id.
+>> + *
+>>   * return: Trace ID or -EINVAL if allocation is impossible.
+>>   */
+>> -int coresight_trace_id_get_system_id(void);
+>> +int coresight_trace_id_get_system_id(int id);
+>>  
+>>  /**
+>>   * Release an allocated system trace ID.
+>> diff --git a/include/linux/coresight.h b/include/linux/coresight.h
+>> index f09ace92176e..0599303be326 100644
+>> --- a/include/linux/coresight.h
+>> +++ b/include/linux/coresight.h
+>> @@ -643,6 +643,7 @@ void coresight_relaxed_write64(struct coresight_device *csdev,
+>>  void coresight_write64(struct coresight_device *csdev, u64 val, u32 offset);
+>>  
+>>  extern int coresight_get_cpu(struct device *dev);
+>> +extern int coresight_get_source_traceid(struct device *dev, u32 *id);
+>>  
+>>  struct coresight_platform_data *coresight_get_platform_data(struct device *dev);
+>>  struct coresight_connection *
 
