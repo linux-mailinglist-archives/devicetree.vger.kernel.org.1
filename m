@@ -1,240 +1,151 @@
-Return-Path: <devicetree+bounces-71765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 650D58D7DEB
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 10:55:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A35A8D7E01
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 11:02:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B0C21F20FD6
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 08:55:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE7ACB23866
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 09:02:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD5FB74297;
-	Mon,  3 Jun 2024 08:55:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DC8D495CC;
+	Mon,  3 Jun 2024 09:02:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RraybhmK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A4X+8xUo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAB486F06A
-	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 08:55:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89AB341C65
+	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 09:02:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717404954; cv=none; b=SrA9gW9OVhyNR32g3F8qCygrwdXay8+CvpG44ECrvyF3nwKFn3ipNMrY8L1HVeo+tdIoQVfGYFSMvUTczZIpcqCfh03MyiPBOEJtjJcp1st+Xh2EL4Me76hk/FJSMHOi5NvmMo4BYhrKUy1cj8U0YyPV/zkCxtRX6w0ZnF3thNM=
+	t=1717405344; cv=none; b=YlTIyQfTvy6x7OPg12TslCmo+cNoZR98Vs6T1OTd1utEuHc4GojXOnXqMpBgECBUiRFWg/0GuxNhuTYFN3j91Ufba6mz35LePcIycDqq5MTATZGyxx3kIeJ5UAPoiBKOz5T6syf4tn76y2fI58sqExZJz2wsVLat4Ag1EUfCgzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717404954; c=relaxed/simple;
-	bh=IRsdLd+GS08wMOVpra3Hk7fNKRzBRjboEJdgkdPCZAI=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=H5uo+ST79YCvmSzS/DwieW71OLGDfomJU9HFvq4aKzG+gTg+8bPOW7kXlQ03DOS8FFohms/jlbJBWTmGKsaduGUcrEfK8fzGQ8kGYXWLQJxTq5dfcaTrH/A1aWOklt6riSmTlxBvoTrITshUKCA+9B5YTg4WtAGcGbLUJ2W+oPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RraybhmK; arc=none smtp.client-ip=209.85.128.47
+	s=arc-20240116; t=1717405344; c=relaxed/simple;
+	bh=AcydM7QsoGt9wsjKnGfhQXGfHg0USww1QuCKbjHudHs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uiyIFre0X4rD3ljzEg8RZrLSEgXad/D9gkDRvBo/1++VWkA4hBOKy4gCyN5WoX0NHdr+brOMJA39j2mEQxcsLskRYsJVl6HVD8KtU+S29OP1+6C7Ir7POgYZXlH5fz+ozHP2tS7pE0+dJyADi8xFOxm1szH5XhvvIQMlNwmeuuI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=A4X+8xUo; arc=none smtp.client-ip=209.85.208.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4213373568dso20313215e9.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2024 01:55:52 -0700 (PDT)
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2eaa80cb573so19156461fa.1
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2024 02:02:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717404951; x=1718009751; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/QAeBcdtYqLIs/Rh+i5kD5TSLdR9qGs4llUtwWZdmtc=;
-        b=RraybhmKRnCA4ZLLRoK4SQ5tHnlKR+94lMxkQvNX1e0EFdGOdBw1IPVKzfWWNG74oo
-         C95tvjVhoEveCmYQrNmK39k16o2m7qtjeIajCsjyb2zraliOBrtvxiJigmWg8iOao4SV
-         TMQ2k/HZPxqHdiTdhtPJQTx50mtNY9UizYMdBC7oL8Q+MNhh5YwNAkRqFq33BCD4nk+E
-         hxaGmFCqXj9eaQioezXrnCSfrfmo7aetPi1cR+2MYge19bJ9TOjDcl0ZepLc9gvoDMbR
-         EfeG5gIHGSZVVqBZp7CQnlhXX6/0/5xaAoURih5OfIyMyDkS2YsFpLHVN3r3vN8HU/OB
-         bLqQ==
+        d=linaro.org; s=google; t=1717405341; x=1718010141; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AcydM7QsoGt9wsjKnGfhQXGfHg0USww1QuCKbjHudHs=;
+        b=A4X+8xUokr0JXk57wO3Lo3dxNBUuwPKtS3mKsYy3xPmJzSbPgSt4ofBkH2teDZV0VI
+         G6cm6B2ztHoLC57IHKeQ9/cLGMTmiTHyXs0xEirJt8A4cRa7pwmZ3hgkACs2DTdIT0yt
+         YPdKVO090l00ubcmpWFNWtg6VMiW6EbM9Qiyu7PxTATxbsYoOpoHKQWBX0sBYgwKBaY4
+         8mZ9r4Fjut3qTBPNaO/178EkoxLm9koObr6OfXbg5zqx9imLh0D1KBSvSPX2c8icauYs
+         HUnwjC5Q0U5g0fvojJ9MmtQZWseFwEI/dCikyq7uPtw1IGwZj/wAP4QNW0tJt0eRg0nc
+         AOZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717404951; x=1718009751;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=/QAeBcdtYqLIs/Rh+i5kD5TSLdR9qGs4llUtwWZdmtc=;
-        b=l7j/8O29QqgNE0+gbgeekh8CrUw13VqjPfFT/8vXFywjeGTpYTkA3rCIm4gWtZuDWx
-         XtDMJZNXoJfzQ8A6jVqQxnwcDAISYCBH65ktQ03h5/qxjw4Hk5kWMTI9PE1OwWCdF0w7
-         LpPfgmJBhGJF4pjVtnvxBSPieVeM3s20Mf8GA20Ie6PSgzo7WqIRubGh1IGwxi4YYw4y
-         C3Gta5HW1jo1ERRhnWYLjfgwOFeHpCGmSWFFQkZs8kaJK+g8gNWc8Wb8N1kPmnopNPqk
-         ZnjGMoFAQuyoEo4KJaMXSZJhlvT+XSGW1iFO4cjSBdci3C2ubx1gf587mnwEe7M0uSoB
-         qF5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWW3CVmazmeDseScWztPHbzyWICTmHbXKkBT3slnwRMuOPicJwDo2+STS9sLYdUd9/P0LP+eNqLlIKqZ49vtzYQP+6uIXaKsZnCDQ==
-X-Gm-Message-State: AOJu0YwwFL4lqtT2p8a9H9QXTimobx/wWD2E26KA3+XDLIC13SdV/3Hy
-	L8h9+oSAW4GcNljgoqH5gLYRR64KUxx/Ho7HAO9vsEeeEp5J49GHDhCdduM4hBs=
-X-Google-Smtp-Source: AGHT+IG4nbGZZdOjaAgpRmBbLec9RiHVzWyTIMWSj89sEDhnbEfh2N4e2rnLcxVfA/uyYM5cYYFysg==
-X-Received: by 2002:a05:600c:3550:b0:420:1853:68c3 with SMTP id 5b1f17b1804b1-421417bd9aemr653405e9.20.1717404950955;
-        Mon, 03 Jun 2024 01:55:50 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:79fe:b764:2b06:ab4b? ([2a01:e0a:982:cbb0:79fe:b764:2b06:ab4b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4212b858424sm110180695e9.21.2024.06.03.01.55.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jun 2024 01:55:50 -0700 (PDT)
-Message-ID: <a4b22708-e85d-448a-8145-244b49bca053@linaro.org>
-Date: Mon, 3 Jun 2024 10:55:48 +0200
+        d=1e100.net; s=20230601; t=1717405341; x=1718010141;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AcydM7QsoGt9wsjKnGfhQXGfHg0USww1QuCKbjHudHs=;
+        b=iSWoP8A1wQclzqNBrMx8dCINQEP6ixdD0vxbbYGlRndIBAKC0xgiCgOG2BB8vsO4JT
+         2Ju0zJxz+WMtBC2/g8y7KLoexK50ErNMChPMI2aYN3K9cvnjLgg1+kYaPfT9UH3DeZtS
+         714dDBH3+JuqKHFOZvA7DM/r2n1haR60JFLu0jlNmJs6v0K2hCBbNAQWrLX5OcQZ1V+1
+         SLJsL09/sVWfmD0yp+Q9e2gkj7rakz8yCl/7sWTBsSr36VUJ66mNuGKyIYR4ioqiqY3R
+         RT7fgmCZXvzq7P9D6JNo1LFvNEDvpyA5TW3kCvOix3Zq1YayjN1bn3Nl5SLznfZNTtMa
+         6Cbg==
+X-Forwarded-Encrypted: i=1; AJvYcCVCUNpMqDVXoTP7EqVVRC1WDvbUfISFyXxP/d9kdOp1PXToc5HGCG91jvwgKXlZRekqGjGhGazyB9pKxY6Q9+5Bwrcof52Q1bncCg==
+X-Gm-Message-State: AOJu0YwquyZNsZrA2GuMSGbToKzQoQjKVlolLmq0ZPACL/iBTo6BUgO9
+	+W5uI4iVNu3b5GYCVFl9ZxyDTZC+ZBM0vgRPqqUCJFd7mRyFNKMy0RwYKFuPWPwWZ0MNO48ZkfD
+	OglNyxvzdv/M98l4rInGLp0XWj6mvFHysWgrwsw==
+X-Google-Smtp-Source: AGHT+IEVI3F0oXXlsedQRXHnOmAZNvZf/Ix2jmEABaS7X8f8bO9zDtlbkikRksb5ReaaWxEFK9ztgDuFWCd8m7IkxTE=
+X-Received: by 2002:a2e:9f14:0:b0:2ea:83b5:40cf with SMTP id
+ 38308e7fff4ca-2ea950c8010mr49046331fa.3.1717405340591; Mon, 03 Jun 2024
+ 02:02:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 00/14] Add initial support for the Rockchip RK3588 HDMI TX
- Controller
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, kernel@collabora.com,
- Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>,
- Algea Cao <algea.cao@rock-chips.com>
-References: <20240601-b4-rk3588-bridge-upstream-v1-0-f6203753232b@collabora.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240601-b4-rk3588-bridge-upstream-v1-0-f6203753232b@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240503162217.1999467-1-sean.anderson@linux.dev>
+ <CACRpkdbOAoSDNFhXfz3djUZh1_MQ_T75CC+-LmojRXvyCbUusA@mail.gmail.com>
+ <06a4e5fd-3d26-4923-bcbf-0bdd66d756c4@linux.dev> <CACRpkdbSsgxtKqF6ORXubufTaegjysHU7zH-tJfDfKNd=Kdoeg@mail.gmail.com>
+ <51d984f5-896e-469f-914d-2c902be91748@linux.dev> <CACRpkdZ19+zUCEBCJJ+MBnnaF+caZKFTDxYiWZ0BRGx+PxN3bw@mail.gmail.com>
+ <e4972a07-18d6-4a8b-bb5a-4b832aa2d20e@linux.dev>
+In-Reply-To: <e4972a07-18d6-4a8b-bb5a-4b832aa2d20e@linux.dev>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 3 Jun 2024 11:02:08 +0200
+Message-ID: <CACRpkdbL63ZWcopgBbANKzr476rO6_cwZL6JLqkvTDXbzzpkpw@mail.gmail.com>
+Subject: Re: [PATCH 0/2] pinctrl: zynqmp: Support muxing individual pins
+To: Sean Anderson <sean.anderson@linux.dev>
+Cc: Michal Simek <michal.simek@amd.com>, linux-gpio@vger.kernel.org, 
+	Krishna Potthuri <sai.krishna.potthuri@amd.com>, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Christian,
+On Thu, May 30, 2024 at 7:08=E2=80=AFPM Sean Anderson <sean.anderson@linux.=
+dev> wrote:
+> On 5/29/24 04:38, Linus Walleij wrote:
+> > On Tue, May 28, 2024 at 4:28=E2=80=AFPM Sean Anderson <sean.anderson@li=
+nux.dev> wrote:
+> >
+> >> Well, perhaps you should have reviewed the original driver more
+> >> closely.
+> >
+> > Do you want to push me down and increase my work related
+> > stress? Because that is the effect of such statements.
+> >
+> > It looks like criticism of me as a person, so explain yourself.
+> >
+> > Writing this kind of things looks to me like some kind of abusive way
+> > to express your desire and that is what burns maintainers out, so
+> > if that is what you are doing, stop doing that, adjust your behaviour
+> > and focus on technical issues.
+>
+> The technical issue is that the driver does not match the hardware. We
+> must maintain the existing set of groups for backwards-compatibility.
+> But this should not prevent improvement.
+>
+> Saying that we cannot have both group styles means that the driver is
+> permanently stuck with whatever was picked when it was submitted. Hence,
+> if you want to have only one style you had better review new drivers
+> very carefully.
 
-On 01/06/2024 15:12, Cristian Ciocaltea wrote:
-> The RK3588 SoC family integrates a Quad-Pixel (QP) variant of the
-> Synopsys DesignWare HDMI TX controller used in the previous SoCs.
-> 
-> It is HDMI 2.1 compliant and supports the following features, among
-> others:
-> 
-.
+Actually I did say you can rewrite it to the other style, it's just work.
 
-..
+If the previous approach was wrong, just redo it as it should be,
+and rewrite the DT bindings and the existing device trees. If
+backward-compatibility is so important, add a new driver with a new
+unique Kconfig CONFIG_PINCTRL_ZYNQMP_V2 and new bindings
+on the side and select one from a new compatible such as
+"xlnx,zynqmp-pinctrl-v2", problem solved:
+new driver new bindings, can be used on a per-board basis,
+can be compiled into the same kernel image.
 
-> * SCDC I2C DDC access
-> * TMDS Scrambler enabling 2160p@60Hz with RGB/YCbCr4:4:4
-> * YCbCr4:2:0 enabling 2160p@60Hz at lower HDMI link speeds
-> * Multi-stream audio
-> * Enhanced Audio Return Channel (EARC)
--> Those features were already supported by the HDMI 2.0a compliant HW, just
-list the _new_ features for HDMI 2.1
+It may be embarrassing to have to tell the device tree maintainers
+that the bindings got wrong three years ago and now we need to roll
+a v2, but worse things have happened.
 
-I did a quick review of your patchset and I don't understand why you need
-to add a separate dw-hdmi-qp.c since you only need simple variants of the I2C
-bus, infoframe and bridge setup.
+I don't like the approach
+"this was done so we cannot redo it", we can always redo things,
+it is even expected as proven by Fred Brooks timeless statement
+in "The Mythical Man-Month": any team *will* always design
+a throw-away system whether they intend it or not, there will be
+a second version.
 
-Can you elaborate further ? isn't this Quad-Pixel (QP) TX controller version
-detectable at runtime ?
+This approach will be more clean, I think? Also it will be
+possible to phase over more boards and perhaps eventually
+drop the old driver and the old bindings.
 
-I would prefer to keep a single dw-hdmi driver if possible.
+I'd like to hear from Xilinx/AMD how they want to solve this
+going forward.
 
-Thanks,
-Neil
-
-> 
-> This is the last required component that needs to be supported in order
-> to enable the HDMI output functionality on the RK3588 based SBCs, such
-> as the RADXA Rock 5B. The other components are the Video Output
-> Processor (VOP2) and the Samsung IP based HDMI/eDP TX Combo PHY, for
-> which basic support has been already made available via [1] and [2],
-> respectively.
-> 
-> The patches are grouped as follows:
-> * PATCH 1..7: DW HDMI TX driver refactor to minimize code duplication in
->    the new QP driver (no functional changes intended)
-> 
-> * PATCH 8..11: Rockchip DW HDMI glue driver cleanup/improvements (no
->    functional changes intended)
-> 
-> * PATCH 12..13: The new DW HDMI QP TX driver reusing the previously
->    exported functions and structs from existing DW HDMI TX driver
-> 
-> * PATCH 14: Rockchip DW HDMI glue driver update to support RK3588 and
->    make use of DW HDMI QP TX
-> 
-> They provide just the basic HDMI support for now, i.e. RGB output up to
-> 4K@60Hz, without audio, CEC or any of the HDMI 2.1 specific features.
-> Also note the vop2 driver is currently not able to properly handle all
-> display modes supported by the connected screens, e.g. it doesn't cope
-> with non-integer refresh rates.
-> 
-> A possible workaround consists of enabling the display controller to
-> make use of the clock provided by the HDMI PHY PLL. This is still work
-> in progress and will be submitted later, as well as the required DTS
-> updates.
-> 
-> To facilitate testing and experimentation, all HDMI output related
-> patches, including those part of this series, are available at [3].
-> So far I could only verify this on the RADXA Rock 3A and 5B boards.
-> 
-> Thanks,
-> Cristian
-> 
-> [1]: 5a028e8f062f ("drm/rockchip: vop2: Add support for rk3588")
-> [2]: 553be2830c5f ("phy: rockchip: Add Samsung HDMI/eDP Combo PHY driver")
-> [3]: https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/commits/rk3588-hdmi-bridge-v6.10-rc1
-> 
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> ---
-> Cristian Ciocaltea (14):
->        drm/bridge: dw-hdmi: Simplify clock handling
->        drm/bridge: dw-hdmi: Add dw-hdmi-common.h header
->        drm/bridge: dw-hdmi: Commonize dw_hdmi_i2c_adapter()
->        drm/bridge: dw-hdmi: Factor out AVI infoframe setup
->        drm/bridge: dw-hdmi: Factor out vmode setup
->        drm/bridge: dw-hdmi: Factor out hdmi_data_info setup
->        drm/bridge: dw-hdmi: Commonize dw_hdmi_connector_create()
->        drm/rockchip: dw_hdmi: Use modern drm_device based logging
->        drm/rockchip: dw_hdmi: Simplify clock handling
->        drm/rockchip: dw_hdmi: Use devm_regulator_get_enable()
->        drm/rockchip: dw_hdmi: Drop superfluous assignments of mpll_cfg, cur_ctr and phy_config
->        dt-bindings: display: rockchip,dw-hdmi: Add compatible for RK3588
->        drm/bridge: synopsys: Add DW HDMI QP TX controller driver
->        drm/rockchip: dw_hdmi: Add basic RK3588 support
-> 
->   .../display/rockchip/rockchip,dw-hdmi.yaml         | 127 +++-
->   drivers/gpu/drm/bridge/synopsys/Makefile           |   2 +-
->   drivers/gpu/drm/bridge/synopsys/dw-hdmi-common.h   | 179 +++++
->   drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c       | 787 +++++++++++++++++++
->   drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.h       | 831 +++++++++++++++++++++
->   drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          | 353 +++------
->   drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        | 351 +++++++--
->   include/drm/bridge/dw_hdmi.h                       |   8 +
->   8 files changed, 2290 insertions(+), 348 deletions(-)
-> ---
-> base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
-> change-id: 20240601-b4-rk3588-bridge-upstream-a27baff1b8fc
-> 
-
+Yours,
+Linus Walleij
 
