@@ -1,103 +1,107 @@
-Return-Path: <devicetree+bounces-71854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FED48D83BA
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 15:18:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F13FE8D83D4
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 15:25:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CA4B1F22961
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 13:18:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 83462B25DCE
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 13:25:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89AAA84D10;
-	Mon,  3 Jun 2024 13:18:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3019512D75A;
+	Mon,  3 Jun 2024 13:25:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V96NyI0S"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ZgcVGsgW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FFECE57B;
-	Mon,  3 Jun 2024 13:18:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0DB712D1FE
+	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 13:25:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717420733; cv=none; b=esC3Y3hRq8x757FwCPhhX9Qv9tlLVzrTqGmQViUkdaky6ithSeDzKlgc/0YhTyF9LyJWMO/QsrfnVxmbyBOdnHekYOz/9DTM+Aq/5deDxwFTbeCZouRx/OjKlZW4R3utk7G8Vrz3dzB9T2ZptUNKUSHKkuOyVsWi8305yIdth8E=
+	t=1717421121; cv=none; b=p/VG/vfwovtCIgHrtnvFRXElNgEjRpmWtq9gGlblWTEzYFho1GwpqBGzHnGgGuo0divubjvVMfqRjfuwAEKKFz4x3n9Qb9xo+TiXQMxqSuVzkpiPqWmZGor8qkhgWPqvVO/PMaGPgFoxVvb/vcMM1ZdAjVIKndUQ8bKACIO7xj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717420733; c=relaxed/simple;
-	bh=LgL/MmSAZeLxCV+OpLpwFCLxjkw3tEWshcGOE6SuJMU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=vE1tEA8S6yW+WBGsGxQNUtOMCIxzj6z566kuXE8xBsk0nIu8h5X5DbwHPBMrrs3ZIYRnkfXrtKoFFV+s5Rvdee1GCNMixIPkNnzS1KepkUvgAtmy9ITM8dRn90tYtCu5yL1tuSEwnSo/48hLVD181ABKd8EhhElaJ3wmurlYLFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V96NyI0S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0EF9C2BD10;
-	Mon,  3 Jun 2024 13:18:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717420733;
-	bh=LgL/MmSAZeLxCV+OpLpwFCLxjkw3tEWshcGOE6SuJMU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V96NyI0Sb7svQf1lh3W8DIKv7BOjMHAsU9ywIzZa0s8NzCZaMgO8k94GmP097WuRK
-	 PTxjc7xXlDQ+Jlu9y9EXBjrhtxdiOOOyKKcqoblhnZlJxvQ1lDNAuMEhPK5MeqPTyL
-	 hgfl2bV8QHNV98YnxbozrBO86Dr6f17Dymuy3eORGt++4do3IHemYIDcZB25JMvfP1
-	 Xzr/8IVGzEIEfZ5lh9yshjK5PTJph1YNqPlj++AThhCuulqA85WyD97SeKkDwVhv1k
-	 dyRmlxJTwQvgsEsks2y2QCxHLA0VyYewYujgrYxJvRB4YyUdb5g8a+Ux2u0mRykjwP
-	 8kxHC1HsuJcfg==
-Date: Mon, 3 Jun 2024 08:18:50 -0500
-From: Rob Herring <robh@kernel.org>
-To: Hui Wang <hui.wang@canonical.com>
-Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-	gregkh@linuxfoundation.org, jirislaby@kernel.org,
-	hvilleneuve@dimonoff.com
-Subject: Re: [PATCH 1/2] dt-bindings: serial: sc16is7xx: add reset-gpios
-Message-ID: <20240603131850.GA148307-robh@kernel.org>
-References: <20240603123710.649549-1-hui.wang@canonical.com>
+	s=arc-20240116; t=1717421121; c=relaxed/simple;
+	bh=RoPZ7OtHwd67JQKS3Bxn9QyWtOUZRPsQ7lKzHfuSPnE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mSxeAx6vfLLrxTnGRvEbclqrvPhlMHT99r7khgtgfL55N+GJ18p6ftNuN6dhTM/mL75xjqhvIxACKHp7iA9kvQcv/r2rL4Vftd6PUq6kf0qORm/oVTQEn+wn1Q6sz1erooJMACcybLORfPQkfYpG3kbzlYc/ywF6PL3dB+5Sjis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ZgcVGsgW; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-35e4d6f7c5cso1839614f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2024 06:25:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1717421117; x=1718025917; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2P2nwrZKdBj15mvgcJuR9vi5zzVRhf+Cue2wFYJyTjI=;
+        b=ZgcVGsgW2uqA7nd6s4HgqFRZSie5quyjR95ztOnoG33HLZ8yAyPdFOja8lIrlaAmtI
+         soSfzyYA6zW2Rt2RQPrlFX1etsFT2zcCam56fig7qsYsWhNEMDhhGuW/NuJ2mEWQYGr4
+         ata0f5yFBk1O82LQCb4SvGkVsKdlSMg48Lx6okNsGby3s/C8PGC8KIEfFym9BAHIYDlw
+         n65OQMyV2Cd6C67r3kyPr0TPKFUMDazoZtYL/2sHjXcCa31r32NhQMFEJfMa2pmMXvNn
+         mXCaZFdOB+VmiwSjKJzcSffC+7NYCmmRNrkkLAgoxRetVM3dmQQlbnZ8VhcQsd7mLoOr
+         TKlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717421117; x=1718025917;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2P2nwrZKdBj15mvgcJuR9vi5zzVRhf+Cue2wFYJyTjI=;
+        b=EoVX+IoA2htxXmXZ0fKuD1NN7lkaWHyrE6AccojeF4LED3LXfw5eSsURWnHl5ii3IY
+         eLA4n/jlGp9qgecbBSb/QY8Otn2POi5h1wEykyj5Vmg6SX/b0bprzAeRtBpZnkgleUkT
+         /jcBpLp9ugn5dNWqwzvoNuEjzdZjCj7QKBGi753K9UaIYGX1VkD9l3D4WgEcnvsXgv1W
+         1OIqey6NOjWsrGan9RRt5lbWwaAwCY1E898NfBOmpckbJXMd5W75Ol9l56M1dxqr0InX
+         7xwznPdaS1Hqu7LLAOEH+LPcvVwp3HoGY4smqpiRmP5Px/B0DIwvfiWW8cfE5KiBiy3+
+         GcxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXTbEVM9qDOtnH0T55+BJspbjq9AEhLNAUZcqeEzv5QnD27WhjbA4N+pCO9XBBEMRKcFyAcp2NNRm94ahYiHaGgPZKN6PAac8ayzg==
+X-Gm-Message-State: AOJu0YxExAnC8PT7tQhwtsLlYqh04viCo3DeLN+ocSqfDAtkQAq0Ta0u
+	VYSpEXp0ZEebp3CEyJvfEMvr8Faqp+iOYR2PD8vWHKRcX6XqC5RAtaHAkqu++1U=
+X-Google-Smtp-Source: AGHT+IHCoCO6DEuGsOccYDm5/ZkSHsUmm7OTMtTgMzLzeaEljHePUFoXDVgzjeY4+rVjXEay5zGTQA==
+X-Received: by 2002:a05:600c:4595:b0:41c:97e:2100 with SMTP id 5b1f17b1804b1-4212e045524mr72536285e9.3.1717421117078;
+        Mon, 03 Jun 2024 06:25:17 -0700 (PDT)
+Received: from toaster.lan ([2a01:e0a:3c5:5fb1:638a:e591:7142:7b85])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4212b84de44sm117381195e9.11.2024.06.03.06.25.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Jun 2024 06:25:16 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-amlogic@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Jan Dakinevich <jan.dakinevich@salutedevices.com>,
+	Alexander Stein <alexander.stein@mailbox.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>
+Subject: Re: [PATCH v2] dt-bindings: clock: meson: Convert axg-audio-clkc to YAML format
+Date: Mon,  3 Jun 2024 15:24:44 +0200
+Message-ID: <171742077914.140081.9416853265361727678.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240513224552.800153-1-jan.dakinevich@salutedevices.com>
+References: <20240513224552.800153-1-jan.dakinevich@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240603123710.649549-1-hui.wang@canonical.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jun 03, 2024 at 08:37:09PM +0800, Hui Wang wrote:
-> In some designs, the chip reset pin is connected to a gpio, this
-> gpio needs to be set correctly before probing the driver, so adding
-> a reset-gpios in the device tree.
-> 
-> Signed-off-by: Hui Wang <hui.wang@canonical.com>
-> ---
->  Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
-> index 5dec15b7e7c3..62aff6e034cb 100644
-> --- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
-> +++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
-> @@ -28,6 +28,9 @@ properties:
->    clocks:
->      maxItems: 1
->  
-> +  reset-gpios:
-> +    maxItems: 1
-> +
->    clock-frequency:
->      description:
->        When there is no clock provider visible to the platform, this
-> @@ -120,6 +123,7 @@ examples:
->              compatible = "nxp,sc16is752";
->              reg = <0x54>;
->              clocks = <&clk20m>;
-> +            reset-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
+Applied to clk-meson (v6.11/drivers), thanks!
 
-Missing the header for the define.
+[1/1] dt-bindings: clock: meson: Convert axg-audio-clkc to YAML format
+      https://github.com/BayLibre/clk-meson/commit/23dc5f7e181a
 
-Test your bindings before sending.
-
->              interrupt-parent = <&gpio3>;
->              interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
->              nxp,modem-control-line-ports = <0 1>; /* Ports 0 and 1 as modem control lines */
-> -- 
-> 2.34.1
-> 
+Best regards,
+--
+Jerome
 
