@@ -1,119 +1,162 @@
-Return-Path: <devicetree+bounces-71758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E64BD8D7DC1
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 10:47:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EB4E8D7DD0
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 10:48:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22C621C22626
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 08:47:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F06FF1F252E0
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 08:48:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A80EA4D5AB;
-	Mon,  3 Jun 2024 08:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC46A6EB56;
+	Mon,  3 Jun 2024 08:48:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KwTAIS58"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="sZi5ZUBc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBC1F78C63
-	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 08:46:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EFBE74069;
+	Mon,  3 Jun 2024 08:48:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717404381; cv=none; b=aQQCWb+ZqaCPJUJ8j1E1ozeLxSo5wB5bU3wAXEtrFuJKd/lQU7Kzjgjn2LUhyAUPz7sgAUryyRfp9ZN9SH2W6Qy2Udbj2fftZtWugtcNyQoVmIjLECWRQnzB3Z6oIWTQZsVeMQ1q/akeJvQpZk9TxqW53KlCY7a2VjkHsFPtfNw=
+	t=1717404515; cv=none; b=HRNvL+WzR60MgUxq+C0AfCotHlbFoP/3KwFUytpYOop7lyvgHWDh7852mZYB2XHhdaj4ebJRHXR2CvC2+F2Ft8Ahp3tI/N+5U7z7knV5AuD1kavehD+BXzbf29PVNQh4IBtSlFiV5hNcYtYM2PNPYhr0gXzoErlrakDJu/fEE4E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717404381; c=relaxed/simple;
-	bh=Gg6J+xqi5ho5Orc35EIF7ln8eEBv1RCMC9LEm7u9oRY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Om9Dcjq1houN6UdQw87fGhMMxbkOG38leWTg3+TY9RdV/oZjGjyrcB/XsQ+HbM0rfLQkaNdipqJ1zbvxABtkJmic8YnZ15XvkBIUGHQpLoKRoZ7/Yg76O1avEqmeC8vlB4a417S+PZM3VavQnua+Udm0NL+ZE8h6CzNdmMirhLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KwTAIS58; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-42108856c33so23397475e9.1
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2024 01:46:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717404378; x=1718009178; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q1ljPf81ph/W2qxW2onCfyshEo5iYLRHonj3GjJrQNA=;
-        b=KwTAIS58ArRZ4NRCiSkkW2L+TMv3osqIWcy/4WHMBsmL7sEU7s6aysdy1SypBMurRl
-         kIjDznUYtYxIfkf+qcb+tv/XtB4svYKq6vke5LaTT2lk2Rh3YnEW8OKauu5vNqa669bs
-         rmJhIc/gqnUW/CkNIKRFJwUUI1cCXwpu1ENKxXO3cKoglZ4uXv99EGe6AwGeLq6OQ7ZY
-         Oq8G3XV9AwVLaEVHHKLTpYBxSay024KyBNmP9acaSVbLwXHMLKnltTyuhugZH9jSX5os
-         ec4rT0tAQUksJZE6pBm8LplTUvonbMUvWcqNb4rBy4hqDm1JBdcg68KP1vkpDnDcPAfg
-         ChqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717404378; x=1718009178;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=q1ljPf81ph/W2qxW2onCfyshEo5iYLRHonj3GjJrQNA=;
-        b=WC45tcCC0xVG9j8A6vAlXCpTMsZi9acNS3HKtXM49zyEmAUIURZqPRXIuhn5noRiFX
-         jWdC+yrDb+nMdOfg5uYBjZYEvOZuJkD+eIlZlSngr1sNDAshbTfpdmfF3HaYOsuDh5eg
-         bxes3cuGD37DQi/p5UHVWVq/NozI5UUCmAcrwUhFzavhbPn3FtU4Wkj7QlczjcrTszGx
-         nvFi/hMLKKfLRPEyTFqFqukOWjAggUFWyrgEVQkAu2lykG/anixESCWOzUuMpkLVEF7q
-         Cdq94M20T1E/qX9VQL4OLsxxQ00oVOMinwrSQaHhUQIZIAZVrqxGpCcSnKo5iL/r9O+X
-         GPew==
-X-Forwarded-Encrypted: i=1; AJvYcCUfFXII1a56PHmL2c2ER54MgqBu2F28DOLTQe18fYE4xjKog4+i0Ltp798NzOVPpWD+K0XPFbZzpL48n7HRZtibTBguygVYWGCeMA==
-X-Gm-Message-State: AOJu0Yw8GpUa/wUch8OxC2JBzSEUMkPqnX3RVbQX5c8WibE+uzAgsk3F
-	/CTpAKZmf3jKQ0CyOzNMelvQpKHAlIrxvNsLKOFdndnCFTEIH6WbGdJVe7X6vq4=
-X-Google-Smtp-Source: AGHT+IFo417hBZRSwsii+or/d9cHPAd7DacIhAnSF4J8FsbSLQbe4tV7OhSfQWo8c6wzbnIOXzFoTQ==
-X-Received: by 2002:a05:600c:1c11:b0:421:2a54:2f22 with SMTP id 5b1f17b1804b1-4212a543232mr85968895e9.9.1717404378173;
-        Mon, 03 Jun 2024 01:46:18 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4213eca8a51sm16117655e9.14.2024.06.03.01.46.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Jun 2024 01:46:17 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- Ryan Walklin <ryan@testtoast.com>
-Cc: Jessica Zhang <quic_jesszhan@quicinc.com>, 
- Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>, 
- Daniel Vetter <daniel@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Hironori KIKUCHI <kikuchan98@gmail.com>, 
- Chris Morgan <macroalpha82@gmail.com>, 
- Andre Przywara <andre.przywara@arm.com>, John Watts <contact@jookia.org>
-In-Reply-To: <20240530211415.44201-1-ryan@testtoast.com>
-References: <20240530211415.44201-1-ryan@testtoast.com>
-Subject: Re: [PATCH v3 0/2] Add WL-355608-A8 panel
-Message-Id: <171740437725.4156184.17662886246928360602.b4-ty@linaro.org>
-Date: Mon, 03 Jun 2024 10:46:17 +0200
+	s=arc-20240116; t=1717404515; c=relaxed/simple;
+	bh=i/u0QhpikUU4tvXKtYsvQ33uX864CvXsbVERvLau4hQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=AjJ21Mfu8Qm1bUuqZyXQxDr7Q6rQJQJFDHuyXVErrOb723+ze61FKlQl5a9+wFL4Us0zn98hhaypRjJjKbvalrb0QeT8qmgyHKUdWXDD9osjbkKNCMsZyx2X3o6MxHoUSYN35w0SR+vXpXTlu4D9wJ0376tFgQdPycu6CaeusAU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=sZi5ZUBc; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45383dHK009667;
+	Mon, 3 Jun 2024 10:48:24 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	xDFSp0bgHGnb5uhcwyLxi6wynGhrBTigGpLIvo69kPg=; b=sZi5ZUBc0IpoX7Uv
+	+UNd3CMChGZLD5/e2d6zXG4yZ4Ic8jUqNoAePYfGj+BAR3pRXGEGWkgN0xEMut5Z
+	HeFAhp76T1+bKQ2GcYIXlJcuO4yToJqOa3bwcvgsN/DwtbORWLxLxi5TcViayop/
+	+Y6m7E3/NEFOCLvX5ZyYNgYPHT7GngsOahD5BhO6DoC4l9SvjCSFT2P+GB0i6WKm
+	QEmbt3qCsp+a3mmEMkziSL6ZS2OT0eDG+O18IH+ex2g37zjmJMcAmt51YhJ3ZHqo
+	Dmy0GHBEaF0+6KRlvEMxveKwK2KYabqrafIIzj0neOrUcGK/XBxL7iFzK7I3mSXF
+	Aq4L8g==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ygekhkq90-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 03 Jun 2024 10:48:24 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 38FBC40046;
+	Mon,  3 Jun 2024 10:48:20 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9B607215BDB;
+	Mon,  3 Jun 2024 10:47:15 +0200 (CEST)
+Received: from [10.131.140.24] (10.131.140.24) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 3 Jun
+ 2024 10:47:14 +0200
+Message-ID: <5e21a6a5-0003-4b6c-a051-25ebeb38e676@foss.st.com>
+Date: Mon, 3 Jun 2024 10:47:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: Add ST VD56G3 camera sensor
+ binding
+To: Sakari Ailus <sakari.ailus@iki.fi>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>
+CC: <benjamin.mugnier@foss.st.com>, <mchehab@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20240521162950.6987-1-sylvain.petinot@foss.st.com>
+ <20240521162950.6987-2-sylvain.petinot@foss.st.com>
+ <8afe1888-5886-45fc-b576-98db3d392d37@linaro.org>
+ <ZlWiQTfag5yTA4YM@valkosipuli.retiisi.eu>
+ <b6d3d336-5999-424a-9e38-3cf793b6627e@linaro.org>
+ <ZlWrcTCNBWEz67Tj@valkosipuli.retiisi.eu>
+From: Sylvain Petinot <sylvain.petinot@foss.st.com>
+Content-Language: en-US
+In-Reply-To: <ZlWrcTCNBWEz67Tj@valkosipuli.retiisi.eu>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-06-03_05,2024-05-30_01,2024-05-17_01
 
-Hi,
+Hi Krzysztof, Sakari
 
-On Fri, 31 May 2024 09:12:12 +1200, Ryan Walklin wrote:
-> V3 of this patch with further cleanup to DT binding example code and whitespace fixes in driver code. No functional change from V2.
+On 5/28/2024 12:01 PM, Sakari Ailus wrote:
+> Hi Krzysztof,
 > 
-> Original cover below.
-> --
+> On Tue, May 28, 2024 at 11:46:00AM +0200, Krzysztof Kozlowski wrote:
+>> On 28/05/2024 11:22, Sakari Ailus wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On Mon, May 27, 2024 at 09:04:38PM +0200, Krzysztof Kozlowski wrote:
+>>>> On 21/05/2024 18:29, Sylvain Petinot wrote:
+>>>>> Add devicetree bindings Documentation for ST VD56G3 & ST VD66GY camera
+>>>>> sensors. Update MAINTAINERS file.
+>>>>>
+>>>>> Signed-off-by: Sylvain Petinot <sylvain.petinot@foss.st.com>
+>>>>
+>>>>
+>>>>> diff --git a/MAINTAINERS b/MAINTAINERS
+>>>>> index ef6be9d95143..554e6861425b 100644
+>>>>> --- a/MAINTAINERS
+>>>>> +++ b/MAINTAINERS
+>>>>> @@ -20885,6 +20885,15 @@ S:	Maintained
+>>>>>  F:	Documentation/hwmon/stpddc60.rst
+>>>>>  F:	drivers/hwmon/pmbus/stpddc60.c
+>>>>>  
+>>>>> +ST VD56G3 DRIVER
+>>>
+>>> I might add this is a sensor, i.e. "ST VD653G IMAGE SENSOR DRIVER".
+>>>
+>>>>> +M:	Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+>>>>> +M:	Sylvain Petinot <sylvain.petinot@foss.st.com>
+>>>>> +L:	linux-media@vger.kernel.org
+>>>>> +S:	Maintained
+>>>>> +T:	git git://linuxtv.org/media_tree.git
+>>>>
+>>>> This is a friendly reminder during the review process.
+>>>>
+>>>> It seems my or other reviewer's previous comments were not fully
+>>>> addressed. Maybe the feedback got lost between the quotes, maybe you
+>>>> just forgot to apply it. Please go back to the previous discussion and
+>>>> either implement all requested changes or keep discussing them.
+>>>
+>>> The above MAINTAINERS entry is roughly in line with what else we have for
+>>> the Media tree. I'm in favour of listing the people who would look after
+>>> the driver, not just those who merge the patches (or even send PRs to
+>>> Linus).
+>>
+>> I did not propose to drop the entry.
+>>
+>>>
+>>> In other words, I think the above entry is fine as-is.
+>>
+>> I propose to drop duplicated, redundant git entry. Maintainer of this
 > 
-> The WL_355608_A8 panel is a VGA LCD display with an NV3052C-compatible driver IC, used in a number of Anbernic handheld gaming devices. This patch adds a device tree binding, and support for the display timings and init sequence to the NV3052C SPI/RGB driver.
+> Ah, I agree, that makes sense.
+
+Thanks for clarifying, git entry will be drop in V3.
+
 > 
-> [...]
+>> driver does not have access to git tree and the git tree is already
+>> explained in media subsystem entry. If you ever update the git tree, you
+>> need to update 100 driver entries which is meaningless...
+> 
 
-Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
-
-[1/2] dt-bindings: display: panel: Add WL-355608-A8 panel
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/45b888a8980ae9a09fbf2f50b0ffb7505a834533
-[2/2] drm: panel: nv3052c: Add WL-355608-A8 panel
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/62ea2eeba7bf11f4b04e080475de93c2f8ee0f92
-
--- 
-Neil
-
+--
+Sylvain
 
