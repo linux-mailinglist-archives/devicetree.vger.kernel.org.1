@@ -1,63 +1,57 @@
-Return-Path: <devicetree+bounces-71866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46BF68D843B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 15:42:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 133D78D844D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 15:46:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A8D21C21DB4
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 13:42:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8884BB21B7E
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 13:46:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 328DA12E1CE;
-	Mon,  3 Jun 2024 13:41:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mrVLPgLC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D29BE12CD89;
+	Mon,  3 Jun 2024 13:46:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0791912DD91;
-	Mon,  3 Jun 2024 13:41:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DE1A1E4AB;
+	Mon,  3 Jun 2024 13:46:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717422085; cv=none; b=qAdRlizbaGdT5YyPXz/X3lUGSV+6Is9TGsk6UL2/0z+qBuIdsJFOb8aPP/DJ5wTx5PCrIxE2zRd8JNcDWjXp0lswn0ZKqrmrtWwtEXyKZQ5uL3wWl4GEgopq2oYfbl60bDi6T43VH6NvI3H7Xjkr2VEP26zk3QQDYGo2veR0ogs=
+	t=1717422403; cv=none; b=g/p1tut8CTiPq/sExAElTJ79m/iNE0wNSz7BxfyicfhLOptqWjdOySmYdsqs9nEcym0L5J7BVWFWGkhX+RNXGzx9XaMKEITr3W6IKZxLEzG72Ao0dG8k034Tbx+81251l5VhxLFWPMesxfWyvZsJbxs/4dDijH5MYgd1J82r0pg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717422085; c=relaxed/simple;
-	bh=xJc0AqiQQy29me8ABZmN4bLw9qKXRmQk/m23w3aMWzo=;
+	s=arc-20240116; t=1717422403; c=relaxed/simple;
+	bh=XRP1xecKexsIISxwWxTr4YF0cg8wVxRNcwh8O3EOjk8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XuqoFmDzkdj3e0DxbYJEfATV2FgxmqkP/v9NYo+U9yq0Xbde38xB9ffQgiz8NBrw7PTv5tqHQ+qGnZSjQnTywF9PmgNAqki1O7ZLHx+5G2kbqRiKMnwaC1DYR7niv2SDUrBDla9kNkj+azh9vYp0Do2LumRS6DX5wQ6KmtCLOM8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mrVLPgLC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AC77C32781;
-	Mon,  3 Jun 2024 13:41:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717422084;
-	bh=xJc0AqiQQy29me8ABZmN4bLw9qKXRmQk/m23w3aMWzo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mrVLPgLC5HvIM6QZDKMEmG2pQz6gMGTRQCTff9vNcCCNSJXylXLt3Gv6xP5sO+7Ks
-	 8P1Q9ERz0Xvf4zWFziee5N4XdHSvaRVJQ9Y0/0MNXScCpBEsYHHuMO1ZFTH1j4CjS6
-	 K3HnlWV5VqFdod/imHOqV2U9SPGlr/WhdYmOOt8m6BNfmnHVblKYjMlZCrN3LTteFx
-	 EwnfAqGe/lVTWeiLNguwOOBkENiY7RpjU95yZ3OE1him7TZWVpqGHNytWrVA6lsspF
-	 vts19f5E9lahhL/yFdFdiKY8Nn9sTnf8Moz7KTCylek4wevly8MyUkUkOK0lx1rQ+P
-	 g782GKVj+0SIg==
-Date: Mon, 3 Jun 2024 08:41:21 -0500
-From: Rob Herring <robh@kernel.org>
-To: Kanak Shilledar <kanakshilledar@gmail.com>
-Cc: Kanak Shilledar <kanakshilledar111@protonmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Stefan Wahren <wahrenst@gmx.net>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [RESEND v3] dt-bindings: spi: brcm,bcm2835-spi: convert to
- dtschema
-Message-ID: <20240603134121.GA168897-robh@kernel.org>
-References: <20240531122941.3524-1-kanakshilledar111@protonmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=rufPsiowxiCpPyEuNssHJfhGuEfXi5ukyFATrbWVqepdyZMUrhI8aNWGMRwmjynhKV3cmjrFCrkAfzXwZHf/aCm2HrLEd6POgqveLeKuOoL3sfcvWe3/1e9PRwa2k2sonlmQjj440CI2X6i6sO/dyZgGHA2InKhapKWGidhEvhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D2E851042;
+	Mon,  3 Jun 2024 06:47:05 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F09023F64C;
+	Mon,  3 Jun 2024 06:46:38 -0700 (PDT)
+Date: Mon, 3 Jun 2024 14:46:36 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Cristian Marussi <cristian.marussi@arm.com>,
+	Rob Herring <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Dong Aisheng <aisheng.dong@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-gpio@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 2/3] pinctrl: scmi: add blocklist
+Message-ID: <Zl3JPF1rF2JOal8I@bogus>
+References: <20240521-pinctrl-scmi-imx95-v1-0-9a1175d735fd@nxp.com>
+ <20240521-pinctrl-scmi-imx95-v1-2-9a1175d735fd@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,119 +60,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240531122941.3524-1-kanakshilledar111@protonmail.com>
+In-Reply-To: <20240521-pinctrl-scmi-imx95-v1-2-9a1175d735fd@nxp.com>
 
-On Fri, May 31, 2024 at 05:59:37PM +0530, Kanak Shilledar wrote:
-> From: Kanak Shilledar <kanakshilledar@gmail.com>
+On Tue, May 21, 2024 at 02:25:58PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Convert the Broadcom BCM2835 SPI0 controller to newer DT
-> schema. Created DT schema based on the .txt file which had
-> `comaptible`, `reg`, `interrupts`, `clocks` as required
-> properties.
-> Added GPL-2.0 OR BSD-2-Clause License
-> 
-> Signed-off-by: Kanak Shilledar <kanakshilledar111@protonmail.com>
+> i.MX95 will have its own pinctrl scmi driver, so need block
+> pinctrl-scmi driver for i.MX95, otherwise there will be two pinctrl
+> devices for a single scmi protocol@19.
+>
 
-You forgot Conor's Reviewed-by tag.
+I am not happy with NXP's we will use SCMI but in our own custom way.
+So take one last change to crib about it and hence reluctantly,
 
-> ---
-> Changes in v3:
-> - Updated DCO email address
-> Changes in v2:
-> - Updated the maintainers
-> ---
->  .../bindings/spi/brcm,bcm2835-spi.txt         | 23 ---------
->  .../bindings/spi/brcm,bcm2835-spi.yaml        | 50 +++++++++++++++++++
->  2 files changed, 50 insertions(+), 23 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.txt
->  create mode 100644 Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.txt b/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.txt
-> deleted file mode 100644
-> index 3d55dd64b1be..000000000000
-> --- a/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.txt
-> +++ /dev/null
-> @@ -1,23 +0,0 @@
-> -Broadcom BCM2835 SPI0 controller
-> -
-> -The BCM2835 contains two forms of SPI master controller, one known simply as
-> -SPI0, and the other known as the "Universal SPI Master"; part of the
-> -auxiliary block. This binding applies to the SPI0 controller.
-> -
-> -Required properties:
-> -- compatible: Should be one of "brcm,bcm2835-spi" for BCM2835/2836/2837 or
-> -  "brcm,bcm2711-spi" for BCM2711 or "brcm,bcm7211-spi" for BCM7211.
-> -- reg: Should contain register location and length.
-> -- interrupts: Should contain interrupt.
-> -- clocks: The clock feeding the SPI controller.
-> -
-> -Example:
-> -
-> -spi@20204000 {
-> -	compatible = "brcm,bcm2835-spi";
-> -	reg = <0x7e204000 0x1000>;
-> -	interrupts = <2 22>;
-> -	clocks = <&clk_spi>;
-> -	#address-cells = <1>;
-> -	#size-cells = <0>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml b/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml
-> new file mode 100644
-> index 000000000000..94da68792194
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/brcm,bcm2835-spi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom BCM2835 SPI0 controller
-> +
-> +maintainers:
-> +  - Florian Fainelli <florian.fainelli@broadcom.com>
-> +  - Kanak Shilledar <kanakshilledar111@protonmail.com>
-> +  - Stefan Wahren <wahrenst@gmx.net>
-> +
-> +allOf:
-> +  - $ref: spi-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - brcm,bcm2835-spi
-> +      - brcm,bcm2711-spi
-> +      - brcm,bcm7211-spi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi@20204000 {
-> +        compatible = "brcm,bcm2835-spi";
-> +        reg = <0x7e204000 0x1000>;
-> +        interrupts = <2 22>;
-> +        clocks = <&clk_spi>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +    };
-> -- 
-> 2.34.1
-> 
+Acked-by: Sudeep Holla <sudeep.holla@arm.com>
+
+--
+Regards,
+Sudeep
 
