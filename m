@@ -1,1083 +1,588 @@
-Return-Path: <devicetree+bounces-71992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CF838FA639
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 01:10:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F5588FA644
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 01:16:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B39D61C22015
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 23:10:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A01441F21399
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 23:16:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDD5613B582;
-	Mon,  3 Jun 2024 23:10:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9C7C3E49E;
+	Mon,  3 Jun 2024 23:16:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YMcInWmb"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="it9/yjw4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E01E82D9C;
-	Mon,  3 Jun 2024 23:10:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83D8B1E49B;
+	Mon,  3 Jun 2024 23:16:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717456251; cv=none; b=KBDI2rTweRvLr4P6BWG3V+0NyctXhoxoLls8X6t7dr6F87XHNuKp6f635yzjNdp1o6DZqNjk86JKu/+Rax15wJQbum3tzYd8/2EENN5mj4mOGbV1khO8933ptDKeH3KNmW6qKB+vK5IMOJvXpDX1uO+/NmFACrIuezSieHDkWZI=
+	t=1717456589; cv=none; b=mpRAcTehZBBysczlEmz0Q+7Z69PG6FWqSY5rKdEvhTQvAD8uEOMWc/WA2RTtSIPNDlzYbEVN1lwh1S/YLBLM13u6YMnLcS9Fgf7A3rooXDR8VPnBcqDtbTfcE39fYoajUjE5etyogCJQLahts0EQX2MhSa57PsEc3QVUonOOPUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717456251; c=relaxed/simple;
-	bh=WAmYPaWC8FfKuhD4YwhWDAjfNi++3wg9Usvl4dsEFXE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CezsOie4r4DAoxPN+pGgWk4zeHVn2ulwlh5+r/HoXOo7JNp6Is5dHzmFPiYouPQr5QBY6jOius78sRdQ4/Hszj5EMsPkOD8UDSQbSL6lSAbBDiv8/5hV/O8/2nMDCTwFJLP0tDWV08sA3Jd7hIU4mhviAKxLqm/f+gcrB6kV5D0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YMcInWmb; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5295e488248so5145309e87.2;
-        Mon, 03 Jun 2024 16:10:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717456247; x=1718061047; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FXRgM5b8sfRQ6jks91zv0Mxyu68zt6GKdveS8K9T6Jg=;
-        b=YMcInWmbguQQNGEFgVLjvrDLyd0IeYpBj7cWhF95zWumVtIEFCQvP79FfEpAHkH6xA
-         CUoN+PVk9lpkO2YOxNjUeyw3rdJofoM9nGNK/ZncozkfbAcg045MQbEtBExW8Td7M1b/
-         Kl8YGwfwfQYKqZEmMSxJoQggIbKMyFzmFm1XqcAFbsJMuiSyuQqYuknyGu2dSSd2JnCM
-         54kIWLr12SZG4aiJVzdIfN1U7LWYYSEF+uRIuTiPisAtdVLAoiDVTdHX0v9QDJzBfZ2k
-         Y2MKqbobflJBULCj84cJlOjfgZN6SjmtPkmk2bcz9Ap0BWS71aELbLV2ViNmSWswwVWq
-         qmGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717456247; x=1718061047;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FXRgM5b8sfRQ6jks91zv0Mxyu68zt6GKdveS8K9T6Jg=;
-        b=Y8IYBYKERDm3b8RBdYRbKqE/hHDPspriIQ+t/KSRw1qiHBQzDtj8PcehQWf54nqmO9
-         CAXHp5IKk1zZ2MePguUaRZc5/kp0rnlSJnbGoV93xvml1Mw5uKo4IrgCYoe1DRFNWUD8
-         fDHrey2qx70Up+xn1gPWvJ9aE4qc/qqTN+d7itO8rCABAs+eD/C4MU7/va7vp+NzVA8X
-         M0Id7t3ML0Py5mhSLM0e1G74sIVA63YdTpp2hWymE/JK2QHy39ZDDqlPYiFMfCcQh+DO
-         rHsGCTLVcFdyz4TXZCDD6P/aZMQfAbuMZUJKC/BOH5nZ8rd2hsvS8lFDvR/eSger502S
-         qU6g==
-X-Forwarded-Encrypted: i=1; AJvYcCX+P+w6EONy8+cprlvVSPn0W+8u36LolppLi8BaVxo8h7gcFBfiyhOV2V9rvHtLWgpC/NKUMUzm0dQ3sbwKnMb/prAuuOac7Uv/uC5YuO6oRkfZs1TSqgnnj7OMIp3qBWiwhdA33w==
-X-Gm-Message-State: AOJu0Yx+OpUcAlRNT6AqbrbwsTXVQucZ03so1VZOpn1YXG59zzR6+E6i
-	73s+pFBK2S4jg2jREb/DPDN3koHFiYV7WnmEEWX9/uuUCmD8PysEaVn+Sx+l
-X-Google-Smtp-Source: AGHT+IEEWmgOOm59tl2YLNV30kYeNU6Nkz51IwVriPRTTctfmZDI1YAm8CM/8yZhXqNG3ioN/5PNOA==
-X-Received: by 2002:ac2:5dc3:0:b0:52b:88db:a554 with SMTP id 2adb3069b0e04-52b89564ffcmr6932066e87.8.1717456246751;
-        Mon, 03 Jun 2024 16:10:46 -0700 (PDT)
-Received: from [192.168.0.31] (84-115-213-103.cable.dynamic.surfer.at. [84.115.213.103])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a68bf18f58fsm387275266b.163.2024.06.03.16.10.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jun 2024 16:10:46 -0700 (PDT)
-Message-ID: <39710806-3151-4b57-9af4-c0b4a4d21c28@gmail.com>
-Date: Tue, 4 Jun 2024 01:10:44 +0200
+	s=arc-20240116; t=1717456589; c=relaxed/simple;
+	bh=4WRnzBMN3dcm6DM+T7qi3zxZSsH6mE3UP7BUvkHdClo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=q3CSBBFM+wlDr56wruYQS0tYEnOb0O5IrxGiDB4k9SRWBXd4thz1+rqI3kqmLZBaZOn8ABvYh1nUHTr9JecLzlNdbHgA/y/b7CBHDMhG0XQcnz01JtZ+iv2+QRg0+f5JOfKJyJf5+6A2bU53TM7FwStwxvOu/eX+kG+iwA1vlWY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=it9/yjw4; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 453DoklF026047;
+	Mon, 3 Jun 2024 23:16:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	K+GjilXyJc5uv2Qstp73XW7XsQO3qCV1udkOay+MaNY=; b=it9/yjw47PvMln88
+	DY+q5H68Rd7PmXzHdqfTRNxw2wa20Jdazd+vabbinOmLlvba7CqhiI1WJ0Aekph7
+	6lXonhngbsZoq7SYlhTvBZoix/RtjT51ewfx47iNYJ9/882wVhsKSfjmEAek+U9Z
+	h8usamHgjvgwbigQ9sTifVBFnSnfL7usQ9E2Ik5u9VYSgOFoZOPTfov2s2QBnhAw
+	zWfc/FmH6qWQsftPPJNrGfxOb3yI9QWdKktcy7IoVt1mV/fKW7jVq9Q21Fb6y1mh
+	BMWzPhoN1RZpQrj0IzBxI//ptJx4mB+4t7MQLUJt0Fd5cTAXqJgJoiCBCwvJ4/W0
+	P3S8Vw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yfw42w5yq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 03 Jun 2024 23:16:04 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 453NG3Vb028228
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 3 Jun 2024 23:16:03 GMT
+Received: from [10.110.93.51] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 3 Jun 2024
+ 16:16:02 -0700
+Message-ID: <e570b27e-b0eb-2ffe-4baf-2933c8ae49fc@quicinc.com>
+Date: Mon, 3 Jun 2024 16:15:32 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] iio: light: ROHM BH1745 colour sensor
-To: Mudit Sharma <muditsharma.info@gmail.com>, ivan.orlov0322@gmail.com,
- jic23@kernel.org, lars@metafoo.de, krzk+dt@kernel.org, conor+dt@kernel.org,
- robh@kernel.org
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240603162122.165943-1-muditsharma.info@gmail.com>
- <20240603162122.165943-2-muditsharma.info@gmail.com>
-Content-Language: en-US, de-AT
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-In-Reply-To: <20240603162122.165943-2-muditsharma.info@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v22 00/38] Introduce QC USB SND audio offloading support
+To: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
+        <lgirdwood@gmail.com>, <tiwai@suse.com>, <krzk+dt@kernel.org>,
+        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
+        <bgoswami@quicinc.com>, <robh@kernel.org>,
+        <gregkh@linuxfoundation.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>
+References: <20240524001043.10141-1-quic_wcheng@quicinc.com>
+Content-Language: en-US
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <20240524001043.10141-1-quic_wcheng@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: wkSEtPc2rJorcIcM2Ito56gH-zBKEgSh
+X-Proofpoint-ORIG-GUID: wkSEtPc2rJorcIcM2Ito56gH-zBKEgSh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-06-03_17,2024-05-30_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
+ impostorscore=0 mlxlogscore=999 clxscore=1015 bulkscore=0
+ priorityscore=1501 suspectscore=0 phishscore=0 malwarescore=0 adultscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406030188
 
-On 03/06/2024 18:21, Mudit Sharma wrote:
-> Add support for BH1745, which is an I2C colour sensor with red, green,
-> blue and clear channels. It has a programmable active low interrupt pin.
-> Interrupt occurs when the signal from the selected interrupt source
-> channel crosses set interrupt threshold high or low level.
+
+
+On 5/23/2024 5:10 PM, Wesley Cheng wrote:
+> Requesting to see if we can get some Acked-By tags, and merge on usb-next.
 > 
-> This driver includes device attributes to configure the following:
-> - Interrupt pin latch: The interrupt pin can be configured to
->   be latched (until interrupt register (0x60) is read or initialized)
->   or update after each measurement.
-> - Interrupt source: The colour channel that will cause the interrupt
->   when channel will cross the set threshold high or low level.
+
+Hi Takashi/Mark/Mathias,
+
+Since this series includes dependencies from multiple SW areas and 
+maintainers, can we consider getting some ACK'ed by/Reviewed by tags if 
+things look good?  I believe Greg mentioned he would be open to add 
+these all on usb-next when we get these tags.
+
+That would probably make the submission easier to handle.
+
+Thanks
+Wesley Cheng
+
+> Several Qualcomm based chipsets can support USB audio offloading to a
+> dedicated audio DSP, which can take over issuing transfers to the USB
+> host controller.  The intention is to reduce the load on the main
+> processors in the SoC, and allow them to be placed into lower power modes.
+> There are several parts to this design:
+>    1. Adding ASoC binding layer
+>    2. Create a USB backend for Q6DSP
+>    3. Introduce XHCI interrupter support
+>    4. Create vendor ops for the USB SND driver
 > 
-> This driver also includes device attributes to present valid
-> configuration options/values for:
-> - Integration time
-> - Interrupt colour source
-> - Hardware gain
+>        USB                          |            ASoC
+> --------------------------------------------------------------------
+>                                     |  _________________________
+>                                     | |sm8250 platform card     |
+>                                     | |_________________________|
+>                                     |         |           |
+>                                     |      ___V____   ____V____
+>                                     |     |Q6USB   | |Q6AFE    |
+>                                     |     |"codec" | |"cpu"    |
+>                                     |     |________| |_________|
+>                                     |         ^  ^        ^
+>                                     |         |  |________|
+>                                     |      ___V____    |
+>                                     |     |SOC-USB |   |
+>     ________       ________               |        |   |
+>    |USB SND |<--->|QC offld|<------------>|________|   |
+>    |(card.c)|     |        |<----------                |
+>    |________|     |________|___     | |                |
+>        ^               ^       |    | |    ____________V_________
+>        |               |       |    | |   |APR/GLINK             |
+>     __ V_______________V_____  |    | |   |______________________|
+>    |USB SND (endpoint.c)     | |    | |              ^
+>    |_________________________| |    | |              |
+>                ^               |    | |   ___________V___________
+>                |               |    | |->|audio DSP              |
+>     ___________V_____________  |    |    |_______________________|
+>    |XHCI HCD                 |<-    |
+>    |_________________________|      |
 > 
-> Signed-off-by: Mudit Sharma <muditsharma.info@gmail.com>
-
-Hi Mudit,
-
-a few minor comments inline.
-
-> ---
-> v1->v2:
-> - No changes
 > 
->  drivers/iio/light/Kconfig  |  12 +
->  drivers/iio/light/Makefile |   1 +
->  drivers/iio/light/bh1745.c | 879 +++++++++++++++++++++++++++++++++++++
->  3 files changed, 892 insertions(+)
->  create mode 100644 drivers/iio/light/bh1745.c
+> Adding ASoC binding layer:
+> soc-usb: Intention is to treat a USB port similar to a headphone jack.
+> The port is always present on the device, but cable/pin status can be
+> enabled/disabled.  Expose mechanisms for USB backend ASoC drivers to
+> communicate with USB SND.
 > 
-> diff --git a/drivers/iio/light/Kconfig b/drivers/iio/light/Kconfig
-> index 9a587d403118..6e0bd2addf9e 100644
-> --- a/drivers/iio/light/Kconfig
-> +++ b/drivers/iio/light/Kconfig
-> @@ -114,6 +114,18 @@ config AS73211
->  	 This driver can also be built as a module.  If so, the module
->  	 will be called as73211.
->  
-> +config BH1745
-> +	tristate "ROHM BH1745 colour sensor"
-> +	depends on I2C
-> +	select REGMAP_I2C
-> +	select IIO_BUFFER
-> +	select IIO_TRIGGERED_BUFFER
-> +	help
-> +	  Say Y here to build support for the ROHM bh1745 colour sensor.
-> +
-> +	  To compile this driver as a module, choose M here: the module will
-> +	  be called bh1745.
-> +
->  config BH1750
->  	tristate "ROHM BH1750 ambient light sensor"
->  	depends on I2C
-> diff --git a/drivers/iio/light/Makefile b/drivers/iio/light/Makefile
-> index a30f906e91ba..939a701a06ac 100644
-> --- a/drivers/iio/light/Makefile
-> +++ b/drivers/iio/light/Makefile
-> @@ -13,6 +13,7 @@ obj-$(CONFIG_APDS9300)		+= apds9300.o
->  obj-$(CONFIG_APDS9306)		+= apds9306.o
->  obj-$(CONFIG_APDS9960)		+= apds9960.o
->  obj-$(CONFIG_AS73211)		+= as73211.o
-> +obj-$(CONFIG_BH1745)		+= bh1745.o
->  obj-$(CONFIG_BH1750)		+= bh1750.o
->  obj-$(CONFIG_BH1780)		+= bh1780.o
->  obj-$(CONFIG_CM32181)		+= cm32181.o
-> diff --git a/drivers/iio/light/bh1745.c b/drivers/iio/light/bh1745.c
-> new file mode 100644
-> index 000000000000..a7b660a1bdc8
-> --- /dev/null
-> +++ b/drivers/iio/light/bh1745.c
-> @@ -0,0 +1,879 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * ROHM BH1745 digital colour sensor driver
-> + *
-> + * Copyright (C) Mudit Sharma <muditsharma.info@gmail.com>
-> + *
-> + * 7-bit I2C slave addresses:
-> + *  0x38 (ADDR pin low)
-> + *  0x39 (ADDR pin high)
-> + *
-> + */
-> +
-> +#include <linux/i2c.h>
-> +#include <linux/mutex.h>
-> +#include <linux/util_macros.h>
-> +#include <linux/iio/events.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/sysfs.h>
-> +#include <linux/iio/trigger.h>
-> +#include <linux/iio/trigger_consumer.h>
-> +#include <linux/iio/triggered_buffer.h>
-> +
-> +#define BH1745_MOD_NAME "bh1745"
-
-Given that this define is only used in one place, using the string
-directly is common practice in iio.
-
-> +
-> +/* BH1745 config regs */
-> +#define BH1745_SYS_CTRL 0x40
-> +
-> +#define BH1745_MODE_CTRL_1 0x41
-> +#define BH1745_MODE_CTRL_2 0x42
-> +#define BH1745_MODE_CTRL_3 0x44
-> +
-> +#define BH1745_INTR 0x60
-> +#define BH1745_INTR_STATUS BIT(7)
-> +
-> +#define BH1745_PERSISTENCE 0x61
-> +
-> +#define BH1745_TH_LSB 0X62
-> +#define BH1745_TH_MSB 0X63
-> +
-> +#define BH1745_TL_LSB 0X64
-> +#define BH1745_TL_MSB 0X65
-> +
-> +#define BH1745_THRESHOLD_MAX 0xFFFF
-> +#define BH1745_THRESHOLD_MIN 0x0
-> +
-> +#define BH1745_MANU_ID 0X92
-> +
-> +/* BH1745 output regs */
-> +#define BH1745_R_LSB 0x50
-> +#define BH1745_R_MSB 0x51
-> +#define BH1745_G_LSB 0x52
-> +#define BH1745_G_MSB 0x53
-> +#define BH1745_B_LSB 0x54
-> +#define BH1745_B_MSB 0x55
-> +#define BH1745_CLR_LSB 0x56
-> +#define BH1745_CLR_MSB 0x57
-> +
-> +#define BH1745_SW_RESET BIT(7)
-> +#define BH1745_INT_RESET BIT(6)
-> +
-> +#define BH1745_MEASUREMENT_TIME_MASK GENMASK(2, 0)
-> +
-> +#define BH1745_RGBC_EN BIT(4)
-> +
-> +#define BH1745_ADC_GAIN_MASK GENMASK(1, 0)
-> +
-> +#define BH1745_INT_ENABLE BIT(0)
-> +#define BH1745_INT_SIGNAL_ACTIVE BIT(7)
-> +
-> +#define BH1745_INT_SIGNAL_LATCHED BIT(4)
-> +#define BH1745_INT_SIGNAL_LATCH_OFFSET 4
-> +
-> +#define BH1745_INT_SOURCE_MASK GENMASK(3, 2)
-> +#define BH1745_INT_SOURCE_OFFSET 2
-> +
-> +#define BH1745_INT_TIME_AVAILABLE "0.16 0.32 0.64 1.28 2.56 5.12"
-> +#define BH1745_HARDWAREGAIN_AVAILABLE "1 2 16"
-> +#define BH1745_INT_COLOUR_CHANNEL_AVAILABLE \
-> +	"0 (Red Channel) 1 (Green Channel) 2 (Blue channel) 3 (Clear channel)"
-> +
-> +static const int bh1745_int_time[][2] = {
-> +	{ 0, 160000 }, /* 160 ms */
-> +	{ 0, 320000 }, /* 320 ms */
-> +	{ 0, 640000 }, /* 640 ms */
-> +	{ 1, 280000 }, /* 1280 ms */
-> +	{ 2, 560000 }, /* 2560 ms */
-> +	{ 5, 120000 }, /* 5120 ms */
-> +};
-> +
-> +static const u8 bh1745_gain_factor[] = { 1, 2, 16 };
-> +
-> +enum {
-> +	BH1745_INT_SOURCE_RED,
-> +	BH1745_INT_SOURCE_GREEN,
-> +	BH1745_INT_SOURCE_BLUE,
-> +	BH1745_INT_SOURCE_CLEAR,
-> +} bh1745_int_source;
-> +
-> +enum {
-> +	BH1745_ADC_GAIN_1X,
-> +	BH1745_ADC_GAIN_2X,
-> +	BH1745_ADC_GAIN_16X,
-> +} bh1745_gain;
-> +
-> +enum {
-> +	BH1745_MEASUREMENT_TIME_160MS,
-> +	BH1745_MEASUREMENT_TIME_320MS,
-> +	BH1745_MEASUREMENT_TIME_640MS,
-> +	BH1745_MEASUREMENT_TIME_1280MS,
-> +	BH1745_MEASUREMENT_TIME_2560MS,
-> +	BH1745_MEASUREMENT_TIME_5120MS,
-> +} bh1745_measurement_time;
-> +
-> +enum {
-> +	BH1745_PRESISTENCE_UPDATE_TOGGLE,
-> +	BH1745_PRESISTENCE_UPDATE_EACH_MEASUREMENT,
-> +	BH1745_PRESISTENCE_UPDATE_FOUR_MEASUREMENT,
-> +	BH1745_PRESISTENCE_UPDATE_EIGHT_MEASUREMENT,
-> +} bh1745_presistence_value;
-> +
-> +struct bh1745_data {
-> +	struct mutex lock;
-> +	struct regmap *regmap;
-> +	struct i2c_client *client;
-> +	struct iio_trigger *trig;
-> +	u8 mode_ctrl1;
-> +	u8 mode_ctrl2;
-> +	u8 int_src;
-> +	u8 int_latch;
-> +	u8 interrupt;
-> +};
-> +
-> +static const struct regmap_range bh1745_volatile_ranges[] = {
-> +	regmap_reg_range(BH1745_MODE_CTRL_2, BH1745_MODE_CTRL_2), /* VALID */
-> +	regmap_reg_range(BH1745_R_LSB, BH1745_CLR_MSB), /* Data */
-> +	regmap_reg_range(BH1745_INTR, BH1745_INTR), /* Interrupt */
-> +};
-> +
-> +static const struct regmap_access_table bh1745_volatile_regs = {
-> +	.yes_ranges = bh1745_volatile_ranges,
-> +	.n_yes_ranges = ARRAY_SIZE(bh1745_volatile_ranges),
-> +};
-> +
-> +static const struct regmap_range bh1745_read_ranges[] = {
-> +	regmap_reg_range(BH1745_SYS_CTRL, BH1745_MODE_CTRL_2),
-> +	regmap_reg_range(BH1745_R_LSB, BH1745_CLR_MSB),
-> +	regmap_reg_range(BH1745_INTR, BH1745_INTR),
-> +	regmap_reg_range(BH1745_PERSISTENCE, BH1745_TL_MSB),
-> +	regmap_reg_range(BH1745_MANU_ID, BH1745_MANU_ID),
-> +};
-> +
-> +static const struct regmap_access_table bh1745_ro_regs = {
-> +	.yes_ranges = bh1745_read_ranges,
-> +	.n_yes_ranges = ARRAY_SIZE(bh1745_read_ranges),
-> +};
-> +
-> +static const struct regmap_range bh1745_writable_ranges[] = {
-> +	regmap_reg_range(BH1745_SYS_CTRL, BH1745_MODE_CTRL_2),
-> +	regmap_reg_range(BH1745_PERSISTENCE, BH1745_TL_MSB),
-> +};
-> +
-> +static const struct regmap_access_table bh1745_wr_regs = {
-> +	.yes_ranges = bh1745_writable_ranges,
-> +	.n_yes_ranges = ARRAY_SIZE(bh1745_writable_ranges),
-> +};
-> +
-> +static const struct regmap_config bh1745_regmap = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = BH1745_MANU_ID,
-> +	.cache_type = REGCACHE_RBTREE,
-> +	.volatile_table = &bh1745_volatile_regs,
-> +	.wr_table = &bh1745_wr_regs,
-> +	.rd_table = &bh1745_ro_regs,
-> +};
-> +
-> +static const struct iio_event_spec bh1745_event_spec[] = {
-> +	{
-> +		.type = IIO_EV_TYPE_THRESH,
-> +		.dir = IIO_EV_DIR_RISING,
-> +		.mask_shared_by_type = BIT(IIO_EV_INFO_VALUE),
-> +	},
-> +	{
-> +		.type = IIO_EV_TYPE_THRESH,
-> +		.dir = IIO_EV_DIR_FALLING,
-> +		.mask_shared_by_type = BIT(IIO_EV_INFO_VALUE),
-> +	},
-> +	{
-> +		.type = IIO_EV_TYPE_THRESH,
-> +		.dir = IIO_EV_DIR_EITHER,
-> +		.mask_shared_by_type = BIT(IIO_EV_INFO_PERIOD),
-> +	},
-> +};
-> +
-> +#define BH1745_CHANNEL(_colour, _si, _addr)                                   \
-> +	{                                                                     \
-> +		.type = IIO_INTENSITY, .modified = 1,                         \
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),                 \
-> +		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_HARDWAREGAIN) | \
-> +					    BIT(IIO_CHAN_INFO_INT_TIME),      \
-> +		.event_spec = bh1745_event_spec,                              \
-> +		.num_event_specs = ARRAY_SIZE(bh1745_event_spec),             \
-> +		.channel2 = IIO_MOD_LIGHT_##_colour, .address = _addr,        \
-> +		.scan_index = _si,                                            \
-> +		.scan_type = {                                                \
-> +			.sign = 'u',                                          \
-> +			.realbits = 16,                                       \
-> +			.storagebits = 16,                                    \
-> +			.endianness = IIO_CPU,                                \
-> +		},                                                            \
-> +	}
-> +
-> +static const struct iio_chan_spec bh1745_channels[] = {
-> +	BH1745_CHANNEL(RED, 0, BH1745_R_LSB),
-> +	BH1745_CHANNEL(GREEN, 1, BH1745_G_LSB),
-> +	BH1745_CHANNEL(BLUE, 2, BH1745_B_LSB),
-> +	BH1745_CHANNEL(CLEAR, 3, BH1745_CLR_LSB),
-> +	IIO_CHAN_SOFT_TIMESTAMP(4),
-> +};
-> +
-> +static int bh1745_write_value(struct bh1745_data *data, u8 reg, void *value,
-> +			      size_t len)
-> +{
-
-The initial assignment is unnecessary, as a new assignment is made
-immediately. This applies to several declarations of ret in this driver,
-but not always (e.g. bh1745_setup_trigger()).
-
-> +	int ret = 0;
-> +
-> +	ret = regmap_bulk_write(data->regmap, reg, value, len);
-> +	if (ret < 0) {
-> +		dev_err(&data->client->dev,
-> +			"Failed to write to sensor. Reg: 0x%x\n", reg);
-> +		return ret;
-> +	}
-
-Nit: black line before return (it applies to several functions in this
-driver, but again, not in all of them).
-
-> +	return ret;
-> +}
-> +
-> +static int bh1745_read_value(struct bh1745_data *data, u8 reg, void *value,
-> +			     size_t len)
-> +{
-> +	int ret = 0;
-> +
-> +	ret = regmap_bulk_read(data->regmap, reg, value, len);
-> +	if (ret < 0) {
-> +		dev_err(&data->client->dev,
-> +			"Failed to read from sensor. Reg: 0x%x\n", reg);
-> +		return ret;
-> +	}
-> +	return ret;
-> +}
-> +
-> +static ssize_t in_interrupt_source_show(struct device *dev,
-> +					struct device_attribute *attr,
-> +					char *buf)
-> +{
-> +	int ret = 0;
-> +	int value = 0;
-> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-> +	struct bh1745_data *data = iio_priv(indio_dev);
-> +
-> +	ret = bh1745_read_value(data, BH1745_INTR, &value, 1);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	value &= BH1745_INT_SOURCE_MASK;
-> +	return sprintf(buf, "%d\n", value >> 2);
-> +}
-> +
-> +static ssize_t in_interrupt_source_store(struct device *dev,
-> +					 struct device_attribute *attr,
-> +					 const char *buf, size_t len)
-> +{
-> +	int ret = 0;
-> +	u16 value = 0;
-> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-> +	struct bh1745_data *data = iio_priv(indio_dev);
-> +
-> +	ret = kstrtou16(buf, 10, &value);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (value > BH1745_INT_SOURCE_CLEAR) {
-> +		dev_err(dev,
-> +			"Supplied value: '%d' for interrupt source is invalid\n",
-> +			value);
-> +		return -EINVAL;
-> +	}
-
-Consider using guard(mutex)(&data->lock) instead, which is becoming
-common practice in iio. In principle, that applies to all uses of the mutex.
-
-> +	mutex_lock(&data->lock);
-> +	data->int_src = value;
-> +	value = value << 2;
-> +	ret = bh1745_read_value(data, BH1745_INTR, &data->interrupt, 1);
-> +	if (ret < 0) {
-> +		mutex_unlock(&data->lock);
-> +		return ret;
-> +	}
-> +	data->interrupt &= ~BH1745_INT_SOURCE_MASK;
-> +	data->interrupt |= value;
-> +	ret = bh1745_write_value(data, BH1745_INTR, &data->interrupt, 1);
-> +	mutex_unlock(&data->lock);
-> +	if (ret < 0)
-> +		return ret;
-> +	return len;
-> +}
-> +
-> +static ssize_t in_interrupt_latch_show(struct device *dev,
-> +				       struct device_attribute *attr, char *buf)
-> +{
-> +	int value = 0;
-> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-> +	struct bh1745_data *data = iio_priv(indio_dev);
-> +
-> +	bh1745_read_value(data, BH1745_INTR, &value, 1);
-> +
-> +	value &= BH1745_INT_SIGNAL_LATCHED;
-> +	if (value)
-> +		return sprintf(buf, "1\n");
-> +
-> +	return sprintf(buf, "0\n");
-> +}
-> +
-> +static ssize_t in_interrupt_latch_store(struct device *dev,
-> +					struct device_attribute *attr,
-> +					const char *buf, size_t len)
-> +{
-> +	int ret = 0;
-> +	u16 value = 0;
-> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-> +	struct bh1745_data *data = iio_priv(indio_dev);
-> +
-> +	ret = kstrtou16(buf, 10, &value);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (value == 0) {
-> +		data->int_latch = value;
-> +		mutex_lock(&data->lock);
-> +		ret = bh1745_read_value(data, BH1745_INTR, &data->interrupt, 1);
-> +		if (ret < 0) {
-> +			mutex_unlock(&data->lock);
-> +			return ret;
-> +		}
-> +
-> +		data->interrupt &= ~BH1745_INT_SIGNAL_LATCHED;
-> +		ret = bh1745_write_value(data, BH1745_INTR, &data->interrupt,
-> +					 1);
-> +		mutex_unlock(&data->lock);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +	} else if (value == 1) {
-> +		data->int_latch = value;
-> +		mutex_lock(&data->lock);
-> +		ret = bh1745_read_value(data, BH1745_INTR, &data->interrupt, 1);
-> +		if (ret < 0) {
-> +			mutex_unlock(&data->lock);
-> +			return ret;
-> +		}
-> +
-> +		data->interrupt |= BH1745_INT_SIGNAL_LATCHED;
-> +		ret = bh1745_write_value(data, BH1745_INTR, &data->interrupt,
-> +					 1);
-> +		mutex_unlock(&data->lock);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +	} else {
-> +		dev_err(dev,
-> +			"Value out of range for latch setup. Supported values '0' or '1'\n");
-> +	}
-> +	return len;
-> +}
-> +
-> +static ssize_t hardwaregain_available_show(struct device *dev,
-> +					   struct device_attribute *attr,
-> +					   char *buf)
-> +{
-> +	return sprintf(buf, "%s\n", BH1745_HARDWAREGAIN_AVAILABLE);
-> +}
-> +
-> +static ssize_t interrupt_source_available_show(struct device *dev,
-
-Nit: alignment should match open parenthesis.
-
-> +						struct device_attribute *attr,
-> +						char *buf)
-> +{
-> +	return sprintf(buf, "%s\n", BH1745_INT_COLOUR_CHANNEL_AVAILABLE);
-> +}
-> +
-> +static IIO_DEVICE_ATTR_RW(in_interrupt_source, 0);
-> +static IIO_DEVICE_ATTR_RW(in_interrupt_latch, 0);
-> +static IIO_DEVICE_ATTR_RO(hardwaregain_available, 0);
-> +static IIO_DEVICE_ATTR_RO(interrupt_source_available, 0);
-> +static IIO_CONST_ATTR_INT_TIME_AVAIL(BH1745_INT_TIME_AVAILABLE);
-> +
-> +static struct attribute *bh1745_attrs[] = {
-> +	&iio_dev_attr_in_interrupt_source.dev_attr.attr,
-> +	&iio_dev_attr_in_interrupt_latch.dev_attr.attr,
-> +	&iio_dev_attr_hardwaregain_available.dev_attr.attr,
-> +	&iio_dev_attr_interrupt_source_available.dev_attr.attr,
-> +	&iio_const_attr_integration_time_available.dev_attr.attr,
-> +	NULL
-> +};
-> +
-> +static const struct attribute_group bh1745_attr_group = {
-> +	.attrs = bh1745_attrs,
-> +};
-> +
-> +static int bh1745_reset(struct bh1745_data *data)
-> +{
-> +	int ret = 0;
-> +	u8 value = 0;
-> +
-> +	ret = bh1745_read_value(data, BH1745_SYS_CTRL, &value, 1);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	value |= (BH1745_SW_RESET | BH1745_INT_RESET);
-> +	return bh1745_write_value(data, BH1745_SYS_CTRL, &value, 1);
-> +}
-> +
-> +static int bh1745_power_on(struct bh1745_data *data)
-> +{
-> +	int ret = 0;
-> +	u8 value = 0;
-> +
-> +	ret = bh1745_read_value(data, BH1745_MODE_CTRL_2, &value, 1);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	value |= BH1745_RGBC_EN;
-> +	mutex_lock(&data->lock);
-> +	data->mode_ctrl2 = value;
-> +	ret = bh1745_write_value(data, BH1745_MODE_CTRL_2, &data->mode_ctrl2,
-> +				 1);
-> +	mutex_unlock(&data->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int bh1745_power_off(struct bh1745_data *data)
-> +{
-> +	int ret = 0;
-> +	int value = 0;
-> +
-> +	ret = bh1745_read_value(data, BH1745_MODE_CTRL_2, &value, 1);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	value &= ~BH1745_RGBC_EN;
-> +	mutex_lock(&data->lock);
-> +	data->mode_ctrl2 = value;
-> +	ret = bh1745_write_value(data, BH1745_MODE_CTRL_2, &data->mode_ctrl2,
-> +				 1);
-> +	mutex_unlock(&data->lock);
-> +	return ret;
-> +}
-> +
-> +static int bh1745_set_int_time(struct bh1745_data *data, int val, int val2)
-> +{
-> +	int ret = 0;
-> +
-> +	for (u8 i = 0; i < ARRAY_SIZE(bh1745_int_time); i++) {
-> +		if (val == bh1745_int_time[i][0] &&
-> +		    val2 == bh1745_int_time[i][1]) {
-> +			mutex_lock(&data->lock);
-> +			data->mode_ctrl1 &= ~BH1745_MEASUREMENT_TIME_MASK;
-> +			data->mode_ctrl1 |= i;
-> +			ret = bh1745_write_value(data, BH1745_MODE_CTRL_1,
-> +						 &data->mode_ctrl1, 1);
-> +			mutex_unlock(&data->lock);
-> +			return ret;
-> +		}
-> +	}
-> +	return -EINVAL;
-> +}
-> +
-> +static int bh1745_read_raw(struct iio_dev *indio_dev,
-> +			   struct iio_chan_spec const *chan, int *val,
-> +			   int *val2, long mask)
-> +{
-> +	struct bh1745_data *data = iio_priv(indio_dev);
-> +	int ret = 0;
-> +	u16 value = 0;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_RAW: {
-> +		ret = iio_device_claim_direct_mode(indio_dev);
-> +		if (ret)
-> +			return ret;
-> +		ret = bh1745_read_value(data, chan->address, &value, 2);
-> +		if (ret < 0)
-> +			return ret;
-> +		iio_device_release_direct_mode(indio_dev);
-> +		*val = value;
-> +		return IIO_VAL_INT;
-> +	}
-> +
-> +	case IIO_CHAN_INFO_HARDWAREGAIN: {
-> +		mutex_lock(&data->lock);
-> +		ret = bh1745_read_value(data, BH1745_MODE_CTRL_2,
-> +					&data->mode_ctrl2, 1);
-> +		if (ret < 0) {
-> +			mutex_unlock(&data->lock);
-> +			return ret;
-> +		}
-> +
-> +		value = data->mode_ctrl2 & BH1745_ADC_GAIN_MASK;
-> +		mutex_unlock(&data->lock);
-> +
-> +		*val = bh1745_gain_factor[value];
-> +		return IIO_VAL_INT;
-> +	}
-> +
-> +	case IIO_CHAN_INFO_INT_TIME: {
-> +		mutex_lock(&data->lock);
-> +		ret = bh1745_read_value(data, BH1745_MODE_CTRL_1,
-> +					&data->mode_ctrl1, 1);
-> +		if (ret < 0) {
-> +			mutex_unlock(&data->lock);
-> +			return ret;
-> +		}
-> +		value = data->mode_ctrl1 & BH1745_MEASUREMENT_TIME_MASK;
-> +		mutex_unlock(&data->lock);
-> +
-> +		*val = bh1745_int_time[value][0];
-> +		*val2 = bh1745_int_time[value][1];
-> +		return IIO_VAL_INT_PLUS_MICRO;
-> +	}
-> +
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int bh1745_write_raw(struct iio_dev *indio_dev,
-> +			    struct iio_chan_spec const *chan, int val, int val2,
-> +			    long mask)
-> +{
-> +	struct bh1745_data *data = iio_priv(indio_dev);
-> +	int ret = 0;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_HARDWAREGAIN: {
-> +		for (u8 i = 0; i < ARRAY_SIZE(bh1745_gain_factor); i++) {
-> +			if (bh1745_gain_factor[i] == val) {
-> +				mutex_lock(&data->lock);
-> +				data->mode_ctrl2 &= ~BH1745_ADC_GAIN_MASK;
-> +				data->mode_ctrl2 |= i;
-> +				ret = bh1745_write_value(data,
-> +							 BH1745_MODE_CTRL_2,
-> +							 &data->mode_ctrl2, 1);
-> +				mutex_unlock(&data->lock);
-> +				return ret;
-> +			}
-> +		}
-> +		return -EINVAL;
-> +	}
-> +
-> +	case IIO_CHAN_INFO_INT_TIME: {
-> +		return bh1745_set_int_time(data, val, val2);
-> +	}
-> +
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int bh1745_read_thresh(struct iio_dev *indio_dev,
-> +			      const struct iio_chan_spec *chan,
-> +			      enum iio_event_type type,
-> +			      enum iio_event_direction dir,
-> +			      enum iio_event_info info, int *val, int *val2)
-> +{
-> +	struct bh1745_data *data = iio_priv(indio_dev);
-> +	int ret = 0;
-> +
-> +	switch (info) {
-> +	case IIO_EV_INFO_VALUE:
-> +		switch (dir) {
-> +		case IIO_EV_DIR_RISING:
-> +			ret = bh1745_read_value(data, BH1745_TH_LSB, val, 2);
-> +			if (ret < 0)
-> +				return ret;
-> +			return IIO_VAL_INT;
-> +		case IIO_EV_DIR_FALLING:
-> +			ret = bh1745_read_value(data, BH1745_TL_LSB, val, 2);
-> +			if (ret < 0)
-> +				return ret;
-> +			return IIO_VAL_INT;
-> +		default:
-> +			return -EINVAL;
-> +		}
-> +		break;
-> +	case IIO_EV_INFO_PERIOD:
-> +		ret = bh1745_read_value(data, BH1745_PERSISTENCE, val, 1);
-> +		if (ret < 0)
-> +			return ret;
-> +		return IIO_VAL_INT;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int bh1745_write_thresh(struct iio_dev *indio_dev,
-> +			       const struct iio_chan_spec *chan,
-> +			       enum iio_event_type type,
-> +			       enum iio_event_direction dir,
-> +			       enum iio_event_info info, int val, int val2)
-> +{
-> +	struct bh1745_data *data = iio_priv(indio_dev);
-> +	int ret = 0;
-> +
-> +	switch (info) {
-> +	case IIO_EV_INFO_VALUE:
-> +		if (val < BH1745_THRESHOLD_MIN || val > BH1745_THRESHOLD_MAX)
-> +			return -EINVAL;
-> +		switch (dir) {
-> +		case IIO_EV_DIR_RISING:
-> +			ret = bh1745_write_value(data, BH1745_TH_LSB, &val, 2);
-> +			if (ret < 0)
-> +				return ret;
-> +			return IIO_VAL_INT;
-> +		case IIO_EV_DIR_FALLING:
-> +			ret = bh1745_write_value(data, BH1745_TL_LSB, &val, 2);
-> +			if (ret < 0)
-> +				return ret;
-> +			return IIO_VAL_INT;
-> +		default:
-> +			return -EINVAL;
-> +		}
-> +		break;
-> +	case IIO_EV_INFO_PERIOD:
-> +		if (val < BH1745_PRESISTENCE_UPDATE_TOGGLE ||
-> +		    val > BH1745_PRESISTENCE_UPDATE_EIGHT_MEASUREMENT)
-> +			return -EINVAL;
-> +		ret = bh1745_write_value(data, BH1745_PERSISTENCE, &val, 1);
-> +		if (ret < 0)
-> +			return ret;
-> +		return IIO_VAL_INT;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static const struct iio_info bh1745_info = {
-> +	.attrs = &bh1745_attr_group,
-> +	.read_raw = bh1745_read_raw,
-> +	.write_raw = bh1745_write_raw,
-> +	.read_event_value = bh1745_read_thresh,
-> +	.write_event_value = bh1745_write_thresh,
-> +
-> +};
-> +
-> +static void bh1745_remove(struct i2c_client *client)
-> +{
-> +	struct iio_dev *indio_dev = i2c_get_clientdata(client);
-> +	struct bh1745_data *data = iio_priv(indio_dev);
-> +
-> +	if (bh1745_power_off(data) < 0)
-> +		dev_err(&data->client->dev, "Failed to turn off device");
-> +
-> +	dev_info(&data->client->dev, "BH1745 driver removed\n");
-> +}
-> +
-> +static int bh1745_set_trigger_state(struct iio_trigger *trig, bool state)
-> +{
-> +	int ret = 0;
-> +	u8 val = 0;
-> +	struct iio_dev *indio_dev = iio_trigger_get_drvdata(trig);
-> +	struct bh1745_data *data = iio_priv(indio_dev);
-> +
-> +	if (state) {
-> +		mutex_lock(&data->lock);
-> +		ret = bh1745_read_value(data, BH1745_INTR, &val, 1);
-> +		val |= (BH1745_INT_ENABLE |
-> +			(data->int_latch << BH1745_INT_SIGNAL_LATCH_OFFSET) |
-> +			(data->int_src << BH1745_INT_SOURCE_OFFSET));
-> +		data->interrupt = val;
-> +		ret = bh1745_write_value(data, BH1745_INTR, &data->interrupt,
-> +					 1);
-> +		mutex_unlock(&data->lock);
-> +	} else {
-> +		mutex_lock(&data->lock);
-> +		data->interrupt = val;
-> +		ret = bh1745_write_value(data, BH1745_INTR, &data->interrupt,
-> +					 1);
-> +		mutex_unlock(&data->lock);
-> +	}
-> +	return ret;
-> +}
-> +
-> +static const struct iio_trigger_ops bh1745_trigger_ops = {
-> +	.set_trigger_state = bh1745_set_trigger_state,
-> +};
-> +
-> +static irqreturn_t bh1745_interrupt_handler(int interrupt, void *p)
-> +{
-> +	struct iio_dev *indio_dev = p;
-> +	struct bh1745_data *data = iio_priv(indio_dev);
-> +	int ret = 0;
-> +	int value = 0;
-> +
-> +	ret = bh1745_read_value(data, BH1745_INTR, &value, 1);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (value & BH1745_INTR_STATUS) {
-> +		mutex_lock(&data->lock);
-> +		iio_push_event(indio_dev,
-
-Nit: lines should not end with an open parenthesis. You can simply move
-IIO_INTENSITY up.
-
-> +			       IIO_UNMOD_EVENT_CODE(
-> +				       IIO_INTENSITY, data->int_src,
-> +				       IIO_EV_TYPE_THRESH, IIO_EV_DIR_EITHER),
-> +			       iio_get_time_ns(indio_dev));
-> +
-> +		mutex_unlock(&data->lock);
-> +		iio_trigger_poll_nested(data->trig);
-> +		return IRQ_HANDLED;
-> +	}
-> +	return IRQ_NONE;
-> +}
-> +
-> +static irqreturn_t bh1745_trigger_handler(int interrupt, void *p)
-> +{
-> +	struct iio_poll_func *pf = p;
-> +	struct iio_dev *indio_dev = pf->indio_dev;
-> +	struct bh1745_data *data = iio_priv(indio_dev);
-> +	u16 value = 0;
-> +	struct {
-> +		u16 chans[4];
-
-Intended blank line?
-
-> +
-> +		s64 timestamp __aligned(8);
-> +	} scan;
-> +
-> +	int i, j = 0;
-> +
-> +	for_each_set_bit(i, indio_dev->active_scan_mask,
-> +			 indio_dev->masklength) {
-> +		bh1745_read_value(data, BH1745_R_LSB + 2 * i, &value, 2);
-> +		scan.chans[j++] = value;
-> +	}
-> +
-> +	iio_push_to_buffers_with_timestamp(indio_dev, &scan,
-> +					   iio_get_time_ns(indio_dev));
-> +
-> +	iio_trigger_notify_done(indio_dev->trig);
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int bh1745_setup_trigger(struct iio_dev *indio_dev)
-> +{
-> +	struct bh1745_data *data = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	data->trig = devm_iio_trigger_alloc(indio_dev->dev.parent,
-> +					    "%sdata-rdy-dev%d", indio_dev->name,
-> +					    iio_device_id(indio_dev));
-> +	if (!data->trig)
-> +		return -ENOMEM;
-> +
-> +	data->trig->ops = &bh1745_trigger_ops;
-> +	iio_trigger_set_drvdata(data->trig, indio_dev);
-> +
-> +	ret = devm_iio_trigger_register(&data->client->dev, data->trig);
-> +	if (ret)
-> +		return dev_err_probe(&data->client->dev, ret,
-> +				     "Trigger registration failed\n");
-> +
-> +	ret = devm_iio_triggered_buffer_setup(indio_dev->dev.parent, indio_dev,
-> +					      NULL, bh1745_trigger_handler,
-> +					      NULL);
-> +	if (ret)
-> +		return dev_err_probe(&data->client->dev, ret,
-> +				     "Triggered buffer setup failed\n");
-> +
-> +	ret = devm_request_threaded_irq(&data->client->dev, data->client->irq,
-> +					NULL, bh1745_interrupt_handler,
-> +					IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-> +					"bh1745_interrupt", indio_dev);
-
-The rest of your "if (ret)" don't use curly braces for a return
-dev_err_probe().
-
-> +	if (ret) {
-> +		return dev_err_probe(&data->client->dev, ret,
-> +				     "Request for IRQ failed\n");
-> +	}
-> +
-> +	dev_info(&data->client->dev,
-> +		 "Triggered buffer and IRQ setup successfully");
-> +	return ret;
-> +}
-> +
-> +static int bh1745_init(struct bh1745_data *data)
-> +{
-> +	int ret = 0;
-> +
-> +	mutex_init(&data->lock);
-> +	data->mode_ctrl1 = 0;
-> +	data->mode_ctrl2 = 0;
-> +	data->interrupt = 0;
-> +	data->int_src = BH1745_INT_SOURCE_RED;
-> +
-> +	ret = bh1745_reset(data);
-> +	if (ret < 0) {
-> +		dev_err(&data->client->dev, "Failed to reset sensor\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = bh1745_power_on(data);
-> +	if (ret < 0) {
-> +		dev_err(&data->client->dev, "Failed to turn on sensor\n");
-> +		return ret;
-> +	}
-> +	return ret;
-> +}
-> +
-> +static int bh1745_probe(struct i2c_client *client)
-> +{
-> +	int ret = 0;
-> +	struct bh1745_data *data;
-> +	struct iio_dev *indio_dev;
-> +
-> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	data = iio_priv(indio_dev);
-> +	i2c_set_clientdata(client, indio_dev);
-> +	data->client = client;
-> +	indio_dev->info = &bh1745_info;
-> +	indio_dev->name = BH1745_MOD_NAME;
-> +	indio_dev->channels = bh1745_channels;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->num_channels = ARRAY_SIZE(bh1745_channels);
-> +
-> +	data->regmap = devm_regmap_init_i2c(client, &bh1745_regmap);
-> +	if (IS_ERR(data->regmap))
-> +		return dev_err_probe(&client->dev, PTR_ERR(data->regmap),
-> +				     "Failed to initialize Regmap\n");
-> +
-> +	ret = bh1745_init(data);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (client->irq) {
-> +		ret = bh1745_setup_trigger(indio_dev);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
-> +	ret = devm_iio_device_register(&client->dev, indio_dev);
-> +	if (ret < 0)
-> +		dev_err(&data->client->dev, "Failed to register device\n");
-> +
-> +	dev_info(&data->client->dev, "BH1745 driver loaded\n");
-> +	return ret;
-> +}
-> +
-> +static const struct i2c_device_id bh1745_idtable[] = {
-> +	{ "bh1745" },
-> +	{},
-> +};
-> +
-> +static const struct of_device_id bh1745_of_match[] = {
-> +	{
-> +		.compatible = "rohm,bh1745",
-> +	},
-> +	{},
-> +};
-> +
-> +MODULE_DEVICE_TABLE(i2c, bh1745_idtable);
-> +
-> +static struct i2c_driver bh1745_driver = {
-> +	.driver = {
-> +		.name = "bh1745",
-> +		.of_match_table = bh1745_of_match,
-> +	},
-> +	.probe = bh1745_probe,
-> +	.remove = bh1745_remove,
-> +	.id_table = bh1745_idtable,
-> +};
-> +
-> +module_i2c_driver(bh1745_driver);
-> +MODULE_AUTHOR("Mudit Sharma <muditsharma.info@gmail.com>");
-> +MODULE_DESCRIPTION("BH1745 colour sensor driver");
-> +MODULE_LICENSE("GPL");
-
-
-Best regards,
-Javier Carrasco
+> Create a USB backend for Q6DSP:
+> q6usb: Basic backend driver that will be responsible for maintaining the
+> resources needed to initiate a playback stream using the Q6DSP.  Will
+> be the entity that checks to make sure the connected USB audio device
+> supports the requested PCM format.  If it does not, the PCM open call will
+> fail, and userpsace ALSA can take action accordingly.
+> 
+> Introduce XHCI interrupter support:
+> XHCI HCD supports multiple interrupters, which allows for events to be routed
+> to different event rings.  This is determined by "Interrupter Target" field
+> specified in Section "6.4.1.1 Normal TRB" of the XHCI specification.
+> 
+> Events in the offloading case will be routed to an event ring that is assigned
+> to the audio DSP.
+> 
+> Create vendor ops for the USB SND driver:
+> qc_audio_offload: This particular driver has several components associated
+> with it:
+> - QMI stream request handler
+> - XHCI interrupter and resource management
+> - audio DSP memory management
+> 
+> When the audio DSP wants to enable a playback stream, the request is first
+> received by the ASoC platform sound card.  Depending on the selected route,
+> ASoC will bring up the individual DAIs in the path.  The Q6USB backend DAI
+> will send an AFE port start command (with enabling the USB playback path), and
+> the audio DSP will handle the request accordingly.
+> 
+> Part of the AFE USB port start handling will have an exchange of control
+> messages using the QMI protocol.  The qc_audio_offload driver will populate the
+> buffer information:
+> - Event ring base address
+> - EP transfer ring base address
+> 
+> and pass it along to the audio DSP.  All endpoint management will now be handed
+> over to the DSP, and the main processor is not involved in transfers.
+> 
+> Overall, implementing this feature will still expose separate sound card and PCM
+> devices for both the platorm card and USB audio device:
+>   0 [SM8250MTPWCD938]: sm8250 - SM8250-MTP-WCD9380-WSA8810-VA-D
+>                        SM8250-MTP-WCD9380-WSA8810-VA-DMIC
+>   1 [Audio          ]: USB-Audio - USB Audio
+>                        Generic USB Audio at usb-xhci-hcd.1.auto-1.4, high speed
+> 
+> This is to ensure that userspace ALSA entities can decide which route to take
+> when executing the audio playback.  In the above, if card#1 is selected, then
+> USB audio data will take the legacy path over the USB PCM drivers, etc...
+> 
+> This feature was validated using:
+> - tinymix: set/enable the multimedia path to route to USB backend
+> - tinyplay: issue playback on platform card
+> 
+> Changelog
+> --------------------------------------------
+> Changes in v22:
+> - Removed components tag for the ASoC platform card, as the USB SND kcontrol for
+> notifying userspace of offload capable card achieves similar results.
+> - Due to the above, had to remove the review-by tag for the RST documentation,
+> as changes were made to remove the components tag section.
+> - Took in feedback to make the SOC USB add/remove ports void.
+> - Fixed an issue w/ the USB SND kcontrol management for devices that have multi
+> UAC interfaces. (would attempt to create the kcontrol more than once)
+> - Modified SOC USB card and PCM index select to be based off the num_supported
+> streams that is specified by the USB BE DAI.
+> - Modified comments on selecting the latest USB headset for offloading.
+> 
+> Changes in v21:
+> - Added an offload jack disable path from the ASoC platform driver and SOC USB.
+> - Refactored some of the existing SOC USB context look up APIs and created some
+> new helpers to search for the USB context.
+> - Renamed snd_soc_usb_find_format to snd_soc_usb_find_supported_format
+> - Removed some XHCI sideband calls that would allow clients to actually enable
+> the IRQ line associated w/ the secondary interrupter.  This is removed because
+> there are other dependencies that are required for that to happen, which are not
+> covered as part of this series, and to avoid confusion.
+> - Due to the above, removed the need to export IMOD setting, and enable/disable
+> interrupter APIs.
+> 
+> Changes in v20:
+> - Fixed up some formatting changes pointed out in the usb.rst
+> - Added SB null check during XHCI sideband unregister in case caller passes
+> improper argument (xhci_sideband_unregister())
+> 
+> Changes in v19:
+> - Rebased to usb-next to account for some new changes in dependent drivers.
+> 
+> Changes in v18:
+> - Rebased to usb-next, which merged in part of the series.  Removed these patches.
+> - Reworked Kconfigs for the ASoC USB related components from QCOM Q6DSP drivers
+>    to keep dependencies in place for SoC USB and USB SND.
+> - Removed the repurposing of the stop ep sync API into existing XHCI operations.
+>    This will be solely used by the XHCI sideband for now.
+> 
+> Changes in v17:
+> - Fixed an issue where one patch was squashed into another.
+> - Re-added some kconfig checks for helpers exposed in USB SND for the soc usb
+>    driver, after running different kconfigs.
+> 
+> Changes in v16:
+> - Modified some code layer dependencies so that soc usb can be split as a separate
+>    module.
+>    - Split the kcontrols from ASoC QCOM common layer into a separate driver
+> - Reworked SOC USB kcontrols for controlling card + pcm offload routing and status
+>    so that there are individual controls for card and pcm devices.
+> - Added a kcontrol remove API in SOC USB to remove the controls on the fly.  This
+>    required to add some kcontrol management to SOC USB.
+> - Removed the disconnect work and workqueue for the QC USB offload as it is not
+>    required, since QMI interface driver ensures events are handled in its own WQ.
+> 
+> Changes in v15:
+> - Removed some already merged XHCI changes
+> - Separated SOC USB driver from being always compiled into SOC core.  Now
+>    configurable from kconfig.
+> - Fixed up ASoC kcontrol naming to fit guidelines.
+> - Removed some unnecessary dummy ifdefs.
+> - Moved usb snd offload capable kcontrol to be initialized by the platform offloading
+>    driver.
+> 
+> Changes in v14:
+> - Cleaned up some USB SND related feedback:
+>    - Renamed SNDUSB OFFLD playback available --> USB offload capable card
+>    - Fixed locking while checking if stream is in use
+>    - Replaced some mutex pairs with guard(mutex)
+> 
+> Changes in v13:
+> - Pulled in secondary/primary interrupter rework from Mathias from:
+>    https://git.kernel.org/pub/scm/linux/kernel/git/mnyman/xhci.git/log/drivers/usb/host?h=fix_eventhandling
+>    - Did some cleanup and commit message updates, and tested on current code base.
+> - Added mutex locking to xhci sideband to help prevent any race conditions, esp. for when accessing shared
+>    references.
+> - Addresed concerns from Hillf about gfp_flags and locking used in qc_usb_audio_offload.
+> - Rebased onto usb-next
+> 
+> Changes in v12:
+> - Updated copyright year to 2024.  Happy new years!
+> - Fixed newline format on mixer offload driver.
+> 
+> Changes in v11:
+> - Modified QMI format structures to be const
+> 
+> Changes in v10:
+> - Added new mixer for exposing kcontrol for sound card created by USB SND.  This
+> allows for applications to know which platform sound card has offload support.
+> Will return the card number.
+> - Broke down and cleaned up some functions/APIs within qc_audio_offload driver.
+> - Exported xhci_initialize_ring_info(), and modified XHCI makefile to allow for
+> the XHCI sideband to exist as a module.
+> - Reworked the jack registration and moved it to the QCOM platform card driver,
+> ie sm8250.
+> - Added an SOC USB API to fetch a standard component tag that can be appended to
+> the platform sound card.  Added this tag to sm8250 if any USB path exists within
+> the DT node.
+> - Moved kcontrols that existed in the Q6USB driver, and made it a bit more generic,
+> so that naming can be standardized across solutions.  SOC USB is now responsible
+> for creation of these kcontrols.
+> - Added a SOC USB RST document explaining some code flows and implementation details
+> so that other vendors can utilize the framework.
+> - Addressed a case where USB device connection events are lost if usb offload driver
+> (qc_audio_offload) is not probed when everything else has been initialized, ie
+> USB SND, SOC USB and ASoC sound card.  Add a rediscover device call during module
+> init, to ensure that connection events will be propagated.
+> - Rebased to usb-next.
+> 
+> Changes in v9:
+> - Fixed the dt binding check issue with regards to num-hc-interrupters.
+> 
+> Changes in v8:
+> - Cleaned up snd_soc_usb_find_priv_data() based on Mark's feedback.  Removed some of
+> the duplicate looping code that was present on previous patches.  Also renamed the API.
+> - Integrated Mathias' suggestions on his new sideband changes:
+> https://git.kernel.org/pub/scm/linux/kernel/git/mnyman/xhci.git/log/?h=feature_interrupters
+> - Addressed some of Mathias' fixme tags, such as:
+>   - Resetting transfer ring dequeue/enqueue pointers
+>   - Issuing stop endpoint command during ep removal
+>   - Reset ERDP properly to first segment ring during interrupter removal. (this is currently
+>     just being cleared to 0, but should be pointing to a valid segment if controller is still
+>     running.
+> 
+> Changes in v7:
+> - Fixed dt check error for q6usb bindings
+> - Updated q6usb property from qcom,usb-audio-intr-num --> qcom,usb-audio-intr-idx
+> - Removed separate DWC3 HC interrupters num property, and place limits to XHCI one.
+> - Modified xhci_ring_to_sgtable() to use assigned IOVA/DMA address to fetch pages, as
+> it is not ensured event ring allocated is always done in the vmalloc range.
+> 
+> Changes in v6:
+> - Fixed limits and description on several DT bindings (XHCI and Q6USB)
+> - Fixed patch subjects to follow other ALSA/ASoC notations.
+> 
+> USB SND
+> - Addressed devices which expose multiple audio (UAC) interfaces.  These devices will
+> create a single USB sound card with multiple audio streams, and receive multiple
+> interface probe routines.  QC offload was not properly considering cases with multiple
+> probe calls.
+> - Renamed offload module name and kconfig to fit within the SND domain.
+> - Renamed attach/detach endpoint API to keep the hw_params notation.
+> 
+> Changes in v5:
+> - Removed some unnescessary files that were included
+> - Fixed some typos mentioned
+> - Addressed dt-binding issues and added hc-interrupters definition to usb-xhci.yaml
+> 
+> XHCI:
+> - Moved secondary skip events API to xhci-ring and updated implementation
+>     - Utilized existing XHCI APIs, such as inc_deq and xhci_update_erst_dequeue()
+> 
+> USB SND
+> - Renamed and reworked the APIs in "sound: usb: Export USB SND APIs for modules" patch to
+> include suggestions to utilize snd_usb_hw_params/free and to avoid generic naming.
+> - Added a resume_cb() op for completion sake.
+> - Addressed some locking concerns with regards to when registering for platform hooks.
+> - Added routine to disconnect all offloaded devices during module unbind.
+> 
+> ASoC
+> - Replaced individual PCM parameter arguments in snd_soc_usb_connect() with new
+> snd_soc_usb_device structure to pass along PCM info.
+> - Modified snd_jack set report to notify HEADPHONE event, as we do not support record path.
+> 
+> Changes in v4:
+> - Rebased to xhci/for-usb-next
+> - Addressed some dt-bindings comments
+> 
+> XHCI:
+> - Pulled in latest changes from Mathias' feature_interrupters branch:
+> https://git.kernel.org/pub/scm/linux/kernel/git/mnyman/xhci.git/log/?h=feature_interrupters
+> 
+> - Fixed commit text and signage for the XHCI sideband/interrupter related changes
+> - Added some logic to address the FIXME tags mentioned throughout the commits, such
+> as handling multi segment rings and building the SGT, locking concerns, and ep
+> cleanup operations.
+> - Removed some fixme tags for conditions that may not be needed/addressed.
+> - Repurposed the new endpoint stop sync API to be utilized in other places.
+> - Fixed potential compile issue if XHCI sideband config is not defined.
+> 
+> ASoC:
+> - Added sound jack control into the Q6USB driver.  Allows for userpsace to know when
+> an offload capable device is connected.
+> 
+> USB SND:
+> - Avoided exporting _snd_pcm_hw_param_set based on Takashi's recommendation.
+> - Split USB QMI packet header definitions into a separate commit.  This is used to
+> properly allow the QMI interface driver to parse and route QMI packets accordingly
+> - Added a "depends on" entry when enabling QC audio offload to avoid compile time
+> issues.
+> 
+> Changes in v3:
+> - Changed prefix from RFC to PATCH
+> - Rebased entire series to usb-next
+> - Updated copyright years
+> 
+> XHCI:
+> - Rebased changes on top of XHCI changes merged into usb-next, and only added
+> changes that were still under discussion.
+> - Added change to read in the "num-hc-interrupters" device property.
+> 
+> ASoC:
+> - qusb6 USB backend
+>    - Incorporated suggestions to fetch iommu information with existing APIs
+>    - Added two new sound kcontrols to fetch offload status and offload device
+>      selection.
+>      - offload status - will return the card and pcm device in use
+>          tinymix -D 0 get 1 --> 1, 0 (offload in progress on card#1 pcm#0)
+> 
+>      - device selection - set the card and pcm device to enable offload on. Ex.:
+>          tinymix -D 0 set 1 2 0  --> sets offload on card#2 pcm#0
+>                                      (this should be the USB card)
+> 
+> USB SND:
+> - Fixed up some locking related concerns for registering platform ops.
+>     - Moved callbacks under the register_mutex, so that
+> - Modified APIs to properly pass more information about the USB SND device, so
+> that the Q6USB backend can build a device list/map, in order to monitor offload
+> status and device selection.
+> 
+> Changes in v2:
+> 
+> XHCI:
+> - Replaced XHCI and HCD changes with Mathias' XHCI interrupter changes
+> in his tree:
+> https://git.kernel.org/pub/scm/linux/kernel/git/mnyman/xhci.git/log/?h=feature_interrupters
+> 
+> Adjustments made to Mathias' changes:
+>    - Created xhci-intr.h to export/expose interrupter APIs versus exposing xhci.h.
+>      Moved dependent structures to this file as well. (so clients can parse out
+>      information from "struct xhci_interrupter")
+>    - Added some basic locking when requesting interrupters.
+>    - Fixed up some sanity checks.
+>    - Removed clearing of the ERSTBA during freeing of the interrupter. (pending
+>      issue where SMMU fault occurs if DMA addr returned is 64b - TODO)
+> 
+> - Clean up pending events in the XHCI secondary interrupter.  While testing USB
+> bus suspend, it was seen that on bus resume, the xHCI HC would run into a command
+> timeout.
+> - Added offloading APIs to xHCI to fetch transfer and event ring information.
+> 
+> ASoC:
+> - Modified soc-usb to allow for multiple USB port additions.  For this to work,
+> the USB offload driver has to have a reference to the USB backend by adding
+> a "usb-soc-be" DT entry to the device saved into XHCI sysdev.
+> - Created separate dt-bindings for defining USB_RX port.
+> - Increased APR timeout to accommodate the situation where the AFE port start
+> command could be delayed due to having to issue a USB bus resume while
+> handling the QMI stream start command.
+> 
+> USB SND:
+> - Added a platform ops during usb_audio_suspend().  This allows for the USB
+> offload driver to halt the audio stream when system enters PM suspend.  This
+> ensures the audio DSP is not issuing transfers on the USB bus.
+> - Do not override platform ops if they are already populated.
+> - Introduce a shared status variable between the USB offload and USB SND layers,
+> to ensure that only one path is active at a time.  If the USB bus is occupied,
+> then userspace is notified that the path is busy.
+> 
+> Mathias Nyman (2):
+>    xhci: add helper to stop endpoint and wait for completion
+>    xhci: sideband: add initial api to register a sideband entity
+> 
+> Wesley Cheng (36):
+>    usb: host: xhci: Repurpose event handler for skipping interrupter
+>      events
+>    usb: xhci: Allow for secondary interrupter to set IMOD
+>    usb: host: xhci-mem: Cleanup pending secondary event ring events
+>    usb: host: xhci-mem: Allow for interrupter clients to choose specific
+>      index
+>    ASoC: Add SOC USB APIs for adding an USB backend
+>    ASoC: dt-bindings: qcom,q6dsp-lpass-ports: Add USB_RX port
+>    ASoC: qcom: qdsp6: Introduce USB AFE port to q6dsp
+>    ASoC: qdsp6: q6afe: Increase APR timeout
+>    ASoC: qcom: qdsp6: Add USB backend ASoC driver for Q6
+>    ALSA: usb-audio: Introduce USB SND platform op callbacks
+>    ALSA: usb-audio: Export USB SND APIs for modules
+>    ALSA: usb-audio: Save UAC sample size information
+>    usb: dwc3: Specify maximum number of XHCI interrupters
+>    usb: host: xhci-plat: Set XHCI max interrupters if property is present
+>    ALSA: usb-audio: qcom: Add USB QMI definitions
+>    ALSA: usb-audio: qcom: Introduce QC USB SND offloading support
+>    ALSA: usb-audio: Check for support for requested audio format
+>    ASoC: usb: Add PCM format check API for USB backend
+>    ASoC: qcom: qdsp6: Ensure PCM format is supported by USB audio device
+>    ALSA: usb-audio: Prevent starting of audio stream if in use
+>    ALSA: usb-audio: Do not allow USB offload path if PCM device is in use
+>    ASoC: dt-bindings: Update example for enabling USB offload on SM8250
+>    ALSA: usb-audio: qcom: Populate PCM and USB chip information
+>    ASoC: qcom: qdsp6: Add support to track available USB PCM devices
+>    ASoC: Introduce SND kcontrols to select sound card and PCM device
+>    ASoC: qcom: qdsp6: Add SOC USB offload select get/put callbacks
+>    ASoC: Introduce SND kcontrols to track USB offloading state
+>    ASoC: qcom: qdsp6: Add PCM ops to track current state
+>    ASoC: usb: Create SOC USB SND jack kcontrol
+>    ASoC: qcom: qdsp6: Add headphone jack for offload connection status
+>    ASoC: usb: Fetch ASoC sound card information
+>    ALSA: usb-audio: Add USB offloading capable kcontrol
+>    ALSA: usb-audio: Allow for rediscovery of connected USB SND devices
+>    ALSA: usb-audio: qcom: Use card and PCM index from QMI request
+>    ASoC: usb: Rediscover USB SND devices on USB port add
+>    ASoC: doc: Add documentation for SOC USB
+> 
+>   .../bindings/sound/qcom,sm8250.yaml           |   15 +
+>   Documentation/sound/soc/index.rst             |    1 +
+>   Documentation/sound/soc/usb.rst               |  603 ++++++
+>   drivers/usb/dwc3/core.c                       |   12 +
+>   drivers/usb/dwc3/core.h                       |    2 +
+>   drivers/usb/dwc3/host.c                       |    3 +
+>   drivers/usb/host/Kconfig                      |    9 +
+>   drivers/usb/host/Makefile                     |    2 +
+>   drivers/usb/host/xhci-mem.c                   |   36 +-
+>   drivers/usb/host/xhci-plat.c                  |    2 +
+>   drivers/usb/host/xhci-ring.c                  |   50 +-
+>   drivers/usb/host/xhci-sideband.c              |  418 ++++
+>   drivers/usb/host/xhci.c                       |   43 +-
+>   drivers/usb/host/xhci.h                       |   18 +-
+>   .../sound/qcom,q6dsp-lpass-ports.h            |    1 +
+>   include/linux/usb/xhci-sideband.h             |   68 +
+>   include/sound/q6usboffload.h                  |   20 +
+>   include/sound/soc-usb.h                       |  188 ++
+>   sound/soc/Kconfig                             |   10 +
+>   sound/soc/Makefile                            |    2 +
+>   sound/soc/qcom/Kconfig                        |   15 +
+>   sound/soc/qcom/Makefile                       |    2 +
+>   sound/soc/qcom/qdsp6/Makefile                 |    1 +
+>   sound/soc/qcom/qdsp6/q6afe-dai.c              |   60 +
+>   sound/soc/qcom/qdsp6/q6afe.c                  |  193 +-
+>   sound/soc/qcom/qdsp6/q6afe.h                  |   36 +-
+>   sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c      |   23 +
+>   sound/soc/qcom/qdsp6/q6dsp-lpass-ports.h      |    1 +
+>   sound/soc/qcom/qdsp6/q6routing.c              |    9 +
+>   sound/soc/qcom/qdsp6/q6usb.c                  |  417 ++++
+>   sound/soc/qcom/sm8250.c                       |   23 +-
+>   sound/soc/qcom/usb_offload_utils.c            |   55 +
+>   sound/soc/qcom/usb_offload_utils.h            |   29 +
+>   sound/soc/soc-usb.c                           |  684 ++++++
+>   sound/usb/Kconfig                             |   25 +
+>   sound/usb/Makefile                            |    2 +-
+>   sound/usb/card.c                              |  109 +
+>   sound/usb/card.h                              |   15 +
+>   sound/usb/endpoint.c                          |    1 +
+>   sound/usb/format.c                            |    1 +
+>   sound/usb/helper.c                            |    1 +
+>   sound/usb/pcm.c                               |  104 +-
+>   sound/usb/pcm.h                               |   11 +
+>   sound/usb/qcom/Makefile                       |    6 +
+>   sound/usb/qcom/mixer_usb_offload.c            |   65 +
+>   sound/usb/qcom/mixer_usb_offload.h            |   17 +
+>   sound/usb/qcom/qc_audio_offload.c             | 1915 +++++++++++++++++
+>   sound/usb/qcom/usb_audio_qmi_v01.c            |  892 ++++++++
+>   sound/usb/qcom/usb_audio_qmi_v01.h            |  162 ++
+>   49 files changed, 6327 insertions(+), 50 deletions(-)
+>   create mode 100644 Documentation/sound/soc/usb.rst
+>   create mode 100644 drivers/usb/host/xhci-sideband.c
+>   create mode 100644 include/linux/usb/xhci-sideband.h
+>   create mode 100644 include/sound/q6usboffload.h
+>   create mode 100644 include/sound/soc-usb.h
+>   create mode 100644 sound/soc/qcom/qdsp6/q6usb.c
+>   create mode 100644 sound/soc/qcom/usb_offload_utils.c
+>   create mode 100644 sound/soc/qcom/usb_offload_utils.h
+>   create mode 100644 sound/soc/soc-usb.c
+>   create mode 100644 sound/usb/qcom/Makefile
+>   create mode 100644 sound/usb/qcom/mixer_usb_offload.c
+>   create mode 100644 sound/usb/qcom/mixer_usb_offload.h
+>   create mode 100644 sound/usb/qcom/qc_audio_offload.c
+>   create mode 100644 sound/usb/qcom/usb_audio_qmi_v01.c
+>   create mode 100644 sound/usb/qcom/usb_audio_qmi_v01.h
+> 
 
