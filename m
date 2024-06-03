@@ -1,319 +1,148 @@
-Return-Path: <devicetree+bounces-71712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7627B8D7B9D
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 08:33:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1710C8D7BC4
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 08:41:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5D21B2140A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 06:33:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6FB8B2263D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 06:41:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 127AA2231F;
-	Mon,  3 Jun 2024 06:33:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9FCD3EA95;
+	Mon,  3 Jun 2024 06:39:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="Wj3ii0ir"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75309208CE;
-	Mon,  3 Jun 2024 06:33:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5CD03D387
+	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 06:39:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717396416; cv=none; b=WOV/qAdw9rwV7vpJ0UM3skj/IZxR61ie0ZW6kD/K/WsfbQ7XYGhngWFN3D9Ez6dHVrd2qLXMbb9ZThCOv9A7nPACcviXoLaQ9mis6G34tPZTscwFgRavmBkCVHcW3HbxEGy/MXGy5sL+aDZGQG3x2IH3wXNvfyQd65jdJJghofY=
+	t=1717396788; cv=none; b=lZvHuVyy0Ge/HDJ6393ix5wbrfldKYgbfcEYI2HLBBMIkML6OSryvD3YF4uLJuLNGfWyHZeqo5UyBmEcwiDprJIwdyomW3/thVVKQTv9dWXPln77FvIMYI/hzIR6gxFwZMb3qlzpK9nR7SAurBAk6/Hsdb82LUPyVEOkZ/GUaik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717396416; c=relaxed/simple;
-	bh=6X2eWl8m6fp4O9UKOdJmQWu+wh1NOVXg4VKajjLXLgw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qFoMstbeQScRIbqyq2nJ45puGWRDLs1w8Go7dAo1JXrTkrfedEz0MNzuv5ZfagoWNCUvvJEU1cob50q6pYyZxfQptDSAEr0CyrtnR6VizYb3HWTUvZwbNjUlLjJ7m7PXkn4oh8Tm4BHnccomakZ07XJJPfunjGrdiCZkXBpi3wg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875b65.versanet.de ([83.135.91.101] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sE1Ft-0004rj-AX; Mon, 03 Jun 2024 08:33:17 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: wens@kernel.org, Dragan Simic <dsimic@manjaro.org>
-Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- Diederik de Haas <didi.debian@cknow.org>
-Subject:
- Re: [PATCH] arm64: dts: rockchip: Fix the DCDC_REG2 minimum voltage on
- Quartz64 Model B
-Date: Mon, 03 Jun 2024 08:33:16 +0200
-Message-ID: <2165494.3Lj2Plt8kZ@diego>
-In-Reply-To: <d0ab380955c293cf676938be5ea5bf52@manjaro.org>
-References:
- <e70742ea2df432bf57b3f7de542d81ca22b0da2f.1716225483.git.dsimic@manjaro.org>
- <ee74c146d1e69bef118e208fdf5cf10f@manjaro.org>
- <d0ab380955c293cf676938be5ea5bf52@manjaro.org>
+	s=arc-20240116; t=1717396788; c=relaxed/simple;
+	bh=6zIG1+ce+MFr3YKcNcxLW9ehBTfd0YUfDO7c/QJPUfc=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=aipSrCSwqQps9sEAqisILbnvuGy/stb0WB4BdgRocbp8JyYG1zQ6TIn1T11f6rgwmuzAnsP+6Vn0ut/TcZkTydNft8aAOzrtNNxzlVjC1c2DqZXFFfKwrIGbacaRjNxKIYdriu17YMF1EByvlMAv34ABDRNT2mkSfN5Jvyu0BaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=Wj3ii0ir; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a683868f463so312752866b.0
+        for <devicetree@vger.kernel.org>; Sun, 02 Jun 2024 23:39:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1717396785; x=1718001585; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4/kSWlsZgItMKs0n3WD4Nrf7fVlEdWxgIbQ1jzkl5d4=;
+        b=Wj3ii0irnq4Z9rAan3f6ck/rRUr308vMh2w808luWnsz6kErhJ/vcaf+q+QxQWco5U
+         hWbguK9Ich9Ac+qIwNqGoqqxCbKelhpqB42vpR/mrTX5/YWx24FnOcWe6ePzrhJRsW/m
+         c70RfESusN8DRhTcchefkuQp+gQ6vQtBd7R1zAIu+NvQZ2dhskmquek2SJ/YqUKdm+c0
+         9waOd4iKez4bMc4qfaMOeWtQIG66tcAQz3zChCkn7lUD+RPcxDndj8ZK9TLum3u3JQzw
+         gs8ksD2bus8gXQZbv7i+Lt9kVpokJqnMpPrP4xB9Vyd1tjDFQhhriDd/gOGs5VGnp8df
+         uRWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717396785; x=1718001585;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=4/kSWlsZgItMKs0n3WD4Nrf7fVlEdWxgIbQ1jzkl5d4=;
+        b=dQ51HO3RmJ5BT2MImv2hzXhu+obVGjCAMFVgDdam8o7sjAF/uqgqbp5hDWRvBFpy6L
+         fB4jjTSEzoq7ZkFdYT0fPIP4BFCFzxMh/Us8xl0WXky2Qb0s4lrsMfxM0PmwKA/HsgrG
+         zA46GX+xpSLt/22Yl7HmvzZjLJ+2UEZ2ZhuGNKd93QQn1wppJB3Mh+UvSR1IFpJB7kGU
+         PjLx1t91m7V+J+O1lzFAbymzyQ7WnUo291qQsRTVedLp3s5iRsrszYDaArGLswFmZew+
+         kNfnb4KWMwiun46LsTxJh/CBzdicwW+XVxp3L1SQ0W5eFO0TlxbR1z2sLYsviTbAEoH0
+         S0WQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWmpUXRDBBnm+y96sA8XhcueLPM7gkV4NNoxxb5e0pr9Y4P6g+b4Bno8m8c2Mz9mTMRuvvkkfjbj8fqL6VHW6Y4aI3mV0KBi52Rpw==
+X-Gm-Message-State: AOJu0YzsZ2ZJWTEtTEZn3spQ6SjzDH6uubMZeu+7MI7H+biXOVh+iSqi
+	K97GZwDFageuVniGNhVWHVap0OSxa+s6Q6iXwDtByWDbvt/dOl7Fk39NJM1mYaw=
+X-Google-Smtp-Source: AGHT+IHPI42I+wiDmrMQUuBnkODfjkjRd3F/AhQNQPxFvtXVyYyNTCx5IjDc+RZbp/mfvvWlLxUi5w==
+X-Received: by 2002:a17:906:15db:b0:a68:a2d7:3872 with SMTP id a640c23a62f3a-a68a2d73920mr313157566b.45.1717396785032;
+        Sun, 02 Jun 2024 23:39:45 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a68e2d1333fsm234930866b.219.2024.06.02.23.39.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 02 Jun 2024 23:39:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 03 Jun 2024 08:39:44 +0200
+Message-Id: <D1Q6CMZM78VI.ABYGRRV5E61B@fairphone.com>
+Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ "Stanimir Varbanov" <stanimir.varbanov@linaro.org>,
+ <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2] media: dt-bindings: qcom,sc7280-venus: Allow one
+ IOMMU entry
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Luca Weiss" <luca.weiss@fairphone.com>, "Bjorn Andersson"
+ <andersson@kernel.org>, "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+ "Stanimir Varbanov" <stanimir.k.varbanov@gmail.com>, "Vikash Garodia"
+ <quic_vgarodia@quicinc.com>, "Bryan O'Donoghue"
+ <bryan.odonoghue@linaro.org>, "Mauro Carvalho Chehab" <mchehab@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>
+X-Mailer: aerc 0.17.0
+References: <20240412-sc7280-venus-bindings-v2-1-48ca8c2ec532@fairphone.com>
+In-Reply-To: <20240412-sc7280-venus-bindings-v2-1-48ca8c2ec532@fairphone.com>
 
-Am Montag, 3. Juni 2024, 06:51:58 CEST schrieb Dragan Simic:
-> On 2024-06-03 06:41, Dragan Simic wrote:
-> > On 2024-06-03 05:49, Chen-Yu Tsai wrote:
-> >> On Sat, Jun 1, 2024 at 6:41=E2=80=AFAM Dragan Simic <dsimic@manjaro.or=
-g>=20
-> >> wrote:
-> >>> On 2024-05-31 20:40, Heiko St=C3=BCbner wrote:
-> >>> > Am Freitag, 31. Mai 2024, 00:48:45 CEST schrieb Dragan Simic:
-> >>> >> On 2024-05-29 18:27, Chen-Yu Tsai wrote:
-> >>> >> > On Tue, May 21, 2024 at 1:20=E2=80=AFAM Dragan Simic <dsimic@man=
-jaro.org>
-> >>> >> > wrote:
-> >>> >> >>
-> >>> >> >> Correct the specified regulator-min-microvolt value for the buck
-> >>> >> >> DCDC_REG2
-> >>> >> >> regulator, which is part of the Rockchip RK809 PMIC, in the Pin=
-e64
-> >>> >> >> Quartz64
-> >>> >> >> Model B board dts.  According to the RK809 datasheet, version 1=
-=2E01,
-> >>> >> >> this
-> >>> >> >> regulator is capable of producing voltages as low as 0.5 V on i=
-ts
-> >>> >> >> output,
-> >>> >> >> instead of going down to 0.9 V only, which is additionally conf=
-irmed
-> >>> >> >> by the
-> >>> >> >> regulator-min-microvolt values found in the board dts files for=
- the
-> >>> >> >> other
-> >>> >> >> supported boards that use the same RK809 PMIC.
-> >>> >> >>
-> >>> >> >> This allows the DVFS to clock the GPU on the Quartz64 Model B b=
-elow
-> >>> >> >> 700 MHz,
-> >>> >> >> all the way down to 200 MHz, which saves some power and reduces=
- the
-> >>> >> >> amount of
-> >>> >> >> generated heat a bit, improving the thermal headroom and possib=
-ly
-> >>> >> >> improving
-> >>> >> >> the bursty CPU and GPU performance on this board.
-> >>> >> >>
-> >>> >> >> This also eliminates the following warnings in the kernel log:
-> >>> >> >>
-> >>> >> >>   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: =
-825000,
-> >>> >> >> not supported by regulator
-> >>> >> >>   panfrost fde60000.gpu: _opp_add: OPP not supported by regulat=
-ors
-> >>> >> >> (200000000)
-> >>> >> >>   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: =
-825000,
-> >>> >> >> not supported by regulator
-> >>> >> >>   panfrost fde60000.gpu: _opp_add: OPP not supported by regulat=
-ors
-> >>> >> >> (300000000)
-> >>> >> >>   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: =
-825000,
-> >>> >> >> not supported by regulator
-> >>> >> >>   panfrost fde60000.gpu: _opp_add: OPP not supported by regulat=
-ors
-> >>> >> >> (400000000)
-> >>> >> >>   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: =
-825000,
-> >>> >> >> not supported by regulator
-> >>> >> >>   panfrost fde60000.gpu: _opp_add: OPP not supported by regulat=
-ors
-> >>> >> >> (600000000)
-> >>> >> >>
-> >>> >> >> Fixes: dcc8c66bef79 ("arm64: dts: rockchip: add Pine64 Quartz64=
-=2DB
-> >>> >> >> device tree")
-> >>> >> >> Cc: stable@vger.kernel.org
-> >>> >> >> Reported-By: Diederik de Haas <didi.debian@cknow.org>
-> >>> >> >> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
-> >>> >> >> ---
-> >>> >> >>  arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts | 2 +-
-> >>> >> >>  1 file changed, 1 insertion(+), 1 deletion(-)
-> >>> >> >>
-> >>> >> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-> >>> >> >> b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-> >>> >> >> index 26322a358d91..b908ce006c26 100644
-> >>> >> >> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-> >>> >> >> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-> >>> >> >> @@ -289,7 +289,7 @@ vdd_gpu: DCDC_REG2 {
-> >>> >> >>                                 regulator-name =3D "vdd_gpu";
-> >>> >> >>                                 regulator-always-on;
-> >>> >> >>                                 regulator-boot-on;
-> >>> >> >> -                               regulator-min-microvolt =3D <90=
-0000>;
-> >>> >> >> +                               regulator-min-microvolt =3D <50=
-0000>;
-> >>> >> >
-> >>> >> > The constraints here are supposed to be the constraints of the
-> >>> >> > consumer,
-> >>> >> > not the provider. The latter is already known by the implementat=
-ion.
-> >>> >> >
-> >>> >> > So if the GPU can go down to 0.825V or 0.81V even (based on the
-> >>> >> > datasheet),
-> >>> >> > this should say the corresponding value. Surely the GPU can't go=
- down
-> >>> >> > to
-> >>> >> > 0.5V?
-> >>> >> >
-> >>> >> > Can you send another fix for it?
-> >>> >>
-> >>> >> I can confirm that the voltage of the power supply of GPU found in=
-side
-> >>> >> the RK3566 can be as low as 0.81 V, according to the datasheet, or=
- as
-> >>> >> low as 0.825 V, according to the GPU OPPs found in rk356x.dtsi.
-> >>> >>
-> >>> >> If we want the regulator-min-microvolt parameter to reflect the
-> >>> >> contraint
-> >>> >> of the GPU as the consumer, which I agree with, we should do that =
-for
-> >>> >> other
-> >>> >> RK3566-based boards as well, and almost surely for the boards base=
-d on
-> >>> >> the
-> >>> >> RK3568, too.
-> >>> >
-> >>> > Hmm, I'm not so sure about that.
-> >>> >
-> >>> > The binding does define:
-> >>> >       regulator-min-microvolt:
-> >>> >           description: smallest voltage consumers may set
-> >>> >
-> >>> > This does not seem to describe it as a constraint solely of the
-> >>> > consumer.
-> >>> > At least the wording sounds way more flexible there.
-> >>> >
-> >>> > Also any regulator _could_ have multiple consumers, whose value wou=
-ld
-> >>> > it need then.
-> >>>=20
-> >>> The way I see it, the regulator-min-microvolt and
-> >>> regulator-max-microvolt
-> >>> parameters should be configured in a way that protects the=20
-> >>> consumer(s)
-> >>> of the particular voltage regulator against undervoltage and=20
-> >>> overvoltage
-> >>> conditions, which may be useful in some corner cases.
-> >>>=20
-> >>> If there are multiple consumers, which in this case may actually=20
-> >>> happen
-> >>> (IIRC, some boards use the same regulator for the GPU and NPU=20
-> >>> portions
-> >>> of the SoC), the situation becomes far from ideal, because the=20
-> >>> consumers
-> >>> might have different voltage requirements, but that's pretty much an
-> >>> unavoidable compromise.
-> >>=20
-> >> As Dragan mentioned, the min/max voltage constraints are there to=20
-> >> prevent
-> >> the implementation from setting a voltage that would make the hardware
-> >> inoperable, either temporarily or permanently. So the range set here
-> >> should be the intersection of the permitted ranges of all consumers on
-> >> that power rail.
-> >>=20
-> >> Now if that intersection happens to be an empty set, then it would up
-> >> to the implementation to do proper lock-outs. Hopefully no one designs
-> >> such hardware as it's too easy to fry some part of the hardware.
-> >=20
-> > Yes, such a hardware design would need fixing first on the schematic
-> > level.  When it comes to the RK3566's GPU and NPU sharing the same
-> > regulator, we should be fine because the RK3566 datasheet states that
-> > both the GPU and the NPU can go as low as 0.81 V, and their upper
-> > absolute ratings are the same at 1.2 V, so 1.0 V, which is as far as
-> > the GPU OPPs go, should be fine for both.
-> >=20
-> > As a note, neither the RK3566 datasheet nor the RK3566 hardware design
-> > guide specify the recommended upper voltage limit for the GPU or the
-> > NPU.  Though, their upper absolute ratings are the same, as already
-> > described above.
->=20
-> Uh-oh, this rabbit hole goes much deeper than expected.  After a quick
-> check, I see there are also RK3399-based boards/devices that specify
-> the minimum and maximum values for their GPU regulators far outside
-> the recommended operating conditions of the RK3399's GPU.
->=20
-> Perhaps the scope of the upcoming patches should be expanded to cover
-> other boards as well, not just those based on the RK356x.
->=20
-> >>> > While true, setting it to the lowest the regulator can do in the
-> >>> > original
-> >>> > fix patch, might've been a bit much and a saner value might be bett=
-er.
-> >>>=20
-> >>> Agreed, but the value was selected according to what the other
-> >>> RK3566-based
-> >>> boards use, to establish some kind of consistency.  Now, there's a=20
-> >>> good
-> >>> chance for the second pass, so to speak, which should establish=20
-> >>> another
-> >>> different state, but also consistent. :)
-> >>>=20
-> >>> >> This would ensure consistency, but I'd like to know are all those
-> >>> >> resulting
-> >>> >> patches going to be accepted before starting to prepare them?  The=
-re
-> >>> >> will
-> >>> >> be a whole bunch of small patches.
-> >>> >
-> >>> > Hmm, though I'd say that would be one patch per soc?
-> >>> >
-> >>> > I.e. you're setting the min-voltage of _one_ regulator used
-> >>> > on each board to a value to support the defined OPPs.
-> >>> >
-> >>> > I.e. in my mind you'd end up with:
-> >>> >       arm64: dts: rockchip: set better min voltage for vdd_gpu on r=
-k356x
-> >>> > boards
-> >>> >
-> >>> > And setting the lower voltage to reach that lower OPP on all affect=
-ed
-> >>> > rk356x boards.
-> >>>=20
-> >>> Yes, the same thoughts have already crossed my mind, but I thought=20
-> >>> we'd
-> >>> like those patches to also include Fixes tags, so they also get
-> >>> propagated
-> >>> into the long-term kernel versions?  In that case, we'd need one=20
-> >>> patch
-> >>> per
-> >>> board, to have a clear relation to the commits referenced in the=20
-> >>> Fixes
-> >>> tags.
-> >>>=20
-> >>> OTOH, if we don't want the patches to be propagated into the=20
-> >>> long-term
-> >>> kernel
-> >>> versions, then having one patch per SoC would be perfectly fine.
-> >>=20
-> >> It's really up to Heiko, but personally I don't think it's that=20
-> >> important
-> >> to have them backported. These would be correctness patches, but don't
-> >> really affect functionality.
-> >=20
-> > On second thought, I also think that it might be better not to have
-> > these changes propagated into the long-term kernel versions.  That
-> > would keep the amount of backported changes to the bare minimum, i.e.
-> > containing just the really important fixes, while these changes are
-> > more on the correctness side.  Maybe together with providing a bit
-> > of additional safety.
+On Fri Apr 12, 2024 at 4:19 PM CEST, Luca Weiss wrote:
+> Some SC7280-based boards crash when providing the "secure_non_pixel"
+> context bank, so allow only one iommu in the bindings also.
 
-hehe, up to you I guess :-) .
+Hi all,
 
-At least we tied down the how (one patch per soc or so) and not meant
-to be backported because more of the correctnes side. So yes I agree with
-the arguments for changing the constraints.
+This patch is still pending and not having it causes dt validation
+warnings for some qcom-sc7280 boards.
 
-Heiko
+Regards
+Luca
 
+>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+> Reference:
+> https://lore.kernel.org/linux-arm-msm/20231201-sc7280-venus-pas-v3-2-bc13=
+2dc5fc30@fairphone.com/
+> ---
+> Changes in v2:
+> - Pick up tags
+> - Otherwise just a resend, v1 was sent in January
+> - Link to v1: https://lore.kernel.org/r/20240129-sc7280-venus-bindings-v1=
+-1-20a9ba194c60@fairphone.com
+> ---
+>  Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sc7280-venus.ya=
+ml b/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
+> index 8f9b6433aeb8..10c334e6b3dc 100644
+> --- a/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
+> +++ b/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
+> @@ -43,6 +43,7 @@ properties:
+>        - const: vcodec_bus
+> =20
+>    iommus:
+> +    minItems: 1
+>      maxItems: 2
+> =20
+>    interconnects:
+>
+> ---
+> base-commit: 9ed46da14b9b9b2ad4edb3b0c545b6dbe5c00d39
+> change-id: 20240129-sc7280-venus-bindings-6e62a99620de
+>
+> Best regards,
 
 
