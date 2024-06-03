@@ -1,97 +1,205 @@
-Return-Path: <devicetree+bounces-71884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18A438D8509
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 16:30:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E71BE8D844B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 15:46:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D4992835B0
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 14:30:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E202B21AB2
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 13:46:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6705812F373;
-	Mon,  3 Jun 2024 14:30:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 697BA12C554;
+	Mon,  3 Jun 2024 13:46:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="DswH2Hl4"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="evTuihQp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D323612FF8F;
-	Mon,  3 Jun 2024 14:30:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F355F1877;
+	Mon,  3 Jun 2024 13:46:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717425015; cv=none; b=Z6y9fJjvHX7LiXHQdyYm8d0g3OgaBFN4jHkbKkZfGpKFvtAj2wdW7G2hGbKaf8ctEef2MZiXcvevsH/429qiDkl62GzIKZQfzi+BQw3HZQirS1en2wO2p205Z4CHFOVNi73x40mdSCf5Qpnkkp82I58YXeXVPrclrtcLBlTAkSg=
+	t=1717422381; cv=none; b=rJck61TIlIYQ7dSo6y0d8vl7eLzt8ZThqUwKVklrbjhUyIjIqdA1ny0Lema2YxOXnoI6bRE9yLocw3qAuAZ3rlnvItXEOSJadcv/4STjTKwyBbsSZYtJKZSS7v7weaQn7qZXX+krIlJ8+uGoRQQEvlVE+Tyuw0uELIhV4CCCfe0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717425015; c=relaxed/simple;
-	bh=ME5S3rAewxYALP3zD16ZoCCOZWcPEkdGdMEBDqRV3k8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eSfdgOL9YSr54mHDtK4msptGmgklAuXuTX6U0G67WWBoRRevHYoMrb79mhSLPemBhlLMhVnxvGUgTFu54LlKGosgGOQZVmGH387TgEKJX5gxcVy+sPgh1vnpPJLuWnPdRHmhiFz0NQScFMzGK3WiyV5/Vr3+4tto52PHUu6SKQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=DswH2Hl4; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 02E8E88297;
-	Mon,  3 Jun 2024 16:30:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1717425012;
-	bh=tzwKWRYiq4hn9T72ICEyR6cTqBmlVIAQNA4M5kMLnKw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DswH2Hl4e4qu+NnV3vVaNwmvbrLFMnaoy4MtJ7XyQT0Jevcn1FxJDp198TJHuiWtf
-	 SRpsUjirB9iTqa2NLNNJL6mM/eHgeb7MwftO0vvTga7MNzgpDR4ocUvAC1DCWSaF66
-	 IhITTRRjiIIdmn2+pOsLQibUr8xJl1nG+Wu+lW3xQWI/c9Zp0MNe28puVzgJ7oXzyz
-	 VpyygSkmecDroHLAcd6nmaEeUaSnof8xNCUz0vnXpatowaO4fFC6aFv05C6g8sKSJW
-	 EdFCuBuinronpATl6Wr8mCEdDt1DhomPEsq80gGZBqpatm4mqFTQdSr0v9Z6m++XD+
-	 IpAShCtSL3VYg==
-Message-ID: <eaa69915-e356-47ac-859e-933fe430a750@denx.de>
-Date: Mon, 3 Jun 2024 15:09:15 +0200
+	s=arc-20240116; t=1717422381; c=relaxed/simple;
+	bh=d4eJmzKz2SNxrPcPd+qatcbZ80D3Ow31WgkU36pFokc=;
+	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
+	 Content-Type:Subject; b=lRW4ULSIO6a5FKOe58VEXjHI7X32uXbFcuW1MQO6QMQ/KItkVXjqVDLV4gcWdvCSLoaCceru5fKZNsf7ZRJH/qoOdNitQKySQ8pXiIFupMMva4jjpLQkgrzOZuIqVmUuoHvIejGffxnouO5mEEzmUuoJafpEOMfEZScF1ApW+vE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=evTuihQp; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=pGQW7Y124egT0UTndX/Fi1ujBEUpNQr3uL1t6F5bA8g=; b=evTuihQpzdJg8Tu7cz5wVn0Lg0
+	N2LuNEyfM661tSgJvGQgyM0gPYorWCcjZyzHONXEyyKbRCI2atdy4cKO8QLelrmb4OuDkZrz1FgdJ
+	EdVxmrVI0jxkM5xcM20hCNLv/OfEA4sb1Ryg+Ys3hKu0zh63uehlmO/Qx/haIvjkezHU=;
+Received: from [184.161.19.61] (port=58820 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1sE7TE-0008M2-Dz; Mon, 03 Jun 2024 09:11:28 -0400
+Date: Mon, 3 Jun 2024 09:11:12 -0400
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Hui Wang <hui.wang@canonical.com>
+Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+ gregkh@linuxfoundation.org, jirislaby@kernel.org, hvilleneuve@dimonoff.com
+Message-Id: <20240603091112.d3491b3be00830126580662e@hugovil.com>
+In-Reply-To: <20240603123710.649549-2-hui.wang@canonical.com>
+References: <20240603123710.649549-1-hui.wang@canonical.com>
+	<20240603123710.649549-2-hui.wang@canonical.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 11/11] ARM: multi_v7_defconfig: Add MCP23S08 pinctrl
- support
-To: Christophe Roullier <christophe.roullier@foss.st.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>, Jose Abreu
- <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240603092757.71902-1-christophe.roullier@foss.st.com>
- <20240603092757.71902-12-christophe.roullier@foss.st.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20240603092757.71902-12-christophe.roullier@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -0.0 T_SCC_BODY_TEXT_LINE No description available.
+	* -2.5 NICE_REPLY_A Looks like a legit reply (A)
+Subject: Re: [PATCH 2/2] serial: sc16is7xx: setup reset pin if it is defined
+ in device tree
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-On 6/3/24 11:27 AM, Christophe Roullier wrote:
-> Need to enable MCP23S08 I/O expanders to manage Ethernet phy
+On Mon,  3 Jun 2024 20:37:10 +0800
+Hui Wang <hui.wang@canonical.com> wrote:
 
-PHY in capitals.
+Hi Hui,
 
-> reset in STM32MP135F-DK board
-> STMMAC driver defer is not silent, need to put this config in
-> built-in to avoid huge of Ethernet messages
+> Certain designs connect a gpio to the reset pin, and the reset pin
+> needs to be setup correctly before accessing the chip.
+> 
+> Here adding a function to handle the reset pin. This change has no
+> impact if there is no reset_gpios defined in the device tree.
+> 
+> Signed-off-by: Hui Wang <hui.wang@canonical.com>
+> ---
+>  drivers/tty/serial/sc16is7xx.c     | 22 ++++++++++++++++++++++
+>  drivers/tty/serial/sc16is7xx.h     |  2 ++
+>  drivers/tty/serial/sc16is7xx_i2c.c |  2 ++
+>  drivers/tty/serial/sc16is7xx_spi.c |  2 ++
+>  4 files changed, 28 insertions(+)
+> 
+> diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
+> index bf0065d1c8e9..53bfb603b03c 100644
+> --- a/drivers/tty/serial/sc16is7xx.c
+> +++ b/drivers/tty/serial/sc16is7xx.c
+> @@ -19,6 +19,7 @@
+>  #include <linux/kthread.h>
+>  #include <linux/mod_devicetable.h>
+>  #include <linux/module.h>
+> +#include <linux/of_gpio.h>
+>  #include <linux/property.h>
+>  #include <linux/regmap.h>
+>  #include <linux/sched.h>
+> @@ -1467,6 +1468,27 @@ static const struct serial_rs485 sc16is7xx_rs485_supported = {
+>  	.delay_rts_after_send = 1,	/* Not supported but keep returning -EINVAL */
+>  };
+>  
+> +void sc16is7xx_setup_reset_pin(struct device *dev)
 
-This second sentence is not correct, you are not enabling this GPIO 
-controller driver to silence a warning, you are enabling this driver to 
-let the PHY driver release the PHY from reset.
+Potentially rename to sc16is7xx_reset() based on my comments below
+about software reset.
+
+> +{
+> +	struct device_node *np = dev->of_node;
+> +	int reset_gpio, err;
+> +
+> +	reset_gpio = of_get_named_gpio(np, "reset-gpios", 0);
+
+Maybe use devm_gpiod_get_optional() to simplify and avoid OF-specific
+code.
+
+> +	if (!gpio_is_valid(reset_gpio))
+> +		return;
+> +
+> +	err = devm_gpio_request_one(dev, reset_gpio, GPIOF_OUT_INIT_LOW,
+> +				    "sc16is7xx-reset");
+> +	if (err) {
+> +		dev_err(dev, "failed to request sc16is7xx-reset-gpios: %d\n", err);
+> +		return;
+
+When this error happens, you return no error to the calling function,
+why? If you specify a reset GPIO in your device tree, and you cannot use
+it, seems like an error worth reporting.
+
+> +	}
+> +
+> +	/* Deassert the reset pin */
+
+Do you respect the manufacturer's minimum reset pulse width? The
+datasheet states that its 3 us, so maybe add a delay before deassertion.
+
+> +	gpio_set_value_cansleep(reset_gpio, 1);
+> +}
+> +EXPORT_SYMBOL_GPL(sc16is7xx_setup_reset_pin);
+> +
+>  int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+>  		    struct regmap *regmaps[], int irq)
+>  {
+> diff --git a/drivers/tty/serial/sc16is7xx.h b/drivers/tty/serial/sc16is7xx.h
+> index afb784eaee45..f4ae114cc41a 100644
+> --- a/drivers/tty/serial/sc16is7xx.h
+> +++ b/drivers/tty/serial/sc16is7xx.h
+> @@ -33,6 +33,8 @@ const char *sc16is7xx_regmap_name(u8 port_id);
+>  
+>  unsigned int sc16is7xx_regmap_port_mask(unsigned int port_id);
+>  
+> +void sc16is7xx_setup_reset_pin(struct device *dev);
+> +
+>  int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+>  		    struct regmap *regmaps[], int irq);
+>  
+> diff --git a/drivers/tty/serial/sc16is7xx_i2c.c b/drivers/tty/serial/sc16is7xx_i2c.c
+> index 3ed47c306d85..9833c3b935c2 100644
+> --- a/drivers/tty/serial/sc16is7xx_i2c.c
+> +++ b/drivers/tty/serial/sc16is7xx_i2c.c
+> @@ -21,6 +21,8 @@ static int sc16is7xx_i2c_probe(struct i2c_client *i2c)
+>  	if (!devtype)
+>  		return dev_err_probe(&i2c->dev, -ENODEV, "Failed to match device\n");
+>  
+> +	sc16is7xx_setup_reset_pin(&i2c->dev);
+
+Move this call inside sc16is7xx_probe() function, since it is common to
+both i2c and spi interfaces. Also, you will see in sc16is7xx_probe()
+that we already issue a software reset. If you
+specify a hardware reset pin, then you shouldn't issue the software
+reset.
+
+> +
+>  	memcpy(&regcfg, &sc16is7xx_regcfg, sizeof(struct regmap_config));
+>  
+>  	for (i = 0; i < devtype->nr_uart; i++) {
+> diff --git a/drivers/tty/serial/sc16is7xx_spi.c b/drivers/tty/serial/sc16is7xx_spi.c
+> index 73df36f8a7fd..ce38561faaf0 100644
+> --- a/drivers/tty/serial/sc16is7xx_spi.c
+> +++ b/drivers/tty/serial/sc16is7xx_spi.c
+> @@ -38,6 +38,8 @@ static int sc16is7xx_spi_probe(struct spi_device *spi)
+>  	if (!devtype)
+>  		return dev_err_probe(&spi->dev, -ENODEV, "Failed to match device\n");
+>  
+> +	sc16is7xx_setup_reset_pin(&spi->dev);
+> +
+>  	memcpy(&regcfg, &sc16is7xx_regcfg, sizeof(struct regmap_config));
+>  
+>  	for (i = 0; i < devtype->nr_uart; i++) {
+> -- 
+> 2.34.1
+> 
+> 
+> 
+
+
+-- 
+Hugo Villeneuve
 
