@@ -1,168 +1,96 @@
-Return-Path: <devicetree+bounces-71833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 262DA8D826E
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 14:37:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8C708D8289
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 14:40:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D69762864A4
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 12:37:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80B361F21298
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 12:40:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF53312C47D;
-	Mon,  3 Jun 2024 12:37:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93B4312C47D;
+	Mon,  3 Jun 2024 12:40:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="K3eZgebq"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="r/w75eBh";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="ZX52S748"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-canonical-0.canonical.com (smtp-relay-canonical-0.canonical.com [185.125.188.120])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC85512C478;
-	Mon,  3 Jun 2024 12:37:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.120
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D5458615A;
+	Mon,  3 Jun 2024 12:40:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717418269; cv=none; b=gdN2wNjpVbU7gCQno+en1SlBqaFcePVkd9LKSATFSnphTQIIt16ExK5rQJWmTBBDPFNKtqTcj7mG+XW+u33NQE8ES2cdLYbWUsiNbbiUHMsfOzjbLpwZ/ilNoAxnubXoyAc7CgDuAprFZq1lB/WM8EFxDR7+1T551CVT+vDYyCg=
+	t=1717418410; cv=none; b=Ev/iopkmj686unLEFZpWQc52w9gIrh4nCchbUgP0cMVCODJ/c3t2vZJ4bRBI0ZKyp7AgRkUnMJ6DxGozbfRx2ka2gkJzNWu1CeJJ0hEnw8l/fbyrMUdnoFXmv9v7JDG6xzlh4pNbc6+JVDyWtatIVu1fu6tQRLepTcaQx1VBP5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717418269; c=relaxed/simple;
-	bh=RsZDNYZFr1sN1TmKUqEFg9ql+dm/ol7ON0v/8wO17Og=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=IaaS21sp2R6h8/4iGWGDoXahAE+eZMEIuV5KhE2INcB5y9siCeqd/7nC6C9qblhWyyv89vVwYIr6LK2M/ClM79eHeC30HfkB/AaV/Eu+0FGaecfE0XSFRx8KDZVqu/ZFs67o9Dt5yc3fxybXfuiml/c8CTFc8PC5y4e+PpBD7Y4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=K3eZgebq; arc=none smtp.client-ip=185.125.188.120
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from hwang4-ThinkPad-T14s-Gen-2a.conference (unknown [123.112.65.116])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPSA id 0C34F3FAE8;
-	Mon,  3 Jun 2024 12:37:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1717418259;
-	bh=lXgAgJh56208citeJjAWVQZbibVrADnZ2ctRoypgJtw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version;
-	b=K3eZgebqwPs6PmTcDznpCJ8RH2M6Np5F/p6En0baCYlgVpOwAwBWWk+xAs961O43I
-	 +64GU80bCddCSIj4WDVcXHDx5lSKdL2yyWgT33tcKuQUpNY4t0Dhkej0sPLleyFUKZ
-	 UKMN5oU1zrPEorBpBo+Nd1iEMoUWZfGsa9L2iqwbsz2mjzfhI5JB5QvuXUGtWTOox1
-	 01Ef1YIiWylP0URJ0mJzMpXdkRrTWz2bMhLfIgYdWOQ1jgY5lUq+RDVlI0S1GvPUZO
-	 9rns/V0mop0xryMoRRC8K0MieZFbEPzu13lCD36Cch4rxSHe50a+GVPehvIJlp86jv
-	 gcs6QQVsiCGwg==
-From: Hui Wang <hui.wang@canonical.com>
-To: linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	gregkh@linuxfoundation.org
-Cc: jirislaby@kernel.org,
-	hvilleneuve@dimonoff.com,
-	hui.wang@canonical.com
-Subject: [PATCH 2/2] serial: sc16is7xx: setup reset pin if it is defined in device tree
-Date: Mon,  3 Jun 2024 20:37:10 +0800
-Message-Id: <20240603123710.649549-2-hui.wang@canonical.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240603123710.649549-1-hui.wang@canonical.com>
-References: <20240603123710.649549-1-hui.wang@canonical.com>
+	s=arc-20240116; t=1717418410; c=relaxed/simple;
+	bh=gpQL63nMCWWMr/5E+JsFptrCi9cZIqQUjqLAiNsUKP0=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=FNVZzjjZ68hJQbd6gC455VdIRZHNuMPxy5yWxfRThtuxrfKzwkXAe5Abw5pCJTYllBEYHYmMkWgyJ9V6YPfLISgR+fvtYkmsQcCUGxglQQOsQY7U8ujPJGuXLP5WyWLiYK9GUstYB7yGfQ0rE8xManvAtH6ccQg12QpQAW6ITBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=r/w75eBh; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=ZX52S748; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1717418407;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=C9km54j17Gw209l87deKX3nwEPnFegL/JeTGbnPu38A=;
+	b=r/w75eBh7E/klvxf4UQL8eEznyuUAQ3KCresDlr+i5LtUtkKbZGsI6m/tvhWU/SMUnJ+z0
+	5eijwHlttnzTrL7TyuCtOxZnv3dloyEiVyqhA+57dJeKdLH42/XsusVCux/vKAB6ryhOxT
+	iONds2ph3J2Aq85sT9hU5E6WDRLC+QJLtioTYNbEO2SedK4glheTjUqBBH8umml8Ep1nPW
+	sRZLdztaNHMUapYHnm5QOh4/l74uTNFik/YvJL7TYangkjJcEVsFHplvmZFBS3ik4Tnpnt
+	Qrk0XJPSGecSI+8Up3ZxZhFPCqrOzDl2fy0t8+6/Khba3Sv4YmNPTZaBVE1EJw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1717418407;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=C9km54j17Gw209l87deKX3nwEPnFegL/JeTGbnPu38A=;
+	b=ZX52S748sx3bSTdjyDDDO08mTDvvi/65oGvQhhO19K6YaZ5saSvvpKF0D7Cpqt1bSWvTUd
+	v/3Sjc2xPwyHUBCw==
+To: Prabhakar <prabhakar.csengg@gmail.com>, Geert Uytterhoeven
+ <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Magnus
+ Damm <magnus.damm@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, Prabhakar <prabhakar.csengg@gmail.com>,
+ Biju Das <biju.das.jz@bp.renesas.com>, Lad Prabhakar
+ <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v4 2/2] irqchip/renesas-rzg2l: Add support for RZ/Five SoC
+In-Reply-To: <20240430141438.132838-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20240430141438.132838-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240430141438.132838-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Date: Mon, 03 Jun 2024 14:40:06 +0200
+Message-ID: <87bk4i6vyx.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Certain designs connect a gpio to the reset pin, and the reset pin
-needs to be setup correctly before accessing the chip.
+On Tue, Apr 30 2024 at 15:14, Prabhakar wrote:
+> +
+> +static void rzfive_irqc_irq_disable(struct irq_data *d)
+> +{
+> +	rzfive_tint_irq_endisable(d, false);
+> +	irq_chip_disable_parent(d);
+> +}
+> +
+> +static void rzfive_irqc_irq_enable(struct irq_data *d)
+> +{
+> +	rzfive_tint_irq_endisable(d, true);
+> +	irq_chip_enable_parent(d);
+> +}
 
-Here adding a function to handle the reset pin. This change has no
-impact if there is no reset_gpios defined in the device tree.
+This looks wrong. Enable/disable should be symmetric vs. ordering, no?
 
-Signed-off-by: Hui Wang <hui.wang@canonical.com>
----
- drivers/tty/serial/sc16is7xx.c     | 22 ++++++++++++++++++++++
- drivers/tty/serial/sc16is7xx.h     |  2 ++
- drivers/tty/serial/sc16is7xx_i2c.c |  2 ++
- drivers/tty/serial/sc16is7xx_spi.c |  2 ++
- 4 files changed, 28 insertions(+)
+Thanks,
 
-diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
-index bf0065d1c8e9..53bfb603b03c 100644
---- a/drivers/tty/serial/sc16is7xx.c
-+++ b/drivers/tty/serial/sc16is7xx.c
-@@ -19,6 +19,7 @@
- #include <linux/kthread.h>
- #include <linux/mod_devicetable.h>
- #include <linux/module.h>
-+#include <linux/of_gpio.h>
- #include <linux/property.h>
- #include <linux/regmap.h>
- #include <linux/sched.h>
-@@ -1467,6 +1468,27 @@ static const struct serial_rs485 sc16is7xx_rs485_supported = {
- 	.delay_rts_after_send = 1,	/* Not supported but keep returning -EINVAL */
- };
- 
-+void sc16is7xx_setup_reset_pin(struct device *dev)
-+{
-+	struct device_node *np = dev->of_node;
-+	int reset_gpio, err;
-+
-+	reset_gpio = of_get_named_gpio(np, "reset-gpios", 0);
-+	if (!gpio_is_valid(reset_gpio))
-+		return;
-+
-+	err = devm_gpio_request_one(dev, reset_gpio, GPIOF_OUT_INIT_LOW,
-+				    "sc16is7xx-reset");
-+	if (err) {
-+		dev_err(dev, "failed to request sc16is7xx-reset-gpios: %d\n", err);
-+		return;
-+	}
-+
-+	/* Deassert the reset pin */
-+	gpio_set_value_cansleep(reset_gpio, 1);
-+}
-+EXPORT_SYMBOL_GPL(sc16is7xx_setup_reset_pin);
-+
- int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
- 		    struct regmap *regmaps[], int irq)
- {
-diff --git a/drivers/tty/serial/sc16is7xx.h b/drivers/tty/serial/sc16is7xx.h
-index afb784eaee45..f4ae114cc41a 100644
---- a/drivers/tty/serial/sc16is7xx.h
-+++ b/drivers/tty/serial/sc16is7xx.h
-@@ -33,6 +33,8 @@ const char *sc16is7xx_regmap_name(u8 port_id);
- 
- unsigned int sc16is7xx_regmap_port_mask(unsigned int port_id);
- 
-+void sc16is7xx_setup_reset_pin(struct device *dev);
-+
- int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
- 		    struct regmap *regmaps[], int irq);
- 
-diff --git a/drivers/tty/serial/sc16is7xx_i2c.c b/drivers/tty/serial/sc16is7xx_i2c.c
-index 3ed47c306d85..9833c3b935c2 100644
---- a/drivers/tty/serial/sc16is7xx_i2c.c
-+++ b/drivers/tty/serial/sc16is7xx_i2c.c
-@@ -21,6 +21,8 @@ static int sc16is7xx_i2c_probe(struct i2c_client *i2c)
- 	if (!devtype)
- 		return dev_err_probe(&i2c->dev, -ENODEV, "Failed to match device\n");
- 
-+	sc16is7xx_setup_reset_pin(&i2c->dev);
-+
- 	memcpy(&regcfg, &sc16is7xx_regcfg, sizeof(struct regmap_config));
- 
- 	for (i = 0; i < devtype->nr_uart; i++) {
-diff --git a/drivers/tty/serial/sc16is7xx_spi.c b/drivers/tty/serial/sc16is7xx_spi.c
-index 73df36f8a7fd..ce38561faaf0 100644
---- a/drivers/tty/serial/sc16is7xx_spi.c
-+++ b/drivers/tty/serial/sc16is7xx_spi.c
-@@ -38,6 +38,8 @@ static int sc16is7xx_spi_probe(struct spi_device *spi)
- 	if (!devtype)
- 		return dev_err_probe(&spi->dev, -ENODEV, "Failed to match device\n");
- 
-+	sc16is7xx_setup_reset_pin(&spi->dev);
-+
- 	memcpy(&regcfg, &sc16is7xx_regcfg, sizeof(struct regmap_config));
- 
- 	for (i = 0; i < devtype->nr_uart; i++) {
--- 
-2.34.1
-
+        tglx
 
