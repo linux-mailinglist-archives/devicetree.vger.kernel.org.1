@@ -1,97 +1,79 @@
-Return-Path: <devicetree+bounces-71884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18A438D8509
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 16:30:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 868398D849A
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 16:07:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D4992835B0
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 14:30:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10872B211F9
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 14:07:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6705812F373;
-	Mon,  3 Jun 2024 14:30:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="DswH2Hl4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C93412DD92;
+	Mon,  3 Jun 2024 14:07:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D323612FF8F;
-	Mon,  3 Jun 2024 14:30:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20BAC12DD90;
+	Mon,  3 Jun 2024 14:07:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717425015; cv=none; b=Z6y9fJjvHX7LiXHQdyYm8d0g3OgaBFN4jHkbKkZfGpKFvtAj2wdW7G2hGbKaf8ctEef2MZiXcvevsH/429qiDkl62GzIKZQfzi+BQw3HZQirS1en2wO2p205Z4CHFOVNi73x40mdSCf5Qpnkkp82I58YXeXVPrclrtcLBlTAkSg=
+	t=1717423670; cv=none; b=bnYwlCwuWz2AxnFOGPuoAIJfIo3IN9C698xWHdXuCDNSVumUaGkCUmfyUnTr1OamxLNTg02nQa0iR/5Wvy1WgOosfh3FZsOlEUwGiITlr99kFazChmhn/CxpOub2mQDPipR+2LZZ+1FvKHD3h5jwjEqV1jg51A7eH3+WdJMMnOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717425015; c=relaxed/simple;
-	bh=ME5S3rAewxYALP3zD16ZoCCOZWcPEkdGdMEBDqRV3k8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eSfdgOL9YSr54mHDtK4msptGmgklAuXuTX6U0G67WWBoRRevHYoMrb79mhSLPemBhlLMhVnxvGUgTFu54LlKGosgGOQZVmGH387TgEKJX5gxcVy+sPgh1vnpPJLuWnPdRHmhiFz0NQScFMzGK3WiyV5/Vr3+4tto52PHUu6SKQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=DswH2Hl4; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 02E8E88297;
-	Mon,  3 Jun 2024 16:30:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1717425012;
-	bh=tzwKWRYiq4hn9T72ICEyR6cTqBmlVIAQNA4M5kMLnKw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DswH2Hl4e4qu+NnV3vVaNwmvbrLFMnaoy4MtJ7XyQT0Jevcn1FxJDp198TJHuiWtf
-	 SRpsUjirB9iTqa2NLNNJL6mM/eHgeb7MwftO0vvTga7MNzgpDR4ocUvAC1DCWSaF66
-	 IhITTRRjiIIdmn2+pOsLQibUr8xJl1nG+Wu+lW3xQWI/c9Zp0MNe28puVzgJ7oXzyz
-	 VpyygSkmecDroHLAcd6nmaEeUaSnof8xNCUz0vnXpatowaO4fFC6aFv05C6g8sKSJW
-	 EdFCuBuinronpATl6Wr8mCEdDt1DhomPEsq80gGZBqpatm4mqFTQdSr0v9Z6m++XD+
-	 IpAShCtSL3VYg==
-Message-ID: <eaa69915-e356-47ac-859e-933fe430a750@denx.de>
-Date: Mon, 3 Jun 2024 15:09:15 +0200
+	s=arc-20240116; t=1717423670; c=relaxed/simple;
+	bh=0HioLrJTT4QG1HtFU+ADQXAnte0yqAM5+oYmYjZ/W9o=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=sBhxLm41LXoLKa+/lxmcE+8+qyBEgIiRuFo/eO3KO8kG9NnWK+QU1q2v9Im7Tygf847YZsOl6W6zhtbQ2eiW4hmOyWZLmZ/1/jjTlQuPIhr/r3FwIix6SZLE501XpwmXz1bLROd2InnhUaN12k16mtXXh26kfvR27aHwXLRbsgo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 635E0C2BD10;
+	Mon,  3 Jun 2024 14:07:49 +0000 (UTC)
+Received: from wens.tw (localhost [127.0.0.1])
+	by wens.tw (Postfix) with ESMTP id 5B7DC5F952;
+	Mon,  3 Jun 2024 22:07:47 +0800 (CST)
+From: Chen-Yu Tsai <wens@csie.org>
+To: Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ =?utf-8?q?Pavel_L=C3=B6bl?= <pavel@loebl.cz>
+Cc: devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev
+In-Reply-To: <20240320001152.4077150-1-pavel@loebl.cz>
+References: <20240320001152.4077150-1-pavel@loebl.cz>
+Subject: Re: (subset) [PATCH v2 0/3] dt-bindings: arm: sunxi: Add Banana Pi
+ P2 Zero v1.1
+Message-Id: <171742366735.763275.121443280080030531.b4-ty@csie.org>
+Date: Mon, 03 Jun 2024 22:07:47 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 11/11] ARM: multi_v7_defconfig: Add MCP23S08 pinctrl
- support
-To: Christophe Roullier <christophe.roullier@foss.st.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>, Jose Abreu
- <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240603092757.71902-1-christophe.roullier@foss.st.com>
- <20240603092757.71902-12-christophe.roullier@foss.st.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20240603092757.71902-12-christophe.roullier@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.13.0
 
-On 6/3/24 11:27 AM, Christophe Roullier wrote:
-> Need to enable MCP23S08 I/O expanders to manage Ethernet phy
+On Wed, 20 Mar 2024 01:11:45 +0100, Pavel Löbl wrote:
+> Adding support for Add Banana Pi P2 Zero v1.1 from Sinovoip.
+> 
+> V2: Added Fixes: tag to 1/3 to reference the commit which introduced
+>     the duplication.
+> 
+>     Fixed all issues found by dtbs_check, except "cpu-hot-limit" regexp
+>     which is there for all H2/H3 boards.
+> 
+> [...]
 
-PHY in capitals.
+Applied to sunxi/for-next in sunxi/linux.git, thanks!
 
-> reset in STM32MP135F-DK board
-> STMMAC driver defer is not silent, need to put this config in
-> built-in to avoid huge of Ethernet messages
+[1/3] ARM: dts: sunxi: remove duplicated entries in makefile
+      https://git.kernel.org/sunxi/linux/c/bba474656dd8
 
-This second sentence is not correct, you are not enabling this GPIO 
-controller driver to silence a warning, you are enabling this driver to 
-let the PHY driver release the PHY from reset.
+Best regards,
+-- 
+Chen-Yu Tsai <wens@csie.org>
+
 
