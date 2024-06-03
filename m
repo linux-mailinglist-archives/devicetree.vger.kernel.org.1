@@ -1,321 +1,388 @@
-Return-Path: <devicetree+bounces-71755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0688D8D7D9D
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 10:42:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 228F28D7DAA
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 10:44:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADAC82811E0
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 08:42:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2E6E1F23B32
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 08:44:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 096B96D1B5;
-	Mon,  3 Jun 2024 08:42:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ez92Ixgi"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3471E74047;
+	Mon,  3 Jun 2024 08:44:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BAEA22F03;
-	Mon,  3 Jun 2024 08:42:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10F2A26AD0;
+	Mon,  3 Jun 2024 08:44:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717404143; cv=none; b=S0Syq/9GppcaBgqMRq4+bCO5RPiWEB5fUmEOl/vMyC1ngtlpxD77UMYjJsFfkuWs2kOMfwUwNU62HzxlgXB5FGWhfBY6EGM7wa7La0ULA/BF1cLt8Hw/NWCe1j70LlCdr7C9LrLYUN8JW0MDr/zHEfovf6eGxzGM9smauHBlmkA=
+	t=1717404288; cv=none; b=tkDpczz70h7i95Iwzm/QPRyRM0eP2g6gGU87iDsR4ZtcSugfdI0+Pe11XctB0zr4l/rQ9t7yZ4620lFNnyXTQ5ab5xukGPbvF+1ngDKMEhDc68LeBWy738silCsXmaGH1aPowSFvJuXWB+5KWxBgjwXX+c1rs8envGex5eCzKHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717404143; c=relaxed/simple;
-	bh=Ga1qPOK4XK5ED5tC7i/66nQWWWuMj1jMkhyfHaAisiU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=c6wdru/sTfUqtpaoHDLe2j6HAkDxt+EGvoTGjds7n4k7ha+HwklsYSl/ceGDCWcqsWgOFqNkgdOln98DbbV30UM7M/G622gljoRMx/OwQmdDGLd4NALPHcjq//9OhRvmQdfASeDmgnuiKgisAw2F27++oesc1QfUccENuyZeHKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ez92Ixgi; arc=none smtp.client-ip=209.85.219.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-dfa5b9274feso4441916276.2;
-        Mon, 03 Jun 2024 01:42:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717404141; x=1718008941; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Y7vvsfENyFuJIy30+AvvNrIT8eWRYZztx7JrOWmsBgU=;
-        b=ez92Ixgi6EUhwrNwXTMlmxHILSe80PdEMZO/oiTRvLj26X4mSLtEjGpvnHM5T7Bd1F
-         wRxaxUvEHChFzq3JhbYyntgRnPyb6EKH6C9lcVOxzR2Gxv/bgl+Wvx8yjz61h/WzZqtN
-         IgP4QilsvDVysJM45nUfHzA44l/OMxP6R9XQptOSK7fkIhwYdlhPufnadQZwKmjz3NSX
-         uAN4gZ3HU0+sksZ+3EjlkNUVjXivaTKZEZaaafryRyR7IEP5wNErbMh6Mu9YRzFcLJ3I
-         kpyO9aF6rRijcoaxTQxt42aHyCWd70IJdn+Ov7EtLfzX/L1c8S76Qv54/FZWDeXXLm+/
-         uQ9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717404141; x=1718008941;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Y7vvsfENyFuJIy30+AvvNrIT8eWRYZztx7JrOWmsBgU=;
-        b=ULjsaGN+tqQwtHeUU4Gnr+nGnh7k3vSujifwcPEppxubxGZEP7yKBIR0xV6Dm4BfXT
-         D0LH8O+Yo2LurOqb9bLBVdtMaS34zEwBGL08g5AvRCbep5VaJ+h9SOEpjtO8Vm1LHqlF
-         hmF1SVMYuNrfbbwigxuih4WvsY0LeDxuxv0rfSEOGtU3c8WCrAfy9llUHkTA1KEB6Cjd
-         djRn4CYm3zq9MspRmBDxCyo8NyEsxdnTI0SXp0Wjm0Sl+qmYn6Vn1zkreFYfu98PeIYO
-         PHAOfq10VLtrnOxuixmcD48elO16IsM40hqy3neI7DWifnUQsl0BYymYYJ4RG/3Ogh0Z
-         jeZw==
-X-Forwarded-Encrypted: i=1; AJvYcCUuIBA94ptekalYsEFmQOPwdkbmhdryQ7bPnA/LLLjchpya00ecFZ7MyWiyh/GoUOuMhiXiaX4FI7LghD/Twm37vSlWdPCUR6dByT5CDjms1SLkdksQzA5yrqLLlMTnvaGGu/7cLvsQRSonZtAm8vGKqiGujXyNlCBJJc14b+7UXQ0Tew==
-X-Gm-Message-State: AOJu0YySZGQL7hCslHuJJi3L3jzrM/XHb+3rLdmXFJzTZmb2ja30J/aB
-	KvZ/QpyCPNik5Q9TRyKE0lJcknMf56CoeeZi2U8Snk5sdLxCvOcswtUBt9gziPBg6A/uVEVTcrc
-	qgb6I5u5hR9nJtgHCK5i3CuRO7UE=
-X-Google-Smtp-Source: AGHT+IE2NE00DLfbf9E7tMUKMhhqox6KKStGzL+ciKOii1Jqjmh/2PBCTsNr5nPdj5rNbNmoKJUzXe0RJ7IwC0BitgM=
-X-Received: by 2002:a25:ad26:0:b0:dfa:52bc:4981 with SMTP id
- 3f1490d57ef6-dfa73bf16cdmr8843125276.8.1717404141051; Mon, 03 Jun 2024
- 01:42:21 -0700 (PDT)
+	s=arc-20240116; t=1717404288; c=relaxed/simple;
+	bh=Nn0UnjjkktmGapK4phNafV9vEY9xLc3hkoj9zYThLRE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=o2zFQGqNQS579LcDLeRqEGZHjK7e47CPYBA1EZqDVRfs5vC6R1XJKJw6Wf7vigXl2FI9bXEojVmpOrgFW9OC0ZVSoV9daozFfrdndZTv724ca3WYxFwC3NEePZ8YnfrbSRL3Srl2A2pdC2xyb2jcOcsJFQlphKGjaMuV6GTa/Zg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F6A5C2BD10;
+	Mon,  3 Jun 2024 08:44:44 +0000 (UTC)
+Message-ID: <75274526-66c8-4ebf-8842-d753bd4353a5@xs4all.nl>
+Date: Mon, 3 Jun 2024 10:44:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240531141152.327592-1-kikuchan98@gmail.com> <20240531141152.327592-6-kikuchan98@gmail.com>
- <851280ad-ac0e-47d1-99e2-4f3b5ea29f2f@kernel.org> <CAG40kxEbMQc-ni0HDVR7rtj48aFu-jz8sYUAO+fdmZSmXWrizw@mail.gmail.com>
- <da382d43-fa82-44c0-9630-086f59e6efa2@kernel.org> <CAG40kxHKdC=uwyWzsBo1LTAXARDQGs0N4TBdD5nE1zhos48cbg@mail.gmail.com>
- <20240603010912.44b99988@minigeek.lan>
-In-Reply-To: <20240603010912.44b99988@minigeek.lan>
-From: Hironori KIKUCHI <kikuchan98@gmail.com>
-Date: Mon, 3 Jun 2024 17:42:08 +0900
-Message-ID: <CAG40kxETZBO1-UBr=rqEu0uWrfOe74k-M12qW7Rg_kX8U32UPg@mail.gmail.com>
-Subject: Re: [PATCH 5/5] dt-bindings: pwm: sun20i: Add options to select a
- clock source and DIV_M
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-kernel@vger.kernel.org, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Aleksandr Shubin <privatesub2@gmail.com>, 
-	Cheo Fusi <fusibrandon13@gmail.com>, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 00/10] Add Chameleon v3 video support
+To: =?UTF-8?Q?Pawe=C5=82_Anikiel?= <panikiel@google.com>, airlied@gmail.com,
+ akpm@linux-foundation.org, conor+dt@kernel.org, daniel@ffwll.ch,
+ dinguyen@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ maarten.lankhorst@linux.intel.com, mchehab@kernel.org, mripard@kernel.org,
+ robh+dt@kernel.org, tzimmermann@suse.de
+Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ chromeos-krk-upstreaming@google.com
+References: <20240507155413.266057-1-panikiel@google.com>
+Content-Language: en-US, nl
+From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20240507155413.266057-1-panikiel@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Andre,
+Hi Paweł,
 
-Thank you for your reply.
+On 07/05/2024 17:54, Paweł Anikiel wrote:
+> Google Chameleon v3 is a testing device capable of emulating multiple
+> DisplayPort monitors, used for testing purposes.  It is based on an Arria
+> 10 SoCFPGA.  This patchset adds V4L2 drivers for two IP blocks used in the
+> device's FPGA: the Chameleon v3 video interface, and the Intel DisplayPort
+> RX IP.  The former is a video capture device that takes video signal and
+> writes frames into memory, which can be later processed by userspace.
+> The latter is a DisplayPort receiver IP from Intel, its datasheet can
+> be found at:
+> https://www.intel.com/programmable/technical-pdfs/683273.pdf
+> 
+> The video interface driver is a regular v4l2 capture device driver, while
+> the DP RX driver is a v4l2 subdevice driver. In order to avoid code
+> duplication, some parts of the DisplayPort code from the DRM subsystem
+> were put into headers usable by the DP RX driver.
+> 
+> This patchset depends on changes merged into the linux-media tree at:
+> git://linuxtv.org/hverkuil/media_tree.git tags/br-v6.10d
+> 
+> Here is the output of `v4l2-compliance -s` run on a Chameleon v3 for
+> /dev/video0 (no attached subdevice):
 
-2024=E5=B9=B46=E6=9C=883=E6=97=A5(=E6=9C=88) 9:10 Andre Przywara <andre.prz=
-ywara@arm.com>:
->
-> On Sun, 2 Jun 2024 15:15:13 +0900
-> Hironori KIKUCHI <kikuchan98@gmail.com> wrote:
->
-> Hi Kikuchan,
->
-> > Hi Krzysztof,
-> >
-> > > On 31/05/2024 19:57, Hironori KIKUCHI wrote:
-> > > > Hello,
-> > > >
-> > > >>> This patch adds new options to select a clock source and DIV_M re=
-gister
-> > > >>> value for each coupled PWM channels.
-> > > >>
-> > > >> Please do not use "This commit/patch/change", but imperative mood.=
- See
-> > > >> longer explanation here:
-> > > >> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/proc=
-ess/submitting-patches.rst#L95
-> > > >>
-> > > >> Bindings are before their users. This should not be last patch, be=
-cause
-> > > >> this implies there is no user.
-> > > >
-> > > > I'm sorry, I'll fix them.
-> > > >
-> > > >> This applies to all variants? Or the one you add? Confused...
-> > > >
-> > > > Apologies for confusing you. This applies to all variants.
-> > > >
-> > > >>
-> > > >>>
-> > > >>> Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
-> > > >>> ---
-> > > >>>  .../bindings/pwm/allwinner,sun20i-pwm.yaml    | 19 +++++++++++++=
-++++++
-> > > >>>  1 file changed, 19 insertions(+)
-> > > >>>
-> > > >>> diff --git a/Documentation/devicetree/bindings/pwm/allwinner,sun2=
-0i-pwm.yaml b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.ya=
-ml
-> > > >>> index b9b6d7e7c87..436a1d344ab 100644
-> > > >>> --- a/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.=
-yaml
-> > > >>> +++ b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.=
-yaml
-> > > >>> @@ -45,6 +45,25 @@ properties:
-> > > >>>      description: The number of PWM channels configured for this =
-instance
-> > > >>>      enum: [6, 9]
-> > > >>>
-> > > >>> +  allwinner,pwm-pair-clock-sources:
-> > > >>> +    description: The clock source names for each PWM pair
-> > > >>> +    items:
-> > > >>> +      enum: [hosc, apb]
-> > > >>> +    minItems: 1
-> > > >>> +    maxItems: 8
-> > > >>
-> > > >> Missing type... and add 8 of such items to your example to make it=
- complete.
-> > > >
-> > > > Thank you. I'll fix it.
-> > > >
-> > > >>
-> > > >>> +
-> > > >>> +  allwinner,pwm-pair-clock-prescales:
-> > > >>> +    description: The prescale (DIV_M register) values for each P=
-WM pair
-> > > >>> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> > > >>> +    items:
-> > > >>> +      items:
-> > > >>> +        minimum: 0
-> > > >>> +        maximum: 8
-> > > >>> +      minItems: 1
-> > > >>> +      maxItems: 1
-> > > >>> +    minItems: 1
-> > > >>> +    maxItems: 8
-> > > >>
-> > > >> This does not look like matrix but array.
-> > > >
-> > > > I wanted to specify values like this:
-> > > >
-> > > >     allwinner,pwm-pair-clock-prescales =3D <0>, <1>, <3>;
-> > > >     allwinner,pwm-pair-clock-sources =3D "hosc", "apb", "hosc":
-> > > >
-> > > > These should correspond to each PWM pair.
-> > > > This way, I thought we might be able to visually understand the rel=
-ationship
-> > > > between prescalers and sources, like clock-names and clocks.
-> > > >
-> > > > Is this notation uncommon, perhaps?
-> > >
-> > > It's still an array.
-> >
-> > Oh I understood and clear. Thank you.
-> >
-> > > >> Why clock DIV cannot be deduced from typical PWM attributes + cloc=
-k
-> > > >> frequency?
-> > > >
-> > > > This SoC's PWM system has one shared prescaler and clock source for=
- each pair
-> > > > of PWM channels. I should have noted this earlier, sorry.
-> > > >
-> > > > Actually, the original v9 patch automatically deduced the DIV value
-> > > > from the frequency.
-> > > > However, because the two channels share a single prescaler, once on=
-e channel is
-> > > > enabled, it affects and restricts the DIV value for the other chann=
-el
-> > > > in the pair.
-> > > > This introduces a problem of determining which channel should set t=
-he shared DIV
-> > > > value. The original behavior was that the first channel enabled wou=
-ld win.
-> > >
-> > > There's nothing bad in this.
-> > >
-> > > >
-> > > > Instead, this patch try to resolve the issue by specifying these
-> > > > values for each PWM
-> > > > pairs deterministically.
-> > > > That's why it requires the new options.
-> > >
-> > > This does not solve that wrong divider can be programmed for second
-> > > channel in each pair.
-> > >
-> >
-> > Let me illustrate the connection of a paired PWM channels to be sure.
-> >
-> > .    +------+                   +--------------+  +------+
-> > .    + HOSC +--+             +--+ prescale_k 0 +--+ PWM0 |
-> > .    +------+  |  +-------+  |  +--------------+  +------+
-> > .              +--+ DIV_M +--+
-> > .    +------+  |  +-------+  |  +--------------+  +------+
-> > .    + APBx +--+             +--+ prescale_k 1 +--+ PWM1 |
-> > .    +------+                   +--------------+  +------+
-> > .          CLK_SRC
-> >
-> > The PWM0 and PWM1 share DIV_M and CLK_SRC for them, and (not
-> > illustrated) PWM2 and PWM3 share another DIV_M and another CLK_SRC for
-> > them, and so on.
-> > The DIV_M ranges from 0 to 8 and is used as a 1 / 2^DIV_M prescaler,
-> > prescale_k ranges from 0 to 255 and is used as a 1 / (prescale_k + 1)
-> > prescaler.
-> >
-> > In the original v9 patch, enabling PWM0 determines CLK_SRC and
-> > calculates DIV_M from the period that is going to be set.
-> > Once the CLK_SRC and DIV_M are fixed, they cannot be changed until
-> > both channels are disabled, unless PWM0 is the only enabled channel.
-> >
-> > Looks good so far, but there is a pitfall.
-> >
-> > Selecting CLK_SRC and DIV_M means it defines the PWM resolution of the
-> > period and duty cycle for the pair of the PWM channels.
-> > In other words, the resolution is determined by the (most likely the
-> > very first) period, which can be arbitrary.
->
-> So I understand the problem, but I don't think expressing this in the
-> devicetree is the right solution. It seems like a tempting pragmatical
-> approach, but it sounds like the wrong way: this is not a hardware
-> *description* of any kind, but rather a way to describe a certain user
-> intention or a configuration. So this looks like a rather embedded
-> approach to me, where you have a certain fixed register setup in mind,
-> and want to somehow force this to the hardware.
-> Another problem with this approach is that it doesn't really cover the
-> sysfs interface, which is very dynamic by nature.
+This v3 series looks pretty good to me, so from a V4L2 perspective I believe
+a v4 should be OK.
 
-... Indeed. You're right.
-Now I've realized it was a bad idea.
-It should be done in sysfs or sysctl perhaps.
+But I need Acked-by for the drm and bindings patches before I can
+merge a v4.
 
->
-> I have some questions / ideas, and would love to hear some feedback on
-> them:
-> - If some PWM channels are "linked", I don't think there is much we can
->   do about it: it's a hardware limitation. The details of that is
->   already "encoded" in the compatible string, I'd say, so there is no
->   need for further description in the devicetree. Any PWM user on those
->   boards would probably need to know about the shortcomings, and either
->   use different channels for wildly different PWM setups, or accept
->   that there are actually only three freely programmable PWM channels.
-> - Does the PWM subsystem already have a way to model linked channels?
->   Maybe that problem is solved already elsewhere?
-> - Previous Allwinner PWM IP was restricted to use the 24 MHz
->   oscillator only, and people seem to have survived with that. Can we
->   not just restrict ourselves to one clock source for those linked
->   channels? I would assume that the PWM frequency is less important
->   than the duty cycle?
-> - Can't we just return an error if some conflicting setup requests are
->   made? At the expense of this seeming somewhat random to the user,
->   because it depends on the order of requests? But people could then
->   react on the returned error value?
->
-> In general, I wonder what the real use cases are, maybe it's not a
-> problem in real life? Do you have a concrete issue at hand, or is this
-> just thinking about all potential use cases - which is honourable, but
-> maybe a bit over the top here?
+Regards,
 
-IMHO, it is sufficient to use fixed CLK_SRC and DIV_M values for this
-driver, since the default values (CLK_SRC =3D=3D hosc and DIV_M =3D=3D 0)
-already provide enough range in real life.
+	Hans
 
-What I really care about is minimizing complexity and avoiding surprises.
-Although the original method enables an incredibly wide range of the
-period, it introduces unpredictability in resolution and inequity in a
-pair due to a race in the order of enabling, as a drawback.
+> 
+> ```
+> v4l2-compliance 1.27.0-5204, 32 bits, 32-bit time_t
+> v4l2-compliance SHA: dd049328e528 2024-04-29 13:40:09
+> 
+> Compliance test for chv3-video device /dev/video0:
+> 
+> Driver Info:
+> 	Driver name      : chv3-video
+> 	Card type        : Chameleon v3 video
+> 	Bus info         : platform:c0060500.video
+> 	Driver version   : 6.9.0
+> 	Capabilities     : 0x84200001
+> 		Video Capture
+> 		Streaming
+> 		Extended Pix Format
+> 		Device Capabilities
+> 	Device Caps      : 0x04200001
+> 		Video Capture
+> 		Streaming
+> 		Extended Pix Format
+> 
+> Required ioctls:
+> 	test VIDIOC_QUERYCAP: OK
+> 	test invalid ioctls: OK
+> 
+> Allow for multiple opens:
+> 	test second /dev/video0 open: OK
+> 	test VIDIOC_QUERYCAP: OK
+> 	test VIDIOC_G/S_PRIORITY: OK
+> 	test for unlimited opens: OK
+> 
+> Debug ioctls:
+> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMINPUT: OK
+> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+> 	Inputs: 1 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK
+> 	test VIDIOC_DV_TIMINGS_CAP: OK
+> 	test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Control ioctls (Input 0):
+> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+> 	test VIDIOC_QUERYCTRL: OK
+> 	test VIDIOC_G/S_CTRL: OK
+> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+> 	Standard Controls: 2 Private Controls: 0
+> 
+> Format ioctls (Input 0):
+> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+> 	test VIDIOC_G/S_PARM: OK (Not Supported)
+> 	test VIDIOC_G_FBUF: OK (Not Supported)
+> 	test VIDIOC_G_FMT: OK
+> 	test VIDIOC_TRY_FMT: OK
+> 	test VIDIOC_S_FMT: OK
+> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+> 	test Cropping: OK (Not Supported)
+> 	test Composing: OK (Not Supported)
+> 	test Scaling: OK (Not Supported)
+> 
+> Codec ioctls (Input 0):
+> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+> 	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> 
+> Buffer ioctls (Input 0):
+> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+> 	test CREATE_BUFS maximum buffers: OK
+> 	test VIDIOC_REMOVE_BUFS: OK
+> 	test VIDIOC_EXPBUF: OK
+> 	test Requests: OK (Not Supported)
+> 	test TIME32/64: OK
+> 
+> Test input 0:
+> 
+> Streaming ioctls:
+> 	test read/write: OK (Not Supported)
+> 	test blocking wait: OK
+> 	test MMAP (no poll): OK
+> 	test MMAP (select): OK
+> 	test MMAP (epoll): OK
+> 	test USERPTR (no poll): OK (Not Supported)
+> 	test USERPTR (select): OK (Not Supported)
+> 	test DMABUF: Cannot test, specify --expbuf-device
+> 
+> Total for chv3-video device /dev/video0: 55, Succeeded: 55, Failed: 0, Warnings: 0
+> ```
+> 
+> Here is the output of `v4l2-compliance -s` run on a Chameleon v3 for
+> /dev/video4 (attached subdevice):
+> 
+> ```
+> v4l2-compliance 1.27.0-5204, 32 bits, 32-bit time_t
+> v4l2-compliance SHA: dd049328e528 2024-04-29 13:40:09
+> 
+> Compliance test for chv3-video device /dev/video4:
+> 
+> Driver Info:
+> 	Driver name      : chv3-video
+> 	Card type        : Chameleon v3 video
+> 	Bus info         : platform:c0060600.video
+> 	Driver version   : 6.9.0
+> 	Capabilities     : 0x84200001
+> 		Video Capture
+> 		Streaming
+> 		Extended Pix Format
+> 		Device Capabilities
+> 	Device Caps      : 0x04200001
+> 		Video Capture
+> 		Streaming
+> 		Extended Pix Format
+> 
+> Required ioctls:
+> 	test VIDIOC_QUERYCAP: OK
+> 	test invalid ioctls: OK
+> 
+> Allow for multiple opens:
+> 	test second /dev/video4 open: OK
+> 	test VIDIOC_QUERYCAP: OK
+> 	test VIDIOC_G/S_PRIORITY: OK
+> 	test for unlimited opens: OK
+> 
+> Debug ioctls:
+> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMINPUT: OK
+> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+> 	Inputs: 1 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK
+> 	test VIDIOC_DV_TIMINGS_CAP: OK
+> 	test VIDIOC_G/S_EDID: OK
+> 
+> Control ioctls (Input 0):
+> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+> 	test VIDIOC_QUERYCTRL: OK
+> 	test VIDIOC_G/S_CTRL: OK
+> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+> 	Standard Controls: 2 Private Controls: 0
+> 
+> Format ioctls (Input 0):
+> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+> 	test VIDIOC_G/S_PARM: OK (Not Supported)
+> 	test VIDIOC_G_FBUF: OK (Not Supported)
+> 	test VIDIOC_G_FMT: OK
+> 	test VIDIOC_TRY_FMT: OK
+> 	test VIDIOC_S_FMT: OK
+> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+> 	test Cropping: OK (Not Supported)
+> 	test Composing: OK (Not Supported)
+> 	test Scaling: OK (Not Supported)
+> 
+> Codec ioctls (Input 0):
+> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+> 	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> 
+> Buffer ioctls (Input 0):
+> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+> 	test CREATE_BUFS maximum buffers: OK
+> 	test VIDIOC_REMOVE_BUFS: OK
+> 	test VIDIOC_EXPBUF: OK
+> 	test Requests: OK (Not Supported)
+> 	test TIME32/64: OK
+> 
+> Test input 0:
+> 
+> Streaming ioctls:
+> 	test read/write: OK (Not Supported)
+> 	test blocking wait: OK
+> 	test MMAP (no poll): OK
+> 	test MMAP (select): OK
+> 	test MMAP (epoll): OK
+> 	test USERPTR (no poll): OK (Not Supported)
+> 	test USERPTR (select): OK (Not Supported)
+> 	test DMABUF: Cannot test, specify --expbuf-device
+> 
+> Total for chv3-video device /dev/video4: 55, Succeeded: 55, Failed: 0, Warnings: 0
+> ```
+> 
+> v3 changes:
+>   - Send v4l2-subdev API changes as a separate patchset
+>   - Drop chameleonv3/ directory
+>   - Change capture device name from "framebuffer" to "video interface"
+>   - Set sensible min and max dv timing caps
+>   - Set pixelclock to htotal * vtotal * 24Hz (we can't detect the actual value)
+>   - Remove enum_framesizes
+>   - Use v4l2_match_dv_timings()
+>   - Add V4L2_CID_DV_RX_POWER_PRESENT control
+>   - Use V4L2_DV_BT_CEA_1920X1080P60 as default timing
+>   - Use vb2_video_unregister_device()
+>   - Move subdev pad initialization to probe
+>   - Change subdev entity function to MEDIA_ENT_F_DV_DECODER
+>   - Drop dprx 'port' property and always use 'ports' instead
+>   - Remove legacy-format property and use multiple compats
+>   - Cleanup notifier only in non-fallback mode
+>   - Cleanup subdev entity using media_entity_cleanup()
+>   - Increase HPD pulse length to 500ms (see comment in dprx_set_edid())
+>   - Pull HPD low before updating EDID
+>   - Add a DisplayPort media bus type
+>   - Move receiver properties to port endpoint (data-lanes, link-frequencies)
+> 
+> v2 changes:
+>   - Add missing includes in dt binding examples
+>   - Add version number to intel,dprx compatible
+>   - Use generic node names in dts
+>   - Add and document IP configuration parameters
+>   - Remove IRQ registers from intel-dprx (they're not a part of the IP)
+>   - Remove no-endpoint property and check for "port" node instead
+> 
+> Paweł Anikiel (10):
+>   media: Add Chameleon v3 video interface driver
+>   drm/dp_mst: Move DRM-independent structures to separate header
+>   lib: Move DisplayPort CRC functions to common lib
+>   drm/display: Add mask definitions for DP_PAYLOAD_ALLOCATE_* registers
+>   media: dt-bindings: video-interfaces: Support DisplayPort MST
+>   media: v4l2-mediabus: Add support for DisplayPort media bus
+>   media: intel: Add Displayport RX IP driver
+>   media: dt-bindings: Add Chameleon v3 video interface
+>   media: dt-bindings: Add Intel Displayport RX IP
+>   ARM: dts: chameleonv3: Add video device nodes
+> 
+>  .../bindings/media/google,chv3-video.yaml     |   64 +
+>  .../devicetree/bindings/media/intel,dprx.yaml |  172 ++
+>  .../bindings/media/video-interfaces.yaml      |    7 +
+>  .../socfpga/socfpga_arria10_chameleonv3.dts   |  194 ++
+>  drivers/gpu/drm/display/Kconfig               |    1 +
+>  drivers/gpu/drm/display/drm_dp_mst_topology.c |   76 +-
+>  drivers/media/platform/Kconfig                |    1 +
+>  drivers/media/platform/Makefile               |    1 +
+>  drivers/media/platform/google/Kconfig         |   13 +
+>  drivers/media/platform/google/Makefile        |    3 +
+>  drivers/media/platform/google/chv3-video.c    |  891 +++++++
+>  drivers/media/platform/intel/Kconfig          |   12 +
+>  drivers/media/platform/intel/Makefile         |    1 +
+>  drivers/media/platform/intel/intel-dprx.c     | 2283 +++++++++++++++++
+>  drivers/media/v4l2-core/v4l2-fwnode.c         |   38 +
+>  include/drm/display/drm_dp.h                  |    9 +-
+>  include/drm/display/drm_dp_mst.h              |  238 ++
+>  include/drm/display/drm_dp_mst_helper.h       |  232 +-
+>  include/dt-bindings/media/video-interfaces.h  |    2 +
+>  include/linux/crc-dp.h                        |   10 +
+>  include/media/v4l2-fwnode.h                   |    5 +
+>  include/media/v4l2-mediabus.h                 |   17 +
+>  lib/Kconfig                                   |    8 +
+>  lib/Makefile                                  |    1 +
+>  lib/crc-dp.c                                  |   78 +
+>  25 files changed, 4053 insertions(+), 304 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/google,chv3-video.yaml
+>  create mode 100644 Documentation/devicetree/bindings/media/intel,dprx.yaml
+>  create mode 100644 drivers/media/platform/google/Kconfig
+>  create mode 100644 drivers/media/platform/google/Makefile
+>  create mode 100644 drivers/media/platform/google/chv3-video.c
+>  create mode 100644 drivers/media/platform/intel/intel-dprx.c
+>  create mode 100644 include/drm/display/drm_dp_mst.h
+>  create mode 100644 include/linux/crc-dp.h
+>  create mode 100644 lib/crc-dp.c
+> 
 
-If the primary concern is achieving such a wide range, then I think
-the original method is the most suitable option.
-
->
-> Cheers,
-> Andre
->
-
-Best regards,
-kikuchan.
 
