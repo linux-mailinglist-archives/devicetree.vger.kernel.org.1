@@ -1,96 +1,85 @@
-Return-Path: <devicetree+bounces-71834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8C708D8289
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 14:40:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D4C38D829A
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 14:43:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80B361F21298
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 12:40:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6DDFBB23393
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 12:43:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93B4312C47D;
-	Mon,  3 Jun 2024 12:40:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 780B312C526;
+	Mon,  3 Jun 2024 12:43:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="r/w75eBh";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="ZX52S748"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pNyzT3G8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D5458615A;
-	Mon,  3 Jun 2024 12:40:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A47912C49E;
+	Mon,  3 Jun 2024 12:43:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717418410; cv=none; b=Ev/iopkmj686unLEFZpWQc52w9gIrh4nCchbUgP0cMVCODJ/c3t2vZJ4bRBI0ZKyp7AgRkUnMJ6DxGozbfRx2ka2gkJzNWu1CeJJ0hEnw8l/fbyrMUdnoFXmv9v7JDG6xzlh4pNbc6+JVDyWtatIVu1fu6tQRLepTcaQx1VBP5E=
+	t=1717418597; cv=none; b=Va9fzDRMuWPsijRbyUpyC5om34GJVfP91rnVLQ5QjgT8nmjYCAIj8amRBnJV3JAzVOf/OKhDXqUwIWO+nWitUgQ30JJTwtzcP6ynIxD5VH1mcFXp8TZcOduwhudkN/lvlpnNUHy+8rn9p39/e2eX6gDyYz5wUx7m7MFK+vdCSiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717418410; c=relaxed/simple;
-	bh=gpQL63nMCWWMr/5E+JsFptrCi9cZIqQUjqLAiNsUKP0=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=FNVZzjjZ68hJQbd6gC455VdIRZHNuMPxy5yWxfRThtuxrfKzwkXAe5Abw5pCJTYllBEYHYmMkWgyJ9V6YPfLISgR+fvtYkmsQcCUGxglQQOsQY7U8ujPJGuXLP5WyWLiYK9GUstYB7yGfQ0rE8xManvAtH6ccQg12QpQAW6ITBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=r/w75eBh; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=ZX52S748; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1717418407;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=C9km54j17Gw209l87deKX3nwEPnFegL/JeTGbnPu38A=;
-	b=r/w75eBh7E/klvxf4UQL8eEznyuUAQ3KCresDlr+i5LtUtkKbZGsI6m/tvhWU/SMUnJ+z0
-	5eijwHlttnzTrL7TyuCtOxZnv3dloyEiVyqhA+57dJeKdLH42/XsusVCux/vKAB6ryhOxT
-	iONds2ph3J2Aq85sT9hU5E6WDRLC+QJLtioTYNbEO2SedK4glheTjUqBBH8umml8Ep1nPW
-	sRZLdztaNHMUapYHnm5QOh4/l74uTNFik/YvJL7TYangkjJcEVsFHplvmZFBS3ik4Tnpnt
-	Qrk0XJPSGecSI+8Up3ZxZhFPCqrOzDl2fy0t8+6/Khba3Sv4YmNPTZaBVE1EJw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1717418407;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=C9km54j17Gw209l87deKX3nwEPnFegL/JeTGbnPu38A=;
-	b=ZX52S748sx3bSTdjyDDDO08mTDvvi/65oGvQhhO19K6YaZ5saSvvpKF0D7Cpqt1bSWvTUd
-	v/3Sjc2xPwyHUBCw==
-To: Prabhakar <prabhakar.csengg@gmail.com>, Geert Uytterhoeven
- <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Magnus
- Damm <magnus.damm@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, Prabhakar <prabhakar.csengg@gmail.com>,
- Biju Das <biju.das.jz@bp.renesas.com>, Lad Prabhakar
- <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v4 2/2] irqchip/renesas-rzg2l: Add support for RZ/Five SoC
-In-Reply-To: <20240430141438.132838-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240430141438.132838-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240430141438.132838-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Date: Mon, 03 Jun 2024 14:40:06 +0200
-Message-ID: <87bk4i6vyx.ffs@tglx>
+	s=arc-20240116; t=1717418597; c=relaxed/simple;
+	bh=i3lDKw5djP+fp83cE4kSzg6UdwUoiQZr2LDyo4bms+8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qe0+vFKYeZ+f7PGh/YO5Nlc3nGTxIXvYEMukdOXMUBvpAlrlKifox8+gS7fTYlj6CpZ97IqU3jfa2rW1PoQ+91jMb3ehbX7mpR8xhEckm6QzXJznGErVXkrooOUPhc2Bj25FNezYziNcjGtTVyR2x1IKpWVlW+yLg2EmVEM195k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pNyzT3G8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16362C32789;
+	Mon,  3 Jun 2024 12:43:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717418597;
+	bh=i3lDKw5djP+fp83cE4kSzg6UdwUoiQZr2LDyo4bms+8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pNyzT3G8I584aMxukYR+m/77Zul0hA0vZzt3Us/VprrUcEJv2N/66PX7gSM4JvNAK
+	 V1gCR99VlB+ECWzZ39Rl4MEz97JiI72VUE1r1VoK9wHBaBHgApciO1GKJgIlZn2M2g
+	 mvNd+GRYmbpbEqExwFsdoD/JUW2NuzL6qPReTqNZJk6Ac7x4BQcgi4c5fAkykObqqx
+	 0uoGdwk/Ga4KNhpu3lKAdXx4Y/nyvAlTEM6JDIIoKzLadeYK1MFof0ejWchwHOfKiN
+	 qf0nWw9HRlhmwCFQsEKju9pWEphCJLU8o+v0nkU7TXaOmiTMwcA75T5Z34FC5U6Ioc
+	 ROYrBz460yfdA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1sE71v-000000000hP-0EBr;
+	Mon, 03 Jun 2024 14:43:15 +0200
+Date: Mon, 3 Jun 2024 14:43:15 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy:
+ Document the X1E80100 QMP PCIe PHY Gen4 x4
+Message-ID: <Zl26Y0VklPmiirem@hovoldconsulting.com>
+References: <20240531-x1e80100-phy-add-gen4x4-v1-0-5c841dae7850@linaro.org>
+ <20240531-x1e80100-phy-add-gen4x4-v1-1-5c841dae7850@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240531-x1e80100-phy-add-gen4x4-v1-1-5c841dae7850@linaro.org>
 
-On Tue, Apr 30 2024 at 15:14, Prabhakar wrote:
-> +
-> +static void rzfive_irqc_irq_disable(struct irq_data *d)
-> +{
-> +	rzfive_tint_irq_endisable(d, false);
-> +	irq_chip_disable_parent(d);
-> +}
-> +
-> +static void rzfive_irqc_irq_enable(struct irq_data *d)
-> +{
-> +	rzfive_tint_irq_endisable(d, true);
-> +	irq_chip_enable_parent(d);
-> +}
+On Fri, May 31, 2024 at 07:06:44PM +0300, Abel Vesa wrote:
+> The PCIe 6th instance from X1E80100 can be used in both 4-lane mode or
 
-This looks wrong. Enable/disable should be symmetric vs. ordering, no?
+nit: s/PCIe 6th/sixth PCIe/
+nit: s/from/on/
+nit: s/both/either/
 
-Thanks,
+> 2-lane mode. Document the 4-lane mode as a separate compatible.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 
-        tglx
+Johan
 
