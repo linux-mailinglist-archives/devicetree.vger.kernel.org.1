@@ -1,74 +1,40 @@
-Return-Path: <devicetree+bounces-71955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 090A28D8AD0
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 22:17:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C0BA8D8AD4
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 22:20:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 68B15B20C0C
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 20:17:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E36E1C22323
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 20:20:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 051551386C0;
-	Mon,  3 Jun 2024 20:17:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="YGE32Bzw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06FE313791C;
+	Mon,  3 Jun 2024 20:20:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AED14EB5E
-	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 20:17:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.44
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE4CA136E17;
+	Mon,  3 Jun 2024 20:20:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717445856; cv=none; b=YJpJvpvKC4VAZ5hHl8ZsnsffR+RLh/zaMs+6XrEeHIi8m++HbZ9e8c6Xzk0X7k/kZlKRO4aoqekRTtJD8v491BVPLM6PM1TCLGvqHYubPsTXuFpZ38wePay9LpGMqUzi+VEfBmghtqee57YK3ureIScpS6VdGt0Izqtcw9X1Boc=
+	t=1717446011; cv=none; b=QEqFy1V7fNhaObjvhVeG3DZo6g8AY7+wKpFAJwyg61AqATDz2py8bBV1+kJJrPdybkX5vvVVyPu5jFhZ4Tis3ANf2JuNsH0aWx/1fYaHCn9PldsFY73YPFSztpRtbS7FLWOWUWDyk8W30RnnJeoh2fCfXJgpes5PO3WNtqQ1Tfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717445856; c=relaxed/simple;
-	bh=4GcOgyJahweqOFa/iQjsMvxOOerBc8RefsmPuWGEv4I=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=P6qdQrsevnyZbodB7MnVBhL8UWcqGWjHw1nqXiP56VBACD2Skoz3RkY37pyQkbqeMTNER6LXqq3xz0Om+GQ0iOiH4a1WZ84b4OwU9bHxVyXR9M5OZKxuKu682Pjicrt8adgAWdKXg3Gc/AwFGUzFF4EN67kq6T8PoYdFGOy8EYs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=YGE32Bzw; arc=none smtp.client-ip=209.85.160.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-24ca03ad307so2662041fac.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2024 13:17:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1717445854; x=1718050654; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=TTLAWauqe0r9HcfcWkbuq/PdizHVPeIYJfPIk4JdS1E=;
-        b=YGE32Bzw60MUI5/0eDLx+dEGOvb6ZjjiRPzUSnO/Iw+Ol0XJ/rwNVGUAk2Hj5cG13b
-         gSpN15hQdKnTpFvvhpJErgPz6mituIeH42d10HixcmbdCF+BF5WE79yLUp48L+mh0HuA
-         7DJRnG9uVyqI3qC0Wf9sJ2UaXJGefsbi31F7UgE/6yhAPdtB1kkgb18quZcLEHqFnopN
-         at9osa2dm6npoaBzFOuYwao0c9e021JRSkM7bGnPWmW7geN4Qx0S0vDm9eNrDeisLwJu
-         hDjJ2qxIgbUQDkkBSoa1G+cCRzzxp09jq41V7myrG0WoJSynRag4g15QrtdC/JpDetf4
-         es/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717445854; x=1718050654;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TTLAWauqe0r9HcfcWkbuq/PdizHVPeIYJfPIk4JdS1E=;
-        b=Cm7JDuKZfifjlqeYDUvp4ZutMAarUgvaT3z3D72fo2DurHClGCe+1QwoHN3zAo8z6O
-         yPbxuNicpijgi+vCcMS6PJmEyfkX3/odqzf+cSDKJhqORg+ynJxkWbId4yGWC//Gf6vR
-         zM4fHfEPZZch6LeTJ2Nlh7cTjDlqqdH0Aapb1Ac5B2U3lL5Z/YUYiRx5tLnHy4MNOKwq
-         XoYMe09NxSzzcAmOBB/2M48oyLIwAEgNSe4rnAacMMyx1giauclV6TlgXvr2h0LEpk4J
-         3SqK9Ber/KVo6gskW9lOEEOJi3HxZK7jra/BMSilF1lkywXgva8wHfhjjWlD+5otdqdx
-         cm5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUSzrXqugDuf6vwkMkV+V29zMRY0d8/VB4Rx/LuAsW8R5q5jITFujn4CjLZlEtGOkeBHLlLtqiR5aX0DSjsnSI2CUnShXirnr7lwg==
-X-Gm-Message-State: AOJu0Yw0nRUbzBCvHDru2itkHGGpUoBt5aWHdM1CmS5wOTJmbkOhsTjM
-	cYsqNqxNFhkZACG3ZiXkDRiLIy7TJfrBrO6nG9gqo0yoKicazCXNUzagHy9q6NM=
-X-Google-Smtp-Source: AGHT+IENW9EneuA2Evfw10RJcCTgBcS7AzO4/LTNodBaNUwPlKHEa5np1aFzodH+efdmMORRiGigxg==
-X-Received: by 2002:a05:6870:c14f:b0:24c:b92e:a130 with SMTP id 586e51a60fabf-2508ba211ffmr11781577fac.15.1717445853829;
-        Mon, 03 Jun 2024 13:17:33 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-25085000afasm2656258fac.23.2024.06.03.13.17.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jun 2024 13:17:32 -0700 (PDT)
-Message-ID: <d9d76298-cfd3-4d6e-bbd0-92ac17058705@baylibre.com>
-Date: Mon, 3 Jun 2024 15:17:32 -0500
+	s=arc-20240116; t=1717446011; c=relaxed/simple;
+	bh=D2aVJoazwYvNwijy23VBiIfNUOdprfvCGR7+xleba5M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=C77wdQjByaV28B3H8rnxTFFVyeIfZMWI9V5ZelSeg8xF3GABXLf7UNhL5kic8fh0EzEr1fI4GMKMkJUa2NAbeEZYC4k8D/Hu2ka7A1cxnCI5y9RB9OQl4SHIje+jyFDuibPFVGxyW08NUBXWAMa891nJrrOGxGXYflGLRjMGuhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 29BE41042;
+	Mon,  3 Jun 2024 13:20:33 -0700 (PDT)
+Received: from [10.57.71.49] (unknown [10.57.71.49])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 736993F792;
+	Mon,  3 Jun 2024 13:20:04 -0700 (PDT)
+Message-ID: <3d24fecf-1fdb-4804-9a51-d6c34a9d65c6@arm.com>
+Date: Mon, 3 Jun 2024 21:20:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,79 +42,129 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/5] dt-bindings: iio: dac: Add adi,ltc2672.yaml
-From: David Lechner <dlechner@baylibre.com>
-To: Kim Seer Paller <kimseer.paller@analog.com>,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>
-References: <20240603012200.16589-1-kimseer.paller@analog.com>
- <20240603012200.16589-5-kimseer.paller@analog.com>
- <2942a938-19b9-4642-8ed0-8e17e4825bc5@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <2942a938-19b9-4642-8ed0-8e17e4825bc5@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v5 08/12] PCI: imx6: Config look up table(LUT) to support
+ MSI ITS and IOMMU for i.MX95
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Frank Li <Frank.Li@nxp.com>, Richard Zhu <hongxing.zhu@nxp.com>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
+ devicetree@vger.kernel.org, Will Deacon <will@kernel.org>,
+ Joerg Roedel <joro@8bytes.org>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Marc Zyngier <maz@kernel.org>
+References: <20240603171921.GA685838@bhelgaas>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20240603171921.GA685838@bhelgaas>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 6/3/24 2:59 PM, David Lechner wrote:
-> On 6/2/24 8:21 PM, Kim Seer Paller wrote:
->> Add documentation for ltc2672.
+On 2024-06-03 6:19 pm, Bjorn Helgaas wrote:
+> On Fri, May 31, 2024 at 03:58:49PM +0100, Robin Murphy wrote:
+>> On 2024-05-31 12:08 am, Bjorn Helgaas wrote:
+>>> [+cc IOMMU and pcie-apple.c folks for comment]
+>>>
+>>> On Tue, May 28, 2024 at 03:39:21PM -0400, Frank Li wrote:
+>>>> For the i.MX95, configuration of a LUT is necessary to convert Bus Device
+>>>> Function (BDF) to stream IDs, which are utilized by both IOMMU and ITS.
+>>>> This involves examining the msi-map and smmu-map to ensure consistent
+>>>> mapping of PCI BDF to the same stream IDs. Subsequently, LUT-related
+>>>> registers are configured. In the absence of an msi-map, the built-in MSI
+>>>> controller is utilized as a fallback.
+>>>>
+>>>> Additionally, register a PCI bus notifier to trigger imx_pcie_add_device()
+>>>> upon the appearance of a new PCI device and when the bus is an iMX6 PCI
+>>>> controller. This function configures the correct LUT based on Device Tree
+>>>> Settings (DTS).
+>>>
+>>> This scheme is pretty similar to apple_pcie_bus_notifier().  If we
+>>> have to do this, I wish it were *more* similar, i.e., copy the
+>>> function names, bitmap tracking, code structure, etc.
+>>>
+>>> I don't really know how stream IDs work, but I assume they are used on
+>>> most or all arm64 platforms, so I'm a little surprised that of all the
+>>> PCI host drivers used on arm64, only pcie-apple.c and pci-imx6.c need
+>>> this notifier.
 >>
->> Reported-by: Rob Herring (Arm) <robh@kernel.org>
->> Closes: https://lore.kernel.org/all/171643825573.1037396.2749703571529285460.robh@kernel.org/
->> Co-developed-by: Michael Hennerich <michael.hennerich@analog.com>
->> Signed-off-by: Michael Hennerich <michael.hennerich@analog.com>
->> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
->> ---
->>  .../bindings/iio/dac/adi,ltc2672.yaml         | 158 ++++++++++++++++++
->>  MAINTAINERS                                   |   1 +
->>  2 files changed, 159 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ltc2672.yaml
+>> This is one of those things that's mostly at the mercy of the PCIe root
+>> complex implementation. Typically the SMMU StreamID and/or GIC ITS DeviceID
+>> is derived directly from the PCI RID, sometimes with additional high-order
+>> bits hard-wired to disambiguate PCI segments. I believe this RID-translation
+>> LUT is a particular feature of the the Synopsys IP - I know there's also one
+>> on the NXP Layerscape platforms, but on those it's programmed by the
+>> bootloader, which also generates the appropriate "msi-map" and "iommu-map"
+>> properties to match. Ideally that's what i.MX should do as well, but hey.
+> 
+> Maybe this RID-translation is a feature of i.MX, not of Synopsys?  I
+> see that the LUT CSR accesses use IMX95_* definitions.
+
+Well, it's not unreasonable to call things "IMX95" in this context if 
+they are only relevant to the configuration used by i.MX95, and not to 
+the other i.MX SoCs which this driver also supports. However the data 
+register fields certainly look suspiciously similar to those used on 
+Layerscape[1], although I guess that still doesn't rule out it being 
+NXP's own widget either. Anyway, the exact details aren't really 
+significant, the point was really just to say don't expect this to 
+generalise much beyond what you've seen already, and that there's 
+precedent for bootloaders doing this for us.
+
+>> If it's really necessary to do this programming from Linux, then there's
+>> still no point in it being dynamic - the mappings cannot ever change, since
+>> the rest of the kernel believes that what the DT said at boot time was
+>> already a property of the hardware. It would be a lot more logical, and
+>> likely simpler, for the driver to just read the relevant map property and
+>> program the entire LUT to match, all in one go at controller probe time.
+>> Rather like what's already commonly done with the parsing of "dma-ranges" to
+>> program address-translation LUTs for inbound windows.
 >>
->> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ltc2672.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ltc2672.yaml
->> new file mode 100644
->> index 000000000000..d143a9db7010
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ltc2672.yaml
->> @@ -0,0 +1,158 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/iio/dac/adi,ltc2672.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Analog Devices LTC2672 DAC
->> +
->> +maintainers:
->> +  - Michael Hennerich <michael.hennerich@analog.com>
->> +  - Kim Seer Paller <kimseer.paller@analog.com>
->> +
->> +description: |
->> +  Analog Devices LTC2672 5 channel, 16 bit, 300mA DAC
->> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ltc2672.pdf
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - adi,ltc2672
+>> Plus that would also give a chance of safely dealing with bad DTs specifying
+>> invalid ID mappings (by refusing to probe at all). As it is, returning an
+>> error from a child's BUS_NOTIFY_ADD_DEVICE does nothing except prevent any
+>> further notifiers from running at that point - the device will still be
+>> added, allowed to bind a driver, and able to start sending DMA/MSI traffic
+>> without the controller being correctly programmed, which at best won't work
+>> and at worst may break the whole system.
 > 
-> The linked datasheet describes 12-bit and 16-bit versions, so should we have
-> two compatibles here? adi,ltc2672-12, adi,ltc2672-16
+> Frank, could the imx LUT be programmed once at boot-time instead of at
+> device-add time?  I'm guessing maybe not because apparently there is a
+> risk of running out of LUT entries?
+
+The risk still exists just as much either way - if we have a bogus DT 
+and/or just more PCI RIDs present than we can handle, we're going to 
+have a bad time. There's no advantage to only finding that out once we 
+try to add the 33rd device and it's too late to even do anything about it.
+
+In fact if anything, this notifier approach exacerbates that risk the 
+most by consuming one LUT entry per PCI RID regardless of whether an 
+"iommu-map-mask" is involved. Assuming the IMX95_PE0_LUT_MASK field is 
+the same as its Layerscape counterpart, we could support >32 RIDs if the 
+map and mask are constructed to squash multiple RIDs onto each StreamID 
+(the SMMU driver supports this), and we have the up-front information to 
+easily configure hardware masking in the LUT itself. It's not 
+necessarily possible to reconstruct such mappings from only seeing 
+individual input and output values one-by-one.
+
+Thanks,
+Robin.
+
+[1] 
+https://source.denx.de/u-boot/u-boot/-/blob/master/drivers/pci/pcie_layerscape_fixup.c?ref_type=heads#L83
+
+> It sounds like the consequences of running out of LUT entries are
+> catastrophic, e.g., memory corruption from mis-directed DMA?  If
+> that's possible, I think we need to figure out how to prevent the
+> device from being used, not just dev_warn() about it.
 > 
-> I don't see any ID registers where this could be read from the chip at
-> runtime, so seems like something that needs to be in the devicetree.
-
-Hmm... I guess maybe it doesn't matter for these chips (i.e. the 4 LSBs
-of the sample data register in 12-bit version will just always be ignored
-but no data needs to be shifted based on the bit-ness).
-
-I would not hurt to update the description though since it only mentions
-16-bit if the compatible is meant for both versions of the chip.
-
+> Bjorn
 
