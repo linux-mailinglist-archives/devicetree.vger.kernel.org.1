@@ -1,212 +1,213 @@
-Return-Path: <devicetree+bounces-71805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B41F8D7FCB
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 12:11:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49F498D7FCE
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 12:12:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1583286183
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 10:11:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CAD7B1F21398
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 10:12:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78A20824AA;
-	Mon,  3 Jun 2024 10:11:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5688C823A6;
+	Mon,  3 Jun 2024 10:12:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XZeaB8o4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M8QCNRT2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D2837FBA3;
-	Mon,  3 Jun 2024 10:11:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F48B7FBA3
+	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 10:12:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717409499; cv=none; b=DKyTQCfX3vefzPTmOLZSKNA9kLFC80VhEHutFg5RIF0KWEX6nAyXQHozoRQz/DF7oUQEu+rl6JtN9QHDiia8Uez4RtF0RDUS4/cSDsVCx2cJ2WKdy4bXzcbWl/n0xLsMPyP2XkAcA0Udv8dMyfWQGDw2hZQDMcM7kOUzUOWYQ4o=
+	t=1717409570; cv=none; b=r7SKM7CQAvVr3efoSE4IsR2epwx8l4tT+j4VKj6EX8S+KE56z/va1POl6mBtMTYkj71rJuHzh4ijP9vxpqvEwRgdyYLR15StQ8D7Zg21C9D8bm/VmIwCfyQDDlJRDJ66Yp/+SUSDkTro7UY3lhprE6jP6o/jbVl7OXs+WGRXZQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717409499; c=relaxed/simple;
-	bh=N2+1b4UvL2h8BghC0xvtCBiF9o0kiifts/5HQ9Tplak=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ULFA4yROkkgohKp3Bi7CYS/QqZcGwB5DKeQzLtDK1qNf1ABMCOx0q5o3cb5++/k+86R/6Iu5CCs8bYcr408+47eKsDL1seMPy29oGPAP3DCJmRxqgu7YkfMHh54OukpFrM5BeDHEnQ+jBisOgbEWbBc64grAtAoUv8E7XdPVm5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XZeaB8o4; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-52b7c82e39eso4067869e87.1;
-        Mon, 03 Jun 2024 03:11:37 -0700 (PDT)
+	s=arc-20240116; t=1717409570; c=relaxed/simple;
+	bh=mFbCETMq62xq9puR3Nzjw2I8uzI0rG4N1YtiK1zuiq0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SsIpljKOoqDaWOyIwb9eDbCXAdb9alnW40+zzT9GXu9NXqJFOdufehyFGrCUA6liGKYaoYyG30urdCuWdYI3hJSqTY3X+WaemryoPgXmTTkW6a7GhkcTisngkkAekxy+Wo8T/DD2t8I+gH1fWPkDGGLmG6zq+fMjZ0Cj9TG8+xI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M8QCNRT2; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-52b7ffd9f6eso3861883e87.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2024 03:12:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717409496; x=1718014296; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6NGoqdJtENVZUa+qRol7I9OdMjwyIhmPcJwjIRPRNrg=;
-        b=XZeaB8o4EHXFcVFqoWwd4v9wFAZ+pnYoVf4lodcMzCoEhkpFTSS2lO0zkeFPCgBCXo
-         LjVPW5t8o2NMnmR5YIubJw0bIzsxbGB6GJ7zMAG1hBIxnK44gzm4b92XFhWI56mLoAly
-         8rF/YPJL/cgUgTikV5hZZ7BrJfoVfqJjlbm2g23sMQjHjfEtMmguvUN5NM8bKa96BJEM
-         C+8u7Uu+rrxbzw0pPHCdB4ZxM7PYpoiNV+6i32W7km/IR4IznTU1Xa0CeVNa81MDalMM
-         HTvTPazPJnCRF3uww74aN6JNGLMCoeHHcU4nzm7sDt7xPv2Rr3sxksfZQSB4WHviIrjo
-         ftKg==
+        d=linaro.org; s=google; t=1717409567; x=1718014367; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=BplKJjDXRXs7XXTpBdwnu/IkEVLGY0pP0flPQPkrbkQ=;
+        b=M8QCNRT28yR3L487SHvB6D4b9Uh7U73+iQDbsZUYNQaWaYvVdih2atXTDCGWPpyU9p
+         32MjOM63AqKtGKgeAAwG1SF3Kq6aTs1V4DPT0hsj64K6hmQTHVLgc5pT7WbZUz13COZx
+         QgmAbgKSkmfLOeIaqbu21Y8CxrDRslrTtr+S7L5dZ4yFMY02wIbmhx7MQ2By687BAmM7
+         30mONAbkRz4iYLzaMUfD/ZGL0EPP3/rWO5rRTdnO/Fs3ZZ9V4SF2yxgoIwsL/O0JMYgP
+         RqBwU927AwXMYDkwENV1/ejtjfAGSFYyRVE6qE8xBqjZJjbePc7YIWKDLm3LnGI0MDaH
+         LF4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717409496; x=1718014296;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1717409567; x=1718014367;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6NGoqdJtENVZUa+qRol7I9OdMjwyIhmPcJwjIRPRNrg=;
-        b=WZVqNqfaH/LZNtu/Pe+DvXdvm659mx3ea2MDEdjTSsWnDPiyNZvYjjWKdtf9NuAwkF
-         KIIKp1tilbjnu3+fBcgvGDDu+ND9++4EYLmtTlClP3J1SLk48L1mldvlQgcmgUY7Znue
-         nDCgrOFsS7QTXFhmxdQt/y9lT8G9/3T7QAkqiAeWpscXJxGm1AyzeZiW6lUdH+FDXUxi
-         aaK2freCyPf06s1JFoPq6AVlV5+NAfJToUiQznB+MF67dtJWxYbCqp2qMW84Ln6htTHD
-         fheE/Y/z9XM7mxtlyU8bV86Bswxpe2WLBTEjt31o77VmH/3piy5FMy+DRZeNQxjL68uS
-         d+UQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUkvZlU3s/A1SFQGDhNBy2sNx0Fhb5jo6LnH3GGIYUW95teErPtdsqx8ouXULNpYrhucxvjy6ax95Jkh/y+/J+XvZinsLRQbVxiS+AoN72L3gVFQbTA2Nkx4gWEyVfN53qyBqmuRD9vS7Kx2LP2iuYEgsHBuW3Uf9w+tQTxwET0IUiKXg==
-X-Gm-Message-State: AOJu0YwGHZt32o09C8fSkFcRiaGUFmw6naZjA5LzdRWtCZ5YEOt0X3wt
-	juOQSkqiOXdbOdeorh1q5L7D53MPgY0UdcFZ48SCJC6qPdgI2etQ
-X-Google-Smtp-Source: AGHT+IEcX9mOOMxH+a53YuuVbcvysJP9F7UT5wYgpTKNO0VJka12hKDGJZvicsmRPhRtvDwuSYpSyg==
-X-Received: by 2002:a19:9111:0:b0:52a:5fa8:d565 with SMTP id 2adb3069b0e04-52b896dad9cmr6184155e87.68.1717409495155;
-        Mon, 03 Jun 2024 03:11:35 -0700 (PDT)
-Received: from [10.76.84.176] ([5.2.194.157])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a68f1797afbsm222711966b.40.2024.06.03.03.11.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jun 2024 03:11:34 -0700 (PDT)
-Message-ID: <93ebe75b-5a7d-4d69-9515-7cbeb66c8e7e@gmail.com>
-Date: Mon, 3 Jun 2024 13:11:33 +0300
+        bh=BplKJjDXRXs7XXTpBdwnu/IkEVLGY0pP0flPQPkrbkQ=;
+        b=MpHzypnY6VAYGFXYwz/jLChSZmzzBWYdpnLBaY5NdGRugedAV8r+4WXU32N++1PaGm
+         uCsql7Terk56XBOjKzojWCY1/QqANWflPHAJHKnB0HudfQwJLqIU6mrkiu/J0LnA7S5K
+         VmZVYZfjmrhuR9SbOgMRWSEDY4tIpfd/9FnvfQBjqtPeHqGUidsbMIOF0tLtbS4GJA8w
+         Y04qgrTnNBpE/oz9DE1gyMkkbbK/tGZ4Fc/8ckWnx/oKSIJzHh5pJemhNsEokwB0HJUD
+         wgPBC4TVOXqHL9zW0ct/1TsbDNXhnWAejOWpnQa61n3Dc3rAFCEN3SeC8R3asrdxOeHg
+         Zw8g==
+X-Forwarded-Encrypted: i=1; AJvYcCWs/pMdsl6EzThDPHEfk2HJgRC0hdFo6Sq9prwtgK8JCOpe+1vBCzf04kZHSRBa23kpor/95o/ZWMKUjHNZ5CtHWvxp79NtelyTXg==
+X-Gm-Message-State: AOJu0Yx72XnXrZqbv6RYFqffm2ajKY/aQkTLmy4CppXcOlhnMnBz4ZLc
+	Dg7+ooAN54eBnxzChQ+dp3mGnAire8TJIC/Y8nX5h91uWiPjDfSnF2OoifW174A=
+X-Google-Smtp-Source: AGHT+IGuA0HoldCdeHkBfZZPB8luy0sGIPdxQUddKpghBgp2oPZCJBHLfXvHqZw7CVJaWvEsW958uw==
+X-Received: by 2002:ac2:46f1:0:b0:52b:8255:71ce with SMTP id 2adb3069b0e04-52b896c15b0mr4571321e87.43.1717409566720;
+        Mon, 03 Jun 2024 03:12:46 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52b84d764c6sm1185135e87.123.2024.06.03.03.12.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Jun 2024 03:12:46 -0700 (PDT)
+Date: Mon, 3 Jun 2024 13:12:44 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Chris Healy <cphealy@gmail.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 00/12] drm/imx/ipuv3: switch LDB and parallel-display
+ driver to use drm_bridge_connector
+Message-ID: <qcbh6pltjsetikped3ioihwmiow5ngstimgebplnl6ckqkkl63@z5xd64qbsbga>
+References: <20240602-drm-imx-cleanup-v3-0-e549e2a43100@linaro.org>
+ <CAFXsbZo3miDMQ7SDktRP_DOzMy2JTFz4AsuMp78jLQGauTNsmA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 6/6] iio: adc: ad7173: Add support for AD411x devices
-To: Jonathan Cameron <jic23@kernel.org>,
- Dumitru Ceclan via B4 Relay <devnull+dumitru.ceclan.analog.com@kernel.org>
-Cc: dumitru.ceclan@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240531-ad4111-v4-0-64607301c057@analog.com>
- <20240531-ad4111-v4-6-64607301c057@analog.com>
- <20240601201912.32fe3524@jic23-huawei>
-Content-Language: en-US
-From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
-In-Reply-To: <20240601201912.32fe3524@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAFXsbZo3miDMQ7SDktRP_DOzMy2JTFz4AsuMp78jLQGauTNsmA@mail.gmail.com>
 
-On 01/06/2024 22:19, Jonathan Cameron wrote:
-> On Fri, 31 May 2024 22:42:32 +0300
-> Dumitru Ceclan via B4 Relay <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
+On Sun, Jun 02, 2024 at 08:25:39PM -0700, Chris Healy wrote:
+> On an i.MX53 QSB with HDMI daughter board, this patch series is:
 > 
->> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
->>
->> Add support for AD4111/AD4112/AD4114/AD4115/AD4116.
->>
->> The AD411X family encompasses a series of low power, low noise, 24-bit,
->> sigma-delta analog-to-digital converters that offer a versatile range of
->> specifications.
->>
->> This family of ADCs integrates an analog front end suitable for processing
->> both fully differential and single-ended, bipolar voltage inputs
->> addressing a wide array of industrial and instrumentation requirements.
->>
->> - All ADCs have inputs with a precision voltage divider with a division
->>   ratio of 10.
->> - AD4116 has 5 low level inputs without a voltage divider.
->> - AD4111 and AD4112 support current inputs (0 mA to 20 mA) using a 50ohm
->>   shunt resistor.
->>
->> Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
-> Hi Dumitru,
-> 
-> A follow on comment on the validation code.
-> Also there is some good docs for the sampling frequency but are they
-> actually related to the rest of this change?  They also raise
-> questions about ABI compliance that we may want to deal with as
-> a follow up patch.
-> 
-> A few other trivial things inline.
-> 
-> This is looking pretty good, so hopefully we'll get the last few corners
-> sorted in v5.
-> 
-> Thanks,
-> 
-> Jonathan
-> 
-> 
->> ---
->>  drivers/iio/adc/ad7173.c | 336 +++++++++++++++++++++++++++++++++++++++++++----
->>  1 file changed, 307 insertions(+), 29 deletions(-)
->>
->> diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
->> index ed8ff8c5f343..91ff984eedf4 100644
->> --- a/drivers/iio/adc/ad7173.c
->> +++ b/drivers/iio/adc/ad7173.c
->> @@ -1,8 +1,9 @@
-> 
->>  #define AD7173_INTERFACE_DATA_STAT	BIT(6)
->> @@ -125,26 +132,46 @@
->>  #define AD7173_VOLTAGE_INT_REF_uV	2500000
->>  #define AD7173_TEMP_SENSIIVITY_uV_per_C	477
->>  #define AD7177_ODR_START_VALUE		0x07
->> +#define AD4111_SHUNT_RESISTOR_OHM	50
->> +#define AD4111_DIVIDER_RATIO		10
->> +#define AD411X_VCOM_INPUT		0X10
-> 
-> AD4111_VCOM_INPUT . Looks like one wildcard escaped an earlier edit?
-> 
->> +#define AD4111_CURRENT_CHAN_CUTOFF	16
->>  
->> @@ -736,6 +918,21 @@ static int ad7173_write_raw(struct iio_dev *indio_dev,
->>  		return ret;
->>  
->>  	switch (info) {
->> +	/*
->> +	 * This attribute sets the sampling frequency to each channel individually.
-> 
-> frequency for each channel?
-> 
->> +	 * There are no issues for raw or buffered reads of an individual channel.
->> +	 *
->> +	 * When multiple channels are enabled in buffered mode, the effective
->> +	 * sampling rate of a channel is lowered in correlation to the number
->> +	 * of channels enabled and the sampling rate of the other channels.
->> +	 *
->> +	 * Example: 3 channels enabled with rates CH1:6211sps CH2,CH3:10sps
->> +	 * While the reading of CH1 takes only 0.16ms, the reading of CH2 and CH3
->> +	 * will take 100ms each.
->> +	 *
->> +	 * This will cause the reading of CH1 to be actually done once every
->> +	 * 200.16ms, an effective rate of 4.99sps.
-> 
-> Hmm. This is a bit unfortunate as if I understand correctly that's not really what
-> people will expect when they configure the sampling frequency.  However I can't immediately
-> think of a better solution.  You could let userspace write a value that is cached
-> then attempt to get as near as possible as channels are enabled.
-> 
-> Still this looks like a documentation enhancement of existing behavior
-> in which case any functional change can be in a future patch.
-> However I don't think the docs update belongs in this patch unless
-> I'm missing some reason for it?
->
+> Tested-by: Chris Healy <cphealy@gmail.com>
 
-Well, it would seem like this exact behaviour is already documented:
+Thank you! I assume this is imx53-qsrb-hdmi ?
 
- "
- What:		/sys/bus/iio/devices/iio:deviceX/in_voltageX_sampling_frequency
- What:		/sys/bus/iio/devices/iio:deviceX/in_powerY_sampling_frequency
- What:		/sys/bus/iio/devices/iio:deviceX/in_currentZ_sampling_frequency
- KernelVersion:	5.20
- Contact:	linux-iio@vger.kernel.org
- Description:
-		Some devices have separate controls of sampling frequency for
-		individual channels. If multiple channels are enabled in a scan,
-		then the sampling_frequency of the scan may be computed from the
-		per channel sampling frequencies.
- "
-Does it still make sense to keep this comment here? But if kept, yeah, a different patch
+> 
+> HDMI output still works correctly and the bridges file reflects the changes:
+> 
+> Before:
+> 
+> root:/sys/kernel/debug/dri/display-subsystem/encoder-0 cat bridges
+> bridge[0]: 0xc0fa76d8
+>         type: [0] Unknown
+>         ops: [0x0]
+> bridge[1]: 0xc0fba03c
+>         type: [0] Unknown
+>         OF: /soc/bus@60000000/i2c@63fc4000/bridge-hdmi@39:sil,sii9022
+>         ops: [0x7] detect edid hpd
+> 
+> 
+> After:
+> 
+> root:/sys/kernel/debug/dri/display-subsystem/encoder-0 cat bridges
+> bridge[0]: 0xc0fa76d8
+>         type: [0] Unknown
+>         ops: [0x0]
+> bridge[1]: 0xc0fb9f5c
+>         type: [0] Unknown
+>         OF: /soc/bus@60000000/i2c@63fc4000/bridge-hdmi@39:sil,sii9022
+>         ops: [0x7] detect edid hpd
+> bridge[2]: 0xc0fb9794
+>         type: [11] HDMI-A
+>         OF: /connector-hdmi:hdmi-connector
+>         ops: [0x0]
+> 
+> On Sun, Jun 2, 2024 at 5:04 AM Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+> >
+> > The IPUv3 DRM i.MX driver contains several codepaths for different
+> > usescases: both LDB and paralllel-display drivers handle next-bridge,
+> > panel and the legacy display-timings DT node on their own.
+> >
+> > Drop unused ddc-i2c-bus and edid handling (none of the DT files merged
+> > upstream ever used these features), switch to panel-bridge driver,
+> > removing the need to handle drm_panel codepaths separately and finally
+> > switch to drm_bridge_connector, removing requirement for the downstream
+> > bridges to create drm_connector on their own.
+> >
+> > This has been tested on the iMX53 with the DPI panel attached to LDB via
+> > LVDS decoder, using all possible usecases (lvds-codec + panel, panel
+> > linked directly to LDB node and the display-timings node).
+> >
+> > To be able to test on the iMX53 QSRB with the HDMI cape apply [1], [2]
+> >
+> > [1] https://lore.kernel.org/all/20240514030718.533169-1-victor.liu@nxp.com/
+> > [2] https://lore.kernel.org/all/20240602-imx-sii902x-defconfig-v1-1-71a6c382b422@linaro.org/
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> > Changes in v3:
+> > - Notice (soft) dependencies in the cover letter (Chris)
+> > - Select DRM_BRIDGE instead of depending on it (Philipp)
+> > - Dropped unused selection of DRM_PANEL (Philipp)
+> > - Added missing include of <drm/bridge/imx.h> to parallel-display.c
+> >   (Philipp)
+> > - Link to v2: https://lore.kernel.org/r/20240331-drm-imx-cleanup-v2-0-d81c1d1c1026@linaro.org
+> >
+> > Changes in v2:
+> > - Fixed drm_bridge_attach flags in imx/parallel-display driver.
+> > - Moved the legacy bridge to drivers/gpu/drm/bridge
+> > - Added missing EXPORT_SYMBOL_GPL to the iMX legacy bridge
+> > - Link to v1: https://lore.kernel.org/r/20240311-drm-imx-cleanup-v1-0-e104f05caa51@linaro.org
+> >
+> > ---
+> > Dmitry Baryshkov (12):
+> >       dt-bindings: display: fsl-imx-drm: drop edid property support
+> >       dt-bindings: display: imx/ldb: drop ddc-i2c-bus property
+> >       drm/imx: cleanup the imx-drm header
+> >       drm/imx: parallel-display: drop edid override support
+> >       drm/imx: ldb: drop custom EDID support
+> >       drm/imx: ldb: drop custom DDC bus support
+> >       drm/imx: ldb: switch to drm_panel_bridge
+> >       drm/imx: parallel-display: switch to drm_panel_bridge
+> >       drm/imx: add internal bridge handling display-timings DT node
+> >       drm/imx: ldb: switch to imx_legacy_bridge / drm_bridge_connector
+> >       drm/imx: parallel-display: switch to imx_legacy_bridge / drm_bridge_connector
+> >       drm/imx: move imx_drm_connector_destroy to imx-tve
+> >
+> >  .../bindings/display/imx/fsl-imx-drm.txt           |   2 -
+> >  .../devicetree/bindings/display/imx/ldb.txt        |   1 -
+> >  drivers/gpu/drm/bridge/imx/Kconfig                 |  10 +
+> >  drivers/gpu/drm/bridge/imx/Makefile                |   1 +
+> >  drivers/gpu/drm/bridge/imx/imx-legacy-bridge.c     |  85 +++++++++
+> >  drivers/gpu/drm/imx/ipuv3/Kconfig                  |  10 +-
+> >  drivers/gpu/drm/imx/ipuv3/imx-drm-core.c           |   7 -
+> >  drivers/gpu/drm/imx/ipuv3/imx-drm.h                |  14 --
+> >  drivers/gpu/drm/imx/ipuv3/imx-ldb.c                | 203 +++++----------------
+> >  drivers/gpu/drm/imx/ipuv3/imx-tve.c                |   8 +-
+> >  drivers/gpu/drm/imx/ipuv3/parallel-display.c       | 139 +++-----------
+> >  include/drm/bridge/imx.h                           |  13 ++
+> >  12 files changed, 187 insertions(+), 306 deletions(-)
+> > ---
+> > base-commit: 850ca533e572247b6f71dafcbf7feb0359350963
+> > change-id: 20240310-drm-imx-cleanup-10746a9b71f5
+> >
+> > Best regards,
+> > --
+> > Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> >
 
-...
+-- 
+With best wishes
+Dmitry
 
