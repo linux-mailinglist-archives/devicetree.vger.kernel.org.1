@@ -1,243 +1,206 @@
-Return-Path: <devicetree+bounces-71829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AAFB8D8249
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 14:32:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D25878D8262
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 14:36:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9EB961C23C6E
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 12:32:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40DF31F21CB7
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 12:36:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5397412BF23;
-	Mon,  3 Jun 2024 12:32:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E21912C46B;
+	Mon,  3 Jun 2024 12:36:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=OUTLOOK.COM.AU header.i=@OUTLOOK.COM.AU header.b="MWGe5PeM"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="NJ+7jzfE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AUS01-SY4-obe.outbound.protection.outlook.com (mail-sy4aus01olkn2176.outbound.protection.outlook.com [40.92.62.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9CFD8060D;
-	Mon,  3 Jun 2024 12:31:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.62.176
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717417921; cv=fail; b=taAjcJPqbX/OhQBjI/o5Ylx3/s+urAGqyG5pVX1jKkOWNSTpt7p5hpqNSdhTxdo7Cy4DVhS0u7l/WZs0DzodDWEznbeHruibWMDFobeIlvLbminASnYRAyovEmFcjiNMwZiVjxmjxAbU/PDtOqZZpAzqPGkPEZxqdJCmvL8ogHg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717417921; c=relaxed/simple;
-	bh=JbCtl178Sb4OKM7R04qsA6KleFuUPQxilHm1z46IxQM=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=XHyAXj5lKgr2d7Y/2veUpw7y4mO7jUOh2tNBTp1lC1N+5lhj0UjJTBrpqXmJeKAOCUpWH7i20GGIJ7ZHa7AYy66u2OmFGozWyKbBLPtmVPy6HH0MByNYgRtr8Y4/iz0f0Q9n63aLLyJmE+KxQHai86hKiUkvnHMHvK1UPhZkE3A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com.au; spf=pass smtp.mailfrom=outlook.com.au; dkim=pass (2048-bit key) header.d=OUTLOOK.COM.AU header.i=@OUTLOOK.COM.AU header.b=MWGe5PeM; arc=fail smtp.client-ip=40.92.62.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com.au
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=emKlwN8ptZ1XadpLr7qrnRAoOqN5ZtjjwVo71SRKh+DHptOJ8Hmcyuy2LzyIktIvdKRsM0Asbo5ZrmEVB056jOr2nZU2Wuj24KfWwpU5D+g3fbet5Ni1frajXvVsOw2PDivQlArjdVjvDw2bGTYti/4tylKg5miFV2z95EEym06wp/d7LsOJHSYvVnadUQgXkrENc1KMohblqmUapJjYjWqRJ0dPA0ZnyURQWw1L8aB2pa+wFnhDdP5lRDQdh/2c1ItpdGyD7zBW4XnyqCPnO9ml1k8Jy8Yu1AB4JTKqm2Z5/VhzTPEVNC4eY6KRFc5CuomVlyGK+C6OWc+dK3+hLA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mPZ9AhXQOPpv11GjrYqc+CLAJ54dgjbr5HJKAD89fRU=;
- b=cRMWWeQjCekhmB7Jd4JOzPmwwMkbzauM/+drUJDWcF1EEdpmAzMgShZoxGmjUIyNYJXDubcdQAgqhSJDx8IeWZzNXAluAuG/83jlg2zQk0kIsoNlZrGe4lO5aroEiHpoABRK0PWnvKXKsJEM7PNAdMAPCVja1NQyjQRutHguAugEGgJE13tesR6ahV3A7d9mQQHYJujWuTylHejt/fi7IiB4CUL1XrZpE+p2lH7SzYGJ8BBw7cz1n4buhlad9VmOkO7x617TdZJQk6gAVrm1B2gFNxr8svLs/U+v/BIjOEW5MOZWUM3epPUkgnRuXIeeble88VAUjKKoR4PKq1NL4g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=OUTLOOK.COM.AU;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mPZ9AhXQOPpv11GjrYqc+CLAJ54dgjbr5HJKAD89fRU=;
- b=MWGe5PeMGq4lCTrI6tLxvkLKp32rbLIdKYmeA7GzRV/aZH60srmIx7+tnTCXXsjDIhNlSj2eAoSqQuLzBGytidF7DlDZCFkZBzJ51Olz+e8G+5MmaA9tpws1OfQimuk32vyWhwa1zsxxpT7AEhSfF413SbgqrNnYtZ8KS7GslcaAMCWFeT7PHM8SkDAbsacoE2jWtpDwOydpqtWwvh4tIbweTSaVyfQBPUCpjOszVeaaal65AlPRtqBopEW+xgods+8Mb3t4P0OuFQqz4FwAJPaZHNb8Yg1Ojc6pmIasVIJVo3h/nO26btpYVKybf8T+W/zB3aD5egarKZopGDXDZA==
-Received: from SY4P282MB3063.AUSP282.PROD.OUTLOOK.COM (2603:10c6:10:159::9) by
- ME0P282MB4880.AUSP282.PROD.OUTLOOK.COM (2603:10c6:220:228::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7409.46; Mon, 3 Jun 2024 12:31:53 +0000
-Received: from SY4P282MB3063.AUSP282.PROD.OUTLOOK.COM
- ([fe80::37cc:3733:d1e9:d8e4]) by SY4P282MB3063.AUSP282.PROD.OUTLOOK.COM
- ([fe80::37cc:3733:d1e9:d8e4%3]) with mapi id 15.20.7633.021; Mon, 3 Jun 2024
- 12:31:53 +0000
-Message-ID:
- <SY4P282MB30638F9B99B76CB33DB6C115C5FF2@SY4P282MB3063.AUSP282.PROD.OUTLOOK.COM>
-Date: Mon, 3 Jun 2024 22:31:50 +1000
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFT v3 3/4] hwmon: (spd5118) Add suspend/resume support
-To: Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org
-Cc: devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- Armin Wolf <W_Armin@gmx.de>, =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?=
- <linux@weissschuh.net>, =?UTF-8?Q?Ren=C3=A9_Rebe?= <rene@exactcode.de>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>
-References: <20240531230556.1409532-1-linux@roeck-us.net>
- <20240531230556.1409532-4-linux@roeck-us.net>
-Content-Language: en-AU, en-US, en-GB
-From: Stephen Horvath <s.horvath@outlook.com.au>
-In-Reply-To: <20240531230556.1409532-4-linux@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TMN:
- [vDfmsyOYtmOU0t3nkPUJQQRdNkxsCPsQrcfsYd/EWjdDMnUjEd+fPdFVhdbiklidD4ZXHI+CKB8=]
-X-ClientProxiedBy: SY5P282CA0192.AUSP282.PROD.OUTLOOK.COM
- (2603:10c6:10:249::18) To SY4P282MB3063.AUSP282.PROD.OUTLOOK.COM
- (2603:10c6:10:159::9)
-X-Microsoft-Original-Message-ID:
- <8884b0f5-17fb-4e40-ba78-375e1637a496@outlook.com.au>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61AA9126F2A
+	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 12:36:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717418207; cv=none; b=gPfQRskncnk9yWBeR71S+/ehDdNasEVcyI3MtGZiKcsRgSkqx1L30rP2rN2qCzZiJdz50X88dVaL5F21078ox5JaTsvv2/YN0NWJnOJfm0W1aB4eTY6/dEL3Yd3i2ATfb8w6FrhBTJNPQ3DvnRptmRJnsLbfWoNl/PbpM8fUYNQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717418207; c=relaxed/simple;
+	bh=fWoyaWDWTtKrPnfOKj80QGbeqeUiyXfp7w+nxHdOf9U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qwMpZQm5vAND+awEXlPAGuDnSy4Gg3iq9qeVoOehVvUoEZfRFyrt4j92IHLVYXXXQjfn4OgYVEMmRIBnXqcpGHTXbeSILR2+M/rUgZiXHrQICbdhP06xJNsUjzQpY4VIDD6oj1nC0uA8TRC/7aGcdUjZUKhh6HDggLMGFbK4M40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=NJ+7jzfE; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-57a2ed9af7dso4277820a12.1
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2024 05:36:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1717418204; x=1718023004; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=FzkA2fr/rz/BmZYjPybok7znUmISuIim/Yn56iqZo2k=;
+        b=NJ+7jzfEESfC6XQfLwZPl7H+80HrOGoqtoM790uz+JLku8AT2UN8528N1fnnY4NVzW
+         OJQjFOjyUI3RkZ3xDIqyhWnbd4ECDYxLAQqjjyz7Ns5f0Pyvz694v9t+3gW9zeRmmD4y
+         EYSjFEuqoNwGhnbPLCdnyIzN5wBmC/vnvBvsN+JvfyG7ytVFeGvpL9l+Rcfthq0HH42n
+         A3H0BtOUiSAueFs6UkuauxOc8Jme8P2U21uMDbY6G4pab3DikA6ubWTPb58hCK0CD8AV
+         qNS2VjDKCvYSl9dj+Ff+tBI5B2rQAV/vLILX4+njP2qjRnQwwzMFHP3LcMMGVSgTRAUI
+         rVag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717418204; x=1718023004;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FzkA2fr/rz/BmZYjPybok7znUmISuIim/Yn56iqZo2k=;
+        b=tIdWTvCGoxH3A6Eu0cVYYOKZvvHAzxF2/yxS76igBfK9rDGwkEXjVMp6wCqrrrZXem
+         /V6aHI0gE9mib+hLd0fwhxIhsLV6eODUix5k9N5ug5mMPvp+ZAapmx5zojpsWNNzrR8Y
+         d28EZvEhsY/ALFVctAdatoH8Dd6jg3Mq7vT6pO8I8XkrzSWLZsBQmZIJbOjXYCOdRaK+
+         zHsfCMoctiZ5gZtYxcC3U7pvlZxVn9ylTn8VOmjJmqypWOMJhFEytY4d+p/MaJdQpN/R
+         2n0SemJZsHmtgUSu3PT9Rm2e5EV7S74xj4xZp0eBjHS1xSBz80H7jDkILhtfijyIEyzB
+         uwFA==
+X-Forwarded-Encrypted: i=1; AJvYcCVfLWD0RYqnVPHBW5igo7klqeYSxGsYyC/62agwEbh0ptXwHAfBgCp3b0XmpGI1YvLvU0ZICS7aIdp8tj6Y3viBAFtvfg+q0iq4vw==
+X-Gm-Message-State: AOJu0YwQi9KZzZbaphkAjZdfZgt0/g8jr+ZY/iswb43dUgc/3Gf39E5j
+	RrP2bJcS9GiZfn2Ffn+KUmaEZzmthrK8LHNlDBowMpOIxjUY3SRcfuNeTKZETgU=
+X-Google-Smtp-Source: AGHT+IG4OgNpuMY0dLHLNzZ2D0uwJKaftXcMDRGcuAtARNo9vSYCff1KNvpkujqzuVFqZqrzx8Ap7A==
+X-Received: by 2002:a50:d541:0:b0:579:c37e:976 with SMTP id 4fb4d7f45d1cf-57a365c9e33mr7168527a12.36.1717418203498;
+        Mon, 03 Jun 2024 05:36:43 -0700 (PDT)
+Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57a31bbbe18sm5197005a12.37.2024.06.03.05.36.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Jun 2024 05:36:42 -0700 (PDT)
+Date: Mon, 3 Jun 2024 14:36:42 +0200
+From: Andrew Jones <ajones@ventanamicro.com>
+To: linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org
+Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
+	conor.dooley@microchip.com, anup@brainfault.org, atishp@atishpatra.org, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, christoph.muellner@vrull.eu, 
+	heiko@sntech.de, charlie@rivosinc.com, David.Laight@aculab.com, 
+	parri.andrea@gmail.com, luxu.kernel@bytedance.com
+Subject: Re: [PATCH v3 0/6] riscv: Apply Zawrs when available
+Message-ID: <20240603-f8650a2cc220b73cf52d77c7@orel>
+References: <20240426100820.14762-8-ajones@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SY4P282MB3063:EE_|ME0P282MB4880:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8e3d50cb-8164-4009-9429-08dc83c925f9
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	uSLmJFy5ScjcBU6yxKFLgba9ZrHUACdcABe9Qidd5GXolV67mNEZXr4aPwMD5DeIUpBmvSeX8ex5cS8xu4SdTDNuPxbHMTsTtFUU1SEq1uFcn/FFbuNAhI3bGfRwnezg5RE1ZcxyrEB9UiQvDKsULxqB6zArHX8Z9Pmbm1hsXZu8dO09PeT85Rj/AomPtpgE0d7RoX3rcYZ516YXASMi/2/y8oSn8W8nlwsARIopt9FnHaVCrmBgtqMQeYIKtXOQljPqWr3PvrcQa3mcy1aAmOVBrKSPegcxhnrt0/DfAWxdH6OMtQfxN0My6LdmnEfzB6zG9vygD9a74WHoVUJghBr/UCRugQ3cJu44wIPu8CYYBBSzRq1tKWi9uGSWQjXQBVX2B+f+K2EhQ2AFKbYrPYXvfHydQezqmbTvt0oNJGksNBLkn5KLbjJfm/1+VozfeXhFdVV9pXyjRHgWrGhvl+IBw2Grd0ZI5D1erWp1+W2dYcytX3yUsb+xBy8d3BcpfS3ExsWYDb+ncLzYIfsRXZNreAsnfkH9tWwjrq1monJk1J2q6oRPM8QNhnUzNA8d
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?NEZxbmtCTHd6WUdLRzdJYnlVZDdRMWgyYVc4dUdDK2ZtMkk3VU1IYVZnSVpU?=
- =?utf-8?B?Y1hCTzhGeXlqRGVUVjE2SzZPOUhPbGtFSWZydURKamlTMUgyVzRCMUdKWjM3?=
- =?utf-8?B?Qkt1OEhuQjV2SmZqbStHcEtZRXQvdGhtb0xDWXpHZEhuN1k5WnVBN1VkZVN6?=
- =?utf-8?B?L25idzVZWmZPQTNxM0lFYmUreUg0VWFYMzdRbDhFcWl4by85WTBLMFJUeXpD?=
- =?utf-8?B?WFQwRmIzUWNXdElCNnBpWWFqOS93Wnc0TVdqSXlOYld2YTB1U0k3WExaQlYr?=
- =?utf-8?B?MlJqYnhiVzMrNkFyeHE4N3lyaVlJL1NQWjhPNjlXc1Exd21lc1YzRUJUdXRv?=
- =?utf-8?B?RVR6SnByYkFOVDZrRjl4NHNLaWI0c3ViVlpQbXpwU0dVYmJmTDk5ejRlNmY5?=
- =?utf-8?B?NzVyU0hRUGhnaWZhV1U1d1B6eXFLR3FwMWdTNmxvZUk4L3QyVG9ORktFZDJY?=
- =?utf-8?B?ZVIyL2ovWUxMNE8yajlOdEw1L0hGcm9KaHpPRzlYbWdwVEY4dzZJcGtVRWwy?=
- =?utf-8?B?VExuQ1VNOXRrSjZ1UHRia29ld2dEcEJoY2thbEV1N1hHRy9nenFQanArKytU?=
- =?utf-8?B?d2VwYVpnelVPU0E3Z3RET1AyUDh3Z24wNTBodlBUUnpuSExSci9ybzdUTnJl?=
- =?utf-8?B?Vmg0SFRRY2lONkZTY0JXSFQwYi9LOEhQSEk0QUd6SXpQRWwxbSsrMEpZNStz?=
- =?utf-8?B?NlFpODBFS0EyTzYvUGZLSzkvMFd1WEZDQ3E5dkgwRnRIVlFFU1VUczQ4ei8r?=
- =?utf-8?B?L2JTMzdVeCt4SWI2cGYwYnJJcGJtcTFoU3VJbXNHU0lSMG8wQ3U4SDRXT1NS?=
- =?utf-8?B?ZldBNEx2bGtEdktIOHZxWHV1RnFWWlV0c295cjN2RWpNdG5TS2VkMHFJTi9z?=
- =?utf-8?B?L0JRVkdTZnl3N2Q1SXcybnE3YzlrZFB2R1BwZ1hxT1JvbUQvRmp2RXNZU1d0?=
- =?utf-8?B?c1FEN3BEdkFMMzdwWTlJODRkVjVNc3BmNmtqRS9LclNQamUxMlE3dy9ZOUpr?=
- =?utf-8?B?R0xTMVRDdVkrYVdnR0x6VllyT0pDaE93TWZzZlF5aTBYajFLdnNNSy9GbGRy?=
- =?utf-8?B?L3BxN2IvcWpVbzVPamZtNzVHT0tUQWsyeXdpRDMzVit0ektlSmwvaFpyMkNt?=
- =?utf-8?B?OTZLRkJKWEVnTG5tWkwzUlRFYnd2WnovZ3pTeFNIdmtWcHBreGF1bDRVd1Zo?=
- =?utf-8?B?cDdyT3hRUmo3aWFyV3gvamcxSVliYTBGWWtJQjJLTm5icTR1QWVZekc2alJv?=
- =?utf-8?B?dkxhNG5RY3ozZzBkdHNSd1kwU2FiYzErRWhNTTZXZFZ5ay9KR3BHVEpJL3Fy?=
- =?utf-8?B?dzJvWW1ZNFFER3BEelVhZXhOeGdKRWozNWlxZmpvZXBSaWk4T2ZWTDNqK0RX?=
- =?utf-8?B?LytKK0dVQWhuRWxLcllyK3FWOXdNUGNMQlR1TkFvNGJGRkV2d3pTSFZoREsv?=
- =?utf-8?B?T281b2dWemRxcEIrQm1VdG5EZ2QrbFR1V0NXT2owTWlYRENYL05WNTllSFcx?=
- =?utf-8?B?Z0lnRFVJazVIcUh0WVZtSGpNeWJOYXhuQTdYejE3UDJuOXA0cmtLcnJCYXpa?=
- =?utf-8?B?SGx1bytESHR2ZjFxQktEbE14RGVXbjg2QWZTc3EzNktTVWpyYWNWeVpqVERL?=
- =?utf-8?B?WXdHMks5N3NiTWNyRDFtUGZwNTFWU2FyejV6Qlk1RjRKSXVWTmwrejN5cEEw?=
- =?utf-8?B?M2gyWU5NdkRxVHZONXFheXdnZnJaU3U5aWJWdDJTdklXSFJvNkpINGRldGtY?=
- =?utf-8?Q?dElEu7Ht3ef067mnyLDNuQMIPwhrxHM7w0ugK1u?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-746f3.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8e3d50cb-8164-4009-9429-08dc83c925f9
-X-MS-Exchange-CrossTenant-AuthSource: SY4P282MB3063.AUSP282.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2024 12:31:53.1344
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ME0P282MB4880
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240426100820.14762-8-ajones@ventanamicro.com>
 
-Hi,
+Hi Palmer,
 
-On 1/6/24 09:05, Guenter Roeck wrote:
-> Add suspend/resume support to ensure that limit and configuration
-> registers are updated and synchronized after a suspend/resume cycle.
-> 
-> Cc: Armin Wolf <W_Armin@gmx.de>
-> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
-> ---
-> v3: No change
-> 
-> v2: New patch
-> 
-> RFT: I tested the patch through a suspend/resume cycle, and it seems
->       to work, but I am not sure if that had any effect because,
->       after all, the memory is still active during suspend/resume.
->       I was unable to test a hibernation cycle with my system.
-> 
+I submit our concerns of wrs.nto to RVI ARC for consideration. They
+discussed it but don't believe there's a need for concern. The
+expectation is that there will always be enough interrupt activity
+and that those interrupts with activity will not likely be locally
+disabled.
 
-For me, the driver just reports 0°C after suspend/resume, but works fine 
-beforehand, tested on both my desktop and laptop, with kernel 6.9.3 and 
-6.10.0-rc2 (on the laptop only).
-
-Hibernation does seem to work fine though (at least on 6.9.3).
-
->   drivers/hwmon/spd5118.c | 29 +++++++++++++++++++++++++++++
->   1 file changed, 29 insertions(+)
-> 
-> diff --git a/drivers/hwmon/spd5118.c b/drivers/hwmon/spd5118.c
-> index d3fc0ae17743..baa315172298 100644
-> --- a/drivers/hwmon/spd5118.c
-> +++ b/drivers/hwmon/spd5118.c
-> @@ -20,6 +20,7 @@
->   #include <linux/i2c.h>
->   #include <linux/hwmon.h>
->   #include <linux/module.h>
-> +#include <linux/pm.h>
->   #include <linux/regmap.h>
->   #include <linux/units.h>
->   
-> @@ -432,6 +433,8 @@ static int spd5118_probe(struct i2c_client *client)
->   	if (!spd5118_vendor_valid(bank, vendor))
->   		return -ENODEV;
->   
-> +	dev_set_drvdata(dev, regmap);
-> +
->   	hwmon_dev = devm_hwmon_device_register_with_info(dev, "spd5118",
->   							 regmap, &spd5118_chip_info,
->   							 NULL);
-> @@ -449,6 +452,31 @@ static int spd5118_probe(struct i2c_client *client)
->   	return 0;
->   }
->   
-> +static int spd5118_suspend(struct device *dev)
-> +{
-> +	struct regmap *regmap = dev_get_drvdata(dev);
-> +
-> +	regcache_cache_bypass(regmap, true);
-> +	regmap_update_bits(regmap, SPD5118_REG_TEMP_CONFIG, SPD5118_TS_DISABLE,
-> +			   SPD5118_TS_DISABLE);
-> +	regcache_cache_bypass(regmap, false);
-> +
-> +	regcache_cache_only(regmap, true);
-> +	regcache_mark_dirty(regmap);
-> +
-> +	return 0;
-> +}
-> +
-> +static int spd5118_resume(struct device *dev)
-> +{
-> +	struct regmap *regmap = dev_get_drvdata(dev);
-> +
-> +	regcache_cache_only(regmap, false);
-
-Adding something like this fixes the readings after resume for me:
-
-	regmap_update_bits(regmap, SPD5118_REG_TEMP_CONFIG, SPD5118_TS_DISABLE, 0);
-
-But that was just the naive solution I thought of.
-
-> +	return regcache_sync(regmap);
-> +}
-> +
-> +static DEFINE_SIMPLE_DEV_PM_OPS(spd5118_pm_ops, spd5118_suspend, spd5118_resume);
-> +
->   static const struct i2c_device_id spd5118_id[] = {
->   	{ "spd5118", 0 },
->   	{ }
-> @@ -466,6 +494,7 @@ static struct i2c_driver spd5118_driver = {
->   	.driver = {
->   		.name	= "spd5118",
->   		.of_match_table = spd5118_of_ids,
-> +		.pm = pm_sleep_ptr(&spd5118_pm_ops),
->   	},
->   	.probe		= spd5118_probe,
->   	.id_table	= spd5118_id,
-
-
-For reference: I believe both my devices also have Montage Technology 
-M88SPD5118 chips; the desktop has Kingston KF560C36-32 RAM, the laptop 
-has Crucial CT16G56C46S5.
+Can we consider this series for 6.10?
 
 Thanks,
-Steve
+drew
+
+On Fri, Apr 26, 2024 at 12:08:20PM GMT, Andrew Jones wrote:
+> Zawrs provides two instructions (wrs.nto and wrs.sto), where both are
+> meant to allow the hart to enter a low-power state while waiting on a
+> store to a memory location. The instructions also both wait an
+> implementation-defined "short" duration (unless the implementation
+> terminates the stall for another reason). The difference is that while
+> wrs.sto will terminate when the duration elapses, wrs.nto, depending on
+> configuration, will either just keep waiting or an ILL exception will be
+> raised. Linux will use wrs.nto, so if platforms have an implementation
+> which falls in the "just keep waiting" category (which is not expected),
+> then it should _not_ advertise Zawrs in the hardware description.
+> 
+> Like wfi (and with the same {m,h}status bits to configure it), when
+> wrs.nto is configured to raise exceptions it's expected that the higher
+> privilege level will see the instruction was a wait instruction, do
+> something, and then resume execution following the instruction. For
+> example, KVM does configure exceptions for wfi (hstatus.VTW=1) and
+> therefore also for wrs.nto. KVM does this for wfi since it's better to
+> allow other tasks to be scheduled while a VCPU waits for an interrupt.
+> For waits such as those where wrs.nto/sto would be used, which are
+> typically locks, it is also a good idea for KVM to be involved, as it
+> can attempt to schedule the lock holding VCPU.
+> 
+> This series starts with Christoph's addition of the riscv
+> smp_cond_load_relaxed function which applies wrs.sto when available.
+> That patch has been reworked to use wrs.nto and to use the same approach
+> as Arm for the wait loop, since we can't have arbitrary C code between
+> the load-reserved and the wrs. Then, hwprobe support is added (since the
+> instructions are also usable from usermode), and finally KVM is
+> taught about wrs.nto, allowing guests to see and use the Zawrs
+> extension.
+> 
+> We still don't have test results from hardware, and it's not possible to
+> prove that using Zawrs is a win when testing on QEMU, not even when
+> oversubscribing VCPUs to guests. However, it is possible to use KVM
+> selftests to force a scenario where we can prove Zawrs does its job and
+> does it well. [4] is a test which does this and, on my machine, without
+> Zawrs it takes 16 seconds to complete and with Zawrs it takes 0.25
+> seconds.
+> 
+> This series is also available here [1]. In order to use QEMU for testing
+> a build with [2] is needed. In order to enable guests to use Zawrs with
+> KVM using kvmtool, the branch at [3] may be used.
+> 
+> [1] https://github.com/jones-drew/linux/commits/riscv/zawrs-v3/
+> [2] https://lore.kernel.org/all/20240312152901.512001-2-ajones@ventanamicro.com/
+> [3] https://github.com/jones-drew/kvmtool/commits/riscv/zawrs/
+> [4] https://github.com/jones-drew/linux/commit/cb2beccebcece10881db842ed69bdd5715cfab5d
+> 
+> Thanks,
+> drew
+> 
+> v3:
+>  - Moved comment about expected termination from the DT binding text
+>    to a code comment.
+> 
+> v2:
+>  - Added DT bindings patch with additional Linux specifications due
+>    to wrs.nto potentially never terminating, as suggested by Palmer
+>  - Added patch to share pause insn definition
+>  - Rework main Zawrs support patch to use Arm approach (which is
+>    also the approach that Andrea Parri suggested)
+>  - Dropped the riscv implementation of smp_cond_load_acquire().
+>    afaict, the generic implementation, which will use the riscv
+>    implementation of smp_cond_load_relaxed() is sufficient for riscv.
+>  - The rework was large enough (IMO) to drop Heiko's s-o-b and to
+>    add myself as a co-developer
+> 
+> 
+> Andrew Jones (5):
+>   riscv: Provide a definition for 'pause'
+>   dt-bindings: riscv: Add Zawrs ISA extension description
+>   riscv: hwprobe: export Zawrs ISA extension
+>   KVM: riscv: Support guest wrs.nto
+>   KVM: riscv: selftests: Add Zawrs extension to get-reg-list test
+> 
+> Christoph M??llner (1):
+>   riscv: Add Zawrs support for spinlocks
+> 
+>  Documentation/arch/riscv/hwprobe.rst          |  4 ++
+>  .../devicetree/bindings/riscv/extensions.yaml |  7 +++
+>  arch/riscv/Kconfig                            | 20 ++++---
+>  arch/riscv/Makefile                           |  3 -
+>  arch/riscv/include/asm/barrier.h              | 45 +++++++++-----
+>  arch/riscv/include/asm/cmpxchg.h              | 58 +++++++++++++++++++
+>  arch/riscv/include/asm/hwcap.h                |  1 +
+>  arch/riscv/include/asm/insn-def.h             |  4 ++
+>  arch/riscv/include/asm/kvm_host.h             |  1 +
+>  arch/riscv/include/asm/vdso/processor.h       |  8 +--
+>  arch/riscv/include/uapi/asm/hwprobe.h         |  1 +
+>  arch/riscv/include/uapi/asm/kvm.h             |  1 +
+>  arch/riscv/kernel/cpufeature.c                |  1 +
+>  arch/riscv/kernel/sys_hwprobe.c               |  1 +
+>  arch/riscv/kvm/vcpu.c                         |  1 +
+>  arch/riscv/kvm/vcpu_insn.c                    | 15 +++++
+>  arch/riscv/kvm/vcpu_onereg.c                  |  2 +
+>  .../selftests/kvm/riscv/get-reg-list.c        |  4 ++
+>  18 files changed, 146 insertions(+), 31 deletions(-)
+> 
+> -- 
+> 2.44.0
+> 
 
