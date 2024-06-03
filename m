@@ -1,181 +1,97 @@
-Return-Path: <devicetree+bounces-71947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A9308D890D
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 20:56:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CC1F8D8A6B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 21:47:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE4601C223E5
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 18:56:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 16CF31F259D8
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 19:47:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26F31139CF2;
-	Mon,  3 Jun 2024 18:56:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IFOI3/OU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 302B11386B5;
+	Mon,  3 Jun 2024 19:47:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7C57139568;
-	Mon,  3 Jun 2024 18:56:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F01320ED;
+	Mon,  3 Jun 2024 19:46:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717440990; cv=none; b=ri0mX0RRVy4vzOgDWr+tFwIx3q3XpuXT8/vgPiXmIqCbZ6dxYrGHcHJvCJC3HQM6iBW/YVhRnY2t1HqfNUBUJJ5a59zaPcGYrd106K9cN7TtdMi+7nJ73WeBLc03+kTRatWVM79NPuKvLq9ShE7oofUVKx7ygmQnWQxBDx7RacI=
+	t=1717444020; cv=none; b=Ego+edtw53PTFSQO6wO9D92Wm76RRuLBR2SwrhDFgTob4SzgACjMCxaHWkwlAOBO7MVDbh4cvphaEGtOxsGNuKEQFjcqGq/7Ka4O7PWge0VJNbGcfMh9pOp3uOmRer1knPIeKzVjKC8ybZB2MwuMWtCF2pb8b+PRDhjVuxWNpYA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717440990; c=relaxed/simple;
-	bh=mQUeynsA1hCoLIuqXaZMidYcSSx7+hiPX4gB4B5Gzxc=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=BeJyBNVe+GZUVYbpCTikK+vDc01rPJrPEo9ZPPfYh/wzb375w0swd36izf3JBL494Uthx8nCuPTgJPTMWcyPCYGJgzghoK/mtNYwCTpEnucylelh5gjtCLccgas477zHPd+mkVKli0R7Eq1AgsAbOjF04xwq3ps/STOyuFjPW98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IFOI3/OU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40310C2BD10;
-	Mon,  3 Jun 2024 18:56:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717440989;
-	bh=mQUeynsA1hCoLIuqXaZMidYcSSx7+hiPX4gB4B5Gzxc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=IFOI3/OUiur+QsHtc/r94fWKtsR/eV5g7H6lneT+e8Q6UGHWjG7VzprEPHZwzw0zF
-	 ww0VmfJoWXQfc6FCQMeTeeyrsfuTvJhEsFuOPL6p35jzp0IgEPJEV4qm73aaUrOpGx
-	 fC1l6Dyj0AEc+YWWIsdgr4g2fGCi12XJS3Vf6hT6ULEkLMjaZUrmdabaF72vyKoZxU
-	 yi04hMmPlrrkle2UK1PzKO9oV/2V8Y1db8hfz5iyOs579XcJnO0Zajp4rA/5nbJ8tK
-	 UjYE/igET+Aw+ZEvxuGwjh5CKP9IxavCTk1E9q+TBGo5rHkXbM3kpDLKucKndBwV8a
-	 w3eo8Q99kG26w==
-Date: Mon, 3 Jun 2024 13:56:27 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Robin Murphy <robin.murphy@arm.com>, Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
-	devicetree@vger.kernel.org, Will Deacon <will@kernel.org>,
-	Joerg Roedel <joro@8bytes.org>, Jason Gunthorpe <jgg@ziepe.ca>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Marc Zyngier <maz@kernel.org>
-Subject: Re: [PATCH v5 08/12] PCI: imx6: Config look up table(LUT) to support
- MSI ITS and IOMMU for i.MX95
-Message-ID: <20240603185627.GA687746@bhelgaas>
+	s=arc-20240116; t=1717444020; c=relaxed/simple;
+	bh=D8qS2P6s0c2Xb/N2Iq0bMwfDy0LCuH+Ng0vJhxlUKmg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Irz0LuMOh+JSIUsIl9RGZVsHZk37IKLTUm+Z/GHhTL6PZpZV4LcsLURcRkg8SaHc7aonUhEfgUwYISjFWH6ZG6tE/0FyrwBfnk15FqN7+TVvskuzvm89w2s9JobCXK4VLfqrVPUSvmsH8TYIkg2yjzvFPpypQV+X6hmT1TKNTh8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A99C11042;
+	Mon,  3 Jun 2024 12:47:20 -0700 (PDT)
+Received: from [10.57.71.49] (unknown [10.57.71.49])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BB91F3F64C;
+	Mon,  3 Jun 2024 12:46:49 -0700 (PDT)
+Message-ID: <a4105d70-bec5-4fff-b9bf-04d0b03f81d6@arm.com>
+Date: Mon, 3 Jun 2024 20:46:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zl4OpTfcfqMHELiX@lizhi-Precision-Tower-5810>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 5/7] iommu/dma: Make limit checks self-contained
+To: Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+ Joerg Roedel <joro@8bytes.org>, Christoph Hellwig <hch@lst.de>
+Cc: Vineet Gupta <vgupta@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
+ <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ "K. Y. Srinivasan" <kys@microsoft.com>,
+ Haiyang Zhang <haiyangz@microsoft.com>, Wei Liu <wei.liu@kernel.org>,
+ Dexuan Cui <decui@microsoft.com>,
+ Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+ David Woodhouse <dwmw2@infradead.org>, Lu Baolu <baolu.lu@linux.intel.com>,
+ Niklas Schnelle <schnelle@linux.ibm.com>,
+ Matthew Rosato <mjrosato@linux.ibm.com>,
+ Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
+ Jean-Philippe Brucker <jean-philippe@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-acpi@vger.kernel.org, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, Jason Gunthorpe <jgg@nvidia.com>
+References: <cover.1713523152.git.robin.murphy@arm.com>
+ <e28a114243d1e79eb3609aded034f8529521333f.1713523152.git.robin.murphy@arm.com>
+ <aeb13631-7504-4c3c-ba7b-812bf121a60f@oldschoolsolutions.biz>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <aeb13631-7504-4c3c-ba7b-812bf121a60f@oldschoolsolutions.biz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jun 03, 2024 at 02:42:45PM -0400, Frank Li wrote:
-> On Mon, Jun 03, 2024 at 12:19:21PM -0500, Bjorn Helgaas wrote:
-> > On Fri, May 31, 2024 at 03:58:49PM +0100, Robin Murphy wrote:
-> > > On 2024-05-31 12:08 am, Bjorn Helgaas wrote:
-> > > > [+cc IOMMU and pcie-apple.c folks for comment]
-> > > > 
-> > > > On Tue, May 28, 2024 at 03:39:21PM -0400, Frank Li wrote:
-> > > > > For the i.MX95, configuration of a LUT is necessary to convert Bus Device
-> > > > > Function (BDF) to stream IDs, which are utilized by both IOMMU and ITS.
-> > > > > This involves examining the msi-map and smmu-map to ensure consistent
-> > > > > mapping of PCI BDF to the same stream IDs. Subsequently, LUT-related
-> > > > > registers are configured. In the absence of an msi-map, the built-in MSI
-> > > > > controller is utilized as a fallback.
-> > > > > 
-> > > > > Additionally, register a PCI bus notifier to trigger imx_pcie_add_device()
-> > > > > upon the appearance of a new PCI device and when the bus is an iMX6 PCI
-> > > > > controller. This function configures the correct LUT based on Device Tree
-> > > > > Settings (DTS).
-> > > > 
-> > > > This scheme is pretty similar to apple_pcie_bus_notifier().  If we
-> > > > have to do this, I wish it were *more* similar, i.e., copy the
-> > > > function names, bitmap tracking, code structure, etc.
-> > > > 
-> > > > I don't really know how stream IDs work, but I assume they are used on
-> > > > most or all arm64 platforms, so I'm a little surprised that of all the
-> > > > PCI host drivers used on arm64, only pcie-apple.c and pci-imx6.c need
-> > > > this notifier.
-> > > 
-> > > This is one of those things that's mostly at the mercy of the PCIe root
-> > > complex implementation. Typically the SMMU StreamID and/or GIC ITS DeviceID
-> > > is derived directly from the PCI RID, sometimes with additional high-order
-> > > bits hard-wired to disambiguate PCI segments. I believe this RID-translation
-> > > LUT is a particular feature of the the Synopsys IP - I know there's also one
-> > > on the NXP Layerscape platforms, but on those it's programmed by the
-> > > bootloader, which also generates the appropriate "msi-map" and "iommu-map"
-> > > properties to match. Ideally that's what i.MX should do as well, but hey.
-> > 
-> > Maybe this RID-translation is a feature of i.MX, not of Synopsys?  I
-> > see that the LUT CSR accesses use IMX95_* definitions.
+Hi Jens,
+
+On 2024-06-03 8:37 pm, Jens Glathe wrote:
+> Hi Robin,
 > 
-> Yes, it convert 16bit RID to 6bit stream id.
+> an observation from 6.10-rc1: On sc8280xp (Lenovo X13s, Windows Dev Kit
+> 2023), when booted to EL2 with the arm-smmuv3 under control of Linux, it
+> fails to set up DMA transfers to nvme. My box boots from nvme, so I only
+> got a black screen. @craftyguy booted from USB, and got this:
 
-IIUC, you're saying this is not a Synopsys feature, it's an i.MX
-feature.
+Indeed, I see there's a dma-ranges property with a base of 0 in that DT, 
+so all manner of hilarity may ensue. The fix is here, just waiting to be 
+picked up:
 
-> > > If it's really necessary to do this programming from Linux, then there's
-> > > still no point in it being dynamic - the mappings cannot ever change, since
-> > > the rest of the kernel believes that what the DT said at boot time was
-> > > already a property of the hardware. It would be a lot more logical, and
-> > > likely simpler, for the driver to just read the relevant map property and
-> > > program the entire LUT to match, all in one go at controller probe time.
-> > > Rather like what's already commonly done with the parsing of "dma-ranges" to
-> > > program address-translation LUTs for inbound windows.
-> > > 
-> > > Plus that would also give a chance of safely dealing with bad DTs specifying
-> > > invalid ID mappings (by refusing to probe at all). As it is, returning an
-> > > error from a child's BUS_NOTIFY_ADD_DEVICE does nothing except prevent any
-> > > further notifiers from running at that point - the device will still be
-> > > added, allowed to bind a driver, and able to start sending DMA/MSI traffic
-> > > without the controller being correctly programmed, which at best won't work
-> > > and at worst may break the whole system.
-> > 
-> > Frank, could the imx LUT be programmed once at boot-time instead of at
-> > device-add time?  I'm guessing maybe not because apparently there is a
-> > risk of running out of LUT entries?
-> 
-> It is not good idea to depend on boot loader so much.
+https://lore.kernel.org/linux-iommu/159193e80b6a7701c61b32d6119ac68989d457bd.1716997607.git.robin.murphy@arm.com/
 
-I meant "could this be programmed once when the Linux imx host
-controller driver is probed?"  But from the below, it sounds like
-that's not possible in general because you don't have enough stream
-IDs to do that.
-
-> Some hot plug devics
-> (SD7.0) may plug after system boot. Two PCIe instances shared one set
-> of 6bits stream id (total 64). Assume total 16 assign to two PCIe
-> controllers. each have 8 stream id. If use uboot assign it static, each
-> PCIe controller have below 8 devices.  It will be failrue one controller
-> connect 7, another connect 9. but if dynamtic alloc when devices add, both
-> controller can work.
-> 
-> Although we have not so much devices now,  this way give us possility to
-> improve it in future.
-> 
-> > It sounds like the consequences of running out of LUT entries are
-> > catastrophic, e.g., memory corruption from mis-directed DMA?  If
-> > that's possible, I think we need to figure out how to prevent the
-> > device from being used, not just dev_warn() about it.
-> 
-> Yes, but so far, we have not met such problem now. We can improve it when
-> we really face such problem.
-
-If this controller can only support DMA from a limited number of
-endpoints below it, I think we should figure out how to enforce that
-directly.  Maybe we can prevent drivers from enabling bus mastering or
-something.  I'm not happy with the idea of waiting for and debugging a
-report of data corruption.
-
-Bjorn
+Thanks,
+Robin.
 
