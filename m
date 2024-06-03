@@ -1,185 +1,267 @@
-Return-Path: <devicetree+bounces-71703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF3288D7A7F
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 05:44:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CB6F8D7A8A
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 05:49:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FCEC1F21801
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 03:44:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C1511F2174E
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 03:49:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED6E2101F4;
-	Mon,  3 Jun 2024 03:44:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAE4DEAD7;
+	Mon,  3 Jun 2024 03:49:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="KnOVMahQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nJr9U5dv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADA56EAD7
-	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 03:44:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89ADC2231F;
+	Mon,  3 Jun 2024 03:49:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717386245; cv=none; b=OKmH77oEQcjUoANziVRc2Uf9eddfVHHFkTFKQZewWU7jwNF3xixDJvPIxUrsZ/2cozoQz9PGhoUkPKqhICYX1rIrBR5IJkB0nJSKzWZtKqp7G649gPLQjtztxtr75zblbTkZagccSUkyhmMqUpFfHl1NYYF2fvfzplrH2/POCsA=
+	t=1717386560; cv=none; b=AHHTIN/gOuzvxGJwidLGusF4ywN/lm3xQIFjtPi2Bq7r7Etup/479hzOuBqYLOV8qqeuR8pQW4xTiG228kCQOe2NBDPE/mKH+B4S5NIHC+oZy7O+02IIQm7L+r0JZQDHlM3uc3yhD9DF5atg0Rs3mFQn5jhm9uipFSSTWJt4B9M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717386245; c=relaxed/simple;
-	bh=CTTiIGRwq0Vgd2Pg2kLvPB+WD6kCgwVfMNuTFJd5a90=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:In-Reply-To:
-	 Content-Type:References; b=AoZUbkQTEeDb+8rQvtJilQVpHFFAozPSeBQm1TBXXCJEwhI2TIcaHZOzEcVFV0bEi8GN69rrqhwpb/P7NXisT3Gt8gvaz8emV7NgcCze3XPQR4zLxIjE8G5i8xgCW/+ZBBSVwbpsV1VP0G8tcyG6bmFZAzdi7mpAvKSce+3UKJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=KnOVMahQ; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20240603034401epoutp035c6bc7d9093232b43734ac5385c81a65~VYbAXsehi1054110541epoutp03O
-	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 03:44:01 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20240603034401epoutp035c6bc7d9093232b43734ac5385c81a65~VYbAXsehi1054110541epoutp03O
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1717386241;
-	bh=5NRjs4RhuxoBELCEZk64LegBIKhlKW9kwzOVWgcQuxw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=KnOVMahQpv0k2Snx9acISYU6wUBBc3RWS4LEqjUG3fyBwj0q4htp6VYRdhVAwFuk1
-	 IPrUj6oHTNlywEiZMVGN49VxrnJyp3Aaj/ASHLs7PJyvpSvu+ra8uDHCgWD2PO+/A4
-	 FdP+/oaJ+zl+DqiJ7P2cc0ahmogJng+zJAYpMfps=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-	epcas2p3.samsung.com (KnoxPortal) with ESMTP id
-	20240603034401epcas2p378493b11f6c4504282b1df16cdbb82cb~VYa-9HBE92491424914epcas2p3E;
-	Mon,  3 Jun 2024 03:44:01 +0000 (GMT)
-Received: from epsmgec2p1.samsung.com (unknown [182.195.36.70]) by
-	epsnrtp1.localdomain (Postfix) with ESMTP id 4Vt02T0L0tz4x9Pv; Mon,  3 Jun
-	2024 03:44:01 +0000 (GMT)
-Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
-	epsmgec2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	8F.61.08613.00C3D566; Mon,  3 Jun 2024 12:44:00 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
-	20240603034400epcas2p3ee526cd508075ad4209539ae395ea91a~VYa-R-33x0546405464epcas2p3s;
-	Mon,  3 Jun 2024 03:44:00 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20240603034400epsmtrp12e0649f855faed71b12531121fcc5677~VYa-RQORp0644706447epsmtrp1B;
-	Mon,  3 Jun 2024 03:44:00 +0000 (GMT)
-X-AuditID: b6c32a43-38731a80000021a5-c3-665d3c00d945
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	29.46.08622.00C3D566; Mon,  3 Jun 2024 12:44:00 +0900 (KST)
-Received: from ubuntu (unknown [10.229.95.128]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20240603034400epsmtip1332d768cbfbfbb5d565933bed9ed5409~VYa-HeVQu0849108491epsmtip16;
-	Mon,  3 Jun 2024 03:44:00 +0000 (GMT)
-Date: Mon, 3 Jun 2024 12:44:35 +0900
-From: Jung Daehwan <dh10.jung@samsung.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Mathias
-	Nyman <mathias.nyman@intel.com>, Felipe Balbi <balbi@kernel.org>, "open
- list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>, "open list:OPEN FIRMWARE
- AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 5/5] usb: host: xhci-plat: Add support for
- XHCI_WRITE_64_HI_LO_QUIRK
-Message-ID: <20240603034435.GC23593@ubuntu>
+	s=arc-20240116; t=1717386560; c=relaxed/simple;
+	bh=z5mvz1lfU07jZ9iUZyD5kFk1KnR8RI60n0qB14ClCu4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YNWPLk/c3I7886wBmGaM5VsSw5FGgw31QuP6hhbWFCL+a7A+goVejX924rkli7sWYAlsK14fsM34lHhhsaW7SMgFEpm64a/DAVPeJ0qgdRCncxFZ4TmC1XJnVsGHO2jGICDGEyEDX3A/rbgQi8e24SbjeXBIAr6+A2YsvO6X39A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nJr9U5dv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 124F0C4AF0A;
+	Mon,  3 Jun 2024 03:49:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717386560;
+	bh=z5mvz1lfU07jZ9iUZyD5kFk1KnR8RI60n0qB14ClCu4=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=nJr9U5dvWsJGp1yXIScseBNGOHsplw9c4KuJi91Sred1RJiDqHgD/ep8QQEctNssz
+	 FJJxTWaZ7Lzvtdi1ByGOBqOsKIpdau6v2ltwmMDbbsHBmZSunzFF51ZRztiO4bNN9+
+	 f1u9ZrP1kHoOunz1zK5e0TjS0JRL0AAPjjqvlO0eTrO8JYhZiaQpbn33Qfc7YY354N
+	 Z6ZSfK01Z4uWajSUpSM1/UczxLX5hbEh2bGAGccKrETs+ujtIurn6GeUO5BwGPQwFi
+	 8wNi24KM315TmeFnt78tgc079mBNpBkxkjik6t6WrZ55+q8DJ50S5iL31QsXLkr+bS
+	 FUG0yKedcz2eg==
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2e6f2534e41so31293581fa.0;
+        Sun, 02 Jun 2024 20:49:19 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWCW08ENm0wIZ1A+Lc2kohqfY0TCVKwU5Yz7bZwGQmAkjIWu3sW1OFjioYZlFvUeHlrIT6ejAw1jaXJ9uHrb9vbCMv28fjRTPzCwen60sio3UmMi/no/rHoWuVLbN/2F3jk1eTJJSGwy0Ha73jeTUsVD2axZ+pIFHwfg6gVlT0Vhg==
+X-Gm-Message-State: AOJu0YwnGLLLjFuitHPiI2vrypbwItWi3jaHp1XVFMWlZisTPZTETlWz
+	fyeL2mZ5Kt8WrSOCxI3yyRLmhNXJot2q9Q2D524H/+yEcV8ZJlqw0SVGwSz4pfah2w2lCiE/q0V
+	heHHkV4Tcv6ic4KHnGkhI4WCS+Bw=
+X-Google-Smtp-Source: AGHT+IGeqKCFJubYk+BuVV24uz6Hs7s17epjkgBlNhlX+930U/YvE3OiynaVsYGHCA80uyovp6h4bbLGr3JfLlvXaVs=
+X-Received: by 2002:a05:651c:1a28:b0:2ea:7a2a:4d0b with SMTP id
+ 38308e7fff4ca-2ea950e63b5mr60506571fa.17.1717386558327; Sun, 02 Jun 2024
+ 20:49:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <9c9d74c0-72a2-418a-b3c6-a0f9716c943d@kernel.org>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrNJsWRmVeSWpSXmKPExsWy7bCmqS6DTWyawbX71hbH2p6wW6zZe47J
-	Yv6Rc6wWzYvXs1m8nHWPzeL8+Q3sFpd3zWGzWLSsldmiedMUVov/e3awW6xacIDdgdtj8Z6X
-	TB6bVnWyeeyfu4bdY8v+z4wenzfJBbBGZdtkpCampBYppOYl56dk5qXbKnkHxzvHm5oZGOoa
-	WlqYKynkJeam2iq5+AToumXmAJ2mpFCWmFMKFApILC5W0rezKcovLUlVyMgvLrFVSi1IySkw
-	L9ArTswtLs1L18tLLbEyNDAwMgUqTMjOmDWrna3gEU/Fy4O72BoYn3J1MXJySAiYSPTeOMEC
-	YgsJ7GCUeP3Mp4uRC8j+xCjxZlkbI4TzjVFifv91FpiOZw1TWSESexkljix8zgThPGGUWLdz
-	KztIFYuAikTjielgHWwCWhL3fpxgBrFFBDQlrv/9DtbNLHCHWWLSuhNsIAlhgViJj3dmAhVx
-	cPAKaEssfV8OEuYVEJQ4OfMJ2BxOATuJcwvOg5WIAs1/dbAeZIyEwEwOiT2TDzBDXOcisezG
-	BlYIW1ji1fEt7BC2lMTL/jYou1ji1vNnzBDNLYwSK161QDUbS8x61s4IYjMLZEg8vDuJFWSZ
-	hICyxJFbLBBhPomOw3/ZIcK8Eh1tQhCdyhLTL0+AWispcfD1OaiJHhKXrs9mg4RPN5PEjGt/
-	WCcwys9C8tosJNsgbB2JBbs/sc0CWsEsIC2x/B8HhKkpsX6X/gJG1lWMYqkFxbnpqclGBYbw
-	yE7Oz93ECE61Ws47GK/M/6d3iJGJg/EQowQHs5IIb19ddJoQb0piZVVqUX58UWlOavEhRlNg
-	PE1klhJNzgcm+7ySeEMTSwMTMzNDcyNTA3Mlcd57rXNThATSE0tSs1NTC1KLYPqYODilGpj0
-	d5VamKrUC1Y0zLaYvrLebJ7z98g7uavOmAYfe8fBfaqlaJ7Nzd5X//QNrnIotfz9ffThh60N
-	qc/D+I9PiPbf0H/JU/Vq2DG7xqI/xb/8xPqN3tTNOm15ZhMPz+aP11e3/Cv5daGlRuLpjr47
-	c0yEz0VY7nyZ+st4unfxLX6H0AWcwQktFatd87684Zn9yEcp63KdqvymtIzaAJFtz1LzTIyn
-	x83V27fj/84ZlZzRL7SDRFt1BSK2qfSsT/z/YFKliODaHOYGh/9SZYcye9Z3XEpLcyk7cL43
-	xn73zQPv2H/mftJpbct8Y2b1W/Lw/0PsXhceRLFtfPxVj3X18ZqeKoY9m1S+e/gG6x/aXaPE
-	UpyRaKjFXFScCAC5nLzUPgQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrILMWRmVeSWpSXmKPExsWy7bCSnC6DTWyawaslqhbH2p6wW6zZe47J
-	Yv6Rc6wWzYvXs1m8nHWPzeL8+Q3sFpd3zWGzWLSsldmiedMUVov/e3awW6xacIDdgdtj8Z6X
-	TB6bVnWyeeyfu4bdY8v+z4wenzfJBbBGcdmkpOZklqUW6dslcGVM2rGDrWARV8WV1VsYGxj3
-	cXQxcnJICJhIPGuYytrFyMUhJLCbUeLN3QusEAlJiaVzb7BD2MIS91uOQBU9YpRY0tsOlmAR
-	UJFoPDGdBcRmE9CSuPfjBDOILSKgKXH973ewBmaBR8wS0188YQNJCAvESny8MxOoiIODV0Bb
-	Yun7coih3UwS324cB2vmFRCUODnzCdhQZqChN/69ZAKpZxaQllj+D+xqTgE7iXMLzoONEQW6
-	4dXB+gmMgrOQNM9C0jwLoXkBI/MqRsnUguLc9NxiwwKjvNRyveLE3OLSvHS95PzcTYzgWNHS
-	2sG4Z9UHvUOMTByMhxglOJiVRHj76qLThHhTEiurUovy44tKc1KLDzFKc7AoifN+e92bIiSQ
-	nliSmp2aWpBaBJNl4uCUamASmLnk+M2qSd+Z9v26XyU6S+DUY6mP9ZdttqyfkObdaSa9/7IB
-	x8RX2ysb7xsuj426epWl7+vbmmOvI3h47yjx5/VY3r3q36golhpxb3rASm47/wdPLou9nrUy
-	43BM7PagTPPDz4/Zt0451GRjtlqzRFfYtmHzx68MvLKik/35Bdq9eG/zvdTK7uQ2efBGsTVV
-	q3PFVbXoyJ6f8d+eqF3MXbu0sunMkhazN08Fsz/sErypENvFU3cwyNCG9YRESvVR27kGd18c
-	XtCYbWdyjO/cE4Wrh97kHdpq568XK75FV9W7/qjY1kcZbPXB34uebc43WtT4T9BtacWpF62n
-	zQQdmk6fezZRasmnTbxrTnsqsRRnJBpqMRcVJwIAtMs/NwQDAAA=
-X-CMS-MailID: 20240603034400epcas2p3ee526cd508075ad4209539ae395ea91a
-X-Msg-Generator: CA
-Content-Type: multipart/mixed;
-	boundary="----GYrZwOZf271lb0asq-_m8oi27wabo7t24X0BK_QM5T4hVeLi=_376ea_"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20240531060731epcas2p4f14afae9f00a7e71e6bd3863f0a51441
-References: <1717135657-120818-1-git-send-email-dh10.jung@samsung.com>
-	<CGME20240531060731epcas2p4f14afae9f00a7e71e6bd3863f0a51441@epcas2p4.samsung.com>
-	<1717135657-120818-6-git-send-email-dh10.jung@samsung.com>
-	<9c9d74c0-72a2-418a-b3c6-a0f9716c943d@kernel.org>
+References: <e70742ea2df432bf57b3f7de542d81ca22b0da2f.1716225483.git.dsimic@manjaro.org>
+ <CAGb2v66DPvvRcq+98vF2mCF8URW_qys1+B_FM9kcm6ppuPvyeg@mail.gmail.com>
+ <20cf041dcd6f752174bf29d2a53c61b3@manjaro.org> <1994616.CrzyxZ31qj@diego> <99ea0e0053d3ada3325bdfaec7a937f0@manjaro.org>
+In-Reply-To: <99ea0e0053d3ada3325bdfaec7a937f0@manjaro.org>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Mon, 3 Jun 2024 11:49:05 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64K7fgeV9GVNnpoZ_4BZU7JKXHSCYU0hKxHmnyojFRu7g@mail.gmail.com>
+Message-ID: <CAGb2v64K7fgeV9GVNnpoZ_4BZU7JKXHSCYU0hKxHmnyojFRu7g@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix the DCDC_REG2 minimum voltage
+ on Quartz64 Model B
+To: Dragan Simic <dsimic@manjaro.org>, =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
+	Diederik de Haas <didi.debian@cknow.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-------GYrZwOZf271lb0asq-_m8oi27wabo7t24X0BK_QM5T4hVeLi=_376ea_
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+On Sat, Jun 1, 2024 at 6:41=E2=80=AFAM Dragan Simic <dsimic@manjaro.org> wr=
+ote:
+>
+> Hello Heiko,
+>
+> On 2024-05-31 20:40, Heiko St=C3=BCbner wrote:
+> > Am Freitag, 31. Mai 2024, 00:48:45 CEST schrieb Dragan Simic:
+> >> On 2024-05-29 18:27, Chen-Yu Tsai wrote:
+> >> > On Tue, May 21, 2024 at 1:20=E2=80=AFAM Dragan Simic <dsimic@manjaro=
+.org>
+> >> > wrote:
+> >> >>
+> >> >> Correct the specified regulator-min-microvolt value for the buck
+> >> >> DCDC_REG2
+> >> >> regulator, which is part of the Rockchip RK809 PMIC, in the Pine64
+> >> >> Quartz64
+> >> >> Model B board dts.  According to the RK809 datasheet, version 1.01,
+> >> >> this
+> >> >> regulator is capable of producing voltages as low as 0.5 V on its
+> >> >> output,
+> >> >> instead of going down to 0.9 V only, which is additionally confirme=
+d
+> >> >> by the
+> >> >> regulator-min-microvolt values found in the board dts files for the
+> >> >> other
+> >> >> supported boards that use the same RK809 PMIC.
+> >> >>
+> >> >> This allows the DVFS to clock the GPU on the Quartz64 Model B below
+> >> >> 700 MHz,
+> >> >> all the way down to 200 MHz, which saves some power and reduces the
+> >> >> amount of
+> >> >> generated heat a bit, improving the thermal headroom and possibly
+> >> >> improving
+> >> >> the bursty CPU and GPU performance on this board.
+> >> >>
+> >> >> This also eliminates the following warnings in the kernel log:
+> >> >>
+> >> >>   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 8250=
+00,
+> >> >> not supported by regulator
+> >> >>   panfrost fde60000.gpu: _opp_add: OPP not supported by regulators
+> >> >> (200000000)
+> >> >>   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 8250=
+00,
+> >> >> not supported by regulator
+> >> >>   panfrost fde60000.gpu: _opp_add: OPP not supported by regulators
+> >> >> (300000000)
+> >> >>   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 8250=
+00,
+> >> >> not supported by regulator
+> >> >>   panfrost fde60000.gpu: _opp_add: OPP not supported by regulators
+> >> >> (400000000)
+> >> >>   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 8250=
+00,
+> >> >> not supported by regulator
+> >> >>   panfrost fde60000.gpu: _opp_add: OPP not supported by regulators
+> >> >> (600000000)
+> >> >>
+> >> >> Fixes: dcc8c66bef79 ("arm64: dts: rockchip: add Pine64 Quartz64-B
+> >> >> device tree")
+> >> >> Cc: stable@vger.kernel.org
+> >> >> Reported-By: Diederik de Haas <didi.debian@cknow.org>
+> >> >> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+> >> >> ---
+> >> >>  arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts | 2 +-
+> >> >>  1 file changed, 1 insertion(+), 1 deletion(-)
+> >> >>
+> >> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+> >> >> b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+> >> >> index 26322a358d91..b908ce006c26 100644
+> >> >> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+> >> >> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+> >> >> @@ -289,7 +289,7 @@ vdd_gpu: DCDC_REG2 {
+> >> >>                                 regulator-name =3D "vdd_gpu";
+> >> >>                                 regulator-always-on;
+> >> >>                                 regulator-boot-on;
+> >> >> -                               regulator-min-microvolt =3D <900000=
+>;
+> >> >> +                               regulator-min-microvolt =3D <500000=
+>;
+> >> >
+> >> > The constraints here are supposed to be the constraints of the
+> >> > consumer,
+> >> > not the provider. The latter is already known by the implementation.
+> >> >
+> >> > So if the GPU can go down to 0.825V or 0.81V even (based on the
+> >> > datasheet),
+> >> > this should say the corresponding value. Surely the GPU can't go dow=
+n
+> >> > to
+> >> > 0.5V?
+> >> >
+> >> > Can you send another fix for it?
+> >>
+> >> I can confirm that the voltage of the power supply of GPU found inside
+> >> the RK3566 can be as low as 0.81 V, according to the datasheet, or as
+> >> low as 0.825 V, according to the GPU OPPs found in rk356x.dtsi.
+> >>
+> >> If we want the regulator-min-microvolt parameter to reflect the
+> >> contraint
+> >> of the GPU as the consumer, which I agree with, we should do that for
+> >> other
+> >> RK3566-based boards as well, and almost surely for the boards based on
+> >> the
+> >> RK3568, too.
+> >
+> > Hmm, I'm not so sure about that.
+> >
+> > The binding does define:
+> >       regulator-min-microvolt:
+> >           description: smallest voltage consumers may set
+> >
+> > This does not seem to describe it as a constraint solely of the
+> > consumer.
+> > At least the wording sounds way more flexible there.
+> >
+> > Also any regulator _could_ have multiple consumers, whose value would
+> > it need then.
+>
+> The way I see it, the regulator-min-microvolt and
+> regulator-max-microvolt
+> parameters should be configured in a way that protects the consumer(s)
+> of the particular voltage regulator against undervoltage and overvoltage
+> conditions, which may be useful in some corner cases.
+>
+> If there are multiple consumers, which in this case may actually happen
+> (IIRC, some boards use the same regulator for the GPU and NPU portions
+> of the SoC), the situation becomes far from ideal, because the consumers
+> might have different voltage requirements, but that's pretty much an
+> unavoidable compromise.
 
-On Fri, May 31, 2024 at 10:12:36AM +0200, Krzysztof Kozlowski wrote:
-> On 31/05/2024 08:07, Daehwan Jung wrote:
-> > This is set by dwc3 parent node to support writing high-low order.
-> > 
-> > Signed-off-by: Daehwan Jung <dh10.jung@samsung.com>
-> > ---
-> >  drivers/usb/host/xhci-plat.c | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/drivers/usb/host/xhci-plat.c b/drivers/usb/host/xhci-plat.c
-> > index 3d071b8..31bdfa5 100644
-> > --- a/drivers/usb/host/xhci-plat.c
-> > +++ b/drivers/usb/host/xhci-plat.c
-> > @@ -256,6 +256,9 @@ int xhci_plat_probe(struct platform_device *pdev, struct device *sysdev, const s
-> >  		if (device_property_read_bool(tmpdev, "xhci-sg-trb-cache-size-quirk"))
-> >  			xhci->quirks |= XHCI_SG_TRB_CACHE_SIZE_QUIRK;
-> >  
-> > +		if (device_property_read_bool(tmpdev, "write-64-hi-lo-quirk"))
-> > +			xhci->quirks |= XHCI_WRITE_64_HI_LO;
-> 
-> Where is any user of this property (DTS)? Just to clarify: your
-> downstream does not matter really.
-> 
+As Dragan mentioned, the min/max voltage constraints are there to prevent
+the implementation from setting a voltage that would make the hardware
+inoperable, either temporarily or permanently. So the range set here
+should be the intersection of the permitted ranges of all consumers on
+that power rail.
 
-This is set by dwc3 parent node by software node.
+Now if that intersection happens to be an empty set, then it would up
+to the implementation to do proper lock-outs. Hopefully no one designs
+such hardware as it's too easy to fry some part of the hardware.
 
-[PATCH v2 1/5] dt-bindings: usb: snps,dwc3: Add 'snps,xhci-write-64-hi-lo-quirk' quirk
-https://lore.kernel.org/r/1717135657-120818-2-git-send-email-dh10.jung@samsung.com/
+> > While true, setting it to the lowest the regulator can do in the
+> > original
+> > fix patch, might've been a bit much and a saner value might be better.
+>
+> Agreed, but the value was selected according to what the other
+> RK3566-based
+> boards use, to establish some kind of consistency.  Now, there's a good
+> chance for the second pass, so to speak, which should establish another
+> different state, but also consistent. :)
+>
+> >> This would ensure consistency, but I'd like to know are all those
+> >> resulting
+> >> patches going to be accepted before starting to prepare them?  There
+> >> will
+> >> be a whole bunch of small patches.
+> >
+> > Hmm, though I'd say that would be one patch per soc?
+> >
+> > I.e. you're setting the min-voltage of _one_ regulator used
+> > on each board to a value to support the defined OPPs.
+> >
+> > I.e. in my mind you'd end up with:
+> >       arm64: dts: rockchip: set better min voltage for vdd_gpu on rk356=
+x
+> > boards
+> >
+> > And setting the lower voltage to reach that lower OPP on all affected
+> > rk356x boards.
+>
+> Yes, the same thoughts have already crossed my mind, but I thought we'd
+> like those patches to also include Fixes tags, so they also get
+> propagated
+> into the long-term kernel versions?  In that case, we'd need one patch
+> per
+> board, to have a clear relation to the commits referenced in the Fixes
+> tags.
+>
+> OTOH, if we don't want the patches to be propagated into the long-term
+> kernel
+> versions, then having one patch per SoC would be perfectly fine.
 
-Best Regards,
-Jung Daehwan
+It's really up to Heiko, but personally I don't think it's that important
+to have them backported. These would be correctness patches, but don't
+really affect functionality.
 
-> Best regards,
-> Krzysztof
-> 
-> 
-
-------GYrZwOZf271lb0asq-_m8oi27wabo7t24X0BK_QM5T4hVeLi=_376ea_
-Content-Type: text/plain; charset="utf-8"
-
-
-------GYrZwOZf271lb0asq-_m8oi27wabo7t24X0BK_QM5T4hVeLi=_376ea_--
+Regards
+ChenYu
 
