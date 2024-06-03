@@ -1,127 +1,205 @@
-Return-Path: <devicetree+bounces-71872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D76258D848A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 16:01:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5E828D8489
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 16:01:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D80171C223A4
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 14:01:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C31C281614
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 14:01:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CF0225605;
-	Mon,  3 Jun 2024 14:01:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kldPoN9r"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9236D12DDBA;
+	Mon,  3 Jun 2024 14:01:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 053221F60A;
-	Mon,  3 Jun 2024 14:01:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D50773C0D
+	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 14:01:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717423310; cv=none; b=qtjDFN51k0Jx0RhGVcnqszsRMgfaKwik8cGpwrHWndrCVlmIiIYoMQvEo+lAdOhcgsfLy5Ek8fvGjV7mi0X78Pb3tUgXWmJwMxVe2pBJibKBhaX1VHthiww2U5/jBCrzo4mZk1QNuocuDcxnbRmZUDq+QUCVSTR3WRWJGOf6F8g=
+	t=1717423279; cv=none; b=Wm09D9kIQqGhnC5qDSGpqfdXuX85J6s0Hi/f9nAi8oGBSitDrvpKabhdxmTsCSxSvWrFa0jEhPabc5cqxD5ajmCQv75dj3WwIyVDlA6bTDGiz4ZL2lCOWjaZq0RwmYDDR02E/+oFHET+XyAPoF/fOLx4AjoC6EB/uBaU7Gk+UZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717423310; c=relaxed/simple;
-	bh=1eBfmTHL1QaR8pbVnJDmzCh9p4iP+N0vXh+zBPtMsd8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=g2ntk9ExuuGkG6lS7nbMTy9OTMUd60dhW0FcI+B2grdqrzzCck2xUxL6hU7K9aW1nNaEw/7BZp1h3D2merO5bHsEBxFcQFuhusi+HPXwB2UnkRKHIo4iB1hROblDYrGzqoVDCEeUcz9lmwHJJ8ikZWItiXfqC9Bt6z3ITM20pW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kldPoN9r; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1717423279; c=relaxed/simple;
+	bh=iskwCpfWmOmjj8LQMd+9brU+S6GG6OCs2yHrtsRv04M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pUnr4DsSsGGy3O0YEPOX5JJflmUW1yySAi6FoIlJnWZ6hVumJmwr3QPuBUSIaiENMRY+OzrmI3m6JeCEGT0lM5A73fQpn9v8xf4G8JeJKthSlNl6RWSM6yr0lyHNLF1e/WSk3NOhx8xdSc3WEUbFCIPY+foxLw2gXpXTwoU6u3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-57a20c600a7so4867523a12.3;
-        Mon, 03 Jun 2024 07:01:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717423307; x=1718028107; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Cud/6aqJnRfF1FRYIE7dZy35PpEncKlSngXb7y86szE=;
-        b=kldPoN9rEkRIy/3D3EyceyuYIDe+4y3pH2kH4mYiXL6HNlk/SuZZwhPas9Mr3xUjpt
-         HOVS0DadAJiNbfj76hG/YZsx7Quag9myesY3xmjQlH/qXX0UmCohYt9b+ZBHIws59Nx5
-         zcSa5IaLHoEEzpEMceKLQqe4PKMe5zhGoTIKg3fPz4GsZDYuBL0mePNBFu0PZI3XoIBI
-         9ZQomoGtT42vlO3NPBNfd441wkFdH7+Ly1+Q0W9h3yQGpJ4BsuA4QaJ1bKlSewNpdZlG
-         mBfsphrAL0BgMOBydSTXKL+3+fpIDaearPXdoeqGbVPNFgYU0QWFT0A0kJyqafJ9SROG
-         Fvbw==
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52965199234so4946921e87.2
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2024 07:01:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717423307; x=1718028107;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Cud/6aqJnRfF1FRYIE7dZy35PpEncKlSngXb7y86szE=;
-        b=GbIv0FWtIegRa4CjWAnhtdLwprNf3SBrGPwt0Hp9oLgE8k4B1/PdLRQOJkj5DYqACL
-         4CFuZYhMgyx7dioJuhfcuho0DYyezrO6P+gb/ayswVhk5T+h30rdwCmn3hCVICeHvk0j
-         GUnfH3CLqMIlv1VkofSCovu/T2Tv3M2sDd1XtLxnNBkfQ+4xYzNYkBGNhCrfRIZuPoVM
-         YabxvoBh4fatP0/RS5zi//Dhab9mSPDb30nYfpQRiNJadkJrbGUhRWARdsJgWceKZr90
-         gmZwTk3mra12WJ0Lv8e42TN5mLsMK6B9Xo3HTauJyY1GRijQ2FXrg/Eg6kzUCCtTWuTS
-         Yqww==
-X-Forwarded-Encrypted: i=1; AJvYcCW5JVX7WvjhkHJKPEfcxk6LFqW4lGBobQHCWXiuFxn7UCBaZ9BHFbFTgaeVHoaKhPsHCQBBPt/w/1f9jV/gvp99Hza2H+WMbXMstf+IFI4zOnAhMSJ9Pp9MYtja0QxV2dyjqNqB7cSROQ==
-X-Gm-Message-State: AOJu0Yy1jVRQ9ftio67rQXrfzgAroQ6laggx7wymwrq47TG+8gDy2R1/
-	BWpzx69GHA0m+rrWqvoeelCcjYp/srVOECgkR6R81C3SaZ3GsvDV
-X-Google-Smtp-Source: AGHT+IHYwq7JslSgiiWPjfYTfZvNj/Ldq8H6hHi/nPS12CQ7DKy5/4mkKUOWlx7SsorXuBkZ1VLOwA==
-X-Received: by 2002:a50:9f2c:0:b0:578:3336:92a with SMTP id 4fb4d7f45d1cf-57a3622b9e6mr6527527a12.0.1717423307034;
-        Mon, 03 Jun 2024 07:01:47 -0700 (PDT)
-Received: from toolbox.int.toradex.com (31-10-206-125.static.upc.ch. [31.10.206.125])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57a31bbddb6sm5438541a12.38.2024.06.03.07.01.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Jun 2024 07:01:46 -0700 (PDT)
-From: max.oss.09@gmail.com
-To: Max Krummenacher <max.krummenacher@toradex.com>
-Cc: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1] arm64: dts: freescale: imx8mm-verdin: enable hysteresis on slow input pin
-Date: Mon,  3 Jun 2024 16:00:45 +0200
-Message-ID: <20240603140103.3845905-1-max.oss.09@gmail.com>
-X-Mailer: git-send-email 2.42.0
+        d=1e100.net; s=20230601; t=1717423275; x=1718028075;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FJymqROTHCE9BbbBBDBpPSnWxcEXeSBn32d2JSU7lQs=;
+        b=pgH7irZRN8wbx5y0MDC71p3M6iQwGBMZPnawjp6/tDd9Sk8OH/XGzRb/zQiuJEU3in
+         rTU2tLWDIWjCWG2xdGl4qr6FRL6gVvywZ/sIQvLmfeAA/t57HXWCufbeDxp80EiYta1M
+         BxiE2sTC7y2vHXiHp5KhT7XkM23PkdHSJxAZnEuIGqCEidd4rOAsPuizCE8ynlOhK2mM
+         ThhjoAzREqW+SzNbWTyWVuUyaJ1imKLJYUS6brTtUOa6VrMSaHswWK2HnPHol5OC1Fuv
+         3u0M/Wy7U/MXF9KyGTs55xL/XF6mWWCYWu4vSEWGCPhcjsO+uTDATFuqVPc7UrD2kep9
+         Rw/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCX02+MYcQSSBLw6y+2FYfDYYpzB/S547dlK/NsSKDzqhKlnd6J9dwoa0jKRDdn8oB+zLoSRfnua0iGcgxrI+/fosZ9LDFiNFlLXLw==
+X-Gm-Message-State: AOJu0YxdiEx0dHeA+lk1wIs3zFWqZE5zCwe+kIB+1Hsy9KJhZPYDYClN
+	v2V0ORETbJSpCyF5NbT6TtzCg+nNK1uZgahYnWY/BOn1f7OQkP3byAkIXpyP
+X-Google-Smtp-Source: AGHT+IEhFUYpFSwe+LbHAlc9m+IW2+41AKLb95i1nppdJ72dym0Lhsu8MGA8tW2ZFupTCbMu/IFfxA==
+X-Received: by 2002:a05:6512:4898:b0:52b:4f30:9cac with SMTP id 2adb3069b0e04-52b896cd347mr5878768e87.56.1717423274221;
+        Mon, 03 Jun 2024 07:01:14 -0700 (PDT)
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com. [209.85.208.176])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52b84d34ce5sm1235410e87.36.2024.06.03.07.01.14
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Jun 2024 07:01:14 -0700 (PDT)
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2e95a883101so57677131fa.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2024 07:01:14 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVj5gpQkYMcKNYUYxOlfL5I5Q3BI/fucCzzAIV1YKbRnM13v1pyFzeFohZyOWZG/Kq6pBlZsotnYaQ4utwPcvCckPsL5yjZUgzHxg==
+X-Received: by 2002:a2e:a787:0:b0:2e9:5380:615c with SMTP id
+ 38308e7fff4ca-2ea950ea481mr71944491fa.12.1717423273822; Mon, 03 Jun 2024
+ 07:01:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240603095133.1792688-1-cnnblike@gmail.com> <20240603143508.0b8ce772@donnerap.manchester.arm.com>
+In-Reply-To: <20240603143508.0b8ce772@donnerap.manchester.arm.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Mon, 3 Jun 2024 22:01:00 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67JSH-Ew==WacuFQUmc69Lx3woULKsknRkAURGUJW0Maw@mail.gmail.com>
+Message-ID: <CAGb2v67JSH-Ew==WacuFQUmc69Lx3woULKsknRkAURGUJW0Maw@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: sunxi: Removed redundant sun8i entry
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Ke Li <cnnblike@gmail.com>, Samuel Holland <samuel@sholland.org>, jernej.skrabec@gmail.com, 
+	linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Max Krummenacher <max.krummenacher@toradex.com>
+On Mon, Jun 3, 2024 at 9:35=E2=80=AFPM Andre Przywara <andre.przywara@arm.c=
+om> wrote:
+>
+> On Mon,  3 Jun 2024 17:51:34 +0800
+> Ke Li <cnnblike@gmail.com> wrote:
+>
+> Hi KL,
+>
+> > Hi, Jernej.skrabec@ and linux-sunxi@lists.linux.dev,
+>
+> please use scripts/get_maintainer.pl on the patch file to generate a list
+> of emails that patches should be send to. You do not need to include
+> everyone mentioned in that output, but at least the maintainers and the
+> lists.
+>
+> > I'm looking into the dts Makefile of Allwinner. It seems like in 724ba6=
+751532055db75992fc6ae21c3e322e94a7 "ARM: dts: Move .dts files to vendor sub=
+-directories", we made a mistake and duplicate the "dtb-$(CONFIG_MACH_SUN8I=
+)" entry on line 202 and line 265.
+> > A patched is generated for this.
+>
+> Pavel sent the same patch already two months ago:
+> https://lore.kernel.org/linux-sunxi/20240320061027.4078852-1-pavel@loebl.=
+cz/
+>
+> Having said this, I wonder what happened to that patch. I think we agreed
+> on this, but I don't see it any tree?
 
-SODIMM 17 can be used as an edge triggered interrupt supplied from an
-off board source.
+Looks like there were some comments on the last patch and the whole
+series ended up not getting merged.
 
-Enable hysteresis on the pinmuxing to increase immunity against noise
-on the signal.
+ChenYu
 
-Fixes: 60f01b5b5c7d ("arm64: dts: imx8mm-verdin: update iomux configuration")
-Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
-
----
-
- arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-index 4768b05fd765..7a971b235283 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-@@ -935,7 +935,7 @@ pinctrl_gpio8: gpio8grp {
- 	/* Verdin GPIO_9_DSI (pulled-up as active-low) */
- 	pinctrl_gpio_9_dsi: gpio9dsigrp {
- 		fsl,pins =
--			<MX8MM_IOMUXC_NAND_RE_B_GPIO3_IO15		0x146>;	/* SODIMM 17 */
-+			<MX8MM_IOMUXC_NAND_RE_B_GPIO3_IO15		0x1c6>;	/* SODIMM 17 */
- 	};
- 
- 	/* Verdin GPIO_10_DSI (pulled-up as active-low) */
--- 
-2.42.0
-
+> Cheers,
+> Andre
+>
+> >
+> > KL
+> >
+> > Signed-off-by: Ke Li <cnnblike@gmail.com>
+> > ---
+> >  arch/arm/boot/dts/allwinner/Makefile | 65 +---------------------------
+> >  1 file changed, 2 insertions(+), 63 deletions(-)
+> >
+> > diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts/a=
+llwinner/Makefile
+> > index 4247f19b1..f9484f8d4 100644
+> > --- a/arch/arm/boot/dts/allwinner/Makefile
+> > +++ b/arch/arm/boot/dts/allwinner/Makefile
+> > @@ -260,69 +260,8 @@ dtb-$(CONFIG_MACH_SUN8I) +=3D \
+> >       sun8i-v3s-anbernic-rg-nano.dtb \
+> >       sun8i-v3s-licheepi-zero.dtb \
+> >       sun8i-v3s-licheepi-zero-dock.dtb \
+> > -     sun8i-v40-bananapi-m2-berry.dtb
+> > -dtb-$(CONFIG_MACH_SUN8I) +=3D \
+> > -     sun8i-a23-evb.dtb \
+> > -     sun8i-a23-gt90h-v4.dtb \
+> > -     sun8i-a23-inet86dz.dtb \
+> > -     sun8i-a23-ippo-q8h-v5.dtb \
+> > -     sun8i-a23-ippo-q8h-v1.2.dtb \
+> > -     sun8i-a23-polaroid-mid2407pxe03.dtb \
+> > -     sun8i-a23-polaroid-mid2809pxe04.dtb \
+> > -     sun8i-a23-q8-tablet.dtb \
+> > -     sun8i-a33-et-q8-v1.6.dtb \
+> > -     sun8i-a33-ga10h-v1.1.dtb \
+> > -     sun8i-a33-inet-d978-rev2.dtb \
+> > -     sun8i-a33-ippo-q8h-v1.2.dtb \
+> > -     sun8i-a33-olinuxino.dtb \
+> > -     sun8i-a33-q8-tablet.dtb \
+> > -     sun8i-a33-sinlinx-sina33.dtb \
+> > -     sun8i-a83t-allwinner-h8homlet-v2.dtb \
+> > -     sun8i-a83t-bananapi-m3.dtb \
+> > -     sun8i-a83t-cubietruck-plus.dtb \
+> > -     sun8i-a83t-tbs-a711.dtb \
+> > -     sun8i-h2-plus-bananapi-m2-zero.dtb \
+> > -     sun8i-h2-plus-libretech-all-h3-cc.dtb \
+> > -     sun8i-h2-plus-orangepi-r1.dtb \
+> > -     sun8i-h2-plus-orangepi-zero.dtb \
+> > -     sun8i-h3-bananapi-m2-plus.dtb \
+> > -     sun8i-h3-bananapi-m2-plus-v1.2.dtb \
+> > -     sun8i-h3-beelink-x2.dtb \
+> > -     sun8i-h3-libretech-all-h3-cc.dtb \
+> > -     sun8i-h3-mapleboard-mp130.dtb \
+> > -     sun8i-h3-nanopi-duo2.dtb \
+> > -     sun8i-h3-nanopi-m1.dtb\
+> > -     \
+> > -     sun8i-h3-nanopi-m1-plus.dtb \
+> > -     sun8i-h3-nanopi-neo.dtb \
+> > -     sun8i-h3-nanopi-neo-air.dtb \
+> > -     sun8i-h3-nanopi-r1.dtb \
+> > -     sun8i-h3-orangepi-2.dtb \
+> > -     sun8i-h3-orangepi-lite.dtb \
+> > -     sun8i-h3-orangepi-one.dtb \
+> > -     sun8i-h3-orangepi-pc.dtb \
+> > -     sun8i-h3-orangepi-pc-plus.dtb \
+> > -     sun8i-h3-orangepi-plus.dtb \
+> > -     sun8i-h3-orangepi-plus2e.dtb \
+> > -     sun8i-h3-orangepi-zero-plus2.dtb \
+> > -     sun8i-h3-rervision-dvk.dtb \
+> > -     sun8i-h3-zeropi.dtb \
+> > -     sun8i-h3-emlid-neutis-n5h3-devboard.dtb \
+> > -     sun8i-r16-bananapi-m2m.dtb \
+> > -     sun8i-r16-nintendo-nes-classic.dtb \
+> > -     sun8i-r16-nintendo-super-nes-classic.dtb \
+> > -     sun8i-r16-parrot.dtb \
+> > -     sun8i-r40-bananapi-m2-ultra.dtb \
+> > -     sun8i-r40-oka40i-c.dtb \
+> > -     sun8i-s3-elimo-initium.dtb \
+> > -     sun8i-s3-lichee-zero-plus.dtb \
+> > -     sun8i-s3-pinecube.dtb \
+> > -     sun8i-t113s-mangopi-mq-r-t113.dtb \
+> > -     sun8i-t3-cqa3t-bv3.dtb \
+> > -     sun8i-v3-sl631-imx179.dtb \
+> > -     sun8i-v3s-licheepi-zero.dtb \
+> > -     sun8i-v3s-licheepi-zero-dock.dtb \
+> > -     sun8i-v40-bananapi-m2-berry.dtb
+> > +     sun8i-v40-bananapi-m2-berry.dtb \
+> > +     sun8i-h3-nanopi-m1.dtb
+> >  dtb-$(CONFIG_MACH_SUN9I) +=3D \
+> >       sun9i-a80-optimus.dtb \
+> >       sun9i-a80-cubieboard4.dtb
+>
 
