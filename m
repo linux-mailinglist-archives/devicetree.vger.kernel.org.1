@@ -1,169 +1,291 @@
-Return-Path: <devicetree+bounces-71744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB78F8D7D24
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 10:17:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA0EA8D7D3A
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 10:24:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3ADC21F22DE7
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 08:17:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECC581C2032B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 08:24:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5BB94AEF5;
-	Mon,  3 Jun 2024 08:17:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6F957880;
+	Mon,  3 Jun 2024 08:24:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W+003EVM"
+	dkim=pass (1024-bit key) header.d=sentec.com header.i=@sentec.com header.b="KcfsE2Jo";
+	dkim=pass (1024-bit key) header.d=sentec.com header.i=@sentec.com header.b="KcfsE2Jo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from ZR1P278CU001.outbound.protection.outlook.com (mail-switzerlandnorthazon11022018.outbound.protection.outlook.com [52.101.186.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2D8854BD8
-	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 08:17:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717402649; cv=none; b=UEDHFslecq6p81gCopMRIacfV8KpqMFD0A5bwdMSIJtoJ7atK36omDH4wG7MtdWBrbnGPisrYBxBpxdjljW1J8V+xXG5JyAA5Z8EWoCmrTynU2srp5A3W9oNMmjAxcX1vEJ7xrckPEp1P0rCA3zajsXpCA0wv2mtvU003R488Uk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717402649; c=relaxed/simple;
-	bh=GYQwyqieU5pgk0RpDLcK9N1jttSb3ko070lVFg1uSEM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=bdF5YpJGfHqrGPEthytMj5/M75f1/F24VfHaTgEKoOfkQwuEVwNtNgRzn04JmOOXD5iEsE3hb9Ry76vB6GWCcgrSFaxDdp4reoAbrTS8NhNe3Kom7+TYmBqjHuF/akG1grlqCqr+1vTJKH+TMazvBWdr3/qjekn72LHYeT8D9xY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W+003EVM; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-57a526c6a2cso1456511a12.2
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2024 01:17:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717402646; x=1718007446; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=U5auj/DxsumSSLcpeBxnhVyl1FBew61ppgHTyRT0DrM=;
-        b=W+003EVMkY8KfKIlDcjhAdpUesEcsibCC4NQ6G68DxGSYEPltFCo23iTWYdppGXTCl
-         XI7D6U5xbthDkHex8Dx5TtkO85QrjHbGWzFrQsHn7P9u8HX6cUMsS/Nf4go120ilaYT8
-         qjWwuc787291ZC2n4Zdgh0uzSj8zkd4hzKHG9D6LvzdTY/PuJee38B0ivR9NqM7yUAgz
-         /CngUiAXCEn8V5zkkxBGdjxJOBTYQGeeYHFKKCgMiXx84pgSruF3FuHi4A2fnlVwPaJP
-         NFakyQnur+Qi4+obLOSVGpRtfr4Rky81I4aHLb7/jrCfdBf0V0uMRduo7AGkdafiIZcW
-         JKbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717402646; x=1718007446;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=U5auj/DxsumSSLcpeBxnhVyl1FBew61ppgHTyRT0DrM=;
-        b=ktdrkFcDFtZGmWSqk8XDXufKIYmz0RMxO0C3uU5Hb7qtupB1VUvwrGICcgiu1HyzAe
-         DdbqW7a9SaIkueiuc4wuNC+nArh9U+JPcsC4kEWaByLHO4pTbo/gBk6lVnNkqNMopfSf
-         uMnD4wwDRtrX5yxXZCegZzc/wLbKtHNa44p9UrxbX20PAJFotKs3mF8KZrFM/L89bgE6
-         9pnhL1yv8gRRzT0FBwtA5hSmtQmuiBRla8xlTgjseFc6Jz8DqtdolTeGU3KRfYI2S6iR
-         x2Wd3YFs3jKFJybyHMy2J4EjJ991zJ9m3ZOzan7IyZweb0hFR/FLayItzu6D+uM9BsBO
-         Sd9A==
-X-Forwarded-Encrypted: i=1; AJvYcCX+0VIyyXKBMSpW3p5uX9+oY79WTG7NixL/y8t733dx45rfQiiq6fwQJH3q+QInSJkCaytZn3u3q1S0Y6p01M6GSla2rcCq5sA5ig==
-X-Gm-Message-State: AOJu0YzVtgRtA7Vb3z3lIn8MSm417lo4feZWaLsRDoKGMSGUvF9zfZrX
-	UmMWsDGcbC4tDNgVCM/2OyJ9tUQQuieeDSORWCRgmzVliZxtVowxn4nAln7/nt4=
-X-Google-Smtp-Source: AGHT+IFQCcQ+4xqx3uVgd4j1etV1G5jXaWznVKyyoBTDSVxep7J4PHOlSZg36mckXW36/cw79Hiong==
-X-Received: by 2002:a50:8e59:0:b0:57a:1c24:8b6 with SMTP id 4fb4d7f45d1cf-57a363a4286mr6341681a12.22.1717402646049;
-        Mon, 03 Jun 2024 01:17:26 -0700 (PDT)
-Received: from [127.0.1.1] ([188.27.161.69])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57a31b98de7sm4853418a12.10.2024.06.03.01.17.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Jun 2024 01:17:25 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Mon, 03 Jun 2024 11:17:17 +0300
-Subject: [PATCH v2] arm64: dts: qcom: x1e80100: Disable the SMB2360 4th
- instance by default
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAFC24AEF5;
+	Mon,  3 Jun 2024 08:24:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.186.18
+ARC-Seal:i=3; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717403046; cv=fail; b=BKuawem1BJshFPCAEn3HtXBGBwbuxSj6Nxt5d9AkohGkkn5cOMP+5wPPLsW1x4XzKD0Wn/stY9rHgAh9JUXpXszspVG2EFrrar3inQOsPgjVOKuIpQV+Yhi8JuiP0C76TuIynBLs48FSXblBhy02Z+PiryCZjcUx9piUv3imlzo=
+ARC-Message-Signature:i=3; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717403046; c=relaxed/simple;
+	bh=mMrqv49Fg3X7QqV75jwQlyxqdna+IZ0v4GpcJVQiULs=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=d7RXa+whD79IspfkOf0vEjk/nMdkZL6N7zhV+4BD2+g/YiznxkMyekfqs89+ni6SHcWbGAXqNcLZcGvI4OPFWfjYTXU07f9kLFzOF70AVXcBVeUC0HTjoLWtwuXV5anVbKis4+gIptRYJOrgFgkWIb/nPmSF2ErWrUes6dKmnRY=
+ARC-Authentication-Results:i=3; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sentec.com; spf=pass smtp.mailfrom=sentec.com; dkim=pass (1024-bit key) header.d=sentec.com header.i=@sentec.com header.b=KcfsE2Jo; dkim=pass (1024-bit key) header.d=sentec.com header.i=@sentec.com header.b=KcfsE2Jo; arc=fail smtp.client-ip=52.101.186.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sentec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sentec.com
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=pass;
+ b=EbZqFXYl/36OaM+y1REEzPA9z7mKT9Rxv/Y34UBWsrsbn39ciXURABU8Ksp+l0/fB7nzCnhX4/ZRbRqoBKDahSLbcZhEbLZetCv8kEpssZsu0nFtTlPKPjrRv8P8aQD+319FRXcpG997P5JJZH+Vko3uLzn6s515Y+BHfDxzBNnGBi53O9GLFXo6T5v68o8y3Az4Cpp/MarfQSnkGul4T95oOgZkwARXTqMqpP15KSHVHgM7yTtq25EMrSLAjnxAULesbWVVYSdGv0Aad+L6eUjyPN4lZHJKu47LSXqCvAh8AhRQZbsO12NgfYlQWbjY+7/hpbwRmBK9NAOUlx2s8w==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mMrqv49Fg3X7QqV75jwQlyxqdna+IZ0v4GpcJVQiULs=;
+ b=AQbAgiJZm3YxZ4SBEG2RjKSbvJpc0/JyNOLuDTbvGeNijd6n08MrYVXFy8vyWA//4OrhsURzgU0hkBGL0RGw9uXXGmFCED7/r6RMlqVFv+xlNXhsWmR9eH5XtWTGE725uqnbg6H0xR2xFW8euuWkhARQgcAGsoRTtw18bWzBqLdeso56HYL26t2sJjRkW85vf5wdOI0FqvaM9c9OVQGl4+gHR6P5CIckI/gmr8ZEA1XhNs1yiI09R+pN1EZuHj8wU4Q++kIib/R9bt7TkWGSRE0agxryHnFZmaKhrpM6+pb8njyJd+6Lz/oBTRP6DocGsb6rUmER1PFRHNmogcFIDg==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
+ 52.138.216.130) smtp.rcpttodomain=kernel.org smtp.mailfrom=sentec.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=sentec.com;
+ dkim=pass (signature was verified) header.d=sentec.com; arc=pass (0 oda=1
+ ltdi=1 spf=[1,1,smtp.mailfrom=sentec.com] dkim=[1,1,header.d=sentec.com]
+ dmarc=[1,1,header.from=sentec.com])
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sentec.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mMrqv49Fg3X7QqV75jwQlyxqdna+IZ0v4GpcJVQiULs=;
+ b=KcfsE2JoOT4m+JywyLkbai+/YGtdky85knSOlNGJ1P0VqUReDS6Epll4JCy0f+tcGxDsSfrhZS9DJbkLylsu82bKcC9rcANwOQ6IfFICUrW1RBk4Whd7ki9JceJIiqcqLyoRAjT73f7cahWhZT1BP5gORCdUxbZVUjEYAw93L6k=
+Received: from AM5PR1001CA0033.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:206:2::46)
+ by GV0P278MB1433.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:6b::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.26; Mon, 3 Jun
+ 2024 08:24:00 +0000
+Received: from AMS1EPF0000004B.eurprd04.prod.outlook.com
+ (2603:10a6:206:2:cafe::5f) by AM5PR1001CA0033.outlook.office365.com
+ (2603:10a6:206:2::46) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.22 via Frontend
+ Transport; Mon, 3 Jun 2024 08:24:00 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 52.138.216.130)
+ smtp.mailfrom=sentec.com; dkim=pass (signature was verified)
+ header.d=sentec.com;dmarc=pass action=none header.from=sentec.com;
+Received-SPF: Pass (protection.outlook.com: domain of sentec.com designates
+ 52.138.216.130 as permitted sender) receiver=protection.outlook.com;
+ client-ip=52.138.216.130; helo=eu22-emailsignatures-cloud.codetwo.com; pr=C
+Received: from eu22-emailsignatures-cloud.codetwo.com (52.138.216.130) by
+ AMS1EPF0000004B.mail.protection.outlook.com (10.167.16.136) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7633.15 via Frontend Transport; Mon, 3 Jun 2024 08:23:59 +0000
+Received: from ZRAP278CU002.outbound.protection.outlook.com (40.93.85.1) by eu22-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Mon, 03 Jun 2024 08:23:58 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HQugNkwrSZRL97hAX14Io/AqzztBN9NF0w17Doa+xyI2ikCnQPTZmsx2yHgQBRB/zEX/4DpYqG2z93Jp7Nj7bjpamNhh6b2OgdJ5noEPf6qxdE0OytuEF5yyLGGlwj1kVbb300bTV7I0eZSLqyg9OoVigRx2qBjOUwiWdBcbRVzIwLFeCM7SmICPeWsfyKdeM4jFiU942hWmq2jGQaQpD9GBiihp2am2L30ytIkSic5eKqBdyQjx79gtPXUQLczc0KQK530zIlUAv215XGI1OWOk87VMnly1V0IuiE74ULkmTJFrTerRl0oYUbbUcDlm34ahRvYZTlTT83h0fKgznA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mMrqv49Fg3X7QqV75jwQlyxqdna+IZ0v4GpcJVQiULs=;
+ b=BAvatZ8mYffr3FmKXXOVamVmWmWBPjU051iotORuqfTMla4m02hmxVn+YosutRPCQuyAk0hSJDNBrayhSQ57ro6VgdUDD/HXe+DBUVxhwHQO4PjYfeDMkOonmUZn0byTiDpGvLsVM6SA8VDpeNr+14OPMsqxrIVIv17dQbcNzxwzKI6OEDt2hyH+VvLpU1zJP6/ulViEeltWvKPc6DgF9XS0bEoQ1qpPHu3vKjR+VlTYeFRF1PJaJVteZlYrQdSKu6VxMosIDgGzNJMSTdKrupniQaiOR3SrtkB4t27VCqdh5K5agvJZPTzqcAu0c4YksoQ1POEmJ87kusbpjPh/KA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=sentec.com; dmarc=pass action=none header.from=sentec.com;
+ dkim=pass header.d=sentec.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sentec.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mMrqv49Fg3X7QqV75jwQlyxqdna+IZ0v4GpcJVQiULs=;
+ b=KcfsE2JoOT4m+JywyLkbai+/YGtdky85knSOlNGJ1P0VqUReDS6Epll4JCy0f+tcGxDsSfrhZS9DJbkLylsu82bKcC9rcANwOQ6IfFICUrW1RBk4Whd7ki9JceJIiqcqLyoRAjT73f7cahWhZT1BP5gORCdUxbZVUjEYAw93L6k=
+Received: from ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:58::13)
+ by ZR1P278MB1412.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:9a::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.23; Mon, 3 Jun
+ 2024 08:23:55 +0000
+Received: from ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::44a0:22a7:f760:f8f]) by ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::44a0:22a7:f760:f8f%6]) with mapi id 15.20.7633.021; Mon, 3 Jun 2024
+ 08:23:55 +0000
+From: Arthur Becker <arthur.becker@sentec.com>
+To: Jonathan Cameron <jic23@kernel.org>
+CC: Krzysztof Kozlowski <krzk@kernel.org>, Lars-Peter Clausen
+	<lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] dt-bindings: iio: light: add VEML6040 RGBW-LS
+ bindings
+Thread-Topic: [PATCH v3 2/2] dt-bindings: iio: light: add VEML6040 RGBW-LS
+ bindings
+Thread-Index: AQHatY9fGWtECmtpkkWZNgQDKGlpvQ==
+Date: Mon, 3 Jun 2024 08:23:55 +0000
+Message-ID: <ZR1P278MB1117EE8AFDD8891EE6459CEC81FF2@ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM>
+References: <20240527-veml6040-v3-0-6f3bbfd42960@sentec.com>
+	<20240527-veml6040-v3-2-6f3bbfd42960@sentec.com>
+	<e47de936-8cb4-4cef-a346-74835767e203@kernel.org>
+	<ZR1P278MB111779FE0C84DB465C54EEFF81F12@ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM>
+ <20240602141617.533558c4@jic23-huawei>
+In-Reply-To: <20240602141617.533558c4@jic23-huawei>
+Accept-Language: en-GB, de-DE, en-US
+Content-Language: en-GB
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=sentec.com;
+x-ms-traffictypediagnostic:
+	ZR1P278MB1117:EE_|ZR1P278MB1412:EE_|AMS1EPF0000004B:EE_|GV0P278MB1433:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7bdb50d6-ad05-45ae-3734-08dc83a684e3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted:
+ BCL:0;ARA:13230031|366007|1800799015|376005|38070700009;
+X-Microsoft-Antispam-Message-Info-Original:
+ =?iso-8859-1?Q?ojfcTNL/ETXZrSClK1jaPEDbdzu1aEGXCMKrp3Jb3DSWjny6xTvFVd6jyp?=
+ =?iso-8859-1?Q?0BTSI5lHuwVjADn4KTdEOmW8YBb0qU/PfRn+NDhq5M9HrDZDU4sIYZf/+9?=
+ =?iso-8859-1?Q?3TiTBDa6AgvleZ3td5myKTS1UbzNwqObqQ4l8SnBflKd2sMgxkIMJIyEZA?=
+ =?iso-8859-1?Q?GAL6ff0vwL1xBvuNq9IcYidNlqxdV4hpW6uDzijPnMaKskBmRMBYqBkwxr?=
+ =?iso-8859-1?Q?vE6e+HtMYyjTowN6oSKbXNWBZhnBk7x8V2ox+fcDIOxMH7U1WCbc2Nvw6o?=
+ =?iso-8859-1?Q?HlQWDKk7Y/IpjVSPnCUtlMa48ZLqyQbrab9jWxZyL1P9avInxz/TlwyFMJ?=
+ =?iso-8859-1?Q?5RzIlpNHNg2vPPN5RvldTGiHfA9P+iUHNKT5SOpLfHd/9ZuRwJpHE3F68/?=
+ =?iso-8859-1?Q?XAM7zRSvUYDX5oK4QzA8ha9XUL0zzFrMWxKIC52eEvIPLDXroOMC2zBpyu?=
+ =?iso-8859-1?Q?UQMPC6mQ4yyc67vysYiF2HfNagzBSJdOLweS7ZEJPWlkykkyLHC6vqB1hq?=
+ =?iso-8859-1?Q?J9LzWB3uWW60w9HsqSMcPZMWKcIlHPdYnMIeEnh+vlOO2nRCBE0h9YjysF?=
+ =?iso-8859-1?Q?hFJLzTlC86sOn925mVFBSbNAoTips5RgkinEb2sv3bN46AwIFTZvCc2Zzr?=
+ =?iso-8859-1?Q?rboXIFQAeurMifjqlyyGSCmEvOYgWiWOOBQoTHXxL/VjAsuCeUh9PYTKvt?=
+ =?iso-8859-1?Q?lWS3NIHmV7SdmLcu2bBOke6HaI707oNYYHfO8ctmP81B8xQ2sz36mEiTBl?=
+ =?iso-8859-1?Q?/Ee+j5NE+vWZudnuLtqNVTfmndlbHWXhi4NoGgHZ4OqbKYM4qLt2vV82g4?=
+ =?iso-8859-1?Q?v63Z30nn9B5DIbTu88vKX2VOp4aeRVYsT4NGc/L02I3xb2SRPJYEVqCzY+?=
+ =?iso-8859-1?Q?aal0kAQ8KNcM6i4NV/A83G7zZ3paeYP8FlSdPpVohJ6v33UeY8zHsp08pD?=
+ =?iso-8859-1?Q?zTxz7sqVrJm/mjXeXXXvcFJQIaRKssrrTrnS7Aaq0ktQwjQbjAaPwnScjI?=
+ =?iso-8859-1?Q?VY25p7l+d2H7/pX+Lhf/W53T8s+7CfU354nI9mF3miDCg7ASH3gi4p0TYR?=
+ =?iso-8859-1?Q?63HLpIEvE7FNRkMJYyNq4T33v0yGs0EgLVlQ7J6kkJqZ5XgVNjzATZB2qV?=
+ =?iso-8859-1?Q?3z7oDER+cNpZv+kxdHpIURumrRiIl8GjblJKz5r4fg8zf6Jcdkzjm+6Nyg?=
+ =?iso-8859-1?Q?npwUb33jCbAXd7X5fYAplZLgTVgOVxMd0QlaagL7Pw1ss6fEMSUcccDQqj?=
+ =?iso-8859-1?Q?RwVBTUysk2xtrEFXj0T98jrtWM9mvTaIm/bitZ7hlSJ0vSKHASmV+jvhq1?=
+ =?iso-8859-1?Q?em6EtjNeYNN9rFFUjZ2xLpqvFg63Ln9TA3+EEdK29OykF7wyaf7jckwtvB?=
+ =?iso-8859-1?Q?oTcCrxH/+iQeMZUtjgHnO4ZEbeZ4bPmA=3D=3D?=
+X-Forefront-Antispam-Report-Untrusted:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(366007)(1800799015)(376005)(38070700009);DIR:OUT;SFP:1102;
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240603-x1e80100-dts-pmics-drop-4th-smb2360-from-crd-v2-1-fb63973cc07d@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAAx8XWYC/52NQQ6CMBBFr0K6dsy0AoIr72FYtLSFSYQ2U0Iwh
- LtbOYLL9/Pz3i6SY3JJPIpdsFspUZgzqEsh+lHPgwOymYVCVWKNCjbpGpSIYJcEcaI+geUQoVx
- GSJNRtxrBc5igZwsV5rcxjfFtJbIysvO0nblXl3mktAT+nPVV/tY/Q6sECaitL61t7ro1zzfNm
- sM18CC64zi+cylcFekAAAA=
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Johan Hovold <johan+linaro@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2051; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=GYQwyqieU5pgk0RpDLcK9N1jttSb3ko070lVFg1uSEM=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBmXXwQCYFtMZWSdfs1i++mv0H4E5hgzd5CMAkrU
- pDq8M22by2JAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZl18EAAKCRAbX0TJAJUV
- Vj5wD/wLYMhnWywjDKkYp3CbTRu4kF58dd744Eeue7XiYiDAUA4FrKqO/gM3wkSgBiTUACGUAX0
- wmjW6+kmK7Mj+g81NUrrKzjaSkyIQdKC9yWAhPcKCTEr/DECQZN+iFW3iWlIdynS/TM9XcKhnXC
- 6ji7Cba19+93LYDzTOLhVcPwKqS0ukFfo/dk2EA/iFtwbg/nLLWPSwQWUzjulPixYALJCT6uzD0
- HYby1At5EtRDdy4TD0xXNYVCH6wk9nYz0UqrNN7iBj/2GZsiUIzL5q9x6tRZalGdWJKa+MSOfaA
- Ac1//S6Sjx1vaxNsgKBkIuanbI9QZ74YbuBsVWM729AxONmSJEXbeFwDi5ogfL1hGwpJ8/NFHxx
- Y78n98nfHYHH5FIdgHB02MyUf/ibqrAJjeLDDu/8MdLJ5M2Jdl67UKmHiNdJTnjA8/qIlEDcxLV
- wDaDDi0ygx2c67FIZ1T5jmfd4+XSIORgJ1o1c6R1g35u/WJA/lygNe1XCFZmF02t5ruVaRoyoiN
- oVp93O6aZTviqC75vW7oh7G7AA6XzZMinN4grnlv0u6mKIO6F3DEuyBXK1EXvbLYLT6+FEtLKZO
- Q9HZltWd2tD/hTvOMr8MXzpNRIRLWugLjfXnIla4DyFi+wpz4qoB3sJaz5LrsgWaT40mQThNgcY
- XRmMOAIDLSRi+2w==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZR1P278MB1412
+X-CodeTwo-MessageID: ae5a84c6-b5fc-4a1d-989a-0d91855123ab.20240603082358@eu22-emailsignatures-cloud.codetwo.com
+X-CodeTwoProcessed: true
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped:
+ AMS1EPF0000004B.eurprd04.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs:
+	a6922ae0-1d98-4128-7b74-08dc83a68266
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230031|1800799015|82310400017|35042699013|36860700004|376005;
+X-Microsoft-Antispam-Message-Info:
+	=?iso-8859-1?Q?q8a/6Qy03qpEk/hI9tFPQvNPHCtWNoJhMbs85wTbDENwKcD9n1iyKhBNmt?=
+ =?iso-8859-1?Q?H/jzOIJbA40VG/B2ugixd+LZmpTLCeHcAgBh4K+Y/CtUsB9mGJ0x7yv+tQ?=
+ =?iso-8859-1?Q?GCk7fO0HRIOyIKgurO4vDVxum8eH+MErTgt+xdNWpo9ZogGaMK0NZ2LnYW?=
+ =?iso-8859-1?Q?17B6j9g6btpCufcJ+MPN5zBO49w/bLK+T4MxxS28DC/aaLzV09uEoYzewd?=
+ =?iso-8859-1?Q?YaVWmcU152gzSXR4eGPrPVrLzcZu3HjENNIhA7tyw6Clc6LeaMRlBKIH1D?=
+ =?iso-8859-1?Q?UlkAf9KlRVxjonTKAe+4lv6QFzRZ+Gc/hMRq4uR7ODXeWM3c68OzTKnlSt?=
+ =?iso-8859-1?Q?OWrcLblgnFhz2xaZ5TBn1uBQM4gM6rN2Kwtr93iawE+wjupQGZmWxPAEYD?=
+ =?iso-8859-1?Q?QquvbeaQFD8h3q7+LteUy145vRnAqfC3H06/j5vrSwFDH6ROIG6yZV3UYh?=
+ =?iso-8859-1?Q?1h+C4wjab+5bUVPXnQ9Yiab1b/ljgtJfjr4WTxg6to2+jIRCUfoiS33iXm?=
+ =?iso-8859-1?Q?j67MQiLqKsq+YjD8xTzYvqj1HR+f0/55XEA+magtQz5e/PkJmN2w4ujf/M?=
+ =?iso-8859-1?Q?MjkWsBGhJ6IM8WM88KEVFEwoT8KNQPMu2wC/oGoD57Hvp84v949aA4Et2l?=
+ =?iso-8859-1?Q?f3IpmDj2+9XW0XdsrraqG2LHbGofm0ZPBGZGl2AvpKnox9ZLNbLRAiWPNu?=
+ =?iso-8859-1?Q?wkombBNK8wrsXq0B90/QtsEF6l5xtTROY47hnb9KCGzec1AepN8bWvqJP8?=
+ =?iso-8859-1?Q?YCm2Bv0ZWqp2XM18Ovny7mjAW5mBNZwfKTgxqSuDG6zGByAnaOuZtqChWF?=
+ =?iso-8859-1?Q?7onWcktb/Bla6BYUYRXU28Vgg5vkoF6hrd6tZ4AHVJnmzD9b5J56o5rYRJ?=
+ =?iso-8859-1?Q?ZuLX0t5BBxF99JPKLreNy2lrNvXQx6jtzH4bZgqivIwmZRHhLIWnu3VxiH?=
+ =?iso-8859-1?Q?62INUhBPLqhnrPkcjpWdcw3uwKHVjW0ee22Zll5782GLmyRjj/tE/XV/XY?=
+ =?iso-8859-1?Q?Ly4TewBajtI61JcmAOTHDAsh3CKFKH0FoMDKefRhrT+g6vQq5Jt1w7xgUG?=
+ =?iso-8859-1?Q?vLcWedsmLCYhtMzjcGfoj/mkQKU8QYvl1n/8zIWfhybHQE/CA8Wqos+fNU?=
+ =?iso-8859-1?Q?ps8bHjCqhyYR1j8H2MFmUhRWLOAK2MlcfEv0uOpmQHqrocUNuVqFa6MjTR?=
+ =?iso-8859-1?Q?5mqPvHsZW5D+XfZODYBATyVwakPayRq1PZ3ADmFP0Ja+vK9gs5IzamafgH?=
+ =?iso-8859-1?Q?Sx+eG0fZeAE+NTn/A8dYOuwk/mea9izBguCyvCs7bpwxzJ029tGNXvgOW+?=
+ =?iso-8859-1?Q?YvfyzqgUnrkVx3ufc8vB1+aU7Z8iONtBhosrhWborXO2P/2Be2q+GntJ6d?=
+ =?iso-8859-1?Q?VfadrM/TueyehdGUlKRmbHypne458sCY7mVc0ZQC3pgb/BXd7mWJI=3D?=
+X-Forefront-Antispam-Report:
+	CIP:52.138.216.130;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:eu22-emailsignatures-cloud.codetwo.com;PTR:eu22-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230031)(1800799015)(82310400017)(35042699013)(36860700004)(376005);DIR:OUT;SFP:1102;
+X-OriginatorOrg: sentec.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2024 08:23:59.3935
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7bdb50d6-ad05-45ae-3734-08dc83a684e3
+X-MS-Exchange-CrossTenant-Id: 0cfe5cb4-0f5d-4077-ac2f-a1a82ad165a3
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0cfe5cb4-0f5d-4077-ac2f-a1a82ad165a3;Ip=[52.138.216.130];Helo=[eu22-emailsignatures-cloud.codetwo.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS1EPF0000004B.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV0P278MB1433
 
-The CRD board doesn't have the 4th SMB2360 PMIC populated while the QCP
-does. So enable it on QCP only. This fixes the warning for the missing
-PMIC on CRD as well.
-
-Fixes: 2559e61e7ef4 ("arm64: dts: qcom: x1e80100-pmics: Add the missing PMICs")
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-Tested-by: Johan Hovold <johan+linaro@kernel.org>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
-Changes in v2:
-- Fetched all R-b and T-b tags
-- Rebased on next-20240603
-- Mentioned in the commit message that the patch is fixing a warning
-  w.r.t. missing PMIC on CRD
-- Link to v1: https://lore.kernel.org/r/20240602-x1e80100-dts-pmics-drop-4th-smb2360-from-crd-v1-1-0adf4dd87a9b@linaro.org
----
- arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi | 2 ++
- arch/arm64/boot/dts/qcom/x1e80100-qcp.dts    | 4 ++++
- 2 files changed, 6 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
-index a5662d39fdff..e34e70922cd3 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
-@@ -522,6 +522,8 @@ smb2360_3: pmic@c {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
-+		status = "disabled";
-+
- 		smb2360_3_eusb2_repeater: phy@fd00 {
- 			compatible = "qcom,smb2360-eusb2-repeater";
- 			reg = <0xfd00>;
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-index a8d0f743228a..1b2caa63859b 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-@@ -524,6 +524,10 @@ &remoteproc_cdsp {
- 	status = "okay";
- };
- 
-+&smb2360_3 {
-+	status = "okay";
-+};
-+
- &smb2360_0_eusb2_repeater {
- 	vdd18-supply = <&vreg_l3d_1p8>;
- 	vdd3-supply = <&vreg_l2b_3p0>;
-
----
-base-commit: 861a3cb5a2a8480d361fa6708da24747d6fa72fe
-change-id: 20240602-x1e80100-dts-pmics-drop-4th-smb2360-from-crd-501e8bb8bf95
-
-Best regards,
--- 
-Abel Vesa <abel.vesa@linaro.org>
-
+From: Jonathan Cameron <jic23@kernel.org>=0A=
+Sent: 02 June 2024 15:16=0A=
+To: Arthur Becker=0A=
+Cc: Krzysztof Kozlowski; Lars-Peter Clausen; Rob Herring; Krzysztof Kozlows=
+ki; Conor Dooley; linux-kernel@vger.kernel.org; linux-iio@vger.kernel.org; =
+devicetree@vger.kernel.org=0A=
+Subject: Re: [EXTERNAL]Re: [PATCH v3 2/2] dt-bindings: iio: light: add VEML=
+6040 RGBW-LS bindings=0A=
+=0A=
+> On Tue, 28 May 2024 07:23:03 +0000=0A=
+> Arthur Becker <arthur.becker@sentec.com> wrote:=0A=
+> =0A=
+> > Thanks for the Review!=0A=
+> > Right, I wasn't sure if and how to add the veml6040 to the veml6075 dt-=
+binding file.=0A=
+> > I'll modify that the next time I make adjustments to the driver.=0A=
+>=0A=
+> Hi Arthur,=0A=
+>=0A=
+> If I read the above correctly you are hoping this merges as it stands and=
+=0A=
+> we come back later. If we are going to combine them long term,=0A=
+> I'd rather we avoided the churn and had a combined DT binding from the st=
+art.=0A=
+=0A=
+Hi Jonathan,=0A=
+=0A=
+I could have phrased that better, what I meant was that I was waiting for t=
+he next=0A=
+feedback on the driver to make the adjustments all at once.=0A=
+I'll get to it shortly!=0A=
+=0A=
+Kind Regards,=0A=
+Arthur=0A=
+=0A=
+>=0A=
+> Jonathan=0A=
+>=0A=
+> >=0A=
+> > Kind regards,=0A=
+> > Arthur=0A=
+> >=0A=
+> > ________________________________________=0A=
+> > From: Krzysztof Kozlowski <krzk@kernel.org>=0A=
+> > Sent: 27 May 2024 18:31=0A=
+> > To: Arthur Becker; Jonathan Cameron; Lars-Peter Clausen; Rob Herring; K=
+rzysztof Kozlowski; Conor Dooley=0A=
+> > Cc: linux-kernel@vger.kernel.org; linux-iio@vger.kernel.org; devicetree=
+@vger.kernel.org=0A=
+> > Subject: [EXTERNAL]Re: [PATCH v3 2/2] dt-bindings: iio: light: add VEML=
+6040 RGBW-LS bindings=0A=
+> >=0A=
+> > On 27/05/2024 17:12, Arthur Becker via B4 Relay wrote:=0A=
+> > > From: Arthur Becker <arthur.becker@sentec.com>=0A=
+> > >=0A=
+> > > Device tree bindings for the vishay VEML6040 RGBW light sensor iio=0A=
+> > > driver=0A=
+> > >=0A=
+> > > Signed-off-by: Arthur Becker <arthur.becker@sentec.com>=0A=
+> > > ---=0A=
+> > > V1 -> V3: Addressed review comments (v1 of the dt-bindings was sent=
+=0A=
+> > > along with v2 of the driver but not in a set)=0A=
+> >=0A=
+> > It's basically the same as veml6075, so should be put there...=0A=
+> >=0A=
+> > Eh,=0A=
+> >=0A=
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>=0A=
+> >=0A=
+> > Best regards,=0A=
+> > Krzysztof=0A=
+> >=0A=
 
