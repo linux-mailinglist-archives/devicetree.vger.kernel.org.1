@@ -1,240 +1,147 @@
-Return-Path: <devicetree+bounces-71914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CB448D86D2
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 18:00:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9871D8D86EF
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 18:11:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 86A43B22A31
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 16:00:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A2B11F2188C
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 16:11:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D443B133993;
-	Mon,  3 Jun 2024 16:00:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A3A612FB2D;
+	Mon,  3 Jun 2024 16:11:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0KWIQ6u7"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="ec1EpI/Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5243E25601
-	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 16:00:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D88B3C2D
+	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 16:10:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717430418; cv=none; b=JlMavo5bxNLw3qE5nPktcj+xHaLaAwuowyHdcp7ZzhCuSouGK5BNe7EtfCuUMVGoX4r9ZjGbsXnWw4zrlQpvujFoC7pOrD3WOBJFvHcK3kU1WjKQk2rsvpVQChBDENVtRIJ74Vxzq1n0l4x8AuELg91IrpFkTZK2xB5BoLcUmb0=
+	t=1717431061; cv=none; b=n4d+ns68eFNr5AiUav2HZc7IimryJF7iHUqkYW4fKbaDLYFD3glxRtq6hgk9leqLhGdCcw8H5wxHDw8HkZnltoIChlKCkAo7/LDCFk3MNRhvIq/aqDAJo0ZDuqgUspvBHoCtvjqfptaDEWsXYovHIPkCrTu/qqyfK4ckHTPBDQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717430418; c=relaxed/simple;
-	bh=ZVmmqm2gePgCHbgRtZjzvJC1acAthJMX0qTqhdOD0n0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kfrxEBvr7nTmNlT4TZNq4SsH3Bq9wBqmHdmOkV4mFed6XeiY4BQzgaFG+tepfqFQ41R8viIGU1GHDV4snxS3z/8sxVzVv7chca/bs1GQcWvJQqC45jEQvQOgYEr2rV63tYmbZ1AhhIPFKBP0iTFLEO1orpqKRm9/BuavGZ4Y4b4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=0KWIQ6u7; arc=none smtp.client-ip=209.85.210.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-6f906f52a4aso2765783a34.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2024 09:00:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1717430414; x=1718035214; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GfeQA5RNRJgv87my+Y8NPK/KqfRgxtKa/KFauEIvYss=;
-        b=0KWIQ6u72VDXxwMo44SWqciC/xDHgGgxAPPTWLldVVEvWR/TMxyhUKdpcqBQ7G/xAC
-         +9ukKNBj84OSx2QuegHZiPZm4EL4pywOKUtqNh+cXWLtRh9was3heZpeXIrClHA3VAsj
-         /ohH4a8XGYpRieC03ciZCnyIXLzsY1dC++/USuNkhoP1uSL+3Z/HiN+ac7vzxDVrKITb
-         fe0+NiHlJ1SU5/JX49J3p5SEDm1HtoRLgaIY+jRFG9REIVP/SBfB7TLdivSkdNLeLQWG
-         erJt/krQkDWUGqP3yeKrr7iJacThzpDyb4WrgTnr9Ut9EkzgeIXJYltC3wAo794aH5vN
-         cMeg==
+	s=arc-20240116; t=1717431061; c=relaxed/simple;
+	bh=a7HaajZH1onoF7BEaMl7LJMhcs+YBupE9HdQ0Tm2cnM=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Py+7leHJzGxE5ouBwyjWDXOw3gpAZ2CkhD66TGfkaWIC5bXyYwt3x0Xk4AWA/pPEg1whkuLVssrZ56qidbAtFAZ1yBpZqdSoIYRXEnNmfNK9XPM5apC3/eTYJOmKlv/m6MMk/dGEbj8CNTxYM1hSsMJgV78JlLOWRCtph/xeQEA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=ec1EpI/Z; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id BDEAD412C0
+	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 16:10:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1717431055;
+	bh=vU5/sQdk1KvDzjQYZ2m7el5n+WnYafJy1tTstO9fsbo=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=ec1EpI/ZnZaNbFyYaw4OdNLdGqXvgn6mGAIQ1UC4SOr3yCDJptgd9SvQTRbaIP9tj
+	 s5WJrzfcHSevqUltFPJMOJd0iNhnYx2/8U9lhvKrxtSRO70wGy+KCmY8IYVzRzmA1R
+	 Ce9it4n46vEenC1MbmoAslYw2fJ9JYR7CzoTaDmByZOkw1xg7e4lzRDlIGBQPhO2s/
+	 K/WqnohGFITONnOswA+BAtqtjfOr6l0663tkYKTBMuqsAhaEtYL/n0XxZFt79iz+jh
+	 ioBUoEAjTrSbA3Uluu5YCkb/hHTGthcq+G7qp0mdQ9gXnl6V3xLfoXrZc6svUv3hq6
+	 FsKmjGFoZhXRA==
+Received: by mail-lf1-f72.google.com with SMTP id 2adb3069b0e04-5234e83c4a6so40239e87.0
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2024 09:10:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717430414; x=1718035214;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GfeQA5RNRJgv87my+Y8NPK/KqfRgxtKa/KFauEIvYss=;
-        b=cYuNh0zCdl+rumDg5wI8OclPbtn8QjvtN1jfcNnDNgIamTCojN7hsSBbT1YGq9Wwkw
-         AJml72z4AHdenCkXk98LVlJ/a637hC0++Vjgq/dYgLAIeHkycp+/bwMD6Br6QDvMtDo9
-         bOMUsKhXlx/ilLzQbaEkDi3KKDawVFRzuPXCJDFbvPw16wxefYApZkdSW0KN1jViEXoR
-         8zT+Z071efY3pX31rTVTBynbvkkja3+iWRfJ0LCs2bkmRxO4heftNqX0aYYSPpAsgSLn
-         5fOx5aUySrIq/WOVx1PDh5ngRMRHlMWUCkoIgxVuFsF9ZPlui2IRvleyoTo2Z7YqQaln
-         nJsw==
-X-Forwarded-Encrypted: i=1; AJvYcCXXz1dtXyy0Bhv7dPdKX3bmFt1IM/13/9c3+QhrAkJxJ9T022jvGr8eorWeQ1dhA82npzoCqMiDxU8Hg3g1UQj2cw/0HnWpXR9mYA==
-X-Gm-Message-State: AOJu0YwrSoifDnv254xndHu1nDl3J/alu7VGOT7ErTtScjSc8XtMIJ8p
-	jVq8aDGdcp15TKI0w7yJtAx/q0RlaDJOWbJOdm5bI4dvMFfQsu/mDY/nGYVZMvk=
-X-Google-Smtp-Source: AGHT+IGTlHNJVslE6UXb6KM6zbiO1iPpViMFSEIvv4eTobL0M2MR8UH3PgujM5HpvfFAmIPaSVMo3w==
-X-Received: by 2002:a05:6830:1b78:b0:6f1:2215:e1e3 with SMTP id 46e09a7af769-6f911f1fe3emr9493205a34.6.1717430414142;
-        Mon, 03 Jun 2024 09:00:14 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-6f91059ce02sm1491108a34.54.2024.06.03.09.00.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jun 2024 09:00:13 -0700 (PDT)
-Message-ID: <2df46968-ff5f-43bc-98fd-506840c1aaa9@baylibre.com>
-Date: Mon, 3 Jun 2024 11:00:12 -0500
+        d=1e100.net; s=20230601; t=1717431055; x=1718035855;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vU5/sQdk1KvDzjQYZ2m7el5n+WnYafJy1tTstO9fsbo=;
+        b=rdZjPaaFFHVUDD7Yjta+oB9uiYX096sbmNXJMvrQpmAPZ0O4F4J8HnNPSB5x+eIT9y
+         v/MkHefQxSTEtUqsCKJdW959H6MLbThnd35Ue+M4/1SHxc5hjfte5ohD5SKJ8mblqalQ
+         hE+9JisTW6Z0TsDbN6gdnzMgy6sjULx1WfulhTax9tRGiXUhc4L7vz67Y1pcL+4oTQML
+         QYfXGlQ0U2vfyBYs88OlLAf87KAn0vcd+KwCL0L/9vb7MoXRg5sE5HSkn0OzXufmENkA
+         /OS+DqexnwBCKjDimNh38rhq7WNcfLE/VVdHNHVl8Vj1NbIx6fbS2fE0PqCAdUp2vQw7
+         zpIQ==
+X-Gm-Message-State: AOJu0YwefKx7Rs3KIIdECr8hpGz0s6V03mCxpYHEFzsjv65zfRMhteUP
+	tlYiWsvKvWGca0foXYHI3lCeZoLyYAWa1Dy6oGUwbqOjRS/gPq8AJLKPRKtVtQi/WwpxH3/D/Zh
+	tCtss96PivBS/AKUP5ifNRMMqBos4Ip01AeNKktglIY25kck//GhatdIvBel/k5lBqLbi5847y3
+	ImRG47Ogs4xaUANFVJuO5N/Q3ZyGLwkBlbV430OLuUoIp30NbqKw==
+X-Received: by 2002:a19:7604:0:b0:529:b9ad:52b5 with SMTP id 2adb3069b0e04-52b896c1655mr5647297e87.41.1717431055152;
+        Mon, 03 Jun 2024 09:10:55 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFX6z4960cX+FBq7s+WxsbEO4lbLdIqqK/67kXSz/Vcjt4Ec0DAtIzwSWZ6eBsX3hWA66D8uBk/mSKdElTxnrs=
+X-Received: by 2002:a19:7604:0:b0:529:b9ad:52b5 with SMTP id
+ 2adb3069b0e04-52b896c1655mr5647266e87.41.1717431054746; Mon, 03 Jun 2024
+ 09:10:54 -0700 (PDT)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 3 Jun 2024 16:10:52 +0000
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20240603150759.9643-1-matthias.bgg@kernel.org>
+References: <20240603150759.9643-1-matthias.bgg@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/6] iio: adc: ad7173: refactor ain and vref selection
-To: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- Jonathan Cameron <jic23@kernel.org>,
- Dumitru Ceclan via B4 Relay <devnull+dumitru.ceclan.analog.com@kernel.org>
-Cc: dumitru.ceclan@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240531-ad4111-v4-0-64607301c057@analog.com>
- <20240531-ad4111-v4-3-64607301c057@analog.com>
- <20240601194925.23123071@jic23-huawei>
- <e9ade241e57383d5342d377bc865046e612a7033.camel@gmail.com>
- <d2370ad2-5fed-41b3-bdd5-c6c895283c18@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <d2370ad2-5fed-41b3-bdd5-c6c895283c18@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Date: Mon, 3 Jun 2024 16:10:52 +0000
+Message-ID: <CAJM55Z82+_RL1Z+DCW+_xgE7ZMmiWdPekCt6qtREPXg1jB+68g@mail.gmail.com>
+Subject: Re: [PATCH] riscv: dts: starfive: Update flash partition layout
+To: matthias.bgg@kernel.org, kernel@esmil.dk, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org, aou@eecs.berkeley.edu, duwe@suse.de, 
+	linux-kernel@vger.kernel.org, palmer@dabbelt.com, 
+	heinrich.schuchardt@canonical.com, paul.walmsley@sifive.com, 
+	linux-riscv@lists.infradead.org, Matthias Brugger <matthias.bgg@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On 6/3/24 8:08 AM, Ceclan, Dumitru wrote:
-> On 03/06/2024 16:00, Nuno Sá wrote:
->> On Sat, 2024-06-01 at 19:49 +0100, Jonathan Cameron wrote:
->>> On Fri, 31 May 2024 22:42:29 +0300
->>> Dumitru Ceclan via B4 Relay <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
->>>
->>>> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
->>>>
->>>> Move validation of analog inputs and reference voltage selection to
->>>> separate functions to reduce the size of the channel config parsing
->>>> function and improve readability.
->>>> Add defines for the number of analog inputs in a channel.
->>>>
->>>> Reviewed-by: David Lechner <dlechner@baylibre.com>
->>>> Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
->>>> ---
->>>>  drivers/iio/adc/ad7173.c | 71 ++++++++++++++++++++++++++++++++++--------------
->>>>  1 file changed, 50 insertions(+), 21 deletions(-)
->>>>
->>>> diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
->>>> index 6e249628bc64..a20831d99aa5 100644
->>>> --- a/drivers/iio/adc/ad7173.c
->>>> +++ b/drivers/iio/adc/ad7173.c
->>>> @@ -60,6 +60,7 @@
->>>>  #define AD7173_CH_SETUP_AINPOS_MASK	GENMASK(9, 5)
->>>>  #define AD7173_CH_SETUP_AINNEG_MASK	GENMASK(4, 0)
->>>>  
->>>> +#define AD7173_NO_AINS_PER_CHANNEL	2
->>>>  #define AD7173_CH_ADDRESS(pos, neg) \
->>>>  	(FIELD_PREP(AD7173_CH_SETUP_AINPOS_MASK, pos) | \
->>>>  	 FIELD_PREP(AD7173_CH_SETUP_AINNEG_MASK, neg))
->>>> @@ -623,6 +624,7 @@ static int ad7173_setup(struct iio_dev *indio_dev)
->>>>  static unsigned int ad7173_get_ref_voltage_milli(struct ad7173_state *st,
->>>>  						 u8 reference_select)
->>>>  {
->>>> +	struct device *dev = &st->sd.spi->dev;
->>>>  	int vref;
->>>>  
->>>>  	switch (reference_select) {
->>>> @@ -646,9 +648,11 @@ static unsigned int ad7173_get_ref_voltage_milli(struct
->>>> ad7173_state *st,
->>>>  		return -EINVAL;
->>>>  	}
->>>>  
->>>> -	if (vref < 0)
->>>> +	if (vref < 0) {
->>>> +		dev_err(dev, "Cannot use reference %u. Error:%d\n",
->>>> +			reference_select, vref);
->>>>  		return vref;
->>>> -
->>>> +	}
->>>>  	return vref / (MICRO / MILLI);
->>>>  }
->>>>  
->>>> @@ -905,13 +909,50 @@ static int ad7173_register_clk_provider(struct iio_dev
->>>> *indio_dev)
->>>>  					   &st->int_clk_hw);
->>>>  }
->>>>  
->>>> +static int ad7173_validate_voltage_ain_inputs(struct ad7173_state *st,
->>>> +					      const unsigned int
->>>> ain[AD7173_NO_AINS_PER_CHANNEL])
->>> I was late to the game in replying to previous thread.
->>>
->>> This is neater without the loop and with 2 parameters.  Anyhow see reply to v3.
->>>
->>
->> Yeps, even more given that we're passing/copying the complete array which always
->> fells awkward to me :)
->>
->> - Nuno Sá
->>
->>
-> 
-> I rewrote the function, but it feels a bit awkward, perhaps I could get a bit of
-> advice before sending V5:
+matthias.bgg@ wrote:
+> From: Matthias Brugger <matthias.bgg@gmail.com>
+>
+> Up to now, the describe flash partition layout has some gaps.
+> Use the whole flash chip by getting rid of the gaps.
+>
+> Suggested-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+> Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
 
-Maybe we could make this easier to read with macros?
+Hi Matthias,
 
-> 
-> static int ad7173_validate_voltage_ain_inputs(struct ad7173_state *st,
-> 					      unsigned int ain0, unsigned int ain1)
-> {
-> 	struct device *dev = &st->sd.spi->dev;
-> 	bool special_input0, special_input1;
-> 
-> 	special_input0 = ain0 == AD7173_AIN_REF_POS || ain0 == AD7173_AIN_REF_NEG ||
-> 			 ((ain0 == AD7173_AIN_COM_IN_POS || ain0 == AD7173_AIN_COM_IN_NEG) &&
-> 			 (st->info->has_common_input)) || ain0 == AD4111_VINCOM_INPUT;
-> 	special_input1 = (ain1 == AD7173_AIN_REF_POS || ain1 == AD7173_AIN_REF_NEG) ||
-> 			 ((ain1 == AD7173_AIN_COM_IN_POS || ain1 == AD7173_AIN_COM_IN_NEG) &&
-> 			 (st->info->has_common_input)) || ain1 == AD4111_VINCOM_INPUT;
-> 
+Thanks for the patch.
 
-	special_input0 = AD7173_IS_SPECIAL_INPUT(ain0);
-	special_input1 = AD7173_IS_SPECIAL_INPUT(ain1);
+>
+> ---
+>
+>  arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 7 ++-----
+>  1 file changed, 2 insertions(+), 5 deletions(-)
+>
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> index 8ff6ea64f0489..37b4c294ffcc5 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> @@ -321,16 +321,13 @@ partitions {
+>  			#size-cells = <1>;
+>
+>  			spl@0 {
+> -				reg = <0x0 0x80000>;
+> +				reg = <0x0 0xf0000>;
 
-> 	if (st->info->has_vincom_input) {
-> 		if (ain0 == AD4111_VINCOM_INPUT &&
-> 		    ain1 < st->info->num_voltage_in && /* Normal input */
-> 		    ain1 >= st->info->num_voltage_in_div) /* Input without divider */
-> 			return dev_err_probe(dev, -EINVAL,
-> 				"VINCOM must be paired with inputs having divider.\n");
-> 
-> 		if (ain1 == AD4111_VINCOM_INPUT &&
-> 		    ain0 < st->info->num_voltage_in && /* Normal input */
-> 		    ain0 >= st->info->num_voltage_in_div) /* Input without divider */
-> 			return dev_err_probe(dev, -EINVAL,
-> 				"VINCOM must be paired with inputs having divider.\n");
+..this is definitely fine, but..
 
-		if (AD7173_IS_VINCOM_MISMATCH(ain0, ain1) ||
-		    AD7173_IS_VINCOM_MISMATCH(ain1, ain0)) {
- 			return dev_err_probe(dev, -EINVAL,
- 				"VINCOM must be paired with inputs having divider.\n");
+>  			};
+>  			uboot-env@f0000 {
+>  				reg = <0xf0000 0x10000>;
+>  			};
+>  			uboot@100000 {
+> -				reg = <0x100000 0x400000>;
+> -			};
+> -			reserved-data@600000 {
+> -				reg = <0x600000 0xa00000>;
+> +				reg = <0x100000 0xf00000>;
 
-> 	}
-> 
-> 	if ((ain0 >= st->info->num_voltage_in && !special_input0) ||
-> 	    (ain1 >= st->info->num_voltage_in && !special_input1))
-> 		return dev_err_probe(dev, -EINVAL,
-> 				     "Input pin number out of range for pair (%d %d).\n",
-> 				     ain0, ain1);
-> 
-> 	if (!special_input0 && !special_input1 &&
-> 	    ((ain0 >= st->info->num_voltage_in_div) !=
-> 	     (ain1 >= st->info->num_voltage_in_div)))
-> 		return dev_err_probe(dev, -EINVAL,
-> 			"Both inputs must either have a voltage divider or not have: (%d %d).\n",
-> 			ain0, ain1);
+Do we know that all of the VF2 1.2A, VF2 1.3B and Milk-V Mars boards have at
+least 15kB SPI flash chips? In other words were there a reason this previously
+ended at 10kB?
 
-These last two don't seem so bad.
+Also it looks like my Mars board and VF2 1.3B both report discovering a
+"gd25lq128d" chip of 16kB, so why stop at 15kB?
 
-> 
-> 	return 0;
-> }
-> 
-> It feels a bit too verbose, but I could not come up with a better way to
-> incorporate all those cases.
-
+/Emil
 
