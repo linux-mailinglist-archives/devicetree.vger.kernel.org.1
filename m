@@ -1,220 +1,119 @@
-Return-Path: <devicetree+bounces-71759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7698E8D7DC6
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 10:48:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E64BD8D7DC1
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 10:47:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 01CE11F24CB6
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 08:48:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22C621C22626
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 08:47:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF01181AC9;
-	Mon,  3 Jun 2024 08:47:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A80EA4D5AB;
+	Mon,  3 Jun 2024 08:46:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="4kzbDaM0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KwTAIS58"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EB3681736;
-	Mon,  3 Jun 2024 08:47:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBC1F78C63
+	for <devicetree@vger.kernel.org>; Mon,  3 Jun 2024 08:46:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717404428; cv=none; b=eTnFJVv2ATiu8XM9vvVZT9xLYoRZM4xVsHqfFkfHjrZJdaP0QSoFiMP0WXPICO/vKCRNurot0b6waxHj4mjYFTRyvFsJkvLak8/aPVQhIWr9fQOSmkX7O6j3QTjYwcwQioGO4rdTcbIIebinAQT2q3XhlFlPM8c9fsGYFMR4Qsc=
+	t=1717404381; cv=none; b=aQQCWb+ZqaCPJUJ8j1E1ozeLxSo5wB5bU3wAXEtrFuJKd/lQU7Kzjgjn2LUhyAUPz7sgAUryyRfp9ZN9SH2W6Qy2Udbj2fftZtWugtcNyQoVmIjLECWRQnzB3Z6oIWTQZsVeMQ1q/akeJvQpZk9TxqW53KlCY7a2VjkHsFPtfNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717404428; c=relaxed/simple;
-	bh=4K7nj//IB95NQDmk7+1awX10JKPvXQq7j5HzT0K3WbU=;
-	h=Message-ID:Date:MIME-Version:From:Subject:References:To:CC:
-	 In-Reply-To:Content-Type; b=TDbDTBj1lNs0gMOpD9fp5r4tfMHQiPA2RsMysgNK72S6VvosFZGeXOUXqOKoTO70te2qZwBlW+8aZHhxdFdsBfaH4cRMKaKtLw8sKC32+Q5GhYbBtz0ws3ibaogg8n5mfujJJj0FCjSnkjZRXa/uYuwvjHislse0hLc9zwQXsY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=4kzbDaM0; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4537NAKD018951;
-	Mon, 3 Jun 2024 10:46:56 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	Qpxf+Iz424T4bPUJD3hcBhowtB7icuKYhmMWW77VdPo=; b=4kzbDaM0+2uC2uZI
-	BTWpc7oUUKZQE77opADNqTGdGRlpaILSkMcvEJXWPw5MwVHMGUsTx3Bwp9TTfj1w
-	KZaQjY3mbh2XNMcuRanO+wdFT3f77WoavSS7XzuIVsQDCl2T/cCsoaMEOiSHR/6v
-	fzNV8oDqX7mQ/8iJ646dsvFtsERKmnthnnWdb69TAesfhvG5CsOt0F2H6nS9exsF
-	qtIJsJFWgT+KcfvpQLKx+SssFdzgaK63e3WjTWaDIqI2IO2GRWm4XTvaim++mRRU
-	8+nFbtLPlRskj6EkRjJSm6mlPmy4/GxyS8TmkyYP27+lhb1oEbaaCswEz7qpl5Z+
-	c8aiFw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ygd70kx77-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 03 Jun 2024 10:46:56 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id A651440046;
-	Mon,  3 Jun 2024 10:46:51 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 05BE7214545;
-	Mon,  3 Jun 2024 10:46:14 +0200 (CEST)
-Received: from [10.131.140.24] (10.131.140.24) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 3 Jun
- 2024 10:46:13 +0200
-Message-ID: <832ab797-3852-4b30-a0b1-7ea9c85fdfa6@foss.st.com>
-Date: Mon, 3 Jun 2024 10:46:12 +0200
+	s=arc-20240116; t=1717404381; c=relaxed/simple;
+	bh=Gg6J+xqi5ho5Orc35EIF7ln8eEBv1RCMC9LEm7u9oRY=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Om9Dcjq1houN6UdQw87fGhMMxbkOG38leWTg3+TY9RdV/oZjGjyrcB/XsQ+HbM0rfLQkaNdipqJ1zbvxABtkJmic8YnZ15XvkBIUGHQpLoKRoZ7/Yg76O1avEqmeC8vlB4a417S+PZM3VavQnua+Udm0NL+ZE8h6CzNdmMirhLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KwTAIS58; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-42108856c33so23397475e9.1
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2024 01:46:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717404378; x=1718009178; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=q1ljPf81ph/W2qxW2onCfyshEo5iYLRHonj3GjJrQNA=;
+        b=KwTAIS58ArRZ4NRCiSkkW2L+TMv3osqIWcy/4WHMBsmL7sEU7s6aysdy1SypBMurRl
+         kIjDznUYtYxIfkf+qcb+tv/XtB4svYKq6vke5LaTT2lk2Rh3YnEW8OKauu5vNqa669bs
+         rmJhIc/gqnUW/CkNIKRFJwUUI1cCXwpu1ENKxXO3cKoglZ4uXv99EGe6AwGeLq6OQ7ZY
+         Oq8G3XV9AwVLaEVHHKLTpYBxSay024KyBNmP9acaSVbLwXHMLKnltTyuhugZH9jSX5os
+         ec4rT0tAQUksJZE6pBm8LplTUvonbMUvWcqNb4rBy4hqDm1JBdcg68KP1vkpDnDcPAfg
+         ChqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717404378; x=1718009178;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=q1ljPf81ph/W2qxW2onCfyshEo5iYLRHonj3GjJrQNA=;
+        b=WC45tcCC0xVG9j8A6vAlXCpTMsZi9acNS3HKtXM49zyEmAUIURZqPRXIuhn5noRiFX
+         jWdC+yrDb+nMdOfg5uYBjZYEvOZuJkD+eIlZlSngr1sNDAshbTfpdmfF3HaYOsuDh5eg
+         bxes3cuGD37DQi/p5UHVWVq/NozI5UUCmAcrwUhFzavhbPn3FtU4Wkj7QlczjcrTszGx
+         nvFi/hMLKKfLRPEyTFqFqukOWjAggUFWyrgEVQkAu2lykG/anixESCWOzUuMpkLVEF7q
+         Cdq94M20T1E/qX9VQL4OLsxxQ00oVOMinwrSQaHhUQIZIAZVrqxGpCcSnKo5iL/r9O+X
+         GPew==
+X-Forwarded-Encrypted: i=1; AJvYcCUfFXII1a56PHmL2c2ER54MgqBu2F28DOLTQe18fYE4xjKog4+i0Ltp798NzOVPpWD+K0XPFbZzpL48n7HRZtibTBguygVYWGCeMA==
+X-Gm-Message-State: AOJu0Yw8GpUa/wUch8OxC2JBzSEUMkPqnX3RVbQX5c8WibE+uzAgsk3F
+	/CTpAKZmf3jKQ0CyOzNMelvQpKHAlIrxvNsLKOFdndnCFTEIH6WbGdJVe7X6vq4=
+X-Google-Smtp-Source: AGHT+IFo417hBZRSwsii+or/d9cHPAd7DacIhAnSF4J8FsbSLQbe4tV7OhSfQWo8c6wzbnIOXzFoTQ==
+X-Received: by 2002:a05:600c:1c11:b0:421:2a54:2f22 with SMTP id 5b1f17b1804b1-4212a543232mr85968895e9.9.1717404378173;
+        Mon, 03 Jun 2024 01:46:18 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4213eca8a51sm16117655e9.14.2024.06.03.01.46.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Jun 2024 01:46:17 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ Ryan Walklin <ryan@testtoast.com>
+Cc: Jessica Zhang <quic_jesszhan@quicinc.com>, 
+ Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>, 
+ Daniel Vetter <daniel@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Hironori KIKUCHI <kikuchan98@gmail.com>, 
+ Chris Morgan <macroalpha82@gmail.com>, 
+ Andre Przywara <andre.przywara@arm.com>, John Watts <contact@jookia.org>
+In-Reply-To: <20240530211415.44201-1-ryan@testtoast.com>
+References: <20240530211415.44201-1-ryan@testtoast.com>
+Subject: Re: [PATCH v3 0/2] Add WL-355608-A8 panel
+Message-Id: <171740437725.4156184.17662886246928360602.b4-ty@linaro.org>
+Date: Mon, 03 Jun 2024 10:46:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Sylvain Petinot <sylvain.petinot@foss.st.com>
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: Add ST VD56G3 camera sensor
- binding
-References: <20240521162950.6987-1-sylvain.petinot@foss.st.com>
- <20240521162950.6987-2-sylvain.petinot@foss.st.com>
- <2110ba34-658e-4d60-b524-2f5ead6c8d3e@linaro.org>
- <77fa3ed3-2341-4106-adf2-ec8bd9de91ff@foss.st.com>
- <ceab83fe-b741-4f9e-8b0c-9de3ca79fc55@linaro.org>
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <benjamin.mugnier@foss.st.com>, <mchehab@kernel.org>,
-        <robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, Sakari Ailus
-	<sakari.ailus@iki.fi>
-CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-In-Reply-To: <ceab83fe-b741-4f9e-8b0c-9de3ca79fc55@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-06-03_05,2024-05-30_01,2024-05-17_01
+X-Mailer: b4 0.13.0
 
-Hello Krzysztof,
+Hi,
 
+On Fri, 31 May 2024 09:12:12 +1200, Ryan Walklin wrote:
+> V3 of this patch with further cleanup to DT binding example code and whitespace fixes in driver code. No functional change from V2.
+> 
+> Original cover below.
+> --
+> 
+> The WL_355608_A8 panel is a VGA LCD display with an NV3052C-compatible driver IC, used in a number of Anbernic handheld gaming devices. This patch adds a device tree binding, and support for the display timings and init sequence to the NV3052C SPI/RGB driver.
+> 
+> [...]
 
-On 5/27/2024 9:00 PM, Krzysztof Kozlowski wrote:
-> On 27/05/2024 15:14, Sylvain Petinot wrote:
->>>
->>>> Signed-off-by: Sylvain Petinot <sylvain.petinot@foss.st.com>
->>>> ---
->>>>  .../bindings/media/i2c/st,st-vd56g3.yaml      | 132 ++++++++++++++++++
->>>>  MAINTAINERS                                   |   9 ++
->>>>  2 files changed, 141 insertions(+)
->>>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml b/Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml
->>>> new file mode 100644
->>>> index 000000000000..22cb2557e311
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml
->>>
->>> Why duplicated 'st'?
->>
->> Legacy : our first st-mipid02 driver was upstream this way few years back.
->>
->> We have 3 options :
->>
->> 1- keep this unpleasant naming to keep consistency with st-mipid02 [1]
->> and st-vgxy61 [2]
-> 
-> ? Unpleasant?
-> Please follow generic rules. Filename must match compatible and
-> compatible must follow vendor,device format.
-> 
->> 2- rename this driver properly ('vd56g3') and keep the two others the
->> old way (I personally don't like this option)
-> 
-> We do not talk about driver here. Does not matter.
-> 
->> 3- rename this driver properly ('vd56g3') and in a second patch rename
->> the two others drivers.
->>
->> I would be interested to get Sakari's opinion on this subject.
-> 
-> About what? Renaming drivers?
-> 
->>
->> [1]:
->> https://elixir.bootlin.com/linux/v6.9.1/source/drivers/media/i2c/st-mipid02.c
->>
->> [2]:
->> https://elixir.bootlin.com/linux/v6.9.1/source/drivers/media/i2c/st-vgxy61.c
-> 
-> Howe are these drivers anyhow related to the *binding*?
+Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
 
-I got your point. bindings will be updated accordingly in V3 to follow
-vendor,device format.
+[1/2] dt-bindings: display: panel: Add WL-355608-A8 panel
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/45b888a8980ae9a09fbf2f50b0ffb7505a834533
+[2/2] drm: panel: nv3052c: Add WL-355608-A8 panel
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/62ea2eeba7bf11f4b04e080475de93c2f8ee0f92
 
-My point was more about consistency :
-1- ensure driver name is aligned with the bindings name (without vendor
-prefix)
-2- ensure all ST image sensor drivers and bindings follow the same rules.
-But, you're right, this is a out of bindings topic and I will handle it
-separately.
+-- 
+Neil
 
-> 
-> 
-> ...
-> 
->>>> +
->>>> +  st,leds:
->>>> +    description:
->>>> +      Sensor's GPIOs used for external LED control. Signal being the enveloppe
->>>> +      of the integration time.
->>>
->>> More information is needed. GPIOs coming from LED or SoC? What's the
->>> meaning of values?
->>
->> The vd56g3 image sensor provides 8 GPIOS that can be used for different
->> use cases (external led controls, synchronization between master/slave
->> sensors, external sensor trigger, etc.). This submission supports only
->> the first use case: the control of one(or multiple) external LED.
-> 
-> What your driver supports is not really relevant. Describe hardware.
-> 
->>
->> The vd56g3 sensor family are optimized for visible and near infrared
->> scenes. In NIR, external IR leds are generally used for illumination.
->>
->> With such use case, a led (or a led driver) can be connected directly to
->> one of the 8 GPIOs of the sensor. On the driver side, when a led is
->> configured in the dt, the driver will configure the sensor accordingly.
->> It will also offer an optional "V4L2_FLASH_LED_MODE_FLASH" control to
->> start/stop the external control.
->>
->> Different signal modes are supported by the HW, but the default
->> (implemented) one is a "strobe" mode where signal is the envelope of the
->> integration time (IR led is on while image sensor is integrating).
-> 
-> You did not explain the meaning of the property. Please describe the
-> hardware and the meaning of values used in this property.
-> 
-> 
-
-Sure, this was more contextual information. Please find below a proposal
-for the "st,leds" property :
-
-st,leds:
-  description:
-    List sensor's GPIOs used to control strobe light sources during exposure
-    time. The numbers identify the sensor pin on which the illumination
-system
-    is connected. GPIOs are active-high.
-  $ref: /schemas/types.yaml#/definitions/uint32-array
-  minItems: 1
-  maxItems: 8
-  items:
-    minimum: 0
-    maximum: 7
-
-> 
-> Best regards,
-> Krzysztof
-> 
-
---
-Sylvain
 
