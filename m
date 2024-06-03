@@ -1,168 +1,99 @@
-Return-Path: <devicetree+bounces-71885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61D9B8D850E
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 16:31:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7B0B8D84F6
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 16:29:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D59E8B22AEA
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 14:31:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05A5E1C203AA
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 14:29:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5084136647;
-	Mon,  3 Jun 2024 14:30:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53DA312EBC7;
+	Mon,  3 Jun 2024 14:29:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="U5JsTJpK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ogNirmqU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB9A9134406;
-	Mon,  3 Jun 2024 14:30:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26A6512E1E9;
+	Mon,  3 Jun 2024 14:29:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717425018; cv=none; b=IjQuYv9L9JPWHYQWATivkT6bDwE/s28rYiTOGUvLcx0thXLqmvt9Sc8p2keWCjEjhuilhrkAbarkb0HoVp0smMhDSokw+g+L9Jf/FE6/erqNdVrw4erWbjC0BUtTbymjjX3iv9Lqx8uu7hsE6kogw+DRgQlSMf0+C4TLHmLk5Dc=
+	t=1717424968; cv=none; b=A1o9Mny5i5Jhnioqpl+DGeIX70SIuQPkgSN5creOM4VAbhHXrze7Gv98zSaKhzcD6CNTMCtZ4Ujq5ucohJHebnZmGtTj81A5xKCvTUzaMXmBJE2aiYQeJvBi7TeHub376EbIfZ+0JI1EX/d6BljKnjaelGGa+ag51lfLJSspykE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717425018; c=relaxed/simple;
-	bh=ca3PFMqvf2PEgoAA0VG4VlDQamgfG44SJn7TGmIqUT8=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Qg96lQVlrSesoc1C4NHmM2wjeSJTPJ6no4ynXaHygDMwJ9EPTtAW/j3X0bxxlgb6zYnO5ZzAKx6aWFI7k7i3EKYquF6EQVirgzK0QIz89nS/rvbop4KFelVR5vXMFaH4i1XXu6IJg6Mlv2ov9j/PjDKzYpXDFpSZqD+9ndogOEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=U5JsTJpK; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id E7E2D88308;
-	Mon,  3 Jun 2024 16:30:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1717425015;
-	bh=D1FOb8+LRm3aTJoqLkva7vJcqtsDNNOiof4KFRfCgww=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
-	b=U5JsTJpKB9XrS+tOJLOdQnsrjPnXzbEKxTliEtCsqgl9KiPEoZiH/ruyYK8A4xR6w
-	 6BTejiu4wQw10P32WDrayv4apql6SINcNU1zBEL1UleFpWvNjsXYUWPagQhgFk1d7C
-	 AOnA5FvELgXNYWpNKVmVbPMvFUvBhKE3FNFkFO46G1s3+Keqj69pNyCis9vnebE+Po
-	 QgJ8ePGlpDpOea5a0C3f+LEQF70txG3PZy1lQ4PqAlIjg1X4ztyN/N1vGSXaUIVHNp
-	 o1J7lMtU3Se4D24YoY8YTLAaEg06HeQdXRgkQrCEMt6L1j1I9L/B6n/KE25YxFMyM0
-	 t+0qPGhF12zDQ==
-Message-ID: <f1c30ac7-cec1-422f-9114-7b30321d3563@denx.de>
-Date: Mon, 3 Jun 2024 16:27:06 +0200
+	s=arc-20240116; t=1717424968; c=relaxed/simple;
+	bh=FRO1GsThD+8G3ac6c2VNDgi7xDQo7ElrPAWbCxkiGG0=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=WQ6LHeLKmtkwVAHQ/1NHytFRD3xE8YPKRNaJWiLmJ2mUVH/gja7quyupV6CDbaQPiKiyP1wO2Bkjw9TYXchDc9C98gcJOoSVBM1rGpMCUVraM+WaGBvEniZXXItCdBJWFtfTXzkkuNId8DXkvtRhBDnsw/aevQyWwUt8PA+gIOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ogNirmqU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FF2FC2BD10;
+	Mon,  3 Jun 2024 14:29:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717424968;
+	bh=FRO1GsThD+8G3ac6c2VNDgi7xDQo7ElrPAWbCxkiGG0=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=ogNirmqUkVsYlwIKWmQp/sxqgb3P266qOK+5Hpg8XuR3mz4AEnx8KK7TdN82IGzAy
+	 xpP+nI6h55UFDSimz6k0e0J97KBzMlB1ZbwF0KcKBCSP6ntFjtawTtM17r1bz7Qdj7
+	 ZZR+/CZLfNhxoWR1qkRWJpoVpAK2r0R3OWW0ZbOmLV7GLI9B+utj3TKbuIrAa0M3P/
+	 6J+gJlFARURNtb9VO0JRadA/Pvir73AJfVRhjM7qqUTQ4s1CrZDLzS4dtAG8SE0npR
+	 JEz2UxLmXqcz3fYfhOB2bnwZ+bIKvHG2Nn72Ig9RZ2WI7HDBzOGTEsmWDx7OkcWtfY
+	 lfkBVQ4sxEKKg==
+Date: Mon, 03 Jun 2024 09:29:25 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH v3 02/11] net: stmmac: dwmac-stm32: Separate out external
- clock rate validation
-To: Christophe Roullier <christophe.roullier@foss.st.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>, Jose Abreu
- <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Sai Krishna Gajula <saikrishnag@marvell.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240603092757.71902-1-christophe.roullier@foss.st.com>
- <20240603092757.71902-3-christophe.roullier@foss.st.com>
-Content-Language: en-US
-In-Reply-To: <20240603092757.71902-3-christophe.roullier@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Mudit Sharma <muditsharma.info@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org, lars@metafoo.de, 
+ ivan.orlov0322@gmail.com, jic23@kernel.org, conor+dt@kernel.org, 
+ linux-kernel@vger.kernel.org, krzk+dt@kernel.org
+In-Reply-To: <20240603134015.70388-1-muditsharma.info@gmail.com>
+References: <20240603134015.70388-1-muditsharma.info@gmail.com>
+Message-Id: <171742496559.385807.12490894623691830136.robh@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: iio: light: ROHM BH1745
 
-On 6/3/24 11:27 AM, Christophe Roullier wrote:
-> From: Marek Vasut <marex@denx.de>
+
+On Mon, 03 Jun 2024 14:40:13 +0100, Mudit Sharma wrote:
+> Add ROHM BH1745 - 4 channel I2C colour sensor's dt-bindings.
 > 
-> Pull the external clock frequency validation into a separate function,
-> to avoid conflating it with external clock DT property decoding and
-> clock mux register configuration. This should make the code easier to
-> read and understand.
-> 
-> This does change the code behavior slightly. The clock mux PMCR register
-> setting now depends solely on the DT properties which configure the clock
-> mux between external clock and internal RCC generated clock. The mux PMCR
-> register settings no longer depend on the supplied clock frequency, that
-> supplied clock frequency is now only validated, and if the clock frequency
-> is invalid for a mode, it is rejected.
-> 
-> Previously, the code would switch the PMCR register clock mux to internal
-> RCC generated clock if external clock couldn't provide suitable frequency,
-> without checking whether the RCC generated clock frequency is correct. Such
-> behavior is risky at best, user should have configured their clock correctly
-> in the first place, so this behavior is removed here.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> Signed-off-by: Mudit Sharma <muditsharma.info@gmail.com>
 > ---
->   .../net/ethernet/stmicro/stmmac/dwmac-stm32.c | 54 +++++++++++++++----
->   1 file changed, 44 insertions(+), 10 deletions(-)
+>  .../bindings/iio/light/rohm,bh1745.yaml       | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/light/rohm,bh1745.yaml
 > 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
-> index c92dfc4ecf570..43340a5573c64 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
-> @@ -157,25 +157,57 @@ static int stm32_dwmac_init(struct plat_stmmacenet_data *plat_dat, bool resume)
->   	return stm32_dwmac_clk_enable(dwmac, resume);
->   }
->   
-> +static int stm32mp1_validate_ethck_rate(struct plat_stmmacenet_data *plat_dat)
-> +{
-> +	struct stm32_dwmac *dwmac = plat_dat->bsp_priv;
-> +	const u32 clk_rate = clk_get_rate(dwmac->clk_eth_ck);
 
- From Sai in
-Re: [net-next,RFC,PATCH 1/5] net: stmmac: dwmac-stm32: Separate out 
-external clock rate validation
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Please check reverse x-mass tree is followed for these variables, if 
-possible.
+yamllint warnings/errors:
 
-> +	switch (plat_dat->mac_interface) {
-> +	case PHY_INTERFACE_MODE_MII:
-> +		if (clk_rate == ETH_CK_F_25M)
-> +			return 0;
-> +		break;
-> +	case PHY_INTERFACE_MODE_GMII:
-> +		if (clk_rate == ETH_CK_F_25M)
-> +			return 0;
-> +		break;
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/light/rohm,bh1745.yaml: maintainers: 'Mudit Sharma <muditsharma.info@gmail.com>' is not of type 'array'
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
 
- From Sai in
-Re: [net-next,RFC,PATCH 1/5] net: stmmac: dwmac-stm32: Separate out 
-external clock rate validation
+doc reference errors (make refcheckdocs):
 
-Please check, whether we can combine the two cases..
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240603134015.70388-1-muditsharma.info@gmail.com
 
-> +	case PHY_INTERFACE_MODE_RMII:
-> +		if (clk_rate == ETH_CK_F_25M || clk_rate == ETH_CK_F_50M)
-> +			return 0;
-> +		break;
-> +	case PHY_INTERFACE_MODE_RGMII:
-> +	case PHY_INTERFACE_MODE_RGMII_ID:
-> +	case PHY_INTERFACE_MODE_RGMII_RXID:
-> +	case PHY_INTERFACE_MODE_RGMII_TXID:
-> +		if (clk_rate == ETH_CK_F_25M || clk_rate == ETH_CK_F_125M)
-> +			return 0;
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	dev_err(dwmac->dev, "Mode %s does not match eth-ck frequency %d Hz",
-> +		phy_modes(plat_dat->mac_interface), clk_rate);
-> +	return -EINVAL;
-> +}
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-[...]
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
