@@ -1,266 +1,287 @@
-Return-Path: <devicetree+bounces-71968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A68A8D8B2F
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 23:01:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9173B8D8B40
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 23:04:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B74ED1F2275A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 21:01:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE5D5B217F3
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 21:04:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D01813C9D5;
-	Mon,  3 Jun 2024 20:59:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 206CE134409;
+	Mon,  3 Jun 2024 21:04:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LlPEQMlX"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="d3YtS3RG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2047.outbound.protection.outlook.com [40.107.247.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA8C513B7A1;
-	Mon,  3 Jun 2024 20:59:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717448398; cv=none; b=FdjLWcOapJceRsCqrzmmCv3BhDSZlslk5fXAzrgznHMB0oOOgzM0lbgLK64IYnfEg0j73spXQzFpy7VvT8WPloZTdvGFl5Od+3UDabT9EuR/lHN5opLWGbw4ZC5Oxhekw+RDiMng/hOtqLSHbDY6QFR4LTHzCqLx7zK0J/zj+PY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717448398; c=relaxed/simple;
-	bh=Pvh+AiCMVIgAhsPn6Wp3P5BrTF4WN8Fj/Eu4gf4HaiY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=igynDiF65QYTC5uiy5ZW5Zx4wk0hyHutF3cybKRRs/Xrp0LU1WX/3Tlrlws2p8EgiSq2f/x5QmqBUzeI0F3JzCEGrCrMVsEmKHsyK4TEUW8gwA+wy5Svk+8KRLbW6sPJ+KTH231rD8CFC8Z7N36QiT9iWzk1lTW3jaREpPHcxOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LlPEQMlX; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 453AOpXu019249;
-	Mon, 3 Jun 2024 20:59:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jL40qDH7QAg5YBT+Dh0Lwk9hblbSm05o2u4Yeq9i6A4=; b=LlPEQMlXQc+4ebTj
-	2IKCThSUkkkwnYfbSWctr3mKoWZfR5bKvc/W8A+pR5o0fDlH02SOjzAFqgZAzBcx
-	gdBPuaqdiPEynsuuNDZtUZXzJDEG2ayBtr/80tv53GqWsO7wx9U+BUF+DV0Whjbi
-	TfVD6qoMk4vU0PAZWz6a1I/8MD8QJjYp0udF07p4zqQsMJm8CN2apzb2o6oDD8Fz
-	ngMZZenohD5dQMoQ5k8XIWIdzEgR8KbcpIdAKuaRFP3BC05wWYyszMyezJ72LZ6e
-	5xgKA7CXN6/lCxwCC+Ufec3w/VenKrZ0vcxaGfmoTiQyqYOQQjDoGswiVakq3qQH
-	El5Bhg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yfw59msqv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 03 Jun 2024 20:59:49 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 453Kxm8u018624
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 3 Jun 2024 20:59:48 GMT
-Received: from hu-sibis-blr.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 3 Jun 2024 13:59:43 -0700
-From: Sibi Sankar <quic_sibis@quicinc.com>
-To: <sudeep.holla@arm.com>, <cristian.marussi@arm.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <jassisinghbrar@gmail.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <dmitry.baryshkov@linaro.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_rgottimu@quicinc.com>,
-        <quic_kshivnan@quicinc.com>, <quic_sibis@quicinc.com>,
-        <conor+dt@kernel.org>, <quic_nkela@quicinc.com>,
-        <quic_psodagud@quicinc.com>, <abel.vesa@linaro.org>
-Subject: [PATCH V5 5/5] arm64: dts: qcom: x1e80100: Enable cpufreq
-Date: Tue, 4 Jun 2024 02:28:59 +0530
-Message-ID: <20240603205859.2212225-6-quic_sibis@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240603205859.2212225-1-quic_sibis@quicinc.com>
-References: <20240603205859.2212225-1-quic_sibis@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E90DE2E414;
+	Mon,  3 Jun 2024 21:04:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717448681; cv=fail; b=SPxk5VFQsliaLruMMWiZjg4g1qfZPC+WCboy5aFFTIyL2EI6dqbjANXmw4uPlTKRVkNhkxSVJVf6+5rRwNMA8HnLJpdZUwXxeMTlBIcJvLh+QHygSgRj7h0VBpDZrqIdIXnlSOL2DXH1MfOFOWLKPYS0ph8908eqeyY5Of1sV+g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717448681; c=relaxed/simple;
+	bh=9fc76j+VV9p54TMqkYYgVheqDgBpRd7Cd9isD4p61OA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=UVJSaJnUtbxTCkN2aoNblgJAPNRHlmYoVVWjUDpK5vJZX4uisqI3Lg3ahbS26oFBeUu1xxuMKd1wcb4G9kU7NIXbLewPOcZ+jGCDfUsctZOVGoO8jYo/EJPBTDs3A5RSGsNUl2+4bWykQ/V/ss6xrchpiosLw69vUplA1PEw4Co=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=d3YtS3RG; arc=fail smtp.client-ip=40.107.247.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MEIcYdAQrV4h+76ndeYRlR0b+wy5Ztckp25V7/FXGtYtxL11We/KEbYlvtIHLQ9QJhb3kOnp0ZOOXl0OTdfZgdBcDXRffRx9MmZvetDKYaoRgoldumnH5atkOorJ2rpacCwt5nzjkHkdlUNdfs2j8e8ZvPUGMfux+OPXaaWfnUt5S2ItK6xEsjjlqMnQp7AURIK8HhSd7uUywx/OyQM1XZZM37DzLN/YX07eqd+75Qbx1CBYLTeXtTCfjhthyWS82Wr//aa1lwMNRJiORJ5f4C6+M/xdppgodw6IgMMN3bt3LQo8W989L3vhyc2IXAs4ZUWFkyHRjV4v7EtqT0gPUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=n/LVtvBw8S4djGr4p3hqXbB1Jx0iU9Z1FuBeFD82KPM=;
+ b=X1iR66OPzwSGsOTbNM6E8Nt60SsIgAkQKxipYZiNzSFyryD7v05HhySxXmQvAc0yDJaAEU7f8ud97zGwpWcfLIh9WM3NG81oQGS8+iWR7oAlSl4G6PmL/Oxxp0IuCXt0bUV9D3bJE9bGyPLvFkAU3PJILlodb7YcVhz7SIIGlvMj/aCxlkzgZmJ5DFLYajSBKFpjGQ9HnkbnmA5a/cA4mj8KJfQOnKN89rv1ikCkhqLxRTjcnCTrl41Wih5r7eHQVuRcHL1nKdAo5oAjQGn3sSmZ6R0uB0qMDKmFaMOgWMA/IMSnYSjf81SQ57PFVPqz7lTKa6rTYKelcGdIAGkQTg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=n/LVtvBw8S4djGr4p3hqXbB1Jx0iU9Z1FuBeFD82KPM=;
+ b=d3YtS3RGTHSw4LkvWzcvNxuOKwvhml3NQZabrps+c15K0lYD6mNZgPVFIrXn+EWjRuIba4le3TaSCsr0BHDvsEMef6I8enlSnGPj+B/qbrKf+g7/Tm0LebODTYajGizpBYv/UDVOZWfry5iLasB7Oab2AewumZFL6qaFhLAaTgE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DU0PR04MB9635.eurprd04.prod.outlook.com (2603:10a6:10:31f::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.27; Mon, 3 Jun
+ 2024 21:04:35 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7633.021; Mon, 3 Jun 2024
+ 21:04:35 +0000
+Date: Mon, 3 Jun 2024 17:04:23 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
+	devicetree@vger.kernel.org, Will Deacon <will@kernel.org>,
+	Joerg Roedel <joro@8bytes.org>, Jason Gunthorpe <jgg@ziepe.ca>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Marc Zyngier <maz@kernel.org>
+Subject: Re: [PATCH v5 08/12] PCI: imx6: Config look up table(LUT) to support
+ MSI ITS and IOMMU for i.MX95
+Message-ID: <Zl4v10Od99et+tLX@lizhi-Precision-Tower-5810>
+References: <20240603171921.GA685838@bhelgaas>
+ <3d24fecf-1fdb-4804-9a51-d6c34a9d65c6@arm.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3d24fecf-1fdb-4804-9a51-d6c34a9d65c6@arm.com>
+X-ClientProxiedBy: SJ0PR13CA0219.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c1::14) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 7UrCHnsZhEa1xolpettZwxSWVDHouAfq
-X-Proofpoint-ORIG-GUID: 7UrCHnsZhEa1xolpettZwxSWVDHouAfq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-06-03_17,2024-05-30_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- spamscore=0 lowpriorityscore=0 priorityscore=1501 suspectscore=0
- adultscore=0 clxscore=1015 mlxlogscore=947 bulkscore=0 phishscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406030168
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU0PR04MB9635:EE_
+X-MS-Office365-Filtering-Correlation-Id: 82ae940a-1c12-489a-0556-08dc8410c5ad
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230031|366007|376005|52116005|7416005|1800799015|38350700005;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Q4wL8r1Soh+rI7BtGWXQY+ca24DinBNHcjY3F2AMpO+9qrrhnEW2RSLOZC56?=
+ =?us-ascii?Q?lX8GlLjeadAzI4EBATk4l7igq5PMpu1Zne4KemnTI4DzmohHmcH5g96udDHb?=
+ =?us-ascii?Q?veiwqXu2p1QmaxrQbCEjzJsAwSec+bH26uFDzualembfc+aPVOxGf7rCSogL?=
+ =?us-ascii?Q?BqtcIYAGCotztRMiQztnsdgqUVZRnXkEIN66vhqT2kfTbrTgSy1vAbB/T1Qv?=
+ =?us-ascii?Q?DpWQkZDNqc/BrWHV1HW6Ygd25zWDGt383UKSmNOKKXkerHehMwENX3HxbWtk?=
+ =?us-ascii?Q?Vvl7GVCi5Le+P9B424M/TeK9sTfbqMz3sY/xYCAJ1NfanpGQp75dYN0xZOxx?=
+ =?us-ascii?Q?lT53B7AVQag+3TwevTMev8iYFZ95LkikUSDcVCaIyvkkrZMj0IFucSBegKCp?=
+ =?us-ascii?Q?pb6duOTXw1vL4baG2HYF1Evt0NZISSho1PLBIhtDTzgg2Cb5ICK7BYTtWksk?=
+ =?us-ascii?Q?T3XYvBTpZ3esnVgJSPOr7HeNJPqqUS8WwIAJRmJhIZMizN7v/mLkx92A4kRi?=
+ =?us-ascii?Q?9oYAYYe3YysfISeIGAdK1ylkCXGHjAcG0U7T85bZZONQoN7X/tHTuJIUO0wm?=
+ =?us-ascii?Q?o/gW5BpV49MwGgnjnAwJSI7FKpYS5YImX/EsrTrcUdMBMiDZKuEiJQva6R59?=
+ =?us-ascii?Q?QTeQFm5CiZYhgWHHns9GBRJtSmDBGwLTbt8SCQXJ2hmk5FB+JQkEG/wcthwK?=
+ =?us-ascii?Q?eXYnislZMkPCyJu3Yir6B+ReM17CwJA31mvRLsRl8srn8jYYgHyYAZ6/oZaj?=
+ =?us-ascii?Q?J4LgTw//clArs0Kf0nq1BcPwun1L9FaFwr3f+uWOI1AA2WN3/cyVQ/Uyup+0?=
+ =?us-ascii?Q?o5ZLZxK+lo41SUIOqALfGQGFYhUiOuuyFIhGD3p3ZWg68b8ShGCQQmfKQMLR?=
+ =?us-ascii?Q?4lBMgz7M3NQOv3ZTyEVTUAnnDbsrfuyGnwSyB9aoRilkl4MB6jYlTlA2HdUc?=
+ =?us-ascii?Q?7elJsC82awlPrIEMKd3OUssiRiLeaIjIPhkyTkKt9UaUSrYxggjMRUUmIyDj?=
+ =?us-ascii?Q?YkR8jX+KBVXOvveYjfgjNM+u1aaJnmrNXyHBj7piPEN0RmzkXj+b0Bv/I2DR?=
+ =?us-ascii?Q?flDJ9zwUGJ+mVRbJvr9SOAx0yg6hvAQMIgkeDfyR0nYDHzJFwHqZgSxywEWl?=
+ =?us-ascii?Q?X/jevoc9yMHlFzk7TIEWwTOJWbCb/RNSZ20jcUYInpTwtz7CHJvICEhe8z0q?=
+ =?us-ascii?Q?lbVtZN/e5ZQ2PmYE6EtWjGiNq0M2g7Ug8cZQezMdVTPxeIFFnJ8H3jdVStb8?=
+ =?us-ascii?Q?L5PC/rn1dvfgG1I625XisBXqtChicU3Azf/jW2/pyw=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(52116005)(7416005)(1800799015)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?2kGxLojdLpFSe4C4HI/68D43PyJz+LB4jz/lKuDao0REaBxHFU0zFxTBe93H?=
+ =?us-ascii?Q?vFFjHuixDKgCJMl4kVeo0nQjb+Bun83086n9L03tUIsCEtFDzomQjTmq/yQP?=
+ =?us-ascii?Q?jYSVu5Wuo7aeZv6VzHm9z7Oi6wYk31u83RsNnPaSVAb24o5uPVNCDR27swXo?=
+ =?us-ascii?Q?56+oYcJAzmJFnkp655wkTwvWF4RgvM8cVbOr/u9xkgZQ/eSI7RKlyuI6k7u+?=
+ =?us-ascii?Q?7E6OeghYxYCP3ZYTsjNW52yJRaLBOEZ90sRFht7DiMCWBryto8MLk0idunBv?=
+ =?us-ascii?Q?k3nulIsyLujJ1QGAqXXc4WD54iGeVgSAB+aR9Xcyo59Vap/kvNZyJM5NPIgG?=
+ =?us-ascii?Q?WYylFJq72nTDaso82IXaLwRlQiY8cvKkUNQQapdEKPcXZCo0wHd4VmVAmAxZ?=
+ =?us-ascii?Q?dackmAEShDI7nlT+QtqxPjo2ZsjqyRzQWTpljIBhUO7JmleDPSucOpCI9Oty?=
+ =?us-ascii?Q?1dVuOG0UxdPdx36+fmJpF5NKxNzlpUWJgaFzMBf6MWXYj2wmwNcESahh45kf?=
+ =?us-ascii?Q?uNsCekbawEMZlOAizWjJHAbP81Ksts/Z0SSDCVMd9zdlQ+LIUzpBcFDQ29SK?=
+ =?us-ascii?Q?Ic9N8WBXoI8tI6k4LlhganTjAg1o/SKosfSeX/QZ27gYtnSg/ACHsO6naeCE?=
+ =?us-ascii?Q?ZtDlA4Vt8cEYAK/nJ66ZDOEF96czh4uPKAneMsVE6nLiFZVz2gTmCJDVXl1I?=
+ =?us-ascii?Q?jxnGbXTTHwOUy2v7rYvdT+P72NPnJgPDuEU6XJLnFWiJ0QxZ5rU5HK2vJe/l?=
+ =?us-ascii?Q?hUsIRn2uCpeeprN+ry9S/3x6zFn7y2boVeZnsMFfJVYN/nLbzwnj8JUJoYJh?=
+ =?us-ascii?Q?7r2wm016D8chitUCGTwIynlM5mZZWTaBS57gIxKTDY+YngA/weg5tdYGwL0I?=
+ =?us-ascii?Q?7JUdhmgzvwJA3cd39B2smr7HF0hPaE9+XnhDpX0usqIcMnD28/t11MtE1u0g?=
+ =?us-ascii?Q?Phltf/tTQlF1upZR8yrwlFmAdaMOTJ59dpYMNc/ZTyKRK3ApCFnFUQMxWBLD?=
+ =?us-ascii?Q?j1GEFu967EsCMROew0BL0ba50R2E/+7jofEdcvrL0IzmBDzsxFN8ovtEVvUa?=
+ =?us-ascii?Q?j1TTCYIue+KSB0b5p8JAAG8KE86GaXwtZFOZkTQnUbeorhzUuEzZfyFofD3S?=
+ =?us-ascii?Q?UWvlTmd+akniu3cOxWBpxnifO5aCwTWsKTyZ6Da1F++Ijez3B/lH62gKo5Fw?=
+ =?us-ascii?Q?CKke8ez917vU2+uPgaRjPGUFhKNANaWAGGLMHKRk4lLQ5kJUJQAgoQiozEKJ?=
+ =?us-ascii?Q?kF4M1vxVHwy/W0czqYOpwblxs/n7jwAJbAmPOArDHyq+07THFvwQw25RBajR?=
+ =?us-ascii?Q?y7Y5GvwEWkdGDCa2iiP8+JF6dG8Jj03MJFdAm0CpDsWCDMkVTfKVtHn/ZOsD?=
+ =?us-ascii?Q?w4K0t0OJ0HT53OWUHlQENMBpOGgNk6FC9ltnA55Y2msyY+by2rg1VS+ye7G/?=
+ =?us-ascii?Q?sTlWiukOLu7/w3Lp+7aGtlKNvIfyNlJyaG/J8T8DZ1ghf3HDDq8JnUxUdjha?=
+ =?us-ascii?Q?q+VSda8PY7jl/meXtH9nDBkArqFU7ado/VVqdbQpOqoVzzoaRrVBpqYgjT+e?=
+ =?us-ascii?Q?hPl0TuOnCWEwRfalYnpy3NnFXMB5fAKabZQDpTGf?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 82ae940a-1c12-489a-0556-08dc8410c5ad
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2024 21:04:35.1621
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: trdia4jcSzRB36n8nf/BFBP3HzoO2d7bUAG09lkWB42VQ/7HrfdMSSk2ebuNci2vG2WpHaxf+uHzzwRV0XFGgw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9635
 
-Enable cpufreq on X1E80100 SoCs through the SCMI perf protocol node.
+On Mon, Jun 03, 2024 at 09:20:03PM +0100, Robin Murphy wrote:
+> On 2024-06-03 6:19 pm, Bjorn Helgaas wrote:
+> > On Fri, May 31, 2024 at 03:58:49PM +0100, Robin Murphy wrote:
+> > > On 2024-05-31 12:08 am, Bjorn Helgaas wrote:
+> > > > [+cc IOMMU and pcie-apple.c folks for comment]
+> > > > 
+> > > > On Tue, May 28, 2024 at 03:39:21PM -0400, Frank Li wrote:
+> > > > > For the i.MX95, configuration of a LUT is necessary to convert Bus Device
+> > > > > Function (BDF) to stream IDs, which are utilized by both IOMMU and ITS.
+> > > > > This involves examining the msi-map and smmu-map to ensure consistent
+> > > > > mapping of PCI BDF to the same stream IDs. Subsequently, LUT-related
+> > > > > registers are configured. In the absence of an msi-map, the built-in MSI
+> > > > > controller is utilized as a fallback.
+> > > > > 
+> > > > > Additionally, register a PCI bus notifier to trigger imx_pcie_add_device()
+> > > > > upon the appearance of a new PCI device and when the bus is an iMX6 PCI
+> > > > > controller. This function configures the correct LUT based on Device Tree
+> > > > > Settings (DTS).
+> > > > 
+> > > > This scheme is pretty similar to apple_pcie_bus_notifier().  If we
+> > > > have to do this, I wish it were *more* similar, i.e., copy the
+> > > > function names, bitmap tracking, code structure, etc.
+> > > > 
+> > > > I don't really know how stream IDs work, but I assume they are used on
+> > > > most or all arm64 platforms, so I'm a little surprised that of all the
+> > > > PCI host drivers used on arm64, only pcie-apple.c and pci-imx6.c need
+> > > > this notifier.
+> > > 
+> > > This is one of those things that's mostly at the mercy of the PCIe root
+> > > complex implementation. Typically the SMMU StreamID and/or GIC ITS DeviceID
+> > > is derived directly from the PCI RID, sometimes with additional high-order
+> > > bits hard-wired to disambiguate PCI segments. I believe this RID-translation
+> > > LUT is a particular feature of the the Synopsys IP - I know there's also one
+> > > on the NXP Layerscape platforms, but on those it's programmed by the
+> > > bootloader, which also generates the appropriate "msi-map" and "iommu-map"
+> > > properties to match. Ideally that's what i.MX should do as well, but hey.
+> > 
+> > Maybe this RID-translation is a feature of i.MX, not of Synopsys?  I
+> > see that the LUT CSR accesses use IMX95_* definitions.
+> 
+> Well, it's not unreasonable to call things "IMX95" in this context if they
+> are only relevant to the configuration used by i.MX95, and not to the other
+> i.MX SoCs which this driver also supports. However the data register fields
+> certainly look suspiciously similar to those used on Layerscape[1], although
+> I guess that still doesn't rule out it being NXP's own widget either.
+> Anyway, the exact details aren't really significant, the point was really
+> just to say don't expect this to generalise much beyond what you've seen
+> already, and that there's precedent for bootloaders doing this for us.
 
-Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
----
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 63 ++++++++++++++++----------
- 1 file changed, 39 insertions(+), 24 deletions(-)
+It is re-used layerscape design at this point. I don't know the history,
+why choose use bootloader to config it, supposed it should be done at
+kernel. We found some problem by using bootloader to config LUT. Most
+layserscape system PCI devices are fixed during boot.
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index df31ca0f497c..1929c34ae70a 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -69,8 +69,8 @@ CPU0: cpu@0 {
- 			reg = <0x0 0x0>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
--			power-domains = <&CPU_PD0>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD0>, <&scmi_dvfs 0>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER_C4>;
- 
- 			L2_0: l2-cache {
-@@ -86,8 +86,8 @@ CPU1: cpu@100 {
- 			reg = <0x0 0x100>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
--			power-domains = <&CPU_PD1>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD1>, <&scmi_dvfs 0>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER_C4>;
- 		};
- 
-@@ -97,8 +97,8 @@ CPU2: cpu@200 {
- 			reg = <0x0 0x200>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
--			power-domains = <&CPU_PD2>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD2>, <&scmi_dvfs 0>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER_C4>;
- 		};
- 
-@@ -108,8 +108,8 @@ CPU3: cpu@300 {
- 			reg = <0x0 0x300>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
--			power-domains = <&CPU_PD3>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD3>, <&scmi_dvfs 0>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER_C4>;
- 		};
- 
-@@ -119,8 +119,8 @@ CPU4: cpu@10000 {
- 			reg = <0x0 0x10000>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_1>;
--			power-domains = <&CPU_PD4>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD4>, <&scmi_dvfs 1>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER_C4>;
- 
- 			L2_1: l2-cache {
-@@ -136,8 +136,8 @@ CPU5: cpu@10100 {
- 			reg = <0x0 0x10100>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_1>;
--			power-domains = <&CPU_PD5>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD5>, <&scmi_dvfs 1>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER_C4>;
- 		};
- 
-@@ -147,8 +147,8 @@ CPU6: cpu@10200 {
- 			reg = <0x0 0x10200>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_1>;
--			power-domains = <&CPU_PD6>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD6>, <&scmi_dvfs 1>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER_C4>;
- 		};
- 
-@@ -158,8 +158,8 @@ CPU7: cpu@10300 {
- 			reg = <0x0 0x10300>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_1>;
--			power-domains = <&CPU_PD7>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD7>, <&scmi_dvfs 1>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER_C4>;
- 		};
- 
-@@ -169,8 +169,8 @@ CPU8: cpu@20000 {
- 			reg = <0x0 0x20000>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_2>;
--			power-domains = <&CPU_PD8>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD8>, <&scmi_dvfs 2>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER_C4>;
- 
- 			L2_2: l2-cache {
-@@ -186,8 +186,8 @@ CPU9: cpu@20100 {
- 			reg = <0x0 0x20100>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_2>;
--			power-domains = <&CPU_PD9>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD9>, <&scmi_dvfs 2>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER_C4>;
- 		};
- 
-@@ -197,8 +197,8 @@ CPU10: cpu@20200 {
- 			reg = <0x0 0x20200>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_2>;
--			power-domains = <&CPU_PD10>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD10>, <&scmi_dvfs 2>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER_C4>;
- 		};
- 
-@@ -208,8 +208,8 @@ CPU11: cpu@20300 {
- 			reg = <0x0 0x20300>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_2>;
--			power-domains = <&CPU_PD11>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD11>, <&scmi_dvfs 2>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER_C4>;
- 		};
- 
-@@ -309,6 +309,21 @@ scm: scm {
- 			interconnects = <&aggre2_noc MASTER_CRYPTO QCOM_ICC_TAG_ALWAYS
- 					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 		};
-+
-+		scmi {
-+			compatible = "arm,scmi";
-+			mboxes = <&cpucp_mbox 0>, <&cpucp_mbox 2>;
-+			mbox-names = "tx", "rx";
-+			shmem = <&cpu_scp_lpri0>, <&cpu_scp_lpri1>;
-+
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			scmi_dvfs: protocol@13 {
-+				reg = <0x13>;
-+				#power-domain-cells = <1>;
-+			};
-+		};
- 	};
- 
- 	clk_virt: interconnect-0 {
--- 
-2.34.1
+During I debug layerscape PCI, I was trapped by uboot many times. It is
+quite anoise, especially using difference version uboot.
 
+> 
+> > > If it's really necessary to do this programming from Linux, then there's
+> > > still no point in it being dynamic - the mappings cannot ever change, since
+> > > the rest of the kernel believes that what the DT said at boot time was
+> > > already a property of the hardware. It would be a lot more logical, and
+> > > likely simpler, for the driver to just read the relevant map property and
+> > > program the entire LUT to match, all in one go at controller probe time.
+> > > Rather like what's already commonly done with the parsing of "dma-ranges" to
+> > > program address-translation LUTs for inbound windows.
+> > > 
+> > > Plus that would also give a chance of safely dealing with bad DTs specifying
+> > > invalid ID mappings (by refusing to probe at all). As it is, returning an
+> > > error from a child's BUS_NOTIFY_ADD_DEVICE does nothing except prevent any
+> > > further notifiers from running at that point - the device will still be
+> > > added, allowed to bind a driver, and able to start sending DMA/MSI traffic
+> > > without the controller being correctly programmed, which at best won't work
+> > > and at worst may break the whole system.
+> > 
+> > Frank, could the imx LUT be programmed once at boot-time instead of at
+> > device-add time?  I'm guessing maybe not because apparently there is a
+> > risk of running out of LUT entries?
+> 
+> The risk still exists just as much either way - if we have a bogus DT and/or
+> just more PCI RIDs present than we can handle, we're going to have a bad
+> time. There's no advantage to only finding that out once we try to add the
+> 33rd device and it's too late to even do anything about it.
+> 
+> In fact if anything, this notifier approach exacerbates that risk the most
+> by consuming one LUT entry per PCI RID regardless of whether an
+> "iommu-map-mask" is involved. Assuming the IMX95_PE0_LUT_MASK field is the
+> same as its Layerscape counterpart, we could support >32 RIDs if the map and
+> mask are constructed to squash multiple RIDs onto each StreamID (the SMMU
+> driver supports this), and we have the up-front information to easily
+> configure hardware masking in the LUT itself. It's not necessarily possible
+> to reconstruct such mappings from only seeing individual input and output
+> values one-by-one.
+
+iommu may share one stream id for multi-devices. but ITS MSI can't. each
+device's MSI index start from 0. It needs difference stream id for each
+device.
+
+> 
+> Thanks,
+> Robin.
+> 
+> [1] https://source.denx.de/u-boot/u-boot/-/blob/master/drivers/pci/pcie_layerscape_fixup.c?ref_type=heads#L83
+
+Thanks, but It can't resolve device hot-plug problem.
+
+> 
+> > It sounds like the consequences of running out of LUT entries are
+> > catastrophic, e.g., memory corruption from mis-directed DMA?  If
+> > that's possible, I think we need to figure out how to prevent the
+> > device from being used, not just dev_warn() about it.
+> > 
+> > Bjorn
 
