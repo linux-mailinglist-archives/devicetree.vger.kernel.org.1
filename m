@@ -1,103 +1,135 @@
-Return-Path: <devicetree+bounces-71784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 414128D7F1B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 11:43:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F3418D7F46
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 11:48:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE2872860A5
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 09:43:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40C891C21E34
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jun 2024 09:48:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D12684DF3;
-	Mon,  3 Jun 2024 09:38:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D2F784E00;
+	Mon,  3 Jun 2024 09:44:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="ByhlWGRI"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DCHqvH0e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7948B667;
-	Mon,  3 Jun 2024 09:38:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2346D84DEC;
+	Mon,  3 Jun 2024 09:44:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717407503; cv=none; b=W2xabk+ESShePnQVum+2UtgtYXabC6N6Bmx8ZJbIZ43HTHaETcmJZRZYpuelHJwicWyiqkHiEquvePZ9ri2a97yXuSuBlnZ+17r2koCA4UL0wA3cZC0LCnC+1VaG7SJSWXPBArksloSeOMkHSKGObJzJSF6iXHnSS6M5ZxOAR6w=
+	t=1717407864; cv=none; b=PKdxnN4IgBBsO11w/XJ3AzSMbwqYDsk8otUoTHpuNy4QKgspMbQXJ11IsuwW6rD5fRXpL5Yo6iBp1XCBstqJPmrQbb6QLxp+3UafSGKbP4TVo8KlglgJ2FamwAU0u1zS+57BLgZMApNAHz3xj0kNyZuzbVqGJ8u3XMCRXyOVDcQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717407503; c=relaxed/simple;
-	bh=nsLDjTZTaB6IlVf1YN+Z1Ok82/GbhJFUrL0xBcqN0mA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uADUAhITw3PJJP0CnxXmboeRGAEvdXfEHlBxjMB8M3qNC0+HqQRU8DwgpD3SNoZ/hUY+jk4p87RvowI8WfZVPMACJ01yluB85kPLWllAXktURPUihBCLM4oVYmMMQt1A4rDQ968cw+cgKLQuSxueVIDuk7AzoUSs6Q69UqUzDRY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=ByhlWGRI; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=U7Ho4zKhkkiYFTzTY91pGPL2i6KvNE8h4Vbogb5wZs0=; b=ByhlWGRI2Ktx47DAPDLPq8dnm1
-	B+CX9jUK47LjL+lCl8e6Mu8Syjci2Ufq1RkI4Z127sWqr85wz6jhqmCKiL0uopS32LmM8l6iaRhUp
-	2x5rRl0dhueE2SS1UwhflKFjjY+lm5ObcN3H1OykMtzbKp/UFET4iJldTTwxKTymYbOYYQcQCIMMV
-	YCknfBryxH45AJqMzIsExz4ZGIES33S6GCQlD/WLTB6ljQw1Lk20MBTSqmdIws+jFyOsKe98OaqXb
-	xpLDDT54wpVXB5pdsJGyFsl9lmfw0cdeQGASvSQKYp/Zu6qb9+tqTavOkS7Dz1Drpgtqh0aeQUX7o
-	pdWUlSew==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:44764)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1sE48g-0002Xl-1z;
-	Mon, 03 Jun 2024 10:38:02 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1sE48g-0000Jm-09; Mon, 03 Jun 2024 10:38:02 +0100
-Date: Mon, 3 Jun 2024 10:38:01 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Christophe Roullier <christophe.roullier@foss.st.com>
-Cc: "David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Marek Vasut <marex@denx.de>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 02/11] net: stmmac: dwmac-stm32: Separate out external
- clock rate validation
-Message-ID: <Zl2O+eJF9vOTqFx2@shell.armlinux.org.uk>
-References: <20240603092757.71902-1-christophe.roullier@foss.st.com>
- <20240603092757.71902-3-christophe.roullier@foss.st.com>
+	s=arc-20240116; t=1717407864; c=relaxed/simple;
+	bh=DItxAcUNjgy5MW55AtPEraSliiAbVHCEZsIGdQoBIIQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=qTvrhgJuQ8sPTJMevhsD4WAQLG8RD97Yd4pP1CIoeOhAoqr9FkFBiGe2lL0Z5JJPucPITqcgQlCG/rYkQYuzlGCceQmZUEOYts2mTR8FZzIq6bEDtK9gpN7hGPzIyBGplmnOrKJwYd/FHIMITPJEAXdEsLpROh7Qe8JoSM8el7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DCHqvH0e; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 452Lv3Ew001934;
+	Mon, 3 Jun 2024 09:44:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=mxKcaVbif8YR8gm/vyORop
+	ep8/jPftOVtg5F3bZkA08=; b=DCHqvH0enz/FSm3CzaBGWlMaapkF5VllW6e0um
+	bZpp4IvGQ39o5j+eIW4+kEJHVabOCHprpgLbj6+L604pgzmmADOOnwFC1vbg9qVm
+	P50UKbLg8ECkVM63QJ4AzHhYpVENlR6Na1GwdH4p2SJExETD1TCaaTwyE8MnQCFD
+	bGYTmwzSCWc5lPK0v0CyG2PQLs3fea6FB/bF95TfJgoHUHpqnaztmLElOf724fiv
+	/Hr7y3SFRGFlLln8WOO848O4tSojCqmfjXc6AutPJOohaCuLmpIIZroGC5njCsQl
+	hOfAnyER/fxh9XxdCImSl1d10jNcIIBt3FGqR7lRscgZ/w2A==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yfw5kkrx1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 03 Jun 2024 09:44:06 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4539i6RH026400
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 3 Jun 2024 09:44:06 GMT
+Received: from hu-jinlmao-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 3 Jun 2024 02:44:05 -0700
+From: Mao Jinlong <quic_jinlmao@quicinc.com>
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Mao Jinlong <quic_jinlmao@quicinc.com>,
+        "Alexander
+ Shishkin" <alexander.shishkin@linux.intel.com>
+CC: <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang
+	<quic_taozha@quicinc.com>,
+        songchai <quic_songchai@quicinc.com>
+Subject: [PATCH v2 0/3] coresight: Add preferred trace id support
+Date: Mon, 3 Jun 2024 02:43:49 -0700
+Message-ID: <20240603094354.2348-1-quic_jinlmao@quicinc.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240603092757.71902-3-christophe.roullier@foss.st.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Ad7etsyRz8WJfW-JASeixCXOZGty8fn_
+X-Proofpoint-ORIG-GUID: Ad7etsyRz8WJfW-JASeixCXOZGty8fn_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-06-03_06,2024-05-30_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ impostorscore=0 suspectscore=0 malwarescore=0 clxscore=1011 phishscore=0
+ mlxscore=0 priorityscore=1501 adultscore=0 bulkscore=0 spamscore=0
+ mlxlogscore=840 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406030081
 
-On Mon, Jun 03, 2024 at 11:27:48AM +0200, Christophe Roullier wrote:
-> +static int stm32mp1_validate_ethck_rate(struct plat_stmmacenet_data *plat_dat)
-> +{
-> +	struct stm32_dwmac *dwmac = plat_dat->bsp_priv;
-> +	const u32 clk_rate = clk_get_rate(dwmac->clk_eth_ck);
-> +
-> +	switch (plat_dat->mac_interface) {
+Some HW has static trace id which cannot be changed via
+software programming. For this case, configure the trace id
+in device tree with "trace-id = <xxx>", and
+call coresight_trace_id_get_system_id with the trace id value
+in device probe function. The id will be reserved for the HW
+all the time if the device is probed.
 
-Should these be phy_interface? Does this clock depend on the interface
-mode used with the PHY?
+Changes since V1:
+1. Add argument to coresight_trace_id_get_system_id for preferred id
+instead of adding new function coresight_trace_id_reserve_system_id.
+2. Add constraint to trace-id in dt-binding file.
+
+Mao Jinlong (3):
+  dt-bindings: arm: Add trace-id for coresight dummy source
+  coresight: Add support to get preferred id for system trace sources
+  coresight: dummy: Add reserve atid support for dummy source
+
+ .../sysfs-bus-coresight-devices-dummy-source  | 15 +++++
+ .../arm/arm,coresight-dummy-source.yaml       |  6 ++
+ drivers/hwtracing/coresight/coresight-dummy.c | 58 +++++++++++++++++--
+ .../hwtracing/coresight/coresight-platform.c  | 26 +++++++++
+ drivers/hwtracing/coresight/coresight-stm.c   |  2 +-
+ .../hwtracing/coresight/coresight-trace-id.c  | 32 ++++++----
+ .../hwtracing/coresight/coresight-trace-id.h  |  5 +-
+ include/linux/coresight.h                     |  1 +
+ 8 files changed, 128 insertions(+), 17 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+2.41.0
+
 
