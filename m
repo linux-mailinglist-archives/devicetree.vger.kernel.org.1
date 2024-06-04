@@ -1,80 +1,77 @@
-Return-Path: <devicetree+bounces-72474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40C6F8FBE72
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 00:02:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A294C8FBF1E
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 00:41:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D36041F25DEB
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 22:02:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6E9C1C209F6
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 22:41:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 070B03B1A4;
-	Tue,  4 Jun 2024 22:02:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C58E628DC7;
+	Tue,  4 Jun 2024 22:41:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="i4q3cb+Y"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="PA86CCzy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB47A320C;
-	Tue,  4 Jun 2024 22:02:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A94614B06E;
+	Tue,  4 Jun 2024 22:41:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717538536; cv=none; b=e25m5KhwPV2fPkw0a6SQxUK9ktD6ivsxlEZ4TrTqlnhVRf6n0fm35dE2j+WZMOL2bz02Q5x4af3NE46voS44d+G7uQucYfnYU7ib8MakttXfVXbmppMqqJffMNuRHrgOoY6Ls/rPfixty3wkiR1yXPksdNSykGhvG8nhmvCREjQ=
+	t=1717540910; cv=none; b=R3f0psrtJ00XxF2VQLP8JkiAc/JLHQAUzC/ropmkkvJhF2TVTTwyz8wfN9d5+LJ3/5nBRk9NTLQ7mBW9avqlJn5fO8SpTuwo8/AZpX/68e1GZ8nPLCQiEizUO1ADX1kkpYkSl3KfZpbVFkbbFmRweBrMs/I7GyJQwEQHi7XJVZ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717538536; c=relaxed/simple;
-	bh=EMIzYIFkXVUprOInl/LuU0NK/y3BCX3/WnmoS6Oig2k=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=u7HEsfEfL4IRDvdzMKsU5fp3pp+gypBAbEpsiTuoKzymQTTuaTOnepGrroK6hOd9UtJGvk29EvKnMmKMbeQMo1sGbMXnDzUALg7/1+X0gpDyNTGe7rDlTpahCwnLocB4IJMP9QUpHzQ6eHo5JvAFp5cGpJ/5jKKWcbI/44GZP58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=i4q3cb+Y; arc=none smtp.client-ip=148.163.158.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 454LqCMp009352;
-	Tue, 4 Jun 2024 21:59:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc :
- content-transfer-encoding : date : from : message-id : mime-version :
- subject : to; s=pp1; bh=OHYuuKn8tJ7rSUbYgVXZpxWOnvGgk1aa1oTjRBRVGS4=;
- b=i4q3cb+YDGF8VqB19V6IAhQpX61Nn7ZfC6yTCdM8yp2tgfOA6SYWRyoOPuxR1+inR5/1
- wva8yBRXckEq7gm/WajmB8Vv4tji1gdXQp24O1Fx4wPzP6ebuT7O9TS3kyw+KuVKHttg
- vN+VTMAkOIaeVQku5CtTpPYM8qSXCD5eSV4x+j29DbzEs9gIQJbQUJLfP4oNTdAUi9Hv
- THTvcimKZH/sDzgwAVO52sSnEE36WdVeYrBKabFyBl1lyaxQT9EKK0SCZdbAyQJrk81w
- 1xnnCJGoW0/D/A5OFa+VNiQhoDEz9u3QbXBDyQx7pwBY3VsgfcWMnzIJBS+43ror4sX9 Iw== 
-Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3yjax7g1ej-1
+	s=arc-20240116; t=1717540910; c=relaxed/simple;
+	bh=yuZKQqpqmxwyDNVBJjjuic8k9T9N0zt4jUtnRywhVyc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=oRS2BUWFt2PdDmRbLdTZHuEymq0twOh45Ba7g/oA6Ls1/2Q3ZycE9m7UYsQYym8N5/PXs9Yjx6SqkHqP1RSCeyfTxOushqa5gFJ3r3PQ2YsxMBYJj+qxRmhl4t0TP6bvkUAtPBEQqidBvjWI54r1MDE/+lFMa2/S3IgPqLK9FCs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=PA86CCzy; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 454K0N3h015061;
+	Tue, 4 Jun 2024 18:41:21 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=oN/4JX8Lx+3D+bSydBJVahix/UU
+	ZEC7PQQ+hSFktC6s=; b=PA86CCzyBgCEQe3fZc8lagO2sj8wnAxiCo9NDWIvJho
+	i6FZwRTYQZLjtx0rM97YzUjfMEtSN16KGRtVM6EJq1ClYlv3HSIwm4jB9zVKNcOJ
+	Wr869cMbZCuvi2CCAqGmowx8mpd5KzYcTsSxLatZZFubG1/GCSaxJNNVQy/iDGHe
+	w2cWKdPu96rGVqZf5srfvLVhIETRG8/9vL5NgnleqtXRnnRcqJ/5e6C14gzJj3VO
+	ftf2Gvvh8iMwh90NnFs+kvpOXytriijscTJ4AEGLW5RoTjZ16qHj+xeVqg0QQ06Y
+	3bytcuAIEQVKnI2DC9hso/VrDEXddC0CE9lUpS/I7bw==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3yj0hvakj1-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 04 Jun 2024 21:59:48 +0000
-Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma22.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 454LjC1x008501;
-	Tue, 4 Jun 2024 21:59:47 GMT
-Received: from smtprelay06.wdc07v.mail.ibm.com ([172.16.1.73])
-	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3ygec0rq47-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 04 Jun 2024 21:59:47 +0000
-Received: from smtpav04.dal12v.mail.ibm.com (smtpav04.dal12v.mail.ibm.com [10.241.53.103])
-	by smtprelay06.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 454Lxife15270642
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 4 Jun 2024 21:59:46 GMT
-Received: from smtpav04.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 3B2BF58064;
-	Tue,  4 Jun 2024 21:59:44 +0000 (GMT)
-Received: from smtpav04.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id F2F7858062;
-	Tue,  4 Jun 2024 21:59:43 +0000 (GMT)
-Received: from gfwa153.aus.stglabs.ibm.com (unknown [9.3.84.127])
-	by smtpav04.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Tue,  4 Jun 2024 21:59:43 +0000 (GMT)
-From: Ninad Palsule <ninad@linux.ibm.com>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
-        andrew@codeconstruct.com.au
-Cc: Ninad Palsule <ninad@linux.ibm.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, eajames@linux.ibm.com
-Subject: [PATCH v1] ARM: dts: aspeed: System1: Updates to BMC board
-Date: Tue,  4 Jun 2024 16:59:39 -0500
-Message-Id: <20240604215939.1967329-1-ninad@linux.ibm.com>
-X-Mailer: git-send-email 2.40.1
+	Tue, 04 Jun 2024 18:41:20 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 454MfJPB010856
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 4 Jun 2024 18:41:19 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Tue, 4 Jun 2024
+ 18:41:18 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Tue, 4 Jun 2024 18:41:18 -0400
+Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.129])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 454Mf2xc001165;
+	Tue, 4 Jun 2024 18:41:05 -0400
+From: Marcelo Schmitt <marcelo.schmitt@analog.com>
+To: <broonie@kernel.org>, <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
+        <jic23@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <nuno.sa@analog.com>, <dlechner@baylibre.com>,
+        <marcelo.schmitt1@gmail.com>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/6] Add support for AD4000 series of ADCs
+Date: Tue, 4 Jun 2024 19:40:56 -0300
+Message-ID: <cover.1717539384.git.marcelo.schmitt@analog.com>
+X-Mailer: git-send-email 2.30.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,70 +79,71 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: -Vetq6Mejqa7zfwIUkmji2p2f6zF51Xz
-X-Proofpoint-ORIG-GUID: -Vetq6Mejqa7zfwIUkmji2p2f6zF51Xz
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: MUO5teRQRbHDdxsS36D6OaO3q_CZLHlq
+X-Proofpoint-ORIG-GUID: MUO5teRQRbHDdxsS36D6OaO3q_CZLHlq
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
  definitions=2024-06-04_11,2024-06-04_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- bulkscore=0 clxscore=1011 lowpriorityscore=0 mlxlogscore=779 mlxscore=0
- malwarescore=0 adultscore=0 suspectscore=0 impostorscore=0 phishscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2405010000 definitions=main-2406040177
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 clxscore=1011 mlxscore=0 spamscore=0 adultscore=0
+ bulkscore=0 phishscore=0 priorityscore=1501 malwarescore=0 mlxlogscore=974
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406040183
 
-- Added new power monitor device max5970
-- Changed temperature sensor monitor chip from tmp423 to tmp432
+This patch series extends the SPI bitbang, gpio, and spi-engine controllers to
+support configurable MOSI line idle state.
+It then introduces the ad4000 driver which makes use of the MOSI idle
+configuration to properly support AD4000 series of ADCs.
 
-Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
----
- arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+Change log v2 -> v3:
+- [new patch] Extended SPI modes to allow MOSI idle high configuration.
+- [new patch] Implemented configurable MOSI idle state for spi-bitbang controller.
+- [new patch] Implemented configurable MOSI idle state for spi-gpio controller.
+- [new patch] Implemented configurable MOSI idle state for spi-axi-spi-engine controller.
+- Dropped spi-cpha property (these devices communicate in SPI mode 0).
+- Added dt-binding check to constrain adi,gain-milli property to ADAQ devices only.
+- Device config doesn't enable TURBO anymore to save power.
+- Fixed device buffer declaration.
+- Simplified ADC input gain handling by keeping gain value from DT.
+- Reworked ADC sample read function in "3-wire mode" making it latency free.
+- Added ADC sample read function for "4-wire mode".
+- Read adi,spi-mode dt prop and use "3-wire" or "4-wire" mode accordingly.
+- Many other minor improvements such as better code execution flows and comments.
+- Removed Mircea Caprioru from authors. This driver is now completely different
+  from what Mircea left in ADI Linux.
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-index dcbc16308ab50..e09a6b383ba49 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-@@ -753,6 +753,11 @@ &i2c4 {
- &i2c5 {
- 	status = "okay";
- 
-+	power-monitor@3a {
-+		compatible = "maxim,max5970";
-+		reg = <0x3a>;
-+	};
-+
- 	regulator@42 {
- 		compatible = "infineon,ir38263";
- 		reg = <0x42>;
-@@ -1138,7 +1143,7 @@ i2c8mux0chn6: i2c@6 {
- 			reg = <6>;
- 
- 			temperature-sensor@4c {
--				compatible = "ti,tmp423";
-+				compatible = "ti,tmp432";
- 				reg = <0x4c>;
- 			};
- 		};
-@@ -1599,7 +1604,7 @@ i2c15mux0chn6: i2c@6 {
- 			reg = <6>;
- 
- 			temperature-sensor@4c {
--				compatible = "ti,tmp423";
-+				compatible = "ti,tmp432";
- 				reg = <0x4c>;
- 			};
- 		};
-@@ -1615,7 +1620,7 @@ regulator@40 {
- 			};
- 
- 			temperature-sensor@4c {
--				compatible = "ti,tmp423";
-+				compatible = "ti,tmp432";
- 				reg = <0x4c>;
- 			};
- 		};
+I'll leave additional ADC features (e.g. single-ended to differential configuration)
+for future patches if no one minds it.
+
+Thanks,
+Marcelo
+
+Marcelo Schmitt (6):
+  spi: Add SPI mode bit for MOSI idle state configuration
+  spi: bitbang: Implement support for MOSI idle state configuration
+  spi: spi-gpio: Add support for MOSI idle state configuration
+  spi: spi-axi-spi-engine: Add support for MOSI idle configuration
+  dt-bindings: iio: adc: Add AD4000
+  iio: adc: Add support for AD4000
+
+ .../bindings/iio/adc/adi,ad4000.yaml          | 207 +++++
+ MAINTAINERS                                   |   8 +
+ drivers/iio/adc/Kconfig                       |  12 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/ad4000.c                      | 735 ++++++++++++++++++
+ drivers/spi/spi-axi-spi-engine.c              |   8 +-
+ drivers/spi/spi-bitbang.c                     |  24 +
+ drivers/spi/spi-gpio.c                        |  12 +-
+ drivers/spi/spi.c                             |   6 +
+ include/linux/spi/spi_bitbang.h               |   1 +
+ include/uapi/linux/spi/spi.h                  |   3 +-
+ 11 files changed, 1014 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml
+ create mode 100644 drivers/iio/adc/ad4000.c
+
 -- 
-2.40.1
+2.43.0
 
 
