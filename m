@@ -1,132 +1,149 @@
-Return-Path: <devicetree+bounces-72281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEEE38FB42D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:45:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C55138FB45D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:51:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E7421F266FC
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:45:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6518C1F23D6C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:51:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E60151482E8;
-	Tue,  4 Jun 2024 13:44:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE4A81756A;
+	Tue,  4 Jun 2024 13:50:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wWPmGvzG"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="oS2M85NQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2469A1474A9
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 13:44:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47AE9DDB3
+	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 13:50:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717508648; cv=none; b=n/xP7SHsr/qeWAj2b86IqL73Yp1F8BTHvzaSG4I0KIes9jb9RbdcMJ//G3Mhm2WolALRsV3zWEiH34ccxkgtyE1PPwZACuHpDn8E60lrc0H6If3w4tWM0OftiO8qeuME3Br5UJQDICN3Ss0F9Ku+th+PGpR/+476ygmG9gGUxM4=
+	t=1717509054; cv=none; b=pPjIZrIIdsV8x2EVCpHEQEZRPhq3IszFmxkD8JuPoElruPSvPgypdi1otjGLDhZaqAN4uo2keHPFUevrETqIn2Ve4rRFaeIPDuzz4iUC9vwO/LYJUHhL5ysrOdYXym7GfMlBug2tGTEe4iJF2EKGWRJm3Xw+TMOoGyXeWbtzlCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717508648; c=relaxed/simple;
-	bh=nHxn1H/5WqnyHeuUb2awiirtWLtLri1T4TqO2W+71nY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lUcTEnmGmzNW7czMZix1mUW/lGvsYbMKUZimRiRwQSP1t4Rpd+Ox/tjX+jJlVuxfg++jq970N9cVdUSfk2xTy049WQQG1Ox5EQ+2PLUO33dRYDbgxjR4+vbEoZTdXChccZd/LIHL9DPrWMnvlnmLc33riS8TTp4feU5l1dOnkrk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wWPmGvzG; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-52b7e693b8aso4763801e87.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 06:44:06 -0700 (PDT)
+	s=arc-20240116; t=1717509054; c=relaxed/simple;
+	bh=QkhGlalB7DEY5agt86PPhG98UI0wY+31FL2gxcCl5uk=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=GsPIKmL7tFa+Dds0ZLndkKFpAq4XeEpA90V0TNWJOcqLrV+97aNyKvN/piiTScQkfa04JsHld24acciIlrhfPz6YGLb+OfcuuGcWx0wcaVqfGCHo5rQezX8OsQHdUkKPom5nSlIrVvyF5u9lHCNHZosWAjPUfOP3fwcA8XKgMvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=oS2M85NQ; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-42155143bb6so1608325e9.1
+        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 06:50:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717508645; x=1718113445; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=TDyyivtsWKVto8Jf6XTYPyQtJ234vG34gbVNO+G82vg=;
-        b=wWPmGvzG9WtWC1HK4FlnNtDJKtSJSASkIUl08mJ5qnMnNGOQPoLgBlaqOXkcsyd7KI
-         5YoZuUzzkHMfcHjSR18NHzs37jwDMK9F0zp0TzFSpTW6G2x99LAKXfvTU+XlFrU+TwvD
-         lPgsjWQM4SXrPrM4sC3aXxH2UUhcFQ68YdpMDYuWZWHBaLhYwvs91OM5vLfP53ye8JTJ
-         Nntw3Xe5WZxr8izsRiKYIRvRng4w3sg/tWJ8DFCeRNZTX9HhUwLplHkRgTkvQDPVUcR2
-         RW3EPj+y0taTProqiXL3NU3v+Im/MSGSVyMdlxCg5KxeHHWqhig4O3+oxcShO/7OBtCk
-         3zvw==
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1717509050; x=1718113850; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lJZIlN4XgnK9tDXCSYK6tAuRSp4UM2QNTlG/GA4rHi0=;
+        b=oS2M85NQJCgUAXezHzRxEqoRMKqVjsXegrCDn3+iwBAT0fdskPWdVL16I0o7LLvkPP
+         /G3VlDdPCtREYQ7uHp5cnlY0gzHZHW2nog5xxnwS9vU+hNX/q5qo7QNlMUHdD1VtYYhr
+         CnuMEPymGpB0xvicHU4gQFx3IopHryWW5DV0dwkcOM6uRVG4qlF7f5a71BiB8GOpLVRL
+         yd0S5fW2E7UTzsJNEfajFCC5yYXQj1NjimANd2cVcB9yPMt071TfaTqApZiYH1C/P0Jp
+         i69o6w6SIU8kHtmnAfDLGpk1NdZZUMZJBw5PFdGCtNPg2TNG9BNoVxWD2+zutdeNMHaZ
+         njpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717508645; x=1718113445;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TDyyivtsWKVto8Jf6XTYPyQtJ234vG34gbVNO+G82vg=;
-        b=TdmND5FlRflwC0N4XL2VO6Da7hB+wgvGGCzkTJpekfmlmgGV3ICdQFGSwsGej3UeZx
-         LQEqV4omkcaTPymWaLs6N8Yrzm7i6N00f65FqdfuhSied2WPNmKVFvLxXGfcrlnuCneT
-         KSNRf13fmVuP0pCMKNmRGLKVuR2li4C27RYxsxrxUv8Td7TrTSXB29PhXWvO1L83mxvN
-         NvpvIV4UqIBYBd2qL0wCMqDciAg9R4vbu/xuA+SuqOgjUwYIaRcdEIpklEMfBk+xL+4h
-         VkWWnAWnf9Xo+sUQ1n1PjadQGknyB8OUB1+2URb3e/0YukeFQybkusLKNjkD7Xa7HzsZ
-         F5zw==
-X-Forwarded-Encrypted: i=1; AJvYcCVfk5EJmf3NTkX+lO61Fo1gO498dc4UPUaZJB7PbEXMtN+RWfV6Dzv4gTsv5BbJHDGiyR8M7bntpOkjRk8/cizT+yl1IgLFASuZ4A==
-X-Gm-Message-State: AOJu0YyyLdAgqDg9QA2yODvQDnLNnmwVwn+bN+rAXpnuKj+oGo9kefSy
-	6mS+PiF9l54j45aMqui0d4E83Pj1IsgU2mqaCFFL+69yFVGViIdQMPoNlyD7g8A=
-X-Google-Smtp-Source: AGHT+IG6ht8A62Pw8rpZ+11aDKYrmTFdH9Ws+Mkt+G2M8qmauAinc4sUedcPWhjbBE/5JRI3fEDVTw==
-X-Received: by 2002:a05:6512:1110:b0:51f:9a88:be2a with SMTP id 2adb3069b0e04-52ba229b339mr980152e87.23.1717508645253;
-        Tue, 04 Jun 2024 06:44:05 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52b84d3f149sm1489949e87.74.2024.06.04.06.44.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jun 2024 06:44:04 -0700 (PDT)
-Date: Tue, 4 Jun 2024 16:44:03 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: noralf@tronnes.org
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	David Lechner <david@lechnology.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>, 
-	Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-Subject: Re: [PATCH v4 3/5] drm/mipi-dbi: Make bits per word configurable for
- pixel transfers
-Message-ID: <ogplcvwjc7rkonyjoiz6kbxcydzlelokguguil2aghapgey6uv@ltfjdxyd5xaz>
-References: <20240604-panel-mipi-dbi-rgb666-v4-0-d7c2bcb9b78d@tronnes.org>
- <20240604-panel-mipi-dbi-rgb666-v4-3-d7c2bcb9b78d@tronnes.org>
+        d=1e100.net; s=20230601; t=1717509050; x=1718113850;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=lJZIlN4XgnK9tDXCSYK6tAuRSp4UM2QNTlG/GA4rHi0=;
+        b=eSeGYRmuwBWXGRc3laUIe2LKpFeWKpglH0iMba85WJKlceREziSvu2feM+LGdwIN/L
+         5joR/zhaSfDKsf4kGTqPsFopX1pJT//m/8zdIESL84hhvk5MFOdAuf4Iy8qhGiq4QslN
+         8pfcijRq2Y5RYVM2nXHjS5KMrORIMSsLaAlOC37alUTrYTj9dgQos/Oyw1mEb4tN7P8s
+         8b2LIheC5jRX2uySNYm3oqXhfCFfrRd17i7HSojvVFhGyDIrWJDv8IRUe1JmkJ+2AwZz
+         vrUXrdzspaf4sbeOTlKl9riRhhNL8s6Y3qt6aBraUdqSmlLQDvXY7Hims42n5potTLho
+         SFzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXtrrg/OFLYLypRX0I8PYnT1P//isYA7B9mchSwzf8e3QVW50POOi+oqQuYkcbMmQwa1a+Bez/vfU796h0j3agnr2WsxP1wOxfr2g==
+X-Gm-Message-State: AOJu0YwwWyjKFmYJwZDyigqusWODR4c70o5hOqv3v/huyb7ewJmZii7Z
+	IEy6spSA26R9OcOTw5XLdOAZ9MpwcLP/Uw2K77IWt/nW0DAVYOvjm62Adxt3OI0=
+X-Google-Smtp-Source: AGHT+IHQZBq9gGi04QHPhWrIeVoppGhM4cBpGMsNRG5Tm6dNoMEyFQ9kGxrHF/G1xHo1JxNtiYUrpA==
+X-Received: by 2002:a05:600c:c09:b0:418:ee2:5911 with SMTP id 5b1f17b1804b1-4213d3068f9mr54739485e9.28.1717509050485;
+        Tue, 04 Jun 2024 06:50:50 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42133227f8asm139569755e9.19.2024.06.04.06.50.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Jun 2024 06:50:50 -0700 (PDT)
+Message-ID: <a2cb1290-9e01-4136-9592-ce439b1096b6@freebox.fr>
+Date: Tue, 4 Jun 2024 15:44:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240604-panel-mipi-dbi-rgb666-v4-3-d7c2bcb9b78d@tronnes.org>
+User-Agent: Mozilla Thunderbird
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+Subject: [PATCH v2 0/4] HDMI TX support in msm8998
+To: Rob Clark <robdclark@gmail.com>, Abhinav Kumar
+ <quic_abhinavk@quicinc.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ MSM <linux-arm-msm@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
+ freedreno@lists.freedesktop.org, Arnaud Vrac <avrac@freebox.fr>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jun 04, 2024 at 03:20:30PM +0200, Noralf Trønnes via B4 Relay wrote:
-> From: Noralf Trønnes <noralf@tronnes.org>
-> 
-> MIPI DCS write/set commands have 8 bit parameters except for the
-> write_memory commands where it depends on the pixel format.
-> drm_mipi_dbi does currently only support RGB565 which is 16-bit and it
-> has to make sure that the pixels enters the SPI bus in big endian format
-> since the MIPI DBI spec doesn't have support for little endian.
-> 
-> drm_mipi_dbi is optimized for DBI interface option 3 which means that the
-> 16-bit bytes are swapped by the upper layer if the SPI bus does not
-> support 16 bits per word, signified by the swap_bytes member.
-> 
-> In order to support both 16-bit and 24-bit pixel transfers we need a way
-> to tell the DBI command layer the format of the buffer. Add a
-> write_memory_bpw member that the upper layer can use to tell how many
-> bits per word to use for the SPI transfer.
-> 
-> v4:
-> - Expand the commit message (Dmitry)
-> 
-> Signed-off-by: Noralf Trønnes <noralf@tronnes.org>
-> ---
->  drivers/gpu/drm/drm_mipi_dbi.c | 14 ++++++++++----
->  include/drm/drm_mipi_dbi.h     |  5 +++++
->  2 files changed, 15 insertions(+), 4 deletions(-)
-> 
+DT bits required for HDMI TX support in APQ8098 (msm8998 cousin)
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+$ make -j20 dtbs_check
+  DTC_CHK arch/arm64/boot/dts/qcom/msm8998-mtp.dtb
+/home/mgonzalez/linux/arch/arm64/boot/dts/qcom/msm8998-mtp.dtb: pcie@1c00=
+000: False schema does not allow {'compatible': ['qcom,pcie-msm8998', 'qc=
+om,pcie-msm8996'], 'reg': [[29360128, 8192], [452984832, 3869], [45298870=
+4, 168], [454033408, 1048576]], 'reg-names': ['parf', 'dbi', 'elbi', 'con=
+fig'], 'device_type': ['pci'], 'linux,pci-domain': [[0]], 'bus-range': [[=
+0, 255]], '#address-cells': [[3]], '#size-cells': [[2]], 'num-lanes': [[1=
+]], 'phys': [[36]], 'phy-names': ['pciephy'], 'status': ['okay'], 'ranges=
+': [[16777216, 0, 0, 455081984, 0, 1048576], [33554432, 0, 456130560, 456=
+130560, 0, 13631488]], '#interrupt-cells': [[1]], 'interrupts': [[0, 405,=
+ 4]], 'interrupt-names': ['msi'], 'interrupt-map-mask': [[0, 0, 0, 7]], '=
+interrupt-map': [[0, 0, 0, 1, 1, 0, 0, 135, 4], [0, 0, 0, 2, 1, 0, 0, 136=
+, 4], [0, 0, 0, 3, 1, 0, 0, 138, 4], [0, 0, 0, 4, 1, 0, 0, 139, 4]], 'clo=
+cks': [[37, 94], [37, 91], [37, 92], [37, 93], [37, 95]], 'clock-names': =
+['pipe', 'aux', 'cfg', 'bus_master', 'bus_slave'], 'power-domains': [[37,=
+ 0]], 'iommu-map': [[256, 38, 5248, 1]], 'perst-gpios': [[39, 35, 1]], 'p=
+cie@0': {'device_type': ['pci'], 'reg': [[0, 0, 0, 0, 0]], 'bus-range': [=
+[1, 255]], '#address-cells': [[3]], '#size-cells': [[2]], 'ranges': True}=
+, '$nodename': ['pcie@1c00000']}
+	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie.yaml#
+/home/mgonzalez/linux/arch/arm64/boot/dts/qcom/msm8998-mtp.dtb: pcie@1c00=
+000: Unevaluated properties are not allowed ('#address-cells', '#interrup=
+t-cells', '#size-cells', 'bus-range', 'device_type', 'interrupt-map', 'in=
+terrupt-map-mask', 'linux,pci-domain', 'num-lanes', 'pcie@0', 'ranges' we=
+re unexpected)
+	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie.yaml#
+/home/mgonzalez/linux/arch/arm64/boot/dts/qcom/msm8998-mtp.dtb: phy@c0120=
+00: 'vdd-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/phy/qcom,qusb2-phy.yaml#
+/home/mgonzalez/linux/arch/arm64/boot/dts/qcom/msm8998-mtp.dtb: clock-con=
+troller@c8c0000: clocks: [[34, 0], [37, 178], [150, 1], [150, 0], [151, 1=
+], [151, 0], [152], [0], [0], [0], [37, 184]] is too long
+	from schema $id: http://devicetree.org/schemas/clock/qcom,mmcc.yaml#
 
 
--- 
-With best wishes
-Dmitry
+Arnaud Vrac (1):
+  arm64: dts: qcom: add HDMI nodes for msm8998
+
+Marc Gonzalez (3):
+  dt-bindings: display/msm: hdmi: add qcom,hdmi-phy-8998
+  dt-bindings: display/msm: hdmi: add qcom,hdmi-tx-8998
+  arm64: dts: qcom: msm8998: add HDMI GPIOs
+
+ Documentation/devicetree/bindings/display/msm/hdmi.yaml      |  26 +++++=
++++++-
+ Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml |   1 +
+ arch/arm64/boot/dts/qcom/msm8998.dtsi                        | 128 +++++=
++++++++++++++++++++++++++++++++++++++++++++++-
+ 3 files changed, 152 insertions(+), 3 deletions(-)
+
+--=20
+2.34.1
 
