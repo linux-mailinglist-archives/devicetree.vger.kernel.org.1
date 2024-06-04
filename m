@@ -1,157 +1,283 @@
-Return-Path: <devicetree+bounces-72360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A71888FB75D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:32:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82F778FB769
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:33:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B9371F288B6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:32:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35FB2286356
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:33:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36EF113D501;
-	Tue,  4 Jun 2024 15:30:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03EE8149016;
+	Tue,  4 Jun 2024 15:31:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h+1n0YOg"
+	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="TUJeu2Fx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2118.outbound.protection.outlook.com [40.107.21.118])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5B9713C9CF
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 15:30:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717515021; cv=none; b=kmpcIYnkTYJZGP+G+I5HMpcPX829HUKqxmt8KeLPUcQiAAs6ko4QBgcIuLmHytF63o8eVtd7mbZ+G/Zx2ltMQN0JUBb1IJQ7P0gGtL+AJa5EEBKLqK+yno6Ul+9NSn6W5Umt7aIBVB2gW5xM7ulsx+R6kWMD/N7SNJa/8KPIsss=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717515021; c=relaxed/simple;
-	bh=QexcIlkMVkXcMJziapqOs/Z7tER49tgVeGxQH9FotnM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=GgzHgCpqo7hYUp7V2gHr9Aq7A3jBhlYxl5iltVYhIOC1ceiLWtJCVTWk2ShKxoHby1GolZpEOc0iVUc8Nj1zeXIX9tXmUSTbcFwoJFhSR3N3kP+kKuzUz6vL+SM3SNKdH3EK5WxED7/9ypqu9fgmn9vYomtYOKIG13762gbCA9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h+1n0YOg; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4212b4eea2eso40498515e9.2
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 08:30:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717515017; x=1718119817; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=j5uH3wfnvrFiksTGlbKOSszbSf1fAnlhCPie5IFC614=;
-        b=h+1n0YOgovJ6wB3IOI8nq3zmXNv+kFhWEdeSSeHUmrryEZNdQBa7zksmc7pdEZz/Sx
-         pHvVFNw+qW1h2fY/llXMzJcQm91T3qIHz3I6mo0r2YoxKf2FUI54M7mGkrQ7qZ7dEJQo
-         DR3SHm/zA72/UNIDFkGLt/GudiUAIlqNTnZLYgDvK0jgctpLEqYzzR+Zw2a22jgOxCH2
-         IuafufW0MfQdWsm7+Llug84v2VYmuKFdOej9ud9aB2yX3uhPBsln7Bfm66WAemc1BvdG
-         bO6U50Sm0S27m9wWKoWEd6ImjsUZt55VrY5NjUE5fYtD4HOQCiGcaHBImev6DQSsXNxB
-         OmFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717515017; x=1718119817;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j5uH3wfnvrFiksTGlbKOSszbSf1fAnlhCPie5IFC614=;
-        b=Wppn2fNfPt6yee/yELq2cGyPCthOpfrWKLtYntCGndydQ3ZQWET4HXLPwDsqZ3EpCv
-         dESr2I1TRmoMLYp/EtVF4xnxFml+tVzk5VYQREzGO5BvMQhHDcJLj7ZA7xdSBZlc1oy/
-         H0PluFx+A3LLGhJpHKtcbAkZfj7/ns6uO6sPKNhbs/raZWmsOdhlaKuPuc/5QzvfmNZr
-         EXtOBzQyOIYsB3K0gepUMeFTmhsmsiyeltyh2Q9pdCnnJ7EITuE71l7HzbcxSrkzTych
-         vkA1JWSuA0IEe7zn3in8biRnkey05K56+TtDwKYz6/UlnUlxYH8jKcFHk9fIQiTCUnnO
-         m9Jw==
-X-Forwarded-Encrypted: i=1; AJvYcCX6xlWOyiWKR5joZwa2j5vZ1n8foO3dWTbWAV/fakeRfOsqlgZhcuOhE1irP2DgiO0bURGGwnhLePZXSpeCeU4WZ/k3VUqvkBAD4g==
-X-Gm-Message-State: AOJu0YyVldrgJCUJd8he0uCHUc72uYKWVWJgc78zBnhijy0KaKCk9dj0
-	YaVMrkh7uQqIUTPb3DdjCnKrH7jrK7cbszzX3FYNMWyMzh1JQnNnajg9GJkDTSk=
-X-Google-Smtp-Source: AGHT+IFfygADI3Knw6uoDLdNWJTkubtO3DnhNjlCUfWwACEhTqW2+UzF/XTt9DYR7CgI5sWzIYcM1A==
-X-Received: by 2002:a5d:5265:0:b0:356:48f5:4383 with SMTP id ffacd0b85a97d-35e0f36fba1mr9078996f8f.61.1717515017204;
-        Tue, 04 Jun 2024 08:30:17 -0700 (PDT)
-Received: from [192.168.2.24] ([110.93.11.116])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35dd04c0e8fsm11910035f8f.2.2024.06.04.08.30.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Jun 2024 08:30:16 -0700 (PDT)
-Message-ID: <44f4c2ba-56de-4b20-90d8-fcfea4c32cd3@linaro.org>
-Date: Tue, 4 Jun 2024 17:30:15 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D830F149001;
+	Tue,  4 Jun 2024 15:31:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.118
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717515089; cv=fail; b=SHiXw1t5vzw1IEBydUk5k6LSl3+gEJc0ki31wbQKfZQITYpH63OKcaS1Nk1YfaMBxHKwkPLtMjS07pKbhZwxew3nm3sk678O1We5KsFvoTBW8Ee17htMsqii+YkSSenIEAE/dwq+mvYZVKDjYVXDh76vawtve807l/ulbG0J42U=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717515089; c=relaxed/simple;
+	bh=n+8ZHSxOO+cGq+YxO78St4orXLLCthyVvQqvGUBi518=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=afTYW7QXwh0DDpG/GyeXHjKKvUgWTSuM0vdsyWG0C/nBSC0E8616FFoTjvosy1hrD62SS9jZB+EFkS5z152DPvcvW2wO4qS8xcH9MVRuXVK4u2LUkqqwaBTP6maVgWNjNDQUPJIrl/sMoZndjJb8QLpFZRsLDnRJAV3lPeZVmh4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net; spf=pass smtp.mailfrom=wolfvision.net; dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b=TUJeu2Fx; arc=fail smtp.client-ip=40.107.21.118
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wolfvision.net
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FeSII+IYtpBIW0XrdtxFJUI5quIS/wTE2Bs9bbjaaj3laUmMvv95l2o8pnt1SpKbivCo4R9rXUryYQI6ScR9+6AeGwWnPxPSWijHxyRj6ODw8MukYNHdHeO+Qz5zkN7OQJF1bzaNIVC4j7Pv8FzFuMoP4jOmYALTizZuEydrQBZMKBkvcXvElE/08avEMQWnJfvhgitMK5SFgZCRet9HwjVccRivUx3Hnge7weoZtm6PJRiWd+2mlKLTego7f2z92Vd8jgXlO8Z6FkC+KSpou+Ij8jpT9ko3M6hZot9ny4OGFFO7wJj2g30MDaUJKCcJYQr9vaSq1rtIK+6+NS96vg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tsJU62CPaA+d6cak7Ee34TDG8PrySGSklFdMd96xOyA=;
+ b=IsXI/7dZ7KC/m0l+0vVKAAEUmg0Z0xxeXtiE1q8FbPw3RlZVnBPn7eyBpOBVz1nP/PCKEBFRBp56aZJsagJ7aqEmKiliKTqAVauULnocQI8rL7DPfNmeE18e9Lsi6YakZidKHgS9iVt1PZ5UDp3Sq1EsaS84lP4XRdaIlpa7Yqkad6DQ+tCNordcO9Butm2liaQogZzY0jHigQFHySEDMFoR/1EiSM+iGWaWOGHUzAodCyufNa04v6Y0gL5mnJd+wOVxfD/3fmC+2h2kb4fSrcgGYiAJBvkx+uCSThOfiyJl4LkhVZzf4G6+JtVNJrl/sfuj7U6oq2pBUR4WrVo3tA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tsJU62CPaA+d6cak7Ee34TDG8PrySGSklFdMd96xOyA=;
+ b=TUJeu2FxKFkQSStMVrZn4zwEu9OLdNuwor4kEi2bJMIHwbMY1bWWMyGT4h8C69ObzAkDGnbcBszZJtJQ1Ahow6uSYAH6EbnfkdJXDYR5TeOoEc8F57VRy610/O1dT7/n165LjUVzrmR4AMu5wp0OQIXFAW/BOGkQ6lNg1D+9nJE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com (2603:10a6:803:111::15)
+ by DU0PR08MB9911.eurprd08.prod.outlook.com (2603:10a6:10:401::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.25; Tue, 4 Jun
+ 2024 15:31:22 +0000
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::a08:11be:8709:f5e1]) by VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::a08:11be:8709:f5e1%4]) with mapi id 15.20.7633.021; Tue, 4 Jun 2024
+ 15:31:21 +0000
+Message-ID: <ef1bb07b-0233-40c9-8c46-0db67d1c8bda@wolfvision.net>
+Date: Tue, 4 Jun 2024 17:31:19 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 0/4] Input: support overlay objects on touchscreens
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bastian Hecht <hechtb@gmail.com>,
+ Michael Riesch <michael.riesch@wolfvision.net>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Jeff LaBundy <jeff@labundy.com>
+References: <20240422-feature-ts_virtobj_patch-v9-0-acf118d12a8a@wolfvision.net>
+Content-Language: en-US, de-AT
+From: Javier Carrasco <javier.carrasco@wolfvision.net>
+In-Reply-To: <20240422-feature-ts_virtobj_patch-v9-0-acf118d12a8a@wolfvision.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1P190CA0006.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:802:2b::19) To VE1PR08MB4974.eurprd08.prod.outlook.com
+ (2603:10a6:803:111::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: amlogic: add GXLX/S905L/p271
- reference board
-To: Christian Hewitt <christianshewitt@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240604084134.3315841-1-christianshewitt@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240604084134.3315841-1-christianshewitt@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VE1PR08MB4974:EE_|DU0PR08MB9911:EE_
+X-MS-Office365-Filtering-Correlation-Id: 86dabf7a-2bcc-4858-068e-08dc84ab62f6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|366007|376005;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?bHVOSStNQytzdG4yYnZEVklsaHlkZEswa1RqcEhPVkZ4QTNEYSs3YzBYOEw3?=
+ =?utf-8?B?MEJnYnNyT1F5SXFMMVFlOW5JM1Ftd05wU0xPWlZmTDBYTWRWWFpUVnlkbG9Q?=
+ =?utf-8?B?bG5KS1VZcEZtTE9OaW93eFVWWmhxS2N1ZjkrS0phMTVPaGl4MFBqWkFqcWdL?=
+ =?utf-8?B?anhSeldwMW1qZXFGOHhmSnQ3WmdzZ3djODlRaGR4RHRDWEsya3grbVJ0L2xU?=
+ =?utf-8?B?dzAwc1FXeXpOdDYwSXZEbjduQ2s2eVd5RGdNZ24reVo5cjBSdE5jY1ZGSDh1?=
+ =?utf-8?B?dWN1ZGR5TlkydEMvcGxmSHFvVkV4UWxRaFZFbW0xY202WWR6amtPcWoxTkVw?=
+ =?utf-8?B?eU01b3hPaE9RVGhTSHNIWmJwRG0yYXFndXIxQ0tYa1BCME4zcHgvTnprQ3pu?=
+ =?utf-8?B?N3crODBkZVlYakRsWnVJME1mVWt1UHc1SEU1TU1VMC9DTXlpa2tyQUdXVkhE?=
+ =?utf-8?B?OGd6L1lrN2R4UnlwaWt3TE1ucFhvMTFrUlpxY0hDNjc5blZ0d1ZieGp4WEJS?=
+ =?utf-8?B?M2xLTHJGanlKUFZtSUllVEJEdTRiN3lQTGF1bHNUSHo3QXFXaWZ5V0NKQnlB?=
+ =?utf-8?B?ODhGM0VjL2MzU25Ldi8wSjk0aXhOeTFmVEMrVnVHaWRWTU1tWEtwT3R2aFlJ?=
+ =?utf-8?B?QTUvL21yWWIwTWdCMmhpRGR6dXl3aDl2dUJIRVlHTzcyTE9sQ0hXOFV1SFVH?=
+ =?utf-8?B?V1B0SGM3YThkcVh6b0l2RFdhYy8zMER2a2tuTk11MTFUaytTZ2hSVXlpR1BW?=
+ =?utf-8?B?TFFLbGlqbkhDSVRSSUdTL25BVDZmZGxLYmdjbktMb1VyNjMrR2FSQ04vYUYy?=
+ =?utf-8?B?MTBLdUVrQVZrbVo0NVhOc09yS0RjdnRvb1NnalVOVjhiQVlYS1ZYc1FZTTlO?=
+ =?utf-8?B?QkVSQUI0Ukk1YzlRZnZoMTZlOVNaZHRmSkZyMWpySFp6UmxJMzAyaG9CZUtt?=
+ =?utf-8?B?dlFuTnZKODlhUmVaK1BPRHkrYkVLMFV3cGVMU2xjSFFBNUg2YlJnUFhHeUlu?=
+ =?utf-8?B?QVcxR2E2R3BybzJCaDhjMm5YTlkrMnAzVDh0aXhLWnNnTExnQ1FIK0VlWS9Q?=
+ =?utf-8?B?Y282TGQvSUMxV1RMTmFNQ0NReXZrTk5HTnZaSHoxQ3pJcjNnSkU1SXZ1bjVU?=
+ =?utf-8?B?dEJ3d1VUbi9UU0V1WjlUdFQwZ25tTDBEY1Y1K1A1Y1JqYWFQTGRtUXcyMXF2?=
+ =?utf-8?B?WGo4MXRvNlRHMk1xUUdlbGxML1FBbWRCSEkya0lGeFdzRDZzYmgwY1pkWnA3?=
+ =?utf-8?B?NGQ1VWxGSzcxVFR4L2pXbis4Nk9RMmRBb0YzaDcrQS9ST2RaYUF2ekF1K1BG?=
+ =?utf-8?B?SHloSXVQQ3BQRmJQamR6SVZmeWIrT1lXaG54VThKUkdHVWV5bXN2cEZXVkkz?=
+ =?utf-8?B?WEVOZ0lYYWpHdkVFcXZ1bVNzbVZHbG9ZUkUvdkVjVGQ3dlNVL0E3TncyR2k3?=
+ =?utf-8?B?cU1STlZERmxCVlBmeE9ld0dqYXJwcHdRWmFrS1lKOGpLTHZhUXphRjF3U1Z0?=
+ =?utf-8?B?WERla0hOY1JHUUNzL0hhbFFiS24xaEh6cEtMMkVLcTlxLzJlUDE3djhnMlJl?=
+ =?utf-8?B?dUgzakpGMUJTVnNVMnA4MXNSb0ZZUytoazA4QlE2ckpPWDJxZm94WnQrMHpw?=
+ =?utf-8?B?NHFQSi96UGd4WDIzNzRnUVJoYy9hczJQNXJvN0dycDRxU3hGaWY3Nm45Ymlk?=
+ =?utf-8?B?Qm5JU3ZibDF2OHdyQ29Cb2l2Yk1PdW5CSmpiM0IwcnZGNHoyVzRFdVd3PT0=?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR08MB4974.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(366007)(376005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Zjk5SWRHQ1NDTVVib3RHVk9SUGVNOFowQW9vNXZvV2tEVVByTnliTEk3bVNp?=
+ =?utf-8?B?R0dvd0pJYnZSOW02S0JnQWYvU0tpL2VYZHdPMDVtMHlBeGVoci8xbUo0TDZm?=
+ =?utf-8?B?b3FFTlpSd1lnVFdmOFdCN3lVeVdQS0xlbm1tcEZFRndJVDdzK2YwSVhBc3dH?=
+ =?utf-8?B?U0o2ZTMwTENWVkpFdjRnOEtVUndiUFBuMEhwRTB0SFgvNTZ4ZlhGMUhkZDdp?=
+ =?utf-8?B?OFRZTFE0M0lGOHJnL3I3VFFQaCtPYXo1WTRVTWhsMTF6bkZuS2wzcy81TTJ6?=
+ =?utf-8?B?UGEwYTYzb1ljRjVYUC9WVjZUWlA0d1Y0K2grZkJyNWVCZEJqdXVyRytSV2w3?=
+ =?utf-8?B?c1NnbXNCWFpjWGc0QU0xL3JXY0RDZkh2c0N3dks5dzhMaWQzeGtMRi80NWI3?=
+ =?utf-8?B?K0dPeUxRVThqWFV0UnNubHVvYWovZkpuL1FTZVhwcW9mVHpIdlk3U2dEbGh0?=
+ =?utf-8?B?SVJDdWxJdityWUtyQ1dPUXFuWWtNbDhuOHA1NmhDdjc3T2FxNkE0eEJEYzBC?=
+ =?utf-8?B?aisvYWhic2pmWWt2UHVQZ2c1MldQQ3phNkxWVjRrbHFpZXJtcEl3ZWFqcWJT?=
+ =?utf-8?B?QlBzVzBwNnF0eTNKRGp6VVJZTmU4dElIaFZyZ2k2bVlqdnZTQkxjbHk0a0M3?=
+ =?utf-8?B?TzlWK0dvWHdYd0xBT0x4SnQ0NWVXTzBvVnR3My9Mc21KeFJCTHM2NkI3L01U?=
+ =?utf-8?B?UEZOcjhsN2lEamFJS1I3OG1mNmdzNWVsSnpnc1RiTHhKNGVpOGVNNGo3SUoy?=
+ =?utf-8?B?RVhWQi9sVWVpa3FMY1c4WlZ1Y0NzN3NoUktDWG9RLzRQM05TQzg0eWYveGI1?=
+ =?utf-8?B?YnRONHJRelpNeEtrWElLdm01c0YxK3djYlUzVlUvWk95RGE1a1lwUVIwQUU4?=
+ =?utf-8?B?eFVPZUVKclNTdGpnd0JVaGxvajlvSzNDaVY5b0tURDNZY1dReHVvKzdrU0RM?=
+ =?utf-8?B?eEs5K3Bxamg3cGRiV215RTBSdXJxY0dweWljK1ExNGRBbjlPbHQ5c0xEY20y?=
+ =?utf-8?B?aUp5Y2x4aS81UDdKdkxTSHNjdlhwVnRxRDhaNTRsajFEY0hPUlc4SVhHYk41?=
+ =?utf-8?B?UmRyc243SDNTUnJKRzZqdktUOXptL1dEbSsvamx3emdVUHRhRDdpYUovTEM2?=
+ =?utf-8?B?Wm1CSVYwRzVCYVZhQ2xLZ0dtTG1qbWIvbkdLSzJXNDRzaWdWMGl6WHh1WENI?=
+ =?utf-8?B?Unp0VDZkak9CTFJ6S2pGbTYwY3oyeHhKbzNYcTFXY1JhSWxtbnNwQnFydUVl?=
+ =?utf-8?B?Qjg3THZFejI3K2t4RkVnUThyWjR4S2N1eEN2bm1MMTVsRFFCQVJvRXdwTzl1?=
+ =?utf-8?B?NWVaUnpUaFAyc0pmTjhwVHdNUDhWNG5OQjk3RW12ZDloYitTWTZJNWJ0R2N2?=
+ =?utf-8?B?V1FadHNYeXcvWkhwZ1NlRXRSUnZ4OThuYnpTT1RPYi9FckYxY1VKdXh4cFdZ?=
+ =?utf-8?B?YmlCK3Z3RDdlYjJsK1BCcnpwZHBKbVpIVExMWWI1Q3NjQnFtRFE1bUNia2Y3?=
+ =?utf-8?B?ZHR5djIzamtIdXFMaFFHdmxLQVVIRzBGbVV1SGEyNUEvWXd5Zm5LU2hkamx0?=
+ =?utf-8?B?RVg2bTFSaWZxYllqWnFuUmljeXdhUG5wLzMwRW54NSt2SFgyai96RXZYQlhG?=
+ =?utf-8?B?UmdVbWpiWHpmNVg3SDJnQ1dTYXI2ZXEwOGFXTFBQeXBrK0l0SHp2bzlXR2hH?=
+ =?utf-8?B?NUZHY0NNaHFpeWhzczZ0eUlWSkw2cVRsUlZvL2J4cWJFQzN5bnF6b3R4MEFX?=
+ =?utf-8?B?UnNKRlNmeUZkYStXVjJncjZIZndOaUN5M1NvMytpcVFtb1crTmJ1cEpSOW5X?=
+ =?utf-8?B?OFNSRTdWTnlOaTkzNjVkK0RVSURpeEhzQm9YNGo3Y2ZUSndxcXYyRzhhUk9y?=
+ =?utf-8?B?bndIdWp4QmYwaSswbjVSN25IVFovYnU2b0VNNUtFREZNZmhTcHByYzJuUFhP?=
+ =?utf-8?B?Z2VFWnFYU21xNVFaTDFOY2VDbklPT1BScm9XT2NNdGpOT0ZtKzdHTFdISnhP?=
+ =?utf-8?B?OWdHWFUrTDBFYkNYRU5rOEZPMnk5ODcxZUZQMjRjMnhIcGp2emVPQWRSbVRQ?=
+ =?utf-8?B?ZHRsTy9iTHZTak5jMFc4cCtzWTdsYnd3TGo2dVVHbGZxNTY0NXRpb0JHVDBh?=
+ =?utf-8?B?RVZNQWZDaGxsZFF5cWYvMVBGZ2tXZEV5dmZwM1UrNkFSQUpMV1pwSWVWM3ha?=
+ =?utf-8?Q?hivvPBAABbovG3WlWFZ5yqo=3D?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 86dabf7a-2bcc-4858-068e-08dc84ab62f6
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR08MB4974.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2024 15:31:21.5482
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nFeuIT7RuAQiadGJTARTB9jN4bZZMv8bxN/EmuncknEjhz3Ch3XJjWY5PcM1c8aBQXzKyRnuMCHszzJMlol9smKDePYDjn/7sCkZlKWbm8k=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR08MB9911
 
-On 04/06/2024 10:41, Christian Hewitt wrote:
-> Add support for an Amlogic GXLX based S905L SoC and P271 reference
-> design board. The S905L is a low-cost design similar to the P281
-> (S905W) and is similarly derived from P212 (S905X). However S905L
-> omits support for the VP9 codec and uses Mali 450-MP2 (not MP3).
+On 22/04/2024 12:07, Javier Carrasco wrote:
+> Some touchscreens are shipped with a physical layer on top of them where
+> a number of buttons and a resized touchscreen surface might be available.
 > 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> In order to generate proper key events by overlay buttons and adjust the
+> touch events to a clipped surface, this series offers a documented,
+> device-tree-based solution by means of helper functions.
+> An implementation for a specific touchscreen driver is also included.
+> 
+> The functions in touch-overlay provide a simple workflow to acquire
+> physical objects from the device tree, map them into a list and generate
+> events according to the object descriptions.
+> 
+> This feature has been tested with a JT240MHQS-E3 display, which consists
+> of an st1624 as the base touchscreen and an overlay with two buttons and
+> a frame that clips its effective surface mounted on it.
+> 
+> To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> To: Rob Herring <robh@kernel.org>
+> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> To: Conor Dooley <conor+dt@kernel.org>
+> To: Bastian Hecht <hechtb@gmail.com>
+> To: Michael Riesch <michael.riesch@wolfvision.net>
+> Cc: linux-input@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
+> 
+> Changes in v9:
+> - touch-overlay.c: trigger a button release if the finger slides out of
+>   the button segment to be consistent with the button press when sliding
+>   into a button segment (see touch_overlay_button_event()).
+> - touch-overlay.c: (nit) remove braces in if with a single statement in
+>   touch_overaly_process_event().
+> - Link to v8: https://lore.kernel.org/r/20240320-feature-ts_virtobj_patch-v8-0-cab6e7dcb1f6@wolfvision.net
+> 
+> Changes in v8:
+> - touchscreen bindings: fix description formatting.
+> - Link to v7: https://lore.kernel.org/r/20240119-feature-ts_virtobj_patch-v7-0-eda70985808f@wolfvision.net
+> 
+> Changes in v7:
+> - General: return to a single input device implementation.
+> - touchscreen bindings: segment instead of button in the label
+>   description.
+> - touch-overlay.c: define button-specific data inside segment struct.
+> - touch-overlay.c: remove fwnode_property_present() and check return
+>   value of fwnode_property_read_u32() in touch_overlay_get_segment().
+> - touch-overlay.c: simplify return path in touch_overlay_map().
+> - Link to v6: https://lore.kernel.org/r/20230510-feature-ts_virtobj_patch-v6-0-d8a605975153@wolfvision.net
+> 
+> Changes in v6:
+> - General: use a single list to manage a single type of object.
+> - General: swap patches to have bindings preceding the code.
+> - touch-overlay.c: minor code-sytle fixes.
+> - Link to v5: https://lore.kernel.org/r/20230510-feature-ts_virtobj_patch-v5-0-ff6b5c4db693@wolfvision.net
+> 
+> Changes in v5:
+> - touchscreen bindings: move overlay common properties to a $def entry (Rob Herring)
+> - st1232 bindings: move overlays to the existing example instead of
+>   making a new one (Rob Herring)
+> - Link to v4: https://lore.kernel.org/r/20230510-feature-ts_virtobj_patch-v4-0-5c6c0fc1eed6@wolfvision.net
+> 
+> Changes in v4:
+> - General: rename "touchscreen" to "touch" to include other consumers.
+> - PATCH 1/4: move touch-overlay feature to input core.
+> - PATCH 1/4, 3/4: set key caps and report key events without consumer's
+>   intervention.
+> - PATCH 2/4: add missing 'required' field with the required properties.
+> - Link to v3: https://lore.kernel.org/r/20230510-feature-ts_virtobj_patch-v3-0-b4fb7fc4bab7@wolfvision.net
+> 
+> Changes in v3:
+> - General: rename "virtobj" and "virtual" to "overlay"
+> - PATCH 1/4: Make feature bool instead of tristate (selected by
+>   supported touchscreens)
+> - Link to v2: https://lore.kernel.org/r/20230510-feature-ts_virtobj_patch-v2-0-f68a6bfe7a0f@wolfvision.net
+> 
+> Changes in v2:
+> - PATCH 1/4: remove preprocessor directives (the module is selected by
+>   the drivers that support the feature). Typo in the commit message.
+> - PATCH 2/4: more detailed documentation. Images and examples were added.
+> - PATCH 3/4: select ts-virtobj automatically.
+> - Link to v1: https://lore.kernel.org/r/20230510-feature-ts_virtobj_patch-v1-0-5ae5e81bc264@wolfvision.net
+> 
 > ---
->  Documentation/devicetree/bindings/arm/amlogic.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+> Javier Carrasco (4):
+>       dt-bindings: touchscreen: add touch-overlay property
+>       Input: touch-overlay - Add touchscreen overlay handling
+>       dt-bindings: input: touchscreen: st1232: add touch-overlay example
+>       Input: st1232 - add touch overlays handling
+> 
+>  .../input/touchscreen/sitronix,st1232.yaml         |  29 +++
+>  .../bindings/input/touchscreen/touchscreen.yaml    | 119 ++++++++++
+>  MAINTAINERS                                        |   7 +
+>  drivers/input/Makefile                             |   2 +-
+>  drivers/input/touch-overlay.c                      | 263 +++++++++++++++++++++
+>  drivers/input/touchscreen/st1232.c                 |  48 ++--
+>  include/linux/input/touch-overlay.h                |  22 ++
+>  7 files changed, 475 insertions(+), 15 deletions(-)
+> ---
+> base-commit: 0bbac3facb5d6cc0171c45c9873a2dc96bea9680
+> change-id: 20230510-feature-ts_virtobj_patch-e267540aae74
+> 
+> Best regards,
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Little reminder: this feature was reviewed a few weeks ago, and it is
+waiting to be applied or receive new feedback if required.
 
-Best regards,
-Krzysztof
-
+Thanks and best regards,
+Javier Carrasco
 
