@@ -1,179 +1,154 @@
-Return-Path: <devicetree+bounces-72110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED6118FADF2
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 10:49:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6221B8FAE07
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 10:53:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2270281C4B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 08:49:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 924A61C20D46
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 08:53:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 095D4142E7D;
-	Tue,  4 Jun 2024 08:49:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD99C142900;
+	Tue,  4 Jun 2024 08:53:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=OUTLOOK.COM.AU header.i=@OUTLOOK.COM.AU header.b="LdnxwnwP"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QcfbN6qa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AUS01-ME3-obe.outbound.protection.outlook.com (mail-me3aus01olkn2160.outbound.protection.outlook.com [40.92.63.160])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49CB222066;
-	Tue,  4 Jun 2024 08:48:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.63.160
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717490941; cv=fail; b=ZDQ+jwYMKqT7Ua5DGl5XtWGXF/qkY5IAFjsUHW62kRHbUjo1fj68IESAF1lZVWzaLSRVgOiTRdEd1KT/c1+X5Jhxa7aF9SSFxgI5z6CcqKH8PIND8W0eAhfJ7QEMqTH1HOjnhPLXLRZw2OI1m2KcwvNryh+T4H5gqoBB5LE2CBQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717490941; c=relaxed/simple;
-	bh=sliAdc9zknd4EPTPPygv/yar1UeOf2JBmCVI2u0MuWw=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=Fx+No3+Iawh+SKGw3dFKy22TxDsuDGvjcClG3pGQdKcEes8Dcy52HaytGE04uGPm/9pIHV3vA0ObBkjO58kNjd5mcA0wpG6jov71JbY0c/hXe872evoaw1gDvhKNc6x5oPcnzwAH3PaDe7PPVQUF95kGorsfZkI8CrJg0YPkF8o=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com.au; spf=pass smtp.mailfrom=outlook.com.au; dkim=pass (2048-bit key) header.d=OUTLOOK.COM.AU header.i=@OUTLOOK.COM.AU header.b=LdnxwnwP; arc=fail smtp.client-ip=40.92.63.160
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com.au
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jGiZghcCPFZvL8IZggChJ6lT6bz53+rI3eGzLGAOcolF2BHJac/0h9QAPBduE/P2q2RgVQYAWzNjLPOOWiQaHy7hk3opsnS/6D5RlT3d8OS0pM5ViVKZcDcm2eC6mGUuQ1wmrFdFHy/nP+UD4n1lr8UyH2Aoiqd7WvnOhzxW1pAXR2cA25PViy+G4jWS7Eu6bwOZ2HftY8Cd1UTHD7FS8Doe52zpgiRvXKFhfhpyVPtFwYO+wp94Nmr1xwi7DvvVTIEd1rMi1QUHSdN9LSPheVWAn0GV36C5cnWOh810d84AbLIiohzynV47lUfqehEfVUypCGRhVJK/vTZpQWmPtA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gbQb2+2HmY5kY2Fdb25F8TfnULwCk59ICgHHEZ8Yr/8=;
- b=Bg5gGwPackXrTyPW2QdoREIQMo8XtW9nzFtBDR30YJjVTj0ZSySViTy1LYc4L7EUMohpQvVluMGIHxsHoRS21rjpZU76154YMK7OOVfO/jFL95A1MZHziizUORkRZd23CBiN2popS4ul3M/fFhX+e2dSnrXEZcS/wEdXRnPne+rpr7UBkh3X6QDzgRTr6cMJj4LsJ7+OQWitc5NIBCzyZJVTHm/kvzrbVAwNSJzo5qyO/3O27la+LoLsHTAOM52Dts0sbmutCa77T6UHML4vgYvkMA5U+Dh6kFFnxIUqNn2fMvreJID0AixDkSbCXEYtYuzJ1DpZPY5vWWbmFaLGQQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=OUTLOOK.COM.AU;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gbQb2+2HmY5kY2Fdb25F8TfnULwCk59ICgHHEZ8Yr/8=;
- b=LdnxwnwPW/BV/FcJfOS2ztl3ClmAa65ta2KQhHj8Tvz+L9sFPnIj/TtE1SDFGdkYm9vAMY8uWglyuwkE43BFJFOJxVPcFLtlpbJOGtx7NMPKdwB2QheB4bdIRn9iTScq1IfKb38D4y4YsVAmgBk8TVTw9yH3PHKQbjvAI3LZqhc9gdu0TLAzGEUsY1GW033lt7JRlP+Gq7CeeKZyIiYiJs6z8iQIBuy0ZFHewQbn4n52E4URWy/lZBwfpLiSD5ChgQY4M1A0MS3IxLsb6H6wPu/bkz97auZTQoYASZHIUo8aNtKyOWJ4R3dugSfIqPfZkh3Pk7MUiWMNlh7K00aClA==
-Received: from SY4P282MB3063.AUSP282.PROD.OUTLOOK.COM (2603:10c6:10:159::9) by
- SY7P282MB4571.AUSP282.PROD.OUTLOOK.COM (2603:10c6:10:27c::6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7409.15; Tue, 4 Jun 2024 08:48:55 +0000
-Received: from SY4P282MB3063.AUSP282.PROD.OUTLOOK.COM
- ([fe80::37cc:3733:d1e9:d8e4]) by SY4P282MB3063.AUSP282.PROD.OUTLOOK.COM
- ([fe80::37cc:3733:d1e9:d8e4%3]) with mapi id 15.20.7633.021; Tue, 4 Jun 2024
- 08:48:55 +0000
-Message-ID:
- <SY4P282MB30639393B10CC313292C936BC5F82@SY4P282MB3063.AUSP282.PROD.OUTLOOK.COM>
-Date: Tue, 4 Jun 2024 18:48:52 +1000
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/6] hwmon: Add support for SPD5118 compliant
- temperature sensors
-To: Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org
-Cc: linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- =?UTF-8?Q?Ren=C3=A9_Rebe?= <rene@exactcode.de>,
- =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
- Armin Wolf <W_Armin@gmx.de>
-References: <20240604040237.1064024-1-linux@roeck-us.net>
- <20240604040237.1064024-3-linux@roeck-us.net>
-Content-Language: en-AU, en-US, en-GB
-From: Stephen Horvath <s.horvath@outlook.com.au>
-In-Reply-To: <20240604040237.1064024-3-linux@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TMN: [5Yp1q1fTKdMd5OIUcM9vBiS+GROZ3QAvQbsbmJ2pQHsMLvqkeKOkbqYlAVhB5Zyw]
-X-ClientProxiedBy: SY5P300CA0056.AUSP300.PROD.OUTLOOK.COM
- (2603:10c6:10:1fe::20) To SY4P282MB3063.AUSP282.PROD.OUTLOOK.COM
- (2603:10c6:10:159::9)
-X-Microsoft-Original-Message-ID:
- <286a8879-3995-4d6c-a9cf-12c61f0bf019@outlook.com.au>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFD61BA39;
+	Tue,  4 Jun 2024 08:53:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717491192; cv=none; b=OGx5usOIhMI0S5GxN3mWDZV2lmYy+3vHQmwEEk/4Q59KEKi/n+wBVQQS8UXMAHbIna6X5VRQ4LPlx8jUOyn9jBTLdQZds6AzqO8y/7JhJXwMjPBagVfbQXFc9JQdfcrf4fY5gRV4dgJUw0vmFDpakFHp7lY0suH/JsuvPuiD2BU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717491192; c=relaxed/simple;
+	bh=EF6kcuyEKnCpEhcDAN3Y90hUIGJNMUAFdpjqJ/fxZPI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=icoJBZ5c7TWiwD3c3goN41G5N7sYL4g4kkCO3ZcMW/VJIOhOkNJqiqEllbwRa5LmPS7AlZMaPBmi9Xp0A2N7IE5h70HgCKPffm5SvGaL0YB4T0pO/KkWnm0y79WNkGY/t+2zQVbn2dDiz6UB8lp75BabO5vjucrNLwlKijiEAT4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QcfbN6qa; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4548qvv1104969;
+	Tue, 4 Jun 2024 03:52:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1717491177;
+	bh=6iyLsfE5NFGLIDenSZ7LevfQ5SYEgR7vWcrXflvbod0=;
+	h=From:To:CC:Subject:Date;
+	b=QcfbN6qaz7Gbahay7n3vesS7D/GPGHdB11dY6QcJXvb7IT2cjvdbRUMAJKOAHB29N
+	 e1NskZl4SEC5dR9b2ZSbJxsMZKPj5tnCKjMsv9uOMEMAZAseYXwCyIwbpuKi8Gmtcl
+	 oa5wkOOBtFXsaN5BaEW9cYYcUKxn2GcFWGYo30ow=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4548qvaL083479
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 4 Jun 2024 03:52:57 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 4
+ Jun 2024 03:52:57 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 4 Jun 2024 03:52:57 -0500
+Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [172.24.227.9])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4548qqQh066926;
+	Tue, 4 Jun 2024 03:52:53 -0500
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <afd@ti.com>, <kristo@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <rogerq@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>,
+        <danishanwar@ti.com>, <srk@ti.com>, <s-vadapalli@ti.com>
+Subject: [PATCH v5 0/7] Add PCIe, SERDES and USB DT support for J722S
+Date: Tue, 4 Jun 2024 14:22:45 +0530
+Message-ID: <20240604085252.3686037-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SY4P282MB3063:EE_|SY7P282MB4571:EE_
-X-MS-Office365-Filtering-Correlation-Id: d737b2fa-72c4-4874-a2ce-08dc84732a81
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	AiCh54RhxqxUMOKz23bT/Aylu4Ljuaekor4Za8Jg+xLlvo8sCfCEDdx7rdxW25D0WGmuBm3pmbklTrrFlzCqNLUs3fpXsnE+w/y2zGjUK/0wCg5wyXYKtETox7n0f5bQIrlShcD0AckojX/OAYu91oeL3NHpYsZh3aNHBEOZR7ZhbkFwK47J7C8qqKuMgS6rfZ+l5fL7DqQmo6+lANYXy3Du90c6th6vDMeH6hS3hGIRUZbUveGrCF6tfAP6akguhNrvmltNYCCg5jIiWYHQCTI6Vj2NRLls+EZ7UgzIV8u+Yebsht/I0nXg8Rl2ZpNvw9mutPILMx8jIUu10AWhH7pF/EOqH7acBPZLbRZyQirH0VsFLUXoanySuuWsrKe588xHT6YKuafsp+AiNpC6y7mSWbVoyz8RZqIfEa45j/AVq7R22Uij7xJv2cEDWcWquSgSXoqbD2o1qCFpfE40AM/Q2B1A0zEkTtuCvEtMns4V26501WAnAP5uatTfcWCSt1MD9zwzYSkmT9MhrsNJLiBNsfkG77aMxsUI7qDUSfKH4QSVyk0c7BYjup2rmjox
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Rko2Zi9vV2ZPWFRhaEgxYVlyK1R4RDREUFBsS1pZeHBwOVBVK0FvR2kzVmRq?=
- =?utf-8?B?MVpUZmZvQlF6ZE82REJIUVdvSjhEMmFrOENlSGZGeEltcEtWSjBjaVBJclFH?=
- =?utf-8?B?U0lMME5sY200SXRTV0dtVHQ0SHo3dEd5OHpmVE85R0RycEIvOU5SN0pROGR1?=
- =?utf-8?B?SmlOTzZwVmxWMkx3VUdwVUY2d0hwWEVLc252eENXdXY3OW1pWVExdUIvUTlk?=
- =?utf-8?B?bVp2SlRSb0ZRazJheGY0aXU4YWpPdnpJazcrbkRkVUFXRCtaWldsZ2JaeWwy?=
- =?utf-8?B?aVl6MnlHQ1d0bWRETGNGZktHYzB0OTh4cHk2RHY5bVBFSXVEOTVZUllMTTE5?=
- =?utf-8?B?eGhOU3pRbFhReUh5T0Q4ZE9Fekc4U01ickZ5SUhvTEtvbXNndDEyNGhlZXBK?=
- =?utf-8?B?aEQxaGtYZHJaNmsxS2F0d08rS0s0VmV5RlcvTW9KWFV0ZVRUcEd5N0QvUUlM?=
- =?utf-8?B?eDJMYVhMVHh3RVdXNjVlRms3VmZ0R2h1RENEZEtWc1ZYVjV6R1JJd2V5YjZG?=
- =?utf-8?B?SlRmNHhUTGJYZU1VdXNzUWlrNzJIYVhrcmVTZ1VGSWlXNnR5SkxvZ3c5MFJ4?=
- =?utf-8?B?L1FZaEljVjBtOGJESjdRS2NVQWg4VUx4VElZTG9oNy9KcCtKSDlLQ0IxRE1w?=
- =?utf-8?B?TlNqbjR5KzNsTnJ4cTh0M1Aybk1rNnBoMUgzQnI5Q2xxejMyQU9GeEpRUnNu?=
- =?utf-8?B?VUgrakhqNlM1bjg0TFVSZVZZRWdvZlFEZk1ndC9KcEwweTlNRWsvd2VZanpy?=
- =?utf-8?B?QWpyL3VZajQzbzQ3S3V1WDJ3TzE5UElobUltOTVmS0hMZFQ2M1FQYStXdzh0?=
- =?utf-8?B?cC9kc0xtUUJYS0FxcGF3TTBvSTlnOHNaWnZmSFJ4VjVYQUxOSGNqYXRpdFE2?=
- =?utf-8?B?Z3kvd040eUFCczhrRFc2N0drbHd2SFluVytSMXBJOHEzOEU1TkpiVUZ3SHNY?=
- =?utf-8?B?Y3pxWFp0dWwzU1laQ3QxZk14Q1ZlQmMvUVVKWFREZ1JNRFJPR2wwREFCREdK?=
- =?utf-8?B?dEdOSHJLeHN0Y0t5dzBDaEtkQzJFczJXT1RKalpOOURON1VNRldsTkM2QVVj?=
- =?utf-8?B?OVlVT1YxbnIxMk55Z0s4M1ZBVGZOWUZIeW5hejB4dnErK1kzV2pJcnZlYUhH?=
- =?utf-8?B?VFZlU1Q1UzlnYkVTaFRUNjZMSk93R1YweUxQNTcrNnUweGNRODJjSUhRWUtW?=
- =?utf-8?B?K1ovWkovbE5TM296a0FUMkMzTENBZSsxVHEzcnVyYVZZMzhBa0FESFh0L3BL?=
- =?utf-8?B?MjVxeDNPZmVXM0hPWFRNTVF4M2x5elp4SjVOeWhWN1MyblowZ3JZV3FlY2tI?=
- =?utf-8?B?akFtQjBybzRxdDNCa2pSRFJvQ2RhbW45dFFFMnJVd24ybUFnYnBKRzhBdjA4?=
- =?utf-8?B?empleXhDU1dGVmQ0TDdjay8wOXFBU1NuazhueXNnQzcya2ZTWDNKUlRFdXhW?=
- =?utf-8?B?ZHRqSHVkVTU4YUJzdUdaSE1ZSUJIbHE0QmU4MFU3K0NxZXJrTUkycHlBVkVH?=
- =?utf-8?B?MWpXcXRwdjVud1JtMHpFQWxIZzd0bllpbCtNOXVtSEJ3ZXRVYUYxSGNJUENP?=
- =?utf-8?B?OWw2ejB4SE4yY0JVcHFoR0Q2Nzc5WnRTSUpKSkRkUjRjcUE2Z3YydHYxaWRJ?=
- =?utf-8?B?SjBoTFhpWFVzV3laREVxZHpTbUVZUHcyTjZIb1RiR2kwY21jazliWWVNVjZH?=
- =?utf-8?B?c054QWhERCtLajBmTk14bFpwblBwaCtoSlVRZjNNYkxGSEV4SGpnMWF2QnIw?=
- =?utf-8?Q?LIwlWtwOm3mmqFYYelZZmOxxaR/ZoFXsx3ByHWO?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-746f3.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: d737b2fa-72c4-4874-a2ce-08dc84732a81
-X-MS-Exchange-CrossTenant-AuthSource: SY4P282MB3063.AUSP282.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2024 08:48:55.1533
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SY7P282MB4571
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi,
+Hello,
 
-On 4/6/24 14:02, Guenter Roeck wrote:
-> Add support for SPD5118 (Jedec JESD300) compliant temperature
-> sensors. Such sensors are typically found on DDR5 memory modules.
-> 
-> Cc: René Rebe <rene@exactcode.de>
-> Cc: Thomas Weißschuh <linux@weissschuh.net>
-> Reviewed-by: Thomas Weißschuh <linux@weissschuh.net>
-> Tested-by: Thomas Weißschuh <linux@weissschuh.net>
-> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
-> ---
-> v4: No change
-> 
-> v3: Shorten JESD300-5B.01 to JESD300; 5B.01 refers to the version
->      of the standard
->      Drop unnecessary 'attr' parameter from spd5118_{read,write}_enable()
-> 
-> v2: Drop PEC property documentation
->      Add note indicating that alarm attributes are sticky until read
->      to documentation
->      Fix detect function
->      Fix misspelling in Makefile (CONFIG_SENSORS_SPD5118->CONFIG_SENSORS_SPD5118)
-> 
->   Documentation/hwmon/index.rst   |   1 +
->   Documentation/hwmon/spd5118.rst |  55 ++++
->   drivers/hwmon/Kconfig           |  12 +
->   drivers/hwmon/Makefile          |   1 +
->   drivers/hwmon/spd5118.c         | 481 ++++++++++++++++++++++++++++++++
->   5 files changed, 550 insertions(+)
->   create mode 100644 Documentation/hwmon/spd5118.rst
->   create mode 100644 drivers/hwmon/spd5118.c
-> 
+This series adds the device-tree support for enabling PCIe and USB
+functionality on J722S-EVM.
 
-It seems to report correct temperatures for my sticks, so I guess:
+Since AM62P and J722S SoCs share most of the peripherals, the files have
+been renamed to indicate the same. The main domain peripherals on both
+SoCs that aren't shared are present in the "soc-main.dtsi" files.
+This change has been made based on Roger's feedback at:
+https://lore.kernel.org/r/f52d9569-a399-422f-9cf0-b0bf69b64d18@kernel.org/
 
-Tested-by: Stephen Horvath <s.horvath@outlook.com.au>
+This series has been tested on J722S-EVM for PCIe and USB functionality:
+https://gist.github.com/Siddharth-Vadapalli-at-TI/02c037efd3666ea8232d7bb8b0fa42f3
 
-Thanks,
-Steve
+Sanity testing on AM62P5-SK with this series:
+https://gist.github.com/Siddharth-Vadapalli-at-TI/1fb178f31b7cbc8eefd424e1e540ef3b
+
+v4:
+https://lore.kernel.org/r/20240601121554.2860403-1-s-vadapalli@ti.com/
+Changes since v4:
+- Rebased series on linux-next tagged next-20240604.
+- Based on Andrew's feedback at:
+  https://lore.kernel.org/r/086fa11e-10f8-463d-8966-1a33a52a3146@ti.com/
+  MCU was retained as-is while main and wakeup were changed to MAIN and
+  WAKEUP in the respective shared files. Also, newline was added between
+  the file description and the Copyright in all the files.
+  Collected Acked-by tag for the 1st patch since these changes have been
+  made.
+- Based on Andrew's feedback at:
+  https://lore.kernel.org/r/147d58a6-0cad-47b6-a069-755f835a77e9@ti.com/
+  SERDES1 has also been disabled in k3-j722s-main.dtsi similar to SERDES0.
+- Based on Andrew's feedback at:
+  https://lore.kernel.org/r/183a9d15-939e-433b-84ba-8a64eb8ef3ec@ti.com/
+  the `status = "okay";` line has been moved to the end of the
+  `pcie0_rc` node referenced in k3-j722s-evm.dts following the updated
+  ordering rules. Also, the SERDES1 node has been enabled in the
+  k3-j722s-evm.dts file since it has been disabled in the
+  k3-j722s-main.dtsi file.
+
+Regards,
+Siddharth.
+
+Siddharth Vadapalli (7):
+  arm64: dts: ti: am62p: Rename am62p-{}.dtsi to
+    am62p-j722s-common-{}.dtsi
+  arm64: dts: ti: k3-am62p-j722s: Move AM62P specific USB1 to
+    am62p-main.dtsi
+  arm64: dts: ti: k3-j722s: Add main domain peripherals specific to
+    J722S
+  arm64: dts: ti: k3-j722s: Switch to k3-am62p-j722s-common.dtsi
+  arm64: dts: ti: k3-serdes: Add SERDES0/SERDES1 lane-muxing macros for
+    J722S
+  arm64: dts: ti: k3-j722s-main: Add SERDES and PCIe support
+  arm64: dts: ti: k3-j722s: Enable PCIe and USB support on J722S-EVM
+
+ .../dts/ti/k3-am62p-j722s-common-main.dtsi    | 1068 +++++++++++++++++
+ ...cu.dtsi => k3-am62p-j722s-common-mcu.dtsi} |    3 +-
+ ...dtsi => k3-am62p-j722s-common-wakeup.dtsi} |    3 +-
+ ...-am62p.dtsi => k3-am62p-j722s-common.dtsi} |    6 +-
+ arch/arm64/boot/dts/ti/k3-am62p-main.dtsi     | 1063 +---------------
+ arch/arm64/boot/dts/ti/k3-am62p5.dtsi         |    3 +-
+ arch/arm64/boot/dts/ti/k3-j722s-evm.dts       |   73 ++
+ arch/arm64/boot/dts/ti/k3-j722s-main.dtsi     |  173 +++
+ arch/arm64/boot/dts/ti/k3-j722s.dtsi          |   97 +-
+ arch/arm64/boot/dts/ti/k3-serdes.h            |    8 +
+ 10 files changed, 1429 insertions(+), 1068 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+ rename arch/arm64/boot/dts/ti/{k3-am62p-mcu.dtsi => k3-am62p-j722s-common-mcu.dtsi} (98%)
+ rename arch/arm64/boot/dts/ti/{k3-am62p-wakeup.dtsi => k3-am62p-j722s-common-wakeup.dtsi} (97%)
+ rename arch/arm64/boot/dts/ti/{k3-am62p.dtsi => k3-am62p-j722s-common.dtsi} (97%)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+
+-- 
+2.40.1
+
 
