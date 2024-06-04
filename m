@@ -1,55 +1,90 @@
-Return-Path: <devicetree+bounces-72460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CFCB8FBD67
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 22:35:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F5658FBD78
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 22:42:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F2B21F21C3B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 20:35:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E13A282C72
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 20:42:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B12614B07B;
-	Tue,  4 Jun 2024 20:35:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5449B14B945;
+	Tue,  4 Jun 2024 20:42:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SvFP7NYh"
+	dkim=pass (2048-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b="N61vra7C";
+	dkim=permerror (0-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b="r4JvKN3M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailrelay1-1.pub.mailoutpod3-cph3.one.com (mailrelay1-1.pub.mailoutpod3-cph3.one.com [46.30.211.240])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1C6A14A09A;
-	Tue,  4 Jun 2024 20:35:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55EA217C96
+	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 20:42:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.30.211.240
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717533314; cv=none; b=uYoPEmDQLe6M9T4WlWY01dCXTx5l/GtJflFVQ7mFhCcgzc/89f4LsRZw+x0Ijjg6q52XZJ53/ZuIlGBRZo/vMv7O9ZdKDEN+7WM6uxLgNoHa/6HqeB6HCu6HVMEQJ544jTdgVsrwoAwOBhKb13XoJuhCr1Ftetb5kGhnrlpglNY=
+	t=1717533744; cv=none; b=lHxOH/1RsFivC/DS57Vlg8xefso7DuMaSV/MFgIFbjFnID96vllBUL5zXeyan38zGDXRjiLWYahr8Z5cWcCJI4+oOjB8/JRzZbOM9pdPS9/VXUCvRmHLB37aOMsLDF62ca/tKFTMGps/pdamrbpyLEHvl3M5pUw+WGjToN8PlkE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717533314; c=relaxed/simple;
-	bh=fORW5HAx4c9mQy9bSMECv7euO6lmhcHoxVtu+0M9HBs=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=TU/BPiX1QKXKw1atmFUiAYaZLhj2QGmfE7vE5i3hXQ71DlNrrj/sluk3pbx8Y0SVDcRESeSkoaC9QTI8CoH9nWW1xXGSZRngCGqBoB2k27GOCA7PAxKby+d8oyFUbPRCN3g8uRKz8kVavHFZjutjkirRmlrQdRVFzZiY/bC9Y8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SvFP7NYh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33018C2BBFC;
-	Tue,  4 Jun 2024 20:35:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717533313;
-	bh=fORW5HAx4c9mQy9bSMECv7euO6lmhcHoxVtu+0M9HBs=;
-	h=Date:From:To:Cc:Subject:From;
-	b=SvFP7NYhTdI46enbAZmEci1g4EVeyUaIRocpFrKtStkNv1Zxyo4re2SEQymgbvMA7
-	 fWHfSxm8pUuHB7FZljovKagB4QrZHMGsCoV1XSIGICW++wex1gl1P2QAnvLeaDNmoq
-	 l0VwcU/VMQeKXdri7OQTeu7a1xuFugP3IS1UIkMwbRgFUZbCZ3f6P9KQ4qJ/jXdLMV
-	 0/sFiupq0vfpOhDMOjgpRdUjBrLK5RlCbt9G0FkXrU58q1kQqv+vpCQykTPSqFbDdQ
-	 8VZPXdk3k1ueJmD0TRcUSy6qnBVHLREMUxM7soAPvfKLr6xz3MzSOB02ZZa7dDoHzr
-	 UHqP4TcY7MGIg==
-Date: Tue, 4 Jun 2024 15:35:11 -0500
-From: Rob Herring <robh@kernel.org>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Cc: Saravana Kannan <saravanak@google.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [GIT PULL] Devicetree fixes for v6.10, part v1
-Message-ID: <20240604203511.GA1345593-robh@kernel.org>
+	s=arc-20240116; t=1717533744; c=relaxed/simple;
+	bh=1dWSYg0dVf/rqsLrOmw8N6/UvJ03wpNFLYhrom2Lml0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QCk7zTw4zuVu0owWMdk7wMSnOwESBA8Bup9r44G9FXg5Sx0b8/732scmuSlDsZUu3j6x8vXxZ++Jj8MYm+pR2RI/JZqnRupmZbj6bLp0tv//DP7FBUWt17R7YRq6/3qUh2E0xkFM9SFFbJLbWGo1lRLeHos2gIq5PvAkvwz2/0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org; spf=none smtp.mailfrom=ravnborg.org; dkim=pass (2048-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b=N61vra7C; dkim=permerror (0-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b=r4JvKN3M; arc=none smtp.client-ip=46.30.211.240
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ravnborg.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=ravnborg.org; s=rsa1;
+	h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+	 from:date:from;
+	bh=Dk4sfgI36ZWaPJ+eBS/GI/TZ8w55X9bgUEDY5cQtdtU=;
+	b=N61vra7CHLZfKe5uIUlYx3GQv9YGIc7bLyEhl3+9zNcLfrg/064TgGMDdyq/ZA10mlYXb06vgNF0h
+	 qwxtSmeWRmsmmd3wrCCBBvUY+SFythORAs9pyE4otLatq0n/0MIHh8STbOiAKmU9DUOex9d1E4YSfX
+	 x8KwPBxjY/1bPXa3W4ZVzNJZE8vyRU4ysM0VrCOe55RkF7hCRcl+V9ySXs0kbLERYnt8ZjSy6kIePK
+	 853Zbg7dZnTvyDX2GrBxleUad6prFsi1lEZKiKL68eW9CCm5QisalqofZTtORQWuI1bSEXtwK7zLcI
+	 Xu0tUkNa02dSjD3QS04pgnpBnbZ1OSQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+	d=ravnborg.org; s=ed1;
+	h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+	 from:date:from;
+	bh=Dk4sfgI36ZWaPJ+eBS/GI/TZ8w55X9bgUEDY5cQtdtU=;
+	b=r4JvKN3MaF/e09yO6vz7gW/+Vs/xVKV1CvUIVwJnko5Bqds84IFN0/PUeYg4Zdo1itqPMmJMDSrRa
+	 fTI/wgXCg==
+X-HalOne-ID: c619a21d-22b2-11ef-9886-bf3d7f4c9d3b
+Received: from ravnborg.org (2-105-16-150-cable.dk.customer.tdc.net [2.105.16.150])
+	by mailrelay1.pub.mailoutpod3-cph3.one.com (Halon) with ESMTPSA
+	id c619a21d-22b2-11ef-9886-bf3d7f4c9d3b;
+	Tue, 04 Jun 2024 20:41:12 +0000 (UTC)
+Date: Tue, 4 Jun 2024 22:41:10 +0200
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Sandy Huang <hjc@rock-chips.com>,
+	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+	Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mark Yao <markyao0591@gmail.com>, dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+	kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
+	Luis de Arquer <ldearquer@gmail.com>,
+	Algea Cao <algea.cao@rock-chips.com>
+Subject: Re: [PATCH 13/14] drm/bridge: synopsys: Add DW HDMI QP TX controller
+ driver
+Message-ID: <20240604204110.GA84949@ravnborg.org>
+References: <20240601-b4-rk3588-bridge-upstream-v1-0-f6203753232b@collabora.com>
+ <20240601-b4-rk3588-bridge-upstream-v1-13-f6203753232b@collabora.com>
+ <20240601143226.GA2003970@ravnborg.org>
+ <59519381-2729-4839-9882-65a981a0c551@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,55 +93,60 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <59519381-2729-4839-9882-65a981a0c551@collabora.com>
 
-Linus,
+Hi Cristian.
 
-Please pull a couple of DT fixes for 6.10.
+On Tue, Jun 04, 2024 at 10:32:04PM +0300, Cristian Ciocaltea wrote:
+> Hi Sam,
+> 
+> On 6/1/24 5:32 PM, Sam Ravnborg wrote:
+> > Hi Cristian,
+> > 
+> > a few drive-by comments below.
+> > 
+> > 	Sam
+> > 
+> > 
+> >> +
+> >> +static const struct drm_connector_funcs dw_hdmi_qp_connector_funcs = {
+> >> +	.fill_modes = drm_helper_probe_single_connector_modes,
+> >> +	.detect = dw_hdmi_connector_detect,
+> >> +	.destroy = drm_connector_cleanup,
+> >> +	.force = dw_hdmi_qp_connector_force,
+> >> +	.reset = drm_atomic_helper_connector_reset,
+> >> +	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
+> >> +	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
+> >> +};
+> >> +
+> >> +static int dw_hdmi_qp_bridge_attach(struct drm_bridge *bridge,
+> >> +				    enum drm_bridge_attach_flags flags)
+> >> +{
+> >> +	struct dw_hdmi *hdmi = bridge->driver_private;
+> >> +
+> >> +	if (flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)
+> >> +		return drm_bridge_attach(bridge->encoder, hdmi->next_bridge,
+> >> +					 bridge, flags);
+> >> +
+> >> +	return dw_hdmi_connector_create(hdmi, &dw_hdmi_qp_connector_funcs);
+> >> +}
+> > 
+> > Are there any users left that requires the display driver to create the
+> > connector?
+> > In other words - could this driver fail if DRM_BRIDGE_ATTACH_NO_CONNECTOR
+> > is not passed and drop dw_hdmi_connector_create()?
+> > 
+> > I did not try to verify this - just a naive question.
+> 
+> I've just tested this and it doesn't work - dw_hdmi_connector_create()
+> is still needed.
 
-Rob
+Hmm, seems the display driver or some other bridge driver fails to
+support "DRM_BRIDGE_ATTACH_NO_CONNECTOR".
+what other drivers are involved?
 
-The following changes since commit 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0:
+Note that my comments here should be seen as potential future
+improvements, and do not block the patch from being used.
 
-  Linux 6.10-rc1 (2024-05-26 15:20:12 -0700)
-
-are available in the Git repository at:
-
-  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.10-1
-
-for you to fetch changes up to e7985f43609c782132f8f5794ee6cc4cdb66ca75:
-
-  of: property: Fix fw_devlink handling of interrupt-map (2024-05-30 19:43:47 -0500)
-
-----------------------------------------------------------------
-Devicetree fixes for v6.10, part 1:
-
-- Fix regression in 'interrupt-map' handling affecting Apple M1 mini (at
-  least)
-
-- Fix binding example warning in stm32 st,mlahb binding
-
-- Fix schema error in Allwinner platform binding causing lots of
-  spurious warnings
-
-- Add missing MODULE_DESCRIPTION() to DT kunit tests
-
-----------------------------------------------------------------
-Jeff Johnson (1):
-      of: of_test: add MODULE_DESCRIPTION()
-
-Marc Zyngier (1):
-      of: property: Fix fw_devlink handling of interrupt-map
-
-Rob Herring (Arm) (3):
-      dt-bindings: arm: sunxi: Fix incorrect '-' usage
-      dt-bindings: arm: stm32: st,mlahb: Drop spurious "reg" property from example
-      of/irq: Factor out parsing of interrupt-map parent phandle+args from of_irq_parse_raw()
-
- .../devicetree/bindings/arm/stm32/st,mlahb.yaml    |   3 +-
- Documentation/devicetree/bindings/arm/sunxi.yaml   |   6 +-
- drivers/of/irq.c                                   | 125 ++++++++++++---------
- drivers/of/of_private.h                            |   3 +
- drivers/of/of_test.c                               |   1 +
- drivers/of/property.c                              |  30 ++---
- 6 files changed, 92 insertions(+), 76 deletions(-)
+	Sam
 
