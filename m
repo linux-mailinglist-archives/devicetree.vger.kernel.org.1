@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-72069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76F778FAC47
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 09:41:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D438B8FAC51
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 09:42:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 335FB2827C1
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 07:41:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 47D27B22A51
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 07:42:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F096E140E2F;
-	Tue,  4 Jun 2024 07:41:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F0D71411CE;
+	Tue,  4 Jun 2024 07:42:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wSnxjDas"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FLVj3lrR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64C67446CF
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 07:41:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D59611411C3
+	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 07:42:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717486889; cv=none; b=X1NcH46FS6Ayk+62w57sKXCgAJ1fUImV0DkagJ8Deg93++9wPoUPSGfEzUGT+ZCl3wPCpCdgcKcS315xzcTOy89t+BqMtxwenQhjhGT+c6Nd5R8VlXmHy98zX+hm/qFvOkRsckCsKFk/AE65/nHd3Fdfayb8XCD5g6VUCamjaso=
+	t=1717486951; cv=none; b=tbWgX8GTGwsfWtcML3NvnTnf9vnbHkQB5b9d09Gzoa1lLDOCnlUBbf9INveNyU3PEpkURnTJFach6f8PZ7GoBO0M6fdRTiHK+HMe1MUIKSEynsGgFe1UuhaPIvdShBCR+luvDVvO4C7KAwtJmkX7zk1VqQsa+hiuvo0la2L29xo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717486889; c=relaxed/simple;
-	bh=tmcgcR9eSjyJNc7+Z1zOD3YatJVXTRq6amEYUD5PjAA=;
+	s=arc-20240116; t=1717486951; c=relaxed/simple;
+	bh=X2EQxagvwCm6SwpceTXqW87qcH6ceyWl8AK/HSrsrYw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FT4Y1/k4GVBsWAMUb9h4LgNy/EaSKiphCIlUmceBIze2FgGBU1C5uDryv5z7MAd6sEvEfZkPedzXOFPGXVDhITxgEOaRwnxsIaNh2z93hPKAcKRTVojcTbEzLHm7RX5Am6jQ+1aLNB/n8MLJna5zjXcV2gA5B8jbxJVXCskC1CI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wSnxjDas; arc=none smtp.client-ip=209.85.128.47
+	 In-Reply-To:Content-Type; b=Ok7A+QrZTMfI+XrdWpTlqpMjQShlv311C9egyG0043CvghHpZDLT+NnEg77zPMuBevrHOg5Z7m6dlXvdeRdV2fm8WNnT/1QcQZxxxVR6/7HPi40428rQr3D1XtY6SkJ8J1gj7e79q9pEgqTkrZBcvHXjp2lO1RavBv6DmNwvHWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FLVj3lrR; arc=none smtp.client-ip=209.85.128.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-42120e3911eso48366735e9.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 00:41:28 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-421338c4c3bso7490105e9.1
+        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 00:42:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717486887; x=1718091687; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1717486948; x=1718091748; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=k/fyK01CtXlKOCABa51w5GhkqhvenntmUXoPDgC90SU=;
-        b=wSnxjDas0Xkz2R/wwboEnqWytyi6GgG1FZQyj7qIHc+ClvH57uWHvu/fTf+fSew/0m
-         fM7aB7/QzjZtVQY8IAqrL+7UQ6AOPdsisr1hD9tfGzX2Pab0oJbQkpa9X5C4q6Ud+krI
-         yj+4g4jZVnZvKq/4AkKgXC4hqS8okX2tasFes7JaRTERRhEIleCQzJ54MDpmxv8T2ooq
-         HP+k1AHGxC1A4lPXX/t1CZhMtsmO8dD+WbNoxhieNNhovvPoIMguHJcoc9qTgJVSjvLe
-         cHLB+uQPhHKeFE5nl1Q/zntBOxx5HrQn+V2y9NY7FYqdsPTN0tGABIrI/gCjHCN+J3aN
-         WPiA==
+        bh=AsSQ9LmJ4nSDj9xxyUtFXUG1p+uGgVxeoPrlOq2QQ1o=;
+        b=FLVj3lrRAqOSe4ls1KtAJeX9Llv3gTIKyajK1qwHhbixu9y3G+xfwcogXdM474n99n
+         uP9DIPbk5LdDCiPzdIJAJHDx7ohkhcyJRuYPT6tLYWz2gFzRApn0DslrsAYYUamEKVFe
+         sUmHMgh7X6BZHxcvY0Bz7nrw6GXVPNZL/0yRC0sGhUIo4UYYBe55ucKH2zu3jHHAsqIl
+         bn/rEhRjUhHggD27tbe98N7J7aPfXG+f4rJGuDLBZiSaGd/0djXJpZ8umKv0htcVDzno
+         Lu9xE01zufTEFXTI/SZnA7D3WmemhdA1NqjqEEDJLSjy3HH7+xmg5lbeIgcoci1dc2Uw
+         y8NA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717486887; x=1718091687;
+        d=1e100.net; s=20230601; t=1717486948; x=1718091748;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=k/fyK01CtXlKOCABa51w5GhkqhvenntmUXoPDgC90SU=;
-        b=dpc4O4/JZ6KLHpZA5LyQSCF8LfqkeigPTC/KlMX14U7kylqdWnH7dqvtWf5VBayu4r
-         eCShkxR7Q/XDP2fuqt6lMPLBiPUImvDm2KVV1jL0nigbzAbwub7hVZXwwKhpo9eEjY4i
-         kE1eJoiepaQltg6/dOD/byXR1A/ZdavXMCNrJ7RE5xe/nU0Wr1AcxameEOfjKrca/qCW
-         f7HrGUsM7MqoQDx/FnyyuV1kS8H0n1g2S5b7+QGgWzs79OnHA3vSaqBQPHDXNNOsgWxd
-         YYvxzfNqz/ZBZsjgO/9OHz+n+ugT+9vi0D6R1CEBsGO16FkAX+TBiFdXRjtvENj3Q2C6
-         hHYw==
-X-Forwarded-Encrypted: i=1; AJvYcCUM+LfnUJZr9Ymd2jP5J2p4iuE1cm6vgipBtm/uE0OIo/Ak3siuINSzk6mneoWXWV2CDZ7TWsj3sw5M7seMsVAwIPEC4aOaoasvOw==
-X-Gm-Message-State: AOJu0YxSuReS/syLFYU72SfIBYV/dcjoVhBV3gOqPFM/EXPlxQNazVjI
-	26/7zNHN8tvPSGOW9q+Ral/9TNkvjSb6Jc731Z0lH2/jWMnlLhocFDkj3lf++7o=
-X-Google-Smtp-Source: AGHT+IH7hOs6i2v2VDPD6VM0WILawPnTyjTTVxATYM+U7cXh3twmYqtzjpGT7A9MCq3TgVbqDlbjXA==
-X-Received: by 2002:a05:6000:8c:b0:35d:cf2b:9101 with SMTP id ffacd0b85a97d-35e0f271a6bmr8508765f8f.15.1717486886735;
-        Tue, 04 Jun 2024 00:41:26 -0700 (PDT)
+        bh=AsSQ9LmJ4nSDj9xxyUtFXUG1p+uGgVxeoPrlOq2QQ1o=;
+        b=VAOgSaJuG9+Rjzk6CKX0pQZdqCvUH60n7q9Na0nh9yWzpTXTXUlddx5hC+uxjePIhA
+         k7IjIf3bS6sbS5nD14vVOIWBwnBWC7fk1JPGPWsLcxHqyl5Ct5AAxLddJIEdMGpcGkh3
+         XeLQYFoOhsade4guwWQGDJhI+9FZLn4mhwcKPHZI9uxNooFnZKV1USjJIgYFe1g6waLc
+         6KyZ4ohzOnc9KigFLkUMQJl2wWSj+MGCN9AChTChyhJkIAriJRGFpTFEri2EeBLHeL5M
+         KL13XUZin54hkHrzo3XcTvSmDgc9y7+1PlJFh2ZgmhlsMy5RYYQ778Qa4B4ag8z+E+KT
+         SdUg==
+X-Forwarded-Encrypted: i=1; AJvYcCWU7BE9e4XZtRygreDhA+zYEvx58nRlxHJ80JCVZcy8SZqrfThJ4vL1egv40XpCESEd+VE52FZYdmGyA4iOLKJ4rR17G/lkBvXUQg==
+X-Gm-Message-State: AOJu0YwNci74/cq6eyBw49E0IW5l4GrW8CD7XEGv1iGAaTgsmpU6O7Ss
+	wLDrb4tV3RtsH61FrDY3Mhzw4NP+R3t9EJXhM9V8E12YdDn+oP7YMBQR3/eojQw=
+X-Google-Smtp-Source: AGHT+IE96YZvAG+ipOTQW8PG8TZg2aJjiYp9/l/UaszCtE4I/kSg/DFwZ0+ZVT8/Thk+I+cg3lhu4A==
+X-Received: by 2002:a05:600c:4f46:b0:41a:e995:b915 with SMTP id 5b1f17b1804b1-4212e044d21mr89772615e9.1.1717486948334;
+        Tue, 04 Jun 2024 00:42:28 -0700 (PDT)
 Received: from [192.168.2.24] ([110.93.11.116])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35dd04d94f1sm10581446f8f.49.2024.06.04.00.41.25
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35dd04e845bsm10668275f8f.65.2024.06.04.00.42.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Jun 2024 00:41:26 -0700 (PDT)
-Message-ID: <522a363b-f746-45f1-8ac0-21ae2468d88b@linaro.org>
-Date: Tue, 4 Jun 2024 09:41:24 +0200
+        Tue, 04 Jun 2024 00:42:27 -0700 (PDT)
+Message-ID: <7679dd6f-c952-44de-8863-2f0fd12f372a@linaro.org>
+Date: Tue, 4 Jun 2024 09:42:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,25 +77,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 6/8] dt-bindings: clock: qcom: Add SM8650 camera clock
- controller
-To: Jagadeesh Kona <quic_jkona@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Taniya Das <quic_tdas@quicinc.com>,
- Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>
-References: <20240602114439.1611-1-quic_jkona@quicinc.com>
- <20240602114439.1611-7-quic_jkona@quicinc.com>
- <9fdf4c46-a07e-4dfc-9992-4dd94d8dab5f@linaro.org>
- <88b683c8-56c8-493c-8f22-832cd6d13279@quicinc.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: pwm: Add pwm-gpio
+To: Kent Gibson <warthog618@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com,
+ Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>,
+ Chris Morgan <macromorgan@hotmail.com>, Stefan Wahren <wahrenst@gmx.net>,
+ linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, Nicola Di Lieto <nicola.dilieto@gmail.com>,
+ Dhruva Gole <d-gole@ti.com>
+References: <20240602-pwm-gpio-v6-0-e8f6ec9cc783@linaro.org>
+ <20240602-pwm-gpio-v6-1-e8f6ec9cc783@linaro.org>
+ <20240604025137.GA107618@rigel>
+ <1edbcf6d-92b7-4971-b8b2-a88cc96995e9@linaro.org>
+ <20240604073413.GA137333@rigel>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -142,23 +139,32 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <88b683c8-56c8-493c-8f22-832cd6d13279@quicinc.com>
+In-Reply-To: <20240604073413.GA137333@rigel>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/06/2024 15:26, Jagadeesh Kona wrote:
->> Just squash the other patch here or drop it completely.
+On 04/06/2024 09:34, Kent Gibson wrote:
+> On Tue, Jun 04, 2024 at 08:21:32AM +0200, Krzysztof Kozlowski wrote:
+>> On 04/06/2024 04:51, Kent Gibson wrote:
+>>> On Sun, Jun 02, 2024 at 10:33:08PM +0200, Linus Walleij wrote:
+>>>> From: Nicola Di Lieto <nicola.dilieto@gmail.com>
+>>>>
+>>>> Add bindings for PWM modulated by GPIO.
+>>>>
+>>>
+>>> Shouldn't the bindings be added after the driver?
 >>
->> Best regards,
->> Krzysztof
+>> No. See submitting patches document.
 >>
 > 
-> Sure, will squash it to this patch in next series.
+> Hmmm, ok, so "5. The Documentation/ portion of the patch should come in
+> the series before the code implementing the binding."[1]?
 > 
+> It just seems odd that you document something that doesn't exist yet.
 
-Nah, I mixed it up. It's fine.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+It's logical. First you define the ABI for every user, then you
+implement the ABI. Do you first implement software and then design? Or
+first implement then write interface (API) for it?
 
 Best regards,
 Krzysztof
