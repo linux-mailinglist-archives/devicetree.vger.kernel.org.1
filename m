@@ -1,87 +1,80 @@
-Return-Path: <devicetree+bounces-72473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBDCA8FBE35
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 23:43:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40C6F8FBE72
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 00:02:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69EA72841B3
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 21:43:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D36041F25DEB
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 22:02:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9EDB14D6F5;
-	Tue,  4 Jun 2024 21:42:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 070B03B1A4;
+	Tue,  4 Jun 2024 22:02:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="CGO2u1dw"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="i4q3cb+Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E30914D28F
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 21:42:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB47A320C;
+	Tue,  4 Jun 2024 22:02:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717537362; cv=none; b=irIj11uSq9Pb0YjvNGwCrFb8GZ/YSqcqdKLsObHeWnWiskCF7dzNFGLNL1ya8oONovd0FKJaUpWWtJyt3gSbMcxiL7OLMV40dwlmbbdCEGGiiVDI3fJfvcog9cBoWNiP6Yi7/PgpOhercKL2ipI36n5Fvc2yanrfkE0spS2VWmg=
+	t=1717538536; cv=none; b=e25m5KhwPV2fPkw0a6SQxUK9ktD6ivsxlEZ4TrTqlnhVRf6n0fm35dE2j+WZMOL2bz02Q5x4af3NE46voS44d+G7uQucYfnYU7ib8MakttXfVXbmppMqqJffMNuRHrgOoY6Ls/rPfixty3wkiR1yXPksdNSykGhvG8nhmvCREjQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717537362; c=relaxed/simple;
-	bh=xAp5WZlsM/Hkn85zeDB+4PP5CKeQf8054xAI8p5QoAA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VYiyZGUgovMHqjKQV0/A5z1W/Ew2TfawNrpep7qTALmftpsWEWw3Pz+LYWrm0Mr8SVyn9LCEE0dn7sdgQRIjBY3QjRMdvuDGGOMu7mbLhNzUR/ji0BJjr0wZTX007PlEWluwPYwY1z6/teib1fHD1QnDgi4fB+PQnDckmPE+f4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=CGO2u1dw; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1f4a52b9413so47935995ad.2
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 14:42:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1717537359; x=1718142159; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UdCQAM7e5bMqyS7h48dH9IJa2aicn6jIduH8LQ8/gwo=;
-        b=CGO2u1dwmaZUGko3ucGmc0K7ubTApQaDL0g2vTPPGgiHuYDtvWKBB3KURl6oWY+em8
-         6hUkCKK5sxNczqvoui43bqougXZuec9UBuQmZiAc9sVDj2Fiz7+R+KEJke96vwLC/vMs
-         hsWdXuFI/uAPtk3bGUKtjvGRkqXJTGB2XjKfc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717537359; x=1718142159;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UdCQAM7e5bMqyS7h48dH9IJa2aicn6jIduH8LQ8/gwo=;
-        b=LbseyJeOqkWOY3AazEVRkokXqAwEQMk6G/PEQcdjPHNzcAoESY6Cp8RVdQPL7XMpUx
-         G+b1bT9ahq6AwLCykZrXwfDt5wq8wkfpJDO1VHeD5ISmr/zK/7S4q6sIGa1N2wbQgu5G
-         bgFzmxncBcQOeQIurjNDOtiK7PkKAVuqkVingIMQGep0jnR4jfDMvotDSEDo4aBx16Ng
-         g1mkzDdg+OrG8kKc7UBHsqtL/yhwdh2pOore1jO5MMjWbHhSE+DnAs2gC3gBjKOVkfm+
-         Q/Oydck8XRnF15CzmknyNBxniX5mT7Wse6/c8lBeFfZi4Ojjt0lMl+sWCPuqjH9Crk49
-         32bw==
-X-Forwarded-Encrypted: i=1; AJvYcCWgvagzEWv8VB9/MZFTs5PM07n2nV96hF2GG/b9RmqGgQKU5XiEWuQPvr1QlYDiFgUp7DbCOX25i0mo3lMOxAJcB3jCFRNibf4jfQ==
-X-Gm-Message-State: AOJu0Yy6dvtHsIndyYR94is8g3z2V4sUqmSPNJjMvEiZP1KyFkejc5T5
-	Mai1IWmrqEyRHznwVvXVa2XW5JYcH58SIKWBKwgDaHuH4F55qeDViDgKqKtubQ==
-X-Google-Smtp-Source: AGHT+IHACVwMOBPFrf+eB5iYX0aACOfsfuqCORLFufTgaSTpclbakbGsz+yHvN2MJs5N4qePFzU54w==
-X-Received: by 2002:a17:902:ec91:b0:1f6:8290:175a with SMTP id d9443c01a7336-1f6a5a1a254mr8417235ad.40.1717537359406;
-        Tue, 04 Jun 2024 14:42:39 -0700 (PDT)
-Received: from localhost (132.197.125.34.bc.googleusercontent.com. [34.125.197.132])
-        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-1f63240134fsm88399035ad.243.2024.06.04.14.42.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Jun 2024 14:42:39 -0700 (PDT)
-From: Stephen Boyd <swboyd@chromium.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>
-Cc: linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	patches@lists.linux.dev,
-	cros-qcom-dts-watchers@chromium.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Pin-yen Lin <treapking@chromium.org>
-Subject: [PATCH 3/3] arm64: dts: qcom: sc7180-trogdor: Make clamshell/detachable fragments
-Date: Tue,  4 Jun 2024 14:42:32 -0700
-Message-ID: <20240604214233.3551692-4-swboyd@chromium.org>
-X-Mailer: git-send-email 2.45.1.288.g0e0cd299f1-goog
-In-Reply-To: <20240604214233.3551692-1-swboyd@chromium.org>
-References: <20240604214233.3551692-1-swboyd@chromium.org>
+	s=arc-20240116; t=1717538536; c=relaxed/simple;
+	bh=EMIzYIFkXVUprOInl/LuU0NK/y3BCX3/WnmoS6Oig2k=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=u7HEsfEfL4IRDvdzMKsU5fp3pp+gypBAbEpsiTuoKzymQTTuaTOnepGrroK6hOd9UtJGvk29EvKnMmKMbeQMo1sGbMXnDzUALg7/1+X0gpDyNTGe7rDlTpahCwnLocB4IJMP9QUpHzQ6eHo5JvAFp5cGpJ/5jKKWcbI/44GZP58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=i4q3cb+Y; arc=none smtp.client-ip=148.163.158.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 454LqCMp009352;
+	Tue, 4 Jun 2024 21:59:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc :
+ content-transfer-encoding : date : from : message-id : mime-version :
+ subject : to; s=pp1; bh=OHYuuKn8tJ7rSUbYgVXZpxWOnvGgk1aa1oTjRBRVGS4=;
+ b=i4q3cb+YDGF8VqB19V6IAhQpX61Nn7ZfC6yTCdM8yp2tgfOA6SYWRyoOPuxR1+inR5/1
+ wva8yBRXckEq7gm/WajmB8Vv4tji1gdXQp24O1Fx4wPzP6ebuT7O9TS3kyw+KuVKHttg
+ vN+VTMAkOIaeVQku5CtTpPYM8qSXCD5eSV4x+j29DbzEs9gIQJbQUJLfP4oNTdAUi9Hv
+ THTvcimKZH/sDzgwAVO52sSnEE36WdVeYrBKabFyBl1lyaxQT9EKK0SCZdbAyQJrk81w
+ 1xnnCJGoW0/D/A5OFa+VNiQhoDEz9u3QbXBDyQx7pwBY3VsgfcWMnzIJBS+43ror4sX9 Iw== 
+Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3yjax7g1ej-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Jun 2024 21:59:48 +0000
+Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma22.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 454LjC1x008501;
+	Tue, 4 Jun 2024 21:59:47 GMT
+Received: from smtprelay06.wdc07v.mail.ibm.com ([172.16.1.73])
+	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3ygec0rq47-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Jun 2024 21:59:47 +0000
+Received: from smtpav04.dal12v.mail.ibm.com (smtpav04.dal12v.mail.ibm.com [10.241.53.103])
+	by smtprelay06.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 454Lxife15270642
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 4 Jun 2024 21:59:46 GMT
+Received: from smtpav04.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 3B2BF58064;
+	Tue,  4 Jun 2024 21:59:44 +0000 (GMT)
+Received: from smtpav04.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id F2F7858062;
+	Tue,  4 Jun 2024 21:59:43 +0000 (GMT)
+Received: from gfwa153.aus.stglabs.ibm.com (unknown [9.3.84.127])
+	by smtpav04.dal12v.mail.ibm.com (Postfix) with ESMTP;
+	Tue,  4 Jun 2024 21:59:43 +0000 (GMT)
+From: Ninad Palsule <ninad@linux.ibm.com>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
+        andrew@codeconstruct.com.au
+Cc: Ninad Palsule <ninad@linux.ibm.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, eajames@linux.ibm.com
+Subject: [PATCH v1] ARM: dts: aspeed: System1: Updates to BMC board
+Date: Tue,  4 Jun 2024 16:59:39 -0500
+Message-Id: <20240604215939.1967329-1-ninad@linux.ibm.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,248 +82,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: -Vetq6Mejqa7zfwIUkmji2p2f6zF51Xz
+X-Proofpoint-ORIG-GUID: -Vetq6Mejqa7zfwIUkmji2p2f6zF51Xz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-04_11,2024-06-04_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ bulkscore=0 clxscore=1011 lowpriorityscore=0 mlxlogscore=779 mlxscore=0
+ malwarescore=0 adultscore=0 suspectscore=0 impostorscore=0 phishscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2405010000 definitions=main-2406040177
 
-At a high-level, detachable Trogdors (sometimes known as Strongbads)
-don't have a cros_ec keyboard, while all clamshell Trogdors (only known
-as Trogdors) always have a cros_ec keyboard. Looking closer though, all
-clamshells have a USB type-A connector and a hardwired USB camera. And
-all detachables replace the USB camera with a MIPI based one and swap
-the USB type-a connector for the detachable keyboard pogo pins.
+- Added new power monitor device max5970
+- Changed temperature sensor monitor chip from tmp423 to tmp432
 
-Split the detachable and clamshell bits into different files so we can
-describe these differences in one place instead of in each board that
-includes sc7180-trogdor.dtsi. For now this is just the keyboard part,
-but eventually this will include the type-a port and the pogo pins.
-
-Cc: <cros-qcom-dts-watchers@chromium.org>
-Cc: Bjorn Andersson <andersson@kernel.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: <linux-arm-msm@vger.kernel.org>
-Cc: <devicetree@vger.kernel.org>
-Cc: Pin-yen Lin <treapking@chromium.org>
-Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
 ---
- .../boot/dts/qcom/sc7180-trogdor-clamshell.dtsi     |  9 +++++++++
- arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi |  5 +----
- .../boot/dts/qcom/sc7180-trogdor-detachable.dtsi    | 13 +++++++++++++
- .../boot/dts/qcom/sc7180-trogdor-homestar.dtsi      |  9 +--------
- .../boot/dts/qcom/sc7180-trogdor-kingoftown.dts     |  2 +-
- arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi  |  3 +--
- .../arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi |  3 +--
- arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi |  3 +--
- .../boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi |  7 +------
- arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts      |  3 +--
- .../boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi   |  5 +----
- 11 files changed, 31 insertions(+), 31 deletions(-)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-clamshell.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-detachable.dtsi
+ arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-clamshell.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-clamshell.dtsi
-new file mode 100644
-index 000000000000..d91533b80e76
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-clamshell.dtsi
-@@ -0,0 +1,9 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Trogdor dts fragment for clamshells
-+ *
-+ * Copyright 2024 Google LLC.
-+ */
-+
-+/* This file must be included after sc7180-trogdor.dtsi to modify cros_ec */
-+#include <arm/cros-ec-keyboard.dtsi>
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-index 7765c8f64905..6e6a4643c4dd 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-@@ -7,6 +7,7 @@
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
+index dcbc16308ab50..e09a6b383ba49 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
+@@ -753,6 +753,11 @@ &i2c4 {
+ &i2c5 {
+ 	status = "okay";
  
- #include "sc7180-trogdor.dtsi"
- #include "sc7180-trogdor-ti-sn65dsi86.dtsi"
-+#include "sc7180-trogdor-detachable.dtsi"
- 
- /* Deleted nodes from sc7180-trogdor.dtsi */
- 
-@@ -80,10 +81,6 @@ &camcc {
- };
- 
- &cros_ec {
--	keyboard-controller {
--		compatible = "google,cros-ec-keyb-switches";
--	};
--
- 	cros_ec_proximity: proximity {
- 		compatible = "google,cros-ec-mkbp-proximity";
- 		label = "proximity-wifi";
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-detachable.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-detachable.dtsi
-new file mode 100644
-index 000000000000..7c5d8a57ef7f
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-detachable.dtsi
-@@ -0,0 +1,13 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Trogdor dts fragment for detachables
-+ *
-+ * Copyright 2024 Google LLC.
-+ */
-+
-+/* This file must be included after sc7180-trogdor.dtsi to modify cros_ec */
-+&cros_ec {
-+	keyboard-controller {
-+		compatible = "google,cros-ec-keyb-switches";
++	power-monitor@3a {
++		compatible = "maxim,max5970";
++		reg = <0x3a>;
 +	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-index 2ba3bbf3b9ad..8846a7c4e636 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-@@ -5,9 +5,8 @@
-  * Copyright 2021 Google LLC.
-  */
++
+ 	regulator@42 {
+ 		compatible = "infineon,ir38263";
+ 		reg = <0x42>;
+@@ -1138,7 +1143,7 @@ i2c8mux0chn6: i2c@6 {
+ 			reg = <6>;
  
--/* This file must be included after sc7180-trogdor.dtsi */
--
- #include "sc7180-trogdor-rt5682i-sku.dtsi"
-+#include "sc7180-trogdor-detachable.dtsi"
+ 			temperature-sensor@4c {
+-				compatible = "ti,tmp423";
++				compatible = "ti,tmp432";
+ 				reg = <0x4c>;
+ 			};
+ 		};
+@@ -1599,7 +1604,7 @@ i2c15mux0chn6: i2c@6 {
+ 			reg = <6>;
  
- / {
- 	/* BOARD-SPECIFIC TOP LEVEL NODES */
-@@ -135,12 +134,6 @@ &camcc {
- 	status = "okay";
- };
+ 			temperature-sensor@4c {
+-				compatible = "ti,tmp423";
++				compatible = "ti,tmp432";
+ 				reg = <0x4c>;
+ 			};
+ 		};
+@@ -1615,7 +1620,7 @@ regulator@40 {
+ 			};
  
--&cros_ec {
--	keyboard-controller {
--		compatible = "google,cros-ec-keyb-switches";
--	};
--};
--
- &panel {
- 	compatible = "samsung,atna33xc20";
- 	enable-gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dts
-index d6db7d83adcf..655bea928e52 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dts
-@@ -9,7 +9,7 @@
- 
- #include "sc7180-trogdor.dtsi"
- #include "sc7180-trogdor-parade-ps8640.dtsi"
--#include <arm/cros-ec-keyboard.dtsi>
-+#include "sc7180-trogdor-clamshell.dtsi"
- #include "sc7180-trogdor-lte-sku.dtsi"
- #include "sc7180-trogdor-rt5682s-sku.dtsi"
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-index e9f213d27711..c3fd6760de7a 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-@@ -5,8 +5,7 @@
-  * Copyright 2020 Google LLC.
-  */
- 
--/* This file must be included after sc7180-trogdor.dtsi */
--#include <arm/cros-ec-keyboard.dtsi>
-+#include "sc7180-trogdor-clamshell.dtsi"
- 
- &ap_sar_sensor {
- 	semtech,cs0-ground;
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi
-index 73aa75621721..cc2c5610a279 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi
-@@ -5,8 +5,7 @@
-  * Copyright 2021 Google LLC.
-  */
- 
--/* This file must be included after sc7180-trogdor.dtsi */
--#include <arm/cros-ec-keyboard.dtsi>
-+#include "sc7180-trogdor-clamshell.dtsi"
- 
- &ap_sar_sensor {
- 	compatible = "semtech,sx9324";
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-index 067813f5f437..8214a61276fe 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-@@ -6,8 +6,7 @@
-  */
- 
- #include "sc7180-trogdor.dtsi"
--/* Must come after sc7180-trogdor.dtsi to modify cros_ec */
--#include <arm/cros-ec-keyboard.dtsi>
-+#include "sc7180-trogdor-clamshell.dtsi"
- #include "sc7180-trogdor-rt5682i-sku.dtsi"
- #include "sc7180-trogdor-ti-sn65dsi86.dtsi"
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi
-index b7de9fd3fa20..00229b1515e6 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi
-@@ -9,6 +9,7 @@
- 
- #include "sc7180-trogdor.dtsi"
- #include "sc7180-trogdor-rt5682i-sku.dtsi"
-+#include "sc7180-trogdor-detachable.dtsi"
- 
- / {
- 	ppvar_lcd: ppvar-lcd-regulator {
-@@ -44,12 +45,6 @@ &camcc {
- 	status = "okay";
- };
- 
--&cros_ec {
--	keyboard-controller {
--		compatible = "google,cros-ec-keyb-switches";
--	};
--};
--
- &gpio_keys {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-index c9667751a990..d393a2712ce6 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-@@ -8,8 +8,7 @@
- /dts-v1/;
- 
- #include "sc7180-trogdor.dtsi"
--/* Must come after sc7180-trogdor.dtsi to modify cros_ec */
--#include <arm/cros-ec-keyboard.dtsi>
-+#include "sc7180-trogdor-clamshell.dtsi"
- #include "sc7180-trogdor-rt5682i-sku.dtsi"
- #include "sc7180-trogdor-ti-sn65dsi86.dtsi"
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
-index 305ad127246e..1d9fc61b6550 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
-@@ -8,6 +8,7 @@
- /dts-v1/;
- 
- #include "sc7180-trogdor.dtsi"
-+#include "sc7180-trogdor-detachable.dtsi"
- 
- / {
- 	avdd_lcd: avdd-lcd-regulator {
-@@ -104,10 +105,6 @@ &cros_ec {
- 	base_detection: cbas {
- 		compatible = "google,cros-cbas";
- 	};
--
--	keyboard-controller {
--		compatible = "google,cros-ec-keyb-switches";
--	};
- };
- 
- &i2c4 {
+ 			temperature-sensor@4c {
+-				compatible = "ti,tmp423";
++				compatible = "ti,tmp432";
+ 				reg = <0x4c>;
+ 			};
+ 		};
 -- 
-https://chromeos.dev
+2.40.1
 
 
