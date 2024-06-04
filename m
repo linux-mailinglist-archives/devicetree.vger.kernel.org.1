@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-72124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B0DE8FAE4B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 11:06:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39A0F8FAE54
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 11:08:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD1D51C21C6B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 09:06:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3285283E24
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 09:08:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DEB3143C40;
-	Tue,  4 Jun 2024 09:05:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57228142E9A;
+	Tue,  4 Jun 2024 09:08:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EXCw2HTD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EeCktshR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02A94143721;
-	Tue,  4 Jun 2024 09:05:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A8661428F5;
+	Tue,  4 Jun 2024 09:08:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717491948; cv=none; b=ph/wqiYbsa1otflDvYNTgFMwcVUswTb4fvR4FeTbvDsJYvTVCtpbQqNYMvZho7VzA5macyIKCdaygwKkfZVtgOm4vKghtfoApVplvDpsS01nszT1dPzl2g8hxRT3V7WDf5ZCxPpLs2C9PzqgqN31tVYf9G3bVzDxcJTL1VrKI0Q=
+	t=1717492111; cv=none; b=hZdtvt53wva2xJFP6ifk28odLkO7gRzgoHtOmNSwMujyttzEv1i0bHhuSaNShjEKUJf/GjqDUALeBNWoA8maUXgkvGY337/3c2gvHt6CCBuIggnCGV3yAVoL0pBCPKfi1GoUhb72h499E7nmL/OFyTdZasr9o8a8dddBc1D9sYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717491948; c=relaxed/simple;
-	bh=JrSwIp2cnabDjEtGKzwbZAOb7+k2aqFdwFu7+NxfCnA=;
+	s=arc-20240116; t=1717492111; c=relaxed/simple;
+	bh=vEnIAR8ppWSBshb0TwwJsRwa42RxCoKb5bEtFH0HUj8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jDgvLtxxHrRT/5zja7TmaZ6bV569tMzmDTYE/5Q0sGWtFWB/34JUfqNsbE10diTF/iL0R3IL6n6qURom7jFMKkFVg4Oy+a0qBmoxH1we386ps/QKktuTsq1ZIeVyNBFCKJDtk246XiEr0kEeowk7cumA1iDXCfq7sUD9NiKDu8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EXCw2HTD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51620C32782;
-	Tue,  4 Jun 2024 09:05:45 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=eg9bLZRxpvdjtopsY/ck321jMYoAhPBoTMNw4fzKBoCX4G/rFMkBy5AMz1L+JoQz+QUGlOB3IEPb9wDfBLzH42EkmhvdW3qR2x2yeFx1SR0tMqynmDREZDHcARskyad1efOcPVBmSwkNRDvXcYVgOTQNQeI5aENllfBeWQDBVrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EeCktshR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E678CC2BBFC;
+	Tue,  4 Jun 2024 09:08:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717491947;
-	bh=JrSwIp2cnabDjEtGKzwbZAOb7+k2aqFdwFu7+NxfCnA=;
+	s=k20201202; t=1717492110;
+	bh=vEnIAR8ppWSBshb0TwwJsRwa42RxCoKb5bEtFH0HUj8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EXCw2HTDOTkBI/EjVc6BcWLFFmDhKbKoDPttL+BZAgac0VmUUnFW1de7w+RSGVWsu
-	 D6oX40MOKul/z7yzO2aPClfftFLYRliO9hA0byGFKcbei5ZQrCnijIpRtD0HE9KPQM
-	 /nAJU/vz4MrxeREqUWGWYE6Pd3m3wp03BVyN3zRDFdBI1LwKfp1e9Zfj2SZmy8vvnV
-	 LY0zudPwrPsCQP1+gBe3QLMWWmP9DiIPOVc9YSWWQMQs+Jfvd+hHLWvc03UAhMIi1P
-	 tdfpbk/umavuTuwXHwlEyKAgOTjwYMO8aY+CtLnxygbCENVM9McntJ/Kv8T+giW8OO
-	 tJL9LjbBXNnHQ==
-Message-ID: <f86a8de8-126b-4582-8fac-a5e273851cab@kernel.org>
-Date: Tue, 4 Jun 2024 11:05:43 +0200
+	b=EeCktshROLKMgU/xepY6GJcGoDESxig5RDytRWDVdyxzaPPmNqZa4xnheGx76K8w+
+	 52WFDJgVut0IZCWMYz5vlx19aXJfs6YeoFXULYmFIuT0W4KlTkBSOA2/U4nWUA5EL3
+	 BpXI1Y/bn7GQzj5e/YAejIl1LtBrE0KP1h/JIacbXN+8neaoIo87/eNrL8Jg/4SFWv
+	 on3uYK1wDwgkmDQ2gWZKVbTlMQx5CS01nfBlBKiWuq/kcvTz5oh1k59xhUYiGxAdR1
+	 tvTFODoaTq/V7VE4ygPEvcfEdu5Vs9Hfr3Z9S9n0Pac3mpBNzV2/VyGFswcUCr9MyT
+	 1P3WbxxgNhsXg==
+Message-ID: <e14e6186-e1fd-4167-9235-7687f4a5e99f@kernel.org>
+Date: Tue, 4 Jun 2024 11:08:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [EXTERNAL]Re: [PATCH v4 2/2] dt-bindings: iio: light: add
- VEML6040 RGBW-LS bindings
-To: Arthur Becker <arthur.becker@sentec.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20240604-veml6040-v4-0-5a4d59597874@sentec.com>
- <20240604-veml6040-v4-2-5a4d59597874@sentec.com>
- <e740deb8-e412-4913-9a79-59ad8e117d53@kernel.org>
- <ZR1P278MB11171DD79D5A09580FEEF4A181F82@ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM>
+Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: Correct IRQ number of EL2
+ non-secure physical timer
+To: Cong Zhang <quic_congzhan@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@quicinc.com
+References: <20240604085929.49227-1-quic_congzhan@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,27 +105,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZR1P278MB11171DD79D5A09580FEEF4A181F82@ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM>
+In-Reply-To: <20240604085929.49227-1-quic_congzhan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/06/2024 10:59, Arthur Becker wrote:
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> If there is any resend:
->> A nit, subject: drop second/last, redundant "bindings". The
->> "dt-bindings" prefix is already stating that these are bindings.
->> See also:
->> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
->>
->> Best regards,
->> Krzysztof
+On 04/06/2024 10:59, Cong Zhang wrote:
+> The INTID of EL2 non-secure physical timer is 26. In linux, the IRQ
+> number has a fixed 16 offset for PPIs. Therefore, the linux IRQ number
+> of EL2 non-secure physical timer should be 10 (26 - 16).
 > 
-> Oups! I had read that part of the documentation but forgot about it...
-> I'll think about it next time.
-> 
+> Fixes: 603f96d4c9d0 ("arm64: dts: qcom: add initial support for qcom sa8775p-ride")
 
-It's fine, no worries.
+Please add Cc stable. See stable kernel guidelines.
+
+> Signed-off-by: Cong Zhang <quic_congzhan@quicinc.com>
+> ---
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
