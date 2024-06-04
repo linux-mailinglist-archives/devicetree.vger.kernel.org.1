@@ -1,142 +1,161 @@
-Return-Path: <devicetree+bounces-72040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18C9F8FAA78
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 08:08:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 243D58FAA9A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 08:19:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1820F1C229A4
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 06:08:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A031B1F21F6D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 06:19:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C63713DDA3;
-	Tue,  4 Jun 2024 06:07:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3092D13D511;
+	Tue,  4 Jun 2024 06:19:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fQJ3S3Uf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OiRWoCFS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B792137746;
-	Tue,  4 Jun 2024 06:07:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0117565F;
+	Tue,  4 Jun 2024 06:19:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717481256; cv=none; b=iQQZB/F2+jepdNm2ucomH4P0tyUriXwnXpKDfawXMAFwQ2Rt2xZg1QUtxh0KJXu+/9eD4x5Kc3byF8UV+roSyPke1UKEVWrYXFzqcauLQWP4LztYZ3Nvkts1PMl6myNEE+qS5B41jCRB9TwjPHxnNifkqREad46iZZlOWS7kq7k=
+	t=1717481979; cv=none; b=AlWLQv0ljuADiLayl8dYF/unZYtqu9RU4U35IEtnFkbrrdbPKjoIJqlA9ESFeuIcnIB9AVtdZyY7XfMS7p7qKJU+Kc/CaFW5kovP6YxDjDEoM5NiR4EErkpVlo6niqv2Lpx9SqRck0lzIYpzp38EVgNPYbowrJ4GOJNo3UAQGjM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717481256; c=relaxed/simple;
-	bh=MuPkcDqgPRBYDSC4G54BzgYr/jeXIanGF3ebwu5LSzM=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WIlv0PJD5+GTpxUM7/nAQww70/sW+SWYwNsBYrrf84n3dl2Bp77ZCEouvFclg66LdhWk7G3D2MK384BdCaPx4383Mjt4khQaI1eaEZ6Tadc66qWOIwuZV+HoRnnJvqWLrcnGMmTAxCgBtaX/EP7eOLpMKpCUiglU7YyTEstUaVg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fQJ3S3Uf; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 453LlhDX016553;
-	Tue, 4 Jun 2024 06:07:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jOOU/jSVsd6dhGHLM/A+H3cL6XFaYXQ1c1gVpEVGj6Y=; b=fQJ3S3UfjFmZQ8nU
-	3FuL3TkXLfF1UJQ8W/S7lXAPOepUoRL0FHFjZKmjXRLEz3MoyqnNladPCTM3VNeP
-	H3jLqxWeGotmjgkr03LOGZC0BYi3Qm5BSCcioMsfEHxqvGfO0f9SRQbMAHSL0Jvw
-	Xc+dnM6kmM7oP7iKZrMm4iscX6G9M6CYm7d4nKMX6P4AFcukM4o4VDKckERPAXAM
-	gpwmXS2iv6vgqQiXWnzlcMRpJi0oHVlzNUBBdfklnofi3S6KXNEz1u2kXryAGlAZ
-	57FoFYVJuoimfyBN+ig+oE1Ox4xQIXUv028TbJ2JeWC60jpj/6779wE8+IktX1RL
-	lTIGeA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yfw59nnsp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 04 Jun 2024 06:07:27 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 45467QXR003236
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 4 Jun 2024 06:07:26 GMT
-Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 3 Jun 2024 23:07:21 -0700
-From: Krishna Kurapati <quic_kriskura@quicinc.com>
-To: <cros-qcom-dts-watchers@chromium.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Matthias Kaehlcke
-	<mka@chromium.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_ppratap@quicinc.com>,
-        <quic_jackp@quicinc.com>, Krishna Kurapati <quic_kriskura@quicinc.com>,
-        "Doug
- Anderson" <dianders@google.com>, <stable@vger.kernel.org>
-Subject: [PATCH v2 2/2] arm64: dts: qcom: sc7280: Disable SuperSpeed instances in park mode
-Date: Tue, 4 Jun 2024 11:36:59 +0530
-Message-ID: <20240604060659.1449278-3-quic_kriskura@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240604060659.1449278-1-quic_kriskura@quicinc.com>
-References: <20240604060659.1449278-1-quic_kriskura@quicinc.com>
+	s=arc-20240116; t=1717481979; c=relaxed/simple;
+	bh=jcUhSm+IFc5ARpltnuHkZQXo0zlpHAcNMJd72okD0uE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=b208jq6fLthPjTicr711UB50XMhk0hBbLEsNwXsQBSKZow1T0Tkqn7lQmNCMpFQjJj0g2AUQzDwEJe7lRfnAryh+lmja9bbntuGtfooRr4zA9v0QFwmN029KvPJOB5yXFkWBXLlU2JM7U4E2906Rc4Rtm22PK8ZEDuDKjdHO8N4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OiRWoCFS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0595EC32786;
+	Tue,  4 Jun 2024 06:19:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717481978;
+	bh=jcUhSm+IFc5ARpltnuHkZQXo0zlpHAcNMJd72okD0uE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OiRWoCFSvrCAhVhMBftLMawr+HikFitL+h6ljQAnWe8KsZ3S0F5Rp6tVKNMU8ygG7
+	 dWqoUQFMCdnQV0X8diy5iB3uprWTHMJt/cA/g2dAgs4eNGyKQGmoVP9uFhuH8NiYTp
+	 6TLyPu0BbHytfy1pIMh1TwGnmc56EyUIJjVJOjkSEsuSE6ZpEE3TmT2CEnRmzXQm4q
+	 eZuOw+SEFUGy421II3H5EkbascivCMdhAPbJWxdZns9MV1g1zaDtr6A3xQjwvF8E70
+	 TbNN7K7lY+hVZl3iI003swxTqEDTiVz7vVdUvl3knEOGTbvjusQY+Cshkopa7e9TVd
+	 /sZMq7RwIqpCg==
+Message-ID: <6a9253b4-d28d-400e-a37b-d98431a4aecc@kernel.org>
+Date: Tue, 4 Jun 2024 08:19:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: BSQ2_BAy2SA21sF_-WeYDyCYJCcxCaO3
-X-Proofpoint-ORIG-GUID: BSQ2_BAy2SA21sF_-WeYDyCYJCcxCaO3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-06-04_02,2024-05-30_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- spamscore=0 lowpriorityscore=0 priorityscore=1501 suspectscore=0
- adultscore=0 clxscore=1015 mlxlogscore=599 bulkscore=0 phishscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406040048
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] dt-bindings: usb: snps,dwc3: Add
+ 'snps,xhci-write-64-hi-lo-quirk' quirk
+To: Jung Daehwan <dh10.jung@samsung.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thinh Nguyen
+ <Thinh.Nguyen@synopsys.com>, Mathias Nyman <mathias.nyman@intel.com>,
+ Felipe Balbi <balbi@kernel.org>,
+ "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+References: <1717135657-120818-1-git-send-email-dh10.jung@samsung.com>
+ <CGME20240531060728epcas2p358edd115ee217a50712f1ca3b3b22bd7@epcas2p3.samsung.com>
+ <1717135657-120818-2-git-send-email-dh10.jung@samsung.com>
+ <57966949-8080-4aa5-8d38-63ded1c2b467@kernel.org>
+ <20240603030316.GA23593@ubuntu>
+ <eb13e81c-2669-4e82-86eb-d61203475962@kernel.org>
+ <20240603083657.GE23593@ubuntu>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20240603083657.GE23593@ubuntu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On SC7280, in host mode, it is observed that stressing out controller
-results in HC died error:
+On 03/06/2024 10:36, Jung Daehwan wrote:
+> On Mon, Jun 03, 2024 at 08:57:16AM +0200, Krzysztof Kozlowski wrote:
+>> On 03/06/2024 05:03, Jung Daehwan wrote:
+>>> On Fri, May 31, 2024 at 10:10:30AM +0200, Krzysztof Kozlowski wrote:
+>>>> On 31/05/2024 08:07, Daehwan Jung wrote:
+>>>>> Add a new quirk for dwc3 core to support writing high-low order.
+>>>>
+>>>> This does not tell me more. Could be OS property as well... please
+>>>> describe hardware and provide rationale why this is suitable for
+>>>> bindings (also cannot be deduced from compatible).
+>>>>
+>>>>
+>>>
+>>> Hi,
+>>>
+>>> I'm sorry I didn't describe it in dt-bindings patches.
+>>> It's described in cover-letter and other patches except in dt-bindings.
+>>> I will add it in next submission.
+>>>
+>>> I've found out the limitation of Synopsys dwc3 controller. This can work
+>>> on Host mode using xHCI. A Register related to ERST should be written
+>>> high-low order not low-high order. Registers are always written low-high order
+>>> following xHCI spec.(64-bit written is done in each 2 of 32-bit)
+>>> That's why new quirk is needed for workaround. This quirk is used not in
+>>> dwc3 controller itself, but passed to xhci quirk eventually. That's because
+>>> this issue occurs in Host mode using xHCI.
+>>>
+>>
+>> If there is only one register then you should just program it
+>> differently and it does not warrant quirk property.
+>>
+> 
+> Could you tell me why you think it does not warrant? I think this is
+> good to use quirk.
 
- xhci-hcd.12.auto: xHCI host not responding to stop endpoint command
- xhci-hcd.12.auto: xHCI host controller not responding, assume dead
- xhci-hcd.12.auto: HC died; cleaning up
+Because it is a fixed case, deduced from compatible. No need for a
+property for this.
 
-And at this instant only restarting the host mode fixes it. Disable
-SuperSpeed instances in park mode for SC7280 to mitigate this issue.
-
-Reported-by: Doug Anderson <dianders@google.com>
-Cc: <stable@vger.kernel.org>
-Fixes: bb9efa59c665 ("arm64: dts: qcom: sc7280: Add USB related nodes")
-Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
----
-Removed RB/TB tag from Doug as commit text was updated.
-
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 41f51d326111..e0d3eeb6f639 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -4131,6 +4131,7 @@ usb_1_dwc3: usb@a600000 {
- 				iommus = <&apps_smmu 0xe0 0x0>;
- 				snps,dis_u2_susphy_quirk;
- 				snps,dis_enblslpm_quirk;
-+				snps,parkmode-disable-ss-quirk;
- 				phys = <&usb_1_hsphy>, <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
- 				phy-names = "usb2-phy", "usb3-phy";
- 				maximum-speed = "super-speed";
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
