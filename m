@@ -1,119 +1,192 @@
-Return-Path: <devicetree+bounces-72439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9EF48FBBAE
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 20:28:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00E1B8FBC01
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 21:01:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37AA32871C0
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 18:28:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95B9B1F215BF
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 19:01:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FAC514A60A;
-	Tue,  4 Jun 2024 18:28:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F27714AD0E;
+	Tue,  4 Jun 2024 19:01:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QeCjGfAV"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="b2BIlCYJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1624149DE2;
-	Tue,  4 Jun 2024 18:28:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F72314A0AE;
+	Tue,  4 Jun 2024 19:01:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717525699; cv=none; b=JbREdxtos2LL24QoWBMXpUY0JkplzjpvB25/2RoZJ0fZ0apdMUllyrYYOTt/x3r23dozrBSapyxWrNbsWYiG7FvUHsl/133+IPnYpUZ0K2B0GzS+yCJubDT1qNdMemfZuJg6NwdrWi1luF8AE1WKJoY7HstMiH6f1K+B/UkdbBE=
+	t=1717527669; cv=none; b=QpOtXEXDEWbNvgB+94SQhAIpzzgovm8iqTweG0r1ejLLxlRd50n2QNrCtq1EQISbXw2arxJTIgrafOCC/MjTtfCyByQ6AUa95jJX/unV31bQ4ZfPdDnUaPsMqllgLdCnN299VS0goDJlxpp/ZQUisFvwmWv9ROtRCbZabfWRhTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717525699; c=relaxed/simple;
-	bh=kIEYUuEX7E2+uY0Qphw9+ECQqMwNwRaCDQiB6eHl2Wk=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=X2D3Da0J/9D2vl5YEf0q1vVgRH358oBQNHlotVlmAFkmdSdqAaQoNdOZ+3SkLHUEzalD1gDdZ5H9tTC+JQyyNIi5x9fbqwmpKBsR/hoTLQ15xyZrQJN1jKJesIt9X8hS8YNgQH2spy26TLMoOajE5qISfYEJDr+WLBlPWMF/XI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QeCjGfAV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50ACDC2BBFC;
-	Tue,  4 Jun 2024 18:28:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717525698;
-	bh=kIEYUuEX7E2+uY0Qphw9+ECQqMwNwRaCDQiB6eHl2Wk=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=QeCjGfAVAn1A/3hD8DsW+EqwbJolKBt/+3CWR7T2tZyxomLtQ0RlP5QzICJZaI4nE
-	 9biw15hXJ0DhWOKE4cUOE3s7iKMnXK9hMTCk/Q89XoMKgUM0jah7Dn8oawTFZ97G2X
-	 23iZdnyJmTTpD3SMblGEl7QnM+4Ex44dOsTxa1XsI9txaY/Dp7fCGnQeZL4yhngEf6
-	 3QeyThEWO2X/IPFfJ7rsMB6815hMGS6MD/pDaBs2AOhCNEZRiS4B5JTDAYGdaR8GE+
-	 BSnLyTq0xlO3E3rJFgrX78mk5Tfj7PBbx+oTJrqhvJF1BcexSofNjgMjwjpmqc3w5n
-	 lCdGovF9ENnNw==
-Message-ID: <cce5a85e48f35f5ad5464a2443ca972e.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1717527669; c=relaxed/simple;
+	bh=RqzDd6PqyNpUbR3KegZSUVXG8pajX9LJcIatMv0cgDU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eF0y2/PBBoMj1SGwOR+69Rs9XZCmz6UmxT044E9hxh4qmrFAU4u+K7sOzr7NG/k46VJ2Tltq3EPvo7DjPLOLY/eeAdWpv87wZN9HpMBEhOETJbg7HHfXXWkykT2kfPpUPPHzysW0Xz53aleEPEB7SX+aK3aTEoQMHpJJDqwr2Hc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=b2BIlCYJ; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1717527668; x=1749063668;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RqzDd6PqyNpUbR3KegZSUVXG8pajX9LJcIatMv0cgDU=;
+  b=b2BIlCYJI2tCpsrr6JiHhLrJIh1TyxqGz1m18R9B1irD7Q+7ITW3rbxD
+   hbdWYNmrtiddH9mDYBv1GGDKeoHUwcTs75wc3X0YHc6CcuhjK2iSKDdrr
+   v5tZj8yJ17Dg+QbR5rWn7kAnUaxphsv8WTqEuk4JzOFLSLiwh9zTgqqKI
+   PdoI1NHfHMM/5WtQay+Zy52arX7Nh97EF8Rrve3UOAXaECV9RQqSHN+Si
+   pvRNXxCWzVOTweKDK0zF82olDV56mRhE9hW2CajBgXM1DeWC0xyOnPOov
+   pc845enTKOs2vK2Jjt7yz9gAdzmN3sP43HAVmqQiFXjw2VKIMjsrRK4f8
+   A==;
+X-CSE-ConnectionGUID: eMuvmdE8TUO3W7wImiWzCA==
+X-CSE-MsgGUID: X3uMotcjSOyVNlYjWSpI/g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="11903040"
+X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; 
+   d="scan'208";a="11903040"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jun 2024 12:01:07 -0700
+X-CSE-ConnectionGUID: iY0xvanZRzqrvzsDJnXbdg==
+X-CSE-MsgGUID: sth1H5/sS2yVeM9gjrFlaw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; 
+   d="scan'208";a="68149973"
+Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
+  by orviesa002.jf.intel.com with ESMTP; 04 Jun 2024 12:01:02 -0700
+Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sEZP0-0000Pz-2Y;
+	Tue, 04 Jun 2024 19:00:58 +0000
+Date: Wed, 5 Jun 2024 03:00:24 +0800
+From: kernel test robot <lkp@intel.com>
+To: Christophe Roullier <christophe.roullier@foss.st.com>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Marek Vasut <marex@denx.de>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 07/11] net: ethernet: stmmac: add management of
+ stm32mp13 for stm32
+Message-ID: <202406050248.rGgTkevY-lkp@intel.com>
+References: <20240604143502.154463-8-christophe.roullier@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240604130526.GA12945-robh@kernel.org>
-References: <20240603223811.3815762-1-sboyd@kernel.org> <20240603223811.3815762-8-sboyd@kernel.org> <20240604130526.GA12945-robh@kernel.org>
-Subject: Re: [PATCH v5 07/11] dt-bindings: test: Add single clk consumer
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, patches@lists.linux.dev, kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rafael J . Wysocki <rafael@kernel.org>, Saravana Kannan <saravanak@google.com>, Daniel Latypov <dlatypov@google.com>, Christian Marangi <ansuelsmth@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <maxime@cerno.tech>
-To: Rob Herring <robh@kernel.org>
-Date: Tue, 04 Jun 2024 11:28:16 -0700
-User-Agent: alot/0.10
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240604143502.154463-8-christophe.roullier@foss.st.com>
 
-Quoting Rob Herring (2024-06-04 06:05:26)
-> On Mon, Jun 03, 2024 at 03:38:04PM -0700, Stephen Boyd wrote:
-> > Describe a binding for a device that consumes a single clk in DT. This
-> > will initially be used by a KUnit test to clk_get() the clk registered
-> > by of_fixed_clk_setup() and test that it is setup properly.
-> >=20
-> > Cc: Rob Herring <robh@kernel.org>
-> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> > Cc: Conor Dooley <conor+dt@kernel.org>
-> > Cc: Brendan Higgins <brendan.higgins@linux.dev>
-> > Cc: David Gow <davidgow@google.com>
-> > Cc: Rae Moar <rmoar@google.com>
-> > Signed-off-by: Stephen Boyd <sboyd@kernel.org>
-> > ---
-> >  .../test/test,single-clk-consumer.yaml        | 34 +++++++++++++++++++
-> >  1 file changed, 34 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/test/test,single-=
-clk-consumer.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/test/test,single-clk-con=
-sumer.yaml b/Documentation/devicetree/bindings/test/test,single-clk-consume=
-r.yaml
-> > new file mode 100644
-> > index 000000000000..8c384c48707d
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/test/test,single-clk-consumer.y=
-aml
-> > @@ -0,0 +1,34 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/test/test,single-clk-consumer.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Test consumer of a single clock
-> > +
-> > +maintainers:
-> > +  - Stephen Boyd <sboyd@kernel.org>
-> > +
-> > +description:
-> > +  A consumer of a single clock used in tests.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: test,single-clk-consumer
->=20
-> I don't know if there's much value in defining bindings for tests. We=20
-> could alternatively make 'test,' opt out of everything. There's already=20
-> some support in dtschema for this with 'foo,'.
->=20
-> I need something for the DT unittest as well.=20
->=20
+Hi Christophe,
 
-Ok. So I should drop this patch and the other one that adds a binding
-for the fake clock provider? And replace it with something that makes
-the test vendor prefix opt out of all checking? How is that done?  Some
-patch to dtschema directly?
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on cd0057ad75116bacf16fea82e48c1db642971136]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Christophe-Roullier/dt-bindings-net-add-STM32MP13-compatible-in-documentation-for-stm32/20240604-224324
+base:   cd0057ad75116bacf16fea82e48c1db642971136
+patch link:    https://lore.kernel.org/r/20240604143502.154463-8-christophe.roullier%40foss.st.com
+patch subject: [PATCH v4 07/11] net: ethernet: stmmac: add management of stm32mp13 for stm32
+config: arm-defconfig (https://download.01.org/0day-ci/archive/20240605/202406050248.rGgTkevY-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240605/202406050248.rGgTkevY-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406050248.rGgTkevY-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c:239:4: warning: variable 'val' is uninitialized when used here [-Wuninitialized]
+                           val |= SYSCFG_PMCR_ETH_SEL_MII;
+                           ^~~
+   drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c:228:9: note: initialize the variable 'val' to silence this warning
+           int val;
+                  ^
+                   = 0
+   1 warning generated.
+
+
+vim +/val +239 drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
+
+   223	
+   224	static int stm32mp1_configure_pmcr(struct plat_stmmacenet_data *plat_dat)
+   225	{
+   226		struct stm32_dwmac *dwmac = plat_dat->bsp_priv;
+   227		u32 reg = dwmac->mode_reg;
+   228		int val;
+   229	
+   230		switch (plat_dat->mac_interface) {
+   231		case PHY_INTERFACE_MODE_MII:
+   232			/*
+   233			 * STM32MP15xx supports both MII and GMII, STM32MP13xx MII only.
+   234			 * SYSCFG_PMCSETR ETH_SELMII is present only on STM32MP15xx and
+   235			 * acts as a selector between 0:GMII and 1:MII. As STM32MP13xx
+   236			 * supports only MII, ETH_SELMII is not present.
+   237			 */
+   238			if (!dwmac->is_mp13)	/* Select MII mode on STM32MP15xx */
+ > 239				val |= SYSCFG_PMCR_ETH_SEL_MII;
+   240			break;
+   241		case PHY_INTERFACE_MODE_GMII:
+   242			val = SYSCFG_PMCR_ETH_SEL_GMII;
+   243			if (dwmac->enable_eth_ck)
+   244				val |= SYSCFG_PMCR_ETH_CLK_SEL;
+   245			break;
+   246		case PHY_INTERFACE_MODE_RMII:
+   247			val = SYSCFG_PMCR_ETH_SEL_RMII;
+   248			if (dwmac->enable_eth_ck)
+   249				val |= SYSCFG_PMCR_ETH_REF_CLK_SEL;
+   250			break;
+   251		case PHY_INTERFACE_MODE_RGMII:
+   252		case PHY_INTERFACE_MODE_RGMII_ID:
+   253		case PHY_INTERFACE_MODE_RGMII_RXID:
+   254		case PHY_INTERFACE_MODE_RGMII_TXID:
+   255			val = SYSCFG_PMCR_ETH_SEL_RGMII;
+   256			if (dwmac->enable_eth_ck)
+   257				val |= SYSCFG_PMCR_ETH_CLK_SEL;
+   258			break;
+   259		default:
+   260			dev_err(dwmac->dev, "Mode %s not supported",
+   261				phy_modes(plat_dat->mac_interface));
+   262			/* Do not manage others interfaces */
+   263			return -EINVAL;
+   264		}
+   265	
+   266		dev_dbg(dwmac->dev, "Mode %s", phy_modes(plat_dat->mac_interface));
+   267	
+   268		/* Shift value at correct ethernet MAC offset in SYSCFG_PMCSETR */
+   269		val <<= ffs(dwmac->mode_mask) - ffs(SYSCFG_MP1_ETH_MASK);
+   270	
+   271		/* Need to update PMCCLRR (clear register) */
+   272		regmap_write(dwmac->regmap, dwmac->ops->syscfg_clr_off,
+   273			     dwmac->mode_mask);
+   274	
+   275		/* Update PMCSETR (set register) */
+   276		return regmap_update_bits(dwmac->regmap, reg,
+   277					 dwmac->mode_mask, val);
+   278	}
+   279	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
