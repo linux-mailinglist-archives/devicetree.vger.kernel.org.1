@@ -1,272 +1,202 @@
-Return-Path: <devicetree+bounces-72411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A50A48FBA09
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 19:10:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01ECD8FBA15
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 19:15:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5C59B2827A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:09:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C81A5B24B6F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:15:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1DDA149C53;
-	Tue,  4 Jun 2024 17:09:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D93D149E1E;
+	Tue,  4 Jun 2024 17:15:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="gY0BzahK"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kWBzRrQY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06B61148FEE
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 17:09:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16E15149E1A;
+	Tue,  4 Jun 2024 17:14:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717520982; cv=none; b=Dv3do01VhxlEMItdtVfeQ4I1wrqFgsvAFxkbyTlEq1HBdn9HdU6waMdg2Frds9hTy++rxxiT6smUcBGlvpy2h2QqVpHikZSqr3gsiM2mlfY+mQsIPxCET82y72ZkXA7OGJ5Jf2RYFr5JsdWwBBBPLMuWYWSZC6yI+LqvAqjy1Rg=
+	t=1717521301; cv=none; b=WbDM8fvSFpIu5t0rUgHui6pbP7b29XkXYwahhJ0/R2YmxdbUt0gxn57axKFLnPNwUheJqTlQ1kY6Nb0JbM8UxE4ORklMhooaAAPHzfBSVGntBAIDitF24aLVGxbH21JDpf52l5IwTRguq1YCuRcNRFRASuxEoa87F1XrdqpTaT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717520982; c=relaxed/simple;
-	bh=o72VHC36VXAXqahL3bNFNFeuj1qmWPkvDEckyWe9QaA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=QLuPAz/wwa9q14Zp7V0GvzfUIXK8G4uJtd/S5dAYEGPoHtmnrz+eo407HhHrGUPlZi7sTBKrgQeWuknX2m08rVQC8Fuoppsf0Dk9/tFDDvE/C4z7v5mJ1d0JFcu4BP+qiRrn1D0ez3MRSNXnS8iAIjreVrs98p9BzGDFc+FY518=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=gY0BzahK; arc=none smtp.client-ip=209.85.215.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-6819d785528so4059715a12.3
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 10:09:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1717520980; x=1718125780; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=j59MRW4AaCLc7+qyPpgnSFBskkC64o2U0cQrDH3ZUdw=;
-        b=gY0BzahKvyZ0MTjzyCFKkAWcj8eDri9zyM6YkrnKvF0LPUOx3OCkhDV755/QzP+Ni8
-         B3mSM5UelE513ZM3Z/pB9yTtEiMhubdbxO6efnRxJcAMU/smPFcSwVSou8YgxykpmTE8
-         wJkj/KX89dd885qTeo6+YdtgBOkzDUrRUd3JI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717520980; x=1718125780;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=j59MRW4AaCLc7+qyPpgnSFBskkC64o2U0cQrDH3ZUdw=;
-        b=enAH62LYeZqrBXEHx1iusSuvZ/QbVLo5B2TM1Luu7nUYkEraRJjDbqDpBVAcsz9UtZ
-         EcdE2mivBpcGozmM5FKUalnXLEoqM1Nbyhsamc70JGDHB0RPTEvz2fqqvXG893KyWudT
-         qGFSHaBbb1I5rwbdRSeHrrCvgQ1PyUSYAU838VYg+MYRMQZULXd/6WMzPbvJb5uR4aT6
-         4Yw491k/K5L4SRmnv/b2YjqqJBsxQPG0FJt3pczd7LFl/emSGySektGATFtm3IMH6YcG
-         sOk4zPre41Y13JfHN08Z3scs0zdLceGEjCCF9VNL103hc+evRjgJXL6LJWPBof/O5PSY
-         2eXw==
-X-Forwarded-Encrypted: i=1; AJvYcCVxGZlDb+rIgUiyqg88n4xZWGH6J4CKqP+Q3D87qFEVHM3Hg9PMf5nXo+ghFfrZrGnwtxq2DmEaeRnMOrqCTjxJFAtdhZApIWkRBA==
-X-Gm-Message-State: AOJu0Yw3JGzOfCrtOLQK4vr0DW8ncVRIh23vQUsDRZXLN6algOwDi9BH
-	VIobmJPb9CEMc382G6aO7nAP02ZT/ydqPcUjGhk7irdx2902oWP9oAbiigkNNg==
-X-Google-Smtp-Source: AGHT+IHQToIHKeRdbF7ReYTDKWs4YXC65IdOWhuRt4bWMYdFuwfFfVpRVzadclbj0nLghWQUhad8JA==
-X-Received: by 2002:a17:90a:e289:b0:2c2:3f34:e4eb with SMTP id 98e67ed59e1d1-2c27db5a583mr59664a91.36.1717520980396;
-        Tue, 04 Jun 2024 10:09:40 -0700 (PDT)
-Received: from pc98uv11.mtv.corp.google.com ([2620:15c:9d:2:6203:d1ca:c560:52f1])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c1c28316d0sm8354482a91.40.2024.06.04.10.09.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jun 2024 10:09:40 -0700 (PDT)
-From: Daisuke Nojiri <dnojiri@chromium.org>
-To: 
-Cc: Daisuke Nojiri <dnojiri@chromium.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Benson Leung <bleung@chromium.org>,
-	Guenter Roeck <groeck@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	devicetree@vger.kernel.org,
-	chrome-platform@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	linux-input@vger.kernel.org
-Subject: [PATCH 3/3] ARM: dts: cros-ec-keyboard: Add keyboard matrix v3.0
-Date: Tue,  4 Jun 2024 10:09:33 -0700
-Message-ID: <20240604170935.2518856-1-dnojiri@chromium.org>
-X-Mailer: git-send-email 2.45.1.288.g0e0cd299f1-goog
-In-Reply-To: <20240604005354.2294468-1-dnojiri@chromium.org>
-References: <20240604005354.2294468-1-dnojiri@chromium.org>
+	s=arc-20240116; t=1717521301; c=relaxed/simple;
+	bh=gryU1d/X0GPFWbzUj9dRkMeQSfxNdzr55wMLabnRd8o=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=b5l+nvmocsa96nxeyKL3diEVCDT07vYOcTe37TW9akIgVP5Hps+fNTgYlf6+MS7D0FllbsT3dAmT4peyJ5Y1/uDdF+KTXaUFYm3scVt5fvAsc/RFqHu123WOerayE3X4V9h8eU+uJrhzsqvr4yhlcqxeYOeQV1Y0XywU6UmOHcA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=kWBzRrQY; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 454HEpSP050372;
+	Tue, 4 Jun 2024 12:14:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1717521291;
+	bh=i58hEfuFh9fPON97O9JHgkfTKfM+WPtWzpWCTg0ZfyM=;
+	h=From:To:CC:Subject:Date;
+	b=kWBzRrQYNMQJb1OlkPJXeh6UoRIXfjwwTgas4Ytm4nFJxnw1chCl2dlda2TStC3E5
+	 juPTnarFs1BCP/dwvOj6xA5/E6ew5d92XImpfBPdv0g4FD6HdQzA5Of2fNsdyNDr82
+	 9rXLqsA9zpWLGs0Atbj6GxPODESKAgPA/dFXwtyI=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 454HEpk3047931
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 4 Jun 2024 12:14:51 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 4
+ Jun 2024 12:14:50 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 4 Jun 2024 12:14:50 -0500
+Received: from localhost ([10.249.48.175])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 454HEomB081681;
+	Tue, 4 Jun 2024 12:14:50 -0500
+From: Hari Nagalla <hnagalla@ti.com>
+To: <andersson@kernel.org>, <mathieu.poirier@linaro.org>, <robh+dt@kernel.org>,
+        <devarsht@ti.com>, <s-anna@ti.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v3] dt-bindings: remoteproc: k3-dsp: correct optional sram properties for AM62A SoCs
+Date: Tue, 4 Jun 2024 12:14:50 -0500
+Message-ID: <20240604171450.2455-1-hnagalla@ti.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Add support for keyboard matrix version 3.0. To enable it, define
-CONFIG_CROS_KBD_V30.
+The C7xv-dsp on AM62A have 32KB L1 I-cache and a 64KB L1 D-cache. It
+does not have an addressable l1dram . So, remove this optional sram
+property from the bindings to fix device tree build warnings.
 
-Signed-off-by: Daisuke Nojiri <dnojiri@chromium.org>
+Signed-off-by: Hari Nagalla <hnagalla@ti.com>
 ---
- arch/arm/boot/dts/cros-ec-keyboard.dtsi      |  16 ++-
- drivers/platform/chrome/Kconfig              |   6 ++
- include/dt-bindings/input/cros-ec-keyboard.h | 104 +++++++++++++++++++
- 3 files changed, 123 insertions(+), 3 deletions(-)
+Changes in v3:
+*) Use allOf keyword with separate ifs for each variant instead 
+   of nested if/else conditions.
 
-diff --git a/arch/arm/boot/dts/cros-ec-keyboard.dtsi b/arch/arm/boot/dts/cros-ec-keyboard.dtsi
-index 55c4744fa7e7..0499e254596a 100644
---- a/arch/arm/boot/dts/cros-ec-keyboard.dtsi
-+++ b/arch/arm/boot/dts/cros-ec-keyboard.dtsi
-@@ -8,16 +8,26 @@
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/input/cros-ec-keyboard.h>
+v2: https://lore.kernel.org/all/20240530164816.1051-1-hnagalla@ti.com/
+
+ .../bindings/remoteproc/ti,k3-dsp-rproc.yaml  | 89 +++++++++++--------
+ 1 file changed, 51 insertions(+), 38 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+index 9768db8663eb..b51bb863d759 100644
+--- a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+@@ -25,9 +25,6 @@ description: |
+   host processor (Arm CorePac) to perform the device management of the remote
+   processor and to communicate with the remote processor.
  
-+#ifdef CONFIG_CROS_KBD_V30
-+#define CROS_EC_KEYBOARD_COLUMN_SIZE 18
-+#define CROS_TOP_ROW_KEYMAP CROS_TOP_ROW_KEYMAP_V30
-+#define CROS_MAIN_KEYMAP CROS_MAIN_KEYMAP_V30
-+#else
-+#define CROS_EC_KEYBOARD_COLUMN_SIZE 13
-+#define CROS_TOP_ROW_KEYMAP CROS_STD_TOP_ROW_KEYMAP
-+#define CROS_MAIN_KEYMAP CROS_STD_MAIN_KEYMAP
-+#endif
-+
- &cros_ec {
- 	keyboard_controller: keyboard-controller {
- 		compatible = "google,cros-ec-keyb";
- 		keypad,num-rows = <8>;
--		keypad,num-columns = <13>;
-+		keypad,num-columns = <CROS_EC_KEYBOARD_COLUMN_SIZE>;
- 		google,needs-ghost-filter;
+-allOf:
+-  - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
+-
+ properties:
+   compatible:
+     enum:
+@@ -89,41 +86,57 @@ properties:
+       should be defined as per the generic bindings in,
+       Documentation/devicetree/bindings/sram/sram.yaml
  
- 		linux,keymap = <
--			CROS_STD_TOP_ROW_KEYMAP
--			CROS_STD_MAIN_KEYMAP
-+			CROS_TOP_ROW_KEYMAP
-+			CROS_MAIN_KEYMAP
- 		>;
- 	};
- };
-diff --git a/drivers/platform/chrome/Kconfig b/drivers/platform/chrome/Kconfig
-index d48f7f43f9e5..8f66beaa48ec 100644
---- a/drivers/platform/chrome/Kconfig
-+++ b/drivers/platform/chrome/Kconfig
-@@ -157,6 +157,12 @@ config CROS_KBD_LED_BACKLIGHT
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called cros_kbd_led_backlight.
+-if:
+-  properties:
+-    compatible:
+-      enum:
+-        - ti,j721e-c66-dsp
+-then:
+-  properties:
+-    reg:
+-      items:
+-        - description: Address and Size of the L2 SRAM internal memory region
+-        - description: Address and Size of the L1 PRAM internal memory region
+-        - description: Address and Size of the L1 DRAM internal memory region
+-    reg-names:
+-      items:
+-        - const: l2sram
+-        - const: l1pram
+-        - const: l1dram
+-else:
+-  if:
+-    properties:
+-      compatible:
+-        enum:
+-          - ti,am62a-c7xv-dsp
+-          - ti,j721e-c71-dsp
+-          - ti,j721s2-c71-dsp
+-  then:
+-    properties:
+-      reg:
+-        items:
+-          - description: Address and Size of the L2 SRAM internal memory region
+-          - description: Address and Size of the L1 DRAM internal memory region
+-      reg-names:
+-        items:
+-          - const: l2sram
+-          - const: l1dram
++allOf:
++  - if:
++      properties:
++        compatible:
++          enum:
++            - ti,j721e-c66-dsp
++    then:
++      properties:
++        reg:
++          items:
++            - description: Address and Size of the L2 SRAM internal memory region
++            - description: Address and Size of the L1 PRAM internal memory region
++            - description: Address and Size of the L1 DRAM internal memory region
++        reg-names:
++          items:
++            - const: l2sram
++            - const: l1pram
++            - const: l1dram
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            - ti,j721e-c71-dsp
++            - ti,j721s2-c71-dsp
++    then:
++      properties:
++        reg:
++          items:
++            - description: Address and Size of the L2 SRAM internal memory region
++            - description: Address and Size of the L1 DRAM internal memory region
++        reg-names:
++          items:
++            - const: l2sram
++            - const: l1dram
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            - ti,am62a-c7xv-dsp
++    then:
++      properties:
++        reg:
++          items:
++            - description: Address and Size of the L2 SRAM internal memory region
++        reg-names:
++          items:
++            - const: l2sram
++
++  - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
  
-+config CROS_KBD_V30
-+	bool "ChromeOS built-in keyboard version 3.0"
-+	default n
-+	help
-+	  If you say Y here, you get support for built-in keyboard ver 3.0.
-+
- config CROS_EC_CHARDEV
- 	tristate "ChromeOS EC miscdevice"
- 	depends on MFD_CROS_EC_DEV
-diff --git a/include/dt-bindings/input/cros-ec-keyboard.h b/include/dt-bindings/input/cros-ec-keyboard.h
-index f0ae03634a96..afc12f6aa642 100644
---- a/include/dt-bindings/input/cros-ec-keyboard.h
-+++ b/include/dt-bindings/input/cros-ec-keyboard.h
-@@ -100,4 +100,108 @@
- 	MATRIX_KEY(0x07, 0x0b, KEY_UP)		\
- 	MATRIX_KEY(0x07, 0x0c, KEY_LEFT)
- 
-+/* No numpad */
-+#define CROS_TOP_ROW_KEYMAP_V30 \
-+	MATRIX_KEY(0x00, 0x01, KEY_F11)		/* T11 */	\
-+	MATRIX_KEY(0x00, 0x02, KEY_F1)		/* T1 */	\
-+	MATRIX_KEY(0x00, 0x04, KEY_F10)		/* T10 */	\
-+	MATRIX_KEY(0x00, 0x0b, KEY_F14)		/* T14 */	\
-+	MATRIX_KEY(0x00, 0x0c, KEY_F15)		/* T15 */	\
-+	MATRIX_KEY(0x01, 0x02, KEY_F4)		/* T4 */	\
-+	MATRIX_KEY(0x01, 0x04, KEY_F7)		/* T7 */	\
-+	MATRIX_KEY(0x01, 0x05, KEY_F12)		/* T12 */	\
-+	MATRIX_KEY(0x01, 0x09, KEY_F9)		/* T9 */	\
-+	MATRIX_KEY(0x02, 0x02, KEY_F3)		/* T3 */	\
-+	MATRIX_KEY(0x02, 0x04, KEY_F6)		/* T6 */	\
-+	MATRIX_KEY(0x02, 0x0b, KEY_F8)		/* T8 */	\
-+	MATRIX_KEY(0x03, 0x02, KEY_F2)		/* T2 */	\
-+	MATRIX_KEY(0x03, 0x05, KEY_F13)		/* T13 */	\
-+	MATRIX_KEY(0x04, 0x04, KEY_F5)		/* T5 */
-+
-+#define CROS_MAIN_KEYMAP_V30			/* Keycode */	\
-+	MATRIX_KEY(0x00, 0x03, KEY_B)		/* 50 */	\
-+	MATRIX_KEY(0x00, 0x05, KEY_N)		/* 51 */	\
-+	MATRIX_KEY(0x00, 0x06, KEY_RO)		/* 56 (JIS) */	\
-+	MATRIX_KEY(0x00, 0x08, KEY_EQUAL)	/* 13 */	\
-+	MATRIX_KEY(0x00, 0x09, KEY_HOME)	/* 80 (Numpad) */	\
-+	MATRIX_KEY(0x00, 0x0a, KEY_RIGHTALT)	/* 62 */	\
-+	MATRIX_KEY(0x00, 0x10, KEY_FN)		/* 127 */	\
-+								\
-+	MATRIX_KEY(0x01, 0x01, KEY_ESC)		/* 110 */	\
-+	MATRIX_KEY(0x01, 0x03, KEY_G)		/* 35 */	\
-+	MATRIX_KEY(0x01, 0x06, KEY_H)		/* 36 */	\
-+	MATRIX_KEY(0x01, 0x08, KEY_APOSTROPHE)	/* 41 */	\
-+	MATRIX_KEY(0x01, 0x0b, KEY_BACKSPACE)	/* 15 */	\
-+	MATRIX_KEY(0x01, 0x0c, KEY_HENKAN)	/* 65 (JIS) */	\
-+	MATRIX_KEY(0x01, 0x0e, KEY_LEFTCTRL)	/* 58 */	\
-+								\
-+	MATRIX_KEY(0x02, 0x01, KEY_TAB)		/* 16 */	\
-+	MATRIX_KEY(0x02, 0x03, KEY_T)		/* 21 */	\
-+	MATRIX_KEY(0x02, 0x05, KEY_RIGHTBRACE)	/* 28 */	\
-+	MATRIX_KEY(0x02, 0x06, KEY_Y)		/* 22 */	\
-+	MATRIX_KEY(0x02, 0x08, KEY_LEFTBRACE)	/* 27 */	\
-+	MATRIX_KEY(0x02, 0x09, KEY_DELETE)	/* 76 (Numpad) */	\
-+	MATRIX_KEY(0x02, 0x0c, KEY_PAGEUP)	/* 85 (Numpad) */	\
-+	MATRIX_KEY(0x02, 0x011, KEY_YEN)	/* 14 (JIS) */	\
-+								\
-+	MATRIX_KEY(0x03, 0x00, KEY_LEFTMETA)	/* Launcher */	\
-+	MATRIX_KEY(0x03, 0x01, KEY_GRAVE)	/* 1 */	\
-+	MATRIX_KEY(0x03, 0x03, KEY_5)		/* 6 */	\
-+	MATRIX_KEY(0x03, 0x04, KEY_S)		/* 32 */	\
-+	MATRIX_KEY(0x03, 0x06, KEY_MINUS)	/* 12 */	\
-+	MATRIX_KEY(0x03, 0x08, KEY_6)		/* 7 */		\
-+	MATRIX_KEY(0x03, 0x09, KEY_SLEEP)	/* Lock */	\
-+	MATRIX_KEY(0x03, 0x0b, KEY_BACKSLASH)	/* 29 */	\
-+	MATRIX_KEY(0x03, 0x0c, KEY_MUHENKAN)	/* 63 (JIS) */	\
-+	MATRIX_KEY(0x03, 0x0e, KEY_RIGHTCTRL)	/* 64 */	\
-+								\
-+	MATRIX_KEY(0x04, 0x01, KEY_A)		/* 31 */	\
-+	MATRIX_KEY(0x04, 0x02, KEY_D)		/* 33 */	\
-+	MATRIX_KEY(0x04, 0x03, KEY_F)		/* 34 */	\
-+	MATRIX_KEY(0x04, 0x05, KEY_K)		/* 38 */	\
-+	MATRIX_KEY(0x04, 0x06, KEY_J)		/* 37 */	\
-+	MATRIX_KEY(0x04, 0x08, KEY_SEMICOLON)	/* 40 */	\
-+	MATRIX_KEY(0x04, 0x09, KEY_L)		/* 39 */	\
-+	MATRIX_KEY(0x04, 0x0b, KEY_ENTER)	/* 43 */	\
-+	MATRIX_KEY(0x04, 0x0c, KEY_END)		/* 81 (Numpad) */	\
-+								\
-+	MATRIX_KEY(0x05, 0x01, KEY_1)		/* 2 */	\
-+	MATRIX_KEY(0x05, 0x02, KEY_COMMA)	/* 53 */	\
-+	MATRIX_KEY(0x05, 0x03, KEY_DOT)		/* 54 */	\
-+	MATRIX_KEY(0x05, 0x04, KEY_SLASH)	/* 55 */	\
-+	MATRIX_KEY(0x05, 0x05, KEY_C)		/* 48 */	\
-+	MATRIX_KEY(0x05, 0x06, KEY_SPACE)	/* 61 */	\
-+	MATRIX_KEY(0x05, 0x07, KEY_LEFTSHIFT)	/* 44 */	\
-+	MATRIX_KEY(0x05, 0x08, KEY_X)		/* 47 */	\
-+	MATRIX_KEY(0x05, 0x09, KEY_V)		/* 49 */	\
-+	MATRIX_KEY(0x05, 0x0b, KEY_M)		/* 52 */	\
-+	MATRIX_KEY(0x05, 0x0c, KEY_PAGEDOWN)	/* 86 (Numpad) */	\
-+								\
-+	MATRIX_KEY(0x06, 0x01, KEY_Z)		/* 46 */	\
-+	MATRIX_KEY(0x06, 0x02, KEY_3)		/* 4 */		\
-+	MATRIX_KEY(0x06, 0x03, KEY_4)		/* 5 */		\
-+	MATRIX_KEY(0x06, 0x04, KEY_2)		/* 3 */		\
-+	MATRIX_KEY(0x06, 0x05, KEY_8)		/* 9 */		\
-+	MATRIX_KEY(0x06, 0x06, KEY_0)		/* 11 */	\
-+	MATRIX_KEY(0x06, 0x08, KEY_7)		/* 8 */		\
-+	MATRIX_KEY(0x06, 0x09, KEY_9)		/* 10 */	\
-+	MATRIX_KEY(0x06, 0x0b, KEY_DOWN)	/* 84 */	\
-+	MATRIX_KEY(0x06, 0x0c, KEY_RIGHT)	/* 89 */	\
-+	MATRIX_KEY(0x06, 0x0d, KEY_LEFTALT)	/* 60 */	\
-+	MATRIX_KEY(0x06, 0x0f, KEY_ASSISTANT)	/* 128 */	\
-+	MATRIX_KEY(0x06, 0x11, KEY_BACKSLASH)	/* 42 (JIS, ISO) */	\
-+								\
-+	MATRIX_KEY(0x07, 0x01, KEY_U)		/* 23 */	\
-+	MATRIX_KEY(0x07, 0x02, KEY_I)		/* 24 */	\
-+	MATRIX_KEY(0x07, 0x03, KEY_O)		/* 25 */	\
-+	MATRIX_KEY(0x07, 0x04, KEY_P)		/* 26 */	\
-+	MATRIX_KEY(0x07, 0x05, KEY_Q)		/* 17 */	\
-+	MATRIX_KEY(0x07, 0x06, KEY_W)		/* 18 */	\
-+	MATRIX_KEY(0x07, 0x07, KEY_RIGHTSHIFT)	/* 57 */	\
-+	MATRIX_KEY(0x07, 0x08, KEY_E)		/* 19 */	\
-+	MATRIX_KEY(0x07, 0x09, KEY_R)		/* 20 */	\
-+	MATRIX_KEY(0x07, 0x0b, KEY_UP)		/* 83 */	\
-+	MATRIX_KEY(0x07, 0x0c, KEY_LEFT)	/* 79 */	\
-+	MATRIX_KEY(0x07, 0x11, KEY_102ND)	/* 45 (ISO) */
-+
- #endif /* _CROS_EC_KEYBOARD_H */
+ required:
+   - compatible
 -- 
-2.45.1.288.g0e0cd299f1-goog
+2.34.1
 
 
