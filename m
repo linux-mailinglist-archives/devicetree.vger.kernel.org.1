@@ -1,127 +1,194 @@
-Return-Path: <devicetree+bounces-72175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31F3B8FB0A9
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:00:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 535388FB0B5
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:05:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAA2C1F24B15
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 11:00:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA03CB20B34
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 11:05:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B6FC1448E0;
-	Tue,  4 Jun 2024 11:00:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF6F8144D25;
+	Tue,  4 Jun 2024 11:05:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZOmctIqJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jnbMkOk7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC30446CF;
-	Tue,  4 Jun 2024 11:00:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28F4F4A07;
+	Tue,  4 Jun 2024 11:05:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717498841; cv=none; b=OLppWO/cxlwcN0GXr3FXe+QzEgxnmfjc2Z3LRwJbjnx6eDXt5GRnOebzkfri0UCwmokM/VyDojTG80P30QH/Vd2rPOisVRZrFlbhrfM/+iqqBlIf8MGmE/KT3EXjcmp551eOdBaSt9WyU6jtkJpyZOk+l64Lgr68+y4nfin/NRs=
+	t=1717499143; cv=none; b=buLRckyZj2TZeurHYHOCcBr0h6FY9ceR78FW2esKZwVGpTFFUk5ZR+f6ZS2Sr72N9ullqJeGKvozl19sGMXXAsb8rRzHOhGuBYHVgXEiD6mZWR3KiSGHwxBeXHkTveuxfPb71YVwOtrAn9U8Z79HF6l4zGkcoumIHJt0uIq8N3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717498841; c=relaxed/simple;
-	bh=icN7yy769H60NF0IQHkwQ06Z7vp+DD69l8il9VhXQyE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KlinjvG/isis3OJDBu6mzxKKWja1hAAq/u70JFMlDN5XUpT6ZHi2W7JgPfPx8oH5CNKPxnmxKLbNx8ESC/pfKL7pk+OZlVZGZejolwKRVXVYX7H1Oq4/X1HkGiWRogqZlELMNBVYOn0sLCniRU/5eYb9N3jIcMBR7wklK8xWFjA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZOmctIqJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D780FC2BBFC;
-	Tue,  4 Jun 2024 11:00:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717498840;
-	bh=icN7yy769H60NF0IQHkwQ06Z7vp+DD69l8il9VhXQyE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZOmctIqJg3FeyMAnGbo3vjLdAqkFSlSrwKIRWj8Z+vlG+Oi+VZIEysmgaSuOixUsG
-	 JBZareAMBcnNqjM9L1dpIjrwuDk/Hv4EQUMmRKRCN/UoEMAA4Nxxx2DSj0KEMrKkXP
-	 +16wVUYFMZFyUqnj/Xd2kqfSHyzIuo0DrwLlcBhiJemPd9fBXYZmY8oLZkH1l94Qlk
-	 tnrSzg5awRN1u0679c1qv3qmtLZzxnNfOY5m30sFZsjCSPCQzoeaOQ0QEgj8Fwkvbk
-	 6A/XOYhLNwyDXyc7CyPhJwuQJ54uJk8J+ljQD0JQes9L4PXeDGVhBILjik6wBg1osk
-	 pev6gYVgiTdbw==
-Message-ID: <8e5610de-8091-4a08-a3b8-a0eecdc89438@kernel.org>
-Date: Tue, 4 Jun 2024 13:00:35 +0200
+	s=arc-20240116; t=1717499143; c=relaxed/simple;
+	bh=TY7XvU4SbXdxEdswCoVLHuqEj9CxfdQLBwmuALZPUxA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HzIY+oXAB9DZTo26MrRFq1r1jGItqGxHQTkTPtRC0DDUr2uNi8apbwYCZZLAefNkxaIQzMLFFgRvtTat3eA8u0Apo+gYmwxnoxgHMA8mgcorOyKbeydBsPZilSLzVHAKKBiJJe38lnaYcSoRo+V5FOXT+B2ccwXSiDXA0765QfY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jnbMkOk7; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-52b98fb5c32so3052228e87.1;
+        Tue, 04 Jun 2024 04:05:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717499140; x=1718103940; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pjJNON3xbO+Yh03gyOu9rx6tlrOQ/KcMrKYC4qdTMT4=;
+        b=jnbMkOk7tUVVy8fW44JZSGZea3OUJCuffIqYc1j/lGfLowPTnPJsmTvgzHd/kh5emR
+         fgUu0JFObDkAZ6PapU2t48Ac07rna4vRODWpvCx8yxX+bEIfGEHdEYusTlaWDVkkKnfD
+         rklotBjrth/1VS1Sib0AkjAbZtswr7zBxEvENCRUoYPYc1Wl4TTmgm9Ix2ne2UFCKU69
+         1++jE/3SYSHXBVZQjr0jv3D4R4BO1+3XqPhiryBL2N1hd+YC21NKLBofOYQHgOmKCZkv
+         tGHXkMoDwv+VAq/NxH/KVzn/a0JewAQpKUVdsJy9cwc22SPx7B61/SCE7jU/rCm7qEos
+         qisA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717499140; x=1718103940;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pjJNON3xbO+Yh03gyOu9rx6tlrOQ/KcMrKYC4qdTMT4=;
+        b=IAa1wb6uOg5MpfMekEv8zNVfwCuX+o+Kso+GfvpvLWDvz9v1fheomwA+xEiHp+ua4B
+         Bda3H3lk8liKv6gl838wAV58aH8qXoRYjoHNDvpuQ8vRdIlCnocyvTbZTgVQAcxu5GI2
+         TPazZ/nx/+HMLY11dakKFMqgex3LZWXt8VfabK2Zn9l53mElGcfOIBsVVTudb2cVaiYr
+         remiIvYHU6jpb835iXbWiJdA/aiwXsTe1feZktTcb3J+6Tvnf4nZseQBbk1zY68RGtDy
+         HsZR0Z0/VKvd5ZiZY2/803PtzsivJpayEvJoBL89yHiI5vyZ4AF2mGobgPZILqB2Bc9u
+         z0Xw==
+X-Forwarded-Encrypted: i=1; AJvYcCXWvXedEk/eskLraoXJRRMC6sLfE2VgfRLSOIV2QlXtg9W86PGa8/ZO/AMRUA+yXWNYq8fkQzWeQgUist6T7mQhIQPJ7lhP60MpHNYSagEs8PI+Y5sXsTY8qJ08AmhYApLXCUiMDG7jxga0Cvi3EcGcov7Ckb2z4UzwwNSBRDd0qT1s3w==
+X-Gm-Message-State: AOJu0YwY2xLTmNuvFrz2VO01t956I+KTD/3dNwCgCmzxEy9tPMJ0irch
+	OIRHKY83JoUvUGxU5CP0HnwJmvlIuXCkaRrzzRuS2xstxZgAr2n00en0oW8zaByUXP+wpIK6lOz
+	s/1VlHEWfPc5Z869oB1+opl6s+L8=
+X-Google-Smtp-Source: AGHT+IGKVX7EW81SfP255Jyii0GXmIvdQOfcnZjcozuN3AC14wMPa/o28MFGzPREGwZRW/+wCvISJRXveGKYPM4NcEU=
+X-Received: by 2002:ac2:5de5:0:b0:52b:9955:43b3 with SMTP id
+ 2adb3069b0e04-52b99554482mr4801820e87.60.1717499140011; Tue, 04 Jun 2024
+ 04:05:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy:
- Document the X1E80100 QMP PCIe PHY Gen4 x4
-To: Johan Hovold <johan@kernel.org>, Abel Vesa <abel.vesa@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240531-x1e80100-phy-add-gen4x4-v1-0-5c841dae7850@linaro.org>
- <20240531-x1e80100-phy-add-gen4x4-v1-1-5c841dae7850@linaro.org>
- <Zl26Y0VklPmiirem@hovoldconsulting.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <Zl26Y0VklPmiirem@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240530093410.112716-1-angelogioacchino.delregno@collabora.com>
+ <20240530093410.112716-3-angelogioacchino.delregno@collabora.com>
+ <CAHp75Vexddt1xUGogRDZA9pM1pFp2=ZtCQnCfXePahSCb+oKpg@mail.gmail.com> <84f1c58c-0a5d-4131-a16b-b76bf28862ee@collabora.com>
+In-Reply-To: <84f1c58c-0a5d-4131-a16b-b76bf28862ee@collabora.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 4 Jun 2024 14:05:03 +0300
+Message-ID: <CAHp75VcwnjrsAY1qF68MpBWV-NLFSxTP_PDL+ER==KNdBAFFTA@mail.gmail.com>
+Subject: Re: [PATCH v1 2/4] iio: adc: Add support for MediaTek MT6357/8/9
+ Auxiliary ADC
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, matthias.bgg@gmail.com, lee@kernel.org, andy@kernel.org, 
+	nuno.sa@analog.com, bigunclemax@gmail.com, dlechner@baylibre.com, 
+	marius.cristea@microchip.com, marcelo.schmitt@analog.com, fr0st61te@gmail.com, 
+	mitrutzceclan@gmail.com, mike.looijmans@topic.nl, marcus.folkesson@gmail.com, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 03/06/2024 14:43, Johan Hovold wrote:
-> On Fri, May 31, 2024 at 07:06:44PM +0300, Abel Vesa wrote:
->> The PCIe 6th instance from X1E80100 can be used in both 4-lane mode or
-> 
-> nit: s/PCIe 6th/sixth PCIe/
-> nit: s/from/on/
-> nit: s/both/either/
+On Tue, Jun 4, 2024 at 1:38=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+> Il 30/05/24 15:34, Andy Shevchenko ha scritto:
+> > On Thu, May 30, 2024 at 12:34=E2=80=AFPM AngeloGioacchino Del Regno
+> > <angelogioacchino.delregno@collabora.com> wrote:
 
-That's really nit-picking and not helpful in getting things merged.
+...
 
-Best regards,
-Krzysztof
+> >> +#define PMIC_RG_RESET_VAL              (BIT(0) | BIT(3))
+> >
+> > In this form it requires a comment explaining each mentioned bit.
+>
+> I don't have an explanation for this, I know it's two different bits from=
+ some
+> reveng, but the downstream driver declares that simply as 0x9.
+>
+> Should I just "mask" this as 0x9 instead?
 
+In this case for all of the questionable forms, please add a oneline
+comment suggesting that "these are different bits without known
+purpose of each." or something like that.
+
+...
+
+> >> +#define MT6358_IMP0_CLEAR              (BIT(14) | BIT(7))
+> >
+> > As per above.
+> >
+>
+> Same, I don't have any explanation for that.
+>
+> If you prefer, I can define this as 0x4080, but honestly I prefer keeping
+> it as-is since I am sure it's not a magic number but really two bits to f=
+lip
+> in a register.
+
+As per above.
+
+...
+
+> >> +       u8 r_numerator;
+> >> +       u8 r_denominator;
+> >
+> > Can you add struct u8_fract to the math.h and use it? I will Ack/R the
+> > respective patch.
+>
+> Yeah, I did that exactly because u8_fract wasn't there and I didn't want
+> to waste more bits, but since you just asked for it... well, I'm happier =
+:-)
+
+Note, it's enough to have my Rb tag and route that change via IIO
+tree. We have done similar way for other changes in math.h (or aline)
+in the past.
+
+...
+
+> >> +       /* Assert ADC reset */
+> >> +       regmap_set_bits(regmap, pdata->regs[PMIC_HK_TOP_RST_CON0], PMI=
+C_RG_RESET_VAL);
+> >
+> > No required delay in between?
+>
+> No, as strange as it may look, there is no delay required in between: thi=
+s is
+> because the register R/W is behind the PMIC Wrapper as much as all of the=
+ other
+> MediaTek PMIC (sub)devices, so, missing delays was intentional here, yes.
+
+Maybe a comment?
+
+...
+
+> >> +       mutex_lock(&adc_dev->lock);
+> >
+> > Why not use cleanup.h?
+>
+> I want to unlock the mutex immediately right after executing read_imp() o=
+r
+> mt6359_auxadc_read_adc(), and I don't want the reset to be done while a m=
+utex
+> is being held, as that makes no sense for this driver.
+
+That's why we have scoped_guard(). Exactly for such cases.
+
+> Besides, I find the macros in cleanup.h to be cryptic - in my opinion, th=
+ey
+> require better documentation as, for example, I don't understand when the
+> guard(mutex)(my_mutex) is supposed to acquire the lock and when it's supp=
+osed
+> to release it.
+
+They are cryptic due to limitations in C language. But for the end
+user it doesn't matter. The behaviour is well understandable and makes
+code cleaner and less prone for errors such as missing unlocks. So,
+please use cleanup.h.
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
