@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-72365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32FB48FB787
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:36:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97B318FB7A6
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:42:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC5AA1F29A27
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:36:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9C4D1C21DB0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:42:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5C291420C9;
-	Tue,  4 Jun 2024 15:36:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E402D1420C9;
+	Tue,  4 Jun 2024 15:41:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rYm3/VTP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g3B9tRPc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BAE113C827;
-	Tue,  4 Jun 2024 15:36:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B846B1474BC;
+	Tue,  4 Jun 2024 15:41:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717515390; cv=none; b=iLvqPc2GGUssbCz6bUqD1ogvLIJcfJdMe7j5XBZy228CKPkSj9bqOaOEig7yUzLjz5j7OhWaAEb441fuHh8fZ1krfvmDCW9t0qbCQYePtbxAPS8C9FZ84DJhfknddA4Ylj6WeW+GbXhDXVoO4WegWpJtMzsEWCd8/cV/IupTVek=
+	t=1717515717; cv=none; b=bXFut0mQ9Phw3DwVTRoEdwypnPnzRRz8BdO39dJi4tb9HlxYnvaznDgPV+nX+U4Yqy6CKSoV/08hxK7uASJffmfX+A6cackRzGxFhS5O0yqTIOGehjKITsetStbPHUSJ06Qs243toa6eedXHVS2w2gSK8RC+jH4fmWFQbRseSEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717515390; c=relaxed/simple;
-	bh=ASM1iLgPOz98FrDp3ZwTzO5fBxThTnMol1CVj+4ICA0=;
+	s=arc-20240116; t=1717515717; c=relaxed/simple;
+	bh=bSAjULwqSzj/hapts8c3Q7HGBF+F37mVqg5+WeWwjXo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OdRXgiMjHK0wH5FWWrwAdjUDdkxCotyZ5U9BsEmkclnHhPGhNJuyAkFBVjEowPvKHGAmjU2IXBoKRwawc5FenPpt0rWa7RBOw5Hu262ZvKEco3Q6AbQg4DKvVNdGDTNXU3tJsXyF2PZW0qTO1XbWTMnazfXsTKnxZP/Z2KMtnUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rYm3/VTP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7D67C2BBFC;
-	Tue,  4 Jun 2024 15:36:25 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=KzkbBLEC55QApP8BLWXJ3NN9fmNmAse0aYz7dDZM98036IikmC49rt6Mz6khd+TneQGWc0yVM3E1unWq/d+h4e4wnAuyIwm6QnPbmIX4y9di730s0HsfqmAKkbE2dwtlik4Q7AzOWV1yAnbzoG+MfUS/9LPVjlA+PTgo/oy5CA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g3B9tRPc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16A89C32786;
+	Tue,  4 Jun 2024 15:41:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717515390;
-	bh=ASM1iLgPOz98FrDp3ZwTzO5fBxThTnMol1CVj+4ICA0=;
+	s=k20201202; t=1717515717;
+	bh=bSAjULwqSzj/hapts8c3Q7HGBF+F37mVqg5+WeWwjXo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rYm3/VTPzBsQStET+yackX2InGs3x1NJfFMdtsBI0uUHkERZOhnZ0g5njLOIgbA7F
-	 OrCM2IdRMjYDiJMiq0LJOX/kWWPxazOfJhdjU6dv/BXhq7rBUjoRA44SWpLC5vpSs+
-	 sOpXfisKmbdKu+gORKv6ipRdFxKGxgVXOTLgtXgqFfH8ipdQrgXefj7UrDK6MlCk8Z
-	 tmAluyxnFMu94Tovwk1LuiUHKIMYrBfw9CSjfpuShCqEwI73MP88lzo+wBgtEAi7GP
-	 hz2vPiERUaOLJY4/eBxd/Bdnwf4bCZOMUPJBvRMSd1D/iVybAvYqTjcWj83RSyXNzl
-	 0Sh58R8/IWJ1Q==
-Message-ID: <74bc1fc0-2843-4d4a-ae6c-b656745bf02f@kernel.org>
-Date: Tue, 4 Jun 2024 17:36:24 +0200
+	b=g3B9tRPc1r80gCcUvxQ2WkcUJk/uXKdiYuPzg+cCxBffPzD2FlWVB3SdwgB+I+oEF
+	 PPD4181WO0ojU2bEuqcUEh0V/inQzun3hLbJIv5+IyajSHSG4Rx0lzOavXy6VMHj2E
+	 ITxPKBp6+XoxwuBEZWKzA66+8g0Cf5AnJF91luveEAvXTbAZDg4Rz+6CLJWhaIqEse
+	 W9Jheml3Fo/6vCyuD+J/o2pgjcAVdq8x1mBUuCa15hEIjL8LBtwtny+VUTD8b4vzaW
+	 1qtF20OgtMoADNef079AWFJCHYGL6YXgUiZ5EsbDfPIgekH7q8dUMIYzKAlpInZwQt
+	 4gd201jL+XNEg==
+Message-ID: <c9eaff68-4582-408e-84e1-bcb75b879b66@kernel.org>
+Date: Tue, 4 Jun 2024 17:41:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,29 +52,19 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 1/7] dt-bindings: display/msm/dsi: allow specifying TE
  source
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, Rob Clark
- <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>,
  David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>,
- Krishna Manikandan <quic_mkrishn@quicinc.com>,
- linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Krishna Manikandan <quic_mkrishn@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
  freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-References: <20240520-dpu-handle-te-signal-v1-1-f273b42a089c@linaro.org>
- <224fa477-07ba-e7b2-2f7d-8f7d21f4a0c7@quicinc.com>
- <CAA8EJpp8kRPKboHNHwD+R5f1AcndjaQdGG=Q4ygmRE9VMNievQ@mail.gmail.com>
- <5cde2f43-89ab-d2d4-d68e-605f8f5d1da7@quicinc.com>
- <CAA8EJpoMtr6OGjL8qq-cHadQSOVyDAaL8=2TLvOjBbYV2Z7+Mg@mail.gmail.com>
- <d1a9be5d-b0a0-73bc-c66f-6d45049fbaf1@quicinc.com>
- <CAA8EJppFZQTghtyweGG_8zSqqZpEp=ho0bXuRxgyU2qGL4+ppA@mail.gmail.com>
- <4b604c91-7b1f-46b3-6b41-fe7d45190b78@quicinc.com>
- <tymwexyhuujgrz2cvxkruimst3ff4mnevcm2k4h6qdmpmb7yqp@zqbwwc5t66ya>
- <c9cc5a0e-35b5-47a6-b271-46cac9e19872@kernel.org>
- <xc4knruvh2kasc563vbatppof67w5ui7bnoiq73euogvkjw2hh@meq3vz2qeekk>
+References: <20240520-dpu-handle-te-signal-v1-0-f273b42a089c@linaro.org>
+ <20240520-dpu-handle-te-signal-v1-1-f273b42a089c@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -120,58 +110,22 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <xc4knruvh2kasc563vbatppof67w5ui7bnoiq73euogvkjw2hh@meq3vz2qeekk>
+In-Reply-To: <20240520-dpu-handle-te-signal-v1-1-f273b42a089c@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/06/2024 17:32, Dmitry Baryshkov wrote:
-> On Tue, Jun 04, 2024 at 05:22:03PM +0200, Krzysztof Kozlowski wrote:
->> On 04/06/2024 17:14, Dmitry Baryshkov wrote:
->>>>>>>>
->>>>>>>> I didnt follow why this is a link property. Sorry , I didnt follow the
->>>>>>>> split part.
->>>>>>>
->>>>>>> There is a link between the DSI host and the panel. I don't want to
->>>>>>> end up in a situation when the properties of the link are split
->>>>>>> between two different nodes.
->>>>>>>
->>>>>>
->>>>>> It really depends on what the property denotes. I do not think this
->>>>>> should be the reason to do it this way.
->>>>>
->>>>> It denotes how the panel signals DPU that it finished processing the
->>>>> data (please excuse me for possibly inaccurate description). However
->>>>> there is no direct link between the panel and the DPU. So we should be
->>>>> using a link between DSI host and the panel.
->>>>>
->>>>
->>>> Yes, I totally agree that we should be using a link between DSI host and the
->>>> panel.
->>>>
->>>> My question from the beginning has been why the output port?
->>>>
->>>> It looks like to me we need to have another input port to the controller
->>>> then?
->>>>
->>>> One from DPU and the other from panel?
->>>
->>> Dear DT maintainers, could you please comment on the OF graph entries?
->>> Are they considered to be unidirectional or bidirectional?
->>>
->>> Would you suggest adding another arc to the OF graph in our case or is
->>> it fine to have a signal generated by the panel in the 'panel_in' port?
->>
->> Which pin are we talking about? DSI or panel? Commit msg suggests DSI,
->> so property is in DSI node part. Seems logical to me.
+On 20/05/2024 14:12, Dmitry Baryshkov wrote:
+> Command mode panels provide TE signal back to the DSI host to signal
+> that the frame display has completed and update of the image will not
+> cause tearing. Usually it is connected to the first GPIO with the
+> mdp_vsync function, which is the default. In such case the property can
+> be skipped.
 > 
-> Input pin on the DSI side.
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-So adding it to panel schema is not even possible thus I am not sure if
-we discuss this option (maybe not, because it would be odd, considering
-you got Rb tag!).
+Maybe we need third DT maintainer review/ack...
 
-Adding some input node to DSI connecting panel output and DSI input...
-for what? I mean, what sort of data would it represent?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
