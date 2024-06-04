@@ -1,174 +1,115 @@
-Return-Path: <devicetree+bounces-72149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9283E8FAF35
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 11:47:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB0688FAF39
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 11:47:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E94A8B223A7
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 09:47:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61EB5284B8A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 09:47:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B56071448EB;
-	Tue,  4 Jun 2024 09:47:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DTRU5Khl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E1031448C0;
+	Tue,  4 Jun 2024 09:47:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1E711448CB
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 09:46:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A3BB143759;
+	Tue,  4 Jun 2024 09:47:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717494421; cv=none; b=R9OsXI+OIVEMEWVAYX8K9jzcNCywSVEPVfwHXerkkmiIjg5hMUNkSZNRFIKfKLahiYCMiInRZktq9IX4N662w1J6WNEy6NG82C/0R6foFtNZs7fdO3OYC6xyRUhCAk4RobtM832cWogzVFDh+Ij0Z3TcSj760g8ed1jRgtqI+OQ=
+	t=1717494454; cv=none; b=MsVXPAMtjPah8XtKU5E4gkZfudMMekdYFfx8Y+XCFht8Gggqo7U2MNI/91GCCY4UU0hvmiQ3tOQByiVTBbwUhwjzweX/Rq0DN4Mp0X3mFqAklubjA0NEi30ilK900q33ehYJ8l/jR8bYOo4+3BhmCsyVQkl7uPxtNkRFmKr48EA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717494421; c=relaxed/simple;
-	bh=mWx0HO7MnYdM2GA36+DT4q83BPtn9x4BGJwJUoyDg94=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gV/ugTM9vKxHc3MF+aB1Ic4zItinDwYmjULZT4eIPcWZtsTc8HZUDsIU3WffU5EWBisabYQNDywSoUvfDwZI5Uk7Cm7D8rP7bY1gwYEQomCEc+MxyXNAbwDO1xTwauERpUHN7ZXSDABad7tN4nRjs8pCtkyO2YxdXhtvT/RDfAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DTRU5Khl; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2ea9386cde0so53008991fa.2
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 02:46:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717494417; x=1718099217; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=91LqZFlYL5/F2cNmD4SIK00pujZpSwxCmM3GgQD7Ylk=;
-        b=DTRU5KhlxwdMUF1S+Dz1P8rnrh+QG0qfptY/yJfQYBz2PlwU1R9QcQAXU+NsoymoyR
-         wgR8xzUk8Q9Y89dCE8+0Ydy1FzpAlNUqATs9m3LrlqcRhE1MzG61bWa9Eoxb8lf6GPJX
-         pIc6EiVAmQgSK7WHoSl3FAV2XkymBNsRHdos/+djV3u2gkfNti66rCLy8Vf3TfrOg1PW
-         LVPyA+8B3VEWuyC8mQlQxd0nUJb592oiecDsoTwFzUJk45hofF65j2Jchhva4mZena20
-         FidNvvjY+AN6BpUufqL/xkDmY+ZGBCiISb+FsKjcmF5CTPfW0n1nAAnkPK5NLSfv4oWX
-         1XBw==
+	s=arc-20240116; t=1717494454; c=relaxed/simple;
+	bh=OEufR6/8faseQMJx5Ixiz7s3gGBu3POWhXuFO12hUeU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DTrvjmBp3ncKYy1NqCU/mrcH548FRkJYvFEWWBLn10EIjiND9Us6uzVRpvFO5lJaUypaPnCG7AD9I9rp5QFmCiU0jWsnmsDQJuUvYCRq0AFIuozgNNvG6vqUDvgRt0CXbTnczI7NTWnGj0MUqsZPSjpeuNCA0PZNTzvStASLNX8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-62a145e0bb2so52226667b3.0;
+        Tue, 04 Jun 2024 02:47:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717494417; x=1718099217;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=91LqZFlYL5/F2cNmD4SIK00pujZpSwxCmM3GgQD7Ylk=;
-        b=XcdvH6IMAOo0NuGDd2dPDcaXYvOgcDXsO98eZJ3NoDgQ8b2BOE6K3yPlE7LMPi2h/E
-         APneRGz5P0CjuinXoLKBHqmWQ0Y5V0DOXRwi+JQ8E42jG2nFzBdtdFGDjioIDUATkl3l
-         IBsQzW8hXkIp/HvHljCSKUARjqP/D1X4eH9KfaduZMpZZ17kUAM3RrIvdwFm+08ECxlL
-         5Uf3APBRkIEVv4ADmgJx/melvl0f4n5ho4nQvlsh5PNyZxMRgB10AOvUnWb6zlcOBPPH
-         yzzwUyGIOr67c1qP6c4V3MPEN25mc1rtD75n2UVBhIKXLRTr+S7+9vqtXOrUc0hZUyud
-         6MWw==
-X-Forwarded-Encrypted: i=1; AJvYcCUtNwaQZFkTW1nBJOfL4xgcxm9VldZdp+BEV8GDEIeVwFAc1pOdfxtzSLqBXEcy4pBxcAQoSyPf7S9YgyoPI3M2FzoF1LQpxkX2nA==
-X-Gm-Message-State: AOJu0Yy7CRvsb5gSNlEvJOc3nLcPqbsbCjWrpJoNaoKgZTaqGMRJxM91
-	+YdZsVSHIQaYQIH84Zs6G1gDgu25lIDwfAHuKYrTu89t6/qzSmnLkq5iYgsawYE=
-X-Google-Smtp-Source: AGHT+IGP3Av98j9yu/1Mbhl+izjyOMD6OnhkoHEAMTZcSfCVzSQLxJFI5S0RbigNCtMU2ew04uBK9Q==
-X-Received: by 2002:a2e:9295:0:b0:2ea:8d54:4516 with SMTP id 38308e7fff4ca-2ea951288aamr68154601fa.27.1717494417079;
-        Tue, 04 Jun 2024 02:46:57 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ea91b9d683sm14655841fa.8.2024.06.04.02.46.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jun 2024 02:46:56 -0700 (PDT)
-Date: Tue, 4 Jun 2024 12:46:54 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-Cc: cros-qcom-dts-watchers@chromium.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <swboyd@chromium.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Matthias Kaehlcke <mka@chromium.org>, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	quic_ppratap@quicinc.com, quic_jackp@quicinc.com, Doug Anderson <dianders@google.com>, 
-	stable@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: sc7180: Disable SuperSpeed
- instances in park mode
-Message-ID: <tbtmtt3cjtcrnjddc37oiipdw7u7pydnp7ir3x5u3tj26whoxu@sg2b7t7dvu2g>
-References: <20240604060659.1449278-1-quic_kriskura@quicinc.com>
- <20240604060659.1449278-2-quic_kriskura@quicinc.com>
- <le5fe7b4wdpkpgxyucobepvxfvetz3ukhiib3ca3zbnm6nz2t7@sczgscf2m3ie>
- <e0b102b6-5ea5-4a86-887f-1af8754e490b@quicinc.com>
+        d=1e100.net; s=20230601; t=1717494451; x=1718099251;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=q+oKHPrJgjbF/4q/2kBiakgUjEI+vsefZYNEk/XcXYA=;
+        b=b0iSrGdmk60iTOgwgDE/Vnq4NVEpXIofqobsy1k0PDHgdnoyuIt/lFkyBIZZkHmB3j
+         G9oi4+aiFti/nnHqInxSETg0X4DmVm1j8d3nr0gw0RJ7Rv6RDObeZ6kj549u0JJ7WUQn
+         c4ROhmNiPYAbtVbEKlz54KhTPB11K/rg2Z9TyW0uj6XE4mSqkGlqrYUyGwfTZJP/y6qR
+         OOnoERtOiZBKvr29cEP0tQIqV4bKBUJ5YlZGh+PRw6D4yuYaKZydbJbgr/Gawy2INYi7
+         4ogcGZViuiMu2VKHssfBjGO8BDdWlwIEVyu/O1bFzp6guSylA9mpb2mK8hJoIjpWUTax
+         6UzA==
+X-Forwarded-Encrypted: i=1; AJvYcCWZ58YbsArxst4gKDiqIE87F6LghAwid0IM0AFEs5RNIFdf0XGRfDv2sFUfs/wr79QlbiXvK5kXue/Ky0zrm1U7ls9CSiQ8BKEuuZ4u5ulqoygeXHlrKSRUSKO1Z0XJXbJ3I56U8k4Nsm/xxOCU
+X-Gm-Message-State: AOJu0YyGRAnaFOv47uYsMmPN+JgnjhMiqL2Od4nW/pmtG6LlMsh3rDD8
+	6PJr+Lbo7yuPr+NDe4IHWCxfyZS927cUuEnufLJVyfE/+qRd9cCu0Z4WkoWz
+X-Google-Smtp-Source: AGHT+IGJVoa92ZV0lUVPbQSCUT2ZZ4DRmWVQCq4GnEHb9fhnn/8Hjl4q1DL+zdI9fYiHBWpEU4XCrA==
+X-Received: by 2002:a81:ae51:0:b0:627:ee15:a92d with SMTP id 00721157ae682-62c796c35e7mr124843377b3.19.1717494451014;
+        Tue, 04 Jun 2024 02:47:31 -0700 (PDT)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-62c765e6d83sm18033317b3.46.2024.06.04.02.47.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Jun 2024 02:47:30 -0700 (PDT)
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-dfa72c9d426so4186439276.3;
+        Tue, 04 Jun 2024 02:47:30 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCX10PPXdzip6kr9KULJ642b4vK/wDLX9KA1/X5//EM+E9HsSdnzmY1ndPjsc9GIrpGuQJ703S/da0HGy+vM+LA3WGBcNUERltiV2OeRYO9BohKTfxrsWHcugnhgQVjuG4DKRF7qPjnSC2epOxMF
+X-Received: by 2002:a25:bfc9:0:b0:dfa:ac81:38eb with SMTP id
+ 3f1490d57ef6-dfaac813b3dmr3745757276.27.1717494450714; Tue, 04 Jun 2024
+ 02:47:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e0b102b6-5ea5-4a86-887f-1af8754e490b@quicinc.com>
+References: <20240527134129.1695450-1-niklas.soderlund+renesas@ragnatech.se> <20240527134129.1695450-4-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20240527134129.1695450-4-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 4 Jun 2024 11:47:18 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVVhTk-BOL0z19LF5YbOcQK5ZkwarwwEZaArWnZgEkszQ@mail.gmail.com>
+Message-ID: <CAMuHMdVVhTk-BOL0z19LF5YbOcQK5ZkwarwwEZaArWnZgEkszQ@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: renesas: gray-hawk-csi-dsi: Add and
+ connect MAX96724
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jun 04, 2024 at 01:34:44PM +0530, Krishna Kurapati PSSNV wrote:
-> 
-> 
-> On 6/4/2024 1:16 PM, Dmitry Baryshkov wrote:
-> > On Tue, Jun 04, 2024 at 11:36:58AM +0530, Krishna Kurapati wrote:
-> > > On SC7180, in host mode, it is observed that stressing out controller
-> > > results in HC died error:
-> > > 
-> > >   xhci-hcd.12.auto: xHCI host not responding to stop endpoint command
-> > >   xhci-hcd.12.auto: xHCI host controller not responding, assume dead
-> > >   xhci-hcd.12.auto: HC died; cleaning up
-> > > 
-> > > And at this instant only restarting the host mode fixes it. Disable
-> > > SuperSpeed instances in park mode for SC7180 to mitigate this issue.
-> > 
-> > Let me please repeat the question from v1:
-> > 
-> > Just out of curiosity, what is the park mode?
-> > 
-> 
-> Sorry, Missed the mail in v1.
-> 
-> Databook doesn't give much info on this bit (SS case, commit 7ba6b09fda5e0)
-> but it does in HS case (commit d21a797a3eeb2).
-> 
-> From the mail we received from Synopsys, they described it as follows:
-> 
-> "Park mode feature allows better throughput on the USB in cases where a
-> single EP is active. It increases the degree of pipelining within the
-> controller as long as a single EP is active."
+Hi Niklas,
 
-Thank you!
+Thanks for your patch!
 
-> 
-> Even in the current debug for this test case, Synopsys suggested us to set
-> this bit to avoid the controller being dead and we are waiting for further
-> answers from them.
+On Mon, May 27, 2024 at 3:41=E2=80=AFPM Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> The sub-board contains two MAX96724 connected to the main-board using
+> I2C and CSI-2, record the connections. Also enable all nodes (VIN, CSI-2
 
-Should these quirks be enabled for other Qualcomm platforms? If so,
-which platforms should get it?
+There are no CSI-DSI sub-board and main board on Gray Hawk Single.
 
-> I can update thread with more info once we get some data from Synopsys.
-> 
-> Regards,
-> Krishna,
-> 
-> > > 
-> > > Reported-by: Doug Anderson <dianders@google.com>
-> > > Cc: <stable@vger.kernel.org>
-> > > Fixes: 0b766e7fe5a2 ("arm64: dts: qcom: sc7180: Add USB related nodes")
-> > > Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> > > ---
-> > > Removed RB/TB tag from Doug as commit text was updated.
-> > > 
-> > >   arch/arm64/boot/dts/qcom/sc7180.dtsi | 1 +
-> > >   1 file changed, 1 insertion(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > > index 2b481e20ae38..cc93b5675d5d 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > > @@ -3063,6 +3063,7 @@ usb_1_dwc3: usb@a600000 {
-> > >   				iommus = <&apps_smmu 0x540 0>;
-> > >   				snps,dis_u2_susphy_quirk;
-> > >   				snps,dis_enblslpm_quirk;
-> > > +				snps,parkmode-disable-ss-quirk;
-> > >   				phys = <&usb_1_hsphy>, <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
-> > >   				phy-names = "usb2-phy", "usb3-phy";
-> > >   				maximum-speed = "super-speed";
-> > > -- 
-> > > 2.34.1
-> > > 
-> > 
+> and ISP) that are part of the downstream video capture pipeline.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
 
--- 
-With best wishes
-Dmitry
+For the functionality:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
