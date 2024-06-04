@@ -1,118 +1,126 @@
-Return-Path: <devicetree+bounces-72196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A40158FB1B0
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:01:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC75A8FB1CB
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:06:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCD171C22347
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 12:01:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A8611F25C74
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 12:06:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97F80145A1D;
-	Tue,  4 Jun 2024 12:01:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23710145B12;
+	Tue,  4 Jun 2024 12:06:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dueXGwna"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="YrTrUOSc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5A624A0F
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 12:01:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF4B913C8FE;
+	Tue,  4 Jun 2024 12:06:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717502480; cv=none; b=PUrDxSOfBT90uwwwjc5Ct9WpbWOD92SkMLKDmNVLHl/zaf+XodTLjhvjFKqQPlsJ8S2B6u00lrtj9Zk4lyd1vuKwgSTiGdrRIKXLPjwUzQwAWyixsMqZqmqH4jlt8dxz8iR/WVLT/yzanJXgppabWpnSHRcEIklZGQLtVC4sQuE=
+	t=1717502808; cv=none; b=XL0f5Cy1wyRilMfIbIXw6Gx6KYZhhricQmgWGR1nPen/HyDaexQ+PEvZWgzR7L7i4ZR4eG8OyKLCcWg8FS4gL/rwy2N5VXGIbVOyp86RIsrq2zcmUtlvW9uOQbCQ+z70EntOZP++rPzqy7O/G4K+DTDMnclkMrTqdqHq1V0xi0k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717502480; c=relaxed/simple;
-	bh=aqnSFG+sYc0/RHxsrKrsG7o29UpbZ3oTecXD37lxYT0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oS84uEiPOvi26n7aJ3N4PY3CYpdQoEbOt5dunEv0eRx9FVV1scQp/KHCJY09GN47uZkfKmFKszVt3JEGSOl5xttMzKmRMSpTi/0laTb8ncf1YiYXE6hNKadaGvijTgpeHFxVd+ErLhgc9g4kEmYjx+XezPLHUnooB+XokjnWs94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dueXGwna; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a691bbb7031so242757366b.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 05:01:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717502477; x=1718107277; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=i3/Vuq7S2WG8oNel0jOUvOm+4hHdWaPfXg39TcdwYqA=;
-        b=dueXGwna6qBV2UCgTKhhlwpXMjEn7Kx4IAGv/h6Wa+6DXaV1wTfmMhbrU2U+HBqe61
-         mQLvGLh4PGVG+OaqSGGYdA2c2MTQD7aprsXh+hJqPzHPz2nMC5id8Ay/LNX+gxi+W9x3
-         8AfXDE/IuHcq5X2HNq5rbAviu+qy2GMgv8+k9EUGbSzSN0odYl18NH8hIv0LOjTelThf
-         wny8w2Whq5QFnkqPn+oL8hrb0zXaZ8HCed/r7YwFKb1gKPOHgkEdSspOzuk8B2SbHo+9
-         y44o/E7Fm72iOvaE5N9CzTPXdzggC6Bx/1X623VuwgE2vTySKTROYfbMIvjhZOLYGrr1
-         MrNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717502477; x=1718107277;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=i3/Vuq7S2WG8oNel0jOUvOm+4hHdWaPfXg39TcdwYqA=;
-        b=t3V0uskBfGdTkH48B0sBUxmjLc+pGRdpXTJNMeMl36t4aXXlRJlAN0+lY4V2sGJm2n
-         7cHgXys4eYLLQz2HxaBspfvWJBXXWfkbx2tl2pL/uM4J2GgjzqE8S7d9CeXc+aaW8G3a
-         g4NIqpubFaUOK8GL6bAPIS+Z+H6MhSDbJvhaDNNDauVpzrWVEJX3IBJ55TuM1XkFvKua
-         oaHhjqzVHlIco+1bt61cTr7IW7QYcEyN2oQm1TF6FJ8DrtbMWgCYbaPX2nnmg5neL1yu
-         7YDClrtKVA65eBYcKClSJGUutKDDFsTpmC2HnmyAsjV6vnSoO3LUXjh+PPlPCrE/UASm
-         yfdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWabkVoh113ZoZFRMnTA/AETy3ILIFDeAnBxwf0cqTleDysZLoMwl+TpASIAyG927n9mQSV1lfGGyV+sBpyWJzuVjaf3rnzXAVX1w==
-X-Gm-Message-State: AOJu0YzeilY2VbdjjesJnRu546JGF512MEJrwBRhqfo35h7mG6lpXCK9
-	JCVqDb6nIdQB149fQtf4Sg7h/thgbY5Lc7fbZC/2EcZhdcuVyArAWJ0lyYDFY8D1RVO6TpXYj3s
-	fkYY=
-X-Google-Smtp-Source: AGHT+IGzxD9Hi80rZQQwWRuOwlSpf9vOWUJP2t47hbgEFwS+tvPJIcBrnUEo5052eKF7zfgJR3kWAg==
-X-Received: by 2002:a17:906:2f05:b0:a63:3e99:6565 with SMTP id a640c23a62f3a-a682022f671mr922154266b.23.1717502477281;
-        Tue, 04 Jun 2024 05:01:17 -0700 (PDT)
-Received: from ?IPV6:2a00:f41:909a:a11e:a035:2af2:8d85:1f72? ([2a00:f41:909a:a11e:a035:2af2:8d85:1f72])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a68fbebec36sm338287166b.162.2024.06.04.05.01.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Jun 2024 05:01:16 -0700 (PDT)
-Message-ID: <4c1d77e3-3fe7-4ee6-8872-3924a1b2ef9f@linaro.org>
-Date: Tue, 4 Jun 2024 14:01:11 +0200
+	s=arc-20240116; t=1717502808; c=relaxed/simple;
+	bh=hTef1Kd2x1vlByypJaJA7O2Ekfbjp5Lq97ZRfku+bII=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FsJQZErOK0i7KpztgyGpOHyZJVqvoNBiyJjMD0qaXGschSHqJ56RQM9iU6Z68tGVCgb+3OsFbHN3eiGAzt4qa6TYpxH0vV8LJKH4fyfFHv8fXGLlZMWxIwptqHWffkpQ48w61zI2YpGlYqGD9v6luIvbprjKWrj7Z7wGbQYJD/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=YrTrUOSc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91C2DC2BBFC;
+	Tue,  4 Jun 2024 12:06:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1717502807;
+	bh=hTef1Kd2x1vlByypJaJA7O2Ekfbjp5Lq97ZRfku+bII=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YrTrUOScv3Jx/Qd+5d8wYw2YATtNevRjrWSAoXH7rbuT3w2ZkOq+SGGXFTsc8OL14
+	 aokUfUCUxOhDFeMFhJYs86/TDaeCYiCmjyqWvpy2NRXVz6XM+uFaWJAvo6GhqOikGB
+	 JUpUgeeq2ZTgKin6tPw4tUsRcYJxmog0snd19n6I=
+Date: Tue, 4 Jun 2024 14:03:02 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, Jiri Slaby <jirislaby@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v4 0/5] Add SCIF support for Renesas RZ/V2H(P) SoC
+Message-ID: <2024060426-radiance-reappear-c77a@gregkh>
+References: <20240322144355.878930-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CA+V-a8vQr2jxrW+C5VTcmEHmDgNp6S8=3KcAT1SzcKusFaP7Gw@mail.gmail.com>
+ <2024052955-phrase-portion-8d1f@gregkh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100: Disable the SMB2360 4th
- instance by default
-To: Abel Vesa <abel.vesa@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Johan Hovold <johan+linaro@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <20240603-x1e80100-dts-pmics-drop-4th-smb2360-from-crd-v2-1-fb63973cc07d@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240603-x1e80100-dts-pmics-drop-4th-smb2360-from-crd-v2-1-fb63973cc07d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2024052955-phrase-portion-8d1f@gregkh>
 
-
-
-On 6/3/24 10:17, Abel Vesa wrote:
-> The CRD board doesn't have the 4th SMB2360 PMIC populated while the QCP
-> does. So enable it on QCP only. This fixes the warning for the missing
-> PMIC on CRD as well.
+On Wed, May 29, 2024 at 09:42:50AM +0200, Greg Kroah-Hartman wrote:
+> On Wed, May 29, 2024 at 07:15:23AM +0100, Lad, Prabhakar wrote:
+> > Hi Greg,
+> > 
+> > On Fri, Mar 22, 2024 at 2:45 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> > >
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > Hi All,
+> > >
+> > > This patch series updates DT binding doc and scif driver to add support
+> > > for the Renesas RZ/V2H(P) SoC. RZ/V2H(P) SoC supports one channel SCIF
+> > > interface.
+> > >
+> > > v3->v4
+> > > - patch 2/4 reverted back to version 2
+> > > - new patch 3/5 added
+> > > - Added new reg type for RZ/V2H
+> > >
+> > > v2->v3
+> > > - Included DT validation patches
+> > > - Added a new compat string for RZ/V2H(P) SoC
+> > > - Added driver changes for RZ/V2H(P) SoC
+> > > - Listed interrupts and interrupt-names for every SoC in if check
+> > >
+> > > Cheers,
+> > > Prabhakar
+> > >
+> > > Lad Prabhakar (5):
+> > >   dt-bindings: serial: renesas,scif: Move ref for serial.yaml at the end
+> > >   dt-bindings: serial: renesas,scif: Validate 'interrupts' and
+> > >     'interrupt-names'
+> > >   dt-bindings: serial: renesas,scif: Make 'interrupt-names' property as
+> > >     required
+> > >   dt-bindings: serial: Add documentation for Renesas RZ/V2H(P)
+> > >     (R9A09G057) SCIF support
+> > >   serial: sh-sci: Add support for RZ/V2H(P) SoC
+> > >
+> > Gentle ping.
 > 
-> Fixes: 2559e61e7ef4 ("arm64: dts: qcom: x1e80100-pmics: Add the missing PMICs")
-> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-> Tested-by: Johan Hovold <johan+linaro@kernel.org>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
-> Changes in v2:
-> - Fetched all R-b and T-b tags
+> It is only 3 days since the merge window ended, please be patient for
+> maintainers to catch up with their pending review queue.  Especially for
+> non-bugfixes like these that will be included in the 6.11-rc1 release,
+> there is not any rush here for anyone just yet.
+> 
+> For example, my todo queue currently has 1458 emails to process in it,
+> this thread is somewhere in the middle.
+> 
+> In the meantime, please help review other pending patches for the
+> subsystem to help enable your patches to move toward the top of the
+> queue.
 
-Almost..
+And this patch series does not even apply, so how could it be accepted?
 
-gotta do it twice to make sure it's posted
+Please fix and resend with the proper reviews added.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
+greg k-h
 
