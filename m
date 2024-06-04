@@ -1,177 +1,114 @@
-Return-Path: <devicetree+bounces-72028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 648E08FA953
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 06:38:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B6A98FA97B
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 07:08:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 202CF2870E3
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 04:38:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5698A28BBAA
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 05:08:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8A0A13D8A3;
-	Tue,  4 Jun 2024 04:37:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D584713B79F;
+	Tue,  4 Jun 2024 05:07:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b="aHztsujz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JMeSJhsS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C79113D88F;
-	Tue,  4 Jun 2024 04:37:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.126.157
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3716277A1E;
+	Tue,  4 Jun 2024 05:07:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717475876; cv=none; b=juUFkqStEOo7I0LvakQKX7N02XNwVex0gGJxFB9CdRm//6QbDru4yA2Pwh64VnzriswwCXlNbVAlMKqS10NDc+1ftq6Al11u9agNzLAr9YZh6EWcB4z+6sn15aW7l3iRxeVM7C+Jf6Cay6NUiQ1Rgf1SXlOpR+jqsVEN/HuTuLY=
+	t=1717477679; cv=none; b=sf44/5TCeWg1IWRKV5biAuh4EjVUyqWHtR0r5YdHMW2Wwhkvs2CsOcMWTyMqEmclWuteTH69riXGD8gtLtOFtnB/9zEMArsadsQWrBq/00oPTsHtsUEJWbm4hwU2qpNAIAtaqhvjllEBYWvwki8nwdl7SD8VilpMC7inTozlV/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717475876; c=relaxed/simple;
-	bh=iVLiMTAtf7/Fl+fz4quBPQf213lTjGcAUNkm2Kpn84o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OXTHmwlxxfWx1GrwQKZqz+yf7QHOW+qK/ZAUc0r5plJLbaYyI0Ol9sfiLKAwn1LABfHT8903lqOLnCJ4kEYhrPgsUGxplE3bIIfIDTDExr3i1QKkeAffrajRfdu3m+PLKAhDrqOIUmRU3XjfSf4feLJNcnYBGreRnXGc2FC5ur8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weissschuh.net; spf=pass smtp.mailfrom=weissschuh.net; dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b=aHztsujz; arc=none smtp.client-ip=159.69.126.157
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weissschuh.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=weissschuh.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
-	s=mail; t=1717475869;
-	bh=iVLiMTAtf7/Fl+fz4quBPQf213lTjGcAUNkm2Kpn84o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aHztsujzql/3kj70X0+SleuKO5jRa3jqgLuojMbU1v8x/nmepZa8CvcmFUYQzcsXZ
-	 2lXvqJ/7i0xXvr012/qckqYrTA5qEEi2RIG8+O/ndvp4f1nRvAkGRd1uVPQerIjW/+
-	 U/oWCk9JWflk/15ItpQ7dC9nqnee3ghZmadUL4oc=
-Date: Tue, 4 Jun 2024 06:37:47 +0200
-From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	=?utf-8?B?UmVuw6k=?= Rebe <rene@exactcode.de>, Armin Wolf <W_Armin@gmx.de>, 
-	Stephen Horvath <s.horvath@outlook.com.au>
-Subject: Re: [PATCH v4 6/6] hwmon: (spd5118) Add configuration option for
- auto-detection
-Message-ID: <452386bd-8238-4fac-ad6d-6a8f096ecc35@t-8ch.de>
-References: <20240604040237.1064024-1-linux@roeck-us.net>
- <20240604040237.1064024-7-linux@roeck-us.net>
+	s=arc-20240116; t=1717477679; c=relaxed/simple;
+	bh=VnrsrmJLTVbZ+4ruwjVg6IITpxxXal0ZQftR8DKsdqw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=WRs7j/OJK44MP+2W2EWppb6ypNMHyuNjPA+2o7r1tP2illu+wLAGvxjJpUt86EiIFC7kmRRRxBCzlyt6ap2DJTJu2LERPILXZeng0a01xK8ACmIIquMudkGFeTJzesLRlMlK8BPpyOaLaXU351s4zNxbG0bn8XZPLaQFt1XJCG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JMeSJhsS; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-57a1fe6392eso5763277a12.0;
+        Mon, 03 Jun 2024 22:07:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717477676; x=1718082476; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=H/0KAwhBMFj0xeLutKDQ0UoKA+IxDQr3IVwvdATPXUI=;
+        b=JMeSJhsScin/8bwQVpP6tzBODuZwN4ul39pP7U9BJXfjmpleA8CpnCTW17xuc2fGPU
+         iOGCH3fpbd2dFVI88fwRbn6VUkHWiNP6Jckyj6TsEtVJSlE9jjdy70dit/m1cvKu2uyG
+         MKuX+pQuM6avHa69m20foK9DDrQzVBs/vdFFBKJi6tbxj6hYCSWrQmMiLbN0N0jLhmw7
+         v2jf0LK0ykdO/eKvxJ6Rqfa7/TNLh7/JHN86jnO0vAN8shEeku1V0v09nPUuCsit+khj
+         +VR+0Bi3a+qIow/XXOgkiF482YK1o/Iv5UBX0dFGvwheyzZszQzoTunk1L804I/jHqhT
+         cYCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717477676; x=1718082476;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=H/0KAwhBMFj0xeLutKDQ0UoKA+IxDQr3IVwvdATPXUI=;
+        b=r9mZQA3P4jltCEn3hiLO+jxIed35T/gZLYQwPdSi+LP69Xv5Z2KDwTt6JP7CS2WGvF
+         5Mymy7IMew0j71Nla22yRn7bKaWPcudOh8VlbKJMdm5/Z1v0Y72J4/gfP9NmiphqgE6/
+         3oowGncA/Fb7oWKn65xwoqYA7qfW2xAH3xIgUlRtbKa4uHVE8Ts+g3tJGxfWaFciqn6h
+         nFpw1pGNI9wMZqnyj+RxjvZt0IbLSz/2/hpw8kTNfESZ1hdhkfTozeLFf+BgyjuaevFs
+         VW3DztNON91uu2Nc/g7MedS2d/m3TI3Z0Bwgw2BDQ3WrwuUUm4HvsAp4Wmn7N3nwN3tT
+         Q20Q==
+X-Forwarded-Encrypted: i=1; AJvYcCX85ptNvbFAblNl9ZQXtgLQzje8EMGsQjj8UfcGmiJ8ru5XWJ+TnVmFrsC+xsPxeLatDS1dg1FZk2+twDpOV+0sidzFS3ihroMtJz5hKUwf9WbVwTmwuhPLe4aO+BTqAHTO5qYmEyfFWw==
+X-Gm-Message-State: AOJu0YwLOFKSZUYXdMPtCnRHozY3TAApxa9W6pyAlvMF3dUfyZUeMuGH
+	lSFdwlRZiaoGzbqmJyYinNXbsypCd1ccf9gCkLP9P56j2T5QB+Jl
+X-Google-Smtp-Source: AGHT+IFqaCg6GVKaRQTD4ZnkvFD4mcPd4vzIPMyF2qE+BIWUTXix4cOl9OG9VejbKdNnvWP/5W0W7w==
+X-Received: by 2002:a50:a694:0:b0:579:c2fe:886 with SMTP id 4fb4d7f45d1cf-57a43c36782mr5518061a12.14.1717477676221;
+        Mon, 03 Jun 2024 22:07:56 -0700 (PDT)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57a31c6d45esm6636673a12.62.2024.06.03.22.07.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Jun 2024 22:07:55 -0700 (PDT)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH] soc: amlogic: meson-gx-socinfo: Add S905L ID
+Date: Tue,  4 Jun 2024 05:07:52 +0000
+Message-Id: <20240604050752.3312468-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240604040237.1064024-7-linux@roeck-us.net>
+Content-Transfer-Encoding: 8bit
 
-On 2024-06-03 21:02:37+0000, Guenter Roeck wrote:
-> With SPD5118 chip detection for the most part handled by the i2c-smbus
-> core using DMI information, the spd5118 driver no longer needs to
-> auto-detect spd5118 compliant chips.
-> 
-> Auto-detection by the driver is still needed on systems with no DMI support
-> or on systems with more than eight DIMMs and can not be removed entirely.
-> However, it affects boot time and introduces the risk of mis-identifying
-> chips. Add configuration option to be able to disable it on systems where
-> chip detection is handled outside the driver.
-> 
-> Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
-> ---
-> v4: New patch
-> 
->  drivers/hwmon/Kconfig   | 18 ++++++++++++++++++
->  drivers/hwmon/spd5118.c |  4 +++-
->  2 files changed, 21 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-> index 7a84e7637b51..0bb1bdee3e43 100644
-> --- a/drivers/hwmon/Kconfig
-> +++ b/drivers/hwmon/Kconfig
-> @@ -2185,6 +2185,7 @@ config SENSORS_SPD5118
->  	tristate "SPD5118 Compliant Temperature Sensors"
->  	depends on I2C
->  	select REGMAP_I2C
-> +	select SENSORS_SPD5118_DETECT if !DMI
->  	help
->  	  If you say yes here you get support for SPD5118 (JEDEC JESD300)
->  	  compliant temperature sensors. Such sensors are found on DDR5 memory
-> @@ -2193,6 +2194,23 @@ config SENSORS_SPD5118
->  	  This driver can also be built as a module. If so, the module
->  	  will be called spd5118.
->  
-> +config SENSORS_SPD5118_DETECT
-> +	bool "Enable detect function"
-> +	depends on SENSORS_SPD5118
-> +	default y
-> +	help
-> +	  If enabled, the driver auto-detects if a chip in the SPD address
-> +	  range is compliant to the SPD51888 standard and auto-instantiates
-> +	  if that is the case. If disabled, SPD5118 compliant devices have
-> +	  to be instantiated by other means. On systems with DMI support
-> +	  this will typically be done from DMI DDR detection code in the
-> +	  I2C SMBus subsystem.
-> +	  Disabling the detect function will speed up boot time and reduce
-> +	  the risk of mis-detecting SPD5118 compliant devices. In general
-> +	  it should only be enabled if necessary.
-> +
-> +	  If unsure, say Y.
+Add the S905L SoC ID observed in several P271 boards:
 
-The combination of
+kernel: soc soc0: Amlogic Meson GXLX (S905L) Revision 26:a (c1:2) Detected
 
-"In general it should only be enabled if necessary."
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ drivers/soc/amlogic/meson-gx-socinfo.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-and
+diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
+index 6abb730344ab..7e255acf5430 100644
+--- a/drivers/soc/amlogic/meson-gx-socinfo.c
++++ b/drivers/soc/amlogic/meson-gx-socinfo.c
+@@ -64,6 +64,7 @@ static const struct meson_gx_package_id {
+ 	{ "962E", 0x24, 0x20, 0xf0 },
+ 	{ "A113X", 0x25, 0x37, 0xff },
+ 	{ "A113D", 0x25, 0x22, 0xff },
++	{ "S905L", 0x26, 0, 0x0 },
+ 	{ "S905D2", 0x28, 0x10, 0xf0 },
+ 	{ "S905Y2", 0x28, 0x30, 0xf0 },
+ 	{ "S905X2", 0x28, 0x40, 0xf0 },
+-- 
+2.34.1
 
-"default y" / "If unsure, say Y."
-
-looks weird.
-
-
-Also right now it is not possible to disable detection on non-DMI
-configurations. But when using OF, custom kernel code or userspace
-instantiation then neither DMI nor CONFIG_DETECT are necessary.
-
-The following would support those usecases, too:
-
-config SENSORS_SPD5118_DETECT
-	bool "Enable detect function"
-	depends on SENSORS_SPD5118
-	default !DMI
-
-(And no "select SENSORS_SPD5118_DETECT if !DMI")
-
-> +
->  config SENSORS_TC74
->  	tristate "Microchip TC74"
->  	depends on I2C
-> diff --git a/drivers/hwmon/spd5118.c b/drivers/hwmon/spd5118.c
-> index 5cb5e52c0a38..19d203283a21 100644
-> --- a/drivers/hwmon/spd5118.c
-> +++ b/drivers/hwmon/spd5118.c
-> @@ -313,7 +313,7 @@ static bool spd5118_vendor_valid(u8 bank, u8 id)
->  }
->  
->  /* Return 0 if detection is successful, -ENODEV otherwise */
-> -static int spd5118_detect(struct i2c_client *client, struct i2c_board_info *info)
-> +static int __maybe_unused spd5118_detect(struct i2c_client *client, struct i2c_board_info *info)
->  {
->  	struct i2c_adapter *adapter = client->adapter;
->  	int regval;
-> @@ -647,7 +647,9 @@ static struct i2c_driver spd5118_driver = {
->  	},
->  	.probe		= spd5118_probe,
->  	.id_table	= spd5118_id,
-> +#ifdef CONFIG_SENSORS_SPD5118_DETECT
->  	.detect		= spd5118_detect,
-> +#endif
->  	.address_list	= normal_i2c,
-
-.address_list is also only needed with CONFIG_SENSORS_SPD5118_DETECT.
-
-
-If you use
-
-.detect         = IS_ENABLED(CONFIG_SENSORS_SPD5118_DETECT) ?  spd5118_detect : NULL,
-.address_list   = IS_ENABLED(CONFIG_SENSORS_SPD5118_DETECT) ?  normal_i2c : NULL,
-
-then the need for __maybe_unused goes away and type checking is a tiny
-bit better.
 
