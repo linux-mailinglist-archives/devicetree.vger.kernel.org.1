@@ -1,218 +1,259 @@
-Return-Path: <devicetree+bounces-72489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCB278FBFA0
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 01:09:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24F6D8FBFB0
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 01:13:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49E82289388
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 23:09:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51D5A1C225AE
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 23:13:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63FB814D43A;
-	Tue,  4 Jun 2024 23:09:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0103B14D2B8;
+	Tue,  4 Jun 2024 23:13:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="S2mGH7OF"
+	dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="ifFqKYgn";
+	dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="URqrO6Ah";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="XDaZ9Lu6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-00230701.pphosted.com (mx0a-00230701.pphosted.com [148.163.156.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA58E137C37
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 23:09:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717542555; cv=none; b=fU5/Uy35I49yxVNgQT/9oRXiiuIxscnLV0z75J6YgspSY2lyGaDkdN4ixK75NIpiSkJBzphRKYjMA2xjiWFe7QrmLGEpvdRuQMdXUpsLHb95GS1OOIlOXNCqCCj6OSA/V6hd40drOr++NLnOx4Y1HQMsW6Bi5eC3jMsdujFbbes=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717542555; c=relaxed/simple;
-	bh=ufbo6wXUv/7/O6PQcOhZPqwqHPdfMgSnEXdoVS4AW6o=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jPrUipw190hcABy/HgJfbDzkr6IknrNnnWfkEx/Ufyw/8GVNUEAz8bjAqLcJz5rEces5AmDqOKXXvS8bR+9OJ2NvANBefqH6fGgzlqjHQvOoT2WYMd7xDxIEWVpyB2snhySRUe9O8TIJZyKIXxFazAFY3udKaymfP1tI1lKocPg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=S2mGH7OF; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1f32a3b9491so45373205ad.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 16:09:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1717542553; x=1718147353; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GRmHr10zcqiKdy1zq3Dm6wpWw0zDxbHdcb1D9LB0h2Q=;
-        b=S2mGH7OFn0XCzohEvXP53vzlawIgIBhJnz8g1oPoX0ER9W2+Is3kZ3YTArFggv68qt
-         ra6kXIauOXTY669oVcxANbdCTb22w7sY2Y3lbaTeaWISRa/R90Xl2XnJSFIC3WgvsNeI
-         6UH2t3jo64d9xatzz2WvNAGfG/PxHUqWebdzo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717542553; x=1718147353;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GRmHr10zcqiKdy1zq3Dm6wpWw0zDxbHdcb1D9LB0h2Q=;
-        b=p5GFJkAA/paIvE/UMaEkJwgJd3CTbjzLslJH55SUT5dcu2x7HFusxICi1egxNyoHiw
-         74JiQkcqsjEmgDLub/fdVToXWkUtsfLIQUOscLxaauYb+61MGGjAY/Igvt4uKwGHlG6E
-         Qx+K3RA+mFxYw2SX107ppd9/d1ljkzx2TO3HzYCQ1hkvHsbYluqr1/nMV1DQEXEiBo5u
-         pfEnKtXID6v+6/YubqC8I4HOqsJ1cOBWvyVWM+/6LGd87KtQOjDFAZONsIUg0juBoXGZ
-         REv8FTZ7YhB1k8D8V1V7y+Wk7QVvVgK17MIh6bxRw6KAPDkWBZoPn3F9aCd3UYUb10D2
-         pKmQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU4tR69Gtvf88V5tKAt1aVQ0OBEUrLi+ik53eMiepFsI/8j9I/3Z8NNrAB7A/JSGVxDQh9h0JEXwcNj6D60JTt+7l0qvVe0R60/IA==
-X-Gm-Message-State: AOJu0Yw1W+otSCPLbpZ6HbJeiQBRBFDlp7V8rItZ7lsCp1H4562mGvVH
-	Ld65l9Iz5xCM/7/q23LHDo7x7U5aIuAw+P6yMCEY6NoJHqeGmMNoNEA9bGeubg==
-X-Google-Smtp-Source: AGHT+IHnWH9hEc4PF47lfY4aRUd4vNVTBVand6byLkxwJvo2a9nf6yRspGXP9pmHxWpf1jKlMfULkQ==
-X-Received: by 2002:a17:902:face:b0:1f3:675:a68c with SMTP id d9443c01a7336-1f6a5a0f4bbmr8509325ad.23.1717542552923;
-        Tue, 04 Jun 2024 16:09:12 -0700 (PDT)
-Received: from pc98uv11.mtv.corp.google.com ([2620:15c:9d:2:c108:1a83:e639:e62])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f632358e78sm89337325ad.83.2024.06.04.16.09.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jun 2024 16:09:12 -0700 (PDT)
-From: Daisuke Nojiri <dnojiri@chromium.org>
-To: 
-Cc: Daisuke Nojiri <dnojiri@chromium.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Benson Leung <bleung@chromium.org>,
-	Guenter Roeck <groeck@chromium.org>,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	chrome-platform@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] ARM: dts: cros-ec-keyboard: Add keyboard matrix v3.0
-Date: Tue,  4 Jun 2024 16:09:07 -0700
-Message-ID: <20240604230909.2879006-1-dnojiri@chromium.org>
-X-Mailer: git-send-email 2.45.1.288.g0e0cd299f1-goog
-In-Reply-To: <20240604005354.2294468-1-dnojiri@chromium.org>
-References: <20240604005354.2294468-1-dnojiri@chromium.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 310DA82D98;
+	Tue,  4 Jun 2024 23:13:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.156.19
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717542833; cv=fail; b=KtZKje90Z+RFr5IFhn73J3WvMb3PX/9M8nsEqvnbR/hjoL9mt2Uz4/naHi2Fjl3+DVjEuOhxHOjRA3wXHYcXqD0wWLaBKP0Aif8M2s1cWCBdKiwDfN16GQZOhOjn1aT9X7BMPqo7wXNaH49dL6HnMgA1fUafU88ZVkfuWuJ8sds=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717542833; c=relaxed/simple;
+	bh=+omfaitdgWFsQt7tM/HlfB1pvOPSdKRunHNtzcEK/NY=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=JsWr+nae7GH40Wvn0ECbLjGO/cB1pU21761O5iN3wmVsntBDTIdcrGTy7VLSJDuVK8qFIinI/Z1XvgexEZ8CJnNDhjiQ2XqgKfKlUWWlwky2XeATQOYukcV8yMeikYB1Maip82LGBfjeQ1G5J++izgFNmtK+NZVcqEnmKs34WVM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=synopsys.com; spf=pass smtp.mailfrom=synopsys.com; dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b=ifFqKYgn; dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b=URqrO6Ah; dkim=fail (1024-bit key) header.d=synopsys.com header.i=@synopsys.com header.b=XDaZ9Lu6 reason="signature verification failed"; arc=fail smtp.client-ip=148.163.156.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=synopsys.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=synopsys.com
+Received: from pps.filterd (m0297266.ppops.net [127.0.0.1])
+	by mx0a-00230701.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 454LbUaq011613;
+	Tue, 4 Jun 2024 16:13:44 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=synopsys.com; h=
+	cc:content-id:content-transfer-encoding:content-type:date:from
+	:in-reply-to:message-id:mime-version:references:subject:to; s=
+	pfptdkimsnps; bh=+omfaitdgWFsQt7tM/HlfB1pvOPSdKRunHNtzcEK/NY=; b=
+	ifFqKYgnLR7ttm7kMASRJFK/+15XMWOxMLzO9R+TJ1MKYrOXHm/9Ki7XmwGL1HEY
+	a683/sqJBtCjsZLsJ6pq/Yj5sG+cmd1/YItSrSGFus7OI1MpTcDlqH/AoW4Qyhsn
+	F6MT78ANqiRUHFQWgdHtLv5t0JYxDuIJ9ICe0RyhmJxyP585PtX+HTjeWnKvBQQW
+	hz9Qd8nYdF0L91Lq3yLzMvq++8x+doEzr1eFUH33foohT+6JmOhLUPwX8G4CTfBz
+	ImVKgDYY5uBh30nz1GOJPRWNh7qA+wt6fEUPGssMZLdfUx5IjVmUtlOrxdu1I+vM
+	bq8AE2l1MykjdX0l8pYCPg==
+Received: from smtprelay-out1.synopsys.com (smtprelay-out1.synopsys.com [149.117.87.133])
+	by mx0a-00230701.pphosted.com (PPS) with ESMTPS id 3yg2w369yn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Jun 2024 16:13:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+	t=1717542823; bh=+omfaitdgWFsQt7tM/HlfB1pvOPSdKRunHNtzcEK/NY=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=URqrO6AhralzJV9wpVD4u/ICytS+GFT1ZYhtnUNs/p9ql7oRUNwM/6vk+ADQrepHF
+	 h7G4cCImpuhIg6kyZOyInhCA3MDWT4XYy7hnRF2XtmDSDxxh52f0MT006z6qSCAArO
+	 KCG2OMft+0iYHXl7gMKLfQaHsHE3UFjEKPjDLQ/2B4Rydlzuedq/Tw7J7oJnaySnxA
+	 Pxain/t0mj1yAjKedYm+79kfaCbKDzB/pUxD0CaffHDPZpzjaHGafHS/EsrHDddW1w
+	 3zuo+2cBB+ehl/bYOLU270Zm48HT8BEtxeaKR2TEdI8GYHOsQyqr5kt0hTBtyhU4EN
+	 sZ7850ufE0hew==
+Received: from mailhost.synopsys.com (sv2-mailhost2.synopsys.com [10.205.2.134])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits)
+	 client-signature RSA-PSS (2048 bits))
+	(Client CN "mailhost.synopsys.com", Issuer "SNPSica2" (verified OK))
+	by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 121734044C;
+	Tue,  4 Jun 2024 23:13:43 +0000 (UTC)
+Received: from o365relay-in.synopsys.com (sv2-o365relay3.synopsys.com [10.202.1.139])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(Client CN "o365relay-in.synopsys.com", Issuer "Entrust Certification Authority - L1K" (verified OK))
+	by mailhost.synopsys.com (Postfix) with ESMTPS id C26FDA007B;
+	Tue,  4 Jun 2024 23:13:42 +0000 (UTC)
+Authentication-Results: o365relay-in.synopsys.com; dmarc=pass (p=reject dis=none) header.from=synopsys.com
+Authentication-Results: o365relay-in.synopsys.com; spf=pass smtp.mailfrom=synopsys.com
+Authentication-Results: o365relay-in.synopsys.com;
+	dkim=pass (1024-bit key; unprotected) header.d=synopsys.com header.i=@synopsys.com header.a=rsa-sha256 header.s=selector1 header.b=XDaZ9Lu6;
+	dkim-atps=neutral
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04lp2040.outbound.protection.outlook.com [104.47.73.40])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(Client CN "mail.protection.outlook.com", Issuer "DigiCert Cloud Services CA-1" (verified OK))
+	by o365relay-in.synopsys.com (Postfix) with ESMTPS id 1D6384034F;
+	Tue,  4 Jun 2024 23:13:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=O/706NUy/woFtsGc8Fmbapbxc4BvFMVY/2BaoWt41fLUgMi5/rhMeyuemjeSh9pYemGl+KQMR9tSrXOsBM5WUZvlt+GsWj6jTy3jmiO2log7hSaHZDnUqZ9fBXZKc3LSh9Axbm1kGq9ORiCpheAYaifzAk6Z5l7CYioG+J48gKkIId04McPwLg/Js+l2PfWA17NSfHBpnq/7Wg2Xp4ZzRFqbosHSJdXaAK0aKfd6J74Ukpl4wf79ZUiGWpSkg4QYGGVy3V1/mmYOLBjUjLNwa/+KxiyZ6HAcF1U9G9K2vFPVcO/61Qd3NPjByt1cqrRxY6UTHZ3nIelF8OHxblKhaA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+omfaitdgWFsQt7tM/HlfB1pvOPSdKRunHNtzcEK/NY=;
+ b=ZwCsOvyVuqXmpD6Jpq9eobEcHkCtKxQ7FP+CSpUToeyfEPi/z5dSCzyf3HB/ghnhhDkNHZsxJcyOSRZSrMijzlwu5HxrVc9UN3mtpe4XwxuOCWn5laveg+wEDBrR4Lq+wuiosIyXhtQ1q2XAU4UlcWGodfCP3cicA1TGwV2NIXgAaWydoQOXze2u51O2ppmSfe7v+1YiOtWgVgWP9sZkwD3NK+wmZAGLhlPQfT8gIV5P348QYMZpLJRRbZmgMq7tzG+39zUqV8JruTk6zGgpvukDaAH1iZSm7mLJz7Av7VQ7yNAvKgX+G/hNnRQzaVmu2YjO/nfBWBrLvav4fjWhJg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=synopsys.com; dmarc=pass action=none header.from=synopsys.com;
+ dkim=pass header.d=synopsys.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=synopsys.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+omfaitdgWFsQt7tM/HlfB1pvOPSdKRunHNtzcEK/NY=;
+ b=XDaZ9Lu6bqTOeK7sBY0jJHGqaqesIXLqVgdkg9kMkkT72g0gDr+Al0IfDV/JpROf3nBjGH9xEF3vZxJSahpxDqZ1nJ+ZHHBphh9TiunSe2xUupxdHpQpeTJXh14hu2UPUOUo593rJTuZwJd3/9arflstJfdHFcaI49TEiN0E4vE=
+Received: from DS7PR12MB5984.namprd12.prod.outlook.com (2603:10b6:8:7f::18) by
+ IA0PR12MB7628.namprd12.prod.outlook.com (2603:10b6:208:436::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7633.31; Tue, 4 Jun 2024 23:13:38 +0000
+Received: from DS7PR12MB5984.namprd12.prod.outlook.com
+ ([fe80::e2e0:bc6d:711f:eeb]) by DS7PR12MB5984.namprd12.prod.outlook.com
+ ([fe80::e2e0:bc6d:711f:eeb%5]) with mapi id 15.20.7611.030; Tue, 4 Jun 2024
+ 23:13:38 +0000
+X-SNPS-Relay: synopsys.com
+From: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+To: joswang <joswang1221@gmail.com>
+CC: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "balbi@kernel.org" <balbi@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        joswang <joswang@lenovo.com>
+Subject: Re: [PATCH v2, 3/3] usb: dwc3: core: Workaround for CSR read timeout
+Thread-Topic: [PATCH v2, 3/3] usb: dwc3: core: Workaround for CSR read timeout
+Thread-Index: AQHatbZOP6V8cE1jeEGogZmaKJg11rG2uuOAgADiIoCAAKE0gA==
+Date: Tue, 4 Jun 2024 23:13:38 +0000
+Message-ID: <20240604231335.7hveikgyu4tjtcwf@synopsys.com>
+References: <20240601092646.52139-1-joswang1221@gmail.com>
+ <20240603130219.25825-1-joswang1221@gmail.com>
+ <20240604000715.3rlmzxriof6wwksm@synopsys.com>
+ <CAMtoTm3XnPr8DY9qPW0X0+aayu_7CWrC1od8qKqU3S2wRjMi1Q@mail.gmail.com>
+In-Reply-To: 
+ <CAMtoTm3XnPr8DY9qPW0X0+aayu_7CWrC1od8qKqU3S2wRjMi1Q@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS7PR12MB5984:EE_|IA0PR12MB7628:EE_
+x-ms-office365-filtering-correlation-id: 496d0547-b4d5-48f2-b84f-08dc84ebf77f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230031|7416005|1800799015|376005|366007|38070700009;
+x-microsoft-antispam-message-info: 
+ =?utf-8?B?dHZoWHJ1VkNZWFZuNEZ2Qkk0NFBMbERMYTVHVE02cGZrSklueXh2VWM2NWZG?=
+ =?utf-8?B?bGd2dnI3UTRhOS8vY2lHb09RNGRrdktPVU0zTWNleTRsbmlKTWpjSzNENnMw?=
+ =?utf-8?B?UkJlOFFtdzRqaDE4ZG12b1YvaEZoYXF5UTNmM0g5WHFibU9nR1BDTHl0a29I?=
+ =?utf-8?B?MXlIdGpzT2FDYjVTZFNRN1JTcFROMFhEN3Axc2NSQkxRejA4YUczRkFRaXdN?=
+ =?utf-8?B?NVVXa21nQXZFQnJlMVZYL2ZkV0IzNmlYSmV1NTN1ckFkUTFmUU0xWDZjN0xC?=
+ =?utf-8?B?SEp4c2doQkpLRVVNdUw2clpreSs0RlFXbWsrSjhGYTcxUzVvT0NNQzE3SHBW?=
+ =?utf-8?B?Y1h1cTJLS3hrN2ZrNGZLL0dkaEt3dWRZWkxPdFZRWW1HOE81Y3BTSlI0SGV6?=
+ =?utf-8?B?b0swVm03VTZEbHl6NTltR1U4eGg3dHJDZnhvY1VlZ3Z1RENxaWRVZ01TZ2ZM?=
+ =?utf-8?B?bVozT1M3YTh2L0VBWDBBKzBSbmJjb0xMQWpzKytGQ05idDBvNnN1czNnOTBT?=
+ =?utf-8?B?VHRYMEZVaFkrV000bi9oTXpqVnhFNVhMRFUvNmtPWm81VkpkeUZENE1UT2VK?=
+ =?utf-8?B?SlZESjI2UXdsN1N3bXJGY0E4WFczRWRyYlBaYm1yTzB6MFJUWDJwTGNhMitO?=
+ =?utf-8?B?VTMwUVMzRklvcVdoemRWK3hTc2VkSDZmMGplMDRoM1FoMXllSGV3QlYxdFVk?=
+ =?utf-8?B?U3J5MlEyTkF3N0lxQ1U1ZVFYOStWMmp1SHBCTS9SRy84Ti9naW50akRBS2Mx?=
+ =?utf-8?B?WHZ5eEREOTZOYnpWZjF0THJHM3VBVEo5NkZZWnNqU2NyRlVxaEJUcGRabzVR?=
+ =?utf-8?B?MXBxZzJGZUxvQnNsR2dYd0pSZ21QRnZCVmczMzJyUVQyR2Z1WUF4SG5OSVRB?=
+ =?utf-8?B?aDlFMVAwaFY4NnNEc0lkMzRUWEpEY2tBOVJDWGtKd3R0YjdVWkdKWVh0U0JE?=
+ =?utf-8?B?S3h4L3pyckZiMVlxSmJGUjd0WmRwaFB6bTB3T3JzTkZ5RHZDQ2FJZlBIc056?=
+ =?utf-8?B?UjBhTW16MXF4bStvWUM0NVNOSEVrV3JGMjBtY0VnQ29vaTgybFBYbUtCeHVr?=
+ =?utf-8?B?ekxCWjhxZ3FUaUVyK0ZnVzZwQVozMngzbnRLVWh2Z3BMSzhzNkR0SjJTRUg4?=
+ =?utf-8?B?SjNMd1VUb2taU2R2MU9nMFVWYjFyYzNnS2VabFcxTFNsWnY5NEs2YTRKSVZy?=
+ =?utf-8?B?aEErSTdWMXZLandwUVBSbEFueXBFUFI2OURIVHREVXJkRGN4S1FVbzJOZUF0?=
+ =?utf-8?B?eWlhOFFUZWhtU0Z1enJ2eW9iS2lHMThmSnVWbVdkMjlYdjNWL0J0eldEZjJ1?=
+ =?utf-8?B?eldsTmtic2phaVYxdzErbjVnOU1zS3NVQ1VrbDJuUE5jT2hCUHVOZXBELzlv?=
+ =?utf-8?B?YmVhRmRYK1RpSnZ2aHM3dEI0eU9mc0JTRnluZk9QeFZNOWF5U0poSGNMSVhi?=
+ =?utf-8?B?UndwNFd5N1JONVVpYmdkRDJFenJnS2NnK2Z3enJ6eFFORW1hU2pCSXM2VWtG?=
+ =?utf-8?B?d1hIbnlDcTFCQTVkMnNPdUVTYVgrVENtUU5qTXZ1SXd6VGdWamVueEJJMjVm?=
+ =?utf-8?B?WWpiOGtZV1hTTmlFcWpZUXc2Y1lZejZ5UzlUUk5WSVFEZzBVWE93ekVQd0xU?=
+ =?utf-8?B?S1hmWFZ3UlhENVpoUUNldnVUQTBoSExBWWhlYnRNTVlYcFY5MGRhRC9FOHpo?=
+ =?utf-8?B?aGNQcG16UVpqYUo4YjVha0piV3RnUTRvWFZYRUg2c2NkNDdwZ0JXKyszNmJ4?=
+ =?utf-8?B?OUxaVGFDZUdPMUpYYlNoUlYyS2lCOG4wR1FwNFZNSHRmVWloRldtNVRLNUpi?=
+ =?utf-8?B?R0l0OVhQa1ZtMEJZNlluZz09?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS7PR12MB5984.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(1800799015)(376005)(366007)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?RXNzQm5OVEE3a1FKaGFaNHRyU0xCUDMwV05OK2JNVEFoZWJiMGNYYmxLS3NM?=
+ =?utf-8?B?azNPUzhvZ2xTWjdUemhSSUYyVmlBT2V5bFZYWlJJcnl6Nk40WjkzT1EvR2lx?=
+ =?utf-8?B?bEh0ckdQazhJRzlIZGZMa2NNZldDbk51Q1FKUFk4Ly9EdFhiaWdYd2NXYnRV?=
+ =?utf-8?B?dzBvTTQwN1ZSbktXK29ad3VJVU8vQ1JPKzhxRDFrbGN5V3VpYi90WnZyVStY?=
+ =?utf-8?B?UkoxN09WbS82K3V3bzd6bERXcDJFNDNrWWluOTYvY0VZVmFvMVdEakNqTHVC?=
+ =?utf-8?B?dldJdUxFbzY3NUdzYStJMXRZZS9DQ3JzZlErWXBxaGZuTG9wb0VtbkZvSm9n?=
+ =?utf-8?B?Tk9vOXNPVjZuTFJRRTBUYTBNRHNvcjVHdkM2SmNEc2dBZmt4eXdwM2NLYzNY?=
+ =?utf-8?B?dnFLelMyR0VoQUZpazMrRDhTam04VDBKRHp4dmp0Q3RGSVRhSDJROVNGVGJ4?=
+ =?utf-8?B?Y2pQQWt1djhhOGY5SXQrbGUzRW1tM0pNNm1BUFNJUDhjQVFmTzZBQllqWUJ3?=
+ =?utf-8?B?enNtREVxOHBVd01GZGNXWXhtL29qVWwxeTBFUVFEcXhQTEUzVGtkY3NkUnpv?=
+ =?utf-8?B?MEdwNDZhbit6UHV5aCs5ejI4dUxpR3Y3Z292a2c0Y2FBTi9yYndvZmxHMk44?=
+ =?utf-8?B?Qytobm9qdXVRRTNSWVlZN0dPdEZCd1FTays0WStXOUEvVG9NRU1iQVVYM2VE?=
+ =?utf-8?B?ZUpjNHFJYVVKTjFxeHJZTEFRL3ZIdWt0L2NidHhCdEVKM1BsWlhtVlNueld2?=
+ =?utf-8?B?cENYSW4rekIxRk5EWmJ2aG4vMEdZdzFPV201RHc3MVcvVUd3dTFUa1RTTHNs?=
+ =?utf-8?B?bHk1a2g2a3RxcThuVkR2RElYdDdza0NEd3E1ZS95UHQzVjVoTGpFQzJ2ZEQ3?=
+ =?utf-8?B?dFdPSG9yNGNreW5qVCsyL2dQSUs5ZklMQmxEZ2t5QzgxY251dmJGQUhWbnli?=
+ =?utf-8?B?MHpud1V5WmhjVVhqME5qdk9jU0lxL0c2US9UeGV2YUd6L2JBL0pJaUFQUVhM?=
+ =?utf-8?B?Y0pLMkUvRWxBSEJlZkNBK05Fem9PMlEvNDRZa1RzL0hUL2ErZzdhUXNROWZ5?=
+ =?utf-8?B?ZHh3N0xoWWhrdnlIR280a1MzNGtSVVNJcWhPT0lYTTlpRWxEeW5yREQxWWhN?=
+ =?utf-8?B?SS9hejVRTlpBcjFrbDU1amN5MkZwMlBRSkYyRGJOY21YbW1USmlZVDl1UVM3?=
+ =?utf-8?B?UHRGOVNSQndsK09GaTBNWXA0T0ZlUG45cVk2YWYyd2pWRWZRNE8zVWtQby9a?=
+ =?utf-8?B?bkZvODZqclhNVzBFVVRTTVMzSHNCbk9PL1pqWGs0R2FVakZrYkFVSFN5Zkdj?=
+ =?utf-8?B?dEJ1YUxYalJSUWZ4NmV4UW5VM3hVcGpuV2xsb2VXNjJRQnNUUFlTQmJ4OHF3?=
+ =?utf-8?B?eVRCRHFYR3FCLzVKRldlQU5TemFEK3NlVFdhczlPUjhTeXpaQXJEeG4wZUhV?=
+ =?utf-8?B?RFVPTFpSRmtZSEh4RUtzWGtSZ2NNZElSOG0zVlhSbTBWUlRYbDg0eU14SFY2?=
+ =?utf-8?B?Uk81RzJYMk1xLzFkY2lHMGZsTVhwUkt4dlNBYXJGSjBub09SSWpVVVdndXRY?=
+ =?utf-8?B?OU1nVzJ4NGxTT1pDdWIwRnhiU1RIRStvVWgwNnBOU3hRK3Y2S0w5RzMxS2xq?=
+ =?utf-8?B?ZU5GMlVCNnhaWEtQWE1uV1hHVWJzeGlnelcvNUJ6dU5mVDdWNDFYc24xRzJL?=
+ =?utf-8?B?MU8zRGsxbEE3ZDlsWG80N2JzTHJ2NjFXVmZUQk44a1drb3g3TGhudW5jM2k4?=
+ =?utf-8?B?b0FiajQxN1BHc29jNjJBbVFucGVtQVFoYU9XZ1FtdEFjQlR5NlZaY2hUQ3N2?=
+ =?utf-8?B?NzhKWnJNcXRQcXljOFhaaFRDZGw4aVlodDNCTFBEZjhHaXpjWkpVcG96THRR?=
+ =?utf-8?B?UHZYM3FKaFo1SjluMlNsNU45aXJCUnNOWWh5SlNkQ0U3UEU2eFkrL01CZzVN?=
+ =?utf-8?B?TzhSQkdxMWZFd3FkWjhBMCtSOEZEVG1zelFZQkVERVJMRFhoZjBSRVNwM3cw?=
+ =?utf-8?B?OVhNVlQwb3FrNzZ2cGlmNUF1eDlaczM3OFM0cFhQMWxLb3VQa2JYMjA2bnJX?=
+ =?utf-8?B?eE52WXdoNWZQa3dycHRDYVlCWDg0Y29LTFUvTmNIa255UVBRREpFQ0xQVHFN?=
+ =?utf-8?Q?cryYXpbNV1kF5mkqKD6fcxnTT?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <A046B45FEFCD254FA64D2A9F7AD47502@namprd12.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: 
+	iiyYQ6FEEjd87c/56x+zxwAjc9c0VCV8b0LD/UMVI6CNZVp6w8+LTLFAZuYBzkHqGyPQua1YmOKXAHCYgeYh29E8qxZp9H0n3U8gvV0Iw6BeKdu3igZyeL4L4G7r4O233xqsmGY2DUntEIOSv1wufMHP3GdJyS8tAros2lImY7YqUAh91q/g84iJ8nrZREhs4plPpVPM+B72oJeEZFQlzN/gQ73DJbzQcOQnbhUcAmQCnyVH/MOh1Kew9Yv1CGTUJNIsQ9k+fB+/tNgVj2ILceLwdmBVzjhC/70HzDie8F4aK/Qr1t+XMHacbT8CN2N5cC4V6WsEtAG/yh0mBcnjiabqY248YTZFKVbUlidSE1ohR9GhErGKc2qXg6E+9g/5zgs5u9VL7f9CEzYLS9i/FtgiZMacTF+DQ4MNBgiyuMrOveovNXxi9dlDjjXRFO4RM7O9oBdR2yu1n5lOv5Z7ReQsz2M2ts5aw1i6TfOxl8pq5XxVP6o0cUhx6lJcMQJqsB9udbuPqZOr5J4BZSH+wyyUAXFA73on5ZpbkkkhARXyvZi5WEzQ/kxrsvSSRsEG8l2jAQM5J8kgWu0JQ3Je8v895v6GWDOnTP3qiUWMrkamKTFPXFph/aZw35fAJLUT+2C+T/kR4eP7uWAt4O+Usw==
+X-OriginatorOrg: synopsys.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR12MB5984.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 496d0547-b4d5-48f2-b84f-08dc84ebf77f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jun 2024 23:13:38.3807
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c33c9f88-1eb7-4099-9700-16013fd9e8aa
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: AEkm1BWJznnEZfZQawNDJAdW9g380DclB2HUDf/dJ0GTpf9rVw0+HnQLYQoNR6qfp7rQ8j0reQd24Eyfx+WiTA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7628
+X-Proofpoint-GUID: p8fVlu8DpnXvJlfoIDTutZoWWDMJdXpn
+X-Proofpoint-ORIG-GUID: p8fVlu8DpnXvJlfoIDTutZoWWDMJdXpn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-04_11,2024-06-04_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_active_cloned_notspam policy=outbound_active_cloned score=0
+ lowpriorityscore=0 adultscore=0 malwarescore=0 spamscore=0 mlxscore=0
+ bulkscore=0 phishscore=0 mlxlogscore=919 impostorscore=0 clxscore=1015
+ priorityscore=1501 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2405170001 definitions=main-2406040188
 
-Add support for keyboard matrix version 3.0.
-
-Signed-off-by: Daisuke Nojiri <dnojiri@chromium.org>
-Change-Id: I18957556bcd01c74ded84571638de2583dccb93f
----
- include/dt-bindings/input/cros-ec-keyboard.h | 104 +++++++++++++++++++
- 1 file changed, 104 insertions(+)
-
-diff --git a/include/dt-bindings/input/cros-ec-keyboard.h b/include/dt-bindings/input/cros-ec-keyboard.h
-index f0ae03634a96..afc12f6aa642 100644
---- a/include/dt-bindings/input/cros-ec-keyboard.h
-+++ b/include/dt-bindings/input/cros-ec-keyboard.h
-@@ -100,4 +100,108 @@
- 	MATRIX_KEY(0x07, 0x0b, KEY_UP)		\
- 	MATRIX_KEY(0x07, 0x0c, KEY_LEFT)
- 
-+/* No numpad */
-+#define CROS_TOP_ROW_KEYMAP_V30 \
-+	MATRIX_KEY(0x00, 0x01, KEY_F11)		/* T11 */	\
-+	MATRIX_KEY(0x00, 0x02, KEY_F1)		/* T1 */	\
-+	MATRIX_KEY(0x00, 0x04, KEY_F10)		/* T10 */	\
-+	MATRIX_KEY(0x00, 0x0b, KEY_F14)		/* T14 */	\
-+	MATRIX_KEY(0x00, 0x0c, KEY_F15)		/* T15 */	\
-+	MATRIX_KEY(0x01, 0x02, KEY_F4)		/* T4 */	\
-+	MATRIX_KEY(0x01, 0x04, KEY_F7)		/* T7 */	\
-+	MATRIX_KEY(0x01, 0x05, KEY_F12)		/* T12 */	\
-+	MATRIX_KEY(0x01, 0x09, KEY_F9)		/* T9 */	\
-+	MATRIX_KEY(0x02, 0x02, KEY_F3)		/* T3 */	\
-+	MATRIX_KEY(0x02, 0x04, KEY_F6)		/* T6 */	\
-+	MATRIX_KEY(0x02, 0x0b, KEY_F8)		/* T8 */	\
-+	MATRIX_KEY(0x03, 0x02, KEY_F2)		/* T2 */	\
-+	MATRIX_KEY(0x03, 0x05, KEY_F13)		/* T13 */	\
-+	MATRIX_KEY(0x04, 0x04, KEY_F5)		/* T5 */
-+
-+#define CROS_MAIN_KEYMAP_V30			/* Keycode */	\
-+	MATRIX_KEY(0x00, 0x03, KEY_B)		/* 50 */	\
-+	MATRIX_KEY(0x00, 0x05, KEY_N)		/* 51 */	\
-+	MATRIX_KEY(0x00, 0x06, KEY_RO)		/* 56 (JIS) */	\
-+	MATRIX_KEY(0x00, 0x08, KEY_EQUAL)	/* 13 */	\
-+	MATRIX_KEY(0x00, 0x09, KEY_HOME)	/* 80 (Numpad) */	\
-+	MATRIX_KEY(0x00, 0x0a, KEY_RIGHTALT)	/* 62 */	\
-+	MATRIX_KEY(0x00, 0x10, KEY_FN)		/* 127 */	\
-+								\
-+	MATRIX_KEY(0x01, 0x01, KEY_ESC)		/* 110 */	\
-+	MATRIX_KEY(0x01, 0x03, KEY_G)		/* 35 */	\
-+	MATRIX_KEY(0x01, 0x06, KEY_H)		/* 36 */	\
-+	MATRIX_KEY(0x01, 0x08, KEY_APOSTROPHE)	/* 41 */	\
-+	MATRIX_KEY(0x01, 0x0b, KEY_BACKSPACE)	/* 15 */	\
-+	MATRIX_KEY(0x01, 0x0c, KEY_HENKAN)	/* 65 (JIS) */	\
-+	MATRIX_KEY(0x01, 0x0e, KEY_LEFTCTRL)	/* 58 */	\
-+								\
-+	MATRIX_KEY(0x02, 0x01, KEY_TAB)		/* 16 */	\
-+	MATRIX_KEY(0x02, 0x03, KEY_T)		/* 21 */	\
-+	MATRIX_KEY(0x02, 0x05, KEY_RIGHTBRACE)	/* 28 */	\
-+	MATRIX_KEY(0x02, 0x06, KEY_Y)		/* 22 */	\
-+	MATRIX_KEY(0x02, 0x08, KEY_LEFTBRACE)	/* 27 */	\
-+	MATRIX_KEY(0x02, 0x09, KEY_DELETE)	/* 76 (Numpad) */	\
-+	MATRIX_KEY(0x02, 0x0c, KEY_PAGEUP)	/* 85 (Numpad) */	\
-+	MATRIX_KEY(0x02, 0x011, KEY_YEN)	/* 14 (JIS) */	\
-+								\
-+	MATRIX_KEY(0x03, 0x00, KEY_LEFTMETA)	/* Launcher */	\
-+	MATRIX_KEY(0x03, 0x01, KEY_GRAVE)	/* 1 */	\
-+	MATRIX_KEY(0x03, 0x03, KEY_5)		/* 6 */	\
-+	MATRIX_KEY(0x03, 0x04, KEY_S)		/* 32 */	\
-+	MATRIX_KEY(0x03, 0x06, KEY_MINUS)	/* 12 */	\
-+	MATRIX_KEY(0x03, 0x08, KEY_6)		/* 7 */		\
-+	MATRIX_KEY(0x03, 0x09, KEY_SLEEP)	/* Lock */	\
-+	MATRIX_KEY(0x03, 0x0b, KEY_BACKSLASH)	/* 29 */	\
-+	MATRIX_KEY(0x03, 0x0c, KEY_MUHENKAN)	/* 63 (JIS) */	\
-+	MATRIX_KEY(0x03, 0x0e, KEY_RIGHTCTRL)	/* 64 */	\
-+								\
-+	MATRIX_KEY(0x04, 0x01, KEY_A)		/* 31 */	\
-+	MATRIX_KEY(0x04, 0x02, KEY_D)		/* 33 */	\
-+	MATRIX_KEY(0x04, 0x03, KEY_F)		/* 34 */	\
-+	MATRIX_KEY(0x04, 0x05, KEY_K)		/* 38 */	\
-+	MATRIX_KEY(0x04, 0x06, KEY_J)		/* 37 */	\
-+	MATRIX_KEY(0x04, 0x08, KEY_SEMICOLON)	/* 40 */	\
-+	MATRIX_KEY(0x04, 0x09, KEY_L)		/* 39 */	\
-+	MATRIX_KEY(0x04, 0x0b, KEY_ENTER)	/* 43 */	\
-+	MATRIX_KEY(0x04, 0x0c, KEY_END)		/* 81 (Numpad) */	\
-+								\
-+	MATRIX_KEY(0x05, 0x01, KEY_1)		/* 2 */	\
-+	MATRIX_KEY(0x05, 0x02, KEY_COMMA)	/* 53 */	\
-+	MATRIX_KEY(0x05, 0x03, KEY_DOT)		/* 54 */	\
-+	MATRIX_KEY(0x05, 0x04, KEY_SLASH)	/* 55 */	\
-+	MATRIX_KEY(0x05, 0x05, KEY_C)		/* 48 */	\
-+	MATRIX_KEY(0x05, 0x06, KEY_SPACE)	/* 61 */	\
-+	MATRIX_KEY(0x05, 0x07, KEY_LEFTSHIFT)	/* 44 */	\
-+	MATRIX_KEY(0x05, 0x08, KEY_X)		/* 47 */	\
-+	MATRIX_KEY(0x05, 0x09, KEY_V)		/* 49 */	\
-+	MATRIX_KEY(0x05, 0x0b, KEY_M)		/* 52 */	\
-+	MATRIX_KEY(0x05, 0x0c, KEY_PAGEDOWN)	/* 86 (Numpad) */	\
-+								\
-+	MATRIX_KEY(0x06, 0x01, KEY_Z)		/* 46 */	\
-+	MATRIX_KEY(0x06, 0x02, KEY_3)		/* 4 */		\
-+	MATRIX_KEY(0x06, 0x03, KEY_4)		/* 5 */		\
-+	MATRIX_KEY(0x06, 0x04, KEY_2)		/* 3 */		\
-+	MATRIX_KEY(0x06, 0x05, KEY_8)		/* 9 */		\
-+	MATRIX_KEY(0x06, 0x06, KEY_0)		/* 11 */	\
-+	MATRIX_KEY(0x06, 0x08, KEY_7)		/* 8 */		\
-+	MATRIX_KEY(0x06, 0x09, KEY_9)		/* 10 */	\
-+	MATRIX_KEY(0x06, 0x0b, KEY_DOWN)	/* 84 */	\
-+	MATRIX_KEY(0x06, 0x0c, KEY_RIGHT)	/* 89 */	\
-+	MATRIX_KEY(0x06, 0x0d, KEY_LEFTALT)	/* 60 */	\
-+	MATRIX_KEY(0x06, 0x0f, KEY_ASSISTANT)	/* 128 */	\
-+	MATRIX_KEY(0x06, 0x11, KEY_BACKSLASH)	/* 42 (JIS, ISO) */	\
-+								\
-+	MATRIX_KEY(0x07, 0x01, KEY_U)		/* 23 */	\
-+	MATRIX_KEY(0x07, 0x02, KEY_I)		/* 24 */	\
-+	MATRIX_KEY(0x07, 0x03, KEY_O)		/* 25 */	\
-+	MATRIX_KEY(0x07, 0x04, KEY_P)		/* 26 */	\
-+	MATRIX_KEY(0x07, 0x05, KEY_Q)		/* 17 */	\
-+	MATRIX_KEY(0x07, 0x06, KEY_W)		/* 18 */	\
-+	MATRIX_KEY(0x07, 0x07, KEY_RIGHTSHIFT)	/* 57 */	\
-+	MATRIX_KEY(0x07, 0x08, KEY_E)		/* 19 */	\
-+	MATRIX_KEY(0x07, 0x09, KEY_R)		/* 20 */	\
-+	MATRIX_KEY(0x07, 0x0b, KEY_UP)		/* 83 */	\
-+	MATRIX_KEY(0x07, 0x0c, KEY_LEFT)	/* 79 */	\
-+	MATRIX_KEY(0x07, 0x11, KEY_102ND)	/* 45 (ISO) */
-+
- #endif /* _CROS_EC_KEYBOARD_H */
--- 
-2.45.1.288.g0e0cd299f1-goog
-
+T24gVHVlLCBKdW4gMDQsIDIwMjQsIGpvc3dhbmcgd3JvdGU6DQo+IE9uIFR1ZSwgSnVuIDQsIDIw
+MjQgYXQgODowN+KAr0FNIFRoaW5oIE5ndXllbiA8VGhpbmguTmd1eWVuQHN5bm9wc3lzLmNvbT4g
+d3JvdGU6DQo+ID4NCj4gPiBPbiBNb24sIEp1biAwMywgMjAyNCwgam9zd2FuZyB3cm90ZToNCj4g
+PiA+IEZyb206IGpvc3dhbmcgPGpvc3dhbmdAbGVub3ZvLmNvbT4NCj4gPiA+DQo+ID4gPiBEV0Mz
+MSB2ZXJzaW9uIDIuMDBhIGhhdmUgYW4gaXNzdWUgdGhhdCB3b3VsZCBjYXVzZQ0KPiA+ID4gYSBD
+U1IgcmVhZCB0aW1lb3V0IFdoZW4gQ1NSIHJlYWQgY29pbmNpZGVzIHdpdGggUkFNDQo+ID4gPiBD
+bG9jayBHYXRpbmcgRW50cnkuDQo+ID4NCj4gPiBEbyB5b3UgaGF2ZSB0aGUgU1RBUiBpc3N1ZSBu
+dW1iZXI/DQo+ID4NCj4gVGhhbmtzIGZvciByZXZpZXdpbmcgdGhlIGNvZGUuDQo+IFRoZSBTVEFS
+IG51bWJlciBwcm92aWRlZCBieSBTeW5vcHN5cyBpcyA0ODQ2MTMyLg0KPiBQbGVhc2UgaGVscCBy
+ZXZpZXcgZnVydGhlci4NCj4gDQoNCkknbGwgZ2V0IGJhY2sgb24gdGhpcy4gUGxlYXNlIGFsc28g
+cHJvdmlkZSB0aGUgU1RBUiBmb3IgdGhlIG90aGVyIGNhc2UuDQoNClRoYW5rcywNClRoaW5o
 
