@@ -1,193 +1,133 @@
-Return-Path: <devicetree+bounces-72049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 658338FAAEC
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 08:35:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F31C8FAAF4
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 08:43:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BAD528DD54
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 06:35:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4D2528A3E1
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 06:43:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D816813793F;
-	Tue,  4 Jun 2024 06:35:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CB7212E1F9;
+	Tue,  4 Jun 2024 06:43:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wth16BHn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gxfcCuIc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A98BD12E1F9;
-	Tue,  4 Jun 2024 06:35:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E22BE1CF8F
+	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 06:43:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717482936; cv=none; b=SuQQHg+dj01d/jxU+XeX1dSoj0fRdYT3VHmi8L1ZmZqan/EyZbmgnXC0Nc/brKoNvlPrL9B+VuEUWIvf5Oy6jIsbXZE85v4QRlEPh/JnpdHhTMcxo6L7kAQnPSPtSWQM3Raw99UD4U2cC1WF0AjXnkKxD7g1WM1v3rFCXfhIVfY=
+	t=1717483404; cv=none; b=EtU8niH0FufIG/O71bmRab9dqZiZWSarrP0dx23Pu+YSHGsEl/BT3oXj1Y1ZE/G/LUZEAaK1n78BAYf4ZZ0EsuqMt7G8KLq/O3hR4eBrMWYV/k0Bc6XgZF90FX1PLFWTKCykPVtKbIxvdshUoVKECjNkwWiYEORY0TQgQWgfQrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717482936; c=relaxed/simple;
-	bh=4mz5iAOV+34JDbO/bFwUJsRQzVRwf47cDbZOhGBLBng=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F2OVpl6Xo7wcMwuZvNh3NB09FMs+QbUs1wn3bseeY6GDDm73sQ38zyLGW7jD/bC8sYy6GrMsNTV3/AZfEFnnc3YMX5NzeWXbp0VA8pgL2BoJNhP+Mxsxe5ImCf/agUIyxVZRnaZrEz3dAu/0cXn8PgXSVvSep4FxTgXRLkEdDfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wth16BHn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE2B8C2BBFC;
-	Tue,  4 Jun 2024 06:35:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717482936;
-	bh=4mz5iAOV+34JDbO/bFwUJsRQzVRwf47cDbZOhGBLBng=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Wth16BHnJySpYio/axO0nZhY0KbRNfJtjuWwpB6hklPtoMJWBJhwfYy5nN75qUwj7
-	 CmcWHwAjytUbP8eOtjsDdlnkg55MaoW0/BJyVpBpOUOhAbjerX4RPU6ef5aBdJ6H8e
-	 t7qKrntC2dP1lpVIeZbYMX/d4Pv1c4QFs5RDv5zPfxElS5kXCg6wH4DJgRGpw0KPJv
-	 qxJbrwj0wRkoc5JU5y735qxpGyX1mHg2wPE9xxssT8jg1OGA99HphUh1cOh+YSIdSh
-	 AxKp9WCK9z3m5pyk6GIuS8+ov3PTD15zg5H0RjZIHnG6YtE4Z39jWQLMVO1h8cEidE
-	 y2FyO3Hw7C1DQ==
-Message-ID: <39ac899e-7983-4287-986b-6e4e606ff545@kernel.org>
-Date: Tue, 4 Jun 2024 08:35:32 +0200
+	s=arc-20240116; t=1717483404; c=relaxed/simple;
+	bh=2aa68crBu/KDHO4yjInjYQzDEOU7K6uugXiJZ1PLqUs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=VTpxuXct/Q8F2INTXoJBkOXLbJ3KISZ2w1y7SlmEmjVfenIfiUdfmJ/WxvYLiF5DMNYZYLJW20QZAr3FHzrCtJoOjfplWt5Y17MeqAjJq9zLBjwXzNpq3m8zDvRIpTG7ibb6pBsOZolE4wIDga/7ABKPrzONMqq14dqvRnmA8o4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gxfcCuIc; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a68f10171bdso248797466b.0
+        for <devicetree@vger.kernel.org>; Mon, 03 Jun 2024 23:43:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717483401; x=1718088201; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sBxhYOUHGPOJj+Oh+TP9e12XKFk5G9K5xOSnQRpIOaQ=;
+        b=gxfcCuIcrTzulVAqmA52R6qX2Q7OOl2+4RepPfmZL6wKDam/GLZRsJGKrkJ6lGNTEQ
+         UZQr/QIFFAmVzzU4UDGKZX3WoS4a9KA07Jr9PuooOQBoRKoeRSguAqdefmbeTJXmyCn/
+         1ut4D2JPAYG2fNDggNNeOsRu8igxP1ssbTdPZewDS2XtyzFZkoD2uimzWriF5AyjqtbQ
+         Pe67oKWi0TFM0PuOp4hdHBcerqYP2YYZYcgLnqdmt7ZFYVav3K3mBSLZjRaIn9Kta5Pl
+         HFxrbaOrnKwA3T5LZWAJSkpDOzepX+PzwS2T/VSmXCXl30Afl03JhgJaGEqJeo6k0sGV
+         FfUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717483401; x=1718088201;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sBxhYOUHGPOJj+Oh+TP9e12XKFk5G9K5xOSnQRpIOaQ=;
+        b=LQKdaZdeLJy7i9hX8iXj1ELQHRKf7PC1N0z2riPws0vS/VUJU+o7rL2lF6fbn/T1BU
+         JA/NN/esSFRrDr/uB0vipCTjMwmvlVNFuBYxoZfSLAUcvKB5zQO6he5l+LuWczXhrgn/
+         BrKdV1ylw0iq6z0WQGlB7rvl3Ff7Hi/hqS62BFG160mdyq6N9E39u+HaBojM2hKJag8T
+         rnLqDlYsus54GTZ+W9eft24E1fmQ34XOyS2qUFGtCfXtatSu02t++6nl/vf8lvENsqsh
+         vUF+T8HcT8RYwiaPOeDcT0iDJrd/jHU0sTp2oWJzcD+g08vVtxcw4qKXJwTfAkoJTGJr
+         jhDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXG+goXZRPFWEoUDfwmzyYXMY7e2yNS268kT0Kbo+Sztu5uCakit5GrGfbMOthzElVK3J/td57xqlWQ9ds+DtF+4JE0R+tBsTgtIg==
+X-Gm-Message-State: AOJu0Yy75HgdSmAGD5tpq8XJi5bEf13p0KTz/Qjzbbf7PSJdz+oD8wKx
+	WXz4H9OnOUKd9m0cS0IAZerXeFg/hs7tmcNFvfGkCY4W7ERCIqL8
+X-Google-Smtp-Source: AGHT+IFQqMxzojH0qBL1dQPA5ajhEaM/7SsZT+d1V8pDXCIjCCyjz5OqW9edI1UsR6hLYnhJ0ND2jQ==
+X-Received: by 2002:a17:907:7811:b0:a66:7b79:3573 with SMTP id a640c23a62f3a-a682022f8a8mr871437466b.25.1717483401084;
+        Mon, 03 Jun 2024 23:43:21 -0700 (PDT)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a685b935b5csm547744066b.206.2024.06.03.23.43.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Jun 2024 23:43:20 -0700 (PDT)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V2 1/2] arm64: dts: mediatek: mt7988: add PWM controller
+Date: Tue,  4 Jun 2024 08:43:01 +0200
+Message-Id: <20240604064302.487-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: iio: light: ROHM BH1745
-To: Mudit Sharma <muditsharma.info@gmail.com>, ivan.orlov0322@gmail.com,
- jic23@kernel.org, lars@metafoo.de, krzk+dt@kernel.org, conor+dt@kernel.org,
- robh@kernel.org
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240603162122.165943-1-muditsharma.info@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240603162122.165943-1-muditsharma.info@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 03/06/2024 18:21, Mudit Sharma wrote:
-> Add ROHM BH1745 - 4 channel I2C colour sensor's dt-bindings.
-> 
-> Signed-off-by: Mudit Sharma <muditsharma.info@gmail.com>
-> ---
-> v1->v2:
-> - Fix yaml issue: Make `maintainers` a list
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Judging by driver there will be v3, so few nits.
+MT7988 has on-SoC controller that can control up to 8 PWM interfaces.
 
-> 
->  .../bindings/iio/light/rohm,bh1745.yaml       | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/light/rohm,bh1745.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/light/rohm,bh1745.yaml b/Documentation/devicetree/bindings/iio/light/rohm,bh1745.yaml
-> new file mode 100644
-> index 000000000000..ac5c4d160513
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/light/rohm,bh1745.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/light/rohm,bh1745.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ROHM BH1745 colour sensor
-> +
-> +maintainers:
-> +  - Mudit Sharma <muditsharma.info@gmail.com>
-> +
-> +description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +  BH1745 is an I2C colour sensor with red, green, blue and clear
-> +  channels. It has a programmable active low interrupt pin.
-> +  Interrupt occurs when the signal from the selected interrupt
-> +  source channel crosses set interrupt threshold high/low level.
-> +
-> +properties:
-> +  compatible:
-> +    const: rohm,bh1745
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +additionalProperties: false
-
-Please put this after required: block.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
+ arch/arm64/boot/dts/mediatek/mt7988a.dtsi | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+index 3eb5396dea22..27098f724b7a 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+@@ -105,6 +105,25 @@ clock-controller@1001e000 {
+ 			#clock-cells = <1>;
+ 		};
+ 
++		pwm@10048000 {
++			compatible = "mediatek,mt7988-pwm";
++			reg = <0 0x10048000 0 0x1000>;
++			clocks = <&infracfg CLK_INFRA_66M_PWM_BCK>,
++				 <&infracfg CLK_INFRA_66M_PWM_HCK>,
++				 <&infracfg CLK_INFRA_66M_PWM_CK1>,
++				 <&infracfg CLK_INFRA_66M_PWM_CK2>,
++				 <&infracfg CLK_INFRA_66M_PWM_CK3>,
++				 <&infracfg CLK_INFRA_66M_PWM_CK4>,
++				 <&infracfg CLK_INFRA_66M_PWM_CK5>,
++				 <&infracfg CLK_INFRA_66M_PWM_CK6>,
++				 <&infracfg CLK_INFRA_66M_PWM_CK7>,
++				 <&infracfg CLK_INFRA_66M_PWM_CK8>;
++			clock-names = "top", "main", "pwm1", "pwm2", "pwm3",
++				      "pwm4", "pwm5", "pwm6", "pwm7", "pwm8";
++			#pwm-cells = <2>;
++			status = "disabled";
++		};
++
+ 		usb@11190000 {
+ 			compatible = "mediatek,mt7988-xhci", "mediatek,mtk-xhci";
+ 			reg = <0 0x11190000 0 0x2e00>,
+-- 
+2.35.3
 
 
