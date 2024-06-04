@@ -1,275 +1,103 @@
-Return-Path: <devicetree+bounces-72301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DB9F8FB4AF
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 16:02:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2F8D8FB4EA
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 16:12:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C08031C21E90
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:02:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B960281F19
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:12:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B527145B3A;
-	Tue,  4 Jun 2024 14:00:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01680136E17;
+	Tue,  4 Jun 2024 14:12:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="beELly/C"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="pd1OgHOf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D46ED143C6D;
-	Tue,  4 Jun 2024 14:00:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A526A134409;
+	Tue,  4 Jun 2024 14:12:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717509623; cv=none; b=RNjHq+TLi44GjDJoS0hlC++6XUtgSrKtD+bqY31sIA5gnbptsf1JPDhMUYEna104gMIx59V8lKSrmYd83SVfE1/bP9HH9xiCd1+XXEM7+H2JLbqo/5DYuuJz0I6B/hWiNpO6dfiMcbqLWD11gcgZghhsavPGL9NFRqFUYl6zmvw=
+	t=1717510340; cv=none; b=UDpmcvsbddak9Gn/32awk7JxTqqnNW+8IYNo3M4fhe++wTwHkhr9daI3jQYRVV0toAvuHCNRpwVphJPy4oIXQWe7xDmN2ntUzN3efmh04Sb6hGPnPQpQbMFK9KJ3DXJScyIYwmJ4yUJxpl9aI/0/US2fBEqvVVCV6ZysdauBGzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717509623; c=relaxed/simple;
-	bh=TuTC4xMc7GZShagg8C4/PapTgXr8QVOOxVdDj2YUO5k=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=DqxCBjZcPo//ZrKCUG6FgUNyzX7yljUEmBkATfO7ufv3wsp1ncysl5qB6jRqixAdpd+zaTS5S5Ey95mh4HmbW3MpS29q/58iHq51S0ZFnsw8nssicmBNdSsGgV99+X+O2bJPUCjQQqDLhT45CbeKjnghCSWpmCIM++VsNmwMDg8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=beELly/C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DFD3C4AF09;
-	Tue,  4 Jun 2024 14:00:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717509623;
-	bh=TuTC4xMc7GZShagg8C4/PapTgXr8QVOOxVdDj2YUO5k=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=beELly/CphT0spKfPrIMjBbO5t3cx+jVCiTq36qfzDNQjw0il4I6dzs2iUfkBKypM
-	 F7jMyF/XKkAklCMlGdzkWifNgDZonhtqeN3tmQDnBLKs2Od3Scow1bRD9v/3nIwSXM
-	 edownA4rOB3pMgM4a4Nt0fWHMFsT8iA5swWTp88PkMtT/8Ng6XLmIIZS+rKfy5/GZJ
-	 D2gkPeVeWqQVQlN009nnVkAS69lEI0BFV2Pt/jhMpMAmcbDBzADyEDAFVZXcDtF9ev
-	 L/dzAupQ4fqSucbVpG7NSjdlq/HQxNY4Iyuo6JVYLUhskLbmd0An/rUDGT6C6/xyjK
-	 TZBqXSSZOEN1w==
-From: Michael Walle <mwalle@kernel.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1717510340; c=relaxed/simple;
+	bh=a+dh7jhzlHhwln90offyZoiN+B1RFJofWEM3+SwHlVk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rTtR5yqnjCKNwYjpd0+0gu+1P4joD7L2YAP55Mk2+ehaptlJzNY7zdtdevVXNMZkRqscZa0/ANLXUlTKsWzZHniLZsW7wtCOQWFl9Woqg9jED/stHvPlTo99jkfMt0cLNunVN6GfaXYbdeRow4LrqbQqFrpW9nF7YnSUBB0PjEA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=pd1OgHOf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61F7BC32786;
+	Tue,  4 Jun 2024 14:12:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1717510340;
+	bh=a+dh7jhzlHhwln90offyZoiN+B1RFJofWEM3+SwHlVk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pd1OgHOfoDM8EnggG7+pJFqnZGPBRXKf1p19Hkw8gIOj0vTIDFd8tqcqkmGwpKdyo
+	 tofQyVfh5WlIA/S31F61Z5naCXDj855GpWEYV+cYU7QcJnHh9hNoMCXgKsAsf0lmV1
+	 AUb21ZBtGnjdRUE3Nyb6ltfmQ4lRiHCQxMQ8wVJo=
+Date: Tue, 4 Jun 2024 15:48:58 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	patches@lists.linux.dev, kunit-dev@googlegroups.com,
+	linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org,
+	Brendan Higgins <brendan.higgins@linux.dev>,
+	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Daniel Latypov <dlatypov@google.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Li Yang <leoyang.li@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Priit Laes <plaes@plaes.org>,
-	Michael Grzeschik <m.grzeschik@pengutronix.de>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Michael Walle <mwalle@kernel.org>
-Subject: [PATCH 10/10] ARM: dts: imx6qdl-kontron-samx6i: add actual device trees
-Date: Tue,  4 Jun 2024 15:59:34 +0200
-Message-Id: <20240604135934.1951189-11-mwalle@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240604135934.1951189-1-mwalle@kernel.org>
-References: <20240604135934.1951189-1-mwalle@kernel.org>
+	Maxime Ripard <maxime@cerno.tech>
+Subject: Re: [PATCH v5 06/11] platform: Add test managed
+ platform_device/driver APIs
+Message-ID: <2024060445-reverse-defendant-ec52@gregkh>
+References: <20240603223811.3815762-1-sboyd@kernel.org>
+ <20240603223811.3815762-7-sboyd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240603223811.3815762-7-sboyd@kernel.org>
 
-For now, there wasn't any in-tree users of the dtsi files for the
-Kontron SMARC-sAMX6i board. Let's add device trees, for this board on a
-Kontron SMARC Eval 2.0 Carrier.
+On Mon, Jun 03, 2024 at 03:38:03PM -0700, Stephen Boyd wrote:
+> Introduce KUnit resource wrappers around platform_driver_register(),
+> platform_device_alloc(), and platform_device_add() so that test authors
+> can register platform drivers/devices from their tests and have the
+> drivers/devices automatically be unregistered when the test is done.
+> 
+> This makes test setup code simpler when a platform driver or platform
+> device is needed. Add a few test cases at the same time to make sure the
+> APIs work as intended.
+> 
+> Cc: Brendan Higgins <brendan.higgins@linux.dev>
+> Cc: David Gow <davidgow@google.com>
+> Cc: Rae Moar <rmoar@google.com>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: "Rafael J. Wysocki" <rafael@kernel.org>
+> Signed-off-by: Stephen Boyd <sboyd@kernel.org>
+> ---
+>  Documentation/dev-tools/kunit/api/index.rst   |   5 +
+>  .../dev-tools/kunit/api/platformdevice.rst    |  10 +
+>  include/kunit/platform_device.h               |  20 ++
+>  lib/kunit/Makefile                            |   4 +-
+>  lib/kunit/platform-test.c                     | 223 +++++++++++++
+>  lib/kunit/platform.c                          | 302 ++++++++++++++++++
+>  6 files changed, 563 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/dev-tools/kunit/api/platformdevice.rst
+>  create mode 100644 include/kunit/platform_device.h
+>  create mode 100644 lib/kunit/platform-test.c
+>  create mode 100644 lib/kunit/platform.c
 
-Signed-off-by: Michael Walle <mwalle@kernel.org>
----
- arch/arm/boot/dts/nxp/imx/Makefile            |   2 +
- .../nxp/imx/imx6dl-kontron-samx6i-ads2.dts    |  12 ++
- .../dts/nxp/imx/imx6q-kontron-samx6i-ads2.dts |  12 ++
- .../nxp/imx/imx6qdl-kontron-samx6i-ads2.dtsi  | 121 ++++++++++++++++++
- 4 files changed, 147 insertions(+)
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i-ads2.dts
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i-ads2.dts
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-kontron-samx6i-ads2.dtsi
-
-diff --git a/arch/arm/boot/dts/nxp/imx/Makefile b/arch/arm/boot/dts/nxp/imx/Makefile
-index 231c0d73a53e..92e291603ea1 100644
---- a/arch/arm/boot/dts/nxp/imx/Makefile
-+++ b/arch/arm/boot/dts/nxp/imx/Makefile
-@@ -99,6 +99,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6dl-icore.dtb \
- 	imx6dl-icore-mipi.dtb \
- 	imx6dl-icore-rqs.dtb \
-+	imx6dl-kontron-samx6i-ads2.dtb \
- 	imx6dl-lanmcu.dtb \
- 	imx6dl-mamoj.dtb \
- 	imx6dl-mba6a.dtb \
-@@ -207,6 +208,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6q-icore-ofcap10.dtb \
- 	imx6q-icore-ofcap12.dtb \
- 	imx6q-icore-rqs.dtb \
-+	imx6q-kontron-samx6i-ads2.dtb \
- 	imx6q-kp-tpc.dtb \
- 	imx6q-logicpd.dtb \
- 	imx6q-marsboard.dtb \
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i-ads2.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i-ads2.dts
-new file mode 100644
-index 000000000000..6a0c53f23a15
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i-ads2.dts
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: GPL-2.0 OR X11
-+
-+/dts-v1/;
-+
-+#include "imx6dl.dtsi"
-+#include "imx6qdl-kontron-samx6i.dtsi"
-+#include "imx6qdl-kontron-samx6i-ads2.dtsi"
-+
-+/ {
-+	model = "Kontron SMARC-sAMX6i Dual-Lite/Solo on SMARC Eval 2.0 carrier";
-+	compatible = "kontron,imx6dl-samx6i-ads2", "kontron,imx6dl-samx6i", "fsl,imx6dl";
-+};
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i-ads2.dts b/arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i-ads2.dts
-new file mode 100644
-index 000000000000..94c395cc020e
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i-ads2.dts
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: GPL-2.0 OR X11
-+
-+/dts-v1/;
-+
-+#include "imx6q.dtsi"
-+#include "imx6qdl-kontron-samx6i.dtsi"
-+#include "imx6qdl-kontron-samx6i-ads2.dtsi"
-+
-+/ {
-+	model = "Kontron SMARC-sAMX6i Quad/Dual on SMARC Eval 2.0 carrier";
-+	compatible = "kontron,imx6q-samx6i-ads2", "kontron,imx6q-samx6i", "fsl,imx6q";
-+};
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-kontron-samx6i-ads2.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-kontron-samx6i-ads2.dtsi
-new file mode 100644
-index 000000000000..e5b3183d4ae0
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-kontron-samx6i-ads2.dtsi
-@@ -0,0 +1,121 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Device Tree include for the Kontron SMARC-sAMX6i board on a SMARC Eval
-+ * 2.0 carrier (ADS2).
-+ *
-+ */
-+
-+/ {
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	sound {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "simple-audio-card";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,bitclock-master = <&dailink_master>;
-+		simple-audio-card,frame-master = <&dailink_master>;
-+		simple-audio-card,widgets =
-+			"Headphone", "Headphone Jack",
-+			"Line", "Line Out Jack",
-+			"Microphone", "Microphone Jack",
-+			"Line", "Line In Jack";
-+		simple-audio-card,routing =
-+			"Line Out Jack", "LINEOUTR",
-+			"Line Out Jack", "LINEOUTL",
-+			"Headphone Jack", "HPOUTR",
-+			"Headphone Jack", "HPOUTL",
-+			"IN1L", "Line In Jack",
-+			"IN1R", "Line In Jack",
-+			"Microphone Jack", "MICBIAS",
-+			"IN2L", "Microphone Jack",
-+			"IN2R", "Microphone Jack";
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&ssi1>;
-+		};
-+
-+		dailink_master: simple-audio-card,codec {
-+			sound-dai = <&wm8904>;
-+		};
-+	};
-+};
-+
-+&audmux {
-+	status = "okay";
-+};
-+
-+&can1 {
-+	status = "okay";
-+};
-+
-+&can2 {
-+	status = "okay";
-+};
-+
-+&ecspi4 {
-+	flash@1 {
-+		compatible = "jedec,spi-nor";
-+		m25p,fast-read;
-+		spi-max-frequency = <100000000>;
-+		reg = <1>;
-+	};
-+};
-+
-+&fec {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+
-+	wm8904: audio-codec@1a {
-+		#sound-dai-cells = <0>;
-+		compatible = "wlf,wm8904";
-+		reg = <0x1a>;
-+		clocks = <&clks IMX6QDL_CLK_CKO2>;
-+		clock-names = "mclk";
-+	};
-+};
-+
-+&i2c3 {
-+	eeprom@57 {
-+		compatible = "atmel,24c64";
-+		reg = <0x57>;
-+		pagesize = <32>;
-+	};
-+};
-+
-+&ssi1 {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	status = "okay";
-+};
-+
-+&uart5 {
-+	status = "okay";
-+};
-+
-+&usbh1 {
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	status = "okay";
-+};
-+
-+&usdhc3 {
-+	status = "okay";
-+};
--- 
-2.39.2
-
+Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
