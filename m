@@ -1,205 +1,110 @@
-Return-Path: <devicetree+bounces-72184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6A0F8FB13F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:39:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D72C8FB157
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:45:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43D3A1F2287C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 11:39:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5440D281FBD
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 11:45:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CB7A14535F;
-	Tue,  4 Jun 2024 11:38:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3E7B145A17;
+	Tue,  4 Jun 2024 11:45:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="mATr4jO3";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="r5qBjm68"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XkYJSVhB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE944145355;
-	Tue,  4 Jun 2024 11:38:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C7091459E5
+	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 11:45:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717501134; cv=none; b=JBa0dgBQxD8d9RTYrU/ZfvmOHugPe6iHP9IOdCC/iptkuazgrCRbDLfMlmIuZJSvsUj1iCsTJmaY+kAaHRpbVFfWfZcSSPcaA5r1vVLaFnMcQchIhSqr5IFrvebmEhVSJt+tazqOXtZG7Y5BKBF0+b1n0M+iKVobI0U20ZAYWBw=
+	t=1717501538; cv=none; b=vB3DIFJGAKUJhTNjq/85Xdy97z64tOSC8xczAPkWcbncHOa7z52kjtU7E5tXhcN5/DJune1Cc9IV8sC0jfnqRJo32IFykMwlO67D6GPwzLWK26Ufkbg3XjXWIGMoFNBsLGHJXObGevm6fGzOYxNEW7sYquYxeSqzeTmhZ/R8qsI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717501134; c=relaxed/simple;
-	bh=s6qioyU4njlSo4EIOtr5CBGBzfDq1zmq6Y1XUhJQ8vs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OrxmFWDwSbRpChVjD/XNetT4Zk2WrvjTTuTff6xX0VYPyUifaNvkWqtaJaooPbO8f8rVL6DSXbDmULHqL9slsF3NwkOLSp6FmnavX99M89zyvg2e441j8/wYU/MFrKOXbY5P5pgUxshxTq5ujUD84ze5ymDaaX1Dlzf2/pA1szs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=mATr4jO3; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=r5qBjm68 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1717501538; c=relaxed/simple;
+	bh=EqkGWZ9F8GOUzilRYOYPTx0A0909TDaKfDfPNVFxtdg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qNhx32W95qyzTl0rPG7/8kSFYGI4AJaQQ71BHIhiXwFeqRHlCcAzrBtzZNXjUaiJcmtkYPZdbyIZHFqF4jPQjLynGpoQaQr3BHu95QsgYAxpmhIqiZIvksjnM1P9OglKALMyMfdtiOga3AeT9gcDTvq3K4wHb329Oimhp2vnVl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XkYJSVhB; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a62ef52e837so100682766b.3
+        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 04:45:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1717501131; x=1749037131;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=YoxkqmfgJqrdmMv5DLLQpdpTV2RJUZno4i80lbGS60s=;
-  b=mATr4jO3TVdOLp5QjA9N4l+eKyTxLmWenx2WZsVsdf4RvBlpyxdkGjCE
-   bbR7YKDbav7Pxk4hhUUccy5Tstg2ypk2ZNKkIHfxQ1uPUY8OvsMXdLsDR
-   2RicLJAqULGzTGpQ066SnrgCH8OdH4tv0tMx+Zq5nIkZN4H1I/CYAUD0x
-   QERlHB4zvCiV20UhsNv5eOxmP63eZe7Kzm5swD1rN+7XcrARAp8PJNgq7
-   a+YgQCv5CudOJo7oJB8p4veB9oJh2eXek+N4NuBOowu69S4Ait32bHvV1
-   mURT6qjEXHXd/d5+wyIe5yogOHYIIqIwlbzbP48gBDRnlxylQincadXBQ
-   Q==;
-X-CSE-ConnectionGUID: h+LefQ3sTim9ik3KwuncDg==
-X-CSE-MsgGUID: 5Gec9Im0QGOZRFKomEOW5A==
-X-IronPort-AV: E=Sophos;i="6.08,213,1712613600"; 
-   d="scan'208";a="37211903"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 04 Jun 2024 13:38:48 +0200
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E313717166C;
-	Tue,  4 Jun 2024 13:38:43 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1717501124;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=YoxkqmfgJqrdmMv5DLLQpdpTV2RJUZno4i80lbGS60s=;
-	b=r5qBjm685dOtjc6FD4lUdJt7rlTowc5KO+i81zeaMU90LW2v9BDRmTcUe6EGsQMboZAO1u
-	55UNFXCiLeqloK0YO3ItfKflWEqSMeW5ubwBOUo84pESALlDkh4b54ZsHYmhRm1DqYXFvI
-	Wma5yCg5IHfL2gJ14IDtfRpZmDhcqRMmHEFHEfzgZMiO7YbpxUrEs0VM9M172oNoJ91cdw
-	4qUZMzqeY39HKrbSBe9Jn5sNRiv/iY8VXy0I2SPf4h4dO2KannKd6D5oPD7uZtNgHVnOB4
-	Ig5+nIbHqi6sP9Mw8ADY/iUtYXCx5iRYJk2z0VLr32gfRPukAODI9dcgXY6cBQ==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Esben Haabendal <esben@geanix.com>
-Cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: ls1021a: add QUICC Engine node
-Date: Tue, 04 Jun 2024 13:38:44 +0200
-Message-ID: <8425529.NyiUUSuA9g@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <87ttiem4de.fsf@geanix.com>
-References: <20240530-arm-ls1021a-qe-dts-v1-1-2eda23bdf8c5@geanix.com> <5987259.31r3eYUQgx@steina-w> <87ttiem4de.fsf@geanix.com>
+        d=linaro.org; s=google; t=1717501535; x=1718106335; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jEYPS1P1P/pg/x7T6VsyXUmYK0wASnWZkTb2yubv/Tw=;
+        b=XkYJSVhBxhYqOjVGtiu/Cj+gWp63lJQiRpSvlMH6C8Xefg3WoE/F3qk7H2uZmr6yC7
+         5tFARy2br0b7/zREMjrvyLdk7tL4fGyPixWSQOoddFUyJsZGVuei63IWbLJpDT3uLyXa
+         DnOAkMulwIYBGZNaKzin92wLgxNIqqTqb0WVfgjijl1AWfh0euTeR2s/aCbPGqz+Qlz1
+         cU1TWiAeGL3BIoImrod1rl/gLOrxeWzs6Z4grDlrCoAMcWvMtBeLa0MVfc5qyfv8fLba
+         tqi47R8kdIYoslWZdRGfYSQjxn/StdY4rDcm+7+QKaeFz6Zgt1zufi46PNC7SoT8Ukoc
+         Oa4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717501535; x=1718106335;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jEYPS1P1P/pg/x7T6VsyXUmYK0wASnWZkTb2yubv/Tw=;
+        b=wSYluLEghxSZcMVexSFpLIuqfBh21lKfVt7EiflSTFO+sPgnB2Y5xA5FWA4yku7jI3
+         9fkFI7weAxHNXAuaGMP0Dpo/I4Z0YavryIyYTSgG8yfMnBgAKU+OTRqa5VIBL9RTuTfC
+         ptpKwl/6JcBl5aaVlFHMqspDVD2N+Z1L1iJ+zbn3D9xW/3ZLiEoBUpsLzulwL34n8X/P
+         uxNKYZYPhRFvZPjQPFULaVanwC91D0xXJzt+iMS34ZUI20lSq4qSuMV0FE9eKT6euNzp
+         mX2bdvsuzJ3jKBKRomINiy9d4GAIcCYMNw4XbezjCw3sTuoTts0ao1Y1cweUUQuwO2Zz
+         AaTA==
+X-Forwarded-Encrypted: i=1; AJvYcCU+vo8g9GgxGWLdvmaKIs4b9vEQQl1QWUliYUQhYl27WvKp41KM0HpSYCbAEufjic9ufgFwLNNX7mD3fM4Nc7KH5+VYADX93a2gRQ==
+X-Gm-Message-State: AOJu0Yy/zwQgbeRxdx2qd8MPuxKgliJZTSIogWGc0ANVR9eVRoehEjFQ
+	4LwueiVN9j4JR8P/Q86z6Euf3lf8ZYXQuDxm7IiXI99a8tYeJNaFIqgN6aGeI9g=
+X-Google-Smtp-Source: AGHT+IGNC+G0CRWDuySvVpRylDriDDDpg7AMDvN3xv5vrnBLp5WpII5byOdlZw58pQV67Lx+l3WClg==
+X-Received: by 2002:a17:906:5957:b0:a68:a958:db18 with SMTP id a640c23a62f3a-a68a958dcbamr633833166b.76.1717501534980;
+        Tue, 04 Jun 2024 04:45:34 -0700 (PDT)
+Received: from ?IPV6:2a00:f41:909a:a11e:a035:2af2:8d85:1f72? ([2a00:f41:909a:a11e:a035:2af2:8d85:1f72])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a68ad1d7c8csm489285966b.80.2024.06.04.04.45.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Jun 2024 04:45:34 -0700 (PDT)
+Message-ID: <da4c6403-7886-468d-a1f0-a3454bca2c6d@linaro.org>
+Date: Tue, 4 Jun 2024 13:45:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
-
-Hi Esben,
-
-Am Freitag, 31. Mai 2024, 16:40:29 CEST schrieb Esben Haabendal:
-> Alexander Stein <alexander.stein@ew.tq-group.com> writes:
->=20
-> > Hi Esben,
-> >
-> > Am Freitag, 31. Mai 2024, 14:20:02 CEST schrieb Esben Haabendal:
-> >> Alexander Stein <alexander.stein@ew.tq-group.com> writes:
-> >> >> +			brg-frequency =3D <150000000>;
-> >> >> +			bus-frequency =3D <300000000>;
-> >> >
-> >> > Mh, aren't these values depending on your actual RCW configuration?
-> >>=20
-> >> Yes, you are right. The QE bus-frequency comes from platform_clk which
-> >> is controlled by various bits in RCW and sys_ref_clk.
-> >>=20
-> >> So I guess it should be possible to derive bus-frequency from sysclk
-> >> clock-frequency attribute and RCW. But fsl,qe bus-frequency is a
-> >> required property...
-> >>=20
-> >> Max bus-frequency for LS1021A is 300 MHz. But it should be possible to
-> >> set it lower, although I suspect that many/most/everyone is running it
-> >> at 300 MHz.
-> >
-> > Thanks for confirmation. I'll let DT maintainer decide how to deal with=
- this.
->=20
-> For reference.
->=20
-> The existing DTS with fsl,qe have the following bus-frequency property va=
-lues:
->=20
-> arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi:  bus-frequency =3D <20000=
-0000>
-> arch/powerpc/boot/dts/fsl/mpc8568si-post.dtsi:   bus-frequency =3D <39600=
-0000>
-> arch/powerpc/boot/dts/fsl/mpc8569si-post.dtsi:   bus-frequency =3D <0>
-> arch/powerpc/boot/dts/fsl/p1021si-post.dtsi:     missing!
-> arch/powerpc/boot/dts/fsl/t1024si-post.dtsi:     bus-frequency =3D <0>
-> arch/powerpc/boot/dts/fsl/t1040si-post.dtsi:     missing!
-> arch/powerpc/boot/dts/kmeter1.dts:               bus-frequency =3D <0>
-> arch/powerpc/boot/dts/mpc836x_rdk.dts:           bus-frequency =3D <0>
-> arch/powerpc/boot/dts/mpc832x_rdb.dts:           bus-frequency =3D <19800=
-0000>
->=20
-> The 3 non-zero values are most likely also not guaranteed by SoC design
-> to always be the right values. But I haven't checked.
-
-PowerPC might be completely different. Apparently that's the way it is
-done until now.
-
-> >> >> +			fsl,qe-num-riscs =3D <1>;
-> >> >> +			fsl,qe-num-snums =3D <28>;
-> >> >
-> >> > Current bindings defines:
-> >> >> fsl,qe-snums: This property has to be specified as '/bits/ 8' value,
-> >> >>   defining the array of serial number (SNUM) values for the virtual
-> >> >>   threads.
-> >> >
-> >> > So '/bits/ 8' is missing.
-> >>=20
-> >> Ok, so you want me to add an array for fs,qe-snums attribute?
-> >> None of the existing fsl,qe devices has a fsl,qe-snums.
-> >> And qe_snums_init() has a fallback, so I don't think it is correct to
-> >> specify fsl,qe-snums to be a required property in the bindings. It
-> >> should be listed as optional.
-> >
-> > fsl,qe-num-snums is a deprecated property, so IMHO the replacement
-> > fsl,qe-snums should be used instead for new device tree entries.
-> > qe_snums_init() supporting 'fsl,qe-num-snums' is just to support
-> > "legacy bindings" as stated in the comment.
->=20
-> Figuring out the correct array values for fsl,qe-snums for ls1021a is
-> not so easy. It is not so clear from the reference manual, what it
-> should be. And the default array used for fsl,qe-num-snums =3D <28> does
-> not look right in any way, but seems to work.
->=20
-> It would not feel right to just copy those values and put into DTS, as
-> it would imply that the values are truly a correct description for the
-> LS1021A hardware.
-
-Maybe copy the currently hardcoded values and add a REVISIT comment or
-similar describing these are copied, apparently working, but unverified.
-
-Best regards,
-Alexander
-
-> >>=20
-> >> >> +			};
-> >> >> +
-> >> >> +			muram@10000 {
-> >> >> +				#address-cells =3D <1>;
-> >> >> +				#size-cells =3D <1>;
-> >> >> +				compatible =3D "fsl,qe-muram", "fsl,cpm-muram";
-> >> >> +				ranges =3D <0x0 0x10000 0x6000>;
-> >> >
-> >> > Node address but no 'reg' property? I have no idea if this is okay.
-> >> > Also compatible (and possibly reg) first.
-> >>=20
-> >> It is done in the same way for all existing fsl,qe-muram devices. So if
-> >> it is not okay, a tree-wide fixup would be in place.
-> >
-> > I can't finally say if this is okay, but at least the compatible shall =
-be
-> > listed first.
->=20
-> Done.
->=20
-> /Esben
->=20
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/2] Disable SS instances in park mode for SC7180/
+ SC7280
+To: Krishna Kurapati <quic_kriskura@quicinc.com>,
+ cros-qcom-dts-watchers@chromium.org, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Stephen Boyd <swboyd@chromium.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Matthias Kaehlcke <mka@chromium.org>
+Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, quic_ppratap@quicinc.com, quic_jackp@quicinc.com
+References: <20240604060659.1449278-1-quic_kriskura@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20240604060659.1449278-1-quic_kriskura@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
 
+On 6/4/24 08:06, Krishna Kurapati wrote:
+> When working in host mode, in certain conditions, when the USB
+> host controller is stressed, there is a HC died warning that comes up.
+> Fix this up by disabling SS instances in park mode for SC7280 and SC7180.
+> 
+> It is recommended to set this quirk for all Gen-1 SoCs. Will identify the
+> other SoCs and push a separate series for the same.
 
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
 
