@@ -1,108 +1,126 @@
-Return-Path: <devicetree+bounces-72350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 631788FB6E5
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:26:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F0E38FB71C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:28:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 36166B212E6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:26:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 709841C2155A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:28:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A58D143C64;
-	Tue,  4 Jun 2024 15:25:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93156143C64;
+	Tue,  4 Jun 2024 15:28:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uBlERkTf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ttRD8nax"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBF4FC13B;
-	Tue,  4 Jun 2024 15:25:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66FEB8BFA;
+	Tue,  4 Jun 2024 15:28:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717514755; cv=none; b=lf/IEspISWALTKlIVd4nfSidzoDUPFCcgy6uwYBm2yPz2nF16uzm20Ld8fOAO2clRVeEYuj48eFk7hUMIAPO97zxf3+XZ4PR+3fGJtDqkNFK7g6EaGOKvWR9Cfg6uNFqVBpIqpMWjKATThDnsptVKIKrQ8KyIR8a02Uo7ebJrYE=
+	t=1717514926; cv=none; b=Bs8uz0c36S71Tm1Imb5sfrk3wZsvfhgR7mL2EsCfk8hbceg5FyE+m0xUAA00RXwdKEECZGtz71maOK+JgIFNwm2kUoD6Y8a0VHwVFEqM5ZguEZGxPc/L49ekMT64AIjMqmNxhh84ODiOM0uBjj4Kqx385ShkqQQUFqOuJ3ry/tY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717514755; c=relaxed/simple;
-	bh=W4guxw4l01Fm9wSUJoG6FBoB1xjKNyaC5jSs9toFe60=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Pl3NJFjGe/XSgp3pW6fgX8U6T3N2Vmtck0UullHUe3NzV3cg9R9FFoUK3CcQYljXTARU+rRHuEGBSQorpGK3BHPXaJD/Qwrn9cpFIACoypQMLxt73s5qalujRVp/VsMiw/maPbD7w4OI2faZvj3IU2cCjSexaUNPBDgqWtCujaM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uBlERkTf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7A9BC2BBFC;
-	Tue,  4 Jun 2024 15:25:54 +0000 (UTC)
+	s=arc-20240116; t=1717514926; c=relaxed/simple;
+	bh=oFkn0LPoB9tVCls/ircGN3t6OtW4u8TewXsEM7hT28U=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=dNL8TMCysFXRWGlVQwT1ZSuHSDh75aF8+Sr/HRdB5OCUauocLyGwByL9A1VLxsdorthBq9CKZUvIT69b5Jsc/8bg09VUX1+kxxW0305ZfOu/6349X2dRJWaxO37eh5vjBFbhQ8yAHr0PIZNDBy0vMBVg7ONwVCJbExCEehrvpoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ttRD8nax; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01E7AC2BBFC;
+	Tue,  4 Jun 2024 15:28:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717514754;
-	bh=W4guxw4l01Fm9wSUJoG6FBoB1xjKNyaC5jSs9toFe60=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=uBlERkTfsl6Cc1Hb9rsoZKL3tUhcrxXlmutR3hjFozXXQD+clGNtj1kEfeLvvmwug
-	 ZhWMMQut0D6GHkWtFX8YI98xpkpe0RVwG9dTrBOJAzEEHbM1jrIz+mgFlwhD1+Zkz9
-	 yhcx5lXBjmqbQsJKqOcjTckeEboWdcI5vfGbCKMzwWVElQlzdOzDR+Fsq07m+nAE/3
-	 mt5h/Neh6E82IwLgvYRsrlKqAZ2L/tTnDx4q6APk351MkrsjO1GIWAC0hzcsSj0fLW
-	 DpfNjAfk7nTYj7P3ukQ3kQ4HLc1jPIulxTvauURLNPh0ROtGhBPWE3M0euplY+Qq+k
-	 AIywwb5ieKwlQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1sEW2q-000d09-Cz;
-	Tue, 04 Jun 2024 16:25:52 +0100
-Date: Tue, 04 Jun 2024 16:25:51 +0100
-Message-ID: <86cyowlog0.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Robin Murphy <robin.murphy@arm.com>,	Bjorn Helgaas <helgaas@kernel.org>,
-	Richard Zhu <hongxing.zhu@nxp.com>,	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,	Krzysztof =?UTF-8?B?V2lsY3p5?=
- =?UTF-8?B?xYRza2k=?= <kw@linux.com>,	Rob Herring <robh@kernel.org>,	Bjorn
- Helgaas <bhelgaas@google.com>,	Shawn Guo <shawnguo@kernel.org>,	Sascha
- Hauer <s.hauer@pengutronix.de>,	Pengutronix Kernel Team
- <kernel@pengutronix.de>,	Fabio Estevam <festevam@gmail.com>,	NXP Linux Team
- <linux-imx@nxp.com>,	Philipp Zabel <p.zabel@pengutronix.de>,	Liam Girdwood
- <lgirdwood@gmail.com>,	Mark Brown <broonie@kernel.org>,	Manivannan
- Sadhasivam <manivannan.sadhasivam@linaro.org>,	Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>,	Conor Dooley <conor+dt@kernel.org>,
-	linux-pci@vger.kernel.org,	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,	linux-kernel@vger.kernel.org,
-	bpf@vger.kernel.org,	devicetree@vger.kernel.org,	Will Deacon
- <will@kernel.org>,	Joerg Roedel <joro@8bytes.org>,	Jason Gunthorpe
- <jgg@ziepe.ca>,	Alyssa Rosenzweig <alyssa@rosenzweig.io>
-Subject: Re: [PATCH v5 08/12] PCI: imx6: Config look up table(LUT) to support MSI ITS and IOMMU for i.MX95
-In-Reply-To: <Zl4v10Od99et+tLX@lizhi-Precision-Tower-5810>
-References: <20240603171921.GA685838@bhelgaas>
-	<3d24fecf-1fdb-4804-9a51-d6c34a9d65c6@arm.com>
-	<Zl4v10Od99et+tLX@lizhi-Precision-Tower-5810>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.2
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=k20201202; t=1717514926;
+	bh=oFkn0LPoB9tVCls/ircGN3t6OtW4u8TewXsEM7hT28U=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=ttRD8naxy8arbWujT8hUYCBfUCAPhHbVst0qDeTLF3ADFg+xTjuPxSwwYN1x8WHl9
+	 uMrs/2Xs/nhTO8k6YDdzz9sv8/SuglB0ygUyaDC98jJ3qFdWT95L9jGR/RzheuX/pW
+	 dbo8beYPTDiakacl79czfSWkHduHjlLe78pOjEbj9XIi3rUhDbtjkmp3CsYoGaDpI8
+	 Xd3sHCfJ8ZxvEjUj6niqwHw8iqOkmed/5AyZbWw73dX7qgDveEo9PP2AHZ+eEGvAwx
+	 aUjQpDSNNUtRd+kMOb9yH8/FPxhtAMK/wDno9OJNeAaMAuYP72/A+A1CC8MftUw22f
+	 zt/2HIUKj977g==
+Date: Tue, 04 Jun 2024 10:28:43 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: Frank.li@nxp.com, robin.murphy@arm.com, helgaas@kernel.org, hongxing.zhu@nxp.com, l.stach@pengutronix.de, lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, bhelgaas@google.com, shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com, p.zabel@pengutronix.de, lgirdwood@gmail.com, broonie@kernel.org, manivannan.sadhasivam@linaro.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux-pci@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, bpf@vger.kernel.org, devicetree@vger.kernel.org, will@kernel.org, joro@8bytes.org, jgg@ziepe.ca, alyssa@rosenzweig.io
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Alexander Reimelt <alexander.reimelt@posteo.de>
+Cc: conor+dt@kernel.org, linux-kernel@vger.kernel.org, petr.vorel@gmail.com, 
+ robh+dt@kernel.org, linux-arm-msm@vger.kernel.org, konrad.dybcio@linaro.org, 
+ krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org, 
+ devicetree@vger.kernel.org
+In-Reply-To: <20240530135922.23326-1-alexander.reimelt@posteo.de>
+References: <20240403104415.30636-1-alexander.reimelt@posteo.de>
+ <20240530135922.23326-1-alexander.reimelt@posteo.de>
+Message-Id: <171751454446.785089.9573709633302965312.robh@kernel.org>
+Subject: Re: [PATCH v2 0/2] arm64: Add basic support for LG H815
 
-On Mon, 03 Jun 2024 22:04:23 +0100,
-Frank Li <Frank.li@nxp.com> wrote:
+
+On Thu, 30 May 2024 13:57:40 +0000, Alexander Reimelt wrote:
+> Hello
 > 
-> iommu may share one stream id for multi-devices. but ITS MSI can't. each
-> device's MSI index start from 0. It needs difference stream id for each
-> device.
+> Thanks for your time reviewing my first revision.
+> Changes:
+> - status is now the last property
+> - corrected the node order
+> - droped bootargs
+> - corrected subject prefix
+> - removed unused regulators
+> 
+> Sorry for the delay, I lost access to my device for a while.
+> 
+> Best regards
+> Alex
+> 
+> Alexander Reimelt (2):
+>   dt-bindings: arm: qcom: Add LG G4 (h815)
+>   arm64: dts: qcom: msm8992-lg-h815: Initial support for LG G4 (H815)
+> 
+>  .../devicetree/bindings/arm/qcom.yaml         |   1 +
+>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>  arch/arm64/boot/dts/qcom/msm8992-lg-h815.dts  | 234 ++++++++++++++++++
+>  3 files changed, 236 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8992-lg-h815.dts
+> 
+> --
+> 2.45.1
+> 
+> 
+> 
 
-That's not quite true. We go through all sort of hoops to find about
-device aliasing on PCI and allow devices that translate into the same
-DID to get MSIs.
 
-Of course, just like the IOMMU, you lose any form of isolation, but
-you get what you pay for.
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-	M.
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
--- 
-Without deviation from the norm, progress is not possible.
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y qcom/msm8992-lg-h815.dtb' for 20240530135922.23326-1-alexander.reimelt@posteo.de:
+
+arch/arm64/boot/dts/qcom/msm8992-lg-h815.dtb: usb@f92f8800: 'interrupt-names' is a required property
+	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+arch/arm64/boot/dts/qcom/msm8992-lg-h815.dtb: usb@f92f8800: 'oneOf' conditional failed, one must be fixed:
+	'interrupts' is a required property
+	'interrupts-extended' is a required property
+	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+
+
+
+
+
 
