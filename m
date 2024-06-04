@@ -1,177 +1,155 @@
-Return-Path: <devicetree+bounces-72091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0F498FAD10
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 10:05:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8197A8FAD1F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 10:09:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E5471C20F0A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 08:05:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36000283C1B
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 08:09:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBE7C1411F6;
-	Tue,  4 Jun 2024 08:05:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BC2013D882;
+	Tue,  4 Jun 2024 08:09:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="a0wdGM8c"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="XK+QEUpC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DB14446CF;
-	Tue,  4 Jun 2024 08:05:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A2971420B0;
+	Tue,  4 Jun 2024 08:09:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717488309; cv=none; b=Z3bxqgB5gtF8YGxkjxvvwLCtizGeVq/VDhWtl4MkIJ0p3XPspjIYapKbveZnAbdmFqRTXcHqmk2eDFuR2vxVopTNrQqvvhFB1J7kwP+4dT/qW4QFBdrlCA4vjOHxcRawiEVI1wX/YKWFr9lZw/loORJz4IdZpnGhXUbStcQpPps=
+	t=1717488593; cv=none; b=SEZOzk5KIyDOc5Jn0svpPOqaN1YqNJHQmPtuF/pm9Cf4LMD/EOEWeNpjlyajsOUc84lIUeRHShlo06QAMNnAojQkjD5m6kX0H2uf/Q+5Gl2ig2Te61YHhgDoO44BJU/mf/uFHeVscnVEVr/GAWBhWu6PMFdFH/H9waidx4kz4Sw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717488309; c=relaxed/simple;
-	bh=vt4WDDkQwQuey6fdhp0ZJrmjjzNYNHKwle5iIbTHIJM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GBxJvLfeSi2dfaUn5Cn+3ZnBch9FBNsHQ0f4bW+BfkIZiSrDDUgaa2x5JWW94ZIBV1ebAdJlmf6Vj5aOgEtl7mH8u3IsYzNp/bfVItyZCPUFYLOdaDXBYUgeYgv/aAn9zy/EpUE2Y55GK8MCpiGiCNzvbv+2BNW6+9DxjPzHTFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=a0wdGM8c; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 453LRCTW020306;
-	Tue, 4 Jun 2024 08:04:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UhrxHQx73Ohf0wePaJV5JlyhygXFHUzgCIHHqINdo6o=; b=a0wdGM8cfYgYXkRK
-	/WPP9NvnU7TUrF9jpOlk/S+YGC0SyMNIx6Cljhn1Awq2nKBdnJ9IjM26P772QRqs
-	gchWmu2v4QckjHMK6tpWvQNUOJjhJ9rgnO1sNJNa7Ae0ojhp7sXgVxbcVNDuJVPJ
-	RAfncbebfwwHqUrGZfogGf5obEgAHX4GF1ahzIBE/e5ULatNYgQOawGepDMh61zx
-	wGA/MfsE/hGxAK1fmC/jmd4Xq4Uumk//5Hh198jP2UxW7yabjxEbBxlf+NF0tE43
-	/3LpIdnidYITzWY4W/8lsMIxH1NFvEnxDJ1c/5kTtNslyjf4eUPtLi9pwIGJ4/3R
-	8rUayQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yfw4apc6s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 04 Jun 2024 08:04:54 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 45484qHb001856
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 4 Jun 2024 08:04:52 GMT
-Received: from [10.216.52.99] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 4 Jun 2024
- 01:04:47 -0700
-Message-ID: <e0b102b6-5ea5-4a86-887f-1af8754e490b@quicinc.com>
-Date: Tue, 4 Jun 2024 13:34:44 +0530
+	s=arc-20240116; t=1717488593; c=relaxed/simple;
+	bh=8tM5Zb6kQUVVQg/vsAjv/R/zJWorjd3aEehGuNdx6l4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=sqZt65OK/BMfz8ZTBkT8m5Hs3ymAiadGqQy+PHxuwB4U1YTDyvnW2yB8bn7pMPpfse5r0ZDyS7+B6mTX67VofcvOAJpMAvUfqS66Sv8yA68PZsxOGfHC1mfLa9DlsTyCLAFtk09Zhb82riQVO2M8S094P9uiI7NxPT2alv17xTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=XK+QEUpC; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id AC7FA20008;
+	Tue,  4 Jun 2024 08:09:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1717488588;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=0vmUIZ3RHApQ8liyK5HZsUjHttqDUp4gSBPYlUPRHpE=;
+	b=XK+QEUpCNM4bUkE+3p8pLAotZEBwCZxnpuPMbgICJo7MVH6kkbG9TEk89TIn75OWFZhczz
+	ppxSR5/WDhJ21ab1qyrUg7vGKMKtw7n2CzrCWsessyX7scaR2vaSptcgwYb6ncbljM2ack
+	E6GZnsbHCKJbeo4zlWPsSWFcaGsBs34VMQr1w4t6teyB+kIthDibNGWB2SraHYNhyUcKRM
+	r+WkjJuw0XCt8L2CykWUNg9gaz7SE73g1etahqOnXRvf3tm4qTPlejjWf/QQWVC3b49Ury
+	mSrIofKPQa0/yno1IL1Mm4uM2i15Pwy+sohj/e3i+o8k2M49zpUk5MLxck0rxw==
+Date: Tue, 4 Jun 2024 10:09:42 +0200
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Michael Walle <mwalle@kernel.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Pratyush Yadav
+ <pratyush@kernel.org>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?=
+ <u.kleine-koenig@pengutronix.de>, Thorsten Scherer
+ <t.scherer@eckelmann.de>, Marek Vasut <marex@denx.de>, Imre Kaloz
+ <kaloz@openwrt.org>, Andrew Lunn <andrew@lunn.ch>, Flavio Suligoi
+ <f.suligoi@asem.it>
+Subject: Re: [PATCH] dt-bindings: mtd: spi-nor: deprecate Everspin MRAM
+ devices
+Message-ID: <20240604100942.3e663d60@xps-13>
+In-Reply-To: <20240604074231.1874972-1-mwalle@kernel.org>
+References: <20240604074231.1874972-1-mwalle@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: sc7180: Disable SuperSpeed
- instances in park mode
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <cros-qcom-dts-watchers@chromium.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Matthias Kaehlcke
-	<mka@chromium.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
-        Doug Anderson
-	<dianders@google.com>, <stable@vger.kernel.org>
-References: <20240604060659.1449278-1-quic_kriskura@quicinc.com>
- <20240604060659.1449278-2-quic_kriskura@quicinc.com>
- <le5fe7b4wdpkpgxyucobepvxfvetz3ukhiib3ca3zbnm6nz2t7@sczgscf2m3ie>
-Content-Language: en-US
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <le5fe7b4wdpkpgxyucobepvxfvetz3ukhiib3ca3zbnm6nz2t7@sczgscf2m3ie>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: hqZ3vWWdleSptXUoxf2AwkCGzMLEXtJO
-X-Proofpoint-ORIG-GUID: hqZ3vWWdleSptXUoxf2AwkCGzMLEXtJO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-06-04_03,2024-05-30_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=661 lowpriorityscore=0 malwarescore=0 priorityscore=1501
- suspectscore=0 mlxscore=0 bulkscore=0 spamscore=0 adultscore=0
- clxscore=1015 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406040064
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
+Hi Michael,
 
+mwalle@kernel.org wrote on Tue,  4 Jun 2024 09:42:31 +0200:
 
-On 6/4/2024 1:16 PM, Dmitry Baryshkov wrote:
-> On Tue, Jun 04, 2024 at 11:36:58AM +0530, Krishna Kurapati wrote:
->> On SC7180, in host mode, it is observed that stressing out controller
->> results in HC died error:
->>
->>   xhci-hcd.12.auto: xHCI host not responding to stop endpoint command
->>   xhci-hcd.12.auto: xHCI host controller not responding, assume dead
->>   xhci-hcd.12.auto: HC died; cleaning up
->>
->> And at this instant only restarting the host mode fixes it. Disable
->> SuperSpeed instances in park mode for SC7180 to mitigate this issue.
-> 
-> Let me please repeat the question from v1:
-> 
-> Just out of curiosity, what is the park mode?
-> 
+> These devices are more like an AT25 compatible EEPROM instead of
+> flashes. Like an EEPROM the user doesn't need to explicitly erase the
+> memory, nor are there sectors or pages. Thus, instead of the SPI-NOR
+> (flash) driver, one should instead use the at25 EEPROM driver.
+>=20
+> Signed-off-by: Michael Walle <mwalle@kernel.org>
+> Cc: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
+> Cc: Thorsten Scherer <t.scherer@eckelmann.de>
+> Cc: Marek Vasut <marex@denx.de>
+> Cc: Imre Kaloz <kaloz@openwrt.org>
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: Flavio Suligoi <f.suligoi@asem.it>
+> ---
+> The referenced binding only supports the true AT25 compatible EEPROMs
+> where you have to specify additional properties like size and page size
+> or cypress FRAM devices where all the properties are discovered by the
+> driver. I don't have the actual hardware, therefore I can't work on a
+> proper driver and binding. But I really want to deprecate the use of
+> these EEPROM like devices in SPI-NOR. So as a first step, mark the
+> devices in the DT bindings as deprecated.
+>=20
+> There are three in-tree users of this. I hope I've CCed all the relevant
+> people. With the switch to the at25 driver also comes a user-space
+> facing change: there is no more MTD device. Instead there is an "eeprom"
+> file in /sys now, just like for every other EEPROM.
+>=20
+> Marek already expressed, that the sps1 dts can likely be removed
+> altogether. I'd like to hear from the other board DTS maintainers if
+> they seem some problems moving to the EEPROM interface - or maybe that
+> device isn't used at all anyway. So in the end, we can hopefully move
+> all the users over to the at25 driver.
+> ---
+>  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/D=
+ocumentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> index 6e3afb42926e..2dccb6b049ea 100644
+> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> @@ -21,7 +21,6 @@ properties:
+>                (m25p(40|80|16|32|64|128)|\
+>                n25q(32b|064|128a11|128a13|256a|512a|164k)))|\
+>                atmel,at25df(321a|641|081a)|\
+> -              everspin,mr25h(10|40|128|256)|\
+>                (mxicy|macronix),mx25l(4005a|1606e|6405d|8005|12805d|25635=
+e)|\
+>                (mxicy|macronix),mx25u(4033|4035)|\
+>                (spansion,)?s25fl(128s|256s1|512s|008k|064k|164k)|\
+> @@ -42,6 +41,14 @@ properties:
+>                - spansion,s25fs512s
+>            - const: jedec,spi-nor
+>        - const: jedec,spi-nor
+> +
+> +      # Deprecated bindings
+> +      - items:
+> +          - pattern: "^everspin,mr25h(10|40|128|256)$"
+> +          - const: jedec,spi-nor
+> +        description:
+> +          Deprecated binding, use Documentation/devicetree/bindings/eepr=
+om/at25.yaml.
+> +        deprecated: true
+>      description:
+>        SPI NOR flashes compatible with the JEDEC SFDP standard or which m=
+ay be
+>        identified with the READ ID opcode (0x9F) do not deserve a specific
 
-Sorry, Missed the mail in v1.
+Makes sense.
 
-Databook doesn't give much info on this bit (SS case, commit 
-7ba6b09fda5e0) but it does in HS case (commit d21a797a3eeb2).
+Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
- From the mail we received from Synopsys, they described it as follows:
-
-"Park mode feature allows better throughput on the USB in cases where a 
-single EP is active. It increases the degree of pipelining within the 
-controller as long as a single EP is active."
-
-Even in the current debug for this test case, Synopsys suggested us to 
-set this bit to avoid the controller being dead and we are waiting for 
-further answers from them.
-
-I can update thread with more info once we get some data from Synopsys.
-
-Regards,
-Krishna,
-
->>
->> Reported-by: Doug Anderson <dianders@google.com>
->> Cc: <stable@vger.kernel.org>
->> Fixes: 0b766e7fe5a2 ("arm64: dts: qcom: sc7180: Add USB related nodes")
->> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
->> ---
->> Removed RB/TB tag from Doug as commit text was updated.
->>
->>   arch/arm64/boot/dts/qcom/sc7180.dtsi | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
->> index 2b481e20ae38..cc93b5675d5d 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
->> @@ -3063,6 +3063,7 @@ usb_1_dwc3: usb@a600000 {
->>   				iommus = <&apps_smmu 0x540 0>;
->>   				snps,dis_u2_susphy_quirk;
->>   				snps,dis_enblslpm_quirk;
->> +				snps,parkmode-disable-ss-quirk;
->>   				phys = <&usb_1_hsphy>, <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
->>   				phy-names = "usb2-phy", "usb3-phy";
->>   				maximum-speed = "super-speed";
->> -- 
->> 2.34.1
->>
-> 
+Thanks,
+Miqu=C3=A8l
 
