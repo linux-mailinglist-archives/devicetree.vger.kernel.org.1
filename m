@@ -1,438 +1,311 @@
-Return-Path: <devicetree+bounces-72163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2CEC8FAFF0
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 12:38:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42E368FB02F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 12:44:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E606F1C22136
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 10:38:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65E821C20D6A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 10:44:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 285331448C9;
-	Tue,  4 Jun 2024 10:38:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4704E1487F4;
+	Tue,  4 Jun 2024 10:40:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ajzzr07W"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="paIYfbTt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C96C38B;
-	Tue,  4 Jun 2024 10:38:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07CA7148823;
+	Tue,  4 Jun 2024 10:40:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717497490; cv=none; b=lvI//GQ/c0GUc3O3JRt71ZTBxfoq3/befymTGp0k1RRqiOg0fhEpP9WibpXSGFKruV4rG1laMOCFzbLGy1lsGdD56CR2nDvZDbaFxTq7XNzNqjB7hGGS/i1U0TJDTs+o9MjjLCgu2gqy6MUbIDQxj7MRw74C+WlVI7Ro5MN6JSE=
+	t=1717497638; cv=none; b=SD3MNnxqxZ1w+Y2qPCXyoWh7gvZ5+cJWp8ZbAp6PZAaZj7HkhjDmt/ixazi3oQ9uwQv7/Z8BBwHvJqLemFXfXsEUqjnrvFPF6x36vHlHMStp0VnWHy5s/hVXgeFzVz4pZK0L/tc4BbCOjlkPfWx9Y2FF0NYXi1qBdwVmptbsack=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717497490; c=relaxed/simple;
-	bh=83qgTD6GQKD17zryJJer2RaJbdNVFmS+NMwIUzNFP2U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RPEPGzohB/QDAlY4Ykknf1FzUMDCHnASRJT2jsC6LCd3V0R5Wm3h2qQrIR+fl0p7cuuVK/QZJl8iQmrM/3kAcZ2fCZpYaGm8l2pemZxQNn1DUSJ2+7rBMWtLU1ICT0ktqRIvE8AfevykpNU4Qe8NG0C/Q+YeSMaC37OL/0QJ1G0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ajzzr07W; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1717497486;
-	bh=83qgTD6GQKD17zryJJer2RaJbdNVFmS+NMwIUzNFP2U=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ajzzr07WHRA3SgHRuBDCGrgT90Benyyh2fvI3m5ZL1ML0Ytj8ma90RiDPSTJtxBGC
-	 z614fqAVpWsLRylzPGu0BKDiOJ8IVxxF94KDPE7b16HP8VBJzeZq6oWf4NBpZdxDck
-	 BHCnZjYTl5RSR8HgSSqpmLUlJtTlzUDi5532SvlyJpT7lcdNUaZfZUtF7jyqD58O4P
-	 U5DgXMKmsMvhTvoGiOBz3jQ1RuWK+AwEz/1jguOV+f+Qrxh1oFSan5MXKdu0qEAUZh
-	 99huVFDrNcTGrfvlY8YVotC/qdBtYL5lGMUukd6jdOQxkv5ruYz8yJYtYsmT5NmGv5
-	 BRHqt/Cc1vAMA==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id C690937821DC;
-	Tue,  4 Jun 2024 10:38:04 +0000 (UTC)
-Message-ID: <84f1c58c-0a5d-4131-a16b-b76bf28862ee@collabora.com>
-Date: Tue, 4 Jun 2024 12:38:04 +0200
+	s=arc-20240116; t=1717497638; c=relaxed/simple;
+	bh=d1KQv8FT/ETWh3qGsfeda23SktFcE0gTbujVyZkB088=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=eWx9qD4K1lGG/Xfg9cGG9lSq7nP4ZfnkYXGneTY2PqvANx6FFEOxCBI1XwbIi8VsvdGlI6FwVHMhupEDEWKktiw8RQY+BPGLVdokTIPZ76cmOwDUgcQqGifYkLCLZyVUd8X3eAwVyNeFC1yJIYpCt81FDfilewKIS9Acb9qt/iA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=paIYfbTt; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 454Ae4lY083800;
+	Tue, 4 Jun 2024 05:40:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1717497604;
+	bh=hddo9HAPifqq5cXPPE/SjcpNlikR3rcZT61M3YzRnTI=;
+	h=From:To:CC:Subject:Date;
+	b=paIYfbTtZTKLGhkqBIiQRd7XpIrwSwW3UI45nQKx8bGbNJg5H2P/wPFwNwuMoORTR
+	 2dK0Hjmz3ZhEA70QW+B24fkWiThgdmIKhAPPbiqRSY4t0EazdkoJs55O45GBArk4FJ
+	 1xyeOfQhhv0cGdLADZk3EhSFZrRay872s90wDH0c=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 454Ae3IK025616
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 4 Jun 2024 05:40:03 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 4
+ Jun 2024 05:40:03 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 4 Jun 2024 05:40:03 -0500
+Received: from localhost (ti.dhcp.ti.com [172.24.227.95] (may be forged))
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 454Ae2XA056550;
+	Tue, 4 Jun 2024 05:40:02 -0500
+From: Devarsh Thakkar <devarsht@ti.com>
+To: <mchehab@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hverkuil-cisco@xs4all.nl>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <benjamin.gaignard@collabora.com>, <sebastian.fricke@collabora.com>,
+        <p.zabel@pengutronix.de>
+CC: <laurent.pinchart@ideasonboard.com>, <praneeth@ti.com>, <nm@ti.com>,
+        <vigneshr@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
+        <b-brnich@ti.com>, <detheridge@ti.com>, <p-mantena@ti.com>,
+        <vijayp@ti.com>, <devarsht@ti.com>, <andrzej.p@collabora.com>,
+        <nicolas@ndufresne.ca>, <akpm@linux-foundation.org>,
+        <gregkh@linuxfoundation.org>, <andriy.shevchenko@linux.intel.com>,
+        <adobriyan@gmail.com>, <andi.shyti@linux.intel.com>,
+        <airlied@gmail.com>, <daniel@ffwll.ch>, <jani.nikula@intel.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-rockchip@lists.infradead.org>, <davidgow@google.com>,
+        <dlatypov@google.com>
+Subject: [PATCH v12 00/13] Add V4L2 M2M Driver for E5010 JPEG Encoder
+Date: Tue, 4 Jun 2024 16:10:01 +0530
+Message-ID: <20240604104001.2235082-1-devarsht@ti.com>
+X-Mailer: git-send-email 2.39.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/4] iio: adc: Add support for MediaTek MT6357/8/9
- Auxiliary ADC
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com, lee@kernel.org,
- andy@kernel.org, nuno.sa@analog.com, bigunclemax@gmail.com,
- dlechner@baylibre.com, marius.cristea@microchip.com,
- marcelo.schmitt@analog.com, fr0st61te@gmail.com, mitrutzceclan@gmail.com,
- mike.looijmans@topic.nl, marcus.folkesson@gmail.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, kernel@collabora.com
-References: <20240530093410.112716-1-angelogioacchino.delregno@collabora.com>
- <20240530093410.112716-3-angelogioacchino.delregno@collabora.com>
- <CAHp75Vexddt1xUGogRDZA9pM1pFp2=ZtCQnCfXePahSCb+oKpg@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <CAHp75Vexddt1xUGogRDZA9pM1pFp2=ZtCQnCfXePahSCb+oKpg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Il 30/05/24 15:34, Andy Shevchenko ha scritto:
-> On Thu, May 30, 2024 at 12:34 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Add a driver to support reading the Auxiliary ADC IP found in the
->> MediaTek MT6357, MT6358 and MT6359 Power Management ICs.
->>
->> This driver provides multiple ADC channels for system monitoring,
->> such as battery voltage, PMIC temperature, PMIC-internal voltage
->> regulators temperature, and others.
-> 
->> ---
-> 
-> Here is no explanation on how this is differ to any of the three
-> existing drivers? I.o.w. why do we need a brand new one?
-> 
+This adds support for V4L2 M2M based driver for E5010 JPEG Encoder
+which is a stateful JPEG encoder from Imagination technologies
+and is present in TI AM62A SoC.
 
-Not a SoC AUXADC but a PMIC AUXADC, different register layout and different
-handling for configuration, reset, and reading.
+While adding support for it, following additional framework changes were
+made:
+ - Moved reference quantization and huffman tables provided in
+   ITU-T-REC-T.81 to v4l2-jpeg.c as suggested in mailing list [1].
+ - Add macros to round to closest integer (either higher or lower) while
+   rounding in order of 2.
+ - Add KUnit tests for math functions.
 
-So okay I'm adding a nicer text of what I just wrote to the commit description.
+v4l2-compliance test :
+Link: https://gist.github.com/devarsht/1f039c631ca953a57f405cfce1b69e49
 
-> ...
-> 
-> + bits.h
-> 
->> +#include <linux/delay.h>
-> 
->> +#include <linux/kernel.h>
-> 
-> Why?
-> 
+E5010 JPEG Encoder Manual tests :
 
-Because I forgot to cleanup the headers :-\
+Performance:
+Link: https://gist.github.com/devarsht/c40672944fd71c9a53ab55adbfd9e28b
 
-> + mod_devicetable.h
->> +#include <linux/module.h>
-> 
->> +#include <linux/of.h>
-> 
-> Why?
-> 
+Functionality:
+Link: https://gist.github.com/devarsht/8e88fcaabff016bb2bac83d89c9d23ce
 
-Same reason :')
+Compression Quality:
+Link: https://gist.github.com/devarsht/cbcc7cd97e8c48ba1486caa2b7884655
 
-...And yes that should be linux/property.h instead, for device_get_match_data().
+Multi Instance:
+Link: https://gist.github.com/devarsht/22c2fca08cd3441fb40f2c7a4cebc95a
 
->> +#include <linux/platform_device.h>
->> +#include <linux/regmap.h>
-> 
-> + types.h
-> 
-> + blank line
-> 
->> +#include <linux/iio/iio.h>
-> 
-> + Blank line
-> 
->> +#include <linux/mfd/mt6397/core.h>
-> 
-> ...
-> 
->> +#define PMIC_RG_RESET_VAL              (BIT(0) | BIT(3))
-> 
-> In this form it requires a comment explaining each mentioned bit.
-> 
+Crop support:
+Link: https://gist.github.com/devarsht/de6f5142f678bb1a5338abfd9f814abd
 
-I don't have an explanation for this, I know it's two different bits from some
-reveng, but the downstream driver declares that simply as 0x9.
+Runtime PM:
+Link: https://gist.github.com/devarsht/70cd95d4440ddc678489d93885ddd4dd
 
-Should I just "mask" this as 0x9 instead?
+Math lib KUnit tests:
+Link: https://gist.github.com/devarsht/3f9042825be3da4e133b8f4eda067876
 
->> +#define PMIC_AUXADC_ADCx(x)            ((x) << 1)
-> 
-> Seems like a useless macro, it occupies much more space than in-place shift.
-> 
+[1]: 
+https://lore.kernel.org/all/de46aefe-36da-4e1a-b4fa-b375b2749181@xs4all.nl/
 
-Well that was done to enhance human readability, but okay I will just use an
-in-place shift.
+Changelog:
+V12:
+ - Fix documentation and enable kernel-doc rendering for math.h and jpeg helpers
+ - Add Reviewed-by and Acked-by tags
+  
+V10->V11:
+ - Fix commenting for math.h, include headers per IWYU principle in
+   math_kunit, update title for math.h kernel-doc
 
-> ...
-> 
->> +#define MT6358_IMP0_CLEAR              (BIT(14) | BIT(7))
-> 
-> As per above.
-> 
+V9->V10:
+ - Update commenting style in math.h and add notes for new jpeg header
+   macros
+ - Add KUnit dependency for math_kunit
 
-Same, I don't have any explanation for that.
+V8->V9:
+ - Remove kernel.h header file
+ - Remove stale filler data on jpeg header in E5010 jpeg driver
 
-If you prefer, I can define this as 0x4080, but honestly I prefer keeping
-it as-is since I am sure it's not a magic number but really two bits to flip
-in a register.
+V7->V8:
+ - Add KUnit tests for math functions
+ - Add roundclosest() for supporting rounding for non-multiple of 2
+ - Update commit message as suggested
+ - Add Reviewed-by and Acked-by tags to patches as received
 
-> ...
-> 
->> +/**
->> + * struct mtk_pmic_auxadc_chan - PMIC AUXADC channel data
->> + * @req_idx:       Request register number
->> + * @req_mask:      Bitmask to activate a channel
->> + * @num_samples:   Number of AUXADC samples for averaging
->> + * @r_numerator:   Resistance ratio numerator
->> + * @r_denominator: Resistance ratio denominator
->> + */
->> +struct mtk_pmic_auxadc_chan {
->> +       u8 req_idx;
->> +       u16 req_mask;
->> +       u16 num_samples;
-> 
->> +       u8 r_numerator;
->> +       u8 r_denominator;
-> 
-> Can you add struct u8_fract to the math.h and use it? I will Ack/R the
-> respective patch.
-> 
+V6->V7:
+ - Fix cropping support
+ - Move reference huffman and quantization tables to v4l2-jpeg.c
+ - Fix suspend/resume use-case
+ - Add Reviewed-by
 
-Yeah, I did that exactly because u8_fract wasn't there and I didn't want
-to waste more bits, but since you just asked for it... well, I'm happier :-)
+V5->V6:
+ - Fix sparse warnings
 
->> +};
-> 
-> ...
-> 
->> +struct mtk_pmic_auxadc_pdata {
->> +       const struct iio_chan_spec *channels;
->> +       int num_channels;
-> 
-> Why signed?
-> 
+V4->V5:
+ - Sort the #includes in driver file alphabetically
+ - Rename huffman and quantization tables to not use '_'
+ - Add Reviewed-by tag
 
-Yeah, that doesn't make any sense, that's going to be u8.
+V3->V4:
+- Use ti-specific compatible ti,am62a-jpeg-enc as secondary one in
+  dt-binding
+- Remove clock-names as only single clock in dt-binding
+- Fix issue with default params setting
+- Correct v4l2 error prints
+- Simplify register write functions with single statement return values
+- Remove unrequired error checks from get_queue()
+- Drop explicit device_caps setting as it is already taken care by v4l2
+  core
+- Remove unrequired multiplanar checks and memset from s_fmt, g_fmt
+  callback functions
+- Fix try_fmt callback to not update the queues
+- Remove unrequired contiguous format attribute from queue_init
+- Use dynamic allocation for video_device and remove unrequired
+  assignments in probe()
+- Remove unrequired checks from queue_setup function
+- Return queued buffers back if start_streaming fails
+- Use ARRAY_SIZE in place of hard-coding
+- Use huffman and quantization tables from reference header file
 
->> +       const struct mtk_pmic_auxadc_chan *desc;
->> +       const u16 *regs;
->> +       u16 sec_unlock_key;
->> +       u8 imp_adc_num;
->> +       int (*read_imp)(struct mt6359_auxadc *adc_dev, int *vbat, int *ibat);
->> +};
-> 
-> ...
-> 
->> +static const u16 mt6357_auxadc_regs[] = {
->> +       [PMIC_HK_TOP_RST_CON0]  = 0xf90,
-> 
-> Can we use the fixed-width values so all of them will look nice and
-> easy to parse?
-> 
+V2->V3:
+- Add DONOTMERGE patches for dts and defconfig
+- Update driver with below changes :
+  - Correct license headers
+  - Use more generic name core instead of jasper for base registers
+  - Add Comment for forward declarations
+  - Simplify quantization table calculations
+  - Use v4l2_apply_frmsize_constraints for updating framesize and remove
+    unrequired functions
+  - Place TODO at top of file and in commit message too
+  - Use dev_err_probe helper in probe function
+  - Fix return value checking for failure scenarios in probe function
+  - Use v4l2_err/info/warn helpers instead of dev_err/info/warn helpers
+  - Fix unexpected indentation
+  - Correct commit message
+- Update dt-bindings with below changes :
+  - Add vendor specific compatible 
+  - Fix commit title and message
+  - Update reg names
+  - Update clocks to 1
+  - Fix dts example with proper naming
 
-We obviously can, let's do that.
+V1->V2:
+ - Send dt-bindings and driver together
 
->> +       [PMIC_AUXADC_DCM_CON]   = 0x122e,
->> +       [PMIC_AUXADC_ADC0]      = 0x1088,
->> +       [PMIC_AUXADC_IMP0]      = 0x119c,
->> +       [PMIC_AUXADC_IMP1]      = 0x119e,
->> +       [PMIC_AUXADC_RQST0]     = 0x110e,
->> +       [PMIC_AUXADC_RQST1]     = 0x1114,
->> +};
-> 
-> ...
-> 
->> +static const u16 mt6358_auxadc_regs[] = {
-> 
-> Ditto.
-> 
->> +       [PMIC_HK_TOP_RST_CON0]  = 0xf90,
->> +       [PMIC_AUXADC_DCM_CON]   = 0x1260,
->> +       [PMIC_AUXADC_ADC0]      = 0x1088,
->> +       [PMIC_AUXADC_IMP0]      = 0x1208,
->> +       [PMIC_AUXADC_IMP1]      = 0x120a,
->> +       [PMIC_AUXADC_RQST0]     = 0x1108,
->> +       [PMIC_AUXADC_RQST1]     = 0x110a,
->> +};
-> 
-> ...
-> 
->> +static const u16 mt6359_auxadc_regs[] = {
-> 
-> Ditto.
-> 
->> +       [PMIC_FGADC_R_CON0]     = 0xd88,
->> +       [PMIC_HK_TOP_WKEY]      = 0xfb4,
->> +       [PMIC_HK_TOP_RST_CON0]  = 0xf90,
->> +       [PMIC_AUXADC_RQST0]     = 0x1108,
->> +       [PMIC_AUXADC_RQST1]     = 0x110a,
->> +       [PMIC_AUXADC_ADC0]      = 0x1088,
->> +       [PMIC_AUXADC_IMP0]      = 0x1208,
->> +       [PMIC_AUXADC_IMP1]      = 0x120a,
->> +       [PMIC_AUXADC_IMP3]      = 0x120e,
->> +};
-> 
-> ...
-> 
->> +       ret = regmap_read_poll_timeout(adc_dev->regmap, pdata->regs[PMIC_AUXADC_IMP0],
->> +                                      val, !!(val & MT6358_IMP0_IRQ_RDY),
->> +                                      IMP_POLL_DELAY_US, AUXADC_TIMEOUT_US);
->> +       if (ret) {
->> +               mt6358_stop_imp_conv(adc_dev);
-> 
->> +               return ret;
->> +       }
->> +
->> +       return 0;
-> 
->    if (ret)
->      foo()
-> 
->    return ret;
-> 
-> 
-> ...
-> 
->> +       int val_v, ret;
-> 
-> Why is val_v signed?
-> 
-> ...
-> 
->> +       int val_v, val_i, ret;
-> 
-> Ditto for all val_*.
-> 
+Patch-Diff between the series :
+V11->V12 Range diff :
+https://gist.github.com/devarsht/18455f1744b6b6b8f33dd505a4ca2651
 
-Yup, changed to u32.
+V10->V11 Range diff :
+https://gist.github.com/devarsht/cd76372bff7c125f75d06ba009264b75
 
-> ...
-> 
->> +       /* If it succeeded, wait for the registers to be populated */
->> +       usleep_range(IMP_STOP_DELAY_US, IMP_STOP_DELAY_US + 50);
-> 
-> fsleep() ?
-> 
+V9->V10 Range diff :
+https://gist.github.com/devarsht/b446acee460b8c65fb577d06b7bbc1da
 
-Okay
+V8->V9 Range diff :
+https://gist.github.com/devarsht/3fd6c4e8031ab114248f93d01c8dfc74
 
-> ...
-> 
->> +       /* Assert ADC reset */
->> +       regmap_set_bits(regmap, pdata->regs[PMIC_HK_TOP_RST_CON0], PMIC_RG_RESET_VAL);
-> 
-> No required delay in between?
-> 
+V6->V7 Range diff :
+https://gist.github.com/devarsht/1db185b1e187eaf397e9e4c37066777e
 
-No, as strange as it may look, there is no delay required in between: this is
-because the register R/W is behind the PMIC Wrapper as much as all of the other
-MediaTek PMIC (sub)devices, so, missing delays was intentional here, yes.
+V5->V6 Range diff :
+https://gist.github.com/devarsht/c89180ac2b0d2814614f2b59d0705c19
 
->> +       /* De-assert ADC reset */
->> +       regmap_clear_bits(regmap, pdata->regs[PMIC_HK_TOP_RST_CON0], PMIC_RG_RESET_VAL);
-> 
-> ...
-> 
->> +       /* Wait until all samples are averaged */
->> +       usleep_range(desc->num_samples * AUXADC_AVG_TIME_US,
->> +                    (desc->num_samples + 1) * AUXADC_AVG_TIME_US);
-> 
-> fsleep()
-> 
-> ...
-> 
->> +       ret = regmap_read_poll_timeout(regmap,
->> +                                      (pdata->regs[PMIC_AUXADC_ADC0] +
->> +                                       PMIC_AUXADC_ADCx(chan->address)),
-> 
-> Drop unneeded parentheses and possibly make it one line.
-> 
->> +                                      val, (val & PMIC_AUXADC_RDY_BIT),
-> 
-> Unneeded parentheses.
-> 
+V4->V5 Range diff :
+https://gist.github.com/devarsht/298790af819f299a0a05fec89371097b
 
-Yeah, forgot those there during cleanup, whoops!
+V3->V4 Range diff :
+https://gist.github.com/devarsht/22a744d999080de6e813bcfb5a596272
 
->> +                                      AUXADC_POLL_DELAY_US, AUXADC_TIMEOUT_US);
->> +       if (ret)
->> +               return ret;
-> 
-> ...
-> 
->> +       mutex_lock(&adc_dev->lock);
-> 
-> Why not use cleanup.h?
-> 
-
-I want to unlock the mutex immediately right after executing read_imp() or
-mt6359_auxadc_read_adc(), and I don't want the reset to be done while a mutex
-is being held, as that makes no sense for this driver.
-
-Besides, I find the macros in cleanup.h to be cryptic - in my opinion, they
-require better documentation as, for example, I don't understand when the
-guard(mutex)(my_mutex) is supposed to acquire the lock and when it's supposed
-to release it.
+Previous patch series:
+V11: https://lore.kernel.org/all/20240531170229.1270828-1-devarsht@ti.com/
+V10: https://lore.kernel.org/all/20240530165925.2715837-1-devarsht@ti.com/
+V9: https://lore.kernel.org/all/20240526175655.1093707-1-devarsht@ti.com/
+V8: https://lore.kernel.org/all/20240517171532.748684-1-devarsht@ti.com/
+V7: https://lore.kernel.org/all/20240510082603.1263256-1-devarsht@ti.com/
+V6: https://lore.kernel.org/all/20240228141140.3530612-1-devarsht@ti.com/
+V5: https://lore.kernel.org/all/20240215134641.3381478-1-devarsht@ti.com/
+V4: https://lore.kernel.org/all/20240205114239.924697-1-devarsht@ti.com/
+V3: https://lore.kernel.org/all/20230816152210.4080779-1-devarsht@ti.com/
+V2: https://lore.kernel.org/all/20230727112546.2201995-1-devarsht@ti.com/
 
 
-> ...
-> 
->> +static int mt6359_auxadc_probe(struct platform_device *pdev)
->> +{
-> 
->    struct device *dev = &pdev->dev;
+Daniel Latypov (1):
+  lib: add basic KUnit test for lib/math
 
-Yeah without that it simply looked more "beautiful" to read, but okay, added.
+Devarsh Thakkar (12):
+  media: dt-bindings: Add Imagination E5010 JPEG Encoder
+  media: imagination: Add E5010 JPEG Encoder driver
+  media: v4l2-jpeg: Export reference quantization and huffman tables
+  media: Documentation: Document v4l2-jpeg helper macros
+  media: imagination: Use exported tables from v4l2-jpeg core
+  media: verisilicon : Use exported tables from v4l2-jpeg for hantro
+    codec
+  math.h: Add macros for rounding to closest value
+  math.h: Use kernel-doc syntax for divison functions
+  Documentation: core-api: Add math.h macros and functions
+  lib: math_kunit: Add tests for new macros related to rounding to
+    nearest value
+  media: imagination: Round to closest multiple for cropping region
+  gpu: ipu-v3: Use generic macro for rounding closest to specified value
 
-> 
->> +       struct device *mt6397_mfd_dev = pdev->dev.parent;
-> 
->    ... = dev->parent;
-> 
->> +       struct mt6359_auxadc *adc_dev;
->> +       struct iio_dev *indio_dev;
->> +       struct regmap *regmap;
->> +       int ret;
->> +
->> +       /* Regmap is from SoC PMIC Wrapper, parent of the mt6397 MFD */
->> +       regmap = dev_get_regmap(mt6397_mfd_dev->parent, NULL);
->> +       if (!regmap)
->> +               return dev_err_probe(&pdev->dev, -ENODEV, "Failed to get regmap\n");
->> +
->> +       indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*adc_dev));
->> +       if (!indio_dev)
->> +               return -ENOMEM;
->> +
->> +       adc_dev = iio_priv(indio_dev);
->> +       adc_dev->regmap = regmap;
->> +       adc_dev->dev = &pdev->dev;
->> +
->> +       adc_dev->pdata = device_get_match_data(&pdev->dev);
->> +       if (!adc_dev->pdata)
->> +               return -EINVAL;
->> +
->> +       mutex_init(&adc_dev->lock);
->> +
->> +       mt6359_auxadc_reset(adc_dev);
->> +
->> +       indio_dev->dev.parent = &pdev->dev;
->> +       indio_dev->name = dev_name(&pdev->dev);
->> +       indio_dev->info = &mt6359_auxadc_info;
->> +       indio_dev->modes = INDIO_DIRECT_MODE;
->> +       indio_dev->channels = adc_dev->pdata->channels;
->> +       indio_dev->num_channels = adc_dev->pdata->num_channels;
->> +
->> +       ret = devm_iio_device_register(&pdev->dev, indio_dev);
->> +       if (ret < 0)
-> 
-> Why  ' < 0' ?
-> 
+ Documentation/core-api/kernel-api.rst         |    6 +
+ .../bindings/media/img,e5010-jpeg-enc.yaml    |   75 +
+ Documentation/driver-api/media/v4l2-core.rst  |    1 +
+ Documentation/driver-api/media/v4l2-jpeg.rst  |   10 +
+ MAINTAINERS                                   |    7 +
+ drivers/gpu/ipu-v3/ipu-image-convert.c        |    4 +-
+ drivers/media/platform/Kconfig                |    1 +
+ drivers/media/platform/Makefile               |    1 +
+ drivers/media/platform/imagination/Kconfig    |   12 +
+ drivers/media/platform/imagination/Makefile   |    3 +
+ .../platform/imagination/e5010-core-regs.h    |  585 ++++++
+ .../platform/imagination/e5010-jpeg-enc-hw.c  |  267 +++
+ .../platform/imagination/e5010-jpeg-enc-hw.h  |   42 +
+ .../platform/imagination/e5010-jpeg-enc.c     | 1644 +++++++++++++++++
+ .../platform/imagination/e5010-jpeg-enc.h     |  168 ++
+ .../platform/imagination/e5010-mmu-regs.h     |  311 ++++
+ .../media/platform/verisilicon/hantro_jpeg.c  |  128 +-
+ drivers/media/v4l2-core/v4l2-jpeg.c           |  162 +-
+ include/linux/math.h                          |   86 +-
+ include/media/v4l2-jpeg.h                     |   28 +
+ lib/math/Kconfig                              |   14 +
+ lib/math/Makefile                             |    1 +
+ lib/math/math_kunit.c                         |  329 ++++
+ 23 files changed, 3761 insertions(+), 124 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+ create mode 100644 Documentation/driver-api/media/v4l2-jpeg.rst
+ create mode 100644 drivers/media/platform/imagination/Kconfig
+ create mode 100644 drivers/media/platform/imagination/Makefile
+ create mode 100644 drivers/media/platform/imagination/e5010-core-regs.h
+ create mode 100644 drivers/media/platform/imagination/e5010-jpeg-enc-hw.c
+ create mode 100644 drivers/media/platform/imagination/e5010-jpeg-enc-hw.h
+ create mode 100644 drivers/media/platform/imagination/e5010-jpeg-enc.c
+ create mode 100644 drivers/media/platform/imagination/e5010-jpeg-enc.h
+ create mode 100644 drivers/media/platform/imagination/e5010-mmu-regs.h
+ create mode 100644 lib/math/math_kunit.c
 
-Uuuuuh.. well... I have no idea why this "< 0" is in there, I must have gremlins
-living inside my keyboard, secretly inserting those checks when I'm not looking.
-
-Must definitely be that.
-
-Jokes apart, thanks for the review!
-...a v2 will come asap, along with the math.h change :-)
-
-Cheers!
-Angelo
-
+-- 
+2.39.1
 
 
