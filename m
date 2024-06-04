@@ -1,119 +1,174 @@
-Return-Path: <devicetree+bounces-72319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43D708FB56F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 16:33:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B18278FB58A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 16:37:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2DC328147C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:33:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B6B6285BC8
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:37:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80DD8147C9B;
-	Tue,  4 Jun 2024 14:32:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7D4713D247;
+	Tue,  4 Jun 2024 14:34:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="LkI6+JNM"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="JJ76W048"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E09FC13D510
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 14:32:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AA1F13C8FF;
+	Tue,  4 Jun 2024 14:34:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717511529; cv=none; b=VL+WASfj776mivBr4CGChLkP3O+6C/bbuUws+SObu/KUhWQNRSeXEguX9cWQqxOlbOP5/Lx67QYGlsiFh1v+fVIR7xKC5hy3Bs0BZh6dRoT7jTYTJBZHCSXETLdTjz/cft2VcifZ/sWK3SRkSwHOlbj2Hr/MygpBOgckTrMCjQU=
+	t=1717511687; cv=none; b=SpGuatOz3gyQzof31CGmDfVd022uCOZHx7pGvsCDWVqU6zsLIWH1hqUzWM9/BVV4bnpI68HAkLkj4eFWii7OUCynp2GIz3dOnkHVwS/XWChNrbB+6eCIqQakB/cvfBuOvAheUyEU1SnTUrFXk/HEaPy95GbqHIWm+knD//wrWtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717511529; c=relaxed/simple;
-	bh=vGp3ovyzZdpRyR1W94NZG7tQypJhWhNwsTCZl5Q5Tek=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CYcd3+zA7WSvCNRO8cjHQjZ4A5Lsre6/ML9FmsPVKiTgfpe8zobexVQWeIui8wYALqnGMbTC+VP01NhKGQ83Tw+KG9iGvKPbLKjpe6FxQ7otHAaIpM+T6W6dA3KGPzuMMBA7EouMg3bwxHdb6JLpkoyy3ZDoltzmQOLuWGgKocI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=LkI6+JNM; arc=none smtp.client-ip=209.85.160.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-44024f5271dso154951cf.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 07:32:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1717511527; x=1718116327; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MQpV5dfzXhIlBBaFJofdAT+Rq9XDrHNaF91R1+IyrHc=;
-        b=LkI6+JNMt1F0RRNeLll1QIsHMvQxiCjqW1gXv2DFYNoNFmgTlElyO/6KjY2PkULOrw
-         wRNzhnFnwhcpZcX9r2PBIHFujdKUCHjMI38Stx6NyM1HATAD23wffY1njCNq6yKS+VfR
-         fbYtb2UIAQ+kFaRxfe30jzWYnGK9Q2Em9SDm5VPajyZrViBqzSSBi82MKnX+cLh2agKu
-         tS7Gv7dYcddz1sKY8fuzvNfLK7acFxTC994WvRUIYJXulljBZTkWFpi0ELhIDcOXKZBp
-         /bPiua2rE/q0UI5XuJkgr+huafEMtvlgt0kNQ0+OnO5h3RzWsDtcYAoEVXTpH0lGHk2f
-         6PGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717511527; x=1718116327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MQpV5dfzXhIlBBaFJofdAT+Rq9XDrHNaF91R1+IyrHc=;
-        b=gVBlPH7lksgL7BweoEmOYPblI4LwlxGWQsQECPNvgDZJXqKqarQEC12pHrJLmtVsrR
-         GlmrNlqQBVIndMIiWB+1Ozq0vY6XF6MXHrjE49zDN0p2pHbmfk3Zr1s18dUmfqdwcIFA
-         GDSBAdR/+yksUfLGO4IbnGZof6hbNG5N4UX6UCUatB9IkIfSfjYEpjG0gd7xJgxqklFp
-         hAbxFylRAJn3EYzQ5STQHYiqOxRczyj3S3RDUCpPTMqg/3AlNpD/r9ZgPr/aAYVDa5zh
-         0gZXg5Oe31VSlsnZ5LsSYYFBvPO6aF4gFO28g3Bjlxw67iUQ+lNBc1Qxye+WZLgz7T+8
-         XkKg==
-X-Forwarded-Encrypted: i=1; AJvYcCWvcpHn2uwo+PmixAXRcHfdRGhCoBndagXuDzrDJvEqvbYa3xoTmUNJO/k4frWw94WTlUAYfuKm0iZ34o4VPXZdwzH1Zpm1/GYAuw==
-X-Gm-Message-State: AOJu0Yxf8uJqZ9BzL2mBRr+0eszlFIY7R6WyahXbMaROZTfM8qiXslrD
-	ohwjFIk1rY9ma6PtfUd3dI8M0WmD19dPZUX2iO8VlBtVSl4vDSO8O1NvxkkDl8G/8qDNR2EcU33
-	B9zW8yaRJquUZWeLX8ft9upTKhaXsiN8IDl8D
-X-Google-Smtp-Source: AGHT+IGEpedUSaa44exiq+so0jKgv5XcNH+0+P8IoQJ2kUlE8+YPjvD8hE8Ie7JCngfSpIvxHm8sJNewp7aY8fLH1PQ=
-X-Received: by 2002:a05:622a:7392:b0:440:1fb0:1726 with SMTP id
- d75a77b69052e-4401fb017d1mr1630971cf.19.1717511526273; Tue, 04 Jun 2024
- 07:32:06 -0700 (PDT)
+	s=arc-20240116; t=1717511687; c=relaxed/simple;
+	bh=qBOszgyAe7DvhMHQ9GgeVY4+5d3pwosm0/EBy5pzsTQ=;
+	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
+	 Content-Type:Subject; b=LUPBQ3HIfw4N4GW1V82v2CSbhrQOaHNgf824Up2oKYVotiJf7gXLj4eOFKfTaXlUSBv5m5QqFwCPYlUTr4zEsC9PG86LBfW+wRfOQQM+ZTw/4yLORCVLCaLbnpl+KGNs5Z9bc1IYmdqrfNjCXtwlU5kNAlGpr2MDqDX6eV/FqqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=JJ76W048; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=Estvv8Ei2SlTou5vQk51by5E0FAtZV1RZrncXelPgeY=; b=JJ76W048/9MpbOT4yDK+ggZ65Q
+	kutNxN8340Ln/roNgva7J+zFfcKlbDD9U7YG84pSc7P2MH5WqOW7wqbHZlIIHStJq6aYncLZpWoka
+	xml1Grn498LbFbV9Z+LeIQ8BnWC0kFGls8S0mR5S4QlO6+D9JggeAcmivqG5+vMW5d4s=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:54300 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1sEVFL-0005Sm-Rg; Tue, 04 Jun 2024 10:34:44 -0400
+Date: Tue, 4 Jun 2024 10:34:27 -0400
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Hui Wang <hui.wang@canonical.com>
+Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+ gregkh@linuxfoundation.org, jirislaby@kernel.org, hvilleneuve@dimonoff.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org,
+ lech.perczak@camlingroup.com
+Message-Id: <20240604103427.8986166ad4cf34e1e9357c5c@hugovil.com>
+In-Reply-To: <20240604132726.1272475-2-hui.wang@canonical.com>
+References: <20240604132726.1272475-1-hui.wang@canonical.com>
+	<20240604132726.1272475-2-hui.wang@canonical.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20240604060659.1449278-1-quic_kriskura@quicinc.com> <20240604060659.1449278-3-quic_kriskura@quicinc.com>
-In-Reply-To: <20240604060659.1449278-3-quic_kriskura@quicinc.com>
-From: Doug Anderson <dianders@google.com>
-Date: Tue, 4 Jun 2024 07:31:54 -0700
-Message-ID: <CAD=FV=VpYVE6hksZiyVTG+9qOZnpdyt45Av5JizeUiOHaVzvjg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sc7280: Disable SuperSpeed
- instances in park mode
-To: Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc: cros-qcom-dts-watchers@chromium.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <swboyd@chromium.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Matthias Kaehlcke <mka@chromium.org>, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, quic_ppratap@quicinc.com, quic_jackp@quicinc.com, 
-	stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -0.0 T_SCC_BODY_TEXT_LINE No description available.
+	* -2.5 NICE_REPLY_A Looks like a legit reply (A)
+Subject: Re: [PATCH v2 2/2] serial: sc16is7xx: hard reset the chip if
+ reset-gpios is defined in dt
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-Hi,
+On Tue,  4 Jun 2024 21:27:26 +0800
+Hui Wang <hui.wang@canonical.com> wrote:
 
-On Mon, Jun 3, 2024 at 11:07=E2=80=AFPM Krishna Kurapati
-<quic_kriskura@quicinc.com> wrote:
->
-> On SC7280, in host mode, it is observed that stressing out controller
-> results in HC died error:
->
->  xhci-hcd.12.auto: xHCI host not responding to stop endpoint command
->  xhci-hcd.12.auto: xHCI host controller not responding, assume dead
->  xhci-hcd.12.auto: HC died; cleaning up
->
-> And at this instant only restarting the host mode fixes it. Disable
-> SuperSpeed instances in park mode for SC7280 to mitigate this issue.
->
-> Reported-by: Doug Anderson <dianders@google.com>
-> Cc: <stable@vger.kernel.org>
-> Fixes: bb9efa59c665 ("arm64: dts: qcom: sc7280: Add USB related nodes")
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+Hi Hui,
+
+> Certain designs connect a gpio to the reset pin, and the reset pin
+
+"Some boards..."
+
+> needs to be setup correctly before accessing the chip.
+> 
+> Here adding a function to handle the chip reset. If the reset-gpios is
+
+"Add a function..."
+
+> defined in the dt, do the hard reset through this gpio, othwerwise do
+> the soft reset as before.
+> 
+> Reviewed-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> Signed-off-by: Hui Wang <hui.wang@canonical.com>
 > ---
-> Removed RB/TB tag from Doug as commit text was updated.
->
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 1 +
->  1 file changed, 1 insertion(+)
+> In the v2:
+>  - move the soft reset and hard reset into one fucntion
+>  - move the reset function to sc16is7xx.c and call it in _probe()
+>  - add udelay(5) before deasserting the gpio reset pin
+> 
+>  drivers/tty/serial/sc16is7xx.c | 28 ++++++++++++++++++++++++----
+>  1 file changed, 24 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
+> index bf0065d1c8e9..119abfb4607c 100644
+> --- a/drivers/tty/serial/sc16is7xx.c
+> +++ b/drivers/tty/serial/sc16is7xx.c
+> @@ -14,6 +14,7 @@
+>  #include <linux/delay.h>
+>  #include <linux/device.h>
+>  #include <linux/export.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/gpio/driver.h>
+>  #include <linux/idr.h>
+>  #include <linux/kthread.h>
+> @@ -1467,6 +1468,25 @@ static const struct serial_rs485 sc16is7xx_rs485_supported = {
+>  	.delay_rts_after_send = 1,	/* Not supported but keep returning -EINVAL */
+>  };
+>  
+> +static int sc16is7xx_reset(struct device *dev, struct regmap *regmaps[])
+> +{
+> +	struct gpio_desc *reset_gpiod;
+> +
+> +	reset_gpiod = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
+> +	if (!reset_gpiod)
+> +		/* soft reset device, purging any pending irq / data */
+> +		regmap_write(regmaps[0], SC16IS7XX_IOCONTROL_REG,
+> +			     SC16IS7XX_IOCONTROL_SRESET_BIT);
+> +	else if (!IS_ERR(reset_gpiod)) {
+> +		/* delay 5 us (at least 3 us) and deassert the gpio to exit the hard reset */
+> +		udelay(5);
+> +		gpiod_set_value_cansleep(reset_gpiod, 0);
+> +	} else
+> +		return PTR_ERR(reset_gpiod);
+> +
+> +	return 0;
+> +}
+> +
+>  int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+>  		    struct regmap *regmaps[], int irq)
+>  {
+> @@ -1527,6 +1547,10 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+>  	s->devtype = devtype;
+>  	dev_set_drvdata(dev, s);
+>  
+> +	ret = sc16is7xx_reset(dev, regmaps);
+> +	if (ret)
+> +		goto out_clk;
+> +
+>  	kthread_init_worker(&s->kworker);
+>  	s->kworker_task = kthread_run(kthread_worker_fn, &s->kworker,
+>  				      "sc16is7xx");
+> @@ -1536,10 +1560,6 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+>  	}
+>  	sched_set_fifo(s->kworker_task);
+>  
+> -	/* reset device, purging any pending irq / data */
+> -	regmap_write(regmaps[0], SC16IS7XX_IOCONTROL_REG,
+> -		     SC16IS7XX_IOCONTROL_SRESET_BIT);
+> -
+>  	/* Mark each port line and status as uninitialised. */
+>  	for (i = 0; i < devtype->nr_uart; ++i) {
+>  		s->p[i].port.line = SC16IS7XX_MAX_DEVS;
+> -- 
+> 2.34.1
+> 
+> 
+> 
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+
+-- 
+Hugo Villeneuve
 
