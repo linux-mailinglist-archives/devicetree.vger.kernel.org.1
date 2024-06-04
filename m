@@ -1,104 +1,109 @@
-Return-Path: <devicetree+bounces-72451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7036E8FBCCC
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 21:57:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 800708FBCD9
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 21:59:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 20B761F23F1F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 19:57:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09D881F217B0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 19:59:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 331BC13E8BF;
-	Tue,  4 Jun 2024 19:57:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAE7813FD6D;
+	Tue,  4 Jun 2024 19:59:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tzWaskoW"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="1c7rpUHe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 038B42913;
-	Tue,  4 Jun 2024 19:57:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BA4313FD92;
+	Tue,  4 Jun 2024 19:59:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717531064; cv=none; b=avdXXYzpGrChIZow6hleExlx25CWoIZHSKAiVhPb2SQLMvwbmL4w7FDMkbr0P5JQ1/e1E5D1pfwsC86ysZTzV/IstLy470WZqXGXBqkjohUZw2bmjEHqASpJ+SlNx/HJ6eIaP5GdFP4OdgbfvqJQeJWtd5KLNrPiya2o4DEx00s=
+	t=1717531189; cv=none; b=KIBr6ASgBiYj58xLv6pwsVLKkxNJCvQsJNbxU+ucR4FdfVysgQQ3xARXEhc5sMKyh8/x4vKOOSuyFRvztxZGgwzm6Ce/yb4FVLBmyvSH66moOVzbAY9Ww5unoVhIxdYMQQ6oFPQUUrl9HC2DXt5qaSK+38GAVSTqpwuKXXElTHI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717531064; c=relaxed/simple;
-	bh=nNx83s5H2Nme80ffzGT+wyaJvbA1Zr8r46ZafFrJ6/0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rGJo95hRDCxdDr7RaITyODF2dK4JL/H7ljpM9kVns7ncFRLVLf7CXXhhBSTKdw2MdUtz+eyx/gCEU+jz+bkaIurXPTdHdygxS8PAnGnVTFeyP5gkgacbp1Fvj59ZxHEFHUeCEEASgoBPCbKkRL/wrN2jP9CA97OTZUBPWbXE8Ik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tzWaskoW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CB33C2BBFC;
-	Tue,  4 Jun 2024 19:57:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717531063;
-	bh=nNx83s5H2Nme80ffzGT+wyaJvbA1Zr8r46ZafFrJ6/0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tzWaskoWivm79PpRbEtJE3OSdHdEQauvwDnD9ZiE2xuSPYmp0ob6jkR48Fi+xOuwO
-	 DXVYygwnoT6AS5tt4MqNX2zzkkiTiuZu0DUvwnWNidAdhPurKPhINBX0syd2JkieBb
-	 Ez5Uzw39r2u51BDvzKbb6SZuGgK+uhgGfwoZyY6ubaIFlXCclMa90hVwZeN6eS3OvU
-	 3hNK02/1p6Kh6GCDJefJ3O8FVUGQxEB1Jun2P/p5vIN04uTgGqDVqvc2hqqSIHUZpf
-	 WnutR8SVkepUvW5MsRIPTY0dYEjzVFhCKbktDhWYO/NJeQmD4F74M8mgZ/bHfUdBDo
-	 vpWzjSRP1Mjuw==
-Date: Tue, 4 Jun 2024 14:57:41 -0500
-From: Rob Herring <robh@kernel.org>
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: dma: fsl,imx-dma: Convert to dtschema
-Message-ID: <20240604195741.GA1281512-robh@kernel.org>
-References: <20240531090458.99744-1-animeshagarwal28@gmail.com>
- <a472e8ba-bf54-4a62-9b05-ea265a83ef1b@kernel.org>
- <CAE3Oz825RQg25PxEbnb=ui7+MtH0ssS=i2HAQK-yOJo+v8JMMw@mail.gmail.com>
+	s=arc-20240116; t=1717531189; c=relaxed/simple;
+	bh=EpLslpOhbstzvxy+NYlgIPTSA2o5f/zg2UQ0tpvgRHM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=T6S/gPYwBLQrXE7fDnAUThcVNWqA3CsDy0soEO1o50U5IGKkCon9JWMa92oA1kRsv9U/yoiYaYCnjotJxXZ0MnsyQNonKe6B+7/YkUI9R0oDNnfzDr4bOlOeI9ABu8K6/vG4ezLNlx1AtRf4BoJ59nkZ9LMT+MWft2LWId++bLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=1c7rpUHe; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1717531186;
+	bh=EpLslpOhbstzvxy+NYlgIPTSA2o5f/zg2UQ0tpvgRHM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=1c7rpUHesbw02lPnXOn8AFTz4w1v0JZu/mrxPQ+jL0jaBE0t4CjPp62zwGXNaxSK4
+	 T6SdFlgfPy/ZSmbCWTvZj7JfIzl394TtBTuKEVF0oygF768FXSmwJNXmlAeFWZpsKI
+	 y3ztlP96IL25CLWxwVLz/mMuf6nzvfWXknnxPAs+T5SiMidC3RjOW+Osx7gNmFeri8
+	 XAEUFD5QU6XjQswu+Bg7UGJGvPuDNggK5Ergy7KIzhI3QwA6ZYBe6r89IlidQCPKqp
+	 /RhulzRfkZWkIKflPQ2r924/wpKExYCfeAu9ygr/vvxUpxi7qCnA2fYf0T1bbv1jpj
+	 hBxPrjzz7teJA==
+Received: from [100.115.223.179] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5A9A63782172;
+	Tue,  4 Jun 2024 19:59:44 +0000 (UTC)
+Message-ID: <4e683887-d963-40f8-89de-c7f7d9d0cab9@collabora.com>
+Date: Tue, 4 Jun 2024 22:59:43 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/14] Add initial support for the Rockchip RK3588 HDMI TX
+ Controller
+To: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Sandy Huang <hjc@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, kernel@collabora.com,
+ Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>,
+ Algea Cao <algea.cao@rock-chips.com>
+References: <20240601-b4-rk3588-bridge-upstream-v1-0-f6203753232b@collabora.com>
+ <E1316DC2-0822-4B82-BCD0-99904D4741EF@gmail.com>
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Content-Language: en-US
+In-Reply-To: <E1316DC2-0822-4B82-BCD0-99904D4741EF@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAE3Oz825RQg25PxEbnb=ui7+MtH0ssS=i2HAQK-yOJo+v8JMMw@mail.gmail.com>
 
-On Fri, May 31, 2024 at 04:43:52PM +0530, Animesh Agarwal wrote:
-> On Fri, May 31, 2024 at 3:49 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >
-> > On 31/05/2024 11:04, Animesh Agarwal wrote:
-> > > +  "#dma-cells":
-> > > +    const: 1
-> > > +
-> > > +  dma-channels:
-> > > +    maximum: 16
-> >
-> > maximum or const?
+On 6/2/24 10:59 AM, Piotr Oniszczuk wrote:
+> (resent as plain text instead of html)
+>  
+> Cristian,
 > 
-> The txt binding says it should always be 16. Datasheet says this
-> device has 16 channels of DMA services. I thought specifying just the
-> maximum implies maximum=minimum=16. Sorry for missing the changelog in
-> this version it was cost in the v1 of this patch.
+> I was awaiting over year for this work!
 > 
-> >
-> > deprecated: true
-> >
+> I’m devel. 2 distros where single mainline kernel serves 2835/2711/2712/h6/h313/h616/h618/rk3328/rk3399/rk3566/rk3568/rk3588/s905/s912/sm1/g12.
 > 
-> Shall it not be
-> "#dma-channels ":
->   deprecated: true
-> ?
+> Before this work rk3588 was excluded because rk3588 hdmi was regressing hdmi on other socs.
+> With this code all other socs seems work ok now. Perfect.
 
-Yes. dma-channels is not deprecated.
+Many thanks for giving this a try on a broad range of SoCs, especially
+considering my limited testing capabilities!
 
-For the old ones, maybe it has been long enough that their use has been 
-dropped that you can just drop them in the conversion. Looks like there 
-is no driver support already.
+> As one of my project is multimedia appliance - good news is that now i can nicely play hdtv on rk3588 using mainline common 6.9.3 kernel and….started to hear from my users a lot of Qs like: „ah so nice! rk3588 now works nicely….but where is hdmi audio and cec?”
+> 
+> It will be fantastic to add (e.g. by backport Detlev https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/tree/rk3588-hdmi-audio?ref_type=heads ) audio code to get basic support hdmi audio?
 
-Rob
+The main focus is now on upstreaming the basic support. This should
+further facilitate adding the missing features, so we will slowly get
+there, eventually.
 
