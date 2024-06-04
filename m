@@ -1,202 +1,113 @@
-Return-Path: <devicetree+bounces-72412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01ECD8FBA15
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 19:15:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C16FA8FBA25
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 19:19:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C81A5B24B6F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:15:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B35128519D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:19:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D93D149E1E;
-	Tue,  4 Jun 2024 17:15:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 672CA148820;
+	Tue,  4 Jun 2024 17:19:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kWBzRrQY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BXk7AHJQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16E15149E1A;
-	Tue,  4 Jun 2024 17:14:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B39013DDAA;
+	Tue,  4 Jun 2024 17:19:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717521301; cv=none; b=WbDM8fvSFpIu5t0rUgHui6pbP7b29XkXYwahhJ0/R2YmxdbUt0gxn57axKFLnPNwUheJqTlQ1kY6Nb0JbM8UxE4ORklMhooaAAPHzfBSVGntBAIDitF24aLVGxbH21JDpf52l5IwTRguq1YCuRcNRFRASuxEoa87F1XrdqpTaT8=
+	t=1717521593; cv=none; b=sCjs5HO4bjbBGnzU/gMRTiUlbXh0/Y4kqZwoA0us+l10iEYLm/WZQx/BXTU667Ty+jm+e6bttaefQ3dJI0/7vaT16+wVXgJFRoEqZZY00qoKw11IleK1x4BIYVfhKoH/xFWy+28dfNnkqMDXAY8OHKuTUiSpUoXIEFW8JTmbquw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717521301; c=relaxed/simple;
-	bh=gryU1d/X0GPFWbzUj9dRkMeQSfxNdzr55wMLabnRd8o=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=b5l+nvmocsa96nxeyKL3diEVCDT07vYOcTe37TW9akIgVP5Hps+fNTgYlf6+MS7D0FllbsT3dAmT4peyJ5Y1/uDdF+KTXaUFYm3scVt5fvAsc/RFqHu123WOerayE3X4V9h8eU+uJrhzsqvr4yhlcqxeYOeQV1Y0XywU6UmOHcA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=kWBzRrQY; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 454HEpSP050372;
-	Tue, 4 Jun 2024 12:14:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1717521291;
-	bh=i58hEfuFh9fPON97O9JHgkfTKfM+WPtWzpWCTg0ZfyM=;
-	h=From:To:CC:Subject:Date;
-	b=kWBzRrQYNMQJb1OlkPJXeh6UoRIXfjwwTgas4Ytm4nFJxnw1chCl2dlda2TStC3E5
-	 juPTnarFs1BCP/dwvOj6xA5/E6ew5d92XImpfBPdv0g4FD6HdQzA5Of2fNsdyNDr82
-	 9rXLqsA9zpWLGs0Atbj6GxPODESKAgPA/dFXwtyI=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 454HEpk3047931
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 4 Jun 2024 12:14:51 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 4
- Jun 2024 12:14:50 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 4 Jun 2024 12:14:50 -0500
-Received: from localhost ([10.249.48.175])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 454HEomB081681;
-	Tue, 4 Jun 2024 12:14:50 -0500
-From: Hari Nagalla <hnagalla@ti.com>
-To: <andersson@kernel.org>, <mathieu.poirier@linaro.org>, <robh+dt@kernel.org>,
-        <devarsht@ti.com>, <s-anna@ti.com>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v3] dt-bindings: remoteproc: k3-dsp: correct optional sram properties for AM62A SoCs
-Date: Tue, 4 Jun 2024 12:14:50 -0500
-Message-ID: <20240604171450.2455-1-hnagalla@ti.com>
-X-Mailer: git-send-email 2.17.1
+	s=arc-20240116; t=1717521593; c=relaxed/simple;
+	bh=ahgtXc4qQiXa8mwemiBOfb1WhBE5WcSDQDlT80ff1yw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=a0O9KQWvSgTD12/LAQFLXILCKhScMxX16fVHAWra6BVyikiuVNOTHU+MJ1owirKi9zoXwnZJpZjWeTAueS3V13zfsq0IwIOQtQu+2KNKomicnCm/kmgHSqAl95EzMy0XZHozGj6a8CrVligvNITnxV+LX+08ny9jwopo3icc0o8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BXk7AHJQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5358DC2BBFC;
+	Tue,  4 Jun 2024 17:19:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717521592;
+	bh=ahgtXc4qQiXa8mwemiBOfb1WhBE5WcSDQDlT80ff1yw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=BXk7AHJQZhWMGA5FR5N42VZ4YfP1FBB4v/UHDo/4Q2sz1BqFhtW9bOeDkoS7kyLjH
+	 RETUQsjJOPfZvJdgRglyAIUsdlwJRJGWB9leiecxMdfJp4QNKGQ/YxwEnru5aV421G
+	 OTHjZHQwph9R/p4Rt8KXAeI4/vjvIj/nHGfcalXJg0eG36v54xh0bx5HCNf+OGbldW
+	 w4djORfUXitP26HFUAa2Fp5HDu4Px3SXAjoTSMcRgXl3nKAcDGy1hc6DxDSQBP1/UA
+	 3VH9EXdVJL8B7uw7ZQQHBXO1hvWfi2DAwah0DrDoLQhxDHipKevtC/mAkKAEXA7u33
+	 98SvIYye8ALng==
+Date: Tue, 4 Jun 2024 12:19:50 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+	Rocky Liao <quic_rjliao@quicinc.com>, Kalle Valo <kvalo@kernel.org>,
+	Jeff Johnson <jjohnson@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+	Elliot Berman <quic_eberman@quicinc.com>,
+	Caleb Connolly <caleb.connolly@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Alex Elder <elder@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+	Jeff Johnson <quic_jjohnson@quicinc.com>,
+	ath12k@lists.infradead.org, linux-pm@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	kernel@quicinc.com,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Amit Pundir <amit.pundir@linaro.org>
+Subject: Re: [PATCH v8 00/17] power: sequencing: implement the subsystem and
+ add first users
+Message-ID: <20240604171950.GA731649@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240528-pwrseq-v8-0-d354d52b763c@linaro.org>
 
-The C7xv-dsp on AM62A have 32KB L1 I-cache and a 64KB L1 D-cache. It
-does not have an addressable l1dram . So, remove this optional sram
-property from the bindings to fix device tree build warnings.
+On Tue, May 28, 2024 at 09:03:08PM +0200, Bartosz Golaszewski wrote:
+> Note: I am resending this series in its entirety once more for
+> discussions and reviews. If there won't be any major objections, I'll
+> then start sending individual bits and pieces to appropriate trees.
+> 
+> Merging strategy: The DT binding and DTS changes are a no-brainer, they
+> can go through the wireless, regulator and arm-msm trees separately. The
+> bluetooth and PCI changes have a build-time dependency on the power
+> sequencing code. The bluetooth changes also have a run-time dependency on
+> the PCI pwrctl part. In order to get it into next I plan to pick up the
+> power sequencing code into my own tree and maintain it. I can then
+> provide an immutable tag for the BT and PCI trees to pull. I wouldn't
+> stress about the BT runtime dependency as it will be fixed once all
+> changes are in next.
+> ...
 
-Signed-off-by: Hari Nagalla <hnagalla@ti.com>
----
-Changes in v3:
-*) Use allOf keyword with separate ifs for each variant instead 
-   of nested if/else conditions.
+> ---
+> base-commit: 6dc544b66971c7f9909ff038b62149105272d26a
+> change-id: 20240527-pwrseq-76fc025248a2
 
-v2: https://lore.kernel.org/all/20240530164816.1051-1-hnagalla@ti.com/
-
- .../bindings/remoteproc/ti,k3-dsp-rproc.yaml  | 89 +++++++++++--------
- 1 file changed, 51 insertions(+), 38 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-index 9768db8663eb..b51bb863d759 100644
---- a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-@@ -25,9 +25,6 @@ description: |
-   host processor (Arm CorePac) to perform the device management of the remote
-   processor and to communicate with the remote processor.
- 
--allOf:
--  - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
--
- properties:
-   compatible:
-     enum:
-@@ -89,41 +86,57 @@ properties:
-       should be defined as per the generic bindings in,
-       Documentation/devicetree/bindings/sram/sram.yaml
- 
--if:
--  properties:
--    compatible:
--      enum:
--        - ti,j721e-c66-dsp
--then:
--  properties:
--    reg:
--      items:
--        - description: Address and Size of the L2 SRAM internal memory region
--        - description: Address and Size of the L1 PRAM internal memory region
--        - description: Address and Size of the L1 DRAM internal memory region
--    reg-names:
--      items:
--        - const: l2sram
--        - const: l1pram
--        - const: l1dram
--else:
--  if:
--    properties:
--      compatible:
--        enum:
--          - ti,am62a-c7xv-dsp
--          - ti,j721e-c71-dsp
--          - ti,j721s2-c71-dsp
--  then:
--    properties:
--      reg:
--        items:
--          - description: Address and Size of the L2 SRAM internal memory region
--          - description: Address and Size of the L1 DRAM internal memory region
--      reg-names:
--        items:
--          - const: l2sram
--          - const: l1dram
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - ti,j721e-c66-dsp
-+    then:
-+      properties:
-+        reg:
-+          items:
-+            - description: Address and Size of the L2 SRAM internal memory region
-+            - description: Address and Size of the L1 PRAM internal memory region
-+            - description: Address and Size of the L1 DRAM internal memory region
-+        reg-names:
-+          items:
-+            - const: l2sram
-+            - const: l1pram
-+            - const: l1dram
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - ti,j721e-c71-dsp
-+            - ti,j721s2-c71-dsp
-+    then:
-+      properties:
-+        reg:
-+          items:
-+            - description: Address and Size of the L2 SRAM internal memory region
-+            - description: Address and Size of the L1 DRAM internal memory region
-+        reg-names:
-+          items:
-+            - const: l2sram
-+            - const: l1dram
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - ti,am62a-c7xv-dsp
-+    then:
-+      properties:
-+        reg:
-+          items:
-+            - description: Address and Size of the L2 SRAM internal memory region
-+        reg-names:
-+          items:
-+            - const: l2sram
-+
-+  - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
- 
- required:
-   - compatible
--- 
-2.34.1
-
+What does this apply to?  I don't know what 6dc544b66971 is; it
+doesn't seem to be in upstream or linux-next.
 
