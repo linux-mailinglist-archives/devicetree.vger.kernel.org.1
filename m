@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-72220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B98B48FB276
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:42:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45D958FB279
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:43:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56F3B1F25BA8
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 12:42:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CDFC4B24360
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 12:43:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91564145FF6;
-	Tue,  4 Jun 2024 12:41:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51E8C145B1C;
+	Tue,  4 Jun 2024 12:43:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="1Wg2OU5W"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="p9E31tmx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12ACE145B1C
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 12:41:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF142144D1E
+	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 12:43:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717504908; cv=none; b=Ji45xHCZtuwG7wyE7jPld9lt9wYpMKOrPSoqaaRK4rzHBGRF5GVgWlEc1m2s9MPh25/suW1f9ctTRunK+CqfRYA5Z4gL5C4IuisL6PxmWwTqaAFfY9m9SQT3xVgwzzqRVImjoRb+vqon+jfC0HT3SqpKrIiAL+a3Rl8w3SqO354=
+	t=1717505005; cv=none; b=uuyhftIH2MeHPvx05AQi16Y7yMoabWuKT+Zvcj3OP2fV9EpNUlBI2ZRgdUYBAfAmcMupqA7sc66Ou8P3Ru5sg4qXsRm0JG6nF69JN6+dIg0OHXBJcOd11z4s971koUcDL/6antE3bpsrbagUDTV4bh1LLsWnKbKUgk0Wuf0LnyQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717504908; c=relaxed/simple;
-	bh=cyDfqlYfY4BrvsNgQnxyilZlkyV1nbikZ0wAS+skhvA=;
+	s=arc-20240116; t=1717505005; c=relaxed/simple;
+	bh=BE1DDuhg+2o6/4PanLrNPOI0jufqYBZIohTubClefAQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pprkZEcZA2Y+w9KAMxBqnb2TSE1Wu/iNFIYakZpBknQ6wHPugPJKVZIEKzDOu9l8t3runHNZAPVpFmMbBjXQlvuYXY+mwHlRsKWId/Jul4IqnAhXn9y1E0cgW3RLeN581/B0d+hvW0gKeNyPNn9MifkYiUY/4RPynkJM4Fyc01E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=1Wg2OU5W; arc=none smtp.client-ip=46.235.227.194
+	 In-Reply-To:Content-Type; b=SvurTpNpKZhIbo5i0rtV4+woXK3fw1l/vAR9ipxoUyALiDM9UVETlbf5qjYSKMEh4AHRFCEVtVX8rwRWsjOOUlj4bw4UwWWtVyLxGCC2ezWevqJpMPRZ5zvnhI5n3Z3Nck9HOJp8wOrZF3TfZWrEBPvtKPbIGJdJ1zu9fqQDQ5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=p9E31tmx; arc=none smtp.client-ip=46.235.227.194
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1717504905;
-	bh=cyDfqlYfY4BrvsNgQnxyilZlkyV1nbikZ0wAS+skhvA=;
+	s=mail; t=1717505002;
+	bh=BE1DDuhg+2o6/4PanLrNPOI0jufqYBZIohTubClefAQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=1Wg2OU5WhPuMTBQwgn6cR9rWs1U4Lukso/PMtSv39RRLyuGEXsrrApgawFYlVeU1M
-	 DHRIVQlOA6LNVE5ixxkgd2ezGPZOaLYDGTL2Q7MUumIy0jqNeEzVGQR5V3l+Z74gu2
-	 +Mta6egdyJpuyQl8n/h8JmJ7MqiJd4VYPd60qHvsuoTjvAcTTUowj9vqpZaoOeLHMY
-	 kfi+NhqE3zjWCwFEF4X1z6MNEnS433I5Ue73FPvKWbDioDYwoHWEFWgPPfJ53HAL6V
-	 xyfTvDxzGpwq0SmECOfDWlRrE8tMmSPVHfHwruMQlCzT1GDuE1nZZ5GuR9o4WsceHn
-	 fukaI4wqAs4lw==
+	b=p9E31tmxEVis/t2K+lrzbXPyelH68TS1JWNYN1hnidwt0CFCLUEe08kJC09xt0pzg
+	 O0g4VtVdpo1OqsEsJ49tJvDFbYjlUUjmiLbD2PVRp/1F6FJcwGB9kCcdz7XeUbKsIU
+	 fN3jRsIhQXD0dM/W4QjH3S0/h5znfP/jwphYnv6D15tvysMCDLcznYXX1XC3CevbWH
+	 6+XIYPcLCcnrLIGL5Fg8T2h5cZ3tbJgSRPAf35pEET7DjE79IDk0mNcr9cD3G2oOHR
+	 JQ0CFfkuRS5IwyDFjeLYkvNo20PB73Hs2WAdNPFP9ZmDeSRm5900ztBhFnYmQfsuyR
+	 95Imb8CoJAEYQ==
 Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id EF72637821F2;
-	Tue,  4 Jun 2024 12:41:43 +0000 (UTC)
-Message-ID: <281bb6eb-dbd1-4f85-872b-0fe105b940a9@collabora.com>
-Date: Tue, 4 Jun 2024 14:41:43 +0200
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id A494937821A8;
+	Tue,  4 Jun 2024 12:43:21 +0000 (UTC)
+Message-ID: <29cc03d8-fad4-4bfb-8947-f25b1366b801@collabora.com>
+Date: Tue, 4 Jun 2024 14:43:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,59 +57,39 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: add OpenWrt
+Subject: Re: [PATCH RESEND] arm64: dts: mediatek: mt7622: fix "emmc" pinctrl
+ mux
 To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Linus Walleij <linus.walleij@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
- Chen-Yu Tsai <wenst@chromium.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
- =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
- Macpaul Lin <macpaul.lin@mediatek.com>,
- Heiko Stuebner <heiko.stuebner@cherry.de>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Chris Morgan <macromorgan@hotmail.com>, Sebastian Reichel <sre@kernel.org>,
- Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sean Wang <sean.wang@mediatek.com>,
+ Ryder Lee <ryder.lee@mediatek.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- openwrt-devel@lists.openwrt.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>
-References: <20240527115933.7396-1-zajec5@gmail.com>
- <20240527115933.7396-2-zajec5@gmail.com>
- <CACRpkda-egxVtP8Tan9T_EfQX6ekqQDf3LaVUu0by7aWY1Qmag@mail.gmail.com>
- <ed191114-0259-4de9-8e32-6718fd5e6747@collabora.com>
- <a8845e9a-839c-4741-a868-1f415b926d40@gmail.com>
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20240604074916.7929-1-zajec5@gmail.com>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <a8845e9a-839c-4741-a868-1f415b926d40@gmail.com>
+In-Reply-To: <20240604074916.7929-1-zajec5@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Il 04/06/24 09:14, Rafał Miłecki ha scritto:
-> On 3.06.2024 09:37, AngeloGioacchino Del Regno wrote:
->> Il 29/05/24 09:42, Linus Walleij ha scritto:
->>> On Mon, May 27, 2024 at 2:00 PM Rafał Miłecki <zajec5@gmail.com> wrote:
->>>
->>>> From: Rafał Miłecki <rafal@milecki.pl>
->>>>
->>>> OpenWrt project (with the help of MediaTek and Banana Pi) has produced
->>>> its very first own hardware. It needs its own prefix.
->>>>
->>>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->>>
->>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
->>>
->>
->> Hello,
->>
->> I'm not sure about who should pick this particular patch - should I pick it into
->> the MediaTek tree, or...?
+Il 04/06/24 09:49, Rafał Miłecki ha scritto:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> We have ack from DT maintainer. Similar PATCH was picked by you during
-> the previous merge windows in the commit d67c211261d1 ("dt-bindings:
-> vendor-prefixes: add Cudy"). I don't see why this one couldn't go
-> through your / mediatek tree :)
+> Value "emmc_rst" is a group name and should be part of the "groups"
+> property.
+> 
+> This fixes:
+> arch/arm64/boot/dts/mediatek/mt7622-rfb1.dtb: pinctrl@10211000: emmc-pins-default:mux:function: ['emmc', 'emmc_rst'] is too long
+>          from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt7622-pinctrl.yaml#
+> arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dtb: pinctrl@10211000: emmc-pins-default:mux:function: ['emmc', 'emmc_rst'] is too long
+>          from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt7622-pinctrl.yaml#
+> 
+> Fixes: 3725ba3f5574 ("arm64: dts: mt7622: add pinctrl related device nodes")
+> Fixes: 0b6286dd96c0 ("arm64: dts: mt7622: add bananapi BPI-R64 board")
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-Ah, yes, right.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Cheers,
-Angelo
+
 
