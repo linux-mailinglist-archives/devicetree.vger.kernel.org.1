@@ -1,144 +1,139 @@
-Return-Path: <devicetree+bounces-72256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD1C58FB336
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:12:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D7C68FB341
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:15:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FD352850AC
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:12:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5524281CA1
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:15:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07B5C146016;
-	Tue,  4 Jun 2024 13:12:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D87C146A68;
+	Tue,  4 Jun 2024 13:15:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d/7IIAAJ"
+	dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b="nuYGQBRa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mta-65-228.siemens.flowmailer.net (mta-65-228.siemens.flowmailer.net [185.136.65.228])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 321328BF7
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 13:12:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B82FA1420C9
+	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 13:15:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.65.228
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717506728; cv=none; b=dbjX5iryG7vfoJOU7VvB5BKOZIn99s1brDYbIY6GNyAlPmMvbhJXAA99uhPOc82/ljlXqvskGz/bNs+ORLl/5EjxIM77Kj0aIEUhyK+rr8wDQXxtgKF6Z2Khkjz0jFwSwo3fY5AouBoxLKJsXpBUz2UfE4Wn5EMMKwg0qpuEd90=
+	t=1717506937; cv=none; b=DKi3rBiPoo4bDrsu+39Cw+ohezU0WA113fGaeVRxxDVs548da3YsqqX8y9zZi9gVmgbD94rKBqHz/CUOUf83jLfniKg0lQpyRADPnUPIlSNh4Z7rNIAg6mnqDkbC8OF08ABiVXXjtdPHH40S646RUaKaONG/CydhBv8g+k347mQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717506728; c=relaxed/simple;
-	bh=JKkLtBEUrmYQnGf8tYh2jR3T3w9rFinBgGs6TA8+iUE=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:References:
-	 In-Reply-To:Content-Type; b=AEtn/yJoDPGNmHG1fCMDBfBE4qH2aps5kRcYnkkgOZ1iVZ0nHyDhDOnlqrfJgXSiWM1Zm+QF12i52Rd4moPk+NchN+o22n5jbr8duHAQE2f3bHIlHNgXZiU7/V20NT5DgJ/Orp6EGMF7b7TwrAI7g5UpKRuKWr74yatRBIeg7wE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=d/7IIAAJ; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2eaa794eb9fso41399521fa.2
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 06:12:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717506725; x=1718111525; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=scoabqS6+XucB7o3404ijfWMEletkULCboMQ7PF182w=;
-        b=d/7IIAAJrhZGoYmtd7RO29+7dl8esXI0fwm01Sj4TRaPwXniuzTaTpmNC08C7QRAY6
-         VEwAk9qDw4zXHmn4Jf76IekVsiltdM+Qi8L5VaXILoa+y5qSbsT1M53mmeGmNPyTuv2E
-         0yANUU2QdJtl0IbiZbpp1XhGw/Mk2/S80hRsx/UFTo5nZaHuib/8FtqiwCIc96ewcgH3
-         JKsWBFoJC0i+/pwwaxLDvP9ccjFtpzzn9xPU+DVj12BQo7+Clh9TgKCCqZxilMF8UA+Y
-         SZhkhOES4gWJbHE+RVPnVfBRSZwXyryJgLki4OJFzkioCq4wZvKey+PlGZTDFBFXmbDg
-         z3gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717506725; x=1718111525;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=scoabqS6+XucB7o3404ijfWMEletkULCboMQ7PF182w=;
-        b=JOYeh1sOHTeiAj6Ve9q9JnzMrPirMCu9xX24Om414GZVrDk4Gu0130oK2GcHdcNp24
-         X2WGOzGhpxwxgbxZzMztnDXZBe4oozc5aCvKjnyan/GQluK4mU/vcEs9E8KyfTKvxoM6
-         s/oCWQUYpEnoCVwZqVR4QErxkiRdSq8hh0o6nHxTJOEX9Edy9pwxo1y/V75I3hFCSFwV
-         VonlStnXa7mkv2JpxdZeRM5g0TbNPofH9/Zt5lC1bjCf539fPkC6+iUw+EEaU96SHDos
-         iFe6Tj1/s1UMZjUg5Ah3x1RUfziyeX7qcakrlmbEAV6D6PLQp0fRLS8Vr0MVoe3/TPqK
-         feiw==
-X-Forwarded-Encrypted: i=1; AJvYcCX5a6WMrsYfRHR4jixa086KF5UAKTrrqZ3mRNT5/03vJb+xzbOyISDCwVwV/wtmn/4XM7pI27tJ5PRG/lfMS8NIy5ERYxj86KqPXw==
-X-Gm-Message-State: AOJu0YwHC4vgQO8CrylqRydkbgfel+Gv5ZNpdwoa/js3kNao7O9fD+VJ
-	3jc721kDK38j+WXXGawvdwTgVsYYoCR+2ZMbOrIsbwi9mMe2t71TiqcHDGuU9pk=
-X-Google-Smtp-Source: AGHT+IEvFTfvdKINEDRD11Vcd01v7jqXDgHD79oA6Jf4/oVf1B01pQg+yySRPRVnwxYWE8QOmGpS0A==
-X-Received: by 2002:a2e:b8c7:0:b0:2e9:5263:36e9 with SMTP id 38308e7fff4ca-2ea951d5c81mr82447921fa.43.1717506725401;
-        Tue, 04 Jun 2024 06:12:05 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:409c:8ebe:886e:8c03? ([2a01:e0a:982:cbb0:409c:8ebe:886e:8c03])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ea91bb49ebsm15646791fa.34.2024.06.04.06.12.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Jun 2024 06:12:04 -0700 (PDT)
-Message-ID: <4a4ca630-f71c-4012-a076-8e31b67b2517@linaro.org>
-Date: Tue, 4 Jun 2024 15:12:03 +0200
+	s=arc-20240116; t=1717506937; c=relaxed/simple;
+	bh=DButXpkKLCVpKLooxjGachqXWYUOoZ1VJfazz4Gocqk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=KDMjJWREps9SEfMn2jvMXhTnG1sYJy5lC+WaGD6WS+xzWzqdeGASZX6Dn9zsMqcRX7V+pzY3+JC14O0L3Y6y+4XDUP3CCNwAbDd18ig1vihFh+9KG/zA368CzO8/zc0Xa0i6a/2OtHys5sdvLv6BrEoGOc+0pl0rj2Cqa5wHzB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b=nuYGQBRa; arc=none smtp.client-ip=185.136.65.228
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
+Received: by mta-65-228.siemens.flowmailer.net with ESMTPSA id 20240604131525cd685c3fb3cf9024f8
+        for <devicetree@vger.kernel.org>;
+        Tue, 04 Jun 2024 15:15:26 +0200
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm2;
+ d=siemens.com; i=diogo.ivo@siemens.com;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
+ bh=G4cQmy7CbcUofO7XKPsbl0jSqmp8k3uPxgYXTGCvYM4=;
+ b=nuYGQBRaVePixTrPNaIvgAFNdBmVzhgYSNombKiN+GoWprNPp+isfbsCOVQMk2L0KyHt3j
+ hHR+m0LXFP/NctMLDAXSzDfNCDJDAT0A82dwKHDNXwN2gQJF49p5HzOZX1+V1SN+BhkJpgTX
+ hVza+p4fH9HKcRItrwVwpoRcctf1c=;
+From: Diogo Ivo <diogo.ivo@siemens.com>
+Subject: [PATCH net-next v2 0/3] Enable PTP timestamping/PPS for AM65x
+ SR1.0 devices
+Date: Tue, 04 Jun 2024 14:15:09 +0100
+Message-Id: <20240604-iep-v2-0-ea8e1c0a5686@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] soc: amlogic: meson-gx-socinfo: Add S905L ID
-To: Christian Hewitt <christianshewitt@gmail.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240604050752.3312468-1-christianshewitt@gmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240604050752.3312468-1-christianshewitt@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF0TX2YC/1WMQQ6DIBAAv2L2XBoELeqp/2g8CG7rHgQDhNgY/
+ l7CrcfJTOaCgJ4wwNRc4DFRIGcLiFsDZlvsBxmthUFw0fFejIzwYIPW3SKNHvljgFIeHt901ss
+ LLEZm8YwwF7NRiM5/6z611f+dUss4U0JJw1U/ilU+A+GONtyN22HOOf8AZut60aIAAAA=
+To: MD Danish Anwar <danishanwar@ti.com>, Roger Quadros <rogerq@kernel.org>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Richard Cochran <richardcochran@gmail.com>, Nishanth Menon <nm@ti.com>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jan Kiszka <jan.kiszka@siemens.com>, 
+ Jacob Keller <jacob.e.keller@intel.com>, Simon Horman <horms@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Diogo Ivo <diogo.ivo@siemens.com>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1717506924; l=2637;
+ i=diogo.ivo@siemens.com; s=20240529; h=from:subject:message-id;
+ bh=DButXpkKLCVpKLooxjGachqXWYUOoZ1VJfazz4Gocqk=;
+ b=8/DOE0yNPzKrkUD8wKBATO1Fa0Ok+FuvybDpdld6vrNy0G/8Xv9uh1pFPa4UWS/eV4HcZLRgd
+ 3To6L4eRY9cAD+CTgvsehPCW2gch0D04ka9NTPbSa9iiKPMiz6m6OpG
+X-Developer-Key: i=diogo.ivo@siemens.com; a=ed25519;
+ pk=BRGXhMh1q5KDlZ9y2B8SodFFY8FGupal+NMtJPwRpUQ=
+X-Flowmailer-Platform: Siemens
+Feedback-ID: 519:519-1320519:519-21489:flowmailer
 
-On 04/06/2024 07:07, Christian Hewitt wrote:
-> Add the S905L SoC ID observed in several P271 boards:
-> 
-> kernel: soc soc0: Amlogic Meson GXLX (S905L) Revision 26:a (c1:2) Detected
-> 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->   drivers/soc/amlogic/meson-gx-socinfo.c | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
-> index 6abb730344ab..7e255acf5430 100644
-> --- a/drivers/soc/amlogic/meson-gx-socinfo.c
-> +++ b/drivers/soc/amlogic/meson-gx-socinfo.c
-> @@ -64,6 +64,7 @@ static const struct meson_gx_package_id {
->   	{ "962E", 0x24, 0x20, 0xf0 },
->   	{ "A113X", 0x25, 0x37, 0xff },
->   	{ "A113D", 0x25, 0x22, 0xff },
-> +	{ "S905L", 0x26, 0, 0x0 },
->   	{ "S905D2", 0x28, 0x10, 0xf0 },
->   	{ "S905Y2", 0x28, 0x30, 0xf0 },
->   	{ "S905X2", 0x28, 0x40, 0xf0 },
+This patch series enables support for PTP in AM65x SR1.0 devices.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+This feature relies heavily on the Industrial Ethernet Peripheral
+(IEP) hardware module, which implements a hardware counter through
+which time is kept. This hardware block is the basis for exposing
+a PTP hardware clock to userspace and for issuing timestamps for
+incoming/outgoing packets, allowing for time synchronization.
+
+The IEP also has compare registers that fire an interrupt when the
+counter reaches the value stored in a compare register. This feature
+allows us to support PPS events in the kernel.
+
+The changes are separated into three patches:
+ - PATCH 01/03: Register SR1.0 devices with the IEP infrastructure to
+		expose a PHC clock to userspace, allowing time to be
+		adjusted using standard PTP tools. The code for issuing/
+		collecting packet timestamps is already present in the
+		current state of the driver, so only this needs to be
+		done.
+ - PATCH 02/03: Add support for IEP compare event/interrupt handling
+		to enable PPS events.
+ - PATCH 03/03: Add the interrupts to the IOT2050 device tree.
+
+Currently every compare event generates two interrupts, the first
+corresponding to the actual event and the second being a spurious
+but otherwise harmless interrupt. The root cause of this has been
+identified and has been solved in the platform's SDK. A forward port
+of the SDK's patches also fixes the problem in upstream but is not
+included here since it's upstreaming is out of the scope of this
+series. If someone from TI would be willing to chime in and help
+get the interrupt changes upstream that would be great!
+
+Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
+---
+Changes in v2:
+- Collect Reviewed-by tags
+- PATCH 01/03: Limit line length to 80 characters
+- PATCH 02/03: Proceed with limited functionality if getting IRQ fails,
+	       limit line length to 80 characters
+- Link to v1: https://lore.kernel.org/r/20240529-iep-v1-0-7273c07592d3@siemens.com
+
+---
+Diogo Ivo (3):
+      net: ti: icssg-prueth: Enable PTP timestamping support for SR1.0 devices
+      net: ti: icss-iep: Enable compare events
+      arm64: dts: ti: iot2050: Add IEP interrupts for SR1.0 devices
+
+ .../boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi    | 12 ++++
+ drivers/net/ethernet/ti/icssg/icss_iep.c           | 74 ++++++++++++++++++++++
+ drivers/net/ethernet/ti/icssg/icssg_prueth_sr1.c   | 51 ++++++++++++++-
+ 3 files changed, 136 insertions(+), 1 deletion(-)
+---
+base-commit: 2f0e3f6a6824dfda2759225326d9c69203c06bc8
+change-id: 20240529-iep-8bb4a3cb9068
+
+Best regards,
+-- 
+Diogo Ivo <diogo.ivo@siemens.com>
+
 
