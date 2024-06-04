@@ -1,152 +1,110 @@
-Return-Path: <devicetree+bounces-72461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F5658FBD78
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 22:42:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D51118FBD82
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 22:48:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E13A282C72
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 20:42:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12CC11C20F6B
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 20:48:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5449B14B945;
-	Tue,  4 Jun 2024 20:42:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0EB114B07B;
+	Tue,  4 Jun 2024 20:48:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b="N61vra7C";
-	dkim=permerror (0-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b="r4JvKN3M"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="AyEZbuQE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailrelay1-1.pub.mailoutpod3-cph3.one.com (mailrelay1-1.pub.mailoutpod3-cph3.one.com [46.30.211.240])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55EA217C96
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 20:42:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.30.211.240
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FB0813F451;
+	Tue,  4 Jun 2024 20:48:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717533744; cv=none; b=lHxOH/1RsFivC/DS57Vlg8xefso7DuMaSV/MFgIFbjFnID96vllBUL5zXeyan38zGDXRjiLWYahr8Z5cWcCJI4+oOjB8/JRzZbOM9pdPS9/VXUCvRmHLB37aOMsLDF62ca/tKFTMGps/pdamrbpyLEHvl3M5pUw+WGjToN8PlkE=
+	t=1717534116; cv=none; b=qiRWmWkkA610738OHR3vsVmft/lpl0TFfun0J0LC9aWIA1xehirgzfG3n6217tosOj03mHdw57IXVQlYiibbEVZ98mfNzZQbKyUdlWsxGgiTV7afpA9oT6PrVra/pJDa3ECv1ikG7K/2z6LJpXxsWYXeCDR0qniJczNUQG43yLQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717533744; c=relaxed/simple;
-	bh=1dWSYg0dVf/rqsLrOmw8N6/UvJ03wpNFLYhrom2Lml0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QCk7zTw4zuVu0owWMdk7wMSnOwESBA8Bup9r44G9FXg5Sx0b8/732scmuSlDsZUu3j6x8vXxZ++Jj8MYm+pR2RI/JZqnRupmZbj6bLp0tv//DP7FBUWt17R7YRq6/3qUh2E0xkFM9SFFbJLbWGo1lRLeHos2gIq5PvAkvwz2/0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org; spf=none smtp.mailfrom=ravnborg.org; dkim=pass (2048-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b=N61vra7C; dkim=permerror (0-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b=r4JvKN3M; arc=none smtp.client-ip=46.30.211.240
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ravnborg.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ravnborg.org; s=rsa1;
-	h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-	 from:date:from;
-	bh=Dk4sfgI36ZWaPJ+eBS/GI/TZ8w55X9bgUEDY5cQtdtU=;
-	b=N61vra7CHLZfKe5uIUlYx3GQv9YGIc7bLyEhl3+9zNcLfrg/064TgGMDdyq/ZA10mlYXb06vgNF0h
-	 qwxtSmeWRmsmmd3wrCCBBvUY+SFythORAs9pyE4otLatq0n/0MIHh8STbOiAKmU9DUOex9d1E4YSfX
-	 x8KwPBxjY/1bPXa3W4ZVzNJZE8vyRU4ysM0VrCOe55RkF7hCRcl+V9ySXs0kbLERYnt8ZjSy6kIePK
-	 853Zbg7dZnTvyDX2GrBxleUad6prFsi1lEZKiKL68eW9CCm5QisalqofZTtORQWuI1bSEXtwK7zLcI
-	 Xu0tUkNa02dSjD3QS04pgnpBnbZ1OSQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
-	d=ravnborg.org; s=ed1;
-	h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-	 from:date:from;
-	bh=Dk4sfgI36ZWaPJ+eBS/GI/TZ8w55X9bgUEDY5cQtdtU=;
-	b=r4JvKN3MaF/e09yO6vz7gW/+Vs/xVKV1CvUIVwJnko5Bqds84IFN0/PUeYg4Zdo1itqPMmJMDSrRa
-	 fTI/wgXCg==
-X-HalOne-ID: c619a21d-22b2-11ef-9886-bf3d7f4c9d3b
-Received: from ravnborg.org (2-105-16-150-cable.dk.customer.tdc.net [2.105.16.150])
-	by mailrelay1.pub.mailoutpod3-cph3.one.com (Halon) with ESMTPSA
-	id c619a21d-22b2-11ef-9886-bf3d7f4c9d3b;
-	Tue, 04 Jun 2024 20:41:12 +0000 (UTC)
-Date: Tue, 4 Jun 2024 22:41:10 +0200
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Sandy Huang <hjc@rock-chips.com>,
-	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-	Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mark Yao <markyao0591@gmail.com>, dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-	kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
-	Luis de Arquer <ldearquer@gmail.com>,
-	Algea Cao <algea.cao@rock-chips.com>
-Subject: Re: [PATCH 13/14] drm/bridge: synopsys: Add DW HDMI QP TX controller
- driver
-Message-ID: <20240604204110.GA84949@ravnborg.org>
-References: <20240601-b4-rk3588-bridge-upstream-v1-0-f6203753232b@collabora.com>
- <20240601-b4-rk3588-bridge-upstream-v1-13-f6203753232b@collabora.com>
- <20240601143226.GA2003970@ravnborg.org>
- <59519381-2729-4839-9882-65a981a0c551@collabora.com>
+	s=arc-20240116; t=1717534116; c=relaxed/simple;
+	bh=24z1rBJP/t4A6eeiNMz6cumSnbPF5JflnPk3fIfkeYM=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=LCw2Yj4Fo4UMm5BCEXZymy6RoGQ2PsptCZRHb3B1alcZ2pzdLUdcR5aTSNw7QwYx4Tym4AgqlnUxuOiWhjF01+Ks2VpM7QyVqkSEctKPY86ioLd9HqUW6wMlkxEprY8dTAaY4DpHqvyp0ri08LooAuFAsWYtRXpJCoYiC42VOkE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=AyEZbuQE; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <59519381-2729-4839-9882-65a981a0c551@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1717534112;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=jaTzlawGlDcYRhQAm+R1AsWpCyayK2cAnVa+Y0OsHVQ=;
+	b=AyEZbuQEG/qqS8hCg4QaBIOxBX5BDnlwIu08AMxosoc84FDiVVV5NnCCTRWyhFB4zo5xVV
+	Mqf8T7Qr9+QUghlk4yVtaLV0HE9dLTRffsJyizkktmF01hfJTm8DXRaX92E2WANTcuw9qC
+	w4A4pFK81Zc09M++1RkPeePFtqjojo5/EVcinZZBjENohmQv3PByt+ZdvBqTT4sIw3l9XQ
+	0xixHMlzRPKwYzIJHUZ5J9El7sfvISr3oEKry2exmbn/eKp2SLdv/reoa0IGUazY4NSGwV
+	ry6MW+Ao7vnlq9nEmfX+fJgg4lbEia7kzrfWlCJ4aCEfSCWSNDe2v0vQO34A5A==
+Date: Tue, 04 Jun 2024 22:48:30 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-kernel@vger.kernel.org, quentin.schulz@cherry.de, wens@kernel.org,
+ daniel.lezcano@linaro.org, didi.debian@cknow.org,
+ krzysztof.kozlowski+dt@linaro.org, viresh.kumar@linaro.org
+Subject: Re: [RFC PATCH] arm64: dts: rockchip: Make preparations for
+ per-RK3588-variant OPPs
+In-Reply-To: <82db817a908b761d8c3d73ea04714314@manjaro.org>
+References: <673dcf47596e7bc8ba065034e339bb1bbf9cdcb0.1716948159.git.dsimic@manjaro.org>
+ <CABjd4YxD41DEkBCZfkznLboEY9ZVOfTCLcj4S_kkcsVswbANyQ@mail.gmail.com>
+ <8f8623e29a479c4108141302e708dc3b@manjaro.org>
+ <CABjd4Yy4RMg+6-4ygV0MSwJj5LReY-ymbctq4PPfVZ6L+c1tsw@mail.gmail.com>
+ <166cc4e46f31644a50306625b2ab18a6@manjaro.org>
+ <CABjd4YzDNQa45=KC_t0xnTDrH+g-oUrcpgP55oOj7JcAuu7uFw@mail.gmail.com>
+ <82db817a908b761d8c3d73ea04714314@manjaro.org>
+Message-ID: <75563ad3f6bf6b6c8b151ab0cc26b490@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hi Cristian.
+Hello Alexey,
 
-On Tue, Jun 04, 2024 at 10:32:04PM +0300, Cristian Ciocaltea wrote:
-> Hi Sam,
+On 2024-05-30 21:31, Dragan Simic wrote:
+> I'm sorry for my delayed response, had some "IRL stuff" to take care 
+> of.
+
+[...]
+
+> On 2024-05-29 16:05, Alexey Charkov wrote:
+>> The problem I have with -common is that there are several layers of
+>> "common" even among just the three of these chip revisions, and a
+>> clear inheritance hierarchy between them (i.e. RK3588j and RK3588 also
+>> have a sizeable chunk of their IP blocks that is "common" between
+>> these two variants, in addition to those shared among all three
+>> variants)
 > 
-> On 6/1/24 5:32 PM, Sam Ravnborg wrote:
-> > Hi Cristian,
-> > 
-> > a few drive-by comments below.
-> > 
-> > 	Sam
-> > 
-> > 
-> >> +
-> >> +static const struct drm_connector_funcs dw_hdmi_qp_connector_funcs = {
-> >> +	.fill_modes = drm_helper_probe_single_connector_modes,
-> >> +	.detect = dw_hdmi_connector_detect,
-> >> +	.destroy = drm_connector_cleanup,
-> >> +	.force = dw_hdmi_qp_connector_force,
-> >> +	.reset = drm_atomic_helper_connector_reset,
-> >> +	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
-> >> +	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
-> >> +};
-> >> +
-> >> +static int dw_hdmi_qp_bridge_attach(struct drm_bridge *bridge,
-> >> +				    enum drm_bridge_attach_flags flags)
-> >> +{
-> >> +	struct dw_hdmi *hdmi = bridge->driver_private;
-> >> +
-> >> +	if (flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)
-> >> +		return drm_bridge_attach(bridge->encoder, hdmi->next_bridge,
-> >> +					 bridge, flags);
-> >> +
-> >> +	return dw_hdmi_connector_create(hdmi, &dw_hdmi_qp_connector_funcs);
-> >> +}
-> > 
-> > Are there any users left that requires the display driver to create the
-> > connector?
-> > In other words - could this driver fail if DRM_BRIDGE_ATTACH_NO_CONNECTOR
-> > is not passed and drop dw_hdmi_connector_create()?
-> > 
-> > I did not try to verify this - just a naive question.
+> Hmm, I see, that's a rather valid concern.  How about using "-base"
+> for what I called "-common", and "-extra" for what I called "-fullfat",
+> for the lack of a better term?  Using "-extra" takes inspiration from
+> the way Linux distribution package repositories are commonly named, so
+> it should be rather familiar to nearly everyone.
 > 
-> I've just tested this and it doesn't work - dw_hdmi_connector_create()
-> is still needed.
+> Also, "-base" and "-extra" are rather short, so their shortness would
+> also make them stand out in the directory listing as something that 
+> isn't
+> just another board .dts or .dtsi file, which can only help.
 
-Hmm, seems the display driver or some other bridge driver fails to
-support "DRM_BRIDGE_ATTACH_NO_CONNECTOR".
-what other drivers are involved?
+[...]
 
-Note that my comments here should be seen as potential future
-improvements, and do not block the patch from being used.
-
-	Sam
+Since there were no complaints, I'll move forward with sending a "real"
+patch that uses "-base" and "-extra".
 
