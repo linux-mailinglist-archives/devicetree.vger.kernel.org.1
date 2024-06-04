@@ -1,137 +1,96 @@
-Return-Path: <devicetree+bounces-72322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD8678FB594
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 16:38:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA2978FB5BC
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 16:41:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 739571F21E07
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:38:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F5E1280AC0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:41:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AF5D1422B4;
-	Tue,  4 Jun 2024 14:35:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 209F4145B09;
+	Tue,  4 Jun 2024 14:38:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="kIQSDmR1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ri3VbhIu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51C8813A25D;
-	Tue,  4 Jun 2024 14:35:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E39A01411FA;
+	Tue,  4 Jun 2024 14:38:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717511758; cv=none; b=GSXzQ+H0tsmBV+AQMhAXTEpcMmTdZ5RP6jraZ97vv8QPAeoJS+UON645Dvwt/p6aUYokmvJtkokVKtemp1Q9YziDoYW8j11SCcxA+BTBjWpOoW+WeDFRKCnqzRgSH653H7ctZi2IK+jGcUe22Rd1CK5lxUyV/ntcnlJDeAoRQSQ=
+	t=1717511904; cv=none; b=tUv7Ekv6XucdrjXHDwZ+5e4/bxcVSwz+M9aLDYm67jYvnXeikKETUrd449Jf+0xw5SIrc4kpcV1JgbYZ/NRaQCLNqhkPJsuFhv9dlzoT9+VkBQhoKxWFdzOXOrZ6a1gv9UarWr8uj3Dw5DR6dO9d4I25T0EsWsX8JlSzg6kBptM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717511758; c=relaxed/simple;
-	bh=BcDCaCrTiv32Mv9KNcZ10IBirLsuHTSs72Lc0IOQWsE=;
-	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
-	 Content-Type:Subject; b=ZltmAGR9O3cBhpaM+3GFsZkjQpf9mdZTTuX4CauKMVTbLfn8HXgJB4yGtSgnbBNQtj0mpCtCwEsUDYOHs9meGgBN3KKe5N+hP4Rw0LYviymHnkSkGaLUQTq8T6LF3w64+8bHHCFYc37vfk+hVOfmbU0NUnljsAZ/YwFWzb3aI3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=kIQSDmR1; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
-	:Date:subject:date:message-id:reply-to;
-	bh=u5amUy6BDusyFy20+rJHPUSg+CiOQNC3U9ppdC22vEM=; b=kIQSDmR1xfp5YIjBkiBpSvj0ch
-	YV9EQbXrr4B0/cJ8RXPvLmOUUnwvq+cNtNLL1gBnvAhkYJL4L6kCqjMV+wYfjHXixjTnvvMtCFdg1
-	uG84C3/xrmdA3+ET5EOjIb0acHYesCYS00aIO+mHrZrCtBKXK9lSwaTdS9xdcb2rQVM0=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:58222 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1sEVGU-0005Tp-Kv; Tue, 04 Jun 2024 10:35:54 -0400
-Date: Tue, 4 Jun 2024 10:35:38 -0400
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Hui Wang <hui.wang@canonical.com>
-Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- gregkh@linuxfoundation.org, jirislaby@kernel.org, hvilleneuve@dimonoff.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org,
- lech.perczak@camlingroup.com
-Message-Id: <20240604103538.a96cef712dcff156eca099b0@hugovil.com>
-In-Reply-To: <20240604132726.1272475-1-hui.wang@canonical.com>
-References: <20240604132726.1272475-1-hui.wang@canonical.com>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1717511904; c=relaxed/simple;
+	bh=HZmqNGoKVXJoo6fKv9SQ0VkpZqIxY2Mm9g76flJoWtk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=azXIYYqrXgCq7qxJk31NvZqXR9OfZylVP6GW3oQAGHNM5PSPU4vZlh9P0HTw1/dhY/5UD9AikWLdOJ7nTdQbDEO6QlmQ95FrWOKDI13T4lysdhq3ZREoSR8GTZB4ufBJc2jSCJjQBQzywAL9PstI7F5sXB6O3LwujZwkEt3t0mE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ri3VbhIu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 277D6C2BBFC;
+	Tue,  4 Jun 2024 14:38:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717511903;
+	bh=HZmqNGoKVXJoo6fKv9SQ0VkpZqIxY2Mm9g76flJoWtk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ri3VbhIu5ayMdsVd5PqIosUS5sdfGQ5lMDfvBuFMMWrdjqMmwi4wzRchT+ZietzBM
+	 zr2tPbHDBfW28F4sZ2HnK3mxbqi/R7Jknt+J0iv22h0Q0TBaUS+qDunmYZsquTAFxW
+	 8aoKs1L6L4lavTg3NETdxGTUsKNQxd04Fqh8ICzQ5Y1LilgQd88iLEB+lrECIjvbP/
+	 ARfIiqE7ZhSF6ElwqFpf3Hm0aqf4gNjui8dG0/TkZnIK86otyXpnj5IOtxJhwP52mp
+	 kH1Usan12cS1QXY8pZHI7AKiz754h48GJiF9TRba1gQNBIknzZhlV77AJ2il1RopBD
+	 TIpHlAHctDEAw==
+Date: Tue, 4 Jun 2024 09:38:20 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Johan Hovold <johan+linaro@kernel.org>
+Cc: Das Srinagesh <quic_gurus@quicinc.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lee Jones <lee@kernel.org>,
+	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Stephen Boyd <swboyd@chromium.org>,
+	Liam Girdwood <lgirdwood@gmail.com>
+Subject: Re: [PATCH v2 09/14] dt-bindings: pinctrl: qcom,pmic-gpio: drop
+ pm8008
+Message-ID: <171751189805.570385.12837768964635934798.robh@kernel.org>
+References: <20240529162958.18081-1-johan+linaro@kernel.org>
+ <20240529162958.18081-10-johan+linaro@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-X-Spam-Report: 
-	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-	* -0.0 T_SCC_BODY_TEXT_LINE No description available.
-	* -2.5 NICE_REPLY_A Looks like a legit reply (A)
-Subject: Re: [PATCH v2 1/2] dt-bindings: serial: sc16is7xx: add reset-gpios
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240529162958.18081-10-johan+linaro@kernel.org>
 
-On Tue,  4 Jun 2024 21:27:25 +0800
-Hui Wang <hui.wang@canonical.com> wrote:
 
-> In some designs, the chip reset pin is connected to a gpio, this
-
-"and this ..."
-
-> gpio needs to be set correctly before probing the driver, so adding
-
-"so add ..."
-
-> a reset-gpios in the device tree.
+On Wed, 29 May 2024 18:29:53 +0200, Johan Hovold wrote:
+> The binding for PM8008 is being reworked so that internal details like
+> interrupts and register offsets are no longer described. This
+> specifically also involves dropping the gpio child node and its
+> compatible string which is no longer needed.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-> Signed-off-by: Hui Wang <hui.wang@canonical.com>
+> Note that there are currently no users of the upstream binding and
+> driver.
+> 
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 > ---
-> In the v2:
->  - include the gpio.h
->  - run the 'make dt_binding_check' and 'make dtbs_check'
-> 
->  Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
-> index 5dec15b7e7c3..88871480018e 100644
-> --- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
-> +++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
-> @@ -28,6 +28,9 @@ properties:
->    clocks:
->      maxItems: 1
->  
-> +  reset-gpios:
-> +    maxItems: 1
-> +
->    clock-frequency:
->      description:
->        When there is no clock provider visible to the platform, this
-> @@ -91,6 +94,7 @@ unevaluatedProperties: false
->  examples:
->    - |
->      #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/gpio/gpio.h>
->      i2c {
->          #address-cells = <1>;
->          #size-cells = <0>;
-> @@ -120,6 +124,7 @@ examples:
->              compatible = "nxp,sc16is752";
->              reg = <0x54>;
->              clocks = <&clk20m>;
-> +            reset-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
->              interrupt-parent = <&gpio3>;
->              interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
->              nxp,modem-control-line-ports = <0 1>; /* Ports 0 and 1 as modem control lines */
-> -- 
-> 2.34.1
-> 
-> 
+>  Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml | 3 ---
+>  1 file changed, 3 deletions(-)
 > 
 
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
--- 
-Hugo Villeneuve
 
