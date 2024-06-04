@@ -1,192 +1,132 @@
-Return-Path: <devicetree+bounces-72103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A61D78FADC5
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 10:41:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBF298FADD2
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 10:45:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A2AD283809
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 08:41:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86AD2281278
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 08:45:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDF46142E73;
-	Tue,  4 Jun 2024 08:41:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9F40142E7E;
+	Tue,  4 Jun 2024 08:45:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vp5h0MG9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AMhwWNEM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D747142906;
-	Tue,  4 Jun 2024 08:41:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DEA2142900;
+	Tue,  4 Jun 2024 08:45:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717490504; cv=none; b=kbaxgvpz6UG1YHpRdGgkVMvKP0ZiLZef5Dc07A/EGnGv3NZWgpP2C2D8G9LixuOo19U+7GynuJjnVOcD8kSWGvwHjgylOARUII7VBEHgPAq2BLxwxFAqaj9VOKLhxk+uicGVZR8sYtBxqOO1HmGWWCFbiBkLas3Mg7e295ve9G8=
+	t=1717490705; cv=none; b=FmjWPuqqKzmpSGsXR3xvjolNr2tKWXHf0U4PC1OS2dyJWR9Cg+q+zVuXwI/nIZjI0IIBOvpP6XZ0GZQoBywidbYC9IwO5iuGalNLYotWp5ncLWMznlql4+TK+xgtV6XQcYlha3wA5FeODqsKi6bXWMQT6h1gxlD/Hp23+b6U+P8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717490504; c=relaxed/simple;
-	bh=sBNvRH5TEd1tQdvf9rrNMajCAWgqpaOwtjRYOaUk8/A=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=oJuGAx5Kooh6zGwYnxciZ48zmRXS59PLhdn1t8hlB4ODIN5E0q4FhLVPzqxBBLFcagasLqnzgxv8IZIjtO0Z+ePvRmunIuvZy4gcRPyMmg1VepkUV/N+GyDbe+q9MNJnqsHvM285doI5LDuASAPzn/+3yEV1SLF7G627G+rtcn0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Vp5h0MG9; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a6265d48ec3so553485166b.0;
-        Tue, 04 Jun 2024 01:41:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717490501; x=1718095301; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Fgqvf7dSV2wg1wNnuZIK3NfsH411d74v9AFFfs0leYc=;
-        b=Vp5h0MG9CMIYYb27z9bGNhO2jqERzsnrG5BrJKgwESqNAcMkKGJwi43AJ+RpXlzoye
-         0JwvlQB/w1YerSY+rI3pm5qJ8hpokZJIdRwhA5aoqE9rv67swiW3gZTpti8dec+Amisd
-         ejGPiv7jfakAomNZj4nbPrO7o6Acrcm0ZP1LA7oANtDvwiqE0px+b2VD+cM32X63P6Aj
-         +PJrkjmXuzSJhS4RCQwA6ewiCUj+U+9DBtaYkOaI12cG6JqzQtNY6Ao7T25i7oJ398Eo
-         8/l+EDI9VLGvFnxOlP+tMvEwMRGdLLJpYgQj1Ul4S7iLRKR+WGvh/HpOpooYiY/2G3of
-         GJOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717490501; x=1718095301;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Fgqvf7dSV2wg1wNnuZIK3NfsH411d74v9AFFfs0leYc=;
-        b=mN2k+4Cabt+T02rJOz08uGuDNgCr8MzTr3ZxV1MFr2Kqdf0d/0sgzhP/6Be159j+sz
-         7GnhsGUEAWh0GF3l5R1sBJ00+HHdCeTChT9FvSzhU9blzehZxWZlafTssSQXqTTqLTPD
-         Cs1S6Dxk8e7/NakpVQ3PyjI52rj0nsxN0W+uSrESOSwrun749FA56ngmgr8Yin5gAz5B
-         v786NFddRum9KqGUfTFVioAON4rMEib9Qb6ir4BIPRSxLb2hrtkB6eKEgiRnx01dXf29
-         DWra5reTScThBPmJgJiJP8NV77t+Wf8le6USq5BA3skCKyuPaigeJ78Cpf8k6FQCXEnX
-         yVSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUYSNELxWYvHOjEomXdl90NvZE0FbKCi6WsxaWG9v1QTmZ3WN3UWIqgePeNws2T9gHCagvjPTC4v7wCxFJD5N4ZSVdZgHLBzWXWvCCGl5XPHOjlxErRY4yIh9KyHcD7ahS7mYrsYfLWYg==
-X-Gm-Message-State: AOJu0YwFGhhAY/N4Ybklam/ecR1Lm4oU/9OLmLA2O4gKuVur2JQbEs0m
-	aDltMaPHDJIrmMxJ1wtv7qkFllZMD3vGpLFI15WUSQqszHgCqKV+
-X-Google-Smtp-Source: AGHT+IF5RkpOyKdBjOA7FhxkRqHcjGiGJP05hVM1+o69oyRQ6HrXgoBqgxpOdIC/4HMia/nXUvIFQA==
-X-Received: by 2002:a17:907:9708:b0:a69:2553:92b8 with SMTP id a640c23a62f3a-a6925539323mr273452866b.34.1717490501265;
-        Tue, 04 Jun 2024 01:41:41 -0700 (PDT)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a692ad28816sm166550966b.31.2024.06.04.01.41.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jun 2024 01:41:40 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH 2/2] arm64: dts: meson: add GXLX/S905L/p271 support
-Date: Tue,  4 Jun 2024 08:41:34 +0000
-Message-Id: <20240604084134.3315841-2-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240604084134.3315841-1-christianshewitt@gmail.com>
-References: <20240604084134.3315841-1-christianshewitt@gmail.com>
+	s=arc-20240116; t=1717490705; c=relaxed/simple;
+	bh=qoaQB7rxX8vYM9zT6xg/g3VNAy1PUU7qn2yUm7JbNTE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eKKItqRZdovc7YcbqexDwH/2dbSfQtj6rQmirobyNdGXBRwIXnbbJCo64BTFluSKOWFrGQ0rvjcDm3cRU8++nht96HCYcsaBCRPGawH0kqResKT7L2PyPmrUeyEc3AF3r5I8TfntlJYf5ES3+iA3cTARPccmR+eC2aUlTK3mDw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AMhwWNEM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A60D0C2BBFC;
+	Tue,  4 Jun 2024 08:45:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717490705;
+	bh=qoaQB7rxX8vYM9zT6xg/g3VNAy1PUU7qn2yUm7JbNTE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AMhwWNEMwZ6o8RteW/0pjAl5ylovbgWc7MgM/FFZjl6A10V0kSCtOEK8HzgcgYI/a
+	 a3Bgbevo1QnH6WjtZaM6KvHA30SjE0lTue3Qy91JB5tAAZKNnYM72iV0Hnuqfuaqr7
+	 /+lJ56FXUmmZ1uaS4gFhBUIJXv5xTBo6FAlMpxVFD2eicBLd1mebf7xa2jlVk3tHgQ
+	 gKAyEG1FfjsOdJ0H5tMIVjoMiDfRNB09vlgYaAo5jbeszkpktrEkX9MjD6Om64Tz8M
+	 BDMnNs1m0OYHtBmPHAP41eMCUUsCBnbeBKOt8j19Y7Y+FpbWOFJbMo00ysg9P43Aex
+	 HgbKbPqUPKBCA==
+Message-ID: <e740deb8-e412-4913-9a79-59ad8e117d53@kernel.org>
+Date: Tue, 4 Jun 2024 10:45:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] dt-bindings: iio: light: add VEML6040 RGBW-LS
+ bindings
+To: arthur.becker@sentec.com, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240604-veml6040-v4-0-5a4d59597874@sentec.com>
+ <20240604-veml6040-v4-2-5a4d59597874@sentec.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240604-veml6040-v4-2-5a4d59597874@sentec.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add a device-tree for the GXLX Amlogic P271 (S905L) reference design
-board. This is a low-cost design similar to P281 (S905W) but with
-silicon differences to omit VP9 and use Mali 450-MP2 (not MP3). The
-SoC is marked with S905L and "2" (believed to denote MP2) resulting
-in chip distributor stock lists and Android STB marketing sometimes
-describing it as an S905L2 chip.
+On 04/06/2024 10:01, Arthur Becker via B4 Relay wrote:
+> From: Arthur Becker <arthur.becker@sentec.com>
+> 
+> Device tree bindings for the vishay VEML6040 RGBW light sensor iio
+> driver
+> 
+> Signed-off-by: Arthur Becker <arthur.becker@sentec.com>
+> ---
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
-NOTE: This patch depends upon the following submitted patches for
-VDEC [0] and SARADC [1] support:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-[0] https://patchwork.kernel.org/project/linux-amlogic/list/?series=858514
-[1] https://patchwork.kernel.org/project/linux-amlogic/list/?series=858525
+If there is any resend:
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 
-CHECK_DTBS generates some warnings for pre-existing issues inherited
-from common dtsi files. The patch does not add any new issues.
-
- arch/arm64/boot/dts/amlogic/Makefile          |  1 +
- .../dts/amlogic/meson-gxlx-s905l-p271.dts     | 51 +++++++++++++++++++
- 2 files changed, 52 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts
-
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 0f29517da5ec..0746e01b5853 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -62,6 +62,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc-v2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxlx-s905l-p271.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-gt1-ultimate.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-khadas-vim2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-mecool-kiii-pro.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts b/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts
-new file mode 100644
-index 000000000000..1221f4545130
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts
-@@ -0,0 +1,51 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2024 Christian Hewitt <christianshewitt@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-gxl-s905x.dtsi"
-+#include "meson-gx-p23x-q20x.dtsi"
-+
-+/ {
-+	compatible = "amlogic,p271", "amlogic,s905l", "amlogic,meson-gxlx";
-+	model = "Amlogic Meson GXLX (S905L) P271 Development Board";
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x40000000>;
-+	};
-+
-+	sound {
-+		model = "P271";
-+	};
-+};
-+
-+&apb {
-+	mali: gpu@c0000 {
-+		/* Mali 450-MP2 */
-+		interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-names = "gp", "gpmmu", "pp", "pmu",
-+			"pp0", "ppmmu0", "pp1", "ppmmu1";
-+	};
-+};
-+
-+&saradc {
-+	compatible = "amlogic,meson-gxlx-saradc", "amlogic,meson-saradc";
-+};
-+
-+&usb {
-+	dr_mode = "host";
-+};
-+
-+&vdec {
-+	compatible = "amlogic,gxlx-vdec", "amlogic,gx-vdec";
-+};
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
