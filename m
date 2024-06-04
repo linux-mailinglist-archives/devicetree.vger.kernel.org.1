@@ -1,107 +1,76 @@
-Return-Path: <devicetree+bounces-72010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 487D88FA7BD
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 03:51:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 470F28FA7C0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 03:54:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C4D6EB209E8
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 01:51:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03CC02833DC
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 01:54:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2466233062;
-	Tue,  4 Jun 2024 01:51:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BABD213D2B7;
+	Tue,  4 Jun 2024 01:53:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ilIRnfCX"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="N+2j7c4p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED54C4A04;
-	Tue,  4 Jun 2024 01:51:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D52E44A04;
+	Tue,  4 Jun 2024 01:53:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717465894; cv=none; b=RdpWuNZBPQ8n18aw4a0nyqwqUuXj7RzhEEWVdIeUQ27GrPDGqpxufgt2udbX6KRtBkCevsUdUAK6aARkNCD+VmWfr2q6Fv2+z9qKyvTg5U37hfWVF4rZye6TCPOS3QZuoo2/AVnPk1xLe39vyEDJTg9FVBMsLCrBVLbY2tYuVcU=
+	t=1717466037; cv=none; b=AvYfqCJHXvbXn4ARYLCG5mgI2yb3Rb8GUs344OjQIZjJ/g0I2Jq4NYp/gmvvcn42u6h2MVJHUs0UtWflnsI4NdsHRnMH6SFVvalO6qzorJLotkW1zVtS3ZV6C4/FeyzLvWnxN9b1h3Lu6YYCCR9IolIH2UYb8ovIEr9151IurP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717465894; c=relaxed/simple;
-	bh=dEPv1dYC3IoPhn6DAU+v5jT+Lv/0U5BtbLurTzGUu1k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WAzcGmZm5aFbjWDzOrLSZ1oShNIPBEPSfkkk4l9PoRkJShk3zuwFOQ/SHTowTEoXxK8yZ+GN7wO4ixhMxuNcyLq7bCCbzPBzd9jpb3X/IxR9RLt4iiS0/6u4WYLXsfgN8Swr44+b6ka6MnYX9Z4+Cpdjl5v6gB5YYaoay9HLwTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ilIRnfCX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 647E2C2BD10;
-	Tue,  4 Jun 2024 01:51:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717465893;
-	bh=dEPv1dYC3IoPhn6DAU+v5jT+Lv/0U5BtbLurTzGUu1k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ilIRnfCX2IMfOHYc9qygVQ7gs3ZJHi1xvtlDsULEKrGRSQcNVgAWPpKa8u9Yznb+4
-	 ZrHy0Hgf6z26Oh10/wXCBY0XMeZS4UbeoQ8/02iUccl+Kv7pdck5c2dMF1p/77JLv4
-	 SF0sGw26WeOtqgOKwKm3jJYgI+kUJG/EemC3ohi3WWLqv1j755c2FSG2eueA6nHt4o
-	 lSoxP+YDI5Aw96mwq2q5JqmdxLdV9GBfqVaxRNhd9MBu7Y20HRUEwx9T4ksjCWCHO1
-	 oukzoMq28Z12OUqyjVOg7N8pMfE8B1C+JJEuZkMlmIMuLDyM2fmLhKgzG0JTGL47aN
-	 /emSPme8p9eew==
-Message-ID: <b272c3e3-ccfc-49ab-bc0b-242cd01161e3@kernel.org>
-Date: Tue, 4 Jun 2024 10:51:30 +0900
+	s=arc-20240116; t=1717466037; c=relaxed/simple;
+	bh=8Myg52lLWrLZOLkXAsnAEtMJuwErLEP/S/CM0D8BeoI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=U4WS4PN6i+AU0Z8XaptjIK8okjczejiscQmzYuC4LkJsirZxCFYXW838xgZG4sL+NHb5g38WdhWWKGIB4pTpl2qufhuaXLabTdojTUdmY3NnRGGvtSEhH5SIp1HP21QaELEv6VfzN3rt0s9doI55BkP6XKVISRXqWZ0YFky5kgs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=N+2j7c4p; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+Received: from [192.168.68.112] (ppp118-210-171-248.adl-adc-lon-bras34.tpg.internode.on.net [118.210.171.248])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 56C412013B;
+	Tue,  4 Jun 2024 09:53:51 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1717466033;
+	bh=8Myg52lLWrLZOLkXAsnAEtMJuwErLEP/S/CM0D8BeoI=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=N+2j7c4pxg+RU3Ui5pOQmzKgoMYWUFKHKG3B7qXpkU9UWks8sRBiil4hs5fn0W+4f
+	 sBVA5EixdQawh0U4DWtncxYLquPSpBT4a12DwB0w5vgFeiidPfcJD6jdTwvVs/hQ0Q
+	 K3bu0pvugMEJoUdc3dmieC/uRvvWanFdFd7DkbHT+JT4pYx2+Bt3rVK1aoJHZAWSax
+	 2ZLzkCYRMNxzCZxq/LkuZr8Ta2gdHfN707jRuIfVnuj7v044T9SVnaRnyyhA11+bOz
+	 9LjNi54m5R2rVeebzxiH92jeTXqH3/92lZ/SOocCc6uFoOSoMOnjangCmJZ1WnzZfu
+	 DSjkFIgGgefWg==
+Message-ID: <9375ace675ef1a6bfb00c916c940fb839ed10289.camel@codeconstruct.com.au>
+Subject: Re: [PATCH] arm: dts: aspeed: Use standard 'i2c' bus node name
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: "Rob Herring (Arm)" <robh@kernel.org>, Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
+	 <joel@jms.id.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Date: Tue, 04 Jun 2024 11:23:48 +0930
+In-Reply-To: <20240531193115.3814887-1-robh@kernel.org>
+References: <20240531193115.3814887-1-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 00/13] PCI: dw-rockchip: Add endpoint mode support
-To: Kever Yang <kever.yang@rock-chips.com>, Niklas Cassel
- <cassel@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Jon Lin <jon.lin@rock-chips.com>, Shawn Lin <shawn.lin@rock-chips.com>,
- Simon Xue <xxm@rock-chips.com>
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20240529-rockchip-pcie-ep-v1-v4-0-3dc00fe21a78@kernel.org>
- <05b1bfa3-4284-4820-b0f6-124e08088456@rock-chips.com>
-From: Damien Le Moal <dlemoal@kernel.org>
-Content-Language: en-US
-Organization: Western Digital Research
-In-Reply-To: <05b1bfa3-4284-4820-b0f6-124e08088456@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 6/4/24 10:45, Kever Yang wrote:
-> Hi Niklas,
-> 
-> On 2024/5/29 16:28, Niklas Cassel wrote:
->> Hello all,
->>
->> This series adds PCIe endpoint mode support for the rockchip rk3588 and
->> rk3568 SoCs.
->>
->> This series is based on: pci/next
->> (git://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git)
->>
->> This series can also be found in git:
->> https://github.com/floatious/linux/commits/rockchip-pcie-ep-v4
->>
->> Testing done:
->> This series has been tested with two rock5b:s, one running in RC mode and
->> one running in EP mode. This series has also been tested with an Intel x86
->> host and rock5b running in EP mode.
-> 
-> I'm interesting how you test in Intel x86 host, PC scan the PCIe device 
-> in BIOS, do you
-> 
-> power on the EP before PC power on?
+On Fri, 2024-05-31 at 14:31 -0500, Rob Herring (Arm) wrote:
+> The standard node name for I2C buses is 'i2c'.
+>=20
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-Yes. Same with any host, not just x86.
+Thanks, I've applied this a tree for Joel to pick up.
 
--- 
-Damien Le Moal
-Western Digital Research
-
+Andrew
 
