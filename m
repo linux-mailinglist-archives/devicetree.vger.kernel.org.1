@@ -1,187 +1,115 @@
-Return-Path: <devicetree+bounces-72246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D3728FB2EC
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:53:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F9778FB2F1
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:54:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D55A1F210E5
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 12:53:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35A8E281303
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 12:54:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 135E11465A5;
-	Tue,  4 Jun 2024 12:50:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E157148856;
+	Tue,  4 Jun 2024 12:50:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z4bKT20b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NxMknA+X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61C18145FF1;
-	Tue,  4 Jun 2024 12:50:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57CA314882B;
+	Tue,  4 Jun 2024 12:50:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717505417; cv=none; b=H9D34N5nwFTq26LPhGr6v8C4Da+neNLcbs7AJUBB8w83j6QutrzZWkO51peR5mztpj3rVPoxn+oERRYRGoeOviqlRYwo2pGHdkW7DfRsHZG+FeAUrnYSkrYVyXQcb8QsvH5/H7ZClBDeMFqLBg/Xa/Anwky1qP1mvrVNytE69HE=
+	t=1717505433; cv=none; b=EQee+zDe1W0JZkNm6wm+sVXxgpIGFyHNM8EWcuF959uwtB/fYrLRjjzY0f8/DLeC95JhVhlOz/RJT4WT0gSvNnAsE64uKwUMGlmRy9mbUMPEjw3Q4TN+K7YQ45G2cT7v4WIicoA8Pyi7O+AYP+RgGni34aahSJ2bzGdEqx0jRd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717505417; c=relaxed/simple;
-	bh=uL/t7pm9AK4sEcDXmw3Mra5gJjxVZIFJK9MXRYF5SCc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JzgkMzeTR8poymTuyMufW0IH/Da9rELUi1eaFZvSlg+YLiFKKHqtyKJWsoI6diWl30qEpqgCIc61kXrocVuDD39H5QMPrIGDuksKj6kaS0Ht5TqENmLZF9xRO0YmBiCPf+yCP3Y0WNGV2CWZwkoXLuSQwlVsmLZ9Voj6d2SoPss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z4bKT20b; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-57a677d3d79so3342259a12.1;
-        Tue, 04 Jun 2024 05:50:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717505414; x=1718110214; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l5A5/CwMQp+giK6dA3QbmX6y5Z0nir0CTmgUL04kHgE=;
-        b=Z4bKT20bGMXD/hk6vaMlGYEtJU15SQFFGJF0FO93kOVnrFOkPoYb1MJ/1VShuoAyem
-         syYNMKa6g5kbjkqLb3yTYj3OTv1iWT1CnVpKKrLzHMa9Ttl6PNcKaEAC2mMiN4y/CHO2
-         eJm67iJT/ndfWtIFsH9/5UZzdv+3dI8w7Ecdip+yk32SKy5c+pYIHoaLFbpCy1/B2Wuk
-         vQK57JT9Pw9wcdvg5/iFe7qViq1/2s1kfyEShnoGDbDxC/jycH3Sx7tk01BUhJkA5xCh
-         J0cX3ls4XbAW5W7dt0GB65hX3QZy+v3KJdx0kE+WFnMJj8k4/rG0jZwS6l74Ek6SJ1t4
-         Ldaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717505414; x=1718110214;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l5A5/CwMQp+giK6dA3QbmX6y5Z0nir0CTmgUL04kHgE=;
-        b=T1D1u2hdB02XKS88FFFSpXWeyYy+2ImWI/9Bphe6gCPYRVUUViNVp6CxBp/caepC2v
-         59+4hdiF7gyoCEwcAL5mxDh0a1NrboBpL4p9BCbSInchI0qFpO8a2edipFpsu63pI6EJ
-         jaVA4pS7lIMg9V5LU1pU2xeb/fnJkYXBLQBfvRQVSeiLDSTBW/tPoQ9uFb44/R+zsI3l
-         V/vrhfng80PdOqif/FPUHclLGpPGWiCoIrGWPwCjWICQPZvD1rVh8G3Ay0FbPEc/eGoI
-         eeRXnzqozyuqjMFFqdT0OO3A1VNryqMxQbuG7rnYNLzW5rL3qX1yiQ1h0Rc9PicoVhUu
-         Yw/g==
-X-Forwarded-Encrypted: i=1; AJvYcCXfTbcwtnEdwhv8o+OJ2jKoQDKwc2QvWZap3ALg2bloQiR+faq0aLhFCziKd/ugfTnuvZ7DF0zs2zagbUGQN/od1wWIE0HgT1EkVpyECdVKPdnuG/8eOWQfvruhVNSUHiGcsMD93xu9EsxDIfypU+yi3JyPQAxRgIJd1i8qxQt7/XaXBA==
-X-Gm-Message-State: AOJu0Yw2ayA/0ivlJyQbuOiZgPYkLOCq6USQKIscjaY2S7AVwt5Ia/Vb
-	IkPqkD1e5iCwr82pIWs0ajKNCtEg5m3oEPRskVvfWvweBXj1Hq1W7r+5Nn1YsA9f9vpwvNufma8
-	OvfiQH/bUhHYQJiJK2ux3bVEjGB0=
-X-Google-Smtp-Source: AGHT+IF2c7GJir+XPdRoLTFlUuzDsKkGSNria5acCbGeioFwEyDr0OUN028acb+qeCgAnoaY523IZwylbZbhdOiDrCo=
-X-Received: by 2002:a50:9ea5:0:b0:578:6484:24ff with SMTP id
- 4fb4d7f45d1cf-57a7a6a29a2mr2227617a12.6.1717505413457; Tue, 04 Jun 2024
- 05:50:13 -0700 (PDT)
+	s=arc-20240116; t=1717505433; c=relaxed/simple;
+	bh=CLuSD10Auw3b45Rs7wDNc1Y+bI+7e6t/jKqHAQlZhBo=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=RBO9NZ4Dk82NMFN+kPHmM0J0RVUE3ZslteipjLwJCHwQ3anqAGwpbDpvPdMUp7IkuKRyCnWNq5RghDh68+0AacLnNrlpe8Vj3DxND5g1MgM0Hx6BQls5TRFv00gANYCRV/AHtzsQnB+mbA9Wkk+VIAz2BJ9UJ/eHSVYVoTh8AL0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NxMknA+X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CCD6C3277B;
+	Tue,  4 Jun 2024 12:50:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717505430;
+	bh=CLuSD10Auw3b45Rs7wDNc1Y+bI+7e6t/jKqHAQlZhBo=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=NxMknA+X6kjkzdJE34TjJfT5bJm+unUH6RIKDrzTQ3rWpldei90v2NMZNZ3eUJB4b
+	 7n1NWjjUpL7oovMphxfKQCZdx1bMG5wiGuo7S1VuHhabzglGHjhoiqh7Bft+V5XLgq
+	 CQ6lyyCbDcscAzRNeMgLPXwQcGXbW38GJst6eTP9GL1YBJRdlytiZmGDE1KRO84n06
+	 GtWLn/d6usN3winasKQcnAThxqfpZlC4Gm6EIcTbTt9OQldb1kHh9/Pgk2Z8VCc7Nz
+	 uL8OsWtSCCQdMYHu7mZ5J3QY9pPJrQ3yYUsyPnWxUAnXP77e/7+RR6voWRRKRbZhTC
+	 WenSkITJvWQbw==
+Date: Tue, 04 Jun 2024 07:50:28 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240530072113.30410-1-animeshagarwal28@gmail.com> <Zlij+FgY4ul7ZwbA@lizhi-Precision-Tower-5810>
-In-Reply-To: <Zlij+FgY4ul7ZwbA@lizhi-Precision-Tower-5810>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Tue, 4 Jun 2024 15:50:01 +0300
-Message-ID: <CAEnQRZBsBOAHiwZDNKyPRinXdEOhdu2dBdGpMrq-e9kWasukSQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: dma: fsl,imx-dma: Convert to dtschema
-To: Frank Li <Frank.li@nxp.com>
-Cc: Animesh Agarwal <animeshagarwal28@gmail.com>, Vinod Koul <vkoul@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, May 30, 2024 at 7:06=E2=80=AFPM Frank Li <Frank.li@nxp.com> wrote:
->
-> On Thu, May 30, 2024 at 12:51:07PM +0530, Animesh Agarwal wrote:
-> > Convert the fsl i.MX DMA controller bindings to DT schema
->
-> nit: need "." after sentence.
->
-> >
-> > Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-> > ---
-> >  .../devicetree/bindings/dma/fsl,imx-dma.yaml  | 58 +++++++++++++++++++
-> >  .../devicetree/bindings/dma/fsl-imx-dma.txt   | 50 ----------------
-> >  2 files changed, 58 insertions(+), 50 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/dma/fsl,imx-dma.y=
-aml
-> >  delete mode 100644 Documentation/devicetree/bindings/dma/fsl-imx-dma.t=
-xt
-> >
-> > diff --git a/Documentation/devicetree/bindings/dma/fsl,imx-dma.yaml b/D=
-ocumentation/devicetree/bindings/dma/fsl,imx-dma.yaml
-> > new file mode 100644
-> > index 000000000000..f36ab5425bdb
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/dma/fsl,imx-dma.yaml
-> > @@ -0,0 +1,58 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/dma/fsl,imx-dma.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Freescale Direct Memory Access (DMA) Controller for i.MX
-> > +
-> > +maintainers:
-> > +  - Animesh Agarwal <animeshagarwal28@gmail.com>
-> > +
-> > +allOf:
-> > +  - $ref: dma-controller.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - fsl,imx1-dma
-> > +      - fsl,imx21-dma
-> > +      - fsl,imx27-dma
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    description: |
-> > +      First item should be DMA interrupt, second one is optional and
-> > +      should contain DMA Error interrupt.
->
-> items:
->   - description: DMA complete interrupt
->   - description: DMA Error interrupt
->
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +
-> > +  "#dma-cells":
-> > +    const: 1
-> > +
-> > +  dma-channels:
-> > +    const: 16
->
-> I think it should be maximum: 16
-
-As Krzysztof pointed out and looking at datasheet and driver implementation=
-, we
-always use 16 channels. Nothing less or variable.
-
-So const: 16 I think it is correct!
-
-Another, thing. Should we keep both
-
-dma-channels
-and
-#dma-channels?
-
-I wonder what is the correct way to put #dma-channels
-
-Like this:
-
-#dma-channels:
-     deprecated
-
-or
-
-'#dma-channels':
-    deprecated
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Brendan Higgins <brendan.higgins@linux.dev>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Daniel Latypov <dlatypov@google.com>, Maxime Ripard <maxime@cerno.tech>, 
+ linux-clk@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>, 
+ patches@lists.linux.dev, "Rafael J . Wysocki" <rafael@kernel.org>, 
+ kunit-dev@googlegroups.com, Christian Marangi <ansuelsmth@gmail.com>, 
+ Saravana Kannan <saravanak@google.com>, linux-kselftest@vger.kernel.org, 
+ David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+ Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <20240603223811.3815762-8-sboyd@kernel.org>
+References: <20240603223811.3815762-1-sboyd@kernel.org>
+ <20240603223811.3815762-8-sboyd@kernel.org>
+Message-Id: <171750542807.3346.5048720218082629186.robh@kernel.org>
+Subject: Re: [PATCH v5 07/11] dt-bindings: test: Add single clk consumer
 
 
-The rest looks good to me.
+On Mon, 03 Jun 2024 15:38:04 -0700, Stephen Boyd wrote:
+> Describe a binding for a device that consumes a single clk in DT. This
+> will initially be used by a KUnit test to clk_get() the clk registered
+> by of_fixed_clk_setup() and test that it is setup properly.
+> 
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Brendan Higgins <brendan.higgins@linux.dev>
+> Cc: David Gow <davidgow@google.com>
+> Cc: Rae Moar <rmoar@google.com>
+> Signed-off-by: Stephen Boyd <sboyd@kernel.org>
+> ---
+>  .../test/test,single-clk-consumer.yaml        | 34 +++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/test/test,single-clk-consumer.yaml
+> 
 
-Thanks for doing this Animesh!
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/test/test,single-clk-consumer.example.dtb: /example-0/clock-consumer: failed to match any schema with compatible: ['test,clk-fixed-rate']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240603223811.3815762-8-sboyd@kernel.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
