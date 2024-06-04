@@ -1,100 +1,112 @@
-Return-Path: <devicetree+bounces-72441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E08C28FBC07
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 21:02:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2430E8FBC34
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 21:09:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80B221F23D32
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 19:02:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9B05EB23516
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 19:09:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7222D14A632;
-	Tue,  4 Jun 2024 19:02:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7A9A14AD32;
+	Tue,  4 Jun 2024 19:09:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="hb0BpmH5";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="BwP54sH+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q3RGWuRG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0B2D14A61E;
-	Tue,  4 Jun 2024 19:02:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 800F614AD2B;
+	Tue,  4 Jun 2024 19:09:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717527746; cv=none; b=qFeKWpj+Z8ppvVqdS8G10oH3Vuepnn+TNoFRjGZs6Ko/rjzIVU29GAZjvZ5ynST57SkTU3s1TAO8C6fPIcR7umFc7RGSRRcpRT7t4evcy1TX0SpP4rC4hvzCiIYf+N5OPQQSvm6zwqSzS01e6j7BaYRVkfVdxRh3smZ/Xf0Gx78=
+	t=1717528152; cv=none; b=EKcaRnhwzzRlpkQuMP5JD7BcaftFcZkHyRsaPOWe4WF6epb3nOh0WK3pmdB493LOPheaPQIK+0Hdf5VoDG7UICXQMhqSNj0KTvBAZ2lPR2UmoTilWYANNKaSHxS8DAI/WKVEbd/38pBwl9okRvmc0rc+RYI4J/+N4BZDNc/7Fuw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717527746; c=relaxed/simple;
-	bh=uMSkJk+dg2LQhDExTLD4gnvTBLV3WzNCYPdVHfzYj30=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=GeiLamy02+FlCpsXMK/hvKoPGQRLH0WwWgr603jlHQ5l00YRk/HvBxnN21TYMZZ2JIth4vMtvBzfhsZRJLWCNKoFHkiqki1fyJ3Hf2NqWvTb6xk/x4t8QliphUmPgVajIZV8rH45XX/k26BYwafMapU9gr2qK96sPAp3YLh8lMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=hb0BpmH5; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=BwP54sH+; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1717527742;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Pl9qr7709UaFfhmIja99nnTUkZ499nGLto2FNA0uIZM=;
-	b=hb0BpmH5b+ZVhpGp4TCKwC5yHotiztytRSO9V3WGSPbH1IZz6BUNqnb6N6SePJ2p6DQzTX
-	3Dy9aqAMjrAk9uCOMVK9h22D9c31na8bTAf8liWiwaeuv0EYU3JaRncaN7mR68w79pVRjw
-	AXvs2XUTvEoz2s00117MAGBslsnt/oB9dZMHQuCmyW9FAMsd5mRI9GKmiqdHrMcKo3+H/g
-	J/GoUnc2RP6ALi7EbT40ZD3seQXI4WaYogYhuqmBTNE4bOwiFReAZJ9qa4jONEnlCsjJ+P
-	ssyWqesiO15U2rYyZcF3WKp0Yvhv+Py6jwZBEwz85/n7Bws4qV+qNQrUnEDjBA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1717527742;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Pl9qr7709UaFfhmIja99nnTUkZ499nGLto2FNA0uIZM=;
-	b=BwP54sH+bWPx8hCny5NetHZnXQZU/QaHTApPp9/H5JcQbMvk7BrA4oJ7b3VxrvyeqOxXaa
-	bxGw/FNs+kzBtUBw==
-To: Herve Codina <herve.codina@bootlin.com>, Simon Horman
- <horms@kernel.org>, Sai Krishna Gajula <saikrishnag@marvell.com>, Herve
- Codina <herve.codina@bootlin.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Lee Jones <lee@kernel.org>, Arnd Bergmann
- <arnd@arndb.de>, Horatiu Vultur <horatiu.vultur@microchip.com>,
- UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>, Heiner
- Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
- Saravana Kannan <saravanak@google.com>, Bjorn Helgaas
- <bhelgaas@google.com>, Philipp Zabel <p.zabel@pengutronix.de>, Lars
- Povlsen <lars.povlsen@microchip.com>, Steen Hegelund
- <Steen.Hegelund@microchip.com>, Daniel Machon
- <daniel.machon@microchip.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- netdev@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Allan Nielsen
- <allan.nielsen@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 09/19] irqdomain: Add missing parameter descriptions
- in docs
-In-Reply-To: <20240527161450.326615-10-herve.codina@bootlin.com>
-References: <20240527161450.326615-1-herve.codina@bootlin.com>
- <20240527161450.326615-10-herve.codina@bootlin.com>
-Date: Tue, 04 Jun 2024 21:02:22 +0200
-Message-ID: <87a5k05y69.ffs@tglx>
+	s=arc-20240116; t=1717528152; c=relaxed/simple;
+	bh=5O2hvcEPB+WifLBOM64rjrb5IN0YGFwc6fcMkZJFpNw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tWgZVO123EIsR4z9tgKbwCWotDFdtn9rZ1iI5SEzBh9VuN2+y+FPB/DgV592CcEBFDjgWEuamvZ9vLCCKt7jNVoyQxxliQz4Cc2NHnmW45IxevmNgas9s/gkoUh0Jew5qvjcjONu6x/ofO2+7aqNkPX0ikN3Pza4igo6fBvERtM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q3RGWuRG; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1f480624d04so48125305ad.2;
+        Tue, 04 Jun 2024 12:09:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717528151; x=1718132951; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=lBlKoYwvZRYVCTZgzTwhw1nqnwRx3L1d/Hdiocgdp9c=;
+        b=Q3RGWuRGlPYpLhn1XHa2uWN8wu8Jr/RG0zgXtvGvP34q1rqBrBXgc55bHzHKrs1+rw
+         dCfa+ISH972d6GNNY+N4QU8N1gyJ8YuWi65XneX3xc06OdJ79PmIOoCIx4a7v89Ia5m+
+         Bo5XxnUq9olJU3wI3g6Sfq/8RQOOuqu4hfOtdo+Ygaxz6oyjldd0X26xmF6m9LBRBti3
+         qs9h4s+QOymIRdrazhZNk04j9PxcJwZ43vfo7I+UDKJAgc2lyCVT72MtAOXIj2Lbx/hi
+         OLjPyjiaksqrY2bUzLrTEmdsu8HHP9L+MWGwg+d5IXmspcHihPDokL9nK1N9vDYjsrXM
+         uvJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717528151; x=1718132951;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lBlKoYwvZRYVCTZgzTwhw1nqnwRx3L1d/Hdiocgdp9c=;
+        b=WWZMqJUUxl/zRSOz662erHoFYpfwVzyiqnszGIUcnfl9wEa+IGo/doMAXAF3ikii9J
+         PNG+gVMLPJywTV9agOfx861pVvZ4dGPdcFsc7k9OG9BRSV+BP1Q0Jc0ZAFiNyJ+YBiNd
+         9JmsypiRWY+b6zuwBthuDIz63g1S0jo0UJ868fxbcSeIrHv1F7cmIs3GZICUmoTtpdxQ
+         MHgbC6FazEhRpesmAOSh6nzapwlHNOo5D1LSzknd0vYGQC7CnzU5xutweEK2JqxcSE/s
+         mmYGZnYwtehrgNcN/QzQfix4Tv8uHebuxxhkoSe/QSUrCNZbWK3jxxoDF22AqSc9SGMd
+         3qVw==
+X-Forwarded-Encrypted: i=1; AJvYcCV7CtPt2+H2sj9Mt/JpC5V4771bNoAifZ9ZJBv747e75dmHZQaMxtITC4AjJ+Uy31eW0pJ9Ks48mQdYKmjbaU4e6kFp2gywqC40TscOqc1gTJzShmkSWRNlUjTPrm9lwo0tKmkvzGpUKA8huSh076eU/RSIHJ/fjkk3Qxd5b+rFy9mze9Tx
+X-Gm-Message-State: AOJu0YwUUYzYje15mSHohTtPnsamLuTe6L3L134tVcQnv5cI85DMcRM0
+	auipNnXPKSZTnK48oIcA7pBWDuTC/m3WPSUZmon2gkX1CD4ctVnv
+X-Google-Smtp-Source: AGHT+IF2CgvPQeC3wsa6Wxy+YuRpwdo5sw8trQD/dcdJCI61OHiJLZHSBEaHAviXAx9+GkCKCcbzOQ==
+X-Received: by 2002:a17:902:f547:b0:1f6:700e:a2ca with SMTP id d9443c01a7336-1f6a5a28eb1mr5424485ad.39.1717528150639;
+        Tue, 04 Jun 2024 12:09:10 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:1327:f82:3fa9:728f])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f63232dd6bsm87130275ad.54.2024.06.04.12.09.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Jun 2024 12:09:10 -0700 (PDT)
+Date: Tue, 4 Jun 2024 12:09:07 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Daisuke Nojiri <dnojiri@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Benson Leung <bleung@chromium.org>,
+	Guenter Roeck <groeck@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>, devicetree@vger.kernel.org,
+	chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-input@vger.kernel.org
+Subject: Re: [PATCH 3/3] ARM: dts: cros-ec-keyboard: Add keyboard matrix v3.0
+Message-ID: <Zl9mUxT2XXKHdb_e@google.com>
+References: <20240604005354.2294468-1-dnojiri@chromium.org>
+ <20240604170935.2518856-1-dnojiri@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240604170935.2518856-1-dnojiri@chromium.org>
 
-On Mon, May 27 2024 at 18:14, Herve Codina wrote:
-> During compilation, several warning of the following form were raised:
->   Function parameter or struct member 'x' not described in 'yyy'
->
-> Add the missing function parameter descriptions.
+Hi Daisuke,
 
-Sigh. Why is such a cleanup burried in the middle of patch series which
-tries to add a network driver?
+On Tue, Jun 04, 2024 at 10:09:33AM -0700, Daisuke Nojiri wrote:
+> Add support for keyboard matrix version 3.0. To enable it, define
+> CONFIG_CROS_KBD_V30.
+
+I might be wrong but it looks to me if one enables support for v3 keymap
+then the kernel will not work for devices using other/older versions of
+keymap. It might be acceptable for Chrome OS kernels but will nto work
+for upstream.
+
+I think you need to create arch/arm/boot/dts/cros-ec-keyboard-v3.dtsi
+that would define "keyboard_controller" node with proper keymap and
+include this new dtsi into std files for devices/boards that need it.
+
+Thanks.
+
+-- 
+Dmitry
 
