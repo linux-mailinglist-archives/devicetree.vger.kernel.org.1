@@ -1,123 +1,110 @@
-Return-Path: <devicetree+bounces-72487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E0D68FBF6F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 00:59:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A11B58FBF95
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 01:08:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B7AD286911
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 22:59:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D93A287D40
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 23:08:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B39514EC77;
-	Tue,  4 Jun 2024 22:58:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5827314D432;
+	Tue,  4 Jun 2024 23:08:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ncADUrwD"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Sh07SUgr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBD2814EC69;
-	Tue,  4 Jun 2024 22:58:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B0EC14D296;
+	Tue,  4 Jun 2024 23:08:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717541906; cv=none; b=peD7fwRZwJYJzxJiHbBHODoHJU+YO3DqwBCBiI/fptwfxOayrazI7OVmW0YE8dpaV/jzw5SdM2oi1cidmvIYi/+xPL+P8MTXWE/VGr7dz5L6mr0z7oqQ2ctwt94yfVd/lG+3ep2WRKKH/mpcvYjqxad+Gof6scZegyY5vvQKH3k=
+	t=1717542494; cv=none; b=k8GK46ydBfrOAIVUX0ru1Snzc7I7bPauhu9hD76ttXcpd6+0inmMEZMvYPjGI5iPFaQYM94uIpuwZOjgydruie2jeM1FZjOpCWIj6crarD8M0ZT7hlTBRmFX164Y2OP/Bffq/JvfveVfvkAouNz1sE9VevQ8FiG/Xw62pSOq91U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717541906; c=relaxed/simple;
-	bh=1HPHsVbVreRIstqrbeKaTP8EFP0/aLLOcaUwnO+ibPc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=X8GUrW5NkJVTq/FCo0fGkWRa3GL0ixTECaUIHRmO21JI/Lohn/AtDuYptA5ZdYaBzQfQFbl7yafYOUPltEPyKWp9K8kv4o93futl/Kxy4lw5pRwupz2YfeGVtwo9aCgCgJWqE7YvMxb3b6wRYtw+raPWoAWEsvPcaoThS9toEJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ncADUrwD; arc=none smtp.client-ip=209.85.210.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-70260814b2dso293057b3a.1;
-        Tue, 04 Jun 2024 15:58:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717541904; x=1718146704; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=e+HE1jadcQymVFTGU3XZI2NR8MDGRn4CBzGuTw21Pfw=;
-        b=ncADUrwDWcdSSFlfQLc2lZ5lZIUK9ZjcbBK1P3thDD4OHJDl2wfuG2gd2574WnePKG
-         VD6IT+jOwJotOgejSykTV4nS16pIhvokb2An/Rm003dMfpXcKfYcNgQCLWhZ6o79a0gi
-         2YdNtSb31yLrxmbRuGZB4FRZQO2r3RB+HTslSlArTXgZwFEb/ZuMmIfSM7CMtFcrLKne
-         JyMKWKLynRKxs+vhtVamzvu6qeV5+fwc0aRyqKzgEknMcfkva2/VIyQNxb3oaxg3QQte
-         DTdzVnYjcVKIG9oniG90I76/PO75uvCv9MJqB6N1ivgbkWVrBx7i9WlJvkq6yZ18Z5zx
-         s8Tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717541904; x=1718146704;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=e+HE1jadcQymVFTGU3XZI2NR8MDGRn4CBzGuTw21Pfw=;
-        b=us0823Ety9wcEU6/SKtFkEnafXfz2rGMwWN27WpREil06Xhc40PfEpFv6hlzEA/eya
-         xeZ6M1OYiiw4es4WVbEID4f/qNU+epv9In35tx2Lbu/c7wpZbHLGoJzrzl5XZPTDs/1U
-         FGv5tOVnM1jD1ZtqrxYLK21eDPxVLJ49PzjIZ1PxZGisB7iEbti8q7ak+mkg5aH64P1E
-         KQUMty6y6ycuyYSdl8lcZ6DZnzm/Br1cpnpc0E26yCDMSUOU0GQF3suwNmmlgpwLexpe
-         P2qBsG8GpuskYYlZACM/F5/KuE/hfB8ZnoKLaJ3cMq9DOxJ9o8tz21bCY5m8yJBWmO5w
-         VLuQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVYK0+wyhwsXpam2Fz385laJUow6mmbLxNP5W4IltZrUzIeu6qfGZkASLrXk9gIZgbYUObb4Y8CZ9lCvJTVdemSIyBlfyEBgG8dg+SeslkqQvAKlFJ/gbbz6ki+bmSYgHV87XK7l/DpKxMzP5oA1jWRwnuzy57O0UjfXYYaLYYM9JiF0Q==
-X-Gm-Message-State: AOJu0YwUsPGUFY0ibl4WxGGS63Lu7L5QGEEzft/M1QqKqCiBB06pEhKl
-	deDPAT1OxFg87aeg0mGW+9ZyTVmim4iRDbYJQIV50ONqvFaPTNDVqP46DdHU
-X-Google-Smtp-Source: AGHT+IHG95txt/EEN2XtLksxrB5BLETOojV6B2WT0UsHubIgaPBuvKC3rhB06KSUv+Z0T/4QVBd0XA==
-X-Received: by 2002:a05:6a00:928e:b0:703:ecde:fc00 with SMTP id d2e1a72fcca58-703ecdf1af9mr29567b3a.1.1717541904037;
-        Tue, 04 Jun 2024 15:58:24 -0700 (PDT)
-Received: from localhost.localdomain ([189.101.166.155])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7025a955dd1sm5312125b3a.64.2024.06.04.15.58.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jun 2024 15:58:23 -0700 (PDT)
-From: Gustavo Silva <gustavograzs@gmail.com>
-To: jic23@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	lars@metafoo.de,
-	christophe.jaillet@wanadoo.fr,
-	devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 6/6] MAINTAINERS: Add ScioSense ENS160
-Date: Tue,  4 Jun 2024 19:57:30 -0300
-Message-ID: <20240604225747.7212-7-gustavograzs@gmail.com>
-X-Mailer: git-send-email 2.45.1
-In-Reply-To: <20240604225747.7212-1-gustavograzs@gmail.com>
-References: <20240604225747.7212-1-gustavograzs@gmail.com>
+	s=arc-20240116; t=1717542494; c=relaxed/simple;
+	bh=Rlz96sMG/kOG1NkbypRbXtCzD5LzoBOpjZ03kKZSVZU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=KfGeFqo3+Yz9EaHrekejVAQmjSbOCQTwhvlUZiuA2oofWkM5CgNRqxewQ2WvlebdDfBrCOLFZb3sYfjpQXNsdbD5v/8/XbDwlXrviCTKzGmnb9Xx3muaxiAz+9NykxnUYsCn4W/ScBBbO/FDXt69QVLUJ0hUehFViXM96XQhpl4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Sh07SUgr; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 454HSp4U006214;
+	Tue, 4 Jun 2024 23:07:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Rlz96sMG/kOG1NkbypRbXtCzD5LzoBOpjZ03kKZSVZU=; b=Sh07SUgrhjImHfdH
+	8SF5gPwkwFVEDWC9F2gQeDqxysGKGJPr/2jsqi4pVZDjYbDd0CTK6X9gFRCGoBmk
+	OitrJsxIZIleOjunqKg+LtJMVf4L9jeXQ0r/F2sMtEl7xyaZ8x/sd4Msj7Xe7irj
+	+FFCrxMEBlLFeMJOS9cPWWwuD7t8C+12N/pbjSOksp+JjD1Q5a7PSQ+nk7ljVedB
+	NnZNPRntRdACwGyvkyIu1VyTtmcCDKJJ/QvEi2jYkD+9TBiyY7mJElBrnvchVHSL
+	CeWB663RCxYRf/TckWRXkkvkR05Weo4p17EEf+VRjVPCubqYjl8cXY+a3vmtWVpO
+	VG9wqg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yj7brrmjb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Jun 2024 23:07:48 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 454N7lP2012541
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 4 Jun 2024 23:07:47 GMT
+Received: from [10.48.241.109] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 4 Jun 2024
+ 16:07:46 -0700
+Message-ID: <ed29f097-eb5d-4133-a3f0-4fb0e8933cb8@quicinc.com>
+Date: Tue, 4 Jun 2024 16:07:45 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v22 32/38] ASoC: qcom: qdsp6: Add headphone jack for
+ offload connection status
+Content-Language: en-US
+To: Wesley Cheng <quic_wcheng@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+        <mathias.nyman@intel.com>, <perex@perex.cz>, <conor+dt@kernel.org>,
+        <corbet@lwn.net>, <lgirdwood@gmail.com>, <tiwai@suse.com>,
+        <krzk+dt@kernel.org>, <Thinh.Nguyen@synopsys.com>,
+        <broonie@kernel.org>, <bgoswami@quicinc.com>, <robh@kernel.org>,
+        <gregkh@linuxfoundation.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>
+References: <20240524001043.10141-1-quic_wcheng@quicinc.com>
+ <20240524001043.10141-33-quic_wcheng@quicinc.com>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <20240524001043.10141-33-quic_wcheng@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: pZc8JSSJvyCdzyxMTEuTXq3F2dtNbF2a
+X-Proofpoint-GUID: pZc8JSSJvyCdzyxMTEuTXq3F2dtNbF2a
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-04_11,2024-06-04_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 bulkscore=0 malwarescore=0 spamscore=0 mlxscore=0
+ impostorscore=0 mlxlogscore=847 clxscore=1011 phishscore=0
+ priorityscore=1501 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2405170001 definitions=main-2406040187
 
-Add myself as maintainer for ScioSense ENS160 multi-gas sensor driver.
+On 5/23/2024 5:10 PM, Wesley Cheng wrote:
+[...]
+> +EXPORT_SYMBOL_GPL(qcom_snd_usb_offload_jack_remove);
+> +MODULE_LICENSE("GPL");
 
-Signed-off-by: Gustavo Silva <gustavograzs@gmail.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+please add missing MODULE_DESCRIPTION()
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 304429f9b..92a130c8c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19660,6 +19660,14 @@ F:	include/linux/wait.h
- F:	include/uapi/linux/sched.h
- F:	kernel/sched/
- 
-+SCIOSENSE ENS160 MULTI-GAS SENSOR DRIVER
-+M:	Gustavo Silva <gustavograzs@gmail.com>
-+S:	Maintained
-+F:	drivers/iio/chemical/ens160_core.c
-+F:	drivers/iio/chemical/ens160_i2c.c
-+F:	drivers/iio/chemical/ens160_spi.c
-+F:	drivers/iio/chemical/ens160.h
-+
- SCSI LIBSAS SUBSYSTEM
- R:	John Garry <john.g.garry@oracle.com>
- R:	Jason Yan <yanaijie@huawei.com>
--- 
-2.45.1
 
 
