@@ -1,145 +1,126 @@
-Return-Path: <devicetree+bounces-72133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16D218FAEA5
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 11:23:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 275C58FAED1
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 11:30:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 483881C21546
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 09:23:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58BEE1C21223
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 09:30:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D04C214387B;
-	Tue,  4 Jun 2024 09:23:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A753143C46;
+	Tue,  4 Jun 2024 09:30:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="a7U7PNS4"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="lgN16F3X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E07BB14375F;
-	Tue,  4 Jun 2024 09:23:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 149E913B29F;
+	Tue,  4 Jun 2024 09:30:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717493027; cv=none; b=JzvAf794aak0X+O6S/XHvBX37gK00LJFrCk99CPbqSiX54mW2RoCAJ7VJnFyhaGNlQnhvKzemJ06HzWGldXkWviYMJl0/B56YyDP8mFq0+g7duXbCrNt20pqQdNeKX/ZwF2dEhlG6GGCti11IMyHKXTEb7d2E678SyEb7gvg76o=
+	t=1717493448; cv=none; b=N4rPKaJ6UUkOmT4ud+pHuRARS6n601FIFYmeq7v93smKF/MGp2eb+ncCUAXYDByTqpt94KReFw5OM0DUY9IA5crcep8BIH6hE40IFGrDEPlH3Di42xmMRBactJTA7GJQB/ykeEkbVqyCTDwhqnRcgm3MF6GaW0yBDZkt6yjQr9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717493027; c=relaxed/simple;
-	bh=0IbfNLKc2fhB1rZQPt8kaw8xS3yUglfykrxml/F/h1Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fe5C0xrrFHnb6MZ4brj3jDtzwB1azG170SNCCgLdSE0zLHqMyYQirar0lzWyuiiaoswmTJgsNr6lJpIyl1Vy/wqNI8cuYzj/XqSkxz0+Pgx7alef2owcNRC2PNaVMZQmiZ+Ik1IYLMFcDOsMm8p8j2ssUXkKttD33aL5d3QW4yQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=a7U7PNS4; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1717493025; x=1749029025;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0IbfNLKc2fhB1rZQPt8kaw8xS3yUglfykrxml/F/h1Y=;
-  b=a7U7PNS4fo2Q8ReSiiRVj43P4KBw5x0gQNOLG85t7Zg+YD4i2AaBCx3f
-   GZOr731zmUltqROgM8Vzq9X4ear0eXF53OX1V433pqbwWBzMa05NvIFz8
-   nUcUVZtTUbrpGfplvmX3KQFvsw8qzKqlGIAW4Stkp8tUfwb60FJ1GgR12
-   BiabM/4ukW49wVBbvabDDyn3nui+FJyVQhxmuZU3/JO3bgrgu/fXnLMI2
-   HptAmIsGb40fs3FFQtug9Yd7kd++bqJH9swZ2L3yD2wXyzTrABgI0bR8y
-   2LlwV3iX38Ai1Vr5tb+b81hFB3sAsIdP9imYRu7ibHNpu+9gd6RWXCaiS
-   g==;
-X-CSE-ConnectionGUID: oSqAupphQPO0eIY+lfCVjQ==
-X-CSE-MsgGUID: 90OAzwsYRcaVAPZR+Up0cA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="14218171"
-X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; 
-   d="scan'208";a="14218171"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jun 2024 02:23:44 -0700
-X-CSE-ConnectionGUID: VVvUL15DRC+K7N8LVcOeJw==
-X-CSE-MsgGUID: aPqZVL8ETXKSpnpl7alWbg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; 
-   d="scan'208";a="37262347"
-Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
-  by fmviesa010.fm.intel.com with ESMTP; 04 Jun 2024 02:23:40 -0700
-Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sEQOI-000Mzn-2L;
-	Tue, 04 Jun 2024 09:23:38 +0000
-Date: Tue, 4 Jun 2024 17:23:14 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian Hewitt <christianshewitt@gmail.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 2/2] iio: adc: meson: add support for the GXLX SoC
-Message-ID: <202406041738.6Dy1cRih-lkp@intel.com>
-References: <20240604055431.3313961-2-christianshewitt@gmail.com>
+	s=arc-20240116; t=1717493448; c=relaxed/simple;
+	bh=k1g971Tx/2W69VSIyC3TwflBinpV7z2wsyPh03w2UQo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=i6/xwoCyWN9ua7hlprOCL24XZBDQw9KiTx1Zrfvyp6W4I4ikW79rAuFNWIehKXkutlAlbMPN4YHtSXFR5bcn55NjtAUM8GXEFRDDxhUWMNNbDO1cySl7Ys9tU4V+6Ydu8ZZW+4luVCGv8XYko0mJi/i9yh/lxyr6qeiIsuINEN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=lgN16F3X; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45497h2R013288;
+	Tue, 4 Jun 2024 11:30:12 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	nL+rhL80plHAcEqKjNGqWtyZ+38IgXO/WuU8AB/QLPk=; b=lgN16F3XwY/en8eV
+	S+Clu03gknP5ZcnFoJ3CGlsouOzCsH5UtbdVylggQxkp5O8gEb/cI4v0B6/YrFqp
+	NMz3efOOoAMRP+H5bN2b4wE6TzEzVnv2h11lg4jaaAWRO1PMAqGkKqc7kSwx2gCJ
+	71OkiXdubiYXRmS3CcjYz+JpRjPaYGQr3zb71V4U9ZNVY2VfSElDJEWkHvIk4o59
+	M4Z2GWAQMJSNdGov6zkKwUqoc6cEDS77Aanr6hIuTK3KTerks86uUxsYsFsV8cHe
+	zmkQ0yzaXnk/z9fpwNVxDNSV/GvSO/TpBcD5HRAVcr5rKYVH/c8D/oxw9z+49Fa9
+	8DGyBg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yfw30au3t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Jun 2024 11:30:12 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 4412640044;
+	Tue,  4 Jun 2024 11:30:04 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 46683216EDE;
+	Tue,  4 Jun 2024 11:29:15 +0200 (CEST)
+Received: from [10.48.86.164] (10.48.86.164) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 4 Jun
+ 2024 11:29:11 +0200
+Message-ID: <c41e4379-d118-4182-8a7a-f6cf6c789be0@foss.st.com>
+Date: Tue, 4 Jun 2024 11:29:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240604055431.3313961-2-christianshewitt@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 08/11] ARM: dts: stm32: add ethernet1 and ethernet2
+ support on stm32mp13
+To: Marek Vasut <marex@denx.de>, "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Richard Cochran
+	<richardcochran@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240603092757.71902-1-christophe.roullier@foss.st.com>
+ <20240603092757.71902-9-christophe.roullier@foss.st.com>
+ <e753d3fa-cdfd-426c-9e66-859a4897ec3b@denx.de>
+Content-Language: en-US
+From: Christophe ROULLIER <christophe.roullier@foss.st.com>
+In-Reply-To: <e753d3fa-cdfd-426c-9e66-859a4897ec3b@denx.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-06-04_03,2024-05-30_01,2024-05-17_01
 
-Hi Christian,
 
-kernel test robot noticed the following build errors:
+On 6/3/24 15:03, Marek Vasut wrote:
+> On 6/3/24 11:27 AM, Christophe Roullier wrote:
+>> Both instances ethernet based on GMAC SNPS IP on stm32mp13.
+>> GMAC IP version is SNPS 4.20.
+>>
+>> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
+>
+> I think it would be best to split off the DT patches into separate 
+> series so they can go through Alexandre and have the netdev patches go 
+> through netdev . In the next round, please send 01..07 as separate 
+> series and 08..10 as another one , and I suspect 11 as a separate patch.
 
-[auto build test ERROR on jic23-iio/togreg]
-[also build test ERROR on robh/for-next linus/master v6.10-rc2 next-20240604]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Hi,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Hewitt/iio-adc-meson-add-support-for-the-GXLX-SoC/20240604-135606
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20240604055431.3313961-2-christianshewitt%40gmail.com
-patch subject: [PATCH 2/2] iio: adc: meson: add support for the GXLX SoC
-config: arm64-defconfig (https://download.01.org/0day-ci/archive/20240604/202406041738.6Dy1cRih-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240604/202406041738.6Dy1cRih-lkp@intel.com/reproduce)
+I prefer to push documentation YAML + glue + DT together, it goes 
+together, further more patch 11, it is also link to MP13 Ethernet, so 
+need to be in this serie.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406041738.6Dy1cRih-lkp@intel.com/
+Regards
 
-All errors (new ones prefixed by >>):
-
->> drivers/iio/adc/meson_saradc.c:1262:10: error: 'const struct meson_sar_adc_param' has no member named 'vref_voltage'; did you mean 'vref_volatge'?
-    1262 |         .vref_voltage = VREF_VOLTAGE_1V8,
-         |          ^~~~~~~~~~~~
-         |          vref_volatge
->> drivers/iio/adc/meson_saradc.c:1262:25: error: 'VREF_VOLTAGE_1V8' undeclared here (not in a function)
-    1262 |         .vref_voltage = VREF_VOLTAGE_1V8,
-         |                         ^~~~~~~~~~~~~~~~
-
-
-vim +1262 drivers/iio/adc/meson_saradc.c
-
-  1255	
-  1256	static const struct meson_sar_adc_param meson_sar_adc_gxlx_param = {
-  1257		.has_bl30_integration = true,
-  1258		.clock_rate = 1200000,
-  1259		.regmap_config = &meson_sar_adc_regmap_config_gxbb,
-  1260		.resolution = 12,
-  1261		.disable_ring_counter = 1,
-> 1262		.vref_voltage = VREF_VOLTAGE_1V8,
-  1263		.cmv_select = true,
-  1264		.mpll_clock_bits = true,
-  1265	};
-  1266	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
