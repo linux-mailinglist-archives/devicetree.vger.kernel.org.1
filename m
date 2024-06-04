@@ -1,192 +1,115 @@
-Return-Path: <devicetree+bounces-72267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66B968FB36B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:20:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 156F48FB394
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:23:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18DC21F21B20
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:20:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A973F1F227BE
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:23:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E8D5146A97;
-	Tue,  4 Jun 2024 13:20:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4150E1465B4;
+	Tue,  4 Jun 2024 13:23:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b3/2MSNl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NWemrCxh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 129DA146A74;
-	Tue,  4 Jun 2024 13:20:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A489146587;
+	Tue,  4 Jun 2024 13:23:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717507240; cv=none; b=Nnr7WOKR4MXuUSfeTwqrQEQFmKv+VeylW4487hP5DSB6gbWCbgckuf+PHadDj2O1oBgWG25ZcDJp651fgq6tGrfmcgfaEd8wZA52D4KGROrkJ+SbM3WznyjT+S6oCrie/nUuvoGuVjp2I+HEsAqqHecGQpKML42T9QXpQ7Pt1NU=
+	t=1717507404; cv=none; b=Fw8gTbhMl2yKmTlCuDRwdOrZf7ZKRpvPG9LKy2ieHhSN2cIose/7AtUyIIFce4vvGzzLkm1vrWc96HhB8q/sHA1ZqpiDRY83aDPJTkkWx6fp1vJbPHwgplKc2jonWh/iMuWm1HlbuSrh+jzxPw11H7yOrMEm6+WsJtY2zm2GSXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717507240; c=relaxed/simple;
-	bh=DC5EZsEx+rBT/MPOOSxJY0nl4J0fot6cQcgzpc29Qek=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=s90VdS5U3XPP4Mx2UIaazgcjlzrTkgfctKeSxD1GNZekaN8+KOA2ZfeZZBgvX+z2wlKqL+DgKOVQh8NUky+x6vLDQNYpl88TRn+/+dd1djwTxwnIAK7kJGeMwE7oD1i8EHL/MRWVtnwJNxcW6nqxt6CniUX+SV9Pxmct/+LYXQM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b3/2MSNl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 94F3EC4AF14;
-	Tue,  4 Jun 2024 13:20:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717507239;
-	bh=DC5EZsEx+rBT/MPOOSxJY0nl4J0fot6cQcgzpc29Qek=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=b3/2MSNllqyZt/ndR9uLIfWcxQ8T0TOWCiiRcdfxwn5B8TRzecc3bGGUcrOHw1Q1P
-	 gQg9WfEQqHxJ5leWGZ52rFz3OVyOwe3095J7ohU0QqJZs6Ec08wiHctp1KnAH/3OCa
-	 EA0Z9Nhy5DaeDq5cMV3qNTNDa/nHs177Augg+MMbvpM/tac/rY54O2S1qePc+tPx7V
-	 UE7zdbelk1KpcFgVbQiRzVIdVlqXAFJiozPP72eHbn/wxjoWENwPmcBFc4C7MVJBWa
-	 OmVUv2JsodaRlVg0lCus039+SCBYmWV95TVSiCDm1JyuY7kXZo2RMa3S0DJHMqNNUn
-	 cRNTezlxMchcg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C89EC25B78;
-	Tue,  4 Jun 2024 13:20:39 +0000 (UTC)
-From: =?utf-8?q?Noralf_Tr=C3=B8nnes_via_B4_Relay?= <devnull+noralf.tronnes.org@kernel.org>
-Date: Tue, 04 Jun 2024 15:20:32 +0200
-Subject: [PATCH v4 5/5] drm/tiny: panel-mipi-dbi: Support the pixel format
- property
+	s=arc-20240116; t=1717507404; c=relaxed/simple;
+	bh=D4HtLoTVU3H+eyUhPZTSVo5LCusxKwB+BLH0C2Ip7jQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kuIT9a21E9Z+Xp8xvjm35Vx1UtPuwhJQtmTKhvZeRj9nTUZL6cIG21iD6qMa/Y0c/MgNY5TVD6ShAzo0Cpl+9MYg3L/DxU+8ULSrO7VkzICC2P79b3eDygfHA+rC5UAhLGaLYQ1kprRIQDYAFMz6u4I0W/LkAaEpxXMlXFXL7OQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NWemrCxh; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a63359aaaa6so721905066b.2;
+        Tue, 04 Jun 2024 06:23:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717507401; x=1718112201; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=D4HtLoTVU3H+eyUhPZTSVo5LCusxKwB+BLH0C2Ip7jQ=;
+        b=NWemrCxhYCNnMM0EfqVJkc1B3z0I8MWk4l1Lnbcnmr0g/SOhyQliL029/rGzzNypPy
+         sXBXjOgUDISzsplbcfFH6OMxdVwnEvXhJW4l9RYDndx8+zZgZTzepga+yE+yug9wLsTk
+         JvWZhSsyPAn+1LyfSiqfZJHCfvt+1jRHwFk0Dq7sHu/aNF0ZgNBnqcwM4MwQl+kHmUSF
+         yeQmI7CZTdLGm6mi4WTt1ryYS8WgPa7AWEeKWpjP+DjPpECijBkDdFFxYwk07wt9sBd8
+         Ez2d4wzW1OSaqYUmjIKnsmT4l4HeP2yhqU4ZuEF4SjXjwJRBLrQJ7EACazkEcM7ml/bo
+         H7ww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717507401; x=1718112201;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=D4HtLoTVU3H+eyUhPZTSVo5LCusxKwB+BLH0C2Ip7jQ=;
+        b=JPnl3Y7N96XOPTwLNrznsJJgOQIsNTnQiYOuYkSjT/L/eD/TT8ei6OdYyWTy9jtu6V
+         4tJYTokLMgTl4MGgErMsaTnM7P1LjCDG/WeHWa8NuImSO9KOoqtGJTQQfXJP3c2EAnae
+         c1y8bqnHTXZZn6vsdqWmSNThxV0wYS+lPN1ubE81rYMEIZ9Quu4gP4GP5lQ6H1752IOR
+         /Q4/SzB374HTMjvD9HiJOkVrr5cxtKuXtusdWRt7AEN3UpHcEv7sdU1HS5vZgnyRUpJ+
+         6346IGYQnpz4ckTswJzlpsClFQk92X2WMs/1ZbiGTNfBayVopL6Q7w8DYHM4a1E7yqqG
+         26Uw==
+X-Forwarded-Encrypted: i=1; AJvYcCV2Fg0UG4qU009TIbWRySmei6MepRpNdclOODPOaxGjLRIz4DyRHyrp3g1toSpI+NHZfoAeM2dE/aB2vHF2GJt3+GGIjKXAqsNd4nYzuks7c7VCuCSGoF/3Yg2xN2ggDdTmJqrlvXIlggkngUaKmLTp7JyrHtUFbzaEZItLCFUqjx+wwQ==
+X-Gm-Message-State: AOJu0YyMZOfN4jfY7w3HnsAgrmdEf/xX7NA+Zwvr10tXzqS/g324Eo+T
+	aYDBaMFWsNi/08x20gqrwpbIMijV/G30hVPsLzvzk89XLe1uvtBKj7ARkSWzgL6A++ics9Vee2o
+	A0oqUMS1xh6iFL+SKs6KBEjYwUnU=
+X-Google-Smtp-Source: AGHT+IE5s5ADNfYnbPI8bDw/CpMfi1LzejGDjcTFcbYzZnvQgliM5/TmXHdkT9xdHYahqyYsZ6pgxgeQxvDpCe8I2qg=
+X-Received: by 2002:a17:906:2b51:b0:a68:cc6f:cb5a with SMTP id
+ a640c23a62f3a-a68cc6fcc2emr493202266b.68.1717507400768; Tue, 04 Jun 2024
+ 06:23:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240604-panel-mipi-dbi-rgb666-v4-5-d7c2bcb9b78d@tronnes.org>
-References: <20240604-panel-mipi-dbi-rgb666-v4-0-d7c2bcb9b78d@tronnes.org>
-In-Reply-To: <20240604-panel-mipi-dbi-rgb666-v4-0-d7c2bcb9b78d@tronnes.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, David Lechner <david@lechnology.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>, 
- Tommaso Merciai <tommaso.merciai@amarulasolutions.com>, 
- =?utf-8?q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1717507238; l=2983;
- i=noralf@tronnes.org; s=20221122; h=from:subject:message-id;
- bh=NSd8WCcz3mEyAmd3gnS4mEuzeD9kKvKEnfrPdQSMiME=;
- b=QvW48LB0GjDH9HPC/0Wul41Y4uUWFArhOzcr2VcGbC9AKxHRLwJohaihMp/Uj0HpB3kw71GIh
- b+h1Tzn7380CdwyT3RcIDhiVoGjvR+At1vUxRDodcKEtokdw7R/1GiT
-X-Developer-Key: i=noralf@tronnes.org; a=ed25519;
- pk=0o9is4iddvvlrY3yON5SVtAbgPnVs0LfQsjfqR2Hvz8=
-X-Endpoint-Received: by B4 Relay for noralf@tronnes.org/20221122 with
- auth_id=8
-X-Original-From: =?utf-8?q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>
-Reply-To: noralf@tronnes.org
+References: <20240604123008.327424-1-angelogioacchino.delregno@collabora.com> <20240604123008.327424-5-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240604123008.327424-5-angelogioacchino.delregno@collabora.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 4 Jun 2024 16:22:44 +0300
+Message-ID: <CAHp75Ve8qPLu+gS8o5Q5A20j_+AP_UVkOzdKqcnhUawA_sW+VA@mail.gmail.com>
+Subject: Re: [PATCH v2 4/5] iio: adc: Add support for MediaTek MT6357/8/9
+ Auxiliary ADC
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, matthias.bgg@gmail.com, lee@kernel.org, andy@kernel.org, 
+	nuno.sa@analog.com, bigunclemax@gmail.com, dlechner@baylibre.com, 
+	marius.cristea@microchip.com, marcelo.schmitt@analog.com, fr0st61te@gmail.com, 
+	mitrutzceclan@gmail.com, mike.looijmans@topic.nl, marcus.folkesson@gmail.com, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Noralf Trønnes <noralf@tronnes.org>
+On Tue, Jun 4, 2024 at 3:30=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Add a driver to support reading the Auxiliary ADC IP found in the
+> MediaTek MT6357, MT6358 and MT6359 Power Management ICs, featuring
+> a different register layout, configurationm reset and ADC reading
 
-Add support for these pixel format property values:
-- r5g6b5, RGB565
-- b6x2g6x2r6x2, BGR666
+configuration
 
-BGR666 is presented to userspace as RGB888. The 2 LSB in each color
-are discarded by the controller. The pixel is sent on the wire using
-8 bits per word (little endian) so the controller sees it as BGR.
+> sequence from the other already supported MediaTek SoC or PMIC
+> (aux)ADC HW.
+>
+> This driver provides multiple ADC channels for system monitoring,
+> such as battery voltage, PMIC temperature, PMIC-internal voltage
+> regulators temperature, and others.
 
-RGB565 is the default if the property is not present.
+Seems all my concerns were addressed, so
+Reviewed-by: Andy Shevchenko <andy@kernel.org>
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: Noralf Trønnes <noralf@tronnes.org>
----
- drivers/gpu/drm/tiny/panel-mipi-dbi.c | 55 ++++++++++++++++++++++++++++++++++-
- 1 file changed, 54 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/tiny/panel-mipi-dbi.c b/drivers/gpu/drm/tiny/panel-mipi-dbi.c
-index f80a141fcf36..f3aa2abce314 100644
---- a/drivers/gpu/drm/tiny/panel-mipi-dbi.c
-+++ b/drivers/gpu/drm/tiny/panel-mipi-dbi.c
-@@ -26,6 +26,49 @@
- 
- #include <video/mipi_display.h>
- 
-+struct panel_mipi_dbi_format {
-+	const char *name;
-+	u32 fourcc;
-+	unsigned int bpp;
-+};
-+
-+static const struct panel_mipi_dbi_format panel_mipi_dbi_formats[] = {
-+	{ "r5g6b5", DRM_FORMAT_RGB565, 16 },
-+	{ "b6x2g6x2r6x2", DRM_FORMAT_RGB888, 24 },
-+};
-+
-+static int panel_mipi_dbi_get_format(struct device *dev, u32 *formats, unsigned int *bpp)
-+{
-+	const char *format_name;
-+	unsigned int i;
-+	int ret;
-+
-+	formats[1] = DRM_FORMAT_XRGB8888;
-+
-+	ret = device_property_read_string(dev, "format", &format_name);
-+	if (ret) {
-+		/* Old Device Trees don't have this property */
-+		formats[0] = DRM_FORMAT_RGB565;
-+		*bpp = 16;
-+		return 0;
-+	}
-+
-+	for (i = 0; i < ARRAY_SIZE(panel_mipi_dbi_formats); i++) {
-+		const struct panel_mipi_dbi_format *format = &panel_mipi_dbi_formats[i];
-+
-+		if (strcmp(format_name, format->name))
-+			continue;
-+
-+		formats[0] = format->fourcc;
-+		*bpp = format->bpp;
-+		return 0;
-+	}
-+
-+	dev_err(dev, "Pixel format is not supported: '%s'\n", format_name);
-+
-+	return -EINVAL;
-+}
-+
- static const u8 panel_mipi_dbi_magic[15] = { 'M', 'I', 'P', 'I', ' ', 'D', 'B', 'I',
- 					     0, 0, 0, 0, 0, 0, 0 };
- 
-@@ -276,6 +319,9 @@ static int panel_mipi_dbi_spi_probe(struct spi_device *spi)
- 	struct drm_device *drm;
- 	struct mipi_dbi *dbi;
- 	struct gpio_desc *dc;
-+	unsigned int bpp;
-+	size_t buf_size;
-+	u32 formats[2];
- 	int ret;
- 
- 	dbidev = devm_drm_dev_alloc(dev, &panel_mipi_dbi_driver, struct mipi_dbi_dev, drm);
-@@ -323,7 +369,14 @@ static int panel_mipi_dbi_spi_probe(struct spi_device *spi)
- 	if (IS_ERR(dbidev->driver_private))
- 		return PTR_ERR(dbidev->driver_private);
- 
--	ret = mipi_dbi_dev_init(dbidev, &panel_mipi_dbi_pipe_funcs, &mode, 0);
-+	ret = panel_mipi_dbi_get_format(dev, formats, &bpp);
-+	if (ret)
-+		return ret;
-+
-+	buf_size = DIV_ROUND_UP(mode.hdisplay * mode.vdisplay * bpp, 8);
-+	ret = mipi_dbi_dev_init_with_formats(dbidev, &panel_mipi_dbi_pipe_funcs,
-+					     formats, ARRAY_SIZE(formats),
-+					     &mode, 0, buf_size);
- 	if (ret)
- 		return ret;
- 
-
--- 
-2.45.1
-
-
+--=20
+With Best Regards,
+Andy Shevchenko
 
