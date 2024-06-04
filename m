@@ -1,74 +1,54 @@
-Return-Path: <devicetree+bounces-72391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9B1B8FB966
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 18:46:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D1DA8FBA4C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 19:27:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F66D282788
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 16:46:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C2C31F22454
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:27:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D5BD149007;
-	Tue,  4 Jun 2024 16:46:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EA3B149DE3;
+	Tue,  4 Jun 2024 17:27:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="DQEezx71"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="C4ugqekL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70B851311A1
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 16:46:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD32E1494D0;
+	Tue,  4 Jun 2024 17:27:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717519571; cv=none; b=lvmp+4MXfEb5vva8Fr/9fxkpiclAhLX51j83dJtH4aPNpRukMPDT4lTGNXRH1d5/H1l87rXAGmCO160FCzIGKvbnyHtj6no19ndaF6H29cUT81OjjJUouGcbzQjVT44iDnxDOwmMV8VPRMembZf1PqrO4AtdKBz1wJgDr7H6teU=
+	t=1717522031; cv=none; b=sRpQgDuGDXffDeQP3JbsIE2+Vr2ci7uon4a3wTr8G0BRhysB9hkDKlcmmXFWo2NktSld9eRMCjBeVaatlepuzjA24VQ3YMVxjktOYnQaY9C2LZLcXhST8RFNGDU7cjXghFbO3UkHqsbekIECfNe9ESdrNmUHdbHwTRAAY3A/umg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717519571; c=relaxed/simple;
-	bh=qZsLucO4wltDzOvpnEVOiiPXz0qeTCCoPH/9/Nt9vP8=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=FuQ+NFBfwNmhGdBl/6xvYPwVPa4Mj7SpVTkuYgznIeH93GaNmtkopKLbIUdjktRlwR2f4ZWGbpUTB6eeSxqSE40K4CNOeAD7VbCzbsG9XsUPq/3NOKZ/J1F6eGSx5cDRJFR75MVXhHlotOcABaH81oFxmvbjWPBsPp/KAu4hewg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=DQEezx71; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-35e0eb3efd0so1131977f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 09:46:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1717519568; x=1718124368; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=m4aOTDhd6SYPECUR44Sp9t/2nUToF1TX06udRYmdYOk=;
-        b=DQEezx71fjuPAjLBupTmCaVLPNZts3iGCwAsFuOZfpkD/Mc/XGWwvDPrqO+unZcAMd
-         xqPQZdE/8G55g3NraeEsfX0t9g4u1mjc4pnudpV+EWHaMIAmSbzvvwXN0dIaMw0vjXaf
-         ovr/svLSorZv7dID5O+EF3foEh7cRFYSAjWtFq0Yv0ZqwDxCDmXoYugZrll/wozarXO7
-         0KdyZ33Moo92gtzwWp6U4FT8q2Gj4yKmy5dIKjaqvyE+CQLoxNesC1yWR97q2ww+4r2b
-         kE3yPC0hnMvjBcmubRdPjGR52Dc8XsJRAVgYbTAEEkPop/mT/tJqW91xPB0PrKKwK8q2
-         4lGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717519568; x=1718124368;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=m4aOTDhd6SYPECUR44Sp9t/2nUToF1TX06udRYmdYOk=;
-        b=XCbyFAZawRGuFCiTcLOOPbMM9+ox7oCVgR+ipxDtPNiSjuTXjEA/8Bafs56pHZx7d7
-         ExcvHoa7AmwwZQSQM0Q9zEU3RNl2UL+ejl7dfwVTST40pBHjakgfyy/S0GVl4gf3LgNi
-         nNpI5p4Pz+wG5u8SPXwXtIBU5OLx03Hgx+jw2lRZ8tCCwW6wxZu8eYjxD8DxUfMHdapu
-         dI+KVeUx4rz3Yf8tSq51u/MBhKagwFUVhWhTEOlng7LONDQtOCWwj+g24KK/XwAW0Enl
-         ZuFdWSM8ICrBdiEE6ORVH/MmN5TTVxWeqDZbMTtlLqBYpzas9lx//G3n+R2I40pTAuxp
-         z9EQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWb5ftqKmWR1DjWa/G7k8oOxaVCyBxy0ItpsnW8omAOqH4kcdyt4VON0Kc2fyrQWy6CUPGgzsKH16d4tDcK7fu12T9AGZmfvFmkiQ==
-X-Gm-Message-State: AOJu0YyQLcXGgSlVxMUlDaN0s6qkMMODMurHWCGUstlscU1Omo5FYdj1
-	Bo3JhUlL1VMZgVIDrlUQu98aOTnDbXTJxMc8LSmMMRpMVWwFSMoy0S7LutPlzFY=
-X-Google-Smtp-Source: AGHT+IHfGuqUXGBWWo8WiHE0hJOslHvsN+h+FU1a0TC4FSJOpeGMJjMByciPhc79OYAM01Hk52ip1w==
-X-Received: by 2002:adf:f58e:0:b0:35b:5a14:984a with SMTP id ffacd0b85a97d-35e0f30c7d4mr9621006f8f.56.1717519567901;
-        Tue, 04 Jun 2024 09:46:07 -0700 (PDT)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35dd04c090esm12634482f8f.6.2024.06.04.09.46.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Jun 2024 09:46:07 -0700 (PDT)
-Message-ID: <6d86a6a3-4d99-4fda-9a38-7688587237e6@freebox.fr>
-Date: Tue, 4 Jun 2024 18:44:24 +0200
+	s=arc-20240116; t=1717522031; c=relaxed/simple;
+	bh=Fw+R07Uhx4jBtZPSjYVknFQtrMkWMAZeU8GC561sY68=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Fbpx5YBrU1xBjj+ICqVuTmmlNXiz0haznoVBma3f+d0IVqNUE42JvVmKTatDt0ndWT1X977Xq9/i81XuZrR4c4l+Z+0Sq+joYVZD+FunadK+uhwT/7JWS1C/feSzOu91sSNb+c87jDxRp0h2vyU4Fh1pVY4hygICDPXXderuVfQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=C4ugqekL; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 92E1D8850A;
+	Tue,  4 Jun 2024 19:27:06 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1717522028;
+	bh=4f1pYqXRizqyxIM/L7FfRjUNFGAWVe3AOXcygF3r6BE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=C4ugqekL9DcBNfDMt7BMGmAnOJSHo8y5Sf9xjnQU5JxMTAc/w4Bg7RHuEwHQn4j7/
+	 tNNw3i8rS/9BpqfHrY8i1pt+HsfimWrhDbil1RYTwBuSAEVVj4MgWN1TlVXwX6sv0j
+	 AyW6bBuVAidz+I4xRsH7UjBuaXls9j3KoEaFq6tquqRzun9MLYOWDtfRH/7CV8QeBX
+	 GUi3vTWXAiTcpksuFnTMo0yC+Eo408n3eeTcB1BRazMJO9/TT55LLbMwIpiLuIxYcu
+	 o8C/G+xu+beETeQJHeLB9K6ld43u9V4cMENN7W7xIfw+JJ5fk0irtUsElPECL/YZ99
+	 7MzmQLpYiMHfA==
+Message-ID: <e8e69a34-b9b2-4b4c-9b2e-079c7a23b756@denx.de>
+Date: Tue, 4 Jun 2024 18:49:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,95 +56,146 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: [PATCH v5 3/3] arm64: dts: qcom: msm8998: add venus node
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: MSM <linux-arm-msm@vger.kernel.org>,
- linux-media <linux-media@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
- Jeffrey Hugo <quic_jhugo@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bryan O Donoghue <bryan.odonoghue@linaro.org>,
- Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>
-References: <8b2705b7-f33c-4ebe-a6a8-c5ef776fe9ad@freebox.fr>
+Subject: Re: [PATCH v4 08/11] ARM: dts: stm32: add ethernet1 and ethernet2
+ support on stm32mp13
+To: Christophe Roullier <christophe.roullier@foss.st.com>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Richard Cochran <richardcochran@gmail.com>, Jose Abreu
+ <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240604143502.154463-1-christophe.roullier@foss.st.com>
+ <20240604143502.154463-9-christophe.roullier@foss.st.com>
 Content-Language: en-US
-In-Reply-To: <8b2705b7-f33c-4ebe-a6a8-c5ef776fe9ad@freebox.fr>
-Content-Type: text/plain; charset=UTF-8
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <20240604143502.154463-9-christophe.roullier@foss.st.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-From: Pierre-Hugues Husson <phhusson@freebox.fr>
+On 6/4/24 4:34 PM, Christophe Roullier wrote:
+> Both instances ethernet based on GMAC SNPS IP on stm32mp13.
+> GMAC IP version is SNPS 4.20.
+> 
+> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
+> ---
+>   arch/arm/boot/dts/st/stm32mp131.dtsi | 38 ++++++++++++++++++++++++++++
+>   arch/arm/boot/dts/st/stm32mp133.dtsi | 31 +++++++++++++++++++++++
+>   2 files changed, 69 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/st/stm32mp131.dtsi b/arch/arm/boot/dts/st/stm32mp131.dtsi
+> index 6704ceef284d3..9d05853ececf7 100644
+> --- a/arch/arm/boot/dts/st/stm32mp131.dtsi
+> +++ b/arch/arm/boot/dts/st/stm32mp131.dtsi
+> @@ -979,6 +979,12 @@ ts_cal1: calib@5c {
+>   			ts_cal2: calib@5e {
+>   				reg = <0x5e 0x2>;
+>   			};
+> +			ethernet_mac1_address: mac1@e4 {
+> +				reg = <0xe4 0x6>;
+> +			};
+> +			ethernet_mac2_address: mac2@ea {
+> +				reg = <0xea 0x6>;
+> +			};
+>   		};
+>   
+>   		etzpc: bus@5c007000 {
+> @@ -1505,6 +1511,38 @@ sdmmc2: mmc@58007000 {
+>   				status = "disabled";
+>   			};
+>   
+> +			ethernet1: ethernet@5800a000 {
+> +				compatible = "st,stm32mp13-dwmac", "snps,dwmac-4.20a";
+> +				reg = <0x5800a000 0x2000>;
+> +				reg-names = "stmmaceth";
+> +				interrupts-extended = <&intc GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>,
+> +						      <&exti 68 1>;
+> +				interrupt-names = "macirq", "eth_wake_irq";
+> +				clock-names = "stmmaceth",
+> +					      "mac-clk-tx",
+> +					      "mac-clk-rx",
+> +					      "ethstp",
+> +					      "eth-ck";
+> +				clocks = <&rcc ETH1MAC>,
+> +					 <&rcc ETH1TX>,
+> +					 <&rcc ETH1RX>,
+> +					 <&rcc ETH1STP>,
+> +					 <&rcc ETH1CK_K>;
+> +				st,syscon = <&syscfg 0x4 0xff0000>;
+> +				snps,mixed-burst;
+> +				snps,pbl = <2>;
+> +				snps,axi-config = <&stmmac_axi_config_1>;
+> +				snps,tso;
+> +				access-controllers = <&etzpc 48>;
 
-Now that the venus clocks are fixed, we can add the DT node.
+Please keep the list of properties sorted.
 
-Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
-Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Acked-by: Vikash Garodia <quic_vgarodia@quicinc.com>
----
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 48 ++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
+> +				status = "disabled";
+> +
+> +				stmmac_axi_config_1: stmmac-axi-config {
+> +					snps,wr_osr_lmt = <0x7>;
+> +					snps,rd_osr_lmt = <0x7>;
+> +					snps,blen = <0 0 0 0 16 8 4>;
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index 6e286f91241be..f65a76da61ea8 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -3145,6 +3145,54 @@ hdmi_phy: hdmi-phy@c9a0600 {
- 			};
- 		};
- 
-+		venus: video-codec@cc00000 {
-+			compatible = "qcom,msm8998-venus";
-+			reg = <0x0cc00000 0xff000>;
-+			interrupts = <GIC_SPI 287 IRQ_TYPE_LEVEL_HIGH>;
-+			power-domains = <&mmcc VIDEO_TOP_GDSC>;
-+			clocks = <&mmcc VIDEO_CORE_CLK>,
-+				 <&mmcc VIDEO_AHB_CLK>,
-+				 <&mmcc VIDEO_AXI_CLK>,
-+				 <&mmcc VIDEO_MAXI_CLK>;
-+			clock-names = "core", "iface", "bus", "mbus";
-+			iommus = <&mmss_smmu 0x400>,
-+				 <&mmss_smmu 0x401>,
-+				 <&mmss_smmu 0x40a>,
-+				 <&mmss_smmu 0x407>,
-+				 <&mmss_smmu 0x40e>,
-+				 <&mmss_smmu 0x40f>,
-+				 <&mmss_smmu 0x408>,
-+				 <&mmss_smmu 0x409>,
-+				 <&mmss_smmu 0x40b>,
-+				 <&mmss_smmu 0x40c>,
-+				 <&mmss_smmu 0x40d>,
-+				 <&mmss_smmu 0x410>,
-+				 <&mmss_smmu 0x421>,
-+				 <&mmss_smmu 0x428>,
-+				 <&mmss_smmu 0x429>,
-+				 <&mmss_smmu 0x42b>,
-+				 <&mmss_smmu 0x42c>,
-+				 <&mmss_smmu 0x42d>,
-+				 <&mmss_smmu 0x411>,
-+				 <&mmss_smmu 0x431>;
-+			memory-region = <&venus_mem>;
-+			status = "disabled";
-+
-+			video-decoder {
-+				compatible = "venus-decoder";
-+				clocks = <&mmcc VIDEO_SUBCORE0_CLK>;
-+				clock-names = "core";
-+				power-domains = <&mmcc VIDEO_SUBCORE0_GDSC>;
-+			};
-+
-+			video-encoder {
-+				compatible = "venus-encoder";
-+				clocks = <&mmcc VIDEO_SUBCORE1_CLK>;
-+				clock-names = "core";
-+				power-domains = <&mmcc VIDEO_SUBCORE1_GDSC>;
-+			};
-+		};
-+
- 		mmss_smmu: iommu@cd00000 {
- 			compatible = "qcom,msm8998-smmu-v2", "qcom,smmu-v2";
- 			reg = <0x0cd00000 0x40000>;
--- 
-2.34.1
+Sort here too.
 
+> +				};
+> +			};
+> +
+>   			usbphyc: usbphyc@5a006000 {
+>   				#address-cells = <1>;
+>   				#size-cells = <0>;
+> diff --git a/arch/arm/boot/dts/st/stm32mp133.dtsi b/arch/arm/boot/dts/st/stm32mp133.dtsi
+> index 3e394c8e58b92..09c7da1a2eda8 100644
+> --- a/arch/arm/boot/dts/st/stm32mp133.dtsi
+> +++ b/arch/arm/boot/dts/st/stm32mp133.dtsi
+> @@ -67,5 +67,36 @@ channel@18 {
+>   				label = "vrefint";
+>   			};
+>   		};
+> +
+> +		ethernet2: ethernet@5800e000 {
+> +			compatible = "st,stm32mp13-dwmac", "snps,dwmac-4.20a";
+> +			reg = <0x5800e000 0x2000>;
+> +			reg-names = "stmmaceth";
+> +			interrupts-extended = <&intc GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "macirq";
+> +			clock-names = "stmmaceth",
+> +				      "mac-clk-tx",
+> +				      "mac-clk-rx",
+> +				      "ethstp",
+> +				      "eth-ck";
+> +			clocks = <&rcc ETH2MAC>,
+> +				 <&rcc ETH2TX>,
+> +				 <&rcc ETH2RX>,
+> +				 <&rcc ETH2STP>,
+> +				 <&rcc ETH2CK_K>;
+> +			st,syscon = <&syscfg 0x4 0xff000000>;
+> +			snps,mixed-burst;
+> +			snps,pbl = <2>;
+> +			snps,axi-config = <&stmmac_axi_config_2>;
+> +			snps,tso;
+> +			access-controllers = <&etzpc 49>;
+
+Sort here too.
+
+> +			status = "disabled";
+> +
+> +			stmmac_axi_config_2: stmmac-axi-config {
+> +				snps,wr_osr_lmt = <0x7>;
+> +				snps,rd_osr_lmt = <0x7>;
+> +				snps,blen = <0 0 0 0 16 8 4>;
+
+Sort here too.
+
+[...]
 
