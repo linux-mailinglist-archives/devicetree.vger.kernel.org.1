@@ -1,101 +1,110 @@
-Return-Path: <devicetree+bounces-72453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A4028FBCDD
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 22:00:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6080C8FBCF4
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 22:04:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55221283997
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 20:00:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F39761F215A2
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 20:04:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A380414830E;
-	Tue,  4 Jun 2024 19:59:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D6E914C587;
+	Tue,  4 Jun 2024 20:03:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="sGO+0nFC";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="0Pc1GDIb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PhxrVaaA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B6F113DB96;
-	Tue,  4 Jun 2024 19:59:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EC9214B061;
+	Tue,  4 Jun 2024 20:03:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717531196; cv=none; b=J9mP3kgpGyaAyqWXyXa4+2Yltxlhvrpd2E5x0PYWguwXmwm7rsMX0Pr34WlfDwZNhy5SJFEUd1a1TBu/I9bZorh4W5LKbqgGgMPzImbONHkZVra4rAOyLry7YdnbcFG5XTYV0SFdJLvYSghF86MiWA6BZH0lg+EBiK8zGr/1Drw=
+	t=1717531412; cv=none; b=ZqZ1qFX4qDGlV2aHaZaIHzUP3LeF0i8y6HPaZ/TWGTApZ2sd1iXe6hbbb+vLL5poC66ZH7jNoTELaeXt+rJfDq8tFaDWBu6IbxGJXxha/GJuhyF6ui2AFJvUjmrWIWWMZZQ7qhd3QW9P/6D2Yuj4QmDVUOpSteuCKbjrnRj2XHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717531196; c=relaxed/simple;
-	bh=3Sta6cOjka9v0Q5VHFmH5CpIjRsDhmO9KXLxIkVNMV0=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=hjJKeQAqqzr5aqS0L1Gd0Mj3Pufdnag/g7d5YyFOYC1Fbe9w/WTin260itLcV2Tp1aaFPfVfnmNgMndsQQJ7zT1ag6ZCPo2sY0jNPdAlte1BINzPs+4PQeY9Lua3B20OkC78y6cKQwd8jWKIFFmp2rd7q0rtGXlVB1VimTYRqPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=sGO+0nFC; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=0Pc1GDIb; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1717531193;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Yn3nqXw0Cg/J2A4K/eHlNOvzJphsW1V9FDvcZWtVIO4=;
-	b=sGO+0nFC8gr4gxOC/FbLE1kbKBWZLj/1xNL37h/19tZmgTAdsfDE0WT+1T2u+7jvxT56ZE
-	0k1WiL2QEKlFYt1QenHPkyzIYjdtrWPTWjUXvATZcrSO9j631WJ2VpxTYeLK2+u7ngA1ne
-	KjuMJ2rkPxWJPrDikeO0V1Ua0IOgOTlX1WMiQRmt1CHf3GphdQChwRiv219nHskXLcDcVf
-	VNEA/rn/AiaxT//j1zEfiB1GSH4fNjKdKqrB82zpE/Sutqbxbwb+SwD68CT8p9tPWXe7H5
-	WcRFCWFONwxX6RqAx/HbehvshYnDF1ci5LlcRc6u7lpivs0Zdest8psQN7ncFA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1717531193;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Yn3nqXw0Cg/J2A4K/eHlNOvzJphsW1V9FDvcZWtVIO4=;
-	b=0Pc1GDIbnzVMM3oKUxEzOd1L8/FT0ifsdoepunlGqbDlFQAxdqTnogI8xkvZr6fssa57n4
-	iDNzcjQIkbaG09Aw==
-To: Herve Codina <herve.codina@bootlin.com>, Simon Horman
- <horms@kernel.org>, Sai Krishna Gajula <saikrishnag@marvell.com>, Herve
- Codina <herve.codina@bootlin.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Lee Jones <lee@kernel.org>, Arnd Bergmann
- <arnd@arndb.de>, Horatiu Vultur <horatiu.vultur@microchip.com>,
- UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>, Heiner
- Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
- Saravana Kannan <saravanak@google.com>, Bjorn Helgaas
- <bhelgaas@google.com>, Philipp Zabel <p.zabel@pengutronix.de>, Lars
- Povlsen <lars.povlsen@microchip.com>, Steen Hegelund
- <Steen.Hegelund@microchip.com>, Daniel Machon
- <daniel.machon@microchip.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- netdev@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Allan Nielsen
- <allan.nielsen@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 10/19] irqdomain: Introduce irq_domain_alloc() and
- irq_domain_publish()
-In-Reply-To: <20240527161450.326615-11-herve.codina@bootlin.com>
-References: <20240527161450.326615-1-herve.codina@bootlin.com>
- <20240527161450.326615-11-herve.codina@bootlin.com>
-Date: Tue, 04 Jun 2024 21:59:52 +0200
-Message-ID: <878qzk5vif.ffs@tglx>
+	s=arc-20240116; t=1717531412; c=relaxed/simple;
+	bh=VCLwUoI/i0JqcxtBWc9VZ9k+0Uwoi+MZSL/jW1yYI90=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lc3PWUlWOJJMsljP0ospvgPyy3du9vAu3XACNJXf/OcUx3kOC3FdHZxjK9gIHZ+bQfHRkxZ5hs4/JqoITPI+1LUSLPn3zY3pY9RpPpPta8fSo2a3XVQMQg/Q7T+lVqIMr+3krKQLkhKUN2oQoz+9c4xsec743RkAmaaQsnj8dog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PhxrVaaA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E991BC2BBFC;
+	Tue,  4 Jun 2024 20:03:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717531412;
+	bh=VCLwUoI/i0JqcxtBWc9VZ9k+0Uwoi+MZSL/jW1yYI90=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PhxrVaaAL/SQLCbWCV8L5NlB9hKWEbEPzK2/sW4rxlhIq+KMW24Bx9K9uvgt7huId
+	 6VSh4oqp3UPYMb6mPQaGu8Sm3M9Ztcw7zuy8Px9HOFUvqEyQnntFm572ywlf8Q8Awy
+	 iDOkZdtSbfD1y3ViXbAA+9w3bdVlNsvrwwHPpn22EgRMM/nkhdFap6U6pHBnsNeRSc
+	 +YuFTeFyYQfH1BKjObU1PuywCfHXzaQ344ey/pEl4+kX1YZy9iYTCWYj7Mxkuz6Ac6
+	 JospFPvxH+bFjKN4lmumpwOxsdbhi2hNc8QToF+UbnKD8XEBevjEKq0SKLKqWAJWSG
+	 b0+M7zQx/rMFg==
+Date: Tue, 4 Jun 2024 15:03:29 -0500
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Taniya Das <quic_tdas@quicinc.com>,
+	Konrad Dybcio <konrad.dybcio@somainline.org>,
+	Jonathan Marek <jonathan@marek.ca>,
+	Del Regno <angelogioacchino.delregno@somainline.org>,
+	Loic Poulain <loic.poulain@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 00/16] dt-bindings: clock: qcom: reference qcom-gcc.yaml
+Message-ID: <20240604200329.GA1295824-robh@kernel.org>
+References: <20240531-dt-bindings-qcom-gcc-v1-0-b37d49fe1421@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240531-dt-bindings-qcom-gcc-v1-0-b37d49fe1421@linaro.org>
 
-Herve!
+On Fri, May 31, 2024 at 03:52:18PM +0200, Krzysztof Kozlowski wrote:
+> Hi,
+> 
+> Unify Qualcomm clock controllers by referencing qcom,gcc.yaml where
+> applicable.  Several existing bindings for these display/GPU/CAM clock
+> controllers already do it.
+> 
+> No external dependencies, this CAN be applied independently, but require
+> power-domain-cells in each binding, just like Dmitry's new set is doing.
+> 
+> https://lore.kernel.org/all/20240529-qcom-gdscs-v2-0-69c63d0ae1e7@linaro.org/
+> 
+> Best regards,
+> Krzysztof
+> 
+> ---
+> Krzysztof Kozlowski (16):
+>       dt-bindings: clock: qcom,sm8450-videocc: reference qcom,gcc.yaml
+>       dt-bindings: clock: qcom,videocc: reference qcom,gcc.yaml
+>       dt-bindings: clock: qcom,dispcc-sc8280xp: reference qcom,gcc.yaml
+>       dt-bindings: clock: qcom,dispcc-sm6350: reference qcom,gcc.yaml
+>       dt-bindings: clock: qcom,dispcc-sm8x50: reference qcom,gcc.yaml
+>       dt-bindings: clock: qcom,gpucc-sdm660: reference qcom,gcc.yaml
+>       dt-bindings: clock: qcom,gpucc: reference qcom,gcc.yaml
+>       dt-bindings: clock: qcom,msm8998-gpucc: reference qcom,gcc.yaml
+>       dt-bindings: clock: qcom,qcm2290-dispcc: reference qcom,gcc.yaml
+>       dt-bindings: clock: qcom,sc7180-dispcc: reference qcom,gcc.yaml
+>       dt-bindings: clock: qcom,sc7280-dispcc: reference qcom,gcc.yaml
+>       dt-bindings: clock: qcom,sdm845-dispcc: reference qcom,gcc.yaml
+>       dt-bindings: clock: qcom,sm6115-dispcc: reference qcom,gcc.yaml
+>       dt-bindings: clock: qcom,sm8450-dispcc: reference qcom,gcc.yaml
+>       dt-bindings: clock: qcom,sm8550-dispcc: reference qcom,gcc.yaml
+>       dt-bindings: clock: qcom,sm8450-gpucc: reference qcom,gcc.yaml
 
-On Mon, May 27 2024 at 18:14, Herve Codina wrote:
-
-Sorry I missed V1 somehow. I'll review this tomorrow.
-
-Thanks,
-
-        tglx
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
