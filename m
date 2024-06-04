@@ -1,126 +1,84 @@
-Return-Path: <devicetree+bounces-72273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C05238FB3CF
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:30:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 564D08FB425
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:44:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 475B71F22E18
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:30:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 876FE1C214B8
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:44:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F41CF146A9D;
-	Tue,  4 Jun 2024 13:30:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7183148825;
+	Tue,  4 Jun 2024 13:43:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c65Go//A"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="zWqr95Fq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB740145A1D;
-	Tue,  4 Jun 2024 13:30:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2B96144D23;
+	Tue,  4 Jun 2024 13:43:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717507817; cv=none; b=raa107l4rcPhBqyHc3tiYjtFDHSzgKkxHmiB+FO0fSHfY5BnEpd7Ijw+J6BcYWzSJX/SEn5fs5Wxi1hW0hhKoS/NsztYO+o6Xf+rij2QbOHTFITa6QPVIjJNxcW0Te4DUQJZ3a9GyuTEsfg2Qv/JCM2vg1R9C3AkfzWPQU7EFnM=
+	t=1717508593; cv=none; b=uRVGuK2CbxrDaZ92qit11nUfr6EZpfEi/SF+Z6YqTw8wVXh6bEtnYC9e+vvXZRe86Qg4hzQnHRRXFynhksx8Gn1c+XVmF3SOChm4uwfmvMT23u1ngTAmyrN48NpRx91I3yToZN4tkviTxEIApdPwbTmpgDive9WozCCUuZ8qJo4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717507817; c=relaxed/simple;
-	bh=4UU6t2GKweZMNEZHbQA9vbv1BZ0qx5SHGmURNH6BzH4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TQN7YvjngDXPxckH3q5jNbnfkFNBz+u2mA3XxqsGrPh6qX3gLp4jHOQ+Rbc2g1FVQEoa6qefEu2OfaI8M6pS1fUnpzAsqWgWSLbky2nTrpLYwIkPoV7zxcSgUSuigexL9ptM0Ly3oL02wi45tdyDJjZ7eI9CziWui42HIyvb23U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c65Go//A; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABE13C2BBFC;
-	Tue,  4 Jun 2024 13:30:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717507817;
-	bh=4UU6t2GKweZMNEZHbQA9vbv1BZ0qx5SHGmURNH6BzH4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=c65Go//Ae1T/LXSLS5hFocRsyyYg+5vwejd70sPuCp6HhtOWhnP1v8EdNSI1bacQd
-	 0zuJkcgxiE253x5C2zri278Wv725AvEW5Ekp5KkIpH4MjCZoeeo7cEmrJodpkdRvVl
-	 MxuuJXKAOlouRvJo5ympRbkyy0Ck++8aZWuc58HleHXvxf4fy3cH35XHadGpNV9h4H
-	 xoCnpXWg1K1EAcDsM5/yE99K3Dr6GE7+NvnzpZmBnJBkFDTZWUvDJww6CSx1lI8sEe
-	 NVEqjw2oyloMGZmpmrygTCdApV4CcFG2XqnDhQzK+NCtFFlzwHYtvHijfnq4eQw5RV
-	 /S0fXKZv/a+qg==
-Message-ID: <4d4f5c9f-276f-4437-8646-aeea413254a5@kernel.org>
-Date: Tue, 4 Jun 2024 15:30:12 +0200
+	s=arc-20240116; t=1717508593; c=relaxed/simple;
+	bh=s9rg0xKazwih6oPuOEuE5wEC2gCvQpXYl5XV3pLTn10=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n4qKNcLaX3qjYv1r6xwReEoWrcvmirTA6x88XitHBkKSzBHhRLd4B69PNskdvNMXSSHsrMxfqgkuo2m3bhwtr38plFsm6+8n+OGl4lrRCEwZp/pPcDLjPnExtnDaBMAPwWbxPDCWXvNQUmb7+FHUtk8mSosOjxY3Gtb5iBp8VEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=zWqr95Fq; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (31-10-206-125.static.upc.ch [31.10.206.125])
+	by mail11.truemail.it (Postfix) with ESMTPA id EA4621F83F;
+	Tue,  4 Jun 2024 15:33:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1717508037;
+	bh=s9rg0xKazwih6oPuOEuE5wEC2gCvQpXYl5XV3pLTn10=; h=From:To:Subject;
+	b=zWqr95FqqexgpAKBfIEbwsvL9BcndvX51R6PH5soxwwTR/DP7bQwoXIEU6rDLjqDw
+	 ghbIC7PWxlEja3Rxg2OTpuceYhtoV4feOzkLhQF1EgqIITCkDI4l5Oj3AuPoxVZUOh
+	 P5u86GU5Y5fzQHk54FrJrWXxJZVni9C2/i9Inmdv8qNKDS3TG4sl4yFGsf+n/FL8Z0
+	 dyAKBiFkuCYMjxOHPTt0GJkLu0VQgirm3NVy9/SGwXUuqQU77uMmn1K8KMsmn3w18Y
+	 F7+fdD8CDapN+cA09BsWVXgfr/pO0le5tkTAbRPb4RWpbSh0QuzWHYm9YtvfDVooYk
+	 XWkYqaO0UgNpg==
+Date: Tue, 4 Jun 2024 15:33:52 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Jai Luthra <j-luthra@ti.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jayesh Choudhary <j-choudhary@ti.com>,
+	Devarsh Thakkar <devarsht@ti.com>, Bryan Brattlof <bb@ti.com>,
+	Aradhya Bhatia <a-bhatia1@ti.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/7] arm64: dts: ti: McASP fixes
+Message-ID: <20240604133352.GA10282@francesco-nb>
+References: <20240604-mcasp_fifo_drop-v1-0-03ebe25f47db@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] serial: sc16is7xx: hard reset the chip if
- reset-gpios is defined in dt
-To: Hui Wang <hui.wang@canonical.com>, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, gregkh@linuxfoundation.org
-Cc: jirislaby@kernel.org, hvilleneuve@dimonoff.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org,
- lech.perczak@camlingroup.com
-References: <20240604132726.1272475-1-hui.wang@canonical.com>
- <20240604132726.1272475-2-hui.wang@canonical.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240604132726.1272475-2-hui.wang@canonical.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240604-mcasp_fifo_drop-v1-0-03ebe25f47db@ti.com>
 
-On 04/06/2024 15:27, Hui Wang wrote:
-> Certain designs connect a gpio to the reset pin, and the reset pin
-> needs to be setup correctly before accessing the chip.
-> 
-> Here adding a function to handle the chip reset. If the reset-gpios is
-> defined in the dt, do the hard reset through this gpio, othwerwise do
-> the soft reset as before.
-> 
-> Reviewed-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Hello Jai,
 
-No, stop making up tags!
+On Tue, Jun 04, 2024 at 03:11:01PM +0530, Jai Luthra wrote:
+> Drop McASP AFIFOs for all AM62 based platforms, as the extra buffering
+> is not needed with BCDMA already having internal buffering.
 
-Best regards,
-Krzysztof
+Is this related with the issue in which after play/record or use the
+McASP interface the system crashes or behaves in unexpected ways or this
+is something else?
+
+Francesco
 
 
