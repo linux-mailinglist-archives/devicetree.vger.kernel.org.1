@@ -1,167 +1,108 @@
-Return-Path: <devicetree+bounces-72349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12A958FB6D8
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:22:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 631788FB6E5
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:26:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BBCB72850CF
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:22:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 36166B212E6
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:26:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DC9013D52C;
-	Tue,  4 Jun 2024 15:22:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A58D143C64;
+	Tue,  4 Jun 2024 15:25:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KlRMA5jw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uBlERkTf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45DBC4C91;
-	Tue,  4 Jun 2024 15:22:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBF4FC13B;
+	Tue,  4 Jun 2024 15:25:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717514531; cv=none; b=g2yRIC/Wi+dqmsEWPTmsBijM17+Nv29jheO0MB7VLdbzUOzWgVM9rogZdxDGK1UUxqigOQIzXfKtmQHvAEHl0dCt5jF4oXsPO5OjcK2JE4gwvdtMyMNmA0HdfPTq6nu2Mbs94eM6bMm7l75bx1KKfkuvRs+udHP1XMESBTh7THQ=
+	t=1717514755; cv=none; b=lf/IEspISWALTKlIVd4nfSidzoDUPFCcgy6uwYBm2yPz2nF16uzm20Ld8fOAO2clRVeEYuj48eFk7hUMIAPO97zxf3+XZ4PR+3fGJtDqkNFK7g6EaGOKvWR9Cfg6uNFqVBpIqpMWjKATThDnsptVKIKrQ8KyIR8a02Uo7ebJrYE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717514531; c=relaxed/simple;
-	bh=i37zzyVngEVftThnTr0XIEMfXfr0oJ3rTWotIrQxhec=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=asQgMaDcOB8ERTIdrUYxKqA5WdbZdD6C319zp6c6o38RVlQYidEtI5lzth9avkctFRQmqH9+IYJRGOGjts+eZMlxlNxt/PyNECVlBGMREMpjiyxRElbtQDwJZYuAc/fnperRg6ny1XwFz5lkcyGEeYAz0GGirfnLr6deJOBcndQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KlRMA5jw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7BF3C2BBFC;
-	Tue,  4 Jun 2024 15:22:05 +0000 (UTC)
+	s=arc-20240116; t=1717514755; c=relaxed/simple;
+	bh=W4guxw4l01Fm9wSUJoG6FBoB1xjKNyaC5jSs9toFe60=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Pl3NJFjGe/XSgp3pW6fgX8U6T3N2Vmtck0UullHUe3NzV3cg9R9FFoUK3CcQYljXTARU+rRHuEGBSQorpGK3BHPXaJD/Qwrn9cpFIACoypQMLxt73s5qalujRVp/VsMiw/maPbD7w4OI2faZvj3IU2cCjSexaUNPBDgqWtCujaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uBlERkTf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7A9BC2BBFC;
+	Tue,  4 Jun 2024 15:25:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717514530;
-	bh=i37zzyVngEVftThnTr0XIEMfXfr0oJ3rTWotIrQxhec=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KlRMA5jw/rssb3MWW96YE4k81ilgJ3FecME3snpmO+K2C5Z4KfnNVnddHKLUHXbt5
-	 7rETmWmOCYkSINdlCDRMafyq0lx8KihJysrzDJg4jWbtbGSpDTE3JrtzXwbVtmQkb1
-	 sL4uMwSvKzhNaQ+rWf77f24lImfrGMyu9Hle4qtjazxQb0bvhM9raNNBMlJlBSGV/A
-	 xo992e3HDfyHY9mOWM3GyIdx2lOyTSlORCnth6zw9nwXkd6dPjv6fvye7LCIoBc5is
-	 kdw5WPU3Jt1nUMcjFRIxq0y9O9n5yujTmw0GfyStMVgzmLVKh+RyKrUb2b1EXiE7Yu
-	 ghyurpYC1Czew==
-Message-ID: <c9cc5a0e-35b5-47a6-b271-46cac9e19872@kernel.org>
-Date: Tue, 4 Jun 2024 17:22:03 +0200
+	s=k20201202; t=1717514754;
+	bh=W4guxw4l01Fm9wSUJoG6FBoB1xjKNyaC5jSs9toFe60=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=uBlERkTfsl6Cc1Hb9rsoZKL3tUhcrxXlmutR3hjFozXXQD+clGNtj1kEfeLvvmwug
+	 ZhWMMQut0D6GHkWtFX8YI98xpkpe0RVwG9dTrBOJAzEEHbM1jrIz+mgFlwhD1+Zkz9
+	 yhcx5lXBjmqbQsJKqOcjTckeEboWdcI5vfGbCKMzwWVElQlzdOzDR+Fsq07m+nAE/3
+	 mt5h/Neh6E82IwLgvYRsrlKqAZ2L/tTnDx4q6APk351MkrsjO1GIWAC0hzcsSj0fLW
+	 DpfNjAfk7nTYj7P3ukQ3kQ4HLc1jPIulxTvauURLNPh0ROtGhBPWE3M0euplY+Qq+k
+	 AIywwb5ieKwlQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1sEW2q-000d09-Cz;
+	Tue, 04 Jun 2024 16:25:52 +0100
+Date: Tue, 04 Jun 2024 16:25:51 +0100
+Message-ID: <86cyowlog0.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Robin Murphy <robin.murphy@arm.com>,	Bjorn Helgaas <helgaas@kernel.org>,
+	Richard Zhu <hongxing.zhu@nxp.com>,	Lucas Stach <l.stach@pengutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,	Krzysztof =?UTF-8?B?V2lsY3p5?=
+ =?UTF-8?B?xYRza2k=?= <kw@linux.com>,	Rob Herring <robh@kernel.org>,	Bjorn
+ Helgaas <bhelgaas@google.com>,	Shawn Guo <shawnguo@kernel.org>,	Sascha
+ Hauer <s.hauer@pengutronix.de>,	Pengutronix Kernel Team
+ <kernel@pengutronix.de>,	Fabio Estevam <festevam@gmail.com>,	NXP Linux Team
+ <linux-imx@nxp.com>,	Philipp Zabel <p.zabel@pengutronix.de>,	Liam Girdwood
+ <lgirdwood@gmail.com>,	Mark Brown <broonie@kernel.org>,	Manivannan
+ Sadhasivam <manivannan.sadhasivam@linaro.org>,	Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,	Conor Dooley <conor+dt@kernel.org>,
+	linux-pci@vger.kernel.org,	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,	linux-kernel@vger.kernel.org,
+	bpf@vger.kernel.org,	devicetree@vger.kernel.org,	Will Deacon
+ <will@kernel.org>,	Joerg Roedel <joro@8bytes.org>,	Jason Gunthorpe
+ <jgg@ziepe.ca>,	Alyssa Rosenzweig <alyssa@rosenzweig.io>
+Subject: Re: [PATCH v5 08/12] PCI: imx6: Config look up table(LUT) to support MSI ITS and IOMMU for i.MX95
+In-Reply-To: <Zl4v10Od99et+tLX@lizhi-Precision-Tower-5810>
+References: <20240603171921.GA685838@bhelgaas>
+	<3d24fecf-1fdb-4804-9a51-d6c34a9d65c6@arm.com>
+	<Zl4v10Od99et+tLX@lizhi-Precision-Tower-5810>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.2
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] dt-bindings: display/msm/dsi: allow specifying TE
- source
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>
-Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Krishna Manikandan <quic_mkrishn@quicinc.com>,
- linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-References: <20240520-dpu-handle-te-signal-v1-0-f273b42a089c@linaro.org>
- <20240520-dpu-handle-te-signal-v1-1-f273b42a089c@linaro.org>
- <224fa477-07ba-e7b2-2f7d-8f7d21f4a0c7@quicinc.com>
- <CAA8EJpp8kRPKboHNHwD+R5f1AcndjaQdGG=Q4ygmRE9VMNievQ@mail.gmail.com>
- <5cde2f43-89ab-d2d4-d68e-605f8f5d1da7@quicinc.com>
- <CAA8EJpoMtr6OGjL8qq-cHadQSOVyDAaL8=2TLvOjBbYV2Z7+Mg@mail.gmail.com>
- <d1a9be5d-b0a0-73bc-c66f-6d45049fbaf1@quicinc.com>
- <CAA8EJppFZQTghtyweGG_8zSqqZpEp=ho0bXuRxgyU2qGL4+ppA@mail.gmail.com>
- <4b604c91-7b1f-46b3-6b41-fe7d45190b78@quicinc.com>
- <tymwexyhuujgrz2cvxkruimst3ff4mnevcm2k4h6qdmpmb7yqp@zqbwwc5t66ya>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <tymwexyhuujgrz2cvxkruimst3ff4mnevcm2k4h6qdmpmb7yqp@zqbwwc5t66ya>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: Frank.li@nxp.com, robin.murphy@arm.com, helgaas@kernel.org, hongxing.zhu@nxp.com, l.stach@pengutronix.de, lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, bhelgaas@google.com, shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com, p.zabel@pengutronix.de, lgirdwood@gmail.com, broonie@kernel.org, manivannan.sadhasivam@linaro.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux-pci@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, bpf@vger.kernel.org, devicetree@vger.kernel.org, will@kernel.org, joro@8bytes.org, jgg@ziepe.ca, alyssa@rosenzweig.io
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On 04/06/2024 17:14, Dmitry Baryshkov wrote:
->>>>>>
->>>>>> I didnt follow why this is a link property. Sorry , I didnt follow the
->>>>>> split part.
->>>>>
->>>>> There is a link between the DSI host and the panel. I don't want to
->>>>> end up in a situation when the properties of the link are split
->>>>> between two different nodes.
->>>>>
->>>>
->>>> It really depends on what the property denotes. I do not think this
->>>> should be the reason to do it this way.
->>>
->>> It denotes how the panel signals DPU that it finished processing the
->>> data (please excuse me for possibly inaccurate description). However
->>> there is no direct link between the panel and the DPU. So we should be
->>> using a link between DSI host and the panel.
->>>
->>
->> Yes, I totally agree that we should be using a link between DSI host and the
->> panel.
->>
->> My question from the beginning has been why the output port?
->>
->> It looks like to me we need to have another input port to the controller
->> then?
->>
->> One from DPU and the other from panel?
+On Mon, 03 Jun 2024 22:04:23 +0100,
+Frank Li <Frank.li@nxp.com> wrote:
 > 
-> Dear DT maintainers, could you please comment on the OF graph entries?
-> Are they considered to be unidirectional or bidirectional?
-> 
-> Would you suggest adding another arc to the OF graph in our case or is
-> it fine to have a signal generated by the panel in the 'panel_in' port?
+> iommu may share one stream id for multi-devices. but ITS MSI can't. each
+> device's MSI index start from 0. It needs difference stream id for each
+> device.
 
-Which pin are we talking about? DSI or panel? Commit msg suggests DSI,
-so property is in DSI node part. Seems logical to me.
+That's not quite true. We go through all sort of hoops to find about
+device aliasing on PCI and allow devices that translate into the same
+DID to get MSIs.
 
-Best regards,
-Krzysztof
+Of course, just like the IOMMU, you lose any form of isolation, but
+you get what you pay for.
 
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
 
