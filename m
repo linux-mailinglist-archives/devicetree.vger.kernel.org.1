@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-72295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8145C8FB4A5
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 16:01:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA0968FB4A7
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 16:01:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2ADA1C20DBA
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:01:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89F3B1F21D1C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:01:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59EBB13CFA2;
-	Tue,  4 Jun 2024 14:00:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4819213D52B;
+	Tue,  4 Jun 2024 14:00:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uGsGogX1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RYUL7o6u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C91717BA5;
-	Tue,  4 Jun 2024 14:00:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AE4513D24F;
+	Tue,  4 Jun 2024 14:00:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717509603; cv=none; b=c0z74dO6dyFL1v4OF55q5ywqXP8X5TLA1zKz7O/18jUxVXpL+WuTAU/Zgf+LsfO1PXp7q1BAxPgZDGjjnyy/11J+E1g9Qlut09FeB59ht796MsFjVFxZpiZy6JYUsadOmryu7bf5xfxRr55TjuIkhOulqSRA2pmSBFwPiXHZuos=
+	t=1717509610; cv=none; b=uUy9BxjchYprYSv+jayxCT8vo4WzRO91EPwsjhsTiTj3+46g/DT5jqfmeznjeBkZ3ZMiVAd4qGfeozNgCD0mk2GoqhnhhprpGDBVg35NKZnH5Ugj+GEFbh6IQSFfDqBafK+eVhuNG5xiHM8gM0gkDQjSRFTFAgIKKuxAJ8ulaOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717509603; c=relaxed/simple;
-	bh=pyCuKjBDzEztSGL5VPV6DvGUsY4tB58LJ6wtMtXdCKw=;
+	s=arc-20240116; t=1717509610; c=relaxed/simple;
+	bh=cP7uD/wG7u91xicq/qibn/jCrRGqs0slZIoz+5q3tuk=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=mCTWS9p4zKk0NvUyfdgJjJvlvwMtDn+jqDxfHAPpu1a/jVwxHtg1MTunASiyeyDvMjO72UgcMe3EUxFnb8pE80DtK1ZPN8mEnu3GWy+CrAK0g8h1lV6UtqVghuasXoK3Vzre74UYmf2n9q2O/1qBoy8iuCSQMShR6li2uCWnAvU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uGsGogX1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BBB2C4AF08;
-	Tue,  4 Jun 2024 13:59:59 +0000 (UTC)
+	 MIME-Version; b=qaSbAwLwnL7tvsUrAcFr41H3SX+PFyJYFM9IUjrC4c4BiG+glOs28cX3TnbxgLurKRllRcGGVzpucKOoso1/LlVSw2rQscvqNVS5rTBtpQg6yb0EtitDUNLrA5La6d7aYUrySZhMvB7klR9Z62T70qKkRDlUW1kS2hVgZUgPW0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RYUL7o6u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEC62C4AF07;
+	Tue,  4 Jun 2024 14:00:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717509602;
-	bh=pyCuKjBDzEztSGL5VPV6DvGUsY4tB58LJ6wtMtXdCKw=;
+	s=k20201202; t=1717509609;
+	bh=cP7uD/wG7u91xicq/qibn/jCrRGqs0slZIoz+5q3tuk=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=uGsGogX1Rff5OZP/fg8dZcaHUX296tarnWi8+y5fqmKcVPyoxViU8VehFvUhCclSS
-	 H7rxF0Atv120NqCRniYpcHvxZUj7mNCMqsXROm/hhUiazarxz+XUARZt4JgVzt3M2O
-	 ALdAPEniThHo6zDvjfj+q59AXXYMT0tXVK9kUaWVM32fFGqRF0jsdfmvPMWBIUr6Bo
-	 p7iBK29Zo/xlueS6gO/uPQ3k5ir0mFqCmwYlEoXtALuONkKlNoif5CJbdO6oZ07tPA
-	 gMqfT8siKnXneH3f9xBafqlPcCJqWe0TdAmJ3tT4i+m+27JZouOkZfBtMZoz03BORd
-	 hRqI665E5QGcQ==
+	b=RYUL7o6uWryWEjlN0rRCAeL587woAKjq97KzFJcTzeBKoUAQbSoMwAAuIifxaB1ey
+	 AX8pwjTg4ngTXHHOsVxU6EV3mbV9TBP8xyCAz2D2xTH2+spNZsKUD7CtHLuQeSDUnZ
+	 D4X1U4BgDhfhoQew587hNofF7X8J1/tGEV0Z+JUdHk4Ziv+yXiMTM91h8JtPfrJSjE
+	 Xlp94kJsIL/NoU0cnBcKStNPxEFD+PyHLfOAQ1eLO40U8iw7JgwG6kXkotUc1LQqGd
+	 BNwEzZTlIL0tlDHHp1aB9bZdObI925AA8AGJ+Gf4lZM+gaaoC9/SVGL6f+eCYYYYYq
+	 Sgj8DVHk0Jlzg==
 From: Michael Walle <mwalle@kernel.org>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -57,9 +57,9 @@ Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	Michael Walle <mwalle@kernel.org>
-Subject: [PATCH 04/10] ARM: dts: imx6qdl-kontron-samx6i: cleanup the PMIC node
-Date: Tue,  4 Jun 2024 15:59:28 +0200
-Message-Id: <20240604135934.1951189-5-mwalle@kernel.org>
+Subject: [PATCH 06/10] ARM: dts: imx6qdl-kontron-samx6i: fix product name
+Date: Tue,  4 Jun 2024 15:59:30 +0200
+Message-Id: <20240604135934.1951189-7-mwalle@kernel.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20240604135934.1951189-1-mwalle@kernel.org>
 References: <20240604135934.1951189-1-mwalle@kernel.org>
@@ -71,39 +71,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Remove the comment, remove the unused phandle name for the
-VGEN5 output. VGEN5 is not used at all.
+The correct name of the product is "Kontron SMARC-sAMX6i". See also
+https://www.kontron.com/en/products/smarc-samx6i/p89810
 
 Signed-off-by: Michael Walle <mwalle@kernel.org>
 ---
- arch/arm/boot/dts/nxp/imx/imx6qdl-kontron-samx6i.dtsi | 7 +------
- 1 file changed, 1 insertion(+), 6 deletions(-)
+ arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i.dtsi | 2 +-
+ arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i.dtsi  | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-kontron-samx6i.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-kontron-samx6i.dtsi
-index 700780bf64f5..8c7f21f986e1 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-kontron-samx6i.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-kontron-samx6i.dtsi
-@@ -356,10 +356,6 @@ reg_vrefddr: vrefddr {
- 				regulator-always-on;
- 			};
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i.dtsi b/arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i.dtsi
+index a864fdbd5f16..5a9b819d7ee8 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i.dtsi
+@@ -7,6 +7,6 @@
+ #include "imx6qdl-kontron-samx6i.dtsi"
  
--			/*
--			 * Per schematics, of all VGEN's, only VGEN5 has some
--			 * usage ... but even that - over DNI resistor
--			 */
- 			vgen1 {
- 				regulator-min-microvolt = <800000>;
- 				regulator-max-microvolt = <1550000>;
-@@ -380,8 +376,7 @@ vgen4 {
- 				regulator-max-microvolt = <3300000>;
- 			};
+ / {
+-	model = "Kontron SMARC sAMX6i Dual-Lite/Solo";
++	model = "Kontron SMARC-sAMX6i Dual-Lite/Solo";
+ 	compatible = "kontron,imx6dl-samx6i", "fsl,imx6dl";
+ };
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i.dtsi b/arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i.dtsi
+index ff062f4fd726..e76963436079 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i.dtsi
+@@ -7,6 +7,6 @@
+ #include "imx6qdl-kontron-samx6i.dtsi"
  
--			reg_2p5v_s0: vgen5 {
--				regulator-name = "V_2V5_S0";
-+			vgen5 {
- 				regulator-min-microvolt = <1800000>;
- 				regulator-max-microvolt = <3300000>;
- 			};
+ / {
+-	model = "Kontron SMARC sAMX6i Quad/Dual";
++	model = "Kontron SMARC-sAMX6i Quad/Dual";
+ 	compatible = "kontron,imx6q-samx6i", "fsl,imx6q";
+ };
 -- 
 2.39.2
 
