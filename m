@@ -1,110 +1,121 @@
-Return-Path: <devicetree+bounces-72269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE0ED8FB3B9
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:26:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C3CE8FB3C2
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:28:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 42EB0B27FA8
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:24:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3384B289394
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:28:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4220A146A6B;
-	Tue,  4 Jun 2024 13:24:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B10C5146A7A;
+	Tue,  4 Jun 2024 13:28:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="s2PbKEy/"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="mHb7GBUL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp-relay-canonical-1.canonical.com (smtp-relay-canonical-1.canonical.com [185.125.188.121])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6163143755;
-	Tue,  4 Jun 2024 13:24:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 076E8146587;
+	Tue,  4 Jun 2024 13:27:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.121
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717507477; cv=none; b=uMKqgk4t0ho1dqjf0WkRWhiV9DUhcFgjrgmzOYJVOIUk/PrKUdo1EiRtjfuOKFiY9KeUCgjwbWxuHvXdqFTjbHeBsmCyeVYMx42Ts/LN9mj4sQUGcKP1f36N+lr1FB91WpUMwakssnxMPVE541RcggJF+4ccvvjgmbwY0PxpSWU=
+	t=1717507682; cv=none; b=hUHJP3TnV7+G/cRIfEA53w1/i7GqRIfIwUiy6EaoLnC+IdQ5OCEm7Orqo6M7sKtBcXo/dPoBbc4/9yMmpHDlmPcUdAQbQHs45rq5Z4Fu/M3SuoOJCewviMoxi2Yu1OPwCLm9m+w3QW5J7db4BJvdjPK7XOxG2+YopaaGXT4IREU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717507477; c=relaxed/simple;
-	bh=6etJFa5Sva7AQexf4AoKIy5woS+LE9rtDwzdEoCFtz4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j2vAQ5641o8oUqm2h4F7oLgXyRAlV+1jMAn0KMndZ9Q/KXybBnFspHH6Aakze0DGhyKfZCz6qjANbjfxJtMpu3KuJ867XazVtLcYRN4s9K/XxixBLs2InjYj8h84Y57SE54n2lAEt4cDE2YFjHG5J7LTHHg+vHgwiMspql9SkqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=s2PbKEy/; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1717507473;
-	bh=6etJFa5Sva7AQexf4AoKIy5woS+LE9rtDwzdEoCFtz4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=s2PbKEy/cyegC6j7YNWE+OP9hHBb6SwLPuKfEZTZjSgl03lyr4WXTa6F9XwjxSs6o
-	 6G57MIlfusafrur0ikXYiXPiH6ClwiODBwtLXLPLfhYwDC8SaRNbaMvGKulSe5yspN
-	 tgH305TZLAUqKlLiFhqJ8XSfxwJC2uS8XRLWT1ABUgQ86Lqx+dQzPR6q0Uf/0jZEDs
-	 t5F6WKKVHl4g+Rzgxuw6XRXkCmMYatXsibr8694It+UHb5Xay/46M+kXJ0Vg3tne1I
-	 NsY2VE6zP+I59iHUZdlbaQeu4eq1p/s8lF7cH3b9TJiA45SkmDhWNUF2iUz61ANb7c
-	 AHwezedUr5Ubw==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	s=arc-20240116; t=1717507682; c=relaxed/simple;
+	bh=XD7sGTd2Gsxw6auJAyBns8W6FqefWrT3nEzqQT0Lca8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=L1+dao4J5tn8ufnBGuccPGgqa4dj8MPMtYrvt6f6dli7F4KDJwsOi6Jx0K5yqsTo4oyo9hbhj56wRQCCSj6p2iubR7IE4ZDMQKYjrRueKbJUv0JnPAvetQPWUI75CKLa7TMMyIIXyF0Y9ZASQCAoqTsKLSv+sOOro9zuDyV2o3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=mHb7GBUL; arc=none smtp.client-ip=185.125.188.121
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from hwang4-ThinkPad-T14s-Gen-2a.conference (unknown [123.112.65.116])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 4717B37820A7;
-	Tue,  4 Jun 2024 13:24:32 +0000 (UTC)
-Message-ID: <575186dc-8a4a-4d93-98f0-d2271b0aa1fb@collabora.com>
-Date: Tue, 4 Jun 2024 15:24:31 +0200
+	by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPSA id 09942407AA;
+	Tue,  4 Jun 2024 13:27:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1717507676;
+	bh=+rTEg07k9uO3gI73BYv1gqqZWfRUljeZMZ+vQPgJl7A=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+	b=mHb7GBULCdVEnDIXP+HRZfNv5bbYo6ONwzJgzXQp1pKbG0QGKtIaTKSsd3ua8yYWz
+	 tLXRCN4fCNqcM26unkZTS99EZslV2+4VWFSszMHSCny+abZqR3A8JerH1V1ynQiMVP
+	 yaK22fMEO1Fn66EvdEE0cG/Y/q+JKtLryeGq9Mxo0YA3dIOky9NPpkDmPBN4U0vyPw
+	 /n8d3Wd6y/z7Mf2cwIyKwnru2C8iCrK9t7Zb6WkXGpMEjbsX5xlqrTMi6Ey+o1UYS8
+	 /R3SF6qbpFIsVLi02OJtGvB0bDPyqKQH4TIYSHluLiWxe++mobGGycyUtxYF36ycS7
+	 0ZMQQKKdiLMPQ==
+From: Hui Wang <hui.wang@canonical.com>
+To: linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	gregkh@linuxfoundation.org
+Cc: jirislaby@kernel.org,
+	hvilleneuve@dimonoff.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andy@kernel.org,
+	lech.perczak@camlingroup.com,
+	hui.wang@canonical.com
+Subject: [PATCH v2 1/2] dt-bindings: serial: sc16is7xx: add reset-gpios
+Date: Tue,  4 Jun 2024 21:27:25 +0800
+Message-Id: <20240604132726.1272475-1-hui.wang@canonical.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/5] iio: adc: Add support for MediaTek MT6357/8/9
- Auxiliary ADC
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com, lee@kernel.org,
- andy@kernel.org, nuno.sa@analog.com, bigunclemax@gmail.com,
- dlechner@baylibre.com, marius.cristea@microchip.com,
- marcelo.schmitt@analog.com, fr0st61te@gmail.com, mitrutzceclan@gmail.com,
- mike.looijmans@topic.nl, marcus.folkesson@gmail.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, kernel@collabora.com
-References: <20240604123008.327424-1-angelogioacchino.delregno@collabora.com>
- <20240604123008.327424-5-angelogioacchino.delregno@collabora.com>
- <CAHp75Ve8qPLu+gS8o5Q5A20j_+AP_UVkOzdKqcnhUawA_sW+VA@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <CAHp75Ve8qPLu+gS8o5Q5A20j_+AP_UVkOzdKqcnhUawA_sW+VA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Il 04/06/24 15:22, Andy Shevchenko ha scritto:
-> On Tue, Jun 4, 2024 at 3:30 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Add a driver to support reading the Auxiliary ADC IP found in the
->> MediaTek MT6357, MT6358 and MT6359 Power Management ICs, featuring
->> a different register layout, configurationm reset and ADC reading
-> 
-> configuration
-> 
+In some designs, the chip reset pin is connected to a gpio, this
+gpio needs to be set correctly before probing the driver, so adding
+a reset-gpios in the device tree.
 
-Oh, oops! If there's no further comment to address, can this be fixed while
-applying, please?
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Signed-off-by: Hui Wang <hui.wang@canonical.com>
+---
+In the v2:
+ - include the gpio.h
+ - run the 'make dt_binding_check' and 'make dtbs_check'
 
-Otherwise I can send a v3 :-)
+ Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
->> sequence from the other already supported MediaTek SoC or PMIC
->> (aux)ADC HW.
->>
->> This driver provides multiple ADC channels for system monitoring,
->> such as battery voltage, PMIC temperature, PMIC-internal voltage
->> regulators temperature, and others.
-> 
-> Seems all my concerns were addressed, so
-> Reviewed-by: Andy Shevchenko <andy@kernel.org>
-> 
+diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
+index 5dec15b7e7c3..88871480018e 100644
+--- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
++++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
+@@ -28,6 +28,9 @@ properties:
+   clocks:
+     maxItems: 1
+ 
++  reset-gpios:
++    maxItems: 1
++
+   clock-frequency:
+     description:
+       When there is no clock provider visible to the platform, this
+@@ -91,6 +94,7 @@ unevaluatedProperties: false
+ examples:
+   - |
+     #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/gpio/gpio.h>
+     i2c {
+         #address-cells = <1>;
+         #size-cells = <0>;
+@@ -120,6 +124,7 @@ examples:
+             compatible = "nxp,sc16is752";
+             reg = <0x54>;
+             clocks = <&clk20m>;
++            reset-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
+             interrupt-parent = <&gpio3>;
+             interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
+             nxp,modem-control-line-ports = <0 1>; /* Ports 0 and 1 as modem control lines */
+-- 
+2.34.1
 
-Thanks!
-Angelo
 
