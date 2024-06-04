@@ -1,119 +1,187 @@
-Return-Path: <devicetree+bounces-72432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2439B8FBAD2
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 19:46:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66A358FBAF8
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 19:52:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF8972848F3
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:46:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7B0E1F22020
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:52:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7279214A609;
-	Tue,  4 Jun 2024 17:43:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA24614A4D2;
+	Tue,  4 Jun 2024 17:52:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NGAt4/9M"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="erw9OvE7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32FAE14A082;
-	Tue,  4 Jun 2024 17:43:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ED5F14A4D4;
+	Tue,  4 Jun 2024 17:52:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717523009; cv=none; b=uysd7rM8CTwB5JheoT1djvHx/oamTQY4rwekXQhiGKcTCEnZIs6m9F+lwp/o2I+fCpxB3FWfZ9ZzSQa08zeLdGBNsZ27S6vrUUkkLMyqoCG+yaU8FvL4VgvtbD/a64Djnf1xuCaWa9v9LGtOcfoqHeIKitvnUSNRZGfPwrw442w=
+	t=1717523549; cv=none; b=uD98rhsPuWTlKdviTzW9/iGHtcvg9LBKqp76840JEsfyQeukroQ0Zw2oV5DzYL2DDo1nHcJWS3ObOaBg4w4EQgba1vjShVY1ZynXnGATRmffI2HYBov+Yt77cn+fGfbJiPK60yTC8V5r50MuoOw6hZ0+8AeJ8j/e8UVfrLJSBnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717523009; c=relaxed/simple;
-	bh=JcC1v5BWR3/aIlXbMvxiyykfLTUcQNGVWF3/jh+S9iI=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=reBy1ebViOMaQljM7KHIgraI0U8rZEo7UwwC151M66REqhmmwGOfA9Nw0nwBE9hIWHCx1cLV02a2DvwOMN4YcAjr54G2l2WasVqjRlxESsSbhrfzGJVI5qPw7u2dqLLEuRb6wJCa9XP0FxGhmAF6VhE9L8zSx8MmQqMLlZB2+78=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NGAt4/9M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85E4DC2BBFC;
-	Tue,  4 Jun 2024 17:43:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717523008;
-	bh=JcC1v5BWR3/aIlXbMvxiyykfLTUcQNGVWF3/jh+S9iI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=NGAt4/9MoQ3AADgy57S1dDGgOpgjl4uVWGIzgaNz5ReBofop0ijw73bFpo5gR98qF
-	 CvPSGCEku+NrJ+LAoiFaG3umsj7ojAuPmVV9mvyMvd53uEtYP6HBT21e034WKZzZo1
-	 pT7k7x8Q28EiSk9xj2BxDfduF22g4hjx88kWNxTUUglSMDL5InDtwWdQOZnYfloWlq
-	 0MLrrd+8tANmZZXjTPifJU2FtawybtBxhLc5weSA/2jWj1BJtYS65AOYOPutl0u6wy
-	 eZ6VEz77CkW+huywzLbt78kvUoDMiDPOQn8Uo7d+X5F/rfFmDMBI+aweIJgWuoo/kw
-	 IB2qtzrohV9Kw==
-Date: Tue, 4 Jun 2024 12:43:26 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
-	Rocky Liao <quic_rjliao@quicinc.com>, Kalle Valo <kvalo@kernel.org>,
-	Jeff Johnson <jjohnson@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-	Elliot Berman <quic_eberman@quicinc.com>,
-	Caleb Connolly <caleb.connolly@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Alex Elder <elder@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
-	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-	Jeff Johnson <quic_jjohnson@quicinc.com>,
-	ath12k@lists.infradead.org, linux-pm@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	kernel@quicinc.com, Amit Pundir <amit.pundir@linaro.org>
-Subject: Re: [PATCH v8 10/17] power: sequencing: implement the pwrseq core
-Message-ID: <20240604174326.GA733165@bhelgaas>
+	s=arc-20240116; t=1717523549; c=relaxed/simple;
+	bh=EHtUqb2rgOADuEquBZb6A24sJrOJBCMHMAaqv6cvKV8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=e02Gy3wADSTUzMago5ekGk9pdJuGz1AZdej25Am/l2R43MtyYZE+kjBw5t741T2/d1hwU3xUjpArpoLMERl/BnqfVPmhcdcOa0Cw5x0/rbKIai6v7kzgTC097FMEH/IiniSP1Wgms8f6TtDYDocRfhQiazRSrq9PcBHI4ylc830=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=erw9OvE7; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 454HSNs2005979;
+	Tue, 4 Jun 2024 17:52:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	xyx00geyLFrC218kmTryUN9Ei7VUlaBmJivrrBGDzls=; b=erw9OvE7J7jjZ2e/
+	TaR2M5qeKQDMlI02ogdD62VrYnQ5/M0g6Z2yqmIGkG2HQQFsbdydZy7ljOUUG2av
+	hQdaDg7TUaEBMZdhiPMRkoNskFeCuPNYwFAf66bkyQ2ldUQAsQrKhWeAtlJzez2P
+	i7vT1w5Kaj7esib081tPWmmK2ntChKzDZPQq0hiKdl6ORegVMXgQa2jsXMeKGmd7
+	3d8jXtQuGK5GsuGaWGUtF1g38otSpPOifDfhPxHAMJQiClaR6VQ88L/Cm97AqP48
+	DyAe/Gjpkz2kNEwlly+hNgQEbFYtFKpjbP4aEUa56r5BuDLbM7mCFQJdhzB7aqV3
+	Ox0fUw==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yj7brr1ua-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Jun 2024 17:52:11 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 454HqA2g025219
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 4 Jun 2024 17:52:10 GMT
+Received: from [10.110.31.89] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 4 Jun 2024
+ 10:52:05 -0700
+Message-ID: <a380d953-a920-6cb1-3464-9aa925561393@quicinc.com>
+Date: Tue, 4 Jun 2024 10:52:03 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240528-pwrseq-v8-10-d354d52b763c@linaro.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/7] dt-bindings: display/msm/dsi: allow specifying TE
+ source
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>
+CC: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        "Marijn
+ Suijten" <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>
+References: <20240520-dpu-handle-te-signal-v1-1-f273b42a089c@linaro.org>
+ <224fa477-07ba-e7b2-2f7d-8f7d21f4a0c7@quicinc.com>
+ <CAA8EJpp8kRPKboHNHwD+R5f1AcndjaQdGG=Q4ygmRE9VMNievQ@mail.gmail.com>
+ <5cde2f43-89ab-d2d4-d68e-605f8f5d1da7@quicinc.com>
+ <CAA8EJpoMtr6OGjL8qq-cHadQSOVyDAaL8=2TLvOjBbYV2Z7+Mg@mail.gmail.com>
+ <d1a9be5d-b0a0-73bc-c66f-6d45049fbaf1@quicinc.com>
+ <CAA8EJppFZQTghtyweGG_8zSqqZpEp=ho0bXuRxgyU2qGL4+ppA@mail.gmail.com>
+ <4b604c91-7b1f-46b3-6b41-fe7d45190b78@quicinc.com>
+ <tymwexyhuujgrz2cvxkruimst3ff4mnevcm2k4h6qdmpmb7yqp@zqbwwc5t66ya>
+ <c9cc5a0e-35b5-47a6-b271-46cac9e19872@kernel.org>
+ <xc4knruvh2kasc563vbatppof67w5ui7bnoiq73euogvkjw2hh@meq3vz2qeekk>
+ <74bc1fc0-2843-4d4a-ae6c-b656745bf02f@kernel.org>
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <74bc1fc0-2843-4d4a-ae6c-b656745bf02f@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: ce-2IuWxSFFN6vT0zC8RLZp-Mluy2HJg
+X-Proofpoint-GUID: ce-2IuWxSFFN6vT0zC8RLZp-Mluy2HJg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-04_09,2024-06-04_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 bulkscore=0 malwarescore=0 spamscore=0 mlxscore=0
+ impostorscore=0 mlxlogscore=999 clxscore=1011 phishscore=0
+ priorityscore=1501 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2405170001 definitions=main-2406040143
 
-On Tue, May 28, 2024 at 09:03:18PM +0200, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+
+
+On 6/4/2024 8:36 AM, Krzysztof Kozlowski wrote:
+> On 04/06/2024 17:32, Dmitry Baryshkov wrote:
+>> On Tue, Jun 04, 2024 at 05:22:03PM +0200, Krzysztof Kozlowski wrote:
+>>> On 04/06/2024 17:14, Dmitry Baryshkov wrote:
+>>>>>>>>>
+>>>>>>>>> I didnt follow why this is a link property. Sorry , I didnt follow the
+>>>>>>>>> split part.
+>>>>>>>>
+>>>>>>>> There is a link between the DSI host and the panel. I don't want to
+>>>>>>>> end up in a situation when the properties of the link are split
+>>>>>>>> between two different nodes.
+>>>>>>>>
+>>>>>>>
+>>>>>>> It really depends on what the property denotes. I do not think this
+>>>>>>> should be the reason to do it this way.
+>>>>>>
+>>>>>> It denotes how the panel signals DPU that it finished processing the
+>>>>>> data (please excuse me for possibly inaccurate description). However
+>>>>>> there is no direct link between the panel and the DPU. So we should be
+>>>>>> using a link between DSI host and the panel.
+>>>>>>
+>>>>>
+>>>>> Yes, I totally agree that we should be using a link between DSI host and the
+>>>>> panel.
+>>>>>
+>>>>> My question from the beginning has been why the output port?
+>>>>>
+>>>>> It looks like to me we need to have another input port to the controller
+>>>>> then?
+>>>>>
+>>>>> One from DPU and the other from panel?
+>>>>
+>>>> Dear DT maintainers, could you please comment on the OF graph entries?
+>>>> Are they considered to be unidirectional or bidirectional?
+>>>>
+>>>> Would you suggest adding another arc to the OF graph in our case or is
+>>>> it fine to have a signal generated by the panel in the 'panel_in' port?
+>>>
+>>> Which pin are we talking about? DSI or panel? Commit msg suggests DSI,
+>>> so property is in DSI node part. Seems logical to me.
+>>
+>> Input pin on the DSI side.
 > 
-> Implement the power sequencing subsystem allowing devices to share
-> complex powering-up and down procedures. It's split into the consumer
-> and provider parts but does not implement any new DT bindings so that
-> the actual power sequencing is never revealed in the DT representation.
+> So adding it to panel schema is not even possible thus I am not sure if
+> we discuss this option (maybe not, because it would be odd, considering
+> you got Rb tag!).
+> 
+> Adding some input node to DSI connecting panel output and DSI input...
+> for what? I mean, what sort of data would it represent?
+> 
 
-> +++ b/drivers/power/sequencing/core.c
+TE pin is an input signal from the panel to the DSI host.
 
-> + * Unit - a unit is a discreet chunk of a power sequence. For instance one unit
+Today we have two ports in the DSI host node:
 
-s/discreet/discrete/
+1) input to DSI node from DPU. This represents the pixel stream from DPU 
+to DSI
 
-> +static struct pwrseq_unit *pwrseq_unit_incref(struct pwrseq_unit *unit)
-> +{
-> +	kref_get(&unit->ref);
-> +
-> +	return unit;
-> +}
-> +
-> +static void pwrseq_unit_release(struct kref *ref);
-> +
-> +static void pwrseq_unit_decref(struct pwrseq_unit *unit)
-> +{
-> +	kref_put(&unit->ref, pwrseq_unit_release);
-> +}
+2) DSI output node to represent pixel stream from DSI host to panel in
 
-No existing callers of kref_get() and kref_put() use names that
-include "incref" or "decref".  Many include "get" and "put", so maybe
-there would be some value in using that pattern?
+Now, please explain to me how does TE pin belongs to (2) because thats 
+where this property has been added.
+
+> Best regards,
+> Krzysztof
+> 
 
