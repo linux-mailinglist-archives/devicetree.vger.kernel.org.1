@@ -1,65 +1,85 @@
-Return-Path: <devicetree+bounces-72344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 631E58FB685
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:05:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFC708FB68E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:06:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E2951C221BA
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:05:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03CC5B26397
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:06:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE11313D514;
-	Tue,  4 Jun 2024 15:04:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 993FC13D607;
+	Tue,  4 Jun 2024 15:06:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Eq0s2MUg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gEFNSrwK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CF6A13D24C;
-	Tue,  4 Jun 2024 15:04:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E02D913CA9A
+	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 15:05:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717513490; cv=none; b=SipsX+i4Ot1QyNdHD8ZzhJ18lIiks8KTpAGJ59B+Rj3YZGuP3ObQRrANU5q9lUSdgH7Lj4h+zYulD+xoA12u2o+Akn6fteneJno9UePfRomVv756ZUATzaXcl+OxmHL3i3zL+qiUoj+8gjL1frlVA9zaPXEmwVaIET5Mvj0mlYw=
+	t=1717513560; cv=none; b=U3Q+OR4PJ4xaV46sge3FSt5ePTGwBcfeE2E96f1makt7nbBjO7CzdUyA8UYGB+8Sjwgyjjk6ozxGfoNDM5w6sGfIVr6MMARr4IC+crIGF6lSGga9ro+kgMlC63Cv+Z/2Wc2ByObFArMLVHxXZ7uuitknnkA5VOzzL9tNDTWGdic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717513490; c=relaxed/simple;
-	bh=2mZOWMrgvpBKUIzmZNepZyOLeeZ25GOr2IADJGaiR6c=;
+	s=arc-20240116; t=1717513560; c=relaxed/simple;
+	bh=ro445i7VHeW4uYqUrduMUsb3oj6AuWo1wqWAZgg/XQ8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s5Bv5eHCMtNEC3ZdV82wbQv6jzyyV5mmY3aw4SsThUeFSiCEee9WYRRFi7bFFBfX5rVoJJaMa5dV6xO05kkpjetzQOwyC+xVv/kBysn6ugimpRmRA0p0fPI0r+UEX4KmSFyppHoxOHLkk/TgoSw7QSNBq3RmmNyqj8RgpuDcdtE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Eq0s2MUg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EB7BC4AF08;
-	Tue,  4 Jun 2024 15:04:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717513490;
-	bh=2mZOWMrgvpBKUIzmZNepZyOLeeZ25GOr2IADJGaiR6c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Eq0s2MUg0+tnl/PPjeqrm8pvFM6wxqla1fNBg8+7pRLhLPg/HH1KbaUc15VtDCJPZ
-	 7qD7/dCR7q+eiINty2+45Im6dnHfUqXT4l1VCZOlfF0/FiOqosfbbo9SSRm9jB2ubO
-	 rwh6v1UjRH8/0v8vgDGmHrlsXicAg+AtbcsSJz8xtxMVchIq2lXY7kx9/hlqDWozS4
-	 qMTnbAHbMepxcKXFMNUcQJf1STZZV86SLVARXYExkiNke40IOVLoSXIvRx/lYKNatv
-	 lp/WQ/tcaeHGJn0LuSHHVrujrsxQ5k8TsZk1r2mD7txtZCYQIqvTryITPTmBvBBtXw
-	 tLgL5uZvFd37A==
-Date: Tue, 4 Jun 2024 10:04:47 -0500
-From: Rob Herring <robh@kernel.org>
-To: Pengfei Li <pengfei.li_1@nxp.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, abelvesa@kernel.org,
-	mturquette@baylibre.com, sboyd@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	ping.bai@nxp.com, ye.li@nxp.com, peng.fan@nxp.com,
-	aisheng.dong@nxp.com, frank.li@nxp.com, tharvey@gateworks.com,
-	alexander.stein@ew.tq-group.com, gregor.herburger@ew.tq-group.com,
-	hiago.franco@toradex.com, joao.goncalves@toradex.com,
-	hvilleneuve@dimonoff.com, Markus.Niebel@ew.tq-group.com,
-	m.felsch@pengutronix.de, m.othacehe@gmail.com, bhelgaas@google.com,
-	leoyang.li@nxp.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/5] dt-bindings: clock: Add i.MX91 clock definition
-Message-ID: <20240604150447.GA604729-robh@kernel.org>
-References: <20240530022634.2062084-1-pengfei.li_1@nxp.com>
- <20240530022634.2062084-3-pengfei.li_1@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=rpBwYcYUTAIfBXeRiNS1YQZB+h4JZlTrybQu376VGN10VAJ4o5hJyxuGJPIESHof7G9YOY/PDw94s5mBs36/4zw5T1KnSDbwKv1uZOLnVRYA+YXb0wAkoCzLtPsQStgRieSRwg6LKAxOfkfzkN0CvUOCYfd1NcGOJa6xL7rPhsI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gEFNSrwK; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-57a4ea8058bso3799453a12.1
+        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 08:05:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717513556; x=1718118356; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=7i7GhF6dlRREfvJkAzXH+kI3G+fzObsSDo4YlfDK3J0=;
+        b=gEFNSrwKDtsNE4NgIesXAeDB/vEFq1XxZILC0YpL8wypgR7/X04D2b/hz2bFKL0VOH
+         kdsHJ4exCYcH1TfF2wwoq0sXFW5ejz7k0ABGYdIy1Sep8AzZwB0AF7wFhWPJOMteJOol
+         IUDeHqUS5UmXYb+BLfBy4+WMAJf8kdhsob/G+Z3kWyv9ejg9d5CKfczcTupF16T1YPQN
+         PmdeBNckH7ptTYP4fOssNDcP7lUUDplDIulOOeH1W2SvyJKmWdBiqiIxAOVM20Zozvhq
+         /0Qtpvrce5w+vCuXA9/54EmukmoDJ7NqHKhhqXj1PbntSEUGPcWoZUsalxH00Z8TzxaR
+         /+NA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717513556; x=1718118356;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7i7GhF6dlRREfvJkAzXH+kI3G+fzObsSDo4YlfDK3J0=;
+        b=wr9cMCxxffh1+ix1dKxP/m2N1CrZ15tBW8iMdK/tjg3ip6wAf5P9t8cMbTx9ulJimI
+         FWxZ0K+NqlCsGajPzArBAYD9UIt0EyayvACZaHtcMT4dKY5/g61zK8rYzaG0CN5iX+4r
+         TxKMzJ950b0LKx6i0ZNngTk5dOX81J0qZQx7Dl5NgCAGIHp1niUx9D1f9H18bxopmUO+
+         9vR4Oq45sjJyB1onh3AYvvraDJMzs7to9ucVvSCaSymDWgoDT6mg93hHmO4kAFSHvuKX
+         5Vgy8An20hEA79nicGuVhuO41/+f7O+3n0sRX1SAU+rRDutvF27lG3CIB7Yo2EG3vz+d
+         odKg==
+X-Forwarded-Encrypted: i=1; AJvYcCU7wiTwoMhyw1KKcYUKdqjE6NlOSEXL44CIU04vdtY6lL9Fp1QCXRQPn4hUZAzwlronnvvJqdAy4MO+QPjjauGdDkhwPBdSELujuw==
+X-Gm-Message-State: AOJu0Yw0vuFSjwgUs66ctGLIbeuaDypnnuyT2rOdsYBcVzoMbQsygS6w
+	Nh7OX7rQMQAc2VJOXAYlpvu8hwp0yJjdmoe+W0wnm3uY+HuG1rA28Wv0TiFZMd4=
+X-Google-Smtp-Source: AGHT+IGHlq8e17y+3YCHVKE24FcpXnHf5Vb2Kosie/7mCqEOX2TFC+ggm5U4vZqBl1jL5xdJIrHEYw==
+X-Received: by 2002:a50:9b43:0:b0:57a:23eb:13b3 with SMTP id 4fb4d7f45d1cf-57a363713eemr8130395a12.12.1717513555940;
+        Tue, 04 Jun 2024 08:05:55 -0700 (PDT)
+Received: from linaro.org ([188.27.161.69])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57a31b98e0csm7473460a12.13.2024.06.04.08.05.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Jun 2024 08:05:55 -0700 (PDT)
+Date: Tue, 4 Jun 2024 18:05:54 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100: Disable the SMB2360 4th
+ instance by default
+Message-ID: <Zl8tUr+r423Tbw6l@linaro.org>
+References: <20240603-x1e80100-dts-pmics-drop-4th-smb2360-from-crd-v2-1-fb63973cc07d@linaro.org>
+ <4c1d77e3-3fe7-4ee6-8872-3924a1b2ef9f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,35 +88,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240530022634.2062084-3-pengfei.li_1@nxp.com>
+In-Reply-To: <4c1d77e3-3fe7-4ee6-8872-3924a1b2ef9f@linaro.org>
 
-On Wed, May 29, 2024 at 07:26:31PM -0700, Pengfei Li wrote:
-> i.MX91 is similar with i.MX93, only add few new clock compared to i.MX93.
-> Add i.MX91 related clock definition.
+On 24-06-04 14:01:11, Konrad Dybcio wrote:
 > 
-> Signed-off-by: Pengfei Li <pengfei.li_1@nxp.com>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  include/dt-bindings/clock/imx93-clock.h | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
 > 
-> diff --git a/include/dt-bindings/clock/imx93-clock.h b/include/dt-bindings/clock/imx93-clock.h
-> index 787c9e74dc96..ca0785f35a46 100644
-> --- a/include/dt-bindings/clock/imx93-clock.h
-> +++ b/include/dt-bindings/clock/imx93-clock.h
-> @@ -204,6 +204,11 @@
->  #define IMX93_CLK_A55_SEL		199
->  #define IMX93_CLK_A55_CORE		200
->  #define IMX93_CLK_PDM_IPG		201
-> -#define IMX93_CLK_END			202
-> +#define IMX91_CLK_ENET1_QOS_TSN     202
-> +#define IMX91_CLK_ENET_TIMER        203
-> +#define IMX91_CLK_ENET2_REGULAR     204
-> +#define IMX91_CLK_ENET2_REGULAR_GATE		205
-> +#define IMX91_CLK_ENET1_QOS_TSN_GATE		206
-> +#define IMX93_CLK_END			207
+> On 6/3/24 10:17, Abel Vesa wrote:
+> > The CRD board doesn't have the 4th SMB2360 PMIC populated while the QCP
+> > does. So enable it on QCP only. This fixes the warning for the missing
+> > PMIC on CRD as well.
+> > 
+> > Fixes: 2559e61e7ef4 ("arm64: dts: qcom: x1e80100-pmics: Add the missing PMICs")
+> > Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+> > Tested-by: Johan Hovold <johan+linaro@kernel.org>
+> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > ---
+> > Changes in v2:
+> > - Fetched all R-b and T-b tags
+> 
+> Almost..
+> 
+> gotta do it twice to make sure it's posted
 
-Drop the END define. If it can change, it's not part of the ABI.
+Actually you sent your R-b tag to v1 exactly one day after v2 was
+already sent. :)
 
-Rob
+But I think b4 would've picked up the one from v1 anyway.
+
+> 
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> 
+> Konrad
 
