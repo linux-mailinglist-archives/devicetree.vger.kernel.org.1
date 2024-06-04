@@ -1,213 +1,194 @@
-Return-Path: <devicetree+bounces-72118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A390C8FAE1D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 10:54:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F2B18FAE23
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 10:56:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4DA21C209E8
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 08:54:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 080DC2823E6
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 08:56:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F10014386B;
-	Tue,  4 Jun 2024 08:53:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B63C142E63;
+	Tue,  4 Jun 2024 08:56:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="J01bgPaW"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="P6ElIW8W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BB3E1448D8;
-	Tue,  4 Jun 2024 08:53:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA6D9BA39;
+	Tue,  4 Jun 2024 08:55:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717491218; cv=none; b=QpgIlZR0Bhg78B515akhVihuqU0+bDqIEPSTaTGEJMyQ7lgDdP12aZzqfLo/sROXxc4HghP8dYxDShSuy8pWOi6zZViK+U1+Atog9izjE0HLSApdvrCU12CbJ9BRFR2vMqnNAEUZjyemEp6YWYJSRkQ1Cy9G0eGHupGUCfoHHs4=
+	t=1717491361; cv=none; b=ByDQrZ5cpswgPcQZX9BeDLYYbwE20A/GOHKHUL1fbJ4QPSHt9Bwz1+lm8byMx0zduS9gRKF6jJqqSx+qaT74i9CjGB162l+IHQ3ZUMmgVrSutA15A4wfIpyuKH6XBT1WPImIshh91BoLCtzLEq6aw4SChhnTGtYHXRZq5iUCB8I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717491218; c=relaxed/simple;
-	bh=MMpITXPM4C0ivfbrTMWWRhwxZMMMyv+M0uOugvKNaU4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BeaxVJXmgZqlYNTINXt7qGvjwahzYN0D0uubLfpvdSd+MpoIet8mgF3inX8pRVtFlbxH1jBJ6xacnOKbuAFVZYKO28FJfd8L1NIttjobF2PDE6WKLK00F5V6L+3BwRmD8j6lisQ9kqbxNEO+qAZBIyFYl07jBY2ghg66WlwAoPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=J01bgPaW; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4548rSd2069328;
-	Tue, 4 Jun 2024 03:53:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1717491209;
-	bh=XOI5HnJnHNLJ54u/KSVaU0exWK4JxEf2xnlqQDUnx8w=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=J01bgPaWdbVipsdj8jQ+Hsj7IB/kDywipsK4nuT82DfpviqLrbuVnVeuc5b3ZCApT
-	 tBPvzLyxfsImVc7MLU8GXA/g+GZrxLDHa6J8j5IrE30UWSdryRCDjFGaE8ImvGm7cQ
-	 1Qug7UHTnbQXw4+XWgTWRDjWlYDS4yrqfaz+8r2w=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4548rSg2016178
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 4 Jun 2024 03:53:28 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 4
- Jun 2024 03:53:28 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 4 Jun 2024 03:53:28 -0500
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [172.24.227.9])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4548qqQo066926;
-	Tue, 4 Jun 2024 03:53:24 -0500
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <afd@ti.com>, <kristo@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <rogerq@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>,
-        <danishanwar@ti.com>, <srk@ti.com>, <s-vadapalli@ti.com>
-Subject: [PATCH v5 7/7] arm64: dts: ti: k3-j722s: Enable PCIe and USB support on J722S-EVM
-Date: Tue, 4 Jun 2024 14:22:52 +0530
-Message-ID: <20240604085252.3686037-8-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20240604085252.3686037-1-s-vadapalli@ti.com>
-References: <20240604085252.3686037-1-s-vadapalli@ti.com>
+	s=arc-20240116; t=1717491361; c=relaxed/simple;
+	bh=r2ck1rsuVVphLHKbN3/pA2NZ4RAXxpCpbkmrsFDVE5g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fVIIwYeQDQsA7Zn/C9//TNDhJv9WGwadMFKuytqT0H4CAOC/5fqmcgdnKGmkIwbyKJMLEyioJxGuxadkq/Pp8zSpHF5PLj7JxLPU3n0pV5X5kU66OlqajLlnMDc4Bauv95r1e/e23Syz2DeDFNJiELoDw+O4yNBmtdXQmzg1JLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=P6ElIW8W; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1717491357;
+	bh=r2ck1rsuVVphLHKbN3/pA2NZ4RAXxpCpbkmrsFDVE5g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=P6ElIW8WPmTOX0jW3jw2xp/rjwSPQt4ZKDODVDJxlOKrsa4qdnBeSkQ2YUJJUJc4Q
+	 JOvi6t5r10Qk7hXsnAJ1mDPbLEmcaURAqo3UZtkbjyh+e15CMYEBwnbGBeP0aUV6on
+	 Fd1uYD0AqcgMEFnIiF+N/iJ0ImD9NUBavw7BlmwETppxrBgJV6bS4k6WgIXWwhQ8Dv
+	 EpZxNOEYZ/1ieAe5X6W+UUt6Oi5cogBZ0lzLfnhuQKjxt//IJ+UIIQWNwZfyVa6Xs5
+	 S8GuDrSqNIj3LG0bTJczaRuL+mma50nfQ/hyannt2+xuOuTdLr1BXVhN+qCrBroLv7
+	 ynLjRJ8EjbugQ==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 6DAB737820A7;
+	Tue,  4 Jun 2024 08:55:56 +0000 (UTC)
+Message-ID: <dc46258b-caf9-46a7-84b4-2f229d48b8f7@collabora.com>
+Date: Tue, 4 Jun 2024 10:55:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/4] dt-bindings: iio: adc: Add MediaTek MT6359 PMIC
+ AUXADC
+To: Krzysztof Kozlowski <krzk@kernel.org>, jic23@kernel.org
+Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, matthias.bgg@gmail.com, lee@kernel.org,
+ andy@kernel.org, nuno.sa@analog.com, bigunclemax@gmail.com,
+ dlechner@baylibre.com, marius.cristea@microchip.com,
+ marcelo.schmitt@analog.com, fr0st61te@gmail.com, mitrutzceclan@gmail.com,
+ mike.looijmans@topic.nl, marcus.folkesson@gmail.com,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, kernel@collabora.com
+References: <20240530093410.112716-1-angelogioacchino.delregno@collabora.com>
+ <20240530093410.112716-2-angelogioacchino.delregno@collabora.com>
+ <c2b97c8e-177e-4169-b001-ab0e3303734f@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <c2b97c8e-177e-4169-b001-ab0e3303734f@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Enable PCIe0 instance of PCIe in Root Complex mode of operation with Lane 0
-of the SERDES1 instance of SERDES. Also enable USB0 instance of USB to
-interface with the Type-C port via the USB hub, by configuring the pin P05
-of the GPIO expander on the EVM. Enable USB1 instance of USB in SuperSpeed
-mode of operation with Lane 0 of the SERDES0 instance of SERDES.
+Il 01/06/24 17:32, Krzysztof Kozlowski ha scritto:
+> On 30/05/2024 11:34, AngeloGioacchino Del Regno wrote:
+>> Add a new binding for the MT6350 Series (MT6357/8/9) PMIC AUXADC,
+>> providing various ADC channels for both internal temperatures and
+>> voltages, audio accessory detection (hp/mic/hp+mic and buttons,
+>> usually on a 3.5mm jack) other than some basic battery statistics
+>> on boards where the battery is managed by this PMIC.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   .../iio/adc/mediatek,mt6359-auxadc.yaml       | 43 +++++++++++++++++++
+>>   .../iio/adc/mediatek,mt6357-auxadc.h          | 21 +++++++++
+>>   .../iio/adc/mediatek,mt6358-auxadc.h          | 22 ++++++++++
+>>   .../iio/adc/mediatek,mt6359-auxadc.h          | 22 ++++++++++
+>>   4 files changed, 108 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/iio/adc/mediatek,mt6359-auxadc.yaml
+>>   create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6357-auxadc.h
+>>   create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6358-auxadc.h
+>>   create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6359-auxadc.h
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/adc/mediatek,mt6359-auxadc.yaml b/Documentation/devicetree/bindings/iio/adc/mediatek,mt6359-auxadc.yaml
+>> new file mode 100644
+>> index 000000000000..dd6c331905cf
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/iio/adc/mediatek,mt6359-auxadc.yaml
+>> @@ -0,0 +1,43 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/iio/adc/mediatek,mt6359-auxadc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: MediaTek MT6350 series PMIC AUXADC
+>> +
+>> +maintainers:
+>> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> +
+>> +description:
+>> +  The Auxiliary Analog/Digital Converter (AUXADC) is an ADC found
+>> +  in some MediaTek PMICs, performing various PMIC related measurements
+>> +  such as battery and PMIC internal voltage regulators temperatures,
+>> +  accessory detection resistance (usually, for a 3.5mm audio jack)
+>> +  other than voltages for various PMIC internal components.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - mediatek,mt6357-auxadc
+>> +      - mediatek,mt6358-auxadc
+>> +      - mediatek,mt6359-auxadc
+>> +
+>> +  "#io-channel-cells":
+>> +    const: 1
+>> +
+>> +additionalProperties: false
+> 
+> If there is going to be a re-spin, please move this below required: block.
+> 
 
-Co-developed-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
-Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
-v4:
-https://lore.kernel.org/r/20240601121554.2860403-8-s-vadapalli@ti.com/
-Changes since v4:
-- Based on Andrew's feedback at:
-  https://lore.kernel.org/r/183a9d15-939e-433b-84ba-8a64eb8ef3ec@ti.com/
-  the `status = "okay";` line has been moved to the end of the
-  `pcie0_rc` node referenced in k3-j722s-evm.dts following the updated
-  ordering rules.
-- The SERDES1 node has been enabled in the k3-j722s-evm.dts file since
-  it has been disabled in the k3-j722s-main.dtsi file in the previous
-  patch.
+Yep, will do. Fixed up for v2.
 
- arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 73 +++++++++++++++++++++++++
- 1 file changed, 73 insertions(+)
+>> +
+>> +required:
+>> +  - compatible
+>> +  - "#io-channel-cells"
+>> +
+>> +examples:
+>> +  - |
+>> +    pmic {
+>> +        pmic_adc: adc {
+>> +            compatible = "mediatek,mt6359-auxadc";
+>> +            #io-channel-cells = <1>;
+>> +        };
+> 
+> This suggests that you should grow (make complete) the parent PMIC example.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-index bf3c246d13d1..253b02f0437d 100644
---- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-@@ -9,7 +9,9 @@
- /dts-v1/;
- 
- #include <dt-bindings/net/ti-dp83867.h>
-+#include <dt-bindings/phy/phy.h>
- #include "k3-j722s.dtsi"
-+#include "k3-serdes.h"
- 
- / {
- 	compatible = "ti,j722s-evm", "ti,j722s";
-@@ -202,6 +204,12 @@ J722S_IOPAD(0x0130, PIN_OUTPUT, 0) /* (AG26) RGMII1_TXC */
- 			J722S_IOPAD(0x012c, PIN_OUTPUT, 0) /* (AF25) RGMII1_TX_CTL */
- 		>;
- 	};
-+
-+	main_usb1_pins_default: main-usb1-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x0258, PIN_INPUT, 0) /* (B27) USB1_DRVVBUS */
-+		>;
-+	};
- };
- 
- &cpsw3g {
-@@ -301,6 +309,13 @@ exp1: gpio@23 {
- 				  "PCIe0_1L_RC_RSTz", "PCIe0_1L_PRSNT#",
- 				  "ENET1_EXP_SPARE2", "ENET1_EXP_PWRDN",
- 				  "PD_I2ENET1_I2CMUX_SELC_IRQ", "ENET1_EXP_RESETZ";
-+
-+		p05-hog {
-+			/* P05 - USB2.0_MUX_SEL */
-+			gpio-hog;
-+			gpios = <5 GPIO_ACTIVE_HIGH>;
-+			output-high;
-+		};
- 	};
- };
- 
-@@ -384,3 +399,61 @@ &sdhci1 {
- 	status = "okay";
- 	bootph-all;
- };
-+
-+&serdes_ln_ctrl {
-+	idle-states = <J722S_SERDES0_LANE0_USB>,
-+		      <J722S_SERDES1_LANE0_PCIE0_LANE0>;
-+};
-+
-+&serdes0 {
-+	status = "okay";
-+	serdes0_usb_link: phy@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <1>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_USB3>;
-+		resets = <&serdes_wiz0 1>;
-+	};
-+};
-+
-+&serdes1 {
-+	status = "okay";
-+	serdes1_pcie_link: phy@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <1>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_PCIE>;
-+		resets = <&serdes_wiz1 1>;
-+	};
-+};
-+
-+&pcie0_rc {
-+	reset-gpios = <&exp1 18 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes1_pcie_link>;
-+	phy-names = "pcie-phy";
-+	status = "okay";
-+};
-+
-+&usbss0 {
-+	ti,vbus-divider;
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	dr_mode = "otg";
-+	usb-role-switch;
-+};
-+
-+&usbss1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_usb1_pins_default>;
-+	ti,vbus-divider;
-+	status = "okay";
-+};
-+
-+&usb1 {
-+	dr_mode = "host";
-+	maximum-speed = "super-speed";
-+	phys = <&serdes0_usb_link>;
-+	phy-names = "cdns3,usb3-phy";
-+};
--- 
-2.40.1
+Uhm, should I instead add that to bindings/mfd/mediatek,mt6357.yaml and avoid
+growing the parent example?
+
+   adc:
+     type: object
+     $ref: /schemas/iio/adc/mediatek,mt6359-auxadc.yaml
+     unevaluatedProperties: false
+
+> 
+> Actually having this as a separate node is not really needed. Why it
+> cannot be just part of the MFD/parent node?
+> 
+
+(glossary: PWRAP = PMIC [SPI] WRAPper)
+
+The top node is the PWRAP, an IP that is (mostly) used to dispatch commands to
+the PMIC, but the AUXADC is not integrated into the PWRAP, but into the PMIC.
+
+Declaring the AUXADC as a PWRAP child would therefore be an incorrect description
+of the hardware.
+
+P.S.: not necessary, but to "complete the circle" ... note that the PWRAP can be
+       skipped on some SoCs/firmwares/configurations, even though afaik that's only
+       mostly for debugging purposes, it's not granted that you have pwrap between
+       SoC and PMIC on all SoCs/fws/confs, even though, all of the boards that are
+       supported upstream do have it and do require it.
+
+Cheers,
+Angelo
+
+> 
+> Best regards,
+> Krzysztof
+> 
+
+
 
 
