@@ -1,167 +1,123 @@
-Return-Path: <devicetree+bounces-72254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E1C68FB30E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:57:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50BE88FB322
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:05:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2A4E2855F7
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 12:57:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 817831C24B08
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:05:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 862BA146A9E;
-	Tue,  4 Jun 2024 12:55:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BD56146013;
+	Tue,  4 Jun 2024 13:05:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SHnxR0f3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qif0UDwL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4C73146A97
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 12:55:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDB08144D2E;
+	Tue,  4 Jun 2024 13:05:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717505738; cv=none; b=T2aGAxciJh9oevwNH+6SVtV/tLnwfOEcvB7KMIOeC7iOkgEKLSlElygB0vRc+7nGIXnbtGy9v7K5aPjyAGwcKNT6I+xs3AbpcN3S5UydWIKyHhmm29ZUQhm2W+alf0H3il83z+mij3V3Z+XpLlGsmVfvQDT1McKqL61nhQeN6ww=
+	t=1717506330; cv=none; b=jtILjBWvKa9cSRVXXLQiqtImDatPeh8k0FwK2MGveWca2GyxC8dWN6nMeCtEPTG0RUm+jzdBiDik/FpGR/n8X1XsXwctlvNCF8iPPJNJJDmpQieNXZBTiwPHXtGmgwTGH0nMLoxDw+AGqDWDvTtx7ofMlmxqpug6cWtEvu2zCAY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717505738; c=relaxed/simple;
-	bh=V0vCL6gVkhzAyZZo+oJsCeJeNNIlPl7HtsS1Su1kgQI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CuA/uwuky6Bxs12uMiLU/gK20AjMT5rCm6U6trHTtL1ykb8/Hkn7JcFxwwqWMgL0pF95j/opG1T0Bng8zHzA1Oz6hkXO7mVNMPt+40kludHZeiu7f1plHUMDErDiTrRlCccfASfJl5kLkbeDsh1h/PkdHfTDz9oAKzLNhe1h8cs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SHnxR0f3; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-57a68b0a229so2126014a12.3
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 05:55:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717505735; x=1718110535; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CuBOud40nBOggoAWfa0+Eb9qxrfGYqM4K+kdHXRtdok=;
-        b=SHnxR0f3f/eU2/9IpCfHNwpBuiGCWzuq4zshgc5MNDPEmAyV7g1B7HhuguAmHhuaIz
-         ZiHBrzhD4ysLNPMyWR6mjYcDkGuj+qdIs9RBdBO8xB/qHETk/+8whqn5kWAitl41VQhr
-         tKmXN4SoOw6sji9FRuuLr6hD0ntJHruRuVnceFlU/a7eBUCtTVvpFbFp1kBlLc0++kGC
-         V55LkloIlxmWEUoC47k5vGngmBDV8hFOznZ/nwZAJiFUIRw9lAWdB6wWNbrm7OYyK9tQ
-         OWOEgG/hvmMp/kbatitGCDgf4af/d99T3n1NoZEeUp9a7IjT1PJTR+JZUDPmBFxX+fAi
-         9vGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717505735; x=1718110535;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CuBOud40nBOggoAWfa0+Eb9qxrfGYqM4K+kdHXRtdok=;
-        b=YKuy0fTGuh9E4vJjsj1fjZj3BWs2v58YeXazqIGRzXLOQwbUr/A2AyQAm6a2GwreCZ
-         9sSRAmrj6P5+8Ag3W1mcsyZYYHDGfXKoDDsIlYZNC7T7nx1uM0P2IeRCSE/y4RRtlBi8
-         hcbAKX5+0IZ9jthCoT7Yn3W9ZixGJBM4rxyVgAKShUc+qbW1elfDmn83wskXMW4A94n/
-         etaGGWEeVv4Ro88ky3Tpd4aq758eEk+vj8RBcZ5aLX8an7Sv4gfTrhM2LvTS/oGSh58G
-         C2J5351ZXp6Qjn6R3CMN/U8Ih/VYFicg/cJL0mRIliczBdrFXLljrKAvaepFEepSpAOr
-         8V7w==
-X-Forwarded-Encrypted: i=1; AJvYcCWfM0/VIMp3vWsk6hlVih8xL4cz09wMLnO+lTFJQkryq0yrdRiyz7hdsn6X5dnnq9yLjYNOa7+LdetenuBDByX18Qh68dgMVmACrg==
-X-Gm-Message-State: AOJu0YySv793WhRusg8ujkGp63bFadcaRzPeYlneN+SxzVhlFuTtGeyP
-	SclHhcUZlwNu/NbNEUur8Qv0zpAbeulUY/Kb7E5ejpWEdn9V+eeyg6ZLe7oSFx0=
-X-Google-Smtp-Source: AGHT+IG1rAoHsAHyRqKPmOSjqv99/sZwppXItf/q+FZevk0x6ZqV4EBji8R7gKbvE/UOP0Zpec+vYg==
-X-Received: by 2002:a50:d541:0:b0:57a:231e:2cf5 with SMTP id 4fb4d7f45d1cf-57a364384afmr8146953a12.32.1717505735060;
-        Tue, 04 Jun 2024 05:55:35 -0700 (PDT)
-Received: from ?IPV6:2a00:f41:909a:a11e:a035:2af2:8d85:1f72? ([2a00:f41:909a:a11e:a035:2af2:8d85:1f72])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57a31bb83f0sm7291474a12.35.2024.06.04.05.55.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Jun 2024 05:55:34 -0700 (PDT)
-Message-ID: <dd1be285-d94b-448e-85d3-d5dce27f9ac0@linaro.org>
-Date: Tue, 4 Jun 2024 14:55:31 +0200
+	s=arc-20240116; t=1717506330; c=relaxed/simple;
+	bh=9EKMSE4WwZwbHhI87SmvVkxv+6q5bsofM8XJUDQ9ajY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H/c8McqzPtAElAqRW8vXnx2RzUc9KD1U1LGeUC+IflVj5dnzeOEVc5gfASEvc9vSBonK+hc/oDjccslmKIQ2Ak17HWf4L0CCQ8jbfoNieJR3IExrJe2ZoT3GLODjDl7uRQG0xqCZJm0YY27NSsCv++c3Z+vk8l0td4BQ54yytg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qif0UDwL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 594BAC2BBFC;
+	Tue,  4 Jun 2024 13:05:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717506329;
+	bh=9EKMSE4WwZwbHhI87SmvVkxv+6q5bsofM8XJUDQ9ajY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qif0UDwLifv6BkCrZFJHf9Cga0EV9h0UEzXW4e7t/NLrlVc2YyZA4aDCZbF0JkZ2N
+	 ekOvCmlyXm+3Efwig/zKswIc+QfBfwOAsX1DflYCuPijz6wcol6BEmO5LDOF18CjMh
+	 PAmKXffV7aWgrx9UkHxJ3E4DldyYCCLMXlp/V5QFQCJpKc9FrWBegt9HpUZ3AXPleV
+	 xvbxT06FF2WAp6DAb3VVCQCOm1X3uDgQMTaWpK/QD+9QpNCOHteqgSTD892vn9sCkd
+	 +mcb9I/Ad2Jp7XJ6eGe4HsdHW2XaX3nhUDSXLZ6mlxYSawDKpHS04eEIZOgzNOA6F+
+	 6QFQx+xkg4QyQ==
+Date: Tue, 4 Jun 2024 08:05:26 -0500
+From: Rob Herring <robh@kernel.org>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	patches@lists.linux.dev, kunit-dev@googlegroups.com,
+	linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org,
+	Brendan Higgins <brendan.higgins@linux.dev>,
+	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Daniel Latypov <dlatypov@google.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Ripard <maxime@cerno.tech>
+Subject: Re: [PATCH v5 07/11] dt-bindings: test: Add single clk consumer
+Message-ID: <20240604130526.GA12945-robh@kernel.org>
+References: <20240603223811.3815762-1-sboyd@kernel.org>
+ <20240603223811.3815762-8-sboyd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1e80100: Make the PCIe 6a PHY
- support 4 lanes mode
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Johan Hovold <johan@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Rajendra Nayak
- <quic_rjendra@quicinc.com>, Sibi Sankar <quic_sibis@quicinc.com>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240531-x1e80100-dts-fixes-pcie6a-v1-0-1573ebcae1e8@linaro.org>
- <20240531-x1e80100-dts-fixes-pcie6a-v1-2-1573ebcae1e8@linaro.org>
- <Zl28nvnpGFRsYpGh@hovoldconsulting.com>
- <d93fe55e-7c65-48cb-bdaf-5e15bc22be30@linaro.org>
- <Zl8GoRoY9lXRtg2R@hovoldconsulting.com>
- <402aa998-8b3c-4c3c-8dcb-f128b6ddac46@linaro.org>
- <Zl8MUpfy/2Khw+wD@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <Zl8MUpfy/2Khw+wD@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240603223811.3815762-8-sboyd@kernel.org>
 
-
-
-On 6/4/24 14:45, Abel Vesa wrote:
-> On 24-06-04 14:38:40, Konrad Dybcio wrote:
->>
->>
->> On 6/4/24 14:20, Johan Hovold wrote:
->>> On Tue, Jun 04, 2024 at 02:00:10PM +0200, Konrad Dybcio wrote:
->>>> On 6/3/24 14:52, Johan Hovold wrote:
->>>
->>>>> As I just mentioned in my reply on the PHY patch, this does not seem to
->>>>> work on the CRD were the link still come up as 2-lane (also with the
->>>>> clocks fixed):
->>>>>
->>>>> 	qcom-pcie 1bf8000.pci: PCIe Gen.4 x2 link up
->>>>>
->>>>> So something appears to be wrong here or in the PHY changes.
->>>>
->>>> Is the device on the other end x4-capable? Or does it not matter in
->>>> this log line?
->>>
->>> Yes, of course. It's the CRD as I wrote above, and you can tell from
->>> other log entries:
->>>
->>> 	pci 0007:01:00.0: 31.506 Gb/s available PCIe bandwidth, limited by 16.0 GT/s PCIe x2 link at 0007:00:00.0 (capable of 63.012 Gb/s with 16.0 GT/s PCIe x4 link)
->>>
->>> lspci and what Windows reports.
->> Ok, good. I was scared of double-sourcing of parts that are not identical
->> in spec..
->>
+On Mon, Jun 03, 2024 at 03:38:04PM -0700, Stephen Boyd wrote:
+> Describe a binding for a device that consumes a single clk in DT. This
+> will initially be used by a KUnit test to clk_get() the clk registered
+> by of_fixed_clk_setup() and test that it is setup properly.
 > 
-> On my CRD, there is a KBG50ZNS256G.
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Brendan Higgins <brendan.higgins@linux.dev>
+> Cc: David Gow <davidgow@google.com>
+> Cc: Rae Moar <rmoar@google.com>
+> Signed-off-by: Stephen Boyd <sboyd@kernel.org>
+> ---
+>  .../test/test,single-clk-consumer.yaml        | 34 +++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/test/test,single-clk-consumer.yaml
 > 
->> [1] suggests this wasn't ever achieved.. which makes the cover letter of
->> this series a bit misleading..
-> 
-> True ...
-> 
->>
->> What does the TCSR check return? If 0, can you hardcode it to 1 and see if
->> the link comes up at x4?
-> 
-> TCSR check returns 1. But that is not enough. The PCIe controller needs to
-> handles some stuff about margining. See the following patchset.
-> 
-> https://lore.kernel.org/linux-pci/20240501163610.8900-3-quic_schintav@quicinc.com/
-> 
-> But even with this, I'm not able to get 4-lanes mode to work (yet).
-> So it must be something else in the controller driver that is needed.
+> diff --git a/Documentation/devicetree/bindings/test/test,single-clk-consumer.yaml b/Documentation/devicetree/bindings/test/test,single-clk-consumer.yaml
+> new file mode 100644
+> index 000000000000..8c384c48707d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/test/test,single-clk-consumer.yaml
+> @@ -0,0 +1,34 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/test/test,single-clk-consumer.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Test consumer of a single clock
+> +
+> +maintainers:
+> +  - Stephen Boyd <sboyd@kernel.org>
+> +
+> +description:
+> +  A consumer of a single clock used in tests.
+> +
+> +properties:
+> +  compatible:
+> +    const: test,single-clk-consumer
 
-The margining settings AFAIU shouldn't be necessary for just getting the
-link, but to ensure there aren't many errors while transacting..
+I don't know if there's much value in defining bindings for tests. We 
+could alternatively make 'test,' opt out of everything. There's already 
+some support in dtschema for this with 'foo,'.
 
-> 
-> IIRC, this is the first Qualcomm platform that would support Gen4 with
-> 4-lanes upstream. Maybe I'm wrong.
+I need something for the DT unittest as well. 
 
-Seems so
-
-Another idea I had, maybe the PCIE_PORT_LINK_CONTROL &
-PCIE_LINK_WIDTH_SPEED_CONTROL registers differ on qcom gen4 controllers..
-
-Can you check the documentation and see if the defines in
-drivers/pci/controller/dwc/pcie-designware.h still hold true?
-
-Konrad
+Rob
 
