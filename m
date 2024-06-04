@@ -1,153 +1,136 @@
-Return-Path: <devicetree+bounces-72433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0049D8FBAF4
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 19:52:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AFCD8FBAFC
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 19:53:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A774D1F21682
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:52:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C5111C21DA2
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:53:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE66F14A4F9;
-	Tue,  4 Jun 2024 17:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B61F14A099;
+	Tue,  4 Jun 2024 17:52:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R2TEtUJB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pv7WYyK7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B725814A4F3;
-	Tue,  4 Jun 2024 17:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEDFC13D52C;
+	Tue,  4 Jun 2024 17:52:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717523527; cv=none; b=ZvibLY/ZDagwtLunCh5gIj35qtAIAVgavQhEHs1n27bXfMxpUYzJLi3QvmofyXkYLPUT6YZ5Xi1BlpQNTZZC4Mf1Rd9aGeUD8dd5SB8Op6he4UtGGH4C3ccnB7MQ4n6h6sxla8aOzXeoFO82oRiUIzpiEAEAjsGg+0SOkeTkKbo=
+	t=1717523576; cv=none; b=MK3gX1VTn04uXJJ1/NXCFzb0BvtYAc7k1mGMk6kOmF4pbUFBsh/C1QY74jKZnUwi+3gyUQlssP32FimX+o9tMmhrLjwkrAx02zxQyM/gJjQGt1HaCzuPUjQix3cP9XeHZ088ioccet7cWHU0A9add7Q4FOTQYMgNNiin2dsk6yA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717523527; c=relaxed/simple;
-	bh=g/+clNdeDrCvJkbqS6hHDLJsY21YGq0LBFprJnyXIeQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YAON1aRauoHhv/ILNdFK5i2UygZzSinnpjXpyDDSVpaqdSS9rZ5n5IO9k/Y2EdUUiCwqfYQP8B+cqbqTbJ2abhhmhrP0HhKB27AtYoJUCEpj4V4GueWWtZa1R7fjdHk/qSqvi4JzojRO5sqIr9zBvsbl1qKQRbHWCXDiUPVqr3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R2TEtUJB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B281BC32782;
-	Tue,  4 Jun 2024 17:52:05 +0000 (UTC)
+	s=arc-20240116; t=1717523576; c=relaxed/simple;
+	bh=Hqqr9yw/DX0Mf6mIuq2bE9GcOEl92STqqaD9QVg7U3M=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=WcxR/63Jj2RB1JvjVjvWV+5JkijtFtPIBg5L70STfPsDEGoNFQ1pf/EkHpAFqjNi8Vr/KE67jxWQjwYdDIRHW4/D2XjzZs4ziHm3wv9n9v4K358KT/OC2xJ0eDBi3VmIEYKCUPA67oFgPbyqGqM9uVYcoZURAz3NG8zWqnB/P78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pv7WYyK7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17DFAC2BBFC;
+	Tue,  4 Jun 2024 17:52:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717523527;
-	bh=g/+clNdeDrCvJkbqS6hHDLJsY21YGq0LBFprJnyXIeQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=R2TEtUJB7j/pNK5ZVvAoVsFUspTmkhCVpruoaiqeNIhk/cf2R0JHitTcQDCmcluNJ
-	 f5x6nNN7kSuaJ9KlIv1KKfFXhjIT1KoSaK/hkwJ8h5dEZD0W/oOzSiT5Uzx0/2t+Pj
-	 Qnmoa4ntu+tt2zl634jLTe9RiATwnWr+XoPfegjqQFhuSZ8e9n24YZDn/2voTk27gR
-	 9cAzWM3NtX7b4A52yLqk2d1rAOrtkiUyWoBlaL0ewR9ej1h4xkKcaSm3MDfGuwIpR5
-	 k31KOZemstIAb3c3zmiBx7ShTf2pkeTVx/xXnpsNzAUASzcyQO6fLAcPHWwbpYUy4t
-	 qpnwb2uTPKdtQ==
-Date: Tue, 4 Jun 2024 18:52:03 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Kaustabh Chakraborty <kauschluss@disroot.org>,
-	linux-iio@vger.kernel.org, denis.ciocca@st.com,
-	devicetree@vger.kernel.org, linus.walleij@linaro.org,
-	robh+dt@kernel.org
-Subject: Re: [PATCH v3] iio: accel: st_accel: add LIS2DS12
-Message-ID: <20240604-trustable-duke-d70014e1cbff@spud>
-References: <20240601192914.141906-1-kauschluss@disroot.org>
- <20240601-spouse-hurler-e7b93ac26f86@spud>
- <20240602095459.4a2cdc54@jic23-huawei>
+	s=k20201202; t=1717523576;
+	bh=Hqqr9yw/DX0Mf6mIuq2bE9GcOEl92STqqaD9QVg7U3M=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=Pv7WYyK7Hiq+yltDhy7NyOgEtjKRjY5Ej2YyO02NzMaZOtQRZQpA7vFcOXpQimV9I
+	 F9aOGaZLP5RX+2C1osztVl33qlRA2Ji5DTxA8vZ2/aLutg2fMuE0ISpEANn5R/aDox
+	 alnSOFX4Vnt1BIVb0GJD1ICdnJYQKzSl1YSA9Bb5tSsh349vXSupVQFPggj3oHCAkr
+	 EOXKkMAQwPht04HvLVa6Xt0tW9QMWXLKGmKN46xJ1JLEmisA3NxfxWFb3lkyd52KaA
+	 Jb9quboEAhH9pThmE/C1yYV6hshYQBD27cnnWIZ0UfjecuG4NtGJjC6x2iyMitct0E
+	 10JusfzF1w0Ow==
+Date: Tue, 4 Jun 2024 12:52:54 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+	Rocky Liao <quic_rjliao@quicinc.com>, Kalle Valo <kvalo@kernel.org>,
+	Jeff Johnson <jjohnson@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+	Elliot Berman <quic_eberman@quicinc.com>,
+	Caleb Connolly <caleb.connolly@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Alex Elder <elder@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+	Jeff Johnson <quic_jjohnson@quicinc.com>,
+	ath12k@lists.infradead.org, linux-pm@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	kernel@quicinc.com, Amit Pundir <amit.pundir@linaro.org>
+Subject: Re: [PATCH v8 11/17] power: pwrseq: add a driver for the PMU module
+ on the QCom WCN chipsets
+Message-ID: <20240604175254.GA733438@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="kQCHB0RliGUnxLgJ"
-Content-Disposition: inline
-In-Reply-To: <20240602095459.4a2cdc54@jic23-huawei>
-
-
---kQCHB0RliGUnxLgJ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240528-pwrseq-v8-11-d354d52b763c@linaro.org>
 
-On Sun, Jun 02, 2024 at 09:54:59AM +0100, Jonathan Cameron wrote:
-> On Sat, 1 Jun 2024 20:49:25 +0100
-> Conor Dooley <conor@kernel.org> wrote:
->=20
-> > On Sun, Jun 02, 2024 at 12:56:41AM +0530, Kaustabh Chakraborty wrote:
-> > > diff --git a/drivers/iio/accel/st_accel_i2c.c b/drivers/iio/accel/st_=
-accel_i2c.c
-> > > index fd3749871121..329a4d6fb2ec 100644
-> > > --- a/drivers/iio/accel/st_accel_i2c.c
-> > > +++ b/drivers/iio/accel/st_accel_i2c.c
-> > > @@ -102,6 +102,10 @@ static const struct of_device_id st_accel_of_mat=
-ch[] =3D {
-> > >  		.compatible =3D "st,lis2de12",
-> > >  		.data =3D LIS2DE12_ACCEL_DEV_NAME,
-> > >  	},
-> > > +	{
-> > > +		.compatible =3D "st,lis2ds12",
-> > > +		.data =3D LIS2DS12_ACCEL_DEV_NAME,
-> > > +	},
-> > >  	{
-> > >  		.compatible =3D "st,lis2hh12",
-> > >  		.data =3D LIS2HH12_ACCEL_DEV_NAME, =20
-> >=20
-> > > diff --git a/drivers/iio/accel/st_accel_spi.c b/drivers/iio/accel/st_=
-accel_spi.c
-> > > index f72a24f45322..825adab37105 100644
-> > > --- a/drivers/iio/accel/st_accel_spi.c
-> > > +++ b/drivers/iio/accel/st_accel_spi.c
-> > > @@ -64,6 +64,10 @@ static const struct of_device_id st_accel_of_match=
-[] =3D {
-> > >  		.compatible =3D "st,lis2dh12-accel",
-> > >  		.data =3D LIS2DH12_ACCEL_DEV_NAME,
-> > >  	},
-> > > +	{
-> > > +		.compatible =3D "st,lis2ds12",
-> > > +		.data =3D LIS2DS12_ACCEL_DEV_NAME,
-> > > +	},
-> > >  	{
-> > >  		.compatible =3D "st,lis3l02dq",
-> > >  		.data =3D LIS3L02DQ_ACCEL_DEV_NAME, =20
-> >=20
-> > Any new compatibles need to be documented in st,st-sensors.yaml
->=20
-> At the moment the st_sensors core is doing hard matching against whoami v=
-alues
-> which isn't good.  That should ideally be fixed and the binding for this
-> device should use a fallback compatible if the statement about compatibil=
-ity
-> is accurate.
+On Tue, May 28, 2024 at 09:03:19PM +0200, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> This adds the power sequencing driver for the PMU modules present on the
+> Qualcomm WCN Bluetooth and Wifi chipsets. It uses the pwrseq subsystem
+> and knows how to match the sequencer to the consumer device by verifying
+> the relevant properties and DT layout.
 
-Ye, at worst, drivers should moan when the whoami value doesn't match...
+> +config POWER_SEQUENCING_QCOM_WCN
+> +	tristate "Qualcomm WCN family PMU driver"
+> +	default m if ARCH_QCOM
+> +	help
+> +	  Say Y here to enable the power sequencing driver for Qualcomm
+> +	  WCN Bluetooth/WLAN chipsets.
+> +
+> +	  Typically, a package from the Qualcomm WCN family contains the BT
+> +	  and WLAN modules whose power is controlled by the PMU module. As the
+> +	  former two share the power-up sequence which is executed by the PMU,
+> +	  this driver is needed for correct power control.
 
-> It may just be a case of relaxing the check in st_sensors_verify_id()
-> to printing a warning not an error message and not returning an error code
-> (reserving error returns in that function for bus error etc.
+"needed for correct power control" suggests that this fixes an
+existing problem, and I assume everybody with this kind of device
+wants this, and they will see some benefit from enabling it.  But it's
+not clear what that user-visible benefit is.  Could be useful both
+here and in commit log.
 
-=2E..which seems to be what you suggest here.
+> +struct pwrseq_qcom_wcn_pdata {
+> +	const char *const *vregs;
+> +	size_t num_vregs;
+> +	unsigned int pwup_delay_msec;
+> +	unsigned int gpio_enable_delay;
 
-> That doesn't need to be in this patch though.  Just have the fallback
-> stuff in the binding and for now we can rely on matching the more
-> precise compatible.
+Seems like it'd be nice to have a hint about the units of
+gpio_enable_delay (apparently ms) and last_gpio_enable (apparently
+jiffies)?  Maybe even use the same units for both, but I'm sure you
+have a reason for this.
 
-That seems ideal. At least get the ball rolling and make it more likely
-that we'll direct future additions to fallbacks. With things like
-sensors (and especially with the st driver) it can be hard for someone
-like myself to figure out what is an isn't compatible without digging
-through datasheets, and at least I would start asking.
+> +static int pwrseq_qcom_wcn_match(struct pwrseq_device *pwrseq,
+> +				 struct device *dev)
+> +{
+> +	struct pwrseq_qcom_wcn_ctx *ctx = pwrseq_device_get_drvdata(pwrseq);
+> +	struct device_node *dev_node = dev->of_node;
+> +
+> +	/*
+> +	 * The PMU supplies power to the Bluetooth and WLAN modules. both
 
---kQCHB0RliGUnxLgJ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZl9UQwAKCRB4tDGHoIJi
-0sg+AQC2MGjMk0uJl1DV9pLwaAsyT8UYWogmCsrrP1f8QRlSawEAxoPZ5Z3RzfXN
-UwQM2IwuDB8gwKrqECH/B5Uy/PBa1QA=
-=nEaX
------END PGP SIGNATURE-----
-
---kQCHB0RliGUnxLgJ--
+s/both/Both/
 
