@@ -1,107 +1,149 @@
-Return-Path: <devicetree+bounces-72425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F1B88FBA98
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 19:36:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 119948FBA9F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 19:37:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 409C71C2173E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:36:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BEC8228AFE3
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:37:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96DE214A096;
-	Tue,  4 Jun 2024 17:35:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 954DF149E05;
+	Tue,  4 Jun 2024 17:37:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QS9JgKcI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HBNMImIT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A2C1146D6E;
-	Tue,  4 Jun 2024 17:35:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E60C8146D6E;
+	Tue,  4 Jun 2024 17:37:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717522546; cv=none; b=WzZFJIvbKg8K06vr089tfnVEZkyFK5S7lVgQbu1MX9virftEf6U2SPNobRME1Q4IVaJ+cm3OfhneeFEmKBxgKKKKP5QjOUVVGnwf90/EkeRWoVX7Y+IsO2FiYTSJcJKY2xcmSGA6ePdANzHAHn7RpzKKCbGtXG3tbmgU/8QQSQE=
+	t=1717522638; cv=none; b=b5k4ezGwEoUJS+tvdfXfM52ruYUNYeRh94MIWegxkEqcs3PUjhWQcmy0VAHV6x4cWM4YYcQivAw954JMdTkJ0d9vmYMsYW+NPzZHcHRkSjS6sbdIzPtq2vp0wOcfDwBsNN3P3KmgK9iMDSfFFIdJQTaREc4q617Kk7PIgYBBdhs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717522546; c=relaxed/simple;
-	bh=LZ2gZVAxd7B/Z2dlVqxhZwIjcAne3l5f3dO6vlVXRfI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uU0Hq2lmcyj7wxnJXKMpHnKH0ZwXZS00H1qU7LeBz2Iyyc4SnFHKd3eZurp5lHPFd842QwBh0em4JnI4BfN+VMlTVfIJmLaLLMC6z5UHjOvgjmrUQJ87yDJOaXzNKX5BCd6gVEnUWbOh/DyaLkj5k9TbhlD4zvpWo5esO/FOxs4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QS9JgKcI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96D55C2BBFC;
-	Tue,  4 Jun 2024 17:35:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717522546;
-	bh=LZ2gZVAxd7B/Z2dlVqxhZwIjcAne3l5f3dO6vlVXRfI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QS9JgKcIiNG6uXtpVgBhRgZb55zKms71XzqF/eG9cvf5dD5lGUtH54nyYFI7D9SRD
-	 JvJXcXaD2QFeelL7XW6A0qpWSMR6sO7je1NCpdeYc838qQAGlrZMDSdyqroujk7Mcj
-	 obOX5E6L+94VWonx1vl3wawwOj86bbxsRqBe1gI8+RucbsbyO9u7KBcfqjwf05x/af
-	 8zFsQ7HdUwflojN/7w7Sg8KmJQBulENlN6yLBpQboU59Hsc5oSRYjkczw1zTwYKR66
-	 DAJmgYwbhpfJ6ESbYlHra5AAE1d+IJrCDwrnxqo+Y9vmmAI+cuJmJZdWRfJjrX6UmD
-	 LyCF61lPrrOow==
-Date: Tue, 4 Jun 2024 18:35:41 +0100
-From: Conor Dooley <conor@kernel.org>
-To: dumitru.ceclan@analog.com
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	s=arc-20240116; t=1717522638; c=relaxed/simple;
+	bh=BZTgjf9ANpfltpQEv+7jHdj3nf3ioxC2QbCC+Li3LfU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=usoTdfcI0cAuLOBl4bpwd82csubwLRcJ0eXUE741Qa+CvBkdN7t4MSmbCW/m28e4+n5Q/cJ/QqwXk27j0J6fJUiNJffQGVGw8wd6Qks/2MsLfetjHjAZlq9hOxG2f7dS02IBK0VBZnX0kxurDAVTms1LZg8j2Yui3EH0HNAEYDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HBNMImIT; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-421392b8156so13055535e9.3;
+        Tue, 04 Jun 2024 10:37:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717522635; x=1718127435; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kU5ARIlzxtuGFM6tyPtbUIy34Lxr4+NyXU7rtkdO4mE=;
+        b=HBNMImIT+mqDkbbTw+umv3cyKdPA6l9mEQx4KveES2Dc+TxexNXuT43aBbL+TajxVq
+         5IAYmTBn2rGuqopLLCHBY7RIm1E5yOkwWpRTTXFTyyIIAhYef4/yDAk73tOi1BVR+U9A
+         IikbId3eMRyMR3TrzHFXQJK0npMXOkXeAJK/Zfm5La6A8z6mhc7iRH829e+TGaUVX7i3
+         JagNj3vAfhPSVa3LlL6iLpz7ShKNiopwtOfnYB4jhZ0NYx77OfVbozYnoTFJHGQkXjmD
+         pF/yw3RwJ/I4rzkHXPCVdDibC7kBlK4ERGTswytUtjhSaw/ZuylYiMy1QKoqJ9QSRjpl
+         INPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717522635; x=1718127435;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kU5ARIlzxtuGFM6tyPtbUIy34Lxr4+NyXU7rtkdO4mE=;
+        b=gO+ua/QuNbIM0yGTnGc30rMeV5VMnWNzRECcstwC/oNUH8+5OlxR4Qw5gawcBfOFpN
+         yLYSBWxm3wY0EJIdWrlnJC6O0brKJey9VzREym4cTD48cnQFfCr+hTL3LJ6AwaWv4uoI
+         Q+Gm2Vfxg0tuo8PPiLzJH9hiqUeb6ELPY8GAQ0AMuoMs0px/qnx9rTAEBkzNwLZpbeND
+         aBXUajea5RTqMp9oDnXSXdRcFme30fiqTOh2mKbK988bvB9yfYHM6fpGFC8d5mWyO6nA
+         4XpH2YLH24r4uZ47Myo/F5jN5i3z2dmKJDSkz16b5HW4GXPfG0yLN6FyBf2Y0CgxlqzZ
+         R72Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVffQZehLzTpr1UZyn3u32GwFzYP86ItA2H7y/ljX6BRbjiMmJjCj0lw30ysUbPL3IC+7FH9DBnr8PLMdQoYs8p2BKm3DaiHdFNuD7T0Rx9qmQdXjngCLk8bgX6CGybcLKgGQjG2Q4KvSHYy3LZ
+X-Gm-Message-State: AOJu0YwRQuWyChcfQXQKQ5024ZvRQRmhPZE7Tei8rzWxmzOdvT9U5hHa
+	tdrzL7u/maAxCpDfuhmDXup67vG0x+IWOGTdwRf6GA/oS1PKoqWY
+X-Google-Smtp-Source: AGHT+IFSx5eQvMo/7LYEQWdiAZpTYDMya4eK9zX8FJ33ZNqsYuWWrs195TjjCiAfnrRLHRRE5uGY6g==
+X-Received: by 2002:a05:600c:154a:b0:421:2b3e:3a22 with SMTP id 5b1f17b1804b1-421562cce3dmr2749115e9.14.1717522635105;
+        Tue, 04 Jun 2024 10:37:15 -0700 (PDT)
+Received: from prasmi.home ([2a00:23c8:2500:a01:2595:4364:d152:dff3])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4213c6629bdsm87844085e9.8.2024.06.04.10.37.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Jun 2024 10:37:14 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Dumitru Ceclan <mitrutzceclan@gmail.com>
-Subject: Re: [PATCH v5 1/9] dt-bindings: iio: adc: Add common-mode-channel
- property
-Message-ID: <20240604-sandpaper-aliens-05dbab5b2df5@spud>
-References: <20240603-ad4111-v5-0-9a9c54d9ac78@analog.com>
- <20240603-ad4111-v5-1-9a9c54d9ac78@analog.com>
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v5 0/2] Add IAX45 support for RZ/Five SoC
+Date: Tue,  4 Jun 2024 18:37:08 +0100
+Message-Id: <20240604173710.534132-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="S+XBbKqsoN+A5IiA"
-Content-Disposition: inline
-In-Reply-To: <20240603-ad4111-v5-1-9a9c54d9ac78@analog.com>
+Content-Transfer-Encoding: 8bit
 
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
---S+XBbKqsoN+A5IiA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi All,
 
-On Mon, Jun 03, 2024 at 07:22:59PM +0300, Dumitru Ceclan via B4 Relay wrote:
-> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
->=20
-> There are ADCs that are differential but support to measure single-ended
-> signals on the same channels by connecting a constant voltage to the
-> negative input pin.
->=20
-> This property allows to properly define a single-ended channel that
-> requires two inputs to be specified. Software can use the presence of
-> this property to mark the channel as not differential.
->=20
-> Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
+The IAX45 block on RZ/Five SoC is almost identical to the IRQC bock found
+on the RZ/G2L family of SoCs.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+IAX45 performs various interrupt controls including synchronization for the
+external interrupts of NMI, IRQ, and GPIOINT and the interrupts of the
+built-in peripheral interrupts output by each module. And it notifies the
+interrupt to the PLIC.
+- Select 32 TINT from 82 GPIOINT.
+- Integration of bus error interrupts from system bus.
+- Integration of ECC error interrupts from On-chip RAM.
+- Indicate interrupt status. (NMI, IRQ, TINT, integrated bus error
+  interrupt and integrated ECC error interrupt)
+- Setting of interrupt detection method. (NMI, IRQ and TINT)
+- All interrupts are masked by INTMASK.
+- Mask function for NMI, IRQ and TINT
 
-Thanks,
-Conor.
+This patch series adds support for IAX45 in the IRQC driver and enables
+this on RZ/Five SoC.
 
---S+XBbKqsoN+A5IiA
-Content-Type: application/pgp-signature; name="signature.asc"
+v4->v5
+- Reversed the operation in rzfive_irqc_irq_disable().
 
------BEGIN PGP SIGNATURE-----
+v3->v4
+- Renamed rzg2l_irqc_init_helper -> rzg2l_irqc_common_init
+- Moved the locks into callers for (un)mask and (en/dis)able functions
+- Collected RB tag from Geert for patch#2
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZl9QbQAKCRB4tDGHoIJi
-0s69AQCGC0ulZogpvt2PjR9FhR2Kajq4+cr21kDIPAPAvYplqQEAlLQ+9SbyGuPb
-HbMhaYbM2JEWx6RqWpi7jSIWZNaANgk=
-=L/dt
------END PGP SIGNATURE-----
+v2->v3
+- DTS/I patches dropped from the series as they have been merged into
+  renesas-soc tree
+- Just using a const from compat string instead of having it in a items
+- Added RZ/Five specific irqchip
 
---S+XBbKqsoN+A5IiA--
+v2: https://patchwork.kernel.org/project/linux-renesas-soc/cover/20240403203503.634465-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+v1: https://patchwork.kernel.org/project/linux-renesas-soc/cover/20240129151618.90922-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (2):
+  dt-bindings: interrupt-controller: renesas,rzg2l-irqc: Document
+    RZ/Five SoC
+  irqchip/renesas-rzg2l: Add support for RZ/Five SoC
+
+ .../renesas,rzg2l-irqc.yaml                   |  17 +-
+ drivers/irqchip/irq-renesas-rzg2l.c           | 148 +++++++++++++++++-
+ 2 files changed, 155 insertions(+), 10 deletions(-)
+
+-- 
+2.34.1
+
 
