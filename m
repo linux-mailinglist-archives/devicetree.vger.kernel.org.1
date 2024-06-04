@@ -1,178 +1,148 @@
-Return-Path: <devicetree+bounces-72131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87B1C8FAE98
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 11:19:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8E198FAEA0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 11:22:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EEE6E1F219B4
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 09:19:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC6AE1C215AB
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 09:22:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B16D514374B;
-	Tue,  4 Jun 2024 09:19:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AAA1143889;
+	Tue,  4 Jun 2024 09:21:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="OmdB2KY5";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="OUbuC0Fn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rEDnmrOp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout7-smtp.messagingengine.com (fout7-smtp.messagingengine.com [103.168.172.150])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABD241411F2;
-	Tue,  4 Jun 2024 09:19:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.150
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E390143724
+	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 09:21:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717492753; cv=none; b=gN+a/ScJnMrJQ3R+hpUgsyH1UgrWV8wR8i/PzXdQQSRlCrrHPGrNd5aERwTbeTcNlVYy605jbiWHU4GyeLJ0ZfT7BPgnqzRaAKfWAlgtZr7RNtydxLawoTeSN6dnWA/NOEkttNBdYsMIqt2ZPIWgEXG3j3kiBFubEn0aI3xMSLE=
+	t=1717492915; cv=none; b=cUyXeEzcKxYJUjsFBINq0yBPmvOcK/8MZPryNmPJRs74saIsxYOstPDh+yET8ZPE5ZBe5g+1XnIvw9jePuB/7hsVbS51ik65ci7Q2/KhN3Oxy9CLaIMBpWb9Ft6EUvNLenjCENABOpvPcAaTU7ZnckG8ecQ/ZP5oatyUvKVjAY8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717492753; c=relaxed/simple;
-	bh=1dtSDC6IVRyLJXaLa0p1D17Sv3InX1VPmrBpgtN1a5k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cSegD0LncPhYwWpQIpdUp4SezoAbuuzPO07q0QU2HWu2bbZUNr1DxPj0zozyS3t7bstldEXBHaOIxwgUoR7/LBEpomqdnHp4MrbLRpS9c/R9YNT1yyqxHAliYpyOGXCSMnaxz/DMw1uTp4Qpr+INO+SRk9iS68Jn5kI6Ep5Iko0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=OmdB2KY5; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=OUbuC0Fn; arc=none smtp.client-ip=103.168.172.150
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfout.nyi.internal (Postfix) with ESMTP id 932911380130;
-	Tue,  4 Jun 2024 05:19:08 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Tue, 04 Jun 2024 05:19:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1717492748;
-	 x=1717579148; bh=yzBOJSCnFXilIXLVMSmUj0oGiiczp/E3l4ZVzl2SFRU=; b=
-	OmdB2KY5l0PMb5CrgmWIYaIsOCciPmZ4DZzY142x4S33JUIMUohqvKCtmXr+fs8G
-	qy6GlYGRgbGcozl0PnDFyPdWwW36z+USHwq4eDi+yluz7rA+AZRkXN6Qx/WCMj95
-	yFUOvC67r3a0i+maeJznkAXt2KHXU+Ou0VeT4jEnVODVGR3geKlWgzgsDfH49y0G
-	LYi7i9LgIJ3THwnGCz5TaD3RKjTEwESsoUGQ4tlTyYPRgnQ5ngxtH5ZQ3ssP0Wdb
-	owPcXU8hi1n5TFdcRW2KSoZ7KLJExo+qc5SbWUSX8EWPemqo0KRKyCbG5a/FJ581
-	ygWbodgRs1Ed5nbq+O4w8w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1717492748; x=
-	1717579148; bh=yzBOJSCnFXilIXLVMSmUj0oGiiczp/E3l4ZVzl2SFRU=; b=O
-	UbuC0FnU6jOOVXmzrKbUg5E0J/WNtu9T5efPlO25/9Pj+tZfIj1SoOyGbaELVxt8
-	ao6zbuAqZp0NDlkYv+FwF+ClSxPZn4IKpiF6D5VbWWz9IE1K92c7OiraP8TYqL65
-	+HRt3uQt3Y+b4/XEppjoxri6vkVFpniK6l17v6GAeAxSTRvS5Z6qavs690u+90CR
-	3i9garlrMqTl8eDNPfSe46ErtAmH4jI/oEZW8R/soGcmJMQU+Sf1hwiICsJ6QcXo
-	dHUsail33CFmJ+OPRDpBUTPPQADAl7q4TmXeG/Sng8MeA7u4fcv5rkQs03tdq0zk
-	7gMI2tSVxuxgI8ZdkwB+Q==
-X-ME-Sender: <xms:DNxeZpoKGEX6RJnxMxP5QC4R-3AdNeJtvNdJHK6I-xqPfiyvbzEgsw>
-    <xme:DNxeZrr7sJ4UmUmWNI6SSs-sRqNsaU89_M-8dxyOhbMZGKjfJgu7Y0uJDUnBq9Hxp
-    UuPf3ajsd1Z9EgN2sI>
-X-ME-Received: <xmr:DNxeZmOiXObEYJkL-Q5TrHxforzpI5_lo9cxvQXiz3ZKl-oWhgP4Bp9dhLZRdIx2vlG3qsUZvhUCpDpCyeF3hoXTvnfh50A>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvdelgedgudduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpefpihhk
-    lhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnh
-    gvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeefhfellefh
-    ffejgfefudfggeejlefhveehieekhfeulefgtdefueehffdtvdelieenucevlhhushhtvg
-    hrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshhouggv
-    rhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgv
-X-ME-Proxy: <xmx:DNxeZk6CfSHFVDLb0MFLDaR2QPwBdaAFm2hY5Sf46SX7PsLfsCFFFw>
-    <xmx:DNxeZo5TrgVXQlDbr-OZl6v34Asl1xQ6saqWanj4vBiVFlr3upECww>
-    <xmx:DNxeZsjDGbYX_kmt_W41V9pc8U-nU92KTwHqArx5_JXH3XlukOMXrg>
-    <xmx:DNxeZq6d2w3Yn4yPSE9UuzvcDStf8zRRWA5p_yWDINBKdvTbP8T08g>
-    <xmx:DNxeZpHST-SpIbM3zAS_oYtk6nKj1uw2zKL6oyhU5q5R0z9Qhk8dr_HP>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 4 Jun 2024 05:19:07 -0400 (EDT)
-Date: Tue, 4 Jun 2024 11:18:59 +0200
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: media: renesas,isp: Add binding for V4M
-Message-ID: <20240604091859.GD710180@ragnatech.se>
-References: <20240527131945.1679661-1-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdWRwRq-CzT5v1h6W31q_0RR4UvTpJAVVS73vrEbrxFmBg@mail.gmail.com>
+	s=arc-20240116; t=1717492915; c=relaxed/simple;
+	bh=WsyvWG2yV+idBf9tbl4bFm3p4pGciThaH/I+ZywwKHA=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=U+egINRvChnrFXoB1TfvQZ3XL41Mv7aiTHpsiT63WNCKfjNuA/3R9+vGiDrIW0F5LWcW+KtqKu246jtdy9jjjvIz2AxwtFaejVsI+prugAtFyCIITtB1jMd64ywVlqbYXB9MTIpN9g40FIr46eyWtjPWmKtKOkzLRvThHgtKSic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rEDnmrOp; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-57a1fe639a5so917112a12.1
+        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 02:21:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717492910; x=1718097710; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=h5T+9FltYwCRJsWCrzY8gXQ3PI2wIWCw8VRf/aXR0eE=;
+        b=rEDnmrOpjfyBt+hG3xRqyIhWyZnI6htj8gv8TzJT3rfEHvFz5MKVkMkffSebFBstL2
+         GrjQoIikquUfCQGY6UXCNvjlb/4FR9T7DkQouWt1MqMxzOAH4YoyAS+RXopkxAo6Tvrs
+         WY0mssDseDJY0MxVjIYHMmWuMAkzkVND4lbEYo6cyr2ejYyoCP4FRx9wl3R0yJx7pmBF
+         n9JNUuMx6jcP/QkZ2AkYHvKdGCJXXA6i1T64Q7rmBM48hTcMZhio2EPYkWab3AQ2ogjk
+         3px9yUfUr3CLlJCauMVHbfJD6wFlpn/2jwNAVzlSTSP3FGafdwnyQchjHFKGIRiHv2rl
+         UIiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717492910; x=1718097710;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=h5T+9FltYwCRJsWCrzY8gXQ3PI2wIWCw8VRf/aXR0eE=;
+        b=nYX4Qol6V8XEs9dkBU5NdqPcfRwyeRlrE7XI1hGePGAwSkRDIT26RZ0jsILIod7AYc
+         UHHMZmqpIxPKquqtrv9PbdGwCjjZz/KRcSUAquLoqa+LGW92qXJ2uJuySImXmgAZgSp9
+         vWoVySuD7WNTt3TZThHLwxkwXh1UXN8Np/vYMDpbPUCLAlb6PJku4WwgkxiXZnIkqvy/
+         XLRn3yYHznRgoOH15mmVfzrsIQPZDh2vYMwtKsWG2umXX86/F0FsCdC7FMgM4mJaH0Xi
+         oFPv9f8DlmdL3/E9ngc6jnEB9G01HJ6piLq0+/MHnozyZ6Xgu6q3FrbW2+wBzl5zM9P3
+         eIOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWzGmEMWBvbW21iShYq2YQJbYuXJCX9bpfrPwWSf21aU4ZVabhyf4SHT/N1+gFynFJW9qmJmdyzVXbE5G7aHGrrNwOOm1ub3EyYRA==
+X-Gm-Message-State: AOJu0YzKT7MNEWUZolBEanUOKMeM7fmm01dfD0Uuo/2UigLTT6bIk32r
+	UfMuSTY0s6aWpjbylwREd2gAbgkIEy/fnfMF0cbmEb5PPQgdk759VCXHHmCh97c=
+X-Google-Smtp-Source: AGHT+IF/1rFz/j9iytXx8jWDqKGDaJxuS30o8xQOuHWmR4YJnzerTlbRW7XMfrBEdC7TOHEGQb2AaQ==
+X-Received: by 2002:a17:907:26ca:b0:a65:7643:3849 with SMTP id a640c23a62f3a-a68224493ffmr947305166b.73.1717492909385;
+        Tue, 04 Jun 2024 02:21:49 -0700 (PDT)
+Received: from localhost ([102.222.70.76])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6911e3676dsm245378766b.88.2024.06.04.02.21.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Jun 2024 02:21:49 -0700 (PDT)
+Date: Tue, 4 Jun 2024 12:21:45 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, Witold Sadowski <wsadowski@marvell.com>,
+	linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev, broonie@kernel.org,
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, pthombar@cadence.com,
+	Witold Sadowski <wsadowski@marvell.com>
+Subject: Re: [PATCH v7 4/4] spi: cadence: Add MRVL overlay xfer operation
+ support
+Message-ID: <096b0aa3-47b1-48f8-a0ed-89458506b7b7@moroto.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdWRwRq-CzT5v1h6W31q_0RR4UvTpJAVVS73vrEbrxFmBg@mail.gmail.com>
+In-Reply-To: <20240529220026.1644986-5-wsadowski@marvell.com>
 
-Hi Geert,
+Hi Witold,
 
-Thanks for your review.
+kernel test robot noticed the following build warnings:
 
-On 2024-06-04 09:38:04 +0200, Geert Uytterhoeven wrote:
-> Hi Niklas,
-> 
-> On Mon, May 27, 2024 at 3:20 PM Niklas Söderlund
-> <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > Document support for the ISP module in the Renesas V4M (r8a779h0) SoC.
-> >
-> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> 
-> Thanks for your patch!
-> 
-> > --- a/Documentation/devicetree/bindings/media/renesas,isp.yaml
-> > +++ b/Documentation/devicetree/bindings/media/renesas,isp.yaml
-> > @@ -22,6 +22,7 @@ properties:
-> >        - enum:
-> >            - renesas,r8a779a0-isp # V3U
-> >            - renesas,r8a779g0-isp # V4H
-> > +          - renesas,r8a779h0-isp # V4M
-> >    reg:
-> >      maxItems: 1
-> 
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> 
-> BTW, this binding only describes a single register block, while the
-> ISP seems to have two: CS and CORE (the second one is optional, as it
-> does not exist for the second instance of R-Car V4M)?
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Yes. The R-Car ISP have two different functions, CSI-2 Channel Selection 
-(CS) and a more traditional ISP block to do cool stuff to image data 
-(core).  We only have documentation for the CS, and only that which is 
-needed to setup CSI-2 reception and forward data to a capture engine 
-(VIN), so this is all the rcar-isp driver deals with.
+url:    https://github.com/intel-lab-lkp/linux/commits/Witold-Sadowski/spi-dt-bindings-cadence-Add-Marvell-overlay-bindings-documentation-for-Cadence-XSPI/20240530-060250
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+patch link:    https://lore.kernel.org/r/20240529220026.1644986-5-wsadowski%40marvell.com
+patch subject: [PATCH v7 4/4] spi: cadence: Add MRVL overlay xfer operation support
+config: powerpc64-randconfig-r071-20240531 (https://download.01.org/0day-ci/archive/20240602/202406020007.yDo5EI4r-lkp@intel.com/config)
+compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project bafda89a0944d947fc4b3b5663185e07a397ac30)
 
-For the interested, difference between generations,
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202406020007.yDo5EI4r-lkp@intel.com/
 
-On Gen3 the capture pipeline is $source -> rcar-csi2 -> rcar-vin. The 
-CSI-2 channel selection is done from registers on the VIN master 
-instances but effect other VIN instances, this is one reason the 
-rcar-vin driver is so ugly as each VIN instance is not self contained.  
-While the CSI-2 VC/DT filtering is done in the rcar-csi2 driver.
+New smatch warnings:
+drivers/spi/spi-cadence-xspi.c:955 cdns_xspi_stig_ready() warn: signedness bug returning '(-110)'
+drivers/spi/spi-cadence-xspi.c:967 cdns_xspi_sdma_ready() warn: signedness bug returning '(-110)'
 
-On Gen4 the capture pipeline is $source -> rcar-csi2 -> rcar-isp -> 
-rcar-vin. And both the channel selection and VC/DT filtering is done in 
-the rcar-isp. IMHO this is slightly better design then on Gen3 but 
-created yet another ugliness in the pipeline as now Gen{1,2}, Gen3 and 
-Gen4 are all supported by the same set of drivers but the same function 
-is served by different IP blocks depending on which generation, this 
-makes for somewhat ugly driver code.
+vim +955 drivers/spi/spi-cadence-xspi.c
 
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
-> -- 
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> 
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+66e19aa5a2e022b Witold Sadowski 2024-05-29  951  static bool cdns_xspi_stig_ready(struct cdns_xspi_dev *cdns_xspi, bool sleep)
+66e19aa5a2e022b Witold Sadowski 2024-05-29  952  {
+66e19aa5a2e022b Witold Sadowski 2024-05-29  953  	u32 ctrl_stat;
+66e19aa5a2e022b Witold Sadowski 2024-05-29  954  
+66e19aa5a2e022b Witold Sadowski 2024-05-29 @955  	return readl_relaxed_poll_timeout
+66e19aa5a2e022b Witold Sadowski 2024-05-29  956  		(cdns_xspi->iobase + CDNS_XSPI_CTRL_STATUS_REG,
+66e19aa5a2e022b Witold Sadowski 2024-05-29  957  		ctrl_stat,
+66e19aa5a2e022b Witold Sadowski 2024-05-29  958  		((ctrl_stat & BIT(3)) == 0),
+66e19aa5a2e022b Witold Sadowski 2024-05-29  959  		sleep ? MRVL_XSPI_POLL_DELAY_US : 0,
+66e19aa5a2e022b Witold Sadowski 2024-05-29  960  		sleep ? MRVL_XSPI_POLL_TIMEOUT_US : 0);
+
+This works but from the name you would expect it to return true when
+it's ready and false when it's not.
+
+66e19aa5a2e022b Witold Sadowski 2024-05-29  961  }
+66e19aa5a2e022b Witold Sadowski 2024-05-29  962  
+66e19aa5a2e022b Witold Sadowski 2024-05-29  963  static bool cdns_xspi_sdma_ready(struct cdns_xspi_dev *cdns_xspi, bool sleep)
+66e19aa5a2e022b Witold Sadowski 2024-05-29  964  {
+66e19aa5a2e022b Witold Sadowski 2024-05-29  965  	u32 ctrl_stat;
+66e19aa5a2e022b Witold Sadowski 2024-05-29  966  
+66e19aa5a2e022b Witold Sadowski 2024-05-29 @967  	return readl_relaxed_poll_timeout
+66e19aa5a2e022b Witold Sadowski 2024-05-29  968  		(cdns_xspi->iobase + CDNS_XSPI_INTR_STATUS_REG,
+66e19aa5a2e022b Witold Sadowski 2024-05-29  969  		ctrl_stat,
+66e19aa5a2e022b Witold Sadowski 2024-05-29  970  		(ctrl_stat & CDNS_XSPI_SDMA_TRIGGER),
+66e19aa5a2e022b Witold Sadowski 2024-05-29  971  		sleep ? MRVL_XSPI_POLL_DELAY_US : 0,
+66e19aa5a2e022b Witold Sadowski 2024-05-29  972  		sleep ? MRVL_XSPI_POLL_TIMEOUT_US : 0);
+66e19aa5a2e022b Witold Sadowski 2024-05-29  973  }
 
 -- 
-Kind Regards,
-Niklas Söderlund
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
 
