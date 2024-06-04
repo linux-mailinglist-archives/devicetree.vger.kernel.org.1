@@ -1,210 +1,429 @@
-Return-Path: <devicetree+bounces-72313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45BEE8FB527
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 16:24:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E22A48FB52C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 16:24:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 668B61C214A3
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:24:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10A5E1C2114A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:24:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F13FD1311A1;
-	Tue,  4 Jun 2024 14:23:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 305A512C520;
+	Tue,  4 Jun 2024 14:24:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="B51ss2se"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IwPsBL0H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E0B51350FD;
-	Tue,  4 Jun 2024 14:23:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53B7212B14F;
+	Tue,  4 Jun 2024 14:24:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717511030; cv=none; b=VIhJXQ8HyPySg3JVaj9wMTtYsZ/wkTBSvdCkmJTonGwZoDIyFEBchOAnMw2Qq8pUmzDFLT0b0uqdMbUgZSbVC6QIYeUKQBwcu1FpaV0uw+7P718mezqsg7eExpOgRNpisQtE9Y5PMK5EQddJ2Y/8DgFlnz73W8s59k6ZdorTZiY=
+	t=1717511081; cv=none; b=K6YEXGpwemf2u9uPkdwnrR017MdvGodA2QnAqLd2l/RXDIzuifVFWjRPtoFlXmufn6dNM47SDVkyl024X2PCTz4W58iYx9ETtX1MZMA5RyqW11deDExFbK9ndfUs2DBNvupJyBqIO+uc45/90RvNKFlGyy7RMTMkH0kt028R6QE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717511030; c=relaxed/simple;
-	bh=pCQY+N6l4H18wxaw5gxmOhVyJDkVn+Ebkn9kvwlJUs4=;
-	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
-	 Content-Type:Subject; b=nGUG4mY7fnYmXfzGEQLg4vtOaPkn71JIqZbsrRZajPXfV2OWclTniS+kyGuEF3U7pDA8+800ZiYZIZeM5YOyQ5v/a5sVxrpyRUlXo5ejwpZyc3mIavzCWINYJ19/P4JDrcZ3aToPxEJ3LDL066fkyqWv/kT3/Daes2tQpEAvVTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=B51ss2se; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
-	:Date:subject:date:message-id:reply-to;
-	bh=FmX0YSshk1XRwqALGyf3/5Mk84vKqfV3CkydSmmClhc=; b=B51ss2seQgH3Ofby5e4Gm/S2qk
-	mIv5B9/kYJODDzGVzTojm72qxrZrxvu+54a7kSb1Kcd4xV5+fxdR0f51Z5u+SwcwIIJbggazruG++
-	c+oRumZVGkViGW8ilH80PcEFDbH1lpVzk+qv4zzU92s0PzToEe/LCSOn0Fv/SeNbdI20=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:42510 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1sEV4e-0005J5-4K; Tue, 04 Jun 2024 10:23:40 -0400
-Date: Tue, 4 Jun 2024 10:23:23 -0400
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Hui Wang <hui.wang@canonical.com>
-Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- gregkh@linuxfoundation.org, jirislaby@kernel.org, hvilleneuve@dimonoff.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org,
- lech.perczak@camlingroup.com
-Message-Id: <20240604102323.b2a305fa03161df3c2eec16c@hugovil.com>
-In-Reply-To: <20240604132726.1272475-2-hui.wang@canonical.com>
-References: <20240604132726.1272475-1-hui.wang@canonical.com>
-	<20240604132726.1272475-2-hui.wang@canonical.com>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1717511081; c=relaxed/simple;
+	bh=HLNcSZfh0ioxvmMpsDRTGbbRcDkxiJBXxeViGC43KO8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RytxAXpSvY+7ifxrIp9HC5MpERh6DzEOPn0OcdfWEGHWykHHHGHjrntAWlEDjyInPpsFGvo3xtvH8g2JyxwsX6zquWHuI7nDpT55oMI/tKPTbn5jtI+uQhDWYv95YRLRrVkeI8S1dzfYp8+OBdHs5CFpyOfWi4MpDCcOPtsZ338=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IwPsBL0H; arc=none smtp.client-ip=209.85.160.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-43fc6795babso30613851cf.1;
+        Tue, 04 Jun 2024 07:24:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717511078; x=1718115878; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CpYqY35fI/kNiZjb1tZLjln2Cpfa8WAcl2VmbwXBgPQ=;
+        b=IwPsBL0HmMuY0layObym/dT2qKZ0uEEqr7qD/jDQ2V8tTOW6TXSqBi3FHwirfd+RYr
+         SVQGrETxxLoxJyuJoHKFpWXgM7YUFR9JSBohzhvAGflew7ZLCunz3p3iU4dYoiDsQ+N/
+         vG1XT+S7XM0Dn5qJ3OZ9osHfrDgpiopcJe/z6JoMEjMCJ6kEPrO35xTtPAXyWmSIhKVQ
+         k5qgLN52hVYN4PLMSWAy+nydCP6MtZQMpo79cSHthfZHDi6sDrjovtQbYYL2Dj+LUfHx
+         4EYl+iTPqQbN0AWhycx3TZap4CDxO83n56snLvTBYrDhIB9+6LyrtZ/sTR0Ys8hBc2D2
+         hmdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717511078; x=1718115878;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CpYqY35fI/kNiZjb1tZLjln2Cpfa8WAcl2VmbwXBgPQ=;
+        b=lrMT/imVmGDUXx/w7/ExIge7mcXDMDyLLoKQCV2GvRRnpyqLgz1fNz4/bvzdGF+v+c
+         ikbhpQfGcDDZZEWGx+KDAS6XJTikXUynoVH6TLWtJAXwepq2LMOlOYoAfy+NybnO7WNu
+         weWZc/WFRmk/co1iasHvFgHVl2LnRelKcWX6ydWbwqTUJLI6nHLOGq0agOto+N4YM2fp
+         HCjVacAx8gAR0cwIMirHsqTZk3sO7T1Rj0Ipecg8mpMdFtrt9/7QBaxp7Hy3hnzwO6K3
+         OMUhrkkeXJ7eS/MAyblYOX01Gbu7+qwkfaaSStdtY0f6pzouBRJGOPanYGllJY8r768k
+         vZjw==
+X-Forwarded-Encrypted: i=1; AJvYcCUGwiAxT3kgS4VBiKUKzXczqAh7wZzPIJ9MNQzfau1eg4uE/SfuuJXfADOIqTtCywgte+xZ6U+PrJSOsR5YHu+fyFSvlu3CotOTJbrcW2CFX6qRHv9he23zwhxpWCVuZ73GLncgJg==
+X-Gm-Message-State: AOJu0Yx3+5Sldqx7vGgSvGuBh0+SN9ZCSnT60Ps7I+sPgvH/ICzpUqcO
+	uOKnK4SLNmB82v9iqc/0Ed3xxUsfLg+Dg8ruibWPvvkMRIDuEpHp
+X-Google-Smtp-Source: AGHT+IHO3/574qV4DDPn5I2NO5lx5o2Vflm5hpErLJfUo72/R3X4pBcaaDkIF+BRyGUTTUSaBwm0WQ==
+X-Received: by 2002:ac8:5811:0:b0:43a:d7a9:390 with SMTP id d75a77b69052e-43ff52592f3mr109557261cf.29.1717511077950;
+        Tue, 04 Jun 2024 07:24:37 -0700 (PDT)
+Received: from [172.16.100.125] ([167.98.27.226])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-44015cda8fcsm14026531cf.95.2024.06.04.07.24.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Jun 2024 07:24:37 -0700 (PDT)
+Message-ID: <c0732554-0742-444b-910d-55052e2c0f92@gmail.com>
+Date: Tue, 4 Jun 2024 15:24:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] iio: light: ROHM BH1745 colour sensor
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ ivan.orlov0322@gmail.com, jic23@kernel.org, lars@metafoo.de,
+ krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240603162122.165943-1-muditsharma.info@gmail.com>
+ <20240603162122.165943-2-muditsharma.info@gmail.com>
+ <39710806-3151-4b57-9af4-c0b4a4d21c28@gmail.com>
+Content-Language: en-US
+From: Mudit Sharma <muditsharma.info@gmail.com>
+In-Reply-To: <39710806-3151-4b57-9af4-c0b4a4d21c28@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-X-Spam-Report: 
-	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-	* -0.0 T_SCC_BODY_TEXT_LINE No description available.
-	* -2.5 NICE_REPLY_A Looks like a legit reply (A)
-Subject: Re: [PATCH v2 2/2] serial: sc16is7xx: hard reset the chip if
- reset-gpios is defined in dt
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-On Tue,  4 Jun 2024 21:27:26 +0800
-Hui Wang <hui.wang@canonical.com> wrote:
-
-Hi Hui,
-
-> Certain designs connect a gpio to the reset pin, and the reset pin
-> needs to be setup correctly before accessing the chip.
+On 04/06/2024 00:10, Javier Carrasco wrote:
+> On 03/06/2024 18:21, Mudit Sharma wrote:
+>> Add support for BH1745, which is an I2C colour sensor with red, green,
+>> blue and clear channels. It has a programmable active low interrupt pin.
+>> Interrupt occurs when the signal from the selected interrupt source
+>> channel crosses set interrupt threshold high or low level.
+>>
+>> This driver includes device attributes to configure the following:
+>> - Interrupt pin latch: The interrupt pin can be configured to
+>>    be latched (until interrupt register (0x60) is read or initialized)
+>>    or update after each measurement.
+>> - Interrupt source: The colour channel that will cause the interrupt
+>>    when channel will cross the set threshold high or low level.
+>>
+>> This driver also includes device attributes to present valid
+>> configuration options/values for:
+>> - Integration time
+>> - Interrupt colour source
+>> - Hardware gain
+>>
+>> Signed-off-by: Mudit Sharma <muditsharma.info@gmail.com>
 > 
-> Here adding a function to handle the chip reset. If the reset-gpios is
-> defined in the dt, do the hard reset through this gpio, othwerwise do
-> the soft reset as before.
+> Hi Mudit,
 > 
-> Reviewed-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-
-I never gave you permission to add this tag, remove it. Make sure you
-fully understand the meaning of tags by reading patches submission
-guidelines.
-
-
-> Signed-off-by: Hui Wang <hui.wang@canonical.com>
-> ---
-> In the v2:
->  - move the soft reset and hard reset into one fucntion
->  - move the reset function to sc16is7xx.c and call it in _probe()
->  - add udelay(5) before deasserting the gpio reset pin
+> a few minor comments inline.
 > 
->  drivers/tty/serial/sc16is7xx.c | 28 ++++++++++++++++++++++++----
->  1 file changed, 24 insertions(+), 4 deletions(-)
+>> ---
+>> v1->v2:
+>> - No changes
+>>
+>>   drivers/iio/light/Kconfig  |  12 +
+>>   drivers/iio/light/Makefile |   1 +
+>>   drivers/iio/light/bh1745.c | 879 +++++++++++++++++++++++++++++++++++++
+>>   3 files changed, 892 insertions(+)
+>>   create mode 100644 drivers/iio/light/bh1745.c
+>>
+>> diff --git a/drivers/iio/light/Kconfig b/drivers/iio/light/Kconfig
+>> index 9a587d403118..6e0bd2addf9e 100644
+>> --- a/drivers/iio/light/Kconfig
+>> +++ b/drivers/iio/light/Kconfig
+>> @@ -114,6 +114,18 @@ config AS73211
+>>   	 This driver can also be built as a module.  If so, the module
+>>   	 will be called as73211.
+>>   
+>> +config BH1745
+>> +	tristate "ROHM BH1745 colour sensor"
+>> +	depends on I2C
+>> +	select REGMAP_I2C
+>> +	select IIO_BUFFER
+>> +	select IIO_TRIGGERED_BUFFER
+>> +	help
+>> +	  Say Y here to build support for the ROHM bh1745 colour sensor.
+>> +
+>> +	  To compile this driver as a module, choose M here: the module will
+>> +	  be called bh1745.
+>> +
+>>   config BH1750
+>>   	tristate "ROHM BH1750 ambient light sensor"
+>>   	depends on I2C
+>> diff --git a/drivers/iio/light/Makefile b/drivers/iio/light/Makefile
+>> index a30f906e91ba..939a701a06ac 100644
+>> --- a/drivers/iio/light/Makefile
+>> +++ b/drivers/iio/light/Makefile
+>> @@ -13,6 +13,7 @@ obj-$(CONFIG_APDS9300)		+= apds9300.o
+>>   obj-$(CONFIG_APDS9306)		+= apds9306.o
+>>   obj-$(CONFIG_APDS9960)		+= apds9960.o
+>>   obj-$(CONFIG_AS73211)		+= as73211.o
+>> +obj-$(CONFIG_BH1745)		+= bh1745.o
+>>   obj-$(CONFIG_BH1750)		+= bh1750.o
+>>   obj-$(CONFIG_BH1780)		+= bh1780.o
+>>   obj-$(CONFIG_CM32181)		+= cm32181.o
+>> diff --git a/drivers/iio/light/bh1745.c b/drivers/iio/light/bh1745.c
+>> new file mode 100644
+>> index 000000000000..a7b660a1bdc8
+>> --- /dev/null
+>> +++ b/drivers/iio/light/bh1745.c
+>> @@ -0,0 +1,879 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * ROHM BH1745 digital colour sensor driver
+>> + *
+>> + * Copyright (C) Mudit Sharma <muditsharma.info@gmail.com>
+>> + *
+>> + * 7-bit I2C slave addresses:
+>> + *  0x38 (ADDR pin low)
+>> + *  0x39 (ADDR pin high)
+>> + *
+>> + */
+>> +
+>> +#include <linux/i2c.h>
+>> +#include <linux/mutex.h>
+>> +#include <linux/util_macros.h>
+>> +#include <linux/iio/events.h>
+>> +#include <linux/regmap.h>
+>> +
+>> +#include <linux/iio/iio.h>
+>> +#include <linux/iio/sysfs.h>
+>> +#include <linux/iio/trigger.h>
+>> +#include <linux/iio/trigger_consumer.h>
+>> +#include <linux/iio/triggered_buffer.h>
+>> +
+>> +#define BH1745_MOD_NAME "bh1745"
 > 
-> diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
-> index bf0065d1c8e9..119abfb4607c 100644
-> --- a/drivers/tty/serial/sc16is7xx.c
-> +++ b/drivers/tty/serial/sc16is7xx.c
-> @@ -14,6 +14,7 @@
->  #include <linux/delay.h>
->  #include <linux/device.h>
->  #include <linux/export.h>
-> +#include <linux/gpio/consumer.h>
->  #include <linux/gpio/driver.h>
->  #include <linux/idr.h>
->  #include <linux/kthread.h>
-> @@ -1467,6 +1468,25 @@ static const struct serial_rs485 sc16is7xx_rs485_supported = {
->  	.delay_rts_after_send = 1,	/* Not supported but keep returning -EINVAL */
->  };
->  
-
-Add function description from original comment "Reset device,
-purging any pending irq / data", since the comment applies to both
-hardware and software reset,
-
-> +static int sc16is7xx_reset(struct device *dev, struct regmap *regmaps[])
-
-Simply pass "struct regmap *regmap" as the second argument. See
-sc16is7xx_setup_mctrl_ports() for example.
-
-> +{
-> +	struct gpio_desc *reset_gpiod;
-
-reset_gpiod -> reset_gpio
-
-> +
-> +	reset_gpiod = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
-> +	if (!reset_gpiod)
-
-Follow Andy's suggestion here.
-
-> +		/* soft reset device, purging any pending irq / data */
-
-"Software reset".
-
-> +		regmap_write(regmaps[0], SC16IS7XX_IOCONTROL_REG,
-> +			     SC16IS7XX_IOCONTROL_SRESET_BIT);
-> +	else if (!IS_ERR(reset_gpiod)) {
-> +		/* delay 5 us (at least 3 us) and deassert the gpio to exit the hard reset */
-
-You can omit the "delay 5 us" since it is obvious from the code. Maybe
-add that "The minimum reset pulse width is 3 us" as stated in the
-datasheet.
-
-As a general note for your comments: capitalize the first letter,
-ex: "Deassert GPIO" and not "deassert GPIO".
-
-
-> +		udelay(5);
-> +		gpiod_set_value_cansleep(reset_gpiod, 0);
-
-Move the comment "deassert the gpio to exit the hard reset" here. You
-could also simplify it as "Deassert GPIO.".
-
-
-> +	} else
-> +		return PTR_ERR(reset_gpiod);
-
-return dev_err_probe(dev, PTR_ERR(reset_gpiod), "Failed to get reset
-GPIO\n");
-
-> +
-> +	return 0;
-> +}
-> +
->  int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
->  		    struct regmap *regmaps[], int irq)
->  {
-> @@ -1527,6 +1547,10 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
->  	s->devtype = devtype;
->  	dev_set_drvdata(dev, s);
->  
-> +	ret = sc16is7xx_reset(dev, regmaps);
-> +	if (ret)
-> +		goto out_clk;
-> +
->  	kthread_init_worker(&s->kworker);
->  	s->kworker_task = kthread_run(kthread_worker_fn, &s->kworker,
->  				      "sc16is7xx");
-> @@ -1536,10 +1560,6 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
->  	}
->  	sched_set_fifo(s->kworker_task);
->  
-> -	/* reset device, purging any pending irq / data */
-> -	regmap_write(regmaps[0], SC16IS7XX_IOCONTROL_REG,
-> -		     SC16IS7XX_IOCONTROL_SRESET_BIT);
-> -
->  	/* Mark each port line and status as uninitialised. */
->  	for (i = 0; i < devtype->nr_uart; ++i) {
->  		s->p[i].port.line = SC16IS7XX_MAX_DEVS;
-> -- 
-> 2.34.1
+> Given that this define is only used in one place, using the string
+> directly is common practice in iio.
 > 
+>> +
+>> +/* BH1745 config regs */
+>> +#define BH1745_SYS_CTRL 0x40
+>> +
+>> +#define BH1745_MODE_CTRL_1 0x41
+>> +#define BH1745_MODE_CTRL_2 0x42
+>> +#define BH1745_MODE_CTRL_3 0x44
+>> +
+>> +#define BH1745_INTR 0x60
+>> +#define BH1745_INTR_STATUS BIT(7)
+>> +
+>> +#define BH1745_PERSISTENCE 0x61
+>> +
+>> +#define BH1745_TH_LSB 0X62
+>> +#define BH1745_TH_MSB 0X63
+>> +
+>> +#define BH1745_TL_LSB 0X64
+>> +#define BH1745_TL_MSB 0X65
+>> +
+>> +#define BH1745_THRESHOLD_MAX 0xFFFF
+>> +#define BH1745_THRESHOLD_MIN 0x0
+>> +
+>> +#define BH1745_MANU_ID 0X92
+>> +
+>> +/* BH1745 output regs */
+>> +#define BH1745_R_LSB 0x50
+>> +#define BH1745_R_MSB 0x51
+>> +#define BH1745_G_LSB 0x52
+>> +#define BH1745_G_MSB 0x53
+>> +#define BH1745_B_LSB 0x54
+>> +#define BH1745_B_MSB 0x55
+>> +#define BH1745_CLR_LSB 0x56
+>> +#define BH1745_CLR_MSB 0x57
+>> +
+>> +#define BH1745_SW_RESET BIT(7)
+>> +#define BH1745_INT_RESET BIT(6)
+>> +
+>> +#define BH1745_MEASUREMENT_TIME_MASK GENMASK(2, 0)
+>> +
+>> +#define BH1745_RGBC_EN BIT(4)
+>> +
+>> +#define BH1745_ADC_GAIN_MASK GENMASK(1, 0)
+>> +
+>> +#define BH1745_INT_ENABLE BIT(0)
+>> +#define BH1745_INT_SIGNAL_ACTIVE BIT(7)
+>> +
+>> +#define BH1745_INT_SIGNAL_LATCHED BIT(4)
+>> +#define BH1745_INT_SIGNAL_LATCH_OFFSET 4
+>> +
+>> +#define BH1745_INT_SOURCE_MASK GENMASK(3, 2)
+>> +#define BH1745_INT_SOURCE_OFFSET 2
+>> +
+>> +#define BH1745_INT_TIME_AVAILABLE "0.16 0.32 0.64 1.28 2.56 5.12"
+>> +#define BH1745_HARDWAREGAIN_AVAILABLE "1 2 16"
+>> +#define BH1745_INT_COLOUR_CHANNEL_AVAILABLE \
+>> +	"0 (Red Channel) 1 (Green Channel) 2 (Blue channel) 3 (Clear channel)"
+>> +
+>> +static const int bh1745_int_time[][2] = {
+>> +	{ 0, 160000 }, /* 160 ms */
+>> +	{ 0, 320000 }, /* 320 ms */
+>> +	{ 0, 640000 }, /* 640 ms */
+>> +	{ 1, 280000 }, /* 1280 ms */
+>> +	{ 2, 560000 }, /* 2560 ms */
+>> +	{ 5, 120000 }, /* 5120 ms */
+>> +};
+>> +
+>> +static const u8 bh1745_gain_factor[] = { 1, 2, 16 };
+>> +
+>> +enum {
+>> +	BH1745_INT_SOURCE_RED,
+>> +	BH1745_INT_SOURCE_GREEN,
+>> +	BH1745_INT_SOURCE_BLUE,
+>> +	BH1745_INT_SOURCE_CLEAR,
+>> +} bh1745_int_source;
+>> +
+>> +enum {
+>> +	BH1745_ADC_GAIN_1X,
+>> +	BH1745_ADC_GAIN_2X,
+>> +	BH1745_ADC_GAIN_16X,
+>> +} bh1745_gain;
+>> +
+>> +enum {
+>> +	BH1745_MEASUREMENT_TIME_160MS,
+>> +	BH1745_MEASUREMENT_TIME_320MS,
+>> +	BH1745_MEASUREMENT_TIME_640MS,
+>> +	BH1745_MEASUREMENT_TIME_1280MS,
+>> +	BH1745_MEASUREMENT_TIME_2560MS,
+>> +	BH1745_MEASUREMENT_TIME_5120MS,
+>> +} bh1745_measurement_time;
+>> +
+>> +enum {
+>> +	BH1745_PRESISTENCE_UPDATE_TOGGLE,
+>> +	BH1745_PRESISTENCE_UPDATE_EACH_MEASUREMENT,
+>> +	BH1745_PRESISTENCE_UPDATE_FOUR_MEASUREMENT,
+>> +	BH1745_PRESISTENCE_UPDATE_EIGHT_MEASUREMENT,
+>> +} bh1745_presistence_value;
+>> +
+>> +struct bh1745_data {
+>> +	struct mutex lock;
+>> +	struct regmap *regmap;
+>> +	struct i2c_client *client;
+>> +	struct iio_trigger *trig;
+>> +	u8 mode_ctrl1;
+>> +	u8 mode_ctrl2;
+>> +	u8 int_src;
+>> +	u8 int_latch;
+>> +	u8 interrupt;
+>> +};
+>> +
+>> +static const struct regmap_range bh1745_volatile_ranges[] = {
+>> +	regmap_reg_range(BH1745_MODE_CTRL_2, BH1745_MODE_CTRL_2), /* VALID */
+>> +	regmap_reg_range(BH1745_R_LSB, BH1745_CLR_MSB), /* Data */
+>> +	regmap_reg_range(BH1745_INTR, BH1745_INTR), /* Interrupt */
+>> +};
+>> +
+>> +static const struct regmap_access_table bh1745_volatile_regs = {
+>> +	.yes_ranges = bh1745_volatile_ranges,
+>> +	.n_yes_ranges = ARRAY_SIZE(bh1745_volatile_ranges),
+>> +};
+>> +
+>> +static const struct regmap_range bh1745_read_ranges[] = {
+>> +	regmap_reg_range(BH1745_SYS_CTRL, BH1745_MODE_CTRL_2),
+>> +	regmap_reg_range(BH1745_R_LSB, BH1745_CLR_MSB),
+>> +	regmap_reg_range(BH1745_INTR, BH1745_INTR),
+>> +	regmap_reg_range(BH1745_PERSISTENCE, BH1745_TL_MSB),
+>> +	regmap_reg_range(BH1745_MANU_ID, BH1745_MANU_ID),
+>> +};
+>> +
+>> +static const struct regmap_access_table bh1745_ro_regs = {
+>> +	.yes_ranges = bh1745_read_ranges,
+>> +	.n_yes_ranges = ARRAY_SIZE(bh1745_read_ranges),
+>> +};
+>> +
+>> +static const struct regmap_range bh1745_writable_ranges[] = {
+>> +	regmap_reg_range(BH1745_SYS_CTRL, BH1745_MODE_CTRL_2),
+>> +	regmap_reg_range(BH1745_PERSISTENCE, BH1745_TL_MSB),
+>> +};
+>> +
+>> +static const struct regmap_access_table bh1745_wr_regs = {
+>> +	.yes_ranges = bh1745_writable_ranges,
+>> +	.n_yes_ranges = ARRAY_SIZE(bh1745_writable_ranges),
+>> +};
+>> +
+>> +static const struct regmap_config bh1745_regmap = {
+>> +	.reg_bits = 8,
+>> +	.val_bits = 8,
+>> +	.max_register = BH1745_MANU_ID,
+>> +	.cache_type = REGCACHE_RBTREE,
+>> +	.volatile_table = &bh1745_volatile_regs,
+>> +	.wr_table = &bh1745_wr_regs,
+>> +	.rd_table = &bh1745_ro_regs,
+>> +};
+>> +
+>> +static const struct iio_event_spec bh1745_event_spec[] = {
+>> +	{
+>> +		.type = IIO_EV_TYPE_THRESH,
+>> +		.dir = IIO_EV_DIR_RISING,
+>> +		.mask_shared_by_type = BIT(IIO_EV_INFO_VALUE),
+>> +	},
+>> +	{
+>> +		.type = IIO_EV_TYPE_THRESH,
+>> +		.dir = IIO_EV_DIR_FALLING,
+>> +		.mask_shared_by_type = BIT(IIO_EV_INFO_VALUE),
+>> +	},
+>> +	{
+>> +		.type = IIO_EV_TYPE_THRESH,
+>> +		.dir = IIO_EV_DIR_EITHER,
+>> +		.mask_shared_by_type = BIT(IIO_EV_INFO_PERIOD),
+>> +	},
+>> +};
+>> +
+>> +#define BH1745_CHANNEL(_colour, _si, _addr)                                   \
+>> +	{                                                                     \
+>> +		.type = IIO_INTENSITY, .modified = 1,                         \
+>> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),                 \
+>> +		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_HARDWAREGAIN) | \
+>> +					    BIT(IIO_CHAN_INFO_INT_TIME),      \
+>> +		.event_spec = bh1745_event_spec,                              \
+>> +		.num_event_specs = ARRAY_SIZE(bh1745_event_spec),             \
+>> +		.channel2 = IIO_MOD_LIGHT_##_colour, .address = _addr,        \
+>> +		.scan_index = _si,                                            \
+>> +		.scan_type = {                                                \
+>> +			.sign = 'u',                                          \
+>> +			.realbits = 16,                                       \
+>> +			.storagebits = 16,                                    \
+>> +			.endianness = IIO_CPU,                                \
+>> +		},                                                            \
+>> +	}
+>> +
+>> +static const struct iio_chan_spec bh1745_channels[] = {
+>> +	BH1745_CHANNEL(RED, 0, BH1745_R_LSB),
+>> +	BH1745_CHANNEL(GREEN, 1, BH1745_G_LSB),
+>> +	BH1745_CHANNEL(BLUE, 2, BH1745_B_LSB),
+>> +	BH1745_CHANNEL(CLEAR, 3, BH1745_CLR_LSB),
+>> +	IIO_CHAN_SOFT_TIMESTAMP(4),
+>> +};
+>> +
+>> +static int bh1745_write_value(struct bh1745_data *data, u8 reg, void *value,
+>> +			      size_t len)
+>> +{
 > 
+> The initial assignment is unnecessary, as a new assignment is made
+> immediately. This applies to several declarations of ret in this driver,
+> but not always (e.g. bh1745_setup_trigger()).
 > 
+>> +	int ret = 0;
+>> +
+>> +	ret = regmap_bulk_write(data->regmap, reg, value, len);
+>> +	if (ret < 0) {
+>> +		dev_err(&data->client->dev,
+>> +			"Failed to write to sensor. Reg: 0x%x\n", reg);
+>> +		return ret;
+>> +	}
+> 
+> Nit: black line before return (it applies to several functions in this
+> driver, but again, not in all of them).
+
+Hi Javier,
+
+Thank you for the review on this.
+
+Can you please point me to resource/section of code style guide for 
+reference which talks about new line before 'return'.
+
+Best regards,
+Mudit Sharma
 
 
--- 
-Hugo Villeneuve
+
 
