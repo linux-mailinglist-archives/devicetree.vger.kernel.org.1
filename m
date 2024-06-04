@@ -1,74 +1,66 @@
-Return-Path: <devicetree+bounces-72222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 207838FB27A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:43:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 545878FB27D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:44:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51D0E1C21630
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 12:43:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E4C59B245FA
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 12:44:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8694145FF6;
-	Tue,  4 Jun 2024 12:43:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E414F146004;
+	Tue,  4 Jun 2024 12:44:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="yjPIBp/I"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="srRr7m3S"
 X-Original-To: devicetree@vger.kernel.org
 Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A904144D1E
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 12:43:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86131145FF6
+	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 12:44:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717505032; cv=none; b=Qi2ljER7rUtRgbhqeCC4V+PfQWGAITlqyIS7OaYvC8D5f5yWe2cvq+artaBpwiomy5bTRfMv+6/WqGnwnxe3hGblsHjL9vlPDMYLgXV0vV5If6GXGM/hJ8otiRzcbSHgNN1KmOxm1FZXqCClc90QE5d02r+H2ERn+cz0mafdWtk=
+	t=1717505077; cv=none; b=DbpoII26y3EfM9U1uRUxZaOUtOedByPefJvk4vM08gVodaj91ZJ6Wha89CdJJzgmAUHu5oTGE5XIVFtEHTXBDl4AM7XhvtctEZm4nC1oAjs5N8GP+Jdis3//KoL2yaD2Sz7F1yl1x95aiPDOlXV77v/2Kky53R4lmkVg3aL4eeE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717505032; c=relaxed/simple;
-	bh=z9VKastw0Fg3r+6oyJGCgZjdTXvNGn5BMn3Iy1JBTjc=;
+	s=arc-20240116; t=1717505077; c=relaxed/simple;
+	bh=p46dFaOjZpK3OgYnoTc4t+Mc4ObxgROZFJtGZVC8V/Y=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=T7YmmLinHnJAt3ioIDBvfXlkelbS++K01d5ZiZUKIq8UWU487USyUx6KcucTvAYFrDRDqOObG2/JiyMwU9Sx/wHysjppyvhLP4OieKKqnecbfT/+GiDsErhSTJJo5cdigBwhUrk/cCWx59ByCUA+vZ4a2raqSV98ihqzI5NkJts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=yjPIBp/I; arc=none smtp.client-ip=46.235.227.194
+	 MIME-Version:Content-Type; b=HG0zsiaHgIaAuXZ33J2WpX36Y7sXtJJl0fV42c8SvbsInIiNUK885lxC2vx93MIVK30L0PEz1cLrDDaTXxhpwfv3bk0zYzyERqcAbWT4S3zqEnHnm9TZK1LoYmaQh6i/hT6zJc/Rzqrgr0qNRlcNZWb5DvrK2vVpEJXd3pBKg8o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=srRr7m3S; arc=none smtp.client-ip=46.235.227.194
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1717505029;
-	bh=z9VKastw0Fg3r+6oyJGCgZjdTXvNGn5BMn3Iy1JBTjc=;
+	s=mail; t=1717505075;
+	bh=p46dFaOjZpK3OgYnoTc4t+Mc4ObxgROZFJtGZVC8V/Y=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=yjPIBp/I/yrz++QRFFCWXo8sWUixFwRHmLtKp9+YqOn4lxHbQ+UAJ4XFt+oZ09pB+
-	 7pDcsn4OD8OJbnm/sBKtQvkvC56bi8xV3VSN514lpc+aCyIxyhOFMxas9pTE6uSWpF
-	 LxnVcIKIOswBr+AAIvcUDGv0BOs2h88ImLWXZ/MW7cSahxP54pqp2IHIdIrWIpo1ho
-	 hCzbANG0up679nlLNH/UXeAn2CqO4agFwf308mdvzHkvN6Os25p2e132bEnORrLxS3
-	 i5kuXyBsKj+sHXiGgE0BG1CViI72Tml9+vDbi6g9AR1HyWu4TtKlV1OqjLHvuSH/uq
-	 ekGOPJvxkWLNg==
+	b=srRr7m3SSs8pB8m60vBMDWU9bVriUN/9Xg3O6QglwTa23hjd//i2aySu8OVDzmb4D
+	 Bl+O5z5xuvsYTEloLgKONHUwKfqd8NgxfAPEs0/6mQcKnA02bPKBuQeJ3N7KQ7SPoy
+	 jgjZUOuhfelbhD3PZtoeK3ME9NHDVZICbGnUdg4TnLxZO1r9hLc5KkRcAAvtT6+NRO
+	 1Ecccv+tmpyAdXTgMQhRgS89+BOgSgHcfEu9uUCC0eid8KJSBLVFp0gbcP5jv0fauW
+	 hIdVNI9V09NpndefpYuGte1sLw3NA1p1FIXNEDSHWMKLeRwnAPo3HW7Qi5QuGr8NGO
+	 HiRXl6JyLTDLA==
 Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5B8BD37821A8;
-	Tue,  4 Jun 2024 12:43:48 +0000 (UTC)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5F71E37821A8;
+	Tue,  4 Jun 2024 12:44:34 +0000 (UTC)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: Matthias Brugger <matthias.bgg@gmail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
  =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>
-Cc: Chen-Yu Tsai <wenst@chromium.org>, Hsin-Yi Wang <hsinyi@chromium.org>, 
- =?utf-8?q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>, 
- Macpaul Lin <macpaul.lin@mediatek.com>, 
- Heiko Stuebner <heiko.stuebner@cherry.de>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Chris Morgan <macromorgan@hotmail.com>, Sebastian Reichel <sre@kernel.org>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org, 
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- openwrt-devel@lists.openwrt.org, 
  =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-In-Reply-To: <20240527115933.7396-1-zajec5@gmail.com>
-References: <20240527115933.7396-1-zajec5@gmail.com>
-Subject: Re: [PATCH 0/3] Add initial DT for OpenWrt One
-Message-Id: <171750502829.333704.14436657931851729298.b4-ty@collabora.com>
-Date: Tue, 04 Jun 2024 14:43:48 +0200
+In-Reply-To: <20240604064302.487-1-zajec5@gmail.com>
+References: <20240604064302.487-1-zajec5@gmail.com>
+Subject: Re: [PATCH V2 1/2] arm64: dts: mediatek: mt7988: add PWM
+ controller
+Message-Id: <171750507431.334281.10525618295173973957.b4-ty@collabora.com>
+Date: Tue, 04 Jun 2024 14:44:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,24 +71,17 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Mailer: b4 0.13.0
 
-On Mon, 27 May 2024 13:59:30 +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Tue, 04 Jun 2024 08:43:01 +0200, Rafał Miłecki wrote:
+> MT7988 has on-SoC controller that can control up to 8 PWM interfaces.
 > 
-> OpenWrt project (https://openwrt.org/) celebrates its 20 years by
-> releasing an OpenWrt One product. Early units have been produced and
-> will be followed by DVT samples really soon. Then the mass production
-> is about to start.
 > 
-> [...]
 
 Applied to v6.10-next/dts64, thanks!
 
-[1/3] dt-bindings: vendor-prefixes: add OpenWrt
-      commit: 80468ed25791e9c749cd12117111650a7f014928
-[2/3] dt-bindings: arm64: dts: mediatek: Add OpenWrt One
-      commit: 33e9d52fd89c8101a72fd95f648c8094ef4488a1
-[3/3] arm64: dts: mediatek: Add OpenWrt One
-      commit: c8770738f12ac3eced96dd7768be62b6c5018ed3
+[1/2] arm64: dts: mediatek: mt7988: add PWM controller
+      commit: 9e12e66ef9584900b0a08ff7ed1a70078386c0d7
+[2/2] arm64: dts: mediatek: mt7988: add I2C controllers
+      commit: 92b1be17128be7cc5ba7753ceda973899205ffcb
 
 Cheers,
 Angelo
