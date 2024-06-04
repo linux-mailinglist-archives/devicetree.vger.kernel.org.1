@@ -1,129 +1,127 @@
-Return-Path: <devicetree+bounces-72174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B5078FB09E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 12:55:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31F3B8FB0A9
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:00:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD55F1F23F79
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 10:55:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAA2C1F24B15
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 11:00:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCD01145326;
-	Tue,  4 Jun 2024 10:55:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B6FC1448E0;
+	Tue,  4 Jun 2024 11:00:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WyBW3uB9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZOmctIqJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A118144D2E;
-	Tue,  4 Jun 2024 10:55:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC30446CF;
+	Tue,  4 Jun 2024 11:00:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717498545; cv=none; b=iho8uNE7lq151a7S4CCj/UEcp9BbTcTdWo29H4Rxg9rut+WzfQ+XuNbXoVF8JWUNQd/SmYlV/wV2a3PQz5ePAYBhQlU7kvaD1XRexCp9tweqJb3ipnU0RP3dQXeDfERLasib7EviKBlt86uZ+w3SREgJ5Ok2G+tyGiJQPGhjft0=
+	t=1717498841; cv=none; b=OLppWO/cxlwcN0GXr3FXe+QzEgxnmfjc2Z3LRwJbjnx6eDXt5GRnOebzkfri0UCwmokM/VyDojTG80P30QH/Vd2rPOisVRZrFlbhrfM/+iqqBlIf8MGmE/KT3EXjcmp551eOdBaSt9WyU6jtkJpyZOk+l64Lgr68+y4nfin/NRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717498545; c=relaxed/simple;
-	bh=+qlsn2D0Bl9bAT/zCHb1kX2iWwIp82kUn+lzQwccsqA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JK2CP7J54jwkxmwx0FedgJVz9Pz1+PUe7fuyrTGJF568BQ8Ne+1wseYh0p/mls3JaSrPhm62U3tEXy5IQinqbJMuOP/o+QyvI7Rt4dD36Go3n9oKan5GnFZPUWmEpKySiY4VGx2c76Ax56+KNff/f5ffNXRwnVphNyZ9K1uslUU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WyBW3uB9; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-57a85cc2d96so457742a12.2;
-        Tue, 04 Jun 2024 03:55:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717498542; x=1718103342; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IDj6XyLMkdypUs5XebPk9O6Y/tAg4OP0rl7m8sDWpro=;
-        b=WyBW3uB9G4oeSv/fUK4tP/WdFdoXUnj9zlnLu154/k7HfFWdVJJX1zo5h3JQfcbeec
-         n+AgfiWL4KCvqtapKYLp7jfr+tpdsinH8TSNjcx7apuNU3kyC/xHs6ubvOeJunzRGel+
-         nuw8+Q0O4kEwdm/47+X7Agg1ImEyHEgYQDHwXLSxsVCJFqcY9xogRqfNwVhWG0u0SpMN
-         DYQiQs1Bhu+2IrbyJGLpcOXQRmOfICPu7bSpBJdUP0ihSqFsBSKBMk9Vd1qzjFO7OvzQ
-         JKKlrNm7WMqcRwM7hiWSjaC81Qq/GBv3hW7Exptsotk+Y6D/HYfwQnwK9vRqTeFbo40c
-         Ka4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717498542; x=1718103342;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IDj6XyLMkdypUs5XebPk9O6Y/tAg4OP0rl7m8sDWpro=;
-        b=BBdRo4tBoVPNA8TehchHXyzq5h6Lj2Pw4GH+WUAeeSX+aSuGI/q5/+PRPynMY61xPF
-         8sTN0R4k8wNDovG2c11doYNFRH3gFinU+OyDie+yQYFYpEJ7/W/IGlGyuGc4w/Q8JPJv
-         pQFYdO/DctM/FKX2xCAEUDPG/rkGEctfKBDgJZkYgSXxhg2S4RxCE2LgtLatePhTPIXW
-         9VSzqtR7omib2AOKVDsGnGIwdgpEIu1yl4OslKKFM60YgUy5Z8PaCRS++jwCZ0nbzOn/
-         HIAfkVgyeNjp3xh7n3pkkZ3XmPSK7mJPe+zOT1/vPdj57pcS1eGlEXLnoklcgGH8OOeK
-         Yu0w==
-X-Forwarded-Encrypted: i=1; AJvYcCUeN4jZIVM0cM1Hywq8kegPrqxs5CMDwiiBln8M+FL1uwF3yTVBO8rC7qWaYrRMAFW9GKCHuROkEk1ooNVD0754B+FGZ+U+AMbxycpXRSE8q8OGkZkOoZnDmQB7VrRs1rngDp9WJ97xGE5AOhvvH4gd4ZaH2+WtLZ3bF5zZMQn8FzLWXg==
-X-Gm-Message-State: AOJu0YxPxpgBpUUOTVhQi02DgusyJp0ksbvymiTzsATGhpuzWlXHQwgm
-	Ew6O1zHMilmIubIR7KG2vOnN0pvjDXfyh6O0nXoe9pNK/KY8WV9LBOXO9x1OEnLGdIrgpAslTeI
-	9sRmDfq3nqNNzDUyCICRaALZsxhc=
-X-Google-Smtp-Source: AGHT+IFmZt6Y9UJZxMqsQKH1greIZFtT4Z7hrqbjSEJ/dY7Mmt/YlBYihOWjiM0e7kzDgcBKFTWWMMLnuGmhwMU9t2Q=
-X-Received: by 2002:a17:906:6acd:b0:a65:26dc:3c25 with SMTP id
- a640c23a62f3a-a6821b71ea0mr796196266b.54.1717498542174; Tue, 04 Jun 2024
- 03:55:42 -0700 (PDT)
+	s=arc-20240116; t=1717498841; c=relaxed/simple;
+	bh=icN7yy769H60NF0IQHkwQ06Z7vp+DD69l8il9VhXQyE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KlinjvG/isis3OJDBu6mzxKKWja1hAAq/u70JFMlDN5XUpT6ZHi2W7JgPfPx8oH5CNKPxnmxKLbNx8ESC/pfKL7pk+OZlVZGZejolwKRVXVYX7H1Oq4/X1HkGiWRogqZlELMNBVYOn0sLCniRU/5eYb9N3jIcMBR7wklK8xWFjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZOmctIqJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D780FC2BBFC;
+	Tue,  4 Jun 2024 11:00:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717498840;
+	bh=icN7yy769H60NF0IQHkwQ06Z7vp+DD69l8il9VhXQyE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZOmctIqJg3FeyMAnGbo3vjLdAqkFSlSrwKIRWj8Z+vlG+Oi+VZIEysmgaSuOixUsG
+	 JBZareAMBcnNqjM9L1dpIjrwuDk/Hv4EQUMmRKRCN/UoEMAA4Nxxx2DSj0KEMrKkXP
+	 +16wVUYFMZFyUqnj/Xd2kqfSHyzIuo0DrwLlcBhiJemPd9fBXYZmY8oLZkH1l94Qlk
+	 tnrSzg5awRN1u0679c1qv3qmtLZzxnNfOY5m30sFZsjCSPCQzoeaOQ0QEgj8Fwkvbk
+	 6A/XOYhLNwyDXyc7CyPhJwuQJ54uJk8J+ljQD0JQes9L4PXeDGVhBILjik6wBg1osk
+	 pev6gYVgiTdbw==
+Message-ID: <8e5610de-8091-4a08-a3b8-a0eecdc89438@kernel.org>
+Date: Tue, 4 Jun 2024 13:00:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240530093410.112716-1-angelogioacchino.delregno@collabora.com>
- <20240530093410.112716-3-angelogioacchino.delregno@collabora.com>
- <20240602111141.0058f39e@jic23-huawei> <60e55919-2a8c-4d83-89a1-6e4ae156d34d@collabora.com>
-In-Reply-To: <60e55919-2a8c-4d83-89a1-6e4ae156d34d@collabora.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 4 Jun 2024 13:55:05 +0300
-Message-ID: <CAHp75Vf5a8VVyOXQRt9P1QnM6GHZ3rLuvnBF63H_83QBHOTJ9w@mail.gmail.com>
-Subject: Re: [PATCH v1 2/4] iio: adc: Add support for MediaTek MT6357/8/9
- Auxiliary ADC
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, matthias.bgg@gmail.com, lee@kernel.org, andy@kernel.org, 
-	nuno.sa@analog.com, bigunclemax@gmail.com, dlechner@baylibre.com, 
-	marius.cristea@microchip.com, marcelo.schmitt@analog.com, fr0st61te@gmail.com, 
-	mitrutzceclan@gmail.com, mike.looijmans@topic.nl, marcus.folkesson@gmail.com, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy:
+ Document the X1E80100 QMP PCIe PHY Gen4 x4
+To: Johan Hovold <johan@kernel.org>, Abel Vesa <abel.vesa@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240531-x1e80100-phy-add-gen4x4-v1-0-5c841dae7850@linaro.org>
+ <20240531-x1e80100-phy-add-gen4x4-v1-1-5c841dae7850@linaro.org>
+ <Zl26Y0VklPmiirem@hovoldconsulting.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <Zl26Y0VklPmiirem@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jun 4, 2024 at 12:42=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
-> Il 02/06/24 12:11, Jonathan Cameron ha scritto:
-> > On Thu, 30 May 2024 11:34:08 +0200
-> > AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> wr=
-ote:
+On 03/06/2024 14:43, Johan Hovold wrote:
+> On Fri, May 31, 2024 at 07:06:44PM +0300, Abel Vesa wrote:
+>> The PCIe 6th instance from X1E80100 can be used in both 4-lane mode or
+> 
+> nit: s/PCIe 6th/sixth PCIe/
+> nit: s/from/on/
+> nit: s/both/either/
 
-...
+That's really nit-picking and not helpful in getting things merged.
 
-> > What are IMP channels?
->
-> Honestly? Well, it's called like that. I don't have any clear description=
- of that
-> and not even datasheets are unrolling the meaning of "IMP". So.. I don't =
-know.
->
-> What I know is what I wrote in the driver, and this is:
-> * IMP has IBAT and VBAT ADCs
-> * It needs different handling from the other ADCs, as shown.
->
-> ...and nothing else :-(
+Best regards,
+Krzysztof
 
-I could speculate with confidence that this means IMPedance (since it's ADC=
-).
-
-From MTK6329  datasheet:
-"The hardware also includes necessary modes to allow for simultaneous
-current and voltage measurement
-which can be utilized to estimate the battery impedance."
-And googling in vendor trees also suggests the same.
-
---=20
-With Best Regards,
-Andy Shevchenko
 
