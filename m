@@ -1,95 +1,104 @@
-Return-Path: <devicetree+bounces-72418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCE918FBA60
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 19:28:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EA808FB9AA
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 18:57:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 355EEB27A6E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:27:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F31D51F24B7C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 16:57:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A637814A4E7;
-	Tue,  4 Jun 2024 17:27:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0C291494D0;
+	Tue,  4 Jun 2024 16:57:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Aw6AXUXw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SqxCiX4R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20E4814A0AA;
-	Tue,  4 Jun 2024 17:27:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7163D13D607;
+	Tue,  4 Jun 2024 16:57:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717522034; cv=none; b=RRXze/jPVIMdWdLiqrupF/DQgeAtZMHlCVMwg8+jkXAHex/zPBQFL640KrW4j9gzWKufzw3m7/97ZAkT4D2dXzPBC4IJWC/j46VuZqM/McY5/mzBCyZxvcLXT8FjOHKLdRZkSDZoxeNcw9FP3oSB2tHyIihrePvL60Dm1Wb/Ogc=
+	t=1717520272; cv=none; b=d2HA72vCtuKgWV+MBZAQbnl8LTFNdyLd3NU4aswpiSBgvVUK69M6vsl+/iWfsSauH/g+0i7TmP/REQ27yrI0Z6+oHsiO8Otf8FXdYLBuqAymAF1HODu6sl6o/PD7M3nJFxgXu5AEJyZYb4JE57J0egypiiN6LoufcGCAozvLUFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717522034; c=relaxed/simple;
-	bh=19j/qX+gL7Lz21NjIobaq4BpyZhEZYE3pB+bAIOQ+Vw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FlrDkVKs+vKxUthDEEmg0SSbdgA8nDcxZS4SZEWnhrljVOmMB5VKjUd8LpLZpNnwwA8txs275g9BrVH0Hrlopbf8JOCQGqQd3pAOCAptXCbf9UoImKwGDwUtH2hFGYTZy11mlIbdEbK/kYg4B+8OABilslQDBGCI9XhjNnN1Grk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Aw6AXUXw; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 2A5D08850D;
-	Tue,  4 Jun 2024 19:27:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1717522031;
-	bh=ouE0lc8aXlYqAz3nRcHf2sJn1wgl70Q+6wn+UFtez/8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Aw6AXUXwxg4tf93WX2Tk0atTQIrXjd5wUS690PXNsSeHCmkTeyJpdaErauWUwJAXX
-	 cIkvi7nHeCL+fjArJnUlp6o+OZGqfgl8CapH2WBAdtBjQCbn/IKAm15FMVR1e9D6or
-	 SlonWQ/+SE9k9nuLKq3Wkf+XJ0tksjg4ZVfhRj6ZhJ3bueXb7hgCb4cGJo0/ZGfs3R
-	 XINcCN0dJMCAWzxW7QVQV4JCUQ4IH2jTd0P5RdiNjG0lUrqtt9aaoNMftsud0HwU/R
-	 9mp6ugcqSPOATYIGb/qxMx7WBtZKY5TzgkD/yIlh/pJQp+ZUgPWiNTF9Z08jpdmc23
-	 9H7Tv7y2WQoeQ==
-Message-ID: <20b33e48-4cf9-485d-815b-95ef4db8f04d@denx.de>
-Date: Tue, 4 Jun 2024 18:55:00 +0200
+	s=arc-20240116; t=1717520272; c=relaxed/simple;
+	bh=Awzr5qzfrmmRzsEpJi3mNfPpydZiasmcYpDO8J9Mo4M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mwYzgC+1cN8MCewfjTDZDFyRg/Hpi5lc1IDNiO9J6pJcMpWBT502HfPfH7lhDrkFeFpSDXyEHjWaSYs66HrIix9vsZkTa6s0oczjbxsIQhbGEFIi8El+YlNC87CWCmTuiRC1SWaDxvNHgGd9EcDzOAcquGxwknXvOa8/zQEN8fw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SqxCiX4R; arc=none smtp.client-ip=209.85.166.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-7eb01106015so194863839f.1;
+        Tue, 04 Jun 2024 09:57:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717520270; x=1718125070; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=W3rhsphMxNLAFdBX054OpQ7nOAeYOHeyOoUJEs+AJmc=;
+        b=SqxCiX4RLEQFa7L22Un67I964hor5rn7mSMSv93XZczm0RUpiXbmJ7tbGxc1snwHsX
+         jqwDJeAp2to/mu8Oc5ALwlAmeKxG8LGkXoCPdc1bEeyOC5sm09JaVkLmK20XcZGp6WTD
+         /HoidD9DrENryY/znVXHUq6amG13SHgVnHPoUHdW+JvMv/+t0LDM+meRJk/SYJ7bFcMi
+         SvquZgxYtqXzBSsdxUV6UQjD3E4ntBJytpDEpPHNQWz5vFImT4n+na7n3AQLPDgDW6mW
+         rkIbB0kwxYPCjPTCHl2e35Z1M7iWqtG5p703lG2gOm5K1t0VJ4cTK5ypYdaHV7xvauOd
+         SNKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717520270; x=1718125070;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=W3rhsphMxNLAFdBX054OpQ7nOAeYOHeyOoUJEs+AJmc=;
+        b=WrbzMT8M/oh9fkG4fYWXGtjmdsu/0rej7snO6oO8ywtDxwBchROmdqH/c6sfUX03E7
+         Z3BBQp587hC1+EhXQ05r0N2Hf2jFlY+akD/QHoHmQdGpFaG6Q5Vdr4jmhD870/Iz3+wO
+         p7pOIAcfIlYd/hl1nYun97p7dBl8zCfgEGCljhg64m+biDoQFSf7BcPzGPgzP1bH9dVE
+         BYrrvjXYKr02w9NayGKPF0Vf1mmu80QjOHiZDo/c0mGMki29j2LhH7afKaNFd8E1IKgo
+         +Z3pa6ylBsrGT19wBZmzeEMR/0v615AtJsGBBIDFAAq4TxwOEgVKOh2cRe9r3nneLhpt
+         wRrg==
+X-Forwarded-Encrypted: i=1; AJvYcCWVPkSFjfguzmm4iwoVZcN3GjQMbvmQ7s5mvFxvkFSBqFDU6WiULVe6Io8bajErSfo3OUnJTAsbwpUsJUHIkmVYcU3ziBcRJPy6cMz/Po25lW+uKpCGxnMipKrd5ACTjSjda7p2HotnkrKBw4cX9s+uIUd0FwmFCeYjVnueXCj6gx/Pk0IE
+X-Gm-Message-State: AOJu0Yzqzdx9KENwn+hJkiwjrhDzbly3Yg5wwvmvPT9SLKVYVfMeRjzb
+	1qoQIhvSUanA3X/WDUVZWcxzR67BiY33XcJPT68iTEfDyO3ORQIA
+X-Google-Smtp-Source: AGHT+IFPNVEPicX9BZCLLToRhnS+e14Z0ilxAploVr7MC+63wEfqFN6G9w1O8Gt7KcG5N6yE53A/mQ==
+X-Received: by 2002:a05:6e02:1c0b:b0:374:a412:3d98 with SMTP id e9e14a558f8ab-374a412407cmr48703425ab.32.1717520270465;
+        Tue, 04 Jun 2024 09:57:50 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-6d31987e4acsm1381737a12.83.2024.06.04.09.57.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Jun 2024 09:57:49 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Tue, 4 Jun 2024 09:57:47 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: hwmon: g762: Convert to yaml schema
+Message-ID: <9b5b6034-6a2e-4bd6-a69e-d820bf195c64@roeck-us.net>
+References: <20240604164348.542-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 11/11] ARM: multi_v7_defconfig: Add MCP23S08 pinctrl
- support
-To: Christophe Roullier <christophe.roullier@foss.st.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>, Jose Abreu
- <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240604143502.154463-1-christophe.roullier@foss.st.com>
- <20240604143502.154463-12-christophe.roullier@foss.st.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20240604143502.154463-12-christophe.roullier@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240604164348.542-1-ansuelsmth@gmail.com>
 
-On 6/4/24 4:35 PM, Christophe Roullier wrote:
-> Need to enable MCP23S08 I/O expanders to manage Ethernet PHY
-> reset in STM32MP135F-DK board.
-> Put this config in built-in like STMMAC to avoid huge of Ethernet
-> messages during boot (deferred)
+On Tue, Jun 04, 2024 at 06:43:41PM +0200, Christian Marangi wrote:
+> Convert g762 Documentation to yaml schema and port all the custom
+> properties and info.
+> 
+> Add the vendor prefix to name to follow naming standard.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-You're not avoiding any error/defer/messages here, you simply need to 
-enable the MCP23S08 GPIO controller driver, so the kernel can use the 
-GPIO provided by that driver instance to release the ethernet PHY from 
-reset on STM32MP135F-DK, that's all.
+Applied.
+
+Thanks,
+Guenter
 
