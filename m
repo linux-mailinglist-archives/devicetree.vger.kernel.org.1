@@ -1,93 +1,64 @@
-Return-Path: <devicetree+bounces-72496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17A408FC030
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 01:49:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F4108FC03F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 01:58:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B0CA1C21871
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 23:49:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E48D1F24DD5
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 23:58:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 980BC14EC61;
-	Tue,  4 Jun 2024 23:49:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BDD514E2D7;
+	Tue,  4 Jun 2024 23:58:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IMM1Q+vm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nDAkVbRt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9FA414EC56
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 23:49:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29D4B14B94E;
+	Tue,  4 Jun 2024 23:58:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717544972; cv=none; b=sxw9TnzCN7C8DMeIkgBXZ9BUHYp5QXuGLvyTxYpHrpTn/K0iz3SkXQYt8chIYXok4BTaR4+q+gNGkFHkDy5Bnm7DTApVr8M8Ixj9OcgUmgQZyu2LAa5nMHcnfiKcIUdAr1myWOI5bt5Vk9RQdByniNm+BtGsqSBo0+p8sQUpzbU=
+	t=1717545489; cv=none; b=A83Gikhga9orGGxL9g6ewIiKRs1S02iSdc9kGlUH7srTixQ+Fyo4QUaZQAy9UCqArqNUjEgjGuqp6/OJySDyBnRGRN6pixIGykTVjQeP8k+qAm1HkNieTO6qnmzHvU1sVo2P4gt+UYJhDAfMjWYG701DEy+BpW5bD3/toqseDBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717544972; c=relaxed/simple;
-	bh=wwaaPx6QWt15nHSdqWTKXp6nXVK1oyhFcBxCNFquLTM=;
+	s=arc-20240116; t=1717545489; c=relaxed/simple;
+	bh=z/x7lnVHh6tGjQq6E7OKzagc09tZ4NbFq5Ho8k3qWiY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h9UCtqJPSZ6XuML10mZ9DEVv9Cmpny0Hl0CNDRMoRBWit/T624OU/vN7Dma+TQ64QDvkK8qJha0pbmgB/g0hGCdyA0ucHfEPRgP3Ua8wJ/LN57ePomSSPDyFupHYhvYE2qYKJASPimEAEcPU0PGpdWjC8l3Mb2G2p+2wNGqVPh8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IMM1Q+vm; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2e73441edf7so66394941fa.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 16:49:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717544969; x=1718149769; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=OYlsPq/Nl2a6jpBnYLpUuE7MhnCmlQ2CakctggIcvoA=;
-        b=IMM1Q+vmn6OC2+46T2IyUDCh8tOSlLTaRZdx1GStHpngJdpQS/ElC92goOH3d1XxMW
-         tXMzTfs4e4R5OTe7r5J/adPPEh1xHdQhHNgktd2F52PUWIn8JUj6z/iktssr8hmD4b8J
-         xl1GMWBHhDOhUWw1lYk3CHLqXLoyYmwlWhiQv3kYcNTGNufYqHk9EYAwTCZldDP11hUs
-         635JW959ee9uWLoD6Yi+GseAO6UXk+RIuPR09C5hHadyLD1o8O1T6F4tPNVrUs1NR/PZ
-         QMtlF0aR/eQm89IiBU+AIfDou0eGEaZEleIkWABvO+emRly4wXNtJiF+LABTI0dybYVu
-         roOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717544969; x=1718149769;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OYlsPq/Nl2a6jpBnYLpUuE7MhnCmlQ2CakctggIcvoA=;
-        b=BG0itJ2kCCCMZtxTAXMDREU14VaN89mWwKIkRTnIqRTFW2KWdNeilyYOlaS8Za5zcA
-         FetwIoceU6tTwZ3C4PeqhSgPm1BA2XMziL0TkgUvgtTdojFpFvQJs9rUTZHSdqrrQDah
-         OoBC+0W+4e8Bd7D6CHcrh6ftMNZyqWIh4t34HQVqwxiroF/PVapO7IsEI/LULiXsS6X9
-         37qfjH+q4T1MjzBCGVgtOoC91l1c9UKZVD366xOXr0UDMtJ3K9RO0BrRg1x1ZfEcjCGK
-         xzSnowLn3toZ4n4b9nQAzseh1x1GIsRrL/YwbKzkOK0cayG3gfw9rGbXMxdNOWaBTzvi
-         1r+A==
-X-Forwarded-Encrypted: i=1; AJvYcCUIYJHRUGXeJv99wlduGX/eHfHWb9GfUZKM8Kl6CyBup76Ab8PnSGbGgVbyD+M5jIpubA26aXtGmMqpufDH89HK7rM+ej3oSFTzpA==
-X-Gm-Message-State: AOJu0YxLmyaitw/eoyZZBNA+7TQ4MV5KlwlEyZEfzmPh5nt/UEDq11zy
-	VoVcsWavfzET5S0sAyMQCphl+EZDJHYHpyerMUERu9C12XfhNu4JT3c776T5Wog=
-X-Google-Smtp-Source: AGHT+IEqt/1E9UYfq6hr7NwOOCvGfJFrmEaHjn1YhWsPZoauNt3zoMgMqQ+4sf+zBHTn4FHcfvCgIw==
-X-Received: by 2002:a2e:bc08:0:b0:2e9:5011:f6b1 with SMTP id 38308e7fff4ca-2eac7a73140mr3969551fa.42.1717544968775;
-        Tue, 04 Jun 2024 16:49:28 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ea91cc65cbsm16085851fa.73.2024.06.04.16.49.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jun 2024 16:49:28 -0700 (PDT)
-Date: Wed, 5 Jun 2024 02:49:26 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Sandy Huang <hjc@rock-chips.com>, Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>, 
-	Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mark Yao <markyao0591@gmail.com>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
-	kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>, 
-	Luis de Arquer <ldearquer@gmail.com>, Algea Cao <algea.cao@rock-chips.com>
-Subject: Re: [PATCH 00/14] Add initial support for the Rockchip RK3588 HDMI
- TX Controller
-Message-ID: <ymccadqprkxlvhv6ekyqr7utsgejxhqmxlki7nh23htgktlynl@7upjoc5whcy6>
-References: <20240601-b4-rk3588-bridge-upstream-v1-0-f6203753232b@collabora.com>
- <a5jlj5hncv2p7lxk6pbgynkqfovlg3lzz2muzrbrkd73afiopu@n5tmd4zfyeik>
- <892b2070-2fd0-42b2-a8c2-811dc7382b0c@collabora.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=M6qmcz8inue31pCdRKY8RaopQJi71M1s6wAJfQ91Tc7k5l4UdVDvrQ4dOvADLLXMSfKbXWyp6nJdJuhO7klOcOt4Y21dSP9X+IWGxe9qAOgkD3nnIkwemA2Xfc6O+x28AA9CdM3iYzekXXz0boGPFYKaZ0hn5sz8mCH2lvazZWA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nDAkVbRt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 372FFC2BBFC;
+	Tue,  4 Jun 2024 23:58:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717545488;
+	bh=z/x7lnVHh6tGjQq6E7OKzagc09tZ4NbFq5Ho8k3qWiY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nDAkVbRtBndrf0AUTpV5MC0DtJMsL7G0G3A7j7SJMOS8/m2xo6ixOtMt1Duj9c0iv
+	 KBGi1PUX1lSSA7W3DTunVgu7Fixuum8fyqYWMfSEB2H5AM9OfBq8kbdJczQvGs4CYg
+	 3tdfSQF6aIQEufKjukhOoU0bKa5j/AOnZcUKlbH5UO1wt2k2aOlWQHrY1T6qR0e3jI
+	 XeGfovm2YXsYzPCrrSnZNC6FR1XtbIrHYe1uisepl64YPkL0ohcWzLvd7dfIFTDoU2
+	 eROjrOCP6QdVhSqO3Uxk8md4Fz1hvsPc8kEO53ebGMKdMGfP6TCEHjPPBueHI+f5o1
+	 oW/RguEWs0u9Q==
+Date: Tue, 4 Jun 2024 17:58:06 -0600
+From: Rob Herring <robh@kernel.org>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: PCI: qcom: Fix register maps items and add
+ 3.3V supply
+Message-ID: <20240604235806.GA1903493-robh@kernel.org>
+References: <20240604-x1e80100-pci-bindings-fix-v1-1-f4e20251b3d0@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,43 +67,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <892b2070-2fd0-42b2-a8c2-811dc7382b0c@collabora.com>
+In-Reply-To: <20240604-x1e80100-pci-bindings-fix-v1-1-f4e20251b3d0@linaro.org>
 
-On Tue, Jun 04, 2024 at 10:44:04PM +0300, Cristian Ciocaltea wrote:
-> On 6/1/24 7:32 PM, Dmitry Baryshkov wrote:
-> > On Sat, Jun 01, 2024 at 04:12:22PM +0300, Cristian Ciocaltea wrote:
-> >> The RK3588 SoC family integrates a Quad-Pixel (QP) variant of the
-> >> Synopsys DesignWare HDMI TX controller used in the previous SoCs.
-> >>
-> >> It is HDMI 2.1 compliant and supports the following features, among
-> >> others:
-> >>
-> >> * Fixed Rate Link (FRL)
-> >> * 4K@120Hz and 8K@60Hz video modes
-> >> * Variable Refresh Rate (VRR) including Quick Media Switching (QMS)
-> >> * Fast Vactive (FVA)
-> >> * SCDC I2C DDC access
-> >> * TMDS Scrambler enabling 2160p@60Hz with RGB/YCbCr4:4:4
-> >> * YCbCr4:2:0 enabling 2160p@60Hz at lower HDMI link speeds
-> >> * Multi-stream audio
-> >> * Enhanced Audio Return Channel (EARC)
-> > 
-> > It would be really nice if you can take a look at using the HDMI
-> > connector framework (landed few days ago) with adaptations for the
-> > drm_bridge / drm_bridge_connector ([1]). Your comments for the
-> > drm_bridge patches would be defeinitely appreciated.
-> > 
-> > [1] https://lore.kernel.org/dri-devel/20240531-bridge-hdmi-connector-v4-0-5110f7943622@linaro.org/
+On Tue, Jun 04, 2024 at 07:05:12PM +0300, Abel Vesa wrote:
+> All PCIe controllers found on X1E80100 have MHI register region and
+> VDDPE supplies. Add them to the schema as well.
 > 
-> I will definitely check and try to use it, but I'd rather wait a bit
-> until this gets stabilized and focus instead on the mandatory changes
-> required to upstream this driver. That's mostly because my limited
-> availability and expertise on the matter, while trying to unblock other
-> work depending on this.
+> Fixes: 692eadd51698 ("dt-bindings: PCI: qcom: Document the X1E80100 PCIe Controller")
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+> This patchset fixes the following warning:
+> https://lore.kernel.org/all/171751454535.785265.18156799252281879515.robh@kernel.org/
+> 
+> Also fixes a MHI reg region warning that will be triggered by the following patch:
+> https://lore.kernel.org/all/20240604-x1e80100-dts-fixes-pcie6a-v2-1-0b4d8c6256e5@linaro.org/
+> ---
+>  Documentation/devicetree/bindings/pci/qcom,pcie-x1e80100.yaml | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-x1e80100.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-x1e80100.yaml
+> index 1074310a8e7a..7ceba32c4cf9 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-x1e80100.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-x1e80100.yaml
+> @@ -19,11 +19,10 @@ properties:
+>      const: qcom,pcie-x1e80100
+>  
+>    reg:
+> -    minItems: 5
+> +    minItems: 6
+>      maxItems: 6
+>  
+>    reg-names:
+> -    minItems: 5
+>      items:
+>        - const: parf # Qualcomm specific registers
+>        - const: dbi # DesignWare PCIe registers
+> @@ -71,6 +70,9 @@ properties:
+>        - const: pci # PCIe core reset
+>        - const: link_down # PCIe link down reset
+>  
+> +  vddpe-3v3-supply:
+> +    description: A phandle to the PCIe endpoint power supply
 
-Ack.
+TBC, this is a rail on the host side provided to a card? If so, we have 
+standard properties for standard PCI voltage rails. It is also preferred 
+that you put them in a root port node rather than the host bridge.
 
--- 
-With best wishes
-Dmitry
+Rob
 
