@@ -1,146 +1,130 @@
-Return-Path: <devicetree+bounces-72093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A3998FAD21
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 10:10:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB54D8FAD2E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 10:12:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AD88EB216AC
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 08:10:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBF3B1C20A7D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 08:12:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0564B1420C6;
-	Tue,  4 Jun 2024 08:09:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iD54TRUT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBE4713D882;
+	Tue,  4 Jun 2024 08:12:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 802191420C8;
-	Tue,  4 Jun 2024 08:09:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EFD0446CF;
+	Tue,  4 Jun 2024 08:11:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717488593; cv=none; b=cenFM9dH8hKyNN+/GaT/sz8VexmyflwCYsdwsD737X4eac/qjFBJ9AWSzEiiJV0Jj2zUNOvYs9zrDeKwUbNGWLhHvQeRppIjnOdMXPht0AAr7h53yExQSoAuWlZA8xy9XIO13f1dlJQI4ISuzMirrnNsncdanrWUxJUEXYeBPFs=
+	t=1717488721; cv=none; b=pbBsrX/J3O+GRclwX4SHQwrHc7F5p3SbO/THIWRYEn/ByNrHSNk3zLG/USTh0R7NqVS94xMnDNaZVsYMgiaw7IPJ7vbNnALClWzNwFQadpZOnHhziazsCHoU86hspIjeviUk95EeptMq8gthMJFIDiqC0qNeHhT2FmZCxUzy3Jw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717488593; c=relaxed/simple;
-	bh=QfMx1s4NYbFECh0KMXY2fQonXfPgUZeHg/AMZB1cqh8=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=D1nmb33OT5KFiqb8klV/9hVkXoGWrPJJE4lWqBX6aZPROTOucuPRFIP0OtyUDRam4reQhLFdr6cgmHRMPJZFrf3GrNlk5zqIu1kYJGfWNYXnd2IEi9tC7q5OSowOOqbpH1+HhUQekTA6drrLxsvr7hcRYxOsdGhce6STivxbswA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iD54TRUT; arc=none smtp.client-ip=209.85.167.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1717488721; c=relaxed/simple;
+	bh=XVc3RxFjbGyWQiNQ70+jdudyQe9tunUmy4rsTJglS4Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=amV5X66eN6taxBl3JmP4iiRnnKzWret5ap2l9ZkbavX64WKXPLkHbGK4/OK8QsJBfFuqhsfObgx8Dr92j0ajMdf+bOlaXm6aa66kStw9guDdYneaDmToIH5gQ8qZiR5KWzmh2H+qE3gvUiAsll7JSTFj74Rr9mwLwdg6oRRfmME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-3d1bc6e5f01so487952b6e.0;
-        Tue, 04 Jun 2024 01:09:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717488591; x=1718093391; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=n/JzBlxPKXhRdUDPgfYR8R62q7BdNA63+MhngvZbY1c=;
-        b=iD54TRUT2JuHQu+FGmD08Vaj5FUgQcBh5DM/ii5g6nzmI9A0St96IpAoToMtNI7WhO
-         cs5ZPBmy0pXbR/fgDO4ofeU55TGUFp8JUoG253EQcPR4857WZNBeplvYQzgthVT8Qhmr
-         xMvpC56B1k9YSn15ad7w+ezPRLiB7rU90HevzadnTy+Q6sAj1Cyh9HizeWdEQ4kdi+LZ
-         5XH0kgWmyjZO/Kws9pvRiyoHuymciT2bfC+Wqv9YSq/1OQ4QeH3bzCxjiroD7VqSXavN
-         KYSyhLPJzfQB6RJgamDH3cNNvZ9rRd2MnoLq2NjeVnbOFh/9nH+dbhGQMR4eI4RRd3CY
-         6FZQ==
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-627dfbcf42aso49843457b3.1;
+        Tue, 04 Jun 2024 01:11:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717488591; x=1718093391;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=n/JzBlxPKXhRdUDPgfYR8R62q7BdNA63+MhngvZbY1c=;
-        b=Fr/e5FToxFO9eBcR2n8uWPb/CZk7cUJ6OxEsz4hS/rQG2F83iEydpYNlKjoiMTcYHX
-         aCdQKSrgtTgL3nRvgV9DWLfjktXLpDxIbW29d1FK1LsS/CwdInEhOE3dNrwvLEJM2DWd
-         sKKsz42h0EDryHapWYtsHM+pRVb6JmgiPKhUrrYMXHRn4sefEFj2EcyjMZeu+X35ne94
-         7U66SnRfLcvLRxk4aj+ceuVtxP86Nmlpx3K/HMm2eo8m4FXl40BviS83iIPISK+pRUJp
-         rd46R5hIeDwutFR20k1Bs5oE7h6yzSZbSqWEX1bsniTiQbF9LUzup+KAzSdacmzShl9d
-         UdOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVc+8Wb0gmuYsppr9nU5XSrrhcCSt0GHygO3bycVwO9OCXCDwtizfzYTsGmzFPJuhFVGdrYHEYJ3gwCTfD54Jdy9xMYPge6JfifoJKjff8IwSzHSJLHakqQctT/r1n8rqw7YnWk4E4fnA==
-X-Gm-Message-State: AOJu0YyQH/LWevGtkRzszCYC5l0w9FoeLzBO7DzYMsjqpb6Ahqgu6sGt
-	+GZj8VNZtvt+QSSxV1QIx9CEaQkHYnzenMeLaJQ1cLfCuFS9h/Z6
-X-Google-Smtp-Source: AGHT+IFFCg2DPiMUJICWLo5W4SVKZNhaNvQA589SkV9jdqKnV5/xLOmdgqG+XDZkhXbK9TcxaAHIpA==
-X-Received: by 2002:a05:6808:b17:b0:3d2:c8:7efb with SMTP id 5614622812f47-3d200c87f13mr196016b6e.30.1717488591489;
-        Tue, 04 Jun 2024 01:09:51 -0700 (PDT)
-Received: from a28aa0606c51.. (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-702425e20f8sm6594838b3a.86.2024.06.04.01.09.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jun 2024 01:09:51 -0700 (PDT)
-From: Jacky Huang <ychuang570808@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	schung@nuvoton.com,
-	Jacky Huang <ychuang3@nuvoton.com>
-Subject: [PATCH V1] arm64: dts: nuvoton: ma35d1: add rtc node
-Date: Tue,  4 Jun 2024 08:09:46 +0000
-Message-Id: <20240604080946.80-1-ychuang570808@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        d=1e100.net; s=20230601; t=1717488718; x=1718093518;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gU1sDzuM45vaVlHKMzHVvwlzlxFuSrKVvI5rVVcF/YE=;
+        b=c58uJlxHX+d/TMGahn4HxEAx1r07NC8VYJy6pN2xqn6fcoFf0VLRnmpAjuMNk66RJj
+         HMpIzOahJTyUnbPaVsOsVBrr+FePeKwZp3F/5AW+oKGOqACaWVjJprkagXknGvLy42OW
+         Txh8gB3Xu0LFMpCafbaxzmXhmM7FeFBlIZvjHcr2PvRoQdAG3SKjLpWxYVNs/+fB5HNL
+         4nM3c3j27ZQpMDPguH1Bmnj90puBjNCD9KcS886WA6EH9HKg1R/U0LDIXvmzIwKkT1S0
+         9n/4UVaevDKwGyNpYDBl1iyvwqKLmONEJeAB9AcTMjdQlMOgNsgudhA7YkNrO8kCcoZi
+         mXeg==
+X-Forwarded-Encrypted: i=1; AJvYcCW3zdzonEtO2wdI/5eDn7l4oWdcRfu+9J9N0VJL9k1FwS3V4zdUKU4WN9ZLtyLOwDUGVG49bXgWFBuxuJBK/flMNwYHUOeG4Xlxgr8L6mJ0seldFo3vT5SejhULLR6duzs8NB2eSQDrkb5Xb7T3
+X-Gm-Message-State: AOJu0Yx0Gn6sxIDKo/m0TT8/T+75AqmmabABlqsIpg/d3uSGqGc5kySL
+	Lsuh9hu8TG6P0xStAF+9uVGvmCZenDYijpeu4LCbhyZEnKv+h0ePiEd5ePX4
+X-Google-Smtp-Source: AGHT+IEm1hrqFrxJKo8yvalQm0Ybf4gW6n2kEjsOwf5cfL5eZO+BbGzDp4wup7K65icBDz/AG1mAxw==
+X-Received: by 2002:a81:ae51:0:b0:61b:91e3:f971 with SMTP id 00721157ae682-62c797efa12mr117019657b3.39.1717488718383;
+        Tue, 04 Jun 2024 01:11:58 -0700 (PDT)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-62c766ce78asm17325037b3.146.2024.06.04.01.11.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Jun 2024 01:11:57 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dfa588f7283so5433961276.2;
+        Tue, 04 Jun 2024 01:11:57 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUbkRUmwwRmfcoSCBZ2SeUBy6nSLr5D0iCCnTkXznYaN9an6oEUHoxap/dQnUVgSIEfFQHkyPnnjg5WnZUQZFDF9V/f5DQWiQADzXq+rGTWBMvj8UxxzMcrltB37EYQbi5WEYWin8v8hczfAzrj
+X-Received: by 2002:a25:b315:0:b0:df4:9a10:4e12 with SMTP id
+ 3f1490d57ef6-dfa73dd26fbmr11781649276.57.1717488717729; Tue, 04 Jun 2024
+ 01:11:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240527134129.1695450-1-niklas.soderlund+renesas@ragnatech.se> <20240527134129.1695450-3-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20240527134129.1695450-3-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 4 Jun 2024 10:11:45 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUGoVNC=ZwkA+H=++nr=XMTh_JQnpEsUmSvPJuQr9-tCA@mail.gmail.com>
+Message-ID: <CAMuHMdUGoVNC=ZwkA+H=++nr=XMTh_JQnpEsUmSvPJuQr9-tCA@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: dts: renesas: gray-hawk: Create separate
+ CSI/DSI sub-board
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Jacky Huang <ychuang3@nuvoton.com>
+Hi Niklas,
 
-Add RTC node on MA35D1 and enable the RTC module on SOM and IoT boards.
+On Mon, May 27, 2024 at 3:41=E2=80=AFPM Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Before adding the CSI nodes for gray-hawk create a dedicated DTS file
+> for the CSI/DSI functionality to reflect what is done for white-hawk.
+>
+> For now its contents are limited to the Board ID EEPROM.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
 
-Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
----
- arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.dts | 4 ++++
- arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts | 4 ++++
- arch/arm64/boot/dts/nuvoton/ma35d1.dtsi         | 8 ++++++++
- 3 files changed, 16 insertions(+)
+Thanks for your patch
 
-diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.dts b/arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.dts
-index b89e2be6abae..b3be4331abcf 100644
---- a/arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.dts
-+++ b/arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.dts
-@@ -54,3 +54,7 @@ &clk {
- 			   "integer",
- 			   "integer";
- };
-+
-+&rtc {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts b/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
-index a1ebddecb7f8..9858788a589c 100644
---- a/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
-+++ b/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
-@@ -54,3 +54,7 @@ &clk {
- 			   "integer",
- 			   "integer";
- };
-+
-+&rtc {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
-index 781cdae566a0..394395bfd3ae 100644
---- a/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
-+++ b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
-@@ -95,6 +95,14 @@ clk: clock-controller@40460200 {
- 			clocks = <&clk_hxt>;
- 		};
- 
-+		rtc: rtc@40410000 {
-+			compatible = "nuvoton,ma35d1-rtc";
-+			reg = <0x0 0x40410000 0x0 0x200>;
-+			interrupts = <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk RTC_GATE>;
-+			status = "disabled";
-+		};
-+
- 		uart0: serial@40700000 {
- 			compatible = "nuvoton,ma35d1-uart";
- 			reg = <0x0 0x40700000 0x0 0x100>;
--- 
-2.34.1
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/gray-hawk-csi-dsi.dtsi
+> @@ -0,0 +1,16 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +/*
+> + * Device Tree Source for the R-Car V4M Gray Hawk CSI/DSI sub-board
 
+I have mixed feelings about this patch, as (AFAIK) there is no such
+thing as a Gray Hawk CSI/DSI sub-board, so at least the comment
+should be fixed.
+
+However, it does make sense to make things as similar as possible to
+White Hawk (Single).  In the end, I do hope to share most of the
+White/Gray Hawk (Single) DTS.  Of course we have to cater for the
+small differences like the use of a C-PHY vs. D-PHY, which is one
+difference I hadn't realized before.
+
+What do other people think?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
