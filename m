@@ -1,121 +1,123 @@
-Return-Path: <devicetree+bounces-72066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43B118FAC21
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 09:34:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 053738FAC28
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 09:38:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D565CB21954
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 07:34:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 36ABC1C20ECA
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 07:38:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D18013DDD3;
-	Tue,  4 Jun 2024 07:34:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GlA+jcGy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3EDA140386;
+	Tue,  4 Jun 2024 07:38:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E44EB1EB30;
-	Tue,  4 Jun 2024 07:34:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51FEA1EB30;
+	Tue,  4 Jun 2024 07:38:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717486465; cv=none; b=Dj6L+PRQfxXK6xGHl7XO6LTMgu5HCizYDnRDJ6YPo+9cBTcnsqkEDRT41MnHrCBQi4JHgUch/ox8a+7eRyJgToMB6lNOhtty8AI6CKefXuf6v5eCPIcmYtvEhNiXW7r5IyZZtFefGvzueU+Cp4/is4s/NADqb6EYYWHBbdcZj5w=
+	t=1717486699; cv=none; b=PdLjQpZkt5IfKOn8ykimFJX7BQqHFsu9KaZBDDj8cfYuQ+K8om0H3YbC0uQA6+jkHyFV0/WGJ2AwA6+m3iGptT7ziGR0uO97/EXB6LZXdfODa2bessINKA4UC8NW5Ky787T2KF28NGxNGgEZ17aissAsp7Y/okv183uo60rVBS0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717486465; c=relaxed/simple;
-	bh=xCNVkBcH/gmKgqevf9wQmZ5khKYNQcBbCO6uNuttAV0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xj/+o4OxTPCSFpniOxiktGX8A+XE5JLDNGet8UDFfF/wVSlNiw6JI8qIQqmEMoC6DeT3TxNHXOmsTuq9VTY10OpJNZjRv8/Q7pG2EOwGzTwK0DJeWHGnc/L7J383AL903wwKPWw1273CKsI26QAJzdArABYnWhXj9ki+hr9Rbpg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GlA+jcGy; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1717486699; c=relaxed/simple;
+	bh=qL7MUGPlglr+vmdYx9v7PTkeIwv/mu+fsovHWLo01Cc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IIO7Jo+NNDTEB/jQdtLCWkNZGaQmx8nMTQ+is2KpJTg39ock1jLmkLSON8eJQrcmRfegxK0Yw1CBOZtBy1st/rKHuBl1gMbX2XWm8HItgiCXXyE47LXp/5dpj+omqdVuP0JDP5mB9Tr9SFjtBD6PqJootAf+8ewK1ukPXS2Gk+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1f62a628b4cso33751115ad.1;
-        Tue, 04 Jun 2024 00:34:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717486463; x=1718091263; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=xCNVkBcH/gmKgqevf9wQmZ5khKYNQcBbCO6uNuttAV0=;
-        b=GlA+jcGyzLPKO+InoA8tn7yL6ublTVmqnauBVcTEEeCj+jEtXGktPgqoH4bMU7yVf4
-         fmKXCtxwMvOtxKvXoSTExbpbtFVHxxUQllbYs+NC4PxFQKBNRrmWBevVqbq0YN3L72l9
-         wRHCmuSXsK9YIxR9CnJrzbfqhnhYLQ+9+34AAUhw320KU8Fbzg7mNz7EFTW/cNRw8aPu
-         G9SOPv8bPK/Plbzsz00oYOdewEd/8hK7TGmGsFr/ywm94JX0lYbiBOc+H9KjiHzdtrUD
-         IugvPpyx3ZbvM0l2D4XxdqT/mgFfempKkeYTmoQ8NnDLgDML/iDqMDQLeOC42iYoOely
-         bNuQ==
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-62027fcf9b1so41817887b3.0;
+        Tue, 04 Jun 2024 00:38:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717486463; x=1718091263;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xCNVkBcH/gmKgqevf9wQmZ5khKYNQcBbCO6uNuttAV0=;
-        b=B+5kEQLQEaKlpqTX6exk2y7SUh/qbV+6kcYIaiQv3ygoFd9nNjBM2vw6nViQ5dodQX
-         43948hvBF0aAuzFytUey7IJcAXE0+lWsdRnZ95N3E7X9fAAvEERKpfyUGSy/YKjnZiqH
-         mlyFQphcKL9bLnW0fr9px9OCodc2kx5Y1H0Zu5WEEghSpIdSRXtzfMScyTKbqFpt+M+a
-         4h4kr03lzcDD+fC6wa2Dem0ShG4vUfYG9yzlovAP4ROlTGgw667fV2KITkI5vBd2CzJA
-         BjmIbhEZgH2olB0FddSVEfGB2wZzZ44z7CqFq+n1IsZxU8wODWqjELFRzefiCE1Rpukt
-         0KBA==
-X-Forwarded-Encrypted: i=1; AJvYcCVnCQcqcaybHJz8Y3Fm0qFPNcRtETTpg+88tdJignd+z7Xez+ipVG/X8yuFAnzZ/Vl0HBLYaMwZ4aFvI6X5Yi5koPaaQB/Ji4rjQP4w/80ALpp+llHJdw2KI6KMPOOKEaMvYdmiGG0WJoRXmNKavi2HqA7btLYnwEv93SmfvxLWnrI=
-X-Gm-Message-State: AOJu0Yyk6zIiNB+YpEdlmD4D6U0CxtDztbmyO8LPUrutnbzKdeUXAetU
-	3151kTy+2UMLURRousXCtgwPVKccB20PtFPm/zW+XS6Pk4iBHEMH
-X-Google-Smtp-Source: AGHT+IHpMVkg3jI48lpihIrY4MUDqwpCT9ASKXusicQkxk6lGn9a8NUzjgHRv69bpHbfB1Rc73eWSw==
-X-Received: by 2002:a17:902:dac1:b0:1f6:849e:4e06 with SMTP id d9443c01a7336-1f6849e5055mr39075135ad.1.1717486463007;
-        Tue, 04 Jun 2024 00:34:23 -0700 (PDT)
-Received: from rigel (14-203-42-154.tpgi.com.au. [14.203.42.154])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f63232dd9csm77870605ad.58.2024.06.04.00.34.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jun 2024 00:34:22 -0700 (PDT)
-Date: Tue, 4 Jun 2024 15:34:13 +0800
-From: Kent Gibson <warthog618@gmail.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com,
-	Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Stefan Wahren <wahrenst@gmx.net>, linux-gpio@vger.kernel.org,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	Nicola Di Lieto <nicola.dilieto@gmail.com>,
-	Dhruva Gole <d-gole@ti.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: pwm: Add pwm-gpio
-Message-ID: <20240604073413.GA137333@rigel>
-References: <20240602-pwm-gpio-v6-0-e8f6ec9cc783@linaro.org>
- <20240602-pwm-gpio-v6-1-e8f6ec9cc783@linaro.org>
- <20240604025137.GA107618@rigel>
- <1edbcf6d-92b7-4971-b8b2-a88cc96995e9@linaro.org>
+        d=1e100.net; s=20230601; t=1717486696; x=1718091496;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ncFzTtEwlKg1IZ15srN8tx0Uc4LrcAfyFOw7B3tI97Q=;
+        b=C+dVBQxfl0nZlUPZHbjbBO9Ma4yA+F5tCgZymbJORdaeW8KBF2L+Tdg8LN8+MOoNiD
+         lZ7YNuf+DaHNfeqTt2mi6U0dDLbgPdHsG3hZLDO8VtdURaVoqJBDxY5j8vwi0MFtG68j
+         lK3jDHfbfWRqBWWcqnAkq/L6ILVcHmrCcrosJyRAg1Y1LLes2coOWDqSdVA901aNXvXO
+         b8sMe/bRqoIdo+YXuOUo9NZJ9x+pMeC96wFqGrS+ZrPcox1I6hkok0JPizRjvHYam8aK
+         SoPr9JeGRbPyI32t9gvb+gu5Eradr1ppKJll/rP6iDl/i2o08fB7Z1P2amc3rfy12F5b
+         rlJw==
+X-Forwarded-Encrypted: i=1; AJvYcCV2IAcBrB1p8wzqD9cgI42jmlHO83fatsqMeiGxgT3XVyKK/5JjAaYNO8vHO0pSmorfyZqrQ9AwWLNCQ8P4dxseHkkmhza50k7EJkaBib6GNZ9/8A8PZGDSpIUd5SZOol+eL+iA4llKjHi7nVZW6FeizfwQgFl3AqRwq3wE+rxkorq/N7cdbOgABYQ=
+X-Gm-Message-State: AOJu0YwfpoZqoPVr+YAr5HkEPyu8ZXYpSXjE+gPYlBFw4+wkH2ohIjT8
+	xMkJXFc0Pi47rjEY174LndE1iyaWs4P5E7Kt+dQ/dDSe0maWu0AVZBTuhzwu
+X-Google-Smtp-Source: AGHT+IHmNm/nTGE+XB4NbBQZGCFCviaIAu4tphAUkRoqbtH6vn1tvC6XLJd3jwIJgCUmjcjBRDSFZg==
+X-Received: by 2002:a05:690c:6d0d:b0:61b:e694:2225 with SMTP id 00721157ae682-62cabc38464mr14879617b3.5.1717486696484;
+        Tue, 04 Jun 2024 00:38:16 -0700 (PDT)
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-62c908c3e6csm9726637b3.57.2024.06.04.00.38.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Jun 2024 00:38:16 -0700 (PDT)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-62a0894f1d3so38756797b3.1;
+        Tue, 04 Jun 2024 00:38:15 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCW+jHz8uL12VB9If96OThCdVSJQEF/EM5v/LIpEW1oHakE7FipP0lIUyArcWlpR3aiZ1+IJaxnKJ4BRUrhWIAtfpQll9lQu22y9QymBN7lKprCndrNKEXHd5/2fkv0Ou1fx76DDj58rJwTGUoD9JIAP7HBRhUwQ7i3DjjhFaIHcnNCY1tv5GpqWFNQ=
+X-Received: by 2002:a25:824a:0:b0:dfa:480b:4ea8 with SMTP id
+ 3f1490d57ef6-dfab822ddb0mr1367285276.0.1717486695525; Tue, 04 Jun 2024
+ 00:38:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1edbcf6d-92b7-4971-b8b2-a88cc96995e9@linaro.org>
+References: <20240527131945.1679661-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20240527131945.1679661-1-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 4 Jun 2024 09:38:04 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWRwRq-CzT5v1h6W31q_0RR4UvTpJAVVS73vrEbrxFmBg@mail.gmail.com>
+Message-ID: <CAMuHMdWRwRq-CzT5v1h6W31q_0RR4UvTpJAVVS73vrEbrxFmBg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: media: renesas,isp: Add binding for V4M
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jun 04, 2024 at 08:21:32AM +0200, Krzysztof Kozlowski wrote:
-> On 04/06/2024 04:51, Kent Gibson wrote:
-> > On Sun, Jun 02, 2024 at 10:33:08PM +0200, Linus Walleij wrote:
-> >> From: Nicola Di Lieto <nicola.dilieto@gmail.com>
-> >>
-> >> Add bindings for PWM modulated by GPIO.
-> >>
-> >
-> > Shouldn't the bindings be added after the driver?
+Hi Niklas,
+
+On Mon, May 27, 2024 at 3:20=E2=80=AFPM Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Document support for the ISP module in the Renesas V4M (r8a779h0) SoC.
 >
-> No. See submitting patches document.
->
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
 
-Hmmm, ok, so "5. The Documentation/ portion of the patch should come in
-the series before the code implementing the binding."[1]?
+Thanks for your patch!
 
-It just seems odd that you document something that doesn't exist yet.
+> --- a/Documentation/devicetree/bindings/media/renesas,isp.yaml
+> +++ b/Documentation/devicetree/bindings/media/renesas,isp.yaml
+> @@ -22,6 +22,7 @@ properties:
+>        - enum:
+>            - renesas,r8a779a0-isp # V3U
+>            - renesas,r8a779g0-isp # V4H
+> +          - renesas,r8a779h0-isp # V4M
+>    reg:
+>      maxItems: 1
 
-Cheers,
-Kent.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-[1] https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html
+BTW, this binding only describes a single register block, while the
+ISP seems to have two: CS and CORE (the second one is optional, as it
+does not exist for the second instance of R-Car V4M)?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
