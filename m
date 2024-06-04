@@ -1,136 +1,119 @@
-Return-Path: <devicetree+bounces-72282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E7FE8FB431
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:45:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D0D08FB4B7
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 16:03:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF85D1C20C0E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:45:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20FBCB27ABD
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:51:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53AC01487DC;
-	Tue,  4 Jun 2024 13:44:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12F5C179AF;
+	Tue,  4 Jun 2024 13:50:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FF06eO62"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="pVisfXq3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC8201482E7
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 13:44:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B0A6EECF
+	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 13:50:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717508670; cv=none; b=Rsbfon/jBCS95mw3tugD03Mla89QRvdq+3U0A2jE4K2Mg5nKmgP3NHEJ1DsZmthA5/MVccnCDEBqBc0s3cE0rDmnsowCbj4ASK7Yo4rqO83X7HISPpnLSZGC2bxfbEcY4kmIiOGcLDKbIeaYl0CnXkYLX3K5H6sojyY02+DNv0c=
+	t=1717509054; cv=none; b=eBHEnD8Hd/UJjHyI77SQP5vcjQE7lw6Vqgv8aVz6TGA6NZJNNehiFP2a/ERA3GfUscEzfCtxFfH2ta5kYqgw/RduAfdvYNqipONIg8PTBfudJq8O5RQHB1pjS1IxpwvTzwJLCEJDY9PsitDM93NEA09kmvHSxKZYSJ1OlSdsUsI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717508670; c=relaxed/simple;
-	bh=5zVT4vxcZGmovE8NgKSvqMzhBWRiHUebArtJ20CNbUc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LeOXHMkHdbj31xclGqxAnT4fbqwRd5TUcb6/RFh28nyjDi4z4O6rxmQy7cxbvs9cO0Oh2s7MGkkapXoiIGrlCes2QZg4RxsRtPbjvOCZ3brKdXTPN46PPkRPfK3/vPKKeea2JYYAM3WHalsZ+iJQqOdT3G7sZ1W1/yvNknFXPys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FF06eO62; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2ea903cd11bso59864121fa.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 06:44:28 -0700 (PDT)
+	s=arc-20240116; t=1717509054; c=relaxed/simple;
+	bh=KFaoi4oj1/WCHj7ZnXRUSSLfeXGtAKCrn+Jrsl+3K3o=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=JcQMsfwnreTp4A5FcegJx5z0ymZAK8d/eW8JIKE6aZbpc74nfJDtAg878YPcrks5t8mH6gVZmE7SCs+huyCZv9PQru8Fmd7LTmY265K1ItP3+W9iQPjELMqVlFIJsr2Yv8jmdFp7Ze0yHfPLyNUsTxKMlCw2/74VEHk1MYHvnIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=pVisfXq3; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4213485697fso31162095e9.1
+        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 06:50:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717508667; x=1718113467; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1717509051; x=1718113851; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=gXPZsC/Zt7fU/Whsjt7Ixqr0Q1zSlZNphtmL5xPMdKg=;
-        b=FF06eO62cCKO73hhGtFujw0KMVIRyrze0HPsCHkRQ9bSYysdQ3DjqHx6Ljizji8nx8
-         mGhnztnChEY58xJYTmBh1r/kheh2LfU2DDfIai8i5uN3uP7HPkCaKjK+ZAZXq4NBeZnW
-         LdDEFpnuVSzJvxB8GBN/WMUDHz78Z0lGHkFPOvDXmRuS3LgUFUYVbO79P6IVSBdT+rx7
-         0Wzs1JAY1QG2NRw7Eczg8ZH3CgyFQe3td+kOzkzQ2/KeBlpXjvVw/DvfKtN56VnPJG5E
-         NCw+DT+AX0SawhW3bTTaDaZOrPj4oIj0fBjGSylYdenj8n7sCZYwnvfYC0Fp0MGZyrHU
-         sECA==
+        bh=A0z8y2KXgWMctf+4HNibjJ24MwvWsWDlBq67X1P0x7Q=;
+        b=pVisfXq34AYR+pb3k8jPclx+rkTkILa/F1JxGgEwX3t3WeCunrcb7ArcmfUjtucj0K
+         PKZRP4KWgootj3iN85l/+ziVhOuGNyEL0UBEBwrqJ6KiGEXiCO9ejqA0J8UgZw874BBr
+         NLhYzChfIjkR4SMxnDRWDGnqTW4RszsQBqdgAzcK/ZBfdybTNPAJNQ8VnBK0lm0X+rw0
+         4leFa5M09deEwlbKOOoabf2NFys7+k5/cqCdcHeIkKVnlFeWG/nec543V0evQqlORpol
+         Ycz89LT8iQ27nNzpiRYaDxI1lJSvMJ2BWMH7CAMv2rTqda+AgP7aAV6UqpYZu/0m+lU+
+         vHDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717508667; x=1718113467;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1717509051; x=1718113851;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gXPZsC/Zt7fU/Whsjt7Ixqr0Q1zSlZNphtmL5xPMdKg=;
-        b=tgr8GxCXqywhO5hw35HnRuOevsCv9eL8T7i/xvE+5kZvhkbs5OZstai6v3oscOM+Kj
-         /1D2bIZiQuz+tVZaUJ9rnxiPlK2YHNkHhF8Ixk8Y21XZVt2Am4htlD6cYWP80ctkCqI0
-         ZBIn619B93+scGkHwv/LhT9myS+4fXm4MwhQ/ApyZigliGHWTldzkAHENq+CmyMDQK0M
-         BYp6m3fT418jRXb01xLSbeN2MMledqP8+Sc4egrXRvuzVa4sWOd4W7YC4zL4N6jAS6x7
-         H+AVnSn7dfTJ/Z+WtfERsHACu9SgSP+4PwDy1FbFhkSAJrKcQuWf1RDlf9rnIStDL5Nt
-         Hqcg==
-X-Forwarded-Encrypted: i=1; AJvYcCWGG15L60XRbqFp/XxhiNWTy6llNkvBPue2cFytrO1cNczRD8k98KaOS9iyYUmipGLORnzthidP8ebahgnudiYTtDBrCAr9KwTwsw==
-X-Gm-Message-State: AOJu0YzVr+9tidzGui1NI1LLR1dF787dWZejhO+8VmLnf9vJtV4LrLaX
-	09QCGuLFYTFVSjZpRRirrjdjPTyFR10I7dhAZrzXy9F7WOpRd31oEqPL4dk/wYQ=
-X-Google-Smtp-Source: AGHT+IFjdDAasq2jJous5ofmbY6kDP9p2KSr9f2oZG4CUsK3cc1cYhrCYj1n8+p3q7ghwpMRb0/X+Q==
-X-Received: by 2002:ac2:4822:0:b0:51a:d08d:bab4 with SMTP id 2adb3069b0e04-52b896bea15mr9359093e87.55.1717508666890;
-        Tue, 04 Jun 2024 06:44:26 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52b9ae898d1sm568437e87.246.2024.06.04.06.44.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jun 2024 06:44:26 -0700 (PDT)
-Date: Tue, 4 Jun 2024 16:44:24 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: noralf@tronnes.org
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	David Lechner <david@lechnology.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>, 
-	Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-Subject: Re: [PATCH v4 4/5] drm/mipi-dbi: Add support for DRM_FORMAT_RGB888
-Message-ID: <ngney3w6vrnnfcpbq64d5pffc7zjw6hobu7fhmsqoke2zuq5tm@kdwfe3rwqjwq>
-References: <20240604-panel-mipi-dbi-rgb666-v4-0-d7c2bcb9b78d@tronnes.org>
- <20240604-panel-mipi-dbi-rgb666-v4-4-d7c2bcb9b78d@tronnes.org>
+        bh=A0z8y2KXgWMctf+4HNibjJ24MwvWsWDlBq67X1P0x7Q=;
+        b=Z6X5KkGKooJsDwkZjE2mbuYA6XeVEimyNcpjyzLgbI1NM1T9yprdNb9UWTTVtQpTIu
+         v5ElD/j7+xIRk6JfUanrRukE6OmbsHNh3ao6IgzKMOnNM4eDrh1dsYmllVG3kWCxPZG4
+         V6/nivS8eyioHr7UM22+g9Rbuc3+Q+2q8FDEzlEb5F85bXmf4G3TK8Kg1MWxtHY1WJxq
+         CHVg+vjCBUB3Y3moGb0LeLno1lE6xTrvaIFvMu6VGdGKUvtdLvKTkf+dVxssHhBx3M8i
+         OE4+teYlXaW/4zAGbicb2GRVjwgzrdVB7rsMpEiIM6fqgQ1yfWIetrYXdsOeKQORvWJW
+         oXjA==
+X-Forwarded-Encrypted: i=1; AJvYcCUtpHJ+qcgLVhowqbacDLSfXrhoewEdyhnqUeK05lUjwEEtdpVQPFfq6Mysnpfw8GU0uE9yUPjI7JJKSOydjPfXls4Bv+SXnL3ksQ==
+X-Gm-Message-State: AOJu0YxUYeAfnxZue3V5Bz89Kp6BPogsyNr7VnSh6UWJp+OA3E8IUcfs
+	tZGwaDprc2ufTooC5HiySo1UAkCO/wxKUD6hOW5cUDa1FAsvbRRfh4HRFhNx9MI=
+X-Google-Smtp-Source: AGHT+IEc2+tqSTQ0+czKAp3EtUoJe7f/LGCfMvFWif4Jd/fuXiqh5Du825hPDJRf3RAhHkvuNgWcgw==
+X-Received: by 2002:a05:600c:4f46:b0:41f:f32c:e097 with SMTP id 5b1f17b1804b1-4212e0763ebmr92670415e9.23.1717509051469;
+        Tue, 04 Jun 2024 06:50:51 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42133227f8asm139569755e9.19.2024.06.04.06.50.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Jun 2024 06:50:51 -0700 (PDT)
+Message-ID: <c1f26026-dd53-4082-bb0b-c35db2d17fb7@freebox.fr>
+Date: Tue, 4 Jun 2024 15:46:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240604-panel-mipi-dbi-rgb666-v4-4-d7c2bcb9b78d@tronnes.org>
+User-Agent: Mozilla Thunderbird
+Subject: [PATCH v2 1/4] dt-bindings: display/msm: hdmi: add qcom,hdmi-phy-8998
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+To: Rob Clark <robdclark@gmail.com>, Abhinav Kumar
+ <quic_abhinavk@quicinc.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ MSM <linux-arm-msm@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
+ freedreno@lists.freedesktop.org, Arnaud Vrac <avrac@freebox.fr>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>
+References: <a2cb1290-9e01-4136-9592-ce439b1096b6@freebox.fr>
+Content-Language: en-US
+In-Reply-To: <a2cb1290-9e01-4136-9592-ce439b1096b6@freebox.fr>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jun 04, 2024 at 03:20:31PM +0200, Noralf Trønnes via B4 Relay wrote:
-> From: Noralf Trønnes <noralf@tronnes.org>
-> 
-> DRM_FORMAT_RGB888 is 24 bits per pixel and it would be natural to send it
-> on the SPI bus using a 24 bits per word transfer. The problem with this
-> is that not all SPI controllers support 24 bpw.
-> 
-> Since DRM_FORMAT_RGB888 is stored in memory as little endian and the SPI
-> bus is big endian we use 8 bpw to always get the same pixel format on the
-> bus: b8g8r8.
-> 
-> The MIPI DCS specification lists the standard commands that can be sent
-> over the MIPI DBI interface. The set_address_mode (36h) command has one
-> bit in the parameter that controls RGB/BGR order. This means that the
-> controller can be configured to receive the pixel as BGR.
-> 
-> RGB888 is rarely supported on these controllers but RGB666 is very common.
-> All datasheets I have seen do at least support the pixel format option
-> where each color is sent as one byte and the 6 MSB's are used.
-> 
-> All this put together means that we can send each pixel as b8g8r8 and an
-> RGB666 capable controller sees this as b6x2g6x2r6x2.
-> 
-> v4:
-> - s/emulation_format/pixel_format/ (Dmitry)
-> 
-> Signed-off-by: Noralf Trønnes <noralf@tronnes.org>
-> ---
->  drivers/gpu/drm/drm_mipi_dbi.c | 29 +++++++++++++++++++++++++----
->  include/drm/drm_mipi_dbi.h     |  5 +++++
->  2 files changed, 30 insertions(+), 4 deletions(-)
-> 
+HDMI PHY block embedded in the APQ8098.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+---
+ Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-
+diff --git a/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml b/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml
+index 83fe4b39b56f4..78607ee3e2e84 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml
+@@ -14,6 +14,7 @@ properties:
+   compatible:
+     enum:
+       - qcom,hdmi-phy-8996
++      - qcom,hdmi-phy-8998
+ 
+   reg:
+     maxItems: 6
 -- 
-With best wishes
-Dmitry
+2.34.1
+
 
