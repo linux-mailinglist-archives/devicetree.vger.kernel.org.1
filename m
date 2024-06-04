@@ -1,140 +1,105 @@
-Return-Path: <devicetree+bounces-72071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7AC88FAC52
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 09:42:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE6B28FAC55
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 09:43:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 745C2B22A7C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 07:42:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0AE4A1C20A62
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 07:43:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4A7F140E5B;
-	Tue,  4 Jun 2024 07:42:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YkpsAyIm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EB2C1411C1;
+	Tue,  4 Jun 2024 07:43:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD18E140399;
-	Tue,  4 Jun 2024 07:42:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B29F140399;
+	Tue,  4 Jun 2024 07:43:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717486963; cv=none; b=KHLvziMs2EnEU8yD1reYSuA/CCCFhLK2TVe7TveVqs13f9pjth5uCd5Eak9nuO6KiCnleIGXcy1HVYOzS1GhfXA3/1PciYcso05E7K7LEYPBE1n7n/O4HO7mIf9YxqnRhFR1kmJPwFaB0F1H/svGXwCxQt9Tyxj5v3pUqP5PSm4=
+	t=1717487011; cv=none; b=nd1YfPth+aiUWSYzZLf8HxVFXgEXBHkTz1sHLM68udZL73heK2PFIi33RrwF3DRo3V5PGUIjf39SSmHr4fekjuirnNPmQ+UwpkUtcclY2fCM4wQbl1Lbxc9BuUduL1WRv6IHCBjpTJzCIuHV6x6SXvK9cOef4Vp8Ozo6gtC2YKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717486963; c=relaxed/simple;
-	bh=SN5J7RI6JSHiLzdRYcIH1OJvtJI+2IfG/BlH4wBvC/A=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=gVyPXHFxIyQ+ytTvichNRDXue1smPUKfaUfcNxoJug4xM7V7PeDMQ9VMNyYhuN5JAvcX6URJwevyqHeL0j4E95Lo0w5DJCRtzt1cyqwT4OUW9zkviN5mASNVsi4YP22h8T1HUirk6NaKZacYzHZWpQht1KWxBp2UccxcIRIcrHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YkpsAyIm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 990D2C32782;
-	Tue,  4 Jun 2024 07:42:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717486963;
-	bh=SN5J7RI6JSHiLzdRYcIH1OJvtJI+2IfG/BlH4wBvC/A=;
-	h=From:To:Cc:Subject:Date:From;
-	b=YkpsAyIm/8xj6wyJAerwgfsp6uB58wAiiiT8NaZhiv9RDKz8VXNXynIvY5lFjy1bB
-	 WY8W/C+CpCvv9gEuOIlo+d8t6UvotWwk3sfnkZI5v0RX/lsiPkEwRW8JXstdyXmi2k
-	 QZPpEZDqnmFivbuC7VV+Vu7nvIbNUQNBzF0Gvsw9822a4IRvAbOL9S0SVX5akr+QLl
-	 QD5yi/IxD7HlFsPHez6oRuDHiARY+cafvsOfX+M9aIe0JEBQdhMxXYNKF8OeocjywJ
-	 8Btpe6CzHj8cRwv6hmvPF9mmO6X73+RfLDfy4qff3S+MQKs36IClQNyCvsDqo85pvY
-	 feoJcmFQfawCw==
-From: Michael Walle <mwalle@kernel.org>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Pratyush Yadav <pratyush@kernel.org>,
-	Michael Walle <mwalle@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mtd@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	Thorsten Scherer <t.scherer@eckelmann.de>,
-	Marek Vasut <marex@denx.de>,
-	Imre Kaloz <kaloz@openwrt.org>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Flavio Suligoi <f.suligoi@asem.it>
-Subject: [PATCH] dt-bindings: mtd: spi-nor: deprecate Everspin MRAM devices
-Date: Tue,  4 Jun 2024 09:42:31 +0200
-Message-Id: <20240604074231.1874972-1-mwalle@kernel.org>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1717487011; c=relaxed/simple;
+	bh=amAXDqO7NUNvUAMQ98AmXoymVFem6B1PHzgszlp0n9g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CCvjcW/C8/b9GxZi6/iFamb35b4h886t59fgmB4XqnWKR0nkn/gvS49y5JhGNUPUz2G1RGV5iQ338o7l+9fj01CkGeJCWlHHs+IXq/z9HHXgxkHaxIDTMLxW2zI1LcSdso4X6sRbzf/m5xu7kzuPJiGiBRxfkLm/BmKBeXjvLQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-62a2424ed00so55193087b3.1;
+        Tue, 04 Jun 2024 00:43:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717487009; x=1718091809;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nl0/qZK6Xs6+vehlrTCMsO5n2PAF37JLMCSBbCoV/Zk=;
+        b=WNcuq2JwIzA2I17lVx6SR5KFG/2tuBpQONO99sxZ1B1y1j4KKYGSY9IRow4Q0T/99k
+         mkgm+alwNIR8i+vh6Z7q8T5tMNWfTzTpQZN2DLkrUzYtGuQSdjSmrgKKI76fKDG4JOWb
+         +qXJ51rmMV97fSAQCPU+NOOOgaWRRcAQd2prenb85Dn5LYSaBCqw8il7uUVlVjw+9jmG
+         PPBiiCBhp6G15Uf0CbYS5LquZJARZp7LkJvs5QHaIL+WLXK/Dm3d5ZqE02S1VBNrYwY2
+         34ZOwd6yGgVFhLuSRFVFPULrPI3gw6E/pPI5SikMe+ow71BM0GwNUdWSUkKbzVhGXBH2
+         emrA==
+X-Forwarded-Encrypted: i=1; AJvYcCWJUOPhmOjrFOU8uHIlaTSjImKvvbTZDQmXojwOKJsDvb59d59cvX+8zEgHQqZFYUIL1ZwOAiz37793NZ9+XFYJB89qofb7xk8bPqeR2lol5izdBGhNtIYSTdTMqE75fbx1lSWKxaURE+Enyk6pDC381qB/EJ/s8Iw/21NnRAEnEAOGuzyJROdsHPc=
+X-Gm-Message-State: AOJu0YyhFZqjFTGjXGLJm3SyIWgI4+/bgtkKPX/87CFsgGkjPJf+TF18
+	0TqMurie4HtwyEHdLQxhTOizJ56vBUj/PeGUtpTptBpcOQOEURCcjh+egTY+
+X-Google-Smtp-Source: AGHT+IGfJh3yoJmi3pMlGbuHQEl1ym32Gkmjy9x75UdFNQ7kcviAjtG+VpJElqTQBABgYX1WTSDeyg==
+X-Received: by 2002:a05:690c:82d:b0:627:7e65:979 with SMTP id 00721157ae682-62c7973fafdmr118109927b3.24.1717487008682;
+        Tue, 04 Jun 2024 00:43:28 -0700 (PDT)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-62c765b9256sm17626167b3.5.2024.06.04.00.43.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Jun 2024 00:43:28 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-62a2424ed00so55192877b3.1;
+        Tue, 04 Jun 2024 00:43:28 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU/eMP7gD/MxidVidvN8arpj3+hAHFq4748iw2ufpc5at2JN0eofcGmQHiH4Zt4sR91cIoT2QBxZ7vijiWjGvT/EAVEL3N6x2mNPZJFhaW17rep2o0eUaU/hDWWbPdm2TEhrnfWRfEcsbmXoicLtLuzGhh/68tJKTKktYjiBH8VEevJdmB5N7ktSnY=
+X-Received: by 2002:a25:8205:0:b0:dfa:6ecc:d924 with SMTP id
+ 3f1490d57ef6-dfa73bc3317mr11048601276.5.1717487008055; Tue, 04 Jun 2024
+ 00:43:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240527131849.1678877-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20240527131849.1678877-1-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 4 Jun 2024 09:43:14 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWJhrNe8pbQrBtuDbVu9djhs47oUyCLnjLW4tGDVPyCfw@mail.gmail.com>
+Message-ID: <CAMuHMdWJhrNe8pbQrBtuDbVu9djhs47oUyCLnjLW4tGDVPyCfw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: media: renesas,vin: Add binding for V4M
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-These devices are more like an AT25 compatible EEPROM instead of
-flashes. Like an EEPROM the user doesn't need to explicitly erase the
-memory, nor are there sectors or pages. Thus, instead of the SPI-NOR
-(flash) driver, one should instead use the at25 EEPROM driver.
+On Mon, May 27, 2024 at 3:19=E2=80=AFPM Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Document support for the VIN module in the Renesas V4M (r8a779h0) SoC.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
 
-Signed-off-by: Michael Walle <mwalle@kernel.org>
-Cc: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-Cc: Thorsten Scherer <t.scherer@eckelmann.de>
-Cc: Marek Vasut <marex@denx.de>
-Cc: Imre Kaloz <kaloz@openwrt.org>
-Cc: Andrew Lunn <andrew@lunn.ch>
-Cc: Flavio Suligoi <f.suligoi@asem.it>
----
-The referenced binding only supports the true AT25 compatible EEPROMs
-where you have to specify additional properties like size and page size
-or cypress FRAM devices where all the properties are discovered by the
-driver. I don't have the actual hardware, therefore I can't work on a
-proper driver and binding. But I really want to deprecate the use of
-these EEPROM like devices in SPI-NOR. So as a first step, mark the
-devices in the DT bindings as deprecated.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-There are three in-tree users of this. I hope I've CCed all the relevant
-people. With the switch to the at25 driver also comes a user-space
-facing change: there is no more MTD device. Instead there is an "eeprom"
-file in /sys now, just like for every other EEPROM.
+Gr{oetje,eeting}s,
 
-Marek already expressed, that the sps1 dts can likely be removed
-altogether. I'd like to hear from the other board DTS maintainers if
-they seem some problems moving to the EEPROM interface - or maybe that
-device isn't used at all anyway. So in the end, we can hopefully move
-all the users over to the at25 driver.
----
- Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+                        Geert
 
-diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-index 6e3afb42926e..2dccb6b049ea 100644
---- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-+++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-@@ -21,7 +21,6 @@ properties:
-               (m25p(40|80|16|32|64|128)|\
-               n25q(32b|064|128a11|128a13|256a|512a|164k)))|\
-               atmel,at25df(321a|641|081a)|\
--              everspin,mr25h(10|40|128|256)|\
-               (mxicy|macronix),mx25l(4005a|1606e|6405d|8005|12805d|25635e)|\
-               (mxicy|macronix),mx25u(4033|4035)|\
-               (spansion,)?s25fl(128s|256s1|512s|008k|064k|164k)|\
-@@ -42,6 +41,14 @@ properties:
-               - spansion,s25fs512s
-           - const: jedec,spi-nor
-       - const: jedec,spi-nor
-+
-+      # Deprecated bindings
-+      - items:
-+          - pattern: "^everspin,mr25h(10|40|128|256)$"
-+          - const: jedec,spi-nor
-+        description:
-+          Deprecated binding, use Documentation/devicetree/bindings/eeprom/at25.yaml.
-+        deprecated: true
-     description:
-       SPI NOR flashes compatible with the JEDEC SFDP standard or which may be
-       identified with the READ ID opcode (0x9F) do not deserve a specific
--- 
-2.39.2
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
