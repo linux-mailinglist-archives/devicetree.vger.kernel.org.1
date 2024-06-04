@@ -1,175 +1,176 @@
-Return-Path: <devicetree+bounces-72016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B269C8FA839
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 04:19:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 823AD8FA867
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 04:51:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5449D28BA88
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 02:19:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABC891C22773
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 02:51:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E838F1386B9;
-	Tue,  4 Jun 2024 02:19:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BE83137C34;
+	Tue,  4 Jun 2024 02:51:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="o5rRVSVM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iOgOuUAK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F35483EA69
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 02:19:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 948DE2AD04;
+	Tue,  4 Jun 2024 02:51:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717467545; cv=none; b=guxsYv85veAkmRdr/WV0rs7nwIk/vN6h2kW5JB9M2mVYGyIF3T75KIyCAtOGZC8XzAt9U12r16gwuajOoUfwswrT2XLEP8zXC7ua8H/NLOkkwNS/wZkfywFZla0ny1Tut146DSnCYcrRHgASVAGcIEfxGJRWabbmlWY1vX+XPWA=
+	t=1717469507; cv=none; b=OBPQokWf5kg06gD69y6QBEfj/iG6C9AVKvi0ipeWRJaMUIrkCCV6/RCA/sdd3evnP7m505LGBnosmP2C8b3mZnG0fSDtX9yB2QejlUsVJbKuQB2w0wcK2wA/ILKEC40e10I00UokYOfZ+fwCQJhydBekypkCUW/P4zM6DjnK4Ps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717467545; c=relaxed/simple;
-	bh=SQjBsq1pSDRa+92X8rsTn7sADmhW91X/pso6BF73AR8=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:In-Reply-To:
-	 Content-Type:References; b=CN632Wsn/tnNhl7GP4IH2vBoihvIHRSJlodtwDxfSAmJTdS/pkSvhdLCistdpU1R7yKn43qWjfQDjDFePU105tmFMg/avwn1pI72tRpps9waPGVWtpHqoXDRmR5AqoHXtGoHWBly/d7hYuOrHOK0hm2rmXPAMgpWQODoAEIoLaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=o5rRVSVM; arc=none smtp.client-ip=203.254.224.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20240604021902epoutp020abcc679ccaefe212837c4be9a42290d~Vq6FI3Msv3119631196epoutp02e
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 02:19:02 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20240604021902epoutp020abcc679ccaefe212837c4be9a42290d~Vq6FI3Msv3119631196epoutp02e
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1717467542;
-	bh=JrbYCyMWg5+SkRsH6d147/xUVTz498odRqOzgTstKfc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=o5rRVSVMw+Ki3eiwwpt5EO6UBZgye6nuzLJAGvHz84fpUHt5bIW3nB8lAqMOGzqSp
-	 HTzKfRXWgJE1ZvKmreYToUFlP5+rmPbekBLhoNOaJfY5gG1TjjNklmoqf8kxF4ahNg
-	 QXrdS5tnvXKDg9oxz4hnEbFT3VKBPYWSyy9bZusk=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-	epcas2p2.samsung.com (KnoxPortal) with ESMTP id
-	20240604021901epcas2p2b90b9ae5ce5cb136016f31ec5f38a043~Vq6ETaECa3090730907epcas2p2F;
-	Tue,  4 Jun 2024 02:19:01 +0000 (GMT)
-Received: from epsmges2p1.samsung.com (unknown [182.195.36.91]) by
-	epsnrtp1.localdomain (Postfix) with ESMTP id 4VtZ5w6CCZz4x9Pv; Tue,  4 Jun
-	2024 02:19:00 +0000 (GMT)
-Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
-	epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	11.8A.09848.3997E566; Tue,  4 Jun 2024 11:18:59 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-	20240604021859epcas2p47538af772afe3e57d25c1fde33fd28db~Vq6CYYfI60306903069epcas2p4w;
-	Tue,  4 Jun 2024 02:18:59 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20240604021859epsmtrp25dbcd778e59061ec44393ffe8b9027fd~Vq6CXfLDO0329303293epsmtrp2A;
-	Tue,  4 Jun 2024 02:18:59 +0000 (GMT)
-X-AuditID: b6c32a45-447fe70000002678-6b-665e7993479e
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	3C.16.08622.2997E566; Tue,  4 Jun 2024 11:18:59 +0900 (KST)
-Received: from ubuntu (unknown [10.229.95.128]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20240604021858epsmtip26dff3dc71f3ee0c68295f92acf988b69~Vq6CLPIaz2236722367epsmtip2N;
-	Tue,  4 Jun 2024 02:18:58 +0000 (GMT)
-Date: Tue, 4 Jun 2024 11:19:35 +0900
-From: Jung Daehwan <dh10.jung@samsung.com>
-To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, Krzysztof
-	Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Mathias
-	Nyman <mathias.nyman@intel.com>, Felipe Balbi <balbi@kernel.org>, "open
- list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>, "open list:OPEN FIRMWARE
- AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/5] dt-bindings: usb: xhci: Add
- 'write-64-hi-lo-quirk' quirk
-Message-ID: <20240604021935.GB49465@ubuntu>
+	s=arc-20240116; t=1717469507; c=relaxed/simple;
+	bh=RFkFNytbTrSt10Sfcqzgywulj5B4WbtJRMGMorXi1tE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NY63RRF6zUVYMXs5DaN+GgzI92IA9q/BvksiJtTKX19+TxNb5HUGfcmtdsXdcK5yPWf5Ke6sSTPhbEERbgK3lCmDA8g2Mdp3XxeXqCw0Gc1HIsJd4n0mP9qTRFqCJSHwO/Os7OvK7Um63nwz1WVEek/b4rhZse9jwaEQJdAadJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iOgOuUAK; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1f62217f806so43220475ad.2;
+        Mon, 03 Jun 2024 19:51:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717469506; x=1718074306; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ukY2v50UmUW2giWf10iPuYV8wPVIkj789dy6zfBNda0=;
+        b=iOgOuUAKXFRqqphC7D/9LCpXn9+SfZL7l24Gg5xiCgxxVI5NoIjjUTkxxH9+JS8fZC
+         NrUU3Fjq2x1kbz3jWhhvi2ArvXSzv22cDMEWWfCvluY61KCS29BgAMOuj0rjawULGuME
+         tufYykEKcChJJNhpRLZK9ovTq4BenE86zhs0W7qjKL6kotfa7eQZjW8e95p4juUz3waH
+         V7Iza8cbSQGWyjzibIGdgEppIg0IVEatcg9/DPg8Tqn/Fvj6tEH5fsdg2h8Pq3XA5rZb
+         w/jUsWEg4HP9f2cSq4E+/ThyYAOQ7V25TIAiWe6bh3RydVF9iRDe3BDe2IfgUAZLcaVC
+         JeIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717469506; x=1718074306;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ukY2v50UmUW2giWf10iPuYV8wPVIkj789dy6zfBNda0=;
+        b=FHPv/3Y0+2wHlDKgw3m9TfCgnAfTv+2y4xePecIOVcnM0yPVs78VJdbqD5i7QULirl
+         TrxhMKzP9lqB23dONdou/rK3PAtAK9f9oM9ETTSFtRYl7xlR3MTolzzZJrLpzxVkSMA8
+         QKoRlY0JIalSXrwx00Gt65na1SKbyOCQ+O0G6OooGwcYHGiSFCRWWEVCTcgx67LpaVsW
+         dxKeA3hGboUGPfaHINwKWLpmgineyYHi/SJvrodTfEIGKMlZKfeGWwDbQkPb9rMFJokd
+         0foMcU1IMVRDq0uWm+wQwTt9gwptufcLc0MZNeMZOmk6un92erzAV8H8MZ94kAWBGDvw
+         eqxw==
+X-Forwarded-Encrypted: i=1; AJvYcCWb9bSIOnolN5nZY/yrPBNkub1lwbI37gm6XDk7EeJobCk81VqGCyXNUo8KvwKi4mcOUuvBaFcVJUrIAWm23ycObuvuX1ld9HnAdMkc/UKXuk+g5GSxp5ZnpM4WJV7Xcq4GOvF2NThq3IarcH0nAUdEV8wRw+p3dq8CFDZu9s1smFA=
+X-Gm-Message-State: AOJu0YyHFFYtIR40molVp44JU28TPm3sFGnmsZhgNdPhLh2JPZ6ihzf9
+	U1NdN3lPq9qJp+PKUgGxwgXB/etnhRmfordI9T7c765ORBUVrC0m
+X-Google-Smtp-Source: AGHT+IHrZGPs74xrOoOyd9Wtl8I9QYEtdEDI6MqoNRDik2J6OrQBo9JTpfCDGP9JjX7c8xjF77d4/A==
+X-Received: by 2002:a17:902:dacf:b0:1f4:f1dd:5b5 with SMTP id d9443c01a7336-1f636fec42fmr159518975ad.20.1717469505660;
+        Mon, 03 Jun 2024 19:51:45 -0700 (PDT)
+Received: from rigel (14-203-42-154.tpgi.com.au. [14.203.42.154])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f63241f76fsm71937725ad.307.2024.06.03.19.51.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Jun 2024 19:51:45 -0700 (PDT)
+Date: Tue, 4 Jun 2024 10:51:37 +0800
+From: Kent Gibson <warthog618@gmail.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com,
+	Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Stefan Wahren <wahrenst@gmx.net>, linux-gpio@vger.kernel.org,
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+	Nicola Di Lieto <nicola.dilieto@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Dhruva Gole <d-gole@ti.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: pwm: Add pwm-gpio
+Message-ID: <20240604025137.GA107618@rigel>
+References: <20240602-pwm-gpio-v6-0-e8f6ec9cc783@linaro.org>
+ <20240602-pwm-gpio-v6-1-e8f6ec9cc783@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20240604003013.2jwskwiqivgumrsx@synopsys.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrDJsWRmVeSWpSXmKPExsWy7bCmme7kyrg0g233dSyOtT1ht1iz9xyT
-	xfwj51gtmhevZ7N4Oesem8X58xvYLS7vmsNmsWhZK7NF86YprBb/9+xgt1i14AC7A7fH4j0v
-	mTw2repk89g/dw27x5b9nxk9Pm+SC2CNyrbJSE1MSS1SSM1Lzk/JzEu3VfIOjneONzUzMNQ1
-	tLQwV1LIS8xNtVVy8QnQdcvMATpNSaEsMacUKBSQWFyspG9nU5RfWpKqkJFfXGKrlFqQklNg
-	XqBXnJhbXJqXrpeXWmJlaGBgZApUmJCd8f/4QsaCtxwVrZOvMjUwLmDvYuTkkBAwkeja85Kl
-	i5GLQ0hgB6PE3d89TBDOJ0aJ9nnvGSGcb4wSLZsOMsG0nDqxD6plL6PEhTuToVqeMEpMbXkO
-	NphFQEXi0awFjCA2m4CWxL0fJ5hBbBEBHYkDJ86DNTAL3GSW2P29HWyssECYxMLTt1i7GDk4
-	eAW0JY62R4KEeQUEJU7OfMICYnMKWEtcX/STBaREFGj+q4P1IGMkBGZySDz4P50N4joXibkr
-	uqBsYYlXx7dAPSol8fndXqh4scSt58+YIZpbGCVWvGphhkgYS8x61g52NLNAhsS95vVgyyQE
-	lCWO3GKBCPNJdBz+yw4R5pXoaBOC6FSWmH55AiuELSlx8PU5qIkeEs2bGqCBtYVZ4vbLRSwT
-	GOVnIXltFpJtELaOxILdn9hmAa1gFpCWWP6PA8LUlFi/S38BI+sqRrHUguLc9NRiowJDeGwn
-	5+duYgQnWy3XHYyT337QO8TIxMF4iFGCg1lJhLevLjpNiDclsbIqtSg/vqg0J7X4EKMpMJ4m
-	MkuJJucD031eSbyhiaWBiZmZobmRqYG5kjjvvda5KUIC6YklqdmpqQWpRTB9TBycUg1MM+5f
-	j006c/y4R6fA/1Pz3/A+UrW78JKzeKV87vl/3wMfbnx2vNvZ/Mx9/6MWM39N/3VW1b3ANNTr
-	XOf6tlu5S97LFPhrl6qmhN7pZr1q/mr9g76u/YnyFxqu8sk9nTy19UuYrIbUCrbJ4dX+fb0L
-	VdKe+Xntm2h2yKfmh3/Al2yRnYVvZe7OfuzIYXBUI/bRqXWZd/q8l9zq1cq0nrZW/VvR/hCj
-	5TdlVu2ZsLA/Z/+/xtNu/fPX/88V4LE/r9NiveT2n5hzZ1V+XXU818R74ayP5woevolSh44x
-	uHyqe2JjIZ7fXzzru0RIxbP5z+P/ihwrk7Ni1v4iy9e8PXJh//FbF9cvOC8q0p97dYr4YyWW
-	4oxEQy3mouJEABPz5Nw/BAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrILMWRmVeSWpSXmKPExsWy7bCSvO7kyrg0g/O3mSyOtT1ht1iz9xyT
-	xfwj51gtmhevZ7N4Oesem8X58xvYLS7vmsNmsWhZK7NF86YprBb/9+xgt1i14AC7A7fH4j0v
-	mTw2repk89g/dw27x5b9nxk9Pm+SC2CN4rJJSc3JLEst0rdL4MpY3rSQqWAtW8WTOUvZGxh/
-	snQxcnJICJhInDqxD8jm4hAS2M0ocX1xAztEQlJi6dwbULawxP2WI6wQRY8YJSbdWMcIkmAR
-	UJF4NGsBmM0moCVx78cJZhBbREBH4sCJ80wgDcwC95kl+hbNZQVJCAuESSw8fQvI5uDgFdCW
-	ONoeCTF0C7PEn4l7wAbxCghKnJz5BOw8ZqChN/69ZAKpZxaQllj+jwMkzClgLXF9EcgHHByi
-	QDe8Olg/gVFwFpLmWUiaZyE0L2BkXsUomVpQnJueW2xYYJSXWq5XnJhbXJqXrpecn7uJERwr
-	Wlo7GPes+qB3iJGJg/EQowQHs5IIb19ddJoQb0piZVVqUX58UWlOavEhRmkOFiVx3m+ve1OE
-	BNITS1KzU1MLUotgskwcnFINTJeNxWetd9QW7ZM4tFRXcZMTV8vBiT13ZuutfZ/sufrX1l85
-	13uzHPf/v/Concn6e36HBb92RFAYQ5L9lFsdDfVcRVm6ZarFXOE5loVudettfBIqlj4rKr5h
-	Uczc63v/t6K2NOt5N/nyI3++sRmyROdZ8ex9JFmktE15QWGaaPEUMe0Lf7NsKn/JWX75897H
-	dOfrmr8uAREz94pFev0/9yn7H6frnMe8a7/wTtQ4vLfnBe8rK5O2F327A0M+sKbKfygP/ntm
-	j4/hZvXUZrm5r7NjLr3Rtt+9+nj9bHepq/oHvkrZ27zaeeXm4x1a+pKHEg8Kzd/wb+8OJqnG
-	cnWuDC+9Ofdal0SUT9JzNvijxFKckWioxVxUnAgA5x1zMQQDAAA=
-X-CMS-MailID: 20240604021859epcas2p47538af772afe3e57d25c1fde33fd28db
-X-Msg-Generator: CA
-Content-Type: multipart/mixed;
-	boundary="----NM.SL-8AX4fCWwUaz12YupYcgI_4q5PcTQ1CNbbJhqicWcnv=_436c4_"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20240531060729epcas2p1df12dd3b14c5fa2fa0716f72010b3dbd
-References: <1717135657-120818-1-git-send-email-dh10.jung@samsung.com>
-	<CGME20240531060729epcas2p1df12dd3b14c5fa2fa0716f72010b3dbd@epcas2p1.samsung.com>
-	<1717135657-120818-4-git-send-email-dh10.jung@samsung.com>
-	<bcbff3b2-c5ae-4a95-aa36-f9b88a97e72c@kernel.org>
-	<20240603033427.GB23593@ubuntu>
-	<69c954ce-d7a2-420c-b3f6-72caee02d84f@kernel.org>
-	<20240603082538.GD23593@ubuntu>
-	<20240604003013.2jwskwiqivgumrsx@synopsys.com>
-
-------NM.SL-8AX4fCWwUaz12YupYcgI_4q5PcTQ1CNbbJhqicWcnv=_436c4_
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20240602-pwm-gpio-v6-1-e8f6ec9cc783@linaro.org>
 
-On Tue, Jun 04, 2024 at 12:30:32AM +0000, Thinh Nguyen wrote:
-> On Mon, Jun 03, 2024, Jung Daehwan wrote:
-> > 
-> > This issue is not specific on SoC side but dwc3 controller. I think it's
-> > better to add it to dwc3 directly but I can't find dts for dwc3. Dts for
-> > SoC, which uses dwc3 would be needed in this case, right?
-> > 
-> 
-> This quirk applies across different DWC_usb3x versions. IMO, you can
-> just pass the xhci quirk flag along the dwc3_xhci_plat_quirk->quirks
-> without needing to introduce a new xhci DTS binding. However, to do
-> this, you should extract the xhci quirk flags to a separate header so
-> that dwc3 can include and use them.
-> 
-> BR,
-> Thinh
+On Sun, Jun 02, 2024 at 10:33:08PM +0200, Linus Walleij wrote:
+> From: Nicola Di Lieto <nicola.dilieto@gmail.com>
+>
+> Add bindings for PWM modulated by GPIO.
+>
 
-I haven't got using dwc3_xhci_plat_quirk. Let me try to use it.
-Thanks for the comment.
+Shouldn't the bindings be added after the driver?
 
-Best Regards,
-Jung Daehwan
+> Signed-off-by: Nicola Di Lieto <nicola.dilieto@gmail.com>
+> Co-developed-by: Stefan Wahren <wahrenst@gmx.net>
+> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Dhruva Gole <d-gole@ti.com>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+>  .../devicetree/bindings/pwm/pwm-gpio.yaml          | 42 ++++++++++++++++++++++
+>  1 file changed, 42 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-gpio.yaml b/Documentation/devicetree/bindings/pwm/pwm-gpio.yaml
+> new file mode 100644
+> index 000000000000..1a1281e0fbd7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-gpio.yaml
+> @@ -0,0 +1,42 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/pwm-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Generic software PWM for modulating GPIOs
+> +
+> +maintainers:
+> +  - Stefan Wahren <wahrenst@gmx.net>
+> +
+> +allOf:
+> +  - $ref: pwm.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: pwm-gpio
+> +
+> +  "#pwm-cells":
+> +    const: 3
+> +
 
-------NM.SL-8AX4fCWwUaz12YupYcgI_4q5PcTQ1CNbbJhqicWcnv=_436c4_
-Content-Type: text/plain; charset="utf-8"
+What is the significance of the 3 here?
 
+Sorry if that is obvious, but it isn't to me.
 
-------NM.SL-8AX4fCWwUaz12YupYcgI_4q5PcTQ1CNbbJhqicWcnv=_436c4_--
+Cheers,
+Kent.
+
+> +  gpios:
+> +    description:
+> +      GPIO to be modulated
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - "#pwm-cells"
+> +  - gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    pwm {
+> +        #pwm-cells = <3>;
+> +        compatible = "pwm-gpio";
+> +        gpios = <&gpio 1 GPIO_ACTIVE_HIGH>;
+> +    };
+>
+> --
+> 2.45.1
+>
 
