@@ -1,184 +1,244 @@
-Return-Path: <devicetree+bounces-72393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B60C28FB96A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 18:46:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 794FB8FB989
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 18:52:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA7F11C208F0
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 16:46:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C9891C21F3C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 16:52:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B5BF148836;
-	Tue,  4 Jun 2024 16:46:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4A1F148FEE;
+	Tue,  4 Jun 2024 16:52:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="yl6mD+xV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XEFOZDH3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46591147C9B
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 16:46:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7980148855;
+	Tue,  4 Jun 2024 16:52:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717519572; cv=none; b=NxkNnV+zgNIVZzwUtaKYKc4gil29Is12Vhjhzp8gr2s0oQFsuWSzFi4JiASKuz9rZ0vVkh+5SjruQPbngaftlkXiXEyNvN6iFOeQe6kzwVLblWVsO8NW5tkp92E0wWCdWTnO/v3RBz+cDM6VGLVPBmM3Z9LZGmqogLChGcCZrY0=
+	t=1717519931; cv=none; b=jept2EJkGg+37Rjz5Fg/NnDIQmBf5BBTMT+CE+vH3KOg073u5G7OZz5o1Vfef/Jv6raHRCQN7WfTwr0nzPp5JAdDtPHoh+pjVNJ2v1osii0JT2sD5gGbN0hV9JGKVxrUyRTg1GEgYE7k1hZ5exumM1NqzSYPohJBa+2JWOLPf40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717519572; c=relaxed/simple;
-	bh=PdXm6GeJL+T3+++g0lNjWIDmHt7wIOaJGPbPgDMH2V0=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=LZ+w3Uxm74DHnfGT4Neo7y3g3r/OjjWmD5gSVvdwKPZxTWzcCe6wKnqH1Ft2/rqU4iIMovhJb3e6D6nZYwcg/uf89L8yVolJZo/E3kpCpbhoox8G9DiUhkfA7MCrfuY60Xwy5Gds+aHtXnYlwb4EQhiV1Huu7hBxc0+o60/AWw4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=yl6mD+xV; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-354dfe54738so3726544f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 09:46:09 -0700 (PDT)
+	s=arc-20240116; t=1717519931; c=relaxed/simple;
+	bh=5xgUfNefMw6wri/wlUNbDyhBSguJ3pHNq3wLRAPp26E=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=AwQePvr6cGb8FI5NVUjcXAjAnircG920xWV52EkT6rC7CBvaJuSGKCabsB/tpBCBC+0CaaSozGRRqds6n+0SvG0yw1RaSTKtS3tSVTNz7+po8QKXXFbYBobZPQGO5eUeYn6u4PFmsVucyTiInp55QmmR4UvvSfIQ4S/XfeyAghk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XEFOZDH3; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-42147970772so8118905e9.0;
+        Tue, 04 Jun 2024 09:52:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1717519568; x=1718124368; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=EprwjT9zeYKxx2x+GSdgGwrPW0I9xgtlt7hKg5xoeWk=;
-        b=yl6mD+xV+KO4dFl43bc1rsKBXkGDlfUgFjfpde1YHISn31PJMLICj8NfO3p1gRStzJ
-         OyxZ3ogCRBExlnoZIctjAPo2QNDkCUFoewwYutfetcDQJvUE60iZD3pQg+zc855681IS
-         /zh+t9Nk9j5/xgzE7XCYxtgZ2IgW4UFs2TQ8tDscvXgLRABSbnhZk124485hB+WXfk05
-         obffbiG4YKfdqOPdnWXwQB5vF0y8a6IKamvygEinatDmmjEKBGypw2/xFZiJ4rfOqvrp
-         Ub0kevu+MVUqgb3xUQf/KTgNNAJgGrCRLGlSqiGWsLp5BccsSfCotjsIK0Pl03VoiGMj
-         Tp1w==
+        d=gmail.com; s=20230601; t=1717519928; x=1718124728; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=B1Jmxeyxl2JTcXXAAs8GoA7peZQ32QIewc1EvPktBMQ=;
+        b=XEFOZDH3c933LHZJ6+NfoYwORg7bNUruoTf/cnPm4ftjYqnwq39BMBZ12nKqV33Eve
+         D3dPKQeCkNRrhiA5u3yWFcb4oOK1yDnkYma7mWEzda6Td7vE8VsuDBmJP5EqJWyyV2tf
+         deYKLeh1Thyy43Ki6DS0N5cbljKc+y4cKfeAxkNi0WM+uy9oEeoZkoJeL4IMjaP4TXpi
+         fsTQdqAI2Rdi6UbVDeu/eEME2Rw794wSoBaYrTnh5oXvsvCycbj/Fga+4uK4mKpa4KtF
+         L9GERtmt/09zpsMPdIxJ2reZYh43n74Nv1xdePcr89ebElRPRTYQcTmRt8LEKnT37XjG
+         vJTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717519568; x=1718124368;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EprwjT9zeYKxx2x+GSdgGwrPW0I9xgtlt7hKg5xoeWk=;
-        b=VJ3a9BAH8V0EyxXRxnCt5m+sCFWkDdjo6akM9N+FS9ipZPWuQZyPTOWBfChcymNwHG
-         9mc+RE9N7hx5SPAOsLKadsnWDQ0lYfpCa9h9JBAC9u34hrgKc40qlCA255gEIsQlN2fc
-         bJhxN+Cii0OHjhJqeoHZ7lrX7aCgwrXXLJ3gORxaGkJ/txMb7GhpHtiLmayck+8CFeeR
-         yg35xbpeeaCkbS4Z/RWtsb20awsOSW+tyJyGU23SzlgLKFGNQiH08k+t4bsd/Ns9M+lL
-         p3o96fuImb50vS7o4CFoSTM7BQlKTXzhbDKjn1+7VDGyuSOswfepu2jwZR4qb9fL7urt
-         FYIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWI+h8rV1k3CMS9ak+KRs54E0GoSGd3aCF4k3ojn3tP5TGi669JhCfqfelTcmb4SaEvDOESW2ayTEiKrwdu01c3rSULOQ/FICVa2A==
-X-Gm-Message-State: AOJu0YzjpC+IbzKN4Th/4+Qjbt0JgcPJaAWe67pul6fJ3pvAgczBjI+H
-	dJUvtFkw8wJwKPuWBqZNNWK6yvFqV+p9OQWeDt0Hdx4d6vqB5yA+MjZmSZoVuRg=
-X-Google-Smtp-Source: AGHT+IHmeQd596hbam5FHaqaRKdOl2gWWsrwWd6gy09aCfkAuqe52QrfA9Oa55fhoiNHA6ZyxMpScQ==
-X-Received: by 2002:adf:f94d:0:b0:356:4c65:3a63 with SMTP id ffacd0b85a97d-35e0f32ceccmr8800084f8f.58.1717519567371;
-        Tue, 04 Jun 2024 09:46:07 -0700 (PDT)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35dd04c090esm12634482f8f.6.2024.06.04.09.46.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Jun 2024 09:46:07 -0700 (PDT)
-Message-ID: <eb15a48b-6185-42dd-92ca-8df33b0ea4b5@freebox.fr>
-Date: Tue, 4 Jun 2024 18:43:07 +0200
+        d=1e100.net; s=20230601; t=1717519928; x=1718124728;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=B1Jmxeyxl2JTcXXAAs8GoA7peZQ32QIewc1EvPktBMQ=;
+        b=MyKOzwB2MSJURXNf8Ccg9eCDD9v9y6qR8fd2u0OoUyijaky4o/qcGi2yqvqvcw8g71
+         4NpF64kciH1B+w3CA6PloC4ZIowTdPrM+BtHPkGzRyz/30qGNfNuxl1LC+2GD6dtPvER
+         tAdPmZKM8nJbhIi4Y8a4m3EMU6xhj76cyoqVNXM35PQQaXon8ygJzM3qP31HDqeKVz1f
+         ivaHJZ8yQ3yUO6tbuo0MciKbCqnjnyngzLBgxjftVuWFn6rupZGcloqGyffDuLJEd2M1
+         u1vK6FCj2ysh3QldSQGSROmpxCkopksn10mTZygykF5Ne/EYcD/MvLz0bp1WVoQ8fRem
+         m6TQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWZ9ChDXnoeYea1OqzOYUzX6oadA9nyPyIOmg7TiOe3AAvyboMwZBJI998SZHCFXY/N414bvIwfYAQ069YQIPC6ncVnPTouUyoOADlWEkfJFbkvmiOKd+hTFsRQLVlo4qHC2k+djxOlDatnonwU5Th/4h8rIS66I6VO8RszTvBME1/iWYIy
+X-Gm-Message-State: AOJu0Yxl5UNQ9zEQdIQzY+vBcMmvrN4vfsoIszHf7F5YSu1uRGEaNdkf
+	ENxGJNrEYyAVD9LxSUSs5ue9JI20gma5wknVclgFOY5MrzEWYG82
+X-Google-Smtp-Source: AGHT+IGew2QGLmhBJKgIkPQsUevYJs7yaWGXRd7LMJsL8rwmWlpRGcGuq4R/SIPPxpRgV0sMwBX8+A==
+X-Received: by 2002:a05:600c:3105:b0:419:f241:633b with SMTP id 5b1f17b1804b1-421562cf43cmr1626575e9.8.1717519927916;
+        Tue, 04 Jun 2024 09:52:07 -0700 (PDT)
+Received: from localhost.localdomain (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4212b85c61dsm162465555e9.28.2024.06.04.09.52.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Jun 2024 09:52:07 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 1/3] dt-bindings: hwmon: g762: Convert to yaml schema
+Date: Tue,  4 Jun 2024 18:43:41 +0200
+Message-ID: <20240604164348.542-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: [PATCH v5 2/3] media: venus: add msm8998 support
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: MSM <linux-arm-msm@vger.kernel.org>,
- linux-media <linux-media@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
- Jeffrey Hugo <quic_jhugo@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bryan O Donoghue <bryan.odonoghue@linaro.org>,
- Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>
-References: <8b2705b7-f33c-4ebe-a6a8-c5ef776fe9ad@freebox.fr>
-Content-Language: en-US
-In-Reply-To: <8b2705b7-f33c-4ebe-a6a8-c5ef776fe9ad@freebox.fr>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-From: Pierre-Hugues Husson <phhusson@freebox.fr>
+Convert g762 Documentation to yaml schema and port all the custom
+properties and info.
 
-Add the missing bits for msm8998 support.
+Add the vendor prefix to name to follow naming standard.
 
-Downstream vendor code for reference:
-
-https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/caf_migration/kernel.lnx.4.4.r38-rel/arch/arm/boot/dts/qcom/msm8998-vidc.dtsi#L42-53
-
-qcom,load-freq-tbl =
-	/* Encoders */
-	<972000 465000000 0x55555555>, /* 4k UHD @ 30 */
-	<489600 360000000 0x55555555>, /* 1080p @ 60 */
-	<244800 186000000 0x55555555>, /* 1080p @ 30 */
-	<108000 100000000 0x55555555>, /* 720p @ 30 */
-	/* Decoders */
-	<1944000 465000000 0xffffffff>, /* 4k UHD @ 60 */
-	< 972000 360000000 0xffffffff>, /* 4k UHD @ 30 */
-	< 489600 186000000 0xffffffff>, /* 1080p @ 60 */
-	< 244800 100000000 0xffffffff>; /* 1080p @ 30 */
-
-Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
-Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Acked-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- drivers/media/platform/qcom/venus/core.c | 39 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
+Changes v4:
+- Fix typo
+- Drop fixed clock
+- Add Reviewed-by tag
+Changes v3:
+- Rename yaml to g762 from g76x
 
-diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-index ce206b7097541..8b715cb7ab51a 100644
---- a/drivers/media/platform/qcom/venus/core.c
-+++ b/drivers/media/platform/qcom/venus/core.c
-@@ -587,6 +587,44 @@ static const struct venus_resources msm8996_res = {
- 	.fwname = "qcom/venus-4.2/venus.mbn",
- };
- 
-+static const struct freq_tbl msm8998_freq_table[] = {
-+	{ 1944000, 465000000 },	/* 4k UHD @ 60 (decode only) */
-+	{  972000, 465000000 },	/* 4k UHD @ 30 */
-+	{  489600, 360000000 },	/* 1080p @ 60 */
-+	{  244800, 186000000 },	/* 1080p @ 30 */
-+	{  108000, 100000000 },	/* 720p @ 30 */
-+};
+ .../devicetree/bindings/hwmon/g762.txt        | 47 ------------
+ .../devicetree/bindings/hwmon/gmt,g762.yaml   | 72 +++++++++++++++++++
+ 2 files changed, 72 insertions(+), 47 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/hwmon/g762.txt
+ create mode 100644 Documentation/devicetree/bindings/hwmon/gmt,g762.yaml
+
+diff --git a/Documentation/devicetree/bindings/hwmon/g762.txt b/Documentation/devicetree/bindings/hwmon/g762.txt
+deleted file mode 100644
+index 6d154c4923de..000000000000
+--- a/Documentation/devicetree/bindings/hwmon/g762.txt
++++ /dev/null
+@@ -1,47 +0,0 @@
+-GMT G762/G763 PWM Fan controller
+-
+-Required node properties:
+-
+- - "compatible": must be either "gmt,g762" or "gmt,g763"
+- - "reg": I2C bus address of the device
+- - "clocks": a fixed clock providing input clock frequency
+-	     on CLK pin of the chip.
+-
+-Optional properties:
+-
+- - "fan_startv": fan startup voltage. Accepted values are 0, 1, 2 and 3.
+-	       The higher the more.
+-
+- - "pwm_polarity": pwm polarity. Accepted values are 0 (positive duty)
+-	       and 1 (negative duty).
+-
+- - "fan_gear_mode": fan gear mode. Supported values are 0, 1 and 2.
+-
+-If an optional property is not set in .dts file, then current value is kept
+-unmodified (e.g. u-boot installed value).
+-
+-Additional information on operational parameters for the device is available
+-in Documentation/hwmon/g762.rst. A detailed datasheet for the device is available
+-at http://natisbad.org/NAS/refs/GMT_EDS-762_763-080710-0.2.pdf.
+-
+-Example g762 node:
+-
+-   clocks {
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-
+-	g762_clk: fixedclk {
+-		 compatible = "fixed-clock";
+-		 #clock-cells = <0>;
+-		 clock-frequency = <8192>;
+-	}
+-   }
+-
+-   g762: g762@3e {
+-	compatible = "gmt,g762";
+-	reg = <0x3e>;
+-	clocks = <&g762_clk>
+-	fan_gear_mode = <0>; /* chip default */
+-	fan_startv = <1>;    /* chip default */
+-	pwm_polarity = <0>;  /* chip default */
+-   };
+diff --git a/Documentation/devicetree/bindings/hwmon/gmt,g762.yaml b/Documentation/devicetree/bindings/hwmon/gmt,g762.yaml
+new file mode 100644
+index 000000000000..762779da5ba2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/gmt,g762.yaml
+@@ -0,0 +1,72 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/gmt,g762.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+static const struct reg_val msm8998_reg_preset[] = {
-+	{ 0x80124, 0x00000003 },
-+	{ 0x80550, 0x01111111 },
-+	{ 0x80560, 0x01111111 },
-+	{ 0x80568, 0x01111111 },
-+	{ 0x80570, 0x01111111 },
-+	{ 0x80580, 0x01111111 },
-+	{ 0x80588, 0x01111111 },
-+	{ 0xe2010, 0x00000000 },
-+};
++title: GMT G762/G763 PWM Fan controller
 +
-+static const struct venus_resources msm8998_res = {
-+	.freq_tbl = msm8998_freq_table,
-+	.freq_tbl_size = ARRAY_SIZE(msm8998_freq_table),
-+	.reg_tbl = msm8998_reg_preset,
-+	.reg_tbl_size = ARRAY_SIZE(msm8998_reg_preset),
-+	.clks = { "core", "iface", "bus", "mbus" },
-+	.clks_num = 4,
-+	.vcodec0_clks = { "core" },
-+	.vcodec1_clks = { "core" },
-+	.vcodec_clks_num = 1,
-+	.max_load = 2563200,
-+	.hfi_version = HFI_VERSION_3XX,
-+	.vmem_id = VIDC_RESOURCE_NONE,
-+	.vmem_size = 0,
-+	.vmem_addr = 0,
-+	.dma_mask = 0xddc00000 - 1,
-+	.fwname = "qcom/venus-4.4/venus.mbn",
-+};
++maintainers:
++  - Christian Marangi <ansuelsmth@gmail.com>
 +
- static const struct freq_tbl sdm660_freq_table[] = {
- 	{ 979200, 518400000 },
- 	{ 489600, 441600000 },
-@@ -893,6 +931,7 @@ static const struct venus_resources sc7280_res = {
- static const struct of_device_id venus_dt_match[] = {
- 	{ .compatible = "qcom,msm8916-venus", .data = &msm8916_res, },
- 	{ .compatible = "qcom,msm8996-venus", .data = &msm8996_res, },
-+	{ .compatible = "qcom,msm8998-venus", .data = &msm8998_res, },
- 	{ .compatible = "qcom,sdm660-venus", .data = &sdm660_res, },
- 	{ .compatible = "qcom,sdm845-venus", .data = &sdm845_res, },
- 	{ .compatible = "qcom,sdm845-venus-v2", .data = &sdm845_res_v2, },
++description: |
++  GMT G762/G763 PWM Fan controller.
++
++  If an optional property is not set in DT, then current value is kept
++  unmodified (e.g. bootloader installed value).
++
++  Additional information on operational parameters for the device is available
++  in Documentation/hwmon/g762.rst. A detailed datasheet for the device is available
++  at http://natisbad.org/NAS/refs/GMT_EDS-762_763-080710-0.2.pdf.
++
++properties:
++  compatible:
++    enum:
++      - gmt,g762
++      - gmt,g763
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    description: a fixed clock providing input clock frequency on CLK
++      pin of the chip.
++    maxItems: 1
++
++  fan_startv:
++    description: Fan startup voltage step
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3]
++
++  pwm_polarity:
++    description: PWM polarity (positive or negative duty)
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1]
++
++  fan_gear_mode:
++    description: FAN gear mode. Configure High speed fan setting factor
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2]
++
++required:
++  - compatible
++  - reg
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        g762@3e {
++            compatible = "gmt,g762";
++            reg = <0x3e>;
++            clocks = <&g762_clk>;
++            fan_gear_mode = <0>;
++            fan_startv = <1>;
++            pwm_polarity = <0>;
++        };
++    };
 -- 
-2.34.1
+2.43.0
 
 
