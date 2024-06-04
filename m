@@ -1,113 +1,105 @@
-Return-Path: <devicetree+bounces-72260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCECC8FB34B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:16:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B05288FB35D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:19:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A7151C22B1F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:16:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E09F11C20E1D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:19:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21D4F1474BE;
-	Tue,  4 Jun 2024 13:15:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E50F146582;
+	Tue,  4 Jun 2024 13:19:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b="n/eR2sNT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e/+oPtOa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mta-64-226.siemens.flowmailer.net (mta-64-226.siemens.flowmailer.net [185.136.64.226])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 524F0146A85
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 13:15:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.64.226
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66DFD143894;
+	Tue,  4 Jun 2024 13:19:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717506940; cv=none; b=VZvFOEvYoDCS3NVaRLk2AKEWUUFsoJSaoyax2odnaW/pOVcq4i1r5ZDX8MtL43BBPZskVwJ8Y9XoV02aLYJNxld44An0W/9lsrgoKzUc4J2YpGNA5Byt7rheqtyCbLuCH8/r1zQW2gkK/ZifXEO3O/Azo2rGtr+YDDlBAl2Klp4=
+	t=1717507164; cv=none; b=pgKr7ts/ihQT1mRWLYCdv8VTa0+kyI62PtybOKTGwS4VRhStna0+ojhnUECFqMnrVK5Za7XMYEFh5MDjcPRme9HLrYgitJL1ZNnxEsURp/RVzulfVnL03HlQwI7e2ija6Sf8ZgrDFhAKLgyolrHz74booM1uKynhHWVwfCx0oHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717506940; c=relaxed/simple;
-	bh=NUfirnAzHuSC6GjuRr39bgT7xFG/QnrzxnLmvJJpzEw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=V/CvJT4L2NIYcAesUQUiRznTKBefQaVr81LAnPNtD81k0ugGT9fc3VprJ9Gc6wsuzR1FlW4v84wuuFGJ5lhY3uPbG+1y4oSXwP+sCluQ1HWHyAJfBKo4dfu2liyVlqjDpXaQ29tC/pEyfcV7rxFqJjTJphjA/Ecu1tpnNMsUqyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b=n/eR2sNT; arc=none smtp.client-ip=185.136.64.226
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
-Received: by mta-64-226.siemens.flowmailer.net with ESMTPSA id 202406041315299b6c5bbff99e78ba1e
-        for <devicetree@vger.kernel.org>;
-        Tue, 04 Jun 2024 15:15:30 +0200
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm2;
- d=siemens.com; i=diogo.ivo@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
- bh=Oycy2PZfe8iU4x5Oth2BIpAhAkhezYYXv0lKcaObIIg=;
- b=n/eR2sNT+W1oDB/e0jyP+97LceQIaFcmOPdHGnWYavgNmbRbQEdrcKUBwKTMZvVV2hM+FW
- TyOS4SNAlRcQG7VwSPc2n/bSXDPrkEZPyt9Ee6FFmVsi8XU4ZOxIkQUaeCpRgcpvPtCfUJal
- Vo0Z/N2v8uqvp7RgDNFQ0Wt0Jil4A=;
-From: Diogo Ivo <diogo.ivo@siemens.com>
-Date: Tue, 04 Jun 2024 14:15:12 +0100
-Subject: [PATCH net-next v2 3/3] arm64: dts: ti: iot2050: Add IEP
- interrupts for SR1.0 devices
+	s=arc-20240116; t=1717507164; c=relaxed/simple;
+	bh=YJVMvwv8yrvbQTt6Dpj5ooLvEPn9RhqjCuP8saFqK3k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rsqTdT6blt9M4fjwbLwlwMBFNbaG7zorhz4165nUImB2LYr7hoyqiXMygEAT3c4h58UhN2/UcJo5HNmhMSN56GHGRLdxVAyRty0nUzmny+wJHQ3SCXQBoQZh1La16zNP15wPEnBFx60qxLo2QoGAzF7YIXn9F94SStjhT9hHmU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e/+oPtOa; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a63359aaacaso724800166b.1;
+        Tue, 04 Jun 2024 06:19:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717507162; x=1718111962; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YJVMvwv8yrvbQTt6Dpj5ooLvEPn9RhqjCuP8saFqK3k=;
+        b=e/+oPtOaXQuov5rdz6D9kWR08s4lYjkQRAyXSWKHY/hN6c9F4nuuAPSoAkSg4AoJx3
+         xzVkgbGiP+4u18nUL3cwM95g+NNxeltm8lsYu7RVmGkqdLpTPBBCHwnTE+9V2L38Lt7j
+         a3MHcGVTnlo11AcZL9Ku5CY6mQ33QJsRCVF1ytlAflFMNtWkpR0zqA9zVY3UbfJKH/KI
+         jg+GEx0k+mx/W0V6DYNUiYHCiQpokhmP1EXrTUu+1D118iUcMzknjmc3x/W+sBYGLA+h
+         y53HskVEBRE6VWT0L5zI/fsn69EEtWpPOPJ2/t8rAt7UwXPnxsuN9NiFu7ApaaCWB8N5
+         2tJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717507162; x=1718111962;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YJVMvwv8yrvbQTt6Dpj5ooLvEPn9RhqjCuP8saFqK3k=;
+        b=avwTE7IRt1XmroK2GCTK13N0E9uCqiEUiyRiuAtAE7DHeaTDQQ/rp4SNy5TmoTd01c
+         Emd2whQNhNRxehLEAtTCxOwNnAb4jMQsa69FbtwUusZyjAlxiRAWxCCZG2aIeRIzlsk+
+         TGR2y5AvC32Gkyh7sefqlTPniW4quwG4Q6sNTkC1Yv/JczIRZW0rbL5qwFbpffJcl+3K
+         pw2528KLyp9MIOtDM+jxWLn5e6zV9Ztu+0zX09lQTRPICQxPmKJuWfQU8BKq+xiG33n0
+         bKK9VJ4XdmvdVj/mYYpN//rJtI8WPMNrVZo+TGRxiU1KRsphvRou8wwJGhhHG9VT1kfx
+         4izg==
+X-Forwarded-Encrypted: i=1; AJvYcCXi9mWqdUffGyw60STaCIN5NxmgWO7y5x+Udxj7KXCr9Iz5tDTc+IUd0EiEzy37t1gWgr40qF4I2AFcURzf3vB1iCR/1ZuNUL29onCu3eFXwmOSyboZGFRlOFvnww5dF4mqI+moBEvT0INyp2GwfwIZLKpxl8f2vJxUCOH7lQcwCjk6Jg==
+X-Gm-Message-State: AOJu0YxnAgsC0zCxEQjgdsL8DHVQjOVZmgD6hkeh9rY44BoRsX61SQUD
+	eqByl5q0oDzhTJA43eShPobBoTZElLZXSYTQe3VvAHwi2R1yM3FjgYUxn87UqCz0GDhvzw/9pHw
+	u0wVZp0HBaxPe0WA+fgOAsxaObYg=
+X-Google-Smtp-Source: AGHT+IHDbpSFR8VgGbrUMxndBUIdfujfvQsl0DAQdoYXCdvQ0K5qPJ6brxy9idGG/uw3HyLxGrGZcT0HjfDhQ1mq2G4=
+X-Received: by 2002:a17:906:d794:b0:a68:eca8:2d3e with SMTP id
+ a640c23a62f3a-a68eca82ef6mr449184766b.12.1717507161399; Tue, 04 Jun 2024
+ 06:19:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240604-iep-v2-3-ea8e1c0a5686@siemens.com>
-References: <20240604-iep-v2-0-ea8e1c0a5686@siemens.com>
-In-Reply-To: <20240604-iep-v2-0-ea8e1c0a5686@siemens.com>
-To: MD Danish Anwar <danishanwar@ti.com>, Roger Quadros <rogerq@kernel.org>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Richard Cochran <richardcochran@gmail.com>, Nishanth Menon <nm@ti.com>, 
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jan Kiszka <jan.kiszka@siemens.com>, 
- Jacob Keller <jacob.e.keller@intel.com>, Simon Horman <horms@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Diogo Ivo <diogo.ivo@siemens.com>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1717506924; l=952;
- i=diogo.ivo@siemens.com; s=20240529; h=from:subject:message-id;
- bh=NUfirnAzHuSC6GjuRr39bgT7xFG/QnrzxnLmvJJpzEw=;
- b=Goo/o35dVq5niSmgs0VgH+yriNbL58uYmxRxJ9zJSsOhfY3NVfs6u4gIJGSuO6J51/EIhEzQg
- 1Svl+frgbRNA2AH2THO9ZGi8P2oJqpOsjncNkovvmX6NbrLjAYKVMI2
-X-Developer-Key: i=diogo.ivo@siemens.com; a=ed25519;
- pk=BRGXhMh1q5KDlZ9y2B8SodFFY8FGupal+NMtJPwRpUQ=
-X-Flowmailer-Platform: Siemens
-Feedback-ID: 519:519-1320519:519-21489:flowmailer
+References: <20240604123008.327424-1-angelogioacchino.delregno@collabora.com> <20240604123008.327424-4-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240604123008.327424-4-angelogioacchino.delregno@collabora.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 4 Jun 2024 16:18:43 +0300
+Message-ID: <CAHp75VdtfsSA7quU3Eo0=Yv=J_yXVo5_+_WgxGFJ5M_MLbf7NA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/5] math.h: Add unsigned 8 bits fractional numbers type
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, matthias.bgg@gmail.com, lee@kernel.org, andy@kernel.org, 
+	nuno.sa@analog.com, bigunclemax@gmail.com, dlechner@baylibre.com, 
+	marius.cristea@microchip.com, marcelo.schmitt@analog.com, fr0st61te@gmail.com, 
+	mitrutzceclan@gmail.com, mike.looijmans@topic.nl, marcus.folkesson@gmail.com, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add the interrupts needed for PTP Hardware Clock support via IEP
-in SR1.0 devices.
+On Tue, Jun 4, 2024 at 3:30=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Some users may be requiring only rather small numbers as both
+> numerator and denominator: add signed and unsigned 8 bits
+> structs {s8,u8}_fract.
 
-Reviewed-by: Jacob Keller <jacob.e.keller@intel.com>
-Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
----
- arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Reviewed-by: Andy Shevchenko <andy@kernel.org>
+Thank you!
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
-index ef7897763ef8..0a29ed172215 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
-@@ -73,3 +73,15 @@ &icssg0_eth {
- 		    "rx0", "rx1",
- 		    "rxmgm0", "rxmgm1";
- };
-+
-+&icssg0_iep0 {
-+	interrupt-parent = <&icssg0_intc>;
-+	interrupts = <7 7 7>;
-+	interrupt-names = "iep_cap_cmp";
-+};
-+
-+&icssg0_iep1 {
-+	interrupt-parent = <&icssg0_intc>;
-+	interrupts = <56 8 8>;
-+	interrupt-names = "iep_cap_cmp";
-+};
-
--- 
-2.45.2
-
+--=20
+With Best Regards,
+Andy Shevchenko
 
