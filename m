@@ -1,70 +1,72 @@
-Return-Path: <devicetree+bounces-72186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE6168FB162
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:50:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84BD78FB163
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:50:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F1FE1F23729
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 11:50:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37AD8281B1E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 11:50:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85DE8145A06;
-	Tue,  4 Jun 2024 11:50:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19DE3145A1D;
+	Tue,  4 Jun 2024 11:50:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FU2LgjVw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vr598juU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72F5D131182
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 11:50:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42AEF145A0D
+	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 11:50:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717501806; cv=none; b=BHjnaQYKhipDjydO077Bk7Cf+IxEuxaA2v/P4TsranXFfM9XivUYAqLxyhSs25MsKm1H44RjTTeZ6srdW3n3p4O+5dHiAEziiU+6D5khGDgqzWBCxrBaGcMHFXd8XgYjku+MltccIXdiLbhWsER27Ex6FCKwG1/ly20j4jrKuaM=
+	t=1717501809; cv=none; b=PopdGRiKX+4d13noXPLwD9J0W7560iPBAWZa7PzfUm2ZRAua8COPJipN5ljge7Dro1FU9vSRNhx9/eGAjKkHAwp9JmzeZN7cjWIk55HLT6dsXUuriOvr5IiyHTz09JY47bcPjUINNnLfLYP6M26BzOWr+UHbgXGHbBfRU9nsQew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717501806; c=relaxed/simple;
-	bh=I7ulkF60SFZa16ex+a7CX6+egcbFvAy9jEgkyJifxeU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=atq58Sj/tZho+oc0xll72Gg6hQXUGfS49vhqLqFk/niTOikpOtxu6P6aYwtM42Zu/OVuZscXfDBU9JR/KrOQtA+KtlP12DBtpIo62cGy3+hE+huwVDktEPly/3B0lVqcPPikay1Kk+4AqUd31t6MMZ5O4t12wn7LJCdMmcVV3mk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FU2LgjVw; arc=none smtp.client-ip=209.85.221.54
+	s=arc-20240116; t=1717501809; c=relaxed/simple;
+	bh=fkTnZ9utSu3RpZjpTFA3KtX0kGbMOvSiWEWH/lnpAC4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=LQgawcPYvVgr0/GhGtOmU3g7gm8DpeowempCoNAyWlaTRNNffJnlJXT4asC3Gru/Nju3I9S54+uOZ9huLKodGNVpwfKI93YEhZmUJaiU5btAGld2qUj7PfJlTrMmPoy0ZSbkxKOMCfApw0S+HBmsVemHlj7mLM8fHnN3sYCa4HM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vr598juU; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-35dc04717a1so4050431f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 04:50:04 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-42120fc8cbfso42259215e9.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 04:50:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717501803; x=1718106603; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=z/X3kr6zp5onHHy+RzdXQB4N2JDza5U07SfYxCf10Fs=;
-        b=FU2LgjVw+vLe+ZoPjZuv2UcUy6WLJUme9grIsGOvP1B9k+PdhQ4aWjmWEXUfnNR/Ag
-         kvKjqNrRldaAaEfBXgYZMO5nEiDwnMyOT6hPqmf9UjXvleG7QqOZR/c0D1IZbbx95wXu
-         /Stcb8WXtWnWTUmCvUVWAg/v5Ef+y+CRNFPOkRTUsCAtD/OBV8/Ux0fdJS/rV/NJLpv6
-         DSH0xU0q+KrkBNUL5J51AJh4dnxRubDu0SOVx/2Tn84rQF8R2EisDS+VhKHWCu45wrkl
-         VMA1GYjseHBdRfgjN1l4FTaLHykcUlwhl7OirLtBkuhfjiORF8xk+PtAt/tlrVkeFsZO
-         WfRw==
+        d=linaro.org; s=google; t=1717501806; x=1718106606; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gpkE0aoUE1IXbX8I6HLJkpLAh+G2e+4zrxJDLYQ7ckM=;
+        b=vr598juUFJIKS8p+3fAmrFLin6fAGVbvsY8/AYN1SsltRLbfb8eN+D2H+49Jz9RWlx
+         uFH7OVTaUgNtyIbHnPINLbIab9MyQGZNIkbfOoQbQ52TLhSp+qUNNh4kYsmy5STcmaZT
+         TL3+/lTJNRCfg+dQk4c+q94dSOWhJyUYKSwUihM7fh6FId8ohPqcw0s+Y7bGS0izz84i
+         VFP8dlUvJxUitWMFeLbE7dOgEQJc9vP7U1WJKfGJzUsYNy2YxnO3MW2SOW+3GM/Zo0K3
+         qmEsJIRlXeHzsR0j9VuGrVZ+wmFfGHOE0hurYLmXydb/JwnNrGObRjGD4hB9bvvX8K60
+         s5Nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717501803; x=1718106603;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z/X3kr6zp5onHHy+RzdXQB4N2JDza5U07SfYxCf10Fs=;
-        b=M77D/YS5MnTaEhQrNUQY+91xBjcMQFL52+glFqlC4m/cXPNxLCCDDsOOfYMxVbmE9b
-         1K+8IiEzOM8E6LhG8V1ghQXgtODjON98ByBC+3I+EurHp7ErDdtWj6fejvlwhGwKe6vi
-         n6SRJdyOiUgZeyc4KtyQooN15czhnqbfHyYqXJtcUWasSWe2Cc5J7hw1DD6seMGfCdRs
-         bMx687WmI5tKMcg4lCKv3Ivl3xJdrt6sK2fAg5od9OIO1A/mEWvEVYYTMkCvlGwCEnQm
-         f4v06M6YiPQnT40J7GL+5iWfr7MhgnXJpDJnNlm1YZ1eMU5BvjYWOY7ETrA0i2plGIf9
-         0Vmg==
-X-Forwarded-Encrypted: i=1; AJvYcCVu7yGWgzocd3rXAbPNIj0jEdtwI7Xp51nlYp/CEV6XGNTySZCAzc+dt8agWWMqbJXNDMI37hQ5LQ23Ev4wptIPrM/zV26CYapMcQ==
-X-Gm-Message-State: AOJu0YwHBOizVqV8x7OFt6Fdiz6py99ROQ+VyiAc1q+KskgBxUbGH8LX
-	SIjvtSh+aqjWVIqQ+/JD5C12EH7yTS8zfgDkdRaOI7lGgWG7iREMnOz1Xqe79Gc=
-X-Google-Smtp-Source: AGHT+IHIiFlKvt34fx8Lvne6vTjuV1cmTgdNMuf6yJ2EPxDOhz1sfI2UpshRFQJplcELqwu9bOjrIw==
-X-Received: by 2002:adf:fd07:0:b0:354:fd31:578d with SMTP id ffacd0b85a97d-35e0f32e306mr9014270f8f.61.1717501802700;
-        Tue, 04 Jun 2024 04:50:02 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1717501806; x=1718106606;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gpkE0aoUE1IXbX8I6HLJkpLAh+G2e+4zrxJDLYQ7ckM=;
+        b=fWytY6xm9pZsPIfNxh8+G0ll5ce5xKn+QKvStRv8FvPB+LFN/P3tAg5bx59wFRpM6c
+         kPNn9g3Mvo/tTJbpN3Wb7mAAewHDKoXXOagTytKbkZiIeXEbqDJWgEqUKcSNOYhjZcOj
+         XXi+LYsxu/+e9qZfeVcMzA2nt6cPpje+ks0wfmkjDgq5kzt+Hpf++fhjDpGXHP1P3f4Z
+         7ZRYtZcVExi5CTRpeIFCcocBgkaevAA3AmCrAk4Z/S+U8v06P6Jp9cbWqhBlsIfrYFYN
+         nq1vprKAxq8rAq+Fzx1hpLWHBuQrrgaOwMoHt/RgpWLvP3BCbeqD+yJeeugJoNl9PJOf
+         mGew==
+X-Forwarded-Encrypted: i=1; AJvYcCUUe578mRB1McWpbwW03HZnZ3nlp2z97zTwVGsgh6DLvDWoqaxDyVsGht00RmJfQ6MC/y8Z0Rx8kmwKxOYUeWwc3Ow99df/U+bprA==
+X-Gm-Message-State: AOJu0YwcGnUzbdMajgNu83kLbUjET8sp4Baqs0wfd1VHtImD21GFn9M3
+	KtLRfKwd2oKZZ+1rZjZpFVppQYuq4+vgNe3IhrAAM7SnQp1W6fYAUw/jWwy00Xw=
+X-Google-Smtp-Source: AGHT+IFp86vnBYSC7x98t1T9ZYJ9jdMan1oKa49xowP4VBC4PIr/20ZGyhKUU3gmgNBp3Qk7geKtTQ==
+X-Received: by 2002:a05:600c:4fc9:b0:416:7470:45ad with SMTP id 5b1f17b1804b1-4212e07630emr112810035e9.17.1717501804096;
+        Tue, 04 Jun 2024 04:50:04 -0700 (PDT)
 Received: from krzk-bin.. ([110.93.11.116])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35e5bb909d1sm5107822f8f.88.2024.06.04.04.50.01
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35e5bb909d1sm5107822f8f.88.2024.06.04.04.50.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jun 2024 04:50:02 -0700 (PDT)
+        Tue, 04 Jun 2024 04:50:03 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Conor Dooley <conor@kernel.org>,
 	Nicolas Ferre <nicolas.ferre@microchip.com>,
@@ -79,10 +81,12 @@ To: Conor Dooley <conor@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/2] arm64: dts: microchip: sparx5_pcb134: move non-MMIO nodes out of axi
-Date: Tue,  4 Jun 2024 13:49:48 +0200
-Message-ID: <20240604114949.165223-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/2] arm64: dts: microchip: sparx5_pcb135: move non-MMIO nodes out of axi
+Date: Tue,  4 Jun 2024 13:49:49 +0200
+Message-ID: <20240604114949.165223-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240604114949.165223-1-krzysztof.kozlowski@linaro.org>
+References: <20240604114949.165223-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,33 +98,26 @@ Content-Transfer-Encoding: 8bit
 simple-bus nodes, so the "axi" node, should not have non-MMIO children
 as pointed out by simple-bus schema dtbs_check:
 
-  sparx5_pcb134.dtb: axi@600000000: i2c-mux-0: {'compatible': ... should not be valid under {'type': 'object'}
+  sparx5_pcb135_emmc.dtb: axi@600000000: sfp-eth60: {'compatible': ... should not be valid under {'type': 'object'}
     from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
 
 Reported-by: Rob Herring <robh@kernel.org>
 Closes: https://lore.kernel.org/all/CAL_Jsq+PtL3HTKkA_gwTjb_i1mFZ+wW+qwin34HMYmwW7oNDFw@mail.gmail.com/
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../dts/microchip/sparx5_pcb134_board.dtsi    | 372 +++++++++---------
- 1 file changed, 194 insertions(+), 178 deletions(-)
+ .../dts/microchip/sparx5_pcb135_board.dtsi    | 95 +++++++++----------
+ 1 file changed, 47 insertions(+), 48 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi b/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-index 2c5574734c9e..e60acc74e822 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-@@ -13,6 +13,20 @@ gpio-restart {
+diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi b/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
+index af2f1831f07f..196868898f49 100644
+--- a/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
++++ b/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
+@@ -13,6 +13,13 @@ gpio-restart {
  		priority = <200>;
  	};
  
-+	i2c0_imux: i2c-mux-0 {
++	i2c0_imux: i2c-mux {
 +		compatible = "i2c-mux-pinctrl";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-parent = <&i2c0>;
-+	};
-+
-+	i2c0_emux: i2c-mux-1 {
-+		compatible = "i2c-mux-gpio";
 +		#address-cells = <1>;
 +		#size-cells = <0>;
 +		i2c-parent = <&i2c0>;
@@ -129,206 +126,60 @@ index 2c5574734c9e..e60acc74e822 100644
  	leds {
  		compatible = "gpio-leds";
  		led-0 {
-@@ -248,6 +262,186 @@ led-47 {
+@@ -56,6 +63,46 @@ led-7 {
  			default-state = "off";
  		};
  	};
 +
-+	sfp_eth12: sfp-eth12 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp1>;
-+		tx-disable-gpios = <&sgpio_out2 11 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in2 11 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in2 11 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in2 12 0 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sfp_eth13: sfp-eth13 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp2>;
-+		tx-disable-gpios = <&sgpio_out2 12 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in2 12 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in2 12 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in2 13 0 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sfp_eth14: sfp-eth14 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp3>;
-+		tx-disable-gpios = <&sgpio_out2 13 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in2 13 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in2 13 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in2 14 0 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sfp_eth15: sfp-eth15 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp4>;
-+		tx-disable-gpios = <&sgpio_out2 14 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in2 14 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in2 14 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in2 15 0 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sfp_eth48: sfp-eth48 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp5>;
-+		tx-disable-gpios = <&sgpio_out2 15 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in2 15 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in2 15 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in2 16 0 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sfp_eth49: sfp-eth49 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp6>;
-+		tx-disable-gpios = <&sgpio_out2 16 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in2 16 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in2 16 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in2 17 0 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sfp_eth50: sfp-eth50 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp7>;
-+		tx-disable-gpios = <&sgpio_out2 17 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in2 17 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in2 17 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in2 18 0 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sfp_eth51: sfp-eth51 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp8>;
-+		tx-disable-gpios = <&sgpio_out2 18 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in2 18 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in2 18 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in2 19 0 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sfp_eth52: sfp-eth52 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp9>;
-+		tx-disable-gpios = <&sgpio_out2 19 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in2 19 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in2 19 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in2 20 0 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sfp_eth53: sfp-eth53 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp10>;
-+		tx-disable-gpios = <&sgpio_out2 20 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in2 20 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in2 20 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in2 21 0 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sfp_eth54: sfp-eth54 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp11>;
-+		tx-disable-gpios = <&sgpio_out2 21 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in2 21 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in2 21 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in2 22 0 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sfp_eth55: sfp-eth55 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp12>;
-+		tx-disable-gpios = <&sgpio_out2 22 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in2 22 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in2 22 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in2 23 0 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sfp_eth56: sfp-eth56 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp13>;
-+		tx-disable-gpios = <&sgpio_out2 23 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in2 23 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in2 23 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in2 24 0 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sfp_eth57: sfp-eth57 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp14>;
-+		tx-disable-gpios = <&sgpio_out2 24 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in2 24 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in2 24 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in2 25 0 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sfp_eth58: sfp-eth58 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp15>;
-+		tx-disable-gpios = <&sgpio_out2 25 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in2 25 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in2 25 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in2 26 0 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sfp_eth59: sfp-eth59 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp16>;
-+		tx-disable-gpios = <&sgpio_out2 26 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in2 26 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in2 26 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in2 27 0 GPIO_ACTIVE_HIGH>;
-+	};
-+
 +	sfp_eth60: sfp-eth60 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp17>;
-+		tx-disable-gpios = <&sgpio_out2 27 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in2 27 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in2 27 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in2 28 0 GPIO_ACTIVE_HIGH>;
++		compatible	 = "sff,sfp";
++		i2c-bus = <&i2c_sfp1>;
++		tx-disable-gpios = <&sgpio_out2 28 0 GPIO_ACTIVE_LOW>;
++		rate-select0-gpios = <&sgpio_out2 28 1 GPIO_ACTIVE_HIGH>;
++		los-gpios = <&sgpio_in2 28 0 GPIO_ACTIVE_HIGH>;
++		mod-def0-gpios = <&sgpio_in2 28 1 GPIO_ACTIVE_LOW>;
++		tx-fault-gpios = <&sgpio_in2 28 2 GPIO_ACTIVE_HIGH>;
 +	};
 +
 +	sfp_eth61: sfp-eth61 {
 +		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp18>;
-+		tx-disable-gpios = <&sgpio_out2 28 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in2 28 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in2 28 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in2 29 0 GPIO_ACTIVE_HIGH>;
++		i2c-bus = <&i2c_sfp2>;
++		tx-disable-gpios = <&sgpio_out2 29 0 GPIO_ACTIVE_LOW>;
++		rate-select0-gpios = <&sgpio_out2 29 1 GPIO_ACTIVE_HIGH>;
++		los-gpios = <&sgpio_in2 29 0 GPIO_ACTIVE_HIGH>;
++		mod-def0-gpios = <&sgpio_in2 29 1 GPIO_ACTIVE_LOW>;
++		tx-fault-gpios = <&sgpio_in2 29 2 GPIO_ACTIVE_HIGH>;
 +	};
 +
 +	sfp_eth62: sfp-eth62 {
 +		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp19>;
-+		tx-disable-gpios = <&sgpio_out2 29 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in2 29 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in2 29 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in2 30 0 GPIO_ACTIVE_HIGH>;
++		i2c-bus = <&i2c_sfp3>;
++		tx-disable-gpios = <&sgpio_out2 30 0 GPIO_ACTIVE_LOW>;
++		rate-select0-gpios = <&sgpio_out2 30 1 GPIO_ACTIVE_HIGH>;
++		los-gpios = <&sgpio_in2 30 0 GPIO_ACTIVE_HIGH>;
++		mod-def0-gpios = <&sgpio_in2 30 1 GPIO_ACTIVE_LOW>;
++		tx-fault-gpios = <&sgpio_in2 30 2 GPIO_ACTIVE_HIGH>;
 +	};
 +
 +	sfp_eth63: sfp-eth63 {
 +		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp20>;
-+		tx-disable-gpios = <&sgpio_out2 30 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in2 30 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in2 30 2 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in2 31 0 GPIO_ACTIVE_HIGH>;
++		i2c-bus = <&i2c_sfp4>;
++		tx-disable-gpios = <&sgpio_out2 31 0 GPIO_ACTIVE_LOW>;
++		rate-select0-gpios = <&sgpio_out2 31 1 GPIO_ACTIVE_HIGH>;
++		los-gpios = <&sgpio_in2 31 0 GPIO_ACTIVE_HIGH>;
++		mod-def0-gpios = <&sgpio_in2 31 1 GPIO_ACTIVE_LOW>;
++		tx-fault-gpios = <&sgpio_in2 31 2 GPIO_ACTIVE_HIGH>;
 +	};
  };
  
- &sgpio0 {
-@@ -385,21 +579,6 @@ i2cmux_11: i2cmux-11-pins {
- 	};
+ &gpio {
+@@ -119,15 +166,6 @@ &sgpio2 {
+ 	microchip,sgpio-port-ranges = <0 0>, <16 18>, <28 31>;
  };
  
 -&axi {
--	i2c0_imux: i2c-mux-0 {
+-	i2c0_imux: i2c-mux {
 -		compatible = "i2c-mux-pinctrl";
--		#address-cells = <1>;
--		#size-cells = <0>;
--		i2c-parent = <&i2c0>;
--	};
--	i2c0_emux: i2c-mux-1 {
--		compatible = "i2c-mux-gpio";
 -		#address-cells = <1>;
 -		#size-cells = <0>;
 -		i2c-parent = <&i2c0>;
@@ -338,176 +189,52 @@ index 2c5574734c9e..e60acc74e822 100644
  &i2c0_imux {
  	pinctrl-names =
  		"i2c_sfp1", "i2c_sfp2", "i2c_sfp3", "i2c_sfp4",
-@@ -535,169 +714,6 @@ phy64: ethernet-phy@64 {
+@@ -159,45 +197,6 @@ i2c_sfp4: i2c@3 {
  	};
  };
  
 -&axi {
--	sfp_eth12: sfp-eth12 {
--		compatible = "sff,sfp";
--		i2c-bus = <&i2c_sfp1>;
--		tx-disable-gpios = <&sgpio_out2 11 1 GPIO_ACTIVE_LOW>;
--		los-gpios = <&sgpio_in2 11 1 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpios = <&sgpio_in2 11 2 GPIO_ACTIVE_LOW>;
--		tx-fault-gpios = <&sgpio_in2 12 0 GPIO_ACTIVE_HIGH>;
--	};
--	sfp_eth13: sfp-eth13 {
--		compatible = "sff,sfp";
--		i2c-bus = <&i2c_sfp2>;
--		tx-disable-gpios = <&sgpio_out2 12 1 GPIO_ACTIVE_LOW>;
--		los-gpios = <&sgpio_in2 12 1 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpios = <&sgpio_in2 12 2 GPIO_ACTIVE_LOW>;
--		tx-fault-gpios = <&sgpio_in2 13 0 GPIO_ACTIVE_HIGH>;
--	};
--	sfp_eth14: sfp-eth14 {
--		compatible = "sff,sfp";
--		i2c-bus = <&i2c_sfp3>;
--		tx-disable-gpios = <&sgpio_out2 13 1 GPIO_ACTIVE_LOW>;
--		los-gpios = <&sgpio_in2 13 1 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpios = <&sgpio_in2 13 2 GPIO_ACTIVE_LOW>;
--		tx-fault-gpios = <&sgpio_in2 14 0 GPIO_ACTIVE_HIGH>;
--	};
--	sfp_eth15: sfp-eth15 {
--		compatible = "sff,sfp";
--		i2c-bus = <&i2c_sfp4>;
--		tx-disable-gpios = <&sgpio_out2 14 1 GPIO_ACTIVE_LOW>;
--		los-gpios = <&sgpio_in2 14 1 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpios = <&sgpio_in2 14 2 GPIO_ACTIVE_LOW>;
--		tx-fault-gpios = <&sgpio_in2 15 0 GPIO_ACTIVE_HIGH>;
--	};
--	sfp_eth48: sfp-eth48 {
--		compatible = "sff,sfp";
--		i2c-bus = <&i2c_sfp5>;
--		tx-disable-gpios = <&sgpio_out2 15 1 GPIO_ACTIVE_LOW>;
--		los-gpios = <&sgpio_in2 15 1 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpios = <&sgpio_in2 15 2 GPIO_ACTIVE_LOW>;
--		tx-fault-gpios = <&sgpio_in2 16 0 GPIO_ACTIVE_HIGH>;
--	};
--	sfp_eth49: sfp-eth49 {
--		compatible = "sff,sfp";
--		i2c-bus = <&i2c_sfp6>;
--		tx-disable-gpios = <&sgpio_out2 16 1 GPIO_ACTIVE_LOW>;
--		los-gpios = <&sgpio_in2 16 1 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpios = <&sgpio_in2 16 2 GPIO_ACTIVE_LOW>;
--		tx-fault-gpios = <&sgpio_in2 17 0 GPIO_ACTIVE_HIGH>;
--	};
--	sfp_eth50: sfp-eth50 {
--		compatible = "sff,sfp";
--		i2c-bus = <&i2c_sfp7>;
--		tx-disable-gpios = <&sgpio_out2 17 1 GPIO_ACTIVE_LOW>;
--		los-gpios = <&sgpio_in2 17 1 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpios = <&sgpio_in2 17 2 GPIO_ACTIVE_LOW>;
--		tx-fault-gpios = <&sgpio_in2 18 0 GPIO_ACTIVE_HIGH>;
--	};
--	sfp_eth51: sfp-eth51 {
--		compatible = "sff,sfp";
--		i2c-bus = <&i2c_sfp8>;
--		tx-disable-gpios = <&sgpio_out2 18 1 GPIO_ACTIVE_LOW>;
--		los-gpios = <&sgpio_in2 18 1 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpios = <&sgpio_in2 18 2 GPIO_ACTIVE_LOW>;
--		tx-fault-gpios = <&sgpio_in2 19 0 GPIO_ACTIVE_HIGH>;
--	};
--	sfp_eth52: sfp-eth52 {
--		compatible = "sff,sfp";
--		i2c-bus = <&i2c_sfp9>;
--		tx-disable-gpios = <&sgpio_out2 19 1 GPIO_ACTIVE_LOW>;
--		los-gpios = <&sgpio_in2 19 1 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpios = <&sgpio_in2 19 2 GPIO_ACTIVE_LOW>;
--		tx-fault-gpios = <&sgpio_in2 20 0 GPIO_ACTIVE_HIGH>;
--	};
--	sfp_eth53: sfp-eth53 {
--		compatible = "sff,sfp";
--		i2c-bus = <&i2c_sfp10>;
--		tx-disable-gpios = <&sgpio_out2 20 1 GPIO_ACTIVE_LOW>;
--		los-gpios = <&sgpio_in2 20 1 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpios = <&sgpio_in2 20 2 GPIO_ACTIVE_LOW>;
--		tx-fault-gpios = <&sgpio_in2 21 0 GPIO_ACTIVE_HIGH>;
--	};
--	sfp_eth54: sfp-eth54 {
--		compatible = "sff,sfp";
--		i2c-bus = <&i2c_sfp11>;
--		tx-disable-gpios = <&sgpio_out2 21 1 GPIO_ACTIVE_LOW>;
--		los-gpios = <&sgpio_in2 21 1 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpios = <&sgpio_in2 21 2 GPIO_ACTIVE_LOW>;
--		tx-fault-gpios = <&sgpio_in2 22 0 GPIO_ACTIVE_HIGH>;
--	};
--	sfp_eth55: sfp-eth55 {
--		compatible = "sff,sfp";
--		i2c-bus = <&i2c_sfp12>;
--		tx-disable-gpios = <&sgpio_out2 22 1 GPIO_ACTIVE_LOW>;
--		los-gpios = <&sgpio_in2 22 1 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpios = <&sgpio_in2 22 2 GPIO_ACTIVE_LOW>;
--		tx-fault-gpios = <&sgpio_in2 23 0 GPIO_ACTIVE_HIGH>;
--	};
--	sfp_eth56: sfp-eth56 {
--		compatible = "sff,sfp";
--		i2c-bus = <&i2c_sfp13>;
--		tx-disable-gpios = <&sgpio_out2 23 1 GPIO_ACTIVE_LOW>;
--		los-gpios = <&sgpio_in2 23 1 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpios = <&sgpio_in2 23 2 GPIO_ACTIVE_LOW>;
--		tx-fault-gpios = <&sgpio_in2 24 0 GPIO_ACTIVE_HIGH>;
--	};
--	sfp_eth57: sfp-eth57 {
--		compatible = "sff,sfp";
--		i2c-bus = <&i2c_sfp14>;
--		tx-disable-gpios = <&sgpio_out2 24 1 GPIO_ACTIVE_LOW>;
--		los-gpios = <&sgpio_in2 24 1 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpios = <&sgpio_in2 24 2 GPIO_ACTIVE_LOW>;
--		tx-fault-gpios = <&sgpio_in2 25 0 GPIO_ACTIVE_HIGH>;
--	};
--	sfp_eth58: sfp-eth58 {
--		compatible = "sff,sfp";
--		i2c-bus = <&i2c_sfp15>;
--		tx-disable-gpios = <&sgpio_out2 25 1 GPIO_ACTIVE_LOW>;
--		los-gpios = <&sgpio_in2 25 1 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpios = <&sgpio_in2 25 2 GPIO_ACTIVE_LOW>;
--		tx-fault-gpios = <&sgpio_in2 26 0 GPIO_ACTIVE_HIGH>;
--	};
--	sfp_eth59: sfp-eth59 {
--		compatible = "sff,sfp";
--		i2c-bus = <&i2c_sfp16>;
--		tx-disable-gpios = <&sgpio_out2 26 1 GPIO_ACTIVE_LOW>;
--		los-gpios = <&sgpio_in2 26 1 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpios = <&sgpio_in2 26 2 GPIO_ACTIVE_LOW>;
--		tx-fault-gpios = <&sgpio_in2 27 0 GPIO_ACTIVE_HIGH>;
--	};
 -	sfp_eth60: sfp-eth60 {
--		compatible = "sff,sfp";
--		i2c-bus = <&i2c_sfp17>;
--		tx-disable-gpios = <&sgpio_out2 27 1 GPIO_ACTIVE_LOW>;
--		los-gpios = <&sgpio_in2 27 1 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpios = <&sgpio_in2 27 2 GPIO_ACTIVE_LOW>;
--		tx-fault-gpios = <&sgpio_in2 28 0 GPIO_ACTIVE_HIGH>;
+-		compatible	 = "sff,sfp";
+-		i2c-bus = <&i2c_sfp1>;
+-		tx-disable-gpios = <&sgpio_out2 28 0 GPIO_ACTIVE_LOW>;
+-		rate-select0-gpios = <&sgpio_out2 28 1 GPIO_ACTIVE_HIGH>;
+-		los-gpios = <&sgpio_in2 28 0 GPIO_ACTIVE_HIGH>;
+-		mod-def0-gpios = <&sgpio_in2 28 1 GPIO_ACTIVE_LOW>;
+-		tx-fault-gpios = <&sgpio_in2 28 2 GPIO_ACTIVE_HIGH>;
 -	};
 -	sfp_eth61: sfp-eth61 {
 -		compatible = "sff,sfp";
--		i2c-bus = <&i2c_sfp18>;
--		tx-disable-gpios = <&sgpio_out2 28 1 GPIO_ACTIVE_LOW>;
--		los-gpios = <&sgpio_in2 28 1 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpios = <&sgpio_in2 28 2 GPIO_ACTIVE_LOW>;
--		tx-fault-gpios = <&sgpio_in2 29 0 GPIO_ACTIVE_HIGH>;
+-		i2c-bus = <&i2c_sfp2>;
+-		tx-disable-gpios = <&sgpio_out2 29 0 GPIO_ACTIVE_LOW>;
+-		rate-select0-gpios = <&sgpio_out2 29 1 GPIO_ACTIVE_HIGH>;
+-		los-gpios = <&sgpio_in2 29 0 GPIO_ACTIVE_HIGH>;
+-		mod-def0-gpios = <&sgpio_in2 29 1 GPIO_ACTIVE_LOW>;
+-		tx-fault-gpios = <&sgpio_in2 29 2 GPIO_ACTIVE_HIGH>;
 -	};
 -	sfp_eth62: sfp-eth62 {
 -		compatible = "sff,sfp";
--		i2c-bus = <&i2c_sfp19>;
--		tx-disable-gpios = <&sgpio_out2 29 1 GPIO_ACTIVE_LOW>;
--		los-gpios = <&sgpio_in2 29 1 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpios = <&sgpio_in2 29 2 GPIO_ACTIVE_LOW>;
--		tx-fault-gpios = <&sgpio_in2 30 0 GPIO_ACTIVE_HIGH>;
+-		i2c-bus = <&i2c_sfp3>;
+-		tx-disable-gpios = <&sgpio_out2 30 0 GPIO_ACTIVE_LOW>;
+-		rate-select0-gpios = <&sgpio_out2 30 1 GPIO_ACTIVE_HIGH>;
+-		los-gpios = <&sgpio_in2 30 0 GPIO_ACTIVE_HIGH>;
+-		mod-def0-gpios = <&sgpio_in2 30 1 GPIO_ACTIVE_LOW>;
+-		tx-fault-gpios = <&sgpio_in2 30 2 GPIO_ACTIVE_HIGH>;
 -	};
 -	sfp_eth63: sfp-eth63 {
 -		compatible = "sff,sfp";
--		i2c-bus = <&i2c_sfp20>;
--		tx-disable-gpios = <&sgpio_out2 30 1 GPIO_ACTIVE_LOW>;
--		los-gpios = <&sgpio_in2 30 1 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpios = <&sgpio_in2 30 2 GPIO_ACTIVE_LOW>;
--		tx-fault-gpios = <&sgpio_in2 31 0 GPIO_ACTIVE_HIGH>;
+-		i2c-bus = <&i2c_sfp4>;
+-		tx-disable-gpios = <&sgpio_out2 31 0 GPIO_ACTIVE_LOW>;
+-		rate-select0-gpios = <&sgpio_out2 31 1 GPIO_ACTIVE_HIGH>;
+-		los-gpios = <&sgpio_in2 31 0 GPIO_ACTIVE_HIGH>;
+-		mod-def0-gpios = <&sgpio_in2 31 1 GPIO_ACTIVE_LOW>;
+-		tx-fault-gpios = <&sgpio_in2 31 2 GPIO_ACTIVE_HIGH>;
 -	};
 -};
 -
- &switch {
- 	ethernet-ports {
- 		#address-cells = <1>;
+ &mdio0 {
+ 	status = "okay";
+ 	phy0: ethernet-phy@0 {
 -- 
 2.43.0
 
