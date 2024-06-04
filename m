@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-72366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97B318FB7A6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:42:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C588E8FB7B1
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:43:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9C4D1C21DB0
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:42:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00F321C24A58
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:43:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E402D1420C9;
-	Tue,  4 Jun 2024 15:41:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAA0F146D6E;
+	Tue,  4 Jun 2024 15:43:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g3B9tRPc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nLnayX7Q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B846B1474BC;
-	Tue,  4 Jun 2024 15:41:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC7B713C9CF;
+	Tue,  4 Jun 2024 15:43:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717515717; cv=none; b=bXFut0mQ9Phw3DwVTRoEdwypnPnzRRz8BdO39dJi4tb9HlxYnvaznDgPV+nX+U4Yqy6CKSoV/08hxK7uASJffmfX+A6cackRzGxFhS5O0yqTIOGehjKITsetStbPHUSJ06Qs243toa6eedXHVS2w2gSK8RC+jH4fmWFQbRseSEg=
+	t=1717515780; cv=none; b=Kjv33WuIGmAnKkaJCJ94ZyjZ4RFtkqGqRW6OSk08CgwJ/LLJQqPo8NIIhDp8yeEf5PfoD1xw+HvTYtoAczTwr/xvFi6VZgbt+kLOrH5BdROFYDhY5ZfDQbgfbMs7oj+4vkQNoOtdDvq8yaQFIRJ6jhTr1z5H8cvCDv5raGE0P/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717515717; c=relaxed/simple;
-	bh=bSAjULwqSzj/hapts8c3Q7HGBF+F37mVqg5+WeWwjXo=;
+	s=arc-20240116; t=1717515780; c=relaxed/simple;
+	bh=GGpm3RQuJoPGguyf2jWgVnLOC1rsSJgaj3m6I51GKGg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KzkbBLEC55QApP8BLWXJ3NN9fmNmAse0aYz7dDZM98036IikmC49rt6Mz6khd+TneQGWc0yVM3E1unWq/d+h4e4wnAuyIwm6QnPbmIX4y9di730s0HsfqmAKkbE2dwtlik4Q7AzOWV1yAnbzoG+MfUS/9LPVjlA+PTgo/oy5CA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g3B9tRPc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16A89C32786;
-	Tue,  4 Jun 2024 15:41:52 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=uuM9NSwQ43KbSYkkRWBn9mwGf34j64P68cp2Qi8270W6RxdREG/jIgUzPxBdLogTkp9DsZv78dO7/tWr4XZ+CRCiuCrEbIrSKW1xdylhnAT1gFFRN1NFflC+rHhvHe42LaKl594cEeI7xW8NGq1GNIZ6LzBlvfCLQZ8Lv5BxNjk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nLnayX7Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E107FC2BBFC;
+	Tue,  4 Jun 2024 15:42:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717515717;
-	bh=bSAjULwqSzj/hapts8c3Q7HGBF+F37mVqg5+WeWwjXo=;
+	s=k20201202; t=1717515780;
+	bh=GGpm3RQuJoPGguyf2jWgVnLOC1rsSJgaj3m6I51GKGg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=g3B9tRPc1r80gCcUvxQ2WkcUJk/uXKdiYuPzg+cCxBffPzD2FlWVB3SdwgB+I+oEF
-	 PPD4181WO0ojU2bEuqcUEh0V/inQzun3hLbJIv5+IyajSHSG4Rx0lzOavXy6VMHj2E
-	 ITxPKBp6+XoxwuBEZWKzA66+8g0Cf5AnJF91luveEAvXTbAZDg4Rz+6CLJWhaIqEse
-	 W9Jheml3Fo/6vCyuD+J/o2pgjcAVdq8x1mBUuCa15hEIjL8LBtwtny+VUTD8b4vzaW
-	 1qtF20OgtMoADNef079AWFJCHYGL6YXgUiZ5EsbDfPIgekH7q8dUMIYzKAlpInZwQt
-	 4gd201jL+XNEg==
-Message-ID: <c9eaff68-4582-408e-84e1-bcb75b879b66@kernel.org>
-Date: Tue, 4 Jun 2024 17:41:51 +0200
+	b=nLnayX7Qcu0rHD7Z/r9CCSWRcl4xr8ucVvxwfRzw3rXfuK7UG5ybTy6qI2l1QM7Im
+	 HscVO10IDRc+yuxnYFmAzrTpwfd1GSKbo4ZjvEW2JSZ0SVRBsfOaKWSpP+4lBOSoqw
+	 p0y545I39Wh3DFyz2jYyRonNmTpcNgpm14I709DNlcHKODbxcnSLx7uOZ8+6vyCz/F
+	 rD5FRVEUdbVFYOdYfhBO/CqNsrdDUO6L9H/S994W6iq20L/x/P4XQx4O/A4cUMpvoA
+	 AdZVA/X+uonlqroWLkKC4yiFHyuXwH/3R5FdNzP7cMaub1EVl4O2MJDxyaTQiSVGaR
+	 3g4LdNM8+P5hg==
+Message-ID: <381d5af3-1ff0-466c-bdc3-ec6d0ad5d5e9@kernel.org>
+Date: Tue, 4 Jun 2024 17:42:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] dt-bindings: display/msm/dsi: allow specifying TE
- source
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Krishna Manikandan <quic_mkrishn@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-References: <20240520-dpu-handle-te-signal-v1-0-f273b42a089c@linaro.org>
- <20240520-dpu-handle-te-signal-v1-1-f273b42a089c@linaro.org>
+Subject: Re: [PATCH 09/10] dt-bindings: arm: fsl: document Kontron
+ SMARC-sAMX6i boards
+To: Michael Walle <mwalle@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Li Yang <leoyang.li@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Priit Laes <plaes@plaes.org>,
+ Michael Grzeschik <m.grzeschik@pengutronix.de>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
+References: <20240604135934.1951189-1-mwalle@kernel.org>
+ <20240604135934.1951189-10-mwalle@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,20 +108,16 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240520-dpu-handle-te-signal-v1-1-f273b42a089c@linaro.org>
+In-Reply-To: <20240604135934.1951189-10-mwalle@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/05/2024 14:12, Dmitry Baryshkov wrote:
-> Command mode panels provide TE signal back to the DSI host to signal
-> that the frame display has completed and update of the image will not
-> cause tearing. Usually it is connected to the first GPIO with the
-> mdp_vsync function, which is the default. In such case the property can
-> be skipped.
+On 04/06/2024 15:59, Michael Walle wrote:
+> The Kontron SMARC-sAMX6i is just a module. There was no device tree for
+> an actual board for now. Document the binding to use the module on the
+> evaluation carrier.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
-Maybe we need third DT maintainer review/ack...
+> Signed-off-by: Michael Walle <mwalle@kernel.org>
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
