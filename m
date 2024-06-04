@@ -1,142 +1,151 @@
-Return-Path: <devicetree+bounces-72126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 937188FAE75
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 11:13:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A8D48FAE87
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 11:16:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C5B6286E0B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 09:13:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E80FA281427
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 09:16:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B70C714431C;
-	Tue,  4 Jun 2024 09:11:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD209143861;
+	Tue,  4 Jun 2024 09:16:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kZ/d6+Zf"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="27LETLlo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB9FB143C6F;
-	Tue,  4 Jun 2024 09:11:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B41F142E95;
+	Tue,  4 Jun 2024 09:16:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717492308; cv=none; b=DsssOr7VN8TeKABJJpywagEJ94vYMMzjyzjbyH1CslTirOMaXnRy/Q8mDlwdrTwBQUyPMBj/6FjCDF1scWIGTc3QwkwNFVPciaFJE8Y2evCHgvbjZrziW51+Hyfu9P0GVN90XikeBLixubUdsH/RtaJ7jFwwDeJIHhLfcU7vg5U=
+	t=1717492572; cv=none; b=pTncufPio9NhKIEN/sjrgg9oiocsNoyogOIPpTU7Gr8VJibStzR2bRRsgdi+dEn2lr7xWD7eTOcrHmWfgqKMDaGYe8inI2+QZrp0kO7YJp+r7GwSsKc4+jVZtufU/E8Spvxe+C6OxvWscjAGbUVznUF30I2HrFzrPBPnU/Zosbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717492308; c=relaxed/simple;
-	bh=ImJhbNsrIco+qebnToiezXtyMfSwI41zKI18NzCQA3A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KS+BymIXs6rynMfG+Zs6QeisCJ8YoPRk3i1vdyLO+O2MPW1LxPMD7f1ostyg0tRdOJHKev/XoTngWCDWHXRWOUde9M42KKWac2yrvwVhgUgGYpxP9ChdRw39oQynyqKZHUKQ4IOkyQJSaGHP+GjNL2k6PJnAtT5d8T5WWejtCXo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kZ/d6+Zf; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1717492307; x=1749028307;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ImJhbNsrIco+qebnToiezXtyMfSwI41zKI18NzCQA3A=;
-  b=kZ/d6+ZfxrE5VP8Vymde6mxBJYlXIP0c3RKwijGsq/jcN4DqJXicb4+d
-   xRE0/emWGyH2j9Hz7pwKV3ojWLsdy4RchHXmwDAO07yCuZMa2pFvXQfue
-   w03XCJiZ0oYZ3CxX60XqehDpDVrZpliBmWAVQbbnv0wtTkfT7+puIK1jM
-   j18PSEI18lL5ECfUoEMYzNL2ytS400E+6E7/vg+cRL/Um1V8n/Rh5ntVz
-   vUQdeRiNEZj44UvSJG6o2o5Sk0h3psjIv2IarvXT7VcYG305OLS3PsuHI
-   WLYcCnq/MlEWU8pNuaYWkdv/95py6FjTij/QckQy6DpUUwByskM3aLnV/
-   Q==;
-X-CSE-ConnectionGUID: 3rGwVxPCT8iffda50Lbf3g==
-X-CSE-MsgGUID: 2ZEx3e0xTMO4b4Z3nwIXJA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="17854993"
-X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; 
-   d="scan'208";a="17854993"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jun 2024 02:11:45 -0700
-X-CSE-ConnectionGUID: UTy3s7lEQtCIAKPlMIJ4mw==
-X-CSE-MsgGUID: xOhWAYg1T8Kfg7RJFjH19g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; 
-   d="scan'208";a="37299303"
-Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
-  by fmviesa009.fm.intel.com with ESMTP; 04 Jun 2024 02:11:41 -0700
-Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sEQCg-000MzT-1r;
-	Tue, 04 Jun 2024 09:11:38 +0000
-Date: Tue, 4 Jun 2024 17:10:52 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian Hewitt <christianshewitt@gmail.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 2/2] iio: adc: meson: add support for the GXLX SoC
-Message-ID: <202406041751.elQWr6cj-lkp@intel.com>
-References: <20240604055431.3313961-2-christianshewitt@gmail.com>
+	s=arc-20240116; t=1717492572; c=relaxed/simple;
+	bh=BQ4ARc7ym83EjP1ZdLfO7G30wIOuzKX+3fzcU4koyFI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=D5cAlhbC6g0rYXnG3FL0H+Jy3XhvK/w2bJvv4tol66mWMCmTtcmwLZM01FGl/SXv09J267rdB2rCQ0tvJ5ZEyTisy00dYIP6nyzr3WAG3oFkNl8rWemCFNJBQeSBSuZuB6lOSWxw+PzjZ634yu+9znfL0bUySMiHg/ebAvGDGvg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=27LETLlo; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45494lCn031129;
+	Tue, 4 Jun 2024 11:15:20 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	qffrjtKMkRwftEA2tT5fwaxuwB2L0SM4mOqEx2NwZOo=; b=27LETLloblnKW1ze
+	OguMztGrFKSJuOveeUHYxriGpmF2JVXJVDwEb8sXBWU9u8R0fQjb3HRfU+EUUBFb
+	24RZZ8KJd5JYG7mcmrlxbS5VmJhZFGM2Y/PRTkmAahmIfwMLQYj2xHuPq01JpIUu
+	Fd3pjfYyhBwZ8t0BbwkhynDsgUTfNyS+zqwPaApvO/O9kvprpvgM6gyqsUBex37s
+	IeEKv6EdGHf8Yl9MR+B/glTcq4VhG0hzOb8BZhytzlnirrOprMmFPlfcujaVoPE8
+	1HUHjYLDyYSmuGBIw0ZXTub9PQ73zSUegc8h2I3V0B/Feh4FITQmgo17wIYQaPb2
+	HkPAkQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ygd70sd70-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Jun 2024 11:15:20 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 3D29F40047;
+	Tue,  4 Jun 2024 11:15:12 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B6222216851;
+	Tue,  4 Jun 2024 11:13:54 +0200 (CEST)
+Received: from [10.48.86.164] (10.48.86.164) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 4 Jun
+ 2024 11:13:51 +0200
+Message-ID: <627a2182-527c-444d-9485-817c69f57036@foss.st.com>
+Date: Tue, 4 Jun 2024 11:13:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240604055431.3313961-2-christianshewitt@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 02/11] net: stmmac: dwmac-stm32: Separate out external
+ clock rate validation
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+CC: "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark
+ Brown <broonie@kernel.org>, Marek Vasut <marex@denx.de>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240603092757.71902-1-christophe.roullier@foss.st.com>
+ <20240603092757.71902-3-christophe.roullier@foss.st.com>
+ <Zl2O+eJF9vOTqFx2@shell.armlinux.org.uk>
+Content-Language: en-US
+From: Christophe ROULLIER <christophe.roullier@foss.st.com>
+In-Reply-To: <Zl2O+eJF9vOTqFx2@shell.armlinux.org.uk>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-06-04_03,2024-05-30_01,2024-05-17_01
 
-Hi Christian,
 
-kernel test robot noticed the following build errors:
+On 6/3/24 11:38, Russell King (Oracle) wrote:
+> On Mon, Jun 03, 2024 at 11:27:48AM +0200, Christophe Roullier wrote:
+>> +static int stm32mp1_validate_ethck_rate(struct plat_stmmacenet_data *plat_dat)
+>> +{
+>> +	struct stm32_dwmac *dwmac = plat_dat->bsp_priv;
+>> +	const u32 clk_rate = clk_get_rate(dwmac->clk_eth_ck);
+>> +
+>> +	switch (plat_dat->mac_interface) {
+> Should these be phy_interface?
 
-[auto build test ERROR on jic23-iio/togreg]
-[also build test ERROR on robh/for-next linus/master v6.10-rc2 next-20240604]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Hi,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Hewitt/iio-adc-meson-add-support-for-the-GXLX-SoC/20240604-135606
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20240604055431.3313961-2-christianshewitt%40gmail.com
-patch subject: [PATCH 2/2] iio: adc: meson: add support for the GXLX SoC
-config: arm-defconfig (https://download.01.org/0day-ci/archive/20240604/202406041751.elQWr6cj-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240604/202406041751.elQWr6cj-lkp@intel.com/reproduce)
+The code is validating the clock frequency of clock that are INPUT into 
+the MAC. These clock can be generated by either the PHY, or Xtal, or 
+some other source, but they are still the clock which are INPUT into the 
+MAC. Therefore I believe mac_interface is correct here.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406041751.elQWr6cj-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/iio/adc/meson_saradc.c:1262:18: error: use of undeclared identifier 'VREF_VOLTAGE_1V8'
-           .vref_voltage = VREF_VOLTAGE_1V8,
-                           ^
-   1 error generated.
-
-
-vim +/VREF_VOLTAGE_1V8 +1262 drivers/iio/adc/meson_saradc.c
-
-  1255	
-  1256	static const struct meson_sar_adc_param meson_sar_adc_gxlx_param = {
-  1257		.has_bl30_integration = true,
-  1258		.clock_rate = 1200000,
-  1259		.regmap_config = &meson_sar_adc_regmap_config_gxbb,
-  1260		.resolution = 12,
-  1261		.disable_ring_counter = 1,
-> 1262		.vref_voltage = VREF_VOLTAGE_1V8,
-  1263		.cmv_select = true,
-  1264		.mpll_clock_bits = true,
-  1265	};
-  1266	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> Does this clock depend on the interface
+> mode used with the PHY?
+>
+I don't think the clock depend on the PHY mode. Look at 
+drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c :
+"
+458         plat->phy_interface = phy_mode;
+459         rc = stmmac_of_get_mac_mode(np);
+460         plat->mac_interface = rc < 0 ? plat->phy_interface : rc;
+"
+and this comment:
+"
+382 /**
+383  * stmmac_of_get_mac_mode - retrieves the interface of the MAC
+384  * @np: - device-tree node
+385  * Description:
+386  * Similar to `of_get_phy_mode()`, this function will retrieve (from
+387  * the device-tree) the interface mode on the MAC side. This assumes
+388  * that there is mode converter in-between the MAC & PHY
+389  * (e.g. GMII-to-RGMII).
+390  */
+391 static int stmmac_of_get_mac_mode(struct device_node *np)
+"
+I think in the unlikely case that you would have a mode converter 
+between the MAC and PHY, the clock that are validated by this code would 
+still be the clock that are INPUT into the MAC, i.e. clock on the MAC 
+side of the mode converter and NOT on the PHY side , and those clock 
+would not depend on the PHY mode, they would depend on the MAC mode .
 
