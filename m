@@ -1,105 +1,113 @@
-Return-Path: <devicetree+bounces-72072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE6B28FAC55
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 09:43:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 329B78FAC5B
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 09:45:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0AE4A1C20A62
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 07:43:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0CE828281E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 07:45:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EB2C1411C1;
-	Tue,  4 Jun 2024 07:43:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B55FD1420A0;
+	Tue,  4 Jun 2024 07:44:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="FUM9icE7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B29F140399;
-	Tue,  4 Jun 2024 07:43:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB1121419BA
+	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 07:44:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717487011; cv=none; b=nd1YfPth+aiUWSYzZLf8HxVFXgEXBHkTz1sHLM68udZL73heK2PFIi33RrwF3DRo3V5PGUIjf39SSmHr4fekjuirnNPmQ+UwpkUtcclY2fCM4wQbl1Lbxc9BuUduL1WRv6IHCBjpTJzCIuHV6x6SXvK9cOef4Vp8Ozo6gtC2YKg=
+	t=1717487099; cv=none; b=P0IAvZvxWlNim0vwsimuri56DIeo8Yzlv1U1/OjqHrzhR2vumndLQlu+jCd/k98kejqeLC7Zz50vzyCEKgcAos1VDnHe3zOIamZEJ7Cc5alBRvOChCDm4LYsdEL0C0VRWzBanq2pFcPfj/5U9SbzSWyBa7Y2ITxfqGg+Urlexyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717487011; c=relaxed/simple;
-	bh=amAXDqO7NUNvUAMQ98AmXoymVFem6B1PHzgszlp0n9g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CCvjcW/C8/b9GxZi6/iFamb35b4h886t59fgmB4XqnWKR0nkn/gvS49y5JhGNUPUz2G1RGV5iQ338o7l+9fj01CkGeJCWlHHs+IXq/z9HHXgxkHaxIDTMLxW2zI1LcSdso4X6sRbzf/m5xu7kzuPJiGiBRxfkLm/BmKBeXjvLQ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-62a2424ed00so55193087b3.1;
-        Tue, 04 Jun 2024 00:43:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717487009; x=1718091809;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nl0/qZK6Xs6+vehlrTCMsO5n2PAF37JLMCSBbCoV/Zk=;
-        b=WNcuq2JwIzA2I17lVx6SR5KFG/2tuBpQONO99sxZ1B1y1j4KKYGSY9IRow4Q0T/99k
-         mkgm+alwNIR8i+vh6Z7q8T5tMNWfTzTpQZN2DLkrUzYtGuQSdjSmrgKKI76fKDG4JOWb
-         +qXJ51rmMV97fSAQCPU+NOOOgaWRRcAQd2prenb85Dn5LYSaBCqw8il7uUVlVjw+9jmG
-         PPBiiCBhp6G15Uf0CbYS5LquZJARZp7LkJvs5QHaIL+WLXK/Dm3d5ZqE02S1VBNrYwY2
-         34ZOwd6yGgVFhLuSRFVFPULrPI3gw6E/pPI5SikMe+ow71BM0GwNUdWSUkKbzVhGXBH2
-         emrA==
-X-Forwarded-Encrypted: i=1; AJvYcCWJUOPhmOjrFOU8uHIlaTSjImKvvbTZDQmXojwOKJsDvb59d59cvX+8zEgHQqZFYUIL1ZwOAiz37793NZ9+XFYJB89qofb7xk8bPqeR2lol5izdBGhNtIYSTdTMqE75fbx1lSWKxaURE+Enyk6pDC381qB/EJ/s8Iw/21NnRAEnEAOGuzyJROdsHPc=
-X-Gm-Message-State: AOJu0YyhFZqjFTGjXGLJm3SyIWgI4+/bgtkKPX/87CFsgGkjPJf+TF18
-	0TqMurie4HtwyEHdLQxhTOizJ56vBUj/PeGUtpTptBpcOQOEURCcjh+egTY+
-X-Google-Smtp-Source: AGHT+IGfJh3yoJmi3pMlGbuHQEl1ym32Gkmjy9x75UdFNQ7kcviAjtG+VpJElqTQBABgYX1WTSDeyg==
-X-Received: by 2002:a05:690c:82d:b0:627:7e65:979 with SMTP id 00721157ae682-62c7973fafdmr118109927b3.24.1717487008682;
-        Tue, 04 Jun 2024 00:43:28 -0700 (PDT)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-62c765b9256sm17626167b3.5.2024.06.04.00.43.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Jun 2024 00:43:28 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-62a2424ed00so55192877b3.1;
-        Tue, 04 Jun 2024 00:43:28 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU/eMP7gD/MxidVidvN8arpj3+hAHFq4748iw2ufpc5at2JN0eofcGmQHiH4Zt4sR91cIoT2QBxZ7vijiWjGvT/EAVEL3N6x2mNPZJFhaW17rep2o0eUaU/hDWWbPdm2TEhrnfWRfEcsbmXoicLtLuzGhh/68tJKTKktYjiBH8VEevJdmB5N7ktSnY=
-X-Received: by 2002:a25:8205:0:b0:dfa:6ecc:d924 with SMTP id
- 3f1490d57ef6-dfa73bc3317mr11048601276.5.1717487008055; Tue, 04 Jun 2024
- 00:43:28 -0700 (PDT)
+	s=arc-20240116; t=1717487099; c=relaxed/simple;
+	bh=tJBEhB3YJOWcB0CXNOHejn+7YjmsEvW/39XD/31pdto=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MUeLJdIOUNDjiXr29rmfNboneeohR0CP90oRSF8Ji/krjSfomE9oHUD7viaNZVUOoulT05bBQI2P0Q8nt+2LoNDkAJf+IiztRcYYNGvoq2zS9dVLzkD88Vb6618vwDi9pCf54NmmFO7YuhFDihowQRak4eJcKjbFcAf3Y9pBkP4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=FUM9icE7; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=OcPX
+	Gu74LaGeRZBSSAXOp0vI7KaRiJ6A9fQeGd7c6jk=; b=FUM9icE7POaT2Q3v9hbZ
+	02l7MCaSwU9nJIARQPBTdvsdkxnM4m0Fy0Ny7tZ4UNkvrlond+PT0kjwBBEsjBpv
+	PoLLPdPyknatGIZbm6+elDLBG46IQ4udd/GX+fRmTtO3BS3DVFpDMtn8GDQHiQU1
+	31oPtU/YyUL0PNUPr4PQBAwUjHNldfzbi8gvzSW8CpeuIjWpp9cMhLXIib/Xj3OI
+	KIbTvGzQ/zPZNSFGpi1iJDgyW7AlpN0kEBb0FT7G/pBtG6vNzHRVFRbMPequlpJM
+	PaTimFRhnpd0hae912sWHaMSZR8QxVVPKe/er/jFI0LWw0NW9EYXnmc5kSEIntv4
+	nw==
+Received: (qmail 2207727 invoked from network); 4 Jun 2024 09:44:55 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 4 Jun 2024 09:44:55 +0200
+X-UD-Smtp-Session: l3s3148p1@WoA+oAsads0gAwDPXzLGAH1eNELjOc3g
+Date: Tue, 4 Jun 2024 09:44:55 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, =?utf-8?B?UmVuw6k=?= Rebe <rene@exactcode.de>, 
+	Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>, Armin Wolf <W_Armin@gmx.de>, 
+	Stephen Horvath <s.horvath@outlook.com.au>
+Subject: Re: [PATCH v4 6/6] hwmon: (spd5118) Add configuration option for
+ auto-detection
+Message-ID: <v5amgsab6fwz5sp3faci2ly6hbhyqfikcde6guszbjhssfxq64@lqawvnnin3sl>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, =?utf-8?B?UmVuw6k=?= Rebe <rene@exactcode.de>, 
+	Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>, Armin Wolf <W_Armin@gmx.de>, 
+	Stephen Horvath <s.horvath@outlook.com.au>
+References: <20240604040237.1064024-1-linux@roeck-us.net>
+ <20240604040237.1064024-7-linux@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240527131849.1678877-1-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20240527131849.1678877-1-niklas.soderlund+renesas@ragnatech.se>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 4 Jun 2024 09:43:14 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWJhrNe8pbQrBtuDbVu9djhs47oUyCLnjLW4tGDVPyCfw@mail.gmail.com>
-Message-ID: <CAMuHMdWJhrNe8pbQrBtuDbVu9djhs47oUyCLnjLW4tGDVPyCfw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: media: renesas,vin: Add binding for V4M
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="y5lvvhmn6yrs6kjk"
+Content-Disposition: inline
+In-Reply-To: <20240604040237.1064024-7-linux@roeck-us.net>
 
-On Mon, May 27, 2024 at 3:19=E2=80=AFPM Niklas S=C3=B6derlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> Document support for the VIN module in the Renesas V4M (r8a779h0) SoC.
->
-> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
-se>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+--y5lvvhmn6yrs6kjk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Gr{oetje,eeting}s,
+> +#ifdef CONFIG_SENSORS_SPD5118_DETECT
+>  	.detect		= spd5118_detect,
+> +#endif
+>  	.address_list	= normal_i2c,
+>  };
 
-                        Geert
+So, I think we have too many Kconfig symbols already. What about using
+!DMI here?
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+--y5lvvhmn6yrs6kjk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmZexfcACgkQFA3kzBSg
+Kbb6uw/+J82rXUS8G+ViECXJ4AGTWUr1qhvMeXO8SjAiN9sT6JR+uooZKRcnNznp
+z/oXOlSETCFc6IdyDTqKTOxcrmYtWg6z/Vu1ayNltTkpAvG5KDRuGo1akUM6WZrn
+p+b3lon22H0vKvBuEkUS+WVzmglaVs6FUU2hZZxucBd4RgjSSkwbhtMETwX2D1yo
+r5yb09mUK4GmNIUI+mpOYtdKwj1hjpXTsxzgPcYMFOHPwyk6ZVde6MqsBE/pqSbo
+GVUTjmhkCbRIh0b5IPfv4yx/C/O+jelEn3nGVz4OjDLaGF4di2pqpyC3sNSLw29Q
+pShZBbctxRNrAgKKxRxlCQwiQGpqdjZnQyj1fAuz37L+Tw8KRbnHeLho+9veh9kV
+S1IfU5g12ckN+ENEY0jO7yINx+fyPS179Ve5tAFLR2+jxdyeOkzPrBKIihm7ReEo
+WryqbTXs3eUYhIdtvefWnDZB1Rd8tZ3Y8kmzUpJqYLM8vjcxoCoRPc1KynupmFJt
+yIxVb1zYhAWKXN9eaU2scbzpGVn9eLxmunxRMBkgPnxOU7XJ/hHp8VzbN5M3uD5s
+pMBGNA+FhJf2EFo18uwU4YksckpEjrkn7GKpyLrpTD9MhVU7I8cW0SgNZ+nTPCIY
+9KndUMSwE1eBNuKUSDbA/8w8eD9IDoFRUZm/Gu0gl+Xv231aoeE=
+=46bl
+-----END PGP SIGNATURE-----
+
+--y5lvvhmn6yrs6kjk--
 
