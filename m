@@ -1,120 +1,175 @@
-Return-Path: <devicetree+bounces-72013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD8608FA80B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 04:03:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B269C8FA839
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 04:19:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4A90FB225A9
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 02:03:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5449D28BA88
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 02:19:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7C42339BC;
-	Tue,  4 Jun 2024 02:02:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E838F1386B9;
+	Tue,  4 Jun 2024 02:19:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="dpLdVfSz"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="o5rRVSVM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20C464A04
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 02:02:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F35483EA69
+	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 02:19:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717466579; cv=none; b=mekTEzRYc1qP02z92kSwdgoz068WtyorwCtngtVjYPCGxZeABt77dIh9xJSbFQQgQS536m6MeRZ9gh1j3Ly10HrK0YCKdkROQ4QMvNZBu8Pn849h47pu+M7CB/ckaU6ThuGOr8AdXtviSNtcmanFDazeLfYYpowOwjsoXTy3SxI=
+	t=1717467545; cv=none; b=guxsYv85veAkmRdr/WV0rs7nwIk/vN6h2kW5JB9M2mVYGyIF3T75KIyCAtOGZC8XzAt9U12r16gwuajOoUfwswrT2XLEP8zXC7ua8H/NLOkkwNS/wZkfywFZla0ny1Tut146DSnCYcrRHgASVAGcIEfxGJRWabbmlWY1vX+XPWA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717466579; c=relaxed/simple;
-	bh=Ro3laXcMAbm91nrsiay29MPahSHKS8ZwIKwgKQFDV8A=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Y7MgOf/HbAdnCB/pGJp7xQpadL6FxDCYH4poMYLjknzsuEobK8JNVkuFR174SJ3dz2pXVzDuhzaY9OMbiEaqxQt2S29uK7Ed65bfvmqE2bmds4b/UYbqt7SvtaAAqFlCi/Enh+I3F6xJfzp4aWZUm7AG4kFgRotRXaHqrB1zYHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=dpLdVfSz; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-Received: from [192.168.68.112] (ppp118-210-171-248.adl-adc-lon-bras34.tpg.internode.on.net [118.210.171.248])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id A5736201B6;
-	Tue,  4 Jun 2024 10:02:54 +0800 (AWST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1717466576;
-	bh=wWRmPcmFirZAAtih3AkzVHKsH5OIiMN68xLR8oBNnrw=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=dpLdVfSzJPSFbaw7WOZX2/IyBbi7NtqcTPgi/yb6jsOKOzF6hZjibXlaravhzyjPe
-	 DD9Xk5t+cK8wKP4FSlPxWOx82EWORymqtyJDOV9wlG8m6EibEunNZ7G8mhZmfsPFqD
-	 uxx77xIUfnXVwqhu9XlXMO6cIh5orl3v7nA8gpHiKv7JF7EsFfs4YKsf2VsWTHj3AF
-	 QDd2HpviGUaCLcDX91bIQHnX3MUZhuZ/kfe96SCg29rIDseDO6axvI1C3i0W9y+9UN
-	 Q7JZ0p6XqYf/C8xEcLFPD03owuun1I2dLwPaLyRq7uc9X/cG75ayqeDdJ9hNSWW+lT
-	 JWM3g2Lo8MvVw==
-Message-ID: <f4a891a6548461935129bb8ef4bed68c265567a1.camel@codeconstruct.com.au>
-Subject: Re: [PATCH] ARM: dts: aspeed: convert ASRock SPC621D8HM3 NVMEM
- content to layout syntax
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Zev Weiss <zev@bewilderbeest.net>, =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?=
-	 <zajec5@gmail.com>
-Cc: Joel Stanley <joel@jms.id.au>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org,  =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?=
- <rafal@milecki.pl>
-Date: Tue, 04 Jun 2024 11:32:54 +0930
-In-Reply-To: <11f0a9a0-967e-4971-8ca1-4730f2881ee1@hatter.bewilderbeest.net>
-References: <20240520063044.4885-1-zajec5@gmail.com>
-	 <11f0a9a0-967e-4971-8ca1-4730f2881ee1@hatter.bewilderbeest.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1717467545; c=relaxed/simple;
+	bh=SQjBsq1pSDRa+92X8rsTn7sADmhW91X/pso6BF73AR8=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:In-Reply-To:
+	 Content-Type:References; b=CN632Wsn/tnNhl7GP4IH2vBoihvIHRSJlodtwDxfSAmJTdS/pkSvhdLCistdpU1R7yKn43qWjfQDjDFePU105tmFMg/avwn1pI72tRpps9waPGVWtpHqoXDRmR5AqoHXtGoHWBly/d7hYuOrHOK0hm2rmXPAMgpWQODoAEIoLaI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=o5rRVSVM; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20240604021902epoutp020abcc679ccaefe212837c4be9a42290d~Vq6FI3Msv3119631196epoutp02e
+	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 02:19:02 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20240604021902epoutp020abcc679ccaefe212837c4be9a42290d~Vq6FI3Msv3119631196epoutp02e
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1717467542;
+	bh=JrbYCyMWg5+SkRsH6d147/xUVTz498odRqOzgTstKfc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=o5rRVSVMw+Ki3eiwwpt5EO6UBZgye6nuzLJAGvHz84fpUHt5bIW3nB8lAqMOGzqSp
+	 HTzKfRXWgJE1ZvKmreYToUFlP5+rmPbekBLhoNOaJfY5gG1TjjNklmoqf8kxF4ahNg
+	 QXrdS5tnvXKDg9oxz4hnEbFT3VKBPYWSyy9bZusk=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTP id
+	20240604021901epcas2p2b90b9ae5ce5cb136016f31ec5f38a043~Vq6ETaECa3090730907epcas2p2F;
+	Tue,  4 Jun 2024 02:19:01 +0000 (GMT)
+Received: from epsmges2p1.samsung.com (unknown [182.195.36.91]) by
+	epsnrtp1.localdomain (Postfix) with ESMTP id 4VtZ5w6CCZz4x9Pv; Tue,  4 Jun
+	2024 02:19:00 +0000 (GMT)
+Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
+	epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	11.8A.09848.3997E566; Tue,  4 Jun 2024 11:18:59 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
+	20240604021859epcas2p47538af772afe3e57d25c1fde33fd28db~Vq6CYYfI60306903069epcas2p4w;
+	Tue,  4 Jun 2024 02:18:59 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20240604021859epsmtrp25dbcd778e59061ec44393ffe8b9027fd~Vq6CXfLDO0329303293epsmtrp2A;
+	Tue,  4 Jun 2024 02:18:59 +0000 (GMT)
+X-AuditID: b6c32a45-447fe70000002678-6b-665e7993479e
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	3C.16.08622.2997E566; Tue,  4 Jun 2024 11:18:59 +0900 (KST)
+Received: from ubuntu (unknown [10.229.95.128]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20240604021858epsmtip26dff3dc71f3ee0c68295f92acf988b69~Vq6CLPIaz2236722367epsmtip2N;
+	Tue,  4 Jun 2024 02:18:58 +0000 (GMT)
+Date: Tue, 4 Jun 2024 11:19:35 +0900
+From: Jung Daehwan <dh10.jung@samsung.com>
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, Krzysztof
+	Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Mathias
+	Nyman <mathias.nyman@intel.com>, Felipe Balbi <balbi@kernel.org>, "open
+ list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>, "open list:OPEN FIRMWARE
+ AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 3/5] dt-bindings: usb: xhci: Add
+ 'write-64-hi-lo-quirk' quirk
+Message-ID: <20240604021935.GB49465@ubuntu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+In-Reply-To: <20240604003013.2jwskwiqivgumrsx@synopsys.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrDJsWRmVeSWpSXmKPExsWy7bCmme7kyrg0g233dSyOtT1ht1iz9xyT
+	xfwj51gtmhevZ7N4Oesem8X58xvYLS7vmsNmsWhZK7NF86YprBb/9+xgt1i14AC7A7fH4j0v
+	mTw2repk89g/dw27x5b9nxk9Pm+SC2CNyrbJSE1MSS1SSM1Lzk/JzEu3VfIOjneONzUzMNQ1
+	tLQwV1LIS8xNtVVy8QnQdcvMATpNSaEsMacUKBSQWFyspG9nU5RfWpKqkJFfXGKrlFqQklNg
+	XqBXnJhbXJqXrpeXWmJlaGBgZApUmJCd8f/4QsaCtxwVrZOvMjUwLmDvYuTkkBAwkeja85Kl
+	i5GLQ0hgB6PE3d89TBDOJ0aJ9nnvGSGcb4wSLZsOMsG0nDqxD6plL6PEhTuToVqeMEpMbXkO
+	NphFQEXi0awFjCA2m4CWxL0fJ5hBbBEBHYkDJ86DNTAL3GSW2P29HWyssECYxMLTt1i7GDk4
+	eAW0JY62R4KEeQUEJU7OfMICYnMKWEtcX/STBaREFGj+q4P1IGMkBGZySDz4P50N4joXibkr
+	uqBsYYlXx7dAPSol8fndXqh4scSt58+YIZpbGCVWvGphhkgYS8x61g52NLNAhsS95vVgyyQE
+	lCWO3GKBCPNJdBz+yw4R5pXoaBOC6FSWmH55AiuELSlx8PU5qIkeEs2bGqCBtYVZ4vbLRSwT
+	GOVnIXltFpJtELaOxILdn9hmAa1gFpCWWP6PA8LUlFi/S38BI+sqRrHUguLc9NRiowJDeGwn
+	5+duYgQnWy3XHYyT337QO8TIxMF4iFGCg1lJhLevLjpNiDclsbIqtSg/vqg0J7X4EKMpMJ4m
+	MkuJJucD031eSbyhiaWBiZmZobmRqYG5kjjvvda5KUIC6YklqdmpqQWpRTB9TBycUg1MM+5f
+	j006c/y4R6fA/1Pz3/A+UrW78JKzeKV87vl/3wMfbnx2vNvZ/Mx9/6MWM39N/3VW1b3ANNTr
+	XOf6tlu5S97LFPhrl6qmhN7pZr1q/mr9g76u/YnyFxqu8sk9nTy19UuYrIbUCrbJ4dX+fb0L
+	VdKe+Xntm2h2yKfmh3/Al2yRnYVvZe7OfuzIYXBUI/bRqXWZd/q8l9zq1cq0nrZW/VvR/hCj
+	5TdlVu2ZsLA/Z/+/xtNu/fPX/88V4LE/r9NiveT2n5hzZ1V+XXU818R74ayP5woevolSh44x
+	uHyqe2JjIZ7fXzzru0RIxbP5z+P/ihwrk7Ni1v4iy9e8PXJh//FbF9cvOC8q0p97dYr4YyWW
+	4oxEQy3mouJEABPz5Nw/BAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrILMWRmVeSWpSXmKPExsWy7bCSvO7kyrg0g/O3mSyOtT1ht1iz9xyT
+	xfwj51gtmhevZ7N4Oesem8X58xvYLS7vmsNmsWhZK7NF86YprBb/9+xgt1i14AC7A7fH4j0v
+	mTw2repk89g/dw27x5b9nxk9Pm+SC2CN4rJJSc3JLEst0rdL4MpY3rSQqWAtW8WTOUvZGxh/
+	snQxcnJICJhInDqxD8jm4hAS2M0ocX1xAztEQlJi6dwbULawxP2WI6wQRY8YJSbdWMcIkmAR
+	UJF4NGsBmM0moCVx78cJZhBbREBH4sCJ80wgDcwC95kl+hbNZQVJCAuESSw8fQvI5uDgFdCW
+	ONoeCTF0C7PEn4l7wAbxCghKnJz5BOw8ZqChN/69ZAKpZxaQllj+jwMkzClgLXF9EcgHHByi
+	QDe8Olg/gVFwFpLmWUiaZyE0L2BkXsUomVpQnJueW2xYYJSXWq5XnJhbXJqXrpecn7uJERwr
+	Wlo7GPes+qB3iJGJg/EQowQHs5IIb19ddJoQb0piZVVqUX58UWlOavEhRmkOFiVx3m+ve1OE
+	BNITS1KzU1MLUotgskwcnFINTJeNxWetd9QW7ZM4tFRXcZMTV8vBiT13ZuutfZ/sufrX1l85
+	13uzHPf/v/Concn6e36HBb92RFAYQ5L9lFsdDfVcRVm6ZarFXOE5loVudettfBIqlj4rKr5h
+	Uczc63v/t6K2NOt5N/nyI3++sRmyROdZ8ex9JFmktE15QWGaaPEUMe0Lf7NsKn/JWX75897H
+	dOfrmr8uAREz94pFev0/9yn7H6frnMe8a7/wTtQ4vLfnBe8rK5O2F327A0M+sKbKfygP/ntm
+	j4/hZvXUZrm5r7NjLr3Rtt+9+nj9bHepq/oHvkrZ27zaeeXm4x1a+pKHEg8Kzd/wb+8OJqnG
+	cnWuDC+9Ofdal0SUT9JzNvijxFKckWioxVxUnAgA5x1zMQQDAAA=
+X-CMS-MailID: 20240604021859epcas2p47538af772afe3e57d25c1fde33fd28db
+X-Msg-Generator: CA
+Content-Type: multipart/mixed;
+	boundary="----NM.SL-8AX4fCWwUaz12YupYcgI_4q5PcTQ1CNbbJhqicWcnv=_436c4_"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240531060729epcas2p1df12dd3b14c5fa2fa0716f72010b3dbd
+References: <1717135657-120818-1-git-send-email-dh10.jung@samsung.com>
+	<CGME20240531060729epcas2p1df12dd3b14c5fa2fa0716f72010b3dbd@epcas2p1.samsung.com>
+	<1717135657-120818-4-git-send-email-dh10.jung@samsung.com>
+	<bcbff3b2-c5ae-4a95-aa36-f9b88a97e72c@kernel.org>
+	<20240603033427.GB23593@ubuntu>
+	<69c954ce-d7a2-420c-b3f6-72caee02d84f@kernel.org>
+	<20240603082538.GD23593@ubuntu>
+	<20240604003013.2jwskwiqivgumrsx@synopsys.com>
 
-On Mon, 2024-06-03 at 18:21 -0700, Zev Weiss wrote:
-> On Sun, May 19, 2024 at 11:30:44PM PDT, Rafa=C5=82 Mi=C5=82ecki wrote:
-> > From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> >=20
-> > Use cleaner (and non-deprecated) bindings syntax. See commit
-> > bd912c991d2e ("dt-bindings: nvmem: layouts: add fixed-layout") for
-> > details.
-> >=20
-> > Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> > ---
-> > .../dts/aspeed/aspeed-bmc-asrock-spc621d8hm3.dts     | 12 ++++++++----
-> > 1 file changed, 8 insertions(+), 4 deletions(-)
-> >=20
-> > diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-spc621d8hm3.dts=
- b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-spc621d8hm3.dts
-> > index 555485871e7a..c4097e4f2ca4 100644
-> > --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-spc621d8hm3.dts
-> > +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-spc621d8hm3.dts
-> > @@ -110,11 +110,15 @@ eeprom@50 {
-> > 		compatible =3D "st,24c128", "atmel,24c128";
-> > 		reg =3D <0x50>;
-> > 		pagesize =3D <16>;
-> > -		#address-cells =3D <1>;
-> > -		#size-cells =3D <1>;
-> >=20
-> > -		eth0_macaddress: macaddress@3f80 {
-> > -			reg =3D <0x3f80 6>;
-> > +		nvmem-layout {
-> > +			compatible =3D "fixed-layout";
-> > +			#address-cells =3D <1>;
-> > +			#size-cells =3D <1>;
-> > +
-> > +			eth0_macaddress: macaddress@3f80 {
-> > +				reg =3D <0x3f80 6>;
-> > +			};
-> > 		};
-> > 	};
-> >=20
-> > --=20
-> > 2.35.3
-> >=20
->=20
-> Acked-by: Zev Weiss <zev@bewilderbeest.net>
->=20
+------NM.SL-8AX4fCWwUaz12YupYcgI_4q5PcTQ1CNbbJhqicWcnv=_436c4_
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Thanks, I've applied this to a tree for Joel to pick up.
+On Tue, Jun 04, 2024 at 12:30:32AM +0000, Thinh Nguyen wrote:
+> On Mon, Jun 03, 2024, Jung Daehwan wrote:
+> > 
+> > This issue is not specific on SoC side but dwc3 controller. I think it's
+> > better to add it to dwc3 directly but I can't find dts for dwc3. Dts for
+> > SoC, which uses dwc3 would be needed in this case, right?
+> > 
+> 
+> This quirk applies across different DWC_usb3x versions. IMO, you can
+> just pass the xhci quirk flag along the dwc3_xhci_plat_quirk->quirks
+> without needing to introduce a new xhci DTS binding. However, to do
+> this, you should extract the xhci quirk flags to a separate header so
+> that dwc3 can include and use them.
+> 
+> BR,
+> Thinh
 
-Andrew
+I haven't got using dwc3_xhci_plat_quirk. Let me try to use it.
+Thanks for the comment.
+
+Best Regards,
+Jung Daehwan
+
+------NM.SL-8AX4fCWwUaz12YupYcgI_4q5PcTQ1CNbbJhqicWcnv=_436c4_
+Content-Type: text/plain; charset="utf-8"
+
+
+------NM.SL-8AX4fCWwUaz12YupYcgI_4q5PcTQ1CNbbJhqicWcnv=_436c4_--
 
