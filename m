@@ -1,115 +1,116 @@
-Return-Path: <devicetree+bounces-72202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 295BC8FB1DA
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:12:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35AE68FB1FE
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 14:18:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B7E81C22214
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 12:12:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF35B1F2367D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 12:18:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 992B5145B2D;
-	Tue,  4 Jun 2024 12:12:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A4D0145FFA;
+	Tue,  4 Jun 2024 12:18:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jTlQw2b7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34639BE7F;
-	Tue,  4 Jun 2024 12:11:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 094CC15E8B
+	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 12:18:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717503120; cv=none; b=HAmKqiQr7sIsrBZwWhOCyn6+rOpKv7vohddVz817bLAFbbfHPFsEqE6bKTFIoYzVAE2V7V/oFADf48WTEsnkbblZyBYUU0QNprOsmqcZvh+sGdrfRXfo0MtSkq0x/Stodn2EO6LW0Pgzxmw9ucVA4X1WTTktMqPknEZC9w4c5RE=
+	t=1717503526; cv=none; b=OWTuI/SMlSxyf1tecNySW4vddT2PvPfMUhG13gMuhsKdRbGNQUnI6l+185w13ITnzcsePPWfvPTczxANMZ7JY20wnEmHgzNNHHZPhKM9DS95HsGbwl495a7mJAHQH3soH3Pji7ekrz0oHCe9m6Fl6Q3AGl4gR5mLHMK1/0rrymc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717503120; c=relaxed/simple;
-	bh=wfMB6wCVIVE3buY4hRYr213PVqIlWEwpBco1dUMXonw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GwJiUDYw1L+/OyGahhKuwm2vfEe17TN8D9PtNmZfdaOG12+PJ5Xu2UcrHs4vOCiZ0S/t5vjdu8licmTn2KA4KAJc0MS64ZcypAHAS9n5uZCp2qlxrGO//49oTNDIzzCnmidx7Q76jsnXPauCQINW9wyhTh7/GlJ5kc7UrnrRqbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 17F491042;
-	Tue,  4 Jun 2024 05:12:23 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7D07B3F64C;
-	Tue,  4 Jun 2024 05:11:56 -0700 (PDT)
-Date: Tue, 4 Jun 2024 13:11:54 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Peng Fan <peng.fan@nxp.com>
-Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Aisheng Dong <aisheng.dong@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH 0/3] pinctrl: scmi: support i.MX95 OEM extensions with
- fsl,pins property
-Message-ID: <Zl8EiqiBNvoYuq4r@bogus>
-References: <20240521-pinctrl-scmi-imx95-v1-0-9a1175d735fd@nxp.com>
- <DU0PR04MB941718F15619A907C15AA18588F02@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <Zl3LKRE-PT3u1AX7@bogus>
- <DU0PR04MB941706D2E6FA25AD23B4863C88F82@DU0PR04MB9417.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1717503526; c=relaxed/simple;
+	bh=bMG7RvBmDOkqx6HToRknYbCvXlHhwizfl3ox1z2+VLE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=P5x/fHKm7u3dWfK+L1dx0om+dF82hRPd+PxChry+U8SyuErehtmBsbscLCnCrwENYDIWaExmjeiP21Su7J3+Z0jU22alsyjvLJo6nnIVUrCFPYU3Qrc1fmIjzHJz2+ao/M8ixVaKOP6WfR1/XzbZzr9x4IAZkU2dLiIF9cqF/zc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jTlQw2b7; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a68fc86acfaso354311566b.1
+        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 05:18:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717503522; x=1718108322; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=f/f5gcn/gTUAWBZ3gaiWLhvClesIPejw9W8fPNXojgY=;
+        b=jTlQw2b7HMNpIRmKXor4JevFfV6l2cGI8ZKYHt5FOJUY4bKmimzZSXuiUck29vXDUz
+         hJo+v8jYIrKRVc7CN3qbbYZRxTzAWo4XFUuRtM4DWua0fL1ooF2EDWk8pt+opjfA2EpZ
+         LOEE5YhtjquluLwSI7zHCvXoqGfMI2lwxLIpFW+lJEmjJBgU49uuzeaoA/D7iJi/njkw
+         WBtsnPc2TWvpMO5+VCmDCiUHeGYIC8PMjthHwdhKghQXOQOfhuKEn5nfWP+u9zscmvRy
+         zttvrMjPDv5Jw8wxVr4SEQALypeHfX0+9gEpyi9AatzlfQT54kkoSxAvEJoSguebSQqE
+         GwFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717503522; x=1718108322;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=f/f5gcn/gTUAWBZ3gaiWLhvClesIPejw9W8fPNXojgY=;
+        b=v9VOWc0fpnb/WY3DCAqBhEoAVwgqh4fHJV631whwwbhLrl5pildu4RVl54AXkYbMwn
+         gexv81eJwJ8OfU6bO5zcEXuX9HdnICp6g39nkHnC40XUXJz3JRtphyE8gKIz3d3ol7iu
+         rZ3iQPe5h1IF+W4dDoHrW309FJV20hcuvzv5Wl+q6ak0rn30CjJczpLSNzqDEWb4vcDA
+         J4a6rs60Tqt3mCopDD88UkmWHuesm9vhm8OSCXYTCyL2cvR3jS3AQkM25lCs5R24qBmv
+         rQ07ABlymEYI5W85fL02SUuX7Hpr1KTi0BMbSx8nBD7UnrLWRqcLBr8A0Ga2c74o98i8
+         k3Eg==
+X-Forwarded-Encrypted: i=1; AJvYcCWyvFpFO1i9Dvx6LhvB/dVK/giJxLFfOn1qDWGBVIt9JTSz54xMP27SuA3bn5lVPF7UFeaPqJd6M4vkaTqDI0ZNwojz7vrAL554Ug==
+X-Gm-Message-State: AOJu0YxjkJ84DbhnAnYCz8xkaUxCY7yVyi/PrRI5VySaJO+LbM6fC4d+
+	k/W5yIP23QgdzwXS1eejCEb5eHSm4umQcXVIzV2bYR2JeZWi3JRujdlccz4tj1A=
+X-Google-Smtp-Source: AGHT+IEXNoxMtI7ICaXqzcQdFet4MgSRtFpxYFqM2yeMMrmzQXZ9URAcl0bri5e4o/dqtHxHzUPSdw==
+X-Received: by 2002:a17:907:20ec:b0:a5a:5b1a:e2e4 with SMTP id a640c23a62f3a-a69543d9983mr189395966b.20.1717503522358;
+        Tue, 04 Jun 2024 05:18:42 -0700 (PDT)
+Received: from ?IPV6:2a00:f41:909a:a11e:a035:2af2:8d85:1f72? ([2a00:f41:909a:a11e:a035:2af2:8d85:1f72])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a68a2fc6efesm511558066b.161.2024.06.04.05.18.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Jun 2024 05:18:42 -0700 (PDT)
+Message-ID: <0d0b48c2-c8de-417b-8180-4eb2aa24c9f7@linaro.org>
+Date: Tue, 4 Jun 2024 14:18:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DU0PR04MB941706D2E6FA25AD23B4863C88F82@DU0PR04MB9417.eurprd04.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] ARM: dts: qcom: Add initial support for HTC One (M8)
+To: alex@me.ssier.org, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Luca Weiss <luca@z3ntu.xyz>, linux-arm-kernel@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <20240603-m8-support-v1-0-c7b6a1941ed2@me.ssier.org>
+ <20240603-m8-support-v1-2-c7b6a1941ed2@me.ssier.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20240603-m8-support-v1-2-c7b6a1941ed2@me.ssier.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jun 04, 2024 at 12:49:13AM +0000, Peng Fan wrote:
-> Hi Sudeep,
->
-> > Subject: Re: [PATCH 0/3] pinctrl: scmi: support i.MX95 OEM extensions with
-> > fsl,pins property
-> >
-> > On Mon, May 27, 2024 at 08:36:27AM +0000, Peng Fan wrote:
-> > > Hi Linus, Sudeep, Cristian,
-> > >
-> > > > Subject: [PATCH 0/3] pinctrl: scmi: support i.MX95 OEM extensions
-> > > > with fsl,pins property
-> > >
-> > > Sorry if this is an early ping to you. Just wanna this not blocking
-> > > i.MX95 upstream support.
-> > >
-> >
-> > I would say yes as this was posted bang in the middle of the merge window.
-> > So it is possible for people to miss this if they are busy otherwise.
-> >
-> > I wouldn't have responded in general or if someone is new to the Linux kernel
-> > development. But you are no new to kernel development.
-> >
-> > In general I also have a suggestion for you. Avoid churning the dependent
-> > patch series if the base set of patches are not yet reviewed or agreed upon.
-> > I was super confused with the amount of different concurrent but dependent
-> > patch series you had for this whole i.MX SCMI pinmux support. I had ignored
-> > and not responded in the past but thought it would be good to respond in
-> > this thread.
->
-> Thanks for your suggestion.  I tried to do different implementations that
-> could make all of us agree, so it was indeed many versions with different
-> implementations. Sorry. I will improve.
->
 
-Thanks and sorry again if it is harsh but it was indeed confusing.
 
-> BTW: would you please also give an ACK for patch 3, because patch 3 uses
-> module_scmi_driver?
+On 6/3/24 08:28, Alexandre Messier via B4 Relay wrote:
+> From: Alexandre Messier <alex@me.ssier.org>
+> 
+> Add initial device tree for the HTC One (M8) smartphone.
+> 
+> Initial support includes:
+>   - eMMC
+>   - Power button
+>   - USB
+>   - Vibrator
+>   - Volume buttons (GPIO)
+>   - Wi-Fi
+> 
+> Signed-off-by: Alexandre Messier <alex@me.ssier.org>
+> ---
 
-Done.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
---
-Regards,
-Sudeep
+Konrad
 
