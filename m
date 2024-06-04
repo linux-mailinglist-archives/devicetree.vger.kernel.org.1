@@ -1,96 +1,66 @@
-Return-Path: <devicetree+bounces-72363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CB498FB7B7
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:44:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 455948FB79E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 17:41:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 22676B29869
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:34:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DF810B22215
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:36:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5D3F13C9CF;
-	Tue,  4 Jun 2024 15:32:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74FA31420A0;
+	Tue,  4 Jun 2024 15:36:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f3benqch"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HQxOU+l8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AF418BFA
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 15:32:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4543615E83;
+	Tue,  4 Jun 2024 15:36:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717515144; cv=none; b=CvT8aMG+Xui2f97+/33ESpUbSS9HpBHV6rrjQ9z21UUFvomOQMN6SnjbFX3NReN6oLQf+vO8XCRDec4PLnLFTxMESnxGSWgp/+dcuHnNnyS7bIlvetJQL9zuFFNNc2y675kuSJ07jYy17Ea7wncucPhmxGyro04NlHS8YVWU124=
+	t=1717515375; cv=none; b=HwRZjQRWDEaEhpqMaQrUf0ABBVBgE4QAYRBqRE/rYaXVy1FaG2D+RyWiL+wwrd7MuNeVg1JuHuxHNn+o6GYy9uwOTnAH6FIL79/FDKyUD+knNNRcntV5Rsi17Ai9EWF/lI6X9mSv9l+oxEo6qkJjG12lG5dwV3E+lZJJromiMRY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717515144; c=relaxed/simple;
-	bh=KATACN7PPYiX+iwxVKQicdKwHIF9fNOrw1pCGGpfd+o=;
+	s=arc-20240116; t=1717515375; c=relaxed/simple;
+	bh=4rMfVnXDULUZCwBnw5F1W1y6pVj9F8WIuK0q0yEsV8s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NOPYZ6BXw2Hg8sQ07jrWW3BZUOmrW8JTIXw/q08B99zrLFyLU04kodnsIBGnPMSIS0gUSLlHna+ud0BlPF1Zp1xbL1VCXwbIxGJ++r7cmfeiEYtr9rhUZuAESHkS/tV+NK9NEf5smzaLg5QDJThQjHhHiJUi0IZXMTKiTAmP+ps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=f3benqch; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52b82d57963so6040074e87.2
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 08:32:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717515141; x=1718119941; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=gHrM44L4syIp6QXQbLvLBhWUBG/rKUy59LnNZ47iEDo=;
-        b=f3benqchLwJy/GJs6PRzB85FcLBbu/3FjaYJJDlyxA87fqXiB/1agQt9LZJdfDNcpH
-         G5RSuo7V8e6KWnGiogD+0L5oyEWVwkWA9eJPBis/sMdVsThzZxsOJxHEC7JieM00nPiU
-         T5V7cX7u44h96+aYSa786UA1cwpZquygo4bAE12VL1kysvjKidfqsoI37uZ/LYbiFZKO
-         yuZHGUpsNAMela1cV7XpymliXeaDR2+m8uHqbLw/FoGke541AFca8glA9dwPSfsQTMKV
-         zAomgxUaAGsJPPmifbsAsm3kmJDZbTDIpXzPfPomiYnquuP2oCeKuGpB60baFGdax1Rj
-         A2Rg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717515141; x=1718119941;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gHrM44L4syIp6QXQbLvLBhWUBG/rKUy59LnNZ47iEDo=;
-        b=EiE47Q/SZxxH5m3CB4R+W/bU3jKLem51e1MSeWgjxvhZoDIZtQ1W14jXy7l6nhPYTY
-         ZopW8WtouQHD4nlz4PZGQ49c5jtH/s0SKvuJ0npayu0kKdRasg3vSR0aA9CqEUUxRh2m
-         HjJtdPZQEgz1B37xC/hX1lDb3Oyl/HuZoVyc9c4JQv3T2JukuBfaLHIbJ0EP4wHdujFr
-         0QUVYhFa1c74kGTJVVpuU/+lvqiIkc41qvcZVaN1ivR+rMj2vinTfTHAGavsLRYFCSTL
-         ewza9nvKVQI6cUZBUODC7iB/6+PmIe05FqTlUvEYhP24+RJb24ps6A5Wq6zU9U6g9EEA
-         U32A==
-X-Forwarded-Encrypted: i=1; AJvYcCUzkn7b3h7NOIUSgEBiKkU9H1FqBnmnp7wqSNcK3d5WNZvi9RifQGSU22I9bcWCCgJTFwAxH6O34xdf98H9Qxc1qvoMDrGcV5Ey3g==
-X-Gm-Message-State: AOJu0Yx6lAMo00eHKTNcYyCsm1L/TJtwDlEQIOMCLwry7r0JfY+v+0UL
-	QcMEhXiEHcvAjqewaFtsY80joamsP5DcbLlMwUq2v9nmnvwY8elCfKHQrq7Xmo8=
-X-Google-Smtp-Source: AGHT+IGYLHNudiIaswlwjTUb/rMLM3nXqJvLYwLC+U0gfFCMtw5YjJkut7czzapYE+YZat6n4c3unQ==
-X-Received: by 2002:ac2:47ef:0:b0:521:9315:670 with SMTP id 2adb3069b0e04-52b8957f632mr7525530e87.9.1717515141146;
-        Tue, 04 Jun 2024 08:32:21 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52b84d7ecfdsm1538150e87.189.2024.06.04.08.32.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jun 2024 08:32:19 -0700 (PDT)
-Date: Tue, 4 Jun 2024 18:32:18 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Krishna Manikandan <quic_mkrishn@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/7] dt-bindings: display/msm/dsi: allow specifying TE
- source
-Message-ID: <xc4knruvh2kasc563vbatppof67w5ui7bnoiq73euogvkjw2hh@meq3vz2qeekk>
-References: <20240520-dpu-handle-te-signal-v1-1-f273b42a089c@linaro.org>
- <224fa477-07ba-e7b2-2f7d-8f7d21f4a0c7@quicinc.com>
- <CAA8EJpp8kRPKboHNHwD+R5f1AcndjaQdGG=Q4ygmRE9VMNievQ@mail.gmail.com>
- <5cde2f43-89ab-d2d4-d68e-605f8f5d1da7@quicinc.com>
- <CAA8EJpoMtr6OGjL8qq-cHadQSOVyDAaL8=2TLvOjBbYV2Z7+Mg@mail.gmail.com>
- <d1a9be5d-b0a0-73bc-c66f-6d45049fbaf1@quicinc.com>
- <CAA8EJppFZQTghtyweGG_8zSqqZpEp=ho0bXuRxgyU2qGL4+ppA@mail.gmail.com>
- <4b604c91-7b1f-46b3-6b41-fe7d45190b78@quicinc.com>
- <tymwexyhuujgrz2cvxkruimst3ff4mnevcm2k4h6qdmpmb7yqp@zqbwwc5t66ya>
- <c9cc5a0e-35b5-47a6-b271-46cac9e19872@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=P4O/OIj6Ug7ndKhIxo+rB4P8bX25sxYcWtRCl8o9y1LOm0bY/Usmwbg3aoEe4VvMnK06yTpZrIaoJsYe1P+VcsMjMBIMciwnB1rNEVSsSZelOmk176HVwpG1KjbFgqwwpgGCQHnZ17RYkWUSWt7BM9srQM1C7nvlhxRCi2zQyVM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HQxOU+l8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80A13C2BBFC;
+	Tue,  4 Jun 2024 15:36:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717515374;
+	bh=4rMfVnXDULUZCwBnw5F1W1y6pVj9F8WIuK0q0yEsV8s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HQxOU+l8yAScZCmZLUyMFk7yaYYMb8CHKKLgXoYs4N3ZNX9ILogCN/Z11xyXc7JDx
+	 P0sV1E+2P4uExY6RV66r7CbU1Ypo82FJ/x8bS3Sjbgy0mK4qbqfclALzmUBc+hWwx8
+	 uhltP3d+tNOZixOn0XOe8NDobpnCXQ4GsFk8I4Bo/aEbOJLJuQVuEVdJ5aKu+iTmsm
+	 DP+sMRuQtc7SVQIL9ZKDEEg6FVTTwwMyQU15mv17LbYnjiqY23JqT3ttapieGLf2dT
+	 PYcq3KaNQ2FHYscEX9suzjSLgKSBu3w3/YK75r0H5PF2GUXcEAKIPKs42bKTrhwGRA
+	 KP8wXGs3z9qMg==
+Date: Tue, 4 Jun 2024 10:36:12 -0500
+From: Rob Herring <robh@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Paul Barker <paul.barker.ct@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v3 01/15] dt-bindings: pinctrl: renesas: Document
+ RZ/V2H(P) SoC
+Message-ID: <20240604153612.GA839371-robh@kernel.org>
+References: <20240530173857.164073-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240530173857.164073-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,50 +69,127 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c9cc5a0e-35b5-47a6-b271-46cac9e19872@kernel.org>
+In-Reply-To: <20240530173857.164073-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Tue, Jun 04, 2024 at 05:22:03PM +0200, Krzysztof Kozlowski wrote:
-> On 04/06/2024 17:14, Dmitry Baryshkov wrote:
-> >>>>>>
-> >>>>>> I didnt follow why this is a link property. Sorry , I didnt follow the
-> >>>>>> split part.
-> >>>>>
-> >>>>> There is a link between the DSI host and the panel. I don't want to
-> >>>>> end up in a situation when the properties of the link are split
-> >>>>> between two different nodes.
-> >>>>>
-> >>>>
-> >>>> It really depends on what the property denotes. I do not think this
-> >>>> should be the reason to do it this way.
-> >>>
-> >>> It denotes how the panel signals DPU that it finished processing the
-> >>> data (please excuse me for possibly inaccurate description). However
-> >>> there is no direct link between the panel and the DPU. So we should be
-> >>> using a link between DSI host and the panel.
-> >>>
-> >>
-> >> Yes, I totally agree that we should be using a link between DSI host and the
-> >> panel.
-> >>
-> >> My question from the beginning has been why the output port?
-> >>
-> >> It looks like to me we need to have another input port to the controller
-> >> then?
-> >>
-> >> One from DPU and the other from panel?
-> > 
-> > Dear DT maintainers, could you please comment on the OF graph entries?
-> > Are they considered to be unidirectional or bidirectional?
-> > 
-> > Would you suggest adding another arc to the OF graph in our case or is
-> > it fine to have a signal generated by the panel in the 'panel_in' port?
+On Thu, May 30, 2024 at 06:38:43PM +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> Which pin are we talking about? DSI or panel? Commit msg suggests DSI,
-> so property is in DSI node part. Seems logical to me.
+> Add documentation for the pin controller found on the Renesas RZ/V2H(P)
+> (R9A09G057) SoC. The RZ/V2H PFC varies slightly compared to the RZ/G2L
+> family:
+> - Additional bits need to be set during pinmuxing.
+> - The GPIO pin count is different.
+> 
+> Hence, a SoC-specific compatible string, 'renesas,r9a09g057-pinctrl', is
+> added for the RZ/V2H(P) SoC.
+> 
+> Also, add the 'renesas,output-impedance' property. The drive strength
+> setting on RZ/V2H(P) depends on the different power rails coming out from
+> the PMIC (connected via I2C). These power rails (required for drive
+> strength) can be 1.2V, 1.8V, or 3.3V.
+> 
+> Pins are grouped into 4 groups:
+> 
+> Group 1: Impedance
+> - 150/75/38/25 ohms (at 3.3V)
+> - 130/65/33/22 ohms (at 1.8V)
+> 
+> Group 2: Impedance
+> - 50/40/33/25 ohms (at 1.8V)
+> 
+> Group 3: Impedance
+> - 150/75/37.5/25 ohms (at 3.3V)
+> - 130/65/33/22 ohms (at 1.8V)
+> 
+> Group 4: Impedance
+> - 110/55/30/20 ohms (at 1.8V)
+> - 150/75/38/25 ohms (at 1.2V)
+> 
+> The 'renesas,output-impedance' property, as documented, can be
+> [0, 1, 2, 3], these correspond to register bit values that can
+> be set in the PFC_IOLH_mn register, which adjusts the drive
+> strength value and is pin-dependent.
+> 
+> As power rail information may not be available very early in the boot
+> process, the 'renesas,output-impedance' property is added instead of
+> reusing the 'output-impedance-ohms' property.
+> 
+> Also, allow bias-disable, bias-pull-down and bias-pull-up properties
+> as these can be used to configure the pins.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v2->v3
+> - Updated description for renesas,output-impedance property
+> - Updated commit description
+> 
+> RFC->v2
+> - Renamed renesas-rzv2h,output-impedance -> renesas,output-impedance
+> - Updated values for renesas,output-impedance
+> - Added bias properties
+> ---
+>  .../pinctrl/renesas,rzg2l-pinctrl.yaml        | 23 +++++++++++++++----
+>  1 file changed, 19 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+> index 881e992adca3..957b9f7e7de5 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+> @@ -26,6 +26,7 @@ properties:
+>                - renesas,r9a07g043-pinctrl # RZ/G2UL{Type-1,Type-2} and RZ/Five
+>                - renesas,r9a07g044-pinctrl # RZ/G2{L,LC}
+>                - renesas,r9a08g045-pinctrl # RZ/G3S
+> +              - renesas,r9a09g057-pinctrl # RZ/V2H(P)
+>  
+>        - items:
+>            - enum:
+> @@ -66,10 +67,14 @@ properties:
+>      maxItems: 1
+>  
+>    resets:
+> -    items:
+> -      - description: GPIO_RSTN signal
+> -      - description: GPIO_PORT_RESETN signal
+> -      - description: GPIO_SPARE_RESETN signal
+> +    oneOf:
+> +      - items:
+> +          - description: GPIO_RSTN signal
+> +          - description: GPIO_PORT_RESETN signal
+> +          - description: GPIO_SPARE_RESETN signal
+> +      - items:
+> +          - description: PFC main reset
+> +          - description: Reset for the control register related to WDTUDFCA and WDTUDFFCM pins
 
-Input pin on the DSI side.
+You need a conditional schema for ensuring the length is 2 for RZ/V2H 
+and 3 otherwise.
 
--- 
-With best wishes
-Dmitry
+>  
+>  additionalProperties:
+>    anyOf:
+> @@ -111,6 +116,16 @@ additionalProperties:
+>          output-high: true
+>          output-low: true
+>          line-name: true
+> +        bias-disable: true
+> +        bias-pull-down: true
+> +        bias-pull-up: true
+> +        renesas,output-impedance:
+> +          description: |
+
+Don't need '|'.
+
+> +            Output impedance for pins on the RZ/V2H(P) SoC. Values 0, 1, 2, and 3
+
+Don't repeat values in free form text.
+
+> +            correspond to register bit values that can be set in the PFC_IOLH_mn
+> +            register, which adjusts the drive strength value and is pin-dependent.
+> +          $ref: /schemas/types.yaml#/definitions/uint32
+> +          enum: [0, 1, 2, 3]
+>  
+>      - type: object
+>        additionalProperties:
+> -- 
+> 2.34.1
+> 
 
