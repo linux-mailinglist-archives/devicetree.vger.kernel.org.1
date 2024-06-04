@@ -1,115 +1,167 @@
-Return-Path: <devicetree+bounces-72277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F25D8FB42C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:45:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 909088FB420
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 15:44:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A3C0EB292A5
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:41:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02B2D1F25DD9
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 13:44:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 664DF1494D4;
-	Tue,  4 Jun 2024 13:38:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61C6C14831F;
+	Tue,  4 Jun 2024 13:42:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YHq9PdCy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YwwA667s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD0AB148FE0
-	for <devicetree@vger.kernel.org>; Tue,  4 Jun 2024 13:38:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3BFB144D23;
+	Tue,  4 Jun 2024 13:42:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717508336; cv=none; b=MhVTd4SKNTL0DiO+3kuMyxr6QLbtM+YHrXJruFyWNunxaNHNjJ+XUao2XfSpiM4bVkOMQ9wts1r4xxWJOVOrCkl8DOBwdXfOW7pVCFmLF0WO+af2ambpIzx4abRLgWVy3FbsQo+5gMHrNCO+IjJeDfKcnwbOEo5C5V68UXvf/mU=
+	t=1717508541; cv=none; b=SRtayE3kLDlMmtoF0ZoBuUK0a+CxgJr9ZNmbQHaxG8m9iOeOFHRJ4U6BlQTFKzqAm4dQZjRjHe+jcqlbfDY0WatKBHVJnYSQYdEERdzAth3VxYJU9yIGeTLqykrGAE65q521koCA87Okd3RsTtiXaFFFTV0EYWey/EovXvNyn9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717508336; c=relaxed/simple;
-	bh=+BBeFQRRuSQe7oyiSZua1p7eLPFD+XkIH8GqvQOls00=;
+	s=arc-20240116; t=1717508541; c=relaxed/simple;
+	bh=JzvpitEF6afef78A6BqMKn7sGkEtB3biXCt3XCWqeog=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bSAy8CMjbOMzm/WNDvy0iNMbzzQTIZiGbsfEYjVDl3TgVCtsKUIE++rJE4AkelfircAuz8p561uX9qTwBA5BoqqPFjKAlMZsexfN96Vy2WIANIOj61RIEiZBaIoXHLRfEls1MMhxh/e73hAqlux3GhDsxEgB2En0KN9wnw9fEqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YHq9PdCy; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2ea9386cde0so56096761fa.2
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 06:38:54 -0700 (PDT)
+	 To:Cc:Content-Type; b=tTyMmsMenKeUuMHZ8R3QnyQ35KpVK7m5faYaXjwAUw78MWaEyU/V9dtm1Hbcnjz6wDn9pITWTVfFh5KnkiZVoVCOyr4Q8xj9Eaincw7WEoFybU/yLfPuw7QuybdEpf6QFNVMzRO1rv9Vw8ylkP1qXOSrsVbhYAJxi7ghlWYPGiw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YwwA667s; arc=none smtp.client-ip=209.85.221.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-4eb0f868f2aso1029548e0c.3;
+        Tue, 04 Jun 2024 06:42:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717508333; x=1718113133; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1717508539; x=1718113339; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RJ24ia6Wzp2Pqb0kKz0O+mmt3fEDNuHDHYJjjdm6g9Y=;
-        b=YHq9PdCy9Kc320U8m7DVAAPEDTZJqOBNc2nOUBM0TxxwO3QQOQR3Gib1sfVFezMF1j
-         MJiWVCVVz60K7CkMJ3eQCseirht7wUUH4jxYKbQhD9N263xhEetOVyDu9mLhwYw2AQqQ
-         Ki2d2PujJtAK2hJpeGAyAb6H77dV8LHB6qWZMuJ/3Y68lCzhE8EjgicICwCnIwlrgCA+
-         5+ZnLoYmI6vZZWvSSuFqVB2yMAxj8aY7WmypDiyqtp2JQTISmTNtVARix9d1DnaMzdUT
-         yW16uAAmhek466pAjDjbWIKwlmH5UC3Fl+yoidAERiApkkcBmb4u58btbJ3LR/i2/nIi
-         /Nrw==
+        bh=I/wDaAVsUoMEE2XkQjQGVHqiZEip+VWTpwMBzDDOubw=;
+        b=YwwA667sY8kcgKRArClihxuwUyj+kPxpXb40LQpzrhsAn3+I5K/p6hKggyjWdS8Vrz
+         2BvufJEiHteSRBWyBCxu5LGQdorahH0ojz5o+OIIhInu2L4A2Md3mYd7+w9qC6EYNDRs
+         zaOVcYeFodLg75svb4vPddg8oyho2CV+gAAp1uT1CnOWykuFkceGWhc0z6U2xO98sBjT
+         BV3nUB9lRfMr0X1jYTDugD7V4h5Xgo8B36pAkicqgYDRw6yF/llso2dINjCoMUaHuRBD
+         mvj7dhfa01EvhGOXnyIISPnO3wGVL5QUeyKLBbJW6ZfV0LmnnkMv7BNjRjPzPH46Hslr
+         gVSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717508333; x=1718113133;
+        d=1e100.net; s=20230601; t=1717508539; x=1718113339;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=RJ24ia6Wzp2Pqb0kKz0O+mmt3fEDNuHDHYJjjdm6g9Y=;
-        b=hJw7X2YsJN4ndbFCr6HsuntOZxXqnOB/h2cm+ApM1EdhGgyg0UR9sGKDDrtOgXNmVz
-         ddYdRKsYhBUVUumViGp/6uV36rPrJ75mMWPkQdn31dpQ5weW4ttdiIEQXz4cW/dDHSr3
-         yh7OOz8pGHdn0nmwqVicUXtXEiUgq7XOfjIJvXbO/2o1TvwDUETYLp/e+xFg3+mUDNKa
-         IW7QyrUHgvsFprbsNmUtht9RmKUJMRvb5IlEtbHz7lcQqldW/ePqpUhpRpCODQ8zO1PO
-         uQEt7D25KeLowVmIWoysi1/GrVP4NKwYyVQqXgV9V1Yw0INpt3loio+kh/xvHLMTR6Rc
-         gzQw==
-X-Forwarded-Encrypted: i=1; AJvYcCVckUuPRDZHCYJ7Sx8bTYDpPfx2G5d2a2blXNwH10HDaSFo/TDBDvkMkbraXgN2RTWflSUKCdDdu1mv7ig4RlnOqIr8roqp6MC05Q==
-X-Gm-Message-State: AOJu0Yyq2mmFIpXmvV/qSUZDFt+wjy5wzA5Lt039ZhCXgjWZCHfcuQeS
-	7wRlBFfLniNQ9HdyAwt2HDiM1FIucS15yCykT130O3+3C8+IpabKS69FXtvGZYU8Q+n9uy0Acyl
-	5lJcOXZe2WfuHQIHeOaRsJAWanuDffTcmso3LLg==
-X-Google-Smtp-Source: AGHT+IELseZkVoEmrnH9ygVfhk2FPI8hjQQ2ghS5fnHMvCo1SZ3J4jQxHmw+jA+8Hu7yKI7d8hScgJSrKdCzuHVgw/s=
-X-Received: by 2002:a2e:2401:0:b0:2e6:be3c:9d37 with SMTP id
- 38308e7fff4ca-2ea950f70b4mr73997061fa.14.1717508332946; Tue, 04 Jun 2024
- 06:38:52 -0700 (PDT)
+        bh=I/wDaAVsUoMEE2XkQjQGVHqiZEip+VWTpwMBzDDOubw=;
+        b=leNLlxvDEXmpfYIzuExDcqmMdIy0k57W7t8JAfwikNTMGXBq6O0S/rggAKknGX3Oo0
+         v2qbM+xHlxKKqI4VyX6gpDifAMXa0807LIehgew/xbcCCwtTvafIH5xp/3eYZBeQCuNE
+         zjtMB3cEUrdKN+n6H2Ji5wLdSXS1y3CklT6fcNJvYose3K6nl7N0CvqGFSnmOP3uxaus
+         7a/8vhmOuC0BX6EJ2HocZFUr/5jefgdHdxVhhCuqPxyry5qn7yRSQPmIo3Kv/s8eEs45
+         RdLVg1grs6ziqQanaRN6JlDEsqTfMOZWtMjdVxbcrYP9JEQdV+BdLlhAwnQY0WmHGYsN
+         IB2A==
+X-Forwarded-Encrypted: i=1; AJvYcCUtpcpWyjr/jPmgu/w27PzbIKZUmIv/pLyIjox0S3Cf4jasVRMPEUxNUp8yn3zkalBb78iIzRCNJtKC7u29NeYaSl9QSChooWM1Ufz590H90aDeWBmMCnXdsXNztmybsrGD99K8q0X/hcL9MzOut3zFiyRrrBVbdfaBeImsQRcB7IWB9oZ7g7V9KFwdGvFkTW6U9gnSlh7AlpoUgcPkgcTUC0+Zs9p8gdL1
+X-Gm-Message-State: AOJu0YxDfGnkGohIuBAJ+pse2YH/aCdDefq3iBVDxTFlNcD2IljiBmcI
+	xCcFpGbOEKgbQByR/lnPy9dI5nhl7vK+NQNqoKO4tj9q8nt1TiFdLv8Udq/pF/Z1ZKQUevWYDrQ
+	067PXmaTSnEiSTPlFEWWdFTV3X3A=
+X-Google-Smtp-Source: AGHT+IHgpZyV5AZDRDVpQ9136VhNSmZNg2lCdWNHz35AYccw+Xew1tUvamXCslfWnHhTU0ar0AqXutM9VZt8VyRop7A=
+X-Received: by 2002:a05:6122:4685:b0:4e9:7e39:cc9f with SMTP id
+ 71dfb90a1353d-4eb02eec147mr13378784e0c.11.1717508536659; Tue, 04 Jun 2024
+ 06:42:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240602-pwm-gpio-v6-0-e8f6ec9cc783@linaro.org> <20240602-pwm-gpio-v6-1-e8f6ec9cc783@linaro.org>
-In-Reply-To: <20240602-pwm-gpio-v6-1-e8f6ec9cc783@linaro.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 4 Jun 2024 15:38:41 +0200
-Message-ID: <CACRpkdbPGEx9QSazVfP7rbkM7x2MnJbrACdTi3zyniQhZSyTbw@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: pwm: Add pwm-gpio
-To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	andy.shevchenko@gmail.com, Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>, 
-	Chris Morgan <macromorgan@hotmail.com>, Stefan Wahren <wahrenst@gmx.net>, linux-gpio@vger.kernel.org, 
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org
-Cc: Nicola Di Lieto <nicola.dilieto@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Dhruva Gole <d-gole@ti.com>
+References: <20240322144355.878930-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CA+V-a8vQr2jxrW+C5VTcmEHmDgNp6S8=3KcAT1SzcKusFaP7Gw@mail.gmail.com>
+ <2024052955-phrase-portion-8d1f@gregkh> <2024060426-radiance-reappear-c77a@gregkh>
+In-Reply-To: <2024060426-radiance-reappear-c77a@gregkh>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 4 Jun 2024 14:41:49 +0100
+Message-ID: <CA+V-a8sJ2o3HckW_YdwAraihXuDtnsqguHd8msKFe12BhCCy=g@mail.gmail.com>
+Subject: Re: [PATCH v4 0/5] Add SCIF support for Renesas RZ/V2H(P) SoC
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-serial@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Some buzz around the patch made me notice this:
+Hi Greg,
 
-On Sun, Jun 2, 2024 at 10:33=E2=80=AFPM Linus Walleij <linus.walleij@linaro=
-.org> wrote:
+On Tue, Jun 4, 2024 at 1:06=E2=80=AFPM Greg Kroah-Hartman
+<gregkh@linuxfoundation.org> wrote:
+>
+> On Wed, May 29, 2024 at 09:42:50AM +0200, Greg Kroah-Hartman wrote:
+> > On Wed, May 29, 2024 at 07:15:23AM +0100, Lad, Prabhakar wrote:
+> > > Hi Greg,
+> > >
+> > > On Fri, Mar 22, 2024 at 2:45=E2=80=AFPM Prabhakar <prabhakar.csengg@g=
+mail.com> wrote:
+> > > >
+> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > >
+> > > > Hi All,
+> > > >
+> > > > This patch series updates DT binding doc and scif driver to add sup=
+port
+> > > > for the Renesas RZ/V2H(P) SoC. RZ/V2H(P) SoC supports one channel S=
+CIF
+> > > > interface.
+> > > >
+> > > > v3->v4
+> > > > - patch 2/4 reverted back to version 2
+> > > > - new patch 3/5 added
+> > > > - Added new reg type for RZ/V2H
+> > > >
+> > > > v2->v3
+> > > > - Included DT validation patches
+> > > > - Added a new compat string for RZ/V2H(P) SoC
+> > > > - Added driver changes for RZ/V2H(P) SoC
+> > > > - Listed interrupts and interrupt-names for every SoC in if check
+> > > >
+> > > > Cheers,
+> > > > Prabhakar
+> > > >
+> > > > Lad Prabhakar (5):
+> > > >   dt-bindings: serial: renesas,scif: Move ref for serial.yaml at th=
+e end
+> > > >   dt-bindings: serial: renesas,scif: Validate 'interrupts' and
+> > > >     'interrupt-names'
+> > > >   dt-bindings: serial: renesas,scif: Make 'interrupt-names' propert=
+y as
+> > > >     required
+> > > >   dt-bindings: serial: Add documentation for Renesas RZ/V2H(P)
+> > > >     (R9A09G057) SCIF support
+> > > >   serial: sh-sci: Add support for RZ/V2H(P) SoC
+> > > >
+> > > Gentle ping.
+> >
+> > It is only 3 days since the merge window ended, please be patient for
+> > maintainers to catch up with their pending review queue.  Especially fo=
+r
+> > non-bugfixes like these that will be included in the 6.11-rc1 release,
+> > there is not any rush here for anyone just yet.
+> >
+> > For example, my todo queue currently has 1458 emails to process in it,
+> > this thread is somewhere in the middle.
+> >
+> > In the meantime, please help review other pending patches for the
+> > subsystem to help enable your patches to move toward the top of the
+> > queue.
+>
+> And this patch series does not even apply, so how could it be accepted?
+>
+Oops I'll rebase the changes now.
 
-> +  "#pwm-cells":
-> +    const: 3
+> Please fix and resend with the proper reviews added.
+>
+Sure will do.
 
-I guess we should document these three cells:
-- First cell must be 0 - just the one PWM on the one GPIO pin
-- Second cell should be the default period that can be changed by software
-- Third cell is polarity, 0 or PWM_POLARITY_INVERTED
-
-I guess this is 3 not 2 because the maintainers previously said they wanted
-it like this? (I haven't read all old mail, nor do I remember...)
-
-The #pwm-cells are currently not properly specified in the bindings: for ex=
-ample
-pwm-tiecap.yaml says "See pwm.yaml in this directory for a description
-of the cells format."
-and that file says nothing about the cells and what they are for, should
-I send a separate patch for that?
-
-Yours,
-Linus Walleij
+Cheers,
+Prabhakar
 
