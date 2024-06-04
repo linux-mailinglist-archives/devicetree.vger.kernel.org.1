@@ -1,208 +1,155 @@
-Return-Path: <devicetree+bounces-72031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C29008FA9D6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 07:16:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77CFF8FA9E4
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 07:18:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 446041F24490
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 05:16:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1035B247E9
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 05:18:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0D4213FD80;
-	Tue,  4 Jun 2024 05:15:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0003F13D2BA;
+	Tue,  4 Jun 2024 05:18:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YeWBkxiC"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="qwGy6i7D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E90CB13F447;
-	Tue,  4 Jun 2024 05:15:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EEAE27735;
+	Tue,  4 Jun 2024 05:18:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717478144; cv=none; b=bTdZM+zIX9bOMoaYCnCR3JmtF1+C19ySUyNqUcFGO765BpPV1/udqGoi9oXnNVfDwoncfjhoh7aa6LJtNnS6hIt7ayBhDki4c3QnQqhxwb3fkhLrO8k/nq+J5NmBAch1oUIZ8i3uc1rTNtwDiBdzxdsF7KBLztWkWsmb2RcteqE=
+	t=1717478302; cv=none; b=sSGNZUUPBDAQdMDDxKwiXnPEmvhNXPHZWxBxtIpYojZs6RpeepMGd2eSUzss4s1LcasGfAh8pelgDq/r+EbNIQHmDFSMm3/gmhLeoYDjHZSAputKwnr6Fj/1kZx3EBFICuYHa37/Ag8rAGtpOXf9h8uvmupRckimAFOR4QHT8ks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717478144; c=relaxed/simple;
-	bh=DEfGGNbbf6mS0MilM1GKmovkDe2QE6KoBd+BZ/dvfkE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=YH70zHCSTMIlsROYn05KKqSjZWkk5osKp8JdI9teprEZ8L9WvSqNWkS/mpTlnEjWI0yDUw9ZAdjGsej1NjRjTHJFLt/qKr0RtdOq+TxQC0+6SNKgy8h3saahyYVGfIqlAXbrrJqh03uTVX+zQkrIRbsrPv6SHV1pOCryEiHolKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YeWBkxiC; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-57a30b3a6cbso653735a12.1;
-        Mon, 03 Jun 2024 22:15:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717478141; x=1718082941; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8SJccidjsLYGh4yEPOhnunVr6ljOJkGUx3ObCldCrBM=;
-        b=YeWBkxiCV+yXIJff/qQMwLJntNEqwQkE+SBwP9ZCGHVdYAFeMUGo9OvlCCG4y8NfLP
-         wzaujEoXxKrmHzaI4IdOs4JQ50xtpKrOU9fl3eZOmwjUwMxGRKs8JWc58zi9apIwHJO6
-         h8lPae4UeowoPKozFCEtaRO8jj8DAdhJHb4FWU9ci/WkNRa4+dGJhfTG+u1SLjsEZQj+
-         b1iFeHbB1kA9SPGZg8KO3rTYC2gNW1i0fecl6v4DreXeALsqXzhehzbhSYLcgzxqR5/3
-         cb36BZtx5AambKXYxOheR8Hupfub2rAMv2HOxTcw39CSJJZZjEymXo3hhr3eqGC4fh5E
-         Ogpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717478141; x=1718082941;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8SJccidjsLYGh4yEPOhnunVr6ljOJkGUx3ObCldCrBM=;
-        b=o/OHlxduiVN9N7x/mehBJwBWxLMAfeaNlzBbwoIjt/X0Rfvh77gVvntSVZkrYpcJ+d
-         gRbJiU/x+FgICl/pZtwrc8pVKuAl8ub/nL6G4Syx8hKb8uSyh0tmUCFvjwxYKAQW8qMt
-         c36p0Xlt9HbeD2z69vewFdavz0O3XA5r/yVyOm7mEjNy+d7dUaqEVuQd9r5o8LmBuxdY
-         JysD7QCIrkgvsFrgfECvv7jb5Q8ltScoMozyKAQERLRJIy+x575ScyvEElVDwyNEeNhK
-         tDKY+XW1fXOlWoexYCIGQMqusWrcTgqZzbSlr1G5gh0VUHEAdqBB05S1L1jH2gBCKxl7
-         WwUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUTyxwsjhCslPPxh3s8/7ewfbQ1MZwX+aQe1IVJbXQcjYBSVFfUX3QuN6xnNk4TSlq2Y9gEPKY97yXd5z5sX1PAM1kniVDv38qJjNlKthg/ehAD9Ov4WzzIbBqQI5/gkgNupZg/Xwh3rUQkM1iV8hlVzqjOhrQnpn1ew06nqO+SLVj5qDM1
-X-Gm-Message-State: AOJu0YzEWZH9miykdXXkLDNbCGXN/F/PI8iNr++/LubunCKIbLQXQzxT
-	f8iDxxLj//R+mKh78riIk4VzNHbG2P5Li3hUJ6Dy/CMUgxtDiel5
-X-Google-Smtp-Source: AGHT+IGZ8TPHTibom2cLxGJgP0J5h41ltwlDrg51oTsOx+WeTH4ROT9lb8ZKceTCPjvT/pMzBjeQoQ==
-X-Received: by 2002:a17:906:3718:b0:a68:cf22:ebdb with SMTP id a640c23a62f3a-a68cf22ee12mr383305766b.43.1717478140978;
-        Mon, 03 Jun 2024 22:15:40 -0700 (PDT)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a68afbaac03sm451896566b.149.2024.06.03.22.15.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Jun 2024 22:15:40 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-media@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-staging@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH 2/2] media: meson: vdec: add GXLX SoC platform
-Date: Tue,  4 Jun 2024 05:15:33 +0000
-Message-Id: <20240604051533.3312944-2-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240604051533.3312944-1-christianshewitt@gmail.com>
-References: <20240604051533.3312944-1-christianshewitt@gmail.com>
+	s=arc-20240116; t=1717478302; c=relaxed/simple;
+	bh=awkpkgJxzJisu4oVjgQB3mqJkaSX6NQoHxc4rMIMQvg=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YU5Ym/L/5MgmwiDdpkvlesTIgk/Uqz38YUVS8tzjsFzXtIk8NxJxXDBkmItoBiI2TyE1DGzHkVg/+It67WYYFCX7xT5SIRA3wnSF6jVjmN2/fCjv7Bw2VyHQRV7/Hv9UsPIFCbN4Ql5tIi41l7p0GBDrc6KcWSDkHGtJvJbopmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=qwGy6i7D; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4545IDes041860;
+	Tue, 4 Jun 2024 00:18:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1717478293;
+	bh=cGPLa33dqssDxBaTz/i1bcB4UE7sLyY7nEd/MTkGCPM=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=qwGy6i7DBoRRr1jwZ/+kODAeFxxMj42zFJbko3IJCPdi2LBMiUNYcsjjlA9mF+NVi
+	 dWs2ONzX2QiHNFmDrF8HnyBluIS9fUVlATYEIojFz2nXewW9V/szZe39ShUkdTwaUn
+	 wWNj32ULZhdr5mXxVfozCSaSvZcqR5tblRYbE8vc=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4545IDX1025242
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 4 Jun 2024 00:18:13 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 4
+ Jun 2024 00:18:13 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 4 Jun 2024 00:18:13 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [172.24.227.9])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4545IC18114934;
+	Tue, 4 Jun 2024 00:18:13 -0500
+Date: Tue, 4 Jun 2024 10:48:11 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Andrew Davis <afd@ti.com>
+CC: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <rogerq@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>,
+        <danishanwar@ti.com>, <srk@ti.com>
+Subject: Re: [PATCH v4 1/7] arm64: dts: ti: am62p: Rename am62p-{}.dtsi to
+ am62p-j722s-common-{}.dtsi
+Message-ID: <b1691eef-d385-4f86-8ec0-9059d699c221@ti.com>
+References: <20240601121554.2860403-1-s-vadapalli@ti.com>
+ <20240601121554.2860403-2-s-vadapalli@ti.com>
+ <086fa11e-10f8-463d-8966-1a33a52a3146@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <086fa11e-10f8-463d-8966-1a33a52a3146@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Add the GXLX SoC platform which is based on GXL but omits the VP9 codec.
+On Mon, Jun 03, 2024 at 09:09:39AM -0500, Andrew Davis wrote:
+> On 6/1/24 7:15 AM, Siddharth Vadapalli wrote:
+> > The AM62P and J722S SoCs share most of the peripherals. With the aim of
+> > reusing the existing k3-am62p-{mcu,main,wakeup}.dtsi files for J722S SoC,
+> > rename them to indicate that they are shared with J722S SoC.
+> > 
+> > The peripherals that are not shared will be moved in the upcoming patches
+> > to the respective k3-{soc}-{mcu,main,wakeup}.dtsi files without "common" in
+> > the filename, emphasizing that they are not shared.
+> > 
+> > Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> > ---
+> > No changelog since this patch is introduced in this version of the
+> > series.
+> > 
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- drivers/staging/media/meson/vdec/vdec.c       |  2 +
- .../staging/media/meson/vdec/vdec_platform.c  | 44 +++++++++++++++++++
- .../staging/media/meson/vdec/vdec_platform.h  |  2 +
- 3 files changed, 48 insertions(+)
+[...]
 
-diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
-index de3e0345ab7c..5e5b296f93ba 100644
---- a/drivers/staging/media/meson/vdec/vdec.c
-+++ b/drivers/staging/media/meson/vdec/vdec.c
-@@ -982,6 +982,8 @@ static const struct of_device_id vdec_dt_match[] = {
- 	  .data = &vdec_platform_gxm },
- 	{ .compatible = "amlogic,gxl-vdec",
- 	  .data = &vdec_platform_gxl },
-+	{ .compatible = "amlogic,gxlx-vdec",
-+	  .data = &vdec_platform_gxlx },
- 	{ .compatible = "amlogic,g12a-vdec",
- 	  .data = &vdec_platform_g12a },
- 	{ .compatible = "amlogic,sm1-vdec",
-diff --git a/drivers/staging/media/meson/vdec/vdec_platform.c b/drivers/staging/media/meson/vdec/vdec_platform.c
-index 70c9fd7c8bc5..66bb307db85a 100644
---- a/drivers/staging/media/meson/vdec/vdec_platform.c
-+++ b/drivers/staging/media/meson/vdec/vdec_platform.c
-@@ -101,6 +101,44 @@ static const struct amvdec_format vdec_formats_gxl[] = {
- 	},
- };
- 
-+static const struct amvdec_format vdec_formats_gxlx[] = {
-+	{
-+		.pixfmt = V4L2_PIX_FMT_H264,
-+		.min_buffers = 2,
-+		.max_buffers = 24,
-+		.max_width = 3840,
-+		.max_height = 2160,
-+		.vdec_ops = &vdec_1_ops,
-+		.codec_ops = &codec_h264_ops,
-+		.firmware_path = "meson/vdec/gxl_h264.bin",
-+		.pixfmts_cap = { V4L2_PIX_FMT_NV12M, 0 },
-+		.flags = V4L2_FMT_FLAG_COMPRESSED |
-+			 V4L2_FMT_FLAG_DYN_RESOLUTION,
-+	}, {
-+		.pixfmt = V4L2_PIX_FMT_MPEG1,
-+		.min_buffers = 8,
-+		.max_buffers = 8,
-+		.max_width = 1920,
-+		.max_height = 1080,
-+		.vdec_ops = &vdec_1_ops,
-+		.codec_ops = &codec_mpeg12_ops,
-+		.firmware_path = "meson/vdec/gxl_mpeg12.bin",
-+		.pixfmts_cap = { V4L2_PIX_FMT_NV12M, V4L2_PIX_FMT_YUV420M, 0 },
-+		.flags = V4L2_FMT_FLAG_COMPRESSED,
-+	}, {
-+		.pixfmt = V4L2_PIX_FMT_MPEG2,
-+		.min_buffers = 8,
-+		.max_buffers = 8,
-+		.max_width = 1920,
-+		.max_height = 1080,
-+		.vdec_ops = &vdec_1_ops,
-+		.codec_ops = &codec_mpeg12_ops,
-+		.firmware_path = "meson/vdec/gxl_mpeg12.bin",
-+		.pixfmts_cap = { V4L2_PIX_FMT_NV12M, V4L2_PIX_FMT_YUV420M, 0 },
-+		.flags = V4L2_FMT_FLAG_COMPRESSED,
-+	},
-+};
-+
- static const struct amvdec_format vdec_formats_gxm[] = {
- 	{
- 		.pixfmt = V4L2_PIX_FMT_VP9,
-@@ -263,6 +301,12 @@ const struct vdec_platform vdec_platform_gxl = {
- 	.revision = VDEC_REVISION_GXL,
- };
- 
-+const struct vdec_platform vdec_platform_gxlx = {
-+	.formats = vdec_formats_gxlx,
-+	.num_formats = ARRAY_SIZE(vdec_formats_gxlx),
-+	.revision = VDEC_REVISION_GXLX,
-+};
-+
- const struct vdec_platform vdec_platform_gxm = {
- 	.formats = vdec_formats_gxm,
- 	.num_formats = ARRAY_SIZE(vdec_formats_gxm),
-diff --git a/drivers/staging/media/meson/vdec/vdec_platform.h b/drivers/staging/media/meson/vdec/vdec_platform.h
-index 731877a771f4..88ca4a9db8a8 100644
---- a/drivers/staging/media/meson/vdec/vdec_platform.h
-+++ b/drivers/staging/media/meson/vdec/vdec_platform.h
-@@ -14,6 +14,7 @@ struct amvdec_format;
- enum vdec_revision {
- 	VDEC_REVISION_GXBB,
- 	VDEC_REVISION_GXL,
-+	VDEC_REVISION_GXLX,
- 	VDEC_REVISION_GXM,
- 	VDEC_REVISION_G12A,
- 	VDEC_REVISION_SM1,
-@@ -28,6 +29,7 @@ struct vdec_platform {
- extern const struct vdec_platform vdec_platform_gxbb;
- extern const struct vdec_platform vdec_platform_gxm;
- extern const struct vdec_platform vdec_platform_gxl;
-+extern const struct vdec_platform vdec_platform_gxlx;
- extern const struct vdec_platform vdec_platform_g12a;
- extern const struct vdec_platform vdec_platform_sm1;
- 
--- 
-2.34.1
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
+> > similarity index 98%
+> > rename from arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi
+> > rename to arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
+> > index b973b550eb9d..a5dbaf3ff41b 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
+> > @@ -1,6 +1,6 @@
+> >   // SPDX-License-Identifier: GPL-2.0-only OR MIT
+> >   /*
+> > - * Device Tree file for the AM62P MCU domain peripherals
+> > + * Device Tree file for the mcu domain peripherals shared by AM62P and J722S
+> 
+> s/mcu/MCU
+> 
+> Same for the other domains (WAKEUP, MAIN, MCU), makes it more clear these are names,
+> and not just adjectives for the domains.
 
+I had changed the "MCU" to "mcu" to match the convention in other files.
+Based on your feedback, I seem to have switched to the wrong convention.
+I will fix this in the v5 series.
+
+> 
+> >    * Copyright (C) 2023-2024 Texas Instruments Incorporated - https://www.ti.com/
+> >    */
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
+> > similarity index 97%
+> > rename from arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+> > rename to arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
+> > index c71d9624ea27..ca493f4e1acd 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
+> > @@ -1,6 +1,6 @@
+> >   // SPDX-License-Identifier: GPL-2.0-only OR MIT
+> >   /*
+> > - * Device Tree file for the AM62P wakeup domain peripherals
+> > + * Device Tree file for the wakeup domain peripherals shared by AM62P and J722S
+> 
+> While we are here, might be good to add a newline here between the description
+> and the copyright line to match the other SoCs DT files.
+> 
+> Otherwise,
+> 
+> Acked-by: Andrew Davis <afd@ti.com>
+
+Sure, I will add the missing newline and collect your "Acked-by" tag for
+this patch in the v5 series. Thank you for reviewing this patch.
+
+[...]
+
+Regards,
+Siddharth.
 
