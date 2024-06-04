@@ -1,110 +1,74 @@
-Return-Path: <devicetree+bounces-72462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D51118FBD82
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 22:48:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A3B28FBD87
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 22:52:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12CC11C20F6B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 20:48:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD6912830BF
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 20:52:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0EB114B07B;
-	Tue,  4 Jun 2024 20:48:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A330D14BF98;
+	Tue,  4 Jun 2024 20:52:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="AyEZbuQE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s31lnDnQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FB0813F451;
-	Tue,  4 Jun 2024 20:48:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C0FD14B97D;
+	Tue,  4 Jun 2024 20:52:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717534116; cv=none; b=qiRWmWkkA610738OHR3vsVmft/lpl0TFfun0J0LC9aWIA1xehirgzfG3n6217tosOj03mHdw57IXVQlYiibbEVZ98mfNzZQbKyUdlWsxGgiTV7afpA9oT6PrVra/pJDa3ECv1ikG7K/2z6LJpXxsWYXeCDR0qniJczNUQG43yLQ=
+	t=1717534335; cv=none; b=JEHUmMdMkdxheaqBb4ZfwrJzl33JJop4HLS7qIdylWFo2C0POxdT3qofc0WdXewz7xVIXLMmv/iPVJM18eSPUIcvTWCOcoBZ5PuTg3UVqgbDK+QHZsILtIabMz67aa5Dw8OVUGYjkuGmiIaZA98hjftfPmoSzK8DWUEfi24e6X4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717534116; c=relaxed/simple;
-	bh=24z1rBJP/t4A6eeiNMz6cumSnbPF5JflnPk3fIfkeYM=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=LCw2Yj4Fo4UMm5BCEXZymy6RoGQ2PsptCZRHb3B1alcZ2pzdLUdcR5aTSNw7QwYx4Tym4AgqlnUxuOiWhjF01+Ks2VpM7QyVqkSEctKPY86ioLd9HqUW6wMlkxEprY8dTAaY4DpHqvyp0ri08LooAuFAsWYtRXpJCoYiC42VOkE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=AyEZbuQE; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1717534335; c=relaxed/simple;
+	bh=HQBS865jNCFeERnwf3D7e8dcgoXZ27Ob/udNNGmZ8Wc=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=dOwz13WNXF6B6TfeB6SgYPxOWEbw1AfDi4QWDrBtfkRbDf5OQIPWG9CNunGC6m0SRf+QK50obguebnP6YTvCeXGOlcs2zAHpBnimvkQdq4SsudIhwmIzaPNfAZ54mCxRJAZU6Yu/LPT3lmScN0i5pYZiGmz9L33BwPdif/uj9dw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s31lnDnQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA22BC2BBFC;
+	Tue,  4 Jun 2024 20:52:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717534335;
+	bh=HQBS865jNCFeERnwf3D7e8dcgoXZ27Ob/udNNGmZ8Wc=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=s31lnDnQ5n9lX1U/f/J+fwRHpU2VAxpbPVARiVpMPbXvdRFLxMTBoZqcHniixUnLN
+	 8kQxtRTVo8GSV1D8/AL93eTkpdVKwJGBwR7nQjng6AleCLTHF2OrYwPqPYXx8LHA+G
+	 AmGBnJJDXkyKx6LwNkc14b4A5gC0RU5PSZxGv/ceBjM3OD/rX8y/ntYW/YMRvtGIbH
+	 EW74/UZXMb0E3q7PPJlKpOgE6YzJY6Gfg6NAih27K6sBK9ErFbet0BlHjEDnd/tjnI
+	 E9Iqx269vlTdLhwyKchsaQTOZDSn8TfqBt6LL85te2B1HxwhQX04tFMcvPDIU6b01Q
+	 eki5Kz1ZixbYQ==
+Message-ID: <8ae81e535968e6a2b3f4e09ea1b7a54f.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1717534112;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=jaTzlawGlDcYRhQAm+R1AsWpCyayK2cAnVa+Y0OsHVQ=;
-	b=AyEZbuQEG/qqS8hCg4QaBIOxBX5BDnlwIu08AMxosoc84FDiVVV5NnCCTRWyhFB4zo5xVV
-	Mqf8T7Qr9+QUghlk4yVtaLV0HE9dLTRffsJyizkktmF01hfJTm8DXRaX92E2WANTcuw9qC
-	w4A4pFK81Zc09M++1RkPeePFtqjojo5/EVcinZZBjENohmQv3PByt+ZdvBqTT4sIw3l9XQ
-	0xixHMlzRPKwYzIJHUZ5J9El7sfvISr3oEKry2exmbn/eKp2SLdv/reoa0IGUazY4NSGwV
-	ry6MW+Ao7vnlq9nEmfX+fJgg4lbEia7kzrfWlCJ4aCEfSCWSNDe2v0vQO34A5A==
-Date: Tue, 04 Jun 2024 22:48:30 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-kernel@vger.kernel.org, quentin.schulz@cherry.de, wens@kernel.org,
- daniel.lezcano@linaro.org, didi.debian@cknow.org,
- krzysztof.kozlowski+dt@linaro.org, viresh.kumar@linaro.org
-Subject: Re: [RFC PATCH] arm64: dts: rockchip: Make preparations for
- per-RK3588-variant OPPs
-In-Reply-To: <82db817a908b761d8c3d73ea04714314@manjaro.org>
-References: <673dcf47596e7bc8ba065034e339bb1bbf9cdcb0.1716948159.git.dsimic@manjaro.org>
- <CABjd4YxD41DEkBCZfkznLboEY9ZVOfTCLcj4S_kkcsVswbANyQ@mail.gmail.com>
- <8f8623e29a479c4108141302e708dc3b@manjaro.org>
- <CABjd4Yy4RMg+6-4ygV0MSwJj5LReY-ymbctq4PPfVZ6L+c1tsw@mail.gmail.com>
- <166cc4e46f31644a50306625b2ab18a6@manjaro.org>
- <CABjd4YzDNQa45=KC_t0xnTDrH+g-oUrcpgP55oOj7JcAuu7uFw@mail.gmail.com>
- <82db817a908b761d8c3d73ea04714314@manjaro.org>
-Message-ID: <75563ad3f6bf6b6c8b151ab0cc26b490@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAL_Jsq+mGbW=4RbF+E1knvQco+5b1s7Tk8=2wyo9rT48Q=zkFQ@mail.gmail.com>
+References: <20240603223811.3815762-1-sboyd@kernel.org> <20240603223811.3815762-8-sboyd@kernel.org> <20240604130526.GA12945-robh@kernel.org> <cce5a85e48f35f5ad5464a2443ca972e.sboyd@kernel.org> <CAL_Jsq+mGbW=4RbF+E1knvQco+5b1s7Tk8=2wyo9rT48Q=zkFQ@mail.gmail.com>
+Subject: Re: [PATCH v5 07/11] dt-bindings: test: Add single clk consumer
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, patches@lists.linux.dev, kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rafael J . Wysocki <rafael@kernel.org>, Saravana Kannan <saravanak@google.com>, Daniel Latypov <dlatypov@google.com>, Christian Marangi <ansuelsmth@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <maxime@cerno.tech>
+To: Rob Herring <robh@kernel.org>
+Date: Tue, 04 Jun 2024 13:52:12 -0700
+User-Agent: alot/0.10
 
-Hello Alexey,
+Quoting Rob Herring (2024-06-04 13:19:18)
+> On Tue, Jun 4, 2024 at 1:28=E2=80=AFPM Stephen Boyd <sboyd@kernel.org> wr=
+ote:
+>=20
+> > And replace it with something that makes
+> > the test vendor prefix opt out of all checking? How is that done?  Some
+> > patch to dtschema directly?
+>=20
+> Yes, but I just added it for you.
+>=20
 
-On 2024-05-30 21:31, Dragan Simic wrote:
-> I'm sorry for my delayed response, had some "IRL stuff" to take care 
-> of.
-
-[...]
-
-> On 2024-05-29 16:05, Alexey Charkov wrote:
->> The problem I have with -common is that there are several layers of
->> "common" even among just the three of these chip revisions, and a
->> clear inheritance hierarchy between them (i.e. RK3588j and RK3588 also
->> have a sizeable chunk of their IP blocks that is "common" between
->> these two variants, in addition to those shared among all three
->> variants)
-> 
-> Hmm, I see, that's a rather valid concern.  How about using "-base"
-> for what I called "-common", and "-extra" for what I called "-fullfat",
-> for the lack of a better term?  Using "-extra" takes inspiration from
-> the way Linux distribution package repositories are commonly named, so
-> it should be rather familiar to nearly everyone.
-> 
-> Also, "-base" and "-extra" are rather short, so their shortness would
-> also make them stand out in the directory listing as something that 
-> isn't
-> just another board .dts or .dtsi file, which can only help.
-
-[...]
-
-Since there were no complaints, I'll move forward with sending a "real"
-patch that uses "-base" and "-extra".
+Thanks! I'll wait another day or two before resending then.
 
