@@ -1,410 +1,142 @@
-Return-Path: <devicetree+bounces-72018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07AFA8FA8E5
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 05:57:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C54C98FA8EF
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 06:02:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 361A5289DC3
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 03:57:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 40C13B24CEA
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jun 2024 04:02:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5164C13DBA4;
-	Tue,  4 Jun 2024 03:57:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CA0925632;
+	Tue,  4 Jun 2024 04:02:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Za411B2j"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eJ8SrO70"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80E0613DB9F;
-	Tue,  4 Jun 2024 03:57:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD59238B;
+	Tue,  4 Jun 2024 04:02:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717473441; cv=none; b=gezMKJVVTUlONR7uzgVa5Xdkr5hgdxl5W327wnJ52LiM1Qp2pyvQL8GClgZeZ3Xv4tWGxsNGL8n5jAn2jC6e1+AfJ16JaewqTiWXFh2U/bHP+6hsppp2TOGlR4jwmiKaGu0y1DYhYmtQRpyEiXSolf6H3KER1lJySLIyukFPduE=
+	t=1717473764; cv=none; b=evuFE4/WjCHmoLcsiRXnlTcmuDJsZH4Es9vQbsnggdI3/vfquhzcBsW7hNEVWK6hUG99wxYhZN4R21SuZjfYozD1rzDaSNlDtkuifbjFJlUZYq1xAPlY1H59OgLqZyrDsa6Dx7QIu9Njbrk3l7dXz3i56x8vmjFrgwbS0L4Ucxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717473441; c=relaxed/simple;
-	bh=UMFaQHIGOcCk2JsX+HFbn+3z235Z8FarTMQKUt5Qxwc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qOXwQO06XXsXgu7wn7UkUC7hQ21SBMGQfYubJycEbBhWHYMZkrXS/ZMGy14qKcb9nqBr/4tJIVipAAkFQ4t4hTxU5frfrWy2cq/n6todZL5Ay8MvG5gQYhlh9xFuDeExUd8TuKsHNdwFR6h/tT6UI8FvMjz9q84H6GXKWpocpOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Za411B2j; arc=none smtp.client-ip=209.85.166.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1717473764; c=relaxed/simple;
+	bh=g1qqpl96AdAYEBX7DOCPaDYf/Og0BxLUQKggssWSn3M=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=Ll164m8opo417zW9VRDjmV4aU7SD1JNTI+sx8g9n+lh5SGfqLN9/Uj82N7zdelf0wcrkfaJnfyjeUXgQFwoWJD1l9nIFsaiF28Fpk3ENIcVaRFJ+XwcZygqrcjtuNDOQtENMVDp57tZw+vXRV6FpUzpRpkMb93MQBSZwB4f9L2c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eJ8SrO70; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-36ddf683ad7so21504845ab.2;
-        Mon, 03 Jun 2024 20:57:19 -0700 (PDT)
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1f480624d0dso40660065ad.1;
+        Mon, 03 Jun 2024 21:02:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717473439; x=1718078239; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sDw463836VXxjFEssZxkzySa5xdge6xhhv/M+Qec16I=;
-        b=Za411B2jTS5MzNl8HC2R/lLdQBEhvSD5ZuUwwOg3sWoS2Bs4+s38NTffxB6PR2CdFl
-         NY4ITaSaLzix+kehlbRrLfAN5O6a8sd4m4hfxigEVpNUAmVR/RImaiLPnLo0F6w2jD13
-         8FJoROINXcaPe3sJ7o40U62Vt7xA7EhIvj2m3UfP84lvzNVQ0HEmFYEYbqTCi0pN68pf
-         vh39hhrTmWlWJ7A6yny1f0Uz+PMl6b9HTkNoaqt+Ul8sZATXfzJWdGg3ta8GAPpki5z1
-         rmLiVnx3Y4iLtSQM1Kuxqkd2asYAFDgYUvy4U0M0Q+ld5IV2hCZu2VFCCEC6XXk5m46z
-         MaOA==
+        d=gmail.com; s=20230601; t=1717473761; x=1718078561; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=JlyCTeaCH4Oen+k1b5qm5UwIXUpqadxOqG00edSRfEo=;
+        b=eJ8SrO70pmz1VL0NfhEhN6x22JtACLZMMsMVgZdV58sVWCVZAzFV2/GjXEQr1hn1Lr
+         0Yg3bgq0+nwGse5YtH4HOdX1J59+XmYMMLSdtEMp0GMHMBoGtV1hrYUy+/eFmae92cH2
+         mVkKnbOD/xmIci7CIUAZAYH8x4IphXMEh6UMQ1eNuZz0gEwAcn8Ci0VGgXz3xRYanyVm
+         Si1tdhhs48OJRsSSho/EwMm28xQYcMcFMoV51+uF7Hkl3n71aLOKFaTL4hjg4KnXPkLO
+         MpS0ybYOMs/0UotVtlHndRpUtJ4JtuX0CcPTou5rwxwe2zeEhu/ha6C4uNihUM/GKjQp
+         9qBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717473439; x=1718078239;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sDw463836VXxjFEssZxkzySa5xdge6xhhv/M+Qec16I=;
-        b=bRmkm7PtMHigdEiTA++Iz9mjJrhc/S+07Bhubv39NXc8421uAzQgfUuFwWQzLFatgS
-         fT/Fnl9MBI1A0VHRpT//QhnLQpKf0nO7R37ivaIqZzMJuu+2N4M+4m0LE7ermeMAZliB
-         i8h5oJb2C6C62Ftc4+ZMuJ2ENO9kidU/5E6sQvOxi+9GEjRFEUso9W7sRseViV4uqArs
-         QRd/cpCt/pTj/mn53VnCJrsTa2kKgg2YiTIYrQhqFEtAzlqfHCRo8Y2QzfEZKg07ZSiV
-         J9f8EuW6jg+XXiVVete3GNwSGVjqP8dEg2XYByYsWzmHCgh5IoWlzXh0tOBXJfc8BACF
-         DrUg==
-X-Forwarded-Encrypted: i=1; AJvYcCWcjReaZzVg4jvACr6TsmB66kQYVzlCISsO9l50KxeSl1tFwvYr8G5mRLHLkJOZGWS7opqKgLl9aAV9CxS3K3b9nFQVS7Z4ov1QT8DQVj1zzZP8ewEom6C1nnDtXQp5LMC1zBafLbIQ2SkmNm4TLhZ01TpsoVOF/y0G10KNaNCdoOG26w==
-X-Gm-Message-State: AOJu0YwdYqdjc1m7cUq/fpYDqgI/OPzHcAly96hiNioPU4zuauy9yIxU
-	KQQ5iKg7z+lH77VhZfvXJUdp/HOUcM463qqpvXrpKCkmWMrTHXu+jrjxtrTDpQc37irLmeNoSKX
-	86YOqZFnGzoZWlItlPdFtbZh2cPU=
-X-Google-Smtp-Source: AGHT+IHv96HDpvzi1scKNYLa1svsheD1fN+/LYbf36PbZHOxMXXSnA2KzvqwtRPzC25VCJqRhpk1QNNccpIzt5c3Ijc=
-X-Received: by 2002:a05:6e02:2165:b0:374:99df:1da2 with SMTP id
- e9e14a558f8ab-37499df20b9mr66313035ab.18.1717473438578; Mon, 03 Jun 2024
- 20:57:18 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1717473761; x=1718078561;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JlyCTeaCH4Oen+k1b5qm5UwIXUpqadxOqG00edSRfEo=;
+        b=HUN89WHLPekZh2BC8rNxsXt4f2e+UEVYs5zyo/oe13NnTfTjhKtaJoxrBVR9+bGb7Y
+         Ws/g+LNNbkhNRRmbhzIRJKM/rFj9U1wuw5udj3mdiG9rnO9csYR620BaiuNH56B4T4Wq
+         kZS3/rRwR12EPAuVFMPUPLYM7NfsVq95UB8IMKqrbRNevvLkZ/LSLG4PGFttYWVn7ATt
+         VnfJEPsCdm5ly8//RRNW8ec5VrAGGtKAJBkGUZdlH6Cf4EYRVThDSGahdJ4UQUe7rVrb
+         9x2lj70kqeU+SmQPyyQIF9cZAAAiQMfcHPaaNsQn2fbwDiHOOJ82Gwx0WcZJDpTZyF2j
+         lzig==
+X-Forwarded-Encrypted: i=1; AJvYcCVuWLTNdwEfDj/g2KEXxzgVr+9GMmT112wJGX5htB0fW2KBHME+rX6Jogef1lj1RU8NDP+pWQIyzA5DxZbpsMx3FIjIAyDG5jbThtvSUck+sf12dlzDcyQC2rKVRkQsx8p30gRNTm0dsg==
+X-Gm-Message-State: AOJu0YyulXpDzRaND6ixqS0mpOkjt/1DAQw4KbNU796dcIya1eRMotqh
+	eyV5Zn8HTZBApu78jZ8e7cE/fsZb+aEJNxxdkWa0qWLW9SSJi0S1K8bvaw==
+X-Google-Smtp-Source: AGHT+IFqdUa+JwtJ+RCDCcGeklgRUk+qu9sxaUHH87jmwn3HEYfBJNaN0ce0pgGxCIRUlgCz57I0xw==
+X-Received: by 2002:a17:902:e742:b0:1f6:80e2:e423 with SMTP id d9443c01a7336-1f680e314f6mr52815495ad.68.1717473761080;
+        Mon, 03 Jun 2024 21:02:41 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f634380b34sm71840785ad.12.2024.06.03.21.02.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Jun 2024 21:02:40 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+From: Guenter Roeck <linux@roeck-us.net>
+To: linux-hwmon@vger.kernel.org
+Cc: linux-i2c@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	=?UTF-8?q?Ren=C3=A9=20Rebe?= <rene@exactcode.de>,
+	=?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+	Armin Wolf <W_Armin@gmx.de>,
+	Stephen Horvath <s.horvath@outlook.com.au>,
+	Guenter Roeck <linux@roeck-us.net>
+Subject: [PATCH v4 0/6] hwmon: Add support for SPD5118 compliant chips
+Date: Mon,  3 Jun 2024 21:02:31 -0700
+Message-Id: <20240604040237.1064024-1-linux@roeck-us.net>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <1717036278-3515-1-git-send-email-shengjiu.wang@nxp.com>
- <1717036278-3515-4-git-send-email-shengjiu.wang@nxp.com> <20240530090558.53reobf2zea22oi2@pengutronix.de>
-In-Reply-To: <20240530090558.53reobf2zea22oi2@pengutronix.de>
-From: Shengjiu Wang <shengjiu.wang@gmail.com>
-Date: Tue, 4 Jun 2024 11:57:07 +0800
-Message-ID: <CAA+D8AMTC0cwsoebc804rvoJ1tZMqzQcMqDS17tPvwCsAmwFCw@mail.gmail.com>
-Subject: Re: [PATCH v6 3/5] reset: imx-aux: Add i.MX auxiliary reset driver
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, p.zabel@pengutronix.de, abelvesa@kernel.org, 
-	peng.fan@nxp.com, mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
-	marex@denx.de, linux-clk@vger.kernel.org, imx@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, May 30, 2024 at 5:06=E2=80=AFPM Marco Felsch <m.felsch@pengutronix.=
-de> wrote:
->
-> Hi,
->
-> On 24-05-30, Shengjiu Wang wrote:
-> > Add support for the resets on i.MX8MP Audio Block Control module,
-> > which includes the EARC PHY software reset and EARC controller
-> > software reset. The reset controller is created using the auxiliary
-> > device framework and set up in the clock driver.
-> >
-> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > ---
-> >  drivers/reset/Kconfig         |   8 ++
-> >  drivers/reset/Makefile        |   1 +
-> >  drivers/reset/reset-imx-aux.c | 217 ++++++++++++++++++++++++++++++++++
->                             ^
-> You make use of the auxiliary bus but this isn't a aux driver, it's the
-> i.MX8MP EARC reset driver. According the TRM only the EARC reset bits
-> are covered by the AUDIOMIX blk-ctrl.
+Add support for SPD5118 (Jedec JESD300) compliant chips supporting
+a temperature sensor and SPD NVRAM. Such devices are typically found on
+DDR5 memory modules.
 
-I am confused. According to below discussion:
+The first patch of the series adds SPD5118 devicetree bindings. The second
+patch adds support for SPD5118 temperature sensors. The third patch adds
+support for suspend/resume. The 4th patch adds support for reading the
+SPD NVRAM. The 5th patch adds support for auto-detecting SPD5118 compliant
+chips to i2c_register_spd() in the i2c-smbus code. The last patch of the
+series adds a configuration option to make the auto-detect code in the
+spd5118 driver configurable.
 
-https://lore.kernel.org/lkml/b86c83a520f0c45a60249468fa92b1de.sboyd@kernel.=
-org/
+Note: The driver introduced with this patch series does not currently
+support accessing SPD5118 compliant chips in I3C mode.
 
-Stephen and Conor suggested using auxdev.
+v4: Add support for detecting SPD5118 compliant chips in i2c-smbus driver
+    Make auto-detect code in driver optional
+    Fix suspend code
+    Ignore failure to register with nvmem core if it is disabled
+    Use NVMEM_DEVID_NONE instead of NVMEM_DEVID_AUTO in nvmem code,
+    changing nvmem attribute directories from 0-005[0-7]X to 0-005[0-7]
 
+v3: Drop explicit bindings document; add binding to trivial devices instead
+    Add support for reading SPD NVRAM
 
-Best regards
-Shengjiu Wang
+v2: Drop PEC support; it only applies to I3C mode.
+    Update documentation
+    Add suspend/resume support 
 
->
-> >  3 files changed, 226 insertions(+)
-> >  create mode 100644 drivers/reset/reset-imx-aux.c
-> >
-> > diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> > index 7112f5932609..38fdf05b326b 100644
-> > --- a/drivers/reset/Kconfig
-> > +++ b/drivers/reset/Kconfig
-> > @@ -91,6 +91,14 @@ config RESET_IMX7
-> >       help
-> >         This enables the reset controller driver for i.MX7 SoCs.
-> >
-> > +config RESET_IMX_AUX
-> > +     tristate "i.MX Auxiliary Reset Driver"
->                         ^
->               Same applies here
->
-> > +     depends on CLK_IMX8MP
-> > +     select AUXILIARY_BUS
-> > +     default CLK_IMX8MP
-> > +     help
-> > +       This enables the auxiliary reset controller driver for i.MX.
-> > +
-> >  config RESET_INTEL_GW
-> >       bool "Intel Reset Controller Driver"
-> >       depends on X86 || COMPILE_TEST
-> > diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-> > index fd8b49fa46fc..f078da14c327 100644
-> > --- a/drivers/reset/Makefile
-> > +++ b/drivers/reset/Makefile
-> > @@ -14,6 +14,7 @@ obj-$(CONFIG_RESET_BRCMSTB_RESCAL) +=3D reset-brcmstb=
--rescal.o
-> >  obj-$(CONFIG_RESET_GPIO) +=3D reset-gpio.o
-> >  obj-$(CONFIG_RESET_HSDK) +=3D reset-hsdk.o
-> >  obj-$(CONFIG_RESET_IMX7) +=3D reset-imx7.o
-> > +obj-$(CONFIG_RESET_IMX_AUX) +=3D reset-imx-aux.o
-> >  obj-$(CONFIG_RESET_INTEL_GW) +=3D reset-intel-gw.o
-> >  obj-$(CONFIG_RESET_K210) +=3D reset-k210.o
-> >  obj-$(CONFIG_RESET_LANTIQ) +=3D reset-lantiq.o
-> > diff --git a/drivers/reset/reset-imx-aux.c b/drivers/reset/reset-imx-au=
-x.c
-> > new file mode 100644
-> > index 000000000000..61c353abc84e
-> > --- /dev/null
-> > +++ b/drivers/reset/reset-imx-aux.c
-> > @@ -0,0 +1,217 @@
-> > +// SPDX-License-Identifier: GPL-2.0-or-later
-> > +/*
-> > + * Copyright 2024 NXP
-> > + */
-> > +
-> > +#include <linux/auxiliary_bus.h>
-> > +#include <linux/device.h>
-> > +#include <linux/io.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/of_address.h>
-> > +#include <linux/of_platform.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/reset-controller.h>
-> > +
-> > +/*
-> > + * The reset does not support the feature and corresponding
-> > + * values are not valid
-> > + */
-> > +#define ASSERT_NONE     BIT(0)
-> > +#define DEASSERT_NONE   BIT(1)
-> > +#define STATUS_NONE     BIT(2)
-> > +
-> > +/* When set this function is activated by setting(vs clearing) this bi=
-t */
-> > +#define ASSERT_SET      BIT(3)
-> > +#define DEASSERT_SET    BIT(4)
-> > +#define STATUS_SET      BIT(5)
-> > +
-> > +/* The following are the inverse of the above and are added for consis=
-tency */
-> > +#define ASSERT_CLEAR    (0 << 3)
-> > +#define DEASSERT_CLEAR  (0 << 4)
-> > +#define STATUS_CLEAR    (0 << 5)
-> > +
-> > +/**
-> > + * struct imx_reset_ctrl - reset control structure
-> > + * @assert_offset: reset assert control register offset
-> > + * @assert_bit: reset assert bit in the reset assert control register
-> > + * @deassert_offset: reset deassert control register offset
-> > + * @deassert_bit: reset deassert bit in the reset deassert control reg=
-ister
-> > + * @status_offset: reset status register offset
-> > + * @status_bit: reset status bit in the reset status register
-> > + * @flags: reset flag indicating how the (de)assert and status are han=
-dled
-> > + */
-> > +struct imx_reset_ctrl {
-> > +     u32 assert_offset;
-> > +     u32 assert_bit;
-> > +     u32 deassert_offset;
-> > +     u32 deassert_bit;
-> > +     u32 status_offset;
-> > +     u32 status_bit;
-> > +     u32 flags;
-> > +};
->
-> Why do we make it this compicated for an simple EARC module reset? I
-> understand that you want to provide a generic driver which can be
-> re-used but there is actual no other user and may will get no other user
-> in the future too. Therefore I would like to keep it simple at the
-> begin and adapt the code on-demand.
->
-> Regards,
->   Marco
->
-> > +struct imx_reset_data {
-> > +     const struct imx_reset_ctrl *rst_ctrl;
-> > +     size_t rst_ctrl_num;
-> > +};
-> > +
-> > +struct imx_aux_reset_priv {
-> > +     struct reset_controller_dev rcdev;
-> > +     void __iomem *base;
-> > +     const struct imx_reset_data *data;
-> > +};
-> > +
-> > +static int imx_aux_reset_assert(struct reset_controller_dev *rcdev,
-> > +                             unsigned long id)
-> > +{
-> > +     struct imx_aux_reset_priv *priv =3D container_of(rcdev,
-> > +                                     struct imx_aux_reset_priv, rcdev)=
-;
-> > +     const struct imx_reset_data *data =3D priv->data;
-> > +     void __iomem *reg_addr =3D priv->base;
-> > +     const struct imx_reset_ctrl *ctrl;
-> > +     unsigned int mask, value, reg;
-> > +
-> > +     if (id >=3D data->rst_ctrl_num)
-> > +             return -EINVAL;
-> > +
-> > +     ctrl =3D &data->rst_ctrl[id];
-> > +
-> > +     /* assert not supported for this reset */
-> > +     if (ctrl->flags & ASSERT_NONE)
-> > +             return -EOPNOTSUPP;
-> > +
-> > +     mask =3D BIT(ctrl->assert_bit);
-> > +     value =3D (ctrl->flags & ASSERT_SET) ? mask : 0x0;
-> > +
-> > +     reg =3D readl(reg_addr + ctrl->assert_offset);
-> > +     writel(reg | value, reg_addr + ctrl->assert_offset);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int imx_aux_reset_deassert(struct reset_controller_dev *rcdev,
-> > +                               unsigned long id)
-> > +{
-> > +     struct imx_aux_reset_priv *priv =3D container_of(rcdev,
-> > +                                     struct imx_aux_reset_priv, rcdev)=
-;
-> > +     const struct imx_reset_data *data =3D priv->data;
-> > +     void __iomem *reg_addr =3D priv->base;
-> > +     const struct imx_reset_ctrl *ctrl;
-> > +     unsigned int mask, value, reg;
-> > +
-> > +     if (id >=3D data->rst_ctrl_num)
-> > +             return -EINVAL;
-> > +
-> > +     ctrl =3D &data->rst_ctrl[id];
-> > +
-> > +     /* deassert not supported for this reset */
-> > +     if (ctrl->flags & DEASSERT_NONE)
-> > +             return -EOPNOTSUPP;
-> > +
-> > +     mask =3D BIT(ctrl->deassert_bit);
-> > +     value =3D (ctrl->flags & DEASSERT_SET) ? mask : 0x0;
-> > +
-> > +     reg =3D readl(reg_addr + ctrl->deassert_offset);
-> > +     writel(reg | value, reg_addr + ctrl->deassert_offset);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int imx_aux_reset_status(struct reset_controller_dev *rcdev,
-> > +                             unsigned long id)
-> > +{
-> > +     struct imx_aux_reset_priv *priv =3D container_of(rcdev,
-> > +                                     struct imx_aux_reset_priv, rcdev)=
-;
-> > +     const struct imx_reset_data *data =3D priv->data;
-> > +     void __iomem *reg_addr =3D priv->base;
-> > +     const struct imx_reset_ctrl *ctrl;
-> > +     unsigned int reset_state;
-> > +
-> > +     if (id >=3D data->rst_ctrl_num)
-> > +             return -EINVAL;
-> > +
-> > +     ctrl =3D &data->rst_ctrl[id];
-> > +
-> > +     /* status not supported for this reset */
-> > +     if (ctrl->flags & STATUS_NONE)
-> > +             return -EOPNOTSUPP;
-> > +
-> > +     reset_state =3D readl(reg_addr + ctrl->status_offset);
-> > +
-> > +     return !(reset_state & BIT(ctrl->status_bit)) =3D=3D
-> > +             !(ctrl->flags & STATUS_SET);
-> > +}
-> > +
-> > +static const struct reset_control_ops imx_aux_reset_ops =3D {
-> > +     .assert   =3D imx_aux_reset_assert,
-> > +     .deassert =3D imx_aux_reset_deassert,
-> > +     .status   =3D imx_aux_reset_status,
-> > +};
-> > +
-> > +static int imx_aux_reset_probe(struct auxiliary_device *adev,
-> > +                            const struct auxiliary_device_id *id)
-> > +{
-> > +     struct imx_reset_data *data =3D (struct imx_reset_data *)(id->dri=
-ver_data);
-> > +     struct imx_aux_reset_priv *priv;
-> > +     struct device *dev =3D &adev->dev;
-> > +
-> > +     priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> > +     if (!priv)
-> > +             return -ENOMEM;
-> > +
-> > +     priv->rcdev.owner     =3D THIS_MODULE;
-> > +     priv->rcdev.nr_resets =3D data->rst_ctrl_num;
-> > +     priv->rcdev.ops       =3D &imx_aux_reset_ops;
-> > +     priv->rcdev.of_node   =3D dev->parent->of_node;
-> > +     priv->rcdev.dev       =3D dev;
-> > +     priv->rcdev.of_reset_n_cells =3D 1;
-> > +     priv->base            =3D of_iomap(dev->parent->of_node, 0);
-> > +     priv->data            =3D data;
-> > +
-> > +     return devm_reset_controller_register(dev, &priv->rcdev);
-> > +}
-> > +
-> > +#define EARC  0x200
-> > +
-> > +static const struct imx_reset_ctrl imx8mp_audiomix_rst_ctrl[] =3D {
-> > +     {
-> > +             .assert_offset =3D EARC,
-> > +             .assert_bit =3D 0,
-> > +             .deassert_offset =3D EARC,
-> > +             .deassert_bit =3D 0,
-> > +             .flags  =3D ASSERT_CLEAR | DEASSERT_SET | STATUS_NONE,
-> > +     },
-> > +     {
-> > +             .assert_offset =3D EARC,
-> > +             .assert_bit =3D 1,
-> > +             .deassert_offset =3D EARC,
-> > +             .deassert_bit =3D 1,
-> > +             .flags  =3D ASSERT_CLEAR | DEASSERT_SET | STATUS_NONE,
-> > +     },
-> > +};
-> > +
-> > +static const struct imx_reset_data imx8mp_audiomix_rst_data =3D {
-> > +     .rst_ctrl =3D imx8mp_audiomix_rst_ctrl,
-> > +     .rst_ctrl_num =3D ARRAY_SIZE(imx8mp_audiomix_rst_ctrl),
-> > +};
-> > +
-> > +static const struct auxiliary_device_id imx_aux_reset_ids[] =3D {
-> > +     {
-> > +             .name =3D "clk_imx8mp_audiomix.reset",
-> > +             .driver_data =3D (kernel_ulong_t)&imx8mp_audiomix_rst_dat=
-a,
-> > +     },
-> > +     { }
-> > +};
-> > +MODULE_DEVICE_TABLE(auxiliary, imx_aux_reset_ids);
-> > +
-> > +static struct auxiliary_driver imx_aux_reset_driver =3D {
-> > +     .probe          =3D imx_aux_reset_probe,
-> > +     .id_table       =3D imx_aux_reset_ids,
-> > +};
-> > +
-> > +module_auxiliary_driver(imx_aux_reset_driver);
-> > +
-> > +MODULE_AUTHOR("Shengjiu Wang <shengjiu.wang@nxp.com>");
-> > +MODULE_DESCRIPTION("Freescale i.MX auxiliary reset driver");
-> > +MODULE_LICENSE("GPL");
-> > --
-> > 2.34.1
-> >
-> >
-> >
+----------------------------------------------------------------
+Guenter Roeck (6):
+      dt-bindings: trivial-devices: Add jedec,spd5118
+      hwmon: Add support for SPD5118 compliant temperature sensors
+      hwmon: (spd5118) Add suspend/resume support
+      hwmon: (spd5118) Add support for reading SPD data
+      i2c: smbus: Support DDR5 SPD EEPROMs
+      hwmon: (spd5118) Add configuration option for auto-detection
+
+ .../devicetree/bindings/trivial-devices.yaml       |   2 +
+ Documentation/hwmon/index.rst                      |   1 +
+ Documentation/hwmon/spd5118.rst                    |  63 ++
+ drivers/hwmon/Kconfig                              |  30 +
+ drivers/hwmon/Makefile                             |   1 +
+ drivers/hwmon/spd5118.c                            | 661 +++++++++++++++++++++
+ drivers/i2c/i2c-smbus.c                            |   4 +
+ 7 files changed, 762 insertions(+)
+ create mode 100644 Documentation/hwmon/spd5118.rst
+ create mode 100644 drivers/hwmon/spd5118.c
 
