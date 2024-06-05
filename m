@@ -1,210 +1,152 @@
-Return-Path: <devicetree+bounces-72529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C69148FC3D4
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 08:40:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7F0A8FC3D6
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 08:40:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8C401C22104
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 06:40:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DDE31F231C2
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 06:40:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D7E9190472;
-	Wed,  5 Jun 2024 06:40:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 816D019047A;
+	Wed,  5 Jun 2024 06:40:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="RrnuitFY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EhOZWKe9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-canonical-0.canonical.com (smtp-relay-canonical-0.canonical.com [185.125.188.120])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0367190463;
-	Wed,  5 Jun 2024 06:39:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.120
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4AC6190463;
+	Wed,  5 Jun 2024 06:40:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717569601; cv=none; b=B0Ls9WZVlXFrcNXPG1cnbE29XdWGwnmMNRUNMM7WvnIYzZcpDyFpX1Q4qakD5ItSteFzff90UKsRUBCgwfnMaapToG8r4Umz4l0TWj05qmPTKU/8x4zaCWwfr2SV7p7JfCfAkR4W4G8wmI/4R3z5UGjGJEjsXxx+zk3U1lgU3mE=
+	t=1717569626; cv=none; b=hlqdHEOTj01NL8UDsVbjqySpyrYzVpn8XBwpSHVXI9+nvvNlut7iBGq1/w778SZZRKz3qdUonfmrvIdSIRwpDuipFssjGrBeQ5xqLjQv5h6hhEKilYDDTVt7xoGJyD9o7Jw5f6MbQHoY5EzhB7bN6SjSn2oiodXtvV7ZUBLjFmY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717569601; c=relaxed/simple;
-	bh=2/rlE3EHKwzbrntV8RQ9ttopzhe1taDHAjjxyHubupY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=piTdoev6kJAY0+UDNVUkq7WFdbT5VPbfUg7jf8Y9eEDi/Hdwq/64D7gmHVE2tgl1BhEFKvI3QSJIRAO20jug+kw4jn1NqFXcAMytxpxcG0REYuWvVqLpNBIKEToAOdbMUek3dDK1ceg0OghB1abfs7mpVIIayTG86LdQIEytML4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=RrnuitFY; arc=none smtp.client-ip=185.125.188.120
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from [192.168.0.106] (unknown [123.112.65.116])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPSA id 6EE3840F6E;
-	Wed,  5 Jun 2024 06:39:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1717569584;
-	bh=D7KJmm5MCmM4z1crd8bCcfzrC7ERuPTo94BwMWyuFQE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type;
-	b=RrnuitFYqCQYGa/jO1mFLBQtiOWkjpysG5Fj8yCSqlQzUOxGgYaGTQH0kjx5g1GjM
-	 ChS7LCx1/rDk7T1gY0MHJp0K13ArHbE4ENfDydlYVfqPtIhCD1qr1eOWas6GPeJ1zJ
-	 /IJXUiHCs2sOMPRwuu66xGJ2fzqclZt1EJuHyvhi8MpOzPMiF0LCkJ5Vxcg2ovBWnu
-	 0GTPxu1iwrWbklpJ5u6/9FXTWdvF2SrBqFVhEjcbSdYoGVfQd7EtEgfznaz5e6Tv4C
-	 FUZA0sSO3pXPWDnT+iemNbH9EBVw/qwf7ja3MxgukIAoOxIZ6pG/VkzNWnDYNkEi0v
-	 xBBq+jiuCWuiw==
-Message-ID: <c0beeb7e-b791-40d7-a729-63334778a18c@canonical.com>
-Date: Wed, 5 Jun 2024 14:39:34 +0800
+	s=arc-20240116; t=1717569626; c=relaxed/simple;
+	bh=HUmZC+X+gSvZ5AqCY61GMZk0M/Jpdo8sLUH0vmNpxGI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hfZqS1Pw5s08U5sEBA9IUl1MAPxMfchYSvmk4AGjY2BmKXIfNp9Z3XBvAGIAjV9dwyx55UVs+y4tdwTECtvXoZS7ab9r6Au06iTLJxT1UtA09F4Rl+0tNiEPdWsNTjvVBRmH2PumsZEbID43jSY39UjkPI3VhW9s9uBDh3Fj3Q4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EhOZWKe9; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-57a31d63b6bso2473590a12.0;
+        Tue, 04 Jun 2024 23:40:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717569623; x=1718174423; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gHQSaCky/f1AkfcDoHbC9p7wCP5m6j70LxPNgz93GEs=;
+        b=EhOZWKe9YkZExHivKXNAEryVohdmm2ogClpa3rNa7AWb8Zyk5Rw01COivkUpF6tdT2
+         3sWipdUpmP9uFvwRz6J0I+SIgFU1BGZeVzDeNmGjo0lojYm/ojIkwOOTllY620RHRJAQ
+         aLJKBWCV0Uc6uK/Y37npFDFR3K/Bqyeplv/3hZ2AkyyzxreT1JZu624cJQfYHplZypUR
+         SesSl/g+Gz9fcrI3OrSzRUw/CjpfdnP4XImkfNLbMGgrm9rB5iuUWH8Adc/mp049YS/M
+         XzZzEu2VqaB7QeyTTSawQivUEIvmYXd/btBRWXXu+pB8Jv6AT/KetnS0kmKrjSnToSDx
+         ZL9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717569623; x=1718174423;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gHQSaCky/f1AkfcDoHbC9p7wCP5m6j70LxPNgz93GEs=;
+        b=evgUa5EBw/EWjYaXSWvHHhrwpSfF3/CT9SQlC0qnnJHtoBBNWBpI8ORhjoDfpt/889
+         QBzCWArvRGXJCq9LxPjH707HQgEDhgwxOK9FxoEBnEK6m9e+xALfh2oVSdS3soRagXVG
+         Av1YK+bR5qfvP+c25e/XvX5umTsE+5zoPqaH6Oa8gPQVGK5mE6cxgCXkNnDKm7SF3Bm5
+         f4UZsFDgTFtykuxd2suUx4UpVsf0zUn8+apocMAA2CECPTQs7OGOd33fU1Grj96PSt4I
+         Ae3cijZxD0Du7j6dmX9hr7r3NgXIJ5V5gqqyMkqqDphjL1v0pppEqLuSEuxYtUA8cq+M
+         m2hg==
+X-Forwarded-Encrypted: i=1; AJvYcCWxiUc0dsRxL0MBZ270ynur4ywVHYMuEXuJjyOyCHLoM+LTGlDImjFECmfgf5Deap7UVBWS5jZFP8MuIO5ZeJ1lwYKq3PAbSRrYh3P0WtiQO8pl5kLSsfz1TmAmz1fFj6CjwhqulpWbLQ==
+X-Gm-Message-State: AOJu0Yz0C6RDgs9EbUvmhSfCrOmDwPqkePVyoNRcO2sOBN6oK2MXZ9HL
+	Z0tuepdaW/XW6KAnqcFZ2ledeJsU1igkumKOr42w4hIcx9Oik2qz
+X-Google-Smtp-Source: AGHT+IFBIMS6vkz0iVSVx1CRPA3R9CNPTJew2oQiC4UzE9eGj9fN4Cxwfgw2HMmCfC3PB4GWaIidtw==
+X-Received: by 2002:a50:d49b:0:b0:57a:2fa2:8b99 with SMTP id 4fb4d7f45d1cf-57a8b7c61f9mr1234625a12.29.1717569622846;
+        Tue, 04 Jun 2024 23:40:22 -0700 (PDT)
+Received: from hex.my.domain (83.8.128.191.ipv4.supernova.orange.pl. [83.8.128.191])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57a31b99445sm8665505a12.18.2024.06.04.23.40.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Jun 2024 23:40:22 -0700 (PDT)
+From: Artur Weber <aweber.kernel@gmail.com>
+Subject: [PATCH 0/2] ARM: dts: bcm-mobile: Split out nodes used by both
+ BCM21664 and BCM23550
+Date: Wed, 05 Jun 2024 08:40:11 +0200
+Message-Id: <20240605-bcm21664-common-v1-0-6386e9141eb6@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] serial: sc16is7xx: hard reset the chip if
- reset-gpios is defined in dt
-To: Hugo Villeneuve <hugo@hugovil.com>
-Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- gregkh@linuxfoundation.org, jirislaby@kernel.org, hvilleneuve@dimonoff.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org,
- lech.perczak@camlingroup.com
-References: <20240604132726.1272475-1-hui.wang@canonical.com>
- <20240604132726.1272475-2-hui.wang@canonical.com>
- <20240604102323.b2a305fa03161df3c2eec16c@hugovil.com>
-Content-Language: en-US
-From: Hui Wang <hui.wang@canonical.com>
-In-Reply-To: <20240604102323.b2a305fa03161df3c2eec16c@hugovil.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEsIYGYC/x3MQQqAIBBA0avErBNUJouuEi3MppqFGgoRiHdPW
+ r7F/wUyJaYMc1cg0cOZY2hQfQfusuEkwXszaKlRDnoSm/NaGYPCRe9jEAqlwcmgRTtCq+5EB7/
+ /cVlr/QB0VC+QYQAAAA==
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>
+Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Stanislav Jakubek <stano.jakubek@gmail.com>, 
+ ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Artur Weber <aweber.kernel@gmail.com>
+X-Mailer: b4 0.14-dev-d4707
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1717569621; l=2315;
+ i=aweber.kernel@gmail.com; s=20231030; h=from:subject:message-id;
+ bh=HUmZC+X+gSvZ5AqCY61GMZk0M/Jpdo8sLUH0vmNpxGI=;
+ b=3ZQ3nIGatAyX+FXgVC/jZDU7XBK+W7jMk8bN1v2GBcYR4q+AKCAxJL3K1ZZ16TFMEGQPFa2Au
+ Q0IWcwheBEEAoPRlR9ml3t0atWa//LV15tXcMKeDcF0NGs6Oyo4zDfo
+X-Developer-Key: i=aweber.kernel@gmail.com; a=ed25519;
+ pk=RhDBfWbJEHqDibXbhNEBAnc9FMkyznGxX/hwfhL8bv8=
 
+The BCM21664 and BCM23550 are nearly identical to each other in terms
+of register layout. This was verified against a downstream kernel[1] -
+Broadcom's kernel has "RDB" directories which includes headers with
+the full register maps for the included hardware. Running:
 
-On 6/4/24 22:23, Hugo Villeneuve wrote:
-> On Tue,  4 Jun 2024 21:27:26 +0800
-> Hui Wang <hui.wang@canonical.com> wrote:
->
-> Hi Hui,
->
->> Certain designs connect a gpio to the reset pin, and the reset pin
->> needs to be setup correctly before accessing the chip.
->>
->> Here adding a function to handle the chip reset. If the reset-gpios is
->> defined in the dt, do the hard reset through this gpio, othwerwise do
->> the soft reset as before.
->>
->> Reviewed-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> I never gave you permission to add this tag, remove it. Make sure you
-> fully understand the meaning of tags by reading patches submission
-> guidelines.
+  diff --recursive arch/arm/mach-{hawaii,java}/include/mach/rdb
 
-I misunderstood the meaning of "reviewed-by", will remove it and study 
-the guidelines.
+reveals that the differences are minuscule - some things related to
+ISP and H264 decoding. Most of the other differences are related to
+the different CPUs in the two chipsets - the BCM21664 has 2x Cortex-A9
+cores, and the BCM23550 has 4x Cortex-A7 cores.
 
->
->> Signed-off-by: Hui Wang <hui.wang@canonical.com>
->> ---
->> In the v2:
->>   - move the soft reset and hard reset into one fucntion
->>   - move the reset function to sc16is7xx.c and call it in _probe()
->>   - add udelay(5) before deasserting the gpio reset pin
->>
->>   drivers/tty/serial/sc16is7xx.c | 28 ++++++++++++++++++++++++----
->>   1 file changed, 24 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
->> index bf0065d1c8e9..119abfb4607c 100644
->> --- a/drivers/tty/serial/sc16is7xx.c
->> +++ b/drivers/tty/serial/sc16is7xx.c
->> @@ -14,6 +14,7 @@
->>   #include <linux/delay.h>
->>   #include <linux/device.h>
->>   #include <linux/export.h>
->> +#include <linux/gpio/consumer.h>
->>   #include <linux/gpio/driver.h>
->>   #include <linux/idr.h>
->>   #include <linux/kthread.h>
->> @@ -1467,6 +1468,25 @@ static const struct serial_rs485 sc16is7xx_rs485_supported = {
->>   	.delay_rts_after_send = 1,	/* Not supported but keep returning -EINVAL */
->>   };
->>   
-> Add function description from original comment "Reset device,
-> purging any pending irq / data", since the comment applies to both
-> hardware and software reset,
-Got it.
->> +static int sc16is7xx_reset(struct device *dev, struct regmap *regmaps[])
-> Simply pass "struct regmap *regmap" as the second argument. See
-> sc16is7xx_setup_mctrl_ports() for example.
-Got it.
->
->> +{
->> +	struct gpio_desc *reset_gpiod;
-> reset_gpiod -> reset_gpio
-Got it.
->> +
->> +	reset_gpiod = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
->> +	if (!reset_gpiod)
-> Follow Andy's suggestion here.
-OK.
->
->> +		/* soft reset device, purging any pending irq / data */
-> "Software reset".
-Got it.
->> +		regmap_write(regmaps[0], SC16IS7XX_IOCONTROL_REG,
->> +			     SC16IS7XX_IOCONTROL_SRESET_BIT);
->> +	else if (!IS_ERR(reset_gpiod)) {
->> +		/* delay 5 us (at least 3 us) and deassert the gpio to exit the hard reset */
-> You can omit the "delay 5 us" since it is obvious from the code. Maybe
-> add that "The minimum reset pulse width is 3 us" as stated in the
-> datasheet.
->
-> As a general note for your comments: capitalize the first letter,
-> ex: "Deassert GPIO" and not "deassert GPIO".
-OK.
->
->> +		udelay(5);
->> +		gpiod_set_value_cansleep(reset_gpiod, 0);
-> Move the comment "deassert the gpio to exit the hard reset" here. You
-> could also simplify it as "Deassert GPIO.".
->
-OK.
->> +	} else
->> +		return PTR_ERR(reset_gpiod);
-> return dev_err_probe(dev, PTR_ERR(reset_gpiod), "Failed to get reset
-> GPIO\n");
+In mainline, most drivers are also re-used between the two.
 
-Got it, will address all comment in the v3.
+To make development for both platforms easier, split out the common
+nodes into a separate DTSI, bcm21664-common.dtsi. This only leaves
+the device-specific nodes - so, CPU and related things - in the SoC-
+specific DTSIs (bcm21664.dtsi and bcm23550.dtsi).
 
-Thanks.
+The new DTSI is based off the bcm23550.dtsi, with its split into
+busses. Since it's pretty much 99% identical, I kept the licensing
+of the original file (BSD 3-clause). The license for the bcm21664.dtsi
+file remains GPL 2.0 as it originally was.
 
->
->> +
->> +	return 0;
->> +}
->> +
->>   int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
->>   		    struct regmap *regmaps[], int irq)
->>   {
->> @@ -1527,6 +1547,10 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
->>   	s->devtype = devtype;
->>   	dev_set_drvdata(dev, s);
->>   
->> +	ret = sc16is7xx_reset(dev, regmaps);
->> +	if (ret)
->> +		goto out_clk;
->> +
->>   	kthread_init_worker(&s->kworker);
->>   	s->kworker_task = kthread_run(kthread_worker_fn, &s->kworker,
->>   				      "sc16is7xx");
->> @@ -1536,10 +1560,6 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
->>   	}
->>   	sched_set_fifo(s->kworker_task);
->>   
->> -	/* reset device, purging any pending irq / data */
->> -	regmap_write(regmaps[0], SC16IS7XX_IOCONTROL_REG,
->> -		     SC16IS7XX_IOCONTROL_SRESET_BIT);
->> -
->>   	/* Mark each port line and status as uninitialised. */
->>   	for (i = 0; i < devtype->nr_uart; ++i) {
->>   		s->p[i].port.line = SC16IS7XX_MAX_DEVS;
->> -- 
->> 2.34.1
->>
->>
->>
->
+make CHECK_DTBS=y on bcm21664-garnet.dtb and bcm23550-sparrow.dtb
+seem to pass fine for me (thanks to Stanislav Jakubek for converting
+the bindings to YAML format!). It's worth noting though that some
+bcm23550 compatibles now go unused, since the bcm21664-common.dtsi
+file uses bcm21664 compatibles.
+
+[1] https://github.com/knuxdroid/android_kernel_samsung_baffinlite
+
+Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+---
+Artur Weber (2):
+      ARM: dts: broadcom: bcm21664: Move chosen node into bcm21664-garnet DTS
+      ARM: dts: bcm-mobile: Split out nodes used by both BCM21664 and BCM23550
+
+ arch/arm/boot/dts/broadcom/bcm21664-common.dtsi | 334 ++++++++++++++++++++++
+ arch/arm/boot/dts/broadcom/bcm21664-garnet.dts  |   4 +
+ arch/arm/boot/dts/broadcom/bcm21664.dtsi        | 326 +---------------------
+ arch/arm/boot/dts/broadcom/bcm23550.dtsi        | 354 +-----------------------
+ 4 files changed, 357 insertions(+), 661 deletions(-)
+---
+base-commit: a38297e3fb012ddfa7ce0321a7e5a8daeb1872b6
+change-id: 20240528-bcm21664-common-14064864a4a7
+
+Best regards,
+-- 
+Artur Weber <aweber.kernel@gmail.com>
+
 
