@@ -1,413 +1,162 @@
-Return-Path: <devicetree+bounces-72905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45CFA8FD4CD
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 20:02:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90A528FD55B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 20:10:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 84892B223DE
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 18:02:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F31CB1F29AC9
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 18:10:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E41E31957F4;
-	Wed,  5 Jun 2024 18:00:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AC4B13B295;
+	Wed,  5 Jun 2024 18:04:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="e5+hFL4Y"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="MlehV81c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2053.outbound.protection.outlook.com [40.107.22.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8B7F15F400;
-	Wed,  5 Jun 2024 18:00:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.53
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717610423; cv=fail; b=nGH4YSTSVwE4a8TDZDc4qHDsvB/7wN+0LjqIeJJBLSxmpBqhwY9Dg0YiaSoE6NdezuDNKAnwZKS1QgCZtLhGzU2tPRK2M87rNmKr5mDeGgLmE/eTw79AkZe6Bn6szlETp8lGwYTGPjAmvPjL7cpLKxdKpYFAe5tlK12F5A3c0qQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717610423; c=relaxed/simple;
-	bh=O9EVhi3TeN5zT/4WkjkrfWI8UMsHSxzKXn+S3LoAP4Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=fOqiuMIfFVswcr4gIY1sJ97EJ0N1o7ym+F/TAadxlBhtTqk3xPgMCqsK+6KEGstWPbPu8mgPbIE6OcI6g1ahfyaeFQH2H9p8FzUaYDXzxgPN1Dpc2lWGcf4PdNsJpTNaH8om6ufe7x9lY3BH1+XiI7CwRAktIWspzhHxE2crwwQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=e5+hFL4Y; arc=fail smtp.client-ip=40.107.22.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nOCjIbbvVAhD5KPd1sPNfwgijuSR8lxD8nEciv5HPKToGSpaCqd+aIq/kTi1Q4B8VljCYHKNe4l2pWiEahkdTN6BIfJEIRkHRD/rGD5Djm1TYHH/xpEV6vufuUOGn4KXLwg4P/VhjPkWyxRUpkTYFLCTXsi4licx9+kTDn3g8NhwCGnr//Bygujt0UCD52jYeCAAyPA4D73LqeynAQYoAT5UjCPGXhzLzJI/v8o70ssrj4qQnqlWFW0jYS2Nqjf0kAI5pbSUBoXFVetTpXVru+aRuEOLEsRzaDuiEQY9B3GpQ5YVaxXa6Cdv+vJk6Yc9LAol74JPPL5A2dAc+4wuBw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EdLTSyBduHLvZcwqEyzwK2jqKez8VPETjfSihES13oM=;
- b=TpPodAOVEUd3QV1HlwxgKI/Hu8Ov2qN/ywAA+SoEc+NGd68mts52qiSZjmnPK8aJxToNnNq53ijeowLt7ld+F7as6cpIQKSJ28DpqOmoQwkCFSbs/NYVOSuN6cZLdNoAjBtvYmZkbfmE6gf/334u6kxtRd5/gJTWtT0FMEqqtJxZE7IftXWQgYVubIuHc7A3BJEWcbnB4r50X115zoNTN9cLX82m7MxJhDzzb9fWBLqR8w4NBil0r/pfX6JQX5LVvJm6NerSJsLxpwBj+HvaKzwuio5pAnfmNprWvU+pyWvx+YM9NoCDZIJPhqrqXdFrS/VhYvRliangQpPIlRqXRg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EdLTSyBduHLvZcwqEyzwK2jqKez8VPETjfSihES13oM=;
- b=e5+hFL4YPAdFBo71elunCVEGhQVj+ikxbrkhIhomLUQGu7nx1rwMBVqaYy3rReReFipfUHThEcUW5LY1DvZBSMO7y4HEViq48ky8ijobI5rmgI10W56dedArEVtH8U9z1pk9BEZzfqydFE80DKTZys6CKFcN5LTnA5ULtLAAMtM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by VI1PR04MB6832.eurprd04.prod.outlook.com (2603:10a6:803:139::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.30; Wed, 5 Jun
- 2024 18:00:17 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7633.021; Wed, 5 Jun 2024
- 18:00:16 +0000
-Date: Wed, 5 Jun 2024 14:00:03 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Vinod Koul <vkoul@kernel.org>, Maxime Ripard <mripard@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Mark Brown <broonie@kernel.org>, Christoph Hellwig <hch@lst.de>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Vladimir Murzin <vladimir.murzin@arm.com>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-mmc@vger.kernel.org, linux-spi@vger.kernel.org,
-	iommu@lists.linux.dev, linux-sound@vger.kernel.org,
-	Stefan Wahren <stefan.wahren@i2se.com>
-Subject: Re: [PATCH 07/18] dmaengine: bcm2385: drop info parameters
-Message-ID: <ZmCno9E9oi8sw3QC@lizhi-Precision-Tower-5810>
-References: <20240524182702.1317935-1-dave.stevenson@raspberrypi.com>
- <20240524182702.1317935-8-dave.stevenson@raspberrypi.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240524182702.1317935-8-dave.stevenson@raspberrypi.com>
-X-ClientProxiedBy: BY3PR05CA0050.namprd05.prod.outlook.com
- (2603:10b6:a03:39b::25) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A278ADDD2
+	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 18:04:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717610670; cv=none; b=LAPLD6T+/JGZLA8e2m8+Ia6LuEgGv8Z7pg86YiSUoc0lbgOls+hQ3jaihqf3O02NhP1nioq/1qAkc4CQXZqJu4ywHDDX8pbrETxOFeIxX07F3nB3iU1N7lLaIJm5S+KCbT3xARvllWvLB8TN+wirm9aXlxJnxH4BsKbdUMXOF1A=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717610670; c=relaxed/simple;
+	bh=s8KVP578g4tIAvF7jUKxEjt/8ys8vUdXttVcAIBlKWM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Mq1q+h5vx2HtboYksCY6Lwa/iq1tTVMdgUsBeOuIkvbd9Eo9hYuv0Mib1Mr0H/HUfopNWuecYkhAyzd7XBSnKflCWs83ejrpqzKGjzqD7jQNnkfm3jQ17dX0KXzVluB3s3oxdfRyD0fhgezJUH5OvxBzJ1hvb5R/lqZoh8FZAUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=MlehV81c; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2eacd7e7ad7so1463881fa.3
+        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 11:04:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1717610667; x=1718215467; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ox0cTDoj9EAdvqJSQWodBv8pPoGx05u+NIZ/qY+c1Hw=;
+        b=MlehV81c+11vhzUjBsl7/PQu+rxcZy6u+ypfU2se7cXJWojH1uKKOsllA5AFp6Gt4Y
+         sMlf0tNoqFB374baOdRT6/Q8mb1nH8A9QDIsd9f4LPfMTttMR2MviXjLQhF+llWPtB1D
+         L4SmR4X+KRLqAWuBfrRnEnFhDn/QH6uH4ZZ+5Iipi5RObbqsWrPkZoagZysf50bQh29s
+         NJD1k4FMNIRVKMSSThaLRyWhIEwEZU8rTjTj05xtSN9H/LjOAEQn5OrIZnsxhTWZl1Ic
+         +U1R2dO5EV0KnDqDLrH7FgVOI8wP8VgwFhmGkXLFEBj+VE5AFDlTPhqev7Z0bnSMox0J
+         NAqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717610667; x=1718215467;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ox0cTDoj9EAdvqJSQWodBv8pPoGx05u+NIZ/qY+c1Hw=;
+        b=CjZMIG99c6GfuLO5ByhD9JxUDsT1fJDDaN+ouX7lFhkEdKoBIWBOFBp/Xm+cVdyFSF
+         KAUAliMD5gdmPnQfBPlhQtvY1r75Fm9epCGw+wiC59zhZIomDIGT5/7nej5yk+mtRlHY
+         zt9yA77MeXr6O+cxGRoS8/B3ujm5XUFcjassmPnrysfDMOTmoFz6l6O1kmokBhCTLpvx
+         OzI+de3M1yOVoBt0ejy6S18SUhiMsg5aFj67K0HEn5EP9Z8hs9zsBVIT38BJlcoY8r9g
+         bOpKpap7K2a/yLDl4ckPOPgLTVX3ly1PRzUR5N+a+QsJkENJKG36KV+pTPGQJPwT4ofD
+         fUgA==
+X-Forwarded-Encrypted: i=1; AJvYcCUV5/T6+D78TbVvPufzeEVWpVFn3vpd02kDt5a5BObRXy9lMWrwCzBj4tEkKKpKbgE64N91FOlHmAs1hOLEV5ejDliqYNwpfkQ1KQ==
+X-Gm-Message-State: AOJu0YxsaSOGCDFUIc87sbaxnEBTDaRXyr8+QxhIv/wa6mhMSu4FrQpq
+	JxUOMnlc8rPc1rLECnF7+eqPUknJrgii4QLvQOSaM0WQbLCFJzzREnsiqdhF/Tl1Pw3kfNIJB9m
+	SrYzDjDuVaw8qOQHEBAB1cuRQHzRyo60G05tLdaTXQmtM5hcy
+X-Google-Smtp-Source: AGHT+IHXq8dGpJoU2dr2zBFCKOEvbFdkmlsdgV/Jz6JlWy3+wkJEsY7up5jQ+fPM273H+nj67WDMFnp7tdG9g6BvQ40=
+X-Received: by 2002:a2e:b00a:0:b0:2ea:7726:4a77 with SMTP id
+ 38308e7fff4ca-2eac7a72b8emr19843541fa.35.1717610666844; Wed, 05 Jun 2024
+ 11:04:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI1PR04MB6832:EE_
-X-MS-Office365-Filtering-Correlation-Id: a155639c-b35e-4177-21d6-08dc85895ae3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230031|366007|7416005|376005|52116005|1800799015|38350700005;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Y+kp+4QmMaMd8b+p6Klox8Rszs7IqsXLcYUjvhSBjzvvOAyT/J03xlZiScOV?=
- =?us-ascii?Q?szf1LhpyBm5Y3wMBph/urrL5qlEdPdHEbuMaGumz0vcu+ma2KwpnZAOset3H?=
- =?us-ascii?Q?028yDTDfGpdGPTHnxG/jsYYMuLVHavFH679s6ApsaTuJHoWAhDiJaXZkbMnl?=
- =?us-ascii?Q?yRBDnglSbZknXjZbgx4Hw3jyJgrIxps0lXoIxx5AOc7saWnILd4KrwrGjaPp?=
- =?us-ascii?Q?9mpHCIpKWsMRItRES1J/c53i3VGoTPjU6tExg8ljT6iVew18gbfL7D4VNZ7j?=
- =?us-ascii?Q?pLM7Qf18zX5BhBH3eZ87KkTsl6UO+lKfH9u4Pssv5I0HLIzzI5orIbjm5Bqx?=
- =?us-ascii?Q?Ydff1uFdAypvMqtvrBE84hQhriqx1OElHyN8cjmB169Hpl5wbT07UlI0yCed?=
- =?us-ascii?Q?3sJEw/gXYtaNMBgmCuFmXQdXC9Ym+a6tOYkL4HffaWC3ohwPM7uCINjrSExN?=
- =?us-ascii?Q?apJte/GDF61CGMNmvMzmqwd2G+amK9aFTJaQCRXrAk3/FrH06ymvPMbck6Jj?=
- =?us-ascii?Q?GSKa/LxMF8F64gi2abSfYGS6//zHpjzEKEdNSw/fj9I7BGmMrlWwYXnTXHzM?=
- =?us-ascii?Q?WWHEdGwJ/lkhrQyrcLJr1EIBUEnQjjq2StBEugoCt8aK/oO0IndCJyHeuEI4?=
- =?us-ascii?Q?5SL1p0UM0kz1UopXGSf494lPsMXXDrcOX8mw5hLpUN4IDY+7UgjG5BjpFOZf?=
- =?us-ascii?Q?1pE7y9HevtgQ/sA9TPly6ztzLesnPgyI7RXub236dXFhxFVNTwjHbvJVFNLK?=
- =?us-ascii?Q?UxL/xydJqlpdM50BKFCf78H26+m1RzAvSlzAiqaz3dtmTrrPH5LixhhBi1ig?=
- =?us-ascii?Q?9Cl5gJ7Ig4hDepmwGjAAXkf1/hKR10dVuQmDeS7yvlfKjdSaBalacWcu/oEc?=
- =?us-ascii?Q?WXxo1w4Rjm2BbQj8B0n4/oqvqFOtNlSzhufJs5diTBBvwV+OxX06hve4V774?=
- =?us-ascii?Q?67gF7ywYHIM9Qk/O5/g6stBhRy/E2XuLgW89aWsifFy9N2Nd1PwxjCa/37wU?=
- =?us-ascii?Q?11/939P1M6MWx7bhZOSfqdPKU17DXeRfLJQz/a/9/U/q8h4wpZqNoaN9Go76?=
- =?us-ascii?Q?GsNwaACHpPf6TpQgcr0K5MJSL7iaT4UtV6U4/8c+E/G8X9eFw4U+VGE3P0v/?=
- =?us-ascii?Q?uLmWf4LlJvP9vTw23NhIpCMXClbkh6OGBcOEXb7Aw3WEGZhQ5yvp/8rkb0ID?=
- =?us-ascii?Q?Fn4BFMguxdQcYX6zCqjBCW5nOeD6s2Ei5QCJag5AgOJ9RvXd2o7r0YjxL5oJ?=
- =?us-ascii?Q?I02U7SF69nsl9vFSOEVdlRCrUQj/w7xcYSy/B6X/xDIe2q2JZBPQQUjw2Wf+?=
- =?us-ascii?Q?0SGnMoG/GXVFV7iLBc72hH4XDgTGESktBNMzJARACDG3Xw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(7416005)(376005)(52116005)(1800799015)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?fejAJSkvIRXZbawls78o7bArRkb61dy6oosNJOJvCBXwxAIdiilX2ghBslTK?=
- =?us-ascii?Q?FmXp7Hr2Ux8qGVz30QVW2DdGCu06x8788V3DXsVbEhkjFq9psNOOnPWlcj2S?=
- =?us-ascii?Q?053iud7Fu4VetDm/AQV7Mp4DO8dm0eS/sYz+6XWM+FXSkrcERx3ZL/nl3LdJ?=
- =?us-ascii?Q?vhUdggqe0zzqzaVjNMTPfuvBDLzOMGYYxQEMAFwVgUTv7jwC3IPxmSPPDDWM?=
- =?us-ascii?Q?cEMgs6jqBAmQ8GiltJuuWW+sktHAcnB4vi2cOmFiO2zxlkMqigcp+2PDlnNC?=
- =?us-ascii?Q?l7LGLgCO0LZju0mryS6YIvtQQou4KccRV/6azE2W9SGsRXQiqibo/KeIQOFN?=
- =?us-ascii?Q?5RMiHE0qkqtr4EaVNFWx55j9gNA7xPKDFRUleF2pV3+AxJnRCGFK+jKmmo5o?=
- =?us-ascii?Q?Wz8ELWrOrusw9LPDPqlySJGdxasvOazuvdck6e9mIyIH32pykHmnsr7FZ6PX?=
- =?us-ascii?Q?aXx75aPnXsIFk4q+jQ7CukDnr9P2KBmJAfHXr5DySBetBNJbTt80X6XSdZr+?=
- =?us-ascii?Q?5P/WIoUmDfztT5sQDMWhocpZSu74OuG7jbIqXb00w24LMWCCxep2dmj11UyU?=
- =?us-ascii?Q?v/Mzk7dlVZKDY5s4LDimb23/NZ5IFOXJbg74B0m0Az+EWWBLSnHFUlQtYGY9?=
- =?us-ascii?Q?GCu+Hld0Gk1SFI4POAM4zZh0tpGkfcgRXLNviKurtEneToFL3Gwx56Rnj35z?=
- =?us-ascii?Q?XJzbm+r56YGKuJBR1kT5MKtZqXcH6U975WfIUjut1D8h2PmwSBSOIsJPhohx?=
- =?us-ascii?Q?rG/IDSuENiUHeaciahyiuTDqmMhAvv+9/Hf0whVWSGLTGBUfvmspoBnBeuDg?=
- =?us-ascii?Q?6ehSqokozm3JGSpO6L3vKuAK8WyPlw3Vjj9Ql/BD48UNY9dl90n5MlNE+3lu?=
- =?us-ascii?Q?xTl/Z3RzjjCi8Ll622+PJPNHsGO27VvmODEdaB1DO4pWTOFQMQuCBMIfUA/A?=
- =?us-ascii?Q?ofJ9tkMWshaaElUI2mFvgkjLckho5f57QUcDjHrKHBLCtm2gqwWvZF1YWH7M?=
- =?us-ascii?Q?mW4RZwg2q6BodMmyvDYtcEJ4pC0DjzhNJA/Ktdk3vVFbpS4njgqGTA/Sa7lN?=
- =?us-ascii?Q?WWW/SCyqvMV7627BFrcNNroLzbkOzdPxkVJ3Ap5hugmxgGOq4/nNtdRTvEJu?=
- =?us-ascii?Q?ckR4JGbD4vZ4mJOxYGBKGi06eSaoGDTplRW+3OiYE/MCczWA873Ghlhd7Vh8?=
- =?us-ascii?Q?NCmWlRwXgsOvXjtqVu6+VLeY5sDU0KmrGWr+g8xRhHDNDl5vCLTtn9Q0E768?=
- =?us-ascii?Q?jmVxpV13MnsOTlv8/A1+oIvng8A9lPv1PLiefuuRnA5FpN6EpbJjktfzpmCt?=
- =?us-ascii?Q?tTiFj/JN/EepvVpzWHCiuMDRfPnNpMgRbbj4chXQYxasYZ3F8/bBsyBhPi7i?=
- =?us-ascii?Q?8oQlDoHcRnifqQiNGsJ6y0YD/npg2ruM6N9KyEqNhFUHN6owrilfaXmtHF9n?=
- =?us-ascii?Q?OL9/vlTjl8663za9ogfY2YpdDl9UW7efd7KLQ00z1k/GGiMb++BhlPJ4Vs0h?=
- =?us-ascii?Q?wCr+QyOtSYTtE/oqga4WTYOwq6gE6OyVhuX5eAJRMR7RA6M8yv1y7FTaYU9C?=
- =?us-ascii?Q?8xg8uhJ6BhKrCahDNCkuQVDTOItssgL2JIvX6OXc?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a155639c-b35e-4177-21d6-08dc85895ae3
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2024 18:00:16.3793
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WYPOse00GzPAZdSkA6ItI67LPNJybSxrE5SWyhP0eSUqvnfNBx5w+lksYHzofgHOJk22fGrhCQOyDpqnsQkDhg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6832
+References: <CAMRc=Mckab1QYoBuE3iSv0x+GEjFNBQS5Hw_Mry=r7h5XGHZEQ@mail.gmail.com>
+ <20240605174713.GA767261@bhelgaas>
+In-Reply-To: <20240605174713.GA767261@bhelgaas>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Wed, 5 Jun 2024 20:04:15 +0200
+Message-ID: <CAMRc=MehAkEGJmCXi1uad1f7jZAT60OQ2N0jX7AMka4rS9OjDg@mail.gmail.com>
+Subject: Re: [PATCH v8 16/17] PCI/pwrctl: add a PCI power control driver for
+ power sequenced devices
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, 
+	Kalle Valo <kvalo@kernel.org>, Jeff Johnson <jjohnson@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Elliot Berman <quic_eberman@quicinc.com>, Caleb Connolly <caleb.connolly@linaro.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Alex Elder <elder@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
+	netdev@vger.kernel.org, linux-wireless@vger.kernel.org, 
+	ath11k@lists.infradead.org, Jeff Johnson <quic_jjohnson@quicinc.com>, 
+	ath12k@lists.infradead.org, linux-pm@vger.kernel.org, 
+	linux-pci@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, kernel@quicinc.com, 
+	Amit Pundir <amit.pundir@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 24, 2024 at 07:26:51PM +0100, Dave Stevenson wrote:
-> From: Stefan Wahren <stefan.wahren@i2se.com>
-> 
-> The parameters info and finalextrainfo are platform specific. So drop
-> them by generating them within bcm2835_dma_create_cb_chain().
+On Wed, Jun 5, 2024 at 7:47=E2=80=AFPM Bjorn Helgaas <helgaas@kernel.org> w=
+rote:
+>
+> > >
+> > >   wifi@0 {
+> > >     compatible =3D "pci17cb,1101", "wlan-pwrseq";
+> >
+> > What even is "pwrseq" in the context of the hardware description? DT
+> > maintainers would like to have a word with you. :)
+>
+> There are "compatible" strings like "simple-bus", "simple-mfd", and
+> "syscon" that allow drivers to bind and provide generic functionality
+> when they don't need to know the exact hardware.
+>
 
-Drop 'info' and 'finalextrainfo' because these can be generated by 
-bcm2835_dma_create_cb_chain().
+There's a difference however: a "simple bus" is a thing. A "simple
+multifunction device" is also an actual thing. A "pwrseq" or
+"power-sequencer" is not a thing, it's a functionality. And we don't
+describe it in device-tree. Rob has said before that he regrets having
+merged the mmc pwrseq bindings back in the day and that he wouldn't do
+it again now because it describes what HW does and not what it is. In
+this case the PMU is simply a PMIC and the bindings I'm proposing
+describe it as such. But what you're proposing is even worse: this is
+the ath1x module of the larger chipset (power sequencee rather than
+sequencer) so naming it "wlan-pwrseq" makes absolutely no sense at
+all. It's a PCI device whose ID is 0x17cb1101 and the device tree
+describes it as such.
 
-> 
-> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> ---
->  drivers/dma/bcm2835-dma.c | 83 +++++++++++++++++++--------------------
->  1 file changed, 40 insertions(+), 43 deletions(-)
-> 
-> diff --git a/drivers/dma/bcm2835-dma.c b/drivers/dma/bcm2835-dma.c
-> index d6c5a2762a46..e2f9c8692e6b 100644
-> --- a/drivers/dma/bcm2835-dma.c
-> +++ b/drivers/dma/bcm2835-dma.c
-> @@ -287,13 +287,11 @@ static void bcm2835_dma_desc_free(struct virt_dma_desc *vd)
->  		container_of(vd, struct bcm2835_desc, vd));
->  }
->  
-> -static void bcm2835_dma_create_cb_set_length(
-> -	struct bcm2835_chan *chan,
-> -	struct bcm2835_dma_cb *control_block,
-> -	size_t len,
-> -	size_t period_len,
-> -	size_t *total_len,
-> -	u32 finalextrainfo)
-> +static bool
-> +bcm2835_dma_create_cb_set_length(struct bcm2835_chan *chan,
-> +				 struct bcm2835_dma_cb *control_block,
-> +				 size_t len, size_t period_len,
-> +				 size_t *total_len)
+> > > and pci_pwrctl_pwrseq_of_match[] had this:
+> > >
+> > >   { .compatible =3D "wlan-pwrseq", .data =3D "wlan", }
+> > >
+> > > Wouldn't this pci-pwrctl-pwrseq driver work the same?  I'm not a DT
+> > > whiz, so likely I'm missing something, but it would be nice if we
+> > > didn't have to update this very generic-looking driver to add every
+> > > device that needs it.
+>
+> Do you have any other ideas to reduce the churn in this file?  It just
+> seems weird to have to add an ID to this file without adding any
+> actual code or data related to it.
+>
 
-Can you document this function, what's return value means? look like if
-need extrainfo?
+Is it really that much churn though? You'd save 4 lines of code? I
+think this is premature optimization, we'll see about unifying it when
+we have several models supported, right now with two, I'd just leave
+it as is and not seek perfection.
 
->  {
->  	size_t max_len = bcm2835_dma_max_frame_length(chan);
->  
-> @@ -302,7 +300,7 @@ static void bcm2835_dma_create_cb_set_length(
->  
->  	/* finished if we have no period_length */
->  	if (!period_len)
-> -		return;
-> +		return false;
->  
->  	/*
->  	 * period_len means: that we need to generate
-> @@ -316,7 +314,7 @@ static void bcm2835_dma_create_cb_set_length(
->  	if (*total_len + control_block->length < period_len) {
->  		/* update number of bytes in this period so far */
->  		*total_len += control_block->length;
-> -		return;
-> +		return false;
->  	}
->  
->  	/* calculate the length that remains to reach period_length */
-> @@ -325,8 +323,7 @@ static void bcm2835_dma_create_cb_set_length(
->  	/* reset total_length for next period */
->  	*total_len = 0;
->  
-> -	/* add extrainfo bits in info */
-> -	control_block->info |= finalextrainfo;
-> +	return true;
->  }
->  
->  static inline size_t bcm2835_dma_count_frames_for_sg(
-> @@ -352,7 +349,6 @@ static inline size_t bcm2835_dma_count_frames_for_sg(
->   * @chan:           the @dma_chan for which we run this
->   * @direction:      the direction in which we transfer
->   * @cyclic:         it is a cyclic transfer
-> - * @info:           the default info bits to apply per controlblock
->   * @frames:         number of controlblocks to allocate
->   * @src:            the src address to assign
->   * @dst:            the dst address to assign
-> @@ -360,22 +356,24 @@ static inline size_t bcm2835_dma_count_frames_for_sg(
->   * @period_len:     the period length when to apply @finalextrainfo
->   *                  in addition to the last transfer
->   *                  this will also break some control-blocks early
-> - * @finalextrainfo: additional bits in last controlblock
-> - *                  (or when period_len is reached in case of cyclic)
->   * @gfp:            the GFP flag to use for allocation
-> + * @flags
->   */
->  static struct bcm2835_desc *bcm2835_dma_create_cb_chain(
->  	struct dma_chan *chan, enum dma_transfer_direction direction,
-> -	bool cyclic, u32 info, u32 finalextrainfo, size_t frames,
-> -	dma_addr_t src, dma_addr_t dst, size_t buf_len,
-> -	size_t period_len, gfp_t gfp)
-> +	bool cyclic, size_t frames, dma_addr_t src, dma_addr_t dst,
-> +	size_t buf_len,	size_t period_len, gfp_t gfp, unsigned long flags)
->  {
-> +	struct bcm2835_dmadev *od = to_bcm2835_dma_dev(chan->device);
->  	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
->  	size_t len = buf_len, total_len;
->  	size_t frame;
->  	struct bcm2835_desc *d;
->  	struct bcm2835_cb_entry *cb_entry;
->  	struct bcm2835_dma_cb *control_block;
-> +	u32 extrainfo = bcm2835_dma_prepare_cb_extra(c, direction, cyclic,
-> +						     false, flags);
-> +	bool zero_page = false;
->  
->  	if (!frames)
->  		return NULL;
-> @@ -389,6 +387,14 @@ static struct bcm2835_desc *bcm2835_dma_create_cb_chain(
->  	d->dir = direction;
->  	d->cyclic = cyclic;
->  
-> +	switch (direction) {
-> +	case DMA_MEM_TO_MEM:
-> +	case DMA_DEV_TO_MEM:
-> +		break;
-> +	default:
-> +		zero_page = src == od->zero_page;
-> +	}
-> +
->  	/*
->  	 * Iterate over all frames, create a control block
->  	 * for each frame and link them together.
-> @@ -402,7 +408,8 @@ static struct bcm2835_desc *bcm2835_dma_create_cb_chain(
->  
->  		/* fill in the control block */
->  		control_block = cb_entry->cb;
-> -		control_block->info = info;
-> +		control_block->info = bcm2835_dma_prepare_cb_info(c, direction,
-> +								  zero_page);
->  		control_block->src = src;
->  		control_block->dst = dst;
->  		control_block->stride = 0;
-> @@ -410,10 +417,12 @@ static struct bcm2835_desc *bcm2835_dma_create_cb_chain(
->  		/* set up length in control_block if requested */
->  		if (buf_len) {
->  			/* calculate length honoring period_length */
-> -			bcm2835_dma_create_cb_set_length(
-> -				c, control_block,
-> -				len, period_len, &total_len,
-> -				cyclic ? finalextrainfo : 0);
-> +			if (bcm2835_dma_create_cb_set_length(c, control_block,
-> +							     len, period_len,
-> +							     &total_len)) {
-> +				/* add extrainfo bits in info */
-> +				control_block->info |= extrainfo;
-> +			}
->  
->  			/* calculate new remaining length */
->  			len -= control_block->length;
-> @@ -434,7 +443,9 @@ static struct bcm2835_desc *bcm2835_dma_create_cb_chain(
->  	}
->  
->  	/* the last frame requires extra flags */
-> -	d->cb_list[d->frames - 1].cb->info |= finalextrainfo;
-> +	extrainfo = bcm2835_dma_prepare_cb_extra(c, direction, cyclic, true,
-> +						 flags);
-> +	d->cb_list[d->frames - 1].cb->info |= extrainfo;
->  
->  	/* detect a size missmatch */
->  	if (buf_len && (d->size != buf_len))
-> @@ -682,9 +693,6 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_dma_memcpy(
->  {
->  	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
->  	struct bcm2835_desc *d;
-> -	u32 info = bcm2835_dma_prepare_cb_info(c, DMA_MEM_TO_MEM, false);
-> -	u32 extra = bcm2835_dma_prepare_cb_extra(c, DMA_MEM_TO_MEM, false,
-> -						 true, 0);
->  	size_t max_len = bcm2835_dma_max_frame_length(c);
->  	size_t frames;
->  
-> @@ -696,9 +704,8 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_dma_memcpy(
->  	frames = bcm2835_dma_frames_for_length(len, max_len);
->  
->  	/* allocate the CB chain - this also fills in the pointers */
-> -	d = bcm2835_dma_create_cb_chain(chan, DMA_MEM_TO_MEM, false,
-> -					info, extra, frames,
-> -					src, dst, len, 0, GFP_KERNEL);
-> +	d = bcm2835_dma_create_cb_chain(chan, DMA_MEM_TO_MEM, false, frames,
-> +					src, dst, len, 0, GFP_KERNEL, 0);
->  	if (!d)
->  		return NULL;
->  
-> @@ -714,8 +721,6 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_slave_sg(
->  	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
->  	struct bcm2835_desc *d;
->  	dma_addr_t src = 0, dst = 0;
-> -	u32 info = bcm2835_dma_prepare_cb_info(c, direction, false);
-> -	u32 extra = bcm2835_dma_prepare_cb_extra(c, direction, false, true, 0);
->  	size_t frames;
->  
->  	if (!is_slave_direction(direction)) {
-> @@ -738,10 +743,8 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_slave_sg(
->  	frames = bcm2835_dma_count_frames_for_sg(c, sgl, sg_len);
->  
->  	/* allocate the CB chain */
-> -	d = bcm2835_dma_create_cb_chain(chan, direction, false,
-> -					info, extra,
-> -					frames, src, dst, 0, 0,
-> -					GFP_NOWAIT);
-> +	d = bcm2835_dma_create_cb_chain(chan, direction, false, frames, src,
-> +					dst, 0, 0, GFP_NOWAIT, 0);
->  	if (!d)
->  		return NULL;
->  
-> @@ -757,13 +760,9 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_dma_cyclic(
->  	size_t period_len, enum dma_transfer_direction direction,
->  	unsigned long flags)
->  {
-> -	struct bcm2835_dmadev *od = to_bcm2835_dma_dev(chan->device);
->  	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
->  	struct bcm2835_desc *d;
->  	dma_addr_t src, dst;
-> -	u32 info = bcm2835_dma_prepare_cb_info(c, direction,
-> -					       buf_addr == od->zero_page);
-> -	u32 extra = bcm2835_dma_prepare_cb_extra(c, direction, true, true, 0);
->  	size_t max_len = bcm2835_dma_max_frame_length(c);
->  	size_t frames;
->  
-> @@ -814,10 +813,8 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_dma_cyclic(
->  	 * note that we need to use GFP_NOWAIT, as the ALSA i2s dmaengine
->  	 * implementation calls prep_dma_cyclic with interrupts disabled.
->  	 */
-> -	d = bcm2835_dma_create_cb_chain(chan, direction, true,
-> -					info, extra,
-> -					frames, src, dst, buf_len,
-> -					period_len, GFP_NOWAIT);
-> +	d = bcm2835_dma_create_cb_chain(chan, direction, true, frames, src, dst,
-> +					buf_len, period_len, GFP_NOWAIT, flags);
->  	if (!d)
->  		return NULL;
->  
-> -- 
-> 2.34.1
-> 
+> We should probably also add a pattern to MAINTAINERS so
+> get_maintainers.pl on this file will show you as a maintainer.
+>
+
+Makes sense.
+
+Bartosz
+
+> Bjorn
 
