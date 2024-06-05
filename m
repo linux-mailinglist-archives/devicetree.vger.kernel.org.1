@@ -1,107 +1,129 @@
-Return-Path: <devicetree+bounces-72725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FB3E8FCA83
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:35:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31AC78FC9EB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:12:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1942E28331C
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 11:35:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEC691C24214
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 11:12:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A82B414C5AE;
-	Wed,  5 Jun 2024 11:35:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7D1819149B;
+	Wed,  5 Jun 2024 11:12:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="aXouZoru"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aXvanTAi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDA64145341;
-	Wed,  5 Jun 2024 11:34:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99FEA49645;
+	Wed,  5 Jun 2024 11:12:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717587301; cv=none; b=tONRfkQdJIg3gp8/wdnkpytcBovsxG4aoXtSVdAx2K6/X3omNX9H/CliqsHvQYHj8cejBaIEf/02HiNPKusBZI1WHhLLDlpA9myvXnLUHg1N/inJeq/CfUa40YjT9mVrHBCgJ7cJWXDnM3cV7GN/ypVIH9el7IOfMqJINk7T8GQ=
+	t=1717585969; cv=none; b=IguG7bvOn1mvxk2FUp8si5mTrOl7IqibKr5xldbr5qOCWt2/A8UavpnFvMJTW4HfSgFj139WIznbCmei8I0IfPJh32LUTF2fHCiy4f8BXXU1ymYdfWGvMbFqeUdsImDQSnm+6PmAWCzqPtIfuWjA5leV91hhE3w+SouPF5JjUM8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717587301; c=relaxed/simple;
-	bh=9dqFoVtdsIlZ5J0eqCwOmVV/MKTtyxOkDKlI17dPrCw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dQj7pHwc+EWOHU2CFW/n0rrzKC7v3TtgkSjNJ7rZEkdHWNUfXBzmJ8P5BQSLpqO1A0XaljhiuJTnC6TU6mhxgQRpG84ShuyteHaJvPP3ncAGGjEuCNwJRneh75v3Yj25iXf6xkGdd3/FJNQCj5lKSexS0Yx+Zj3lu6VB40Jii8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=aXouZoru; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id AD8E2881A2;
-	Wed,  5 Jun 2024 13:34:50 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1717587292;
-	bh=iqglW2Mm+Bj8XtbT2EuhNDhxfDBq1NKS+bPZOCk1k/M=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aXouZorunfwKW3IpK7uZ6XI0TIPRnMaB9HbgvMmZi84dx2a77+9IXllJHblzvKQNR
-	 9befSOqfsGLjfuCSEe5I4zmW3bl5y0uvj4NBCQf0enrv5GVAs+Hgy5BQ+d7KgiUOnY
-	 Z61YPhvRUWU+3XAlzYfE3bJWBE/dX8byyiygIaj7+SWe1Zx0O/2j11AXVUv3KVrnYs
-	 43vEx4F5ud9Fu2LZoaCY4EcuQM+Nzrb1zlvghvXfG7tvedW19ZByxD9mGRDu6qojFD
-	 e2Q79XD+CdoXEZoegNBshFE3cZtSQRJWyvDqjuoS5V9Vtp/Fi9Rdi8Tp0ufytD6Zte
-	 yGkwah2Ni3WPQ==
-Message-ID: <e9dc0291-f765-4796-b0ff-7c60b35adb4b@denx.de>
-Date: Wed, 5 Jun 2024 12:57:06 +0200
+	s=arc-20240116; t=1717585969; c=relaxed/simple;
+	bh=yYAj163noFkob5L7lXkiWLT1nMsl/P7iRUgZ6mMxCvg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=X/r3kWxi2xCG8MAIY1VVw2Z9EgybVDDoP767z1HRJCDACWEWpVeeyLbateOhqauwcazigChQd4g5b985hp3PWyrIpkQuZeLgtqn5C8nMJQwBr69O5dKDVO+czkTc9n/e+gag9odWfLz6SqoBsSiNlQ92stc2HDI1yN6+SfprJFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aXvanTAi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 314C4C32786;
+	Wed,  5 Jun 2024 11:12:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717585969;
+	bh=yYAj163noFkob5L7lXkiWLT1nMsl/P7iRUgZ6mMxCvg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aXvanTAihYAPX/RJQpmYDHZb43VOd2kMMK/Hi3Ffzhpmrs+iX8mOmJ93cqF6ZQO+9
+	 N2AH7FCTKu9GBr/SW4Bq0kfYXgJFDRpUPxsEdC1GLTxmBbsus3CmJKx4XXuBlBoOF4
+	 y/daZufRlf0Q2x2hYGl5PgYltv3WUuuWQqCOl31qsY826eQOplQep9OWxxhrHkoIYT
+	 NIApGI8rmQzjAtznelf2nu7sLBeNs31TUjBI1tef6CBmq2dqgRNDBH6NgyCPiT+eeF
+	 SrvdpFtgm3dYC0phg7owIH7IrrmbD6dIvyh5itRgsCZ14/J3QgOUUan3e+WDH2HL5R
+	 w+KruQVRvX7/Q==
+Date: Wed, 5 Jun 2024 12:12:38 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+	Rocky Liao <quic_rjliao@quicinc.com>, Kalle Valo <kvalo@kernel.org>,
+	Jeff Johnson <jjohnson@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+	Elliot Berman <quic_eberman@quicinc.com>,
+	Caleb Connolly <caleb.connolly@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Alex Elder <elder@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+	Jeff Johnson <quic_jjohnson@quicinc.com>,
+	ath12k@lists.infradead.org, linux-pm@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	kernel@quicinc.com,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v8 01/17] regulator: dt-bindings: describe the PMU module
+ of the QCA6390 package
+Message-ID: <21a00ea1-1749-4fcc-87cd-1af8876a7efd@sirena.org.uk>
+References: <20240528-pwrseq-v8-1-d354d52b763c@linaro.org>
+ <20240604173021.GA732838@bhelgaas>
+ <CAMRc=MeNPvZUyu6rtsWtdvXFmOOpmjKCEpkoc5zBfJy6qBpxrg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 10/11] ARM: dts: stm32: add ethernet1 for
- STM32MP135F-DK board
-To: Christophe ROULLIER <christophe.roullier@foss.st.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>, Jose Abreu
- <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240604143502.154463-1-christophe.roullier@foss.st.com>
- <20240604143502.154463-11-christophe.roullier@foss.st.com>
- <c2242ba3-3692-4c5f-a979-0d0e80f23629@denx.de>
- <3a59b4cc-0c7b-47d6-8322-4ae12ddb3a4c@foss.st.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <3a59b4cc-0c7b-47d6-8322-4ae12ddb3a4c@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Ja+GgII04rJlrfXo"
+Content-Disposition: inline
+In-Reply-To: <CAMRc=MeNPvZUyu6rtsWtdvXFmOOpmjKCEpkoc5zBfJy6qBpxrg@mail.gmail.com>
+X-Cookie: Simulated picture.
 
-On 6/5/24 8:00 AM, Christophe ROULLIER wrote:
-> 
-> On 6/4/24 18:52, Marek Vasut wrote:
->> On 6/4/24 4:35 PM, Christophe Roullier wrote:
->>> Ethernet1: RMII with crystal
->>> PHY used is SMSC (LAN8742A)
->>
->> Doesn't the STM32MP135F-DK come with two ethernet ports ?
->> Why not enable both ?
-> 
-> Hi Marek,
-> 
-> As already discussed in V2, second ethernet have no cristal and need 
-> "phy-supply" property to work, today this property is managed by 
-> Ethernet glue, but
-> 
-> should be present and managed in PHY node (as explained by Rob). So I 
-> will push second Ethernet in next step ;-)
 
-Please add that ^ information into the commit message.
+--Ja+GgII04rJlrfXo
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Jun 05, 2024 at 11:13:04AM +0200, Bartosz Golaszewski wrote:
+> On Tue, Jun 4, 2024 at 7:30=E2=80=AFPM Bjorn Helgaas <helgaas@kernel.org>=
+ wrote:
+
+> > LDO?  Again below, but maybe this is obvious to everybody.
+
+> Yes, this is an acceptable abbreviation to use, it's all over the
+> bindings and regulator drivers.
+
+Vastly more people are going to understand LDO than would be able to
+expand the acronym.
+
+--Ja+GgII04rJlrfXo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZgSCUACgkQJNaLcl1U
+h9ByZgf/TG0Lj2GpWhjqjqffaI1t0B0aafiDHRBlSOkaq9el1b4FEPEjjrECf1Qh
+ne5c8PYSt81tN22LJRsh4gK53Ff9ziSn2l0KjKes7LCUwu58zAXDKgrsji++9+Vw
+vqxnhPdP5to25T28H3ds9QoF2jluYqiT/aQXtpRxZWWkO2xHYZ7eAwJe0vOn4rx8
+cqMEBHu9a57G8kN5BIs6cwaNmwlorGxdPKyLdXx3F6+3NvqtbvHGT9XDAkIU+GtC
+2QjuqiW8jM+xvSVYi+ALcYY0djf8Q7J8gmhyQaZa6UNFwO1H8AibziDOF9X7v7nB
+oouRPtsj7Oma2IMcaDj8MW3Ry5Jhsw==
+=tpqW
+-----END PGP SIGNATURE-----
+
+--Ja+GgII04rJlrfXo--
 
