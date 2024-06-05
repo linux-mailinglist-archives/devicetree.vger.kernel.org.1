@@ -1,237 +1,130 @@
-Return-Path: <devicetree+bounces-72734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DDF28FCADA
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:48:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C0988FCBEC
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 14:09:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 099DB1C20A2C
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 11:48:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0065289675
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 12:08:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C405014D6F8;
-	Wed,  5 Jun 2024 11:48:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FmSZspYq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED6C21AD9ED;
+	Wed,  5 Jun 2024 11:53:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1220E27459
-	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 11:48:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 323021AD9D9;
+	Wed,  5 Jun 2024 11:53:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717588095; cv=none; b=pBgZE46nn/Af0ZnwMXOYI2KJ7+2dk53as39adggXqc7O/JSa8PmDtb3EgVc2QYTSW+vxJF2c3B9PEn5uywBSJ3VEnD8AzMwq6syf6vTdb4CHlan6SgLavhbnr0LIS7DRZCe50ySQT9PgYCKRmFLs7mciPX4XSOnOZcrp9U8L+60=
+	t=1717588386; cv=none; b=tm0D9mBtd/buAfhy0utojSJ6RWAXfCm417fMSGVWVkwJgdtgrvVFiP4ZQEjTMfCZ9t+LIu17DcT/BLzRCVzB+wAPgY7vivMSa7Q2hkC60ERliLC2i51yVNidLgNIJuCuJqxxjqXaS5sHcvrz+030C1xH6n2ca1IcsZLoUu5oHX0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717588095; c=relaxed/simple;
-	bh=DwmE/HJViHW0vSvn1az5xz1JgTTxQ9iyyQrMHPsDVOs=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=c9llATwMMUg4nZ30PKDS80DU5NpVGniRfWYEpIdqAPxQJiO6DXLu7UX9am+kyp1ZqsE7Z2xOMzIkl+7zb25qNBdPPDjQ1fUdgzcVMZa7sT1Es4IefgvhidmTkVe8sSYblSG2QdzBMx6PPIVqT/52P7VESnre4PBlJWYu7hyBGsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FmSZspYq; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-354be94c874so5735580f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 04:48:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717588092; x=1718192892; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Sq/Mg5xdkn7VG051aeSlr0cnodPM8eEq6trD79vAGKI=;
-        b=FmSZspYq6Q2dPVgdsPVC4IYUnRE6lpfP/TdYe3E4nupADPDVaBIZJr6NEoXoi5ObTS
-         DZqeb+45JeGzYgyEwq6iZYe69nV0/aIZsx3MvCc/Wvq/QRmQ4uhnBg+eAyj5t3OUC16o
-         cPtJNqwm6iQ6soyQndu0GJ+OLmw+Q3Ux4RlZ4HH0BVDwGgi4Sxp7Vjveu+N7H68uAKZu
-         OXpsyk6jEIfRCdcScb95PMTs1RUzSQACSdzOc7GGlnvtHmmHGM5+01K//JXKXXUfNhVN
-         aDLi0nFFU/vLg0QuwM2lWPO7ZFHuHHmKQVzID4PV4GQRJhs5K06HyzFsw82dmqJHxp7P
-         3NGw==
+	s=arc-20240116; t=1717588386; c=relaxed/simple;
+	bh=mOTddhvoIT8wiG4yUHyU53/TGeJ/YCSolJbafPJ+9hc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=q0pFnAe0DieRGpOeC1skadAKt/W5yaTCscnSiQJcpJr+XieIhFhnTl2ffd/9WQjOZ56fZ11CdTAEkPG4qmxTeZmZAx/tyCTlUNwzDf2duTKhn765fUsYtcbzq/+44TCTxoOgIO4Ueph7/oCz13XvHL7dsjc4d+Uoba1i0snVIFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-62a0c011d53so66615147b3.0;
+        Wed, 05 Jun 2024 04:53:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717588092; x=1718192892;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Sq/Mg5xdkn7VG051aeSlr0cnodPM8eEq6trD79vAGKI=;
-        b=ldmeVO6HftpV3KEIFO6om3LU8Pt664IK0QWdBmNJiY+hJWAqXo2T0ld7F/I+v/W+Tf
-         2a0Ja1xuPg0Gt4xjeUXHWGQuX+ethWRaNiYb4oPYRfrqm318mX8iBa9cjgMO7KF1BYI8
-         EYyw7ZrR8GElTZpsJoRmHsfWytOiaSEaWYbjIHvWT5SxqYxIcRYfTLAkSRSZuW4757WX
-         5HWxBFPpk4Hxx1X+NlL4aZub+sC+6ZXhNxUeG9aey4EaUzlHf0oLt9EKrIpw/f9E2WQE
-         rB/zioijbuofJme9R5umUX+waziD4vTObQmxAxyohLlECwQCrTJOXre+TPn6DASZjn2U
-         Vhcg==
-X-Forwarded-Encrypted: i=1; AJvYcCX70q6RhofIvWf13UuBGAI18g0nEm1NM1EYnKxJivkUoIGyUVA8KDI8b0cOtOUZOhHGVkJDGwV1IyUGsbnnauomIaLpx/P5oR4c6w==
-X-Gm-Message-State: AOJu0YzIG6XBS00DN3RWwqdoHL87PnMSTBYlc2RzJzhOvxSxuLDdUOTo
-	uOC4tAKZ+EBqmVfxcW+1vVaRI7ZvO8sMpVrHrUSiRPO8ym2qQLsbRgb6sOQSTjA=
-X-Google-Smtp-Source: AGHT+IHlR2SK96JLCdyyN00srFLb5WsC8iq/TUAeaI5Vi/UOfNYzNfpAYVSwhJmvRN6a17FGY+m4Ng==
-X-Received: by 2002:a05:6000:b84:b0:35a:dff9:73bd with SMTP id ffacd0b85a97d-35e8ef8fc97mr1926848f8f.56.1717588092369;
-        Wed, 05 Jun 2024 04:48:12 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:c7ce:7756:462d:a8bd? ([2a01:e0a:982:cbb0:c7ce:7756:462d:a8bd])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35dd04cac9asm14374570f8f.34.2024.06.05.04.48.10
+        d=1e100.net; s=20230601; t=1717588383; x=1718193183;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JvsArExPEXHFssWhjY92c/ZACw/tmf496Y0sek86XvQ=;
+        b=J6X6O9PLgcVmou5i43j+oU0TpCd0JsH9kciW5EicuLmeFnV7IMieCZW5yiA5lurhbg
+         1zwkOp0OZST1n8WRHTuojyzd2HLrMh01+LwgeC35TgDna/r8uj5h6QAl37hlHK5FnacC
+         m0N/BxWgIENHg/77mTpBjE/aLeq4U37mZVWsjFx0mvhwYUrRs+j+gz3uA3WmzhQ0qdwi
+         BCnCqkaiXeLroaMKx5cbd/+o1FYGmdpRknwq+zZhn0ipf/CM7m7gKmssC+r0h+8MtRF7
+         Njb8y0+PSGRZIks36Z/H9dvhNydPvgCheSKI9GcuaiMQNYKOd3IK2JMhGdvLhroazY9A
+         T/Vw==
+X-Forwarded-Encrypted: i=1; AJvYcCVXmZGEzVtJ0pVooAfxV1yLk0H0eW4Ypx2bHOzuYVH3hzIYjzloDLPFuKTU7GRGn8Lg66h8RY7zYbbzfe1Af1gtaX2sCqC/fHg/OOumW+wgsKVg05AWDmY5Xc7v5IW3EtIt3MLq5hPq2Ipom4o7RFFrXmj1PSnjroJ21o0UlHEeLG7wJvuj00E+cJTl2npvp4MaqVN22Mkvxqpxi8q8eNeGTFQnTbgRuw==
+X-Gm-Message-State: AOJu0Yzm3TlN9X07slgeJRX52DkzgcF6z2U4jbCaztxkgi5DeAyyq63h
+	BKxcTXndTg2/JNFk7MhhNpJhE0wkyB4zFgQAn+BKdZtRndGgb59Um0wOTTwA
+X-Google-Smtp-Source: AGHT+IHNI9uwSohrVqRAJve/+ajVyEz/IrZGm+1MpwFZu7/JDpaYwUeEJEdALHh0+09W0W8e8W0uyw==
+X-Received: by 2002:a25:3c42:0:b0:df7:8dca:1ef4 with SMTP id 3f1490d57ef6-dfacac3a472mr2231445276.21.1717588383408;
+        Wed, 05 Jun 2024 04:53:03 -0700 (PDT)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-dfa72956a8asm2546650276.18.2024.06.05.04.53.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Jun 2024 04:48:11 -0700 (PDT)
-Message-ID: <5dc16b34-d638-4fab-84e1-cb7db08ad80e@linaro.org>
-Date: Wed, 5 Jun 2024 13:48:09 +0200
+        Wed, 05 Jun 2024 04:53:03 -0700 (PDT)
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-dfab4779d95so2569777276.0;
+        Wed, 05 Jun 2024 04:53:03 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXHlkvl7NAOXssnhWBdrXd0sizsZVey4PLAFJHL/w9ETXuzkHZgUj3cOqfYL+sUapKn/1gB+M/pSzMjesD2tEYHq7aDQZZMWE8KCU22s9uAaoOwB1lBwXqjjJVhL0jU/C2A9RbgZq7jRwOqEO2fD2LVi6ZTkg90WTLAN37DSx3GA9l79ziy5/K445gZEMgZ2STrCVGmOjjaTF8+2dyWf2xdjIxkMbampw==
+X-Received: by 2002:a25:aa31:0:b0:df7:8b9f:8188 with SMTP id
+ 3f1490d57ef6-dfacac5f750mr2508080276.37.1717588382994; Wed, 05 Jun 2024
+ 04:53:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 13/14] drm/bridge: synopsys: Add DW HDMI QP TX controller
- driver
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Sam Ravnborg <sam@ravnborg.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, kernel@collabora.com,
- Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>,
- Algea Cao <algea.cao@rock-chips.com>
-References: <20240601-b4-rk3588-bridge-upstream-v1-0-f6203753232b@collabora.com>
- <20240601-b4-rk3588-bridge-upstream-v1-13-f6203753232b@collabora.com>
- <20240601143226.GA2003970@ravnborg.org>
- <59519381-2729-4839-9882-65a981a0c551@collabora.com>
- <20240604204110.GA84949@ravnborg.org>
- <f656c72e-fac8-4345-9b65-1031ebe81c25@collabora.com>
- <304b4602-8722-4ed0-a555-8dada573ee79@collabora.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <304b4602-8722-4ed0-a555-8dada573ee79@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240530173857.164073-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240530173857.164073-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240530173857.164073-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 5 Jun 2024 13:52:51 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX-rrGNQgTnPjG+NSiGD_NmAxeNqgzKCB8p4W6s12VMKA@mail.gmail.com>
+Message-ID: <CAMuHMdX-rrGNQgTnPjG+NSiGD_NmAxeNqgzKCB8p4W6s12VMKA@mail.gmail.com>
+Subject: Re: [PATCH v3 07/15] pinctrl: renesas: pinctrl-rzg2l: Add function
+ pointer for locking/unlocking the PFC register
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Paul Barker <paul.barker.ct@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 05/06/2024 12:11, Cristian Ciocaltea wrote:
-> On 6/5/24 12:34 AM, Cristian Ciocaltea wrote:
->> On 6/4/24 11:41 PM, Sam Ravnborg wrote:
->>> Hi Cristian.
->>>
->>> On Tue, Jun 04, 2024 at 10:32:04PM +0300, Cristian Ciocaltea wrote:
->>>> Hi Sam,
->>>>
->>>> On 6/1/24 5:32 PM, Sam Ravnborg wrote:
->>>>> Hi Cristian,
->>>>>
->>>>> a few drive-by comments below.
->>>>>
->>>>> 	Sam
->>>>>
->>>>>
->>>>>> +
->>>>>> +static const struct drm_connector_funcs dw_hdmi_qp_connector_funcs = {
->>>>>> +	.fill_modes = drm_helper_probe_single_connector_modes,
->>>>>> +	.detect = dw_hdmi_connector_detect,
->>>>>> +	.destroy = drm_connector_cleanup,
->>>>>> +	.force = dw_hdmi_qp_connector_force,
->>>>>> +	.reset = drm_atomic_helper_connector_reset,
->>>>>> +	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
->>>>>> +	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
->>>>>> +};
->>>>>> +
->>>>>> +static int dw_hdmi_qp_bridge_attach(struct drm_bridge *bridge,
->>>>>> +				    enum drm_bridge_attach_flags flags)
->>>>>> +{
->>>>>> +	struct dw_hdmi *hdmi = bridge->driver_private;
->>>>>> +
->>>>>> +	if (flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)
->>>>>> +		return drm_bridge_attach(bridge->encoder, hdmi->next_bridge,
->>>>>> +					 bridge, flags);
->>>>>> +
->>>>>> +	return dw_hdmi_connector_create(hdmi, &dw_hdmi_qp_connector_funcs);
->>>>>> +}
->>>>>
->>>>> Are there any users left that requires the display driver to create the
->>>>> connector?
->>>>> In other words - could this driver fail if DRM_BRIDGE_ATTACH_NO_CONNECTOR
->>>>> is not passed and drop dw_hdmi_connector_create()?
->>>>>
->>>>> I did not try to verify this - just a naive question.
->>>>
->>>> I've just tested this and it doesn't work - dw_hdmi_connector_create()
->>>> is still needed.
->>>
->>> Hmm, seems the display driver or some other bridge driver fails to
->>> support "DRM_BRIDGE_ATTACH_NO_CONNECTOR".
->>> what other drivers are involved?
->>
->> Could it be related to the glue driver (updated in the next patch) which
->> is also responsible for setting up the encoder?
->>
->>> Note that my comments here should be seen as potential future
->>> improvements, and do not block the patch from being used.
->>
->> Thanks for the heads up! Will try to get back to this soon and investigate.
->   
-> IIUC, modern bridges should not create the connector but rely on display
-> drivers to take care of, which in this case is the VOP2 driver. However,
-> it also handles some of the older SoCs relying on the non-QP variant of
-> DW HDMI IP. Hence the existing dw-hdmi driver would be also impacted in
-> order to come up with a proper solution.
-> 
-> A quick check shows there are several users of this IP:
-> 
-> $ git grep -E '= dw_hdmi_(bind|probe)\('
-> drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c:    hdmi->dw_hdmi = dw_hdmi_probe(pdev, plat_data);
-> drivers/gpu/drm/bridge/synopsys/dw-hdmi.c:      hdmi = dw_hdmi_probe(pdev, plat_data);
-> drivers/gpu/drm/imx/ipuv3/dw_hdmi-imx.c:        hdmi->hdmi = dw_hdmi_probe(pdev, match->data);
-> drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c:      hdmi = dw_hdmi_probe(pdev, &ingenic_dw_hdmi_plat_data);
-> drivers/gpu/drm/meson/meson_dw_hdmi.c:  meson_dw_hdmi->hdmi = dw_hdmi_probe(pdev, &meson_dw_hdmi->dw_plat_data);
-> drivers/gpu/drm/renesas/rcar-du/rcar_dw_hdmi.c: hdmi = dw_hdmi_probe(pdev, &rcar_dw_hdmi_plat_data);
-> drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c:            hdmi->hdmi = dw_hdmi_bind(pdev, encoder, plat_data);
-> drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c:  hdmi->hdmi = dw_hdmi_bind(pdev, encoder, plat_data);
-> 
-> I didn't check which display drivers would be involved, I'd guess there
-> are quite a few of them as well. So it seems this ends up being a pretty
-> complex task.
+Hi Prabhakar,
 
-If this would be a brand new driver, then it should only support DRM_BRIDGE_ATTACH_NO_CONNECTOR,
-so you should not create a connector from the driver.
+On Thu, May 30, 2024 at 7:42=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> On the RZ/G2L SoC, the PFCWE bit controls writing to PFC registers.
+> However, on the RZ/V2H(P) SoC, the PFCWE (REGWE_A on RZ/V2H) bit controls
+> writing to both PFC and PMC registers. Additionally, BIT(7) B0WI is
+> undocumented for the PWPR register on RZ/V2H(P) SoC. To accommodate these
+> differences across SoC variants, introduce the pwpr_pfc_lock_unlock()
+> function pointer.
+>
+> Note, in rzg2l_pinctrl_set_pfc_mode() the pwpr_pfc_lock_unlock(.., false)
+> is now called before PMC read/write and pwpr_pfc_lock_unlock(.., true) is
+> now called after PMC read/write this is to keep changes minimal for
+> RZ/V2H(P) SoC.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v2->v3
+> - Introduced single function pointer to (un)lock
+> - Updated commit message
 
-The fact dw-hdmi accepts an attach without the flag is for legacy purpose
-since some DRM drivers haven't switched to DRM_BRIDGE_ATTACH_NO_CONNECTOR yes,
-but it's a requirement for new bridges so at some point you'll need to make
-sure the rockchip glue and drm driver supports DRM_BRIDGE_ATTACH_NO_CONNECTOR.
+Thanks for the update!
 
-This will greatly simplify the driver!
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Neil
+Gr{oetje,eeting}s,
 
-> 
-> Cristian
+                        Geert
 
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
