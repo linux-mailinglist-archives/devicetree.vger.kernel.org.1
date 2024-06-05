@@ -1,48 +1,55 @@
-Return-Path: <devicetree+bounces-72720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB1A28FCA5A
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:24:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 067A18FCA61
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:25:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D82B1F21898
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 11:24:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2A4528263C
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 11:25:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CD70192B7C;
-	Wed,  5 Jun 2024 11:24:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E63CC19306D;
+	Wed,  5 Jun 2024 11:25:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l7X1WKkO"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="fHqPZ+f9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7344F8F6A;
-	Wed,  5 Jun 2024 11:24:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AF358F6A;
+	Wed,  5 Jun 2024 11:25:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717586693; cv=none; b=a7Dz2PjDIIi588e33GFYogMY9quRyNB8vtmAKTsypGma+gDAQJOGxUZdqePAA9H5aF8E0PvBrI9LI6MRHyyVjwZhkrWHQsJ2Hbfdi090/mTjS+6tCvIFF/tMLWBerCJ4+UhIYIqVVG7ApBZvJ8fJGIt6736hNYpeYsKhuXbar9w=
+	t=1717586736; cv=none; b=DGXs8ULPCv1/JRq152lSxAqxmwZccsrZmfGPTbH0D0JkV9xojFuSioAvZQ0qqWYTQm/USGHQCGodQnbroWiJPETgd9/Cbd5mjhv83H0IPzkHjGsvsJDCrBqd8TYnhU4g8LouFeZTSrEE1E5c6IaxTpT5hjZrf2yEEMVH+v5XCbo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717586693; c=relaxed/simple;
-	bh=t869eoOHjsg3BKrhxGVMPSQUCOTmolC92nbJteoKkSE=;
+	s=arc-20240116; t=1717586736; c=relaxed/simple;
+	bh=7SIN4Dh8iWcVPhTl6XQdG+T06wZg5VrgK1Kuc/BrCRg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SmKl5XlCNXgr0ix8tZvIvEj853pFWrP0VB8JhKsTqtVkZe2LOKdF63cVG/L85+XsNjussNLFc4ueGVm4FVlTq9PJDeoQSaZ8uROS8rmKclfgtPC5uKWLa74NpZK3u1K68CC2JANt5kxr5xKmbpRKqHm/773JU+105+uyciHEwEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l7X1WKkO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DBBEC3277B;
-	Wed,  5 Jun 2024 11:24:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717586692;
-	bh=t869eoOHjsg3BKrhxGVMPSQUCOTmolC92nbJteoKkSE=;
+	 In-Reply-To:Content-Type; b=MtoszHpTpvpyVgjp8cMSOmgWrekJ4Wz2pjO9q+ftEOUO8h6DL76I016zvS2yUro6GMY/sSIj2Y6KtdaeKJGfStdz/IBWFSbL7CF5yTrCmZg/d52IWKCEUJKVkvQCs+7VZGaDsrv7q4sWHLjGk+MjbiSg2VV7/JpqclriqZTtMDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=fHqPZ+f9; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1717586733;
+	bh=7SIN4Dh8iWcVPhTl6XQdG+T06wZg5VrgK1Kuc/BrCRg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=l7X1WKkO1+38/L1/MZrvPpSMO7FnpSGVYJA+N/TZSHK/+aHwIiins93i759wisoTF
-	 FUAFCfl4P90aTlr0PIXtrt1CcKxE54T9gjXNGpWMPAGkmhSGfnVYpL6KanLN69YlIn
-	 G8rpqn+UkwWWEtiUNB1CcKr34xC2Nn9g7YaRr4FZPN+4bmE9X8sjg169QoPC+ooBhV
-	 Lx3U1JHJ/kS9xsL5jj91Ats+gzHNEBHooD+4xHVyyRynAInkhsDnQ1MyANzt9YuCfH
-	 r8oDph8wWGrl+MH5+ClvBKobHpyBxZu5ynjv01/JjxHQYcZbaWvnhndi6ekIEXWGDU
-	 zSskR3EWmvxaQ==
-Message-ID: <e3f81288-3000-4965-80a5-b68ffccb47fe@kernel.org>
-Date: Wed, 5 Jun 2024 13:24:48 +0200
+	b=fHqPZ+f929TcIW07N83k9cmzcGHyGqXjJXzqbRkm31WabNru7K32nQxkpmAtpYpRl
+	 3DV8huTacAXKoHT3Prhx45lx0rnsOOriqVi+NIJIT8HyLUu9TRTfay4HqlWFKMljVO
+	 O9IDgbRz4vd0m6txJnKQ+K5lOxc0msPngVnLZtrbwPvL7ccKORG01DuoN+WNg+Ip9k
+	 2OUqS9mvf/tXMhvDMitt3od5KZiHx/jMft+wAuJgQU70GSaC72/FaHzCHl305al8xW
+	 gsaEek6mucH75sS0AlsJihhUYcPKroXvzvL4tNvrSQpII891M0adsUnf0YIMypqba2
+	 9Kr22dFmP5Vyw==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 7A8343781139;
+	Wed,  5 Jun 2024 11:25:32 +0000 (UTC)
+Message-ID: <08256a88-7165-41ca-b484-4acf1c8e316b@collabora.com>
+Date: Wed, 5 Jun 2024 13:25:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,97 +57,146 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] serial: sc16is7xx: hard reset the chip if
- reset-gpios is defined in dt
-To: Maarten Brock <Maarten.Brock@sttls.nl>, Hui Wang
- <hui.wang@canonical.com>, Hugo Villeneuve <hugo@hugovil.com>
-Cc: "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
- "jirislaby@kernel.org" <jirislaby@kernel.org>,
- "hvilleneuve@dimonoff.com" <hvilleneuve@dimonoff.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "andy@kernel.org" <andy@kernel.org>,
- "lech.perczak@camlingroup.com" <lech.perczak@camlingroup.com>
-References: <20240604132726.1272475-1-hui.wang@canonical.com>
- <20240604132726.1272475-2-hui.wang@canonical.com>
- <20240604102323.b2a305fa03161df3c2eec16c@hugovil.com>
- <AS8PR05MB9810940582493046F2FBFDB983F92@AS8PR05MB9810.eurprd05.prod.outlook.com>
- <f56a2c59-9ae4-4d5c-8321-fff9639c5405@canonical.com>
- <AS8PR05MB98104348D77097F60396B82883F92@AS8PR05MB9810.eurprd05.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 5/6] arm64: dts: mediatek: mt8173: Fix MFG_ASYNC power
+ domain clock
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Frank Binns <frank.binns@imgtec.com>, Matt Coster
+ <matt.coster@imgtec.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240530083513.4135052-1-wenst@chromium.org>
+ <20240530083513.4135052-6-wenst@chromium.org>
+ <4f20f130-c9ab-43ea-a758-e29d7be10db0@collabora.com>
+ <CAGXv+5GuGz-KahcbKtuyUA1-59sMWSL0QucOdp8FPoQWrc9YUQ@mail.gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <AS8PR05MB98104348D77097F60396B82883F92@AS8PR05MB9810.eurprd05.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <CAGXv+5GuGz-KahcbKtuyUA1-59sMWSL0QucOdp8FPoQWrc9YUQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 05/06/2024 13:19, Maarten Brock wrote:
->>> To make this a proper reset pulse for the device you must first assert the reset,
->>> then wait >3us, and finally deassert the reset.
->>>
->>> Maarten Brock
->> Hi Maarten,
+Il 05/06/24 10:25, Chen-Yu Tsai ha scritto:
+> On Thu, May 30, 2024 at 6:03 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
 >>
->> My understanding is when calling devm_gpiod_get_optional(dev, "reset",
->> GPIOD_OUT_LOW) and returning a valid (gpio_desc *), the flag
->> GPIOD_OUT_LOW guarantees the GPIO is set to output and low (assert the
->> reset pin).
+>> Il 30/05/24 10:35, Chen-Yu Tsai ha scritto:
+>>> The MFG_ASYNC domain, which is likely associated to the whole MFG block,
+>>> currently specifies clk26m as its domain clock. This is bogus, since the
+>>> clock is an external crystal with no controls. Also, the MFG block has
+>>> a independent CLK_TOP_AXI_MFG_IN_SEL clock, which according to the block
+>>> diagram, gates access to the hardware registers. Having this one as the
+>>> domain clock makes much more sense. This also fixes access to the MFGTOP
+>>> registers.
+>>>
+>>> Change the MFG_ASYNC domain clock to CLK_TOP_AXI_MFG_IN_SEL.
+>>>
+>>> Fixes: 8b6562644df9 ("arm64: dts: mediatek: Add mt8173 power domain controller")
+>>> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+>>
+>> Just one question... what happens if there's no GPU support at all and this
+>> power domain gets powered off?
+>>
+>> I expect the answer to be "nothing", so I'm preventively giving you my
 > 
-> Ah, right. Sorry, I missed that.
-> So GPIOD_OUT_LOW disregards the inversion from GPIO_ACTIVE_LOW.
+> Well it's powered off by default. Just double checked, and without the final
+> patch:
+> 
+> # cat /sys/kernel/debug/pm_genpd/pm_genpd_summary
+> domain                          status          children
+>              performance
+>      /device                                             runtime status
+> ----------------------------------------------------------------------------------------------
+> mfg                             off-0
+>              0
+> mfg_2d                          off-0
+>              0
+>                                                  mfg
+> mfg_async                       off-0
+>              0
+>                                                  mfg_2d
+> 
+> And with the last patch but with the powervr removed:
+> 
+> # cat /sys/kernel/debug/pm_genpd/pm_genpd_summary
+> domain                          status          children
+>              performance
+>      /device                                             runtime status
+> ----------------------------------------------------------------------------------------------
+> mfg_apm                         off-0
+>              0
+> mfg                             off-0
+>              0
+>                                                  mfg_apm
+>      /devices/platform/soc/13fff000.clock-controller     suspended
+>              0
+> mfg_2d                          off-0
+>              0
+>                                                  mfg
+> mfg_async                       off-0
+>              0
+>                                                  mfg_2d
+> 
+> Things seem to work OK. I can SSH in, and the framebuffer console on the screen
+> works fine.
+> 
+> 
+> Note that accessing the regmap through debugfs doesn't do much good. regmap
+> doesn't handle runtime PM. And the syscon regmap isn't even tied to a
+> struct device. Dumping the regmap through debugfs while the power domain
+> is off gives all zeroes, likely due to bus isolation.
+> 
 
-It doesn't.
+The last part where you say "gives all zeroes" is actually the best outcome that
+I could have ever expected.
 
-> And gpiod_set_value_cansleep(reset_gpiod, 0) uses the inversion to make the pin high.
-> Looks fine to me now.
+So, well, many thanks for this very nice analysis and test.
 
-They both respect pin polarity.
+>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Best regards,
-Krzysztof
+I confirm my green light. It's beautiful when this kind of patches come upstream
+especially with your replies actually removing any kind of possible doubt.
+
+> 
+> Thanks!
+
+Thank *you* for caring about this old platform!
+
+Cheers,
+Angelo
+
+> 
+> ChenYu
+> 
+>> ....but if I'm wrong and the answer isn't exactly "nothing", then I still agree
+>> with this commit, but only after removing the Fixes tag.
+>>
+>> Cheers,
+>> Angelo
+>>
+>>> ---
+>>>    arch/arm64/boot/dts/mediatek/mt8173.dtsi | 2 +-
+>>>    1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+>>> index 3458be7f7f61..136b28f80cc2 100644
+>>> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+>>> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+>>> @@ -497,7 +497,7 @@ power-domain@MT8173_POWER_DOMAIN_USB {
+>>>                                };
+>>>                                mfg_async: power-domain@MT8173_POWER_DOMAIN_MFG_ASYNC {
+>>>                                        reg = <MT8173_POWER_DOMAIN_MFG_ASYNC>;
+>>> -                                     clocks = <&clk26m>;
+>>> +                                     clocks = <&topckgen CLK_TOP_AXI_MFG_IN_SEL>;
+>>>                                        clock-names = "mfg";
+>>>                                        #address-cells = <1>;
+>>>                                        #size-cells = <0>;
+>>
+>>
 
 
