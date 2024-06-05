@@ -1,65 +1,68 @@
-Return-Path: <devicetree+bounces-72997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EC318FDB03
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 01:55:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D3658FDB0A
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 01:56:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9275A1F28F3B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 23:55:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BC35FB20C19
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 23:55:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9519B16C6AB;
-	Wed,  5 Jun 2024 23:52:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92FA616B72E;
+	Wed,  5 Jun 2024 23:55:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BINy/SMU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mVHGkrdp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6788316C69C;
-	Wed,  5 Jun 2024 23:52:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A0EB15FD04;
+	Wed,  5 Jun 2024 23:55:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717631562; cv=none; b=Ow3YmQi/9250NjL65XkI4rZkRYGYgpficM5mE++zK264sqByo0xaikAkUx/ow7HclbtVvcYOYRqvbhu8AwVu21hu0na9mZusO+OFUttKj73ZQl0+oQ1DSygN9HliInXY1yLkl2wxl/CQFckPCePJ99r2v9IJidEMwAp3Igpmy4s=
+	t=1717631717; cv=none; b=WjVsJKow8mePVJBvbJUJAeeDKW3dc/jh8LtjM5m2pPkRnpef+OVTuXsoRXCHVOb8/LRO2Ya9eo0XzFheEVoz3axEoHsurDcDIY96ebd+Ny51/U1JqT7YASdgKW8eWtHwUnBVaghI2sJLBL/PoVb6rumyuXf41rrPtYcRGKhZnco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717631562; c=relaxed/simple;
-	bh=D40azPYuyjyFS271o7gUSoGXiWfbnmEKNZnN0GolfHs=;
+	s=arc-20240116; t=1717631717; c=relaxed/simple;
+	bh=Gr6FdP01TYe9geaqfK/BaFTzGY/PrnX38cvxMniy4hE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lR5faAUnvi3qpx7xlyI5FHYkPGcyhPJ56T4JtuAhtQt2yGwikz5pHTDV8cSj7ZYcWu4DZaGiVjZOX4dHpIFvu740yZYfYisvQzeDe0KDHy4RMyqW8NhR7HVVfv/xs2mjSMGWMrRNimEzUq7dSWAiP+dURxOoKvOvJ1JatiVKxR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BINy/SMU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 859B8C2BD11;
-	Wed,  5 Jun 2024 23:52:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=M1L7oSdA4/b0uvWHDzG/CC0PCFhBhIVwJwVW80Mj5fqUUAOF+NPbC4Xfo54ob0wSdtxYNLxephPbAaOGjf1pUvT/zflphQk9gEsMr+iwvMDuuD4kypkLQ8902a/E9tu2xq/44Hhqmfk0GQJuUZhGfWe/GW550AqpGEnUWq87oBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mVHGkrdp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1B62C2BD11;
+	Wed,  5 Jun 2024 23:55:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717631561;
-	bh=D40azPYuyjyFS271o7gUSoGXiWfbnmEKNZnN0GolfHs=;
+	s=k20201202; t=1717631717;
+	bh=Gr6FdP01TYe9geaqfK/BaFTzGY/PrnX38cvxMniy4hE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BINy/SMUuVd1h84CY5U+AbCTUyILx9goti7b30aQo5Q5BvQcS4JYjAU4IHTcR4dCF
-	 9lKVnAAOyf6xsHTs0DSBK8hcRxMSq8BENGCOkHcq8RyhRlsvFz1RJvyV7/Dztsc/BW
-	 pJEcxTv5J1Nj4MjJqezZX2U52uB10zHESfmFTS8vNbeZ1BvGywkmQsnr6lFz5vdyRn
-	 DPgTuXCU9bhQfOihQ+eeT/rhVM5CK3fLP91daf5q2qdUutBaoMt4p5yimflWAWAGvx
-	 cYlpHnW8FEk1LbsUOnrOmLFheGUobQISH6CuLY71M0A+RAVIgGC7DCaVe31MWJO+nz
-	 7w2RT3bfPB9BA==
-Date: Wed, 5 Jun 2024 17:52:39 -0600
-From: Rob Herring <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: jic23@kernel.org, lars@metafoo.de, krzk+dt@kernel.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com, lee@kernel.org,
-	andy@kernel.org, nuno.sa@analog.com, bigunclemax@gmail.com,
-	dlechner@baylibre.com, marius.cristea@microchip.com,
-	marcelo.schmitt@analog.com, fr0st61te@gmail.com,
-	mitrutzceclan@gmail.com, mike.looijmans@topic.nl,
-	marcus.folkesson@gmail.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, andy.shevchenko@gmail.com,
-	kernel@collabora.com
-Subject: Re: [PATCH v2 1/5] dt-bindings: iio: adc: Add MediaTek MT6359 PMIC
- AUXADC
-Message-ID: <20240605235239.GA3455504-robh@kernel.org>
-References: <20240604123008.327424-1-angelogioacchino.delregno@collabora.com>
- <20240604123008.327424-2-angelogioacchino.delregno@collabora.com>
+	b=mVHGkrdpd9qHNUWrmVey1+Z4TOHxukh8sDqQUzLuW6femHynJhOr1wmLOphGbKF3T
+	 r/+MpacL7dq8FUSX58NbayI/AsXFOpwOFmQskFRQabnTXXmPLV7iOz0pT0HIsI58Yz
+	 nEFwLJehvnODFvQ0CU/eiivdbYHl8co2g0HTPYmjFLLdnl9KC6Ihdk/4wc2iguHv73
+	 vIEHYwJPUfNpaVGj0Yo1I27TpcxfFkBHIpdPsNc1W4TutRLRNXebHcc8ScQ2ApIFPY
+	 yvVOxeDQP11ScZjdTKGWCX6eLansVtZUx8oPxlhipWJmQnXcSMXm0covUc6W2BnQkt
+	 iEZedjuY6xy3Q==
+Date: Wed, 5 Jun 2024 17:55:14 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	freedreno@lists.freedesktop.org,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Sean Paul <sean@poorly.run>, DT <devicetree@vger.kernel.org>,
+	MSM <linux-arm-msm@vger.kernel.org>,
+	Rob Clark <robdclark@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Arnaud Vrac <avrac@freebox.fr>,
+	Pierre-Hugues Husson <phhusson@freebox.fr>,
+	Maxime Ripard <mripard@kernel.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: display/msm: hdmi: add
+ qcom,hdmi-phy-8998
+Message-ID: <171763171236.3460607.686734211960496313.robh@kernel.org>
+References: <a2cb1290-9e01-4136-9592-ce439b1096b6@freebox.fr>
+ <c1f26026-dd53-4082-bb0b-c35db2d17fb7@freebox.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,70 +71,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240604123008.327424-2-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <c1f26026-dd53-4082-bb0b-c35db2d17fb7@freebox.fr>
 
-On Tue, Jun 04, 2024 at 02:30:04PM +0200, AngeloGioacchino Del Regno wrote:
-> Add a new binding for the MT6350 Series (MT6357/8/9) PMIC AUXADC,
-> providing various ADC channels for both internal temperatures and
-> voltages, audio accessory detection (hp/mic/hp+mic and buttons,
-> usually on a 3.5mm jack) other than some basic battery statistics
-> on boards where the battery is managed by this PMIC.
+
+On Tue, 04 Jun 2024 15:46:03 +0200, Marc Gonzalez wrote:
+> HDMI PHY block embedded in the APQ8098.
 > 
-> Also add the necessary dt-binding headers for devicetree consumers.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
 > ---
->  .../iio/adc/mediatek,mt6359-auxadc.yaml       | 33 +++++++++++++++++++
->  .../iio/adc/mediatek,mt6357-auxadc.h          | 21 ++++++++++++
->  .../iio/adc/mediatek,mt6358-auxadc.h          | 22 +++++++++++++
->  .../iio/adc/mediatek,mt6359-auxadc.h          | 22 +++++++++++++
->  4 files changed, 98 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/mediatek,mt6359-auxadc.yaml
->  create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6357-auxadc.h
->  create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6358-auxadc.h
->  create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6359-auxadc.h
+>  Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/mediatek,mt6359-auxadc.yaml b/Documentation/devicetree/bindings/iio/adc/mediatek,mt6359-auxadc.yaml
-> new file mode 100644
-> index 000000000000..6497c416094d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/mediatek,mt6359-auxadc.yaml
-> @@ -0,0 +1,33 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/mediatek,mt6359-auxadc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek MT6350 series PMIC AUXADC
-> +
-> +maintainers:
-> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> +
-> +description:
-> +  The Auxiliary Analog/Digital Converter (AUXADC) is an ADC found
-> +  in some MediaTek PMICs, performing various PMIC related measurements
-> +  such as battery and PMIC internal voltage regulators temperatures,
-> +  accessory detection resistance (usually, for a 3.5mm audio jack)
-> +  other than voltages for various PMIC internal components.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt6357-auxadc
-> +      - mediatek,mt6358-auxadc
-> +      - mediatek,mt6359-auxadc
-> +
-> +  "#io-channel-cells":
-> +    const: 1
 
-Why do you need a node here? Just add #io-channel-cells to the parent 
-node.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-> +
-> +required:
-> +  - compatible
-> +  - "#io-channel-cells"
-> +
-> +additionalProperties: false
 
