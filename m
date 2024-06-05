@@ -1,175 +1,244 @@
-Return-Path: <devicetree+bounces-72793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 143B88FCF80
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 15:37:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EDBA8FCF96
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 15:39:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1D9F284431
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:37:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50F161C2167B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:39:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A74EE1991CC;
-	Wed,  5 Jun 2024 13:11:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09CD9196448;
+	Wed,  5 Jun 2024 13:17:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="goC4xG1G"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ZLJnxgTt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75E751991BD;
-	Wed,  5 Jun 2024 13:11:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32B7219643D
+	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 13:17:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717593107; cv=none; b=dsODV1eLm9JSFRenhJKfEFhs9uoJ727c37gy5vZaPP/rrMY4/jOa405OTH0B70XIA6yUpHtA0rBwJgLg2bv9ifAjB+63t9EznbL4RPIVlaVasrplQ2ArGoTqloJHO5Bf1pS9zLGF2PCYYh7WHHQyJxhgi6JpE7+Qi8KnbRmncuw=
+	t=1717593468; cv=none; b=OD0P0oYDfduWwoceFrVhSFahhMSY35IXsxwXPiKL+hWSrADI20hawyTI1HoGfkjFAcBQXnipyBR/ZU8/DIW7g3IIM8tyTVe+lu1Z2LesCtfq9hQ9fhyGz1jjOU7X8nwCxOZcXWoXbucF8i3cezwY6HVee1AKDj2dZN4ObowMw9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717593107; c=relaxed/simple;
-	bh=z3AyDz/cSs7NcIi7IsLYg5zkRvDfugi4f76S7UFbDnA=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=D+Bd2mAFUCiAv+KG4PRXKridzEBQysuZ6GBv3ZQw2jVRboyE+YN0kRWCZd8r63YojUq2S55nEpgtv39uA8e0DK2DIP93xeSHBGAdj/+m0ZfGVtYXgaodmF1mj22CleZxHV0QfIDeEMLNKnw0sB5qylfGr7m+l5Efatf3oVSJhXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=goC4xG1G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00227C4AF13;
-	Wed,  5 Jun 2024 13:11:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717593107;
-	bh=z3AyDz/cSs7NcIi7IsLYg5zkRvDfugi4f76S7UFbDnA=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=goC4xG1GK/8GuNy8O7WozvGlBYVktW4cpTOWHFSTwGBj46kPUHDD4MMGJ1QiShpU7
-	 HkSn1NjB4G9CsAnKd9BMlkjvbYg8Zd8phLOnFY6X8ZWBv13Ko7Q0AhkhCrCwck3QZk
-	 r0wNw2tcEY58xKL8mhBDTlqYZqBfoR7sdikmOA+jI/0xVkkNlhGToVDDb2QPdEzncB
-	 jYIz+TpxPndJ81QHvQ11fde5VN/4tdOH2a6fKEyb7qf9Ul1p+cqzSv+p8VWMOUZO5b
-	 3l2o2p2xZX5eFPfLX+VYp3FTIYGEuVKGL7x0yoJbL+YMNUnw1fYVCadJb5zS1LsrbZ
-	 2WFPmQUIKEzEw==
-Date: Wed, 05 Jun 2024 07:11:45 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1717593468; c=relaxed/simple;
+	bh=UbV1sT8AS69/0/WZMNU3BGlPEbAGUqxSRMbU/smTrno=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=M27UrPgOyieWb1Ex4R4n+eq+e4KaZBzdwdeklJCQPZKe5EXylEA1VT43S0MSFW2eOna2ICiTLuiRt2H13DyKxW7li1fqLghzmN2az8ayCe7zBscMxa6nOhNRwEE0/hDTYhn7B+R7eVweRlILb2Fzo6mhkxZIX0JC3XWrW3/ocIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ZLJnxgTt; arc=none smtp.client-ip=209.85.219.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6ae093e8007so5365986d6.3
+        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 06:17:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1717593466; x=1718198266; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ezuh5lGjLmqQRDAtTge21GLODf9j9mNeQLiZ4DM7Eo8=;
+        b=ZLJnxgTtfEe7UgK23K2WMWeyxEveDAdwJnDlGrRZDi4C8p/0X7234PCLQvDxs8wuxl
+         fv2euZQ9Nlcxq19uXrlYzXZ0R4DJotEUI+44n2ND5DktIniUNJDVEYLhKM/tCL/hqAeT
+         1wWT9z/574tbBVELKuv90t8SELIO8Lh91dPS8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717593466; x=1718198266;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ezuh5lGjLmqQRDAtTge21GLODf9j9mNeQLiZ4DM7Eo8=;
+        b=tp0rXovrLNL06ESDSQbWz1hPCf0w1fU4nsbYRS5AIrkv6QxITvceKuOWHlut4KIHla
+         wcuUu+InshLcsmwIoXe0LU6k+CH4yjV6HXyGb0SkCkTre5xWSw3gFOfxGOt91E/bdtfg
+         I3sdorZhTosh7ALPXroWckKkCaZ3wfEVOOAnlpgdw+IYGwDJ6OcmiKPZSlVVZyNDOKE4
+         iWUg/XwZxK3UX8NfJhdMQSYz79bVl/wT0JVd1vdHCF0iuT8FCO4q7HVZ9wjHVgOPyq/C
+         nlJdV2xwlcw1Evn5epOUT3+Z1+1gBZE8OR6vYLpMp44UMSlC9p03xJo4KXEs8sJ3Nd3I
+         iqNA==
+X-Forwarded-Encrypted: i=1; AJvYcCVGGb9lrBTg8ICJb31BGO/7LguapTYgMSg/6swDlvk/ENPPpjHFZp1Gti1XK/y776uaD9apwHxDnzXlLmikErzvXbz0jDdlMDEJtQ==
+X-Gm-Message-State: AOJu0Yx7g0q2WZAxnhOhZNhcC+XbMVZW6TTAbSvfDxHPNM2llGocIp4o
+	TQokFdVHtJNpNkNU2WRBtNoMvQ71/w81ZwG2AbgBpCyZga5OlL7owHvzWR16RzvbphjPDout84N
+	CsucNnS/A2dNNDLIsgdxH9bIGYt4FK5lGm7UO
+X-Google-Smtp-Source: AGHT+IFwlOu7J6J8+q1Yt7bJvu3b6VcYZUPhTKYQf1CywqeXzPU2nzQSpBxs1jCwjEtcxcqI7XXwr7kTGdat1wGgTw4=
+X-Received: by 2002:a05:6214:5d8b:b0:6ab:83a5:195 with SMTP id
+ 6a1803df08f44-6b030a96731mr26255756d6.41.1717593465943; Wed, 05 Jun 2024
+ 06:17:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, 
- Alexander Stein <alexander.stein@ew.tq-group.com>, 
- Peng Fan <peng.fan@nxp.com>, Fabio Estevam <festevam@gmail.com>, 
- linux-kernel@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Conor Dooley <conor.dooley@microchip.com>, imx@lists.linux.dev, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org
-In-Reply-To: <20240605-imx95-dts-v3-v6-0-2ce275ed0e80@nxp.com>
-References: <20240605-imx95-dts-v3-v6-0-2ce275ed0e80@nxp.com>
-Message-Id: <171759285255.2201583.2972532239106295355.robh@kernel.org>
-Subject: Re: [PATCH v6 0/3] arm64: dts: add i.MX95 and EVK board
+References: <20240521-board-ids-v3-0-e6c71d05f4d2@quicinc.com>
+In-Reply-To: <20240521-board-ids-v3-0-e6c71d05f4d2@quicinc.com>
+From: Simon Glass <sjg@chromium.org>
+Date: Wed, 5 Jun 2024 07:17:35 -0600
+Message-ID: <CAFLszTjexpNEjo1sGVs67L0CAgGZLNkyn9RGfHRD7iHak_mtmg@mail.gmail.com>
+Subject: Re: [PATCH RFC v3 0/9] dt-bindings: hwinfo: Introduce board-id
+To: Elliot Berman <quic_eberman@quicinc.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Amrit Anand <quic_amrianan@quicinc.com>, Peter Griffin <peter.griffin@linaro.org>, 
+	Caleb Connolly <caleb.connolly@linaro.org>, Andy Gross <agross@kernel.org>, 
+	Doug Anderson <dianders@chromium.org>, Chen-Yu Tsai <wenst@chromium.org>, 
+	Julius Werner <jwerner@chromium.org>, "Humphreys, Jonathan" <j-humphreys@ti.com>, 
+	Sumit Garg <sumit.garg@linaro.org>, Jon Hunter <jonathanh@nvidia.org>, 
+	Michal Simek <michal.simek@amd.com>, boot-architecture@lists.linaro.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Elliot,
 
-On Wed, 05 Jun 2024 09:22:47 +0800, Peng Fan (OSS) wrote:
-> Add a minimal i.MX95 dtsi and EVK board dts.
-> i.MX95 has a M33 running SCMI firmware that supports
-> pinctrl/power/perf/clock and etc.
-> 
-> imx95-pinfunc.h will trigger checkpatch error, that is expected and same
-> as other i.MX platforms.
-> 
-> In v6, I added back a dependency on pinctrl, because [1] has got A-b/R-b
-> from Maintainers, so it would be soon got merged.
-> 
-> There will be dtbs_check error before [1] got landed. With [1] merged,
-> there will be no dtbs_check error.
-> 
-> [1] https://lore.kernel.org/all/20240521-pinctrl-scmi-imx95-v1-0-9a1175d735fd@nxp.com/
-> 
-> This patchset is just a minimal support for i.MX95. After this patchset
-> is accepted, a following patchset will include more nodes and features.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+On Tue, 21 May 2024 at 12:38, Elliot Berman <quic_eberman@quicinc.com> wrote:
+>
+> Device manufacturers frequently ship multiple boards or SKUs under a
+> single software package. These software packages will ship multiple
+> devicetree blobs and require some mechanism to pick the correct DTB for
+> the board the software package was deployed. Introduce a common
+> definition for adding board identifiers to device trees. board-id
+> provides a mechanism for bootloaders to select the appropriate DTB which
+> is vendor/OEM-agnostic.
+>
+> This series is based off a talk I gave at EOSS NA 2024 [1]. There is
+> some further discussion about how to do devicetree selection in the
+> boot-architecture mailing list [2].
+>
+> [1]: https://sched.co/1aBFy
+> [2]: https://lists.linaro.org/archives/list/boot-architecture@lists.linaro.org/thread/DZCZSOCRH5BN7YOXEL2OQKSDIY7DCW2M/
+>
+> Quick summary
+> -------------
+> This series introduces a new subnode in the root:
+> / {
+>         board-id {
+>                 some-hw-id = <value>;
+>                 other-hw-id = <val1>, <val2>;
+>         };
+> };
+>
+> Firmware provides a mechanism to fetch the values of "some-hw-id" and
+> "other-hw-id" based on the property name. I'd like to leave exact
+> mechanism data out of the scope of this proposal to keep this proposal
+> flexible because it seems architecture specific, although I think we we
+> should discuss possible approaches. A DTB matches if firmware can
+> provide a matching value for every one of the properties under
+> /board-id. In the above example, val1 and val2 are both valid values and
+> firmware only provides the one that actually describes the board.
+>
+> It's expected that devicetree's board-id don't describe all the
+> properties firmware could provide. For instance, a devicetree overlay
+> may only care about "other-hw-id" and not "some-hw-id". Thus, it need
+> only mention "other-hw-id" in its board-id node.
+>
+> Isn't that what the compatible property is for?
+> -----------------------------------------------
+> The compatible property can be used for board matching, but requires
+> bootloaders and/or firmware to maintain a database of possible strings
+> to match against or implement complex compatible string matching.
+> Compatible string matching becomes complicated when there are multiple
+> versions of board: the device tree selector should recognize a DTB that
+> cares to distinguish between v1/v2 and a DTB that doesn't make the
+> distinction.  An eeprom either needs to store the compatible strings
+> that could match against the board or the bootloader needs to have
+> vendor-specific decoding logic for the compatible string. Neither
+> increasing eeprom storage nor adding vendor-specific decoding logic is
+> desirable.
+
+That is not necessary, though. The compatible string should be enough.
+
+>
+> How is this better than Qualcomm's qcom,msm-id/qcom,board-id?
+> -------------------------------------------------------------
+> The selection process for devicetrees was Qualcomm-specific and not
+> useful for other devices and bootloaders that were not developed by
+> Qualcomm because a complex algorithm was used to implement. Board-ids
+> provide a matching solution that can be implemented by bootloaders
+> without introducing vendor-specific code. Qualcomm uses three
+> devicetree properties: msm-id (interchangeably: soc-id), board-id, and
+> pmic-id.  This does not scale well for use casese which use identifiers,
+> for example, to distinguish between a display panel. For a display
+> panel, an approach could be to add a new property: display-id, but now
+> bootloaders need to be updated to also read this property. We want to
+> avoid requiring to update bootloaders with new hardware identifiers: a
+> bootloader need only recognize the identifiers it can handle.
+>
+> Notes about the patches
+> -----------------------
+> In my opinion, most of the patches in this series should be submitted to
+> libfdt and/or dtschema project. I've made them apply on the kernel tree
+> to be easier for other folks to pick them up and play with them. As the
+> patches evolve, I can send them to the appropriate projects.
+>
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
 > ---
-> Changes in v6:
-> - Add pinctrl nodes and pin settings
-> - Add imx95-pinfunc.h
-> - Drop fsl,cd-gpio-disable-wakeup which is downstream property
-> - Per i.MX M33 SCMI firmware, drop unused PERF entries in imx95-power.h
-> - Rebased to next-20240604
-> - Link to v5: https://lore.kernel.org/r/20240506-imx95-dts-v3-v5-0-5ec9b99cfb2f@nxp.com
-> 
-> Changes in v5:
-> - Drop unused regulator and alias for now.
-> - Fix CHECK_DTB warning.
-> - Link to v4: https://lore.kernel.org/r/20240503-imx95-dts-v3-v4-0-535ddc2bde73@nxp.com
-> 
-> Changes in v4:
-> - Sort nodes by address
-> - Drop coresight nodes
-> - Align clock rates for SDHC1-3
-> - Drop wdog3 board specific property
-> - Link to v3: https://lore.kernel.org/r/20240428-imx95-dts-v3-v3-0-765395f88b9f@nxp.com
-> 
 > Changes in v3:
-> - Drop irqsteer node because binding not accepted
-> - Pass dtbs_check
-> - Link to v2: https://lore.kernel.org/r/20240226-imx95-dts-v2-0-00e36637b07e@nxp.com
-> 
-> Changes in v2:
-> - Addressed Rob and Krzysztof's comments, and fix dts_check issue
->   To pass the dtbs_check, need apply:
->   https://lore.kernel.org/all/20240226070910.3379108-1-peng.fan@oss.nxp.com/
->   https://lore.kernel.org/all/20240226130243.3820915-1-peng.fan@oss.nxp.com/
->   https://lore.kernel.org/all/20240226130516.3821803-1-peng.fan@oss.nxp.com/
->   https://lore.kernel.org/all/20240226130826.3824251-1-peng.fan@oss.nxp.com/
->   https://lore.kernel.org/all/20240219-imx-mailbox-v8-1-75535a87794e@nxp.com/
-> 
-> - Link to v1: https://lore.kernel.org/r/20240218-imx95-dts-v1-0-2959f89f2018@nxp.com
-> 
+>  - Follow new "/board-id {}" approach, which uses key-value pairs
+>  - Add match algorithm in libfdt and some examples to demo how the
+>    selection could work in tools/board-id
+>
+> Changes in V2:
+>  - Addressed few comments related to board-id, and DDR type.
+>  - Link to V2:  https://lore.kernel.org/all/a930a3d6-0846-a709-8fe9-44335fec92ca@quicinc.com/#r
+>
 > ---
-> Peng Fan (3):
->       dt-bindings: arm: fsl: add i.MX95 19x19 EVK board
->       arm64: dts: freescale: add i.MX95 basic dtsi
->       arm64: dts: freescale: add i.MX95 19x19 EVK minimal board dts
-> 
->  Documentation/devicetree/bindings/arm/fsl.yaml    |    6 +
->  arch/arm64/boot/dts/freescale/Makefile            |    1 +
->  arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts |  200 ++++
->  arch/arm64/boot/dts/freescale/imx95-clock.h       |  187 ++++
->  arch/arm64/boot/dts/freescale/imx95-pinfunc.h     |  865 +++++++++++++++++
->  arch/arm64/boot/dts/freescale/imx95-power.h       |   47 +
->  arch/arm64/boot/dts/freescale/imx95.dtsi          | 1063 +++++++++++++++++++++
->  7 files changed, 2369 insertions(+)
+> Amrit Anand (1):
+>       dt-bindings: arm: qcom: Update Devicetree identifiers
+>
+> Elliot Berman (8):
+>       libfdt: board-id: Implement board-id scoring
+>       dt-bindings: board: Introduce board-id
+>       fdt-select-board: Add test tool for selecting dtbs based on board-id
+>       dt-bindings: board: Document board-ids for Qualcomm devices
+>       arm64: boot: dts: sm8650: Add board-id
+>       arm64: boot: dts: qcom: Use phandles for thermal_zones
+>       arm64: boot: dts: qcom: sm8550: Split into overlays
+>       tools: board-id: Add test suite
+>
+>  .../devicetree/bindings/board/board-id.yaml        |  24 ++++
+>  .../devicetree/bindings/board/qcom,board-id.yaml   | 144 ++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/Makefile                  |   4 +
+>  arch/arm64/boot/dts/qcom/pm8010.dtsi               |  62 ++++-----
+>  arch/arm64/boot/dts/qcom/pm8550.dtsi               |  32 ++---
+>  arch/arm64/boot/dts/qcom/pm8550b.dtsi              |  36 +++--
+>  arch/arm64/boot/dts/qcom/pm8550ve.dtsi             |  38 +++---
+>  arch/arm64/boot/dts/qcom/pm8550vs.dtsi             | 128 +++++++++--------
+>  arch/arm64/boot/dts/qcom/pmr735d_a.dtsi            |  38 +++---
+>  arch/arm64/boot/dts/qcom/pmr735d_b.dtsi            |  38 +++---
+>  .../dts/qcom/{sm8550-mtp.dts => sm8550-mtp.dtso}   |  24 +++-
+>  .../dts/qcom/{sm8550-qrd.dts => sm8550-qrd.dtso}   |  22 ++-
+>  .../boot/dts/qcom/{sm8550.dtsi => sm8550.dts}      |  10 +-
+>  arch/arm64/boot/dts/qcom/sm8650-mtp.dts            |   6 +
+>  arch/arm64/boot/dts/qcom/sm8650-qrd.dts            |   6 +
+>  arch/arm64/boot/dts/qcom/sm8650.dtsi               |   2 +-
+>  include/dt-bindings/arm/qcom,ids.h                 |  86 ++++++++++--
+>  scripts/dtc/.gitignore                             |   1 +
+>  scripts/dtc/Makefile                               |   3 +-
+>  scripts/dtc/fdt-select-board.c                     | 126 +++++++++++++++++
+>  scripts/dtc/libfdt/fdt_ro.c                        |  76 +++++++++++
+>  scripts/dtc/libfdt/libfdt.h                        |  54 ++++++++
+>  tools/board-id/test.py                             | 151 +++++++++++++++++++++
+>  23 files changed, 901 insertions(+), 210 deletions(-)
 > ---
-> base-commit: a1bede4830147a5a29ea6443724837ee0b126fd9
-> change-id: 20240428-imx95-dts-v3-bee59f0e559b
-> 
+> base-commit: e8f897f4afef0031fe618a8e94127a0934896aba
+> change-id: 20240112-board-ids-809ff0281ee5
+>
 > Best regards,
 > --
-> Peng Fan <peng.fan@nxp.com>
-> 
-> 
-> 
+> Elliot Berman <quic_eberman@quicinc.com>
+>
 
+I am just picking up the discussion here, which was started on another thread.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+I can't see why this new feature is needed. We should be able to use
+compatible strings, as we do now. I added a 'usage' section to the FIT
+spec [1] which might help. I also incorporated the board revision and
+variant information and some notes on how to add to the available
+suffixes.
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+Does that handle your use case?
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+Regards,
+Simon
 
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y freescale/imx95-19x19-evk.dtb' for 20240605-imx95-dts-v3-v6-0-2ce275ed0e80@nxp.com:
-
-arch/arm64/boot/dts/freescale/imx95-19x19-evk.dtb: scmi: protocol@19: Unevaluated properties are not allowed ('regusdhc2vmmcgrp', 'uart1grp', 'usdhc1-100mhzgrp', 'usdhc1-200mhzgrp', 'usdhc1grp', 'usdhc2-100mhzgrp', 'usdhc2-200mhzgrp', 'usdhc2gpiogrp', 'usdhc2grp' were unexpected)
-	from schema $id: http://devicetree.org/schemas/firmware/arm,scmi.yaml#
-
-
-
-
-
+[1] https://github.com/open-source-firmware/flat-image-tree/blob/main/source/chapter3-usage.rst
 
