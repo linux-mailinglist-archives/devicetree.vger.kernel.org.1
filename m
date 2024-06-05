@@ -1,131 +1,124 @@
-Return-Path: <devicetree+bounces-72562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6FAF8FC4D8
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 09:43:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6D178FC4DB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 09:44:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 930AC2855C7
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 07:43:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 231171C2283E
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 07:44:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D237A18C35C;
-	Wed,  5 Jun 2024 07:43:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF76018FDAB;
+	Wed,  5 Jun 2024 07:43:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hNFgGTcr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6FCA18C33A;
-	Wed,  5 Jun 2024 07:43:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6A9A18FDA9;
+	Wed,  5 Jun 2024 07:43:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717573411; cv=none; b=hV8NLAuXXN/MxWE0V7t00cvamOM5VcZfeFYZaoBUX/fvc4d6ZYLGYDMAHOl05iJikpaWPArngaJpIW20yom9XCI2tjnPsT0XpyCHHmHDHCS7X86rbDncRG1OJbcnZlWvrF1QauzsoIdBGS0pQ1tzcrYqyV27DyJfhJk8PfL+mhk=
+	t=1717573414; cv=none; b=FsoDX6NWEVMMdn2PmXv409x/vuhwbepkkHVdKdO8nDf1FvZ4bcfNLBXhhsYHds7R9aeHUdDrUGk4iugXf1+xVMz56e2/T8wWa9Dd1EKiKh1Bu5W9nCRzGTdLmRbR8wInx2D0d80ZGGf9YghESaYElA4IPkt18slmf3G1UOcle5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717573411; c=relaxed/simple;
-	bh=+FTWFdpSh0xb+XUZG7stTNYKFWL76P/rABOHxgYBS+c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZpdJ2PkTiTKz+CfmMiAVdTLna58yXYcIDWulQppJQv++wZgTCmydzNw9erlpbGgRJnmkEPhyqceynmCwNywdmh6/hxqH+8/upUeujx+/p6+wGQhuL+VIW12InAtdYKa9Rga8kju65yHm8anOKBnvn1a7QSl/N/R+g70l20QM4vY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-62a2424ec39so23063797b3.1;
-        Wed, 05 Jun 2024 00:43:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717573408; x=1718178208;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7vQZDoJfLyMtGBiDy8dB7EZ7YY/MgJ790HADWXwqrJ4=;
-        b=omFrj+gxFV6/lgFZmEE/Qqjw2O0/9R45yvyEL8uW45823EMAxV6jdJoceJeV8O+xkC
-         LzCx4n8ahfMPLSmVMw2fFNOobwJfi6+wtwGYBE/FQ2hhw7g+QWlfL56jNs7bXpqUfqvZ
-         dojR5FhNrfaBQcL/MvSCqSO5yREb+oy/3s/O2d3NrfxMsq7U1H8D+smZkKFnC5h0s/4A
-         b5bNE/VLsDqPs8OsB+RPhGTaS+bf5w508kn/3r7QdEFy44k/V/PlRWMDLp5LVh+JK0ef
-         5D0yGtV0z+1dH9YTGtxJSd5vp8crguG7UrOgchpioqfQt6nQCA7ufjY0BTJ53FthkHBO
-         U0jg==
-X-Forwarded-Encrypted: i=1; AJvYcCXk+QJ0H1zDcboI1Uu4gCpfrXG5L+75c16Q3aimwm9vnRdxZii//asrrqkRShANpV6l+w0tq7kfR7N7JRHedvMgnz4bTzTZ9FzwpqYjW01URByShlwJGcQICrw9EHGJESQ1AfcRaYbIJpC/cWI6zswMpk6o8+aAsD1gS5IJHwk8urzYPQ3xq5QHPdrx
-X-Gm-Message-State: AOJu0Yxa87O52+fq4UkNY8cLEZQU8aBZ/24F9WbJVL3U67qlKU6dwHnq
-	fZ4zF1hDhCJWqjaloraL86KRFTKUZWahyihHyEsLFhBkYvVwme3LmzjlKfd2
-X-Google-Smtp-Source: AGHT+IGSjnZpyNA9CITWEWP+VC3rlCmEwOTurbJt+tvwrK5/IJdcLgpF/kgQ002pw7ZzBCke4pfXgg==
-X-Received: by 2002:a81:fe02:0:b0:61d:fcf7:3377 with SMTP id 00721157ae682-62cbb5ce7f6mr16278657b3.44.1717573408520;
-        Wed, 05 Jun 2024 00:43:28 -0700 (PDT)
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-62c766b5410sm21438697b3.123.2024.06.05.00.43.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Jun 2024 00:43:28 -0700 (PDT)
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-df78b040314so2055842276.0;
-        Wed, 05 Jun 2024 00:43:28 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXx+3svPW7PRZDHDPHFjs6L0Ss7vUMgL/DVUDbYfJGsp/uUWMBIltQSy+Fzlm3qKYyJjSD3gWMEVjJSIs9QyV2O4/0qhUp/phkqJPRwyQUnDF8oYuf5H87xDCDmxvYn6M0p5S7ptrwQ8O3cNZT7myyXta1eS2Fq5CT9rXNc/cL5taG+H19rIGnHXQA6
-X-Received: by 2002:a25:2e02:0:b0:dc6:ff32:aae2 with SMTP id
- 3f1490d57ef6-dfacad0d872mr1549271276.63.1717573408106; Wed, 05 Jun 2024
- 00:43:28 -0700 (PDT)
+	s=arc-20240116; t=1717573414; c=relaxed/simple;
+	bh=DAZjORhNTyDM4EnKUl4YaexhknoTngFwmMKXdQGWjUE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Pkb5ZogUa/akqv8LRnhJHIzw+ooMQZYYMB6gpge+PmTT7W4CEdQW0LkuZbZxlXlkB15Nq/kVpGOAOgfSeY5L5heVqpZDTJfxngxh+AzOwkldI0B2x7iAmJ+CEGk5kQ22tF6cs6ypvKwoyw04nbbcArcDpznrpA1C+LEgtDbPomA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hNFgGTcr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EC8EC3277B;
+	Wed,  5 Jun 2024 07:43:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717573414;
+	bh=DAZjORhNTyDM4EnKUl4YaexhknoTngFwmMKXdQGWjUE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hNFgGTcrCys6dYW/Mu0z8LFdpJ7YBiH21gh/nHYiWaLqHTED66BiHrIuML0NYxWwM
+	 8pTBJWU4v2gDA2rr7waw9zFuQBcu7jNHnJK8cZuzEbmV4JSagxJyBl2aMqtTWsBRKT
+	 Wg8Sygvh8kIem10p9xgTPbZb2qpLIRArNXJ/0mbDNoVDfVoZFNuq+dV+P2t4x68j+x
+	 Y4GaP3pAupGsN+rGRfoor4LlxUpQxLPGvbFCCcufrtXS7BJMHGI9iuwskAtp/FOBQ3
+	 x9oiOZkGDTCJx8Yp/4TwTgFgx+EYRsDHMYj3aYl0aRuptPjf30x9ajInTDAZPBCKD7
+	 sV+ZMyR40nVxA==
+Date: Wed, 5 Jun 2024 13:13:24 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Niklas Cassel <cassel@kernel.org>
+Cc: Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
+	Jon Lin <jon.lin@rock-chips.com>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v4 08/13] PCI: dw-rockchip: Add rockchip_pcie_get_ltssm()
+ helper
+Message-ID: <20240605074324.GI5085@thinkpad>
+References: <20240529-rockchip-pcie-ep-v1-v4-0-3dc00fe21a78@kernel.org>
+ <20240529-rockchip-pcie-ep-v1-v4-8-3dc00fe21a78@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240604173710.534132-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240604173710.534132-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20240604173710.534132-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 5 Jun 2024 09:43:16 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX+6_iNQq9x42tmTTEx1DNcT9pEbpMy=UcmSgZtoFgS8Q@mail.gmail.com>
-Message-ID: <CAMuHMdX+6_iNQq9x42tmTTEx1DNcT9pEbpMy=UcmSgZtoFgS8Q@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] irqchip/renesas-rzg2l: Add support for RZ/Five SoC
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240529-rockchip-pcie-ep-v1-v4-8-3dc00fe21a78@kernel.org>
 
-Hi Prabhakar,
+On Wed, May 29, 2024 at 10:29:02AM +0200, Niklas Cassel wrote:
+> Add a rockchip_pcie_ltssm() helper function that reads the LTSSM status.
+> This helper will be used in additional places in follow-up commits.
+> 
+> Signed-off-by: Niklas Cassel <cassel@kernel.org>
 
-On Tue, Jun 4, 2024 at 7:37=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.co=
-m> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> The IX45 block has additional mask registers (NMSK/IMSK/TMSK) compared
-> to the RZ/G2L (family) SoC.
->
-> A new rzfive_irqc_chip irq_chip is introduced for RZ/Five, where function
-> pointers for irq_(un)mask and irq_(dis/en)able handle the (un)masking
-> of the interrupts. The irq_chip pointer is now passed as an init callback
-> and stored in the priv pointer to differentiate between RZ/G2L and RZ/Fiv=
-e.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+- Mani
+
 > ---
-> Hi Geert, I've restored your RB tag with v5 change (hope that's OK)
+>  drivers/pci/controller/dwc/pcie-dw-rockchip.c | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-dw-rockchip.c b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> index 3dfed08ef456..1380e3a5284b 100644
+> --- a/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> +++ b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> @@ -143,6 +143,11 @@ static int rockchip_pcie_init_irq_domain(struct rockchip_pcie *rockchip)
+>  	return 0;
+>  }
+>  
+> +static u32 rockchip_pcie_get_ltssm(struct rockchip_pcie *rockchip)
+> +{
+> +	return rockchip_pcie_readl_apb(rockchip, PCIE_CLIENT_LTSSM_STATUS);
+> +}
+> +
+>  static void rockchip_pcie_enable_ltssm(struct rockchip_pcie *rockchip)
+>  {
+>  	rockchip_pcie_writel_apb(rockchip, PCIE_CLIENT_ENABLE_LTSSM,
+> @@ -152,7 +157,7 @@ static void rockchip_pcie_enable_ltssm(struct rockchip_pcie *rockchip)
+>  static int rockchip_pcie_link_up(struct dw_pcie *pci)
+>  {
+>  	struct rockchip_pcie *rockchip = to_rockchip_pcie(pci);
+> -	u32 val = rockchip_pcie_readl_apb(rockchip, PCIE_CLIENT_LTSSM_STATUS);
+> +	u32 val = rockchip_pcie_get_ltssm(rockchip);
+>  
+>  	if ((val & PCIE_LINKUP) == PCIE_LINKUP &&
+>  	    (val & PCIE_LTSSM_STATUS_MASK) == PCIE_L0S_ENTRY)
+> 
+> -- 
+> 2.45.1
+> 
 
-Thanks, LGTM!
-
->
-> Cheers, Prabhakar
->
-> v4->v5
-> - Reversed the operations in rzfive_irqc_irq_disable().
-
-I assume you will send a patch to fix the order in
-rzg2l_irqc_irq_disable(), too?
-
-"git grep -wW irq_chip_[a-z]*able_parent" reveals a few more offenders...
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+-- 
+மணிவண்ணன் சதாசிவம்
 
