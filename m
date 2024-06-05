@@ -1,135 +1,170 @@
-Return-Path: <devicetree+bounces-72823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 105158FD1AB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 17:30:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42AA68FD1B5
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 17:33:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1F901C22876
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 15:30:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F2BE1C22896
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 15:33:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3CF4143893;
-	Wed,  5 Jun 2024 15:30:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89A9827450;
+	Wed,  5 Jun 2024 15:33:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Kh0C6t9I"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="Mf9Wq7/e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4161CD2E6
-	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 15:30:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 753CF19D882;
+	Wed,  5 Jun 2024 15:33:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717601429; cv=none; b=HcUeHpS1hSd8XyfpszCafV5q88b9kark3QaAnLiDKfClakdBu9nzDrFM5izg31+bsctud5eIvBUa775sqJ4NtFp0zPTXAP3HN4j380/r6NAaaES/NhM/4bqjbaD3y00h0op6z5HCmEit+zRZ1rpHHoKJtCpNZwnhOimZeT4sjlY=
+	t=1717601597; cv=none; b=EwAg7yjt/YSME0BTEucmgBaIf/+A2xvJJZ9g/niksDQSDSomkW8ry1AHOtuDspCkv2zGE+Mn15mVVixYg2ZhHrllTf39LaUXy+GiluVWREX0x3j8i78qHXhwj22UXMC1lQuh+VG0FIugY9FzRQtMVzl/xsi6PnM+Ei7zKq7iQB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717601429; c=relaxed/simple;
-	bh=NMv3VKh5odLNj+GDe8Ww1tODWUNO54F1FJCzMaqqk7Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uX79YmkaIRd8OqTlMn+VrktZ01XGz7v7r+EAJXndylHmLRQskkmXorvuxeYpnoXokxGh1uykH8oTL4bciZQNZNcVGstbd1Eyb7Gz6zj/URpHrjsh3D2D+rEQ2xA6jMiNbNeXzkdH7OnnMISgyEXUNQ+UPwWqEThoQmf9r7HWmB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Kh0C6t9I; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-42135a45e2aso37899055e9.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 08:30:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717601427; x=1718206227; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/K0vfcsphggQE03HaQTq6oV7X6egbMSNGPCTOf5noQs=;
-        b=Kh0C6t9In5LKWuz5RI6juc5nTOUFGOb7eS8UtLCfHBSypkHYYylouHXMXY/xk/uYgN
-         VCCNfbMSO+c44muzhgcr56tU90gT584z8i7VQiOMkcKqlNMa+XCuJ6gdQi4XK9QhmY0R
-         tfDyJ8y001py8dAeqSh0+Lvwc5yCoMCcrh1mlHx01cU67eKUbr9lgd3kYLFTPK+y0lbO
-         7mFSt82PcwvfnKzw1XHe7wEVR/Jn8zt3vddEdy5sKClrpGn8y3O2IXew9PJk2vJSnPKL
-         Pu6m+OXx4DwNyJZharKQvT5VI620kRW/LbSBtL73mZzhxJX5yvQK38KWvjlBr1E4QYk5
-         IBrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717601427; x=1718206227;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/K0vfcsphggQE03HaQTq6oV7X6egbMSNGPCTOf5noQs=;
-        b=gdPVoFtACqvhIZc9ahuhbuxMYe7h1KUdIP+2sMt7FMlJSJ/wr7JmWid/hjB26AWq+H
-         ZSQCSDwo5CBTqWhDl6YS1X8i/9PxJ13qqPlFQeNIElA80f9PHPfGdeVW4snqJUKRttfJ
-         p4CwBRL+AdQO1fzzcSoulnEr+X7ivDZGyHEWb07QMerBbjHjAHN2zzGnsqYMRvKBwmcQ
-         cW02P0PDAWYbo3V6Xh3oYhKJ+vnjcQH1A6OoN41nLY3I9HROwhjavMBV2GmD6wN0ckGK
-         edicP9q5kt890Q/9ztUjTsSf/FrBLpCeK7ei77axn3apzb7XEtxEa/zaAb8FRsR+oIYw
-         dckg==
-X-Forwarded-Encrypted: i=1; AJvYcCUYdu3draAXpChnNRCAVF04jYb41zcqcanLlXMfV08s4LyHDq1RoK3Xt6dYN5v0EJDbFZmyreUZzIW8JGEiPwAQWpFyv+U7wlUAxA==
-X-Gm-Message-State: AOJu0YytWec/XRJ0LtwDKcfoVPfyfsEY4F0ASvMiRKPc8FiYbEzTf5s6
-	a/8niRVIWPyMFxNh9YmA83Fcuk8DwalRHtESnSbgwGEfay5fVF5nqKp2pWzxelc=
-X-Google-Smtp-Source: AGHT+IHE9nDBQ5Sz04khTcIYOGPj0VwRgEjUuiwPv5JSHmid95xhtkpvCP2exEYp6NXmZOXTxCKtiQ==
-X-Received: by 2002:a5d:59a5:0:b0:359:b737:68c9 with SMTP id ffacd0b85a97d-35e8ef7ea9fmr2637446f8f.45.1717601426591;
-        Wed, 05 Jun 2024 08:30:26 -0700 (PDT)
-Received: from krzk-bin.. ([110.93.11.116])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215814e7cbsm26222295e9.39.2024.06.05.08.30.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jun 2024 08:30:26 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Shawn Guo <shawnguo@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/3] arm64: dts: imx8: use defines for interrupts
-Date: Wed,  5 Jun 2024 17:30:20 +0200
-Message-ID: <20240605153020.104717-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240605153020.104717-1-krzysztof.kozlowski@linaro.org>
-References: <20240605153020.104717-1-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1717601597; c=relaxed/simple;
+	bh=9WcFWQSXNFHjjjjzw5SaQHLZrkcwgxdvaFCK0KqAWS4=;
+	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
+	 Content-Type:Subject; b=Lyqa2fJ20+Gx0idCJWuCJEVOxBseQ5G2saCcSQOOzfKwgizbrTAahKy/cs5jjXTIdihaKcS627rinJDGcK3Zlb/7b6d8HZctrDKeIE11GvVs7XdoEMkj3CZ99ackhBkBkm+nDh6lzbYLb94pEgPJibsnGkrinXtYsyyDZvm4Y4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=Mf9Wq7/e; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=Gxk2m052eGUR2G/XiNVefqcIx6UYE0RDiDcBmIQTbE0=; b=Mf9Wq7/e3GlzU9uhgnXKScdQxc
+	pmW1N7/mnG0LuEgIrtd3+OVx8hqAA9fhDPYnkYrSuvgdOS1+KATSEfnrDJ9y76VtM+8PvpnWmJsCs
+	mlOf7W/gCAeGMTAqf3Yj/nKnRwzCwfUux09Wt2VAmMRyViWb4fYn1EI5kWePWpgRByK0=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:47348 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1sEsdL-0001Oo-HT; Wed, 05 Jun 2024 11:33:03 -0400
+Date: Wed, 5 Jun 2024 11:32:46 -0400
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Hui Wang <hui.wang@canonical.com>
+Cc: Andy Shevchenko <andy.shevchenko@gmail.com>, Maarten Brock
+ <Maarten.Brock@sttls.nl>, "linux-serial@vger.kernel.org"
+ <linux-serial@vger.kernel.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "gregkh@linuxfoundation.org"
+ <gregkh@linuxfoundation.org>, "jirislaby@kernel.org"
+ <jirislaby@kernel.org>, "hvilleneuve@dimonoff.com"
+ <hvilleneuve@dimonoff.com>, "robh@kernel.org" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+ <conor+dt@kernel.org>, "andy@kernel.org" <andy@kernel.org>,
+ "lech.perczak@camlingroup.com" <lech.perczak@camlingroup.com>
+Message-Id: <20240605113246.5a0a6a8840636e835f2bbc4c@hugovil.com>
+In-Reply-To: <1d5c49ea-c021-42cf-b878-83c625e17caa@canonical.com>
+References: <20240604132726.1272475-1-hui.wang@canonical.com>
+	<20240604132726.1272475-2-hui.wang@canonical.com>
+	<20240604102323.b2a305fa03161df3c2eec16c@hugovil.com>
+	<AS8PR05MB9810940582493046F2FBFDB983F92@AS8PR05MB9810.eurprd05.prod.outlook.com>
+	<f56a2c59-9ae4-4d5c-8321-fff9639c5405@canonical.com>
+	<CAHp75VfEONqGBx7xbOKtGcn5z3shzSyUt8WABJqq4yOnweAr3w@mail.gmail.com>
+	<1d5c49ea-c021-42cf-b878-83c625e17caa@canonical.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -0.0 T_SCC_BODY_TEXT_LINE No description available.
+	* -4.0 NICE_REPLY_A Looks like a legit reply (A)
+Subject: Re: [PATCH v2 2/2] serial: sc16is7xx: hard reset the chip if
+ reset-gpios is defined in dt
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-Replace hard-coded interrupt flags with standard defines for
-readability.  No changes in resulting DTBs.
+On Wed, 5 Jun 2024 20:55:21 +0800
+Hui Wang <hui.wang@canonical.com> wrote:
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 2 +-
- arch/arm64/boot/dts/freescale/imx8qm-mek.dts  | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> On 6/5/24 19:19, Andy Shevchenko wrote:
+> > On Wed, Jun 5, 2024 at 1:55 PM Hui Wang<hui.wang@canonical.com>  wrote:
+> >> On 6/5/24 18:30, Maarten Brock wrote:
+> >>>> From: Hugo Villeneuve<hugo@hugovil.com>
+> >>>> Sent: Tuesday, 4 June 2024 16:23
+> > <...>
+> >
+> >>>> Add function description from original comment "Reset device,
+> >>>> purging any pending irq / data", since the comment applies to both
+> >>>> hardware and software reset,
+> >>> No it does not (at this moment). See below.
+> > ...
+> >
+> >>> The problem here is that this only deasserts the reset if it were asserted before.
+> >>> Nothing happens if it already was deasserted. This makes the delay also pretty
+> >>> useless.
+> >>>
+> >>> To make this a proper reset pulse for the device you must first assert the reset,
+> >>> then wait >3us, and finally deassert the reset.
+> >> My understanding is when calling devm_gpiod_get_optional(dev, "reset",
+> >> GPIOD_OUT_LOW) and returning a valid (gpio_desc *), the flag
+> >> GPIOD_OUT_LOW guarantees the GPIO is set to output and low (assert the
+> >> reset pin).
+> > No, this is logical, not physical state. Maarten is correct. How did
+> > you test this?
+> 
+> Yes, Maarten, Krzysztof and you are correct. Thanks for pointing out 
+> this error.
+> 
+> If I call "reset_gpio = devm_gpiod_get_optional(dev, "reset", 
+> GPIOD_OUT_HIGH);" I will get the result as below:
+> 
+> # cat /sys/kernel/debug/gpio
+> 
+> gpiochip4: GPIOs 128-159, parent: platform/30240000.gpio, 30240000.gpio: 
+> gpio-141 ( |reset ) out lo ACTIVE LOW
+> 
+> If I call "reset_gpio = devm_gpiod_get_optional(dev, "reset", 
+> GPIOD_OUT_LOW);" I will get the result as below:
+> 
+> # cat /sys/kernel/debug/gpio
+> 
+> gpiochip4: GPIOs 128-159, parent: platform/30240000.gpio, 30240000.gpio: 
+> gpio-141 ( |reset ) out hi ACTIVE LOW
+> 
+> I tested the reset pin by dumping chip registers, if the reset pin is 
+> asserted (out lo), I will get the result like this:
+> 
+> # cat /sys/kernel/debug/regmap/spi0.0-port0/registers 1: 10 2: ff 3: 00 
+> 4: ec 5: ff 6: ff 7: ff 8: ff 9: ff a: ff b: ff c: ff d: ff e: ff f: 06
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-index 90d1901df2b1..930e14fec423 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-@@ -400,7 +400,7 @@ ptn5110: tcpc@50 {
- 		pinctrl-0 = <&pinctrl_typec1>;
- 		reg = <0x50>;
- 		interrupt-parent = <&gpio2>;
--		interrupts = <11 8>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
- 		status = "okay";
- 
- 		typec1_con: connector {
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
-index c024be33fbcc..6d002fc1b2be 100644
---- a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
-@@ -193,7 +193,7 @@ light-sensor@44 {
- 		compatible = "isil,isl29023";
- 		reg = <0x44>;
- 		interrupt-parent = <&lsio_gpio4>;
--		interrupts = <11 2>;
-+		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
- 	};
- 
- 	pressure-sensor@60 {
+Hi Hui,
+the best way to test a reset pin is with a voltmeter, if you can. It is
+way too easy to get confused with reset pins values/polarities, etc.
+
+By the way, if the reset pin is asserted, you cannot communicate with
+the device, therefore dumping registers cannot work for debug purpose.
+
+Hugo.
+
+
+> 
+> If the reset pin is deasserted (out hi), I will get:
+> 
+> # cat /sys/kernel/debug/regmap/spi0.0-port0/registers 1: 10 2: 01 3: 00 
+> 4: 00 5: 60 6: 00 7: 2e 8: 40 9: 00 a: 00 b: ff c: 00 d: 00 e: 00 f: 06
+> 
+> My original code set the reset GPIO to high (the reset pin is 
+> deasserted) continuously, so I didn't notice this hidden error.
+> 
+> Thanks,
+> 
+> Hui.
+> 
+> >
+
+
 -- 
-2.43.0
-
+Hugo Villeneuve
 
