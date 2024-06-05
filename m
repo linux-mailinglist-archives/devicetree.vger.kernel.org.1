@@ -1,63 +1,74 @@
-Return-Path: <devicetree+bounces-72922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AD1E8FD655
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 21:17:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53A9E8FD65D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 21:20:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A7AD1C222CC
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 19:17:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7F371F26AA8
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 19:20:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6624713D62E;
-	Wed,  5 Jun 2024 19:17:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3C0F14D2A4;
+	Wed,  5 Jun 2024 19:20:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IRq24csK"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="3e4aV1ev"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAD04DF59;
-	Wed,  5 Jun 2024 19:17:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E7113D27F
+	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 19:20:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717615032; cv=none; b=p+q556hXEj+7GQ2FxqP2Ysj0oIG4KAamprMnp6phshRVatmSp7WyNkqN/4ZFWhKL85GPwMqB6ExsJ1o+qYyP292ugkrv37Z6Vy9BPI/f21GDsEJbaSFFHwe/pa32gUcDQQx/PhKkaGmzMQpprR2XstQLE4uYuBcUwQ4Mx+YXbBg=
+	t=1717615240; cv=none; b=n7HDpOMupaoKPYcZ/TfXFW1oo1xN6EB5LqRVhVdCCos8tGrTNEj5G5yapPfgctzbtLvDwOu1jFKjC0r/VkYon/OieMTP+iuQLuO/LRjwFHKjYqMD4lbVfeMcujXlghdnMhHrvFComs7fh5kr06qnSr8wbXhBbgTJ4qTTPG2Ehzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717615032; c=relaxed/simple;
-	bh=vH7XJo83ZzgqsjWJbdY+GJ+FqBdRtMokMVB6JjiNR3U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=KkYRuPsQHy8bxvKodXlIiL4UZhS5IKQ+S5TWR95xQxrLmMldNivDKO2chE/TbrsVzwZKFiWfQxx7XinAubs3uTEKheMMScfT/AQav1AewsgA1qq7XssI8VO8ZxpfggfQo8/49ZAJFrXbbi1nc8pIofHuEfKBBsjaZx4VtMojAnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IRq24csK; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 455I2pLf014121;
-	Wed, 5 Jun 2024 19:15:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Iax0TXe7lCdgSrDctzGhpk3ecqdcbYISR7fv6wW2KY8=; b=IRq24csKsysHAIIV
-	oTMXEiCGBXdaptsbC6U3dG9PTH7ZI7Y7shW1oszbhH+M3d1uJ35XfGzaJyi1Rs6i
-	i1j231z90GqHFApKG5Anp5RJbOl6hl+AZdZ57BuXCS7setIw7Kt9uwkwc2InJPSq
-	NmkpJvqhq1atEl7HdlYL9Q1j+SgCePfTWjNmWYr+gc9oBbZ2DGYdVRAONogVh2Zx
-	sdA5MmgC+oY0t4c4fy7UT96ayHQ+TyklfcYhu/6DFEfj4ROj19z8q+tDvg2w0Hc0
-	6KPUiSonZqDMF3nGplzIKDD6iydsdNnDTYNgRbgpN7f2UnNrYxprCtvEzKsP5/Cv
-	waA4zw==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yjvxy85kr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 05 Jun 2024 19:15:56 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 455JFt2v016817
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 5 Jun 2024 19:15:55 GMT
-Received: from [10.46.19.239] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 5 Jun 2024
- 12:15:55 -0700
-Message-ID: <4a6aa0ba-a5ff-4d28-8ad4-12d461e44381@quicinc.com>
-Date: Wed, 5 Jun 2024 12:15:54 -0700
+	s=arc-20240116; t=1717615240; c=relaxed/simple;
+	bh=m0A8Os4JRcrEklhstPH8+Wk4gcYcCylU3uB5smFRT9c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BkoP04sci+I9yhBsbaFyjv42epPk+4Yq2MpcZNgotqdMWZ3ZOqX6D1M2a9qHZrBn+9e3/K0Re6OS+auieLtrtAiGxJsMdJYyIxJhQcHluIEcI1kwSUIce6ircCB64WttQ/L/Ja8HoH9DnQpp4h1VXss03fJ4XwBSAoKTo8Ogex0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=3e4aV1ev; arc=none smtp.client-ip=209.85.160.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-2544465c9e2so28175fac.2
+        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 12:20:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1717615237; x=1718220037; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=P7yPzmFt4narA62dyrwurUrMEHdNxvKzIrZhKVkzQzM=;
+        b=3e4aV1evTFTJK6XP/zgTMthReCO/s4cpimEhcYXj7QSqM67eQg8GHqducGSaIzA4SM
+         XuI8rOVYq9f7mG37GuxI2F/CoqXGasPq4Jz0v0xteX+QqAWNW+lN/XKN6KgdvllALgbA
+         36uqw2K1GtkCTzFMLF5aHMUqjm0GUz5VmPbtIQvOan7xeHNqSNAb8M8yLar4j0/MnrTJ
+         VwLrJfNS2oqAa0/rroiVUa8PC+6PX3/OTAnTSpIBGEV7Z5eTmmQKCzBHLayjxMPYOob5
+         hpBTDo2gpCQ6E0hVuFCbHjVU41ygT2dgzLJFXTiNBASIbQrAv15p11d5K+rLYRWlQ0B1
+         X0ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717615237; x=1718220037;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=P7yPzmFt4narA62dyrwurUrMEHdNxvKzIrZhKVkzQzM=;
+        b=J0A+5V6mXUt8QVTOt7/w1uB//ens/v4Zd6GdYrD19v31EVwFTTw4r/2Sxh61ig3dlC
+         S8DRgbH4uWoG5ADG6iO4p6YPVCDqsPsXXm0QV11pHX81k7qm5j38SVMKKZVhdeuZsVW+
+         jlus3l62Cs74KeoQdpv4hsNW13Q9FzopwnbNg1Phxm1eRt8DiJRYKc12RYtwzMPOxQon
+         MiVkKC+4KOps3Yu5b3xf6ztalR+IgbbQs7p3jovpERJSWjbvkdvUy9n1a59VIsA0VRh0
+         M9RyCqnFA9S4HAdyUOVBl4WlQKOkY7VNvt9zOvlAtHHXffdKsnl1MpmCjQE7xIOXxhiE
+         VUAw==
+X-Forwarded-Encrypted: i=1; AJvYcCUSNPCVg+uGZhldy83naWYOIt+Z7Waq6eCrC5JAIUllHoxSKfvDD6DtB3z03V4J5oaJuxrKwouZrLTLIrDplV98TpU+F+fwV2Wevg==
+X-Gm-Message-State: AOJu0Yw23362a4rkOD/WMcixdk812y2GK3MP1ODG0bNgm3I1KCRuMVeg
+	E3kAGI7ixgrzslJd/PRGIqHCRm0lAerzltjBc4Fle4oWlvZWfCVzLuhw+37cO70=
+X-Google-Smtp-Source: AGHT+IFPbUU6YKE2BszN3PiBcsStVD6lNw4Ihlq5+1ZbpZCd1hStrGgyjam9r7NUR7cSC7E+Vq7DYA==
+X-Received: by 2002:a05:6871:54d:b0:24c:a8e6:34e7 with SMTP id 586e51a60fabf-251226fa10fmr4189542fac.26.1717615236881;
+        Wed, 05 Jun 2024 12:20:36 -0700 (PDT)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-251fc4df2fasm206501fac.32.2024.06.05.12.20.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Jun 2024 12:20:36 -0700 (PDT)
+Message-ID: <80b27cb8-eb57-416e-aeeb-9975d299a30c@baylibre.com>
+Date: Wed, 5 Jun 2024 14:20:35 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,162 +76,359 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 04/10] net: pcs: xpcs: Convert xpcs_compat to
- dw_xpcs_compat
+Subject: Re: [PATCH v5 9/9] iio: adc: ad7173: Add support for AD411x devices
+To: dumitru.ceclan@analog.com
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Dumitru Ceclan <mitrutzceclan@gmail.com>
+References: <20240603-ad4111-v5-0-9a9c54d9ac78@analog.com>
+ <20240603-ad4111-v5-9-9a9c54d9ac78@analog.com>
 Content-Language: en-US
-To: Serge Semin <fancer.lancer@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu
-	<joabreu@synopsys.com>,
-        Jose Abreu <Jose.Abreu@synopsys.com>,
-        Vladimir Oltean
-	<olteanv@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "Maxime
- Chevallier" <maxime.chevallier@bootlin.com>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>
-CC: Sagar Cheluvegowda <quic_scheluve@quicinc.com>,
-        Andrew Halaney
-	<ahalaney@redhat.com>,
-        Jiawen Wu <jiawenwu@trustnetic.com>,
-        Mengyuan Lou
-	<mengyuanlou@net-swift.com>,
-        Tomer Maimon <tmaimon77@gmail.com>, <openbmc@lists.ozlabs.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20240602143636.5839-1-fancer.lancer@gmail.com>
- <20240602143636.5839-5-fancer.lancer@gmail.com>
-From: "Abhishek Chauhan (ABC)" <quic_abchauha@quicinc.com>
-In-Reply-To: <20240602143636.5839-5-fancer.lancer@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 7b6R9bemf8GjmsjZ5Tr8QtplyqO02yJ1
-X-Proofpoint-GUID: 7b6R9bemf8GjmsjZ5Tr8QtplyqO02yJ1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-05_02,2024-06-05_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 spamscore=0
- mlxscore=0 adultscore=0 bulkscore=0 phishscore=0 priorityscore=1501
- lowpriorityscore=0 mlxlogscore=999 impostorscore=0 malwarescore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406050146
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20240603-ad4111-v5-9-9a9c54d9ac78@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+On 6/3/24 11:23 AM, Dumitru Ceclan via B4 Relay wrote:
+> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
+> 
+> Add support for AD4111/AD4112/AD4114/AD4115/AD4116.
+> 
+> The AD411X family encompasses a series of low power, low noise, 24-bit,
+> sigma-delta analog-to-digital converters that offer a versatile range of
+> specifications.
+> 
+> This family of ADCs integrates an analog front end suitable for processing
+> both fully differential and single-ended, bipolar voltage inputs
+> addressing a wide array of industrial and instrumentation requirements.
+> 
+> - All ADCs have inputs with a precision voltage divider with a division
+>   ratio of 10.
+> - AD4116 has 5 low level inputs without a voltage divider.
+> - AD4111 and AD4112 support current inputs (0 mA to 20 mA) using a 50ohm
+>   shunt resistor.
+> 
+> Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
+> ---
+>  drivers/iio/adc/ad7173.c | 328 ++++++++++++++++++++++++++++++++++++++++++-----
+>  1 file changed, 296 insertions(+), 32 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
+> index fb18acc83f39..45784e4bd27e 100644
+> --- a/drivers/iio/adc/ad7173.c
+> +++ b/drivers/iio/adc/ad7173.c
+> @@ -1,8 +1,9 @@
+>  // SPDX-License-Identifier: GPL-2.0+
+>  /*
+> - * AD717x family SPI ADC driver
+> + * AD717x and AD411x family SPI ADC driver
+>   *
+>   * Supported devices:
+> + *  AD4111/AD4112/AD4114/AD4115/AD4116
+>   *  AD7172-2/AD7172-4/AD7173-8/AD7175-2
+>   *  AD7175-8/AD7176-2/AD7177-2
+>   *
+> @@ -82,6 +83,11 @@
+>  #define AD7175_2_ID			0x0cd0
+>  #define AD7172_4_ID			0x2050
+>  #define AD7173_ID			0x30d0
+> +#define AD4111_ID			AD7173_ID
+> +#define AD4112_ID			AD7173_ID
+> +#define AD4114_ID			AD7173_ID
+> +#define AD4116_ID			0x34d0
+> +#define AD4115_ID			0x38d0
+>  #define AD7175_8_ID			0x3cd0
+>  #define AD7177_ID			0x4fd0
+>  #define AD7173_ID_MASK			GENMASK(15, 4)
+> @@ -112,6 +118,7 @@
+>  
+>  #define AD7173_GPO12_DATA(x)	BIT((x) + 0)
+>  #define AD7173_GPO23_DATA(x)	BIT((x) + 4)
+> +#define AD4111_GPO01_DATA(x)	BIT((x) + 6)
+>  #define AD7173_GPO_DATA(x)	((x) < 2 ? AD7173_GPO12_DATA(x) : AD7173_GPO23_DATA(x))
+>  
+>  #define AD7173_INTERFACE_DATA_STAT	BIT(6)
+> @@ -130,26 +137,52 @@
+>  #define AD7173_VOLTAGE_INT_REF_uV	2500000
+>  #define AD7173_TEMP_SENSIIVITY_uV_per_C	477
+>  #define AD7177_ODR_START_VALUE		0x07
+> +#define AD4111_SHUNT_RESISTOR_OHM	50
+> +#define AD4111_DIVIDER_RATIO		10
+> +#define AD4111_CURRENT_CHAN_CUTOFF	16
+> +#define AD4111_VINCOM_INPUT		0X10
 
-> @@ -482,7 +482,7 @@ static int xpcs_config_aneg_c73(struct dw_xpcs *xpcs,
+nit: odd to have upper-case X in 0x10
+
+> +
+> +/* pin <  num_voltage_in is a normal voltage input */
+> +/* pin >= num_voltage_in_div is a voltge input without a divider */
+
+spelling: voltage
+
+> +#define AD4111_IS_VINCOM_MISMATCH(pin1, pin2) ((pin1) == AD4111_VINCOM_INPUT && \
+> +					       (pin2) < st->info->num_voltage_in && \
+> +					       (pin2) >= st->info->num_voltage_in_div)
 >  
->  static int xpcs_aneg_done_c73(struct dw_xpcs *xpcs,
->  			      struct phylink_link_state *state,
-> -			      const struct xpcs_compat *compat, u16 an_stat1)
-> +			      const struct dw_xpcs_compat *compat, u16 an_stat1)
+>  #define AD7173_FILTER_ODR0_MASK		GENMASK(5, 0)
+>  #define AD7173_MAX_CONFIGS		8
+>  
+> +enum ad4111_current_channels {
+> +	AD4111_CURRENT_IN0P_IN0N,
+> +	AD4111_CURRENT_IN1P_IN1N,
+> +	AD4111_CURRENT_IN2P_IN2N,
+> +	AD4111_CURRENT_IN3P_IN3N,
+> +};
+
+Not sure this enum adds much since IN0 is 0, IN1 is 1, etc.
+and it is only used as the index in the array initializer.
+
+> +
+>  struct ad7173_device_info {
+>  	const unsigned int *sinc5_data_rates;
+>  	unsigned int num_sinc5_data_rates;
+>  	unsigned int odr_start_value;
+> +	/*
+> +	 * AD4116 has both inputs with a voltage divider and without.
+> +	 * These inputs cannot be mixed in the channel configuration.
+> +	 * Does not include the VINCOM input.
+> +	 */
+> +	unsigned int num_voltage_in_div;
+>  	unsigned int num_channels;
+>  	unsigned int num_configs;
+> -	unsigned int num_inputs;
+> +	unsigned int num_voltage_in;
+>  	unsigned int clock;
+>  	unsigned int id;
+>  	char *name;
+> +	bool has_current_inputs;
+> +	bool has_vincom_input;
+>  	bool has_temp;
+>  	/* ((AVDD1 − AVSS)/5) */
+>  	bool has_common_input;
+>  	bool has_input_buf;
+>  	bool has_int_ref;
+>  	bool has_ref2;
+> +	bool higher_gpio_bits;
+>  	u8 num_gpios;
+>  };
+>  
+
+...
+
+> +static int ad4111_validate_current_ain(struct ad7173_state *st,
+> +				       const unsigned int ain[AD7173_NO_AINS_PER_CHANNEL])
+> +{
+> +	struct device *dev = &st->sd.spi->dev;
+> +
+> +	if (!st->info->has_current_inputs)
+> +		return dev_err_probe(dev, -EINVAL,
+> +			"Model %s does not support current channels\n",
+> +			st->info->name);
+> +
+> +	if (ain[0] >= ARRAY_SIZE(ad4111_current_channel_config))
+
+I guess OK for now, but could be nice to have num_current_inputs in chip_info.
+
+> +		return dev_err_probe(dev, -EINVAL,
+> +			"For current channels single-channel must be <[0-3]>\n");
+> +
+> +	return 0;
+> +}
+> +
+>  static int ad7173_validate_voltage_ain_inputs(struct ad7173_state *st,
+>  					      unsigned int ain0, unsigned int ain1)
 >  {
->  	int ret;
+> @@ -944,16 +1149,31 @@ static int ad7173_validate_voltage_ain_inputs(struct ad7173_state *st,
+>  	bool special_input0, special_input1;
 >  
-> @@ -607,7 +607,7 @@ static int xpcs_validate(struct phylink_pcs *pcs, unsigned long *supported,
->  			 const struct phylink_link_state *state)
->  {
->  	__ETHTOOL_DECLARE_LINK_MODE_MASK(xpcs_supported) = { 0, };
-> -	const struct xpcs_compat *compat;
-> +	const struct dw_xpcs_compat *compat;
->  	struct dw_xpcs *xpcs;
->  	int i;
+>  	special_input0 = AD7173_IS_REF_INPUT(ain0) ||
+> -			(AD7173_IS_COM_INPUT(ain0) && st->info->has_common_input);
+> +			(AD7173_IS_COM_INPUT(ain0) && st->info->has_common_input) ||
+> +			ain0 == AD4111_VINCOM_INPUT;
+>  	special_input1 = AD7173_IS_REF_INPUT(ain1) ||
+> -			(AD7173_IS_COM_INPUT(ain1) && st->info->has_common_input);
+> +			(AD7173_IS_COM_INPUT(ain1) && st->info->has_common_input) ||
+> +			ain1 == AD4111_VINCOM_INPUT;
+
+Do we also need to check has_vincom_input here? Otherwise out of range
+check below might succeed for chips that don't have this pin.
+
 >  
-> @@ -633,7 +633,7 @@ void xpcs_get_interfaces(struct dw_xpcs *xpcs, unsigned long *interfaces)
->  	int i, j;
+> -	if ((ain0 >= st->info->num_inputs && !special_input0) ||
+> -	    (ain1 >= st->info->num_inputs && !special_input1))
+> +	if (st->info->has_vincom_input)
+> +		if (AD4111_IS_VINCOM_MISMATCH(ain0, ain1) ||
+> +		    AD4111_IS_VINCOM_MISMATCH(ain1, ain0))
+> +			return dev_err_probe(dev, -EINVAL,
+> +				"VINCOM must be paired with inputs having divider.\n");
+> +
+> +	if ((ain0 >= st->info->num_voltage_in && !special_input0) ||
+> +	    (ain1 >= st->info->num_voltage_in && !special_input1))
+>  		return dev_err_probe(dev, -EINVAL,
+>  				     "Input pin number out of range for pair (%d %d).\n",
+>  				     ain0, ain1);
 >  
->  	for (i = 0; i < DW_XPCS_INTERFACE_MAX; i++) {
-> -		const struct xpcs_compat *compat = &xpcs->desc->compat[i];
-> +		const struct dw_xpcs_compat *compat = &xpcs->desc->compat[i];
->  
->  		for (j = 0; j < compat->num_interfaces; j++)
->  			__set_bit(compat->interface[j], interfaces);
-> @@ -850,7 +850,7 @@ static int xpcs_config_2500basex(struct dw_xpcs *xpcs)
->  int xpcs_do_config(struct dw_xpcs *xpcs, phy_interface_t interface,
->  		   const unsigned long *advertising, unsigned int neg_mode)
->  {
-> -	const struct xpcs_compat *compat;
-> +	const struct dw_xpcs_compat *compat;
->  	int ret;
->  
->  	compat = xpcs_find_compat(xpcs->desc, interface);
-> @@ -915,7 +915,7 @@ static int xpcs_config(struct phylink_pcs *pcs, unsigned int neg_mode,
->  
->  static int xpcs_get_state_c73(struct dw_xpcs *xpcs,
->  			      struct phylink_link_state *state,
-> -			      const struct xpcs_compat *compat)
-> +			      const struct dw_xpcs_compat *compat)
->  {
->  	bool an_enabled;
->  	int pcs_stat1;
-> @@ -1115,7 +1115,7 @@ static void xpcs_get_state(struct phylink_pcs *pcs,
->  			   struct phylink_link_state *state)
->  {
->  	struct dw_xpcs *xpcs = phylink_pcs_to_xpcs(pcs);
-> -	const struct xpcs_compat *compat;
-> +	const struct dw_xpcs_compat *compat;
->  	int ret;
->  
->  	compat = xpcs_find_compat(xpcs->desc, state->interface);
-> @@ -1269,7 +1269,7 @@ static u32 xpcs_get_id(struct dw_xpcs *xpcs)
->  	return 0xffffffff;
+> +	if (!special_input0 && !special_input1 &&
+> +	    ((ain0 >= st->info->num_voltage_in_div) !=
+> +	     (ain1 >= st->info->num_voltage_in_div)))
+> +		return dev_err_probe(dev, -EINVAL,
+> +			"Both inputs must either have a voltage divider or not have: (%d %d).\n",
+> +			ain0, ain1);
+> +
+>  	return 0;
 >  }
 >  
-> -static const struct xpcs_compat synopsys_xpcs_compat[DW_XPCS_INTERFACE_MAX] = {
-> +static const struct dw_xpcs_compat synopsys_xpcs_compat[DW_XPCS_INTERFACE_MAX] = {
->  	[DW_XPCS_USXGMII] = {
->  		.supported = xpcs_usxgmii_features,
->  		.interface = xpcs_usxgmii_interfaces,
-> @@ -1314,7 +1314,7 @@ static const struct xpcs_compat synopsys_xpcs_compat[DW_XPCS_INTERFACE_MAX] = {
->  	},
->  };
+> @@ -984,7 +1204,7 @@ static int ad7173_fw_parse_channel_config(struct iio_dev *indio_dev)
+>  	struct device *dev = indio_dev->dev.parent;
+>  	struct iio_chan_spec *chan_arr, *chan;
+>  	unsigned int ain[AD7173_NO_AINS_PER_CHANNEL], chan_index = 0;
+> -	int ref_sel, ret, num_channels;
+> +	int ref_sel, ret, is_current_chan, num_channels;
 >  
-Serge, Thank you for raising these patches. Minor comments which shows warning on my workspace. 
-
-WARNING: line length of 82 exceeds 80 columns
-#153: FILE: drivers/net/pcs/pcs-xpcs.c:1272:
-+static const struct dw_xpcs_compat synopsys_xpcs_compat[DW_XPCS_INTERFACE_MAX] = {
-
-WARNING: line length of 85 exceeds 80 columns
-#162: FILE: drivers/net/pcs/pcs-xpcs.c:1317:
-+static const struct dw_xpcs_compat nxp_sja1105_xpcs_compat[DW_XPCS_INTERFACE_MAX] = {
-
-WARNING: line length of 85 exceeds 80 columns
-#171: FILE: drivers/net/pcs/pcs-xpcs.c:1327:
-+static const struct dw_xpcs_compat nxp_sja1110_xpcs_compat[DW_XPCS_INTERFACE_MAX] = {
-
-> -static const struct xpcs_compat nxp_sja1105_xpcs_compat[DW_XPCS_INTERFACE_MAX] = {
-> +static const struct dw_xpcs_compat nxp_sja1105_xpcs_compat[DW_XPCS_INTERFACE_MAX] = {
->  	[DW_XPCS_SGMII] = {
->  		.supported = xpcs_sgmii_features,
->  		.interface = xpcs_sgmii_interfaces,
-> @@ -1324,7 +1324,7 @@ static const struct xpcs_compat nxp_sja1105_xpcs_compat[DW_XPCS_INTERFACE_MAX] =
->  	},
->  };
+>  	num_channels = device_get_child_node_count(dev);
 >  
-> -static const struct xpcs_compat nxp_sja1110_xpcs_compat[DW_XPCS_INTERFACE_MAX] = {
-> +static const struct dw_xpcs_compat nxp_sja1110_xpcs_compat[DW_XPCS_INTERFACE_MAX] = {
->  	[DW_XPCS_SGMII] = {
->  		.supported = xpcs_sgmii_features,
->  		.interface = xpcs_sgmii_interfaces,
-> @@ -1418,7 +1418,7 @@ static int xpcs_init_id(struct dw_xpcs *xpcs)
+> @@ -1031,15 +1251,40 @@ static int ad7173_fw_parse_channel_config(struct iio_dev *indio_dev)
 >  
->  static int xpcs_init_iface(struct dw_xpcs *xpcs, phy_interface_t interface)
->  {
-> -	const struct xpcs_compat *compat;
-> +	const struct dw_xpcs_compat *compat;
+>  	device_for_each_child_node_scoped(dev, child) {
+>  		chan = &chan_arr[chan_index];
+> +		*chan = ad7173_channel_template;
+>  		chan_st_priv = &chans_st_arr[chan_index];
+>  		ret = fwnode_property_read_u32_array(child, "diff-channels",
+>  						     ain, ARRAY_SIZE(ain));
+> -		if (ret)
+> -			return ret;
+> +		if (ret) {
+> +			ret = fwnode_property_read_u32_array(child, "single-channel",
+> +							     ain, 1);
+
+Should this just be fwnode_property_read_u32()?
+
+> +			if (ret)
+> +				return dev_err_probe(dev, ret,
+> +					"Channel must define one of diff-channels or single-channel.\n");
 >  
->  	compat = xpcs_find_compat(xpcs->desc, interface);
->  	if (!compat)
+> -		ret = ad7173_validate_voltage_ain_inputs(st, ain[0], ain[1]);
+> -		if (ret)
+> -			return ret;
+> +			is_current_chan = fwnode_property_read_bool(child, "adi,current-channel");
+> +		} else {
+> +			chan->differential = true;
+> +		}
+> +
+> +		if (is_current_chan) {
+> +			ret = ad4111_validate_current_ain(st, ain);
+> +			if (ret)
+> +				return ret;
+> +			is_current_chan = true;
+
+is_current_chan is already set, so this is redundant.
+
+> +		} else {
+> +			if (!chan->differential) {
+> +				ret = fwnode_property_read_u32_array(child,
+> +					"common-mode-channel", ain + 1, 1);
+
+And here fwnode_property_read_u32()?
+
+> +				if (ret)
+> +					return dev_err_probe(dev, ret,
+> +						"common-mode-channel must be defined for single-ended channels.\n");
+> +			}
+> +			ret = ad7173_validate_voltage_ain_inputs(st, ain[0], ain[1]);
+> +			if (ret)
+> +				return ret;
+> +			is_current_chan = false;
+
+Same here, reduandant is_current_chan.
+
+> +		}
+>  
+>  		ret = fwnode_property_match_property_string(child,
+>  							    "adi,reference-select",
+> @@ -1058,14 +1303,9 @@ static int ad7173_fw_parse_channel_config(struct iio_dev *indio_dev)
+>  			st->adc_mode |= AD7173_ADC_MODE_REF_EN;
+>  		chan_st_priv->cfg.ref_sel = ref_sel;
+>  
+> -		*chan = ad7173_channel_template;
+>  		chan->address = chan_index;
+>  		chan->scan_index = chan_index;
+>  		chan->channel = ain[0];
+> -		chan->channel2 = ain[1];
+> -		chan->differential = true;
+> -
+> -		chan_st_priv->ain = AD7173_CH_ADDRESS(ain[0], ain[1]);
+>  		chan_st_priv->chan_reg = chan_index;
+>  		chan_st_priv->cfg.input_buf = st->info->has_input_buf;
+>  		chan_st_priv->cfg.odr = 0;
+> @@ -1074,6 +1314,20 @@ static int ad7173_fw_parse_channel_config(struct iio_dev *indio_dev)
+>  		if (chan_st_priv->cfg.bipolar)
+>  			chan->info_mask_separate |= BIT(IIO_CHAN_INFO_OFFSET);
+>  
+> +		if (is_current_chan) {
+> +			chan->type = IIO_CURRENT;
+> +			chan->differential = false;
+> +			chan->channel2 = 0;
+> +			ain[1] = FIELD_GET(AD7173_CH_SETUP_AINNEG_MASK,
+> +					   ad4111_current_channel_config[ain[0]]);
+> +			ain[0] = FIELD_GET(AD7173_CH_SETUP_AINPOS_MASK,
+> +					   ad4111_current_channel_config[ain[0]]);
+
+Changing the meaning of ain here makes the code harder to understand.
+
+How about just:
+
+	chan_st_priv->ain = ad4111_current_channel_config[ain[0]];
+
+here and mode the chan_st_priv->ain = below inside the else?
+
+
+> +		} else {
+> +			chan_st_priv->cfg.input_buf = st->info->has_input_buf;
+> +			chan->channel2 = ain[1];
+> +		}
+> +		chan_st_priv->ain = AD7173_CH_ADDRESS(ain[0], ain[1]);
+> +
+>  		chan_index++;
+>  	}
+>  	return 0;
+> @@ -1200,6 +1454,11 @@ static int ad7173_probe(struct spi_device *spi)
+>  }
+>  
+>  static const struct of_device_id ad7173_of_match[] = {
+> +	{ .compatible = "ad4111",	.data = &ad4111_device_info},
+> +	{ .compatible = "ad4112",	.data = &ad4112_device_info},
+> +	{ .compatible = "ad4114",	.data = &ad4114_device_info},
+> +	{ .compatible = "ad4115",	.data = &ad4115_device_info},
+> +	{ .compatible = "ad4116",	.data = &ad4116_device_info},
+>  	{ .compatible = "adi,ad7172-2", .data = &ad7172_2_device_info},
+>  	{ .compatible = "adi,ad7172-4", .data = &ad7172_4_device_info},
+>  	{ .compatible = "adi,ad7173-8", .data = &ad7173_8_device_info},
+> @@ -1212,6 +1471,11 @@ static const struct of_device_id ad7173_of_match[] = {
+>  MODULE_DEVICE_TABLE(of, ad7173_of_match);
+>  
+>  static const struct spi_device_id ad7173_id_table[] = {
+> +	{ "ad4111",   (kernel_ulong_t)&ad4111_device_info},
+> +	{ "ad4112",   (kernel_ulong_t)&ad4112_device_info},
+> +	{ "ad4114",   (kernel_ulong_t)&ad4114_device_info},
+> +	{ "ad4115",   (kernel_ulong_t)&ad4115_device_info},
+> +	{ "ad4116",   (kernel_ulong_t)&ad4116_device_info},
+>  	{ "ad7172-2", (kernel_ulong_t)&ad7172_2_device_info},
+>  	{ "ad7172-4", (kernel_ulong_t)&ad7172_4_device_info},
+>  	{ "ad7173-8", (kernel_ulong_t)&ad7173_8_device_info},
+
+nit: Same as in the other patch, space before }
+
+> @@ -1236,5 +1500,5 @@ module_spi_driver(ad7173_driver);
+>  MODULE_IMPORT_NS(IIO_AD_SIGMA_DELTA);
+>  MODULE_AUTHOR("Lars-Peter Clausen <lars@metafo.de>");
+>  MODULE_AUTHOR("Dumitru Ceclan <dumitru.ceclan@analog.com>");
+> -MODULE_DESCRIPTION("Analog Devices AD7172/AD7173/AD7175/AD7176 ADC driver");
+> +MODULE_DESCRIPTION("Analog Devices AD7173 and similar ADC driver");
+>  MODULE_LICENSE("GPL");
+> 
+
 
