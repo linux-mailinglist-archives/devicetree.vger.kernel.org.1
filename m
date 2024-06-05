@@ -1,220 +1,105 @@
-Return-Path: <devicetree+bounces-72791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA6F98FD095
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 16:15:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 404A78FD0C3
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 16:23:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4BCE2B2C915
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:37:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7B5C2B32E93
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:51:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BA8F194A5A;
-	Wed,  5 Jun 2024 13:11:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98CFF1922F9;
+	Wed,  5 Jun 2024 13:38:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fFXTqn+c"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="AUH34lJS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 175D82AF16
-	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 13:11:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FDDF188CD1
+	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 13:38:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717593103; cv=none; b=kegYjktQF+VgiX8liTDBM4yb2SHXIwFnt133toY5TJSavFFBn6C9hPxRHC/GpWdUVgzmWJ2D8K6qTjsNIDrOUOvup/wdgmzyizfKCrYbohEwPdAxmNBVBm8EdxN4xpRnVksSjHXZxeCgcUxx+fwKEWhhL1O2jwUtmvSVofy1PlQ=
+	t=1717594717; cv=none; b=oM12GELOu2ui5GF1DzgbYnPqBhJ4BbzS8vA8wLxrjYkyrvgYRsq75/16iaEzcBJN91Q4mBMn0mKB13qorTXKCNndVy/iE8HkL07LJskAjeS3pBsRmfvHTH2su5NSKd+TCq7AHh6J9cDarZ6hqOVQoB1PkHW3TxNT2RnPKMWnyyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717593103; c=relaxed/simple;
-	bh=fMAvKNM+0SoxxnMbHmgsu5FKQ0aIQ99G9eebSx3MFIM=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=DjZR8s5HWvRLvrdCjes2oFtVcMSimVhw6n9i84gUONJ08v2OXDmrreCHmDrYgjAvFS+I1tiVF5xIowjg3vbgrUS9WjecLj+iNjIjxeAu0YdiVwZH0YlLDQv81Xav9YQIbcwo5+osLPQuT/FVj+H5Hf6g0CFlYXpIR0EvEk0T3a4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fFXTqn+c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53369C32782;
-	Wed,  5 Jun 2024 13:11:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717593102;
-	bh=fMAvKNM+0SoxxnMbHmgsu5FKQ0aIQ99G9eebSx3MFIM=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=fFXTqn+cSWYrRPiP14ZvBPr7a/BWYOkhnGJSRSEG97bG0s8P7jCzCvvDXlh7VMg8u
-	 z0lQQU9VEOWc2Qim3+/SrAcm9/0nZF3KgGoJg88zPusz2xNMczfue8ZDOsuweL8xR4
-	 5v+sIEdbkIt/h0KLyjz0okXnX7L0kWhl3CfRf0AudxbLTtWrWWGwdb9Vxkxg0qY9PM
-	 mjrF89NqcJqdP3h+RHTg4aXgUTIwmaTuXbu+D+BJEjO3jQgXY71N0pKNXt6vnwxsAM
-	 +M9XB+cmv1sbmdPDt+p7ZTpsbW4wAdica9zeHAreUw5+eaLRYKp/XKZCmiHtAf+4fA
-	 kWSxB/B3AOYCg==
-Date: Wed, 05 Jun 2024 07:11:40 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1717594717; c=relaxed/simple;
+	bh=mlhApMpG5WU395YtWwS9QPBflIL0rJC4v8OyN6FnRbc=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KJsm/qWECToxuJYZo5zxFoCiLjzuPShIkZcCJxsSNikLFhK7143qvuGvg9SAk/mz5b2HErVTU/5fgwYpLhqrDlHnwqfR3B3XKEPtuUfTbKs/VSTuubNy4Jj1HHx5Fmyya/fVywIspkemGwgI5M3Oy7gpg1ESiGeDb6Jgs6NS6Kw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=AUH34lJS; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-42155143cb0so16951685e9.2
+        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 06:38:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1717594714; x=1718199514; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mlhApMpG5WU395YtWwS9QPBflIL0rJC4v8OyN6FnRbc=;
+        b=AUH34lJSHF1jmKLrzgVUddSsKCND91OwylcvYopEsudkJI9VrjsLp7Mket5FQ6NCAK
+         +bhBPjP5gj+u9a3pX2pHCpy/xTsyECtunF/ogJEwWnfF1XFIhIkvF7kK/m3GJsztd1CG
+         tm+Qixqbjhif2OlUGdQCNJAinA6QtoXclkKE9POoJD+yP8bQ0WC2mbAlZRX64QHoaFiU
+         MMHJyuAc5FQpS4ucRbhd/qz880dAmHVx68nWaekLhs6YibBZnbjGEF/un28MehTJFwkY
+         /6kjzZtrS1Kri/wdZfcFzOM7LIJnQ++bH87xmBa9XQTSG2kWdtS84CNsHgg8gWdocUUG
+         E62g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717594714; x=1718199514;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mlhApMpG5WU395YtWwS9QPBflIL0rJC4v8OyN6FnRbc=;
+        b=Fl/G96b7MHuKgUoncR+4AcmtdgIjFAcVv7nd935jGgWGYwEpW+b+EvwUuK/eLQ+1ZN
+         H6qloMNczF6/gDOZYDUYIHcntwuJZ285kT9+Q3RJtsbGWdqVTjwA8t4EjDqnICXnj5MK
+         OBKRvWqz9u81y+SQo/ozbqVu+3Zv04SHeb1N9zGsEPrjfWAnApe4c1rEBcCVSttGZy6O
+         FCJNHOwOwBekJ6ZMrB/DVGz+PrK+wxXA+xQ/cQBGyZzI8ZOPlvmNWshE8AULiopmx/6Z
+         Lcipf7xqExZvWV1UfYZZdKj+cy2SCGqRJUYFgYEwQ4HYkEQo8o6tO+2ZKaqB3WjALpVu
+         m6jA==
+X-Forwarded-Encrypted: i=1; AJvYcCXbr0OX5Oc3o6tw0TkeoIqSKdpMgMtTRrGodJaRnUQDNsbaD5Ar/wr34PlFBptDHDP8JE9vd3HGPqyX5B8AGs9/FFGp0yMbjoAx2Q==
+X-Gm-Message-State: AOJu0Yyi0qGOPWjRI8NBx/CWmcFHc988zAxmqSQDuLuklXJ38T1db//9
+	+uhrdx6Dg2Dl2u00whOEZjgc0XZWwnlTqDs+uUuNdOy6WIrFT/hU51IlExd1zKo=
+X-Google-Smtp-Source: AGHT+IHjkretuS1fTFtZei6hChIG2kgCEQtxhJThqCOKkNHqb6TBqHMder8dhApLzt0DEjaMW0SbBQ==
+X-Received: by 2002:a05:600c:46cd:b0:421:1fb1:fe00 with SMTP id 5b1f17b1804b1-421562d4a37mr26359565e9.17.1717594713675;
+        Wed, 05 Jun 2024 06:38:33 -0700 (PDT)
+Received: from localhost (p200300f65f283b00ca876ee5dd3d1e3b.dip0.t-ipconnect.de. [2003:f6:5f28:3b00:ca87:6ee5:dd3d:1e3b])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215814fc11sm22296825e9.48.2024.06.05.06.38.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jun 2024 06:38:33 -0700 (PDT)
+From: "Uwe =?utf-8?Q?Kleine-K=C3=B6nig?=" <ukleinek@baylibre.com>
+X-Google-Original-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+Date: Wed, 5 Jun 2024 15:38:31 +0200
+To: Hironori KIKUCHI <kikuchan98@gmail.com>
+Cc: linux-kernel@vger.kernel.org, 
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Aleksandr Shubin <privatesub2@gmail.com>, Cheo Fusi <fusibrandon13@gmail.com>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 0/5] Add support for Allwinner H616 PWM
+Message-ID: <d5mr73yc7l6w6uvgqb4ymyc5267do4zirnnorkpi5s6qa5vckk@owayit4mexk2>
+References: <20240531141152.327592-1-kikuchan98@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Florian Vaussard <florian.vaussard@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- Dinh Nguyen <dinguyen@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20240605083321.1211198-1-florian.vaussard@gmail.com>
-References: <20240605083321.1211198-1-florian.vaussard@gmail.com>
-Message-Id: <171759285064.2201284.8555590384170035780.robh@kernel.org>
-Subject: Re: [PATCH 0/2] ARM: dts: socfpga: Add support for Terasic DE1-SOC
- board
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240531141152.327592-1-kikuchan98@gmail.com>
 
+On Fri, May 31, 2024 at 11:11:32PM +0900, Hironori KIKUCHI wrote:
+> Add support for the Allwinner H616 PWM, building on top of Aleksandr's
+> Allwinner D1 PWM driver v9.
 
-On Wed, 05 Jun 2024 10:33:03 +0200, Florian Vaussard wrote:
-> Hello,
-> 
-> This series adds support for the Terasic DE1-SOC board, which is very
-> similar to the Terasic SoCKit with a few notable differences.
-> 
-> Best regards,
-> Florian
-> 
-> Florian Vaussard (2):
->   dt-bindings: altera: Add Terasic DE1-SOC board
->   ARM: dts: socfpga: Add support for Terasic DE1-SOC board
-> 
->  .../devicetree/bindings/arm/altera.yaml       |   1 +
->  arch/arm/boot/dts/intel/socfpga/Makefile      |   1 +
->  .../socfpga/socfpga_cyclone5_de1_soc.dts      | 106 ++++++++++++++++++
->  3 files changed, 108 insertions(+)
->  create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dts
-> 
-> 
-> base-commit: 1536dc8edc653e0e4a333035a73ff146d0517749
-> --
-> 2.45.1
-> 
-> 
-> 
+It would be great if you could arrange with Aleksandr to maybe put your
+efforts into a single series. I think this would simplify reviewing and
+overall handling of your series to me.
 
+Your first patch should for sure be squashed into Aleksandr's patch #2.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y intel/socfpga/socfpga_cyclone5_de1_soc.dtb' for 20240605083321.1211198-1-florian.vaussard@gmail.com:
-
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: pmu@ff111000: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/arm/pmu.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: soc: base_fpga_region: 'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: soc: usbphy: 'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: soc: stmmac-axi-config: 'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: soc: sdramedac: 'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: amba: $nodename:0: 'amba' does not match '^([a-z][a-z0-9\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
-	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: pdma@ffe01000: $nodename:0: 'pdma@ffe01000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/arm,pl330.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: base_fpga_region: $nodename:0: 'base_fpga_region' does not match '^fpga-region(@.*|-([0-9]|[1-9][0-9]+))?$'
-	from schema $id: http://devicetree.org/schemas/fpga/fpga-region.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: clkmgr@ffd04000: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/arm/altera/socfpga-clk-manager.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: osc2: 'clock-frequency' is a required property
-	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: f2s_periph_ref_clk: 'clock-frequency' is a required property
-	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: f2s_sdram_ref_clk: 'clock-frequency' is a required property
-	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/main_pll@40: failed to match any schema with compatible: ['altr,socfpga-pll-clock']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/main_pll@40/mpuclk@48: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/main_pll@40/mainclk@4c: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/main_pll@40/dbg_base_clk@50: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/main_pll@40/main_qspi_clk@54: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/main_pll@40/main_nand_sdmmc_clk@58: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/main_pll@40/cfg_h2f_usr0_clk@5c: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/periph_pll@80: failed to match any schema with compatible: ['altr,socfpga-pll-clock']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/periph_pll@80/emac0_clk@88: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/periph_pll@80/emac1_clk@8c: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/periph_pll@80/per_qsi_clk@90: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/periph_pll@80/per_nand_mmc_clk@94: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/periph_pll@80/per_base_clk@98: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/periph_pll@80/h2f_usr1_clk@9c: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/sdram_pll@c0: failed to match any schema with compatible: ['altr,socfpga-pll-clock']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/sdram_pll@c0/ddr_dqs_clk@c8: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/sdram_pll@c0/ddr_2x_dqs_clk@cc: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/sdram_pll@c0/ddr_dq_clk@d0: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/sdram_pll@c0/h2f_usr2_clk@d4: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/mpu_periph_clk: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/mpu_l2_ram_clk: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/l4_main_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/l3_main_clk: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/l3_mp_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/l3_sp_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/l4_mp_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/l4_sp_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/dbg_at_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/dbg_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/dbg_trace_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/dbg_timer_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/cfg_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/h2f_user0_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/emac_0_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/emac_1_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/usb_mp_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/spi_m_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/can0_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/can1_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/gpio_db_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/h2f_user1_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/sdmmc_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/sdmmc_clk_divided: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/nand_x_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/nand_ecc_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/nand_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/qspi_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/ddr_dqs_clk_gate: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/ddr_2x_dqs_clk_gate: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/ddr_dq_clk_gate: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/clkmgr@ffd04000/clocks/h2f_user2_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: fpga_bridge@ff400000: $nodename:0: 'fpga_bridge@ff400000' does not match '^fpga-bridge(@.*|-([0-9]|[1-9][0-9]+))?$'
-	from schema $id: http://devicetree.org/schemas/fpga/altr,socfpga-hps2fpga-bridge.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: fpga_bridge@ff500000: $nodename:0: 'fpga_bridge@ff500000' does not match '^fpga-bridge(@.*|-([0-9]|[1-9][0-9]+))?$'
-	from schema $id: http://devicetree.org/schemas/fpga/altr,socfpga-hps2fpga-bridge.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/fpgamgr@ff706000: failed to match any schema with compatible: ['altr,socfpga-fpga-mgr']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/ethernet@ff700000: failed to match any schema with compatible: ['altr,socfpga-stmmac', 'snps,dwmac-3.70a', 'snps,dwmac']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/ethernet@ff702000: failed to match any schema with compatible: ['altr,socfpga-stmmac', 'snps,dwmac-3.70a', 'snps,dwmac']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/eccmgr: failed to match any schema with compatible: ['altr,socfpga-ecc-manager']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/eccmgr/l2-ecc@ffd08140: failed to match any schema with compatible: ['altr,socfpga-l2-ecc']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/eccmgr/ocram-ecc@ffd08144: failed to match any schema with compatible: ['altr,socfpga-ocram-ecc']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/l3regs@ff800000: failed to match any schema with compatible: ['altr,l3regs', 'syscon']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: sram@ffff0000: '#address-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/sram/sram.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: sram@ffff0000: '#size-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/sram/sram.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: sram@ffff0000: 'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/sram/sram.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: spi@ff705000: resets: [[6, 37]] is too short
-	from schema $id: http://devicetree.org/schemas/spi/cdns,qspi-nor.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/sdramedac: failed to match any schema with compatible: ['altr,sdram-edac']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: /soc/sysmgr@ffd08000: failed to match any schema with compatible: ['altr,sys-mgr', 'syscon']
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: timer0@ffc08000: 'reset-names' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/timer/snps,dw-apb-timer.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: timer1@ffc09000: 'reset-names' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/timer/snps,dw-apb-timer.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: timer2@ffd00000: 'reset-names' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/timer/snps,dw-apb-timer.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: timer3@ffd01000: 'reset-names' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/timer/snps,dw-apb-timer.yaml#
-arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dtb: gpio-keys: 'hps_key' does not match any of the regexes: '^(button|event|key|switch|(button|event|key|switch)-[a-z0-9-]+|[a-z0-9-]+-(button|event|key|switch))$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/input/gpio-keys.yaml#
-
-
-
-
-
+Best regards
+Uwe
 
