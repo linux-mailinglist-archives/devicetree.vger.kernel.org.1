@@ -1,95 +1,141 @@
-Return-Path: <devicetree+bounces-72900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6636E8FD473
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 19:56:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E869A8FD47A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 19:57:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 028F928A338
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 17:56:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 844A31F22544
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 17:57:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D865194AF0;
-	Wed,  5 Jun 2024 17:56:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED578194AE7;
+	Wed,  5 Jun 2024 17:57:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UEz/nDoH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O1Ov+Ecn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0296E13A26E;
-	Wed,  5 Jun 2024 17:56:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C605913A86A;
+	Wed,  5 Jun 2024 17:57:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717610190; cv=none; b=FL8PNYCogHbKUIJhggqo9H4V7c+FAqONCU4NeXu8oWjczNwQTX05XCQcB8mStFis8QV4SDmaEP2e6VZQF4qP2bnygPj3BQrxuLIlk9wAldImCcqejxSUbV9gaQpVsF277DPNLkMQXhhyC+kJtfdE0UVAEQGNlnZig0nVuVnhZjs=
+	t=1717610240; cv=none; b=a3oXGP6P17ZLUW26LLCPrdilkBZb6G/USX5exBeBL9ms6PAt4mxT2dkWubvuaFYXaA0eL0hZ8pxqTunELnOqOfzbxCCIi7Gsd0SZQR2XzbiciB7Loj5vSx9LTDFeISjDkNB1lFEjpRuFU5jh6FbwvmxuI45PPFsRYcjhD06KBTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717610190; c=relaxed/simple;
-	bh=SNzE0F9enywAXpbx37sfhGTyuSO2Iy8uiW1YPcMF1Dc=;
+	s=arc-20240116; t=1717610240; c=relaxed/simple;
+	bh=l9ydBUNQUdSilVJMSLqSHbZR/daYiVRwI/DRlUqbFp8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nIFiQf19y4dKCxv7LV+PYdJUn1F4BAuDkGRUzJ/2I2eGjuBJBp47LttuzeByPSjDT3jMtRs/6RQY6oi5GoYMVawDN3OY3FFP7DplO/gxrNjV7dcZOYLiSNKFhgTqFO5hnoC6VSWJQhvI6GuXUVHbhRN0Ns86dwHrkIiqESNehms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UEz/nDoH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1473BC2BD11;
-	Wed,  5 Jun 2024 17:56:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VaFwKQa/3TW+ax/Fte8B3E2s2Rgp4GU8AhpvnQ2Yx1uRQDMgujbc1i+FOj/BYeR/jyxQf18XVCao+BN+w3TiayiivoEwhL3Ge1jTufI1vh29vmdIuse8Z5tY37aes3ax5iT6v9lbygqGFfHw+AIpiPyiplqUI0eWmL5K5cKMdBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O1Ov+Ecn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 857C4C2BD11;
+	Wed,  5 Jun 2024 17:57:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717610189;
-	bh=SNzE0F9enywAXpbx37sfhGTyuSO2Iy8uiW1YPcMF1Dc=;
+	s=k20201202; t=1717610239;
+	bh=l9ydBUNQUdSilVJMSLqSHbZR/daYiVRwI/DRlUqbFp8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UEz/nDoH7s82EQnTwVzzeG15BOpK5GJlr9WAW3VNhJXcoL19pKBtCAea+URGa6Avw
-	 F/MDrcZe8922kwzTJ2yUQhCSZv2DoyQgJn/PdA/wWzSAjivbG164pcspqFPMpkmB8/
-	 8pLXCvAOt5cHKS/LnU/L4vmTx9ut0i6FuyGJP8HHZ7/nhlKAn4088tYwvgIPFUKfqq
-	 dIJTtteJKT/kX8//XAqJ4VxSvxeTk44TyhUWIHPGE6ldpCawXhzhKc6W5KIyw5OwMa
-	 3H7qUe9GdOrMaD9svpkhwlH+lBksHM+tnS3ISRftFKgF2YZDV8or0PPgkRMD4UeDlG
-	 MlzQbiAEuHl7w==
-Date: Wed, 5 Jun 2024 18:56:24 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Alex Bee <knaerzche@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	b=O1Ov+EcnLmZiKnQl0kqPAWCsSSPvAC/CasiQvdUq8byYLhR+p0pXtL6qwOpHrI2ap
+	 vPJrclOJH437tVsYfzFKYgVYHr6Ni6PkCIl3B3zHmjSYhcpqO5915qj37+QB9v2fMN
+	 GNfX163xkJBn1X+E2vyQezZNE924RN/m9r03mBLq7dZDpC3246SNoheRH2EHaZTgLr
+	 QkCSq6zKrCHeIzNtS2ygW+JX6yVS7NtW8S++/xvSbb0kOPWH02j1EgKrUnULa9IChL
+	 8kbja6WMkMFGUOCJmBEaiHvcmXhOXO4O0nQQdJD8KAi9mogv43rYgXFHA01GT1Pykf
+	 n/c1NXRpDXdUg==
+Date: Wed, 5 Jun 2024 19:57:12 +0200
+From: Niklas Cassel <cassel@kernel.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Heiko Stuebner <heiko@sntech.de>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: clock: rk3128: Add HCLK_SFC
-Message-ID: <20240605-proponent-ion-d78e863ca7b5@spud>
-References: <20240605172154.193047-1-knaerzche@gmail.com>
- <20240605172154.193047-2-knaerzche@gmail.com>
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
+	Jon Lin <jon.lin@rock-chips.com>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v4 09/13] PCI: dw-rockchip: Refactor the driver to
+ prepare for EP mode
+Message-ID: <ZmCm-Lt3yZpE84EG@ryzen.lan>
+References: <20240529-rockchip-pcie-ep-v1-v4-0-3dc00fe21a78@kernel.org>
+ <20240529-rockchip-pcie-ep-v1-v4-9-3dc00fe21a78@kernel.org>
+ <20240605080640.GJ5085@thinkpad>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="IkMWFnV2LSveQRFT"
-Content-Disposition: inline
-In-Reply-To: <20240605172154.193047-2-knaerzche@gmail.com>
-
-
---IkMWFnV2LSveQRFT
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20240605080640.GJ5085@thinkpad>
 
-On Wed, Jun 05, 2024 at 07:21:52PM +0200, Alex Bee wrote:
-> Add a clock id for SFC's AHB clock.
+On Wed, Jun 05, 2024 at 01:36:40PM +0530, Manivannan Sadhasivam wrote:
+> On Wed, May 29, 2024 at 10:29:03AM +0200, Niklas Cassel wrote:
+> > This refactors the driver to prepare for EP mode.
+> > Add of-match data to the existing compatible, and explicitly define it as
+> > DW_PCIE_RC_TYPE. This way, we will be able to add EP mode in a follow-up
+> > commit in a much less intrusive way, which makes the follup-up commit much
+> > easier to review.
+> > 
+> > No functional change intended.
+> > 
+> > Signed-off-by: Niklas Cassel <cassel@kernel.org>
+> 
+> Few nitpicks below. With those addressed,
+> 
+> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> 
+> > ---
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+(snip)
 
-Thanks,
-Conor.
+> > @@ -294,13 +292,35 @@ static const struct dw_pcie_ops dw_pcie_ops = {
+> >  	.start_link = rockchip_pcie_start_link,
+> >  };
+> >  
+> > +static int rockchip_pcie_configure_rc(struct rockchip_pcie *rockchip)
+> > +{
+> > +	struct dw_pcie_rp *pp;
+> > +	u32 val;
+> > +
+> > +	/* LTSSM enable control mode */
+> > +	val = HIWORD_UPDATE_BIT(PCIE_LTSSM_ENABLE_ENHANCE);
+> > +	rockchip_pcie_writel_apb(rockchip, val, PCIE_CLIENT_HOT_RESET_CTRL);
+> > +
+> > +	rockchip_pcie_writel_apb(rockchip, PCIE_CLIENT_RC_MODE,
+> > +				 PCIE_CLIENT_GENERAL_CONTROL);
+> > +
+> > +	pp = &rockchip->pci.pp;
+> > +	pp->ops = &rockchip_pcie_host_ops;
+> > +
+> > +	return dw_pcie_host_init(pp);
+> > +}
+> > +
+> >  static int rockchip_pcie_probe(struct platform_device *pdev)
+> >  {
+> >  	struct device *dev = &pdev->dev;
+> >  	struct rockchip_pcie *rockchip;
+> > -	struct dw_pcie_rp *pp;
+> > +	const struct rockchip_pcie_of_data *data;
+> >  	int ret;
+> >  
+> > +	data = of_device_get_match_data(dev);
+> > +	if (!data)
+> > +		return -EINVAL;
+> 
+> -ENODATA?
 
---IkMWFnV2LSveQRFT
-Content-Type: application/pgp-signature; name="signature.asc"
+-EINVAL seems to be most common:
+$ git grep -A 5 of_device_get_match_data drivers/pci/
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmCmyAAKCRB4tDGHoIJi
-0kr2AP9CcJSE0xRZszok5aIlAw4wAVI+sOpC9KTCCLbELcfxoAEAjH2YTfqU+eA7
-7Cbv3vSQO00bE61flXDiiId5PhMPBgs=
-=3UhK
------END PGP SIGNATURE-----
 
---IkMWFnV2LSveQRFT--
+Kind regards,
+Niklas
 
