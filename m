@@ -1,104 +1,110 @@
-Return-Path: <devicetree+bounces-72974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A2558FD929
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 23:37:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63D0F8FD937
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 23:38:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE577B23C94
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 21:37:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 141361F23149
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 21:38:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDDFB153837;
-	Wed,  5 Jun 2024 21:35:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D96C715FA7B;
+	Wed,  5 Jun 2024 21:38:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N7rSWXPi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vLRhpOph"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D2EF15A877;
-	Wed,  5 Jun 2024 21:35:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABD6B15FA8F;
+	Wed,  5 Jun 2024 21:38:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717623302; cv=none; b=M0CiEEWtsU88Qm4tUdGrq7DX1qIih7BO5NGYcEpVs9u5G8VbNOsdp5VQrysG4ulDAzPzu7VMTRY8hNnnhrkwLyCrxVd15sM4908tWuUM+jrBiOlxM6qixYmuQ4wRBbX+2IguKLNfLfDkwvQfgieIZqM771ohwaee37snwGER9Ps=
+	t=1717623495; cv=none; b=GaTKPlg5z5weyip7tCpsEu74cxkUoVruvqnuPvKFpSJosT5uwNmcAk/t5C8QKvc3NlawSfyEnpb9vEt1qB9CezKt8Vdm3iw7eAGLvQ248bQ9btDRHHYYADN9T5nqrklxPcGxx7M9Mzd18LUSYTbj+oT2PTWQV+vl4YouBrK0AnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717623302; c=relaxed/simple;
-	bh=M0UoLmlMVzW8p909y9nZdkAGH5fZZHKsZpVrcyD4X7A=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=BRMPDDX8uvCCH9pN0RJUh427zOd+WioHfdsTdzXjI+qZAI1izjWGYzsmrkhwheqX5/Or+6nEqfWqNnDu9zcTFqZtp1sDBaGmX8bNXoQe6+XM8NCFTGsq3mXd1TWpkjLGrMmq1jgz67ryS6ukh9Jhi3k12LfiwZtyLD4F/q313EM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N7rSWXPi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F93EC2BD11;
-	Wed,  5 Jun 2024 21:35:01 +0000 (UTC)
+	s=arc-20240116; t=1717623495; c=relaxed/simple;
+	bh=D+XNwiT5oc5Dm3t9kYZHsZnZ+hfVu8uRIo4dcxzvk7c=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ne8B6f4D/YJX4iOaXotCOjfbp1cz9NLcGr1VPDTSOW0M0gGUzkxA72yZkGP4l/G5727ZQ+NgI+ZGmt/kYQfqFOfdrkiIdyY5zKe5hMXTHls8h9spTajiLkEsWRETXdUFMI7MtNWXgB9kphaaQHiwOB3btntUhXZ9XsS9VpFkNbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vLRhpOph; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34EC6C4AF1B;
+	Wed,  5 Jun 2024 21:38:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717623302;
-	bh=M0UoLmlMVzW8p909y9nZdkAGH5fZZHKsZpVrcyD4X7A=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=N7rSWXPiGPaLBdQ2ie1VWb4kEnIz8LVzuINCO+kqtPN3zcmHPXwrlF6ikAIZCiQft
-	 l79P33uVcy13mEhIAUeycr58sW0SzwOJqkWuKcgJ9cydLCS60qj87i64Z/+DDrEkR3
-	 /qNENcyT+/KyJOo+KIZOQcln+Y1Dxp0+85bgekpVw73ZOqc9ZqsS+hanRMCH5jFicZ
-	 TFUZKp09xPT+Yl6APaBKA+nNilrHH99NxWFNp99paahBpkPoXtKMSid66gT3wTo2oF
-	 DuP94/UYpxe908q7KN/oHjnfAg/sQ2qQTnUisVE1SsCGePmlMuNp/5nsl/O9rnEHv0
-	 oBDsoz4vu3ClA==
-Date: Wed, 5 Jun 2024 16:34:59 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Simon Horman <horms@kernel.org>,
-	Sai Krishna Gajula <saikrishnag@marvell.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Lee Jones <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Lars Povlsen <lars.povlsen@microchip.com>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	netdev@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 18/19] mfd: Add support for LAN966x PCI device
-Message-ID: <20240605213459.GA781155@bhelgaas>
+	s=k20201202; t=1717623495;
+	bh=D+XNwiT5oc5Dm3t9kYZHsZnZ+hfVu8uRIo4dcxzvk7c=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=vLRhpOphNGmBaQmxfLFjNesmRJ8CdhImZQC71upgsbQ9PPymnKlCzrlqFjLGIkzxY
+	 FIV7raA/XCMVmU5o+l3I5StSQvgAOUajlN6bNfywQwvMrirXHu609WSmlsKD4wM/BT
+	 MMxuQifeVDY7YfTfT0t28C7KmuTc3dUblWm+pkhhAiYha2eipBYX4fP1gE+E7wLHHn
+	 24ed61T32aZ9YM92xUTb6Xs5bFpJb8Onne/DVujNek8MEgDREqJtKyKFKnDcTuUDoX
+	 fm9vUtzVjbH0I2hRysdQTdmMrwMCnIUZgzEyk4o8mxNZyxqi55LcyecAw2wXk+2mIn
+	 7k2nMmp+sQIaA==
+From: Mark Brown <broonie@kernel.org>
+To: lgirdwood@gmail.com, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+ shengjiu.wang@gmail.com, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xiubo.Lee@gmail.com, festevam@gmail.com, nicoleotsuka@gmail.com, 
+ perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org, 
+ linuxppc-dev@lists.ozlabs.org, Shengjiu Wang <shengjiu.wang@nxp.com>
+In-Reply-To: <1715656329-8061-1-git-send-email-shengjiu.wang@nxp.com>
+References: <1715656329-8061-1-git-send-email-shengjiu.wang@nxp.com>
+Subject: Re: [PATCH v2 0/2] ASoC: fsl_xcvr: Support i.MX95 platform
+Message-Id: <171762349194.565712.7362032139063923896.b4-ty@kernel.org>
+Date: Wed, 05 Jun 2024 22:38:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240527161450.326615-19-herve.codina@bootlin.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14-dev-d4707
 
-On Mon, May 27, 2024 at 06:14:45PM +0200, Herve Codina wrote:
-> Add a PCI driver that handles the LAN966x PCI device using a device-tree
-> overlay. This overlay is applied to the PCI device DT node and allows to
-> describe components that are present in the device.
+On Tue, 14 May 2024 11:12:07 +0800, Shengjiu Wang wrote:
+> On i.MX95 wakeup domain, there is one instance of Audio XCVR
+> supporting SPDIF mode with a connection to the Audio XCVR physical
+> interface.
 > 
-> The memory from the device-tree is remapped to the BAR memory thanks to
-> "ranges" properties computed at runtime by the PCI core during the PCI
-> enumeration.
-> The PCI device itself acts as an interrupt controller and is used as the
-> parent of the internal LAN966x interrupt controller to route the
-> interrupts to the assigned PCI INTx interrupt.
+> changes in v2:
+> - Merge patch 1&2, 3&4 from v1 together.
+> - Add more comments in commit message
+> - Add constaint for clocks used on i.mx95
+> - Add 'select SND_SOC_FSL_UTILS' for compiling issue.
+> 
+> [...]
 
-Several patches in this series have things like this where it appears
-the last two sentences are intended to be separate paragraphs, but the
-only way to tell is that the first ends with a short line, which is
-annoying to read.
+Applied to
 
-Perhaps either add a blank line between or rewrap the whole thing into
-a single paragraph that fills 75 columns or so?
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/2] ASoC: dt-bindings: fsl,xcvr: Add compatible string for i.MX95
+      commit: fc1277335ffa0d180c76ddccf5fe27fc75674e67
+[2/2] ASoC: fsl_xcvr: Add support for i.MX95 platform
+      commit: f13b349e3c70320ef5a86edfc888a6feb612abb0
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
