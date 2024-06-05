@@ -1,175 +1,461 @@
-Return-Path: <devicetree+bounces-72697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 723568FC8FC
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 12:26:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21B2A8FC918
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 12:29:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2223A284E83
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 10:26:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 38CC61C2305D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 10:29:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BC13192B78;
-	Wed,  5 Jun 2024 10:25:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7323C19049A;
+	Wed,  5 Jun 2024 10:29:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="CWJ/CNP2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u4G5NntM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2078.outbound.protection.outlook.com [40.107.92.78])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DD54191469;
-	Wed,  5 Jun 2024 10:25:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.92.78
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717583132; cv=fail; b=q0WsxGp7E0eDcFGTMAu7J93HgfH4QOZPSjlPaHXK9d/dmxBvMsW2szpkIJu2s0N2Rdh1twFK3NaGmN3TS30354Da91KcPVC2ZPb++ax2wO1xKmChOsIuqfjTMmC7tPdGYOZg6MwILGSkufUX2Pb10tvufZXb1GP23qiMBU3qxzw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717583132; c=relaxed/simple;
-	bh=CCqU4x7mkGbjoQREGgzs3KrteUuL9K18B7m7Y3uM4a8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=S1SipAhgVYCiWFX6F4WgW6lxSto54yvDZ7faqV7UEkM/xB8tldcf59gfWGIhTxmFa1XmZF05RvY5yZ8aCY9i/qoWyITljSLyIpaz0QhYikuQo6ZuOMn15SLZFaHmQhUEv0kU5DWOYObb9fq+kC/TndMolUnRyCsO/fOIVoCrOoA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=CWJ/CNP2; arc=fail smtp.client-ip=40.107.92.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Aww4p7uAHQO9LhPkHIKjX0c8O1l8ttdSKroDpiLAMKTdZpdu5yc9Dm36NF4ollc6Y7HQy1Nfx2iWYCkFAHghhu1UpPyo6KoGUcon0B12mZ0qC7fA1dhQdXgyB+wKVBPphIJtv3tfictKhzKzeVEsVWKuHq2iU9xhBDocoebxc9SKPQigRzB6O+eNGjRf1cRftDNclnoe6IAD9MKOHFBvlDw6UC3JXbMtL8HJBaTzQ2NdfSweFDknF9PLnaTqHKD7RepYaIQheuau6csMgiunh3ulkVMa65XVFNxvD20GRVumSKuSyv82OxyBSj61DYozQaxqdP2OGZp1WrDScv4rBg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tIAsN17kimib3Rc9Nt+u8IPzDOrqWVvYFyH6eUCXZkc=;
- b=gR/Ol1nsuxscL3ZQ6bW7vMnA53J5zzlXiMgBPp9uXjlyS0XCvLDJbwUBQzeV/UG5Lb1qSZc7vy2mUudSp5Wqb1z3cN3DMOtgjhHxZc5tNZj9zDwK3tUwU+hJ/hhjS+BNAI8fhF/wZn3w8ZG3JfiPdV3ywtBwk5uhjWH5s5HiC6tbT7vMz9gvhkmBUKqr+JkLXfZtLYuWEw3N54P99vdx+3Qc7gF4tnyN5UINQx6hEjaoiRR048TzlTOtcyQ7yTxog8zf9rTtr8BKnplZzSfCkZwjPmD5s1X1ub0oRJlN6swhA/yM2kcYbM936nkAMk26hPKBmT3omZR0PsDy7VILaQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=microchip.com smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tIAsN17kimib3Rc9Nt+u8IPzDOrqWVvYFyH6eUCXZkc=;
- b=CWJ/CNP2rNCQ1eKM9dR601oM910G+NBLUJR8J2PnI4g30+MdiO1aZ3ZqhDicVgPvymdAeZMdwlEVnCWgzNh2pwRByK4oup8nVvu0t0Yc1G3HRvON2ceHa4AeUhAyd3GqKD2EQpLpeM5DpKeWYEShWiFyYO8/9sG5PfbnHMIyhYg=
-Received: from DM6PR06CA0063.namprd06.prod.outlook.com (2603:10b6:5:54::40) by
- MN2PR12MB4045.namprd12.prod.outlook.com (2603:10b6:208:1d6::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.31; Wed, 5 Jun
- 2024 10:25:26 +0000
-Received: from DS1PEPF0001709C.namprd05.prod.outlook.com
- (2603:10b6:5:54:cafe::47) by DM6PR06CA0063.outlook.office365.com
- (2603:10b6:5:54::40) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7656.17 via Frontend
- Transport; Wed, 5 Jun 2024 10:25:26 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DS1PEPF0001709C.mail.protection.outlook.com (10.167.18.106) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7633.15 via Frontend Transport; Wed, 5 Jun 2024 10:25:26 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 5 Jun
- 2024 05:25:25 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 5 Jun
- 2024 05:25:24 -0500
-Received: from xhdvineethc40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Wed, 5 Jun 2024 05:25:20 -0500
-From: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
-To: <nicolas.ferre@microchip.com>, <claudiu.beznea@tuxon.dev>,
-	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-	<pabeni@redhat.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<linux@armlinux.org.uk>, <vadim.fedorenko@linux.dev>, <andrew@lunn.ch>
-CC: <vineeth.karumanchi@amd.com>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, <git@amd.com>
-Subject: [PATCH net-next v3 4/4] dt-bindings: net: cdns,macb: Deprecate magic-packet property
-Date: Wed, 5 Jun 2024 15:54:57 +0530
-Message-ID: <20240605102457.4050539-5-vineeth.karumanchi@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240605102457.4050539-1-vineeth.karumanchi@amd.com>
-References: <20240605102457.4050539-1-vineeth.karumanchi@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46ECE1946D2;
+	Wed,  5 Jun 2024 10:29:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717583351; cv=none; b=cGWquWMVO9o7kWxKw1uclYVLTMM1tBdVelqjj6nbwwZhj9waj0xExio6OmZrK9GLWvtfi5MZA1K8Zu301n5t4YPDpmbnIOr1Uvp89kim/MGFuOM6l81SYxGRmAXzjCckepL4qN4Y4U57DNAuhDE/muOvWACy+zVXFYTRhaRKYqI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717583351; c=relaxed/simple;
+	bh=KJFx8mLLSIvcgUcKxYg+ceOAwzffFdULwa5Tt+9dI5M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YsprxCRsrILFR79P9FuPh44G/cy4DuzYIXvRKnObilDUEilsha7nma6Vtkq6uu6bfE+tmf1MdEzgmoXPOx0npkPDoE+JN3jo18etvd1X/f3ZpdXh3drcfl0yNfz1SHiemM2GdIzJTSP7M4GH5Gy+pu72WmGLCn9tXXNL8KkdB54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u4G5NntM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FF68C3277B;
+	Wed,  5 Jun 2024 10:29:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717583350;
+	bh=KJFx8mLLSIvcgUcKxYg+ceOAwzffFdULwa5Tt+9dI5M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=u4G5NntMM2wDB31s4HGsO6c4LRBVahT/UZcCeSvfkSI3qnIVBk/TuPR/VAXBKqCrX
+	 htmjEhYk2809GORu/1+2DNLEC+Ycf84OAsS4YBvEgXCvVdVbQU6RwzRrO8SsusqAyk
+	 dXXUntteXLNzhz5rCGIFxi3leWQi6idIF4Ipn6szdaSgPTOuL/x7fD9V+cl3u0bD0Q
+	 uogm4jFNQUwMf4s++43uh8IBeaXieCBzpIvZzqGLRH6K+JEPrTX6EWuNyAFaizG836
+	 +iu6huLB4GWUWXvqZjwU97m7dwC2NWmo62fsKf1TTDhjwzOKUD4RbCmssPkNkUR6kv
+	 1H+tWpapWYkdA==
+Message-ID: <869a876f-6ad8-40ff-85f2-268fb49fd475@kernel.org>
+Date: Wed, 5 Jun 2024 12:29:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF0001709C:EE_|MN2PR12MB4045:EE_
-X-MS-Office365-Filtering-Correlation-Id: 30fd454d-af37-48ce-c411-08dc8549d0c0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230031|1800799015|36860700004|376005|7416005|82310400017|921011;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?4GRFIQZ9DPPBpfKD5HWHvCoetFiKz0rSlM32IzOsvK/Es3FwX/4t2yt4tgaF?=
- =?us-ascii?Q?nscy8qvoNIUMLcaYiFdLXoo7zBIJNKkL/wkykC1ZJ/uJFiYwadp++RxrlNMC?=
- =?us-ascii?Q?Dq5K3reeT7bBCL0T94c0jeOcPYjDDUcad0Dt6W4kpBkijZnnpoHELrcHcr0r?=
- =?us-ascii?Q?vwHdq3p4qkHuyGYITDE1BVy988R202+TeXe13oYXk4Nc0jvqdxqBUKrDef19?=
- =?us-ascii?Q?XFQ8UK+g7pwlVdB5FnglznJUj5fBrFxdLtQuXJhqRD8QU4b4Ia9e/gSRAEvQ?=
- =?us-ascii?Q?ZO4U2Zqh16Q0CL162+E8oxd97WoaMV43h9weofTsSx+Ha3RTcaVzRgrf0QrS?=
- =?us-ascii?Q?mMSeKI+89uCTPKYqt0VVIcHQw7EHnROzHxu44ct7HSvLmggTFaGZPxA6p6Nm?=
- =?us-ascii?Q?WmtG4sr56Br89zo+uJnbAjg6xEw62FRWOf8PFjRUPXPbXUkl/MFU5yG/2SnE?=
- =?us-ascii?Q?+wjjMHA+y/Uee7W9bhzbafNKlBCQq6B5TMi30mb9k66cdIb+k+stfV9MnmwV?=
- =?us-ascii?Q?vmTkciINUdq1Lih3OTmCVTjGA+pIO9AqUpSOIrLgMP1lRJZAThiO3spZsP5s?=
- =?us-ascii?Q?9KxGsxe10exUu8bpvbLEAJg0rzHgqrVmrCbSVKj3+UGgtUkahN9CL3W1nRVS?=
- =?us-ascii?Q?ZXl5Tg2Iy/TnFs4iX3js1jYYAaTwRdy8+zIZv/4axa1Ak4BoyAM8Pnl2xLRi?=
- =?us-ascii?Q?PHSmXnQ3eGdhgW0nqeFdQTtsmiy5QE2skhLV81RjsyGuwM1GWAfwiL2xbL6z?=
- =?us-ascii?Q?BFzaEtMQyX809WaaM0F+Kg7IOhEUlSwpCULGRNxFo3r8zZDNVj4dnAZMa2O4?=
- =?us-ascii?Q?5duwdXB66z3IRroveelgyhzZ/ywiRH6G0QNIAA+hw1ScqI9/X4p2qmPuULpm?=
- =?us-ascii?Q?nMk2uWb/Uw88FxZzncXXsCRBshWOHUVGsYGgts+eYdDSgVsf0qEdWctNX0Hn?=
- =?us-ascii?Q?DA/BhFG5KHpj4EmN7G+wLTrNzBy5PI99NfBrciJkCJE9FrJiavO9mlzExCvm?=
- =?us-ascii?Q?jqE8zyP9PrbBsY/PX7Owb4MxkXRtPT1NYkuwzeu/6bj1eZkYJkZUcWpubmiF?=
- =?us-ascii?Q?yW3Klwi3seUCuyzQK7kT8eqm8rWjbGgo2NcAtnuNWA3LAOyze8R/PsmqeudV?=
- =?us-ascii?Q?WzHDAh+zESP8aUj/8JIvqOQmZXRYm/kBJBAFm92HlGu7+2j13s295qZRxvDM?=
- =?us-ascii?Q?TVMKGdsoL2ls3egLJSmAQlColGiK+TVS2ucRaNzFv/y5XSsBaEQKfiyuckoE?=
- =?us-ascii?Q?WpTHCjdyZsa7QGUIaoGsNraxtoSfiOoEY/DV+jGLLOl4XV8YmCx9fSE+1gpC?=
- =?us-ascii?Q?zvGJKefcPtOI5/UDIbr4eGLg2V+e6c/5zighYHP73A/gug6o8DplV6/r20n+?=
- =?us-ascii?Q?lfrXr2eqQ28x7X3769wGbZSs2E7EFxXlynXjRQsQcB4PUGOfS4bQcMS1B64H?=
- =?us-ascii?Q?5C+FWGOLKdk=3D?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(1800799015)(36860700004)(376005)(7416005)(82310400017)(921011);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2024 10:25:26.0231
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 30fd454d-af37-48ce-c411-08dc8549d0c0
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DS1PEPF0001709C.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4045
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 4/5] Add aw963xx series related interfaces to the
+ aw_sar driver.
+To: wangshuaijie@awinic.com, dmitry.torokhov@gmail.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, jeff@labundy.com,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: liweilei@awinic.com, kangjiajun@awinic.com
+References: <20240605091143.163789-1-wangshuaijie@awinic.com>
+ <20240605091143.163789-5-wangshuaijie@awinic.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240605091143.163789-5-wangshuaijie@awinic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-WOL modes such as magic-packet should be an OS policy.
-By default, advertise supported modes and use ethtool to activate
-the required mode.
+On 05/06/2024 11:11, wangshuaijie@awinic.com wrote:
+> From: shuaijie wang <wangshuaijie@awinic.com>
+> 
+> Signed-off-by: shuaijie wang <wangshuaijie@awinic.com>
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+> | Reported-by: Dan Carpenter <error27@gmail.com>
+> ---
+>  drivers/input/misc/aw_sar/aw963xx/aw963xx.c | 974 ++++++++++++++++++++
+>  drivers/input/misc/aw_sar/aw963xx/aw963xx.h | 753 +++++++++++++++
+>  2 files changed, 1727 insertions(+)
+>  create mode 100644 drivers/input/misc/aw_sar/aw963xx/aw963xx.c
+>  create mode 100644 drivers/input/misc/aw_sar/aw963xx/aw963xx.h
+> 
+> diff --git a/drivers/input/misc/aw_sar/aw963xx/aw963xx.c b/drivers/input/misc/aw_sar/aw963xx/aw963xx.c
+> new file mode 100644
+> index 000000000000..7ce40174a089
+> --- /dev/null
+> +++ b/drivers/input/misc/aw_sar/aw963xx/aw963xx.c
+> @@ -0,0 +1,974 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * AWINIC sar sensor driver (aw963xx)
+> + *
+> + * Author: Shuaijie Wang<wangshuaijie@awinic.com>
+> + *
+> + * Copyright (c) 2024 awinic Technology CO., LTD
+> + */
+> +#include "aw963xx.h"
+> +#include "../aw_sar.h"
+> +
+> +#define AW963XX_I2C_NAME "aw963xx_sar"
+> +
+> +static void aw963xx_set_cs_as_irq(struct aw_sar *p_sar, int flag);
+> +static void aw963xx_get_ref_ch_enable(struct aw_sar *p_sar);
+> +
+> +static int32_t aw963xx_read_init_over_irq(void *load_bin_para)
+> +{
+> +	struct aw_sar *p_sar = (struct aw_sar *)load_bin_para;
+> +	uint32_t cnt = 1000;
+> +	uint32_t reg;
+> +	int32_t ret;
+> +
+> +	while (cnt--) {
+> +		ret = aw_sar_i2c_read(p_sar->i2c, REG_IRQSRC, &reg);
+> +		if (ret != 0) {
+> +			dev_err(p_sar->dev, "i2c error %d", ret);
+> +			return ret;
+> +		}
+> +		if ((reg & 0x01) == 0x01) {
+> +			aw_sar_i2c_read(p_sar->i2c, REG_FWVER, &reg);
+> +			return 0;
+> +		}
+> +		mdelay(1);
+> +	}
+> +
+> +	aw_sar_i2c_read(p_sar->i2c, REG_FWVER, &reg);
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static void aw963xx_convert_little_endian_2_big_endian(struct aw_bin *aw_bin)
+> +{
+> +	uint32_t start_index = aw_bin->header_info[0].valid_data_addr;
+> +	uint32_t fw_len = aw_bin->header_info[0].reg_num;
+> +	uint32_t uints = fw_len / AW963XX_SRAM_UPDATE_ONE_UINT_SIZE;
+> +	uint8_t tmp1;
+> +	uint8_t tmp2;
+> +	uint8_t tmp3;
+> +	uint8_t tmp4;
+> +	int i;
+> +
+> +	for (i = 0; i < uints; i++) {
+> +		tmp1 = aw_bin->info.data[start_index + i * AW963XX_SRAM_UPDATE_ONE_UINT_SIZE + 3];
+> +		tmp2 = aw_bin->info.data[start_index + i * AW963XX_SRAM_UPDATE_ONE_UINT_SIZE + 2];
+> +		tmp3 = aw_bin->info.data[start_index + i * AW963XX_SRAM_UPDATE_ONE_UINT_SIZE + 1];
+> +		tmp4 = aw_bin->info.data[start_index + i * AW963XX_SRAM_UPDATE_ONE_UINT_SIZE];
+> +		aw_bin->info.data[start_index + i * AW963XX_SRAM_UPDATE_ONE_UINT_SIZE]     = tmp1;
+> +		aw_bin->info.data[start_index + i * AW963XX_SRAM_UPDATE_ONE_UINT_SIZE + 1] = tmp2;
+> +		aw_bin->info.data[start_index + i * AW963XX_SRAM_UPDATE_ONE_UINT_SIZE + 2] = tmp3;
+> +		aw_bin->info.data[start_index + i * AW963XX_SRAM_UPDATE_ONE_UINT_SIZE + 3] = tmp4;
+> +	}
+> +}
+> +
+> +/**
+> + * @aw963xx_sram_fill_not_wrote_area()
+> + *         |----------------code ram-----------------|
+> + *       0x2000                                    0x4fff
+> + *         |--- app wrote here ---|--fill with 0xff--|
+> + *
+> + *         if the size of app is less than the size of code ram, the rest of the
+> + *         ram is filled with 0xff.
+> + * @load_bin_para
+> + * @offset the rear addr of app
+> + * @return int32_t
+> + */
+> +static int32_t aw963xx_sram_fill_not_wrote_area(void *load_bin_para, uint32_t offset)
+> +{
+> +	uint32_t last_pack_len = (AW963XX_SRAM_END_ADDR - offset) %
+> +						AW963XX_SRAM_UPDATE_ONE_PACK_SIZE;
+> +	uint32_t pack_cnt = last_pack_len == 0 ?
+> +			((AW963XX_SRAM_END_ADDR - offset) / AW963XX_SRAM_UPDATE_ONE_PACK_SIZE) :
+> +			((AW963XX_SRAM_END_ADDR - offset) / AW963XX_SRAM_UPDATE_ONE_PACK_SIZE) + 1;
+> +	uint8_t buf[AW963XX_SRAM_UPDATE_ONE_PACK_SIZE + 2] = { 0 };
+> +	struct aw_sar *p_sar = (struct aw_sar *)load_bin_para;
+> +	uint32_t download_addr_with_ofst;
+> +	uint8_t *r_buf;
+> +	int32_t ret;
+> +	uint32_t i;
+> +
+> +	r_buf = devm_kzalloc(p_sar->dev, AW963XX_SRAM_UPDATE_ONE_PACK_SIZE, GFP_KERNEL);
+> +	if (!r_buf)
+> +		return -ENOMEM;
+> +
+> +	memset(buf, 0xff, sizeof(buf));
+> +	for (i = 0; i < pack_cnt; i++) {
+> +		memset(r_buf, 0, AW963XX_SRAM_UPDATE_ONE_PACK_SIZE);
+> +		download_addr_with_ofst = offset + i * AW963XX_SRAM_UPDATE_ONE_PACK_SIZE;
+> +		buf[0] = (uint8_t)(download_addr_with_ofst >> OFFSET_BIT_8);
+> +		buf[1] = (uint8_t)(download_addr_with_ofst);
+> +		if (i != (pack_cnt - 1)) {
+> +			ret = aw_sar_i2c_write_seq(p_sar->i2c, buf,
+> +					AW963XX_SRAM_UPDATE_ONE_PACK_SIZE + 2);
+> +			if (ret != 0) {
+> +				dev_err(p_sar->dev, "cnt%d, write_seq error!", i);
+> +				devm_kfree(p_sar->dev, r_buf);
+> +				return ret;
+> +			}
+> +			ret = aw_sar_i2c_read_seq(p_sar->i2c, buf, 2, r_buf,
+> +					AW963XX_SRAM_UPDATE_ONE_PACK_SIZE);
+> +			if (ret != 0) {
+> +				dev_err(p_sar->dev, "cnt%d, read_seq error!", i);
+> +				devm_kfree(p_sar->dev, r_buf);
+> +				return ret;
+> +			}
+> +			if (memcmp(&buf[2], r_buf, AW963XX_SRAM_UPDATE_ONE_PACK_SIZE) != 0) {
+> +				dev_err(p_sar->dev, "read is not equal to write ");
+> +				devm_kfree(p_sar->dev, r_buf);
+> +				return -EINVAL;
+> +			}
+> +		} else {
+> +			ret = aw_sar_i2c_write_seq(p_sar->i2c, buf, last_pack_len + 2);
+> +			if (ret != 0) {
+> +				dev_err(p_sar->dev, "cnt%d, write_seq error!", i);
+> +				devm_kfree(p_sar->dev, r_buf);
+> +				return ret;
+> +			}
+> +			ret = aw_sar_i2c_read_seq(p_sar->i2c, buf, 2, r_buf, last_pack_len);
+> +			if (ret != 0) {
+> +				dev_err(p_sar->dev, "cnt%d, read_seq error!", i);
+> +				devm_kfree(p_sar->dev, r_buf);
+> +				return ret;
+> +			}
+> +			if (memcmp(&buf[2], r_buf, last_pack_len) != 0) {
+> +				dev_err(p_sar->dev, "read is not equal to write ");
+> +				devm_kfree(p_sar->dev, r_buf);
+> +				return -EINVAL;
+> +			}
+> +		}
+> +	}
+> +
+> +	devm_kfree(p_sar->dev, r_buf);
+> +
+> +	return 0;
+> +}
+> +
+> +static int32_t aw963xx_sram_data_write(struct aw_bin *aw_bin, void *load_bin_para)
+> +{
+> +	uint8_t buf[AW963XX_SRAM_UPDATE_ONE_PACK_SIZE + 2] = { 0 };
+> +	uint32_t start_index = aw_bin->header_info[0].valid_data_addr;
+> +	uint32_t fw_bin_version = aw_bin->header_info[0].app_version;
+> +	uint32_t download_addr = AW963XX_RAM_START_ADDR;
+> +	uint32_t fw_len = aw_bin->header_info[0].reg_num;
+> +	uint32_t last_pack_len = fw_len % AW963XX_SRAM_UPDATE_ONE_PACK_SIZE;
+> +	struct aw_sar *p_sar = (struct aw_sar *)load_bin_para;
+> +	uint32_t download_addr_with_ofst = 0;
+> +	uint32_t pack_cnt;
+> +	uint8_t *r_buf;
+> +	int32_t ret = -EINVAL;
+> +	uint32_t i;
+> +
+> +	r_buf = devm_kzalloc(p_sar->dev, AW963XX_SRAM_UPDATE_ONE_PACK_SIZE, GFP_KERNEL);
+> +	if (!r_buf)
+> +		return -ENOMEM;
+> +
+> +	pack_cnt = ((fw_len % AW963XX_SRAM_UPDATE_ONE_PACK_SIZE) == 0) ?
+> +			(fw_len / AW963XX_SRAM_UPDATE_ONE_PACK_SIZE) :
+> +			(fw_len / AW963XX_SRAM_UPDATE_ONE_PACK_SIZE) + 1;
+> +
+> +	dev_info(p_sar->dev, "fw_bin_version = 0x%x", fw_bin_version);
+> +	for (i = 0; i < pack_cnt; i++) {
+> +		memset(r_buf, 0, AW963XX_SRAM_UPDATE_ONE_PACK_SIZE);
+> +		download_addr_with_ofst = download_addr + i * AW963XX_SRAM_UPDATE_ONE_PACK_SIZE;
+> +		buf[0] = (uint8_t)(download_addr_with_ofst >> OFFSET_BIT_8);
+> +		buf[1] = (uint8_t)(download_addr_with_ofst);
+> +		if (i != (pack_cnt - 1)) {
+> +			memcpy(&buf[2], &aw_bin->info.data[start_index +
+> +					i * AW963XX_SRAM_UPDATE_ONE_PACK_SIZE],
+> +					AW963XX_SRAM_UPDATE_ONE_PACK_SIZE);
+> +			ret = aw_sar_i2c_write_seq(p_sar->i2c, buf,
+> +					AW963XX_SRAM_UPDATE_ONE_PACK_SIZE + 2);
+> +			if (ret != 0) {
+> +				dev_err(p_sar->dev, "cnt%d, write_seq error!", i);
+> +				goto err_out;
+> +			}
+> +			ret = aw_sar_i2c_read_seq(p_sar->i2c, buf, 2, r_buf,
+> +					AW963XX_SRAM_UPDATE_ONE_PACK_SIZE);
+> +			if (ret != 0) {
+> +				dev_err(p_sar->dev, "cnt%d, read_seq error!", i);
+> +				goto err_out;
+> +			}
+> +			if (memcmp(&buf[2], r_buf, AW963XX_SRAM_UPDATE_ONE_PACK_SIZE) != 0) {
+> +				dev_err(p_sar->dev, "read is not equal to write ");
+> +				ret = -EIO;
+> +				goto err_out;
+> +			}
+> +		} else { // last pack process
+> +			memcpy(&buf[2], &aw_bin->info.data[start_index +
+> +					i * AW963XX_SRAM_UPDATE_ONE_PACK_SIZE], last_pack_len);
+> +			ret = aw_sar_i2c_write_seq(p_sar->i2c, buf, last_pack_len + 2);
+> +			if (ret != 0) {
+> +				dev_err(p_sar->dev, "cnt%d, write_seq error!", i);
+> +				goto err_out;
+> +			}
+> +			ret = aw_sar_i2c_read_seq(p_sar->i2c, buf, 2, r_buf, last_pack_len);
+> +			if (ret != 0) {
+> +				dev_err(p_sar->dev, "cnt%d, read_seq error!", i);
+> +				goto err_out;
+> +			}
+> +			if (memcmp(&buf[2], r_buf, last_pack_len) != 0) {
+> +				dev_err(p_sar->dev, "read is not equal to write ");
+> +				ret = -EIO;
+> +				goto err_out;
+> +			}
+> +			/* fill 0xff in the area that not worte. */
+> +			ret = aw963xx_sram_fill_not_wrote_area(load_bin_para,
+> +					download_addr_with_ofst + last_pack_len);
+> +			if (ret != 0) {
+> +				dev_err(p_sar->dev, "cnt%d, sram_fill_not_wrote_area error!", i);
+> +				goto err_out;
+> +			}
+> +		}
+> +	}
+> +
+> +err_out:
+> +	devm_kfree(p_sar->dev, r_buf);
 
-Suggested-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
----
- Documentation/devicetree/bindings/net/cdns,macb.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Why do you use managed interface?
 
-diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-index 2c71e2cf3a2f..3c30dd23cd4e 100644
---- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
-+++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-@@ -146,6 +146,7 @@ patternProperties:
- 
-       magic-packet:
-         type: boolean
-+        deprecated: true
-         description:
-           Indicates that the hardware supports waking up via magic packet.
- 
--- 
-2.34.1
+> +
+> +	return ret;
+> +}
+> +
+> +static int32_t aw963xx_update_firmware(struct aw_bin *aw_bin, void *load_bin_para)
+> +{
+> +	struct aw_sar *p_sar = (struct aw_sar *)load_bin_para;
+> +	struct aw963xx *aw963xx = (struct aw963xx *)p_sar->priv_data;
+> +	struct i2c_client *i2c = p_sar->i2c;
+> +	int32_t ret;
+> +
+> +	if (aw963xx->start_mode == AW963XX_ROM_MODE) {
+> +		dev_info(p_sar->dev, "no need to update fw.");
+> +		return 0;
+> +	}
+> +
+> +	//step1: close coderam shutdown mode
+
+Plaese fix your style to be consistent. There is a space after //.
+Always, so fix all your patches.
+
+
+
+...
+
+> +
+> +int32_t aw963xx_check_chipid(void *data)
+> +{
+> +	struct aw_sar *p_sar = (struct aw_sar *)data;
+> +	uint32_t reg_val;
+> +	int32_t ret;
+> +
+> +	if (!p_sar)
+> +		return -EINVAL;
+> +
+> +	ret = aw_sar_i2c_read(p_sar->i2c, REG_CHIP_ID0, &reg_val);
+> +	if (ret < 0) {
+> +		dev_err(p_sar->dev, "read CHIP ID failed: %d", ret);
+> +		return ret;
+> +	}
+> +
+> +	switch (reg_val) {
+> +	case AW96303_CHIP_ID:
+> +		dev_info(p_sar->dev, "aw96303 detected, 0x%04x", reg_val);
+
+Your driver is quite noisy. Reduce the severity of informational
+messages, because driver should be quiet on success.
+
+I don't understand why even having dev_info in 5 places instead of one
+place.
+
+> +		memcpy(p_sar->chip_name, AW96303, 8);
+> +		ret = 0;
+> +		break;
+> +	case AW96305_CHIP_ID:
+> +		dev_info(p_sar->dev, "aw96305 detected, 0x%04x", reg_val);
+> +		memcpy(p_sar->chip_name, AW96305, 8);
+> +		ret = 0;
+> +		break;
+> +	case AW96305BFOR_CHIP_ID:
+> +		dev_info(p_sar->dev, "aw96305bfor detected, 0x%04x", reg_val);
+> +		memcpy(p_sar->chip_name, AW96305BFOR, 8);
+> +		ret = 0;
+> +		break;
+> +	case AW96308_CHIP_ID:
+> +		dev_info(p_sar->dev, "aw96308 detected, 0x%04x", reg_val);
+> +		memcpy(p_sar->chip_name, AW96308, 8);
+> +		ret = 0;
+> +		break;
+> +	case AW96310_CHIP_ID:
+> +		dev_info(p_sar->dev, "aw96310 detected, 0x%04x", reg_val);
+> +		memcpy(p_sar->chip_name, AW96310, 8);
+
+No, all these memcpy are just silly. You later compare strings instead
+of comparing the detected chip id (integer).
+
+> +		ret = 0;
+> +		break;
+> +	default:
+> +		dev_info(p_sar->dev, "chip id error, 0x%04x", reg_val);
+> +		ret =  -EIO;
+
+Fix your style, just one space after =. This applies in multiple places.
+
+> +		break;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+
+There are so many trivial issues in this driver that I think you should
+start from huge cleanup from all these trivialities before sending to
+review. You try to upstream a downstream, poor quality code. This is
+always a pain. Instead you should take moderately recent driver, which
+passed review, as a template and work on top of it with Linux coding
+uniformed style.
+
+Best regards,
+Krzysztof
 
 
