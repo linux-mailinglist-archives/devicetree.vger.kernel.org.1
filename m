@@ -1,119 +1,130 @@
-Return-Path: <devicetree+bounces-72552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCA6E8FC476
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 09:24:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72E718FC494
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 09:32:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7944728B4A9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 07:24:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 304CF282A23
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 07:32:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1BED1922C6;
-	Wed,  5 Jun 2024 07:24:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QKVsIfM2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF14453BE;
+	Wed,  5 Jun 2024 07:32:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA4521C27;
-	Wed,  5 Jun 2024 07:24:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C11CD138C;
+	Wed,  5 Jun 2024 07:32:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717572282; cv=none; b=FFdvWYe2O9qA9UCm8+lJ5DksGNWYVjRxRk3PALyPfFKUyhuPPvFt0WtajwjWi8a8E904wKptVL7xfjThXBhKk0cIK4GFLAfx3s8ZbrHpbONOWxPv2aZzHjNG5JFeLokxEcIaucRyMOFQFCt9BrAkz/KCjcESWF51Ao6DDDZ+neE=
+	t=1717572730; cv=none; b=CodvWOc7NyEf0HxsLGvOrtKvnzq/nBijhq/J1N7alkqMsuDWLMza9QhuUsHhoTdBiTQja5FMJfzoMApwgW2tTf69MEuWJpQLjrT1rwH1x0rcnzk3zBd3NM3pExDZqup1DngD6OAeEncudvS/q2h+7HufgpRsgbfoedjOjcHOr5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717572282; c=relaxed/simple;
-	bh=SUY8FX2smZKlev1msDZHqJH0TCRWfu6CpWzZA69uFGg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uqxNghb1RNjInVIZQCTTlvkoGZ6prYvL6qXcSw6E7FspTztDj+xS6BJZucN1s2DhogTtz7IZSz4C4Ykw63UqKzdCoS/oZzw3e6XU97woSzpJ3I01zT2xNNkx+ImdqE0UMdl4p/cc4rcJ304MBLtTOUPiJglP9OoxEO/cQrQ7sIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QKVsIfM2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C190FC3277B;
-	Wed,  5 Jun 2024 07:24:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717572282;
-	bh=SUY8FX2smZKlev1msDZHqJH0TCRWfu6CpWzZA69uFGg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QKVsIfM2bLSzcud8xuu6cEk8uPQtyMQ2K5mUeyNh80mcW8sXU3DVnfPW/d7Cjk+3d
-	 FfH9zXWzYntPEkk39M9JMt2B3Sc70et+NlpTIrUR18LDbZUvmMYz9JTZLOVNVgZxUk
-	 1Zm67HkwmUDNuciEWL/Vmb7AHRLK8TMFuZFW2YYZqUdWDaPvF1D1RV0CA881mjNHwT
-	 WuvaVOF+4an8JBh8V5Z3peh9Y++TZRgsYefDkTZlOA3cK5A07Gy8gjf9IWYTGdX2P7
-	 G8tTIbxwB5irjgWPIyWcsg9IKaMWX8t36L9qnh8UDRNi5MeUaKIAv/44VQbCEE5i3R
-	 PQ/vV/rv93/yQ==
-Date: Wed, 5 Jun 2024 12:54:29 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Niklas Cassel <cassel@kernel.org>
-Cc: Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
-	Jon Lin <jon.lin@rock-chips.com>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v4 02/13] dt-bindings: PCI: snps,dw-pcie-ep: Add vendor
- specific interrupt-names
-Message-ID: <20240605072429.GD5085@thinkpad>
-References: <20240529-rockchip-pcie-ep-v1-v4-0-3dc00fe21a78@kernel.org>
- <20240529-rockchip-pcie-ep-v1-v4-2-3dc00fe21a78@kernel.org>
+	s=arc-20240116; t=1717572730; c=relaxed/simple;
+	bh=L7felvgTDTE09ggPSnDZ0q3MJbdTQWtdAg9r/F9GJCY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=l1fh0aFLFM/CRRdi89XXYjFT9OfLZP+n5jFU2rH4o4MmWs7NBhTSAD11KtgFmm/7Z+gji7a8xjtPEutlWRUD0ipgsoaaRNdYThnU/ASKj+EyK0xSJ45Mhxy3j8uAR9hFReHwpQhth+maliCoCMpot9lQBjYUFJEyyQdD3ETYUHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-62a08091c2bso70318417b3.0;
+        Wed, 05 Jun 2024 00:32:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717572727; x=1718177527;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4PbSG6kROXGWqIVI9Do+T1m9UykpgRSg/ltc8bSc+ps=;
+        b=mXQkRZoC/lEBUkiBOB2pdhXFLCUcTuxXNw2n7AE+pWIdJ2GIFKjy3FltZxrrGGJq43
+         WpjsQFRYcmOEAHD/TsoFlnlWogk7xpN9ia2QH8wB+rmMfjDXzT+KNvCu+gis7K0dsQJn
+         UoFopAptA3vi2DJTuJsmO3uvylGUPMWLXzv/i8vm8a762FCH3K0QC1ZUYj/cTiGIf+8o
+         lxih1aasG8TIxVANavs6UfhfrMeSUKzDa/WUomNOpQ7H4HOVpTHv4BKk12Du1BmBoK9n
+         QqQHOEKpsmoEWvtVd9nHOA+G0dzvgOvB1dliF7T8fyh809GrkOFCLkRBUAL1k4m8wd1E
+         97yg==
+X-Forwarded-Encrypted: i=1; AJvYcCXPGACfa4QW+DohVR8bF52BfMTIEaJBTcupTFPT9HMA6yWV4TFDMtWUfr6Gw84SnwRQAbDDvo89qzg55uZ2Jol2yMHfUCAaCDMPNnxv8ac8Rs/8jxG3hEog2HZqDeo49f9K57lNroXkbKTWYPBN70k9hgeTtGKA/xcDx0oy9MfXq6kM3JzLqu1wdV6X+dl6vMiJoR2HlXYXjGOV/iAHa4D6mXGpaPOSiggl
+X-Gm-Message-State: AOJu0YzETCh65CipwMqzHR4oSQ8+W0J4xBBnCp2c9i03dYAqQWXNP63K
+	fJl8q+6KrrPLsZLSr0ETkIYBvcswDVz/G3KZYXud283ko0Al6O/FCco+Jvr/
+X-Google-Smtp-Source: AGHT+IHhb5USEURkf/NEn1JZyFqHRnUBmdMa4dZ51guZsp5nhRbvocVkqJOKh282PLyDPenEJSdgMw==
+X-Received: by 2002:a81:f003:0:b0:627:dfbd:89e with SMTP id 00721157ae682-62cbb4a936fmr16219117b3.11.1717572727436;
+        Wed, 05 Jun 2024 00:32:07 -0700 (PDT)
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-62c765e63fasm21483307b3.32.2024.06.05.00.32.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Jun 2024 00:32:07 -0700 (PDT)
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-dfa4ad7f6dfso6048184276.1;
+        Wed, 05 Jun 2024 00:32:07 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCW3noEfFBn+eBjfTYNQSXM0jCNDaQ9duPvz+GSwdIWFdQPOrVjvBKmr1Y9luYhcxPgAtJj7BkUy2630LvaXSgEIil8DS8mZ7Oj/JYiuU731WSJ3Izy5RQhoRFeoAktdAXu5Gba6+xByQIYIah63FakyXh1ZyZT8jxspx+uF9OUGJe13vVTxUz2OvHWxYwtv+G3/CEWJx0v27oOTROM2uzKzPZNy57ZbZk8R
+X-Received: by 2002:a25:b2a5:0:b0:dfa:57e4:2df8 with SMTP id
+ 3f1490d57ef6-dfacac33113mr1782340276.23.1717572727091; Wed, 05 Jun 2024
+ 00:32:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240529-rockchip-pcie-ep-v1-v4-2-3dc00fe21a78@kernel.org>
+References: <20240604170513.522631-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240604170513.522631-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240604170513.522631-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 5 Jun 2024 09:31:55 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXsGLrgAfe=5VsL1F_sTjG1jxzU36s5iHaSeW3Nb3qwgA@mail.gmail.com>
+Message-ID: <CAMuHMdXsGLrgAfe=5VsL1F_sTjG1jxzU36s5iHaSeW3Nb3qwgA@mail.gmail.com>
+Subject: Re: [PATCH v5 5/5] serial: sh-sci: Add support for RZ/V2H(P) SoC
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org, 
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 29, 2024 at 10:28:56AM +0200, Niklas Cassel wrote:
-> Considering that some drivers (e.g. pcie-dw-rockchip.c) already use the
-> interrupt-names "sys", "pmc", "msg", "err" for the device tree binding in
-> Root Complex mode (snps,dw-pcie.yaml), it doesn't make sense that those
-> drivers should use different interrupt-names when running in Endpoint mode
-> (snps,dw-pcie-ep.yaml).
-> 
-> Therefore, since "sys", "pmc", "msg", "err" are already defined in
-> snps,dw-pcie.yaml, add them also for snps,dw-pcie-ep.yaml.
-> 
-> Signed-off-by: Niklas Cassel <cassel@kernel.org>
+Hu Prabhakar,
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-- Mani
-
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+On Tue, Jun 4, 2024 at 7:05=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.co=
+m> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add serial support for RZ/V2H(P) SoC with earlycon.
+>
+> The SCIF interface in the Renesas RZ/V2H(P) is similar to that available
+> in the RZ/G2L (R9A07G044) SoC, with the following differences:
+>
+> - RZ/V2H(P) SoC has three additional interrupts: one for Tx end/Rx ready
+>   and two for Rx and Tx buffer full, all of which are edge-triggered.
+> - RZ/V2H(P) supports asynchronous mode, whereas RZ/G2L supports both
+>   synchronous and asynchronous modes.
+> - There are differences in the configuration of certain registers such
+>   as SCSMR, SCFCR, and SCSPTR between the two SoCs.
+>
+> To handle these differences on RZ/V2H(P) SoC SCIx_RZV2H_SCIF_REGTYPE
+> is added.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml
-> index 00dec01f1f73..f5f12cbc2cb3 100644
-> --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml
-> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml
-> @@ -156,7 +156,7 @@ properties:
->              for new bindings.
->            oneOf:
->              - description: See native "app" IRQ for details
-> -              enum: [ intr ]
-> +              enum: [ intr, sys, pmc, msg, err ]
->  
->    max-functions:
->      maximum: 32
-> 
-> -- 
-> 2.45.1
-> 
+> Hi Geert, Ive restored your RB tag after rebase (as the changes were triv=
+al)
+> hope that's OK.
 
--- 
-மணிவண்ணன் சதாசிவம்
+Thanks, LGTM!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
