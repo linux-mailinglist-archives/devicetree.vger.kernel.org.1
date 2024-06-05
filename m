@@ -1,121 +1,146 @@
-Return-Path: <devicetree+bounces-72684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B79DA8FC86F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 11:58:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CAC98FC88D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 12:01:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 542E61F214A5
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 09:58:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CFB8284969
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 10:01:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 490AC18FDDC;
-	Wed,  5 Jun 2024 09:58:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E222E190065;
+	Wed,  5 Jun 2024 10:01:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b78bhk65"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tQLzxtYz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD1DC18FDD8
-	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 09:58:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D408549644
+	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 10:01:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717581485; cv=none; b=V6l/QbyJUyUoeWuLti/f+tltu1JEX9FNPIRB8xj5BHxj9Jie3RIIOzerssVN92Mi3ntJgbuQcV8wC4waGFIGBSTh6qHwJs5v+Q3ocE2ZondrNmJJUGPqe5azOH95bxnx7bHChKBo3IAGrJUyNgYg9cede605IwYmSBtRWriQD2M=
+	t=1717581686; cv=none; b=tHsqulTBYjEc2bV5aFh+C387MFU4fIUuMs8tZ/slYNgPq2Juaf4nTmBcBLiwvsReldVRLtf3CLhzm/QxXuLbuE/QVD3cr7szFkdQOaiH03wcuDiAkQToADwTf3nHyymC4zG1WvenTFa2F1lQooxsLK5HMwJPGhqePvzUPJAPyPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717581485; c=relaxed/simple;
-	bh=RQc4Y5JzCyPSexPf3Wi3TLrBGuonQNYkM259jWz7/zM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IU28TxJYvdh5wN9M+dSIGS3gwnZCZK/M9eWUeUmzxJfrjfheUdPQiuVxGlQK1wx+0W/6+isoATVs8fQ5j9l92YS1DnRpzm1CInrMc5uk/Qa6MB2KrDxjpgB0+IIik9IAYDdyBMD1XkATem0wgu4hM4g0JvlxR4Zu677qMF6UX2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b78bhk65; arc=none smtp.client-ip=209.85.219.177
+	s=arc-20240116; t=1717581686; c=relaxed/simple;
+	bh=X4J+NHCPUK/pGeuU2jk5RSkU7NENxyMnKn+lp9gIWQY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=fIapdABKpGC962hbvE3pXOtck2pvMs+0us6WRYQiEgwN18QHB5VPEHgwDTuL+CSJJ0M66TBsGSOJzQWuarXdTklmshEKpA0WZxO9Z57F/rsTE5DKdN2G0J4sL05cCnrR3Qo0e6W4EBtY4iCO4N7AxMkHvQ6tcQrwOd8KUEHfhaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tQLzxtYz; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dfac121b6a6so624099276.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 02:58:03 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-354f14bd80cso1565782f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 03:01:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717581483; x=1718186283; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=5mAYD1Avt8pq2XcOOEM7xebLX9m2RKKIBoR9HWmP6lo=;
-        b=b78bhk651qsOiAqBWWtYLgJE6cEi7LziBQvDru8GAH5ehAuqt8uz9dr0Ru+MwLWiRA
-         cyNzA1TmHVCVP0joDMkVTHHa+crH80E0YDZlVMibNBCGynMRQtHxwqfyIc4g68b/q14O
-         /amQO9VI2phVL35uwcLkgHsg4dJFOiTeA4T+O5lXWrYMEWYgn5Ipu8NfWJUew/RasbXR
-         EVQ8AsY/vOx93PRaa0I/JVnCfqxmtyl+qf7GxMerO5jADOKxk9HXGEUjD3dxBidhxDhA
-         2nKCkweikV4Mj7ICVCe6XYo/TYaR1o6sBjvZI3ZTPu4fW97yRphkUM++Y+J3ynfY8vxW
-         iKxQ==
+        d=linaro.org; s=google; t=1717581682; x=1718186482; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9DzuTZgbZabvBJ626xcW1V1Egdfb6MOgv2LEKNybpd4=;
+        b=tQLzxtYzxu2+Ru8+klts8EHgg2RizfAG/TG8uwd2wDI/1LRrbaG+zosv4/GPBozw6O
+         kVd7DhpHk61DHijT6vq7ccbb8Q1hOUz943Tk3p6Vv2TSTKu3034HHdNmZEWpKGTaVnzT
+         x7VvAj8rebSW55yk5YIE4hoV3hZdTal4nHFCERhtGAF0Hrr4tA61xZpEceVMZ3os2DV9
+         I8opD9bNHIcd+Ef3dHOQDXL15kNX0sf09tOYjZsokTJU9E58wrAMBzNMn9ZqEvumSqbz
+         SfVh+62Nq9Cj7id2rDLCDExr+Cg2EjLqX6poVjyLpdRRH1j+PIZ/8IAlVyaIRm5CWe5K
+         eRSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717581483; x=1718186283;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1717581682; x=1718186482;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5mAYD1Avt8pq2XcOOEM7xebLX9m2RKKIBoR9HWmP6lo=;
-        b=DkkliunpK63nC/wd+a3AIS4selq5VL2Dfz+0bFjPyn1WycLuZvwRjmdyJEMVQFRzga
-         K6EFF8+OLFOMARDxbTHtvIMFMYBjnlgBNNFGpDpfgBQzY8O+m1ukOTtfh7G0R42HsmXd
-         0U1k8fFxUJnS6p+i6qtj/szv0pqmQ+NPp+eapRHkv+JEW1LphOURqXrM0gwaiRWUnmFi
-         3Dbf6AoOTMuwipNyTHpm1LlHa08OYRZlPUPSa6tf4nPBP1jTXVXYXT8P3hmZdsU43KJe
-         2V7o1hI+1AICMX0t8bk1DNlFMg2r4iQai2hGvsj7zlcxaVoEfChvABp6eD/bYkNrgtFb
-         eXZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVCGNAfUwY19Josyz9aMyqIpiOktcUmGhvbCWUbW0mqBgFvvAJFao3dV7ll+iq2U2tE1kDYXWvN0waFP49Yrir5q//eRB7Bly5T/Q==
-X-Gm-Message-State: AOJu0Yzpsf6yea3O5Fxi5vVQgYjQH5Cns0s2gJbsyiRM0qv4DhYlmACX
-	Ibc7yTJ72A0wCcw+nSMp5o6zCmZXeqfHt2eeUEfw8DQts8wDx29HvCkZevSKZyTUU+1kgO1FBMk
-	eaPEMge7KPIR4sRAOlwIUW59bk+rH6CDcKBUGWA==
-X-Google-Smtp-Source: AGHT+IF2R/aghDc5IVYeX1rVhBtT3A6VAsaeguTPhS6sYRA62wpiuZD2zzzvBra0tS6pu+Cqh5RE9zZsadl70OemW/g=
-X-Received: by 2002:a25:b88:0:b0:de5:8427:d66f with SMTP id
- 3f1490d57ef6-dfac96febfemr1772988276.4.1717581482636; Wed, 05 Jun 2024
- 02:58:02 -0700 (PDT)
+        bh=9DzuTZgbZabvBJ626xcW1V1Egdfb6MOgv2LEKNybpd4=;
+        b=usfDLB+u+MAUn6AkabPdBLINbxf4l3ZWIg3+JIJp4cVmdKgQCfRuYUlH/s1k+V08l8
+         yK98SOgW1Qoy7Yqq/Wa6fAZsUT0rxrsV7qUn+BvVjxxuxbt+U8jU5s002P7LVpj0wx9o
+         Ua0saBvuCbxRdf5/DUgpOWRjzpdeUNEb7J7OeNpZlyUr+bDkz/XSQcF+ELVtKRlUkS/e
+         FNt0Mzy0clIAzBAdhL5lNdnrn6vN+viqNY9Y//nN7Jg5IoGaJp2rzjdU42PKsLVdZZgw
+         He8sUQ3KaOaRuJy+DoEjv3Fw6chI0y9Ym10mTTD5hh2ocSwB8PPYn1avYHJ6qTS+ZPoQ
+         iFeg==
+X-Forwarded-Encrypted: i=1; AJvYcCXHCCtE7Kj1W1+7EXrM0hrhqd6hE4x6d4yJ+3GgoiRwjpDKn5PoVcJwLUl17AvzYAXeJbyWMwWNhnMjpxBkhNyAMceMHUKpSaQMSw==
+X-Gm-Message-State: AOJu0YyYVPXsKU991LVHImHwuEDjYh2keWWct6bn6YSyvoV8PeyW/m/j
+	CtNKDpdu7KyYX8U5z3i3N/ZeGrA/Xir20wNC38WF/EWRyICV74rEFF957bzge/LLBNNrBGNty4Q
+	0
+X-Google-Smtp-Source: AGHT+IFGB6+8XGX3B39GWLZTV1hN9L0hjBlUU61Lpb7u32G6xWF46KpUdOIbw9v2lAWlyu68sGB/ww==
+X-Received: by 2002:a5d:64c3:0:b0:356:6c6f:2609 with SMTP id ffacd0b85a97d-35e84070f54mr1572425f8f.17.1717581681967;
+        Wed, 05 Jun 2024 03:01:21 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35dd04c0d98sm13952677f8f.24.2024.06.05.03.01.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jun 2024 03:01:21 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Wed, 05 Jun 2024 12:01:20 +0200
+Subject: [PATCH] dt-bindings: usb: dwc2: allow device sub-nodes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240529-a4_secpowerdomain-v2-0-47502fc0eaf3@amlogic.com>
-In-Reply-To: <20240529-a4_secpowerdomain-v2-0-47502fc0eaf3@amlogic.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 5 Jun 2024 11:57:26 +0200
-Message-ID: <CAPDyKFo-V4aNKWQn2r61_Q5d9R2Lhj8d5Ri_b-zW7VMsVBHARw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] Power: A4: add power domain driver
-To: xianwei.zhao@amlogic.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jianxin Pan <jianxin.pan@amlogic.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240605-topic-amlogic-upstream-bindings-fixes-dwc2-subnodes-v1-1-915893e0cb20@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAG83YGYC/x3MywrCMBCF4Vcps3YghhgvryJdpMkYB2wSMq0Kp
+ e/u4OrwweHfQKgzCdyGDTq9WbgWxfEwQHyGkgk5qcEa64w3J1xq44hhftWsuzZZOoUZJy6JSxZ
+ 88JcE0ydalHUqNalc8BcK6Xz11oGWW6f/TcP3cd9/Uub03IUAAAA=
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1269;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=X4J+NHCPUK/pGeuU2jk5RSkU7NENxyMnKn+lp9gIWQY=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmYDdwUDjjv9AL8LPyasrSreKHRVDjunpIjJGGPuCs
+ SFm8FWaJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZmA3cAAKCRB33NvayMhJ0RHqD/
+ 91reH0EXlToPWL2lQdQz/ocv7rkKkEopctmGkYidL3n347CT+/C7ZIhK9dRAUxJi4ht0SC+P8871iv
+ k3sW9oW7Yt2DrgRLzaQvZODRodJ3SYAkpBU0uNXJ6oYUGFyQrI376Zo5BL5Pn/j2Y43smPvaLr8kW5
+ zbY66WL+5KrnX7BqgEJ3QkH4x+8enMhdh4RWaUM9jExizBN0evEgJPmzbQX4laIvNg7oP6FXel+rQp
+ H1Lv/ziAnQxX5Tay3FIhwcS1bbCG3q9TS3k7qkJXUw1xXpSXGQ+Lf90Fs2g+lJ751NfmVcB2CbrO2w
+ nYKxbGVyoMgJTpMHEbBS7fujVIalvaHwbqXgW0CEw4oMUL7iLgHHSRYQcr0CQsywAP3TWQiSOrlT6s
+ x37eP4M34lbN789gS/sWrmYUxrxHfBZSXN+OnLcVSbM97uN/tpWLgCtwfeaJQzQsH13Sfr96m2GhiA
+ 5GGNBzvoZ8T9qwVK0k2JMhoG55L5uP1bUcskCZU2jWnLor270WQyoyukLL50lyvqkBDrrj0EHWSuVn
+ KVz1+rV6YTf0JniqimLr+VJHek19SLIw7SAS4vFKcyzBkPpsWREOGKfLr9QaZFUioVdjt8MPr0bUSP
+ bDARGb2JCqkXVFe2GTAROTaL5MrDY6vRtmR3OekfD4oF1VVHipcWG5vvJSMg==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-On Wed, 29 May 2024 at 05:10, Xianwei Zhao via B4 Relay
-<devnull+xianwei.zhao.amlogic.com@kernel.org> wrote:
->
-> Add power controller driver support for Amlogic A4 SoC.
->
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
-> Changes in v2:
-> - dts: Move power-controller node to be a child of secure-monitor.
-> - dts: Include power head file.
-> - Link to v1: https://lore.kernel.org/r/20240528-a4_secpowerdomain-v1-0-2a9d7df9b128@amlogic.com
->
-> ---
-> Xianwei Zhao (3):
->       dt-bindings: power: add Amlogic A4 power domains
->       pmdomain: amlogic: Add support for A4 power domains controller
->       arm64: dts: amlogic: a4: add power domain controller node
->
->  .../bindings/power/amlogic,meson-sec-pwrc.yaml     |  1 +
->  arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        | 10 ++++++++
->  drivers/pmdomain/amlogic/meson-secure-pwrc.c       | 28 ++++++++++++++++++++++
->  include/dt-bindings/power/amlogic,a4-pwrc.h        | 21 ++++++++++++++++
->  4 files changed, 60 insertions(+)
-> ---
+Allow the '#address-cells', '#size-cells' and subnodes as defined in
+usb-hcd.yaml and used in the meson-gxbb-odroidc2 DT.
 
-Patch 1 and 2 applied for next, thanks!
+The fixes the following:
+meson-gxbb-odroidc2.dtb: usb@c9100000: '#address-cells', '#size-cells', 'hub@1' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/usb/dwc2.yaml#
 
-Note that the DT patch (patch1) is also available on the immutable dt branch.
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ Documentation/devicetree/bindings/usb/dwc2.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-Kind regards
-Uffe
+diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml b/Documentation/devicetree/bindings/usb/dwc2.yaml
+index 4f36a22aa6d7..9e737f587664 100644
+--- a/Documentation/devicetree/bindings/usb/dwc2.yaml
++++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
+@@ -177,6 +177,13 @@ properties:
+     minItems: 1
+     maxItems: 2
+ 
++  "#address-cells": true
++
++  "#size-cells": true
++
++patternProperties:
++  "^.*@[0-9a-f]{1,2}$": true
++
+ dependencies:
+   port: [ usb-role-switch ]
+   role-switch-default-mode: [ usb-role-switch ]
+
+---
+base-commit: c3f38fa61af77b49866b006939479069cd451173
+change-id: 20240605-topic-amlogic-upstream-bindings-fixes-dwc2-subnodes-4a68ead79624
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
