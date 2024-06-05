@@ -1,149 +1,131 @@
-Return-Path: <devicetree+bounces-72747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE1BE8FCE1B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 15:00:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED5ED8FCE24
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 15:01:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9079E1F29705
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:00:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 840671F2AB44
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:01:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 403B81B14F3;
-	Wed,  5 Jun 2024 12:15:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="iAZOCUTk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DA42198A28;
+	Wed,  5 Jun 2024 12:16:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C39D41B14FD
-	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 12:15:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E240F198A17;
+	Wed,  5 Jun 2024 12:16:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717589748; cv=none; b=UFxT4sziinTHfNQKoHELE7LJ3N4guSI7DhhvK5m0Gf2TqLIdJrJfZRHUai2i074bCIkleLiP+Mnu9HTuSTM0KfTpkuc1EQRkFer5bilAc3IMnCfXFpoBGAp5QaT/adbzawsirqiAGjFPTYglV6ZduNc05UT5wOANGB3zh0rLyZ0=
+	t=1717589802; cv=none; b=gN3w/zvnCO1zkHyLsz6Y1fpAlH2alqZ7ba0b0GUXWHXiHF65Btua3RkYTvQv1fJ8fjrHCgv+Xcn4pAiHn16bU2IZSRV0l1EyaMEzSS1IULCFu6IRAHIktLGoQWbMLb/yxzZEK6qkbC1dGrVV8srMKAT1jsXwbvXRXV8b7n8QCVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717589748; c=relaxed/simple;
-	bh=7vv9BIxOlTAnkVcmOEbkz5pJ3DyqNEvdcN47CRhSbiU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=q02P3LOvo6XkoVPUAGbp8ukqDLA9nHy4Sd3Qe7dkpqOWzLtbwxj3GQBFfbtGSFdp90TkA+qAEyJu4L07J3NOP3Q8S/oCL7z44eNMSaiAvwDC+HWz54enHy6IkIWNpxqOP60EoRdwNPXUiP4T/9zsTnSasBfsCtAHqbTYJH32PP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=iAZOCUTk; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-70257104b4dso3371304b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 05:15:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1717589746; x=1718194546; darn=vger.kernel.org;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=GpvzkiCxKozJEFTOhtS0qkQgzMcSqTc8pxD/W7VEhXs=;
-        b=iAZOCUTk8lI8+n+8mWwcJ0NmiEDHnk1vcO8fqJcwNa0tQM5nv5fkI+3Jy8YP29dF81
-         D8Ah6eBR6hqtGY6jF+B0ABj2UMKQ+19NoS/ElCSdkB/CF1so69yUqThKEprEROcAeorn
-         jkikUg9Yk0U4yWWGRVYcRBiHwUWfUpXGYIAzH1Zk4zTT8JuPjvpieLXJ1WRZUDRwRtyy
-         9HAZUfiPtVB/BVhCMJ3gA+qIxKvHporUhrs9oAYtD2vWfvU2/JtUX+x6Hy5yWDddL9yu
-         d0jjyMjXhHH8SZPRiBBooR5p5w47z3QLpyx4u54qsryesmJVdYyn5BfqYstzeKFJs/jZ
-         SLiw==
+	s=arc-20240116; t=1717589802; c=relaxed/simple;
+	bh=U0agN75JgNl8mVGLegBvB584SvOkbcwV93Nhzk4E5Dg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=E3eYHm62aIeonAOyvDLpbD8Pz5cDyyjAkLd3Ih3lXFA/D6Uduc4fJ392SGCocwRsf4W9f1K4LkSj3r4uz/9dNbQTPOUihsy1WxNdE1VL5pxJjCmiV66cRh80yt9WkE/DqJ98Tr+J+CRPGroNLmxo7ANy351QoiCIuHb+xkn3qaA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-62a0c011d53so66901217b3.0;
+        Wed, 05 Jun 2024 05:16:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717589746; x=1718194546;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GpvzkiCxKozJEFTOhtS0qkQgzMcSqTc8pxD/W7VEhXs=;
-        b=vbXtP8CiZ36KBsZOmnAwmATTpoIunV8igMFOnMrgEG//VjQ8ia3x943gFjFj3hTc+/
-         God2T1p50HPKHc29akO8FRnEfWNIX7v0b/dtP7MBoVoi8pWC0blp/lUrs42IIk6NvrSo
-         fW9cAYvcN5Yr1EksM2UFCUy/MnENa/cNpBUBcr7AZbZiPc+DJ7M7Xj4jf3/MFziIMEAw
-         BSJIQ1GsRLP28QDoGWdxz00pBG6P0qR97dAUDm1LDk4e3ab0zDIR5fAH4uesEyGVcJXv
-         avMeBC0xydleZNqBqAy656GmdeIDgh0K+pJd5/xB1AVjRQYSg2n09/6sQ0W83pOp0vnf
-         CaWg==
-X-Forwarded-Encrypted: i=1; AJvYcCWwFEMD/RxnYifaRS8ItZmviYTfaSmuGSIH3OVRL2+ToJi0SuA478F2GQndDlJ5uKmV8/jyXXtDlmHxR1PSK0VsZvqKno1Tyhy1Rg==
-X-Gm-Message-State: AOJu0YzsCE9abDAkhmq7UMvf55oRXR5udFCrbjxm57578jPmWGtJXRsg
-	d3NK3dOMSJZMzGZPhq/UJCyo+9mzN9IBrRLz3LXhALr54sFCSozcBUChRtA01ug=
-X-Google-Smtp-Source: AGHT+IHxvvSw4LHcVUp46xf5eLnBwmt4LaRfb4YBe++3w64DoItEt1ztOFnT7PyaQMcSTm6fON3nVA==
-X-Received: by 2002:a05:6a00:1991:b0:6ed:de6e:dd24 with SMTP id d2e1a72fcca58-703e597aa21mr2623604b3a.16.1717589744922;
-        Wed, 05 Jun 2024 05:15:44 -0700 (PDT)
-Received: from hsinchu26.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-703ee672fb3sm885379b3a.216.2024.06.05.05.15.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jun 2024 05:15:44 -0700 (PDT)
-From: Yong-Xuan Wang <yongxuan.wang@sifive.com>
-To: linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	kvm-riscv@lists.infradead.org,
-	kvm@vger.kernel.org
-Cc: apatel@ventanamicro.com,
-	alex@ghiti.fr,
-	ajones@ventanamicro.com,
-	greentime.hu@sifive.com,
-	vincent.chen@sifive.com,
-	Yong-Xuan Wang <yongxuan.wang@sifive.com>,
-	Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v5 2/4] dt-bindings: riscv: Add Svade and Svadu Entries
-Date: Wed,  5 Jun 2024 20:15:08 +0800
-Message-Id: <20240605121512.32083-3-yongxuan.wang@sifive.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240605121512.32083-1-yongxuan.wang@sifive.com>
-References: <20240605121512.32083-1-yongxuan.wang@sifive.com>
+        d=1e100.net; s=20230601; t=1717589798; x=1718194598;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jNnNjMa9gaKBRLMlZIPM5UJYAylX5W6oIYoAGFp4mPs=;
+        b=crM0lnxXMXBjgrvsvPnXtyxHOp4xeZEf6A6bNGUPQdZxoESlyww3Df7UsZpTsX+d1n
+         EnMeeuQDwUJDAedKiAdhVGIITl1qYRNSxalkIpkJwKIc1WKTvuHmXLR9mTHkfvr7KDjz
+         V6pBDI6lVCvfpw6rv9x1mltKFI0Uq5o3uaLFJwBbmTzyK2Xh+R7wqZJui4ejfulPM5HC
+         x1LUGLHHit5kVez1of7zsjEeoh188wbm4nkJoc2xhjR7dshm2bxMXD79Ru2cyxfIRInK
+         muemaTgIm0GO//Z3QitunS1R41XiW4BU7Jk4dWrod6CSglGjSk/sfcL90qSdTPgE05mh
+         yGfA==
+X-Forwarded-Encrypted: i=1; AJvYcCWa0hFVFj2/69GHwFmEg4AKq+t1qK0qjUba7leKuERWD9RJ6SVvgMCDsW+GZnoLynsj6xJn1Wwkgb/V5HK59O+Gj72Z07duDHinaK8YlfjJwfjUlz3PWClszrJ6RhSy9jsJHXPlMNV7Wb2lAJW5t7MGaiJhMCc6mEEiz0RPyFk/T+U/JxSetfN7u5jVqoWBAH7xVc4SVPj+vGmBmYIp1Pb/HncAUYjWEw==
+X-Gm-Message-State: AOJu0Yz/iOOfNgMRNUVDabNN0+knrk3hqwtPpFFNSnAshWy6KQjIuaxa
+	P+5RTwDV+PGMQl1d/SIMOScrcNhdi2o/wOMqLLQN4GSM1myN3nFZJNhRk63L
+X-Google-Smtp-Source: AGHT+IHaSYkWjKvfeTsbhCk1pjzu703gDEeGPVkBxA/iHR3so5alPvKoBfehE+Crm4EnTUzo7iD7vQ==
+X-Received: by 2002:a81:ce0a:0:b0:61e:a3b:e473 with SMTP id 00721157ae682-62cbb4aa7c1mr27266217b3.7.1717589798016;
+        Wed, 05 Jun 2024 05:16:38 -0700 (PDT)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-62c765b7ec1sm22065247b3.10.2024.06.05.05.16.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Jun 2024 05:16:37 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-df771b6cc9cso6730887276.3;
+        Wed, 05 Jun 2024 05:16:37 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWYO9BjJDumGzqV7FF4MUMIgAWRLYSJrvkJlH2xjNs2HVHjVjkDFeU37hPMVHcjU24TT1M4RpmsYUV/DUtcwo/a67UEgAvcHnHzZpzO2D7IONEezWZqaViEV7mhepiVUloVMYS/rrvZdYQIJIgTC6pYPivPn2a0eWcCnwYjYLe34DYSvdl0BBnOxGykfbtMQXQqX+0JzFFYI3r+xedO5wlKPNEvFhSK+g==
+X-Received: by 2002:a25:d683:0:b0:df7:83fc:639 with SMTP id
+ 3f1490d57ef6-dfacac56c3dmr2669884276.27.1717589797462; Wed, 05 Jun 2024
+ 05:16:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20240530173857.164073-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240530173857.164073-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240530173857.164073-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 5 Jun 2024 14:16:25 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUT4pfj7K1LorLc_g3vS4+3VV++TdympCxFmKg0dPoXbw@mail.gmail.com>
+Message-ID: <CAMuHMdUT4pfj7K1LorLc_g3vS4+3VV++TdympCxFmKg0dPoXbw@mail.gmail.com>
+Subject: Re: [PATCH v3 09/15] pinctrl: renesas: pinctrl-rzg2l: Add function
+ pointers for reading/writing OEN register
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Paul Barker <paul.barker.ct@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add entries for the Svade and Svadu extensions to the riscv,isa-extensions
-property.
+On Thu, May 30, 2024 at 7:42=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> This patch introduces function pointers, oen_read() and oen_write(), in t=
+he
+> struct rzg2l_pinctrl_data to facilitate reading and writing to the PFC_OE=
+N
+> register. On the RZ/V2H(P) SoC, unlocking the PWPR.REGWE_B bit before
+> writing to the PFC_OEN register is necessary, and the PFC_OEN register ha=
+s
+> more bits compared to the RZ/G2L family. To handle these differences
+> between RZ/G2L and RZ/V2H(P) and to reuse the existing code for RZ/V2H(P)=
+,
+> these function pointers are introduced.
+>
+> Additionally, this patch populates these function pointers with appropria=
+te
+> data for existing SoCs.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v2->v3
+> - Renamed read_oen->oen_read
+> - Renamed write_oen->oen_write
+> - Updated commit message
 
-Signed-off-by: Yong-Xuan Wang <yongxuan.wang@sifive.com>
----
- .../devicetree/bindings/riscv/extensions.yaml | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
-index 468c646247aa..1e30988826b9 100644
---- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-+++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-@@ -153,6 +153,36 @@ properties:
-             ratified at commit 3f9ed34 ("Add ability to manually trigger
-             workflow. (#2)") of riscv-time-compare.
- 
-+        - const: svade
-+          description: |
-+            The standard Svade supervisor-level extension for raising page-fault
-+            exceptions when PTE A/D bits need be set as ratified in the 20240213
-+            version of the privileged ISA specification.
-+
-+            Both Svade and Svadu extensions control the hardware behavior when
-+            the PTE A/D bits need to be set. The default behavior for the four
-+            possible combinations of these extensions in the device tree are:
-+            1. Neither svade nor svadu in DT: default to svade.
-+            2. Only svade in DT: use svade.
-+            3. Only svadu in DT: use svadu.
-+            4. Both svade and svadu in DT: default to svade (Linux can switch to
-+               svadu once the SBI FWFT extension is available).
-+
-+        - const: svadu
-+          description: |
-+            The standard Svadu supervisor-level extension for hardware updating
-+            of PTE A/D bits as ratified at commit c1abccf ("Merge pull request
-+            #25 from ved-rivos/ratified") of riscv-svadu.
-+
-+            Both Svade and Svadu extensions control the hardware behavior when
-+            the PTE A/D bits need to be set. The default behavior for the four
-+            possible combinations of these extensions in the device tree are:
-+            1. Neither svade nor svadu in DT: default to svade.
-+            2. Only svade in DT: use svade.
-+            3. Only svadu in DT: use svadu.
-+            4. Both svade and svadu in DT: default to svade (Linux can switch to
-+               svadu once the SBI FWFT extension is available).
-+
-         - const: svinval
-           description:
-             The standard Svinval supervisor-level extension for fine-grained
--- 
-2.17.1
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
