@@ -1,179 +1,125 @@
-Return-Path: <devicetree+bounces-72507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07E9B8FC1A4
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 04:19:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 172CB8FC1F5
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 04:45:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31AC71C219E0
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 02:19:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 403401C2270B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 02:45:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB94061FC9;
-	Wed,  5 Jun 2024 02:19:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FC3461FFA;
+	Wed,  5 Jun 2024 02:45:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z+q5WxJl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MIy5GOnE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0516F2744E;
-	Wed,  5 Jun 2024 02:19:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E983D184E;
+	Wed,  5 Jun 2024 02:45:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717553958; cv=none; b=kiPiB1c7oci+dwS3ysePw1FbjY/gxcIjOTzgx5tqLa+VnQFKo9XR0/s8wzaP6xJdKoxBGHkh4MFjg4CZ5efK0mhHqVZD0VSbUCWxGh3JyX2osl5GFvaCmUlhJpJCiOHs2izoMoRe8PIfW1/JAaNX/Iaqbt5WxObuQ+tOEkqAjjk=
+	t=1717555501; cv=none; b=op48QOgEI8A1A93ApHUVqnwpAWicCvZOxK7QCqyczz/4sZyO6Gr0kXLdtoXCkT0MhypE00da5iCizQqOYMEz6ODjZDHbEARhXrutmxbtDbBrCt3puU5ihwSjeCVPUrTXbHru2tb5TSQv1fzG4SyqcWJ8pUSM0NgXD5aKa0nTx3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717553958; c=relaxed/simple;
-	bh=MN5QUhpveLtR3vzOpslL0uzm+4RYwh54UdoJyZVPeus=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=mWJ+FcNupQGf43VOd8Q1sQ9F/gHL/ShgJRhvMD3WX6Fk17FbD0GGwkR+2Lkut9kUrqgkhNMBy2K24m/rv2+tmDbJJnRQHKiSG05vbxzw4mAWE1UeEjMxK8Ist+idyBxQyLgdW93P3k3u7USgnF0tKgGoHpz+uMhSDBnbwfOINCo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z+q5WxJl; arc=none smtp.client-ip=209.85.160.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-24c0dbd2866so2816730fac.0;
-        Tue, 04 Jun 2024 19:19:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717553955; x=1718158755; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yH7bfOUTp5Qehb6cDSUFa9U/OcV22YcwBdkqqYDC6kU=;
-        b=Z+q5WxJlbUwJmZJQu0guOdTkurXNX0fish8ULU+AlQQFsCzj5Flt6vYgzFqTfsrTQ7
-         pAGscVP8KNnTKZOARs/fhzdZlYhbqzXzlH3ABvNbc73qV84iki93CQEZy8knWGBBzut/
-         R0BAjEhPG1yWlRF7M9H8HNtIM20Kp3eapwRZ/4+10fVhJ9GOXHRO9LdlBOm8fdR7+r6Y
-         Ez+eNvBWZb7fCcmwQxHv3VKFrG/2o67evPqU7bgI27OqKZgqm7bUNQS/49sbNMbYIF5y
-         2Ks0ytEgcoony9i4Y3+WAtT6r+goukgGdaq5IYnpNPawa483dBpal/+fdE12zji0awuF
-         RuWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717553955; x=1718158755;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=yH7bfOUTp5Qehb6cDSUFa9U/OcV22YcwBdkqqYDC6kU=;
-        b=MfrrFzhc8cr6t0KAA46OLJEeqpw/Xajt2UPh+eyJ9sScOqLmLF7ojb+V360wZ6VCIm
-         DgmqjVbtcpqK1w4/V+SApOg0fG/G7rQtCrNC0Nx8SUbbrjdfMagZJjYxAQ89RzMd/IG2
-         W+jKIVmzqbklhXfkg2d9TFTJZterZ6RqQwx/NLrkIXooEV7bCkrf2sOFKM2rGEjpWeMG
-         ML+YulCDZncu1vsuH+bH0wE1WBstwy8ApnuH/uyS0zYlQCMx4rO7g8MnaK/Q4DX1lYJs
-         1NuQKeONfxkEuBxRpb3pA7iqn2E8F/uR/VbzxnpMtL5Svv/0jMvCval5urfYeOzcP9p6
-         emyw==
-X-Forwarded-Encrypted: i=1; AJvYcCWuNfWM8V68dE0R4rJnOEAQXuFC8TmsnwpN73v1HDb6kI/XYBBraQhnDdxVRqs5qhIFxdOzEnR++08HDSHMg7zGj3dsrsdRtxGSNNosDTGWdeetOJGTm+I/cnWrtFMEuZfxmDXAgZJz3A==
-X-Gm-Message-State: AOJu0YyhLcmnaQR7T3vcXfhJekAuQxf4SbfCva+ANfABwMzTXuuOTrzk
-	VmuqbfQk6IG60V5nszmxY24DUz51YrsjHXwzsH08nubKbgkYQhvSJq96JQ==
-X-Google-Smtp-Source: AGHT+IFQd51VLz90gjLy96kC0m145tkni8e7Yv5/EHoJYHDwUGJmrO9SydWBlbsdmzi73PVDj9GySQ==
-X-Received: by 2002:a05:6870:96a4:b0:24c:63b2:8a18 with SMTP id 586e51a60fabf-25121c7e095mr1577477fac.7.1717553955365;
-        Tue, 04 Jun 2024 19:19:15 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-702544e2e52sm5900559b3a.74.2024.06.04.19.19.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jun 2024 19:19:14 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-From: Guenter Roeck <linux@roeck-us.net>
-To: linux-hwmon@vger.kernel.org
-Cc: linux-i2c@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	=?UTF-8?q?Ren=C3=A9=20Rebe?= <rene@exactcode.de>,
-	=?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <linux@weissschuh.net>,
-	Armin Wolf <W_Armin@gmx.de>,
-	Stephen Horvath <s.horvath@outlook.com.au>,
-	Guenter Roeck <linux@roeck-us.net>
-Subject: [PATCH v4a 6/6] hwmon: (spd5118) Add configuration option for auto-detection
-Date: Tue,  4 Jun 2024 19:19:07 -0700
-Message-Id: <20240605021907.4125716-1-linux@roeck-us.net>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240604040237.1064024-7-linux@roeck-us.net>
-References: <20240604040237.1064024-7-linux@roeck-us.net>
+	s=arc-20240116; t=1717555501; c=relaxed/simple;
+	bh=cLv+hU1PT81IObLXKDBLkjzJCQUWh86T/crgT79hhdQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=WUakWrZMtgh5GsKbmN/QJuEavbXUZ5eGj07a/upPgSWc4E3P4kJ0Lz0I750YxybYMLpuhMPEv4Q7u7m14Y3fE08E+CE2Ftf8BO89fgLi3k718Eq0sDAVoRbM0umn68huBLG/ygJSufrCat7dRguHj7h75ksljsbpXlJL7Kiq+3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MIy5GOnE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6E640C2BBFC;
+	Wed,  5 Jun 2024 02:45:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717555500;
+	bh=cLv+hU1PT81IObLXKDBLkjzJCQUWh86T/crgT79hhdQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=MIy5GOnEK6nKk2Ux3Q047E5CQBY+tDMZZtlT0TfWfIONIAtgrgT2dtEj4B0A0gXth
+	 ATnJJOmhR1L4P5k9B2zNPFqeW49DipSFPr5rQlt2AlDfmumwrB089HWregOGgnDo6N
+	 aw2WF3bfDIFP6ZLyI+GLV4a4tQbu3eamtY5Rw5e2vO03856Dzlu9X0FW3Xe3ZubyqU
+	 f7orPuu09sePvZgcG9M/nmlnQeTaCHTbdllWXDBwjCz4HpGxBltNw4gwRFyGTYbBZC
+	 Zgmii/NFKO0yr6Wf8d8lN0jBjvlzUMG4lW5Hbj/OWuqBzdzD7quKknB39WFLpc6pqT
+	 h/Z2t+gcntX8A==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 54219C27C54;
+	Wed,  5 Jun 2024 02:45:00 +0000 (UTC)
+From: Kelvin Zhang via B4 Relay <devnull+kelvin.zhang.amlogic.com@kernel.org>
+Subject: [PATCH v7 0/2] Add support for Amlogic S4 PWM
+Date: Wed, 05 Jun 2024 10:44:54 +0800
+Message-Id: <20240605-s4-pwm-v7-0-e822b271d7b0@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACfRX2YC/2XNTQ7CIBCG4as0rMVMp5SKK+9hXBAYWhL7EzBV0
+ /Tu0i6qsctvwvMysUjBU2TnbGKBRh9936VRHTJmGt3VxL1NmyGgAIGCR8GHZ8vRVqDUSRpNxNL
+ jIZDzrzV0vaXd+Pjow3vtjmK57hKj4MCJEMk5K8DCRbf3vvbmaPqWLZGx/MIS8w2WCYJRuSudL
+ tDYPZS/UG1QJogVOFmAUA7/fpzn+QNi2SjkEAEAAA==
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Kelvin Zhang <kelvin.zhang@amlogic.com>, 
+ Junyi Zhao <junyi.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1717555496; l=1446;
+ i=kelvin.zhang@amlogic.com; s=20240329; h=from:subject:message-id;
+ bh=cLv+hU1PT81IObLXKDBLkjzJCQUWh86T/crgT79hhdQ=;
+ b=wMU0AqOpojggxkgYVyGOUVH5wqws3gXc/InRdro0/5QWNYeapYskxyO7vDK8TdYFIDz8lxoLx
+ /y4sXyNIrCXA+75/yXMzNRFBFodb0WC5XuzjZj7sbi+ABfEtmyLxcxL
+X-Developer-Key: i=kelvin.zhang@amlogic.com; a=ed25519;
+ pk=pgnle7HTNvnNTcOoGejvtTC7BJT30HUNXfMHRRXSylI=
+X-Endpoint-Received: by B4 Relay for kelvin.zhang@amlogic.com/20240329 with
+ auth_id=148
+X-Original-From: Kelvin Zhang <kelvin.zhang@amlogic.com>
+Reply-To: kelvin.zhang@amlogic.com
 
-With SPD5118 chip detection for the most part handled by the i2c-smbus
-core using DMI information, the spd5118 driver no longer needs to
-auto-detect spd5118 compliant chips.
+Add support for Amlogic S4 PWM, including the driver and DTS.
 
-Auto-detection by the driver is still needed on systems with no DMI support
-or on systems with more than eight DIMMs and can not be removed entirely.
-However, it affects boot time and introduces the risk of mis-identifying
-chips. Add configuration option to be able to disable it on systems where
-chip detection is handled outside the driver.
-
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Signed-off-by: Guenter Roeck <linux@roeck-us.net>
+Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
 ---
-Sent as v4a to avoid resending the entire series.
+Changes in v7:
+- Put devm_add_action_or_reset() into the for loop.
+- Remove the error handling of meson_pwm_init_channels_s4().
+- Remove the repeated device node 'pwm-a-pins'.
+- Some minor fixes and improvements.
+- Link to v6: https://lore.kernel.org/r/20240529-s4-pwm-v6-0-270f63049f20@amlogic.com
 
-v4a:
-    Do not auto-select SENSORS_SPD5118_DETECT if DMI is disabled
-    Modify help text of SENSORS_SPD5118_DETECT
-    Default SENSORS_SPD5118_DETECT to y if (!DMI || !X86)
-     
-v4: New patch
+Changes in v6:
+- Rename 'pwm_meson_s4_data' to 'pwm_s4_data'.
+- Rename 'meson_pwm_init_channels_meson_s4' to 'meson_pwm_init_channels_s4'.
+- Adjust the order of the device nodes according to their unit addresses.
+- Some minor improvements.
+- Link to v5: https://lore.kernel.org/r/20240521-s4-pwm-v5-0-0c91f5fa32cd@amlogic.com
 
- drivers/hwmon/Kconfig   | 19 +++++++++++++++++++
- drivers/hwmon/spd5118.c |  4 +++-
- 2 files changed, 22 insertions(+), 1 deletion(-)
+Changes in v5:
+- Add devm_add_action_or_reset for free clk when unloading.
+- Replace the underscores of node name with dashes.
+- Link to v4: https://lore.kernel.org/r/20240424-s4-pwm-v4-0-ee22effd40d0@amlogic.com
 
-diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index 7a84e7637b51..d5eced417fc3 100644
---- a/drivers/hwmon/Kconfig
-+++ b/drivers/hwmon/Kconfig
-@@ -2193,6 +2193,25 @@ config SENSORS_SPD5118
- 	  This driver can also be built as a module. If so, the module
- 	  will be called spd5118.
- 
-+config SENSORS_SPD5118_DETECT
-+	bool "Enable detect function"
-+	depends on SENSORS_SPD5118
-+	default (!DMI || !X86)
-+	help
-+	  If enabled, the driver auto-detects if a chip in the SPD address
-+	  range is compliant to the SPD51888 standard and auto-instantiates
-+	  if that is the case. If disabled, SPD5118 compliant devices have
-+	  to be instantiated by other means. On X86 systems with DMI support
-+	  this will typically be done from DMI DDR detection code in the
-+	  I2C SMBus subsystem. Devicetree based systems will instantiate
-+	  attached devices if the DIMMs are listed in the devicetree file.
-+
-+	  Disabling the detect function will speed up boot time and reduce
-+	  the risk of mis-detecting SPD5118 compliant devices. However, it
-+	  may result in missed DIMMs under some circumstances.
-+
-+	  If unsure, say Y.
-+
- config SENSORS_TC74
- 	tristate "Microchip TC74"
- 	depends on I2C
-diff --git a/drivers/hwmon/spd5118.c b/drivers/hwmon/spd5118.c
-index 5cb5e52c0a38..19d203283a21 100644
---- a/drivers/hwmon/spd5118.c
-+++ b/drivers/hwmon/spd5118.c
-@@ -313,7 +313,7 @@ static bool spd5118_vendor_valid(u8 bank, u8 id)
- }
- 
- /* Return 0 if detection is successful, -ENODEV otherwise */
--static int spd5118_detect(struct i2c_client *client, struct i2c_board_info *info)
-+static int __maybe_unused spd5118_detect(struct i2c_client *client, struct i2c_board_info *info)
- {
- 	struct i2c_adapter *adapter = client->adapter;
- 	int regval;
-@@ -647,7 +647,9 @@ static struct i2c_driver spd5118_driver = {
- 	},
- 	.probe		= spd5118_probe,
- 	.id_table	= spd5118_id,
-+#ifdef CONFIG_SENSORS_SPD5118_DETECT
- 	.detect		= spd5118_detect,
-+#endif
- 	.address_list	= normal_i2c,
- };
- 
+---
+Junyi Zhao (2):
+      pwm: meson: Add support for Amlogic S4 PWM
+      arm64: dts: amlogic: Add Amlogic S4 PWM
+
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 199 ++++++++++++++++++++++++++++++
+ drivers/pwm/pwm-meson.c                   |  36 ++++++
+ 2 files changed, 235 insertions(+)
+---
+base-commit: 9d99040b1bc8dbf385a8aa535e9efcdf94466e19
+change-id: 20240424-s4-pwm-2d709986caee
+
+Best regards,
 -- 
-2.39.2
+Kelvin Zhang <kelvin.zhang@amlogic.com>
+
 
 
