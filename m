@@ -1,115 +1,254 @@
-Return-Path: <devicetree+bounces-72559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FAF68FC4B8
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 09:39:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27E158FC4CC
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 09:43:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EBE8AB21D5F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 07:39:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79383B217C7
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 07:43:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC4FF16937C;
-	Wed,  5 Jun 2024 07:39:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A5CC18F2CA;
+	Wed,  5 Jun 2024 07:42:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="MCJpSfA8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NwD0PToe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246EE2F3E;
-	Wed,  5 Jun 2024 07:39:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 507DF18F2C4;
+	Wed,  5 Jun 2024 07:42:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717573142; cv=none; b=fxGSIVpK00GewtkrePLRCehQruVBPDz8q1PtNeQLj3WyGNA4wAvcp+wCIb+6G/VVBNE/H7AdcdjoXoEuxysonuvoscvG0TeWEwOXkuERNdfuV///T2Sc+IGjVZCCfavo7khM/RI9QFk2WMNtGljS2Hko334HS3Qs7PauELtHn9A=
+	t=1717573374; cv=none; b=OP6mayzKsk/jJLcHX3TuYgOkJDZZb3z0b7ikrjHLEPwPQUZaWODz30stQ0KsH8oJfh0MVdkNmrdZP2nBn9t1oPsqCmKh5ZIRMkRfgFCX/LI+ujm5MMSe4tAlBOb3Q/x/jpREuMtTTErNLqowECb/tYfuEEnPuqgCHnzSZk5IBUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717573142; c=relaxed/simple;
-	bh=KCK6Si3UdZgMLvJSOC7aCTflh0mLgSyIvAhajqIZfIE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=C0lZreHkSBZgy6u+TTE+hTDqq3R3jsGvR9TFmvc+Rgv7oGF1H/w/CId07pIn7xD9do487Iqqg1K6Mr4r59YI2DYKxU7qafhJ/HxtSRJbPVyuN7J8A59/pxxzXANfx9H/dOzfe/vNZPLt1zUVfT3ABF1cGt7xP384i7jdGWLGkqk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=MCJpSfA8; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 454NbIlB017454;
-	Wed, 5 Jun 2024 09:38:43 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	38mexcFinmeYZ5CXGcnyNIf7y0LU4Ehs0MNrESWhWcE=; b=MCJpSfA8j+djdKSA
-	GbK50nmQUsDObI2T1H1uYM8NCz9/bbR506v0asJnljCqnxkt/rRsTagMvROO/rVN
-	sb5wv05+jS5Hbl5l1BYByNuRs21za1e8OgNX1Yt8WseBsFmX6fJIuTQ5M7DKeROd
-	lBWJYMX4mPR98FyTnBK3o1Obq0BEnUXbj+IjuGJYP8l+y5zxJRPKRVS5tw1PD9lR
-	167MZvkXT47IAsKKFQG8oFoi/hxbBPJA7LN/emYX4qvcBk9ch9fUyQqy+tMqaA/T
-	47GJMh+3LV00h9qzULBWdTJboO6ZAMv8eJyLELNVqq8RRfsc1LhO+g15zd7EV5wx
-	B4kmOA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yfw91fh97-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 05 Jun 2024 09:38:43 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 3CF4740045;
-	Wed,  5 Jun 2024 09:38:39 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9CF9E211959;
-	Wed,  5 Jun 2024 09:38:09 +0200 (CEST)
-Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 5 Jun
- 2024 09:38:09 +0200
-Message-ID: <53bd5ee4-dbf0-48d1-b110-248d43bbbfa4@foss.st.com>
-Date: Wed, 5 Jun 2024 09:38:08 +0200
+	s=arc-20240116; t=1717573374; c=relaxed/simple;
+	bh=HM7m/U7N3NDvThcmwy49Jtde3MbVuHJZ4vKRZbduAu0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MA6iIfK51IjmC5nj+laDfz98JX+H9BGW6Em/jmxE3Qc+af5WbtRjYqwcq+inWXC6tMyc1otjTrSgue9E9TNKCHJD8zbhnOncNyjKVaU4ZFXaamKW25OWqW5QeLI5QhLnAv6dcw+rwviSdt9IQN2ozWjThHyqPw8EAgKyXXO8zjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NwD0PToe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C64E9C4AF09;
+	Wed,  5 Jun 2024 07:42:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717573373;
+	bh=HM7m/U7N3NDvThcmwy49Jtde3MbVuHJZ4vKRZbduAu0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NwD0PToe3JkMcXF0JbT1Y6kuJoKVzuKGay0y3G2dv6eyIbRdeDMxiGR8jq+iS2uY4
+	 rlBhDbQBNXu5GseWNh+RhwQJXDsebtZEZ9bXjUlV7PADrX8SwpD/LUMztRrVGQIJMw
+	 WiveEApcQ5wG859qo+9m23XGpKVO/bL6Wgyb+uxhVKgzEG2CS7FD9Wn3/D/VaEFntL
+	 AR9+4L1+qd6la7JMwOodCBYFQkCjHqva9FDCSX94ohLICE3hA2jg3O6WwRqqWyMb3S
+	 JGQXfllIQ9XgdobS6SL0HLHRHR2V2y/ffhRPY0GyMOtHGsynBjuJ8HoPGirCipk/aQ
+	 nqeFZDP1LdRdA==
+Date: Wed, 5 Jun 2024 13:12:40 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Niklas Cassel <cassel@kernel.org>
+Cc: Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
+	Jon Lin <jon.lin@rock-chips.com>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v4 06/13] dt-bindings: rockchip: Add DesignWare based
+ PCIe Endpoint controller
+Message-ID: <20240605074240.GH5085@thinkpad>
+References: <20240529-rockchip-pcie-ep-v1-v4-0-3dc00fe21a78@kernel.org>
+ <20240529-rockchip-pcie-ep-v1-v4-6-3dc00fe21a78@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] arm64: dts: st: add usart nodes for stm32mp25
-To: Valentin Caron <valentin.caron@foss.st.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20240520140024.3711080-1-valentin.caron@foss.st.com>
-Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20240520140024.3711080-1-valentin.caron@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-04_11,2024-06-05_01,2024-05-17_01
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240529-rockchip-pcie-ep-v1-v4-6-3dc00fe21a78@kernel.org>
 
-Hi
-
-On 5/20/24 16:00, Valentin Caron wrote:
-> STM32MP25 got the same serial hardware block as STM32MP1x but with two improvements:
->   - TX and RX FIFO have been extended to 64 bytes.
->   - one instance more than in STM32MP1x series (4x usart and 5x uart).
->   
-> STM32MP257F-EV1 board has one usart used by console and one usart on IO port.
+On Wed, May 29, 2024 at 10:29:00AM +0200, Niklas Cassel wrote:
+> Document DT bindings for PCIe Endpoint controller found in Rockchip SoCs.
 > 
-> Valentin Caron (3):
->    arm64: dts: st: add usart nodes on stm32mp25
->    arm64: dts: st: add usart6 pinctrl used on stm32mp257f-ev1 board
->    arm64: dts: st: add usart6 on stm32mp257f-ev1 board
+> Signed-off-by: Niklas Cassel <cassel@kernel.org>
+
+Couple of nitpicks below. With those fixed,
+
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  .../bindings/pci/rockchip-dw-pcie-common.yaml      | 14 ++++
+>  .../bindings/pci/rockchip-dw-pcie-ep.yaml          | 95 ++++++++++++++++++++++
+>  2 files changed, 109 insertions(+)
 > 
->   arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi | 41 +++++++++++
->   arch/arm64/boot/dts/st/stm32mp251.dtsi        | 72 +++++++++++++++++++
->   arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    | 10 +++
->   3 files changed, 123 insertions(+)
+> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
+> index ec5e6a3d048e..cc9adfc7611c 100644
+> --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
+> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
+> @@ -39,6 +39,7 @@ properties:
+>        - const: ref
+>  
+>    interrupts:
+> +    minItems: 5
+>      items:
+>        - description:
+>            Combined system interrupt, which is used to signal the following
+> @@ -63,14 +64,27 @@ properties:
+>            interrupts - aer_rc_err, aer_rc_err_msi, rx_cpl_timeout,
+>            tx_cpl_timeout, cor_err_sent, nf_err_sent, f_err_sent, cor_err_rx,
+>            nf_err_rx, f_err_rx, radm_qoverflow
+> +      - description:
+> +          eDMA write channel 0 interrupt
+> +      - description:
+> +          eDMA write channel 1 interrupt
+> +      - description:
+> +          eDMA read channel 0 interrupt
+> +      - description:
+> +          eDMA read channel 1 interrupt
+>  
+>    interrupt-names:
+> +    minItems: 5
+>      items:
+>        - const: sys
+>        - const: pmc
+>        - const: msg
+>        - const: legacy
+>        - const: err
+> +      - const: dma0
+> +      - const: dma1
+> +      - const: dma2
+> +      - const: dma3
+>  
+>    num-lanes: true
+>  
+> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-ep.yaml
+> new file mode 100644
+> index 000000000000..e0c8668afc01
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-ep.yaml
+> @@ -0,0 +1,95 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/rockchip-dw-pcie-ep.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: DesignWare based PCIe Endpoint controller on Rockchip SoCs
+> +
+> +maintainers:
+> +  - Niklas Cassel <cassel@kernel.org>
+> +
+> +description: |+
+> +  RK3588 SoC PCIe Endpoint controller is based on the Synopsys DesignWare
+> +  PCIe IP and thus inherits all the common properties defined in
+> +  snps,dw-pcie-ep.yaml.
+> +
+> +allOf:
+> +  - $ref: /schemas/pci/snps,dw-pcie-ep.yaml#
+> +  - $ref: /schemas/pci/rockchip-dw-pcie-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk3568-pcie-ep
+> +      - rockchip,rk3588-pcie-ep
+> +
+> +  reg:
+> +    items:
+> +      - description: Data Bus Interface (DBI) registers
+> +      - description: Data Bus Interface (DBI) shadow registers
+> +      - description: Rockchip designed configuration registers
+> +      - description: Memory region used to map remote RC address space
+> +      - description: Address Translation Unit (ATU) registers
+
+Nit: Internal Address Translation Unit (iATU)
+
+> +
+> +  reg-names:
+> +    items:
+> +      - const: dbi
+> +      - const: dbi2
+> +      - const: apb
+> +      - const: addr_space
+> +      - const: atu
+> +
+> +required:
+> +  - interrupts
+> +  - interrupt-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/power/rk3588-power.h>
+> +    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
+> +
+> +    bus {
+
+Even though 'bus' node is also used in many bindings, I prefer 'soc' since it
+fits better IMO.
+
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        pcie3x4_ep: pcie-ep@fe150000 {
+> +            compatible = "rockchip,rk3588-pcie-ep";
+> +            clocks = <&cru ACLK_PCIE_4L_MSTR>, <&cru ACLK_PCIE_4L_SLV>,
+> +                     <&cru ACLK_PCIE_4L_DBI>, <&cru PCLK_PCIE_4L>,
+> +                     <&cru CLK_PCIE_AUX0>, <&cru CLK_PCIE4L_PIPE>;
+> +            clock-names = "aclk_mst", "aclk_slv",
+> +                          "aclk_dbi", "pclk",
+> +                          "aux", "pipe";
+> +            interrupts = <GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                         <GIC_SPI 262 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                         <GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                         <GIC_SPI 260 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                         <GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                         <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                         <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                         <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                         <GIC_SPI 270 IRQ_TYPE_LEVEL_HIGH 0>;
+> +            interrupt-names = "sys", "pmc", "msg", "legacy", "err",
+> +                              "dma0", "dma1", "dma2", "dma3";
+> +            max-link-speed = <3>;
+> +            num-lanes = <4>;
+> +            phys = <&pcie30phy>;
+> +            phy-names = "pcie-phy";
+> +            power-domains = <&power RK3588_PD_PCIE>;
+> +            reg = <0xa 0x40000000 0x0 0x00100000>,
+> +                  <0xa 0x40100000 0x0 0x00100000>,
+> +                  <0x0 0xfe150000 0x0 0x00010000>,
+> +                  <0x9 0x00000000 0x0 0x40000000>,
+> +                  <0xa 0x40300000 0x0 0x00100000>;
+> +            reg-names = "dbi", "dbi2", "apb", "addr_space", "atu";
+
+Can you move 'reg' and 'reg-names' below 'compatible' to align with common
+convention?
+
+- Mani
+
+> +            resets = <&cru SRST_PCIE0_POWER_UP>, <&cru SRST_P_PCIE0>;
+> +            reset-names = "pwr", "pipe";
+> +        };
+> +    };
+> +...
+> 
+> -- 
+> 2.45.1
 > 
 
-Series applied on stm32-next.
-
-thanks!!
-
-Alex
+-- 
+மணிவண்ணன் சதாசிவம்
 
