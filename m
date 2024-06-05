@@ -1,395 +1,311 @@
-Return-Path: <devicetree+bounces-72739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07EC28FCDE5
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 14:55:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 109F88FCDEC
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 14:56:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B26851C2157F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 12:55:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99CDF294510
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 12:56:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90BC2188CD5;
-	Wed,  5 Jun 2024 12:08:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3FA1195F19;
+	Wed,  5 Jun 2024 12:10:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="q4umy/UR"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YCvh/j7m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A24771D24D5;
-	Wed,  5 Jun 2024 12:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82A23195F11;
+	Wed,  5 Jun 2024 12:10:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717589291; cv=none; b=GNAwm0AXxc28Eef6F3uqkv5V60wL13UYJCtvTCgOGa8eGKlC+/G4FGZ7I1CsF7+aDYZ7yxIP2Czh2oFRd+355m/eyKX1u/kjNeMFfuI7yYhc01xIQSMRyvSQxse7mAZxB1agWLsv+bhKURMF2IMjL6im1z6jcJFOMixNXZ76sq4=
+	t=1717589403; cv=none; b=klWp08HQYiwQLRX4/wavcnKgqQjPVgoPOIMRUPhNUwHVmmUM4wsWVHK/LQv328cox390MNc+wNAnSLbBdHuRhjelOWNV//VkSujaESGpEFQQBgJG7MAhedZcyTd2PDi1l9ItzHzIBW0Xz+cYLKQ9/qxNyaJdXyIY+IgTTH1Q6Uc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717589291; c=relaxed/simple;
-	bh=SEelAXJG08W65CGyIkQNJoq9sAMJ1WDyzRM79iKUXRg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YonIYs70COX4fSp32LlDeFC0OlnqOjRrpSfKeEsoukfp262m4xnjVkr4d7HY7q3TVxCKAvtcY8K8lRUekjl/giCi0WwPWadH/Ijv+HJsL+s87ZY1xglbt4Z+Eiwaelg+6zgVQlSik8oRMEChlbDONwPbNxogIHASkLOaGnMQcM0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=q4umy/UR; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1717589287;
-	bh=SEelAXJG08W65CGyIkQNJoq9sAMJ1WDyzRM79iKUXRg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=q4umy/URL73BSCdwadNG+zMBW0WyFzpLdzU7QUN9h1ffq1JWcUCnyf7v1PiPLHBdG
-	 8Wx9dm/te1pzrfMcbIO565ZK26aWPMPpTtWaIUyTbNGsJh8p4DxkD8Z1vo4wOssR7g
-	 kYfcxYV/5ouZbvra3P3f9ln8JVaFO3j2jBLk7yiygZaZGpdxwfjVJ1yL9SKMWedYP1
-	 Wz2Y4P1B1VHNN4dl/irJzCqyt7dVbyhyTfTdROa7ZdLA2eqHlz3xP3iEHUqRkFGmPs
-	 ZYXYRCCodStjOWqDr+Iy8xKjNPtC5VSYQzWo8MAT8jIc1eD34H6gYSaISEbEQsNy8j
-	 W5b79ZDQ100Ig==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 0334D3781185;
-	Wed,  5 Jun 2024 12:08:05 +0000 (UTC)
-Message-ID: <d6bbd959-93fc-4374-af60-310859b266dc@collabora.com>
-Date: Wed, 5 Jun 2024 14:08:05 +0200
+	s=arc-20240116; t=1717589403; c=relaxed/simple;
+	bh=ihSPMKXJSoDmBmyDelPh8UmHtgY7G0/xWWi0ahTNJbU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YLqMzkKmdaoh9G0A9g2lOmvMvpenSi9bqDIwt+hmTLD22jYjg0eGFKi7VHSZ3XEyHwRb/X4gTP/Hr8vNvoZPN4xIVm4W2cwB37iccU4kc42KntT2ghgbHxhZqzGqW7ZjQHX96ZtY7EUS8r2YsrQY2aYFUPoGBTKwmWLFgdp5AZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YCvh/j7m; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1717589402; x=1749125402;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ihSPMKXJSoDmBmyDelPh8UmHtgY7G0/xWWi0ahTNJbU=;
+  b=YCvh/j7mWYkj9PFI/qlEpMTb4jxW/RcYVkDUpE1x1tp8tXM0AajAnPwP
+   J7T1nRuqYwgvFxXBcOXaJFw+vc+9Oiif63pLiW/pheEy8XGaBRbDJvbHk
+   mJZ35O/YmDzdeBbyMDZGKARHElYXXiqKf7oo8ZNYSAo3KZ1JKgmXjusaz
+   Vr0MzgKD7cFqtJmVw5+3OAnxdaoZHqGpI1GAKBKcsWEV+DKS1awHkF9Hl
+   tdvLoPOG+Fz3QGO6HsWs01ptIpfr7w6lnQHOMIRfWHZw0AtmnFA+pwTk/
+   rEoOm6wOmEccH1Ec+bovJ2kcAn/UDVhyFKowh0CAy2tWtSKicp6AgHgge
+   Q==;
+X-CSE-ConnectionGUID: O3xqMYt0Qty9sEH2rzYa4A==
+X-CSE-MsgGUID: 6t0c4/9fT1OT+2p4UDpdpA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="14148503"
+X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; 
+   d="scan'208";a="14148503"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jun 2024 05:10:01 -0700
+X-CSE-ConnectionGUID: o9NDg8rCToqIylflJCdoYw==
+X-CSE-MsgGUID: SxZDpsUuTpqVY9jVaWhi8A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; 
+   d="scan'208";a="42128819"
+Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
+  by fmviesa004.fm.intel.com with ESMTP; 05 Jun 2024 05:09:58 -0700
+Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sEpSl-0001UY-1d;
+	Wed, 05 Jun 2024 12:09:55 +0000
+Date: Wed, 5 Jun 2024 20:09:44 +0800
+From: kernel test robot <lkp@intel.com>
+To: wangshuaijie@awinic.com, dmitry.torokhov@gmail.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, jeff@labundy.com,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, wangshuaijie@awinic.com,
+	liweilei@awinic.com, kangjiajun@awinic.com
+Subject: Re: [PATCH V2 5/5] Add support for Awinic sar sensor.
+Message-ID: <202406051942.zY0QbCfv-lkp@intel.com>
+References: <20240605091143.163789-6-wangshuaijie@awinic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] media: i2c: Add GC05A2 image sensor driver
-To: Zhi Mao <zhi.mao@mediatek.com>, mchehab@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, sakari.ailus@linux.intel.com
-Cc: laurent.pinchart@ideasonboard.com, shengnan.wang@mediatek.com,
- yaya.chang@mediatek.com, Project_Global_Chrome_Upstream_Group@mediatek.com,
- yunkec@chromium.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
- jacopo.mondi@ideasonboard.com, 10572168@qq.com, hverkuil-cisco@xs4all.nl,
- heiko@sntech.de, jernej.skrabec@gmail.com, macromorgan@hotmail.com,
- linus.walleij@linaro.org, hdegoede@redhat.com,
- tomi.valkeinen@ideasonboard.com, gerald.loacker@wolfvision.net,
- andy.shevchenko@gmail.com, bingbu.cao@intel.com,
- dan.scally@ideasonboard.com, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20240605105540.17937-1-zhi.mao@mediatek.com>
- <20240605105540.17937-3-zhi.mao@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240605105540.17937-3-zhi.mao@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240605091143.163789-6-wangshuaijie@awinic.com>
 
-Il 05/06/24 12:55, Zhi Mao ha scritto:
-> Add a V4L2 sub-device driver for Galaxycore GC05A2 image sensor.
-> 
-> Signed-off-by: Zhi Mao <zhi.mao@mediatek.com>
-> ---
->   drivers/media/i2c/Kconfig  |   10 +
->   drivers/media/i2c/Makefile |    1 +
->   drivers/media/i2c/gc05a2.c | 1361 ++++++++++++++++++++++++++++++++++++
->   3 files changed, 1372 insertions(+)
->   create mode 100644 drivers/media/i2c/gc05a2.c
-> 
-> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
-> index c6d3ee472d81..4e7c71c95143 100644
-> --- a/drivers/media/i2c/Kconfig
-> +++ b/drivers/media/i2c/Kconfig
-> @@ -70,6 +70,16 @@ config VIDEO_GC0308
->   	  To compile this driver as a module, choose M here: the
->   	  module will be called gc0308.
->   
-> +config VIDEO_GC05A2
-> +	tristate "GalaxyCore gc05a2 sensor support"
-> +	select V4L2_CCI_I2C
-> +	help
-> +	  This is a Video4Linux2 sensor driver for the GalaxyCore gc05a2
-> +	  camera.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called gc05a2.
-> +
->   config VIDEO_GC2145
->   	select V4L2_CCI_I2C
->   	tristate "GalaxyCore GC2145 sensor support"
-> diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
-> index dfbe6448b549..8ed6faf0f854 100644
-> --- a/drivers/media/i2c/Makefile
-> +++ b/drivers/media/i2c/Makefile
-> @@ -38,6 +38,7 @@ obj-$(CONFIG_VIDEO_DW9768) += dw9768.o
->   obj-$(CONFIG_VIDEO_DW9807_VCM) += dw9807-vcm.o
->   obj-$(CONFIG_VIDEO_ET8EK8) += et8ek8/
->   obj-$(CONFIG_VIDEO_GC0308) += gc0308.o
-> +obj-$(CONFIG_VIDEO_GC05A2) += gc05a2.o
->   obj-$(CONFIG_VIDEO_GC2145) += gc2145.o
->   obj-$(CONFIG_VIDEO_HI556) += hi556.o
->   obj-$(CONFIG_VIDEO_HI846) += hi846.o
-> diff --git a/drivers/media/i2c/gc05a2.c b/drivers/media/i2c/gc05a2.c
-> new file mode 100644
-> index 000000000000..87a209b27fc2
-> --- /dev/null
-> +++ b/drivers/media/i2c/gc05a2.c
-> @@ -0,0 +1,1361 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Driver for GalaxyCore gc05a2 image sensor
-> + *
-> + * Copyright 2024 MediaTek
-> + *
-> + * Zhi Mao <zhi.mao@mediatek.com>
-> + */
-> +#include <linux/array_size.h>
-> +#include <linux/bits.h>
-> +#include <linux/clk.h>
-> +#include <linux/container_of.h>
-> +#include <linux/delay.h>
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/math64.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/property.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/types.h>
-> +#include <linux/units.h>
-> +
-> +#include <media/v4l2-cci.h>
-> +#include <media/v4l2-ctrls.h>
-> +#include <media/v4l2-event.h>
-> +#include <media/v4l2-fwnode.h>
-> +#include <media/v4l2-subdev.h>
-> +
-> +#define GC05A2_REG_TEST_PATTERN_EN CCI_REG8(0x008c)
-> +#define GC05A2_REG_TEST_PATTERN_IDX CCI_REG8(0x008d)
-> +#define GC05A2_TEST_PATTERN_EN 0x01
-> +
-> +#define GC05A2_STREAMING_REG CCI_REG8(0x0100)
-> +
-> +#define GC05A2_FLIP_REG CCI_REG8(0x0101)
-> +#define GC05A2_FLIP_H_MASK BIT(0)
-> +#define GC05A2_FLIP_V_MASK BIT(1)
-> +
-> +#define GC05A2_EXP_REG CCI_REG16(0x0202)
-> +#define GC05A2_EXP_MARGIN 16
-> +#define GC05A2_EXP_MIN 4
-> +#define GC05A2_EXP_STEP 1
-> +
-> +#define GC05A2_AGAIN_REG CCI_REG16(0x0204)
-> +#define GC05A2_AGAIN_MIN 1024
-> +#define GC05A2_AGAIN_MAX (1024 * 16)
-> +#define GC05A2_AGAIN_STEP 1
-> +
-> +#define GC05A2_FRAME_LENGTH_REG CCI_REG16(0x0340)
-> +#define GC05A2_VTS_MAX 0xffff
-> +
-> +#define GC05A2_REG_CHIP_ID CCI_REG16(0x03f0)
-> +#define GC05A2_CHIP_ID 0x05a2
-> +
-> +#define GC05A2_NATIVE_WIDTH 2592
-> +#define GC05A2_NATIVE_HEIGHT 1944
-> +
-> +#define GC05A2_DEFAULT_CLK_FREQ (24 * HZ_PER_MHZ)
-> +#define GC05A2_MBUS_CODE MEDIA_BUS_FMT_SGRBG10_1X10
-> +#define GC05A2_DATA_LANES 2
-> +#define GC05A2_RGB_DEPTH 10
-> +#define GC05A2_SLEEP_US  (2 * USEC_PER_MSEC)
-> +
+Hi,
 
-..snip..
+kernel test robot noticed the following build warnings:
 
-> +static int gc05a2_parse_fwnode(struct gc05a2 *gc05a2)
-> +{
-> +	struct fwnode_handle *endpoint;
-> +	struct v4l2_fwnode_endpoint bus_cfg = {
-> +		.bus_type = V4L2_MBUS_CSI2_DPHY,
-> +	};
-> +	int ret;
-> +	struct device *dev = gc05a2->dev;
-> +
-> +	endpoint =
-> +		fwnode_graph_get_endpoint_by_id(dev_fwnode(dev), 0, 0,
-> +						FWNODE_GRAPH_ENDPOINT_NEXT);
-> +	if (!endpoint) {
-> +		dev_err(dev, "endpoint node not found\n");
+[auto build test WARNING on 32f88d65f01bf6f45476d7edbe675e44fb9e1d58]
 
-This function is used only in probe stage, and logging should be consistent.
-Check below :-)
+url:    https://github.com/intel-lab-lkp/linux/commits/wangshuaijie-awinic-com/dt-bindings-input-Add-YAML-to-Awinic-sar-sensor/20240605-172023
+base:   32f88d65f01bf6f45476d7edbe675e44fb9e1d58
+patch link:    https://lore.kernel.org/r/20240605091143.163789-6-wangshuaijie%40awinic.com
+patch subject: [PATCH V2 5/5] Add support for Awinic sar sensor.
+config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20240605/202406051942.zY0QbCfv-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240605/202406051942.zY0QbCfv-lkp@intel.com/reproduce)
 
-> +		return -EINVAL;
-> +	}
-> +
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406051942.zY0QbCfv-lkp@intel.com/
 
-..snip..
+All warnings (new ones prefixed by >>):
 
-> +
-> +static int gc05a2_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct gc05a2 *gc05a2;
-> +	int ret;
-> +
-> +	gc05a2 = devm_kzalloc(dev, sizeof(*gc05a2), GFP_KERNEL);
-> +	if (!gc05a2)
-> +		return -ENOMEM;
-> +
-> +	gc05a2->dev = dev;
-> +
-> +	ret = gc05a2_parse_fwnode(gc05a2);
-> +	if (ret)
-> +		return ret;
-> +
-> +	gc05a2->regmap = devm_cci_regmap_init_i2c(client, 16);
-> +	if (IS_ERR(gc05a2->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(gc05a2->regmap),
-> +				     "failed to init CCI\n");
-> +
-> +	gc05a2->xclk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(gc05a2->xclk))
-> +		return dev_err_probe(dev, PTR_ERR(gc05a2->xclk),
-> +				     "failed to get xclk\n");
-> +
-> +	ret = clk_set_rate(gc05a2->xclk, GC05A2_DEFAULT_CLK_FREQ);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "failed to set xclk frequency\n");
-> +
-> +	ret = gc05a2_get_regulators(dev, gc05a2);
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret,
-> +				     "failed to get regulators\n");
-> +
-> +	gc05a2->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-> +	if (IS_ERR(gc05a2->reset_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(gc05a2->reset_gpio),
-> +				     "failed to get gpio\n");
-> +
-> +	v4l2_i2c_subdev_init(&gc05a2->sd, client, &gc05a2_subdev_ops);
-> +	gc05a2->sd.internal_ops = &gc05a2_internal_ops;
-> +	gc05a2->cur_mode = &gc05a2_modes[0];
-> +
-> +	ret = gc05a2_init_controls(gc05a2);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "failed to init controls\n");
-> +
-> +	gc05a2->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE |
-> +			    V4L2_SUBDEV_FL_HAS_EVENTS;
-> +	gc05a2->pad.flags = MEDIA_PAD_FL_SOURCE;
-> +	gc05a2->sd.dev = &client->dev;
-> +	gc05a2->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
-> +
-> +	ret = media_entity_pads_init(&gc05a2->sd.entity, 1, &gc05a2->pad);
-> +	if (ret < 0) {
-> +		dev_err(dev, "could not register media entity\n");
-
-For logging strings consistency, you should use dev_err_probe() everywhere,
-at this point, because that's printing the error code.
-
-So here it'd be
-
-if (ret < 0) {
-	dev_err_probe(dev, ret, "could not register media entity\n");
-	goto err_v4l2_ctrl_handler_free;
-}
-
-> +		goto err_v4l2_ctrl_handler_free;
-> +	}
-> +
-> +	gc05a2->sd.state_lock = gc05a2->ctrls.lock;
-> +	ret = v4l2_subdev_init_finalize(&gc05a2->sd);
-> +	if (ret < 0) {
-> +		dev_err(dev, "v4l2 subdev init error: %d\n", ret);
-
-same here
-
-> +		goto err_media_entity_cleanup;
-> +	}
-> +
-> +	pm_runtime_enable(gc05a2->dev);
-> +	pm_runtime_set_autosuspend_delay(gc05a2->dev, 1000);
-> +	pm_runtime_use_autosuspend(gc05a2->dev);
-> +	pm_runtime_idle(gc05a2->dev);
-> +
-> +	ret = v4l2_async_register_subdev_sensor(&gc05a2->sd);
-> +	if (ret < 0) {
-> +		dev_err(dev, "could not register v4l2 device\n");
-
-ditto
-
-> +		goto err_rpm;
-> +	}
-> +
-> +	return 0;
-> +
-> +err_rpm:
-> +	pm_runtime_disable(gc05a2->dev);
-> +	v4l2_subdev_cleanup(&gc05a2->sd);
-> +
-> +err_media_entity_cleanup:
-> +	media_entity_cleanup(&gc05a2->sd.entity);
-> +
-> +err_v4l2_ctrl_handler_free:
-> +	v4l2_ctrl_handler_free(&gc05a2->ctrls);
-> +
-> +	return ret;
-> +}
-> +
-> +static void gc05a2_remove(struct i2c_client *client)
-> +{
-> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
-> +	struct gc05a2 *gc05a2 = to_gc05a2(sd);
-> +
-> +	v4l2_async_unregister_subdev(&gc05a2->sd);
-> +	v4l2_subdev_cleanup(sd);
-> +	media_entity_cleanup(&gc05a2->sd.entity);
-> +	v4l2_ctrl_handler_free(&gc05a2->ctrls);
-> +
-> +	pm_runtime_disable(&client->dev);
-> +	if (!pm_runtime_status_suspended(&client->dev))
-> +		gc05a2_power_off(gc05a2->dev);
-> +	pm_runtime_set_suspended(&client->dev);
-> +}
-> +
-> +static const struct of_device_id gc05a2_of_match[] = {
-> +	{ .compatible = "galaxycore,gc05a2" },
-> +	{}
-
-{ /* sentinel */ }
+>> drivers/input/misc/aw_sar/./comm/aw_sar_comm_interface.c:39: warning: Cannot understand  * @aw_sar_i2c_read() - Read register interface
+    on line 39 - I thought it was a doc line
+>> drivers/input/misc/aw_sar/./comm/aw_sar_comm_interface.c:80: warning: Cannot understand  * @aw_sar_i2c_write - write register interface
+    on line 80 - I thought it was a doc line
+>> drivers/input/misc/aw_sar/./comm/aw_sar_comm_interface.c:125: warning: Cannot understand  * @aw_sar_i2c_write_bits() - Write the corresponding bit of the register
+    on line 125 - I thought it was a doc line
+>> drivers/input/misc/aw_sar/./comm/aw_sar_comm_interface.c:147: warning: Cannot understand  * @aw_sar_i2c_write_seq() - Continuously write data to the chip
+    on line 147 - I thought it was a doc line
+>> drivers/input/misc/aw_sar/./comm/aw_sar_comm_interface.c:177: warning: Cannot understand  * @aw_sar_i2c_read_seq() - Continuously Read data from chip
+    on line 177 - I thought it was a doc line
+>> drivers/input/misc/aw_sar/./comm/aw_sar_comm_interface.c:527: warning: Cannot understand  * @aw_sar_parsing_bin_file() - Parse bin file
+    on line 527 - I thought it was a doc line
+>> drivers/input/misc/aw_sar/./comm/aw_sar_comm_interface.c:582: warning: Cannot understand  * @aw_sar_pow2() - Calculate the second power
+    on line 582 - I thought it was a doc line
+>> drivers/input/misc/aw_sar/./comm/aw_sar_comm_interface.c:603: warning: Cannot understand  * @aw_sar_load_reg() - Calculate the second power
+    on line 603 - I thought it was a doc line
+--
+>> drivers/input/misc/aw_sar/./aw963xx/aw963xx.c:66: warning: Cannot understand  * @aw963xx_sram_fill_not_wrote_area()
+    on line 66 - I thought it was a doc line
+--
+>> drivers/input/misc/aw_sar/aw_sar.c:1645: warning: Cannot understand  * @aw_sar_chip_init() - sar sensor initialization logic.
+    on line 1645 - I thought it was a doc line
+>> drivers/input/misc/aw_sar/aw_sar.c:1748: warning: Cannot understand  * @aw_sar_get_chip_info() - Distinguish different chips by chip name and
+    on line 1748 - I thought it was a doc line
 
 
-After which, looks good to me, so, after addressing my comments:
+vim +39 drivers/input/misc/aw_sar/./comm/aw_sar_comm_interface.c
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-> +};
-> +MODULE_DEVICE_TABLE(of, gc05a2_of_match);
-> +
-> +static DEFINE_RUNTIME_DEV_PM_OPS(gc05a2_pm_ops,
-> +				 gc05a2_power_off,
-> +				 gc05a2_power_on,
-> +				 NULL);
-> +
-> +static struct i2c_driver gc05a2_i2c_driver = {
-> +	.driver = {
-> +		.of_match_table = gc05a2_of_match,
-> +		.pm = pm_ptr(&gc05a2_pm_ops),
-> +		.name  = "gc05a2",
-> +	},
-> +	.probe = gc05a2_probe,
-> +	.remove = gc05a2_remove,
-> +};
-> +module_i2c_driver(gc05a2_i2c_driver);
-> +
-> +MODULE_DESCRIPTION("GalaxyCore gc05a2 Camera driver");
-> +MODULE_AUTHOR("Zhi Mao <zhi.mao@mediatek.com>");
-> +MODULE_LICENSE("GPL");
+21b7e7a6d412d6 shuaijie wang 2024-06-05   37  
+21b7e7a6d412d6 shuaijie wang 2024-06-05   38  /**
+21b7e7a6d412d6 shuaijie wang 2024-06-05  @39   * @aw_sar_i2c_read() - Read register interface
+21b7e7a6d412d6 shuaijie wang 2024-06-05   40   *
+21b7e7a6d412d6 shuaijie wang 2024-06-05   41   * @i2c: i2c client.
+21b7e7a6d412d6 shuaijie wang 2024-06-05   42   * @reg_addr16: 16 bit register address.
+21b7e7a6d412d6 shuaijie wang 2024-06-05   43   * @reg_data32: 32 bit register data.
+21b7e7a6d412d6 shuaijie wang 2024-06-05   44   * @return 0 if init succeeded.
+21b7e7a6d412d6 shuaijie wang 2024-06-05   45   */
+21b7e7a6d412d6 shuaijie wang 2024-06-05   46  int32_t aw_sar_i2c_read(struct i2c_client *i2c, uint16_t reg_addr16,  uint32_t *reg_data32)
+21b7e7a6d412d6 shuaijie wang 2024-06-05   47  {
+21b7e7a6d412d6 shuaijie wang 2024-06-05   48  	uint8_t r_buf[6] = { 0 };
+21b7e7a6d412d6 shuaijie wang 2024-06-05   49  	int8_t cnt = 5;
+21b7e7a6d412d6 shuaijie wang 2024-06-05   50  	int32_t ret;
+21b7e7a6d412d6 shuaijie wang 2024-06-05   51  
+21b7e7a6d412d6 shuaijie wang 2024-06-05   52  	if (!i2c)
+21b7e7a6d412d6 shuaijie wang 2024-06-05   53  		return -EINVAL;
+21b7e7a6d412d6 shuaijie wang 2024-06-05   54  
+21b7e7a6d412d6 shuaijie wang 2024-06-05   55  	r_buf[0] = (unsigned char)(reg_addr16 >> OFFSET_BIT_8);
+21b7e7a6d412d6 shuaijie wang 2024-06-05   56  	r_buf[1] = (unsigned char)(reg_addr16);
+21b7e7a6d412d6 shuaijie wang 2024-06-05   57  
+21b7e7a6d412d6 shuaijie wang 2024-06-05   58  	do {
+21b7e7a6d412d6 shuaijie wang 2024-06-05   59  		ret = awinic_i2c_read(i2c, r_buf, 2, &r_buf[2], 4);
+21b7e7a6d412d6 shuaijie wang 2024-06-05   60  		if (ret < 0)
+21b7e7a6d412d6 shuaijie wang 2024-06-05   61  			dev_err(&i2c->dev, "i2c read error reg: 0x%04x, ret= %d cnt= %d",
+21b7e7a6d412d6 shuaijie wang 2024-06-05   62  					reg_addr16, ret, cnt);
+21b7e7a6d412d6 shuaijie wang 2024-06-05   63  		else
+21b7e7a6d412d6 shuaijie wang 2024-06-05   64  			break;
+21b7e7a6d412d6 shuaijie wang 2024-06-05   65  		usleep_range(2000, 3000);
+21b7e7a6d412d6 shuaijie wang 2024-06-05   66  	} while (cnt--);
+21b7e7a6d412d6 shuaijie wang 2024-06-05   67  
+21b7e7a6d412d6 shuaijie wang 2024-06-05   68  	if (cnt < 0) {
+21b7e7a6d412d6 shuaijie wang 2024-06-05   69  		dev_err(&i2c->dev, "i2c read error!");
+21b7e7a6d412d6 shuaijie wang 2024-06-05   70  		return ret;
+21b7e7a6d412d6 shuaijie wang 2024-06-05   71  	}
+21b7e7a6d412d6 shuaijie wang 2024-06-05   72  
+21b7e7a6d412d6 shuaijie wang 2024-06-05   73  	*reg_data32 = ((uint32_t)r_buf[5] << OFFSET_BIT_0) | ((uint32_t)r_buf[4] << OFFSET_BIT_8) |
+21b7e7a6d412d6 shuaijie wang 2024-06-05   74  		      ((uint32_t)r_buf[3] << OFFSET_BIT_16) | ((uint32_t)r_buf[2] << OFFSET_BIT_24);
+21b7e7a6d412d6 shuaijie wang 2024-06-05   75  
+21b7e7a6d412d6 shuaijie wang 2024-06-05   76  	return 0;
+21b7e7a6d412d6 shuaijie wang 2024-06-05   77  }
+21b7e7a6d412d6 shuaijie wang 2024-06-05   78  
+21b7e7a6d412d6 shuaijie wang 2024-06-05   79  /**
+21b7e7a6d412d6 shuaijie wang 2024-06-05  @80   * @aw_sar_i2c_write - write register interface
+21b7e7a6d412d6 shuaijie wang 2024-06-05   81   *
+21b7e7a6d412d6 shuaijie wang 2024-06-05   82   * @i2c: i2c client.
+21b7e7a6d412d6 shuaijie wang 2024-06-05   83   * @reg_addr16: 16 bit register address.
+21b7e7a6d412d6 shuaijie wang 2024-06-05   84   * @reg_data32: 32 bit register data.
+21b7e7a6d412d6 shuaijie wang 2024-06-05   85   * @return 0 if init succeeded.
+21b7e7a6d412d6 shuaijie wang 2024-06-05   86   */
+21b7e7a6d412d6 shuaijie wang 2024-06-05   87  int32_t aw_sar_i2c_write(struct i2c_client *i2c, uint16_t reg_addr16, uint32_t reg_data32)
+21b7e7a6d412d6 shuaijie wang 2024-06-05   88  {
+21b7e7a6d412d6 shuaijie wang 2024-06-05   89  	uint8_t w_buf[6] = { 0 };
+21b7e7a6d412d6 shuaijie wang 2024-06-05   90  	int8_t cnt = 5;
+21b7e7a6d412d6 shuaijie wang 2024-06-05   91  	int32_t ret;
+21b7e7a6d412d6 shuaijie wang 2024-06-05   92  
+21b7e7a6d412d6 shuaijie wang 2024-06-05   93  	if (!i2c)
+21b7e7a6d412d6 shuaijie wang 2024-06-05   94  		return -EINVAL;
+21b7e7a6d412d6 shuaijie wang 2024-06-05   95  
+21b7e7a6d412d6 shuaijie wang 2024-06-05   96  	/*reg_addr*/
+21b7e7a6d412d6 shuaijie wang 2024-06-05   97  	w_buf[0] = (uint8_t)(reg_addr16 >> OFFSET_BIT_8);
+21b7e7a6d412d6 shuaijie wang 2024-06-05   98  	w_buf[1] = (uint8_t)(reg_addr16);
+21b7e7a6d412d6 shuaijie wang 2024-06-05   99  	/*data*/
+21b7e7a6d412d6 shuaijie wang 2024-06-05  100  	w_buf[2] = (uint8_t)(reg_data32 >> OFFSET_BIT_24);
+21b7e7a6d412d6 shuaijie wang 2024-06-05  101  	w_buf[3] = (uint8_t)(reg_data32 >> OFFSET_BIT_16);
+21b7e7a6d412d6 shuaijie wang 2024-06-05  102  	w_buf[4] = (uint8_t)(reg_data32 >> OFFSET_BIT_8);
+21b7e7a6d412d6 shuaijie wang 2024-06-05  103  	w_buf[5] = (uint8_t)(reg_data32);
+21b7e7a6d412d6 shuaijie wang 2024-06-05  104  
+21b7e7a6d412d6 shuaijie wang 2024-06-05  105  	do {
+21b7e7a6d412d6 shuaijie wang 2024-06-05  106  		ret = awinic_i2c_write(i2c, w_buf, ARRAY_SIZE(w_buf));
+21b7e7a6d412d6 shuaijie wang 2024-06-05  107  		if (ret < 0) {
+21b7e7a6d412d6 shuaijie wang 2024-06-05  108  			dev_err(&i2c->dev,
+21b7e7a6d412d6 shuaijie wang 2024-06-05  109  					"i2c write error reg: 0x%04x data: 0x%08x, ret= %d cnt= %d",
+21b7e7a6d412d6 shuaijie wang 2024-06-05  110  					reg_addr16, reg_data32, ret, cnt);
+21b7e7a6d412d6 shuaijie wang 2024-06-05  111  		} else {
+21b7e7a6d412d6 shuaijie wang 2024-06-05  112  			break;
+21b7e7a6d412d6 shuaijie wang 2024-06-05  113  		}
+21b7e7a6d412d6 shuaijie wang 2024-06-05  114  	} while (cnt--);
+21b7e7a6d412d6 shuaijie wang 2024-06-05  115  
+21b7e7a6d412d6 shuaijie wang 2024-06-05  116  	if (cnt < 0) {
+21b7e7a6d412d6 shuaijie wang 2024-06-05  117  		dev_err(&i2c->dev, "i2c write error!");
+21b7e7a6d412d6 shuaijie wang 2024-06-05  118  		return ret;
+21b7e7a6d412d6 shuaijie wang 2024-06-05  119  	}
+21b7e7a6d412d6 shuaijie wang 2024-06-05  120  
+21b7e7a6d412d6 shuaijie wang 2024-06-05  121  	return 0;
+21b7e7a6d412d6 shuaijie wang 2024-06-05  122  }
+21b7e7a6d412d6 shuaijie wang 2024-06-05  123  
+21b7e7a6d412d6 shuaijie wang 2024-06-05  124  /**
+21b7e7a6d412d6 shuaijie wang 2024-06-05 @125   * @aw_sar_i2c_write_bits() - Write the corresponding bit of the register
+21b7e7a6d412d6 shuaijie wang 2024-06-05  126   *
+21b7e7a6d412d6 shuaijie wang 2024-06-05  127   * @i2c:i2c client.
+21b7e7a6d412d6 shuaijie wang 2024-06-05  128   * @reg_addr16: 16 bit register address.
+21b7e7a6d412d6 shuaijie wang 2024-06-05  129   * @mask: Write the corresponding bit as 0
+21b7e7a6d412d6 shuaijie wang 2024-06-05  130   * @val: Write corresponding data to the register
+21b7e7a6d412d6 shuaijie wang 2024-06-05  131   * @return 0 if init succeeded.
+21b7e7a6d412d6 shuaijie wang 2024-06-05  132   */
+21b7e7a6d412d6 shuaijie wang 2024-06-05  133  int32_t
+21b7e7a6d412d6 shuaijie wang 2024-06-05  134  aw_sar_i2c_write_bits(struct i2c_client *i2c, uint16_t reg_addr16, uint32_t mask, uint32_t val)
+21b7e7a6d412d6 shuaijie wang 2024-06-05  135  {
+21b7e7a6d412d6 shuaijie wang 2024-06-05  136  	uint32_t reg_val;
+21b7e7a6d412d6 shuaijie wang 2024-06-05  137  
+21b7e7a6d412d6 shuaijie wang 2024-06-05  138  	aw_sar_i2c_read(i2c, reg_addr16, &reg_val);
+21b7e7a6d412d6 shuaijie wang 2024-06-05  139  	reg_val &= mask;
+21b7e7a6d412d6 shuaijie wang 2024-06-05  140  	reg_val |= (val & (~mask));
+21b7e7a6d412d6 shuaijie wang 2024-06-05  141  	aw_sar_i2c_write(i2c, reg_addr16, reg_val);
+21b7e7a6d412d6 shuaijie wang 2024-06-05  142  
+21b7e7a6d412d6 shuaijie wang 2024-06-05  143  	return 0;
+21b7e7a6d412d6 shuaijie wang 2024-06-05  144  }
+21b7e7a6d412d6 shuaijie wang 2024-06-05  145  
+21b7e7a6d412d6 shuaijie wang 2024-06-05  146  /**
+21b7e7a6d412d6 shuaijie wang 2024-06-05 @147   * @aw_sar_i2c_write_seq() - Continuously write data to the chip
+21b7e7a6d412d6 shuaijie wang 2024-06-05  148   *
+21b7e7a6d412d6 shuaijie wang 2024-06-05  149   * @i2c:i2c client.
+21b7e7a6d412d6 shuaijie wang 2024-06-05  150   * @tr_data: Data written
+21b7e7a6d412d6 shuaijie wang 2024-06-05  151   * @len: Length of data written
+21b7e7a6d412d6 shuaijie wang 2024-06-05  152   * @return 0 if init succeeded.
+21b7e7a6d412d6 shuaijie wang 2024-06-05  153   */
+21b7e7a6d412d6 shuaijie wang 2024-06-05  154  int32_t aw_sar_i2c_write_seq(struct i2c_client *i2c, uint8_t *tr_data, uint16_t len)
+21b7e7a6d412d6 shuaijie wang 2024-06-05  155  {
+21b7e7a6d412d6 shuaijie wang 2024-06-05  156  	int8_t cnt = AW_RETRIES;
+21b7e7a6d412d6 shuaijie wang 2024-06-05  157  	int32_t ret;
+21b7e7a6d412d6 shuaijie wang 2024-06-05  158  
+21b7e7a6d412d6 shuaijie wang 2024-06-05  159  	do {
+21b7e7a6d412d6 shuaijie wang 2024-06-05  160  		ret = awinic_i2c_write(i2c, tr_data, len);
+21b7e7a6d412d6 shuaijie wang 2024-06-05  161  		if (ret < 0)
+21b7e7a6d412d6 shuaijie wang 2024-06-05  162  			dev_err(&i2c->dev, "awinic i2c write seq error %d", ret);
+21b7e7a6d412d6 shuaijie wang 2024-06-05  163  		else
+21b7e7a6d412d6 shuaijie wang 2024-06-05  164  			break;
+21b7e7a6d412d6 shuaijie wang 2024-06-05  165  		usleep_range(AW_I2C_RW_RETRY_TIME_MIN, AW_I2C_RW_RETRY_TIME_MAX);
+21b7e7a6d412d6 shuaijie wang 2024-06-05  166  	} while (cnt--);
+21b7e7a6d412d6 shuaijie wang 2024-06-05  167  
+21b7e7a6d412d6 shuaijie wang 2024-06-05  168  	if (cnt < 0) {
+21b7e7a6d412d6 shuaijie wang 2024-06-05  169  		dev_err(&i2c->dev, "awinic i2c write error!");
+21b7e7a6d412d6 shuaijie wang 2024-06-05  170  		return ret;
+21b7e7a6d412d6 shuaijie wang 2024-06-05  171  	}
+21b7e7a6d412d6 shuaijie wang 2024-06-05  172  
+21b7e7a6d412d6 shuaijie wang 2024-06-05  173  	return 0;
+21b7e7a6d412d6 shuaijie wang 2024-06-05  174  }
+21b7e7a6d412d6 shuaijie wang 2024-06-05  175  
+21b7e7a6d412d6 shuaijie wang 2024-06-05  176  /**
+21b7e7a6d412d6 shuaijie wang 2024-06-05 @177   * @aw_sar_i2c_read_seq() - Continuously Read data from chip
+21b7e7a6d412d6 shuaijie wang 2024-06-05  178   *
+21b7e7a6d412d6 shuaijie wang 2024-06-05  179   * @i2c:i2c client.
+21b7e7a6d412d6 shuaijie wang 2024-06-05  180   * @addr: Read address
+21b7e7a6d412d6 shuaijie wang 2024-06-05  181   * @addr_len: Length of read address (byte)
+21b7e7a6d412d6 shuaijie wang 2024-06-05  182   * @data: Data written
+21b7e7a6d412d6 shuaijie wang 2024-06-05  183   * @data_len: Length of data written
+21b7e7a6d412d6 shuaijie wang 2024-06-05  184   * @return 0 if init succeeded.
+21b7e7a6d412d6 shuaijie wang 2024-06-05  185   */
+21b7e7a6d412d6 shuaijie wang 2024-06-05  186  int32_t aw_sar_i2c_read_seq(struct i2c_client *i2c, uint8_t *addr,
+21b7e7a6d412d6 shuaijie wang 2024-06-05  187  				uint8_t addr_len, uint8_t *data, uint16_t data_len)
+21b7e7a6d412d6 shuaijie wang 2024-06-05  188  {
+21b7e7a6d412d6 shuaijie wang 2024-06-05  189  	int8_t cnt = AW_RETRIES;
+21b7e7a6d412d6 shuaijie wang 2024-06-05  190  	int32_t ret;
+21b7e7a6d412d6 shuaijie wang 2024-06-05  191  
+21b7e7a6d412d6 shuaijie wang 2024-06-05  192  	do {
+21b7e7a6d412d6 shuaijie wang 2024-06-05  193  		ret = awinic_i2c_read(i2c, addr, addr_len, data, data_len);
+21b7e7a6d412d6 shuaijie wang 2024-06-05  194  		if (ret < 0)
+21b7e7a6d412d6 shuaijie wang 2024-06-05  195  			dev_err(&i2c->dev, "awinic sar i2c write error %d", ret);
+21b7e7a6d412d6 shuaijie wang 2024-06-05  196  		else
+21b7e7a6d412d6 shuaijie wang 2024-06-05  197  			break;
+21b7e7a6d412d6 shuaijie wang 2024-06-05  198  		usleep_range(AW_I2C_RW_RETRY_TIME_MIN, AW_I2C_RW_RETRY_TIME_MAX);
+21b7e7a6d412d6 shuaijie wang 2024-06-05  199  	} while (cnt--);
+21b7e7a6d412d6 shuaijie wang 2024-06-05  200  
+21b7e7a6d412d6 shuaijie wang 2024-06-05  201  	if (cnt < 0) {
+21b7e7a6d412d6 shuaijie wang 2024-06-05  202  		dev_err(&i2c->dev, "awinic sar i2c read error!");
+21b7e7a6d412d6 shuaijie wang 2024-06-05  203  		return ret;
+21b7e7a6d412d6 shuaijie wang 2024-06-05  204  	}
+21b7e7a6d412d6 shuaijie wang 2024-06-05  205  
+21b7e7a6d412d6 shuaijie wang 2024-06-05  206  	return 0;
+21b7e7a6d412d6 shuaijie wang 2024-06-05  207  }
+21b7e7a6d412d6 shuaijie wang 2024-06-05  208  
 
 -- 
-AngeloGioacchino Del Regno
-Senior Software Engineer
-
-Collabora Ltd.
-Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK
-Registered in England & Wales, no. 5513718
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
