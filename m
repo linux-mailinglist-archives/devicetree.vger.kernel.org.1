@@ -1,124 +1,118 @@
-Return-Path: <devicetree+bounces-72563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6D178FC4DB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 09:44:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE0E08FC4E4
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 09:46:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 231171C2283E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 07:44:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A7ED2822D8
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 07:46:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF76018FDAB;
-	Wed,  5 Jun 2024 07:43:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E58A018C351;
+	Wed,  5 Jun 2024 07:46:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hNFgGTcr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SNWivKN6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6A9A18FDA9;
-	Wed,  5 Jun 2024 07:43:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5168618C33A;
+	Wed,  5 Jun 2024 07:46:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717573414; cv=none; b=FsoDX6NWEVMMdn2PmXv409x/vuhwbepkkHVdKdO8nDf1FvZ4bcfNLBXhhsYHds7R9aeHUdDrUGk4iugXf1+xVMz56e2/T8wWa9Dd1EKiKh1Bu5W9nCRzGTdLmRbR8wInx2D0d80ZGGf9YghESaYElA4IPkt18slmf3G1UOcle5g=
+	t=1717573588; cv=none; b=AqIjzb+0OjahKih+nJyJnXrBJsXBT4CFnWyNE2o+Ui1oEK2wMYg2HxjbFAxV8uPxhFzLrW8Ao8BkUb1GBDc9y8HFVR32AMCEIEZBJ9JrKKc19PFKFeesQCuXSNVmpj1OpfeeN9t0hsPMp4fBZLTE0jvbELtn3QMxv/1vBqk4VMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717573414; c=relaxed/simple;
-	bh=DAZjORhNTyDM4EnKUl4YaexhknoTngFwmMKXdQGWjUE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pkb5ZogUa/akqv8LRnhJHIzw+ooMQZYYMB6gpge+PmTT7W4CEdQW0LkuZbZxlXlkB15Nq/kVpGOAOgfSeY5L5heVqpZDTJfxngxh+AzOwkldI0B2x7iAmJ+CEGk5kQ22tF6cs6ypvKwoyw04nbbcArcDpznrpA1C+LEgtDbPomA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hNFgGTcr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EC8EC3277B;
-	Wed,  5 Jun 2024 07:43:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717573414;
-	bh=DAZjORhNTyDM4EnKUl4YaexhknoTngFwmMKXdQGWjUE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hNFgGTcrCys6dYW/Mu0z8LFdpJ7YBiH21gh/nHYiWaLqHTED66BiHrIuML0NYxWwM
-	 8pTBJWU4v2gDA2rr7waw9zFuQBcu7jNHnJK8cZuzEbmV4JSagxJyBl2aMqtTWsBRKT
-	 Wg8Sygvh8kIem10p9xgTPbZb2qpLIRArNXJ/0mbDNoVDfVoZFNuq+dV+P2t4x68j+x
-	 Y4GaP3pAupGsN+rGRfoor4LlxUpQxLPGvbFCCcufrtXS7BJMHGI9iuwskAtp/FOBQ3
-	 x9oiOZkGDTCJx8Yp/4TwTgFgx+EYRsDHMYj3aYl0aRuptPjf30x9ajInTDAZPBCKD7
-	 sV+ZMyR40nVxA==
-Date: Wed, 5 Jun 2024 13:13:24 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Niklas Cassel <cassel@kernel.org>
-Cc: Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	s=arc-20240116; t=1717573588; c=relaxed/simple;
+	bh=Wu8ixq/vrHERKUg8DBnJ3ob8md7NOPJWklrzwYNjQqI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=udRlsy7IsjJ+JEtHYt/l6xZS4GInY4Ab8RgEWRgscIWmVZIyi6UuyijgSXn6AYLF41vbX+cjlzN7MLrBTVEcZ8u949YfGzQmfjbiPJFzV04fvY5eqghN8ZaODYyUZsY+Avh34XFfREOT9dOD1jhw0IjFcX6zEMrNvrROwtBCUnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SNWivKN6; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-572c65cea55so1180026a12.0;
+        Wed, 05 Jun 2024 00:46:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717573586; x=1718178386; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=n84dpS87cJhgimQJRE4boDvZ08eYSNIcFdCIL4Yrgo8=;
+        b=SNWivKN6Q1szPZMYzh+YY2mXUiHfBg4W1w6CueB5pPOrGv/KVadShl56vyI3V65jec
+         cwPOGAI4yycvzdSF9j1d7azj5YI7RLIMZxOB+O8ncJs3gRqAdOGAxnJLq1C3lY7Hq614
+         /8BbxFIQRq1xkIiK3gI9blDVdjnQwJ3MJzwVgWdvnOHW2B97xk9wvwXAnYzQldOhTQhn
+         iI/O0VRc9jLMN2ZMB3H6Qd6peFNRHZmYGjtRHZTrTDYbeIJN4WFI0lZCN7NcjXJ/8AoW
+         gsM15TRHVXy7M2M4bmMxSVMzzQb/K33UAx8KAtKDIAJ3korjkpW5sNzkS8O4cB2G+jxf
+         Ty3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717573586; x=1718178386;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=n84dpS87cJhgimQJRE4boDvZ08eYSNIcFdCIL4Yrgo8=;
+        b=cp7N6wOzK8hcAufZVj1J7jlukrP1RlGbsFFXwrclNQYEuHVKEcIQXl2NisS6bJWQJ7
+         NNJ8wxIxHGsDIGxZycnIlsTLd25zkU91iUOJrY19Jy/G+JTOsUdBMH2Lre7gX19lMwRA
+         zzbVxFjBkr5xrwscfAiTS9BA8i1dNAeaBMHIVn/pkRp27xoHF40QmN6Gdh+dyA+qE1kS
+         aB/I5CCfhVYvgqNk0PisJS+rDlQXlitiLdmql/s6hQRq7P+eHnt5rpwyWYnP1FYY1/DO
+         JE3pumX+va9auwK/WPMDSfAfQ6yg+cfirVAkX9c1DkKCaHTmYWXdVKS6opkfaYYo5imp
+         wNCw==
+X-Forwarded-Encrypted: i=1; AJvYcCXJMBefHTXtlWkoty2EMLrLJt2CkYI1U8xYE2wEXAYRsHSQp07AcjvqxdL9u54lfMTld4yhNOhfgtEHzy3zWFW6iZ1F2/n5+p94am7s6jacdAnynjDesYuaIzCBCVDR6TrIvrWEcwJrtOJHlQShislig2xhxZwqG+U6cGB+2NhLmhdXXA==
+X-Gm-Message-State: AOJu0Yx1qnOU3Sf1TFV7CH94jsY2IlPdsaeLt1XLhG6mxM1wbvKr1MFq
+	2Gyy9E+/ZvjhpeKpucv0FyQdQcbz/9Otm8xMdzOxHcKFy28lPJbWoKlitQ==
+X-Google-Smtp-Source: AGHT+IEeO1g6nOVR506mmH5Ir1DQWtyOye1Qx1NI3m8u20MbrVq1EjAMOxa7BSjI1LalUsuSgkahtA==
+X-Received: by 2002:a50:d59a:0:b0:579:c5df:af84 with SMTP id 4fb4d7f45d1cf-57a8bca01a0mr1629125a12.15.1717573585312;
+        Wed, 05 Jun 2024 00:46:25 -0700 (PDT)
+Received: from spiri.. ([2a02:2f08:a10a:2300:8e59:f160:bdc8:6311])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57a31be5a15sm8903429a12.57.2024.06.05.00.46.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jun 2024 00:46:25 -0700 (PDT)
+From: Alisa-Dariana Roman <alisadariana@gmail.com>
+X-Google-Original-From: Alisa-Dariana Roman <alisa.roman@analog.com>
+To: Alisa-Dariana Roman <alisa.roman@analog.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Alexandru Tachici <alexandru.tachici@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
-	Jon Lin <jon.lin@rock-chips.com>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v4 08/13] PCI: dw-rockchip: Add rockchip_pcie_get_ltssm()
- helper
-Message-ID: <20240605074324.GI5085@thinkpad>
-References: <20240529-rockchip-pcie-ep-v1-v4-0-3dc00fe21a78@kernel.org>
- <20240529-rockchip-pcie-ep-v1-v4-8-3dc00fe21a78@kernel.org>
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Subject: [PATCH 0/3] iio: adc: ad7192: Update
+Date: Wed,  5 Jun 2024 10:45:47 +0300
+Message-Id: <20240605074547.612704-1-alisa.roman@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240529-rockchip-pcie-ep-v1-v4-8-3dc00fe21a78@kernel.org>
 
-On Wed, May 29, 2024 at 10:29:02AM +0200, Niklas Cassel wrote:
-> Add a rockchip_pcie_ltssm() helper function that reads the LTSSM status.
-> This helper will be used in additional places in follow-up commits.
-> 
-> Signed-off-by: Niklas Cassel <cassel@kernel.org>
+Dear maintainers,
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+I am submitting a series of improvements for the ad7192 driver.
 
-- Mani
+Please consider applying in order.
 
-> ---
->  drivers/pci/controller/dwc/pcie-dw-rockchip.c | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-dw-rockchip.c b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-> index 3dfed08ef456..1380e3a5284b 100644
-> --- a/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-> +++ b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-> @@ -143,6 +143,11 @@ static int rockchip_pcie_init_irq_domain(struct rockchip_pcie *rockchip)
->  	return 0;
->  }
->  
-> +static u32 rockchip_pcie_get_ltssm(struct rockchip_pcie *rockchip)
-> +{
-> +	return rockchip_pcie_readl_apb(rockchip, PCIE_CLIENT_LTSSM_STATUS);
-> +}
-> +
->  static void rockchip_pcie_enable_ltssm(struct rockchip_pcie *rockchip)
->  {
->  	rockchip_pcie_writel_apb(rockchip, PCIE_CLIENT_ENABLE_LTSSM,
-> @@ -152,7 +157,7 @@ static void rockchip_pcie_enable_ltssm(struct rockchip_pcie *rockchip)
->  static int rockchip_pcie_link_up(struct dw_pcie *pci)
->  {
->  	struct rockchip_pcie *rockchip = to_rockchip_pcie(pci);
-> -	u32 val = rockchip_pcie_readl_apb(rockchip, PCIE_CLIENT_LTSSM_STATUS);
-> +	u32 val = rockchip_pcie_get_ltssm(rockchip);
->  
->  	if ((val & PCIE_LINKUP) == PCIE_LINKUP &&
->  	    (val & PCIE_LTSSM_STATUS_MASK) == PCIE_L0S_ENTRY)
-> 
-> -- 
-> 2.45.1
-> 
+Thank you!
+
+King regards,
+Alisa-Dariana Roman (3):
+  iio: adc: ad7192: Clean up dev
+  dt-bindings: iio: adc: ad7192: Fix clock config
+  iio: adc: ad7192: Fix clock config
+
+ .../bindings/iio/adc/adi,ad7192.yaml          |  19 +-
+ drivers/iio/adc/ad7192.c                      | 194 +++++++++++++-----
+ 2 files changed, 150 insertions(+), 63 deletions(-)
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.34.1
+
 
