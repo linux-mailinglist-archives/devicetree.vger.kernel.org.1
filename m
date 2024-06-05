@@ -1,150 +1,121 @@
-Return-Path: <devicetree+bounces-72536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9A248FC3FB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 08:54:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B108C8FC401
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 08:57:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 44515B282EB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 06:54:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E284A1C22597
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 06:57:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A04B218C341;
-	Wed,  5 Jun 2024 06:54:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B1B616938F;
+	Wed,  5 Jun 2024 06:57:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="coLt6arf"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hdvcUrh+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14B0019046E;
-	Wed,  5 Jun 2024 06:54:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61735190466;
+	Wed,  5 Jun 2024 06:57:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717570478; cv=none; b=BAMGxlc0/c4eDjWWhglIbb2OODWXZN8+g5qHKZzayxkCf0fdd9X10UBTMPm5KfUDGJrjhIblLs03V4GhYc+XBwDaibZKBQWHyKN9QJrY7L8cQeHiHJKd5nuDZ8sfMSkwa2UXQEY0eBxKWOR1YwzO7s2NaPo5gotuwNZaAlHh6aI=
+	t=1717570648; cv=none; b=IZIuoMSYyn+OrIaKt8vFZL7xweNGmE8wy4NjLydqYs5Mu9CvxiW9iuVxROVspRpszonsNFc8DT8pnqzHS3rp9BR/vMWXlU0ThFpQOyufj0LIa+1z8/MMoWkweJ+gMt9ql5cKf4Vsw8hBCSE/Vj6n0BciuoHmSANXOTamIWkJr0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717570478; c=relaxed/simple;
-	bh=MMAbmLj+mJvb9CsqcjBb49/Y/hX2GCJmekXXMYUgIvo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AqSbtZw3tS7vB9AXM4xD5I6EonrNcZDOsjb60nbjIboWZ2ZTXUtvZv32d8eeLa+/YD9vl5ty4yhLzCVhfyMAWyl3mP8TSj4Wh1Gxxdb7v3am6Wqb24iqBavqXOjzOrj/DJy+OsgxTOE2UIeZxb0oRX7jD+agiFcG1x+xLAhivzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=coLt6arf; arc=none smtp.client-ip=209.85.160.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-43fecdecd32so9728921cf.1;
-        Tue, 04 Jun 2024 23:54:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717570476; x=1718175276; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pDWOB7EBv5B2WKho7wJPzVpyx/+ujpqfMRZlXIkWYkE=;
-        b=coLt6arfVVwgJVR17B/WXbHcurRTVB8G5d3X4JIIQl/DB1HzfUQM9BG2+toSwLTeI8
-         CwudSwMTfw8tm0kV3+cJXOZ28fQIL2q3J8eGvVVvYyaQz0VwstXA4uuPwiIkGMrvarSm
-         ++0kOx9M6x3SJ7QNHK1qfR+FQEfQoF8t9UZ8E17VAUIBcpyqwXRXVgVcQw+T2ZNe41aj
-         SLzV4FO0MHgWIPxBd861dEsr3tIzew3eQSBikJWe8p0xPpnc5fMywLAdpKQa08HAR6ha
-         dp+0YmFis+F7dEU2NHwR9dE4Q4pH8JskrJ0CKNCY6aafNhyflNrBx/wfCdkNiuor1tT3
-         cr7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717570476; x=1718175276;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pDWOB7EBv5B2WKho7wJPzVpyx/+ujpqfMRZlXIkWYkE=;
-        b=BQqk2GMDFO2kIAT/B59RR9hto1ZJ/ktS67f/sWeEHhh6TfVBVKaZ5+BaTxENkkFbQA
-         D0nhQXkk9uWmGC+rvU7hrPt7cRw8BlHEMFjfdev/o5eRBO98f1lAkRzlD3zTyFhwGsfI
-         kl/QoZxRIIA7TxTZpVYd3CiuSCw6AvT7cZovyy/Kw1s855lms8MEEP5IykOKtM/aaZcL
-         q2pKhsh8CCHTCURbEPldxIRk0BbMFbGU7JM99LJSC2IJBrdVnF7NapA2zF7rynAaHSVS
-         27Pg0UwMQd35WF+AWqtfzspLiPRk8Cna2jWA6FsItNFIPuy0OVeR3BJ836fODJJ7g2A2
-         x8FQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUfL4c3tqaglcylsEOYZna3/e1H4BofndaL6bGU7IkjTC0neMA74Rwmqzl3bIldrurR4MSROdKL+be6Ov2or0r465iyHXoqeOKGZdKAot+z94RKGfYLBt8ZZjZCzCAJ9Mg+GZFA2lYeWmj0vcg3dShaoJWecFZ4IEIzCu21+AZJLYYfBQ==
-X-Gm-Message-State: AOJu0YxPANxa9byM+kqCDtRtnHfEJaXWM+EnV1s0YTayHCA/2YVHSaas
-	A7Pr7WUtywNPoK0yIiacC9O8msyZEpcMBK05lCkfrwaNHm0AZXkE
-X-Google-Smtp-Source: AGHT+IFGv0q5OpSFQouNN2F7eL9OTgKRrrso+8qxuwnp9407a1Xvutj4kmMWUjWKrYDieoDXl1VxSA==
-X-Received: by 2002:a05:622a:1aa1:b0:43a:d386:f8eb with SMTP id d75a77b69052e-4402b598409mr18241661cf.22.1717570475629;
-        Tue, 04 Jun 2024 23:54:35 -0700 (PDT)
-Received: from [10.76.84.176] ([5.2.194.157])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-43ff23c2520sm56574731cf.32.2024.06.04.23.54.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Jun 2024 23:54:35 -0700 (PDT)
-Message-ID: <0f0c0b92-af0d-4e68-9880-bacfd53d726f@gmail.com>
-Date: Wed, 5 Jun 2024 09:54:31 +0300
+	s=arc-20240116; t=1717570648; c=relaxed/simple;
+	bh=/r0WB4OrnY3DzA0bEd+9+BuQn8hzAqdTPZfJEJmqX7Y=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pTug/i5l70gnOXjW2k2qpQrOgSQlXMqU6BFIs0YM1W9sRcW4VdFEZSz/N/ibQjjaTeiRViSTvfwgu42nhEmDCJomsgmzYV+CpojASMwJGHZL66VuMtNWTy59Y6mFpGXC3P5upyqj4Uth5R+4UKYI8XSPiBCv2516clr9Nl5DX/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=hdvcUrh+; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4556v8XN021975;
+	Wed, 5 Jun 2024 01:57:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1717570628;
+	bh=F8z9CDLYSSGbbwVtiDL55bOqeVlpcFRKEzsGFT6c6Bs=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=hdvcUrh+eTTYHK2/mLZTOoBbaQSQGy/m4eIJeGMXsy5ZnySaBZC+6Hqh2GGI9Pjz2
+	 T7PwB3qnAswZyRy1h/89C6KVcON4b6PWSoq4IKKanlhhEOv0vKZg4vyPlS+hO0g6lQ
+	 XcvwcNhncaJiB+6GDAFvRnmknbjFZ0st1eMWqTgk=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4556v8Tf016972
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 5 Jun 2024 01:57:08 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 5
+ Jun 2024 01:57:08 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 5 Jun 2024 01:57:08 -0500
+Received: from localhost (jluthra.dhcp.ti.com [172.24.227.116])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4556v7vu014913;
+	Wed, 5 Jun 2024 01:57:08 -0500
+Date: Wed, 5 Jun 2024 12:27:07 +0530
+From: Jai Luthra <j-luthra@ti.com>
+To: Francesco Dolcini <francesco@dolcini.it>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jayesh
+ Choudhary <j-choudhary@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>, Bryan
+ Brattlof <bb@ti.com>,
+        Aradhya Bhatia <a-bhatia1@ti.com>,
+        Francesco Dolcini
+	<francesco.dolcini@toradex.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: Re: [PATCH 0/7] arm64: dts: ti: McASP fixes
+Message-ID: <jzg6fhzcia2vfcayrz6xuts4wj5jmspytpibyqzyiajkc4hkrg@zq53frsxda2g>
+References: <20240604-mcasp_fifo_drop-v1-0-03ebe25f47db@ti.com>
+ <20240604133352.GA10282@francesco-nb>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/6] dt-bindings: adc: ad7173: add support for ad411x
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Dumitru Ceclan via B4 Relay
- <devnull+dumitru.ceclan.analog.com@kernel.org>, dumitru.ceclan@analog.com,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240531-ad4111-v4-0-64607301c057@analog.com>
- <20240531-ad4111-v4-1-64607301c057@analog.com>
- <20240601193512.0e17992b@jic23-huawei>
- <efa10caa-5e78-4f3f-8cca-c61d7a01e6fd@gmail.com>
- <20240603210014.6258134d@jic23-huawei>
-Content-Language: en-US
-From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
-In-Reply-To: <20240603210014.6258134d@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240604133352.GA10282@francesco-nb>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 03/06/2024 23:00, Jonathan Cameron wrote:
-> On Mon, 3 Jun 2024 12:46:10 +0300
-> "Ceclan, Dumitru" <mitrutzceclan@gmail.com> wrote:
-> 
->> On 01/06/2024 21:35, Jonathan Cameron wrote:
->>> On Fri, 31 May 2024 22:42:27 +0300
->>> Dumitru Ceclan via B4 Relay <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
->>>   
->>>> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
+Hi Francesco,
 
-...
-
->>>> +          Supported only by AD7172-2, AD7172-4, AD7175-2, AD7175-8, AD7177-2:
->>>> +            19: ((AVDD1 − AVSS)/5)+
->>>> +            20: ((AVDD1 − AVSS)/5)−  
->>>
->>> That's what it says on the datasheet (so fine to copy that here) but I'm curious, what does
->>> that mean in practice?  How can we have negative and postive signals of the difference
->>> between two power supply voltages where I'm fairly sure AVDD1 always greater than AVSS.
->>>  
->>
->> I have not tested that as I do not have a model that supports this wired up.
->> If I had to guess they are the same signal but one should be connected to the
->> positive input, one to the negative input...but I could be wrong.
+On Jun 04, 2024 at 15:33:52 +0200, Francesco Dolcini wrote:
+> Hello Jai,
 > 
-> If they are, then as far as I we are concerned is this one channel with two
-> representations depending on whether it is 1st or 2nd in the list?
-> Can we use one number and hide that detail in the driver?
+> On Tue, Jun 04, 2024 at 03:11:01PM +0530, Jai Luthra wrote:
+> > Drop McASP AFIFOs for all AM62 based platforms, as the extra buffering
+> > is not needed with BCDMA already having internal buffering.
 > 
-> Seems odd though if that is the case.
-> 
-> I guess if we find out later this is the case we can tighten the binding to
-> enforce the right one instead of squashing them to one value, but that
-> is a bit ugly.  Any chance of digging out the info?  If not we can go ahead
-> but ideally answering things like this make a our life easier in the long run.
-> 
-> Jonathan
+> Is this related with the issue in which after play/record or use the
+> McASP interface the system crashes or behaves in unexpected ways or this
+> is something else?
 > 
 
-"(Avdd1/Avss)/5+ as positive input and (Avdd/Avss)/5- as negative
-  this is used for monitoring power supplies, the inputs must be selected in pair"
-Perhaps it's an internal voltage divider...? I dunno
+This series does not address that issue. This is for general latency 
+improvements.
 
-So it seems like this cannot be used as a common mode voltage input.
-I'll restrict the driver to only allow these inputs paired together
-and rename the define for these selections.
+The fix for that is in the DMA driver. We have something working and 
+well tested now in the evil vendor tree, will be posting that to 
+dmaengine@ in a few days.
 
+> Francesco
+> 
 
+-- 
+Thanks,
+Jai
 
+GPG Fingerprint: 4DE0 D818 E5D5 75E8 D45A AFC5 43DE 91F9 249A 7145
 
