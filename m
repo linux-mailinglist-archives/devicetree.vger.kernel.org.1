@@ -1,90 +1,82 @@
-Return-Path: <devicetree+bounces-72992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 764C58FDAC9
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 01:43:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A2088FDACE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 01:43:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5564E1C21E5E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 23:43:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 203B91C22F1E
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 23:43:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66E3A167D85;
-	Wed,  5 Jun 2024 23:43:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D94E16ABF7;
+	Wed,  5 Jun 2024 23:43:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="NAPHVF8w"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JyV8OtzV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35097167268;
-	Wed,  5 Jun 2024 23:43:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB417167268;
+	Wed,  5 Jun 2024 23:43:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717631010; cv=none; b=e4oH+JbOBEO1k1Jb46W4ikDYLxmk0EG3eB41/S54A+JAU5es7GkgKkENwhbi0rBepoRmYNnmv4Jz++VpGY3zhC4w9FNefndVAgKjAhST1gUtH0xTe1BVplXd0GGvhwfHyI2dhT/wOYQ3gJ1iAthOr/tMMzBH/jXspfJZmnaJ4Qc=
+	t=1717631016; cv=none; b=FRglhpm0LCNxmRNWWgXrvBSxeTU7j75n0liCs0BeGNyq8CQPX4P+drdh4QV3x8zy8FxnmrlEOEFAmX0sJjSzmGTSH1QeUAf9ECJjyWxxgdseoD5kFumndPOTQBe+RSEZhD9HteBR2LtC2K72eGabfqfEp2hJy+5uGFd0VsuP+oM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717631010; c=relaxed/simple;
-	bh=iK3LAb+wliolnG3rKsU2JLIVpkEh3hwHDV0sMObCrZQ=;
+	s=arc-20240116; t=1717631016; c=relaxed/simple;
+	bh=0ud6l2igzijZx0fQ1jd+W6Ev3SzXM4c1ja8Gr1TgFA0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qQgxASMRsFWd6zsvYw8DXgpHhhGyH//lkGt7vgnVEq5aoqvOlSHXbN2pDxnvGo/LVOsVweRFmgkydi/4pDu+mfKKzwH8t2os0g5HDpw+gu8jhCQ2JElph/oLn14HmPiQr1pSGHMbLutwroPWzmkUJYhM+fwgqpaksxgeQyWVUgw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=NAPHVF8w; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=u2cpct7+XFJzG7wX3keUvQVf0CUO4FB1mefATz3+4Jw=; b=NAPHVF8wRn7aVlrTHb60+BQh3v
-	qp7CjSe3+zo1HV6qf8fWIjxPzGBsRU8KJzte+rHlB4+9yLfPT+Yj72wJXTItgfwJqHb9qUI8wkA6P
-	K6WQpQwKHLlOJjJcCVvkVPJqmh6pdoSwhOrFvoOM4rY9nOlRlhR/i1yyEkx27PxdM+go=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sF0HX-00GxVp-0T; Thu, 06 Jun 2024 01:43:03 +0200
-Date: Thu, 6 Jun 2024 01:43:02 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
-Cc: "Parthiban.Veerasooran@microchip.com" <Parthiban.Veerasooran@microchip.com>,
-	Piergiorgio Beruto <Pier.Beruto@onsemi.com>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"horms@kernel.org" <horms@kernel.org>,
-	"saeedm@nvidia.com" <saeedm@nvidia.com>,
-	"anthony.l.nguyen@intel.com" <anthony.l.nguyen@intel.com>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"corbet@lwn.net" <corbet@lwn.net>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"Horatiu.Vultur@microchip.com" <Horatiu.Vultur@microchip.com>,
-	"ruanjinjie@huawei.com" <ruanjinjie@huawei.com>,
-	"Steen.Hegelund@microchip.com" <Steen.Hegelund@microchip.com>,
-	"vladimir.oltean@nxp.com" <vladimir.oltean@nxp.com>,
-	"UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
-	"Thorsten.Kummermehr@microchip.com" <Thorsten.Kummermehr@microchip.com>,
-	"Nicolas.Ferre@microchip.com" <Nicolas.Ferre@microchip.com>,
-	"benjamin.bigler@bernformulastudent.ch" <benjamin.bigler@bernformulastudent.ch>,
-	Viliam Vozar <Viliam.Vozar@onsemi.com>,
-	Arndt Schuebel <Arndt.Schuebel@onsemi.com>
-Subject: Re: [PATCH net-next v4 00/12] Add support for OPEN Alliance
- 10BASE-T1x MACPHY Serial Interface
-Message-ID: <732ce616-9ddc-4564-ab1f-ac7bbc591292@lunn.ch>
-References: <BYAPR02MB5958A4D667D13071E023B18F83F52@BYAPR02MB5958.namprd02.prod.outlook.com>
- <6e4c8336-2783-45dd-b907-6b31cf0dae6c@lunn.ch>
- <BY5PR02MB6786619C0A0FCB2BEDC2F90D9DF52@BY5PR02MB6786.namprd02.prod.outlook.com>
- <0581b64a-dd7a-43d7-83f7-657ae93cefe5@lunn.ch>
- <BY5PR02MB6786FC4808B2947CA03977429DF32@BY5PR02MB6786.namprd02.prod.outlook.com>
- <39a62649-813a-426c-a2a6-4991e66de36e@microchip.com>
- <585d7709-bcee-4a0e-9879-612bf798ed45@lunn.ch>
- <BY5PR02MB6786649AEE8D66E4472BB9679DFC2@BY5PR02MB6786.namprd02.prod.outlook.com>
- <cbe5043b-5bb5-4b9f-ac09-5c767ceced36@microchip.com>
- <BYAPR02MB5958BD922DAE2D31F18241B283F92@BYAPR02MB5958.namprd02.prod.outlook.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Il7oyemehmnFhDgT6lfsPimNKv3x/1/KYR4rzJ3tRaxRRS8gBrmD4dfnPy3AG1IvIDRfGvSNl6Srk/NxR0UxNeeK8MhcJ+4XTbeM64nnPQoCuvVGMSKlnmBTBZ+BawF16dUoWG9r6DpYqvau2sNfuHcuyDrhN/6fgoBbDGDnMR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JyV8OtzV; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1717631015; x=1749167015;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=0ud6l2igzijZx0fQ1jd+W6Ev3SzXM4c1ja8Gr1TgFA0=;
+  b=JyV8OtzVO/0vIrnVrfSH9TB/b+gK3c/mHfoE1E+7Io1QZGnARgF6x3hV
+   /EntjNdH1cH9Y43fyAt3N/IrocDbqYQCpfV9BMUXEJ0bQftxlf2tc2wKS
+   ES7LeLjS64oyedqd9vAs3yXBl69lJscGL1vV5mB4RtR+PKnLssZEaE7jB
+   5rWg29lyzRm1jY79pYJ3tna9N3WJWQQU91n3huQERC0je0NfDQ2eSlkwP
+   aAY4+iJuJ6vUUoYfqHkCjSN8sP1aTvCA53SvNJc27q9ePoIjEijQc4Kh7
+   OJanva6AlhOVy7B5M94zjSv2BQ5yRNCKPjEdS/ffgoY5nVHfKFzDmMxwh
+   A==;
+X-CSE-ConnectionGUID: vMYxptj5TMiY26gkPl+XOA==
+X-CSE-MsgGUID: V9ITPsM6ToaTI1E1hE9DiQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11094"; a="14228835"
+X-IronPort-AV: E=Sophos;i="6.08,218,1712646000"; 
+   d="scan'208";a="14228835"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jun 2024 16:43:34 -0700
+X-CSE-ConnectionGUID: Fpw+NY5LSYuGMklnF0P44Q==
+X-CSE-MsgGUID: K0nD0fU7SkOXNfmYfWlfJQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,218,1712646000"; 
+   d="scan'208";a="68907948"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jun 2024 16:43:32 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1sF0Hx-0000000E06p-0Ci9;
+	Thu, 06 Jun 2024 02:43:29 +0300
+Date: Thu, 6 Jun 2024 02:43:28 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Danny Kaehn <danny.kaehn@plexus.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Benjamin Tissoires <bentiss@kernel.org>,
+	Jiri Kosina <jikos@kernel.org>, devicetree@vger.kernel.org,
+	linux-input@vger.kernel.org,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Ethan Twardy <ethan.twardy@plexus.com>
+Subject: Re: [PATCH v11 2/4] HID: usbhid: Share USB device firmware node with
+ child HID device
+Message-ID: <ZmD4IFFHmUkDtUeL@smile.fi.intel.com>
+References: <20240605-cp2112-dt-v11-0-d55f0f945a62@plexus.com>
+ <20240605-cp2112-dt-v11-2-d55f0f945a62@plexus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,45 +85,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <BYAPR02MB5958BD922DAE2D31F18241B283F92@BYAPR02MB5958.namprd02.prod.outlook.com>
+In-Reply-To: <20240605-cp2112-dt-v11-2-d55f0f945a62@plexus.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+
+On Wed, Jun 05, 2024 at 06:12:45PM -0500, Danny Kaehn wrote:
+> USB HID core now shares its fwnode with its child HID device.
+> Since there can only be one HID device on a USB interface, it is redundant
+> to specify a hid node under the USB device. This allows usb HID device
+> drivers to be described in firmware and make use of device properties.
+
+Can this patch be applied already, so we don't drag it again and again?
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-On Wed, Jun 05, 2024 at 09:40:12PM +0000, Selvamani Rajagopal wrote:
-> Parthiban/Andrew,
-> 
-> Couple of requests / suggestions after completing the integration of our drivers to the current framework.
-
-Please configure your email client to wrap lines at about 78
-characters.
-
-
-> 
-> 1) Can we move memory map selector definitions (OA_TC6_PHY_C45_PCS_MMS2 and other 4 definitions) to the header file
->      include/linux/oa_tc6.h?
->      Also, if possible, could we add the MMS0, MMS1?. Our driver is using them. Of course, we could add it when we submit our driver.
-
-Interesting. So you have vendor registers outside of MMS 10-15?
-
-Or do you need to access standard registers? I would prefer to see
-your use cases before deciding this. If you want to access standard
-registers, you are probably doing stuff other vendors also want to do,
-so we should add a helper in the framework.
-
-2) If it not too late to ask, Is it possible to move interrupt
-> handler to vendor's code?
-
-I would say no, not at the moment.
-
-What we can do in the future is allow a driver to register a function
-to handle the vendor interrupts, leaving the framework to handle the
-standard interrupts, and chain into the specific driver vendor
-interrupt handler when a vendor interrupt it indicated.
-
-> This way, it will provide vendors' code an ability to deal with some
-> of the interrupts. For example, our code deals with PHYINT bit.
-
-Please explain what you are doing here? What are you doing which the
-framework does not cover.
-
-	Andrew
 
