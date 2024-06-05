@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-72763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 732818FCE91
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 15:11:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD0018FCE98
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 15:12:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0902328C497
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:11:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DEDC51C210FD
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:12:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1C10194A75;
-	Wed,  5 Jun 2024 12:27:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FC7D19CD08;
+	Wed,  5 Jun 2024 12:27:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="in1URVfm"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="oqV2Tbkv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0383E194A53
-	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 12:27:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8B0F195382
+	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 12:27:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717590465; cv=none; b=fN2BV6QY3XuqWG9YBecarBXstlP5lk9rS6sReruqSYhcdHx+SzH+zCWzYV8b/0GN50IFyKbh7EU4u/9vqvFM/i2kXlLDlrsC6DgLXVIKnLA/MHRjyMvjtNrmWNl1JldilgRSz4NHAbP5YDpwsx2u4Z0HlzUPCM6RhKBluCgPy7U=
+	t=1717590467; cv=none; b=StJrBV2jf4QnTnOyRXxWA0R5nv/mGF9hKcil90whcTEkilzEi/gWCtTi0Pjpn6bohDfzoMSyvArHudgdVOm+O0WzUj0XoziHcomBEIT31S7phtdEihpRbTefq3qO/0kh2+fyNj78Tsb+6bP//PtfTHygJNdyGX2C89p3iDFXL60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717590465; c=relaxed/simple;
-	bh=5svplUamz6kn1QlrQNG82IAqSTI/V5Hw/wy9w7Z9vcY=;
+	s=arc-20240116; t=1717590467; c=relaxed/simple;
+	bh=p6R6BK8vUCMsaPsnwA8T5bLaXPsSUxJIi8/GR6rTPJE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Il9ys4oQLj/BOC3ghNA5zBtqLA8Dj4e7LKF0jVzKV22O+UFYfC+LPtG8YlMpksIRg0Jy+dGxYSPc6uvDs6KrgA4WlvMh6hNbV55o4CrhLqJl015HnhM7yPU6MqYiiVH988UIYp5xJ+3zWcab7Xu8pdP553RMftSOsRsnE8YGL1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=in1URVfm; arc=none smtp.client-ip=209.85.221.51
+	 MIME-Version; b=W3b/K5+p5itnulOkmw8u/t0+AjrPK2901xEbvH7YfCh2foUPkntNfb32VjaKxrpKDpc2Vy1wMxqOOSzCsgVPVm7jYRMBlDIbOBXpQ2pDkKBQpLVyHbNFxKuMN7RKkkpwsDYaEB0k6vFQaRjLj7nmLSsTMt/d1Mmn8gfP0NPdJAs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=oqV2Tbkv; arc=none smtp.client-ip=209.85.221.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3550134ef25so6295419f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 05:27:43 -0700 (PDT)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-35dc7d0387cso7033887f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 05:27:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1717590462; x=1718195262; darn=vger.kernel.org;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1717590464; x=1718195264; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=66zwRmCvmNHsCoXwcnY7wAttTA1ag7KYFL6z4pT9chs=;
-        b=in1URVfmi7nCCdFPj3nS8GqQYmoFRI7AfMMhThQVcFM/DKKuSLXRjcEZTVO5DF7faE
-         /sudqe9Cso/5vzaJN58bL3wS2VPmtxOZ4QF6XWX/K7CkPev7JomqKTxrdhZ2Pu7j3KuT
-         4LGyLbpHb5YtdXFqC+ktZH++QL/xP3lfef1BnTCzOxPNXiau0+f2UjdrrDuxt49cDsut
-         sr4j9ivhtnyo+20kj2yEhejpaIGv/reqYendx48qqbm6mxOH5UKWeH7J5G6bl2oMkDtX
-         hE/3XKTtVEdJuMhTw0CmVL3XKarqBtfe1dzP1t0Z8MBSx/p3QeORzIoMfvVcnRvhjA8x
-         6MIg==
+        bh=n64LePo88loVGt5G6hmnonh7PwOJsheuFMWeQMJUfyY=;
+        b=oqV2TbkvmA8zbPiyj77hwy288pF2F2Hr//wSQ7FxJKmBKy5E7GSHx2GD35Rz1ue03W
+         YVnHkpw13cyAEE0n8x0IChUiyxhFtz57LovHsTQnKzx3NRvnZ4RgPpewgvSTy1+YXor/
+         Wa4D4pxbUmfl3vyPesTYQqP9vkRxryeYUfLqevqXCkNtXcyDBShqRYjx9nwcYEW5Sl90
+         wbFQJpIFTkHRs36OhBUDDHw3Td/lruev8u79yZkuIYKrz3bhWlsf7ttCUj2M1k8bwd2C
+         Y9gUhcHc5BKoc/+QM1e3pitQU7R98cKx8ZIihxOtdMW6UzKYEBIPBj1+79EJdjt2Bwdj
+         rRhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717590462; x=1718195262;
+        d=1e100.net; s=20230601; t=1717590464; x=1718195264;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=66zwRmCvmNHsCoXwcnY7wAttTA1ag7KYFL6z4pT9chs=;
-        b=Ldo20xaWtc7oq8NRHJqOyoqa84eu/PbkTfu70VjO4LqMdi2nadboY8ZcGVZS8GL4gm
-         N+31heFDNjFz7pmX2kRblXGHSghvofklQxoHTI++Uu/ZfHMTuS4Eie6Gaucpg1cpHbLa
-         RvxlWBct2Rk5Fyuf8nDuYst8BucIrpLdESTIeVBp+vS/qO7b+WzZAUMLw3YqKkDZVv5r
-         DX094OnDoUZ6mHyPjAgThKb2lao3PJbH6viPaXAdWddted6l2i9/qDjVPS7BeWPi+fka
-         o2BYUpw+bryICREoGRm6myKx3T549Mis+iYt7Yj5Ro6wIEZLVASgg6AfS0JEBysF8+6y
-         x7Tw==
-X-Forwarded-Encrypted: i=1; AJvYcCVMY6LALZ6LbFlIzYORxD2kqvh4jVdkqjGtLw89RTqNINCs5ZNKqfHP0SMmL0LqDnJjsP4T3eKV5UC2LQg1n6FBif7aCkOJS98DlQ==
-X-Gm-Message-State: AOJu0YztgnADvr0qSqZkgC9Fu5W6gfCf+enzYTQLBMprXAM9Tc3SWUAO
-	OB8VXSDRLXVy9UnO27mC5PJag3Oo7qczdDSwdKWBgxO/CHrWVV3FCplFpcvcNak=
-X-Google-Smtp-Source: AGHT+IGF82RT72tGtXm4BWyWrkcV+Y89WJ0IVRdHBkiMFhFB9eFX5LpVsPiHKIl+gUaoqDkBRaTRhA==
-X-Received: by 2002:a5d:5043:0:b0:357:8bde:59bf with SMTP id ffacd0b85a97d-35e84060962mr1714682f8f.24.1717590462506;
-        Wed, 05 Jun 2024 05:27:42 -0700 (PDT)
+        bh=n64LePo88loVGt5G6hmnonh7PwOJsheuFMWeQMJUfyY=;
+        b=m72gsSGKumWkYkY/vEURMIc999YVOv72Uxnx7gX4Df3chR9ij2uj+nlkTZMWaPE/xs
+         peVS2SIoJwESU/g0pakr+Br2BXSjDhOCDLDecpHt1GBTI+WKVAhyJA3M3vY04RiBdAs+
+         T/vMg2tGpFmFg3mrdoeCA+SGtkDJgQqpJ4xTM0BLDSztuq8dwXmX8STRGQm0smHCITQI
+         gVixAL3yKbqhqRK0oSS3GDErsyhOMBWM1XPrXx2YESWdZUEyf6px87NLBP2MNnK9M6Uq
+         cWs6oo4ttikNR5RRLjR8kMJjVQGF7C1v8ODnglDvBUYvc9FRVuKntYNbgJzNQAfWThaM
+         2sGg==
+X-Forwarded-Encrypted: i=1; AJvYcCWwjVNlF/p+Z6CrnnlumUpaS6WVZNLveU4UbyR4uSQw98kX0EQS7U7uvmIRLZRO2MEX9A7jgXi3Wakclhhbbw/Q00HFNbLkRWqCBQ==
+X-Gm-Message-State: AOJu0YxruHBmM8bL+9bzDN5gVpNVq92GIRbeTHdg0Tpv33F1zDw/eE2S
+	p5tkXhbwUb8si7qfDu/mIQ6bK/YzNW6RTJqqYFc2gi/i1ToUaQ//q8v6dxQVLK4=
+X-Google-Smtp-Source: AGHT+IFcetx+rlr15VvdINgnB63zjSwbE+aNcPg9rG2u4zqwofMQPP1wJrpoLz+kRk6INtnkZw0FRA==
+X-Received: by 2002:adf:f406:0:b0:35e:de33:9349 with SMTP id ffacd0b85a97d-35ede3396e2mr1928925f8f.9.1717590464251;
+        Wed, 05 Jun 2024 05:27:44 -0700 (PDT)
 Received: from brgl-uxlite.home ([2a01:cb1d:75a:e000:d3dd:423:e1eb:d88b])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35dd04cac3esm14383619f8f.39.2024.06.05.05.27.41
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35dd04cac3esm14383619f8f.39.2024.06.05.05.27.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jun 2024 05:27:41 -0700 (PDT)
+        Wed, 05 Jun 2024 05:27:42 -0700 (PDT)
 From: Bartosz Golaszewski <brgl@bgdev.pl>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konrad.dybcio@linaro.org>,
@@ -76,11 +76,11 @@ To: Bjorn Andersson <andersson@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH v9 2/4] arm64: dts: qcom: sm8650-qrd: add the Wifi node
-Date: Wed,  5 Jun 2024 14:27:27 +0200
-Message-ID: <20240605122729.24283-3-brgl@bgdev.pl>
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH v9 3/4] arm64: dts: qcom: sm8650-hdk: add the Wifi node
+Date: Wed,  5 Jun 2024 14:27:28 +0200
+Message-ID: <20240605122729.24283-4-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240605122729.24283-1-brgl@bgdev.pl>
 References: <20240605122729.24283-1-brgl@bgdev.pl>
@@ -92,29 +92,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+From: Neil Armstrong <neil.armstrong@linaro.org>
 
 Describe the ath12k WLAN on-board the WCN7850 module present on the
 board.
 
-[Neil: authored the initial version of the change]
-
-Co-developed-by: Neil Armstrong <neil.armstrong@linaro.org>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8650-QRD
+Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8650-HDK
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8650-qrd.dts | 89 +++++++++++++++++++++++++
- arch/arm64/boot/dts/qcom/sm8650.dtsi    |  2 +-
- 2 files changed, 90 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sm8650-hdk.dts | 89 +++++++++++++++++++++++++
+ 1 file changed, 89 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-index 98f6a272ce5a..6e3c4d8dcc19 100644
---- a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-@@ -203,6 +203,71 @@ wcd_codec_headset_in: endpoint {
- 			};
- 		};
+diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+index 182864a3b6bd..4ad352b360b9 100644
+--- a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+@@ -266,6 +266,71 @@ wcd939x: audio-codec {
+ 
+ 		#sound-dai-cells = <1>;
  	};
 +
 +	wcn7850-pmu {
@@ -184,7 +180,7 @@ index 98f6a272ce5a..6e3c4d8dcc19 100644
  };
  
  &apps_rsc {
-@@ -844,6 +909,23 @@ &pcie0 {
+@@ -893,6 +958,23 @@ &pcie0 {
  	status = "okay";
  };
  
@@ -208,7 +204,7 @@ index 98f6a272ce5a..6e3c4d8dcc19 100644
  &pcie0_phy {
  	vdda-phy-supply = <&vreg_l1i_0p88>;
  	vdda-pll-supply = <&vreg_l3i_1p2>;
-@@ -1138,6 +1220,13 @@ wcd_default: wcd-reset-n-active-state {
+@@ -1153,6 +1235,13 @@ wcd_default: wcd-reset-n-active-state {
  		bias-disable;
  		output-low;
  	};
@@ -222,19 +218,6 @@ index 98f6a272ce5a..6e3c4d8dcc19 100644
  };
  
  &uart14 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index bb0b3c48ee4b..903c013d1510 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -2300,7 +2300,7 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
- 
- 			status = "disabled";
- 
--			pcie@0 {
-+			pcieport0: pcie@0 {
- 				device_type = "pci";
- 				reg = <0x0 0x0 0x0 0x0 0x0>;
- 				bus-range = <0x01 0xff>;
 -- 
 2.40.1
 
