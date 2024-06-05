@@ -1,127 +1,150 @@
-Return-Path: <devicetree+bounces-72557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 588528FC4A9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 09:36:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC1E28FC4B2
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 09:38:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E3EA1F22040
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 07:36:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88520283387
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 07:38:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E59918C320;
-	Wed,  5 Jun 2024 07:36:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64A9518C333;
+	Wed,  5 Jun 2024 07:38:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oNPPrBCT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GwxDi6gV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com [209.85.214.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 577396A03F;
-	Wed,  5 Jun 2024 07:36:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3CDD1922F9;
+	Wed,  5 Jun 2024 07:38:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717573013; cv=none; b=IvwTDyWsjz8iyhSFhDIOyj5A7STzGreZaKnlLeeKpt66IJ50TzGMShNAJtbRM0z0U14ZPKn0avDcrQTPEtsJ1Jeg22uXI3nMIJ8fp2pVcR12sR7q70ZhNs6j4+5wD1mC39n0vrmE00esLJGIBEY+3Fac5SNWmew9LvLvQAKjchc=
+	t=1717573085; cv=none; b=OZM3X0hgK6JzSne2NpBiI0CFOiFEVvgiGyfetupQWnsAN4nptVYcgxUYh6ncuthkz7p7nAsEA1J6CII38j7Jn2M/bB4QpqEicAPbo/ZHQkY1XzIfhDxlJ1BsiA1TcezdxPrelYMrEZUVl5C2fEO4AX6jfQ+C/hN+qznSH5ZBgrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717573013; c=relaxed/simple;
-	bh=DQJTe2Ght4na0MugFgxDTyVIKpzB8sCXy6NbZn7Uafs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NotXA8nf9/R+dblD2OjLhmLTimTAMPxcMuQ+vO46r3S6fQroZG9paamf/CZ7TpzfDjkmtymf0LB4YWyzhZIZX/HLngelp8X9ZOYdByb5SlPz2MSMX7MSIg7lajE9V6s5MyBvfKEc8YcRfPl5uwaiomLFKUy6OF+i9lWo4dYdyx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oNPPrBCT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A0CFC3277B;
-	Wed,  5 Jun 2024 07:36:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717573012;
-	bh=DQJTe2Ght4na0MugFgxDTyVIKpzB8sCXy6NbZn7Uafs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oNPPrBCT0Coo9vD/2NLylNzEPGebbKwq9YFg3ZoTeW/Zzve+4eGTpfqHoHRAHotD2
-	 L7OQq+W+Krw9HfMLaCgQ0tlZP0Tw3xYvGEYLBCXlHoLihW2PN+jQbYUhFueG0wHMfB
-	 lAXMQumUWnAKPVVRbf79m7LzULBO7wQc1m5dczfLpoVKzgSKlZColaq1liSv4hQtKm
-	 WWZg9NQVEHvlAp1+kRCzZBXXQcnQKvIgrQadTpv/snncrWzRPMdG+Wg1NCEms3NInb
-	 XxooNhB8yzbSngjFYGa/6jVFztbnFiYTmoM5O9D0ncLRCpKhF74YwxRZwKNLODmJvw
-	 mGsHAQMGFFCEA==
-Date: Wed, 5 Jun 2024 13:06:40 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Niklas Cassel <cassel@kernel.org>
-Cc: Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
-	Jon Lin <jon.lin@rock-chips.com>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v4 05/13] dt-bindings: PCI: rockchip-dw-pcie: Fix
- description of legacy irq
-Message-ID: <20240605073640.GG5085@thinkpad>
-References: <20240529-rockchip-pcie-ep-v1-v4-0-3dc00fe21a78@kernel.org>
- <20240529-rockchip-pcie-ep-v1-v4-5-3dc00fe21a78@kernel.org>
+	s=arc-20240116; t=1717573085; c=relaxed/simple;
+	bh=4yM/wI32avSH0RS9ciqQ4wcoPwL6cs7kX9mFZ0MD9tQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=I+7QvmZnLcqrcVoLT+zCvzeN69Tv2dhaAuP9TRBEQ+grLRdpP5ZAXXLDUU5iaJ7SyLFpN0YNGAuKOpPQLxXTYbpCZTr9MDcovStb1AXV2MphDEWqLwVubE6a+lf3vOSwZdfGcWeQh3Ubmzk+QzTk1qEgaqGXfvmscu0H920OQFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GwxDi6gV; arc=none smtp.client-ip=209.85.214.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f193.google.com with SMTP id d9443c01a7336-1f62217f806so56500065ad.2;
+        Wed, 05 Jun 2024 00:38:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717573083; x=1718177883; darn=vger.kernel.org;
+        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=e8BWSpIlzHJyNkmNvRW327/r98gdCbnh5C95lF/K86k=;
+        b=GwxDi6gVfCh0PpcV/C5B5uoSIDC/xn+I1RzG9k5KooiteJ8nkq7J2nPPxYesF1v8FB
+         pbekavR0j3TsoYP2CXan6y3k/eMZaPko6sukEAEeTCaaaKO1CC8WN4nnthXNsPPJ0XR/
+         jz01+lfDcq1ICKRpkCQYUn6Ox3s6Fw/AGgao6oXaUg7WvgQGiEA+Yg/cGxScZeumruiw
+         2wF7+LCRk299M0kOGfUhAm46OXkjlCaQ4En3X19gvmAkkW9dycr3T6otJhjP8CTZGWYG
+         D5JQgMMFkGeWjFRhSe3MFpGaXan0+QAPbdZsZLJjyA7MNtg5Vx35oHFuRGIb3378UH/M
+         tJQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717573083; x=1718177883;
+        h=references:in-reply-to:message-id:date:subject:cc:to:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=e8BWSpIlzHJyNkmNvRW327/r98gdCbnh5C95lF/K86k=;
+        b=AfLVMg8YlgHk+zprzy7JoEU2cJSIfZbtgfZwfJ157BBxLKh6YxgGraRZKPdrl/2bqD
+         pQEVSOYH2hggDnOa22IoyiLqdJctFDYgp0GYtHdxy6ofhcS7lUw1DYsIEpY2TkORHij3
+         A2PvCQ2gMlKzpFMeO197LaP7SuUuAtQwFoUQ7keUFBqoLzxEhIf0yweu/xT7aK8/3N/u
+         191/gOJ7ecBqN4fUUTVJmDC5yMUn62Cv6W6Y4v357/w1zGKbDxR7fL8ObqfoaRc7GzzT
+         Wv0lza1/QwQyBRdAX96ErDsA+5xmVg7nFCMzop7/vMDJ7gLjPAg2T9TgmjI67rjOFdEP
+         1vTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVzN1GAgax2+lC9Lgdmq9TAepKBinUl0eG+ImeZh4DU6xPVkgta4GbUogb2kc/oij7vaf5Hqo6Kc9ageeVdLymHivenuWFOq4kps1Cp6DIAC+AkCpxKPVsea2sCb3xrC71QgAK7WCbqLDKPQnZXeaGlOOw/fFzGXmR6RQxoPV0asQHjOY26/8jYEFuHgXEAtdas1iwHN1B8j+94KGVZa9o=
+X-Gm-Message-State: AOJu0YzOo513JfxB9T4KBS02ff2h+PP6wApdL61JStTNfvP3okO3GZea
+	yCanM5YbwLW/Q5AIjgIPcaQ2HaCs1mxSEnYYHwg2g2wL7ucUP5Zo
+X-Google-Smtp-Source: AGHT+IHh5cxecQo/wp3TkXPB4T7v8hzDY+DRBHVH9fdZp5fHLInM0xzv5DCE8mytLXwDepY1szGczg==
+X-Received: by 2002:a17:902:d504:b0:1f6:80e2:e423 with SMTP id d9443c01a7336-1f6a5a849fcmr21687855ad.68.1717573083206;
+        Wed, 05 Jun 2024 00:38:03 -0700 (PDT)
+Received: from localhost.localdomain ([103.29.142.67])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f64cff714csm77680805ad.215.2024.06.05.00.37.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jun 2024 00:38:02 -0700 (PDT)
+From: Frank Wang <frawang.cn@gmail.com>
+To: bjorn.andersson@linaro.org,
+	heiko@sntech.de,
+	heikki.krogerus@linux.intel.com
+Cc: gregkh@linuxfoundation.org,
+	andriy.shevchenko@linux.intel.com,
+	devicetree@vger.kernel.org,
+	djrscally@gmail.com,
+	hdegoede@redhat.com,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-acpi@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	rafael@kernel.org,
+	robh+dt@kernel.org,
+	sakari.ailus@linux.intel.com,
+	william.wu@rock-chips.com,
+	yubing.zhang@rock-chips.com,
+	frank.wang@rock-chips.com
+Subject: Re: [PATCH v5 5/7] usb: typec: mux: Allow multiple mux_devs per mux
+Date: Wed,  5 Jun 2024 15:37:55 +0800
+Message-Id: <20240605073755.17452-1-frawang.cn@gmail.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20220422222351.1297276-6-bjorn.andersson@linaro.org>
+References: <20220422222351.1297276-6-bjorn.andersson@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240529-rockchip-pcie-ep-v1-v4-5-3dc00fe21a78@kernel.org>
 
-On Wed, May 29, 2024 at 10:28:59AM +0200, Niklas Cassel wrote:
-> The descriptions of the combined interrupt signals (level1) mention
-> all the lower interrupt signals (level2) for each combined interrupt,
-> regardless if the lower (level2) signal is RC or EP specific.
-> 
-> E.g. the description of "Combined system interrupt" includes rbar_update,
-> which is EP specific, and the description of "Combined message interrupt"
-> includes obff_idle, obff_obff, obff_cpu_active, which are all EP specific.
-> 
-> The only exception is the "Combined legacy interrupt", which for some
-> reason does not provide an exhaustive list of the lower (level2) signals.
-> 
-> Add the missing lower interrupt signals: tx_inta, tx_intb, tx_intc, and
-> tx_intd for the "Combined legacy interrupt", as per the rk3568 and rk3588
-> Technical Reference Manuals, such that the descriptions of the combined
-> interrupt signals are consistent.
-> 
-> Signed-off-by: Niklas Cassel <cassel@kernel.org>
+Hi Bjorn,
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-- Mani
-
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> In the Qualcomm platforms the USB/DP PHY handles muxing and orientation
+> switching of the SuperSpeed lines, but the SBU lines needs to be
+> connected and switched by external (to the SoC) hardware.
+>
+> It's therefor necessary to be able to have the TypeC controller operate
+> multiple TypeC muxes and switches. Use the newly introduced indirection
+> object to handle this, to avoid having to taint the TypeC controllers
+> with knowledge about the downstream hardware configuration.
+>
+> The max number of devs per indirection is set to 3, which account for
+> being able to mux/switch the USB HS, SS and SBU lines, as per defined
+> defined in the usb-c-connector binding. This number could be grown if
+> need arrises at a later point in time.
+>
+> Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 > ---
->  Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
-> index 60d190a77580..ec5e6a3d048e 100644
-> --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
-> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
-> @@ -56,7 +56,8 @@ properties:
->            pm_pme, pm_to_ack, pm_turnoff, obff_idle, obff_obff, obff_cpu_active
->        - description:
->            Combined legacy interrupt, which is used to signal the following
-> -          interrupts - inta, intb, intc, intd
-> +          interrupts - inta, intb, intc, intd, tx_inta, tx_intb, tx_intc,
-> +          tx_intd
->        - description:
->            Combined error interrupt, which is used to signal the following
->            interrupts - aer_rc_err, aer_rc_err_msi, rx_cpl_timeout,
-> 
-> -- 
-> 2.45.1
-> 
+>
+> Changes since v4:
+> - None
+>
 
--- 
-மணிவண்ணன் சதாசிவம்
+With this commit, TCPC device shall match *two* endpoint ports both for switch
+device and mux device if they have the same parent node like the following
+existed DT. It causes the callback function is invoked twice both for switch and
+mux in tcpm_mux_set() process.
+
+// arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+&usbdp_phy0 {
+        mode-switch;
+        orientation-switch;
+        [...]
+        port {
+                #address-cells = <1>;
+                #size-cells = <0>;
+
+                usbdp_phy0_orientation_switch: endpoint@0 {
+                        reg = <0>;
+                        remote-endpoint = <&usbc0_orien_sw>;
+                };
+
+                usbdp_phy0_dp_altmode_mux: endpoint@1 {
+                        reg = <1>;
+                        remote-endpoint = <&dp_altmode_mux>;
+                };
+        };
+};
+
+BR.
+Frank
 
