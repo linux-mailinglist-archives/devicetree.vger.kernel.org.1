@@ -1,117 +1,108 @@
-Return-Path: <devicetree+bounces-72889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2269F8FD3EB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 19:23:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A595F8FD41C
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 19:28:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4F682B25BDF
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 17:23:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39147282109
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 17:28:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B017E139D00;
-	Wed,  5 Jun 2024 17:23:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D02213A269;
+	Wed,  5 Jun 2024 17:28:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jjtE8Dqt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MOieaknk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80703D26D;
-	Wed,  5 Jun 2024 17:23:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E9F517559;
+	Wed,  5 Jun 2024 17:28:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717608211; cv=none; b=A8M0X/DtMLl+cA37yuVKJBdUwBxb4Ul1qU/glLaEK/ofudGD5GOcVd6n4x0GhagmULEOchB/53i+aMge00PUNm3MTErCS9RQjeixx4BrDYe80OaRxsJFTWUokQRAXwrvkZf42JbgTfx3J5ur9cLGje6PSgDEpXGhw5KrXakIVCY=
+	t=1717608486; cv=none; b=kgP2zSMThEKr3fFY/yp0I3z1V55WxHStL8w723gFggcEshgH4kqei1KtQaArNFUll27ZvvJ61Th6oSM1e2YH58iCGv9RHo1ppU9ET6ddbmirBM9uAPnDzockDB9sklFwK4n1GzvyPFoLQXk8FJvGR0DTxC50ZHQzeRw2qW7JF/E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717608211; c=relaxed/simple;
-	bh=6PluMPHUYizb6FEj3i2/J4xCW61yi3OAY1rWSGbUHUM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LHw1OGA6Eesr4D1RQ34D9gdlZHRomd/7sCEDhDPevT/la8Ybx2cQSmolF0+YJJ9ix1t9+YloGNJhoqF154E0Vm4dh8U5aPBTIbR2aW/1TGBl0uuY3FuQp2JMjPlCfFiNekquXcm+GFN/RdV1lR9RUw1tT42gk6pm2f8eiHbMsX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jjtE8Dqt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 214E8C2BD11;
-	Wed,  5 Jun 2024 17:23:26 +0000 (UTC)
+	s=arc-20240116; t=1717608486; c=relaxed/simple;
+	bh=K0I4cU1U9cg/yjcUfTCVPlrV4fGTSRoE79eHHPCvGvI=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=BCYzzN6ytR1XwuTAcLEASMd3ZzackdXcHlnJ6JgQPFUXbLa3ED1H39apK8hUnCL1rOvtQPQsgupqrqVW0eqMWdjVY0fxZmit6gTg2qZm/QyAac0zKrSGB6nbrH2VzCBTEveYc4hClzrOU2nCNhOOU2+4xhUGXUTxgvAuKJHtIA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MOieaknk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56E54C2BD11;
+	Wed,  5 Jun 2024 17:28:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717608210;
-	bh=6PluMPHUYizb6FEj3i2/J4xCW61yi3OAY1rWSGbUHUM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jjtE8Dqt6EhfepgMzoZpCnMaqKNGRE5UR669cyt73WgHzieVieN68LD+2tiNudLe2
-	 xNYqnnzQdVmVsDBdkuYRwc0y42KOEP4LByekXZ79wnAUxILzCKNQET0ktBFrQYpZSA
-	 zdbEWGFDrB3TkrnFwOj/hANpjkvML1qIyywJ9WDea5vGh1lsRFpw1cbSBc5Mti0RJg
-	 2r4yRlyE5QemctKocA8zIsk9nH4GbU+e5Riea2T4sf1+Js0e/4vWtF/vCEbP1xb5K7
-	 tH9IeqnFBZZRmW0Sneyv3byPYn3tYuy0aDeCslo2Huxh2EtdBzhT/84RhGvKDM5Z5t
-	 3eidG+airIJPw==
-Date: Wed, 5 Jun 2024 18:23:25 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com,
-	Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Stefan Wahren <wahrenst@gmx.net>, linux-gpio@vger.kernel.org,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	Nicola Di Lieto <nicola.dilieto@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Dhruva Gole <d-gole@ti.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: pwm: Add pwm-gpio
-Message-ID: <20240605-earthworm-suspend-f7f58579f211@spud>
-References: <20240602-pwm-gpio-v6-0-e8f6ec9cc783@linaro.org>
- <20240602-pwm-gpio-v6-1-e8f6ec9cc783@linaro.org>
- <CACRpkdbPGEx9QSazVfP7rbkM7x2MnJbrACdTi3zyniQhZSyTbw@mail.gmail.com>
- <20240604-creole-easiest-2146ac2ea996@spud>
- <CACRpkdYDcR_ysF4rX6Zx6ZjQpgzYxxNKR+U=PJOVCndy2hrGaw@mail.gmail.com>
+	s=k20201202; t=1717608485;
+	bh=K0I4cU1U9cg/yjcUfTCVPlrV4fGTSRoE79eHHPCvGvI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=MOieaknkrAgx9wIISbY7CUO8IuX+8Bj0M0o4uHkGgL0TPfyfxWJH02aCX4VeCjUxf
+	 irBkYzOMfSHck/ibvy/GKYpk7GUhS/4G8YsePsWWf0u4JoHXnwvbiRf4+ajyTpI1Oi
+	 ZHt5Ibl5R+w6xyphQhymV0hUeVkZTjaL8L56y8NTvOy8nPDoXlSLa4exiwO0O0/jan
+	 yDEONwA9eitib2v0MGlNOsAC4MZ9p1cE7A6elGSFIIKsJDAg6CKeapkZX9F0WyrmeH
+	 g99MiYAd7UmmZ0icgy8ywIBRhUx81jFdL6CxCkWVfJ1UENqVX961dOOkKOhXMhd7oY
+	 F1eGCNMIqU2Gw==
+Date: Wed, 5 Jun 2024 12:28:03 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, jingoohan1@gmail.com, mani@kernel.org,
+	marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH v8 5/5] misc: pci_endpoint_test: Document a policy about
+ adding pci_device_id
+Message-ID: <20240605172803.GA766828@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="2lGtmrwmBltFSkfr"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CACRpkdYDcR_ysF4rX6Zx6ZjQpgzYxxNKR+U=PJOVCndy2hrGaw@mail.gmail.com>
+In-Reply-To: <20240520074300.125969-6-yoshihiro.shimoda.uh@renesas.com>
 
+On Mon, May 20, 2024 at 04:43:00PM +0900, Yoshihiro Shimoda wrote:
+> To avoid becoming struct pci_device_id pci_endpoint_test_tbl longer
+> and longer, document a policy. For example, if PCIe endpoint controller
+> can configure vendor id and/or product id, you can reuse one of
+> existing entries to test.
 
---2lGtmrwmBltFSkfr
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Possible text:
 
-On Tue, Jun 04, 2024 at 10:54:26PM +0200, Linus Walleij wrote:
-> On Tue, Jun 4, 2024 at 4:14=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
-ote:
->=20
-> > > The #pwm-cells are currently not properly specified in the bindings: =
-for example
-> > > pwm-tiecap.yaml says "See pwm.yaml in this directory for a description
-> > > of the cells format."
-> > > and that file says nothing about the cells and what they are for, sho=
-uld
-> > > I send a separate patch for that?
-> >
-> > Does this suffice?
-> > https://lore.kernel.org/linux-pwm/20240517-patient-stingily-30611f73e79=
-2@spud/
->=20
-> Indeed. You can add:
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org> for the above patch!
+  Add a comment suggesting that if the endpoint controller Vendor and
+  Device ID are programmable, an existing entry might be usable for
+  testing without having to add an entry to pci_endpoint_test_tbl[].
 
-Seemingly Uwe already queued it, so should end up in 6.11:
-https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git/commit/?=
-h=3Dpwm/for-next&id=3D603e1cf3b21a2451b99a5d06dca9e511dff0a294
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  drivers/misc/pci_endpoint_test.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/misc/pci_endpoint_test.c b/drivers/misc/pci_endpoint_test.c
+> index c38a6083f0a7..727db13b6450 100644
+> --- a/drivers/misc/pci_endpoint_test.c
+> +++ b/drivers/misc/pci_endpoint_test.c
+> @@ -980,6 +980,7 @@ static const struct pci_endpoint_test_data j721e_data = {
+>  	.irq_type = IRQ_TYPE_MSI,
+>  };
+>  
+> +/* Do not add a new entry if the controller can use existing VID:PID combinations */
 
---2lGtmrwmBltFSkfr
-Content-Type: application/pgp-signature; name="signature.asc"
+  /*
+   * If the controller's Vendor/Device ID are programmable, you may be
+   * able to use one of the existing entries for testing instead of
+   * adding a new one.
+   */
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmCfDAAKCRB4tDGHoIJi
-0tGyAP9oMQDcjWAEZPKB/fFbAVyFa/lMi5krukWaCcJua5c79QD+J+Q1V1UeMyyz
-mHkSoULuw/XA6XVExsqSYS7K/XdVKwg=
-=HkM1
------END PGP SIGNATURE-----
-
---2lGtmrwmBltFSkfr--
+>  static const struct pci_device_id pci_endpoint_test_tbl[] = {
+>  	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_DRA74x),
+>  	  .driver_data = (kernel_ulong_t)&default_data,
+> -- 
+> 2.25.1
+> 
 
