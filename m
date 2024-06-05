@@ -1,269 +1,176 @@
-Return-Path: <devicetree+bounces-72669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 610FC8FC7C7
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 11:28:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C08B98FC7BD
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 11:26:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA8BA282B3B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 09:28:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D93431C230B4
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 09:26:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E19C918FC6B;
-	Wed,  5 Jun 2024 09:28:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 131A018F2F2;
+	Wed,  5 Jun 2024 09:26:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m9IE8tc/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fPSSQDl5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 043BA200CD
-	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 09:28:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 619D5200CD;
+	Wed,  5 Jun 2024 09:26:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717579726; cv=none; b=hd+eCXbpK9ZaBc2IPY4XRsprAVkPb/imK2kSNiakWro2gYD5Fmy36zJBEuS9Fli5TrZZoYkVKhuNXJLueCXxFcuPUhTsoxD37bOTmMhBgofmJLWiDR85zZGadyBpgySklHuZ0ixeCqzaUFF/mu8CzILM7cp57Ysy/6xE1alChUk=
+	t=1717579613; cv=none; b=cWaJ4qhkaHEP9VWM7c3Va+KhjprwgFUbJTOcOIL0Dc2Cy1g5JQoKJ7dU+lhpGrUCp/fYJQ0uU8W5c+K9+gMZZWmICqEdU78n4stNuvEqbHhvItOV3P/KBTP5oGujI5N5hRbQ+pHJsUdn9r9L3qMqIEBkv1MhNYc3+duJUoxcKmg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717579726; c=relaxed/simple;
-	bh=EJXpSOgGuoa4/HZZtSlGPirWM12RV8lC1Y/RC/F9HFA=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=QuNwX5nCYepwCvE5xd7kwzslUBBfGpe5yEEXCe1iGfco/cudCpPqH/iRvVVRtP0rlimEFozAwjlVm0KrjFZdAN3g0JljhyiKQwIltZQgv4OoOwhcgpKiEn4MvtuR+A/CPtwnOPXI+MxUvMsONaIB6sIx8vNJhpTtNHmCkTGV9Cc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m9IE8tc/; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-35e0eb3efd0so1770020f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 02:28:44 -0700 (PDT)
+	s=arc-20240116; t=1717579613; c=relaxed/simple;
+	bh=Y7dorVYxePR9VWygFujvcqMnB0Us5J/pvoyDgyJ/vhQ=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=gps3AOWJWNdOj56ndAbjsyQyNcu0nv5JxrDbOuayWefHLRFZ4ANLgqjH/Ha0RdODFHheYxR33dENIv42B2z++x3dCMSso6aPi9Gf1v37BherzCxdvlAw8026tFhvkZEtHcUlU4IqCYMlEL38XQwBq5g2jtGjzIFJMedfV65P31E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fPSSQDl5; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-42139c66027so19066805e9.3;
+        Wed, 05 Jun 2024 02:26:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717579723; x=1718184523; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9aZp3wyE5ekzsTIWHpWbrt8XuH/G5p0iFSTouqyj9Bg=;
-        b=m9IE8tc/NFb2SKk7qGjGfeM1h8dMjii4qwJD6iqfFI8kPwz4Tt1y+D3vt+UdRfZOJ4
-         KNfXylTfayfO6nQ3jRBcQy9nqsAfxymAQii7nzQbh/AYlH2cI5XWojU1sG2Ibe62iznR
-         l9fcWs0QmdGYFndXt7zBgT+4zSb7RuR1ElYFVmNZ6mOzTnnuA0FcYqfcbZqd5mLyMBMg
-         hWCVnKNoUPWnD2njoR7ldWGPrn/UxM+6Avh/FRy8bdn0VIoaM4WF8gijF6cEgYqecEVl
-         AF60XLDOeppD+LcjxYY1uRipnljV1c4avCl+8jjB42PrvH+60IPRk/f3pwllJuhTxPhS
-         aT4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717579723; x=1718184523;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+        d=gmail.com; s=20230601; t=1717579610; x=1718184410; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=9aZp3wyE5ekzsTIWHpWbrt8XuH/G5p0iFSTouqyj9Bg=;
-        b=KnuTwhCVEkEHjdZqSAfK9VQhFqffH2nbMb6zHlJKt6hYMhmSO9ViJ8Qe2oavSm90+h
-         MU5c8KfEELrA7lMNU483VLnXsvuNrqsAwfEagxmpjiJrAQSp0ixyVEXvp4ZPL/NCaSlz
-         80Y4AZippYrTekxbiJ2qLheljYK7f+zEzM1lRjZ52D8C5VSiK67czE48PxOUjWtWCTrv
-         thCbRAf/SaSUH8ZV01WzIwGwHDaDW1AkEHp0O69DnvsVr2s2Oi1YJeLnc1L+5ztshlHs
-         GTFventDnrmIJvOjfDjJrigogGAVT//dpjE4kbs7krQM2DUFZrXFzRWrRcmk6+4G6ZAJ
-         TNlA==
-X-Forwarded-Encrypted: i=1; AJvYcCUQBulKbAyVOShKMwCgQIaYG0HoYy3z54vlgF3PDTk/PvWJRZta9lE5n34AahKVQd87qnx9KnHssbCtM6ZOlz8A9L/l/woeIzWonw==
-X-Gm-Message-State: AOJu0YyvLkmzOFHhU+/87aHrR7RPtYx3JsD7N+i77IpPSczCjVGBgJ9S
-	ctIpGUL7pebHK22/YbQNih5+vV7K6BKSSM2myNqyzc7Bw45QOuIMZDtXsgr1Jy0=
-X-Google-Smtp-Source: AGHT+IG4DNIDSVe9T92rRq3LMxr5LieWsgduZLuBSwgYLoAnxR2RRrOizcT2CkEWD5xDDP8HNuZKsg==
-X-Received: by 2002:a5d:4645:0:b0:35d:ca3b:4d11 with SMTP id ffacd0b85a97d-35e8ef97043mr1413209f8f.61.1717579723202;
-        Wed, 05 Jun 2024 02:28:43 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:c7ce:7756:462d:a8bd? ([2a01:e0a:982:cbb0:c7ce:7756:462d:a8bd])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35dd064aa6csm13842822f8f.93.2024.06.05.02.28.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Jun 2024 02:28:42 -0700 (PDT)
-Message-ID: <01bde68a-88a7-46eb-860c-1375aa730bec@linaro.org>
-Date: Wed, 5 Jun 2024 11:28:41 +0200
+        bh=1UmSXewXk4xoFkR0JLkcRp552PFqHFEUhSIEEN2KqQc=;
+        b=fPSSQDl5gHxGN6DQi99Som9P/HOASwgUOkZeE1bJJ1RRVAtqtpycintEu8UXXOA/8e
+         pGXK4BNJlXcHUno7jwBJxCKF5QXOdcUpjlQMVC3FwziRbfLEIHwFKYmjnxUCx5eca59s
+         8cxA09RQnEGB1aUMxrzYjX2DiSNI6JjnBIn/55NIArTvtjG0WPoPNUU3sYWpjbr7V3le
+         tFVguuLc+bQ4tRaXSSpOd+39drjLEGz7Fqh5Hj3V3ZNQN6jgkGiXe2SuM2PUJgDqaTSv
+         wr14iV4uIR98zEIEy47Fwa17i2cv6p7AOs9/MMpARKzlndWEfNs5oSZzALDCZZ/7j3xa
+         nreA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717579610; x=1718184410;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1UmSXewXk4xoFkR0JLkcRp552PFqHFEUhSIEEN2KqQc=;
+        b=t8BYVZUBGKIqSViUaX0GEBYuiAh1LSN8/4AF1c1xPrLKKOwqNiS4Z2Az/YDoADXtBv
+         7ZN17y0X6CmNwbVMPw/srvddi9EM3SQPAXJNyT2N3e4a21CGXLkSeNrDxKoIwsuQuHSg
+         uyw0oNfBH4kaJNHtd/UqlpZwtauIOr9aYRgHhAthVzCJmAO2FLBpjTy0fxudCrphYmcA
+         ncqjOzM/H3tY3MlRAvMQruna72o2MivdFYErb6QM4sx8XDzuU0kbiJ3E1ob9my1TX2Di
+         P8E6uyOGGXw5DjAe5aQrPTIHMMndUD4TchsfEJsaJHsacrvr43XSVcSTnBIjGN6joEFR
+         vyRg==
+X-Forwarded-Encrypted: i=1; AJvYcCUrFdjIWOS72wmrT/UAVNX5bg3r7BdVXoOMal2f5YDgoq37Zjd0My9ickDx2RrEAHObREtW35qpv5Rc9LGfHyRsy2BmUMmwYi+N8DfMKgPaHHiLaJD5CiunM4y2v715NWjzOiotkA6Hsv7JaV5nmJ9PDFCxTq0BYDEPcez5BMPfyc/3KQ==
+X-Gm-Message-State: AOJu0YyDlN6c6UhnJFnamGbQpnFBbrpwO3HkRJ+3wWXD3PQWQR/7gryD
+	F5EgqfTKRk3KiPjFj0PbeHcoIX+nwcBnwH6c5JgqIryKcBwwusxV
+X-Google-Smtp-Source: AGHT+IFH3qEuzhvOzWCxD89pSr5V0K6ubhue4nZnUzWyz+9pwcFpeOSdH2c41hWlgEUOrw3l/ZQVoQ==
+X-Received: by 2002:a05:600c:4ed2:b0:421:565b:e71c with SMTP id 5b1f17b1804b1-421565be9ecmr14133675e9.14.1717579609319;
+        Wed, 05 Jun 2024 02:26:49 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421581490c2sm13780065e9.37.2024.06.05.02.26.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jun 2024 02:26:49 -0700 (PDT)
+Message-ID: <0c0d1b2030960cdc2840d84645538fe3a9c8b9a6.camel@gmail.com>
+Subject: Re: [PATCH v3 2/6] spi: bitbang: Implement support for MOSI idle
+ state configuration
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org, 
+ lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+  nuno.sa@analog.com, dlechner@baylibre.com, marcelo.schmitt1@gmail.com
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Wed, 05 Jun 2024 11:30:35 +0200
+In-Reply-To: <811a2771d93c16b48fb37286e648a03171c8d2bc.1717539384.git.marcelo.schmitt@analog.com>
+References: <cover.1717539384.git.marcelo.schmitt@analog.com>
+	 <811a2771d93c16b48fb37286e648a03171c8d2bc.1717539384.git.marcelo.schmitt@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 00/14] Add initial support for the Rockchip RK3588 HDMI TX
- Controller
-To: Andy Yan <andyshrk@163.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Sandy Huang <hjc@rock-chips.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
- Andy Yan <andy.yan@rock-chips.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
- Luis de Arquer <ldearquer@gmail.com>, Algea Cao <algea.cao@rock-chips.com>
-References: <20240601-b4-rk3588-bridge-upstream-v1-0-f6203753232b@collabora.com>
- <a4b22708-e85d-448a-8145-244b49bca053@linaro.org>
- <ab0a6372-091b-4293-8907-a4b3ff4845c0@rock-chips.com>
- <11359776.NyiUUSuA9g@phil> <ef60403f-078f-411a-867b-9b551e863f56@linaro.org>
- <b8066150-c147-4eb6-9f7a-2bd0268c274e@collabora.com>
- <4456bc5a.9b2d.18fe7b76790.Coremail.andyshrk@163.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <4456bc5a.9b2d.18fe7b76790.Coremail.andyshrk@163.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
 
-Hi,
+On Tue, 2024-06-04 at 19:42 -0300, Marcelo Schmitt wrote:
+> Some SPI peripherals may require strict MOSI line state when the controll=
+er
+> is not clocking out data.
+> Implement support for MOSI idle state configuration (low or high) by
+> setting the data output line level on controller setup and after transfer=
+s.
+> Bitbang operations now call controller specific set_mosi_idle() call back
+> to set MOSI to its idle state.
+> The MOSI line is kept at its idle state if no tx buffer is provided.
+>=20
+> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> ---
 
-On 05/06/2024 11:25, Andy Yan wrote:
-> 
-> Hi,
-> 
-> At 2024-06-05 04:33:57, "Cristian Ciocaltea" <cristian.ciocaltea@collabora.com> wrote:
->> On 6/3/24 4:08 PM, neil.armstrong@linaro.org wrote:
->>> Hi,
->>>
->>> On 03/06/2024 15:03, Heiko Stuebner wrote:
->>>> Am Montag, 3. Juni 2024, 14:14:17 CEST schrieb Andy Yan:
->>>>> Hi Neil:
->>>>>
->>>>> On 6/3/24 16:55, Neil Armstrong wrote:
->>>>>> Hi Christian,
->>>>>>
->>>>>> On 01/06/2024 15:12, Cristian Ciocaltea wrote:
->>>>>>> The RK3588 SoC family integrates a Quad-Pixel (QP) variant of the
->>>>>>> Synopsys DesignWare HDMI TX controller used in the previous SoCs.
->>>>>>>
->>>>>>> It is HDMI 2.1 compliant and supports the following features, among
->>>>>>> others:
->>>>>>>
->>>>>> .
->>>>>>
->>>>>> ..
->>>>>>
->>>>>>> * SCDC I2C DDC access
->>>>>>> * TMDS Scrambler enabling 2160p@60Hz with RGB/YCbCr4:4:4
->>>>>>> * YCbCr4:2:0 enabling 2160p@60Hz at lower HDMI link speeds
->>>>>>> * Multi-stream audio
->>>>>>> * Enhanced Audio Return Channel (EARC)
->>>>>> -> Those features were already supported by the HDMI 2.0a compliant
->>>>>> HW, just
->>>>>> list the _new_ features for HDMI 2.1
->>>>>>
->>>>>> I did a quick review of your patchset and I don't understand why you
->>>>>> need
->>>>>> to add a separate dw-hdmi-qp.c since you only need simple variants
->>>>>> of the I2C
->>>>>> bus, infoframe and bridge setup.
->>>>>>
->>>>>> Can you elaborate further ? isn't this Quad-Pixel (QP) TX controller
->>>>>> version
->>>>>> detectable at runtime ?
->>>>>>
->>>>>> I would prefer to keep a single dw-hdmi driver if possible.
->>>>>
->>>>>
->>>>>
->>>>> The QP HDMI controller is a completely different variant with totally
->>>>> different
->>>>> registers layout, see PATCH 13/14.
->>>>> I think make it a separate driver will be easier for development and
->>>>> maintenance.
->>>>
->>>> I'm with Andy here. Trying to navigate a driver for two IP blocks really
->>>> sounds taxing especially when both are so different.
->>
->> Thank you all for the valuable feedback!
->>
->>> I agree, I just wanted more details than "variant of the
->>> Synopsys DesignWare HDMI TX controller", if the register mapping is 100%
->>> different, and does not match at all with the old IP, then it's indeed time
->>> to make a brand new driver, but instead of doing a mix up, it's time to
->>> extract
->>> the dw-hdmi code that could be common helpers into a dw-hdmi-common module
->>> and use them.
->>
->> Sounds good, will handle this in v2.
->>
->>> As I see, no "driver" code can be shared, only DRM plumbings, so perhaps
->>> those
->>> plumbing code should go into the DRM core ?
->>>
->>> In any case, please add more details on the cover letter, including the
->>> detailed
->>> HW differrence and the design you chose so support this new IP.
->>
->> Andy, could you please help with a summary of the HW changes?
->> The information I could provide is rather limited, since I don't have
->> access to any DW IP datasheets and I'm also not familiar enough with the
->> old variant.
->>
->   Accurately, we should refer to it as an entirely new IP，it has nothing in common with
-> the current mainline dw-hdmi。 The only  commonality is that they both come from
-> Synopsys DesignWare：
-> （1）It has a 100% different register mapping
-> （2）It supports FRL and DSC
-> （3）different configuration flow in many places。
-> 
-> So I have the same feeling with Heiko and Maxime：
-> The DW_HDMI_QP should have a  separate driver and with it's  own CONFIG  such as DRM_DW_HDMI_QP  in Kconfig.
-> and the rockchip part should also be split from dw_hdmi-rockchip.c.
-> I am sorry we mixed them in dw_hdmi-rockchip.c when we develop the bsp driver，but we really regretted this decision
-> when  we repeatedly broke compatibility with dw-hdmi on other socs。
+Some minor nit below in case a re-spin is needed. Anyways,
 
-Yes please, and as I say, if there's code common with the old dw-hdmi, please add a common
-module if this code can't be moved in core bridge helpers.
+Acked-by: Nuno Sa <nuno.sa@analog.com>
 
-Neil
+> =C2=A0drivers/spi/spi-bitbang.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 24 =
+++++++++++++++++++++++++
+> =C2=A0include/linux/spi/spi_bitbang.h |=C2=A0 1 +
+> =C2=A02 files changed, 25 insertions(+)
+>=20
+> diff --git a/drivers/spi/spi-bitbang.c b/drivers/spi/spi-bitbang.c
+> index ca5cc67555c5..3dee085d3570 100644
+> --- a/drivers/spi/spi-bitbang.c
+> +++ b/drivers/spi/spi-bitbang.c
+> @@ -63,21 +63,28 @@ static unsigned bitbang_txrx_8(
+> =C2=A0	unsigned flags
+> =C2=A0)
+> =C2=A0{
+> +	struct spi_bitbang	*bitbang;
+> =C2=A0	unsigned		bits =3D t->bits_per_word;
+> =C2=A0	unsigned		count =3D t->len;
+> =C2=A0	const u8		*tx =3D t->tx_buf;
+> =C2=A0	u8			*rx =3D t->rx_buf;
+> =C2=A0
+> +	bitbang =3D spi_controller_get_devdata(spi->controller);
+> =C2=A0	while (likely(count > 0)) {
+> =C2=A0		u8		word =3D 0;
+> =C2=A0
+> =C2=A0		if (tx)
+> =C2=A0			word =3D *tx++;
+> +		else
+> +			word =3D (spi->mode & SPI_MOSI_IDLE_HIGH) ? 0xFF : 0;
 
-> 
-> 
-> 
->>> Neil
->>>
->>>>
->>>> Synopsis also created a new dsi controller for the DSI2 standard, with
->>>> a vastly different registers layout.
->>>>
->>>> I guess at some point there is time to say this really is a new IP ;-) .
->>>>
->>>>
->>>> Though while on that thought, I don't fully understand why both a
->>>> compiled
->>>> under the dw_hdmi kconfig symbol. People going for a minimal kernel might
->>>> want one or the other, but not both for their specific board.
->>
->> Indeed, it makes sense to have a dedicated Kconfig option. This is
->> mostly a leftover from downstream implementation, will fix in v2.
->>
->> Thanks again,
->> Cristian
->>
->> _______________________________________________
->> linux-arm-kernel mailing list
->> linux-arm-kernel@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+no need for ()
 
+> =C2=A0		word =3D txrx_word(spi, ns, word, bits, flags);
+> =C2=A0		if (rx)
+> =C2=A0			*rx++ =3D word;
+> =C2=A0		count -=3D 1;
+> =C2=A0	}
+> +	if (bitbang->set_mosi_idle)
+> +		bitbang->set_mosi_idle(spi);
+> +
+> =C2=A0	return t->len - count;
+> =C2=A0}
+> =C2=A0
+> @@ -92,21 +99,28 @@ static unsigned bitbang_txrx_16(
+> =C2=A0	unsigned flags
+> =C2=A0)
+> =C2=A0{
+> +	struct spi_bitbang	*bitbang;
+> =C2=A0	unsigned		bits =3D t->bits_per_word;
+> =C2=A0	unsigned		count =3D t->len;
+> =C2=A0	const u16		*tx =3D t->tx_buf;
+> =C2=A0	u16			*rx =3D t->rx_buf;
+> =C2=A0
+> +	bitbang =3D spi_controller_get_devdata(spi->controller);
+> =C2=A0	while (likely(count > 1)) {
+> =C2=A0		u16		word =3D 0;
+> =C2=A0
+> =C2=A0		if (tx)
+> =C2=A0			word =3D *tx++;
+> +		else
+> +			word =3D (spi->mode & SPI_MOSI_IDLE_HIGH) ? 0xFFFF : 0;
+
+ditto (and for the txrx8 function)
+
+
+- Nuno S=C3=A1
 
