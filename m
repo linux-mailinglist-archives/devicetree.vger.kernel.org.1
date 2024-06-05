@@ -1,317 +1,121 @@
-Return-Path: <devicetree+bounces-72509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65AE18FC1F6
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 04:45:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E91D38FC21E
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 05:16:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DB421C222D4
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 02:45:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96ABA282510
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 03:16:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2468D69953;
-	Wed,  5 Jun 2024 02:45:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBB8C6BFA6;
+	Wed,  5 Jun 2024 03:16:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kMhJWntr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F/dwLYK5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E988661FCF;
-	Wed,  5 Jun 2024 02:45:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 307E142AB5;
+	Wed,  5 Jun 2024 03:16:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717555501; cv=none; b=Ow02E6LylN38qm0TirTfzkMPto7NImFudBybAFNUVR8n6a63kZGt8Bhj8N3ju+EbAjDY9wZkmlUAb9qhklR4nwgyBbFsUHbKYNMaJ3xe9XPW0wU2O+kjXxVVntIP2YbQep1aC3xLeP+LyQR8qcVzr8Eq6AquRXZwJuS7QjUiy6c=
+	t=1717557377; cv=none; b=Y68f5pDGQw+59DZbSOxxwVWYFPTGfuEnYauxJ7cFmUQsvFcUy0IQqfTnGbCd+AknsRo9YF0pajv4c7FusCKKHH4C+x2BHTpBYzOTwDu9/ev+neZi451Jet5SFYE0kMgfFYQKA7v+116rFSgrnk4pKYxx6Lt+QpnbeYyU5PiPNhI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717555501; c=relaxed/simple;
-	bh=FDf5zzQ+v5cGiDh1foXKTg7f+Waq+BKAU/17GevLwGo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=TfCXlIJAyXD6huXzQ9RrJzwfOWbII+Ev1m6H/t7Jxz9QAhwK8g+B0sHxmEwkX/W1vTYzBhF5w+kAqkXTJhqIxYF12yc4RbxiSAHXlATE6tYk2nVtxYOjwtqX54iGhsBg4y2SQYeggWVcwwHTDCyLtSjBPJ8QCaLex4NTYL9K8Es=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kMhJWntr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 92883C32782;
-	Wed,  5 Jun 2024 02:45:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717555500;
-	bh=FDf5zzQ+v5cGiDh1foXKTg7f+Waq+BKAU/17GevLwGo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=kMhJWntrpqBKRWB+Cx4UNADUFjicMNqSCTG2LceTVZJFAuGlMvkUkk46gDnkLV3B1
-	 a6qBIUE2qdBk9v3830YPHIXdfPPXsNDP+1YZ+MmFtjGtC+BAmtNPCqZ+2DccMDnhrQ
-	 XJnAr2CqmEmcJvYVoBY3wTgUEa2dAMh+Dk1Yi1JHDVyIHqtIGWm1CUyleIVJ6JDEOk
-	 YaUATLaPJ9e+YHJyp+JJZhBkc/iDQ8gNt23Cd59kk+jNFss7kxwBS5zXuwpTnt/hr+
-	 XZHaCuMdK4Ty0yT0oWwRorZPznZ1oSNaeAtptA38dP/buV2F76FwwrTen/GWs9+0wx
-	 Ozu+m1DruOs+A==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 81282C27C5F;
-	Wed,  5 Jun 2024 02:45:00 +0000 (UTC)
-From: Kelvin Zhang via B4 Relay <devnull+kelvin.zhang.amlogic.com@kernel.org>
-Date: Wed, 05 Jun 2024 10:44:56 +0800
-Subject: [PATCH v7 2/2] arm64: dts: amlogic: Add Amlogic S4 PWM
+	s=arc-20240116; t=1717557377; c=relaxed/simple;
+	bh=04xAPzHHRLN22wGYvDSc+81bOug5t7dxgEN4MPJ3+BA=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=EkoEO4/Pq8SYgCtor1NnRG2czPtDX1COEO7gubnJ1W2lztLHegMrXapn6iWdkmyPd1YBMAe9icw4lQ9EWPpaNXgd4FmXtE1ODv+wba0vPpjsrsp+98cz+IC7Mm3FF86IDfZFjwq4n9jB73zdGMNciCmqTnIzI3z7oqwSj91w39Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F/dwLYK5; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2e96f29884dso19128231fa.0;
+        Tue, 04 Jun 2024 20:16:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717557374; x=1718162174; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=04xAPzHHRLN22wGYvDSc+81bOug5t7dxgEN4MPJ3+BA=;
+        b=F/dwLYK5HYn87Tnxs6xAKvF8qDi4cHn+PLaF/W1TFJv93Pa83YobxYoQ4G39K9rcZA
+         wXvW7Ka9O7u8smUGw5qFE5yisCKdd/mHIPR11052A28Jc7OuBkM4hA5Je47z4Sb8MBtt
+         pPNjmkJOsPw8yPbtuWQsRsbdz4kdO4dYqBC2+/qtVjapPCH0IR9nlwBfx/KEkoOTXkkx
+         HTZFbvanFXt+K9968IIxCG/1zL8woliLQJxcAI1MC4htK6jKVsu3sWLe2CF/euY6AjRr
+         r81zYHOU8S9/Ck/R3VbcmwCOgue0fUXLDjRD7Q8SUbh4t8BeqtOjJ0W4Jbu3cmv1jmCK
+         0ddA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717557374; x=1718162174;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=04xAPzHHRLN22wGYvDSc+81bOug5t7dxgEN4MPJ3+BA=;
+        b=tEFWo/04h7Oth8cs4CWCvyB68ex4Q6X6W9wGB1Hhe5HpuaNOGaVMpDWMj7s3HEh/Ye
+         LmOXbQMtUPn6cdI0UnU7o7MyfuXgoZPPBTHhip0f1aKCm02rxqAYZJniKOi3379NBt9e
+         ch6thEy74OxSM/Mb8BL1z/tYcCza/wMtgALSmh2XOgE9Zd3Muk5MkfkuE3lh6g5AIzQY
+         +jFzGtOYgJnl6xDt3d2+4yJvpNL7+3GMT3DFvAn/qdMzKJiLwsjZJ9qQ+GCIXM/preTY
+         XF3vwo3HnlgQkgjy+wL7DMFnEJFlHjHXO6g9Do9N9wTdGZ1SAqzpcWfKQmtX25l79OP/
+         nJAA==
+X-Forwarded-Encrypted: i=1; AJvYcCVSWmbm8Osh/DZjoUmaXx0Y2xcYnMg0AShM4FYuhNxuOFzwBbjpHuPU1wKOXK1e+BuepFrI5zon578iS5eaqPM2pDJ1soy1SqxP1JMQUkuysY1f15jXbMZjHkCBnzQc2gPgvP/aKxuKBxTvgmBbxG1NUHw7EICfKyICs4xpRgpCPBQlow==
+X-Gm-Message-State: AOJu0YxbOiivSzGIOUOptGUrOebU+pRU6Cg9jPLDnc2V4zm4qBVYgAjS
+	uQGZisjTa40itPQE46AC8sv+ZFB7+nHm3Ug+FbbuhCdd75pScoCY
+X-Google-Smtp-Source: AGHT+IEn3UnSfnLJLoh7YmAsbD4H23Zx0LdCCxW3cgnZIPOfTgWthOubw4aRXW/incMEXo938UnCzw==
+X-Received: by 2002:a05:651c:208:b0:2e9:816b:da78 with SMTP id 38308e7fff4ca-2eac798b75cmr4930521fa.9.1717557373887;
+        Tue, 04 Jun 2024 20:16:13 -0700 (PDT)
+Received: from smtpclient.apple ([167.99.200.149])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215811d49esm4836265e9.27.2024.06.04.20.16.10
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 04 Jun 2024 20:16:13 -0700 (PDT)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240605-s4-pwm-v7-2-e822b271d7b0@amlogic.com>
-References: <20240605-s4-pwm-v7-0-e822b271d7b0@amlogic.com>
-In-Reply-To: <20240605-s4-pwm-v7-0-e822b271d7b0@amlogic.com>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Kelvin Zhang <kelvin.zhang@amlogic.com>, 
- Junyi Zhao <junyi.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1717555496; l=4918;
- i=kelvin.zhang@amlogic.com; s=20240329; h=from:subject:message-id;
- bh=IOVTUcHNUX3vbRXiLL96K2G4xrbHGVHRPhA7LupksYg=;
- b=4mI0mnFa16nSUyGIwKZLWj9HCy5F5bnnM4Pk6lY556JvNmPQTMDsdEM7zFknOT3eR5FxI6ufW
- KGLEAXC7MWuBa2q13I1n3GOW+ONoIiwqqvS/pUcrwptxEQI+rYXD6Wa
-X-Developer-Key: i=kelvin.zhang@amlogic.com; a=ed25519;
- pk=pgnle7HTNvnNTcOoGejvtTC7BJT30HUNXfMHRRXSylI=
-X-Endpoint-Received: by B4 Relay for kelvin.zhang@amlogic.com/20240329 with
- auth_id=148
-X-Original-From: Kelvin Zhang <kelvin.zhang@amlogic.com>
-Reply-To: kelvin.zhang@amlogic.com
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.500.171.1.1\))
+Subject: Re: [PATCH 2/2] iio: adc: meson: add support for the GXLX SoC
+From: Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <202406041751.elQWr6cj-lkp@intel.com>
+Date: Wed, 5 Jun 2024 07:15:58 +0400
+Cc: Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-iio@vger.kernel.org,
+ devicetree <devicetree@vger.kernel.org>,
+ linux-arm-kernel@lists.infradead.org,
+ AML <linux-amlogic@lists.infradead.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ llvm@lists.linux.dev,
+ oe-kbuild-all@lists.linux.dev
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <1E90764E-5D50-496A-B4DC-3D3982392183@gmail.com>
+References: <20240604055431.3313961-2-christianshewitt@gmail.com>
+ <202406041751.elQWr6cj-lkp@intel.com>
+To: kernel test robot <lkp@intel.com>
+X-Mailer: Apple Mail (2.3774.500.171.1.1)
 
-From: Junyi Zhao <junyi.zhao@amlogic.com>
+> On 4 Jun 2024, at 1:10=E2=80=AFPM, kernel test robot <lkp@intel.com> =
+wrote:
+>=20
+> kernel test robot noticed the following build errors:
 
-Add device nodes for PWM_AB, PWM_CD, PWM_EF, PWM_GH and PWM_IJ
-along with GPIO PIN configs of each channel.
+Apologies. Build errors are because I wrongly imagined this dependent =
+series from Martin to be merged:
 
-Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
-Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 199 ++++++++++++++++++++++++++++++
- 1 file changed, 199 insertions(+)
+=
+https://patchwork.kernel.org/project/linux-arm-kernel/cover/20240323231309=
+.415425-1-martin.blumenstingl@googlemail.com/
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index 10896f9df682..b686eacb9662 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -312,6 +312,160 @@ mux {
- 					};
- 				};
- 
-+				pwm_a_pins1: pwm-a-pins1 {
-+					mux {
-+						groups = "pwm_a_d";
-+						function = "pwm_a";
-+					};
-+				};
-+
-+				pwm_a_pins2: pwm-a-pins2 {
-+					mux {
-+						groups = "pwm_a_x";
-+						function = "pwm_a";
-+					};
-+				};
-+
-+				pwm_b_pins1: pwm-b-pins1 {
-+					mux {
-+						groups = "pwm_b_d";
-+						function = "pwm_b";
-+					};
-+				};
-+
-+				pwm_b_pins2: pwm-b-pins2 {
-+					mux {
-+						groups = "pwm_b_x";
-+						function = "pwm_b";
-+					};
-+				};
-+
-+				pwm_c_pins1: pwm-c-pins1 {
-+					mux {
-+						groups = "pwm_c_d";
-+						function = "pwm_c";
-+					};
-+				};
-+
-+				pwm_c_pins2: pwm-c-pins2 {
-+					mux {
-+						groups = "pwm_c_x";
-+						function = "pwm_c";
-+					};
-+				};
-+
-+				pwm_d_pins1: pwm-d-pins1 {
-+					mux {
-+						groups = "pwm_d_d";
-+						function = "pwm_d";
-+					};
-+				};
-+
-+				pwm_d_pins2: pwm-d-pins2 {
-+					mux {
-+						groups = "pwm_d_h";
-+						function = "pwm_d";
-+					};
-+				};
-+
-+				pwm_e_pins1: pwm-e-pins1 {
-+					mux {
-+						groups = "pwm_e_x";
-+						function = "pwm_e";
-+					};
-+				};
-+
-+				pwm_e_pins2: pwm-e-pins2 {
-+					mux {
-+						groups = "pwm_e_z";
-+						function = "pwm_e";
-+					};
-+				};
-+
-+				pwm_f_pins1: pwm-f-pins1 {
-+					mux {
-+						groups = "pwm_f_x";
-+						function = "pwm_f";
-+					};
-+				};
-+
-+				pwm_f_pins2: pwm-f-pins2 {
-+					mux {
-+						groups = "pwm_f_z";
-+						function = "pwm_f";
-+					};
-+				};
-+
-+				pwm_g_pins1: pwm-g-pins1 {
-+					mux {
-+						groups = "pwm_g_d";
-+						function = "pwm_g";
-+					};
-+				};
-+
-+				pwm_g_pins2: pwm-g-pins2 {
-+					mux {
-+						groups = "pwm_g_z";
-+						function = "pwm_g";
-+					};
-+				};
-+
-+				pwm_h_pins: pwm-h-pins {
-+					mux {
-+						groups = "pwm_h";
-+						function = "pwm_h";
-+					};
-+				};
-+
-+				pwm_i_pins1: pwm-i-pins1 {
-+					mux {
-+						groups = "pwm_i_d";
-+						function = "pwm_i";
-+					};
-+				};
-+
-+				pwm_i_pins2: pwm-i-pins2 {
-+					mux {
-+						groups = "pwm_i_h";
-+						function = "pwm_i";
-+					};
-+				};
-+
-+				pwm_j_pins: pwm-j-pins {
-+					mux {
-+						groups = "pwm_j";
-+						function = "pwm_j";
-+					};
-+				};
-+
-+				pwm_a_hiz_pins: pwm-a-hiz-pins {
-+					mux {
-+						groups = "pwm_a_hiz";
-+						function = "pwm_a_hiz";
-+					};
-+				};
-+
-+				pwm_b_hiz_pins: pwm-b-hiz-pins {
-+					mux {
-+						groups = "pwm_b_hiz";
-+						function = "pwm_b_hiz";
-+					};
-+				};
-+
-+				pwm_c_hiz_pins: pwm-c-hiz-pins {
-+					mux {
-+						groups = "pwm_c_hiz";
-+						function = "pwm_c_hiz";
-+					};
-+				};
-+
-+				pwm_g_hiz_pins: pwm-g-hiz-pins {
-+					mux {
-+						groups = "pwm_g_hiz";
-+						function = "pwm_g_hiz";
-+					};
-+				};
-+
- 				spicc0_pins_x: spicc0-pins_x {
- 					mux {
- 						groups = "spi_a_mosi_x",
-@@ -399,6 +553,51 @@ spicc0: spi@50000 {
- 				status = "disabled";
- 			};
- 
-+			pwm_ab: pwm@58000 {
-+				compatible = "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x58000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_A>,
-+					 <&clkc_periphs CLKID_PWM_B>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
-+			pwm_cd: pwm@5a000 {
-+				compatible = "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x5a000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_C>,
-+					 <&clkc_periphs CLKID_PWM_D>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
-+			pwm_ef: pwm@5c000 {
-+				compatible = "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x5c000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_E>,
-+					 <&clkc_periphs CLKID_PWM_F>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
-+			pwm_gh: pwm@5e000 {
-+				compatible = "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x5e000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_G>,
-+					 <&clkc_periphs CLKID_PWM_H>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
-+			pwm_ij: pwm@60000 {
-+				compatible = "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x60000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_I>,
-+					 <&clkc_periphs CLKID_PWM_J>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
- 			i2c0: i2c@66000 {
- 				compatible = "amlogic,meson-axg-i2c";
- 				reg = <0x0 0x66000 0x0 0x20>;
+To be continued!
 
--- 
-2.37.1
-
+Christian
 
 
