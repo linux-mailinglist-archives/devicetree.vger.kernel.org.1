@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-72977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E7908FD940
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 23:40:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D10918FD945
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 23:40:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2D941F23B77
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 21:39:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 042EC1C25562
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 21:40:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B795168C0A;
-	Wed,  5 Jun 2024 21:38:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EB3915FD08;
+	Wed,  5 Jun 2024 21:38:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lQxwQXuR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b+KDNEWj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E68215FA8B;
-	Wed,  5 Jun 2024 21:38:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E658D15FCEC;
+	Wed,  5 Jun 2024 21:38:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717623510; cv=none; b=E/dYLk2903CjeDixjp6gcPlxmVXm4AMKX+d2nWW8NO7H4NrrNOi216sIxdpqxKG2Eyr0W9VWBhptBbIlV7+1G2Hck9vkesAloVhnqqoncJ13gKf/SFm894V2ec3n0lvP+lsTxr7oh/dbtQbsJXkZ98nLFwHhT19Idhlp/wQM1Ho=
+	t=1717623522; cv=none; b=Kow5mrCBf2JbrzD61wseFqw5XtqtEMMubpWuIzg/z0H1JaWD7QMfy1l05dM7h61/KY1fWizfEQlAya/nenyBH4SZwHIajWYozKAzx1jPkJb8bz1S7++lr5/B64BELVwlcUyEAV0yDoG6QnGBPN6mtExKyZXCc9YuvouxZPOFIRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717623510; c=relaxed/simple;
-	bh=yrMbNY2Gr7i5mUw30Jlna/5JAKzdrHFu4hvA2gyNBkg=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Xql8XFTcHMmVIbenZSOopDpYmWmVjBir7fbPLdE8VzXtilmWmG9RLI/5mvzACQTr+vcfLAUqWS1s4hBfZ9tQQPtaG2mXwEVib7Fd5YAM3Fh+/1CX7F3sIwSJpeiY1jvcv4Ubs9/MJqIglK0q8Ec5Ol66UPwqBy1dyZ/624ZThtk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lQxwQXuR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9B38C4AF09;
-	Wed,  5 Jun 2024 21:38:26 +0000 (UTC)
+	s=arc-20240116; t=1717623522; c=relaxed/simple;
+	bh=d7L5Jn4DXHIV9ypImFfx4lwVS/PZmpvP8HBZAJVoFxQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=dCWsDWKB31akpGQPWQYPGrSXFcP/Th0JVDssqVJ/rfuEkZTtGjOOGoR0R/OvUKIl9TIzbJgS2kJIlWonJWK6l3qYVaEu+FLkQn6ut3mSraxfcscksY2I7scwN4/GuQgp3a6sXwrwpB0rmExe9kjs8YRqj6Ix4cE1ywZ1hOOBexM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b+KDNEWj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85E90C2BD11;
+	Wed,  5 Jun 2024 21:38:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717623509;
-	bh=yrMbNY2Gr7i5mUw30Jlna/5JAKzdrHFu4hvA2gyNBkg=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=lQxwQXuRvfm9OWCFsbHuZEiWtVU5w6nccY6yS+rlo0rS2J+6lU3V/M6LSrtC2U0NK
-	 l9brby4WmHNVoLDfTQn/MnwGvLoeFge6FjifxDqZTg3+7dw2P42pu3rwCcnk0Fo8LR
-	 djuvepdmdBlyxG0uerykdOmWo4+bePL3hzmdc8Ei4+0mU7ry8ttbAhtWAxpKXQLLgB
-	 Uu+PWn93L1CKJR4v/j05j+462Wa74MvY6sfGYtzT0dzNImxNELgR00pFp1Tt/7C7Zb
-	 yS8YotY8URtKUMYU24Enw0Fugh7uPxyYALCETLFebOTPKfkjyghDGIAufUNb5sMnB1
-	 Nkj1PnPb5aKLg==
+	s=k20201202; t=1717623521;
+	bh=d7L5Jn4DXHIV9ypImFfx4lwVS/PZmpvP8HBZAJVoFxQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=b+KDNEWj8aAj2HseQpeKc4uy1vABmppf8DaSjnKfRvUmEIeZN/mR6inr/xlZEXCaR
+	 np+GN8DSOYZW7bVnb3RFp0MdPCE7ls8DdNjxAn8rmi/yvrO+N1//mJ+suZPIsVI2Ii
+	 j2BZwiHVsnl53M+/Iyk76tfO5HaJ6S+uBZX9TuW++L40QPdc04QZvRMxAThSKmV1V3
+	 oM2aSRSaL7TSTsCkc1h7v40mbYo7ca2WQodkGkvd6WwWh7Yubg7v3Kmh1cC6IWLrYb
+	 iDLLlvcCN0IVWGUJ2wLwU3GN4NscDBklDEViXTj4EinKBSkHrsDcz9+ufbJzWFvZ3n
+	 W3ruhd77UG0YQ==
 From: Mark Brown <broonie@kernel.org>
-To: lgirdwood@gmail.com, robh+dt@kernel.org, 
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
- shengjiu.wang@gmail.com, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Xiubo.Lee@gmail.com, festevam@gmail.com, nicoleotsuka@gmail.com, 
- perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org, 
- linuxppc-dev@lists.ozlabs.org, Shengjiu Wang <shengjiu.wang@nxp.com>
-In-Reply-To: <1716972002-2315-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1716972002-2315-1-git-send-email-shengjiu.wang@nxp.com>
-Subject: Re: [PATCH v4 0/2] ASoC: fsl_xcvr: Support i.MX95 platform
-Message-Id: <171762350655.565712.3068600680938105880.b4-ty@kernel.org>
-Date: Wed, 05 Jun 2024 22:38:26 +0100
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, 
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+In-Reply-To: <20240605121450.23697-1-brgl@bgdev.pl>
+References: <20240605121450.23697-1-brgl@bgdev.pl>
+Subject: Re: [PATCH v9 0/2] dt-bindings: describe the PMU modules of QCom
+ BT/WLAN packages
+Message-Id: <171762351925.565947.8740836669893756947.b4-ty@kernel.org>
+Date: Wed, 05 Jun 2024 22:38:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,26 +64,27 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14-dev-d4707
 
-On Wed, 29 May 2024 16:40:00 +0800, Shengjiu Wang wrote:
-> On i.MX95 wakeup domain, there is one instance of Audio XCVR
-> supporting SPDIF mode with a connection to the Audio XCVR physical
-> interface.
+On Wed, 05 Jun 2024 14:14:47 +0200, Bartosz Golaszewski wrote:
+> Here are the two dt-binding patches from the power-sequencing series
+> targeting the regulator subsystem. To keep the cover-letter short, I
+> won't repeat all the details, they can be found in the cover-letter for
+> v8. Please consider picking them up into your tree, they were reviewed
+> by Krzysztof and already acked by you earlier.
 > 
-> changes in v4:
-> - refine the constarint for 'clocks' according to Rob's comments
+> Changelog:
 > 
 > [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
 Thanks!
 
-[1/2] ASoC: dt-bindings: fsl,xcvr: Add compatible string for i.MX95
-      commit: fc1277335ffa0d180c76ddccf5fe27fc75674e67
-[2/2] ASoC: fsl_xcvr: Add support for i.MX95 platform
-      commit: f13b349e3c70320ef5a86edfc888a6feb612abb0
+[1/2] regulator: dt-bindings: describe the PMU module of the QCA6390 package
+      commit: b5cb34c93bd4e5559e64f57de9e67e926237535b
+[2/2] regulator: dt-bindings: describe the PMU module of the WCN7850 package
+      commit: 168ed1e8d0893cc4ad5963d5920dcfd24e0d7591
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
