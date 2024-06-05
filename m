@@ -1,269 +1,218 @@
-Return-Path: <devicetree+bounces-72625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EB258FC6AB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 10:38:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 341448FC6CA
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 10:42:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B60021C23343
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 08:37:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B8611C22BEB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 08:42:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 775854A11;
-	Wed,  5 Jun 2024 08:36:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aIYiYo8A"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 228181946D0;
+	Wed,  5 Jun 2024 08:42:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out28-220.mail.aliyun.com (out28-220.mail.aliyun.com [115.124.28.220])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91DDA1946A3;
-	Wed,  5 Jun 2024 08:36:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DF4E1946AD;
+	Wed,  5 Jun 2024 08:42:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.220
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717576601; cv=none; b=rIffdCmZw74sfuo6EEoCITcRmdRknNO5K3LbOJYjzMo0vIFogd36bzw4AhR7AVEew5mvS4YlhUitadtAD+7sRx6QyP+ZSrReEFlKyZ/Baky3CvIhdJeaRBHAkfQYKZeiCuxbHKZqCCRc/BHS4a3gjpbpBt9pLwEgrptTqEE4KZU=
+	t=1717576951; cv=none; b=FsdvzbbdCeV3aPF4N27pzL5E+AX+SvXkoUJS/Ve7uPiBvU+UJzBa3cWFu7r6d0xx8wWbegPzbk3LwrwgfERsBEFQOsw8MCDECi/Oqyxd7C/hWT72BJyqGpKdaXeKrs4py3tTHg5cJBrlNE9Fu62JSeJm3Zof9hg5JAdsb/kw4XY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717576601; c=relaxed/simple;
-	bh=zAVgnrzt8gY1Pai8QXInmX9wwGv+TNFf8YSvs/17vS8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=CZVkmbYHjnpbRX79JQNbOflMiItsMFZiUNUCRjMFnMfulHJpV0m+ozxIRIZWbJwcBjsl15+zvMHJ3QNl+WEMVmpxu76HZpNaSnoY5TKx1a9P7Pv+1CwsHdUZqWKfIU8JZ/jCQfHbgaNxqE6XsQG0TEPPR7DLbnndZH/k1D2D6x8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aIYiYo8A; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-57a50ac2ca1so4756875a12.0;
-        Wed, 05 Jun 2024 01:36:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717576598; x=1718181398; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=yi0V3FoRMnhomLDSAL9Tbb7CDsRMdBKoZbPY2dwYGfs=;
-        b=aIYiYo8Akt9HX/5QM2SUmYzD9DevhUwEHrweB3a4fSXYUIxKN89e9H0YfBQJyaLLY9
-         t/pqJ01gipKcvPiJya+KqT0wAfCD50vpiN0UrCsD9Q9ZsnQzXWtlL9BJmSTXTAsffHUM
-         AxEjZvQ17RTBxRwGC9HweoLwAJa8+NxFewMN5k+7PpY7+8Sl6EqrNMr03IZZECO8u2AN
-         /6ifXNqWEIcUrSgjv1WA1O1hdjtMOiOPw8ZPmtuokAfp0AWcRFNtiW6XO5DB6zSC7SZo
-         aPuKYzTRjkgdRgD9KF+S5II6NAp3kiVtTNzki6jM9CAAkQaD8+opbx6t5eJ9tVTGUuJ3
-         3ODw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717576598; x=1718181398;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yi0V3FoRMnhomLDSAL9Tbb7CDsRMdBKoZbPY2dwYGfs=;
-        b=uekorm6g1RBKCGvoi1Wy80OBBZDmImDx1D1NuGri8eJmtY0cyU+AHKE34ANXAby+up
-         3E4rlo5JGOo/A73ntxFYelVuGWANEd5VMbHa1/b9E0lT8cETaKAWZbm3ovSJ6OKUs47j
-         OB8Q4pBcct2mp+9jOzLo04+fHVLG21xLRoM8GZwhMwLbwUHv0ZZDg3RNpeMB+6RKKGwW
-         FOVwKkKzFE9oJhoQ3G8V+au5BrcZQjAuJ/R65XO97htlpO1CF8EGbjWgKWtFj2Z33ph8
-         x7KELiTYkResgmyoSQbyUZvmnoYUB9v211oCmU7y02swOlmHGbzzaoOeaGCh1nJtxAmi
-         8vwA==
-X-Forwarded-Encrypted: i=1; AJvYcCW778hZuKKTiEpk0E+Gzk4eTaAvLI93grB5L+giOBGFBKxMerA4j6hMYGyTzj248ps1YxsUoGWbYEABMQEYHzv9S+YULlWwYC23HmcmrQpr3hUwpLJsA2bpEQCmae7y72QMr5D4DbU40WaN7uHbPLUQjJF8pPLphe0ZOckM/n3pztt88w==
-X-Gm-Message-State: AOJu0YzHzLVvZoiPD4vkgWnjmgRlRvBeFAXVSudoezS14yZ3Qbg5VaSk
-	BJQ+//9Jsr8lP33AAiRTF4iRKXjuNARpRwcOtRCfUxlwnPbQ/QsM
-X-Google-Smtp-Source: AGHT+IEsOv/Y++AYE6WBz0+6lZYXrgd9hU1+hxAMq8HpK742apAlPquziV6tPAtaRPsg427g/BzC0A==
-X-Received: by 2002:a50:d75a:0:b0:579:d01a:938b with SMTP id 4fb4d7f45d1cf-57a8bcc82e8mr1164301a12.35.1717576597686;
-        Wed, 05 Jun 2024 01:36:37 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57a7a25aba9sm3415705a12.66.2024.06.05.01.36.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jun 2024 01:36:37 -0700 (PDT)
-Message-ID: <131231eb77014ce38bbe611e99be5ebb713c471d.camel@gmail.com>
-Subject: Re: [PATCH v2 1/3] iio: adc: ad7192: Clean up dev
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Alisa-Dariana Roman <alisadariana@gmail.com>, Alisa-Dariana Roman
- <alisa.roman@analog.com>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
- Michael Hennerich <michael.hennerich@analog.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Alexandru Tachici
- <alexandru.tachici@analog.com>, Jonathan Cameron <jic23@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark
- Brown <broonie@kernel.org>
-Date: Wed, 05 Jun 2024 10:40:24 +0200
-In-Reply-To: <20240605075154.625123-1-alisa.roman@analog.com>
-References: <20240605075154.625123-1-alisa.roman@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.2 
+	s=arc-20240116; t=1717576951; c=relaxed/simple;
+	bh=ziCWnVq3AxmUbCBf2hsUuq9/hbo9muaMvlSA8WakK1s=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=I6MNHJVh1K+D++ijJ3Wv7poByMLdftgJmhiE+3cawLINmAVmv153hgwm6gDY7fUx0YkRSj/hIPlQyBNPvZROui3nfnv5SX5u/V4xmaaSwlxq1mftYrjMj/Zp6Eig+fJ17nVpLKjov4ZABunjoFzlHGrt3zcVLUCsmppHef9a4xA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com; spf=pass smtp.mailfrom=awinic.com; arc=none smtp.client-ip=115.124.28.220
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=awinic.com
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.07436259|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_alarm|0.024763-0.000138983-0.975098;FP=0|0|0|0|0|-1|-1|-1;HT=maildocker-contentspam033070043001;MF=wangshuaijie@awinic.com;NM=1;PH=DS;RN=15;RT=15;SR=0;TI=SMTPD_---.XwawE3L_1717576910;
+Received: from awinic..(mailfrom:wangshuaijie@awinic.com fp:SMTPD_---.XwawE3L_1717576910)
+          by smtp.aliyun-inc.com;
+          Wed, 05 Jun 2024 16:42:17 +0800
+From: wangshuaijie@awinic.com
+To: dan.carpenter@linaro.org
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dmitry.torokhov@gmail.com,
+	jeff@labundy.com,
+	kangjiajun@awinic.com,
+	krzk+dt@kernel.org,
+	linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	liweilei@awinic.com,
+	lkp@intel.com,
+	oe-kbuild-all@lists.linux.dev,
+	oe-kbuild@lists.linux.dev,
+	robh@kernel.org,
+	wangshuaijie@awinic.com
+Subject: Re: [PATCH V1 5/5] Add support for Awinic sar sensor.
+Date: Wed,  5 Jun 2024 08:42:26 +0000
+Message-ID: <20240605084226.142542-1-wangshuaijie@awinic.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <9d90f11f-c476-40f2-a7b1-41b35783b27e@moroto.mountain>
+References: <9d90f11f-c476-40f2-a7b1-41b35783b27e@moroto.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Wed, 2024-06-05 at 10:51 +0300, Alisa-Dariana Roman wrote:
-> Clean up by using a local variable struct device *dev.
->=20
-> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
-> ---
-> =C2=A0drivers/iio/adc/ad7192.c | 45 ++++++++++++++++++++-----------------=
----
-> =C2=A01 file changed, 23 insertions(+), 22 deletions(-)
->=20
-> diff --git a/drivers/iio/adc/ad7192.c b/drivers/iio/adc/ad7192.c
-> index 0789121236d6..f06cb7ac4b42 100644
-> --- a/drivers/iio/adc/ad7192.c
-> +++ b/drivers/iio/adc/ad7192.c
-> @@ -1196,17 +1196,18 @@ static void ad7192_reg_disable(void *reg)
-> =C2=A0
-> =C2=A0static int ad7192_probe(struct spi_device *spi)
-> =C2=A0{
-> +	struct device *dev =3D &spi->dev;
-> =C2=A0	struct ad7192_state *st;
-> =C2=A0	struct iio_dev *indio_dev;
-> =C2=A0	struct regulator *aincom;
-> =C2=A0	int ret;
-> =C2=A0
-> =C2=A0	if (!spi->irq) {
-> -		dev_err(&spi->dev, "no IRQ?\n");
-> +		dev_err(dev, "no IRQ?\n");
+Hi Rob Herring,
 
-Since you're here, dev_err_probe()?
+On Fri, 31 May 2024 11:12:51 +0300, dan.carpenter@linaro.org wrote:
+>Hi,
+>
+>kernel test robot noticed the following build warnings:
+>
+>url:    https://github.com/intel-lab-lkp/linux/commits/wangshuaijie-awinic-com/dt-bindings-input-Add-YAML-to-Awinic-sar-sensor/20240529-211303
+>base:   e0cce98fe279b64f4a7d81b7f5c3a23d80b92fbc
+>patch link:    https://lore.kernel.org/r/20240529130608.783624-6-wangshuaijie%40awinic.com
+>patch subject: [PATCH V1 5/5] Add support for Awinic sar sensor.
+>config: riscv-randconfig-r071-20240530 (https://download.01.org/0day-ci/archive/20240531/202405310138.ry5jf9hL-lkp@intel.com/config)
+>compiler: riscv64-linux-gcc (GCC) 13.2.0
+>
+>If you fix the issue in a separate patch/commit (i.e. not just a new version of
+>the same patch/commit), kindly add following tags
+>| Reported-by: kernel test robot <lkp@intel.com>
+>| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+>| Closes: https://lore.kernel.org/r/202405310138.ry5jf9hL-lkp@intel.com/
+>
+>New smatch warnings:
+>drivers/input/misc/aw_sar/aw_sar.c:221 aw_sar_load_bin_comm() warn: 'fw' from request_firmware() not released on lines: 217.
+>drivers/input/misc/aw_sar/aw_sar.c:283 aw_sar_irq() error: uninitialized symbol 'irq_status'.
+>drivers/input/misc/aw_sar/./aw9610x/aw9610x.c:479 aw9610x_get_chip_version() error: __builtin_memcpy() 'aw9610x->chip_name[__builtin_choose_expr((4 == 1), __builtin_strlen(aw9610x->chip_name), __fortify_strlen(aw9610x->chip_name))]' too small (1 vs 2)
+>drivers/input/misc/aw_sar/./aw963xx/aw963xx.c:227 aw963xx_sram_data_write() error: uninitialized symbol 'ret'.
+>drivers/input/misc/aw_sar/./aw963xx/aw963xx.c:522 aw963xx_get_cap_offset() warn: inconsistent indenting
+>
+>Old smatch warnings:
+>drivers/input/misc/aw_sar/./aw963xx/aw963xx.c:557 aw963xx_get_cap_offset() warn: inconsistent indenting
+>
 
-> =C2=A0		return -ENODEV;
-> =C2=A0	}
-> =C2=A0
-> -	indio_dev =3D devm_iio_device_alloc(&spi->dev, sizeof(*st));
-> +	indio_dev =3D devm_iio_device_alloc(dev, sizeof(*st));
-> =C2=A0	if (!indio_dev)
-> =C2=A0		return -ENOMEM;
-> =C2=A0
-> @@ -1219,71 +1220,71 @@ static int ad7192_probe(struct spi_device *spi)
-> =C2=A0	 * Newer firmware should provide a zero volt fixed supply if wired=
- to
-> =C2=A0	 * ground.
-> =C2=A0	 */
-> -	aincom =3D devm_regulator_get_optional(&spi->dev, "aincom");
-> +	aincom =3D devm_regulator_get_optional(dev, "aincom");
-> =C2=A0	if (IS_ERR(aincom)) {
-> =C2=A0		if (PTR_ERR(aincom) !=3D -ENODEV)
-> -			return dev_err_probe(&spi->dev, PTR_ERR(aincom),
-> +			return dev_err_probe(dev, PTR_ERR(aincom),
-> =C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to get AINCOM
-> supply\n");
-> =C2=A0
-> =C2=A0		st->aincom_mv =3D 0;
-> =C2=A0	} else {
-> =C2=A0		ret =3D regulator_enable(aincom);
-> =C2=A0		if (ret)
-> -			return dev_err_probe(&spi->dev, ret,
-> +			return dev_err_probe(dev, ret,
-> =C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to enable specified
-> AINCOM supply\n");
-> =C2=A0
-> -		ret =3D devm_add_action_or_reset(&spi->dev, ad7192_reg_disable,
-> aincom);
-> +		ret =3D devm_add_action_or_reset(dev, ad7192_reg_disable,
-> aincom);
-> =C2=A0		if (ret)
-> =C2=A0			return ret;
-> =C2=A0
-> =C2=A0		ret =3D regulator_get_voltage(aincom);
-> =C2=A0		if (ret < 0)
-> -			return dev_err_probe(&spi->dev, ret,
-> +			return dev_err_probe(dev, ret,
-> =C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0 "Device tree error, AINCOM
-> voltage undefined\n");
-> =C2=A0		st->aincom_mv =3D ret / MILLI;
-> =C2=A0	}
-> =C2=A0
-> -	st->avdd =3D devm_regulator_get(&spi->dev, "avdd");
-> +	st->avdd =3D devm_regulator_get(dev, "avdd");
-> =C2=A0	if (IS_ERR(st->avdd))
-> =C2=A0		return PTR_ERR(st->avdd);
-> =C2=A0
-> =C2=A0	ret =3D regulator_enable(st->avdd);
-> =C2=A0	if (ret) {
-> -		dev_err(&spi->dev, "Failed to enable specified AVdd
-> supply\n");
-> +		dev_err(dev, "Failed to enable specified AVdd supply\n");
+The patch for version v2 will fix these issues.
 
-ditto
+>vim +/fw +221 drivers/input/misc/aw_sar/aw_sar.c
+>
+>e5df082e247559 shuaijie wang 2024-05-29  203  static int32_t aw_sar_load_bin_comm(struct aw_sar *p_sar)
+>e5df082e247559 shuaijie wang 2024-05-29  204  {
+>e5df082e247559 shuaijie wang 2024-05-29  205  	const struct firmware *fw;
+>e5df082e247559 shuaijie wang 2024-05-29  206  	int32_t ret;
+>e5df082e247559 shuaijie wang 2024-05-29  207  
+>e5df082e247559 shuaijie wang 2024-05-29  208  	ret = request_firmware(&fw, p_sar->load_bin.bin_name, p_sar->dev);
+>e5df082e247559 shuaijie wang 2024-05-29  209  	if (ret != 0) {
+>e5df082e247559 shuaijie wang 2024-05-29  210  		dev_err(p_sar->dev, "parse %s error!", p_sar->load_bin.bin_name);
+>e5df082e247559 shuaijie wang 2024-05-29  211  		return ret;
+>e5df082e247559 shuaijie wang 2024-05-29  212  	}
+>e5df082e247559 shuaijie wang 2024-05-29  213  
+>e5df082e247559 shuaijie wang 2024-05-29  214  	ret = aw_sar_parse_bin(fw, p_sar);
+>e5df082e247559 shuaijie wang 2024-05-29  215  	if (ret != 0) {
+>e5df082e247559 shuaijie wang 2024-05-29  216  		dev_err(p_sar->dev, "reg_bin %s load error!", p_sar->load_bin.bin_name);
+>
+>release_firmware(fw);
+>
 
-> =C2=A0		return ret;
-> =C2=A0	}
-> =C2=A0
-> -	ret =3D devm_add_action_or_reset(&spi->dev, ad7192_reg_disable, st-
-> >avdd);
-> +	ret =3D devm_add_action_or_reset(dev, ad7192_reg_disable, st->avdd);
-> =C2=A0	if (ret)
-> =C2=A0		return ret;
-> =C2=A0
-> -	ret =3D devm_regulator_get_enable(&spi->dev, "dvdd");
-> +	ret =3D devm_regulator_get_enable(dev, "dvdd");
-> =C2=A0	if (ret)
-> -		return dev_err_probe(&spi->dev, ret, "Failed to enable
-> specified DVdd supply\n");
-> +		return dev_err_probe(dev, ret, "Failed to enable specified
-> DVdd supply\n");
-> =C2=A0
-> -	st->vref =3D devm_regulator_get_optional(&spi->dev, "vref");
-> +	st->vref =3D devm_regulator_get_optional(dev, "vref");
-> =C2=A0	if (IS_ERR(st->vref)) {
-> =C2=A0		if (PTR_ERR(st->vref) !=3D -ENODEV)
-> =C2=A0			return PTR_ERR(st->vref);
-> =C2=A0
-> =C2=A0		ret =3D regulator_get_voltage(st->avdd);
-> =C2=A0		if (ret < 0)
-> -			return dev_err_probe(&spi->dev, ret,
-> +			return dev_err_probe(dev, ret,
-> =C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0 "Device tree error, AVdd voltage
-> undefined\n");
-> =C2=A0	} else {
-> =C2=A0		ret =3D regulator_enable(st->vref);
-> =C2=A0		if (ret) {
-> -			dev_err(&spi->dev, "Failed to enable specified Vref
-> supply\n");
-> +			dev_err(dev, "Failed to enable specified Vref
-> supply\n");
+The patch for version v2 will fix this issue.
 
-ditto
+>e5df082e247559 shuaijie wang 2024-05-29  217  		return ret;
+>e5df082e247559 shuaijie wang 2024-05-29  218  	}
+>e5df082e247559 shuaijie wang 2024-05-29  219  	release_firmware(fw);
+>e5df082e247559 shuaijie wang 2024-05-29  220  
+>e5df082e247559 shuaijie wang 2024-05-29 @221  	return 0;
+>e5df082e247559 shuaijie wang 2024-05-29  222  }
+>e5df082e247559 shuaijie wang 2024-05-29  223  
+>e5df082e247559 shuaijie wang 2024-05-29  224  static int32_t aw_sar_parse_dts_comm(struct device *dev, struct device_node *np,
+>e5df082e247559 shuaijie wang 2024-05-29  225  		struct aw_sar_dts_info *p_dts_info)
+>e5df082e247559 shuaijie wang 2024-05-29  226  {
+>e5df082e247559 shuaijie wang 2024-05-29  227  	int32_t val;
+>e5df082e247559 shuaijie wang 2024-05-29  228  
+>e5df082e247559 shuaijie wang 2024-05-29  229  	val = of_property_read_u32(np, "sar-num", &p_dts_info->sar_num);
+>e5df082e247559 shuaijie wang 2024-05-29  230  	dev_info(dev, "sar num = %d", p_dts_info->sar_num);
+>e5df082e247559 shuaijie wang 2024-05-29  231  	if (val != 0) {
+>e5df082e247559 shuaijie wang 2024-05-29  232  		dev_err(dev, "multiple sar failed!");
+>e5df082e247559 shuaijie wang 2024-05-29  233  		return -EINVAL;
+>e5df082e247559 shuaijie wang 2024-05-29  234  	}
+>e5df082e247559 shuaijie wang 2024-05-29  235  
+>e5df082e247559 shuaijie wang 2024-05-29  236  	p_dts_info->irq_gpio = of_get_named_gpio(np, "irq-gpio", 0);
+>e5df082e247559 shuaijie wang 2024-05-29  237  	if (p_dts_info->irq_gpio < 0) {
+>e5df082e247559 shuaijie wang 2024-05-29  238  		p_dts_info->irq_gpio = -1;
+>e5df082e247559 shuaijie wang 2024-05-29  239  		dev_err(dev, "no irq gpio provided.");
+>e5df082e247559 shuaijie wang 2024-05-29  240  		return -EINVAL;
+>e5df082e247559 shuaijie wang 2024-05-29  241  	}
+>e5df082e247559 shuaijie wang 2024-05-29  242  
+>e5df082e247559 shuaijie wang 2024-05-29  243  	val = of_property_read_u32(np, "channel_use_flag", &p_dts_info->channel_use_flag);
+>e5df082e247559 shuaijie wang 2024-05-29  244  	if (val != 0) {
+>e5df082e247559 shuaijie wang 2024-05-29  245  		dev_err(dev, "channel_use_flag failed!");
+>e5df082e247559 shuaijie wang 2024-05-29  246  		return -EINVAL;
+>e5df082e247559 shuaijie wang 2024-05-29  247  	}
+>e5df082e247559 shuaijie wang 2024-05-29  248  
+>e5df082e247559 shuaijie wang 2024-05-29  249  	//GPIO is set as internal pull-up input
+>e5df082e247559 shuaijie wang 2024-05-29  250  	p_dts_info->use_inter_pull_up = of_property_read_bool(np, "aw_sar,pin_set_inter_pull-up");
+>e5df082e247559 shuaijie wang 2024-05-29  251  	p_dts_info->use_pm = of_property_read_bool(np, "aw_sar,using_pm_ops");
+>e5df082e247559 shuaijie wang 2024-05-29  252  	p_dts_info->update_fw_flag = of_property_read_bool(np, "aw_sar,update_fw");
+>e5df082e247559 shuaijie wang 2024-05-29  253  	p_dts_info->use_plug_cail_flag = of_property_read_bool(np, "aw_sar,use_plug_cail");
+>e5df082e247559 shuaijie wang 2024-05-29  254  	p_dts_info->monitor_esd_flag = of_property_read_bool(np, "aw_sar,monitor_esd");
+>e5df082e247559 shuaijie wang 2024-05-29  255  
+>e5df082e247559 shuaijie wang 2024-05-29  256  	return 0;
+>e5df082e247559 shuaijie wang 2024-05-29  257  }
+>e5df082e247559 shuaijie wang 2024-05-29  258  
+>e5df082e247559 shuaijie wang 2024-05-29  259  static int32_t aw_sar_parse_dts(struct aw_sar *p_sar)
+>e5df082e247559 shuaijie wang 2024-05-29  260  {
+>e5df082e247559 shuaijie wang 2024-05-29  261  	int32_t ret;
+>e5df082e247559 shuaijie wang 2024-05-29  262  
+>e5df082e247559 shuaijie wang 2024-05-29  263  	ret = aw_sar_parse_dts_comm(p_sar->dev, p_sar->i2c->dev.of_node, &p_sar->dts_info);
+>e5df082e247559 shuaijie wang 2024-05-29  264  
+>e5df082e247559 shuaijie wang 2024-05-29  265  	//Special requirements of SAR chip
+>e5df082e247559 shuaijie wang 2024-05-29  266  	if (p_sar->p_sar_para->p_platform_config->p_add_parse_dts_fn != NULL)
+>e5df082e247559 shuaijie wang 2024-05-29  267  		ret |= p_sar->p_sar_para->p_platform_config->p_add_parse_dts_fn(p_sar);
+>e5df082e247559 shuaijie wang 2024-05-29  268  
+>e5df082e247559 shuaijie wang 2024-05-29  269  	return ret;
+>e5df082e247559 shuaijie wang 2024-05-29  270  }
+>e5df082e247559 shuaijie wang 2024-05-29  271  
+>e5df082e247559 shuaijie wang 2024-05-29  272  static irqreturn_t aw_sar_irq(int32_t irq, void *data)
+>e5df082e247559 shuaijie wang 2024-05-29  273  {
+>e5df082e247559 shuaijie wang 2024-05-29  274  	struct aw_sar *p_sar = (struct aw_sar *)data;
+>e5df082e247559 shuaijie wang 2024-05-29  275  	uint32_t irq_status;
+>e5df082e247559 shuaijie wang 2024-05-29  276  
+>e5df082e247559 shuaijie wang 2024-05-29  277  	//step1: read clear interrupt
+>e5df082e247559 shuaijie wang 2024-05-29  278  	if (p_sar->p_sar_para->p_platform_config->p_irq_init->rc_irq_fn != NULL)
+>e5df082e247559 shuaijie wang 2024-05-29  279  		irq_status = p_sar->p_sar_para->p_platform_config->p_irq_init->rc_irq_fn(p_sar->i2c);
+>e5df082e247559 shuaijie wang 2024-05-29  280  
+>e5df082e247559 shuaijie wang 2024-05-29  281  	//step2: Read the status register for status reporting
+>e5df082e247559 shuaijie wang 2024-05-29  282  	if (p_sar->p_sar_para->p_platform_config->p_irq_init->irq_spec_handler_fn != NULL)
+>e5df082e247559 shuaijie wang 2024-05-29 @283  		p_sar->p_sar_para->p_platform_config->p_irq_init->irq_spec_handler_fn(irq_status,
+>e5df082e247559 shuaijie wang 2024-05-29  284  				p_sar);
+>
+>Probably if ->irq_spec_handler_fn is non-NULL then ->rc_irq_fn is also
+>non-NULL, but the static checker doesn't know that so it warns about
+>uninitialized variables.
+>
 
-> =C2=A0			return ret;
-> =C2=A0		}
-> =C2=A0
-> -		ret =3D devm_add_action_or_reset(&spi->dev, ad7192_reg_disable,
-> st->vref);
-> +		ret =3D devm_add_action_or_reset(dev, ad7192_reg_disable, st-
-> >vref);
-> =C2=A0		if (ret)
-> =C2=A0			return ret;
-> =C2=A0
-> =C2=A0		ret =3D regulator_get_voltage(st->vref);
-> =C2=A0		if (ret < 0)
-> -			return dev_err_probe(&spi->dev, ret,
-> +			return dev_err_probe(dev, ret,
-> =C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0 "Device tree error, Vref voltage
-> undefined\n");
-> =C2=A0	}
-> =C2=A0	st->int_vref_mv =3D ret / 1000;
-> @@ -1305,13 +1306,13 @@ static int ad7192_probe(struct spi_device *spi)
-> =C2=A0	if (ret)
-> =C2=A0		return ret;
-> =C2=A0
-> -	ret =3D devm_ad_sd_setup_buffer_and_trigger(&spi->dev, indio_dev);
-> +	ret =3D devm_ad_sd_setup_buffer_and_trigger(dev, indio_dev);
-> =C2=A0	if (ret)
-> =C2=A0		return ret;
-> =C2=A0
-> =C2=A0	st->fclk =3D AD7192_INT_FREQ_MHZ;
-> =C2=A0
-> -	st->mclk =3D devm_clk_get_optional_enabled(&spi->dev, "mclk");
-> +	st->mclk =3D devm_clk_get_optional_enabled(dev, "mclk");
-> =C2=A0	if (IS_ERR(st->mclk))
-> =C2=A0		return PTR_ERR(st->mclk);
-> =C2=A0
-> @@ -1321,17 +1322,17 @@ static int ad7192_probe(struct spi_device *spi)
-> =C2=A0	=C2=A0=C2=A0=C2=A0 st->clock_sel =3D=3D AD7192_CLK_EXT_MCLK2) {
-> =C2=A0		st->fclk =3D clk_get_rate(st->mclk);
-> =C2=A0		if (!ad7192_valid_external_frequency(st->fclk)) {
-> -			dev_err(&spi->dev,
-> +			dev_err(dev,
-> =C2=A0				"External clock frequency out of bounds\n");
+The patch for version v2 will fix this issue.
 
-ditto=20
+>e5df082e247559 shuaijie wang 2024-05-29  285  
+>e5df082e247559 shuaijie wang 2024-05-29  286  	//step3: The chip
+>e5df082e247559 shuaijie wang 2024-05-29  287  
+>e5df082e247559 shuaijie wang 2024-05-29  288  	if ((!p_sar->dts_info.monitor_esd_flag) && (p_sar->fault_flag == AW_SAR_UNHEALTHY)) {
+>e5df082e247559 shuaijie wang 2024-05-29  289  		p_sar->fault_flag = AW_SAR_HEALTHY;
+>e5df082e247559 shuaijie wang 2024-05-29  290  		disable_irq_nosync(p_sar->irq_init.to_irq);
+>e5df082e247559 shuaijie wang 2024-05-29  291  		p_sar->irq_init.host_irq_stat = IRQ_DISABLE;
+>e5df082e247559 shuaijie wang 2024-05-29  292  		//aw_sar_soft_reset(p_sar);
+>e5df082e247559 shuaijie wang 2024-05-29  293  		schedule_delayed_work(&p_sar->update_work, msecs_to_jiffies(500));
+>e5df082e247559 shuaijie wang 2024-05-29  294  	}
+>e5df082e247559 shuaijie wang 2024-05-29  295  
+>e5df082e247559 shuaijie wang 2024-05-29  296  	return IRQ_HANDLED;
+>e5df082e247559 shuaijie wang 2024-05-29  297  }
+>
+>-- 
+>0-DAY CI Kernel Test Service
+--
 
-- Nuno S=C3=A1
+Thanks,
+
+Wang Shuaijie
 
