@@ -1,189 +1,116 @@
-Return-Path: <devicetree+bounces-72540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E95E8FC41F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 09:07:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2B5B8FC427
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 09:09:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 172962884D6
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 07:07:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 939A51F224D4
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 07:09:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54F9218C320;
-	Wed,  5 Jun 2024 07:07:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3720F18C32F;
+	Wed,  5 Jun 2024 07:09:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oDJD8UYj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="U7b7OZCK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20DAE190490;
-	Wed,  5 Jun 2024 07:07:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6221518C321
+	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 07:09:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717571269; cv=none; b=qSyI1YcDjff8PgDQfNhB6EX3n+GMm3NL3FfQdD0JKFlfXaDlG8jfi3tKe1cqQvgrc3FcF+Xkqchh9QO82nnV0BLhowq0EIq0Z/6DZsZzlNPuCa4kPlczmJNtBzr0QVcZ8s4m0391sHaJfv/I9GeOzyI3wZcN8bqa1soONKHBQjQ=
+	t=1717571363; cv=none; b=bLSnPf6XTtmvnb6bjjLora9Mji2Vj0XyCsO9EETcMZkd5bNizZm4ZfJeFCmVPFIOjZEt7e2huXAs5MZkECIjKY1mz6xVpcrZr/2O4ddHOZ3tfhhTCbMhhwEQqrd5MKc5aslKHFl+vhcLJ2cFZsBWKa1X66UE1pHe/T+N8emnaWw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717571269; c=relaxed/simple;
-	bh=/eYXg8+LQov6RfRlCF9bEvc+fOFnmaVCYpZi0YUqpq8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jpAJ+0DItRDC7m/f4nqTZ5J4VIFi8oFxO9i52hmsPSeFXqN0TAyAO9u4Gh09mYKThFF0SjQz3czvyQwX2ZPFDAvcQMxg22vqnckjdbgilGwF9/fkBgg6vm3G8dUh9nq0p4YD1Wgai0w/igTtQtPj195QYO6YnEqChzTJ/NhO7/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oDJD8UYj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC3ACC3277B;
-	Wed,  5 Jun 2024 07:07:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717571268;
-	bh=/eYXg8+LQov6RfRlCF9bEvc+fOFnmaVCYpZi0YUqpq8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oDJD8UYjtuf8VMxHuSzR6uhSDaF9dxvmsoGenVAcE3DR1vsB4GURa3DOHSSsvLaRp
-	 FeKI3i5WJXyKiCWXlTCcW6wCKJtZNpuq8h+Ol9OwB1JeGu4lO7OA6i5OJ0II//8Gd3
-	 8pEngXWqHhLyBhTojx594CXZiqIK86ly27dR/ey9hWvx6dlJxqAP9f3i121eEhuFHk
-	 YqUUDAizWd60XwtDGDJzGGpwCBXU2rRUbq9DS0FsYKcbhAabqvNOhncQ+OQDnFDqTv
-	 Y0VPHoT/3VBCQA+Vt3Bv559AMkVFmgtEDecuCoVcvMO7AvjhchpJgoGHaiSUWu76ih
-	 hex0O87UE94Mg==
-Message-ID: <1b98bb9a-8373-4858-b31b-37e6f9da453b@kernel.org>
-Date: Wed, 5 Jun 2024 09:07:43 +0200
+	s=arc-20240116; t=1717571363; c=relaxed/simple;
+	bh=gtowOOZmB6VPvTmh98OBdJ/GTkP1Yo/Ot5b/hFyw0YM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=vGdCqx3ZKVV90Sk2FIQ6JaUiMZfSKAANu/masBlXA0Nh4BEIeqh8d4kZGflles+bo1NwZO3/CXn/XEKHoJLGLkMWOFq7IDwgl0I+DrYpiMNJtRbjsvBHT7S5pbOSnQyAwAzwL5cabJ98DMnFhATsMGSDbBaoZUn6fa94Yew8DDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=U7b7OZCK; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-578517c7ae9so2319775a12.3
+        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 00:09:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717571360; x=1718176160; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=sQSephwmytgo/YLLaqWzVbfXRJtJuGRKYodF45aiwbI=;
+        b=U7b7OZCKTFzT1gCjgU606ZD33vKTBiTIQgMsppNqTdnFnPXoIGUkvd527yYF7wwU56
+         BLm6MyNr9D92TUms3Nh842MfaPrt/vPpzchD3aju2W2mCLJHQVt9RAMQ877xDRXB/F90
+         OAcuLzPW8zBBtZYqPmFcsmPDs0w3bBy0Ly+E8tcEHJiGlDHZnIDk5gTRN/jzjx2fOS+O
+         XGPrjy2F34Q8HS3rsWhqJwm6p21R/fStDKzTgaEwba3+jC3lsGIgrfzI4a4nlvIOalv4
+         VK3tXFESi8AdM6zNjgSmQuZc/w0zT+jN7lx+G4c298ADpX3s1Y+BmKZBjlIy/vEOqisO
+         vLjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717571360; x=1718176160;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sQSephwmytgo/YLLaqWzVbfXRJtJuGRKYodF45aiwbI=;
+        b=qT5VMD8mIr990FP/vQToCZS2SeC+NyUU4Bxx3b8SbY3QgYDow1h9SXJVJXcsC7xX6b
+         9bT+1coaaVc0aqgwi0RcY37GLqKXXtq+BazHV9B6mehMNZ5VBa7YVKj/fwJhJSx18UUx
+         R/JTF9MkRW6XLkJw/YdHY0d9+BE2JJDZQQTIjJZRe2PffD/0rjWP/TfUQplJsOBOxM0H
+         PbGBi9xQCqhAfYCbNaC/MifR9zRyzsenwms5B2xmFiK8o2GwKcS403aebkFEJo4xgc+k
+         4aSLZYheYwi6L8MxrGyc/ahIH0PbGuI89thiR6aOLbkEs93eJuKxvUHvQQk9vVWKy/t8
+         XV+g==
+X-Forwarded-Encrypted: i=1; AJvYcCWAWBCqM6pzOAVFzj+f5T3t0nlvu7D93ZPSMVgsTxzg7RvN39BdO6X3t67bvdcLH8U5ynShSAPEg/ToEGUYFOWNAup+B7bNgT2+qw==
+X-Gm-Message-State: AOJu0Yxasy/MoXuG9mqEyRtMvaXQfEIzulVEte2W3CV0N7fxzMSqddwi
+	l9vUU0iNjvszUpkYzvj62CJrCpaGubLY+w39oiNltmfBzMlNgttlKDPpDRYx30U=
+X-Google-Smtp-Source: AGHT+IE7k9799F3Xk82hR/6XkZaITtGSnHgKLu6xSA11pSPaaMg0gh4dvJQRX0RwV80Q9FtYUJBK3Q==
+X-Received: by 2002:a50:9e62:0:b0:579:cf9d:d6a with SMTP id 4fb4d7f45d1cf-57a8b6b88c5mr1085082a12.20.1717571359412;
+        Wed, 05 Jun 2024 00:09:19 -0700 (PDT)
+Received: from localhost ([102.222.70.76])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57a35e86c36sm8560156a12.54.2024.06.05.00.09.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jun 2024 00:09:18 -0700 (PDT)
+Date: Wed, 5 Jun 2024 10:09:14 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Dmitry Yashin <dmt.yashin@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Jianqun Xu <jay.xu@rock-chips.com>, Jonas Karlman <jonas@kwiboo.se>,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] pinctrl: rockchip: delay recalced_mask and
+ route_mask init
+Message-ID: <094fbb0c-099c-4839-b2c5-162775e35710@moroto.mountain>
+References: <20240604141020.21725-1-dmt.yashin@gmail.com>
+ <20240604141020.21725-2-dmt.yashin@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: dma: fsl,imx-dma: Convert to dtschema
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, dmaengine@vger.kernel.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240605003356.46458-1-animeshagarwal28@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240605003356.46458-1-animeshagarwal28@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240604141020.21725-2-dmt.yashin@gmail.com>
 
-On 05/06/2024 02:33, Animesh Agarwal wrote:
-> Convert the fsl i.MX DMA controller bindings to DT schema. Remove old
-> and deprecated properties #dma-channels and #dma-requests.
-
-Where? I see them.
-
+On Tue, Jun 04, 2024 at 07:10:19PM +0500, Dmitry Yashin wrote:
+> For some SoC's like rk3308 additional runtime setup needed, so delay
+> recalced_mask and route_mask init.
 > 
-> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-> 
-> ---
-> Changes in v3:
-> - Changed maximum: 16 back to const: 16 as the device use exactly 16
-> channels.
-> 
-> Changes in v2:
-> - Added description for each interrupt item.
-> - Changed dma-channels: const: 16 to maximum: 16.
-> - Removed unnecessary '|' character.
-> - Dropped unused label.
-> ---
->  .../devicetree/bindings/dma/fsl,imx-dma.yaml  | 56 +++++++++++++++++++
->  .../devicetree/bindings/dma/fsl-imx-dma.txt   | 50 -----------------
->  2 files changed, 56 insertions(+), 50 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/dma/fsl,imx-dma.yaml
->  delete mode 100644 Documentation/devicetree/bindings/dma/fsl-imx-dma.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/fsl,imx-dma.yaml b/Documentation/devicetree/bindings/dma/fsl,imx-dma.yaml
-> new file mode 100644
-> index 000000000000..902a11f65be2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/fsl,imx-dma.yaml
-> @@ -0,0 +1,56 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/fsl,imx-dma.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale Direct Memory Access (DMA) Controller for i.MX
-> +
-> +maintainers:
-> +  - Animesh Agarwal <animeshagarwal28@gmail.com>
-> +
-> +allOf:
-> +  - $ref: dma-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx1-dma
-> +      - fsl,imx21-dma
-> +      - fsl,imx27-dma
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: DMA complete interrupt
-> +      - description: DMA Error interrupt
-> +    minItems: 1
-> +
-> +  "#dma-cells":
-> +    const: 1
-> +
-> +  dma-channels:
-> +    const: 16
-> +
-> +  dma-requests:
-> +    description: Number of DMA requests supported.
+> Signed-off-by: Dmitry Yashin <dmt.yashin@gmail.com>
 
-That's confusing. It is supposed to be deprecated.
+This sounds like it needs a Fixes tag.  Should it be backported to
+stable?
 
-Best regards,
-Krzysztof
+I understand that you only know that rk3308 is affected, and probably
+you worry that other devices are as well?  Just do your best on trying
+to figure out which is the first commit where this bug started to
+matter.  Any information is better than no information.
+
+The commit message should say what the bug looks like to the user.  Why
+would a user want this patch?  I can probably figure it out from reading
+the code, but I shouldn't have to.
+
+regards,
+dan carpenter
+
 
 
