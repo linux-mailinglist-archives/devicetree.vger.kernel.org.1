@@ -1,242 +1,203 @@
-Return-Path: <devicetree+bounces-72949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EE9D8FD781
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 22:28:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41A318FD796
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 22:35:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8AB8285279
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 20:28:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC5E6285F1F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 20:35:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E7CA15E5D7;
-	Wed,  5 Jun 2024 20:27:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D37F15F30D;
+	Wed,  5 Jun 2024 20:35:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="CmAlUUW3"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="B2+wIEQ7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2081.outbound.protection.outlook.com [40.107.22.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7987015ECC4;
-	Wed,  5 Jun 2024 20:27:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.81
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717619245; cv=fail; b=FySWnY1lZssJUi9WrxdtNUvWpMmH4qhwmyHCnqgktnbbzU6tQK5jtJt0P9jAvv9y5LKyUi/tpqa0JWTIFh/cfQ728QieCv+ZS1xVqezlfw+1rQy6yZoJmdUW7Oy523t3SPVGDNga9tt14WdtZtSuyB8MY7tMVtNtLtxMwFmMWkQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717619245; c=relaxed/simple;
-	bh=JMTAE3/HY4Xy77heSUmXqktoZicdL7n2jxPWVjWTysQ=;
-	h=From:To:Subject:Date:Message-Id:Content-Type:MIME-Version; b=YaSf6KFlUx02sVt5FSh3NftXu62GfRMyhlOeWmVY1gtztah6c9I3Qp+MM2ho6wUBmuHHKjXiwLinZTGusJni2I9ThqVr4E+g0alS1xU0ZFyK2rLhdlzRb7GgphLdk1rPcKQ5LyXu3CDpJnFEwOlJDcXMYlr8h2z561g3UUBcnRs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=CmAlUUW3; arc=fail smtp.client-ip=40.107.22.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DEPkoJgchAIRFpdOz+5HPBO6V3ddOYmLkD+ou9F2y5XZfvRn4t0EtRGBSCifc4kPEiBTHleBMhia5jV8jXLUqUWW/hOO2keOtGrSeJQ+GF+qzlbX2lKryG6veSxrSuakXoVPvLcbFFwOn60Va85UNWq+78snTB/mKyCVbDNsMq4bppDgImn1jimY5g2dWk1lDYSohotJOJCT0aP4BA6xKAlyrpuHtGm8b0nyK5/NgS0jYypS9HvUs1+aZLVPOMLGm4CTFkyljf89t7ElRwCkHqMVBuEMqZ95K6TTJ0WMUD9AsAApFH0x+sSAazfmWQxxJRYEydwYWhTT3DNro5rPxQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NXc+RS7mX2m+NEGEzDbIEySOU4PFL84lPfkNRE9k474=;
- b=QIEIsF1EnE420oU2CgurcSEMG17L4zKGv46YkugFW+slxCTg78OBeB+Fl33qvLYAr11y7iTgMQL/txWvOfrHK4jlD7fqKV/cPzv8kTVkRYde0nITsvsQggT/AkhQSh2+HY4vsklCXjk70wbr9YPdC6/Ol7RgZbbUF/4UyJSl4kEsKuzjTmbFEn1INJzUbF/Uh8iyMtgMgk33Xd+9X7MR8Sm9fs0eufo/czSPPYIGanK3NiS5oW5OmBDRBLNVZ9DhAHdryDLchcvfbjCRhd+BGzMfDNH7cJVsH0PKejf9AWzCEI6qBO/zQ6AqBt292NSbsFGyoaVq8e5Qhh5wlnnzLA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NXc+RS7mX2m+NEGEzDbIEySOU4PFL84lPfkNRE9k474=;
- b=CmAlUUW3UE1DWxZebFol6h0PmmSfAzgILnxNz5U7Yeng0ak++WXGgyVcSzLizfwUqwhhP4voKFvNnQW6v16OhMs6JE0j9sZpBv5daR8q4LjLLQEY1CckNSXw6cby2DCU5g20KD5WahmkUwFBjXJG1gxpPvcIQtcetdEeFszONhk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PA4PR04MB7680.eurprd04.prod.outlook.com (2603:10a6:102:f3::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.31; Wed, 5 Jun
- 2024 20:27:20 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7633.021; Wed, 5 Jun 2024
- 20:27:20 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 1/1] arm64: dts: imx8dxl-evk: add imx8dxl_cm4, lsio mu5, related memory region
-Date: Wed,  5 Jun 2024 16:27:03 -0400
-Message-Id: <20240605202703.1220203-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0082.namprd03.prod.outlook.com
- (2603:10b6:a03:331::27) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B20113D262
+	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 20:35:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.179
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717619722; cv=none; b=naGZYwmCZeTLEFCW3qZFjZrqLKKLusDcUQJLhJvJ6covhUEVlWM7JZUgq9tyivkm5t+kN9OgMdXWjFcy4O/EhyQhWZAirt/K/JX0/xI1gGbV3pXpBpzsdB7vufQ2f0/8uPEbcnUgu60yV1OcwvcPdsBvCL/Vic33g1v/FqNUXjM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717619722; c=relaxed/simple;
+	bh=A8Z51WtEhjIdfd88NhvVep8DkTcf2oWydKIzJrAqSCw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nMuKYOCqnf1fu7JH2cKX1PW5uRJTlePKNNRLYSqjrN5VrOgeWQHAdsksXDd/iiDD/GG7p0ycstkoJdOuLi+GXl7ImFgNJVikfhN59Y88oX6UufzOxixpmN2+HRfjThg9R+nEerpyQ7HWRvDQ5/ckoYmGxm/F7JLOCyyDDaDWv/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=B2+wIEQ7; arc=none smtp.client-ip=209.85.167.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3d1ffaf6091so95524b6e.3
+        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 13:35:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1717619718; x=1718224518; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1vJjuSTFz/Nsj8mn2a+s4dFUk/0rqc2v8wfC3wlpVhk=;
+        b=B2+wIEQ7TlFGM5ZSRr5bkpq2V7KHSbEh3K28Sk8RdyTGkHMf/5mVwMYLLtTwjbi4ld
+         EDX1HacPMLvlyEIUz6Y1vaEiHr0cOCdBWNVveyNG1D0iLhdQ/+iEfbc8kfNcYa2g554x
+         iTVGVtYVeLu+xENyE8iRCfNByZ8Z7HAu7h9OOuyRL8u2QtFH/lCia9ApoYTINtfpghtP
+         Ays9yBgvXwbuRi/LQD9Al9UexrQZlzaKzEUsxtHleZyjaYYzOZQvPHv52a5LpBE5u4BY
+         ZJoN6iHZP/zwhqalyDFbCFSeAyFmHFp1eJvMI57UsdACh3eoaxik3sYOuKiePp6PiRTs
+         OC5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717619718; x=1718224518;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1vJjuSTFz/Nsj8mn2a+s4dFUk/0rqc2v8wfC3wlpVhk=;
+        b=sC91ZimH6xFpsysXTCkljB0hem77XE2AQbSE4ChOZhwqthaEFBGjMCBdfXm44oREjA
+         n1xuBJucEfRkcn8IeuEXTVUDsHp2MgSDmXSccy22uSu1TVF3+hVpKn1yVleGZZy0KVZi
+         lZwXLnNKRIgMcdT7Z63CWiZ+ts4ZEajzSTTr8aSbYLvjXf/K+qzl1lBThc/6mbA4nWgZ
+         2ZPhxXKZLoeeH0MWOwbjF5T8kCkFyGDonSxbn54gOTxyz540qnjAYHJyRcddtKIUIl6K
+         z0iuXMiRJLDbtDrcZyQQISXiD7rRLxff+tIP5wJbcAs9MrHPWKR8Tn7jmxfQr18qhye/
+         25Vw==
+X-Forwarded-Encrypted: i=1; AJvYcCXPhVNlHFxzxLG0ygXRbv0x8OApxqvkpfy2znLRl8NKLExbGR9hO6GSZ5FMXaGSpoLkUIPPjngJFQcA4fSUwH/aqHLHRCuWX+q63Q==
+X-Gm-Message-State: AOJu0YxpDfpTr6PD5rozNE2vN1xICNNRKu27mfxdmJT1c0oejz3/Eski
+	QCACDjctaIyLt0ax8tXlVsH+W5v100rdWuC6t1hvxTVMe41pbrcyQmrzWPDsTbA=
+X-Google-Smtp-Source: AGHT+IG/Q5dm0XunXk8ISugNOrCX4l8Ka3GNq1v/BqR0c3/G2Yi18em/EdrAh0PsFwlWy9/2BwQrlw==
+X-Received: by 2002:aca:2104:0:b0:3c9:c2bc:6939 with SMTP id 5614622812f47-3d2044e7d00mr3533666b6e.57.1717619716846;
+        Wed, 05 Jun 2024 13:35:16 -0700 (PDT)
+Received: from localhost.localdomain (d24-150-219-207.home.cgocable.net. [24.150.219.207])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6afc72485f8sm25359866d6.5.2024.06.05.13.35.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jun 2024 13:35:16 -0700 (PDT)
+From: Trevor Gamblin <tgamblin@baylibre.com>
+To: linux-pwm@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org,
+	ukleinek@baylibre.com,
+	ukleinek@kernel.org,
+	michael.hennerich@analog.com,
+	nuno.sa@analog.com,
+	tgamblin@baylibre.com,
+	dlechner@baylibre.com,
+	devicetree@vger.kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Subject: [RESEND][PATCH 0/2 v6] pwm: add axi-pwm-gen driver
+Date: Wed,  5 Jun 2024 16:35:04 -0400
+Message-ID: <20240605203507.1934434-1-tgamblin@baylibre.com>
+X-Mailer: git-send-email 2.45.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA4PR04MB7680:EE_
-X-MS-Office365-Filtering-Correlation-Id: 87d69034-e0da-4105-3e6e-08dc859de640
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230031|376005|7416005|1800799015|366007|52116005|38350700005|921011;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?nDoJs3EYjvW763/EAVh40yYIYnSPKmzrgCMbcane7LW+kvWlMqCznd7fkqSO?=
- =?us-ascii?Q?f/BUMi5/SFwzEFwEFkOfaB8h+LGdunUxpg98BpaaQSbLJZJ8cUPAFJXbT7GN?=
- =?us-ascii?Q?WhCOp39zBcSAmoI6b73pLugZWYrBEVFaUCurcyu6KEWIikh4YNOdDCifbyJ0?=
- =?us-ascii?Q?lwm1Y/31MiIpWjC24Bas+3pmj0sOJFtGiH1BLuJy7QeAXNptr1oTzq5N+RYw?=
- =?us-ascii?Q?Hvi4wfH/P7zrw0EU25Myvozs9j3IzWHNolwAH5mVMdKYAmvKlxWvhQXeROHd?=
- =?us-ascii?Q?UoUQOOFwUnBi0mK+rNP7OitKiQ8zaaZBY0UPk0IdiB3KyKfaGUN0ae+WfbKm?=
- =?us-ascii?Q?+N3SxS/ZdUdFKwnXJngvUDW2fWVKjk3e+G797tFmo2nIMC4DCnoqiamn1lgA?=
- =?us-ascii?Q?esqjqatphANJSPfvAxmGDMQGCnQ5P6hA5rtdPtD5UvFCFFu/7Fbij/b3wCxe?=
- =?us-ascii?Q?5WTo1W8MEtjz/2LyFPz1eiJp316tzr0YNaR0djQzMXrGqj1/N4SRA4AbTO0Z?=
- =?us-ascii?Q?Z1UAQzsrdVI/tE4nrFfvdWLUSNihEKE607JwL0Waf3Bgwo8nT/9AFZgmwtbw?=
- =?us-ascii?Q?xPVZ5ePthG/4Ay3CVYXDIl3vck2u4pMyn4IcZ36OLasZ3rsNFBe9yu278mWi?=
- =?us-ascii?Q?5g0Xg9o5kwD4Cbum2Dio6g0gzz0xNi+2bGxbWzIJNUbOZ7x4H7Tds8L3u8G+?=
- =?us-ascii?Q?0p8qRga6of0NqiYw2oIokbZbC1hjJaw5ksoSTAcy5N5vb4FREaxw/GJRCuOT?=
- =?us-ascii?Q?nr228U2/VlBPfjaGyF0HmamB49AfwbuQytiqUA+tGNcwi7H+JeJB1h5qn6v6?=
- =?us-ascii?Q?fBV4Itkop/yBjM5d312Wy5TCuSEmk7BlScDnSj2YQ8K3UmK3hde8i/NORObU?=
- =?us-ascii?Q?I2+rVSDXZKM3w6V/HpUbyjiTwFgIDFXNPcgUFiqpTqKAte/h8tFQZRMPjg3M?=
- =?us-ascii?Q?cI04ueLZTcgEq4Gpf3ZV/DZsBaPArmUDpN67ksdV2owkWi0P+TzEemXN/EAD?=
- =?us-ascii?Q?bIubDAZsiXJCUvCCSlVuQk+r7FIhQLGwFt93rrnknUfecIXa75iT7hYg1E7K?=
- =?us-ascii?Q?03XLFsYtNSUnxW+gfJTq2vzLKBFQAKxc12Ywet9ZEZ0dnifx7P0f8aYY92QQ?=
- =?us-ascii?Q?NYIlHDhqRIxHnJGDFWNF+9cPW9Hjify8a8tiVC6H8HMIGCa4Cmhl7K7BK6Hg?=
- =?us-ascii?Q?MdXwyoK2QYeFEKb4NL97/PGEaXJOwKuq8+Q1SN9G9Phl9tTMrnKOMId0D0UG?=
- =?us-ascii?Q?WuqeDJEwATL1oPmDlCLxxxfBz7skblK5BLgvqTwM6Jm6SUSDr30Vd4wPWD2C?=
- =?us-ascii?Q?xCEMmzJ3gtfy5sffiTqtXAKpgTDQ7YeFERBYEqYLgPnAQw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(7416005)(1800799015)(366007)(52116005)(38350700005)(921011);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?v2qwDb+daZUtGZp1MvgUlb1OxmeDd8AAhVn5gP5kBR9bzi29QTVEhcZzuj74?=
- =?us-ascii?Q?DuPIEvZGrBrsyv9eC3e+W09OCw7bqzI4gCPLrAQSvncq+U13St6fBuUgi4MO?=
- =?us-ascii?Q?xSFMELYHa3EKV0bgHRjeHBA7WT0Ib0BT4qJa72o17xi+z6AR0S+Ox03ghLP2?=
- =?us-ascii?Q?sKUYVEq27d6L+fgJWwWaKerFEZ2KzV4ihLeDG9QmUihl4TPk6x/SwmqY/mmn?=
- =?us-ascii?Q?YvnAEodt8Gi3lqi0BYJKuGICAFYr2+iVC80pKQ5UoHrqgiNqk0iX2zho9WBf?=
- =?us-ascii?Q?FoP721+/gFIPgc8ESVDgZijihDve/RyxZ/SSwWEBkKx+N3BSKJKB7HReWD1O?=
- =?us-ascii?Q?dNtMnN0bJDGTSDbLnsZWxjFa1GWxSqRLFW9LYH2jwWQEwSRlcMb4zBh3mI7z?=
- =?us-ascii?Q?o0wO++DhOBY07D+UE+D35hO/4md52X14OWeGuU60TPfz67jAEHc7CCjVvpOS?=
- =?us-ascii?Q?6DtNCah51o8l4W3QKzCvknW0iVnXtXML5IhqtKaqRNXk/r//i6bLIFB732+i?=
- =?us-ascii?Q?zSVUDXsoS0ws6Tbgotb13Xd3P8PnSGGFiWyoqvT70YOOCbZOXRsHcZYKlg64?=
- =?us-ascii?Q?04r/eFxc2W0d5FsoQmuFfDopUCQqc3F0owXEk14sRFJpF+FgDeFbVhxfFAtG?=
- =?us-ascii?Q?yqsCW/PYYZeLOfOF2xbChE83aICggb5Y2z80uMPj/R7VSeMe/1qeI6wKIA6W?=
- =?us-ascii?Q?iYzpV648qR+roIWufk+YCCB/z+up5HdI+iAqI8L7R084KVWt6CT02HsxXg8k?=
- =?us-ascii?Q?V+k9ANqOKH7wTBB8HzwlOwI1XoZeruXhAP1fV9/jDo9ZxKmo9NaKheVq/JER?=
- =?us-ascii?Q?5hQ7MfKpkj1sNwHCHgXXTPkFQZlpbd2/hD9104jIqyXKXG+etNnHaSrUUzIo?=
- =?us-ascii?Q?mTb+Ec1ifJe7xL5QgBkOwfv/mD5WDuBCfljm5+fAvrJ5z1Xio9yuHFN7hTTg?=
- =?us-ascii?Q?/0xxqoM2/RYyw0DmP2be8hiIXnfT8xmwXuUvWwU6ZtvpHzeCRDS2u7iffmsD?=
- =?us-ascii?Q?SlGu7aLsII6T0seJUGYBZzyghNJSpUDdgH7Ehd3yYWmkCyybAZVrg+qJ9b5S?=
- =?us-ascii?Q?4YH1X+Q1l8NmiGGvh4/VZ2Aj42xrtzjMJiabO2NRzemcQg6kXZGPwAYo9KNs?=
- =?us-ascii?Q?EPHRXCGtMIQa/hEo9e/9wdtEqwNmwSA+IuiXj0Dii/gnt2DU0vEv8+UG2RvC?=
- =?us-ascii?Q?2DWtXDKC4xjmQ/pk30qfCQ5ajntKgGxB4UnBJarT0dwzvrgOywrUZGJajUYj?=
- =?us-ascii?Q?+C0PC8PQHNlm09mjGK7zTgTdAXJDzq19PvzFzt1DWMu4doUkTKBldcBEHepV?=
- =?us-ascii?Q?6+SXtMMzYhDbF/FVo4mf1ZjNKyhz8Ui6XPEbRjlX2EHQ6TAApGwuiyA7Lqto?=
- =?us-ascii?Q?tmvaiaNYOookF/25s6Xpvfn5UR/eLiWX+4N9uTFC3noO6MCcxssjwPOWHzSG?=
- =?us-ascii?Q?SKupj+E9mAZe9FkJK+2Gpm17BfaMFAxxHgAys2LrF9QgKOtaofZ1QSsCnnLU?=
- =?us-ascii?Q?9kC7TMTjs71xkMsr4nZBL3nG7K8lHh2HegXJRLqxyl51oIT5nCvf06vbIfSu?=
- =?us-ascii?Q?y91QQHrk//STgfZ5hQaXmlPIOC6Uvz81VxigFBX8?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 87d69034-e0da-4105-3e6e-08dc859de640
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2024 20:27:20.0491
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ePDf9rNQX8C9/5Sv8IdLJbQWCGK/oZVpvZ3uw6mLPFM2eaCUj7fgzOR5DZ6O4m1zpFwDWpADq3pV6Q2Y2Kq5CQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7680
+Content-Transfer-Encoding: 8bit
 
-Add imx8dxl_cm4, lsio mu5 and related memory region.
+Resending due to missing real name in "From:" line.
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
+This series adds support for the AXI PWM GEN subsystem found on FPGA IP
+cores. It can be used to generate configurable PWM outputs, and includes
+options for external synchronization and clock signals.  The work is
+being done on behalf of, and therefore lists maintainers from Analog
+Devices, Inc.
+
+The series has been tested on actual hardware using an EVAL-AD7985FMCZ
+evaluation board. An oscilloscope was used to validate that the
+generated PWM signal matched the requested one.
+
+There was previously a follow-up series
+(https://lore.kernel.org/linux-pwm/20240314204722.1291993-1-tgamblin@baylibre.com/)
+that enabled support for two different versions of the AXI PWM GEN IP.
+Since issues were identified with the v1 IP functionality and v2's
+regmap is the one listed on the device wiki
+(https://analogdevicesinc.github.io/hdl/library/axi_pwm_gen/index.html),
+the driver was changed to support only the v2 IP after squashing those
+additions. As a result, the overall driver is simpler as it no longer
+uses an axi_pwm_variant struct. Support for v1 IP can be added back
+later in the event that it is required.
+
 ---
- arch/arm64/boot/dts/freescale/imx8dxl-evk.dts | 48 +++++++++++++++++++
- 1 file changed, 48 insertions(+)
+v6 changes:
+* Address feedback for driver in v5:
+  * Add link to public device documentation in pwm-axi-pwmgen.c
+  * Remove unnecessary line split in axi_pwmgen_setup
+  * Remove unnecessary call to devm_add_action_or_reset() in
+    axi_pwmgen_probe
+* Update documentation link in driver and binding commit messages
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts b/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
-index 4ac96a0586294..c5e601b98cf8f 100644
---- a/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
-@@ -24,6 +24,19 @@ chosen {
- 		stdout-path = &lpuart0;
- 	};
- 
-+	imx8dxl-cm4 {
-+		compatible = "fsl,imx8qxp-cm4";
-+		clocks = <&clk_dummy>;
-+		mbox-names = "tx", "rx", "rxdb";
-+		mboxes = <&lsio_mu5 0 1 &lsio_mu5 1 1 &lsio_mu5 3 1>;
-+		memory-region = <&vdevbuffer>, <&vdev0vring0>, <&vdev0vring1>,
-+				<&vdev1vring0>, <&vdev1vring1>, <&rsc_table>;
-+		power-domains = <&pd IMX_SC_R_M4_0_PID0>, <&pd IMX_SC_R_M4_0_MU_1A>;
-+		fsl,resource-id = <IMX_SC_R_M4_0_PID0>;
-+		fsl,entry-address = <0x34fe0000>;
-+	};
-+
-+
- 	memory@80000000 {
- 		device_type = "memory";
- 		reg = <0x00000000 0x80000000 0 0x40000000>;
-@@ -51,6 +64,37 @@ linux,cma {
- 			alloc-ranges = <0 0x98000000 0 0x14000000>;
- 			linux,cma-default;
- 		};
-+
-+		vdev0vring0: memory0@90000000 {
-+			reg = <0 0x90000000 0 0x8000>;
-+			no-map;
-+		};
-+
-+		vdev0vring1: memory@90008000 {
-+			reg = <0 0x90008000 0 0x8000>;
-+			no-map;
-+		};
-+
-+		vdev1vring0: memory@90010000 {
-+			reg = <0 0x90010000 0 0x8000>;
-+			no-map;
-+		};
-+
-+		vdev1vring1: memory@90018000 {
-+			reg = <0 0x90018000 0 0x8000>;
-+			no-map;
-+		};
-+
-+		rsc_table: memory-rsc-table@900ff000 {
-+			reg = <0 0x900ff000 0 0x1000>;
-+			no-map;
-+		};
-+
-+		vdevbuffer: memory-vdevbuffer {
-+			compatible = "shared-dma-pool";
-+			reg = <0 0x90400000 0 0x100000>;
-+			no-map;
-+		};
- 	};
- 
- 	m2_uart1_sel: regulator-m2uart1sel {
-@@ -505,6 +549,10 @@ &lpuart1 {
- 	status = "okay";
- };
- 
-+&lsio_mu5 {
-+	status = "okay";
-+};
-+
- &flexcan2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_flexcan2>;
+Link to v5: https://lore.kernel.org/linux-pwm/20240424125850.4189116-1-tgamblin@baylibre.com/
+
+v5 changes:
+* Address feedback for driver in v4:
+  * Clarify device behavior in frontmatter
+  * Include register name in bitfield definitions
+  * Use devm_clk_rate_exclusive_get() and handle error
+* Squash v2 IP patches into series from: https://lore.kernel.org/linux-pwm/20240314204722.1291993-1-tgamblin@baylibre.com/
+* Refactor driver code to support only v2 IP
+  * Issues were identified with v1 IP implementation, so only v2 will be
+    supported
+  * Remove axi_pwm_variant struct and usage
+  * Version check in axi_pwmgen_setup() left as-is to limit usage to
+  * only v2 IP
+* Adjust dt bindings to use adi,axi-pwmgen-2.00.a
+
+Link to v4: https://lore.kernel.org/linux-pwm/20240301173343.1086332-1-tgamblin@baylibre.com/
+
+v4 changes:
+* Address feedback for driver in v3:
+  * Update to use devm_pwmchip_alloc() function
+  * Simplify use of dev symbol in axi_pwmgen_probe
+  * Remove unnecessary axi_pwmgen_from_chip function and use
+    pwmchip_get_drvdata directly
+
+Link to v3: https://lore.kernel.org/linux-pwm/20240131214042.1335251-1-tgamblin@baylibre.com/
+
+v3 changes:
+* Address feedback for driver in v2:
+  * Remove unnecessary blank line in axi_pwmgen_apply
+  * Use macros already defined in <linux/fpga/adi-axi-common.h> for
+    version checking
+
+Link to v2: https://lore.kernel.org/linux-pwm/20240123220515.279439-1-tgamblin@baylibre.com/
+
+v2 changes:
+* Address feedback for driver and device tree in v1:
+  * Use more reasonable Kconfig approach
+  * Use common prefixes for all functions
+  * Rename axi_pwmgen struct to axi_pwmgen_ddata
+  * Change use of "pwm" to "ddata"
+  * Set and check state->polarity
+  * Multiply safely with mul_u64_u64_div_u64()
+  * Improve handling of max and zero periods
+  * Error if clk_rate_hz > NSEC_PER_SEC
+  * Add "Limitations" section at top of pwm-axi-pwmgen.c
+  * Don't disable outputs by default
+  * Remove unnecessary macros for period, duty, offset
+  * Fix axi_pwmgen_ddata alignment
+  * Don't artificially limit npwm to four
+  * Use clk_rate_exclusive_get(), balance with clk_rate_exclusive_put()
+  * Cache clk rate in axi_pwmgen_ddata
+  * Don't assign pwm->chip.base, do assign pwm->chip.atomic
+  * Relocate "unevaluatedProperties" in device tree binding
+* Remove redundant calls to clk_get_rate
+* Test contents of AXI_PWMGEN_REG_CORE_MAGIC instead of
+  arbitrary AXI_PWMGEN_TEST_DATA in AXI_PWMGEN_REG_SCRATCHPAD
+* Remove redundant clk struct from axi_pwmgen_ddata
+* Add self as module author
+* Add major version check for IP core
+
+Link to v1: https://lore.kernel.org/linux-pwm/20240115201222.1423626-1-tgamblin@baylibre.com/
+
+Drew Fustini (2):
+  dt-bindings: pwm: Add AXI PWM generator
+  pwm: Add driver for AXI PWM generator
+
+ .../bindings/pwm/adi,axi-pwmgen.yaml          |  48 ++++
+ MAINTAINERS                                   |   9 +
+ drivers/pwm/Kconfig                           |  13 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-axi-pwmgen.c                  | 241 ++++++++++++++++++
+ 5 files changed, 312 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+ create mode 100644 drivers/pwm/pwm-axi-pwmgen.c
+
 -- 
-2.34.1
+2.45.1
 
 
