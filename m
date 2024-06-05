@@ -1,330 +1,138 @@
-Return-Path: <devicetree+bounces-72813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA2A58FD0A3
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 16:18:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D1D08FD0DE
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 16:32:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30D21285730
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 14:18:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 891F8B21A6A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 14:30:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F9B4199A2;
-	Wed,  5 Jun 2024 14:17:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D45B10A0D;
+	Wed,  5 Jun 2024 14:30:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="FdQtT2yD";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="h0pcncrc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PGd2vTqc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B3CB1863C;
-	Wed,  5 Jun 2024 14:17:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6669319D8B1
+	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 14:30:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717597078; cv=none; b=UDyFZs5vxzUgN1a7veDWm4wLnmyPITJKKGIjYPcVIokNO5B1+DSbIup16Yd40rriqc399OLaMBX3XDrd92q+IpAGPwuZ86X0o/WLCMQm4ZecAEuxu7zJBRwU1VC46sZRN9D1wpfdEkAa7n3LkCXNT9tFWmOJqMKwEpa/UkHzdDk=
+	t=1717597844; cv=none; b=afQ4ehULx8WzAGuEk85qQHIvw/enuhio+DjOdjFxliBPQIpBHYqXZXlp9efpnMjXaCm4s9xRXex6HUwOen3KlmcY8c3WWEC0iYljZetbkQF/Sof0xe3BtDq4S2cpyLTIVHix65reKKgxPxkKZOatziAnrHIUWd9SqDufNSLKGBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717597078; c=relaxed/simple;
-	bh=s3hsBHfHGSb76vwMZy3nEFVmXNXGEjEkilscDvM66vU=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=XG8WwwhSx/2RJYy0nDWfJoqnKK/R0b3Y4jgisBYRM6JPGvQAelBtzJeGcBfb8l33DmF+8SaLpLr6woAYCyPLMUMPNUbsHfMpkdVFmaa025u+3tstKPaiVj9mRx3IDYMnGuxU24EgsOK3TWNVkLr7nqKtym2X3of9lB67HtLIomE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=FdQtT2yD; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=h0pcncrc; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1717597074;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=n04KYCuxF/d4GeXP4Wu2hdUNiAxVocZIZGoARupszWA=;
-	b=FdQtT2yDVgjr7iJyRlkteEqbXa73u24p0cdcvjcM7lv4L6l/Pccu5G4WV5pAmh0E4SbJjR
-	mhW1SKXlkwarDSWWUKyTAnJm2yKOZk5vmUeCb0s/ifaDtklQ0O6I34O4ofjoie8Oim5luf
-	0b8qFJwaTUBYv1zqgPSxCeo+kzF6jgeT5g24mXFklxbbY6r7LYbXA+1osLNVqDBFhI7UKi
-	Oe4dS+MR2QWUOXHs6QZJK3/FZvmc+agjLRfisu9VdynmcBtSEFXLp1n4O1GNG4RwvFZRIc
-	AYcKCdV7t5xwEgMuTy7lXDBiFmxZNlxX9TfhfkGmfF5c8pJJL34xwPgnfYYjYg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1717597074;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=n04KYCuxF/d4GeXP4Wu2hdUNiAxVocZIZGoARupszWA=;
-	b=h0pcncrcJMKv0Oz6gYvi5gHNG5E4DWuOjpeI4WUt5kg06KSE57hQUeJ5yoXrQ/t9Vh27IB
-	2Oo4K14xZE/sPKAQ==
-To: Herve Codina <herve.codina@bootlin.com>, Simon Horman
- <horms@kernel.org>, Sai Krishna Gajula <saikrishnag@marvell.com>, Herve
- Codina <herve.codina@bootlin.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Lee Jones <lee@kernel.org>, Arnd Bergmann
- <arnd@arndb.de>, Horatiu Vultur <horatiu.vultur@microchip.com>,
- UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>, Heiner
- Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
- Saravana Kannan <saravanak@google.com>, Bjorn Helgaas
- <bhelgaas@google.com>, Philipp Zabel <p.zabel@pengutronix.de>, Lars
- Povlsen <lars.povlsen@microchip.com>, Steen Hegelund
- <Steen.Hegelund@microchip.com>, Daniel Machon
- <daniel.machon@microchip.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- netdev@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Allan Nielsen
- <allan.nielsen@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 11/19] irqchip: Add support for LAN966x OIC
-In-Reply-To: <20240527161450.326615-12-herve.codina@bootlin.com>
-References: <20240527161450.326615-1-herve.codina@bootlin.com>
- <20240527161450.326615-12-herve.codina@bootlin.com>
-Date: Wed, 05 Jun 2024 16:17:53 +0200
-Message-ID: <87frtr4goe.ffs@tglx>
+	s=arc-20240116; t=1717597844; c=relaxed/simple;
+	bh=Llc/D+Xns8XHv+k9gTmDzSnLKAnU3sZ4exmIXQNQw4I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WGrkKD2quAFdBCgdeEvZ0hkNVp7vrm7bQCM83p96LLL0obTqYmXjKvPlFN7yL2O1+6XooIdev3POeHzCf+wtSD/bn08DaQXZV3QtjxPZ8NI6Sl0vr1zkuBZlBOylZZA4S3i4bji92jg6D72cZ5Cun4Uwe0KeoMhNFE+wzSMoDQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PGd2vTqc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16274C2BD11;
+	Wed,  5 Jun 2024 14:30:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717597844;
+	bh=Llc/D+Xns8XHv+k9gTmDzSnLKAnU3sZ4exmIXQNQw4I=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PGd2vTqcyc7zMOxW8P2Fdria8YgxPoQ7Zn931eQv78TIa4/q0d4pwpeBGo0ESr72n
+	 dUiewMjTL4ksOCoz/piXSnWPCBIodlD39hN5YhwrcpxnSeU0fyaSiGvlkj2T94/i1x
+	 NpuSLRSyJOy5eCk9vqb5aVj1n26tu/qMf+VWjfpumqee62IwJ5Rvt2u1c3cAoxrPzZ
+	 jTgC4RFGHiK0R0mwwAwQcDOttJsljqGyvMmcOQShNn4bKzItP78ZWJiuR2vflrgu+i
+	 Dzh4OdPP0EQzSpEHosKael2akCabOLjgxT9MpP9fMp/5KLtgK9RqG0lJHmlhG0MpYm
+	 OJY2nxekyUSUg==
+Message-ID: <170f1ac9-0080-47f3-97a1-1a80e38cb1a2@kernel.org>
+Date: Wed, 5 Jun 2024 16:30:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: altera: Add Terasic DE1-SOC board
+To: Florian Vaussard <florian.vaussard@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Dinh Nguyen <dinguyen@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240605083321.1211198-1-florian.vaussard@gmail.com>
+ <20240605083321.1211198-2-florian.vaussard@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240605083321.1211198-2-florian.vaussard@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, May 27 2024 at 18:14, Herve Codina wrote:
-> +struct lan966x_oic_data {
-> +	struct irq_domain *domain;
-> +	void __iomem *regs;
-> +	int irq;
-> +};
+On 05/06/2024 10:33, Florian Vaussard wrote:
+> Add binding for the Terasic DE1-SOC board.
+> 
+> Signed-off-by: Florian Vaussard <florian.vaussard@gmail.com>
+> ---
 
-Please read Documentation/process/maintainers-tip.rst
 
-> +static int lan966x_oic_irq_set_type(struct irq_data *data,
-> +				    unsigned int flow_type)
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Please use the 100 character limit
 
-> +static struct lan966x_oic_chip_regs lan966x_oic_chip_regs[3] = {
-> +	{
-> +		.reg_off_ena_set = LAN966X_OIC_INTR_ENA_SET,
-> +		.reg_off_ena_clr = LAN966X_OIC_INTR_ENA_CLR,
-> +		.reg_off_sticky = LAN966X_OIC_INTR_STICKY,
-> +		.reg_off_ident = LAN966X_OIC_DST_INTR_IDENT(0),
-> +		.reg_off_map = LAN966X_OIC_DST_INTR_MAP(0),
+---
 
-Please make this tabular. See doc.
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
 
-> +static void lan966x_oic_chip_init(struct lan966x_oic_data *lan966x_oic,
-> +				  struct irq_chip_generic *gc,
-> +				  struct lan966x_oic_chip_regs *chip_regs)
-> +{
-> +	gc->reg_base = lan966x_oic->regs;
-> +	gc->chip_types[0].regs.enable = chip_regs->reg_off_ena_set;
-> +	gc->chip_types[0].regs.disable = chip_regs->reg_off_ena_clr;
-> +	gc->chip_types[0].regs.ack = chip_regs->reg_off_sticky;
-> +	gc->chip_types[0].chip.irq_startup = lan966x_oic_irq_startup;
-> +	gc->chip_types[0].chip.irq_shutdown = lan966x_oic_irq_shutdown;
-> +	gc->chip_types[0].chip.irq_set_type = lan966x_oic_irq_set_type;
-> +	gc->chip_types[0].chip.irq_mask = irq_gc_mask_disable_reg;
-> +	gc->chip_types[0].chip.irq_unmask = irq_gc_unmask_enable_reg;
-> +	gc->chip_types[0].chip.irq_ack = irq_gc_ack_set_bit;
-> +	gc->private = chip_regs;
-> +
-> +	/* Disable all interrupts handled by this chip */
-> +	irq_reg_writel(gc, ~0, chip_regs->reg_off_ena_clr);
-> +}
-> +
-> +static void lan966x_oic_chip_exit(struct irq_chip_generic *gc)
-> +{
-> +	/* Disable and ack all interrupts handled by this chip */
-> +	irq_reg_writel(gc, ~0, gc->chip_types[0].regs.disable);
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
 
-~0U
-  
-> +	irq_reg_writel(gc, ~0, gc->chip_types[0].regs.ack);
-> +}
-> +
-> +static int lan966x_oic_probe(struct platform_device *pdev)
-> +{
-> +	struct device_node *node = pdev->dev.of_node;
-> +	struct lan966x_oic_data *lan966x_oic;
-> +	struct device *dev = &pdev->dev;
-> +	struct irq_chip_generic *gc;
-> +	int ret;
-> +	int i;
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
 
-int ret, i;
+Best regards,
+Krzysztof
 
-> +
-> +	lan966x_oic = devm_kmalloc(dev, sizeof(*lan966x_oic), GFP_KERNEL);
-> +	if (!lan966x_oic)
-> +		return -ENOMEM;
-> +
-> +	lan966x_oic->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(lan966x_oic->regs))
-> +		return dev_err_probe(dev, PTR_ERR(lan966x_oic->regs),
-> +				     "failed to map resource\n");
-> +
-> +	lan966x_oic->domain = irq_domain_alloc_linear(of_node_to_fwnode(node),
-> +						      LAN966X_OIC_NR_IRQ,
-> +						      &irq_generic_chip_ops,
-> +						      NULL);
-> +	if (!lan966x_oic->domain) {
-> +		dev_err(dev, "failed to create an IRQ domain\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	lan966x_oic->irq = platform_get_irq(pdev, 0);
-> +	if (lan966x_oic->irq < 0) {
-> +		ret = dev_err_probe(dev, lan966x_oic->irq,
-> +				    "failed to get the IRQ\n");
-> +		goto err_domain_free;
-> +	}
-> +
-> +	ret = irq_alloc_domain_generic_chips(lan966x_oic->domain, 32, 1,
-> +					     "lan966x-oic", handle_level_irq, 0,
-> +					     0, 0);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret, "failed to alloc irq domain gc\n");
-> +		goto err_domain_free;
-> +	}
-> +
-> +	/* Init chips */
-> +	BUILD_BUG_ON(DIV_ROUND_UP(LAN966X_OIC_NR_IRQ, 32) !=
-> +		     ARRAY_SIZE(lan966x_oic_chip_regs));
-> +	for (i = 0; i < ARRAY_SIZE(lan966x_oic_chip_regs); i++) {
-> +		gc = irq_get_domain_generic_chip(lan966x_oic->domain, i * 32);
-> +		lan966x_oic_chip_init(lan966x_oic, gc,
-> +				      &lan966x_oic_chip_regs[i]);
-> +	}
-> +
-> +	irq_set_chained_handler_and_data(lan966x_oic->irq,
-> +					 lan966x_oic_irq_handler,
-> +					 lan966x_oic->domain);
-> +
-> +	irq_domain_publish(lan966x_oic->domain);
-> +	platform_set_drvdata(pdev, lan966x_oic);
-> +	return 0;
-
-This is exactly what can be avoided.
-
-> +
-> +err_domain_free:
-> +	irq_domain_free(lan966x_oic->domain);
-> +	return ret;
-> +}
-> +
-> +static void lan966x_oic_remove(struct platform_device *pdev)
-> +{
-> +	struct lan966x_oic_data *lan966x_oic = platform_get_drvdata(pdev);
-> +	struct irq_chip_generic *gc;
-> +	int i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(lan966x_oic_chip_regs); i++) {
-> +		gc = irq_get_domain_generic_chip(lan966x_oic->domain, i * 32);
-> +		lan966x_oic_chip_exit(gc);
-> +	}
-> +
-> +	irq_set_chained_handler_and_data(lan966x_oic->irq, NULL, NULL);
-> +
-> +	for (i = 0; i < LAN966X_OIC_NR_IRQ; i++)
-> +		irq_dispose_mapping(irq_find_mapping(lan966x_oic->domain, i));
-
-This is just wrong. You cannot remove the chip when there are still interrupts
-mapped.
-
-I just did a quick conversion to the template approach. Unsurprisingly
-it removes 30 lines of boiler plate code:
-
-+static void lan966x_oic_chip_init(struct irq_chip_generic *gc)
-+{
-+	struct lan966x_oic_data *lan966x_oic = gc->domain->host_data;
-+	struct lan966x_oic_chip_regs *chip_regs;
-+
-+	gc->reg_base = lan966x_oic->regs;
-+
-+	chip_regs = lan966x_oic_chip_regs + gc->irq_base / 32;
-+	gc->chip_types[0].regs.enable = chip_regs->reg_off_ena_set;
-+	gc->chip_types[0].regs.disable = chip_regs->reg_off_ena_clr;
-+	gc->chip_types[0].regs.ack = chip_regs->reg_off_sticky;
-+
-+	gc->chip_types[0].chip.irq_startup = lan966x_oic_irq_startup;
-+	gc->chip_types[0].chip.irq_shutdown = lan966x_oic_irq_shutdown;
-+	gc->chip_types[0].chip.irq_set_type = lan966x_oic_irq_set_type;
-+	gc->chip_types[0].chip.irq_mask = irq_gc_mask_disable_reg;
-+	gc->chip_types[0].chip.irq_unmask = irq_gc_unmask_enable_reg;
-+	gc->chip_types[0].chip.irq_ack = irq_gc_ack_set_bit;
-+	gc->private = chip_regs;
-+
-+	/* Disable all interrupts handled by this chip */
-+	irq_reg_writel(gc, ~0, chip_regs->reg_off_ena_clr);
-+}
-+
-+static void lan966x_oic_chip_exit(struct irq_chip_generic *gc)
-+{
-+	/* Disable and ack all interrupts handled by this chip */
-+	irq_reg_writel(gc, ~0, gc->chip_types[0].regs.disable);
-+	irq_reg_writel(gc, ~0, gc->chip_types[0].regs.ack);
-+}
-+
-+static void lan966x_oic_domain_init(struct irq_domain *d)
-+{
-+	struct lan966x_oic_data *lan966x_oic = d->host_data;
-+
-+	irq_set_chained_handler_and_data(lan966x_oic->irq, lan966x_oic_irq_handler, d);
-+}
-+
-+static int lan966x_oic_probe(struct platform_device *pdev)
-+{
-+	struct irq_domain_chip_generic_info gc_info = {
-+		.irqs_per_chip		= 32,
-+		.num_chips		= 1,
-+		.name			= "lan966x-oic"
-+		.handler		= handle_level_irq,
-+		.init			= lan966x_oic_chip_init,
-+		.destroy		= lan966x_oic_chip_exit,
-+	};
-+
-+	struct irq_domain_info info = {
-+		.fwnode			= of_node_to_fwnode(pdev->dev.of_node),
-+		.size			= LAN966X_OIC_NR_IRQ,
-+		.hwirq_max		= LAN966X_OIC_NR_IRQ,
-+		.ops			= &irq_generic_chip_ops,
-+		.gc_info		= &gc_info,
-+		.init			= lan966x_oic_domain_init,
-+	};
-+	struct lan966x_oic_data *lan966x_oic;
-+	struct device *dev = &pdev->dev;
-+
-+	lan966x_oic = devm_kmalloc(dev, sizeof(*lan966x_oic), GFP_KERNEL);
-+	if (!lan966x_oic)
-+		return -ENOMEM;
-+
-+	lan966x_oic->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(lan966x_oic->regs))
-+		return dev_err_probe(dev, PTR_ERR(lan966x_oic->regs), "failed to map resource\n");
-+
-+	lan966x_oic->irq = platform_get_irq(pdev, 0);
-+	if (lan966x_oic->irq < 0)
-+		return dev_err_probe(dev, lan966x_oic->irq, "failed to get the IRQ\n");
-+
-+	lan966x_oic->domain = irq_domain_instantiate(&info);
-+	if (!lan966x_oic->domain)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, lan966x_oic);
-+	return 0;
-+}
-+
-+static void lan966x_oic_remove(struct platform_device *pdev)
-+{
-+	struct lan966x_oic_data *lan966x_oic = platform_get_drvdata(pdev);
-+
-+	irq_set_chained_handler_and_data(lan966x_oic->irq, NULL, NULL);
-+	irq_domain_remove(lan966x_oic->domain);
-+}
-
-See?
-
-Thanks,
-
-        tglx
 
