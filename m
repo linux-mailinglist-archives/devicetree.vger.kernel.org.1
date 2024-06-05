@@ -1,138 +1,153 @@
-Return-Path: <devicetree+bounces-72704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EC028FC975
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 12:55:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5784A8FC977
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 12:56:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1EC2284726
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 10:55:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5C35B20C3A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 10:56:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06301191475;
-	Wed,  5 Jun 2024 10:55:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30A4219148D;
+	Wed,  5 Jun 2024 10:56:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="qSfIEj16"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="Ge1Fl/0Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-canonical-0.canonical.com (smtp-relay-canonical-0.canonical.com [185.125.188.120])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F7DA1946D3;
-	Wed,  5 Jun 2024 10:55:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.120
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A86AE18C348;
+	Wed,  5 Jun 2024 10:56:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717584934; cv=none; b=HmattJsg8TdoHnsIogcpylQjZbNWKb0ZGJerTS01QZtUg2uZrvIgC3JLkW9Z9oJpLNo629Uy9zpRqRGW3Xy0m5YJ8jX2S2U27AbiMH1c8NTRX6YkpHEOpbI5BR09zcAcABlLI1fXi2Su780Z9s8VQnIp4Ru0+t84ab5O3nD6fSc=
+	t=1717584994; cv=none; b=HwLBpRYvs9O4NUHTnwkSkH9955IVGARLYT3GCbfxdPvvQrwD98vDJaDEqN4eTIfujHvSFuTdX1uqBPfj/Y0VoASv2UlnHzU/u38sHb6dXPjd7U65P2ItLFFH0RDDdJB3oPhZdQfPDvXcNt/v+0BojUEcxEtGsipOM4cOgwSmnCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717584934; c=relaxed/simple;
-	bh=W+U7qhUjCbi51uRgvg/U9wrwMMR6x0KWroJZjDdtMrQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q1MM7+u77mfVcK7pUXkz0yO0IC8DNw8GVsYPhwINPqXBa3GCcSNtPkt0MXyK/PM5TNF7KXYH2Hmuxeymg898fdGSzvbzzhaa80Ca3JPbGBK7WS251zBxCz8XcJsG3ci/nKUwOLajTkGnaL9y54v4iuj91lHLx2LnQp/PRR7v8fA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=qSfIEj16; arc=none smtp.client-ip=185.125.188.120
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from [192.168.0.106] (unknown [123.112.65.116])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPSA id 9D2BC3F30B;
-	Wed,  5 Jun 2024 10:55:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1717584926;
-	bh=A2fBCgA/gmiLrr61al6cFFR/2iFB/YAMVzE2ZejjVMs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type;
-	b=qSfIEj16dUGorAnUStJ++FqiIxosMfqnqB5U9uH2sE3zXuGR8t4wNXATbFd44sL3O
-	 lBNPXAYAlpRO9E8T5FbnDJT6V/1TqDYANWDmIHaynLHtZPj7wURRZRdT2/RuFfQU9Q
-	 Qhfe+qJ1oWkfGuFF+lHEOgsC+lZEeeLFanFImgMnJii+2oY6b0DutsaFMWARkneSaK
-	 X+R67pgRi5tpa7roEZ7IB1ZbLb7BRe9+8jCkhsDMq298CqKUfmMCQm2Bum9LbJyOVx
-	 HNgPkSp6J1147m9y5DMWIL5V4MVDqwVIrwYF63qmEicsCQX/qWLTMBHq3pu1lQD5Vz
-	 07FTVK409dbXw==
-Message-ID: <f56a2c59-9ae4-4d5c-8321-fff9639c5405@canonical.com>
-Date: Wed, 5 Jun 2024 18:55:16 +0800
+	s=arc-20240116; t=1717584994; c=relaxed/simple;
+	bh=RbJrHLxVrUAC01AEYh2OBUFjKTa19FH/VrJUPurVHs4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tw8ce2DwLsGkUdCErceuCXCsILNDWKTBuDXtdhdRtrDQDYi0TPYNJ7CV6w4YFVtLMfdFq2cSO4+9hxSsrXXgys5r+ld7o4aDcunPta1HdKuZASNSao1AC03VnVDa/myEKehx4F8iMgt4W6A5Q4X6sekgtWsC8TF6eOaoh/IDvYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=fail (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=Ge1Fl/0Z reason="signature verification failed"; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 3cc244f6232a11efbfff99f2466cf0b4-20240605
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=x/hF5O71bdcH4O+pfvQfRWrEoC41lKm2IxGNxIiz+bE=;
+	b=Ge1Fl/0Zx4TG1YPOgQXVcn72E6eMwJMB7XUMxQuE6Nbr7SDgVrmgE9mFWUDhdyKfTu/gTETxoyl8zRTG4IUxDe+TYjKe9huFj+NfyQKgMa4X8zMlty+qmS7aiGShSCM/MG0cH09bGNqU+fG5Mdi6oIjGHErTue9M+wR0V8WXgn8=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.39,REQID:871a417a-91df-4c27-8c43-35d45b472c61,IP:0,U
+	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:393d96e,CLOUDID:48e03e88-8d4f-477b-89d2-1e3bdbef96d1,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: 3cc244f6232a11efbfff99f2466cf0b4-20240605
+Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw02.mediatek.com
+	(envelope-from <zhi.mao@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 145351603; Wed, 05 Jun 2024 18:56:18 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 5 Jun 2024 18:56:16 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 5 Jun 2024 18:56:14 +0800
+From: Zhi Mao <zhi.mao@mediatek.com>
+To: <mchehab@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <sakari.ailus@linux.intel.com>
+CC: <laurent.pinchart@ideasonboard.com>, <shengnan.wang@mediatek.com>,
+	<yaya.chang@mediatek.com>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, <yunkec@chromium.org>,
+	<conor+dt@kernel.org>, <matthias.bgg@gmail.com>,
+	<angelogioacchino.delregno@collabora.com>, <jacopo.mondi@ideasonboard.com>,
+	<zhi.mao@mediatek.com>, <10572168@qq.com>, <hverkuil-cisco@xs4all.nl>,
+	<heiko@sntech.de>, <jernej.skrabec@gmail.com>, <macromorgan@hotmail.com>,
+	<linus.walleij@linaro.org>, <hdegoede@redhat.com>,
+	<tomi.valkeinen@ideasonboard.com>, <gerald.loacker@wolfvision.net>,
+	<andy.shevchenko@gmail.com>, <bingbu.cao@intel.com>,
+	<dan.scally@ideasonboard.com>, <linux-media@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>
+Subject: [PATCH v5 0/3] media: i2c: Add support for GC05A2 sensor
+Date: Wed, 5 Jun 2024 18:55:37 +0800
+Message-ID: <20240605105540.17937-1-zhi.mao@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] serial: sc16is7xx: hard reset the chip if
- reset-gpios is defined in dt
-To: Maarten Brock <Maarten.Brock@sttls.nl>, Hugo Villeneuve <hugo@hugovil.com>
-Cc: "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
- "jirislaby@kernel.org" <jirislaby@kernel.org>,
- "hvilleneuve@dimonoff.com" <hvilleneuve@dimonoff.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "andy@kernel.org" <andy@kernel.org>,
- "lech.perczak@camlingroup.com" <lech.perczak@camlingroup.com>
-References: <20240604132726.1272475-1-hui.wang@canonical.com>
- <20240604132726.1272475-2-hui.wang@canonical.com>
- <20240604102323.b2a305fa03161df3c2eec16c@hugovil.com>
- <AS8PR05MB9810940582493046F2FBFDB983F92@AS8PR05MB9810.eurprd05.prod.outlook.com>
-Content-Language: en-US
-From: Hui Wang <hui.wang@canonical.com>
-In-Reply-To: <AS8PR05MB9810940582493046F2FBFDB983F92@AS8PR05MB9810.eurprd05.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--8.176900-8.000000
+X-TMASE-MatchedRID: P5jg6OHd8lGU2fVedEQUO9jGRkLinPFIsjXBCUyiRiYfVuGrjP7J9Mn+
+	P5bPwFH9zE9s0r9yaTktNGU0YgjeG9OD37/ztihF9Ib/6w+1lWT4qCLIu0mtIGHZ+cd7VyKXjBH
+	2O7lhl4B9VK5Cn+Wq2D5x3tC0dJPkJjR5Quw0FeXuykw7cfAoICoTaU3L23VCmyiLZetSf8mfop
+	0ytGwvXiq2rl3dzGQ1l3+bAt/YFVT+QHeKFDZ7Y6rRzDA+RY3bSbLpfUWH46QyiplP/UXqTz6Qr
+	n3xh/cy
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--8.176900-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP:
+	CDD9FD4375A0B04FF3BF90E3BCD1E163AF7BA4379576F4F4F7E292B72BB2A0D92000:8
+X-MTK: N
+
+This series adds YAML DT binding and V4L2 sub-device driver for Galaxycore's
+GC05A2 5-megapixel 10-bit RAW CMOS 1/5" sensor, with an MIPI CSI-2 image data
+interface and the I2C control bus.
+
+The driver is implemented with V4L2 framework.
+ - Async registered as a V4L2 sub-device.
+ - As the first component of camera system including Seninf, ISP pipeline.
+ - A media entity that provides one source pad in common.
+ - Used in camera features on ChromeOS application.
+
+Also this driver supports following features:
+ - manual exposure and analog gain control support
+ - vertical blanking control support
+ - test pattern support
+ - media controller support
+ - runtime PM support
+ - support resolution: 2592x1944@30fps, 1280x720@60fps
+
+Previous versions of this patch-set can be found here:
+v4:https://lore.kernel.org/all/20240427052233.8915-1-zhi.mao@mediatek.com/
+v3:https://lore.kernel.org/linux-media/20240403033825.9072-1-zhi.mao@mediatek.com/
+v2:https://lore.kernel.org/linux-media/20240323014751.4989-1-zhi.mao@mediatek.com/
+v1:https://lore.kernel.org/linux-media/20240316025253.2300-1-zhi.mao@mediatek.com/
+v0:https://lore.kernel.org/linux-media/20240313054409.8073-1-zhi.mao@mediatek.com/
+
+This series is based on linux-next, tag: next-20240604
+Changes in v5:
+- add maintain entry for GC05A2 image sensor
+
+Thanks
+
+Zhi Mao (3):
+  media: dt-bindings: i2c: add GalaxyCore GC05A2 image sensor
+  media: i2c: Add GC05A2 image sensor driver
+  MAINTAINERS: Add entry for GC05A2 image sensor
+
+ .../bindings/media/i2c/galaxycore,gc05a2.yaml |  112 ++
+ MAINTAINERS                                   |    7 +
+ drivers/media/i2c/Kconfig                     |   10 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/gc05a2.c                    | 1361 +++++++++++++++++
+ 5 files changed, 1491 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/galaxycore,gc05a2.yaml
+ create mode 100644 drivers/media/i2c/gc05a2.c
+
+-- 
+2.25.1
+ 
 
 
-On 6/5/24 18:30, Maarten Brock wrote:
->> From: Hugo Villeneuve <hugo@hugovil.com>
->> Sent: Tuesday, 4 June 2024 16:23
-> <...>
->
->> Add function description from original comment "Reset device,
->> purging any pending irq / data", since the comment applies to both
->> hardware and software reset,
-> No it does not (at this moment). See below.
->
->>> +static int sc16is7xx_reset(struct device *dev, struct regmap *regmaps[])
->> Simply pass "struct regmap *regmap" as the second argument. See
->> sc16is7xx_setup_mctrl_ports() for example.
->>
->>> +{
->>> +	struct gpio_desc *reset_gpiod;
->> reset_gpiod -> reset_gpio
->>
->>> +	else if (!IS_ERR(reset_gpiod)) {
->>> +		/* delay 5 us (at least 3 us) and deassert the gpio to exit the hard
->> reset */
->>
->> You can omit the "delay 5 us" since it is obvious from the code. Maybe
->> add that "The minimum reset pulse width is 3 us" as stated in the
->> datasheet.
->>
->> As a general note for your comments: capitalize the first letter,
->> ex: "Deassert GPIO" and not "deassert GPIO".
->>
->>
->>> +		udelay(5);
->>> +		gpiod_set_value_cansleep(reset_gpiod, 0);
->> Move the comment "deassert the gpio to exit the hard reset" here. You
->> could also simplify it as "Deassert GPIO.".
-> The problem here is that this only deasserts the reset if it were asserted before.
-> Nothing happens if it already was deasserted. This makes the delay also pretty
-> useless.
->
-> To make this a proper reset pulse for the device you must first assert the reset,
-> then wait >3us, and finally deassert the reset.
->
-> Maarten Brock
-Hi Maarten,
-
-My understanding is when calling devm_gpiod_get_optional(dev, "reset", 
-GPIOD_OUT_LOW) and returning a valid (gpio_desc *), the flag 
-GPIOD_OUT_LOW guarantees the GPIO is set to output and low (assert the 
-reset pin).
-
-Thanks,
-
-Hui.
-
-
->
 
