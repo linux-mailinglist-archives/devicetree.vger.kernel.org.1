@@ -1,163 +1,146 @@
-Return-Path: <devicetree+bounces-72719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0AB68FCA58
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:23:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB1A28FCA5A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:24:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F87F2827DC
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 11:23:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D82B1F21898
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 11:24:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86408192B8C;
-	Wed,  5 Jun 2024 11:23:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CD70192B7C;
+	Wed,  5 Jun 2024 11:24:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iWOssg0x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l7X1WKkO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E3468F6A;
-	Wed,  5 Jun 2024 11:23:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7344F8F6A;
+	Wed,  5 Jun 2024 11:24:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717586604; cv=none; b=q6NjNtjjVL+ixUu9XzCFyH7Wsj2K9wVyAioavDVO11g+g45Lg54AwzG+sf7pnDxOyMGXOK6WJK0LRuYyp53leeM6TJrEza/tMysn0WNFHug5N4hEf6DlwLVQ7VOPooJr792WKuKClP6R9T5TACWA2wBCD5Fn243TUKMZAQ43RYQ=
+	t=1717586693; cv=none; b=a7Dz2PjDIIi588e33GFYogMY9quRyNB8vtmAKTsypGma+gDAQJOGxUZdqePAA9H5aF8E0PvBrI9LI6MRHyyVjwZhkrWHQsJ2Hbfdi090/mTjS+6tCvIFF/tMLWBerCJ4+UhIYIqVVG7ApBZvJ8fJGIt6736hNYpeYsKhuXbar9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717586604; c=relaxed/simple;
-	bh=ulQWyHpv4zET4nAlFDTZoIUSCT3nKmoqAd0xhJpllkg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=N8COsvLRQ0niiRfZ9u8lcGAuNxB+jXQ80RX30TxPeZwRG/6y09hz6C5ZuwYqVKkN45anjOjZ8fbJEzmIDv5hifSUAnkDpJpzY5VYm1ShkHjR55ZKJQ3iBu4YKvBLFHGtG82AhIS7BBofukoPp48r1Z/kfSFMAA4tGpfNSGaUGXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iWOssg0x; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-1f630e35a01so44109725ad.1;
-        Wed, 05 Jun 2024 04:23:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717586602; x=1718191402; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=v8lBmo+de872z4HgxVCrHC0+rUnsK/Cm/QHFRT3M9h0=;
-        b=iWOssg0xojAnixwXgEbsfo2l6zirRteBj1e1YM/MqhJk0EzYTbFlz8ppX6M/laJ0nW
-         dBpZ4JodYX0YI2oVv5sliDGnqEKTeAjmliwcsD4eH8oAAxF5NcBah/T8XJ8ObgDjITzJ
-         +Zavp3txhDRC6AW/9X89o0uGWwkbJkHddQbfYI3GnHO01LNl8LS1NY8BgB7m/wbQqQOe
-         jvSBYSm3uVQBEA/dfDnGzNm3Bfwgf/ph8b+5iRQjnGQexNyTHwTgF7D4gqeEko1nnglQ
-         CHWlk4qz/hDpQyV3DcNlseq2wIAxS3vo7MT0cQZz2gorDTbmJHcEy9oW0B1a/vUeBEu3
-         pjrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717586602; x=1718191402;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=v8lBmo+de872z4HgxVCrHC0+rUnsK/Cm/QHFRT3M9h0=;
-        b=jalggt5N6EHJECfDOwhwzxDlkB5kbX41RdWX8Pn6CGzTymmOPye63AP2GPUBteFGxX
-         BKYqz4wDA2et85IOGy4s6UKcosFOd2yGfaVRO4kacoRys6vw2fh4WvEaUoHWCXBzCLdo
-         LRMQWccKREVLOII0TFx1wpQVQf5/CjLK0aLAxj8U2aQJ1eENnREGURTBMii0yJQuRKT7
-         KWRgw5LBqYQo0PK0PPr8N65gB3hKsQYv0/kvNylSKtEQOo5RzhMwlwdDJ2cmslW2sQ+F
-         P4Xlrq5YmFzs9ZpRwqYI5MHO2eu5LAhTcDqwoP48duC3RH5p2Rj6MV8eh9vw2DGW1ErX
-         iBSg==
-X-Forwarded-Encrypted: i=1; AJvYcCUwHnfaCFYqbOKt3dRYtLjglMHDkSnMNf+H77OLTfb9taUlasBTit1yqOao8J54ibFa7o1w6t+VIf4uwMoT6SdQF9LJVSRo/lY9tnGlv63+nCXZaCEJd5nF5VQWSA8h1mflF7awc9RHndRRREHR48SJ1hLFz8I5fh+7VJEiixp12tXeQqYQ
-X-Gm-Message-State: AOJu0YzWpw4W3z1b6/gt2HH63UPqDQ7W0dzKblqiotUbkbU86RH5tpJF
-	eq9SEVZ/KAudFhgwmtzfAwqkFw7fBnrd3wR9i7PQLwyvSPfTz0LUkgq8uiNX/pw=
-X-Google-Smtp-Source: AGHT+IHkzDjzFHveJzOdoOOxAJAdaeEfu/ITXQnJJFI/PkEOl0kZbARGpPlkahBZfq5bftPE4Fs0CA==
-X-Received: by 2002:a17:903:2292:b0:1f4:64ba:af9f with SMTP id d9443c01a7336-1f6a5a69a3dmr24294085ad.48.1717586602201;
-        Wed, 05 Jun 2024 04:23:22 -0700 (PDT)
-Received: from fedora.one.one.one.one ([2405:201:6013:c0b2:ea4b:30e0:4e3a:ab56])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f63241d378sm99866595ad.301.2024.06.05.04.23.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jun 2024 04:23:21 -0700 (PDT)
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-To: 
-Cc: animeshagarwal28@gmail.com,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] ASoC: dt-bindings: linux,spdif-dir: Convert to dtschema
-Date: Wed,  5 Jun 2024 16:52:55 +0530
-Message-ID: <20240605112301.8171-1-animeshagarwal28@gmail.com>
-X-Mailer: git-send-email 2.45.1
+	s=arc-20240116; t=1717586693; c=relaxed/simple;
+	bh=t869eoOHjsg3BKrhxGVMPSQUCOTmolC92nbJteoKkSE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SmKl5XlCNXgr0ix8tZvIvEj853pFWrP0VB8JhKsTqtVkZe2LOKdF63cVG/L85+XsNjussNLFc4ueGVm4FVlTq9PJDeoQSaZ8uROS8rmKclfgtPC5uKWLa74NpZK3u1K68CC2JANt5kxr5xKmbpRKqHm/773JU+105+uyciHEwEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l7X1WKkO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DBBEC3277B;
+	Wed,  5 Jun 2024 11:24:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717586692;
+	bh=t869eoOHjsg3BKrhxGVMPSQUCOTmolC92nbJteoKkSE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=l7X1WKkO1+38/L1/MZrvPpSMO7FnpSGVYJA+N/TZSHK/+aHwIiins93i759wisoTF
+	 FUAFCfl4P90aTlr0PIXtrt1CcKxE54T9gjXNGpWMPAGkmhSGfnVYpL6KanLN69YlIn
+	 G8rpqn+UkwWWEtiUNB1CcKr34xC2Nn9g7YaRr4FZPN+4bmE9X8sjg169QoPC+ooBhV
+	 Lx3U1JHJ/kS9xsL5jj91Ats+gzHNEBHooD+4xHVyyRynAInkhsDnQ1MyANzt9YuCfH
+	 r8oDph8wWGrl+MH5+ClvBKobHpyBxZu5ynjv01/JjxHQYcZbaWvnhndi6ekIEXWGDU
+	 zSskR3EWmvxaQ==
+Message-ID: <e3f81288-3000-4965-80a5-b68ffccb47fe@kernel.org>
+Date: Wed, 5 Jun 2024 13:24:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] serial: sc16is7xx: hard reset the chip if
+ reset-gpios is defined in dt
+To: Maarten Brock <Maarten.Brock@sttls.nl>, Hui Wang
+ <hui.wang@canonical.com>, Hugo Villeneuve <hugo@hugovil.com>
+Cc: "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+ "jirislaby@kernel.org" <jirislaby@kernel.org>,
+ "hvilleneuve@dimonoff.com" <hvilleneuve@dimonoff.com>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "andy@kernel.org" <andy@kernel.org>,
+ "lech.perczak@camlingroup.com" <lech.perczak@camlingroup.com>
+References: <20240604132726.1272475-1-hui.wang@canonical.com>
+ <20240604132726.1272475-2-hui.wang@canonical.com>
+ <20240604102323.b2a305fa03161df3c2eec16c@hugovil.com>
+ <AS8PR05MB9810940582493046F2FBFDB983F92@AS8PR05MB9810.eurprd05.prod.outlook.com>
+ <f56a2c59-9ae4-4d5c-8321-fff9639c5405@canonical.com>
+ <AS8PR05MB98104348D77097F60396B82883F92@AS8PR05MB9810.eurprd05.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <AS8PR05MB98104348D77097F60396B82883F92@AS8PR05MB9810.eurprd05.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Convert the dummy SPDIF receiver bindings to DT schema. Make bindings
-complete by adding property "#sound-dai-cells"
+On 05/06/2024 13:19, Maarten Brock wrote:
+>>> To make this a proper reset pulse for the device you must first assert the reset,
+>>> then wait >3us, and finally deassert the reset.
+>>>
+>>> Maarten Brock
+>> Hi Maarten,
+>>
+>> My understanding is when calling devm_gpiod_get_optional(dev, "reset",
+>> GPIOD_OUT_LOW) and returning a valid (gpio_desc *), the flag
+>> GPIOD_OUT_LOW guarantees the GPIO is set to output and low (assert the
+>> reset pin).
+> 
+> Ah, right. Sorry, I missed that.
+> So GPIOD_OUT_LOW disregards the inversion from GPIO_ACTIVE_LOW.
 
-Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>
----
- .../bindings/sound/linux,spdif-dir.yaml       | 34 +++++++++++++++++++
- .../bindings/sound/spdif-receiver.txt         | 10 ------
- 2 files changed, 34 insertions(+), 10 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/linux,spdif-dir.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/spdif-receiver.txt
+It doesn't.
 
-diff --git a/Documentation/devicetree/bindings/sound/linux,spdif-dir.yaml b/Documentation/devicetree/bindings/sound/linux,spdif-dir.yaml
-new file mode 100644
-index 000000000000..61767873200f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/linux,spdif-dir.yaml
-@@ -0,0 +1,34 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/linux,spdif-dir.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Dummy SPDIF receiver
-+
-+maintainers:
-+  - Liam Girdwood <lgirdwood@gmail.com>
-+  - Mark Brown <broonie@kernel.org>
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: linux,spdif-dir
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - "#sound-dai-cells"
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    spdif-in {
-+      compatible = "linux,spdif-dir";
-+      #sound-dai-cells = <0>;
-+    };
-diff --git a/Documentation/devicetree/bindings/sound/spdif-receiver.txt b/Documentation/devicetree/bindings/sound/spdif-receiver.txt
-deleted file mode 100644
-index 80f807bf8a1d..000000000000
---- a/Documentation/devicetree/bindings/sound/spdif-receiver.txt
-+++ /dev/null
-@@ -1,10 +0,0 @@
--Device-Tree bindings for dummy spdif receiver
--
--Required properties:
--	- compatible: should be "linux,spdif-dir".
--
--Example node:
--
--	codec: spdif-receiver {
--		compatible = "linux,spdif-dir";
--	};
--- 
-2.45.1
+> And gpiod_set_value_cansleep(reset_gpiod, 0) uses the inversion to make the pin high.
+> Looks fine to me now.
+
+They both respect pin polarity.
+
+Best regards,
+Krzysztof
 
 
