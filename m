@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-72975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63D0F8FD937
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 23:38:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BBCE8FD93E
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 23:39:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 141361F23149
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 21:38:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 14969B2853F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 21:39:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D96C715FA7B;
-	Wed,  5 Jun 2024 21:38:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFC92167268;
+	Wed,  5 Jun 2024 21:38:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vLRhpOph"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TKdvPWUa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABD6B15FA8F;
-	Wed,  5 Jun 2024 21:38:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C84FC15FA73;
+	Wed,  5 Jun 2024 21:38:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717623495; cv=none; b=GaTKPlg5z5weyip7tCpsEu74cxkUoVruvqnuPvKFpSJosT5uwNmcAk/t5C8QKvc3NlawSfyEnpb9vEt1qB9CezKt8Vdm3iw7eAGLvQ248bQ9btDRHHYYADN9T5nqrklxPcGxx7M9Mzd18LUSYTbj+oT2PTWQV+vl4YouBrK0AnE=
+	t=1717623507; cv=none; b=MULyO6OdgScHwxiJhQMN89EApv3IHXxLUG7CehLKdlVHa0CgeHZ4TnuDbNmbJhk12nzMGNiSUYZ8LdUZ9x7IAUviEeuQRsIZQpcE51Ui3PhwqxkEQEN4PqWtluN+IPkW68UMaF0uWg3/PKAPYgUcElqmN/f5N7jP9IiEWFF5MqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717623495; c=relaxed/simple;
-	bh=D+XNwiT5oc5Dm3t9kYZHsZnZ+hfVu8uRIo4dcxzvk7c=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=ne8B6f4D/YJX4iOaXotCOjfbp1cz9NLcGr1VPDTSOW0M0gGUzkxA72yZkGP4l/G5727ZQ+NgI+ZGmt/kYQfqFOfdrkiIdyY5zKe5hMXTHls8h9spTajiLkEsWRETXdUFMI7MtNWXgB9kphaaQHiwOB3btntUhXZ9XsS9VpFkNbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vLRhpOph; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34EC6C4AF1B;
-	Wed,  5 Jun 2024 21:38:12 +0000 (UTC)
+	s=arc-20240116; t=1717623507; c=relaxed/simple;
+	bh=8hay60Greow1omChJOGvvYkdjMVtVCAHBT0W/Ohlr/Y=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=vCUT9GV5kQo7n9k0PhPtVWrxMjXEN3Tcd4dcpZX/z7uGZmaNrKb6lIn70o+oRoqUPQlWVhRmSVMCFPvq+Pu6oPyfzNKYvYO6+7RjzLPh4SdnIpFxzk5znfnknz74uOQoTW3T7z6E80j+cRB1hQ1WHtalqhRwvjbdf7nq/x29RPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TKdvPWUa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E725CC2BD11;
+	Wed,  5 Jun 2024 21:38:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717623495;
-	bh=D+XNwiT5oc5Dm3t9kYZHsZnZ+hfVu8uRIo4dcxzvk7c=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=vLRhpOphNGmBaQmxfLFjNesmRJ8CdhImZQC71upgsbQ9PPymnKlCzrlqFjLGIkzxY
-	 FIV7raA/XCMVmU5o+l3I5StSQvgAOUajlN6bNfywQwvMrirXHu609WSmlsKD4wM/BT
-	 MMxuQifeVDY7YfTfT0t28C7KmuTc3dUblWm+pkhhAiYha2eipBYX4fP1gE+E7wLHHn
-	 24ed61T32aZ9YM92xUTb6Xs5bFpJb8Onne/DVujNek8MEgDREqJtKyKFKnDcTuUDoX
-	 fm9vUtzVjbH0I2hRysdQTdmMrwMCnIUZgzEyk4o8mxNZyxqi55LcyecAw2wXk+2mIn
-	 7k2nMmp+sQIaA==
+	s=k20201202; t=1717623506;
+	bh=8hay60Greow1omChJOGvvYkdjMVtVCAHBT0W/Ohlr/Y=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=TKdvPWUa35aZm/YidZOLUclkifjdNdJ4sK3LN9XTkOV+0/UEqGfwMZKdwZZ8rZrMK
+	 zrCngkF3t4ikRnDHdIrvv5atgc/esY7h1Te52fLbSeeYgGH8MAZa6gsBbd1K/pkIQ8
+	 q8XDwCyb4aInC9jaOC2UQ6uJU4G2h8MiG7DIXDIVDHVZ+mZ+Cnb1A0+1RRw6H18gHK
+	 YIY9TNXKJMtFfh5DPvqaYQSOMt9vljSO3ZAFnfhtMcYtSkxJk67b4ddmy8LdbJM1pA
+	 dIiG689+qgW540wYbbt1x9IOP4B+9Bzc8/8Os8z/sNNuSURDxY9hbn7h4oCMvmtt1k
+	 A4/iWSdPf3IIw==
 From: Mark Brown <broonie@kernel.org>
-To: lgirdwood@gmail.com, robh+dt@kernel.org, 
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
- shengjiu.wang@gmail.com, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Xiubo.Lee@gmail.com, festevam@gmail.com, nicoleotsuka@gmail.com, 
- perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org, 
- linuxppc-dev@lists.ozlabs.org, Shengjiu Wang <shengjiu.wang@nxp.com>
-In-Reply-To: <1715656329-8061-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1715656329-8061-1-git-send-email-shengjiu.wang@nxp.com>
-Subject: Re: [PATCH v2 0/2] ASoC: fsl_xcvr: Support i.MX95 platform
-Message-Id: <171762349194.565712.7362032139063923896.b4-ty@kernel.org>
-Date: Wed, 05 Jun 2024 22:38:11 +0100
+To: Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>, 
+ Baojun Xu <baojun.xu@ti.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Ricard Wanderlof <ricard.wanderlof@axis.com>
+Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@axis.com
+In-Reply-To: <20240528-tlv320adc3xxx-dt-gpio-fix-v1-1-209fb2c2f86f@axis.com>
+References: <20240528-tlv320adc3xxx-dt-gpio-fix-v1-1-209fb2c2f86f@axis.com>
+Subject: Re: [PATCH] dt-bindings: sound: tlv320adc3xxx: Fix incorrect GPIO
+ description
+Message-Id: <171762350367.565712.5511446466309082536.b4-ty@kernel.org>
+Date: Wed, 05 Jun 2024 22:38:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,18 +65,13 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14-dev-d4707
 
-On Tue, 14 May 2024 11:12:07 +0800, Shengjiu Wang wrote:
-> On i.MX95 wakeup domain, there is one instance of Audio XCVR
-> supporting SPDIF mode with a connection to the Audio XCVR physical
-> interface.
+On Tue, 28 May 2024 17:40:04 +0200, Ricard Wanderlof wrote:
+> Fix the description for the ti,dmdin-gpio1 and ti,dmclk-gpio2
+> properties to correctly describe that when configured as general
+> purpose outputs (ADC3XXX_GPIO_GPO), the pins are available via
+> the GPIO framework.
 > 
-> changes in v2:
-> - Merge patch 1&2, 3&4 from v1 together.
-> - Add more comments in commit message
-> - Add constaint for clocks used on i.mx95
-> - Add 'select SND_SOC_FSL_UTILS' for compiling issue.
 > 
-> [...]
 
 Applied to
 
@@ -83,10 +79,8 @@ Applied to
 
 Thanks!
 
-[1/2] ASoC: dt-bindings: fsl,xcvr: Add compatible string for i.MX95
-      commit: fc1277335ffa0d180c76ddccf5fe27fc75674e67
-[2/2] ASoC: fsl_xcvr: Add support for i.MX95 platform
-      commit: f13b349e3c70320ef5a86edfc888a6feb612abb0
+[1/1] dt-bindings: sound: tlv320adc3xxx: Fix incorrect GPIO description
+      commit: 39d762edd1f353c4446dbce83a18da4e491cc48e
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
