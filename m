@@ -1,182 +1,186 @@
-Return-Path: <devicetree+bounces-72854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E76678FD2CF
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 18:21:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 966768FD2D1
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 18:21:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FB4B28535E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 16:21:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 043671F22FB6
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 16:21:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79D3B155331;
-	Wed,  5 Jun 2024 16:20:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBF87152DEB;
+	Wed,  5 Jun 2024 16:21:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TapXZmpy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nHle5QaI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B56FF15351A
-	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 16:20:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3A8E1527B5;
+	Wed,  5 Jun 2024 16:21:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717604455; cv=none; b=JjZzC+FKemXMZL6/wh0+GHBsI2xKAasWWi8p/lE6DTW6A5XkKGze89Hfkqi+faPoYQ8swskl6IhjNkV9MgXocgvj9szaR5F7G1W23NSERK0+rjBfBn8e740SRxf5WcT0OlwIu/mKy7CYV+S8Q1cF+eluQnRHNGudDeNLnIeSeVQ=
+	t=1717604465; cv=none; b=hUH/uezYXHkhcA7rkC1JDWxI7VIIUCpLCpTEBGXDUQr+acLEYTLUg6OlnUflobT/Jz2lyGBk4A/G+uk27FEyYCM4THcunMBymlKl7PraWtk+I0bU+NJXqblzifLium1bdLDi0VU0rgPWjw1EfLrPkvoFonuVjud5drfY8FXuN0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717604455; c=relaxed/simple;
-	bh=BVB9g1nRXbxU1lO4q1xV+zm4LTA+/Q8NvRX9HKaO8Dw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=hMvudMLkaZ8Jf0b5TvSUisEl3U7Nhhb2rOkRwt5ZbCQIh3jj2w0QSNNAHKgfDbX8fhzb3DZL80E3HYgh7v4XgLgxN7lLiNm68YlYVHXdEVT9Zcxc/snrZnJY56xrdRC2igMPAEgsvE+gnKUWaEj6Fe0KbivrHoTgvLbZ0BtQXEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TapXZmpy; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-35dca73095aso5859470f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 09:20:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717604452; x=1718209252; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5sDg7XH+sw4rtqqZOSPVcua8cTURLbRBu83cbcLYlcM=;
-        b=TapXZmpy+YZpkk1j5NR8xjbV68eOmRrkKaZmj07jvM8/y6QKvftMXkQKeGUg0BbHoi
-         CkYewsuzj9iADwNM+OElzqrrDfMOyBb5UMAp9gXQ50yM3uCWdR13S+1ps199aYeeu2EK
-         RTA9ml8zbPVpkBeP08YDd88lAPulrOErAWxtZPVPrVRhPFx2DDUa19hwjNDOCSVx1J5Q
-         tjzoCmzu2pkXTIYLRMJDGHO1KzOJXrnWUe2B7rvhVmWvKwNU3llkiO1RyH9zd3XpmuHL
-         I3OJGWA6izBTlVF2w3vsq3+i7K8m9OUNE3e8kfNYZ90dDw0MzH9fRGgTS46w7Vxj27qR
-         9YOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717604452; x=1718209252;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5sDg7XH+sw4rtqqZOSPVcua8cTURLbRBu83cbcLYlcM=;
-        b=ukUriqqew344Z1cYPlkFMKY/kr/UFhIfz1wjbKAoRaAign4mO799sc2B/fozX4Aw0/
-         3gHKgZCLinU/jcJMaMNubEQpPGCjvQLXGRudJjMBinO6CiPLKzbrmBkQWbpztotmhbDF
-         HFnUg9k1hZbmhDxUAq3kcAl0ItEbtJGKrFIIlLrZOZeHcBX0CorA14FhchTXpnhhXJad
-         VDDtSQWkm0uU4vXFPimo4QnE104XD+GW6661hrUUe7u9TgrfnPhfbo/0L5EbXGr9vSyR
-         ZEZ8LWjJHgiut2SUwhsqy54X3J45EoE7780o7DvEVl6JNX0/+qZXr7bC1SbQFIBy+NlP
-         9sRA==
-X-Forwarded-Encrypted: i=1; AJvYcCX402VfmOkzJnxOqgKMeSnUbCrEsJYGphrms95thqVASEws8rNoNIUgfdJ+3WI1RlLGs4D+ov9oeTN1r9woeQgs2w79B3N34aKaOA==
-X-Gm-Message-State: AOJu0Yy9Ys5IK94vQp4gwT0amJBqpuXOfxx99sTfqguA6pvgTwvfrtkU
-	J8LmIdF56y815SjKc4mocMOux4tZD2garM5ne0/gtNE39AQF4LLASHDruB1kFLQ=
-X-Google-Smtp-Source: AGHT+IE6yOi8gqKoubeFSF5QOsNVzjvdV9WVKQEhRQutMQf4uGlI2l4PLnSNoOei/th7ig0Fl83STw==
-X-Received: by 2002:adf:a15a:0:b0:351:d2e6:9296 with SMTP id ffacd0b85a97d-35e8eeff649mr2128140f8f.41.1717604451858;
-        Wed, 05 Jun 2024 09:20:51 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35dd04d9364sm15053643f8f.53.2024.06.05.09.20.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jun 2024 09:20:51 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 05 Jun 2024 18:20:50 +0200
-Subject: [PATCH] ASoC: dt-binding: convert spdif-receiver.txt to dt-schema
+	s=arc-20240116; t=1717604465; c=relaxed/simple;
+	bh=zwJLTD2CKFW1aLoNhdS/VADNNg91H/7mXSDG6BYpASc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L8Y5rIAXULzlCh6Ir4tVvmq49p30KSMw+Cgtkfo+Gw2blrgX2PHUxF8ZND82nM48+6vK9WNQ8NbR2hdxsD6Ev7NoXpg6/g5uVFO78tjYkOwV2f3nsOy6HHvrIo0SoOZDINUJF8Wq5D0SmrHoXSZTu7fY+DXchlXCvxUJdumGzdY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nHle5QaI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 097BEC2BD11;
+	Wed,  5 Jun 2024 16:21:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717604465;
+	bh=zwJLTD2CKFW1aLoNhdS/VADNNg91H/7mXSDG6BYpASc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nHle5QaIojs18EAkRzbzPcpPdxDMyMsptm3kn7DPZshaQd5LiM98xXr37vclVhzT1
+	 HhUDJCM+LOS0kzUVm1516MB8mmM0Wz+29V4sqdUP8RsyDJiGIa+oQ+P+W+PxyQMCwx
+	 Di8iGQNHbQSq0KonbpDpJGdqWwDGfy/SZx8BKgKyAlEb0DuM27+UprXzSQ0VflT4gv
+	 SuVBgwSnAmA3u/9v5+AhT5HMaqB/rn0gsZ/bU0kNh8YrXA0TdDaA/RS7LPZQ3JjwSv
+	 euEHxEPH8Uwcp3cIrjZtoUyUTMD9Q6X5dHKvM36nKJVDXWJlbQjxcd/8DZUGQK0RJ7
+	 K+lxFtUvAUxmQ==
+Date: Wed, 5 Jun 2024 18:20:58 +0200
+From: Niklas Cassel <cassel@kernel.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
+	Jon Lin <jon.lin@rock-chips.com>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v4 03/13] dt-bindings: PCI: snps,dw-pcie-ep: Add
+ tx_int{a,b,c,d} legacy irqs
+Message-ID: <ZmCQak-m7RWRxiix@ryzen.lan>
+References: <20240529-rockchip-pcie-ep-v1-v4-0-3dc00fe21a78@kernel.org>
+ <20240529-rockchip-pcie-ep-v1-v4-3-3dc00fe21a78@kernel.org>
+ <20240605073402.GE5085@thinkpad>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240605-topic-amlogic-upstream-bindings-convert-spdif-receiver-v1-1-262465adbac2@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAGGQYGYC/x3NQQrDIBCF4auEWXfAShukVyldxHG0A42KY0Ih5
- O6Vrh7f5v0HKDdhhcd0QONdVEoeuF4moPeSE6OEYbDG3sxs7thLFcJl/ZQ0dqvaGy8reslBclK
- kknduHbUGidiYWIaRXLAx+Nk58jDOa+Mo33/4+TrPHwSdUmCIAAAA
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2021;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=BVB9g1nRXbxU1lO4q1xV+zm4LTA+/Q8NvRX9HKaO8Dw=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmYJBi0Poo0A9N6RiOwA403jPcyu6z+kNZ/o9krTJy
- C7MM++2JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZmCQYgAKCRB33NvayMhJ0T03EA
- CXzdZk6QugZiahTLIlDl9oOe5Hnt/sU6YHMNDGawQwyIpCPltv8nBJlobK6/4T2asi4HpTAe9mtJ3h
- x8zYFiYz0qJ1BixHlUBwC+0EMWvXpdES+T5I2WxylAKcbWm70KivaVUonO0UH1itUAgU722Qijl6Qj
- FgKXz9CZAneOXZ25V4C25U+gbnQEVkobK/GtgWZGfaJypTrs+1+fXeKkGLxoDIMOaUSIPBwFI61BFZ
- 0m4b3Mh+7+IkG+fGoHtP1K/2fI43/9VkWcRbbAKQaUmUGua7QS3TJPmo8xBYNZrHmtbIpPKC/t0FEQ
- fR+7IiMrVxotfwJ/yYfSqm7hNzq/6gbBssPqgcKT+LaehSG82e/Di7tM0259yY/IHgC3AXJR4M6j/G
- QUH0Wu62FTUFkOCooA93i+UZjanE7p+rUS67fai+Ozw7lg5uLHS5cXvh35v9JSF79x7YbAbNWCHQcp
- D2a28O/3GaI30cXw0kZpVR44IHAow9ez4a78tlwkJiJeiSuUlbdTxpHWWlkVI2jcdtO/o3fxAtLZNu
- yxTe44vncBIZw1MSpZJCLQ20LpsBxjr92pTIIkuIeBj2E7/1hXpZIqcFDamCdmC1dkOKb3wc21F9sG
- F9lY/VLzHBZvtRA6ZRyE1EXNi7tIgj0VhQDS8pothNljCckro+En+asOE6oA==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240605073402.GE5085@thinkpad>
 
-Convert text bindings to dt-schema format for the Dummy SPDIF receiver
+On Wed, Jun 05, 2024 at 01:04:02PM +0530, Manivannan Sadhasivam wrote:
+> On Wed, May 29, 2024 at 10:28:57AM +0200, Niklas Cassel wrote:
+> > The DWC core has four interrupt signals: tx_inta, tx_intb, tx_intc, tx_intd
+> > that are triggered when the PCIe controller (when running in Endpoint mode)
+> > has sent an Assert_INTA Message to the upstream device.
+> >
+> > Some DWC controllers have these interrupt in a combined interrupt signal.
+> >
+> > Add the description of these interrupts to the device tree binding.
+> >
+> > Signed-off-by: Niklas Cassel <cassel@kernel.org>
+>
+> Nit: We recently changed the driver instances of 'LEGACY' to 'INTX'. But the
+> binding it still using 'legacy'. Considering that the 'legacy' IRQ added to the
+> RC binding recently (ebce9f6623a7), should we rename it?
+>
+> This will force the driver to support both 'legacy' and 'intx' for backwards
+> compatibility.
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- .../devicetree/bindings/sound/linux,spdif-dir.yaml | 37 ++++++++++++++++++++++
- .../devicetree/bindings/sound/spdif-receiver.txt   | 10 ------
- 2 files changed, 37 insertions(+), 10 deletions(-)
+I don't think this is true.
 
-diff --git a/Documentation/devicetree/bindings/sound/linux,spdif-dir.yaml b/Documentation/devicetree/bindings/sound/linux,spdif-dir.yaml
-new file mode 100644
-index 000000000000..ec8990c236f7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/linux,spdif-dir.yaml
-@@ -0,0 +1,37 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/linux,spdif-dir.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Dummy SPDIF Receiver
-+
-+maintainers:
-+  - Mark Brown <broonie@kernel.org>
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: linux,spdif-dir
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+  sound-name-prefix: true
-+
-+required:
-+  - "#sound-dai-cells"
-+  - compatible
-+
-+addirionalProperties: false
-+
-+examples:
-+  - |
-+    spdif-in {
-+        #sound-dai-cells = <0>;
-+        compatible = "linux,spdif-dir";
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/sound/spdif-receiver.txt b/Documentation/devicetree/bindings/sound/spdif-receiver.txt
-deleted file mode 100644
-index 80f807bf8a1d..000000000000
---- a/Documentation/devicetree/bindings/sound/spdif-receiver.txt
-+++ /dev/null
-@@ -1,10 +0,0 @@
--Device-Tree bindings for dummy spdif receiver
--
--Required properties:
--	- compatible: should be "linux,spdif-dir".
--
--Example node:
--
--	codec: spdif-receiver {
--		compatible = "linux,spdif-dir";
--	};
 
----
-base-commit: c3f38fa61af77b49866b006939479069cd451173
-change-id: 20240605-topic-amlogic-upstream-bindings-convert-spdif-receiver-c8d2fdb688cb
+Look at snps,dw-pcie.yaml in 6.10-rc2:
 
-Best regards,
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
+The individual interrupts are called:
+            Legacy A/B/C/D interrupt signal. Basically it's triggered by
+            receiving a Assert_INT{A,B,C,D}/Desassert_INT{A,B,C,D} message
+            from the downstream device.
+          pattern: "^int(a|b|c|d)$"
 
+The combined interrupt is called:
+            Combined Legacy A/B/C/D interrupt signal. See "^int(a|b|c|d)$" for
+            details.
+          const: legacy
+
+So you use 'inta', 'intb', 'intc', 'intd' if your SoC has a dedicated
+interrupt line for each of these irqs.
+
+If the SoC simply has a single combined interrupt line for these irqs,
+then you use 'legacy'
+
+
+This patch simply adds:
+'tx_inta', 'tx_intb', 'tx_intc', 'tx_intd' as individual interrupts
+and the combined interrupt 'legacy' to snps,dw-pcie-ep.yaml.
+
+
+Patch ebce9f6623a7 simply allowed the combined interrupt line 'legacy'
+to be used by the rockchip-dw-pcie.yaml binding.
+This is because the way that device tree is designed. You need to specify
+something both in the generic binding (which specifies everything),
+and in the glue driver binding, to specify the subset that is allowed by
+the glue driver.
+
+
+Since a controller cannot run in both EP and RC mode at the same time,
+I think that it is fine that this patch reuses the name 'legacy' for the
+combined interrupt.
+
+And as you can see in patch 5 in this series, rk3588 actually uses a single
+combined IRQ (called legacy) for 'inta', 'intb', 'intc', 'intd', 'tx_inta',
+'tx_intb', 'tx_intc', 'tx_intd'.
+
+
+Kind regards,
+Niklas
+
+
+>
+> But irrespective of that,
+>
+> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>
+> - Mani
+>
+> > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml | 9 +++++++++
+> >  1 file changed, 9 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml
+> > index f5f12cbc2cb3..f474b9e3fc7e 100644
+> > --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml
+> > +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml
+> > @@ -151,6 +151,15 @@ properties:
+> >              Application-specific IRQ raised depending on the vendor-specific
+> >              events basis.
+> >            const: app
+> > +        - description:
+> > +            Interrupts triggered when the controller itself (in Endpoint mode)
+> > +            has sent an Assert_INT{A,B,C,D}/Desassert_INT{A,B,C,D} message to
+> > +            the upstream device.
+> > +          pattern: "^tx_int(a|b|c|d)$"
+> > +        - description:
+> > +            Combined interrupt signal raised when the controller has sent an
+> > +            Assert_INT{A,B,C,D} message. See "^tx_int(a|b|c|d)$" for details.
+> > +          const: legacy
+> >          - description:
+> >              Vendor-specific IRQ names. Consider using the generic names above
+> >              for new bindings.
+> >
+> > --
+> > 2.45.1
+> >
+>
+> --
+> மணிவண்ணன் சதாசிவம்
 
