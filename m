@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-72701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D31C8FC927
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 12:33:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADE538FC945
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 12:41:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40D94285832
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 10:33:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 384451F24700
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 10:41:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D10D191476;
-	Wed,  5 Jun 2024 10:33:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F09D519147F;
+	Wed,  5 Jun 2024 10:41:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OTQWtmJ2"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="AoKj0FmX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D591191466;
-	Wed,  5 Jun 2024 10:33:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF1E119146A;
+	Wed,  5 Jun 2024 10:41:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717583596; cv=none; b=kJz+ca4WJICtK9LQK+/AlMOxzfayZkt82a/x6cr3bqigCgLsKqTTMsOGo69qExFbQQzFKOCXENr1IVXQbuKk4bo5gXz7Ax3opYJDAJ6tGp4Id8u9PWA2dn+n08iyqSU9/eKCLmEeui/LdmkV/IbXtg+PxYA9C3R/I/tWkEadr7g=
+	t=1717584104; cv=none; b=qPC3cV25vZWgUDKCh48KDRQuCGSJJqcms9pLYSRmsYtvhSm2dlkrLPqBhrLaDwGWdHzpIGXSHc8ySJyEWW0Lz0irxEEES/bYEi/mY9STgk6agDtB8nyTc33nvz88MWBVlVi4WCx3uDR9QRS/+wDtVCc7IXfOF+DFHSyjPErh904=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717583596; c=relaxed/simple;
-	bh=I7P66n+OSdPW8kJ03BZQmqoFzlJDohdqidrXH+yerCs=;
+	s=arc-20240116; t=1717584104; c=relaxed/simple;
+	bh=dF8Hyv5BGB5ML/6Y0GvTgWdhOCnuAj4OntK5X0AYDog=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rv3hRfDTv5fwNq7HZHnHskmvlkLUKUhJg4gXDEq3rVkp79wFUjg5PejsPhUAA6VYQ+pZcTlrIH/N/JbXpVqc0dAeoi5xV4WmpWigJwbNxCu/bKu/Rx3j9jgnAuZngUzrZPa/2E3UF6jAL54OggD+kKA88CVMtai6NZdb94+gcNg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OTQWtmJ2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51369C3277B;
-	Wed,  5 Jun 2024 10:33:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717583596;
-	bh=I7P66n+OSdPW8kJ03BZQmqoFzlJDohdqidrXH+yerCs=;
+	 In-Reply-To:Content-Type; b=hU6ffQTvZ2WFZkTyTebP6qe092o6K5yJIYzgdBthi2V5gYQR0Sioh0CkqkiGN+nXA76cNn/+tjTiwuT2+OoOCo7rVUOXS7Ffg6UKWRCnAAYkb2MsaRAJvBckMKAIQq0+9GNkmOFYPLmVeHjZ4nIbUT1rTaEN+taEMWDcZV9DE70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=AoKj0FmX; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-144-210.elisa-laajakaista.fi [91.158.144.210])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 899A816D4;
+	Wed,  5 Jun 2024 12:41:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1717584092;
+	bh=dF8Hyv5BGB5ML/6Y0GvTgWdhOCnuAj4OntK5X0AYDog=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OTQWtmJ27ofd/eMoopUUgGUbfFiC7quhKUGR+lKEllCS+GNEwz36D7JlrxtpWmgMb
-	 joKjVwPFzZ+PttcchQY3Uftv+zUBqKVmJj11P/QY0DjDYr/oVqo/L42ZAfSi3yqY+O
-	 /pDhX853QIVfkfaN3MMdPuSEY8a8WSw9f7EYayllZlFOUNEyJF+t3rBtamatJBGrGM
-	 KzfO8Hq7u9Pnihbx2qevQMwzGMFCxBo2+nnHh+r15yBJkk+isAiObehtUaWX/5rr8m
-	 GE5LsRGOHixYJbdu3tA3y1KWxYF9qdSg0O4GtHfL7oa+Mqiuxrhdu5ZI0QucHce8PY
-	 nMFmzkcowZwqA==
-Message-ID: <d659cd9c-86e6-4f77-9157-fd6a7b47ea31@kernel.org>
-Date: Wed, 5 Jun 2024 12:33:11 +0200
+	b=AoKj0FmXPPEViiwJflZ5mO5fZ5g4/kdHLRZY3Vt8ZTsGpyfrNnnLtcg+RJ4cmmqDP
+	 uns2jeDI46+HXFInMxEICup/7FmFVoy6+xOSfjYd6VQkF7TzB+sKTe3m/zAPNkV1wx
+	 pwgYF9d3z6Kvnc9rEiHkd95rlVMVw7GaqlkMOxbE=
+Message-ID: <0a025885-ed95-45d3-bf76-d2a043baaed7@ideasonboard.com>
+Date: Wed, 5 Jun 2024 13:41:36 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,396 +50,219 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 5/5] Add support for Awinic sar sensor.
-To: wangshuaijie@awinic.com, dmitry.torokhov@gmail.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, jeff@labundy.com,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: liweilei@awinic.com, kangjiajun@awinic.com
-References: <20240605091143.163789-1-wangshuaijie@awinic.com>
- <20240605091143.163789-6-wangshuaijie@awinic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH/RFC 0/3] pmdomain: renesas: rmobile-sysc: Remove serial
+ console handling
+To: Ulf Hansson <ulf.hansson@linaro.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, "Rafael J . Wysocki" <rafael@kernel.org>,
+ Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+ Peng Fan <peng.fan@nxp.com>, linux-pm@vger.kernel.org,
+ linux-serial@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Devarsh Thakkar <devarsht@ti.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <cover.1716811405.git.geert+renesas@glider.be>
+ <CAPDyKFpa4LZF3eN7x-NT+b9=dKB3Oe6RY8RAyetdRBSR1-LQoQ@mail.gmail.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240605091143.163789-6-wangshuaijie@awinic.com>
-Content-Type: text/plain; charset=UTF-8
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <CAPDyKFpa4LZF3eN7x-NT+b9=dKB3Oe6RY8RAyetdRBSR1-LQoQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 05/06/2024 11:11, wangshuaijie@awinic.com wrote:
-> From: shuaijie wang <wangshuaijie@awinic.com>
+Hi Ulf,
+
+On 05/06/2024 12:34, Ulf Hansson wrote:
+> + Tomi
 > 
-> Signed-off-by: shuaijie wang <wangshuaijie@awinic.com>
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-> | Reported-by: Dan Carpenter <error27@gmail.com>
-> ---
->  drivers/input/misc/Kconfig         |    9 +
->  drivers/input/misc/Makefile        |    1 +
->  drivers/input/misc/aw_sar/Makefile |    2 +
->  drivers/input/misc/aw_sar/aw_sar.c | 2036 ++++++++++++++++++++++++++++
->  drivers/input/misc/aw_sar/aw_sar.h |   15 +
->  5 files changed, 2063 insertions(+)
->  create mode 100644 drivers/input/misc/aw_sar/Makefile
->  create mode 100644 drivers/input/misc/aw_sar/aw_sar.c
->  create mode 100644 drivers/input/misc/aw_sar/aw_sar.h
+> On Mon, 27 May 2024 at 14:41, Geert Uytterhoeven
+> <geert+renesas@glider.be> wrote:
+>>
+>>          Hi all,
+>>
+>> Since commit a47cf07f60dcb02d ("serial: core: Call
+>> device_set_awake_path() for console port"), the serial driver properly
+>> handles the case where the serial console is part of the awake path, and
+>> it looked like we could start removing special serial console handling
+>> from PM Domain drivers like the R-Mobile SYSC PM Domain driver.
+>> Unfortunately the devil is in the details, as usual...
+>>
+>> Earlycon relies on the serial port to be initialized by the firmware
+>> and/or bootloader.  Linux is not aware of any hardware dependencies that
+>> must be met to keep the port working, and thus cannot guarantee they
+>> stay met, until the full serial driver takes over.
+>>
+>> E.g. all unused clocks and unused PM Domains are disabled in a late
+>> initcall.  As this happens after the full serial driver has taken over,
+>> the serial port's clock and/or PM Domain are no longer deemed unused,
+>> and this is typically not a problem.
+>>
+>> However, if the serial port's clock or PM Domain is shared with another
+>> device, and that other device is runtime-suspended before the full
+>> serial driver has probed, the serial port's clock and/or PM Domain will
+>> be disabled inadvertently.  Any subsequent serial console output will
+>> cause a crash or system lock-up.  E.g. on R/SH-Mobile SoCs, the serial
+>> ports share their PM Domain with several other I/O devices.  After the
+>> use of pwm (Armadillo-800-EVA) or i2c (KZM-A9-GT) during early boot,
+>> before the full serial driver takes over, the PM Domain containing the
+>> early serial port is powered down, causing a lock-up when booted with
+>> "earlycon".
 > 
-> diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
-> index 6ba984d7f0b1..ac56fdd21839 100644
-> --- a/drivers/input/misc/Kconfig
-> +++ b/drivers/input/misc/Kconfig
-> @@ -939,4 +939,13 @@ config INPUT_STPMIC1_ONKEY
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called stpmic1_onkey.
->  
-> +config AWINIC_SAR
-> +	tristate "Awinic sar sensor support"
-> +	depends on I2C
-> +	help
-> +	  Say Y to enable support for the Awinic sar sensor driver.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called awinic_sar.
-> +
->  endif
-> diff --git a/drivers/input/misc/Makefile b/drivers/input/misc/Makefile
-> index 04296a4abe8e..6ee1870ea677 100644
-> --- a/drivers/input/misc/Makefile
-> +++ b/drivers/input/misc/Makefile
-> @@ -90,3 +90,4 @@ obj-$(CONFIG_INPUT_WM831X_ON)		+= wm831x-on.o
->  obj-$(CONFIG_INPUT_XEN_KBDDEV_FRONTEND)	+= xen-kbdfront.o
->  obj-$(CONFIG_INPUT_YEALINK)		+= yealink.o
->  obj-$(CONFIG_INPUT_IDEAPAD_SLIDEBAR)	+= ideapad_slidebar.o
-> +obj-$(CONFIG_AWINIC_SAR)		+= aw_sar/
-> diff --git a/drivers/input/misc/aw_sar/Makefile b/drivers/input/misc/aw_sar/Makefile
-> new file mode 100644
-> index 000000000000..c357ecaa4f98
-> --- /dev/null
-> +++ b/drivers/input/misc/aw_sar/Makefile
-> @@ -0,0 +1,2 @@
-> +obj-$(CONFIG_AWINIC_SAR) += awinic_sar.o
-> +awinic_sar-objs := ./comm/aw_sar_comm_interface.o aw_sar.o ./aw9610x/aw9610x.o ./aw963xx/aw963xx.o
-> diff --git a/drivers/input/misc/aw_sar/aw_sar.c b/drivers/input/misc/aw_sar/aw_sar.c
-> new file mode 100644
-> index 000000000000..ab89fed65a6a
-> --- /dev/null
-> +++ b/drivers/input/misc/aw_sar/aw_sar.c
-> @@ -0,0 +1,2036 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * AWINIC sar sensor driver
-> + *
-> + * Author: Shuaijie Wang<wangshuaijie@awinic.com>
-> + *
-> + * Copyright (c) 2024 awinic Technology CO., LTD
-> + */
-> +#include "./comm/aw_sar_chip_interface.h"
-> +#include "aw_sar.h"
-> +
-> +#define AW_SAR_I2C_NAME		"awinic_sar"
-> +
-> +/*
-> + * Please check which power_supply on your platform
-> + * can get the charger insertion information, then select it.
-> + * eg: "usb"/"charger"/"mtk-master-charger"/"mtk_charger_type"
-> + */
-> +#define USB_POWER_SUPPLY_NAME   "charger"
-> +/*
-> + * Check which of your power_supply properties is available
-> + * for the charger insertion information and select it.
-> + * eg: POWER_SUPPLY_PROP_ONLINE/POWER_SUPPLY_PROP_PRESENT
-> + */
-> +#define AW_USB_PROP_ONLINE	POWER_SUPPLY_PROP_ONLINE
-> +
-> +#define AW_I2C_RW_RETRY_TIME_MIN		(2000)
-> +#define AW_I2C_RW_RETRY_TIME_MAX		(3000)
-> +#define AW_RETRIES				(5)
-> +
-> +#define AW_SAR_AWRW_OffSET			(20)
-> +#define AW_SAR_AWRW_DATA_WIDTH			(5)
-> +#define AW_DATA_OffSET_2			(2)
-> +#define AW_DATA_OffSET_3			(3)
-> +#define AW_POWER_ON_SYSFS_DELAY_MS		(5000)
-> +#define AW_SAR_MONITOR_ESD_DELAY_MS		(5000)
-> +#define AW_SAR_OFFSET_LEN			(15)
-> +#define AW_SAR_VCC_MIN_UV			(1700000)
-> +#define AW_SAR_VCC_MAX_UV			(3600000)
-> +
-> +static struct mutex aw_sar_lock;
-> +
-> +static int32_t aw_sar_get_chip_info(struct aw_sar *p_sar);
-> +static void aw_sar_sensor_free(struct aw_sar *p_sar);
-> +
-> +//Because disable/enable_irq api Therefore, IRQ is embedded
-> +void aw_sar_disable_irq(struct aw_sar *p_sar)
-> +{
-> +	if (p_sar->irq_init.host_irq_stat == IRQ_ENABLE) {
-> +		disable_irq(p_sar->irq_init.to_irq);
-> +		p_sar->irq_init.host_irq_stat = IRQ_DISABLE;
-> +	}
-> +}
-> +
-> +void aw_sar_enable_irq(struct aw_sar *p_sar)
-> +{
-> +	if (p_sar->irq_init.host_irq_stat == IRQ_DISABLE) {
-> +		enable_irq(p_sar->irq_init.to_irq);
-> +		p_sar->irq_init.host_irq_stat = IRQ_ENABLE;
-> +	}
-> +}
-> +
-> +//Chip logic part start
-> +//Load default array function
-> +static int32_t
-> +aw_sar_para_loaded_func(struct i2c_client *i2c, const struct aw_sar_para_load_t *para_load)
-> +{
-> +	int32_t ret;
-> +	int32_t i;
+> Hi Geert,
+> 
+> Thanks for the detailed description of the problem! As pointed out in
+> regards to another similar recent patch [1], this is indeed a generic
+> problem, not limited to the serial console handling.
+> 
+> At Linaro Connect a few weeks ago I followed up with Saravana from the
+> earlier discussions at LPC last fall. We now have a generic solution
+> for genpd drafted on plain paper, based on fw_devlink and the
+> ->sync_state() callback. I am currently working on the genpd series,
+> while Saravana will re-spin the series (can't find the link to the
+> last version) for the clock framework. Ideally, we want these things
+> to work in a very similar way.
+> 
+> That said, allow me to post the series for genpd in a week or two to
+> see if it can solve your problem too, for the serial console.
 
-int32_t? So you send user-space driver to the kernel? That would explain
-this terrible coding style, but it is a clear no-go.
+Both the genpd and the clock solutions will make suppliers depend on all 
+their consumers to be probed, right?
 
+I think it is a solution, and should be worked on, but it has the 
+drawback that suppliers that have consumers that will possibly never be 
+probed, will also never be able to turn off unused resources.
 
-...
+This was specifically the case with the TI ti-sci pmdomain case I was 
+looking at: the genpd driver (ti_sci_pm_domains.c) provides a lot of 
+genpds for totally unrelated devices, and so if, e.g., you don't have or 
+don't want to load a driver for the GPU, all PDs are affected.
 
-> +static void aw_sar_monitor_work(struct work_struct *aw_work)
-> +{
-> +	struct aw_sar *p_sar = container_of(aw_work, struct aw_sar, monitor_work.work);
-> +	uint32_t data;
-> +	int32_t ret;
-> +
-> +	ret = aw_sar_i2c_read(p_sar->i2c, 0x0000, &data);
-> +	if (ret != 0) {
-> +		dev_err(p_sar->dev, "read 0x0000 err: %d", ret);
-> +		return;
-> +	}
-> +	if (data == 0 && p_sar->driver_code_initover_flag) {
-> +		dev_err(p_sar->dev, "aw_chip may reset");
-> +		aw_sar_disable_irq(p_sar);
-> +		ret = aw_sar_chip_init(p_sar);
-> +		if (ret != 0)
-> +			return;
-> +	}
-> +	queue_delayed_work(p_sar->monitor_wq, &p_sar->monitor_work,
-> +			msecs_to_jiffies(AW_SAR_MONITOR_ESD_DELAY_MS));
-> +}
-> +
-> +static int32_t aw_sar_monitor_esd_init(struct aw_sar *p_sar)
-> +{
-> +	p_sar->monitor_wq = create_singlethread_workqueue("aw_sar_workqueue");
-> +	if (!p_sar->monitor_wq) {
-> +		dev_err(&p_sar->i2c->dev, "aw_sar_workqueue error");
-> +		return -EINVAL;
-> +	}
-> +	INIT_DELAYED_WORK(&p_sar->monitor_work, aw_sar_monitor_work);
-> +	queue_delayed_work(p_sar->monitor_wq, &p_sar->monitor_work,
-> +			msecs_to_jiffies(AW_SAR_MONITOR_ESD_DELAY_MS));
-> +
-> +	return 0;
-> +}
-> +
-> +static void aw_sar_sensor_free(struct aw_sar *p_sar)
-> +{
-> +	if (g_aw_sar_driver_list[p_sar->curr_use_driver_type].p_chip_deinit != NULL)
-> +		g_aw_sar_driver_list[p_sar->curr_use_driver_type].p_chip_deinit(p_sar);
-> +}
-> +
-> +
-> +/* Drive logic entry */
-> +static int32_t aw_sar_i2c_probe(struct i2c_client *i2c)
-> +{
-> +	struct aw_sar *p_sar;
-> +	int32_t ret;
-> +
-> +	if (!i2c_check_functionality(i2c->adapter, I2C_FUNC_I2C)) {
-> +		pr_err("check_functionality failed!\n");
-> +		return -EIO;
-> +	}
-> +
-> +	p_sar = devm_kzalloc(&i2c->dev, sizeof(struct aw_sar), GFP_KERNEL);
+Even here the solutions you mention will help: instead of things getting 
+broken because genpds get turned off while they are actually in use, the 
+genpds will be kept enabled, thus fixing the breakage. Unfortunately, 
+they'll be kept enabled forever.
 
-Heh, so you upstream 10 year old code?
+I've been ill for quite a while so I haven't had the chance to look at 
+this more, but before that I was hacking around a bit with something I 
+named .partial_sync_state(). .sync_state() gets called when all the 
+consumers have probed, but .partial_sync_state() gets called when _a_ 
+consumer has been probed.
 
-sizeof(*)
+For the .sync_state() things are easy for the driver, as it knows 
+everything related has been probed, but for .partial_sync_state() the 
+driver needs to track resources internally. .partial_sync_state() will 
+tell the driver that a consumer device has probed, the driver can then 
+find out which specific resources (genpds in my case) that consumer 
+refers to, and then... Well, that's how far I got with my hacks =).
 
-> +	if (!p_sar) {
-> +		ret = -ENOMEM;
-> +		goto err_malloc;
+So, I don't know if this .partial_sync_state() can even work, but I 
+think we do need something more on top of the .sync_state().
 
-That's just return.
+  Tomi
 
-> +	}
-> +
-> +	p_sar->dev = &i2c->dev;
-> +	p_sar->i2c = i2c;
-> +	i2c_set_clientdata(i2c, p_sar);
-> +
-> +	//1.Judge whether to use regular power supply. If yes, supply power
-> +	ret = aw_sar_regulator_power(p_sar);
-> +	if (ret != 0) {
-> +		dev_err(&i2c->dev, "regulator_power error!");
-> +		goto err_malloc;
-> +	}
-> +
-> +	//2.Get chip initialization resources
-> +	ret = aw_sar_get_chip_info(p_sar);
-> +	if (ret != 0) {
-> +		dev_err(&i2c->dev, "chip_init error!");
-
-DON't SCREAM! No need!
-
-> +		goto err_chip_init;
-> +	}
-> +
-> +	//3.Chip initialization process
-> +	ret = aw_sar_init(p_sar);
-> +	if (ret != 0) {
-> +		dev_err(&i2c->dev, "sar_init error!");
-> +		goto err_sar_init;
-> +	}
-> +
-> +	if (p_sar->dts_info.monitor_esd_flag) {
-> +		ret = aw_sar_monitor_esd_init(p_sar);
-> +		if (ret != 0) {
-> +			dev_err(&i2c->dev, "monitor_esd_init error!");
-> +			goto err_esd_init;
-> +		}
-> +	}
-> +
-> +	dev_dbg(&i2c->dev, "probe success!");
-
-No. Drop all silly function entry/exit/success messages.
-
-EVERYWHERE.
-
-> +
-> +	return 0;
-> +
-
-
-> +static const struct of_device_id aw_sar_dt_match[] = {
-> +	{ .compatible = "awinic,aw96103" },
-> +	{ .compatible = "awinic,aw96105" },
-> +	{ .compatible = "awinic,aw96303" },
-> +	{ .compatible = "awinic,aw96305" },
-> +	{ .compatible = "awinic,aw96308" },
-
-So all are compatible... express it in bindings.
-
-> +	{ },
-> +};
-> +
-> +static const struct i2c_device_id aw_sar_i2c_id[] = {
-> +	{ AW_SAR_I2C_NAME, 0 },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(i2c, aw_sar_i2c_id);
-> +
-> +static struct i2c_driver aw_sar_i2c_driver = {
-> +	.driver = {
-> +		.name = AW_SAR_I2C_NAME,
-> +		.owner = THIS_MODULE,
-
-NAK
-
-> +		.of_match_table = aw_sar_dt_match,
-> +		.pm = &aw_sar_pm_ops,
-> +	},
-> +	.probe = aw_sar_i2c_probe,
-> +	.remove = aw_sar_i2c_remove,
-> +	.shutdown = aw_sar_i2c_shutdown,
-> +	.id_table = aw_sar_i2c_id,
-> +};
-> +
-> +static int32_t __init aw_sar_i2c_init(void)
-> +{
-> +	int32_t ret;
-> +
-> +	ret = i2c_add_driver(&aw_sar_i2c_driver);
-> +	if (ret) {
-> +		pr_err("fail to add aw_sar device into i2c\n");
-> +		return ret;
-> +	}
-
-Srsly, this is just NAK. This code is way too poor. Get some internal
-help from awinic, because this should not be sent.
-
-> +
-> +	return 0;
-> +}
-> +
-> +module_init(aw_sar_i2c_init);
-> +static void __exit aw_sar_i2c_exit(void)
-> +{
-> +	i2c_del_driver(&aw_sar_i2c_driver);
-> +}
-> +module_exit(aw_sar_i2c_exit);
-> +MODULE_DESCRIPTION("AWINIC SAR Driver");
-> +MODULE_LICENSE("GPL v2");
-> diff --git a/drivers/input/misc/aw_sar/aw_sar.h b/drivers/input/misc/aw_sar/aw_sar.h
-> new file mode 100644
-> index 000000000000..7a139f56e9c3
-> --- /dev/null
-> +++ b/drivers/input/misc/aw_sar/aw_sar.h
-> @@ -0,0 +1,15 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +#ifndef AW_SAR_H_
-> +#define AW_SAR_H_
-> +
-> +void aw_sar_disable_irq(struct aw_sar *p_sar);
-> +void aw_sar_enable_irq(struct aw_sar *p_sar);
-> +
-> +int32_t aw_sar_soft_reset(struct aw_sar *p_sar);
-> +int32_t aw_sar_check_init_over_irq(struct aw_sar *p_sar);
-> +int32_t aw_sar_update_fw(struct aw_sar *p_sar);
-> +int32_t aw_sar_load_def_reg_bin(struct aw_sar *p_sar);
-> +void aw_sar_mode_set(struct aw_sar *p_sar, uint8_t curr_mode);
-> +int32_t aw_sar_update_reg_set_func(struct aw_sar *p_sar);
-
-
-Why is all this needed for one file and why is it here?
-
-Best regards,
-Krzysztof
+> 
+> Kind regards
+> Uffe
+> 
+> [1]
+> https://lore.kernel.org/linux-arm-kernel/CAPDyKFqShuq98qV5nSPzSqwLLUZ7LxLvp1eihGRBkU4qUKdWwQ@mail.gmail.com/
+> 
+>>
+>> This RFC patch series aims to provide a mechanism for handling this, and
+>> to fix it for the PM Domain case:
+>>    1. The first patch provides a mechanism to let the clock and/or PM
+>>       Domain subsystem or drivers handle this, by exporting the clock and
+>>       PM Domain dependencies for the serial port, as available in the
+>>       system's device tree,
+>>    2. The second patch introduces a new flag to handle a PM domain that
+>>       must be kept powered-on during early boot, and by setting this flag
+>>       if the PM Domain contains the serial console (originally I handled
+>>       this inside rmobile-sysc, but it turned out to be easy to
+>>       generalize this to other platforms in the core PM Domain code).
+>>    3. The third patch removes the no longer needed special console
+>>       handling from the R-Mobile SYSC PM Domain driver.
+>>
+>> I did not fix the similar clock issue, as it is more complex (there can
+>> be multiple clocks, and each clock provider can have its own value of
+>> #clock-cells), and I do not need it for Renesas ARM platforms.
+> 
+> I will defer to Sarvana here, but ideally his series for the clock
+> framework should solve this case too.
+> 
+>>
+>> This has been tested on the APE6-EVM, Armadillo-800-EVA, and KZM-A9-GT
+>> development boards, with and without earlycon, including s2ram with and
+>> without no_console_suspend.
+>>
+>> Notes:
+>>    - This should not be needed on RZ/G3S, where each serial port device
+>>      has its own PM Domain,
+>>    - drivers/clk/imx/clk.c and drivers/pmdomain/imx/scu-pd.c have special
+>>      handling for the of_stdout device, but is probably not affected, as
+>>      each serial port seems to share its PM Domain only with the serial
+>>      port's clock controller.
+>>
+>> Thanks for your comments!
+>>
+>> Geert Uytterhoeven (3):
+>>    earlycon: Export clock and PM Domain info from FDT
+>>    pmdomain: core: Avoid earlycon power-down
+>>    pmdomain: renesas: rmobile-sysc: Remove serial console handling
+>>
+>>   drivers/pmdomain/core.c                 | 24 ++++++++++++++++--
+>>   drivers/pmdomain/renesas/rmobile-sysc.c | 33 +------------------------
+>>   drivers/tty/serial/earlycon.c           | 14 ++++++++++-
+>>   include/linux/pm_domain.h               |  4 +++
+>>   include/linux/serial_core.h             | 10 ++++++++
+>>   5 files changed, 50 insertions(+), 35 deletions(-)
+>>
+>> --
+> 
+> Kind regards
+> Uffe
 
 
