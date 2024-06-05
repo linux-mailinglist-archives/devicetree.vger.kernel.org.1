@@ -1,145 +1,115 @@
-Return-Path: <devicetree+bounces-72785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E45F18FCF3E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 15:30:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B0048FCF57
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 15:32:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CCF7B1C21848
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:30:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 852831C23BFE
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:32:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 433B4188CC0;
-	Wed,  5 Jun 2024 12:52:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 039CE18FDBC;
+	Wed,  5 Jun 2024 13:02:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WnB4isZm"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="sPCILkok"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from smtp-relay-canonical-0.canonical.com (smtp-relay-canonical-0.canonical.com [185.125.188.120])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD29188CB1;
-	Wed,  5 Jun 2024 12:52:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F00AF14D435;
+	Wed,  5 Jun 2024 13:02:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.120
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717591968; cv=none; b=FDWdCmm/EpM/ek/Pu6/Ql7+BMCBhJE53fojx3m2M4BGzGDBG0H2tYjuPUY0IaUwN/AQ1T2MXVXiKh6D+9KGwZBIQfc72ICs+MGLX3fsnTOO4lUKHWZtLuaCS0af68D9XqlLZ9JS2wfcrMYlrhgexnTXnhJz6O5X8pwVgbJSnIEg=
+	t=1717592532; cv=none; b=PZNybo+iqQzMSbEK9Hrf+myPa4sNTMI5Z3UMoyXCbm32rX5jTWJa1/mmhCZBD0GBfR5C4jViaNsLh7AT5kG79Xv7hwro/os79+RDPyl4uUOUDGhPmiUc2aN6VWHJ3apiAi2x84P0EZQzrXHbxMiMVZzNEdRje/M6umySfrD0Gnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717591968; c=relaxed/simple;
-	bh=Sy7T7GzC2ZOWsY/UPrXngYcioAZUouVavGghEB3t+y8=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PWF7Rq3WybVy3zG2NngPv1WyXDK9d5iJxoeTyowZYFatDPW3OkRAVyLDPlsSj7/1KZuAxnYXNkaX7sD9an8xLSihJAOnvQrlW+7HCIrCRjEe66A23Kum3U6PkzhqHQ7lpHwUdSzEj1lylXZYB3IFkfFm8k81cQlkKhz/gjFKuTM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=WnB4isZm; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 455CqXsp119194;
-	Wed, 5 Jun 2024 07:52:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1717591953;
-	bh=PZVe92Rj78eN1DbQzLm0zMnQYFdOj9DVODRU7I5SMuI=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=WnB4isZmCxppFWtKWywfN/vCtH+mz0z5CKJINTCZX98cDRGKHU02w0GCW3z28rBxL
-	 FBXA6rREkk1Gv5vLQJ/ymxZ0RXrD3/6KkbgUOv3y8KMud+gfBHTmIXDKKMYuejAhVX
-	 2v4mDVxw8GXNNJrIg+bRz+MLxrbhqCX62U5IhOa4=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 455CqXlP113459
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 5 Jun 2024 07:52:33 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 5
- Jun 2024 07:52:32 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 5 Jun 2024 07:52:32 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 455CqWSL115373;
-	Wed, 5 Jun 2024 07:52:32 -0500
-Date: Wed, 5 Jun 2024 07:52:32 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Jai Luthra <j-luthra@ti.com>
-CC: Francesco Dolcini <francesco@dolcini.it>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Jayesh Choudhary <j-choudhary@ti.com>,
-        Devarsh Thakkar
-	<devarsht@ti.com>, Bryan Brattlof <bb@ti.com>,
-        Aradhya Bhatia
-	<a-bhatia1@ti.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 5/7] arm64: dts: ti: k3-am62-verdin: Drop McASP AFIFOs
-Message-ID: <20240605125232.5xql5nonllyslchc@saucy>
-References: <20240604-mcasp_fifo_drop-v1-0-03ebe25f47db@ti.com>
- <20240604-mcasp_fifo_drop-v1-5-03ebe25f47db@ti.com>
- <20240605084713.GA10711@francesco-nb>
- <yd4doskkq443xkvc4ahnxexyi7f5oteoh5egiv3plcduyl7dfr@dgtdwd3dbdkg>
+	s=arc-20240116; t=1717592532; c=relaxed/simple;
+	bh=Hi8bBS84ks95pjw7iOOuGpCf6sztKJkWcQyHl46a098=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rWpJZfmaXue0Mjxo6O3zvAkD10E50DZyrcZOQWDTDS+9gWmdbj+kUJK+b2jOZAxXY2VAvMe7IYQo20F3z2gLvpc8+72ZH4nUOtOkjUqv+WnTM4tSTyC2bZHl2ppSvP7zOCpzARmd1a0duDb1r4DfdfryuhqdDFDZjy57VIVvbnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=sPCILkok; arc=none smtp.client-ip=185.125.188.120
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from [192.168.0.106] (unknown [123.112.65.116])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPSA id 6DD5040FB7;
+	Wed,  5 Jun 2024 13:02:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1717592529;
+	bh=Hi8bBS84ks95pjw7iOOuGpCf6sztKJkWcQyHl46a098=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type;
+	b=sPCILkokWdWrYGNBa7RX1yr7hdffKnPcKcWZCrbZfmGV7no+adN/+IjgQYFCLV9sU
+	 kv0GrCYEKDP6hoiA8fzARUl4isX8fJortyf7p8e0KGzE2RmYqqyzp9iqQEyTP805fW
+	 8iWO74dqgcI2puqp8iQ49VUtfPDP94QYCYtdKiby3K6MheNPs0RT0u1BjaLuQfvhwI
+	 RtZCGQW3YSSWarDywX+uYJs51SB3zBu3gxEJkP4Kq8Hhei5oAU7ocSwaSCixgWyP83
+	 SldVgyw9VEc1zV3wfzJaSScRjpzbjZRwt3+C22HXmED4dWOEKUgHzMMsO5U6jdXhcv
+	 5klC84omAAR9w==
+Message-ID: <4189bea0-8f7c-446c-bddd-7b4a213ba59b@canonical.com>
+Date: Wed, 5 Jun 2024 21:01:59 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <yd4doskkq443xkvc4ahnxexyi7f5oteoh5egiv3plcduyl7dfr@dgtdwd3dbdkg>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] serial: sc16is7xx: hard reset the chip if
+ reset-gpios is defined in dt
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Maarten Brock <Maarten.Brock@sttls.nl>, Hugo Villeneuve <hugo@hugovil.com>
+Cc: "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+ "jirislaby@kernel.org" <jirislaby@kernel.org>,
+ "hvilleneuve@dimonoff.com" <hvilleneuve@dimonoff.com>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "andy@kernel.org" <andy@kernel.org>,
+ "lech.perczak@camlingroup.com" <lech.perczak@camlingroup.com>
+References: <20240604132726.1272475-1-hui.wang@canonical.com>
+ <20240604132726.1272475-2-hui.wang@canonical.com>
+ <20240604102323.b2a305fa03161df3c2eec16c@hugovil.com>
+ <AS8PR05MB9810940582493046F2FBFDB983F92@AS8PR05MB9810.eurprd05.prod.outlook.com>
+ <f56a2c59-9ae4-4d5c-8321-fff9639c5405@canonical.com>
+ <AS8PR05MB98104348D77097F60396B82883F92@AS8PR05MB9810.eurprd05.prod.outlook.com>
+ <e3f81288-3000-4965-80a5-b68ffccb47fe@kernel.org>
+Content-Language: en-US
+From: Hui Wang <hui.wang@canonical.com>
+In-Reply-To: <e3f81288-3000-4965-80a5-b68ffccb47fe@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 14:28-20240605, Jai Luthra wrote:
-> Hi Francesco,
-> 
-> Thanks for the review.
-> 
-> On Jun 05, 2024 at 10:47:13 +0200, Francesco Dolcini wrote:
-> > Hello Jai, thanks for the patch.
-> > 
-> > On Tue, Jun 04, 2024 at 03:11:06PM +0530, Jai Luthra wrote:
-> > > McASP AFIFOs are not necessary with UDMA-P/BCDMA as there is buffering
-> > > on the DMA IP. Drop these for better audio latency.
-> > > 
-> > > Fixes: 316b80246b16 ("arm64: dts: ti: add verdin am62")
-> > > Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> > > ---
-> > >  arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi | 8 ++++----
-> > >  1 file changed, 4 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-> > > index 2038c5e04639..27e5220e1dc7 100644
-> > > --- a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-> > > +++ b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-> > > @@ -1364,8 +1364,8 @@ &mcasp0 {
-> > >  	       0 0 0 0
-> > >  	>;
-> > >  	tdm-slots = <2>;
-> > > -	rx-num-evt = <32>;
-> > > -	tx-num-evt = <32>;
-> > > +	rx-num-evt = <0>;
-> > > +	tx-num-evt = <0>;
-> > 
-> > From my understanding of the dt-binding having these properties set to
-> > <0> is equivalent to not having those properties at all.
-> > My suggestion would be to just remove those, therefore.
-> > 
-> 
-> I was following the existing convention of setting it to 0 for 
-> disabling, as done in k3-j721e-common-proc-board.dts
-> 
-> IMO it is better to keep it explicit, but I don't feel strongly against 
-> dropping it either (as long as we do the same for j721e). Will defer the 
-> decision to the tree maintainers.
-> 
 
-If they are equivalent, then just drop them.
+On 6/5/24 19:24, Krzysztof Kozlowski wrote:
+> On 05/06/2024 13:19, Maarten Brock wrote:
+>>>> To make this a proper reset pulse for the device you must first assert the reset,
+>>>> then wait >3us, and finally deassert the reset.
+>>>>
+>>>> Maarten Brock
+>>> Hi Maarten,
+>>>
+>>> My understanding is when calling devm_gpiod_get_optional(dev, "reset",
+>>> GPIOD_OUT_LOW) and returning a valid (gpio_desc *), the flag
+>>> GPIOD_OUT_LOW guarantees the GPIO is set to output and low (assert the
+>>> reset pin).
+>> Ah, right. Sorry, I missed that.
+>> So GPIOD_OUT_LOW disregards the inversion from GPIO_ACTIVE_LOW.
+> It doesn't.
+>
+>> And gpiod_set_value_cansleep(reset_gpiod, 0) uses the inversion to make the pin high.
+>> Looks fine to me now.
+> They both respect pin polarity.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Will correct it.
+
+Thanks.
+
+>
+> Best regards,
+> Krzysztof
+>
 
