@@ -1,48 +1,65 @@
-Return-Path: <devicetree+bounces-72543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2442C8FC42F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 09:10:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F06B8FC437
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 09:14:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC2DA1F21C3B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 07:10:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0DD81F21CDB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 07:14:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC6A418C32B;
-	Wed,  5 Jun 2024 07:10:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3193618C32B;
+	Wed,  5 Jun 2024 07:13:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MKdxgNQi"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="DnjKjRhK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFF9660263;
-	Wed,  5 Jun 2024 07:10:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19F82190473;
+	Wed,  5 Jun 2024 07:13:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717571450; cv=none; b=ESJbKs5wTiDS0R7CNCy8U2fwzvbuOq73V+kiBIfRoJMabt58QGuhQYs/YFjNf1wrVQ3ui+r/HBnCSTEIDxCGqyeqatHde4JsUg0ylDvq3lyllQ8E1f0Ozp7OL63RKABWy5nfEN22ZLrkBCtgARji6QSiQaZrrs4gcCaH54mvAbY=
+	t=1717571638; cv=none; b=GYSqeur23ZDdwGUgcsTl4rD4qgn+0DZQKvWlm6Vk6CUCHPrYeUQUPO7inVBdPuV3dLUmAWkaBPInZZg12VRT1e45bvB0p93NrED5izkItpkpKaibVryfsG3TIJnRU04yRks7s2F0+0rr8WJBQVMvmRIekkqaGZG/65eds72iqZk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717571450; c=relaxed/simple;
-	bh=Cys+VR21HFwMU+hFWbogOsAR/iljYS/prKcGZpy+JHk=;
+	s=arc-20240116; t=1717571638; c=relaxed/simple;
+	bh=xv2yHse5wYiCIpS1QkXIwSPeek7ooAsMqrgbwuNRmZI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=dpXnErg3I3wyRlPYuk3SxixJrfkt+VurrMfTiHBEWcLVATGHLKV3GLKWprcGiJ60JyPNTsQOsyanFUW6v9wWCJYgqMDFu1FERnEYzMy1TXwQ8TEEckp7t/Q4m4IKZWP0lBA+zKxp0dGZeUS41uUheiF6DdRrVdyWBZB0zrO5Xg0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MKdxgNQi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC15FC32781;
-	Wed,  5 Jun 2024 07:10:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717571449;
-	bh=Cys+VR21HFwMU+hFWbogOsAR/iljYS/prKcGZpy+JHk=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=MKdxgNQi/AkanOQYSm+0WQCqoHfI24zU8v6BLU4aIgAmnypM94US9zKmVis1UfVUt
-	 4vaGlvWkAZEb31eUS/6jvV1/AuST23Mbf8kvzke+MexWS7KvQrk0gPpT5tbbUBaB58
-	 vE1mcQrsg2OsKVL5j75K/+ZRNWR11pBvZknluYznreCiP27yxUFrwGvhYn2+wedww5
-	 LhXFng8laDgbneEL3vKLn4P6iZvPUf/ewfWGqfuJMsPPpyaDch7f5WWcAcyX+IQvlo
-	 JFit2pFHoK3sj3NLUlU9aVvaCl7RfhBSLWih0i8gtv3+W+rO2+oJE6fRnvLdXMo4SD
-	 PB8FR9sJHqYJA==
-Message-ID: <63ef25dd-3cbd-4de7-bde4-87456ef2e9c5@kernel.org>
-Date: Wed, 5 Jun 2024 09:10:44 +0200
+	 In-Reply-To:Content-Type; b=Fds2i+IpkGoWsVLnmtIQVBngRc2AejHsAcMTXJ4EWLO6j1zK896/N/0K7nTKDUtf3rfOxNe8jNQ+wVhPOhKj/dCoMOwaAywoiAX0/Gg83o3S8u+yJsFLh55NSWPraj0IXQVtuqoelqyTIoSYCFCx9/x1lvqgZYJpScKd49LIfWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=DnjKjRhK; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 455035hg017301;
+	Wed, 5 Jun 2024 09:13:33 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	8a+3EKBu55kmccJ+MjWqICbYzukEqrQwk1Qsid7INes=; b=DnjKjRhK4XY5Jp7Q
+	LjfH77IPpO2PyLRg9BzacSrSlmaaQo+Hwr616ztduTZRZ3qVZcKPDzmDI0yP/6ue
+	qcJ2HEbM4K0wNTPV1voTbgfWMObhqSXi73TLM0wYT8sSXeUqpm6u0gT9IvfI8Tia
+	6XMXBZQ1E3SZWncK67i64R+K3IJKc2HNhlhLwWAwyBX0E9g3jaeOid2tZPKR+Pin
+	Mv5pPBGoE6km0XtGBoj245PGppwyr08kiPG72ameGXCENlkmJJUaSHWiUgvEYIl5
+	ssxs8QUBCY1XTU5y6hM8Lo9dEzanVSmU5eNJqGEbCsA0Oa16VnlrYE0n+MG/gh7s
+	9XBitg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yfw91fddt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 05 Jun 2024 09:13:33 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id A1F0740045;
+	Wed,  5 Jun 2024 09:13:28 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D2B9A210F86;
+	Wed,  5 Jun 2024 09:12:49 +0200 (CEST)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 5 Jun
+ 2024 09:12:49 +0200
+Message-ID: <a4b8947a-f17a-4f78-bb94-a5c7b2514b24@foss.st.com>
+Date: Wed, 5 Jun 2024 09:12:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,83 +67,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drivers: iio: frequency: adf4350: add clk provider
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240603112447.23308-1-antoniu.miclaus@analog.com>
- <20240603112447.23308-2-antoniu.miclaus@analog.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] arm64: dts: st: OP-TEE async notif on PPI 15 for
+ stm32mp25
+To: Pascal Paillet <p.paillet@foss.st.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240521080131.473447-1-p.paillet@foss.st.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240603112447.23308-2-antoniu.miclaus@analog.com>
-Content-Type: text/plain; charset=UTF-8
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20240521080131.473447-1-p.paillet@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-04_11,2024-06-05_01,2024-05-17_01
 
-On 03/06/2024 13:24, Antoniu Miclaus wrote:
-> Add clk provider feature for the adf4350.
+Hi
+
+On 5/21/24 10:01, Pascal Paillet wrote:
+> From: Etienne Carriere <etienne.carriere@foss.st.com>
 > 
-> Even though the driver was sent as an IIO driver in most cases the
-> device is actually seen as a clock provider.
+> Define GIC PPI 15 (aka GIC interrupt line 31) for OP-TEE asynchronous
+> notification.
 > 
-> This patch aims to cover actual usecases requested by users in order to
-> completely control the output frequencies from userspace.
+> Signed-off-by: Etienne Carriere <etienne.carriere@foss.st.com>
+> Signed-off-by: Pascal Paillet <p.paillet@foss.st.com>
+> ---
+>   arch/arm64/boot/dts/st/stm32mp251.dtsi | 4 +++-
+>   arch/arm64/boot/dts/st/stm32mp253.dtsi | 4 ++++
+>   2 files changed, 7 insertions(+), 1 deletion(-)
 > 
+> diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+> index 4b48e4ed2d28..d0e10dda96b6 100644
+> --- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
+> +++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+> @@ -51,9 +51,11 @@ clk_rcbsec: clk-rcbsec {
+>   	};
+>   
+>   	firmware {
+> -		optee {
+> +		optee: optee {
+>   			compatible = "linaro,optee-tz";
+>   			method = "smc";
+> +			interrupt-parent = <&intc>;
+> +			interrupts = <GIC_PPI 15 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
+>   		};
+>   
+>   		scmi {
+> diff --git a/arch/arm64/boot/dts/st/stm32mp253.dtsi b/arch/arm64/boot/dts/st/stm32mp253.dtsi
+> index 029f88981961..69001f924d17 100644
+> --- a/arch/arm64/boot/dts/st/stm32mp253.dtsi
+> +++ b/arch/arm64/boot/dts/st/stm32mp253.dtsi
+> @@ -28,3 +28,7 @@ timer {
+>   			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>;
+>   	};
+>   };
+> +
+> +&optee {
+> +	interrupts = <GIC_PPI 15 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>;
+> +};
 
-Please do not use subject prefixes from your downstream tree, but use
-upstream convention. This applies to multiple of Analog submissions, so
-I would prefer if you create internal guideline and check it internally
-before posting.
+Applied on stm32-next.
 
-There is basically never a "drivers" prefix.
-
-Best regards,
-Krzysztof
-
+Thanks
+Alex
 
