@@ -1,159 +1,163 @@
-Return-Path: <devicetree+bounces-72954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADCD28FD7C8
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 22:51:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30F008FD7D0
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 22:52:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DA401F214FD
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 20:51:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F13A1C2325B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 20:52:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C8CB15ECD3;
-	Wed,  5 Jun 2024 20:51:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A4D215EFC5;
+	Wed,  5 Jun 2024 20:52:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ox1skVRN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nRSY/ch/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 393DF139D00;
-	Wed,  5 Jun 2024 20:51:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 559AA13A890;
+	Wed,  5 Jun 2024 20:52:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717620674; cv=none; b=USZOqsh6iuNxptNPVxX/iFGKpI+oAa+uXT/x3l3C4qT4Anl4TqJAh+ntqNQ1sIND8cW0l9P4gmmZNN7UUh7FnMeiv7SCxr50PPbWeDD7Oc9cum4+JbGl27d8Fn0aNokL5BIsxBJSmlZYGx4v8CaFqJaZHE/4/uo1U+VXMSH0jtQ=
+	t=1717620735; cv=none; b=K56V1P7hvs6oPnukY8BzdQCx/VJRfd9/Fkzp+veJWSEsodzTt8AK0n5UHsmQRwv1sGNCBR8qOts8yMGgIEE8i3+mlO0UvcDmtv86KjmaD2SRypvghBus430usTsYjJMKwWK0ijNcPxmdj/NHWpNNtYCqR314LUjHyktMIm/7y2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717620674; c=relaxed/simple;
-	bh=YbTwfNApTMNIiy0vIhw2dAIKkM6NP0Ye8Tt8hdNNo4E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JYs/dpA51zf55uxC0N8xBLWR3/Vh7AJbqpS1nVfRLzpYi55WkYddcoOWb7IDsjnxTZoXinJfmtP5NowS8ugeuhW671SRKDAnD0J2/d7r7gv/cGZ0Znahv/qI++MVCXBaecTOPYU7O7YEto/N3rzEhL8Bx3jduOLnHURKgRErkGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ox1skVRN; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1717620671; x=1749156671;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=YbTwfNApTMNIiy0vIhw2dAIKkM6NP0Ye8Tt8hdNNo4E=;
-  b=Ox1skVRNzVcebzlnMNwlxfYvYfUe2MgSbuz+Mt36u/ZWDEO52sLp4LJK
-   QbTH8UpVslH2rmfhonvbFgF+vT2U+W0weAD5uJWLdLw3tknZ2x+bFOrYj
-   BJOZi/t+e3wA1jl5c0BZ5p/wfKV/EHjvFmpEewVgX3TDGHCIH8QAmprJ1
-   KB2ek7FFozU6hB0eOtXO0ovfmVEwuMTITcExGfmn5nIs/xrA7v0HZH5qp
-   kaU807FFBznmnkPRUwwY9osuCbwK44eBDj8Ot6z3JD/pvdeE46DVavC+3
-   kS2e/Tk18MyYeftuvC/WEZ5MYfP6IRGwxhfCJBCdshkvExLeeJZ9P9SBj
-   Q==;
-X-CSE-ConnectionGUID: wEgyKadyQ4aUD300HaI+0A==
-X-CSE-MsgGUID: J7oaKjwJTxmFXQRHUzjmew==
-X-IronPort-AV: E=McAfee;i="6600,9927,11094"; a="14375217"
-X-IronPort-AV: E=Sophos;i="6.08,217,1712646000"; 
-   d="scan'208";a="14375217"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jun 2024 13:51:11 -0700
-X-CSE-ConnectionGUID: MI/DZGIIRaicjauBgg11Uw==
-X-CSE-MsgGUID: nj9FXtOaRcK1olqlQgeXFg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,217,1712646000"; 
-   d="scan'208";a="68543844"
-Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
-  by orviesa002.jf.intel.com with ESMTP; 05 Jun 2024 13:51:07 -0700
-Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sExb6-0002FM-1w;
-	Wed, 05 Jun 2024 20:51:04 +0000
-Date: Thu, 6 Jun 2024 04:50:23 +0800
-From: kernel test robot <lkp@intel.com>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org,
-	lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com,
-	marcelo.schmitt1@gmail.com
-Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 6/6] iio: adc: Add support for AD4000
-Message-ID: <202406060440.I43MwC4B-lkp@intel.com>
-References: <e340f48324b0ea3afb1c715cb2fba184c27112a1.1717539384.git.marcelo.schmitt@analog.com>
+	s=arc-20240116; t=1717620735; c=relaxed/simple;
+	bh=T4Bf79Ruzb5YS9eT8OxHnbdxl8lURVHHqzg4nFDly2Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kxaClO26RZuVU0Jh6Pp5GifrJboyUZw5pPOj6j/lgDM2HJBDT4KLCPzJjxNywCD6Ad/Y6NnHhVi/2wVWGegCjKXkvNwApOhK/Sf9cwxgTcLKD7pXOcl6yoqCne0ghUkCCu8NbKlBDHjVOF08+Nwy7G5P6D3eMCwFTxp1P0M5Hrk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nRSY/ch/; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52b950aa47bso440803e87.1;
+        Wed, 05 Jun 2024 13:52:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717620732; x=1718225532; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tRZR2FIRT4kLU11sqM7VA2ozbtsr+hE+nmcdAqWhupg=;
+        b=nRSY/ch/UhQabCeHoRIPF84CZdRuiyq6oQPpxWN7Uy4kZYwKrCcNCC6v9scNrEqK3m
+         bPK+XN5Eje5jnB+kwlCXgcolB3e0kL65XAgtmygd9boiQl6z8AAOz4QhiLLTEH0Xz9Ck
+         IP/rdDQI6PbQcH4X7ZEMRrUtQkn/+LThXB8DOT2Wevdsvaepy9DsteZMUJ5kZNbIvz8E
+         LS0/8IBT7mJyuS6Uz8rM6kfapZBkMVqiJ5zv+p7T0ntKJz1vTau2O+8JrsmGAfltAbDQ
+         u9Fr+84yfazu0ub1NeklcIKWMRsNa17xiE/qGbJCPWWR6UNsZXBm4cNHNhtbsu+aIrLC
+         rlGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717620732; x=1718225532;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tRZR2FIRT4kLU11sqM7VA2ozbtsr+hE+nmcdAqWhupg=;
+        b=vNWPhY5dCp3nmfvTxdEqw5gHI/TeWwB3JqOLZPJnv2NM1qTzrHP1E9DEIjTvMZ8gj7
+         y4s8Oo4GbUgjDl0J8quQkdRcqYE9QCe4Cv0QdNr+XWQTQCDXkOFNQ1vFmsaGlqvLwfPL
+         +XCt8vFc5PJi55zuniQ5KPorPJMqrzYWEtkO0S4Br3CIUr1tNy89QIPTN69kmfmVsIAP
+         8+/rdnWdg9c7uOL34UPEnrRVbdRFyf/G0zWu0m3luthct9Y/0cqkhMnFhZeE6+FqWlLO
+         LslSehDVYs31fk6Ve4cVtd9e36lcGmlYl4XhM9kYd/IuUr6HTbkf8YdxB2ixIUkHbdLG
+         ynKA==
+X-Forwarded-Encrypted: i=1; AJvYcCW4ngoAQhhDGec0Bo28Ret7EHw92mgG2/HSNwYUVbwxyAGcm0i88X1/oiulLI8QpZaCo4wt2SUeCM0cH610DoxwmhCepKDXoMHsB9IF6bqp1l2fM+gnJrWQXbPJuCuwET5OpNOSudyCXzyR+Fga0x2BdOiC7d8yJSdxaGiUPGFnZuAGlg==
+X-Gm-Message-State: AOJu0Yynq0qACAhppR9vL/ovNGLJYKF/EoS/6TW2vciESf9DiDOK0tP6
+	yEunKl6kVHr1zbR1824NfZQbgaxlPFTBiXzChESV6PnzC8uX9i5pNhL0
+X-Google-Smtp-Source: AGHT+IGj0rVw+PbaW//1K6g6mF5yaX4g2jKv2yrK3ycmj8fN1glaSqwLjxl18e4/YdglcXhTAkU7pw==
+X-Received: by 2002:a05:6512:3b97:b0:52b:8847:ad0f with SMTP id 2adb3069b0e04-52bab4cb7afmr2982121e87.11.1717620732322;
+        Wed, 05 Jun 2024 13:52:12 -0700 (PDT)
+Received: from U4.lan ([2a02:810b:f40:4600:5211:58fe:dfef:c48c])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6c71bb5affsm72265866b.147.2024.06.05.13.52.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jun 2024 13:52:12 -0700 (PDT)
+From: Alex Bee <knaerzche@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	Alex Bee <knaerzche@gmail.com>
+Subject: [PATCH 1/5] clk: rockchip: rk3128: Drop CLK_NR_CLKS usage
+Date: Wed,  5 Jun 2024 22:51:59 +0200
+Message-ID: <20240605205209.232005-1-knaerzche@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e340f48324b0ea3afb1c715cb2fba184c27112a1.1717539384.git.marcelo.schmitt@analog.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Marcelo,
+Similar to
+commit 2dc66a5ab2c6 ("clk: rockchip: rk3588: fix CLK_NR_CLKS usage")
+this drops CLK_NR_CLKS usage from the clock driver and instead uses the
+rockchip_clk_find_max_clk_id helper which was introduced for that purpose.
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Alex Bee <knaerzche@gmail.com>
+---
+ drivers/clk/rockchip/clk-rk3128.c | 20 ++++++++++++++++----
+ 1 file changed, 16 insertions(+), 4 deletions(-)
 
-[auto build test WARNING on broonie-spi/for-next]
-[also build test WARNING on jic23-iio/togreg linus/master v6.10-rc2 next-20240605]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Marcelo-Schmitt/spi-Add-SPI-mode-bit-for-MOSI-idle-state-configuration/20240605-231912
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-patch link:    https://lore.kernel.org/r/e340f48324b0ea3afb1c715cb2fba184c27112a1.1717539384.git.marcelo.schmitt%40analog.com
-patch subject: [PATCH v3 6/6] iio: adc: Add support for AD4000
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20240606/202406060440.I43MwC4B-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240606/202406060440.I43MwC4B-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406060440.I43MwC4B-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/iio/adc/ad4000.c: In function 'ad4000_single_conversion':
->> drivers/iio/adc/ad4000.c:375:13: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
-     375 |         int ret;
-         |             ^~~
-
-
-vim +/ret +375 drivers/iio/adc/ad4000.c
-
-   369	
-   370	static int ad4000_single_conversion(struct iio_dev *indio_dev,
-   371					    const struct iio_chan_spec *chan, int *val)
-   372	{
-   373		struct ad4000_state *st = iio_priv(indio_dev);
-   374		u32 sample;
- > 375		int ret;
-   376	
-   377		ret = ad4000_convert_and_acquire(st);
-   378	
-   379		if (chan->scan_type.storagebits > 16)
-   380			sample = be32_to_cpu(st->scan.data.sample_buf32);
-   381		else
-   382			sample = be16_to_cpu(st->scan.data.sample_buf16);
-   383	
-   384		switch (chan->scan_type.realbits) {
-   385		case 16:
-   386			break;
-   387		case 18:
-   388			sample = FIELD_GET(AD4000_18BIT_MSK, sample);
-   389			break;
-   390		case 20:
-   391			sample = FIELD_GET(AD4000_20BIT_MSK, sample);
-   392			break;
-   393		default:
-   394			return -EINVAL;
-   395		}
-   396	
-   397		if (chan->scan_type.sign == 's')
-   398			*val = sign_extend32(sample, chan->scan_type.realbits - 1);
-   399	
-   400		return IIO_VAL_INT;
-   401	}
-   402	
-
+diff --git a/drivers/clk/rockchip/clk-rk3128.c b/drivers/clk/rockchip/clk-rk3128.c
+index d076b7971f33..40e0e4556d59 100644
+--- a/drivers/clk/rockchip/clk-rk3128.c
++++ b/drivers/clk/rockchip/clk-rk3128.c
+@@ -569,18 +569,22 @@ static const char *const rk3128_critical_clocks[] __initconst = {
+ 	"sclk_timer5",
+ };
+ 
+-static struct rockchip_clk_provider *__init rk3128_common_clk_init(struct device_node *np)
++static struct rockchip_clk_provider *__init rk3128_common_clk_init(struct device_node *np,
++								   unsigned long soc_nr_clks)
+ {
+ 	struct rockchip_clk_provider *ctx;
++	unsigned long common_nr_clks;
+ 	void __iomem *reg_base;
+ 
++	common_nr_clks = rockchip_clk_find_max_clk_id(common_clk_branches,
++						      ARRAY_SIZE(common_clk_branches)) + 1;
+ 	reg_base = of_iomap(np, 0);
+ 	if (!reg_base) {
+ 		pr_err("%s: could not map cru region\n", __func__);
+ 		return ERR_PTR(-ENOMEM);
+ 	}
+ 
+-	ctx = rockchip_clk_init(np, reg_base, CLK_NR_CLKS);
++	ctx = rockchip_clk_init(np, reg_base, max(common_nr_clks, soc_nr_clks));
+ 	if (IS_ERR(ctx)) {
+ 		pr_err("%s: rockchip clk init failed\n", __func__);
+ 		iounmap(reg_base);
+@@ -609,8 +613,12 @@ static struct rockchip_clk_provider *__init rk3128_common_clk_init(struct device
+ static void __init rk3126_clk_init(struct device_node *np)
+ {
+ 	struct rockchip_clk_provider *ctx;
++	unsigned long soc_nr_clks;
+ 
+-	ctx = rk3128_common_clk_init(np);
++	soc_nr_clks = rockchip_clk_find_max_clk_id(rk3126_clk_branches,
++						   ARRAY_SIZE(rk3126_clk_branches)) + 1;
++
++	ctx = rk3128_common_clk_init(np, soc_nr_clks);
+ 	if (IS_ERR(ctx))
+ 		return;
+ 
+@@ -627,8 +635,12 @@ CLK_OF_DECLARE(rk3126_cru, "rockchip,rk3126-cru", rk3126_clk_init);
+ static void __init rk3128_clk_init(struct device_node *np)
+ {
+ 	struct rockchip_clk_provider *ctx;
++	unsigned long soc_nr_clks;
++
++	soc_nr_clks = rockchip_clk_find_max_clk_id(rk3128_clk_branches,
++						   ARRAY_SIZE(rk3128_clk_branches)) + 1;
+ 
+-	ctx = rk3128_common_clk_init(np);
++	ctx = rk3128_common_clk_init(np, soc_nr_clks);
+ 	if (IS_ERR(ctx))
+ 		return;
+ 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.45.2
+
 
