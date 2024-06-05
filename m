@@ -1,148 +1,110 @@
-Return-Path: <devicetree+bounces-72615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5436E8FC63E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 10:28:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D6E28FC674
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 10:32:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EAE5F283560
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 08:28:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2865B27965
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 08:31:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB221192B81;
-	Wed,  5 Jun 2024 08:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B8B918FDAD;
+	Wed,  5 Jun 2024 08:27:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mJy9LTzo"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Bj/1vgdQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F75619006C;
-	Wed,  5 Jun 2024 08:22:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E7DF14A0A2;
+	Wed,  5 Jun 2024 08:27:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717575757; cv=none; b=Svb7S9U1Gt0GDivA9qLNge/kNHCzKDReY4lkif58GllP2ziyoh+1An4Ky8IkfDkUJaSN57YVc0xvxdOjYH7Jv/pyaBJt45MOu3m6839gQ3eKkNqkujoE5b6gj4qePcf9apPXA0mt4EHr0rxIceaaALhyjvVioQAwEH6ST2AWCgQ=
+	t=1717576067; cv=none; b=uy2tDAZHL5mGtYIwIT7lOKaMSTw8kDUbf5ENv7BiMbeJvBMDIlDy3NDQbgcA/dYDWEiJiaGSghZIwApvkLhCVaRKisXCflj+sVwaRqVS5U8Vnt0f9d8u5yhWGfPYJyCek2XOwPBZ7C9ztynEM/XRkQusbV6dCIHAEmxzyB8ZC70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717575757; c=relaxed/simple;
-	bh=b5n7KdQZMcBanjfHL40woh+5PQIBJq9kn+ZjlhARkK0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=QmGhGUua3sZOZgK9KzWM07I/9YWGYFPRHduIokIsfvOvdGAX3bUpAJHubOv03F1s5BQg0/ItUgku5JzwxbhOQeDboCNoMiXbw+/hb0gPG7mpMXMQj1P7yONSelwy47D7/x1RWP4cZYgQQqYTjEKeinwgGWw5UMWUfWakRbdoa+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mJy9LTzo; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-57a6985ab58so1666549a12.2;
-        Wed, 05 Jun 2024 01:22:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717575754; x=1718180554; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=b5n7KdQZMcBanjfHL40woh+5PQIBJq9kn+ZjlhARkK0=;
-        b=mJy9LTzo9g+rT6pbwShOi7SocjIqNl4lwIH34i4lIxrogEHljefyTrkHatIw6bEe+f
-         MNf+mUpRHtTmzIqb2O4TTrnZQxgdX1mNWJBVH5u3AimET7NXA3Nt6CqsxSvrHJxzhOBv
-         WgiV7ZNpl3AM/SHrsSXL8vuf20gJjO1w18irfetRHarq6r/YZluNEEUfOxrvXQmJZmTy
-         I05VQXBVTuAL+MpRTXr41pRFWAKXdwi5Iz2WgKcdw5QOte2mpQUxYYBGdT3sFvoIwW2S
-         4+Gn0qaDGj7bb+Rf+WO0zQVQBSKwY4q5NOxWMVM7B9GT9aLt9GdGUD5eEB4eUL/yEghz
-         3Img==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717575754; x=1718180554;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=b5n7KdQZMcBanjfHL40woh+5PQIBJq9kn+ZjlhARkK0=;
-        b=FUl2oQNLv7mv10lkjRHrIuHxp38gRT8RtA4zynUkuewQS6O1R1YRGUZDQ9iGMPXa8y
-         n4g2bhhKZd6Pbh2njG3vuAWwxJvavxa/7+EXYBkJ326z8BW9DTxLlt8gxXflNGfxcqZJ
-         mxWUGtX62URrU3aq/sUuJEAWmlNO4eBby4zMO1CAVnrxF5N1eoxJV9uHah4yf7pX7kk6
-         A+T9Ae5rdCH+xoj0bljdSYdAUjGDK6eJKrJGpRxZGICH12bVaC7fVEVQUKnRlo6N6pnH
-         q4yD7YJKFXfqXzxFk/DDkLcq3Diwp2fV+iZUlYF4h/8nh0FOtM9IjLDrFtIaLt4fBNWt
-         BZAw==
-X-Forwarded-Encrypted: i=1; AJvYcCVrSMR2gc50whL5sr9D3gW4+JameV4qdgg4HzPRtwbzsPpIaHz757TPAS/cy+idICEH/6oD8mq/kfjOOPyiqJc3LFktr2ZJOCq2fQc4qYfdidHGDJfkfERpATsmitYPXbRjUUlCaEOBF6hXgqyOW8kiqDbyov1lL3Oa7BYOpnSyrMi3qQ==
-X-Gm-Message-State: AOJu0YxjURRoviIqxNjY7CsHfBkX18NRljoQgehvVz8yQ+GLrMqC89Gs
-	R1WMJs7ihG/Be4wNPlacUjQC+TpeW438xTNy4bStO7NcH9FvLQ6O
-X-Google-Smtp-Source: AGHT+IGF9ZlwicG+VylkHEpngevqNQnxECBfr+6sO6YTiHWqFVMyOLXh48+ipvxpj7HpE+n5R6BrlQ==
-X-Received: by 2002:a50:9ee2:0:b0:57a:2e6c:c089 with SMTP id 4fb4d7f45d1cf-57a8b6f23e0mr1661477a12.19.1717575754127;
-        Wed, 05 Jun 2024 01:22:34 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57a873a1aa0sm2038004a12.38.2024.06.05.01.22.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jun 2024 01:22:33 -0700 (PDT)
-Message-ID: <8dcac591e5dc9d4cc1a6cf89512d08ef12457474.camel@gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: iio: adc: ad7192: Fix clock config
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Alisa-Dariana Roman <alisadariana@gmail.com>, Alisa-Dariana Roman
- <alisa.roman@analog.com>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
- Michael Hennerich <michael.hennerich@analog.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Alexandru Tachici
- <alexandru.tachici@analog.com>, Jonathan Cameron <jic23@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark
- Brown <broonie@kernel.org>
-Date: Wed, 05 Jun 2024 10:26:20 +0200
-In-Reply-To: <20240605075154.625123-2-alisa.roman@analog.com>
-References: <20240605075154.625123-1-alisa.roman@analog.com>
-	 <20240605075154.625123-2-alisa.roman@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.2 
+	s=arc-20240116; t=1717576067; c=relaxed/simple;
+	bh=v6vKcNrwlF1YV5oPQIVqsaK1xL/La3UrIoMqlx9UA2s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=uNkFk+BbOQxeDj3RY0CcYxhTqNOGFcxhMcYLHuZi2SZvU+9uVPSMEyWxf5pgjDnGTPmC5UlmWZVYM4KSvTNbnoWuWAvpvt3ljfkky6aDwkJnN5t4UP8kIu4vDWjYGG0KOxWD5Pdn5BgeslRJXSlp5fZB2FHCkIaw3Wzl00JuRjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Bj/1vgdQ; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4558AUSB012942;
+	Wed, 5 Jun 2024 10:27:27 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	1tY7P/7RLXmlasenVSZvjVXgDBbBIxSy111uUswvdmA=; b=Bj/1vgdQz0x0AJWX
+	9ET8IcnyqkiEFC0nAD6DUV40UHzo/ClPSg/QiGrBZJxs6Ww3lXdDPSgXol3s+mCa
+	wdZYHBhxHDMahDbZCx18I4ID5YrF8xiwfCsZEgUKfS1qc2RdyiZx0xeJ1hiogsaL
+	tvArWnVKiaNvJa/b8/CnjcacMB90pMA2OfO17UxtdBE8opU/LEFb+3k0SKqdUHe7
+	hntN/+gzutziLa2iDFkxRNJ1p/E2YUt6omTHS8ziMfTH/yvwXwNO2E0c4WOabXwc
+	qfHLQ9bRToMDE6iD7zJXNUuCQGJ5Okj8kb45JdqbFn9JsJMCDsbc/HDSpnuDQ5Kr
+	81AyhQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yfw3wqswh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 05 Jun 2024 10:27:27 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 2BC5840044;
+	Wed,  5 Jun 2024 10:27:21 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A73A3212FC1;
+	Wed,  5 Jun 2024 10:26:46 +0200 (CEST)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 5 Jun
+ 2024 10:26:46 +0200
+Message-ID: <3a29de9d-183a-4aac-a8da-f380d6e13c97@foss.st.com>
+Date: Wed, 5 Jun 2024 10:26:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] ARM: dts: stm32: enable camera on stm32mp135f-dk
+To: Alain Volmat <alain.volmat@foss.st.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240426150526.3094607-1-alain.volmat@foss.st.com>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20240426150526.3094607-1-alain.volmat@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-04_11,2024-06-05_01,2024-05-17_01
 
-On Wed, 2024-06-05 at 10:51 +0300, Alisa-Dariana Roman wrote:
-> There are actually 4 configuration modes of clock source for AD719X
-> devices. Either a crystal can be attached externally between MCLK1 and
-> MCLK2 pins, or an external CMOS-compatible clock can drive the MCLK2
-> pin. The other 2 modes make use of the 4.92MHz internal clock, which can
-> be made available on the MCLK2 pin.
->=20
-> The presence of an external clock is optional, not required.
->=20
-> Fixes: f7356e47032c ("dt-bindings: iio: adc: ad7192: Add binding document=
-ation
-> for AD7192")
-> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
-> ---
-> =C2=A0.../bindings/iio/adc/adi,ad7192.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 | 19 ++++++++++---------
-> =C2=A01 file changed, 10 insertions(+), 9 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
-> b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
-> index a03da9489ed9..c5a4219a9388 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
-> @@ -39,11 +39,16 @@ properties:
-> =C2=A0
-> =C2=A0=C2=A0 clocks:
-> =C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
-> -=C2=A0=C2=A0=C2=A0 description: phandle to the master clock (mclk)
-> +=C2=A0=C2=A0=C2=A0 description: |
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Optionally, either a crystal can be attac=
-hed externally between MCLK1
-> and
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MCLK2 pins, or an external CMOS-compatibl=
-e clock can drive the MCLK2
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pin. If absent, internal 4.92MHz clock is=
- used which can be made
-> available
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 on MCLK2.
-> =C2=A0
-> =C2=A0=C2=A0 clock-names:
-> -=C2=A0=C2=A0=C2=A0 items:
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: mclk
-> +=C2=A0=C2=A0=C2=A0 enum:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - xtal
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - clk
+Hi Alain
 
-Not sure about changing the name of the clock... Isn't this breaking ABI?
+On 4/26/24 17:05, Alain Volmat wrote:
+> This serie enable the camera on the stm32mp135f-dk board.
+> It adds pinctrl configuration for dcmipp parallel input and add
+> gc2145/st-mipid02/dcmipp nodes within stm32mp135f-dk.dts
+> 
+> Alain Volmat (2):
+>    ARM: dts: stm32: add DCMIPP pinctrl on STM32MP13x SoC family
+>    ARM: dts: stm32: enable camera support on stm32mp135f-dk board
+> 
+>   arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi | 33 ++++++++
+>   arch/arm/boot/dts/st/stm32mp135f-dk.dts     | 87 +++++++++++++++++++++
+>   2 files changed, 120 insertions(+)
+> 
 
-- Nuno S=C3=A1
+Series applied on stm32-next.
 
-
+Thanks
+Alex
 
