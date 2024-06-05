@@ -1,75 +1,63 @@
-Return-Path: <devicetree+bounces-72921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F54C8FD641
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 21:09:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AD1E8FD655
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 21:17:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2540A2822CB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 19:09:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A7AD1C222CC
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 19:17:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70B6B13BC23;
-	Wed,  5 Jun 2024 19:09:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6624713D62E;
+	Wed,  5 Jun 2024 19:17:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DbDqxF+Z"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IRq24csK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD26613BACD
-	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 19:09:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAD04DF59;
+	Wed,  5 Jun 2024 19:17:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717614547; cv=none; b=tKIxY6utv/GBernVS4XAFBr/O7oA3DDvwBVUxNhBw7E50nUVxuI0YWKsD2/QGNDcUY7xBzUKQVaFnOwuH5DgmMjuZAQmS74kk18ZikYSDz8PN30ihU0jzHK1xDEILmtML6PfGiTatVwF+MIAELidA5FcTCuSKghnOWQdy47lOVo=
+	t=1717615032; cv=none; b=p+q556hXEj+7GQ2FxqP2Ysj0oIG4KAamprMnp6phshRVatmSp7WyNkqN/4ZFWhKL85GPwMqB6ExsJ1o+qYyP292ugkrv37Z6Vy9BPI/f21GDsEJbaSFFHwe/pa32gUcDQQx/PhKkaGmzMQpprR2XstQLE4uYuBcUwQ4Mx+YXbBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717614547; c=relaxed/simple;
-	bh=rtEXiqEkU2g5cR9/zxPQ9H3JZU/+UbxUNQ8ab3/RMN4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JerntpXqpXIii8CMZhEtpZtxPTeL94rs5x8RLM8v0PYyCqYEHli0SXuzHUGX4yJneZFgPP4RJvY9rwF9WjMOQ80lHrVA/Pqey9RSd3p17xgm7xWivAqDRs7Yg6TsDIjepMW6VsJMXtvac1nUDk7YkDcAd4c0NdyUZrk3MZSSgQM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DbDqxF+Z; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a68a288b8a4so9155166b.2
-        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 12:09:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717614544; x=1718219344; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=nKX3pGBJqfVsO0y789iaj1aw0Wx8KdFB5hRuHTMNIHE=;
-        b=DbDqxF+ZMHTXxP2HIimFtA6u/hoYoJY0M7ZnzvTv656QJCD0KngECs/518YWdiPdIc
-         oi9lT2R6M99YG2aXSUKiLHvo+9NPPG2Mq4Hj57w/uT8pAmKBg9uSnKHam3NEK070IbzF
-         fCJ4LtG9WxLHoCFJ3P16/iLaGR69n9W7jAnx5/y9OdUM7G8uObMCEkBqTybmWDdeCL16
-         KBYw1sVGXaWrzKdWD+HefosndFTGk/PAIl0eYg9J6moFnh6zJl8szKaZ62SzWXlUhIsv
-         VoZ6Fj3Mgo+EUkjm0L1SyBUkIzLNzvfEDYwM7gf1tRJutXSn4gKcQyS8oofjfJZ1Z0HI
-         GCnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717614544; x=1718219344;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nKX3pGBJqfVsO0y789iaj1aw0Wx8KdFB5hRuHTMNIHE=;
-        b=jyaYgrg11M5ckhxP8d4bo6Qr8ZSSLE81UV7XyPdSU0MBLpvqN+EQmH1MpNZ9vUXuVi
-         +BTNWY/giKX4q5JgMJvDExsHur2mFqBiu+1NHk9nWnG1iEwC1+XxKQup77hbDPyxuOQB
-         G7BjVgiZ6wXWJ2U1A5TNnw09XTYJ21VZRAbzoeF6xlfA9WinTqIoF79X23KUUzziOefD
-         jsxGNVz5rW+QEPLtnL46512C6yEdi06stimfuk8fNfNDHFFFGEG3b0ueDyJ/jQHoaTnF
-         3NKUOGVQ4vh5vZz7p1mYReSDOa6Zbz/tDAl0DtJefbRvqsPqhkRMKtXFNm4ERPlwOTUn
-         lJcw==
-X-Forwarded-Encrypted: i=1; AJvYcCWXNS33te+5h3Jmikp8sSQFvuUyKkdyPQGJ7WayqyfmYa/KcDWeG1s6fPdou0a8wKVDe92wl7SUoyO6jthbIo8+TvBxyzGpQTvqJQ==
-X-Gm-Message-State: AOJu0Yz1aAi5f0MispDZPMPP7H5mTFSnoUbUW6g3uW3sJb91MjUKWHAv
-	Wru+jXaMAYQVWRSfvOJT5C9Eappqhm6tURfIpvOmwblHQ4cAxHD8cHH2tpzQbVE=
-X-Google-Smtp-Source: AGHT+IFqt6EXp5lXl7r+ccXxQUibfRkOGCuBcLrOYPa3pXCL2/GcCAU1+81Z1cYLtCAPe9IyJXPdrg==
-X-Received: by 2002:a50:9509:0:b0:57a:3046:1cd8 with SMTP id 4fb4d7f45d1cf-57a8b697867mr2919833a12.7.1717614543950;
-        Wed, 05 Jun 2024 12:09:03 -0700 (PDT)
-Received: from [192.168.128.139] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57a7dc01079sm3951728a12.11.2024.06.05.12.09.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Jun 2024 12:09:03 -0700 (PDT)
-Message-ID: <9c399d54-aee9-47d9-8076-a6bf17c345a4@linaro.org>
-Date: Wed, 5 Jun 2024 21:09:01 +0200
+	s=arc-20240116; t=1717615032; c=relaxed/simple;
+	bh=vH7XJo83ZzgqsjWJbdY+GJ+FqBdRtMokMVB6JjiNR3U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=KkYRuPsQHy8bxvKodXlIiL4UZhS5IKQ+S5TWR95xQxrLmMldNivDKO2chE/TbrsVzwZKFiWfQxx7XinAubs3uTEKheMMScfT/AQav1AewsgA1qq7XssI8VO8ZxpfggfQo8/49ZAJFrXbbi1nc8pIofHuEfKBBsjaZx4VtMojAnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IRq24csK; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 455I2pLf014121;
+	Wed, 5 Jun 2024 19:15:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Iax0TXe7lCdgSrDctzGhpk3ecqdcbYISR7fv6wW2KY8=; b=IRq24csKsysHAIIV
+	oTMXEiCGBXdaptsbC6U3dG9PTH7ZI7Y7shW1oszbhH+M3d1uJ35XfGzaJyi1Rs6i
+	i1j231z90GqHFApKG5Anp5RJbOl6hl+AZdZ57BuXCS7setIw7Kt9uwkwc2InJPSq
+	NmkpJvqhq1atEl7HdlYL9Q1j+SgCePfTWjNmWYr+gc9oBbZ2DGYdVRAONogVh2Zx
+	sdA5MmgC+oY0t4c4fy7UT96ayHQ+TyklfcYhu/6DFEfj4ROj19z8q+tDvg2w0Hc0
+	6KPUiSonZqDMF3nGplzIKDD6iydsdNnDTYNgRbgpN7f2UnNrYxprCtvEzKsP5/Cv
+	waA4zw==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yjvxy85kr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 05 Jun 2024 19:15:56 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 455JFt2v016817
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 5 Jun 2024 19:15:55 GMT
+Received: from [10.46.19.239] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 5 Jun 2024
+ 12:15:55 -0700
+Message-ID: <4a6aa0ba-a5ff-4d28-8ad4-12d461e44381@quicinc.com>
+Date: Wed, 5 Jun 2024 12:15:54 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,68 +65,162 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: qrb4210-rb2: make L9A always-on
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-References: <20240605-rb2-l9a-aon-v2-1-0d493d0d107c@linaro.org>
+Subject: Re: [PATCH net-next v2 04/10] net: pcs: xpcs: Convert xpcs_compat to
+ dw_xpcs_compat
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
- BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
- HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
- TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
- zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
- MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
- t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
- UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
- aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
- kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
- Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
- R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
- BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
- yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
- xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
- 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
- GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
- mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
- x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
- BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
- mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
- Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
- xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
- AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
- 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
- jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
- cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
- jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
- cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
- bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
- YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
- bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
- nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
- izWDgYvmBE8=
-In-Reply-To: <20240605-rb2-l9a-aon-v2-1-0d493d0d107c@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To: Serge Semin <fancer.lancer@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu
+	<joabreu@synopsys.com>,
+        Jose Abreu <Jose.Abreu@synopsys.com>,
+        Vladimir Oltean
+	<olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "Maxime
+ Chevallier" <maxime.chevallier@bootlin.com>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>
+CC: Sagar Cheluvegowda <quic_scheluve@quicinc.com>,
+        Andrew Halaney
+	<ahalaney@redhat.com>,
+        Jiawen Wu <jiawenwu@trustnetic.com>,
+        Mengyuan Lou
+	<mengyuanlou@net-swift.com>,
+        Tomer Maimon <tmaimon77@gmail.com>, <openbmc@lists.ozlabs.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20240602143636.5839-1-fancer.lancer@gmail.com>
+ <20240602143636.5839-5-fancer.lancer@gmail.com>
+From: "Abhishek Chauhan (ABC)" <quic_abchauha@quicinc.com>
+In-Reply-To: <20240602143636.5839-5-fancer.lancer@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 7b6R9bemf8GjmsjZ5Tr8QtplyqO02yJ1
+X-Proofpoint-GUID: 7b6R9bemf8GjmsjZ5Tr8QtplyqO02yJ1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-05_02,2024-06-05_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 spamscore=0
+ mlxscore=0 adultscore=0 bulkscore=0 phishscore=0 priorityscore=1501
+ lowpriorityscore=0 mlxlogscore=999 impostorscore=0 malwarescore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406050146
 
-On 5.06.2024 11:00 AM, Dmitry Baryshkov wrote:
-> The L9A regulator is used to further control voltage regulators on the
-> board. It can be used to disable VBAT_mains, 1.8V, 3.3V, 5V rails). Make
-> sure that is stays always on to prevent undervolting of these volage
-> rails.
-> 
-> Fixes: 8d58a8c0d930 ("arm64: dts: qcom: Add base qrb4210-rb2 board dts")
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
 
-RPM should already know not to touch it, but this certainly won't hurt
+> @@ -482,7 +482,7 @@ static int xpcs_config_aneg_c73(struct dw_xpcs *xpcs,
+>  
+>  static int xpcs_aneg_done_c73(struct dw_xpcs *xpcs,
+>  			      struct phylink_link_state *state,
+> -			      const struct xpcs_compat *compat, u16 an_stat1)
+> +			      const struct dw_xpcs_compat *compat, u16 an_stat1)
+>  {
+>  	int ret;
+>  
+> @@ -607,7 +607,7 @@ static int xpcs_validate(struct phylink_pcs *pcs, unsigned long *supported,
+>  			 const struct phylink_link_state *state)
+>  {
+>  	__ETHTOOL_DECLARE_LINK_MODE_MASK(xpcs_supported) = { 0, };
+> -	const struct xpcs_compat *compat;
+> +	const struct dw_xpcs_compat *compat;
+>  	struct dw_xpcs *xpcs;
+>  	int i;
+>  
+> @@ -633,7 +633,7 @@ void xpcs_get_interfaces(struct dw_xpcs *xpcs, unsigned long *interfaces)
+>  	int i, j;
+>  
+>  	for (i = 0; i < DW_XPCS_INTERFACE_MAX; i++) {
+> -		const struct xpcs_compat *compat = &xpcs->desc->compat[i];
+> +		const struct dw_xpcs_compat *compat = &xpcs->desc->compat[i];
+>  
+>  		for (j = 0; j < compat->num_interfaces; j++)
+>  			__set_bit(compat->interface[j], interfaces);
+> @@ -850,7 +850,7 @@ static int xpcs_config_2500basex(struct dw_xpcs *xpcs)
+>  int xpcs_do_config(struct dw_xpcs *xpcs, phy_interface_t interface,
+>  		   const unsigned long *advertising, unsigned int neg_mode)
+>  {
+> -	const struct xpcs_compat *compat;
+> +	const struct dw_xpcs_compat *compat;
+>  	int ret;
+>  
+>  	compat = xpcs_find_compat(xpcs->desc, interface);
+> @@ -915,7 +915,7 @@ static int xpcs_config(struct phylink_pcs *pcs, unsigned int neg_mode,
+>  
+>  static int xpcs_get_state_c73(struct dw_xpcs *xpcs,
+>  			      struct phylink_link_state *state,
+> -			      const struct xpcs_compat *compat)
+> +			      const struct dw_xpcs_compat *compat)
+>  {
+>  	bool an_enabled;
+>  	int pcs_stat1;
+> @@ -1115,7 +1115,7 @@ static void xpcs_get_state(struct phylink_pcs *pcs,
+>  			   struct phylink_link_state *state)
+>  {
+>  	struct dw_xpcs *xpcs = phylink_pcs_to_xpcs(pcs);
+> -	const struct xpcs_compat *compat;
+> +	const struct dw_xpcs_compat *compat;
+>  	int ret;
+>  
+>  	compat = xpcs_find_compat(xpcs->desc, state->interface);
+> @@ -1269,7 +1269,7 @@ static u32 xpcs_get_id(struct dw_xpcs *xpcs)
+>  	return 0xffffffff;
+>  }
+>  
+> -static const struct xpcs_compat synopsys_xpcs_compat[DW_XPCS_INTERFACE_MAX] = {
+> +static const struct dw_xpcs_compat synopsys_xpcs_compat[DW_XPCS_INTERFACE_MAX] = {
+>  	[DW_XPCS_USXGMII] = {
+>  		.supported = xpcs_usxgmii_features,
+>  		.interface = xpcs_usxgmii_interfaces,
+> @@ -1314,7 +1314,7 @@ static const struct xpcs_compat synopsys_xpcs_compat[DW_XPCS_INTERFACE_MAX] = {
+>  	},
+>  };
+>  
+Serge, Thank you for raising these patches. Minor comments which shows warning on my workspace. 
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+WARNING: line length of 82 exceeds 80 columns
+#153: FILE: drivers/net/pcs/pcs-xpcs.c:1272:
++static const struct dw_xpcs_compat synopsys_xpcs_compat[DW_XPCS_INTERFACE_MAX] = {
 
-Konrad
+WARNING: line length of 85 exceeds 80 columns
+#162: FILE: drivers/net/pcs/pcs-xpcs.c:1317:
++static const struct dw_xpcs_compat nxp_sja1105_xpcs_compat[DW_XPCS_INTERFACE_MAX] = {
+
+WARNING: line length of 85 exceeds 80 columns
+#171: FILE: drivers/net/pcs/pcs-xpcs.c:1327:
++static const struct dw_xpcs_compat nxp_sja1110_xpcs_compat[DW_XPCS_INTERFACE_MAX] = {
+
+> -static const struct xpcs_compat nxp_sja1105_xpcs_compat[DW_XPCS_INTERFACE_MAX] = {
+> +static const struct dw_xpcs_compat nxp_sja1105_xpcs_compat[DW_XPCS_INTERFACE_MAX] = {
+>  	[DW_XPCS_SGMII] = {
+>  		.supported = xpcs_sgmii_features,
+>  		.interface = xpcs_sgmii_interfaces,
+> @@ -1324,7 +1324,7 @@ static const struct xpcs_compat nxp_sja1105_xpcs_compat[DW_XPCS_INTERFACE_MAX] =
+>  	},
+>  };
+>  
+> -static const struct xpcs_compat nxp_sja1110_xpcs_compat[DW_XPCS_INTERFACE_MAX] = {
+> +static const struct dw_xpcs_compat nxp_sja1110_xpcs_compat[DW_XPCS_INTERFACE_MAX] = {
+>  	[DW_XPCS_SGMII] = {
+>  		.supported = xpcs_sgmii_features,
+>  		.interface = xpcs_sgmii_interfaces,
+> @@ -1418,7 +1418,7 @@ static int xpcs_init_id(struct dw_xpcs *xpcs)
+>  
+>  static int xpcs_init_iface(struct dw_xpcs *xpcs, phy_interface_t interface)
+>  {
+> -	const struct xpcs_compat *compat;
+> +	const struct dw_xpcs_compat *compat;
+>  
+>  	compat = xpcs_find_compat(xpcs->desc, interface);
+>  	if (!compat)
 
