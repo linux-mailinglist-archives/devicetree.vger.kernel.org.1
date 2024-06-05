@@ -1,341 +1,446 @@
-Return-Path: <devicetree+bounces-72624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE8188FC68F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 10:34:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DF278FC6BB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 10:39:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 790B81F24499
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 08:34:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A60401C22487
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 08:39:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C30F11946B5;
-	Wed,  5 Jun 2024 08:34:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CACE21946D8;
+	Wed,  5 Jun 2024 08:39:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PtZzXHXj"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Kq6u3j4g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 079841946A1;
-	Wed,  5 Jun 2024 08:34:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 306AC49636
+	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 08:39:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717576487; cv=none; b=unkAc4iN0/3/BovnmR2D95O4xb2aryRd6yLvWxdZGzxYDRtZTuwoyjIJJTDRkZAE/eA3CGqV6HgdZjk5CvnLlQHfbJ9w8kdXfR08dtUR9FqEiQ7tePAUYBzNWqDX3yaGMK4dmDAiDXsglCFmqALkG4bl1uZAiqi56VtOr0+Jal4=
+	t=1717576763; cv=none; b=kXFbLLw65fzH20hHRKIKE51whgDug8x8HlrIKxCe6UWRyBUdlBW8+gM/kMfY+ionqD9jIi/7RCXTtHv2HlhFcpN8B0HQrRee3SrdFWbrlm/jnQyjg58JvpU+/gjk902C6SH7G1CZq9xgeH+9MH8qiVXMJNeCck4ZtHZp0gWlGsY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717576487; c=relaxed/simple;
-	bh=8tub/dq8Y5Q6ruH9V24XLrhs/lz6AhQ7gjdxdBmwEs0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=SoNgruTsupMkI8eaU0aYyhicThlmqeVToZVEV8PBytQ8RkPACTfClaQireFxp8hN//jKLY1zkfRsAFVObdRQYpLu5uTw18vcNjTfJsOATxa3fODK7ECNDv3b7Hm8apGeyTU76U8/9KtjNqQ9b0xj1xGZgFF6vLkTJ1hwWnCSRkI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PtZzXHXj; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a68fc86acfaso105747066b.1;
-        Wed, 05 Jun 2024 01:34:45 -0700 (PDT)
+	s=arc-20240116; t=1717576763; c=relaxed/simple;
+	bh=Uyde1GwcRmYQzkcMME858pT8IXlt7YjOaqdfevgl2hw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=m3fsAtAld0uuIWlaGOAe7yNPsPF/wAMstwJRB/AunhYgGgcPLNJIbh1d3YL0P/fm77DeVCFPtXaAASuINwu3F6Dy8RiajIUhdDVS5rwKbguiEAoEBGfCqb/EN3fLfQknRvd2EO+4Z51etJQvoL4vXOJ10Qyu9Pq8op4EZ/bCx7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Kq6u3j4g; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-52b8b638437so2249475e87.3
+        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 01:39:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717576484; x=1718181284; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=QXTVAvomi+GcMNTA33Njw+J/KuHjIHiARYW73adHZhA=;
-        b=PtZzXHXjKZzb3OLnSK82ZXf+4vSA+KierM//Ao9mSAgDm+TVNztTKomF5MHSjnmUcQ
-         GTUT/a9C70R15wJOoy0qX/G4sB3LirrnZAjBzC0dXzPTEw1ZsJoPeysG+dkCgo6no4lN
-         moehbpxQvaNhQgEcmGWBw/R8CSrXbKf2gl4s5YdC/KNlsqKOaOPxQKmfO8aCUma+JXMJ
-         yZUawM4ePpSvJR4UFuPwG3aYEQokWTqUQH8Oa5YQCrblRquTk3oTB6BFfZgQfdQgNVd6
-         5+pSWUJ1A3FMQhxR8ajWeVbji7HrcxgacHjOZ/PlXkw2QznH/6OAP3PJMKh9OO264RSq
-         acPQ==
+        d=chromium.org; s=google; t=1717576758; x=1718181558; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YTQe3wg02xrKHSMQnPEBjVMZ37QaY2jveS1Tz9H3zuE=;
+        b=Kq6u3j4gG7hkWexFavJgfz64yhv41MZdEsyYMHYCcUJRFQPHBBCJLyrTbVCkHFhG4+
+         rjqHsLg0/MIG48/WmHZ0STSHwJ2EIrfMh0EGpIKaLo0E9KHJP6x9WGR/fTnA9FN7CA9j
+         pMxazRLab4JplePA0SUDqCaXvePQgjyz3WiaY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717576484; x=1718181284;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QXTVAvomi+GcMNTA33Njw+J/KuHjIHiARYW73adHZhA=;
-        b=cHk3bxdiG0LZwmEYyk6NI/D8rbAvnGxoXTWWWuGNf0ZjOyyrBiEacX+xYa75Vz+//i
-         uRXN6m/fSh8qFJyqOztekObVhQDub6vNGq3FdbCFHioAfy94shC8MrE+Y3rLCFcdUk3o
-         Nu53sI7NvJeQgZXiDZuWJS3LTAYC8catyS5Y3DhCDunuD6ti/slhVNE5wBIF0GdbT2XL
-         pHEYpCCiCO5Knttpl1NcQyz8ZDo93W6Rz3BpQRmQc8WlANgTJEePCosewETXzaJxha7f
-         DzVNyBb/dKJpDKyzFeugPptUssJy7POBvUQE8VdT5Tav19sD0yscMFQduecn6vQI39WZ
-         kL9A==
-X-Forwarded-Encrypted: i=1; AJvYcCX0YhJehfvYaw7WKCH8KZdsHB6VJEDuBhlujP2Re05SPVgDz5rCQIaDovGYvKkKKgn/nsm9vcXglVdPeVyftBKuZWAyV7Jw549CVDezazqMHSEOdn1Ps4+fFvaxbn4yONODj1NjSCHKEYQPnYshkeD8zZH0Wz6qYxPfsWwKaSE7TPoqxw==
-X-Gm-Message-State: AOJu0YxLe1dYnvWlw1pK6bga86MNRvfY9tE3OlwFVUhcZbdcmSBUtWu1
-	1xMbHc8WFzcfvcAfs1oEqFdry29ZEagKXJhSeZw5dD4a3pEkgvdl
-X-Google-Smtp-Source: AGHT+IHgtYNraahDjvpDbChpLJT7frY7o8BT6Cu/M37rZy3FCtqIpojRwaHZxveOXVDIB2EiyWYrpQ==
-X-Received: by 2002:a17:907:77c5:b0:a69:e07:c81 with SMTP id a640c23a62f3a-a69543cea4cmr398095966b.19.1717576484227;
-        Wed, 05 Jun 2024 01:34:44 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a69097bf6bbsm412239666b.110.2024.06.05.01.34.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jun 2024 01:34:43 -0700 (PDT)
-Message-ID: <f4adedf90d8d14671335071a305335ed7ffcde8b.camel@gmail.com>
-Subject: Re: [PATCH v2 3/3] iio: adc: ad7192: Fix clock config
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Alisa-Dariana Roman <alisadariana@gmail.com>, Alisa-Dariana Roman
- <alisa.roman@analog.com>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
- Michael Hennerich <michael.hennerich@analog.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Alexandru Tachici
- <alexandru.tachici@analog.com>, Jonathan Cameron <jic23@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark
- Brown <broonie@kernel.org>
-Date: Wed, 05 Jun 2024 10:38:30 +0200
-In-Reply-To: <20240605075154.625123-3-alisa.roman@analog.com>
-References: <20240605075154.625123-1-alisa.roman@analog.com>
-	 <20240605075154.625123-3-alisa.roman@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.2 
+        d=1e100.net; s=20230601; t=1717576758; x=1718181558;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YTQe3wg02xrKHSMQnPEBjVMZ37QaY2jveS1Tz9H3zuE=;
+        b=NCn9GrSVPyETDcJLlNjQaJ6OMeFu1v52XX9dFCcPzySJpxVgxQMoiTn4GXttcWROVZ
+         mAzY+IQD8+urpc9UUuD0Yqm7VMIhDGcoC/taNmfoCG/+Q4JR4Ud0EuKPYdJWJ9kMcd7+
+         ZFcxVas8BQBLWA21gFPsTqTk227xiI3v6b0h8YVBGpAzoHwib4zJCBJpk6chWBvHx1Wm
+         UJ6ywzAOiMoEAMbwxxgi4ZGAaKwGgVJdiCyW71BwHyDuDV0YEH10Fc/yc0uUA0pT2pN6
+         Wu16ezoetDW1N3ui5aUEr7q5OfnYOcIl9bQjPlLIBtV8W36VG2CjKeBtoA8LWb65WkSU
+         aSyw==
+X-Forwarded-Encrypted: i=1; AJvYcCVMq4H5PZH5IEd/VFKtIppHpapC4nFHTbLCclgwQwgyNdhe7/U5iB12UTQOO1nfBVjQpPitkghWEd0NY79O2BoJ0PCpk5tZnlnqyw==
+X-Gm-Message-State: AOJu0YwbnDlDqEW5DIwf377Dqc6RPJZpVzXMt4CvIke4pGCUvqfQMoOa
+	i6D6I/yK8e3aZXxmHuUf9cqhko/9qmmryF27uNqdITzU+gPcYJIvzMCJkGeWwx0ynxQouqDJU6i
+	z+gGsKs6wBt1meVav62wV86GeCmNsS/iokxz9
+X-Google-Smtp-Source: AGHT+IFIUpSy7Bc3Z2Gc9M2K1yIEcXoIueZPi0s3tAB2qXRcBbr5JF7ukDJ6mVSXe/Xo3k9oRnzzMucI7T9xriJ7yvc=
+X-Received: by 2002:ac2:4c1a:0:b0:52b:88ec:b425 with SMTP id
+ 2adb3069b0e04-52bab4dd705mr1044549e87.27.1717576758308; Wed, 05 Jun 2024
+ 01:39:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240530083513.4135052-1-wenst@chromium.org> <20240530083513.4135052-3-wenst@chromium.org>
+ <5a5842d7-adad-410b-bac2-9e5cb03ae18c@collabora.com> <CAGXv+5E5zFWVi+QmZj+mMb5jRfv138kz1FQyXiuzpe5Zz2KbZQ@mail.gmail.com>
+In-Reply-To: <CAGXv+5E5zFWVi+QmZj+mMb5jRfv138kz1FQyXiuzpe5Zz2KbZQ@mail.gmail.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Wed, 5 Jun 2024 16:39:07 +0800
+Message-ID: <CAGXv+5GHJXh8xnpK6+crfYaUNXWV+W7s8sUopK+=9KhfcuCHeA@mail.gmail.com>
+Subject: Re: [PATCH 2/6] clk: mediatek: Add mt8173-mfgtop driver
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 2024-06-05 at 10:51 +0300, Alisa-Dariana Roman wrote:
-> There are actually 4 configuration modes of clock source for AD719X
-> devices. Either a crystal can be attached externally between MCLK1 and
-> MCLK2 pins, or an external CMOS-compatible clock can drive the MCLK2
-> pin. The other 2 modes make use of the 4.92MHz internal clock, which can
-> be made available on the MCLK2 pin.
->=20
-> Rename mclk to ext_clk for clarity.
->=20
-> Note that the fix tag is for the commit that moved the driver out of
-> staging.
->=20
-> Fixes: b581f748cce0 ("staging: iio: adc: ad7192: move out of staging")
-> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
-> ---
-> =C2=A0drivers/iio/adc/ad7192.c | 153 ++++++++++++++++++++++++++++++------=
----
-> =C2=A01 file changed, 119 insertions(+), 34 deletions(-)
->=20
-> diff --git a/drivers/iio/adc/ad7192.c b/drivers/iio/adc/ad7192.c
-> index f06cb7ac4b42..75b0724142b1 100644
-> --- a/drivers/iio/adc/ad7192.c
-> +++ b/drivers/iio/adc/ad7192.c
-> @@ -8,6 +8,7 @@
-> =C2=A0#include <linux/interrupt.h>
-> =C2=A0#include <linux/bitfield.h>
-> =C2=A0#include <linux/clk.h>
-> +#include <linux/clk-provider.h>
-> =C2=A0#include <linux/device.h>
-> =C2=A0#include <linux/kernel.h>
-> =C2=A0#include <linux/slab.h>
-> @@ -202,7 +203,8 @@ struct ad7192_state {
-> =C2=A0	const struct ad7192_chip_info	*chip_info;
-> =C2=A0	struct regulator		*avdd;
-> =C2=A0	struct regulator		*vref;
-> -	struct clk			*mclk;
-> +	struct clk			*ext_clk;
-> +	struct clk_hw			int_clk_hw;
-> =C2=A0	u16				int_vref_mv;
-> =C2=A0	u32				aincom_mv;
-> =C2=A0	u32				fclk;
-> @@ -398,27 +400,6 @@ static inline bool ad7192_valid_external_frequency(u=
-32
-> freq)
-> =C2=A0		freq <=3D AD7192_EXT_FREQ_MHZ_MAX);
-> =C2=A0}
-> =C2=A0
-> -static int ad7192_clock_select(struct ad7192_state *st)
-> -{
-> -	struct device *dev =3D &st->sd.spi->dev;
-> -	unsigned int clock_sel;
-> -
-> -	clock_sel =3D AD7192_CLK_INT;
-> -
-> -	/* use internal clock */
-> -	if (!st->mclk) {
-> -		if (device_property_read_bool(dev, "adi,int-clock-output-
-> enable"))
-> -			clock_sel =3D AD7192_CLK_INT_CO;
-> -	} else {
-> -		if (device_property_read_bool(dev, "adi,clock-xtal"))
-> -			clock_sel =3D AD7192_CLK_EXT_MCLK1_2;
-> -		else
-> -			clock_sel =3D AD7192_CLK_EXT_MCLK2;
-> -	}
-> -
-> -	return clock_sel;
-> -}
-> -
-> =C2=A0static int ad7192_setup(struct iio_dev *indio_dev, struct device *d=
-ev)
-> =C2=A0{
-> =C2=A0	struct ad7192_state *st =3D iio_priv(indio_dev);
-> @@ -1194,6 +1175,96 @@ static void ad7192_reg_disable(void *reg)
-> =C2=A0	regulator_disable(reg);
-> =C2=A0}
-> =C2=A0
-> +static const char *const ad7192_clock_names[] =3D {
-> +	"xtal",
-> +	"clk"
-> +};
+On Thu, May 30, 2024 at 6:16=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> w=
+rote:
+>
+> On Thu, May 30, 2024 at 5:59=E2=80=AFPM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+> >
+> > Il 30/05/24 10:35, Chen-Yu Tsai ha scritto:
+> > > The MFG (GPU) block on the MT8173 has a small glue layer, named MFG_T=
+OP
+> > > in the datasheet, that contains clock gates, some power sequence sign=
+al
+> > > delays, and other unknown registers that get toggled when the GPU is
+> > > powered on.
+> > >
+> > > The clock gates are exposed as clocks provided by a clock controller,
+> > > while the power sequencing bits are exposed as one singular power dom=
+ain.
+> > >
+> > > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> > > ---
+> > >   drivers/clk/mediatek/Kconfig             |   9 +
+> > >   drivers/clk/mediatek/Makefile            |   1 +
+> > >   drivers/clk/mediatek/clk-mt8173-mfgtop.c | 240 ++++++++++++++++++++=
++++
+> > >   3 files changed, 250 insertions(+)
+> > >   create mode 100644 drivers/clk/mediatek/clk-mt8173-mfgtop.c
+> > >
+> > > diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kcon=
+fig
+> > > index 70a005e7e1b1..9e279c739f1c 100644
+> > > --- a/drivers/clk/mediatek/Kconfig
+> > > +++ b/drivers/clk/mediatek/Kconfig
+> > > @@ -500,6 +500,15 @@ config COMMON_CLK_MT8173_IMGSYS
+> > >       help
+> > >         This driver supports MediaTek MT8173 imgsys clocks.
+> > >
+> > > +config COMMON_CLK_MT8173_MFGTOP
+> > > +     tristate "Clock and power driver for MediaTek MT8173 mfgtop"
+> > > +     depends on COMMON_CLK_MT8173
+> > > +     default COMMON_CLK_MT8173
+> > > +     select PM_GENERIC_DOMAINS
+> > > +     select PM_GENERIC_DOMAINS_OF
+> > > +     help
+> > > +       This driver supports MediaTek MT8173 mfgtop clocks and power =
+domain.
+> > > +
+> > >   config COMMON_CLK_MT8173_MMSYS
+> > >          tristate "Clock driver for MediaTek MT8173 mmsys"
+> > >          depends on COMMON_CLK_MT8173
+> > > diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Mak=
+efile
+> > > index eeccfa039896..fdd3a76e12a1 100644
+> > > --- a/drivers/clk/mediatek/Makefile
+> > > +++ b/drivers/clk/mediatek/Makefile
+> > > @@ -77,6 +77,7 @@ obj-$(CONFIG_COMMON_CLK_MT8167_VDECSYS) +=3D clk-mt=
+8167-vdec.o
+> > >   obj-$(CONFIG_COMMON_CLK_MT8173) +=3D clk-mt8173-apmixedsys.o clk-mt=
+8173-infracfg.o \
+> > >                                  clk-mt8173-pericfg.o clk-mt8173-topc=
+kgen.o
+> > >   obj-$(CONFIG_COMMON_CLK_MT8173_IMGSYS) +=3D clk-mt8173-img.o
+> > > +obj-$(CONFIG_COMMON_CLK_MT8173_MFGTOP) +=3D clk-mt8173-mfgtop.o
+> > >   obj-$(CONFIG_COMMON_CLK_MT8173_MMSYS) +=3D clk-mt8173-mm.o
+> > >   obj-$(CONFIG_COMMON_CLK_MT8173_VDECSYS) +=3D clk-mt8173-vdecsys.o
+> > >   obj-$(CONFIG_COMMON_CLK_MT8173_VENCSYS) +=3D clk-mt8173-vencsys.o
+> > > diff --git a/drivers/clk/mediatek/clk-mt8173-mfgtop.c b/drivers/clk/m=
+ediatek/clk-mt8173-mfgtop.c
+> > > new file mode 100644
+> > > index 000000000000..85fa7a7453ed
+> > > --- /dev/null
+> > > +++ b/drivers/clk/mediatek/clk-mt8173-mfgtop.c
+> > > @@ -0,0 +1,240 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > +/*
+> > > + * Copyright (c) 2024 Google LLC
+> > > + * Author: Chen-Yu Tsai <wenst@chromium.org>
+> > > + *
+> > > + * Based on driver in downstream ChromeOS v5.15 kernel.
+> > > + *
+> > > + * Copyright (c) 2014 MediaTek Inc.
+> > > + * Author: Chiawen Lee <chiawen.lee@mediatek.com>
+> > > + */
+> > > +
+> > > +#include <dt-bindings/clock/mt8173-clk.h>
+> > > +
+> > > +#include <linux/bitfield.h>
+> > > +#include <linux/clk.h>
+> > > +#include <linux/mfd/syscon.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of.h>
+> > > +#include <linux/platform_device.h>
+> > > +#include <linux/pm_domain.h>
+> > > +#include <linux/pm_runtime.h>
+> > > +#include <linux/regmap.h>
+> > > +
+> > > +#include "clk-gate.h"
+> > > +#include "clk-mtk.h"
+> > > +
+> > > +static const struct mtk_gate_regs mfg_cg_regs =3D {
+> > > +     .sta_ofs =3D 0x0000,
+> > > +     .clr_ofs =3D 0x0008,
+> > > +     .set_ofs =3D 0x0004,
+> > > +};
+> > > +
+> > > +#define GATE_MFG(_id, _name, _parent, _shift, _flags)        \
+> > > +             GATE_MTK_FLAGS(_id, _name, _parent, &mfg_cg_regs, _shif=
+t, &mtk_clk_gate_ops_setclr, _flags)
+> >
+> > Extra tabulation: please fix
+>
+> One tab instead of two? OK.
+>
+> > > +
+> > > +/* TODO: The block actually has dividers for the core and mem clocks=
+. */
+> > > +static const struct mtk_gate mfg_clks[] =3D {
+> > > +     GATE_MFG(CLK_MFG_AXI, "mfg_axi", "axi_mfg_in_sel", 0, CLK_SET_R=
+ATE_PARENT),
+> > > +     GATE_MFG(CLK_MFG_MEM, "mfg_mem", "mem_mfg_in_sel", 1, CLK_SET_R=
+ATE_PARENT),
+> > > +     GATE_MFG(CLK_MFG_G3D, "mfg_g3d", "mfg_sel", 2, CLK_SET_RATE_PAR=
+ENT),
+> > > +     GATE_MFG(CLK_MFG_26M, "mfg_26m", "clk26m", 3, 0),
+> > > +};
+> > > +
+> > > +static const struct mtk_clk_desc mfg_desc =3D {
+> > > +     .clks =3D mfg_clks,
+> > > +     .num_clks =3D ARRAY_SIZE(mfg_clks),
+> > > +};
+> > > +
+> > > +struct mt8173_mfgtop_data {
+> > > +     struct clk_hw_onecell_data *clk_data;
+> > > +     struct regmap *regmap;
+> > > +     struct generic_pm_domain genpd;
+> > > +     struct of_phandle_args parent_pd, child_pd;
+> > > +     struct clk *clk_26m;
+> > > +};
+> > > +
+> > > +static const struct of_device_id of_match_clk_mt8173_mfgtop[] =3D {
+> > > +     { .compatible =3D "mediatek,mt8173-mfgtop", .data =3D &mfg_desc=
+ },
+> > > +     { /* sentinel */ }
+> > > +};
+> > > +MODULE_DEVICE_TABLE(of, of_match_clk_mt8173_mfgtop);
+> >
+> > Please move of_match_clk_mt8173_mfgtop before clk_mt8173_mfgtop_drv for=
+ consistency
+> > with all the other clock drivers.
+>
+> Ack.
+>
+> > > +
+> > > +/* Delay count in clock cycles */
+> > > +#define MFG_ACTIVE_POWER_CON0        0x24
+> > > + #define RST_B_DELAY_CNT     GENMASK(7, 0)   /* pwr_rst_b de-assert =
+delay during power-up */
+> > > + #define CLK_EN_DELAY_CNT    GENMASK(15, 8)  /* CLK_DIS deassert del=
+ay during power-up */
+> > > + #define CLK_DIS_DELAY_CNT   GENMASK(23, 16) /* CLK_DIS assert delay=
+ during power-down */
+> >
+> > The reason why I had EVT_FORCE_ABORT and ACTIVE_PWRCTL_EN in my driver =
+is to
+> > document that we're keeping the event force abort disabled and, more im=
+portantly,
+> > we are keeping the "active power control" feature disabled.
+> >
+> > Please, add those two - or at least the ACTIVE_PWRCTL_EN - to keep that=
+ documented,
+> > or this information will be lost for sure.
+> > If in the future the ACTIVE_PWRCTL feature will become usable, it's goi=
+ng to be
+> > just a 30 seconds change, as the info is already there.
+>
+> OK.
+>
+> > > +
+> > > +#define MFG_ACTIVE_POWER_CON1        0x28
+> > > + #define PWR_ON_S_DELAY_CNT  GENMASK(7, 0)   /* pwr_on_s assert dela=
+y during power-up */
+> > > + #define ISO_DELAY_CNT               GENMASK(15, 8)  /* ISO assert d=
+elay during power-down */
+> > > + #define ISOOFF_DELAY_CNT    GENMASK(23, 16) /* ISO de-assert delay =
+during power-up */
+> > > + #define RST__DELAY_CNT              GENMASK(31, 24) /* pwr_rsb_b as=
+sert delay during power-down */
+> > > +
+> > > +static int clk_mt8173_mfgtop_power_on(struct generic_pm_domain *doma=
+in)
+> > > +{
+> > > +     struct mt8173_mfgtop_data *data =3D container_of(domain, struct=
+ mt8173_mfgtop_data, genpd);
+> > > +
+> > > +     /* drives internal power management */
+> > > +     clk_prepare_enable(data->clk_26m);
+> > > +
+> > > +     /* Power on/off delays for various signals */
+> > > +     regmap_write(data->regmap, MFG_ACTIVE_POWER_CON0,
+> > > +                  FIELD_PREP(RST_B_DELAY_CNT, 77) |
+> > > +                  FIELD_PREP(CLK_EN_DELAY_CNT, 61) |
+> > > +                  FIELD_PREP(CLK_DIS_DELAY_CNT, 60));
+> >
+> > I get that this is kinda odd to read, but still...
+> >
+> > FIELD_PREP(CLK_DIS_DELAY_CNT, 60) |
+> > FIELD_PREP(ACTIVE_PWRCTL_EN, 0));
+> >
+> > ...please :-)
+>
+> Sure.
+>
+> > > +     regmap_write(data->regmap, MFG_ACTIVE_POWER_CON1,
+> > > +                  FIELD_PREP(PWR_ON_S_DELAY_CNT, 11) |
+> > > +                  FIELD_PREP(ISO_DELAY_CNT, 68) |
+> > > +                  FIELD_PREP(ISOOFF_DELAY_CNT, 69) |
+> > > +                  FIELD_PREP(RST__DELAY_CNT, 77));
+> > > +
+> > > +     /* Magic numbers related to core switch sequence and delays */
+> > > +     regmap_write(data->regmap, 0xe0, 0x7a710184);
+> > > +     regmap_write(data->regmap, 0xe4, 0x835f6856);
+> > > +     regmap_write(data->regmap, 0xe8, 0x002b0234);
+> > > +     regmap_write(data->regmap, 0xec, 0x80000000);
+> > > +     regmap_write(data->regmap, 0xa0, 0x08000000);
+> >
+> > Is there any way to retrieve information about what those registers are=
+?
+>
+> I asked. They said the project was too long ago, and they could only
+> figure out that it had something to do with core switch sequencing and
+> delays between each core, which is what I put in the comment there.
+>
+> > > +
+> > > +     return 0;
+> > > +}
+> > > +
+> > > +static int clk_mt8173_mfgtop_power_off(struct generic_pm_domain *dom=
+ain)
+> > > +{
+> > > +     struct mt8173_mfgtop_data *data =3D container_of(domain, struct=
+ mt8173_mfgtop_data, genpd);
+> > > +
+> > > +     /* Magic numbers related to core switch sequence and delays */
+> > > +     regmap_write(data->regmap, 0xec, 0);
+> > > +
+> > > +     /* drives internal power management */
+> > > +     clk_disable_unprepare(data->clk_26m);
+> > > +
+> > > +     return 0;
+> > > +}
+> > > +
+> > > +static int clk_mt8173_mfgtop_probe(struct platform_device *pdev)
+> > > +{
+> > > +     struct device *dev =3D &pdev->dev;
+> > > +     struct device_node *node =3D dev->of_node;
+> > > +     struct mt8173_mfgtop_data *data;
+> > > +     int ret;
+> > > +
+> > > +     data =3D devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> > > +     if (!data)
+> > > +             return -ENOMEM;
+> > > +
+> > > +     platform_set_drvdata(pdev, data);
+> > > +
+> > > +     data->clk_data =3D mtk_devm_alloc_clk_data(dev, ARRAY_SIZE(mfg_=
+clks));
+> > > +     if (!data->clk_data)
+> > > +             return -ENOMEM;
+> > > +
+> > > +     /* MTK clock gates also uses regmap */
+> > > +     data->regmap =3D device_node_to_regmap(node);
+> > > +     if (IS_ERR(data->regmap))
+> > > +             return dev_err_probe(dev, PTR_ERR(data->regmap), "Faile=
+d to get regmap\n");
+> > > +
+> > > +     data->child_pd.np =3D node;
+> > > +     data->child_pd.args_count =3D 0;
+> > > +     ret =3D of_parse_phandle_with_args(node, "power-domains", "#pow=
+er-domain-cells", 0,
+> > > +                                      &data->parent_pd);
+> > > +     if (ret)
+> > > +             return dev_err_probe(dev, ret, "Failed to parse power d=
+omain\n");
+> > > +
+> > > +     devm_pm_runtime_enable(dev);
+> > > +     /*
+> > > +      * Do a pm_runtime_resume_and_get() to workaround a possible
+> > > +      * deadlock between clk_register() and the genpd framework.
+> > > +      */
+> > > +     ret =3D pm_runtime_resume_and_get(dev);
+> > > +     if (ret) {
+> > > +             dev_err_probe(dev, ret, "Failed to runtime resume devic=
+e\n");
+> > > +             goto put_of_node;
+> > > +     }
+> > > +
+> > > +     ret =3D mtk_clk_register_gates(dev, node, mfg_clks, ARRAY_SIZE(=
+mfg_clks),
+> > > +                                  data->clk_data);
+> > > +     if (ret) {
+> > > +             dev_err_probe(dev, ret, "Failed to register clock gates=
+\n");
+> > > +             goto put_pm_runtime;
+> > > +     }
+> > > +
+> > > +     data->clk_26m =3D clk_hw_get_clk(data->clk_data->hws[CLK_MFG_26=
+M], "26m");
+> > > +     if (IS_ERR(data->clk_26m)) {
+> > > +             dev_err_probe(dev, PTR_ERR(data->clk_26m), "Failed to g=
+et 26 MHz clock\n");
+> > > +             goto unregister_clks;
+> > > +     }
+> > > +
+> > > +     ret =3D of_clk_add_hw_provider(node, of_clk_hw_onecell_get, dat=
+a->clk_data);
+> > > +     if (ret) {
+> > > +             dev_err_probe(dev, ret, "Failed to add clk OF provider\=
+n");
+> > > +             goto put_26m_clk;
+> > > +     }
+> > > +
+> > > +     data->genpd.name =3D "mfg_apm";
+> >
+> > "mfg-apm" or "mfg-pwr" please!
+>
+> Ack.
 
-This could be moved closer where it will be used...
+On second thought, mfg-top seems like a better name, since it matches
+the datasheet.
 
-> +
-> +static struct ad7192_state *clk_hw_to_ad7192(struct clk_hw *hw)
-> +{
-> +	return container_of(hw, struct ad7192_state, int_clk_hw);
-> +}
-> +
-> +static void ad7192_clk_disable_unprepare(void *clk)
-> +{
-> +	clk_disable_unprepare(clk);
-> +}
-> +
-> +static unsigned long ad7192_clk_recalc_rate(struct clk_hw *hw,
-> +					=C2=A0=C2=A0=C2=A0 unsigned long parent_rate)
-> +{
-> +	return AD7192_INT_FREQ_MHZ;
-> +}
-> +
-> +static int ad7192_clk_output_is_enabled(struct clk_hw *hw)
-> +{
-> +	struct ad7192_state *st =3D clk_hw_to_ad7192(hw);
-> +
-> +	return st->clock_sel =3D=3D AD7192_CLK_INT_CO;
-> +}
-> +
-> +static int ad7192_clk_prepare(struct clk_hw *hw)
-> +{
-> +	struct ad7192_state *st =3D clk_hw_to_ad7192(hw);
-> +	int ret;
-> +
-> +	st->mode &=3D ~AD7192_MODE_CLKSRC_MASK;
-> +	st->mode |=3D AD7192_CLK_INT_CO;
-> +
-> +	ret =3D ad_sd_write_reg(&st->sd, AD7192_REG_MODE, 3, st->mode);
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->clock_sel =3D AD7192_CLK_INT_CO;
-> +
-> +	return 0;
-> +}
-> +
-> +static void ad7192_clk_unprepare(struct clk_hw *hw)
-> +{
-> +	struct ad7192_state *st =3D clk_hw_to_ad7192(hw);
-> +	int ret;
-> +
-> +	st->mode &=3D ~AD7192_MODE_CLKSRC_MASK;
-> +	st->mode |=3D AD7192_CLK_INT;
-> +
-> +	ret =3D ad_sd_write_reg(&st->sd, AD7192_REG_MODE, 3, st->mode);
-> +	if (ret)
-> +		return;
-> +
-> +	st->clock_sel =3D AD7192_CLK_INT;
-> +}
-> +
-> +static const struct clk_ops ad7192_int_clk_ops =3D {
-> +	.recalc_rate =3D ad7192_clk_recalc_rate,
-> +	.is_enabled =3D ad7192_clk_output_is_enabled,
-> +	.prepare =3D ad7192_clk_prepare,
-> +	.unprepare =3D ad7192_clk_unprepare,
-> +};
-> +
-> +static int ad7192_register_clk_provider(struct iio_dev *indio_dev)
-> +{
-> +	struct ad7192_state *st =3D iio_priv(indio_dev);
-> +	struct device *dev =3D indio_dev->dev.parent;
-> +	struct fwnode_handle *fwnode =3D dev_fwnode(dev);
-> +	struct clk_init_data init =3D {};
-> +	int ret;
-> +
-> +	if (!IS_ENABLED(CONFIG_COMMON_CLK))
-> +		return 0;
-> +
-> +	init.name =3D fwnode_get_name(fwnode);
-> +	init.ops =3D &ad7192_int_clk_ops;
-> +
-> +	st->int_clk_hw.init =3D &init;
-> +	ret =3D devm_clk_hw_register(dev, &st->int_clk_hw);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get,
-> +					=C2=A0=C2=A0 &st->int_clk_hw);
-> +}
+ChenYu
 
-The above code is unrelated... Should be in another patch (also needs chang=
-es in
-the bindings). It's also a new feature which does not match much with the s=
-eries
-subject :)
-
-> +
-> =C2=A0static int ad7192_probe(struct spi_device *spi)
-> =C2=A0{
-> =C2=A0	struct device *dev =3D &spi->dev;
-> @@ -1312,20 +1383,34 @@ static int ad7192_probe(struct spi_device *spi)
-> =C2=A0
-> =C2=A0	st->fclk =3D AD7192_INT_FREQ_MHZ;
-> =C2=A0
-> -	st->mclk =3D devm_clk_get_optional_enabled(dev, "mclk");
-> -	if (IS_ERR(st->mclk))
-> -		return PTR_ERR(st->mclk);
-> +	ret =3D device_property_match_property_string(dev, "clock-names",
-> +						=C2=A0=C2=A0=C2=A0 ad7192_clock_names,
-> +						=C2=A0=C2=A0=C2=A0
-> ARRAY_SIZE(ad7192_clock_names));
-> +	if (ret < 0) {
-> +		st->clock_sel =3D AD7192_CLK_INT;
-> +		st->fclk =3D AD7192_INT_FREQ_MHZ;
-> =C2=A0
-> -	st->clock_sel =3D ad7192_clock_select(st);
-> +		ret =3D ad7192_register_clk_provider(indio_dev);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					=C2=A0=C2=A0=C2=A0=C2=A0 "Registration of clock provider
-> failed\n");
-> +	} else {
-> +		st->clock_sel =3D AD7192_CLK_EXT_MCLK1_2 + ret;
-> =C2=A0
-> -	if (st->clock_sel =3D=3D AD7192_CLK_EXT_MCLK1_2 ||
-> -	=C2=A0=C2=A0=C2=A0 st->clock_sel =3D=3D AD7192_CLK_EXT_MCLK2) {
-> -		st->fclk =3D clk_get_rate(st->mclk);
-> -		if (!ad7192_valid_external_frequency(st->fclk)) {
-> -			dev_err(dev,
-> -				"External clock frequency out of bounds\n");
-> -			return -EINVAL;
-> -		}
-> +		st->ext_clk =3D devm_clk_get_enabled(dev,
-> ad7192_clock_names[ret]);
-> +		if (IS_ERR(st->ext_clk))
-> +			return PTR_ERR(st->ext_clk);
-> +
-> +		ret =3D devm_add_action_or_reset(dev,
-> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ad7192_clk_disable_unprepare,
-> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 st->ext_clk);
-
-No need for this... Check what devm_clk_get_enabled() is doing :)
-
-> +		if (ret)
-> +			return ret;
-> +
-> +		st->fclk =3D clk_get_rate(st->ext_clk);
-> +		if (!ad7192_valid_external_frequency(st->fclk))
-> +			return dev_err_probe(dev, -EINVAL,
-> +					=C2=A0=C2=A0=C2=A0=C2=A0 "External clock frequency out of
-> bounds\n");
-
-Maybe the above could be placed in a proper setup function... Like renaming
-ad7192_clock_select() -> ad7192_clock_setup()?
-
-
-One other thing is, if this is a fix, then it should come first in the seri=
-es.
-The reasoning is that we may want to backport the fix but there's no reason=
- to
-backport unneeded patches like your first patch that's only about cosmetics=
-.
-
-- Nuno S=C3=A1
+> > Everything else looks good.
+> >
+> > Thanks for taking care of that, I started this work way too much time a=
+go and
+> > realistically I wouldn't have been able to finish it due to time constr=
+aints.
+> >
+> > It's great to see that *finally* we can get some GPU upstream on this o=
+ld SoC.
+> > As its CPUs are really slow, LLVMPipe is quite unusable from a UX persp=
+ective
+> > hence its only big issue was the lack of 3D HW acceleration.
+>
+> I think there's still more work on the GPU driver side. I was digging
+> through the mailing list to find ways to get it running, and evidently
+> it doesn't fully support zink yet.
+>
+> > This makes machines embedding this SoC usable, and that's simply awesom=
+e.
+>
+> I'll give the patches a week to simmer while I go work on some
+> other stuff.
+>
+> ChenYu
 
