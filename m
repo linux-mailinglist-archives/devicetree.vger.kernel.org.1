@@ -1,244 +1,117 @@
-Return-Path: <devicetree+bounces-72794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EDBA8FCF96
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 15:39:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D817B8FD01B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 15:53:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50F161C2167B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:39:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAEC21C255D8
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:53:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09CD9196448;
-	Wed,  5 Jun 2024 13:17:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A675F1773D;
+	Wed,  5 Jun 2024 13:48:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ZLJnxgTt"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bD/3uUx9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32B7219643D
-	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 13:17:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B664CFC08;
+	Wed,  5 Jun 2024 13:48:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717593468; cv=none; b=OD0P0oYDfduWwoceFrVhSFahhMSY35IXsxwXPiKL+hWSrADI20hawyTI1HoGfkjFAcBQXnipyBR/ZU8/DIW7g3IIM8tyTVe+lu1Z2LesCtfq9hQ9fhyGz1jjOU7X8nwCxOZcXWoXbucF8i3cezwY6HVee1AKDj2dZN4ObowMw9Q=
+	t=1717595308; cv=none; b=rt2KI7VHocxlmFX1kDSqHD0S2SZDiG4AJ0cdXUTPDuvDmfb7lDgdZ5zkEA5mobEmVR6sd89jsdn7LAS5B+Sqz0XiGizf6XvcwxXX8KJAR3dxmQw7Pcvh9E9GZxKf0nPQOrqh+MZ2C2Y81lsq7trW8vB8qgAVxnqwHgMn3eUVX94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717593468; c=relaxed/simple;
-	bh=UbV1sT8AS69/0/WZMNU3BGlPEbAGUqxSRMbU/smTrno=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=M27UrPgOyieWb1Ex4R4n+eq+e4KaZBzdwdeklJCQPZKe5EXylEA1VT43S0MSFW2eOna2ICiTLuiRt2H13DyKxW7li1fqLghzmN2az8ayCe7zBscMxa6nOhNRwEE0/hDTYhn7B+R7eVweRlILb2Fzo6mhkxZIX0JC3XWrW3/ocIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ZLJnxgTt; arc=none smtp.client-ip=209.85.219.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6ae093e8007so5365986d6.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 06:17:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1717593466; x=1718198266; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ezuh5lGjLmqQRDAtTge21GLODf9j9mNeQLiZ4DM7Eo8=;
-        b=ZLJnxgTtfEe7UgK23K2WMWeyxEveDAdwJnDlGrRZDi4C8p/0X7234PCLQvDxs8wuxl
-         fv2euZQ9Nlcxq19uXrlYzXZ0R4DJotEUI+44n2ND5DktIniUNJDVEYLhKM/tCL/hqAeT
-         1wWT9z/574tbBVELKuv90t8SELIO8Lh91dPS8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717593466; x=1718198266;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ezuh5lGjLmqQRDAtTge21GLODf9j9mNeQLiZ4DM7Eo8=;
-        b=tp0rXovrLNL06ESDSQbWz1hPCf0w1fU4nsbYRS5AIrkv6QxITvceKuOWHlut4KIHla
-         wcuUu+InshLcsmwIoXe0LU6k+CH4yjV6HXyGb0SkCkTre5xWSw3gFOfxGOt91E/bdtfg
-         I3sdorZhTosh7ALPXroWckKkCaZ3wfEVOOAnlpgdw+IYGwDJ6OcmiKPZSlVVZyNDOKE4
-         iWUg/XwZxK3UX8NfJhdMQSYz79bVl/wT0JVd1vdHCF0iuT8FCO4q7HVZ9wjHVgOPyq/C
-         nlJdV2xwlcw1Evn5epOUT3+Z1+1gBZE8OR6vYLpMp44UMSlC9p03xJo4KXEs8sJ3Nd3I
-         iqNA==
-X-Forwarded-Encrypted: i=1; AJvYcCVGGb9lrBTg8ICJb31BGO/7LguapTYgMSg/6swDlvk/ENPPpjHFZp1Gti1XK/y776uaD9apwHxDnzXlLmikErzvXbz0jDdlMDEJtQ==
-X-Gm-Message-State: AOJu0Yx7g0q2WZAxnhOhZNhcC+XbMVZW6TTAbSvfDxHPNM2llGocIp4o
-	TQokFdVHtJNpNkNU2WRBtNoMvQ71/w81ZwG2AbgBpCyZga5OlL7owHvzWR16RzvbphjPDout84N
-	CsucNnS/A2dNNDLIsgdxH9bIGYt4FK5lGm7UO
-X-Google-Smtp-Source: AGHT+IFwlOu7J6J8+q1Yt7bJvu3b6VcYZUPhTKYQf1CywqeXzPU2nzQSpBxs1jCwjEtcxcqI7XXwr7kTGdat1wGgTw4=
-X-Received: by 2002:a05:6214:5d8b:b0:6ab:83a5:195 with SMTP id
- 6a1803df08f44-6b030a96731mr26255756d6.41.1717593465943; Wed, 05 Jun 2024
- 06:17:45 -0700 (PDT)
+	s=arc-20240116; t=1717595308; c=relaxed/simple;
+	bh=KLGoXYEyiKiVioiSy1o4l3JrW+RVHuBQRMY6ey0/uJo=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=Eq74OavQcj/pqO5zDAtLSyL0gxL83wyaHkdJ8SwHQQwY+mwPZ2M4+wFNE7IBnwf4lin1WaTBUirB7seuUwZ7j/ud73LYVRToux1xOYAUtB6cXwIHl0f3i5IQjG3eOXeTdKWqSMtGd44v04WM4tQq7zbJU31db9a3STwjz5Xbcn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bD/3uUx9; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 8E6B1E0003;
+	Wed,  5 Jun 2024 13:48:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1717595301;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9oYspSAh9r3LxQwguONvXuvtQjqwAdO7gA+8g9Aaz40=;
+	b=bD/3uUx9uNS8Q2paK6zhQj2kqPrtdKE9R0wdIsPo7euw/mz67MJIP07wTvBfxgcKJycS/B
+	L0ZdYyRLPLyPYHjduis6xmkB5WmIwCHkBAhuuy1mZiR/M5sl1j0v16xVRr/V1+6Bk5+4rA
+	YJPIu6BrFwJ9/tlaeMs3TLf1StCSHxRroYkO6mxUqGMhURLPvlNsgVDycfQN+dvW7dNRZ8
+	yw7lL2CT+AZBN0eFnFgkKhXCSgqlbk5yGyObxGUhf2uMufD44kBnGGzcaLAs3wOOvz+/Il
+	6/uUee4evNcg72vs2/b1r7L/b4uZ6Cs6xiTw5XpnE2Oh/CJr6JwMlGO6Xz+plQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240521-board-ids-v3-0-e6c71d05f4d2@quicinc.com>
-In-Reply-To: <20240521-board-ids-v3-0-e6c71d05f4d2@quicinc.com>
-From: Simon Glass <sjg@chromium.org>
-Date: Wed, 5 Jun 2024 07:17:35 -0600
-Message-ID: <CAFLszTjexpNEjo1sGVs67L0CAgGZLNkyn9RGfHRD7iHak_mtmg@mail.gmail.com>
-Subject: Re: [PATCH RFC v3 0/9] dt-bindings: hwinfo: Introduce board-id
-To: Elliot Berman <quic_eberman@quicinc.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Amrit Anand <quic_amrianan@quicinc.com>, Peter Griffin <peter.griffin@linaro.org>, 
-	Caleb Connolly <caleb.connolly@linaro.org>, Andy Gross <agross@kernel.org>, 
-	Doug Anderson <dianders@chromium.org>, Chen-Yu Tsai <wenst@chromium.org>, 
-	Julius Werner <jwerner@chromium.org>, "Humphreys, Jonathan" <j-humphreys@ti.com>, 
-	Sumit Garg <sumit.garg@linaro.org>, Jon Hunter <jonathanh@nvidia.org>, 
-	Michal Simek <michal.simek@amd.com>, boot-architecture@lists.linaro.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Date: Wed, 05 Jun 2024 15:48:20 +0200
+From: Kamel BOUHARA <kamel.bouhara@bootlin.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Marco Felsch
+ <m.felsch@pengutronix.de>, Jeff LaBundy <jeff@labundy.com>,
+ catalin.popescu@leica-geosystems.com, mark.satterthwaite@touchnetix.com,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Gregory Clement
+ <gregory.clement@bootlin.com>, bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH v13 3/3] Input: Add TouchNetix axiom i2c touchscreen
+ driver
+In-Reply-To: <20240605124746.GA57733@tpx1.home>
+References: <20240603153929.29218-1-kamel.bouhara@bootlin.com>
+ <20240603153929.29218-4-kamel.bouhara@bootlin.com>
+ <Zl5ZmYyntq7OJOvZ@google.com> <20240605124746.GA57733@tpx1.home>
+Message-ID: <7ca4a22f903313128de5c0f65a49b319@bootlin.com>
+X-Sender: kamel.bouhara@bootlin.com
+Organization: Bootlin
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: kamel.bouhara@bootlin.com
 
-Hi Elliot,
+[...]
 
-On Tue, 21 May 2024 at 12:38, Elliot Berman <quic_eberman@quicinc.com> wrote:
->
-> Device manufacturers frequently ship multiple boards or SKUs under a
-> single software package. These software packages will ship multiple
-> devicetree blobs and require some mechanism to pick the correct DTB for
-> the board the software package was deployed. Introduce a common
-> definition for adding board identifiers to device trees. board-id
-> provides a mechanism for bootloaders to select the appropriate DTB which
-> is vendor/OEM-agnostic.
->
-> This series is based off a talk I gave at EOSS NA 2024 [1]. There is
-> some further discussion about how to do devicetree selection in the
-> boot-architecture mailing list [2].
->
-> [1]: https://sched.co/1aBFy
-> [2]: https://lists.linaro.org/archives/list/boot-architecture@lists.linaro.org/thread/DZCZSOCRH5BN7YOXEL2OQKSDIY7DCW2M/
->
-> Quick summary
-> -------------
-> This series introduces a new subnode in the root:
-> / {
->         board-id {
->                 some-hw-id = <value>;
->                 other-hw-id = <val1>, <val2>;
->         };
-> };
->
-> Firmware provides a mechanism to fetch the values of "some-hw-id" and
-> "other-hw-id" based on the property name. I'd like to leave exact
-> mechanism data out of the scope of this proposal to keep this proposal
-> flexible because it seems architecture specific, although I think we we
-> should discuss possible approaches. A DTB matches if firmware can
-> provide a matching value for every one of the properties under
-> /board-id. In the above example, val1 and val2 are both valid values and
-> firmware only provides the one that actually describes the board.
->
-> It's expected that devicetree's board-id don't describe all the
-> properties firmware could provide. For instance, a devicetree overlay
-> may only care about "other-hw-id" and not "some-hw-id". Thus, it need
-> only mention "other-hw-id" in its board-id node.
->
-> Isn't that what the compatible property is for?
-> -----------------------------------------------
-> The compatible property can be used for board matching, but requires
-> bootloaders and/or firmware to maintain a database of possible strings
-> to match against or implement complex compatible string matching.
-> Compatible string matching becomes complicated when there are multiple
-> versions of board: the device tree selector should recognize a DTB that
-> cares to distinguish between v1/v2 and a DTB that doesn't make the
-> distinction.  An eeprom either needs to store the compatible strings
-> that could match against the board or the bootloader needs to have
-> vendor-specific decoding logic for the compatible string. Neither
-> increasing eeprom storage nor adding vendor-specific decoding logic is
-> desirable.
+>> > +
+>> > +	error = devm_request_threaded_irq(dev, client->irq, NULL,
+>> > +					  axiom_irq, IRQF_ONESHOT, dev_name(dev), ts);
+>> > +	if (error) {
+>> > +		dev_info(dev, "Request irq failed, falling back to polling mode");
+>> 
+>> I do not think you should fall back to polling mode if you fail to get
+>> interrupt. If it was not specified (client->irq) then I can see that 
+>> we
+>> might want to fall back, but if the system configured for using
+>> interrupt and you can not get it you should bail out.
+>> 
+> 
+> Yes, clear, the polling mode can be decorrelated to the irq not 
+> provided
+> case.
 
-That is not necessary, though. The compatible string should be enough.
+Just to make sure I understood, is this what you propose ?
 
->
-> How is this better than Qualcomm's qcom,msm-id/qcom,board-id?
-> -------------------------------------------------------------
-> The selection process for devicetrees was Qualcomm-specific and not
-> useful for other devices and bootloaders that were not developed by
-> Qualcomm because a complex algorithm was used to implement. Board-ids
-> provide a matching solution that can be implemented by bootloaders
-> without introducing vendor-specific code. Qualcomm uses three
-> devicetree properties: msm-id (interchangeably: soc-id), board-id, and
-> pmic-id.  This does not scale well for use casese which use identifiers,
-> for example, to distinguish between a display panel. For a display
-> panel, an approach could be to add a new property: display-id, but now
-> bootloaders need to be updated to also read this property. We want to
-> avoid requiring to update bootloaders with new hardware identifiers: a
-> bootloader need only recognize the identifiers it can handle.
->
-> Notes about the patches
-> -----------------------
-> In my opinion, most of the patches in this series should be submitted to
-> libfdt and/or dtschema project. I've made them apply on the kernel tree
-> to be easier for other folks to pick them up and play with them. As the
-> patches evolve, I can send them to the appropriate projects.
->
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> ---
-> Changes in v3:
->  - Follow new "/board-id {}" approach, which uses key-value pairs
->  - Add match algorithm in libfdt and some examples to demo how the
->    selection could work in tools/board-id
->
-> Changes in V2:
->  - Addressed few comments related to board-id, and DDR type.
->  - Link to V2:  https://lore.kernel.org/all/a930a3d6-0846-a709-8fe9-44335fec92ca@quicinc.com/#r
->
-> ---
-> Amrit Anand (1):
->       dt-bindings: arm: qcom: Update Devicetree identifiers
->
-> Elliot Berman (8):
->       libfdt: board-id: Implement board-id scoring
->       dt-bindings: board: Introduce board-id
->       fdt-select-board: Add test tool for selecting dtbs based on board-id
->       dt-bindings: board: Document board-ids for Qualcomm devices
->       arm64: boot: dts: sm8650: Add board-id
->       arm64: boot: dts: qcom: Use phandles for thermal_zones
->       arm64: boot: dts: qcom: sm8550: Split into overlays
->       tools: board-id: Add test suite
->
->  .../devicetree/bindings/board/board-id.yaml        |  24 ++++
->  .../devicetree/bindings/board/qcom,board-id.yaml   | 144 ++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/Makefile                  |   4 +
->  arch/arm64/boot/dts/qcom/pm8010.dtsi               |  62 ++++-----
->  arch/arm64/boot/dts/qcom/pm8550.dtsi               |  32 ++---
->  arch/arm64/boot/dts/qcom/pm8550b.dtsi              |  36 +++--
->  arch/arm64/boot/dts/qcom/pm8550ve.dtsi             |  38 +++---
->  arch/arm64/boot/dts/qcom/pm8550vs.dtsi             | 128 +++++++++--------
->  arch/arm64/boot/dts/qcom/pmr735d_a.dtsi            |  38 +++---
->  arch/arm64/boot/dts/qcom/pmr735d_b.dtsi            |  38 +++---
->  .../dts/qcom/{sm8550-mtp.dts => sm8550-mtp.dtso}   |  24 +++-
->  .../dts/qcom/{sm8550-qrd.dts => sm8550-qrd.dtso}   |  22 ++-
->  .../boot/dts/qcom/{sm8550.dtsi => sm8550.dts}      |  10 +-
->  arch/arm64/boot/dts/qcom/sm8650-mtp.dts            |   6 +
->  arch/arm64/boot/dts/qcom/sm8650-qrd.dts            |   6 +
->  arch/arm64/boot/dts/qcom/sm8650.dtsi               |   2 +-
->  include/dt-bindings/arm/qcom,ids.h                 |  86 ++++++++++--
->  scripts/dtc/.gitignore                             |   1 +
->  scripts/dtc/Makefile                               |   3 +-
->  scripts/dtc/fdt-select-board.c                     | 126 +++++++++++++++++
->  scripts/dtc/libfdt/fdt_ro.c                        |  76 +++++++++++
->  scripts/dtc/libfdt/libfdt.h                        |  54 ++++++++
->  tools/board-id/test.py                             | 151 +++++++++++++++++++++
->  23 files changed, 901 insertions(+), 210 deletions(-)
-> ---
-> base-commit: e8f897f4afef0031fe618a8e94127a0934896aba
-> change-id: 20240112-board-ids-809ff0281ee5
->
-> Best regards,
-> --
-> Elliot Berman <quic_eberman@quicinc.com>
->
+if (client->irq) {
+         error = devm_request_threaded_irq(...)
+         if (error) {
+		dev_warn(dev, "failed to request IRQ\n");
+		client->irq = 0;
+          }
+}
 
-I am just picking up the discussion here, which was started on another thread.
+if(!client->irq) {
+     // setup polling stuff
+     ...
+}
 
-I can't see why this new feature is needed. We should be able to use
-compatible strings, as we do now. I added a 'usage' section to the FIT
-spec [1] which might help. I also incorporated the board revision and
-variant information and some notes on how to add to the available
-suffixes.
-
-Does that handle your use case?
-
-Regards,
-Simon
-
-[1] https://github.com/open-source-firmware/flat-image-tree/blob/main/source/chapter3-usage.rst
+--
+Kamel Bouhara, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
