@@ -1,179 +1,101 @@
-Return-Path: <devicetree+bounces-72820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76A4E8FD16F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 17:15:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B9978FD15D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 17:07:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11CFE1F25C6B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 15:15:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 21177B221E3
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 15:07:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB6751863F;
-	Wed,  5 Jun 2024 15:15:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4ACC3B1BC;
+	Wed,  5 Jun 2024 15:07:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BnzG8Wg0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C56F817BCC;
-	Wed,  5 Jun 2024 15:15:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A678D27701;
+	Wed,  5 Jun 2024 15:07:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717600554; cv=none; b=jp8pmtLZg4cvpXj6l4PWKBUykKmPQkF8+lnRzF4ftDx+ipmAXlvjezZjPWCHOBkWCXgwiI3SIAXwZwBn/XPson5NQmXkHd0yx3akoiEzfQbtzNdDyDbHxQn0U94r9p14//LUT9SSU5rWGGkTJ0M5TE3af3qvFzfsDuA0aC36DRA=
+	t=1717600066; cv=none; b=CnvaKU91C1ppSjUQoaO+/0FxZFUc+enBsf5Yhgh04PYUxCDz48SZ/QwXw0Q1YkSTih6mOadIadaZD8PFXP/RiJrHFar/9KiIliX9WcgTr8THXAz54VCzay39wDJ81AR64wKWd6a4ap6x0H/fKQw5D+hFvbHCh64v0T83ZtphfbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717600554; c=relaxed/simple;
-	bh=1zLA6mPxYnEPg/t/Lk/WBlBXqXpEMxnonQ2kaErlsns=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rLiQuQg7ugNHAT+rkneQvWaM5r1aP7FqAMOA4YtlXoD02kblyV+Utd3PQQVS43ycCYKfRCzfTHetj9SK6uIMx7u1FoJrABigySKYwtozvujgWVxq2zoyy6llkI8L2K1zS6muVIqhnM+yuavDRnD4TmBlAjx78sn0q+E6lCK77dk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875b65.versanet.de ([83.135.91.101] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sErwP-00012r-Mi; Wed, 05 Jun 2024 16:48:41 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, kernel@collabora.com,
- Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>,
- Algea Cao <algea.cao@rock-chips.com>
-Subject:
- Re: [PATCH 13/14] drm/bridge: synopsys: Add DW HDMI QP TX controller driver
-Date: Wed, 05 Jun 2024 16:48:40 +0200
-Message-ID: <2554679.TLnPLrj5Ze@diego>
-In-Reply-To:
- <20240601-b4-rk3588-bridge-upstream-v1-13-f6203753232b@collabora.com>
-References:
- <20240601-b4-rk3588-bridge-upstream-v1-0-f6203753232b@collabora.com>
- <20240601-b4-rk3588-bridge-upstream-v1-13-f6203753232b@collabora.com>
+	s=arc-20240116; t=1717600066; c=relaxed/simple;
+	bh=IMUt0ekXJ4apSSniweRTbVmhFC29pe8F2jnTL2AM9T4=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=CI7COX84hA9J/KMo9dpsiAtog7Z0wC1+iVRtKxuDMfhLrPLJdkkYL2BC2TWZ6fTJj8T/oNZkaU0w8IRgprUgFb4lQqiLtT5xGvrWy73LrGAJPb3yR3nqr3wIL5qx3b76TmahEQdlBynbWFINXx+xysYZ3V4PJgNugYVHJBrwlY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BnzG8Wg0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EF3EC2BD11;
+	Wed,  5 Jun 2024 15:07:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717600066;
+	bh=IMUt0ekXJ4apSSniweRTbVmhFC29pe8F2jnTL2AM9T4=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=BnzG8Wg0Zt5DJDi9pZK6rmsVYCYqZeN8yycVYoIfh4GMW3nKz5m1TsG/vrY8D53vG
+	 KwVX/3gLjCVi5iaHVnBLj/pqVJ21XgBsNMc97zMheXt2gbPRkMAgq1GQEpp46HtyOO
+	 spapjVvndZ72f2Onvod+g1r5iCyRKJwb+i+vPxopMLPWzOnqrXzGxFWf5gVrQdn2Mx
+	 l28Bex5INZ5G5qbe0aztee2n6tJNpw+OJ9Lsg2buALcbKrl2sGuw1wQmRXdEALs6mp
+	 ZwWTq5pqSPPO2hWCmeFPn5OrUhrvHvLjcDqOu6jidi8cZlw56t8WYDtjo3NTFK+xTw
+	 Mim/xFnVLYEjw==
+Message-ID: <e989c960d72a3838178edbf43eedd02b.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240605-dt-bindings-qcom-gcc-v2-1-f947b24f1283@linaro.org>
+References: <20240605-dt-bindings-qcom-gcc-v2-0-f947b24f1283@linaro.org> <20240605-dt-bindings-qcom-gcc-v2-1-f947b24f1283@linaro.org>
+Subject: Re: [PATCH v2 01/16] dt-bindings: clock: qcom,sm8450-videocc: reference qcom,gcc.yaml
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Del Regno <angelogioacchino.delregno@somainline.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Jonathan Marek <jonathan@marek.ca>, Konrad Dybcio <konrad.dybcio@linaro.org>, Konrad Dybcio <konrad.dybcio@somainline.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Loic Poulain <loic.poulain@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, Taniya Das <quic_tdas@quicinc.com>
+Date: Wed, 05 Jun 2024 08:07:44 -0700
+User-Agent: alot/0.10
 
-Am Samstag, 1. Juni 2024, 15:12:35 CEST schrieb Cristian Ciocaltea:
-> The Synopsys DesignWare HDMI 2.1 Quad-Pixel (QP) TX controller supports
-> the following features, among others:
-> 
-> * Fixed Rate Link (FRL)
-> * 4K@120Hz and 8K@60Hz video modes
-> * Variable Refresh Rate (VRR) including Quick Media Switching (QMS), aka
->   Cinema VRR
-> * Fast Vactive (FVA), aka Quick Frame Transport (QFT)
-> * SCDC I2C DDC access
-> * TMDS Scrambler enabling 2160p@60Hz with RGB/YCbCr4:4:4
-> * YCbCr4:2:0 enabling 2160p@60Hz at lower HDMI link speeds
-> * Multi-stream audio
-> * Enhanced Audio Return Channel (EARC)
-> 
-> Add driver to enable basic support, i.e. RGB output up to 4K@60Hz,
-> without audio, CEC or any HDMI 2.1 specific features.
-> 
-> Co-developed-by: Algea Cao <algea.cao@rock-chips.com>
-> Signed-off-by: Algea Cao <algea.cao@rock-chips.com>
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> ---
->  drivers/gpu/drm/bridge/synopsys/Makefile     |   2 +-
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c | 787 +++++++++++++++++++++++++
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.h | 831 +++++++++++++++++++++++++++
->  include/drm/bridge/dw_hdmi.h                 |   8 +
->  4 files changed, 1627 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/bridge/synopsys/Makefile b/drivers/gpu/drm/bridge/synopsys/Makefile
-> index ce715562e9e5..8354e4879f70 100644
-> --- a/drivers/gpu/drm/bridge/synopsys/Makefile
-> +++ b/drivers/gpu/drm/bridge/synopsys/Makefile
+Quoting Krzysztof Kozlowski (2024-06-05 01:09:28)
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.=
+yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
+> index bad8f019a8d3..74034e3f79b7 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
+> @@ -39,26 +36,17 @@ properties:
+>      description:
+>        A phandle to an OPP node describing required MMCX performance poin=
+t.
+> =20
+> -  '#clock-cells':
+> -    const: 1
+> -
+> -  '#reset-cells':
+> -    const: 1
+> -
+> -  '#power-domain-cells':
+> -    const: 1
+> -
+>  required:
+>    - compatible
+> -  - reg
+>    - clocks
+>    - power-domains
+>    - required-opps
+> -  - '#clock-cells'
+> -  - '#reset-cells'
+>    - '#power-domain-cells'
 
-> +static int dw_hdmi_qp_i2c_read(struct dw_hdmi *hdmi,
-> +			       unsigned char *buf, unsigned int length)
-> +{
-> +	struct dw_hdmi_i2c *i2c = hdmi->i2c;
-> +	int stat;
-> +
-> +	if (!i2c->is_regaddr) {
-> +		dev_dbg(hdmi->dev, "set read register address to 0\n");
-> +		i2c->slave_reg = 0x00;
-> +		i2c->is_regaddr = true;
-> +	}
-> +
-> +	while (length--) {
-> +		reinit_completion(&i2c->cmp);
-> +
-> +		dw_hdmi_qp_mod(hdmi, i2c->slave_reg++ << 12, I2CM_ADDR,
-> +			       I2CM_INTERFACE_CONTROL0);
-> +
-> +		dw_hdmi_qp_mod(hdmi, I2CM_FM_READ, I2CM_WR_MASK,
-> +			       I2CM_INTERFACE_CONTROL0);
+Missed removing this one?
 
-Somehow the segment handling is present in the rest of the i2c code here, but
-not the actual handling for reads.
+> =20
+> -additionalProperties: false
+> +allOf:
+> +  - $ref: qcom,gcc.yaml#
 
-The vendor-kernel does:
-
--               dw_hdmi_qp_mod(hdmi, I2CM_FM_READ, I2CM_WR_MASK,
--                              I2CM_INTERFACE_CONTROL0);
-+               if (i2c->is_segment)
-+                       dw_hdmi_qp_mod(hdmi, I2CM_EXT_READ, I2CM_WR_MASK,
-+                                      I2CM_INTERFACE_CONTROL0);
-+               else
-+                       dw_hdmi_qp_mod(hdmi, I2CM_FM_READ, I2CM_WR_MASK,
-+                                      I2CM_INTERFACE_CONTROL0);
-
-Without this change, connecting to a DVI display does not work, and
-reading the EDID ends in the "i2c read error" below.
-
-Adding the segment handling as above makes the DVI connection
-work (as it does in the vendor-kernel).
-
-So it would be nice if you could maybe incorporate this in the next version?
-
-
-Thanks
-Heiko
-
-
-> +
-> +		stat = wait_for_completion_timeout(&i2c->cmp, HZ / 10);
-> +		if (!stat) {
-> +			dev_err(hdmi->dev, "i2c read timed out\n");
-> +			dw_hdmi_qp_write(hdmi, 0x01, I2CM_CONTROL0);
-> +			return -EAGAIN;
-> +		}
-> +
-> +		/* Check for error condition on the bus */
-> +		if (i2c->stat & I2CM_NACK_RCVD_IRQ) {
-> +			dev_err(hdmi->dev, "i2c read error\n");
-> +			dw_hdmi_qp_write(hdmi, 0x01, I2CM_CONTROL0);
-> +			return -EIO;
-> +		}
-> +
-> +		*buf++ = dw_hdmi_qp_read(hdmi, I2CM_INTERFACE_RDDATA_0_3) & 0xff;
-> +		dw_hdmi_qp_mod(hdmi, 0, I2CM_WR_MASK, I2CM_INTERFACE_CONTROL0);
-> +	}
-> +
-> +	i2c->is_segment = false;
-> +
-> +	return 0;
-> +}
-
-
-
+Why not have a one-cell-clock-reset-power-domain.yaml binding that
+combines all these things? It's quite common even outside of qcom.
 
