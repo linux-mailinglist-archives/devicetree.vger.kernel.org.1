@@ -1,131 +1,222 @@
-Return-Path: <devicetree+bounces-72682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E81BE8FC826
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 11:43:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F1FA8FC55A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 10:06:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 292A92811EE
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 09:43:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D05611C20B8A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 08:06:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09651191464;
-	Wed,  5 Jun 2024 09:41:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A2F818C32F;
+	Wed,  5 Jun 2024 08:06:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="HKztHKAy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eBTiThhi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m32109.qiye.163.com (mail-m32109.qiye.163.com [220.197.32.109])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EECE190045;
-	Wed,  5 Jun 2024 09:41:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.109
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72AF91922FC;
+	Wed,  5 Jun 2024 08:06:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717580514; cv=none; b=s7KzfjteOZnFIrGjGWGJ/4cJaStNS7ci+ih2E8q3/QQeHfMixYC1ECpuks5oh611VsV7/zeO0bknwzifQLjITZbOlmb/TNeH+jjW3gDa/ebnIjEsz3asf+EXkSj/kCodBSW4oXT9EeTHd2HcLKtg8CYHbnpKp6u2Wcxxchnpfr4=
+	t=1717574813; cv=none; b=CBU1NovPzzJAmScWoLOOTG526mdliVGShraxjYPVDaDdKjfZy15BgND6v/zkN3ud1dBACNEQ/kCZuutAeelDpD06hXHxpeebhtCaC2AMEIH2Xh0KqWU9K/KOlMVuEks4XQoytjGNA1VA3D6clbtxo8v7AyH+oU1GxZDXotA848M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717580514; c=relaxed/simple;
-	bh=aBy7vIst2FBAPwGPshMP9IQOR/ZWBTluJmQmKcqLFng=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=B1Wuc9HdBAEh1qrWOZTOhpUIVL3yX6YpnYFtiVbsn0lFEH+xavNs83nOIynYdacxyu/7Lw5salveSfAxH85Af9V71ZyPqAsa1Ekptc/glfJAr3yXjkop41hI8vzJGo5trqs8b0nJlVe9TMdPlCRt+VNXi+TxsH3oWCiG+JJCDh0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=HKztHKAy; arc=none smtp.client-ip=220.197.32.109
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-DKIM-Signature: a=rsa-sha256;
-	b=HKztHKAyn248J+U2sZbJUYIvNPzdyC8CP+mQ2KjqyTNYmiJhDfssPyipAMYZ5xPA/cLDR1afFNhE7W70ylj2c66NwNIfS49E1VD7eFCIEdzXNhd637fXZ8HBO+Qj2sjnt6VlG3sN7uImQPVEaJE6vZZ1JrqPCtudIeKdzg6gBO0=;
-	s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=DQv58ir20XJLj4kjCZ4hNT8DMmOKn/UVGcDrVAwYVW0=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [192.168.60.56] (unknown [103.29.142.67])
-	by smtp.qiye.163.com (Hmail) with ESMTPA id 2C7771A0423;
-	Wed,  5 Jun 2024 11:06:01 +0800 (CST)
-Message-ID: <10f48a9b-d66a-439e-80d3-54f8e01f015e@rock-chips.com>
-Date: Wed, 5 Jun 2024 11:05:59 +0800
+	s=arc-20240116; t=1717574813; c=relaxed/simple;
+	bh=wYE6T1lsbts1oFahGg1sqw1GHF2V+AJpwXfB/pxwhww=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dj63fbpZGGJ/Yfcn9JrMcrSXSHxIEAeghwcIAWun3RPEDF112yJGaW7t3dcsQ90hgZg2FaPXSa6vDUZ0NWLYBu5w5Kd4GUlX6GN15D7vMi6GD4Li9UECpxV9yQtSxv+liw+BVGsKyHO++smby26BrJV4P/f3cgv2U1DKftwkKgc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eBTiThhi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93DD5C3277B;
+	Wed,  5 Jun 2024 08:06:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717574812;
+	bh=wYE6T1lsbts1oFahGg1sqw1GHF2V+AJpwXfB/pxwhww=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eBTiThhi4+nxpHQ0SWvxIV1sRELb02ftmzxAWxi5GQtjWEhdf0TmZZTo/2Mqg+Say
+	 WWFU5R2pGdDMevTd2hzzAbjylu7JPM2uBHC6A83FwmkFKkJ/nSwqR6vG2u5jCnHjwj
+	 UmZ7IwFGaBxVfjTGqFTyyH2nR9SonAjK3K1t4YYwpdx7p2g5CEG1hhW2AhuQMOo35l
+	 WU6KB+oU19ZdTw41X/PK74Ou9x3AT+2QUScGdit/8buJbOVfly2mxDFqDrk7C+KS+S
+	 Cc12SgXu6TckRzX06d0Oh5M9uYyBgpTv1eM2GXcIukltvsN+TBaOpxssS0JqRh6aei
+	 Fp5hLoiFAGhzQ==
+Date: Wed, 5 Jun 2024 13:36:40 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Niklas Cassel <cassel@kernel.org>
+Cc: Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
+	Jon Lin <jon.lin@rock-chips.com>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v4 09/13] PCI: dw-rockchip: Refactor the driver to
+ prepare for EP mode
+Message-ID: <20240605080640.GJ5085@thinkpad>
+References: <20240529-rockchip-pcie-ep-v1-v4-0-3dc00fe21a78@kernel.org>
+ <20240529-rockchip-pcie-ep-v1-v4-9-3dc00fe21a78@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: bjorn.andersson@linaro.org
-Cc: andriy.shevchenko@linux.intel.com, devicetree@vger.kernel.org,
- djrscally@gmail.com, gregkh@linuxfoundation.org, hdegoede@redhat.com,
- heikki.krogerus@linux.intel.com, krzysztof.kozlowski+dt@linaro.org,
- linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, rafael@kernel.org, robh+dt@kernel.org,
- sakari.ailus@linux.intel.com, =?UTF-8?B?5ZC06Imv5bOw?=
- <william.wu@rock-chips.com>, yubing.zhang@rock-chips.com, wmc@rock-chips.com
-References: <20220422222351.1297276-6-bjorn.andersson@linaro.org>
-Subject: Re: [PATCH v5 5/7] usb: typec: mux: Allow multiple mux_devs per mux
-Content-Language: en-US
-Reply-To: 20220422222351.1297276-1-bjorn.andersson@linaro.org
-From: Frank Wang <frank.wang@rock-chips.com>
-In-Reply-To: <20220422222351.1297276-6-bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDGUtIVksaSkpLTUIZShgfGFUTARMWGhIXJBQOD1
-	lXWRgSC1lBWUpLSFVJQlVKT0lVTUxZV1kWGg8SFR0UWUFZT0tIVUpNT0lMTlVKS0tVSkJLS1kG
-X-HM-Tid: 0a8fe65c587c03abkunm2c7771a0423
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NiI6Djo*EjNMQzJDEQ8SNxAx
-	PywaCRNVSlVKTEpMTk5NTE1ISEtDVTMWGhIXVR0JGhUQVQwaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlKS0hVSUJVSk9JVU1MWVdZCAFZQU9KTUI3Bg++
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240529-rockchip-pcie-ep-v1-v4-9-3dc00fe21a78@kernel.org>
 
-Hi Bjorn,
+On Wed, May 29, 2024 at 10:29:03AM +0200, Niklas Cassel wrote:
+> This refactors the driver to prepare for EP mode.
+> Add of-match data to the existing compatible, and explicitly define it as
+> DW_PCIE_RC_TYPE. This way, we will be able to add EP mode in a follow-up
+> commit in a much less intrusive way, which makes the follup-up commit much
+> easier to review.
+> 
+> No functional change intended.
+> 
+> Signed-off-by: Niklas Cassel <cassel@kernel.org>
 
-> In the Qualcomm platforms the USB/DP PHY handles muxing and orientation
-> switching of the SuperSpeed lines, but the SBU lines needs to be
-> connected and switched by external (to the SoC) hardware.
->
-> It's therefor necessary to be able to have the TypeC controller operate
-> multiple TypeC muxes and switches. Use the newly introduced indirection
-> object to handle this, to avoid having to taint the TypeC controllers
-> with knowledge about the downstream hardware configuration.
->
-> The max number of devs per indirection is set to 3, which account for
-> being able to mux/switch the USB HS, SS and SBU lines, as per defined
-> defined in the usb-c-connector binding. This number could be grown if
-> need arrises at a later point in time.
->
-> Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Few nitpicks below. With those addressed,
+
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
 > ---
->
-> Changes since v4:
-> - None
->
->   drivers/usb/typec/mux.c  <https://lore.kernel.org/all/20220422222351.1297276-6-bjorn.andersson@linaro.org/#Z31drivers:usb:typec:mux.c>  | 128 ++++++++++++++++++++++++++++++++--------
->   1 filechanged  <https://lore.kernel.org/all/20220422222351.1297276-6-bjorn.andersson@linaro.org/#related>, 102 insertions(+), 26 deletions(-)
+>  drivers/pci/controller/dwc/pcie-dw-rockchip.c | 84 +++++++++++++++++++--------
+>  1 file changed, 60 insertions(+), 24 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-dw-rockchip.c b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> index 1380e3a5284b..e133511692af 100644
+> --- a/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> +++ b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> @@ -49,15 +49,20 @@
+>  #define PCIE_LTSSM_STATUS_MASK		GENMASK(5, 0)
+>  
+>  struct rockchip_pcie {
+> -	struct dw_pcie			pci;
+> -	void __iomem			*apb_base;
+> -	struct phy			*phy;
+> -	struct clk_bulk_data		*clks;
+> -	unsigned int			clk_cnt;
+> -	struct reset_control		*rst;
+> -	struct gpio_desc		*rst_gpio;
+> -	struct regulator                *vpcie3v3;
+> -	struct irq_domain		*irq_domain;
+> +	struct dw_pcie				pci;
+> +	void __iomem				*apb_base;
+> +	struct phy				*phy;
+> +	struct clk_bulk_data			*clks;
+> +	unsigned int				clk_cnt;
+> +	struct reset_control			*rst;
+> +	struct gpio_desc			*rst_gpio;
+> +	struct regulator			*vpcie3v3;
+> +	struct irq_domain			*irq_domain;
+> +	const struct rockchip_pcie_of_data	*data;
 
-With this commit, TCPC device shall match *two* endpoint port both for switch device and mux device
-if they have the same parent node like the following DT. It causes the callback funtion is invoked
-twice both for switch and mux in tcpm_mux_set() process.
+I prefer to avoid aligning the struct members just for this reason. Once you add
+a member with a bigger name, then you need to align others also. Please just use
+space.
 
-arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+> +};
+> +
+> +struct rockchip_pcie_of_data {
+> +	enum dw_pcie_device_mode mode;
+>  };
+>  
+>  static int rockchip_pcie_readl_apb(struct rockchip_pcie *rockchip, u32 reg)
+> @@ -195,7 +200,6 @@ static int rockchip_pcie_host_init(struct dw_pcie_rp *pp)
+>  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>  	struct rockchip_pcie *rockchip = to_rockchip_pcie(pci);
+>  	struct device *dev = rockchip->pci.dev;
+> -	u32 val = HIWORD_UPDATE_BIT(PCIE_LTSSM_ENABLE_ENHANCE);
+>  	int irq, ret;
+>  
+>  	irq = of_irq_get_byname(dev->of_node, "legacy");
+> @@ -209,12 +213,6 @@ static int rockchip_pcie_host_init(struct dw_pcie_rp *pp)
+>  	irq_set_chained_handler_and_data(irq, rockchip_pcie_intx_handler,
+>  					 rockchip);
+>  
+> -	/* LTSSM enable control mode */
+> -	rockchip_pcie_writel_apb(rockchip, val, PCIE_CLIENT_HOT_RESET_CTRL);
+> -
+> -	rockchip_pcie_writel_apb(rockchip, PCIE_CLIENT_RC_MODE,
+> -				 PCIE_CLIENT_GENERAL_CONTROL);
+> -
+>  	return 0;
+>  }
+>  
+> @@ -294,13 +292,35 @@ static const struct dw_pcie_ops dw_pcie_ops = {
+>  	.start_link = rockchip_pcie_start_link,
+>  };
+>  
+> +static int rockchip_pcie_configure_rc(struct rockchip_pcie *rockchip)
+> +{
+> +	struct dw_pcie_rp *pp;
+> +	u32 val;
+> +
+> +	/* LTSSM enable control mode */
+> +	val = HIWORD_UPDATE_BIT(PCIE_LTSSM_ENABLE_ENHANCE);
+> +	rockchip_pcie_writel_apb(rockchip, val, PCIE_CLIENT_HOT_RESET_CTRL);
+> +
+> +	rockchip_pcie_writel_apb(rockchip, PCIE_CLIENT_RC_MODE,
+> +				 PCIE_CLIENT_GENERAL_CONTROL);
+> +
+> +	pp = &rockchip->pci.pp;
+> +	pp->ops = &rockchip_pcie_host_ops;
+> +
+> +	return dw_pcie_host_init(pp);
+> +}
+> +
+>  static int rockchip_pcie_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+>  	struct rockchip_pcie *rockchip;
+> -	struct dw_pcie_rp *pp;
+> +	const struct rockchip_pcie_of_data *data;
+>  	int ret;
+>  
+> +	data = of_device_get_match_data(dev);
+> +	if (!data)
+> +		return -EINVAL;
 
-&usbdp_phy0 {
-         mode-switch;
-         orientation-switch;
-         [...]
-         port {
-                 #address-cells = <1>;
-                 #size-cells = <0>;
+-ENODATA?
 
-                 usbdp_phy0_orientation_switch: endpoint@0 {
-                         reg = <0>;
-                         remote-endpoint = <&usbc0_orien_sw>;
-                 };
+> +
+>  	rockchip = devm_kzalloc(dev, sizeof(*rockchip), GFP_KERNEL);
+>  	if (!rockchip)
+>  		return -ENOMEM;
+> @@ -309,9 +329,7 @@ static int rockchip_pcie_probe(struct platform_device *pdev)
+>  
+>  	rockchip->pci.dev = dev;
+>  	rockchip->pci.ops = &dw_pcie_ops;
+> -
+> -	pp = &rockchip->pci.pp;
+> -	pp->ops = &rockchip_pcie_host_ops;
+> +	rockchip->data = data;
+>  
+>  	ret = rockchip_pcie_resource_get(pdev, rockchip);
+>  	if (ret)
+> @@ -347,10 +365,21 @@ static int rockchip_pcie_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		goto deinit_phy;
+>  
+> -	ret = dw_pcie_host_init(pp);
+> -	if (!ret)
+> -		return 0;
 
-                 usbdp_phy0_dp_altmode_mux: endpoint@1 {
-                         reg = <1>;
-                         remote-endpoint = <&dp_altmode_mux>;
-                 };
-         };
-};
+Thanks a lot for getting rid of this ugly piece of code!
 
-BR.
-Frank
+- Mani
 
+-- 
+மணிவண்ணன் சதாசிவம்
 
