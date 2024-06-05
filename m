@@ -1,175 +1,209 @@
-Return-Path: <devicetree+bounces-72892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D46D8FD421
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 19:29:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1C098FD43A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 19:40:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 025631C21C9A
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 17:29:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA7ACB24622
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 17:40:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B71213A3EC;
-	Wed,  5 Jun 2024 17:29:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 031C213A86E;
+	Wed,  5 Jun 2024 17:40:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g1ZRK6Zu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KYqTCkXZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20C8B139D0A;
-	Wed,  5 Jun 2024 17:29:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDB012770E;
+	Wed,  5 Jun 2024 17:40:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717608562; cv=none; b=fcqob7FHB/GoPm6xKJU22Jx453YP6MxmJZjtmHcrPG16e9zLuCaQk0JP5iFlzE+W1+o7oRTaTzzJFNjdGreVM3/BEsIC+toEpUW0ePD+d5pflT5KI1PNxCCg94PUz2bMJ6cAOxF08VJi/2ckcGKvFaFHIZxyjU6h6NLT+WVkgiI=
+	t=1717609238; cv=none; b=OdvTZCNm98UoFg74OQgoAVuYbnIApYb9ZgUM7Pm59Gwv9GJ+JYe+paCc+T0MzsxkE8QuhAPSVPIQDTrcKNooVExpj8i4JX36EVhHllKQN93RPdH+BZsFBqcDjYlicPGt576rzoqL3//zdWqFwUM9AVVOyd4KjrSNgBFWgRRjFwI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717608562; c=relaxed/simple;
-	bh=DppWMKejR5gl9spYkpC8sVMolKcne6gchjDJGX49qOA=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=s7O7sxhoQlpo8rRusFoC0IWYl7oc5v8pJEltYhIeNZjlNvUu9/pNjcy8v/ElauQlp/TrexhHTCQxiWQeWYTTeZ9uGcEkUr9YdBgQN7BJnxbx0dim/6bEBZE4S94avrU4F/tk1bszqloHk8NY8YrK5tEZ7l5Y0xUtuJR1L2a0Nu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g1ZRK6Zu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9732EC2BD11;
-	Wed,  5 Jun 2024 17:29:21 +0000 (UTC)
+	s=arc-20240116; t=1717609238; c=relaxed/simple;
+	bh=CKS6iYqS40zJomaUzCL7cLtl2HG//3bkjoqgTiDMYRE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oMPNxJr/t4SWMdMBbJtpRgzT4N188lLLbpaEr0lvK+RgKA4R+xDFMC+s7e0mD8hXJF9eudbJioepZWc0B5ChLczEax4flogiLuadX9eGWD59xSGWHEnJ03zmTh9wSwPqhAiMCI2bNduCs1MtUQAcUhfxXfvk9dX/wu3t/FH6sD8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KYqTCkXZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E44ACC2BD11;
+	Wed,  5 Jun 2024 17:40:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717608561;
-	bh=DppWMKejR5gl9spYkpC8sVMolKcne6gchjDJGX49qOA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=g1ZRK6ZuC7uKvLxwzMs+SDawv2cKX98UEa8SkiywkKY0CV4c0lYjXtQbOf74pfspo
-	 NetdiTq46Cz0mYFs5Qly6jKNNog+anCsfgTq54DWYkhEso097vEmuIJKUKuATnYKBm
-	 MddOze3SmHLM67cdvDeE8yE+KKeYNJlhp4gD457IxUltn3g7iWa56TIXHFD33z34fG
-	 tzT0o2flSoFhFvhRd+74b4bkPdgvwRKm44yX2p9C4RUBLnuJZA7M4uF/HrHCxuTj5+
-	 iPGfIVU+2aWjqgemTe/6r+0k5bzhJxy1Jr9H2wUUK+2EksF1dVx1D+Jcda36LzkIRB
-	 g5AkjyX20H6dA==
-Date: Wed, 5 Jun 2024 12:29:19 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, jingoohan1@gmail.com, mani@kernel.org,
-	marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH v8 2/5] PCI: rcar-gen4: Add rcar_gen4_pcie_drvdata
-Message-ID: <20240605172919.GA766124@bhelgaas>
+	s=k20201202; t=1717609238;
+	bh=CKS6iYqS40zJomaUzCL7cLtl2HG//3bkjoqgTiDMYRE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KYqTCkXZaR/rfoTARNJgJLoRy174DfcfO0fElOzeLUNBLw5xypFs97Jw9z1pGh9Q3
+	 gfOP60FUfdsF+0H4LOrwRRxTYgfZy6o17y9xvs853VLINN4TSf64mOUBLS21E2Nl5u
+	 e5Fosn4cV1sjvxeKQsrXV6ZIa92COVgprwVheklrnmF7Bo4w/3EeL2QCTupKVO4fnh
+	 Dj3P9O4Y6mkfLAh0EVddZCJ7XnSHTG/TSeBzVlV98evTInw1ASfbzOVSzbBowIDjHe
+	 ZxUJTfmCUpDFrAUsQdkj1uiyJXI0iitH8M8TP+mi6MBebmAXyq6bI0ZRIGLd1JkVbs
+	 1zBYdiiZ9asqg==
+Date: Wed, 5 Jun 2024 18:40:32 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Michael Walle <mwalle@kernel.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Pratyush Yadav <pratyush@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Thorsten Scherer <t.scherer@eckelmann.de>,
+	Marek Vasut <marex@denx.de>, Imre Kaloz <kaloz@openwrt.org>,
+	Andrew Lunn <andrew@lunn.ch>, Flavio Suligoi <f.suligoi@asem.it>
+Subject: Re: [PATCH] dt-bindings: mtd: spi-nor: deprecate Everspin MRAM
+ devices
+Message-ID: <20240605-cosmetics-upgrade-837934256ede@spud>
+References: <20240604074231.1874972-1-mwalle@kernel.org>
+ <20240604-ladylike-gout-6fd6ae992712@spud>
+ <D1RF2GI60GXE.3A3W7Q3W19GPN@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="o639TIyIFJbIbFT2"
 Content-Disposition: inline
-In-Reply-To: <20240520074300.125969-3-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <D1RF2GI60GXE.3A3W7Q3W19GPN@kernel.org>
 
-On Mon, May 20, 2024 at 04:42:57PM +0900, Yoshihiro Shimoda wrote:
-> In other to support future SoCs such as r8a779g0 and r8a779h0 that
-> require different initialization settings, let's introduce SoC
-> specific driver data with the initial member being the device mode.
-> No functional change.
 
-s/In other to/To/ or s/In other/In order/ if you prefer.
-s/let's//
+--o639TIyIFJbIbFT2
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Whoever applies this can tweak it, no need to repost for this.
+On Tue, Jun 04, 2024 at 07:42:16PM +0200, Michael Walle wrote:
+> On Tue Jun 4, 2024 at 7:01 PM CEST, Conor Dooley wrote:
+> > On Tue, Jun 04, 2024 at 09:42:31AM +0200, Michael Walle wrote:
+> > > These devices are more like an AT25 compatible EEPROM instead of
+> > > flashes. Like an EEPROM the user doesn't need to explicitly erase the
+> > > memory, nor are there sectors or pages. Thus, instead of the SPI-NOR
+> > > (flash) driver, one should instead use the at25 EEPROM driver.
+> > >=20
+> > > Signed-off-by: Michael Walle <mwalle@kernel.org>
+> > > Cc: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+> > > Cc: Thorsten Scherer <t.scherer@eckelmann.de>
+> > > Cc: Marek Vasut <marex@denx.de>
+> > > Cc: Imre Kaloz <kaloz@openwrt.org>
+> > > Cc: Andrew Lunn <andrew@lunn.ch>
+> > > Cc: Flavio Suligoi <f.suligoi@asem.it>
+> > > ---
+> > > The referenced binding only supports the true AT25 compatible EEPROMs
+> > > where you have to specify additional properties like size and page si=
+ze
+> > > or cypress FRAM devices where all the properties are discovered by the
+> > > driver. I don't have the actual hardware, therefore I can't work on a
+> > > proper driver and binding. But I really want to deprecate the use of
+> > > these EEPROM like devices in SPI-NOR. So as a first step, mark the
+> > > devices in the DT bindings as deprecated.
+> > >=20
+> > > There are three in-tree users of this. I hope I've CCed all the relev=
+ant
+> > > people. With the switch to the at25 driver also comes a user-space
+> > > facing change: there is no more MTD device. Instead there is an "eepr=
+om"
+> > > file in /sys now, just like for every other EEPROM.
+> > >=20
+> > > Marek already expressed, that the sps1 dts can likely be removed
+> > > altogether. I'd like to hear from the other board DTS maintainers if
+> > > they seem some problems moving to the EEPROM interface - or maybe that
+> > > device isn't used at all anyway. So in the end, we can hopefully move
+> > > all the users over to the at25 driver.
+> > > ---
+> > >  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 9 +++++++=
++-
+> > >  1 file changed, 8 insertions(+), 1 deletion(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml=
+ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> > > index 6e3afb42926e..2dccb6b049ea 100644
+> > > --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> > > +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> > > @@ -21,7 +21,6 @@ properties:
+> > >                (m25p(40|80|16|32|64|128)|\
+> > >                n25q(32b|064|128a11|128a13|256a|512a|164k)))|\
+> > >                atmel,at25df(321a|641|081a)|\
+> > > -              everspin,mr25h(10|40|128|256)|\
+> > >                (mxicy|macronix),mx25l(4005a|1606e|6405d|8005|12805d|2=
+5635e)|\
+> > >                (mxicy|macronix),mx25u(4033|4035)|\
+> > >                (spansion,)?s25fl(128s|256s1|512s|008k|064k|164k)|\
+> > > @@ -42,6 +41,14 @@ properties:
+> > >                - spansion,s25fs512s
+> > >            - const: jedec,spi-nor
+> > >        - const: jedec,spi-nor
+> > > +
+> > > +      # Deprecated bindings
+> > > +      - items:
+> > > +          - pattern: "^everspin,mr25h(10|40|128|256)$"
+> > > +          - const: jedec,spi-nor
+> > > +        description:
+> > > +          Deprecated binding, use Documentation/devicetree/bindings/=
+eeprom/at25.yaml.
+> > > +        deprecated: true
+> >
+> > The idea here seems okay, but directing people to use the at25 binding,
+> > without actually documenting the replacement compatibles etc is far from
+> > ideal. I think even a wording change that points out that that these
+> > devices need to be documented in that file would be an improvement, the
+> > current wording makes it seem like the works been done.
+> > Until there's a replacement driver, I don't think you could really
+> > expect anyone to move to a new binding anyway.
+>=20
+> Fair enough. The driver is already there and it basically works -
+> Flavio is already using it. It is just, that at the moment you have
+> to use the (deprecated) "atmel,at25" compatible and you'll have to
+> specify pagesize etc. That is really hacky, because F/MRAM devices
+> doesn't have a pagesize.
+>=20
+> Anyway, I was already working on the at25 binding but then I've
+> noticed that the current FRAM binding is really hardcoded to cypress
+> devices and as mentioned in the commit message, I don't have any
+> hardware to actually write the proper driver support. Maybe we
+> should settle on the binding first, i.e.
+>=20
+>  compatible =3D "everspin,mr25", "atmel,at25";
+>  size =3D <N>;
+>=20
+> vs
+>=20
+>  compatible =3D "everspin,mr25h256"; # no size needed
 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  drivers/pci/controller/dwc/pcie-rcar-gen4.c | 32 +++++++++++++++------
->  1 file changed, 23 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-rcar-gen4.c b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> index 0be760ed420b..b11e09505b0b 100644
-> --- a/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> @@ -48,11 +48,15 @@
->  #define RCAR_GEN4_PCIE_EP_FUNC_DBI_OFFSET	0x1000
->  #define RCAR_GEN4_PCIE_EP_FUNC_DBI2_OFFSET	0x800
->  
-> +struct rcar_gen4_pcie_drvdata {
-> +	enum dw_pcie_device_mode mode;
-> +};
-> +
->  struct rcar_gen4_pcie {
->  	struct dw_pcie dw;
->  	void __iomem *base;
->  	struct platform_device *pdev;
-> -	enum dw_pcie_device_mode mode;
-> +	const struct rcar_gen4_pcie_drvdata *drvdata;
->  };
->  #define to_rcar_gen4_pcie(_dw)	container_of(_dw, struct rcar_gen4_pcie, dw)
->  
-> @@ -137,7 +141,7 @@ static int rcar_gen4_pcie_start_link(struct dw_pcie *dw)
->  	 * Since dw_pcie_setup_rc() sets it once, PCIe Gen2 will be trained.
->  	 * So, this needs remaining times for up to PCIe Gen4 if RC mode.
->  	 */
-> -	if (changes && rcar->mode == DW_PCIE_RC_TYPE)
-> +	if (changes && rcar->drvdata->mode == DW_PCIE_RC_TYPE)
->  		changes--;
->  
->  	for (i = 0; i < changes; i++) {
-> @@ -172,9 +176,9 @@ static int rcar_gen4_pcie_common_init(struct rcar_gen4_pcie *rcar)
->  		reset_control_assert(dw->core_rsts[DW_PCIE_PWR_RST].rstc);
->  
->  	val = readl(rcar->base + PCIEMSR0);
-> -	if (rcar->mode == DW_PCIE_RC_TYPE) {
-> +	if (rcar->drvdata->mode == DW_PCIE_RC_TYPE) {
->  		val |= DEVICE_TYPE_RC;
-> -	} else if (rcar->mode == DW_PCIE_EP_TYPE) {
-> +	} else if (rcar->drvdata->mode == DW_PCIE_EP_TYPE) {
->  		val |= DEVICE_TYPE_EP;
->  	} else {
->  		ret = -EINVAL;
-> @@ -437,9 +441,11 @@ static void rcar_gen4_remove_dw_pcie_ep(struct rcar_gen4_pcie *rcar)
->  /* Common */
->  static int rcar_gen4_add_dw_pcie(struct rcar_gen4_pcie *rcar)
->  {
-> -	rcar->mode = (uintptr_t)of_device_get_match_data(&rcar->pdev->dev);
-> +	rcar->drvdata = of_device_get_match_data(&rcar->pdev->dev);
-> +	if (!rcar->drvdata)
-> +		return -EINVAL;
->  
-> -	switch (rcar->mode) {
-> +	switch (rcar->drvdata->mode) {
->  	case DW_PCIE_RC_TYPE:
->  		return rcar_gen4_add_dw_pcie_rp(rcar);
->  	case DW_PCIE_EP_TYPE:
-> @@ -480,7 +486,7 @@ static int rcar_gen4_pcie_probe(struct platform_device *pdev)
->  
->  static void rcar_gen4_remove_dw_pcie(struct rcar_gen4_pcie *rcar)
->  {
-> -	switch (rcar->mode) {
-> +	switch (rcar->drvdata->mode) {
->  	case DW_PCIE_RC_TYPE:
->  		rcar_gen4_remove_dw_pcie_rp(rcar);
->  		break;
-> @@ -500,14 +506,22 @@ static void rcar_gen4_pcie_remove(struct platform_device *pdev)
->  	rcar_gen4_pcie_unprepare(rcar);
->  }
->  
-> +static struct rcar_gen4_pcie_drvdata drvdata_rcar_gen4_pcie = {
-> +	.mode = DW_PCIE_RC_TYPE,
-> +};
-> +
-> +static struct rcar_gen4_pcie_drvdata drvdata_rcar_gen4_pcie_ep = {
-> +	.mode = DW_PCIE_EP_TYPE,
-> +};
-> +
->  static const struct of_device_id rcar_gen4_pcie_of_match[] = {
->  	{
->  		.compatible = "renesas,rcar-gen4-pcie",
-> -		.data = (void *)DW_PCIE_RC_TYPE,
-> +		.data = &drvdata_rcar_gen4_pcie,
->  	},
->  	{
->  		.compatible = "renesas,rcar-gen4-pcie-ep",
-> -		.data = (void *)DW_PCIE_EP_TYPE,
-> +		.data = &drvdata_rcar_gen4_pcie_ep,
->  	},
->  	{},
->  };
-> -- 
-> 2.25.1
-> 
+I dunno, I am usually biased to having the more specific compatible
+and not needing the extra properties.
+
+>=20
+> For reference, the already supported cypress fram has the following:
+>=20
+>  compatible =3D "cypress,fm25", "atmel,at25";
+>  # no size needed, because the driver will figure it out by reading
+>  # the ID
+>=20
+> Besides that, I would really get some feedback from the three
+> in-tree users on migrating to the EEPROM driver and thus away from
+> MTD.
+>=20
+> -michael
+>=20
+
+--o639TIyIFJbIbFT2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmCjEAAKCRB4tDGHoIJi
+0vmBAQDQxQ5szdr041sx7R+TpFAH4HedbmvxhYWiKlgzMsLOnQEAwq1Oaz5rvxm1
+xP8LD1K4V3yS6vDch1ByCLRxQNPpCQ4=
+=61oL
+-----END PGP SIGNATURE-----
+
+--o639TIyIFJbIbFT2--
 
