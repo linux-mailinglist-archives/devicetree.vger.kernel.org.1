@@ -1,98 +1,91 @@
-Return-Path: <devicetree+bounces-72825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBA3A8FD1D8
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 17:41:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFC658FD1E0
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 17:41:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8986A281DFE
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 15:41:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 566511F2761A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 15:41:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3FC247F41;
-	Wed,  5 Jun 2024 15:41:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TaLvBuJ0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1C36143893;
+	Wed,  5 Jun 2024 15:41:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5B0D19D891;
-	Wed,  5 Jun 2024 15:41:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20E6554907;
+	Wed,  5 Jun 2024 15:41:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717602075; cv=none; b=h1veebhe2ioHlBi75InhRQw0sgV4F7LsNoLD6rcTKiNDUvxumCddahENnNEyZXpopE5VygOPTxdMU3ov3iNKqRf/64SEeVUpeEdjw5ckVynbqnBDNTCisuDFY4fDzDAvaGRpthJv8DyIBSPzAxZvD5+SHeCbnl9Mzw7QLdsjpT4=
+	t=1717602091; cv=none; b=JOmyQc+ZjbpEi0X7lfQyznsldfKckDIddH+jkfscDufvCXl7igIqXc2hMiHJuc/Jd769vNQ66wjgj+VPvOGql2dfGuqHvyBRtu7ob7gmiTTKn8nGGxZlzn0KOS5bYJj7BJFZcf89oQxU3FRrujcDNGVBkJ+ahY6+9iRqYhI3vQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717602075; c=relaxed/simple;
-	bh=+5xjWbK4wagRPFFLOdl1Jb03kxWLjGziaouuSjpqiBI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J57Bir2+evWKyIhtktUl0Se+Oh6fBGhP7DJoxUPkbwjpVyIO5aCbhc0lBCSfl9Y9sGOJSJT6GDZiQrQOZbrXxvG6RHa/j8SIfu56LqLYueV0OUukOjNmF8/qqryLFkrR5Cu/JbEkOhF7UaetSmAxesTJV6JIjo2NeYV2eZ9eNEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TaLvBuJ0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C56CAC3277B;
-	Wed,  5 Jun 2024 15:41:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717602075;
-	bh=+5xjWbK4wagRPFFLOdl1Jb03kxWLjGziaouuSjpqiBI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TaLvBuJ0YemhiNjgKHdEbhunt+/E95Gn7MIOhYOcWyHEjWYQ2/vN/UBcYT28RgeJf
-	 U5dz/vJmj6r3N3jvt68BW7JzjeiFoKGy8uOBeOBYuZbxo1KTxQbLtmdQMjr/qeFM2T
-	 KVeK9TM/YvEA8ynKgH0H/dIcqTR9KmrLBt8vO6IJ4tkrvy+rdxEG/bP+1Ki4tjZRGV
-	 rwOi8qgI20KWJS7drePpxZARAnwgDP+HzWUI1QAgIANKdHM8RRpPgIOBlzQ8Q1azGr
-	 IRzc4mjk3x9+zVFCKqxTR6K30HzBc7LO8ix3z+1srY45iF+pkx0DGziY1cXidKRaWn
-	 CkHnKbG6I3x8A==
-Date: Wed, 5 Jun 2024 09:41:12 -0600
-From: Rob Herring <robh@kernel.org>
-To: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
-Cc: nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, linux@armlinux.org.uk,
-	vadim.fedorenko@linux.dev, andrew@lunn.ch, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	git@amd.com
-Subject: Re: [PATCH net-next v3 4/4] dt-bindings: net: cdns,macb: Deprecate
- magic-packet property
-Message-ID: <20240605154112.GA3197137-robh@kernel.org>
-References: <20240605102457.4050539-1-vineeth.karumanchi@amd.com>
- <20240605102457.4050539-5-vineeth.karumanchi@amd.com>
+	s=arc-20240116; t=1717602091; c=relaxed/simple;
+	bh=gm9xpFOMr3udWm98e8ijptyKD4ZlMCxFWFpdoo5qfaI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Gi+SRK5d+E26co8Bt4I66TUMGGIfz4tmjH73jVS+rpbnbprMaxZyNtsRCZ4VILfQXfa3hONF2U5JHOHNRQLpqXShvknwNwl0RXH2vHy6w1Pkkm9YJLIyV4dTQO5Eve8uVKd8HbjOb7G06WUQVHVxlVtw1Mz1GnrHyyifc5fxCcA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-IronPort-AV: E=Sophos;i="6.08,217,1712588400"; 
+   d="scan'208";a="206832356"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 06 Jun 2024 00:41:22 +0900
+Received: from localhost.localdomain (unknown [10.226.92.154])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 82466400EF88;
+	Thu,  6 Jun 2024 00:41:18 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v3 RESEND 0/2] Document RZ/G2UL CRU and CSI support
+Date: Wed,  5 Jun 2024 16:41:13 +0100
+Message-Id: <20240605154115.263447-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240605102457.4050539-5-vineeth.karumanchi@amd.com>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jun 05, 2024 at 03:54:57PM +0530, Vineeth Karumanchi wrote:
-> WOL modes such as magic-packet should be an OS policy.
-> By default, advertise supported modes and use ethtool to activate
-> the required mode.
-> 
-> Suggested-by: Andrew Lunn <andrew@lunn.ch>
-> Signed-off-by: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
-> ---
->  Documentation/devicetree/bindings/net/cdns,macb.yaml | 1 +
->  1 file changed, 1 insertion(+)
+This patch series aims to Document CSI/CRU interface found on RZ/G2UL SoC.
+Resending the series to avoid any conflicts.
 
-You forgot Krzysztof's ack.
+v3->v3 resend:
+ * No change. Just Rebase.
+v2->v3:
+ * Added Rb tag from Geert for patch#1 and #2.
+ * Added Ack from Conor Dooley for patch#2.
+ * Dropped SoC dtsi patches from this series as it accepted and
+   also dropped Overlay patch for enabling CSI/CRU on RZ/G2UL SMARC EVK
+   as it is sent as separate patch.
+ * Updated commit header and description of the cover letter.
+v1->v2:
+ * Added Ack from Conor Dooley for patch#1.
+ * Dropped driver reference from commit description for the binding
+   patches.
 
-> 
-> diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> index 2c71e2cf3a2f..3c30dd23cd4e 100644
-> --- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> +++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> @@ -146,6 +146,7 @@ patternProperties:
->  
->        magic-packet:
->          type: boolean
-> +        deprecated: true
->          description:
->            Indicates that the hardware supports waking up via magic packet.
->  
-> -- 
-> 2.34.1
-> 
+Biju Das (2):
+  media: dt-bindings: renesas,rzg2l-csi2: Document Renesas RZ/G2UL CSI-2
+    block
+  media: dt-bindings: renesas,rzg2l-cru: Document Renesas RZ/G2UL CRU
+    block
+
+ .../bindings/media/renesas,rzg2l-cru.yaml     | 35 ++++++++++++++++---
+ .../bindings/media/renesas,rzg2l-csi2.yaml    |  1 +
+ 2 files changed, 32 insertions(+), 4 deletions(-)
+
+-- 
+2.25.1
+
 
