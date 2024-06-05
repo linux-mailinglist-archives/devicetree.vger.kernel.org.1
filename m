@@ -1,115 +1,132 @@
-Return-Path: <devicetree+bounces-72714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 183848FCA30
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:18:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8368C8FCA46
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:20:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FAC0282014
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 11:18:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58AA01C21AD2
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 11:20:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86CAB192B93;
-	Wed,  5 Jun 2024 11:18:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD080192B93;
+	Wed,  5 Jun 2024 11:20:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mWj/NARp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cVks8zfI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DE3A17C79;
-	Wed,  5 Jun 2024 11:18:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DF7E1922EC;
+	Wed,  5 Jun 2024 11:20:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717586294; cv=none; b=aZukQrWjVwNBgeq5biPdFx3URy/WEbgQozB2pLUF8DEdRiOcC1q0241kd8HEzxViS2Sra43SY573B5O/FmBbAabi6lvdWTe8+QO0XPtN6I0r7lJHeK6DvKLZoBwkCafimpRMOTl91/k1ROA9XJy6kgC4mvnV09J3/vsBOfDoK5U=
+	t=1717586411; cv=none; b=gHmVIG+Gx6HrmISKyxAKqIiXI+AKsWUkgjJ+B77zoBL+bDRxiZmlH4tKOyWkGVhqRLWl/EtuiCqxpV7j4MdHU8pyTW5uohWUKR/GuDdJE7KgGhodCMr63w/KZ+agkMYIDH/c5sB0DBDm0fCI9FqWZU3ZC8Gtb1EmNu8rGX5fevI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717586294; c=relaxed/simple;
-	bh=ceROS8yyd9DLlt9sItpiT1/+Xw1T+ut1aQgzVqy/LV0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ls82N6LR7/IrNPOE4Sna2Y5OLIBr3Wumu+SbvQTUd5X2K5TYc/RTH/MDil24I4LU6Oi23g6SctjbsdecBpOUaTOAmUbb1JNNNT+Kc/3u1dQbEUv0jxdnY3OekUGABUtYit30y892Rf+j8ThJv2XMlrkcnu54MTHE5yLgZH/7AOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mWj/NARp; arc=none smtp.client-ip=209.85.210.170
+	s=arc-20240116; t=1717586411; c=relaxed/simple;
+	bh=M2XgPPI5kcHNSLARYmDeCIEvGQnWyYhOIqmHfd6Mnuw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mc0wEJqnW2NAF5KGQKReOcnyTb7+T2sQ10AEr4XHUG2mrZrGQOh3ro5sSs/RyBM9G4akOj0jqHrqOkiaeWmF5pNeYlAelYnfoDPOj0fHE5A/Ir8HIuzHyOid72d6RE1I60SPfxlw63TbWRcqD6vt2nCshWywWNxae0fvi4w4MQs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cVks8zfI; arc=none smtp.client-ip=209.85.218.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-702492172e3so2034503b3a.0;
-        Wed, 05 Jun 2024 04:18:12 -0700 (PDT)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a68a9a4e9a6so461688266b.3;
+        Wed, 05 Jun 2024 04:20:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717586292; x=1718191092; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=AEIPnFs3OXFyH040kLJZpDX4Ff/OGTbFBy0D654/+yU=;
-        b=mWj/NARpuIsp5B8yiBBsBLv0cgjaeG5J+67sPi5T94vGIAxf9Z+MTZnFgdQQxlYU5r
-         8uvySip/RDoy74UQabpvn1coxEYspy66UwW6Mc7nxzgET57utWf91S4KikI8DfKHs4OA
-         7YdoBEqAlAAeksJySxqtiBR3yXVHhSyP6BJgAlLCn+3VdEq5f6XYMuyIHGROPp/2x4LS
-         SX/WZpqXJkDUxnrKb7ikdUMBVNohBX814L4en5mopSETG/Wh1Fufo+P1YUGg8XmKs6J3
-         Nk7+hQrL33xCw8qjIUSg1/GFZItI1wnxqV5OO1KVdUXGxuFlDJr6y3MBG8z/wfcoHbpu
-         q40Q==
+        d=gmail.com; s=20230601; t=1717586408; x=1718191208; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=M2XgPPI5kcHNSLARYmDeCIEvGQnWyYhOIqmHfd6Mnuw=;
+        b=cVks8zfIE3yjp/f3mVlfmTD9jLTwxl84ZOUVRkm03VswcpiiBzcsLBZ9R8FWemtgEy
+         sMLINmhVe+e3O92jfL8Y63g3xQrOpA9xC4SlCMDrM5WpgGlZR1nYGjg6wy7vOcldYR5x
+         OyNEKMJ2V0QXxvrgpUwiVb/sTMv5ycqLeDklE0zoBIvsCw3m2GvApPr143AogKlY7VAx
+         yvPVY0NgRtNyUmyqiQnZVy9Awy/nmJOib3MC0rqzYOJIF20CE+2xyjDEJgm0NuOV64Y0
+         j9vuoGoACE27Z/ayqUXabW4HLClOgHWTLwXA2SMkktTQL8SAcGu9WLYgh0QQWKakJxGR
+         zylw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717586292; x=1718191092;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AEIPnFs3OXFyH040kLJZpDX4Ff/OGTbFBy0D654/+yU=;
-        b=Qkl29wlUqtuaaZA81m8wt8B2CKtM4N3CwOsA+MAIKKmaVzKTKT5TVjJizpM2D2jbu+
-         o/s80smYKk7r50Eu3zF2mQ3BCrXKG+IGhmVS4xgCi/WeSI6cx5Jwm4dUZ+xui4kaFpE2
-         bOiNmhKX3C89v4wu6yiw+iBVQj01nGB5XI69jbZxlh9h3G78svu125EdO6szqvwLkqRV
-         lvZsy6dBDqWFPn/GDVp3hUQo27R9U8y6GXch7IXMBuyxai1EB+FYuZvd8H76C9ODUVrb
-         W3Ja1wm35X69j/3DIpNVN4FZbFKSYqL8StnkXTf0z7QKSHDKocf12EqK4r0RrHJgMFvM
-         UMZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUEBiz0DaIB9PC/IcBWSQOH6aKiEI2P9hY855P3uVn9B9wy0pgTMMOsAvR/iJnOSU777Kewr9lrizW+yDOthpITvxzVR07lXrZVf1pPRvcrQ1olTnDxn6qEAViOx/5YpGzOGveKxpJdSCmgGHmMsvxqqOzwbmXDsgG/9E4WnuUSyc1QiiV+apweDq4WuE0lDQCeEmoz0CYcjtY6F1/WTQ==
-X-Gm-Message-State: AOJu0YyKjwRA2aFmnP6/Ut5PzACgwgwielRpbGo8L0655hDJfFt5gzc8
-	+6XwynrlBh+2S2VDffIjDCkSPYy/WBtSbfCS6FQtAp/IvLvzfpqB
-X-Google-Smtp-Source: AGHT+IH60wShLzZqwxcRl7Dp1uBnogAAVjYp7UnczKKT3vQbibKXgvdCJeYSWy3sG2ph43xTO5idWA==
-X-Received: by 2002:a05:6a20:3d87:b0:1af:b0be:4661 with SMTP id adf61e73a8af0-1b2b6f95856mr2991636637.19.1717586292244;
-        Wed, 05 Jun 2024 04:18:12 -0700 (PDT)
-Received: from localhost ([2804:30c:b6c:6f00:4a71:dbc2:c9bb:1cd3])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c28067a391sm1213945a91.19.2024.06.05.04.18.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jun 2024 04:18:11 -0700 (PDT)
-Date: Wed, 5 Jun 2024 08:19:24 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org,
-	lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/6] Add support for AD4000 series of ADCs
-Message-ID: <ZmBJvFbq3nonrpjs@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1717539384.git.marcelo.schmitt@analog.com>
- <e396bacff372b34127de15d980dd903af48a9350.camel@gmail.com>
+        d=1e100.net; s=20230601; t=1717586408; x=1718191208;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=M2XgPPI5kcHNSLARYmDeCIEvGQnWyYhOIqmHfd6Mnuw=;
+        b=EOzi2hop/+eiWjsdcgV2hlX2RiigYLbl92Ovt8ByVuas8TFGuG22mmab6nM6jrcueK
+         jlJBxXPL8RbRFPCfq5iadbx1zrgq8RG6lsrN7F5BpJQxy3L7wJy58L+9ujS1BhzxHB6d
+         IIq6Q8RUY1aZogwb5faXW9Wd3lW7jqSxTmyWYvaxBUC4lrWeAoh6oFEjRJxzOomylPIX
+         xsIJMy6ZnxsSKuisyIUzp2E/6NLiJLfZuIvqadtAR62gDvAt6gVVB5PhuvwXtTGK08Ag
+         JYHCsLb4D25gJ7UKkRdfCHm8uYfh68vhMkaE/263mRkMW2pt5cJtwZdINUqPWPszcky8
+         jYwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWqKrO2TCP8M5mKn3bBYQT6zFOA0CwvA/EkoFkgpX0VQg6ihzUkux+4+iU0sgeWQB5qk/o8xzGXDXyUKYHM44DOXoUO5pAGodUZjxrPlrx4AdYc8f8fJx3d0QMbSV5zkaS0MDQ9fCj+vA==
+X-Gm-Message-State: AOJu0YzBtd98lKu04I4e9jdzrLqjl6+N/bXnJNVdO2QilZgSMXjyrNwu
+	RGhq3jehvWKyXWNHSr9X1nX0o7c2DwfufbbU6QvHlkfn7rnmG3Hgta96tx6+B8A6BXz9MPkkLY+
+	kBL6df8I5sbL2G38Ga+Nm2XFZjO4=
+X-Google-Smtp-Source: AGHT+IE9fA07hz8gjgRCwsGUN2n4UgVaITYVgtS/9/vS2b9aNFjN/B/djHpm/tjR+uEdzHrUDcAElx6fV9zECQJb9TE=
+X-Received: by 2002:a17:907:724d:b0:a6a:b1ce:7f2c with SMTP id
+ a640c23a62f3a-a6ab1ce7ffamr122365666b.69.1717586408384; Wed, 05 Jun 2024
+ 04:20:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e396bacff372b34127de15d980dd903af48a9350.camel@gmail.com>
+References: <20240604132726.1272475-1-hui.wang@canonical.com>
+ <20240604132726.1272475-2-hui.wang@canonical.com> <20240604102323.b2a305fa03161df3c2eec16c@hugovil.com>
+ <AS8PR05MB9810940582493046F2FBFDB983F92@AS8PR05MB9810.eurprd05.prod.outlook.com>
+ <f56a2c59-9ae4-4d5c-8321-fff9639c5405@canonical.com>
+In-Reply-To: <f56a2c59-9ae4-4d5c-8321-fff9639c5405@canonical.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 5 Jun 2024 14:19:30 +0300
+Message-ID: <CAHp75VfEONqGBx7xbOKtGcn5z3shzSyUt8WABJqq4yOnweAr3w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] serial: sc16is7xx: hard reset the chip if
+ reset-gpios is defined in dt
+To: Hui Wang <hui.wang@canonical.com>
+Cc: Maarten Brock <Maarten.Brock@sttls.nl>, Hugo Villeneuve <hugo@hugovil.com>, 
+	"linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>, "jirislaby@kernel.org" <jirislaby@kernel.org>, 
+	"hvilleneuve@dimonoff.com" <hvilleneuve@dimonoff.com>, "robh@kernel.org" <robh@kernel.org>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"andy@kernel.org" <andy@kernel.org>, 
+	"lech.perczak@camlingroup.com" <lech.perczak@camlingroup.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 06/05, Nuno Sá wrote:
-> Hi Marcelo,
-> 
-> On Tue, 2024-06-04 at 19:40 -0300, Marcelo Schmitt wrote:
-> > This patch series extends the SPI bitbang, gpio, and spi-engine controllers to
-> > support configurable MOSI line idle state.
-> > It then introduces the ad4000 driver which makes use of the MOSI idle
-> > configuration to properly support AD4000 series of ADCs.
-> 
-> Not sure what happened but I'm not seeing the patch for ad4000...
+On Wed, Jun 5, 2024 at 1:55=E2=80=AFPM Hui Wang <hui.wang@canonical.com> wr=
+ote:
+> On 6/5/24 18:30, Maarten Brock wrote:
+> >> From: Hugo Villeneuve <hugo@hugovil.com>
+> >> Sent: Tuesday, 4 June 2024 16:23
 
-I thought patches were numbered up to 5 only and forgot to send the last one.
-Sent that one now.
+<...>
 
-Thanks,
-Marcelo
+> >> Add function description from original comment "Reset device,
+> >> purging any pending irq / data", since the comment applies to both
+> >> hardware and software reset,
+> > No it does not (at this moment). See below.
 
-> 
-> - Nuno Sá
-> 
-> 
+...
+
+> > The problem here is that this only deasserts the reset if it were asser=
+ted before.
+> > Nothing happens if it already was deasserted. This makes the delay also=
+ pretty
+> > useless.
+> >
+> > To make this a proper reset pulse for the device you must first assert =
+the reset,
+> > then wait >3us, and finally deassert the reset.
+
+> My understanding is when calling devm_gpiod_get_optional(dev, "reset",
+> GPIOD_OUT_LOW) and returning a valid (gpio_desc *), the flag
+> GPIOD_OUT_LOW guarantees the GPIO is set to output and low (assert the
+> reset pin).
+
+No, this is logical, not physical state. Maarten is correct. How did
+you test this?
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
