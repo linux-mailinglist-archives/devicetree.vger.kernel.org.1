@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-72814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D1D08FD0DE
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 16:32:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AE7B8FD0DF
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 16:33:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 891F8B21A6A
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 14:30:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 899531F22720
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 14:33:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D45B10A0D;
-	Wed,  5 Jun 2024 14:30:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 889DA17559;
+	Wed,  5 Jun 2024 14:33:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PGd2vTqc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dKLlpN9V"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6669319D8B1
-	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 14:30:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62B1410A0D
+	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 14:33:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717597844; cv=none; b=afQ4ehULx8WzAGuEk85qQHIvw/enuhio+DjOdjFxliBPQIpBHYqXZXlp9efpnMjXaCm4s9xRXex6HUwOen3KlmcY8c3WWEC0iYljZetbkQF/Sof0xe3BtDq4S2cpyLTIVHix65reKKgxPxkKZOatziAnrHIUWd9SqDufNSLKGBQ=
+	t=1717597994; cv=none; b=QyNi2UJBcdXUlaQ3eocDMKKGLtb82jP79v1OiHvBwBQkmcSOpBEalBDghaNm8oP9BbKo5DisJ6b1rwscxulhtf4EBCoYpAVT5CDiNmxwYYUhveGajIC62uIsQyAUGwGrTIKslTDuCIg2GTjC74EpTleUbSZlZpEfTWSXMUnU0YY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717597844; c=relaxed/simple;
-	bh=Llc/D+Xns8XHv+k9gTmDzSnLKAnU3sZ4exmIXQNQw4I=;
+	s=arc-20240116; t=1717597994; c=relaxed/simple;
+	bh=uUSyFKuEIdOY3gfz57hERneD3QkWLR67PUr59QhibqY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WGrkKD2quAFdBCgdeEvZ0hkNVp7vrm7bQCM83p96LLL0obTqYmXjKvPlFN7yL2O1+6XooIdev3POeHzCf+wtSD/bn08DaQXZV3QtjxPZ8NI6Sl0vr1zkuBZlBOylZZA4S3i4bji92jg6D72cZ5Cun4Uwe0KeoMhNFE+wzSMoDQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PGd2vTqc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16274C2BD11;
-	Wed,  5 Jun 2024 14:30:41 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=pTPjc0fV5Vym1Z0dsIT2Vw1Ft3uOhnBauaECqCqSwn4XCkbk430mjgKu/uaiJ8LD9+YgHGys7Hh4XSqU6upRfb8nbfMk3wksNm58XU9h9kT9l8xkQ6WyvFETo0ryoaYwkKOVozSqrSBn56TQPHNjC//EXejQU41+3sTdY3QntWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dKLlpN9V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BB58C2BD11;
+	Wed,  5 Jun 2024 14:33:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717597844;
-	bh=Llc/D+Xns8XHv+k9gTmDzSnLKAnU3sZ4exmIXQNQw4I=;
+	s=k20201202; t=1717597993;
+	bh=uUSyFKuEIdOY3gfz57hERneD3QkWLR67PUr59QhibqY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PGd2vTqcyc7zMOxW8P2Fdria8YgxPoQ7Zn931eQv78TIa4/q0d4pwpeBGo0ESr72n
-	 dUiewMjTL4ksOCoz/piXSnWPCBIodlD39hN5YhwrcpxnSeU0fyaSiGvlkj2T94/i1x
-	 NpuSLRSyJOy5eCk9vqb5aVj1n26tu/qMf+VWjfpumqee62IwJ5Rvt2u1c3cAoxrPzZ
-	 jTgC4RFGHiK0R0mwwAwQcDOttJsljqGyvMmcOQShNn4bKzItP78ZWJiuR2vflrgu+i
-	 Dzh4OdPP0EQzSpEHosKael2akCabOLjgxT9MpP9fMp/5KLtgK9RqG0lJHmlhG0MpYm
-	 OJY2nxekyUSUg==
-Message-ID: <170f1ac9-0080-47f3-97a1-1a80e38cb1a2@kernel.org>
-Date: Wed, 5 Jun 2024 16:30:39 +0200
+	b=dKLlpN9V1CCdqSYLubXzKMzyLyD0p/Hlno4a8cGW6cQvdM6ah2hfoYZ6ZhOW4LC3p
+	 GopZoVa14+MHjSil5PYS15f28B0OSf4SZQMjOLR2deWHrZJNdWFIWG4xtdH5yGBIiT
+	 3uncR4T85r6oOsU8FnttUhuzwK1M8NJr4VkE3cCfdsqg5Xu4gR+jRUeHlJvT7LNZRM
+	 QyB9FGAU3d+BgiQ2DNGmNy/zXeHOLCZe1rtfC93TbGqeWCZxUwZM6hnn/EPHnrgwUx
+	 q/DJmATQ/+o4mwgxRQ6SpjXL3+SXIo2ChOVqU2YN+B6mlz8mGGdYlzSLA8kIvD4sj9
+	 PiRHaFcF/045g==
+Message-ID: <bef8dd3d-a774-467d-b66f-4881f3845dd6@kernel.org>
+Date: Wed, 5 Jun 2024 16:33:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: altera: Add Terasic DE1-SOC board
+Subject: Re: [PATCH 2/2] ARM: dts: socfpga: Add support for Terasic DE1-SOC
+ board
 To: Florian Vaussard <florian.vaussard@gmail.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, Dinh Nguyen <dinguyen@kernel.org>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20240605083321.1211198-1-florian.vaussard@gmail.com>
- <20240605083321.1211198-2-florian.vaussard@gmail.com>
+ <20240605083321.1211198-3-florian.vaussard@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,35 +103,169 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240605083321.1211198-2-florian.vaussard@gmail.com>
+In-Reply-To: <20240605083321.1211198-3-florian.vaussard@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 05/06/2024 10:33, Florian Vaussard wrote:
-> Add binding for the Terasic DE1-SOC board.
+> Compared to Terasic SoCKit, here are some of the notable differences
+> on the HPS side:
+> - Only 1 user LED and 1 user KEY
+> - The QSPI Flash is not populated
+> - The ADXL345 accelerometer is on I2C0 instead of I2C1
+> 
+> Tested to be working:
+> - LED / KEY
+> - Ethernet
+> - Both USB Host ports
+> - SD card
+> - ADXL345 accelerometer
 > 
 > Signed-off-by: Florian Vaussard <florian.vaussard@gmail.com>
 > ---
+>  arch/arm/boot/dts/intel/socfpga/Makefile      |   1 +
+>  .../socfpga/socfpga_cyclone5_de1_soc.dts      | 106 ++++++++++++++++++
+>  2 files changed, 107 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dts
+> 
+> diff --git a/arch/arm/boot/dts/intel/socfpga/Makefile b/arch/arm/boot/dts/intel/socfpga/Makefile
+> index c467828aeb4b..1d5140b238da 100644
+> --- a/arch/arm/boot/dts/intel/socfpga/Makefile
+> +++ b/arch/arm/boot/dts/intel/socfpga/Makefile
+> @@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += \
+>  	socfpga_cyclone5_mcvevk.dtb \
+>  	socfpga_cyclone5_socdk.dtb \
+>  	socfpga_cyclone5_de0_nano_soc.dtb \
+> +	socfpga_cyclone5_de1_soc.dtb \
+>  	socfpga_cyclone5_sockit.dtb \
+>  	socfpga_cyclone5_socrates.dtb \
+>  	socfpga_cyclone5_sodia.dtb \
+> diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dts b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dts
+> new file mode 100644
+> index 000000000000..7d811be5f5a7
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de1_soc.dts
+> @@ -0,0 +1,106 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (C) 2024 Florian Vaussard <florian.vaussard@gmail.com>
+> + */
+> +
+> +#include "socfpga_cyclone5.dtsi"
+> +
+> +#include <dt-bindings/input/input.h>
+> +
+> +/ {
+> +	model = "Terasic DE1-SOC";
+> +	compatible = "terasic,de1-soc", "altr,socfpga-cyclone5", "altr,socfpga";
+> +
+> +	chosen {
+> +		bootargs = "earlyprintk";
 
+That's debugging, not mainline. Drop bootargs.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	memory@0 {
+> +		name = "memory";
 
+Which binding defines this property?
 
----
+> +		device_type = "memory";
+> +		reg = <0x0 0x40000000>; /* 1GB */
+> +	};
+> +
+> +	aliases {
+> +		/* this allow the ethaddr uboot environmnet variable contents
 
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
+Please use Linux coding style comments /* in separate line. Also, typos.
 
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
+> +		 * to be added to the gmac1 device tree blob.
+> +		 */
+> +		ethernet0 = &gmac1;
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		hps_led {
 
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+No underscores in node names.
+
+> +			label = "hps:green:led";
+
+Drop. Use function and color instead.
+
+> +			gpios = <&portb 24 0>;	/* HPS_GPIO53 */
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +
+> +		hps_key {
+
+No underscores...
+
+> +			label = "hps_key";
+> +			gpios = <&portb 25 0>;	/* HPS_GPIO54 */
+> +			linux,code = <BTN_0>;
+> +		};
+> +	};
+> +
+> +	regulator_3_3v: regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC3P3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +	};
+> +};
+> +
+> +&gmac1 {
+> +	status = "okay";
+> +	phy-mode = "rgmii";
+> +
+> +	rxd0-skew-ps = <0>;
+> +	rxd1-skew-ps = <0>;
+> +	rxd2-skew-ps = <0>;
+> +	rxd3-skew-ps = <0>;
+> +	txen-skew-ps = <0>;
+> +	txc-skew-ps = <2600>;
+> +	rxdv-skew-ps = <0>;
+> +	rxc-skew-ps = <2000>;
+> +};
+> +
+> +&gpio0 {	/* GPIO 0..29 */
+> +	status = "okay";
+> +};
+> +
+> +&gpio1 {	/* GPIO 30..57 */
+> +	status = "okay";
+> +};
+> +
+> +&gpio2 {	/* GPIO 58..66 (HLGPI 0..13 at offset 13) */
+> +	status = "okay";
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +
+> +	accel1: accelerometer@53 {
+> +		compatible = "adi,adxl345";
+> +		reg = <0x53>;
+> +
+> +		interrupt-parent = <&portc>;
+> +		interrupts = <3 2>;
+> +	};
+> +};
+> +
+> +&mmc0 {
+> +	vmmc-supply = <&regulator_3_3v>;
+> +	vqmmc-supply = <&regulator_3_3v>;
+
+That's a noop... Isn't this coming from a PMIC?
 
 Best regards,
 Krzysztof
