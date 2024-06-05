@@ -1,139 +1,123 @@
-Return-Path: <devicetree+bounces-72879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1AC98FD3C7
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 19:20:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67DE38FD3CC
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 19:21:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D87A1F267F9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 17:20:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9BD5287848
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 17:21:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E66406A33D;
-	Wed,  5 Jun 2024 17:19:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AADE7137925;
+	Wed,  5 Jun 2024 17:20:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="X65T6mVX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JTPv9JMp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D94E79DE;
-	Wed,  5 Jun 2024 17:19:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 494762770E;
+	Wed,  5 Jun 2024 17:20:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717607993; cv=none; b=eNv3BUvlgmKpGGv2N+x4PpIqeEvph5Lv+yetsKc2u3Hl47NA0RKFiDJABolnGaCdrS0sLETZ7/NWUB5pglzedSXIEUEfKrw1KdSHVPwanySKLbihHOsXH7nPMW4W3DNMkQaDFYVTdI803DmcGvkumRIZ5TRQcTQOG/no0pyIGEk=
+	t=1717608056; cv=none; b=j//9Bh7x39CjojNMawrxYGV2NKQCToG1DI2Kc+MtbiBqchzBu3cTJggoE9Q9DifVhL8+lSjF6EuoLWvajVTVj2AKLTZyud192JC9SsNgqegA4yjyUj6e4bUkrUepTHUVrNbtnV+ItVE95Ote13qWFV1NIEHtU5tgK67QlFz6DlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717607993; c=relaxed/simple;
-	bh=KoPDujt1xMD1rMjbCLSpQKDTwNo7Sp1vSRZVeW5Uy6s=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kZLjJucrax6DGM4DN05f64Rz4EKSlZ1hkfLFtcEKWFJ/+YvQi2pekqwqDtCYMBnPjYNDTLnHzEQY/glfAX5p96WONUWD1qsuqQLBgBXfFDKC7L7XMFk2hwlWdYeZBre7pXmSt1r5dwQi690duELgxN0GJAXpZCffTX3dKErbnfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=X65T6mVX; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 455DGfD8014486;
-	Wed, 5 Jun 2024 17:17:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=sNJniB11qHa4cbo7LPak+xXf
-	Ula5GuPjPcZNiVZTXdQ=; b=X65T6mVXXXVOqXlwsjcwOBZpbijhV+XkQzQsQ5SR
-	p+BedcH67osUcAIBA3PcLM4lEvG6cVRmcLmbUaZ33bmofSAaVieupgsruwJtse+z
-	zGq2QBbr3uSnSDHLEInKj+0xgCg27JnjYiYPLgM1idQGP9i48nfjD3Y3QpBMAKOE
-	g7OC8B2I/Yj0ZArMuGtCJCsZyyYm1Rfv065sfCncU+l+ZlFFuXkOH1yuL9QZh/95
-	uGk2tunv1W/oDmoAREOTpmEtUbo2fr43U2n+JQ0FE+aoEKgkz+pwiu4y+k8Vz3EL
-	GjIDyvsM6jtwRJwBTgk2bZIb7SSZxEdAUEecpm8r8vhoTg==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yj7urasd5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 05 Jun 2024 17:17:26 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 455HHNiC008319
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 5 Jun 2024 17:17:23 GMT
-Received: from hu-eberman-lv.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 5 Jun 2024 10:17:23 -0700
-Date: Wed, 5 Jun 2024 10:17:22 -0700
-From: Elliot Berman <quic_eberman@quicinc.com>
-To: Simon Glass <sjg@chromium.org>
-CC: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Amrit Anand <quic_amrianan@quicinc.com>,
-        "Peter
- Griffin" <peter.griffin@linaro.org>,
-        Caleb Connolly
-	<caleb.connolly@linaro.org>,
-        Andy Gross <agross@kernel.org>, Doug Anderson
-	<dianders@chromium.org>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Julius Werner
-	<jwerner@chromium.org>,
-        "Humphreys, Jonathan" <j-humphreys@ti.com>,
-        "Sumit
- Garg" <sumit.garg@linaro.org>,
-        Jon Hunter <jonathanh@nvidia.org>,
-        Michal
- Simek <michal.simek@amd.com>,
-        <boot-architecture@lists.linaro.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>
-Subject: Re: [PATCH RFC v3 0/9] dt-bindings: hwinfo: Introduce board-id
-Message-ID: <20240605100246481-0700.eberman@hu-eberman-lv.qualcomm.com>
-References: <20240521-board-ids-v3-0-e6c71d05f4d2@quicinc.com>
- <CAFLszTjexpNEjo1sGVs67L0CAgGZLNkyn9RGfHRD7iHak_mtmg@mail.gmail.com>
+	s=arc-20240116; t=1717608056; c=relaxed/simple;
+	bh=NOnqln06S+MFv80mqKTSNLI3wJ74vF+Bg3os30TxL/k=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=cwRozkESmHiteelrTgb6ifHTNQmjs8rcjuSRcz0RTV+2QBxuVK9HIKKh8HYdP8Z20GPVaYh7y4SZrG26d1kcx7jrf9WrxjzijQYuZ+5+ykrmL/JclMitJ4o2Hbl1HZGTnMt3BQuCG9+W+dNNYScVPWh2QUorKX5JIh3pf4x5RqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JTPv9JMp; arc=none smtp.client-ip=209.85.161.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-5ba18126a3bso1104eaf.1;
+        Wed, 05 Jun 2024 10:20:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717608054; x=1718212854; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4IEr/gSqoWImb//qZWKO/ZZ3zZM5bGTPdO0tMABh1EM=;
+        b=JTPv9JMptuO99TPS2iJPTiIxNxUzon7RTqvaolI9MIQtiwIOfO5OPTQF8neYx84t3h
+         SeuhSluHS4OwQrC58McelSH2pCXTNypLnfXlg2OZAqfSdl1182etM2v1luuFF4xi7Gop
+         gi9b3u42kQCuW4+ruqQrIw4s3pvLKFaaU3x5bukX16GZMIpJ6uALNjtIh7j1tqe6+kVJ
+         WeholdG+/tiSSZZeJ4A11SIxL+tJTuHCrvS/YHUQ3UxS50NV5GLN7pU1H2po4/z1hxNh
+         wahXW6oxH+dTLRtyjyKS2ijpzLLuT1zxEH6g1mFGXAxpUSQcXmS86oFt7zGzBAqVA8yu
+         dcEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717608054; x=1718212854;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4IEr/gSqoWImb//qZWKO/ZZ3zZM5bGTPdO0tMABh1EM=;
+        b=egRqI3bf6UUWswQYkH4kswgJ6bnsTmMVzgLA/leddAL7ejGmBgUYMvasrC20DTXJoT
+         vExU5ok6nUA6cbJKJexysKY5cp+afI09wkpEKUYQ7rcdIg7/mWeEurboFpNwDEi7DvB4
+         isVX6cQsY6JH027A5kJvCzu241P5YrAfrvjIJRp1GMt4FmfD0ns7oA3Wt9XHWN19oL6T
+         +ZVW1NZoc0MdEHYMrj9SyjnVF5anr6tLUMLQomnWU0pTUn1VoCoY8MdrM7VtFyLhjLC0
+         umszWnvrFwu1hJTuiPzkDmjzovvnIwEtB6TQ69auasdtOtEJeNm8FnZlzold8x8SSNo9
+         Bq5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWxWoyXnl9O5mr072J9bQro3RMh77Jmd9dqhveeKOrXKipnFNo4A3h+5OakbkqKxiFQf+gdkfFILjQ+wwB6DjrPAYLVuHCtkxGBlLk8OuDvB7ba+OmOSpx8qhn2BWkfqsDETq9sjg==
+X-Gm-Message-State: AOJu0YwqRr6y0ZWypDZ7ctlxTspYCTOMMkkNXxMGphVtYM5J4yQP6BWw
+	JBJhQudkIF1kxg3vRcT5vSBx5zaxcSrjlvvkwAUFJFinvSdg+8+a
+X-Google-Smtp-Source: AGHT+IGcFeJqYdOy5bu1wSd8nRMa9fxc9uZpmjYp/qUhUyDXktoAoWMya44tJdchDX2USHtsbeQNCw==
+X-Received: by 2002:a05:6820:161e:b0:5b9:89d9:c5ef with SMTP id 006d021491bc7-5ba91323287mr207128eaf.0.1717608054271;
+        Wed, 05 Jun 2024 10:20:54 -0700 (PDT)
+Received: from localhost.localdomain ([75.28.21.198])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5ba72cb44f4sm586124eaf.40.2024.06.05.10.20.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jun 2024 10:20:53 -0700 (PDT)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-sunxi@lists.linux.dev
+Cc: linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	p.zabel@pengutronix.de,
+	sboyd@kernel.org,
+	mturquette@baylibre.com,
+	samuel@sholland.org,
+	jernej.skrabec@gmail.com,
+	wens@csie.org,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V2 0/4] Add GPADC for Allwinner H616
+Date: Wed,  5 Jun 2024 12:20:45 -0500
+Message-Id: <20240605172049.231108-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CAFLszTjexpNEjo1sGVs67L0CAgGZLNkyn9RGfHRD7iHak_mtmg@mail.gmail.com>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: rUOAnfgLEEt-4ffMEwQQ78zA6aJnT_VQ
-X-Proofpoint-GUID: rUOAnfgLEEt-4ffMEwQQ78zA6aJnT_VQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-05_02,2024-06-05_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
- malwarescore=0 mlxscore=0 bulkscore=0 clxscore=1015 priorityscore=1501
- suspectscore=0 spamscore=0 impostorscore=0 lowpriorityscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405170001
- definitions=main-2406050130
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jun 05, 2024 at 07:17:35AM -0600, Simon Glass wrote:
-> Hi Elliot,
-> 
-> I am just picking up the discussion here, which was started on another thread.
-> 
-> I can't see why this new feature is needed. We should be able to use
-> compatible strings, as we do now. I added a 'usage' section to the FIT
-> spec [1] which might help. I also incorporated the board revision and
-> variant information and some notes on how to add to the available
-> suffixes.
-> 
-> Does that handle your use case?
+From: Chris Morgan <macromorgan@hotmail.com>
 
--rev and -sku don't fit the versioning scheme for QTI devices, so this
-isn't a generic enough approach. Patch 5 in this series describes the
-versioning scheme for us.
+Add support for the general purpose analog-to-digital converter (GPADC)
+for the Allwinner H616 SoC to support the ADC joysticks as found on the
+Anbernic RG35XX-H.
 
-In the other thread, we had talked about using some regex based approach
-for matching the root node compatible. I haven't had chance to work on
-that proposal and will try to get to it in the next couple weeks.
+Changes since V1:
+ - Split dt-binding include additions to a separate patch.
+ - Removed patch adding compatible string as it was already upstreamed.
+ - Added patch to add the adc-joystick function to the RG35XX-H.
 
-Thanks,
-Elliot
+Chris Morgan (4):
+  dt-bindings: clock: sun50i-h616-ccu: Add GPADC clocks
+  clk: sunxi-ng: h616: Add clock/reset for GPADC
+  arm64: dts: allwinner: h616: Add GPADC device node
+  arm64: dts: allwinner: anbernic-rg35xx-h: Add ADC joysticks
+
+ .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 11 +++
+ .../sun50i-h700-anbernic-rg35xx-h.dts         | 79 +++++++++++++++++++
+ drivers/clk/sunxi-ng/ccu-sun50i-h616.c        |  5 ++
+ drivers/clk/sunxi-ng/ccu-sun50i-h616.h        |  2 +-
+ include/dt-bindings/clock/sun50i-h616-ccu.h   |  1 +
+ include/dt-bindings/reset/sun50i-h616-ccu.h   |  1 +
+ 6 files changed, 98 insertions(+), 1 deletion(-)
+
+-- 
+2.34.1
 
 
