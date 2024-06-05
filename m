@@ -1,137 +1,188 @@
-Return-Path: <devicetree+bounces-73001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6077F8FDB1C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 02:02:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 970448FDB5C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 02:21:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 755841C22533
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 00:02:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 353FA1F222EC
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 00:21:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF6BF376;
-	Thu,  6 Jun 2024 00:02:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 890225256;
+	Thu,  6 Jun 2024 00:21:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IpLVKVIT"
+	dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b="JvGvtY2o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0046e701.pphosted.com (mx0b-0046e701.pphosted.com [67.231.157.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 859D8364;
-	Thu,  6 Jun 2024 00:02:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A76FD173;
+	Thu,  6 Jun 2024 00:21:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.157.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717632149; cv=none; b=lQFpkgdsduLi5DTPJipUdUHboroBZekPmBLZtAk17Qhw8tU4AtKS4CClaChAXuI/ndWz4fUUeIIHYGmjrtHNojVtVPyLLJCAYRzKgTcDkJdvdXKkVJf/1tV99DyY6cC1hwi5jmF1a1o6Qg/ROXcPRtpj7O0FVVx6+PysK/2jVPE=
+	t=1717633279; cv=none; b=AMclPBEPhvQG9B0JEBdKATGqu/VVSYx0jKaUysukO0EGvLHlqyxDsvpH5XLP3kqPjQAidqDRO1jc7GQiboIRcvlMMpDNGELJE1Dgz+jy839wWenE7Jz04GI+lVvGIGJLRaw0qXJeGPU2DsSabkrKY1BWQD1h2mCa6AwwXtkumgs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717632149; c=relaxed/simple;
-	bh=2G2tZzmDv9j7iW8NqCgiq2C2uMvnSDId5qDlOWEF8sY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mYuLAFTtXn0dGLMOr5qOCVhk/4xst5jgkEOC7hW/PNITK41mews/gc1c1Imn/VI5q6jaZbBvQrACN+j8GpN4Fhz3IChm6gTE61JY7okE9Bebq6SijV0qTqF1AHejBrjVjhsAxnDeaLLYa466Toh0jL75KAHBjQR+7pE7YOne7Xo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IpLVKVIT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACBC3C2BD11;
-	Thu,  6 Jun 2024 00:02:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717632149;
-	bh=2G2tZzmDv9j7iW8NqCgiq2C2uMvnSDId5qDlOWEF8sY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IpLVKVITL0BtDoEW8ENkufsrauDT2dEGsHufCcmP/rrP2ajQ/MtwexE2ty3vw2Ect
-	 X+dtDdO9eaX50HARB5RrF3wiZNb9NKrSphLfrkWs+BZA5CNGgLPL5GoCNDzaiG8WCs
-	 NRz9OOELSLIJLFxXV/AO7Xd8X41x0mrtilPe28Ks8nQGt+wAqsg6sZlwCla5a6dCAW
-	 +Yzllipm9Q7rDf60GI9qezkncDtnAFPxeBh+5lYIcl+a9cJFd5L7BepgKH9HSt75Iw
-	 dlo+h+7sIBN3lTMBu91UBuyH6/ZFdg0K0qGXkaDoftXkv/N2B37nnBBWDlVgF30hMu
-	 NjTAMYwi2OE9Q==
-Date: Wed, 5 Jun 2024 18:02:26 -0600
-From: Rob Herring <robh@kernel.org>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Rob Clark <robdclark@gmail.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	MSM <linux-arm-msm@vger.kernel.org>,
-	DT <devicetree@vger.kernel.org>, freedreno@lists.freedesktop.org,
-	Arnaud Vrac <avrac@freebox.fr>,
-	Pierre-Hugues Husson <phhusson@freebox.fr>
-Subject: Re: [PATCH v2 2/4] dt-bindings: display/msm: hdmi: add
- qcom,hdmi-tx-8998
-Message-ID: <20240606000226.GA3460814-robh@kernel.org>
-References: <a2cb1290-9e01-4136-9592-ce439b1096b6@freebox.fr>
- <9d54a12a-ae66-491c-aa1e-96b7daa02201@freebox.fr>
+	s=arc-20240116; t=1717633279; c=relaxed/simple;
+	bh=p/ENPCayabTlcHXB5bmkUIvHlNXCalofVESa/auPyas=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=uoXMmoEA2esXTGqHrFSQjhWrYflWk1OLuUVN3KV3/f1znuukBhFoaAshRlgOm10ojSOUIz5jRELqpn0Fj4T2dWrIrk39EMkt1ZFxt5ux+2S8nn7yAZEPQT0FmtekaxI6OZQRcRFRysJBqT0Fn2eK+OzHqWkVd3kd4JuktnwKIIE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=plexus.com; spf=pass smtp.mailfrom=plexus.com; dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b=JvGvtY2o; arc=none smtp.client-ip=67.231.157.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=plexus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=plexus.com
+Received: from pps.filterd (m0341555.ppops.net [127.0.0.1])
+	by mx0b-0046e701.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 455MCwgp016418;
+	Wed, 5 Jun 2024 23:17:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plexus.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=pps1; bh=GxgW7Z/4D6qnA1EP7/4DABZRqJF
+	cYIl8U5O+vv2vby8=; b=JvGvtY2oOJgeU96xCoEU01HWgsIOSpRphmcyG3pxZpO
+	tfKFQaggbslyEf3lhWpsMHVMB3LH9zLF/xLVqstOPgIC/wQ8t/JMNzP8TDPVrQjC
+	luLcJ+ees1ibkdZI12l23hmZ9hfP0NW42Pwv7Rmy7jX7IBU9I2N03FfFwlZ6/bMe
+	yuT5lvfUXZaHq6L5A2UFz2ZnuV2D8LKH7/j1fVmWHsSY+MVZYTTTynyjKgHkBt3A
+	zIIdnMpekzCZ93QBXEd39dxs3vD2eWIabqcDyTIM8uMSX18oPT/URSSHRWEZT/Ut
+	tAAPYuPlwoHgh37Y8Cr9KEAZFO3LZTlTf9fFqsfgulg==
+Received: from gcc-mail-mx-001.na.plexus.com (outbound.plexus.com [64.215.193.254])
+	by mx0b-0046e701.pphosted.com (PPS) with ESMTPS id 3yjyu387kk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 05 Jun 2024 23:17:48 +0000 (GMT)
+Received: from gcc-mail-mx-004.Na.Plexus.com (10.255.51.224) by
+ gcc-mail-mx-001.na.plexus.com (10.255.51.220) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.37; Wed, 5 Jun 2024 23:17:47 +0000
+Received: from LNDCL34533.neenah.na.plexus.com (10.255.48.203) by
+ gcc-mail-mx-004.Na.Plexus.com (10.255.51.224) with Microsoft SMTP Server id
+ 15.1.2507.37 via Frontend Transport; Wed, 5 Jun 2024 23:17:47 +0000
+From: Danny Kaehn <danny.kaehn@plexus.com>
+Subject: [PATCH v11 0/4] Firmware Support for USB-HID Devices and CP2112
+Date: Wed, 5 Jun 2024 18:12:43 -0500
+Message-ID: <20240605-cp2112-dt-v11-0-d55f0f945a62@plexus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9d54a12a-ae66-491c-aa1e-96b7daa02201@freebox.fr>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOvwYGYC/0XMQQ7CIBCF4as0sxYyINjiynsYF4ROhWiBQDU1T
+ e8ucePyf3n5NqhUAlU4dxsUeocaUmwhxKED5228EwtjG0CiVHhCzVyWQkg2Lqx3ozNaqYEGC+2
+ fC01h/WHXW+uppJktvpD9CxK16NFI5OaojGENsjF++MOSj5f8pPVVuUsz7PsX3hod+pwAAAA=
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Benjamin Tissoires <bentiss@kernel.org>,
+        Andy Shevchenko
+	<andriy.shevchenko@linux.intel.com>,
+        Danny Kaehn <danny.kaehn@plexus.com>
+CC: Jiri Kosina <jikos@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-input@vger.kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Ethan Twardy
+	<ethan.twardy@plexus.com>
+X-Mailer: b4 0.14-dev-d4707
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1717629180; l=3513;
+ i=danny.kaehn@plexus.com; s=20240605; h=from:subject:message-id;
+ bh=p/ENPCayabTlcHXB5bmkUIvHlNXCalofVESa/auPyas=;
+ b=FY5sfQ0DygsVJB7thxf1sooCwz2oGGXbAc7Dk/7a8Hv2i60FCoXJeEysvpIlALz553oY6cgk6
+ nXAhW+JKKj1BU59qnZRnmitbD736G6FjLptNqj2K7AGgMW3MkcCPBRr
+X-Developer-Key: i=danny.kaehn@plexus.com; a=ed25519;
+ pk=+a/HbfS1U7uuw+5dRHN5PsUDyPWbx4dXDnblK41GI2s=
+X-Proofpoint-GUID: h9kO78V1uXoYedV-agMnFFTR0YwhBiQC
+X-Proofpoint-ORIG-GUID: h9kO78V1uXoYedV-agMnFFTR0YwhBiQC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-05_02,2024-06-05_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ priorityscore=1501 phishscore=0 malwarescore=0 suspectscore=0 bulkscore=0
+ mlxlogscore=999 impostorscore=0 adultscore=0 spamscore=0 clxscore=1011
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406050175
 
-On Tue, Jun 04, 2024 at 03:47:20PM +0200, Marc Gonzalez wrote:
-> HDMI TX block embedded in the APQ8098.
-> 
-> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
-> ---
->  Documentation/devicetree/bindings/display/msm/hdmi.yaml | 26 ++++++++++++++++++++++++--
->  1 file changed, 24 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/hdmi.yaml b/Documentation/devicetree/bindings/display/msm/hdmi.yaml
-> index 47e97669821c3..13199f1676f7c 100644
-> --- a/Documentation/devicetree/bindings/display/msm/hdmi.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/hdmi.yaml
-> @@ -19,14 +19,15 @@ properties:
->        - qcom,hdmi-tx-8974
->        - qcom,hdmi-tx-8994
->        - qcom,hdmi-tx-8996
-> +      - qcom,hdmi-tx-8998
->  
->    clocks:
->      minItems: 1
-> -    maxItems: 5
-> +    maxItems: 8
->  
->    clock-names:
->      minItems: 1
-> -    maxItems: 5
-> +    maxItems: 8
->  
->    reg:
->      minItems: 1
-> @@ -151,6 +152,27 @@ allOf:
->              - const: extp
->          hdmi-mux-supplies: false
+This patchset allows USB-HID devices to have Firmware bindings through sharing
+the USB fwnode with the HID driver, and adds such a binding and driver
+implementation for the CP2112 USB to SMBus Bridge (which necessitated the
+USB-HID change). This change allows a CP2112 permanently attached in hardware to
+be described in DT and ACPI and interoperate with other drivers.
 
-You need 'maxItems: 5' for clocks in the prior if/then schema.
+Changes in v11:
+- Eliminate 'gpio' subnode for DT and ACPI for the CP2112 per comment
+    from Rob H.
+- Edit hid-cp2112.c to match for ACPI index and fall back to matching by
+    name (instead of the other way around)
+- Separate CP2112 I2C bus speed configuration into a separate patch
 
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,hdmi-tx-8998
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 8
-> +        clock-names:
-> +          items:
-> +            - const: mdp_core
-> +            - const: mnoc
-> +            - const: iface
-> +            - const: bus
-> +            - const: iface_mmss
-> +            - const: core
-> +            - const: alt_iface
-> +            - const: extp
+Changes in v10:
+- Define an enumeration and mapping for CP2112 ACPI _ADRs and devicetree
+    child node names, and use these in the scanning of child nodes
+- Address other miscellaneous
 
-Please match the order of 8996 for the ones that are common.
+Changes in v9:
+- Add _ADR-based ACPI binding of child nodes (I2C is _ADR Zero, GPIO is _ADR One)
+- Use a loop-based approach for assigning child nodes within probe().
+    As a consequence, hid-cp2112.c no longer maintains references to the
+    child fwnodes during the lifetime of the device. (plese correct if this
+    is actually needed for this use-case)
 
-Rob
+Changes in v8:
+- Apply Review tags retroactively to patches previously reviewed
+
+Changes in v7:
+- Use dev_fwnode when calling fwnod_handle_put in i2c_adapter in hid-cp2112.c
+- Capitalize I2C and GPIO in commit message for patch 0003
+
+Changes in v6:
+- Fix fwnode_handle reference leaks in hid-cp21112.c
+- Simplify hog node pattern in silabs,cp2112.yaml
+
+Changes in v5:
+ - Use fwnode API instead of of_node api in hid-core.c and hid-cp2112.c
+ - Include sda-gpios and scl-gpios in silabs,cp2112.yaml
+ - Additional fixups to silabs,cp2112.yaml to address comments
+ - Submit threaded interrupt bugfix separately from this patchset, as requested
+
+Changes in v4:
+ - Moved silabs,cp2112.yaml to /Documentation/devicetree/bindings/i2c
+
+Changes in v3:
+ - Additional fixups to silabs,cp2112.yaml to address comments
+
+Changes in v2:
+ - Added more detail to silabs,cp2112.yaml dt-binding
+ - Moved silabs,cp2112.yaml to /Documentation/devicetree/bindings/input
+ - Added support for setting smbus clock-frequency from DT in hid-cp2112.c
+ - Added freeing of of_nodes on error paths of _probe in hid-cp2112.c
+
+Danny Kaehn (3):
+  dt-bindings: i2c: Add CP2112 HID USB to SMBus Bridge
+  HID: usbhid: Share USB device firmware node with child HID device
+  HID: cp2112: Fwnode Support
+
+ .../bindings/i2c/silabs,cp2112.yaml           | 113 ++++++++++++++++++
+ drivers/hid/hid-cp2112.c                      |  50 ++++++++
+ drivers/hid/usbhid/hid-core.c                 |   2 +
+ 3 files changed, 165 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i2c/silabs,cp2112.yaml
+
+--
+2.25.1
+
+---
+Danny Kaehn (4):
+      dt-bindings: i2c: Add CP2112 HID USB to SMBus Bridge
+      HID: usbhid: Share USB device firmware node with child HID device
+      HID: cp2112: Fwnode Support
+      HID: cp2112: Configure I2C Bus Speed from Firmware
+
+ .../devicetree/bindings/i2c/silabs,cp2112.yaml     | 105 +++++++++++++++++++++
+ drivers/hid/hid-cp2112.c                           |  43 +++++++++
+ drivers/hid/usbhid/hid-core.c                      |   2 +
+ 3 files changed, 150 insertions(+)
+---
+base-commit: 4f54308c970692e66a2a354ac2bde32f228cedeb
+change-id: 20240605-cp2112-dt-7cdc95448e8a
+
+Best regards,
+-- 
+Danny Kaehn <danny.kaehn@plexus.com>
+
 
