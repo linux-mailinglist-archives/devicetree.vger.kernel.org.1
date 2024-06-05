@@ -1,353 +1,247 @@
-Return-Path: <devicetree+bounces-72808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E37858FD075
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 16:09:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDC0D8FD063
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 16:05:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 150C2B2709C
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 14:03:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 516861F215FB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 14:05:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CC81D512;
-	Wed,  5 Jun 2024 14:03:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE18010A01;
+	Wed,  5 Jun 2024 14:04:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=marvell.com header.i=@marvell.com header.b="aVlq55SL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RcaDeQPj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A00B19D8A6;
-	Wed,  5 Jun 2024 14:03:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=67.231.156.173
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717596204; cv=fail; b=EF2GB3+tqYfy5YDAWg0Kg+cwSlXp3rj6FsON0Byx5/G7d3Zahsq72+hl/vj3iMISB688F0eAoOp9ZgRSk4u2su11eo1T0C77rPegl8G+05T3tJIFyzo4vvGbNuQargy21qohbRGHTMm9dRPiE/8UT7xesdfzd7MueHD89hptAJE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717596204; c=relaxed/simple;
-	bh=parNKc90cVzgOFO0WRHWXA4XEVQdQLdxXc8dHQsLOYk=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=bDMyX+TMZB4OkIovDmPsYERA2AFxgVMul3x+Es0ppat7Cx5e7yOolECz9dJtKgVvs//PS2BUW6/tYjVkZ0JP3YeKVARnWdu3r2WQJX5QPh/oCbH3YFl3ROcX2/btwO970pcHXLEVUShsJldkM2GPU/JRr88IFNFvQgA4XnY4xBc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (1024-bit key) header.d=marvell.com header.i=@marvell.com header.b=aVlq55SL; arc=fail smtp.client-ip=67.231.156.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
-Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
-	by mx0b-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 455DEnrB003943;
-	Wed, 5 Jun 2024 07:02:43 -0700
-Received: from nam10-bn7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2045.outbound.protection.outlook.com [104.47.70.45])
-	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3yjrqug9wv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 05 Jun 2024 07:02:43 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=R6bsWA4nsXbeNn47GVRRQedVkC5CTR5iQrNaVVGDBgw5hpKmXH4pFpNzzJJA3/N3MFc0679ooCAoC/T7VzZv4xkTNcmXEhiZdd7T5SFUxETnicS4yPxjjPWI1iV1/GXWcWITSDOgV4PqWUOjQWb+/WHgcD4jdnTCo/cPuQBgUyyseqlrnqlECqsztMlAy9jhuRPSx2xIW9A5ATkX6rBfiFdchLW7a34eQ4zqYptXJgmjfvQtx9r+UVtzDgJjIgUWIIGl/G6DvQOZLN321c1a4OGkdE/F6eaiBDi0nEeWpiLmPiTsWCn4q0/6zCPQWDngx7CZ152Q1wgGmbsxhYXLjQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bDlaiUs3VU+WQhubdQXUCcdd4SsQ4qq/Ll35qpZAEHU=;
- b=WqEwCmjG8z1fwtGvoMZ6YKsz/CUdaIncEkGCgO/MX024vtr6lwfgWC/ZUf1OLbQjYDICQKTvfVAVW/nYplpx96s8tMNd1QLqewGLx3pvimMQ7Qr6E8LGlHfa7HP6N3OQ2a1NyOMQ61HR6ULGgZfVXuOCYtal34hlfBHS5ioayoDjq3lDu+PtP7rRahVbUF4ppmT1UWPZkC29iFLC4oKNXYYSjjcf4WVJmtQr0jaut+HbYVfOb9L9ZNe3SLdk9IlQ/+ZTuyXSUuunmCWrd/XkSnrAn/U3W6uiFDxHtABb25wc9MYJPvn3VRKRrTM5H1t8akIXdwaxbRooC+E0PWXR3A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
- dkim=pass header.d=marvell.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bDlaiUs3VU+WQhubdQXUCcdd4SsQ4qq/Ll35qpZAEHU=;
- b=aVlq55SLIp/eTaKQxiIXEZxeYYLnHo99pYZXuRs1xaTHe5UKQPzZdzGAapWa2QWV6/7gYZgMOlABxx3qjr4nNJxakpURoFux41qc0PItKLhSn9axZgDFTsIG2wp8oska7of+4yA435WgOnbxzWz2oN8V/KmfRtCkjyuwBQzZLS8=
-Received: from MW4PR18MB5084.namprd18.prod.outlook.com (2603:10b6:303:1a7::8)
- by LV8PR18MB5656.namprd18.prod.outlook.com (2603:10b6:408:182::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.33; Wed, 5 Jun
- 2024 14:02:39 +0000
-Received: from MW4PR18MB5084.namprd18.prod.outlook.com
- ([fe80::1fe2:3c84:eebf:a905]) by MW4PR18MB5084.namprd18.prod.outlook.com
- ([fe80::1fe2:3c84:eebf:a905%5]) with mapi id 15.20.7633.018; Wed, 5 Jun 2024
- 14:02:38 +0000
-Message-ID: <b3658a1a-4ab9-4673-8060-22bdeb39a9ce@marvell.com>
-Date: Wed, 5 Jun 2024 19:32:26 +0530
-User-Agent: Mozilla Thunderbird
-Subject: net: ethernet: stmmac: add management of stm32mp13 for stm32
-To: Christophe Roullier <christophe.roullier@foss.st.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Jose Abreu
- <joabreu@synopsys.com>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Marek Vasut <marex@denx.de>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240604143502.154463-1-christophe.roullier@foss.st.com>
- <20240604143502.154463-8-christophe.roullier@foss.st.com>
-Content-Language: en-US
-From: Amit Singh Tomar <amitsinght@marvell.com>
-In-Reply-To: <20240604143502.154463-8-christophe.roullier@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA1P287CA0015.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a00:35::30) To MW4PR18MB5084.namprd18.prod.outlook.com
- (2603:10b6:303:1a7::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5991125BA;
+	Wed,  5 Jun 2024 14:04:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717596296; cv=none; b=NAoC5M5A7fR3HusF5tu9bTvwJDDRuN+mGWE2LuokXb9f6ciD1dIiQFuLSZmvEewp324NG65jKHUTqG8RTEd33IUWQHdbUD8I9lkHu9G7XvvTBctLBpPKouv3XuR39OLlK6fgds5UxPhbpuHvLzIBxm2lZLpfOryHJc5hw6yBhjY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717596296; c=relaxed/simple;
+	bh=p8+UBElJvT76w9HMbNMCxRJfanMU1vkZtUGBQHCIF4U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Y1zBeCgfNuSShX9oPR9t7dSI0xaPyupp9OdoTOvYNQBliPhvMmw7otuJu3v3CneUrDQs0hKj9MGdDrhyrfdjWJLBDk6kzLTswoqnXDJNeb29AXxDRKBKVJOrogYlhjBWJY8QD8f2Brt64a9lIa10LS4Zvqc6vYPwA6yZzGppsrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RcaDeQPj; arc=none smtp.client-ip=209.85.215.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-6c5a6151ff8so1871789a12.2;
+        Wed, 05 Jun 2024 07:04:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717596294; x=1718201094; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=kOf2pXDoP6bXL3TDZ1k6BJtZjPCNkpQOe/d8aTG5sDs=;
+        b=RcaDeQPjEflfOVOaMSprhlqTRrhRSSo5wDJvgJy23QTwgyH90DpoEtTGkhVvNBofRr
+         kUUNzD6Th1PyH8uWNwt/Zl5zWoOhDzxCuf8cx/1MjbWipOnLMyWG8fgtXRADq8yUSMCf
+         h/pbZmppS/ffOzda1oM+ZXfzF4PK2645RaAD0vLXAx0VBFWvHX8bgmnllYKliKbhg5Ty
+         h33f3JHiH8j1d3WsBbChAZbTPXycCXpallU8lPia32lATaXZ1JYzR/j0Z8VUuNAzcEFK
+         6Vuu/8njD2aoPsAAbPfdFxQ3Yx0aMVSx3LFy51RUOFCystKxtbyLeFDGl2+gRdQSyzUN
+         486w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717596294; x=1718201094;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kOf2pXDoP6bXL3TDZ1k6BJtZjPCNkpQOe/d8aTG5sDs=;
+        b=dAQmUiAGIXDPI5em/ynQD+cf8JGc1edy9rBPFssASG17ZCszpt0QrMZiJDoGw4HMdD
+         QXA76Rm9Ta8yH8inBSD8EwHc8DK+AcU7r0lPM6DPlNTiGcMA7IIM7ZVdoqzAv6Rvooea
+         9LFCuhx3YI9/QHSQGDuRytuU8HA3tsFhSLzpCW5p/DcmFCx6h3IozVmTFIsknkXgrfpN
+         SO+a6tyZ13Ei2qlJw9G1eANhNzKKho9PMBk58dHKiRKH2ACJeRtnqvYi80FOQk7Er1VZ
+         DgYEMeyo7V+IpqTkorFUc/jZ/zHZEW6QeJG5Ak1fFrpS4Nc091SWQ6NiMsPl+HcO6Mll
+         e6aQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWgaFTxUnXbCB6aI+tX47z1a+w1WYHwsn967bXG4vqyupmsYNMemTnA4jUWozdWvzOV4ROO/efD3EgDqLTfJjgFo0pSRufcpq7rwyZXv0LWPqwSrurux6VtHHj6tXf27Iicw+4lbKqRKrXklt1dkBWthKi3KqkMZH2goTV7rrJTN+mDmg==
+X-Gm-Message-State: AOJu0Yyip+VUeZWTKPBpTJtUjua8Wzzq0HSjbm2Xd11jrKglquW4xkYl
+	JgJTsSzbvv7PZYG6tkPdBloiZBeZq5CwTHKI9kDCxDdGtLS3iF3WlW8tWQ==
+X-Google-Smtp-Source: AGHT+IH3wRuBV8148bcuq9f24RSdMLZTS4091K407OpaKZLOI9bMIWh/vMLerG0uzmiR26BwklynMg==
+X-Received: by 2002:a17:90a:cf03:b0:2c1:aefa:1e7f with SMTP id 98e67ed59e1d1-2c27daf6705mr2374303a91.3.1717596293650;
+        Wed, 05 Jun 2024 07:04:53 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c2806ccf77sm1527234a91.51.2024.06.05.07.04.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Jun 2024 07:04:52 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <b83f47cd-2b4f-4681-8f3e-d6123cbf48ce@roeck-us.net>
+Date: Wed, 5 Jun 2024 07:04:51 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW4PR18MB5084:EE_|LV8PR18MB5656:EE_
-X-MS-Office365-Filtering-Correlation-Id: 31d5e637-bead-4aef-9bb7-08dc856828a9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230031|7416005|376005|366007|1800799015|921011;
-X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?UTRDdWNUUGRWeDlXeUk0YVkrSlpYM3BsZ2ZzNEEvZkU3dDN1N1F0dHBud3lU?=
- =?utf-8?B?SmluRGtLMGVUeStQSHdWaGRnbGNtUkRJMy8vZHU3elJHbXJySlZlTHRHQVlW?=
- =?utf-8?B?ajlmRjIxQnFsYWdtakRmb050MVhVakJZeTVjYWY3QWZBQytpT05MK21QZHRM?=
- =?utf-8?B?dHhnb25zV0FPT0R5M2lOREdDODVzSVI5VDVubGJ6dk5YNFUzcXJwYW9wbFcz?=
- =?utf-8?B?cS9hbWlxNDRiN1VzYndKWThMekRJY1pLUnQ1d0w1RU4wQjlLTk42NEZKcjlY?=
- =?utf-8?B?MlE4dlFzZithSHJ1bHdVTVJ5emRYc2NZcFlKME8ySW1GSkVGTmRRQkVJZmpC?=
- =?utf-8?B?WUhHRzFlMkovejRoYlV6YnErZTd5eG95QmdtUXVoVzR3YnpWcjhOaTdwM3l5?=
- =?utf-8?B?Mm9HakwyMVk3YUptenJkK2RhdTNoeEduTDVUV0plTUJ0WGNjMlk0QUkwUVhY?=
- =?utf-8?B?Qk0xUUtYSEI4amUxZkVzNHdCUVllZkdWVEEvYWc1SEFEdGhpQzI1Q1l4UWpV?=
- =?utf-8?B?VFNRSTJGbHJhNmNqWlpMdnQxL2toVG96V2k2Z3M1anR4TVUzZlMrUnZzMGNh?=
- =?utf-8?B?VlhjZFJiTmVOenZPckd5UWdheDdNcWlFbW1uWUNvNXBZMXZ5VnlMbXhKZGI2?=
- =?utf-8?B?SGlDYTludTZOZjNTQUhxbmg4NFhIc3FhbmFWUkJQNUVUMElPZHB0aXNkQjNj?=
- =?utf-8?B?UHR5ZFg4bWNXQXUwcjBrT1FlV1lBOWlZVVQ5RDZYTVl5KzE4TGhMdndJdGlM?=
- =?utf-8?B?UFhpSHZxbWdrb0VDcGlENndZOS9rT2NsalVudnBmNXB3Y2s3RlNZN1BISS9y?=
- =?utf-8?B?VWNmUWVVRGNRL0xZeFlDb0pXN0ZaMEpuejRmeUczdjE3SmZqY0tpOWI5UWdX?=
- =?utf-8?B?b2h6bENBcVdETjF0cE95VytJVmE4NitSckZ5YS9laVQ4MCsrQlJPTVJGVDlq?=
- =?utf-8?B?cS9mRlcrT21pRTAwYWdxakF4aTJ1ZnNCY09wcURhWVlEbTgwMXFWTlpWRzNq?=
- =?utf-8?B?KzM3WlBBeTFRbzdFSVJnb3JGQysxaGZlQ1BCbWpiQjk2ZmJhWHk2YWtvMDlp?=
- =?utf-8?B?d2lWZ1JVZnJCTGJuMkZhNmVMcW15QjRhRkwyRXh3b1RzVGdPUy8vTFZkcEIw?=
- =?utf-8?B?dlROUFpaSkcyL0tCMlZob3dvbDlRMEN5eGNEOXlxdVdIeGlXQUN5bjdLUWxh?=
- =?utf-8?B?ZUF0Y3hVOHo0bjMxUzdlK1BXWVBiOXlsR21ZcWppUmpiMHY5S0lFOHdQejJj?=
- =?utf-8?B?ekExaFExSHpjbm9nTWc3R0xtMGZRN1NtcFZYa0kvNThqd2RVbFN0Z0ZGWU5E?=
- =?utf-8?B?OHZ5clJMY1I1OXB5N2JLTVpNVm5LNG5jZ0VIK3QrUHk0R1grd1RKRmp3SnQz?=
- =?utf-8?B?d0V0Y2RjeEVsL05zVTJrQmk5TzlpNVdYQTVTQVJwL2NpUVNiSTVVSFRhcmxK?=
- =?utf-8?B?VWJxMEJ0b3JFcis0ekt1OWdzTk9XT0phQ1dzODBLRUloSFFRVlpIMjVMbjg3?=
- =?utf-8?B?bmc3bldtd0cvclNzYndaejZsNzV1VDhkNE82TnR2cGZ4TExyZ0V6b1RTQWJX?=
- =?utf-8?B?ajBtdkpKQVY1SC94NjVrYnl3bVRtSks4dWNVRDRtKzhsbmN6bVcxTVhSK3F6?=
- =?utf-8?B?WHMwN2ozTFJ1S0xKcVpCb0xGUDExRWI1RTVJYUQ0MWh5TXhrNEp1MjBMcUF2?=
- =?utf-8?B?cXNuOEx1dFpHZUIzcFF5KzZRT1VOTnpmUFMxZDM3Y1pvRmpmTndPa3VmMHAz?=
- =?utf-8?B?QWNkMTFQbVRydkVrUmtjWnExc2NyOUhFaWNLTXFUU0ZDcVVoRjJ0NTVxVkI4?=
- =?utf-8?Q?08pmfQFRPT4SZfrZADw9LBS5WwI4xazmE3wos=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW4PR18MB5084.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(376005)(366007)(1800799015)(921011);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?V0I3OGwvRElYd2RaN1ZOOUpBUUMrYlhHVVU4NlIzcjgwK1gwdWdHSUdqbjlX?=
- =?utf-8?B?aTI3RHN5ODJIVDl5bit3T2l1cWlqSzdWcm9XbWduSHJlK2hVdDJweVc0RXZx?=
- =?utf-8?B?ekpvdmpFMlhlaitJUmhlZjNmd0N1aU43M0UrNk9BQkRXS3hxOW1QNXlHWTFW?=
- =?utf-8?B?aTZhY1pGNHMvTjdteEM1cXZraXFUVHpKc0J5KzNmU2syRmVnNGRSRmpIakd2?=
- =?utf-8?B?QS8xZVNGaXpmRFV2MkFOUUFrTVNiUDRuM3o3TE95ZTRjWlZHaTlkQjNWTjBP?=
- =?utf-8?B?NmFHQ2JUeTlsNUN0YVlNVkM5Qk8yelUrT1ZEODl3M0hxQzZsdWszWkdkeHJt?=
- =?utf-8?B?WGM4U2pFWUtVWDFZOURoWFNyM3RabXFuMGVlbDNGSXE1TnpwL3RJYmJ6ZmV0?=
- =?utf-8?B?RUtTeXVBQjFpbVBZVTBwaXhjTW5NaVZNYnFiRy9QRU1zUW1TZ3VoM2pnNS8v?=
- =?utf-8?B?cjBBWlNSd0JYaVdvOVlCaG05VmNZMTNYTndZalM1d2JNcG1RSWVSWStCNUxN?=
- =?utf-8?B?VFpLTWdnWUZ5dytNTituYTg4Ym01Q0xPeHlpWWJMRzZyaDNwdVpEdXN6RUIy?=
- =?utf-8?B?WUxYa29UVUZDb1JoUEVQRVB6OWVDaEdxYUowWURFS2hBRWdzc2JaT0srSjBp?=
- =?utf-8?B?Rlp3bllqRFlMRDdJWXdIWjZnSzZTZXpyTkNDUE4zdzJ2c0Y0K2E3dkZSbk95?=
- =?utf-8?B?WFN0ZXBOemRnTitIVGRDbFlPRW9JNW9CTGFhUzJQRnF3c29jSXluNDErTXFO?=
- =?utf-8?B?NlNiTVBnc0NZdVN0UTNRTjJqMEg0UTkwNk1RdzNVL3FOZVBmOVRhZUJENkFL?=
- =?utf-8?B?TzQ1UC9yY0toR0JZSWJZZjM3M0tOL3h6SzVpS2pYdmJjaWdsTlZTWTRkNWor?=
- =?utf-8?B?ZEFVeXJWTmJZdUxncHg3aXMxcVFaY0c4UklYUUNKZlhERnJVY3g2Q3pEZDJo?=
- =?utf-8?B?MGhwWUlhdjMrV3VsYzFqUUUxZE5NdTFDekVHTkI1MisvUFlYS2tqNWd3RDM4?=
- =?utf-8?B?YmxydS9aaU5Wcm1KdU54KzJqcmltdURsT1NrbkVKVFgzaHVGUzZiQkpFd09k?=
- =?utf-8?B?S0Izcy9VV1FXVEkraVBqcEs3eUdOeFFCczVlTWsyU0owbkVwVU9KY2tUQTJ5?=
- =?utf-8?B?eHIweWZPMlJMM0xHNkVkZ3EwM2thb2NjRk9PUHJCUzM0RG1kY1NaSnFZS2VH?=
- =?utf-8?B?bU5qVi8veW5YRzIxUnVnUlR1SERJSDQvMlpTYmJ6NnJOa3BWTWJBcE9GU25R?=
- =?utf-8?B?K2IrRjdnRVNpaWNwZ3RBd0llUTdoOUNBOVkycm1acG5hK1RtQWpKallBenB4?=
- =?utf-8?B?QXVzektxRWJwNkEyQWZucVRhZ2MvaTdlZDAwTDhJUUcrMFl6TUhXdzBVeEEw?=
- =?utf-8?B?ZkRkRm5tYWFjOHVsWkRVM0tKVjBGSzdjeVg2ZS9OSlhyZEJKZWxwbHJSSWNJ?=
- =?utf-8?B?MlNXVmpCZFFnd1N3VkpDbUNrRXJXNG9mZXFDU013MmtOOXgrY0Vab2lMQWVM?=
- =?utf-8?B?YmxOYXpxMzQvRWpqK3I0S1JMZjZTd3lsR2dvQmVVK0xRWkc1Y0c5eE5VTDlQ?=
- =?utf-8?B?WTJ0OE80YnRlQlFOMHRZWWdtL1RkUzhLdzlmbWUyWmRvejduOEVoNUtEMEFO?=
- =?utf-8?B?OVFoWDBSMHY0bmJNY1FueVRIdWU2SGdWV1RRV29vZDFLbFFidkl0dmJ1Y0gv?=
- =?utf-8?B?cWxWZnMrV2FaemorNHl4S2xwZitDRGtKUml0S0I2bnlJSFZGMlhNZVpIUkUr?=
- =?utf-8?B?YjJoQ3VLTE56UWdHc3dpL1N4eWdVS1ViUWVSV1ZmaVFPU1J3VEkyK2VjZ1Vv?=
- =?utf-8?B?OXdwTzIwOUNpM0tEME4rOEowT3lhWUY5ajc4ci9OTDcwUnFTbGlmVE5haHJ1?=
- =?utf-8?B?NjduQzkwMUlwSDA3SVZPbUVSU0YzV3h1RkE2RlhKRzU0M21mNG92UVNlNG9z?=
- =?utf-8?B?VkhoNms2V2doV3FmVDFSalE0Yk5SbjJZaklFc2FCdEFLQ2d5MHBvZHI1M3Aw?=
- =?utf-8?B?ZDBJbnR3bnJlZG9WU3BjZlEySk9YRW5GaTE0dk9hRG0xS0lqYjd3NERNaE96?=
- =?utf-8?B?R1pSQWNwM2VzZXZLalNpb3l6SUs3OWZWa2ExNm41YlR5ZnpORVc5cUlQZzJs?=
- =?utf-8?Q?V15m6GQdNhkl2OENsttrnE6ey?=
-X-OriginatorOrg: marvell.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 31d5e637-bead-4aef-9bb7-08dc856828a9
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR18MB5084.namprd18.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2024 14:02:38.7794
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xgWV8F8jPL6PhY4f44OGC8OR+b9SZJLaQ05xK/Yc7ebtjeNjsDhndTvH0DZijCUkSJDm93vSBDdL3183J6IBFw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR18MB5656
-X-Proofpoint-ORIG-GUID: 9nWqLb_JRi57zEIW64EVO_0ov2cjcyHp
-X-Proofpoint-GUID: 9nWqLb_JRi57zEIW64EVO_0ov2cjcyHp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-05_02,2024-06-05_02,2024-05-17_01
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4a 6/6] hwmon: (spd5118) Add configuration option for
+ auto-detection
+To: =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
+Cc: linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ =?UTF-8?Q?Ren=C3=A9_Rebe?= <rene@exactcode.de>, Armin Wolf <W_Armin@gmx.de>,
+ Stephen Horvath <s.horvath@outlook.com.au>
+References: <20240604040237.1064024-7-linux@roeck-us.net>
+ <20240605021907.4125716-1-linux@roeck-us.net>
+ <85236eae-f5a2-408c-9bbf-fe547b0c32d5@t-8ch.de>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <85236eae-f5a2-408c-9bbf-fe547b0c32d5@t-8ch.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-> Add Ethernet support for STM32MP13.
-> STM32MP13 is STM32 SOC with 2 GMACs instances.
-> GMAC IP version is SNPS 4.20.
-> GMAC IP configure with 1 RX and 1 TX queue.
-> DMA HW capability register supported
-> RX Checksum Offload Engine supported
-> TX Checksum insertion supported
-> Wake-Up On Lan supported
-> TSO supported
+On 6/5/24 02:22, Thomas Weißschuh wrote:
+> On 2024-06-04 19:19:07+0000, Guenter Roeck wrote:
+>> With SPD5118 chip detection for the most part handled by the i2c-smbus
+>> core using DMI information, the spd5118 driver no longer needs to
+>> auto-detect spd5118 compliant chips.
+>>
+>> Auto-detection by the driver is still needed on systems with no DMI support
+>> or on systems with more than eight DIMMs and can not be removed entirely.
+>> However, it affects boot time and introduces the risk of mis-identifying
+>> chips. Add configuration option to be able to disable it on systems where
+>> chip detection is handled outside the driver.
+>>
+>> Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>
+>> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
+>> ---
+>> Sent as v4a to avoid resending the entire series.
+>>
+>> v4a:
+>>      Do not auto-select SENSORS_SPD5118_DETECT if DMI is disabled
+>>      Modify help text of SENSORS_SPD5118_DETECT
+>>      Default SENSORS_SPD5118_DETECT to y if (!DMI || !X86)
+>>       
+>> v4: New patch
+>>
+>>   drivers/hwmon/Kconfig   | 19 +++++++++++++++++++
+>>   drivers/hwmon/spd5118.c |  4 +++-
+>>   2 files changed, 22 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+>> index 7a84e7637b51..d5eced417fc3 100644
+>> --- a/drivers/hwmon/Kconfig
+>> +++ b/drivers/hwmon/Kconfig
+>> @@ -2193,6 +2193,25 @@ config SENSORS_SPD5118
+>>   	  This driver can also be built as a module. If so, the module
+>>   	  will be called spd5118.
+>>   
+>> +config SENSORS_SPD5118_DETECT
+>> +	bool "Enable detect function"
+>> +	depends on SENSORS_SPD5118
+>> +	default (!DMI || !X86)
+>> +	help
+>> +	  If enabled, the driver auto-detects if a chip in the SPD address
+>> +	  range is compliant to the SPD51888 standard and auto-instantiates
+>> +	  if that is the case. If disabled, SPD5118 compliant devices have
+>> +	  to be instantiated by other means. On X86 systems with DMI support
+>> +	  this will typically be done from DMI DDR detection code in the
+>> +	  I2C SMBus subsystem. Devicetree based systems will instantiate
+>> +	  attached devices if the DIMMs are listed in the devicetree file.
+>> +
+>> +	  Disabling the detect function will speed up boot time and reduce
+>> +	  the risk of mis-detecting SPD5118 compliant devices. However, it
+>> +	  may result in missed DIMMs under some circumstances.
+>> +
+>> +	  If unsure, say Y.
+>> +
+>>   config SENSORS_TC74
+>>   	tristate "Microchip TC74"
+>>   	depends on I2C
+>> diff --git a/drivers/hwmon/spd5118.c b/drivers/hwmon/spd5118.c
+>> index 5cb5e52c0a38..19d203283a21 100644
+>> --- a/drivers/hwmon/spd5118.c
+>> +++ b/drivers/hwmon/spd5118.c
+>> @@ -313,7 +313,7 @@ static bool spd5118_vendor_valid(u8 bank, u8 id)
+>>   }
+>>   
+>>   /* Return 0 if detection is successful, -ENODEV otherwise */
+>> -static int spd5118_detect(struct i2c_client *client, struct i2c_board_info *info)
+>> +static int __maybe_unused spd5118_detect(struct i2c_client *client, struct i2c_board_info *info)
+>>   {
+>>   	struct i2c_adapter *adapter = client->adapter;
+>>   	int regval;
+>> @@ -647,7 +647,9 @@ static struct i2c_driver spd5118_driver = {
+>>   	},
+>>   	.probe		= spd5118_probe,
+>>   	.id_table	= spd5118_id,
+>> +#ifdef CONFIG_SENSORS_SPD5118_DETECT
+>>   	.detect		= spd5118_detect,
+>> +#endif
+>>   	.address_list	= normal_i2c,
+>>   };
 > 
-> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
-> ---
->   .../net/ethernet/stmicro/stmmac/dwmac-stm32.c | 50 +++++++++++++++----
->   1 file changed, 40 insertions(+), 10 deletions(-)
+> For the if-deffery I proposed something during the last review,
+> I'm not sure if you saw it. If you did, please ignore this comment:
 > 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
-> index bed2be129b2d2..e59f8a845e01e 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
-> @@ -84,12 +84,14 @@ struct stm32_dwmac {
->   	struct clk *clk_eth_ck;
->   	struct clk *clk_ethstp;
->   	struct clk *syscfg_clk;
-> +	bool is_mp13;
->   	int ext_phyclk;
->   	int enable_eth_ck;
->   	int eth_clk_sel_reg;
->   	int eth_ref_clk_sel_reg;
->   	int irq_pwr_wakeup;
->   	u32 mode_reg;		 /* MAC glue-logic mode register */
-> +	u32 mode_mask;
->   	struct regmap *regmap;
->   	u32 speed;
->   	const struct stm32_ops *ops;
-> @@ -102,8 +104,8 @@ struct stm32_ops {
->   	void (*resume)(struct stm32_dwmac *dwmac);
->   	int (*parse_data)(struct stm32_dwmac *dwmac,
->   			  struct device *dev);
-> -	u32 syscfg_eth_mask;
->   	bool clk_rx_enable_in_suspend;
-> +	u32 syscfg_clr_off;
->   };
->   
->   static int stm32_dwmac_clk_enable(struct stm32_dwmac *dwmac, bool resume)
-> @@ -227,7 +229,14 @@ static int stm32mp1_configure_pmcr(struct plat_stmmacenet_data *plat_dat)
->   
->   	switch (plat_dat->mac_interface) {
->   	case PHY_INTERFACE_MODE_MII:
-> -		val = SYSCFG_PMCR_ETH_SEL_MII;
-> +		/*
-> +		 * STM32MP15xx supports both MII and GMII, STM32MP13xx MII only.
-> +		 * SYSCFG_PMCSETR ETH_SELMII is present only on STM32MP15xx and
-> +		 * acts as a selector between 0:GMII and 1:MII. As STM32MP13xx
-> +		 * supports only MII, ETH_SELMII is not present.
-> +		 */
-> +		if (!dwmac->is_mp13)	/* Select MII mode on STM32MP15xx */
-> +			val |= SYSCFG_PMCR_ETH_SEL_MII;
->   		break;
->   	case PHY_INTERFACE_MODE_GMII:
->   		val = SYSCFG_PMCR_ETH_SEL_GMII;
-> @@ -256,13 +265,16 @@ static int stm32mp1_configure_pmcr(struct plat_stmmacenet_data *plat_dat)
->   
->   	dev_dbg(dwmac->dev, "Mode %s", phy_modes(plat_dat->mac_interface));
->   
-> +	/* Shift value at correct ethernet MAC offset in SYSCFG_PMCSETR */
-> +	val <<= ffs(dwmac->mode_mask) - ffs(SYSCFG_MP1_ETH_MASK);
-> +
->   	/* Need to update PMCCLRR (clear register) */
-> -	regmap_write(dwmac->regmap, reg + SYSCFG_PMCCLRR_OFFSET,
-> -		     dwmac->ops->syscfg_eth_mask);
-> +	regmap_write(dwmac->regmap, dwmac->ops->syscfg_clr_off,
-> +		     dwmac->mode_mask);
->   
->   	/* Update PMCSETR (set register) */
->   	return regmap_update_bits(dwmac->regmap, reg,
-> -				 dwmac->ops->syscfg_eth_mask, val);
-> +				 dwmac->mode_mask, val);
->   }
->   
->   static int stm32mp1_set_mode(struct plat_stmmacenet_data *plat_dat)
-> @@ -303,7 +315,7 @@ static int stm32mcu_set_mode(struct plat_stmmacenet_data *plat_dat)
->   	dev_dbg(dwmac->dev, "Mode %s", phy_modes(plat_dat->mac_interface));
->   
->   	return regmap_update_bits(dwmac->regmap, reg,
-> -				 dwmac->ops->syscfg_eth_mask, val << 23);
-> +				 SYSCFG_MCU_ETH_MASK, val << 23);
->   }
->   
->   static void stm32_dwmac_clk_disable(struct stm32_dwmac *dwmac, bool suspend)
-> @@ -348,8 +360,15 @@ static int stm32_dwmac_parse_data(struct stm32_dwmac *dwmac,
->   		return PTR_ERR(dwmac->regmap);
->   
->   	err = of_property_read_u32_index(np, "st,syscon", 1, &dwmac->mode_reg);
-> -	if (err)
-> +	if (err) {
->   		dev_err(dev, "Can't get sysconfig mode offset (%d)\n", err);
 
-Shouldn't we decrement the refcount of np (‎of_node_put‎) before 
-returning from this point?
+I missed that, sorry (and I hope I didn't miss anything else).
 
-> +		return err;
-> +	}
-> +
-> +	dwmac->mode_mask = SYSCFG_MP1_ETH_MASK;
-> +	err = of_property_read_u32_index(np, "st,syscon", 2, &dwmac->mode_mask);
-> +	if (err)
-> +		pr_debug("Warning sysconfig register mask not set\n");
->   
->   	return err;
->   }
-> @@ -361,6 +380,8 @@ static int stm32mp1_parse_data(struct stm32_dwmac *dwmac,
->   	struct device_node *np = dev->of_node;
->   	int err = 0;
->   
-> +	dwmac->is_mp13 = of_device_is_compatible(np, "st,stm32mp13-dwmac");
-> +
->   	/* Ethernet PHY have no crystal */
->   	dwmac->ext_phyclk = of_property_read_bool(np, "st,ext-phyclk");
->   
-> @@ -540,8 +561,7 @@ static SIMPLE_DEV_PM_OPS(stm32_dwmac_pm_ops,
->   	stm32_dwmac_suspend, stm32_dwmac_resume);
->   
->   static struct stm32_ops stm32mcu_dwmac_data = {
-> -	.set_mode = stm32mcu_set_mode,
-> -	.syscfg_eth_mask = SYSCFG_MCU_ETH_MASK
-> +	.set_mode = stm32mcu_set_mode
->   };
->   
->   static struct stm32_ops stm32mp1_dwmac_data = {
-> @@ -549,13 +569,23 @@ static struct stm32_ops stm32mp1_dwmac_data = {
->   	.suspend = stm32mp1_suspend,
->   	.resume = stm32mp1_resume,
->   	.parse_data = stm32mp1_parse_data,
-> -	.syscfg_eth_mask = SYSCFG_MP1_ETH_MASK,
-> +	.syscfg_clr_off = 0x44,
-> +	.clk_rx_enable_in_suspend = true
-> +};
-> +
-> +static struct stm32_ops stm32mp13_dwmac_data = {
-> +	.set_mode = stm32mp1_set_mode,
-> +	.suspend = stm32mp1_suspend,
-> +	.resume = stm32mp1_resume,
-> +	.parse_data = stm32mp1_parse_data,
-> +	.syscfg_clr_off = 0x08,
->   	.clk_rx_enable_in_suspend = true
->   };
->   
->   static const struct of_device_id stm32_dwmac_match[] = {
->   	{ .compatible = "st,stm32-dwmac", .data = &stm32mcu_dwmac_data},
->   	{ .compatible = "st,stm32mp1-dwmac", .data = &stm32mp1_dwmac_data},
-> +	{ .compatible = "st,stm32mp13-dwmac", .data = &stm32mp13_dwmac_data},
->   	{ }
->   };
->   MODULE_DEVICE_TABLE(of, stm32_dwmac_match);
+> 
+> .address_list is also only needed with CONFIG_SENSORS_SPD5118_DETECT.
+> 
+> If you use
+> 
+> .detect         = IS_ENABLED(CONFIG_SENSORS_SPD5118_DETECT) ?  spd5118_detect : NULL,
+> .address_list   = IS_ENABLED(CONFIG_SENSORS_SPD5118_DETECT) ?  normal_i2c : NULL,
+> 
+> then the need for __maybe_unused goes away and type checking is a tiny
+> bit better.
+
+It does let me drop the #ifdef, so I agree it is a bit better.
+I made that change, but I'll wait for a couple of days before sending
+the updated version to give others time for additional feedback.
+
+Thanks,
+Guenter
 
 
