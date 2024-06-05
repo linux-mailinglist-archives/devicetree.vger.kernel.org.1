@@ -1,59 +1,63 @@
-Return-Path: <devicetree+bounces-72873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9E4B8FD36A
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 18:59:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 520778FD36F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 19:00:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77E24288875
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 16:59:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF87B1F266D8
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 17:00:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D0F5194A50;
-	Wed,  5 Jun 2024 16:57:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4702188CBA;
+	Wed,  5 Jun 2024 16:58:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eLZyCVBF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n5KRPFLC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52BA019306C;
-	Wed,  5 Jun 2024 16:57:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A75AA1CD25;
+	Wed,  5 Jun 2024 16:58:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717606649; cv=none; b=eBMPf2sNXr7Z6WVNc+7lmbSgdwx/wQj9iGqDOFGIS5WSF1UR1C7V9uMgiDsIRlUWtnZwrH+ALspDaqdpOcEcN9Az9sxRKJHUkO9uFxZfLDii02yWWKsGPxoaBUeqwg0/jS0GzyndD4srbDFzsQCvqbgnRu4rBgzBM4aq1gE11GU=
+	t=1717606717; cv=none; b=T4bim64hRdfV3h8bEfBfOuHzhmdNL+JG3AUrcN9/XtSggtVefzrtZ+rwugFmZvy6gY+MtwZHJT7PwDUpbO5k4qJpkASKXcRziBrgv9M3yGzS6AcMIPMC3dzunodCCdr3lUGZzwE74vp9GfmAIA5R39xU0dT3fGiNYQtOE/6t39E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717606649; c=relaxed/simple;
-	bh=FD27ViyGV18OSGUplRlcQnSe0DGwPMKCKxkI308y6hg=;
+	s=arc-20240116; t=1717606717; c=relaxed/simple;
+	bh=y1dZJ8vNM9lhOuh+/XbBtRYjaxOHJLUue9NVr17fWL8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Wm4eyXIS+FXdxerr2In0m2pUXQXKIo+V/KF4d2OF9UTcATH+x4mPDqcZD3Ss35hVLt4H6xvWFQmDr8iqGXYb7mjkhGdZgU77mCZU+Ub9//2Uz3IwFWbh6NkSiERDBWrrz3kS6j+oi6ka5REPd+srI9V4ij0y3dEG4uu9nb0/4Mk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eLZyCVBF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 047E8C2BD11;
-	Wed,  5 Jun 2024 16:57:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=sJcV5tB961Uapkhi1vPA51bgfw2aXRIBdif73QwyFxfDTKNNLZNfVdD7eBUw3LO44gQ0eqnimcCnz58gCoInzqb0m3BFV2RLtUxsPwlibLjTzK25nJzF/e/N8rBHcudwwoBRZn4ptSpUotGSnZ0AiKD5DjpoGllWmZiv/UD01CM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n5KRPFLC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 885C0C2BD11;
+	Wed,  5 Jun 2024 16:58:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717606648;
-	bh=FD27ViyGV18OSGUplRlcQnSe0DGwPMKCKxkI308y6hg=;
+	s=k20201202; t=1717606717;
+	bh=y1dZJ8vNM9lhOuh+/XbBtRYjaxOHJLUue9NVr17fWL8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eLZyCVBF3PgamwworMIf6AHsDmz8ehLWwHHzOfGtUvPqtJj9ryE4sE2Wqo6g/ANRF
-	 xj1mgz55QDhgFjvLf7aIDlGktrKg7WkCFFHzW/qUFnU0EKx8PUiqERfdMmHCj0h7i2
-	 50xI5WLC6SEiKWgjA6XbW4V9tIkmwAXN5v/R+IjFraOU668RDDRCmsMfpoueTTX7Kn
-	 usxGyec9yH/bxMdvI9NbCoJky4tvf3qv6g18yzyPMjv2QpEu7LM0EXxoXJ/sMFTJIU
-	 dFYoFfQmNkunf0/mDX8QuWFIN0/y7wVXmo48n7QVLa+YWFTQIW8HYipSbsINU1ukE/
-	 w5rVKPZwZm3zQ==
-Date: Wed, 5 Jun 2024 17:57:24 +0100
+	b=n5KRPFLCWESpqX/8tx55LSPg//Y/NY+cG+D3FaYcI9ay7NlTrE65pQiH86kN9S5Im
+	 kIalpke02BuBB2/Sz8NXAKUYxRx2xij9PWRtucJsxhf2RbCa6tp0pswi1m3H+M7Rb5
+	 IWFldkIZm8DkUbcAHM+45MEyOpv5gFAdCdpttPVslHvWCwi+1tEfl9aF9QJYciE5ly
+	 zldCd/+tOuLZV0uM7DFN579svDBE1zTk6Kwfvt8pyjtpQMta3SX4qKDYPOD77ieEeg
+	 3UDEuVbRNILs4m5pYF0pCyN+JnnVug6e345fZ8GVmDy8cFTC/DkYsKIodDSyqkmCor
+	 QNST7qnkb2KQw==
+Date: Wed, 5 Jun 2024 17:58:32 +0100
 From: Conor Dooley <conor@kernel.org>
 To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Martin Kurbanov <mmkurbanov@sberdevices.ru>,
-	linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: spi: amlogic,a1-spifc: add missing
- power-domains
-Message-ID: <20240605-angelic-stopping-1e122391a22e@spud>
-References: <20240605-topic-amlogic-upstream-bindings-fixes-power-domains-spifc-v1-1-380f29ba4a16@linaro.org>
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: iio: adc: amlogic,meson-saradc: add
+ optional power-domains
+Message-ID: <20240605-abdomen-starch-4fd4d7ead431@spud>
+References: <20240605-topic-amlogic-upstream-bindings-fixes-power-domains-sardac-v1-1-40a8de6baa59@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,37 +65,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Bu7wGZEM//Ti79k+"
+	protocol="application/pgp-signature"; boundary="WFIeevaQAu8dnksl"
 Content-Disposition: inline
-In-Reply-To: <20240605-topic-amlogic-upstream-bindings-fixes-power-domains-spifc-v1-1-380f29ba4a16@linaro.org>
+In-Reply-To: <20240605-topic-amlogic-upstream-bindings-fixes-power-domains-sardac-v1-1-40a8de6baa59@linaro.org>
 
 
---Bu7wGZEM//Ti79k+
+--WFIeevaQAu8dnksl
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 05, 2024 at 11:37:45AM +0200, Neil Armstrong wrote:
-> On the Amlogic A1, the SPI FC controller can require a power-domain to
-> operate, add it as optional.
->=20
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+On Wed, Jun 05, 2024 at 11:37:08AM +0200, Neil Armstrong wrote:
+> On newer SoCs, the SAR ADC hardware can require a power-domain to operate,
+> add it as optional.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+What about the older socs that don't have power domains, the property is
+now usable there?
 
-Thanks,
-Conor.
-
---Bu7wGZEM//Ti79k+
+--WFIeevaQAu8dnksl
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmCY9AAKCRB4tDGHoIJi
-0theAP9jxeccC6BpCS7CpOK3U/rvoSkfEMhfqnZUhmHiwd8dnAD/Zb07r96Bs/+D
-vUvyrPmEJZj7ALuOxVkjKLf4oWa+dgc=
-=2DHM
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmCZOAAKCRB4tDGHoIJi
+0p9tAP9Q1Lzbf5N1VQfKderTZKLcQY8ND6Nvcw+SgZ1tiYKD9QD/bp3ABMjrpCdn
+Z4LvNlFSOpdYuSZJGBv9gcVsHJlUJQQ=
+=Idog
 -----END PGP SIGNATURE-----
 
---Bu7wGZEM//Ti79k+--
+--WFIeevaQAu8dnksl--
 
