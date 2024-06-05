@@ -1,482 +1,266 @@
-Return-Path: <devicetree+bounces-72801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBC7F8FD035
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 15:56:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E98D8FD03D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 15:56:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BCC129CCD8
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:56:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A8C629D5EB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 13:56:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B244D2E6;
-	Wed,  5 Jun 2024 13:53:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6EA7D2E6;
+	Wed,  5 Jun 2024 13:56:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="kc6JtuaT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y1zkHWmp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3BC61754B;
-	Wed,  5 Jun 2024 13:53:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.152.168
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5452C132;
+	Wed,  5 Jun 2024 13:56:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717595622; cv=none; b=GA7K0b+y1BPCOYB8JHR8z/21wMN8McycNR6kQlIIZfiZrfVb1+aYX7l/8jJZSWEV6t01JWzQ7lGcbQvlPvC5B43ZecRcBy0mY9A4jgsIey7lQ9m4S1KL+6T09gfpsqBn5g4CtzCtjQgcQwyzNheU41/RQMP6cRw3kh7H0+Mr5yQ=
+	t=1717595773; cv=none; b=Ob5LfYMljNwqU/yxkGERqqvqZN72VOv1t4jr4JmTKp88PdozC25qou7RuFW9bZVin/CdMhzyKw0dHF8LGDqPu51UdVi/ySz30xbhk9mUuC7DJAdY2id6SFLNp4b60PqoZTCXWcDPyyDRDbsLNVoWKPHZxSTfIH05GICc55LfiXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717595622; c=relaxed/simple;
-	bh=p9FS55sVWPPGP62XgRTpSwJRof6LmsxlJdk3vwWo2lI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dNAq8qZ8CQMI2QW/kie4lThehVE7HozMaRObq7wRpEJNFZYKrls0pRJ5Yh8xudp2XgDyt61ZXTdjfROOvaP5FHp5OVLhdrFNWnuVBCBvbNBZZ5m5fwDdcByvVrbT6pw/Id0FTqm4fUtATn8z9/Io1eE3U40UoLkWyz8aRjtRyLc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=kc6JtuaT; arc=none smtp.client-ip=67.231.152.168
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-	by mx0b-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 455BY7gk027334;
-	Wed, 5 Jun 2024 08:53:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=
-	PODMain02222019; bh=Q3JTcrGXXyM2L8TxxmCI2bzNXnKKi72mxePhEJkPreM=; b=
-	kc6JtuaT/N0+GhpuTFmjc8xPREOYH3yBxyEH1XxIfw0INArhIJqnnMswli+35Pp7
-	PVxwjucaB2wawNg7XJYYMqtO3MocMNz/jzBkayLnLanXIDCBp4TwZegkjVqFvHiW
-	nM2r652WnuVtM+/Rq+Kl1TKb2tTPioIe0K+OJtrhzsYcE0aoCXSds/Q21gQSL9tL
-	gjISE/N+Ka+ynbs2FmRHGC0S0b45/7TtlbrXP5/0tTgA/eoQ/fFK611/GjOJU0Ko
-	8pe0pNcl9o4P+gyzC3OhF9MDuq9rtJZF8De9n7FFsNjrHxLiQLW3MNC4Mem4xfav
-	BKS+deqBelu+AiAfzaA6nQ==
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3yg02hm0m5-2
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 05 Jun 2024 08:53:19 -0500 (CDT)
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 5 Jun 2024
- 14:53:10 +0100
-Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1544.9 via Frontend Transport; Wed, 5 Jun 2024 14:53:10 +0100
-Received: from aus-sw-rshr002.ad.cirrus.com (aus-sw-rshr002.ad.cirrus.com [141.131.145.42])
-	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id 4C06B820249;
-	Wed,  5 Jun 2024 13:53:08 +0000 (UTC)
-From: James Ogletree <jogletre@opensource.cirrus.com>
-To: <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <lee@kernel.org>, <broonie@kernel.org>, <jeff@labundy.com>
-CC: <patches@opensource.cirrus.com>, <linux-sound@vger.kernel.org>,
-        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        James Ogletree
-	<jogletre@opensource.cirrus.com>,
-        David Rhodes
-	<drhodes@opensource.cirrus.com>
-Subject: [PATCH v11 5/5] ASoC: cs40l50: Support I2S streaming to CS40L50
-Date: Wed, 5 Jun 2024 13:52:49 +0000
-Message-ID: <20240605135249.361082-6-jogletre@opensource.cirrus.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240605135249.361082-1-jogletre@opensource.cirrus.com>
-References: <20240605135249.361082-1-jogletre@opensource.cirrus.com>
+	s=arc-20240116; t=1717595773; c=relaxed/simple;
+	bh=fEWnPn/LF0XpawezW7e5tZ6bGnBM0nB8OqKarFOWnbw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KNtDjXW2Dx5DDxFDJNBXkuWPKwybmAAR7XWFe/PLqMh7ypbIEKHqz+4rIRG0SZ86nuJ+222qdvfaavdo9CLpZGqPFgT4nJYxFfSC6pRd8tFm2ReWTZ5tpQn4q63nfaa03NS0l/uubwkVemQKGIVowjJtC3ti12Ps3hQsWJvC0Ts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y1zkHWmp; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1f67fa9cd73so7086715ad.0;
+        Wed, 05 Jun 2024 06:56:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717595771; x=1718200571; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LpF7MY6zGEBbIyxQfDuVxoxQilPPnjYvJErElpnvtAw=;
+        b=Y1zkHWmpx2zfTuLnD2uncbziDQxUZXdNKuCMJ8nVSz+mlczV4vvbmjOWUOzqHaZIog
+         hINigxQhw6ElXhxilbmCKGf8/BS9+z1BTGhyMhNyhFa5rCHB1o0/vXAmpKbk4bm1ZF3j
+         jWEex4jszm7Vhg6+NV6+SOiiyIw1bqthDsgAD6J4ct/k7/1Xhq+hwlTBC93coaCrqzQj
+         r+kvx4ZO/gAncnhF0fRR1iWx9Rz6Zyr25lEdccCQZZ8Uo/C8MyjlzbemwDAYI36JXT00
+         3PuPePRrTLvhp5N/CautogSEleu3GI6lovlPU4I2+KhsQQyovG9UkVwD7v/NmG93pLjI
+         qL4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717595771; x=1718200571;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LpF7MY6zGEBbIyxQfDuVxoxQilPPnjYvJErElpnvtAw=;
+        b=cb1RNzSXZsC+FAj1N2Gz3I09VwYEJFUWY32Q4olAhYXIo/cg+cJWyUpLC+BoCqmMQh
+         l7QBDd9v17bmNWSX3f7raYz+z/tVXInmEhwEPaVUgcyEh8xxTHeU9XLMyOeEfs+qTL1G
+         P7LUKH1Q+A5XfSWa25WzK265wL2KoQDJrsUTpDU1Q4+vS/IKZzUIsWABxF/YMow3fslo
+         8JPGS8m1yjEE3hr+RwlWfBmNSIzoTNA0sbebzmpW7gNisYUnbSG5fq7jJIghLyDSkULW
+         /grhlhS04vfKCmuL6tZhsiq1iggV40dIMeJ3lmFu966FZ+l0wKZBcdHkeaJogeUi8A3J
+         MIEA==
+X-Forwarded-Encrypted: i=1; AJvYcCXKFpsrCr2Md06u8gia6so1BQ5vicDsXkMwH6B9TTpuDI9D80fZ4Fyg2cD0ajyLvQC+2AIZSNx65t1611awF/E4SBD8aHnePk9GuGHlMZjcwW8PsR+zpdvcm1gFkfyg63K+vyJvzlCakzKBBsHKwX1UNFBiy7/iYThXS6d55XpLqszZ9Q==
+X-Gm-Message-State: AOJu0YyzpE+5SGHX0Hm9sqFfwVuiF3uT8+dXxuRvf8gsqdhpJmWxKxdf
+	rfcG1yNG69Q0/48hAdq1NVpTRX86KxI9iXp93vCgY4QAVsFkud3h
+X-Google-Smtp-Source: AGHT+IHCHGWPHo/mhx3fAHCUvV1+YdW3pvIpkYURnyIqdl5d+GU6Ur6AxTYH74RbJwPjP8dHnuQOeQ==
+X-Received: by 2002:a17:902:ce90:b0:1f6:3a73:1eac with SMTP id d9443c01a7336-1f6a569e528mr45489525ad.17.1717595770925;
+        Wed, 05 Jun 2024 06:56:10 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f6a5258b54sm18318125ad.53.2024.06.05.06.56.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jun 2024 06:56:09 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Wed, 5 Jun 2024 06:56:08 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Paul Menzel <pmenzel@molgen.mpg.de>
+Cc: linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	=?iso-8859-1?Q?Ren=E9?= Rebe <rene@exactcode.de>,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
+	Armin Wolf <W_Armin@gmx.de>,
+	Stephen Horvath <s.horvath@outlook.com.au>
+Subject: Re: [PATCH v4 5/6] i2c: smbus: Support DDR5 SPD EEPROMs
+Message-ID: <efb77b37-30e5-48a8-b4af-eb9995a2882b@roeck-us.net>
+References: <20240604040237.1064024-1-linux@roeck-us.net>
+ <20240604040237.1064024-6-linux@roeck-us.net>
+ <a5aa120d-8497-4ca8-9752-7d800240b999@molgen.mpg.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-GUID: 372YmE1N8EwPx_yhW3SqBqRuRij3_dEw
-X-Proofpoint-ORIG-GUID: 372YmE1N8EwPx_yhW3SqBqRuRij3_dEw
-X-Proofpoint-Spam-Reason: safe
+In-Reply-To: <a5aa120d-8497-4ca8-9752-7d800240b999@molgen.mpg.de>
 
-Introduce support for Cirrus Logic Device CS40L50: a
-haptic driver with waveform memory, integrated DSP,
-and closed-loop algorithms.
+Hi Paul,
 
-The ASoC driver enables I2S streaming to the device.
+On Wed, Jun 05, 2024 at 02:21:50PM +0200, Paul Menzel wrote:
+> Dear Guenter,
+> 
+> 
+> Thank you so much for taking this on.
+> 
+> Am 04.06.24 um 06:02 schrieb Guenter Roeck:
+> > Detect DDR5 memory and instantiate the SPD5118 driver automatically.
+> > 
+> > Suggested-by: Thomas Weiﬂschuh <linux@weissschuh.net>
+> > Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> > Signed-off-by: Guenter Roeck <linux@roeck-us.net>
+> > ---
+> > v5: New patch
+> > 
+> >   drivers/i2c/i2c-smbus.c | 4 ++++
+> >   1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/drivers/i2c/i2c-smbus.c b/drivers/i2c/i2c-smbus.c
+> > index 97f338b123b1..8a0dab835761 100644
+> > --- a/drivers/i2c/i2c-smbus.c
+> > +++ b/drivers/i2c/i2c-smbus.c
+> > @@ -382,6 +382,10 @@ void i2c_register_spd(struct i2c_adapter *adap)
+> >   	case 0x1E:	/* LPDDR4 */
+> >   		name = "ee1004";
+> >   		break;
+> > +	case 0x22:	/* DDR5 */
+> > +	case 0x23:	/* LPDDR5 */
+> > +		name = "spd5118";
+> > +		break;
+> >   	default:
+> >   		dev_info(&adap->dev,
+> >   			 "Memory type 0x%02x not supported yet, not instantiating SPD\n",
+> 
+> Testing this on top of 6.10-rc2+ on a Supermicro X13SAE, Linux logs:
+> 
+>     $ dmesg | grep -e "DMI:" -e "Linux version" -e i2c-0
+>     [    0.000000] Linux version 6.10.0-rc2.mx64.461-00036-g151dfab265df
+> (pmenzel@foreveralone.molgen.mpg.de) (gcc (GCC) 12.3.0, GNU ld (GNU
+> Binutils) 2.41) #74 SMP PREEMPT_DYNAMIC Wed Jun  5 08:24:59 CEST 2024
+>     [    0.000000] DMI: Supermicro Super Server/X13SAE, BIOS 2.0 10/17/2022
+>     [    0.000000] DMI: Memory slots populated: 4/4
+>     [    5.434488] i2c i2c-0: Successfully instantiated SPD at 0x50
+>     [    5.443848] i2c i2c-0: Successfully instantiated SPD at 0x51
+>     [    5.450033] i2c i2c-0: Successfully instantiated SPD at 0x52
+>     [    5.459378] i2c i2c-0: Successfully instantiated SPD at 0x53
+> 
+> Then with `sudo modprobe at24` and `sudo modprobe ee1004`, `decode-dimms`
+> shows:
+> 
+You'd actually have to load the spd5118 driver.
 
-Reviewed-by: David Rhodes <drhodes@opensource.cirrus.com>
-Signed-off-by: James Ogletree <jogletre@opensource.cirrus.com>
+>     $ sudo ./eeprom/decode-dimms
+>     # decode-dimms version 4.3
+> 
+>     Memory Serial Presence Detect Decoder
+>     By Philip Edelbrock, Christian Zuckschwerdt, Burkart Lingner,
+>     Jean Delvare, Trent Piepho and others
+> 
+> 
+>     Number of SDRAM DIMMs detected and decoded: 0
+> 
+> This might be expected, and `decode-dimms` also needs to be updated.
+> 
+
+Correct. The hack below makes it detect the DIMMs, but the data format
+is all different, so it is only really useful to validate reading
+the EEPROM (i.e., the checksum over the first 512 bytes of the eeprom
+is correct). With that patch applied, I get
+
+Decoding EEPROM: /sys/bus/i2c/drivers/spd5118/0-0050
+Guessing DIMM is in                              bank 1
+Kernel driver used                               spd5118
+
+---=== SPD EEPROM Information ===---
+EEPROM CRC of bytes 0-509 48 1                   OK (0x47A2)
+# of bytes written to SDRAM EEPROM               1024
+Total number of bytes in EEPROM                  1024
+Fundamental Memory type                          DDR5 SDRAM
+
+---=== Manufacturing Information ===---
+Manufacturer                                     Invalid
+Custom Manufacturer Data                         00 00 00 00 00 88 13 ("???????")
+Manufacturing Location Code                      0x08
+Part Number                                      Undefined
+Revision Code                                    0x4C1D
+Manufacturing Date                               0x0C00
+
+and so on.
+
+Thanks,
+Guenter
+
 ---
- MAINTAINERS                      |   1 +
- sound/soc/codecs/Kconfig         |  11 ++
- sound/soc/codecs/Makefile        |   2 +
- sound/soc/codecs/cs40l50-codec.c | 307 +++++++++++++++++++++++++++++++
- 4 files changed, 321 insertions(+)
- create mode 100644 sound/soc/codecs/cs40l50-codec.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 49c2e6e57b09..62701b13f741 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4943,6 +4943,7 @@ F:	Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml
- F:	drivers/input/misc/cs40l*
- F:	drivers/mfd/cs40l*
- F:	include/linux/mfd/cs40l*
-+F:	sound/soc/codecs/cs40l*
+diff --git a/eeprom/decode-dimms b/eeprom/decode-dimms
+index 787b6f5..64b6e81 100755
+--- a/eeprom/decode-dimms
++++ b/eeprom/decode-dimms
+@@ -2407,7 +2407,12 @@ sub spd_sizes($)
+ 	my $bytes = shift;
+ 	my $type = $bytes->[2];
  
- CIRRUS LOGIC DSP FIRMWARE DRIVER
- M:	Simon Trimmer <simont@opensource.cirrus.com>
-diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index f1e1dbc509f6..1a81bedfdbe3 100644
---- a/sound/soc/codecs/Kconfig
-+++ b/sound/soc/codecs/Kconfig
-@@ -73,6 +73,7 @@ config SND_SOC_ALL_CODECS
- 	imply SND_SOC_CS35L56_I2C
- 	imply SND_SOC_CS35L56_SPI
- 	imply SND_SOC_CS35L56_SDW
-+	imply SND_SOC_CS40L50
- 	imply SND_SOC_CS42L42
- 	imply SND_SOC_CS42L42_SDW
- 	imply SND_SOC_CS42L43
-@@ -800,6 +801,16 @@ config SND_SOC_CS35L56_SDW
- 	help
- 	  Enable support for Cirrus Logic CS35L56 boosted amplifier with SoundWire control
+-	if ($type == 12 || $type == 14 || $type == 16 || $type == 17) {
++	if ($type == 18 || $type == 19 || $type == 20 || $type == 21) {
++		# DDR5
++		my $spd_len = 256 * ((($bytes->[0] >> 4) & 7) + 1);
++		my $used = $spd_len;
++		return ($spd_len, $used);
++	} elsif ($type == 12 || $type == 14 || $type == 16 || $type == 17) {
+ 		# DDR4
+ 		my $spd_len = 256 * (($bytes->[0] >> 4) & 7);
+ 		my $used = 128 * ($bytes->[0] & 15);
+@@ -2516,11 +2521,17 @@ sub calculate_crc($$$)
+ sub check_crc($)
+ {
+ 	my $bytes = shift;
++	my $is_ddr5 = ($bytes->[0] & 0x70) == 0x30;
+ 	my $crc_cover = $bytes->[0] & 0x80 ? 116 : 125;
++	my $crc_start = 126;
++	if ($is_ddr5) {
++	    $crc_cover = 509;
++	    $crc_start = 510;
++	}
+ 	my $crc = calculate_crc($bytes, 0, $crc_cover + 1);
  
-+config SND_SOC_CS40L50
-+	tristate "Cirrus Logic CS40L50 CODEC"
-+	depends on MFD_CS40L50_CORE
-+	help
-+	  This option enables support for I2S streaming to Cirrus Logic CS40L50.
-+
-+	  CS40L50 is a haptic driver with waveform memory, an integrated
-+	  DSP, and closed-loop algorithms. If built as a module, it will be
-+	  called snd-soc-cs40l50.
-+
- config SND_SOC_CS42L42_CORE
- 	tristate
+-	my $dimm_crc = ($bytes->[127] << 8) | $bytes->[126];
+-	return ("EEPROM CRC of bytes 0-$crc_cover",
++	my $dimm_crc = ($bytes->[$crc_start + 1] << 8) | $bytes->[$crc_start];
++	return ("EEPROM CRC of bytes 0-$crc_cover $bytes->[0] $is_ddr5",
+ 		($dimm_crc == $crc) ? 1 : 0,
+ 		sprintf("0x%04X", $dimm_crc),
+ 		sprintf("0x%04X", $crc));
+@@ -2622,6 +2633,7 @@ sub get_dimm_list
+ 	if ($use_sysfs) {
+ 		@drivers = ('eeprom',
+ 			    'at24',
++			    'spd5118',
+ 			    'ee1004');	# DDR4
+ 	} else {
+ 		@drivers = ('eeprom');
+@@ -2640,14 +2652,13 @@ sub get_dimm_list
+ 				# We look for I2C devices like 0-0050 or 2-0051
+ 				next unless $file =~ /^\d+-[\da-f]+$/i;
+ 				next unless -d "$dir/$file";
+-
+ 				# Device name must be eeprom (driver eeprom)
+ 				# spd (driver at24) or ee1004 (driver ee1004)
+ 				my $attr = sysfs_device_attribute("$dir/$file", "name");
+ 				next unless defined $attr &&
+ 					    ($attr eq "eeprom" ||
+ 					     $attr eq "spd" ||
+-					     $attr eq "ee1004");	# DDR4
++					     $attr eq "spd5118" || $attr eq "ee1004");	# DDR4
+ 			} else {
+ 				next unless $file =~ /^eeprom-/;
+ 			}
+@@ -2681,7 +2692,7 @@ sub get_dimm_list
+ @dimm = get_dimm_list() unless $use_hexdump;
  
-diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
-index b4df22186e25..3afd7c16c959 100644
---- a/sound/soc/codecs/Makefile
-+++ b/sound/soc/codecs/Makefile
-@@ -78,6 +78,7 @@ snd-soc-cs35l56-shared-y := cs35l56-shared.o
- snd-soc-cs35l56-i2c-y := cs35l56-i2c.o
- snd-soc-cs35l56-spi-y := cs35l56-spi.o
- snd-soc-cs35l56-sdw-y := cs35l56-sdw.o
-+snd-soc-cs40l50-objs := cs40l50-codec.o
- snd-soc-cs42l42-y := cs42l42.o
- snd-soc-cs42l42-i2c-y := cs42l42-i2c.o
- snd-soc-cs42l42-sdw-y := cs42l42-sdw.o
-@@ -475,6 +476,7 @@ obj-$(CONFIG_SND_SOC_CS35L56_SHARED)	+= snd-soc-cs35l56-shared.o
- obj-$(CONFIG_SND_SOC_CS35L56_I2C)	+= snd-soc-cs35l56-i2c.o
- obj-$(CONFIG_SND_SOC_CS35L56_SPI)	+= snd-soc-cs35l56-spi.o
- obj-$(CONFIG_SND_SOC_CS35L56_SDW)	+= snd-soc-cs35l56-sdw.o
-+obj-$(CONFIG_SND_SOC_CS40L50)		+= snd-soc-cs40l50.o
- obj-$(CONFIG_SND_SOC_CS42L42_CORE)	+= snd-soc-cs42l42.o
- obj-$(CONFIG_SND_SOC_CS42L42)	+= snd-soc-cs42l42-i2c.o
- obj-$(CONFIG_SND_SOC_CS42L42_SDW)	+= snd-soc-cs42l42-sdw.o
-diff --git a/sound/soc/codecs/cs40l50-codec.c b/sound/soc/codecs/cs40l50-codec.c
-new file mode 100644
-index 000000000000..aa629ef53db4
---- /dev/null
-+++ b/sound/soc/codecs/cs40l50-codec.c
-@@ -0,0 +1,307 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// CS40L50 Advanced Haptic Driver with waveform memory,
-+// integrated DSP, and closed-loop algorithms
-+//
-+// Copyright 2024 Cirrus Logic, Inc.
-+//
-+// Author: James Ogletree <james.ogletree@cirrus.com>
-+
-+#include <linux/bitfield.h>
-+#include <linux/mfd/cs40l50.h>
-+#include <sound/pcm_params.h>
-+#include <sound/soc.h>
-+
-+#define CS40L50_REFCLK_INPUT		0x2C04
-+#define CS40L50_ASP_CONTROL2		0x4808
-+#define CS40L50_ASP_DATA_CONTROL5	0x4840
-+
-+/* PLL Config */
-+#define CS40L50_PLL_REFCLK_BCLK		0x0
-+#define CS40L50_PLL_REFCLK_MCLK		0x5
-+#define CS40L50_PLL_REEFCLK_MCLK_CFG	0x00
-+#define CS40L50_PLL_REFCLK_LOOP_MASK	BIT(11)
-+#define CS40L50_PLL_REFCLK_OPEN_LOOP	1
-+#define CS40L50_PLL_REFCLK_CLOSED_LOOP	0
-+#define CS40L50_PLL_REFCLK_LOOP_SHIFT	11
-+#define CS40L50_PLL_REFCLK_FREQ_MASK	GENMASK(10, 5)
-+#define CS40L50_PLL_REFCLK_FREQ_SHIFT	5
-+#define CS40L50_PLL_REFCLK_SEL_MASK	GENMASK(2, 0)
-+#define CS40L50_BCLK_RATIO_DEFAULT	32
-+
-+/* ASP Config */
-+#define CS40L50_ASP_RX_WIDTH_SHIFT	24
-+#define CS40L50_ASP_RX_WIDTH_MASK	GENMASK(31, 24)
-+#define CS40L50_ASP_RX_WL_MASK		GENMASK(5, 0)
-+#define CS40L50_ASP_FSYNC_INV_MASK	BIT(2)
-+#define CS40L50_ASP_BCLK_INV_MASK	BIT(6)
-+#define CS40L50_ASP_FMT_MASK		GENMASK(10, 8)
-+#define CS40L50_ASP_FMT_I2S		0x2
-+
-+struct cs40l50_pll_config {
-+	unsigned int freq;
-+	unsigned int cfg;
-+};
-+
-+struct cs40l50_codec {
-+	struct device *dev;
-+	struct regmap *regmap;
-+	unsigned int daifmt;
-+	unsigned int bclk_ratio;
-+	unsigned int rate;
-+};
-+
-+static const struct cs40l50_pll_config cs40l50_pll_cfg[] = {
-+	{ 32768, 0x00 },
-+	{ 1536000, 0x1B },
-+	{ 3072000, 0x21 },
-+	{ 6144000, 0x28 },
-+	{ 9600000, 0x30 },
-+	{ 12288000, 0x33 },
-+};
-+
-+static int cs40l50_get_clk_config(const unsigned int freq, unsigned int *cfg)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(cs40l50_pll_cfg); i++) {
-+		if (cs40l50_pll_cfg[i].freq == freq) {
-+			*cfg = cs40l50_pll_cfg[i].cfg;
-+			return 0;
-+		}
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static int cs40l50_swap_ext_clk(struct cs40l50_codec *codec, const unsigned int clk_src)
-+{
-+	unsigned int cfg;
-+	int ret;
-+
-+	switch (clk_src) {
-+	case CS40L50_PLL_REFCLK_BCLK:
-+		ret = cs40l50_get_clk_config(codec->bclk_ratio * codec->rate, &cfg);
-+		if (ret)
-+			return ret;
-+		break;
-+	case CS40L50_PLL_REFCLK_MCLK:
-+		cfg = CS40L50_PLL_REEFCLK_MCLK_CFG;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	ret = regmap_update_bits(codec->regmap, CS40L50_REFCLK_INPUT,
-+				 CS40L50_PLL_REFCLK_LOOP_MASK,
-+				 CS40L50_PLL_REFCLK_OPEN_LOOP <<
-+				 CS40L50_PLL_REFCLK_LOOP_SHIFT);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_update_bits(codec->regmap, CS40L50_REFCLK_INPUT,
-+				 CS40L50_PLL_REFCLK_FREQ_MASK |
-+				 CS40L50_PLL_REFCLK_SEL_MASK,
-+				 (cfg << CS40L50_PLL_REFCLK_FREQ_SHIFT) | clk_src);
-+	if (ret)
-+		return ret;
-+
-+	return regmap_update_bits(codec->regmap, CS40L50_REFCLK_INPUT,
-+				  CS40L50_PLL_REFCLK_LOOP_MASK,
-+				  CS40L50_PLL_REFCLK_CLOSED_LOOP <<
-+				  CS40L50_PLL_REFCLK_LOOP_SHIFT);
-+}
-+
-+static int cs40l50_clk_en(struct snd_soc_dapm_widget *w,
-+			  struct snd_kcontrol *kcontrol,
-+			  int event)
-+{
-+	struct snd_soc_component *comp = snd_soc_dapm_to_component(w->dapm);
-+	struct cs40l50_codec *codec = snd_soc_component_get_drvdata(comp);
-+	int ret;
-+
-+	switch (event) {
-+	case SND_SOC_DAPM_POST_PMU:
-+		ret = cs40l50_dsp_write(codec->dev, codec->regmap, CS40L50_STOP_PLAYBACK);
-+		if (ret)
-+			return ret;
-+
-+		ret = cs40l50_dsp_write(codec->dev, codec->regmap, CS40L50_START_I2S);
-+		if (ret)
-+			return ret;
-+
-+		ret = cs40l50_swap_ext_clk(codec, CS40L50_PLL_REFCLK_BCLK);
-+		if (ret)
-+			return ret;
-+		break;
-+	case SND_SOC_DAPM_PRE_PMD:
-+		ret = cs40l50_swap_ext_clk(codec, CS40L50_PLL_REFCLK_MCLK);
-+		if (ret)
-+			return ret;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct snd_soc_dapm_widget cs40l50_dapm_widgets[] = {
-+	SND_SOC_DAPM_SUPPLY_S("ASP PLL", 0, SND_SOC_NOPM, 0, 0, cs40l50_clk_en,
-+			      SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_PRE_PMD),
-+	SND_SOC_DAPM_AIF_IN("ASPRX1", NULL, 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_IN("ASPRX2", NULL, 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_OUTPUT("OUT"),
-+};
-+
-+static const struct snd_soc_dapm_route cs40l50_dapm_routes[] = {
-+	{ "ASP Playback", NULL, "ASP PLL" },
-+	{ "ASPRX1", NULL, "ASP Playback" },
-+	{ "ASPRX2", NULL, "ASP Playback" },
-+
-+	{ "OUT", NULL, "ASPRX1" },
-+	{ "OUT", NULL, "ASPRX2" },
-+};
-+
-+static int cs40l50_set_dai_fmt(struct snd_soc_dai *codec_dai, unsigned int fmt)
-+{
-+	struct cs40l50_codec *codec = snd_soc_component_get_drvdata(codec_dai->component);
-+
-+	if ((fmt & SND_SOC_DAIFMT_MASTER_MASK) != SND_SOC_DAIFMT_CBC_CFC)
-+		return -EINVAL;
-+
-+	switch (fmt & SND_SOC_DAIFMT_INV_MASK) {
-+	case SND_SOC_DAIFMT_NB_NF:
-+		codec->daifmt = 0;
-+		break;
-+	case SND_SOC_DAIFMT_NB_IF:
-+		codec->daifmt = CS40L50_ASP_FSYNC_INV_MASK;
-+		break;
-+	case SND_SOC_DAIFMT_IB_NF:
-+		codec->daifmt = CS40L50_ASP_BCLK_INV_MASK;
-+		break;
-+	case SND_SOC_DAIFMT_IB_IF:
-+		codec->daifmt = CS40L50_ASP_FSYNC_INV_MASK | CS40L50_ASP_BCLK_INV_MASK;
-+		break;
-+	default:
-+		dev_err(codec->dev, "Invalid clock invert\n");
-+		return -EINVAL;
-+	}
-+
-+	switch (fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
-+	case SND_SOC_DAIFMT_I2S:
-+		codec->daifmt |= FIELD_PREP(CS40L50_ASP_FMT_MASK, CS40L50_ASP_FMT_I2S);
-+		break;
-+	default:
-+		dev_err(codec->dev, "Unsupported DAI format\n");
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int cs40l50_hw_params(struct snd_pcm_substream *substream,
-+			     struct snd_pcm_hw_params *params,
-+			     struct snd_soc_dai *dai)
-+{
-+	struct cs40l50_codec *codec = snd_soc_component_get_drvdata(dai->component);
-+	unsigned int asp_rx_wl = params_width(params);
-+	int ret;
-+
-+	codec->rate = params_rate(params);
-+
-+	ret = regmap_update_bits(codec->regmap, CS40L50_ASP_DATA_CONTROL5,
-+				 CS40L50_ASP_RX_WL_MASK, asp_rx_wl);
-+	if (ret)
-+		return ret;
-+
-+	codec->daifmt |= (asp_rx_wl << CS40L50_ASP_RX_WIDTH_SHIFT);
-+
-+	return regmap_update_bits(codec->regmap, CS40L50_ASP_CONTROL2,
-+				  CS40L50_ASP_FSYNC_INV_MASK |
-+				  CS40L50_ASP_BCLK_INV_MASK |
-+				  CS40L50_ASP_FMT_MASK |
-+				  CS40L50_ASP_RX_WIDTH_MASK, codec->daifmt);
-+}
-+
-+static int cs40l50_set_dai_bclk_ratio(struct snd_soc_dai *dai, unsigned int ratio)
-+{
-+	struct cs40l50_codec *codec = snd_soc_component_get_drvdata(dai->component);
-+
-+	codec->bclk_ratio = ratio;
-+
-+	return 0;
-+}
-+
-+static const struct snd_soc_dai_ops cs40l50_dai_ops = {
-+	.set_fmt = cs40l50_set_dai_fmt,
-+	.set_bclk_ratio = cs40l50_set_dai_bclk_ratio,
-+	.hw_params = cs40l50_hw_params,
-+};
-+
-+static struct snd_soc_dai_driver cs40l50_dai[] = {
-+	{
-+		.name = "cs40l50-pcm",
-+		.id = 0,
-+		.playback = {
-+			.stream_name = "ASP Playback",
-+			.channels_min = 1,
-+			.channels_max = 2,
-+			.rates = SNDRV_PCM_RATE_48000,
-+			.formats = SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S24_LE,
-+		},
-+		.ops = &cs40l50_dai_ops,
-+	},
-+};
-+
-+static int cs40l50_codec_probe(struct snd_soc_component *component)
-+{
-+	struct cs40l50_codec *codec = snd_soc_component_get_drvdata(component);
-+
-+	codec->bclk_ratio = CS40L50_BCLK_RATIO_DEFAULT;
-+
-+	return 0;
-+}
-+
-+static const struct snd_soc_component_driver soc_codec_dev_cs40l50 = {
-+	.probe = cs40l50_codec_probe,
-+	.dapm_widgets = cs40l50_dapm_widgets,
-+	.num_dapm_widgets = ARRAY_SIZE(cs40l50_dapm_widgets),
-+	.dapm_routes = cs40l50_dapm_routes,
-+	.num_dapm_routes = ARRAY_SIZE(cs40l50_dapm_routes),
-+};
-+
-+static int cs40l50_codec_driver_probe(struct platform_device *pdev)
-+{
-+	struct cs40l50 *cs40l50 = dev_get_drvdata(pdev->dev.parent);
-+	struct cs40l50_codec *codec;
-+
-+	codec = devm_kzalloc(&pdev->dev, sizeof(*codec), GFP_KERNEL);
-+	if (!codec)
-+		return -ENOMEM;
-+
-+	codec->regmap = cs40l50->regmap;
-+	codec->dev = &pdev->dev;
-+
-+	return devm_snd_soc_register_component(&pdev->dev, &soc_codec_dev_cs40l50,
-+					       cs40l50_dai, ARRAY_SIZE(cs40l50_dai));
-+}
-+
-+static const struct platform_device_id cs40l50_id[] = {
-+	{ "cs40l50-codec", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(platform, cs40l50_id);
-+
-+static struct platform_driver cs40l50_codec_driver = {
-+	.probe = cs40l50_codec_driver_probe,
-+	.id_table = cs40l50_id,
-+	.driver = {
-+		.name = "cs40l50-codec",
-+	},
-+};
-+module_platform_driver(cs40l50_codec_driver);
-+
-+MODULE_DESCRIPTION("ASoC CS40L50 driver");
-+MODULE_AUTHOR("James Ogletree <james.ogletree@cirrus.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.34.1
+ for my $i (0 .. $#dimm) {
+-	my @bytes = readspd(0, 128, $dimm[$i]->{file});
++	my @bytes = readspd(0, 512, $dimm[$i]->{file});
+ 	$dimm[$i]->{bytes} = \@bytes;
+ 	$dimm[$i]->{is_rambus} = $bytes[0] < 4;		# Simple heuristic
+ 	if ($dimm[$i]->{is_rambus} || $bytes[2] < 9) {
 
 
