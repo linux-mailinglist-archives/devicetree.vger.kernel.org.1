@@ -1,136 +1,138 @@
-Return-Path: <devicetree+bounces-72843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C81F18FD274
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 18:06:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0028B8FD275
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 18:06:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5BCD1C238C1
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 16:06:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C710B23556
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 16:06:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FDE415350D;
-	Wed,  5 Jun 2024 16:05:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B392664CCC;
+	Wed,  5 Jun 2024 16:06:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tGhV8lbF"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="lyht5d96"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF7236CDA1
-	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 16:05:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4064A19D885;
+	Wed,  5 Jun 2024 16:06:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717603537; cv=none; b=n4UD0PeFUX8seOx6neJbH50qOi6afQd7HwZXGV38Dx8JiJ2FWyiyxBNcya934bWciDK7ez8cOOYAWKNEIsZKWsxPAGyPJcFlf5VolJKIqzWZbFTb0eBSte/cB0NSAg3LVvJSile438vUa0mEc6iYYOAddvXCyBdJyrlQ+iAq2Gc=
+	t=1717603589; cv=none; b=GIRyti3ppnHY9hBS/+6x1WxliFTf1e2dG9KVYQpnzh5nyTJ+7hALmz/gwQb5rnVocnSrMklDLjDbQurKgP84usSwbrl+vpak69BhD99hUF7YCTYS2Gan4XsKbkuS+VQSV8SfPaPeccp9sjs6peMSqTwgw4BN0hJhr29OUWkLeBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717603537; c=relaxed/simple;
-	bh=Rn83EnfSNff3b/8SBMhGHjWg+Peuw6bxwb62hQbA+6k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j3B3bXvkOmIebN5+G0/MfvBHR88t8ZVSQFFOXAGSc2uw+o+iqFXqn48ucDCcFXMgkeEgKw/OGpveo3iQ0mX+1VcLkt04z5qlrXeteduIKBZ2B+7ZuZM0wxsgOPVaDxmcwp9FgBFkUME5/4tzpD1o1Hgivx9h3GYUfpbTNtGjxdI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tGhV8lbF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 156ABC2BD11;
-	Wed,  5 Jun 2024 16:05:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717603536;
-	bh=Rn83EnfSNff3b/8SBMhGHjWg+Peuw6bxwb62hQbA+6k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tGhV8lbFIuwQAk2EhyrdCKyXH9TfNlapJcP19jC8SsW2yIhvytv5MrwBq4lbuqYBr
-	 vH47nt81NaRP+4H0u320sFi4qL/sGpJShM9K/Xd7JEeptoAWM4OBUH1oL644zkRPN1
-	 Gl5KEbZ4qVvpwaKoe5Ba+QMvlxvOLJhvodk/jAhVyEYl26qjKKCB6F5PmX3hoDWoJH
-	 22NwtIhetEO0Td5tD6T1PjM6XxwOjyd4f4TNv4mNLKXoYhmgeXJGwcdwmmgdJVXVvT
-	 tPV0TRjcStgvKrdd7sapWJ5aMHACVmUJ6C5lG60bB4Gv0Os5zdblCaKGyBM5WzIU1U
-	 ANBwW67DagQRQ==
-Date: Wed, 5 Jun 2024 10:05:33 -0600
-From: Rob Herring <robh@kernel.org>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: dri-devel@lists.freedesktop.org, Marek Vasut <marex@denx.de>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
-	kernel@dh-electronics.com
-Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: tc358867: Document
- default DP preemphasis
-Message-ID: <20240605160533.GB3222592-robh@kernel.org>
-References: <20240531204339.277848-1-marex@denx.de>
- <3302939.44csPzL39Z@steina-w>
+	s=arc-20240116; t=1717603589; c=relaxed/simple;
+	bh=c6vNyBQnYsxch4NsLDDxIrLHn3q0jsFIoVqhAcP61JQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=tA/DsTYyynQvjeeE+C2FrIh7KLJmIevG5E+KsOaq4Hg88oJWddcyLVECadO2QLsH0cFZheQwyXb5lOy5BNz1pxgTRwWWN7HK2RVfXs8H98xxOYaxFljLcKK7FZBUmm+OrAxZ5Dc+yZii8HXtFT3cKRL4UTtL8V/i9pwABaBNnvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=lyht5d96; arc=none smtp.client-ip=148.163.158.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353724.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 455FLLtb001160;
+	Wed, 5 Jun 2024 16:06:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc :
+ content-transfer-encoding : date : from : message-id : mime-version :
+ subject : to; s=pp1; bh=v+Cqnls3yUZrDxsNB2rWFncZXsXnB7uHdf9VD8hEsY0=;
+ b=lyht5d96JASQPfISXc+mnGdxkM0CUCo3xOeooBfLIk9yEw2hAQUxesQ+hGZ2JQl8/Qm0
+ K1RhBosoHbYLtNIPRimhunmlC0KFaa2tyArmuXebAlIy/fswZjSh/Tdi5uyIRoz6qBKy
+ w6wijkffTFur2A5kTUgYvebCaoLkxXdEVrKcEQ0GA04vLpYE0ZGSFJTBOPkOsJKpvd9x
+ jUaFXGtjWjBzZZKCD7eugv8g7D5aYOsK1IKnG8RudaTy8Bys2KmY7d+2cIjuqQerbAmB
+ gdR0LRz0RPWZ7fg8JTPBcPZIYm4mYuGXkT2YkR1x5T6ahTczbFMmQFBve+kx3BpvJ5RE ng== 
+Received: from ppma11.dal12v.mail.ibm.com (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3yjrdw8m5r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 05 Jun 2024 16:06:11 +0000
+Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma11.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 455Ew2SN026588;
+	Wed, 5 Jun 2024 16:06:10 GMT
+Received: from smtprelay06.wdc07v.mail.ibm.com ([172.16.1.73])
+	by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 3yggp34mg9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 05 Jun 2024 16:06:10 +0000
+Received: from smtpav05.wdc07v.mail.ibm.com (smtpav05.wdc07v.mail.ibm.com [10.39.53.232])
+	by smtprelay06.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 455G669q26673716
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 5 Jun 2024 16:06:08 GMT
+Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id AFDDA5805D;
+	Wed,  5 Jun 2024 16:06:06 +0000 (GMT)
+Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id F262A58053;
+	Wed,  5 Jun 2024 16:06:05 +0000 (GMT)
+Received: from gfwa153.aus.stglabs.ibm.com (unknown [9.3.84.127])
+	by smtpav05.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Wed,  5 Jun 2024 16:06:05 +0000 (GMT)
+From: Ninad Palsule <ninad@linux.ibm.com>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
+        andrew@codeconstruct.com.au
+Cc: Ninad Palsule <ninad@linux.ibm.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, eajames@linux.ibm.com
+Subject: [PATCH v2] ARM: dts: aspeed: System1: Updates to BMC board
+Date: Wed,  5 Jun 2024 11:06:03 -0500
+Message-Id: <20240605160604.2135840-1-ninad@linux.ibm.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3302939.44csPzL39Z@steina-w>
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: hM30ZomYcFZDZdrHlvxUQsvKPqP2flZC
+X-Proofpoint-ORIG-GUID: hM30ZomYcFZDZdrHlvxUQsvKPqP2flZC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-05_02,2024-06-05_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ priorityscore=1501 mlxlogscore=682 spamscore=0 mlxscore=0 bulkscore=0
+ adultscore=0 suspectscore=0 clxscore=1015 lowpriorityscore=0
+ impostorscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2405010000 definitions=main-2406050121
 
-On Tue, Jun 04, 2024 at 11:42:31AM +0200, Alexander Stein wrote:
-> Hi Marek,
-> 
-> Am Freitag, 31. Mai 2024, 22:42:03 CEST schrieb Marek Vasut:
-> > Document default DP port preemphasis configurable via new DT property
-> > "toshiba,pre-emphasis". This is useful in case the DP link properties
-> > are known and starting link training from preemphasis setting of 0 dB
-> > is not useful. The preemphasis can be set separately for both DP lanes
-> > in range 0=0dB, 1=3.5dB, 2=6dB .
-> > 
-> > Signed-off-by: Marek Vasut <marex@denx.de>
-> > ---
-> > Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> > Cc: Conor Dooley <conor+dt@kernel.org>
-> > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > Cc: David Airlie <airlied@gmail.com>
-> > Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-> > Cc: Jonas Karlman <jonas@kwiboo.se>
-> > Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> > Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-> > Cc: Lucas Stach <l.stach@pengutronix.de>
-> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Cc: Maxime Ripard <mripard@kernel.org>
-> > Cc: Neil Armstrong <neil.armstrong@linaro.org>
-> > Cc: Rob Herring <robh@kernel.org>
-> > Cc: Robert Foss <rfoss@kernel.org>
-> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > Cc: devicetree@vger.kernel.org
-> > Cc: dri-devel@lists.freedesktop.org
-> > Cc: kernel@dh-electronics.com
-> > ---
-> >  .../display/bridge/toshiba,tc358767.yaml       | 18 ++++++++++++++++++
-> >  1 file changed, 18 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-> > index 2ad0cd6dd49e0..dcf56e996ee22 100644
-> > --- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-> > +++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-> > @@ -98,6 +98,24 @@ properties:
-> >              reference to a valid eDP panel input endpoint node. This port is
-> >              optional, treated as DP panel if not defined
-> >  
-> > +        properties:
-> > +          endpoint:
-> > +            $ref: /schemas/media/video-interfaces.yaml#
-> > +            unevaluatedProperties: false
-> > +
-> > +            properties:
-> > +              toshiba,pre-emphasis:
-> > +                description:
-> > +                  Display port output Pre-Emphasis settings for both ports.
-> 
-> Is this a property of the port or the endpoint?
+- Changed temperature sensor monitor chip from tmp423 to tmp432
 
-What's the difference? Either is the same data path.
+Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
+---
+ arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-The preference is custom properties in endpoint node, not port nodes.
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
+index dcbc16308ab50..f3efecc7eb8d0 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
+@@ -1138,7 +1138,7 @@ i2c8mux0chn6: i2c@6 {
+ 			reg = <6>;
+ 
+ 			temperature-sensor@4c {
+-				compatible = "ti,tmp423";
++				compatible = "ti,tmp432";
+ 				reg = <0x4c>;
+ 			};
+ 		};
+@@ -1599,7 +1599,7 @@ i2c15mux0chn6: i2c@6 {
+ 			reg = <6>;
+ 
+ 			temperature-sensor@4c {
+-				compatible = "ti,tmp423";
++				compatible = "ti,tmp432";
+ 				reg = <0x4c>;
+ 			};
+ 		};
+@@ -1615,7 +1615,7 @@ regulator@40 {
+ 			};
+ 
+ 			temperature-sensor@4c {
+-				compatible = "ti,tmp423";
++				compatible = "ti,tmp432";
+ 				reg = <0x4c>;
+ 			};
+ 		};
+-- 
+2.40.1
 
-Rob
 
