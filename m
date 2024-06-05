@@ -1,106 +1,201 @@
-Return-Path: <devicetree+bounces-72668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 206F98FC7C2
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 11:28:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E7A88FC822
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 11:42:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C442F282C55
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 09:28:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1EB39B23A2F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 09:39:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1788218FC6D;
-	Wed,  5 Jun 2024 09:27:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEFB0193065;
+	Wed,  5 Jun 2024 09:34:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bgok34vk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dHiEOcww"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8421D200CD;
-	Wed,  5 Jun 2024 09:27:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B63190042
+	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 09:34:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717579678; cv=none; b=A0U4a5wNi1225RupCehu7H8u+wsxe3McVdEMAMTfEST6MH1BHFbgaQb4TJr2hj9wkXzDd9UZbl1ViXbNK4FdV804Xcz6MB7fWcG5XlqMWgv9/KC8zMb1Rku7h69OSLU9rkHBMOgHVrK7r0pDVDW6JjM0LoFrzktSJqeBF1pkTEE=
+	t=1717580092; cv=none; b=nz9wpm9AWgXzyYXwD/0fzzzg0C/XzELl0ddoICZx8OF7jWUKusSLLjX+qNszUyZYxukCsaDfQlV42omzFJTjwqBe23u/B8HlJ1yU7lSAeHotYl+q3jlGUKt8CWcixRDqR+o9fIX7+5xCJ6BnrfRj4ij/Jo9QR4ZKS9AvKCCQIsY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717579678; c=relaxed/simple;
-	bh=RderhM2PdMV4Iztof/Sjp4ReTZqBvSlj+fgI1I46Yr8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=bntDqQi3Px8wiWETfrEQYoLbU2FO2fRiOUv/5DX8CzV8sdq7QfKvDSJdESrYAhb7xen1GJB4mJW8DHbQR/ZFeOw3d+G63qIontL7W6WljgU/Wc/6rdTt/xP5fVgn/QKEB7szKh2DPl2zpLcMiQ+a0ecvafWdvd25bW8Y6zE6GMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bgok34vk; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-35dcc681f70so3712659f8f.0;
-        Wed, 05 Jun 2024 02:27:56 -0700 (PDT)
+	s=arc-20240116; t=1717580092; c=relaxed/simple;
+	bh=VyMzcl86epfd+4JJGD/brazuobQXR4TW+Im54cfRqwo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=A1ApY4LFVPEha0jNr8oWVU87/K65XvuobbSDwUrUdHBFdpQTU8cWvo7ZAwWi9WxNpM62z7bJsegdjZFhsCgB8mzwTz6uMYmvq1ywPOdQrYKXj6/iYXdASut8pBqUi8gWhkJ/PxxNdmZK86m0bA6HBx0aPEYHYAhGgLZT2rnq0nI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dHiEOcww; arc=none smtp.client-ip=209.85.219.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-dfa67a3e702so1992913276.1
+        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 02:34:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717579675; x=1718184475; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=RderhM2PdMV4Iztof/Sjp4ReTZqBvSlj+fgI1I46Yr8=;
-        b=Bgok34vkqMc2Nn3TcbNvwtf5yk8Ht9fXP4fAZ4Mcapw9EXRs1SLYc86kuuGwCXIZb/
-         G3kfuRW7ywwtqQ9oDTeboQek80GobyZa8gFYdzTDL9u74SO6jVdETmAJWVib5nqlTKKk
-         h+VB41r8vW+Ekcvd+dz4RA0dWGaCbIarps7kIPP6eR68OzAFiIt4qNLd3/5zgPZ1mgYG
-         da1w38CAbW2jxAlKxt0F8mXm4a1H5FFSkhLjTDajGmJPykSR7YgkN/B1YkCfl3+dCpxZ
-         lYAeg6+LyyBf/I4bJ6ynbZ6i2GQeYTbY3oYQZ193AS+55yhQsQ9bV07ZzWDylt43GNfK
-         AXHA==
+        d=linaro.org; s=google; t=1717580090; x=1718184890; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=30NObruWx5GMlzINttF9ReWXSPJzl5BeuLrf410WPvU=;
+        b=dHiEOcwwuTLPAfYeOBtsVP/FZJxtxu1GtHzC46rdRec8WsXNQ+14+jYF+g6J3PUFwk
+         AnWuu9pMSnqSNg5SV31NNHk0JZqDDvtgyZKc6AyEgoh1ii4sGTkY/Akdt/86Vz6oXrU1
+         nYEqKXiAkP55s1P2Me3xjTMOsa8Xw2jzuK6I3FtZLcN9Rd3WqjUMDBhsxKo+D4TqEeQn
+         /87PrKq8oPGrixS9WbfIGLGjtmTAkN3MlmPC3zWyIU8wb88rY+W6Sd+87fFaQ1zvrgbu
+         l0CFQmQeyw3EDvMbuAIcukPnw0tc6wX7ZTWjlxBbuH1eA3/KiVpM9OQaqsBUv0wgGpuS
+         XXXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717579675; x=1718184475;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RderhM2PdMV4Iztof/Sjp4ReTZqBvSlj+fgI1I46Yr8=;
-        b=XB6RKBbcTtKYEXFe44Y1kwwhBVTiUA8r8Q2hXiR+LPSaH9/zuGUUct+bEtudKQs8Uu
-         7FTXk2E9HuL0E03Vj6Ck4Wm3UudEn3IYU3W76Mt4q73iLqv4tgVS0kSZ1QG6GCsl79DH
-         ejNpoE6t78wsIe2ZvnFETj2q2v8tbzz1GasaFsEqpg8SHJq7T3J6C0yrXbcy6TVE5ojy
-         kvuxOPrwgU8XpCZpjG4OeaPvO2he88/xPs+7y45gZF/8pXHgdIiGBvolq9h069R0iUeH
-         733hm96aICP7FNvuoQnxEwphGxrz77Cl9z4Z3S1g6K/E6/awcw7D0ldXniieCC4mHOkg
-         Mr2A==
-X-Forwarded-Encrypted: i=1; AJvYcCVpZ+csBYMbaGrfYP+JzJebNwAgGNT6nyJstBmuQWs9mPy8auDIhSsAAjrcty7FbDqHPotQBw7x9yowt7c2tq6fWoWkcS0Neq+tsPAqqiGpSIT5+e2QAUMtSUhU4ctzKJWxd8nPwqc3ePDyngV8Y51QGN16TJ6jE10tM9jAbADO1RXPCg==
-X-Gm-Message-State: AOJu0YzBE2HpRzKHcToiufFywVInDtdyQYv8FvQ52pr2MWTHs2MMg84p
-	5/fYyVNnsp2adkqNzH6o3y9J6emECuB9XkODD9cJ4GRwJBhFsizN
-X-Google-Smtp-Source: AGHT+IFC0Rhhs0lM/dFB2fhY1iaFSG9FX21Z7yRpyWV7l/5BiIZgGrbARU0jQW7NaDNnq1Y0DZPitg==
-X-Received: by 2002:a5d:6a0f:0:b0:34f:f540:bdbc with SMTP id ffacd0b85a97d-35e8ef09a6amr1506551f8f.38.1717579674561;
-        Wed, 05 Jun 2024 02:27:54 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35dd04c111esm13947283f8f.20.2024.06.05.02.27.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jun 2024 02:27:54 -0700 (PDT)
-Message-ID: <e396bacff372b34127de15d980dd903af48a9350.camel@gmail.com>
-Subject: Re: [PATCH v3 0/6] Add support for AD4000 series of ADCs
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org, 
- lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-  nuno.sa@analog.com, dlechner@baylibre.com, marcelo.schmitt1@gmail.com
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-Date: Wed, 05 Jun 2024 11:31:41 +0200
-In-Reply-To: <cover.1717539384.git.marcelo.schmitt@analog.com>
-References: <cover.1717539384.git.marcelo.schmitt@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.2 
+        d=1e100.net; s=20230601; t=1717580090; x=1718184890;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=30NObruWx5GMlzINttF9ReWXSPJzl5BeuLrf410WPvU=;
+        b=N8GalnAtuBcNAzjofn8MGC8+2YidxlG4RfGlCKX0C6K/1Geg2DPxlFkD2SDYsiRbbH
+         MyBCF2dPxB2ahxUmSlg2clYhLFhaELBpDjhi2afkhuoVUK8C1bypVAt7RcaEHqF7KAmG
+         H6OOVHHi67zdYuNiRRc91cxHRXFepQ9LBOupE3Iu0E0hRFdicBvkvj1rKSAkFyrg/3Xl
+         HcZEd03Xt58aSO8rWPoBPtBzmfYk7DVV2vBAZrZZvXAGc3LYz29jpPAxfJF/IdTig1nz
+         4GN3bpSep1hx28SUbT01Z1a4HCkuSG20W3IsOS2t3EY+odNfOLPtLyEA3bkLrgDdOTZL
+         Q5vw==
+X-Forwarded-Encrypted: i=1; AJvYcCW/SMMVoygC/PQ4d9YDTv/YDUSwJ74M2zikn8SWLhzV7EKq0lYjKK3OHk+LfFqmg13jb3TdPID56O1GBrr7Z1KDjQF/3mWVvqp3Ug==
+X-Gm-Message-State: AOJu0Yxe42Mu591zTM51PUJygLT02c+Rj3joud63GE/aQgbhwA1eLKHz
+	LLSFmn97Ka+PhsfWrpKd6WemLuGrdSRCMW6cY+u/MnBtI0DtwYgMbKmhd+VUCdk3dcxwt2jlGu8
+	Zg8Vn9lnlYTynVSXfNjIZMMe9FidgHzuNgK+xNw==
+X-Google-Smtp-Source: AGHT+IENn27TkQR5CPy5b+3mp3LqBCxwf+D6LxicigJ400S8hL5xvE513TM1EYAaeZPC26ci4uwXc/peFjpCSi2lwcg=
+X-Received: by 2002:a05:6902:230f:b0:df7:97d4:b790 with SMTP id
+ 3f1490d57ef6-dfaca9bd66cmr2065639276.18.1717580089668; Wed, 05 Jun 2024
+ 02:34:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <cover.1716811405.git.geert+renesas@glider.be>
+In-Reply-To: <cover.1716811405.git.geert+renesas@glider.be>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Wed, 5 Jun 2024 11:34:13 +0200
+Message-ID: <CAPDyKFpa4LZF3eN7x-NT+b9=dKB3Oe6RY8RAyetdRBSR1-LQoQ@mail.gmail.com>
+Subject: Re: [PATCH/RFC 0/3] pmdomain: renesas: rmobile-sysc: Remove serial
+ console handling
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Peng Fan <peng.fan@nxp.com>, linux-pm@vger.kernel.org, linux-serial@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Marcelo,
++ Tomi
 
-On Tue, 2024-06-04 at 19:40 -0300, Marcelo Schmitt wrote:
-> This patch series extends the SPI bitbang, gpio, and spi-engine controlle=
-rs to
-> support configurable MOSI line idle state.
-> It then introduces the ad4000 driver which makes use of the MOSI idle
-> configuration to properly support AD4000 series of ADCs.
+On Mon, 27 May 2024 at 14:41, Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+>
+>         Hi all,
+>
+> Since commit a47cf07f60dcb02d ("serial: core: Call
+> device_set_awake_path() for console port"), the serial driver properly
+> handles the case where the serial console is part of the awake path, and
+> it looked like we could start removing special serial console handling
+> from PM Domain drivers like the R-Mobile SYSC PM Domain driver.
+> Unfortunately the devil is in the details, as usual...
+>
+> Earlycon relies on the serial port to be initialized by the firmware
+> and/or bootloader.  Linux is not aware of any hardware dependencies that
+> must be met to keep the port working, and thus cannot guarantee they
+> stay met, until the full serial driver takes over.
+>
+> E.g. all unused clocks and unused PM Domains are disabled in a late
+> initcall.  As this happens after the full serial driver has taken over,
+> the serial port's clock and/or PM Domain are no longer deemed unused,
+> and this is typically not a problem.
+>
+> However, if the serial port's clock or PM Domain is shared with another
+> device, and that other device is runtime-suspended before the full
+> serial driver has probed, the serial port's clock and/or PM Domain will
+> be disabled inadvertently.  Any subsequent serial console output will
+> cause a crash or system lock-up.  E.g. on R/SH-Mobile SoCs, the serial
+> ports share their PM Domain with several other I/O devices.  After the
+> use of pwm (Armadillo-800-EVA) or i2c (KZM-A9-GT) during early boot,
+> before the full serial driver takes over, the PM Domain containing the
+> early serial port is powered down, causing a lock-up when booted with
+> "earlycon".
 
-Not sure what happened but I'm not seeing the patch for ad4000...
+Hi Geert,
 
-- Nuno S=C3=A1
+Thanks for the detailed description of the problem! As pointed out in
+regards to another similar recent patch [1], this is indeed a generic
+problem, not limited to the serial console handling.
 
+At Linaro Connect a few weeks ago I followed up with Saravana from the
+earlier discussions at LPC last fall. We now have a generic solution
+for genpd drafted on plain paper, based on fw_devlink and the
+->sync_state() callback. I am currently working on the genpd series,
+while Saravana will re-spin the series (can't find the link to the
+last version) for the clock framework. Ideally, we want these things
+to work in a very similar way.
 
+That said, allow me to post the series for genpd in a week or two to
+see if it can solve your problem too, for the serial console.
+
+Kind regards
+Uffe
+
+[1]
+https://lore.kernel.org/linux-arm-kernel/CAPDyKFqShuq98qV5nSPzSqwLLUZ7LxLvp1eihGRBkU4qUKdWwQ@mail.gmail.com/
+
+>
+> This RFC patch series aims to provide a mechanism for handling this, and
+> to fix it for the PM Domain case:
+>   1. The first patch provides a mechanism to let the clock and/or PM
+>      Domain subsystem or drivers handle this, by exporting the clock and
+>      PM Domain dependencies for the serial port, as available in the
+>      system's device tree,
+>   2. The second patch introduces a new flag to handle a PM domain that
+>      must be kept powered-on during early boot, and by setting this flag
+>      if the PM Domain contains the serial console (originally I handled
+>      this inside rmobile-sysc, but it turned out to be easy to
+>      generalize this to other platforms in the core PM Domain code).
+>   3. The third patch removes the no longer needed special console
+>      handling from the R-Mobile SYSC PM Domain driver.
+>
+> I did not fix the similar clock issue, as it is more complex (there can
+> be multiple clocks, and each clock provider can have its own value of
+> #clock-cells), and I do not need it for Renesas ARM platforms.
+
+I will defer to Sarvana here, but ideally his series for the clock
+framework should solve this case too.
+
+>
+> This has been tested on the APE6-EVM, Armadillo-800-EVA, and KZM-A9-GT
+> development boards, with and without earlycon, including s2ram with and
+> without no_console_suspend.
+>
+> Notes:
+>   - This should not be needed on RZ/G3S, where each serial port device
+>     has its own PM Domain,
+>   - drivers/clk/imx/clk.c and drivers/pmdomain/imx/scu-pd.c have special
+>     handling for the of_stdout device, but is probably not affected, as
+>     each serial port seems to share its PM Domain only with the serial
+>     port's clock controller.
+>
+> Thanks for your comments!
+>
+> Geert Uytterhoeven (3):
+>   earlycon: Export clock and PM Domain info from FDT
+>   pmdomain: core: Avoid earlycon power-down
+>   pmdomain: renesas: rmobile-sysc: Remove serial console handling
+>
+>  drivers/pmdomain/core.c                 | 24 ++++++++++++++++--
+>  drivers/pmdomain/renesas/rmobile-sysc.c | 33 +------------------------
+>  drivers/tty/serial/earlycon.c           | 14 ++++++++++-
+>  include/linux/pm_domain.h               |  4 +++
+>  include/linux/serial_core.h             | 10 ++++++++
+>  5 files changed, 50 insertions(+), 35 deletions(-)
+>
+> --
+
+Kind regards
+Uffe
 
