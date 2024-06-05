@@ -1,55 +1,48 @@
-Return-Path: <devicetree+bounces-72690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14BBE8FC8B4
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 12:12:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 534CF8FC8D2
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 12:20:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C581282133
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 10:11:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4D3B282967
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 10:20:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1534718FDD3;
-	Wed,  5 Jun 2024 10:11:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9791E19006D;
+	Wed,  5 Jun 2024 10:20:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="FI6ulCea"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dSOLuGWL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51297BE5A;
-	Wed,  5 Jun 2024 10:11:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 666241946D5;
+	Wed,  5 Jun 2024 10:20:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717582317; cv=none; b=C1Lqty+URPIGQ2K4uqcA5qblZNaaRYpXZXX2bITAQRbNSXkNurHZGK7n8k6uLUgZrwWfrfpB9AQf2NOPbEYYMH7U97yGsI9Gp+CxMoMBWVVB5tR9zNApRaVCekf9i2dXGrzEfucp5lrqaKfTtIPATcANMtpO7d5itg4p+oKp01w=
+	t=1717582836; cv=none; b=LOre75C4EIwhQFhrAT6zK+IJeKlPjufKa7qDhkqebg9s0xnePUQHfGF+QcUeSzuvayueQsLkkpwxf9NVLN4qbSybmilMPEIWli0PjldiOvZdiIwBq2xjFSO/6sxWPchEIQdm0O6OKz0ztW9HWrt/c0/3+jNvbVU1zCLORkyjo14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717582317; c=relaxed/simple;
-	bh=oFJxlZFjj3Jn2dbeE5l6hjEsMDGGXCv5/naNuZE41UY=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=OqCxKnXQ6MAgOWVW8dQyxcOcGMg1ib8gNbp6tfH2byhXmWCdAmqH5wUo5+eJgvW4/KSUJ3QgQu0iQBTe/J7tpDhPAczZ+sHflTgyNpQDPUDvlSQs2zKQ4u1LU6DSJtgo5g/GaymM051ZfAsw8NTxfJob4xIcCHrxclJ3myNcqys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=FI6ulCea; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1717582313;
-	bh=oFJxlZFjj3Jn2dbeE5l6hjEsMDGGXCv5/naNuZE41UY=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=FI6ulCeaae5oi8t3k9x8v4hHVXmpnQgo066sVXpN+frVP9OLZbcAmOQEv1P08D8ED
-	 heHY/zQ9zKVYfnjVR98gMHcmcMqE0gd35D1SYRhxuK0QKuGAiXQcZHNrnBlw4Zd53S
-	 Qx7HrpJjs2p9Rf6vOT1IsSwzJ0DHQSlSTmJIwJN/vt2EKQwrKMkp9EE7E17p3GRubG
-	 vfceAPMvc//1GDDAc1AFvmYDPWlg8vUA9obvP29yNnPPCkTrd1Nwz59Sag3I1zyDLg
-	 Ssneevvrr8v9TygU1knrHfleOM23E1L5+rc4/8Fs+C9DjvPc44duSh+BZnwnnT2VkQ
-	 Sdat6IQrS/fyw==
-Received: from [100.115.223.179] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 79CFE378020A;
-	Wed,  5 Jun 2024 10:11:51 +0000 (UTC)
-Message-ID: <304b4602-8722-4ed0-a555-8dada573ee79@collabora.com>
-Date: Wed, 5 Jun 2024 13:11:50 +0300
+	s=arc-20240116; t=1717582836; c=relaxed/simple;
+	bh=K/NNlu7lMhUcMk9rYOthlm/0NsBQrYRQmAec9h6uSdg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rUpyN/PwyiMWmOTF+amlLx/AWPKc0MLcUaCxNMgX6Z4oVPQ0JujiimaA6GaosRZ0+qDyeYEHAggt6ANwLd589R98iuwakmqGGFD/wiDSM+dl1DMgjlaDv0Ug9iuDMUSb1mo09M3IJLz8116DFQrecvEPQ2fgwqxEjVH0KSZndEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dSOLuGWL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33A8CC3277B;
+	Wed,  5 Jun 2024 10:20:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717582835;
+	bh=K/NNlu7lMhUcMk9rYOthlm/0NsBQrYRQmAec9h6uSdg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=dSOLuGWLxQfe63XXTAVpn9dxYda1Slkq0IuX5oTLEQ7PWAuZGOD8DX4E5pAu+RdZw
+	 sEDojp2vYlvFgGvnUN3L1Wp+8LQsdMbSxhF8t1JEHlFWY2OfcYc0DPmcE+/N6ttMkC
+	 ZJbbPjcN+t/qc6LNGk2EEc/oNnENfcJp9NIU8vGvqmUjWcQ5kqZeQHcuKmdVMxYXGI
+	 O1I0ZNP90UarlBd+5XNkUHz9gOx1i2xl2rJXcPWvvLYmx56CXsDUlWjzmytMPlYDyy
+	 gr706mgo+fvIB9/LNPbrkC5Ah9EN9RpBvVMJu1AW3/tY/We/De8QjOMfAE66fsasfA
+	 p4ozRqWdmpWDw==
+Message-ID: <1c61d5b5-d9c0-4fa3-8267-8aaf6c441b75@kernel.org>
+Date: Wed, 5 Jun 2024 12:20:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,118 +50,222 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 13/14] drm/bridge: synopsys: Add DW HDMI QP TX controller
- driver
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-To: Sam Ravnborg <sam@ravnborg.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, kernel@collabora.com,
- Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>,
- Algea Cao <algea.cao@rock-chips.com>
-References: <20240601-b4-rk3588-bridge-upstream-v1-0-f6203753232b@collabora.com>
- <20240601-b4-rk3588-bridge-upstream-v1-13-f6203753232b@collabora.com>
- <20240601143226.GA2003970@ravnborg.org>
- <59519381-2729-4839-9882-65a981a0c551@collabora.com>
- <20240604204110.GA84949@ravnborg.org>
- <f656c72e-fac8-4345-9b65-1031ebe81c25@collabora.com>
+Subject: Re: [PATCH V2 1/5] dt-bindings: input: Add YAML to Awinic sar sensor.
+To: wangshuaijie@awinic.com, dmitry.torokhov@gmail.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, jeff@labundy.com,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: liweilei@awinic.com, kangjiajun@awinic.com
+References: <20240605091143.163789-1-wangshuaijie@awinic.com>
+ <20240605091143.163789-2-wangshuaijie@awinic.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <f656c72e-fac8-4345-9b65-1031ebe81c25@collabora.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240605091143.163789-2-wangshuaijie@awinic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 6/5/24 12:34 AM, Cristian Ciocaltea wrote:
-> On 6/4/24 11:41 PM, Sam Ravnborg wrote:
->> Hi Cristian.
->>
->> On Tue, Jun 04, 2024 at 10:32:04PM +0300, Cristian Ciocaltea wrote:
->>> Hi Sam,
->>>
->>> On 6/1/24 5:32 PM, Sam Ravnborg wrote:
->>>> Hi Cristian,
->>>>
->>>> a few drive-by comments below.
->>>>
->>>> 	Sam
->>>>
->>>>
->>>>> +
->>>>> +static const struct drm_connector_funcs dw_hdmi_qp_connector_funcs = {
->>>>> +	.fill_modes = drm_helper_probe_single_connector_modes,
->>>>> +	.detect = dw_hdmi_connector_detect,
->>>>> +	.destroy = drm_connector_cleanup,
->>>>> +	.force = dw_hdmi_qp_connector_force,
->>>>> +	.reset = drm_atomic_helper_connector_reset,
->>>>> +	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
->>>>> +	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
->>>>> +};
->>>>> +
->>>>> +static int dw_hdmi_qp_bridge_attach(struct drm_bridge *bridge,
->>>>> +				    enum drm_bridge_attach_flags flags)
->>>>> +{
->>>>> +	struct dw_hdmi *hdmi = bridge->driver_private;
->>>>> +
->>>>> +	if (flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)
->>>>> +		return drm_bridge_attach(bridge->encoder, hdmi->next_bridge,
->>>>> +					 bridge, flags);
->>>>> +
->>>>> +	return dw_hdmi_connector_create(hdmi, &dw_hdmi_qp_connector_funcs);
->>>>> +}
->>>>
->>>> Are there any users left that requires the display driver to create the
->>>> connector?
->>>> In other words - could this driver fail if DRM_BRIDGE_ATTACH_NO_CONNECTOR
->>>> is not passed and drop dw_hdmi_connector_create()?
->>>>
->>>> I did not try to verify this - just a naive question.
->>>
->>> I've just tested this and it doesn't work - dw_hdmi_connector_create()
->>> is still needed.
->>
->> Hmm, seems the display driver or some other bridge driver fails to
->> support "DRM_BRIDGE_ATTACH_NO_CONNECTOR".
->> what other drivers are involved?
+On 05/06/2024 11:11, wangshuaijie@awinic.com wrote:
+> From: shuaijie wang <wangshuaijie@awinic.com>
 > 
-> Could it be related to the glue driver (updated in the next patch) which
-> is also responsible for setting up the encoder?
+> Add the awinic,aw_sar.yaml file to adapt to the awinic sar sensor driver.
+
+Subject: drop final stops. From all your patches.
+
 > 
->> Note that my comments here should be seen as potential future
->> improvements, and do not block the patch from being used.
+> Signed-off-by: shuaijie wang <wangshuaijie@awinic.com>
+> ---
+
+No changelog, so nothing improved?
+
+>  .../bindings/input/awinic,aw_sar.yaml         | 125 ++++++++++++++++++
+
+No underscores, but rather awinic,aw96103.yaml
+
+>  1 file changed, 125 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/awinic,aw_sar.yaml
 > 
-> Thanks for the heads up! Will try to get back to this soon and investigate.
- 
-IIUC, modern bridges should not create the connector but rely on display
-drivers to take care of, which in this case is the VOP2 driver. However,
-it also handles some of the older SoCs relying on the non-QP variant of
-DW HDMI IP. Hence the existing dw-hdmi driver would be also impacted in
-order to come up with a proper solution.
+> diff --git a/Documentation/devicetree/bindings/input/awinic,aw_sar.yaml b/Documentation/devicetree/bindings/input/awinic,aw_sar.yaml
+> new file mode 100644
+> index 000000000000..2560ef09d3d0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/awinic,aw_sar.yaml
+> @@ -0,0 +1,125 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/awinic,aw_sar.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Awinic sar sensor driver family
 
-A quick check shows there are several users of this IP:
+driver as Linux driver or some other hardware meaning? If first, then
+drop and describe hardware.
 
-$ git grep -E '= dw_hdmi_(bind|probe)\('
-drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c:    hdmi->dw_hdmi = dw_hdmi_probe(pdev, plat_data);
-drivers/gpu/drm/bridge/synopsys/dw-hdmi.c:      hdmi = dw_hdmi_probe(pdev, plat_data);
-drivers/gpu/drm/imx/ipuv3/dw_hdmi-imx.c:        hdmi->hdmi = dw_hdmi_probe(pdev, match->data);
-drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c:      hdmi = dw_hdmi_probe(pdev, &ingenic_dw_hdmi_plat_data);
-drivers/gpu/drm/meson/meson_dw_hdmi.c:  meson_dw_hdmi->hdmi = dw_hdmi_probe(pdev, &meson_dw_hdmi->dw_plat_data);
-drivers/gpu/drm/renesas/rcar-du/rcar_dw_hdmi.c: hdmi = dw_hdmi_probe(pdev, &rcar_dw_hdmi_plat_data);
-drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c:            hdmi->hdmi = dw_hdmi_bind(pdev, encoder, plat_data);
-drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c:  hdmi->hdmi = dw_hdmi_bind(pdev, encoder, plat_data);
 
-I didn't check which display drivers would be involved, I'd guess there
-are quite a few of them as well. So it seems this ends up being a pretty
-complex task.
+> +
+> +maintainers:
+> +  - Shuaijie Wang <wangshuaijie@awinic.com>
 
-Cristian
+Missing description. You already got question about meaning of sar and
+indeed nothing improved.
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - awinic,aw96103
+> +      - awinic,aw96105
+> +      - awinic,aw96303
+> +      - awinic,aw96305
+> +      - awinic,aw96308
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  irq-gpio:
+> +    maxItems: 1
+> +
+> +  awinic,sar-label:
+
+label is a string, not number.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Set the label of the SAR(Specific Absorption Rate) sensor.
+> +      It is set to 0 if one awinic sar chip is used.
+> +      If two awinic sar chips are used, awinic,sar-label in the first
+> +      awinic-sar should be set to 0 and awinic,sar-label in the second
+> +      awinic-sar should be set to 1.
+
+Sorry, no instance indexing. Drop.
+
+> +
+> +
+
+No need for two line breaks.
+
+> +  awinic,regulator-power-supply:
+> +    description:
+> +      Choose if you want to use a regulator to power the chip. Then the
+> +      vccX-supply has to be set.
+> +
+> +  vcc0-supply:
+> +    description:
+> +      Optional regulator for chip, 1.7V-3.6V.
+> +      If two awinic sar chips are used, the first regulator
+> +      should set the ID to vcc0-supply and the second regulator
+> +      should set the ID to vcc1-supply.
+> +
+> +  awinic,channel-use-mask:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The mask of channels used.
+> +      Configure according to the specific chip channel used.
+> +      Bit[31:0] Each bit represents a channel.
+> +      If the customer uses ch0 and ch2, then channel_use_mask=<0x05>
+> +      For a 3-channel chip, the maximum value is 0x07;
+> +      For a 5-channel chip, the maximum value is 0x1F;
+> +      For a 8-channel chip, the maximum value is 0xFF;
+> +
+> +  awinic,update-fw:
+> +    type: boolean
+> +    description:
+> +      Choose if you want to update the firmware.
+
+Not much improve in explanation or rationale. Why do you want to update
+FW every time? Explain this in property description.
+
+I mostly skipped the rest, because it does not look like you addresses
+previous feedback.
+
+...
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - irq-gpio
+> +  - awinic,sar-label
+> +  - awinic,channel-use-mask
+> +
+> +unevaluatedProperties: false
+
+Missing some ref, like dai-common or component... or this is supposed to
+be additionalProperties: false instead.
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        awinic-sar@12 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+I still have no clue what is sar and there is no description in this
+binding.
+
+> +            compatible = "awinic,aw96308";
+> +            reg = <0x12>;
+> +            irq-gpio = <&tlmm 72 0>;
+
+Use proper defines.
+
+> +            awinic,sar-label = < 0 >;
+
+Do not introduce different coding style. Drop spaces. See DTS coding style.
+
+
+
+Best regards,
+Krzysztof
+
 
