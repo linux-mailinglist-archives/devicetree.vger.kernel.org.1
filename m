@@ -1,90 +1,88 @@
-Return-Path: <devicetree+bounces-72521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-72522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C224E8FC318
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 07:49:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 615118FC323
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 07:51:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F0B19B2181E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 05:49:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5136B243F7
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jun 2024 05:51:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F8E521C178;
-	Wed,  5 Jun 2024 05:49:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 497D721C178;
+	Wed,  5 Jun 2024 05:51:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F7BXUwSV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="U1FltmsK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9745513AD19
-	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 05:49:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDEDF156665
+	for <devicetree@vger.kernel.org>; Wed,  5 Jun 2024 05:51:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717566583; cv=none; b=PcvTliLAH3wUWMwvm+ZCAPYk2XTOQG89PUbm1SjfYLXj+lSBEuoIjV4Va7ujwlbNMf9jY/91pBc07XJjepduN1KYsd3ATXcB0Mc6oBvi8bgHi6LB10+vmuYG6n5d/UusMoiuF82VOx4Mtg0Ak4YI2vdNcIG8zBAR5mj2GBmPz64=
+	t=1717566677; cv=none; b=gLQg9/Z29OfURsmE8yy9RD0+5Abp5j5n8/AZwMbKjoEUQyM0BPcOgsZmyYKyW6SGVD39lKoapkNN+o9EEWCbN1CuxFBDrrUaeoELZ3mO83NI5t65bo56bhEpu1n2q4nNnBCZbwBPzqMOtd9Xrr8/RpBqyVahsKgwrtQQ91O1EYE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717566583; c=relaxed/simple;
-	bh=Beh2wlkRe7Eug/7DYljw55OLT0VJDjN+N9ltnUnhZMs=;
+	s=arc-20240116; t=1717566677; c=relaxed/simple;
+	bh=ITeDx0OqlgB7NiL0mf7tKEd1JYGKzgJ1DJzTY6KYISc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aPohusD6MntKQoH5wLDDGyRV7iU1lyO9K7L4iG7trTRCUZw/re7kTu/E4Ouu+MOz3X8YuX1aM3mZNO567WN4uXTiRy/5iB0VdlX1PfTYqVocAED+wkaeUWsvLMAF21Nix9zSSt+o4L6HwoMYuwMm/aOa72Yac02uXB6aJ10gwqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F7BXUwSV; arc=none smtp.client-ip=209.85.214.175
+	 Content-Type:Content-Disposition:In-Reply-To; b=YNBqKl8599+WciRxses6dvCDjeVz81Ww5UlhteZfJFUYAt3R5qMh93GQ5QA6W6/27w5Vfrt1a2+rDvnUCiaBTnV1m+PqyJouF7snt0mtx5UZgP3HYNQk0BI5aw+vmDmeL9IRoLd1CCrJzRgyb+7KzSBrWU0J04vZzQ6xENLoS6M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=U1FltmsK; arc=none smtp.client-ip=209.85.214.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1f48b825d8cso16509065ad.2
-        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 22:49:41 -0700 (PDT)
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1f62217f806so55779425ad.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Jun 2024 22:51:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717566581; x=1718171381; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1717566675; x=1718171475; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=+dM5+k2xQ90bwK2u/6F8dSzOK+d/yGXOElnGPg/eOmg=;
-        b=F7BXUwSVaWxsDPfg/N4kEFbQep/g/8n3NSjTTNKnhqQDepcUgdFONF7bAA98X465ve
-         DuIwZsmpm9/aneSxDATZxIy3dlkZ0lS6xJQtWVCcADBEHfg4JfCusyYq1Yx6aYaHSb/J
-         g1EohOWBBGqlRJgmqUpn2yfqaQtllX49SO2yMzN1sofMHpcvDOw/+0E+ZAA18zIpSy2x
-         BZZj0dDqNs+efBeBbOno+6yMJxKYc1seXwqZLMSMhFb7mm/Sg8C7JPiam/q5mfrO8rqC
-         QLZt0oAh8DpUmnxUuiLJN7sD6WKZIplTIqklnOlo94Rt2RBEHVuM/5ruogYdo3uqLLMz
-         GOCg==
+        bh=rCWSUQImHGilToURCyAOpdWvaa8ql6HejyzXJyuEZoo=;
+        b=U1FltmsKqAmHOcgos8Ff6I6BwrczuMCgFtZVJYkqFM9ibIk2N7/kQFu4pYcKfk2+3i
+         H7FCeH274i4PM1PKonsO6gPw3HxA9LgTNo0RSWoph5OVrdTcE1O5ciY6igTcBGU7/oGK
+         q3L7bBA5tbiTFHA7gsdikMCfRGRlkqGRPzAeHu126y0D0QB8NZVaSt/X0JKMMwvpr+yq
+         JnNaokH5JFnbWKJ46XV519AxD1drzrg4pQldYkXBnNS0kOLJNe9DmAagqfllXAuC51JD
+         zRz7Pd59I1EG9EM5x4g/zFns079mo+0OC2t0jep79kfzPIP8GetknuR/eDNH4YT5xF6R
+         enZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717566581; x=1718171381;
+        d=1e100.net; s=20230601; t=1717566675; x=1718171475;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+dM5+k2xQ90bwK2u/6F8dSzOK+d/yGXOElnGPg/eOmg=;
-        b=nHUyE8lP7uXI7wJD71HV1+svSotzRpyPH9ZC8/rTBQvwHMo8jt+3mauT4/Dl9bBW6/
-         AWqj+83CxeyBck956jyphz+h1D/gtG24lYWOfTqUc4pZ8V4Nw3m5lR3OQBztf4AJyB2i
-         ngGK4XMZqUofw02u1hBS0M8UzJAOTbBTS6+LcK7wYWJ7HasVZM9nNR+NgC4td5kcohV9
-         vs381XJLNQAd9GT3dEw7aRfiRD25jKxAGVol5g12fhkIJy8LBvN0eaBB3WfWAx4lvBVF
-         d5FQQB4ptEEuy9O5Yn9pNn3T7bGADNO0RhY/JgqiM80IgmvLBB9ZW8mFHKVVf41oOLAj
-         K8aw==
-X-Forwarded-Encrypted: i=1; AJvYcCUk8Jdcgt6YbjyFHEeqAL/rrEEO54OrJO487pOCHpT7qbfi8wm6Zse3SGFvbp5ockon74EsYB55twNaarcMKPWgL31t2yPaFvD1Yw==
-X-Gm-Message-State: AOJu0YzsEbsT4GS5tenjaZu91EZd6j35dc/ihyj0fJbJKGT6ozHM71FE
-	P7/hM8GCwExkvI3OMGwnvPFDvdhdCdnQvOjYbwI+XwqzreIoPww7HOcGEksT+A==
-X-Google-Smtp-Source: AGHT+IEZszKMxzYyviv9Fxic6NPR/A6OoNXaAaG1oAK0KQm8hWctUvTFoKzkoioIm4/mshFm531FvQ==
-X-Received: by 2002:a17:902:db0a:b0:1f6:7ee8:8942 with SMTP id d9443c01a7336-1f6a5a290ffmr21801795ad.40.1717566580772;
-        Tue, 04 Jun 2024 22:49:40 -0700 (PDT)
+        bh=rCWSUQImHGilToURCyAOpdWvaa8ql6HejyzXJyuEZoo=;
+        b=qbKlj3BUyLcqA8XlGTMchCQryEA0HiL6e0CQb0CtTZ319c9xqr2/mcLLSISvFN8w1x
+         HWmx8uFKyI6+HVhK19AHsgoWVE1K4jBKlVO6DZEtUEEUyAlSoa3X3RxfN9GOMi4Md8k9
+         lcBtwe7AqJmihdnDyfQcU99olE1Uia6MULDZef03JjAlvfkRdEkSQse6XY5l3yzJM34R
+         +AW04fL5TcN3qgJ8F1zscHTH674/2tVmPFlaAISq5cLF1EoVLzsHyOgbebxQ4EUK3RrP
+         eHlMfzMwhJx3nm2PafGbn25fx8F1C0xAgmiJ50IAOPdgUVE+CCo0UjG+bGZnypzt+tun
+         WIpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVQOP7ozWZeKOP6nzTeL6EkX/pJFk2g5VHJ9jsKThXtsqw8AhXPcp86yUwsLwOA5LngR3rfSUh3zabidDeN9bW4ack9tp88iv3adA==
+X-Gm-Message-State: AOJu0YzNXGYiwNo4zsiocW5wgzLukbKmPjpwQIXRvvFh142PfsLyyTLw
+	w9LXbWlKvKd3qJ4F/hbMMADum7JuxqFl8sV7QT37ol3gAKPhBeS//peI6BiTRw==
+X-Google-Smtp-Source: AGHT+IGV/MUBr4KlZCCtOhFeci3Ojt9DYoBNyrDOC3FmQoMHqR7+aHEIhtbKxi29Rzfm8hP/wXa/IQ==
+X-Received: by 2002:a17:902:9896:b0:1f6:3750:527f with SMTP id d9443c01a7336-1f6a5a20654mr17233275ad.31.1717566674957;
+        Tue, 04 Jun 2024 22:51:14 -0700 (PDT)
 Received: from thinkpad ([120.60.137.11])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f6323ddac9sm95544525ad.173.2024.06.04.22.49.36
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f6a5060788sm9513775ad.130.2024.06.04.22.51.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jun 2024 22:49:40 -0700 (PDT)
-Date: Wed, 5 Jun 2024 11:19:28 +0530
+        Tue, 04 Jun 2024 22:51:14 -0700 (PDT)
+Date: Wed, 5 Jun 2024 11:21:09 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Abel Vesa <abel.vesa@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	Sibi Sankar <quic_sibis@quicinc.com>,
+	Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: PCI: qcom: Fix register maps items and add
- 3.3V supply
-Message-ID: <20240605054928.GB2417@thinkpad>
-References: <20240604-x1e80100-pci-bindings-fix-v1-1-f4e20251b3d0@linaro.org>
- <20240604235806.GA1903493-robh@kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100: Fix PCIe 6a reg offsets
+ and add MHI
+Message-ID: <20240605055109.GC2417@thinkpad>
+References: <20240604-x1e80100-dts-fixes-pcie6a-v2-1-0b4d8c6256e5@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,64 +92,66 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240604235806.GA1903493-robh@kernel.org>
+In-Reply-To: <20240604-x1e80100-dts-fixes-pcie6a-v2-1-0b4d8c6256e5@linaro.org>
 
-On Tue, Jun 04, 2024 at 05:58:06PM -0600, Rob Herring wrote:
-> On Tue, Jun 04, 2024 at 07:05:12PM +0300, Abel Vesa wrote:
-> > All PCIe controllers found on X1E80100 have MHI register region and
-> > VDDPE supplies. Add them to the schema as well.
-> > 
-> > Fixes: 692eadd51698 ("dt-bindings: PCI: qcom: Document the X1E80100 PCIe Controller")
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> > This patchset fixes the following warning:
-> > https://lore.kernel.org/all/171751454535.785265.18156799252281879515.robh@kernel.org/
-> > 
-> > Also fixes a MHI reg region warning that will be triggered by the following patch:
-> > https://lore.kernel.org/all/20240604-x1e80100-dts-fixes-pcie6a-v2-1-0b4d8c6256e5@linaro.org/
-> > ---
-> >  Documentation/devicetree/bindings/pci/qcom,pcie-x1e80100.yaml | 6 ++++--
-> >  1 file changed, 4 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-x1e80100.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-x1e80100.yaml
-> > index 1074310a8e7a..7ceba32c4cf9 100644
-> > --- a/Documentation/devicetree/bindings/pci/qcom,pcie-x1e80100.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-x1e80100.yaml
-> > @@ -19,11 +19,10 @@ properties:
-> >      const: qcom,pcie-x1e80100
-> >  
-> >    reg:
-> > -    minItems: 5
-> > +    minItems: 6
-> >      maxItems: 6
-> >  
-> >    reg-names:
-> > -    minItems: 5
-> >      items:
-> >        - const: parf # Qualcomm specific registers
-> >        - const: dbi # DesignWare PCIe registers
-> > @@ -71,6 +70,9 @@ properties:
-> >        - const: pci # PCIe core reset
-> >        - const: link_down # PCIe link down reset
-> >  
-> > +  vddpe-3v3-supply:
-> > +    description: A phandle to the PCIe endpoint power supply
+On Tue, Jun 04, 2024 at 06:20:24PM +0300, Abel Vesa wrote:
+> The actual size of the DBI region is 0xf20 and the start of the
+> ELBI region is 0xf40, according to the documentation. So fix them.
+> While at it, add the MHI region as well.
 > 
-> TBC, this is a rail on the host side provided to a card? If so, we have 
-> standard properties for standard PCI voltage rails.
+> Fixes: 5eb83fc10289 ("arm64: dts: qcom: x1e80100: Add PCIe nodes")
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 
-There is a 'vpcie3v3-supply' property and it should satisfy the requirement. But
-'vddpe-3v3-supply' is already used on multiple Qcom SoCs. So changing the name
-in dts warrants the driver to support both supplies for backwards compatibility,
-but that should be fine.
-
-> It is also preferred that you put them in a root port node rather than the
-> host bridge.
-
-Even though the resource split between root port and host bridge is not clear in
-Qcom SoCs, I think from logical stand point it makes sense.
+Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
 - Mani
+
+> ---
+> Changes in v2:
+> - Dropped the 4-lane mode switch patch entire.
+> - Fetched Konrad's R-b tag
+> - Link to v1: https://lore.kernel.org/r/20240531-x1e80100-dts-fixes-pcie6a-v1-0-1573ebcae1e8@linaro.org
+> ---
+>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> index cf8d8d5b1870..fe7ca2a73f9d 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> @@ -2818,15 +2818,17 @@ pcie6a: pci@1bf8000 {
+>  			device_type = "pci";
+>  			compatible = "qcom,pcie-x1e80100";
+>  			reg = <0 0x01bf8000 0 0x3000>,
+> -			      <0 0x70000000 0 0xf1d>,
+> -			      <0 0x70000f20 0 0xa8>,
+> +			      <0 0x70000000 0 0xf20>,
+> +			      <0 0x70000f40 0 0xa8>,
+>  			      <0 0x70001000 0 0x1000>,
+> -			      <0 0x70100000 0 0x100000>;
+> +			      <0 0x70100000 0 0x100000>,
+> +			      <0 0x01bfb000 0 0x1000>;
+>  			reg-names = "parf",
+>  				    "dbi",
+>  				    "elbi",
+>  				    "atu",
+> -				    "config";
+> +				    "config",
+> +				    "mhi";
+>  			#address-cells = <3>;
+>  			#size-cells = <2>;
+>  			ranges = <0x01000000 0 0x00000000 0 0x70200000 0 0x100000>,
+> 
+> ---
+> base-commit: d97496ca23a2d4ee80b7302849404859d9058bcd
+> change-id: 20240531-x1e80100-dts-fixes-pcie6a-0cf5b75a818e
+> 
+> Best regards,
+> -- 
+> Abel Vesa <abel.vesa@linaro.org>
+> 
+> 
 
 -- 
 மணிவண்ணன் சதாசிவம்
