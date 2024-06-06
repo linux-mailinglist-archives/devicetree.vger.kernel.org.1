@@ -1,185 +1,170 @@
-Return-Path: <devicetree+bounces-73388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E9658FF34A
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 19:05:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AA938FF34B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 19:05:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B45AA293D18
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:05:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1D6E1F26715
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:05:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FF7C1E87F;
-	Thu,  6 Jun 2024 17:05:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BE8C19754B;
+	Thu,  6 Jun 2024 17:05:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="psnUEsSe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 839B5195FE0
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 17:05:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2EA43AC2E;
+	Thu,  6 Jun 2024 17:05:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717693514; cv=none; b=uPYIEoaR7jeBdA7XPHty1zHlqWy6mhvp8fqyOw4HLtpmp10iw9C1oQiEczvkEd16mSgOrAX0bS5eAx5LJ0YCjQFm2KtcaA5gt1/iIIvjThk7dLXZ/b4QHHcLXu0pmmLt/pDOIvIiRni+9rLs1tURvz4B+6Y9Np/2fnol2QUVNo0=
+	t=1717693537; cv=none; b=DDwviDSluJwGo/NJpjQNFAAvIm3rYMGBL8hGF319VfErBNGI/HtSTbTHgjPLUd+VNusnD1waku1FTaoxFmb7mgPn2c8SIm7C7PJVI0SMLAHi3j77wIgVUujWrjBz+X8ehPbw920YhWMqAaqzYztLGzyp2pHkSgmYEoI3D9+gRKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717693514; c=relaxed/simple;
-	bh=V2kjYJf3QZ3srA2bWcxwmOaryQ3hg2zEuj8/EzkmJrw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fcIwuoSbcqW1B14yR/iuc9FHipFW2hmx3U8mw2Xp9BXmlkk/YwGRZxX2Uxr+kot/l9PPoJv9qJ45g7WvrfUZdpUDZazXpKpA/2ATXCAu2V3E0hvBtgFpa/bOXKpGprXg6gWBvHgBj1cz0W+QXkLBARx8Q3acL7dKnZ4DWQPwLI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52b912198f1so1778340e87.0
-        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2024 10:05:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717693507; x=1718298307;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1QkWLvVozh3rOBWMvwLPwR/I9dP5vk9Rq7o/N5NibLo=;
-        b=lwzOt5DjjD2cBKJS/fiBVRBt5qu/qRVGhpkQV7VhYcqN33BGKkbw4hUdTGX19br/IO
-         wfqtUFJlk9DijALz+WJINi9JqIzBngTn3yTUzajyLnNEnVMZnCP7nJnc3VWsKjiAgLjA
-         +HWzRsoPRECu4PaDCd0cljlO5hahS7ezxXwh97P9K5UiaPzXhN7XYXh8MzihTKQB5X8z
-         Dwh8pQzTZ+RqDCFOzQz1jTnjVVKZ37hH/iu1ZDaPLLzCf12L1ZrX/GNJAboFAnh3nUKX
-         3PzUx7GXbPzG6lKAcb4Swwd7GeLtvyIzuJEVVUcxc0vwxcPVW/cNhRDvFf2lE6x6ZOKn
-         DQsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUNeSJv3AYLKeFKZ2dJhzgv0BUMJi+Fe9ol7Fxmho7fWV2xYrrWNvCxw/B8ACjq3AkoyE94nxJ1Gk4x8NFQSR68U2dh/MgtOcYVqw==
-X-Gm-Message-State: AOJu0YzsTHDJe/PArMm0vtqcxv780uZKTw9m+J1Hv0nB6YFREVMsE40p
-	Wgm8i+wZOM8WYAzRyTOnnkUkm8qX0z5RrVCP4qx5Z+PuC/hxxc6XQcsHXOhQ
-X-Google-Smtp-Source: AGHT+IGb6O65oIwem4C/vH5hsbCjYPoUUzXbLKT/V0Zm+/lirS0XZvwUT3fVXyoU4see87K+J0ppZg==
-X-Received: by 2002:a05:6512:536:b0:523:a89f:aa64 with SMTP id 2adb3069b0e04-52bb9f7aaa7mr137351e87.20.1717693507163;
-        Thu, 06 Jun 2024 10:05:07 -0700 (PDT)
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com. [209.85.208.174])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52bb423e1aasm245214e87.238.2024.06.06.10.05.06
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jun 2024 10:05:06 -0700 (PDT)
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2e95a75a90eso12937911fa.2
-        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2024 10:05:06 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXp1t/Tk/fQ4mmdaocY+qzMeiG2FqREa2tNAzC7j7pVrodVDFPMOz9Dogq5Zh7afE1YUVekMu/vuAkMXrWckbL2zoI2N5GMzMJ0+w==
-X-Received: by 2002:a2e:82c8:0:b0:2e9:8418:1f5f with SMTP id
- 38308e7fff4ca-2eadce16d64mr2174231fa.6.1717693506672; Thu, 06 Jun 2024
- 10:05:06 -0700 (PDT)
+	s=arc-20240116; t=1717693537; c=relaxed/simple;
+	bh=12E14gZ2QAVnMNIwYrxVZwM9VywDI+b+6wOtVi7+4Qc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PACHe4Eiu2zBpHI086vYyhZVNvg++dvdCiMcD++kCXBFTKJ/5kBkzl1hzGd6b4LWXOmoc93Rl+oDCp5LcbxcBAl9ZaTIVbXrBBU4fgHR79UaIGHnz2a5anSzbBNzBbCwIlZZSECqDymFIRhpBcILGeW4p3fAlvbT8/L+qJ0sTyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=psnUEsSe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0329C32782;
+	Thu,  6 Jun 2024 17:05:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717693536;
+	bh=12E14gZ2QAVnMNIwYrxVZwM9VywDI+b+6wOtVi7+4Qc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=psnUEsSea+eKkkjw5n7TpdK5/LBJ1+DobMAK6WYLPPxBBfQ+EBq0vBV2RZiU4D7I0
+	 fcoIzRVXWRhVpXPqbryYVLeyDUuVhgBNuKNLES386QFENIiVFrER26zRLtKVolmLuQ
+	 rw5B4f3jLDzwsQhNE570Q+IUuDKD1m61O3LRD0Q5TwQrqyPgxtY63n6FsQhCnmD2yS
+	 MwvQ5RxGe6jq5oEdp/RGBRodueLukB2iS2YIDY8XzkjlPOFzj1OJLETDI6g2ZTIeIY
+	 hAepgIuESGPbYrZOe7w4pI8H+InLbYomIEWsrIAYdLdxOKpVElqruG0/RY5P5iV9Yr
+	 3DXThSnx6yBMg==
+Date: Thu, 6 Jun 2024 18:05:30 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Haylen Chu <heylenay@outlook.com>
+Cc: Inochi Amaoto <inochiama@outlook.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Jisheng Zhang <jszhang@kernel.org>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: thermal: sophgo,cv180x-thermal: Add
+ Sophgo CV180x thermal
+Message-ID: <20240606-reaction-thirsting-8c22d1b5ab72@spud>
+References: <SG2PR01MB4218013241B3EED779D3BAE8D7F82@SG2PR01MB4218.apcprd01.prod.exchangelabs.com>
+ <SG2PR01MB42189977B4172405F5704CC4D7F82@SG2PR01MB4218.apcprd01.prod.exchangelabs.com>
+ <IA1PR20MB49531F55C8D7DC5D0050CAF9BBF92@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <20240605-tightwad-janitor-82cfceb1469d@spud>
+ <SEYPR01MB4221F0E46F600E013974F21BD7FA2@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240605185339.266833-1-macroalpha82@gmail.com>
- <20240605185339.266833-2-macroalpha82@gmail.com> <20240606112614.5380b2d1@donnerap.manchester.arm.com>
- <20240606-ludicrous-unyielding-gerbil-e23f41@houat> <DM4PR05MB9229B137C69F3B2D2A9F7B64A5FA2@DM4PR05MB9229.namprd05.prod.outlook.com>
-In-Reply-To: <DM4PR05MB9229B137C69F3B2D2A9F7B64A5FA2@DM4PR05MB9229.namprd05.prod.outlook.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Fri, 7 Jun 2024 01:04:52 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66kuiCCw9qk--f1y7ABBxirRFiRf=D6HXy4AE06jHLLQA@mail.gmail.com>
-Message-ID: <CAGb2v66kuiCCw9qk--f1y7ABBxirRFiRf=D6HXy4AE06jHLLQA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: sunxi: Add Anbernic RG35XXSP
-To: Chris Morgan <macromorgan@hotmail.com>
-Cc: Maxime Ripard <mripard@kernel.org>, Andre Przywara <andre.przywara@arm.com>, 
-	Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev, 
-	devicetree@vger.kernel.org, ryan@testtoast.com, samuel@sholland.org, 
-	jernej.skrabec@gmail.com, conor+dt@kernel.org, krzk+dt@kernel.org, 
-	robh@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="xNgNBLWP/RMLxW5/"
+Content-Disposition: inline
+In-Reply-To: <SEYPR01MB4221F0E46F600E013974F21BD7FA2@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
+
+
+--xNgNBLWP/RMLxW5/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 7, 2024 at 12:55=E2=80=AFAM Chris Morgan <macromorgan@hotmail.c=
-om> wrote:
->
-> On Thu, Jun 06, 2024 at 01:30:45PM +0200, Maxime Ripard wrote:
-> > Hi,
-> >
-> > On Thu, Jun 06, 2024 at 11:26:14AM GMT, Andre Przywara wrote:
-> > > On Wed,  5 Jun 2024 13:53:38 -0500
-> > > Chris Morgan <macroalpha82@gmail.com> wrote:
-> > > > From: Chris Morgan <macromorgan@hotmail.com>
-> > > >
-> > > > Add the Anbernic RG35XXSP variant device and consolidate the Anbern=
-ic
-> > > > H700 devices.
-> > > >
-> > > > The Anbernic RG35XXSP is almost identical to the RG35XX-Plus, but i=
-n a
-> > > > clamshell form-factor.
-> > > >
-> > > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > > > ---
-> > > >  .../devicetree/bindings/arm/sunxi.yaml        | 24 +++++++--------=
-----
-> > > >  1 file changed, 9 insertions(+), 15 deletions(-)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Doc=
-umentation/devicetree/bindings/arm/sunxi.yaml
-> > > > index c2a158b75e49..1ae77e5edf9a 100644
-> > > > --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> > > > +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> > > > @@ -51,25 +51,19 @@ properties:
-> > > >            - const: allwinner,parrot
-> > > >            - const: allwinner,sun8i-a33
-> > > >
-> > > > -      - description: Anbernic RG-Nano
-> > > > -        items:
-> > > > -          - const: anbernic,rg-nano
-> > > > -          - const: allwinner,sun8i-v3s
-> > > > -
-> > > > -      - description: Anbernic RG35XX (2024)
-> > > > -        items:
-> > > > -          - const: anbernic,rg35xx-2024
-> > > > -          - const: allwinner,sun50i-h700
-> > > > -
-> > > > -      - description: Anbernic RG35XX Plus
-> > > > +      - description: Anbernic H700 Handheld Gaming Console
-> > >
-> > > So that's certainly an interesting optimisation, but so far we were u=
-sing
-> > > one entry per device, it seems.
-> > > I am not entirely sure what the purpose of this file is, exactly: jus=
-t to
-> > > document the compatible names
-> >
-> > That was the initial intent, yes.
-> >
-> > > to reserve them and avoid clashes in the future?
-> >
-> > And I guess it helps with that too :)
-> >
-> > > Or also to put some official names to each device? That seems to
-> > > somewhat overlap with the root node's model property in the respectiv=
-e
-> > > device .dts, though.
-> >
-> > I guess it's a fair criticism. It would be hard to collect all the
-> > compatibles without describing which device they belong too though. So
-> > yeah, there's some redundancy, but removing the descriptions entirely
-> > would be worse imo.
-> >
-> > > It would be good to clarify this, and establish how to group those de=
-vices.
-> > > I mean technically we could for instance put *all* H6 devices into on=
-e
-> > > entry, using the same scheme as below.
-> > > Not sure that's desired, though.
-> >
-> > I don't really have a say there anymore, but I always tend to prefer
-> > consistency in documentation as a user. Even more so since that kind of
-> > categorization tends to be very subjective and thus super inconsistent.
-> >
-> > Maxime
->
-> This is how I was asked to do it in the rockchip.yaml file [1], but I
-> know different teams have different style requests. Just let me know
-> what you prefer and I'll get it done that way.
+On Thu, Jun 06, 2024 at 01:32:46PM +0000, Haylen Chu wrote:
+> On Wed, Jun 05, 2024 at 06:54:17PM +0100, Conor Dooley wrote:
+> > > > +  accumulation-period:
+> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +    description: Accumulation period for a sample
+> > > > +    oneOf:
+> > > > +      - const: 0
+> > > > +        description: 512 ticks
+> > > > +      - const: 1
+> > > > +        description: 1024 ticks
+> > > > +      - const: 2
+> > > > +        description: 2048 ticks
+> > > > +      - const: 3
+> > > > +        description: 4096 ticks
+> > > > +    default: 2
+> > > > +
+> > > > +  chop-period:
+> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +    description: ADC chop period
+> >=20
+> > What's a "chop" and why is either this or the accumulation-period a
+> > fixed property of the hardware? Shouldn't this choice really be up to
+> > the user?
+>=20
+> The chop-period is an ADC parameter.
+>=20
+> Both accumulation-period and chop-period specify how the sensor
+> measures temperature. Making these parameters up to end users brings
+> extra unnecessary code complexity. Being configurable for each board
+> should be enough and other thermal drivers have been doing things in
+> this way.
 
-For now, please just keep each board entry separate to keep the same
-style as the rest of the file.
+Other systems may well have properties for this, but something being
+done in the past doesn't mean it might be the right thing to do now.
+I don't really buy that this is something you set to a fixed value per
+board, but rather the use case of a particular board would factor into
+whether or not you would want to use a shorter or longer accumulation
+period.
 
-ChenYu
+> > > > +    oneOf:
+> > > > +      - const: 0
+> > > > +        description: 128 ticks
+> > > > +      - const: 1
+> > > > +        description: 256 ticks
+> > > > +      - const: 2
+> > > > +        description: 512 ticks
+> > > > +      - const: 3
+> > > > +        description: 1024 ticks
+> >=20
+> > Can we just make the number of ticks the unit here, and above?
+> > Also, a "oneOf: - const" structure is just an enum.
+>=20
+> I do not catch your idea. These values directly map to raw register
+> configuration, which simplify the implementation a lot.
 
-> [1] https://lore.kernel.org/all/20240123212111.202146-3-macroalpha82@gmai=
-l.com/
->
-> Thank you,
-> Chris.
+It should be trivial to convert them to register values in your driver.
+
+> > > > +    default: 3
+> > > > +
+> > > > +  sample-cycle-us:
+> > > > +    description: Period between samples
+> > > > +    default: 1000000
+> > No constraints?
+>=20
+> Sample cycle is more flexible because of hardware designing.
+
+It quite likely has constraints, flexible or not. Is the hardware
+capable of both 1 us and uint32_max us?
+
+Thanks,
+Conor.
+
+--xNgNBLWP/RMLxW5/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmHsWgAKCRB4tDGHoIJi
+0vG7AP48IalU1RGZ/KbtaGu/vPghK4eP4Nk9f7t4VJwKdTosBwD9F3Yrkl2G2Ylr
+82IeEwZmoQQrxmHthTZEV+dAIf6BJQk=
+=4835
+-----END PGP SIGNATURE-----
+
+--xNgNBLWP/RMLxW5/--
 
