@@ -1,96 +1,121 @@
-Return-Path: <devicetree+bounces-73336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DA028FF0FA
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:44:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 791838FF135
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:50:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC61C1F26EFE
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:44:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B4C61C24783
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:50:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 664F819751B;
-	Thu,  6 Jun 2024 15:43:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0B5C198824;
+	Thu,  6 Jun 2024 15:49:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b="j+2+QVzm"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="OJWfsYXr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mta-65-228.siemens.flowmailer.net (mta-65-228.siemens.flowmailer.net [185.136.65.228])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78B0119750F
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 15:43:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.65.228
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12393196C75;
+	Thu,  6 Jun 2024 15:49:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717688635; cv=none; b=gx6TkQHzSltR0A3IUIEKVz8SP3b0I9e1tTQX71BXJlxY2M8QmO71xwd0Eo2v2xUSx2VObHlRY6+7gfLSSNqmFxg+ppdhblONfzeSdoUFJcwCKm4rtXnRWoElvxQ02H2ZZmWO+Qcqyqy9708hsCcy8BR2cv3Txird6H5mqrgbRc0=
+	t=1717688987; cv=none; b=pSa/n9lss9DQ05o8hHZNHENvdbqpYUYNovrBsMqoWkbrQBQXuXLy4kcg3/6O7W8uy5ja61tKUzbSTqs4aFN1DKphoT+RnGKtKUd8eHtDZo8g8DpaCMt2ltw/DHy9/JTDtKteqb5jIhUSDZIjtq/+GHQmXpZlAuu7JIQp2ja5428=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717688635; c=relaxed/simple;
-	bh=g0ka9Yi/6e35bQZKWyOqyvyBXHQ2ygEVahWRGWso0iM=;
+	s=arc-20240116; t=1717688987; c=relaxed/simple;
+	bh=wAkkySakwtpXetpqy216hr8Mf/oM3hJIoPHEJd0ks+s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e8FoDMMzTvjEGEJJdwlBiP0kekwwkcYchDPIKfOicCLnb9x0NAegwoeYyjXR3KBvHeoxVfd9NsEO7j0uSu3oyXbhCp0IfuMulDeLq+APC91bIHw34TKJDVkaMPM0BibTPpqzg+Q0lYHCs+Odve4IX+ILKRX21kga2yqwzZWqTks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b=j+2+QVzm; arc=none smtp.client-ip=185.136.65.228
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
-Received: by mta-65-228.siemens.flowmailer.net with ESMTPSA id 20240606154348d336b9196579c605a4
-        for <devicetree@vger.kernel.org>;
-        Thu, 06 Jun 2024 17:43:48 +0200
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm2;
- d=siemens.com; i=diogo.ivo@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
- bh=XbyzhJfWKUAGEPA2NhfvVHDBuogfHdsp7Gu4BWpi/40=;
- b=j+2+QVzm+DUQAZjogAWHPmpQJ35666hy5aZvOS81p+XlGSKsKVHWqUzLPctRbPsIO7gu9b
- pTlpOFV5CHZIOsF9ujIu2k3nHGbo/n/91brnCBbT4fM9/pnXhpwN+2vmoK+FguvlN2n5opyH
- 3r6LVsXKFRuyllnM/9M0hdNhoZLJg=;
-Message-ID: <852e7697-449c-49ea-9d83-d166fd235ff1@siemens.com>
-Date: Thu, 6 Jun 2024 16:43:46 +0100
+	 In-Reply-To:Content-Type; b=gdc8an+Al82DrdN/WQMjKoHSO11Qr+oeX6eR96vd5Kaxu50X6opHPyKoD4O8OhFoj2RjJC6aLrhENppFbreFOGk03hB79gix6J7WRnMWLisakpuGaKjN2E0KblFiGUR97fNlbttvriYHyrmS391cXY5+hrCiTb4L2g8UBfPzk7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=OJWfsYXr; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 7DB4187F5C;
+	Thu,  6 Jun 2024 17:49:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1717688984;
+	bh=oZ6AjegqpphtNzQqTVjigVkYVuIdij5lsm+LsTd1UtQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OJWfsYXrkT/xrqKKC8f0G7vpTqRVoG/3UxJo5NH1cdn0JC9Yt9dabTFrY4oPXk+W9
+	 9WAFIGbDvbHPI6Ox8lgHVYwEnf1xv3jwzZYpXtslutOdUt7HNrKlXZWsCVuETRBJ/8
+	 OjZ7JHCqWqSLXK3cXJaUkg/H9I7ECaLbr0y8usap/gU2Yk8HWgCel7gD5UPQhy5Jq+
+	 aSRxUxkQgw4vP49wQ/ikXJJyrFeieaVg/yZ1NqhJwtcJ5e9PoHbXCtee6PPFiXhfr9
+	 DTLsqYlSqWXaCBYawwS7t8z7izIKQTHpyWvaN8lNmjzd67mWPu3r/69eUI65g1/OQP
+	 lvkC69ao7ueuQ==
+Message-ID: <ee9a4da7-8b7a-4bd5-8a34-19e0e7cb49ff@denx.de>
+Date: Thu, 6 Jun 2024 17:47:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH net-next v2 2/3] net: ti: icss-iep: Enable compare events
-To: Paolo Abeni <pabeni@redhat.com>, MD Danish Anwar <danishanwar@ti.com>,
- Roger Quadros <rogerq@kernel.org>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Richard Cochran <richardcochran@gmail.com>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jan Kiszka <jan.kiszka@siemens.com>,
- Jacob Keller <jacob.e.keller@intel.com>, Simon Horman <horms@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240604-iep-v2-0-ea8e1c0a5686@siemens.com>
- <20240604-iep-v2-2-ea8e1c0a5686@siemens.com>
- <c518f6dd6cf9e92469d37a7317a6881ebed6a8c1.camel@redhat.com>
- <a08ff9c7-eac7-409e-8f22-5ad1fa0cf212@siemens.com>
- <c0de46a0bd15350620d5d611f07cf87b2a223d27.camel@redhat.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 07/11] net: ethernet: stmmac: add management of
+ stm32mp13 for stm32
+To: Christophe ROULLIER <christophe.roullier@foss.st.com>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Richard Cochran <richardcochran@gmail.com>, Jose Abreu
+ <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240604143502.154463-1-christophe.roullier@foss.st.com>
+ <20240604143502.154463-8-christophe.roullier@foss.st.com>
+ <3c40352b-ad69-4847-b665-e7b2df86a684@denx.de>
+ <73f7b4a4-31d1-4907-b83b-2ac7758edf0d@foss.st.com>
 Content-Language: en-US
-From: Diogo Ivo <diogo.ivo@siemens.com>
-In-Reply-To: <c0de46a0bd15350620d5d611f07cf87b2a223d27.camel@redhat.com>
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <73f7b4a4-31d1-4907-b83b-2ac7758edf0d@foss.st.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Flowmailer-Platform: Siemens
-Feedback-ID: 519:519-1320519:519-21489:flowmailer
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On 6/6/24 2:49 PM, Paolo Abeni wrote:
-> On Thu, 2024-06-06 at 14:28 +0100, Diogo Ivo wrote:
->> With this said it should be possible to change this spinlock to a mutex as
->> well, since all the possibilities for concurrency happen outside of
->> interrupt context. I can add a patch to this series doing that if you
->> agree with my reasoning above and find it beneficial. For this some
->> comments from TI would also be good to have in case I missed something
->> or there is some other factor that I am not aware of.
+On 6/6/24 4:19 PM, Christophe ROULLIER wrote:
+
+Hi,
+
+>>> @@ -348,8 +360,15 @@ static int stm32_dwmac_parse_data(struct 
+>>> stm32_dwmac *dwmac,
+>>>           return PTR_ERR(dwmac->regmap);
+>>>         err = of_property_read_u32_index(np, "st,syscon", 1, 
+>>> &dwmac->mode_reg);
+>>> -    if (err)
+>>> +    if (err) {
+>>>           dev_err(dev, "Can't get sysconfig mode offset (%d)\n", err);
+>>> +        return err;
+>>> +    }
+>>> +
+>>> +    dwmac->mode_mask = SYSCFG_MP1_ETH_MASK;
+>>> +    err = of_property_read_u32_index(np, "st,syscon", 2, 
+>>> &dwmac->mode_mask);
+>>> +    if (err)
+>>> +        pr_debug("Warning sysconfig register mask not set\n");
+>>
+>> I _think_ you need to left-shift the mode mask by 8 for STM32MP13xx 
+>> second GMAC somewhere in here, right ?
+>>
+> The shift is performed in function stm32mp1_configure_pmcr:
 > 
-> It looks like that most critical section protected by iep->irq_lock are
-> already under ptp_clk_mutex protection. AFAICS all except the one
-> introduced by this patch.
+>      /* Shift value at correct ethernet MAC offset in SYSCFG_PMCSETR */
+>      val <<= ffs(dwmac->mode_mask) - ffs(SYSCFG_MP1_ETH_MASK);
 > 
-> If so, you could acquire such mutex even in icss_iep_cap_cmp_work() and
-> completely remove iep->irq_lock.
+> In case of MP13 Ethernet1 or MP15, shift equal 0
+> 
+> In case of MP13 Ethernet2 , shift equal 8  ;-)
 
-That is a much better approach, I'll do that and post v3.
-
-Best regards,
-Diogo
+Oh, good, thanks !
 
