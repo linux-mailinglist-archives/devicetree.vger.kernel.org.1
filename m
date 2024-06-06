@@ -1,117 +1,146 @@
-Return-Path: <devicetree+bounces-73420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A3CF8FF511
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 20:59:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C19A38FF51A
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 21:02:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C956F1F253A3
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 18:59:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5609E2892AF
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 19:02:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E865F4F615;
-	Thu,  6 Jun 2024 18:59:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CBCC4502F;
+	Thu,  6 Jun 2024 19:02:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="qJi+R8wv";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="NZuoaFCW"
+	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="6AWs8Y5f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 524131BC3C;
-	Thu,  6 Jun 2024 18:59:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA90FC13C;
+	Thu,  6 Jun 2024 19:02:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717700391; cv=none; b=imPcywcip1M3WQMVCtZqWe909cho6hzhdfwWxxp1qmrpKB9ERUzBFl29DQKRAVXQYSg6g7d2EwQE4pMGPYgbd9SLPwCA8si9C0gAgaTU8fRidu4A2JCNadmBGuAvgR7dUANZjmAuKyANEiljQ6U3JSvYmfgzdey90lt3A8jkqw4=
+	t=1717700525; cv=none; b=tHHOYpzvKtNSKPpuwSdzpUCYgtXFPccmoP60SsWEOAt1qoMvhNZ5gUxOktdvYxajyZbeaaQi9iwNDC9EMoU3n4yJVfjY/R+G8bmmhRK83Jyb5MeCHLmqgMEgfFh6EHmfYgioxwDyb3NijRce7e0yVWQ/tOwJtzqSlLdwqzVA53g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717700391; c=relaxed/simple;
-	bh=PBQlux8vvLo0Z0BGhEJHALFedNirUWBPON8FKluAEi4=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=KRiFbWUB98+MBv+PaXDU9tK0YJOOaxeZsgaNy4LaJSzNArfbhIhQWKeZUDicqy9gma2AA8xZQonkhGt70JVhZCxr+rz4WbrVP+q6IamrLrISRwEX+XWreBB2tAsVLPWJ8mqeWgYGY7PUBCc+4ib1Mt9TOUAkJYEXqBB98KfJH5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=qJi+R8wv; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=NZuoaFCW; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1717700388;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=h2T0DbAUrrKT9ttONGR5TRLMSSgb9Rr8VNZEBbJLs/w=;
-	b=qJi+R8wvfyokvEVu1Cl/Od8jkeXDw5uvpcyTPmN+FcBBm1O6CCsm/AqRssvMXQ4dxgKzsK
-	0sgVPC4rog6n7YSMRfQ7FvhPgz5pNXp4XzzV89Rf4HS8AB7SiCT2veA11f6vv926JGTuzh
-	tFhgAtFeozzDGMb1pqF0wD4EJegwqOlUhD98v7//h+TJTXkorNTgjE7VuI7itFvJu2uRFv
-	lG2RvMsMBFr40s/EpyTJ+1VnAG6T/SzMnihoWTdvECoHPGRdPuKXQUwtzzLTKhsd0tpe+u
-	KRGVdG4D2tV0YBpsbe+Suug8VTDyGJ018GknZ0oTxUi/H7BzcTxVr+NiESHDIg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1717700388;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=h2T0DbAUrrKT9ttONGR5TRLMSSgb9Rr8VNZEBbJLs/w=;
-	b=NZuoaFCW1bXqXaEoiXWONbX88yFJvCwxT7Ryn74knGA5myyU5InuJkHDJYiybDd8AoGvdp
-	AKGUVN3kwEnlmdBg==
-To: Matti Vaittinen <mazziesaccount@gmail.com>, Matti Vaittinen
- <mazziesaccount@gmail.com>, Matti Vaittinen
- <matti.vaittinen@fi.rohmeurope.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Matti Vaittinen
- <mazziesaccount@gmail.com>, Wim Van Sebroeck <wim@linux-watchdog.org>,
- Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org, Herve Codina
- <herve.codina@bootlin.com>
-Subject: Re: [PATCH v3 07/10] irqdomain: Allow giving name suffix for domain
-In-Reply-To: <bbd219c95f4fe88752aee5f21232480fe9b949fb.1717486682.git.mazziesaccount@gmail.com>
-References: <cover.1717486682.git.mazziesaccount@gmail.com>
- <bbd219c95f4fe88752aee5f21232480fe9b949fb.1717486682.git.mazziesaccount@gmail.com>
-Date: Thu, 06 Jun 2024 20:59:47 +0200
-Message-ID: <87plst28yk.ffs@tglx>
+	s=arc-20240116; t=1717700525; c=relaxed/simple;
+	bh=dLOTe0zOfFf2wx2GkwFTCa1WlboZXkpBx3ZTdW9qpb0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=WIUIDLzxwEtw2N+Ui1vkOn7WFl6I+yuGUwrBj3mLdvl+fDJxSHdq42NG70xYxL1Nualiy8jnuEwXHi+Z2qKV3APNvX1XO+xMDOGG/QqbNL6NMBt1x1SvD0hygW3wEb7gURsEyrWtpBCszASuqzPBmNjBNu6OOP45ttsLLbbilt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz; spf=pass smtp.mailfrom=z3ntu.xyz; dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b=6AWs8Y5f; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=z3ntu.xyz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
+	t=1717700516; bh=dLOTe0zOfFf2wx2GkwFTCa1WlboZXkpBx3ZTdW9qpb0=;
+	h=From:Date:Subject:To:Cc;
+	b=6AWs8Y5fFaVUOI9E3xqm++CeJkqm2Lr9Fioz8q0o7WiJTGvuJoRC5uiaR5lahQkL+
+	 Fo8WS5j8UQCIbvtB66dojdsg+Mrb9BYoDQINvgeAo5uwY6mvW/zrY9ggwu4W6vogen
+	 6vmEtrJtW7rDWEE8zdhi59lNLx/luGbydSPKuE1k=
+From: Luca Weiss <luca@z3ntu.xyz>
+Date: Thu, 06 Jun 2024 21:01:36 +0200
+Subject: [PATCH v2] rpmsg: qcom_smd: Improve error handling for
+ qcom_smd_parse_edge
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240606-apcs-mboxes-v2-1-41b9e91effb6@z3ntu.xyz>
+X-B4-Tracking: v=1; b=H4sIAI8HYmYC/1XMSw7CIBSF4a00dyyGt4kj99F0AHi1DKQNVELbs
+ HexiQOH/0nOt0PC6DHBtdshYvbJT6EFP3XgRhOeSPy9NXDKJZVcEDO7RF52KpgI44jaUWaUFdA
+ ec8SHL4fWD61Hn5Yprgee2Xf9OfLPyYxQopXSTl6cVZTdNhGW97msGwy11g/4NvzIpgAAAA==
+To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Luca Weiss <luca@z3ntu.xyz>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2126; i=luca@z3ntu.xyz;
+ h=from:subject:message-id; bh=dLOTe0zOfFf2wx2GkwFTCa1WlboZXkpBx3ZTdW9qpb0=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBmYgeTBV2CHlVz8nTGb2PKIdfgFUnhX3hXJ9DWr
+ mqDvptT3qeJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZmIHkwAKCRBy2EO4nU3X
+ VtX2D/0XsWEsql04EZT3rb2O7Nc8FqfwJRRLnuNymbfypuBcK90667hlJOp2V0vbWR6ClcU4RD/
+ FdnvGd3py5D1fTPQEY8fX58tSiZFZfVkXdKZzkeEi8YxqZ173luZ+C5RKYYHCPRHywKUohhL5MK
+ v1SwGoLV7ptmURAvJwxqGa7Ls/SeS0lIEQwT78MgaVj3uG0EGDeDVFnYYNBPHmdNFtB4x55Ve8J
+ GHzsWewFeYBN7DGUDnrh1tiQ92sD6i4fmum8oH2xvts3nMMDsmUaY2OWbURnIvIg70dcAtmMXBg
+ M1oh2Ou68Vz58qRHA4oKZ2+Zk67RntBBUcKvrYc2+CBUi0MCQZcLWcESYr+BQaKYosKapnAcvy+
+ fOdHN2RkbwImB1C9YRqiA7kB5vrSCRQuJkcTOGfvkDgAl+SmTfILMdANJ6VZdEz7IiVZryBM8WC
+ w1ZNWcoJtn0YG7rgJcJxFnZhkNFIJpYCHJ5AuTyUlV2kb78fdl2/0+E0Wp8zr+OsVkrJ6NvVK9E
+ kerlfGBpuOWK6AU+JwXlrcSZ+CYmMQ6U1mCLUZkEnCY4BAeycmdjpdmYdkGpvCbdYwxLEFknAsF
+ yo976zIPpSxU2K07Y96+gTjDg03sa3Q4qyKFDES8mYOjabuVHEnTzuFJi19NvqK0TgQmrmyAc0+
+ cneUVpd95Z8csjg==
+X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
 
-Matti!
+When the mailbox driver has not probed yet, the error message "failed to
+parse smd edge" is just going to confuse users, so improve the error
+prints a bit.
 
-On Tue, Jun 04 2024 at 10:55, Matti Vaittinen wrote:
->  struct irq_domain *__irq_domain_add(struct fwnode_handle *fwnode, unsigned int size,
->  				    irq_hw_number_t hwirq_max, int direct_max,
->  				    const struct irq_domain_ops *ops,
-> -				    void *host_data);
-> +				    void *host_data, const char *name_suffix);
->  struct irq_domain *irq_domain_create_simple(struct fwnode_handle *fwnode,
->  					    unsigned int size,
->  					    unsigned int first_irq,
-> @@ -350,7 +350,8 @@ static inline struct irq_domain *irq_domain_add_linear(struct device_node *of_no
->  					 const struct irq_domain_ops *ops,
->  					 void *host_data)
->  {
-> -	return __irq_domain_add(of_node_to_fwnode(of_node), size, size, 0, ops, host_data);
-> +	return __irq_domain_add(of_node_to_fwnode(of_node), size, size, 0, ops,
-> +				host_data, NULL);
+Cover the last remaining exits from qcom_smd_parse_edge with proper
+error prints, especially the one for the mbox_chan deserved
+dev_err_probe to handle EPROBE_DEFER nicely. And add one for ipc_regmap
+also to be complete.
 
-....
+With this done, we can remove the outer print completely.
 
-Looking at the resulting amount of churn to add that argument, I'm not
-really enthused. There is some other unrelated change required in this
-area:
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+---
+Changes in v2:
+- Rebase on qcom for-next, drop dts patches which have been applied
+- Improve error printing situation (Bjorn)
+- Link to v1: https://lore.kernel.org/r/20240424-apcs-mboxes-v1-0-6556c47cb501@z3ntu.xyz
+---
+ drivers/rpmsg/qcom_smd.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-  https://lore.kernel.org/all/8734pr5yq1.ffs@tglx
+diff --git a/drivers/rpmsg/qcom_smd.c b/drivers/rpmsg/qcom_smd.c
+index 43f601c84b4f..06e6ba653ea1 100644
+--- a/drivers/rpmsg/qcom_smd.c
++++ b/drivers/rpmsg/qcom_smd.c
+@@ -1369,7 +1369,8 @@ static int qcom_smd_parse_edge(struct device *dev,
+ 	edge->mbox_chan = mbox_request_channel(&edge->mbox_client, 0);
+ 	if (IS_ERR(edge->mbox_chan)) {
+ 		if (PTR_ERR(edge->mbox_chan) != -ENODEV) {
+-			ret = PTR_ERR(edge->mbox_chan);
++			ret = dev_err_probe(dev, PTR_ERR(edge->mbox_chan),
++					    "failed to acquire IPC mailbox\n");
+ 			goto put_node;
+ 		}
+ 
+@@ -1386,6 +1387,7 @@ static int qcom_smd_parse_edge(struct device *dev,
+ 		of_node_put(syscon_np);
+ 		if (IS_ERR(edge->ipc_regmap)) {
+ 			ret = PTR_ERR(edge->ipc_regmap);
++			dev_err(dev, "failed to get regmap from syscon: %d\n", ret);
+ 			goto put_node;
+ 		}
+ 
+@@ -1501,10 +1503,8 @@ struct qcom_smd_edge *qcom_smd_register_edge(struct device *parent,
+ 	}
+ 
+ 	ret = qcom_smd_parse_edge(&edge->dev, node, edge);
+-	if (ret) {
+-		dev_err(&edge->dev, "failed to parse smd edge\n");
++	if (ret)
+ 		goto unregister_dev;
+-	}
+ 
+ 	ret = qcom_smd_create_chrdev(edge);
+ 	if (ret) {
 
-My suggestion to convert all of this mess into a template based
-mechanism would nicely solve your problem too.
+---
+base-commit: 2c79712cc83b172ce26c3086ced1c1fae087d8fb
+change-id: 20240423-apcs-mboxes-12ee6c01a5b3
 
-Can you please have a look and eventually team up with Herve (CC'ed) to
-sort this out? I'm happy to help and give guidance.
+Best regards,
+-- 
+Luca Weiss <luca@z3ntu.xyz>
 
-Thanks,
-
-        tglx
 
