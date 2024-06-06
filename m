@@ -1,93 +1,131 @@
-Return-Path: <devicetree+bounces-73084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7C628FDFC2
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:30:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B6B68FDFC4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:30:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 785D51F22853
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 07:30:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ADE40B238A7
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 07:30:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45FAF7172F;
-	Thu,  6 Jun 2024 07:30:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA54E38DE0;
+	Thu,  6 Jun 2024 07:30:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W4JH+sm3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WScRmN73"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E37838DD2;
-	Thu,  6 Jun 2024 07:30:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5C9917C68
+	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 07:30:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717659022; cv=none; b=ny0eU8LfjZbgTv0X4RbJ7smjM/Ak3ZEYrc9jmoxozkt5aEVWLmlzDO9oqe/UAyW8NrI5/AqycZxWdGMYUmhRV1S4XqjnyTXlBokCCxD5k5FI2lyXPhE72ZxDtQ+yEm6+8GJbOJvf4iEtpgS6O/4QY8GK+4hGc05v/xxuIeQ+aY0=
+	t=1717659038; cv=none; b=c6EMZHTJRjq48d3uZB1c5veUujgzUQiZHAJJUNrcywfZoLFFRdgJ6Gn9nWERZSWs8JwoJy/NTnCQ24p0vuzbvH4LsR7C+wHTgUxRENt6PZGiAFWbuoO1KXhddveiE+9mE3cWGOeiv4Reu34O2AKuPXQVU9u0VK+vtqfcV5gHack=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717659022; c=relaxed/simple;
-	bh=74LOqVmO34urgp8Dqx2F/kyC5P65cGlJie5zdB/jLY4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=DusqsryjaStydk+WllF6gDiG95FecH/bxjHz9Wd8joOphdmONrYqaJTmzz8bjNYankrl7bRv1hGjH64IIrr0m/0zqb26IqKRdtdwvqcLzRrb251hVWneeBCbVbV11MvezzL64GgrP3JC4Ffq/VzfoZVphczL3kE5AqZtHek7JyQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W4JH+sm3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCC31C4AF07;
-	Thu,  6 Jun 2024 07:30:19 +0000 (UTC)
+	s=arc-20240116; t=1717659038; c=relaxed/simple;
+	bh=NWTeLsxwR8qVoyl/poSPnzU1ohEHEwiZq/eiV8lz188=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K1XUAPZeQ/R6t8rsw8u0r3cXyJjYI1ws6TQMJQmVhbScHNe7SZUmA7+dR/Kp3W0j5WPQvwGg35tSt8jL+x4s25jKno9kUtyPvSjAgC8wtb/I5Wm3NeqOx9noGjtBvb5BD0Npo0hDbSLbD6HuLIaQr5qN2PHZVCeZvkd9ylYpzIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WScRmN73; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37FBEC3277B;
+	Thu,  6 Jun 2024 07:30:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717659021;
-	bh=74LOqVmO34urgp8Dqx2F/kyC5P65cGlJie5zdB/jLY4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=W4JH+sm3tDsbKfd1dwz/V3oKUTAbHPa2oqHw3OeYSnq3AN763BjyACEy7HLCPXBam
-	 W5MmoCVlc20SmDeEobSrIKDlEHvPrz0VwI11YbQDVxg6ZaXczD3dsjzyUG7CX9Yylt
-	 buG63sDmyYb3I+kJbWEbGFtKXuCx0SIQVC+yKhe1ksiCRVTq+AvXLs5dWDbnqxAUOI
-	 m8qkpmCAvEMU8l7cNAzoT9txhqMhYqdyaO9wuwVi98zypYxWUouD55jzN+NqDquqEu
-	 GvpSAFYIDKVUfQWeDfOYk+gK5E7jBH3MT67U8fFLVwK4ugMrUc6hkb1yAD0U+Z3aSb
-	 aFC1vEz/cN2bg==
-From: Benjamin Tissoires <bentiss@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Danny Kaehn <danny.kaehn@plexus.com>
-Cc: Jiri Kosina <jikos@kernel.org>, devicetree@vger.kernel.org, 
- linux-input@vger.kernel.org, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
- Ethan Twardy <ethan.twardy@plexus.com>
-In-Reply-To: <20240605-cp2112-dt-v11-0-d55f0f945a62@plexus.com>
-References: <20240605-cp2112-dt-v11-0-d55f0f945a62@plexus.com>
-Subject: Re: (subset) [PATCH v11 0/4] Firmware Support for USB-HID Devices
- and CP2112
-Message-Id: <171765901954.2911407.14288814207102579480.b4-ty@kernel.org>
-Date: Thu, 06 Jun 2024 09:30:19 +0200
+	s=k20201202; t=1717659038;
+	bh=NWTeLsxwR8qVoyl/poSPnzU1ohEHEwiZq/eiV8lz188=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WScRmN731HMVIg8ZkP0p/UqGztCEZrAQTse/cvXiFYMswwmUUHADH7wnbqPgxZKTH
+	 FEi56PuT+2egF6ZNOuUxfcAIToBmkaK+5M88xOWUSdRdmV9l8AEb5Ls9ooaAQMjrBj
+	 gbnAwubTuY0bPU28dcLx03d965rJLvh6UhtGfSgEll4LJ4GlEw5AnsQuGUTt5q6wN2
+	 DkE7lV4npcvDNFzo75SDBV0IeTVZRTlcZdk1Zzu+ciXYnZxnDfpvn47tApqiyxHXXl
+	 aEhx4uUkH2XW20C7b5m5pgrNp5mwo0fxX4dyvbZYoNxmq5aOfZNEw2KH3ewdSoM1Rt
+	 ny/sfIWev0Z7Q==
+Message-ID: <c0852eba-268c-405d-970e-6ceef0487c35@kernel.org>
+Date: Thu, 6 Jun 2024 09:30:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] ARM: dts: socfpga: Add support for Terasic DE1-SOC
+ board
+To: Florian Vaussard <florian.vaussard@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Dinh Nguyen <dinguyen@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240605083321.1211198-1-florian.vaussard@gmail.com>
+ <20240605083321.1211198-3-florian.vaussard@gmail.com>
+ <bef8dd3d-a774-467d-b66f-4881f3845dd6@kernel.org>
+ <a22400bc-4166-42fc-b1da-d0165969757a@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <a22400bc-4166-42fc-b1da-d0165969757a@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.4
 
-On Wed, 05 Jun 2024 18:12:43 -0500, Danny Kaehn wrote:
-> This patchset allows USB-HID devices to have Firmware bindings through sharing
-> the USB fwnode with the HID driver, and adds such a binding and driver
-> implementation for the CP2112 USB to SMBus Bridge (which necessitated the
-> USB-HID change). This change allows a CP2112 permanently attached in hardware to
-> be described in DT and ACPI and interoperate with other drivers.
+On 06/06/2024 09:05, Florian Vaussard wrote:
+>>> +};
+>>> +
+>>> +&mmc0 {
+>>> +	vmmc-supply = <&regulator_3_3v>;
+>>> +	vqmmc-supply = <&regulator_3_3v>;
+>>
+>> That's a noop... Isn't this coming from a PMIC?
+>>
 > 
-> Changes in v11:
-> - Eliminate 'gpio' subnode for DT and ACPI for the CP2112 per comment
->     from Rob H.
-> - Edit hid-cp2112.c to match for ACPI index and fall back to matching by
->     name (instead of the other way around)
-> - Separate CP2112 I2C bus speed configuration into a separate patch
+> No PMIC. VCC3P3_SD is derived from VCC3P3 using a passive circuit, so the
+> voltage is fixed and always on. I am fine to drop this regulator if you prefer.
 > 
-> [...]
 
-Applied to hid/hid.git (for-6.11/core), thanks!
+It's fine then.
 
-[2/4] HID: usbhid: Share USB device firmware node with child HID device
-      https://git.kernel.org/hid/hid/c/b81881b9c10e
-
-Cheers,
--- 
-Benjamin Tissoires <bentiss@kernel.org>
+Best regards,
+Krzysztof
 
 
