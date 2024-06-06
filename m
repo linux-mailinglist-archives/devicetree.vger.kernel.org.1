@@ -1,371 +1,162 @@
-Return-Path: <devicetree+bounces-73117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2EAC8FE0B6
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 10:16:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EFC68FE0EA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 10:27:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFBC22816A6
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:16:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DA75284F45
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:27:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 118CF26292;
-	Thu,  6 Jun 2024 08:16:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C41F513BC26;
+	Thu,  6 Jun 2024 08:27:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fvh6CiGR"
+	dkim=pass (2048-bit key) header.d=leemhuis.info header.i=@leemhuis.info header.b="wMvx3o2V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de [80.237.130.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 252295C96
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 08:16:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C5E5199A2;
+	Thu,  6 Jun 2024 08:26:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.237.130.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717661778; cv=none; b=o89H/DrTktgeZFT2rxEXm0dImFUO6nRy5eDtqurgmL5pcP4iXYhxyJsB64p+Oaocgg8Azey1kxZRAqCN72Bj0n1GGK8QCTEn/UyLjEUiXo6unDknpJ9wOwi1s9XxmISulMB7F2sSCU6t2kTBH+05joNKEBt61j0zJdadyF2BoYQ=
+	t=1717662420; cv=none; b=crwiOijNUtFckmKPEMda87SFRDizV+CzOy/OO7HQBNTlskuwT0OK82QfDUrq+Pn5menRPqWtIR8B1OPiqyyT3KCwu0D+UpzwuvvfKeFbfRuEaMXqlgGHgxEUSHzpPbGjDjicqCDNbUaEfGUEPyXijxb9uH6ytp+VWAX6wGLrch4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717661778; c=relaxed/simple;
-	bh=kM/bjj5O2UUkmYWJrTcjakHI24Xz7EzFZDN0sBNz54w=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=kczERS9+x5o1kdBQgjoroRkc2PVCBm9Et5CX/I5zbFba37RrrnCMp1UKw5vTG/spU3lHoHfGgcq75IP7gK1Gf7ODWZ8pBMaa44gkyhz0O1J9gIk1BT59FSegTLDh7Oiu8d5N/G0QRfFA6RPLOI1ddOyUI/Bvy9P1bhwiNrA6jTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fvh6CiGR; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-35dc984b3d2so463611f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2024 01:16:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717661774; x=1718266574; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bi7diHHEiAXsWLzePfVdifFaiIYhvEtSV6AAoaq6/Mc=;
-        b=fvh6CiGR9OnG0z2I8RDyyVGmdwC4x9r1IlYWE0P6eLNYbsJwzQyDYPoVN+Efa2aOy0
-         Vu2QfTl0sXlbQnCrmmgiIdiT9LpiBW/lArYNhH5ByXeLnsL0j46pf0wK/4+x0xIVFV6T
-         1kzVzI53p410NHp3IytB4sNFSqLEC01LhC7YQj3ZQ7CTccpgcVhXz3Cbg/g5/EUghVPQ
-         yNnjfjch3K6LmP8CbsX7gk7ebee51sACjOEK0sCa/d9l31nXiHHRtA/NuGMWaWcmRSqp
-         Wmf/OFzxkyZEorxX6i04ckJJfggGvTv2feJyohIq+asGA3aez201F9mL5OlBxH+3cIpf
-         4zvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717661774; x=1718266574;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Bi7diHHEiAXsWLzePfVdifFaiIYhvEtSV6AAoaq6/Mc=;
-        b=QyUE54qEU8GqB42m6Cgre/7DED92RhPCBRBqVV3RvDvWybuoq5Elu8njaM6TbKzDR+
-         eT49Q82OpJNFBExHJEpuQOOx+hz3QD1LaraxmhdaIGmfwn5UAIsCQmO1EJC5fvPvziRH
-         2nAPyjz5e+E7EUlulesQKK0JwQwKZZBpuppc66mNCtwPkx96M/FCtE27ZSivyWFzoR/H
-         yQ3Bm2rkbaYFHOJdJnUAUb0O5VRFA0yoHWOCrE083kO90etPJyuTygNBYBxVYaY1mMhy
-         ojUHeJLMuliDDpuZlcfqSBdGnj/AJgp2DbmcoD/3Ocr0Fq+Axl0W53KcpULsfQCUIv9k
-         4YUg==
-X-Forwarded-Encrypted: i=1; AJvYcCXs4N9xoDHbDz6QqmeSA6STP8nYVNPSgEpcdeG+8yxx2YeSFKYMI3WxzxrbIkiLCLli/qgzCPGQJ/Ip4ko6fURFo5QS1BqV8UTZvQ==
-X-Gm-Message-State: AOJu0YykYzI19WbVsD+Nrhz9NNMxCHl/tdPyqA2VpjnnKvTppY1bcdZh
-	CJTkLSiNr5c1XpTXsZrooueXhXr/CUio7pTkwto36+WmRNYAQc13p0kxMx0+NF0=
-X-Google-Smtp-Source: AGHT+IHdRfmlLTrJhEef9q9Di3iyBlKd5Z5R64hxnmAydgHwDDKKUy+7eDL7J16wBT+QO27ZF6MMAQ==
-X-Received: by 2002:adf:ea88:0:b0:34f:5e1d:4ab9 with SMTP id ffacd0b85a97d-35e8ef18156mr3499898f8f.33.1717661774503;
-        Thu, 06 Jun 2024 01:16:14 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5d29653sm884344f8f.21.2024.06.06.01.16.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jun 2024 01:16:14 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 06 Jun 2024 10:16:11 +0200
-Subject: [PATCH v5] arch: arm64: dts: sm8650-hdk: add support for the
- Display Card overlay
+	s=arc-20240116; t=1717662420; c=relaxed/simple;
+	bh=pwoHibVp0BN/9IvJseN1aG9FN8TSfYTChAmdkUilT/s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kZmoKAqI/tjpdVEMZxdthZUtGq+Mvt/hbIQkf2xDcPCIngwwmJ07KPrFWsPvCnzTY7wucEOUYVW9zDKRmVk+uNHep+9HDOL/XYx7zWwOup9v6kaPsir3mum2uKP3q1u56G3//+mbW75ss4f78Sgh1EC/kFXHWcMmO8FdUVVqN+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=leemhuis.info; spf=pass smtp.mailfrom=leemhuis.info; dkim=pass (2048-bit key) header.d=leemhuis.info header.i=@leemhuis.info header.b=wMvx3o2V; arc=none smtp.client-ip=80.237.130.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=leemhuis.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=leemhuis.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=leemhuis.info; s=he214686; h=Content-Transfer-Encoding:Content-Type:
+	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:In-Reply-To:
+	References; bh=TAJBf2B8gbT67nqhACvm4EgH00WGKM6/1lZ+DcslpsE=; t=1717662418;
+	x=1718094418; b=wMvx3o2VimOEXwXq5Kmo9sczP9U60CFXQ0cJGJVNMz8OZdVbSRzMUbcwuDYSx
+	yoV/RfNWRb++sI6Y2Zs3v6fkJEzF4FTXvkxDzMbEmwJiLi7dUuo8i7Uq90jtFQEY/LIBRsTGddni/
+	G846CsEm5ALwh7RVObCvGxTKG9YVY/fp2aacnmiRV0QXK3ic4aVm84Z5NKps4VZTIsVrvJhWwmGZr
+	xvY+KsKmfaXDHCRCDeuz4ZMGmW7PZtSXDAroXoE4a5siQHpIW4IrR8zKOboYPtZHEtBi1kKsJeXr2
+	zcKRv1TyTIJyYbPGgI31ubrKIrxF/zWzCxlkxWtx9FfXmKqzVQ==;
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	id 1sF8SQ-0006mK-P3; Thu, 06 Jun 2024 10:26:50 +0200
+Message-ID: <714da201-654b-4183-8e5e-8ff0b64fe621@leemhuis.info>
+Date: Thu, 6 Jun 2024 10:26:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240606-topic-sm8650-upstream-hdk-v5-1-5d878f3047e3@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAEpwYWYC/43OwW7DIAyA4VepOI8KbKBkp73HtAMD06CtIYIs2
- lTl3Ut6aatK0Y6/JX/2mVUqiSp73Z1ZoTnVlIcW+mXHfO+GI/EUWjMQoAQA8imPyfN6skYL/jP
- WqZA78T58cQLpYzBRBrKs7Y+FYvq92u8frftUp1z+rqdmuU7/o86SC+69d0ZpHzoh377T4Ere5
- 3JkKzvDjUJptyho1KdBp4PS7mDVE4V3FOgtChulIhodDh2Ci0+UulEKYItS61eIXYfkHJB9oJZ
- luQA7hzWppAEAAA==
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7172;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=kM/bjj5O2UUkmYWJrTcjakHI24Xz7EzFZDN0sBNz54w=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmYXBNkeyFUEmuWhVL//zqNBeoakOH6PNva+jCd8LW
- ptelVNiJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZmFwTQAKCRB33NvayMhJ0XkED/
- 9coAmaF4lvjnAoj4ZGNIZQ9cfhPNbMKCsGTxFxOBPuF/+Eqv3WO6Zf2f3bQVt1hTNqkFrv+TIfEUEu
- ZZtsqb5myh0ObcpiFXoSF3avh+sW4AGei1cIK/hAhiYcA3OTPGLY4oZt7Ew+0MgagoaqSm931TKF9y
- YbMJNSRLptmrUJ1J5ZYAoqUVzsU/yeCHhQTD2GWb5jb5b+no9Wjo1zy4VIQ2dNC3K+fKsLjhpUhhqR
- ifm1ZEiLaq1hrb3vFUBD54yvo4OE/znP2opq24jrtJuRTZv5INWqoE4cl4/wjJgg0aKjmV98yi16Vn
- GslymS0kaeTW82PgtQtpvQzHCY/kKeDCT3UPUXHSIpvHBADtmgUfGoWazx9A9f8AlOt/GZK0bQxxpN
- bXgvsv67gbdf67Gbp45peyhLUBU7hz5euqp9zLilvk4OwigP47C/3i1nb53eSMwJrRYb+WenZPZ3fC
- QSyz2npOxGZwtOTS4Jw4e/kDe/zPCCjVcGM5MGAHAbLfWLoxpndEjkM9K/xICJDdL3sQuG3GnV3kfq
- /mVBNvPJLxIPFzas7F7iWMEojQuG8M2x/14jngYxGxXEwTGsAsMbyBYvYl/3BBJ1VHz8pALyh479Qc
- n1bJC4TYdFhUXISAU5q9zSz5z/YQooLwYHyWTIvUWlstweLqgwgqxRbHVR6w==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
+To: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+ Linux regressions mailing list <regressions@lists.linux.dev>,
+ Frank Wunderlich <linux@fw-web.de>, Paolo Abeni <pabeni@redhat.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Daniel Golle <daniel@makrotopia.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ frank-w@public-files.de, Rob Herring <robh@kernel.org>
+References: <20240516204847.171029-1-linux@fw-web.de>
+ <a29dd7d1-40a8-4c88-99aa-651a3305b640@arinc9.com>
+ <5AEE5668-0C8E-4EE4-A398-66CB99DF5650@public-files.de>
+ <43aacd9d-b851-4100-8ccc-878ac6ae10f8@leemhuis.info>
+ <698cf562-1ca9-4aa3-be7e-a1474b612c5b@leemhuis.info>
+ <0cba095c-3d55-416a-a7ad-b359129731cf@arinc9.com>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+Content-Language: en-US, de-DE
+In-Reply-To: <0cba095c-3d55-416a-a7ad-b359129731cf@arinc9.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1717662418;e7046d08;
+X-HE-SMSGID: 1sF8SQ-0006mK-P3
 
-With the SM8650-HDK, a Display Card kit can be connected to provide
-a VTDR6130 display with Goodix Berlin Touch controller.
+On 31.05.24 08:10, Arınç ÜNAL wrote:
+> On 31/05/2024 08.40, Thorsten Leemhuis wrote:
+>> [adding Paolo, who committed the culprit]
 
-In order to route the DSI lanes to the connector for the Display
-Card kit, a switch must be changed on the board.
+/me slowly wonders if the culprit should be reverted for now (see below)
+and should be reapplied later together with the matching changes from
+Arınç ÜNAL.
 
-The HDMI nodes are disabled since the DSI lanes are shared with
-the DSI to HDMI transceiver.
+>> On 23.05.24 12:44, Linux regression tracking (Thorsten Leemhuis) wrote:
+>>> On 17.05.24 08:27, Frank Wunderlich wrote:
+>>>> Am 17. Mai 2024 04:17:47 MESZ schrieb "Arınç ÜNAL"
+>>>> <arinc.unal@arinc9.com>:
+>>>>> On 16/05/2024 23:48, Frank Wunderlich wrote:
+>>>>>> From: Frank Wunderlich <frank-w@public-files.de>
+>>>>>>
+>>>>>> After commit 868ff5f4944a
+>>>>>> ("net: dsa: mt7530-mdio: read PHY address of switch from device
+>>>>>> tree")
+>>>>>> the mt7531 switch on Bananapi-R64 was not detected.
+>>>>>>
+>>>>>> mt7530-mdio mdio-bus:00: reset timeout
+>>>>>> mt7530-mdio mdio-bus:00: probe with driver mt7530-mdio failed with
+>>>>>> error -110
+>>>>>>
+>>>>>> Fix this by adding phy address in devicetree.
+>>
+>> Frank, am I right assuming the regression is still present in mainline?
+>> As from here it looks like for two weeks now there was no progress at
+>> all to fix this (or I missed it, which is quite possible).
+>>
+>> Makes me wonder if the maintainers should revert the culprit or if the
+>> arm64 dts folks should accept your fix despite Arınç ÜNAL's (who from a
+>> quick look on lore hasn't posted anything for two weeks now) comment.
+> 
+> I'm not against the patch. I'm against the logic it entails on the patch
+> log.
 
-Add support for this card as an overlay and apply it it at
-build-time to the sm8650-hdk dtb.
+In that case: can you maybe help Frank with writing something better or
+submit something based on this patch to resolve this and make everyone
+happy?
 
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Tested-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
-The SM8650-HDK is an embedded development platforms for the
-Snapdragon 8 Gen 3 SoC aka SM8650, with the following features:
-- Qualcomm SM8650 SoC
-- 16GiB On-board LPDDR5
-- On-board WiFi 7 + Bluetooth 5.3/BLE
-- On-board UFS4.0
-- M.2 Key B+M Gen3x2 PCIe Slot
-- HDMI Output
-- USB-C Connector with DP Almode & Audio Accessory mode
-- Micro-SDCard Slot
-- Audio Jack with Playback and Microphone
-- 2 On-board Analog microphones
-- 2 On-board Speakers
-- 96Boards Compatible Low-Speed and High-Speed connectors [1]
-- For Camera, Sensors and external Display cards
-- Compatible with the Linaro Debug board [2]
-- SIM Slot for Modem
-- Debug connectors
-- 6x On-Board LEDs
+> I had already submitted a patch series that would've prevented this
+> issue back in 14 March 2024 [1]. I've asked numerous times for the patch
+> series to be applied [2][3][4][5].
+>> Eventually Daniel asked for some changes [6]. But I won't have time to do
+> that anytime soon and I think the patch series is good enough to be applied
+> as is.
 
-An optional Display Card kit can be connected on top,
-an overlay is handled to add support for the DSI Display
-and Touch Controller.
+Then I guess we need some other way to resolve this in mainline to unfix
+Frank's device. The two obvious options are afaics:
 
-Product Page: [3]
+* revert the culprit (868ff5f4944aa9 ("net: dsa: mt7530-mdio: read PHY
+address of switch from device tree")) and reapply it in a later cycle
+* apply Frank's patch (or an improved one) in this thread (and if needed
+revert it when some better changes emerge.
 
-Dependencies: None
+Arınç ÜNAL, could you please comment on that and ideally handle the
+necessary tasks, as it's your patch that causes the regression.
 
-[1] https://www.96boards.org/specifications/
-[2] https://git.codelinaro.org/linaro/qcomlt/debugboard
-[3] https://www.lantronix.com/products/snapdragon-8-gen-3-mobile-hardware-development-kit/
+Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+--
+Everything you wanna know about Linux kernel regression tracking:
+https://linux-regtracking.leemhuis.info/about/#tldr
+If I did something stupid, please tell me, as explained on that page.
 
-To: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-To: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-
-Changes in v5:
-- Resend the display card overlay now the I2C crash is fixed
-- Link to v4: https://lore.kernel.org/r/20240422-topic-sm8650-upstream-hdk-v4-0-b33993eaa2e8@linaro.org
-
-Changes in v4:
-- Rebased on next and fixed the apply failures
-- Link to v3: https://lore.kernel.org/r/20240325-topic-sm8650-upstream-hdk-v3-0-4f365d7932af@linaro.org
-
-Changes in v3:
-- fixed regulator node name to fix ordering
-- deleted pcie_1_phy_aux clock
-- removed undeeded mdss_mdp status okay
-- collected revied & tested tags
-- Link to v2: https://lore.kernel.org/r/20240318-topic-sm8650-upstream-hdk-v2-0-b63a5d45a784@linaro.org
-
-Changes in v2:
-- Fixed commit messages with links, and recently added product page URL
-- Swapped i2c3/i2c6 nodes
-- Moved pcie_1_phy_aux_clk under pcie1_phy
-- Removed duplicate mdp_vsync pinctrl state
-- Collected review & tested tags
-- Link to v1: https://lore.kernel.org/r/20240223-topic-sm8650-upstream-hdk-v1-0-ccca645cd901@linaro.org
----
- arch/arm64/boot/dts/qcom/Makefile                  |   4 +
- .../boot/dts/qcom/sm8650-hdk-display-card.dtso     | 144 +++++++++++++++++++++
- 2 files changed, 148 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 56992fc3fc59..0c1cebd16649 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -250,6 +250,10 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-qrd.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-samsung-q5q.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-sony-xperia-yodo-pdx234.dtb
-+
-+sm8650-hdk-display-card-dtbs	:= sm8650-hdk.dtb sm8650-hdk-display-card.dtbo
-+
-+dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-hdk-display-card.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-hdk.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-qrd.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk-display-card.dtso b/arch/arm64/boot/dts/qcom/sm8650-hdk-display-card.dtso
-new file mode 100644
-index 000000000000..83f2338e5bf4
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sm8650-hdk-display-card.dtso
-@@ -0,0 +1,144 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2024, Linaro Limited
-+ */
-+
-+/*
-+ * Display Card kit overlay
-+ * This requires S5702 Switch 7 to be turned to OFF to route DSI0 to the display panel
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&i2c6 {
-+	status = "disabled";
-+};
-+
-+&lt9611_1v2 {
-+	status = "disabled";
-+};
-+
-+&lt9611_3v3 {
-+	status = "disabled";
-+};
-+
-+&vreg_bob_3v3 {
-+	status = "disabled";
-+};
-+
-+&lt9611_codec {
-+	status = "disabled";
-+};
-+
-+&mdss_dsi0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	panel@0 {
-+		compatible = "visionox,vtdr6130";
-+		reg = <0>;
-+
-+		reset-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
-+
-+		vddio-supply = <&vreg_l12b_1p8>;
-+		vci-supply = <&vreg_l13b_3p0>;
-+		vdd-supply = <&vreg_l11b_1p2>;
-+
-+		pinctrl-0 = <&disp0_reset_n_active>, <&mdp_vsync>;
-+		pinctrl-1 = <&disp0_reset_n_suspend>, <&mdp_vsync>;
-+		pinctrl-names = "default", "sleep";
-+
-+		port {
-+			panel0_in: endpoint {
-+				remote-endpoint = <&mdss_dsi0_out>;
-+			};
-+		};
-+	};
-+
-+	/*
-+	 * DTC requires to have both endpoints when compiling the overlay
-+	 * and also requires the #address/size-cells + reg properties
-+	 */
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			mdss_dsi0_out: endpoint {
-+				remote-endpoint = <&panel0_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&spi4 {
-+	/* DTC requires the #address/size-cells to compile DTBO */
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	status = "okay";
-+
-+	touchscreen@0 {
-+		compatible = "goodix,gt9916";
-+		reg = <0>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <162 IRQ_TYPE_LEVEL_LOW>;
-+
-+		reset-gpios = <&tlmm 161 GPIO_ACTIVE_LOW>;
-+
-+		avdd-supply = <&vreg_l14b_3p2>;
-+
-+		spi-max-frequency = <1000000>;
-+
-+		touchscreen-size-x = <1080>;
-+		touchscreen-size-y = <2400>;
-+
-+		pinctrl-0 = <&ts_irq>, <&ts_reset>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
-+&tlmm {
-+	disp0_reset_n_active: disp0-reset-n-active-state {
-+		pins = "gpio133";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-disable;
-+	};
-+
-+	disp0_reset_n_suspend: disp0-reset-n-suspend-state {
-+		pins = "gpio133";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	mdp_vsync: mdp-vsync-state {
-+		pins = "gpio86";
-+		function = "mdp_vsync";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	ts_irq: ts-irq-state {
-+		pins = "gpio161";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+		output-disable;
-+	};
-+
-+	ts_reset: ts-reset-state {
-+		pins = "gpio162";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+};
-
----
-base-commit: 234cb065ad82915ff8d06ce01e01c3e640b674d2
-change-id: 20240223-topic-sm8650-upstream-hdk-e21cfd6f1de8
-
-Best regards,
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
-
+> [1]
+> https://lore.kernel.org/all/20240314-for-mediatek-mt7531-phy-address-v1-0-52f58db01acd@arinc9.com/
+> [2]
+> https://lore.kernel.org/all/ff196055-ecd8-4563-bc01-ff2533a07109@arinc9.com/
+> [3]
+> https://lore.kernel.org/all/a60fc16d-4236-427c-b4a8-ec6fdf62d9f0@arinc9.com/
+> [4]
+> https://lore.kernel.org/all/facb8204-c2b3-4084-a2e3-4fbf3a3fdc9d@arinc9.com/
+> [5]
+> https://lore.kernel.org/all/44e366ea-964a-4515-9027-2a2edfe12512@arinc9.com/
+> [6] https://lore.kernel.org/all/ZixU287DdhvRyZBe@makrotopia.org/
+> 
+> Arınç
+> 
+> 
 
