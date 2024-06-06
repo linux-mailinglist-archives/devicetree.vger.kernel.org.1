@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-73300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BEC88FE86E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 16:07:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C4EF8FE8BD
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 16:10:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBD4D1F25C41
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 14:07:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBF37284DC1
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 14:10:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ADDE196C65;
-	Thu,  6 Jun 2024 14:07:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C11F198822;
+	Thu,  6 Jun 2024 14:08:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c7SBjxGH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W8FTmO9o"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEE8338D
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 14:07:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77FB9197A99
+	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 14:08:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717682850; cv=none; b=EGLqaOleAfbc39NKSPMZE2TjHuuSZXwj7W9zmif44ajEGLRYueYoY4qt/KX+8sy5sa/2gt9RQ+DlDzD1iyv2lJ2WhX8r/AwYdKPu11VnfrOD5UvS4E+VyvwqNbcLvoFdkcVTSvpO9C5jlfp/jhCOczeNzTInIoTJi19rnNkjy+I=
+	t=1717682930; cv=none; b=KhtfUBxpIPwGGbWz+8bra8hHpkSUnOFxmRmaH4FhcANdRKTvTlrbjmjsAAKOllD+pjy9gM38OKX0YNzSte3JKRsiFIXaYEPOpi/SFZHWU2ycf1lSHFKVotvdynsBD3A3tLLUjvIuV2IUwUvmAobvQJIbJ7LcdOIHxxT+Do7OgY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717682850; c=relaxed/simple;
-	bh=4hNVwq7cQHTyBDF20Y8fpBPc7zzCmTIUwUsM/ZBouxc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=opEuYYi0qN1Dpj0/JWxtXmi/pE4+vqPfeGzSHl1xRzFA6bFPNUZEIzN5KnbcM4796O5+s33GOA9CQ2/8c4DhjD5WDY6BZ4GIy0S3ZHwMsYUzaHLEQx91kAfC0/4ba44wSsxaBPQO1LfJenj47brW2kP26M6VzLW7bL+SDJASkfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=c7SBjxGH; arc=none smtp.client-ip=209.85.218.41
+	s=arc-20240116; t=1717682930; c=relaxed/simple;
+	bh=RpGnnlNwHkl9JIF7GLTjn2mJGXJPbuU0x/eYbCe04sI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=t+aB4NnvoiJAxd8RZgk84a1/zsu/C+5WgnmQY8rXzqilaZZwDuYh2uE+O0Pjy6q06x35f0OjR/X1+m+ICwl7NjiBp/Mde3T/pr9IViTOcNrLJzWoiyHYwCdgYsASQ3Kt2BogMGoBTR39NDAW/1r/wjFMlfyXHNuHT//MAcLAVMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W8FTmO9o; arc=none smtp.client-ip=209.85.218.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a68fc86acfaso156924566b.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2024 07:07:28 -0700 (PDT)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a6267778b3aso107092566b.3
+        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2024 07:08:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717682847; x=1718287647; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1717682927; x=1718287727; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=WuYJQB/gpV+Bc6GPW32Ein19OoVtrm6WSZM3VYy51qc=;
-        b=c7SBjxGHFa+SkS9v9Wezr2GzfjN2D80NzAMw4SvhK2b3o6z9HzcLT7vNAnidK2AUI0
-         hF0XgnqdWWblA0qYLKS8hJdTalqnx7/GH48m6mLr/WttzFWucrnKMXJ715smZzK5lTqR
-         ovknSKZZ2wDcPVMSzNaqYy9ptt41M3jSbKfgtA7+bDhjdnYnbvtog9nNnYZS0WPh9gpY
-         aqoyEd6ZUHfgRAZqB7PmufRmHJJTetxOt09EASgeQ/alVcohbdixTQaO0Ut5e8Fc8Zrw
-         hcQHnzbW1ESbhfvqf5ywcTq9BuanNIaktlo7725Jk3Yzyy/WyCullVjS7IHhXsFt46ks
-         7fng==
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=g+cc5/YkJMxn9xduO7p9Nejvh1U53rMlObVTtnaup/8=;
+        b=W8FTmO9oVWRstGVYbT7UpFgBps3YSV64AIIIQpl+89v1dAMW7+C71VHq2Ug7Yn+tUQ
+         laGwNvbeXUZkW35rzsZFF06HY9NndHhWzM2zgfi5yZz/qrvpkHnB2nVguEa/5FRdJAxx
+         ezxnQYltcEsd+uX9hlefUP2aidS/wRSKpq9mkHH5FJH9LQoBsFrqAHErZa8DN+tlMzzh
+         E3oi5jJ43x/VyqLWWL3CWClfvg9t7erWchPOJDpBoz7kFNFGy6m3ACKSesIOifZSmt15
+         1vuYAAJdFH0bntfu0eNh+hvztGQ61VBoBMNPbD4Itpfl4nyBlkhsAD7JnUzTRU2GDELH
+         yelw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717682847; x=1718287647;
+        d=1e100.net; s=20230601; t=1717682927; x=1718287727;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WuYJQB/gpV+Bc6GPW32Ein19OoVtrm6WSZM3VYy51qc=;
-        b=pednnZXfxxote4CY5Q3gNrr0vpW8xUs0moxFCsrknxyQaKZ6j7bV6S0/oaMAnS+cmn
-         d+obSjuEPbEOyaSbSdN2W0QG5UMKxrDfa5YUkoiHXvu0uZkmAZuFEAJyM9DMEtY5JSxL
-         fkvw67HNqjaOWamPv5DUDzhIjBbm3ClBhg0cCQPUivNSyHXrFRbuOfJvr/GPAcVJciAI
-         H8IbBUZKr+cErbma8roo1+xTJh6grerMKdwooT1n74j8UdHjR1Lh7Kf2QewImU5qYe1L
-         t3lUk1cxRqPBU/4D9M+4WuoYUBuFdsQxIstfwFkRdQvAVi22/ydmKoAC/FrYPeGr3+JT
-         eEHg==
-X-Forwarded-Encrypted: i=1; AJvYcCV1mGZsbG++TFBJsc5XKD+spsA9LPI2pgovYwb+lPW/hQ9C5+oE/v2uEAxUn6M2G7K5w3jnurjW7rUv3AxrII3RwZzgUi3oR3lLuw==
-X-Gm-Message-State: AOJu0YyXR24oZFYViySJqWtpLaxs5lnO9u/3tIKjG5hYMOPUf94Jz3Dw
-	FG9YeNg9VU6M37sy0lc/inEYcV7S213Llf8DW8aZTFhsCYoDnAmfnBhgbfYzbS0=
-X-Google-Smtp-Source: AGHT+IEJuB2kN44q8dic1aobVJvgm0GkwA2QTBAqO7TjvoBitMWf4fmH36skjlZte8txrFIr5rt98g==
-X-Received: by 2002:a17:906:459c:b0:a59:be21:3587 with SMTP id a640c23a62f3a-a6c75f94214mr232595466b.8.1717682845919;
-        Thu, 06 Jun 2024 07:07:25 -0700 (PDT)
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=g+cc5/YkJMxn9xduO7p9Nejvh1U53rMlObVTtnaup/8=;
+        b=fOLhIhkuRs4UUBlNSqs+cyHEuYatV7fiEkiSfX/yFBu33qzovHjWYaYDqc4kmLIWPc
+         QwyKvMaDG5QvtLdEtfPogTkh7mAkAwZ97JSo1Q9E+Pk3Y6AcE8wXCyggHChL7no6yLiv
+         8DKBVxm2zuMeV6PVCeOqCSxsYl1Y5OaIaNOkP1NaQifZ7iEfcKrhhKsFmlARdwnPmjl5
+         Jn7ECc/4Db2xFpn+MtEGOlSHqG8HhKpUfm0krDkwBr2TBdqNEQyGvhRUYsToVcHMPPZb
+         MHNxhHGP0VNqg3vbUUk9lzTajUGLQXj/bfbjTG9v1t8/8xA1FjFeff6XGlADQU/OerIq
+         UAng==
+X-Forwarded-Encrypted: i=1; AJvYcCXVCWHeUzUOttI8J4vULlbsMTsT/5exv4QgOYkzhX1Fqrk4D4UlW65uVxeU84eMNit31AsjJ1M+xFvibmLyubZdUG7vXe7obj96hA==
+X-Gm-Message-State: AOJu0Yx+VEtSQvYbgT2f6TEd1/Cgts1z0zhYa6w+aslWMHh4MPMoTQ6e
+	Ix82vkIjnDnu0ybPJE6UqHtPbNjwLILaPfhA4nWczwADnKPs8bNcIfO62577lUA=
+X-Google-Smtp-Source: AGHT+IFa+ockro1cArQLRQ4GHtw7t1e8h2Ycsz9C7ejmm9DBvHKuM0phsyk4sK4LaE9Py6WRFHv71g==
+X-Received: by 2002:a17:907:c909:b0:a59:9cc1:7330 with SMTP id a640c23a62f3a-a69a024f0f8mr313013366b.64.1717682926890;
+        Thu, 06 Jun 2024 07:08:46 -0700 (PDT)
 Received: from [192.168.128.139] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6c8072ac5asm101513266b.219.2024.06.06.07.07.23
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6c805ca035sm101684466b.57.2024.06.06.07.08.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jun 2024 07:07:25 -0700 (PDT)
-Message-ID: <90bb9256-d54d-4e01-aa06-4184e2b95d48@linaro.org>
-Date: Thu, 6 Jun 2024 16:07:23 +0200
+        Thu, 06 Jun 2024 07:08:46 -0700 (PDT)
+Message-ID: <6286a410-6faa-4996-8a9e-dc334dd9421f@linaro.org>
+Date: Thu, 6 Jun 2024 16:08:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,16 +77,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 0/6] Add interconnect driver for IPQ9574 SoC
-To: Varadarajan Narayanan <quic_varada@quicinc.com>, andersson@kernel.org,
- mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, djakov@kernel.org,
- dmitry.baryshkov@linaro.org, quic_anusha@quicinc.com,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+Subject: Re: [PATCH V2 7/8] clk: qcom: Add GPUCC driver support for SM4450
+To: Ajit Pandey <quic_ajipan@quicinc.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Vinod Koul <vkoul@kernel.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, bryan.odonoghue@linaro.org
-References: <20240430064214.2030013-1-quic_varada@quicinc.com>
- <ZjXrTywO6+iRaEYk@hu-varada-blr.qualcomm.com>
+ Taniya Das <quic_tdas@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>,
+ Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+References: <20240416182005.75422-1-quic_ajipan@quicinc.com>
+ <20240416182005.75422-8-quic_ajipan@quicinc.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -124,45 +129,17 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <ZjXrTywO6+iRaEYk@hu-varada-blr.qualcomm.com>
+In-Reply-To: <20240416182005.75422-8-quic_ajipan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 4.05.2024 10:01 AM, Varadarajan Narayanan wrote:
-> Bjorn,
+On 16.04.2024 8:20 PM, Ajit Pandey wrote:
+> Add Graphics Clock Controller (GPUCC) support for SM4450 platform.
 > 
->> On Tue, Apr 30, 2024 at 12:12:08PM +0530, Varadarajan Narayanan wrote:
->> MSM platforms manage NoC related clocks and scaling from RPM.
->> However, in IPQ SoCs, RPM is not involved in managing NoC
->> related clocks and there is no NoC scaling.
->>
->> However, there is a requirement to enable some NoC interface
->> clocks for the accessing the peripherals present in the
->> system. Hence add a minimalistic interconnect driver that
->> establishes a path from the processor/memory to those peripherals
->> and vice versa.
->>
->> Change icc-clk driver to take master and slave ids instead
->> of auto generating.
->>
->> Currently, drivers/clk/qcom/clk-cbf-8996.c is the only user of
->> icc-clk. And, it had exactly one master and one slave node.
->> For this the auto generated master (= 1) and slave (= 0) was
->> enough.
->>
->> However, when drivers/clk/qcom/gcc-ipq9574.c wanted to make use
->> of the icc-clk framework, it had more number of master and slave
->> nodes and the auto generated ids did not suit the usage.
->>
->> ---
->> v11:	No code changes
->> 	Commit log changed for the first patch
->> 	Added Acked-By: to 3 patches
-> 
-> Can this be included in your driver changes for 6.10?
+> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
+> ---
 
-FWIW there is still an open discussion at v9
-<CAA8EJpqENsojPQmCbma_nQLEZq8nK1fz1K0JdtvLd=kPrH_DBw@mail.gmail.com>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 
