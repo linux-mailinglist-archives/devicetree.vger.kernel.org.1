@@ -1,261 +1,130 @@
-Return-Path: <devicetree+bounces-73243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1368F8FE515
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 13:17:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E2048FE545
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 13:23:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 73AB8B21BD8
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:17:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0D39281A1E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:23:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE63B16726C;
-	Thu,  6 Jun 2024 11:17:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAAEF1957E5;
+	Thu,  6 Jun 2024 11:23:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="4GoOi8sn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ahZuNJhu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E057315216D;
-	Thu,  6 Jun 2024 11:17:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 972C3160865
+	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 11:23:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717672633; cv=none; b=ZnEasmueEQmCHCNGLcDY88JlwGM6TNpYkIWhgJJlhfRe3fI0cNRte8/hVGspZzsHjUxHPecR8zDQE3fWIkQ/U5/15SZWD+a7v4b5vQR0coU23kkCu1Eyzaujd5Okh6GDAlJevkwQSQyAXvVNuztvmvqwi1roVOtDCI1XWKc0f88=
+	t=1717672986; cv=none; b=HGUjtRXxS2uqpA/p+JWApqowQtwRvwd1L7sWdQxF6uEd4xmuI+vb5NztQ/VhRvWHEpt7mOOExYULd5R0RUKPxBlESbOntANEGzfRHoY5btgvVRWHXaACpbZlZQ+sJ/1U1uBJJcRBYcSG4gmvhxUwZ2jle5xjpqq6peRTgqQ8AJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717672633; c=relaxed/simple;
-	bh=oeA5U1dOP1fkZuCJTDBmCrBPiCffZl7cApyojpOoeKA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GYhlXSxPzfDZ0b5bAeoa82Ur8F6PqGkAFIbdhXNdhY+8W0GxYeAf1F75ktrUYjqH7yyEyABkV+FxQ2x7E6N8/IE/o8ozFhGEzmhUjPXapD+DPp0b+BAxfXkTN5Pdr3ybkt8yv9/8v+R8hkTtlwhPDO7apW1sMBWHNqDoHG/b9F4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=4GoOi8sn; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1717672630;
-	bh=oeA5U1dOP1fkZuCJTDBmCrBPiCffZl7cApyojpOoeKA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=4GoOi8snV8Yb/VuOTJ5QixOhvORfiktqnLBtl0DCGL1cm6Wp6wRqRoSMQ8qbqllOV
-	 P8CMtQgmIQjkgkqX5g79flLvzr5rvaiSSyrnK8sswcfSDKg2wHxltGGHba6Wf4To5N
-	 AkmLmJlrZirdWzGE3I5UIXq9OUurbm8YgDqBhONEEH4S22RkSar96DF+EFuJOQWeXT
-	 lb5t2H/9zNQeAejsLTBSeIvF3jadA7vGo4JixiM8a4iEqVzQOpvW/ItuiBwqTr86nQ
-	 t3UlI0xoUF1xFbEI3AwLOy3X9/6BifNtjxQGSrMQkgqD+1JgBAeXyWY/jVycW2Omi3
-	 CNxPgsrOi8vqQ==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 82FB7378061A;
-	Thu,  6 Jun 2024 11:17:08 +0000 (UTC)
-Message-ID: <7f1b4a45-04cf-4b6d-878a-5bd0054a9ac0@collabora.com>
-Date: Thu, 6 Jun 2024 13:17:07 +0200
+	s=arc-20240116; t=1717672986; c=relaxed/simple;
+	bh=EDhiJivZreO9d0/qonxCfwRWsq4IzCERJAQDg+Bsxgo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g6zn86skN3+T99VVsMyu/3Pdyt8T0EGh9YkFyBCHqpQEz/JwFR1l5sZ3RF38hUPG9JUZVOYDn4f5MLrQdFKx8wJ5KQm/NqIHjqaVnZp1V8dQfka7XusLSt3u0dX+Tn+7aIDoILPD8k2pec76d3ZxkKTt7fnIEFyde4kdfNzq2mY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ahZuNJhu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97A31C4AF0E;
+	Thu,  6 Jun 2024 11:23:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717672986;
+	bh=EDhiJivZreO9d0/qonxCfwRWsq4IzCERJAQDg+Bsxgo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ahZuNJhuFcU80SKjffOkSB+akHM3EIbytnw7Y7Y9ZV0KdpAYd0p7vO513lWGp3nXv
+	 2DfE1zeCu4TRhctzMc55xSz9GHhPKVPDRIfdIeORU91a+VRFAgCRTAGKOqOVgjuyJ8
+	 n0wYnk0FUZ+QsVKMhRCgv0uhNEEKUkrbM5A6dw5qBsppDNnkXZWcnUmAOZvlAtNBb/
+	 PakHncmBM5mPsZ4VpRoZMlY9cGDCubO14h5NIpKu5qMOAH6jHRQVeWv4NS6JF5nwpO
+	 wY/S8I/7qTI/zaIn4Dt/EfPssVptOVGOeudNtGQ40KBdXlYn8lCZfRaCSKOYWYTzqA
+	 /MXrQZa9BRUHg==
+Date: Thu, 6 Jun 2024 13:23:03 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Ryan Walklin <ryan@testtoast.com>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Hironori KIKUCHI <kikuchan98@gmail.com>, Chris Morgan <macroalpha82@gmail.com>, 
+	Andre Przywara <andre.przywara@arm.com>, John Watts <contact@jookia.org>, 
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: panel: Add WL-355608-A8
+ panel
+Message-ID: <20240606-refreshing-cinnamon-ibex-a0fe73@houat>
+References: <20240530211415.44201-1-ryan@testtoast.com>
+ <20240530211415.44201-3-ryan@testtoast.com>
+ <20240606-intelligent-aromatic-magpie-80a7a4@houat>
+ <2dc1fdec-7673-4462-abe1-fecf8e3e826b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] dt-bindings: arm: mediatek: mmsys: Add OF graph
- support for board path
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- =?UTF-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?= <Shawn.Sung@mediatek.com>,
- "mripard@kernel.org" <mripard@kernel.org>,
- =?UTF-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?= <jitao.shi@mediatek.com>,
- "daniel@ffwll.ch" <daniel@ffwll.ch>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "robh@kernel.org" <robh@kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "kernel@collabora.com" <kernel@collabora.com>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- =?UTF-8?B?WXUtY2hhbmcgTGVlICjmnY7nprnnkosp?= <Yu-chang.Lee@mediatek.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "amergnat@baylibre.com" <amergnat@baylibre.com>
-References: <20240521075717.50330-1-angelogioacchino.delregno@collabora.com>
- <20240521075717.50330-3-angelogioacchino.delregno@collabora.com>
- <e7845300fa822413f6308cb6297222cde89c39e0.camel@mediatek.com>
- <0e0fe86c-92da-43f5-89d7-8084274a908a@collabora.com>
- <CAGXv+5FgVk9z3DhAC5oYoGXSJ+wJf+sa6wFSyJ_Nhy3JrKkCng@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <CAGXv+5FgVk9z3DhAC5oYoGXSJ+wJf+sa6wFSyJ_Nhy3JrKkCng@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Il 06/06/24 08:46, Chen-Yu Tsai ha scritto:
-> On Wed, Jun 5, 2024 at 7:15 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 05/06/24 03:38, CK Hu (胡俊光) ha scritto:
->>> Hi, Angelo:
->>>
->>> On Tue, 2024-05-21 at 09:57 +0200, AngeloGioacchino Del Regno wrote:
->>>> Document OF graph on MMSYS/VDOSYS: this supports up to three DDP paths
->>>> per HW instance (so potentially up to six displays for multi-vdo SoCs).
->>>>
->>>> The MMSYS or VDOSYS is always the first component in the DDP pipeline,
->>>> so it only supports an output port with multiple endpoints - where each
->>>> endpoint defines the starting point for one of the (currently three)
->>>> possible hardware paths.
->>>>
->>>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
->>>> Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
->>>> Tested-by: Alexandre Mergnat <amergnat@baylibre.com>
->>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>> ---
->>>>    .../bindings/arm/mediatek/mediatek,mmsys.yaml | 28 +++++++++++++++++++
->>>>    1 file changed, 28 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
->>>> index b3c6888c1457..0ef67ca4122b 100644
->>>> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
->>>> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
->>>> @@ -93,6 +93,34 @@ properties:
->>>>      '#reset-cells':
->>>>        const: 1
->>>>
->>>> +  port:
->>>> +    $ref: /schemas/graph.yaml#/properties/port
->>>> +    description:
->>>> +      Output port node. This port connects the MMSYS/VDOSYS output to
->>>> +      the first component of one display pipeline, for example one of
->>>> +      the available OVL or RDMA blocks.
->>>> +      Some MediaTek SoCs support multiple display outputs per MMSYS.
->>>
->>> This patch looks good to me. Just want to share another information for you.
->>> Here is an example that mmsys/vdosys could point to the display interface node.
->>>
->>> vdosys0: syscon@1c01a000 {
->>>             mmsys-display-interface = <&dsi0>, <&dsi1>, <&dp_intf0>;
->>> };
->>>
->>> vdosys1: syscon@1c100000 {
->>>             mmsys-display-interface = <&dp_intf1>;
->>> };
->>>
->>> There is no conflict that mmsys/vdosys point to first component of one display pipeline or point to display interface.
->>> Both could co-exist.
->>>
->>
->> Hey CK,
->>
->> yes, this could be an alternative to the OF graphs, and I'm sure that it'd work,
->> even though this kind of solution would still require partial hardcoding of the
->> display paths up until mmsys-display-interface (so, up until DSI0, or DSI1, etc).
-> 
-> I think you might be misunderstanding CK's proposal? He's simply saying that
-> instead of pointing to the start of the pipeline, point to the end instead.
-> You can still use the OF graph and work backwards from the output.
-> 
-
-Oh, well, if I'm misunderstanding, sorry about that!
-
-Though, OF Graphs are describing a "sequence of stuff" (sorry for the suboptimal
-wording) and, well, the data goes from A to C with B in the middle, so the graph
-starts at A, goes to B, then goes to C.
-
-Starting from A, going to C, then backwards to B would be actually wrong, as that
-appears to describe that the pipeline goes A->C->B instead of A->B->C.
-
->> The problem with a solution like this is that, well, even though it would work,
->> even if we ignore the suboptimal partial hardcoding, OF graphs are something
->> generic, while the mmsys-display-interface would be a MediaTek specific/custom
->> property.
->>
->> In the end, reusing generic kernel apis/interfaces/etc is always preferred
->> compared to custom solutions, especially in this case, in which the generic
->> stuff is on-par (or actually, depending purely on personal opinions, superior).
-> 
-> Here you are mixing hardware descriptions and kernel implementation details.
-> 
-
-Not really. I'm saying that OF Graph would be preferred compared to a custom
-propety, when they both do the same.
-
-But again, I might have misunderstood what CK was trying to say, so just leave it.
-
-> I think this goes back to whether the mmsys/vdosys is actually part of the
-> graph or not. It certainly controls the muxes within the graph. But that
-> doesn't mean it has to be within the graph itself. It can just have pointers
-> to entry points of the graph (for which you would have a couple lines of
-> custom code [1]). If the data doesn't flow through the mmsys/vdosys, then
-
-               ^^^ [1] is a link I think? You missed it! :-)
-
-> I would argue that it is not part of the graph.
-
-It's part of the graph, because it is setting up the pipeline - and it's doing that
-in hardware, by doing the muxing as you said.
-I could even go on arguing that the data does actually pass through that, but I
-don't want to start any big deal around that, so I won't.
-
-> 
-> I would also argue that the data path should be fully described in the
-> device tree, not hardcoding paths based on board usage.
-
-Yes, that's what I also said (perhaps I should've been clearer) since the very
-beginning, and it's exactly what made me put effort in making this series, so
-we are totally agreeing on this point.
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="q3hiu4dcyk7yygm2"
+Content-Disposition: inline
+In-Reply-To: <2dc1fdec-7673-4462-abe1-fecf8e3e826b@linaro.org>
 
 
-Cheers,
-Angelo
+--q3hiu4dcyk7yygm2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> The latter is
-> a policy / design decision, not a hardware capability.
-> 
-> 
-> ChenYu
-> 
->> As for the two to co-exist, I'm not sure that this is actually needed, as the
->> OF graphs are already (at the end of the graph) pointing to the display interface.
->>
->> In any case, just as a reminder: if there will be any need to add any custom
->> MediaTek specific properties later, it's ok and we can do that at any time.
->>
->> Cheers!
->> Angelo
->>
->>> Regards,
->>> CK
->>>
->>>> +    properties:
->>>> +      endpoint@0:
->>>> +        $ref: /schemas/graph.yaml#/properties/endpoint
->>>> +        description: Output to the primary display pipeline
->>>> +
->>>> +      endpoint@1:
->>>> +        $ref: /schemas/graph.yaml#/properties/endpoint
->>>> +        description: Output to the secondary display pipeline
->>>> +
->>>> +      endpoint@2:
->>>> +        $ref: /schemas/graph.yaml#/properties/endpoint
->>>> +        description: Output to the tertiary display pipeline
->>>> +
->>>> +    anyOf:
->>>> +      - required:
->>>> +          - endpoint@0
->>>> +      - required:
->>>> +          - endpoint@1
->>>> +      - required:
->>>> +          - endpoint@2
->>>> +
->>>>    required:
->>>>      - compatible
->>>>      - reg
->>
->>
+On Thu, Jun 06, 2024 at 11:37:31AM GMT, Neil Armstrong wrote:
+> On 06/06/2024 11:32, Maxime Ripard wrote:
+> > On Fri, May 31, 2024 at 09:12:14AM GMT, Ryan Walklin wrote:
+> > > The WL-355608-A8 is a 3.5" 640x480@60Hz RGB LCD display used in a
+> > > number of handheld gaming devices made by Anbernic. By consensus a
+> > > vendor prefix is not provided as the panel OEM is unknown.
+> >=20
+> > Where has this consensus been found?
+> >=20
+> > I had a look at the previous discussions, and I can't find any consensus
+> > being reached there. And for that kind of thing, having the ack or
+> > review of any of the DT maintainers would have been great.
+>=20
+> There was a consensus with Conor, this is why he acked v2, see
+> https://lore.kernel.org/all/20240525-velvet-citable-a45dd06847a7@spud/
 
+It's probably a matter of semantics here, but if it's with only one
+person, it's not a consensus but an agreement.
+
+> ```
+> I think if we genuinely do not know what the vendor is then we just
+> don't have a prefix.
+> ```
+
+And even then, I don't interpret Conor's statement as a formal agreement
+but rather an acknowledgment of the issue.
+
+> I agree with Conor so I applied the patchset after Connor reviewed it and=
+ the comment was fixed in v3:
+> https://lore.kernel.org/all/20240530-satchel-playgroup-e8aa6937b8b9@spud/
+
+Yeah, I know. Still, it's a major deviation to what we've always been
+doing, getting the DT maintainers voice on that would have been a good
+idea.
+
+Maxime
+
+--q3hiu4dcyk7yygm2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZmGcFgAKCRAnX84Zoj2+
+dkUYAYCXwrDgo1KATTDcFdJY/lwZcLjYhGqWZbadZKZqSt1Nq6v60CtI5x6SUjKm
+kAWhuLYBgOMMP9FddW2uvd89ISvKRiJGtQ6AKVTmRa3PvGN4tElI4Htdmm+A+u7A
+BdBvxbKM2w==
+=lcBK
+-----END PGP SIGNATURE-----
+
+--q3hiu4dcyk7yygm2--
 
