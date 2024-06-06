@@ -1,152 +1,111 @@
-Return-Path: <devicetree+bounces-73073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 401AC8FDF2F
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:57:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 791C88FDF33
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:58:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3798E1C21A78
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 06:57:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 152FB1F23427
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 06:58:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8A16433D5;
-	Thu,  6 Jun 2024 06:57:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DCB613BC2B;
+	Thu,  6 Jun 2024 06:57:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="eFS0yGza"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GNlqMDCB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E870119D898
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 06:57:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2D7D19D898;
+	Thu,  6 Jun 2024 06:57:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717657025; cv=none; b=mbKuQgG/ghDfuJFGPW+lvFArLNFzltAmwTIFw3LJMu5Gcp+KaQcFp+O//h6IerCA9lZ2JnvGaK55AdfJhe66ruIkCEjivC6VtWSCZVtjfQJP3qIeTPr0agEs/SsfhV1aww+EiTFvl6O7c8qtVYZbffWpe49ower6esdA4KWTjFw=
+	t=1717657074; cv=none; b=jADhp5YuWLsl4NWTsqCiokJIjre6HywdO85QSC6T0+rTzHxQBfY34njJ80TMtEjqnAJpV7Kf2Ob5Gbc9WAc8K4s4qunpyFIPQ9jrWC+2YstynWlTEpERSAXcwnroAu2bquIcnUrY7RGMElSI7AJesQwToLG+1ymf1rTVSLYJ5XM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717657025; c=relaxed/simple;
-	bh=yFX5RUHWuOzTFfSFBdcspw6D6wGUNCnLLGmgsQCe6bQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=rBBaAX9GqK/gfIvIHkdravWWN6j3V2wL1XEBz+EHxF5kfCJ51j/2dOFuEKykUs1Z+tLrsDp1E6XbLAf1GVoRQRi39za31vG9BfcnFz4g0qIdDJq60EaXTeQs3xKqRO843u2iTV8BQgYOfteKr66nFcjrHAizzGcB+zQlZdDGxBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=eFS0yGza; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45661ISi018429;
-	Thu, 6 Jun 2024 08:56:07 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	q0pHrhrEV2nvppmu5Y5o14Zk3kbzMDqiybbgUNzqXQI=; b=eFS0yGzaw+mUJO06
-	Qrc3cVuEAifZjh5JTSKnXkihS6HaP0kZMIRgvcgJLM/WBrayNW/BFTVpc+dVkssD
-	j02nIkGfuXSB4yeQHZfMTdiuXbvUZvcwqOjI/lblCIV794azupfJifz0Iqy53CDm
-	9h6R0yb2qdlRShE46VCiYAzx/cQwSogw6XuIrhgSWCt0JRw+KkV/xAbTeKAvLRwX
-	9pJODzzcFAcLNZe4XR9WkDHd4EeMLC/YNLX3m624txcNssdowGP1i5Pfng+lnkBY
-	PjKQVL+H346IlvMZzgIcFIW6qDEDUElIWzUrD361f7gQuaBi3qpt073gT1l13Lp3
-	PG+Pfg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ygekj2hmr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 06 Jun 2024 08:56:07 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id DB8D140049;
-	Thu,  6 Jun 2024 08:56:01 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EC7DD20F2D3;
-	Thu,  6 Jun 2024 08:54:51 +0200 (CEST)
-Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 6 Jun
- 2024 08:54:51 +0200
-Message-ID: <dce9b2fb-9a63-4e75-aa97-d1c6d2a319bc@foss.st.com>
-Date: Thu, 6 Jun 2024 08:54:50 +0200
+	s=arc-20240116; t=1717657074; c=relaxed/simple;
+	bh=Y1QGCsG4sNiWJEzr1Fn7n1E794mS092qLQjOEa8ZQYw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=J9RDZkaZNwDUxTnKgw2an03JLYcTcPUFQayyMx4Du5ibsm3JqOwP54LbLDcAHErzV7TKol3EsXVdD4tAMXCRKFQYT08x6UXFG406tW2yLO8+Q8Ah/AOYFs2rDjSEcv5vbZ+hsR6oV68i4c2jTsbMKzsWu/YTwKzTVen6TlnHYjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GNlqMDCB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FCF3C4AF0E;
+	Thu,  6 Jun 2024 06:57:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717657073;
+	bh=Y1QGCsG4sNiWJEzr1Fn7n1E794mS092qLQjOEa8ZQYw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GNlqMDCBUsnnK0DuaVMMIuoZ5tNuAdvFxjzWX/XSleUj9AK/fSYYeslNQadVN78dj
+	 QvbgHGzNksPIGIAiAEZp07xBum4dwl/ZpGKNle8Z6GyGDRU8RBeVATID3yRI3pkStm
+	 RIhf0Cz9o9kxC/d1BjcBONmdTEpUyquxQjTJDqU+X7VutRvTHRQDuQ44c5dTaT1kTG
+	 O8zuwUFrJu9EZrdG8iwkYgr4sgvdW2Vz1Cp8Pw4pwbGQtrxcULmdSmrEkGWB1hpCjZ
+	 W3rGO3ETAHzzdDhkKCesv5zhLbkksbVnaixR+C1MiOXxmP9sMpN4dGG2xSXCZin5Ny
+	 PvvbBA9Ei9OPQ==
+Date: Thu, 6 Jun 2024 08:57:47 +0200
+From: Benjamin Tissoires <bentiss@kernel.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Jiri Kosina <jikos@kernel.org>, 
+	Benjamin Tissoires <benjamin.tissoires@redhat.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Douglas Anderson <dianders@chromium.org>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/7] HID/arm64: dts: qcom: sc8280xp-x13s: fix
+ touchscreen power on
+Message-ID: <fupsiajh2za5r7itt2naxtynyqiwpw3efubrjmydd5ohypo3jg@2u44rbhbvmym>
+References: <20240507144821.12275-1-johan+linaro@kernel.org>
+ <ZmBZPHbDv7ma_JaJ@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: stm32: Fix STM32MP13xx DHCOR DHSBC Makefile
- entry
-To: Marek Vasut <marex@denx.de>, <linux-arm-kernel@lists.infradead.org>
-CC: =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
-        Ahmad Fatoum
-	<a.fatoum@pengutronix.de>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Dario Binacchi
-	<dario.binacchi@amarulasolutions.com>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Maxime
- Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh@kernel.org>, Sean
- Nyekjaer <sean@geanix.com>,
-        Steffen Trumtrar <s.trumtrar@pengutronix.de>,
-        Stephen Rothwell <sfr@canb.auug.org.au>, <devicetree@vger.kernel.org>,
-        <kernel@dh-electronics.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20240605232809.169927-1-marex@denx.de>
-Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20240605232809.169927-1-marex@denx.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-06_01,2024-06-06_01,2024-05-17_01
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZmBZPHbDv7ma_JaJ@hovoldconsulting.com>
 
-
-
-On 6/6/24 01:27, Marek Vasut wrote:
-> Fix stm32mp135f-dhcor-dhsbc board Makefile entry,
-> replace 'dhsom' with 'dhcor' typo.
+On Jun 05 2024, Johan Hovold wrote:
+> Hi Jiri and Benjamin,
 > 
-> Fixes: 12ff8e167641 ("ARM: dts: stm32: Add support for STM32MP13xx DHCOR SoM and DHSBC board")
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: "Leonard Göhrs" <l.goehrs@pengutronix.de>
-> Cc: Ahmad Fatoum <a.fatoum@pengutronix.de>
-> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Cc: Andre Przywara <andre.przywara@arm.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Sean Nyekjaer <sean@geanix.com>
-> Cc: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-> Cc: Stephen Rothwell <sfr@canb.auug.org.au>
-> Cc: devicetree@vger.kernel.org
-> Cc: kernel@dh-electronics.com
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> ---
->   arch/arm/boot/dts/st/Makefile | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+> On Tue, May 07, 2024 at 04:48:14PM +0200, Johan Hovold wrote:
+> > The Elan eKTH5015M touch controller on the X13s requires a 300 ms delay
+> > before sending commands after having deasserted reset during power on.
+> > 
+> > This series switches the X13s devicetree to use the Elan specific
+> > binding so that the OS can determine the required power-on sequence and
+> > make sure that the controller is always detected during boot. [1]
 > 
-> diff --git a/arch/arm/boot/dts/st/Makefile b/arch/arm/boot/dts/st/Makefile
-> index db9718059ae2f..015903d09323f 100644
-> --- a/arch/arm/boot/dts/st/Makefile
-> +++ b/arch/arm/boot/dts/st/Makefile
-> @@ -29,7 +29,7 @@ dtb-$(CONFIG_ARCH_STM32) += \
->   	stm32h743i-eval.dtb \
->   	stm32h743i-disco.dtb \
->   	stm32h750i-art-pi.dtb \
-> -	stm32mp135f-dhsom-dhsbc.dtb \
-> +	stm32mp135f-dhcor-dhsbc.dtb \
->   	stm32mp135f-dk.dtb \
->   	stm32mp151a-prtt1a.dtb \
->   	stm32mp151a-prtt1c.dtb \
+> > The devicetree changes are expected to go in through the Qualcomm tree
+> > once the binding and driver updates have been merged.
+> 
+> > [1] The reset signal is currently deasserted using the pin configuration
+> >     and the controller would be detected if probe is deferred or if user
+> >     space triggers a reprobe through sysfs.
+> 
+> > Johan Hovold (7):
+> >   dt-bindings: HID: i2c-hid: add dedicated Ilitek ILI2901 schema
+> >   dt-bindings: HID: i2c-hid: elan: add Elan eKTH5015M
+> >   dt-bindings: HID: i2c-hid: elan: add 'no-reset-on-power-off' property
+> >   HID: i2c-hid: elan: fix reset suspend current leakage
+> 
+> Could you consider picking the first four patches up for 6.10-rc3 so
+> that Bjorn can take the devicetree changes?
 
-Applied on stm32-next.
+We definitely can. But if it makes things easier, Bjorn can also take
+the whole series through his tree with my Acked-by.
 
-Thanks
-Alex
+If I don't get answer by tomorrow I'll apply the first 4 in the hid
+tree.
+
+Cheers,
+Benjamin
+
+> 
+> >   arm64: dts: qcom: sc8280xp-x13s: fix touchscreen power on
+> >   arm64: dts: qcom: sc8280xp-crd: use external pull up for touch reset
+> >   arm64: defconfig: enable Elan i2c-hid driver
+> 
+> Johan
 
