@@ -1,106 +1,135 @@
-Return-Path: <devicetree+bounces-73186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95B708FE2E8
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:34:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D3388FE2FC
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:35:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E56EF285F2B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:34:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 584CB1C255D3
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:35:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9542B15358F;
-	Thu,  6 Jun 2024 09:32:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FA2A14D717;
+	Thu,  6 Jun 2024 09:34:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qX8oGRT/"
+	dkim=pass (2048-bit key) header.d=leemhuis.info header.i=@leemhuis.info header.b="ErXUHyxM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de [80.237.130.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C49153517
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 09:32:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01EF619D8B5;
+	Thu,  6 Jun 2024 09:34:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.237.130.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717666339; cv=none; b=n5X2dZ7KhWt89iSWUaVVC9LIcyhsALIn0bR/qtv1y9R3a9Y8Z540/jxv1TK2cHaROEMK2NclXUdIXlyiqZomoPFeFEVmN/i9XAtfCQoxxzHy8VP+OPR6jUFnUDRtMpEPV9JAfxIN5azL9mhApa8d3Ler9d8MAjOZSMr6byHQ160=
+	t=1717666495; cv=none; b=jrbU4rzlb3CyaAheAPOm1umMZSUSN7kFOTvQ7iFQ3/ZtSoYZ4vnGXV1XvccDoUG5L+ITb6xvW6YyEZowpQ0xj6QN90LuWLEPXt0cNUedVXYc8HjWz1Z19Dx2xl4YIoBO67sK7ehK7i0fyDJsT0iKlNQcotp6GHSpbey7XaXFLYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717666339; c=relaxed/simple;
-	bh=fPwcz9PcQVr+dXSEZDosmZ7ie3Kr+GKp5dXJ0mDW5+Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RdMVbuzPupo1OmvZ6qbPIWtGDF47kjPwnuy0mC9wnWC4VIvWDQYjSo+SoDDUykbJ7NDVG6ytD0xHEF/HQh9scbxYfGw+cAhmtdHWinslsaYj42uAwCx4/AU1X90ySz+JNMDugfElWFFNox7qyx6G+VjsXmxi0D36sx29Syx6Rg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qX8oGRT/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83EFCC4AF0D;
-	Thu,  6 Jun 2024 09:32:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717666339;
-	bh=fPwcz9PcQVr+dXSEZDosmZ7ie3Kr+GKp5dXJ0mDW5+Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qX8oGRT/hk67NF+4pgYIgwNsxPZIMNEXlMYo3+iKniuv2eRhkN5tz7vRvjnccJk40
-	 MfH8TPifEzyWipLTLn6AnM0QP+eKi3RizBFwgxZi1cxzQLWzhRzFAE+feiO3DnbpVB
-	 ZeISSA1Ms10jOsez6xVRmTgJyjhkg4XcxcX/dMd1NRO32UiQ79nAKOaCGOTkHDosf2
-	 MwikExCLf/gnlGjCkqC2XaqWJ3jiP6HnsG/vp5DMcAdVjK1DfTAMzBwOTLzj4qRx3k
-	 pR+h6J6Pawjtsei3Ix6btbOKYu6Pvvi7Avk/3zboeTAdPTDbO/HbyScbc1/8+/eq2U
-	 MKDy8VeHzzcwQ==
-Date: Thu, 6 Jun 2024 11:32:16 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Ryan Walklin <ryan@testtoast.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Hironori KIKUCHI <kikuchan98@gmail.com>, Chris Morgan <macroalpha82@gmail.com>, 
-	Andre Przywara <andre.przywara@arm.com>, John Watts <contact@jookia.org>, 
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: panel: Add WL-355608-A8
- panel
-Message-ID: <20240606-intelligent-aromatic-magpie-80a7a4@houat>
-References: <20240530211415.44201-1-ryan@testtoast.com>
- <20240530211415.44201-3-ryan@testtoast.com>
+	s=arc-20240116; t=1717666495; c=relaxed/simple;
+	bh=O6QxW/6BMIUtD8lYbUc2Pu0nN4KzJrdPqakO9O5geSg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qO82bkKWVHdyrM709N6cKY0Axmaq4NjIqdz7G5zo0dRh37YAudlpqzAYDY/Iq9JkeAP9ZG0CKbl/gNyv6siD52QiFknKATBJ8ABbTEbHv5UaxYxd+zM/MbBbk61SEbDHxys71NE6/zcjbr1HaV+DBTak/oKNDUQ++4ASiMjtHB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=leemhuis.info; spf=pass smtp.mailfrom=leemhuis.info; dkim=pass (2048-bit key) header.d=leemhuis.info header.i=@leemhuis.info header.b=ErXUHyxM; arc=none smtp.client-ip=80.237.130.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=leemhuis.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=leemhuis.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=leemhuis.info; s=he214686; h=Content-Transfer-Encoding:Content-Type:
+	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:In-Reply-To:
+	References; bh=kmeK62SoIdnIVPwJAA1ZxGyQbY0oIueNKztx6sdjWRM=; t=1717666493;
+	x=1718098493; b=ErXUHyxMmVjARkDr/9YwQ/s6qYvBhon3JXt6cr7AB6nnXZyvt1uJgQZphXfF6
+	mNTNhvLniodCtNFkA+slnwcYBOfZ+oRR7YM9+fNQEqmsXMcjzz0w/kVT/LLlcCpFvclhxcUHeHsLN
+	Uet5d4zgzfDZv6lNjyc+aA1lMEjQ3zbQtbiotrt5X984PDE/Vtg98LfnpNX0B7yN59zvRAqL4lcGk
+	54pRgkmnDxrlKDcYLDQGzxxLSHJn2k3OG86rZs6kJGR9XjMbEyF3Nas3+IAxhr1catQUmWnmOa+1a
+	imp4cGrDQGGeF8tlWnQUo/RtGxwcj5sgpUYvYHBgsjNpSYlAIw==;
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	id 1sF9W3-0004z8-HD; Thu, 06 Jun 2024 11:34:39 +0200
+Message-ID: <cee5e4ee-3d67-4eba-a790-c0c016cee937@leemhuis.info>
+Date: Thu, 6 Jun 2024 11:34:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="xjhxlcmuj2evi5ma"
-Content-Disposition: inline
-In-Reply-To: <20240530211415.44201-3-ryan@testtoast.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
+To: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+ Paolo Abeni <pabeni@redhat.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Daniel Golle <daniel@makrotopia.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ frank-w@public-files.de, Rob Herring <robh@kernel.org>,
+ Linux regressions mailing list <regressions@lists.linux.dev>,
+ Frank Wunderlich <linux@fw-web.de>
+References: <20240516204847.171029-1-linux@fw-web.de>
+ <a29dd7d1-40a8-4c88-99aa-651a3305b640@arinc9.com>
+ <5AEE5668-0C8E-4EE4-A398-66CB99DF5650@public-files.de>
+ <43aacd9d-b851-4100-8ccc-878ac6ae10f8@leemhuis.info>
+ <698cf562-1ca9-4aa3-be7e-a1474b612c5b@leemhuis.info>
+ <0cba095c-3d55-416a-a7ad-b359129731cf@arinc9.com>
+ <714da201-654b-4183-8e5e-8ff0b64fe621@leemhuis.info>
+ <0ae387c1-31b2-4e87-aa7d-f98e3c90e985@arinc9.com>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+Content-Language: en-US, de-DE
+In-Reply-To: <0ae387c1-31b2-4e87-aa7d-f98e3c90e985@arinc9.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1717666493;3a8ac617;
+X-HE-SMSGID: 1sF9W3-0004z8-HD
 
+On 06.06.24 11:01, Arınç ÜNAL wrote:
+> On 06/06/2024 11.26, Thorsten Leemhuis wrote:
+>> On 31.05.24 08:10, Arınç ÜNAL wrote:
+>>> I had already submitted a patch series that would've prevented this
+>>> issue back in 14 March 2024 [1]. I've asked numerous times for the patch
+>>> series to be applied [2][3][4][5].
+>>>> Eventually Daniel asked for some changes [6]. But I won't have time
+>>>> to do
+>>> that anytime soon and I think the patch series is good enough to be
+>>> applied
+>>> as is.
+>>
+>> Then I guess we need some other way to resolve this in mainline to unfix
+> 
+> I don't believe we need another way to resolve it. I've already told that
+> the patch series is good enough to be applied as is and I don't see any
+> responses with reasons against this here.
+> 
+>> Frank's device. The two obvious options are afaics:
+>>
+>> * revert the culprit (868ff5f4944aa9 ("net: dsa: mt7530-mdio: read PHY
+>> address of switch from device tree")) and reapply it in a later cycle
+> 
+> Sorry, no. There's nothing wrong with that patch. The actual cause of this
+> issue is the patch that introduced this device tree source file with the
+> wrong PHY address.
 
---xjhxlcmuj2evi5ma
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Was that also merged for 6.10? Because if not, then what matters here
+afaics is what patch exposed the problem. Of course ideally we wound fix
+that problem -- but if nobody takes care of that any time soon it might
+come down to a revert of the patch that exposed the problem. At least
+that how Linus handles these things afaics.
 
-On Fri, May 31, 2024 at 09:12:14AM GMT, Ryan Walklin wrote:
-> The WL-355608-A8 is a 3.5" 640x480@60Hz RGB LCD display used in a
-> number of handheld gaming devices made by Anbernic. By consensus a
-> vendor prefix is not provided as the panel OEM is unknown.
+>> * apply Frank's patch (or an improved one) in this thread (and if needed
+>> revert it when some better changes emerge.
+>>
+>> Arınç ÜNAL, could you please comment on that and ideally handle the
+>> necessary tasks, as it's your patch that causes the regression.
+> 
+> I don't see any necessary tasks for me to handle. AngeloGioacchino Del
+> Regno whom is the only person I know that maintains these device tree
+> source files can simply apply the patch series that I have already
+> submitted and we can all move on. I haven't heard from them whilst the
+> patch had been waiting since March. So I'm not sure who's going to apply
+> this patch, and to which tree.
 
-Where has this consensus been found?
+AngeloGioacchino Del Regno, if you have a minute, could you please
+comment if merging those changes for 6.10 is an option?
 
-I had a look at the previous discussions, and I can't find any consensus
-being reached there. And for that kind of thing, having the ack or
-review of any of the DT maintainers would have been great.
-
-For this kind of cases, we usually use the device it's attached to as
-the vendor, so anbernic in this case. Can you send a followup patch?
-
-Maxime
-
---xjhxlcmuj2evi5ma
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZmGCHwAKCRAnX84Zoj2+
-dmxZAX4pKqW/khT/zXUOr+BBW6eu2tIIGzFo7WMiKhbxRIcWdUQH75SjZtS6I59l
-80naA1oBfjTsyAuVx0OrYaS+Lpr/CQHR10Bp9eOs48keNgPqy24flMJ4gVReaLnV
-tJkRQoQfcg==
-=Vm6J
------END PGP SIGNATURE-----
-
---xjhxlcmuj2evi5ma--
+Ciao, Thorsten
 
