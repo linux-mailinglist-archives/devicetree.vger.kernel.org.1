@@ -1,142 +1,138 @@
-Return-Path: <devicetree+bounces-73212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6D438FE3E5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 12:12:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E8BB8FE3F0
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 12:13:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C784D1C23C50
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 10:12:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5D63282FBA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 10:13:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C127C190672;
-	Thu,  6 Jun 2024 10:12:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F0B2193074;
+	Thu,  6 Jun 2024 10:12:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="frbu8+QT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J0oAAg54"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73CBB1850AC;
-	Thu,  6 Jun 2024 10:12:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ED66193070;
+	Thu,  6 Jun 2024 10:12:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717668742; cv=none; b=lpDl1qVoQ653HTiq8YlFY9mepcSSyyVMGwkr0KGtOWL+om2pb48m75Hl4pi5KraWI8VjYwY3Ujp08InoBvq6RZWvITXguHFSNfXuKbNgTm+Rr/mAnejSuQDSIP9elBd9QYIg7sDnVgMSM8kcdok9/Ky5qMjQBgFX/xK3DA6tke0=
+	t=1717668779; cv=none; b=eeNtxivw4+Vp0mLK002qZuo8+pVzDsULrA6/iiD2uOw0+LfU6JBMuLcbnWKX0VEVHJ2U8iWeTlxjIlOgQnJuHuU/9kwlLBLi1zu+MkdY4yw0z3SoXHSnbP7GMpJ67LhbbiRlUhRauO4i92S0aOLkxUWkAM3wuMXKMUlBrdzl2X0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717668742; c=relaxed/simple;
-	bh=xYXzgWNy4Rs2pnGAqHq93NhuNe+fr/mIyHdGMXdlv2I=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=UFC63fO3uhQzRFW5r2qGpzWfb4faUptS1TmNuOP4cRDpJ+YOV53wwktUAUUJwS6LJg/ZnAlNDLhV2ru5B4a3MSx31KAwR7rnbzg0rSMKolQPDN8k+eKCM36ywJbhv20JMPJWlSLZw1Bd7Z/dCxNDyufOGEuPB2w1HTvxtEDqla8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=frbu8+QT; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from localhost (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id B2252450B3;
-	Thu,  6 Jun 2024 12:12:12 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
-	by localhost (disroot.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id dti8yqdd9amy; Thu,  6 Jun 2024 12:12:11 +0200 (CEST)
+	s=arc-20240116; t=1717668779; c=relaxed/simple;
+	bh=6Uy5q4elvDKhtFVRvt/yFW+qIAdrjmGYOYzK4xro7+I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=T5Eyc9yqbINdR1h+gRvRaDmWDVpPCez8nBTg1BvoKlSxfIMAhrHW/A2f4RzwUEWo260u4qsaHspooRSCxP7LatGuVBqrFogyN9D5cb4VU8AYKAm706My0k/M63MrIdiZUUhnZlbJSmW5sr5ORLMRImdV7/Ll4tOUyzHNSsdah9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J0oAAg54; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2eaae2a6dc1so14058461fa.0;
+        Thu, 06 Jun 2024 03:12:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717668776; x=1718273576; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VwwGGDviOkEqNMI4ZeyME6vD2otTizBZGZrZCysEeXs=;
+        b=J0oAAg54a2s8REwQAcbWucX9zQmshjYXIt6wxi04BrfMkJn44AQ5sYHFWgkayTSSBL
+         Cq0caGk+JRTBy1uttPzUh4wK5pDLCyo8r4sckIzLbl8M5xP8NmDTP9WR66VUJjbHX48Y
+         mJXTKCq0rJxP8EM6IkN3VZ33pYN0uldfFohLPih+toKKbcnyANg3N32IzA6qvlBKLEC4
+         oT8yCbQw2wcruWCgfTMATqcz1tKqAn9PoDEOQ/GsQvYOKFhwTRg1/oubxtx7YVf9+G4J
+         6TwjiEU3ZliyRYgHx4/NatMsuXEeIwkiMZiaPoTKLW+hz6nuOrnfk8PruClrW2eq/g+E
+         up1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717668776; x=1718273576;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VwwGGDviOkEqNMI4ZeyME6vD2otTizBZGZrZCysEeXs=;
+        b=uySMzTO3qegcH/iQv+aeFeegz0A13sMRPavnJ76E3xYzEaU64Mk56Xj0BOcgh07xRb
+         gidYj4zT+5h+WytPk5PXon3iMeR700hGO1lHaATyuKP69vwbAOqKP1Pzp10/66fEYgLW
+         2oJsWJ06N+lWZp7cb/M9v3vs14J6qIg0+R6yb+PwpyoTeK66RwIFXSLvz/F8NcvsrvFt
+         MHUYHafL7LYl/zj6mUoaFsjcBTrFllfzNOSOZ7A2OoKnPb4XLKdRwMrdPA7XJtTsn6Je
+         k4Ejt5frkYfJG6VrXrFW8K6qzCcVdK39y68483B09Y6/FhpD8G4Dxmxg/EgQZoZlQUEe
+         2ogQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUNfzQ6+w561m2W+yq6ZAwGhDgbP8MiY5HSffQ0kmms1AGMDjRzVjT5v1d8Ch0nufthlWZpMvchzVCuUnRuE7Y5JPJK7AM5lvHtmpqSJFIDnatxbAO59TH61mjgAQJKTgc3tbGid8nTjCGwgn4Dvsj+DbXl1fucs/mhsehk8wtGU3eFfQ==
+X-Gm-Message-State: AOJu0YwYF5QDHsLT1fJKovfS7xy3/Tepo8NDSAbEEk5Pz/lg1o2HvURd
+	SY157XYxdybqhJ+PvQeyLKBOKKwrcrSH83QyKQCJpZRX0yg6NqE=
+X-Google-Smtp-Source: AGHT+IERDa7mrBB8yKBaPAZ+hETVUsn6IFbG49e1yW7WhBHVEIh7oLLq5qPqjNGKWMPo9qPJolTPeg==
+X-Received: by 2002:a2e:a543:0:b0:2d8:5af9:90c5 with SMTP id 38308e7fff4ca-2eac7a68650mr46400261fa.39.1717668775339;
+        Thu, 06 Jun 2024 03:12:55 -0700 (PDT)
+Received: from ?IPV6:2a02:810b:f40:4600:7ad9:7718:9ddf:523c? ([2a02:810b:f40:4600:7ad9:7718:9ddf:523c])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215811d13esm48762385e9.24.2024.06.06.03.12.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Jun 2024 03:12:55 -0700 (PDT)
+Message-ID: <e379af59-a997-4774-96c1-33739b715ad1@gmail.com>
+Date: Thu, 6 Jun 2024 12:12:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1717668731; bh=xYXzgWNy4Rs2pnGAqHq93NhuNe+fr/mIyHdGMXdlv2I=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=frbu8+QTEOzDycjOzFRIeaEaMrFhtqv6gmw3BKHeGXNXfezD0KEXr3FwUzYpwB1ZY
-	 n6+SdD72mQtmXX132cAbSFfSk/errG23epm2fn8Qa5u1knanbPVlfeseSfnH11WOCv
-	 w3HcFqPz8lVxZTXUm1M60lyNgfCk0OUaSqDvRPym6CtYsjJkdg52udaRoqDz1oxBM2
-	 XTeiPvRvbkMukwmdtL4crY/sCsMjwT7CbqASgGankNm/KrejqszgRM+Rwc7+HcdV1l
-	 0MGnqbiO/+YobohREUBZDX4KRPm7LLjb1ItRaCWffvQqWocNq9EoC0/ri+r2pUZxhh
-	 fHHDTa7B1ehxg==
-Date: Thu, 06 Jun 2024 10:12:11 +0000
-From: kauschluss <kauschluss@disroot.org>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, linux-iio@vger.kernel.org,
- denis.ciocca@st.com, devicetree@vger.kernel.org, linus.walleij@linaro.org,
- robh+dt@kernel.org, kauschluss@disroot.org
-Subject: Re: [PATCH v3] iio: accel: st_accel: add LIS2DS12
-In-Reply-To: <20240602095459.4a2cdc54@jic23-huawei>
-References: <20240601192914.141906-1-kauschluss@disroot.org>
- <20240601-spouse-hurler-e7b93ac26f86@spud>
- <20240602095459.4a2cdc54@jic23-huawei>
-Message-ID: <4ed8ba956aee82bf7ccde2af1012bae2@disroot.org>
-X-Sender: kauschluss@disroot.org
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/5] Add SFC support for RK3128
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20240605205209.232005-1-knaerzche@gmail.com>
+ <20240605205209.232005-6-knaerzche@gmail.com>
+ <fcff0181-b6de-4e47-b7ff-47baac061b3e@kernel.org> <7129744.aoefvbuG5b@diego>
+Content-Language: en-US
+From: Alex Bee <knaerzche@gmail.com>
+In-Reply-To: <7129744.aoefvbuG5b@diego>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 2024-06-02 08:54, Jonathan Cameron wrote:
-> On Sat, 1 Jun 2024 20:49:25 +0100
-> Conor Dooley <conor@kernel.org> wrote:
-> 
->> On Sun, Jun 02, 2024 at 12:56:41AM +0530, Kaustabh Chakraborty wrote:
->> > diff --git a/drivers/iio/accel/st_accel_i2c.c b/drivers/iio/accel/st_accel_i2c.c
->> > index fd3749871121..329a4d6fb2ec 100644
->> > --- a/drivers/iio/accel/st_accel_i2c.c
->> > +++ b/drivers/iio/accel/st_accel_i2c.c
->> > @@ -102,6 +102,10 @@ static const struct of_device_id st_accel_of_match[] = {
->> >  		.compatible = "st,lis2de12",
->> >  		.data = LIS2DE12_ACCEL_DEV_NAME,
->> >  	},
->> > +	{
->> > +		.compatible = "st,lis2ds12",
->> > +		.data = LIS2DS12_ACCEL_DEV_NAME,
->> > +	},
->> >  	{
->> >  		.compatible = "st,lis2hh12",
->> >  		.data = LIS2HH12_ACCEL_DEV_NAME,
->> 
->> > diff --git a/drivers/iio/accel/st_accel_spi.c b/drivers/iio/accel/st_accel_spi.c
->> > index f72a24f45322..825adab37105 100644
->> > --- a/drivers/iio/accel/st_accel_spi.c
->> > +++ b/drivers/iio/accel/st_accel_spi.c
->> > @@ -64,6 +64,10 @@ static const struct of_device_id st_accel_of_match[] = {
->> >  		.compatible = "st,lis2dh12-accel",
->> >  		.data = LIS2DH12_ACCEL_DEV_NAME,
->> >  	},
->> > +	{
->> > +		.compatible = "st,lis2ds12",
->> > +		.data = LIS2DS12_ACCEL_DEV_NAME,
->> > +	},
->> >  	{
->> >  		.compatible = "st,lis3l02dq",
->> >  		.data = LIS3L02DQ_ACCEL_DEV_NAME,
->> 
->> Any new compatibles need to be documented in st,st-sensors.yaml
-> 
-> At the moment the st_sensors core is doing hard matching against whoami values
-> which isn't good.  That should ideally be fixed and the binding for this
-> device should use a fallback compatible if the statement about compatibility
-> is accurate.
+Hi Heiko, Hi Krzysztof,
 
-I apologize for not wording the description accurately. By "compatibility",
-I mean that the sensor settings of LIS2DE12 (such as the gain values) seem
-to be well-suited for LIS2DS12, as per my experimentation. Both devices are
-manufactured by ST and have no correlation regarding compatibility whatsoever.
-In that case, a fallback compatible isn't required, right?
+Am 06.06.24 um 09:37 schrieb Heiko Stübner:
+> Am Donnerstag, 6. Juni 2024, 08:41:19 CEST schrieb Krzysztof Kozlowski:
+>> On 05/06/2024 22:52, Alex Bee wrote:
+>>> This series adds support for the Serial Flash Controller (SFC) found in
+>>> RK3128 SoCs.
+>>>
+>>> As without using some "id holes" we would run out clock ids in the binding
+>>> and would have to touch the ABI, I added patches which removes the
+>>> CLK_NR_CLKS macro and uses the recently introduced
+>>> rockchip_clk_find_max_clk_id helper instead to find the highest clock id.
+>>>
+>>> changes since v1:
+>>>   - added patches to remove CLK_NR_CLKS (Connor)
+>>>
+>> Do not attach (thread) your patchsets to some other threads (unrelated
+>> or older versions). This buries them deep in the mailbox and might
+>> interfere with applying entire sets.
+>>
+>> You sent now v2 immediately after. Confused.
+> it looks like Alex had some mail trouble yesterday.
+>
+> The thread you Acked patches in actually is v2, just missing the label.
+>
+> - original v1: https://lore.kernel.org/linux-rockchip/20240605172154.193047-1-knaerzche@gmail.com
+>
+> - "unlabeled" v2: https://lore.kernel.org/linux-rockchip/20240605205209.232005-1-knaerzche@gmail.com/
+> - this as v2, but as reply to the previous
+> - real v2: https://lore.kernel.org/linux-rockchip/20240605210049.232284-1-knaerzche@gmail.com/
+>
+> The last 3 are identical, just the sending process was somehow fumbled.
+Yes, that's why I replied to the first message in the messed-up thread
+explaining it a bit:
+https://lore.kernel.org/all/9da22443-b5c3-4fbc-8cb0-d6bebab55da4@gmail.com/
+Anyway: To make it a bit less confusing, I'll send v3 with Krzysztof's acks
+included.
 
-I'll make sure to rewrite the description more accurately in v4.
- 
-> It may just be a case of relaxing the check in st_sensors_verify_id()
-> to printing a warning not an error message and not returning an error code
-> (reserving error returns in that function for bus error etc.
-
-I agree, if you want I may send a patch for that after I'm done with this
-one.
-
-> That doesn't need to be in this patch though.  Just have the fallback
-> stuff in the binding and for now we can rely on matching the more
-> precise compatible.
-> 
-> Jonathan
-> 
-> 
->> 
->> Thanks,
->> Conor.
->> 
+Alex
+>
+>
 
