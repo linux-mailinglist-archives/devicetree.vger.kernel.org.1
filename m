@@ -1,95 +1,128 @@
-Return-Path: <devicetree+bounces-73285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 097E48FE7B0
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:26:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C35B8FE7BC
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:28:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A9DBB20FB0
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 13:26:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DFEAD1F2121A
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 13:28:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA599195B3B;
-	Thu,  6 Jun 2024 13:26:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30D68195FFD;
+	Thu,  6 Jun 2024 13:28:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="BEQ2Sg2h"
+	dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b="TW0KvQ+w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mta-64-225.siemens.flowmailer.net (mta-64-225.siemens.flowmailer.net [185.136.64.225])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 201B4FC02;
-	Thu,  6 Jun 2024 13:26:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D84C5195FD9
+	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 13:28:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.64.225
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717680368; cv=none; b=mo3pgwldfb5GXUUe0+B5lOTTp2Tc1HyAChKY+yUxg0hIqVLytqcJ+bMpKzNGQr8KXnDxfey60e2XKB0bS3NlJr0u4LaiEzUuMSFwXAJFq94Q+a0cUbKkXdcKVST90PLGYIINyirS6/edOVoaWTa//jQyqG4YzNEXBwn0gG7jrLM=
+	t=1717680517; cv=none; b=sLu4kAp8ZN+vqw7XkWa5OKTdzFWNnLLZ1EGDUSZsdHtYEKbcwoync/8h8qUvMioyfiFp05NwghG7PE+bVdPW8djl1hxWinzWntmdxbudFWqMs9NZld5QcU5jEMJ/e7xMDr8VVFZhaw6xLmq+yiOe5hNNWsg79mQKnL4pNlZM/1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717680368; c=relaxed/simple;
-	bh=Da94MbDvCzudQyDztnqyQOKY9skofvJFvAJNp1KTIcI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gieaXsHP8HeHZ2Del1BwTAvXF15KAZ9DkHmDNOgwd3De+Yiig384+w/kuyPFDs5BE5xUSMOPyrW6WXJwdJegZDLMHAR8MEsJRANbWVaqzX/8qzoPv7NIEwZjHRGhrahVz9pSsAXBgOJ1j204dPpwHZrSAfELGYH4Kt+ths2OHcU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=BEQ2Sg2h; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=QehpudYNwQn/+EF5t8WXc8vQI3VYnM/EWDpwkUDEZHI=; b=BEQ2Sg2hRkMyI04nmbrlG0HbLo
-	QeO7iB/STgiK0VKfWXCGl2sd4tRbx5MAgMZ9LWf63lpyYEFkYk4g6YyOsCBRaL6wqcc/iMAGBoUZ0
-	+cN1km/L3X73Hqjk5o0FlagS1JwYR7HdhDrOZmTBtipc3cdJhEStoQJjYmllVZH48tYg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sFD7o-00H1FE-DV; Thu, 06 Jun 2024 15:25:52 +0200
-Date: Thu, 6 Jun 2024 15:25:52 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Swathi K S <swathi.ks@samsung.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	richardcochran@gmail.com, alexandre.torgue@foss.st.com,
-	joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
-	alim.akhtar@samsung.com, linux-fsd@tesla.com,
-	pankaj.dubey@samsung.com, ravi.patel@samsung.com,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: net: Add FSD EQoS device tree
- bindings
-Message-ID: <22eae086-0f77-4df7-9d70-e7249d67b106@lunn.ch>
-References: <20230814112539.70453-1-sriranjani.p@samsung.com>
- <CGME20230814112605epcas5p31aca7b23e70e8d93df11414291f7ce66@epcas5p3.samsung.com>
- <20230814112539.70453-2-sriranjani.p@samsung.com>
- <4e745c2a-57bd-45da-8bd2-ee1cb2bab84f@lunn.ch>
- <000201dab7f2$1c8d4580$55a7d080$@samsung.com>
+	s=arc-20240116; t=1717680517; c=relaxed/simple;
+	bh=yjkWMEhTTHw95CioVsQeuppHqqaXxYjWyu4hGhWgAqY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Dz42UDTs/wTj1wShYK8XhMjZmsBX0g1EKSkxieMpfMwOPqHPBcWHR23Xt/kLYRMQEp3ebdBAScAT972LsFsKx4HKJQULuUuSLsf11Vd8xtPNaNnQyQ7aA3pIkwBZAc18jhIoaxeZB298jC04HTDiwAOwIIbEHCvMBC+ccIWmy6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b=TW0KvQ+w; arc=none smtp.client-ip=185.136.64.225
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
+Received: by mta-64-225.siemens.flowmailer.net with ESMTPSA id 20240606132831333191ea676dd8c80c
+        for <devicetree@vger.kernel.org>;
+        Thu, 06 Jun 2024 15:28:31 +0200
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm2;
+ d=siemens.com; i=diogo.ivo@siemens.com;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
+ bh=utY5xIcszx7G2aTGA/r1H6iz9uoTwSG/cIJhnifoGOg=;
+ b=TW0KvQ+wMGMxNr23pWsjhl6GhMaonhAwv9UdPUC/EKSfBZopTYGerLxzQr9qFYBF/32Pml
+ c20qYCya0SrMhTolGT2Tk6n86ZWc2d19lJ8dcopDXvlUl9GOVR+yAbpBZN9UA7rXwkpQhz1i
+ sCZWNlwu3A5YkMKtTC24K5XG/JL64=;
+Message-ID: <a08ff9c7-eac7-409e-8f22-5ad1fa0cf212@siemens.com>
+Date: Thu, 6 Jun 2024 14:28:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <000201dab7f2$1c8d4580$55a7d080$@samsung.com>
+Subject: Re: [PATCH net-next v2 2/3] net: ti: icss-iep: Enable compare events
+To: Paolo Abeni <pabeni@redhat.com>, MD Danish Anwar <danishanwar@ti.com>,
+ Roger Quadros <rogerq@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Richard Cochran <richardcochran@gmail.com>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jan Kiszka <jan.kiszka@siemens.com>,
+ Jacob Keller <jacob.e.keller@intel.com>, Simon Horman <horms@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ diogo.ivo@siemens.com
+References: <20240604-iep-v2-0-ea8e1c0a5686@siemens.com>
+ <20240604-iep-v2-2-ea8e1c0a5686@siemens.com>
+ <c518f6dd6cf9e92469d37a7317a6881ebed6a8c1.camel@redhat.com>
+Content-Language: en-US
+From: Diogo Ivo <diogo.ivo@siemens.com>
+In-Reply-To: <c518f6dd6cf9e92469d37a7317a6881ebed6a8c1.camel@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Flowmailer-Platform: Siemens
+Feedback-ID: 519:519-1320519:519-21489:flowmailer
 
-> > > +  fsd-rx-clock-skew:
-> > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > > +    items:
-> > > +      - items:
-> > > +          - description: phandle to the syscon node
-> > > +          - description: offset of the control register
-> > > +    description:
-> > > +      Should be phandle/offset pair. The phandle to the syscon node.
-> > 
-> > What clock are you skew-ing here? And why?
+Hi Paolo,
+
+On 6/6/24 11:32 AM, Paolo Abeni wrote:
+> On Tue, 2024-06-04 at 14:15 +0100, Diogo Ivo wrote:
+>> @@ -571,6 +573,57 @@ static int icss_iep_perout_enable(struct icss_iep *iep,
+>>   	return ret;
+>>   }
+>>   
+>> +static void icss_iep_cap_cmp_work(struct work_struct *work)
+>> +{
+>> +	struct icss_iep *iep = container_of(work, struct icss_iep, work);
+>> +	const u32 *reg_offs = iep->plat_data->reg_offs;
+>> +	struct ptp_clock_event pevent;
+>> +	unsigned int val;
+>> +	u64 ns, ns_next;
+>> +
+>> +	spin_lock(&iep->irq_lock);
 > 
-> As per customer's requirement, we need 2ns delay in fsys block both in TX
-> and RX path.
+> 'irq_lock' is always acquired with the irqsave variant, and here we are
+> in process context. This discrepancy would at least deserve a comment;
+> likely the above lock type is not correct.
 
-Lots of people get RGMII delays wrong. Please look back at the mailing
-list where there is plenty of discussion about this. I don't want to
-have to repeat myself yet again...
+If my reasoning is correct I believe this variant is correct here. The
+register accesses in the IRQ handler and icss_iep_cap_cmp_work() are
+orthogonal, so there should be no need to guard against the IRQ handler
+here. This is the case for the other places where the _irqsave() variant
+is used, so using the _irqsave() variant is overkill there.
 
-     Andrew
+ From my understanding this is a remnant of the SDK's version of the
+driver, where all of the processing now done in icss_iep_cap_cmp_work()
+was done directly in the IRQ handler, meaning that we had to guard
+against some other thread calling icss_iep_ptp_enable() and accessing
+for example ICSS_IEP_CMP1_REG0 concurrently. This can be seen in the
+comment on line 114:
+
+struct icss_iep {
+  ...
+	spinlock_t irq_lock; /* CMP IRQ vs icss_iep_ptp_enable access */
+  ...
+};
+
+For v3 I can add a comment with a condensed version of this argument in
+icss_iep_cap_cmp_work().
+
+With this said it should be possible to change this spinlock to a mutex as
+well, since all the possibilities for concurrency happen outside of
+interrupt context. I can add a patch to this series doing that if you
+agree with my reasoning above and find it beneficial. For this some
+comments from TI would also be good to have in case I missed something
+or there is some other factor that I am not aware of.
+
+Best regards,
+Diogo
 
