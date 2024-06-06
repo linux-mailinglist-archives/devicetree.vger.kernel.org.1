@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-73220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B143E8FE421
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 12:20:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1D9E8FE428
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 12:22:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A97B284AAB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 10:20:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4B751C2476D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 10:22:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B093C194AF4;
-	Thu,  6 Jun 2024 10:19:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8A73194AF7;
+	Thu,  6 Jun 2024 10:22:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AQjMXnYB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xMVdBSg7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E0B01E52A
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 10:19:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BAB6190698
+	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 10:22:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717669198; cv=none; b=dL1q6j7i/DHwcJP8rdX7iH/p0NWPfdpFdHu9XEm+lMOipGQGlC3vJ0kV601FHDWahKYnAivBWWS9jdeCaIJcsLUZx3T4otJzUoPvaP4TjxLVJ6qMOvR1EfgVSGZgIZSLHvWoKfefw6A3xhlEa2SluS3ZNG/DmJ+7YbTl7NAU/9g=
+	t=1717669359; cv=none; b=l9jQogNuYVlSH3mnk+Ks6ENsI+lpRp3ttwGDZDYZHW7IdY3C+PIMH/6uCzJUay+ZtAVYxqYKCVQVV4QAiHENtEdi6MuDgzTE8BtWQD3c6gCDi8VnrPesP7y0NM1+D7iDZh4aLg/kTBgm5KK8VWc60MQkHzhAvKT4RZqESIm4ZnY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717669198; c=relaxed/simple;
-	bh=7yqMPDznDpiL8lFjlVKRzVx4cLN7+U9oThj80jIYSNQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=shsEopEn9g5DA4BeneZ0Z2bQCAdGAGmIkFt8G7DuGhViYKRAbbdsH5myww8xNu6QMCY2t+oGANdWYXVQmJqhVwk/WIQ2HifhiNwppPYZqtGLF1oXeYBn4yIN6nAYSut1itx26d4IflF2HuZFdXD1v2LEE3KQha3yUBnJ/RLfPRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AQjMXnYB; arc=none smtp.client-ip=209.85.208.54
+	s=arc-20240116; t=1717669359; c=relaxed/simple;
+	bh=ak0afc++obQOVTUosq+25zjN3OMaaL+Fkktc5XZAmp0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=R2cZbj4pejFKVqmIGD1DKjzc1UMIGn9i81PjSSWVjTE1rajn/QI/nepfvReJqaJoQuC3wfcN05wTyKpOc5EFiim1nNOd7GTE26734JxPfSf47v9BqccitsP0pPufixHeUVHuKL9rzVI35tuKvueHNs8udmSdjHZbefyb+EBwxro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xMVdBSg7; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-579fa270e53so1034996a12.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2024 03:19:57 -0700 (PDT)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a689ad8d1f6so90441266b.2
+        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2024 03:22:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717669195; x=1718273995; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1717669356; x=1718274156; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=E8YvX5EI2wc0H9n00qpTISjx1bC/h/DMfbIUgT6XEF4=;
-        b=AQjMXnYBBCslhQrlYl3CttZri64Z9beGzp0+EdnIJOdMpRg8rTJUfDZJRwJirtVDSm
-         fnnutAHJgEX247fHr6sKXojXcQoipkO1qjUEGZS/U+nCVp0JlF4oPjt0ahbNueNpvOtT
-         niqlUYGd0q/Q4OmNIbvy/BjkWuWMpgUqQ5BvDj5Zdj1ZTqcLbo/fdpOtDUQjEjNcAvwd
-         vr6lQqNlnlgBtZdLgYpMOsPucUrMrKWQgl1QjDSBA22ENc6B6xzpanQOtLKS/U7JTR4m
-         nArs1IYuWu2Hr2wI/6jv2Tf32LZpy53xFnbbY2lZFbzlJg3jSrjZCQ7fSiM9mYjQhesP
-         zpmg==
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ha4yldsU+Xze3DIS1bXqoZ0+SAz7WcPSov7v8ZL/ttE=;
+        b=xMVdBSg7Fp6Wi9Va85sUWGZuK7SxhjLOBo2TaG2ZQ52t2ldtOwAeOW534YVAhRAbh8
+         pNH7NS567BRbUgIqbi9H0hd1LBuuEf43WoKShxJyaOwZFzLmaUtfyABBtpLxxkkrLExX
+         qYUwtHF/e+U5Iaymxzh71jCc4CsroRQNf5mBSEKR+yg6lnZ+M9TzWqsnSpDiz+IBkvtu
+         34kiKnSfAJZqw8BUkl527rxaLpm9spNh8cd6dpvX4OgZ7rfXTFJTfzcJdl2spwLNz7it
+         dA0xk92OZF5vx6XbJYg2zuUk0swZfTFX3TVxwQ9o9/mDkoboPsPTKwwHSgn5BtGyIZAs
+         TSGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717669195; x=1718273995;
+        d=1e100.net; s=20230601; t=1717669356; x=1718274156;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=E8YvX5EI2wc0H9n00qpTISjx1bC/h/DMfbIUgT6XEF4=;
-        b=HDbCDuIN7blW5H36NxOM/U4FEOb7Rb4SVn3d10tdaD4Qq9fpCPCPyQkIEoJs1gNME7
-         pJFOtYNSK5AD9BQirGA+EZ8hrCoScK/aIHxIFWuZSYabvTHyKUWNy/7LF/x12afZg0wO
-         8gG3VJjRxQ3/tes3usGyxhKOnacKY9N6WGHEx2tgcoorSUDfN5+4Vo4ui4I+okCs2T06
-         T1OnpexR4K7wNriDSpej/mwsTTf814PBqUlYih6C8u0cgAALkUmmBBu4WqWybCWZgo4o
-         JgA6Ap13Zq9CjxjOEtTlhc5CVfaw2gR5iw9wW9cQ3wnqP3H6Og1Afu50OmEjzymocNAy
-         hqiA==
-X-Forwarded-Encrypted: i=1; AJvYcCWiN48uF0ubIgPKGUZr8BdltRPLV63ma7/MDkaaGf6OqLRh/wRFfvd2p6jbmB6mRzXKnh3DP5Q4V2KoZRgzRFRuUqgh6EcZFNyhIg==
-X-Gm-Message-State: AOJu0YwBMx9OjrcdpB6WWCytoieWAncAjbhqTGEKkQhbG0APbNrTBdxn
-	nyaVHFTJEQd8wFvJif3k41JN0dQkGuNGFZv//RrJuHijj0PyFnftafGgDsGEPcY=
-X-Google-Smtp-Source: AGHT+IHao8vmS6CZL0mQeT34/mVfNEuj/p3dkCIEcmi8ED80pkR46tyldJVzFPLm+SVZjSujPLjgVg==
-X-Received: by 2002:a50:8a88:0:b0:579:f1a3:664f with SMTP id 4fb4d7f45d1cf-57a8bc907cemr3690433a12.30.1717669195343;
-        Thu, 06 Jun 2024 03:19:55 -0700 (PDT)
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ha4yldsU+Xze3DIS1bXqoZ0+SAz7WcPSov7v8ZL/ttE=;
+        b=jy68DUOsOoG/q92V5reArWQ2qxjHtNQmXDPDUgGJq+eqjC+c2Cf/QKKUqHEsGtCD92
+         mm3LsRXT9vZiR4OSnSf8GiFpKyTYSp98PHQP9zmfamuVmUUK0tp4I4rRI1GOjRSVXb+5
+         kxCmxP+Kmpi4AtL+Zshy6czdFQ+mf6byUCUZXfF7lQjtguqHNqvhK4CI+E5ehu5ygw8Y
+         rLreJ6mTEDmgnf982U7ARtF1IGtTQfJVqHQAyfKjucRxVu+uylQdqdBad8qeUv5DZSAD
+         7JG7PEdHmVP4AVnJA+5KHZwOedjkqmVMdOrhG2/1oLVXFKsv8W3vfst7dKj9XDkPan/6
+         w6Cw==
+X-Forwarded-Encrypted: i=1; AJvYcCX8hLSsjatvuIKhplGzZ6y0u2IYDUHmxl+iTlRI5BBcmRntFzpa2ilTnvismVTX8DaJpglpcg1gH585mTu28UIwaumac9OlI8CZEA==
+X-Gm-Message-State: AOJu0YyAE9aAGYNojs61tKyR1D9idVlC9kTxj/ba9cgA+XShhwS6BOOq
+	BwXIbCY/8GM2TcV+KSpnTT5ptlSlnxOjAuKlTL30Md4FwEqx1BYZ6JGK+BOKeWw=
+X-Google-Smtp-Source: AGHT+IGmOEH5/eEr+P9kPUzvdhc7/UT/wurjbWO6JVfzZGUkzHNX9xeZwwi320c3D3Jg6p+JxQ6zQA==
+X-Received: by 2002:a17:907:9707:b0:a68:9ce3:c896 with SMTP id a640c23a62f3a-a699fa9bcf3mr388916466b.24.1717669356561;
+        Thu, 06 Jun 2024 03:22:36 -0700 (PDT)
 Received: from [192.168.128.139] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57aae10826asm846075a12.47.2024.06.06.03.19.54
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6c805cbb36sm76693266b.68.2024.06.06.03.22.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jun 2024 03:19:55 -0700 (PDT)
-Message-ID: <be986ed2-6fbe-406b-ac1a-12a254bb37d8@linaro.org>
-Date: Thu, 6 Jun 2024 12:19:53 +0200
+        Thu, 06 Jun 2024 03:22:36 -0700 (PDT)
+Message-ID: <351cb377-644f-4f3a-86b2-a617a41acebf@linaro.org>
+Date: Thu, 6 Jun 2024 12:22:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,15 +77,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFT 4/4] arm64: dts: qcom: sm8450-sony-xperia: correct
- touchscreen interrupt flags
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240605160032.150587-1-krzysztof.kozlowski@linaro.org>
- <20240605160032.150587-4-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH V4 8/8] arm64: dts: qcom: sm8650: Add video and camera
+ clock controllers
+To: Jagadeesh Kona <quic_jkona@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Taniya Das <quic_tdas@quicinc.com>,
+ Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+ Ajit Pandey <quic_ajipan@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>
+References: <20240602114439.1611-1-quic_jkona@quicinc.com>
+ <20240602114439.1611-9-quic_jkona@quicinc.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -123,28 +131,19 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240605160032.150587-4-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240602114439.1611-9-quic_jkona@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 5.06.2024 6:00 PM, Krzysztof Kozlowski wrote:
-> Interrupt flags 0x2008 looks like some downstream copy-paste, because
-> generic GPIOLIB code, used by Qualcomm pin controller drivers, ignores
-> flags outside of IRQ_TYPE_SENSE_MASK.  Probably the intention was to
-> pass just 0x8, so IRQ_TYPE_LEVEL_LOW.
+On 2.06.2024 1:44 PM, Jagadeesh Kona wrote:
+> Add device nodes for video and camera clock controllers on Qualcomm
+> SM8650 platform.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 > ---
 
-I only tested on one 8450 device, but they're all:
-- the same tlmm
-- the same geni
-- the same touchscreen
-
-so I suppose it's alright
-
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Tested-by: Konrad Dybcio <konrad.dybcio@linaro.org> # SM8450 PDX223
 
 Konrad
 
