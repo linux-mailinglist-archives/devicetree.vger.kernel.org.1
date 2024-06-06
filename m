@@ -1,113 +1,217 @@
-Return-Path: <devicetree+bounces-73004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 532568FDB52
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 02:18:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6432F8FDB5E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 02:21:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0879C1F22FBA
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 00:18:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 577CA1C22077
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 00:21:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE4922900;
-	Thu,  6 Jun 2024 00:18:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 304E6139D;
+	Thu,  6 Jun 2024 00:21:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kFDF40lB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CNpBr32h"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A70E1139D;
-	Thu,  6 Jun 2024 00:18:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00EB253BE;
+	Thu,  6 Jun 2024 00:21:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717633121; cv=none; b=VQyzxad7viDBLw2nl2xZgd2SPwVpNSB/ovD43IuiKXEccJ5gOl5Fa1yiZizeQUvJspahea/Zdq5tYPU8TXr7D06h0jivAesEdrPp2xFQ/aQZ8KAAIPuJX8QEPsm7TulMJ8AqoFO5H4BDWUOo/4a0oBaqeCo6BP5ChXEJGtI+v24=
+	t=1717633290; cv=none; b=LLAMYtFxxDHvjBqid9sT6yWQ13sjn/Zt5QUaAQOcHJ8ZMh3qZ4inhwTMFPJtzsl0eqHNMz+I/HuCHG+IGxGXbR9NDcF/jZOwiyQ0BsNP3hu47FJjDFh84gyvmV9YTvZ7vouvMrIw9ogHhEHg/V9j7qc4TV8hLbyRxrNYI9rBdL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717633121; c=relaxed/simple;
-	bh=mblhVWirUr1eRnHuQoM4IgKSVKcxPPkNZ0qMazWBDfc=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=eGbqBh2+myqghby3aVpyTiKIXWII2qgPvXHaQwxIrfOT53s1/UhmMJzTDOwxDtQmUHCwlelL3kTjNttfCl2+X8crOlfWd8hgpOQKWbs2JIx/zKVrVKzY4xKMifZI4QfWx9kHESFcCXBQ3SpBGZjgvOil2hZlWWnbOUFfx401cQ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kFDF40lB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6068C2BD11;
-	Thu,  6 Jun 2024 00:18:40 +0000 (UTC)
+	s=arc-20240116; t=1717633290; c=relaxed/simple;
+	bh=0eqwJwhSDudfIsQGh0ug1pR2nn0XzPNrcqHG9ZVooZo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pH7wYVwM8UMPCc6ceauhBJ/SQd1q8xkn972aHWhQILAuMo0ONfFJ6A8cGch9UxvvPufsoPkmIT7j/zZqz6Wwg84nK1+8kZ6z8pB8Ot2jc86nj97LwX/j0pc6zIrswRUOGMsd81V7zQSecYV/nGIt3TEhA232sVkjce5XyXdld9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CNpBr32h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11EADC2BD11;
+	Thu,  6 Jun 2024 00:21:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717633121;
-	bh=mblhVWirUr1eRnHuQoM4IgKSVKcxPPkNZ0qMazWBDfc=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=kFDF40lBbpcJXrmM67xxGFI9hGc1qaSSGXVx6lsTyoo3xGeo8q/S9ps8SKfIEYOa+
-	 nV2VzNY2ibdVCzZ2gzg8kUOWL55K3cVPk1xRrrUWSCRRSOSIaFLrdz1SXUx1EmTigK
-	 gVrLrYXJUXRFWK+XU31j1YvIe0mueM8gfUx/MUUdNyK9DCI1VHUH7F0JVoIdR3rS/V
-	 e4a0aCXcZQjSJAty2Pp6N3UmkIAFMEjN01oSZi6jv4UoASpuUmBpo12nCS3bNflR+G
-	 6yPK48pqWH5TmhLfR/ZOg6kxUaLO+OhLCjWz2hN1LJGlS//SQ2bP1alA+qyxpjLM08
-	 bIBs5NStjYSKA==
-Date: Wed, 05 Jun 2024 18:18:38 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1717633289;
+	bh=0eqwJwhSDudfIsQGh0ug1pR2nn0XzPNrcqHG9ZVooZo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CNpBr32h9yuMuy3yQWmdzA992nM0YscVDDU+fePYeKMrz2XPrvz4qpbbfaNBylmgu
+	 UAry4ljCEaibcrHuCEk8Skkox4YS3ZiSOietntDckKfJl09TEridoFIwLY2PM5/qvd
+	 gG4S4EHeSk/MBknaSFI35L2z1nIX52XM8yEV5KovqZokvsnewF1cdQYxGNds73KqLO
+	 18eDogdGvH82Z25Toi2xnVkES985Zln1jJwUprn4jTfsjNqUpSw5O8/isPmLYcRu+Y
+	 P3v1mCugSqAMB2EA43vZH25iEdtBNi5+qlMcW7qqvFuD5kh+YbaHKLKWtvW0bjq73v
+	 eiW3dDWgagiGA==
+Date: Wed, 5 Jun 2024 18:21:26 -0600
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Christophe ROULLIER <christophe.roullier@foss.st.com>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Marek Vasut <marex@denx.de>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 01/11] dt-bindings: net: add STM32MP13 compatible in
+ documentation for stm32
+Message-ID: <20240606002126.GA3496044-robh@kernel.org>
+References: <20240604143502.154463-1-christophe.roullier@foss.st.com>
+ <20240604143502.154463-2-christophe.roullier@foss.st.com>
+ <067d41e5-89cf-45eb-8cfa-b6c3cd434f76@linaro.org>
+ <70b66190-2c55-4228-8c31-f58a05829d8b@foss.st.com>
+ <c6ff5778-f928-4a65-8a32-a3582d9d8f94@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Danny Kaehn <danny.kaehn@plexus.com>
-Cc: devicetree@vger.kernel.org, 
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
- Ethan Twardy <ethan.twardy@plexus.com>, Jiri Kosina <jikos@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, linux-input@vger.kernel.org, 
- Benjamin Tissoires <bentiss@kernel.org>
-In-Reply-To: <20240605-cp2112-dt-v11-1-d55f0f945a62@plexus.com>
-References: <20240605-cp2112-dt-v11-0-d55f0f945a62@plexus.com>
- <20240605-cp2112-dt-v11-1-d55f0f945a62@plexus.com>
-Message-Id: <171763311836.3502220.17006956400358104259.robh@kernel.org>
-Subject: Re: [PATCH v11 1/4] dt-bindings: i2c: Add CP2112 HID USB to SMBus
- Bridge
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c6ff5778-f928-4a65-8a32-a3582d9d8f94@linaro.org>
 
-
-On Wed, 05 Jun 2024 18:12:44 -0500, Danny Kaehn wrote:
-> This is a USB HID device which includes an I2C controller and 8 GPIO pins.
+On Wed, Jun 05, 2024 at 01:46:33PM +0200, Krzysztof Kozlowski wrote:
+> On 05/06/2024 11:55, Christophe ROULLIER wrote:
+> > 
+> > On 6/5/24 10:14, Krzysztof Kozlowski wrote:
+> >> On 04/06/2024 16:34, Christophe Roullier wrote:
+> >>> New STM32 SOC have 2 GMACs instances.
+> >>> GMAC IP version is SNPS 4.20.
+> >>>
+> >>> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
+> >>> ---
+> >>>   .../devicetree/bindings/net/stm32-dwmac.yaml  | 41 +++++++++++++++----
+> >>>   1 file changed, 34 insertions(+), 7 deletions(-)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+> >>> index 7ccf75676b6d5..ecbed9a7aaf6d 100644
+> >>> --- a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+> >>> +++ b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+> >>> @@ -22,18 +22,17 @@ select:
+> >>>           enum:
+> >>>             - st,stm32-dwmac
+> >>>             - st,stm32mp1-dwmac
+> >>> +          - st,stm32mp13-dwmac
+> >>>     required:
+> >>>       - compatible
+> >>>   
+> >>> -allOf:
+> >>> -  - $ref: snps,dwmac.yaml#
+> >>> -
+> >>>   properties:
+> >>>     compatible:
+> >>>       oneOf:
+> >>>         - items:
+> >>>             - enum:
+> >>>                 - st,stm32mp1-dwmac
+> >>> +              - st,stm32mp13-dwmac
+> >>>             - const: snps,dwmac-4.20a
+> >>>         - items:
+> >>>             - enum:
+> >>> @@ -75,12 +74,15 @@ properties:
+> >>>     st,syscon:
+> >>>       $ref: /schemas/types.yaml#/definitions/phandle-array
+> >>>       items:
+> >>> -      - items:
+> >>> +      - minItems: 2
+> >>> +        items:
+> >>>             - description: phandle to the syscon node which encompases the glue register
+> >>>             - description: offset of the control register
+> >>> +          - description: field to set mask in register
+> >>>       description:
+> >>>         Should be phandle/offset pair. The phandle to the syscon node which
+> >>> -      encompases the glue register, and the offset of the control register
+> >>> +      encompases the glue register, the offset of the control register and
+> >>> +      the mask to set bitfield in control register
+> >>>   
+> >>>     st,ext-phyclk:
+> >>>       description:
+> >>> @@ -112,12 +114,37 @@ required:
+> >>>   
+> >>>   unevaluatedProperties: false
+> >>>   
+> >>> +allOf:
+> >>> +  - $ref: snps,dwmac.yaml#
+> >>> +  - if:
+> >>> +      properties:
+> >>> +        compatible:
+> >>> +          contains:
+> >>> +            enum:
+> >>> +              - st,stm32mp1-dwmac
+> >>> +              - st,stm32-dwmac
+> >>> +    then:
+> >>> +      properties:
+> >>> +        st,syscon:
+> >>> +          items:
+> >>> +            maxItems: 2
+> >>> +
+> >>> +  - if:
+> >>> +      properties:
+> >>> +        compatible:
+> >>> +          contains:
+> >>> +            enum:
+> >>> +              - st,stm32mp13-dwmac
+> >>> +    then:
+> >>> +      properties:
+> >>> +        st,syscon:
+> >>> +          items:
+> >>> +            minItems: 3
+> >> I don't think this works. You now constrain the first dimension which
+> >> had only one item before.
+> >>
+> >> Make your example complete and test it.
+> >>
+> >> Best regards,
+> >> Krzysztof
+> > 
+> > Hi Krzysztof,
+> > 
+> > "Official" bindings for MP15: st,syscon = <&syscfg 0x4>;
+> > "Official" bindings for MP13: st,syscon = <&syscfg 0x4 0xff0000>; or 
+> > st,syscon = <&syscfg 0x4 0xff000000>;
+> > 
+> > If I execute make dt_binding_check 
+> > DT_SCHEMA_FILES=Documentation/devicetree/bindings/net/stm32-dwmac.yaml with:
+> > 
+> >     For MP15: st,syscon = <&syscfg>; 
+> > =>bindings/net/stm32-dwmac.example.dtb: ethernet@40027000: st,syscon:0: 
+> > [4294967295] is too short
+> > 
+> >     For MP15: st,syscon = <&syscfg 0x4 0xff0000>; 
+> > =>devicetree/bindings/net/stm32-dwmac.example.dtb: ethernet@40027000: 
+> > st,syscon:0: [4294967295, 4, 16711680] is too long
+> > 
+> >     For MP13: st,syscon = <&syscfg 0x4>; => 
+> > devicetree/bindings/net/stm32-dwmac.example.dtb: ethernet@5800a000: 
+> > st,syscon:0: [4294967295, 4] is too short
+> > 
+> >     For MP13: st,syscon = <&syscfg 0x4 0xff0000 0xff>; => 
+> > devicetree/bindings/net/stm32-dwmac.example.dtb: ethernet@5800a000: 
+> > st,syscon:0: [4294967295, 4, 16711680, 255] is too long
+> > 
+> > So it is seems good :-)
 > 
-> The binding allows describing the chip's gpio and i2c controller in DT
-> using the subnodes named "gpio" and "i2c", respectively. This is
-> intended to be used in configurations where the CP2112 is permanently
-> connected in hardware.
-> 
-> Signed-off-by: Danny Kaehn <danny.kaehn@plexus.com>
-> ---
->  .../devicetree/bindings/i2c/silabs,cp2112.yaml     | 105 +++++++++++++++++++++
->  1 file changed, 105 insertions(+)
-> 
+> Code is still incorrect, although will work because of how schema parses
+> matrix. But even by looking it is not symmetrical between allOf:if:then
+> and properties:. Make it symmetric - apply the number of items on the
+> second dimension.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+It looks correct to me. But it could also be like this:
 
-yamllint warnings/errors:
+st,syscon:
+  items:
+    - minItems: 3
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/i2c/silabs,cp2112.example.dts:41.13-29 Properties must precede subnodes
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.lib:427: Documentation/devicetree/bindings/i2c/silabs,cp2112.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
+Either way works. Is that what you are asking for? I'm just happy when 
+folks can write a working schema.
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240605-cp2112-dt-v11-1-d55f0f945a62@plexus.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Rob
 
