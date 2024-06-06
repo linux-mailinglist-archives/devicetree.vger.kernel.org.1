@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-73026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB0778FDC47
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 03:44:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E24D48FDC67
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 04:00:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CEFB1F24D24
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 01:44:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9B6D1C21409
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 02:00:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A26701401C;
-	Thu,  6 Jun 2024 01:44:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 668E91401B;
+	Thu,  6 Jun 2024 02:00:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="DPJRm9Pe"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="PU0XbLoR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0038C623;
-	Thu,  6 Jun 2024 01:44:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BE1F440C;
+	Thu,  6 Jun 2024 01:59:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717638268; cv=none; b=CXZvjtGtxTwv+vrueGM9WTPNqkBz6spEXTXOBDb4fr2lWmUyZvycsfxL3oNT+LwKs5PNlsRW8+fqwHllLRxRyCQ4woJNYQFAp5o3zAzaIVBMEMhhhv4CU5pkABFc1xr52f7P8UJ2wLHRd6UUDXD6GQ7zdmZIlv/aAPGKbB6ls74=
+	t=1717639201; cv=none; b=i5Hq+MUPA18ncA7Hsj8imtYR03Bxl7XmYSXYQ6LUMrdl5tPO0c+SrJPCSmCqO9brtAnNVOrCaNN6T4i/pbVYF0zIXR2XzOAAwj6eKJPoKkU2x8imYVgxqHf2CZkKK/4KN+wm4Un4sE5ZXw83walpSi8LQ/ii/lU2TtMds6jnxHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717638268; c=relaxed/simple;
-	bh=IuoxsVE87G9eOmuwqPnjYc4nLdBdjvbejV+uNRrFa+o=;
+	s=arc-20240116; t=1717639201; c=relaxed/simple;
+	bh=UUaR2Lwz2qnXHZMhM8gEdFJFzvFKdLYjI37xtcCj1qU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VNCeKVW4ioWlG1rZoo8mCRyNCFkGX/I7UYuKK1O5EDyBkDSkL7U+jENMvoFAr3xcKTClgakzdCAy34ixfMgAKbwmLlG7s1KCdStey15h3tarslvB85I/eIBssG+rbPFRPkwNyqAWbAFXK46wrwaYp4IPRr2xMcZu/HAnm67dVmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=DPJRm9Pe; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=EtRRj3crtgcqqJMT3dF4mkIDNDNUXoU+EtZMUjbEUa0yQ3K22H6y98WN5suj6VE9H6BgcyPxbdbCqM1zuwQzRH2MYQQooH9hxLetUjIi2TivvqpJXae63//xt4r3xNaG+qzVPge0xlochIJ/Jg0aP7OuFhZmg0EKiifyioNJhHE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=PU0XbLoR; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -36,13 +36,13 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=OFneTQnso6hVKtXKpCXdUh8sCSAm/mIhdqxDjRNNyUk=; b=DPJRm9PeswAyhUcd5nIp7csTVM
-	YTQNGOGh6WkjP9+I0kYelW8jsC0rgSXEYkCyCj1z4AcUNyAmLkQ7V6k+XNh4t7xYiS1d5eCTj8BDJ
-	G1Ka7lARnbBWRqTacYVXrYNRhMTxJT5ZhExpufe7cGdyuF+jWgMRomIY3vV/S1XRQdHk=;
+	bh=YQ0LTYNoImIQLOiX4Ut70Gj7/HKQ9yGsF/aiJ4r9GjA=; b=PU0XbLoRMasZlTwkSvHIPeds/T
+	S5KJF4e5JFqfPY0Boe6NxjIIE2uk9ZwJtUiIbCsOoVwId2B6VybC6iIKjnqV6BBkFipASBlib9+/v
+	NDHPllThHPw1fQN2tYbw+Jiw/dcXSBYmsh5nUTvarFPFUoUkNYaX9SaRyoIIsxnSgczs=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1sF2Ak-00GxuR-QX; Thu, 06 Jun 2024 03:44:10 +0200
-Date: Thu, 6 Jun 2024 03:44:10 +0200
+	id 1sF2Pp-00Gxwy-I5; Thu, 06 Jun 2024 03:59:45 +0200
+Date: Thu, 6 Jun 2024 03:59:45 +0200
 From: Andrew Lunn <andrew@lunn.ch>
 To: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
 Cc: nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
@@ -52,11 +52,10 @@ Cc: nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
 	linux@armlinux.org.uk, vadim.fedorenko@linux.dev,
 	netdev@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org, git@amd.com
-Subject: Re: [PATCH net-next v3 1/4] net: macb: queue tie-off or disable
- during WOL suspend
-Message-ID: <90da3dd6-e361-46d0-b547-c662b649b03d@lunn.ch>
+Subject: Re: [PATCH net-next v3 3/4] net: macb: Add ARP support to WOL
+Message-ID: <901ec7a8-7460-492e-8f50-6d339a987020@lunn.ch>
 References: <20240605102457.4050539-1-vineeth.karumanchi@amd.com>
- <20240605102457.4050539-2-vineeth.karumanchi@amd.com>
+ <20240605102457.4050539-4-vineeth.karumanchi@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,24 +64,83 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240605102457.4050539-2-vineeth.karumanchi@amd.com>
+In-Reply-To: <20240605102457.4050539-4-vineeth.karumanchi@amd.com>
 
-> @@ -5224,17 +5257,38 @@ static int __maybe_unused macb_suspend(struct device *dev)
+> @@ -3278,13 +3280,11 @@ static void macb_get_wol(struct net_device *netdev, struct ethtool_wolinfo *wol)
+>  {
+>  	struct macb *bp = netdev_priv(netdev);
+>  
+> -	if (bp->wol & MACB_WOL_HAS_MAGIC_PACKET) {
+> -		phylink_ethtool_get_wol(bp->phylink, wol);
+> -		wol->supported |= WAKE_MAGIC;
+> -
+> -		if (bp->wol & MACB_WOL_ENABLED)
+> -			wol->wolopts |= WAKE_MAGIC;
+> -	}
+> +	phylink_ethtool_get_wol(bp->phylink, wol);
+
+So you ask the PHY what it supports, and what it currently has
+enabled.
+
+> +	wol->supported |= (bp->wol & MACB_WOL_HAS_MAGIC_PACKET) ? WAKE_MAGIC : 0;
+> +	wol->supported |= (bp->wol & MACB_WOL_HAS_ARP_PACKET) ? WAKE_ARP : 0;
+
+You mask in what the MAC supports.
+
+> +	/* Pass wolopts to ethtool */
+> +	wol->wolopts = bp->wolopts;
+
+And then you overwrite what the PHY is currently doing with
+bp->wolopts.
+
+Now, if we look at what macb_set_wol does:
+
+> @@ -3300,11 +3300,10 @@ static int macb_set_wol(struct net_device *netdev, struct ethtool_wolinfo *wol)
+>  	if (!ret || ret != -EOPNOTSUPP)
+>  		return ret;
+>
+
+We are a little bit short of context here. This is checking the return
+value of:
+
+	ret = phylink_ethtool_set_wol(bp->phylink, wol);
+
+So if there is no error, or an error which is not EOPNOTSUPP, it
+returns here. So if the PHY supports WAKE_MAGIC and/or WAKE_ARP, there
+is nothing for the MAC to do. Importantly, the code below which sets
+bp->wolopts is not reached.
+
+So your get_wol looks wrong.
+
+> -	if (!(bp->wol & MACB_WOL_HAS_MAGIC_PACKET) ||
+> -	    (wol->wolopts & ~WAKE_MAGIC))
+> -		return -EOPNOTSUPP;
+> +	bp->wolopts = (wol->wolopts & WAKE_MAGIC) ? WAKE_MAGIC : 0;
+> +	bp->wolopts |= (wol->wolopts & WAKE_ARP) ? WAKE_ARP : 0;
+>  
+> -	if (wol->wolopts & WAKE_MAGIC)
+> +	if (bp->wolopts)
+>  		bp->wol |= MACB_WOL_ENABLED;
+>  	else
+>  		bp->wol &= ~MACB_WOL_ENABLED;
+> @@ -5085,10 +5084,8 @@ static int macb_probe(struct platform_device *pdev)
+>  	else
+>  		bp->max_tx_length = GEM_MAX_TX_LEN;
+>  
+
+> @@ -5257,6 +5255,12 @@ static int __maybe_unused macb_suspend(struct device *dev)
+>  		return 0;
 >  
 >  	if (bp->wol & MACB_WOL_ENABLED) {
->  		spin_lock_irqsave(&bp->lock, flags);
-> -		/* Flush all status bits */
-> -		macb_writel(bp, TSR, -1);
-> -		macb_writel(bp, RSR, -1);
-> +
-> +		/* Disable Tx and Rx engines before  disabling the queues,
-> +		 * this is mandatory as per the IP spec sheet
-> +		 */
-> +		tmp = macb_readl(bp, NCR);
-> +		macb_writel(bp, NCR, tmp & ~(MACB_BIT(TE) | MACB_BIT(RE)));
+> +		/* Check for IP address in WOL ARP mode */
+> +		ifa = rcu_dereference(__in_dev_get_rcu(bp->dev)->ifa_list);
+> +		if ((bp->wolopts & WAKE_ARP) && !ifa) {
+> +			netdev_err(netdev, "IP address not assigned\n");
+> +			return -EOPNOTSUPP;
+> +		}
 
-Is there any need to wait for this to complete? What if there is a DMA
-transaction in flight?
+I don't know suspend too well. Is returning an error enough abort the
+suspend?
 
 	Andrew
 
