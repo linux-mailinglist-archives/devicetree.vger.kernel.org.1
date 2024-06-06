@@ -1,120 +1,157 @@
-Return-Path: <devicetree+bounces-73329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83BF98FF064
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:20:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4DF08FF133
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:50:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21A841F24FB4
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:20:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3205AB28519
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:48:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BBDA197525;
-	Thu,  6 Jun 2024 15:10:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B119D198857;
+	Thu,  6 Jun 2024 15:47:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b="dlg4ab1r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0046e701.pphosted.com (mx0a-0046e701.pphosted.com [67.231.149.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAEE6196C65;
-	Thu,  6 Jun 2024 15:10:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B614319883C;
+	Thu,  6 Jun 2024 15:47:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717686612; cv=none; b=chEOlVN7sbjx1WYJH5Q6TkKH9rzQgohIGL+Q3Yof01udrXlrf1RMODrTDy1K/1xZTbArINydAucZhTHqsaP/VK48eaTO8VzMiK8ue9AOtUaHRVwVAKdZ92NAxbqp/c3616uge+ax3f81ujA0SoTUtks4n8LU5bl7ONT0aofOwFU=
+	t=1717688843; cv=none; b=ruUltO+cBl5Rt5NpaCDB/uNL0XdOxP5reFn7uwa9hT5+m6jBBmMBl9my5faZ2SfT0wJN2N+xZ8QSY+0OWltG5epbXGanRqUG3GeLc7CRZL77GoSXxVxp/uDTl0qS/i0Jh8Ucexebix7h62YXEN23PYF2jrOFATymwxWrCegDnfY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717686612; c=relaxed/simple;
-	bh=ThYfWkVZq+xxHPZzWBX0JDqaDQnqCEqItdLxeyZzmFY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OCvOKWB2rAWBjpPn9PwoZVPnWB4TaHRaojhskulFSBWqjD7zEeZl8PRKm6HPGJw3VHJGpXklPBLHPuhx1pqpmrpznB+hrmuhpM8MoTBCopJtmo+OObJPZHMdLGQJNVvdvxpt7m8HS8jKe/HWAY4mdAV+8+lNoeE0DsNn81aksIc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5295e488248so1320613e87.2;
-        Thu, 06 Jun 2024 08:10:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717686607; x=1718291407;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3jOGBua+p9M0Sd6v07XuabYs/DUuTufTW2i+aDQNa+M=;
-        b=tSbt9wMi4VYU/D2aKeMVOE3gGMoa0GE4XPGsQPkjxROfY/6MY58zUz/hPC9K7+OEmq
-         bICy3nqyxLc6/y29d4685hvy9xYNJdAO7DrkYzqhyPsrLVCxD0912MJTHzA7+VxD/QI7
-         PuM+8SAIXVrUjnj9txNCbp4Ps1dFQKHrpZt1MIlI2ulAge6NbtaiAR3mDrhkPzJdqxA0
-         tr/UrXu23fqvDMpExAdhDBJlkSFMb3qGUHQxldlBYvhJ/IXraN23ywsTpDLMYKdTMSuS
-         jSoKDrGiBXDllXfG57jLO837oygGzyhE3GdRveDpQUAGjqHALEMlbEsZJfIOBWriWrKZ
-         MdqA==
-X-Forwarded-Encrypted: i=1; AJvYcCUsjCZoqlZSBZ7WW4pHTXqVRs51wvXR0LwWv/gFxdaA0HXrfT6OhS19kzn87qJhh3+VZlYKMSnnuz0ZTnnPY/pXTWSo+ytp7KRYHbeqkP5lw2asmE9bEgEqL1AYIBYjw+2D3xJE5TB1anreAfT0i6SXFaN4zS+ZG2ATZq7OtJDvHw==
-X-Gm-Message-State: AOJu0Yxk2r5ldfZIsMkSpYPvDmoNeQ/Si/DTrS0kbK0ADJ7EHJGepXrR
-	mO8HSC4oVD7HLtpZJTqewQiHu3GBWB2filmm7s3fyNuxjHxW8UPFDALaFeMn
-X-Google-Smtp-Source: AGHT+IHfVh70HmjGy3/+qXQs7aeOIu0ot1qZIVqdIMrutTJ6CiOVYkEj3FtiF9HXSA24ffGlGEvsaw==
-X-Received: by 2002:a05:6512:2f7:b0:52b:95c4:4641 with SMTP id 2adb3069b0e04-52bab4e3661mr3043795e87.32.1717686606411;
-        Thu, 06 Jun 2024 08:10:06 -0700 (PDT)
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com. [209.85.208.175])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52bb423d533sm219951e87.183.2024.06.06.08.10.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jun 2024 08:10:06 -0700 (PDT)
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2ead2c6b50bso9030591fa.0;
-        Thu, 06 Jun 2024 08:10:06 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUSTmLG0YfVPu9dc1/JFtzyWkoHiMWk11SOZIMqe3a4KDcutDqxWwbH/HTgEsJy3TiJ1d+xCI1CuOTutpMT8NCoOHtto0y+ICtw2yi8SvRm5LnZK9s+Wuk1aHBryGlvCTFbTivzFtjmSxJ1RxJUDVzReOJJiGU5spBj8Mr5OIhEbw==
-X-Received: by 2002:a2e:854f:0:b0:2ea:b956:db16 with SMTP id
- 38308e7fff4ca-2eac79ba896mr33235911fa.8.1717686606111; Thu, 06 Jun 2024
- 08:10:06 -0700 (PDT)
+	s=arc-20240116; t=1717688843; c=relaxed/simple;
+	bh=nZJ9eKkbz9CtT9LG4MjPbjUib+gu8tJbVllu7/uan10=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=PoN3D8YKbAKDMCKC3qmBH5g7SZF0f7dfHgpDzOcS5iD9FHJTPcYCf1YXDePfMLMvhB1A7EXRGn0p0h2jxY7oGE/2ZaD5XcyMFtXF6XrVrUjZ+Mz991AqI6xYYTYwLuNB1YWPlP+M5UXYhHv7lElukaZQcKE5SiVUbSbfk/eJrGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=plexus.com; spf=pass smtp.mailfrom=plexus.com; dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b=dlg4ab1r; arc=none smtp.client-ip=67.231.149.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=plexus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=plexus.com
+Received: from pps.filterd (m0341554.ppops.net [127.0.0.1])
+	by mx0a-0046e701.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 456CCjIF015214;
+	Thu, 6 Jun 2024 10:12:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plexus.com; h=cc
+	:content-id:content-transfer-encoding:content-type:date:from
+	:in-reply-to:message-id:mime-version:references:subject:to; s=
+	pps1; bh=nZJ9eKkbz9CtT9LG4MjPbjUib+gu8tJbVllu7/uan10=; b=dlg4ab1
+	r3qj922yQRxUey5MzWyHohXveJGBmJcph/t/5hb90irj9sfkgyDJtDSRH5MNh+w3
+	Ea7YEyUCRPLEsH6RMINVnV7Qt1VlomAo6QI3UvxgeGb0RZiI/0aankxIQrnesMYP
+	Gv570G3s6E/3rqH8NDFDKH26dGnXaED48ogJaU9fZwmrJrOWkSXCr/V/8f0ChghN
+	XdH6LHGHBmh3mvedhfxgFjWZw8GQgItAPkxfSR0hxaDmPHJv+hIXzUCkq6McSxS+
+	0ZbMJuLB13j/0nAuIZ0uY/xIa14KAsbVKU3WJ6gEKKPbl6DgI0ltl7gasrxw6Wh7
+	mnkvQfLsk32Mamw==
+Received: from gcc-mail-mx-004.na.plexus.com (outbound.plexus.com [64.215.193.254])
+	by mx0a-0046e701.pphosted.com (PPS) with ESMTPS id 3ykcwv8jse-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Thu, 06 Jun 2024 10:12:05 -0500 (CDT)
+Received: from gcc-mail-mx-003.Na.Plexus.com (10.255.51.222) by
+ gcc-mail-mx-004.na.plexus.com (10.255.51.224) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.37; Thu, 6 Jun 2024 15:12:04 +0000
+Received: from gcc-mail-mx-003.Na.Plexus.com ([10.255.51.222]) by
+ gcc-mail-mx-003.na.plexus.com ([10.255.51.222]) with mapi id 15.01.2507.037;
+ Thu, 6 Jun 2024 15:12:03 +0000
+From: Danny Kaehn <Danny.Kaehn@plexus.com>
+To: "robh@kernel.org" <robh@kernel.org>,
+        "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>,
+        "andriy.shevchenko@linux.intel.com"
+	<andriy.shevchenko@linux.intel.com>,
+        "krzk@kernel.org" <krzk@kernel.org>,
+        "bentiss@kernel.org" <bentiss@kernel.org>
+CC: "jikos@kernel.org" <jikos@kernel.org>,
+        "linux-input@vger.kernel.org"
+	<linux-input@vger.kernel.org>,
+        "bartosz.golaszewski@linaro.org"
+	<bartosz.golaszewski@linaro.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "dmitry.torokhov@gmail.com"
+	<dmitry.torokhov@gmail.com>,
+        Ethan Twardy <Ethan.Twardy@plexus.com>
+Subject: Re: [PATCH v11 1/4] dt-bindings: i2c: Add CP2112 HID USB to SMBus
+ Bridge
+Thread-Topic: [PATCH v11 1/4] dt-bindings: i2c: Add CP2112 HID USB to SMBus
+ Bridge
+Thread-Index: AQHat56UThrpG8Y4kkS6ZQ8gIObWW7G6RkYAgACR7IA=
+Date: Thu, 6 Jun 2024 15:12:03 +0000
+Message-ID: <52de7f01a8d0cefbc9ad828d3d93f16ba0d0201c.camel@plexus.com>
+References: <20240605-cp2112-dt-v11-0-d55f0f945a62@plexus.com>
+	 <20240605-cp2112-dt-v11-1-d55f0f945a62@plexus.com>
+	 <e183c4ab-e48e-4c9f-be31-13b16ad466b6@kernel.org>
+In-Reply-To: <e183c4ab-e48e-4c9f-be31-13b16ad466b6@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <A0C048B2B20C59418FCA8CF3CDCFE188@plexus.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240605172049.231108-1-macroalpha82@gmail.com>
-In-Reply-To: <20240605172049.231108-1-macroalpha82@gmail.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Thu, 6 Jun 2024 23:09:53 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65RpyESyzVp18EDCqkBQ-A4j9LYhXQe+bJOP+MGbUsC+Q@mail.gmail.com>
-Message-ID: <CAGb2v65RpyESyzVp18EDCqkBQ-A4j9LYhXQe+bJOP+MGbUsC+Q@mail.gmail.com>
-Subject: Re: [PATCH V2 0/4] Add GPADC for Allwinner H616
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-sunxi@lists.linux.dev, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org, p.zabel@pengutronix.de, 
-	sboyd@kernel.org, mturquette@baylibre.com, samuel@sholland.org, 
-	jernej.skrabec@gmail.com, conor+dt@kernel.org, krzk+dt@kernel.org, 
-	robh@kernel.org, Chris Morgan <macromorgan@hotmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-GUID: lWIead_DJSk7YDIUs49X6pq4rK9QKqfV
+X-Proofpoint-ORIG-GUID: lWIead_DJSk7YDIUs49X6pq4rK9QKqfV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-06_01,2024-06-06_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ lowpriorityscore=0 malwarescore=0 mlxscore=0 phishscore=0 adultscore=0
+ priorityscore=1501 mlxlogscore=842 spamscore=0 impostorscore=0 bulkscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406060108
 
-On Thu, Jun 6, 2024 at 1:20=E2=80=AFAM Chris Morgan <macroalpha82@gmail.com=
-> wrote:
->
-> From: Chris Morgan <macromorgan@hotmail.com>
->
-> Add support for the general purpose analog-to-digital converter (GPADC)
-> for the Allwinner H616 SoC to support the ADC joysticks as found on the
-> Anbernic RG35XX-H.
->
-> Changes since V1:
->  - Split dt-binding include additions to a separate patch.
->  - Removed patch adding compatible string as it was already upstreamed.
->  - Added patch to add the adc-joystick function to the RG35XX-H.
-
-Please carry relevant Reviewed-by and other tags forward.
-
-ChenYu
-
-> Chris Morgan (4):
->   dt-bindings: clock: sun50i-h616-ccu: Add GPADC clocks
->   clk: sunxi-ng: h616: Add clock/reset for GPADC
->   arm64: dts: allwinner: h616: Add GPADC device node
->   arm64: dts: allwinner: anbernic-rg35xx-h: Add ADC joysticks
->
->  .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 11 +++
->  .../sun50i-h700-anbernic-rg35xx-h.dts         | 79 +++++++++++++++++++
->  drivers/clk/sunxi-ng/ccu-sun50i-h616.c        |  5 ++
->  drivers/clk/sunxi-ng/ccu-sun50i-h616.h        |  2 +-
->  include/dt-bindings/clock/sun50i-h616-ccu.h   |  1 +
->  include/dt-bindings/reset/sun50i-h616-ccu.h   |  1 +
->  6 files changed, 98 insertions(+), 1 deletion(-)
->
-> --
-> 2.34.1
->
+T24gVGh1LCAyMDI0LTA2LTA2IGF0IDA4OjI4ICswMjAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
+b3RlOg0KPiBQTEVYVVMgU0VDVVJJVFkgV0FSTklORw0KPiBZb3UgaGF2ZSBub3QgcHJldmlvdXNs
+eSBjb3JyZXNwb25kZWQgd2l0aCB0aGlzIHNlbmRlci4gICAgICAgDQo+IE9uIDA2LzA2LzIwMjQg
+MDE6MTIsIERhbm55IEthZWhuIHdyb3RlOg0KPiA+IFRoaXMgaXMgYSBVU0IgSElEIGRldmljZSB3
+aGljaCBpbmNsdWRlcyBhbiBJMkMgY29udHJvbGxlciBhbmQgOA0KPiBHUElPIHBpbnMuDQo+ID4g
+DQo+ID4gVGhlIGJpbmRpbmcgYWxsb3dzIGRlc2NyaWJpbmcgdGhlIGNoaXAncyBncGlvIGFuZCBp
+MmMgY29udHJvbGxlciBpbg0KPiBEVA0KPiA+IHVzaW5nIHRoZSBzdWJub2RlcyBuYW1lZCAiZ3Bp
+byIgYW5kICJpMmMiLCByZXNwZWN0aXZlbHkuIFRoaXMgaXMNCj4gPiBpbnRlbmRlZCB0byBiZSB1
+c2VkIGluIGNvbmZpZ3VyYXRpb25zIHdoZXJlIHRoZSBDUDIxMTIgaXMNCj4gcGVybWFuZW50bHkN
+Cj4gPiBjb25uZWN0ZWQgaW4gaGFyZHdhcmUuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogRGFu
+bnkgS2FlaG4gPGRhbm55LmthZWhuQHBsZXh1cy5jb20+DQo+ID4gLS0tDQo+ID4gIC4uLi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL2kyYy9zaWxhYnMsY3AyMTEyLnlhbWwgICAgIHwgMTA1DQo+ICsrKysr
+KysrKysrKysrKysrKysrKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMTA1IGluc2VydGlvbnMoKykN
+Cj4gDQo+IFNvIHRoaXMgaXMgdjExIGJ1dCB3YXMgbmV2ZXIgdGVzdGVkPw0KDQpNeSBhcG9sb2dp
+ZXMgLS0gaW5pdGlhbGx5IGBEVF9TQ0hFTUFfRklMRVM9c2lsYWJzLGNwMjExMi55YW1sIG1ha2UN
+CmR0X2JpbmRpbmdfY2hlY2tgIHdhcyBjb21wbGV0aW5nIHdpdGhvdXQgYW55IG91dHB1dCAoYW5k
+IEkgYXNzdW1lZA0Kc3VjY2VzcyksIGJ1dCBhZnRlciBhIGNsZWFuLCBJIGdldCBtYWtlIGVycm9y
+cywgZWl0aGVyIHJlbGF0aW5nIHRvICJubw0KcnVsZSB0byBtYWtlIC4uLiAqLmV4YW1wbGUuZHRi
+Iiwgb3IgeWFtbGxpbnQgdXNhZ2UgZXJyb3JzLiBIYXZlIHRyaWVkDQp1cGRhdGluZyBkdHNjaGVt
+YSBhbmQvb3IgcmVpbnN0YWxsaW5nLCBhbmQgYWxzbyBzdGFydGVkIGZyb20gc2NyYXRjaCBvbg0K
+YSBkaWZmZXJlbnQgc3lzdGVtIHdpdGggdGhlIHNhbWUgaXNzdWVzLiBJIHdpbGwgZ2V0IHRoaXMg
+d29ya2luZyBhbmQNCnJ1biB0aGlzIGJlZm9yZSBzdWJtaXR0aW5nIGFkZGl0aW9uYWwgcmV2aXNp
+b25zLCBhcG9sb2dpZXMgYWdhaW4hDQooYW5kIEkgd2lsbCBvZiBjb3Vyc2UgZml4IHRoZSBpc3N1
+ZSByZXBvcnRlZCBieSB0aGUgYm90KQ0KPiANCj4gQ2hhbmdlbG9nIGRvZXMgbm90IGhlbHAgbWUg
+dW5kZXJzdGFuZGluZyB3aGF0IGhhcHBlbmVkIHdpdGggdGhpcw0KPiBiaW5kaW5nLi4uDQoNCkkn
+bGwga2VlcCBpbiBtaW5kIGJldHRlciBzcGVjaWZ5aW5nIGNoYW5nZXMgdG8gdGhlIGJpbmRpbmcg
+aW4gdGhlDQpjaGFuZ2Vsb2chDQoNClNpbmNlIHY2LCB3aGVyZSBSb2IgYWRkZWQgaGlzIHJldmll
+dyB0YWcgWzFdLCB0aGUgb25seSBjaGFuZ2VzIHdlcmUNCmVsaW1pbmF0aW5nIHRoZSBncGlvIHN1
+Ym5vZGUgYW5kIGNvbWJpbmluZyBpdCB3aXRoIHRoZSBwYXJlbnQsIGFuZA0KdXBkYXRpbmcgbXkg
+ZW1haWwgYWRkcmVzcy4NCg0KU2luY2UgdjQsIHdoZXJlIHlvdSBoYWQgYWRkZWQgeW91ciByZXZp
+ZXcgdGFnIFsyXSwgSSBhZGRyZXNzZWQgUm9iJ3MNCmNvbW1lbnRzIGluIFszXSwgaW5jbHVkaW5n
+Og0KLSBSZW1vdmluZyB0aGUgbmdwaW9zIHByb3BlcnR5DQotIENvbnN0cmFpbmluZyB0aGUgaG9n
+IHBhdHRlcm4gbW9yZSB0byBhIHNpbmdsZSBuYW1pbmcgc2NoZW1lDQotIFJlbW92aW5nIHVubmVl
+ZGVkIHByb3BlcnRpZXMgZnJvbSB0aGUgaG9nIHdoaWNoIGFyZSBwcm92aWRlZCBieSB0aGUNCnBh
+cmVudCBzY2hlbWENCi0gQWRkaW5nIGFuIGV4YW1wbGUgb2YgdGhlIGhvZyB0byB0ZXN0IHRoZSBz
+Y2hlbWENCg0KQWRkaXRpb25hbGx5LCBJIGFkZGVkIHNkYS1ncGlvcyBhbmQgc2NsLWdwaW9zIHRv
+IHRoZSBpMmMgbm9kZSBhcyB3ZWxsDQphcyB1c2FnZSBvZiBpdCBpbiB0aGUgZXhhbXBsZSBkdHMu
+IFRoaXMgaXMgaW50ZW5kZWQgdG8gYmUgdXNlZCBmb3IgYnVzDQpyZWNvdmVyeSBHUElPcyAobm90
+IHlldCBpbmNsdWRlZCBpbiB0aGUga2VybmVsIGRyaXZlcnMpDQoNClsxXTogDQpodHRwczovL3Bh
+dGNod29yay5vemxhYnMub3JnL3Byb2plY3QvZGV2aWNldHJlZS1iaW5kaW5ncy9wYXRjaC8yMDIz
+MDIxNzE4NDkwNC4xMjkwLTIta2FlaG5kYW5AZ21haWwuY29tLw0KDQpbMl06IA0KaHR0cHM6Ly9w
+YXRjaHdvcmsub3psYWJzLm9yZy9wcm9qZWN0L2RldmljZXRyZWUtYmluZGluZ3MvcGF0Y2gvMjAy
+MzAyMDYxMzUwMTYuNjczNy0yLWthZWhuZGFuQGdtYWlsLmNvbS8NCg0KWzNdOiANCmh0dHBzOi8v
+cGF0Y2h3b3JrLm96bGFicy5vcmcvcHJvamVjdC9kZXZpY2V0cmVlLWJpbmRpbmdzL3BhdGNoLzIw
+MjMwMjA1MTQ1NDUwLjMzOTYtMi1rYWVobmRhbkBnbWFpbC5jb20vIzMwNTE5MzINCg0KVGhhbmtz
+LA0KDQpEYW5ueSBLYWVobg0KDQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6dG9mDQo+IA0K
 
