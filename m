@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-73106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B67578FE081
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 10:05:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38AF58FE085
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 10:06:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5104F28477D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:05:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBF4F1F238E4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:06:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9461513C676;
-	Thu,  6 Jun 2024 08:04:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CF4913C3CA;
+	Thu,  6 Jun 2024 08:05:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oBkzxLV4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="idYKHJyJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C84D13C3F9;
-	Thu,  6 Jun 2024 08:04:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74B65DDD2;
+	Thu,  6 Jun 2024 08:05:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717661088; cv=none; b=qYIAUAFNAicXkHRSFFGADNmMbDd23a1ZANf1Y9AMuGqcC5U+GDX5iOig3aonA9iaDN8ObAYNdTgB3Om9mNHltXSosVIC2JxlSawCpNnjO7BbSR8HSFv9tylXanK5MnCh/knm3sx3U+mKELfSXPPnZQV5f3GwdjlzuGepjmdq1IU=
+	t=1717661159; cv=none; b=bFJ2Y01mGA1FbmQfL9ygGD7FrfM7o5EtZCMRd8e9owixintqnLMN0ZGUNCIdue1JfZYWRF1arIKSvT83fUkSlduJO7JsoI0kNmMcn7tyQ8zcm91S24rK85eXo+2AkdobzEpko+xLR6ywZNJpN/vBmJvqUVYEdpc67xsF3AsHdZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717661088; c=relaxed/simple;
-	bh=QJGJeLqdWFmZAWK47D0o+JKPUpmNxNRDGmQ0IUTw9kk=;
+	s=arc-20240116; t=1717661159; c=relaxed/simple;
+	bh=gnsWToD3HK8zVkJG7jZHmk7g+FgjMnmbpNeGvYjSrYE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rqRiINB97VHypHiETng/d6KTZIerckUZZVncdvw4kbk79joqMaMJFaysAPq7P77Wr5OHIOm4JMVJd91gvc/eZZ+MO5/VcM9piZdCmHMzgEmtwBwk5z8SIC7CqZNbTlk9UJyeazmn5yRFWpoUq2gtoJx/zcTbsLqxDDct/nrxI7A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oBkzxLV4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9880CC4AF14;
-	Thu,  6 Jun 2024 08:04:44 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=cGPGqCQGEqUjhamSQjjoutk17zssH6ST68+6IliqaBNtQKzMgazWElap17l46+ivIO1/z1oPUxXo+2Brqxze22PTuLL7duhZTg/Mc7uP7HgsKj/XpwmP2kIJVORNdYNdQOUDD9Cn4E264aKhXJtPmoWjelnhQzmMi5xevPg0A00=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=idYKHJyJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB475C3277B;
+	Thu,  6 Jun 2024 08:05:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717661088;
-	bh=QJGJeLqdWFmZAWK47D0o+JKPUpmNxNRDGmQ0IUTw9kk=;
+	s=k20201202; t=1717661159;
+	bh=gnsWToD3HK8zVkJG7jZHmk7g+FgjMnmbpNeGvYjSrYE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oBkzxLV4N923RcrMCN9LCj9HTNYE/BC9N91wPN6vi/w+08FtMijLdBoO8MljumoTT
-	 ycGEzou6DullTvc3Imn7iLjRJBd8pVTYCKHicLZPOCdeqtB0B+5+GBlXT7uHtEvoWA
-	 AQXqjCn3tSq5mxmPaXyhosD4QOgCHtOHyZuh5TvsWmwMwjnpLWEwksTZR4we1sqvow
-	 qcyVmDr3OqgjSSMTSIy5C8Yh/HA8zKcA6ZUf20lh32xwEWoTYh3SeZyhtf+A8ODYlg
-	 o4ZZYzZUIDNFYMeKGTXnfrjaeW2Xu8jOxzKinuHjz71VOJqEO+uz+Qsf5oIjfa2vCp
-	 fw+4uUvPjy/vA==
-Message-ID: <bbe37ed0-f29e-42ac-868a-4cc10440b7ab@kernel.org>
-Date: Thu, 6 Jun 2024 11:04:41 +0300
+	b=idYKHJyJaCZbgEH+AFc1ahbdaJTF8iSO0ZjeR3wtum/jA2PdYrtGPk4TVbR9/JBLl
+	 rm1JcIMm/6SOHrbwX0BxG0DP+JYcaACXQgc1f+vRDjhIuwHQJlO9T/uetqGi7ejjcW
+	 SRYFVqd1FEAQibsjpcbZDzHAQsfpqhjVH4LYKBg5t8aGHosgH4tRQe3orRlgou/f5M
+	 OtETUDqWpkGKkmS98aMUlFTIYbod6U7CuVLSrp2oq+ilOdUwSxME/ISbU/JV514LzG
+	 vBH1/nxZVYK9nKsDoDQeZ/DWezU9vcF8/uxURdWjgWfdwCF+2QCT6Rze9P8Mm+JFhf
+	 SHsByPhRVdzpQ==
+Message-ID: <9261c812-f607-4ee0-924c-8380e2f85b12@kernel.org>
+Date: Thu, 6 Jun 2024 11:05:53 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 6/7] arm64: dts: ti: k3-j722s-main: Add SERDES and PCIe
- support
+Subject: Re: [PATCH v5 7/7] arm64: dts: ti: k3-j722s: Enable PCIe and USB
+ support on J722S-EVM
 To: Siddharth Vadapalli <s-vadapalli@ti.com>, nm@ti.com, vigneshr@ti.com,
  afd@ti.com, kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
  conor+dt@kernel.org
@@ -59,23 +59,21 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, u-kumar1@ti.com, danishanwar@ti.com,
  srk@ti.com
 References: <20240604085252.3686037-1-s-vadapalli@ti.com>
- <20240604085252.3686037-7-s-vadapalli@ti.com>
+ <20240604085252.3686037-8-s-vadapalli@ti.com>
 Content-Language: en-US
 From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20240604085252.3686037-7-s-vadapalli@ti.com>
+In-Reply-To: <20240604085252.3686037-8-s-vadapalli@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 
 
 On 04/06/2024 11:52, Siddharth Vadapalli wrote:
-> J722S SoC has two instances of SERDES namely SERDES0 and SERDES1 and one
-> instance of PCIe namely PCIe0. Both SERDES0 and SERDES1 are single lane
-> SERDES. The PCIe0 instance of PCIe is a Gen3 single lane PCIe controller.
-> 
-> Since SERDES and PCIe are not present on AM62P SoC, add the device-tree
-> nodes corresponding to them in the J722S SoC specific "k3-j722s-main.dtsi"
-> file.
+> Enable PCIe0 instance of PCIe in Root Complex mode of operation with Lane 0
+> of the SERDES1 instance of SERDES. Also enable USB0 instance of USB to
+> interface with the Type-C port via the USB hub, by configuring the pin P05
+> of the GPIO expander on the EVM. Enable USB1 instance of USB in SuperSpeed
+> mode of operation with Lane 0 of the SERDES0 instance of SERDES.
 > 
 > Co-developed-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
 > Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
