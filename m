@@ -1,250 +1,115 @@
-Return-Path: <devicetree+bounces-73202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBA188FE36E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:52:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A15D88FE3BA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 12:03:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 61B4F1F243CC
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:52:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 44CC2B25A9B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:54:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2294A17E8E5;
-	Thu,  6 Jun 2024 09:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 483C817E8FE;
+	Thu,  6 Jun 2024 09:54:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ddkwLcl3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68F9E145341
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 09:52:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0A9173444;
+	Thu,  6 Jun 2024 09:54:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717667527; cv=none; b=P5WJ8UiPHjMohZiD+Q2yejqyOxyj4+Ida8+3IOT1GKyfPG8F+YkRYe9LNEL0Z1XCiYsyrzEWmtPPwgf8ylXiZ8Z+q9uDuHUfz2WMuV1wIxCiCwbIwjUuQk8h8olVsyNYQlfFOwLdanWWk6bTo9PVS8Fvc2in3lHIxI5mmXgSFuE=
+	t=1717667668; cv=none; b=Tb+pvkNFEl6tnnZK8ssAy5hz/KTUFlkWiOx/H0V6QKkgcDdCJxPTvcqibUlgRCzDrTvntf1SzV5onKGpRsbPtFtnHyeZeUgcbCJMbuukYmSrGSjB2JqrqiYuJZksYnX+bl/ijxlGbsa1+t5udedjZm7goNFLwORDqNXn+mR3jKU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717667527; c=relaxed/simple;
-	bh=BMVsvadeSJYc5SZSqkkbWxIllVOv6IflrLGiRhdMHds=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IR+OMHB59BXY11/ZBzVnTONDVsFcOUOdvduUSRas4QfXDOil4o/5H6y6+uoe5LNtz4DBjvFIjjO3Oobzuz3xqgebm8fz1rxCdGohfrGGAWySdkG4qNkxTzTP7SfSjKYz3v9If8+WKm9wMYi55mNyoCxvC4tNgexfdqdiByikUyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 48DE4339;
-	Thu,  6 Jun 2024 02:52:29 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4F2043F64C;
-	Thu,  6 Jun 2024 02:52:03 -0700 (PDT)
-Date: Thu, 6 Jun 2024 10:51:59 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- mripard@kernel.org, ryan@testtoast.com, samuel@sholland.org,
- jernej.skrabec@gmail.com, wens@csie.org, conor+dt@kernel.org,
- krzk+dt@kernel.org, robh@kernel.org, Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h700: Add Anbernic RG35XX-SP
-Message-ID: <20240606105159.33a2b917@donnerap.manchester.arm.com>
-In-Reply-To: <20240605185339.266833-3-macroalpha82@gmail.com>
-References: <20240605185339.266833-1-macroalpha82@gmail.com>
-	<20240605185339.266833-3-macroalpha82@gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1717667668; c=relaxed/simple;
+	bh=W0liS6l/IMX1KNzJs2URUcAemV2b4bSV/M1sWrYD9kI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=uFEamPMGBPtMpjIwdLiT2K0s7HR4KXaKaae8aDIQlxq/FGw1wxSgTrGdZfXy89Cmc3UEAPIiAM8bHrmynwHB8YGN0RvKrRCK1CUim7CwvvNPtxKFVCjyxyuQi7M64ENDaYoRVW/KgAEaPMcGSnKCAGD8w1aQSiNQzZRybrPtn60=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ddkwLcl3; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4214aa43a66so9117485e9.1;
+        Thu, 06 Jun 2024 02:54:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717667664; x=1718272464; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=apHCWRIB7mRNBEtiZcbMzZM2Ta+6YdoOJz2/tCdUzps=;
+        b=ddkwLcl3uJuO/eBJ6hA79op8Fek/l0dlcF9tPTzpc7hCTsBCZRE0uFDhnzS5mO15r1
+         q1YW/GxwQWnFhRop0TPAAaSB+kU4b9vnkDDSe9GHyespk+rlJBl+Wss5Je9O5XC/wK93
+         DDiWAAwOED+zltIo/AZFWONfik2xJHpl0EOA8xVVqIrxsTB0tDW9TyQDJrSA5mXf1i1b
+         AJnbTOzaCXSXN0xuhp6UTmpQzdWHRtjaeSJt60PHwXsSsEjxdpCDqbcoFjPimEBgX2p+
+         pGJ75nIBc0Ij+tTXC7ckT5NQLqugqW4Lt6rj38KVu4O0zpt7cIPeRdSlrK0Vgn7SAAi8
+         1B+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717667664; x=1718272464;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=apHCWRIB7mRNBEtiZcbMzZM2Ta+6YdoOJz2/tCdUzps=;
+        b=HAFssqc6qlkkJ6OG+6khR9fjBWidY98PRbnEQaq6SM+X2HFyKc9lws3jyFVLbXhohO
+         Qe+noIdknwomocSCgIFY1QVaLh/5ndtyGFfXk6OeXavk2sYU5I5y6KIx30s9u4E2E8xo
+         tpjGHrDivFKk0mBgECFPt9tTnr4e6ATA4zEjfzxVuXalS1Jw3s7oe4B0GyrBLvxzB6V+
+         bnUjhTwVWyYZCkbcc0zbc+ED9cCfcZVure8EtaFdwGWMHF3YjXUs+/YVaHRsEZp1aZxN
+         diqeBU70J1kqpBvxcf2vjoWHdX64cZxvKbcFto3BLmry5AG0HK4ldvDHMv9qYXoLR9M4
+         s+QQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX5xN0NUXZNATbx8i7iRIWsLq9gbF2m9QsNyM6BY1zGKBZEDsuD3VUai8qT30VGVedRXq8d0WpE6str/Xano4D3Kd+FEfbAm00y0Bn+YRrMDnhs9r+xBtbzsqLb93O0IBGXqgzCrcdaaA==
+X-Gm-Message-State: AOJu0YwDQzLzxrP5F7dN6FP5vmbN+Qk01Dx0kTM/DF240PG8DXrd4KoU
+	cjaPG6g6EiOxnb6euJF/95k1c5255pWCkFLylHAwKiGzsqLlRaKw
+X-Google-Smtp-Source: AGHT+IESF+hF++itPBlS+1rbKuC2h+vYSYamsDEjJaYuGkc6F/FPJuj8oyrWs28c0E+zvST8Mj8jzw==
+X-Received: by 2002:a05:600c:4f84:b0:421:5352:690e with SMTP id 5b1f17b1804b1-4215632d104mr37980375e9.25.1717667664364;
+        Thu, 06 Jun 2024 02:54:24 -0700 (PDT)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42158148ffasm51454325e9.38.2024.06.06.02.54.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Jun 2024 02:54:23 -0700 (PDT)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: arm: amlogic: add OSMC Vero 4K
+Date: Thu,  6 Jun 2024 09:54:18 +0000
+Message-Id: <20240606095419.3950015-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Wed,  5 Jun 2024 13:53:39 -0500
-Chris Morgan <macroalpha82@gmail.com> wrote:
+Add support for the OSMC Vero 4K Linux-based STB
 
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> The Anbernic RG35XXSP is almost identical to the RG35XX-Plus, but in a
-> clamshell form-factor. The key differences between the SP and the Plus
-> is a lid switch and an RTC on the same i2c bus as the PMIC.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  arch/arm64/boot/dts/allwinner/Makefile        |   3 +-
->  .../sun50i-h700-anbernic-rg35xx-sp.dts        | 145 ++++++++++++++++++
->  2 files changed, 147 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dts
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-> index 0db7b60b49a1..00bed412ee31 100644
-> --- a/arch/arm64/boot/dts/allwinner/Makefile
-> +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> @@ -49,5 +49,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero3.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-transpeed-8k618-t.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-2024.dtb
-> -dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-plus.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-h.dtb
-> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-plus.dtb
-> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-sp.dtb
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dts
-> new file mode 100644
-> index 000000000000..a1d16b65ef5d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dts
-> @@ -0,0 +1,145 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/*
-> + * Copyright (C) 2024 Ryan Walklin <ryan@testtoast.com>.
-> + * Copyright (C) 2024 Chris Morgan <macroalpha82@gmail.com>.
-> + */
-> +
-> +#include <dt-bindings/input/gpio-keys.h>
-> +#include "sun50i-h700-anbernic-rg35xx-plus.dts"
-> +
-> +/ {
-> +	model = "Anbernic RG35XX SP";
-> +	compatible = "anbernic,rg35xx-sp", "allwinner,sun50i-h700";
-> +
-> +	gpio-keys-lid {
-> +		compatible = "gpio-keys";
-> +
-> +		lid-switch {
-> +			label = "Lid Switch";
-> +			gpios = <&pio 4 7 GPIO_ACTIVE_LOW>; /* PE7 */
-> +			linux,can-disable;
-> +			linux,code = <SW_LID>;
-> +			linux,input-type = <EV_SW>;
-> +			wakeup-event-action = <EV_ACT_DEASSERTED>;
-> +			wakeup-source;
-> +		};
-> +	};
-> +};
-> +
-> +/delete-node/ &r_rsb;
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-I don't think deleting the *RSB* node is right here, if at all, I'd expect
-status="disabled", and then maybe deleting the axp717 node within?
-Or maybe factor the AXP node out into a separate file, and include it from
-the -2024.dts and from this one?
-Or move every board to I2C?
-What do people think about this?
-
-Cheers,
-Andre
-
-> +
-> +&r_i2c {
-> +	pinctrl-0 = <&r_i2c_pins>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +
-> +	axp717: pmic@34 {
-> +		compatible = "x-powers,axp717";
-> +		reg = <0x34>;
-> +		interrupt-controller;
-> +		#interrupt-cells = <1>;
-> +		interrupt-parent = <&nmi_intc>;
-> +		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		vin1-supply = <&reg_vcc5v>;
-> +		vin2-supply = <&reg_vcc5v>;
-> +		vin3-supply = <&reg_vcc5v>;
-> +		vin4-supply = <&reg_vcc5v>;
-> +
-> +		regulators {
-> +			reg_dcdc1: dcdc1 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <900000>;
-> +				regulator-max-microvolt = <1100000>;
-> +				regulator-name = "vdd-cpu";
-> +			};
-> +
-> +			reg_dcdc2: dcdc2 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <940000>;
-> +				regulator-max-microvolt = <940000>;
-> +				regulator-name = "vdd-gpu-sys";
-> +			};
-> +
-> +			reg_dcdc3: dcdc3 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <1100000>;
-> +				regulator-max-microvolt = <1100000>;
-> +				regulator-name = "vdd-dram";
-> +			};
-> +
-> +			reg_aldo1: aldo1 {
-> +				/* 1.8v - unused */
-> +			};
-> +
-> +			reg_aldo2: aldo2 {
-> +				/* 1.8v - unused */
-> +			};
-> +
-> +			reg_aldo3: aldo3 {
-> +				/* 1.8v - unused */
-> +			};
-> +
-> +			reg_aldo4: aldo4 {
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-name = "vcc-pg";
-> +			};
-> +
-> +			reg_bldo1: bldo1 {
-> +				/* 1.8v - unused */
-> +			};
-> +
-> +			reg_bldo2: bldo2 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-name = "vcc-pll";
-> +			};
-> +
-> +			reg_bldo3: bldo3 {
-> +				/* 2.8v - unused */
-> +			};
-> +
-> +			reg_bldo4: bldo4 {
-> +				/* 1.2v - unused */
-> +			};
-> +
-> +			reg_cldo1: cldo1 {
-> +				/* 3.3v - audio codec - not yet implemented */
-> +			};
-> +
-> +			reg_cldo2: cldo2 {
-> +				/* 3.3v - unused */
-> +			};
-> +
-> +			reg_cldo3: cldo3 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-name = "vcc-io";
-> +			};
-> +
-> +			reg_cldo4: cldo4 {
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-name = "vcc-wifi";
-> +			};
-> +
-> +			reg_boost: boost {
-> +				regulator-min-microvolt = <5000000>;
-> +				regulator-max-microvolt = <5200000>;
-> +				regulator-name = "boost";
-> +			};
-> +
-> +			reg_cpusldo: cpusldo {
-> +				/* unused */
-> +			};
-> +		};
-> +	};
-> +
-> +	rtc_ext: rtc@51 {
-> +		compatible = "nxp,pcf8563";
-> +		reg = <0x51>;
-> +	};
-> +};
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index b39eb17abbba..0647851ae1f5 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -91,6 +91,7 @@ properties:
+               - libretech,aml-s905x-cc
+               - libretech,aml-s905x-cc-v2
+               - nexbox,a95x
++              - osmc,vero4k
+           - const: amlogic,s905x
+           - const: amlogic,meson-gxl
+ 
+-- 
+2.34.1
 
 
