@@ -1,1069 +1,1176 @@
-Return-Path: <devicetree+bounces-73274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB6BD8FE6CF
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 14:49:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5386A8FE6C6
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 14:47:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56EDD288D53
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 12:49:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E3871C240BF
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 12:47:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8A60195B14;
-	Thu,  6 Jun 2024 12:49:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9072F195B0A;
+	Thu,  6 Jun 2024 12:47:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MGqbjRF8"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="dH9WJIBV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56BCC190697;
-	Thu,  6 Jun 2024 12:49:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EF964DA14;
+	Thu,  6 Jun 2024 12:47:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717678160; cv=none; b=bkji9Yo8qJr+jKAsNHELyiy6ZSsLbvz5eZovyWzwCKp5+0KDjYxJqjQq1E4u1qFGqzsTtMcMfqwcMwYJcsyLRZiiX6KjzYN3aC9BTbUaEl2BpFeaFtY4CcV0JuGiOWO5BUVcpc0sUwXOsiZJwpFl/ulYrDVmWUzqYg/KrTV3Rms=
+	t=1717678044; cv=none; b=hXkqXW+QxpPQs/SqXKXg8CiQFCnI8aAU0y2+cqZ2s044dE4Qg6wtGR1YIZXwh5IZ8ZmXDJar36I/LzI6RPVd93nc16vxYqWDdphqjXO7P4X49CJ0LNFA50N9V8q5J1H1LQePVbmsY6uVHZKakYZOBcKP7vBj77Sc0oOha6lkYwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717678160; c=relaxed/simple;
-	bh=uKBB9O4azqXHijy9sqytye/+5PkNXFJ+zN7tzRd7pV0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Iul5zOnxVlKSaAlrgBspu2kkiqtUBAAIdzGr7PScTpzZ+2KVFBkk1kuWUB0F11m+4+JHHEupvawCuntx8VWInWMO5xI8guux/MDTbvDc9W2M4y8fcJXNxK+UO4xd14B+HZKNDK4c2RVoDrsM8Kp8Nth9rBvHBtexz0b2fWwJeds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MGqbjRF8; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-35dbfe31905so877586f8f.2;
-        Thu, 06 Jun 2024 05:49:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717678156; x=1718282956; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NZAK+iDvm4gPLydt6fB+0xAaFXVjRHksEdKgG+bazWA=;
-        b=MGqbjRF8R7ulkSM8zQyLh6oXRRE9YZzATPB0+w+ZPg6tXfUbANcM7wpUZb53NVe2Ku
-         zd/N1zJ3Rt+oW7YA+6mqWiP3BN6lRmrdIhvQOyJFjn4CBBZEH/50Lr8M3cJGw86o9E/o
-         DtiAEQxgn/5gPz7SU1JzTUOD574MnADD1qO5ZNz4tw7IRmpLRJEwzOrnhC73JATLLhxD
-         NFL4awXcZZRHg/H9ftZv5hXXJiOPG5Z+fhgLb9lbhxj3CT8niajRzrjdttBds4Sp1Evf
-         Twpgb0LkzHUL2Kad8NtbJ8iU0uMuzjJA1niXFkNIE6szSxy1JPcsTyaKlFwhfC0QU/8O
-         RkRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717678156; x=1718282956;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NZAK+iDvm4gPLydt6fB+0xAaFXVjRHksEdKgG+bazWA=;
-        b=wCB5YN/UFIF0d+r6L1OIABaKBYcvC0OPlE6OI/tJzsdXQ9gszktqdNsQ1vDwtiM9gS
-         Haad+Euq8MNYlyzIB8d6Cp1EYqIKt/xE0NFNpDuX6I9cxn7i3PapvjahNHMf+OpjTFWQ
-         n2OXxmley4cwr/66jqkoD7e/gdRa6TB8bCKWoy88dC1wxQChSFlgOxMbG0H1ONdw0NT0
-         4as4HvFtowLptirQIB+HrQNROEtpi7prSzoZapSSO6G+v1Yt0xbPTUBNgoqgp/AEOx7Z
-         SI7OdJVTIci+qlAWlheokxzBAVwnJ0vmCjVxwdrfL9gx+qaizF2wZvk5USZQqBX7zzbg
-         OEWA==
-X-Forwarded-Encrypted: i=1; AJvYcCX9A5ellARUeStagz9abvksMSwnGRlQWgla5Fl28Tt16JnSG1jA8ZDuv+ytagzrCKldFAkF+LVITs+mxXU+WqgTFiH/IPr6Jo3AGaqhKXf/8ZKq+/TK5UroCIZVYfoFAvKEbM75evQtDwlalwRW5YvZna+iAxsCQv6xZskYh4jGZwjcqg==
-X-Gm-Message-State: AOJu0Yxmp5BUeP+xxTlMmr+2j/WS6KT2+7Ed2EjwCgSAnpqV2R1YWUlf
-	DatWZhTAHrKZ9Rka24iowaWZiCesJGUV1EkOQGuEcsLU4z7gHv8r
-X-Google-Smtp-Source: AGHT+IGkVj4XhKVFnqt1zLTMxZhOcZZZZseXZsz0rFNEg6j/TAOGwTyj/rVZOOOihvZWlHIfQP1LTg==
-X-Received: by 2002:a5d:4b86:0:b0:35e:83f4:3e83 with SMTP id ffacd0b85a97d-35e84062ca7mr3733149f8f.11.1717678156382;
-        Thu, 06 Jun 2024 05:49:16 -0700 (PDT)
-Received: from localhost.localdomain ([167.98.27.226])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5d4cbb4sm1480316f8f.44.2024.06.06.05.49.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jun 2024 05:49:15 -0700 (PDT)
-From: Mudit Sharma <muditsharma.info@gmail.com>
-To: jic23@kernel.org,
-	lars@metafoo.de,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	robh@kernel.org
-Cc: ivan.orlov0322@gmail.com,
-	javier.carrasco.cruz@gmail.com,
-	Mudit Sharma <muditsharma.info@gmail.com>,
-	linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v3 2/2] iio: light: ROHM BH1745 colour sensor
-Date: Thu,  6 Jun 2024 13:45:32 +0100
-Message-ID: <20240606124539.60757-4-muditsharma.info@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240606124539.60757-1-muditsharma.info@gmail.com>
-References: <20240606124539.60757-1-muditsharma.info@gmail.com>
+	s=arc-20240116; t=1717678044; c=relaxed/simple;
+	bh=CU7XWk66vkjMBHrMF7784BZQD0yxoNJxBJrD1nbVXio=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qfMFAyHFNt9ld6Eh4RoD3qxYeflH4zJactUNILwGOJmYBgKTqJaqJykS4FwWKbQexphQUUPR7HaRZWjCTq+m/SBQ2llfznEKj51pZmGTpQjSaqfwDhAy+hw7p72KyhCWuGClukVWHsQRF8KbBBtsC40gw++gaRzlReRZUAdIdoY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=dH9WJIBV; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B2F22BEB;
+	Thu,  6 Jun 2024 14:47:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1717678022;
+	bh=CU7XWk66vkjMBHrMF7784BZQD0yxoNJxBJrD1nbVXio=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dH9WJIBVCnshDxCby06NVz0U+3ur4+Ctcv33uZ5nGZsbmpUX89nc/xotV7GPex1jS
+	 lOc58jYGV32fRuHH2xbUvqWOOIfn3zNu7heb2pJgzOv4RCWagtx2FWb2Y+YawY9Vbf
+	 sOaurTjbZ5bbtbslwPtP3IeXXCGerZomPe97fWPU=
+Date: Thu, 6 Jun 2024 14:47:08 +0200
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Daniel Scally <dan.scally@ideasonboard.com>, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jerome.forissier@linaro.org, 
+	kieran.bingham@ideasonboard.com, sakari.ailus@iki.fi
+Subject: Re: [PATCH v5 05/16] media: mali-c55: Add Mali-C55 ISP driver
+Message-ID: <ygr7rhp23gjc4ywmcdy7d5coh4wubxlvkdxcvwgdpk4j343pnd@h4if5jtz7mop>
+References: <20240529152858.183799-1-dan.scally@ideasonboard.com>
+ <20240529152858.183799-6-dan.scally@ideasonboard.com>
+ <20240530001507.GG10586@pendragon.ideasonboard.com>
+ <20240530214348.GA5213@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240530214348.GA5213@pendragon.ideasonboard.com>
 
-Add support for BH1745, which is an I2C colour sensor with red, green,
-blue and clear channels. It has a programmable active low interrupt
-pin. Interrupt occurs when the signal from the selected interrupt
-source channel crosses set interrupt threshold high or low level.
+Hi Laurent
 
-This driver includes device attributes to configure the following:
-- Interrupt pin latch: The interrupt pin can be configured to
-  be latched (until interrupt register (0x60) is read or initialized)
-  or update after each measurement.
-- Interrupt source: The colour channel that will cause the interrupt
-  when channel will cross the set threshold high or low level.
+On Fri, May 31, 2024 at 12:43:48AM GMT, Laurent Pinchart wrote:
+> And now the second part of the review, addressing mali-c55-capture.c and
+> mali-c55-resizer.c. I've reviewed the code from the bottom up, so some
+> messages may be repeated in an order that seems weird. Sorry about that.
+>
 
-This driver also includes device attributes to present valid
-configuration options/values for:
-- Integration time
-- Interrupt colour source
-- Hardware gain
+[snip]
 
-Add myself as the maintainer for this driver in MAINTAINERS.
+A few replies/questions on the resizer module
 
-Signed-off-by: Mudit Sharma <muditsharma.info@gmail.com>
-Reviewed-by: Ivan Orlov <ivan.orlov0322@gmail.com>
----
-v2->v3:
-- Squash commit for addition to MAINTAINERS
-- Fix code style for consistency:
-  - New line before last 'return'
-  - Use variable name 'value' instead of 'val' in
-    'bh1745_set_trigger_state()'
-  - Align function parameters to match parenthesis
-  - Avoid use of magic number
-- Use named enum instead of anonymous enum
-- Use 'guard(mutex)(&data->lock)' instead of 'mutex_lock()'
-  'mutex_unlock()'
-- Only initialize 'ret' and 'value' when necessary
-- Fix and optimize logic for `in_interrupt_latch_store()` 
-- Fix error handling in irq , trigger handlers and dev attribute for
-  latch
+> >
+> > > +
+> > > +#endif /* _MALI_C55_RESIZER_COEFS_H */
+> > > diff --git a/drivers/media/platform/arm/mali-c55/mali-c55-resizer.c b/drivers/media/platform/arm/mali-c55/mali-c55-resizer.c
+> > > new file mode 100644
+> > > index 000000000000..0a5a2969d3ce
+> > > --- /dev/null
+> > > +++ b/drivers/media/platform/arm/mali-c55/mali-c55-resizer.c
+> > > @@ -0,0 +1,779 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +/*
+> > > + * ARM Mali-C55 ISP Driver - Image signal processor
+> > > + *
+> > > + * Copyright (C) 2024 Ideas on Board Oy
+> > > + */
+> > > +
+> > > +#include <linux/math.h>
+> > > +#include <linux/minmax.h>
+> > > +
+> > > +#include <media/media-entity.h>
+> > > +#include <media/v4l2-subdev.h>
+> > > +
+> > > +#include "mali-c55-common.h"
+> > > +#include "mali-c55-registers.h"
+> > > +#include "mali-c55-resizer-coefs.h"
+> > > +
+> > > +/* Scaling factor in Q4.20 format. */
+> > > +#define MALI_C55_RZR_SCALER_FACTOR	(1U << 20)
+> > > +
+> > > +static const u32 rzr_non_bypass_src_fmts[] = {
+> > > +	MEDIA_BUS_FMT_RGB121212_1X36,
+> > > +	MEDIA_BUS_FMT_YUV10_1X30
+> > > +};
+> > > +
+> > > +static const char * const mali_c55_resizer_names[] = {
+> > > +	[MALI_C55_RZR_FR] = "resizer fr",
+> > > +	[MALI_C55_RZR_DS] = "resizer ds",
+> > > +};
+> > > +
+> > > +static int mali_c55_rzr_program_crop(struct mali_c55_resizer *rzr,
+> > > +				     struct v4l2_subdev_state *state)
+> > > +{
+> > > +	unsigned int reg_offset = rzr->cap_dev->reg_offset;
+> > > +	struct mali_c55 *mali_c55 = rzr->mali_c55;
+> > > +	struct v4l2_mbus_framefmt *fmt;
+> > > +	struct v4l2_rect *crop;
+>
+> const
+>
+> > > +
+> > > +	/* Verify if crop should be enabled. */
+> > > +	fmt = v4l2_subdev_state_get_format(state, MALI_C55_RZR_SINK_PAD, 0);
+> > > +	crop = v4l2_subdev_state_get_crop(state, MALI_C55_RZR_SINK_PAD, 0);
+> > > +
+> > > +	if (fmt->width == crop->width && fmt->height == crop->height)
+> > > +		return MALI_C55_BYPASS_CROP;
+> > > +
+> > > +	mali_c55_write(mali_c55, MALI_C55_REG_CROP_X_START(reg_offset),
+> > > +		       crop->left);
+> > > +	mali_c55_write(mali_c55, MALI_C55_REG_CROP_Y_START(reg_offset),
+> > > +		       crop->top);
+> > > +	mali_c55_write(mali_c55, MALI_C55_REG_CROP_X_SIZE(reg_offset),
+> > > +		       crop->width);
+> > > +	mali_c55_write(mali_c55, MALI_C55_REG_CROP_Y_SIZE(reg_offset),
+> > > +		       crop->height);
+> > > +
+> > > +	mali_c55_write(mali_c55, MALI_C55_REG_CROP_EN(reg_offset),
+> > > +		       MALI_C55_CROP_ENABLE);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int mali_c55_rzr_program_resizer(struct mali_c55_resizer *rzr,
+> > > +					struct v4l2_subdev_state *state)
+> > > +{
+> > > +	unsigned int reg_offset = rzr->cap_dev->reg_offset;
+> > > +	struct mali_c55 *mali_c55 = rzr->mali_c55;
+> > > +	struct v4l2_rect *crop, *scale;
+>
+> const
+>
+> Once "[PATCH v4 0/3] media: v4l2-subdev: Support const-awareness in
+> state accessors" gets merged, the state argument to this function can be
+> made const too. Same for other functions, as applicable.
+>
+> > > +	unsigned int h_bank, v_bank;
+> > > +	u64 h_scale, v_scale;
+> > > +
+> > > +	/* Verify if scaling should be enabled. */
+> > > +	crop = v4l2_subdev_state_get_crop(state, MALI_C55_RZR_SINK_PAD, 0);
+> > > +	scale = v4l2_subdev_state_get_compose(state, MALI_C55_RZR_SINK_PAD, 0);
+> > > +
+> > > +	if (crop->width == scale->width && crop->height == scale->height)
+> > > +		return MALI_C55_BYPASS_SCALER;
+> > > +
+> > > +	/* Program the V/H scaling factor in Q4.20 format. */
+> > > +	h_scale = crop->width * MALI_C55_RZR_SCALER_FACTOR;
+> > > +	v_scale = crop->height * MALI_C55_RZR_SCALER_FACTOR;
+> > > +
+> > > +	do_div(h_scale, scale->width);
+> > > +	do_div(v_scale, scale->height);
+> > > +
+> > > +	mali_c55_write(mali_c55,
+> > > +		       MALI_C55_REG_SCALER_IN_WIDTH(reg_offset),
+> > > +		       crop->width);
+> > > +	mali_c55_write(mali_c55,
+> > > +		       MALI_C55_REG_SCALER_IN_HEIGHT(reg_offset),
+> > > +		       crop->height);
+> > > +
+> > > +	mali_c55_write(mali_c55,
+> > > +		       MALI_C55_REG_SCALER_OUT_WIDTH(reg_offset),
+> > > +		       scale->width);
+> > > +	mali_c55_write(mali_c55,
+> > > +		       MALI_C55_REG_SCALER_OUT_HEIGHT(reg_offset),
+> > > +		       scale->height);
+> > > +
+> > > +	mali_c55_write(mali_c55,
+> > > +		       MALI_C55_REG_SCALER_HFILT_TINC(reg_offset),
+> > > +		       h_scale);
+> > > +	mali_c55_write(mali_c55,
+> > > +		       MALI_C55_REG_SCALER_VFILT_TINC(reg_offset),
+> > > +		       v_scale);
+> > > +
+> > > +	h_bank = mali_c55_calculate_bank_num(mali_c55, crop->width,
+> > > +					     scale->width);
+> > > +	mali_c55_write(mali_c55,
+> > > +		       MALI_C55_REG_SCALER_HFILT_COEF(reg_offset),
+> > > +		       h_bank);
+> > > +
+> > > +	v_bank = mali_c55_calculate_bank_num(mali_c55, crop->height,
+> > > +					     scale->height);
+> > > +	mali_c55_write(mali_c55,
+> > > +		       MALI_C55_REG_SCALER_VFILT_COEF(reg_offset),
+> > > +		       v_bank);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static void mali_c55_rzr_program(struct mali_c55_resizer *rzr,
+> > > +				 struct v4l2_subdev_state *state)
+> > > +{
+> > > +	struct mali_c55 *mali_c55 = rzr->mali_c55;
+> > > +	u32 bypass = 0;
+> > > +
+> > > +	/* Verify if cropping and scaling should be enabled. */
+> > > +	bypass |= mali_c55_rzr_program_crop(rzr, state);
+> > > +	bypass |= mali_c55_rzr_program_resizer(rzr, state);
+> > > +
+> > > +	mali_c55_update_bits(mali_c55, rzr->id == MALI_C55_RZR_FR ?
+> > > +			     MALI_C55_REG_FR_BYPASS : MALI_C55_REG_DS_BYPASS,
+> > > +			     MALI_C55_BYPASS_CROP | MALI_C55_BYPASS_SCALER,
+> > > +			     bypass);
+> > > +}
+> > > +
+> > > +/*
+> > > + * Inspect the routing table to know which of the two (mutually exclusive)
+> > > + * routes is enabled and return the sink pad id of the active route.
+> > > + */
+> > > +static unsigned int mali_c55_rzr_get_active_sink(struct v4l2_subdev_state *state)
+> > > +{
+> > > +	struct v4l2_subdev_krouting *routing = &state->routing;
+> > > +	struct v4l2_subdev_route *route;
+> > > +
+> > > +	/* A single route is enabled at a time. */
+> > > +	for_each_active_route(routing, route)
+> > > +		return route->sink_pad;
+> > > +
+> > > +	return MALI_C55_RZR_SINK_PAD;
+> > > +}
+> > > +
+> > > +static u32 mali_c55_rzr_shift_mbus_code(u32 mbus_code)
+> > > +{
+> > > +	u32 corrected_code = 0;
+> > > +
+> > > +	/*
+> > > +	 * The ISP takes input in a 20-bit format, but can only output 16-bit
+> > > +	 * RAW bayer data (with the 4 least significant bits from the input
+> > > +	 * being lost). Return the 16-bit version of the 20-bit input formats.
+> > > +	 */
+> > > +	switch (mbus_code) {
+> > > +	case MEDIA_BUS_FMT_SBGGR20_1X20:
+> > > +		corrected_code = MEDIA_BUS_FMT_SBGGR16_1X16;
+> > > +		break;
+> > > +	case MEDIA_BUS_FMT_SGBRG20_1X20:
+> > > +		corrected_code = MEDIA_BUS_FMT_SGBRG16_1X16;
+> > > +		break;
+> > > +	case MEDIA_BUS_FMT_SGRBG20_1X20:
+> > > +		corrected_code = MEDIA_BUS_FMT_SGRBG16_1X16;
+> > > +		break;
+> > > +	case MEDIA_BUS_FMT_SRGGB20_1X20:
+> > > +		corrected_code = MEDIA_BUS_FMT_SRGGB16_1X16;
+> > > +		break;
+>
+> Would it make sense to add the shifted code to mali_c55_isp_fmt ?
+>
+> > > +	}
+> > > +
+> > > +	return corrected_code;
+> > > +}
+> > > +
+> > > +static int __mali_c55_rzr_set_routing(struct v4l2_subdev *sd,
+> > > +				      struct v4l2_subdev_state *state,
+> > > +				      struct v4l2_subdev_krouting *routing)
+>
+> I think the last argument can be const.
 
- MAINTAINERS                |   6 +
- drivers/iio/light/Kconfig  |  12 +
- drivers/iio/light/Makefile |   1 +
- drivers/iio/light/bh1745.c | 866 +++++++++++++++++++++++++++++++++++++
- 4 files changed, 885 insertions(+)
- create mode 100644 drivers/iio/light/bh1745.c
+If I have to adjust the routing table instead of refusing it, it can't
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d6c90161c7bf..024c14738dc7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19407,6 +19407,12 @@ S:	Supported
- F:	drivers/power/supply/bd99954-charger.c
- F:	drivers/power/supply/bd99954-charger.h
- 
-+ROHM BH1745 COLOUR SENSOR
-+M:	Mudit Sharma <muditsharma.info@gmail.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+F:	drivers/iio/light/bh1745.c
-+
- ROHM BH1750 AMBIENT LIGHT SENSOR DRIVER
- M:	Tomasz Duszynski <tduszyns@gmail.com>
- S:	Maintained
-diff --git a/drivers/iio/light/Kconfig b/drivers/iio/light/Kconfig
-index 9a587d403118..6e0bd2addf9e 100644
---- a/drivers/iio/light/Kconfig
-+++ b/drivers/iio/light/Kconfig
-@@ -114,6 +114,18 @@ config AS73211
- 	 This driver can also be built as a module.  If so, the module
- 	 will be called as73211.
- 
-+config BH1745
-+	tristate "ROHM BH1745 colour sensor"
-+	depends on I2C
-+	select REGMAP_I2C
-+	select IIO_BUFFER
-+	select IIO_TRIGGERED_BUFFER
-+	help
-+	  Say Y here to build support for the ROHM bh1745 colour sensor.
-+
-+	  To compile this driver as a module, choose M here: the module will
-+	  be called bh1745.
-+
- config BH1750
- 	tristate "ROHM BH1750 ambient light sensor"
- 	depends on I2C
-diff --git a/drivers/iio/light/Makefile b/drivers/iio/light/Makefile
-index a30f906e91ba..939a701a06ac 100644
---- a/drivers/iio/light/Makefile
-+++ b/drivers/iio/light/Makefile
-@@ -13,6 +13,7 @@ obj-$(CONFIG_APDS9300)		+= apds9300.o
- obj-$(CONFIG_APDS9306)		+= apds9306.o
- obj-$(CONFIG_APDS9960)		+= apds9960.o
- obj-$(CONFIG_AS73211)		+= as73211.o
-+obj-$(CONFIG_BH1745)		+= bh1745.o
- obj-$(CONFIG_BH1750)		+= bh1750.o
- obj-$(CONFIG_BH1780)		+= bh1780.o
- obj-$(CONFIG_CM32181)		+= cm32181.o
-diff --git a/drivers/iio/light/bh1745.c b/drivers/iio/light/bh1745.c
-new file mode 100644
-index 000000000000..d0b14460e7c4
---- /dev/null
-+++ b/drivers/iio/light/bh1745.c
-@@ -0,0 +1,866 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * ROHM BH1745 digital colour sensor driver
-+ *
-+ * Copyright (C) Mudit Sharma <muditsharma.info@gmail.com>
-+ *
-+ * 7-bit I2C slave addresses:
-+ *  0x38 (ADDR pin low)
-+ *  0x39 (ADDR pin high)
-+ *
-+ */
-+
-+#include <linux/i2c.h>
-+#include <linux/mutex.h>
-+#include <linux/util_macros.h>
-+#include <linux/iio/events.h>
-+#include <linux/regmap.h>
-+
-+#include <linux/iio/iio.h>
-+#include <linux/iio/sysfs.h>
-+#include <linux/iio/trigger.h>
-+#include <linux/iio/trigger_consumer.h>
-+#include <linux/iio/triggered_buffer.h>
-+
-+#define BH1745_MOD_NAME "bh1745"
-+
-+/* BH1745 config regs */
-+#define BH1745_SYS_CTRL 0x40
-+
-+#define BH1745_MODE_CTRL_1 0x41
-+#define BH1745_MODE_CTRL_2 0x42
-+#define BH1745_MODE_CTRL_3 0x44
-+
-+#define BH1745_INTR 0x60
-+#define BH1745_INTR_STATUS BIT(7)
-+
-+#define BH1745_PERSISTENCE 0x61
-+
-+#define BH1745_TH_LSB 0X62
-+#define BH1745_TH_MSB 0X63
-+
-+#define BH1745_TL_LSB 0X64
-+#define BH1745_TL_MSB 0X65
-+
-+#define BH1745_THRESHOLD_MAX 0xFFFF
-+#define BH1745_THRESHOLD_MIN 0x0
-+
-+#define BH1745_MANU_ID 0X92
-+
-+/* BH1745 output regs */
-+#define BH1745_R_LSB 0x50
-+#define BH1745_R_MSB 0x51
-+#define BH1745_G_LSB 0x52
-+#define BH1745_G_MSB 0x53
-+#define BH1745_B_LSB 0x54
-+#define BH1745_B_MSB 0x55
-+#define BH1745_CLR_LSB 0x56
-+#define BH1745_CLR_MSB 0x57
-+
-+#define BH1745_SW_RESET BIT(7)
-+#define BH1745_INT_RESET BIT(6)
-+
-+#define BH1745_MEASUREMENT_TIME_MASK GENMASK(2, 0)
-+
-+#define BH1745_RGBC_EN BIT(4)
-+
-+#define BH1745_ADC_GAIN_MASK GENMASK(1, 0)
-+
-+#define BH1745_INT_ENABLE BIT(0)
-+#define BH1745_INT_SIGNAL_ACTIVE BIT(7)
-+
-+#define BH1745_INT_SIGNAL_LATCHED BIT(4)
-+#define BH1745_INT_SIGNAL_LATCH_OFFSET 4
-+
-+#define BH1745_INT_SOURCE_MASK GENMASK(3, 2)
-+#define BH1745_INT_SOURCE_OFFSET 2
-+
-+#define BH1745_INT_TIME_AVAILABLE "0.16 0.32 0.64 1.28 2.56 5.12"
-+#define BH1745_HARDWAREGAIN_AVAILABLE "1 2 16"
-+#define BH1745_INT_COLOUR_CHANNEL_AVAILABLE \
-+	"0 (Red Channel) 1 (Green Channel) 2 (Blue channel) 3 (Clear channel)"
-+
-+static const int bh1745_int_time[][2] = {
-+	{ 0, 160000 }, /* 160 ms */
-+	{ 0, 320000 }, /* 320 ms */
-+	{ 0, 640000 }, /* 640 ms */
-+	{ 1, 280000 }, /* 1280 ms */
-+	{ 2, 560000 }, /* 2560 ms */
-+	{ 5, 120000 }, /* 5120 ms */
-+};
-+
-+static const u8 bh1745_gain_factor[] = { 1, 2, 16 };
-+
-+enum bh1745_int_source {
-+	BH1745_INT_SOURCE_RED,
-+	BH1745_INT_SOURCE_GREEN,
-+	BH1745_INT_SOURCE_BLUE,
-+	BH1745_INT_SOURCE_CLEAR,
-+};
-+
-+enum bh1745_gain {
-+	BH1745_ADC_GAIN_1X,
-+	BH1745_ADC_GAIN_2X,
-+	BH1745_ADC_GAIN_16X,
-+};
-+
-+enum bh1745_measurement_time {
-+	BH1745_MEASUREMENT_TIME_160MS,
-+	BH1745_MEASUREMENT_TIME_320MS,
-+	BH1745_MEASUREMENT_TIME_640MS,
-+	BH1745_MEASUREMENT_TIME_1280MS,
-+	BH1745_MEASUREMENT_TIME_2560MS,
-+	BH1745_MEASUREMENT_TIME_5120MS,
-+};
-+
-+enum bh1745_presistence_value {
-+	BH1745_PRESISTENCE_UPDATE_TOGGLE,
-+	BH1745_PRESISTENCE_UPDATE_EACH_MEASUREMENT,
-+	BH1745_PRESISTENCE_UPDATE_FOUR_MEASUREMENT,
-+	BH1745_PRESISTENCE_UPDATE_EIGHT_MEASUREMENT,
-+};
-+
-+struct bh1745_data {
-+	struct mutex lock;
-+	struct regmap *regmap;
-+	struct i2c_client *client;
-+	struct iio_trigger *trig;
-+	u8 mode_ctrl1;
-+	u8 mode_ctrl2;
-+	u8 int_src;
-+	u8 int_latch;
-+	u8 interrupt;
-+};
-+
-+static const struct regmap_range bh1745_volatile_ranges[] = {
-+	regmap_reg_range(BH1745_MODE_CTRL_2, BH1745_MODE_CTRL_2), /* VALID */
-+	regmap_reg_range(BH1745_R_LSB, BH1745_CLR_MSB), /* Data */
-+	regmap_reg_range(BH1745_INTR, BH1745_INTR), /* Interrupt */
-+};
-+
-+static const struct regmap_access_table bh1745_volatile_regs = {
-+	.yes_ranges = bh1745_volatile_ranges,
-+	.n_yes_ranges = ARRAY_SIZE(bh1745_volatile_ranges),
-+};
-+
-+static const struct regmap_range bh1745_read_ranges[] = {
-+	regmap_reg_range(BH1745_SYS_CTRL, BH1745_MODE_CTRL_2),
-+	regmap_reg_range(BH1745_R_LSB, BH1745_CLR_MSB),
-+	regmap_reg_range(BH1745_INTR, BH1745_INTR),
-+	regmap_reg_range(BH1745_PERSISTENCE, BH1745_TL_MSB),
-+	regmap_reg_range(BH1745_MANU_ID, BH1745_MANU_ID),
-+};
-+
-+static const struct regmap_access_table bh1745_ro_regs = {
-+	.yes_ranges = bh1745_read_ranges,
-+	.n_yes_ranges = ARRAY_SIZE(bh1745_read_ranges),
-+};
-+
-+static const struct regmap_range bh1745_writable_ranges[] = {
-+	regmap_reg_range(BH1745_SYS_CTRL, BH1745_MODE_CTRL_2),
-+	regmap_reg_range(BH1745_PERSISTENCE, BH1745_TL_MSB),
-+};
-+
-+static const struct regmap_access_table bh1745_wr_regs = {
-+	.yes_ranges = bh1745_writable_ranges,
-+	.n_yes_ranges = ARRAY_SIZE(bh1745_writable_ranges),
-+};
-+
-+static const struct regmap_config bh1745_regmap = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = BH1745_MANU_ID,
-+	.cache_type = REGCACHE_RBTREE,
-+	.volatile_table = &bh1745_volatile_regs,
-+	.wr_table = &bh1745_wr_regs,
-+	.rd_table = &bh1745_ro_regs,
-+};
-+
-+static const struct iio_event_spec bh1745_event_spec[] = {
-+	{
-+		.type = IIO_EV_TYPE_THRESH,
-+		.dir = IIO_EV_DIR_RISING,
-+		.mask_shared_by_type = BIT(IIO_EV_INFO_VALUE),
-+	},
-+	{
-+		.type = IIO_EV_TYPE_THRESH,
-+		.dir = IIO_EV_DIR_FALLING,
-+		.mask_shared_by_type = BIT(IIO_EV_INFO_VALUE),
-+	},
-+	{
-+		.type = IIO_EV_TYPE_THRESH,
-+		.dir = IIO_EV_DIR_EITHER,
-+		.mask_shared_by_type = BIT(IIO_EV_INFO_PERIOD),
-+	},
-+};
-+
-+#define BH1745_CHANNEL(_colour, _si, _addr)                                   \
-+	{                                                                     \
-+		.type = IIO_INTENSITY, .modified = 1,                         \
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),                 \
-+		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_HARDWAREGAIN) | \
-+					    BIT(IIO_CHAN_INFO_INT_TIME),      \
-+		.event_spec = bh1745_event_spec,                              \
-+		.num_event_specs = ARRAY_SIZE(bh1745_event_spec),             \
-+		.channel2 = IIO_MOD_LIGHT_##_colour, .address = _addr,        \
-+		.scan_index = _si,                                            \
-+		.scan_type = {                                                \
-+			.sign = 'u',                                          \
-+			.realbits = 16,                                       \
-+			.storagebits = 16,                                    \
-+			.endianness = IIO_CPU,                                \
-+		},                                                            \
-+	}
-+
-+static const struct iio_chan_spec bh1745_channels[] = {
-+	BH1745_CHANNEL(RED, 0, BH1745_R_LSB),
-+	BH1745_CHANNEL(GREEN, 1, BH1745_G_LSB),
-+	BH1745_CHANNEL(BLUE, 2, BH1745_B_LSB),
-+	BH1745_CHANNEL(CLEAR, 3, BH1745_CLR_LSB),
-+	IIO_CHAN_SOFT_TIMESTAMP(4),
-+};
-+
-+static int bh1745_write_value(struct bh1745_data *data, u8 reg, void *value,
-+			      size_t len)
-+{
-+	int ret;
-+
-+	ret = regmap_bulk_write(data->regmap, reg, value, len);
-+	if (ret < 0) {
-+		dev_err(&data->client->dev,
-+			"Failed to write to sensor. Reg: 0x%x\n", reg);
-+	}
-+
-+	return ret;
-+}
-+
-+static int bh1745_read_value(struct bh1745_data *data, u8 reg, void *value,
-+			     size_t len)
-+{
-+	int ret;
-+
-+	ret = regmap_bulk_read(data->regmap, reg, value, len);
-+	if (ret < 0) {
-+		dev_err(&data->client->dev,
-+			"Failed to read from sensor. Reg: 0x%x\n", reg);
-+	}
-+
-+	return ret;
-+}
-+
-+static ssize_t in_interrupt_source_show(struct device *dev,
-+					struct device_attribute *attr,
-+					char *buf)
-+{
-+	int ret;
-+	int value;
-+	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-+	struct bh1745_data *data = iio_priv(indio_dev);
-+
-+	ret = bh1745_read_value(data, BH1745_INTR, &value, 1);
-+	if (ret < 0)
-+		return ret;
-+
-+	value &= BH1745_INT_SOURCE_MASK;
-+
-+	return sprintf(buf, "%d\n", value >> 2);
-+}
-+
-+static ssize_t in_interrupt_source_store(struct device *dev,
-+					 struct device_attribute *attr,
-+					 const char *buf, size_t len)
-+{
-+	int ret;
-+	u16 value;
-+	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-+	struct bh1745_data *data = iio_priv(indio_dev);
-+
-+	ret = kstrtou16(buf, 10, &value);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (value > BH1745_INT_SOURCE_CLEAR) {
-+		dev_err(dev,
-+			"Supplied value: '%d' for interrupt source is invalid\n",
-+			value);
-+		return -EINVAL;
-+	}
-+	guard(mutex)(&data->lock);
-+	data->int_src = value;
-+	value = value << BH1745_INT_SOURCE_OFFSET;
-+	ret = bh1745_read_value(data, BH1745_INTR, &data->interrupt, 1);
-+	if (ret < 0)
-+		return ret;
-+
-+	data->interrupt &= ~BH1745_INT_SOURCE_MASK;
-+	data->interrupt |= value;
-+	ret = bh1745_write_value(data, BH1745_INTR, &data->interrupt, 1);
-+	if (ret < 0)
-+		return ret;
-+
-+	return len;
-+}
-+
-+static ssize_t in_interrupt_latch_show(struct device *dev,
-+				       struct device_attribute *attr, char *buf)
-+{
-+	int ret;
-+	int value;
-+	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-+	struct bh1745_data *data = iio_priv(indio_dev);
-+
-+	ret = bh1745_read_value(data, BH1745_INTR, &value, 1);
-+	if (ret < 0)
-+		return ret;
-+
-+	value &= BH1745_INT_SIGNAL_LATCHED;
-+	if (value)
-+		return sprintf(buf, "1\n");
-+
-+	return sprintf(buf, "0\n");
-+}
-+
-+static ssize_t in_interrupt_latch_store(struct device *dev,
-+					struct device_attribute *attr,
-+					const char *buf, size_t len)
-+{
-+	int ret;
-+	u16 value;
-+	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-+	struct bh1745_data *data = iio_priv(indio_dev);
-+
-+	ret = kstrtou16(buf, 10, &value);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (value > 1) {
-+		dev_err(dev, "Value out of range for latch setup. Supported values '0' or '1'\n");
-+		return -EINVAL;
-+	}
-+
-+	guard(mutex)(&data->lock);
-+	data->int_latch = value;
-+	ret = bh1745_read_value(data, BH1745_INTR, &data->interrupt, 1);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (value == 0)
-+		data->interrupt &= ~BH1745_INT_SIGNAL_LATCHED;
-+	else
-+		data->interrupt |= BH1745_INT_SIGNAL_LATCHED;
-+
-+	ret = bh1745_write_value(data, BH1745_INTR, &data->interrupt, 1);
-+	if (ret < 0)
-+		return ret;
-+
-+	return len;
-+}
-+
-+static ssize_t hardwaregain_available_show(struct device *dev,
-+					   struct device_attribute *attr,
-+					   char *buf)
-+{
-+	return sprintf(buf, "%s\n", BH1745_HARDWAREGAIN_AVAILABLE);
-+}
-+
-+static ssize_t interrupt_source_available_show(struct device *dev,
-+					       struct device_attribute *attr,
-+					       char *buf)
-+{
-+	return sprintf(buf, "%s\n", BH1745_INT_COLOUR_CHANNEL_AVAILABLE);
-+}
-+
-+static IIO_DEVICE_ATTR_RW(in_interrupt_source, 0);
-+static IIO_DEVICE_ATTR_RW(in_interrupt_latch, 0);
-+static IIO_DEVICE_ATTR_RO(hardwaregain_available, 0);
-+static IIO_DEVICE_ATTR_RO(interrupt_source_available, 0);
-+static IIO_CONST_ATTR_INT_TIME_AVAIL(BH1745_INT_TIME_AVAILABLE);
-+
-+static struct attribute *bh1745_attrs[] = {
-+	&iio_dev_attr_in_interrupt_source.dev_attr.attr,
-+	&iio_dev_attr_in_interrupt_latch.dev_attr.attr,
-+	&iio_dev_attr_hardwaregain_available.dev_attr.attr,
-+	&iio_dev_attr_interrupt_source_available.dev_attr.attr,
-+	&iio_const_attr_integration_time_available.dev_attr.attr,
-+	NULL
-+};
-+
-+static const struct attribute_group bh1745_attr_group = {
-+	.attrs = bh1745_attrs,
-+};
-+
-+static int bh1745_reset(struct bh1745_data *data)
-+{
-+	int ret;
-+	u8 value;
-+
-+	ret = bh1745_read_value(data, BH1745_SYS_CTRL, &value, 1);
-+	if (ret < 0)
-+		return ret;
-+
-+	value |= (BH1745_SW_RESET | BH1745_INT_RESET);
-+
-+	return bh1745_write_value(data, BH1745_SYS_CTRL, &value, 1);
-+}
-+
-+static int bh1745_power_on(struct bh1745_data *data)
-+{
-+	int ret;
-+	u8 value;
-+
-+	ret = bh1745_read_value(data, BH1745_MODE_CTRL_2, &value, 1);
-+	if (ret < 0)
-+		return ret;
-+
-+	guard(mutex)(&data->lock);
-+	value |= BH1745_RGBC_EN;
-+	data->mode_ctrl2 = value;
-+	ret = bh1745_write_value(data, BH1745_MODE_CTRL_2, &data->mode_ctrl2, 1);
-+
-+	return ret;
-+}
-+
-+static int bh1745_power_off(struct bh1745_data *data)
-+{
-+	int ret;
-+	int value;
-+
-+	ret = bh1745_read_value(data, BH1745_MODE_CTRL_2, &value, 1);
-+	if (ret < 0)
-+		return ret;
-+
-+	guard(mutex)(&data->lock);
-+	value &= ~BH1745_RGBC_EN;
-+	data->mode_ctrl2 = value;
-+	ret = bh1745_write_value(data, BH1745_MODE_CTRL_2, &data->mode_ctrl2, 1);
-+
-+	return ret;
-+}
-+
-+static int bh1745_set_int_time(struct bh1745_data *data, int val, int val2)
-+{
-+	int ret;
-+
-+	for (u8 i = 0; i < ARRAY_SIZE(bh1745_int_time); i++) {
-+		if (val == bh1745_int_time[i][0] &&
-+		    val2 == bh1745_int_time[i][1]) {
-+			guard(mutex)(&data->lock);
-+			data->mode_ctrl1 &= ~BH1745_MEASUREMENT_TIME_MASK;
-+			data->mode_ctrl1 |= i;
-+			ret = bh1745_write_value(data, BH1745_MODE_CTRL_1,
-+						 &data->mode_ctrl1, 1);
-+			return ret;
-+		}
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static int bh1745_read_raw(struct iio_dev *indio_dev,
-+			   struct iio_chan_spec const *chan, int *val,
-+			   int *val2, long mask)
-+{
-+	struct bh1745_data *data = iio_priv(indio_dev);
-+	int ret;
-+	u16 value;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW: {
-+		ret = iio_device_claim_direct_mode(indio_dev);
-+		if (ret)
-+			return ret;
-+		ret = bh1745_read_value(data, chan->address, &value, 2);
-+		if (ret < 0)
-+			return ret;
-+		iio_device_release_direct_mode(indio_dev);
-+		*val = value;
-+		return IIO_VAL_INT;
-+	}
-+
-+	case IIO_CHAN_INFO_HARDWAREGAIN: {
-+		guard(mutex)(&data->lock);
-+		ret = bh1745_read_value(data, BH1745_MODE_CTRL_2,
-+					&data->mode_ctrl2, 1);
-+		if (ret < 0)
-+			return ret;
-+
-+		value = data->mode_ctrl2 & BH1745_ADC_GAIN_MASK;
-+		*val = bh1745_gain_factor[value];
-+		return IIO_VAL_INT;
-+	}
-+
-+	case IIO_CHAN_INFO_INT_TIME: {
-+		guard(mutex)(&data->lock);
-+		ret = bh1745_read_value(data, BH1745_MODE_CTRL_1,
-+					&data->mode_ctrl1, 1);
-+		if (ret < 0)
-+			return ret;
-+
-+		value = data->mode_ctrl1 & BH1745_MEASUREMENT_TIME_MASK;
-+
-+		*val = bh1745_int_time[value][0];
-+		*val2 = bh1745_int_time[value][1];
-+
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	}
-+
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int bh1745_write_raw(struct iio_dev *indio_dev,
-+			    struct iio_chan_spec const *chan, int val, int val2,
-+			    long mask)
-+{
-+	struct bh1745_data *data = iio_priv(indio_dev);
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_HARDWAREGAIN: {
-+		for (u8 i = 0; i < ARRAY_SIZE(bh1745_gain_factor); i++) {
-+			if (bh1745_gain_factor[i] == val) {
-+				guard(mutex)(&data->lock);
-+				data->mode_ctrl2 &= ~BH1745_ADC_GAIN_MASK;
-+				data->mode_ctrl2 |= i;
-+				ret = bh1745_write_value(data,
-+							 BH1745_MODE_CTRL_2,
-+							 &data->mode_ctrl2, 1);
-+				return ret;
-+			}
-+		}
-+		return -EINVAL;
-+	}
-+
-+	case IIO_CHAN_INFO_INT_TIME: {
-+		return bh1745_set_int_time(data, val, val2);
-+	}
-+
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int bh1745_read_thresh(struct iio_dev *indio_dev,
-+			      const struct iio_chan_spec *chan,
-+			      enum iio_event_type type,
-+			      enum iio_event_direction dir,
-+			      enum iio_event_info info, int *val, int *val2)
-+{
-+	struct bh1745_data *data = iio_priv(indio_dev);
-+	int ret;
-+
-+	switch (info) {
-+	case IIO_EV_INFO_VALUE:
-+		switch (dir) {
-+		case IIO_EV_DIR_RISING:
-+			ret = bh1745_read_value(data, BH1745_TH_LSB, val, 2);
-+			if (ret < 0)
-+				return ret;
-+			return IIO_VAL_INT;
-+		case IIO_EV_DIR_FALLING:
-+			ret = bh1745_read_value(data, BH1745_TL_LSB, val, 2);
-+			if (ret < 0)
-+				return ret;
-+			return IIO_VAL_INT;
-+		default:
-+			return -EINVAL;
-+		}
-+		break;
-+	case IIO_EV_INFO_PERIOD:
-+		ret = bh1745_read_value(data, BH1745_PERSISTENCE, val, 1);
-+		if (ret < 0)
-+			return ret;
-+		return IIO_VAL_INT;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int bh1745_write_thresh(struct iio_dev *indio_dev,
-+			       const struct iio_chan_spec *chan,
-+			       enum iio_event_type type,
-+			       enum iio_event_direction dir,
-+			       enum iio_event_info info, int val, int val2)
-+{
-+	struct bh1745_data *data = iio_priv(indio_dev);
-+	int ret;
-+
-+	switch (info) {
-+	case IIO_EV_INFO_VALUE:
-+		if (val < BH1745_THRESHOLD_MIN || val > BH1745_THRESHOLD_MAX)
-+			return -EINVAL;
-+		switch (dir) {
-+		case IIO_EV_DIR_RISING:
-+			ret = bh1745_write_value(data, BH1745_TH_LSB, &val, 2);
-+			if (ret < 0)
-+				return ret;
-+			return IIO_VAL_INT;
-+		case IIO_EV_DIR_FALLING:
-+			ret = bh1745_write_value(data, BH1745_TL_LSB, &val, 2);
-+			if (ret < 0)
-+				return ret;
-+			return IIO_VAL_INT;
-+		default:
-+			return -EINVAL;
-+		}
-+		break;
-+	case IIO_EV_INFO_PERIOD:
-+		if (val < BH1745_PRESISTENCE_UPDATE_TOGGLE ||
-+		    val > BH1745_PRESISTENCE_UPDATE_EIGHT_MEASUREMENT)
-+			return -EINVAL;
-+		ret = bh1745_write_value(data, BH1745_PERSISTENCE, &val, 1);
-+		if (ret < 0)
-+			return ret;
-+		return IIO_VAL_INT;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_info bh1745_info = {
-+	.attrs = &bh1745_attr_group,
-+	.read_raw = bh1745_read_raw,
-+	.write_raw = bh1745_write_raw,
-+	.read_event_value = bh1745_read_thresh,
-+	.write_event_value = bh1745_write_thresh,
-+
-+};
-+
-+static void bh1745_remove(struct i2c_client *client)
-+{
-+	struct iio_dev *indio_dev = i2c_get_clientdata(client);
-+	struct bh1745_data *data = iio_priv(indio_dev);
-+
-+	if (bh1745_power_off(data) < 0)
-+		dev_err(&data->client->dev, "Failed to turn off device");
-+
-+	dev_info(&data->client->dev, "BH1745 driver removed\n");
-+}
-+
-+static int bh1745_set_trigger_state(struct iio_trigger *trig, bool state)
-+{
-+	int ret;
-+	u8 value = 0;
-+	struct iio_dev *indio_dev = iio_trigger_get_drvdata(trig);
-+	struct bh1745_data *data = iio_priv(indio_dev);
-+
-+	guard(mutex)(&data->lock);
-+	if (state) {
-+		ret = bh1745_read_value(data, BH1745_INTR, &value, 1);
-+		if (ret < 0)
-+			return ret;
-+		value |= (BH1745_INT_ENABLE |
-+			(data->int_latch << BH1745_INT_SIGNAL_LATCH_OFFSET) |
-+			(data->int_src << BH1745_INT_SOURCE_OFFSET));
-+		data->interrupt = value;
-+		ret = bh1745_write_value(data, BH1745_INTR, &data->interrupt,
-+					 1);
-+	} else {
-+		data->interrupt = value;
-+		ret = bh1745_write_value(data, BH1745_INTR, &data->interrupt,
-+					 1);
-+	}
-+
-+	return ret;
-+}
-+
-+static const struct iio_trigger_ops bh1745_trigger_ops = {
-+	.set_trigger_state = bh1745_set_trigger_state,
-+};
-+
-+static irqreturn_t bh1745_interrupt_handler(int interrupt, void *p)
-+{
-+	struct iio_dev *indio_dev = p;
-+	struct bh1745_data *data = iio_priv(indio_dev);
-+	int ret;
-+	int value;
-+
-+	ret = bh1745_read_value(data, BH1745_INTR, &value, 1);
-+	if (ret < 0)
-+		return IRQ_NONE;
-+
-+	if (value & BH1745_INTR_STATUS) {
-+		guard(mutex)(&data->lock);
-+		iio_push_event(indio_dev,
-+			       IIO_UNMOD_EVENT_CODE(IIO_INTENSITY,
-+						    data->int_src,
-+						    IIO_EV_TYPE_THRESH,
-+						    IIO_EV_DIR_EITHER),
-+			       iio_get_time_ns(indio_dev));
-+
-+		iio_trigger_poll_nested(data->trig);
-+		return IRQ_HANDLED;
-+	}
-+
-+	return IRQ_NONE;
-+}
-+
-+static irqreturn_t bh1745_trigger_handler(int interrupt, void *p)
-+{
-+	struct iio_poll_func *pf = p;
-+	struct iio_dev *indio_dev = pf->indio_dev;
-+	struct bh1745_data *data = iio_priv(indio_dev);
-+	struct {
-+		u16 chans[4];
-+		s64 timestamp __aligned(8);
-+	} scan;
-+	u16 value;
-+	int ret;
-+
-+	int i, j = 0;
-+
-+	for_each_set_bit(i, indio_dev->active_scan_mask, indio_dev->masklength) {
-+		ret = bh1745_read_value(data, BH1745_R_LSB + 2 * i, &value, 2);
-+		if (ret < 0)
-+			goto err;
-+		scan.chans[j++] = value;
-+	}
-+
-+	iio_push_to_buffers_with_timestamp(indio_dev, &scan,
-+					   iio_get_time_ns(indio_dev));
-+
-+err:
-+	iio_trigger_notify_done(indio_dev->trig);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int bh1745_setup_trigger(struct iio_dev *indio_dev)
-+{
-+	struct bh1745_data *data = iio_priv(indio_dev);
-+	int ret;
-+
-+	data->trig = devm_iio_trigger_alloc(indio_dev->dev.parent,
-+					    "%sdata-rdy-dev%d", indio_dev->name,
-+					    iio_device_id(indio_dev));
-+	if (!data->trig)
-+		return -ENOMEM;
-+
-+	data->trig->ops = &bh1745_trigger_ops;
-+	iio_trigger_set_drvdata(data->trig, indio_dev);
-+
-+	ret = devm_iio_trigger_register(&data->client->dev, data->trig);
-+	if (ret)
-+		return dev_err_probe(&data->client->dev, ret,
-+				     "Trigger registration failed\n");
-+
-+	ret = devm_iio_triggered_buffer_setup(indio_dev->dev.parent, indio_dev,
-+					      NULL, bh1745_trigger_handler,
-+					      NULL);
-+	if (ret)
-+		return dev_err_probe(&data->client->dev, ret,
-+				     "Triggered buffer setup failed\n");
-+
-+	ret = devm_request_threaded_irq(&data->client->dev, data->client->irq,
-+					NULL, bh1745_interrupt_handler,
-+					IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-+					"bh1745_interrupt", indio_dev);
-+	if (ret)
-+		return dev_err_probe(&data->client->dev, ret,
-+				     "Request for IRQ failed\n");
-+
-+	dev_info(&data->client->dev,
-+		 "Triggered buffer and IRQ setup successfully");
-+
-+	return ret;
-+}
-+
-+static int bh1745_init(struct bh1745_data *data)
-+{
-+	int ret;
-+
-+	mutex_init(&data->lock);
-+	data->mode_ctrl1 = 0;
-+	data->mode_ctrl2 = 0;
-+	data->interrupt = 0;
-+	data->int_src = BH1745_INT_SOURCE_RED;
-+
-+	ret = bh1745_reset(data);
-+	if (ret < 0) {
-+		dev_err(&data->client->dev, "Failed to reset sensor\n");
-+		return ret;
-+	}
-+
-+	ret = bh1745_power_on(data);
-+	if (ret < 0) {
-+		dev_err(&data->client->dev, "Failed to turn on sensor\n");
-+		return ret;
-+	}
-+
-+	return ret;
-+}
-+
-+static int bh1745_probe(struct i2c_client *client)
-+{
-+	int ret;
-+	struct bh1745_data *data;
-+	struct iio_dev *indio_dev;
-+
-+	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	data = iio_priv(indio_dev);
-+	i2c_set_clientdata(client, indio_dev);
-+	data->client = client;
-+	indio_dev->info = &bh1745_info;
-+	indio_dev->name = "bh1745";
-+	indio_dev->channels = bh1745_channels;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->num_channels = ARRAY_SIZE(bh1745_channels);
-+
-+	data->regmap = devm_regmap_init_i2c(client, &bh1745_regmap);
-+	if (IS_ERR(data->regmap))
-+		return dev_err_probe(&client->dev, PTR_ERR(data->regmap),
-+				     "Failed to initialize Regmap\n");
-+
-+	ret = bh1745_init(data);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (client->irq) {
-+		ret = bh1745_setup_trigger(indio_dev);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
-+	ret = devm_iio_device_register(&client->dev, indio_dev);
-+	if (ret < 0) {
-+		dev_err(&data->client->dev, "Failed to register device\n");
-+		return ret;
-+	}
-+
-+	dev_info(&data->client->dev, "BH1745 driver loaded\n");
-+
-+	return ret;
-+}
-+
-+static const struct i2c_device_id bh1745_idtable[] = {
-+	{ "bh1745" },
-+	{},
-+};
-+
-+static const struct of_device_id bh1745_of_match[] = {
-+	{
-+		.compatible = "rohm,bh1745",
-+	},
-+	{},
-+};
-+
-+MODULE_DEVICE_TABLE(i2c, bh1745_idtable);
-+
-+static struct i2c_driver bh1745_driver = {
-+	.driver = {
-+		.name = "bh1745",
-+		.of_match_table = bh1745_of_match,
-+	},
-+	.probe = bh1745_probe,
-+	.remove = bh1745_remove,
-+	.id_table = bh1745_idtable,
-+};
-+
-+module_i2c_driver(bh1745_driver);
-+MODULE_AUTHOR("Mudit Sharma <muditsharma.info@gmail.com>");
-+MODULE_DESCRIPTION("BH1745 colour sensor driver");
-+MODULE_LICENSE("GPL");
--- 
-2.43.0
+>
+> > > +{
+> > > +	struct mali_c55_resizer *rzr = container_of(sd, struct mali_c55_resizer,
+> > > +						    sd);
+>
+> A to_mali_c55_resizer() static inline function would be useful. Same for
+> other components, where applicable.
+>
+> > > +	unsigned int active_sink = UINT_MAX;
+> > > +	struct v4l2_mbus_framefmt *src_fmt;
+> > > +	struct v4l2_rect *crop, *compose;
+> > > +	struct v4l2_subdev_route *route;
+> > > +	unsigned int active_routes = 0;
+> > > +	struct v4l2_mbus_framefmt *fmt;
+> > > +	int ret;
+> > > +
+> > > +	ret = v4l2_subdev_routing_validate(sd, routing, 0);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	/* Only a single route can be enabled at a time. */
+> > > +	for_each_active_route(routing, route) {
+> > > +		if (++active_routes > 1) {
+> > > +			dev_err(rzr->mali_c55->dev,
+> > > +				"Only one route can be active");
+>
+> No kernel log message with a level higher than dev_dbg() from
+> user-controlled paths please, here and where applicable. This is to
+> avoid giving applications an easy way to flood the kernel log.
+>
+> > > +			return -EINVAL;
+> > > +		}
+> > > +
+> > > +		active_sink = route->sink_pad;
+> > > +	}
+> > > +	if (active_sink == UINT_MAX) {
+> > > +		dev_err(rzr->mali_c55->dev, "One route has to be active");
+> > > +		return -EINVAL;
+> > > +	}
+>
+> The recommended handling of invalid routing is to adjust the routing
+> table, not to return errors.
+>
 
+How should I adjust it ? The error here is due to the fact multiple
+routes are set as active, which one should I make active ? the first
+one ? Should I go and reset the flags in the subdev_route for the one
+that has to be made non-active ?
+
+> > > +
+> > > +	ret = v4l2_subdev_set_routing(sd, state, routing);
+> > > +	if (ret) {
+> > > +		dev_err(rzr->mali_c55->dev, "Failed to set routing\n");
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	fmt = v4l2_subdev_state_get_format(state, active_sink, 0);
+> > > +	crop = v4l2_subdev_state_get_crop(state, active_sink, 0);
+> > > +	compose = v4l2_subdev_state_get_compose(state, active_sink, 0);
+> > > +
+> > > +	fmt->width = MALI_C55_DEFAULT_WIDTH;
+> > > +	fmt->height = MALI_C55_DEFAULT_HEIGHT;
+> > > +	fmt->colorspace = V4L2_COLORSPACE_SRGB;
+>
+> There are other colorspace-related fields.
+>
+> > > +	fmt->field = V4L2_FIELD_NONE;
+>
+> I wonder if we should really update the sink pad format, or just
+> propagate it. If we update it, I think it should be set to defaults on
+> both sink pads, not just the active sink pad.
+>
+
+If only one route can be active, there will only be one state.stream_config
+entry for the active sink, not for the other one (see
+v4l2_subdev_init_stream_configs()), this mean I can't reset both sink
+formats ?
+
+> > > +
+> > > +	if (active_sink == MALI_C55_RZR_SINK_PAD) {
+> > > +		fmt->code = MEDIA_BUS_FMT_RGB121212_1X36;
+> > > +
+> > > +		crop->left = crop->top = 0;
+>
+> 		crop->left = 0;
+> 		crop->top = 0;
+>
+> > > +		crop->width = MALI_C55_DEFAULT_WIDTH;
+> > > +		crop->height = MALI_C55_DEFAULT_HEIGHT;
+> > > +
+> > > +		*compose = *crop;
+> > > +	} else {
+> > > +		fmt->code = MEDIA_BUS_FMT_SRGGB20_1X20;
+> > > +	}
+> > > +
+> > > +	/* Propagate the format to the source pad */
+> > > +	src_fmt = v4l2_subdev_state_get_format(state, MALI_C55_RZR_SOURCE_PAD,
+> > > +					       0);
+> > > +	*src_fmt = *fmt;
+> > > +
+> > > +	/* In the event this is the bypass pad the mbus code needs correcting */
+> > > +	if (active_sink == MALI_C55_RZR_SINK_BYPASS_PAD)
+> > > +		src_fmt->code = mali_c55_rzr_shift_mbus_code(src_fmt->code);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int mali_c55_rzr_enum_mbus_code(struct v4l2_subdev *sd,
+> > > +				       struct v4l2_subdev_state *state,
+> > > +				       struct v4l2_subdev_mbus_code_enum *code)
+> > > +{
+> > > +	struct v4l2_mbus_framefmt *sink_fmt;
+> > > +	const struct mali_c55_isp_fmt *fmt;
+> > > +	unsigned int index = 0;
+> > > +	u32 sink_pad;
+> > > +
+> > > +	switch (code->pad) {
+> > > +	case MALI_C55_RZR_SINK_PAD:
+> > > +		if (code->index)
+> > > +			return -EINVAL;
+> > > +
+> > > +		code->code = MEDIA_BUS_FMT_RGB121212_1X36;
+> > > +
+> > > +		return 0;
+> > > +	case MALI_C55_RZR_SOURCE_PAD:
+> > > +		sink_pad = mali_c55_rzr_get_active_sink(state);
+> > > +		sink_fmt = v4l2_subdev_state_get_format(state, sink_pad, 0);
+> > > +
+> > > +		/*
+> > > +		 * If the active route is from the Bypass sink pad, then the
+> > > +		 * source pad is a simple passthrough of the sink format,
+> > > +		 * downshifted to 16-bits.
+> > > +		 */
+> > > +
+> > > +		if (sink_pad == MALI_C55_RZR_SINK_BYPASS_PAD) {
+> > > +			if (code->index)
+> > > +				return -EINVAL;
+> > > +
+> > > +			code->code = mali_c55_rzr_shift_mbus_code(sink_fmt->code);
+> > > +			if (!code->code)
+> > > +				return -EINVAL;
+> > > +
+> > > +			return 0;
+> > > +		}
+> > > +
+> > > +		/*
+> > > +		 * If the active route is from the non-bypass sink then we can
+> > > +		 * select either RGB or conversion to YUV.
+> > > +		 */
+> > > +
+> > > +		if (code->index >= ARRAY_SIZE(rzr_non_bypass_src_fmts))
+> > > +			return -EINVAL;
+> > > +
+> > > +		code->code = rzr_non_bypass_src_fmts[code->index];
+> > > +
+> > > +		return 0;
+> > > +	case MALI_C55_RZR_SINK_BYPASS_PAD:
+> > > +		for_each_mali_isp_fmt(fmt) {
+> > > +			if (index++ == code->index) {
+> > > +				code->code = fmt->code;
+> > > +				return 0;
+> > > +			}
+> > > +		}
+> > > +
+> > > +		break;
+> > > +	}
+> > > +
+> > > +	return -EINVAL;
+> > > +}
+> > > +
+> > > +static int mali_c55_rzr_enum_frame_size(struct v4l2_subdev *sd,
+> > > +					struct v4l2_subdev_state *state,
+> > > +					struct v4l2_subdev_frame_size_enum *fse)
+> > > +{
+> > > +	if (fse->index)
+> > > +		return -EINVAL;
+> > > +
+> > > +	fse->max_width = MALI_C55_MAX_WIDTH;
+> > > +	fse->max_height = MALI_C55_MAX_HEIGHT;
+> > > +	fse->min_width = MALI_C55_MIN_WIDTH;
+> > > +	fse->min_height = MALI_C55_MIN_HEIGHT;
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int mali_c55_rzr_set_sink_fmt(struct v4l2_subdev *sd,
+> > > +				     struct v4l2_subdev_state *state,
+> > > +				     struct v4l2_subdev_format *format)
+> > > +{
+> > > +	struct v4l2_mbus_framefmt *fmt = &format->format;
+> > > +	struct v4l2_rect *rect;
+> > > +	unsigned int sink_pad;
+> > > +
+> > > +	/*
+> > > +	 * Clamp to min/max and then reset crop and compose rectangles to the
+> > > +	 * newly applied size.
+> > > +	 */
+> > > +	clamp_t(unsigned int, fmt->width,
+> > > +		MALI_C55_MIN_WIDTH, MALI_C55_MAX_WIDTH);
+
+also, clamp_t doens't clamp in place
+
+        fmt->width = clamp_t...
+
+> > > +	clamp_t(unsigned int, fmt->height,
+> > > +		MALI_C55_MIN_HEIGHT, MALI_C55_MAX_HEIGHT);
+>
+> Please check comments for other components related to the colorspace
+> fields, to decide how to handle them here.
+>
+> > > +
+> > > +	sink_pad = mali_c55_rzr_get_active_sink(state);
+> > > +	if (sink_pad == MALI_C55_RZR_SINK_PAD) {
+>
+> The selection here should depend on format->pad, not the active sink
+> pad.
+>
+> > > +		fmt->code = MEDIA_BUS_FMT_RGB121212_1X36;
+> > > +
+> > > +		rect = v4l2_subdev_state_get_crop(state, MALI_C55_RZR_SINK_PAD);
+> > > +		rect->left = 0;
+> > > +		rect->top = 0;
+> > > +		rect->width = fmt->width;
+> > > +		rect->height = fmt->height;
+> > > +
+> > > +		rect = v4l2_subdev_state_get_compose(state,
+> > > +						     MALI_C55_RZR_SINK_PAD);
+> > > +		rect->left = 0;
+> > > +		rect->top = 0;
+> > > +		rect->width = fmt->width;
+> > > +		rect->height = fmt->height;
+> > > +	} else {
+> > > +		/*
+> > > +		 * Make sure the media bus code is one of the supported
+> > > +		 * ISP input media bus codes.
+> > > +		 */
+> > > +		if (!mali_c55_isp_is_format_supported(fmt->code))
+> > > +			fmt->code = MALI_C55_DEFAULT_MEDIA_BUS_FMT;
+
+And DEFAULT_MEDIA_BUS_FMT is not one of the supported input media bus
+codes
+
+> > > +	}
+> > > +
+> > > +	*v4l2_subdev_state_get_format(state, sink_pad, 0) = *fmt;
+> > > +	*v4l2_subdev_state_get_format(state, MALI_C55_RZR_SOURCE_PAD, 0) = *fmt;
+>
+> Propagation to the source pad, however, should depend on the active
+> route. If format->pad is routed to the source pad, you should propagate,
+> otherwise, you shouldn't.
+>
+> > > +
+> > > +	return 0;
+
+I ended up with
+
+static int mali_c55_rsz_set_sink_fmt(struct v4l2_subdev *sd,
+				     struct v4l2_subdev_state *state,
+				     struct v4l2_subdev_format *format)
+{
+	struct v4l2_mbus_framefmt *fmt = &format->format;
+	unsigned int active_sink;
+	struct v4l2_rect *rect;
+
+	/*
+	 * Clamp to min/max and then reset crop and compose rectangles to the
+	 * newly applied size.
+	 */
+	fmt->width = clamp_t(unsigned int, fmt->width, MALI_C55_MIN_WIDTH,
+			     MALI_C55_MAX_WIDTH);
+	fmt->height = clamp_t(unsigned int, fmt->height, MALI_C55_MIN_HEIGHT,
+			      MALI_C55_MAX_HEIGHT);
+
+	rect = v4l2_subdev_state_get_crop(state, format->pad);
+	rect->left = 0;
+	rect->top = 0;
+	rect->width = fmt->width;
+	rect->height = fmt->height;
+
+	rect = v4l2_subdev_state_get_compose(state, format->pad);
+	rect->left = 0;
+	rect->top = 0;
+	rect->width = fmt->width;
+	rect->height = fmt->height;
+
+	if (format->pad == MALI_C55_RSZ_SINK_BYPASS_PAD) {
+		/*
+		 * Make sure the media bus code is one of the supported
+		 * ISP input media bus codes. Default it to SRGGB otherwise.
+		 */
+		if (!mali_c55_isp_is_format_supported(fmt->code))
+			fmt->code = MEDIA_BUS_FMT_SRGGB20_1X20;
+	} else {
+		fmt->code = MEDIA_BUS_FMT_RGB121212_1X36;
+	}
+
+	*v4l2_subdev_state_get_format(state, format->pad, 0) = *fmt;
+
+	/* If format->pad is routed to the source pad, propagate the format. */
+	active_sink = mali_c55_rsz_get_active_sink(state);
+	if (active_sink == format->pad) {
+
+		/* If the bypass route is used, downshift the code to 16bpp. */
+		if (active_sink == MALI_C55_RSZ_SINK_BYPASS_PAD)
+			fmt->code = mali_c55_rsz_shift_mbus_code(fmt->code);
+
+		*v4l2_subdev_state_get_format(state,
+					      MALI_C55_RSZ_SOURCE_PAD, 0) = *fmt;
+	}
+
+	return 0;
+}
+> > > +}
+> > > +
+> > > +static int mali_c55_rzr_set_source_fmt(struct v4l2_subdev *sd,
+> > > +				       struct v4l2_subdev_state *state,
+> > > +				       struct v4l2_subdev_format *format)
+> > > +{
+> > > +	struct mali_c55_resizer *rzr = container_of(sd, struct mali_c55_resizer,
+> > > +						    sd);
+> > > +	struct v4l2_mbus_framefmt *fmt = &format->format;
+> > > +	struct v4l2_mbus_framefmt *sink_fmt;
+> > > +	struct v4l2_rect *crop, *compose;
+> > > +	unsigned int sink_pad;
+> > > +	unsigned int i;
+> > > +
+> > > +	sink_pad = mali_c55_rzr_get_active_sink(state);
+> > > +	sink_fmt = v4l2_subdev_state_get_format(state, sink_pad, 0);
+> > > +	crop = v4l2_subdev_state_get_crop(state, sink_pad, 0);
+> > > +	compose = v4l2_subdev_state_get_compose(state, sink_pad, 0);
+> > > +
+> > > +	/* FR Bypass pipe. */
+> > > +
+> > > +	if (sink_pad == MALI_C55_RZR_SINK_BYPASS_PAD) {
+> > > +		/*
+> > > +		 * Format on the source pad is the same as the one on the
+> > > +		 * sink pad, downshifted to 16-bits.
+> > > +		 */
+> > > +		fmt->code = mali_c55_rzr_shift_mbus_code(sink_fmt->code);
+> > > +		if (!fmt->code)
+> > > +			return -EINVAL;
+> > > +
+> > > +		/* RAW bypass disables scaling and cropping. */
+> > > +		crop->top = compose->top = 0;
+> > > +		crop->left = compose->left = 0;
+> > > +		fmt->width = crop->width = compose->width = sink_fmt->width;
+> > > +		fmt->height = crop->height = compose->height = sink_fmt->height;
+>
+> I don't think this is right. This function sets the format on the source
+> pad. Subdevs should propagate formats from the sink to the source, not
+> the other way around.
+>
+> The only parameter that can be modified on the source pad (as far as I
+> understand) is the media bus code. In the bypass path, I understand it's
+> fixed, while in the other path, you can select between RGB and YUV. I
+> think the following code is what you need to implement this function.
+>
+> static int mali_c55_rzr_set_source_fmt(struct v4l2_subdev *sd,
+> 				       struct v4l2_subdev_state *state,
+> 				       struct v4l2_subdev_format *format)
+> {
+> 	struct mali_c55_resizer *rzr = container_of(sd, struct mali_c55_resizer,
+> 						    sd);
+> 	struct v4l2_mbus_framefmt *fmt;
+>
+> 	fmt = v4l2_subdev_state_get_format(state, format->pad);
+>
+> 	/* In the non-bypass path the output format can be selected. */
+> 	if (mali_c55_rzr_get_active_sink(state) == MALI_C55_RZR_SINK_PAD) {
+> 		unsigned int i;
+>
+> 		fmt->code = format->format.code;
+>
+> 		for (i = 0; i < ARRAY_SIZE(rzr_non_bypass_src_fmts); i++) {
+> 			if (fmt->code == rzr_non_bypass_src_fmts[i])
+> 				break;
+> 		}
+>
+> 		if (i == ARRAY_SIZE(rzr_non_bypass_src_fmts))
+> 			fmt->code = rzr_non_bypass_src_fmts[0];
+> 	}
+>
+> 	format->format = *fmt;
+>
+> 	return 0;
+> }
+
+Almost. Your proposal doesn't adjust format->format.width/height
+
+I think the following is more appropriate
+
+static int mali_c55_rsz_set_source_fmt(struct v4l2_subdev *sd,
+				       struct v4l2_subdev_state *state,
+				       struct v4l2_subdev_format *format)
+{
+	struct v4l2_mbus_framefmt *fmt = &format->format;
+	struct v4l2_mbus_framefmt *sink_fmt;
+	struct v4l2_rect *sink_compose;
+	unsigned int active_sink;
+
+	active_sink = mali_c55_rsz_get_active_sink(state);
+	sink_fmt = v4l2_subdev_state_get_format(state, active_sink, 0);
+	sink_compose = v4l2_subdev_state_get_compose(state, active_sink, 0);
+
+	/*
+	 * The source pad format sizes come directly from the active sink pad
+	 * compose rectangle.
+	 */
+	fmt->width = sink_compose->width;
+	fmt->height = sink_compose->height;
+
+	if (active_sink == MALI_C55_RSZ_SINK_PAD) {
+		/*
+		 * Regular processing pipe: RGB121212 can be color-space
+		 * converted to YUV101010.
+		 */
+		unsigned int i;
+
+		for (i = 0; i < ARRAY_SIZE(rsz_non_bypass_src_fmts); i++) {
+			if (fmt->code == rsz_non_bypass_src_fmts[i])
+				break;
+		}
+
+		if (i == ARRAY_SIZE(rsz_non_bypass_src_fmts))
+			fmt->code = MEDIA_BUS_FMT_RGB121212_1X36;
+	} else {
+		/*
+		 * Bypass pipe: the source format is the same as the bypass
+		 * sink pad downshifted to 16bpp.
+		 */
+		fmt->code = mali_c55_rsz_shift_mbus_code(sink_fmt->code);
+	}
+
+	*v4l2_subdev_state_get_format(state, MALI_C55_RSZ_SOURCE_PAD) = *fmt;
+
+	return 0;
+}
+
+I'll handle the colorspace fields as well
+
+>
+> > > +
+> > > +		*v4l2_subdev_state_get_format(state,
+> > > +					      MALI_C55_RZR_SOURCE_PAD) = *fmt;
+> > > +
+> > > +		return 0;
+> > > +	}
+> > > +
+> > > +	/* Regular processing pipe. */
+> > > +
+> > > +	for (i = 0; i < ARRAY_SIZE(rzr_non_bypass_src_fmts); i++) {
+> > > +		if (fmt->code == rzr_non_bypass_src_fmts[i])
+> > > +			break;
+> > > +	}
+> > > +
+> > > +	if (i == ARRAY_SIZE(rzr_non_bypass_src_fmts)) {
+> > > +		dev_dbg(rzr->mali_c55->dev,
+> > > +			"Unsupported mbus code 0x%x: using default\n",
+> > > +			fmt->code);
+>
+> I think you can drop this message.
+>
+> > > +		fmt->code = MEDIA_BUS_FMT_RGB121212_1X36;
+> > > +	}
+> > > +
+> > > +	/*
+> > > +	 * The source pad format size comes directly from the sink pad
+> > > +	 * compose rectangle.
+> > > +	 */
+> > > +	fmt->width = compose->width;
+> > > +	fmt->height = compose->height;
+> > > +
+> > > +	*v4l2_subdev_state_get_format(state, MALI_C55_RZR_SOURCE_PAD) = *fmt;
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int mali_c55_rzr_set_fmt(struct v4l2_subdev *sd,
+> > > +				struct v4l2_subdev_state *state,
+> > > +				struct v4l2_subdev_format *format)
+> > > +{
+> > > +	/*
+> > > +	 * On sink pads fmt is either fixed for the 'regular' processing
+> > > +	 * pad or a RAW format or 20-bit wide RGB/YUV format for the FR bypass
+> > > +	 * pad.
+> > > +	 *
+> > > +	 * On source pad sizes are the result of crop+compose on the sink
+> > > +	 * pad sizes, while the format depends on the active route.
+> > > +	 */
+> > > +
+> > > +	if (format->pad != MALI_C55_RZR_SOURCE_PAD)
+> > > +		return mali_c55_rzr_set_sink_fmt(sd, state, format);
+> > > +
+> > > +	return mali_c55_rzr_set_source_fmt(sd, state, format);
+>
+> Nitpicking,
+>
+> 	if (format->pad == MALI_C55_RZR_SOURCE_PAD)
+> 		return mali_c55_rzr_set_source_fmt(sd, state, format);
+>
+> 	return mali_c55_rzr_set_sink_fmt(sd, state, format);
+>
+> to match SOURCE_PAD and source_fmt.
+>
+
+Done at the expense a bit more verbose check
+
+	if (format->pad == MALI_C55_RSZ_SINK_PAD ||
+	    format->pad == MALI_C55_RSZ_SINK_BYPASS_PAD)
+		return mali_c55_rsz_set_sink_fmt(sd, state, format);
+
+> > > +}
+> > > +
+> > > +static int mali_c55_rzr_get_selection(struct v4l2_subdev *sd,
+> > > +				      struct v4l2_subdev_state *state,
+> > > +				      struct v4l2_subdev_selection *sel)
+> > > +{
+> > > +	if (sel->pad != MALI_C55_RZR_SINK_PAD)
+> > > +		return -EINVAL;
+> > > +
+> > > +	if (sel->target != V4L2_SEL_TGT_CROP &&
+> > > +	    sel->target != V4L2_SEL_TGT_COMPOSE)
+> > > +		return -EINVAL;
+> > > +
+> > > +	sel->r = sel->target == V4L2_SEL_TGT_CROP
+> > > +	       ? *v4l2_subdev_state_get_crop(state, MALI_C55_RZR_SINK_PAD)
+> > > +	       : *v4l2_subdev_state_get_compose(state, MALI_C55_RZR_SINK_PAD);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int mali_c55_rzr_set_selection(struct v4l2_subdev *sd,
+> > > +				      struct v4l2_subdev_state *state,
+> > > +				      struct v4l2_subdev_selection *sel)
+> > > +{
+> > > +	struct mali_c55_resizer *rzr = container_of(sd, struct mali_c55_resizer,
+> > > +						    sd);
+> > > +	struct v4l2_mbus_framefmt *source_fmt;
+> > > +	struct v4l2_mbus_framefmt *sink_fmt;
+> > > +	struct v4l2_rect *crop, *compose;
+> > > +
+> > > +	if (sel->pad != MALI_C55_RZR_SINK_PAD)
+> > > +		return -EINVAL;
+> > > +
+> > > +	if (sel->target != V4L2_SEL_TGT_CROP &&
+> > > +	    sel->target != V4L2_SEL_TGT_COMPOSE)
+> > > +		return -EINVAL;
+> > > +
+> > > +	source_fmt = v4l2_subdev_state_get_format(state,
+> > > +						  MALI_C55_RZR_SOURCE_PAD);
+> > > +	sink_fmt = v4l2_subdev_state_get_format(state, MALI_C55_RZR_SINK_PAD);
+> > > +	crop = v4l2_subdev_state_get_crop(state, MALI_C55_RZR_SINK_PAD);
+> > > +	compose = v4l2_subdev_state_get_compose(state, MALI_C55_RZR_SINK_PAD);
+> > > +
+> > > +	/* RAW bypass disables crop/scaling. */
+> > > +	if (mali_c55_format_is_raw(source_fmt->code)) {
+> > > +		crop->top = compose->top = 0;
+> > > +		crop->left = compose->left = 0;
+> > > +		crop->width = compose->width = sink_fmt->width;
+> > > +		crop->height = compose->height = sink_fmt->height;
+> > > +
+> > > +		sel->r = sel->target == V4L2_SEL_TGT_CROP ? *crop : *compose;
+> > > +
+> > > +		return 0;
+> > > +	}
+> > > +
+> > > +	/* During streaming, it is allowed to only change the crop rectangle. */
+> > > +	if (rzr->streaming && sel->target != V4L2_SEL_TGT_CROP)
+> > > +		return -EINVAL;
+> > > +
+> > > +	 /*
+> > > +	  * Update the desired target and then clamp the crop rectangle to the
+> > > +	  * sink format sizes and the compose size to the crop sizes.
+> > > +	  */
+> > > +	if (sel->target == V4L2_SEL_TGT_CROP)
+> > > +		*crop = sel->r;
+> > > +	else
+> > > +		*compose = sel->r;
+> > > +
+> > > +	clamp_t(unsigned int, crop->left, 0,  sink_fmt->width);
+> > > +	clamp_t(unsigned int, crop->top, 0,  sink_fmt->height);
+> > > +	clamp_t(unsigned int, crop->width, MALI_C55_MIN_WIDTH,
+> > > +		sink_fmt->width - crop->left);
+> > > +	clamp_t(unsigned int, crop->height, MALI_C55_MIN_HEIGHT,
+> > > +		sink_fmt->height - crop->top);
+> > > +
+> > > +	if (rzr->streaming) {
+> > > +		/*
+> > > +		 * Apply at runtime a crop rectangle on the resizer's sink only
+> > > +		 * if it doesn't require re-programming the scaler output sizes
+> > > +		 * as it would require changing the output buffer sizes as well.
+> > > +		 */
+> > > +		if (sel->r.width < compose->width ||
+> > > +		    sel->r.height < compose->height)
+> > > +			return -EINVAL;
+> > > +
+> > > +		*crop = sel->r;
+> > > +		mali_c55_rzr_program(rzr, state);
+> > > +
+> > > +		return 0;
+> > > +	}
+> > > +
+> > > +	compose->left = 0;
+> > > +	compose->top = 0;
+> > > +	clamp_t(unsigned int, compose->left, 0,  sink_fmt->width);
+> > > +	clamp_t(unsigned int, compose->top, 0,  sink_fmt->height);
+> > > +	clamp_t(unsigned int, compose->width, crop->width / 8, crop->width);
+> > > +	clamp_t(unsigned int, compose->height, crop->height / 8, crop->height);
+> > > +
+> > > +	sel->r = sel->target == V4L2_SEL_TGT_CROP ? *crop : *compose;
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int mali_c55_rzr_set_routing(struct v4l2_subdev *sd,
+> > > +				    struct v4l2_subdev_state *state,
+> > > +				    enum v4l2_subdev_format_whence which,
+> > > +				    struct v4l2_subdev_krouting *routing)
+> > > +{
+> > > +	if (which == V4L2_SUBDEV_FORMAT_ACTIVE &&
+> > > +	    media_entity_is_streaming(&sd->entity))
+> > > +		return -EBUSY;
+> > > +
+> > > +	return __mali_c55_rzr_set_routing(sd, state, routing);
+> > > +}
+> > > +
+> > > +static const struct v4l2_subdev_pad_ops mali_c55_resizer_pad_ops = {
+> > > +	.enum_mbus_code		= mali_c55_rzr_enum_mbus_code,
+> > > +	.enum_frame_size	= mali_c55_rzr_enum_frame_size,
+> > > +	.get_fmt		= v4l2_subdev_get_fmt,
+> > > +	.set_fmt		= mali_c55_rzr_set_fmt,
+> > > +	.get_selection		= mali_c55_rzr_get_selection,
+> > > +	.set_selection		= mali_c55_rzr_set_selection,
+> > > +	.set_routing		= mali_c55_rzr_set_routing,
+> > > +};
+> > > +
+> > > +void mali_c55_rzr_start_stream(struct mali_c55_resizer *rzr)
+>
+> Could this be handled through the .enable_streams() and
+> .disable_streams() operations ? They ensure that the stream state stored
+> internal is correct. That may not matter much today, but I think it will
+> become increasingly important in the future for the V4L2 core.
+>
+> > > +{
+> > > +	struct mali_c55 *mali_c55 = rzr->mali_c55;
+> > > +	struct v4l2_subdev *sd = &rzr->sd;
+> > > +	struct v4l2_subdev_state *state;
+> > > +	unsigned int sink_pad;
+> > > +
+> > > +	state = v4l2_subdev_lock_and_get_active_state(sd);
+> > > +
+> > > +	sink_pad = mali_c55_rzr_get_active_sink(state);
+> > > +	if (sink_pad == MALI_C55_RZR_SINK_BYPASS_PAD) {
+> > > +		/* Bypass FR pipe processing if the bypass route is active. */
+> > > +		mali_c55_update_bits(mali_c55, MALI_C55_REG_ISP_RAW_BYPASS,
+> > > +				     MALI_C55_ISP_RAW_BYPASS_FR_BYPASS_MASK,
+> > > +				     MALI_C55_ISP_RAW_BYPASS_RAW_FR_BYPASS);
+> > > +		goto unlock_state;
+> > > +	}
+> > > +
+> > > +	/* Disable bypass and use regular processing. */
+> > > +	mali_c55_update_bits(mali_c55, MALI_C55_REG_ISP_RAW_BYPASS,
+> > > +			     MALI_C55_ISP_RAW_BYPASS_FR_BYPASS_MASK, 0);
+> > > +	mali_c55_rzr_program(rzr, state);
+> > > +
+> > > +unlock_state:
+> > > +	rzr->streaming = true;
+>
+> And hopefully you'll be able to replace this with
+> v4l2_subdev_is_streaming(), introduced in "[PATCH v6 00/11] media:
+> subdev: Improve stream enable/disable machinery" (Sakari has sent a pull
+> request for v6.11 yesterday).
+>
+> > > +	v4l2_subdev_unlock_state(state);
+> > > +}
+> > > +
+> > > +void mali_c55_rzr_stop_stream(struct mali_c55_resizer *rzr)
+> > > +{
+> > > +	struct v4l2_subdev *sd = &rzr->sd;
+> > > +	struct v4l2_subdev_state *state;
+> > > +
+> > > +	state = v4l2_subdev_lock_and_get_active_state(sd);
+> > > +	rzr->streaming = false;
+> > > +	v4l2_subdev_unlock_state(state);
+> > > +}
+> > > +
+> > > +static const struct v4l2_subdev_ops mali_c55_resizer_ops = {
+> > > +	.pad	= &mali_c55_resizer_pad_ops,
+> > > +};
+> > > +
+> > > +static int mali_c55_rzr_init_state(struct v4l2_subdev *sd,
+> > > +				   struct v4l2_subdev_state *state)
+> > > +{
+> > > +	struct mali_c55_resizer *rzr = container_of(sd, struct mali_c55_resizer,
+> > > +						    sd);
+> > > +	struct v4l2_subdev_krouting routing = { };
+> > > +	struct v4l2_subdev_route *routes;
+> > > +	unsigned int i;
+> > > +	int ret;
+> > > +
+> > > +	routes = kcalloc(rzr->num_routes, sizeof(*routes), GFP_KERNEL);
+> > > +	if (!routes)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	for (i = 0; i < rzr->num_routes; ++i) {
+> > > +		struct v4l2_subdev_route *route = &routes[i];
+> > > +
+> > > +		route->sink_pad = i
+> > > +				? MALI_C55_RZR_SINK_BYPASS_PAD
+> > > +				: MALI_C55_RZR_SINK_PAD;
+> > > +		route->source_pad = MALI_C55_RZR_SOURCE_PAD;
+> > > +		if (route->sink_pad != MALI_C55_RZR_SINK_BYPASS_PAD)
+> > > +			route->flags = V4L2_SUBDEV_ROUTE_FL_ACTIVE;
+> > > +	}
+> > > +
+> > > +	routing.num_routes = rzr->num_routes;
+> > > +	routing.routes = routes;
+> > > +
+> > > +	ret = __mali_c55_rzr_set_routing(sd, state, &routing);
+> > > +	kfree(routes);
+> > > +
+> > > +	return ret;
+>
+> I think this could be simplified.
+>
+> 	struct v4l2_subdev_route routes[2] = {
+> 		{
+> 			.sink_pad = MALI_C55_RZR_SINK_PAD,
+> 			.source_pad = MALI_C55_RZR_SOURCE_PAD,
+> 			.flags = V4L2_SUBDEV_ROUTE_FL_ACTIVE,
+> 		}, {
+> 			.sink_pad = MALI_C55_RZR_SINK_BYPASS_PAD,
+> 			.source_pad = MALI_C55_RZR_SOURCE_PAD,
+> 		},
+> 	};
+> 	struct v4l2_subdev_krouting routing = {
+> 		.num_routes = rzr->num_routes,
+> 		.routes = routes,
+> 	};
+>
+> 	return __mali_c55_rzr_set_routing(sd, state, &routing);
+>
+> > > +}
+> > > +
+> > > +static const struct v4l2_subdev_internal_ops mali_c55_resizer_internal_ops = {
+> > > +	.init_state = mali_c55_rzr_init_state,
+> > > +};
+> > > +
+> > > +static void mali_c55_resizer_program_coefficients(struct mali_c55 *mali_c55,
+> > > +						  unsigned int index)
+> > > +{
+> > > +	const unsigned int scaler_filt_coefmem_addrs[][2] = {
+> > > +		[MALI_C55_RZR_FR] = {
+> > > +			0x034A8, /* hfilt */
+> > > +			0x044A8  /* vfilt */
+> >
+> > Lowercase hex constants.
+>
+> And addresses belong to the mali-c55-registers.h file.
+>
+> > > +		},
+> > > +		[MALI_C55_RZR_DS] = {
+> > > +			0x014A8, /* hfilt */
+> > > +			0x024A8  /* vfilt */
+> > > +		},
+> > > +	};
+> > > +	unsigned int haddr = scaler_filt_coefmem_addrs[index][0];
+> > > +	unsigned int vaddr = scaler_filt_coefmem_addrs[index][1];
+> > > +	unsigned int i, j;
+> > > +
+> > > +	for (i = 0; i < MALI_C55_RESIZER_COEFS_NUM_BANKS; i++) {
+> > > +		for (j = 0; j < MALI_C55_RESIZER_COEFS_NUM_ENTRIES; j++) {
+> > > +			mali_c55_write(mali_c55, haddr,
+> > > +				mali_c55_scaler_h_filter_coefficients[i][j]);
+> > > +			mali_c55_write(mali_c55, vaddr,
+> > > +				mali_c55_scaler_v_filter_coefficients[i][j]);
+> > > +
+> > > +			haddr += sizeof(u32);
+> > > +			vaddr += sizeof(u32);
+> > > +		}
+> > > +	}
+>
+> How about memcpy_toio() ? I suppose this function isn't
+> performance sensitive, so maybe usage of mali_c55_write() is better from
+> a consistency point of view.
+>
+> > > +}
+> > > +
+> > > +int mali_c55_register_resizers(struct mali_c55 *mali_c55)
+> > > +{
+> > > +	unsigned int i;
+> > > +	int ret;
+> > > +
+> > > +	for (i = 0; i < MALI_C55_NUM_RZRS; ++i) {
+>
+> Moving the inner content to a separate mali_c55_register_resizer()
+> function would increase readability I think, and remove usage of gotos.
+> I would probably do the same for unregistration too, for consistency.
+>
+> > > +		struct mali_c55_resizer *rzr = &mali_c55->resizers[i];
+> > > +		struct v4l2_subdev *sd = &rzr->sd;
+> > > +		unsigned int num_pads = MALI_C55_RZR_NUM_PADS;
+> > > +
+> > > +		rzr->id = i;
+> > > +		rzr->streaming = false;
+> > > +
+> > > +		if (rzr->id == MALI_C55_RZR_FR)
+> > > +			rzr->cap_dev = &mali_c55->cap_devs[MALI_C55_CAP_DEV_FR];
+> > > +		else
+> > > +			rzr->cap_dev = &mali_c55->cap_devs[MALI_C55_CAP_DEV_DS];
+> > > +
+> > > +		mali_c55_resizer_program_coefficients(mali_c55, i);
+>
+> Should this be done at stream start, given that power may be cut off
+> between streaming sessions ?
+>
+> > > +
+> > > +		v4l2_subdev_init(sd, &mali_c55_resizer_ops);
+> > > +		sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE
+> > > +			     | V4L2_SUBDEV_FL_STREAMS;
+> > > +		sd->entity.function = MEDIA_ENT_F_PROC_VIDEO_SCALER;
+> > > +		sd->internal_ops = &mali_c55_resizer_internal_ops;
+> > > +		snprintf(sd->name, ARRAY_SIZE(sd->name), "%s %s",
+>
+> 		snprintf(sd->name, ARRAY_SIZE(sd->name), "%s resizer %s",
+>
+> and drop the "resizer " prefix from mali_c55_resizer_names. You can also
+> make mali_c55_resizer_names a local static const variable.
+>
+> > > +			 MALI_C55_DRIVER_NAME, mali_c55_resizer_names[i]);
+> > > +
+> > > +		rzr->pads[MALI_C55_RZR_SINK_PAD].flags = MEDIA_PAD_FL_SINK;
+> > > +		rzr->pads[MALI_C55_RZR_SOURCE_PAD].flags = MEDIA_PAD_FL_SOURCE;
+> > > +
+> > > +		/* Only the FR pipe has a bypass pad. */
+> > > +		if (rzr->id == MALI_C55_RZR_FR) {
+> > > +			rzr->pads[MALI_C55_RZR_SINK_BYPASS_PAD].flags =
+> > > +							MEDIA_PAD_FL_SINK;
+> > > +			rzr->num_routes = 2;
+> > > +		} else {
+> > > +			num_pads -= 1;
+> > > +			rzr->num_routes = 1;
+> > > +		}
+> > > +
+> > > +		ret = media_entity_pads_init(&sd->entity, num_pads, rzr->pads);
+> > > +		if (ret)
+> > > +			return ret;
+> > > +
+> > > +		ret = v4l2_subdev_init_finalize(sd);
+> > > +		if (ret)
+> > > +			goto err_cleanup;
+> > > +
+> > > +		ret = v4l2_device_register_subdev(&mali_c55->v4l2_dev, sd);
+> > > +		if (ret)
+> > > +			goto err_cleanup;
+> > > +
+> > > +		rzr->mali_c55 = mali_c55;
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +
+> > > +err_cleanup:
+> > > +	for (; i >= 0; --i) {
+> > > +		struct mali_c55_resizer *rzr = &mali_c55->resizers[i];
+> > > +		struct v4l2_subdev *sd = &rzr->sd;
+> > > +
+> > > +		v4l2_subdev_cleanup(sd);
+> > > +		media_entity_cleanup(&sd->entity);
+> > > +	}
+> > > +
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +void mali_c55_unregister_resizers(struct mali_c55 *mali_c55)
+> > > +{
+> > > +	unsigned int i;
+> > > +
+> > > +	for (i = 0; i < MALI_C55_NUM_RZRS; i++) {
+> > > +		struct mali_c55_resizer *resizer = &mali_c55->resizers[i];
+> > > +
+> > > +		if (!resizer->mali_c55)
+> > > +			continue;
+> > > +
+> > > +		v4l2_device_unregister_subdev(&resizer->sd);
+> > > +		v4l2_subdev_cleanup(&resizer->sd);
+> > > +		media_entity_cleanup(&resizer->sd.entity);
+> > > +	}
+> > > +}
 
