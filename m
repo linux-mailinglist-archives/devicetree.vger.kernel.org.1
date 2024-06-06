@@ -1,52 +1,76 @@
-Return-Path: <devicetree+bounces-73188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D3388FE2FC
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:35:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7832C8FE31E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:38:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 584CB1C255D3
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:35:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24334287991
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:38:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FA2A14D717;
-	Thu,  6 Jun 2024 09:34:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4E36152783;
+	Thu,  6 Jun 2024 09:37:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=leemhuis.info header.i=@leemhuis.info header.b="ErXUHyxM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p3aYE7m7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de [80.237.130.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01EF619D8B5;
-	Thu,  6 Jun 2024 09:34:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.237.130.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B63B1514DB
+	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 09:37:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717666495; cv=none; b=jrbU4rzlb3CyaAheAPOm1umMZSUSN7kFOTvQ7iFQ3/ZtSoYZ4vnGXV1XvccDoUG5L+ITb6xvW6YyEZowpQ0xj6QN90LuWLEPXt0cNUedVXYc8HjWz1Z19Dx2xl4YIoBO67sK7ehK7i0fyDJsT0iKlNQcotp6GHSpbey7XaXFLYs=
+	t=1717666656; cv=none; b=c2gjoe9l0gJnH/wN2pa19e3pGWUS57GMXKcKAXaswM+kyLQv7fGSA/YjptXMsUtrJ9/JrHkprU+FQSWuTCXu9MQaHlVmfx4vJAdEebMEvXg4GP8w6TZsNPse6sx1js71sizTw+heTxIeRdoo16Bx7Kh7gq+lMKKQt0N/hNwkNw4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717666495; c=relaxed/simple;
-	bh=O6QxW/6BMIUtD8lYbUc2Pu0nN4KzJrdPqakO9O5geSg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qO82bkKWVHdyrM709N6cKY0Axmaq4NjIqdz7G5zo0dRh37YAudlpqzAYDY/Iq9JkeAP9ZG0CKbl/gNyv6siD52QiFknKATBJ8ABbTEbHv5UaxYxd+zM/MbBbk61SEbDHxys71NE6/zcjbr1HaV+DBTak/oKNDUQ++4ASiMjtHB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=leemhuis.info; spf=pass smtp.mailfrom=leemhuis.info; dkim=pass (2048-bit key) header.d=leemhuis.info header.i=@leemhuis.info header.b=ErXUHyxM; arc=none smtp.client-ip=80.237.130.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=leemhuis.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=leemhuis.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=leemhuis.info; s=he214686; h=Content-Transfer-Encoding:Content-Type:
-	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:In-Reply-To:
-	References; bh=kmeK62SoIdnIVPwJAA1ZxGyQbY0oIueNKztx6sdjWRM=; t=1717666493;
-	x=1718098493; b=ErXUHyxMmVjARkDr/9YwQ/s6qYvBhon3JXt6cr7AB6nnXZyvt1uJgQZphXfF6
-	mNTNhvLniodCtNFkA+slnwcYBOfZ+oRR7YM9+fNQEqmsXMcjzz0w/kVT/LLlcCpFvclhxcUHeHsLN
-	Uet5d4zgzfDZv6lNjyc+aA1lMEjQ3zbQtbiotrt5X984PDE/Vtg98LfnpNX0B7yN59zvRAqL4lcGk
-	54pRgkmnDxrlKDcYLDQGzxxLSHJn2k3OG86rZs6kJGR9XjMbEyF3Nas3+IAxhr1catQUmWnmOa+1a
-	imp4cGrDQGGeF8tlWnQUo/RtGxwcj5sgpUYvYHBgsjNpSYlAIw==;
-Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
-	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
-	id 1sF9W3-0004z8-HD; Thu, 06 Jun 2024 11:34:39 +0200
-Message-ID: <cee5e4ee-3d67-4eba-a790-c0c016cee937@leemhuis.info>
-Date: Thu, 6 Jun 2024 11:34:38 +0200
+	s=arc-20240116; t=1717666656; c=relaxed/simple;
+	bh=SBSh8VpUg7A3L7YfRkydikNEtcWMtr5sTQZUFXJELxQ=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=hMZ+lwgnFEleVhNdYd9k6b7dXkwrWrKZU8QfQvT9W9DJnpuJpc5/PnteeJPYQg8T0n02aag29/Wiz3lTZ8utwTv2a/1w7pnZRNRpW0WkfUcma8Be+TZsLHUECHOWcF5LeKAie8a7c6KUn9+vsVN8WO2AvRYyM52j5QvLHTYn9K8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=p3aYE7m7; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4214f803606so8112305e9.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2024 02:37:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717666653; x=1718271453; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RCQdvPHC+1D0KbLKcaQqh85703XDLJL62lsU4LBVhIk=;
+        b=p3aYE7m79XK/6LchN9ygEIIbYeGt3vgvweaNd481iNZqTBpUPtHt+VwOLznVsI05Xa
+         Gy8cO3EQffdi/V5IGiBuJoQ+I/Pc8pvVbp/5tzRl6cfKbUmw4CCchwknQbNTEXkBu6cb
+         MeuaVxMp+K8mPRTVzvUpSrjtuXCbk918Xsp4DHtZ7oYuseBQ6ks+YB9Ey9UGMZEWMfNt
+         ZI3irMUKmfsEqc+l6cmsh4nXQrL2/HZwJLPIUJHga9WX9/BkLDFdurxawzizwhm/2iMj
+         6iY6i7B3XRUPtDOqgQWnBkYz94JIdnEF9cNFd+tQ1DFIdsHenzdrybIKykRvmyWbuAiO
+         dNZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717666653; x=1718271453;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=RCQdvPHC+1D0KbLKcaQqh85703XDLJL62lsU4LBVhIk=;
+        b=ldTxuFsrYiUH+/9gQz11QsxPzjXlD8ifAWdi//i5nRqgSK64YqM1D6+xzbbIxCdxKu
+         CZDEc9kHRFi3p6SP0qdLwszm7e8IUBbP3+DoL3iigO2DsP+1yEii4jgQalsZH1nU6qH3
+         /QdQbVQGoyn8SkEOKEkuoTKJ3lc9mLbJLArjRBJ0JT8A+R/I3VVU/wziAoC5GaN5ykeP
+         alvADhC0QsYKd4cnZaBoWACExK6NClWnTctUVU5xx5O+cfyykHUS/JCUC4Xnk9x0PdJh
+         267WNYJ3UK7JQFvPSgGxYklmswPw809FPriGUmG3RAVFC9i1RRJI8gtt0l/yeyCLM8mO
+         +Cqw==
+X-Forwarded-Encrypted: i=1; AJvYcCX86rGTBnbfQ90T+B4OAhhNI7vqKZYStkwynJHaSVy4pbG+TSroemTEf91ecfTjnm1IS0XmQSamDfn+DX/Ge2/LH1agGtLS1ZiGqw==
+X-Gm-Message-State: AOJu0Yzy4PflAOJlWB1aF+sKIPhaFH8Achdn7wnoqYm19KujvnnMIGmQ
+	s03Ch7EP6jNfmNPDatszhSawuRUReOnaAXWSNGVKCfz3QF0QnmsZfEIvVJRmczk=
+X-Google-Smtp-Source: AGHT+IG6HdUEIpt883LUTHjTSr7jGD/461VkUD1BosW8cmHsPaeNl6UmT40F+K7TVSbyuBhGfQv37w==
+X-Received: by 2002:a05:600c:c3:b0:421:48ad:60b3 with SMTP id 5b1f17b1804b1-4215634db50mr44930755e9.34.1717666653403;
+        Thu, 06 Jun 2024 02:37:33 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:22fd:4ae6:287f:17f2? ([2a01:e0a:982:cbb0:22fd:4ae6:287f:17f2])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215c2c7e8fsm15503555e9.38.2024.06.06.02.37.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Jun 2024 02:37:33 -0700 (PDT)
+Message-ID: <2dc1fdec-7673-4462-abe1-fecf8e3e826b@linaro.org>
+Date: Thu, 6 Jun 2024 11:37:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,82 +78,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
-To: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
- Paolo Abeni <pabeni@redhat.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Daniel Golle <daniel@makrotopia.org>,
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: panel: Add WL-355608-A8
+ panel
+To: Maxime Ripard <mripard@kernel.org>, Ryan Walklin <ryan@testtoast.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- frank-w@public-files.de, Rob Herring <robh@kernel.org>,
- Linux regressions mailing list <regressions@lists.linux.dev>,
- Frank Wunderlich <linux@fw-web.de>
-References: <20240516204847.171029-1-linux@fw-web.de>
- <a29dd7d1-40a8-4c88-99aa-651a3305b640@arinc9.com>
- <5AEE5668-0C8E-4EE4-A398-66CB99DF5650@public-files.de>
- <43aacd9d-b851-4100-8ccc-878ac6ae10f8@leemhuis.info>
- <698cf562-1ca9-4aa3-be7e-a1474b612c5b@leemhuis.info>
- <0cba095c-3d55-416a-a7ad-b359129731cf@arinc9.com>
- <714da201-654b-4183-8e5e-8ff0b64fe621@leemhuis.info>
- <0ae387c1-31b2-4e87-aa7d-f98e3c90e985@arinc9.com>
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-Content-Language: en-US, de-DE
-In-Reply-To: <0ae387c1-31b2-4e87-aa7d-f98e3c90e985@arinc9.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1717666493;3a8ac617;
-X-HE-SMSGID: 1sF9W3-0004z8-HD
+ <conor+dt@kernel.org>, Hironori KIKUCHI <kikuchan98@gmail.com>,
+ Chris Morgan <macroalpha82@gmail.com>,
+ Andre Przywara <andre.przywara@arm.com>, John Watts <contact@jookia.org>,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20240530211415.44201-1-ryan@testtoast.com>
+ <20240530211415.44201-3-ryan@testtoast.com>
+ <20240606-intelligent-aromatic-magpie-80a7a4@houat>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240606-intelligent-aromatic-magpie-80a7a4@houat>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 06.06.24 11:01, Arınç ÜNAL wrote:
-> On 06/06/2024 11.26, Thorsten Leemhuis wrote:
->> On 31.05.24 08:10, Arınç ÜNAL wrote:
->>> I had already submitted a patch series that would've prevented this
->>> issue back in 14 March 2024 [1]. I've asked numerous times for the patch
->>> series to be applied [2][3][4][5].
->>>> Eventually Daniel asked for some changes [6]. But I won't have time
->>>> to do
->>> that anytime soon and I think the patch series is good enough to be
->>> applied
->>> as is.
->>
->> Then I guess we need some other way to resolve this in mainline to unfix
+On 06/06/2024 11:32, Maxime Ripard wrote:
+> On Fri, May 31, 2024 at 09:12:14AM GMT, Ryan Walklin wrote:
+>> The WL-355608-A8 is a 3.5" 640x480@60Hz RGB LCD display used in a
+>> number of handheld gaming devices made by Anbernic. By consensus a
+>> vendor prefix is not provided as the panel OEM is unknown.
 > 
-> I don't believe we need another way to resolve it. I've already told that
-> the patch series is good enough to be applied as is and I don't see any
-> responses with reasons against this here.
+> Where has this consensus been found?
 > 
->> Frank's device. The two obvious options are afaics:
->>
->> * revert the culprit (868ff5f4944aa9 ("net: dsa: mt7530-mdio: read PHY
->> address of switch from device tree")) and reapply it in a later cycle
+> I had a look at the previous discussions, and I can't find any consensus
+> being reached there. And for that kind of thing, having the ack or
+> review of any of the DT maintainers would have been great.
+
+There was a consensus with Conor, this is why he acked v2, see
+https://lore.kernel.org/all/20240525-velvet-citable-a45dd06847a7@spud/
+
+```
+I think if we genuinely do not know what the vendor is then we just
+don't have a prefix.
+```
+
+I agree with Conor so I applied the patchset after Connor reviewed it and the comment was fixed in v3:
+https://lore.kernel.org/all/20240530-satchel-playgroup-e8aa6937b8b9@spud/
+
 > 
-> Sorry, no. There's nothing wrong with that patch. The actual cause of this
-> issue is the patch that introduced this device tree source file with the
-> wrong PHY address.
-
-Was that also merged for 6.10? Because if not, then what matters here
-afaics is what patch exposed the problem. Of course ideally we wound fix
-that problem -- but if nobody takes care of that any time soon it might
-come down to a revert of the patch that exposed the problem. At least
-that how Linus handles these things afaics.
-
->> * apply Frank's patch (or an improved one) in this thread (and if needed
->> revert it when some better changes emerge.
->>
->> Arınç ÜNAL, could you please comment on that and ideally handle the
->> necessary tasks, as it's your patch that causes the regression.
+> For this kind of cases, we usually use the device it's attached to as
+> the vendor, so anbernic in this case. Can you send a followup patch?
 > 
-> I don't see any necessary tasks for me to handle. AngeloGioacchino Del
-> Regno whom is the only person I know that maintains these device tree
-> source files can simply apply the patch series that I have already
-> submitted and we can all move on. I haven't heard from them whilst the
-> patch had been waiting since March. So I'm not sure who's going to apply
-> this patch, and to which tree.
+> Maxime
 
-AngeloGioacchino Del Regno, if you have a minute, could you please
-comment if merging those changes for 6.10 is an option?
+Neil
 
-Ciao, Thorsten
 
