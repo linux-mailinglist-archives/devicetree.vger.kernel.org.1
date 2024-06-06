@@ -1,74 +1,64 @@
-Return-Path: <devicetree+bounces-73108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F174A8FE08A
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 10:07:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D30F28FE094
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 10:09:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 792D71F24414
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:07:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 871F61F25585
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:09:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CE0D13AD38;
-	Thu,  6 Jun 2024 08:07:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0639913C3CA;
+	Thu,  6 Jun 2024 08:09:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pDk1KCcs"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="sVreaeaK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DDF412F5A6
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 08:07:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A6F413AD3A;
+	Thu,  6 Jun 2024 08:09:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717661223; cv=none; b=NqrKHaB1UHSRmo8ENpdMhBA9VtrqzCSGCt7RH8XKlqHrDpyecduhEmh+JcZ449IJhtYK12MN4ZAoH4EDWcamgbF7jUEIj0IWX31h4Lqa9cNWSxRhtNlFBFPzXXkHKuKMnJckqSZFktTcaGGettkdPdklRjmkE6dAUGByrnMm3nU=
+	t=1717661365; cv=none; b=ucB2oK+AyLxtW8rdW2PgkX22ujy4ooWl0eA66aFPxW4TnQhQfPmwz/3S4TMtgBqkSVxo+YgvGOL6FEChUl/9P8O9e+JrMtR4bV7h5//2sDPW8viiPovPPTKIrOw6WvkdE4163XJBZLeMTouxmeShc3XXM5X5PSRHKQUVJmrEHQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717661223; c=relaxed/simple;
-	bh=1y0aJBMNzzU/0LQjfOvpee00DXAiGgdtWGL31QFkJrc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=dSqhM+1Vr5xV/nFMODWngrX7k85iUWXVj7Gd/E4bmQoBc3uQK5i1zm1d/vIcFR6Wg8EPVqe1Hi3Zhb+AWONuAjJR17cBQ9SEkJazWcp7GtPrQCq9Nj5mGWrX3i+nDmmQMEJXEdph3oMdWGh+nZHRtx1aGyKuGhcglwmiTSEgvak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pDk1KCcs; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-35dceef4227so675254f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2024 01:07:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717661220; x=1718266020; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=u7hiYkj91RUaU+iS0uljhHNfGcki3QtOOpKSiUyUuf4=;
-        b=pDk1KCcsP/McW6vPw7NqyTjT9DoN6i6yvp3+qaX+CapLyrocL05dnR5iDGj4PN5orA
-         CyM3tl/TbHEOUOMz7sPofnAjtJdlUOlAKOK8aYR9Dw8wvVCz+NzuDrNxFAuAlSLGu/ci
-         sNkm8ruZaOZd6TmBwpzk9gNnRHZSsZ3mT2ynQgZpQex+a2Gj9qEdOkpyXOYJPP2pXz5J
-         zysdAo+R05JqGT9L5P2R/JMw+ivQwNzSDbgDIv5yjMhf4i0gKnIUrFXnwIq4kCuY35/D
-         CI+0ksfV169CLq3KnVmjZ7Zt/ETEXPKH8LAYIyT8ttLO+teHTMMGelVujXcabYPwIZc1
-         qlTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717661220; x=1718266020;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=u7hiYkj91RUaU+iS0uljhHNfGcki3QtOOpKSiUyUuf4=;
-        b=MYaooF4a6cifFwwrDZI+X/mzRtn81fa+m4DGeLLnCxqh4QpLcZ6/Dx5QTcl1ye+2Pf
-         EWM5ls+/11GnRKe4nbuZALwURtwI+3QoNJPy0vNofok451k7y+On6zWXB9mke8mJrtRi
-         cTX2mh4dl3f+BB/B3h4LDvQZBXtooBORYVqBwZYEnq/DZA8wWUihmCbWPb5gZWKpvLp9
-         8HfVEA5AAEpsWn0eoK0bIMbesWM+aJlkcfwEVnhzRHw3djKz5YqyxIMy85pnLys9lVQV
-         q3Kal6AIFqn7uHOxHymrW6Fd/4yVgXJMnsHLTOl6A2X82uEJfnLR+8sgntGhcM4HvH8g
-         Y/bw==
-X-Forwarded-Encrypted: i=1; AJvYcCW9dvsAy0tMLKkASE4MEQMc2LqiiyWbz+DWKZIqkymrMQv3nDxpMnnyS+FxUBMPePEr4Km3MOjBONF0C+WQgOH6hu1IJznJkPMJyw==
-X-Gm-Message-State: AOJu0YyyhznxcYpPz+wU6zVP+0rDD1BGWf0tsapuQsCtcmf2KjvawtVu
-	22dSidN6OunFjYuFIJ6XNLtCpviMJcYa4VEPIo628tCfHQk9GXB6uYfnUrnpFMY=
-X-Google-Smtp-Source: AGHT+IEZYO9oq1GhQAcOgxg+qi6W3zUjN5wlcTNOdZBAx1Esog+GP3ZmqjC+yd5zkil3a/PtA/bsPA==
-X-Received: by 2002:adf:f00c:0:b0:355:39d:f82 with SMTP id ffacd0b85a97d-35e8ef5f8efmr3724702f8f.53.1717661219564;
-        Thu, 06 Jun 2024 01:06:59 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5e989besm861205f8f.76.2024.06.06.01.06.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jun 2024 01:06:59 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 06 Jun 2024 10:06:58 +0200
-Subject: [PATCH v2] ASoC: dt-bindings: convert amlogic,g12a-tohdmitx to
- dt-schema
+	s=arc-20240116; t=1717661365; c=relaxed/simple;
+	bh=JwRCxkjzBxoZ+RTPlY+R88A3hli0uy+86d7yQBlTUzg=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=u/npWJys/zATnVP8fCC+aD98B74N0dCwZ5BoS8f0ncJZQVnMmfxGGBGQ61rrAzxo/3CIBzC4svx8hCZWmQKNwoaqHrsJzYUDQXql2LcBKOihC/RenSwrnwRT3RmlahVvXw7n5PDhH4+qjcyyt086P/fpq7gxOz/ZFkzrOpQ+zSQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=sVreaeaK; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45689BwJ089368;
+	Thu, 6 Jun 2024 03:09:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1717661351;
+	bh=pHoOXJrDm+n+sdwoGca+WOQtOOaj32WL9daPT0XNCF4=;
+	h=From:Subject:Date:To:CC;
+	b=sVreaeaKgkyA23Egj09+ZJi6LsOxmh0JJjX+0zAVaI+X8qvLHMAzeMleE60qZeVfP
+	 RI/fmIA8fZ9jaIihRW44ntL8sE3KQWTpKZAlj1RIsoHRbs0+H+zYpJ8aakxXloCVJj
+	 /bkRVhfDeSmnkYN6Ss1Lx+1mJQPM0qtxsq42m+Zg=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45689BcR016058
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 6 Jun 2024 03:09:11 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 6
+ Jun 2024 03:09:10 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 6 Jun 2024 03:09:10 -0500
+Received: from localhost (jluthra.dhcp.ti.com [172.24.227.116])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45689AZr017363;
+	Thu, 6 Jun 2024 03:09:10 -0500
+From: Jai Luthra <j-luthra@ti.com>
+Subject: [PATCH v2 0/7] arm64: dts: ti: McASP fixes
+Date: Thu, 6 Jun 2024 13:37:39 +0530
+Message-ID: <20240606-mcasp_fifo_drop-v2-0-8c317dabdd0a@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,184 +67,64 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240606-topic-amlogic-upstream-bindings-convert-g12a-tohdmitx-v2-1-70d44fa30790@linaro.org>
-X-B4-Tracking: v=1; b=H4sIACFuYWYC/6WOQQrDIBREr1Jc95coMZiueo+ShdFf8yHRoFZSQ
- u5emyt0NbxhmJmdJYyEid0vO4tYKFHwFcT1wsykvUMgW5mJRrRN10jIYSUDepmDq/peU46oFxj
- JW/IugQm+YMzguNA1PNmF8gZWyaaXquNWKVa714gv2s7d51B5opRD/Jw3Cv+5/y4WDhxGJbnhv
- UTR8sdMXsdwC9Gx4TiOL3m2HqD7AAAA
-To: Jerome Brunet <jbrunet@baylibre.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3894;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=1y0aJBMNzzU/0LQjfOvpee00DXAiGgdtWGL31QFkJrc=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmYW4h9Jzln7/TviHyxOE5x5rMDExs9dXnNCJXaGS3
- u6lM2XiJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZmFuIQAKCRB33NvayMhJ0ZD/EA
- CU3evx4cxhODhk+lefwnpVuu5JQUFqdnm0RFajEvCjdkk6pyM4dAtAS7LwQiZQlWqsFHImZN7sFKLh
- RpA+AHshG8+uektkvJdA5EXvjBF5iaRmv2KtXZHyd5a++PBpgdXRfUuS/rvSxvSGcG7rjswT3newSt
- nxPqDqKpwIpcG/8oBgctbunISD4hNChY0JqbIgtm97dK9MOac7jh9QGLQ2PUh6ctjHecQLFAuv+hiA
- WGcRo+2C0llKaFGnqk6uktleLuZKPAxDp/VRK0lVhFv/FS2PmmT1r3d/itr4LM4OSl3IWnn2ydl25Y
- 9mSbQEj0X0hGAtki6jOfdkHpQA1iCGq5WZvjpY4sJbEEf2XfDvQXbxbPaUFrQM6H+ghtUK6sSnDkBu
- KKvzjdH8LPULBtWd4bncC/vUhVUGR+9+cqvvs3ZwpySSEnNueQyDxWUQjBsPkdeK3uXDSsxn3b1rPB
- 6MZR3sJca4ihf9LtAQREuESburCE2IFoo4SMmm5T0px4pGDzt2KCn8lx1CGHB7eH+CsvUtoGt0eaDH
- w87hjqRMO4FXc0uXQsSqG5oHikVJdUhrWpfd59HMa4H0KtWY3L/HUmnRuCl0bojZxQdEGb39eAZFqy
- yFtPk0WEeP+eKFjFQxH1bxco7TD+e2FgGyestVNvpsdwBadPfjJ4dBS/FibA==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-B4-Tracking: v=1; b=H4sIAEtuYWYC/3WNQQ7CIBBFr9LMWgwdEI0r72GapsBgZ9FCoGk0T
+ e8udu/yveS/v0GhzFTg3myQaeXCca6ApwbcOMwvEuwrA0rU0kgtJjeU1AcOsfc5JmFuyjqlW0S
+ DUFcpU+D3UXx2lUcuS8yf42Btf/Z/a22FFFKRJbwEffX2sfDZxQm6fd+/I3jRPKsAAAA=
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jayesh
+ Choudhary <j-choudhary@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>, Bryan
+ Brattlof <bb@ti.com>,
+        Aradhya Bhatia <a-bhatia1@ti.com>,
+        Francesco Dolcini
+	<francesco.dolcini@toradex.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Devarsh Thakkar <devarsht@ti.com>,
+        Jai Luthra
+	<j-luthra@ti.com>
+X-Mailer: b4 0.12.4
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Convert text bindings to dt-schema format for the Amlogic TX HDMI
-control glue.
+Drop McASP AFIFOs for all AM62 based platforms, as the extra buffering
+is not needed with BCDMA already having internal buffering.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Also fix the pinmux for McASP1 on AM62P.
+
+Signed-off-by: Jai Luthra <j-luthra@ti.com>
 ---
 Changes in v2:
-- re-order properties and required
-- switch to unevaluatedProperties and drop sound-name-prefix
-- Add review tag
-- Link to v1: https://lore.kernel.org/r/20240605-topic-amlogic-upstream-bindings-convert-g12a-tohdmitx-v1-1-b851c195e241@linaro.org
----
- .../bindings/sound/amlogic,g12a-tohdmitx.txt       | 58 ----------------------
- .../bindings/sound/amlogic,g12a-tohdmitx.yaml      | 54 ++++++++++++++++++++
- 2 files changed, 54 insertions(+), 58 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt b/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt
-deleted file mode 100644
-index 4e8cd7eb7cec..000000000000
---- a/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt
-+++ /dev/null
-@@ -1,58 +0,0 @@
--* Amlogic HDMI Tx control glue
--
--Required properties:
--- compatible: "amlogic,g12a-tohdmitx" or
--	      "amlogic,sm1-tohdmitx"
--- reg: physical base address of the controller and length of memory
--       mapped region.
--- #sound-dai-cells: should be 1.
--- resets: phandle to the dedicated reset line of the hdmitx glue.
--
--Example on the S905X2 SoC:
--
--tohdmitx: audio-controller@744 {
--	compatible = "amlogic,g12a-tohdmitx";
--	reg = <0x0 0x744 0x0 0x4>;
--	#sound-dai-cells = <1>;
--	resets = <&clkc_audio AUD_RESET_TOHDMITX>;
--};
--
--Example of an 'amlogic,axg-sound-card':
--
--sound {
--	compatible = "amlogic,axg-sound-card";
--
--[...]
--
--	dai-link-x {
--		sound-dai = <&tdmif_a>;
--		dai-format = "i2s";
--		dai-tdm-slot-tx-mask-0 = <1 1>;
--
--		codec-0 {
--			sound-dai = <&tohdmitx TOHDMITX_I2S_IN_A>;
--		};
--
--		codec-1 {
--			sound-dai = <&external_dac>;
--		};
--	};
--
--	dai-link-y {
--		sound-dai = <&tdmif_c>;
--		dai-format = "i2s";
--		dai-tdm-slot-tx-mask-0 = <1 1>;
--
--		codec {
--			sound-dai = <&tohdmitx TOHDMITX_I2S_IN_C>;
--		};
--	};
--
--	dai-link-z {
--		sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
--
--		codec {
--			sound-dai = <&hdmi_tx>;
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.yaml b/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.yaml
-new file mode 100644
-index 000000000000..b4b78475c5b8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/amlogic,g12a-tohdmitx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic G12a HDMI TX Control Glue
-+
-+maintainers:
-+  - Jerome Brunet <jbrunet@baylibre.com>
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  $nodename:
-+    pattern: "^audio-controller@.*"
-+
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: amlogic,g12a-tohdmitx
-+      - items:
-+          - enum:
-+              - amlogic,sm1-tohdmitx
-+          - const: amlogic,g12a-tohdmitx
-+
-+  reg:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  "#sound-dai-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - resets
-+  - "#sound-dai-cells"
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/reset/amlogic,meson-g12a-audio-reset.h>
-+
-+    tohdmitx: audio-controller@744 {
-+        compatible = "amlogic,g12a-tohdmitx";
-+        reg = <0x744 0x4>;
-+        resets = <&clkc_audio AUD_RESET_TOHDMITX>;
-+        #sound-dai-cells = <1>;
-+    };
+- Drop [tx|rx]-num-evt properties instead of setting to 0
+- Add Fixes tag for am625-phyboard-lyra-rdk
+- Link to v1: https://lore.kernel.org/r/20240604-mcasp_fifo_drop-v1-0-03ebe25f47db@ti.com
 
 ---
-base-commit: c3f38fa61af77b49866b006939479069cd451173
-change-id: 20240605-topic-amlogic-upstream-bindings-convert-g12a-tohdmitx-d85095861d88
+Jai Luthra (7):
+      arm64: dts: ti: k3-am62x: Drop McASP AFIFOs
+      arm64: dts: ti: k3-am62a7: Drop McASP AFIFOs
+      arm64: dts: ti: k3-am62p5: Drop McASP AFIFOs
+      arm64: dts: ti: k3-am625-beagleplay: Drop McASP AFIFOs
+      arm64: dts: ti: k3-am62-verdin: Drop McASP AFIFOs
+      arm64: dts: ti: k3-am625-phyboard-lyra-rdk: Drop McASP AFIFOs
+      arm64: dts: ti: k3-am62p5-sk: Fix pinmux for McASP1 TX
+
+ arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi            | 4 ----
+ arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts        | 2 --
+ arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts | 2 --
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts               | 2 --
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts               | 4 +---
+ arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi        | 2 --
+ 6 files changed, 1 insertion(+), 15 deletions(-)
+---
+base-commit: d97496ca23a2d4ee80b7302849404859d9058bcd
+change-id: 20240604-mcasp_fifo_drop-683bc3412262
 
 Best regards,
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
+Jai Luthra <j-luthra@ti.com>
 
 
