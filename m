@@ -1,203 +1,211 @@
-Return-Path: <devicetree+bounces-73021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 795528FDC28
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 03:31:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B92F8FDC2D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 03:35:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E34FC2854ED
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 01:31:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E6781C22DC9
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 01:35:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26E32101CE;
-	Thu,  6 Jun 2024 01:31:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1187E1094E;
+	Thu,  6 Jun 2024 01:35:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="cfhxf0BR"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="VwFfR0NI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2079.outbound.protection.outlook.com [40.107.249.79])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 299734A31;
-	Thu,  6 Jun 2024 01:31:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717637507; cv=none; b=WupC5hKaCKFdLcGiWgQvsDfQiBISPKVI9RkGIBN2NmxKFpdGtbeWzzjuXInbMm1FlibFt1MW8/dlKs5bTLj79E2zf7Tb3vZGYZoOEPjHAFPNz4BS9ePWa+ZXMkDCpl/tssceUXRK7tIwe9AK8JKFAjIi5GPBt6mpMeqCtKOGEE8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717637507; c=relaxed/simple;
-	bh=VkhuZl06ZudgXAx1mrFXZHb9fR10KMTsBJEt7jmSsSk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=RcN7PVSstEbqy6+9+Fb5mxnMK9sFKHwMTunB46WxciPAHGWPcphsbDmIsGA3IczkkSotisMr0A6NkDjJYlPFsPkVXd5mur6oSvggZFdT5Tm6ZEpz2IAv6AundvMqrriiWvb47fCece9vIa07gD0GbCjhOOu3q8v8Pw+UYsIyaPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=cfhxf0BR; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-Received: from [192.168.68.112] (ppp118-210-171-248.adl-adc-lon-bras34.tpg.internode.on.net [118.210.171.248])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id AE9EB20154;
-	Thu,  6 Jun 2024 09:31:41 +0800 (AWST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1717637502;
-	bh=7Y+Fi/S9iFVYn77ci9owMZTSbegdzVDaxHeOlwRPaGs=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=cfhxf0BRfejrV5lGw89SKoK1CFwOsuKcHCvYL51e3sedQbbXH7LkO2OVLK18OfMbA
-	 PEruDGnP2IC12lpC9J2m9GGQiCn78Xzv4YXrO2sOuDr59rNv/w+WWX50Q7KN04ekul
-	 ioLz+hMseo7hu5KR2i93Kj85l0zwr5C3EfgaM+j2zUgrDR8owgcc4cDvX16/dgqwIM
-	 l+2A7fmAo5e7DYHZNwToQyGhwPcaHpfoPVcBt2rcPW3mcujn3aEiEcP/tFoXABXcQn
-	 QQy1CMxr2LBL/LqCUh9qj1HtEgbjrwaP24ZkU/ZTwusVkfs8mWVK6OKEm1i+jdd/lv
-	 o8FLgQ3gr/LXg==
-Message-ID: <b40486cf90de44bad177f034d13d8ab69ad9aac8.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v6 00/20] ARM: dts: aspeed: Add IBM P11 BMC systems
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Eddie James <eajames@linux.ibm.com>, linux-fsi@lists.ozlabs.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- ninad@linux.ibm.com, lakshmiy@us.ibm.com, linux-i2c@vger.kernel.org, 
- linux-spi@vger.kernel.org, linux-aspeed@lists.ozlabs.org, joel@jms.id.au, 
- robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
- andi.shyti@kernel.org,  broonie@kernel.org
-Date: Thu, 06 Jun 2024 11:01:41 +0930
-In-Reply-To: <f2f70d62-3edb-4273-b40e-430d789f19dc@linux.ibm.com>
-References: <20240522192524.3286237-1-eajames@linux.ibm.com>
-	 <f2f70d62-3edb-4273-b40e-430d789f19dc@linux.ibm.com>
-Content-Type: text/plain; charset="UTF-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 157EC10F7;
+	Thu,  6 Jun 2024 01:35:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.79
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717637738; cv=fail; b=RRbQpsFfVbV4w+53nsHVFdxFX08pwIs3hH3Io0z6aQbUE2YV+xQf2CJW1F3Y9lMEAxSlDhDnV664XR5hHaNNJ/icn+vmZlwRx7dpAjEnhq7fX+DkO3PyqvPXjLnz1+e52dnpu6g6wNThl5ZYixjLcQrJ3tfuAvRS90BIRYuEBRs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717637738; c=relaxed/simple;
+	bh=kpZlSfTJ5S7OkgT/DpW0WjTR59u37ir8DjdRXHQb3RQ=;
+	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=eLoDb8bsSNxg5Zf+D5l3ByOB3hzrpL0dSm5UiclW/ZUPv+A8zv/sEa06+wdt7Nvcj9viKsWFA5q6perk+xcAc/WktlMYmZJtExpUFxKvJUJSFR8AIwXDWmHrdG43DXARovzDgsG6Sxg0JsBz3WJrqdqwltXeoqUo+D0NUCckv2g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=VwFfR0NI; arc=fail smtp.client-ip=40.107.249.79
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IuQ+rb9D9muAaykUZ0LOQxmt2xQGNM4THwXuI7qbcMOFsiGVgjnPVpc/Byy52syuNw0SIagCzy5+yefkJxPOYYi0EfymfTwPuk4AzbcqnWFUIsnVKx8j/h3SAA46B06TvXhPqZiSJc5NC03nyz2FtvUe6NRPOdr8cF0xYi6CcmYea7015D+NqgA6lCA2rl0QJlhmVAoSAriQvT1NGmVhQa9MpfRIjm2IpCLhzMN7jPFJuokPolMVqFDsYL2F4+qjjIw0OGy02gWexsOOolkH5UcZDpAd18++m08fWEt/W1qyIpjguHa8pzziwpagJ8RNzSjjeYUUs1v9dk7GqwzwzA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bka6or4ljsvZdRW8c5v8iYRwb4aOHKGKpM8nmHtEEwE=;
+ b=Y4amrjeiQyhYkwpdB5R0fD1GIOPB3wgB3KY5FpftSu0qvNmoTWEo0ePXdcqZWMwleLezf0Zm1lnji8Z4rpVwLovixs8EqWGqaQwwgTvrY2Rz3DC0rhAAw0jKBqPYGJY9zL4nwk24F2+wAbymnyK2GYmRcDe6dDXAqeflqEQh8EITAprczeBpX1f8yZMzJ9tDgjWotZrwix+U7Sn31BgnrLXNrEO82Sj1BKGLhsTLD5x/9s1FyeiBLCF7/S73wKl/la6RPpxLsY3ivqEB+kbFbsyAcKuRpI7jIHfi4A/yIoiMn8h793tjf7UwxSfRPXBFeGJ7IB/vbtfW3Z9iw8WtQQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bka6or4ljsvZdRW8c5v8iYRwb4aOHKGKpM8nmHtEEwE=;
+ b=VwFfR0NIzKYGGYG9xYIX2DkAzL4V350vxAmQ3yMe1XebxdsSR/UcnS4wZDnT36OLK7Ce5yjEmCctTELkuZPedFmqZRIRB2YjKWU04zTL2F0gK3jSbLxBW6IVt5zyk4YPMjs0XUwB2+0H2Qn4V91FmS/3s69MqV5Wy1xBdRlPuhQ=
+Received: from AM6PR04MB5941.eurprd04.prod.outlook.com (2603:10a6:20b:9e::16)
+ by PAXPR04MB8476.eurprd04.prod.outlook.com (2603:10a6:102:1df::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.26; Thu, 6 Jun
+ 2024 01:35:34 +0000
+Received: from AM6PR04MB5941.eurprd04.prod.outlook.com
+ ([fe80::9f4e:b695:f5f0:5256]) by AM6PR04MB5941.eurprd04.prod.outlook.com
+ ([fe80::9f4e:b695:f5f0:5256%5]) with mapi id 15.20.7611.030; Thu, 6 Jun 2024
+ 01:35:34 +0000
+From: Peng Fan <peng.fan@nxp.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Shawn Guo
+	<shawnguo@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Sascha Hauer
+	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>
+Subject: RE: [PATCH 2/3] arm64: dts: ls208xa: use defines for timer interrupts
+Thread-Topic: [PATCH 2/3] arm64: dts: ls208xa: use defines for timer
+ interrupts
+Thread-Index: AQHat11PCxo8mkOSqUq1hmTP0k1Y37G59LcA
+Date: Thu, 6 Jun 2024 01:35:34 +0000
+Message-ID:
+ <AM6PR04MB59416C0123F3102652DABC5A88FA2@AM6PR04MB5941.eurprd04.prod.outlook.com>
+References: <20240605153020.104717-1-krzysztof.kozlowski@linaro.org>
+ <20240605153020.104717-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240605153020.104717-2-krzysztof.kozlowski@linaro.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM6PR04MB5941:EE_|PAXPR04MB8476:EE_
+x-ms-office365-filtering-correlation-id: b864640e-00ff-4d32-2fe4-08dc85c8f5b7
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230031|376005|366007|1800799015|7416005|921011|38070700009;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?piVAp4NK0AzGJM06qiaAq5t5eHrfuD0cFLm2qj2wvkDbd02vS85JEho9R77p?=
+ =?us-ascii?Q?zBebr5/WicBML6cuDURpo5AsV04INIYiLYb/1boz956EXi1eafy/CRG/7Rc9?=
+ =?us-ascii?Q?B/q+Q5Zc9QkYyfu+5ydxcnnTAWcCPzuJOXi66gvDfnYJRcROEGLmZvrFBcWC?=
+ =?us-ascii?Q?dpwYAX29k6AsWSi3R64rjI+AQLINmbN8MneDxleMcb04iaD70r5+K9s8bM6p?=
+ =?us-ascii?Q?Ai9FdQGg4C+3xBFGneA6p8EQ303xVtmcMcDS1xObB2VkMcrASZYXD1Y5bpMw?=
+ =?us-ascii?Q?duhLxMJITA2qGh3fDDQltpIJSXMeB1zUtvmzQ3VDBVUuEUovypmxG/uHnFcE?=
+ =?us-ascii?Q?UcbFLNGlqCdGlySNkNMg6grOKWkPhW6ppGpu4BvuI97oZX2CXsjgV7fwQuc6?=
+ =?us-ascii?Q?g0xgqZVSL8AUy2gYBqB6hp9TcijwfVn6Bjr6vh8d9rdNlpfu8LnCkHaOW/qS?=
+ =?us-ascii?Q?t0A17tXfObq345xugXyFvR+UK+TjWgHqUoSY7z3GRUTQoEenEq1Dv/V7ZlXP?=
+ =?us-ascii?Q?9rTnrw2aEEwTA6+HYtVpZUtt/233jt813q/JOnupe3XtqPbqYYZkGISxw9Hm?=
+ =?us-ascii?Q?ZqaFFEPGzurpI4xfYsVWUtU16h6IE/ajo5xxn5jPHdo/tEte2w5CFZxDWkCH?=
+ =?us-ascii?Q?yNpQGQ5eTTKgxN5We5njzDmuT8lDzMWbpMqojhKlXQ91NR/rP1v9my/9HtFH?=
+ =?us-ascii?Q?4mrQ9hUbKhfy2wNk7nCKXZHMJS9cn2w6a0pMVieVXj8GrsjU//WW/q2/fS7l?=
+ =?us-ascii?Q?R1A2yzbKwYz5TejpVHko3D4l+TQJHj2qVfVkZ0BtI5/ZeF7OQFKOMOXxSUVD?=
+ =?us-ascii?Q?bVy9CoIexK9CK8bYDBwU3KcK2kf7u8vhEA/v4xqHzwAgoUuMW/v5OyLs8vzE?=
+ =?us-ascii?Q?6MpyIB2m/OmIJ/Ug+LJd2g7XXSiO9ouyV56Cwy4J8aUiYq0zbLP9a3lKp9XN?=
+ =?us-ascii?Q?LGUGz0IZZSENoFmw1nwL0+SB/rTt+cXX1k+YbBu30KIZqU65ncB4KrwYJ6Bk?=
+ =?us-ascii?Q?gvEOafREx+7iUioDa1hUFq07xV6O9AEnDOq7OnqYFD2ajMz2SeNK1f60NuOS?=
+ =?us-ascii?Q?DIhm4ZRkQKyji7ToJbZctzpEDAAxBCKBL2RcwPmZdE615SvmtwpFbYWaQpDa?=
+ =?us-ascii?Q?hlT2lGChUR4xIMeb3C4bgNjPqDmfUB63PHDoN7hbFpL53rEKrnQZlWhSMK6N?=
+ =?us-ascii?Q?AKfgTR0ahp8WiSNQ9afduN6rlvttRv4EZXcCcQhwdZVsyC63OZ2pjHORVNBi?=
+ =?us-ascii?Q?HCNCQczhJpA/MdvmoLlYYA6PZ9ZVbyg9T8r3O6M2SmFUEC+vv4V3gGWTt6nJ?=
+ =?us-ascii?Q?ZG+cPBrw3wT9T09MdVOxs+SqDlW/Iy2qLN2mw4Xf8buzDnVQWYDO1GfQd9H+?=
+ =?us-ascii?Q?qPVYavM=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB5941.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(366007)(1800799015)(7416005)(921011)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?N2aAVppOfTvJ7TzN3ED7hn3hw3WrVhTHB5Yl/OyjyFmbwbbVVt2jWfJRSh8v?=
+ =?us-ascii?Q?0smqictYA6vcl4JTpXRuLTTLqQMkNYPxdMy1Ku+RrmpNNL3W/GtmIwFkg9Ud?=
+ =?us-ascii?Q?83Ce22pTTjAC0r5zm3arvDzlAJ7XZhb9OItbjDju7CxKqexvoktV+nhEOk9V?=
+ =?us-ascii?Q?ICzD/q27+FBuCzdxskT4ehZ9m/LqyDzfGKERjqnVmqdFNZEGDB981Icfw2bK?=
+ =?us-ascii?Q?OhPmHmRL/YtcqwrkTv0Sb45tdcGKH24ynAexzYIeH3NO/sqXz07t/k+8qRqk?=
+ =?us-ascii?Q?9JMo6YrzG2vIIN8xIUobyH0Jy6sEGPAbgpCAjRcjFZVwe7aFxo0PnaMmj21v?=
+ =?us-ascii?Q?6EYd93X/9qxBb97SMKjoyrt2tV0LPo8D9Bwe/x/DggmbrsX8r9KCgHc1Qrvn?=
+ =?us-ascii?Q?xbI2ewNYnmfVq2iCbFqAgeDKKtb1lz09yneS4U4PrJNZcItPyZuwJe/kwQ8W?=
+ =?us-ascii?Q?q3rzSlPlVejN9bDts0wtFpios6Pb7f/gHG1CS14m2jGxOYw+iq4UZRSJRe1b?=
+ =?us-ascii?Q?sPOFFJ7K3NifwHaO1Q/I2KaL0RTaSNnmyaowhAYryYg0bMBSQGwMvg+iVoJt?=
+ =?us-ascii?Q?N/Hj2KgizEjrWWU7+KxjWsWto2Q+wND7bp3CXSkpWeM4CN3zR55VHJ6lEaud?=
+ =?us-ascii?Q?kzFKUnWXH66Ciu9sxc7KRJXeViBPKWo5sIlrCplwYks64bHtgF/Fa9TXcqDV?=
+ =?us-ascii?Q?D+s8nxBW70375SGqJEAr4fu+PivXn1BMLZ/QlFsaP9UIpVavDEDxmgp9dGh3?=
+ =?us-ascii?Q?7a0CNWGtQXE8X5Bcj5nNBbFC5wUeKQw4VEpGZ+GovkbwEwUMajX/amuDhX+V?=
+ =?us-ascii?Q?MMWdmG69Q2dI3iNjZzav+kM64BmLtWA0E1YUa6X91T/7c/6zj7tYiF8lTvFp?=
+ =?us-ascii?Q?4g+C7AJr4nnSV4fFPGbv+AJOiVCVnkK2vIr+divVjdEuYANuuLYHt+PaSJ3v?=
+ =?us-ascii?Q?H8duvcD9tT2bh2UMvdaaUWp+az8p0LoCAYW4YkU31HDXWjwbtyfjEgWMIa/D?=
+ =?us-ascii?Q?HCa/bn0DPL439bG6/dLOl7IGYaMRUlt6j8ABqpKKPGbWqw3SoMJXSTvqDS+i?=
+ =?us-ascii?Q?9O34pIvDZ2RKZ2VxFMbaMw+86O2P5Kvl3pdq1J/kRZjFA4RllWNveHvfYwMM?=
+ =?us-ascii?Q?wNyl83pHiinZ3yYw4rmYxjsnbw9LfioAnrAhcIvvKhsD/iY233MYrOI4905n?=
+ =?us-ascii?Q?CirodR0ZuQFA/kGAZ35oNviJ5qLSTdFcAQY/gsNpmgvChHLSYiE5hShTgRLN?=
+ =?us-ascii?Q?HBF2kWGdvNlTtQ42pzFcP9C/iLwxchHHQ0joOGdEg7gGa8HCm8aE+PHUGyc1?=
+ =?us-ascii?Q?fhFBc4T0zOs58AuoB9cHgkDPsK3ohxvBLldtS6mtoOh0gnYBgfVWbgoI78Lw?=
+ =?us-ascii?Q?FN1WWbZY7lBqDY0c+Qh2Bj5pBsfrFXwBv9syjonFPFlpaQ3s0Zko9kDfbmDT?=
+ =?us-ascii?Q?XWaIqpVxFjuTkTjR2Cg8re88ZjCXgcrUpIEQKhr2s4CgowTeGVj6edpxsmyB?=
+ =?us-ascii?Q?sJQ6Pd3axY/tTcrsVG1pfxHl3UUfwDfNfgh7VFyrkEoS/hk42HAAEsLYoX3V?=
+ =?us-ascii?Q?6303+XBxnsi9QjtRlRU=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB5941.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b864640e-00ff-4d32-2fe4-08dc85c8f5b7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jun 2024 01:35:34.1969
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: QAatBDEAcNIWjsrZEzqplTFN2TMFsvLOM6Ek2oCtPQZ3MxoU1NifnxEFAWyk7RfOLqZIyx5qF/8K0O7T5dPRxg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8476
 
-Hi Eddie,
-
-On Wed, 2024-06-05 at 10:47 -0500, Eddie James wrote:
-> On 5/22/24 14:25, Eddie James wrote:
-> > Add the Blueridge and Fuji BMC systems. Document many missing FSI relat=
-ed
-> > properties, and fix existing warnings. Make some minor fixes in OCC and
-> > SCOM drivers for the updated bindings.
->=20
->=20
-> Hi Joel/Andrew, what else needs to be fixed before this can be merged=20
-> (minus Huygens patch which I will resend)? I believe all the patches=20
-> have been reviewed.
->=20
-
-Firstly, thanks for your work here on the FSI bindings.
-
-However, the series is a bit awkward, as it sandwiches Aspeed
-devicetree patches that should go through Joel's bmc tree between the
-bindings and driver fixes that should go through the FSI tree.
-
-This is potentially less of a problem for Joel as he's the maintainer
-for both, but it's not my place to be touching the FSI tree.=20
-
-For now I've applied the dts patches and pushed them here after
-dropping the Huygens patch:
-
-https://github.com/amboar/linux/commits/for/bmc/dt-6.11/
-
-But I would appreciate it if you split series by subsystem in the
-future (see my comments on the other FSI series you have out for
-review).
-
-Andrew
-
->=20
-> Thanks,
->=20
-> Eddie
->=20
->=20
-> >=20
-> > Changes since v5:
-> >   - Switch from clock-frequency to bus-frequency for common FSI control=
-ler
-> >     properties
-> >   - Add reg properties for AST2700 FSI controller
-> >   - Fix patternProperties for i2c bus nodes under FSI-based I2C control=
-ler
-> >   - Add bus-frequency for P11 FSI device tree node
-> >   - Change model name from Blueridge to Blueridge 2U
-> >   - Add missing reset gpio to led controller on Fuji
-> >   - Add Huygens (Rainier with modified FSI wiring)
-> >=20
-> > Eddie James (20):
-> >    spi: dt-bindings: Document the IBM FSI-attached SPI controller
-> >    dt-bindings: fsi: fsi2spi: Document SPI controller child nodes
-> >    dt-bindings: fsi: Document the IBM SCOM engine
-> >    dt-bindings: fsi: p9-occ: Convert to json-schema
-> >    dt-bindings: fsi: Document the IBM SBEFIFO engine
-> >    dt-bindings: fsi: Document the FSI controller common properties
-> >    dt-bindings: fsi: ibm,i2cr-fsi-master: Reference common FSI controll=
-er
-> >    dt-bindings: fsi: ast2600-fsi-master: Convert to json-schema
-> >    dt-bindings: fsi: Document the AST2700 FSI controller
-> >    dt-bindings: fsi: Document the FSI Hub Controller
-> >    dt-bindings: i2c: i2c-fsi: Convert to json-schema
-> >    dt-bindings: arm: aspeed: add IBM P11 BMC boards
-> >    ARM: dts: aspeed: Add IBM P11 FSI devices
-> >    ARM: dts: aspeed: Add IBM P11 Blueridge BMC system
-> >    ARM: dts: aspeed: Add IBM P11 Blueridge 4U BMC system
-> >    ARM: dts: aspeed: Add IBM P11 Fuji BMC system
-> >    ARM: dts: aspeed: Add IBM Huygens BMC system
-> >    fsi: occ: Get device number from FSI minor number API
-> >    fsi: occ: Find next available child rather than node name match
-> >    fsi: scom: Update compatible string to match documentation
-> >=20
-> >   .../bindings/arm/aspeed/aspeed.yaml           |    2 +
-> >   .../fsi/aspeed,ast2600-fsi-master.yaml        |  121 +
-> >   .../bindings/fsi/fsi-controller.yaml          |   66 +
-> >   .../bindings/fsi/fsi-master-aspeed.txt        |   36 -
-> >   .../devicetree/bindings/fsi/ibm,fsi2spi.yaml  |   36 +-
-> >   .../bindings/fsi/ibm,i2cr-fsi-master.yaml     |    5 +-
-> >   .../bindings/fsi/ibm,p9-fsi-controller.yaml   |   45 +
-> >   .../devicetree/bindings/fsi/ibm,p9-occ.txt    |   16 -
-> >   .../devicetree/bindings/fsi/ibm,p9-occ.yaml   |   40 +
-> >   .../bindings/fsi/ibm,p9-sbefifo.yaml          |   46 +
-> >   .../devicetree/bindings/fsi/ibm,p9-scom.yaml  |   37 +
-> >   .../devicetree/bindings/i2c/i2c-fsi.txt       |   40 -
-> >   .../devicetree/bindings/i2c/ibm,i2c-fsi.yaml  |   76 +
-> >   .../devicetree/bindings/spi/ibm,spi-fsi.yaml  |   55 +
-> >   MAINTAINERS                                   |    2 +-
-> >   arch/arm/boot/dts/aspeed/Makefile             |    3 +
-> >   .../aspeed/aspeed-bmc-ibm-blueridge-4u.dts    |   21 +
-> >   .../dts/aspeed/aspeed-bmc-ibm-blueridge.dts   | 1691 +++++++
-> >   .../boot/dts/aspeed/aspeed-bmc-ibm-fuji.dts   | 3881 ++++++++++++++++=
-+
-> >   .../dts/aspeed/aspeed-bmc-ibm-huygens.dts     |   23 +
-> >   .../arm/boot/dts/aspeed/ibm-power11-quad.dtsi | 1539 +++++++
-> >   drivers/fsi/fsi-occ.c                         |   49 +-
-> >   drivers/fsi/fsi-scom.c                        |    1 +
-> >   23 files changed, 7694 insertions(+), 137 deletions(-)
-> >   create mode 100644 Documentation/devicetree/bindings/fsi/aspeed,ast26=
-00-fsi-master.yaml
-> >   create mode 100644 Documentation/devicetree/bindings/fsi/fsi-controll=
-er.yaml
-> >   delete mode 100644 Documentation/devicetree/bindings/fsi/fsi-master-a=
-speed.txt
-> >   create mode 100644 Documentation/devicetree/bindings/fsi/ibm,p9-fsi-c=
-ontroller.yaml
-> >   delete mode 100644 Documentation/devicetree/bindings/fsi/ibm,p9-occ.t=
-xt
-> >   create mode 100644 Documentation/devicetree/bindings/fsi/ibm,p9-occ.y=
-aml
-> >   create mode 100644 Documentation/devicetree/bindings/fsi/ibm,p9-sbefi=
-fo.yaml
-> >   create mode 100644 Documentation/devicetree/bindings/fsi/ibm,p9-scom.=
-yaml
-> >   delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-fsi.txt
-> >   create mode 100644 Documentation/devicetree/bindings/i2c/ibm,i2c-fsi.=
-yaml
-> >   create mode 100644 Documentation/devicetree/bindings/spi/ibm,spi-fsi.=
-yaml
-> >   create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-=
-4u.dts
-> >   create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.=
-dts
-> >   create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dts
-> >   create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-huygens.dt=
+> Subject: [PATCH 2/3] arm64: dts: ls208xa: use defines for timer interrupt=
 s
-> >   create mode 100644 arch/arm/boot/dts/aspeed/ibm-power11-quad.dtsi
-> >=20
+>=20
+> Replace hard-coded interrupt parts (GIC, flags) with standard defines for
+> readability.  No changes in resulting DTBs.  The comment was saying inter=
+rupt
+> was active low, but the actual used value was active high, so assume that=
+ the
+> code, not the comment, is correct.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Reviewed-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+> b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+> index cc305e629bdc..040a48c88fab 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+> @@ -241,10 +241,10 @@ map0 {
+>=20
+>  	timer: timer {
+>  		compatible =3D "arm,armv8-timer";
+> -		interrupts =3D <1 13 4>, /* Physical Secure PPI, active-low */
+> -			     <1 14 4>, /* Physical Non-Secure PPI, active-low
+> */
+> -			     <1 11 4>, /* Virtual PPI, active-low */
+> -			     <1 10 4>; /* Hypervisor PPI, active-low */
+> +		interrupts =3D <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH>, /* Physical
+> Secure PPI */
+> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH>, /* Physical
+> Non-Secure PPI */
+> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH>, /* Virtual
+> PPI */
+> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>; /*
+> Hypervisor PPI */
+>  	};
+>=20
+>  	psci {
+> --
+> 2.43.0
+>=20
 
 
