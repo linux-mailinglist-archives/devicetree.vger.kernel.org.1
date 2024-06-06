@@ -1,65 +1,76 @@
-Return-Path: <devicetree+bounces-73307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0FF78FEEDD
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 16:47:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBC598FEE26
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 16:42:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C6641F259CC
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 14:47:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F30C61C25420
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 14:42:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A321E1C89E6;
-	Thu,  6 Jun 2024 14:21:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38E0F197529;
+	Thu,  6 Jun 2024 14:19:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="8ML/ykKc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="krbfiljV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 695641A1870;
-	Thu,  6 Jun 2024 14:21:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A713196C78
+	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 14:19:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717683711; cv=none; b=Oxr1oKr6hCsIT+1hN8s2QhLVbfOQiFcKKKjyyh5iBInhVR7pQ9f05nbYpKTY53pPHTNgOz83dltOlQI9Dx8VcqDiqfSHThfEHqMeXDjtL7a9DddP/QPpC8NBsdTpUsak4n9DDJvdj7oIwa8hHxnLpMzr5/kog++P3+C8Lbo5zdA=
+	t=1717683596; cv=none; b=geb9HIwsZY5gEC0Reb/+LD8bn93/gXE4Ev/yzdDnd+Bi0w1kc/kp7ArRla8i2dBRaU+gfSM9XwaCou36nU3dhz1fYTrc5UgG/2tAsxuWhhf6ZThP35BENyV1IeEVb2FK/iTcoyn1sljany5JE7rFejAw88Y20Km1b9Xp5vwjnBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717683711; c=relaxed/simple;
-	bh=asA+uMOznSQ+uh+OJ3HJvC8ffuxHhFvXpmLgqwzby2s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=WMEA9f6J6pQJB6+pXE7v/fz4ekTX654wND8rotGDIGWk+khASlpTgAuTnd46IW1x6i3Wo5ulIYd9bYl2Votc4sCNtp8ooTBja6vSsfBV5AURjNiZAHSMNIlLwcmxlaaVxU0fvs9ijH2quBCU+Zd9728KjFuQv2qwP9BPdmYUAHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=8ML/ykKc; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 456DATsk011720;
-	Thu, 6 Jun 2024 16:21:01 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	YuWBowVYFdiavONSsRxqhorTe84oDx2sCtAFnnT47NE=; b=8ML/ykKcjyjJmz6l
-	4iDFAIR1sqVmecSVa6YEpkdePS0uOYmuYnFGXBzvlcSOGST35g5SpQrwEW4giOPd
-	5b7bnZEnTCHVB0FW1a9OlWLPgExMC6bAtmQYc8RA3hWX9k3NMuYnLs1AB8ALP6tx
-	U4TH+NOIcfy8mPEEwLLDpYrgAIqqMFG7uFGX7ayvGT2TMftQCSgtYA6gv+vCIylB
-	51xxQFA6dqoreCeYV4aMiOT4klBibSLeKyFSwKmbzBfYuocZ6x7VGXS+nlPWLAUp
-	5xEcCbjtyzmhesZ5HP5+jaCAO7B5BeN76+BYaXbGj570VWNtwAZJphftBZE9ftzz
-	2wiEtg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ygekj4nex-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 06 Jun 2024 16:21:00 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id A671B40044;
-	Thu,  6 Jun 2024 16:20:54 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id AF6C3217B8E;
-	Thu,  6 Jun 2024 16:19:38 +0200 (CEST)
-Received: from [10.48.86.164] (10.48.86.164) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 6 Jun
- 2024 16:19:37 +0200
-Message-ID: <73f7b4a4-31d1-4907-b83b-2ac7758edf0d@foss.st.com>
-Date: Thu, 6 Jun 2024 16:19:36 +0200
+	s=arc-20240116; t=1717683596; c=relaxed/simple;
+	bh=inbxow1jvIujmbpq76lxYmPp5pHmNjrrCPtpGYojC60=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=L8BJCdAXDNhR5HDtFZ76DP/1Bih2+EQK2H0azOk5+3s4Tpya3hm0hZPFqXQIEhNEiQkDX0u+c3HXo1o/HmQnn1HNiYZzsHh8yZ5f7x5fIvwjy3EG9K0HjiKaomiQy6BhCB4ze+pUFoR9+cDmMjGH6tDEtaOZWcd8RtbKZJr7Kmw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=krbfiljV; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-35e5604abdcso1384021f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2024 07:19:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717683593; x=1718288393; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=36iJiWPjD6SuqWw0fPcJGiqZW0CSrSFa1RF7xICeHVs=;
+        b=krbfiljVqEswoQiNPozan3bAJvOTEsRQ81sEqcSZpazTHedzG+b/dBd5RGJGPjJBP0
+         kfVSALynXWtM8ZG4wDeBMBdjKOF3xj4u8d2CybkcpjMeUR8ybv1xS+zhfubwY9Csg2Zm
+         lC4mQbfHdnGqKc2PCb9lRySe9WMD6bX7iC8PJd7QihekEZPEWOy4j1X0xVpig5nxwD03
+         wAgqlY5E2JcU1TQIxCHddLghbv+RfjRTHFNSE8tJHHdzafO6g0tdC3NWyjyQksz004mI
+         OT3X/sujsP2EhxYXE85bE3eDqEVKjQltyI1VD/kKDGjeCzDtpDKf6vEJiB+N44ADCbGd
+         Fp0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717683593; x=1718288393;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=36iJiWPjD6SuqWw0fPcJGiqZW0CSrSFa1RF7xICeHVs=;
+        b=RYGW5H0fQlV3wXnAIS2ms/B+PCET/gspF2hkI5GTiguHxyiN0CQP1GQD8rPm/FjiWj
+         v+SjLX5l3H/hkaqdzrIvuRDX6AUjgfVv8vFOrEpPExPqRmorspvwmzlOllYYlQM5EShg
+         j595iG0LmAHP/kW6EAmJ5pbA1jIHdM2ib31G88zXj8Ssg9YrIsMOWWH1bcsTZIsoeS1E
+         8E5l9aQIdJfOSQrNo4NMlZbP6pPC/XY151HhoVUSmZC4HGKV0YW706ePXgFmCDIjCXHH
+         hpi0ukS1657EvYcUw1siaq5qFDe5AP2fJ8aB4zkHuJfllMPFROTGoMhCcuydXYkSSgJz
+         UqLg==
+X-Forwarded-Encrypted: i=1; AJvYcCWXVfIClTzJjUdX17QStwYUYq12IeylvZik5jhUCrII1Tf7BbhhECXpRlV8o0hUxZgpWjmLQ4HlbbkFneHI9HJWV6QQ+VWaafjDOg==
+X-Gm-Message-State: AOJu0YygkUWcOmyEGmcFhZz/deLVkeCsi3yxhwhmTb3JJnmQheJWRZRB
+	v7Bf7QFqOwbEANTFVrXCyr9efdWKf2t8m121l9piqnDOFUq9ysCMLTPmRzW4rzc=
+X-Google-Smtp-Source: AGHT+IHH4QeBm1WgAvOZdSJ5CLoMFu8LRgw4cTXRi0ooO8Q3Ak2T7S1SjZMKgar96ypnBMCR0zMUOw==
+X-Received: by 2002:a5d:6d8f:0:b0:34c:7ed4:55a with SMTP id ffacd0b85a97d-35ef0ddb092mr3388718f8f.33.1717683592559;
+        Thu, 06 Jun 2024 07:19:52 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:6d66:dc6b:6c6b:f7aa? ([2a01:e0a:982:cbb0:6d66:dc6b:6c6b:f7aa])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215c2c7dafsm23719935e9.35.2024.06.06.07.19.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Jun 2024 07:19:52 -0700 (PDT)
+Message-ID: <168caaed-b43c-4663-b35e-c010b58b310a@linaro.org>
+Date: Thu, 6 Jun 2024 16:19:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,224 +78,265 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 07/11] net: ethernet: stmmac: add management of
- stm32mp13 for stm32
-To: Marek Vasut <marex@denx.de>, "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo
- Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Richard Cochran
-	<richardcochran@gmail.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20240604143502.154463-1-christophe.roullier@foss.st.com>
- <20240604143502.154463-8-christophe.roullier@foss.st.com>
- <3c40352b-ad69-4847-b665-e7b2df86a684@denx.de>
-Content-Language: en-US
-From: Christophe ROULLIER <christophe.roullier@foss.st.com>
-In-Reply-To: <3c40352b-ad69-4847-b665-e7b2df86a684@denx.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-06_01,2024-06-06_02,2024-05-17_01
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 4/7] phy: qcom: qmp-combo: register a typec mux to
+ change the QPHY_MODE
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240527-topic-sm8x50-upstream-phy-combo-typec-mux-v2-0-a03e68d7b8fc@linaro.org>
+ <20240527-topic-sm8x50-upstream-phy-combo-typec-mux-v2-4-a03e68d7b8fc@linaro.org>
+ <qgitwducxmox6vac6v3pmjxgrbizd2tk2fgxds4pjqinr2cefd@lbsrbit4xsdi>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <qgitwducxmox6vac6v3pmjxgrbizd2tk2fgxds4pjqinr2cefd@lbsrbit4xsdi>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-On 6/4/24 19:05, Marek Vasut wrote:
-> On 6/4/24 4:34 PM, Christophe Roullier wrote:
->> Add Ethernet support for STM32MP13.
->> STM32MP13 is STM32 SOC with 2 GMACs instances.
->> GMAC IP version is SNPS 4.20.
->> GMAC IP configure with 1 RX and 1 TX queue.
->> DMA HW capability register supported
->> RX Checksum Offload Engine supported
->> TX Checksum insertion supported
->> Wake-Up On Lan supported
->> TSO supported
+On 27/05/2024 10:57, Dmitry Baryshkov wrote:
+> On Mon, May 27, 2024 at 10:42:36AM +0200, Neil Armstrong wrote:
+>> Register a typec mux in order to change the PHY mode on the Type-C
+>> mux events depending on the mode and the svid when in Altmode setup.
 >>
->> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
+>> The DisplayPort phy should be left enabled if is still powered on
+>> by the DRM DisplayPort controller, so bail out until the DisplayPort
+>> PHY is not powered off.
+>>
+>> The Type-C Mode/SVID only changes on plug/unplug, and USB SAFE states
+>> will be set in between of USB-Only, Combo and DisplayPort Only so
+>> this will leave enough time to the DRM DisplayPort controller to
+>> turn of the DisplayPort PHY.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 >> ---
->>   .../net/ethernet/stmicro/stmmac/dwmac-stm32.c | 50 +++++++++++++++----
->>   1 file changed, 40 insertions(+), 10 deletions(-)
+>>   drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 123 ++++++++++++++++++++++++++++--
+>>   1 file changed, 118 insertions(+), 5 deletions(-)
 >>
->> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c 
->> b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
->> index bed2be129b2d2..e59f8a845e01e 100644
->> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
->> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
->> @@ -84,12 +84,14 @@ struct stm32_dwmac {
->>       struct clk *clk_eth_ck;
->>       struct clk *clk_ethstp;
->>       struct clk *syscfg_clk;
->> +    bool is_mp13;
->>       int ext_phyclk;
->>       int enable_eth_ck;
->>       int eth_clk_sel_reg;
->>       int eth_ref_clk_sel_reg;
->>       int irq_pwr_wakeup;
->>       u32 mode_reg;         /* MAC glue-logic mode register */
->> +    u32 mode_mask;
->>       struct regmap *regmap;
->>       u32 speed;
->>       const struct stm32_ops *ops;
->> @@ -102,8 +104,8 @@ struct stm32_ops {
->>       void (*resume)(struct stm32_dwmac *dwmac);
->>       int (*parse_data)(struct stm32_dwmac *dwmac,
->>                 struct device *dev);
->> -    u32 syscfg_eth_mask;
->>       bool clk_rx_enable_in_suspend;
->> +    u32 syscfg_clr_off;
->>   };
->>     static int stm32_dwmac_clk_enable(struct stm32_dwmac *dwmac, bool 
->> resume)
->> @@ -227,7 +229,14 @@ static int stm32mp1_configure_pmcr(struct 
->> plat_stmmacenet_data *plat_dat)
->>         switch (plat_dat->mac_interface) {
->>       case PHY_INTERFACE_MODE_MII:
->> -        val = SYSCFG_PMCR_ETH_SEL_MII;
->> +        /*
->> +         * STM32MP15xx supports both MII and GMII, STM32MP13xx MII 
->> only.
->> +         * SYSCFG_PMCSETR ETH_SELMII is present only on STM32MP15xx and
->> +         * acts as a selector between 0:GMII and 1:MII. As STM32MP13xx
->> +         * supports only MII, ETH_SELMII is not present.
->> +         */
->> +        if (!dwmac->is_mp13)    /* Select MII mode on STM32MP15xx */
->> +            val |= SYSCFG_PMCR_ETH_SEL_MII;
->>           break;
->>       case PHY_INTERFACE_MODE_GMII:
->>           val = SYSCFG_PMCR_ETH_SEL_GMII;
->> @@ -256,13 +265,16 @@ static int stm32mp1_configure_pmcr(struct 
->> plat_stmmacenet_data *plat_dat)
->>         dev_dbg(dwmac->dev, "Mode %s", 
->> phy_modes(plat_dat->mac_interface));
->>   +    /* Shift value at correct ethernet MAC offset in 
->> SYSCFG_PMCSETR */
->> +    val <<= ffs(dwmac->mode_mask) - ffs(SYSCFG_MP1_ETH_MASK);
+>> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+>> index 788e4c05eaf2..b55ab08d44c2 100644
+>> --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+>> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+>> @@ -19,6 +19,7 @@
+>>   #include <linux/reset.h>
+>>   #include <linux/slab.h>
+>>   #include <linux/usb/typec.h>
+>> +#include <linux/usb/typec_dp.h>
+>>   #include <linux/usb/typec_mux.h>
+>>   
+>>   #include <drm/bridge/aux-bridge.h>
+>> @@ -1527,6 +1528,10 @@ struct qmp_combo {
+>>   
+>>   	struct typec_switch_dev *sw;
+>>   	enum typec_orientation orientation;
 >> +
->>       /* Need to update PMCCLRR (clear register) */
->> -    regmap_write(dwmac->regmap, reg + SYSCFG_PMCCLRR_OFFSET,
->> -             dwmac->ops->syscfg_eth_mask);
->> +    regmap_write(dwmac->regmap, dwmac->ops->syscfg_clr_off,
->> +             dwmac->mode_mask);
->>         /* Update PMCSETR (set register) */
->>       return regmap_update_bits(dwmac->regmap, reg,
->> -                 dwmac->ops->syscfg_eth_mask, val);
->> +                 dwmac->mode_mask, val);
->>   }
->>     static int stm32mp1_set_mode(struct plat_stmmacenet_data *plat_dat)
->> @@ -303,7 +315,7 @@ static int stm32mcu_set_mode(struct 
->> plat_stmmacenet_data *plat_dat)
->>       dev_dbg(dwmac->dev, "Mode %s", 
->> phy_modes(plat_dat->mac_interface));
->>         return regmap_update_bits(dwmac->regmap, reg,
->> -                 dwmac->ops->syscfg_eth_mask, val << 23);
->> +                 SYSCFG_MCU_ETH_MASK, val << 23);
->>   }
->>     static void stm32_dwmac_clk_disable(struct stm32_dwmac *dwmac, 
->> bool suspend)
->> @@ -348,8 +360,15 @@ static int stm32_dwmac_parse_data(struct 
->> stm32_dwmac *dwmac,
->>           return PTR_ERR(dwmac->regmap);
->>         err = of_property_read_u32_index(np, "st,syscon", 1, 
->> &dwmac->mode_reg);
->> -    if (err)
->> +    if (err) {
->>           dev_err(dev, "Can't get sysconfig mode offset (%d)\n", err);
->> +        return err;
->> +    }
+>> +	struct typec_mux_dev *mux;
+>> +	unsigned long mux_mode;
+>> +	unsigned int svid;
+>>   };
+>>   
+>>   static void qmp_v3_dp_aux_init(struct qmp_combo *qmp);
+>> @@ -3353,17 +3358,112 @@ static int qmp_combo_typec_switch_set(struct typec_switch_dev *sw,
+>>   	return 0;
+>>   }
+>>   
+>> -static void qmp_combo_typec_unregister(void *data)
+>> +static int qmp_combo_typec_mux_set(struct typec_mux_dev *mux, struct typec_mux_state *state)
+>> +{
+>> +	struct qmp_combo *qmp = typec_mux_get_drvdata(mux);
+>> +	const struct qmp_phy_cfg *cfg = qmp->cfg;
+>> +	enum qphy_mode new_mode;
+>> +	unsigned int svid;
 >> +
->> +    dwmac->mode_mask = SYSCFG_MP1_ETH_MASK;
->> +    err = of_property_read_u32_index(np, "st,syscon", 2, 
->> &dwmac->mode_mask);
->> +    if (err)
->> +        pr_debug("Warning sysconfig register mask not set\n");
->
-> I _think_ you need to left-shift the mode mask by 8 for STM32MP13xx 
-> second GMAC somewhere in here, right ?
->
-The shift is performed in function stm32mp1_configure_pmcr:
-
-     /* Shift value at correct ethernet MAC offset in SYSCFG_PMCSETR */
-     val <<= ffs(dwmac->mode_mask) - ffs(SYSCFG_MP1_ETH_MASK);
-
-In case of MP13 Ethernet1 or MP15, shift equal 0
-
-In case of MP13 Ethernet2 , shift equal 8  ;-)
-
->>       return err;
->>   }
->> @@ -361,6 +380,8 @@ static int stm32mp1_parse_data(struct stm32_dwmac 
->> *dwmac,
->>       struct device_node *np = dev->of_node;
->>       int err = 0;
->>   +    dwmac->is_mp13 = of_device_is_compatible(np, 
->> "st,stm32mp13-dwmac");
->
-> You could make is_mp13 part of struct stm32_ops {} just like 
-> syscfg_clr_off is part of struct stm32_ops {} .
-ok
->
->>       /* Ethernet PHY have no crystal */
->>       dwmac->ext_phyclk = of_property_read_bool(np, "st,ext-phyclk");
->>   @@ -540,8 +561,7 @@ static SIMPLE_DEV_PM_OPS(stm32_dwmac_pm_ops,
->>       stm32_dwmac_suspend, stm32_dwmac_resume);
->>     static struct stm32_ops stm32mcu_dwmac_data = {
->> -    .set_mode = stm32mcu_set_mode,
->> -    .syscfg_eth_mask = SYSCFG_MCU_ETH_MASK
->> +    .set_mode = stm32mcu_set_mode
->
-> It is not necessary to remove the trailing comma ','
-ok
->
->>   };
->>     static struct stm32_ops stm32mp1_dwmac_data = {
->> @@ -549,13 +569,23 @@ static struct stm32_ops stm32mp1_dwmac_data = {
->>       .suspend = stm32mp1_suspend,
->>       .resume = stm32mp1_resume,
->>       .parse_data = stm32mp1_parse_data,
->> -    .syscfg_eth_mask = SYSCFG_MP1_ETH_MASK,
->> +    .syscfg_clr_off = 0x44,
->> +    .clk_rx_enable_in_suspend = true
->> +};
+>> +	if (state->mode == qmp->mode)
+>> +		return 0;
 >> +
->> +static struct stm32_ops stm32mp13_dwmac_data = {
->> +    .set_mode = stm32mp1_set_mode,
->> +    .suspend = stm32mp1_suspend,
->> +    .resume = stm32mp1_resume,
->> +    .parse_data = stm32mp1_parse_data,
->> +    .syscfg_clr_off = 0x08,
->>       .clk_rx_enable_in_suspend = true
->>   };
->>     static const struct of_device_id stm32_dwmac_match[] = {
->>       { .compatible = "st,stm32-dwmac", .data = &stm32mcu_dwmac_data},
->>       { .compatible = "st,stm32mp1-dwmac", .data = 
->> &stm32mp1_dwmac_data},
->> +    { .compatible = "st,stm32mp13-dwmac", .data = 
->> &stm32mp13_dwmac_data},
->>       { }
->>   };
->>   MODULE_DEVICE_TABLE(of, stm32_dwmac_match);
->
-> This patch definitely looks MUCH better than what this series started 
-> with, it is much easier to grasp the MP13 specific changes.
->
-> You could possibly improve this further and split the 
-> dwmac->ops->syscfg_eth_mask to dwmac->mode_mask conversion into 
-> separate preparatory patch (as a 6.5/11 in context of this series), 
-> and then add the few MP13 changes on top (as 7/11 patch).
-ok
+>> +	mutex_lock(&qmp->phy_mutex);
+>> +
+>> +	if (state->alt)
+>> +		svid = state->alt->svid;
+>> +	else
+>> +		svid = 0; // No SVID
+>> +
+>> +	if (svid == USB_TYPEC_DP_SID) {
+>> +		switch (state->mode) {
+>> +		/* DP Only */
+>> +		case TYPEC_DP_STATE_C:
+>> +		case TYPEC_DP_STATE_E:
+>> +			new_mode = QPHY_MODE_DP_ONLY;
+>> +			break;
+>> +
+>> +		/* DP + USB */
+>> +		case TYPEC_DP_STATE_D:
+>> +		case TYPEC_DP_STATE_F:
+>> +
+>> +		/* Safe fallback...*/
+>> +		default:
+>> +			new_mode = QPHY_MODE_COMBO;
+>> +			break;
+>> +		}
+>> +	} else {
+>> +		/* Only switch to USB_ONLY when we know we only have USB3 */
+>> +		if (qmp->mux_mode == TYPEC_MODE_USB3)
+>> +			new_mode = QPHY_MODE_USB_ONLY;
+>> +		else
+>> +			new_mode = QPHY_MODE_COMBO;
+>> +	}
+>> +
+>> +	if (new_mode == qmp->init_mode) {
+>> +		dev_dbg(qmp->dev, "typec_mux_set: same phy mode, bail out\n");
+>> +		qmp->mode = state->mode;
+>> +		goto out;
+>> +	}
+>> +
+>> +	if (qmp->init_mode != QPHY_MODE_USB_ONLY && qmp->dp_powered_on) {
+>> +		dev_dbg(qmp->dev, "typec_mux_set: DP is still powered on, delaying switch\n");
+>> +		goto out;
+>> +	}
+>> +
+>> +	dev_dbg(qmp->dev, "typec_mux_set: switching from phy mode %d to %d\n",
+>> +		qmp->init_mode, new_mode);
+>> +
+>> +	qmp->mux_mode = state->mode;
+>> +	qmp->init_mode = new_mode;
+>> +
+>> +	if (qmp->init_count) {
+>> +		if (qmp->usb_init_count)
+>> +			qmp_combo_usb_power_off(qmp->usb_phy);
+>> +		if (qmp->dp_init_count)
+>> +			writel(DP_PHY_PD_CTL_PSR_PWRDN, qmp->dp_dp_phy + QSERDES_DP_PHY_PD_CTL);
+>> +		qmp_combo_com_exit(qmp, true);
+>> +
+>> +		/* Now everything's powered down, power up the right PHYs */
+>> +
+>> +		qmp_combo_com_init(qmp, true);
+>> +		if (qmp->init_mode == QPHY_MODE_DP_ONLY && qmp->usb_init_count) {
+>> +			qmp->usb_init_count--;
+> 
+> Can we move this clause next to actually powering USB part off?
+> 
+>> +		} else if (qmp->init_mode != QPHY_MODE_DP_ONLY) {
+>> +			qmp_combo_usb_power_on(qmp->usb_phy);
+>> +			if (!qmp->usb_init_count)
+>> +				qmp->usb_init_count++;
+>> +		}
+>> +		if (qmp->init_mode != QPHY_MODE_USB_ONLY && qmp->dp_init_count)
+>> +			cfg->dp_aux_init(qmp);
+> 
+> Does dp_init_count reflect the actual necessity to bring up the DP part
+> up? Maybe we can unify the code between this function and
+> qmp_combo_typec_switch_set()? I don't like that it is unobvious whether
+> these two functions will results in the same state or not depending on
+> the order in which they are being called.
+
+Yep, I'll try to use a common function, so any switch/mux call would use
+the same process, and I can probably simplify it.
+
+Thanks,
+Neil
+
+> 
+>> +	}
+>> +
+>> +out:
+>> +	mutex_unlock(&qmp->phy_mutex);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void qmp_combo_typec_switch_unregister(void *data)
+>>   {
+>>   	struct qmp_combo *qmp = data;
+>>   
+>>   	typec_switch_unregister(qmp->sw);
+>>   }
+>>   
+>> -static int qmp_combo_typec_switch_register(struct qmp_combo *qmp)
+>> +static void qmp_combo_typec_mux_unregister(void *data)
+>> +{
+>> +	struct qmp_combo *qmp = data;
+>> +
+>> +	typec_mux_unregister(qmp->mux);
+>> +}
+>> +
+>> +static int qmp_combo_typec_register(struct qmp_combo *qmp)
+>>   {
+>>   	struct typec_switch_desc sw_desc = {};
+>> +	struct typec_mux_desc mux_desc = { };
+>>   	struct device *dev = qmp->dev;
+>> +	int ret;
+>>   
+>>   	sw_desc.drvdata = qmp;
+>>   	sw_desc.fwnode = dev->fwnode;
+>> @@ -3374,10 +3474,23 @@ static int qmp_combo_typec_switch_register(struct qmp_combo *qmp)
+>>   		return PTR_ERR(qmp->sw);
+>>   	}
+>>   
+>> -	return devm_add_action_or_reset(dev, qmp_combo_typec_unregister, qmp);
+>> +	ret = devm_add_action_or_reset(dev, qmp_combo_typec_switch_unregister, qmp);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	mux_desc.drvdata = qmp;
+>> +	mux_desc.fwnode = dev->fwnode;
+>> +	mux_desc.set = qmp_combo_typec_mux_set;
+>> +	qmp->mux = typec_mux_register(dev, &mux_desc);
+>> +	if (IS_ERR(qmp->mux)) {
+>> +		dev_err(dev, "Unable to register typec mux: %pe\n", qmp->mux);
+>> +		return PTR_ERR(qmp->mux);
+>> +	}
+>> +
+>> +	return devm_add_action_or_reset(dev, qmp_combo_typec_mux_unregister, qmp);
+>>   }
+>>   #else
+>> -static int qmp_combo_typec_switch_register(struct qmp_combo *qmp)
+>> +static int qmp_combo_typec_register(struct qmp_combo *qmp)
+>>   {
+>>   	return 0;
+>>   }
+>> @@ -3609,7 +3722,7 @@ static int qmp_combo_probe(struct platform_device *pdev)
+>>   	if (ret)
+>>   		goto err_node_put;
+>>   
+>> -	ret = qmp_combo_typec_switch_register(qmp);
+>> +	ret = qmp_combo_typec_register(qmp);
+>>   	if (ret)
+>>   		goto err_node_put;
+>>   
+>>
+>> -- 
+>> 2.34.1
+>>
+> 
+
 
