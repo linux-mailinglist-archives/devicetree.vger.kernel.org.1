@@ -1,155 +1,139 @@
-Return-Path: <devicetree+bounces-73324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DDA28FF057
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:19:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8B6F8FF087
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:23:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3C687B294A5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:08:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0A8FEB2FBE5
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:09:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E4A31990C8;
-	Thu,  6 Jun 2024 14:47:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A992C199241;
+	Thu,  6 Jun 2024 14:49:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c6EmfmRf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GpjpVti8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 916EF197549;
-	Thu,  6 Jun 2024 14:47:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CD6B168C10;
+	Thu,  6 Jun 2024 14:49:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717685253; cv=none; b=Y5wJxuu8/bEchUUImcwoXRPnwVolgmFZOlrgWP/14w23PxuJrRWhjq+BstKtf//KHH7qeDK+5AahB6vYQ6+IkHDaIU6jTbZQ+LljJmYRhw1OXZ/xtU41awUh/fDbtOdAhBIPcSEEYYjzEf91rh8aJZ1bcXx2tJ+zWdNEhIKzfRg=
+	t=1717685377; cv=none; b=O41Rnwur3zvfrNmxPU74nDdSjnxeUFOpL2CxJc9g1rTfeVtK+I/lpedTjjseFcjpQW14aRUF4PwCOhRtfvirfKfgQIEeCnFs2/OpstvMhg+Egwj9EvqHS/R05Dy9iIXnmXbDiKqaTYZHY6MwhM0jrqC7WvmrwTlOCOT4RpuC2E4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717685253; c=relaxed/simple;
-	bh=xpT4FS9NOMDZSBdsbHHC+PXphhpeO2mr4WXvX4mj0HU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=TYsiER/Tm+3wCD/1pXhwDU0DZr1a7JsPwt9GoOKJUMcqEYiD6QN2LzzjuR44sxNU8hkftBRqCWB7b7xWuenpkphKy+DSiSU4iVchQ5r+ygJAkd74lKfeyJ2gg60AGPkA//VFley6QjtErhzDMybTUCc++RRavJjBnVR3Gdxyrfw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c6EmfmRf; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-35e816b735aso1155594f8f.0;
-        Thu, 06 Jun 2024 07:47:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717685250; x=1718290050; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=m3rVR4Thyo9aNwCQlgqCXd6hXabtEKHJTsbPaJcS5Vg=;
-        b=c6EmfmRfgByqiI8lJ63L6FbRCHeLqJ+ZaoCrKBwzvfqqMCnBoG+yA+KomRvV6O0+OP
-         ufh5XjomzyG31zLTdbN7J5Iqc5TYmqMfSiUwDMsIaA1TFVXwFWbPbijqlktikoZl3PCA
-         xB9Qs95t1cZPhB9YHVi5aen9hzhKcOnA11stL8gPFR4FGHDOIdJKJRiQrCG5PrKJ0GNI
-         LQm7Um72BSEPXqmWrzrjBeT6uYymITV4yxW48WVcdqiJ3j0Mnp7Tk+wfWW7eTSJexFA6
-         dKJnHgUyz870xKMNWOv4tVeLeetiQXJ2YbtGCA7EYYXqY7sDE4sTRSlhl/HoeiSMKA48
-         nKDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717685250; x=1718290050;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=m3rVR4Thyo9aNwCQlgqCXd6hXabtEKHJTsbPaJcS5Vg=;
-        b=uGMDoAr2/knOd/2Bf5/RHvNycR/PVZi9r1z65tXmhXFFmS0yp0MrIjcIiPdd98/a7B
-         qeSogL0EdNytHsw0ddZDwdVgBK3yvbn0YyhEb7nAeEB7MbN9qWKEeJeQebuuFboBp+Kh
-         hB82x9+pP8TMOtyzu0gYzpO7C1D2MfDj0xZrktFqQS5sSL65r7VNNheQK+/GyuL6kmRw
-         9sSQ8gc60FKIkh2tf+JLvEdBj6KuQMa0BCY+69BYB1hReAhZBOA3tyKDFXltGXp4D3Y7
-         e8sTFKVXtkm94NlAevZCDDPQPfYRQhbpem09SPdxfqtPEdVaDdtmGejkF8H2T0zl5y/1
-         FyIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUo5KserPd0Ik2/M1kzQ8etf/uCvyhKATKWUtM8mMJVwQ0idSphSPPjjUlDLz/DdCXPoB3+x2VasayW2bIsn5pNYXlpgqIerzzgKHWPRtV/RuYwZkx6E15L9BcTecubvPm3s24SZdyTgw==
-X-Gm-Message-State: AOJu0YwNPLxH5nKKHt3RYFffhIXW9ANiBIv/Sy9BM/njjYQMYtHEfVld
-	vJwn5liUfTCPm5ClF/f3r9IE0FV6IhMkwBPO8ODPZ7YSou9eCNYlFnbd0cJZ
-X-Google-Smtp-Source: AGHT+IEJ5sosaLGENXHCZsNFvHmechI1Fl7am07tRLUpuE2qDbgBo25pGxeSacHewsGWwOrReUBIZA==
-X-Received: by 2002:adf:f2c8:0:b0:354:fb80:b515 with SMTP id ffacd0b85a97d-35e8ef65ea7mr3955508f8f.47.1717685249782;
-        Thu, 06 Jun 2024 07:47:29 -0700 (PDT)
-Received: from [192.168.1.130] (51B6DB6F.dsl.pool.telekom.hu. [81.182.219.111])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5e989easm1739751f8f.78.2024.06.06.07.47.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jun 2024 07:47:29 -0700 (PDT)
-From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <trabarni@gmail.com>
-Date: Thu, 06 Jun 2024 16:47:28 +0200
-Subject: [PATCH] arm64: dts: qcom: pm660: Add rradc, charger
+	s=arc-20240116; t=1717685377; c=relaxed/simple;
+	bh=NawlGkZO31q/YuNHdtemo5FsmDquueklSL3reLTQCVk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Nc5PfKWVMaWyT7py7fjeaJhFBXbbBKD1OjZANJ8qLsCt4pw0BEBJI5IO2rFiR/BfyM7XzQHLbWUtKDV++TXArs3BTZNvhTIGisrkgyeqnsuCum9kTrpmkODPu/Vg5uFg0LlIyMgcZ3/57kYhFf1t27s2K9STdZ3u/0+UXxgnJWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GpjpVti8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C7B4C2BD10;
+	Thu,  6 Jun 2024 14:49:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717685377;
+	bh=NawlGkZO31q/YuNHdtemo5FsmDquueklSL3reLTQCVk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=GpjpVti8zIZRDaf+7jUHZAt5ir0Ijq3fwR5fNwfU/m50uDARoCrFQx++QEMidwXOk
+	 SAy2G0CewxH44dWhdkUuWrqm93E4nbsQWaVEwg4L6M9eps5KVoxOUKdrC+WNrlAl74
+	 XKwpLaSuPi4rcYw59uy3cNj7m4FqMCS1/vF7pthkcOA5MZ8XyxYkzlEaPFO9eWVioq
+	 Nj/yGTcUXx8amouohrs4P+ViRl324LrJsQXbEp0lClp8buQ41JYR1JqK2JpZ0HZ5jU
+	 UsM8/fPLXsp/gl006YMW/9IL4HUvtO+LmVEFYUifwnAP2XWZw6gccX+K/whiWH2Lag
+	 cOxSZael9SbKA==
+Message-ID: <4ed45f6d-fcc7-45d7-8df0-5470f7f75d0e@kernel.org>
+Date: Thu, 6 Jun 2024 16:49:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240606-pm660-charger-rrdac-v1-1-a95d4da24f3b@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAP/LYWYC/x2MSQqAMAwAvyI5G4gLpfUr4qG0qebgQgoiFP9u8
- TgMMwUyq3CGqSmgfEuW86jQtQ2EzR8ro8TK0FM/kiGD124MYXW6sqJq9AGZaEjJjc4GC7W8lJM
- 8/3Ve3vcDKNiPGGUAAAA=
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Aboothahir U <aboothahirpkd@gmail.com>, 
- =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <trabarni@gmail.com>
-X-Mailer: b4 0.13.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] dt-bindings: remoteproc: qcom,sm8550-pas: document
+ the SDX75 PAS
+To: Naina Mehta <quic_nainmeht@quicinc.com>, andersson@kernel.org,
+ mathieu.poirier@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, konrad.dybcio@linaro.org,
+ manivannan.sadhasivam@linaro.org
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240606143858.4026-1-quic_nainmeht@quicinc.com>
+ <20240606143858.4026-2-quic_nainmeht@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240606143858.4026-2-quic_nainmeht@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Aboothahir U <aboothahirpkd@gmail.com>
+On 06/06/2024 16:38, Naina Mehta wrote:
+> Document the MPSS Peripheral Authentication Service on SDX75 platform.
+> 
+> Signed-off-by: Naina Mehta <quic_nainmeht@quicinc.com>
+> ---
+>  .../devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml          | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
+> index 73fda7565cd1..02e15b1f78ab 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
+> @@ -16,6 +16,7 @@ description:
+>  properties:
+>    compatible:
+>      enum:
+> +      - qcom,sdx75-mpss-pas
+>        - qcom,sm8550-adsp-pas
+>        - qcom,sm8550-cdsp-pas
+>        - qcom,sm8550-mpss-pas
 
-Add charger to PM660 PMIC. Readings from round-robin ADC
-are needed for charger to function, so add it as well.
-
-Signed-off-by: Aboothahir U <aboothahirpkd@gmail.com>
-Signed-off-by: Barnabás Czémán <trabarni@gmail.com>
----
- arch/arm64/boot/dts/qcom/pm660.dtsi | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/pm660.dtsi b/arch/arm64/boot/dts/qcom/pm660.dtsi
-index 98dc04962fe3..ed2c8e485cdd 100644
---- a/arch/arm64/boot/dts/qcom/pm660.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm660.dtsi
-@@ -74,6 +74,23 @@ pon_resin: resin {
- 			};
- 		};
- 
-+		pm660_charger: charger@1000 {
-+			compatible = "qcom,pm660-charger";
-+			reg = <0x1000>;
-+
-+			interrupts = <0x0 0x13 0x4 IRQ_TYPE_EDGE_BOTH>,
-+				     <0x0 0x12 0x2 IRQ_TYPE_EDGE_BOTH>,
-+				     <0x0 0x16 0x1 IRQ_TYPE_EDGE_RISING>,
-+				     <0x0 0x13 0x6 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "usb-plugin", "bat-ov", "wdog-bark", "usbin-icl-change";
-+
-+			io-channels = <&pm660_rradc 3>,
-+				      <&pm660_rradc 4>;
-+			io-channel-names = "usbin_i", "usbin_v";
-+
-+			status = "disabled";
-+		};
-+
- 		pm660_temp: temp-alarm@2400 {
- 			compatible = "qcom,spmi-temp-alarm";
- 			reg = <0x2400>;
-@@ -181,6 +198,14 @@ channel@85 {
- 			};
- 		};
- 
-+		pm660_rradc: adc@4500 {
-+			compatible = "qcom,pm660-rradc";
-+			reg = <0x4500>;
-+			#io-channel-cells = <1>;
-+
-+			status = "disabled";
-+		};
-+
- 		pm660_gpios: gpio@c000 {
- 			compatible = "qcom,pm660-gpio", "qcom,spmi-gpio";
- 			reg = <0xc000>;
-
----
-base-commit: ee78a17615ad0cfdbbc27182b1047cd36c9d4d5f
-change-id: 20240606-pm660-charger-rrdac-e003ff9498c8
+Missing updates to allOf constraints. Are you sure this is the binding
+for SDX75?
 
 Best regards,
--- 
-Barnabás Czémán <trabarni@gmail.com>
+Krzysztof
 
 
