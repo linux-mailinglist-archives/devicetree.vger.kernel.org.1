@@ -1,148 +1,267 @@
-Return-Path: <devicetree+bounces-73326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B29ED8FF00B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:10:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FAF88FF0C3
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:36:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A01B11C235B5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:10:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95227B286C5
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:16:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F322197A72;
-	Thu,  6 Jun 2024 14:50:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51720198857;
+	Thu,  6 Jun 2024 14:58:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q8xDURwH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jwwb5eD+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D59A197554;
-	Thu,  6 Jun 2024 14:50:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25B7919884A;
+	Thu,  6 Jun 2024 14:58:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717685421; cv=none; b=P/uxmiYToXpE48tg5cc4EhVThfrGswKk5ByXPaGk8W4SRW9n3Jq5uxR6Rom7qPbsAjsoGZ0Gx+8k0oJyt0OKEAsZDYoUDKElP+jvcqmOKVm6ZmtDoPXzJwa0jI7zt+GKnwRsQBu0FSw4SDZH+/9fYRb1bhg7sdHAWgje+hM0g7w=
+	t=1717685905; cv=none; b=agJKYjCLLkvSU6BMLMtU1JlXDo8K7r68JC5UNj64OA0Q3OgPT4Gwgtq16hjCyR9J5oP64AnscAHc5bTYOlb0Untf57oeT17veHXtLLTTgzMw5v07pQhJkbfmoOpfdGMaJISWX1PcVKm4FZB5alpisGKYBKzbC2qt14jio3AexXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717685421; c=relaxed/simple;
-	bh=zw1XPsrHhdkztMwHgoGHGJIAqzfN4fPRiDa1UBE8hg4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qG9b28vJeCT3h1ay/PCJydivX0yTrhJn5lnbmNSw+Ml+pdLGhsmUinwgXs3NYrBjlYvmZKxdyIyO9gotdic8kMUOY3h9jQNyMDiVreGhjDuMmLhFq6/ip82gHjAlBbjipBicpjoKNV8bsUJoF63m5MS87eeBSJcA2hCTkKJka5s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q8xDURwH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DA55C2BD10;
-	Thu,  6 Jun 2024 14:50:18 +0000 (UTC)
+	s=arc-20240116; t=1717685905; c=relaxed/simple;
+	bh=+5bxvf0v2FVyUXIrKPcUNq52cRGrHBpwGeGDJnmbnJ0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QLVKVEqvsccfGlR7cF/+2KMDOVuZO/ZowgeRPwhYM9dudOZ9kf9+TM9FWSoHx4bUBBLfDwsBCsHaQebyvFpGhAngFsh1XX9zTYIb0QBMUmfKIbeJLjDvr8f6EfGhblaUbF4RyQKZGVheVFH6cvH7JIhHXxMONYa+q0QZBW4lXM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jwwb5eD+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1547C2BD10;
+	Thu,  6 Jun 2024 14:58:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717685421;
-	bh=zw1XPsrHhdkztMwHgoGHGJIAqzfN4fPRiDa1UBE8hg4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=q8xDURwHUQecEv7Wd726Z+XRi0d7dHC+Vocn4v/8McV1mzJuKaRhoqiK6fyF3D8nj
-	 nWtgyeC26J6c9+Ix91nq9OnqqP17GGGcUqnToeR7nc+zNUH6H/Adi8DxeIj/gW6pKL
-	 W+FWCVVGyb93lQJeNp+k5wff8HtIpgcC79/9+IX66Jkf9uwfSRFRNLbBr/3xdIf61f
-	 7Kfh+/tiVEVLwDHOQXW75xOGUfbpG73GT3PeNV+n3MBMlt0r2oH9Zn+nZWFOjK4eKr
-	 Jb+32GpHgkIxNfc3stsimYJ9ppjdMP0chzoxf5yepoU18EU55MHxkH7fykMFETQaXZ
-	 vz33HwU3ZVOFw==
-Message-ID: <c22e20f5-5ca9-485c-991f-9b45e35cd75a@kernel.org>
-Date: Thu, 6 Jun 2024 16:50:16 +0200
+	s=k20201202; t=1717685904;
+	bh=+5bxvf0v2FVyUXIrKPcUNq52cRGrHBpwGeGDJnmbnJ0=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=jwwb5eD+l+DurInLJxKAXBTR2YMVm4VmopGfGFizR8mXdCKqiPdfloiAOFmPMus8k
+	 8G+lVTgL3sV8BQ1N0apW5QU+JMAroRFG33TofmE27PH5wwHeFn4RTmmmGS9jmMDjgW
+	 tKLEhVjCV8SuaejQpW9PTq8z4Sqy1x/ID0SHddsXb+TK51bgTj95W5s2I0AQObthSr
+	 VAEHKlbwd1B9XbToSFFdk0uWHGvibpOcOPRIZ9ApWAgfG9m2IIrAliyXar18usnfUl
+	 TEtZDxJI5RnDH+K5pIW3OotMauefv4GAsJ0kEDGt/RFyVLMtI78DGi1Y5H8/MznmgF
+	 AmPA4Cec7BEzw==
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-52b840cfecdso1260527e87.3;
+        Thu, 06 Jun 2024 07:58:24 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWB3m2hWDbFSmGmj2rysP4L5WskpVxVzhLEWQXm55RfbqythuYFZBRqHBD4pA0j3R7SVuKZm8Ver5Fyaa7kFGKWghXOpNiPybjcJEDTrdNHP+mWOeAIKSdh2jkLlxpeUEFGqnjxFW+KKw==
+X-Gm-Message-State: AOJu0Yz9TgaIw7onQ+1Un68G0x0ZVpelwtnpDusk9wGa+fxz6V1Cf3pL
+	d+W6lJQAOBj5lc9S/Bw2VWAdMiuP5D03ebgZ0jYj7Lu+8HY3TklpqqFeBYpAJMjzCTNyzVoIQAT
+	qPwZhFbZiAwdy7QNP/Gz+xAn19w==
+X-Google-Smtp-Source: AGHT+IEI/HzrYwCNH+fgv5QUK3X6q1WLoehrFnvaSYS+6bZQTY8kCtZZFy9elFAgM+jtrBoVoTj5yw4L49fT/gXDhws=
+X-Received: by 2002:ac2:42cd:0:b0:52b:9c8a:7356 with SMTP id
+ 2adb3069b0e04-52bab4fb431mr3412448e87.49.1717685903060; Thu, 06 Jun 2024
+ 07:58:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] arm64: dts: qcom: sdx75: add missing qlink_logging
- reserved memory for mpss
-To: Naina Mehta <quic_nainmeht@quicinc.com>, andersson@kernel.org,
- mathieu.poirier@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, konrad.dybcio@linaro.org,
- manivannan.sadhasivam@linaro.org
-Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240606143858.4026-1-quic_nainmeht@quicinc.com>
- <20240606143858.4026-4-quic_nainmeht@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240606143858.4026-4-quic_nainmeht@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240601-b4-rk3588-bridge-upstream-v1-0-f6203753232b@collabora.com>
+ <20240601-b4-rk3588-bridge-upstream-v1-12-f6203753232b@collabora.com>
+ <20240605232206.GA3345910-robh@kernel.org> <260aa607-099a-4f65-ae59-c4b6ea2256f1@collabora.com>
+In-Reply-To: <260aa607-099a-4f65-ae59-c4b6ea2256f1@collabora.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 6 Jun 2024 08:58:09 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKsVE1VgoYGe7qPaAV82dbs5UMGPG843mz26Opv0Y7Hxg@mail.gmail.com>
+Message-ID: <CAL_JsqKsVE1VgoYGe7qPaAV82dbs5UMGPG843mz26Opv0Y7Hxg@mail.gmail.com>
+Subject: Re: [PATCH 12/14] dt-bindings: display: rockchip,dw-hdmi: Add
+ compatible for RK3588
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+	Andy Yan <andy.yan@rock-chips.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>, 
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	devicetree@vger.kernel.org, kernel@collabora.com, 
+	Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 06/06/2024 16:38, Naina Mehta wrote:
-> The qlink_logging memory region is also used by the modem firmware,
-> add it to reserved memory regions.
-> Also split MPSS DSM region into 2 separate regions.
-> 
-> Signed-off-by: Naina Mehta <quic_nainmeht@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sdx75.dtsi | 17 +++++++++++++----
->  1 file changed, 13 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdx75.dtsi b/arch/arm64/boot/dts/qcom/sdx75.dtsi
-> index 9b93f6501d55..9349b1c4e196 100644
-> --- a/arch/arm64/boot/dts/qcom/sdx75.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdx75.dtsi
-> @@ -366,7 +366,12 @@
->  			no-map;
->  		};
->  
-> -		qdss_mem: qdss@88800000 {
-> +		qdss_mem: qdss@88500000 {
-> +			reg = <0x0 0x88500000 0x0 0x300000>;
-> +			no-map;
-> +		};
-> +
-> +		qlink_logging_mem: qlink_logging@88800000 {
+On Thu, Jun 6, 2024 at 5:51=E2=80=AFAM Cristian Ciocaltea
+<cristian.ciocaltea@collabora.com> wrote:
+>
+> On 6/6/24 2:22 AM, Rob Herring wrote:
+> > On Sat, Jun 01, 2024 at 04:12:34PM +0300, Cristian Ciocaltea wrote:
+> >> Document the Synopsys DesignWare HDMI 2.1 Quad-Pixel (QP) TX controlle=
+r
+> >> found on Rockchip RK3588 SoC family.
+> >>
+> >> Since RK3588 uses different clocks than previous Rockchip SoCs and als=
+o
+> >> requires a couple of reset lines and some additional properties, provi=
+de
+> >> the required changes in the binding to accommodate all variants.
+> >>
+> >> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> >> ---
+> >>  .../display/rockchip/rockchip,dw-hdmi.yaml         | 127 ++++++++++++=
++++------
+> >>  1 file changed, 90 insertions(+), 37 deletions(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockch=
+ip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockch=
+ip,dw-hdmi.yaml
+> >> index 2aac62219ff6..60d6b815227f 100644
+> >> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-h=
+dmi.yaml
+> >> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-h=
+dmi.yaml
+> >> @@ -10,12 +10,10 @@ maintainers:
+> >>    - Mark Yao <markyao0591@gmail.com>
+> >>
+> >>  description: |
+> >> -  The HDMI transmitter is a Synopsys DesignWare HDMI 1.4 TX controlle=
+r IP
+> >> -  with a companion PHY IP.
+> >> -
+> >> -allOf:
+> >> -  - $ref: ../bridge/synopsys,dw-hdmi.yaml#
+> >> -  - $ref: /schemas/sound/dai-common.yaml#
+> >> +  For SoCs up to RK3568, the HDMI transmitter is a Synopsys DesignWar=
+e
+> >> +  HDMI 1.4 TX controller IP with a companion PHY IP.
+> >> +  The RK3588 SoC integrates the Synopsys DesignWare HDMI 2.1 Quad-Pix=
+el (QP)
+> >> +  TX controller IP and a HDMI/eDP TX Combo PHY based on a Samsung IP =
+block.
+> >>
+> >>  properties:
+> >>    compatible:
+> >> @@ -25,6 +23,7 @@ properties:
+> >>        - rockchip,rk3328-dw-hdmi
+> >>        - rockchip,rk3399-dw-hdmi
+> >>        - rockchip,rk3568-dw-hdmi
+> >> +      - rockchip,rk3588-dw-hdmi
+> >>
+> >>    reg-io-width:
+> >>      const: 4
+> >> @@ -40,36 +39,6 @@ properties:
+> >>        A 1.8V supply that powers up the SoC internal circuitry. The pi=
+n name on the
+> >>        SoC usually is HDMI_TX_AVDD_1V8.
+> >>
+> >> -  clocks:
+> >> -    minItems: 2
+> >> -    items:
+> >> -      - {}
+> >> -      - {}
+> >> -      # The next three clocks are all optional, but shall be specifie=
+d in this
+> >> -      # order when present.
+> >> -      - description: The HDMI CEC controller main clock
+> >> -      - description: Power for GRF IO
+> >> -      - description: External clock for some HDMI PHY (old clock name=
+, deprecated)
+> >> -      - description: External clock for some HDMI PHY (new name)
+> >> -
+> >> -  clock-names:
+> >> -    minItems: 2
+> >> -    items:
+> >> -      - {}
+> >> -      - {}
+> >> -      - enum:
+> >> -          - cec
+> >> -          - grf
+> >> -          - vpll
+> >> -          - ref
+> >> -      - enum:
+> >> -          - grf
+> >> -          - vpll
+> >> -          - ref
+> >> -      - enum:
+> >> -          - vpll
+> >> -          - ref
+> >> -
+> >>    ddc-i2c-bus:
+> >>      $ref: /schemas/types.yaml#/definitions/phandle
+> >>      description:
+> >> @@ -131,13 +100,97 @@ properties:
+> >>  required:
+> >>    - compatible
+> >>    - reg
+> >> -  - reg-io-width
+> >>    - clocks
+> >>    - clock-names
+> >>    - interrupts
+> >>    - ports
+> >>    - rockchip,grf
+> >>
+> >> +allOf:
+> >> +  - $ref: /schemas/sound/dai-common.yaml#
+> >> +  - if:
+> >> +      properties:
+> >> +        compatible:
+> >> +          contains:
+> >> +            enum:
+> >> +              - rockchip,rk3588-dw-hdmi
+> >> +    then:
+> >> +      properties:
+> >> +        reg:
+> >> +          maxItems: 1
+> >> +
+> >> +        clocks:
+> >> +          minItems: 1
+> >> +          items:
+> >> +            - description: APB system interface clock
+> >> +            # The next clocks are optional, but shall be specified in=
+ this
+> >> +            # order when present.
+> >> +            - description: TMDS/FRL link clock
+> >> +            - description: EARC RX biphase clock
+> >> +            - description: Reference clock
+> >> +            - description: Audio interface clock
+> >> +            - description: Video datapath clock
+> >> +
+> >> +        clock-names:
+> >> +          minItems: 1
+> >> +          items:
+> >> +            - const: pclk
+> >> +            - enum: [hdp, earc, ref, aud, hclk_vo1]
+> >> +            - enum: [earc, ref, aud, hclk_vo1]
+> >> +            - enum: [ref, aud, hclk_vo1]
+> >> +            - enum: [aud, hclk_vo1]
+> >> +            - const: hclk_vo1
+> >> +
+> >> +        resets:
+> >> +          minItems: 2
+> >> +          maxItems: 2
+> >> +
+> >> +        reset-names:
+> >> +          items:
+> >> +            - const: ref
+> >> +            - const: hdp
+> >> +
+> >> +        interrupts:
+> >> +          minItems: 1
+> >> +          maxItems: 5
+> >> +
+> >> +        rockchip,vo1_grf:
+> >> +          $ref: /schemas/types.yaml#/definitions/phandle
+> >> +          description: Some QP related data is accessed through VO1 G=
+RF regs
+> >> +
+> >> +      required:
+> >> +        - resets
+> >> +        - reset-names
+> >> +        - rockchip,vo1_grf
+> >> +
+> >> +    else:
+> >> +      $ref: ../bridge/synopsys,dw-hdmi.yaml#
+> >
+> > This is odd... With this plus the amount of conditional schema, I think
+> > this should be a new schema doc. Doesn't have to have a common
+> > schema. You can let the 2nd user of this IP block do that.
+>
+> Yes, v2 is going to be a completely separated driver implementation.
 
-Sorry, no downstream code.
+That actually has nothing to do with the decision here. Bindings are
+separate from drivers.
 
-Please follow DTS coding style - no underscores in node names. This
-applies to all work sent upstream.
-
-
-
-Best regards,
-Krzysztof
-
+Rob
 
