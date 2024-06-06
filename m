@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-73055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19DB68FDE8D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:14:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A4598FDE9C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:17:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D72D1C21623
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 06:14:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6E41B2140B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 06:17:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9355248781;
-	Thu,  6 Jun 2024 06:14:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C13E6F068;
+	Thu,  6 Jun 2024 06:17:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t7lKhHFN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jUrI+GMD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A403845C14
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 06:14:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A06BF4C637
+	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 06:17:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717654481; cv=none; b=qN9nfs/Yg+p64Vyy6J9NTcr2I1hat/GcxeXhXj6EYUb1jA53fAclWsrdps/aRF1g0QUMmB+amVJYHFazRV/eSyqUjPxUWX6BpU9FeQnMXlvE0E536abp/ZybRpzR43pF9RKuP0BYsn0NGtwbznjnK+0sENkA+r/8AOM6Wx/OLgk=
+	t=1717654638; cv=none; b=evHqUtRAB2tqk3jQnxwDaYDXQL1O6bawyuAoWQ/pSP2C5NwPTcNfvhfPHyjCp9t+lt4KVrIXdq1xpysfm9uh00+rTuIUw7EH0Fe1vjiHKRJqoYBLOVgdba8Mg3AbaRWqGsYPqJ/2nDNLglpZK04dhJq4OeRzpr8ery24PCDnjy0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717654481; c=relaxed/simple;
-	bh=pYhYLDIC3PSS2XCiVIn4GI3nJ+cwjWo3THlWMeoXs4I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=rwq0nSSk8eXwsMR4G75TUVJkYD8852Z1EPTAzGwHf+PoQcQNO64t5tJs5+W/DbW82bRNiobk94UCq2vGSXX2IdCtqeLu8jeaKeooYc3o0oIcpVfwN6/rWdGvPu1bvdRewjULHf5/KOtyev3vOPyfHzFbt5emWF6kNC7Tzajc2IE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=t7lKhHFN; arc=none smtp.client-ip=209.85.128.50
+	s=arc-20240116; t=1717654638; c=relaxed/simple;
+	bh=C0ct0YKdBQCtHTXAhsFw3ZTbFtD6rN3Vzm5lfMkHwAQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iAaK5S77YgvCVEPhojtJuYvvRT4Se6EQIxFnxWo/htWAqzWVO6p6P1akpVoBGzvVtfqf7+lqzvP36U6W4Srkn/1ATNg1hQBEYQzA0pra8e7lR58WOiV1vzyHIPrbfiF5MV/FMhVmyerepx/pHUoDE0MLn6FQTkqP5p9xIPrE3aE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jUrI+GMD; arc=none smtp.client-ip=209.85.167.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-42155143cb0so8410725e9.2
-        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 23:14:39 -0700 (PDT)
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-52b912198f1so825042e87.0
+        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 23:17:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717654478; x=1718259278; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1717654635; x=1718259435; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lr3ETdcWxgu2lVwUdIQi8tWOwU9fa976RIerbPAA5mQ=;
-        b=t7lKhHFNwNPf7b4UCc/l1ipO/cUmECvBIMwgB5/qZHT1OUwPzpzs0prTiOKWfKO2q7
-         TKDV6mCQanyGybk2LE/6M4PJX7aV4jTSsb7b1yVmOemEaYbokD/2InhtDluC6HP8ozNs
-         aCjjXimUYBKuEq4j91lOqAdbgOW0adq2gOH54Uq57LVHL9IOcPQbjlNL0kUErFrQIagx
-         8k67qdn0BIjNLEjCxlUhK5Irb6v/yQIw0g+OpgbokR/pnIfZfDPqOkoqwrvCUPHyx0Rg
-         WMwgzGJyOIsYghJdmgLZP/x+w9CSCAvkyWVC1Bc1kRTvheWnBrjjbtZUCNJVNzLLo/dO
-         Eguw==
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=KgMx57jU555pNqDdwIAzhMk/qFp6JFnYaJ9PQP+964A=;
+        b=jUrI+GMD2MGiuMzn/c35VXD8iw6PQP0Ke7w8/9Ip0TN4rTWbc0pfTUsB3c24ug/26w
+         i8Tit0TZkQ2SDkS2kZl+AlH+qPXny0kjqtnO2+4f5WeVikezxDpx9/OBagWsAtipvHM7
+         dXGlBFM+/I2J5J/ekdCg+kw5YmEbR6LKk4z4yAIA7c0ERe28Kfa0qJ4Z+6eetU5mEuiU
+         mMw/bChXKYfTY/6kKV5nJaalNbMxIk9PPQXIHzPbF2KHXORXI4mNF76fGPoxxyMJgsnd
+         CbbVZJBSchEUIHVME/4a1LnJjh6hJ+Ybp1dNCHT6kX9J6oljngbIgPPvwVTiDua10fqG
+         S8Rg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717654478; x=1718259278;
+        d=1e100.net; s=20230601; t=1717654635; x=1718259435;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lr3ETdcWxgu2lVwUdIQi8tWOwU9fa976RIerbPAA5mQ=;
-        b=wUdA4nCF1zRNYERxbCr9Fyan2d6wcmKp442pVgwBj09xgDkay2FRaRD3ZZiTaQNvFK
-         5ZVW5sTPPlhdTWGjLtjRP1HnWxZznOeV5pw0pt4xHcSk6IM+WjoeCGbNMEwVJy6+Lb6q
-         4GG7sEgylODCUmfiTXxVK/0bOT+zHITZOIx/qCREZnVvwfFdLIR1VAhSb7xPpQDPjvbz
-         +jWLGUC8IWkod72sF8PiWkBp3ZiS2Er7v37V5Afu8tWP8kL+T8HryIh5PVXdHaqbfpBR
-         u7Tueb1nUPf7OwZ9or3usO0wZ/02PtqbkhqK1KcShDGSXkBM/6ipJBuoVHGNXoWcvYTI
-         XGXA==
-X-Forwarded-Encrypted: i=1; AJvYcCW3LGKMQnzeIzZ9x/QqL0f1KLae1sPE3g4tmPqmjr4IxsPNHyoa1M9wysUhkG8+G2gRBcWS9UTFmavMSweLhesrEciUZ40o4S/jEQ==
-X-Gm-Message-State: AOJu0YwyXscIws1qyaaKszQsYuTjWGAs/UZ05xgaJabNBJiygf3UMFU+
-	52lnzM5R7+nrpPe4OApZubDLku1fEE8FH4pzGJD7tHVGbHJSktfpr6pi79bp2GA=
-X-Google-Smtp-Source: AGHT+IFIZZzdhTOMCeFygtRN4qLWwH+n5aNy+1qz3uy/h6gXE5IwxZAdglrUeCj/2wHSfL/zRwwo/A==
-X-Received: by 2002:adf:f34a:0:b0:354:f3f4:c007 with SMTP id ffacd0b85a97d-35e8ef23b8cmr3687980f8f.29.1717654477977;
-        Wed, 05 Jun 2024 23:14:37 -0700 (PDT)
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KgMx57jU555pNqDdwIAzhMk/qFp6JFnYaJ9PQP+964A=;
+        b=Y8CxOuPOi19emh0AzkqOSfecJPP+KJ1BD5AYXtwmRRsrZiPQDiO9S2MFLZSbuJ62Sv
+         5WvjgfhGWt8fKBsl86KOJvGw5PAQ3asDktGk941bFsqeB0lgxbeNkPR/1rHMvCeswGoT
+         6f47tAFFlPoq2bpOElOWAgxW2KSZ/s20ZKSG/qEUqr69mVjDWGxMTnWnXiX6WsZ/0aUR
+         eH2I00Nh0LC8IVQysIOYpbRYCT4Ve1e1AHXB8MZHmWYwuOlqRr5KuLu6GB++Tv36HZOF
+         ytvNfky8yWjGCdv9TFW2MYLJ4n1ZZEqHHi33RUazMuvDQHdr5xeLlUOlASToPz5hZU0f
+         fG/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUa3SDYUZ15deizdzBVLBLVjRdavNZaulqVk8Bryl7aYqikSaEwqOm13o0lPc5TCl9FvXNYCoLCIqjXT4ePJmvP4ojPmY3HTQOrtg==
+X-Gm-Message-State: AOJu0YxQnLIA7ZCZd6ucKcvBZZEvJk/30m7YuL2oLUcXgNjKfiIJ7SYd
+	YjiejXwVDxHaMcRMmwFf7LsTzfqKlKXPwvfXZImuOrcDrV1YM+OdtAvHu00/qOk=
+X-Google-Smtp-Source: AGHT+IEJ1+aXaaDJ9r2AicXCYcsFUtrjrS2XYFqlQB+bMprHpNAjJ0IyYbZnvrDNPYij55MaO6swLA==
+X-Received: by 2002:a05:6512:48c6:b0:524:68f8:9566 with SMTP id 2adb3069b0e04-52bab4e2a28mr2592429e87.30.1717654634601;
+        Wed, 05 Jun 2024 23:17:14 -0700 (PDT)
 Received: from [192.168.2.24] ([110.93.11.116])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215c1aa2easm9865195e9.12.2024.06.05.23.14.36
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5d69917sm655381f8f.62.2024.06.05.23.17.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Jun 2024 23:14:37 -0700 (PDT)
-Message-ID: <6b7950ec-d513-410d-8652-30aab5a30207@linaro.org>
-Date: Thu, 6 Jun 2024 08:14:36 +0200
+        Wed, 05 Jun 2024 23:17:14 -0700 (PDT)
+Message-ID: <979b8f74-321d-4b83-bd3b-01643b3cbc35@linaro.org>
+Date: Thu, 6 Jun 2024 08:17:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,19 +77,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] arm64: dts: freescale: use defines for interrupts
-To: Peng Fan <peng.fan@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>
-References: <20240605153020.104717-1-krzysztof.kozlowski@linaro.org>
- <AM6PR04MB594144EE748C5F61F72B63F688FA2@AM6PR04MB5941.eurprd04.prod.outlook.com>
+Subject: Re: [PATCH net-next v3 4/4] dt-bindings: net: cdns,macb: Deprecate
+ magic-packet property
+To: Vineeth Karumanchi <vineeth.karumanchi@amd.com>,
+ Rob Herring <robh@kernel.org>
+Cc: nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux@armlinux.org.uk, vadim.fedorenko@linux.dev, andrew@lunn.ch,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, git@amd.com
+References: <20240605102457.4050539-1-vineeth.karumanchi@amd.com>
+ <20240605102457.4050539-5-vineeth.karumanchi@amd.com>
+ <20240605154112.GA3197137-robh@kernel.org>
+ <241cb8ec-14c9-4d7c-9331-2df0b8bf21b2@amd.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -135,22 +137,35 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <AM6PR04MB594144EE748C5F61F72B63F688FA2@AM6PR04MB5941.eurprd04.prod.outlook.com>
+In-Reply-To: <241cb8ec-14c9-4d7c-9331-2df0b8bf21b2@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/06/2024 03:36, Peng Fan wrote:
->> Subject: [PATCH 1/3] arm64: dts: freescale: use defines for interrupts
->>
->> Replace hard-coded interrupt parts (GIC, flags) with standard defines for
->> readability.  No changes in resulting DTBs.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 06/06/2024 07:13, Vineeth Karumanchi wrote:
+> Hi Rob,
 > 
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
+> 
+> On 05/06/24 9:11 pm, Rob Herring wrote:
+>> On Wed, Jun 05, 2024 at 03:54:57PM +0530, Vineeth Karumanchi wrote:
+>>> WOL modes such as magic-packet should be an OS policy.
+>>> By default, advertise supported modes and use ethtool to activate
+>>> the required mode.
+>>>
+>>> Suggested-by: Andrew Lunn <andrew@lunn.ch>
+>>> Signed-off-by: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/net/cdns,macb.yaml | 1 +
+>>>   1 file changed, 1 insertion(+)
+>>
+>> You forgot Krzysztof's ack.
+>>
+> 
+> There is a change in the commit message from earlier version,
+> as we are not using caps any more, I thought of not including the ack.
+> 
+> I will add his ack in next version.
 
-Please trim your answers, so we do not have to scroll needlessly through
-entire email to see if you left some feedback or not.
+And where is it mentioned that you drop someone's ack on purpose?
 
 Best regards,
 Krzysztof
