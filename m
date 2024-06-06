@@ -1,108 +1,183 @@
-Return-Path: <devicetree+bounces-73349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B20228FF163
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:57:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E68E8FF20B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 18:16:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 611D9282DBD
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:57:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D4E4DB242DE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:53:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29D401990AB;
-	Thu,  6 Jun 2024 15:56:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAA63197533;
+	Thu,  6 Jun 2024 15:53:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nxHxUkDy"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="CHGEsgFQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF4A11990B7;
-	Thu,  6 Jun 2024 15:56:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E12F3196C7C;
+	Thu,  6 Jun 2024 15:53:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717689379; cv=none; b=Hmwqqc9ouy18lRycd0YmsvW+YNCAbXP5I33h+86ATpU2R9kTNgxMJWjwcQDLfTXASEX/NgpfAt+jmmABbgY/RvvnK9bjI8IcWALfYTNUrwmd7aG0Gk6CZBvn7H2XUQ3490RY5gd/oMhw9jyfRsbOLaK/0MXKFWDgBNTNgp0Gqxs=
+	t=1717689187; cv=none; b=FsQwW8NTo8JBhQTRROPh1s/GS1HES5b9Lx/bfnjZ/bZS789ruVTnW+VwCNJ/urOJ9Vkr8PybW+4Qmu3b4x9p++RgSBUr537nTrMOs8qYTwfQcIKMGKLA4Dwi9Yv9mpvy0bAUEkFQ9HzvK15fkeDkiBrx5+1hJBiBzn0LTbSiS1Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717689379; c=relaxed/simple;
-	bh=tgSaH7pDA3q488BIGAg9INFjOhEWBEU92Cre1GIHnnA=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=Y68nrvd21DMLC/FDdqdli3V4k4NxnbXLql+k/ssGaLv3Vswv24Uyjij3QrcciNRihAsLGLJoutFIOud4fEfxF/UowjVF+pCOkJAcoDfIgMRAdaBOVwtgvvGWWGZxZGbFcrc6dLz8OsACXPGzWWQ7Cuneh7jyEwXDPuD6wlWiox4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nxHxUkDy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CA4EC32781;
-	Thu,  6 Jun 2024 15:56:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717689378;
-	bh=tgSaH7pDA3q488BIGAg9INFjOhEWBEU92Cre1GIHnnA=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=nxHxUkDy5SRXgOUC05eRFC9BM0omMZ1mJdaJJ5BTQ8mSdDDepnOjlXjqS/4JUjWoq
-	 7EuUUBdiYF7wGJH3Wimq2/EgzENSUqdtPWE/6bSrBUmttExLsHFlxngfNObfFtdEkS
-	 BUl1QNfQH5rbO9257a0+EHiJO2aT2Hz88curu3ZWONVInuRcoQSfomCBEbB3UuLIqg
-	 rmfR9u6F7TRzdbpoGCkIYv09MJa9fbXWuvBa3DYlw/MvhBBbefYGiO7kE5pBWY3Sfi
-	 7OJRysDSPVMqJyolD54U0YUjea88gIXWW/+tboACn8KlCd5VHuxb9yMof763cUZnGz
-	 t+FJ+DMqmnP+Q==
-Date: Thu, 06 Jun 2024 09:56:17 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1717689187; c=relaxed/simple;
+	bh=tTjASRihTSAqBdBo4miDRMTZLE7izCWc3a5OMOafW7I=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XUKdSVsartIT9vnrRmndwDNWL7uuC110CBNJzsiuNIFSQM71xJ2WFr13zTnyCL1n4Jb3IomENf0TZoYw2pHVhZGx/nGr7rXuThEGLlfJbTcCQb0mqFzijJudLExupe0z6AN4LCuiVYomzI2sxFmmWqkR/U/XILFnlKwsTanoY1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=CHGEsgFQ; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1B8271BF20C;
+	Thu,  6 Jun 2024 15:52:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1717689183;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=P1gsWIzttywwUfj8wVOsf1uZZgWknP5y8TDFvRDuZYk=;
+	b=CHGEsgFQhxmgI9kit9UsDWhmeYkm1SMTfF4HSpSA7M8iIVcSVCK/UyOZq6Gy2jZ2rR87iy
+	i4WYz6XtCmH99jmROTw+zPCWzvlakd/VZY3uWUitL6Mt0gOFiK65awIY1gDXmquhgHUcQW
+	iO3ZNIG1VIWM/NyCMHeGs3p2//LfaVeliifa5/9HOfF7+fgLu+v0nRcnXDd+yJKrmUL19n
+	dUhzhZNUZaWDNr8ORmOT+uj1yZFosizfn1V2Xh+hoHzgxLCwWnG0QGXkUct43JfJJ+rGu4
+	nU6OLVOZCMEDcgiCpaXDkS6Zkx6JvL154FuLaogp03TvT6quaxAiSbmgDQqBMQ==
+Date: Thu, 6 Jun 2024 17:52:58 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: Simon Horman <horms@kernel.org>, Sai Krishna Gajula
+ <saikrishnag@marvell.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "David
+ S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Lee Jones
+ <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, UNGLinuxDriver@microchip.com, Andrew Lunn
+ <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, Saravana Kannan <saravanak@google.com>, Bjorn
+ Helgaas <bhelgaas@google.com>, Philipp Zabel <p.zabel@pengutronix.de>, Lars
+ Povlsen <lars.povlsen@microchip.com>, Steen Hegelund
+ <Steen.Hegelund@microchip.com>, Daniel Machon
+ <daniel.machon@microchip.com>, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, netdev@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Allan
+ Nielsen <allan.nielsen@microchip.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 10/19] irqdomain: Introduce irq_domain_alloc() and
+ irq_domain_publish()
+Message-ID: <20240606175258.0e36ea98@bootlin.com>
+In-Reply-To: <8734pr5yq1.ffs@tglx>
+References: <20240527161450.326615-1-herve.codina@bootlin.com>
+ <20240527161450.326615-11-herve.codina@bootlin.com>
+ <8734pr5yq1.ffs@tglx>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Christian Hewitt <christianshewitt@gmail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20240606094513.3949323-1-christianshewitt@gmail.com>
-References: <20240606094513.3949323-1-christianshewitt@gmail.com>
-Message-Id: <171768925717.3793270.14812356444317886177.robh@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: add dream vendor prefix
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
+Hi Thomas,
 
-On Thu, 06 Jun 2024 09:45:11 +0000, Christian Hewitt wrote:
-> Add a vendor prefix for Dream Property GmbH
+On Wed, 05 Jun 2024 15:02:46 +0200
+Thomas Gleixner <tglx@linutronix.de> wrote:
+
+> On Mon, May 27 2024 at 18:14, Herve Codina wrote:
+> > The irq_domain_add_*() family functions create an irq_domain and also
+> > publish this newly created to domain. Once an irq_domain is published,
+> > consumers can request IRQ in order to use them.
+> >
+> > Some interrupt controller drivers have to perform some more operations
+> > with the created irq_domain in order to have it ready to be used.
+> > For instance:
+> >   - Allocate generic irq chips with irq_alloc_domain_generic_chips()
+> >   - Retrieve the generic irq chips with irq_get_domain_generic_chip()
+> >   - Initialize retrieved chips: set register base address and offsets,
+> >     set several hooks such as irq_mask, irq_unmask, ...
+> >
+> > To avoid a window where the domain is published but not yet ready to be  
 > 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> I can see the point, but why is this suddenly a problem? There are tons
+> of interrupt chip drivers which have exactly that pattern.
 > 
 
+I thing the issue was not triggered because these interrupt chip driver
+are usually builtin compiled and the probe sequence is the linear one
+done at boot time. Consumers/supplier are probe sequentially without any
+parallel execution issues.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+In the LAN966x PCI device driver use case, the drivers were built as
+modules. Modules loading and drivers .probe() calls for the irqs supplier
+and irqs consumers are done in parallel. This reveals the race condition.
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+> Also why is all of this burried in a series which aims to add a network
+> driver and touches the world and some more. If you had sent the two irq
+> domain patches seperately w/o spamming 100 people on CC then this would
+> have been solved long ago. That's documented clearly, no?
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+Yes, the main idea of the series, as mentioned in the cover letter, is to
+give the big picture of the LAN966x PCI device use case in order to have
+all the impacted subsystems and drivers maintainers be aware of the global
+use case: DT overlay on top of PCI device.
+Of course, the plan is to split this series into smaller ones once parts
+get discussed in the DT overlay on top of PCI use case and reach some kind
+of maturity at least on the way to implement a solution.
 
-  pip3 install dtschema --upgrade
+Thomas, do you prefer to have all the IRQ related patches extracted right
+now from this big picture series ?
 
+> 
+> >  void irq_domain_free_fwnode(struct fwnode_handle *fwnode);
+> > +struct irq_domain *irq_domain_alloc(struct fwnode_handle *fwnode, unsigned int size,
+> > +				    irq_hw_number_t hwirq_max, int direct_max,
+> > +				    const struct irq_domain_ops *ops,
+> > +				    void *host_data);
+> > +
+> > +static inline struct irq_domain *irq_domain_alloc_linear(struct fwnode_handle *fwnode,
+> > +							 unsigned int size,
+> > +							 const struct irq_domain_ops *ops,
+> > +							 void *host_data)
+> > +{
+> > +	return irq_domain_alloc(fwnode, size, size, 0, ops, host_data);
+> > +}  
+> 
+> So this creates exactly one wrapper, which means we'll grow another ton
+> of wrappers if that becomes popular for whatever reason. We have already
+> too many of variants for creating domains.
+> 
+> But what's worse is that this does not work for hierarchical domains and
+> is just an ad hoc scratch my itch solution.
+> 
+> Also looking at the irq chip drivers which use generic interrupt
+> chips. There are 24 instances of irq_alloc_domain_generic_chips() and
+> most of this code is just boilerplate.
+> 
+> So what we really want is a proper solution to get rid of this mess
+> instead of creating interfaces which just proliferate and extend it.
+> 
+> Something like the uncompiled below allows to convert all the
+> boilerplate into a template based setup/remove.
+> 
+> I just converted a random driver over to it and the result is pretty
+> neutral in terms of lines, but the amount of code to get wrong is
+> significantly smaller. I'm sure that more complex drivers will benefit
+> even more and your problem should be completely solved by that.
+> 
+> The below is just an initial sketch which allows further consolidation
+> in the irqdomain space. You get the idea.
 
-New warnings running 'make CHECK_DTBS=y amlogic/meson-g12b-dreambox-one.dtb amlogic/meson-g12b-dreambox-two.dtb' for 20240606094513.3949323-1-christianshewitt@gmail.com:
+Got it, thanks a lot for the idea, the sketch and the way to use it in
+drivers. I will rework my patches in that way.
 
-arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-two.dtb: /soc/bus@ff600000/bus@42000/clock-controller@0: failed to match any schema with compatible: ['amlogic,g12a-audio-clkc']
-arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-one.dtb: /soc/bus@ff600000/bus@42000/clock-controller@0: failed to match any schema with compatible: ['amlogic,g12a-audio-clkc']
-arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-two.dtb: /soc/bus@ff600000/bus@42000/audio-controller@744: failed to match any schema with compatible: ['amlogic,g12a-tohdmitx']
-arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-two.dtb: sys-ctrl@0: '#address-cells', '#size-cells', 'ranges' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-one.dtb: /soc/bus@ff600000/bus@42000/audio-controller@744: failed to match any schema with compatible: ['amlogic,g12a-tohdmitx']
-arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-one.dtb: sys-ctrl@0: '#address-cells', '#size-cells', 'ranges' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml#
-
-
-
-
-
+Thanks,
+Hervé
 
