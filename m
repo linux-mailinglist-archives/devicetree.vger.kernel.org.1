@@ -1,159 +1,104 @@
-Return-Path: <devicetree+bounces-73048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CBE08FDDB2
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 06:12:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2C218FDDD1
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 06:44:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3233285076
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 04:12:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 485AB1F2446C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 04:44:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2F701E52A;
-	Thu,  6 Jun 2024 04:12:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD8BA28DD5;
+	Thu,  6 Jun 2024 04:44:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mE6xNVQ0"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="C8wR+F9S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85DC92114;
-	Thu,  6 Jun 2024 04:12:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF1D32940D;
+	Thu,  6 Jun 2024 04:44:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717647155; cv=none; b=VPVkBqfdrS/O6OaHJcmhR9hqU9J9Sc5wuo2KNmd6gq2zamjsS5QSeOZ4OrF4XlhnbHfs0gIcyelXg8I96m/JP6CpEVhADlsvhyev7ahxmKuV5LYNzr6KKuTgRXMbD+ehwAUTIKl9BI+cERj3P7LynOQTP/MIO6ZusjlMsxAkMo8=
+	t=1717649081; cv=none; b=oacAeNWtR5UP/cdK33oKdKidA09fXbNxdly+1AfevY3sg+OLHEEQnQf4oMBTI7jzNoYP2OOQHpHrkHy671SLGkN4Lt+BSD6Cfef25t9qbdzt+mfnpwjOnlJKK1cSJbWtjIPhx9TFzbBfJDZEle4OiOjY4qW2R6ubL6/KKdBI5D8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717647155; c=relaxed/simple;
-	bh=NB6cPiw9QlP2ojVCT09yRXI9z2MUnWRnPHxnNyRD9HQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UVgMG0A6WtYHCKHpTKFF1l+G8Z80gtIX54AZN1/05JtBJxUUTFoCX9UdFrjUE5cLP8qfp5+X0Sjx9lKHOXvQXkHZ6XD+I1JRpar1cYAZ236GvDplya+uz8Sz1sH3YPXoTgimr71ZOot8CV+VoH3ELuaIwCTyoh0I/MvuODmyxwk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mE6xNVQ0; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-1f64ecb1766so4671295ad.1;
-        Wed, 05 Jun 2024 21:12:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717647154; x=1718251954; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=EyTDFfYIkacZajwzGy5k7LzB0jww/Lew61Qql3uF2Lg=;
-        b=mE6xNVQ0zkRfn8aG8XILUgtkdJYhI4Qe6YoMWK0haHAz/7RCJHsem/Z4LLY4cDGm6Z
-         sPoZQn9MOYPtQU9ryrv4JWhjwrv8C26AJ53D5tZDJtqc+ndvbKSZgi2xKnhapku1IjGn
-         nKidYeCa924cSL8/wmJE1+fGKE3yxDU+HC9ElyvlooYiQ4PwuTFvK60ouqZmGqYoSc0E
-         G9RCtKdYYAsSsP3OmXQP/d4oJDNsP4Ng94I4vNzj91/QPMi6f5pkIbLumGqTFNh+p5BS
-         EVNRYk/bRMuQxHOqDNHPbKIaQyt6cnSrXhkgO9eA6fHd720zQjevQn0zLlV9x9EWT9mi
-         9lMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717647154; x=1718251954;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EyTDFfYIkacZajwzGy5k7LzB0jww/Lew61Qql3uF2Lg=;
-        b=eyzIYRkl+k/L5hhfbZO9xl9Z/lRdxPlAJEIoMED/dfaKfwDVRkHv0KFgFONSE9WOYX
-         CJwqzp7qQL3lJbIGp75SkOiCRnN1Wfe6N7F15+oka/oagce1lBUB8LZ7UboIsD2c3iu4
-         lBpMzQf0OFdJRXy0Muoxan5UmNAOIoIpYoPUvqGcAlQuxQTe0wJLDyE7NFGZppgCd8H2
-         D2GUpIQ8bVMkfvC1eFdS9eTd+RlvNRRZpU+yu/6IFTyjNoGVZ1brM3g774aiSpGz2TXi
-         IfxTbC9oDg5m3m//ejPC95UhhIwAaevsd4Zcv5OFE+rTFz8qtiUC55Y/XvfU1IC8g8tK
-         PNlg==
-X-Forwarded-Encrypted: i=1; AJvYcCWQpFgu6WN0YqI7xctslsN6O9r8L4mLayWb4pARtQOlORDLJ9YCoRdadflHJzoSdntyeGUvLckROhSV56USTCdThGG7DifsO5eNSfOHQU/WtoXE+5FJFfVPLKdhLCnCVIlRYd5IDhXW0rYOjVR9zUKuioFEtcCVpGz9pL5wxNLbArNfaNoi
-X-Gm-Message-State: AOJu0Ywnzaus4k5OksVjwF4NUWu6pOUiH/+mHRaQMANbIj28tWxDXmcx
-	Vu4elIfoZwVdzuIhqoZXVRlRbMUPZSzHa8S6iK/ieqUzpVB2f7V/
-X-Google-Smtp-Source: AGHT+IFjhgLWKGemUun+RuvBiwWwF+aM1HrUn2VP9ZH6D0o14oF/urTXICoS2jKwPrvQo4918tGSnQ==
-X-Received: by 2002:a17:902:f681:b0:1f6:1ef5:8841 with SMTP id d9443c01a7336-1f6a5a26d60mr53131865ad.34.1717647153551;
-        Wed, 05 Jun 2024 21:12:33 -0700 (PDT)
-Received: from fedora.one.one.one.one ([2405:201:6013:c0b2:ea4b:30e0:4e3a:ab56])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f6bd7e063csm3548085ad.190.2024.06.05.21.12.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jun 2024 21:12:33 -0700 (PDT)
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-To: 
-Cc: animeshagarwal28@gmail.com,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] ASoC: dt-bindings: linux,spdif: Convert spdif-reciever.txt to dtschema
-Date: Thu,  6 Jun 2024 09:42:00 +0530
-Message-ID: <20240606041212.78428-1-animeshagarwal28@gmail.com>
-X-Mailer: git-send-email 2.45.1
+	s=arc-20240116; t=1717649081; c=relaxed/simple;
+	bh=X2lwsmQXMXKZBbMOZ4wY7TMr5k8lTSkDLqj/Q6OCCf0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=t3tuZ8/WaOauL830BScyNKTH3uB9lFmcdcCjJT5rNpoqcngfgHXpIiRz0K0ghIwxGUrNNh6urVJ5CirPrlRaIuftxjK4D3XOr1cYe5oMaM5Imsn5wE6VF64U+I+Tlscn8wl6pqjgAt0fDXYBqWO0Dk6UbCieXZ3MYq9IRK06kWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=C8wR+F9S; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4564iAsX000499;
+	Wed, 5 Jun 2024 23:44:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1717649050;
+	bh=X2lwsmQXMXKZBbMOZ4wY7TMr5k8lTSkDLqj/Q6OCCf0=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=C8wR+F9STMO+Q/ueIHp+PbnqCbQ77Tgk+hqf7wV/c5aaejWmW7f+aT0ziP+scBKmj
+	 chopCdJ4L/PnoNhU+I01iPKm9U3jUCd2PtN6IFVnMmLXUWQzbZ7PNvZOskMIQNmYoV
+	 27l4aezm5er9CUjWwmaPGS20q9fzw5n8Nz54POCo=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4564iAWB066870
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 5 Jun 2024 23:44:10 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 5
+ Jun 2024 23:44:10 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 5 Jun 2024 23:44:09 -0500
+Received: from [172.24.18.200] (lt5cd2489kgj.dhcp.ti.com [172.24.18.200])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4564i26G010676;
+	Wed, 5 Jun 2024 23:44:03 -0500
+Message-ID: <990441df-2432-4bce-a606-077f51168283@ti.com>
+Date: Thu, 6 Jun 2024 10:14:01 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: net: dp8386x: Add MIT license along with
+ GPL-2.0
+To: Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh@kernel.org>
+CC: <vigneshr@ti.com>, <nm@ti.com>, <tglx@linutronix.de>, <tpiepho@impinj.com>,
+        <w.egorov@phytec.de>, <andrew@lunn.ch>, <davem@davemloft.net>,
+        <edumazet@google.com>, <pabeni@redhat.com>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Kip Broadhurst <kbroadhurst@ti.com>
+References: <20240531165725.1815176-1-u-kumar1@ti.com>
+ <20240605155659.GA3213669-robh@kernel.org>
+ <20240605122330.169ea734@kernel.org>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20240605122330.169ea734@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Convert the dummy SPDIF receiver bindings to DT schema.
+Hi Jakub,
 
-Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>
+On 6/6/2024 12:53 AM, Jakub Kicinski wrote:
+> On Wed, 5 Jun 2024 09:56:59 -0600 Rob Herring wrote:
+>>> Cc: Kip Broadhurst <kbroadhurst@ti.com>
+> Kip, ack?
 
----
-Changes	in v2:
-- Add linux,spdif-dir compatible in existing linux,spdif-dit.yaml
-instead of creating new yaml file specifically for dummy SPDIF receiver.
-- Change file name to support both transmitter and receiver bindings.
----
- .../sound/{linux,spdif-dit.yaml => linux,spdif.yaml}   |  8 +++++---
- .../devicetree/bindings/sound/spdif-receiver.txt       | 10 ----------
- 2 files changed, 5 insertions(+), 13 deletions(-)
- rename Documentation/devicetree/bindings/sound/{linux,spdif-dit.yaml => linux,spdif.yaml} (75%)
- delete mode 100644 Documentation/devicetree/bindings/sound/spdif-receiver.txt
 
-diff --git a/Documentation/devicetree/bindings/sound/linux,spdif-dit.yaml b/Documentation/devicetree/bindings/sound/linux,spdif.yaml
-similarity index 75%
-rename from Documentation/devicetree/bindings/sound/linux,spdif-dit.yaml
-rename to Documentation/devicetree/bindings/sound/linux,spdif.yaml
-index fe5f0756af2f..0f4893e11ec4 100644
---- a/Documentation/devicetree/bindings/sound/linux,spdif-dit.yaml
-+++ b/Documentation/devicetree/bindings/sound/linux,spdif.yaml
-@@ -1,10 +1,10 @@
- # SPDX-License-Identifier: GPL-2.0
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/sound/linux,spdif-dit.yaml#
-+$id: http://devicetree.org/schemas/sound/linux,spdif.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Dummy SPDIF Transmitter
-+title: Dummy SPDIF Transmitter/Receiver
- 
- maintainers:
-   - Mark Brown <broonie@kernel.org>
-@@ -14,7 +14,9 @@ allOf:
- 
- properties:
-   compatible:
--    const: linux,spdif-dit
-+    enum:
-+      - linux,spdif-dit
-+      - linux,spdif-dir
- 
-   "#sound-dai-cells":
-     const: 0
-diff --git a/Documentation/devicetree/bindings/sound/spdif-receiver.txt b/Documentation/devicetree/bindings/sound/spdif-receiver.txt
-deleted file mode 100644
-index 80f807bf8a1d..000000000000
---- a/Documentation/devicetree/bindings/sound/spdif-receiver.txt
-+++ /dev/null
-@@ -1,10 +0,0 @@
--Device-Tree bindings for dummy spdif receiver
--
--Required properties:
--	- compatible: should be "linux,spdif-dir".
--
--Example node:
--
--	codec: spdif-receiver {
--		compatible = "linux,spdif-dir";
--	};
--- 
-2.45.1
+We can skip Ack from Kip,
 
+For ti authors, I represent ti for this patch.
+
+> Failing that (+1 to I'm not a lawyer, but) Udit, you both have @ti.com
+> addresses, can you confirm the intellectual rights are with TI?
+> In which case we won't have to wait for Kip.. Obviously easiest if they
+> just ack.
 
