@@ -1,85 +1,95 @@
-Return-Path: <devicetree+bounces-73088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E0F58FDFF0
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:37:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C8878FDFFE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:38:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F2A21F242D6
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 07:37:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE0B8287655
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 07:38:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75A7A13AD0E;
-	Thu,  6 Jun 2024 07:35:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KYhM7Ojh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9D9E13AA5E;
+	Thu,  6 Jun 2024 07:37:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E8B729CE7;
-	Thu,  6 Jun 2024 07:35:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C6B813AD06;
+	Thu,  6 Jun 2024 07:37:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717659353; cv=none; b=NK1WhG/FgDELZZKDiQQ87BxZpgLW6nwsWpSZx/NOIPH8fOU+E3vxVQkBsGHGr4iP1k7B5kDVyX6jiytZku++eKTSqleLWEhl3vOby/Jdxg2K14C/2D1Xipx/Ty4s3ck2VijgzgZ0uMT/QQT3xQWtAYLG0yaHD62KZ8e7w3QbWtc=
+	t=1717659467; cv=none; b=nZ76Gjs9sWrFrWqBTCg2bKqH6ZWxTSJJhTeDP+2JhiDThz6IyHdf/uPSozdJvcXGEYUzmYrwmUpj3IQDAYOlUylOdbA7zYmeWEmKqKMTcGKe6yk7RI7J8TsuKVVeVBQB4Yyfm4k/RLtS47/LpB/vRHStkePDBT5nQDIFq4liyhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717659353; c=relaxed/simple;
-	bh=cdg8LAMU/zlMciHFP8eGkXefS7eJ6QcdTtOc/2P2qlM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Lbw2TSptZ6a+jypBJ7gWg5T/rQCSd1NkdrsX2YGuWJhDVyXpJ5HQkfUfw1HmWQusO5AH8EOvLFj8rJ/HUDtvNI6JGb0K5RZyhsMMQQHWnhSLpSLRcRNAYoefAo9IcSWNxViZwPJNGjYKjyZ2mj+PH3dSCxtULMZQzr2WBIsSEkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KYhM7Ojh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D46EC2BD10;
-	Thu,  6 Jun 2024 07:35:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717659352;
-	bh=cdg8LAMU/zlMciHFP8eGkXefS7eJ6QcdTtOc/2P2qlM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KYhM7OjhFeyl3Robf/n0a0WdJO6GdgzeVuicl3Z9H9oBQkGs8Tda8xNJ3aDh4ajlm
-	 5TuZCUnDPpbq/ZROR7Z+EWfc6UZtlycSTRtXV+fmLlyQwyHykVpMqqL3MWc2uF0Wqz
-	 xN9p3ocTm/gYmBffn3w9K0/K7CaDX+Ir5XqLEa5s95epRO7DX8GUuqheiggJQxAmn5
-	 NcLg0S49VQGJqwZ0QSTQlWKWEEwYoNCjVuWgqfwq9hyQALU0KBQMsxE0jJ1ofAQ9qw
-	 JUgr1XtKzDs8c8coZTWLmgYptWuuZn2tIeSUNyTo4dQwYOz55uO50e2uWN0LzadBMC
-	 wuVPI2pLmh/fA==
-Message-ID: <d04ed187-1385-40a4-bf97-9e28d542508f@kernel.org>
-Date: Thu, 6 Jun 2024 10:35:46 +0300
+	s=arc-20240116; t=1717659467; c=relaxed/simple;
+	bh=a2LuMo4gSmwdzRlaVNt1YnokeK3if9obfVCp+HFlEZs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BwcqF/dRg5shKnx1YzXLqzC5J1GPXhCQU5HdoTf5FKY38xQQIU7y45KBRcY6el3FDwJeCTIfYqgRVV2rDTXlUE6rorU+9gM/u0beYqJLew1OAgoMdDykkWsLR9V6gWOxPJf+A6Bf67Kv/AeVpqBraW9Jxfknta+LMbG5BbzsVcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875b65.versanet.de ([83.135.91.101] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sF7gh-0006li-LF; Thu, 06 Jun 2024 09:37:31 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Alex Bee <knaerzche@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 0/5] Add SFC support for RK3128
+Date: Thu, 06 Jun 2024 09:37:29 +0200
+Message-ID: <7129744.aoefvbuG5b@diego>
+In-Reply-To: <fcff0181-b6de-4e47-b7ff-47baac061b3e@kernel.org>
+References:
+ <20240605205209.232005-1-knaerzche@gmail.com>
+ <20240605205209.232005-6-knaerzche@gmail.com>
+ <fcff0181-b6de-4e47-b7ff-47baac061b3e@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 5/7] arm64: dts: ti: k3-serdes: Add SERDES0/SERDES1
- lane-muxing macros for J722S
-To: Siddharth Vadapalli <s-vadapalli@ti.com>, nm@ti.com, vigneshr@ti.com,
- afd@ti.com, kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, u-kumar1@ti.com, danishanwar@ti.com,
- srk@ti.com
-References: <20240604085252.3686037-1-s-vadapalli@ti.com>
- <20240604085252.3686037-6-s-vadapalli@ti.com>
-Content-Language: en-US
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20240604085252.3686037-6-s-vadapalli@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-
-
-On 04/06/2024 11:52, Siddharth Vadapalli wrote:
-> The SERDES0 and SERDES1 instances of SERDES on J722S are single lane
-> SERDES which are individually muxed across different peripherals.
+Am Donnerstag, 6. Juni 2024, 08:41:19 CEST schrieb Krzysztof Kozlowski:
+> On 05/06/2024 22:52, Alex Bee wrote:
+> > This series adds support for the Serial Flash Controller (SFC) found in
+> > RK3128 SoCs.
+> > 
+> > As without using some "id holes" we would run out clock ids in the binding
+> > and would have to touch the ABI, I added patches which removes the
+> > CLK_NR_CLKS macro and uses the recently introduced
+> > rockchip_clk_find_max_clk_id helper instead to find the highest clock id.
+> > 
+> > changes since v1:
+> >  - added patches to remove CLK_NR_CLKS (Connor)
+> > 
 > 
-> LANE0 of SERDES0 is muxed between USB and CPSW while LANE0 of SERDES1 is
-> muxed between PCIe and CPSW.
+> Do not attach (thread) your patchsets to some other threads (unrelated
+> or older versions). This buries them deep in the mailbox and might
+> interfere with applying entire sets.
 > 
-> Define the lane-muxing macros to be used as the idle state values.
-> 
-> Co-developed-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
-> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> You sent now v2 immediately after. Confused.
 
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
+it looks like Alex had some mail trouble yesterday.
+
+The thread you Acked patches in actually is v2, just missing the label.
+
+- original v1: https://lore.kernel.org/linux-rockchip/20240605172154.193047-1-knaerzche@gmail.com
+
+- "unlabeled" v2: https://lore.kernel.org/linux-rockchip/20240605205209.232005-1-knaerzche@gmail.com/
+- this as v2, but as reply to the previous
+- real v2: https://lore.kernel.org/linux-rockchip/20240605210049.232284-1-knaerzche@gmail.com/
+
+The last 3 are identical, just the sending process was somehow fumbled.
+
+
 
