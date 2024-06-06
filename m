@@ -1,76 +1,74 @@
-Return-Path: <devicetree+bounces-73306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBC598FEE26
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 16:42:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 234CD8FEF53
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 16:49:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F30C61C25420
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 14:42:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BEBB1C24200
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 14:49:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38E0F197529;
-	Thu,  6 Jun 2024 14:19:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B84FD19755E;
+	Thu,  6 Jun 2024 14:23:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="krbfiljV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ORw++nXn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A713196C78
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 14:19:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECD4319645C;
+	Thu,  6 Jun 2024 14:23:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717683596; cv=none; b=geb9HIwsZY5gEC0Reb/+LD8bn93/gXE4Ev/yzdDnd+Bi0w1kc/kp7ArRla8i2dBRaU+gfSM9XwaCou36nU3dhz1fYTrc5UgG/2tAsxuWhhf6ZThP35BENyV1IeEVb2FK/iTcoyn1sljany5JE7rFejAw88Y20Km1b9Xp5vwjnBU=
+	t=1717683832; cv=none; b=KBWWxbtsDAoE9q5AMqXmd8hiWLdLdVyJ2ZgJjxTcJrILRNldRiBC22nwLVSfjg+W8rUBDlotUn6R91DRFrijNjHQdNRq3gyWhiklhRbdiDtJCoemXqz4JFI72Bjq8VVdyAZ7Js8vm/1GGVViDlM/M7zAMitReeur0PgX/8pc+Aw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717683596; c=relaxed/simple;
-	bh=inbxow1jvIujmbpq76lxYmPp5pHmNjrrCPtpGYojC60=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=L8BJCdAXDNhR5HDtFZ76DP/1Bih2+EQK2H0azOk5+3s4Tpya3hm0hZPFqXQIEhNEiQkDX0u+c3HXo1o/HmQnn1HNiYZzsHh8yZ5f7x5fIvwjy3EG9K0HjiKaomiQy6BhCB4ze+pUFoR9+cDmMjGH6tDEtaOZWcd8RtbKZJr7Kmw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=krbfiljV; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-35e5604abdcso1384021f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2024 07:19:54 -0700 (PDT)
+	s=arc-20240116; t=1717683832; c=relaxed/simple;
+	bh=tyZobNsR9p2yiU7bCwhoZ5UEQhwJNcZhJm5tfJKkpmg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DZDVUJdSeb/XfMNvmN/+lbQF+m3cENkeWsJkfxZwj1o7fPilPfvW7rZxudggXw4BJg/SwJJoD5QVESuE0ttk3w65sRdtSVDN8CcBH6EFp/l4XQ46Hpv+SjsBzktU7CrjcBJdhv+PoE1PCSqw3nvCR1u4O3VXT7vD132lsp4s0vo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ORw++nXn; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a689ad8d1f6so128653966b.2;
+        Thu, 06 Jun 2024 07:23:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717683593; x=1718288393; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=36iJiWPjD6SuqWw0fPcJGiqZW0CSrSFa1RF7xICeHVs=;
-        b=krbfiljVqEswoQiNPozan3bAJvOTEsRQ81sEqcSZpazTHedzG+b/dBd5RGJGPjJBP0
-         kfVSALynXWtM8ZG4wDeBMBdjKOF3xj4u8d2CybkcpjMeUR8ybv1xS+zhfubwY9Csg2Zm
-         lC4mQbfHdnGqKc2PCb9lRySe9WMD6bX7iC8PJd7QihekEZPEWOy4j1X0xVpig5nxwD03
-         wAgqlY5E2JcU1TQIxCHddLghbv+RfjRTHFNSE8tJHHdzafO6g0tdC3NWyjyQksz004mI
-         OT3X/sujsP2EhxYXE85bE3eDqEVKjQltyI1VD/kKDGjeCzDtpDKf6vEJiB+N44ADCbGd
-         Fp0Q==
+        d=gmail.com; s=20230601; t=1717683828; x=1718288628; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EKR/L4HU5Z5Z/11JJc83O+MA8Zq4QcFx7fvjKcAKFh8=;
+        b=ORw++nXnFQZ37aeSEpWSUskkfRUXZwaXB6fR0Q+TGgZb+YkCnuOlVgQmNSX1bznrWc
+         8NRvvPQ0aIIE+LoSOwvWoW87X6tJDgWwsjllsu9ZncoZcCXHwIG44M9mEidHt+zzOJUI
+         JgLS3SSvhh7wLJaLMtZdmzhO7V8CofgpAr8DbREdEOM/orRWC9QsYP3yusCV0Nu6GcIv
+         lD04ZdudCB2QWQilhvk560cyPcNQ0BFtH8Vd6AKlmAq18hrPCvA7MvMoOJV5CZQNPcLc
+         QnTQWzFFhIYAahQXebx2NmcabFH83wwjozeJPdBmP6l1gBIRS+2U2/kFniOXgFLxW3lx
+         X7OQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717683593; x=1718288393;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=36iJiWPjD6SuqWw0fPcJGiqZW0CSrSFa1RF7xICeHVs=;
-        b=RYGW5H0fQlV3wXnAIS2ms/B+PCET/gspF2hkI5GTiguHxyiN0CQP1GQD8rPm/FjiWj
-         v+SjLX5l3H/hkaqdzrIvuRDX6AUjgfVv8vFOrEpPExPqRmorspvwmzlOllYYlQM5EShg
-         j595iG0LmAHP/kW6EAmJ5pbA1jIHdM2ib31G88zXj8Ssg9YrIsMOWWH1bcsTZIsoeS1E
-         8E5l9aQIdJfOSQrNo4NMlZbP6pPC/XY151HhoVUSmZC4HGKV0YW706ePXgFmCDIjCXHH
-         hpi0ukS1657EvYcUw1siaq5qFDe5AP2fJ8aB4zkHuJfllMPFROTGoMhCcuydXYkSSgJz
-         UqLg==
-X-Forwarded-Encrypted: i=1; AJvYcCWXVfIClTzJjUdX17QStwYUYq12IeylvZik5jhUCrII1Tf7BbhhECXpRlV8o0hUxZgpWjmLQ4HlbbkFneHI9HJWV6QQ+VWaafjDOg==
-X-Gm-Message-State: AOJu0YygkUWcOmyEGmcFhZz/deLVkeCsi3yxhwhmTb3JJnmQheJWRZRB
-	v7Bf7QFqOwbEANTFVrXCyr9efdWKf2t8m121l9piqnDOFUq9ysCMLTPmRzW4rzc=
-X-Google-Smtp-Source: AGHT+IHH4QeBm1WgAvOZdSJ5CLoMFu8LRgw4cTXRi0ooO8Q3Ak2T7S1SjZMKgar96ypnBMCR0zMUOw==
-X-Received: by 2002:a5d:6d8f:0:b0:34c:7ed4:55a with SMTP id ffacd0b85a97d-35ef0ddb092mr3388718f8f.33.1717683592559;
-        Thu, 06 Jun 2024 07:19:52 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:6d66:dc6b:6c6b:f7aa? ([2a01:e0a:982:cbb0:6d66:dc6b:6c6b:f7aa])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215c2c7dafsm23719935e9.35.2024.06.06.07.19.51
+        d=1e100.net; s=20230601; t=1717683828; x=1718288628;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EKR/L4HU5Z5Z/11JJc83O+MA8Zq4QcFx7fvjKcAKFh8=;
+        b=NhABNvdcRTnin+GJkD2iVaqiaFnVZTdAdCZz2uiMDa0udUMKVI1RjO1lX9rJcCUsmb
+         5ikqcwXAZIurMUwomgj+FMsv3DDNUSqqb8M7tXFuOXDqxGnxebNoejuaPDVUTTHr6Spj
+         Y7wyAhATs4dNrxcXpYzC9aKcSM2gAZEMVeJWKnEpaX3Wo00BH7cy3objUBFkybMQHLfe
+         GYuUe+/EfymEQDAgp303AU4gcaK9eMqyYFgFWeP4tMPILA2A25pXiN5IWXiSuiPSB4Sd
+         Yu7i6OiPlTb8yLdUuBuqtGjoxNJM4i20SA04K7QZCmVcZH4ObAScA5WJig8flTkAJk1W
+         HVPw==
+X-Forwarded-Encrypted: i=1; AJvYcCXVdlmqMJrfBAj9sSgX0mrsF7Ketz3ho9NTIWtiXkKXeOXgaHb7aeSfLjwphmBncQCI84vMSaCBTrGmAdzbfYPYSPbK9ewy0N9LN6oB5FpDlFK0b8WMJbZieSrrK0XYAlUQiUUY1/M9ikRt7hE3feJqhVmdS0aDI1EfchdokrJ1dlrqHg==
+X-Gm-Message-State: AOJu0YzsnHQNkYoikTSN/AiRgGUkBjN122CJGdshseWFqpDO+ouQXVCY
+	tahaHtE3jAHzYBTn2jP1FgDDs6kiIcrGnEc97mhAvIKrkZg4UHHO
+X-Google-Smtp-Source: AGHT+IHkmcNlLoJF1O20UYK06JG3yMQ7dEZ+CSvjhAqoOdHHHKCF7XbJNQ9BPwhS8sbGqd6iA7GB8w==
+X-Received: by 2002:a17:907:c85:b0:a61:9c28:f172 with SMTP id a640c23a62f3a-a69a002e7c6mr312002966b.51.1717683828023;
+        Thu, 06 Jun 2024 07:23:48 -0700 (PDT)
+Received: from [10.10.12.27] (91-118-163-37.static.upcbusiness.at. [91.118.163.37])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6c8058172esm104501666b.27.2024.06.06.07.23.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jun 2024 07:19:52 -0700 (PDT)
-Message-ID: <168caaed-b43c-4663-b35e-c010b58b310a@linaro.org>
-Date: Thu, 6 Jun 2024 16:19:51 +0200
+        Thu, 06 Jun 2024 07:23:47 -0700 (PDT)
+Message-ID: <946b121f-a4a9-4743-8608-c2c07626a94d@gmail.com>
+Date: Thu, 6 Jun 2024 16:23:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,265 +76,1009 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 4/7] phy: qcom: qmp-combo: register a typec mux to
- change the QPHY_MODE
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240527-topic-sm8x50-upstream-phy-combo-typec-mux-v2-0-a03e68d7b8fc@linaro.org>
- <20240527-topic-sm8x50-upstream-phy-combo-typec-mux-v2-4-a03e68d7b8fc@linaro.org>
- <qgitwducxmox6vac6v3pmjxgrbizd2tk2fgxds4pjqinr2cefd@lbsrbit4xsdi>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <qgitwducxmox6vac6v3pmjxgrbizd2tk2fgxds4pjqinr2cefd@lbsrbit4xsdi>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v3 2/2] iio: light: ROHM BH1745 colour sensor
+To: Mudit Sharma <muditsharma.info@gmail.com>, jic23@kernel.org,
+ lars@metafoo.de, krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org
+Cc: ivan.orlov0322@gmail.com, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240606124539.60757-1-muditsharma.info@gmail.com>
+ <20240606124539.60757-4-muditsharma.info@gmail.com>
+Content-Language: en-US, de-AT
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+In-Reply-To: <20240606124539.60757-4-muditsharma.info@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/05/2024 10:57, Dmitry Baryshkov wrote:
-> On Mon, May 27, 2024 at 10:42:36AM +0200, Neil Armstrong wrote:
->> Register a typec mux in order to change the PHY mode on the Type-C
->> mux events depending on the mode and the svid when in Altmode setup.
->>
->> The DisplayPort phy should be left enabled if is still powered on
->> by the DRM DisplayPort controller, so bail out until the DisplayPort
->> PHY is not powered off.
->>
->> The Type-C Mode/SVID only changes on plug/unplug, and USB SAFE states
->> will be set in between of USB-Only, Combo and DisplayPort Only so
->> this will leave enough time to the DRM DisplayPort controller to
->> turn of the DisplayPort PHY.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 123 ++++++++++++++++++++++++++++--
->>   1 file changed, 118 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
->> index 788e4c05eaf2..b55ab08d44c2 100644
->> --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
->> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
->> @@ -19,6 +19,7 @@
->>   #include <linux/reset.h>
->>   #include <linux/slab.h>
->>   #include <linux/usb/typec.h>
->> +#include <linux/usb/typec_dp.h>
->>   #include <linux/usb/typec_mux.h>
->>   
->>   #include <drm/bridge/aux-bridge.h>
->> @@ -1527,6 +1528,10 @@ struct qmp_combo {
->>   
->>   	struct typec_switch_dev *sw;
->>   	enum typec_orientation orientation;
->> +
->> +	struct typec_mux_dev *mux;
->> +	unsigned long mux_mode;
->> +	unsigned int svid;
->>   };
->>   
->>   static void qmp_v3_dp_aux_init(struct qmp_combo *qmp);
->> @@ -3353,17 +3358,112 @@ static int qmp_combo_typec_switch_set(struct typec_switch_dev *sw,
->>   	return 0;
->>   }
->>   
->> -static void qmp_combo_typec_unregister(void *data)
->> +static int qmp_combo_typec_mux_set(struct typec_mux_dev *mux, struct typec_mux_state *state)
->> +{
->> +	struct qmp_combo *qmp = typec_mux_get_drvdata(mux);
->> +	const struct qmp_phy_cfg *cfg = qmp->cfg;
->> +	enum qphy_mode new_mode;
->> +	unsigned int svid;
->> +
->> +	if (state->mode == qmp->mode)
->> +		return 0;
->> +
->> +	mutex_lock(&qmp->phy_mutex);
->> +
->> +	if (state->alt)
->> +		svid = state->alt->svid;
->> +	else
->> +		svid = 0; // No SVID
->> +
->> +	if (svid == USB_TYPEC_DP_SID) {
->> +		switch (state->mode) {
->> +		/* DP Only */
->> +		case TYPEC_DP_STATE_C:
->> +		case TYPEC_DP_STATE_E:
->> +			new_mode = QPHY_MODE_DP_ONLY;
->> +			break;
->> +
->> +		/* DP + USB */
->> +		case TYPEC_DP_STATE_D:
->> +		case TYPEC_DP_STATE_F:
->> +
->> +		/* Safe fallback...*/
->> +		default:
->> +			new_mode = QPHY_MODE_COMBO;
->> +			break;
->> +		}
->> +	} else {
->> +		/* Only switch to USB_ONLY when we know we only have USB3 */
->> +		if (qmp->mux_mode == TYPEC_MODE_USB3)
->> +			new_mode = QPHY_MODE_USB_ONLY;
->> +		else
->> +			new_mode = QPHY_MODE_COMBO;
->> +	}
->> +
->> +	if (new_mode == qmp->init_mode) {
->> +		dev_dbg(qmp->dev, "typec_mux_set: same phy mode, bail out\n");
->> +		qmp->mode = state->mode;
->> +		goto out;
->> +	}
->> +
->> +	if (qmp->init_mode != QPHY_MODE_USB_ONLY && qmp->dp_powered_on) {
->> +		dev_dbg(qmp->dev, "typec_mux_set: DP is still powered on, delaying switch\n");
->> +		goto out;
->> +	}
->> +
->> +	dev_dbg(qmp->dev, "typec_mux_set: switching from phy mode %d to %d\n",
->> +		qmp->init_mode, new_mode);
->> +
->> +	qmp->mux_mode = state->mode;
->> +	qmp->init_mode = new_mode;
->> +
->> +	if (qmp->init_count) {
->> +		if (qmp->usb_init_count)
->> +			qmp_combo_usb_power_off(qmp->usb_phy);
->> +		if (qmp->dp_init_count)
->> +			writel(DP_PHY_PD_CTL_PSR_PWRDN, qmp->dp_dp_phy + QSERDES_DP_PHY_PD_CTL);
->> +		qmp_combo_com_exit(qmp, true);
->> +
->> +		/* Now everything's powered down, power up the right PHYs */
->> +
->> +		qmp_combo_com_init(qmp, true);
->> +		if (qmp->init_mode == QPHY_MODE_DP_ONLY && qmp->usb_init_count) {
->> +			qmp->usb_init_count--;
+On 06/06/2024 14:45, Mudit Sharma wrote:
+> Add support for BH1745, which is an I2C colour sensor with red, green,
+> blue and clear channels. It has a programmable active low interrupt
+> pin. Interrupt occurs when the signal from the selected interrupt
+> source channel crosses set interrupt threshold high or low level.
 > 
-> Can we move this clause next to actually powering USB part off?
+> This driver includes device attributes to configure the following:
+> - Interrupt pin latch: The interrupt pin can be configured to
+>   be latched (until interrupt register (0x60) is read or initialized)
+>   or update after each measurement.
+> - Interrupt source: The colour channel that will cause the interrupt
+>   when channel will cross the set threshold high or low level.
 > 
->> +		} else if (qmp->init_mode != QPHY_MODE_DP_ONLY) {
->> +			qmp_combo_usb_power_on(qmp->usb_phy);
->> +			if (!qmp->usb_init_count)
->> +				qmp->usb_init_count++;
->> +		}
->> +		if (qmp->init_mode != QPHY_MODE_USB_ONLY && qmp->dp_init_count)
->> +			cfg->dp_aux_init(qmp);
+> This driver also includes device attributes to present valid
+> configuration options/values for:
+> - Integration time
+> - Interrupt colour source
+> - Hardware gain
 > 
-> Does dp_init_count reflect the actual necessity to bring up the DP part
-> up? Maybe we can unify the code between this function and
-> qmp_combo_typec_switch_set()? I don't like that it is unobvious whether
-> these two functions will results in the same state or not depending on
-> the order in which they are being called.
+> Add myself as the maintainer for this driver in MAINTAINERS.
+> 
+> Signed-off-by: Mudit Sharma <muditsharma.info@gmail.com>
+> Reviewed-by: Ivan Orlov <ivan.orlov0322@gmail.com>
 
-Yep, I'll try to use a common function, so any switch/mux call would use
-the same process, and I can probably simplify it.
+Hi Mudit,
 
-Thanks,
-Neil
+a few nitpicks inline.
 
+> ---
+> v2->v3:
+> - Squash commit for addition to MAINTAINERS
+> - Fix code style for consistency:
+>   - New line before last 'return'
+>   - Use variable name 'value' instead of 'val' in
+>     'bh1745_set_trigger_state()'
+>   - Align function parameters to match parenthesis
+>   - Avoid use of magic number
+> - Use named enum instead of anonymous enum
+> - Use 'guard(mutex)(&data->lock)' instead of 'mutex_lock()'
+>   'mutex_unlock()'
+> - Only initialize 'ret' and 'value' when necessary
+> - Fix and optimize logic for `in_interrupt_latch_store()` 
+> - Fix error handling in irq , trigger handlers and dev attribute for
+>   latch
 > 
->> +	}
->> +
->> +out:
->> +	mutex_unlock(&qmp->phy_mutex);
->> +
->> +	return 0;
->> +}
->> +
->> +static void qmp_combo_typec_switch_unregister(void *data)
->>   {
->>   	struct qmp_combo *qmp = data;
->>   
->>   	typec_switch_unregister(qmp->sw);
->>   }
->>   
->> -static int qmp_combo_typec_switch_register(struct qmp_combo *qmp)
->> +static void qmp_combo_typec_mux_unregister(void *data)
->> +{
->> +	struct qmp_combo *qmp = data;
->> +
->> +	typec_mux_unregister(qmp->mux);
->> +}
->> +
->> +static int qmp_combo_typec_register(struct qmp_combo *qmp)
->>   {
->>   	struct typec_switch_desc sw_desc = {};
->> +	struct typec_mux_desc mux_desc = { };
->>   	struct device *dev = qmp->dev;
->> +	int ret;
->>   
->>   	sw_desc.drvdata = qmp;
->>   	sw_desc.fwnode = dev->fwnode;
->> @@ -3374,10 +3474,23 @@ static int qmp_combo_typec_switch_register(struct qmp_combo *qmp)
->>   		return PTR_ERR(qmp->sw);
->>   	}
->>   
->> -	return devm_add_action_or_reset(dev, qmp_combo_typec_unregister, qmp);
->> +	ret = devm_add_action_or_reset(dev, qmp_combo_typec_switch_unregister, qmp);
->> +	if (ret)
->> +		return ret;
->> +
->> +	mux_desc.drvdata = qmp;
->> +	mux_desc.fwnode = dev->fwnode;
->> +	mux_desc.set = qmp_combo_typec_mux_set;
->> +	qmp->mux = typec_mux_register(dev, &mux_desc);
->> +	if (IS_ERR(qmp->mux)) {
->> +		dev_err(dev, "Unable to register typec mux: %pe\n", qmp->mux);
->> +		return PTR_ERR(qmp->mux);
->> +	}
->> +
->> +	return devm_add_action_or_reset(dev, qmp_combo_typec_mux_unregister, qmp);
->>   }
->>   #else
->> -static int qmp_combo_typec_switch_register(struct qmp_combo *qmp)
->> +static int qmp_combo_typec_register(struct qmp_combo *qmp)
->>   {
->>   	return 0;
->>   }
->> @@ -3609,7 +3722,7 @@ static int qmp_combo_probe(struct platform_device *pdev)
->>   	if (ret)
->>   		goto err_node_put;
->>   
->> -	ret = qmp_combo_typec_switch_register(qmp);
->> +	ret = qmp_combo_typec_register(qmp);
->>   	if (ret)
->>   		goto err_node_put;
->>   
->>
->> -- 
->> 2.34.1
->>
+>  MAINTAINERS                |   6 +
+>  drivers/iio/light/Kconfig  |  12 +
+>  drivers/iio/light/Makefile |   1 +
+>  drivers/iio/light/bh1745.c | 866 +++++++++++++++++++++++++++++++++++++
+>  4 files changed, 885 insertions(+)
+>  create mode 100644 drivers/iio/light/bh1745.c
 > 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index d6c90161c7bf..024c14738dc7 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19407,6 +19407,12 @@ S:	Supported
+>  F:	drivers/power/supply/bd99954-charger.c
+>  F:	drivers/power/supply/bd99954-charger.h
+>  
+> +ROHM BH1745 COLOUR SENSOR
+> +M:	Mudit Sharma <muditsharma.info@gmail.com>
+> +L:	linux-iio@vger.kernel.org
+> +S:	Maintained
+> +F:	drivers/iio/light/bh1745.c
+> +
+>  ROHM BH1750 AMBIENT LIGHT SENSOR DRIVER
+>  M:	Tomasz Duszynski <tduszyns@gmail.com>
+>  S:	Maintained
+> diff --git a/drivers/iio/light/Kconfig b/drivers/iio/light/Kconfig
+> index 9a587d403118..6e0bd2addf9e 100644
+> --- a/drivers/iio/light/Kconfig
+> +++ b/drivers/iio/light/Kconfig
+> @@ -114,6 +114,18 @@ config AS73211
+>  	 This driver can also be built as a module.  If so, the module
+>  	 will be called as73211.
+>  
+> +config BH1745
+> +	tristate "ROHM BH1745 colour sensor"
+> +	depends on I2C
+> +	select REGMAP_I2C
+> +	select IIO_BUFFER
+> +	select IIO_TRIGGERED_BUFFER
+> +	help
+> +	  Say Y here to build support for the ROHM bh1745 colour sensor.
+> +
+> +	  To compile this driver as a module, choose M here: the module will
+> +	  be called bh1745.
+> +
+>  config BH1750
+>  	tristate "ROHM BH1750 ambient light sensor"
+>  	depends on I2C
+> diff --git a/drivers/iio/light/Makefile b/drivers/iio/light/Makefile
+> index a30f906e91ba..939a701a06ac 100644
+> --- a/drivers/iio/light/Makefile
+> +++ b/drivers/iio/light/Makefile
+> @@ -13,6 +13,7 @@ obj-$(CONFIG_APDS9300)		+= apds9300.o
+>  obj-$(CONFIG_APDS9306)		+= apds9306.o
+>  obj-$(CONFIG_APDS9960)		+= apds9960.o
+>  obj-$(CONFIG_AS73211)		+= as73211.o
+> +obj-$(CONFIG_BH1745)		+= bh1745.o
+>  obj-$(CONFIG_BH1750)		+= bh1750.o
+>  obj-$(CONFIG_BH1780)		+= bh1780.o
+>  obj-$(CONFIG_CM32181)		+= cm32181.o
+> diff --git a/drivers/iio/light/bh1745.c b/drivers/iio/light/bh1745.c
+> new file mode 100644
+> index 000000000000..d0b14460e7c4
+> --- /dev/null
+> +++ b/drivers/iio/light/bh1745.c
+> @@ -0,0 +1,866 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * ROHM BH1745 digital colour sensor driver
+> + *
+> + * Copyright (C) Mudit Sharma <muditsharma.info@gmail.com>
+> + *
+> + * 7-bit I2C slave addresses:
+> + *  0x38 (ADDR pin low)
+> + *  0x39 (ADDR pin high)
+> + *
+> + */
+> +
+> +#include <linux/i2c.h>
+> +#include <linux/mutex.h>
+> +#include <linux/util_macros.h>
+> +#include <linux/iio/events.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+> +#include <linux/iio/trigger.h>
+> +#include <linux/iio/trigger_consumer.h>
+> +#include <linux/iio/triggered_buffer.h>
+> +
+> +#define BH1745_MOD_NAME "bh1745"
+> +
+> +/* BH1745 config regs */
+> +#define BH1745_SYS_CTRL 0x40
+> +
+> +#define BH1745_MODE_CTRL_1 0x41
+> +#define BH1745_MODE_CTRL_2 0x42
+> +#define BH1745_MODE_CTRL_3 0x44
+> +
+> +#define BH1745_INTR 0x60
+> +#define BH1745_INTR_STATUS BIT(7)
+> +
+> +#define BH1745_PERSISTENCE 0x61
+> +
 
+0x instead of 0X as you did with the rest of the addresses?
+
+> +#define BH1745_TH_LSB 0X62
+> +#define BH1745_TH_MSB 0X63
+> +
+> +#define BH1745_TL_LSB 0X64
+> +#define BH1745_TL_MSB 0X65
+> +
+> +#define BH1745_THRESHOLD_MAX 0xFFFF
+> +#define BH1745_THRESHOLD_MIN 0x0
+> +
+> +#define BH1745_MANU_ID 0X92
+> +
+> +/* BH1745 output regs */
+> +#define BH1745_R_LSB 0x50
+> +#define BH1745_R_MSB 0x51
+> +#define BH1745_G_LSB 0x52
+> +#define BH1745_G_MSB 0x53
+> +#define BH1745_B_LSB 0x54
+> +#define BH1745_B_MSB 0x55
+> +#define BH1745_CLR_LSB 0x56
+> +#define BH1745_CLR_MSB 0x57
+> +
+> +#define BH1745_SW_RESET BIT(7)
+> +#define BH1745_INT_RESET BIT(6)
+> +
+> +#define BH1745_MEASUREMENT_TIME_MASK GENMASK(2, 0)
+> +
+> +#define BH1745_RGBC_EN BIT(4)
+> +
+> +#define BH1745_ADC_GAIN_MASK GENMASK(1, 0)
+> +
+> +#define BH1745_INT_ENABLE BIT(0)
+> +#define BH1745_INT_SIGNAL_ACTIVE BIT(7)
+> +
+> +#define BH1745_INT_SIGNAL_LATCHED BIT(4)
+> +#define BH1745_INT_SIGNAL_LATCH_OFFSET 4
+> +
+> +#define BH1745_INT_SOURCE_MASK GENMASK(3, 2)
+> +#define BH1745_INT_SOURCE_OFFSET 2
+> +
+> +#define BH1745_INT_TIME_AVAILABLE "0.16 0.32 0.64 1.28 2.56 5.12"
+> +#define BH1745_HARDWAREGAIN_AVAILABLE "1 2 16"
+> +#define BH1745_INT_COLOUR_CHANNEL_AVAILABLE \
+> +	"0 (Red Channel) 1 (Green Channel) 2 (Blue channel) 3 (Clear channel)"
+> +
+> +static const int bh1745_int_time[][2] = {
+> +	{ 0, 160000 }, /* 160 ms */
+> +	{ 0, 320000 }, /* 320 ms */
+> +	{ 0, 640000 }, /* 640 ms */
+> +	{ 1, 280000 }, /* 1280 ms */
+> +	{ 2, 560000 }, /* 2560 ms */
+> +	{ 5, 120000 }, /* 5120 ms */
+> +};
+> +
+> +static const u8 bh1745_gain_factor[] = { 1, 2, 16 };
+> +
+> +enum bh1745_int_source {
+> +	BH1745_INT_SOURCE_RED,
+> +	BH1745_INT_SOURCE_GREEN,
+> +	BH1745_INT_SOURCE_BLUE,
+> +	BH1745_INT_SOURCE_CLEAR,
+> +};
+> +
+> +enum bh1745_gain {
+> +	BH1745_ADC_GAIN_1X,
+> +	BH1745_ADC_GAIN_2X,
+> +	BH1745_ADC_GAIN_16X,
+> +};
+> +
+> +enum bh1745_measurement_time {
+> +	BH1745_MEASUREMENT_TIME_160MS,
+> +	BH1745_MEASUREMENT_TIME_320MS,
+> +	BH1745_MEASUREMENT_TIME_640MS,
+> +	BH1745_MEASUREMENT_TIME_1280MS,
+> +	BH1745_MEASUREMENT_TIME_2560MS,
+> +	BH1745_MEASUREMENT_TIME_5120MS,
+> +};
+> +
+> +enum bh1745_presistence_value {
+> +	BH1745_PRESISTENCE_UPDATE_TOGGLE,
+> +	BH1745_PRESISTENCE_UPDATE_EACH_MEASUREMENT,
+> +	BH1745_PRESISTENCE_UPDATE_FOUR_MEASUREMENT,
+> +	BH1745_PRESISTENCE_UPDATE_EIGHT_MEASUREMENT,
+> +};
+> +
+> +struct bh1745_data {
+> +	struct mutex lock;
+> +	struct regmap *regmap;
+> +	struct i2c_client *client;
+> +	struct iio_trigger *trig;
+> +	u8 mode_ctrl1;
+> +	u8 mode_ctrl2;
+> +	u8 int_src;
+> +	u8 int_latch;
+> +	u8 interrupt;
+> +};
+> +
+> +static const struct regmap_range bh1745_volatile_ranges[] = {
+> +	regmap_reg_range(BH1745_MODE_CTRL_2, BH1745_MODE_CTRL_2), /* VALID */
+> +	regmap_reg_range(BH1745_R_LSB, BH1745_CLR_MSB), /* Data */
+> +	regmap_reg_range(BH1745_INTR, BH1745_INTR), /* Interrupt */
+> +};
+> +
+> +static const struct regmap_access_table bh1745_volatile_regs = {
+> +	.yes_ranges = bh1745_volatile_ranges,
+> +	.n_yes_ranges = ARRAY_SIZE(bh1745_volatile_ranges),
+> +};
+> +
+> +static const struct regmap_range bh1745_read_ranges[] = {
+> +	regmap_reg_range(BH1745_SYS_CTRL, BH1745_MODE_CTRL_2),
+> +	regmap_reg_range(BH1745_R_LSB, BH1745_CLR_MSB),
+> +	regmap_reg_range(BH1745_INTR, BH1745_INTR),
+> +	regmap_reg_range(BH1745_PERSISTENCE, BH1745_TL_MSB),
+> +	regmap_reg_range(BH1745_MANU_ID, BH1745_MANU_ID),
+> +};
+> +
+> +static const struct regmap_access_table bh1745_ro_regs = {
+> +	.yes_ranges = bh1745_read_ranges,
+> +	.n_yes_ranges = ARRAY_SIZE(bh1745_read_ranges),
+> +};
+> +
+> +static const struct regmap_range bh1745_writable_ranges[] = {
+> +	regmap_reg_range(BH1745_SYS_CTRL, BH1745_MODE_CTRL_2),
+> +	regmap_reg_range(BH1745_PERSISTENCE, BH1745_TL_MSB),
+> +};
+> +
+> +static const struct regmap_access_table bh1745_wr_regs = {
+> +	.yes_ranges = bh1745_writable_ranges,
+> +	.n_yes_ranges = ARRAY_SIZE(bh1745_writable_ranges),
+> +};
+> +
+> +static const struct regmap_config bh1745_regmap = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.max_register = BH1745_MANU_ID,
+> +	.cache_type = REGCACHE_RBTREE,
+> +	.volatile_table = &bh1745_volatile_regs,
+> +	.wr_table = &bh1745_wr_regs,
+> +	.rd_table = &bh1745_ro_regs,
+> +};
+> +
+> +static const struct iio_event_spec bh1745_event_spec[] = {
+> +	{
+> +		.type = IIO_EV_TYPE_THRESH,
+> +		.dir = IIO_EV_DIR_RISING,
+> +		.mask_shared_by_type = BIT(IIO_EV_INFO_VALUE),
+> +	},
+> +	{
+> +		.type = IIO_EV_TYPE_THRESH,
+> +		.dir = IIO_EV_DIR_FALLING,
+> +		.mask_shared_by_type = BIT(IIO_EV_INFO_VALUE),
+> +	},
+> +	{
+> +		.type = IIO_EV_TYPE_THRESH,
+> +		.dir = IIO_EV_DIR_EITHER,
+> +		.mask_shared_by_type = BIT(IIO_EV_INFO_PERIOD),
+> +	},
+> +};
+> +
+> +#define BH1745_CHANNEL(_colour, _si, _addr)                                   \
+> +	{                                                                     \
+> +		.type = IIO_INTENSITY, .modified = 1,                         \
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),                 \
+> +		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_HARDWAREGAIN) | \
+> +					    BIT(IIO_CHAN_INFO_INT_TIME),      \
+> +		.event_spec = bh1745_event_spec,                              \
+> +		.num_event_specs = ARRAY_SIZE(bh1745_event_spec),             \
+> +		.channel2 = IIO_MOD_LIGHT_##_colour, .address = _addr,        \
+> +		.scan_index = _si,                                            \
+> +		.scan_type = {                                                \
+> +			.sign = 'u',                                          \
+> +			.realbits = 16,                                       \
+> +			.storagebits = 16,                                    \
+> +			.endianness = IIO_CPU,                                \
+> +		},                                                            \
+> +	}
+> +
+> +static const struct iio_chan_spec bh1745_channels[] = {
+> +	BH1745_CHANNEL(RED, 0, BH1745_R_LSB),
+> +	BH1745_CHANNEL(GREEN, 1, BH1745_G_LSB),
+> +	BH1745_CHANNEL(BLUE, 2, BH1745_B_LSB),
+> +	BH1745_CHANNEL(CLEAR, 3, BH1745_CLR_LSB),
+> +	IIO_CHAN_SOFT_TIMESTAMP(4),
+> +};
+> +
+> +static int bh1745_write_value(struct bh1745_data *data, u8 reg, void *value,
+> +			      size_t len)
+> +{
+> +	int ret;
+> +
+> +	ret = regmap_bulk_write(data->regmap, reg, value, len);
+> +	if (ret < 0) {
+> +		dev_err(&data->client->dev,
+> +			"Failed to write to sensor. Reg: 0x%x\n", reg);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int bh1745_read_value(struct bh1745_data *data, u8 reg, void *value,
+> +			     size_t len)
+> +{
+> +	int ret;
+> +
+> +	ret = regmap_bulk_read(data->regmap, reg, value, len);
+> +	if (ret < 0) {
+> +		dev_err(&data->client->dev,
+> +			"Failed to read from sensor. Reg: 0x%x\n", reg);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static ssize_t in_interrupt_source_show(struct device *dev,
+> +					struct device_attribute *attr,
+> +					char *buf)
+> +{
+> +	int ret;
+> +	int value;
+> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+> +	struct bh1745_data *data = iio_priv(indio_dev);
+> +
+> +	ret = bh1745_read_value(data, BH1745_INTR, &value, 1);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	value &= BH1745_INT_SOURCE_MASK;
+> +
+> +	return sprintf(buf, "%d\n", value >> 2);
+> +}
+> +
+> +static ssize_t in_interrupt_source_store(struct device *dev,
+> +					 struct device_attribute *attr,
+> +					 const char *buf, size_t len)
+> +{
+> +	int ret;
+> +	u16 value;
+> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+> +	struct bh1745_data *data = iio_priv(indio_dev);
+> +
+> +	ret = kstrtou16(buf, 10, &value);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (value > BH1745_INT_SOURCE_CLEAR) {
+> +		dev_err(dev,
+> +			"Supplied value: '%d' for interrupt source is invalid\n",
+> +			value);
+> +		return -EINVAL;
+> +	}
+> +	guard(mutex)(&data->lock);
+> +	data->int_src = value;
+> +	value = value << BH1745_INT_SOURCE_OFFSET;
+> +	ret = bh1745_read_value(data, BH1745_INTR, &data->interrupt, 1);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	data->interrupt &= ~BH1745_INT_SOURCE_MASK;
+> +	data->interrupt |= value;
+> +	ret = bh1745_write_value(data, BH1745_INTR, &data->interrupt, 1);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return len;
+> +}
+> +
+> +static ssize_t in_interrupt_latch_show(struct device *dev,
+> +				       struct device_attribute *attr, char *buf)
+> +{
+> +	int ret;
+> +	int value;
+> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+> +	struct bh1745_data *data = iio_priv(indio_dev);
+> +
+> +	ret = bh1745_read_value(data, BH1745_INTR, &value, 1);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	value &= BH1745_INT_SIGNAL_LATCHED;
+> +	if (value)
+> +		return sprintf(buf, "1\n");
+> +
+> +	return sprintf(buf, "0\n");
+> +}
+> +
+> +static ssize_t in_interrupt_latch_store(struct device *dev,
+> +					struct device_attribute *attr,
+> +					const char *buf, size_t len)
+> +{
+> +	int ret;
+> +	u16 value;
+> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+> +	struct bh1745_data *data = iio_priv(indio_dev);
+> +
+> +	ret = kstrtou16(buf, 10, &value);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (value > 1) {
+> +		dev_err(dev, "Value out of range for latch setup. Supported values '0' or '1'\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	guard(mutex)(&data->lock);
+> +	data->int_latch = value;
+> +	ret = bh1745_read_value(data, BH1745_INTR, &data->interrupt, 1);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (value == 0)
+> +		data->interrupt &= ~BH1745_INT_SIGNAL_LATCHED;
+> +	else
+> +		data->interrupt |= BH1745_INT_SIGNAL_LATCHED;
+> +
+> +	ret = bh1745_write_value(data, BH1745_INTR, &data->interrupt, 1);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return len;
+> +}
+> +
+> +static ssize_t hardwaregain_available_show(struct device *dev,
+> +					   struct device_attribute *attr,
+> +					   char *buf)
+> +{
+> +	return sprintf(buf, "%s\n", BH1745_HARDWAREGAIN_AVAILABLE);
+> +}
+> +
+> +static ssize_t interrupt_source_available_show(struct device *dev,
+> +					       struct device_attribute *attr,
+> +					       char *buf)
+> +{
+> +	return sprintf(buf, "%s\n", BH1745_INT_COLOUR_CHANNEL_AVAILABLE);
+> +}
+> +
+> +static IIO_DEVICE_ATTR_RW(in_interrupt_source, 0);
+> +static IIO_DEVICE_ATTR_RW(in_interrupt_latch, 0);
+> +static IIO_DEVICE_ATTR_RO(hardwaregain_available, 0);
+> +static IIO_DEVICE_ATTR_RO(interrupt_source_available, 0);
+> +static IIO_CONST_ATTR_INT_TIME_AVAIL(BH1745_INT_TIME_AVAILABLE);
+> +
+> +static struct attribute *bh1745_attrs[] = {
+> +	&iio_dev_attr_in_interrupt_source.dev_attr.attr,
+> +	&iio_dev_attr_in_interrupt_latch.dev_attr.attr,
+> +	&iio_dev_attr_hardwaregain_available.dev_attr.attr,
+> +	&iio_dev_attr_interrupt_source_available.dev_attr.attr,
+> +	&iio_const_attr_integration_time_available.dev_attr.attr,
+> +	NULL
+> +};
+> +
+> +static const struct attribute_group bh1745_attr_group = {
+> +	.attrs = bh1745_attrs,
+> +};
+> +
+> +static int bh1745_reset(struct bh1745_data *data)
+> +{
+> +	int ret;
+> +	u8 value;
+> +
+> +	ret = bh1745_read_value(data, BH1745_SYS_CTRL, &value, 1);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	value |= (BH1745_SW_RESET | BH1745_INT_RESET);
+> +
+> +	return bh1745_write_value(data, BH1745_SYS_CTRL, &value, 1);
+> +}
+> +
+> +static int bh1745_power_on(struct bh1745_data *data)
+> +{
+> +	int ret;
+> +	u8 value;
+> +
+> +	ret = bh1745_read_value(data, BH1745_MODE_CTRL_2, &value, 1);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	guard(mutex)(&data->lock);
+> +	value |= BH1745_RGBC_EN;
+> +	data->mode_ctrl2 = value;
+> +	ret = bh1745_write_value(data, BH1745_MODE_CTRL_2, &data->mode_ctrl2, 1);
+> +
+> +	return ret;
+> +}
+> +
+> +static int bh1745_power_off(struct bh1745_data *data)
+> +{
+> +	int ret;
+> +	int value;
+> +
+> +	ret = bh1745_read_value(data, BH1745_MODE_CTRL_2, &value, 1);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	guard(mutex)(&data->lock);
+> +	value &= ~BH1745_RGBC_EN;
+> +	data->mode_ctrl2 = value;
+> +	ret = bh1745_write_value(data, BH1745_MODE_CTRL_2, &data->mode_ctrl2, 1);
+> +
+> +	return ret;
+> +}
+> +
+> +static int bh1745_set_int_time(struct bh1745_data *data, int val, int val2)
+> +{
+> +	int ret;
+> +
+> +	for (u8 i = 0; i < ARRAY_SIZE(bh1745_int_time); i++) {
+> +		if (val == bh1745_int_time[i][0] &&
+> +		    val2 == bh1745_int_time[i][1]) {
+> +			guard(mutex)(&data->lock);
+> +			data->mode_ctrl1 &= ~BH1745_MEASUREMENT_TIME_MASK;
+> +			data->mode_ctrl1 |= i;
+> +			ret = bh1745_write_value(data, BH1745_MODE_CTRL_1,
+> +						 &data->mode_ctrl1, 1);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int bh1745_read_raw(struct iio_dev *indio_dev,
+> +			   struct iio_chan_spec const *chan, int *val,
+> +			   int *val2, long mask)
+> +{
+> +	struct bh1745_data *data = iio_priv(indio_dev);
+> +	int ret;
+> +	u16 value;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW: {
+> +		ret = iio_device_claim_direct_mode(indio_dev);
+> +		if (ret)
+> +			return ret;
+> +		ret = bh1745_read_value(data, chan->address, &value, 2);
+> +		if (ret < 0)
+> +			return ret;
+> +		iio_device_release_direct_mode(indio_dev);
+> +		*val = value;
+> +		return IIO_VAL_INT;
+> +	}
+> +
+> +	case IIO_CHAN_INFO_HARDWAREGAIN: {
+> +		guard(mutex)(&data->lock);
+> +		ret = bh1745_read_value(data, BH1745_MODE_CTRL_2,
+> +					&data->mode_ctrl2, 1);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		value = data->mode_ctrl2 & BH1745_ADC_GAIN_MASK;
+> +		*val = bh1745_gain_factor[value];
+> +		return IIO_VAL_INT;
+> +	}
+> +
+> +	case IIO_CHAN_INFO_INT_TIME: {
+> +		guard(mutex)(&data->lock);
+> +		ret = bh1745_read_value(data, BH1745_MODE_CTRL_1,
+> +					&data->mode_ctrl1, 1);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		value = data->mode_ctrl1 & BH1745_MEASUREMENT_TIME_MASK;
+> +
+> +		*val = bh1745_int_time[value][0];
+> +		*val2 = bh1745_int_time[value][1];
+> +
+> +		return IIO_VAL_INT_PLUS_MICRO;
+> +	}
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int bh1745_write_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan, int val, int val2,
+> +			    long mask)
+> +{
+> +	struct bh1745_data *data = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_HARDWAREGAIN: {
+> +		for (u8 i = 0; i < ARRAY_SIZE(bh1745_gain_factor); i++) {
+> +			if (bh1745_gain_factor[i] == val) {
+> +				guard(mutex)(&data->lock);
+> +				data->mode_ctrl2 &= ~BH1745_ADC_GAIN_MASK;
+> +				data->mode_ctrl2 |= i;
+> +				ret = bh1745_write_value(data,
+> +							 BH1745_MODE_CTRL_2,
+> +							 &data->mode_ctrl2, 1);
+> +				return ret;
+> +			}
+> +		}
+> +		return -EINVAL;
+> +	}
+> +
+> +	case IIO_CHAN_INFO_INT_TIME: {
+> +		return bh1745_set_int_time(data, val, val2);
+> +	}
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int bh1745_read_thresh(struct iio_dev *indio_dev,
+> +			      const struct iio_chan_spec *chan,
+> +			      enum iio_event_type type,
+> +			      enum iio_event_direction dir,
+> +			      enum iio_event_info info, int *val, int *val2)
+> +{
+> +	struct bh1745_data *data = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	switch (info) {
+> +	case IIO_EV_INFO_VALUE:
+> +		switch (dir) {
+> +		case IIO_EV_DIR_RISING:
+> +			ret = bh1745_read_value(data, BH1745_TH_LSB, val, 2);
+> +			if (ret < 0)
+> +				return ret;
+> +			return IIO_VAL_INT;
+> +		case IIO_EV_DIR_FALLING:
+> +			ret = bh1745_read_value(data, BH1745_TL_LSB, val, 2);
+> +			if (ret < 0)
+> +				return ret;
+> +			return IIO_VAL_INT;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +		break;
+> +	case IIO_EV_INFO_PERIOD:
+> +		ret = bh1745_read_value(data, BH1745_PERSISTENCE, val, 1);
+> +		if (ret < 0)
+> +			return ret;
+> +		return IIO_VAL_INT;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int bh1745_write_thresh(struct iio_dev *indio_dev,
+> +			       const struct iio_chan_spec *chan,
+> +			       enum iio_event_type type,
+> +			       enum iio_event_direction dir,
+> +			       enum iio_event_info info, int val, int val2)
+> +{
+> +	struct bh1745_data *data = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	switch (info) {
+> +	case IIO_EV_INFO_VALUE:
+> +		if (val < BH1745_THRESHOLD_MIN || val > BH1745_THRESHOLD_MAX)
+> +			return -EINVAL;
+> +		switch (dir) {
+> +		case IIO_EV_DIR_RISING:
+> +			ret = bh1745_write_value(data, BH1745_TH_LSB, &val, 2);
+> +			if (ret < 0)
+> +				return ret;
+> +			return IIO_VAL_INT;
+> +		case IIO_EV_DIR_FALLING:
+> +			ret = bh1745_write_value(data, BH1745_TL_LSB, &val, 2);
+> +			if (ret < 0)
+> +				return ret;
+> +			return IIO_VAL_INT;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +		break;
+> +	case IIO_EV_INFO_PERIOD:
+> +		if (val < BH1745_PRESISTENCE_UPDATE_TOGGLE ||
+> +		    val > BH1745_PRESISTENCE_UPDATE_EIGHT_MEASUREMENT)
+> +			return -EINVAL;
+> +		ret = bh1745_write_value(data, BH1745_PERSISTENCE, &val, 1);
+> +		if (ret < 0)
+> +			return ret;
+> +		return IIO_VAL_INT;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static const struct iio_info bh1745_info = {
+> +	.attrs = &bh1745_attr_group,
+> +	.read_raw = bh1745_read_raw,
+> +	.write_raw = bh1745_write_raw,
+> +	.read_event_value = bh1745_read_thresh,
+> +	.write_event_value = bh1745_write_thresh,
+> +
+> +};
+> +
+> +static void bh1745_remove(struct i2c_client *client)
+> +{
+> +	struct iio_dev *indio_dev = i2c_get_clientdata(client);
+> +	struct bh1745_data *data = iio_priv(indio_dev);
+> +
+> +	if (bh1745_power_off(data) < 0)
+> +		dev_err(&data->client->dev, "Failed to turn off device");
+> +
+> +	dev_info(&data->client->dev, "BH1745 driver removed\n");
+> +}
+> +
+> +static int bh1745_set_trigger_state(struct iio_trigger *trig, bool state)
+> +{
+> +	int ret;
+> +	u8 value = 0;
+> +	struct iio_dev *indio_dev = iio_trigger_get_drvdata(trig);
+> +	struct bh1745_data *data = iio_priv(indio_dev);
+> +
+> +	guard(mutex)(&data->lock);
+> +	if (state) {
+> +		ret = bh1745_read_value(data, BH1745_INTR, &value, 1);
+> +		if (ret < 0)
+> +			return ret;
+> +		value |= (BH1745_INT_ENABLE |
+> +			(data->int_latch << BH1745_INT_SIGNAL_LATCH_OFFSET) |
+> +			(data->int_src << BH1745_INT_SOURCE_OFFSET));
+> +		data->interrupt = value;
+> +		ret = bh1745_write_value(data, BH1745_INTR, &data->interrupt,
+
+Suggestion: a few lines go beyond 80 characters (including some other
+bh1745_write_value() calls), so you could join those two "1);" with the
+rest of the call.
+
+> +					 1);
+> +	} else {
+> +		data->interrupt = value;
+> +		ret = bh1745_write_value(data, BH1745_INTR, &data->interrupt,
+> +					 1);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct iio_trigger_ops bh1745_trigger_ops = {
+> +	.set_trigger_state = bh1745_set_trigger_state,
+> +};
+> +
+> +static irqreturn_t bh1745_interrupt_handler(int interrupt, void *p)
+> +{
+> +	struct iio_dev *indio_dev = p;
+> +	struct bh1745_data *data = iio_priv(indio_dev);
+> +	int ret;
+> +	int value;
+> +
+> +	ret = bh1745_read_value(data, BH1745_INTR, &value, 1);
+> +	if (ret < 0)
+> +		return IRQ_NONE;
+> +
+> +	if (value & BH1745_INTR_STATUS) {
+> +		guard(mutex)(&data->lock);
+> +		iio_push_event(indio_dev,
+> +			       IIO_UNMOD_EVENT_CODE(IIO_INTENSITY,
+> +						    data->int_src,
+> +						    IIO_EV_TYPE_THRESH,
+> +						    IIO_EV_DIR_EITHER),
+> +			       iio_get_time_ns(indio_dev));
+> +
+> +		iio_trigger_poll_nested(data->trig);
+> +		return IRQ_HANDLED;
+> +	}
+> +
+> +	return IRQ_NONE;
+> +}
+> +
+> +static irqreturn_t bh1745_trigger_handler(int interrupt, void *p)
+> +{
+> +	struct iio_poll_func *pf = p;
+> +	struct iio_dev *indio_dev = pf->indio_dev;
+> +	struct bh1745_data *data = iio_priv(indio_dev);
+> +	struct {
+> +		u16 chans[4];
+> +		s64 timestamp __aligned(8);
+> +	} scan;
+> +	u16 value;
+> +	int ret;
+> +
+
+Intended blank line?
+
+> +	int i, j = 0;
+> +
+> +	for_each_set_bit(i, indio_dev->active_scan_mask, indio_dev->masklength) {
+> +		ret = bh1745_read_value(data, BH1745_R_LSB + 2 * i, &value, 2);
+> +		if (ret < 0)
+> +			goto err;
+> +		scan.chans[j++] = value;
+> +	}
+> +
+> +	iio_push_to_buffers_with_timestamp(indio_dev, &scan,
+> +					   iio_get_time_ns(indio_dev));
+> +
+> +err:
+> +	iio_trigger_notify_done(indio_dev->trig);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int bh1745_setup_trigger(struct iio_dev *indio_dev)
+> +{
+> +	struct bh1745_data *data = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	data->trig = devm_iio_trigger_alloc(indio_dev->dev.parent,
+> +					    "%sdata-rdy-dev%d", indio_dev->name,
+> +					    iio_device_id(indio_dev));
+> +	if (!data->trig)
+> +		return -ENOMEM;
+> +
+> +	data->trig->ops = &bh1745_trigger_ops;
+> +	iio_trigger_set_drvdata(data->trig, indio_dev);
+> +
+> +	ret = devm_iio_trigger_register(&data->client->dev, data->trig);
+> +	if (ret)
+> +		return dev_err_probe(&data->client->dev, ret,
+> +				     "Trigger registration failed\n");
+> +
+> +	ret = devm_iio_triggered_buffer_setup(indio_dev->dev.parent, indio_dev,
+> +					      NULL, bh1745_trigger_handler,
+> +					      NULL);
+> +	if (ret)
+> +		return dev_err_probe(&data->client->dev, ret,
+> +				     "Triggered buffer setup failed\n");
+> +
+> +	ret = devm_request_threaded_irq(&data->client->dev, data->client->irq,
+> +					NULL, bh1745_interrupt_handler,
+> +					IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
+> +					"bh1745_interrupt", indio_dev);
+> +	if (ret)
+> +		return dev_err_probe(&data->client->dev, ret,
+> +				     "Request for IRQ failed\n");
+> +
+> +	dev_info(&data->client->dev,
+> +		 "Triggered buffer and IRQ setup successfully");
+> +
+> +	return ret;
+> +}
+> +
+> +static int bh1745_init(struct bh1745_data *data)
+> +{
+> +	int ret;
+> +
+> +	mutex_init(&data->lock);
+> +	data->mode_ctrl1 = 0;
+> +	data->mode_ctrl2 = 0;
+> +	data->interrupt = 0;
+> +	data->int_src = BH1745_INT_SOURCE_RED;
+> +
+> +	ret = bh1745_reset(data);
+> +	if (ret < 0) {
+> +		dev_err(&data->client->dev, "Failed to reset sensor\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = bh1745_power_on(data);
+> +	if (ret < 0) {
+> +		dev_err(&data->client->dev, "Failed to turn on sensor\n");
+> +		return ret;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int bh1745_probe(struct i2c_client *client)
+> +{
+> +	int ret;
+> +	struct bh1745_data *data;
+> +	struct iio_dev *indio_dev;
+> +
+> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	data = iio_priv(indio_dev);
+> +	i2c_set_clientdata(client, indio_dev);
+> +	data->client = client;
+> +	indio_dev->info = &bh1745_info;
+> +	indio_dev->name = "bh1745";
+> +	indio_dev->channels = bh1745_channels;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->num_channels = ARRAY_SIZE(bh1745_channels);
+> +
+> +	data->regmap = devm_regmap_init_i2c(client, &bh1745_regmap);
+> +	if (IS_ERR(data->regmap))
+> +		return dev_err_probe(&client->dev, PTR_ERR(data->regmap),
+> +				     "Failed to initialize Regmap\n");
+> +
+> +	ret = bh1745_init(data);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (client->irq) {
+> +		ret = bh1745_setup_trigger(indio_dev);
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +
+> +	ret = devm_iio_device_register(&client->dev, indio_dev);
+> +	if (ret < 0) {
+> +		dev_err(&data->client->dev, "Failed to register device\n");
+> +		return ret;
+> +	}
+> +
+> +	dev_info(&data->client->dev, "BH1745 driver loaded\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct i2c_device_id bh1745_idtable[] = {
+> +	{ "bh1745" },
+> +	{},
+> +};
+> +
+> +static const struct of_device_id bh1745_of_match[] = {
+> +	{
+> +		.compatible = "rohm,bh1745",
+> +	},
+> +	{},
+> +};
+> +
+> +MODULE_DEVICE_TABLE(i2c, bh1745_idtable);
+> +
+> +static struct i2c_driver bh1745_driver = {
+> +	.driver = {
+> +		.name = "bh1745",
+> +		.of_match_table = bh1745_of_match,
+> +	},
+> +	.probe = bh1745_probe,
+> +	.remove = bh1745_remove,
+> +	.id_table = bh1745_idtable,
+> +};
+> +
+> +module_i2c_driver(bh1745_driver);
+> +MODULE_AUTHOR("Mudit Sharma <muditsharma.info@gmail.com>");
+> +MODULE_DESCRIPTION("BH1745 colour sensor driver");
+> +MODULE_LICENSE("GPL");
+
+
+As far as I am concerned,
+
+Reviewed-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
