@@ -1,231 +1,129 @@
-Return-Path: <devicetree+bounces-73124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3FD28FE12B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 10:39:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5C9E8FE144
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 10:41:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC9991C22F72
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:39:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C610C1C22C9E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:41:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98CFE13C91C;
-	Thu,  6 Jun 2024 08:37:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WZnTT1W4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E21313CA97;
+	Thu,  6 Jun 2024 08:41:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0553A13C900;
-	Thu,  6 Jun 2024 08:37:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8331213C69A;
+	Thu,  6 Jun 2024 08:41:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717663068; cv=none; b=BwGleTDn6CfwIJUI9Wnds+UUOs8ZMzClXpnWPrKRPjWmac1QhkP+2615XqFRTR85xRJfK+QmZQk4VuAvBMs/FNLW6rqDJvHF3sDP+ECGOYXGyIjjqJutyPEaVRYIpzvm/JqKbf0iI2KqTGbZQMXMIg1n015P7zbF3HqlMo8X6Dw=
+	t=1717663270; cv=none; b=sVR/Vp/Y9PyRd5vEf0GYfSmMyB8nEFxsY2jm3PHsIVl7v5mWHDoXr2pIm4HCur+ecdL7M8Y9rJv+EvPUgVYeCZtsQcJiHI8QeN5eizKtuzBnayMP9N6FnObxyxZOnCc8QQacZK8TuEyFMSSbrmz8Zj5CuCLJ709jIXQ3S0141as=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717663068; c=relaxed/simple;
-	bh=HYy0uBIq7a4XYMVsAB46Cm0zvk1JrXNzFX9UbTeng8k=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=R1ngDzmjR0Xbe2fvj6kD27xr5tlXswBNbjsYGrpMh2hAWrSwvI8mVE/3/iZW7BvmooeHK74m3omrRM6XKr8vlGGUntFVSV+dpKC0zcxyhWFXUCee0egM5ECtUW3EH5tbzGCPDxZwjsQZQxMg6ZFxle/nIRVCou1WCrUNEAh0eo8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WZnTT1W4; arc=none smtp.client-ip=209.85.210.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1717663270; c=relaxed/simple;
+	bh=kLTF0LF86rZ6TPdKMpFHXRAynse2+A4IFt/K7Y1MS70=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uiIK6IDn+DWQTo0oOqUBjCsNChZ6HX0uv6lZC9N5qIM39O2/eOWX8b3kC5uP0u42JW4fTEdi+wMAD15+kVllunVrY+Egy91gjNoZJkU3GBjpGcuKbwPGnHb6S1svfGWnoyPy8/Cu5VCD3t7+VRhtaVANs5fhn+mrjYLA11nBujM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-6f938c18725so375006a34.1;
-        Thu, 06 Jun 2024 01:37:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717663066; x=1718267866; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qXXhn+viEW5QNpw1s0JwBzkpEksiOVn61xZJPP4n0t4=;
-        b=WZnTT1W4wHzAVEaakNo6zXCPikupDjNgXzfzF7EGwy4sUU4SRDHCFZA+hQFWdMJ7tq
-         mXxlA6j0ansWSi80zDas8j1MozUnzNIvfFWzRA89kSe//r9mYFbXP873BUkR2QeNU2SB
-         xEkkHHRzHj03BBVboPbqxbj6u6aWxgHNaIfiq2A0BLG0tksgz3rLVE2BFtq3k2dTj6Uz
-         B8S3lHnl3UwG0r3Z+VjsAY56ivCoSkuY1DWaCrYhk6m0TD+VZUVrVNIF7rnM5ebRj2G9
-         R5k/twuVvcpl09ldwpp+KbBUKV8R8b9mFmNha7547SOQWZF+W8y+C1Kze4Aw4vlWg6r1
-         7cKg==
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-df771b6cc9cso769464276.3;
+        Thu, 06 Jun 2024 01:41:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717663066; x=1718267866;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1717663267; x=1718268067;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=qXXhn+viEW5QNpw1s0JwBzkpEksiOVn61xZJPP4n0t4=;
-        b=jTQpB6NvPnH+Sp41SR7XF5Iusmg6DYA3FkmOh4xA5otC+bt/fzh9fFwAY8ZMrqv8Sl
-         gg/9s1PT5YggYto+2g+eiYFp4vagIi1Glu2/sKKK55xGaYWUFE6hmooobuS0BcN95q/g
-         GlHXKAlYGG1UHf4pli6OzT4zIgkfpPGso/Yf2gzhKrflqgfVUMUBVOx03vMfzm0ooEcU
-         qR9EQ/32MDm/tJauAt8EOcaJSBFXqr2kaOBkBdfE1iWBqSZuXeTJtSd4k2ehTeyn4WVX
-         dN/pKOW9LfaHd4AHOZJUrpCtSIZ3fl+zW5frn64PWb57z7f9lARCqnKnbugqpBaMzMIW
-         BmwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW33hewHSPg3rd6WZ2Dh+xDWFa37qwVN6vp0wX6wJQvaXjSGtGquWZLI9/8j19vuEOyhttYGDqEh5ea3jDHXqLL2IRYhNzg+NSFM0yb75jCAsO/e7thupGc92qHHy9mGctyxUd/B+tTLb1kpgtrVVPsZdu2QL+paagU4Zbu/jOEFqVcyQ==
-X-Gm-Message-State: AOJu0YzE1DPz77TObRv6yL+UuRq+/MU13swj5JnsY0U4s8W+qNbWFprx
-	1HeAm/hfDrLNb3Bmy/ry+DaQ020GyJDMmGjNK2B70qEdzJXL6h+J
-X-Google-Smtp-Source: AGHT+IGZlEYKLCxi0RKiEtXK7Ckj+6l6wKfH5lX8OsZs2LFvUkmtRa+80HPxCK7UHmoLIlW9SGRzaw==
-X-Received: by 2002:a05:6830:148d:b0:6f0:444c:d534 with SMTP id 46e09a7af769-6f94341474cmr5168489a34.5.1717663065958;
-        Thu, 06 Jun 2024 01:37:45 -0700 (PDT)
-Received: from localhost.localdomain ([122.8.183.87])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-6f94dcf4ffcsm210863a34.63.2024.06.06.01.37.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jun 2024 01:37:45 -0700 (PDT)
-From: Chen Wang <unicornxw@gmail.com>
-To: aou@eecs.berkeley.edu,
-	chao.wei@sophgo.com,
-	conor@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	mturquette@baylibre.com,
-	palmer@dabbelt.com,
-	paul.walmsley@sifive.com,
-	richardcochran@gmail.com,
-	robh+dt@kernel.org,
-	sboyd@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	haijiao.liu@sophgo.com,
-	xiaoguang.xing@sophgo.com,
-	guoren@kernel.org,
-	jszhang@kernel.org,
-	inochiama@outlook.com,
-	samuel.holland@sifive.com
-Cc: Chen Wang <unicorn_wang@outlook.com>
-Subject: [PATCH v16 5/5] riscv: dts: add clock generator for Sophgo SG2042 SoC
-Date: Thu,  6 Jun 2024 16:37:39 +0800
-Message-Id: <9ff7c8917a2125319316d59973a54ac12c311a19.1717661798.git.unicorn_wang@outlook.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1717661798.git.unicorn_wang@outlook.com>
-References: <cover.1717661798.git.unicorn_wang@outlook.com>
+        bh=7rJJ6wIAGO4z93hTC8lSOsbCqJndTTd+qtAeIcf8Fus=;
+        b=f5kyYoLvcn5+GN0aS8N90BrEcw65dfRkwKqHtfN0fuFDSecYxTggcsqTe0I8zon435
+         YTurHrtkjcQ8171JaHIA/oo6nDCB3UUR4cwomfCW/wk763amrYxr1mmQVHyYKs/izpFP
+         R6zQtT/2cqHQnJ7fGfTL1baHMp38z+qknXKXr/KCEtB3Led1D2j54NLqJDG7IM9TBbfd
+         XQPsqf17mQMO8SJ1r3ME74y9xpOM3iMuYgxrSYR1oHJL/J9ldeR2E9W2SGqS/dX8upjo
+         +s5aYaoGBjDbXD7XXiFgo3S/OjB0MKRXmUrHyDxXyIJVp3FBg7Zx72C64a0KTdnSAZ4I
+         r7sA==
+X-Forwarded-Encrypted: i=1; AJvYcCXEsM6s7WwTnlDG4SMTCqaT/uN7CU+wxSEJN+BJ89ZkttsvZFXltUrg2qGrSEGiW90pB/3WuU2B5hnbAPRnNCuJFZ+CYIopwavv0iMuc98mTb8Gb9apuFmXbOy8tARqG4I3bvKws5QYhTAxpgSSeZKrfMc7C7Jj6dZib3HADutTZovnf3SghugNfVwH32G2yDralUhMkFVWGJmmIxxkshd67vLyZqzHiA==
+X-Gm-Message-State: AOJu0YxW9xvht2r6iCxXy6zIfmYFFsK3/RGy7TrbOMqN2MbOYxIUZV99
+	fOsl/YE2Yo/gzEItKcSHYCQvtUrAnUXrIGg/xBY/eIG1DQSK2SytJ+SlX4L6
+X-Google-Smtp-Source: AGHT+IFj2XrgSOkLCdkhrx7rLI/AhecH+wnyPU0ydigPIFlIDaLicwSVWuTSA8MkE4PaXgGrdk6d7w==
+X-Received: by 2002:a25:6fc5:0:b0:de6:1a66:3e4d with SMTP id 3f1490d57ef6-dfacad0c760mr5104885276.59.1717663266640;
+        Thu, 06 Jun 2024 01:41:06 -0700 (PDT)
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-dfae52bc078sm204469276.7.2024.06.06.01.41.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Jun 2024 01:41:06 -0700 (PDT)
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-dfab4779d95so736549276.0;
+        Thu, 06 Jun 2024 01:41:06 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVa09VyOL9KZ0WRNH6u9h8ll9Qr641bTFkvUl9lnm2CLAbgMD4Giq4G3Qgp6Y3MuAcX9yJ5+ir50F6xkdYnq7jhQYuOvGYeSgB8LEdtdbuc2TU6QA6FuwFWQDa27uT0jjh7gT9arOeSR2X98tKUiJ0rmXeqpcCSC4EKKwVRY1wu90OfpkdlxTfz6SDr5p9/iVQsmSvaGiCfTQZEtvsHmaO8ObG8IIIqdA==
+X-Received: by 2002:a25:948:0:b0:de5:507a:7378 with SMTP id
+ 3f1490d57ef6-dfacacedf3emr5460184276.45.1717663266094; Thu, 06 Jun 2024
+ 01:41:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240530173857.164073-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240530173857.164073-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240604153612.GA839371-robh@kernel.org> <CA+V-a8tWxGBkuOY=G3RaB_0NXS3ShE-nL+5t49=_mJGvo6j6yQ@mail.gmail.com>
+ <CAMuHMdWvdvmt42Wy=5Do2MeCRNbLOd2c8Nra2RFQtumnmZod_g@mail.gmail.com> <CA+V-a8sbjD=KghOmw6OEWXxbbPkmW-ycwuxFxh43GL3nKhLWxQ@mail.gmail.com>
+In-Reply-To: <CA+V-a8sbjD=KghOmw6OEWXxbbPkmW-ycwuxFxh43GL3nKhLWxQ@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 6 Jun 2024 10:40:54 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWE3ZsNZ_WgwhmOEEqCMNUdoskVf6C=QJgThsK0kJK8Jw@mail.gmail.com>
+Message-ID: <CAMuHMdWE3ZsNZ_WgwhmOEEqCMNUdoskVf6C=QJgThsK0kJK8Jw@mail.gmail.com>
+Subject: Re: [PATCH v3 01/15] dt-bindings: pinctrl: renesas: Document
+ RZ/V2H(P) SoC
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Paul Barker <paul.barker.ct@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Chen Wang <unicorn_wang@outlook.com>
+Hi Prabhakar,
 
-Add clock generator node to device tree for SG2042, and enable clock for
-uart.
+On Thu, Jun 6, 2024 at 10:38=E2=80=AFAM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Thu, Jun 6, 2024 at 8:13=E2=80=AFAM Geert Uytterhoeven <geert@linux-m6=
+8k.org> wrote:
+> > On Wed, Jun 5, 2024 at 11:39=E2=80=AFAM Lad, Prabhakar
+> > <prabhakar.csengg@gmail.com> wrote:
+> > > OK, I will fix the above and send a v6 series.
+> >
+> > Please don't drag it out that long ;-)
+> Oops, that was a typo.
+>
+> > As the rest of the series looks fine, a v4 should be sufficient.
+> > Actually a v4 of just the first patch would be fine for me, too.
+> >
+> As agreed patch 02/15 needs dropping, with that patch 07/14 ("pinctrl:
+> renesas: pinctrl-rzg2l: Add function pointer for locking/unlocking the
+> PFC register") does not apply cleanly anymore. Maybe I'll just send v4
+> for the entire patches?
 
-Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-Reviewed-by: Guo Ren <guoren@kernel.org>
----
- .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  | 12 ++++
- arch/riscv/boot/dts/sophgo/sg2042.dtsi        | 55 ++++++++++++++++++-
- 2 files changed, 66 insertions(+), 1 deletion(-)
+Fine for me, and up to you.
+I can easily drop 02/15, and do a s/BOWI/B0WI/g before applying.
 
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-index 49b4b9c2c101..80cb017974d8 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-+++ b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-@@ -14,6 +14,18 @@ chosen {
- 	};
- };
- 
-+&cgi_main {
-+	clock-frequency = <25000000>;
-+};
-+
-+&cgi_dpll0 {
-+	clock-frequency = <25000000>;
-+};
-+
-+&cgi_dpll1 {
-+	clock-frequency = <25000000>;
-+};
-+
- &uart0 {
- 	status = "okay";
- };
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-index 81fda312f988..34c802bd3f9b 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-@@ -4,8 +4,10 @@
-  */
- 
- /dts-v1/;
-+#include <dt-bindings/clock/sophgo,sg2042-clkgen.h>
-+#include <dt-bindings/clock/sophgo,sg2042-pll.h>
-+#include <dt-bindings/clock/sophgo,sg2042-rpgate.h>
- #include <dt-bindings/interrupt-controller/irq.h>
--
- #include <dt-bindings/reset/sophgo,sg2042-reset.h>
- 
- #include "sg2042-cpus.dtsi"
-@@ -20,12 +22,60 @@ aliases {
- 		serial0 = &uart0;
- 	};
- 
-+	cgi_main: oscillator0 {
-+		compatible = "fixed-clock";
-+		clock-output-names = "cgi_main";
-+		#clock-cells = <0>;
-+	};
-+
-+	cgi_dpll0: oscillator1 {
-+		compatible = "fixed-clock";
-+		clock-output-names = "cgi_dpll0";
-+		#clock-cells = <0>;
-+	};
-+
-+	cgi_dpll1: oscillator2 {
-+		compatible = "fixed-clock";
-+		clock-output-names = "cgi_dpll1";
-+		#clock-cells = <0>;
-+	};
-+
- 	soc: soc {
- 		compatible = "simple-bus";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges;
- 
-+		pllclk: clock-controller@70300100c0 {
-+			compatible = "sophgo,sg2042-pll";
-+			reg = <0x70 0x300100c0 0x0 0x40>;
-+			clocks = <&cgi_main>, <&cgi_dpll0>, <&cgi_dpll1>;
-+			clock-names = "cgi_main", "cgi_dpll0", "cgi_dpll1";
-+			#clock-cells = <1>;
-+		};
-+
-+		rpgate: clock-controller@7030010368 {
-+			compatible = "sophgo,sg2042-rpgate";
-+			reg = <0x70 0x30010368 0x0 0x98>;
-+			clocks = <&clkgen GATE_CLK_RP_CPU_NORMAL>;
-+			clock-names = "rpgate";
-+			#clock-cells = <1>;
-+		};
-+
-+		clkgen: clock-controller@7030012000 {
-+			compatible = "sophgo,sg2042-clkgen";
-+			reg = <0x70 0x30012000 0x0 0x1000>;
-+			clocks = <&pllclk MPLL_CLK>,
-+				 <&pllclk FPLL_CLK>,
-+				 <&pllclk DPLL0_CLK>,
-+				 <&pllclk DPLL1_CLK>;
-+			clock-names = "mpll",
-+				      "fpll",
-+				      "dpll0",
-+				      "dpll1";
-+			#clock-cells = <1>;
-+		};
-+
- 		clint_mswi: interrupt-controller@7094000000 {
- 			compatible = "sophgo,sg2042-aclint-mswi", "thead,c900-aclint-mswi";
- 			reg = <0x00000070 0x94000000 0x00000000 0x00004000>;
-@@ -341,6 +391,9 @@ uart0: serial@7040000000 {
- 			interrupt-parent = <&intc>;
- 			interrupts = <112 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-frequency = <500000000>;
-+			clocks = <&clkgen GATE_CLK_UART_500M>,
-+				 <&clkgen GATE_CLK_APB_UART>;
-+			clock-names = "baudclk", "apb_pclk";
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			resets = <&rstgen RST_UART0>;
--- 
-2.25.1
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
