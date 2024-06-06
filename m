@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-73067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABA378FDEFA
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:43:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8E378FDF04
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:44:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A5B3E1C21B6A
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 06:42:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 58FBFB24C91
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 06:44:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32D4878685;
-	Thu,  6 Jun 2024 06:42:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC28C13541F;
+	Thu,  6 Jun 2024 06:43:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nsb83SIM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BtyEp6Hb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0577E43AB7;
-	Thu,  6 Jun 2024 06:42:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 844C27D07E;
+	Thu,  6 Jun 2024 06:43:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717656176; cv=none; b=NBHRFvsyj3z6g8kOqps5sKzthR2W4tQ8ewIwg+cMO8QChuCQE1CtKZzvwRr79EcuarbZ4kkJCBUidPm2O1zJIbCcHrdS4lDbC9uj1p/gQqsyCiCbTV8H+If5kwTsRu1bA+8suPPrEZcSaScSYhZG5AdXPEOHFbqmzIiLiHJbTPk=
+	t=1717656215; cv=none; b=mgyI6IYh9PAaA4BsZ5XI/ggM4iBSinJKpurFo2+5FvscScMkFh7S002X4t4BWG7CXfj/O6xL6S+tXgfE6RQ1gLRRFwfebefDxOtAVVBdSQGHqODi5U6SEEfXNaJ163XA9Y4Z19Yu3A18blrGOGJGVP52VP2p8400dj9+MfpdB8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717656176; c=relaxed/simple;
-	bh=IVm4GBK+EUL7qtaYcd3QzD3U1t+bEREQP2cYVxz4d/M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=LouuWxZaVmYnHlSPzyaQBJGQsl4YtdXp8ZSxTRH4BMyrt60MFvtBH3EDcpCnnOV4J49wkpxOUI6iMf005nh7QXa0j/L2C9RExHEcAmMW+Rs4t3oa0Yl52CLt7ryzICL7LNZKROcdA6giWlEgAls61lvi/arnTJ0tYZhJ7ZIkF6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nsb83SIM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4708C3277B;
-	Thu,  6 Jun 2024 06:42:51 +0000 (UTC)
+	s=arc-20240116; t=1717656215; c=relaxed/simple;
+	bh=+XFYhe2lmoaFzGgvFblvnZ5hhnEeKolaa0hcxvWE7PU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ClKhpLGRokpWYZQ7+NqGglZIDDRlYGb6xKNmMKkWV+ZLyqcZ/sQAMO6Ktx2HXF6SPVJXIIiFofiRawWgXwXq2tBW6pLaP9R6GLOmG1DjTqZRK8wgSBDgpeplNMtuDlD/EKbqDszh/EREyOsGtEhyRFQDwHMTaRdQKqEv1XSnd3o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BtyEp6Hb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C6D5C4AF17;
+	Thu,  6 Jun 2024 06:43:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717656175;
-	bh=IVm4GBK+EUL7qtaYcd3QzD3U1t+bEREQP2cYVxz4d/M=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Nsb83SIMVtw+ghHxIM2giiqGIlGzPuX7YNekKTNZNk6IQVJaEDDRiKTCelplHLdaJ
-	 sNDn31y/YHTSGIFy/K383Z+XjWPVJVY0ydW9Njy16uOyZpEKnwj4e5XWD0ITjwBoxn
-	 hRwyfxUvplo27U3yxgYAcUam83yYPRQVKxI91I0Bbb2Vcm0PsjXC/qnrE4w+EFm06e
-	 6I9RVh5VO6kPhB+fIExmM44yF6V5pH1NUK+tewQS9R1MjoE5dIwRGzoxzZpQgenfsd
-	 pwvVEoIIUeW7JLv0dOpcHTvjg5E7rchjC/hfrsrl15QwBn1ijs8jBuY6clcDVc+v32
-	 XoNa3UC+hZLuw==
-Message-ID: <5f8ccd9b-d419-4a77-9e05-c2290c40b9d0@kernel.org>
-Date: Thu, 6 Jun 2024 08:42:50 +0200
+	s=k20201202; t=1717656215;
+	bh=+XFYhe2lmoaFzGgvFblvnZ5hhnEeKolaa0hcxvWE7PU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BtyEp6HbB2FTJV9/CIb6DP/1psqJTkvpw0ahBp9jvsd4L87WGYHWzYXyz6xnQ0qd4
+	 cFt1TAZWebMS6C7lJeOhTDtx/w0Y8Wch2hclPp4Q3kEqDZiXghtQDKqscNKBL378jW
+	 2fY/S7PBd435BcyTdpMai/BuwXn2p79PmdWx4bfNzQqO/NMfkoC3NUw5PkoD0e090S
+	 dh59XTY0DLCfV8VySoJAAHPk8HoQjr0eH+b3iOcFgU0xc184gGIeQ5OxLGmdw5IOoN
+	 G4PDJTAMHKP3HzO47vG5zYTMecHBcoJvF3mnGnKyFUCe1c2R/uzedDcrvBbjMo/dIj
+	 DXNRrXSEtDEsA==
+Message-ID: <c4a2c394-d0a6-4337-875a-dc227666ad5f@kernel.org>
+Date: Thu, 6 Jun 2024 08:43:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: remoteproc: imx_rproc: add minItems for
- power-domain
-To: Frank Li <Frank.Li@nxp.com>, Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
- "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM"
- <linux-remoteproc@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
- "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- open list <linux-kernel@vger.kernel.org>
-References: <20240605193409.1131220-1-Frank.Li@nxp.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: sunxi: Add Anbernic RG35XXSP
+To: Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev
+Cc: devicetree@vger.kernel.org, mripard@kernel.org, ryan@testtoast.com,
+ andre.przywara@arm.com, samuel@sholland.org, jernej.skrabec@gmail.com,
+ wens@csie.org, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ Chris Morgan <macromorgan@hotmail.com>
+References: <20240605185339.266833-1-macroalpha82@gmail.com>
+ <20240605185339.266833-2-macroalpha82@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,61 +103,20 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240605193409.1131220-1-Frank.Li@nxp.com>
+In-Reply-To: <20240605185339.266833-2-macroalpha82@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/06/2024 21:34, Frank Li wrote:
-> "fsl,imx8qxp-cm4" just need 2 power domains. Keep the same restriction for
-> other compatible string.
+On 05/06/2024 20:53, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
+> Add the Anbernic RG35XXSP variant device and consolidate the Anbernic
+> H700 devices.
 > 
-> Notes:
->     pass dt_binding_check.
->     
->     make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j8  dt_binding_check DT_SCHEMA_FILES=fsl,imx-rproc.yaml
->       SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->       CHKDT   Documentation/devicetree/bindings
->       LINT    Documentation/devicetree/bindings
->       DTEX    Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.example.dts
->       DTC_CHK Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.example.dtb
-> 
->  .../bindings/remoteproc/fsl,imx-rproc.yaml       | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> index df36e29d974ca..60267c1ba94e0 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> @@ -59,6 +59,7 @@ properties:
->      maxItems: 32
->  
->    power-domains:
-> +    minItems: 1
+> The Anbernic RG35XXSP is almost identical to the RG35XX-Plus, but in a
+> clamshell form-factor.
 
-Then here should be 2.
-
->      maxItems: 8
->  
->    fsl,auto-boot:
-> @@ -99,6 +100,21 @@ allOf:
->        properties:
->          fsl,iomuxc-gpr: false
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - fsl,imx8qxp-cm4
-> +    then:
-> +      properties:
-> +        power-domains:
-> +          minItems: 2
-
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
