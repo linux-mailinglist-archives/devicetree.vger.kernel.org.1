@@ -1,113 +1,232 @@
-Return-Path: <devicetree+bounces-73391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A78A98FF356
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 19:08:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FB668FF360
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 19:10:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE8E61C2481A
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:08:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3532B2610A
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:09:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEDA31990A1;
-	Thu,  6 Jun 2024 17:07:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57B0A198E6A;
+	Thu,  6 Jun 2024 17:09:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zp7pk3MU"
+	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="YFPKmv1o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from BL0PR05CU006.outbound.protection.outlook.com (mail-eastusazolkn19013007.outbound.protection.outlook.com [52.103.11.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84146197A65;
-	Thu,  6 Jun 2024 17:07:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717693667; cv=none; b=hY4sewrq8hDQARiWEvvGowvu5511NHvUy6FxH3fspeEfPQYvh1mT/5ccYkRwx4mm0F+gYmRjfSqBFdDcNPrY04ywaQKAvYVitxBglQfrs8/YTqIH6xaTWfISB6uSrvov637nLvizw7SvUYW37/PAGs92fNvYO8hrZOxIqs8yjt8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717693667; c=relaxed/simple;
-	bh=83n/I+Eo4TLS4nRX1lMoo9h2rB6lMc8Pv/wLW87Nshc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UXfeNf45tCNiC2cwHsmkFFdWLJGRiaHeQYYVG5+nrCsTs7V6b1qB3fOoRywMohbIu34rVjnuNg+IF6IW4CjJjpo/JderXkkKZsvcPMFv3dbMP1QhE1xq/tadyEOppMyHVJAoQnj1aPRTlJYTdJ9TQuzAp5dHjXs0yTNgCTspR3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zp7pk3MU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F39E3C2BD10;
-	Thu,  6 Jun 2024 17:07:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717693667;
-	bh=83n/I+Eo4TLS4nRX1lMoo9h2rB6lMc8Pv/wLW87Nshc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Zp7pk3MUh+E2K0vp5ptItAd8LTTqBxprf//wmBnqu75SaXYdtgTJlOakiR6/0igyy
-	 yloOv3Tb8Ay8SU6PMEqH0SLd3Zurg70oUfcTuyyFZsCjvo3IxCPqj3DNlkv7VoUbfy
-	 xjSlVDwY2LJPY3tZZxxCaMXmV07BytxbxXh+6h+8Hp4pZUaBaB0rdbQKBKqTT2AKQQ
-	 ZPDx9wfNz14+rRg+t02ETbtGTvrjm4VetczCjdCpXbLBsqRvkZZls/OxxDzggbaLeC
-	 f7pIpWcuZwTkV5fYB6L/srIYJyfJr6wrkewfWoxd+NsofaW5f8wWiy7LbbQC6dtVh/
-	 3GJHL30JnmT7w==
-Date: Thu, 6 Jun 2024 18:07:42 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: =?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <jpaulo.silvagoncalves@gmail.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: add ti,ads1119
-Message-ID: <20240606-popular-cornflake-9995abdc7763@spud>
-References: <20240606163529.87528-1-francesco@dolcini.it>
- <20240606163529.87528-2-francesco@dolcini.it>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C536224D1;
+	Thu,  6 Jun 2024 17:09:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.11.7
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717693774; cv=fail; b=eTm+RcWw/eNR6bKqBBct7W45zJJO1Z+ymXBlbiSKmNZY+cz8blkRHPNew49GlTyNgBo3bqm6xyPDJ7tPmZLS87plqqm+YxjW0jb+JDngKTNV3DPiaMzfOTxHpEuUlZkAsXCn6oMiykNacFEC5/3rMDQuIIk/ZwXSTLZq7QSvYdY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717693774; c=relaxed/simple;
+	bh=jDDQbJnDX+4NMQ42yOQ+OBtk915lrAFwdrkGBORLufc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=qrtmmiXcSfAifhVtyeQE/FlweifcYrJ66g7idThFEXnR6dowdQI8x9rjcbHF9GaYj5jpzn0Z0C7Mkke8PFA33o2ruxs2Vo0jKYx7p/k8E8xsB6E6Oox9tjgMzY8BFGblhEb4DeT+WhllZlk1uQrdBip3T7PSwvsX/L/exFXBwaI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=YFPKmv1o; arc=fail smtp.client-ip=52.103.11.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Papyuxqq7NuNjdNNDLii7o7pwBVWbgdBSlATLZhr5cJQR1I5iG2imk7Ozrp3nY98PnES3G+KJVovBJJM8EfdszZHBIeiWPtDB4lMwL/eULsP8v+iAqoslD5aRuOpZvlsYYsdDG7SK4ROkcxRsY6OwtLh4TLBXaQ6QIIB8fpyryCAJBN5diJopBWQe8a4sMZQqePpVCgMMa9j7Q7IJMiUU8Wz4atdh0rrkb4AniDHWdBMBSBnu9rkJuZAfaOFUuOMMaU5w/VmQhw/Gnwh9C+8nwLB+ebMC8nu/pimccafOwYomouCpkoyeJxJsaZomH2lEl2VMt5JxcHatWqqD82rfg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=L89J51+7vsqTuOcMkN4gO+JGSK2xVevAvwvaRgcUj7Q=;
+ b=OFoXnNGGCpRKynCTFPe5+TSg8jRb1ImzAlX19KE0ttyLvo6pqwLuq/7iva6oUs/Hr7SOnIyvTGSr5o1EFcpAwwNwAvtQqLxp0kesh7dOuXheZQqoD57OHXRN2jgvwypVSWLysm+Uep15gc1AUoqCv0MLs5wFWCQnRrofYLnmtU+gHCZFNvB0MKqUKNaJKKc/kc2tba9oxLLeTVfT9jf2q2QjIUSXAnTYoeDmRMYGoXllIw78t6ro1Fo51qpveFNpsizsl3RwVgjgJ0NAE5Cg35e1egYImXjhETqZ6tbOpqaBLdP6efjGp9XF2VNILustAoBLcYbNsnP6yWMg/4Cc5Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=L89J51+7vsqTuOcMkN4gO+JGSK2xVevAvwvaRgcUj7Q=;
+ b=YFPKmv1oFcdNmXboC+j2OStlwp3G3dVUovwy0xVpsotaV45ee/uaGAyIvFDZVjvBSBA5O1mT0RKJaxiG4MzdWawgis3aIZhwYLLEG2rPA6qX+HpHFqfNc6v94m3scvMqlZo2I2L3C1In4xYrjI5U2Yp7Anumdkc5PrpWmPNLUb2eyX9lJgLPOFsjP6+h/Fyjv2oE8GAjcEFezywNYzDZVc+Igumu1gGji1C03Svhwpg9nyz0BdOfLvJ1mE5SXJk9nCgd9+QwEl03/sjaEDAMBqshumR4UAO+b2F2YJP+aSoT+X4VmLAll5FHDZ9foSUBmTQUB4OQGGRVNIhIZzIhEQ==
+Received: from DM4PR05MB9229.namprd05.prod.outlook.com (2603:10b6:8:88::20) by
+ IA1PR05MB10150.namprd05.prod.outlook.com (2603:10b6:208:3da::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.8; Thu, 6 Jun
+ 2024 17:09:26 +0000
+Received: from DM4PR05MB9229.namprd05.prod.outlook.com
+ ([fe80::d720:e9e5:929:c7ff]) by DM4PR05MB9229.namprd05.prod.outlook.com
+ ([fe80::d720:e9e5:929:c7ff%4]) with mapi id 15.20.7656.005; Thu, 6 Jun 2024
+ 17:09:26 +0000
+Date: Thu, 6 Jun 2024 12:09:24 -0500
+From: Chris Morgan <macromorgan@hotmail.com>
+To: Oliver Neukum <oneukum@suse.com>
+Cc: Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+	broonie@kernel.org, lgirdwood@gmail.com, lee@kernel.org,
+	samuel@sholland.org, jernej.skrabec@gmail.com, wens@csie.org,
+	conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+	sre@kernel.org
+Subject: Re: [PATCH 3/4] power: supply: axp20x_usb_power: Add support for
+ AXP717
+Message-ID:
+ <DM4PR05MB922969669BAC030FC2283063A5FA2@DM4PR05MB9229.namprd05.prod.outlook.com>
+References: <20240522230132.364915-1-macroalpha82@gmail.com>
+ <20240522230132.364915-4-macroalpha82@gmail.com>
+ <a2b06a40-4689-4fa9-90bb-9d34311d4221@suse.com>
+ <ZldINkZO11XuiJAP@wintermute.localhost.fail>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZldINkZO11XuiJAP@wintermute.localhost.fail>
+X-TMN: [rZHwOqLfS1y9MZWk+PuHkeMh9a6xzYkw]
+X-ClientProxiedBy: SA9PR03CA0025.namprd03.prod.outlook.com
+ (2603:10b6:806:20::30) To DM4PR05MB9229.namprd05.prod.outlook.com
+ (2603:10b6:8:88::20)
+X-Microsoft-Original-Message-ID: <ZmHtRHEJS2b7CfCP@wintermute.localhost.fail>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="MlNTfdf3jY1WyMxn"
-Content-Disposition: inline
-In-Reply-To: <20240606163529.87528-2-francesco@dolcini.it>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR05MB9229:EE_|IA1PR05MB10150:EE_
+X-MS-Office365-Filtering-Correlation-Id: f3c07136-822d-41c3-0dfb-08dc864b6b19
+X-Microsoft-Antispam: BCL:0;ARA:14566002|461199019|440099019|3412199016;
+X-Microsoft-Antispam-Message-Info:
+	9QWhUNx9lcbRkzaQdJwjHMycbPr35nGbNT1pnZPm9eAMBvsD1itTUcOOgPBK1adZRkEnJUih/1RydB4RUj0fPtdOw7m88IzE1c/aCOFOgRema0qVpizZf5NCaTjuHf3ZG056223ACPVCDHYRtvJYembQhPUgxhHlmCfogJRxCItfGnMPLLUmyxbTmxRsOBI193ahzWBSpNoIWVaMoXdLnqg4YVJeL452Xa7wdXUu2z/yo30mOu+g+JcFmrXtUS5dJj7DngBnT5OO2RM8iuO8n/Nc7dwLKTFT5PcP/FplfbVcC+t1iX+vbUbyBrmyph4GaRT5CqgFr90NFlJmLozlV9Do8HVxKC78c2yv+MN7hsPEKhskkiEOi32o6aIGOw/YS6992np+uXjrfZq2PaZ0/z25UxiLe3xOp9Vp+N5HMYoIZmUHAJkME+CYVjD0p7ItFp/n/Ua4ZJ8GIjT5yyJefYmxDI1gHCmozyTOPKfzsYbWNTxV7xiaLMUPAJiQ4sm1daYGXRN6TlDXIvCfms1Qd0KgVHP6eEPbwMlKuywMXqtA9gCF+f3Ih2FyBn/GlX78
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ZKDVUOGVpL9amMVDB/rua0+r2uiHDz4bHG64dBYb37DFszPTgQ6ALdVAb24v?=
+ =?us-ascii?Q?ZASCqsAv1D0LCy5LKtxGleY+hDJ4nasvGOKX+Bj6w5YNVi0Fv3lGF03BpWAh?=
+ =?us-ascii?Q?XZTGLGg/4dclaW6FIszfuNe/RIGpTtZZzi7lrG+VKb1GjSQj8Y61n32mAazt?=
+ =?us-ascii?Q?IjC9OBHuhzmFWPG7AwIyDHsG7j/YIEax0zKl+Ywmm/eySd7LofRH3awhQzzn?=
+ =?us-ascii?Q?F28hY5HuqiiezcEtU+z6xg+YGGigGlTN0HPetd7Uzvl53xno8ka6yPxu9GuT?=
+ =?us-ascii?Q?B0svp3Wu0kWMNSg7/kRE22aS+4Lj5FWVKmHQs6e4m+mCRdr/PtSVoD3Gllp/?=
+ =?us-ascii?Q?NbhTstXpMiGuGXp7NHbnyumYOnKxR/OKKiUKVaazaa310pJ/2tpc7lAZ6s1P?=
+ =?us-ascii?Q?HNugvsLDKEzmPJUcKrbh79ATUsUvFpnbnHXIt3Q+g3TQHemsH1vtcoHnZw9N?=
+ =?us-ascii?Q?7fVUqinuat3PrP6RugotSGm0qxus8YYIz96JrDo487O5nkhWVuqSXQvFFozF?=
+ =?us-ascii?Q?53zTfi29H4n94b6Z/Frpoxl+nEBjpzwTGht264bKNziptIQDcgKetpLb7nWG?=
+ =?us-ascii?Q?2PG+3AL6E10YeduCg0hO1Jv9S3U+xtKyNpR5J7UoPgtRKKWwIJFIEgemCe1p?=
+ =?us-ascii?Q?N7DUFUQBNBpUXycyhYla/4SUJA1Irv9zl2VqjqYHd34mGrvdYGiG+lcqdfCv?=
+ =?us-ascii?Q?KDjt1PHXLDjftXVulIkAhVHAZgQC3wvLiYueoSsM2EZI6NZBdtwMoW/b3Q6s?=
+ =?us-ascii?Q?O6tZmEu3jlVKDD+7PYvJeSsGIj/UrnoRm7MyWV0Y3Ki7YBLo42jHsdqW4JDK?=
+ =?us-ascii?Q?aHzZMatDYlwTIdrZcanayxEc4H5Dsf+IySz6RpPyYWUl/px4ieJx0JKxHuKc?=
+ =?us-ascii?Q?rRGinMhR3kJmBkH1v8HjOPVb++4Y2KlIVamKhIT6sfH7vr0bFp4wodScP64d?=
+ =?us-ascii?Q?eXGQYhSMYMHGHWDCgNVc/cooCp77JmGkQMZBR+yvs3fLjmpnVzABWU6Am21A?=
+ =?us-ascii?Q?rbQXfWoDYXF0yrtv9AHaz07KfE7nl3Am4J+++MW0qNeM8V7LHpTClJO04y5v?=
+ =?us-ascii?Q?ETEh6bAEyArCcFDpCI7jinPCHuBlWFNMoB0QyD4ZkrtR+CC8XivR4ekUTpb1?=
+ =?us-ascii?Q?kxotDtzX7WyR0o87A4JP41PHT7Bj5ZAgHPlDNMIfZR68NSzJ0/e7SwnhAVPu?=
+ =?us-ascii?Q?9C4osegUyO6ttugnpqF2dtxFtSSLZkG+KHw+/FjQGY+OR4yXEvLvktd4ZuE?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: sct-15-20-4823-7-msonline-outlook-84f76.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: f3c07136-822d-41c3-0dfb-08dc864b6b19
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR05MB9229.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 17:09:26.0285
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR05MB10150
 
+On Wed, May 29, 2024 at 10:22:33AM -0500, Chris Morgan wrote:
+> On Mon, May 27, 2024 at 11:10:32AM +0200, Oliver Neukum wrote:
+> > 
+> > 
+> > On 23.05.24 01:01, Chris Morgan wrote:
+> > > From: Chris Morgan <macromorgan@hotmail.com>
+> > > 
+> > > Add support for the AXP717. It does USB BC 1.2 detection similar to the
+> > > AXP813, however it is otherwise very different from previous AXP
+> > > devices.
+> > > 
+> > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > > ---
+> > 
+> > > +static int axp717_usb_init(struct axp20x_usb_power *power)
+> > > +{
+> > > +	int ret;
+> > > +
+> > > +	ret = regmap_update_bits(power->regmap, AXP717_ADC_CH_EN_CONTROL,
+> > > +				 AXP717_ADC_EN_VSYS_VOLT |
+> > > +				 AXP717_ADC_EN_VBUS_VOLT,
+> > > +				 AXP717_ADC_EN_VSYS_VOLT |
+> > > +				 AXP717_ADC_EN_VBUS_VOLT);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	return 0;
+> > 
+> > This is a bit silly.
+> 
+> Agreed, I'll fix.
+> 
+> > 
+> > > +}
+> > > +
+> > >   static int axp20x_usb_power_set_voltage_min(struct axp20x_usb_power *power,
+> > >   					    int intval)
+> > >   {
+> > > @@ -307,6 +417,20 @@ static int axp20x_usb_power_set_voltage_min(struct axp20x_usb_power *power,
+> > >   	return -EINVAL;
+> > >   }
+> > > +static int axp717_usb_power_set_voltage_min(struct axp20x_usb_power *power,
+> > > +					    int intval)
+> > > +{
+> > > +	int val;
+> > > +
+> > > +	if (intval < 3880000 || intval > 5080000)
+> > 
+> > Do you really want raw numbers here?
+> > 
+> 
+> Raw numbers are used throughout the driver, but it probably makes
+> sense to document *why* these numbers are here and what they mean, so
+> I'll do that.
+> 
+> > [..]
+> > > +static int axp717_usb_power_set_property(struct power_supply *psy,
+> > > +					 enum power_supply_property psp,
+> > > +					 const union power_supply_propval *val)
+> > > +{
+> > > +	struct axp20x_usb_power *power = power_supply_get_drvdata(psy);
+> > > +
+> > > +	switch (psp) {
+> > > +	case POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT:
+> > > +		return axp717_usb_power_set_input_current_limit(power, val->intval);
+> > > +
+> > > +	case POWER_SUPPLY_PROP_VOLTAGE_MIN:
+> > > +		return axp717_usb_power_set_voltage_min(power, val->intval);
+> > > +
+> > > +	default:
+> > > +		return -EINVAL;
+> > > +	}
+> > > +
+> > > +	return -EINVAL;
+> > 
+> > This is also a bit silly.
+> 
+> That's how it's done above, but I might as well just remove the default
+> statement so it returns -EINVAL if neither of the other two conditions
+> aren't true.
+> 
+> > 
+> > 	Regards
+> > 		Oliver
+> > 
+> 
+> I'll resubmit with the changes mentioned above.
 
---MlNTfdf3jY1WyMxn
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I'm going to go back to the drawing board with this, so for now I'm
+withdrawing this patch series. Basically moving on to the next logical
+step of working with the battery it became obvious I should have done
+this using an ADC controller just like the existing axp usb and battery
+drivers. So I'll start with that and then resubmit a redone version of
+this once I have the ADC code in place.
 
-On Thu, Jun 06, 2024 at 06:35:28PM +0200, Francesco Dolcini wrote:
-> From: Jo=E3o Paulo Gon=E7alves <joao.goncalves@toradex.com>
->=20
-> Add devicetree bindings for Texas Instruments ADS1119 16-bit ADC
-> with I2C interface.
->=20
-> Datasheet: https://www.ti.com/lit/gpn/ads1119
-> Signed-off-by: Jo=E3o Paulo Gon=E7alves <joao.goncalves@toradex.com>
-> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> ---
-> v2:
->  - add diff-channels and single-channel
->  - add XOR check to make diff/single channel property required=20
->  - add interrupts, reset-gpios and vref-supply to the example=20
->  - fix missing additionalProperties/unevaluatedProperties warning in chan=
-nels
->  - remove ti,gain and ti,datarate as they aren't fixed hw properties
->  - remove unnecessary |=20
+Thank you,
+Chris.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-Conor.
-
---MlNTfdf3jY1WyMxn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmHs3gAKCRB4tDGHoIJi
-0ge+AQDSD9FzXJl3Ozm3C5LKszHGqGVdbLyh8RrnWpHB3DFZWwD+Kyrt9dfKVg1r
-LzUBrCsz5O8x0LHgxTyA3tjFJZe4MwU=
-=iHiO
------END PGP SIGNATURE-----
-
---MlNTfdf3jY1WyMxn--
+> 
+> Thank you,
+> Chris
 
