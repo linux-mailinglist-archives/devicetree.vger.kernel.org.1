@@ -1,270 +1,179 @@
-Return-Path: <devicetree+bounces-73230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EEAA8FE488
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 12:42:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CECCC8FE4A3
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 12:51:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D21321F227CD
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 10:42:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4B5A1C26157
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 10:51:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2976619581C;
-	Thu,  6 Jun 2024 10:42:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C5B31953A3;
+	Thu,  6 Jun 2024 10:50:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sKGI3hRH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LT1xlnTH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 513731953A8
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 10:42:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C3132E639
+	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 10:50:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717670534; cv=none; b=fLbTT68O5A3oO3f+2tENKFDKWxHICsUrk7oA9XrlajandScIZRLphprFSP1v6PswV1sSA5BZCXPSzzCW11ustaL7JGjJvrFjxUtUyM/SVpaifhEjbbea8IYsbrhdzF0j4TBM0zP9EWxEChTji7GXeTPi/pVc7WPmFF4NgJ35Py0=
+	t=1717671020; cv=none; b=TrqRiUVn7rzYATTHrBcODNewlIeXLdQQRHnBNtPN+vm8gA6OwFVtviJ4SbMIOwbngmWr2KEJCjCN4pJafbazxDECAy9vajQyQPPmt35OQF7X2ZAbS3ybab34JXp66csYYPAd5rhyAnaFGCkrhjfKTBC55ScXlEj3d2iIE0hA2SA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717670534; c=relaxed/simple;
-	bh=aJ9OjcTgat+F6sTE/hsja9zDEG32gQvtNbnEwIjisvc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=QDStyykro7/A2QS7dj1irQ+N1nWSviIKHeGql9ZUfPFmdkpiXXW71u5dJucWw6v75TO/2SUTkkbH2JnGFB6gSfdNtc9a4AjwnyzDKddXK+RI34u22NWA0I2iu3oZyolv3qayWJYDWLzgexFUVKSgrksxP0LEIPN3AW6Hb0OxDb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sKGI3hRH; arc=none smtp.client-ip=209.85.208.176
+	s=arc-20240116; t=1717671020; c=relaxed/simple;
+	bh=lBpSg8Lv9yUtdVyrD0zIyZn+NBaMN/0TwzLyC0E371M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Rm1wL01drXAnnJyatfQtz2ZXhNh0WAVujtEDfnpieRJLt83aheoB53FMqYVOy/4KebTbkOQ/zKgEzhh7P8eP8+XQxkGUIFF0LOkuOHuVW4QWoOm1nixXRFCnSUUsx0TBEZs7skHTLaDvGsOZXk4UvvdpXgpzLOfC/SSv9hw+0OQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LT1xlnTH; arc=none smtp.client-ip=209.85.208.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2eabd22d3f4so9224861fa.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2024 03:42:11 -0700 (PDT)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-578517c7ae9so798400a12.3
+        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2024 03:50:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717670530; x=1718275330; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gIJHJCpT+527V6EZcYZp/w+XcLy7CxaeC7wb+8Py1Zc=;
-        b=sKGI3hRHReZa6DjRfP8HILrfE5t0ikaJj782vmKFhpyJt0SB/2M7YQ24jz0PJHbiie
-         nbo7zNT/YsW/fqOdhhFE4r0nDengMESXiv0iulB/eZ6szMrQ5pm0KoYAyVoytWDB9Y46
-         Os7qObbLloQ5u3sUsviW3LWh6gVNUSI+tkgY4QI1MoiBeNul52E0CYWzsI/V8iM6Rage
-         GtKqYpkeuEWV/Ggn3FKumguUtDeWIRROwLxNjcjK5gfFM7wQF16HZQKiNdMgaGE/95ae
-         8gY59lBNEx9ob4hiwkA/j/khDjwnfAdC3XUbgg9VO3ofEDhAvqlj3vdlNoWubmDTKklr
-         ez5A==
+        d=linaro.org; s=google; t=1717671017; x=1718275817; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=rLnV9lT0RMBL8QGwcM84QsnzjUdPdV6KvK9KQAXkj0U=;
+        b=LT1xlnTHOw+IJv/3G4D54cxSQ6rG63yD/gy+K4WRc7NzD17L+pIlWGJs4JX3G3Jm4e
+         EhXx9TjlcgsLxaHLsqBtw4xV5uNCCRHGh5k05JXtKfUTIokS5BPqU9662D7AH6IG2euM
+         7sAg8nODvuN0B+MA+BZLmISj8bvCh5Cc+dkWg0UMvj3nbskO9s/GFMJyiuYuRBMFhZPQ
+         hZu1+pyGn9dEQJVtAY7pXVjJ95MAZzyYv9oyvIN5ldX5C1wQdhueFNpH/f4fQ+fgjMOd
+         b6gIe8LeoKSE66J3JY7AQX/0qWVLlSv+ZlbspKIlHteCRsecCpjyu1DSK/yPoxeiqxi5
+         M3zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717670530; x=1718275330;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gIJHJCpT+527V6EZcYZp/w+XcLy7CxaeC7wb+8Py1Zc=;
-        b=bKOKgOLsF0sXZG4Q/YRRzta+fTENYUy0vWHY5ItaWUTUULkeSmgPME/j2XxHmcBYJF
-         yXIwqjdTzMdmavymZyZuU31qrA9DMZ75i/it/GvMLWve61mOwF8II96X5bpJUvqkpilU
-         zusnVasUA+HuKHLdKWPdwAaiSdcx0xgO9BD8ngAreSxn8TOT3MnA+ABh9PVPGePB8Zjd
-         sXwq34Ueoe3IT9rlyebvfSZRLMiqw1xWLu+DU9elXzwU8xIOGDioIKcJoNazp7WpeIZD
-         +7v8G8jZaSvd5G6+Q3JYgITfrmx5DoT37j4ReS+yJBrhPVoPWBs1RDns087ynk2Dx0U6
-         C7Hg==
-X-Forwarded-Encrypted: i=1; AJvYcCX0779P6vSop8oIAMXtrG1dNZby4oCdNif5q4MiVQeq2FbYOG2DlnGH2w/cE5ivTXTRgiIyVFYT7/segXWVNjx2JcozOirjWKPRpA==
-X-Gm-Message-State: AOJu0YxBo1AJmqoW1jKQGlDmR+B4UnUGGgeoSTYcdUWosK0J/2tS71yS
-	JC408xiwZA7ecGzMISGOAThaf08HvbC0UAfE6sOzVNAurWr8P2oF1c0FlJ8BlKw=
-X-Google-Smtp-Source: AGHT+IEs4nyIXOwiybt87yuy7bldf+hQUEp70WtOT+9ymEQUzmQMAfNfoUNzWpQZjWSvXpoI66m8cg==
-X-Received: by 2002:a05:651c:1028:b0:2e0:c81c:25da with SMTP id 38308e7fff4ca-2eac7a09e27mr30904201fa.30.1717670530235;
-        Thu, 06 Jun 2024 03:42:10 -0700 (PDT)
-Received: from [127.0.1.1] ([188.27.161.69])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57aae0cc36bsm871477a12.26.2024.06.06.03.42.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jun 2024 03:42:09 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Thu, 06 Jun 2024 13:41:54 +0300
-Subject: [PATCH v2 3/3] arm64: dts: qcom: x1e80100-qcp: Add pmic-glink node
- with all 3 connectors
+        d=1e100.net; s=20230601; t=1717671017; x=1718275817;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rLnV9lT0RMBL8QGwcM84QsnzjUdPdV6KvK9KQAXkj0U=;
+        b=wPjzsZjcTIEMvv4EnP/dtnMXbzVM6KdVVT+wa7Ks3p2abOjbgnUEZGu2OiEudCyRnE
+         6LrmiDySLLvLFQfkxyg0xcBHWZd1PDVaJdMOSwRmFvFXrE0v17l8blcB8rWrp8IFQBJs
+         QgwhaUrH5H3rsgWSQGWxHrsoGqDxlkQtqRiJlFC0rXDsLevQuyAGton3uMgtpOhf2+a7
+         V5kiKvj1QI8zYaU4E08YXcfx0eaLosK4AkI4GlnCyNmzTqV159/qqOhF8uCSkxy02yHu
+         eJe3lltqV4aBzzkoAKt0JJqAhxoi0INWsSJqgyv4pDqgj1XLi2M2oO/uI56R/Ce4aE1G
+         rHRA==
+X-Forwarded-Encrypted: i=1; AJvYcCX2E+l37z2fnJ3o5VypsHVl6/xYFEdSQNKWB4JLB90AT9K1M4FnxOZ3PDdczu8U48R+wTGOxK+zeN/1TUHsCybZxiAQ1/xVUAmPlw==
+X-Gm-Message-State: AOJu0YwzfGh19pbn63zP74/hh1jF2JdBeCVgvEj1i14ZZ3oogG3qIy0N
+	LDyHz+okgW2YgkhAF/jsyRBtGN5J4447Xlmkbr5VtBzIf/PQa/LjjY2zPnGClyc=
+X-Google-Smtp-Source: AGHT+IEf8D6a3Fss655zcntCKNrqfpoiWNAqqz5twNeanQNxrZBHbWufZrKTjPS8aOjMyasKbiArWw==
+X-Received: by 2002:a50:d592:0:b0:57a:48c:c0f4 with SMTP id 4fb4d7f45d1cf-57a8b6a69efmr3604817a12.17.1717671016695;
+        Thu, 06 Jun 2024 03:50:16 -0700 (PDT)
+Received: from [192.168.128.139] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57aae2366a4sm867633a12.92.2024.06.06.03.50.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Jun 2024 03:50:16 -0700 (PDT)
+Message-ID: <80f6c943-71af-4200-89ac-d42736514390@linaro.org>
+Date: Thu, 6 Jun 2024 12:50:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240606-x1e80100-dts-pmic-glink-v2-3-972c902e3e6b@linaro.org>
-References: <20240606-x1e80100-dts-pmic-glink-v2-0-972c902e3e6b@linaro.org>
-In-Reply-To: <20240606-x1e80100-dts-pmic-glink-v2-0-972c902e3e6b@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3442; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=aJ9OjcTgat+F6sTE/hsja9zDEG32gQvtNbnEwIjisvc=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBmYZJ7DxpONl0Co5WG2H3c4LtBBfMdHpyX2Drqo
- B/lDPAenI2JAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZmGSewAKCRAbX0TJAJUV
- Vq0iEACgpJlxfXrSiB0ReWnhOTCez4jdHpNYc5vUP48qKi9S3bUcGS2Ut4tlMpu2/OiAO7/Fn3+
- +T6GbqLQl2+G6JTmRHwAtR0hys+Ab65Ewvs4Tuzm17s8E0fa0CSN4L79Wuy/JcqnLQEgYhmnd6u
- /DiT6HjL3pSkAB6O8mCimvfZaaz4nu9s0yDamClTn/d5PbfixtzdsSqly36nKqJRDNRuoA+wzgy
- ikdLqtbiPnZv8dCrKVfNy6T5rSX0h3uouefKvVPSY8FkzW7sPodUWJkBdUTFXrvp4GnsIXuC2lk
- /XAEc0uI6C/GFD4KMVb8sG5vulZ7MqkETpZLGb5zOWhwKLhYUHJ5Aq/L1WGQd2sQ3hMPm5L5JQz
- Flso3DU5olvDDgdvrB8AwF5UDpy3k05JfcbG+Q9OFUHSCltApSfvFFnZrQtz0osZKL2prUoP60p
- c8niBI0VX3V5RMorn+6keNEHaSEjUq4lNsSx2b+Bnp7FbD/nrkvo2c1t3lWkp/kYlg18ntfpIvT
- J4T0iV+nzW5y/QXWcOwEX6rlARUrFAnQrLWOvMy4nXzTxNujGOnklEq8b6TAnYKcoyK+ZEpaKSw
- +xAqcheN0iQBwlilD9/7YHnWCjkDiMl2WyP6f2Nr0oPrxwXCTUU0wwuwei8+yIbSCvetCfacjtB
- +r58ZKLa7dWm1GA==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 31/31] arm64: dts: qcom: sm8650-*: Remove thermal zone
+ polling delays
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240510-topic-msm-polling-cleanup-v2-0-436ca4218da2@linaro.org>
+ <20240510-topic-msm-polling-cleanup-v2-31-436ca4218da2@linaro.org>
+ <a6e75f97-0479-4346-af84-5d7bd05f0063@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <a6e75f97-0479-4346-af84-5d7bd05f0063@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Add the pmic-glink node and describe all 3 USB Type-C connectors. Do this
-for USB only, for now. The DP ports will come at a later stage since
-they use muxes.
+On 10.05.2024 2:47 PM, Bryan O'Donoghue wrote:
+> On 10/05/2024 12:59, Konrad Dybcio wrote:
+>> All of the thermal zone suppliers are interrupt-driven, remove the
+>> bogus and unnecessary polling that only wastes CPU time.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8650.dtsi | 88 +++++++-----------------------------
+>>   1 file changed, 16 insertions(+), 72 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>> index 62a6e77730bc..39e789b21acc 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>> @@ -5328,8 +5328,6 @@ compute-cb@12 {
+>>         thermal-zones {
+>>           aoss0-thermal {
+>> -            polling-delay-passive = <0>;
+>> -            polling-delay = <0>;
+> 
+> Commit log doesn't really match the values being subtracted
+> 
+> polling-delay:
+>   $ref: /schemas/types.yaml#/definitions/uint32
+>   description:
+>     The maximum number of milliseconds to wait between polls when
+>     checking this thermal zone. Setting this to 0 disables the polling
+>     timers setup by the thermal framework and assumes that the thermal
+>     sensors in this zone support interrupts.
+> 
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- arch/arm64/boot/dts/qcom/x1e80100-qcp.dts | 119 ++++++++++++++++++++++++++++++
- 1 file changed, 119 insertions(+)
+OK I suppose there are 3 things at play:
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-index a8d0f743228a..e021af54e643 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-@@ -23,6 +23,101 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	pmic-glink {
-+		compatible = "qcom,x1e80100-pmic-glink",
-+			     "qcom,sm8550-pmic-glink",
-+			     "qcom,pmic-glink";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		orientation-gpios = <&tlmm 121 GPIO_ACTIVE_HIGH>,
-+				    <&tlmm 123 GPIO_ACTIVE_HIGH>,
-+				    <&tlmm 125 GPIO_ACTIVE_HIGH>;
-+
-+		connector@0 {
-+			compatible = "usb-c-connector";
-+			reg = <0>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					pmic_glink_ss0_hs_in: endpoint {
-+						remote-endpoint = <&usb_1_ss0_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					pmic_glink_ss0_ss_in: endpoint {
-+						remote-endpoint = <&usb_1_ss0_qmpphy_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		connector@1 {
-+			compatible = "usb-c-connector";
-+			reg = <1>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					pmic_glink_ss1_hs_in: endpoint {
-+						remote-endpoint = <&usb_1_ss1_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					pmic_glink_ss1_ss_in: endpoint {
-+						remote-endpoint = <&usb_1_ss1_qmpphy_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		connector@2 {
-+			compatible = "usb-c-connector";
-+			reg = <2>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					pmic_glink_ss2_hs_in: endpoint {
-+						remote-endpoint = <&usb_1_ss2_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					pmic_glink_ss2_ss_in: endpoint {
-+						remote-endpoint = <&usb_1_ss2_qmpphy_out>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+
- 	reserved-memory {
- 		linux,cma {
- 			compatible = "shared-dma-pool";
-@@ -611,6 +706,14 @@ &usb_1_ss0_dwc3 {
- 	dr_mode = "host";
- };
- 
-+&usb_1_ss0_dwc3_hs {
-+	remote-endpoint = <&pmic_glink_ss0_hs_in>;
-+};
-+
-+&usb_1_ss0_qmpphy_out {
-+	remote-endpoint = <&pmic_glink_ss0_ss_in>;
-+};
-+
- &usb_1_ss1_hsphy {
- 	vdd-supply = <&vreg_l2e_0p8>;
- 	vdda12-supply = <&vreg_l2j_1p2>;
-@@ -635,6 +738,14 @@ &usb_1_ss1_dwc3 {
- 	dr_mode = "host";
- };
- 
-+&usb_1_ss1_dwc3_hs {
-+	remote-endpoint = <&pmic_glink_ss1_hs_in>;
-+};
-+
-+&usb_1_ss1_qmpphy_out {
-+	remote-endpoint = <&pmic_glink_ss1_ss_in>;
-+};
-+
- &usb_1_ss2_hsphy {
- 	vdd-supply = <&vreg_l2e_0p8>;
- 	vdda12-supply = <&vreg_l2j_1p2>;
-@@ -658,3 +769,11 @@ &usb_1_ss2 {
- &usb_1_ss2_dwc3 {
- 	dr_mode = "host";
- };
-+
-+&usb_1_ss2_dwc3_hs {
-+	remote-endpoint = <&pmic_glink_ss2_hs_in>;
-+};
-+
-+&usb_1_ss2_qmpphy_out {
-+	remote-endpoint = <&pmic_glink_ss2_ss_in>;
-+};
+1) for devices with polling-delay = <non_zero> without this patchset, the
+   polling is removed and threshold crossings are defered to the PMIC periph
+   or TSENS interrupts
 
--- 
-2.34.1
+2) for devices with polling-delay = <0>, this is a NOP cleanup, saving LoC
 
+3) for devices with polling-delay-passive = <0>, this is a NOP, however in 99%
+   of cases, this was a misconfiguration in the first place. I can leave such
+   entries so that somebody has an easier time spotting it down the line. I'm not
+   however willing to go over each one of them and assess what the value should be,
+   as that requires significant effort across tens of platforms
+
+Konrad
 
