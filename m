@@ -1,261 +1,114 @@
-Return-Path: <devicetree+bounces-73427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7267F8FF546
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 21:28:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B20948FF553
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 21:36:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAC8C1F21BB8
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 19:28:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C40D01C251AF
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 19:36:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A1E35FB9A;
-	Thu,  6 Jun 2024 19:28:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1FBD61FC5;
+	Thu,  6 Jun 2024 19:35:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BnG1Dpbe"
+	dkim=pass (2048-bit key) header.d=hauke-m.de header.i=@hauke-m.de header.b="xsioIHNI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE8E0446DB;
-	Thu,  6 Jun 2024 19:28:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 599E240BF2;
+	Thu,  6 Jun 2024 19:35:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717702114; cv=none; b=BQyipFn88kA7H4dyYqSco+U2iiIF6kKaHHqLkcIaNZwk5c41MBG43HdMzRRujC8kqUhOU46SDB5SIeQms+XlrvaziGgPBxm3thfJvHrNXiF1wdOBehxNTHWo3/Hk9cP1d56fIGCBcLnS5fIH0zhNdrJOQ4WB1RE8XvCGgZDNVfc=
+	t=1717702557; cv=none; b=j6Boera3KVOAe3XJCeo5QJOF/HLaSrVrQNArCfABCoPsctshdw6LHIf0muV8syg4/B790sYwseYfR5H2VR7pP0ZZa4qrkgGHjnm+CcbDhqAWNrSeyxHXOQAYtfP3nodYv6Z9ZvR43GIWouJXpyBdLBjkJeq3XDwnS7G1LUX9QW0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717702114; c=relaxed/simple;
-	bh=Tats7cQ9n79rYoymjeJPyxZK77L8sPmlxk6JKFywVCQ=;
+	s=arc-20240116; t=1717702557; c=relaxed/simple;
+	bh=H27hoj1nfn9GzggmVmGwqXbjeJ4fcxrxqUBO0i0JXQs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GLccbUsCylJfHYTCKN+33DdTrYF2NQIKQH8oFKlbvTAYN3J1A4nxRjj9MncA2Pxa0emz8NfjgO2/nT6XEN/5wVFvnvVRNrXhe2kSGg0CMGShwIAm2va/ziGLQ1dm7m8vLiZidAp/zyrH+2N4+9n9lSWaIBfIOwWI+iRw8hX5/Qc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BnG1Dpbe; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1717702110;
-	bh=Tats7cQ9n79rYoymjeJPyxZK77L8sPmlxk6JKFywVCQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BnG1Dpbe9oHohbw1N5t4nVvVzvxLSTbolvKwKT0EUopk0UvimpQlxIYlFHj077fA7
-	 38ZPi40lmNlvCh439SO88y0HMEDVCnIWYInLVR6bGvWKeQyG6MhVrMWIuWCA6F8WX/
-	 cjCE7LIbFT+qQwShUKeBPntFlA8bBi1wGtJWfgkp2ocqomgENsnWtAGOHltyXwmJYm
-	 K7jxYCgxm6vuU0mqaeJ5QN9Up/G/akzvxbrKH9gr7RDvYaHcFL+aXZ5OFRPjmJXgS5
-	 1QEa2aMWo14llG++xXgIkVQMVy9FaXYQoLl+gu1LVsV2x5r9ovA+ElZX37SO50/ClT
-	 ewMLUzhzZjUhA==
-Received: from [100.115.223.179] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 In-Reply-To:Content-Type; b=rxZBmTxjsNFsLmRyQhHgyoDZ6YNBsR3otPV1l6LShncmkxSNrQy80ewmKpxvAU6SJbAJyz3BOksNykV8qinVO32Xz6Iv8FY/UL60Ash/AYSXe1QtpUVS3MuYJbBrfSaydMK9kmnIVKECRbDw1o8m2208KtONpqKR5VCZ+xm1D6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hauke-m.de; spf=pass smtp.mailfrom=hauke-m.de; dkim=pass (2048-bit key) header.d=hauke-m.de header.i=@hauke-m.de header.b=xsioIHNI; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hauke-m.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hauke-m.de
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D15983781022;
-	Thu,  6 Jun 2024 19:28:28 +0000 (UTC)
-Message-ID: <7e59f58b-6305-44bd-ad2f-f0ee8ea28387@collabora.com>
-Date: Thu, 6 Jun 2024 22:28:28 +0300
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4VwF1F1F3Rz9sm2;
+	Thu,  6 Jun 2024 21:35:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hauke-m.de; s=MBO0001;
+	t=1717702545;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=5ti/gtAOsi7bk/Co8d96IivmCKwGH4Pyj8tKfTA/ydc=;
+	b=xsioIHNILiHEtEtsQrA7zTiRxRF6QESvmnAswAjyrczLA1q1Ap9w5naa2yl+prZ+/TLcWi
+	PIDSS42BUxStAHMjBFOoExJ1iUzrweLb6VJjN0l5S+C6ko+3u0Jl4/z+EJvipTbkd/Eq/7
+	jWaJzf1OL2AK9q46oVpYSSiecq+u6fMC/KxEOEpQ9u+SMriV6sOAa8wf1jMEXOlW7zgxRn
+	ntG3gKYlNbiTqeoP9j4Lr1L6uuYyFzUhbpwv1iAYjHnpHDchZjA0EucqgUCUp63ryElIkk
+	AgTMMgk16ryFApwjF7e3L0Bs9FP7FvQHxhMEEjXLnESK8vaTgGFrIXdHwaMIlg==
+Message-ID: <90e5cb5e-6f3b-4a8d-825f-baa6bb1815d1@hauke-m.de>
+Date: Thu, 6 Jun 2024 21:35:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/14] dt-bindings: display: rockchip,dw-hdmi: Add
- compatible for RK3588
-To: Rob Herring <robh@kernel.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, kernel@collabora.com,
- Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>
-References: <20240601-b4-rk3588-bridge-upstream-v1-0-f6203753232b@collabora.com>
- <20240601-b4-rk3588-bridge-upstream-v1-12-f6203753232b@collabora.com>
- <20240605232206.GA3345910-robh@kernel.org>
- <260aa607-099a-4f65-ae59-c4b6ea2256f1@collabora.com>
- <CAL_JsqKsVE1VgoYGe7qPaAV82dbs5UMGPG843mz26Opv0Y7Hxg@mail.gmail.com>
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Subject: Re: [PATCH net-next 00/13] net: dsa: lantiq_gswip: code improvements
+To: Martin Schiller <ms@dev.tdt.de>, martin.blumenstingl@googlemail.com,
+ andrew@lunn.ch, f.fainelli@gmail.com, olteanv@gmail.com,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240606085234.565551-1-ms@dev.tdt.de>
 Content-Language: en-US
-In-Reply-To: <CAL_JsqKsVE1VgoYGe7qPaAV82dbs5UMGPG843mz26Opv0Y7Hxg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Hauke Mehrtens <hauke@hauke-m.de>
+In-Reply-To: <20240606085234.565551-1-ms@dev.tdt.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 4VwF1F1F3Rz9sm2
 
-On 6/6/24 5:58 PM, Rob Herring wrote:
-> On Thu, Jun 6, 2024 at 5:51 AM Cristian Ciocaltea
-> <cristian.ciocaltea@collabora.com> wrote:
->>
->> On 6/6/24 2:22 AM, Rob Herring wrote:
->>> On Sat, Jun 01, 2024 at 04:12:34PM +0300, Cristian Ciocaltea wrote:
->>>> Document the Synopsys DesignWare HDMI 2.1 Quad-Pixel (QP) TX controller
->>>> found on Rockchip RK3588 SoC family.
->>>>
->>>> Since RK3588 uses different clocks than previous Rockchip SoCs and also
->>>> requires a couple of reset lines and some additional properties, provide
->>>> the required changes in the binding to accommodate all variants.
->>>>
->>>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->>>> ---
->>>>  .../display/rockchip/rockchip,dw-hdmi.yaml         | 127 +++++++++++++++------
->>>>  1 file changed, 90 insertions(+), 37 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
->>>> index 2aac62219ff6..60d6b815227f 100644
->>>> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
->>>> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
->>>> @@ -10,12 +10,10 @@ maintainers:
->>>>    - Mark Yao <markyao0591@gmail.com>
->>>>
->>>>  description: |
->>>> -  The HDMI transmitter is a Synopsys DesignWare HDMI 1.4 TX controller IP
->>>> -  with a companion PHY IP.
->>>> -
->>>> -allOf:
->>>> -  - $ref: ../bridge/synopsys,dw-hdmi.yaml#
->>>> -  - $ref: /schemas/sound/dai-common.yaml#
->>>> +  For SoCs up to RK3568, the HDMI transmitter is a Synopsys DesignWare
->>>> +  HDMI 1.4 TX controller IP with a companion PHY IP.
->>>> +  The RK3588 SoC integrates the Synopsys DesignWare HDMI 2.1 Quad-Pixel (QP)
->>>> +  TX controller IP and a HDMI/eDP TX Combo PHY based on a Samsung IP block.
->>>>
->>>>  properties:
->>>>    compatible:
->>>> @@ -25,6 +23,7 @@ properties:
->>>>        - rockchip,rk3328-dw-hdmi
->>>>        - rockchip,rk3399-dw-hdmi
->>>>        - rockchip,rk3568-dw-hdmi
->>>> +      - rockchip,rk3588-dw-hdmi
->>>>
->>>>    reg-io-width:
->>>>      const: 4
->>>> @@ -40,36 +39,6 @@ properties:
->>>>        A 1.8V supply that powers up the SoC internal circuitry. The pin name on the
->>>>        SoC usually is HDMI_TX_AVDD_1V8.
->>>>
->>>> -  clocks:
->>>> -    minItems: 2
->>>> -    items:
->>>> -      - {}
->>>> -      - {}
->>>> -      # The next three clocks are all optional, but shall be specified in this
->>>> -      # order when present.
->>>> -      - description: The HDMI CEC controller main clock
->>>> -      - description: Power for GRF IO
->>>> -      - description: External clock for some HDMI PHY (old clock name, deprecated)
->>>> -      - description: External clock for some HDMI PHY (new name)
->>>> -
->>>> -  clock-names:
->>>> -    minItems: 2
->>>> -    items:
->>>> -      - {}
->>>> -      - {}
->>>> -      - enum:
->>>> -          - cec
->>>> -          - grf
->>>> -          - vpll
->>>> -          - ref
->>>> -      - enum:
->>>> -          - grf
->>>> -          - vpll
->>>> -          - ref
->>>> -      - enum:
->>>> -          - vpll
->>>> -          - ref
->>>> -
->>>>    ddc-i2c-bus:
->>>>      $ref: /schemas/types.yaml#/definitions/phandle
->>>>      description:
->>>> @@ -131,13 +100,97 @@ properties:
->>>>  required:
->>>>    - compatible
->>>>    - reg
->>>> -  - reg-io-width
->>>>    - clocks
->>>>    - clock-names
->>>>    - interrupts
->>>>    - ports
->>>>    - rockchip,grf
->>>>
->>>> +allOf:
->>>> +  - $ref: /schemas/sound/dai-common.yaml#
->>>> +  - if:
->>>> +      properties:
->>>> +        compatible:
->>>> +          contains:
->>>> +            enum:
->>>> +              - rockchip,rk3588-dw-hdmi
->>>> +    then:
->>>> +      properties:
->>>> +        reg:
->>>> +          maxItems: 1
->>>> +
->>>> +        clocks:
->>>> +          minItems: 1
->>>> +          items:
->>>> +            - description: APB system interface clock
->>>> +            # The next clocks are optional, but shall be specified in this
->>>> +            # order when present.
->>>> +            - description: TMDS/FRL link clock
->>>> +            - description: EARC RX biphase clock
->>>> +            - description: Reference clock
->>>> +            - description: Audio interface clock
->>>> +            - description: Video datapath clock
->>>> +
->>>> +        clock-names:
->>>> +          minItems: 1
->>>> +          items:
->>>> +            - const: pclk
->>>> +            - enum: [hdp, earc, ref, aud, hclk_vo1]
->>>> +            - enum: [earc, ref, aud, hclk_vo1]
->>>> +            - enum: [ref, aud, hclk_vo1]
->>>> +            - enum: [aud, hclk_vo1]
->>>> +            - const: hclk_vo1
->>>> +
->>>> +        resets:
->>>> +          minItems: 2
->>>> +          maxItems: 2
->>>> +
->>>> +        reset-names:
->>>> +          items:
->>>> +            - const: ref
->>>> +            - const: hdp
->>>> +
->>>> +        interrupts:
->>>> +          minItems: 1
->>>> +          maxItems: 5
->>>> +
->>>> +        rockchip,vo1_grf:
->>>> +          $ref: /schemas/types.yaml#/definitions/phandle
->>>> +          description: Some QP related data is accessed through VO1 GRF regs
->>>> +
->>>> +      required:
->>>> +        - resets
->>>> +        - reset-names
->>>> +        - rockchip,vo1_grf
->>>> +
->>>> +    else:
->>>> +      $ref: ../bridge/synopsys,dw-hdmi.yaml#
->>>
->>> This is odd... With this plus the amount of conditional schema, I think
->>> this should be a new schema doc. Doesn't have to have a common
->>> schema. You can let the 2nd user of this IP block do that.
->>
->> Yes, v2 is going to be a completely separated driver implementation.
+On 6/6/24 10:52, Martin Schiller wrote:
+> This patchset for the lantiq_gswip driver is a collection of minor fixes
+> and coding improvements by Martin Blumenstingl without any real changes
+> in the actual functionality.
 > 
-> That actually has nothing to do with the decision here. Bindings are
-> separate from drivers.
+> Martin Blumenstingl (12):
+>    dt-bindings: net: dsa: lantiq_gswip: Add missing phy-mode and
+>      fixed-link
+>    net: dsa: lantiq_gswip: Only allow phy-mode = "internal" on the CPU
+>      port
+>    net: dsa: lantiq_gswip: Use dev_err_probe where appropriate
+>    net: dsa: lantiq_gswip: Don't manually call gswip_port_enable()
+>    net: dsa: lantiq_gswip: Use dsa_is_cpu_port() in
+>      gswip_port_change_mtu()
+>    net: dsa: lantiq_gswip: Change literal 6 to ETH_ALEN
+>    net: dsa: lantiq_gswip: Consistently use macros for the mac bridge
+>      table
+>    net: dsa: lantiq_gswip: Forbid gswip_add_single_port_br on the CPU
+>      port
+>    net: dsa: lantiq_gswip: Fix error message in
+>      gswip_add_single_port_br()
+>    net: dsa: lantiq_gswip: Fix comments in gswip_port_vlan_filtering()
+>    net: dsa: lantiq_gswip: Add and use a GSWIP_TABLE_MAC_BRIDGE_FID macro
+>    net: dsa: lantiq_gswip: Improve error message in gswip_port_fdb()
+> 
+> Martin Schiller (1):
+>    net: dsa: lantiq_gswip: do also enable or disable cpu port
+> 
+>   .../bindings/net/dsa/lantiq-gswip.txt         |   6 +
+>   drivers/net/dsa/lantiq_gswip.c                | 110 +++++++++---------
+>   2 files changed, 58 insertions(+), 58 deletions(-)
+> 
+Thanks for sending this upstream. I had this on my list for a long time 
+but never started it.
 
-Right, I should have properly explained that initially this QP
-controller has been handled more like another variant of those found in
-the older SoCs, rather than a totally new one. It doesn't really have
-anything in common, except that the IP comes from Synopsys, hence it
-makes sense to also have a dedicated schema.
+For all patches:
+Acked-by: Hauke Mehrtens <hauke@hauke-m.de>
 
-Thanks,
-Cristian
+Hauke
 
