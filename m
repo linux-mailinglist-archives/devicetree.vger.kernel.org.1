@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-73091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD5128FE007
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:39:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A7D98FE00F
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:41:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B083C1C2131D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 07:39:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3533F1C2131D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 07:41:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 596F97172F;
-	Thu,  6 Jun 2024 07:39:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02DF913AA54;
+	Thu,  6 Jun 2024 07:41:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U+zeswCk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g6b1Ktze"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3179F2260C;
-	Thu,  6 Jun 2024 07:39:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C88442260C;
+	Thu,  6 Jun 2024 07:41:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717659553; cv=none; b=a965dGQ+TNJYpQAdNPdqtmLdnwtnEPtX3vEII4GfTw0r17uY40yhIY2rfrR8sLXwTztjRlgLCRWazvaNU5J1NLwpT9dk+rgO6UvYvzh6rDTqBrkeIlGbmXtsXvW2XttnxzxVD6Oxg2I+SUFSmxfXpq/CKkq5NPv9VufLxGT2PzQ=
+	t=1717659678; cv=none; b=Y6Vzj25QfxKihf92wLjCixorem3HoJ9l1YVgzL9vC7iRcJUvMwGUjUzhfwPP8fs2xUjJAEASpeOWca8gEWS5tlNGSBIBaC6VsP67p/weFhL65KVX+08nM3dMiICel2zz3MnQJSJhVgdMlioWQP6W2cIH+pg40D5UBGfGpCUlwg4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717659553; c=relaxed/simple;
-	bh=9ToNO8UqtxmtUcT/i5YWkStYTJTG1Jt7tmVsyM0TZFk=;
+	s=arc-20240116; t=1717659678; c=relaxed/simple;
+	bh=wjbZdYqzy5eUkyHPz8EN75RLXTXkBn6jMASIbOAA/HA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=p89Y3C1n4jVEWYd905JMCDys0yg9fnjmlh+PPy6vvVtBWRX0s5yYXxC1oCzUal0J1KTESkuQjY8IKhz8eHtTN+S7mhobHHbuK+Ap98jmrz5LRNgqtzEDuxI0YtULwshqDb2Hf4jpKyxmSCdqvwj3JMqe78t0d4UGMcXL4rYgyPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U+zeswCk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF188C2BD10;
-	Thu,  6 Jun 2024 07:39:08 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=inP7y0uKAsbw0jsrg2kWNvV9023QjL4V7i6lLQx3Tw9ZUwjnaI8aJxSloWGgm6T99yJwYtcuNdRLbzlCiktD8FoqpeT9+ON0dq4Tl2cV4inyCzS1weUIEwnj5GntTYjS88/eATUPzOG5wvCi4oRefQ2uaDGr2jK4Uiph46N5JI0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g6b1Ktze; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28F47C2BD10;
+	Thu,  6 Jun 2024 07:41:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717659552;
-	bh=9ToNO8UqtxmtUcT/i5YWkStYTJTG1Jt7tmVsyM0TZFk=;
+	s=k20201202; t=1717659678;
+	bh=wjbZdYqzy5eUkyHPz8EN75RLXTXkBn6jMASIbOAA/HA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=U+zeswCkEoLMKQ0Hw4Of9QU1K6oJRZQSjHwD1rCQjsSm2gH+e43xkiSpQ9TWkNGNr
-	 2c8QAPd0pAcQn12UKwz2wV9tPBujtqI7kJzZdWCPoe1/jpAEfilxhoUGCzoB8unS7i
-	 A+E+8Lzk1sFZfF36ksjuEnjI35SxxVAAt5eM8Syo7JEI5cNVdqpJXPx8GgD5hERdkU
-	 2WXKnpGe0FmdHT/SQglK7mQPGShhBxAf5U9eMMN7O3JL2nM35U7sce6CSxWGNkxhR4
-	 6bsgWHWaEZFiz751R5N5Cd762t67Z3qT9/F0/c6ZMzvMrYl5Ic1nmX0D78WO9CRLbB
-	 g3qw/Ejx/ZUgw==
-Message-ID: <5331af7e-307c-4cb4-b639-6325b269452f@kernel.org>
-Date: Thu, 6 Jun 2024 09:39:07 +0200
+	b=g6b1Ktzeo/ZHzmlOZIozxQML1vv2NJdqWXaqt2D4iRfKgJhUtFowooAMqyVYf011F
+	 3Go49V7UQaEdhVk9NsD1DvktayWYqmkWUipS/9WIztZddzXOTuYxAp77agDucuSvtK
+	 EjCgIeaH3Hzic7XGeeiY23SEG5B4wjNdwqKmfbj58EVJq0aGI0u0b6+9Y2aSkmPzlx
+	 i3PGjEnqGtmd/tdx2KM4mXR1WQ860eGwF6fA/ILmI2jXAjdoIttz4Ujc61d/oSHU0i
+	 /RngKFLkbGHRTpzIUAnBsSoMR9K5DjAQLthB/c9cBYjtX0WvQcl08CaMZfNzQ/jzuQ
+	 gMw0k6/67O+lg==
+Message-ID: <bdacbd27-283a-4e0a-bdda-a7a959ee476a@kernel.org>
+Date: Thu, 6 Jun 2024 09:41:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: Add vendor prefix for PrimeView
-To: Primoz Fiser <primoz.fiser@norik.com>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner
- <heiko.stuebner@cherry.de>, Neil Armstrong <neil.armstrong@linaro.org>,
- Chris Morgan <macromorgan@hotmail.com>, Sebastian Reichel <sre@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: upstream@lists.phytec.de
-References: <20240606072814.3572965-1-primoz.fiser@norik.com>
+Subject: Re: [PATCH v3 1/5] dt-bindings: remoteproc: qcom,sa8775p-pas:
+ Document the SA8775p ADSP, CDSP and GPDSP
+To: Bartosz Golaszewski <brgl@bgdev.pl>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Jassi Brar <jassisinghbrar@gmail.com>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+ Tengfei Fan <quic_tengfan@quicinc.com>, Alex Elder <elder@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, kernel@quicinc.com
+References: <20240605-topic-sa8775p-iot-remoteproc-v3-0-a437355b8c7f@linaro.org>
+ <20240605-topic-sa8775p-iot-remoteproc-v3-1-a437355b8c7f@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,39 +112,22 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240606072814.3572965-1-primoz.fiser@norik.com>
+In-Reply-To: <20240605-topic-sa8775p-iot-remoteproc-v3-1-a437355b8c7f@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/06/2024 09:28, Primoz Fiser wrote:
-> The Prime View International (PVI) is a LCD panel manufacturer.
+On 05/06/2024 18:56, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-
-dt-bindings: vendor-prefixes:
-
-> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+> Document the components used to boot the ADSP, CDSP0, CDSP1, GPDSP0 and
+> GPDSP1 on the SA8775p SoC.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index fbf47f0bacf1..2bdfeaa3cc8f 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -1154,6 +1154,8 @@ patternProperties:
->      description: Poslab Technology Co., Ltd.
->    "^pov,.*":
->      description: Point of View International B.V.
-> +  "^primeview,.*":
-> +    description: Prime View International (PVI)
+>  .../bindings/remoteproc/qcom,sa8775p-pas.yaml      | 160 +++++++++++++++++++++
+>  1 file changed, 160 insertions(+)
 
-Keep things sorted.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
