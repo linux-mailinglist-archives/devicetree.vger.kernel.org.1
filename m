@@ -1,190 +1,255 @@
-Return-Path: <devicetree+bounces-73249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2640E8FE564
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 13:32:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 177BE8FE56C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 13:34:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 890A4B20E54
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:32:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2B362813D0
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:34:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34C6017DE0B;
-	Thu,  6 Jun 2024 11:32:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD4E6194C99;
+	Thu,  6 Jun 2024 11:34:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TRsvVgw6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cl+keaB8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A4B21FAA;
-	Thu,  6 Jun 2024 11:32:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E78F3CF73;
+	Thu,  6 Jun 2024 11:34:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717673533; cv=none; b=cFcnG0ONODjFh/SdhJHzMg0AbJaNzYOHOGp7p16fdeHiKAS9zpfkSc0nGZX/kXuf+umAffLSDAddHolCp7w1A+ZPxvVEcCyp1o3vo/83IpD69rGhrqny4Gt/7i9LNOUhUGV5o2UJmmVUT7j/igdFURJlFjHTW73q54R1EMJnEdc=
+	t=1717673680; cv=none; b=tw8pON3X29K3Zqw083Qy2AszILdh7PTlieJ9E+JpeoSyON+7tsj3Ycjtwgjdz9dFN3VsXv4wjBKvr0wb0quk6cEodqIRQ+foIY0bKzyS7MBw11cCgZbIdBFoW5lqmbQtFxDW6wTf0h5kJDlkSljSgGLoTJWGLcJH8VF03kNXzGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717673533; c=relaxed/simple;
-	bh=LVldkK8M41rECJCGVc6CKfxKAtGbI7b4XW5+qeNYwes=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K3GRATfa/lIGjS7SAiF2FuWx7CpUvzkA7nEnSFfFHDmyo/bBSGIxGPKbwzl8OVGg67GONb5NomW+whnYAbktikWjNxPx5b9H8wh4jfvUMLqBF7oWUsId2NUjlmryso+5gUUUOpf3/5OkOsW2nDKlXTitFe7XEkA+MwJyjRwjq38=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=TRsvVgw6; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1717673529;
-	bh=LVldkK8M41rECJCGVc6CKfxKAtGbI7b4XW5+qeNYwes=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TRsvVgw6mTl+ZIgvPF2J6hWsru1V6hAeE9pFE45FwtFb76e08WNM+8tFtIVUKq9Z9
-	 7OTDTyFGfdwSQFIs6njlQRyB0//L69olHhFkTBN2F5tgeh+9GFNSTrVUWdMqU1qcUo
-	 hgrGKWDFgfNMwWhCz/kgI/8eJzl0cDALMCAi41jPbxHzp/1dtfSjyM6GYd8C7dpeCJ
-	 S1A2GCGTLv5KuFzqMougFG03gNQcYP1uH4ZtzsuJPCoN0Wf2+W+rh7tRtRYbeINtZ2
-	 BtzBGEQ7NXXd+IZ0cHtAQuMFAYpzJD8ZU2T5f4KBOYmxMu+2SquHnzui5bUF3r/vwQ
-	 UrZXB0u/Ue4bQ==
-Received: from [100.115.223.179] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id C68F7378061A;
-	Thu,  6 Jun 2024 11:32:07 +0000 (UTC)
-Message-ID: <d42ac22f-1d12-4828-9bd0-9633c1ea92ee@collabora.com>
-Date: Thu, 6 Jun 2024 14:32:07 +0300
+	s=arc-20240116; t=1717673680; c=relaxed/simple;
+	bh=ji0O3bafr4zdbnu2gdsTOoeRTcjUtmPx7kAd6olwvOc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oJT+qklKRQxKi6WUJb4/7UIQ+QGZoYqYyJCm4Z198x/etjxPqZDBkRnIhjlR+nc8B8x8JvFqM6J4UQomjFZ9+n2XiMm16CkhMFjzuOaUbaAbQWqfj1cqS6tUivinLVvLD7XPgZOpIpgU+icn45PpNeyna8/9D6wwQR9815K+Ccg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cl+keaB8; arc=none smtp.client-ip=209.85.221.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-4eb053d4ce6so293853e0c.1;
+        Thu, 06 Jun 2024 04:34:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717673678; x=1718278478; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IR3wtEmu/0kWGkRRZIfJVa6Kg0da+ElPwHxtRViDIoc=;
+        b=cl+keaB8dc21fr4pR4fkEKhj/7lZ2FffKYsNlRtGcKqVkVyziQ37IayVsVhpJW7Np8
+         55Wlp8R+4aQoPLwuIILITITZiIG+pph3at7m6CLZXuFU6vadxHiuvD0EF+lT900OigqJ
+         j1R9W6RvjHSGx7L7FiFWLmciIg4a31t3BiJ1nciBno7R+8U9xD0sjHvb3ZFKo87ZlIbN
+         Rh2AXr1JD96VKQ54hLxeKLr7IEtWYS0zFI0UiBS2b0XLrOk62a8tgM8/zGLjsiKcPdSG
+         goNJdvbYl/R8SSjfg59zVy1Sf4ZT+5epfRyqyieHznJrS6L46d7B2ZxX74yCD/FO9/EE
+         EJ5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717673678; x=1718278478;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IR3wtEmu/0kWGkRRZIfJVa6Kg0da+ElPwHxtRViDIoc=;
+        b=cL6Za1LPaKiVaFujDVHDsZwgoI0ENnt5r+lwru4m3xy98nq8kg6k5BuHRNYmVXpuCN
+         upoTpQlGxW205/xqvz/oQUzaLNFcwg7kcTa79E/35bZpaOGDxCk13Fsp+mPbAdur2zXt
+         ELzIHDI4XGPCK7m1+IpMeLP0VlGjBw5/+D72h84G1cITfV1j47JqMj6L8hxN0lOgQveH
+         Lv+4eXX57EGNBeprWQkD69klchuufXYlbt/5fa4vNPkWgzZdzC570psDl6hTdNS/v7NW
+         ccAdW1huEW0AvS/2TEbE4NOVJndWfPnMVl8Vx3nHH3AQboqVobeDjHPH4dgCTz9RLTcF
+         HxOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWeHIHv9YBEwUShmvdVuE2TXUOKq3GMersVtkwteTZYWWmF8Jl9hs4MvMsxF8AYyh2O5+jm1z/HN6R9ZUOmWnX//818DKgeAnRaoLplPtvHjEjwrF62hiRcd7+PJ5VZd8ezKpd4F8DPPfyVkohQujRZtrD6wGHr2NQ76qg5YOkMjxn+23ntELI2jCJ4RHFgVhW0aG+8H921lETF8d4hqx053LxvDQLX
+X-Gm-Message-State: AOJu0Yxh3rpw1jHTNC/97Yz+Lm45GhXeugxI8wa4j1QhFie0SjXF2YiU
+	aHEipOvWOIk3GBdDMDNetTCD5/hCrj2NUyC3X75WwDgp3D+jeQDYLu+t6AqcYxaXqXGhoDdpp3v
+	O3Iy2qUaRgknrS24mq6nAIAk0M4s=
+X-Google-Smtp-Source: AGHT+IGXX7flWOLfX6OhUGVYsH8Bqm0m8ddy+ylq4RfpFyvRcOdVHaLB9wwOZ0UQUFeEkPvTC7fLucPK9mo2jdjovco=
+X-Received: by 2002:a05:6122:2511:b0:4d4:21cc:5f4f with SMTP id
+ 71dfb90a1353d-4eb3a4df6b7mr6140080e0c.11.1717673677791; Thu, 06 Jun 2024
+ 04:34:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 13/14] drm/bridge: synopsys: Add DW HDMI QP TX controller
- driver
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, kernel@collabora.com,
- Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>,
- Algea Cao <algea.cao@rock-chips.com>
-References: <20240601-b4-rk3588-bridge-upstream-v1-0-f6203753232b@collabora.com>
- <2554679.TLnPLrj5Ze@diego>
- <25ba8753-b7e9-4f6f-a9ad-c5266540939a@collabora.com>
- <2491902.uoxibFcf9D@diego>
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Content-Language: en-US
-In-Reply-To: <2491902.uoxibFcf9D@diego>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240524082800.333991-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240524082800.333991-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWzrEKFHauJ=6UnsufJjDO3LfJ45eJXx1V72AmVzvsjyw@mail.gmail.com>
+In-Reply-To: <CAMuHMdWzrEKFHauJ=6UnsufJjDO3LfJ45eJXx1V72AmVzvsjyw@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Thu, 6 Jun 2024 12:34:11 +0100
+Message-ID: <CA+V-a8tVRJB0U-c4BNv-YxvW0ydcw2EqsRkBQvu_HscJvYuiRA@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: clock: renesas: Document RZ/V2H(P) SoC
+ CPG driver
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 6/6/24 1:16 PM, Heiko Stübner wrote:
-> Am Donnerstag, 6. Juni 2024, 11:53:23 CEST schrieb Cristian Ciocaltea:
->> On 6/5/24 5:48 PM, Heiko Stübner wrote:
->>> Am Samstag, 1. Juni 2024, 15:12:35 CEST schrieb Cristian Ciocaltea:
->>>> The Synopsys DesignWare HDMI 2.1 Quad-Pixel (QP) TX controller supports
->>>> the following features, among others:
->>>>
->>>> * Fixed Rate Link (FRL)
->>>> * 4K@120Hz and 8K@60Hz video modes
->>>> * Variable Refresh Rate (VRR) including Quick Media Switching (QMS), aka
->>>>   Cinema VRR
->>>> * Fast Vactive (FVA), aka Quick Frame Transport (QFT)
->>>> * SCDC I2C DDC access
->>>> * TMDS Scrambler enabling 2160p@60Hz with RGB/YCbCr4:4:4
->>>> * YCbCr4:2:0 enabling 2160p@60Hz at lower HDMI link speeds
->>>> * Multi-stream audio
->>>> * Enhanced Audio Return Channel (EARC)
->>>>
->>>> Add driver to enable basic support, i.e. RGB output up to 4K@60Hz,
->>>> without audio, CEC or any HDMI 2.1 specific features.
->>>>
->>>> Co-developed-by: Algea Cao <algea.cao@rock-chips.com>
->>>> Signed-off-by: Algea Cao <algea.cao@rock-chips.com>
->>>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->>>> ---
->>>>  drivers/gpu/drm/bridge/synopsys/Makefile     |   2 +-
->>>>  drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c | 787 +++++++++++++++++++++++++
->>>>  drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.h | 831 +++++++++++++++++++++++++++
->>>>  include/drm/bridge/dw_hdmi.h                 |   8 +
->>>>  4 files changed, 1627 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/bridge/synopsys/Makefile b/drivers/gpu/drm/bridge/synopsys/Makefile
->>>> index ce715562e9e5..8354e4879f70 100644
->>>> --- a/drivers/gpu/drm/bridge/synopsys/Makefile
->>>> +++ b/drivers/gpu/drm/bridge/synopsys/Makefile
->>>
->>>> +static int dw_hdmi_qp_i2c_read(struct dw_hdmi *hdmi,
->>>> +			       unsigned char *buf, unsigned int length)
->>>> +{
->>>> +	struct dw_hdmi_i2c *i2c = hdmi->i2c;
->>>> +	int stat;
->>>> +
->>>> +	if (!i2c->is_regaddr) {
->>>> +		dev_dbg(hdmi->dev, "set read register address to 0\n");
->>>> +		i2c->slave_reg = 0x00;
->>>> +		i2c->is_regaddr = true;
->>>> +	}
->>>> +
->>>> +	while (length--) {
->>>> +		reinit_completion(&i2c->cmp);
->>>> +
->>>> +		dw_hdmi_qp_mod(hdmi, i2c->slave_reg++ << 12, I2CM_ADDR,
->>>> +			       I2CM_INTERFACE_CONTROL0);
->>>> +
->>>> +		dw_hdmi_qp_mod(hdmi, I2CM_FM_READ, I2CM_WR_MASK,
->>>> +			       I2CM_INTERFACE_CONTROL0);
->>>
->>> Somehow the segment handling is present in the rest of the i2c code here, but
->>> not the actual handling for reads.
->>>
->>> The vendor-kernel does:
->>>
->>> -               dw_hdmi_qp_mod(hdmi, I2CM_FM_READ, I2CM_WR_MASK,
->>> -                              I2CM_INTERFACE_CONTROL0);
->>> +               if (i2c->is_segment)
->>> +                       dw_hdmi_qp_mod(hdmi, I2CM_EXT_READ, I2CM_WR_MASK,
->>> +                                      I2CM_INTERFACE_CONTROL0);
->>> +               else
->>> +                       dw_hdmi_qp_mod(hdmi, I2CM_FM_READ, I2CM_WR_MASK,
->>> +                                      I2CM_INTERFACE_CONTROL0);
->>
->> Hmm, for some reason this is not present in the stable-5.10-rock5 branch 
->> I've been using as an implementation reference:
->>
->> https://github.com/radxa/kernel/blob/stable-5.10-rock5/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c#L760
->>
->> Is there an updated fork?
-> 
-> I think the radxa code-base is quite old in terms of sdk-version it's based on.
-> Grabbing a 6.1 branch from Radxa shows it in:
-> https://github.com/radxa/kernel/blob/linux-6.1-stan-rkr1/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c#L995
+Hi Geert,
 
-Indeed, I should have switched to using this one as it seems to include 
-quite a few potentially interesting updates (will check in detail for v2).
+Thank you for the review.
 
-For now, we miss cdc0984c90dc ("drm/bridge: synopsys: dw-hdmi-qp: Support 
-read ext block edid"), which provides an additional change:
+On Tue, Jun 4, 2024 at 4:50=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68k=
+.org> wrote:
+>
+> Hi Prabhakar,
+>
+> Thanks for your patch!
+>
+> Please drop "driver" from the one-line summary.
+>
+OK, I will drop it.
 
-@@ -1086,7 +1090,7 @@ static int dw_hdmi_i2c_xfer(struct i2c_adapter *adap,
-                        i2c->is_segment = true;
-                        hdmi_modb(hdmi, DDC_SEGMENT_ADDR, I2CM_SEG_ADDR,
-                                  I2CM_INTERFACE_CONTROL1);
--                       hdmi_modb(hdmi, *msgs[i].buf, I2CM_SEG_PTR,
-+                       hdmi_modb(hdmi, *msgs[i].buf << 7, I2CM_SEG_PTR,
-                                  I2CM_INTERFACE_CONTROL1);
-                } else {
-                        if (msgs[i].flags & I2C_M_RD)
+> On Fri, May 24, 2024 at 10:29=E2=80=AFAM Prabhakar <prabhakar.csengg@gmai=
+l.com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Document the device tree bindings of the Renesas RZ/V2H(P) SoC
+>
+> s/of/for/
+>
+OK.
 
-Will try to grab some more displays to improve testing on my end.
+> > Clock Pulse Generator (CPG).
+> >
+> > CPG block handles the below operations:
+> > - Handles the generation and control of clock signals for the IP module=
+s
+>
+> Please drop "Handles the"
+>
+OK.
 
-Thanks,
-Cristian
+> > - The generation and control of resets
+>
+> Please drop "The".
+>
+OK.
+
+> > - Control over booting
+> > - Low power consumption and the power supply domains
+>
+> Please drop "the".
+>
+OK.
+
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
+> > @@ -0,0 +1,78 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/renesas,rzv2h-cpg.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Renesas RZ/V2H(P) Clock Pulse Generator (CPG)
+> > +
+> > +maintainers:
+> > +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > +
+> > +description: |
+> > +  On Renesas RZ/V2H(P) SoC's, the CPG (Clock Pulse Generator) handles =
+the generation
+>
+> SoCs
+>
+OK.
+
+> > +  and control of clock signals for the IP modules, the generation and =
+control of resets,
+> > +  and control over booting, low power consumption and the power supply=
+ domains.
+>
+> Please drop "the".
+>
+OK.
+
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: renesas,r9a09g057-cpg
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  clock-names:
+> > +    description:
+> > +      Clock source to CPG can be either from external clock input (EXC=
+LK) or
+> > +      crystal oscillator (XIN/XOUT).
+> > +    const: extal
+>
+> According to Figure 4.4-1 ("CPG Functional Block Diagram"), there are 3
+> (RTC, audio, main).
+>
+Agreed, I will add the below:
+- QEXTAL
+- RTXIN
+- AUDIO_EXTAL
+- AUDIO_CLKB
+- AUDIO_CLKC
+
+> > +
+> > +  '#clock-cells':
+> > +    description: |
+> > +      - For CPG core clocks, the two clock specifier cells must be "CP=
+G_CORE"
+> > +        and a core clock reference, as defined in
+> > +        <dt-bindings/clock/r9a09g057-cpg.h>,
+> > +      - For module clocks, the two clock specifier cells must be "CPG_=
+MOD" and
+> > +        a module number, as defined in <dt-bindings/clock/r9a09g057-cp=
+g.h>.
+> > +    const: 2
+>
+> I understand this will be changed to 1, the clock number?
+>
+I'll keep this '2'. I will introduce core clocks (clocks which cannot
+be controlled by  CLKON_m register) for example,
+- SYS_0_PCLK
+- CA55_0_CORE_CLK[x]
+- IOTOP_0_SHCLK.
+
+> > +  '#power-domain-cells':
+> > +    description:
+> > +      SoC devices that are part of the CPG/Module Standby Mode Clock D=
+omain and
+> > +      can be power-managed through Module Standby should refer to the =
+CPG device
+> > +      node in their "power-domains" property, as documented by the gen=
+eric PM
+> > +      Domain bindings in Documentation/devicetree/bindings/power/power=
+-domain.yaml.
+> > +      The power domain specifiers defined in <dt-bindings/clock/r9a09g=
+057-cpg.h> could
+> > +      be used to reference individual CPG power domains.
+>
+> The latter suggests "const: 1".
+> But the example below uses zero, as does the code?
+>
+This should be '0' indeed.
+
+> > +
+> > +  '#reset-cells':
+> > +    description:
+> > +      The single reset specifier cell must be the module number, as de=
+fined in
+>
+> reset number (or index).
+>
+OK.
+
+Cheers,
+Prabhakar
 
