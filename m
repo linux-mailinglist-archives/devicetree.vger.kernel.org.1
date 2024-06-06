@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-73094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C00538FE020
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:46:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 089558FE02B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:51:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7F5B1C20EEC
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 07:46:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F03081C2460B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 07:51:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D372341C79;
-	Thu,  6 Jun 2024 07:45:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1655F13A868;
+	Thu,  6 Jun 2024 07:51:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VuFWuk5m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qY1XC7u/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A92D0DF44;
-	Thu,  6 Jun 2024 07:45:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E15F0DF44;
+	Thu,  6 Jun 2024 07:51:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717659958; cv=none; b=rkaxuMBlv7KFgRpr5oO9eT9KzhOOhGkdGi7xCTOwXUHMpp2csmWPfLu5kC4c3i85EhfciYWSUsyTc+CuVtvUEUk7HOmYcDWUAU7zgbP8NgUUdZ28ZIxK+DSEFOO/PAAGU2+FMzVBQVuMtiep2o2TUl3ogp2i8SmoSsLqz2Czngs=
+	t=1717660294; cv=none; b=ZeRzzE+e7laNcVgOAwSord74BDt2g9ky7NlNe09IVkKmwNQUXrNL2b3Pj+LIxdshiJz4ZYO6QTKbK21cQqGPUEV8D+402iy3FD+imNTUfeCRXAjNdGmwRWfpkHYZkc7RFXeZjC1ndcvtzwh1JQXQ7RS619lr5/BjyFdPdi7PsXM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717659958; c=relaxed/simple;
-	bh=n2bFnbVhEVrvOShZE3hFXBh4jzmB5nDaAr/D1/e0dUg=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=dfESQZs2qRonvzjxksSrBjyxtOo0klWL1fboLZWcRmRee7TcLxVQ2Y1TrwtZfG2O8fMLoUMPg9SHHqAtz3xRXAG1YTAkfM/JnrxXVc0sUd8dnOf8s1A9YfPyjFtOVkmC6rqs+mYtxeCIJpUxfqQq2vXn0Y7M/Ib/0Ib9+FXSNXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VuFWuk5m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E723C32782;
-	Thu,  6 Jun 2024 07:45:55 +0000 (UTC)
+	s=arc-20240116; t=1717660294; c=relaxed/simple;
+	bh=3OwO3/H69nwhm+8pvR63/ovgEqlUeLfYprL9yzUtT00=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bwrSrZu+WVkF+Ju/Xvd4o2VoI7kY8AMhWwuptmlDJqsRSvIqkVjvV+C9jvV+TiHCMXP9yPwIl/X6tK80zg0oLgpee/07r2b8uSkxSHM7MOhOa6SpWfKCZUY0z/WHTSI2ACdHIVXsK4zGraHUgHmuGS+lJqHJFEFVIDz55eOKcWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qY1XC7u/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6226BC3277B;
+	Thu,  6 Jun 2024 07:51:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717659958;
-	bh=n2bFnbVhEVrvOShZE3hFXBh4jzmB5nDaAr/D1/e0dUg=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=VuFWuk5mg8XUtiuypbnX3eRz7G1JOLtqCqsb1TvPWVvKFFvviVC6bDn1Lgjubq77k
-	 9fpv8pKAVKtrStywLVLHmuvk199C5yzlaWbOQORlT/+XYOQwZ2VEDiacW+zSighyEZ
-	 nGTijTdlInsqJ/nOy/QfVDo92P9gBAWjFvzt3ou0d/OJFmMbZkL71XFOgBPRTPgfvJ
-	 Vpcha7aCUO5M4j7hob2RaGfubijmPP07RFXiHqLg1/LsJ1p51t0JIYfR2Ahm4xoLcT
-	 YEJNhqzWccETSbJ1BZus66ko+xftK76y0GSovX6tUa1Fn0puUIGoM7EXU6qt6DbUQb
-	 BiLk2CgIvKCVw==
-Message-ID: <4d9d7cff-1a00-459d-8ccf-d30ec2cdcaad@kernel.org>
-Date: Thu, 6 Jun 2024 09:45:53 +0200
+	s=k20201202; t=1717660293;
+	bh=3OwO3/H69nwhm+8pvR63/ovgEqlUeLfYprL9yzUtT00=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qY1XC7u/68GFrD6LoNxyQ4U48UIEGVvcp5m6MvZxuE7KALkcOVNxVBVNFf7FKwxfj
+	 nUOhzx3BLu/rIsHgjiC10ce//QBX9fXmcRB0jHlJARRa6OceE+hu0outCTOc/iyirN
+	 S/xI6SgypPRbZNTtKpKp3Ezt4ft600/ggjyBQS5PzFHaNHpdmqWGohcC5ibnVwPswA
+	 GxtJkC4YAZIC7oZvKjYeLRgS8OvKEsTERUV83TFObu7A20bTNQgDHYM7uSFOkNgCIh
+	 QWK+9wh0GK8N5RFRuLkBTNlDImV7YfowYNDqpCPVoHOXvaj0MBr7inCEvhY+A30eE7
+	 nl/KicPYfZ0eA==
+Message-ID: <92af5f36-0c21-4b6e-adde-fcf21b540291@kernel.org>
+Date: Thu, 6 Jun 2024 10:51:27 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,144 +50,143 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ASoC: dt-binding: convert amlogic,g12a-tohdmitx to
- dt-schema
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240605-topic-amlogic-upstream-bindings-convert-g12a-tohdmitx-v1-1-b851c195e241@linaro.org>
- <05454339-9f83-4101-ac55-0dc7b5a8d45e@kernel.org>
+Subject: Re: [PATCH v5 1/7] arm64: dts: ti: am62p: Rename am62p-{}.dtsi to
+ am62p-j722s-common-{}.dtsi
+To: Siddharth Vadapalli <s-vadapalli@ti.com>, nm@ti.com, vigneshr@ti.com,
+ afd@ti.com, kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, u-kumar1@ti.com, danishanwar@ti.com,
+ srk@ti.com
+References: <20240604085252.3686037-1-s-vadapalli@ti.com>
+ <20240604085252.3686037-2-s-vadapalli@ti.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <05454339-9f83-4101-ac55-0dc7b5a8d45e@kernel.org>
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20240604085252.3686037-2-s-vadapalli@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/06/2024 09:45, Krzysztof Kozlowski wrote:
-> On 05/06/2024 18:23, Neil Armstrong wrote:
->> Convert text bindings to dt-schema format for the Amlogic TX HDMI
->> control glue.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> 
-> subject: dt-bindings (missing 's')
-> 
->> ---
->>  .../bindings/sound/amlogic,g12a-tohdmitx.txt       | 58 ----------------------
->>  .../bindings/sound/amlogic,g12a-tohdmitx.yaml      | 56 +++++++++++++++++++++
->>  2 files changed, 56 insertions(+), 58 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt b/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt
->> deleted file mode 100644
->> index 4e8cd7eb7cec..000000000000
->> --- a/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt
->> +++ /dev/null
->> @@ -1,58 +0,0 @@
->> -* Amlogic HDMI Tx control glue
->> -
-> 
->> +
->> +title: Amlogic G12a HDMI TX Control Glue
->> +
->> +maintainers:
->> +  - Jerome Brunet <jbrunet@baylibre.com>
->> +
->> +allOf:
->> +  - $ref: dai-common.yaml#
->> +
->> +properties:
->> +  $nodename:
->> +    pattern: "^audio-controller@.*"
->> +
->> +  "#sound-dai-cells":
->> +    const: 1
->> +
->> +  compatible:
->> +    oneOf:
->> +      - items:
->> +          - const: amlogic,g12a-tohdmitx
->> +      - items:
->> +          - enum:
->> +              - amlogic,sm1-tohdmitx
->> +          - const: amlogic,g12a-tohdmitx
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +  sound-name-prefix: true
-> 
-> Drop
-> 
->> +
->> +required:
->> +  - "#sound-dai-cells"
->> +  - compatible
->> +  - reg
->> +  - resets
-> 
-> Please keep the same order as in "properties:" block.
-> 
->> +
->> +additionalProperties: false
-> 
-> and here instead:
-> unevaluatedProperties: false
-> 
 
-and with above changes:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 04/06/2024 11:52, Siddharth Vadapalli wrote:
+> The AM62P and J722S SoCs share most of the peripherals. With the aim of
+> reusing the existing k3-am62p-{mcu,main,wakeup}.dtsi files for J722S SoC,
+> rename them to indicate that they are shared with J722S SoC.
+> 
+> The peripherals that are not shared will be moved in the upcoming patches
+> to the respective k3-{soc}-{mcu,main,wakeup}.dtsi files without "common" in
+> the filename, emphasizing that they are not shared.
+> 
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> Acked-by: Andrew Davis <afd@ti.com>
+> ---
+> v4:
+> https://lore.kernel.org/r/20240601121554.2860403-2-s-vadapalli@ti.com/
+> Changes since v4:
+> - Based on Andrew's feedback at:
+>   https://lore.kernel.org/r/086fa11e-10f8-463d-8966-1a33a52a3146@ti.com/
+>   MCU was retained as-is while main and wakeup were changed to MAIN and
+>   WAKEUP in the respective shared files.
+> - Newline has been added between the file description and the Copyright
+>   in all the files.
+> - Collected Acked-by tag since these changes have been made.
+> 
+>  .../{k3-am62p-main.dtsi => k3-am62p-j722s-common-main.dtsi} | 3 ++-
+>  .../{k3-am62p-mcu.dtsi => k3-am62p-j722s-common-mcu.dtsi}   | 3 ++-
+>  ...-am62p-wakeup.dtsi => k3-am62p-j722s-common-wakeup.dtsi} | 3 ++-
+>  .../dts/ti/{k3-am62p.dtsi => k3-am62p-j722s-common.dtsi}    | 6 +++---
+>  arch/arm64/boot/dts/ti/k3-am62p5.dtsi                       | 2 +-
+>  5 files changed, 10 insertions(+), 7 deletions(-)
+>  rename arch/arm64/boot/dts/ti/{k3-am62p-main.dtsi => k3-am62p-j722s-common-main.dtsi} (99%)
+>  rename arch/arm64/boot/dts/ti/{k3-am62p-mcu.dtsi => k3-am62p-j722s-common-mcu.dtsi} (98%)
+>  rename arch/arm64/boot/dts/ti/{k3-am62p-wakeup.dtsi => k3-am62p-j722s-common-wakeup.dtsi} (97%)
+>  rename arch/arm64/boot/dts/ti/{k3-am62p.dtsi => k3-am62p-j722s-common.dtsi} (97%)
 
-Best regards,
-Krzysztof
+This is not correct.
+If J722 has different CBASS components than AM62p then we should leave k3-am62p.dtsi
+as it is and introduce a new k3-j722.dtsi with relevant CBASS components.
 
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> similarity index 99%
+> rename from arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+> rename to arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> index 900d1f9530a2..bf6384ba824a 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> @@ -1,6 +1,7 @@
+>  // SPDX-License-Identifier: GPL-2.0-only OR MIT
+>  /*
+> - * Device Tree file for the AM62P main domain peripherals
+> + * Device Tree file for the MAIN domain peripherals shared by AM62P and J722S
+> + *
+>   * Copyright (C) 2023-2024 Texas Instruments Incorporated - https://www.ti.com/
+>   */
+>  
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
+> similarity index 98%
+> rename from arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi
+> rename to arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
+> index b973b550eb9d..1d4e5fc8b4e0 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
+> @@ -1,6 +1,7 @@
+>  // SPDX-License-Identifier: GPL-2.0-only OR MIT
+>  /*
+> - * Device Tree file for the AM62P MCU domain peripherals
+> + * Device Tree file for the MCU domain peripherals shared by AM62P and J722S
+> + *
+>   * Copyright (C) 2023-2024 Texas Instruments Incorporated - https://www.ti.com/
+>   */
+>  
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
+> similarity index 97%
+> rename from arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+> rename to arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
+> index c71d9624ea27..f6ec6e8e171d 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
+> @@ -1,6 +1,7 @@
+>  // SPDX-License-Identifier: GPL-2.0-only OR MIT
+>  /*
+> - * Device Tree file for the AM62P wakeup domain peripherals
+> + * Device Tree file for the WAKEUP domain peripherals shared by AM62P and J722S
+> + *
+>   * Copyright (C) 2023-2024 Texas Instruments Incorporated - https://www.ti.com/
+>   */
+>  
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common.dtsi
+> similarity index 97%
+> rename from arch/arm64/boot/dts/ti/k3-am62p.dtsi
+> rename to arch/arm64/boot/dts/ti/k3-am62p-j722s-common.dtsi
+> index 94babc412575..d85d05e0792a 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common.dtsi
+> @@ -120,6 +120,6 @@ cbass_wakeup: bus@b00000 {
+>  };
+>  
+>  /* Now include peripherals for each bus segment */
+> -#include "k3-am62p-main.dtsi"
+> -#include "k3-am62p-mcu.dtsi"
+> -#include "k3-am62p-wakeup.dtsi"
+> +#include "k3-am62p-j722s-common-main.dtsi"
+> +#include "k3-am62p-j722s-common-mcu.dtsi"
+> +#include "k3-am62p-j722s-common-wakeup.dtsi"
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p5.dtsi b/arch/arm64/boot/dts/ti/k3-am62p5.dtsi
+> index 41f479dca455..b7bb04a7968f 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p5.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p5.dtsi
+> @@ -8,7 +8,7 @@
+>  
+>  /dts-v1/;
+>  
+> -#include "k3-am62p.dtsi"
+> +#include "k3-am62p-j722s-common.dtsi"
+>  
+>  / {
+>  	cpus {
+
+--
+cheers,
+-roger
 
