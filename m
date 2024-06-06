@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-73345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 966628FF23F
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 18:20:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6606F8FF1AB
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 18:08:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9743FB27BFE
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:56:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88E2CB2CC3C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:57:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08BB3198A01;
-	Thu,  6 Jun 2024 15:56:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C6C9198E65;
+	Thu,  6 Jun 2024 15:56:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ckowu5SF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TbcLjBLG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5E89198858;
-	Thu,  6 Jun 2024 15:56:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15729198A0E;
+	Thu,  6 Jun 2024 15:56:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717689373; cv=none; b=jCmFKsPiRSWfWnAYtA9BRLmaBCwfI0VUMSLdlzP1/9iCzAyaXeXCipM6ZkIhzt28piwFBQx/pp4ozFcRN2pKXJR4h+7qfcfMhINlvMWVrj0k0RshJFy68IQUAaEWqyKRT1/iQc+NFChcB+rFPm+WLzQ+IiVvSjQf6ftw4ojlCFg=
+	t=1717689375; cv=none; b=U8jncslnAhA34u+tSx0b7lwETNjEvlLS8b0Ob7xhOJ/E9+uTWDxXsOv/OThDAK/wxD32PAeyp6zG+t0mLondMBbLyJz22tTpcSAtAcv05Y/cn/4NWjV/8jCegWKp7kbjnG883A+mJM1GFkNf7fkIzYc5p4/cdiNjH+K/nYpCkcQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717689373; c=relaxed/simple;
-	bh=5l77wiJJzbmsT9FOUGqOi81vSYosoZGu6nMuZ4VVoI8=;
+	s=arc-20240116; t=1717689375; c=relaxed/simple;
+	bh=Cr+np7msQ1bo2WjBaJxEME2GN9hJFWZtpHOfFA6BxVQ=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=Cn3sxCLUNS23M2LLG9jdw/VZ+RZKIhoxuX84TDnySm+hflfet6jkE7hp73EqhpCuk6E5ovhR0G7QLsQetJxjI7W8uLfx4dYC5FJyNvjkm0k7gjV6UJi4zD/+7wv0B1uYMRMjYfalJ/VRSBgvo1//SycPPSaMiSqHRFz2qkr34JM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ckowu5SF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B455C2BD10;
-	Thu,  6 Jun 2024 15:56:13 +0000 (UTC)
+	 Message-Id:Subject; b=pViFxb85vOvf992/KH4pKrNxjhuK3clNLiEKJLVemtZNR3idGlisDaEyMCCdW1uL+HeT583hIRbrPu/9HZT4d19WL0dJfpCHtKPKviBzENHCpq/H/1/Z+hDcJzfZOoc0LBDpKhsxLvAoj7H4OHCvmV7CQDZjDOcl5dlzlFfzLc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TbcLjBLG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8639EC32781;
+	Thu,  6 Jun 2024 15:56:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717689373;
-	bh=5l77wiJJzbmsT9FOUGqOi81vSYosoZGu6nMuZ4VVoI8=;
+	s=k20201202; t=1717689374;
+	bh=Cr+np7msQ1bo2WjBaJxEME2GN9hJFWZtpHOfFA6BxVQ=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=ckowu5SFXA7wGJegZi0jPnN7ClwPiEfl98Xd/ILAe6s3cpCkU73X000lDw8TACwrx
-	 qRIZpTwNwW+S4IPvTg/o0ZLWiq06L99Ljrq6xPOvR9MPuPiI9cCJmT1YlHgbI0C+cr
-	 YQWpih9wFnVqgUNu/NWU9rnYkY/JEq3r66EzKbjI91pxKuPdDJa5Rh0A0qOsyb6Epm
-	 gYPkrEm52lP98mFJ+cwc8x+lHqB+jgqjwnkGQiXsiQfQVToseCgl0bd2+xYaFMoYvK
-	 e5bkBAIhEw9hNhszk7UE0YglTSzt2aBGnYyBYhJLZQIB97p78rIa69dHjFVKEodDNG
-	 +BIRZ0y+14D7w==
-Date: Thu, 06 Jun 2024 09:56:12 -0600
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	b=TbcLjBLGA+7l8aV+6xKIVsKfirGjVycBW4rFNVm9Vd/K1caQU4SUPNrt1dYY0vlr6
+	 c1REJmP1DZV7m3melIWXhEzaFY1xN3aSKTkgHsbMM8jpQWk0Tsr1awLDehaXEmo5h0
+	 mE5BrfR2ZxDvP8Lh9XXGSPMQouwRRe29pR1m77D9e4TJ2jD0mQYkLPJsh4lBPee4nW
+	 X2qFaRUnB+YJRjCytMu5zuGr1vB3RMQZ9unYKaahYljuLhMr1o5rL3z+7vX41vFLcC
+	 ASJ96N4xz/kHkmNA6Z7ZdAHcmh4tEQbXSmcQ5gn8fTQz3FSH07eN9oevV4OtZsQtCh
+	 fjgJloE1J1elw==
+Date: Thu, 06 Jun 2024 09:56:13 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,42 +51,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Hari Nagalla <hnagalla@ti.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kristo@kernel.org, 
- linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org, vigneshr@ti.com, 
- nm@ti.com
-In-Reply-To: <20240605124859.3034-1-hnagalla@ti.com>
-References: <20240605124859.3034-1-hnagalla@ti.com>
-Message-Id: <171768925461.3793135.11230797607122517451.robh@kernel.org>
-Subject: Re: [PATCH v3 0/4] Add R5F and C7x DSP nodes for AM62a SoC
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: conor+dt@kernel.org, linux-sunxi@lists.linux.dev, 
+ devicetree@vger.kernel.org, ryan@testtoast.com, 
+ Chris Morgan <macromorgan@hotmail.com>, wens@csie.org, mripard@kernel.org, 
+ jernej.skrabec@gmail.com, samuel@sholland.org, andre.przywara@arm.com, 
+ krzk+dt@kernel.org
+In-Reply-To: <20240605185339.266833-1-macroalpha82@gmail.com>
+References: <20240605185339.266833-1-macroalpha82@gmail.com>
+Message-Id: <171768925527.3793166.1240136494594349544.robh@kernel.org>
+Subject: Re: [PATCH 0/2] Add Anbernic RG35XX-SP
 
 
-On Wed, 05 Jun 2024 07:48:55 -0500, Hari Nagalla wrote:
-> This patch series adds R5F and C7x dsp processor nodes and shared
-> memory based Virtio/IPC configuration for AM62A SoC.
+On Wed, 05 Jun 2024 13:53:37 -0500, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> changes in v3:
-> *) Separated DSP node binding patch and submitted to remoteproc
->    mailing list, rebased the patches to linux-next.
+> Add support for the Anbernic RG35XX-SP handheld gaming device. The
+> Anbernic RG35XX-SP is a clamshell device, but hardware wise is very
+> similar to the RG35XX-Plus. The RG35XX-SP has a lid-switch and an
+> external RTC that necessitate a distinct device tree.
 > 
-> v2: https://lore.kernel.org/all/20230810005850.21998-1-hnagalla@ti.com/
+> Chris Morgan (2):
+>   dt-bindings: arm: sunxi: Add Anbernic RG35XXSP
+>   arm64: dts: allwinner: h700: Add Anbernic RG35XX-SP
 > 
-> Devarsh Thakkar (2):
->   arm64: dts: k3-am62a-wakeup: Add R5F device node
->   arm64: dts: ti: k3-am62a7-sk: Enable ipc with remote proc nodes
-> 
-> Hari Nagalla (1):
->   arm64: dts: k3-am62a-mcu: Add R5F remote proc node
-> 
-> Jai Luthra (1):
->   arm64: dts: k3-am62a-main: Add C7xv device node
-> 
->  arch/arm64/boot/dts/ti/k3-am62a-main.dtsi   | 11 ++++
->  arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi    | 35 +++++++++++
->  arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi | 23 +++++++
->  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts     | 68 +++++++++++++++++++++
->  4 files changed, 137 insertions(+)
+>  .../devicetree/bindings/arm/sunxi.yaml        |  24 ++-
+>  arch/arm64/boot/dts/allwinner/Makefile        |   3 +-
+>  .../sun50i-h700-anbernic-rg35xx-sp.dts        | 145 ++++++++++++++++++
+>  3 files changed, 156 insertions(+), 16 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dts
 > 
 > --
 > 2.34.1
@@ -109,14 +102,10 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y ti/k3-am62a7-sk.dtb' for 20240605124859.3034-1-hnagalla@ti.com:
+New warnings running 'make CHECK_DTBS=y allwinner/sun50i-h700-anbernic-rg35xx-sp.dtb' for 20240605185339.266833-1-macroalpha82@gmail.com:
 
-arch/arm64/boot/dts/ti/k3-am62a7-sk.dtb: dsp@7e000000: reg: [[0, 2113929216, 0, 1048576]] is too short
-	from schema $id: http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
-arch/arm64/boot/dts/ti/k3-am62a7-sk.dtb: dsp@7e000000: reg-names: ['l2sram'] is too short
-	from schema $id: http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
-arch/arm64/boot/dts/ti/k3-am62a7-sk.dtb: dsp@7e000000: Unevaluated properties are not allowed ('reg', 'reg-names' were unexpected)
-	from schema $id: http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
+arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dtb: pmic@34: regulators: 'boost' does not match any of the regexes: '^(([a-f])?ldo[0-9]|dcdc[0-7a-e]|ldo(_|-)io(0|1)|(dc1)?sw|rtc(_|-)ldo|cpusldo|drivevbus|dc5ldo)$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/mfd/x-powers,axp152.yaml#
 
 
 
