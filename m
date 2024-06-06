@@ -1,199 +1,134 @@
-Return-Path: <devicetree+bounces-73193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECCE08FE31B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:38:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2C8D8FE278
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:22:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAC031C22FC1
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:38:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D98121C24EFE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:22:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E9351791F2;
-	Thu,  6 Jun 2024 09:37:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82C011514FF;
+	Thu,  6 Jun 2024 09:21:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="lDe9iSjY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D5BgrmD3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C33B113E8AF
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 09:37:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5C0C1514DB
+	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 09:21:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717666638; cv=none; b=QzRyT1zaUIe24OmvRVDb/RPgkK5q57z++jFG1XxbRBhtuFDzwTlH3C1UFRjTklqFPPGON0ywfZw0UHk9a1YDhcHkjqxAD1FIfcwxUc/tRR8vzQdhUvWZzZQXQsyNwX0hCHeERP9kG+F5qjFhRL/aZ+pqxO/RxBebG6j5c/MRNhw=
+	t=1717665707; cv=none; b=LxMZh+1H426JtKIBrOEwOWdfgMClCSaek8FnWxeDWIcOss7Ls8UOGGkB/9FwuzRzAfexIYJzU06tWP4NtVityUugveP8kp3UVBdh7JrEKmsi+TUDCV6IXq+65/Om3mdEc5byH9kVgFULMmvJsXdN/o4ah/I3B6acJVYZSEbeMxI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717666638; c=relaxed/simple;
-	bh=kVV5LyIkN1HBUvZJtL2AaAsVy962XcPeFU3Hzwm0aUs=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=coD4+zFTBSfeoRWkrJAShNot6dA04ffw5OhjD2sunwMZAikZUX1gxRN7iS9CAdrIqEaMtew2YffmyHvxxK9oWEPBVliGGWhRLsTFE7xgvnTTQTQynQYDKiCaJs/MROKrDy8oyOsZEwX7rdrpyVLIf5CW1BrPUVdEtvnKNTG+PWM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=lDe9iSjY; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20240606093715epoutp04bff0d5dfbec90b0df3b9e9f300f62e65~WYLRKldI01983119831epoutp046
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 09:37:15 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20240606093715epoutp04bff0d5dfbec90b0df3b9e9f300f62e65~WYLRKldI01983119831epoutp046
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1717666635;
-	bh=k//rUFK6ioPKyiPWu8vrK3hMgJf+tmmntQhomCJq75E=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=lDe9iSjYRDM4/ZJ4Dkn/zMFq6FdlSG5FzIwzzHsHkq2O7+zzJAEM18jSss2rixQfI
-	 04JQuL6GoqxuNtu3o4jC8o6v0XJg2/SJ12f6+Ub0E++RIjNcwmq7G3pBkzpbM7IGb+
-	 N2D7PO5aRlgByAZhk9ZGNIDxC+LpF2+Vc67afEFM=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTP id
-	20240606093714epcas5p38a560e8ab7770c88bb1b5c1543b6f240~WYLQeb1uh0034700347epcas5p3b;
-	Thu,  6 Jun 2024 09:37:14 +0000 (GMT)
-Received: from epsmges5p3new.samsung.com (unknown [182.195.38.176]) by
-	epsnrtp2.localdomain (Postfix) with ESMTP id 4Vvzkc63K7z4x9Pt; Thu,  6 Jun
-	2024 09:37:12 +0000 (GMT)
-Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
-	epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	3A.9F.10035.84381666; Thu,  6 Jun 2024 18:37:12 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-	20240606091616epcas5p4806885e4893357ddf8d231ae045a5efc~WX48mSDif1383013830epcas5p40;
-	Thu,  6 Jun 2024 09:16:16 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20240606091616epsmtrp1cf324bd16ddeb63e9659d90ec2a81c32~WX48lLBh52458024580epsmtrp1w;
-	Thu,  6 Jun 2024 09:16:16 +0000 (GMT)
-X-AuditID: b6c32a4b-8afff70000002733-19-666183481fa8
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	9E.89.08336.06E71666; Thu,  6 Jun 2024 18:16:16 +0900 (KST)
-Received: from FDSFTE596 (unknown [107.122.82.131]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20240606091612epsmtip17f4f85cdc23f67a787eeaf619af8fe2d~WX45BtATA0216002160epsmtip1U;
-	Thu,  6 Jun 2024 09:16:12 +0000 (GMT)
-From: "Swathi K S" <swathi.ks@samsung.com>
-To: "'Andrew Lunn'" <andrew@lunn.ch>, "'Sriranjani P'"
-	<sriranjani.p@samsung.com>
-Cc: <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-	<pabeni@redhat.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<richardcochran@gmail.com>, <alexandre.torgue@foss.st.com>,
-	<joabreu@synopsys.com>, <mcoquelin.stm32@gmail.com>,
-	<alim.akhtar@samsung.com>, <linux-fsd@tesla.com>,
-	<pankaj.dubey@samsung.com>, <ravi.patel@samsung.com>,
-	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, "'Chandrasekar R'"
-	<rcsekar@samsung.com>, "'Suresh Siddha'" <ssiddha@tesla.com>
-In-Reply-To: <c17ce6db-4823-44cb-8fda-6ef62f4768fd@lunn.ch>
-Subject: RE: [PATCH v3 2/4] net: stmmac: dwc-qos: Add FSD EQoS support
-Date: Thu, 6 Jun 2024 14:46:11 +0530
-Message-ID: <000401dab7f2$2ee2b8f0$8ca82ad0$@samsung.com>
+	s=arc-20240116; t=1717665707; c=relaxed/simple;
+	bh=tjwN2braW1ggfU8ulOrgsPDVHY3oLWrcM+PDLwBsLrQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Iq0NrtBQmcoPyBKKpw0qGq6veepT+q6C7/Z8lE2z5uUnsSANZHn0Mda5E7bfhPtBGjoTPdJ1b6o2RLYoqI4lUyK7/f3fShIxbB7u0Eg3xy1gzRvJbgBIgL+HbwDzuxcsEu2K8Jyp7urB/NWAhab4KdqpVeS+OJC9vbuAmX5Asd4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D5BgrmD3; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-35dc36b107fso744027f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2024 02:21:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717665704; x=1718270504; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NW4EvucckY8CVmeUy8IT9ST3GVjxL8wLdD6zQ7ebgWc=;
+        b=D5BgrmD3B0Se48+upm2jtHZWBJOI4CHn4AoMZ0nRWfguuFT7uoi0/M0RbYrsl1GFB9
+         sKTGkEn3YiFmWNAdQNdOkX3w3y+Nrj5ADX+7d1tr4xdVW5gZTU4OtX+RVOuWQBZAwas8
+         W61ALj5DmlBtfPTfgiqNIKvifarIfd9NywAE/7l6yg0icWEcsa00XIRGU0P0CsDyXMbw
+         AvZ4zEyyyERbETf9ALZI01wEThqMoxC0WZKfsK13/t19dStKP02KS6CYdFYvGMCMdMY5
+         jIG7enDfhRgmBzSAWwLH99YA5ngnQMU1/Bo7wic5/gN28mxXxYIIkJk/HVZbyrhAxvPc
+         M7RQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717665704; x=1718270504;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NW4EvucckY8CVmeUy8IT9ST3GVjxL8wLdD6zQ7ebgWc=;
+        b=l5eEyd1SafnQ4aD8F3Pi1OcpZei2BNVpumfGQpXH1RL5LBY7tgHq52cD8pcBNQ5kYp
+         sF/Nt1/v8cNIVIIcGZI4WOsUmJbqqLyZt/IsWdjLx1zwGbtPtYYJtNkYebFwSQOC49p0
+         4WjZKvvoixcuSyM390CZeIYjL/q4YueRo52z64lrwwgpzM/oqh6vCB4Fk0HYza3sQDPQ
+         ZdNttZogLnU7O9tMggU6nfBEoT2ESon6rrF1wg/CH4FfkjjnDoTS7FicJvrULCvlvVOG
+         Tn9eEJXhwi6cDaz+M2xrdkw3mumo8DKCWHlEgyx1qD+2FwzMiaiDDoFHrnbGlnKalp9P
+         k2bA==
+X-Gm-Message-State: AOJu0YwhUU5KbZ117nAdfvi6vakCsKmDOgJTlitLr4QNhFd7QL5vr0ZX
+	oHFqMBe9yBJBKh8QDkfjPLBoA0OH4SEc2bB4ulria0jzQE/YWTh3CBnyY9Fm9rE=
+X-Google-Smtp-Source: AGHT+IEQUFhZ4ffQXqczY6bwPIu6J1c6sh9bixcCzNZvbDmwint0JLpN8+SWvWpMQ7EjeERX9pZH2w==
+X-Received: by 2002:a5d:4c52:0:b0:354:fca5:4190 with SMTP id ffacd0b85a97d-35e8ef09a32mr3843778f8f.41.1717665703974;
+        Thu, 06 Jun 2024 02:21:43 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5d4a582sm1033012f8f.35.2024.06.06.02.21.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Jun 2024 02:21:43 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jianxin Pan <jianxin.pan@amlogic.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-pm@vger.kernel.org
+In-Reply-To: <20240528-a4_secpowerdomain-v1-0-2a9d7df9b128@amlogic.com>
+References: <20240528-a4_secpowerdomain-v1-0-2a9d7df9b128@amlogic.com>
+Subject: Re: [PATCH 0/3] Power: A4: add power domain driver
+Message-Id: <171766570315.3938980.14182626736757886496.b4-ty@linaro.org>
+Date: Thu, 06 Jun 2024 11:21:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQG0kE2cByMDcfrFjxkR49X5VWx9JAI1Xm+tAnXeS/UB6i7tpbHG4X3w
-Content-Language: en-in
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Te0xTVxzHd2/bewvS5Y6HHEgY7O4lJECrtJ6q6IwEL4MQEsPYxKw29FIY
-	faW3bMNlmXODBMLTRMaaCqRRllVwWsqrPESeQxC6KShOTAGZoIJMkQwcutILG/99zvf8ft/f
-	+Z6Tw+d4F+GB/EyNgdZr5CoS8+Q2dofuCKe+k6cLjbci4MpcOQKdlY0YHJno4sDa9mEUmka+
-	58KqnmEenOmbwuE98wIPFs9OcqCjsZgHrdNjPDj5MAXesJswWDHSgcLKtToe7KveDpcHHyPQ
-	3LCEw8nFNhwaHc082DM0y4G57T04NDureR/4U7afx1FqpqQBp1qMEzhVbc2mrJZ8jLo71oZR
-	9ee+oVqan6HUk45RjCq2WRDKduUZQr08dRannlnfTBIczdqXQcsVtD6E1qRpFZkaZTQZf0R2
-	SCaWCEXhIincTYZo5Go6moxJSAqPzVS5opMhn8tV2S4pSc4wZOT+fXpttoEOydAyhmiS1ilU
-	uihdBCNXM9kaZYSGNuwRCYU7xa7C41kZg+OXUd2q4Mu6vKvck4h9WwHiwQdEFCgcuY2uszfR
-	ioCGV0dZfoqAwZnkAsTTxcsIqHT8xt1scNxs47Eb7QgYGprnsotZBLy69NJthRFhwFzcga+z
-	L3EE3BlscDOHKOKB2+fdNR7EXlD11x9uVx8iFlQ7yt3MJd4B9Z2jnHUWEFJw92Itl+U3wMCP
-	97msTzBomjdx2BOFgJWZGh47KxbccvyAsDX+oHelcKOm2wP0WiDLMWB44J8N3Qc87LfhLAeC
-	uZK8DZaBC8WjG4kzwMRqGcbyAdB50+TS+S7/UPCLPZKVg8CZaxdRduzroOjFfZTVBaC5cpPf
-	BmuPxjYsA0Dj+Sd4KUIatyQzbklm3JLA+P+0aoRrQQJoHaNW0oxYt0tDf/Hfc6dp1VbE/S/C
-	4puRKediRBeC8pEuBPA5pK8gkZGlewsU8pwTtF4r02eraKYLEbuuu4wT6JemdX0sjUEmipIK
-	oyQSSZR0l0RE+gse5Z5VeBNKuYHOomkdrd/sQ/kegSdRy8HXarxeXPhq6c7ARHyPj2a7b0UL
-	/33l9Ss3PrYzz9M7eO1Pdd+GXQXS0vH+ORvVveCll/10oCG6ZVw9mth67TRWN9+P5C7ZyTzO
-	cor/sQJl6vF3T1umxF6Pp/NVFYFFObr4Q3H3nvdNw9TUhTjPD7ETD/KvG3bv8Wl7L21I2xZe
-	e05cvwNKzQ9qnK3KkuC1sl8TCoV9CV9fUjWFp2FNfMXeT0/5fLJ4uPXYZ+ntJsFHTvRwR/Cq
-	bSy/s2pRkJxD+jntQSvbhvz4WGhccHlkb2KAOsf5Z4yXnpCgb0nrpkyO4GQcLbWO/X1w59rv
-	l4P8PSan+/abcwjcNDmeEqAiuUyGXBTG0TPyfwF9OF4PoAQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SfUzMcRzHfX/PnR0/d9S3EDvPmass822smWG/mWdLnvObfkUP1+1OyEMq
-	NA85eUwnOaHUla3rOleS5ESx7jZ1tB5IIhSRspBxHdN/r+39+rz3/uPD4JKfhAezXbFDUCn4
-	SBklIkz3ZZ4ztsTxoT5ZehHqe3ceoJcZJgpZmypwlHenBkPp1kMEumypIVFb5SsaNWd+JJGm
-	vQVHNpOGRIZWO4la3gehpyXpFLpgLcNQRn8+iSp1rqj3cQdAmUVfadTSVUojrc1MIsuTdhwd
-	vmOhUUPHTRJlvtSR8yBnzKnHuLaTRTRXrG2iOZ0hhjPkHqW4RnspxRVeO8AVm7sx7lNZHcVp
-	jLmAM97tBtyvxEs0123wXCFeL5obIkRu3ymovAO2iLY9ri/AlN/Fu/OT7hHxoGToMeDCQNYP
-	2mpLyWNAxEjY2wDWv7ABZ+AOvxw8RzpZCnN+vaWd0hsAm+09AwHFesFMTRnt4JHsaphouEI4
-	JJy9SsI6nZlyXnQBWF56gXJYLuwcePlzA+FgKbsI6mznB5hgJ8LC8jrcwWLWHzbezCOcPAJW
-	pb3+w8yfVjlMKhhYh7Pj4K3OdNy5bjzsa8sinSMWwWe21L+OG3zQl4ynAKl2UJP2f5N2UJN2
-	0IUOELnAXVCqo8Ki1L5KX4WwS67mo9QxijD51ugoAxh4EK9pZnArt0teATAGVADI4LKR4mXq
-	4FCJOISP3SOoooNVMZGCugKMZgiZm9it/USIhA3jdwgRgqAUVP9SjHHxiMeWvzXVJ/w4w9Q9
-	bF42qqC28rQ0sfBRtVThF06Ke4/6lHjOsm8cuuLSlOEH0qbPT5EvNutXtk0oqh7i2iqfPJtp
-	PvwA740r9ru49Ij1XcNUhHln+0TkGze+yFs640nWs+mB0UGVTTO1J5pWPk/NSthnXtIYpF/r
-	rmfYNf6NF0f0J3vz8fOTe7Dbxjio3EN/2+D7nR+TXN3vYSxcHmjZfP96ultsQY59Q/fYpFTr
-	mFp/Q/Y1SZwmP0XqOnb/8fLZ2OpT4QEdhjzJwoxNAQnrNi88q/g898biNH1Q9iRb0t7ED4qd
-	4yyzTD9Qq6TnOv1qWGdV6IKI8HudgasU5XRVyKdHwTWxMkK9jff1wlVq/jd7aMISjwMAAA==
-X-CMS-MailID: 20240606091616epcas5p4806885e4893357ddf8d231ae045a5efc
-X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20230814112612epcas5p275cffb4d3dae86c6090ca246083631c4
-References: <20230814112539.70453-1-sriranjani.p@samsung.com>
-	<CGME20230814112612epcas5p275cffb4d3dae86c6090ca246083631c4@epcas5p2.samsung.com>
-	<20230814112539.70453-3-sriranjani.p@samsung.com>
-	<c17ce6db-4823-44cb-8fda-6ef62f4768fd@lunn.ch>
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
+Hi,
 
-
-> -----Original Message-----
-> From: Andrew Lunn [mailto:andrew@lunn.ch]
-> Sent: 15 August 2023 02:17
-> To: Sriranjani P <sriranjani.p@samsung.com>
-> Cc: davem@davemloft.net; edumazet@google.com; kuba@kernel.org;
-> pabeni@redhat.com; robh+dt@kernel.org;
-> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
-> richardcochran@gmail.com; alexandre.torgue@foss.st.com;
-> joabreu@synopsys.com; mcoquelin.stm32@gmail.com;
-> alim.akhtar@samsung.com; linux-fsd@tesla.com;
-> pankaj.dubey@samsung.com; swathi.ks@samsung.com;
-> ravi.patel@samsung.com; netdev@vger.kernel.org;
-> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-samsung-
-> soc@vger.kernel.org; linux-arm-kernel@lists.infradead.org; Chandrasekar R
-> <rcsekar@samsung.com>; Suresh Siddha <ssiddha@tesla.com>
-> Subject: Re: [PATCH v3 2/4] net: stmmac: dwc-qos: Add FSD EQoS support
+On Tue, 28 May 2024 16:39:27 +0800, Xianwei Zhao wrote:
+> Add power controller driver support for Amlogic A4 SoC.
 > 
-> > +static const int rx_clock_skew_val[] = {0x2, 0x0};
 > 
-> > +static int dwc_eqos_setup_rxclock(struct platform_device *pdev, int
-> > +ins_num) {
-> > +	struct device_node *np = pdev->dev.of_node;
-> > +	struct regmap *syscon;
-> > +	unsigned int reg;
-> > +
-> > +	if (np && of_property_read_bool(np, "fsd-rx-clock-skew")) {
-> > +		syscon = syscon_regmap_lookup_by_phandle_args(np,
-> > +							      "fsd-rx-clock-
-> skew",
-> > +							      1, &reg);
-> > +		if (IS_ERR(syscon)) {
-> > +			dev_err(&pdev->dev,
-> > +				"couldn't get the rx-clock-skew syscon!\n");
-> > +			return PTR_ERR(syscon);
-> > +		}
-> > +
-> > +		regmap_write(syscon, reg, rx_clock_skew_val[ins_num]);
-> 
-> Please could you explain what this is doing.
 
-As per customer requirement, we need to provide a delay of 2ns in FSYS in
-both TX and RX path and no delay in peric block
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.11/arm64-dt)
 
-> 
->        Andrew
+[1/3] dt-bindings: power: add Amlogic A4 power domains
+      (no commit info)
+[2/3] pmdomain: amlogic: Add support for A4 power domains controller
+      (no commit info)
+[3/3] arm64: dts: amlogic: a4: add power domain controller node
+      https://git.kernel.org/amlogic/c/c830ead0d16131de93d2020369ede4d670a4123b
 
-Regards,
-Swathi
+These changes has been applied on the intermediate git tree [1].
+
+The v6.11/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
 
 
