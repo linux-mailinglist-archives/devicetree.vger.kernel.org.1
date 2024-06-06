@@ -1,88 +1,107 @@
-Return-Path: <devicetree+bounces-73445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF67C8FF60E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 22:49:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B36B8FF61C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 22:54:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A01E284A41
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 20:49:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10E0D286AF4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 20:54:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35CA178676;
-	Thu,  6 Jun 2024 20:49:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DD0F12AAE2;
+	Thu,  6 Jun 2024 20:54:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ISkKSuK7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LoTyV14v"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02BA4762C1;
-	Thu,  6 Jun 2024 20:49:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F112A6F08E;
+	Thu,  6 Jun 2024 20:54:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717706966; cv=none; b=RXlKIFlFCh4lpTIywlvVv6iU6IOkPiIOSm8LDdHDXN8Bbxsfco4ux9vxq/bUhm0Sxt9StLeE6hw6bMFTFk7sSEvaAnwY+9CEbfMF5ZEc+4o5ZiwN3T8OmxE4iwnahuVRMMO1D5KeAop5hfdc9srtBTGyXqLsAlEh95qgDzXvDD0=
+	t=1717707267; cv=none; b=svwK87q6AOICi1z7v5Grjx+XUKKr4dZw6WoqmmjdS0qzbGiKyv8wbbBIq+Ft0VRjG2jig0iR+KvV9op0i14WcaaJdIloy4MGX731H6qgs+fXE19QH3PUzZ2G/ERYvyiOprdjP1O9XKZRhONSGG19J6N2d008Yk3RKrV11PhYAew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717706966; c=relaxed/simple;
-	bh=RFULZ5kbXH4pWawUttHhrKUEKFuQo39Nf1voIsadOqY=;
+	s=arc-20240116; t=1717707267; c=relaxed/simple;
+	bh=aeXGQdzPsVZ4cpuieF65ifFWcRnv+FQafZ2EDIxzKb0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f/7EEDw/CF1Tu/R2OlUFcU8GBGenDbsMfjw6LFdLLxthCw5ioZPO3tyJBZp7aR7Erc+HWrhWpQxIepc3KjbxRgv4/lbgiQbkT24GCxFzIkfP/ZkHf40kFKG2rCidrWXrHNq8WiEPw589dJBVgRsKOejnmrnFWgUc3IGnXlWoSZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ISkKSuK7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F4C0C2BD10;
-	Thu,  6 Jun 2024 20:49:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ByOgyId/g1LOj0Np4IJ1IbWqLBXicXhlia8rQS1sEEzSRqO8gRMM4VDbGZn7Axd/iBkIuGdufkRKQDw8xOMG/Y3nAgtgejRpLGBtt0yOva3bpc92vu9e17PIcNrob2mu0+AaACC/6w/pZXvTT//k2pEPx+wAwgx4RzMgqE58q/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LoTyV14v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D4EBC2BD10;
+	Thu,  6 Jun 2024 20:54:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717706965;
-	bh=RFULZ5kbXH4pWawUttHhrKUEKFuQo39Nf1voIsadOqY=;
+	s=k20201202; t=1717707266;
+	bh=aeXGQdzPsVZ4cpuieF65ifFWcRnv+FQafZ2EDIxzKb0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ISkKSuK775Ho1duwSP2qy7qNLwQJ7SYPjq/g85auOFDGYODQ1A3wLJPL9L567XWAb
-	 ba5Ww+cahVYZo8Tc16v+jDSShKDU4z9XLNN8pn3YPlE79jiXJBU2JTbPM3iOOYD3IR
-	 Y/T5IAfbsON7g97nFuJxR5nJc3+EyLiFdHOhLAwuUFoznEktNai4jPXikKDlHA/Uc/
-	 kyO31Yd3jIH7P7IiYA5qjqggiXX1OtLBhmMXchU8wNxdqJDuobgK5aSrVqAvmksxpn
-	 0Q+oVREbxR5IiJRvS6DrI/Dy+VVxpDxQafv8w+4IJc3MCgqbIYxe6JG0gS4Pm8fK3w
-	 KJRcINW6U5X0g==
-Date: Thu, 6 Jun 2024 14:49:24 -0600
-From: Rob Herring <robh@kernel.org>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: =?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <jpaulo.silvagoncalves@gmail.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	b=LoTyV14v/jAiVGP0AATfPdsSbN8gtFnuY7baOKfWSmqxVwsrDKIj4HRRxuCGZma51
+	 550tMfBDqLisPoGIOjoMm1TmNWQgLk1ARDtUT+IpDmshoSp6wbqVH9G3Ky8sYlSdfS
+	 9EWrbUHKC+mueUd4/JAmfaaP0CFiBoUZiFmM5JehmrAR/wpuW9dibjzGT9+JjtcwYO
+	 tiSzaRx3ftMqPb93b4bx/F2ssP503CKzdnu7Ey5nPMJ+R+f5D5lnLS7xSDEryk37Uc
+	 38fOfjY9AQfguhiCpUIEL0ZMUcqix0vlYtOCPEuCb1ap34Lquz+jFofat0l3twBUrC
+	 C2M9rrysLxZvw==
+Date: Thu, 6 Jun 2024 14:54:24 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bjorn Andersson <andersson@kernel.org>, linux-scsi@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Bart Van Assche <bvanassche@acm.org>, linux-kernel@vger.kernel.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: add ti,ads1119
-Message-ID: <20240606204924.GA3830246-robh@kernel.org>
-References: <20240606163529.87528-1-francesco@dolcini.it>
- <20240606163529.87528-2-francesco@dolcini.it>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5] dt-bindings: ufs: qcom,ufs: drop source clock entries
+Message-ID: <171770726231.3843186.17154781456146316329.robh@kernel.org>
+References: <20240528-msm8996-fix-ufs-v5-1-b475c341126e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240606163529.87528-2-francesco@dolcini.it>
+In-Reply-To: <20240528-msm8996-fix-ufs-v5-1-b475c341126e@linaro.org>
 
-On Thu, Jun 06, 2024 at 06:35:28PM +0200, Francesco Dolcini wrote:
-> From: João Paulo Gonçalves <joao.goncalves@toradex.com>
+
+On Tue, 28 May 2024 16:36:48 +0300, Dmitry Baryshkov wrote:
+> There is no need to mention and/or to touch in any way the intermediate
+> (source) clocks. Drop them from MSM8996 UFSHCD schema, making it follow
+> the example lead by all other platforms.
 > 
-> Add devicetree bindings for Texas Instruments ADS1119 16-bit ADC
-> with I2C interface.
-> 
-> Datasheet: https://www.ti.com/lit/gpn/ads1119
-> Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
-> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
-> v2:
->  - add diff-channels and single-channel
+> Changes in v5:
+> - Rebased on top of linux-next
+> - Dropped arm64 / DT patches applied by Bjorn
+> - Link to v4: https://lore.kernel.org/r/20240408-msm8996-fix-ufs-v4-0-ee1a28bf8579@linaro.org
+> 
+> Changes in v4:
+> - Rebased on top of linux-next to resolve conflict with UFS schema
+>   changes
+> - Link to v3: https://lore.kernel.org/r/20240218-msm8996-fix-ufs-v3-0-40aab49899a3@linaro.org
+> 
+> Changes in v3:
+> - dropped the patch conflicting with Yassine's patch that got accepted
+> - Cc stable on the UFS change (Manivannan)
+> - Fixed typos in the commit message (Manivannan)
+> - Link to v2: https://lore.kernel.org/r/20240213-msm8996-fix-ufs-v2-0-650758c26458@linaro.org
+> 
+> Changes in v2:
+> - Dropped patches adding RX_SYMBOL_1_CLK, MSM8996 uses single lane
+>   (Krzysztof).
+> - Link to v1: https://lore.kernel.org/r/20240209-msm8996-fix-ufs-v1-0-107b52e57420@linaro.org
+> ---
+>  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 12 +++++-------
+>  1 file changed, 5 insertions(+), 7 deletions(-)
+> 
 
-Running the checks gives this error:
+Applied, thanks!
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml: single-channel: missing type definition
 
