@@ -1,153 +1,249 @@
-Return-Path: <devicetree+bounces-73031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 230588FDCA5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 04:19:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 261C48FDCE3
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 04:40:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B13EA2813F3
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 02:19:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D2671F22017
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 02:40:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B39B817C9B;
-	Thu,  6 Jun 2024 02:19:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB8861BC20;
+	Thu,  6 Jun 2024 02:40:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eEr57owC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rrWvsm9e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F4B2440C;
-	Thu,  6 Jun 2024 02:19:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26249199B9
+	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 02:40:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717640381; cv=none; b=JECThFXDd/1IsMFfGD+hc2QLmAqOkJKcSbyD6fZZoxwXg1lPJvs8ADeBwVPQoA4KR/nMAickQS2gt3DzuG0K17ZOxUS9NHjp5z6I2g6jKnfPMFGskGMzsS8iZUkDhwasYreyYbBzwKT67UdWrdHOISFmUjddFvHU+Ii/sQZANzU=
+	t=1717641608; cv=none; b=PwVfl2yUMdb2iQWaPN+DUudPamkFEzJmwLFIY4YCaPtkU1UNcln1a+resH8j8U9t3QmTl1SC8GZUtUWRhiaFElib5MTTLmMr6hg0WDO8nWPfNPmr/RJbWRi+K72Ia60Ka/Y+EdEvAMmCPJav24utcu/6XXa87gnxxf6UVS8ozns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717640381; c=relaxed/simple;
-	bh=yHnbLg4xPUbK99cwmxufgEME6D4RSpyJmscguwNIqxQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Oh2LTEuO+Pp4vfM03LUpPBSczdcVVIOQ3uq8W4wSVMp34VWGjKbMigmV8U8Jvpf3g5b8U4qDqQr3Je9aXeHfs92CwuFZ9TCAZmLy9d29fvVukqn8BzxsFFnosHw5zXAbCyHNbCCCYcCl8FP1bvirrtnQiVRuSwpu/51aYHLLIjY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eEr57owC; arc=none smtp.client-ip=209.85.160.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-2508a32bb57so205241fac.2;
-        Wed, 05 Jun 2024 19:19:39 -0700 (PDT)
+	s=arc-20240116; t=1717641608; c=relaxed/simple;
+	bh=+HVwrDUz1uIzC6eAqeuTCk2d0+1EGuGOkn8/Ej3k6j0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jy5N/LLILnVgAJOLmfG8VsRLyhg7ibK10TirHfs3iwU96YmDi1qnRA93nT5S+PKUgxkhO+MUPdecpcwOrlrxPLaI8/3Tq1sru0N7y93tP9Y2VYadE/yMa6wQrJKAz9Jrp9JH74w2eTv29UA5OghOWA6pFmPuU+Xsdk5//i+/S+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rrWvsm9e; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7024cd9dd3dso373291b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 19:40:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717640379; x=1718245179; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/PRDuWYjFtULWNP5TyyV5JrKa8zniHjDTaMzzJR6qvs=;
-        b=eEr57owCCWzPIqVSbCAa62Eym3uzQTH69WM0dor3XSlf5ZccgJZ6ta76DraULjnszb
-         XcwnWkzDeMzeu2B7jQb7WXPsXa4WWVMWTXOObc6PzriEhheICjUW1k4Ycde61MjHIz9G
-         /2aKIDXUsIt/FjO3i7ZjWaIa8YGOB2jRJpSxJoH++8tUjtdHFOskjMrhMUQtSKwnwsdY
-         GLo4l3GsvJxoeUxFFz6j6rawdxk+Qlwpdn7mTrVPMs8/x34KeTlqwgVLQ/9+CbJIlFzn
-         cxnAaH5JRkkvt4VU7U2e2wcV35WA/MWnPlt7dElBwaJCfONvo2vFoaKrDgOSRnsKwvsL
-         6W5w==
+        d=linaro.org; s=google; t=1717641606; x=1718246406; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=E7RsRy0RZ6BPhd0zOzb8Dzo505oEPiS2g4HyLE25t+8=;
+        b=rrWvsm9esRY2JpCe2zBKQj/kFwVbN3hhCP4f0559wA48nA4TjPWb10ma9AoRzgvdpt
+         66ayRrE7+EpIZcJ1e5OB/8P+4sHRob+QTZFflSWVG7ja3NoeWPr0HKiTmbNF7mjevVjW
+         YZk8AScKO1Q0S4l09sIhHRhfKgqv7+0nh7PxoL2l/Thbi3b2R2oi4l0yL9R1jCf1KZeS
+         t5k/F+YN8YW2MMhNaw+9JEaD5HkWLV3CcbSzXO5IPNqmS3jhDsLONdhc2Eh/V6MiF50F
+         rW20/NVItBS758H1AZq2j1wT7QC5eHKCNaR7fNa7ct8N5GqcVTMflBmAZT1/kwsjluXN
+         dP0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717640379; x=1718245179;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/PRDuWYjFtULWNP5TyyV5JrKa8zniHjDTaMzzJR6qvs=;
-        b=RQ/SXYVV2EofsLx6DLrg337jamDe2JcISQAd0aEARq/S5iJp34LBMyT1vjG6o5l/0H
-         1JlqHYJiGJ3bUHANn2xr536A67gy/0rer9M/SGMZmNLbiwcXAgqSQDRWR3kncVNLz19Y
-         18EUhVEPTZKtEbguW72pG3sPU+C7RuuOF/ZEoCFXbqSKCEA1z1B0v5aGsWTDnCVQKI25
-         bEZwRWfDIuroSXUAVOjcWG0B1j+3vt7SBqzMc+OQ4mripN+ghhK7gX0fiUWqk2r5XKgL
-         Gb9z+JPKb9KJFVq54jtbQ7CCD+bzOJ/D5wZ3+q2ZbppSJd1SeP+KLrr1IFo24CCNOrVG
-         3new==
-X-Forwarded-Encrypted: i=1; AJvYcCWGtoiGne1J8pi7h1Uy54eGnuumqPPBmkoSvnP3lujMYhGun9zmVOjviSsUOvy2wnA5DsJMjOc2rQ7cWg8cbLLxKceJegTRIE0iMlajTLL2ZvIFPWyONj8VanJ/f5Lew1Ze9/HsJ0syX7I3QpfYBUJ5NqRqUbo0LUFYWcoNb9yFkslZlVUx
-X-Gm-Message-State: AOJu0YxIkjXhOka4gQigi+EgzaxTKiRq+3UTLqmI/ZcYx8RLTPMOWBlv
-	peJMehDGcHFjmPwIavuyHWEze36/BDnSWV10xhZ29UZ0P8jW6i0zcTUzAx4948nuB2AUmOEUtEG
-	hby8MPS8Fq+9gLYyfHfyex8VllJM=
-X-Google-Smtp-Source: AGHT+IGI2K1g3B7qYS6BwwmPcpX2RQj6rZ42i3F0xPY/m/Y0EHecq/RK0GNeKe2kbCes514aFL6DXF5HBy95D6RZ94g=
-X-Received: by 2002:a05:6870:8202:b0:23e:b430:3f87 with SMTP id
- 586e51a60fabf-25121c94fa4mr4945606fac.2.1717640379095; Wed, 05 Jun 2024
- 19:19:39 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1717641606; x=1718246406;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=E7RsRy0RZ6BPhd0zOzb8Dzo505oEPiS2g4HyLE25t+8=;
+        b=jV9s+ucwjpvAajJ7on+PcUVC3ERhVsGn/wGDOjP1mMsNeRrV+ewRNTpE5Tcai/5Wxe
+         NWAdkbQX2bZ2Rt9w/6y5BIqX4nqp2psK0q8XeQB9An1csejEtx2iRj+asfVh+qvnY0up
+         erz1bmMD4ET8zPGzpF8KvrjEzcaH4npbaDAKugtOxETcPz+ePmzJlU76vihItCcPwiO6
+         TxttgDdNM37qo0net/CQr9LV1kFkgfi1YEH/o6KpWEt7kBPyNNIwO+CWlaXOWJCNApqM
+         4YSyazq/z2lX6jHnyBabvbl1NvS9mOrWpbnprrz0FfUdDydYQYEGgYU66j2SIk8pLshq
+         k5Ng==
+X-Forwarded-Encrypted: i=1; AJvYcCXPbusgM9sAFfG1CnBaatnY39Tds/NY4kUXKNXmlGc6gPlWPng6+AvGwWZJYXAfZP87Kyox/bYVv7C1OtkaBM6AETKb514nMEsg2A==
+X-Gm-Message-State: AOJu0YwxeEA2j11N0+DLoAEsaVN4Xb09qOocRF8SJI3zPWcn6DQzuHSS
+	43vgummY2ks/3L7wU3sBx5e2fg4X2PoDfzbtGFFX/XnkI00DwXck5XWmVESQUg==
+X-Google-Smtp-Source: AGHT+IGpA/kk+BeFkPHH5bGzof1Qpi5uD41m75ShLL7asfGu6mBRHGaA8afzEPWZEG/p1xL2UzRqYg==
+X-Received: by 2002:a05:6a20:3d87:b0:1af:e624:b9b2 with SMTP id adf61e73a8af0-1b2b6f3d0e9mr5552460637.19.1717641606234;
+        Wed, 05 Jun 2024 19:40:06 -0700 (PDT)
+Received: from thinkpad ([120.60.142.92])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f6bd770c4bsm2518535ad.88.2024.06.05.19.40.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jun 2024 19:40:05 -0700 (PDT)
+Date: Thu, 6 Jun 2024 08:09:52 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Mayank Rana <quic_mrana@quicinc.com>
+Cc: Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org,
+	lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
+	andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, quic_ramkri@quicinc.com,
+	quic_nkela@quicinc.com, quic_shazhuss@quicinc.com,
+	quic_msarkar@quicinc.com, quic_nitegupt@quicinc.com
+Subject: Re: [RFC PATCH 2/2] PCI: Add Qualcomm PCIe ECAM root complex driver
+Message-ID: <20240606023952.GA3481@thinkpad>
+References: <1712257884-23841-1-git-send-email-quic_mrana@quicinc.com>
+ <1712257884-23841-3-git-send-email-quic_mrana@quicinc.com>
+ <20240405052918.GA2953@thinkpad>
+ <e2ff3031-bd71-4df7-a3a4-cec9c2339eaa@quicinc.com>
+ <20240406041717.GD2678@thinkpad>
+ <0b738556-0042-43ab-80f2-d78ed3b432f7@quicinc.com>
+ <20240410165829.GA418382-robh@kernel.org>
+ <c623951e-1b47-4e0b-bfa4-338672a5eeb9@quicinc.com>
+ <ee4c0b2b-7a3b-43d1-90b6-369be2194a65@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240605112301.8171-1-animeshagarwal28@gmail.com> <20240606005332.GA3526959-robh@kernel.org>
-In-Reply-To: <20240606005332.GA3526959-robh@kernel.org>
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-Date: Thu, 6 Jun 2024 07:49:27 +0530
-Message-ID: <CAE3Oz82TsuDq5wAW4TSNeUuR0DTixAQPtJnCc3-5J7MnBYtuRw@mail.gmail.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: linux,spdif-dir: Convert to dtschema
-To: Rob Herring <robh@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Daniel Baluta <daniel.baluta@nxp.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ee4c0b2b-7a3b-43d1-90b6-369be2194a65@quicinc.com>
 
-On Thu, Jun 6, 2024 at 6:23=E2=80=AFAM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Jun 05, 2024 at 04:52:55PM +0530, Animesh Agarwal wrote:
-> > Convert the dummy SPDIF receiver bindings to DT schema. Make bindings
-> > complete by adding property "#sound-dai-cells"
->
-> 2 conversions of the same thing in one day:
->
-> https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-conv=
-ert-spdif-receiver-v1-1-262465adbac2@linaro.org/
->
-> As I said there, I would just add the compatible to
-> linux,spdif-dit.yaml. But this is fine too.
->
-> >
-> > Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-> > Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> > ---
-> >  .../bindings/sound/linux,spdif-dir.yaml       | 34 +++++++++++++++++++
-> >  .../bindings/sound/spdif-receiver.txt         | 10 ------
-> >  2 files changed, 34 insertions(+), 10 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/sound/linux,spdif=
--dir.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/sound/spdif-recei=
-ver.txt
-> >
-> > diff --git a/Documentation/devicetree/bindings/sound/linux,spdif-dir.ya=
-ml b/Documentation/devicetree/bindings/sound/linux,spdif-dir.yaml
-> > new file mode 100644
-> > index 000000000000..61767873200f
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/sound/linux,spdif-dir.yaml
-> > @@ -0,0 +1,34 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/sound/linux,spdif-dir.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Dummy SPDIF receiver
-> > +
-> > +maintainers:
-> > +  - Liam Girdwood <lgirdwood@gmail.com>
-> > +  - Mark Brown <broonie@kernel.org>
-> > +
-> > +allOf:
-> > +  - $ref: dai-common.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: linux,spdif-dir
-> > +
-> > +  "#sound-dai-cells":
-> > +    const: 0
->
-> It wasn't in the txt binding, but users also use 'sound-name-prefix'
-> property, so that should be added here.
-linux,spdif-dir.yaml
+On Fri, May 31, 2024 at 03:47:24PM -0700, Mayank Rana wrote:
+> Hi Rob / Mani
+> 
+> On 4/15/2024 4:30 PM, Mayank Rana wrote:
+> > Hi Rob
+> > 
+> > Excuse me for late response on this (was OOO).
+> > On 4/10/2024 9:58 AM, Rob Herring wrote:
+> > > On Mon, Apr 08, 2024 at 11:57:58AM -0700, Mayank Rana wrote:
+> > > > Hi Mani
+> > > > 
+> > > > On 4/5/2024 9:17 PM, Manivannan Sadhasivam wrote:
+> > > > > On Fri, Apr 05, 2024 at 10:41:15AM -0700, Mayank Rana wrote:
+> > > > > > Hi Mani
+> > > > > > 
+> > > > > > On 4/4/2024 10:30 PM, Manivannan Sadhasivam wrote:
+> > > > > > > On Thu, Apr 04, 2024 at 12:11:24PM -0700, Mayank Rana wrote:
+> > > > > > > > On some of Qualcomm platform, firmware
+> > > > > > > > configures PCIe controller into
+> > > > > > > > ECAM mode allowing static memory allocation for
+> > > > > > > > configuration space of
+> > > > > > > > supported bus range. Firmware also takes care of
+> > > > > > > > bringing up PCIe PHY
+> > > > > > > > and performing required operation to bring PCIe
+> > > > > > > > link into D0. Firmware
+> > > > > > > > also manages system resources (e.g.
+> > > > > > > > clocks/regulators/resets/ bus voting).
+> > > > > > > > Hence add Qualcomm PCIe ECAM root complex driver
+> > > > > > > > which enumerates PCIe
+> > > > > > > > root complex and connected PCIe devices.
+> > > > > > > > Firmware won't be enumerating
+> > > > > > > > or powering up PCIe root complex until this
+> > > > > > > > driver invokes power domain
+> > > > > > > > based notification to bring PCIe link into D0/D3cold mode.
+> > > > > > > > 
+> > > > > > > 
+> > > > > > > Is this an in-house PCIe IP of Qualcomm or the same
+> > > > > > > DWC IP that is used in other
+> > > > > > > SoCs?
+> > > > > > > 
+> > > > > > > - Mani
+> > > > > > Driver is validated on SA8775p-ride platform using PCIe DWC IP for
+> > > > > > now.Although this driver doesn't need to know used PCIe
+> > > > > > controller and PHY
+> > > > > > IP as well programming sequence as that would be taken
+> > > > > > care by firmware.
+> > > > > > 
+> > > > > 
+> > > > > Ok, so it is the same IP but firmware is controlling the
+> > > > > resources now. This
+> > > > > information should be present in the commit message.
+> > > > > 
+> > > > > Btw, there is an existing generic ECAM host controller driver:
+> > > > > drivers/pci/controller/pci-host-generic.c
+> > > > > 
+> > > > > This driver is already being used by several vendors as
+> > > > > well. So we should try
+> > > > > to extend it for Qcom usecase also.
+> > > 
+> > > I would take it a bit further and say if you need your own driver, then
+> > > just use the default QCom driver. Perhaps extend it to support ECAM.
+> > > Better yet, copy your firmware setup and always configure the QCom h/w
+> > > to use ECAM.
+> > Good suggestion. Although here we are having 2 set of requirements:
+> > 1. ECAM configuration
+> > 2. Managing PCIe controller and PHY resources and programming from
+> > firmware as well
+> > Hence it is not feasible to use default QCOM driver.
+> > > If you want to extend the generic driver, that's fine, but we don't need
+> > > a 3rd.
+> > I did consider this part before coming up with new driver. Although I
+> > felt that
+> > below mentioned functionality may not look more generic to be part of
+> > pci-host-generic.c driver.
+> > > > I did review pci-host-generic.c driver for usage. although there
+> > > > are more
+> > > > functionalityneeded for use case purpose as below:
+> > > > 1. MSI functionality
+> > > 
+> > > Pretty sure the generic driver already supports that.
+> > I don't find any MSI support with pci-host-generic.c driver.
+> > > > 2. Suspend/Resume
+> > > 
+> > > Others might want that to work as well.
+> > Others firmware won't have way to handle D3cold and D0 functionality
+> > handling as
+> > needed here for supporting suspend/resume as I don't find any interface
+> > for pci-host-generic.c driver to notify firmware. here we are having way
+> > to talk to firmware using GenPD based power domain usage to communicate
+> > with firmware.
+> > 
+> > > > 3. Wakeup Functionality (not part of current change, but would be added
+> > > > later)
+> > > 
+> > > Others might want that to work as well.
+> > possible if suspend/resume support is available or used.
+> > > > 4. Here this driver provides way to virtualized PCIe controller.
+> > > > So VMs only
+> > > > talk to a generic ECAM whereas HW is only directed accessed by
+> > > > service VM.
+> > > 
+> > > That's the existing driver. If if doesn't work for a VM, fix the VM.
+> > Correct.
+> > > > 5. Adding more Auto based safety use cases related implementation
+> > > 
+> > > Now that's just hand waving.
+> > Here I am trying to provide new set of changes plan to be added as part
+> > of required functionality.
+> > 
+> > > > Hence keeping pci-host-generic.c as generic driver where above
+> > > > functionality
+> > > > may not be needed.
+> > > 
+> > > Duplicating things to avoid touching existing drivers is not how kernel
+> > > development works.
+> > I shall try your suggestion and see how it looks in terms of code
+> > changes. Perhaps then we can have more clarity in terms of adding more
+> > functionality into generic or having separate driver.
+> I just learnt that previously dwc related PCIe ECAM driver and MSI
+> controller driver tried out as:
+> 
+> https://lore.kernel.org/linux-pci/20170821192907.8695-1-ard.biesheuvel@linaro.org/
+> 
+> Although there were few concerns at that time. Due to that having dwc
+> specific MSI functionality based driver was dropped, and pci-host-generic.c
+> driver is being updated using with dwc/snps specific ECAM operation.
+> 
+> In current discussion, it seems that we are discussing to have identical
+> approach here.
+> 
+> Atleast on Qualcomm SA8775p platform, I don't have any other way to support
+> MSI functionality i.e. extended SPI or ITS/LPI based MSI or using GICv2m
+> functionality are not supported.
+> 
+> I don't see any other approach other than MSI based implementation within
+> pci-host-generic.c driver for dwc/snps based MSI controller.
+> 
+> Do you have any suggestion on this ?
+> 
 
-If this is the case, I'll add the linux,spdif-dir compatible in
-linux,spdif-dit.yaml instead of creating a new file in v2 of this
-patch.
+Since this ECAM driver is going to be used in newer Qcom SoCs, why can't you use
+GICv3 for MSI handling?
 
-Regards,
-Animesh Agarwal
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
