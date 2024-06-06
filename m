@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-73304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDA0F8FEDB5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 16:39:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 020558FEE1E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 16:41:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EDC66B294C3
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 14:39:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12D7A1C24B04
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 14:41:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F07091BD029;
-	Thu,  6 Jun 2024 14:18:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C6AC1C0DE5;
+	Thu,  6 Jun 2024 14:19:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jMEKxtOS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OIhqFYC4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1A481BD015
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 14:18:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B73401C0DC2;
+	Thu,  6 Jun 2024 14:19:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717683517; cv=none; b=W0PYRcpgRhCsfGjdWqNkfGq6ZGaaHriIoRn7FdX96lQnfmKiMFdAZSxdQeILBncMEPWJ+CkP2huLkDojV/Mrjo2Q/r8aayloZHEFZoiULymkXlFktQV1/fn7CW/BsAfkzVQGmo0ZjvZcUkJcBS91pFiTP/2hOCYsAbkctkZ57lw=
+	t=1717683560; cv=none; b=WqYZoaHGrhpuCq2yQ2Wqjpo6g9Qagb/ytAnBS1Zo9wCg1EoOq/8J2F5E6ma8MKOQs6FTqlVw56dyrRhFkapftIqEYtF086SrFEtQU0HqC5xJnArgQfdNj/8QlCW14VMKE9gvQa/T7xb54xMbeJsoCGVxfzo8f7gOzycaDB4byD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717683517; c=relaxed/simple;
-	bh=BiBCH8sN/o6upysF4HxAnO3+CZdqSl/X/ipq8lpHoS8=;
+	s=arc-20240116; t=1717683560; c=relaxed/simple;
+	bh=EIN+KuUQmKGM4LQhb84pnUKc3j3RvgGFbJhMtBtv63I=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NgPoUbzkZTCznhAC5Ft1p3oNHuTjJekxjFwQt79i+r4wnW4inifjNfwBeeII3E493fRGS1wI9PsD73kag3GtZj6I/2JxIW5ARizkt1CP+TLAp0tZj9z6Iwak5hAJFLCwW2bJjb/L7TZWyfUtzECAH8Yk7Y+DPNAVqaMQ1pjcy1Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jMEKxtOS; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-57aaaf0eb0dso899520a12.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2024 07:18:34 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=MfwrcOKQxX0TvmT2PtCFhPx8ZTHdhHm0iZ0fkldO3eyvcZ7YgAX+Jyg2tn6bin9Nzo7kqVhoIWoU9+AnFeBDpCkssKUvCl6zyjFfsW46EF5UrH84H1i/nc+UiVbZMgGIkxCfU9E3eS1ssssmejzl2TctqS8KcVIfj0RBL4+Z2zw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OIhqFYC4; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-701b0b0be38so1006440b3a.0;
+        Thu, 06 Jun 2024 07:19:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717683513; x=1718288313; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=xsS19cMaV/4EPV/EgQa6AJFHMCscfNLaMnzT0+WkQ94=;
-        b=jMEKxtOS5nZYvuBZXPjBfeTH/eb+peRPJqjF5zhUhMEHTXRvKSO7gbBKR3nymcp1fY
-         ee7vy64bDLVsVXwNcz5Y32Qa4dkP/PDd7JgqyCFLyoyfkhGXthmT/hdcDgqZewdCBMIV
-         zv92YcwPqyVnF93upeLsD6BUpspuGNxpp1STiIW88LPWMHdJKFreu7wFuJQk43H2IGWu
-         kU1A9c8sUJXlmZR+5QmFczv5fGcJuMBg/2cQg4OLJ9PNlNRUVh57vpyad+qVqtACtJrX
-         MjkjMxhuSdWKko5dIPxu+02FvKjxtRI0qVbG0V+OQMX7jwpm11DCel6OmngCr12W6vWW
-         2pXA==
+        d=gmail.com; s=20230601; t=1717683558; x=1718288358; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dcbWossHxFAPWhaCt0jaKVByCwga+fTczv+uXxjTlu0=;
+        b=OIhqFYC4jGwWY+9iFJSrz/vhxDx8jIXoIT/qW/m1VY34nyuoL4hlkA1ZfnjTW1+fyN
+         v7urIQrG8yXSi7Ty3GNa8v7rlDNLf5bTzraPNvXq6uIYzKWwhxNuB5qSM7lTKx6y+ou1
+         324wCln80TlRfv+Hz5yaC5aKAsKBzkG17vdyp6nqb28VsKoeZNWtWgHT5zNFm03we9Jy
+         tkaYH3r1K+X0FFg95ksDFzvbuiazswobVFxHnJlKmPWBUYl3oVKCRQoUFdkqPrj0B/QO
+         lyX9DT7+pB+HZJ4hSTDulIxM+aHiLRM6srpXf8kZrSXMKw86sBMi6i6wT+9zUclPwm/c
+         /D6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717683513; x=1718288313;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xsS19cMaV/4EPV/EgQa6AJFHMCscfNLaMnzT0+WkQ94=;
-        b=sdX7AAf+q8q/nPO+6fN0NGF+oEHEMqKdL1fracedFF77DwUNqp8bb0HS4OKMr0MMqk
-         /N1cR1fXX5krK5yFx5JGqw9xfrc4Q2FQsNVT52sXYEemo1nxnD3RNHm6JpgomOLkGQQ2
-         GI+NE043FZmWBJbQu6MYRliiGV4ldZ3IzPYm5Z0VbhKLrhmeGRkcCGozhBRuJKeSnaKe
-         2l02jhkwGlgcYdS2FVexRAxE+KyOFhyXVwNIhem3dB6MpA7hQKOdzeWI/7eVS6AcBwtT
-         PxX7ljRvgXRV+8yWHILgUdPawOFIAwVtf2PB8sUsVGbVisB78b6H4HxRwRPeojsdfB18
-         /wsg==
-X-Forwarded-Encrypted: i=1; AJvYcCUr8mRD/jTvB5Z4NOiYjUIEkMh/8WXxVN66YluuMJP5/M5mCSu5hkOF0HkhXRi9+IOFfsEkKgNw4DFGTO9kBLzRjDiZh6+xkiC19w==
-X-Gm-Message-State: AOJu0YyL7MKlHlY34XTkcrGlYjTZD94rgtM4JE8mCJm+jAabCY0SHfps
-	+shQFxGbqENHWysDOE1EndGb8mAQJWdHPA3BJ9gh1Iq3sK8KDGq8Uzf94IsVc8s=
-X-Google-Smtp-Source: AGHT+IF2a/gAITjCB/oIM3XJ/g5T7l41X0nPUmERP0+wT+8b4T+Th0D+VXxz+GYynpEWW2HUhPExwg==
-X-Received: by 2002:a17:906:f913:b0:a69:a66:75fe with SMTP id a640c23a62f3a-a699faa9943mr370583566b.11.1717683513131;
-        Thu, 06 Jun 2024 07:18:33 -0700 (PDT)
-Received: from [192.168.128.139] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6c805cc3a4sm103842566b.69.2024.06.06.07.18.31
+        d=1e100.net; s=20230601; t=1717683558; x=1718288358;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dcbWossHxFAPWhaCt0jaKVByCwga+fTczv+uXxjTlu0=;
+        b=gvskTnY/cW+UZE4/MV3Ynj1hpzpNkUjSP/qPHJUiH3vai8PLsXZ8qHZ4TgCm/2GoP/
+         +6LpukE/N+IumBeLcfscCmNIW6b7vPntdxvSnuryy4NxfQth+WkkfcIbi4B70jouUMa+
+         DRgGPL8hfHlkG7cBXL83s4d5jGtqUuavsE3KwJM5APONYPL2NYyQwNj+Bn6UlHvWBasU
+         1ia+ExNeiFRqQZJVvqLGxJA64bctKh6D/vjdtjP1BwbpegY/W7q3Hlkc52SZ8yIMGPf2
+         u+8wT2aa9bAsBtD9JaYKYsmZv6CejBdnI85iHiTdHl3HWBNKaEDdh7ljU8bkJ8Rz7VHq
+         G8Bw==
+X-Forwarded-Encrypted: i=1; AJvYcCW3cTgCH0NBpHhCAfTuoS474/hlK/b8Sh3fBYLO5eXxoyUUak+cLmBHvENQtd4ubjKHpNvYFo18AHYwREI7ewZ0f37DWpNQwqggKRQIWsbu5WGla2cAhf+fN2Txqi/UeyvBLh38ArozwA==
+X-Gm-Message-State: AOJu0YyXr37PVh1TLzHtIIyMihQrEHwbRbMys9YFc/Puql/8/jI6Oqg+
+	GawFAsHERzbxFr4sTFSfKDoFHtbPMJCHATKixJQHJ+9vCIqK2Lrc
+X-Google-Smtp-Source: AGHT+IGW51mR4NTliKKpbb6mL8Di0ngne/w1f8Ev53XXXVhQjFI9ZzWUelNFBR3sa/34xvYKydHeSA==
+X-Received: by 2002:a05:6a20:3c8d:b0:1af:9edd:9cb3 with SMTP id adf61e73a8af0-1b2b7414232mr7369811637.17.1717683557519;
+        Thu, 06 Jun 2024 07:19:17 -0700 (PDT)
+Received: from [10.7.27.90] ([103.170.1.54])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-703fd495062sm1146384b3a.119.2024.06.06.07.19.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jun 2024 07:18:32 -0700 (PDT)
-Message-ID: <9d8ae55f-9528-4685-8ad3-866f4b9eafb8@linaro.org>
-Date: Thu, 6 Jun 2024 16:18:30 +0200
+        Thu, 06 Jun 2024 07:19:17 -0700 (PDT)
+Message-ID: <c32b902e-0338-436b-85e1-827c48e0ee2b@gmail.com>
+Date: Thu, 6 Jun 2024 19:49:04 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,69 +76,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 7/8] clk: qcom: Add GPUCC driver support for SM4450
-To: Ajit Pandey <quic_ajipan@quicinc.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Vinod Koul <vkoul@kernel.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Taniya Das <quic_tdas@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>,
- Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-References: <20240528114254.3147988-1-quic_ajipan@quicinc.com>
- <20240528114254.3147988-8-quic_ajipan@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240528114254.3147988-8-quic_ajipan@quicinc.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: mt6358: Convert to dtschema
+Content-Language: en-US, ar-LB
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20240518081621.63386-1-agarwala.kartik@gmail.com>
+ <c05f91f5-a878-4f36-b325-0ac8e038a7e5@linaro.org>
+From: Kartik Agarwala <agarwala.kartik@gmail.com>
+In-Reply-To: <c05f91f5-a878-4f36-b325-0ac8e038a7e5@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28.05.2024 1:42 PM, Ajit Pandey wrote:
-> Add Graphics Clock Controller (GPUCC) support for SM4450 platform.
+On 5/20/24 12:39 PM, Krzysztof Kozlowski wrote:
+> On 18/05/2024 10:16, Kartik Agarwala wrote:
+>> Convert Mediatek MT6358 Audio Codec bindings from text to dtschema.
+>>
+>> Signed-off-by: Kartik Agarwala <agarwala.kartik@gmail.com>
+>> ---
+>>  .../bindings/sound/mediatek,mt6358.yaml       | 47 +++++++++++++++++++
+>>  .../devicetree/bindings/sound/mt6358.txt      | 26 ----------
+>>  2 files changed, 47 insertions(+), 26 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt6358.yaml
+>>  delete mode 100644 Documentation/devicetree/bindings/sound/mt6358.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt6358.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt6358.yaml
+>> new file mode 100644
+>> index 000000000..f57ef2aa5
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/sound/mediatek,mt6358.yaml
+>> @@ -0,0 +1,47 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/sound/mediatek,mt6358.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Mediatek MT6358 Audio Codec
+>> +
+>> +maintainers:
+>> +  - Kartik Agarwala <agarwala.kartik@gmail.com>
+>> +
+>> +description: |
 > 
-> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
-> ---
+> Do not need '|' unless you need to preserve formatting.
+> 
+>> +  The communication between MT6358 and SoC is through Mediatek PMIC wrapper.
+>> +  For more detail, please visit Mediatek PMIC wrapper documentation.
+>> +  Must be a child node of PMIC wrapper.
+> 
+> Did you update the PMIC wrapper binding with ref to this?
+> 
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Hi Krzysztof, 
 
-Konrad
+I apologize incase this is something obvious but I am still not sure
+if I understand what you expect here. Could you please explain this
+a bit more? I thought that you wanted me to convert the Mediatek PMIC 
+wrapper but it already seems to be in DT-Schema format.[1]
+
+[1]: https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/soc/mediatek/mediatek%2Cpwrap.yaml
+
+Thanks and Regards,
+Kartik Agarwala
 
