@@ -1,104 +1,132 @@
-Return-Path: <devicetree+bounces-73310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3893A8FEF99
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 16:57:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18DC28FF008
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:09:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F4B31C25D57
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 14:57:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0FF85B2D875
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:00:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D98B198A05;
-	Thu,  6 Jun 2024 14:31:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAE54198E98;
+	Thu,  6 Jun 2024 14:37:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YaOFHSwm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="agJQkNzP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD0A196DB4;
-	Thu,  6 Jun 2024 14:31:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23FD51974F3;
+	Thu,  6 Jun 2024 14:37:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717684267; cv=none; b=QjrIVJaNNxgTs6xf/R4zOYH+JP8nEkETwGmXWdzjqaxMNGy/6YVhi56HGe/aJAPne8ZvzFdEwexim1WcAcsRAVIqR2yah923nci+pbJ7nwF702/8zTjACVBXlthjVOyt3+4VFK/iRPBcd9lKv/uD4/YAwBvIDLN7PPY//uiLodU=
+	t=1717684649; cv=none; b=oimHg8hAEU40JqtCfvyHgpHhNwwkmuGbc/DyRHgqzFTzLedahRVVosawHExLORkDbfqtVojLUHqOoVsHoAa2NPwSeeXb9+dSCsL6bwxxjueA67lN1iAe5cSau6SdAbuExbDBS9wHBHCm1QmXxsv9Uygpb2Rl4jJnvGl0WN1ki6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717684267; c=relaxed/simple;
-	bh=n7eQAgqFrklHoWNTTtvx0HdmZAKgyA0Rg4NkkBXt0uI=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 Mime-Version:Content-Type; b=VGv7Plq1HSfYMclh9BBXKxYbrfJciYLTEHKoX1Vh0i6U4Uq3Wjib3um75j6BgZLkbtXuevd58ngfLqBesKI0XQAuqyB6P4omPTs18lu5TZ2YyO4CGx+wV8G5arK2tf1Dzn9Jjpc9/dcYjShkKaFmTxxQvMfbiCf3lajrVYdDGog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YaOFHSwm; arc=none smtp.client-ip=209.85.218.50
+	s=arc-20240116; t=1717684649; c=relaxed/simple;
+	bh=8mMm3AqayXzUESgTdJ1XdJ48K/H9kxzWYjTpfdB4MBA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GMQw4a0IjMOMRnsDt+e+JQ9tNA1WjvNAKd9OUUpQgMdqin2kvrMhZS1L7tnRRH2g7eBuF3E47onzqhXppKwcJWSlQdKwJ7zlnzfmB4on5ITy+sYZdcg2WRYCqEiDuXSIGMSkoqswVYI0Ynl0PX/fmcKZSLqZxzrBCu5BOvB8GHA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=agJQkNzP; arc=none smtp.client-ip=209.85.208.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a68f1017170so130213566b.0;
-        Thu, 06 Jun 2024 07:31:05 -0700 (PDT)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-57a85cc2d96so1313636a12.2;
+        Thu, 06 Jun 2024 07:37:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717684264; x=1718289064; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:subject:references
-         :in-reply-to:message-id:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5Irbw4hNhnmRrLA4d4rMlZj8kSK2cUPNwpibn9I3pIY=;
-        b=YaOFHSwmA6dBC3pCWi1acRohMvjBr/EFYQdleB2uu2tdU6UYLmQFiroauWRvVVCYDB
-         OdvriS2vVTQbH638D6KA1lUwhJlJLhlhfV88AXA+jbtlPwggbL9vq+VFzZMnMaWfbEKg
-         zoTYKIGA+20CpVhAwqcat3u5d75WkPQEV5l7nnejHCCifMfTs0SX29AkcDtPAjkaa4C5
-         8sovRoPJdZSWmVzfvOgoKtnPifs18JHcHkk2ZS3XmeQOilm0GLgf+Jz5IEJTapY6+YLF
-         aMsGXXzdnJ6+bvrtM7gDBDppdThuvoVjPp6YaHlA/X3ZrJuSqzKyKmSmEEueVs1ioJYu
-         GkmA==
+        d=gmail.com; s=20230601; t=1717684646; x=1718289446; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IQPdfmgPChtjBlPSUXP3XdJ6QoXKWpgusRBHic1ZZbo=;
+        b=agJQkNzPtGjTTFW7rAc9NSfNJcOhWUntCJrNOYx0kHbqv9hE3vjFbKQvvRYIi5pHJf
+         6s4km+f0c/U6/SgopQiBfzgpZMNpNNjqQUGqyOf0TsmkMw8Pkhtd+JbgB5VPsBuO81n+
+         mS2rL0Z6gw/CPdixN5CYe73wX0dMAui6gB+//+2qfSvzTh5WKHWcZzbScdSVFZTw8KJY
+         bZGu/PDN9pMjYawaiTDqkv/U8unjRdui+DlHk3TEHu8+bKtOFRokPZgWIMjpi9yoPoKG
+         dxZD7NCRnJreyOhUID981Hs4GRUTpeI7ym3pnSUaxvUuRDA0l3Z+uDWgUaOUbelQyivv
+         uW0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717684264; x=1718289064;
-        h=content-transfer-encoding:mime-version:subject:references
-         :in-reply-to:message-id:cc:to:from:date:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=5Irbw4hNhnmRrLA4d4rMlZj8kSK2cUPNwpibn9I3pIY=;
-        b=K7M1MZqUPl8njSBpM93tROnsDUSAiyzsRUcEwD+bfc1dcmWukr/gRFG4v9NunZIQCR
-         63KencVE+r0oessuTF+zOK3kdcp+7PdrukmDG4dWuu4IgTscuI6A7omvD0aHPhnbtFaW
-         Md9ppXlRcZvOBwTlyfKy+VzKpgdwuV1JYErCC4Wtsvj71JS/gtdFGyHXh8WqnZr1QQiR
-         5yx43MzyGt0Rloul004sXdc0GOaAmVO47p865l/+HCmYKwonVbLhSWIr3Ia7BTs934lJ
-         bOoauJm0+GxI0jrw757VLiHyvTp0IiRRSJADr+46u9wcLn/pW1sbNnOJ6JxdJfKnbfaJ
-         PvUA==
-X-Forwarded-Encrypted: i=1; AJvYcCWZrAsz6up5+wfh8qp/ohtjFErFxJg2xDkYIAEQGqs8DOY6dSt+wh+FDLoudV0ZdUc/kMhRrrox/syT5ZHxn9MRqK3IbxKiP1YDYVyS33m7Lk7Vdc34TDWjHT5xfZTXXlB8ZqfMR8hISA==
-X-Gm-Message-State: AOJu0YyJFwqNFms12bL7KJcJFIdkn0D7377+lMkye91vcEJ7W7dE5e9Z
-	O/2Y0RaHWNgGS/3ybNSz53Er24uN+LXi12IydFxENB0cHMftexwgqdde5w==
-X-Google-Smtp-Source: AGHT+IH8sHZgu1d55sXBe9fnboQhZHmHydOtUhaKeJwLSfjMQslJIkURobVglQD6mtMz46eurQaOcg==
-X-Received: by 2002:a17:906:ca10:b0:a69:12f8:8998 with SMTP id a640c23a62f3a-a699f776748mr392150166b.46.1717684263773;
-        Thu, 06 Jun 2024 07:31:03 -0700 (PDT)
-Received: from localhost (host-95-246-50-43.retail.telecomitalia.it. [95.246.50.43])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6c8b718eeesm14268666b.218.2024.06.06.07.31.03
+        d=1e100.net; s=20230601; t=1717684646; x=1718289446;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IQPdfmgPChtjBlPSUXP3XdJ6QoXKWpgusRBHic1ZZbo=;
+        b=b6ESNdAZ5wme4XvSxUAq3LslDiJWOJXBZ1joEwbx9PZ9Tz2pbla4+W2MN4sRkwIhnZ
+         Q9A2plWaOtZlkHtVjXiQJxDnfHJIUqibbBu7Na/vx7EBnRGam5mwxx00u9IYuDvaiINk
+         Z6I9MhPxkpQsGYp8gKpPdKHH474wFuBWAgZW6xVnDhXlNPoVnpNGDOyf2P9acnWWX/TT
+         2xXZot9MwKKu178KA/NsXy+rn/VZZVfGso0wOQj3ZqzFEN1kyut1GS4Xy3hMRs/mD7ds
+         0nPlyYHSigWcaKKrDVYdYc/JNq5zfe1V7TraV1j4tP3yDsqyENc4dC8fTi00ZIKbwsF8
+         2faQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU+Ch1qNy5AFFePSrIj6TIK2yg4b2lxZCNw0l7yhM5g7X3+Vm9wSfrRVeeIkzNDBxoMLXUeRcDSLSGeLMnl5DcAdti5DhFw6eTr23PI0cGjESFhGlsmCLShlplZhFLcukiZ1kEF2oPlql+U+of7Ry2IdGI9nJeI4v7p6rT+mGvBi4C7wg==
+X-Gm-Message-State: AOJu0Yzp580XNJkTkIufIVZmzGt4xvQAvOVAVnuBeQrTRk7/PX5nTmbn
+	Yala/uMpRNuXcbvpDr/lGx8ARmwj55le6LBcneSu+DkERoZfgOI=
+X-Google-Smtp-Source: AGHT+IHNL5yo/Bdpu8nBzCloyRZW3BrEOgVM80xio31mispBtwt0CtqJWneNcLyY0SGGgTvqC7aD1A==
+X-Received: by 2002:a50:f61d:0:b0:57a:2d01:13cc with SMTP id 4fb4d7f45d1cf-57a8bccb52fmr3586977a12.39.1717684646306;
+        Thu, 06 Jun 2024 07:37:26 -0700 (PDT)
+Received: from U4.lan ([2a02:810b:f40:4600:ed9f:91b7:21f2:3109])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57aae1008adsm1190925a12.38.2024.06.06.07.37.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jun 2024 07:31:03 -0700 (PDT)
-Date: Thu, 06 Jun 2024 16:31:02 +0200
-From: Matteo Martelli <matteomartelli3@gmail.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-Message-ID: <6661c82633d84_2f517370e3@njaxe.notmuch>
-In-Reply-To: <20240522164722.954656-1-matteomartelli3@gmail.com>
-References: <20240522164722.954656-1-matteomartelli3@gmail.com>
-Subject: Re: [PATCH v3 0/2] ASoC: codecs: add support for everest-semi es8311
- codec
+        Thu, 06 Jun 2024 07:37:25 -0700 (PDT)
+From: Alex Bee <knaerzche@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	Alex Bee <knaerzche@gmail.com>
+Subject: [PATCH v3 0/5] Add SFC support for RK3128
+Date: Thu,  6 Jun 2024 16:33:57 +0200
+Message-ID: <20240606143401.32454-2-knaerzche@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Matteo Martelli wrote:
-> This patch set adds support for the Everest-semi ES8311 codec.
-> 
-> Everest-semi ES8311 codec is a low-power mono audio codec with I2S audio
-> interface and I2C control.
+This series adds support for the Serial Flash Controller (SFC) found in
+RK3128 SoCs. The existing driver can be used as-is.
 
-Hello Mark,
-I've just noticed that this patch series has been applied to asoc/for-next and
-linux-next/master but I hadn't receive any "applied" reply mail. Is this
-expected? Just wondering if I missed anything in the process.
+As without using some "id holes" we would run out clock ids when adding the
+additional SFC AHB clock in the binding and would have to touch the ABI, I
+added patches which remove the CLK_NR_CLKS macro and use the recently
+introduced rockchip_clk_find_max_clk_id helper instead to find the highest
+clock id.
 
-Thanks,
-Matteo Martelli
+changes since v1:
+ - added patches to remove CLK_NR_CLKS (Conor)
+
+Link to v1:
+https://lore.kernel.org/all/20240605172154.193047-1-knaerzche@gmail.com/
+
+changes since v2:
+ - collect acks for the dt-bindings patches
+ - fixed pinmux settings for chipselect pincontrols
+
+Link to (the messed version of) v2:
+https://lore.kernel.org/all/20240605205209.232005-1-knaerzche@gmail.com/
+
+Alex Bee (5):
+  clk: rockchip: rk3128: Drop CLK_NR_CLKS usage
+  dt-bindings: clock: rk3128: Drop CLK_NR_CLKS
+  dt-bindings: clock: rk3128: Add HCLK_SFC
+  clk: rockchip: Add HCLK_SFC for RK3128
+  ARM: dts: rockchip: Add SFC for RK3128
+
+ arch/arm/boot/dts/rockchip/rk3128.dtsi | 35 ++++++++++++++++++++++++++
+ drivers/clk/rockchip/clk-rk3128.c      | 21 +++++++++++++---
+ include/dt-bindings/clock/rk3128-cru.h |  3 +--
+ 3 files changed, 53 insertions(+), 6 deletions(-)
+
+
+base-commit: 234cb065ad82915ff8d06ce01e01c3e640b674d2
+-- 
+2.45.2
+
 
