@@ -1,67 +1,63 @@
-Return-Path: <devicetree+bounces-73447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C44888FF620
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 22:55:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 369788FF625
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 22:55:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 484441F27632
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 20:55:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7DD81F27E26
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 20:55:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A059E12AAE2;
-	Thu,  6 Jun 2024 20:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DB1B13B585;
+	Thu,  6 Jun 2024 20:55:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Klky7R6T"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u4wTivRz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 791316F08E;
-	Thu,  6 Jun 2024 20:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EDFB139D1B;
+	Thu,  6 Jun 2024 20:55:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717707307; cv=none; b=gJrcgh7OO5T7SOQLRfI485c6iG5VoawhGNP8+nPkOZbe/Qax6eu7ZvznfR92qpeFAgxqonaVrEMhPLgJY5n3R8xbkkHM9a7trrT1JfK0LpifjkcuB/Ff8eeBFY6NeXYlOU9ixhf0FhWYgjULGEBZnmDp+lZ01bKIy8OdCLg7HDo=
+	t=1717707324; cv=none; b=DdIFstBF+PhXIRzhqk9oRsr9TXiATg86dZ5gqBjPxWsq0x1VVuQhdDCAR6St9uh3N4VY83vsiMBmLGeTASZFdt8z8xHzFpthEfRK2Rww8987CRmA6TZcat86AbEoiHHDWlKRG5KqgSKgsHd1EuqvE7DYS4/Sym2nRHQe9QY9R/E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717707307; c=relaxed/simple;
-	bh=Z8HC3+x9qczXYWa/ofXyj/rI+neSSVhiNEmmwFi1TnM=;
+	s=arc-20240116; t=1717707324; c=relaxed/simple;
+	bh=TgOQgGUpNTBqd9y1OH101hAljlKLssmD0iAqE3VpFbs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iO2/XBCVJ4k33N+DhRQpJiMqeGoSmpyQyrceFpHe1WzBKhyVbd/Nr2DGJ6jzfcaXhkzbMssu8S/xLR+M+TvCRcgzc9vEi6EaY82/WyZjBr5GKsh0odO9AEZltTp1yisRc4u5ewIGx0p0U0KzoRvYSimr6mA0rTbX65Hl+Btko0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Klky7R6T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEF90C2BD10;
-	Thu,  6 Jun 2024 20:55:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=W6AEDlUzsJkNnEmjhhzzAnhQG1wYt7oBV1DNVtxTF7pHFXMnL/2neN83KKgaYN/a1P1ju6IVPf1z28Ytco5eX/Tck/hLmG3jzFtKTK1cmUgrACbsjSFF5OoLv+9rz41saW8ZjRGaPv6qYVC//KE5eMpobg+rLBKUP1Dp3lSVXz4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u4wTivRz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2DE7C2BD10;
+	Thu,  6 Jun 2024 20:55:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717707307;
-	bh=Z8HC3+x9qczXYWa/ofXyj/rI+neSSVhiNEmmwFi1TnM=;
+	s=k20201202; t=1717707323;
+	bh=TgOQgGUpNTBqd9y1OH101hAljlKLssmD0iAqE3VpFbs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Klky7R6TvA/SWXm/3TuVDEjMLW3UqxspVLmDYT/2iTA4/7C6i4efRD9ro7cSI/aDp
-	 XeJppgwIqMwU8TJKQ8Kq2LqDq2GN3EuRN20lpzB6RyAR/A8XvSucBFfIEg1EhMdHwr
-	 T62FuL+zpYjoyYlOH5DUt9oPeZx1qZ11Omx2ajIYWPct9oxVWI64xE3P1GEu39+xqA
-	 2eaejkBazyqIckLhLZlvCHR1BdtNQGZyB3b+or6Nt7JI8F0M9MrZPZpivxKEv84vhH
-	 3LE4SZlLxMVA9BSQ2dAP8UhR9VRPdorkm13Pnh1EIuuMwRs1yIWkotJ5SjPVOKHNFP
-	 fpyJIKqlJiRVw==
-Date: Thu, 6 Jun 2024 14:55:04 -0600
+	b=u4wTivRzn9CfjvSU1lYGLq47Lgu/zBLmgij4j/j3lJblgbvN4h9i2USAE1MpF2kTS
+	 iKn7o+LUUBt0siXWWxj7O+pSaHdq5pthh9AODIx/l3S3v+XgcpUyVUzBTtTXCvkQQQ
+	 DP6NMIvZda5yCsanaSTsc/iv3VQTBXh3FfM4VQw1mLiCwoPRvzYkIeB3ULy8rktIH5
+	 bjZu3YtDN8pUHAGel2l98zBqPIOkx6ZaUiOiBWzkvfnTcU0HfP8fpH7zUBDaw6Mth8
+	 J0AKBLyq8tWoju2uItxG+NMbPjbzbw9c+6M6BsAKa3tn+Qs9ERAURLGyfTWMPGR/p5
+	 N1klVHdB+lFKQ==
+Date: Thu, 6 Jun 2024 14:55:22 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
-	Caleb Connolly <caleb.connolly@linaro.org>,
-	linux-kernel@vger.kernel.org,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	dri-devel@lists.freedesktop.org,
-	David Wronek <david@mainlining.org>,
-	Daniel Vetter <daniel@ffwll.ch>, Conor Dooley <conor+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	David Airlie <airlied@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Sumit Semwal <sumit.semwal@linaro.org>,
-	Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH] dt-bindings: display: panel: constrain 'reg' in DSI
- panels (part two)
-Message-ID: <171770730263.3844490.8634760691751503375.robh@kernel.org>
-References: <20240605105659.27433-1-krzysztof.kozlowski@linaro.org>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: linux-media@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Magnus Damm <magnus.damm@gmail.com>
+Subject: Re: [PATCH v3 RESEND 1/2] media: dt-bindings: renesas,rzg2l-csi2:
+ Document Renesas RZ/G2UL CSI-2 block
+Message-ID: <171770731936.3845029.16595074004713971401.robh@kernel.org>
+References: <20240605154115.263447-1-biju.das.jz@bp.renesas.com>
+ <20240605154115.263447-2-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,27 +66,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240605105659.27433-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240605154115.263447-2-biju.das.jz@bp.renesas.com>
 
 
-On Wed, 05 Jun 2024 12:56:59 +0200, Krzysztof Kozlowski wrote:
-> DSI-attached devices could respond to more than one virtual channel
-> number, thus their bindings are supposed to constrain the 'reg' property
-> to match hardware.  Add missing 'reg' constrain for DSI-attached display
-> panels, based on DTS sources in Linux kernel (assume all devices take
-> only one channel number).
+On Wed, 05 Jun 2024 16:41:14 +0100, Biju Das wrote:
+> Document the CSI-2 block which is part of CRU found in Renesas RZ/G2UL
+> SoC.
 > 
-> Few bindings missed previous fixup: LG SW43408 and Raydium RM69380.
+> The CSI-2 block on the RZ/G2UL SoC is identical to one found on the
+> RZ/G2L SoC.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
-> 
-> This should apply on any tree.
+> v3->v3 resend:
+>  * No change, just rebase.
+> v2->v3:
+>  * Added Rb tag from Geert.
+> v1->v2:
+>  * Added Ack from Conor Dooley.
+>  * Dropped driver reference from commit description.
 > ---
->  .../devicetree/bindings/display/panel/lg,sw43408.yaml        | 4 +++-
->  .../devicetree/bindings/display/panel/raydium,rm69380.yaml   | 5 +++--
->  2 files changed, 6 insertions(+), 3 deletions(-)
+>  Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Applied, thanks!
