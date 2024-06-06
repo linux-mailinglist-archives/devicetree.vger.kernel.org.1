@@ -1,100 +1,112 @@
-Return-Path: <devicetree+bounces-73080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA1CA8FDF84
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:25:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B7F78FDFB5
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:29:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69E7F2824A2
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 07:25:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CE481C216D0
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 07:29:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B5C613B5B9;
-	Thu,  6 Jun 2024 07:25:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6153313C8E0;
+	Thu,  6 Jun 2024 07:28:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UuQp4t53"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="guksln58"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E81F438DE0;
-	Thu,  6 Jun 2024 07:25:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAD4813C3CF;
+	Thu,  6 Jun 2024 07:28:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717658714; cv=none; b=F1s+iwC5B6ruQsWDBhFWrivFKdlIME9sQwZ4+L2+Dipg2JAp2e+LST96tQ8gfos/154dF2Bb3ordw6WxFOYJq3TEodSKnYW4BFHZLXMre10A5MgS0wFkkwFA91Sb0JYbZuMe9CfV1ZDFE3sA4ojsl7mYb74dtB8f5keV6kvDTeg=
+	t=1717658900; cv=none; b=VYgDb/M+rvoltJP4kVdqhgLTpbMfix3dI2SyuASCMT16tjg79f2aamabR92bhayzk0egGR4WZgdCLQXHzTqRLKqQ7/HBERsrulVaKOC7FQ8luzPfinkReH7sJjWOeK4jAE0Ftc3sokDRGAJ+hJEFySz8kqKny69aSNfpI3tU1+Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717658714; c=relaxed/simple;
-	bh=+dT3zLjmC4JMt1RrMdgW6Me3Gqai/TF0UoZl/qk0Y7w=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VfeLSlAJGNjacvcc27Pk0Ng+HA2dQSD73/XJLfRuWFIKHHho1NbN6aEuy8NFECpShg2AA6uCeJ8mwqf7ylokU/hiAAcA+Yl+yPDQSFt8/ekiuI9YTw0rUAfDRjaC15shiS6YajpCr+jZwrA/HCyveYWJRtEPb0x1E3i3A3QFcHg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UuQp4t53; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4B32C4AF0F;
-	Thu,  6 Jun 2024 07:25:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717658713;
-	bh=+dT3zLjmC4JMt1RrMdgW6Me3Gqai/TF0UoZl/qk0Y7w=;
-	h=Date:From:To:List-Id:Cc:Subject:In-Reply-To:References:From;
-	b=UuQp4t53o8YjM4cSMYbUicjmZnQzsTkvkQmQaniLzLtzu9A+NNMOxZzz5+txRPO3y
-	 VRNrM5T18Ra0MjVfB8m3qxYO3OOcHe779oztSpndD34CGz1GwryCod5j97gdFKafxe
-	 yHijxhhoVOgTX3D82/FH3/OwRqdtU+0rPVqSxWq8pnM5KVTx7gn8QDx3EDX71qgYx9
-	 X+xVqp98sBLUOMJzNzNgXpXxZrK/9EIlfVAXE9cpZM2/luHe9I8SXwU9ddscto1RFw
-	 KMDt2IjY7bKhMCUd81fYB2ge92wos9Wp+EumBAivCFrMPX5RmNxgIgYgJia9vE2CMr
-	 HmEFsnW3Yo96g==
-Date: Thu, 6 Jun 2024 09:25:04 +0200
-From: Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Gregory CLEMENT <gregory.clement@bootlin.com>, Arnd Bergmann
- <arnd@arndb.de>, soc@kernel.org, arm@kernel.org, Andy Shevchenko
- <andy@kernel.org>, Hans de Goede <hdegoede@redhat.com>, Ilpo
- =?UTF-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Alessandro Zummo
- <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Christophe JAILLET
- <christophe.jaillet@wanadoo.fr>, Dan Carpenter <dan.carpenter@linaro.org>,
- devicetree@vger.kernel.org, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Guenter Roeck <linux@roeck-us.net>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Linus Walleij
- <linus.walleij@linaro.org>, linux-crypto@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org,
- linux-watchdog@vger.kernel.org, Olivia Mackall <olivia@selenic.com>, Rob
- Herring <robh+dt@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
- Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Sebastian
- Hesselbarth <sebastian.hesselbarth@gmail.com>, Uwe =?UTF-8?B?S2xlaW5lLUs=?=
- =?UTF-8?B?w7ZuaWc=?= <uwe@kleine-koenig.org>
-Subject: Re: [PATCH v11 0/8] Turris Omnia MCU driver
-Message-ID: <20240606092504.37d31917@dellmb>
-In-Reply-To: <CAHp75VdGQUBnbZ2G4tLYBBCD+PeiY4G6HZ6U9ammSMg72TNX7Q@mail.gmail.com>
-References: <20240605161851.13911-1-kabel@kernel.org>
-	<CAHp75VdGQUBnbZ2G4tLYBBCD+PeiY4G6HZ6U9ammSMg72TNX7Q@mail.gmail.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1717658900; c=relaxed/simple;
+	bh=MBoGtXGw67Bq/9cr/0MdyV6ELHHCe1Xnvy2AOKwv5C4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=fvzSXAv+VyhBYhJusscllaEMj3ypixObqt4y1YyDpoWjG02RYSSDfnsCBdZ1wOrXRdh9thKQoY3mIdpID4jfwolE7woYhfYgiUv3SP/VU7KUuMxHqoB9AyUMFTo29RR9Mks7Wg7O+RanCG6/Ur4rxO3Gc0e6VaJW93Knq4WBhhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=guksln58; arc=none smtp.client-ip=46.19.9.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+	s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+	Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=gBqBMEdpgSWaaWwBLc5khMuiytPxATXod4rTVijqgY4=; b=guksln58r54I04NYiWoMUl0V4R
+	pCDiwlA8jyLRRLoivVyXybmV9n+JYTFUd68C0CbL+PpNtVWCrmPbz5XzJRwB3hpvJsTTdPN+Rlqmq
+	Gf0JcluLl/NNm2x9jI9EbOFsJ1azWXGmu0j2s9OB3f4beDN+59cVloz8dEGS6u9fgyHZlZOhRDqyU
+	bCoz46D/PUlnEiAZ9id6eFAXLQQIHqFfhKQoAcnUTK+kWmKIhMbN24PkNoWR/aVVzh+SE+gspOFYR
+	Hkm/6FOy4MPgA1HFjvrLybbaTGOTagnRcgRbsLqnDccy+Q/YsOOc15lrq07p69kUPMGY4cQamZh01
+	I05tkzzw==;
+Received: from [89.212.21.243] (port=52108 helo=localhost.localdomain)
+	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.96.2)
+	(envelope-from <primoz.fiser@norik.com>)
+	id 1sF7Xl-00BQOL-1w;
+	Thu, 06 Jun 2024 09:28:16 +0200
+From: Primoz Fiser <primoz.fiser@norik.com>
+To: Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko.stuebner@cherry.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Sebastian Reichel <sre@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: upstream@lists.phytec.de
+Subject: [PATCH 1/3] dt-bindings: Add vendor prefix for PrimeView
+Date: Thu,  6 Jun 2024 09:28:12 +0200
+Message-Id: <20240606072814.3572965-1-primoz.fiser@norik.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
+X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On Wed, 5 Jun 2024 22:05:37 +0300
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+The Prime View International (PVI) is a LCD panel manufacturer.
 
-> On Wed, Jun 5, 2024 at 7:19=E2=80=AFPM Marek Beh=C3=BAn <kabel@kernel.org=
-> wrote:
-> >
-> > Hello Andy, Hans, Ilpo, Arnd, Gregory, and others,
-> >
-> > this is v11 of the series adding Turris Omnia MCU driver. =20
->=20
-> Thank you!
-> There are a few small issues here and there, but overall LGTM. The
-> only one main question is what to do with gpiochip_get_desc(). I Cc'ed
-> Bart for this.
+Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Thank you for the review, I am going to apply the changes you requested
-and wait for Bart, and we'll see what to do with the
-gpiochip_get_desc().
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index fbf47f0bacf1..2bdfeaa3cc8f 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1154,6 +1154,8 @@ patternProperties:
+     description: Poslab Technology Co., Ltd.
+   "^pov,.*":
+     description: Point of View International B.V.
++  "^primeview,.*":
++    description: Prime View International (PVI)
+   "^powertip,.*":
+     description: Powertip Tech. Corp.
+   "^powervr,.*":
+-- 
+2.25.1
 
-Marek
 
