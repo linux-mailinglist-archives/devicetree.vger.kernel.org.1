@@ -1,158 +1,156 @@
-Return-Path: <devicetree+bounces-73257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73258-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E255D8FE58D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 13:37:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD4CC8FE5C4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 13:51:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01F9F1C242A3
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:37:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80C721F246EE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:51:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5674195808;
-	Thu,  6 Jun 2024 11:36:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92DB1194C80;
+	Thu,  6 Jun 2024 11:51:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F8M8ZF/+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TpZZH2IS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52C1419538A;
-	Thu,  6 Jun 2024 11:36:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D80E194AF8
+	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 11:51:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717673805; cv=none; b=Taf5Cy6nuai75/yAZFkuOVQraG7rPpmPXoZN+Ti1XN4kDY60Lm9Zj9ASuwWpXEWhxyEhC52jRIGBWlnA/klSZ/6NgS5XIU6jDkg8TNC3QPmfQGqhlxFHl5dUb23ex8wy9//0eLfFKWXIGVqIH1+HxLkbpbn+y65AyIhnDAoIooU=
+	t=1717674700; cv=none; b=YAiU9WHxDJrYJa79AxFjetMgLkcEVoHHAn7ABoJ8GuawdkKRpeh5cs/0a3ndc6oVplvUjAEE/PYSLMfWMKafdONBaYBhfiYFYMvP8BzY1sRd7cXLB1Li3lfAymKeSBr8TyriwygODwMq2w9FwUR6szIJQyP0ar3fEUCX2rLLUx4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717673805; c=relaxed/simple;
-	bh=BNivUvo0MWg8WrpAftR8nWhdNcYuD+IaXADkEIdXQfY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Dl3IHqoUfFAJhLpNV7LkhFC5TM9IwETVhABWDLt4ckrH4tW7T9vdtABW4Ax1VzA3lmZ2WQvDntRIeKHu8YVPdrFfE8Iqg5c1t5kK1z4wzrX5Q7ZECp8E+ICaJj0J3vlry4I52ltrzGKLTWfO5CK3AYd7kAxmeoPrI1jvBgGVPtw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F8M8ZF/+; arc=none smtp.client-ip=209.85.221.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-4eb1d56fcadso311881e0c.1;
-        Thu, 06 Jun 2024 04:36:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717673803; x=1718278603; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yDJv2Oma+0BuzzGYTy4GUHcJcQy1lEY6HhimPzAvoR8=;
-        b=F8M8ZF/+5iH7ungUsj3eDRh/TCDwqUE47RVy7LOOrgxVz1SdwS499EQlJqa3rXEXDO
-         bNsPtwPx3gwMQrSCyvPoOMqjXrJ14yURYuWdmhoGsUsOw1/N8GQf2kUNMtx1/bqp3oT1
-         iaYWTM9ovTt/3WE3/l2+6aG9lH5n9DwUEpHIEwrnxiKv8gB82dcq+PYSMIDGcmtPGxRe
-         Cxf3Vo3SqPsIWSIleIlsnObJ0b0m7dxT0Bm+n5qq9PxOo1gfzZUE5LYSoZpqqsjxWfRy
-         lfOFy2ZAybAnNZAiVPegf2AVZ9WatyXqS8VGur1V/Ol6qd5ZsfRbE+P/pp4aL8+HwRFM
-         E3yQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717673803; x=1718278603;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yDJv2Oma+0BuzzGYTy4GUHcJcQy1lEY6HhimPzAvoR8=;
-        b=w9Twx86k/ClL1Mw/PGSeYT1NXS0MuFYWo6XKzsmsusAsN5wJjcWFtKVuIIO3X2yyW8
-         QXZ/myDg1bBLA4YqzHTEdCIR1+Kw4wZdCaoLK9EYZnjzwHmY4uul77lrKAjm3wPWLKx7
-         ZTFDVm4SWF+W11f7diwYeckfNRgPs0rAyF4sbdhupTvi0KSZ7/aZ0wRI5TTYeh/lcHf0
-         rI9mTLC9lvnOTR+bOLBnzMvqh1wPGRKXOLblmwMOlj7UsajmJT3EI5N/kNqVJQ9AX9L9
-         rUBdHcPmKe7CjJiLi3L0CYWaQ/LseodgFS4ka1BmP9geLADrJWft5/trj3dckm6GwOKa
-         j8NA==
-X-Forwarded-Encrypted: i=1; AJvYcCXaalyjDj4i4Imz6b/lTZyECG3mHrU1WIna7Ml5JKY2WlYmlw9nTAmiX13gRHO/DvGpm70vTljqoYafYTd6EygBqpgJg/BQHQtVO5knpSnx2NEHiWemaZZ8lcze6oOLv40oz2i/fMmkEFyt7nquqaddK7JlLo6na0HsQ30FrDGlijQU/kOLextYlnBU1gnrc7PknnGBg982cMTlb9J1JksfbwLhpoh3
-X-Gm-Message-State: AOJu0YwnUuHD08EYQ+29JEQx3yCn9qv3Tm4pzlMpaTdwm//DUOC3mPO/
-	Zt+XpGvcQAwYZSfPW9JTQTfFUe3fEe5BoCG4SrOFvCBbTs/nmVXUK0LswPITSjG/dWkmQkUQZ3a
-	4rR3wz2yavsBWsdcrdPLybXh2vuc=
-X-Google-Smtp-Source: AGHT+IGmX/vXqqcbJDok3bmZfA2zsm6PMj+/KTKNDG1N016exsq6IHYwqta73CQHrJyGXmANBw/XqOIOj3QU5fMKlrA=
-X-Received: by 2002:a05:6122:1787:b0:4d8:7b33:c624 with SMTP id
- 71dfb90a1353d-4eb3a282ceemr7193842e0c.0.1717673803069; Thu, 06 Jun 2024
- 04:36:43 -0700 (PDT)
+	s=arc-20240116; t=1717674700; c=relaxed/simple;
+	bh=WrKr6/yeqX5AZnZi1jeXYMb45lWnUi2IZopET+TwnyM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=koVVUh5WXBQkmSoTcqIG9jiXWL4oPK6Q+2qoVForQU9yY+cwL+v4TvmfiMTc3WmvigI9A8feCSwpYPWORL0hpp9CtSppEEe4g693cYtHr6e7FNICrmB8wYenjG+NP8HHq6Yalrl799rz8NwOj2dQzmiYGE13YAPavI+pyTiIAl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TpZZH2IS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29505C2BD10;
+	Thu,  6 Jun 2024 11:51:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717674699;
+	bh=WrKr6/yeqX5AZnZi1jeXYMb45lWnUi2IZopET+TwnyM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TpZZH2ISKKX6C39LCuP/Om+lTpYEocG3uKY4HSIKxFN9yrFI/dCMp9kRtWfYVNGhY
+	 ejE0XcAaIy87jX5MFp5taWR3ecK9olNy3Ns2Q1hKwSBjSKd6P8GSx8N88P/1hPECeJ
+	 NiJnSDekn0MA6ZVgXrP7USfOmHiOawbFzrC+l7zM2SKPvbJ3be99b+WXJijyOTTP7S
+	 JiA6H2tw6J+rzhM8CgcTqbLAEt2ACffnCUEJGobcH7BJc57Tcovnmh0M9x4uJejbCr
+	 qWpnUmmmCM4g1c/MUCjs1TJBKY3QaHiGopFWy31gNfZ+K/KHHiK5BSGNCNb8rR4x7F
+	 99duAtCI6GnNg==
+Date: Thu, 6 Jun 2024 12:51:33 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Ryan Walklin <ryan@testtoast.com>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hironori KIKUCHI <kikuchan98@gmail.com>,
+	Chris Morgan <macroalpha82@gmail.com>,
+	Andre Przywara <andre.przywara@arm.com>,
+	John Watts <contact@jookia.org>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: panel: Add WL-355608-A8
+ panel
+Message-ID: <20240606-authentic-mongoose-9485904a91a1@spud>
+References: <20240530211415.44201-1-ryan@testtoast.com>
+ <20240530211415.44201-3-ryan@testtoast.com>
+ <20240606-intelligent-aromatic-magpie-80a7a4@houat>
+ <2dc1fdec-7673-4462-abe1-fecf8e3e826b@linaro.org>
+ <20240606-refreshing-cinnamon-ibex-a0fe73@houat>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240524082800.333991-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240524082800.333991-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdWzrEKFHauJ=6UnsufJjDO3LfJ45eJXx1V72AmVzvsjyw@mail.gmail.com> <CAMuHMdXdFM2u5TjRQZCSiigC=uBk1kz6aW6hYTy5Wa=PCgX7yQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdXdFM2u5TjRQZCSiigC=uBk1kz6aW6hYTy5Wa=PCgX7yQ@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 6 Jun 2024 12:36:17 +0100
-Message-ID: <CA+V-a8sch-XTk2ByBztEQd3QDef4RbVt7k-k=GnJGd-XvAkAdg@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: clock: renesas: Document RZ/V2H(P) SoC
- CPG driver
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="7T14RzoLsQlYusAZ"
+Content-Disposition: inline
+In-Reply-To: <20240606-refreshing-cinnamon-ibex-a0fe73@houat>
+
+
+--7T14RzoLsQlYusAZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Geert,
+On Thu, Jun 06, 2024 at 01:23:03PM +0200, Maxime Ripard wrote:
+> On Thu, Jun 06, 2024 at 11:37:31AM GMT, Neil Armstrong wrote:
+> > On 06/06/2024 11:32, Maxime Ripard wrote:
+> > > On Fri, May 31, 2024 at 09:12:14AM GMT, Ryan Walklin wrote:
+> > > > The WL-355608-A8 is a 3.5" 640x480@60Hz RGB LCD display used in a
+> > > > number of handheld gaming devices made by Anbernic. By consensus a
+> > > > vendor prefix is not provided as the panel OEM is unknown.
+> > >=20
+> > > Where has this consensus been found?
+> > >=20
+> > > I had a look at the previous discussions, and I can't find any consen=
+sus
+> > > being reached there. And for that kind of thing, having the ack or
+> > > review of any of the DT maintainers would have been great.
+> >=20
+> > There was a consensus with Conor, this is why he acked v2, see
+> > https://lore.kernel.org/all/20240525-velvet-citable-a45dd06847a7@spud/
+>=20
+> It's probably a matter of semantics here, but if it's with only one
+> person, it's not a consensus but an agreement.
+>=20
+> > ```
+> > I think if we genuinely do not know what the vendor is then we just
+> > don't have a prefix.
+> > ```
+>=20
+> And even then, I don't interpret Conor's statement as a formal agreement
+> but rather an acknowledgment of the issue.
 
-Thank you for the review.
+I mean, I specifically left an r-b below that line in v2:
+https://lore.kernel.org/all/20240530-satchel-playgroup-e8aa6937b8b9@spud/
 
-On Wed, Jun 5, 2024 at 10:42=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Tue, Jun 4, 2024 at 5:49=E2=80=AFPM Geert Uytterhoeven <geert@linux-m6=
-8k.org> wrote:
-> > On Fri, May 24, 2024 at 10:29=E2=80=AFAM Prabhakar <prabhakar.csengg@gm=
-ail.com> wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Document the device tree bindings of the Renesas RZ/V2H(P) SoC
-> > > Clock Pulse Generator (CPG).
-> > >
-> > > CPG block handles the below operations:
-> > > - Handles the generation and control of clock signals for the IP modu=
-les
-> > > - The generation and control of resets
-> > > - Control over booting
-> > > - Low power consumption and the power supply domains
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
->
-> >
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
-> > > +
-> > > +  '#clock-cells':
-> > > +    description: |
-> > > +      - For CPG core clocks, the two clock specifier cells must be "=
-CPG_CORE"
-> > > +        and a core clock reference, as defined in
-> > > +        <dt-bindings/clock/r9a09g057-cpg.h>,
-> > > +      - For module clocks, the two clock specifier cells must be "CP=
-G_MOD" and
-> > > +        a module number, as defined in <dt-bindings/clock/r9a09g057-=
-cpg.h>.
-> > > +    const: 2
-> >
-> > I understand this will be changed to 1, the clock number?
->
-> We typically come up with our own definitions in header files if there
-> are no suitable module numbers listed in the hardware documentation.
->
-Agreed.
+I'm not a displays guy, so my sources were limited to what I could find
+=66rom search engines, but I spent some time looking for an actual vendor
+of the panel and could not. All I found was various listings on places
+like AliExpress that did not mention an manufacturer. I'd rather not
+invent a vendor because we could not find the actual vendor of the
+panel & it seemed rather unreasonable to block support for the device
+on the basis of not being able to figure out the vendor. If you, as
+someone knowledgeable on displays, can figure the vendor out, then
+yeah we should definitely add it.
 
-> For RZ/V2H, you could use a combination (e.g. concatenation) of the
-> column (register) and row (bit) numbers from Tables 4.4-14-19
-> ("Specifications of the CPG_CLKON_m Registers") and Tables 4.4-22-25
-> ("Specifications of the CPG_RST_m Registers") as the clock resp. reset
-> number, like is done on R-Car Gen2+ SoCs (see MOD_CLK_PACK() for
-> conversion from sparse to packed module numbers).
->
-Thanks for the pointer.
+> > I agree with Conor so I applied the patchset after Connor reviewed it a=
+nd the comment was fixed in v3:
+> > https://lore.kernel.org/all/20240530-satchel-playgroup-e8aa6937b8b9@spu=
+d/
+>=20
+> Yeah, I know. Still, it's a major deviation to what we've always been
+> doing, getting the DT maintainers voice on that would have been a good
+> idea.
 
-I'll model as per your suggestion (this way we can avoid adding any
-macros for module clocks) and dont have to worry about reserved bits.
+Is it a consensus of DT maintainers you're looking for?
 
 Cheers,
-Prabhakar
+Conor.
+
+--7T14RzoLsQlYusAZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmGixQAKCRB4tDGHoIJi
+0kGRAQDTdQpSL5yVbv/CO+lPJV28uEnE9+goRFPlQIK42X8q9wD9GZgwwlfeQL/r
+DixUbXYNKdvuE3COu38UncJ25jF/aQ0=
+=biq6
+-----END PGP SIGNATURE-----
+
+--7T14RzoLsQlYusAZ--
 
