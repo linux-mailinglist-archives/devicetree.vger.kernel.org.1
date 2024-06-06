@@ -1,160 +1,248 @@
-Return-Path: <devicetree+bounces-73194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7832C8FE31E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:38:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31D418FE321
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:38:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24334287991
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:38:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A721D1F27C74
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:38:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4E36152783;
-	Thu,  6 Jun 2024 09:37:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF5B0146D53;
+	Thu,  6 Jun 2024 09:38:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p3aYE7m7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RPewTq3A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B63B1514DB
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 09:37:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3264E13D2A4;
+	Thu,  6 Jun 2024 09:38:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717666656; cv=none; b=c2gjoe9l0gJnH/wN2pa19e3pGWUS57GMXKcKAXaswM+kyLQv7fGSA/YjptXMsUtrJ9/JrHkprU+FQSWuTCXu9MQaHlVmfx4vJAdEebMEvXg4GP8w6TZsNPse6sx1js71sizTw+heTxIeRdoo16Bx7Kh7gq+lMKKQt0N/hNwkNw4=
+	t=1717666722; cv=none; b=mWpDAp04xYWlo4HOyhs2doWHA3qpJ8D5IEWRq4UN6Mq7NirQC8yljaRr/RWr5/6xzb/67SDe/XoiPwwvnncGN05+oQPP0OpPng5WG2zZj2RKECsCeZbLypb+yTMk5BhBEAvkeSyFLdlcMQdac+g50NLTc/kinXnRYPZFs4xAn8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717666656; c=relaxed/simple;
-	bh=SBSh8VpUg7A3L7YfRkydikNEtcWMtr5sTQZUFXJELxQ=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=hMZ+lwgnFEleVhNdYd9k6b7dXkwrWrKZU8QfQvT9W9DJnpuJpc5/PnteeJPYQg8T0n02aag29/Wiz3lTZ8utwTv2a/1w7pnZRNRpW0WkfUcma8Be+TZsLHUECHOWcF5LeKAie8a7c6KUn9+vsVN8WO2AvRYyM52j5QvLHTYn9K8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=p3aYE7m7; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4214f803606so8112305e9.0
-        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2024 02:37:34 -0700 (PDT)
+	s=arc-20240116; t=1717666722; c=relaxed/simple;
+	bh=vqU/LAIuLv3MxglpSiLAs1b6iyW6OFeCtRLiL2wpHbE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CWHhQqSjSfqJfxUxUqaLNBzPK4F+gSr3Sv2Zo3XfrFqB3WFtaZJcaTCPE3/LsGBUAgDscwNLFUHtFdSxsPsjlNr3lQ1UEo87iYJgIRva7PK8qT7m+ZEqZNYZH3Aecg32sS6JaKRvZq6TFTi7GnTT6mH1qka+5p7g3MB4wo45M70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RPewTq3A; arc=none smtp.client-ip=209.85.221.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-4eb3e4bdbb9so242931e0c.0;
+        Thu, 06 Jun 2024 02:38:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717666653; x=1718271453; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RCQdvPHC+1D0KbLKcaQqh85703XDLJL62lsU4LBVhIk=;
-        b=p3aYE7m79XK/6LchN9ygEIIbYeGt3vgvweaNd481iNZqTBpUPtHt+VwOLznVsI05Xa
-         Gy8cO3EQffdi/V5IGiBuJoQ+I/Pc8pvVbp/5tzRl6cfKbUmw4CCchwknQbNTEXkBu6cb
-         MeuaVxMp+K8mPRTVzvUpSrjtuXCbk918Xsp4DHtZ7oYuseBQ6ks+YB9Ey9UGMZEWMfNt
-         ZI3irMUKmfsEqc+l6cmsh4nXQrL2/HZwJLPIUJHga9WX9/BkLDFdurxawzizwhm/2iMj
-         6iY6i7B3XRUPtDOqgQWnBkYz94JIdnEF9cNFd+tQ1DFIdsHenzdrybIKykRvmyWbuAiO
-         dNZw==
+        d=gmail.com; s=20230601; t=1717666720; x=1718271520; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/uzRoQkjhLlH3aMQ2w1B8Mep7CWm5DreMQa4sEdwu3E=;
+        b=RPewTq3AnvSfVvVYa13qzMDl2TzPffBzXZ5vgptf7qMVlFbxsimUN9dJMELFp2LUjE
+         Sl1qTZSfWv5O0j1a568Trf4v0PEOGmQe3Dhyxgjf4Now0ao7xeJAMPZznM+XRcmut+QE
+         NSoT/KchvA+5A0DNDMYxc5mE5uGtTsrMoneIRo6wLoYmFeG05AEOE7dIZEGfkIB0aE+S
+         yocAtnGyjcdm+YIaaGJJStWXyg6bFY1c0CVteMt3EIBFJtcujSaXs2VDRbsegk4K/INe
+         oxNnt6UIIY94r/hPzzzBZs8eYNBaNaxdBn/GUUqm657iXRrKBEWGVAGDZP972UvmZ08k
+         BquQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717666653; x=1718271453;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=RCQdvPHC+1D0KbLKcaQqh85703XDLJL62lsU4LBVhIk=;
-        b=ldTxuFsrYiUH+/9gQz11QsxPzjXlD8ifAWdi//i5nRqgSK64YqM1D6+xzbbIxCdxKu
-         CZDEc9kHRFi3p6SP0qdLwszm7e8IUBbP3+DoL3iigO2DsP+1yEii4jgQalsZH1nU6qH3
-         /QdQbVQGoyn8SkEOKEkuoTKJ3lc9mLbJLArjRBJ0JT8A+R/I3VVU/wziAoC5GaN5ykeP
-         alvADhC0QsYKd4cnZaBoWACExK6NClWnTctUVU5xx5O+cfyykHUS/JCUC4Xnk9x0PdJh
-         267WNYJ3UK7JQFvPSgGxYklmswPw809FPriGUmG3RAVFC9i1RRJI8gtt0l/yeyCLM8mO
-         +Cqw==
-X-Forwarded-Encrypted: i=1; AJvYcCX86rGTBnbfQ90T+B4OAhhNI7vqKZYStkwynJHaSVy4pbG+TSroemTEf91ecfTjnm1IS0XmQSamDfn+DX/Ge2/LH1agGtLS1ZiGqw==
-X-Gm-Message-State: AOJu0Yzy4PflAOJlWB1aF+sKIPhaFH8Achdn7wnoqYm19KujvnnMIGmQ
-	s03Ch7EP6jNfmNPDatszhSawuRUReOnaAXWSNGVKCfz3QF0QnmsZfEIvVJRmczk=
-X-Google-Smtp-Source: AGHT+IG6HdUEIpt883LUTHjTSr7jGD/461VkUD1BosW8cmHsPaeNl6UmT40F+K7TVSbyuBhGfQv37w==
-X-Received: by 2002:a05:600c:c3:b0:421:48ad:60b3 with SMTP id 5b1f17b1804b1-4215634db50mr44930755e9.34.1717666653403;
-        Thu, 06 Jun 2024 02:37:33 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:22fd:4ae6:287f:17f2? ([2a01:e0a:982:cbb0:22fd:4ae6:287f:17f2])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215c2c7e8fsm15503555e9.38.2024.06.06.02.37.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jun 2024 02:37:33 -0700 (PDT)
-Message-ID: <2dc1fdec-7673-4462-abe1-fecf8e3e826b@linaro.org>
-Date: Thu, 6 Jun 2024 11:37:31 +0200
+        d=1e100.net; s=20230601; t=1717666720; x=1718271520;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/uzRoQkjhLlH3aMQ2w1B8Mep7CWm5DreMQa4sEdwu3E=;
+        b=fsfwTIZCxHXqmgFospEllnOdsFtOIqg3n+k+lROl8SNeAJEnYtV7AOv/yaa9tfS3ob
+         ZZGBnE7Fy4HqmS7Y6SKuylSPiwx8Wu9JkAuQMze/GXHb0bUHX/k2NsvvoTgAplzVxIhl
+         SD0/5sxvPLdICrJXlXiQLWo5v9K8N8Pc8bsN2w+RZhLjx/KHMWlY+B6Ci95xE3CbVS1P
+         zdC/EFk3JytNNDgbaozVNA3bGTZdge3gsDBIsQW2+g/FbW4KrCXwNi4X+DbqwzSyHNZp
+         ezk9DRJU0CZeEvubAU3Jv7kmn9hunglzznHPBYTWVpWoLEStOoht9QSMPZbkquu1HCoo
+         1wwg==
+X-Forwarded-Encrypted: i=1; AJvYcCUDjomeSCV/X6q9JpNEb106hZvWRn/NuMCdEuIpsxuq/XrGpvWxBgHmYybtPCot9Bja2V4eE/QurhwdYIqxTv4OdIIpU9VLTsY3h0j75HqM5u0uWgtx7aodw7nSw1dJghnT1NGRkTtl7KXEuXJXd9dFk1zCprpHt5gQhodJSXf5ajZHc9GaQbDvyd6Q3TzwzXdm9NBJJEB/4XEnc4EhFNTwTs+Kpdul
+X-Gm-Message-State: AOJu0YyRHh2x6cN/5D+yvxLTHDDW39BcobOevSRdXGDqoJyYk8uW8hUT
+	71BQDWPwcG6ghz49kCmBQvxqQDnIXOkjrcC9+EU562gOcMulUg356nNu//i+sxZJDHRasmEmx+G
+	+C6cWX0emuG1fo840P5mamIOt6QM=
+X-Google-Smtp-Source: AGHT+IHAC481NqArocQeFW+Qj/4Ff7uVhQb47OdnDRkX5aVif4JsrBIBTupUWE+GRC5pxgihrQhNxLyPDog9pldz2AE=
+X-Received: by 2002:a05:6122:489b:b0:4c9:a9c9:4b3b with SMTP id
+ 71dfb90a1353d-4eb3a4145acmr6751705e0c.9.1717666719889; Thu, 06 Jun 2024
+ 02:38:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: panel: Add WL-355608-A8
- panel
-To: Maxime Ripard <mripard@kernel.org>, Ryan Walklin <ryan@testtoast.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Hironori KIKUCHI <kikuchan98@gmail.com>,
- Chris Morgan <macroalpha82@gmail.com>,
- Andre Przywara <andre.przywara@arm.com>, John Watts <contact@jookia.org>,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20240530211415.44201-1-ryan@testtoast.com>
- <20240530211415.44201-3-ryan@testtoast.com>
- <20240606-intelligent-aromatic-magpie-80a7a4@houat>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240606-intelligent-aromatic-magpie-80a7a4@houat>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240605074936.578687-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240605074936.578687-5-prabhakar.mahadev-lad.rj@bp.renesas.com> <TY3PR01MB113464449FACE8364BF667CBB86FA2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+In-Reply-To: <TY3PR01MB113464449FACE8364BF667CBB86FA2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Thu, 6 Jun 2024 10:38:12 +0100
+Message-ID: <CA+V-a8tXLsfTvuCWDqiFkWbe=C2Coo8KF4GchbHPzOG+RTiChw@mail.gmail.com>
+Subject: Re: [RFC PATCH 4/4] mmc: renesas_sdhi: Add support for RZ/V2H(P) SoC
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 06/06/2024 11:32, Maxime Ripard wrote:
-> On Fri, May 31, 2024 at 09:12:14AM GMT, Ryan Walklin wrote:
->> The WL-355608-A8 is a 3.5" 640x480@60Hz RGB LCD display used in a
->> number of handheld gaming devices made by Anbernic. By consensus a
->> vendor prefix is not provided as the panel OEM is unknown.
-> 
-> Where has this consensus been found?
-> 
-> I had a look at the previous discussions, and I can't find any consensus
-> being reached there. And for that kind of thing, having the ack or
-> review of any of the DT maintainers would have been great.
+Hi Biju,
 
-There was a consensus with Conor, this is why he acked v2, see
-https://lore.kernel.org/all/20240525-velvet-citable-a45dd06847a7@spud/
+Thank you for the review.
 
-```
-I think if we genuinely do not know what the vendor is then we just
-don't have a prefix.
-```
+On Thu, Jun 6, 2024 at 10:32=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas.co=
+m> wrote:
+>
+> Hi Prabhakar,
+>
+> Thanks for the feedback.
+>
+> > -----Original Message-----
+> > From: Prabhakar <prabhakar.csengg@gmail.com>
+> > Sent: Wednesday, June 5, 2024 8:50 AM
+> > Subject: [RFC PATCH 4/4] mmc: renesas_sdhi: Add support for RZ/V2H(P) S=
+oC
+> >
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > The SDHI/eMMC IPs found in the RZ/V2H(P) (a.k.a. r9a09g057) are very si=
+milar to those found in R-
+> > Car Gen3. However, they are not identical, necessitating an SoC-specifi=
+c compatible string for
+> > fine-tuning driver support.
+> >
+> > Key features of the RZ/V2H(P) SDHI/eMMC IPs include:
+> > - Voltage level control via the IOVS bit.
+> > - PWEN pin support via SD_STATUS register.
+> > - Lack of HS400 support.
+> > - Fixed address mode operation.
+> >
+> > sd_iovs and sd_pwen quirks are introduced for SoCs supporting this bit =
+to handle voltage level
+> > control and power enable via SD_STATUS register.
+> >
+> > regulator support is added to control the volatage levels of SD pins vi=
+a sd_iovs bit in SD_STATUS
+> > register.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  drivers/mmc/host/renesas_sdhi.h               |  7 ++
+> >  drivers/mmc/host/renesas_sdhi_core.c          | 67 +++++++++++++++++--
+> >  drivers/mmc/host/renesas_sdhi_internal_dmac.c | 45 +++++++++++++
+> >  drivers/mmc/host/tmio_mmc.h                   |  4 ++
+> >  4 files changed, 118 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/drivers/mmc/host/renesas_sdhi.h b/drivers/mmc/host/renesas=
+_sdhi.h index
+> > 586f94d4dbfd..9ef4fdf44280 100644
+> > --- a/drivers/mmc/host/renesas_sdhi.h
+> > +++ b/drivers/mmc/host/renesas_sdhi.h
+> > @@ -11,6 +11,8 @@
+> >
+> >  #include <linux/dmaengine.h>
+> >  #include <linux/platform_device.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/regulator/driver.h>
+> >  #include "tmio_mmc.h"
+> >
+> >  struct renesas_sdhi_scc {
+> > @@ -49,6 +51,11 @@ struct renesas_sdhi_quirks {
+> >       bool manual_tap_correction;
+> >       bool old_info1_layout;
+> >       u32 hs400_bad_taps;
+> > +     bool sd_iovs;
+> > +     bool sd_pwen;
+> > +     struct regulator_desc *rdesc;
+> > +     const struct regmap_config *rdesc_regmap_config;
+> > +     unsigned int rdesc_offset;
+> >       const u8 (*hs400_calib_table)[SDHI_CALIB_TABLE_MAX];
+> >  };
+> >
+> > diff --git a/drivers/mmc/host/renesas_sdhi_core.c b/drivers/mmc/host/re=
+nesas_sdhi_core.c
+> > index 12f4faaaf4ee..2eeea9513a23 100644
+> > --- a/drivers/mmc/host/renesas_sdhi_core.c
+> > +++ b/drivers/mmc/host/renesas_sdhi_core.c
+> > @@ -248,6 +248,19 @@ static int renesas_sdhi_card_busy(struct mmc_host =
+*mmc)
+> >                TMIO_STAT_DAT0);
+> >  }
+> >
+> > +static void renesas_sdhi_sd_status_pwen(struct tmio_mmc_host *host,
+> > +bool on) {
+> > +     u32 sd_status;
+> > +
+> > +     sd_ctrl_read32_rep(host, CTL_SD_STATUS, &sd_status, 1);
+> > +     if (on)
+> > +             sd_status |=3D  SD_STATUS_PWEN;
+> > +     else
+> > +             sd_status &=3D  ~SD_STATUS_PWEN;
+> > +
+> > +     sd_ctrl_write32(host, CTL_SD_STATUS, sd_status); }
+> > +
+>
+> May be use regulator_set_voltage() to set this??
+>
+This is the PWEN bit which is not modelled as a regulator, we cannot
+use regulator_set_voltage() to set this bit.
 
-I agree with Conor so I applied the patchset after Connor reviewed it and the comment was fixed in v3:
-https://lore.kernel.org/all/20240530-satchel-playgroup-e8aa6937b8b9@spud/
+> >  static int renesas_sdhi_start_signal_voltage_switch(struct mmc_host *m=
+mc,
+> >                                                   struct mmc_ios *ios)
+> >  {
+> > @@ -587,6 +600,9 @@ static void renesas_sdhi_reset(struct tmio_mmc_host=
+ *host, bool preserve)
+> >                                         false, priv->rstc);
+> >                       /* At least SDHI_VER_GEN2_SDR50 needs manual rele=
+ase of reset */
+> >                       sd_ctrl_write16(host, CTL_RESET_SD, 0x0001);
+> > +                     if (sdhi_has_quirk(priv, sd_pwen))
+> > +                             renesas_sdhi_sd_status_pwen(host, true);
+> > +
+> >                       priv->needs_adjust_hs400 =3D false;
+> >                       renesas_sdhi_set_clock(host, host->clk_cache);
+> >
+> > @@ -904,6 +920,34 @@ static void renesas_sdhi_enable_dma(struct tmio_mm=
+c_host *host, bool enable)
+> >       renesas_sdhi_sdbuf_width(host, enable ? width : 16);  }
+> >
+> > +static int renesas_sdhi_internal_dmac_register_regulator(struct platfo=
+rm_device *pdev,
+> > +                                                      const struct ren=
+esas_sdhi_quirks *quirks) {
+> > +     struct tmio_mmc_host *host =3D platform_get_drvdata(pdev);
+> > +     struct renesas_sdhi *priv =3D host_to_priv(host);
+> > +     struct regulator_config rcfg =3D {
+> > +             .dev =3D &pdev->dev,
+> > +             .driver_data =3D priv,
+> > +     };
+> > +     struct regulator_dev *rdev;
+> > +     const char *devname;
+> > +
+> > +     devname =3D devm_kasprintf(&pdev->dev, GFP_KERNEL, "%s-vqmmc-regu=
+lator",
+> > +                              dev_name(&pdev->dev));
+> > +     if (!devname)
+> > +             return -ENOMEM;
+> > +
+> > +     quirks->rdesc->name =3D devname;
+> > +     rcfg.regmap =3D devm_regmap_init_mmio(&pdev->dev, host->ctl + qui=
+rks->rdesc_offset,
+>
+> This is (CTL_SD_STATUS << 2) , so the variable can be dropped from quirks=
+.
+>
+rdesc_offset is added to make code generic, that is in future if there
+is a new chip with a different offset which supports IOVS we can just
+pass the offset for it.
 
-> 
-> For this kind of cases, we usually use the device it's attached to as
-> the vendor, so anbernic in this case. Can you send a followup patch?
-> 
-> Maxime
-
-Neil
-
+Cheers,
+Prabhakar
 
