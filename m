@@ -1,52 +1,43 @@
-Return-Path: <devicetree+bounces-73361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBF558FF1EA
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 18:13:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3EF48FF20C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 18:16:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D1DE7B2D513
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 16:08:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85CC41C250AB
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 16:16:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4FB1198E6A;
-	Thu,  6 Jun 2024 16:07:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nFHHlRUP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C579199381;
+	Thu,  6 Jun 2024 16:13:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from ns.iliad.fr (ns.iliad.fr [212.27.33.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47104198832;
-	Thu,  6 Jun 2024 16:07:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC8EF199250;
+	Thu,  6 Jun 2024 16:13:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.27.33.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717690062; cv=none; b=V1QFs3EGPEJEUGaEdOZPHSoljD7zfoi8WOKN3j388Sgp/0fl1NOV/VNCBKF/0UgshDbFeUkXe4pCsBf6j/reCgCcWh6mMQpgpYb8NZuB7WoTLe/qyCQto+ZNJYpFTeEmfhf5aatxp2eY7K9bAS/Y8DIy7vlnAJqimIljnpgTwi8=
+	t=1717690385; cv=none; b=i0uJ2V8kq9rd6Mhn4hst09HRLC4hiq0XYK5agcW5w6yJZjPuVVHEGn7tAf0oqcZrNUejQs1m9/I/j73VbhnNf1BUPwMwZykURVtjKgUpJYveEqEPs2qQyrjKBuSMXFKq6pM7+b68tmyVVsAHtBfNckasI/5CZcYqHM9b/wrfE2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717690062; c=relaxed/simple;
-	bh=CGk0OBAaGuoctDdp0iRqn8F9n0ClO3Woe5qkDDgbkYk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Mby3Na4vTJIGpqfB83bBZObJGlgAklp77N8q0f09h5qlHKih+9+Ig7ea1LFES0G+ym4fZ5/zqpnIyRxG5nwbfv00wmhcqrdqAvKZ/bMfzCPJqVopgliwsssxK2bgJ9pTx+97oNbC3RZmkhR7sTQe7O2H+7OwBxCwi/Z/xxgkdts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nFHHlRUP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 1C07FC4AF49;
-	Thu,  6 Jun 2024 16:07:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717690062;
-	bh=CGk0OBAaGuoctDdp0iRqn8F9n0ClO3Woe5qkDDgbkYk=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=nFHHlRUPYCxBATrWbQceWFu/DME02siYvmQkS29msaJSwHbBMlsLFVDilghoMIDlz
-	 JV2uqJXtcxpx8gbYp6O9ijNz8pJsK/8p7yV+5t/aduVRtUa8+026IuWC0Q1PaHYqJD
-	 8hCRQdWIHS2Dc53PGyvcdCn7VgB8YG3fklah8srBf2qOTYXWTzEq1NlLIPJ62pRL1Y
-	 IQ4qNroSkmC4V+HssLzdCAbqweCpCLJ190gxSOpMxmKgWfVIEkNDvfcoULs57Kc4rK
-	 09Lfqh9BVsZ05rlCn2wrhqQ32JuR5N9AL3QNjNwHkD4NhxYQfvOlpou2r8CVPoMHNy
-	 QxY2QqF7Jjvww==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 108ECC27C55;
-	Thu,  6 Jun 2024 16:07:42 +0000 (UTC)
-From: Dumitru Ceclan via B4 Relay <devnull+dumitru.ceclan.analog.com@kernel.org>
-Date: Thu, 06 Jun 2024 19:07:46 +0300
-Subject: [PATCH v6 7/9] iio: adc: ad7173: refactor device info structs
+	s=arc-20240116; t=1717690385; c=relaxed/simple;
+	bh=nS3LfwI6o9UI8YMreTgsmFEN6x/Aw9kVWB5cObcFXBk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=N7MfsG7U5CVvC0LsiM3bwAwKby7W2/bIxrlncj2FQjfBAVHj+vcowM+YI3B/8gUZPdXThD+aqsiaC2NfyU+ej4yH7HpMe964hK//N92u8FMRyk4qlF+PMs3bfKbQUNArNwV00jKwGHj7ytpipti0/SWX0ogj7cVdSJrrOllWp8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=srs.iliad.fr; arc=none smtp.client-ip=212.27.33.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=srs.iliad.fr
+Received: from ns.iliad.fr (localhost [127.0.0.1])
+	by ns.iliad.fr (Postfix) with ESMTP id BF87720787;
+	Thu,  6 Jun 2024 18:07:49 +0200 (CEST)
+Received: from [127.0.1.1] (freebox.vlq16.iliad.fr [213.36.7.13])
+	by ns.iliad.fr (Postfix) with ESMTP id A76D6200AA;
+	Thu,  6 Jun 2024 18:07:49 +0200 (CEST)
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+Subject: [PATCH v3 0/4] HDMI TX support in msm8998
+Date: Thu, 06 Jun 2024 18:07:46 +0200
+Message-Id: <20240606-hdmi-tx-v3-0-9d7feb6d3647@freebox.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,341 +46,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240606-ad4111-v6-7-573981fb3e2e@analog.com>
-References: <20240606-ad4111-v6-0-573981fb3e2e@analog.com>
-In-Reply-To: <20240606-ad4111-v6-0-573981fb3e2e@analog.com>
-To: Ceclan Dumitru <dumitru.ceclan@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>, 
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Dumitru Ceclan <mitrutzceclan@gmail.com>
+X-B4-Tracking: v=1; b=H4sIANLeYWYC/x3MywrCMBCF4Vcps3ZkcjEaV76HuMhlYrPohWmRQ
+ um7G7r84D9nh4Wl8gLPbgfhX13qNDaYSwepD+OXseZm0KQtOXLY56HiuiER84PvOceQoNWzcKn
+ b+fT+NBeZBlx74XDug05RaU/omRRaZRz6m9eY2BofFXkX3asIc5y2axE4jj9aSdsmmwAAAA==
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, Arnaud Vrac <avrac@freebox.fr>, 
+ Pierre-Hugues Husson <phhusson@freebox.fr>, 
+ Marc Gonzalez <mgonzalez@freebox.fr>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1717690059; l=9649;
- i=dumitru.ceclan@analog.com; s=20240313; h=from:subject:message-id;
- bh=tbKPX7mm3uILpoFW41vG4pl0sCWKf8ZeV8ZWdWAi7yw=;
- b=U+5mUk0R2rkSI4l5fJGhxgZ6+Y3Dh5HHuC4MyrgmliFCJq5/YNfLkVsoKFM4vJpKf8HRz1Ue8
- OEovQvWQQ/qAUuHr3Z2gLr0ydeni5QBv3+Z771oCron/a+M5kfm3IfE
-X-Developer-Key: i=dumitru.ceclan@analog.com; a=ed25519;
- pk=HdqMlVyrcazwoiai7oN6ghU+Bj1pusGUFRl30jhS7Bo=
-X-Endpoint-Received: by B4 Relay for dumitru.ceclan@analog.com/20240313
- with auth_id=140
-X-Original-From: Dumitru Ceclan <dumitru.ceclan@analog.com>
-Reply-To: dumitru.ceclan@analog.com
 
-From: Dumitru Ceclan <dumitru.ceclan@analog.com>
+DT bits required for HDMI TX support in APQ8098 (msm8998 cousin)
 
-Drop array of device info structs and use individual structs for all;
-drop models enum as no longer needed. This improves readability as the
-structs are pointed directly.
+Supersedes <a2cb1290-9e01-4136-9592-ce439b1096b6@freebox.fr>
 
-Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
+Changes in v3
+- Address Rob's comments on patch 2:
+  - 'maxItems: 5' for clocks in the 8996 if/then schema
+  - match the order of 8996 for the clock-names in common
+
 ---
- drivers/iio/adc/ad7173.c | 267 ++++++++++++++++++++++-------------------------
- 1 file changed, 127 insertions(+), 140 deletions(-)
+Arnaud Vrac (1):
+      arm64: dts: qcom: add HDMI nodes for msm8998
 
-diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
-index d16fa081a285..8d008186cd6e 100644
---- a/drivers/iio/adc/ad7173.c
-+++ b/drivers/iio/adc/ad7173.c
-@@ -132,16 +132,6 @@
- #define AD7173_FILTER_ODR0_MASK		GENMASK(5, 0)
- #define AD7173_MAX_CONFIGS		8
- 
--enum ad7173_ids {
--	ID_AD7172_2,
--	ID_AD7172_4,
--	ID_AD7173_8,
--	ID_AD7175_2,
--	ID_AD7175_8,
--	ID_AD7176_2,
--	ID_AD7177_2,
--};
--
- struct ad7173_device_info {
- 	const unsigned int *sinc5_data_rates;
- 	unsigned int num_sinc5_data_rates;
-@@ -214,115 +204,119 @@ static const unsigned int ad7175_sinc5_data_rates[] = {
- 	5000,					/* 20    */
- };
- 
--static const struct ad7173_device_info ad7173_device_info[] = {
--	[ID_AD7172_2] = {
--		.name = "ad7172-2",
--		.id = AD7172_2_ID,
--		.num_inputs = 5,
--		.num_channels = 4,
--		.num_configs = 4,
--		.num_gpios = 2,
--		.has_temp = true,
--		.has_input_buf = true,
--		.has_int_ref = true,
--		.has_pow_supply_monitoring = true,
--		.clock = 2 * HZ_PER_MHZ,
--		.sinc5_data_rates = ad7173_sinc5_data_rates,
--		.num_sinc5_data_rates = ARRAY_SIZE(ad7173_sinc5_data_rates),
--	},
--	[ID_AD7172_4] = {
--		.name = "ad7172-4",
--		.id = AD7172_4_ID,
--		.num_inputs = 9,
--		.num_channels = 8,
--		.num_configs = 8,
--		.num_gpios = 4,
--		.has_temp = false,
--		.has_input_buf = true,
--		.has_ref2 = true,
--		.has_pow_supply_monitoring = true,
--		.clock = 2 * HZ_PER_MHZ,
--		.sinc5_data_rates = ad7173_sinc5_data_rates,
--		.num_sinc5_data_rates = ARRAY_SIZE(ad7173_sinc5_data_rates),
--	},
--	[ID_AD7173_8] = {
--		.name = "ad7173-8",
--		.id = AD7173_ID,
--		.num_inputs = 17,
--		.num_channels = 16,
--		.num_configs = 8,
--		.num_gpios = 4,
--		.has_temp = true,
--		.has_input_buf = true,
--		.has_int_ref = true,
--		.has_ref2 = true,
--		.has_pow_supply_monitoring = false,
--		.clock = 2 * HZ_PER_MHZ,
--		.sinc5_data_rates = ad7173_sinc5_data_rates,
--		.num_sinc5_data_rates = ARRAY_SIZE(ad7173_sinc5_data_rates),
--	},
--	[ID_AD7175_2] = {
--		.name = "ad7175-2",
--		.id = AD7175_2_ID,
--		.num_inputs = 5,
--		.num_channels = 4,
--		.num_configs = 4,
--		.num_gpios = 2,
--		.has_temp = true,
--		.has_input_buf = true,
--		.has_int_ref = true,
--		.has_pow_supply_monitoring = true,
--		.clock = 16 * HZ_PER_MHZ,
--		.sinc5_data_rates = ad7175_sinc5_data_rates,
--		.num_sinc5_data_rates = ARRAY_SIZE(ad7175_sinc5_data_rates),
--	},
--	[ID_AD7175_8] = {
--		.name = "ad7175-8",
--		.id = AD7175_8_ID,
--		.num_inputs = 17,
--		.num_channels = 16,
--		.num_configs = 8,
--		.num_gpios = 4,
--		.has_temp = true,
--		.has_input_buf = true,
--		.has_int_ref = true,
--		.has_ref2 = true,
--		.has_pow_supply_monitoring = true,
--		.clock = 16 * HZ_PER_MHZ,
--		.sinc5_data_rates = ad7175_sinc5_data_rates,
--		.num_sinc5_data_rates = ARRAY_SIZE(ad7175_sinc5_data_rates),
--	},
--	[ID_AD7176_2] = {
--		.name = "ad7176-2",
--		.id = AD7176_ID,
--		.num_inputs = 5,
--		.num_channels = 4,
--		.num_configs = 4,
--		.num_gpios = 2,
--		.has_temp = false,
--		.has_input_buf = false,
--		.has_int_ref = true,
--		.has_pow_supply_monitoring = false,
--		.clock = 16 * HZ_PER_MHZ,
--		.sinc5_data_rates = ad7175_sinc5_data_rates,
--		.num_sinc5_data_rates = ARRAY_SIZE(ad7175_sinc5_data_rates),
--	},
--	[ID_AD7177_2] = {
--		.name = "ad7177-2",
--		.id = AD7177_ID,
--		.num_inputs = 5,
--		.num_channels = 4,
--		.num_configs = 4,
--		.num_gpios = 2,
--		.has_temp = true,
--		.has_input_buf = true,
--		.has_int_ref = true,
--		.has_pow_supply_monitoring = true,
--		.clock = 16 * HZ_PER_MHZ,
--		.odr_start_value = AD7177_ODR_START_VALUE,
--		.sinc5_data_rates = ad7175_sinc5_data_rates,
--		.num_sinc5_data_rates = ARRAY_SIZE(ad7175_sinc5_data_rates),
--	},
-+static const struct ad7173_device_info ad7172_2_device_info = {
-+	.name = "ad7172-2",
-+	.id = AD7172_2_ID,
-+	.num_inputs = 5,
-+	.num_channels = 4,
-+	.num_configs = 4,
-+	.num_gpios = 2,
-+	.has_temp = true,
-+	.has_input_buf = true,
-+	.has_int_ref = true,
-+	.has_pow_supply_monitoring = true,
-+	.clock = 2 * HZ_PER_MHZ,
-+	.sinc5_data_rates = ad7173_sinc5_data_rates,
-+	.num_sinc5_data_rates = ARRAY_SIZE(ad7173_sinc5_data_rates),
-+};
-+
-+static const struct ad7173_device_info ad7172_4_device_info = {
-+	.name = "ad7172-4",
-+	.id = AD7172_4_ID,
-+	.num_inputs = 9,
-+	.num_channels = 8,
-+	.num_configs = 8,
-+	.num_gpios = 4,
-+	.has_temp = false,
-+	.has_input_buf = true,
-+	.has_ref2 = true,
-+	.has_pow_supply_monitoring = true,
-+	.clock = 2 * HZ_PER_MHZ,
-+	.sinc5_data_rates = ad7173_sinc5_data_rates,
-+	.num_sinc5_data_rates = ARRAY_SIZE(ad7173_sinc5_data_rates),
-+};
-+
-+static const struct ad7173_device_info ad7173_8_device_info = {
-+	.name = "ad7173-8",
-+	.id = AD7173_ID,
-+	.num_inputs = 17,
-+	.num_channels = 16,
-+	.num_configs = 8,
-+	.num_gpios = 4,
-+	.has_temp = true,
-+	.has_input_buf = true,
-+	.has_int_ref = true,
-+	.has_ref2 = true,
-+	.has_pow_supply_monitoring = false,
-+	.clock = 2 * HZ_PER_MHZ,
-+	.sinc5_data_rates = ad7173_sinc5_data_rates,
-+	.num_sinc5_data_rates = ARRAY_SIZE(ad7173_sinc5_data_rates),
-+};
-+
-+static const struct ad7173_device_info ad7175_2_device_info = {
-+	.name = "ad7175-2",
-+	.id = AD7175_2_ID,
-+	.num_inputs = 5,
-+	.num_channels = 4,
-+	.num_configs = 4,
-+	.num_gpios = 2,
-+	.has_temp = true,
-+	.has_input_buf = true,
-+	.has_int_ref = true,
-+	.has_pow_supply_monitoring = true,
-+	.clock = 16 * HZ_PER_MHZ,
-+	.sinc5_data_rates = ad7175_sinc5_data_rates,
-+	.num_sinc5_data_rates = ARRAY_SIZE(ad7175_sinc5_data_rates),
-+};
-+
-+static const struct ad7173_device_info ad7175_8_device_info = {
-+	.name = "ad7175-8",
-+	.id = AD7175_8_ID,
-+	.num_inputs = 17,
-+	.num_channels = 16,
-+	.num_configs = 8,
-+	.num_gpios = 4,
-+	.has_temp = true,
-+	.has_input_buf = true,
-+	.has_int_ref = true,
-+	.has_ref2 = true,
-+	.has_pow_supply_monitoring = true,
-+	.clock = 16 * HZ_PER_MHZ,
-+	.sinc5_data_rates = ad7175_sinc5_data_rates,
-+	.num_sinc5_data_rates = ARRAY_SIZE(ad7175_sinc5_data_rates),
-+};
-+
-+static const struct ad7173_device_info ad7176_2_device_info = {
-+	.name = "ad7176-2",
-+	.id = AD7176_ID,
-+	.num_inputs = 5,
-+	.num_channels = 4,
-+	.num_configs = 4,
-+	.num_gpios = 2,
-+	.has_temp = false,
-+	.has_input_buf = false,
-+	.has_int_ref = true,
-+	.has_pow_supply_monitoring = false,
-+	.clock = 16 * HZ_PER_MHZ,
-+	.sinc5_data_rates = ad7175_sinc5_data_rates,
-+	.num_sinc5_data_rates = ARRAY_SIZE(ad7175_sinc5_data_rates),
-+};
-+
-+static const struct ad7173_device_info ad7177_2_device_info = {
-+	.name = "ad7177-2",
-+	.id = AD7177_ID,
-+	.num_inputs = 5,
-+	.num_channels = 4,
-+	.num_configs = 4,
-+	.num_gpios = 2,
-+	.has_temp = true,
-+	.has_input_buf = true,
-+	.has_int_ref = true,
-+	.has_pow_supply_monitoring = true,
-+	.clock = 16 * HZ_PER_MHZ,
-+	.odr_start_value = AD7177_ODR_START_VALUE,
-+	.sinc5_data_rates = ad7175_sinc5_data_rates,
-+	.num_sinc5_data_rates = ARRAY_SIZE(ad7175_sinc5_data_rates),
- };
- 
- static const char *const ad7173_ref_sel_str[] = {
-@@ -1192,32 +1186,25 @@ static int ad7173_probe(struct spi_device *spi)
- }
- 
- static const struct of_device_id ad7173_of_match[] = {
--	{ .compatible = "adi,ad7172-2",
--	  .data = &ad7173_device_info[ID_AD7172_2]},
--	{ .compatible = "adi,ad7172-4",
--	  .data = &ad7173_device_info[ID_AD7172_4]},
--	{ .compatible = "adi,ad7173-8",
--	  .data = &ad7173_device_info[ID_AD7173_8]},
--	{ .compatible = "adi,ad7175-2",
--	  .data = &ad7173_device_info[ID_AD7175_2]},
--	{ .compatible = "adi,ad7175-8",
--	  .data = &ad7173_device_info[ID_AD7175_8]},
--	{ .compatible = "adi,ad7176-2",
--	  .data = &ad7173_device_info[ID_AD7176_2]},
--	{ .compatible = "adi,ad7177-2",
--	  .data = &ad7173_device_info[ID_AD7177_2]},
-+	{ .compatible = "adi,ad7172-2", .data = &ad7172_2_device_info },
-+	{ .compatible = "adi,ad7172-4", .data = &ad7172_4_device_info },
-+	{ .compatible = "adi,ad7173-8", .data = &ad7173_8_device_info },
-+	{ .compatible = "adi,ad7175-2", .data = &ad7175_2_device_info },
-+	{ .compatible = "adi,ad7175-8", .data = &ad7175_8_device_info },
-+	{ .compatible = "adi,ad7176-2", .data = &ad7176_2_device_info },
-+	{ .compatible = "adi,ad7177-2", .data = &ad7177_2_device_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, ad7173_of_match);
- 
- static const struct spi_device_id ad7173_id_table[] = {
--	{ "ad7172-2", (kernel_ulong_t)&ad7173_device_info[ID_AD7172_2]},
--	{ "ad7172-4", (kernel_ulong_t)&ad7173_device_info[ID_AD7172_4]},
--	{ "ad7173-8", (kernel_ulong_t)&ad7173_device_info[ID_AD7173_8]},
--	{ "ad7175-2", (kernel_ulong_t)&ad7173_device_info[ID_AD7175_2]},
--	{ "ad7175-8", (kernel_ulong_t)&ad7173_device_info[ID_AD7175_8]},
--	{ "ad7176-2", (kernel_ulong_t)&ad7173_device_info[ID_AD7176_2]},
--	{ "ad7177-2", (kernel_ulong_t)&ad7173_device_info[ID_AD7177_2]},
-+	{ "ad7172-2", (kernel_ulong_t)&ad7172_2_device_info },
-+	{ "ad7172-4", (kernel_ulong_t)&ad7172_4_device_info },
-+	{ "ad7173-8", (kernel_ulong_t)&ad7173_8_device_info },
-+	{ "ad7175-2", (kernel_ulong_t)&ad7175_2_device_info },
-+	{ "ad7175-8", (kernel_ulong_t)&ad7175_8_device_info },
-+	{ "ad7176-2", (kernel_ulong_t)&ad7176_2_device_info },
-+	{ "ad7177-2", (kernel_ulong_t)&ad7177_2_device_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(spi, ad7173_id_table);
+Marc Gonzalez (3):
+      dt-bindings: display/msm: hdmi: add qcom,hdmi-phy-8998
+      dt-bindings: display/msm: hdmi: add qcom,hdmi-tx-8998
+      arm64: dts: qcom: msm8998: add HDMI GPIOs
 
+ .../devicetree/bindings/display/msm/hdmi.yaml      |  28 ++++-
+ .../devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml |   1 +
+ arch/arm64/boot/dts/qcom/msm8998.dtsi              | 128 ++++++++++++++++++++-
+ 3 files changed, 154 insertions(+), 3 deletions(-)
+---
+base-commit: 2c4f4d94dcbf6f500b92fff5600989ea23a207e8
+change-id: 20240606-hdmi-tx-00ee8e7ddbac
+
+Best regards,
 -- 
-2.43.0
-
+Marc Gonzalez <mgonzalez@freebox.fr>
 
 
