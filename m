@@ -1,218 +1,206 @@
-Return-Path: <devicetree+bounces-73369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BF5D8FF24C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 18:21:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D6A88FF25F
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 18:23:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44C291C2617D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 16:21:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 106501C266DE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 16:23:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08DE21991D9;
-	Thu,  6 Jun 2024 16:16:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A4EC199EA6;
+	Thu,  6 Jun 2024 16:18:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f5t7JCWJ"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="K3X4n30N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2071.outbound.protection.outlook.com [40.107.22.71])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9822197501;
-	Thu,  6 Jun 2024 16:16:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717690580; cv=none; b=lm3hVEn2zRr86stBrgY7aDJGDsGABHw86RUlMHXwf7/0+0dmXTFFTdDgFeSbGWUf6gVzrC2gAqJ8ZwNH4fLewfXtH4NsVTzALuZIS2YDwaXP4BF5RSYi2AhvDXbF5rRPzT/veKO9aSVEv5kkAImfFdoa63A3+FNyb1u7dwC4wMg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717690580; c=relaxed/simple;
-	bh=RKbbRu32NqEkkRGB9QCkrdA9I0E2J4HS53nellvn8CY=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
-	 MIME-Version:Content-Type; b=TiQlZpu03zOoGNYvP8eexSU3Xfhkrl4acHxv0EhOMwM4mc6LqPuZqkAdY0nEngbYnYyrd6fI005b19aCQu4stl9ggnjMy7jL8rRT/onhVFqJVaz85sO8Q2EtJm+ZKZornn9Vwb6AMqotRhMgKo4DCwhLlefGCT8TuiwvwxbQWLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f5t7JCWJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9D3CC2BD10;
-	Thu,  6 Jun 2024 16:16:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717690580;
-	bh=RKbbRu32NqEkkRGB9QCkrdA9I0E2J4HS53nellvn8CY=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=f5t7JCWJ3/NUie/wjRKHnFdMtylLBoAicpBk5UVpokhsTN5HvKo94nckgDiFI+N0l
-	 WpbcXDC9rUPdxsYtkArroDl79jYLyxLgsr9yEI75b5pp5f8w97FloGd+16dr0IMdqv
-	 idErwwGzB/4tTmfftnjrcprVtG0dUCbRhw1rnzmUqcGZm6vREOfenBw4ECXhoFkqeW
-	 FYUBmYpe3aXLgOy87Uxa/F6TuSnyw8NDW9kpsWPOBykVlWpU1Nrt1G+ck+lWW1ygzK
-	 7URLl805hcLei5FSC9wvAWPc7CZOqtQ2tCig/5Qw2EeO/gH0DvzHn0HCoaWxTQmN3K
-	 O7gQm0ww3/LXQ==
-From: Kalle Valo <kvalo@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: "David S . Miller" <davem@davemloft.net>,  Eric Dumazet
- <edumazet@google.com>,  Jakub Kicinski <kuba@kernel.org>,  Paolo Abeni
- <pabeni@redhat.com>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Jeff Johnson
- <jjohnson@kernel.org>,  linux-wireless@vger.kernel.org,
-  netdev@vger.kernel.org,  devicetree@vger.kernel.org,
-  ath11k@lists.infradead.org,  linux-kernel@vger.kernel.org,
-  ath12k@lists.infradead.org,  Bartosz Golaszewski
- <bartosz.golaszewski@linaro.org>,  Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v9 1/2] dt-bindings: net: wireless: qcom,ath11k:
- describe the ath11k on QCA6390
-References: <20240605122106.23818-1-brgl@bgdev.pl>
-	<20240605122106.23818-2-brgl@bgdev.pl> <87h6e6qjuh.fsf@kernel.org>
-	<CAMRc=MdiKxtnN+g92RUTXdOydaPV5M2u5iUdKyE2SNvDkdXAjg@mail.gmail.com>
-	<871q5aqiei.fsf@kernel.org>
-	<CAMRc=McacZMP-51hjH+d8=PVe+Wgw4a8xWcv0sRPLJKL_gP=KQ@mail.gmail.com>
-Date: Thu, 06 Jun 2024 19:16:14 +0300
-In-Reply-To: <CAMRc=McacZMP-51hjH+d8=PVe+Wgw4a8xWcv0sRPLJKL_gP=KQ@mail.gmail.com>
-	(Bartosz Golaszewski's message of "Thu, 6 Jun 2024 16:29:20 +0200")
-Message-ID: <87sexqoxm9.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61500199E96;
+	Thu,  6 Jun 2024 16:18:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.71
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717690726; cv=fail; b=VVmIi+l931KclM3QQHq8V9QAIGGn6xMUxSOAl1ZXLT4w/QJRiLcdUWcS4ReNzG6INM6K7lKCNS8B9JHm5KLNpX+fdi6vGqxdbneoftxPwm3DWnBMVGsc1Iinea36ZbISiA9BfRUy309RExnnJe6rOHBLsnURQh9/BfKnOfULGkY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717690726; c=relaxed/simple;
+	bh=F7F3rmMbMEDLvIwSL/wW21j9DSd3T1qI2TN/B5/rFbk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=VSFIfNDyzbOMhMdqjOUZVbcpUnPqw712TcScHTxjQAOEBqgzNki2ohCJ3xOsD4sr5zjt2rw68Y8icFJ0az9gh6XzQhmBYqusQScE7RORToUsfPd2uMPxyq+PElGYAg5C41XHh73S7oGamTOJWM/4zNucbr25+bnMOM+pn1blLps=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=K3X4n30N; arc=fail smtp.client-ip=40.107.22.71
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eTG4clXC5twLs7+wU+qpB+rH7r8RVgg0mts5AEfbmUmKSWwNffws2zn6JI74wJGJMzdBJYY4eF5AeGCewZ1fx9C+WA2wYXe9sWXVkjpGVat25P/g+vJyekuXDdmJoDquXk7WVtSaDAoJlCKKBg6fYBPzl2VrXZT+2ay6rQHaV3cXXZ6gRJ1yV4nj6THcAJ7HPKZzSwcv/KK1HoDxvlT5WvaAwPkDrntbPGwOE7uh7ldemG6i10CQ6ZIt5Q0dMjK21tveGEKNznlp4M+b4zsa6p2q1WOAXIcN6nVaLKwptabZ0th8Xi3ZaWvmyBV/jaMh5eU1e7A1Dzob2EQgQS37MA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AYAu33795QYQgVBvOw2QE6TH/F5FGMR137YrYxQO+fA=;
+ b=PPJGwvL7N1//70RFrzjVdaWKKnxhhVT/hi4fitXIWjR6uO9jDUg4x1N7/VmV1fu/IFI/ELkCucJGrScx7vjgeIU6t2iFRWNsXmsWw6Ev746OlyZ740OFjVqd7ieJLr671sHt1yekXHQLz+VaWuI6fEbJv1E9cIMMIZNW1E3xLEel9Mqat/tJSw9/6KFSoVB+9O7GPKrJePPzNjHhA6H/YTFqa/SJt0nwQr6XiA0EagT4C35Lr9oOs1U+vt/muUx8QacOjqoPULCMbJn5dvS1UuoJmNlM9O419qEcb+0iIVy5W0ze8n4hxxe8ba9ppAdsq5c2HOu8qng9dTTkHnqAjw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AYAu33795QYQgVBvOw2QE6TH/F5FGMR137YrYxQO+fA=;
+ b=K3X4n30NroA8GUyDDEEn6ZZrrOIUHJT0SS6xepd993KNOZXC80T5YrKV1LCARUdJfRhCFZL0NC5MqupfwooGBfND6sxXQpKIVErG3mgopIld0Dr83TAvST7JTMuVZk+ljO2lZmMegfsNaGx4bcsaHdf9mnm1mm1pfrWL3RqvB7I=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AM9PR04MB8147.eurprd04.prod.outlook.com (2603:10a6:20b:3e0::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.33; Thu, 6 Jun
+ 2024 16:18:39 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7633.021; Thu, 6 Jun 2024
+ 16:18:39 +0000
+Date: Thu, 6 Jun 2024 12:18:31 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Sascha Hauer <s.hauer@pengutronix.de>, linux-kernel@vger.kernel.org,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH 1/1] arm64: dts: imx8dxl-evk: add imx8dxl_cm4, lsio mu5,
+ related memory region
+Message-ID: <ZmHhVyT3qs/TjmWv@lizhi-Precision-Tower-5810>
+References: <20240605202703.1220203-1-Frank.Li@nxp.com>
+ <171768925588.3793206.4383956652676926878.robh@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <171768925588.3793206.4383956652676926878.robh@kernel.org>
+X-ClientProxiedBy: SJ0PR05CA0078.namprd05.prod.outlook.com
+ (2603:10b6:a03:332::23) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM9PR04MB8147:EE_
+X-MS-Office365-Filtering-Correlation-Id: 37413318-8516-45ac-7d29-08dc8644537f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230031|366007|1800799015|7416005|52116005|376005|38350700005;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?fCxRyz31YNXuv0ntIlW9aSCvSYdNJrT0j5Khz3YSy0+YGsT5yfUdnFYHD0fV?=
+ =?us-ascii?Q?Zsmqpcv9/Hd/KXewtnzazMPqE4TTXQcOe36k6rYWynwHCYF8Q0oRVsuOzu1s?=
+ =?us-ascii?Q?xrAA8BYuZzH4oT+ZwP1fMI0DVGdiW90D8qccH7YE0v0Iw5rhxSoA5GrWjFCN?=
+ =?us-ascii?Q?kPKviGKYf7zkVI9jPmFXpqg1n7iNgLeBGf3xuC+MdcaQ3R2edpLVi+3TV5Wy?=
+ =?us-ascii?Q?WKO/bRFJUcK4P8w+B+H8Jrcarj4dnPLG/Em53zAqzHQFbU9ZDoHZbqoLJCWh?=
+ =?us-ascii?Q?jA8j8EMy9tQjQ50G48k9Qep+WJuZjYC+l3J1xuwcpxdimJdkN4d+OaTlkugC?=
+ =?us-ascii?Q?Cswhm/Ap7bj2yDsVqq64G+g/+/copWYKiqpxmhajXI/3EY7HmBEtglADLD2k?=
+ =?us-ascii?Q?jbInoemhDEt23ak4V2U0tW5tkI/irUFQgSuW29K4VeWm22yK7iqVIB2pVtvF?=
+ =?us-ascii?Q?EMaQLm4BDbBdlTUR/nh5/D1S6nscUdlMJkqbUKmhSUtOrFBLlLIgopXGAhZ5?=
+ =?us-ascii?Q?mgkOS0CemMlEW+0sli2JM55p3oLb9Rm/zCylxee+d4JLO0sAKrkpXdEyORa4?=
+ =?us-ascii?Q?XZhDVxnhaa37ccKjjCvZZipnZ9oc2ofiUAIEJGIj1tyC8bkyK+7N6+mKDvGe?=
+ =?us-ascii?Q?XlsInas9T2eATCxME7tFXdRuMzctFgJRK7RrO7lFgdHu0SMVZ9ZXk2I0f4cE?=
+ =?us-ascii?Q?eS+vciwZp4IzaSexjdZFcwyvqmg2BPx1GARKoLBv4UtIx0y3LLloYpMae4xL?=
+ =?us-ascii?Q?LhAtBsf5BYULnb0/WQqgd+rVQisxaPBIClDgfBjhA+BzotfAeU0w6qonfh5L?=
+ =?us-ascii?Q?xrx7gULcYOVYj9EKsq9f05tnHglhu8ayOa/bvN+itiuD5zpcMFaCSWzby3hc?=
+ =?us-ascii?Q?KLbhD/eU0yXf/Y9k583ccoHwX5KMh9+8NFGR9Ds7eTw0f5vfOJZC1rbtlnrg?=
+ =?us-ascii?Q?0lDZHc1a4ycwAOBeYjXrC1os0F53ak+gNA+jUkvMrIaBWD30bj/TtZ/okHn6?=
+ =?us-ascii?Q?3BTtSlANzW4Np5WdDncEr0ZdJUJOqQefNRauiGFnGP8Q17YyFKbyXm0hxuwB?=
+ =?us-ascii?Q?iZUSNWwEOHz8lSanL2cmnSosMgECDdscfFLouoAfOQCnnMHCmGg/gTWrkj4V?=
+ =?us-ascii?Q?/R58bEN3bcUOhSztxuDZWobDwb9S1l+UXy05FeFvpkCEedmePt9oiqKjpBSC?=
+ =?us-ascii?Q?fPFScoDH6ibDXpDVCr6AmeMcV4ooMPbJ3XSnahincabHVLmmz80Suv7F+23M?=
+ =?us-ascii?Q?8CN5BZyIntOWWoMn5IVazb0Mb+WxU0+E5O0amD4pKVtUOd+Rzn8opBnDTdpV?=
+ =?us-ascii?Q?LcSN1mVHYvPOdwt2FFHCfLeZ?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(1800799015)(7416005)(52116005)(376005)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?miCmHad2woiaMhVbQ1OPELLZ3qqG68lcZrWZQRMWrmzcS0zo29aTMBk9hvvB?=
+ =?us-ascii?Q?G00A/U62Q0O3n3xQLUVL2eeTfoxzNf0e7D+XDEtp1p+tGJM6GHfanbyj9gGX?=
+ =?us-ascii?Q?pP4iaLT84f5aZNYEO0nyhkNK0jz24FVbdgmT8U1AMy4HcJt47Sl5EWMR5cs1?=
+ =?us-ascii?Q?uuLsKBn9VDq1BkMj1KkhZOzADZlVvCfcutkpE4ntxx54BMbqNtMWAxfHflKs?=
+ =?us-ascii?Q?3EbEmxDJLBitPTZ0t5OR+qWPKLQj+8l48hxxCdXZ7qzL4ZpFXgo4+261Tnvr?=
+ =?us-ascii?Q?oa/wEXfFIqygYp6+ferVJSIvRlPKfYfkNCgLWr9rrStteFAflIFM0tvPOIcM?=
+ =?us-ascii?Q?l8n34TsuEsDwG0D8okV3ILz/2/52NGTecQw+Ma4cjUcOdwyK7tnNoH0dBj7/?=
+ =?us-ascii?Q?ZOqQ36LX7+Ss7gJB2LywoTTHuq9NPqbVKqZPD0N4U+LJsSjiT8gNFIFSQMdR?=
+ =?us-ascii?Q?X1RIifEjITgHdE/gZ4ZnoCrgrslYVlCQCGze+GvvI63/JdKlJe21hwCh9+2V?=
+ =?us-ascii?Q?gQWEVqqRfBprhR3YZmzaHfaPXZj1XgjDUxndaNofQuqNBxRq+rzPqDGmvWff?=
+ =?us-ascii?Q?b0QqjyN7N0fYAbmo7jb139c8adXfH3tgOv8zPwb7/L/Q7uodmY0TcG7yYDJh?=
+ =?us-ascii?Q?QmIfIVwmSQpshG5+o1h9+5qnYnKfeq3PQBoE7Z02fTNkGz7jQeUsmjIaqTQN?=
+ =?us-ascii?Q?0z7iZ4yzL1JAmr2VDkNMcdar+ZMsQzJBbwcGmIxSQ+dR8IlqYurP8u+VaSTO?=
+ =?us-ascii?Q?FZA0rg3m9W3ksW8YrEubW9gzZhYuA3XVwFxEW2cL+5gvZ5ssY4XMpAf6va3B?=
+ =?us-ascii?Q?IyGXwtd/biqekKdj+62AakkOYDWFST7+eSH+dzsaUPPcz8qON+wmtXJdvZ86?=
+ =?us-ascii?Q?fUUTzZJ6IzP718qJRrzjDPgDT9BUV/bhuW8thBKK6rEJCLPsmZ8RA3yteo3i?=
+ =?us-ascii?Q?hAPUl8S4wuNg8HiDeIAGPDyPZ3TO9fmOj1VA6r2Jts9TvofC9C80KN2KlTml?=
+ =?us-ascii?Q?ZtEnROohCQ566wckVR7IZk2FNs+VQ/1c+rMVs4DG41t+3eCPXrj5S42L4+ZT?=
+ =?us-ascii?Q?g+45ilJc/W5jIYpjIrseYdJj5TNXPt8cneDZ1Vdp5Ae6lIeXS+G9qIE66xLq?=
+ =?us-ascii?Q?3X1bkHXCOVuipM2Pvg34xkhL6CoAZFVcBWHZNAVy0wCuJSMnVCS2qcuMfqbe?=
+ =?us-ascii?Q?Uux7OFvDTTb73w/sBy8MxANymJLTJOKMKwITFikWvpSTZB8gciIU51uHXIJY?=
+ =?us-ascii?Q?0lywvQ1urkBidRPsXUqW/cSFxMcFY97Whi84o1RObr/E5xMpZYN5PQPVqWL5?=
+ =?us-ascii?Q?AYGxBtrApVU9VScpx+XzToe939Q9d/5YjdkQklo/edkKWnUT4b6Z0jj8Yczs?=
+ =?us-ascii?Q?ENPs+MpqDocpuQ3ZnImi2DNVHT/uqhV/7Kvo6yArCS1ISDazLMG1XJSMjEdQ?=
+ =?us-ascii?Q?sBIwZQHk+W37g0EVKB+Ny8iUB3NNRx8FJp0+pn7ctkYrFi7kazzY81pE5jR4?=
+ =?us-ascii?Q?8jQGsiZyk2+ZMzIGxDC1suDgIHuHJkTZhL04hX480zN3JHz1SYmI2eQ05dYN?=
+ =?us-ascii?Q?ZRKSv9VcLflCbJYiD76TFe6d7/zC0KEox/Dg/RTn?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 37413318-8516-45ac-7d29-08dc8644537f
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 16:18:39.7244
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bGU2xk8AbS1tvjpax40B1gNZNNVXcfdFMFNoASW46pQ0YgVXBbSODnlRklbMXkmYamEF4y8GmF2eGNOyLlmPJA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8147
 
-Bartosz Golaszewski <brgl@bgdev.pl> writes:
+On Thu, Jun 06, 2024 at 09:56:14AM -0600, Rob Herring (Arm) wrote:
+> 
+> On Wed, 05 Jun 2024 16:27:03 -0400, Frank Li wrote:
+> > Add imx8dxl_cm4, lsio mu5 and related memory region.
+> > 
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/imx8dxl-evk.dts | 48 +++++++++++++++++++
+> >  1 file changed, 48 insertions(+)
+> > 
+> 
+> 
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+> 
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+> 
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+> 
+>   pip3 install dtschema --upgrade
+> 
+> 
+> New warnings running 'make CHECK_DTBS=y freescale/imx8dxl-evk.dtb' for 20240605202703.1220203-1-Frank.Li@nxp.com:
+> 
+> arch/arm64/boot/dts/freescale/imx8dxl-evk.dtb: imx8dxl-cm4: power-domains: [[14, 278], [14, 297]] is too short
+> 	from schema $id: http://devicetree.org/schemas/remoteproc/fsl,imx-rproc.yaml#
 
-> On Thu, Jun 6, 2024 at 4:02=E2=80=AFPM Kalle Valo <kvalo@kernel.org> wrot=
-e:
->
->>
->> Bartosz Golaszewski <brgl@bgdev.pl> writes:
->>
->> > On Thu, Jun 6, 2024 at 3:30=E2=80=AFPM Kalle Valo <kvalo@kernel.org> w=
-rote:
->> >
->> >>
->> >> Bartosz Golaszewski <brgl@bgdev.pl> writes:
->> >>
->> >> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->> >> >
->> >> > Add a PCI compatible for the ATH11K module on QCA6390 and describe =
-the
->> >> > power inputs from the PMU that it consumes.
->> >> >
->> >> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> >> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->> >>
->> >> [...]
->> >>
->> >> > +allOf:
->> >> > +  - if:
->> >> > +      properties:
->> >> > +        compatible:
->> >> > +          contains:
->> >> > +            const: pci17cb,1101
->> >> > +    then:
->> >> > +      required:
->> >> > +        - vddrfacmn-supply
->> >> > +        - vddaon-supply
->> >> > +        - vddwlcx-supply
->> >> > +        - vddwlmx-supply
->> >> > +        - vddrfa0p8-supply
->> >> > +        - vddrfa1p2-supply
->> >> > +        - vddrfa1p7-supply
->> >> > +        - vddpcie0p9-supply
->> >> > +        - vddpcie1p8-supply
->> >>
->> >> Not sure if we discussed this before, but based on this I understand
->> >> that there can't be an DT entry for device pci17cb,1101 without all t=
-he
->> >> supply properties? But there are QCA6390 devices with PCI id 17cb:1101
->> >> which do not need these supplies and already work. For example, my De=
-ll
->> >> XPS 13 x86 laptop is one. Or anyone who manually installs QCA6390 boa=
-rd
->> >> to their PCI slot and some of them might want to use DT, for example
->> >> setting qcom,ath11k-calibration-variant.
->> >>
->> >> This is not a blocker for me, just making sure that we are not breaki=
-ng
->> >> any existing setups.
->> >>
->> >
->> > If they are already powered up without the need for the PCI pwrctl
->> > driver to do it, then they will work alright. Bindings don't affect
->> > functionality.
->>
->> Sure, I'm not worried about functionality. I'm worried that if I
->> there's, for example, an ARM based setup which uses DT and wants to use
->> a similar QCA6390 board that I have, and set
->> qcom,ath11k-calibration-variant in DT. In other words, I'm worried if
->> you are looking at this only for Snapdragon family of boards?
->>
->
-> No, what I'm looking at is the entire QCA6390 package. That means WLAN
-> *and* Bluetooth *and* the PMU that manages power.
+Rob:
 
-I think we are just looking at this from different point of views. You
-are looking at a datasheet (most likely for a Snapdragon based system)
-and I'm looking what actual devices there are out in the field.
+Fixed patch already sent before send this patch. 
 
-> If you're using the QCA6390 on a device-tree system then you should
-> probably model at least the WLAN node and the PMU and the problem with
-> supplies is fixed.
+https://lore.kernel.org/imx/20240606150030.3067015-1-Frank.Li@nxp.com/T/#u
 
-But why? If there are boards out there who don't need any of this why
-would they still need to model all this in DT?
+Do I need sent both patch together? I faced many similar cases.
 
-Based on the discussions I have heard only Snapdragon systems who
-require all this configuration you describe. Of course there can be
-other systems but I have not heard about those.
+Frank Li
 
-> But if you don't have the supplies, that's alright for downstream.
-
-What do you mean downstream in this context?
-
->> Again, I don't see this as a blocker. I just want to understand how this
->> should work for all types of devices there are out there.
->>
->> > But if you have a QCA6390 then you have its PMU too and the bindings
->> > model the real-world hardware.
->> >
->> > IOW: your laptop should be alright but the supplies are really there
->> > which warrants adding them to the bindings.
->>
->> Sorry, not following here. Can you clarify your comment "the supplies
->> are really there"? You mean inside the PCI board? But that's not visible
->> to the kernel in anyway, the PCI board just works after I plug it in.
->> It's like a regular PCI device. So I don't understand why that should be
->> visible in DT, but I can very well be missing something.
->>
->
-> I think you're thinking about some kind of detachable PCIe board with
-> this chipset on it.
-
-Exactly, a lot of WLAN boards are like this.
-
-> I refer to the QCA6390 chipset itself which is also more than just
-> PCI. The Bluetooth interface doesn't use PCI at all. On the boards I'm
-> working on, the chipset is just soldered to the main board.
-
-And I guess you are looking at Snapdragon boards only?
-
-> If your detachable board "just works" then it must be wired in a way
-> that enables WLAN the moment it's plugged in but this doesn't happen
-> over PCI. The chipset has a power input and GPIOs to enable each
-> module.
-
-I don't know how the boards are implemented but it could be so. But from
-host system point of view it's just a regular PCI device.
-
-> Also: I doubt you need DT for your detachable board?
-
-Sure, I don't need DT but that's not my point. My point is why require
-these supplies for _all_ devices having PCI id 17cb:1101 (ie. QCA6390)
-then clearly there are such devices which don't need it? To me that's
-bad design and, if I'm understanding correctly, prevents use of
-qcom,ath11k-calibration-variant property. To me having the supplies
-optional in DT is more approriate.
-
---=20
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
+> 
+> 
+> 
+> 
+> 
 
