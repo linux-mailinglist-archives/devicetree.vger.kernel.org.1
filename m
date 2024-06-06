@@ -1,152 +1,93 @@
-Return-Path: <devicetree+bounces-73082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7EBB8FDFB6
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:29:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7C628FDFC2
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:30:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABD731C215E2
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 07:29:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 785D51F22853
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 07:30:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC6DD13CFBC;
-	Thu,  6 Jun 2024 07:28:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45FAF7172F;
+	Thu,  6 Jun 2024 07:30:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="q0q9hhYe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W4JH+sm3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0029B13C813;
-	Thu,  6 Jun 2024 07:28:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E37838DD2;
+	Thu,  6 Jun 2024 07:30:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717658900; cv=none; b=uyVa1DoxfdljNuhzechZaM4HSoqccZlaY53b9L2LmZgl06lTkiSMIV3lyJbQwIu8ntNFNu/aRvES19MFkqWb6NyUGK+EI6FNyQz/v3DcC760KERgxaavVlsaXMgYkWv6+xwG8RIKgZwo8o56TgZ9J42nfx1H1nSRU6Mt76Fyr/M=
+	t=1717659022; cv=none; b=ny0eU8LfjZbgTv0X4RbJ7smjM/Ak3ZEYrc9jmoxozkt5aEVWLmlzDO9oqe/UAyW8NrI5/AqycZxWdGMYUmhRV1S4XqjnyTXlBokCCxD5k5FI2lyXPhE72ZxDtQ+yEm6+8GJbOJvf4iEtpgS6O/4QY8GK+4hGc05v/xxuIeQ+aY0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717658900; c=relaxed/simple;
-	bh=gzpeR/aDKk4/rmSePVOSh2xGINfYTlnwhOYX2fF2xBo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=RLaLHKwcKZdfPcSnmrS7Ofr1wMl7iBzxeE91+vKQbUftfcju+wAPZirR/jPKmbqWf1g5tq2j1nfNFoVYtR7Bwyri7mBlrORcndZcFilqvKoFm4DpQ6B8+hmwexqZqmOpZdzPW3xCGqBM8+9Ucmp3mzE6ak3r+1IBUCsYPwOla5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=q0q9hhYe; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=VTgxacfD7Kv3ubzMVjuHcPh975t61WT/ZaDbjZptY8M=; b=q0q9hhYeMMHhHiwoe9/wYukJSL
-	BU7CHHsUtos8ue3pVIX/GMq26RV2PoFx7L7e+RnW/w19WtOeNvKqBV0BeuuMyqa1ndkQ+8dfyBRox
-	gV7/tkMieQRuv8w2JWllGes4zuHEzxnvC6JI4usqjKbGsT1wLGKNj43cmbZpao75xOOoRdwJS3SE4
-	KO/6WfC1jE4A2l3AWufxuHc2Eesj0x5nTJQya5uWlMZrDIJhR03e4LXSjTv6tbjnW8hL0aRrkrzuU
-	hyF3rQsjI1lEppLrlPAWHvqmV33nl9embV0WTJoOh/M4XNC3JPHI7tZKTPHGQc/WfkGRs7LAwwzsX
-	HHPSgxXQ==;
-Received: from [89.212.21.243] (port=52108 helo=localhost.localdomain)
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.96.2)
-	(envelope-from <primoz.fiser@norik.com>)
-	id 1sF7Xl-00BQOL-2w;
-	Thu, 06 Jun 2024 09:28:17 +0200
-From: Primoz Fiser <primoz.fiser@norik.com>
-To: Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko.stuebner@cherry.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Sebastian Reichel <sre@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: upstream@lists.phytec.de
-Subject: [PATCH 3/3] drm/panel: simple: Add PrimeView PM070WL4 support
-Date: Thu,  6 Jun 2024 09:28:14 +0200
-Message-Id: <20240606072814.3572965-3-primoz.fiser@norik.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240606072814.3572965-1-primoz.fiser@norik.com>
-References: <20240606072814.3572965-1-primoz.fiser@norik.com>
+	s=arc-20240116; t=1717659022; c=relaxed/simple;
+	bh=74LOqVmO34urgp8Dqx2F/kyC5P65cGlJie5zdB/jLY4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=DusqsryjaStydk+WllF6gDiG95FecH/bxjHz9Wd8joOphdmONrYqaJTmzz8bjNYankrl7bRv1hGjH64IIrr0m/0zqb26IqKRdtdwvqcLzRrb251hVWneeBCbVbV11MvezzL64GgrP3JC4Ffq/VzfoZVphczL3kE5AqZtHek7JyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W4JH+sm3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCC31C4AF07;
+	Thu,  6 Jun 2024 07:30:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717659021;
+	bh=74LOqVmO34urgp8Dqx2F/kyC5P65cGlJie5zdB/jLY4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=W4JH+sm3tDsbKfd1dwz/V3oKUTAbHPa2oqHw3OeYSnq3AN763BjyACEy7HLCPXBam
+	 W5MmoCVlc20SmDeEobSrIKDlEHvPrz0VwI11YbQDVxg6ZaXczD3dsjzyUG7CX9Yylt
+	 buG63sDmyYb3I+kJbWEbGFtKXuCx0SIQVC+yKhe1ksiCRVTq+AvXLs5dWDbnqxAUOI
+	 m8qkpmCAvEMU8l7cNAzoT9txhqMhYqdyaO9wuwVi98zypYxWUouD55jzN+NqDquqEu
+	 GvpSAFYIDKVUfQWeDfOYk+gK5E7jBH3MT67U8fFLVwK4ugMrUc6hkb1yAD0U+Z3aSb
+	 aFC1vEz/cN2bg==
+From: Benjamin Tissoires <bentiss@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Danny Kaehn <danny.kaehn@plexus.com>
+Cc: Jiri Kosina <jikos@kernel.org>, devicetree@vger.kernel.org, 
+ linux-input@vger.kernel.org, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+ Ethan Twardy <ethan.twardy@plexus.com>
+In-Reply-To: <20240605-cp2112-dt-v11-0-d55f0f945a62@plexus.com>
+References: <20240605-cp2112-dt-v11-0-d55f0f945a62@plexus.com>
+Subject: Re: (subset) [PATCH v11 0/4] Firmware Support for USB-HID Devices
+ and CP2112
+Message-Id: <171765901954.2911407.14288814207102579480.b4-ty@kernel.org>
+Date: Thu, 06 Jun 2024 09:30:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
-X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.4
 
-Add support for PrimeView PM070WL4 7.0" (800x480) TFT-LCD panel.
-Datasheet can be found at [1].
+On Wed, 05 Jun 2024 18:12:43 -0500, Danny Kaehn wrote:
+> This patchset allows USB-HID devices to have Firmware bindings through sharing
+> the USB fwnode with the HID driver, and adds such a binding and driver
+> implementation for the CP2112 USB to SMBus Bridge (which necessitated the
+> USB-HID change). This change allows a CP2112 permanently attached in hardware to
+> be described in DT and ACPI and interoperate with other drivers.
+> 
+> Changes in v11:
+> - Eliminate 'gpio' subnode for DT and ACPI for the CP2112 per comment
+>     from Rob H.
+> - Edit hid-cp2112.c to match for ACPI index and fall back to matching by
+>     name (instead of the other way around)
+> - Separate CP2112 I2C bus speed configuration into a separate patch
+> 
+> [...]
 
-[1] https://www.beyondinfinite.com/lcd/Library/Pvi/PM070WL4-V1.0.pdf
+Applied to hid/hid.git (for-6.11/core), thanks!
 
-Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
----
- drivers/gpu/drm/panel/panel-simple.c | 29 ++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+[2/4] HID: usbhid: Share USB device firmware node with child HID device
+      https://git.kernel.org/hid/hid/c/b81881b9c10e
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index dcb6d0b6ced0..ea1a7ba3a5b6 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -3513,6 +3513,32 @@ static const struct panel_desc pda_91_00156_a0  = {
- 	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
- };
- 
-+static const struct drm_display_mode primeview_pm070wl4_mode = {
-+	.clock = 32000,
-+	.hdisplay = 800,
-+	.hsync_start = 800 + 42,
-+	.hsync_end = 800 + 42 + 128,
-+	.htotal = 800 + 42 + 128 + 86,
-+	.vdisplay = 480,
-+	.vsync_start = 480 + 10,
-+	.vsync_end = 480 + 10 + 2,
-+	.vtotal = 480 + 10 + 2 + 33,
-+	.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-+};
-+
-+static const struct panel_desc primeview_pm070wl4 = {
-+	.modes = &primeview_pm070wl4_mode,
-+	.num_modes = 1,
-+	.bpc = 6,
-+	.size = {
-+		.width = 152,
-+		.height = 91,
-+	},
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_SAMPLE_POSEDGE,
-+	.bus_format = MEDIA_BUS_FMT_RGB666_1X18,
-+	.connector_type = DRM_MODE_CONNECTOR_DPI,
-+};
-+
- static const struct drm_display_mode powertip_ph128800t006_zhc01_mode = {
- 	.clock = 66500,
- 	.hdisplay = 1280,
-@@ -4719,6 +4745,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "pda,91-00156-a0",
- 		.data = &pda_91_00156_a0,
-+	}, {
-+		.compatible = "primeview,pm070wl4",
-+		.data = &primeview_pm070wl4,
- 	}, {
- 		.compatible = "powertip,ph128800t006-zhc01",
- 		.data = &powertip_ph128800t006_zhc01,
+Cheers,
 -- 
-2.25.1
+Benjamin Tissoires <bentiss@kernel.org>
 
 
