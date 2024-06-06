@@ -1,139 +1,250 @@
-Return-Path: <devicetree+bounces-73200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 612408FE388
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:54:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBA188FE36E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:52:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 02D40B27D77
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:49:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 61B4F1F243CC
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:52:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC9BF17839D;
-	Thu,  6 Jun 2024 09:49:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="p7YjJ3Fg";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="g0Wb56c1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2294A17E8E5;
+	Thu,  6 Jun 2024 09:52:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh3-smtp.messagingengine.com (fhigh3-smtp.messagingengine.com [103.168.172.154])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7708153BC3
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 09:49:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.154
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68F9E145341
+	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 09:52:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717667359; cv=none; b=OTpH6omlIVDeGTdNvs/qf0LCekk28SQvHEssm2uJnoa++Ia/YLbJyrNXDhlkr/RkLUxQrhat3fQqhVtyUmu9Wpmj3BpGaoqXRyE7A05K0XldV9Gy48TmHB6tlp2X6+GoX8RgAnaU91veqhIlPWKNJcsA+uR5g2Nq7ppZy3nb+g8=
+	t=1717667527; cv=none; b=P5WJ8UiPHjMohZiD+Q2yejqyOxyj4+Ida8+3IOT1GKyfPG8F+YkRYe9LNEL0Z1XCiYsyrzEWmtPPwgf8ylXiZ8Z+q9uDuHUfz2WMuV1wIxCiCwbIwjUuQk8h8olVsyNYQlfFOwLdanWWk6bTo9PVS8Fvc2in3lHIxI5mmXgSFuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717667359; c=relaxed/simple;
-	bh=0l98p+Hf5zWmytUlzXZpMoC4wXxBDLfTsek0INlCHrk=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=HnmdSf3xvDmguSOKgP6i4vobNaJJX4Xy/ITkdliCxmO8TGC5GIC+3NLIB+7ypufnGqfjWHC+I3MOpCry1z992FcJKtTgyRFZs+HoTzJuOJfXSxWPrOyp91C1Sx1Qi8WZv+MbihIhi4fkMxkfB17hqHuwfRPNWBQFyEkvgGIPplM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=p7YjJ3Fg; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=g0Wb56c1; arc=none smtp.client-ip=103.168.172.154
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfhigh.nyi.internal (Postfix) with ESMTP id E7B6D11401FE;
-	Thu,  6 Jun 2024 05:49:16 -0400 (EDT)
-Received: from imap47 ([10.202.2.97])
-  by compute5.internal (MEProxy); Thu, 06 Jun 2024 05:49:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-type:content-type:date:date:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm1; t=1717667356; x=
-	1717753756; bh=0l98p+Hf5zWmytUlzXZpMoC4wXxBDLfTsek0INlCHrk=; b=p
-	7YjJ3FgWGyZHe1wMuSxORvFXh+3ByRxfMqs97AcnaaSi6J2bwU+wTUCYortZTrTr
-	digkkD084dpISQD36X1Dfw1l2GSP1tSb5PKtWDBTEZ3xHGWhxALlVdgvXf6cEUH/
-	S4rnbZ4TFb9j9LYJKm2aAaApN3xBYxAEvAqsQr1gB89EVguw4L+0zBFpDDY5JdRF
-	O1owiqJzfRjPpKlyX/pkHbWwW2C9ZQEj1CQJCMxpW/1CtvDeznH8/gJaRRopNVOp
-	G4KI/KB7RIYwYfoPvJ3VUC3+vGPyKrheQXd9iH6gUlNs4jsRj+/RGOpucd1is7rt
-	ALq2ZT3VPfeUeTQnaYtuQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm1; t=1717667356; x=1717753756; bh=0l98p+Hf5zWmytUlzXZpMoC4wXxB
-	DLfTsek0INlCHrk=; b=g0Wb56c1vnTfSB3Dr1hCA0jaYAaSMWK4dWDY3Qq/vmql
-	dTkGYW5NHTO8vZJ+M40l0kNZ9EoY3m7Bwrgz+FHcVIsqrALxTmpkg0NCb/5Ufb1U
-	Cxo/gLklQBQG+LPOAxTcKufRjgfN9exggm82HHp6HsQKXa48RVyBkd5sFphK9YCi
-	HnPETIG4EIqrXKYm4HhXQwN8B27pzfNyqQsgnLei5SoGD/gyebgPnEhDinntmHO4
-	MJTBUkU3v2LqjDrBO+HuEaoI/z3NEkG7QABCOD39NUAkvEnotEBvTRkIW3Edrp/o
-	yBWMY9nqGV3KoY7gQl1e0K/0WWGF7OFgOxOf9Tk5TQ==
-X-ME-Sender: <xms:HIZhZpndTAm5yuAyhAfqIJGo8xTsuQ6fbmm69iZojBPQ_KN4gGNXWg>
-    <xme:HIZhZk3s00NtHT15bNbHpd4EysmWPaIPon9NJxjtrd9s3c9Xe3UEHIYMIawWCtTxJ
-    DQnOCuwMOrarvXSNQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvdelkedgvddtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftfih
-    rghnucghrghlkhhlihhnfdcuoehrhigrnhesthgvshhtthhorghsthdrtghomheqnecugg
-    ftrfgrthhtvghrnhepgfeghefgleejudfgudduueffhfdvudehteekveduudehhffhhefg
-    gedtkeehkeetnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghdpfihhihhtvghquhgrrh
-    hkrdhorhhgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhho
-    mheprhihrghnsehtvghsthhtohgrshhtrdgtohhm
-X-ME-Proxy: <xmx:HIZhZvoi5dvAa8eZhdAPW8q3uUKncejeVrrTp2ktrVdHyGBxTYAC1w>
-    <xmx:HIZhZpnsV80hmy7Ygi7NjRSOcP60MDK5tQouvXQWD8acZxOJpYigOQ>
-    <xmx:HIZhZn33UHQbqie51CVzDMO3mXFSZAWtqaDtnucVGA82u4nl1XaEYQ>
-    <xmx:HIZhZotK9lLvQ0k4f2DnOHuiYRPDlRcf9EPQYn33l8G1eJq3I2O1CQ>
-    <xmx:HIZhZr5Y_LHmHAUrqvEOm1sj5dPKziHnUTcIFfKvsCMPPXWqcEfWaGyi>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 06A6AA60078; Thu,  6 Jun 2024 05:49:16 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-497-g97f96844c-fm-20240526.001-g97f96844
+	s=arc-20240116; t=1717667527; c=relaxed/simple;
+	bh=BMVsvadeSJYc5SZSqkkbWxIllVOv6IflrLGiRhdMHds=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IR+OMHB59BXY11/ZBzVnTONDVsFcOUOdvduUSRas4QfXDOil4o/5H6y6+uoe5LNtz4DBjvFIjjO3Oobzuz3xqgebm8fz1rxCdGohfrGGAWySdkG4qNkxTzTP7SfSjKYz3v9If8+WKm9wMYi55mNyoCxvC4tNgexfdqdiByikUyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 48DE4339;
+	Thu,  6 Jun 2024 02:52:29 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4F2043F64C;
+	Thu,  6 Jun 2024 02:52:03 -0700 (PDT)
+Date: Thu, 6 Jun 2024 10:51:59 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
+ mripard@kernel.org, ryan@testtoast.com, samuel@sholland.org,
+ jernej.skrabec@gmail.com, wens@csie.org, conor+dt@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h700: Add Anbernic RG35XX-SP
+Message-ID: <20240606105159.33a2b917@donnerap.manchester.arm.com>
+In-Reply-To: <20240605185339.266833-3-macroalpha82@gmail.com>
+References: <20240605185339.266833-1-macroalpha82@gmail.com>
+	<20240605185339.266833-3-macroalpha82@gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <7d9492ba-5285-471a-9ce7-c2148a388b41@app.fastmail.com>
-In-Reply-To: <2dc1fdec-7673-4462-abe1-fecf8e3e826b@linaro.org>
-References: <20240530211415.44201-1-ryan@testtoast.com>
- <20240530211415.44201-3-ryan@testtoast.com>
- <20240606-intelligent-aromatic-magpie-80a7a4@houat>
- <2dc1fdec-7673-4462-abe1-fecf8e3e826b@linaro.org>
-Date: Thu, 06 Jun 2024 21:48:54 +1200
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Maxime Ripard" <mripard@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- "Jessica Zhang" <quic_jesszhan@quicinc.com>,
- "Sam Ravnborg" <sam@ravnborg.org>, "David Airlie" <airlied@gmail.com>,
- "Daniel Vetter" <daniel@ffwll.ch>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Hironori KIKUCHI" <kikuchan98@gmail.com>,
- "Chris Morgan" <macroalpha82@gmail.com>,
- "Andre Przywara" <andre.przywara@arm.com>, "John Watts" <contact@jookia.org>,
- "Conor Dooley" <conor.dooley@microchip.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: panel: Add WL-355608-A8 panel
-Content-Type: text/plain
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, 6 Jun 2024, at 9:32 PM, Maxime Ripard wrote:
-Hi Maxime, thanks for reviewing.
+On Wed,  5 Jun 2024 13:53:39 -0500
+Chris Morgan <macroalpha82@gmail.com> wrote:
 
-> Where has this consensus been found?
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> The Anbernic RG35XXSP is almost identical to the RG35XX-Plus, but in a
+> clamshell form-factor. The key differences between the SP and the Plus
+> is a lid switch and an RTC on the same i2c bus as the PMIC.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
+>  arch/arm64/boot/dts/allwinner/Makefile        |   3 +-
+>  .../sun50i-h700-anbernic-rg35xx-sp.dts        | 145 ++++++++++++++++++
+>  2 files changed, 147 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dts
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
+> index 0db7b60b49a1..00bed412ee31 100644
+> --- a/arch/arm64/boot/dts/allwinner/Makefile
+> +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> @@ -49,5 +49,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero2w.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero3.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-transpeed-8k618-t.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-2024.dtb
+> -dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-plus.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-h.dtb
+> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-plus.dtb
+> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h700-anbernic-rg35xx-sp.dtb
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dts
+> new file mode 100644
+> index 000000000000..a1d16b65ef5d
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dts
+> @@ -0,0 +1,145 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +/*
+> + * Copyright (C) 2024 Ryan Walklin <ryan@testtoast.com>.
+> + * Copyright (C) 2024 Chris Morgan <macroalpha82@gmail.com>.
+> + */
+> +
+> +#include <dt-bindings/input/gpio-keys.h>
+> +#include "sun50i-h700-anbernic-rg35xx-plus.dts"
+> +
+> +/ {
+> +	model = "Anbernic RG35XX SP";
+> +	compatible = "anbernic,rg35xx-sp", "allwinner,sun50i-h700";
+> +
+> +	gpio-keys-lid {
+> +		compatible = "gpio-keys";
+> +
+> +		lid-switch {
+> +			label = "Lid Switch";
+> +			gpios = <&pio 4 7 GPIO_ACTIVE_LOW>; /* PE7 */
+> +			linux,can-disable;
+> +			linux,code = <SW_LID>;
+> +			linux,input-type = <EV_SW>;
+> +			wakeup-event-action = <EV_ACT_DEASSERTED>;
+> +			wakeup-source;
+> +		};
+> +	};
+> +};
+> +
+> +/delete-node/ &r_rsb;
 
-As Neil notes Conor suggested it [1], and we did consider Hironori's suggestion [2] of using anbernic as the vendor prefix, although my (not strong) feeling at the time was because Anbernic is not the panel vendor, just integrating an unknown OEM's panel into their devices, so at the time I fit was not quite accurate to say Anbernic was the vendor.
+I don't think deleting the *RSB* node is right here, if at all, I'd expect
+status="disabled", and then maybe deleting the axp717 node within?
+Or maybe factor the AXP node out into a separate file, and include it from
+the -2024.dts and from this one?
+Or move every board to I2C?
+What do people think about this?
 
-Some discussion was also had on IRC at #linux-sunxi [3]. Admittedly not a *broad* consensus, but all offered opinions were taken and the patch was accepted subsequently.
+Cheers,
+Andre
 
-> For this kind of cases, we usually use the device it's attached to as
-> the vendor, so anbernic in this case. Can you send a followup patch?
+> +
+> +&r_i2c {
+> +	pinctrl-0 = <&r_i2c_pins>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +
+> +	axp717: pmic@34 {
+> +		compatible = "x-powers,axp717";
+> +		reg = <0x34>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <1>;
+> +		interrupt-parent = <&nmi_intc>;
+> +		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		vin1-supply = <&reg_vcc5v>;
+> +		vin2-supply = <&reg_vcc5v>;
+> +		vin3-supply = <&reg_vcc5v>;
+> +		vin4-supply = <&reg_vcc5v>;
+> +
+> +		regulators {
+> +			reg_dcdc1: dcdc1 {
+> +				regulator-always-on;
+> +				regulator-min-microvolt = <900000>;
+> +				regulator-max-microvolt = <1100000>;
+> +				regulator-name = "vdd-cpu";
+> +			};
+> +
+> +			reg_dcdc2: dcdc2 {
+> +				regulator-always-on;
+> +				regulator-min-microvolt = <940000>;
+> +				regulator-max-microvolt = <940000>;
+> +				regulator-name = "vdd-gpu-sys";
+> +			};
+> +
+> +			reg_dcdc3: dcdc3 {
+> +				regulator-always-on;
+> +				regulator-min-microvolt = <1100000>;
+> +				regulator-max-microvolt = <1100000>;
+> +				regulator-name = "vdd-dram";
+> +			};
+> +
+> +			reg_aldo1: aldo1 {
+> +				/* 1.8v - unused */
+> +			};
+> +
+> +			reg_aldo2: aldo2 {
+> +				/* 1.8v - unused */
+> +			};
+> +
+> +			reg_aldo3: aldo3 {
+> +				/* 1.8v - unused */
+> +			};
+> +
+> +			reg_aldo4: aldo4 {
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-name = "vcc-pg";
+> +			};
+> +
+> +			reg_bldo1: bldo1 {
+> +				/* 1.8v - unused */
+> +			};
+> +
+> +			reg_bldo2: bldo2 {
+> +				regulator-always-on;
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-name = "vcc-pll";
+> +			};
+> +
+> +			reg_bldo3: bldo3 {
+> +				/* 2.8v - unused */
+> +			};
+> +
+> +			reg_bldo4: bldo4 {
+> +				/* 1.2v - unused */
+> +			};
+> +
+> +			reg_cldo1: cldo1 {
+> +				/* 3.3v - audio codec - not yet implemented */
+> +			};
+> +
+> +			reg_cldo2: cldo2 {
+> +				/* 3.3v - unused */
+> +			};
+> +
+> +			reg_cldo3: cldo3 {
+> +				regulator-always-on;
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-name = "vcc-io";
+> +			};
+> +
+> +			reg_cldo4: cldo4 {
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-name = "vcc-wifi";
+> +			};
+> +
+> +			reg_boost: boost {
+> +				regulator-min-microvolt = <5000000>;
+> +				regulator-max-microvolt = <5200000>;
+> +				regulator-name = "boost";
+> +			};
+> +
+> +			reg_cpusldo: cpusldo {
+> +				/* unused */
+> +			};
+> +		};
+> +	};
+> +
+> +	rtc_ext: rtc@51 {
+> +		compatible = "nxp,pcf8563";
+> +		reg = <0x51>;
+> +	};
+> +};
 
-Thanks for the clarification, I was not aware of this. Happy to prepare one but will perhaps wait to see if there are any other comments.
-
-> Maxime
-
-Regards,
-
-Ryan
-
-[1] https://lore.kernel.org/dri-devel/20240525-velvet-citable-a45dd06847a7@spud/
-[2] https://lore.kernel.org/dri-devel/CAG40kxGEw4AyHk3P_dixKRdesGT0pLtMfpYcCCTbVGUs2NMD-w@mail.gmail.com/
-[3] https://oftc.irclog.whitequark.org/linux-sunxi/2024-05-27#332264
 
