@@ -1,126 +1,152 @@
-Return-Path: <devicetree+bounces-73072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC6578FDF29
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:54:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 401AC8FDF2F
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:57:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 77CF4B245F4
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 06:54:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3798E1C21A78
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 06:57:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CF1813A3E2;
-	Thu,  6 Jun 2024 06:54:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8A16433D5;
+	Thu,  6 Jun 2024 06:57:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="Xd1GeeWG"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="eFS0yGza"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABD916F068
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 06:54:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E870119D898
+	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 06:57:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717656878; cv=none; b=SVlCAQJ5pQonY8zQEAmM44VIzhZLH6msSXZKoRU3P7iliAJONXoDMV4CXo3+PXaoHteDpFIXcGMlduicsX1qSAAdVksxpo8kZW73p63zb0XQ0rYAcfVCB8lfHYrWP3fP6FH13WejZIq4NLh+c/0mOKc3tkdLeEfSQijHpMWyhHs=
+	t=1717657025; cv=none; b=mbKuQgG/ghDfuJFGPW+lvFArLNFzltAmwTIFw3LJMu5Gcp+KaQcFp+O//h6IerCA9lZ2JnvGaK55AdfJhe66ruIkCEjivC6VtWSCZVtjfQJP3qIeTPr0agEs/SsfhV1aww+EiTFvl6O7c8qtVYZbffWpe49ower6esdA4KWTjFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717656878; c=relaxed/simple;
-	bh=KSdDPxC5VUh1WnamIAbzz671Erp4LUNSssBAt5dfhn0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=txR7GNss6IS07bRlEqhyCWHmu76A4RdzSC1C6XGQ6i27IhqJ8XxOdENLdNkmTkUe/GgsFTpgglAI0Y4qrR30qU4j+GTGFlyFAVUelD0uisNxmqA6dDjhbS6BOKBh9cWQo/8QWPoDb0+2+uCHkSVD3DY3rgUYPrELXhf8elIGhjs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=Xd1GeeWG; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4215b0c4b7dso7487335e9.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 23:54:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1717656875; x=1718261675; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=a7TCmXGWr94ZoD3g1UVXKN5ISjES07LkwWyEhWG4/I0=;
-        b=Xd1GeeWG9v03txlf+IeiUr4isYxVXO7sIlwVrFgtx1zja6n/fz2iQPtu9T/SkSo4K+
-         DpyV/FkNfNHxSIxjwzogopPQt73IMD3+32oj5r1+swWqeEdbBTODAoWErX6qJ5EhbA0R
-         HtTfy7QuwaPn4Xw2Vnc3ZKfxCc7TComljJDoArtRbb7vtxsbwXhv3+n3YSv7av+TlfXd
-         Cxw7LiDF6mp/sNv39elNFu06CElZEKRl1/b4t5s7zI5rVUcrjmcAe5u8tm1H9iTQCg4n
-         IWigq2oVWJBeoHB0JUs38ul+2sI5OrV4XqceY9663k5lfLm1aTv5aOw3k9g1eAia2hF4
-         S/Gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717656875; x=1718261675;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=a7TCmXGWr94ZoD3g1UVXKN5ISjES07LkwWyEhWG4/I0=;
-        b=cRz0r0+4MBmsh9JXxQCYTxFuQWomAZxoAEgfEI/E/rCrwgXf1cSh4Ew6S8vFjmIvUQ
-         2XcE5Gr/xFsySoHfono37wL68Ja1536cHq+fxtZECUdC/UuIQb3zzfohUeQbeFF6nON4
-         02lAT0YRDo0pMOWdwqAMUEBjYw8QDyngGINOaBOWsYiuCeib0Dh8od03xNN5Tt0u00NO
-         i+KMoVOfNAp3nV+Fcd8D51xM4Q9GTmGejkRgsHICQJGVbUpbqUgAUDt9closthlXo6M0
-         89ZzzlmWcmdxFKdyqYPzAgCkYiXfV4iJDk0Kwa/kNBzFuRMF2JP3IJcI5YQgayEp0SAo
-         NTYw==
-X-Forwarded-Encrypted: i=1; AJvYcCWM8R/88Cuoj6im9b+iGaT9nNzjZrB78lmW45Gteaa0jMvq9aNLdZpQqqVwE19MNSavqTcnwt5rf6DMCjzgH4uAGTJ25nP9yYOD4A==
-X-Gm-Message-State: AOJu0YwUo6QK15dm2r0INsC2ULV3NHEpJHz3hqAWQRSg68LS3q6yaxha
-	XdVg1zFvYyLzPuDPUAh8FwGWzA1tOSV0QelOvXBwwV9/7Htvq5eQHv5+uGe1c70=
-X-Google-Smtp-Source: AGHT+IHNKnXIBb3qZJygU2iYDImkZ9rzUJkNBWDBUa1dYfWFLGg6a9Ze5BMW5kuAh9PHrPhk9uqCHQ==
-X-Received: by 2002:a5d:4711:0:b0:35e:83f3:ea0a with SMTP id ffacd0b85a97d-35e8ef65b69mr3594626f8f.48.1717656874844;
-        Wed, 05 Jun 2024 23:54:34 -0700 (PDT)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5fc1ca8sm714821f8f.97.2024.06.05.23.54.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jun 2024 23:54:34 -0700 (PDT)
-Date: Thu, 6 Jun 2024 08:54:33 +0200
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Tomasz Jeznach <tjeznach@rivosinc.com>
-Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Anup Patel <apatel@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Nick Kossifidis <mick@ics.forth.gr>, Sebastien Boeuf <seb@rivosinc.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, iommu@lists.linux.dev, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, linux@rivosinc.com, 
-	Lu Baolu <baolu.lu@linux.intel.com>
-Subject: Re: [PATCH v6 2/7] iommu/riscv: Add RISC-V IOMMU platform device
- driver
-Message-ID: <20240606-988b5519747e28c276f9a952@orel>
-References: <cover.1716578450.git.tjeznach@rivosinc.com>
- <7dcd9a154625704cbf9adc4b4ac07ca0b9753b31.1716578450.git.tjeznach@rivosinc.com>
- <20240529-08fd52a8e703418142bdfa84@orel>
- <CAH2o1u7N03b3dzxxG8jp7qW2jmCDADwq_OL2Ayv1AL1XsA7s5w@mail.gmail.com>
+	s=arc-20240116; t=1717657025; c=relaxed/simple;
+	bh=yFX5RUHWuOzTFfSFBdcspw6D6wGUNCnLLGmgsQCe6bQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=rBBaAX9GqK/gfIvIHkdravWWN6j3V2wL1XEBz+EHxF5kfCJ51j/2dOFuEKykUs1Z+tLrsDp1E6XbLAf1GVoRQRi39za31vG9BfcnFz4g0qIdDJq60EaXTeQs3xKqRO843u2iTV8BQgYOfteKr66nFcjrHAizzGcB+zQlZdDGxBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=eFS0yGza; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45661ISi018429;
+	Thu, 6 Jun 2024 08:56:07 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	q0pHrhrEV2nvppmu5Y5o14Zk3kbzMDqiybbgUNzqXQI=; b=eFS0yGzaw+mUJO06
+	Qrc3cVuEAifZjh5JTSKnXkihS6HaP0kZMIRgvcgJLM/WBrayNW/BFTVpc+dVkssD
+	j02nIkGfuXSB4yeQHZfMTdiuXbvUZvcwqOjI/lblCIV794azupfJifz0Iqy53CDm
+	9h6R0yb2qdlRShE46VCiYAzx/cQwSogw6XuIrhgSWCt0JRw+KkV/xAbTeKAvLRwX
+	9pJODzzcFAcLNZe4XR9WkDHd4EeMLC/YNLX3m624txcNssdowGP1i5Pfng+lnkBY
+	PjKQVL+H346IlvMZzgIcFIW6qDEDUElIWzUrD361f7gQuaBi3qpt073gT1l13Lp3
+	PG+Pfg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ygekj2hmr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 06 Jun 2024 08:56:07 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id DB8D140049;
+	Thu,  6 Jun 2024 08:56:01 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EC7DD20F2D3;
+	Thu,  6 Jun 2024 08:54:51 +0200 (CEST)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 6 Jun
+ 2024 08:54:51 +0200
+Message-ID: <dce9b2fb-9a63-4e75-aa97-d1c6d2a319bc@foss.st.com>
+Date: Thu, 6 Jun 2024 08:54:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: stm32: Fix STM32MP13xx DHCOR DHSBC Makefile
+ entry
+To: Marek Vasut <marex@denx.de>, <linux-arm-kernel@lists.infradead.org>
+CC: =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+        Ahmad Fatoum
+	<a.fatoum@pengutronix.de>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Conor
+ Dooley <conor+dt@kernel.org>,
+        Dario Binacchi
+	<dario.binacchi@amarulasolutions.com>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh@kernel.org>, Sean
+ Nyekjaer <sean@geanix.com>,
+        Steffen Trumtrar <s.trumtrar@pengutronix.de>,
+        Stephen Rothwell <sfr@canb.auug.org.au>, <devicetree@vger.kernel.org>,
+        <kernel@dh-electronics.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20240605232809.169927-1-marex@denx.de>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20240605232809.169927-1-marex@denx.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAH2o1u7N03b3dzxxG8jp7qW2jmCDADwq_OL2Ayv1AL1XsA7s5w@mail.gmail.com>
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-06_01,2024-06-06_01,2024-05-17_01
 
-On Wed, Jun 05, 2024 at 11:58:28AM GMT, Tomasz Jeznach wrote:
-> On Wed, May 29, 2024 at 8:15 AM Andrew Jones <ajones@ventanamicro.com> wrote:
-...
-> > > +/* 3.1.3 I/O MMU Directory cache invalidation */
-> > > +/* Fields on dword0 */
-> > > +#define RISCV_IOMMU_CMD_IODIR_OPCODE         3
-> > > +#define RISCV_IOMMU_CMD_IODIR_FUNC_INVAL_DDT 0
-> > > +#define RISCV_IOMMU_CMD_IODIR_FUNC_INVAL_PDT 1
-> > > +#define RISCV_IOMMU_CMD_IODIR_PID            GENMASK_ULL(31, 12)
-> > > +#define RISCV_IOMMU_CMD_IODIR_DV             BIT_ULL(33)
-> > > +#define RISCV_IOMMU_CMD_IODIR_DID            GENMASK_ULL(63, 40)
-> >
-> > RISCV_IOMMU_CMD_IOTDIR_* for all above
-> >
+
+
+On 6/6/24 01:27, Marek Vasut wrote:
+> Fix stm32mp135f-dhcor-dhsbc board Makefile entry,
+> replace 'dhsom' with 'dhcor' typo.
 > 
-> I've checked latest RISC-V IOMMU Arch Specification and it looks there
-> it is a bit inconsistent in IODIR naming.  The acronym IOTDIR is used
-> only once, while all other references to directory cache invalidation
-> command use IODIR.  I'll keep _CMD_IODIR_ here.
->
+> Fixes: 12ff8e167641 ("ARM: dts: stm32: Add support for STM32MP13xx DHCOR SoM and DHSBC board")
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: "Leonard Göhrs" <l.goehrs@pengutronix.de>
+> Cc: Ahmad Fatoum <a.fatoum@pengutronix.de>
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Cc: Andre Przywara <andre.przywara@arm.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Sean Nyekjaer <sean@geanix.com>
+> Cc: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+> Cc: Stephen Rothwell <sfr@canb.auug.org.au>
+> Cc: devicetree@vger.kernel.org
+> Cc: kernel@dh-electronics.com
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> ---
+>   arch/arm/boot/dts/st/Makefile | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/st/Makefile b/arch/arm/boot/dts/st/Makefile
+> index db9718059ae2f..015903d09323f 100644
+> --- a/arch/arm/boot/dts/st/Makefile
+> +++ b/arch/arm/boot/dts/st/Makefile
+> @@ -29,7 +29,7 @@ dtb-$(CONFIG_ARCH_STM32) += \
+>   	stm32h743i-eval.dtb \
+>   	stm32h743i-disco.dtb \
+>   	stm32h750i-art-pi.dtb \
+> -	stm32mp135f-dhsom-dhsbc.dtb \
+> +	stm32mp135f-dhcor-dhsbc.dtb \
+>   	stm32mp135f-dk.dtb \
+>   	stm32mp151a-prtt1a.dtb \
+>   	stm32mp151a-prtt1c.dtb \
 
-Indeed. I've made a comment on the spec clarifications PR to suggest the
-s/IOTDIR/IODIR/ change.
+Applied on stm32-next.
 
-Thanks,
-drew
+Thanks
+Alex
 
