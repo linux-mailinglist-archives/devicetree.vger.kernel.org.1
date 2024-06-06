@@ -1,109 +1,180 @@
-Return-Path: <devicetree+bounces-73215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28A728FE412
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 12:18:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 641F18FE40C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 12:17:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 161ECB22AC5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 10:16:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02AC62838FA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 10:17:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B79F2194AE0;
-	Thu,  6 Jun 2024 10:16:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Vt+2Tjzz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C195158848;
+	Thu,  6 Jun 2024 10:17:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C746D1922E6;
-	Thu,  6 Jun 2024 10:16:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F01D513C909;
+	Thu,  6 Jun 2024 10:17:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717668987; cv=none; b=VlLRJZS+N2nG2KzrQX0owKgfEyXHjw3DllZ5NwhfSlTnFPoBvOWj+WsVZobxJ7+buBvfcGRAQ4O70ZfdFIoRJQ6NXHdpJ7FUTUYrNWwRkcRw9ItxIWaZqn6K+5CDjSAsbUihcDyVo+G8XAXkqAMo5iwvxxCUW0XqDzqFakBk8tE=
+	t=1717669050; cv=none; b=I8lQLt8Y3wcBz6OnSO7N0xp/HwSLmfRlXxViClKmXTL/eIofKGd3teffEhlQQTlk/7V7qHxVRcHY3wXH4VIR8hBNqdi95M7ZoQ7nf7Illdtaln4m8Cw/VaPfDno/hLF+D6bEqmwj4Dn0Tewm+DBRtuQeID/my7lBvNXd+8ZNduU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717668987; c=relaxed/simple;
-	bh=TNXQqXOK0vZauoDoKBlQ1r923hP5FVOWyGW1tQfI9Vw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ovwdy6GTpWnKD0bRCt3oB2493pl5tLcLESJtoLEaP0BF0W0k786+Ne9jlSAywLwAh6qWrWw8N/QDZzQvN7bmR/FfIxKhIH0taaNXZwG7a1yaCfhW9GgnYkB3W5UphhTqAjkctTYJKbYz32IuVvfrdiFOrFAK72BUWDD7UNyTnbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Vt+2Tjzz; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 963CBE000B;
-	Thu,  6 Jun 2024 10:16:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1717668982;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=j2h0D3OMhz7wpGy+JkAY94boI0RbGnCtt4jE0xdb+Is=;
-	b=Vt+2TjzzzJf3t9GSoFPTGEhH/bh9FYCKoiqm9LKD05/iRy0oGnTXiwZq+8fALq2tMDJzoa
-	WqM5Abq6eMYXx/4e7bFgFfkzsrCDpjCbU5QV75eQnntjcvliOLtY0QvHqJ4Kyc/JNdhUpN
-	z9HodfvxYu+xIok0w39tH5PF8ZCH1AnehMDO3h4NAzSBK7PJt+OWCWQlR1S6zwKMpwT7zp
-	4IW+wIn5moQjVp+XU/FBA42iRLhVGO2mYIqzk3+2UmBqTmG+N3VFMZjICbX78FSP9dQvWn
-	XsySalCA1q4Zi3k1gZZ1eZv6foOXbSqX/GGyTQqM+WEoW1SKvSTeTQIEW4NA8g==
-Date: Thu, 6 Jun 2024 12:16:16 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Simon Horman <horms@kernel.org>, Sai Krishna Gajula
- <saikrishnag@marvell.com>, Thomas Gleixner <tglx@linutronix.de>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Lee Jones <lee@kernel.org>, Arnd Bergmann
- <arnd@arndb.de>, Horatiu Vultur <horatiu.vultur@microchip.com>,
- UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit
- <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Saravana
- Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Philipp
- Zabel <p.zabel@pengutronix.de>, Lars Povlsen <lars.povlsen@microchip.com>,
- Steen Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon
- <daniel.machon@microchip.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, netdev@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Allan
- Nielsen <allan.nielsen@microchip.com>, Luca Ceresoli
- <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 09/19] irqdomain: Add missing parameter descriptions
- in docs
-Message-ID: <20240606121616.20113726@bootlin.com>
-In-Reply-To: <CAHp75Vex7M0htYQiALN3SVy4XHv8bQ-6QQaX21vS_BFF7Sn_Gw@mail.gmail.com>
-References: <20240527161450.326615-1-herve.codina@bootlin.com>
-	<20240527161450.326615-10-herve.codina@bootlin.com>
-	<ZmDEVoC9NUh7Gg7k@surfacebook.localdomain>
-	<20240606091446.03f262fa@bootlin.com>
-	<CAHp75Vex7M0htYQiALN3SVy4XHv8bQ-6QQaX21vS_BFF7Sn_Gw@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1717669050; c=relaxed/simple;
+	bh=atCDVQzHMtc7/hxct2RHiTzxnZqGbGZOcNVITLT0fEc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ScJntVDElqFk9ONxxq3CFo9vsNg0KjicPc4n32zlu5VQup85a7jXqIOlpFERXPItvN5Iz320JOswVU+KGEkd/6IjmYfwFACaqm5fHa0xGcZxghuEbEKmAlKx2+TZtJNAZ42Of+fAc0g2lJpEmH6ye2b5ZIPO7nJQvo4ekrpItXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875b65.versanet.de ([83.135.91.101] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sFAAx-0007vD-35; Thu, 06 Jun 2024 12:16:55 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, kernel@collabora.com,
+ Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>,
+ Algea Cao <algea.cao@rock-chips.com>
+Subject:
+ Re: [PATCH 13/14] drm/bridge: synopsys: Add DW HDMI QP TX controller driver
+Date: Thu, 06 Jun 2024 12:16:53 +0200
+Message-ID: <2491902.uoxibFcf9D@diego>
+In-Reply-To: <25ba8753-b7e9-4f6f-a9ad-c5266540939a@collabora.com>
+References:
+ <20240601-b4-rk3588-bridge-upstream-v1-0-f6203753232b@collabora.com>
+ <2554679.TLnPLrj5Ze@diego>
+ <25ba8753-b7e9-4f6f-a9ad-c5266540939a@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On Thu, 6 Jun 2024 11:46:25 +0300
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+Am Donnerstag, 6. Juni 2024, 11:53:23 CEST schrieb Cristian Ciocaltea:
+> On 6/5/24 5:48 PM, Heiko St=FCbner wrote:
+> > Am Samstag, 1. Juni 2024, 15:12:35 CEST schrieb Cristian Ciocaltea:
+> >> The Synopsys DesignWare HDMI 2.1 Quad-Pixel (QP) TX controller supports
+> >> the following features, among others:
+> >>
+> >> * Fixed Rate Link (FRL)
+> >> * 4K@120Hz and 8K@60Hz video modes
+> >> * Variable Refresh Rate (VRR) including Quick Media Switching (QMS), a=
+ka
+> >>   Cinema VRR
+> >> * Fast Vactive (FVA), aka Quick Frame Transport (QFT)
+> >> * SCDC I2C DDC access
+> >> * TMDS Scrambler enabling 2160p@60Hz with RGB/YCbCr4:4:4
+> >> * YCbCr4:2:0 enabling 2160p@60Hz at lower HDMI link speeds
+> >> * Multi-stream audio
+> >> * Enhanced Audio Return Channel (EARC)
+> >>
+> >> Add driver to enable basic support, i.e. RGB output up to 4K@60Hz,
+> >> without audio, CEC or any HDMI 2.1 specific features.
+> >>
+> >> Co-developed-by: Algea Cao <algea.cao@rock-chips.com>
+> >> Signed-off-by: Algea Cao <algea.cao@rock-chips.com>
+> >> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> >> ---
+> >>  drivers/gpu/drm/bridge/synopsys/Makefile     |   2 +-
+> >>  drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c | 787 ++++++++++++++++++=
++++++++
+> >>  drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.h | 831 ++++++++++++++++++=
++++++++++
+> >>  include/drm/bridge/dw_hdmi.h                 |   8 +
+> >>  4 files changed, 1627 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/bridge/synopsys/Makefile b/drivers/gpu/dr=
+m/bridge/synopsys/Makefile
+> >> index ce715562e9e5..8354e4879f70 100644
+> >> --- a/drivers/gpu/drm/bridge/synopsys/Makefile
+> >> +++ b/drivers/gpu/drm/bridge/synopsys/Makefile
+> >=20
+> >> +static int dw_hdmi_qp_i2c_read(struct dw_hdmi *hdmi,
+> >> +			       unsigned char *buf, unsigned int length)
+> >> +{
+> >> +	struct dw_hdmi_i2c *i2c =3D hdmi->i2c;
+> >> +	int stat;
+> >> +
+> >> +	if (!i2c->is_regaddr) {
+> >> +		dev_dbg(hdmi->dev, "set read register address to 0\n");
+> >> +		i2c->slave_reg =3D 0x00;
+> >> +		i2c->is_regaddr =3D true;
+> >> +	}
+> >> +
+> >> +	while (length--) {
+> >> +		reinit_completion(&i2c->cmp);
+> >> +
+> >> +		dw_hdmi_qp_mod(hdmi, i2c->slave_reg++ << 12, I2CM_ADDR,
+> >> +			       I2CM_INTERFACE_CONTROL0);
+> >> +
+> >> +		dw_hdmi_qp_mod(hdmi, I2CM_FM_READ, I2CM_WR_MASK,
+> >> +			       I2CM_INTERFACE_CONTROL0);
+> >=20
+> > Somehow the segment handling is present in the rest of the i2c code her=
+e, but
+> > not the actual handling for reads.
+> >=20
+> > The vendor-kernel does:
+> >=20
+> > -               dw_hdmi_qp_mod(hdmi, I2CM_FM_READ, I2CM_WR_MASK,
+> > -                              I2CM_INTERFACE_CONTROL0);
+> > +               if (i2c->is_segment)
+> > +                       dw_hdmi_qp_mod(hdmi, I2CM_EXT_READ, I2CM_WR_MAS=
+K,
+> > +                                      I2CM_INTERFACE_CONTROL0);
+> > +               else
+> > +                       dw_hdmi_qp_mod(hdmi, I2CM_FM_READ, I2CM_WR_MASK,
+> > +                                      I2CM_INTERFACE_CONTROL0);
+>=20
+> Hmm, for some reason this is not present in the stable-5.10-rock5 branch=
+=20
+> I've been using as an implementation reference:
+>=20
+> https://github.com/radxa/kernel/blob/stable-5.10-rock5/drivers/gpu/drm/br=
+idge/synopsys/dw-hdmi-qp.c#L760
+>=20
+> Is there an updated fork?
 
-> On Thu, Jun 6, 2024 at 10:14 AM Herve Codina <herve.codina@bootlin.com> wrote:
-> > On Wed, 5 Jun 2024 23:02:30 +0300
-> > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:  
-> 
-> ...
-> 
-> > Yes indeed, I missed the return values.
-> > Will be updated in the next iteration.  
-> 
-> Note, Thomas already applied this version, so it should be just a follow up.
+I think the radxa code-base is quite old in terms of sdk-version it's based=
+ on.
+Grabbing a 6.1 branch from Radxa shows it in:
+https://github.com/radxa/kernel/blob/linux-6.1-stan-rkr1/drivers/gpu/drm/br=
+idge/synopsys/dw-hdmi-qp.c#L995
 
-Indeed, I saw that.
+> > Without this change, connecting to a DVI display does not work, and
+> > reading the EDID ends in the "i2c read error" below.
+> >=20
+> > Adding the segment handling as above makes the DVI connection
+> > work (as it does in the vendor-kernel).
+> >=20
+> > So it would be nice if you could maybe incorporate this in the next ver=
+sion?
+>=20
+> Sure, thanks for pointing this out!
+>=20
+> Cristian
+>=20
 
-Thanks,
-Hervé
+
+
+
 
