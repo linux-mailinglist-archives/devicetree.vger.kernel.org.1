@@ -1,186 +1,187 @@
-Return-Path: <devicetree+bounces-73385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F1E18FF2F7
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 18:52:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA4048FF2F9
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 18:52:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 079081F290D3
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 16:52:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4656E290744
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 16:52:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89D83198E88;
-	Thu,  6 Jun 2024 16:52:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53C82198A31;
+	Thu,  6 Jun 2024 16:52:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="NnBUxS0C"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="TT/3eRhF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazolkn19013006.outbound.protection.outlook.com [52.103.13.6])
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4BB5198E60
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 16:52:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.13.6
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717692733; cv=fail; b=mzYfo5l4QhbeM8hsm73WuHUVYG4Oz3cTPdVOCwOUgUMYMUJxq7c6HWwZzynPKkP56n9Mk+vmtmF51R3DgqYjpas66MxZRUH2YAsMWiXzx1gZqN/L9kfZbGt8qyEza+sVXEMauaRaogAjdwbV4RVsJDyFbHAfE1HgAuT4Mjiajc0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717692733; c=relaxed/simple;
-	bh=sGmtpt09xpjAlsxY68o8tdDU/pobI9qtVF/yCkiWfBo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=m+JUFO02Itzu8HNnwU8zBeXKGjIqaG49t+0xliABJ8L7IEetcCAJ8e8IvNCxjgxu9RfNzUjZc4HXjzucxS67fri/3y1ohYE7z06NvCK41psggqtFLxDmmwKtMzjNgR9VKf4VQ0Mxl/EMJE5gMuv405X/iBCEXs+9Il5GX5f76Hc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=NnBUxS0C; arc=fail smtp.client-ip=52.103.13.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CcQg4aCywRZbaecNzUyJXi0+9t+uuAVJTRg4INY7JPDz5tgxd1kwPXF1T9KcKxsEOk14nR+dKeV3cTzOIfVGhJR9EB+BNmNTN7goYqdtKWQsI3+srek20sEIXZYIDdsmioKl3q/7RYRlGXPZp2kth85z92O56lXG3SucwTkj6/igfwgILyw/2kYzsWug+xo4dOY2fhvLtX+EVp1wTPMmvBXzMxEUQsBlcXRb6IihKOE+6fq1r99lXbcGNLo7j2XMzQPW02XdZdeYurgDRpdD1T5W0aR8Ju1A7zCqNNmaP+HaCHnEbHnTp32woh9wje1WVaq4qGl15EnYJHXWgjQ+jQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=H7hjHB3F11i7BbV0jfTSkRtpdnSGxeNsUDf96KgS/jw=;
- b=cXg0deyCgjiBWGJyda40KmCv48tEjpTEw9rkaObLDiVz5Xsb9joXeb9aTWcewP1SfNO4b9kTtQZE/KmzgrZItikWNO7IQ6MCsMqWQgl83aSOVWJH7Hz1gWbVJ5QqyASUJSdwxWqtcXbLqqGsbv6+Hbksoe989S+TpYQcStnFyRoASHDsehhI3Kyc11Lk/2Oz5OGrs8LGKumvSdAZdsOrBHfxduBlj5tPOHRDHKao8Xzx0IjF37H/wfeE8qqLzrWQvJdBCgDmNnCasvvS2jsR3qPseUCYNGDAg6bI/r/eqf1VfVgK60FhIAN9f+5/1IZCGf/8Gyf0lmoRhx4nJfdotA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=H7hjHB3F11i7BbV0jfTSkRtpdnSGxeNsUDf96KgS/jw=;
- b=NnBUxS0CCtJZchgqy1gXcD4l9EkTRgnSJQBsGY3DwP3D3o19rhsm3uBcKWBY+YX2Lp5Nx3b91TJuMttAgTGGOGODCSnU9iKUGKGZ9mmT+bvCKL1XHXz35WCTHOthQmlOcpbkTR8CCBJe4RHXudLQ2OU5N/FdXAuHsH5RflEktFaVcWL46wI3YeY1ylDnwHu/UIlSDi21ZsOkekoYW7omXohS8V4KN4Mfhoqsty2vTwJdCmcaPTYMOuqiCYQfSWzdC7M1lhBUPp95L58m0meyVl1f1cl75gNhdBtRPsCeXx1b2c9k7JjcnmJfpVX/M/3UDTWdxx0KdxcKUacPkVd9vg==
-Received: from DM4PR05MB9229.namprd05.prod.outlook.com (2603:10b6:8:88::20) by
- PH0PR05MB7783.namprd05.prod.outlook.com (2603:10b6:510:2d::14) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7656.17; Thu, 6 Jun 2024 16:52:09 +0000
-Received: from DM4PR05MB9229.namprd05.prod.outlook.com
- ([fe80::d720:e9e5:929:c7ff]) by DM4PR05MB9229.namprd05.prod.outlook.com
- ([fe80::d720:e9e5:929:c7ff%4]) with mapi id 15.20.7656.005; Thu, 6 Jun 2024
- 16:52:02 +0000
-Date: Thu, 6 Jun 2024 11:52:00 -0500
-From: Chris Morgan <macromorgan@hotmail.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Chris Morgan <macroalpha82@gmail.com>, conor+dt@kernel.org,
-	linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
-	ryan@testtoast.com, wens@csie.org, mripard@kernel.org,
-	jernej.skrabec@gmail.com, samuel@sholland.org,
-	andre.przywara@arm.com, krzk+dt@kernel.org
-Subject: Re: [PATCH 0/2] Add Anbernic RG35XX-SP
-Message-ID:
- <DM4PR05MB9229FCADD3BDCE2510194016A5FA2@DM4PR05MB9229.namprd05.prod.outlook.com>
-References: <20240605185339.266833-1-macroalpha82@gmail.com>
- <171768925527.3793166.1240136494594349544.robh@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <171768925527.3793166.1240136494594349544.robh@kernel.org>
-X-TMN: [pBf8o9yp+M6gz9Xq1+M7OLtU9VucDgOv]
-X-ClientProxiedBy: SA9PR13CA0121.namprd13.prod.outlook.com
- (2603:10b6:806:27::6) To DM4PR05MB9229.namprd05.prod.outlook.com
- (2603:10b6:8:88::20)
-X-Microsoft-Original-Message-ID: <ZmHpMH9TNAQLQoHB@wintermute.localhost.fail>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F50317BC9
+	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 16:52:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717692764; cv=none; b=OS0LrvA+0bfWboTc3jcjzgI9NfzVSGdAgnbAy4fKdpGLgDN5St86lQqKpoNWu24YhgfAvSUxRLc4+XjzHdDzwKeN558xZPVzFWmuZYUvvMaGnfSqIOoXTDQR0i+bqmAM4IZIKdQu99XfjciF4MM+Iop4A6s4ElyuGUBy6Etu4Hg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717692764; c=relaxed/simple;
+	bh=FDuXNbEVC7eOQ76PjSiXvzSb9Yh+Sj1qcE+WEaQHlYc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ppYbVyBGKDanQPNGHJzo/TGCjVxtC02TO952QzMIq9qOc6fpPOl6NPsO1OFAqmRDlc/zRduusc8iIEeQrIMPFPIPDxOZHHeWW+6Kjd6WpkoBQQL9RP/J4oFompubx9YdFenL7mK0iG7j0aVDZjfpFk8i1kChcMq4V+0s7PRdMGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=TT/3eRhF; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=hyzm
+	RM3c8f/q/dLDwcASuwVUnOptm9NfAUFLu3Zohdk=; b=TT/3eRhFNazSROra/IGl
+	CDyk/Y+2gPxdC6YTKGsf7uFWute5TAGQHnmHERSlmWnEJi29m9ak0vSGegHKq6yw
+	QDrICC+DNVA7rHfignR6BzSEbegn1mi2AdBrWLFDg9pDnYXSUNlHN6qkW+MhC8ox
+	ibm6e/L7TXzYlRsk5IttyVnTCUrinFyqxpjK2+2+vleQ0ltUqkEFuuWFH/t45o3k
+	AuDaqV8Z5VDIBm8SvFfaAHH3w435upezMzXLFQhFHaj9giMGPdScl3Q0HDn81/At
+	5qNxfn3uPDE7F/zZ1zZlFK5eqkRlgb2EXQ3seAYPofyATHUNKKXpc0aDSOxSezsy
+	yg==
+Received: (qmail 3060235 invoked from network); 6 Jun 2024 18:52:34 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 6 Jun 2024 18:52:34 +0200
+X-UD-Smtp-Session: l3s3148p1@13ZugjsaqsxehhrL
+Date: Thu, 6 Jun 2024 18:52:32 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [RFC PATCH 4/4] mmc: renesas_sdhi: Add support for RZ/V2H(P) SoC
+Message-ID: <20240606165232.szabl4q7ymfyrnae@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	"Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20240605074936.578687-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240605074936.578687-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240606100810.eskr7bd3oqpphaxh@ninjato>
+ <CA+V-a8vAkuHN8_4w5QJ-V_ehnmWrto=Ox2A7D6Wrr7bnaf=t9A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR05MB9229:EE_|PH0PR05MB7783:EE_
-X-MS-Office365-Filtering-Correlation-Id: cb1d9c90-3bc4-489c-aa23-08dc8648fd3f
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|461199019|440099019|3412199016|1602099003;
-X-Microsoft-Antispam-Message-Info:
-	IcsyBj+VnrxR/1CoogvzQocQkyuBTNCqC6JFWQQw99R8J0sXU3xk0BHpTaiU7zzw0wGuwRepqFdOkVaMcHQ/bj21vyeTBJkV64nXufw+khA1IdOUyIlWQz/uaSd92J9h56e1BVo7RWLULJpIfLIJJYWXMk1Gqyz6KXXVUTNylu96XvzwWb+WTMB2RtOLt2TfQlECFqvMGP1nr/EHlJBoHzoAiEQSdN1c/kaqQeKPhb8dB0EOGfV+W3ldym1PAGPwTmlKVd0AV41C6lxM2GsmH3xfTZDEnEIvAj8q9kCNG86+2fwUeVxcstQ9EykG3tt2GOv4QJ6i5fSPFsz1n5Z4tsEAuuXZH5Pca06BVO4hfECWfyClJxh4vBAVlQavVwFu2CJ+78rciejQiHJkNanRlj0VyH2UZH+7RYBiS/M2OS5uNCyJPdg0WkBWJrGFQ4wdZ2l3Z4sVHiMFqJzG7WMIg//4klNjpT2wpfRoe3DXyFenFqV0kQwjmE5dtr5UNsC1rtAvCtGAPa26hNH+kNZORTJvOxiR1T+1zsb+cN9yZOv6GetdmJzH/a0s0jxFxdBggkQ6vrnvEiEOSCi5P4ssuAI7BgFW4RsbMmzq9CcH5q3WU0yVh0bhgbWq2t/5yTxsZ8u1BQ1IZk3vp+2UVp5TwbhMhFGe0vIGAeUFhUQ4/Ag=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?07yUwbgaP8LqfXDhg5ZP455pc7oGb6fIM9t0NUaCcYq0mzX+7l53RSbYDukM?=
- =?us-ascii?Q?h41TSXJ4TwZuUQTYZJWSVjHA6n0pPX1/65f7Z/rMz8h2Z11itRe4e5NMaIAS?=
- =?us-ascii?Q?copn8sDd1xaH56BJMEE1URJzAmB3IjTgzt43+YgEXG8JmLbhg4NJbw3fY2Gh?=
- =?us-ascii?Q?mRdhtGdDE0Z/FFO6/T/OK2FY78X1qRzH8E5PJIyi22U+j37QFwTpwsgjTqaL?=
- =?us-ascii?Q?dYrVXrnspuwtOtjddmURomVkijG0SzTU9IydsTAigoTmrR4JTFenXJxNI1LY?=
- =?us-ascii?Q?WMF68sGOxI23hGoAKD6Cub7UVEdFl40nm5cLVFdbJ7BjaM29wjtonRpSTXxK?=
- =?us-ascii?Q?l7HOIioMCMl/E57PBAu63yg5mwi1fbGqgCX16J48dkxo1yQs4ymkj6ApssBn?=
- =?us-ascii?Q?1BJJbeekMqDrQIZpvj+yhBKkXduEt0jtU8Y6i48HUdLwYszO/Y0HRYS3XbWP?=
- =?us-ascii?Q?p2/+aGvNsw+SUH2/S6GkvipgBAoPFLXNi1yPT6XBRG6CJHH/jld1WG07/S0H?=
- =?us-ascii?Q?AAa6gEhmnnpdneiB/y5UzZyn9hxbelOrn5VQZJggGrlzbXrqcV2WR9/CU8hr?=
- =?us-ascii?Q?iGH1XQVHcHqjOA4UpP2yvRPtVBupZTCV4o6KxeG2M8GU/xW6ZpfFew8S8sqG?=
- =?us-ascii?Q?0kGAVD3lfWjhnWok1is6e+BHsj/Kzu9ySnP8/0W8ViNUltnKmA/0Wv7CXAoC?=
- =?us-ascii?Q?u1cbuDK8GKaCjtpwIDNrIGxgXTODWTKi1ck8lk99iaFtsAbZ4jVt9MkUGpn+?=
- =?us-ascii?Q?ceKK3+3LuHLsIJ3otLqDOVhACCEooNpUhiFa012kByycBG7wMwyiBMupzGw1?=
- =?us-ascii?Q?WQ9PUiU9VkQp/Nj4aWkhlc9Jmx2ov3FOcgQQnIutnYsXLuUSdjoqYwSxlLYM?=
- =?us-ascii?Q?6SNNTpJQ2DrLldPDZ7wTaBncKDqJOEkcuj4dkSuVMhgQcCBRvDSHg+MIFaIz?=
- =?us-ascii?Q?7WUS+QkeOwk1sKsRc0N4OuK3Lg1Oz/sFkV/nG3Cce1WCc4Wvon8CCtaZvy1l?=
- =?us-ascii?Q?AhGVJ73q8hC3aTR7MB+N1+GuE3Cv/qzQ1GZuFjOmqqzPYTiAivl38x37XqAK?=
- =?us-ascii?Q?FSCrflBBEdd3A9d0NHF45b6XFZoEJaONGESIx2JacLr5ewkrdYIU+yrLaRZi?=
- =?us-ascii?Q?lKj+O9zn9Rdci3TfXjbgtwVbiafCHvZi4W0S3j5n3LQ2GtTtcHcXMcEGH/gN?=
- =?us-ascii?Q?yzovyAk6YP1VK44Wr0OFKRQQ5xfhd4mril/bt/M80shESlUceOro4aZnjdo?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: sct-15-20-4823-7-msonline-outlook-84f76.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: cb1d9c90-3bc4-489c-aa23-08dc8648fd3f
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR05MB9229.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 16:52:02.7853
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR05MB7783
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="t7vjfnc3hy2gr2dc"
+Content-Disposition: inline
+In-Reply-To: <CA+V-a8vAkuHN8_4w5QJ-V_ehnmWrto=Ox2A7D6Wrr7bnaf=t9A@mail.gmail.com>
 
-On Thu, Jun 06, 2024 at 09:56:13AM -0600, Rob Herring (Arm) wrote:
-> 
-> On Wed, 05 Jun 2024 13:53:37 -0500, Chris Morgan wrote:
-> > From: Chris Morgan <macromorgan@hotmail.com>
-> > 
-> > Add support for the Anbernic RG35XX-SP handheld gaming device. The
-> > Anbernic RG35XX-SP is a clamshell device, but hardware wise is very
-> > similar to the RG35XX-Plus. The RG35XX-SP has a lid-switch and an
-> > external RTC that necessitate a distinct device tree.
-> > 
-> > Chris Morgan (2):
-> >   dt-bindings: arm: sunxi: Add Anbernic RG35XXSP
-> >   arm64: dts: allwinner: h700: Add Anbernic RG35XX-SP
-> > 
-> >  .../devicetree/bindings/arm/sunxi.yaml        |  24 ++-
-> >  arch/arm64/boot/dts/allwinner/Makefile        |   3 +-
-> >  .../sun50i-h700-anbernic-rg35xx-sp.dts        | 145 ++++++++++++++++++
-> >  3 files changed, 156 insertions(+), 16 deletions(-)
-> >  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dts
-> > 
-> > --
-> > 2.34.1
-> > 
-> > 
-> > 
-> 
-> 
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
-> 
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to reply
-> unless the platform maintainer has comments.
-> 
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
-> 
->   pip3 install dtschema --upgrade
 
-Sorry, while this error probably occurs on other upstream trees for the
-moment, this commit should fix the error [1].
+--t7vjfnc3hy2gr2dc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-[1] https://lore.kernel.org/linux-sunxi/20240418000736.24338-4-andre.przywara@arm.com/
+Hi Prabhakar,
 
-Thank you,
-Chris.
+> > - can't we use .enable/.disable in regulator_ops for handling pwen?
+> >   Then we could simply use regulator_en/disable in the code and be future
+> >   proof when other SDHI instances have other kinds of regulators (unless
+> >   I am mising something)
+> >
+> Ok let me check on this and get back.
 
-> 
-> 
-> New warnings running 'make CHECK_DTBS=y allwinner/sun50i-h700-anbernic-rg35xx-sp.dtb' for 20240605185339.266833-1-macroalpha82@gmail.com:
-> 
-> arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp.dtb: pmic@34: regulators: 'boost' does not match any of the regexes: '^(([a-f])?ldo[0-9]|dcdc[0-7a-e]|ldo(_|-)io(0|1)|(dc1)?sw|rtc(_|-)ldo|cpusldo|drivevbus|dc5ldo)$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/mfd/x-powers,axp152.yaml#
-> 
-> 
-> 
-> 
-> 
+Thanks!
+
+> > - what about not using regmap and use set/get_voltage and friends? My
+> >   concern is that other "new" registers might appear in the future and
+> >   it will be cumbersome to handle the scattered IO regions.
+> >
+> I'll have to do some reading on this. Can you please point me to any
+> example driver which does not use regmap.
+
+Sure thing!
+
+~/Kernel/linux/drivers/regulator$ grep -L regmap $(grep -l devm_regulator_register *.c)
+aat2870-regulator.c
+ab8500.c
+ab8500-ext.c
+ad5398.c
+cros-ec-regulator.c
+da903x-regulator.c
+db8500-prcmu.c
+dummy.c
+fixed.c
+gpio-regulator.c
+isl6271a-regulator.c
+lp3971.c
+lp3972.c
+max1586.c
+max8660.c
+max8925-regulator.c
+max8952.c
+max8997-regulator.c
+max8998.c
+mc13783-regulator.c
+mc13892-regulator.c
+mtk-dvfsrc-regulator.c
+pcap-regulator.c
+pwm-regulator.c
+qcom-rpmh-regulator.c
+qcom_rpm-regulator.c
+qcom_smd-regulator.c
+scmi-regulator.c
+stm32-pwr.c
+ti-abb-regulator.c
+tps6507x-regulator.c
+tps6524x-regulator.c
+twl6030-regulator.c
+twl-regulator.c
+vctrl-regulator.c
+
+> > That said, having a regulator is not a quirk in my book. I'd think
+> > 'struct renesas_sdhi' is the proper place. Or?
+> >
+> Ok, I will move them out of quirks.
+
+Cool!
+
+Happy hacking,
+
+   Wolfram
+
+--t7vjfnc3hy2gr2dc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmZh6U0ACgkQFA3kzBSg
+Kba4CBAAnLT8AVsnOncKdZGZ1t0dwqj0PHoUxAkHyiRvOYMR0OImkUMpMu3bArPA
+b8YHnOAYOSMx8TfSQS7rJGIa+kRnPaazhRvpnABTBvNxqOZG3jaNrc9GRl5YEOf6
+0B39r0taUQicMTBAWO7HtVYHAgUBIW74P9B0r5ntmr8ROeMjGZhHlsSHg4hQ5kDs
+xQsic9RJ1WA9HQU1IuElk8rtp5e3yS90odj11kmuQNhzWnQHwBThv6Xivz9lddOM
+BbJY+PW8XUE/gR8+4Twnu1+7bUScGKlC++HsmLohKYD8bOafrkt6MAiFsym5FPk6
+hkfepTMLTHRSpKuQ0M+m15FfkO4O015zaSUVSThftcKGtKZRYKW1ddjNnYRTj+gC
+pf/F1Xd8e5Ue5Q2fPMjO7Bxeot5/wuG7gvNlPBUJcR2qS01+85f5Ry9lp8hg4o0x
+I7/b932/L+ksUUz8QB5dFhxWu6bEwvdnlda46M/QbyWUw4e8i3Dqw/YHlxQyeevw
+TH2SugO+3T94yG4if1+2K7OTPEqD/aRu+rOaHapclaM1DDVvyRhSMMV49RfwMfpz
+qMriY0jE4joM94/Pr0i0Ab7wXv+l5rnzJZhqw7d22ML6B2WMq2uCfn8H3tj2ZzCN
+Ke+oSIP/7N1OxYMBwshHIWfgQUp/JrRrmvgYzdz/84XATimW/WQ=
+=zmhL
+-----END PGP SIGNATURE-----
+
+--t7vjfnc3hy2gr2dc--
 
