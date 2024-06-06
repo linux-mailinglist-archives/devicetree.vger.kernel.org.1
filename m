@@ -1,48 +1,77 @@
-Return-Path: <devicetree+bounces-73095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 089558FE02B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:51:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B4548FE035
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:54:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F03081C2460B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 07:51:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E8A01C24BCE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 07:54:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1655F13A868;
-	Thu,  6 Jun 2024 07:51:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D800413A89B;
+	Thu,  6 Jun 2024 07:54:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qY1XC7u/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ommvAfEc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E15F0DF44;
-	Thu,  6 Jun 2024 07:51:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35D3913AD11
+	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 07:54:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717660294; cv=none; b=ZeRzzE+e7laNcVgOAwSord74BDt2g9ky7NlNe09IVkKmwNQUXrNL2b3Pj+LIxdshiJz4ZYO6QTKbK21cQqGPUEV8D+402iy3FD+imNTUfeCRXAjNdGmwRWfpkHYZkc7RFXeZjC1ndcvtzwh1JQXQ7RS619lr5/BjyFdPdi7PsXM=
+	t=1717660467; cv=none; b=MRMhHkQ49w17tLIRAOnOYG/WU10zy7XJrZ0VGbAUbDvgw1VBUdWVNrsIA+XqywYmCv/IzGs0Tm+keD0ORePvBCTz6krRTPlYBPcVzBSK5YVoCtmd04Y7dz4hliC0NxuziHKsE3AJR+XS1evbNSYl5txUnj5avD8kajjNkDZO+Bo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717660294; c=relaxed/simple;
-	bh=3OwO3/H69nwhm+8pvR63/ovgEqlUeLfYprL9yzUtT00=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bwrSrZu+WVkF+Ju/Xvd4o2VoI7kY8AMhWwuptmlDJqsRSvIqkVjvV+C9jvV+TiHCMXP9yPwIl/X6tK80zg0oLgpee/07r2b8uSkxSHM7MOhOa6SpWfKCZUY0z/WHTSI2ACdHIVXsK4zGraHUgHmuGS+lJqHJFEFVIDz55eOKcWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qY1XC7u/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6226BC3277B;
-	Thu,  6 Jun 2024 07:51:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717660293;
-	bh=3OwO3/H69nwhm+8pvR63/ovgEqlUeLfYprL9yzUtT00=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qY1XC7u/68GFrD6LoNxyQ4U48UIEGVvcp5m6MvZxuE7KALkcOVNxVBVNFf7FKwxfj
-	 nUOhzx3BLu/rIsHgjiC10ce//QBX9fXmcRB0jHlJARRa6OceE+hu0outCTOc/iyirN
-	 S/xI6SgypPRbZNTtKpKp3Ezt4ft600/ggjyBQS5PzFHaNHpdmqWGohcC5ibnVwPswA
-	 GxtJkC4YAZIC7oZvKjYeLRgS8OvKEsTERUV83TFObu7A20bTNQgDHYM7uSFOkNgCIh
-	 QWK+9wh0GK8N5RFRuLkBTNlDImV7YfowYNDqpCPVoHOXvaj0MBr7inCEvhY+A30eE7
-	 nl/KicPYfZ0eA==
-Message-ID: <92af5f36-0c21-4b6e-adde-fcf21b540291@kernel.org>
-Date: Thu, 6 Jun 2024 10:51:27 +0300
+	s=arc-20240116; t=1717660467; c=relaxed/simple;
+	bh=kFiTBzr+9uxPDhZuEKTHcAxsHLjfIkq43/MvTdE9Rt0=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=MdAZfdph/yfdgr+86qpiaK5206biZ9LLJ9nqJes8PLBQDS1GQTThzCF/qCtoWeTd3ZMTRVCjqH5R0mrNoHgsUsXy4Bv0ZeTUEn7oHlm0M5SMpl1i2m/sojb5SL3jN8Gn2Y/HXr047cDCPXUIKcZg1jq8M/SV5ID9RVaDIIYre8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ommvAfEc; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-35ef3a037a0so287588f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2024 00:54:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717660464; x=1718265264; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kmYn9rMjzNzeNgtppFDQy4tGwULHDIGKKfhkuKp/Fsc=;
+        b=ommvAfEcOVsmnOspMTkmBpha+KqSfEOBUGVS9KSVckx6ndmlC9l7fDeW2Eq3zH5nnI
+         OQCoyh/KwvdgTsNt76aZmfobW04vWAbDnmNH9Wk3BnbnYWLalxJw2S3s0ATkM2bQkY89
+         ADn9V3wX1UW+YUm5JJhq22sldW1SRCjzTM5aAWccqanrFB91/E6upo72yhGsy/1n8lgO
+         VhmbJAk6oKhPpFhinqfOTNqDQPD1HPWdUymWpDVEjEOnQoIhFSIWjdqQMMuPhglaqOMC
+         eYI3oh/4Bewe2QG6cGp9/Snq3Y8LPgQki0E1qsKC2gKCt0sp/ztOTqFDZ79Z/HAbetwg
+         Rckw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717660464; x=1718265264;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=kmYn9rMjzNzeNgtppFDQy4tGwULHDIGKKfhkuKp/Fsc=;
+        b=X3E4AyfSeADrZNvohSAkm20Jv+VMs/Q7O2ytxRENOvU4ZEK0CEBhpTNPQ9gaiMoDKI
+         u0D1+PoepQdwRciFVy8vHKLQXeF+F6u8QoDbwO7aGROEb+xH5WK/8FXahQ7H46/TwWKK
+         paZiv2i8fpzA0OS1/Wti0Lv/pksSPDh8lIZB86awzntxXofzos6iFvXKlfG63aYZwGMM
+         adZgK0Hjqhep6wW5Fdyj1zw1qsaeLim6TBI82ZoQZj9TymZ2ty/Sl86TvCugCR2sr95o
+         O/XLWcWRO7hcDx3L/HOyVAsO9x2/iF3XVox3Bu/zQXHV0suA4P31rSLOjQYnGjvI8PfL
+         kkww==
+X-Forwarded-Encrypted: i=1; AJvYcCWpug9GCSYimEzf13IiR90nTXbLJbuTQFzbG4UH9OaEcKiz7FLkXaup6kTjPNG37fb2347lbz0Jdusa5MvOAtV46Ho7XZyFMNElNA==
+X-Gm-Message-State: AOJu0YwrSaDB/efOJvOQWArttN/bd5gwxh5Lpx0k1h1Onu/zedZx1tOe
+	PTAMlzaY9SVApPOrmRTlgm+dI5ATMGWMM6V7lYlUOgWvcDFSxcCt8ROGAS25XlSYdxbvQ3U6z7j
+	v
+X-Google-Smtp-Source: AGHT+IH4KWb4XVK34xYY5tEiXvzfkgFMx11vnQnrD9YBFyNgpHbpBdy+mWtj8PG7uu3umEeRvRNHwQ==
+X-Received: by 2002:a5d:6a44:0:b0:357:16f6:71dc with SMTP id ffacd0b85a97d-35ef0d7a2e0mr1635823f8f.13.1717660464551;
+        Thu, 06 Jun 2024 00:54:24 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:22fd:4ae6:287f:17f2? ([2a01:e0a:982:cbb0:22fd:4ae6:287f:17f2])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42158148f66sm47781085e9.32.2024.06.06.00.54.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Jun 2024 00:54:24 -0700 (PDT)
+Message-ID: <1a82eeb8-bb95-4fad-acce-798ba0cda170@linaro.org>
+Date: Thu, 6 Jun 2024 09:54:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,143 +79,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/7] arm64: dts: ti: am62p: Rename am62p-{}.dtsi to
- am62p-j722s-common-{}.dtsi
-To: Siddharth Vadapalli <s-vadapalli@ti.com>, nm@ti.com, vigneshr@ti.com,
- afd@ti.com, kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, u-kumar1@ti.com, danishanwar@ti.com,
- srk@ti.com
-References: <20240604085252.3686037-1-s-vadapalli@ti.com>
- <20240604085252.3686037-2-s-vadapalli@ti.com>
-Content-Language: en-US
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20240604085252.3686037-2-s-vadapalli@ti.com>
-Content-Type: text/plain; charset=UTF-8
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH] dt-bindings: iio: adc: amlogic,meson-saradc: add optional
+ power-domains
+To: Conor Dooley <conor@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240605-topic-amlogic-upstream-bindings-fixes-power-domains-sardac-v1-1-40a8de6baa59@linaro.org>
+ <20240605-abdomen-starch-4fd4d7ead431@spud>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240605-abdomen-starch-4fd4d7ead431@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-
-
-On 04/06/2024 11:52, Siddharth Vadapalli wrote:
-> The AM62P and J722S SoCs share most of the peripherals. With the aim of
-> reusing the existing k3-am62p-{mcu,main,wakeup}.dtsi files for J722S SoC,
-> rename them to indicate that they are shared with J722S SoC.
+On 05/06/2024 18:58, Conor Dooley wrote:
+> On Wed, Jun 05, 2024 at 11:37:08AM +0200, Neil Armstrong wrote:
+>> On newer SoCs, the SAR ADC hardware can require a power-domain to operate,
+>> add it as optional.
 > 
-> The peripherals that are not shared will be moved in the upcoming patches
-> to the respective k3-{soc}-{mcu,main,wakeup}.dtsi files without "common" in
-> the filename, emphasizing that they are not shared.
-> 
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> Acked-by: Andrew Davis <afd@ti.com>
-> ---
-> v4:
-> https://lore.kernel.org/r/20240601121554.2860403-2-s-vadapalli@ti.com/
-> Changes since v4:
-> - Based on Andrew's feedback at:
->   https://lore.kernel.org/r/086fa11e-10f8-463d-8966-1a33a52a3146@ti.com/
->   MCU was retained as-is while main and wakeup were changed to MAIN and
->   WAKEUP in the respective shared files.
-> - Newline has been added between the file description and the Copyright
->   in all the files.
-> - Collected Acked-by tag since these changes have been made.
-> 
->  .../{k3-am62p-main.dtsi => k3-am62p-j722s-common-main.dtsi} | 3 ++-
->  .../{k3-am62p-mcu.dtsi => k3-am62p-j722s-common-mcu.dtsi}   | 3 ++-
->  ...-am62p-wakeup.dtsi => k3-am62p-j722s-common-wakeup.dtsi} | 3 ++-
->  .../dts/ti/{k3-am62p.dtsi => k3-am62p-j722s-common.dtsi}    | 6 +++---
->  arch/arm64/boot/dts/ti/k3-am62p5.dtsi                       | 2 +-
->  5 files changed, 10 insertions(+), 7 deletions(-)
->  rename arch/arm64/boot/dts/ti/{k3-am62p-main.dtsi => k3-am62p-j722s-common-main.dtsi} (99%)
->  rename arch/arm64/boot/dts/ti/{k3-am62p-mcu.dtsi => k3-am62p-j722s-common-mcu.dtsi} (98%)
->  rename arch/arm64/boot/dts/ti/{k3-am62p-wakeup.dtsi => k3-am62p-j722s-common-wakeup.dtsi} (97%)
->  rename arch/arm64/boot/dts/ti/{k3-am62p.dtsi => k3-am62p-j722s-common.dtsi} (97%)
+> What about the older socs that don't have power domains, the property is
+> now usable there?
 
-This is not correct.
-If J722 has different CBASS components than AM62p then we should leave k3-am62p.dtsi
-as it is and introduce a new k3-j722.dtsi with relevant CBASS components.
+Old SoCs doesn't necessarily have an associated power domain, or was handled
+by firmware, does it harm if we make it optional for older ones as well ?
 
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-> similarity index 99%
-> rename from arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-> rename to arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-> index 900d1f9530a2..bf6384ba824a 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-> @@ -1,6 +1,7 @@
->  // SPDX-License-Identifier: GPL-2.0-only OR MIT
->  /*
-> - * Device Tree file for the AM62P main domain peripherals
-> + * Device Tree file for the MAIN domain peripherals shared by AM62P and J722S
-> + *
->   * Copyright (C) 2023-2024 Texas Instruments Incorporated - https://www.ti.com/
->   */
->  
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
-> similarity index 98%
-> rename from arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi
-> rename to arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
-> index b973b550eb9d..1d4e5fc8b4e0 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
-> @@ -1,6 +1,7 @@
->  // SPDX-License-Identifier: GPL-2.0-only OR MIT
->  /*
-> - * Device Tree file for the AM62P MCU domain peripherals
-> + * Device Tree file for the MCU domain peripherals shared by AM62P and J722S
-> + *
->   * Copyright (C) 2023-2024 Texas Instruments Incorporated - https://www.ti.com/
->   */
->  
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
-> similarity index 97%
-> rename from arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
-> rename to arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
-> index c71d9624ea27..f6ec6e8e171d 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
-> @@ -1,6 +1,7 @@
->  // SPDX-License-Identifier: GPL-2.0-only OR MIT
->  /*
-> - * Device Tree file for the AM62P wakeup domain peripherals
-> + * Device Tree file for the WAKEUP domain peripherals shared by AM62P and J722S
-> + *
->   * Copyright (C) 2023-2024 Texas Instruments Incorporated - https://www.ti.com/
->   */
->  
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62p.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common.dtsi
-> similarity index 97%
-> rename from arch/arm64/boot/dts/ti/k3-am62p.dtsi
-> rename to arch/arm64/boot/dts/ti/k3-am62p-j722s-common.dtsi
-> index 94babc412575..d85d05e0792a 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62p.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common.dtsi
-> @@ -120,6 +120,6 @@ cbass_wakeup: bus@b00000 {
->  };
->  
->  /* Now include peripherals for each bus segment */
-> -#include "k3-am62p-main.dtsi"
-> -#include "k3-am62p-mcu.dtsi"
-> -#include "k3-am62p-wakeup.dtsi"
-> +#include "k3-am62p-j722s-common-main.dtsi"
-> +#include "k3-am62p-j722s-common-mcu.dtsi"
-> +#include "k3-am62p-j722s-common-wakeup.dtsi"
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62p5.dtsi b/arch/arm64/boot/dts/ti/k3-am62p5.dtsi
-> index 41f479dca455..b7bb04a7968f 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62p5.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62p5.dtsi
-> @@ -8,7 +8,7 @@
->  
->  /dts-v1/;
->  
-> -#include "k3-am62p.dtsi"
-> +#include "k3-am62p-j722s-common.dtsi"
->  
->  / {
->  	cpus {
-
---
-cheers,
--roger
+Neil
 
