@@ -1,121 +1,211 @@
-Return-Path: <devicetree+bounces-73198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F2328FE3C6
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 12:06:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70DD78FE3C0
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 12:05:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B6877B2B4DD
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:45:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EB6BAB2DF4C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:50:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7DE71791EB;
-	Thu,  6 Jun 2024 09:45:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C706C17A92C;
+	Thu,  6 Jun 2024 09:50:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZS8oHu8U"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MxIQ5FY5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44375178CC1;
-	Thu,  6 Jun 2024 09:45:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 371EB179202;
+	Thu,  6 Jun 2024 09:50:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717667123; cv=none; b=nWnYVy5TTgUPSP7c0oCT+wnrElcLGK3cRSGRZF9Ood7a4zN0aKJ456Xq0dfjyvvdXtfkwrl7MeBco/YPI3e89qqnzGP6cpjPTUiDjOFpIeU7g6Ydo47baeS+3EG0NynlZjpeX2gmqTJa14ehtq5s3W0qQf0kMwO6plgYnW7JMFU=
+	t=1717667405; cv=none; b=d9KbOT5yB1gwf+b8zCWl/yzgRrWFkeVKsHwhSXZNbHHd7Nh73V7LfvFc0jjZ33WUUP0bEvMQ/DWj47vITDJW+1oTO+klgMV6ZyMG4luq+zAcuWLdDQK8IyLR6jZeT5ZWqA4NkpbIwlIW21sTeRVicH89L4FqKwRccxEjRX3i0Z0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717667123; c=relaxed/simple;
-	bh=BHKxBsa6XW0c4NSkz2qopssDmmvqtOsiOwQ3mhZwKiQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=SagNwa0BTFLxFlEL0HSoi+2GxoIhUn8YYJ/JiBke3Vdg0HkgZl89vYU0nhSdEIO0CO/9/7q7QGEuKBYrHWP/yuJUGf9K+MOq3NflSkhjO0x1dEpcLJ7ZzNE/fpkXMK7Mud2HDHuoIK+zD9qk1QVO5u1hPUJO+SMQ4Dq4CeFhllo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZS8oHu8U; arc=none smtp.client-ip=209.85.221.50
+	s=arc-20240116; t=1717667405; c=relaxed/simple;
+	bh=bmLdGrZRQXnegcGiTYMlVVgkUaEWpL+WbZvlKBp0HCk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jEHWo/VdRbzakh8Sguh52nsyUiDhS0I/qX5cMERBz30mXnIckj9P+qPmxeLblnYkHZmI8+0o80RTdH1Do0aiKMqggjymz/E2470gP6J6gFvLVVVBET9dTPHnRXE4mOYSiI/Dmn2RG8ZoXHt5p2HOPdRep6RlJHDMhW2r+lBwRgw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MxIQ5FY5; arc=none smtp.client-ip=209.85.222.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-35dc04717a1so551871f8f.2;
-        Thu, 06 Jun 2024 02:45:21 -0700 (PDT)
+Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-80ac76f1226so1082201241.0;
+        Thu, 06 Jun 2024 02:50:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717667120; x=1718271920; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1717667403; x=1718272203; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=i/abp3c/U8eNKudjyhDdtFs1lZxFEuDv8/SDa8wxnOc=;
-        b=ZS8oHu8UCT9koLAzrzQE4ElcTpQ/wZEpoAtE5mYDvhSt/pK7R+ruUD9W5oiyHearm6
-         m/1B2ZbjurJaXNh5Ph42rg4V9TlXeYiglLHSr2t49CrqZApt0UePuZBIL1qdKA7snXZA
-         qxviHMkAM4I19e1r0Th3BaGBGIsdPthjKpkwrhOPegdsGOTAiNNszVIBktP01lZIget0
-         Fxhag+oe6Fd1Ixd+EjABmGUYXhcn3zL4dEKuR5Y9Gie/q4rAnV+LCu6bSvt+ltk8GGz3
-         kwmHXGF9tbP53UXBXU8Mk9DlgwkKha9f9FCHbVG+8641RiGtXq1w2ZeaU88Jpj21Uspv
-         FKkA==
+        bh=Pt8VYjdgFV32IITBFPs8G4GKKzvcpXkwGBY8GKcJ8X4=;
+        b=MxIQ5FY51fwxqFxXIDurItMpSFtqVEJiNujwsj4CNEYKSZ1Ex0W4BminbeK93ZUd0Q
+         WMZCL9vovT11s5Z7rkWSJV54NjmhrnHzIyPCsFOU62SLo/UPRVM7FQ3lhllXBZ5D97DI
+         Mlqxg1foKU33owMWlVlzSJzizCEOvz4z7IymFvUMjuASPbqe7vQWoQgJjYwkCLB678Lp
+         b6NMGL8AadRRRlY8m1ARWQK364DGOqSUor04jHKg11b8IqvBj+0wEFP4dAEZeXA2zUa4
+         1dtbZ4I4W2pO/lqSwbYv/+5YwqHziq0r1Jmwr7TTn4++HEtwkRqeIXVrbPmZZJNkTBli
+         0WgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717667120; x=1718271920;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1717667403; x=1718272203;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=i/abp3c/U8eNKudjyhDdtFs1lZxFEuDv8/SDa8wxnOc=;
-        b=tA1j1OZliIxDcV4LxaYLx9UMXnrw7jBdp3V2HfI1b+Wd7/VOUSFAeT96w/q3miQUMv
-         CMwcqf4xDQ5j53oZm5hipUDGzF2nriOdcdxZldotVhbbb0VS+vDDuIBtL7CRqNPPicRY
-         RB1lxfdDrgAwNVv6/5IBSAnlil94mZ9N8JJXp401okwDNC3Zia1YD5VocjDh94yMrksO
-         lZPq75nfAh0SrRW/V2OO0hUIaWR6xROILkjEbCacMILZy5OFlXgHOHfcB9reOefotbVX
-         zs3yGsb3Mrjk4p5pAEPp3MlEWZjajRVVFx2niWRVcsKipjS2osefWV4B7kfYazaoHY5I
-         kv5A==
-X-Forwarded-Encrypted: i=1; AJvYcCU01G5jrhu33IqQITesiBHob7Abm6ZVKL67wK3JIlROVMbj6k9ASY7yAb2CPQB0cxU2NQC4Y5AHJTh1gwo5zNRb/K3lDMxezpHiNv4RLcJIvC+OxkOJKCUfSoqDFn4iug21iGMMxjiGwA==
-X-Gm-Message-State: AOJu0Yxug4cbJ9YomjlneR8ecEFP0360iq0zQ5F6JazIQauetQoYnFNw
-	349aVFZhoLwrscA1bddUWscAqGIRjZncb2WdaIiqSX0P/vJlD6a4hxvsN3dt7fA=
-X-Google-Smtp-Source: AGHT+IG745YuhU9aw87AU94dbf4in9m4EmzyV2/eQwRQ89ttaSUzLVoesp8NdrEDNh0TbYWm7kbzjw==
-X-Received: by 2002:adf:feca:0:b0:35e:83c0:82cb with SMTP id ffacd0b85a97d-35e929c89e7mr4058570f8f.70.1717667120186;
-        Thu, 06 Jun 2024 02:45:20 -0700 (PDT)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5d47930sm1094817f8f.29.2024.06.06.02.45.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jun 2024 02:45:19 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH 2/3] dt-bindings: arm: amlogic: add support for Dreambox One/Two
-Date: Thu,  6 Jun 2024 09:45:12 +0000
-Message-Id: <20240606094513.3949323-2-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240606094513.3949323-1-christianshewitt@gmail.com>
-References: <20240606094513.3949323-1-christianshewitt@gmail.com>
+        bh=Pt8VYjdgFV32IITBFPs8G4GKKzvcpXkwGBY8GKcJ8X4=;
+        b=e6smrx0W7FNKF7Bqc3h9fO9spN55Qz0Q4l7HkDXZ7mh2UzTZ9UG0SOXR8knjsUFyRj
+         ahvHDwciQIMe8KuTEUyibAqYblugQFrIMtjVff+Fc/lCeLeqCnJ8ROItpXczuZSCNGIn
+         6Iu56X8JZIXqeP0zXiqlEUHlvTlRJJdw2CWYAhyduE0Xc3KrwpoXp6h0cMfcTQU1tU7q
+         BhMN1/uCxJG4O0SYqOb4UTommdVLyEr9DloXZu7WYIGX5xC8hMn0eUqBQawGaa2W2fGI
+         bMEjLVvAEeQz7IS55AR/NF8s8JAUm0RNII5W0bFkgVjAN3hMXx2uOMDADOf/PiwuC50K
+         h2ZA==
+X-Forwarded-Encrypted: i=1; AJvYcCUfK01CmA4auybMsgwkG/LrMcC1lmtG35NA0/kjUPaZJM5n3eEj50fjsT9OsM7YaKom2v3ERCUCLZS1pdb2q3IpKOcgFgkHBAGpio1wogIBa+CE3N4dFbFJXOpC/HurcofkGmdOBE7gCvNDgN4i+Lgq3qMIMQAOAv7yc+eL8ceA2R5l/ie8V6unjrJf0mhjMV4Z76T9BMoGFFAtGv37p5s6Uu0IaWZQ
+X-Gm-Message-State: AOJu0YwosQ5W/njcc3yVaGdZQlVOKzl4n6KeKWczYAFE/CEz3oWecm2l
+	j4MBTdlJJ9H/ulCEidCzffSy8YjRGRV4786mo5OkhB4R9oCElbpWDPbVeKFgBAE3VUoqAj1W/PY
+	lEYmifnsQxui544k+4FZDGjPG3EY=
+X-Google-Smtp-Source: AGHT+IGVAqNoszwU9soSJ6eGzHcPJKwFbzgrNpgoIuG3yV15kr7QHNvDbxF+BE3cmgmwJgu9YAAd9XA5OL3en06SLcE=
+X-Received: by 2002:a05:6122:17a2:b0:4eb:12d4:d3b0 with SMTP id
+ 71dfb90a1353d-4eb485c084fmr2483444e0c.3.1717667402241; Thu, 06 Jun 2024
+ 02:50:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240605074936.578687-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240605074936.578687-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <TY3PR01MB113464449FACE8364BF667CBB86FA2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <CA+V-a8tXLsfTvuCWDqiFkWbe=C2Coo8KF4GchbHPzOG+RTiChw@mail.gmail.com> <TY3PR01MB113468DD4C215E58B4499BAAA86FA2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+In-Reply-To: <TY3PR01MB113468DD4C215E58B4499BAAA86FA2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Thu, 6 Jun 2024 10:49:36 +0100
+Message-ID: <CA+V-a8tXp0sa_FiVzAkz2Uax1iv3XK90ug2KuKxuHRSP5Vfx1Q@mail.gmail.com>
+Subject: Re: [RFC PATCH 4/4] mmc: renesas_sdhi: Add support for RZ/V2H(P) SoC
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Dreambox One and Dreambox Two are DVBS/T2 receiver boxes based
-on the Amlogic W400 reference board with an S922X chip.
+Hi Biju,
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- Documentation/devicetree/bindings/arm/amlogic.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+On Thu, Jun 6, 2024 at 10:43=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas.co=
+m> wrote:
+>
+> Hi Prabhakar,
+>
+>
+> > -----Original Message-----
+> > From: Lad, Prabhakar <prabhakar.csengg@gmail.com>
+> > Sent: Thursday, June 6, 2024 10:38 AM
+> > Subject: Re: [RFC PATCH 4/4] mmc: renesas_sdhi: Add support for RZ/V2H(=
+P) SoC
+> >
+> > Hi Biju,
+> >
+> > Thank you for the review.
+> >
+> > On Thu, Jun 6, 2024 at 10:32=E2=80=AFAM Biju Das <biju.das.jz@bp.renesa=
+s.com> wrote:
+> > >
+> > > Hi Prabhakar,
+> > >
+<snip>
+> > > >
+> > > > +static void renesas_sdhi_sd_status_pwen(struct tmio_mmc_host *host=
+,
+> > > > +bool on) {
+> > > > +     u32 sd_status;
+> > > > +
+> > > > +     sd_ctrl_read32_rep(host, CTL_SD_STATUS, &sd_status, 1);
+> > > > +     if (on)
+> > > > +             sd_status |=3D  SD_STATUS_PWEN;
+> > > > +     else
+> > > > +             sd_status &=3D  ~SD_STATUS_PWEN;
+> > > > +
+> > > > +     sd_ctrl_write32(host, CTL_SD_STATUS, sd_status); }
+> > > > +
+> > >
+> > > May be use regulator_set_voltage() to set this??
+> > >
+> > This is the PWEN bit which is not modelled as a regulator, we cannot us=
+e regulator_set_voltage() to
+> > set this bit.
+>
+> So, there may be a race between regulator driver and this bit??
+>
+No, there won't be any race between the regulator driver and this bit
+as the regulator driver only controls the IOVS bit and not the PWEN
+bit.
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index 77f8dfa86e6a..b39eb17abbba 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -176,6 +176,8 @@ properties:
-               - azw,gtking
-               - azw,gtking-pro
-               - bananapi,bpi-m2s
-+              - dream,dreambox-one
-+              - dream,dreambox-two
-               - hardkernel,odroid-go-ultra
-               - hardkernel,odroid-n2
-               - hardkernel,odroid-n2l
--- 
-2.34.1
+> >
+> > > >  static int renesas_sdhi_start_signal_voltage_switch(struct mmc_hos=
+t *mmc,
+> > > >                                                   struct mmc_ios
+> > > > *ios)  { @@ -587,6 +600,9 @@ static void renesas_sdhi_reset(struct
+> > > > tmio_mmc_host *host, bool preserve)
+> > > >                                         false, priv->rstc);
+> > > >                       /* At least SDHI_VER_GEN2_SDR50 needs manual =
+release of reset */
+> > > >                       sd_ctrl_write16(host, CTL_RESET_SD, 0x0001);
+> > > > +                     if (sdhi_has_quirk(priv, sd_pwen))
+> > > > +                             renesas_sdhi_sd_status_pwen(host,
+> > > > + true);
+> > > > +
+> > > >                       priv->needs_adjust_hs400 =3D false;
+> > > >                       renesas_sdhi_set_clock(host, host->clk_cache)=
+;
+> > > >
+> > > > @@ -904,6 +920,34 @@ static void renesas_sdhi_enable_dma(struct tmi=
+o_mmc_host *host, bool
+> > enable)
+> > > >       renesas_sdhi_sdbuf_width(host, enable ? width : 16);  }
+> > > >
+> > > > +static int renesas_sdhi_internal_dmac_register_regulator(struct pl=
+atform_device *pdev,
+> > > > +                                                      const struct=
+ renesas_sdhi_quirks
+> > *quirks) {
+> > > > +     struct tmio_mmc_host *host =3D platform_get_drvdata(pdev);
+> > > > +     struct renesas_sdhi *priv =3D host_to_priv(host);
+> > > > +     struct regulator_config rcfg =3D {
+> > > > +             .dev =3D &pdev->dev,
+> > > > +             .driver_data =3D priv,
+> > > > +     };
+> > > > +     struct regulator_dev *rdev;
+> > > > +     const char *devname;
+> > > > +
+> > > > +     devname =3D devm_kasprintf(&pdev->dev, GFP_KERNEL, "%s-vqmmc-=
+regulator",
+> > > > +                              dev_name(&pdev->dev));
+> > > > +     if (!devname)
+> > > > +             return -ENOMEM;
+> > > > +
+> > > > +     quirks->rdesc->name =3D devname;
+> > > > +     rcfg.regmap =3D devm_regmap_init_mmio(&pdev->dev, host->ctl +
+> > > > + quirks->rdesc_offset,
+> > >
+> > > This is (CTL_SD_STATUS << 2) , so the variable can be dropped from qu=
+irks.
+> > >
+> > rdesc_offset is added to make code generic, that is in future if there =
+is a new chip with a
+> > different offset which supports IOVS we can just pass the offset for it=
+.
+>
+> Currently there is no consumer for it, so it can save memory. When a futu=
+re chip comes
+> we can bring back this variable??
+>
+OK.
 
+Cheers,
+Prabhakar
 
