@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-73068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8E378FDF04
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:44:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1BF38FDF0B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:44:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 58FBFB24C91
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 06:44:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 918CC1F25113
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 06:44:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC28C13541F;
-	Thu,  6 Jun 2024 06:43:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88CE113C69A;
+	Thu,  6 Jun 2024 06:44:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BtyEp6Hb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sShhanP/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 844C27D07E;
-	Thu,  6 Jun 2024 06:43:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5954413BC20;
+	Thu,  6 Jun 2024 06:44:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717656215; cv=none; b=mgyI6IYh9PAaA4BsZ5XI/ggM4iBSinJKpurFo2+5FvscScMkFh7S002X4t4BWG7CXfj/O6xL6S+tXgfE6RQ1gLRRFwfebefDxOtAVVBdSQGHqODi5U6SEEfXNaJ163XA9Y4Z19Yu3A18blrGOGJGVP52VP2p8400dj9+MfpdB8k=
+	t=1717656251; cv=none; b=h3qNgm5Sj1nex2Tn97cbSDBvgtmOd8XIsH/cZ3dEQ+EB/O65aFFsuKEsugZyYx2FpLzZ855T+cbpvEiXuAvgZFj40+kJDgMIurm35t3+4eQz3P/nH5ewcJ6mt4qRpkNkOFtZnE1BsDxMbvrY7sexELLJcdboABFxMXyo84H/SdU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717656215; c=relaxed/simple;
-	bh=+XFYhe2lmoaFzGgvFblvnZ5hhnEeKolaa0hcxvWE7PU=;
+	s=arc-20240116; t=1717656251; c=relaxed/simple;
+	bh=3ZCCiIZVN2JELpO+tKNP2BLYPCzEKTVkvzzbdR0N+fI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ClKhpLGRokpWYZQ7+NqGglZIDDRlYGb6xKNmMKkWV+ZLyqcZ/sQAMO6Ktx2HXF6SPVJXIIiFofiRawWgXwXq2tBW6pLaP9R6GLOmG1DjTqZRK8wgSBDgpeplNMtuDlD/EKbqDszh/EREyOsGtEhyRFQDwHMTaRdQKqEv1XSnd3o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BtyEp6Hb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C6D5C4AF17;
-	Thu,  6 Jun 2024 06:43:31 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=K1sYvqpbhawJ2r5dDKznXSZnO2Hd02oe/lL4tKohbTKeXMGCY3zY8F6fFuuJ7fi67IxNmklMM84yabhEiwBumoqbQGgSaAwvCu7DVhGMf4URyyXnC4aHmyxQ85/tEX6vyzh3Xxz+iJ4OdW6HxPLH6+jdiydtpr/xG1rNNjNtjHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sShhanP/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 947DAC4AF0D;
+	Thu,  6 Jun 2024 06:44:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717656215;
-	bh=+XFYhe2lmoaFzGgvFblvnZ5hhnEeKolaa0hcxvWE7PU=;
+	s=k20201202; t=1717656251;
+	bh=3ZCCiIZVN2JELpO+tKNP2BLYPCzEKTVkvzzbdR0N+fI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BtyEp6HbB2FTJV9/CIb6DP/1psqJTkvpw0ahBp9jvsd4L87WGYHWzYXyz6xnQ0qd4
-	 cFt1TAZWebMS6C7lJeOhTDtx/w0Y8Wch2hclPp4Q3kEqDZiXghtQDKqscNKBL378jW
-	 2fY/S7PBd435BcyTdpMai/BuwXn2p79PmdWx4bfNzQqO/NMfkoC3NUw5PkoD0e090S
-	 dh59XTY0DLCfV8VySoJAAHPk8HoQjr0eH+b3iOcFgU0xc184gGIeQ5OxLGmdw5IOoN
-	 G4PDJTAMHKP3HzO47vG5zYTMecHBcoJvF3mnGnKyFUCe1c2R/uzedDcrvBbjMo/dIj
-	 DXNRrXSEtDEsA==
-Message-ID: <c4a2c394-d0a6-4337-875a-dc227666ad5f@kernel.org>
-Date: Thu, 6 Jun 2024 08:43:29 +0200
+	b=sShhanP/FFJUHQNKWsv/7lYVwGsM1lZdd+hEcJYODoxhjL/GlzkjwwuHGciILcGwN
+	 8reE1FU4slMISoNq7VvRFvib68yNoTNMTZNIkI2201SY6FOdpsrx61vcMrfr7txz/I
+	 XgAMTUXx08A8veo/PkR3PJcqviXspOKcf/L2EAZa7xU9eNLBo1VOPDtlWsIDufZsqD
+	 d+AVFYYlB1+THL8ZVrIzLSYHyaqYP6Ni+JH63UO00yxQtl0fdF+0JhRf1otmE58kZ4
+	 Ara+uofViO9HoO8WT4VDPwR4KfQ+E6tdWl24HPc0mlPao5WdZzgWY5u7RtLwDKFepm
+	 eL538UBx9uoTg==
+Message-ID: <b1c51acc-441d-4484-adef-1da368571097@kernel.org>
+Date: Thu, 6 Jun 2024 08:44:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: sunxi: Add Anbernic RG35XXSP
-To: Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev
-Cc: devicetree@vger.kernel.org, mripard@kernel.org, ryan@testtoast.com,
- andre.przywara@arm.com, samuel@sholland.org, jernej.skrabec@gmail.com,
- wens@csie.org, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
- Chris Morgan <macromorgan@hotmail.com>
-References: <20240605185339.266833-1-macroalpha82@gmail.com>
- <20240605185339.266833-2-macroalpha82@gmail.com>
+Subject: Re: [PATCH v3 1/1] dt-bindings: mmc: Convert fsl-esdhc.txt to yaml
+To: Frank Li <Frank.Li@nxp.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ krzk+dt@kernel.org, linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+ robh@kernel.org, ulf.hansson@linaro.org
+References: <20240605185046.1057877-1-Frank.Li@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,20 +101,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240605185339.266833-2-macroalpha82@gmail.com>
+In-Reply-To: <20240605185046.1057877-1-Frank.Li@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/06/2024 20:53, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On 05/06/2024 20:50, Frank Li wrote:
+> Convert layerscape fsl-esdhc binding doc from txt to yaml format.
 > 
-> Add the Anbernic RG35XXSP variant device and consolidate the Anbernic
-> H700 devices.
+> Addtional change during convert:
+> - Deprecate "sdhci,wp-inverted", "sdhci,1-bit-only".
+> - Add "reg" and "interrupts" property.
+> - Change example "sdhci@2e000" to "mmc@2e000".
+> - Compatible string require fsl,<chip>-esdhc followed by fsl,esdhc to match
+> most existed dts file.
+> - Set clock-frequency to 100mhz in example.
 > 
-> The Anbernic RG35XXSP is almost identical to the RG35XX-Plus, but in a
-> clamshell form-factor.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
