@@ -1,254 +1,156 @@
-Return-Path: <devicetree+bounces-73070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69FCA8FDF13
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:47:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FEE58FDF15
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:47:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B582B28E289
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 06:47:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93CE91C23618
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 06:47:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CDE04DA04;
-	Thu,  6 Jun 2024 06:47:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C56A57D07D;
+	Thu,  6 Jun 2024 06:47:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="i3wUwkdq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AR1HQFdc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FCC44A2D
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 06:47:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DA8319D898;
+	Thu,  6 Jun 2024 06:47:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717656427; cv=none; b=OgT3dkCg2v8mrj2ryIIdKxaojCFbpVxiu34TaRnkj2YLryFpbjQe2FLWcNFlY11BVIkOwBLf2ApgCaEVqdr9b7g5/tmYW8xUOjqI79fdKBUkr7SPgi4NRjYYRxtcSOSZk52y4bY80czuK3kUng9xPb6L1Il3295p/UMsY2rngbA=
+	t=1717656466; cv=none; b=PXLbGHOS8NkScYe79zJdPVdY6HkMRX+8C6JSrdlghvNgTAHct9Sfat8kzcn+yL7K1YcA7OQQb1c8kJ+DYnqLltlS58it2TOH8jUQxePlCM3RWPcNQfrrLOb3FTybz+2d5pagEpbGlpehqzT1EsPO9i1NuJr2lwFXv+1TQ8CUPsI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717656427; c=relaxed/simple;
-	bh=I225HpwCGaHXdQhB102rRz5DVwR3ebWC1Av3wFv6dVA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oWJkzE1LXAexgCP0jwFbMTPtipFgzOCenvajUhI2dlY3ShNSSygvkU58gKTQ/NF0uF9GgDDosLDhvfpIjC7PiMqtn8VCuOCtQTqfOBiySmtLvgxXp+riFJP3AjhZgSNReuuqe8Si/oFiTaeM4Q3tuc+taL3cUEBBr5YmGQlKtis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=i3wUwkdq; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52b7e693b8aso1614551e87.1
-        for <devicetree@vger.kernel.org>; Wed, 05 Jun 2024 23:47:05 -0700 (PDT)
+	s=arc-20240116; t=1717656466; c=relaxed/simple;
+	bh=k5s7YOLQTUatjXw1nfSPcz2NVGXMNK1aE7DYjJ86gfw=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=uXjGvhoju6Mj0Q0+7w8uBd5dWI4lPoD+Gt5po9xiRb9Ghe1tax/Vu8Tq2bf4ptidz5PdjRLqoKRcOn4F0NMrfiyVyq1yFIcUpjR8b7JPIOA+ZzKIBfzjWbHLpYMdX1TGXn0PaS5ulnez00p85JIuRvirWgrv1PalPb0PMvGMnSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AR1HQFdc; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-42108856c33so9823295e9.1;
+        Wed, 05 Jun 2024 23:47:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1717656424; x=1718261224; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+rv1sDHR32RWCfZmFBg17q325stbG/XmstQRsoUj80I=;
-        b=i3wUwkdqzf5H54tiYMeOYxt4gc6dgeuc8T00M97HJK9pRdxP59qDErSOIJJayFSkPk
-         WJmefzlPW0qG3YA6evD79q2F/ROpk3+CdLoVhNELMAyQtxQ4GhDJD6P1HEznov9aaQXB
-         paVsYcpbnU9EDzSntyeAsQe1/wUt2xq3xJlYU=
+        d=gmail.com; s=20230601; t=1717656463; x=1718261263; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Lb426LLnUih8K2YvE1gaXIGP1CqxxrBM8f63wiNLErg=;
+        b=AR1HQFdc4pNbEsyuZbviskoQAcI6alssR9O87H+rPm2rHF1D2rzGLBRa2Uw1tvzppM
+         sZmw5VkdVS+VSvNPH4DDIbihAXNkTbi/q+2KDZaC7f8Eg1j/hX/Roh3Pszbocleu4W34
+         KrHR9YOyQyH+ioKqvzp5LCPiX4Q4B1F2WX833psXhmsCl+MuEJa+XuK4bq1T91BfrODo
+         PH+OuwdLAItM04tcrPIedt1jbKYkNWrjWPRwB0fkOWHFSmajOvcxxgd7VEhBGj1rFxDg
+         hj8hN5mG4N/NpettbMZzgCgJTqgVES4TbkHalfrpnp99yU7rqHuFAHXL9iiO0jLHXGwP
+         cTIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717656424; x=1718261224;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+rv1sDHR32RWCfZmFBg17q325stbG/XmstQRsoUj80I=;
-        b=EU86XA5YWT3Rty7D6nBl8Zi7qj7sjX5nhQO6tAUN9hHkZOoy8oaXGJRfFWVx/wp62Q
-         2ouLOd3SRWXy0WxKH5AuH5hbrJw0S5EdAKGu6Jf/LMxHQJtx3E4ybSuln3bO2fGUD2m9
-         eLAUvzKQpa560LIiBPM6793pv6S1WHHbnRutLqIlRtfTODK6g32GrdzqN/P56e2CczlR
-         gQvbGwIrErD4qzhUmLxoeXuxke5JhddfF6KxblOmEXwUJ21YB8BTBV/KXIeiHnpsXhlA
-         Z4fGZN6f6KQ5oCwCzOQLcxVi3MomNTICQSdba2VjkeGbbIOMPiqxz8Tpn4wJhtm/Q1tU
-         sPVg==
-X-Forwarded-Encrypted: i=1; AJvYcCU9uIAVDYwXRSFXgGbR6jhtVUJlc3b07kxa7oG053CXuMuBDxvQPrc70M5+Yod0MHnCJJrRSHC/uu5CVwcEspI2LViHeG1Y+NyhcA==
-X-Gm-Message-State: AOJu0YzMu3++KRL9QhaL8pV4jeF0O3i454A5T+wEWSxZtwKM+dn+obyr
-	OYIqFeH8YP7j2IUmrkNe5OGy0MadlIQvj/5nDutikT2gczwP3rdLfoWK6utvKSgQV/VKlSNSEPL
-	QGppZ/PUmLc3wA5eCeNaOQ4p9rn8Cq3B3qUjT
-X-Google-Smtp-Source: AGHT+IGeuCm9PsqMZJSdhMHCIrhen6KLNJPY05qssC+yap37aeWf5ikwB9VlUACAq1ji5UH3ecZrST5zcf6cfOqLI4U=
-X-Received: by 2002:a05:6512:2825:b0:52b:a50c:c23e with SMTP id
- 2adb3069b0e04-52bb2195a3cmr495256e87.34.1717656423496; Wed, 05 Jun 2024
- 23:47:03 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1717656463; x=1718261263;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Lb426LLnUih8K2YvE1gaXIGP1CqxxrBM8f63wiNLErg=;
+        b=I2z+9cxmSo/+b6SjtCeRJGOm4ILT0btXvNk/nE6GgyqAZ8MsG8EWO4M8YpPwZluc9C
+         NlT/jqJILwnHkBczIolEn0cp0HjOHdT79dxoxPWFGrjGPgBjEIZgHQcWu9XTZe/3v2Ho
+         x5rPo7y4tOVvUKXe3zrdEW3hRmmfW1KbDqYqT0EJOvhm0YM9BG5zCeqThTxFu4c/1ZJ9
+         rYtt1ZWx3lp/0YWoj713yemD3dCNM+6nldLkH3BEnIP6D5FqzjfmUMI6Ff/8TKpAZGTA
+         dKdodSTlV6yhplGJRU4EfF6k8+eRKvGJHaJ+07em+/RJg6pPRrER+0ffp/7/jMXI0zPI
+         giMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXfyjafyD9ddjdNf5hl/omc8jCtJoNRTiYRSZkVZ78BsaRpkdGlmDXxjfRKsHCqt3j9EtQvbwdVVaf7t5XcQ1VWfL0Pw4kXgRs0ZBtfH2mni4p+hu3P6AoS+Anu796AlBLQtiuxwFx31cSYtuUc72EAxvkRQaExO7KMDk4qvS0Kke+qkg==
+X-Gm-Message-State: AOJu0YyYYFf98bgTYxzJy78FSZyIgrk9zHz924yROpsnRgmL1Bk+yXVf
+	7CF3UFtORZBIy/FCgy1PKiTNTQQIBYs4/jw1RlCroWAQrqgQlnpK
+X-Google-Smtp-Source: AGHT+IHgIM6GzVD3SkjPmL595htx1HpX163bpnbtHN6d9yNTYrl3KyPXaMvMUNTmUbrcl7cCljvHOA==
+X-Received: by 2002:a05:600c:46cf:b0:41b:f4e1:381b with SMTP id 5b1f17b1804b1-4215acbf8bdmr13792865e9.2.1717656463069;
+        Wed, 05 Jun 2024 23:47:43 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef1c:c500:994e:fbde:478:1ce1? (p200300f6ef1cc500994efbde04781ce1.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:994e:fbde:478:1ce1])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42158116e41sm43625595e9.21.2024.06.05.23.47.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jun 2024 23:47:42 -0700 (PDT)
+Message-ID: <0e18b3aa83a62103b0f06ee516193c03f80abae9.camel@gmail.com>
+Subject: Re: [PATCH v3 4/6] spi: spi-axi-spi-engine: Add support for MOSI
+ idle configuration
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Marcelo Schmitt
+ <marcelo.schmitt@analog.com>, broonie@kernel.org, lars@metafoo.de, 
+ Michael.Hennerich@analog.com, jic23@kernel.org, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, nuno.sa@analog.com,
+  marcelo.schmitt1@gmail.com
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Thu, 06 Jun 2024 08:51:29 +0200
+In-Reply-To: <ed4fe3de-726b-4eba-a12a-d2f7b1da26d1@baylibre.com>
+References: <cover.1717539384.git.marcelo.schmitt@analog.com>
+	 <a6b00e84325bbe44919cc49509e837f2555367d0.1717539384.git.marcelo.schmitt@analog.com>
+	 <ed4fe3de-726b-4eba-a12a-d2f7b1da26d1@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240521075717.50330-1-angelogioacchino.delregno@collabora.com>
- <20240521075717.50330-3-angelogioacchino.delregno@collabora.com>
- <e7845300fa822413f6308cb6297222cde89c39e0.camel@mediatek.com> <0e0fe86c-92da-43f5-89d7-8084274a908a@collabora.com>
-In-Reply-To: <0e0fe86c-92da-43f5-89d7-8084274a908a@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Thu, 6 Jun 2024 14:46:51 +0800
-Message-ID: <CAGXv+5FgVk9z3DhAC5oYoGXSJ+wJf+sa6wFSyJ_Nhy3JrKkCng@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] dt-bindings: arm: mediatek: mmsys: Add OF graph
- support for board path
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>, 
-	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "tzimmermann@suse.de" <tzimmermann@suse.de>, 
-	=?UTF-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?= <Shawn.Sung@mediatek.com>, 
-	"mripard@kernel.org" <mripard@kernel.org>, =?UTF-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?= <jitao.shi@mediatek.com>, 
-	"daniel@ffwll.ch" <daniel@ffwll.ch>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>, "robh@kernel.org" <robh@kernel.org>, 
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "airlied@gmail.com" <airlied@gmail.com>, 
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
-	"kernel@collabora.com" <kernel@collabora.com>, "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, 
-	=?UTF-8?B?WXUtY2hhbmcgTGVlICjmnY7nprnnkosp?= <Yu-chang.Lee@mediatek.com>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"amergnat@baylibre.com" <amergnat@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 5, 2024 at 7:15=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 05/06/24 03:38, CK Hu (=E8=83=A1=E4=BF=8A=E5=85=89) ha scritto:
-> > Hi, Angelo:
-> >
-> > On Tue, 2024-05-21 at 09:57 +0200, AngeloGioacchino Del Regno wrote:
-> >> Document OF graph on MMSYS/VDOSYS: this supports up to three DDP paths
-> >> per HW instance (so potentially up to six displays for multi-vdo SoCs)=
-.
-> >>
-> >> The MMSYS or VDOSYS is always the first component in the DDP pipeline,
-> >> so it only supports an output port with multiple endpoints - where eac=
-h
-> >> endpoint defines the starting point for one of the (currently three)
-> >> possible hardware paths.
-> >>
-> >> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> >> Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
-> >> Tested-by: Alexandre Mergnat <amergnat@baylibre.com>
-> >> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@c=
-ollabora.com>
-> >> ---
-> >>   .../bindings/arm/mediatek/mediatek,mmsys.yaml | 28 +++++++++++++++++=
-++
-> >>   1 file changed, 28 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,m=
-msys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.y=
-aml
-> >> index b3c6888c1457..0ef67ca4122b 100644
-> >> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.ya=
-ml
-> >> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.ya=
-ml
-> >> @@ -93,6 +93,34 @@ properties:
-> >>     '#reset-cells':
-> >>       const: 1
-> >>
-> >> +  port:
-> >> +    $ref: /schemas/graph.yaml#/properties/port
-> >> +    description:
-> >> +      Output port node. This port connects the MMSYS/VDOSYS output to
-> >> +      the first component of one display pipeline, for example one of
-> >> +      the available OVL or RDMA blocks.
-> >> +      Some MediaTek SoCs support multiple display outputs per MMSYS.
-> >
-> > This patch looks good to me. Just want to share another information for=
- you.
-> > Here is an example that mmsys/vdosys could point to the display interfa=
-ce node.
-> >
-> > vdosys0: syscon@1c01a000 {
-> >            mmsys-display-interface =3D <&dsi0>, <&dsi1>, <&dp_intf0>;
-> > };
-> >
-> > vdosys1: syscon@1c100000 {
-> >            mmsys-display-interface =3D <&dp_intf1>;
-> > };
-> >
-> > There is no conflict that mmsys/vdosys point to first component of one =
-display pipeline or point to display interface.
-> > Both could co-exist.
-> >
->
-> Hey CK,
->
-> yes, this could be an alternative to the OF graphs, and I'm sure that it'=
-d work,
-> even though this kind of solution would still require partial hardcoding =
-of the
-> display paths up until mmsys-display-interface (so, up until DSI0, or DSI=
-1, etc).
-
-I think you might be misunderstanding CK's proposal? He's simply saying tha=
-t
-instead of pointing to the start of the pipeline, point to the end instead.
-You can still use the OF graph and work backwards from the output.
-
-> The problem with a solution like this is that, well, even though it would=
- work,
-> even if we ignore the suboptimal partial hardcoding, OF graphs are someth=
-ing
-> generic, while the mmsys-display-interface would be a MediaTek specific/c=
-ustom
-> property.
->
-> In the end, reusing generic kernel apis/interfaces/etc is always preferre=
-d
-> compared to custom solutions, especially in this case, in which the gener=
-ic
-> stuff is on-par (or actually, depending purely on personal opinions, supe=
-rior).
-
-Here you are mixing hardware descriptions and kernel implementation details=
-.
-
-I think this goes back to whether the mmsys/vdosys is actually part of the
-graph or not. It certainly controls the muxes within the graph. But that
-doesn't mean it has to be within the graph itself. It can just have pointer=
+On Wed, 2024-06-05 at 12:03 -0500, David Lechner wrote:
+> On 6/4/24 5:43 PM, Marcelo Schmitt wrote:
+> > Implement MOSI idle low and MOSI idle high to better support peripheral=
 s
-to entry points of the graph (for which you would have a couple lines of
-custom code [1]). If the data doesn't flow through the mmsys/vdosys, then
-I would argue that it is not part of the graph.
-
-I would also argue that the data path should be fully described in the
-device tree, not hardcoding paths based on board usage. The latter is
-a policy / design decision, not a hardware capability.
-
-
-ChenYu
-
-> As for the two to co-exist, I'm not sure that this is actually needed, as=
- the
-> OF graphs are already (at the end of the graph) pointing to the display i=
-nterface.
->
-> In any case, just as a reminder: if there will be any need to add any cus=
-tom
-> MediaTek specific properties later, it's ok and we can do that at any tim=
+> > that request specific MOSI behavior.
+> >=20
+> > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> > ---
+> > =C2=A0drivers/spi/spi-axi-spi-engine.c | 8 +++++++-
+> > =C2=A01 file changed, 7 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/spi/spi-axi-spi-engine.c b/drivers/spi/spi-axi-spi=
+-
+> > engine.c
+> > index 0aa31d745734..549f03069d0e 100644
+> > --- a/drivers/spi/spi-axi-spi-engine.c
+> > +++ b/drivers/spi/spi-axi-spi-engine.c
+> > @@ -41,6 +41,7 @@
+> > =C2=A0#define SPI_ENGINE_CONFIG_CPHA			BIT(0)
+> > =C2=A0#define SPI_ENGINE_CONFIG_CPOL			BIT(1)
+> > =C2=A0#define SPI_ENGINE_CONFIG_3WIRE			BIT(2)
+> > +#define SPI_ENGINE_CONFIG_SDO_IDLE		BIT(3)
+> > =C2=A0
+> > =C2=A0#define SPI_ENGINE_INST_TRANSFER		0x0
+> > =C2=A0#define SPI_ENGINE_INST_ASSERT			0x1
+> > @@ -132,6 +133,10 @@ static unsigned int spi_engine_get_config(struct
+> > spi_device *spi)
+> > =C2=A0		config |=3D SPI_ENGINE_CONFIG_CPHA;
+> > =C2=A0	if (spi->mode & SPI_3WIRE)
+> > =C2=A0		config |=3D SPI_ENGINE_CONFIG_3WIRE;
+> > +	if (spi->mode & SPI_MOSI_IDLE_HIGH)
+> > +		config |=3D SPI_ENGINE_CONFIG_SDO_IDLE;
+> > +	if (spi->mode & SPI_MOSI_IDLE_LOW)
+> > +		config &=3D ~SPI_ENGINE_CONFIG_SDO_IDLE;
+> > =C2=A0
+> > =C2=A0	return config;
+> > =C2=A0}
+> > @@ -645,7 +650,8 @@ static int spi_engine_probe(struct platform_device
+> > *pdev)
+> > =C2=A0		return ret;
+> > =C2=A0
+> > =C2=A0	host->dev.of_node =3D pdev->dev.of_node;
+> > -	host->mode_bits =3D SPI_CPOL | SPI_CPHA | SPI_3WIRE;
+> > +	host->mode_bits =3D SPI_CPOL | SPI_CPHA | SPI_3WIRE |
+> > SPI_MOSI_IDLE_LOW
+> > +			=C2=A0 | SPI_MOSI_IDLE_HIGH;
+> > =C2=A0	host->bits_per_word_mask =3D SPI_BPW_RANGE_MASK(1, 32);
+> > =C2=A0	host->max_speed_hz =3D clk_get_rate(spi_engine->ref_clk) / 2;
+> > =C2=A0	host->transfer_one_message =3D spi_engine_transfer_one_message;
+>=20
+> I think we need a version check instead of setting the flags unconditiona=
+lly
+> here since older versions of the AXI SPI Engine won't support this featur=
 e.
->
-> Cheers!
-> Angelo
->
-> > Regards,
-> > CK
-> >
-> >> +    properties:
-> >> +      endpoint@0:
-> >> +        $ref: /schemas/graph.yaml#/properties/endpoint
-> >> +        description: Output to the primary display pipeline
-> >> +
-> >> +      endpoint@1:
-> >> +        $ref: /schemas/graph.yaml#/properties/endpoint
-> >> +        description: Output to the secondary display pipeline
-> >> +
-> >> +      endpoint@2:
-> >> +        $ref: /schemas/graph.yaml#/properties/endpoint
-> >> +        description: Output to the tertiary display pipeline
-> >> +
-> >> +    anyOf:
-> >> +      - required:
-> >> +          - endpoint@0
-> >> +      - required:
-> >> +          - endpoint@1
-> >> +      - required:
-> >> +          - endpoint@2
-> >> +
-> >>   required:
-> >>     - compatible
-> >>     - reg
->
->
+
+Oh, was not aware of that... Then, we definitely need to do that. Marcelo, =
+only
+add my r-b tag with the version change in place.
+
+- Nuno S=C3=A1
 
