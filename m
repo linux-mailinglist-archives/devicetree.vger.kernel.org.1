@@ -1,116 +1,177 @@
-Return-Path: <devicetree+bounces-73245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B69828FE548
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 13:24:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D84878FE551
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 13:27:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBEFF1C214B0
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:24:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F116A1C2253A
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:27:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA37F19539A;
-	Thu,  6 Jun 2024 11:24:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 414571957F2;
+	Thu,  6 Jun 2024 11:27:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bHjCTexM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ICalM9Yj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5B82160865
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 11:24:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ED9F160865
+	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 11:27:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717673076; cv=none; b=jBsS6w9zBBgMt5AiAD/t41GESwo9CZxxTx4+VzipmxcZDnjdM434/VKHK8pVF3cEhakZJa87oMVOUf4pdMNwTZo+jnj8nXlNFgzrBox0UW5Z7EQsGPNBzlj0vIET/yi47vHuKvVB8jZcikKgLlmd27d1sxxpzkHuX75lQXvl1/w=
+	t=1717673261; cv=none; b=gbO6f7vLI/QvZK8oMRxS4WnRSdbfwtQB9NcLIN34hjZMYWMtop7ocZPSWyaVOEQtZ4uRy3IO4yxqoiCe1Ap4eEafgDioeU82tl7zAVE3+02OHazxaCCyiiH9ml5vVeeBtdMvgbrgI+B7c6z8dFlkFODJjpKlWT7qODLxkIu3ihM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717673076; c=relaxed/simple;
-	bh=EprWFy3aYUojw4OTl8/VwOUOB5Tyzhr6DTqvYaeWGjo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p0zVldlyDMO1J/bHlN89ghrCuteoQoxRJWmBaLxehACc1fFbjNQqDSz82zRelU/UCpjUesWfrhyY6seHQa+HFDak5K0MyqtTm0JaRZrF1z6+elSOVbRhNwu/i+CceUCIsABpNrJ3UmIefpX2jXHSTraKE0wI7uFh53S/kTXj/mI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bHjCTexM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D0ABC3277B;
-	Thu,  6 Jun 2024 11:24:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717673076;
-	bh=EprWFy3aYUojw4OTl8/VwOUOB5Tyzhr6DTqvYaeWGjo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bHjCTexMgqLG0q0NJRNeShSQmav2UtEpe925GMyn/H2y6borAA4EnJ2KSPXwrMMoe
-	 IhCKaZAToEAOaZPKPL6e5yKV9xd/HeHxAX80BqtOm9PMJa5PxPO2PoNSw+enhvoTta
-	 YKWCKmUwGeLQ1yB7FywnaE7oXZXiO9b3lVGuG94DVknvDG+bmH/QO2RrhdH+AUyeJ+
-	 zEqzvh+yEehEYBv/UIM4RjFGJ96FF/iVqxaIpsJRU1Fl5NJl43290j8y6mASzk/yeo
-	 V3qhyQPH25Vmxz0kLRu7InFF58QW2OObaL/GxYboxvZTo+lS2oWsceKj0QUz0hkXqs
-	 kD+awhUitceog==
-Date: Thu, 6 Jun 2024 13:24:33 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Ryan Walklin <ryan@testtoast.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Hironori KIKUCHI <kikuchan98@gmail.com>, 
-	Chris Morgan <macroalpha82@gmail.com>, Andre Przywara <andre.przywara@arm.com>, 
-	John Watts <contact@jookia.org>, Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: panel: Add WL-355608-A8
- panel
-Message-ID: <20240606-smooth-industrious-cormorant-27a076@houat>
-References: <20240530211415.44201-1-ryan@testtoast.com>
- <20240530211415.44201-3-ryan@testtoast.com>
- <20240606-intelligent-aromatic-magpie-80a7a4@houat>
- <2dc1fdec-7673-4462-abe1-fecf8e3e826b@linaro.org>
- <7d9492ba-5285-471a-9ce7-c2148a388b41@app.fastmail.com>
+	s=arc-20240116; t=1717673261; c=relaxed/simple;
+	bh=IKJMKta3gKbm6WrlCyDsenNN9FGXLJuX8rzYumUp5gw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DEj8ITUjJuHTTeKskCrmozg2j2W31cy9ki92Ad6cDEnyIeZUnsvH0LaB4pTL4irKA3OWNAfU8qpTBuzp1FR6zoc2OXfI/RwSi+okN9yExkDhIqv65fvk3Y+nRCJbIuvHVNF0dqTQaYMLVsCwCwustAVEzkh80W4/9ZU0XEipolE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ICalM9Yj; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a68c2915d99so88406066b.2
+        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2024 04:27:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717673258; x=1718278058; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=7H5RlqVYDUyhbQV2vrFzVsqeAI5zP+J54d70UEPgNX4=;
+        b=ICalM9YjyU3RlE2NJy1LnnesmUY+7WMTwG44CEQYDmqBmwQYW+l/CBkvcyw46CuXJm
+         75GSeCslSy0UxQFD8EFfwR6z6p4eFKIeq3zBuxhbkoWaVU+pMg6CZP+hQVco5dPh/Nic
+         Sguo3qu0wmJcRObJds9ovhOgCDgRprGVwOLDYSaX/B/0zF/fVG3UPlDPWeyCcjfSdz8d
+         hV0myeivfemDs9+Q9bDrcanhrqMKIy40hqA6fMyaSZ7Eme4thxecxNwC34ZUnJ/sdAX3
+         S9Z9UvF2AJiYSIDpIoB03mwtVD1pKNdlzGIw1pBDTmQM5YomKiKSNywHyTMBLh/sN+mW
+         47Hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717673258; x=1718278058;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7H5RlqVYDUyhbQV2vrFzVsqeAI5zP+J54d70UEPgNX4=;
+        b=Wl6fuk2jHZWULW4eswOVfUeaSQVbOIQ1PcziS4LMc91vJ4OHPtUywS4uXGtYLxBwKq
+         lPKtaR6Bp8tk1UBkNlZozLkxzKSTWI9vKVW0MUiP7DYkQRQS5QlicO/TGjHFEf5N0fT8
+         oeMy57pjG/pNiysPfQ55uFbwY5kRVg6D6v/xzUppMeHRqUUG2jyfcv+BWbGYjE+Bwn8m
+         k313QEgAVLK3btqto2MJPiK6QpEuFWux0B+VBzHaqDaKaEZGj3ctWwbTs9jI8GQ8kHdT
+         unnsmGFdQ9eWUYe6UzFZP41A8wjY0svaD7B7VtbCfudKzYmvAuseG4he7xw9pGEUxYpP
+         smQw==
+X-Forwarded-Encrypted: i=1; AJvYcCV9Lj0uGzUJ6CIpKH9fIjybdGCjewDsQH1K5weANuHebKNfJGxzFCpMiMeb0DO7WrgG7VMzTXPSIq2SV+jW+rF3X/2IfDksoe5J/w==
+X-Gm-Message-State: AOJu0Yy7UhHewzGxYeIvnx21/t7tAHBM+ojWICPvpvDEq6qQxtrmQ9ZW
+	bmzIEhr3Y7+LgCsRMw+2N9vxE5WafsGbvCaN7Syh5yxkQ6TfAgx4E7SrU/7yL+E=
+X-Google-Smtp-Source: AGHT+IFx0wGfFwN0UT4FIGaqOzJR3ykbzHdhODFPCyYmywROOYmHADOhrvqheQZuoFV0OyCitGp6Vg==
+X-Received: by 2002:a17:906:3498:b0:a58:e8c7:c0b8 with SMTP id a640c23a62f3a-a699f361c21mr336766866b.7.1717673257748;
+        Thu, 06 Jun 2024 04:27:37 -0700 (PDT)
+Received: from [192.168.128.139] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6c8070e2fcsm83411466b.154.2024.06.06.04.27.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Jun 2024 04:27:37 -0700 (PDT)
+Message-ID: <202852cb-d49e-4380-8073-8bb679fcf53e@linaro.org>
+Date: Thu, 6 Jun 2024 13:27:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="bvohql5n7i5suwn4"
-Content-Disposition: inline
-In-Reply-To: <7d9492ba-5285-471a-9ce7-c2148a388b41@app.fastmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/5] clk: qcom: clk-alpha-pll: Add HUAYRA_2290 support
+To: Stephen Boyd <sboyd@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+References: <20240219-topic-rb1_gpu-v3-0-86f67786539a@linaro.org>
+ <20240219-topic-rb1_gpu-v3-2-86f67786539a@linaro.org>
+ <b39e9d5ecfddef7b0564c2224685d9d0.sboyd@kernel.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <b39e9d5ecfddef7b0564c2224685d9d0.sboyd@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 5.04.2024 11:37 PM, Stephen Boyd wrote:
+> Quoting Konrad Dybcio (2024-03-26 14:08:24)
+>> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+>> index 8a412ef47e16..27ba8aa3e577 100644
+>> --- a/drivers/clk/qcom/clk-alpha-pll.c
+>> +++ b/drivers/clk/qcom/clk-alpha-pll.c
+>> @@ -779,6 +792,40 @@ static long clk_alpha_pll_round_rate(struct clk_hw *hw, unsigned long rate,
+>>         return clamp(rate, min_freq, max_freq);
+>>  }
+>>  
+>> +void clk_huayra_2290_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>> +                                  const struct alpha_pll_config *config)
+>> +{
+>> +       u32 val;
+>> +
+>> +       clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL(pll), config->config_ctl_val);
+>> +       clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL_U(pll), config->config_ctl_hi_val);
+>> +       clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL_U1(pll), config->config_ctl_hi1_val);
+>> +       clk_alpha_pll_write_config(regmap, PLL_TEST_CTL(pll), config->test_ctl_val);
+>> +       clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U(pll), config->test_ctl_hi_val);
+>> +       clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U1(pll), config->test_ctl_hi1_val);
+>> +       clk_alpha_pll_write_config(regmap, PLL_L_VAL(pll), config->l);
+>> +       clk_alpha_pll_write_config(regmap, PLL_ALPHA_VAL(pll), config->alpha);
+>> +       clk_alpha_pll_write_config(regmap, PLL_USER_CTL(pll), config->user_ctl_val);
+>> +
+>> +       /* Set PLL_BYPASSNL */
+>> +       regmap_update_bits(regmap, PLL_MODE(pll), PLL_BYPASSNL, PLL_BYPASSNL);
+>> +       regmap_read(regmap, PLL_MODE(pll), &val);
+>> +
+>> +       /* Wait 5 us between setting BYPASS and deasserting reset */
+>> +       udelay(5);
+>> +
+>> +       /* Take PLL out from reset state */
+>> +       regmap_update_bits(regmap, PLL_MODE(pll), PLL_RESET_N, PLL_RESET_N);
+>> +       regmap_read(regmap, PLL_MODE(pll), &val);
+>> +
+>> +       /* Wait 50us for PLL_LOCK_DET bit to go high */
+> 
+> Is the bit not reliable or something? I'd expect to see a polling loop
+> here but it's a sleep.
 
---bvohql5n7i5suwn4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Unfortunately, it seems so.
 
-On Thu, Jun 06, 2024 at 09:48:54PM GMT, Ryan Walklin wrote:
-> On Thu, 6 Jun 2024, at 9:32 PM, Maxime Ripard wrote:
-> Hi Maxime, thanks for reviewing.
->=20
-> > Where has this consensus been found?
->=20
-> As Neil notes Conor suggested it [1], and we did consider Hironori's
-> suggestion [2] of using anbernic as the vendor prefix, although my
-> (not strong) feeling at the time was because Anbernic is not the panel
-> vendor, just integrating an unknown OEM's panel into their devices, so
-> at the time I fit was not quite accurate to say Anbernic was the
-> vendor.
->=20
-> Some discussion was also had on IRC at #linux-sunxi [3]. Admittedly
-> not a *broad* consensus, but all offered opinions were taken and the
-> patch was accepted subsequently.
-
-Respectfully, #linux-sunxi isn't the persons you should be discussing
-this with.
-
-Maxime
-
---bvohql5n7i5suwn4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZmGccQAKCRAnX84Zoj2+
-dl+VAX9eg/E0P6Bb9OoWI6pbYAccX0gP/c7q9X4FwvFkKKUQ68EQQl/RfsEFOJqQ
-rop/JjYBgNrgCOiAuVSEtgL4WDHKYTVmXiNTWzi7dtKVe/mbsj7ugeX51wEQONR7
-XCaMzwMaCA==
-=23AD
------END PGP SIGNATURE-----
-
---bvohql5n7i5suwn4--
+Konrad
 
