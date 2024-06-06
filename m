@@ -1,220 +1,160 @@
-Return-Path: <devicetree+bounces-73424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AB728FF532
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 21:19:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA7708FF53D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 21:26:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9B95CB2173D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 19:19:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A3352818F5
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 19:26:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F1DA6A8CF;
-	Thu,  6 Jun 2024 19:18:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8205A5B1E5;
+	Thu,  6 Jun 2024 19:26:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="ufcDgmKq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qHPrf9QG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 768A64D13F;
-	Thu,  6 Jun 2024 19:18:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E7B12110E;
+	Thu,  6 Jun 2024 19:26:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717701529; cv=none; b=np28o2hagZ3fIhL6AT3pewUUgAUNcYw10zVwRziV1Q+dibw1KS4T0O57M9KYAksaIuI2m0IR3fUUec4wrDGhklKAM4NEeHk/YgvfgBd5hQy0DsasWw5CpzBSqvY/1UL61dbjD7vfVNwTFKU8CYWKdASHvZ0hNdleRka1MOqVBfU=
+	t=1717701974; cv=none; b=HHg9fyaSTB46khqexomMdQMOPV9eTcgL2bDOhrKglPPW37deuV9ZoJsPlm7Rq+6q5ojlZuxWi/2PV4Dofqjhq/3tsBKzer0YCQZtGaJlXW1/MEJdjs8DXWxBQuEG7PZwBKO13PqgCDXNToQlMDBwG5mJdt1TArrhZuPx8JcTc7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717701529; c=relaxed/simple;
-	bh=YIfSYI9EIXoslwT+D0IciwYGUf4uGYA5uUUy4+mGv2s=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=H38LrXdTyftRopW9VctMlAW+wu0HNOMGGHao89Fil/EUOW27yrpaKZ1blfRyRIy+qlBA/ZkWEBFpna7AwBBMdUSSsLKRqUM6iqAetv/6EIKvZHSiYJJyFA0F6zt9oV1zTFdBfu28ITI8cg9bmOTg8AERANE9IbjjrAZ15yuntiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz; spf=pass smtp.mailfrom=z3ntu.xyz; dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b=ufcDgmKq; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=z3ntu.xyz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
-	t=1717701525; bh=YIfSYI9EIXoslwT+D0IciwYGUf4uGYA5uUUy4+mGv2s=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=ufcDgmKqxSMA4MJen+NboZ9xOFLtO2Ac5dpSg3rGNEzTxQqjgfyyMrT/c7MqOE7x1
-	 c9u8kRQDPFlS0ke50LwazvT0MxsoUC7bUHhjCIiyIyGGvXnt67CwbeucnYhaqrVWi1
-	 4MCFFp7a6WTstfXpDcHg8miMHALcTCnIv3TGhTBA=
-From: Luca Weiss <luca@z3ntu.xyz>
-Date: Thu, 06 Jun 2024 21:18:33 +0200
-Subject: [PATCH v2 2/2] soc: qcom: smsm: Support using mailbox interface
+	s=arc-20240116; t=1717701974; c=relaxed/simple;
+	bh=1HIaQotNiUpWV2qc7pNQjMXtq8vCq2cgNxyb4ZjQbJ0=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=ASj4rX8rPSEuHSNIK+XvTyhNwd/5bikyuEjwnV3RFEZ1zLC215DmwhEemF3SgQVCq6rYwFtSwDiYfwNjNHkMegaiZU1VTwLWjWOYJ5JrxFqfl0NkaCXwM+3GIVMYbOEIjhY/E9L4VhmvEXObFctibWu3w8SyRLqGTYYNBTV08vY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qHPrf9QG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7DFFC2BD10;
+	Thu,  6 Jun 2024 19:26:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717701973;
+	bh=1HIaQotNiUpWV2qc7pNQjMXtq8vCq2cgNxyb4ZjQbJ0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=qHPrf9QGQnvxAvKCMsYlArJj+cnlvJo3xKFVsMgLa1Ty3FFrtK/HuvI7/9tW3Sq5I
+	 Hclf/l/+fMttK7SpWNevDE8H1tL4cmlioTU33WNuPQQDVvSJo2RkBzs1JzkvJsuEUf
+	 K/G1iST0k7V9BHTiBBMkIHBY27RFn8pCyAFOTUobP7R0h3W9H8loQeU2py618TpYwP
+	 lZqMfztQd5+9uAzS7ShnRUka7fRfQYfo11okwWxX5RIqR44rdNY344T4k3Q/McDUl4
+	 aCwZTPBkpLydJvrnzPLtE0RbKkTH9mizfgBP0JZkdolj5LnBm/PR08wpPnmmu0qu1y
+	 ruDta++esJMaQ==
+Date: Thu, 6 Jun 2024 14:26:12 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>, Rob Herring <robh@kernel.org>
+Cc: Simon Horman <horms@kernel.org>,
+	Sai Krishna Gajula <saikrishnag@marvell.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Lee Jones <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Lars Povlsen <lars.povlsen@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	netdev@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 17/19] PCI: of_property: Add interrupt-controller
+ property in PCI device nodes
+Message-ID: <20240606192612.GA814032@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240606-smsm-mbox-v2-2-8abe6b5f01da@z3ntu.xyz>
-References: <20240606-smsm-mbox-v2-0-8abe6b5f01da@z3ntu.xyz>
-In-Reply-To: <20240606-smsm-mbox-v2-0-8abe6b5f01da@z3ntu.xyz>
-To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4231; i=luca@z3ntu.xyz;
- h=from:subject:message-id; bh=YIfSYI9EIXoslwT+D0IciwYGUf4uGYA5uUUy4+mGv2s=;
- b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBmYguUfB3hqtyvpAqEV2xW7ahsFiuT8cPSvzInV
- IhED0DP1RuJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZmILlAAKCRBy2EO4nU3X
- VlUFEAC5t52j88cvSenHRfm9XfPfZE3xjUp2HMjOnbv3Odg2anEbAPuA2p2QrsGlM87h5r/Rm7G
- 4AcuaJRMVyHpQP/l6DLC90gnEh4+GZcQw/M7/ubW+T6l6tFdCQa+T/bo15qJ56UgI+ZCHk1uXIp
- nR8AQoe0kcG6iEiBCAwOgQmTaP4tIG8FTrfJrA3/PC8hgUEZRVEAMA4MmSqulRV6UIKxc6vw6H+
- F27vG7cwRjCgFJilb2SjFj0oDSDcoHf+T5ynhDtjjbL8azakVp9GG5ANFHAjpYlHyI5LdP7GotB
- CHtXPBcu2L11RX1xEk8TTE9awglMk+w/rON8kX6gJ9eRLY/bkzSiRusRayWWjkM5hjf2hqytJaI
- gz5ZUAkV0d9QXnIuUZ597U9BHiNBPMEN03kxMfgW0Co8fnl/3G2gxOA5lkW0Xd+GRMSEh07Kt5W
- DQwnhsUNtP3ZN/bf1x7RE3DV//09G9X1nY/Eh14uHv2gfSRyjIxo/KYLo2z3CsGzOU/PD9E64Pj
- qf6PWXYwtVlAJDy6w6qke2RM0o0j/4W7dnKyccBKEvd4APxcUpOqxlkCGH1V/zKRPTK0HOt7ZGM
- N4Y+Nimu3CWUqY5Vx+OIxueJXZztRFZ3dgEPhO/4ZtG/XC5qwN85n4ItyPKxjC75v/yk93B0gtt
- 3G/FQ5JWI0Jao0A==
-X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
- fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240527161450.326615-18-herve.codina@bootlin.com>
 
-Add support for using the mbox interface instead of manually writing to
-the syscon. With this change the driver will attempt to get the mailbox
-first, and if that fails it will fall back to the existing way of using
-qcom,ipc-* properties and converting to syscon.
+On Mon, May 27, 2024 at 06:14:44PM +0200, Herve Codina wrote:
+> PCI devices and bridges DT nodes created during the PCI scan are created
+> with the interrupt-map property set to handle interrupts.
+> 
+> In order to set this interrupt-map property at a specific level, a
+> phandle to the parent interrupt controller is needed. On systems that
+> are not fully described by a device-tree, the parent interrupt
+> controller may be unavailable (i.e. not described by the device-tree).
+> 
+> As mentioned in the [1], avoiding the use of the interrupt-map property
+> and considering a PCI device as an interrupt controller itself avoid the
+> use of a parent interrupt phandle.
+> 
+> In that case, the PCI device itself as an interrupt controller is
+> responsible for routing the interrupts described in the device-tree
+> world (DT overlay) to the PCI interrupts.
+> 
+> Add the 'interrupt-controller' property in the PCI device DT node.
+> 
+> [1]: https://lore.kernel.org/lkml/CAL_Jsq+je7+9ATR=B6jXHjEJHjn24vQFs4Tvi9=vhDeK9n42Aw@mail.gmail.com/
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
----
- drivers/soc/qcom/smsm.c | 51 ++++++++++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 50 insertions(+), 1 deletion(-)
+No objection from me, but I'd like an ack/review from Rob.
 
-diff --git a/drivers/soc/qcom/smsm.c b/drivers/soc/qcom/smsm.c
-index e7c7e9a640a6..ffe78ae34386 100644
---- a/drivers/soc/qcom/smsm.c
-+++ b/drivers/soc/qcom/smsm.c
-@@ -5,6 +5,7 @@
-  */
- 
- #include <linux/interrupt.h>
-+#include <linux/mailbox_client.h>
- #include <linux/mfd/syscon.h>
- #include <linux/module.h>
- #include <linux/of_irq.h>
-@@ -71,6 +72,7 @@ struct smsm_host;
-  * @lock:	spinlock for read-modify-write of the outgoing state
-  * @entries:	context for each of the entries
-  * @hosts:	context for each of the hosts
-+ * @mbox_client: mailbox client handle
-  */
- struct qcom_smsm {
- 	struct device *dev;
-@@ -88,6 +90,8 @@ struct qcom_smsm {
- 
- 	struct smsm_entry *entries;
- 	struct smsm_host *hosts;
-+
-+	struct mbox_client mbox_client;
- };
- 
- /**
-@@ -120,11 +124,14 @@ struct smsm_entry {
-  * @ipc_regmap:	regmap for outgoing interrupt
-  * @ipc_offset:	offset in @ipc_regmap for outgoing interrupt
-  * @ipc_bit:	bit in @ipc_regmap + @ipc_offset for outgoing interrupt
-+ * @mbox_chan:	apcs ipc mailbox channel handle
-  */
- struct smsm_host {
- 	struct regmap *ipc_regmap;
- 	int ipc_offset;
- 	int ipc_bit;
-+
-+	struct mbox_chan *mbox_chan;
- };
- 
- /**
-@@ -172,7 +179,13 @@ static int smsm_update_bits(void *data, u32 mask, u32 value)
- 		hostp = &smsm->hosts[host];
- 
- 		val = readl(smsm->subscription + host);
--		if (val & changes && hostp->ipc_regmap) {
-+		if (!(val & changes))
-+			continue;
-+
-+		if (hostp->mbox_chan) {
-+			mbox_send_message(hostp->mbox_chan, NULL);
-+			mbox_client_txdone(hostp->mbox_chan, 0);
-+		} else if (hostp->ipc_regmap) {
- 			regmap_write(hostp->ipc_regmap,
- 				     hostp->ipc_offset,
- 				     BIT(hostp->ipc_bit));
-@@ -352,6 +365,28 @@ static const struct irq_domain_ops smsm_irq_ops = {
- 	.xlate = irq_domain_xlate_twocell,
- };
- 
-+/**
-+ * smsm_parse_mbox() - requests an mbox channel
-+ * @smsm:	smsm driver context
-+ * @host_id:	index of the remote host to be resolved
-+ *
-+ * Requests the desired channel using the mbox interface which is needed for
-+ * sending the outgoing interrupts to a remove hosts - identified by @host_id.
-+ */
-+static int smsm_parse_mbox(struct qcom_smsm *smsm, unsigned int host_id)
-+{
-+	struct smsm_host *host = &smsm->hosts[host_id];
-+	int ret = 0;
-+
-+	host->mbox_chan = mbox_request_channel(&smsm->mbox_client, host_id);
-+	if (IS_ERR(host->mbox_chan)) {
-+		ret = PTR_ERR(host->mbox_chan);
-+		host->mbox_chan = NULL;
-+	}
-+
-+	return ret;
-+}
-+
- /**
-  * smsm_parse_ipc() - parses a qcom,ipc-%d device tree property
-  * @smsm:	smsm driver context
-@@ -521,8 +556,16 @@ static int qcom_smsm_probe(struct platform_device *pdev)
- 			     "qcom,local-host",
- 			     &smsm->local_host);
- 
-+	smsm->mbox_client.dev = &pdev->dev;
-+	smsm->mbox_client.knows_txdone = true;
-+
- 	/* Parse the host properties */
- 	for (id = 0; id < smsm->num_hosts; id++) {
-+		/* Try using mbox interface first, otherwise fall back to syscon */
-+		ret = smsm_parse_mbox(smsm, id);
-+		if (!ret)
-+			continue;
-+
- 		ret = smsm_parse_ipc(smsm, id);
- 		if (ret < 0)
- 			goto out_put;
-@@ -609,6 +652,9 @@ static int qcom_smsm_probe(struct platform_device *pdev)
- 
- 	qcom_smem_state_unregister(smsm->state);
- out_put:
-+	for (id = 0; id < smsm->num_hosts; id++)
-+		mbox_free_channel(smsm->hosts[id].mbox_chan);
-+
- 	of_node_put(local_node);
- 	return ret;
- }
-@@ -622,6 +668,9 @@ static void qcom_smsm_remove(struct platform_device *pdev)
- 		if (smsm->entries[id].domain)
- 			irq_domain_remove(smsm->entries[id].domain);
- 
-+	for (id = 0; id < smsm->num_hosts; id++)
-+		mbox_free_channel(smsm->hosts[id].mbox_chan);
-+
- 	qcom_smem_state_unregister(smsm->state);
- }
- 
-
--- 
-2.45.2
-
+> ---
+>  drivers/pci/of_property.c | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+> 
+> diff --git a/drivers/pci/of_property.c b/drivers/pci/of_property.c
+> index 03539e505372..5a0b98e69795 100644
+> --- a/drivers/pci/of_property.c
+> +++ b/drivers/pci/of_property.c
+> @@ -183,6 +183,26 @@ static int of_pci_prop_interrupts(struct pci_dev *pdev,
+>  	return of_changeset_add_prop_u32(ocs, np, "interrupts", (u32)pin);
+>  }
+>  
+> +static int of_pci_prop_intr_ctrl(struct pci_dev *pdev, struct of_changeset *ocs,
+> +				 struct device_node *np)
+> +{
+> +	int ret;
+> +	u8 pin;
+> +
+> +	ret = pci_read_config_byte(pdev, PCI_INTERRUPT_PIN, &pin);
+> +	if (ret != 0)
+> +		return ret;
+> +
+> +	if (!pin)
+> +		return 0;
+> +
+> +	ret = of_changeset_add_prop_u32(ocs, np, "#interrupt-cells", 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return of_changeset_add_prop_bool(ocs, np, "interrupt-controller");
+> +}
+> +
+>  static int of_pci_prop_intr_map(struct pci_dev *pdev, struct of_changeset *ocs,
+>  				struct device_node *np)
+>  {
+> @@ -336,6 +356,10 @@ int of_pci_add_properties(struct pci_dev *pdev, struct of_changeset *ocs,
+>  		ret = of_pci_prop_intr_map(pdev, ocs, np);
+>  		if (ret)
+>  			return ret;
+> +	} else {
+> +		ret = of_pci_prop_intr_ctrl(pdev, ocs, np);
+> +		if (ret)
+> +			return ret;
+>  	}
+>  
+>  	ret = of_pci_prop_ranges(pdev, ocs, np);
+> -- 
+> 2.45.0
+> 
 
