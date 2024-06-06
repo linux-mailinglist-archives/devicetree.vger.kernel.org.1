@@ -1,156 +1,112 @@
-Return-Path: <devicetree+bounces-73454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BAF68FF6EC
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 23:32:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E5AC8FF6F1
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 23:33:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DBBD1C26171
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 21:32:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2A922878EE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 21:33:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 386C9481DD;
-	Thu,  6 Jun 2024 21:32:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14ABD6F505;
+	Thu,  6 Jun 2024 21:33:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hAld5+a/"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="IxtQjifz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5E94FC02;
-	Thu,  6 Jun 2024 21:32:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7458AFC02;
+	Thu,  6 Jun 2024 21:33:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717709564; cv=none; b=TpOuc14r3gIyC6DLyvEv267FopsdyuWD9UAi4Moo4CIvWpAwk5+zULjAGRoOYYYo7feB1laQ3nqsCELwLpzVc4dhPzmeKsLfis8XFfRARST8O1uESFWi45z83ihkdUyUrYtXwPq7UBl4LZNsy+cXIgLPxuPDtsKCRKyPElVdDW4=
+	t=1717709631; cv=none; b=PuFVLPpI17Spk5CWBfQLCwj/7YMcYrT4RvV1DkbJqhOYqCQttDPax5Xfx+hGi58xrY5Op7n66lxbmhkIKUjmpgX2/zEAWwugl7LUjMdqGRNBniSo7DCTBp+SXVbpQR0Mk/ZsNnM+reEDm5lsw2afCdgAJbLImvZo/ffSzhSThgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717709564; c=relaxed/simple;
-	bh=VyqqIvxELS07SY/UCZXKvm0fiKpJWcw9PEObBiG/th0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZWzAz+K35Tpr26nm4PkLN3U3lYYOgxX/6ZaH9SPF/ADFBK9+KQrSwqNujhFqfnJ9eRiVZ7zlF6i1VykbTMdXLtaMFj90R+D90WFqkAKHlojlhExqkByytWc0lZN/8NnB4D8CwlCAkKFJwO1lins+L6mti7pi649gqWC8IvxtaIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hAld5+a/; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-1f4a0050b9aso12731665ad.2;
-        Thu, 06 Jun 2024 14:32:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717709562; x=1718314362; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=oCJ+6h3oOdiBUp+f2OAuium5zQQWuoIn8eHud9GJWzg=;
-        b=hAld5+a/XBTvnk8LRMJYLDf+8PDkcsJqRsZ8lC23r5QjDONVnQX4zRV43gA33rKsiy
-         I+Dsn5jh/bOAZEF9B2QU3qY49NtgYoSrnw/z8gRzs7GQ2EkK43caqc915Jmh7wXAbSIL
-         iGkXLT+DCVhK9Pk4uM4tjhW3HuTcxnvmlQFyh0CAYfzBQQOAoT0LoFJM1p3wbpW5IhsW
-         q8KkOvJ0qA+ufbbqgpVZTsWmSpPxc35y2OBLb0UEIhba4CNonE9Atto6zwoYcXsGJcVv
-         fQzq/lL97g0WDL0QGdjnRd7b9R7bLXx2ROAWXHCw8aBMR6xpGTpRQSd6UIwzQOGdqDtf
-         6hZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717709562; x=1718314362;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oCJ+6h3oOdiBUp+f2OAuium5zQQWuoIn8eHud9GJWzg=;
-        b=fUIunPDi2n0ebQBLTGiii9issdZmgFtuMbIaYpc16Ufj8lVml61ZaTXh0Q/THMAYtu
-         GW2xnIKMPKIjDvUItAA9xqrpD8apwPw7SsRJJtj+VuGRSCyDGtbHjR44yGlb/AdaZtJ4
-         N62lBSx5mrlPp2jvoEhOwcfEvHoUAJ4iTQVFxuXWdcQ1jrSwz9Cj2LPdfseMbDOxlri0
-         nWMDldFZk/v3ufyMpVAA4tccT3at2RBc01lPSS3CaI0N261tDsutbGx6SwrdzzDbSo0G
-         HPHFwtA4KXPjwJiA2RwBgnT64uJnPuAnfMPEHWF0pTFicF3WZ736xz3MkwDFAEZeDSeJ
-         Ft+g==
-X-Forwarded-Encrypted: i=1; AJvYcCU6O73CzJYxS4xzr2uElso3n5viOxkT8QpViZUipMOl6U70y34VP99kKuLeYDhVQXUTm/cOqWBjFJ94mxN9rvbVUC5BBkEObTi3V7Prlv0shTRoycu2adHZuGVEyKQvLIfjf+E8RSLTatwelgphWCZ+pHP6UaD66OWQBG8mkpgYUstv/wyW
-X-Gm-Message-State: AOJu0YxsgsMVj8CBRWPqymLrOUv/xJD3uZ/7wZ/65RIZHbg7vzGRofaB
-	Abkz62thNsDDVokF8Au164WMieLITu3jo3LZBoL07BIw4sVzA0wbNi0ROQ==
-X-Google-Smtp-Source: AGHT+IHEDPgg5UbUeel1ZbrOc19j/l10c1qIO+cNiOqendzAFNoWoER2y0caJd6aHszt9OHGhAAkoA==
-X-Received: by 2002:a17:902:ec90:b0:1f3:b55:e247 with SMTP id d9443c01a7336-1f6d03c1052mr6536285ad.55.1717709562007;
-        Thu, 06 Jun 2024 14:32:42 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:cdcb:6470:dec1:846c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f6bd7e066dsm20024115ad.206.2024.06.06.14.32.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jun 2024 14:32:41 -0700 (PDT)
-Date: Thu, 6 Jun 2024 14:32:38 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Kamel BOUHARA <kamel.bouhara@bootlin.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	Jeff LaBundy <jeff@labundy.com>,
-	catalin.popescu@leica-geosystems.com,
-	mark.satterthwaite@touchnetix.com,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	bsp-development.geo@leica-geosystems.com
-Subject: Re: [PATCH v13 3/3] Input: Add TouchNetix axiom i2c touchscreen
- driver
-Message-ID: <ZmIq9jmkZtEaGw19@google.com>
-References: <20240603153929.29218-1-kamel.bouhara@bootlin.com>
- <20240603153929.29218-4-kamel.bouhara@bootlin.com>
- <Zl5ZmYyntq7OJOvZ@google.com>
- <20240605124746.GA57733@tpx1.home>
- <7ca4a22f903313128de5c0f65a49b319@bootlin.com>
+	s=arc-20240116; t=1717709631; c=relaxed/simple;
+	bh=BIPCNwr2iNo5s7oX2a4ALoQD1rqzDFRTnwAeLaO1RRM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=n0aYY9wPtPSnv+YqEVs/4E37nUubcBYNniD0uZE3OQ+UrvR25X4kpJmViuNb3w13KJmir6obh+AJlR2jDThLIpt+bmosvMAFBSxf6xxFdSfo5NfkpSrB8yXqQWBaVhJIVf99rEi7SY5xO/481cOzIdju1BsH1lOWbJnlXSLlrP0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=IxtQjifz; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 9151E240002;
+	Thu,  6 Jun 2024 21:33:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1717709626;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=YEe67kVi/zYEwJ949gLFt+c1vqpmrvxAyYHa4a+7LAA=;
+	b=IxtQjifzTaaXunLyy6L7jVE8sN9djdHYHsjmEicWNx5Nq3dloei3ROWn9XPo63TO2/KR2U
+	g/IiGLEwqUfI6iuGrUnGfKkZ2YNO1xaqfuuvNVNPDOPKAOHasengOhflZ6c6JjKK3a7S+w
+	gUKd94vQMeWOWpBueVlyHHdyFzXhCoohX6vtRCT4/gSCy7a4DVY1zdl/tAuJOYGNzzJOiv
+	pwTEq725uYcoRSF5FxMQktJ5SELAELSaimUoHrDpwVUI45obcjHtSNGiH3bYFAqhno6k56
+	r1G6Y1QbivoqI/u6KfMbHgWSwoKvxoBXbBRKU/rqAKhVi01VXeN5rns8T6zxpg==
+Date: Thu, 6 Jun 2024 23:33:44 +0200
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Keguang Zhang <keguang.zhang@gmail.com>
+Cc: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-mips@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 1/3] dt-bindings: mtd: Add Loongson-1 NAND Controller
+Message-ID: <20240606233344.4e268c04@xps-13>
+In-Reply-To: <CAJhJPsW9gVe2F1qvxvOkQUX_K1BsK5q_1XjT0u2+QH2gRMNqXA@mail.gmail.com>
+References: <20240430-loongson1-nand-v7-0-60787c314fa4@gmail.com>
+	<20240430-loongson1-nand-v7-1-60787c314fa4@gmail.com>
+	<20240506091444.59228fa9@xps-13>
+	<CAJhJPsV1aCvji1G2F94A=pJa8+x6Aw7ndkQUBPtFeeKSxJK9Nw@mail.gmail.com>
+	<20240518124732.584f441d@xps-13>
+	<CAJhJPsW9gVe2F1qvxvOkQUX_K1BsK5q_1XjT0u2+QH2gRMNqXA@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7ca4a22f903313128de5c0f65a49b319@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-On Wed, Jun 05, 2024 at 03:48:20PM +0200, Kamel BOUHARA wrote:
-> [...]
-> 
-> > > > +
-> > > > +	error = devm_request_threaded_irq(dev, client->irq, NULL,
-> > > > +					  axiom_irq, IRQF_ONESHOT, dev_name(dev), ts);
-> > > > +	if (error) {
-> > > > +		dev_info(dev, "Request irq failed, falling back to polling mode");
-> > > 
-> > > I do not think you should fall back to polling mode if you fail to get
-> > > interrupt. If it was not specified (client->irq) then I can see that
-> > > we
-> > > might want to fall back, but if the system configured for using
-> > > interrupt and you can not get it you should bail out.
-> > > 
-> > 
-> > Yes, clear, the polling mode can be decorrelated to the irq not provided
-> > case.
-> 
-> Just to make sure I understood, is this what you propose ?
-> 
-> if (client->irq) {
->         error = devm_request_threaded_irq(...)
->         if (error) {
-> 		dev_warn(dev, "failed to request IRQ\n");
-> 		client->irq = 0;
->          }
-> }
-> 
-> if(!client->irq) {
->     // setup polling stuff
->     ...
-> }
+Hi,
 
-No, if you fail to acquire interrupt that was described in ACPI/DT it
-should be treated as an error, like this:
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    oneOf:
+> > > > > +      - const: loongson,ls1b-nfc =20
+> > > >
+> > > > What is the rationale behind this choice? Seems like the b variant =
+has
+> > > > two possible implementations and should always be preceded by a more
+> > > > specific compatible.
+> > > >
+> > > > As there is currently no description of this controller upstream, I
+> > > > would not care too much about any out-of-tree description and direc=
+tly
+> > > > go for a clean description.
+> > > > =20
+> > > Excuse me, should I add a description for this property? =20
+> >
+> > No, description is not needed. But you are allowing the
+> > "loongson,ls1b-nfc" compatible alone, which I think is not relevant,
+> > unless you convince me it is :-)
+> > =20
+> "loongson,ls1b-nfc" itself is a specific implementation.
+> I was suggested to set up a fallback before.
+> https://lore.kernel.org/all/20231007-untapped-masses-01f80b7c13c7@spud/
+> Then "loongson,ls1b-nfc" became the fallback.
 
-	if (client->irq) {
-		error = devm_request_threaded_irq(...)
-		if (error)
-			return dev_err_probe(...);
-	} else {
-		.. set up polling ..
-	}
+You cannot allow 'the fallback', alone. But this is what you do above.
+Below description is fine. Just don't allow the ls1b-nfc compatible
+alone.
 
-This also makes sure that if interrupt controller is not ready and
-requests probe deferral we will not end up with device in polling mode.
-
-Thanks.
-
--- 
-Dmitry
+Thanks,
+Miqu=C3=A8l
 
