@@ -1,136 +1,114 @@
-Return-Path: <devicetree+bounces-73317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 513B08FEFCB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:02:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F6148FEFD4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:03:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE09C282689
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:02:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F08601F2385F
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:03:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B971119DF6F;
-	Thu,  6 Jun 2024 14:38:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2CD01990A5;
+	Thu,  6 Jun 2024 14:40:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WDPRnO+p"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AG1g5oic"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B3E01EB3A;
-	Thu,  6 Jun 2024 14:38:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A5031974FE;
+	Thu,  6 Jun 2024 14:40:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717684724; cv=none; b=TMc95ghLtNK1qNUkfjY7wxG9oWweYVasOfVDuZ/g1PT8QntyxdfSiPNblIVNK48w//iV/4ZXahDwWKwoza0oOvkc0pVXjE0M7IGrPZwvx0uqGCLuGDG+TFOBKdWlf7Z6EoYP3LwRCl64R+atFUlnrfIGsNsCymY0HfMevhst0a0=
+	t=1717684817; cv=none; b=U6IpN8PNJkb9/LxnzfwtU68ZXGCuYDzJd21g3N9wDwzq7sPEvEweJumY1fN6CZkNPH/iXqqqxzL73rc0SRlYvZ49VDnBjv8tw6J+PpGNCjv5NRUSnBXaVGt+163Qxcrmi1N5Fj678U0WwSzC8gVzDJ/nLVRHmQFuEl41eKiYWyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717684724; c=relaxed/simple;
-	bh=PRwLGYovMSOZLOdr9ird43QgRk/4eRVu/yuyjg0HH2E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ipy8vNiqtNoq4uvzz5jTdlucAiUaNMTMdhmI9l6g1BHZvxqD2NfFxNEkRVs+BtqbFkJP4R8iyIavwA8pdW8rabnIxS8ri+zD1ImUeQj4/Pn2KqdCEGE1Fmgj/frfQrAHUVnzL0YEpoO6O8b07swLAeFJ3rny5IuLl+0UKpay6J8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WDPRnO+p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E45ADC2BD10;
-	Thu,  6 Jun 2024 14:38:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717684724;
-	bh=PRwLGYovMSOZLOdr9ird43QgRk/4eRVu/yuyjg0HH2E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WDPRnO+puB64OOwO9azNiTjt7xJDjsraLNB6eonI4q58Kxy+F39fyzG1QGlUKwlAL
-	 jhR0iweie4sNriDWV6e4VDvtPuMoR6o+AytaUqPlJd37IesoRKtGu8AjmnuiUSZchU
-	 t/Ph3tNieVMPPjw+Hr3Zytbz33npRrSUlNX4h8U8bOeZapr1hEf1UUujQSKg/mUsAj
-	 4INvJHigvrIJ+SY0oCBcZideXGVF+pd/z+O2gm+pz0aFdnKVP8bKS7rz+GmOUBCJr9
-	 WSz1f/GM3RNbEUQFJk7TXqhGdFwLOecChJyJNiolXxH6xo2lcQNJoTExs3vYV1lL7b
-	 4qY5Tz7NJOzYQ==
-Date: Thu, 6 Jun 2024 15:38:37 +0100
-From: Mark Brown <broonie@kernel.org>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [RFC PATCH 1/4] regulator: core: Ensure the cached state matches
- the hardware state in regulator_set_voltage_unlocked()
-Message-ID: <c7f4dc07-5a78-4cd4-8f3e-063dec5d0bc4@sirena.org.uk>
-References: <20240605074936.578687-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240605074936.578687-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <22664e29-4c7a-4544-ad32-25c3d7e342e9@sirena.org.uk>
- <CA+V-a8vStea7RZWNXjJLbuibz+-53KT9=5g-P9N4fUrbqjj91A@mail.gmail.com>
+	s=arc-20240116; t=1717684817; c=relaxed/simple;
+	bh=ZGB3juOxwVTV9EOeSwh34a8EfYqp00QVXUiUxC+Ea5I=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=nuBVIeoNEDaTUA/chx4ECJs+Bk/x9BTK/S+X3KDDwpxJM1Lhx7mdvwJufsO0bfl2l3zqwEnZagIdq1dwoFbB2NXO+tlK+0PxxNLVCAI7pii80zxOTAWh/vcn9i9S7thjSTAKKDH7vOFcn9gKnHcN98z7s6ZsLZGfbQ5HR4dYowI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AG1g5oic; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45699e8M016166;
+	Thu, 6 Jun 2024 14:40:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	qcppdkim1; bh=VCPJV/VzG/M+IhNnUHL+ziLX+EjaBPDAUVTfhaUS/lA=; b=AG
+	1g5oicFc4NZ6QEWNF6Xl2Nf0HGSU3em582cnahrOLMnHwu4LZqqVNcmx23UnngYX
+	KGi568hk/+HzkZ1CuqRFYOGKGGy3AbNeUJTgnc0GrJafVBUgOf64LOjTc1GCwSkd
+	5lvtnADKP10LgH3JXs4NRKUx1pgE1wBGbJEgpkyhXvAiItiP4keHQNP9gOFHvkuD
+	hQhsmMB3EsKG+2l3yqwy94BHT+J2oTuAKMcofBu6U7VWvEhHAaIAhQTnE3F0Y8rT
+	UAFh1FEPQ8retAnv8tZYjp1Nx0eByLlGneYw4k7TP6TqygHw3PZUY8oV7Ndmc8C6
+	PP5+whaamTQ1C+ko44cA==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yka7p8rjv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 06 Jun 2024 14:40:12 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 456EeACl009445
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 6 Jun 2024 14:40:10 GMT
+Received: from hyd-e160-a01-3-01.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 6 Jun 2024 07:40:06 -0700
+From: Naina Mehta <quic_nainmeht@quicinc.com>
+To: <andersson@kernel.org>, <mathieu.poirier@linaro.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <konrad.dybcio@linaro.org>, <manivannan.sadhasivam@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_nainmeht@quicinc.com>
+Subject: [PATCH 0/5] Add MPSS remoteproc support for SDX75
+Date: Thu, 6 Jun 2024 20:08:53 +0530
+Message-ID: <20240606143858.4026-1-quic_nainmeht@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="k+c8wgxJKe7M4G9M"
-Content-Disposition: inline
-In-Reply-To: <CA+V-a8vStea7RZWNXjJLbuibz+-53KT9=5g-P9N4fUrbqjj91A@mail.gmail.com>
-X-Cookie: Simulated picture.
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 9PpGwCdiY-hS7m9_aHwm7xl7e4sVnC4q
+X-Proofpoint-ORIG-GUID: 9PpGwCdiY-hS7m9_aHwm7xl7e4sVnC4q
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-06_01,2024-06-06_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
+ malwarescore=0 adultscore=0 spamscore=0 bulkscore=0 clxscore=1011
+ phishscore=0 mlxlogscore=766 lowpriorityscore=0 impostorscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406060106
 
+Add modem support to SDX75 using the PAS remoteproc driver.
+Also, add qlink_logging memory region and split MPSS DSM
+region into 2 separate regions.
 
---k+c8wgxJKe7M4G9M
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+These patches were co-authored by Rohit Agarwal while at
+Qualcomm.
 
-On Thu, Jun 06, 2024 at 03:12:42PM +0100, Lad, Prabhakar wrote:
-> On Thu, Jun 6, 2024 at 1:05=E2=80=AFPM Mark Brown <broonie@kernel.org> wr=
-ote:
-> > On Wed, Jun 05, 2024 at 08:49:33AM +0100, Prabhakar wrote:
+Naina Mehta (5):
+  dt-bindings: remoteproc: qcom,sm8550-pas: document the SDX75 PAS
+  remoteproc: qcom: pas: Add SDX75 remoteproc support
+  arm64: dts: qcom: sdx75: add missing qlink_logging reserved memory for
+    mpss
+  arm64: dts: qcom: sdx75: Add remoteproc node
+  arm64: dts: qcom: sdx75-idp: enable MPSS remoteproc node
 
-> > > Driver code flow:
-> > > 1> set regulator to 1.8V (BIT0 =3D 1)
-> > > 2> Regulator cached state now will be 1.8V
-> > > 3> Now for some reason driver issues a reset to the IP block
-> > >    which resets the registers to default value. In this process
-> > >    the regulator is set to 3.3V (BIT0 =3D 0)
-> > > 4> Now the driver requests the regulator core to set 1.8V
+ .../bindings/remoteproc/qcom,sm8550-pas.yaml  |  1 +
+ arch/arm64/boot/dts/qcom/sdx75-idp.dts        |  6 ++
+ arch/arm64/boot/dts/qcom/sdx75.dtsi           | 64 +++++++++++++++++--
+ drivers/remoteproc/qcom_q6v5_pas.c            |  1 +
+ 4 files changed, 68 insertions(+), 4 deletions(-)
 
-> > If something is resetting the regulator like this that's a problem in
-> > general, we need to either have the driver notify the core when that
-> > happens so it can reconfigure the regulator or have it reapply
-> > configuration directly.  Obviously it's not great to have that happen at
-> > all...
+-- 
+2.17.1
 
-> Currently I am seeing this problem with SDHI driver. For the voltage
-> switch operation the MMC core requests the driver to do the change and
-> similarly the MMC core requests the reset operation.
-
-> > Having the core driver notify the core when that happens so it can reco=
-nfigure the regulator or have it reapply configuration directly.
-
-> Again doing this would be a problem as MMC core also maintains the IOS
-> states, reconfiguring the regulator would cause conflicts between the
-> states.
-
-If the device can't cope with the requested configuration being applied
-why is this going through the regulator API at all?  This just seems
-quite confused, putting a bodge in the core like this clearly isn't the
-right solution.
-
---k+c8wgxJKe7M4G9M
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZhye0ACgkQJNaLcl1U
-h9BLqAf/UG65PeifE6tHyWrpslKd/R60qY5DdOnrVWie0kqlq5nDZHQH/T+YBOLN
-ZnHdOfBmTHARgPc08z9ronRWn0YzjG3TwzclbJE6q7/sW793wynrKhhbSZCQRemS
-aG1s81H6ARFCrIp1esBflxwaeVtsaYFYTKtLiF46dYQjRjiOgeFj5C9ECwe47Ndn
-3zbm7Fn9MMWfjqyK3kOKLrnNoNxLjjeKtCvNhYNKRNogVxPBcFlz8JhY0fP8qhsa
-aEftWbjuIUYATdQG6rvJqrvfYXdeZZN3SWm6UAuMLWwz2r0DnL9fw6RIfryfdhq1
-EXlOvf1ya0E3D7poZG/K//OMoerQbA==
-=AZYv
------END PGP SIGNATURE-----
-
---k+c8wgxJKe7M4G9M--
 
