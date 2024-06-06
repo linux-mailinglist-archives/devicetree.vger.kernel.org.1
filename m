@@ -1,149 +1,189 @@
-Return-Path: <devicetree+bounces-73221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1D9E8FE428
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 12:22:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8794E8FE432
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 12:24:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4B751C2476D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 10:22:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 571AB1C248BB
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 10:24:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8A73194AF7;
-	Thu,  6 Jun 2024 10:22:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CE1E194AE0;
+	Thu,  6 Jun 2024 10:24:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xMVdBSg7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h1QzHfej"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BAB6190698
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 10:22:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A580614A63D;
+	Thu,  6 Jun 2024 10:24:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717669359; cv=none; b=l9jQogNuYVlSH3mnk+Ks6ENsI+lpRp3ttwGDZDYZHW7IdY3C+PIMH/6uCzJUay+ZtAVYxqYKCVQVV4QAiHENtEdi6MuDgzTE8BtWQD3c6gCDi8VnrPesP7y0NM1+D7iDZh4aLg/kTBgm5KK8VWc60MQkHzhAvKT4RZqESIm4ZnY=
+	t=1717669462; cv=none; b=kWFbnpKPvi4kbTOr+D7Lr/DrwgN1snpFSspyvQEV1nkLWHAV7mQjIbtHpMsMW1xL1j94VRem9MNCi+sMZqXzhq5VvyioVyTFEDL1aBcKkwM+Jj/jWbDEPq3Sp3D8uc4Id1iYc59L4vcsJbRu5n/7SIJiPCyjQ3Ngk9OX+SKBgDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717669359; c=relaxed/simple;
-	bh=ak0afc++obQOVTUosq+25zjN3OMaaL+Fkktc5XZAmp0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=R2cZbj4pejFKVqmIGD1DKjzc1UMIGn9i81PjSSWVjTE1rajn/QI/nepfvReJqaJoQuC3wfcN05wTyKpOc5EFiim1nNOd7GTE26734JxPfSf47v9BqccitsP0pPufixHeUVHuKL9rzVI35tuKvueHNs8udmSdjHZbefyb+EBwxro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xMVdBSg7; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a689ad8d1f6so90441266b.2
-        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2024 03:22:37 -0700 (PDT)
+	s=arc-20240116; t=1717669462; c=relaxed/simple;
+	bh=jXP98eqTfqlOOkOkRS3yoSSeqjWdml2lIS+e5MX9x9w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kvEIwkIy4ZME1wZFZ1A++fjElP82+gz1fy9RcbsmBfmTL8AN19NLpdFqLKSJpZ77uT6wjH+80RKTXASsx4iwW59J3RSzG3LDwikfpaehHeWmgKkUFeX3aRNcymijYQo0IV8iCWVS+ORmVGIO5B4HgQVRZiSh7nUVVOUDQHQ3MEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h1QzHfej; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-52b894021cbso1062500e87.0;
+        Thu, 06 Jun 2024 03:24:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717669356; x=1718274156; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ha4yldsU+Xze3DIS1bXqoZ0+SAz7WcPSov7v8ZL/ttE=;
-        b=xMVdBSg7Fp6Wi9Va85sUWGZuK7SxhjLOBo2TaG2ZQ52t2ldtOwAeOW534YVAhRAbh8
-         pNH7NS567BRbUgIqbi9H0hd1LBuuEf43WoKShxJyaOwZFzLmaUtfyABBtpLxxkkrLExX
-         qYUwtHF/e+U5Iaymxzh71jCc4CsroRQNf5mBSEKR+yg6lnZ+M9TzWqsnSpDiz+IBkvtu
-         34kiKnSfAJZqw8BUkl527rxaLpm9spNh8cd6dpvX4OgZ7rfXTFJTfzcJdl2spwLNz7it
-         dA0xk92OZF5vx6XbJYg2zuUk0swZfTFX3TVxwQ9o9/mDkoboPsPTKwwHSgn5BtGyIZAs
-         TSGA==
+        d=gmail.com; s=20230601; t=1717669459; x=1718274259; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=f4WnoT1fe4t4g6laaxr/UqBSAP7voCUP3G6EsC2u08s=;
+        b=h1QzHfejJpeDBZyXNvTCjxf8M68khwT6VqL6PEnLvBCMeKVffipgbf1+NOMJ7YA+4Q
+         imh0TrWLALSMm92BqsOYF17SmpIXr6OP3pTaFuy89YtmBt4SAPRV6r+tmY9blWvOodoE
+         wZMb/+WKG3NKNjpwGZBBENyCzqToP2mej4QjQ9TMgn7BR7rNmAgvGQuI6fU+uGhrcdJU
+         X6FFKKoqsw4jHdCgpFJqbEUQtTjUOT5Lq0PghUVgqx/u4mxeMTxgBjk2iucy61Ht8GCE
+         tM0Ma1k0EyYe8p1vH6dlyG/VlD6TeRVUnyWeCuMu20DVspgA/aeALSsWp/4LmD46SG0b
+         pN4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717669356; x=1718274156;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1717669459; x=1718274259;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Ha4yldsU+Xze3DIS1bXqoZ0+SAz7WcPSov7v8ZL/ttE=;
-        b=jy68DUOsOoG/q92V5reArWQ2qxjHtNQmXDPDUgGJq+eqjC+c2Cf/QKKUqHEsGtCD92
-         mm3LsRXT9vZiR4OSnSf8GiFpKyTYSp98PHQP9zmfamuVmUUK0tp4I4rRI1GOjRSVXb+5
-         kxCmxP+Kmpi4AtL+Zshy6czdFQ+mf6byUCUZXfF7lQjtguqHNqvhK4CI+E5ehu5ygw8Y
-         rLreJ6mTEDmgnf982U7ARtF1IGtTQfJVqHQAyfKjucRxVu+uylQdqdBad8qeUv5DZSAD
-         7JG7PEdHmVP4AVnJA+5KHZwOedjkqmVMdOrhG2/1oLVXFKsv8W3vfst7dKj9XDkPan/6
-         w6Cw==
-X-Forwarded-Encrypted: i=1; AJvYcCX8hLSsjatvuIKhplGzZ6y0u2IYDUHmxl+iTlRI5BBcmRntFzpa2ilTnvismVTX8DaJpglpcg1gH585mTu28UIwaumac9OlI8CZEA==
-X-Gm-Message-State: AOJu0YyAE9aAGYNojs61tKyR1D9idVlC9kTxj/ba9cgA+XShhwS6BOOq
-	BwXIbCY/8GM2TcV+KSpnTT5ptlSlnxOjAuKlTL30Md4FwEqx1BYZ6JGK+BOKeWw=
-X-Google-Smtp-Source: AGHT+IGmOEH5/eEr+P9kPUzvdhc7/UT/wurjbWO6JVfzZGUkzHNX9xeZwwi320c3D3Jg6p+JxQ6zQA==
-X-Received: by 2002:a17:907:9707:b0:a68:9ce3:c896 with SMTP id a640c23a62f3a-a699fa9bcf3mr388916466b.24.1717669356561;
-        Thu, 06 Jun 2024 03:22:36 -0700 (PDT)
-Received: from [192.168.128.139] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6c805cbb36sm76693266b.68.2024.06.06.03.22.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jun 2024 03:22:36 -0700 (PDT)
-Message-ID: <351cb377-644f-4f3a-86b2-a617a41acebf@linaro.org>
-Date: Thu, 6 Jun 2024 12:22:33 +0200
+        bh=f4WnoT1fe4t4g6laaxr/UqBSAP7voCUP3G6EsC2u08s=;
+        b=KS0R5esXjHvQiD7ccL/s4Oo5cO6foHWhIUOYCr20M35J8jJRQL813fORcuG+kJd4Sq
+         51teCV1hpTiowcuuk1MirktGpslYziyeTHZFdrTVs5mxKY/C9RvVI81R8w1unRcWMRTZ
+         43Y/ID4MDqZ6dCmu6qWOU8vCOhr5Xog2rVQ5heRjm4dg8rFxDf4Dy2LV3X5gyiTrdX+g
+         kKQ/xiFgfYFZVLOChrVBS5lnxrdGnhHu/MQ/ifFdU1aESxkNFXru3vvMEVtaGvs+PUNn
+         eq8wad9XqW+wRXHNhWqSZh3m6bO0Gs3erulAubUzapQyoMo+BoWV6b0bVHprrKSIb8VS
+         erNw==
+X-Forwarded-Encrypted: i=1; AJvYcCW0g3EAS4km2v0Sq6PyXDgTTUjV+HoVpZQGWBZ7wvTlRjKiAp1A4bkQ8esLqkZz3KOqLUVzrAt9wFVQ7l9v/HOJn3USP//t7uwUhB9SdN/urh5jTUMR7I+C92aYsbYmRNQPCn3zm7WlBzpE/4avwxKCtp33w6SeDTRagZYWWiJehg==
+X-Gm-Message-State: AOJu0YyP3ByC4TeJR0UeCtj5lIcXU0IE1wVr5in5O1LZOxWiOe/S8xGI
+	GPci8GFqK9gTyV464/9PSZWO3Xxa5HjFdfeyIXgECDBwPFVDvJq9
+X-Google-Smtp-Source: AGHT+IGD1+RWYMQNl7g5DBJNyh/Rk7DFAJoyKbW8svrOWxknhhhPq+wBqdzF9X+G+AnjMD2oSbecGw==
+X-Received: by 2002:a05:6512:108a:b0:52b:c9a:148 with SMTP id 2adb3069b0e04-52bab4b7c95mr3439377e87.14.1717669458562;
+        Thu, 06 Jun 2024 03:24:18 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52bb41e2054sm152799e87.49.2024.06.06.03.24.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Jun 2024 03:24:18 -0700 (PDT)
+Date: Thu, 6 Jun 2024 13:24:14 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Simon Horman <horms@kernel.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	Russell King <linux@armlinux.org.uk>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Jose Abreu <Jose.Abreu@synopsys.com>, 
+	Vladimir Oltean <olteanv@gmail.com>, Florian Fainelli <f.fainelli@gmail.com>, 
+	Maxime Chevallier <maxime.chevallier@bootlin.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Sagar Cheluvegowda <quic_scheluve@quicinc.com>, Abhishek Chauhan <quic_abchauha@quicinc.com>, 
+	Andrew Halaney <ahalaney@redhat.com>, Jiawen Wu <jiawenwu@trustnetic.com>, 
+	Mengyuan Lou <mengyuanlou@net-swift.com>, Tomer Maimon <tmaimon77@gmail.com>, openbmc@lists.ozlabs.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v2 08/10] net: pcs: xpcs: Add fwnode-based
+ descriptor creation method
+Message-ID: <7bcu77pbw3fsgcua2owbjqgjwuxagplexltgkilozmeihg6574@6m5iizhtj2de>
+References: <20240602143636.5839-1-fancer.lancer@gmail.com>
+ <20240602143636.5839-9-fancer.lancer@gmail.com>
+ <20240605174920.GR791188@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 8/8] arm64: dts: qcom: sm8650: Add video and camera
- clock controllers
-To: Jagadeesh Kona <quic_jkona@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Taniya Das <quic_tdas@quicinc.com>,
- Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>
-References: <20240602114439.1611-1-quic_jkona@quicinc.com>
- <20240602114439.1611-9-quic_jkona@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240602114439.1611-9-quic_jkona@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240605174920.GR791188@kernel.org>
 
-On 2.06.2024 1:44 PM, Jagadeesh Kona wrote:
-> Add device nodes for video and camera clock controllers on Qualcomm
-> SM8650 platform.
+Hi Simon
+
+On Wed, Jun 05, 2024 at 06:49:20PM +0100, Simon Horman wrote:
+> On Sun, Jun 02, 2024 at 05:36:22PM +0300, Serge Semin wrote:
+> > It's now possible to have the DW XPCS device defined as a standard
+> > platform device for instance in the platform DT-file. Although that
+> > functionality is useless unless there is a way to have the device found by
+> > the client drivers (STMMAC/DW *MAC, NXP SJA1105 Eth Switch, etc). Provide
+> > such ability by means of the xpcs_create_fwnode() method. It needs to be
+> > called with the device DW XPCS fwnode instance passed. That node will be
+> > then used to find the MDIO-device instance in order to create the DW XPCS
+> > descriptor.
+> > 
+> > Note the method semantics and name is similar to what has been recently
+> > introduced in the Lynx PCS driver.
+> > 
+> > Signed-off-by: Serge Semin <fancer.lancer@gmail.com>
 > 
-> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
-> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
+> Hi Serge,
+> 
+> Some minor nits from my side flagged by kernel-doc -none -Wall
+> 
+> ...
+> 
+> > diff --git a/drivers/net/pcs/pcs-xpcs.c b/drivers/net/pcs/pcs-xpcs.c
+> 
+> ...
+> 
+> > @@ -1505,6 +1507,16 @@ static struct dw_xpcs *xpcs_create(struct mdio_device *mdiodev,
+> >  	return ERR_PTR(ret);
+> >  }
+> >  
+> > +/**
+> > + * xpcs_create_mdiodev() - create a DW xPCS instance with the MDIO @addr
+> > + * @bus: pointer to the MDIO-bus descriptor for the device to be looked at
+> > + * @addr: device MDIO-bus ID
+> > + * @requested PHY interface
+> 
+> An entry for @interface should go here.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Right.
 
-Konrad
+> 
+> > + *
+> > + * If successful, returns a pointer to the DW XPCS handle. Otherwise returns
+> > + * -ENODEV if device couldn't be found on the bus, other negative errno related
+> > + * to the data allocation and MDIO-bus communications.
+> 
+> Please consider including this information as a Return: section of the
+> Kernel doc. Likewise for xpcs_create_fwnode().
+
+Sure.
+
+> 
+> > + */
+> >  struct dw_xpcs *xpcs_create_mdiodev(struct mii_bus *bus, int addr,
+> >  				    phy_interface_t interface)
+> >  {
+> > @@ -1529,6 +1541,44 @@ struct dw_xpcs *xpcs_create_mdiodev(struct mii_bus *bus, int addr,
+> >  }
+> >  EXPORT_SYMBOL_GPL(xpcs_create_mdiodev);
+> >  
+> > +/**
+> > + * xpcs_create_fwnode() - Create a DW xPCS instance from @fwnode
+> > + * @node: fwnode handle poining to the DW XPCS device
+> 
+> s/@node/@fwnode/
+
+Holy mother, so many typos in the kdoc part. I should have been more
+attentive. I'll fix all of them in v2. Thanks.
+
+* Special thanks for mentioning the scripts/kernel-doc I'll be using
+it from now on.
+
+-Serge(y)
+
+> 
+> > + * @interface: requested PHY interface
+> > + *
+> > + * If successful, returns a pointer to the DW XPCS handle. Otherwise returns
+> > + * -ENODEV if the fwnode is marked unavailable or device couldn't be found on
+> > + * the bus, -EPROBE_DEFER if the respective MDIO-device instance couldn't be
+> > + * found, other negative errno related to the data allocations and MDIO-bus
+> > + * communications.
+> > + */
+> > +struct dw_xpcs *xpcs_create_fwnode(struct fwnode_handle *fwnode,
+> > +				   phy_interface_t interface)
+> 
+> ...
 
