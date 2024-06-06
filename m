@@ -1,162 +1,326 @@
-Return-Path: <devicetree+bounces-73118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EFC68FE0EA
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 10:27:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 944348FE119
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 10:37:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DA75284F45
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:27:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A9A51C24DC5
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 08:37:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C41F513BC26;
-	Thu,  6 Jun 2024 08:27:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F14DE13D8A0;
+	Thu,  6 Jun 2024 08:36:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=leemhuis.info header.i=@leemhuis.info header.b="wMvx3o2V"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nJlV4+gs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de [80.237.130.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C5E5199A2;
-	Thu,  6 Jun 2024 08:26:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.237.130.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F4FB13D890;
+	Thu,  6 Jun 2024 08:36:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717662420; cv=none; b=crwiOijNUtFckmKPEMda87SFRDizV+CzOy/OO7HQBNTlskuwT0OK82QfDUrq+Pn5menRPqWtIR8B1OPiqyyT3KCwu0D+UpzwuvvfKeFbfRuEaMXqlgGHgxEUSHzpPbGjDjicqCDNbUaEfGUEPyXijxb9uH6ytp+VWAX6wGLrch4=
+	t=1717662976; cv=none; b=JxtdLc/6Dj3FerdgOJcP7snU0/7VeKyGG6Nryz/ML6pRUazpFCrj8j3kvn6boA9kmCOxfjXKbp5kok0ayxsFj1fmygja6NhD9CnqKFNnpCphMfU68teZ0KzTNqxdRdS00BasGWn7SAHKuqv2efgXwww5o7022K2i56pJQiGLFHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717662420; c=relaxed/simple;
-	bh=pwoHibVp0BN/9IvJseN1aG9FN8TSfYTChAmdkUilT/s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kZmoKAqI/tjpdVEMZxdthZUtGq+Mvt/hbIQkf2xDcPCIngwwmJ07KPrFWsPvCnzTY7wucEOUYVW9zDKRmVk+uNHep+9HDOL/XYx7zWwOup9v6kaPsir3mum2uKP3q1u56G3//+mbW75ss4f78Sgh1EC/kFXHWcMmO8FdUVVqN+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=leemhuis.info; spf=pass smtp.mailfrom=leemhuis.info; dkim=pass (2048-bit key) header.d=leemhuis.info header.i=@leemhuis.info header.b=wMvx3o2V; arc=none smtp.client-ip=80.237.130.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=leemhuis.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=leemhuis.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=leemhuis.info; s=he214686; h=Content-Transfer-Encoding:Content-Type:
-	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:In-Reply-To:
-	References; bh=TAJBf2B8gbT67nqhACvm4EgH00WGKM6/1lZ+DcslpsE=; t=1717662418;
-	x=1718094418; b=wMvx3o2VimOEXwXq5Kmo9sczP9U60CFXQ0cJGJVNMz8OZdVbSRzMUbcwuDYSx
-	yoV/RfNWRb++sI6Y2Zs3v6fkJEzF4FTXvkxDzMbEmwJiLi7dUuo8i7Uq90jtFQEY/LIBRsTGddni/
-	G846CsEm5ALwh7RVObCvGxTKG9YVY/fp2aacnmiRV0QXK3ic4aVm84Z5NKps4VZTIsVrvJhWwmGZr
-	xvY+KsKmfaXDHCRCDeuz4ZMGmW7PZtSXDAroXoE4a5siQHpIW4IrR8zKOboYPtZHEtBi1kKsJeXr2
-	zcKRv1TyTIJyYbPGgI31ubrKIrxF/zWzCxlkxWtx9FfXmKqzVQ==;
-Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
-	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
-	id 1sF8SQ-0006mK-P3; Thu, 06 Jun 2024 10:26:50 +0200
-Message-ID: <714da201-654b-4183-8e5e-8ff0b64fe621@leemhuis.info>
-Date: Thu, 6 Jun 2024 10:26:49 +0200
+	s=arc-20240116; t=1717662976; c=relaxed/simple;
+	bh=HbezAgu3orx2sG+dhV3jBNnTilhBUtJu83lkA/Gdp/Q=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=p4whR2bdX4N/gOaAqHZzd9v5P05ugiNhXNjQ+ftQdV1jjYTW2JQ4RAa6TdyyljdYNfhrLe2FPiD8tADsdKY6P0emYrIob3Kuc/WvHayUWJEdBqjd28v7FgwR9eg2WnFRWboLTvrxZZ8vIfb594TvaJh21CdDahDjsCogLGx0A30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nJlV4+gs; arc=none smtp.client-ip=209.85.160.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-2509f93959bso264541fac.1;
+        Thu, 06 Jun 2024 01:36:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717662974; x=1718267774; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=l/J1TIi/7S4IHb480Bty9F4Vdib6r6GgqM8DD5E175o=;
+        b=nJlV4+gsr3CL1BLDLH5LgZcb56GXSZ+PXu4UUPGRIazJMnUH5gWqnFDwdhArhhUEry
+         9y6Ys11CpdIzkcEKW+1NItNAKK/MU9yCdUucQUXk2ldwqzc16LVdAvpvVwDukZDLo9Qy
+         L1b3uzNtjj4PGG4rInzWlL8sazWKUJsOXzUaUP1OyLz9USlp6WWYgwOHQMyspah3rnd4
+         Y++oY34LC2jwYew+3svmGXewB86I0JBC7p9E+LYFIQeRJ9iUtGYot7W4CZ+H+ocHhL2A
+         jCTDHcCXsuk8xBF7KyQjYT6GTGGT0zn6PzwEl3vO5kWfLpqidUb1Trl4Nt/acJZecax2
+         rouw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717662974; x=1718267774;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=l/J1TIi/7S4IHb480Bty9F4Vdib6r6GgqM8DD5E175o=;
+        b=febBMvfPTZl5svzwCr1Lmr+Iyy4LdcEK8o1J7ARe9VgXADHEkVMtmU1vDQpLHoFucA
+         aEVqWqTPAhE9hllkAo5mzo5rAkr6115HxyapijgCclZhb02JTQuw4JF7YotR7ZhodBp8
+         gWgnUsKv+5Dgp8WPBjTsJcRiuUe3/kXBltwGlbjMgbDM0qrCzSZQRTJK92fDoPoMc1ey
+         JlKghj+C93RiueA2KEqJRwZmYk3cEw9uRBC2DB6Lmo/eFSpSsqo2GVphNAe/BiUMiR95
+         K9WIU5wp8Sfcpaky7+erVh4eJxfAKYyplz7K3+A59AQWWRXzePhkm4jvHHovca9XS1au
+         f7hw==
+X-Forwarded-Encrypted: i=1; AJvYcCWnerW5qkGWvFoYJr9jLOa/vpRNgsMg3c3CfpLL1hwYRbEa/nm6ZT0fBpk+orv8QNkm0pJ2LwHxh4OL7ufECQrRGhTOvvqyfS3Msq/Inh7sZSKmp9AWYTGMI3QGqMGcFeoq0CJQAl3ijgCgZEIwG/o4tw/IOl2C2Kda+zfZ2xW1qwjPcA==
+X-Gm-Message-State: AOJu0YyXrpl1tKZ/k+FgHGJXPejyGw/jftLliXSJyd41p7AChBDube+o
+	Nwxi/YWvOLtxqRHlGWAX5sXZZ434d/U9EunHFvhGUsgq0V4hRX0b
+X-Google-Smtp-Source: AGHT+IF35oLFaWQj+hx8WmPQ4FtMX7jukB9MjmKafgBVECEtPc5fpKtMXkXT+P0QtvixG3SwQGYS6A==
+X-Received: by 2002:a05:6870:9613:b0:24c:a8cd:c0fa with SMTP id 586e51a60fabf-2544077953cmr953560fac.21.1717662973990;
+        Thu, 06 Jun 2024 01:36:13 -0700 (PDT)
+Received: from localhost.localdomain ([122.8.183.87])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-25447eb8f8bsm267977fac.27.2024.06.06.01.36.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Jun 2024 01:36:13 -0700 (PDT)
+From: Chen Wang <unicornxw@gmail.com>
+To: aou@eecs.berkeley.edu,
+	chao.wei@sophgo.com,
+	conor@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	mturquette@baylibre.com,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	richardcochran@gmail.com,
+	robh+dt@kernel.org,
+	sboyd@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	haijiao.liu@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	guoren@kernel.org,
+	jszhang@kernel.org,
+	inochiama@outlook.com,
+	samuel.holland@sifive.com
+Cc: Chen Wang <unicorn_wang@outlook.com>
+Subject: [PATCH v16 0/5] riscv: sophgo: add clock support for sg2042
+Date: Thu,  6 Jun 2024 16:36:04 +0800
+Message-Id: <cover.1717661798.git.unicorn_wang@outlook.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
-To: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
- Linux regressions mailing list <regressions@lists.linux.dev>,
- Frank Wunderlich <linux@fw-web.de>, Paolo Abeni <pabeni@redhat.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Daniel Golle <daniel@makrotopia.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- frank-w@public-files.de, Rob Herring <robh@kernel.org>
-References: <20240516204847.171029-1-linux@fw-web.de>
- <a29dd7d1-40a8-4c88-99aa-651a3305b640@arinc9.com>
- <5AEE5668-0C8E-4EE4-A398-66CB99DF5650@public-files.de>
- <43aacd9d-b851-4100-8ccc-878ac6ae10f8@leemhuis.info>
- <698cf562-1ca9-4aa3-be7e-a1474b612c5b@leemhuis.info>
- <0cba095c-3d55-416a-a7ad-b359129731cf@arinc9.com>
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-Content-Language: en-US, de-DE
-In-Reply-To: <0cba095c-3d55-416a-a7ad-b359129731cf@arinc9.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1717662418;e7046d08;
-X-HE-SMSGID: 1sF8SQ-0006mK-P3
 
-On 31.05.24 08:10, Arınç ÜNAL wrote:
-> On 31/05/2024 08.40, Thorsten Leemhuis wrote:
->> [adding Paolo, who committed the culprit]
+From: Chen Wang <unicorn_wang@outlook.com>
 
-/me slowly wonders if the culprit should be reverted for now (see below)
-and should be reapplied later together with the matching changes from
-Arınç ÜNAL.
+This series adds clock controller support for sophgo sg2042.
 
->> On 23.05.24 12:44, Linux regression tracking (Thorsten Leemhuis) wrote:
->>> On 17.05.24 08:27, Frank Wunderlich wrote:
->>>> Am 17. Mai 2024 04:17:47 MESZ schrieb "Arınç ÜNAL"
->>>> <arinc.unal@arinc9.com>:
->>>>> On 16/05/2024 23:48, Frank Wunderlich wrote:
->>>>>> From: Frank Wunderlich <frank-w@public-files.de>
->>>>>>
->>>>>> After commit 868ff5f4944a
->>>>>> ("net: dsa: mt7530-mdio: read PHY address of switch from device
->>>>>> tree")
->>>>>> the mt7531 switch on Bananapi-R64 was not detected.
->>>>>>
->>>>>> mt7530-mdio mdio-bus:00: reset timeout
->>>>>> mt7530-mdio mdio-bus:00: probe with driver mt7530-mdio failed with
->>>>>> error -110
->>>>>>
->>>>>> Fix this by adding phy address in devicetree.
->>
->> Frank, am I right assuming the regression is still present in mainline?
->> As from here it looks like for two weeks now there was no progress at
->> all to fix this (or I missed it, which is quite possible).
->>
->> Makes me wonder if the maintainers should revert the culprit or if the
->> arm64 dts folks should accept your fix despite Arınç ÜNAL's (who from a
->> quick look on lore hasn't posted anything for two weeks now) comment.
-> 
-> I'm not against the patch. I'm against the logic it entails on the patch
-> log.
+Thanks,
+Chen
 
-In that case: can you maybe help Frank with writing something better or
-submit something based on this patch to resolve this and make everyone
-happy?
+---
 
-> I had already submitted a patch series that would've prevented this
-> issue back in 14 March 2024 [1]. I've asked numerous times for the patch
-> series to be applied [2][3][4][5].
->> Eventually Daniel asked for some changes [6]. But I won't have time to do
-> that anytime soon and I think the patch series is good enough to be applied
-> as is.
+Changes in v16:
 
-Then I guess we need some other way to resolve this in mainline to unfix
-Frank's device. The two obvious options are afaics:
+  The patch series is based on v6.10-rc1.
 
-* revert the culprit (868ff5f4944aa9 ("net: dsa: mt7530-mdio: read PHY
-address of switch from device tree")) and reapply it in a later cycle
-* apply Frank's patch (or an improved one) in this thread (and if needed
-revert it when some better changes emerge.
+  Improved the dirvier code as per comments from Emil Renner Berthing.
+  - Split driver source file into three and change from built-in to module.
+  - Directly use status/enable pll register, no need to store them.
+  - Use FIELD_PREP/FIELD_GET to simplify the code.
+  - Some misc code improvements, such as for macro and local variables.
 
-Arınç ÜNAL, could you please comment on that and ideally handle the
-necessary tasks, as it's your patch that causes the regression.
+Changes in v15:
 
-Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
---
-Everything you wanna know about Linux kernel regression tracking:
-https://linux-regtracking.leemhuis.info/about/#tldr
-If I did something stupid, please tell me, as explained on that page.
+  The patch series is based on v6.9-rc5. You can simply review or test the
+  patches at the link [16].
 
-> [1]
-> https://lore.kernel.org/all/20240314-for-mediatek-mt7531-phy-address-v1-0-52f58db01acd@arinc9.com/
-> [2]
-> https://lore.kernel.org/all/ff196055-ecd8-4563-bc01-ff2533a07109@arinc9.com/
-> [3]
-> https://lore.kernel.org/all/a60fc16d-4236-427c-b4a8-ec6fdf62d9f0@arinc9.com/
-> [4]
-> https://lore.kernel.org/all/facb8204-c2b3-4084-a2e3-4fbf3a3fdc9d@arinc9.com/
-> [5]
-> https://lore.kernel.org/all/44e366ea-964a-4515-9027-2a2edfe12512@arinc9.com/
-> [6] https://lore.kernel.org/all/ZixU287DdhvRyZBe@makrotopia.org/
-> 
-> Arınç
-> 
-> 
+  Improved the dirvier code as per 3rd review comments from Stephen Boyd.
+  - Converted all parents described by strings to use clk_parent_data or
+    clk_hw directly.
+  - Just use struct clk_init_data::parent_hws when only have a clk_hw.
+  - Removed extra cleanup when use devm.
+  - Some misc code improvements.
+
+Changes in v14:
+
+  The patch series is based on v6.9-rc1. You can simply review or test the
+  patches at the link [15].
+
+  Improved the dirvier code as per 2nd review comments from Stephen Boyd.
+  - Inline the header file into source file.
+  - Use devm_xxx functions for pll/div/gate registeration.
+  - Use clk_parent_data for mux clocks initialization.
+  - Use u32 for registers readl/writel.
+  - Use devm_platform_ioremap_resource instead of devm_of_iomap.
+  - Cleanup some dead code and add definitions for some magic numbers.
+  - Add include files missed.
+  - Use kernel-doc to improve comments for some structure and functions.
+  - Other misc code cleanup work as per input from reviewers.
+
+Changes in v13:
+
+  The patch series is based on v6.9-rc1. You can simply review or test the
+  patches at the link [14].
+
+  Just added a minor fix for clk driver which was missed in v12.
+
+Changes in v12:
+
+  The patch series is based on v6.9-rc1. You can simply review or test the
+  patches at the link [13].
+
+  Improved the dirvier code as per review comments from Stephen Boyd.
+  - Remove default y for CLK_SOPHGO_SG2042.
+  - Optimize sg2042_pll_get_postdiv_1_2, move postdiv1_2 to the function.
+    scope and add more explaniation.
+  - Optimize sg2042_get_pll_ctl_setting.
+  - Switch to platform driver.
+  - Use clk_hw for initialization of struct clks.
+  - Don't use ignore_unused when using critical.
+  - Other code cleanup as per input form the reviewers.
+
+Changes in v11:
+
+  The patch series is based on v6.8-rc5. You can simply review or test the
+  patches at the link [12].
+
+  Quick fixed some dt_binding_check errors reported by Rob.
+
+Changes in v10:
+
+  The patch series is based on v6.8-rc4. You can simply review or test the
+  patches at the link [11].
+
+  Add input clocks for rpgate & clkgen.
+
+Changes in v9:
+  The patch series is based on v6.8-rc2. You can simply review or test the
+  patches at the link [10].
+
+  From this version, drop the system-controller node due to there is no actual
+  device corresponding to it in IC design. SYS_CTRL is just a registers segment
+  defined on TRM for misc functions. Now three clock-controllers are defined for
+  SG2042, the control registers of the three clock-controllers are scattered in
+  different memory address spaces:
+  - the first one is for pll clocks;
+  - the second one is for gate clocks for RP subsystem;
+  - the third one is for div/mux, and gate clocks working for other subsystem
+    than RP subsystem.
+
+Changes in v8:
+  The patch series is based on v6.7. You can simply review or test the
+  patches at the link [9].
+  
+  In this version, the main change is to split one clock provider into two.
+  Strictly follow the hardware instructions, in the memoymap, the control
+  registers of some clocks are defined in the SYS_CTRL segment, and the
+  control registers of other clocks are defined in the CLOCK segment.
+  Therefore, the new design defines two clock controllers, one as a child
+  node of the system control and the other as an independent clock controller
+  node.
+
+  This modification involves a major modification to the binding files, so
+  the reviewed-by tags has been deleted.
+
+Changes in v7:
+  The patch series is based on v6.7. You can simply review or test the
+  patches at the link [8].
+  - fixed initval issue.
+  - fixed pll clk crash issue.
+  - fixed warning reported by <lkp@intel.com>
+  - code optimization as per review comments.
+  - code cleanup and style improvements as per review comments and checkpatch
+    with "--strict"
+
+Changes in v6:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [7].
+  - fixed some warnings/errors reported by kernel test robot <lkp@intel.com>.
+
+Changes in v5:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [6].
+  - dt-bindings: improved yaml, such as:
+    - add vendor prefix for system-ctrl property for clock generator.
+    - Add explanation for system-ctrl property.
+  - move sophgo,sg2042-clkgen.yaml to directly under clock folder.
+  - fixed bugs for driver Makefile/Kconfig
+  - continue cleaning-up debug print for driver code.
+
+Changes in v4:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [5].
+  - dt-bindings: fixed a dt_binding_check error.
+
+Changes in v3:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [3].
+  - DTS: don't use syscon but define sg2042 specific system control node. More
+    background info can read [4].
+  - Updating minor issues in dt-bindings as per input from reviews.
+
+Changes in v2:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [2].
+  - Squashed the patch adding clock definitions with the patch adding the
+    binding for the clock controller.
+  - Updating dt-binding for syscon, remove oneOf for property compatible;
+    define clock controller as child of syscon.
+  - DTS changes: merge sg2042-clock.dtsi into sg2042.dtsi; move clock-frequency
+    property of osc to board devicethree due to the oscillator is outside the
+    SoC.
+  - Fixed some bugs in driver code during testing, including removing warnings
+    for rv32_defconfig.
+  - Updated MAINTAINERS info.
+
+Changes in v1:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [1].
+
+Link: https://lore.kernel.org/linux-riscv/cover.1699879741.git.unicorn_wang@outlook.com/ [1]
+Link: https://lore.kernel.org/linux-riscv/cover.1701044106.git.unicorn_wang@outlook.com/ [2]
+Link: https://lore.kernel.org/linux-riscv/cover.1701691923.git.unicorn_wang@outlook.com/ [3]
+Link: https://lore.kernel.org/linux-riscv/MA0P287MB03329AE180378E1A2E034374FE82A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM/ [4]
+Link: https://lore.kernel.org/linux-riscv/cover.1701734442.git.unicorn_wang@outlook.com/ [5]
+Link: https://lore.kernel.org/linux-riscv/cover.1701938395.git.unicorn_wang@outlook.com/ [6]
+Link: https://lore.kernel.org/linux-riscv/cover.1701997033.git.unicorn_wang@outlook.com/ [7]
+Link: https://lore.kernel.org/linux-riscv/cover.1704694903.git.unicorn_wang@outlook.com/ [8]
+Link: https://lore.kernel.org/linux-riscv/cover.1705388518.git.unicorn_wang@outlook.com/ [9]
+Link: https://lore.kernel.org/linux-riscv/cover.1706854074.git.unicorn_wang@outlook.com/ [10]
+Link: https://lore.kernel.org/linux-riscv/cover.1708223519.git.unicorn_wang@outlook.com/ [11]
+Link: https://lore.kernel.org/linux-riscv/cover.1708397315.git.unicorn_wang@outlook.com/ [12]
+Link: https://lore.kernel.org/linux-riscv/cover.1711527932.git.unicorn_wang@outlook.com/ [13]
+Link: https://lore.kernel.org/linux-riscv/cover.1711692169.git.unicorn_wang@outlook.com/ [14]
+Link: https://lore.kernel.org/linux-riscv/cover.1713164546.git.unicorn_wang@outlook.com/ [15]
+Link: https://lore.kernel.org/linux-riscv/cover.1714101547.git.unicorn_wang@outlook.com/ [16]
+
+---
+
+Chen Wang (5):
+  dt-bindings: clock: sophgo: add pll clocks for SG2042
+  dt-bindings: clock: sophgo: add RP gate clocks for SG2042
+  dt-bindings: clock: sophgo: add clkgen for SG2042
+  clk: sophgo: Add SG2042 clock driver
+  riscv: dts: add clock generator for Sophgo SG2042 SoC
+
+ .../bindings/clock/sophgo,sg2042-clkgen.yaml  |   61 +
+ .../bindings/clock/sophgo,sg2042-pll.yaml     |   53 +
+ .../bindings/clock/sophgo,sg2042-rpgate.yaml  |   49 +
+ .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  |   12 +
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        |   55 +-
+ drivers/clk/sophgo/Kconfig                    |   28 +
+ drivers/clk/sophgo/Makefile                   |    4 +
+ drivers/clk/sophgo/clk-sg2042-clkgen.c        | 1152 +++++++++++++++++
+ drivers/clk/sophgo/clk-sg2042-pll.c           |  570 ++++++++
+ drivers/clk/sophgo/clk-sg2042-rpgate.c        |  291 +++++
+ drivers/clk/sophgo/clk-sg2042.h               |   18 +
+ .../dt-bindings/clock/sophgo,sg2042-clkgen.h  |  111 ++
+ include/dt-bindings/clock/sophgo,sg2042-pll.h |   14 +
+ .../dt-bindings/clock/sophgo,sg2042-rpgate.h  |   58 +
+ 14 files changed, 2475 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/sophgo,sg2042-clkgen.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/sophgo,sg2042-pll.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/sophgo,sg2042-rpgate.yaml
+ create mode 100644 drivers/clk/sophgo/clk-sg2042-clkgen.c
+ create mode 100644 drivers/clk/sophgo/clk-sg2042-pll.c
+ create mode 100644 drivers/clk/sophgo/clk-sg2042-rpgate.c
+ create mode 100644 drivers/clk/sophgo/clk-sg2042.h
+ create mode 100644 include/dt-bindings/clock/sophgo,sg2042-clkgen.h
+ create mode 100644 include/dt-bindings/clock/sophgo,sg2042-pll.h
+ create mode 100644 include/dt-bindings/clock/sophgo,sg2042-rpgate.h
+
+
+base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
+-- 
+2.25.1
+
 
