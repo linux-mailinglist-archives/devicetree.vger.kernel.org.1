@@ -1,390 +1,219 @@
-Return-Path: <devicetree+bounces-73397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 971FD8FF3BA
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 19:29:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA6668FF3E1
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 19:36:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C94892810C0
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:28:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F07D1F28A7D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:36:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A96F1990C7;
-	Thu,  6 Jun 2024 17:28:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8A98199234;
+	Thu,  6 Jun 2024 17:35:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="KTOXEWNZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4553D1990B0
-	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 17:28:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39534199222
+	for <devicetree@vger.kernel.org>; Thu,  6 Jun 2024 17:35:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717694936; cv=none; b=j/1Bu/KezjAHYrn4338k7ZeXlR+ssvvDp8FCTrQJzwF+XV+3RQ3ZsEUuhxzhvqTmlbHBfXhVQ4FUL0hbcWqYAnDEwysINY71Ny5cyUjwCDhor6OVChsDKjHEwN43ZumOsiZ5C2VXpUuXQ2/cbEDj+mz820Zlmr1YAsWbL1qdNIA=
+	t=1717695355; cv=none; b=aeHXPZRAUw/XTuN/Nm0BgQD0JQmNOZ5UanIwBSm+mSComZqF8sZqyuUjQLqoYGBa1kZ6JvdBHf05lY2TlCH8NtmKjZ4rX9txZ48dMZjS9Cd4XaFe0AxAQtBHJxOainZNSPOaTSV0hpwJjFM5xqh4ew9nZNYkUqS48GN88bKg8pw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717694936; c=relaxed/simple;
-	bh=JNak2+njFem8PE62GoSC3QHk+AwtR9bWjoX4scDPfz0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FOF8rnqnQYdwxykvEa44CEkL/8u+jRT4EPkPmRMcM0TOpcbq69/mKNPi+uWMJE7hSxI6AZd2fxT/PgpkRA1Tjec0Ew+HtDRaV47IoieZj+M1rACZO9A9kpwDzceH7t80UZo4eE66Qe55de2+zOAy8NUSrHeblAYc8bR2okdrJcg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E8F552F4;
-	Thu,  6 Jun 2024 10:29:16 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CA1F43F792;
-	Thu,  6 Jun 2024 10:28:50 -0700 (PDT)
-Date: Thu, 6 Jun 2024 18:28:48 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chris Morgan <macromorgan@hotmail.com>
-Cc: Chen-Yu Tsai <wens@csie.org>, Chris Morgan <macroalpha82@gmail.com>,
- linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- mripard@kernel.org, ryan@testtoast.com, samuel@sholland.org,
- jernej.skrabec@gmail.com, conor+dt@kernel.org, krzk+dt@kernel.org,
- robh@kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h700: Add Anbernic RG35XX-SP
-Message-ID: <20240606182848.59e8d3a5@donnerap.manchester.arm.com>
-In-Reply-To: <DM4PR05MB922995CB8DE2589E025E486FA5FA2@DM4PR05MB9229.namprd05.prod.outlook.com>
-References: <20240605185339.266833-1-macroalpha82@gmail.com>
-	<20240605185339.266833-3-macroalpha82@gmail.com>
-	<20240606105159.33a2b917@donnerap.manchester.arm.com>
-	<CAGb2v64uCCZSc0aY-gtcMNAhJAqDhb5=sPBJC=q0+nKwMO3f+A@mail.gmail.com>
-	<20240606133515.223b9c73@donnerap.manchester.arm.com>
-	<DM4PR05MB922995CB8DE2589E025E486FA5FA2@DM4PR05MB9229.namprd05.prod.outlook.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1717695355; c=relaxed/simple;
+	bh=JNXCflDio0Du4CwfDelhowY/4X5glDuOivTHSZ4vr60=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=N59Ox8RqoEREGeaOPZbULCJ1OoAr8//ZZnBe/HyrHrnNK3JD9JktdRM2K7a3p+t/17k26SjcJvJTACrUxHPNjmeFegPq8+l/MK3aGRYsUnvRRNK7QogHXweOQ0kLBVgd8XU2xfDUsi4C6VNwb5nSzyDRZbgl/IJGipGS8OtRZ7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=KTOXEWNZ; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-7026ad046a2so1019599b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 06 Jun 2024 10:35:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1717695353; x=1718300153; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SNZT90i7xX7z9SBNw7Fi+15fEhA21+XfQ1kCVGtVUWU=;
+        b=KTOXEWNZ/WFeBokZ5WcdG1yDpaIjTdPOb5Bu4cycH0TRCgXFmrObRLLDud9i3+IRFa
+         xKcYqWFyeizTRR6QlphG681l6+s8/KsBa3qGYGoI8mMNkRGAp6jzHvD2HuzULSfloiFu
+         4KU8AF5OF6r3Ii+WZUlV70Aj4xSAZ1YRNcXwc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717695353; x=1718300153;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SNZT90i7xX7z9SBNw7Fi+15fEhA21+XfQ1kCVGtVUWU=;
+        b=OTn8/IFEkZz/PtEvgtWbxWdnmsWbKqD/ZIJck8eY4FifRoaOZoVYZrvVSq/KAmddux
+         AMNflO4iD8Gm31A1rYHB+pWrXR1lmzBa2nvJ0tKHFXufwqSEFfuamYzZMNMoE379BQwL
+         Ez3g+9eGL+lfTbnEuIDvxxdaFT2yWkKC0xBHVmmgRSttofBb5i9rh2ZCyU/pr6uYC/GN
+         aFIDVbeIdkqiM1raebKlFkqKizJKd7KUWgTzHfhKEE9nsqTLRC6gNkElfgvYZDU9mVZ0
+         lvITjAekMwGWbg2kPecs9Y9FLTjGZgjPYnrCVrn3y5W//EScaMwek2IId5gtdr2f9Kte
+         h13Q==
+X-Forwarded-Encrypted: i=1; AJvYcCW/9vGn3kWPU3iu829h8FH97WrrU5UuqYvqz2tbs4eq6Ykr42accgdHA5x3RXAvH4LWBatvGWZxMsULcekcHvuml3kqmvnNTGuFfA==
+X-Gm-Message-State: AOJu0YxdkJ6DZmazeMiXz0aqby/XRuEkypxoz7YIkJEPXUa9dusRhtoP
+	N2MrkEXKzlmxX7uf5jMB25DNZ8lCifbImxtwYyuDqu5AyBKoXzVJklThUzCmhg==
+X-Google-Smtp-Source: AGHT+IHvUtVDhjTFNuhMNUZCXM9tIRlP4ACCXa2ST0RxyLrWRDwQVLc2GshKOnDDj1UIRLsNM512eQ==
+X-Received: by 2002:a05:6a00:21c9:b0:6f3:e6e0:d9f3 with SMTP id d2e1a72fcca58-7040c752719mr134972b3a.31.1717695353412;
+        Thu, 06 Jun 2024 10:35:53 -0700 (PDT)
+Received: from pc98uv11.mtv.corp.google.com ([2620:15c:9d:2:3fe9:f321:712c:442f])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-703fd375503sm1334904b3a.42.2024.06.06.10.35.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Jun 2024 10:35:53 -0700 (PDT)
+From: Daisuke Nojiri <dnojiri@chromium.org>
+To: 
+Cc: Daisuke Nojiri <dnojiri@chromium.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Benson Leung <bleung@chromium.org>,
+	Guenter Roeck <groeck@chromium.org>,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	chrome-platform@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 3/3 v4] dt-bindings: cros-ec-keyboard: Add keyboard matrix v3.0
+Date: Thu,  6 Jun 2024 10:34:30 -0700
+Message-ID: <20240606173509.243739-4-dnojiri@chromium.org>
+X-Mailer: git-send-email 2.45.2.505.gda0bf45e8d-goog
+In-Reply-To: <20240606173509.243739-1-dnojiri@chromium.org>
+References: <20240604005354.2294468-1-dnojiri@chromium.org>
+ <20240606173509.243739-1-dnojiri@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Thu, 6 Jun 2024 12:06:54 -0500
-Chris Morgan <macromorgan@hotmail.com> wrote:
+Add support for keyboard matrix version 3.0, which reduces keyboard
+ghosting.
 
-Hi,
+Signed-off-by: Daisuke Nojiri <dnojiri@chromium.org>
+---
+ include/dt-bindings/input/cros-ec-keyboard.h | 104 +++++++++++++++++++
+ 1 file changed, 104 insertions(+)
 
-> On Thu, Jun 06, 2024 at 01:35:15PM +0100, Andre Przywara wrote:
-> > On Thu, 6 Jun 2024 19:58:07 +0800
-> > Chen-Yu Tsai <wens@csie.org> wrote:
-> >=20
-> > Hi Chen-Yu,
-> >  =20
-> > > On Thu, Jun 6, 2024 at 5:52=E2=80=AFPM Andre Przywara <andre.przywara=
-@arm.com> wrote: =20
-> > > >
-> > > > On Wed,  5 Jun 2024 13:53:39 -0500
-> > > > Chris Morgan <macroalpha82@gmail.com> wrote:
-> > > >   =20
-> > > > > From: Chris Morgan <macromorgan@hotmail.com>
-> > > > >
-> > > > > The Anbernic RG35XXSP is almost identical to the RG35XX-Plus, but=
- in a
-> > > > > clamshell form-factor. The key differences between the SP and the=
- Plus
-> > > > > is a lid switch and an RTC on the same i2c bus as the PMIC.
-> > > > >
-> > > > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > > > > ---
-> > > > >  arch/arm64/boot/dts/allwinner/Makefile        |   3 +-
-> > > > >  .../sun50i-h700-anbernic-rg35xx-sp.dts        | 145 ++++++++++++=
-++++++
-> > > > >  2 files changed, 147 insertions(+), 1 deletion(-)
-> > > > >  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h700-anb=
-ernic-rg35xx-sp.dts
-> > > > >
-> > > > > diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/=
-boot/dts/allwinner/Makefile
-> > > > > index 0db7b60b49a1..00bed412ee31 100644
-> > > > > --- a/arch/arm64/boot/dts/allwinner/Makefile
-> > > > > +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> > > > > @@ -49,5 +49,6 @@ dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h618-orang=
-epi-zero2w.dtb
-> > > > >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h618-orangepi-zero3.dtb
-> > > > >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h618-transpeed-8k618-t.dtb
-> > > > >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h700-anbernic-rg35xx-2024.d=
-tb
-> > > > > -dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h700-anbernic-rg35xx-plus.d=
-tb
-> > > > >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h700-anbernic-rg35xx-h.dtb
-> > > > > +dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h700-anbernic-rg35xx-plus.d=
-tb
-> > > > > +dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h700-anbernic-rg35xx-sp.dtb
-> > > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-r=
-g35xx-sp.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-sp=
-.dts
-> > > > > new file mode 100644
-> > > > > index 000000000000..a1d16b65ef5d
-> > > > > --- /dev/null
-> > > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-s=
-p.dts
-> > > > > @@ -0,0 +1,145 @@
-> > > > > +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > > +/*
-> > > > > + * Copyright (C) 2024 Ryan Walklin <ryan@testtoast.com>.
-> > > > > + * Copyright (C) 2024 Chris Morgan <macroalpha82@gmail.com>.
-> > > > > + */
-> > > > > +
-> > > > > +#include <dt-bindings/input/gpio-keys.h>
-> > > > > +#include "sun50i-h700-anbernic-rg35xx-plus.dts"
-> > > > > +
-> > > > > +/ {
-> > > > > +     model =3D "Anbernic RG35XX SP";
-> > > > > +     compatible =3D "anbernic,rg35xx-sp", "allwinner,sun50i-h700=
-";
-> > > > > +
-> > > > > +     gpio-keys-lid {
-> > > > > +             compatible =3D "gpio-keys";
-> > > > > +
-> > > > > +             lid-switch {
-> > > > > +                     label =3D "Lid Switch";
-> > > > > +                     gpios =3D <&pio 4 7 GPIO_ACTIVE_LOW>; /* PE=
-7 */
-> > > > > +                     linux,can-disable;
-> > > > > +                     linux,code =3D <SW_LID>;
-> > > > > +                     linux,input-type =3D <EV_SW>;
-> > > > > +                     wakeup-event-action =3D <EV_ACT_DEASSERTED>;
-> > > > > +                     wakeup-source;
-> > > > > +             };
-> > > > > +     };
-> > > > > +};
-> > > > > +
-> > > > > +/delete-node/ &r_rsb;   =20
-> > > >
-> > > > I don't think deleting the *RSB* node is right here, if at all, I'd=
- expect
-> > > > status=3D"disabled", and then maybe deleting the axp717 node within?
-> > > > Or maybe factor the AXP node out into a separate file, and include =
-it from
-> > > > the -2024.dts and from this one?   =20
-> > >=20
-> > > Doesn't quite work because the unit address is different. =20
-> >=20
-> > Ah, right, good point. It's a bit annoying because the node name itself=
- is
-> > mostly irrelevant, but I see that this wouldn't pass validation.
-> >  =20
-> > > > Or move every board to I2C?   =20
-> > >=20
-> > > Doesn't this depend on the bootloader also running in RSB mode? My me=
-mory
-> > > is a bit foggy on this, but IIRC we did a conversion on some other bo=
-ards
-> > > before? =20
-> >=20
-> > In the SPL we use I2C only, mostly because we have an SPL capable I2C
-> > driver already.
-> > In U-Boot proper we use whatever the DT says, that should work like in =
-the
-> > kernel.
-> > In TF-A we used to have one hardcoded transport per SoC, and that happe=
-ns
-> > to be RSB everywhere at the moment, but I have a patch series [1] to
-> > determine this dynamically, via the DT. As it stands, that chooses the
-> > transport by looking at the PMIC (I2C for the AXP313, RSB for the AXP717
-> > or AXP305), but I think it's fairly easy to check for the status proper=
-ty
-> > of both RSB and I2C, or look at the parent node of the AXP node to find
-> > the transport protocol to use.
-> > I will sketch something up.
-> >=20
-> > Chris has plans to auto-detect the exact Anbernic model in U-Boot, and
-> > switch to the right DT then automatically. IIUC I2C devices play a role=
- in
-> > this, so switching to I2C for all Anbernic models would make this more
-> > viable.
-> > It just leaves a bit of a bitter taste that we now model the DT after t=
-his
-> > particular requirement, and not after what the hardware looks like. =20
->=20
-> I honestly would rather simply have the Linux tree use i2c for all
-> devices, to be honest. For at least the Anbernic RG35XXSP device
-> as well as a device I haven't started yet (the RG28XX) there is an
-> external rtc on the same i2c bus as the PMIC at 0x51. This device
-> does not appear to be present on the other devices.
->=20
-> I'm thinking that with U-Boot I can use a single bootloader and load
-> one of five device trees based on what happens when I check for this
-> RTC at 0x51, when I attempt to communicate with mmc1 (wifi), and when
-> I check GPIO PE11. I don't need to actually use the wifi in U-Boot,
-> just find out if it's there.
->=20
-> This means basically:
->=20
-> GPIO PE11 - RG35XX-H
-> RTC present, wifi present - RG35XX-SP
-> RTC present, wifi missing - RG28XX
-> RTC missing, wifi missing - RG35XX-2024
-> RTC missing, wifi present - RG35XX-Plus
->=20
-> Regardless of this though, I will find a way to manage no matter what
-> we decide here. But for the RG35XX-SP and RG28XX (not yet submitted) I
-> want to run the PMIC off i2c so I can use the external RTC too.
-
-Yes, if you have I2C devices connected to those pins, then we *need* to
-use I2C for the PMIC. We have the same situation for the Pine H64 board,
-check sun50i-h6-pine-h64.dts.
-That's why the idea to switch the others, too.
-
-Cheers,
-Andre
-
-> >=20
-> > [1] https://review.trustedfirmware.org/q/topic:%22h616_pmics%22
-> >  =20
-> > > > What do people think about this?   =20
-> > >=20
-> > > "disabled" in RSB node and deleting the axp717 node is probably the r=
-ight
-> > > thing to do.
-> > >=20
-> > >  =20
-> > > > Cheers,
-> > > > Andre
-> > > >   =20
-> > > > > +
-> > > > > +&r_i2c {
-> > > > > +     pinctrl-0 =3D <&r_i2c_pins>;
-> > > > > +     pinctrl-names =3D "default";
-> > > > > +     status =3D "okay";
-> > > > > +
-> > > > > +     axp717: pmic@34 {
-> > > > > +             compatible =3D "x-powers,axp717";
-> > > > > +             reg =3D <0x34>;
-> > > > > +             interrupt-controller;
-> > > > > +             #interrupt-cells =3D <1>;
-> > > > > +             interrupt-parent =3D <&nmi_intc>;
-> > > > > +             interrupts =3D <0 IRQ_TYPE_LEVEL_LOW>;
-> > > > > +
-> > > > > +             vin1-supply =3D <&reg_vcc5v>;
-> > > > > +             vin2-supply =3D <&reg_vcc5v>;
-> > > > > +             vin3-supply =3D <&reg_vcc5v>;
-> > > > > +             vin4-supply =3D <&reg_vcc5v>;
-> > > > > +
-> > > > > +             regulators {
-> > > > > +                     reg_dcdc1: dcdc1 {
-> > > > > +                             regulator-always-on;
-> > > > > +                             regulator-min-microvolt =3D <900000=
->;
-> > > > > +                             regulator-max-microvolt =3D <110000=
-0>;
-> > > > > +                             regulator-name =3D "vdd-cpu";
-> > > > > +                     };
-> > > > > +
-> > > > > +                     reg_dcdc2: dcdc2 {
-> > > > > +                             regulator-always-on;
-> > > > > +                             regulator-min-microvolt =3D <940000=
->;
-> > > > > +                             regulator-max-microvolt =3D <940000=
->;
-> > > > > +                             regulator-name =3D "vdd-gpu-sys";
-> > > > > +                     };
-> > > > > +
-> > > > > +                     reg_dcdc3: dcdc3 {
-> > > > > +                             regulator-always-on;
-> > > > > +                             regulator-min-microvolt =3D <110000=
-0>;
-> > > > > +                             regulator-max-microvolt =3D <110000=
-0>;
-> > > > > +                             regulator-name =3D "vdd-dram";
-> > > > > +                     };
-> > > > > +
-> > > > > +                     reg_aldo1: aldo1 {
-> > > > > +                             /* 1.8v - unused */
-> > > > > +                     };   =20
-> > >=20
-> > > You can drop all the unused ones, unless you plan to include *this*
-> > > file from another one and use those nodes/labels.
-> > >=20
-> > > ChenYu
-> > >  =20
-> > > > > +
-> > > > > +                     reg_aldo2: aldo2 {
-> > > > > +                             /* 1.8v - unused */
-> > > > > +                     };
-> > > > > +
-> > > > > +                     reg_aldo3: aldo3 {
-> > > > > +                             /* 1.8v - unused */
-> > > > > +                     };
-> > > > > +
-> > > > > +                     reg_aldo4: aldo4 {
-> > > > > +                             regulator-min-microvolt =3D <180000=
-0>;
-> > > > > +                             regulator-max-microvolt =3D <180000=
-0>;
-> > > > > +                             regulator-name =3D "vcc-pg";
-> > > > > +                     };
-> > > > > +
-> > > > > +                     reg_bldo1: bldo1 {
-> > > > > +                             /* 1.8v - unused */
-> > > > > +                     };
-> > > > > +
-> > > > > +                     reg_bldo2: bldo2 {
-> > > > > +                             regulator-always-on;
-> > > > > +                             regulator-min-microvolt =3D <180000=
-0>;
-> > > > > +                             regulator-max-microvolt =3D <180000=
-0>;
-> > > > > +                             regulator-name =3D "vcc-pll";
-> > > > > +                     };
-> > > > > +
-> > > > > +                     reg_bldo3: bldo3 {
-> > > > > +                             /* 2.8v - unused */
-> > > > > +                     };
-> > > > > +
-> > > > > +                     reg_bldo4: bldo4 {
-> > > > > +                             /* 1.2v - unused */
-> > > > > +                     };
-> > > > > +
-> > > > > +                     reg_cldo1: cldo1 {
-> > > > > +                             /* 3.3v - audio codec - not yet imp=
-lemented */
-> > > > > +                     };
-> > > > > +
-> > > > > +                     reg_cldo2: cldo2 {
-> > > > > +                             /* 3.3v - unused */
-> > > > > +                     };
-> > > > > +
-> > > > > +                     reg_cldo3: cldo3 {
-> > > > > +                             regulator-always-on;
-> > > > > +                             regulator-min-microvolt =3D <330000=
-0>;
-> > > > > +                             regulator-max-microvolt =3D <330000=
-0>;
-> > > > > +                             regulator-name =3D "vcc-io";
-> > > > > +                     };
-> > > > > +
-> > > > > +                     reg_cldo4: cldo4 {
-> > > > > +                             regulator-min-microvolt =3D <330000=
-0>;
-> > > > > +                             regulator-max-microvolt =3D <330000=
-0>;
-> > > > > +                             regulator-name =3D "vcc-wifi";
-> > > > > +                     };
-> > > > > +
-> > > > > +                     reg_boost: boost {
-> > > > > +                             regulator-min-microvolt =3D <500000=
-0>;
-> > > > > +                             regulator-max-microvolt =3D <520000=
-0>;
-> > > > > +                             regulator-name =3D "boost";
-> > > > > +                     };
-> > > > > +
-> > > > > +                     reg_cpusldo: cpusldo {
-> > > > > +                             /* unused */
-> > > > > +                     };
-> > > > > +             };
-> > > > > +     };
-> > > > > +
-> > > > > +     rtc_ext: rtc@51 {
-> > > > > +             compatible =3D "nxp,pcf8563";
-> > > > > +             reg =3D <0x51>;
-> > > > > +     };
-> > > > > +};   =20
-> > > >
-> > > >   =20
-> >  =20
+diff --git a/include/dt-bindings/input/cros-ec-keyboard.h b/include/dt-bindings/input/cros-ec-keyboard.h
+index f0ae03634a96..afc12f6aa642 100644
+--- a/include/dt-bindings/input/cros-ec-keyboard.h
++++ b/include/dt-bindings/input/cros-ec-keyboard.h
+@@ -100,4 +100,108 @@
+ 	MATRIX_KEY(0x07, 0x0b, KEY_UP)		\
+ 	MATRIX_KEY(0x07, 0x0c, KEY_LEFT)
+ 
++/* No numpad */
++#define CROS_TOP_ROW_KEYMAP_V30 \
++	MATRIX_KEY(0x00, 0x01, KEY_F11)		/* T11 */	\
++	MATRIX_KEY(0x00, 0x02, KEY_F1)		/* T1 */	\
++	MATRIX_KEY(0x00, 0x04, KEY_F10)		/* T10 */	\
++	MATRIX_KEY(0x00, 0x0b, KEY_F14)		/* T14 */	\
++	MATRIX_KEY(0x00, 0x0c, KEY_F15)		/* T15 */	\
++	MATRIX_KEY(0x01, 0x02, KEY_F4)		/* T4 */	\
++	MATRIX_KEY(0x01, 0x04, KEY_F7)		/* T7 */	\
++	MATRIX_KEY(0x01, 0x05, KEY_F12)		/* T12 */	\
++	MATRIX_KEY(0x01, 0x09, KEY_F9)		/* T9 */	\
++	MATRIX_KEY(0x02, 0x02, KEY_F3)		/* T3 */	\
++	MATRIX_KEY(0x02, 0x04, KEY_F6)		/* T6 */	\
++	MATRIX_KEY(0x02, 0x0b, KEY_F8)		/* T8 */	\
++	MATRIX_KEY(0x03, 0x02, KEY_F2)		/* T2 */	\
++	MATRIX_KEY(0x03, 0x05, KEY_F13)		/* T13 */	\
++	MATRIX_KEY(0x04, 0x04, KEY_F5)		/* T5 */
++
++#define CROS_MAIN_KEYMAP_V30			/* Keycode */	\
++	MATRIX_KEY(0x00, 0x03, KEY_B)		/* 50 */	\
++	MATRIX_KEY(0x00, 0x05, KEY_N)		/* 51 */	\
++	MATRIX_KEY(0x00, 0x06, KEY_RO)		/* 56 (JIS) */	\
++	MATRIX_KEY(0x00, 0x08, KEY_EQUAL)	/* 13 */	\
++	MATRIX_KEY(0x00, 0x09, KEY_HOME)	/* 80 (Numpad) */	\
++	MATRIX_KEY(0x00, 0x0a, KEY_RIGHTALT)	/* 62 */	\
++	MATRIX_KEY(0x00, 0x10, KEY_FN)		/* 127 */	\
++								\
++	MATRIX_KEY(0x01, 0x01, KEY_ESC)		/* 110 */	\
++	MATRIX_KEY(0x01, 0x03, KEY_G)		/* 35 */	\
++	MATRIX_KEY(0x01, 0x06, KEY_H)		/* 36 */	\
++	MATRIX_KEY(0x01, 0x08, KEY_APOSTROPHE)	/* 41 */	\
++	MATRIX_KEY(0x01, 0x0b, KEY_BACKSPACE)	/* 15 */	\
++	MATRIX_KEY(0x01, 0x0c, KEY_HENKAN)	/* 65 (JIS) */	\
++	MATRIX_KEY(0x01, 0x0e, KEY_LEFTCTRL)	/* 58 */	\
++								\
++	MATRIX_KEY(0x02, 0x01, KEY_TAB)		/* 16 */	\
++	MATRIX_KEY(0x02, 0x03, KEY_T)		/* 21 */	\
++	MATRIX_KEY(0x02, 0x05, KEY_RIGHTBRACE)	/* 28 */	\
++	MATRIX_KEY(0x02, 0x06, KEY_Y)		/* 22 */	\
++	MATRIX_KEY(0x02, 0x08, KEY_LEFTBRACE)	/* 27 */	\
++	MATRIX_KEY(0x02, 0x09, KEY_DELETE)	/* 76 (Numpad) */	\
++	MATRIX_KEY(0x02, 0x0c, KEY_PAGEUP)	/* 85 (Numpad) */	\
++	MATRIX_KEY(0x02, 0x011, KEY_YEN)	/* 14 (JIS) */	\
++								\
++	MATRIX_KEY(0x03, 0x00, KEY_LEFTMETA)	/* Launcher */	\
++	MATRIX_KEY(0x03, 0x01, KEY_GRAVE)	/* 1 */	\
++	MATRIX_KEY(0x03, 0x03, KEY_5)		/* 6 */	\
++	MATRIX_KEY(0x03, 0x04, KEY_S)		/* 32 */	\
++	MATRIX_KEY(0x03, 0x06, KEY_MINUS)	/* 12 */	\
++	MATRIX_KEY(0x03, 0x08, KEY_6)		/* 7 */		\
++	MATRIX_KEY(0x03, 0x09, KEY_SLEEP)	/* Lock */	\
++	MATRIX_KEY(0x03, 0x0b, KEY_BACKSLASH)	/* 29 */	\
++	MATRIX_KEY(0x03, 0x0c, KEY_MUHENKAN)	/* 63 (JIS) */	\
++	MATRIX_KEY(0x03, 0x0e, KEY_RIGHTCTRL)	/* 64 */	\
++								\
++	MATRIX_KEY(0x04, 0x01, KEY_A)		/* 31 */	\
++	MATRIX_KEY(0x04, 0x02, KEY_D)		/* 33 */	\
++	MATRIX_KEY(0x04, 0x03, KEY_F)		/* 34 */	\
++	MATRIX_KEY(0x04, 0x05, KEY_K)		/* 38 */	\
++	MATRIX_KEY(0x04, 0x06, KEY_J)		/* 37 */	\
++	MATRIX_KEY(0x04, 0x08, KEY_SEMICOLON)	/* 40 */	\
++	MATRIX_KEY(0x04, 0x09, KEY_L)		/* 39 */	\
++	MATRIX_KEY(0x04, 0x0b, KEY_ENTER)	/* 43 */	\
++	MATRIX_KEY(0x04, 0x0c, KEY_END)		/* 81 (Numpad) */	\
++								\
++	MATRIX_KEY(0x05, 0x01, KEY_1)		/* 2 */	\
++	MATRIX_KEY(0x05, 0x02, KEY_COMMA)	/* 53 */	\
++	MATRIX_KEY(0x05, 0x03, KEY_DOT)		/* 54 */	\
++	MATRIX_KEY(0x05, 0x04, KEY_SLASH)	/* 55 */	\
++	MATRIX_KEY(0x05, 0x05, KEY_C)		/* 48 */	\
++	MATRIX_KEY(0x05, 0x06, KEY_SPACE)	/* 61 */	\
++	MATRIX_KEY(0x05, 0x07, KEY_LEFTSHIFT)	/* 44 */	\
++	MATRIX_KEY(0x05, 0x08, KEY_X)		/* 47 */	\
++	MATRIX_KEY(0x05, 0x09, KEY_V)		/* 49 */	\
++	MATRIX_KEY(0x05, 0x0b, KEY_M)		/* 52 */	\
++	MATRIX_KEY(0x05, 0x0c, KEY_PAGEDOWN)	/* 86 (Numpad) */	\
++								\
++	MATRIX_KEY(0x06, 0x01, KEY_Z)		/* 46 */	\
++	MATRIX_KEY(0x06, 0x02, KEY_3)		/* 4 */		\
++	MATRIX_KEY(0x06, 0x03, KEY_4)		/* 5 */		\
++	MATRIX_KEY(0x06, 0x04, KEY_2)		/* 3 */		\
++	MATRIX_KEY(0x06, 0x05, KEY_8)		/* 9 */		\
++	MATRIX_KEY(0x06, 0x06, KEY_0)		/* 11 */	\
++	MATRIX_KEY(0x06, 0x08, KEY_7)		/* 8 */		\
++	MATRIX_KEY(0x06, 0x09, KEY_9)		/* 10 */	\
++	MATRIX_KEY(0x06, 0x0b, KEY_DOWN)	/* 84 */	\
++	MATRIX_KEY(0x06, 0x0c, KEY_RIGHT)	/* 89 */	\
++	MATRIX_KEY(0x06, 0x0d, KEY_LEFTALT)	/* 60 */	\
++	MATRIX_KEY(0x06, 0x0f, KEY_ASSISTANT)	/* 128 */	\
++	MATRIX_KEY(0x06, 0x11, KEY_BACKSLASH)	/* 42 (JIS, ISO) */	\
++								\
++	MATRIX_KEY(0x07, 0x01, KEY_U)		/* 23 */	\
++	MATRIX_KEY(0x07, 0x02, KEY_I)		/* 24 */	\
++	MATRIX_KEY(0x07, 0x03, KEY_O)		/* 25 */	\
++	MATRIX_KEY(0x07, 0x04, KEY_P)		/* 26 */	\
++	MATRIX_KEY(0x07, 0x05, KEY_Q)		/* 17 */	\
++	MATRIX_KEY(0x07, 0x06, KEY_W)		/* 18 */	\
++	MATRIX_KEY(0x07, 0x07, KEY_RIGHTSHIFT)	/* 57 */	\
++	MATRIX_KEY(0x07, 0x08, KEY_E)		/* 19 */	\
++	MATRIX_KEY(0x07, 0x09, KEY_R)		/* 20 */	\
++	MATRIX_KEY(0x07, 0x0b, KEY_UP)		/* 83 */	\
++	MATRIX_KEY(0x07, 0x0c, KEY_LEFT)	/* 79 */	\
++	MATRIX_KEY(0x07, 0x11, KEY_102ND)	/* 45 (ISO) */
++
+ #endif /* _CROS_EC_KEYBOARD_H */
+-- 
+2.45.2.505.gda0bf45e8d-goog
 
 
