@@ -1,181 +1,148 @@
-Return-Path: <devicetree+bounces-73350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A8AA8FF168
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:58:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D21E38FF14F
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:55:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2BD61F22E66
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:58:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B5641F22CEA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:55:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4BC0197A97;
-	Thu,  6 Jun 2024 15:56:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9341197553;
+	Thu,  6 Jun 2024 15:55:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b="OSmd6crX"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="lR4qhpUF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0046e701.pphosted.com (mx0a-0046e701.pphosted.com [67.231.149.93])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F260D197A61;
-	Thu,  6 Jun 2024 15:56:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2EF21E861;
+	Thu,  6 Jun 2024 15:55:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717689393; cv=none; b=RBSfUZ/iQxvPQ0PQsM7rNGWFKrPVLfqU/fosTBsOh1NYFFZxfm4rmQ/AcX4jcULc0ccUhnRbsmlq1IVt7KS+1DkX+dgJTGTdFxjHoZMCdkA8BspXmJlkdWHWLFk1L6mP8pJgtTAadLcYhKaA0zUd/Be8YRNR6b2cFlr4DOb1W7I=
+	t=1717689329; cv=none; b=jh0+I5WdN0KkMfkirau7/2Jxqkl8fimLYahNhERDFOJggYhHuPwQn4Nn5RoZWpdN4LEqPTorYMj40jIn6Se51vuIySDOtI4ou26tyJiP1tg7GQP5SEVn0+uVhAyQxXidk6nKA03f17acc9YX/tcmq+bH0pMiEoPk7f+t4C8hl78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717689393; c=relaxed/simple;
-	bh=g67SaAr4GLAhNd5cFQndSHSoDutfTMw6LmGVQ9ir4qU=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sUYnqr5mKnzwH4bJx18ffXO3mVF5RLLS06PRudj8cldeQ1n1CkPtUqsi3p4oSMgWiQXshnwMU/3SLsPXqc7lJIa2V0BmCwo3wzvxse52WXIhc7XJEtegh4Nk6SGWj5WwC2LvpxWcHUIpeLXPgeF03br8UdPcV+cZ9bS71xyk8f0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=plexus.com; spf=pass smtp.mailfrom=plexus.com; dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b=OSmd6crX; arc=none smtp.client-ip=67.231.149.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=plexus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=plexus.com
-Received: from pps.filterd (m0341554.ppops.net [127.0.0.1])
-	by mx0a-0046e701.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 456CCjN7015214;
-	Thu, 6 Jun 2024 10:56:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plexus.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=pps1; bh=6qQ1EIAiPRq5sp1rD2NV+P6hCiWha
-	M4P+juKIfxaTaw=; b=OSmd6crXZdzBIJnKubmkWlnkbeMZ87ciekhFpcCvwLDlS
-	0MWNTBxUBGp6LvC43Timp1+XWfX83/ivMii/5uBsZDv0nq4MqM9Na2xfeM1uJr/v
-	Uibi/7gQTqC/kF+zHyFquRdqveXg53Clo9ae2mtv9UqfhganfiLMyhjD6vQlFR5h
-	YppG8M2cQ19Y24YLv7OKDU3sGWBkjkjDXz5xZuKltcJ3harmRD2fPlhp6ACC6MN0
-	62qIr1tWEoSXhTWvG4rWY9QPFGqledoJn3pwYm+6jDDrMKGGaGvmerBdWaY/3pmy
-	hx5DqC4tVlqNGnfRpfksQRmw5hGZU2IL0+r1RL65A==
-Received: from dcc-mail-mx-004.na.plexus.com (outbound.plexus.com [64.215.193.254])
-	by mx0a-0046e701.pphosted.com (PPS) with ESMTPS id 3ykcwv8q4v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Thu, 06 Jun 2024 10:56:25 -0500 (CDT)
-Received: from Dcc-mail-mx-002.na.plexus.com (10.249.48.16) by
- dcc-mail-mx-004.na.plexus.com (10.249.48.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.37; Thu, 6 Jun 2024 15:56:05 +0000
-Received: from localhost (10.255.48.203) by Dcc-mail-mx-002.na.plexus.com
- (10.249.48.16) with Microsoft SMTP Server id 15.1.2507.37 via Frontend
- Transport; Thu, 6 Jun 2024 15:56:05 +0000
-Date: Thu, 6 Jun 2024 10:54:53 -0500
-From: Danny Kaehn <danny.kaehn@plexus.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Benjamin Tissoires <bentiss@kernel.org>,
-        Jiri Kosina <jikos@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-input@vger.kernel.org>,
-        Dmitry Torokhov
-	<dmitry.torokhov@gmail.com>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>,
-        Ethan Twardy <ethan.twardy@plexus.com>
-Subject: Re: [PATCH v11 0/4] Firmware Support for USB-HID Devices and CP2112
-Message-ID: <20240606155453.GA54873@LNDCL34533.neenah.na.plexus.com>
-References: <20240605-cp2112-dt-v11-0-d55f0f945a62@plexus.com>
- <ZmD38oynzhjH2628@smile.fi.intel.com>
+	s=arc-20240116; t=1717689329; c=relaxed/simple;
+	bh=3AZbc6FSU0wBjNByljgBc33mDSrPJiscnPDZQMn387I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BgFpljS7UHryXRQxjUUwhdZbfnmqh/zd09hqn87QOOLUV1mUfoq2LQeR0uYfFvd81qeeVCGoI9Hd2Kq42Kwb2axLzGuSdlcwYJA2uaf0LfXWALn9dqx+2Ass6wa6QoF3CvD+13cRv/xkTarQwGoeBhpg8aGJo5BGLAZJwLrxXow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=lR4qhpUF; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-144-210.elisa-laajakaista.fi [91.158.144.210])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6CC9B82A;
+	Thu,  6 Jun 2024 17:55:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1717689316;
+	bh=3AZbc6FSU0wBjNByljgBc33mDSrPJiscnPDZQMn387I=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=lR4qhpUFLXeIZbnHUzjLy8b8Pche1wD+wCyRXrVAYVUzeLb3VrYwr5hFH5onwJ5Aq
+	 SY18tE5xEQyIVwJtjdiYZy/yO6MGfMk8zNGt6GS7DI3Ou1Vxbq9FS8xBwPSc3ZI4bg
+	 nHqaTOu6U91VIDdQrGh3EZVedV5urh2mIRdUgcPI=
+Message-ID: <e506a0c8-56ea-420f-b8f6-ac3374c1457d@ideasonboard.com>
+Date: Thu, 6 Jun 2024 18:55:22 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZmD38oynzhjH2628@smile.fi.intel.com>
-X-Proofpoint-GUID: 0iEi2T1ftyjBrY7csHqT5xmMI7-yTkk9
-X-Proofpoint-ORIG-GUID: 0iEi2T1ftyjBrY7csHqT5xmMI7-yTkk9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-06_01,2024-06-06_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- lowpriorityscore=0 malwarescore=0 mlxscore=0 phishscore=0 adultscore=0
- priorityscore=1501 mlxlogscore=983 spamscore=0 impostorscore=0 bulkscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406060116
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 0/5] Add support for MAX96714/F and MAX96717/F GMSL2
+ ser/des
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Julien Massot <julien.massot@collabora.com>, sakari.ailus@iki.fi,
+ devicetree@vger.kernel.org, kernel@collabora.com,
+ linux-kernel@vger.kernel.org, mchehab@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, linux-media@vger.kernel.org,
+ conor+dt@kernel.org
+References: <20240430131931.166012-1-julien.massot@collabora.com>
+ <8d67c3b3-a3a6-4733-ac0d-ddd2c244d790@ideasonboard.com>
+ <20240606152428.GA26663@pendragon.ideasonboard.com>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ xsFNBE6ms0cBEACyizowecZqXfMZtnBniOieTuFdErHAUyxVgtmr0f5ZfIi9Z4l+uUN4Zdw2
+ wCEZjx3o0Z34diXBaMRJ3rAk9yB90UJAnLtb8A97Oq64DskLF81GCYB2P1i0qrG7UjpASgCA
+ Ru0lVvxsWyIwSfoYoLrazbT1wkWRs8YBkkXQFfL7Mn3ZMoGPcpfwYH9O7bV1NslbmyJzRCMO
+ eYV258gjCcwYlrkyIratlHCek4GrwV8Z9NQcjD5iLzrONjfafrWPwj6yn2RlL0mQEwt1lOvn
+ LnI7QRtB3zxA3yB+FLsT1hx0va6xCHpX3QO2gBsyHCyVafFMrg3c/7IIWkDLngJxFgz6DLiA
+ G4ld1QK/jsYqfP2GIMH1mFdjY+iagG4DqOsjip479HCWAptpNxSOCL6z3qxCU8MCz8iNOtZk
+ DYXQWVscM5qgYSn+fmMM2qN+eoWlnCGVURZZLDjg387S2E1jT/dNTOsM/IqQj+ZROUZuRcF7
+ 0RTtuU5q1HnbRNwy+23xeoSGuwmLQ2UsUk7Q5CnrjYfiPo3wHze8avK95JBoSd+WIRmV3uoO
+ rXCoYOIRlDhg9XJTrbnQ3Ot5zOa0Y9c4IpyAlut6mDtxtKXr4+8OzjSVFww7tIwadTK3wDQv
+ Bus4jxHjS6dz1g2ypT65qnHen6mUUH63lhzewqO9peAHJ0SLrQARAQABzTBUb21pIFZhbGtl
+ aW5lbiA8dG9taS52YWxrZWluZW5AaWRlYXNvbmJvYXJkLmNvbT7CwY4EEwEIADgWIQTEOAw+
+ ll79gQef86f6PaqMvJYe9QUCX/HruAIbAwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRD6
+ PaqMvJYe9WmFD/99NGoD5lBJhlFDHMZvO+Op8vCwnIRZdTsyrtGl72rVh9xRfcSgYPZUvBuT
+ VDxE53mY9HaZyu1eGMccYRBaTLJSfCXl/g317CrMNdY0k40b9YeIX10feiRYEWoDIPQ3tMmA
+ 0nHDygzcnuPiPT68JYZ6tUOvAt7r6OX/litM+m2/E9mtp8xCoWOo/kYO4mOAIoMNvLB8vufi
+ uBB4e/AvAjtny4ScuNV5c5q8MkfNIiOyag9QCiQ/JfoAqzXRjVb4VZG72AKaElwipiKCWEcU
+ R4+Bu5Qbaxj7Cd36M/bI54OrbWWETJkVVSV1i0tghCd6HHyquTdFl7wYcz6cL1hn/6byVnD+
+ sR3BLvSBHYp8WSwv0TCuf6tLiNgHAO1hWiQ1pOoXyMEsxZlgPXT+wb4dbNVunckwqFjGxRbl
+ Rz7apFT/ZRwbazEzEzNyrBOfB55xdipG/2+SmFn0oMFqFOBEszXLQVslh64lI0CMJm2OYYe3
+ PxHqYaztyeXsx13Bfnq9+bUynAQ4uW1P5DJ3OIRZWKmbQd/Me3Fq6TU57LsvwRgE0Le9PFQs
+ dcP2071rMTpqTUteEgODJS4VDf4lXJfY91u32BJkiqM7/62Cqatcz5UWWHq5xeF03MIUTqdE
+ qHWk3RJEoWHWQRzQfcx6Fn2fDAUKhAddvoopfcjAHfpAWJ+ENc7BTQROprNHARAAx0aat8GU
+ hsusCLc4MIxOQwidecCTRc9Dz/7U2goUwhw2O5j9TPqLtp57VITmHILnvZf6q3QAho2QMQyE
+ DDvHubrdtEoqaaSKxKkFie1uhWNNvXPhwkKLYieyL9m2JdU+b88HaDnpzdyTTR4uH7wk0bBa
+ KbTSgIFDDe5lXInypewPO30TmYNkFSexnnM3n1PBCqiJXsJahE4ZQ+WnV5FbPUj8T2zXS2xk
+ 0LZ0+DwKmZ0ZDovvdEWRWrz3UzJ8DLHb7blPpGhmqj3ANXQXC7mb9qJ6J/VSl61GbxIO2Dwb
+ xPNkHk8fwnxlUBCOyBti/uD2uSTgKHNdabhVm2dgFNVuS1y3bBHbI/qjC3J7rWE0WiaHWEqy
+ UVPk8rsph4rqITsj2RiY70vEW0SKePrChvET7D8P1UPqmveBNNtSS7In+DdZ5kUqLV7rJnM9
+ /4cwy+uZUt8cuCZlcA5u8IsBCNJudxEqBG10GHg1B6h1RZIz9Q9XfiBdaqa5+CjyFs8ua01c
+ 9HmyfkuhXG2OLjfQuK+Ygd56mV3lq0aFdwbaX16DG22c6flkkBSjyWXYepFtHz9KsBS0DaZb
+ 4IkLmZwEXpZcIOQjQ71fqlpiXkXSIaQ6YMEs8WjBbpP81h7QxWIfWtp+VnwNGc6nq5IQDESH
+ mvQcsFS7d3eGVI6eyjCFdcAO8eMAEQEAAcLBXwQYAQIACQUCTqazRwIbDAAKCRD6PaqMvJYe
+ 9fA7EACS6exUedsBKmt4pT7nqXBcRsqm6YzT6DeCM8PWMTeaVGHiR4TnNFiT3otD5UpYQI7S
+ suYxoTdHrrrBzdlKe5rUWpzoZkVK6p0s9OIvGzLT0lrb0HC9iNDWT3JgpYDnk4Z2mFi6tTbq
+ xKMtpVFRA6FjviGDRsfkfoURZI51nf2RSAk/A8BEDDZ7lgJHskYoklSpwyrXhkp9FHGMaYII
+ m9EKuUTX9JPDG2FTthCBrdsgWYPdJQvM+zscq09vFMQ9Fykbx5N8z/oFEUy3ACyPqW2oyfvU
+ CH5WDpWBG0s5BALp1gBJPytIAd/pY/5ZdNoi0Cx3+Z7jaBFEyYJdWy1hGddpkgnMjyOfLI7B
+ CFrdecTZbR5upjNSDvQ7RG85SnpYJTIin+SAUazAeA2nS6gTZzumgtdw8XmVXZwdBfF+ICof
+ 92UkbYcYNbzWO/GHgsNT1WnM4sa9lwCSWH8Fw1o/3bX1VVPEsnESOfxkNdu+gAF5S6+I6n3a
+ ueeIlwJl5CpT5l8RpoZXEOVtXYn8zzOJ7oGZYINRV9Pf8qKGLf3Dft7zKBP832I3PQjeok7F
+ yjt+9S+KgSFSHP3Pa4E7lsSdWhSlHYNdG/czhoUkSCN09C0rEK93wxACx3vtxPLjXu6RptBw
+ 3dRq7n+mQChEB1am0BueV1JZaBboIL0AGlSJkm23kw==
+In-Reply-To: <20240606152428.GA26663@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jun 06, 2024 at 02:42:42AM +0300, Andy Shevchenko wrote:
-> On Wed, Jun 05, 2024 at 06:12:43PM -0500, Danny Kaehn wrote:
-> > This patchset allows USB-HID devices to have Firmware bindings through sharing
-> > the USB fwnode with the HID driver, and adds such a binding and driver
-> > implementation for the CP2112 USB to SMBus Bridge (which necessitated the
-> > USB-HID change). This change allows a CP2112 permanently attached in hardware to
-> > be described in DT and ACPI and interoperate with other drivers.
-> 
-> ...
-> 
-> > Changes in v11:
-> > - Eliminate 'gpio' subnode for DT and ACPI for the CP2112 per comment
-> >     from Rob H.
-> 
-> Hmm... I don't know much about DT, but how is this supposed to work in ACPI?
-> I mean if we want to refer to the GPIO in GpioIo() or GpioInt() resources,
-> what should we put there as ACPI path?
+On 06/06/2024 18:24, Laurent Pinchart wrote:
+>> But if the i2c translation is used, it would mean that, say, the sensor
+>> driver would need to use the "virtual" address, not the real one to
+>> communicate with the sensor device, which doesn't sound right...
+ >
+> How so ? With FPD-Link, with ATR is enabled, doesn't the sensor driver
+> also use the "virtual" (as in host-visible) I2C address instead of the
+> real one (as in the address used on the bus physically connected to the
+> sensor) ?
 
-What I tested was essentially taking what Benjamin had done in [1], just
-removing the "GPIO" device and combining it with the parent device (the
-CP2112 itself). So for the example below, I believe the path would be
-"\_SB_.PCI0.SE9_.RHUB.CP2_". If I get the chance (and can figure out how
-to do it using ACPI) I'll try to add a "gpio-keys" or something to the
-system using this path and make sure that works.
+No. If we, say, have a sensor hardware that responds to address 0x30, we 
+create a new "virtual" or "remote" i2c-bus (let's say i2c-10), on which 
+there's the sensor with address 0x30. So for the driver and this 
+i2c-bus, everything looks just like the sensor would be connected 
+"normally" to the SoC's i2c bus.
 
-[1]: https://patchwork.kernel.org/project/linux-input/patch/20230227140758.1575-4-kaehndan@gmail.com/#25242036
+So, we have i2c-10 bus with sensor@30. This is what the userspace sees, 
+and how the driver sees it. And if we have, say, 2 identical cameras 
+behind two links, we have i2c-10 with sensor@30 and i2c-11 with sensor@30.
 
-Thanks,
+When the sensor driver does an i2c transaction, the i2c-atr driver will 
+catch that transaction before it goes to HW. It will replace the address 
+30 in the message with the appropriate alias (say, 50), and issue a HW 
+transaction on the SoC's i2c bus where the deserializer resides.
 
-Danny Kaehn
+The deserializer sees a message to address 50, and knows that it's a 
+message to link 0 with alias 30 (based on the programmed translation 
+table). It takes the message, replaces 50 with 30, and sends it to the 
+serializer on link 0. The serializer will then transmit that message on 
+its i2c master, which will then be received by the sensor@30.
 
----
+On a reply, the same happens but in reverse.
 
-Full example within context:
+  Tomi
 
-Device (SE9)
-{
-    Name (_ADR, 0x001D0001)  // _ADR: Address
-    Device (RHUB)
-    {
-        Name (_ADR, Zero)
-        Device (CP2) // the USB-hid & CP2112 shared node
-        {
-            Name (_ADR, One)
-            Name (_STA, 0x0F)
-            
-            Name (_DSD, Package () {
-                ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
-                Package () {
-                    Package () { "gpio-hog", 1 },
-                    Package () { "gpios", Package () { 4, 0 } },
-                    Package () { "output-high", 1 },
-                    Package () { "line-name", "gpio4-pullup" },
-                },
-                ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
-                Package () {
-                    Package () { "gpio-line-names", Package () {
-                                "",
-                                "",
-                                "irq-rmi4",
-                                "",
-                                "power", // set to 1 with gpio-hog above
-                                "",
-                                "",
-                                "",
-                                ""}},
-                }
-            })
-            Device (I2C0)
-            {
-                Name (_ADR, Zero)
-                Name (_STA, 0x0F)
-            }
-        }
-    }
-}
-
-> 
-> > - Edit hid-cp2112.c to match for ACPI index and fall back to matching by
-> >     name (instead of the other way around)
-> > - Separate CP2112 I2C bus speed configuration into a separate patch
-> 
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
 
