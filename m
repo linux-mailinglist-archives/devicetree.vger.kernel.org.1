@@ -1,112 +1,120 @@
-Return-Path: <devicetree+bounces-73155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D41638FE1E7
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:01:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E2378FE207
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 11:05:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C6751F27840
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:01:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92B6E1C25894
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 09:05:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DB6B155C80;
-	Thu,  6 Jun 2024 08:55:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A8E714F102;
+	Thu,  6 Jun 2024 09:01:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="B+gYOMfo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout70.expurgate.net (mxout70.expurgate.net [194.37.255.70])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA016155A46;
-	Thu,  6 Jun 2024 08:55:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.37.255.70
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 419EE14EC71;
+	Thu,  6 Jun 2024 09:01:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717664111; cv=none; b=rcIvhXjm4YmCSpeNpcIjJO1JaD+Utv6vaKRcjM5ayGtmXXZHh54UvVX56dqV9c1bkRVjxLcmfNBhnxYAByR9vxGfVDaUGNAsnwAWWCXtAOsoR53a4LbcWbCO+vHb/RJXuaoNshfcMApVxnoTlexTgINfwWWZ8MwSa06u2XdJTsg=
+	t=1717664481; cv=none; b=F+U+aTWEtqB0p2Q8CmgzdGmO8oBP7ogFcjwKiWIaWFq+RJbaoWOZSPTmyTBG2JKiRBtY6q/LDeu4987lEEm6gocg8/kWRNblhIk29wiUiYCWyFXjmoNgY+BHHqdW500U7Le++ybLejp9k43fdg7wmOM60mm9qeEDyoPu1wNuX0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717664111; c=relaxed/simple;
-	bh=Bn8X3b011v9yLue7/qfY2gNcWkxvqcOkHg5uIA94qxA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=GEZwRN/E0U74yySJX+8pOhY1gImNRmI5r65qsb/9L/KphWf2DM1tczuItJyqFhhS4ASC4O2UJMEB6D936i+pkbQ6RV1ahwuPztQJVD/uI8WVMaSr5LFQIDqlwZEtHG6HHdJU/hj8SKeZpzB1GE6ghdZiViJBL4DiemZz6oiHqbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; arc=none smtp.client-ip=194.37.255.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dev.tdt.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dev.tdt.de
-Received: from [127.0.0.1] (helo=localhost)
-	by relay.expurgate.net with smtp (Exim 4.92)
-	(envelope-from <prvs=9901b58ca3=ms@dev.tdt.de>)
-	id 1sF8tn-003wJX-S1; Thu, 06 Jun 2024 10:55:07 +0200
-Received: from [195.243.126.94] (helo=securemail.tdt.de)
-	by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ms@dev.tdt.de>)
-	id 1sF8tn-008x2v-AZ; Thu, 06 Jun 2024 10:55:07 +0200
-Received: from securemail.tdt.de (localhost [127.0.0.1])
-	by securemail.tdt.de (Postfix) with ESMTP id 0EF2A240053;
-	Thu,  6 Jun 2024 10:55:07 +0200 (CEST)
-Received: from mail.dev.tdt.de (unknown [10.2.4.42])
-	by securemail.tdt.de (Postfix) with ESMTP id 996C3240050;
-	Thu,  6 Jun 2024 10:55:06 +0200 (CEST)
-Received: from mschiller1.dev.tdt.de (unknown [10.2.3.20])
-	by mail.dev.tdt.de (Postfix) with ESMTPSA id 6D083379F6;
-	Thu,  6 Jun 2024 10:55:06 +0200 (CEST)
-From: Martin Schiller <ms@dev.tdt.de>
-To: martin.blumenstingl@googlemail.com,
-	hauke@hauke-m.de,
-	andrew@lunn.ch,
-	f.fainelli@gmail.com,
-	olteanv@gmail.com,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH net-next 13/13] net: dsa: lantiq_gswip: Improve error message in gswip_port_fdb()
-Date: Thu,  6 Jun 2024 10:52:34 +0200
-Message-ID: <20240606085234.565551-14-ms@dev.tdt.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240606085234.565551-1-ms@dev.tdt.de>
-References: <20240606085234.565551-1-ms@dev.tdt.de>
+	s=arc-20240116; t=1717664481; c=relaxed/simple;
+	bh=RGDQk9fEPK8TgeW16JgNCDUsvYQVkjgaqUjy4gYx4Tg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NNX64AvMxw2BcMSqCwusYUjpRAis4OzpIF9Lid49OqbHZRKQzOQl/igraZg/9Tm3XxL+OK2uPRTYNZh5T5cSHaGzkieO8/z8jDrMbGlxlyU8UJO7rtMD0htN8R2UicpYGsMeY2ZbxmB9SecA7zfsRPtX6zLeqB/UQLCkiv4UoCE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=B+gYOMfo; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id B9AB01BF20E;
+	Thu,  6 Jun 2024 09:01:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+	t=1717664472;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=P6nHOSRQUTf8lskncbcfrnOE9UYbIGtkvvS9zsNteIA=;
+	b=B+gYOMfoQgw4FyCl7kj7mLnNlrqSsM7ytiJnzZz8Q+UEsu9yEbM0jF6r7MZ6XbJ5Rff/C/
+	vMWapylmnzqLdpbZXMWTMMoeG0wnWNOhd5q/G8AlcxneKdkkH08Z7wLDmDYk7aFLM6kwfZ
+	BTmZi3nz/kET4STOEYSgG/C52WmwE+TKOfkyl2u4CckHlIzim2M7XHnp8zHqcQJFBBbKFa
+	/PsVRVDQ5aWSS7uLf23fHfBKuNCXV2kDl5HhHWvapM6h7OwKDC1kWngXRQmaxQVGRruvbM
+	XDI6/HzXUaEvUdATk7M7pxvn62d9/uUbbm1Fg47T2P1Rks/5iAbhBcRA6b+RfA==
+Message-ID: <0ae387c1-31b2-4e87-aa7d-f98e3c90e985@arinc9.com>
+Date: Thu, 6 Jun 2024 12:01:03 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-purgate-type: clean
-X-purgate-ID: 151534::1717664107-834B4642-90B4C736/0/0
-X-purgate: clean
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
+To: Thorsten Leemhuis <regressions@leemhuis.info>,
+ Linux regressions mailing list <regressions@lists.linux.dev>,
+ Frank Wunderlich <linux@fw-web.de>, Paolo Abeni <pabeni@redhat.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Daniel Golle <daniel@makrotopia.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ frank-w@public-files.de, Rob Herring <robh@kernel.org>
+References: <20240516204847.171029-1-linux@fw-web.de>
+ <a29dd7d1-40a8-4c88-99aa-651a3305b640@arinc9.com>
+ <5AEE5668-0C8E-4EE4-A398-66CB99DF5650@public-files.de>
+ <43aacd9d-b851-4100-8ccc-878ac6ae10f8@leemhuis.info>
+ <698cf562-1ca9-4aa3-be7e-a1474b612c5b@leemhuis.info>
+ <0cba095c-3d55-416a-a7ad-b359129731cf@arinc9.com>
+ <714da201-654b-4183-8e5e-8ff0b64fe621@leemhuis.info>
+Content-Language: en-US
+From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <714da201-654b-4183-8e5e-8ff0b64fe621@leemhuis.info>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: arinc.unal@arinc9.com
 
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On 06/06/2024 11.26, Thorsten Leemhuis wrote:
+> On 31.05.24 08:10, Arınç ÜNAL wrote:
+>> I had already submitted a patch series that would've prevented this
+>> issue back in 14 March 2024 [1]. I've asked numerous times for the patch
+>> series to be applied [2][3][4][5].
+>>> Eventually Daniel asked for some changes [6]. But I won't have time to do
+>> that anytime soon and I think the patch series is good enough to be applied
+>> as is.
+> 
+> Then I guess we need some other way to resolve this in mainline to unfix
 
-Print the port which is not found to be part of a bridge so it's easier
-to investigate the underlying issue.
+I don't believe we need another way to resolve it. I've already told that
+the patch series is good enough to be applied as is and I don't see any
+responses with reasons against this here.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/net/dsa/lantiq_gswip.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+> Frank's device. The two obvious options are afaics:
+> 
+> * revert the culprit (868ff5f4944aa9 ("net: dsa: mt7530-mdio: read PHY
+> address of switch from device tree")) and reapply it in a later cycle
 
-diff --git a/drivers/net/dsa/lantiq_gswip.c b/drivers/net/dsa/lantiq_gswi=
-p.c
-index 4bb894e75b81..69035598e8a4 100644
---- a/drivers/net/dsa/lantiq_gswip.c
-+++ b/drivers/net/dsa/lantiq_gswip.c
-@@ -1377,7 +1377,8 @@ static int gswip_port_fdb(struct dsa_switch *ds, in=
-t port,
- 	}
-=20
- 	if (fid =3D=3D -1) {
--		dev_err(priv->dev, "Port not part of a bridge\n");
-+		dev_err(priv->dev,
-+			"Port %d is not known to be part of bridge\n", port);
- 		return -EINVAL;
- 	}
-=20
---=20
-2.39.2
+Sorry, no. There's nothing wrong with that patch. The actual cause of this
+issue is the patch that introduced this device tree source file with the
+wrong PHY address.
 
+> * apply Frank's patch (or an improved one) in this thread (and if needed
+> revert it when some better changes emerge.
+> 
+> Arınç ÜNAL, could you please comment on that and ideally handle the
+> necessary tasks, as it's your patch that causes the regression.
+
+I don't see any necessary tasks for me to handle. AngeloGioacchino Del
+Regno whom is the only person I know that maintains these device tree
+source files can simply apply the patch series that I have already
+submitted and we can all move on. I haven't heard from them whilst the
+patch had been waiting since March. So I'm not sure who's going to apply
+this patch, and to which tree.
+
+Arınç
 
