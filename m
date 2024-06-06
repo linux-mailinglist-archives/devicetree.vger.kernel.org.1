@@ -1,363 +1,181 @@
-Return-Path: <devicetree+bounces-73343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C49A8FF148
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:53:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A8AA8FF168
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 17:58:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BDB128733C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:53:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2BD61F22E66
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 15:58:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAF04197543;
-	Thu,  6 Jun 2024 15:53:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4BC0197A97;
+	Thu,  6 Jun 2024 15:56:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="AqZcSkcx"
+	dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b="OSmd6crX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from mx0a-0046e701.pphosted.com (mx0a-0046e701.pphosted.com [67.231.149.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07A01196DA8;
-	Thu,  6 Jun 2024 15:53:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F260D197A61;
+	Thu,  6 Jun 2024 15:56:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717689214; cv=none; b=klS30aWJ72fGwdnzq88hDbXCLw83vR+mghU8ML4kFaBNkI20L/QOtaiNRLRu0ldVW52x/GVUCRy6xUMnvhU65yKfImdv7GMxvVmUhC1O/PkRaNgh1Jy6Z+brt6oWcrJ4vZa1IMpwY5N2m0SpJfQaKU3xBo6gFxJNAMCRVl3ZP3k=
+	t=1717689393; cv=none; b=RBSfUZ/iQxvPQ0PQsM7rNGWFKrPVLfqU/fosTBsOh1NYFFZxfm4rmQ/AcX4jcULc0ccUhnRbsmlq1IVt7KS+1DkX+dgJTGTdFxjHoZMCdkA8BspXmJlkdWHWLFk1L6mP8pJgtTAadLcYhKaA0zUd/Be8YRNR6b2cFlr4DOb1W7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717689214; c=relaxed/simple;
-	bh=EGRyH1GZKdAcDzaDXqk/xJjj5T/dqFdVpB9jjtRbMZs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Qi3oY32TsC3i9jp+Ydc6u3GjAIIDTmLoDqolxIjqDYmDFckLuUtPf/PVATB8gSwHx0EA13DnGzKA2Ivj9i1RdXF4WxUyY1F42gsrUIbY3jSFXmywDtZnBuN7F402Cxrw1FHgTd9S3at+5g70kkW5dsYZDDF/bt79wdaRy7ntxEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=AqZcSkcx; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3C3BF40003;
-	Thu,  6 Jun 2024 15:53:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1717689204;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Ykb7pydzqzUmgumy7ROcbGm4j4AUrqIXRnSnq1EpQXA=;
-	b=AqZcSkcxZ8Crl/9qpk/v7M8vuYCKh4/tDXfbnTEW9/weDi2Xamxb97hsVEQUCn2qoaGYCW
-	R/6f+xbF8O72YibKV0D3kAbVnEnhVVIACWsyyZb95NSIHnPY9ED0/TmkY+1oDQYX6VSBS8
-	HtkCEgTN4NzUwDbt/VBMZHh9fo7nKrgEJAJR/n+GWYSbkgObVi01Ei2/Id/o0Vmmm+ljmv
-	T1cG4m4ehXh0OMB6bYFxwGfjs/O4JCiz22GNPWd0XkwkWKAoc7X3BRosrn0gbbuv6/vEvY
-	ktMfyL92H/ximPOAeAH73BmY1JMlxGFzUby6si2qtodEczCaZOsANdTSrohUaw==
-Date: Thu, 6 Jun 2024 17:53:17 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Thomas Gleixner <tglx@linutronix.de>
-Cc: Simon Horman <horms@kernel.org>, Sai Krishna Gajula
- <saikrishnag@marvell.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "David
- S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
- Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Lee Jones
- <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Horatiu Vultur
- <horatiu.vultur@microchip.com>, UNGLinuxDriver@microchip.com, Andrew Lunn
- <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, Saravana Kannan <saravanak@google.com>, Bjorn
- Helgaas <bhelgaas@google.com>, Philipp Zabel <p.zabel@pengutronix.de>, Lars
- Povlsen <lars.povlsen@microchip.com>, Steen Hegelund
- <Steen.Hegelund@microchip.com>, Daniel Machon
- <daniel.machon@microchip.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, netdev@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Allan
- Nielsen <allan.nielsen@microchip.com>, Luca Ceresoli
- <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 11/19] irqchip: Add support for LAN966x OIC
-Message-ID: <20240606175317.62d476b0@bootlin.com>
-In-Reply-To: <87frtr4goe.ffs@tglx>
-References: <20240527161450.326615-1-herve.codina@bootlin.com>
- <20240527161450.326615-12-herve.codina@bootlin.com>
- <87frtr4goe.ffs@tglx>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1717689393; c=relaxed/simple;
+	bh=g67SaAr4GLAhNd5cFQndSHSoDutfTMw6LmGVQ9ir4qU=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sUYnqr5mKnzwH4bJx18ffXO3mVF5RLLS06PRudj8cldeQ1n1CkPtUqsi3p4oSMgWiQXshnwMU/3SLsPXqc7lJIa2V0BmCwo3wzvxse52WXIhc7XJEtegh4Nk6SGWj5WwC2LvpxWcHUIpeLXPgeF03br8UdPcV+cZ9bS71xyk8f0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=plexus.com; spf=pass smtp.mailfrom=plexus.com; dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b=OSmd6crX; arc=none smtp.client-ip=67.231.149.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=plexus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=plexus.com
+Received: from pps.filterd (m0341554.ppops.net [127.0.0.1])
+	by mx0a-0046e701.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 456CCjN7015214;
+	Thu, 6 Jun 2024 10:56:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plexus.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=pps1; bh=6qQ1EIAiPRq5sp1rD2NV+P6hCiWha
+	M4P+juKIfxaTaw=; b=OSmd6crXZdzBIJnKubmkWlnkbeMZ87ciekhFpcCvwLDlS
+	0MWNTBxUBGp6LvC43Timp1+XWfX83/ivMii/5uBsZDv0nq4MqM9Na2xfeM1uJr/v
+	Uibi/7gQTqC/kF+zHyFquRdqveXg53Clo9ae2mtv9UqfhganfiLMyhjD6vQlFR5h
+	YppG8M2cQ19Y24YLv7OKDU3sGWBkjkjDXz5xZuKltcJ3harmRD2fPlhp6ACC6MN0
+	62qIr1tWEoSXhTWvG4rWY9QPFGqledoJn3pwYm+6jDDrMKGGaGvmerBdWaY/3pmy
+	hx5DqC4tVlqNGnfRpfksQRmw5hGZU2IL0+r1RL65A==
+Received: from dcc-mail-mx-004.na.plexus.com (outbound.plexus.com [64.215.193.254])
+	by mx0a-0046e701.pphosted.com (PPS) with ESMTPS id 3ykcwv8q4v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Thu, 06 Jun 2024 10:56:25 -0500 (CDT)
+Received: from Dcc-mail-mx-002.na.plexus.com (10.249.48.16) by
+ dcc-mail-mx-004.na.plexus.com (10.249.48.18) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.37; Thu, 6 Jun 2024 15:56:05 +0000
+Received: from localhost (10.255.48.203) by Dcc-mail-mx-002.na.plexus.com
+ (10.249.48.16) with Microsoft SMTP Server id 15.1.2507.37 via Frontend
+ Transport; Thu, 6 Jun 2024 15:56:05 +0000
+Date: Thu, 6 Jun 2024 10:54:53 -0500
+From: Danny Kaehn <danny.kaehn@plexus.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Benjamin Tissoires <bentiss@kernel.org>,
+        Jiri Kosina <jikos@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-input@vger.kernel.org>,
+        Dmitry Torokhov
+	<dmitry.torokhov@gmail.com>,
+        Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>,
+        Ethan Twardy <ethan.twardy@plexus.com>
+Subject: Re: [PATCH v11 0/4] Firmware Support for USB-HID Devices and CP2112
+Message-ID: <20240606155453.GA54873@LNDCL34533.neenah.na.plexus.com>
+References: <20240605-cp2112-dt-v11-0-d55f0f945a62@plexus.com>
+ <ZmD38oynzhjH2628@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <ZmD38oynzhjH2628@smile.fi.intel.com>
+X-Proofpoint-GUID: 0iEi2T1ftyjBrY7csHqT5xmMI7-yTkk9
+X-Proofpoint-ORIG-GUID: 0iEi2T1ftyjBrY7csHqT5xmMI7-yTkk9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-06_01,2024-06-06_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ lowpriorityscore=0 malwarescore=0 mlxscore=0 phishscore=0 adultscore=0
+ priorityscore=1501 mlxlogscore=983 spamscore=0 impostorscore=0 bulkscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406060116
 
-Hi Thomas,
+On Thu, Jun 06, 2024 at 02:42:42AM +0300, Andy Shevchenko wrote:
+> On Wed, Jun 05, 2024 at 06:12:43PM -0500, Danny Kaehn wrote:
+> > This patchset allows USB-HID devices to have Firmware bindings through sharing
+> > the USB fwnode with the HID driver, and adds such a binding and driver
+> > implementation for the CP2112 USB to SMBus Bridge (which necessitated the
+> > USB-HID change). This change allows a CP2112 permanently attached in hardware to
+> > be described in DT and ACPI and interoperate with other drivers.
+> 
+> ...
+> 
+> > Changes in v11:
+> > - Eliminate 'gpio' subnode for DT and ACPI for the CP2112 per comment
+> >     from Rob H.
+> 
+> Hmm... I don't know much about DT, but how is this supposed to work in ACPI?
+> I mean if we want to refer to the GPIO in GpioIo() or GpioInt() resources,
+> what should we put there as ACPI path?
 
-On Wed, 05 Jun 2024 16:17:53 +0200
-Thomas Gleixner <tglx@linutronix.de> wrote:
+What I tested was essentially taking what Benjamin had done in [1], just
+removing the "GPIO" device and combining it with the parent device (the
+CP2112 itself). So for the example below, I believe the path would be
+"\_SB_.PCI0.SE9_.RHUB.CP2_". If I get the chance (and can figure out how
+to do it using ACPI) I'll try to add a "gpio-keys" or something to the
+system using this path and make sure that works.
 
-> On Mon, May 27 2024 at 18:14, Herve Codina wrote:
-> > +struct lan966x_oic_data {
-> > +	struct irq_domain *domain;
-> > +	void __iomem *regs;
-> > +	int irq;
-> > +};  
-> 
-> Please read Documentation/process/maintainers-tip.rst
+[1]: https://patchwork.kernel.org/project/linux-input/patch/20230227140758.1575-4-kaehndan@gmail.com/#25242036
 
-I suppose you pointed out the un-tabular struct member names here.
-I will fix that in the next iteration.
+Thanks,
 
-> 
-> > +static int lan966x_oic_irq_set_type(struct irq_data *data,
-> > +				    unsigned int flow_type)  
-> 
-> Please use the 100 character limit
+Danny Kaehn
 
-Sure, will be fixed.
+---
 
-> 
-> > +static struct lan966x_oic_chip_regs lan966x_oic_chip_regs[3] = {
-> > +	{
-> > +		.reg_off_ena_set = LAN966X_OIC_INTR_ENA_SET,
-> > +		.reg_off_ena_clr = LAN966X_OIC_INTR_ENA_CLR,
-> > +		.reg_off_sticky = LAN966X_OIC_INTR_STICKY,
-> > +		.reg_off_ident = LAN966X_OIC_DST_INTR_IDENT(0),
-> > +		.reg_off_map = LAN966X_OIC_DST_INTR_MAP(0),  
-> 
-> Please make this tabular. See doc.
+Full example within context:
 
-Will be fixed.
-
-> 
-> > +static void lan966x_oic_chip_init(struct lan966x_oic_data *lan966x_oic,
-> > +				  struct irq_chip_generic *gc,
-> > +				  struct lan966x_oic_chip_regs *chip_regs)
-> > +{
-> > +	gc->reg_base = lan966x_oic->regs;
-> > +	gc->chip_types[0].regs.enable = chip_regs->reg_off_ena_set;
-> > +	gc->chip_types[0].regs.disable = chip_regs->reg_off_ena_clr;
-> > +	gc->chip_types[0].regs.ack = chip_regs->reg_off_sticky;
-> > +	gc->chip_types[0].chip.irq_startup = lan966x_oic_irq_startup;
-> > +	gc->chip_types[0].chip.irq_shutdown = lan966x_oic_irq_shutdown;
-> > +	gc->chip_types[0].chip.irq_set_type = lan966x_oic_irq_set_type;
-> > +	gc->chip_types[0].chip.irq_mask = irq_gc_mask_disable_reg;
-> > +	gc->chip_types[0].chip.irq_unmask = irq_gc_unmask_enable_reg;
-> > +	gc->chip_types[0].chip.irq_ack = irq_gc_ack_set_bit;
-> > +	gc->private = chip_regs;
-> > +
-> > +	/* Disable all interrupts handled by this chip */
-> > +	irq_reg_writel(gc, ~0, chip_regs->reg_off_ena_clr);
-> > +}
-> > +
-> > +static void lan966x_oic_chip_exit(struct irq_chip_generic *gc)
-> > +{
-> > +	/* Disable and ack all interrupts handled by this chip */
-> > +	irq_reg_writel(gc, ~0, gc->chip_types[0].regs.disable);  
-> 
-> ~0U
-
-Will be changed.
-
->   
-> > +	irq_reg_writel(gc, ~0, gc->chip_types[0].regs.ack);
-> > +}
-> > +
-> > +static int lan966x_oic_probe(struct platform_device *pdev)
-> > +{
-> > +	struct device_node *node = pdev->dev.of_node;
-> > +	struct lan966x_oic_data *lan966x_oic;
-> > +	struct device *dev = &pdev->dev;
-> > +	struct irq_chip_generic *gc;
-> > +	int ret;
-> > +	int i;  
-> 
-> int ret, i;
-
-Will be changed.
-
-> 
-> > +
-> > +	lan966x_oic = devm_kmalloc(dev, sizeof(*lan966x_oic), GFP_KERNEL);
-> > +	if (!lan966x_oic)
-> > +		return -ENOMEM;
-> > +
-> > +	lan966x_oic->regs = devm_platform_ioremap_resource(pdev, 0);
-> > +	if (IS_ERR(lan966x_oic->regs))
-> > +		return dev_err_probe(dev, PTR_ERR(lan966x_oic->regs),
-> > +				     "failed to map resource\n");
-> > +
-> > +	lan966x_oic->domain = irq_domain_alloc_linear(of_node_to_fwnode(node),
-> > +						      LAN966X_OIC_NR_IRQ,
-> > +						      &irq_generic_chip_ops,
-> > +						      NULL);
-> > +	if (!lan966x_oic->domain) {
-> > +		dev_err(dev, "failed to create an IRQ domain\n");
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	lan966x_oic->irq = platform_get_irq(pdev, 0);
-> > +	if (lan966x_oic->irq < 0) {
-> > +		ret = dev_err_probe(dev, lan966x_oic->irq,
-> > +				    "failed to get the IRQ\n");
-> > +		goto err_domain_free;
-> > +	}
-> > +
-> > +	ret = irq_alloc_domain_generic_chips(lan966x_oic->domain, 32, 1,
-> > +					     "lan966x-oic", handle_level_irq, 0,
-> > +					     0, 0);
-> > +	if (ret) {
-> > +		dev_err_probe(dev, ret, "failed to alloc irq domain gc\n");
-> > +		goto err_domain_free;
-> > +	}
-> > +
-> > +	/* Init chips */
-> > +	BUILD_BUG_ON(DIV_ROUND_UP(LAN966X_OIC_NR_IRQ, 32) !=
-> > +		     ARRAY_SIZE(lan966x_oic_chip_regs));
-> > +	for (i = 0; i < ARRAY_SIZE(lan966x_oic_chip_regs); i++) {
-> > +		gc = irq_get_domain_generic_chip(lan966x_oic->domain, i * 32);
-> > +		lan966x_oic_chip_init(lan966x_oic, gc,
-> > +				      &lan966x_oic_chip_regs[i]);
-> > +	}
-> > +
-> > +	irq_set_chained_handler_and_data(lan966x_oic->irq,
-> > +					 lan966x_oic_irq_handler,
-> > +					 lan966x_oic->domain);
-> > +
-> > +	irq_domain_publish(lan966x_oic->domain);
-> > +	platform_set_drvdata(pdev, lan966x_oic);
-> > +	return 0;  
-> 
-> This is exactly what can be avoided.
-> 
-> > +
-> > +err_domain_free:
-> > +	irq_domain_free(lan966x_oic->domain);
-> > +	return ret;
-> > +}
-> > +
-> > +static void lan966x_oic_remove(struct platform_device *pdev)
-> > +{
-> > +	struct lan966x_oic_data *lan966x_oic = platform_get_drvdata(pdev);
-> > +	struct irq_chip_generic *gc;
-> > +	int i;
-> > +
-> > +	for (i = 0; i < ARRAY_SIZE(lan966x_oic_chip_regs); i++) {
-> > +		gc = irq_get_domain_generic_chip(lan966x_oic->domain, i * 32);
-> > +		lan966x_oic_chip_exit(gc);
-> > +	}
-> > +
-> > +	irq_set_chained_handler_and_data(lan966x_oic->irq, NULL, NULL);
-> > +
-> > +	for (i = 0; i < LAN966X_OIC_NR_IRQ; i++)
-> > +		irq_dispose_mapping(irq_find_mapping(lan966x_oic->domain, i));  
-> 
-> This is just wrong. You cannot remove the chip when there are still interrupts
-> mapped.
-> 
-> I just did a quick conversion to the template approach. Unsurprisingly
-> it removes 30 lines of boiler plate code:
-> 
-> +static void lan966x_oic_chip_init(struct irq_chip_generic *gc)
-> +{
-> +	struct lan966x_oic_data *lan966x_oic = gc->domain->host_data;
-> +	struct lan966x_oic_chip_regs *chip_regs;
-> +
-> +	gc->reg_base = lan966x_oic->regs;
-> +
-> +	chip_regs = lan966x_oic_chip_regs + gc->irq_base / 32;
-> +	gc->chip_types[0].regs.enable = chip_regs->reg_off_ena_set;
-> +	gc->chip_types[0].regs.disable = chip_regs->reg_off_ena_clr;
-> +	gc->chip_types[0].regs.ack = chip_regs->reg_off_sticky;
-> +
-> +	gc->chip_types[0].chip.irq_startup = lan966x_oic_irq_startup;
-> +	gc->chip_types[0].chip.irq_shutdown = lan966x_oic_irq_shutdown;
-> +	gc->chip_types[0].chip.irq_set_type = lan966x_oic_irq_set_type;
-> +	gc->chip_types[0].chip.irq_mask = irq_gc_mask_disable_reg;
-> +	gc->chip_types[0].chip.irq_unmask = irq_gc_unmask_enable_reg;
-> +	gc->chip_types[0].chip.irq_ack = irq_gc_ack_set_bit;
-> +	gc->private = chip_regs;
-> +
-> +	/* Disable all interrupts handled by this chip */
-> +	irq_reg_writel(gc, ~0, chip_regs->reg_off_ena_clr);
-> +}
-> +
-> +static void lan966x_oic_chip_exit(struct irq_chip_generic *gc)
-> +{
-> +	/* Disable and ack all interrupts handled by this chip */
-> +	irq_reg_writel(gc, ~0, gc->chip_types[0].regs.disable);
-> +	irq_reg_writel(gc, ~0, gc->chip_types[0].regs.ack);
-> +}
-> +
-> +static void lan966x_oic_domain_init(struct irq_domain *d)
-> +{
-> +	struct lan966x_oic_data *lan966x_oic = d->host_data;
-> +
-> +	irq_set_chained_handler_and_data(lan966x_oic->irq, lan966x_oic_irq_handler, d);
-> +}
-> +
-> +static int lan966x_oic_probe(struct platform_device *pdev)
-> +{
-> +	struct irq_domain_chip_generic_info gc_info = {
-> +		.irqs_per_chip		= 32,
-> +		.num_chips		= 1,
-> +		.name			= "lan966x-oic"
-> +		.handler		= handle_level_irq,
-> +		.init			= lan966x_oic_chip_init,
-> +		.destroy		= lan966x_oic_chip_exit,
-> +	};
-> +
-> +	struct irq_domain_info info = {
-> +		.fwnode			= of_node_to_fwnode(pdev->dev.of_node),
-> +		.size			= LAN966X_OIC_NR_IRQ,
-> +		.hwirq_max		= LAN966X_OIC_NR_IRQ,
-> +		.ops			= &irq_generic_chip_ops,
-> +		.gc_info		= &gc_info,
-> +		.init			= lan966x_oic_domain_init,
-> +	};
-> +	struct lan966x_oic_data *lan966x_oic;
-> +	struct device *dev = &pdev->dev;
-> +
-> +	lan966x_oic = devm_kmalloc(dev, sizeof(*lan966x_oic), GFP_KERNEL);
-> +	if (!lan966x_oic)
-> +		return -ENOMEM;
-> +
-> +	lan966x_oic->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(lan966x_oic->regs))
-> +		return dev_err_probe(dev, PTR_ERR(lan966x_oic->regs), "failed to map resource\n");
-> +
-> +	lan966x_oic->irq = platform_get_irq(pdev, 0);
-> +	if (lan966x_oic->irq < 0)
-> +		return dev_err_probe(dev, lan966x_oic->irq, "failed to get the IRQ\n");
-> +
-> +	lan966x_oic->domain = irq_domain_instantiate(&info);
-> +	if (!lan966x_oic->domain)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, lan966x_oic);
-> +	return 0;
-> +}
-> +
-> +static void lan966x_oic_remove(struct platform_device *pdev)
-> +{
-> +	struct lan966x_oic_data *lan966x_oic = platform_get_drvdata(pdev);
-> +
-> +	irq_set_chained_handler_and_data(lan966x_oic->irq, NULL, NULL);
-> +	irq_domain_remove(lan966x_oic->domain);
-> +}
-> 
-> See?
-
-Perfectly.
-I will rework patches in this way.
-Again, thanks for pointing out this solution.
-
-Best regards,
-Hervé
+Device (SE9)
+{
+    Name (_ADR, 0x001D0001)  // _ADR: Address
+    Device (RHUB)
+    {
+        Name (_ADR, Zero)
+        Device (CP2) // the USB-hid & CP2112 shared node
+        {
+            Name (_ADR, One)
+            Name (_STA, 0x0F)
+            
+            Name (_DSD, Package () {
+                ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+                Package () {
+                    Package () { "gpio-hog", 1 },
+                    Package () { "gpios", Package () { 4, 0 } },
+                    Package () { "output-high", 1 },
+                    Package () { "line-name", "gpio4-pullup" },
+                },
+                ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+                Package () {
+                    Package () { "gpio-line-names", Package () {
+                                "",
+                                "",
+                                "irq-rmi4",
+                                "",
+                                "power", // set to 1 with gpio-hog above
+                                "",
+                                "",
+                                "",
+                                ""}},
+                }
+            })
+            Device (I2C0)
+            {
+                Name (_ADR, Zero)
+                Name (_STA, 0x0F)
+            }
+        }
+    }
+}
 
 > 
-> Thanks,
+> > - Edit hid-cp2112.c to match for ACPI index and fall back to matching by
+> >     name (instead of the other way around)
+> > - Separate CP2112 I2C bus speed configuration into a separate patch
 > 
->         tglx
-
-
-
--- 
-Hervé Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
 
