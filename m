@@ -1,178 +1,144 @@
-Return-Path: <devicetree+bounces-73558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74AF48FFFC1
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:41:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 996948FFFD2
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:45:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CC3D281C16
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:41:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA7D01F27C76
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:45:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D26015B96E;
-	Fri,  7 Jun 2024 09:41:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCB4615B989;
+	Fri,  7 Jun 2024 09:44:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hDd3z6yk"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JNywxByP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CF3F746E;
-	Fri,  7 Jun 2024 09:41:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32D1415B122;
+	Fri,  7 Jun 2024 09:44:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717753308; cv=none; b=k51hDmGFng+6ZfklI4z/kKMfBqvhcsuDwZGya56G31PAbjbg9CYP66XdhE0SeTbwDB3HiK7kDGfbA9Ssn6fz6+lAFBZrRteOMgIbeMk5Fr72HhYE5FmIipMXKPr42S+ogpVcKjXqNJJUR7VHv4FFyNEGkxt/dGjuhRK6LBQdK5o=
+	t=1717753492; cv=none; b=aKDTWULNlmeGBGWqE72uRHQHIaXF3SilPQLom39KapIrok+hPm3nIR0FDYFkGMJpMzRqvBLxmk3Oc5UI71qzrND7KfXNDWu4Dhzn4rxFPqojV/B60hadq4JLmdQXLY9Uh9YrNnwwanTxwfv6KilysIyCBqQlVBG5HLjXd2uEwtA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717753308; c=relaxed/simple;
-	bh=ynvlvVbo/tWkOIken/yYFOvDfSVzxKWB8fQuH4Z+Q54=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OsC1OjDh4ZV2U6vHZS54FDamQGqljpIOeKlsSb7URrEVTPA7kGS7Z4fX58QKNzsyk943Ka4Ve08QHRYSiYfdeiO128BBbsyKPdwMxgSKXcNR7n+uG1BPDWb9r8llYZQajge0k6TEqNOKFqzMlYchMAM3PsEOWHXSjgNbDoHxYz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hDd3z6yk; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a626919d19dso551960666b.0;
-        Fri, 07 Jun 2024 02:41:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717753305; x=1718358105; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=iHthyJxfQWG9RW2oiS/t6zGoou7lw4UFn78RRn4Kbbo=;
-        b=hDd3z6ykQ7ewoMES4zYloy15EVnXfP3OsvSYJYESsk2cfn4u+TJBYVR0/FISWp77lA
-         +q6ouGRDEJCAe3xFjCGipilVMVPSPtTQO23++aNuNhOUh4qI10Roi7LqDcVjj9T3pfz9
-         sSgi0caqBxz+yeVCDoMXmAi1kHuR2jvR0JqeF4V3ovFokszJV2n1ZrsLqr9z+NwSgDES
-         bw0+ky6HaOMLgXZgyepArkZlyu4NxTH13WBH49gkeSeMXDq8d6iubEInaluKXwMPNbFe
-         k2GzkJe4LvTre0Pfg8V4dhtTLSl76//R/1Z+7yz07CVtZMxbLfDzIiPHwb/EVWbsVST1
-         3XuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717753305; x=1718358105;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iHthyJxfQWG9RW2oiS/t6zGoou7lw4UFn78RRn4Kbbo=;
-        b=oC2NbdUbIfvSohsqe+LRkyq/oMd0P2TLNnBUZ8fcikMetBGrX9Sd+Wl7j0uD3OozH0
-         6Mwnz39/szG+pvKeqeqe320cBUERWCp+OqIMZnxIrodMHeaB7zFCuUt0b2Pz5lCVBdLJ
-         2w9Zek5GtdHGE1prM3aosHYKgvgNYlSxspzahibdQz4zBQE8AKbffzdFSSxezi3XTGLS
-         tVSrwfJ5aMEm49lHwKpCM602/W7m4xC+eYR8PErmLVbCp+65yGrsQ5ZJSFBedZGXiYbE
-         vQCIkrOfMTgCqskMC15bmGJL6sOQ5zDiQbUFi6BDmNeudwqZSpZ8JoQg1zgq7a3SZQiK
-         Dl3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXbTs7zq+pr1w/V0DZC1scWxEhbo1R2+hjQVM+SH+QdAC6EYAWhvRNSGZzoZU/2j/8kcsbpUCTZEg9rlwTlQVmtDie8dCAvdMhlhjArXbEkkNgbdXC3WFD/Q8wY2ITUP77VwGxvduxGYz6Ti3iOtFZpjGKQeJvj4cjtabajaTC+ROPQXA==
-X-Gm-Message-State: AOJu0YyIo5sN2E6ULwx91REJo7BnVdyY2CNvpTUm8u9ES1+Facne262U
-	mbg8vMnszD1dkx6KwUrOTx2Ggu0q23tS8wKw2bHFPyJJDXPm/Ung
-X-Google-Smtp-Source: AGHT+IF3iq8j3f7Ft+xnRNqD2FMzh7+5wrp83qD5WemFIuZYfqTXJxrAZ5OB7zdPhvJmFFEuZnHiAQ==
-X-Received: by 2002:a17:906:e56:b0:a6e:372f:5783 with SMTP id a640c23a62f3a-a6e372f5b4dmr59107566b.4.1717753304658;
-        Fri, 07 Jun 2024 02:41:44 -0700 (PDT)
-Received: from [192.168.0.220] ([83.103.132.21])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6c80727e1esm218698066b.190.2024.06.07.02.41.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Jun 2024 02:41:44 -0700 (PDT)
-Message-ID: <1c6d409b-ba9e-4a19-a6cb-e06209a24154@gmail.com>
-Date: Fri, 7 Jun 2024 12:41:42 +0300
+	s=arc-20240116; t=1717753492; c=relaxed/simple;
+	bh=voo+058tPlgVMfI1TZTTzr4t/Aowjlk+5Zt2NGckp00=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IfMjVSa/vt/HlW1ITPt5qMZlw5/iW9MDMGs2wjxGkd14V+4EO+8XAxTGfrzaIN4bfljqX10bVKFl+Cht4mLY6ccg4iyVCnygX9LPQALObGPDmMgOOsHEB8e8sejnMd3w42tVGlh1/uTda9HklZLkVbESRmLSUhS4DeO2tk9HL0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JNywxByP; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1717753491; x=1749289491;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=voo+058tPlgVMfI1TZTTzr4t/Aowjlk+5Zt2NGckp00=;
+  b=JNywxByP4NAkGVT66WtDTTWqBF4HYp+lLsKCYfL+AxghellOSM+iYQd3
+   lZUZG0gFC8p48MevClOXH9JQbz/LMVyLL05krRysXFNtlaVp1MZIcWT74
+   63f2xDfZitAi1EUQyK/9bsgO1mTCf002HBEqqWXB7S3/+te5z39f4j3f0
+   rSxNGOKOh0j5yHyxvipBI2LJS5TLc1FUBua/1gGlqsroLBkPaaWxlj9LF
+   IXZXGSsLwplRpP5cA+g/8g5Kjj5Gt7ltMa+Z3Wfb9W2ASc0DckQb+b9Up
+   Axe+BbhWeI8Eun38H/TnI3+u9VPMebtSWiG8HWptBzEisGk3x8/xYAzDb
+   A==;
+X-CSE-ConnectionGUID: tfdbHHTtSCSef3/i0ayuig==
+X-CSE-MsgGUID: A2QAH5TvRbGz9Y89VhfbOA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="18294757"
+X-IronPort-AV: E=Sophos;i="6.08,220,1712646000"; 
+   d="scan'208";a="18294757"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jun 2024 02:44:50 -0700
+X-CSE-ConnectionGUID: 8ZQlJrjIRZii1uvJWoEVGA==
+X-CSE-MsgGUID: UsrlsgBJRDKUnLDBbEx3qA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,220,1712646000"; 
+   d="scan'208";a="61472308"
+Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
+  by fmviesa002.fm.intel.com with ESMTP; 07 Jun 2024 02:44:47 -0700
+Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sFW9M-0004Z5-1b;
+	Fri, 07 Jun 2024 09:44:44 +0000
+Date: Fri, 7 Jun 2024 17:44:36 +0800
+From: kernel test robot <lkp@intel.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm: dts: aspeed: Use standard 'i2c' bus node name
+Message-ID: <202406071717.2B7aM49z-lkp@intel.com>
+References: <20240531193115.3814887-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 9/9] iio: adc: ad7173: Add support for AD411x devices
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- dumitru.ceclan@analog.com
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240606-ad4111-v6-0-573981fb3e2e@analog.com>
- <20240606-ad4111-v6-9-573981fb3e2e@analog.com>
- <389546877ae11b18928b432e86710acf83974f67.camel@gmail.com>
-Content-Language: en-US
-From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
-In-Reply-To: <389546877ae11b18928b432e86710acf83974f67.camel@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240531193115.3814887-1-robh@kernel.org>
 
-On 07/06/2024 12:20, Nuno Sá wrote:
-> On Thu, 2024-06-06 at 19:07 +0300, Dumitru Ceclan via B4 Relay wrote:
->> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
->>
->> Add support for AD4111/AD4112/AD4114/AD4115/AD4116.
->>
->> The AD411X family encompasses a series of low power, low noise, 24-bit,
->> sigma-delta analog-to-digital converters that offer a versatile range of
->> specifications.
->>
->> This family of ADCs integrates an analog front end suitable for processing
->> both fully differential and single-ended, bipolar voltage inputs
->> addressing a wide array of industrial and instrumentation requirements.
->>
->> - All ADCs have inputs with a precision voltage divider with a division
->>   ratio of 10.
->> - AD4116 has 5 low level inputs without a voltage divider.
->> - AD4111 and AD4112 support current inputs (0 mA to 20 mA) using a 50ohm
->>   shunt resistor.
->>
->> Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
->> ---
->>  drivers/iio/adc/ad7173.c | 317 ++++++++++++++++++++++++++++++++++++++++++----
->> -
->>  1 file changed, 285 insertions(+), 32 deletions(-)
->>
->> diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
->> index 58da5717fd36..cfcd12447e24 100644
->> --- a/drivers/iio/adc/ad7173.c
->> +++ b/drivers/iio/adc/ad7173.c
->>
-> ...
-> 
->>  static const struct ad7173_device_info ad7172_2_device_info = {
->>  	.name = "ad7172-2",
->>  	.id = AD7172_2_ID,
->> -	.num_inputs = 5,
->> +	.num_voltage_in = 5,
->>  	.num_channels = 4,
->>  	.num_configs = 4,
->>  	.num_gpios = 2,
->> +	.higher_gpio_bits = false,
-> 
-> No need to explicitly set to 'false'. Ditto for the other places...
-> 
-> ...
-> 
->>
->>  static int ad7173_validate_voltage_ain_inputs(struct ad7173_state *st,
->>  					      unsigned int ain0, unsigned int
->> ain1)
->>  {
->> @@ -946,15 +1145,30 @@ static int ad7173_validate_voltage_ain_inputs(struct
->> ad7173_state *st,
->>  	    st->info->has_pow_supply_monitoring)
->>  		return 0;
->>  
->> -	special_input0 = AD7173_IS_REF_INPUT(ain0);
->> -	special_input1 = AD7173_IS_REF_INPUT(ain1);
->> +	special_input0 = AD7173_IS_REF_INPUT(ain0) ||
->> +			 (ain0 == AD4111_VINCOM_INPUT && st->info-
->>> has_vincom_input);
->> +	special_input1 = AD7173_IS_REF_INPUT(ain1) ||
->> +			 (ain1 == AD4111_VINCOM_INPUT && st->info-
->>> has_vincom_input);
->> +
-> 
-> Wondering... can ain1 (or ain0) be AD4111_VINCOM_INPUT and !st->info-
->> has_vincom_input? Would that actually be acceptable? It would assume it's not
-> so we should check that right? Or am I missing something?
-> 
-> - Nuno Sá
-> 
+Hi Rob,
 
-It will fail when we check for the number of voltage inputs:
-(ain0 >= st->info->num_voltage_in && !special_input0) 
-as special_input will not be true if has_vincom_input is false
+kernel test robot noticed the following build warnings:
 
-Indeed this check is a bit hidden, should it be more explicit?
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on krzk/for-next linus/master v6.10-rc2 next-20240607]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Rob-Herring-Arm/arm-dts-aspeed-Use-standard-i2c-bus-node-name/20240601-033514
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240531193115.3814887-1-robh%40kernel.org
+patch subject: [PATCH] arm: dts: aspeed: Use standard 'i2c' bus node name
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240607/202406071717.2B7aM49z-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406071717.2B7aM49z-lkp@intel.com/
+
+dtcheck warnings: (new ones prefixed by >>)
+>> arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts:541.10-555.4: Warning (avoid_unnecessary_addr_size): /ahb/apb/bus@1e78a000/i2c@480/gpio@77: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+
+vim +541 arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
+
+36d96827f480e9 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Quan Nguyen  2022-08-17  532  
+695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  533  &i2c8 {
+695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  534  	status = "okay";
+695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  535  
+e998856086a41d arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts Chanh Nguyen 2023-10-05  536  	temperature-sensor@48 {
+e998856086a41d arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts Chanh Nguyen 2023-10-05  537  		compatible = "ti,tmp112";
+e998856086a41d arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts Chanh Nguyen 2023-10-05  538  		reg = <0x48>;
+e998856086a41d arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts Chanh Nguyen 2023-10-05  539  	};
+e998856086a41d arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts Chanh Nguyen 2023-10-05  540  
+695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28 @541  	gpio@77 {
+695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  542  		compatible = "nxp,pca9539";
+695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  543  		reg = <0x77>;
+695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  544  		gpio-controller;
+695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  545  		#address-cells = <1>;
+695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  546  		#size-cells = <0>;
+695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  547  		#gpio-cells = <2>;
+695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  548  
+695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  549  		bmc-ocp0-en-hog {
+695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  550  			gpio-hog;
+695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  551  			gpios = <7 GPIO_ACTIVE_LOW>;
+695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  552  			output-high;
+695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  553  			line-name = "bmc-ocp0-en-n";
+695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  554  		};
+695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  555  	};
+695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  556  };
+695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  557  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
