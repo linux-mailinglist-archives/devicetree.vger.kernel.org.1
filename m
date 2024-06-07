@@ -1,117 +1,315 @@
-Return-Path: <devicetree+bounces-73562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C71C8FFFE0
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:50:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFC118FFFE9
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:54:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96377282E5C
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:50:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D47F283BD1
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:54:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C7AD136658;
-	Fri,  7 Jun 2024 09:50:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22CEC13C69E;
+	Fri,  7 Jun 2024 09:54:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OJz999IF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jBM00jEE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22773200A0;
-	Fri,  7 Jun 2024 09:50:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55DE0200A0
+	for <devicetree@vger.kernel.org>; Fri,  7 Jun 2024 09:54:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717753805; cv=none; b=t0MagDAm8hp+Vl4HiJTktdvI8CAy+mGyaq0IFBAhCOG0f9bJrYjlkmBz+GfsrlRgb6xf9I9m1/2SJ5TkrtXsPzN96c3e3HJnYO//fzNswLd+953O2d7l6gkDLHQe3O8CcQAzQpA3RvnBWOoaVIL1VDVERsq+a0IAWfyZNrOIxG0=
+	t=1717754080; cv=none; b=RAzf686eswAk3KtFNmtToh7DeKBawIg3oHhi4K3oquq4WDr6kLC5TDPvJ9O4yOSLK2hZN8xTEP56NPdWLB1+EJqagFJrMAoRD99ypGGTZxTEWdIBH3HtMwYTo+N2D+29r3AvKe/N9+Fj3H34RTYLmo0jam0DkDkSfTAjRJOj/Eo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717753805; c=relaxed/simple;
-	bh=akjruwrkh3WPGkPm5XOY0XEKEarFR0VOfCvlpit9/ek=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JrGcHlgx3t8oi25RmD6wdV2kdQJ3YLqHLC8I2E/nRGbCSKsR3B8PDhiRlsDL6XSX0wooesHfBLgGqTGo96mEJsbjBwLtGTJw2o9tGBldY8X0GVh3/NfZbv2IuWPsVLzcAePBCxSYK15Pfhl5VpKAJczxVLiGgAG3/yzr+Tj9jhA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OJz999IF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82E0CC2BBFC;
-	Fri,  7 Jun 2024 09:50:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717753804;
-	bh=akjruwrkh3WPGkPm5XOY0XEKEarFR0VOfCvlpit9/ek=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OJz999IFl1R2Wv1WpGcamcd26uiBC8bgKjv2D0/k3c/2dxRb6z9gvkUv9sZ427y15
-	 hM4bpYCEJOAeaY8H15myrOiJ72h2GW9lgce1l9cvek3Ax5TubupbgSCfTS0oHPXKkb
-	 DtYCP+8q+sXRCl/SsUbj5bpvzVfOMUrCzHRPuME9D+nClgE7XQ5oqQYBx2502mexB4
-	 jQ+GsienBD+TirjkdCuz+oC3CxeksciiMp5qYcyaBntQ8iFhCKaym8zjzWvWpVuryU
-	 CiQsjtNzICfCKWNcOnelZDglN3I9A2fh9C/3Zy9eK/+YY9B5vQeB5XHajdhSQDeHzO
-	 doy3fofa+ItFQ==
-Date: Fri, 7 Jun 2024 11:49:57 +0200
-From: Niklas Cassel <cassel@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Manivannan Sadhasivam <mani@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
-	Jon Lin <jon.lin@rock-chips.com>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v4 03/13] dt-bindings: PCI: snps,dw-pcie-ep: Add
- tx_int{a,b,c,d} legacy irqs
-Message-ID: <ZmLXxUa_6WTde7OC@ryzen.lan>
-References: <20240529-rockchip-pcie-ep-v1-v4-0-3dc00fe21a78@kernel.org>
- <20240529-rockchip-pcie-ep-v1-v4-3-3dc00fe21a78@kernel.org>
- <20240605073402.GE5085@thinkpad>
- <ZmCQak-m7RWRxiix@ryzen.lan>
- <20240606062538.GA4441@thinkpad>
+	s=arc-20240116; t=1717754080; c=relaxed/simple;
+	bh=xw71Qt46ptk8d30DH8IHkvqH28EIKm1Uiz+CLu5ChCo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=tQPXWRrHRDfk//j9Py9rWxaJuqTgHcYV3xt2uRxbut6eO2HmbKQhfWsoFuRSqLwhFCS7+G59AF30N3xhifCqQykfz3MQ/ndN3Kndi6j5u1R6QBeVLThwljd/lYAhSB6bvAoxAMfWjh2WasiMUit2Y8tLkqljsiuPJOKGk18s0BM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jBM00jEE; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4215ac379fdso18259565e9.3
+        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2024 02:54:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717754077; x=1718358877; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=n1dI7O2M357iDdx/gYesZvs+fe+BF1aCu/fNw9Fv4io=;
+        b=jBM00jEE9jzguYDmGuAIL+f78T3hq+tZS2a2ukIgiDEMJZbzCZJyZhW7v+5i7dSEMV
+         RGvk1tXemtNrToHCrE+3JwVtev128+HEneWGQYmrP4KMPSx0ibrbOVDGV1du+LXPPJBI
+         EooOs4OAsE8LYDaU6Ec9en4AioKVNgv64dAFjkiCzorvEU5QsGHLdEyuk8QTKHLqg/WJ
+         XhkVYBISHZ7EOIjTNrxdMX4igglkzM/FljYzjRKCrV4ilxMvbg2rSOASSeKExYvvaXhU
+         WwkENxOhB5kiNiQ3E8ilzIS+EwWojhBjGXRo69/iHxJKD34qyKu6Xn/ECZ6Rkp0UDSwp
+         ljMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717754077; x=1718358877;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=n1dI7O2M357iDdx/gYesZvs+fe+BF1aCu/fNw9Fv4io=;
+        b=gQTrkBML0CrGpdPGtXi4b9DmiV0Ui6xBuUHGg+1b3bM0T4d1VJPhJtqEBQeHpJg2HU
+         3DIgT/nJ38DRVMAlPUkOhScoC1Z2geJoPCJqkxnQG9BKYDCCS2ijrSU7dhXKnMjOkS7e
+         YFSQ5YkKChntduEGIGNoHfkrl/5qpMNiyubacV26KYB3H+Ljv30PLzjRKhoB988hnd7t
+         vGvqlHME/30pGfYyoAW9BwaHVQ2z1eS7YrZUZg0IdH4mhXogYKSuU+T1bQZAG/VxL6zE
+         yThT+dt4GlzNJIuJVW0kDGCvU9WiDl6ASnOvlEqCzv/9OQaxUUv0MmBjUwPGVODxMzfy
+         Ih9A==
+X-Forwarded-Encrypted: i=1; AJvYcCV0hMEjCkGUubLbuXSRa88tta3u2Aj0HmFlfN2XQE1UVsSEVRM1PMo43ZpcnfmGlueuj//EnqBHMu1Weklw+HI5WFAPXlc/4puo4w==
+X-Gm-Message-State: AOJu0Yyo1aNE6QERHd2JebzLTrRd7pweOaIzDQ7rj6xZeI8cnE2vLYfS
+	D1KIoThX5Yjar2rRWBKcOHYGC7n8zszWOlpapjjBhNZul8XUEgarjh+qn1QL3yw=
+X-Google-Smtp-Source: AGHT+IE1uW5XvO1RIV9uLpXgbfv5bywb64KBlRBEKTjKF24y4V+1ZyDorbEWvu3B3gfeZiX+4rO/6w==
+X-Received: by 2002:adf:fc0c:0:b0:34d:9e54:11ec with SMTP id ffacd0b85a97d-35efed1b8f8mr1626240f8f.5.1717754076661;
+        Fri, 07 Jun 2024 02:54:36 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5d29b05sm3635097f8f.23.2024.06.07.02.54.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Jun 2024 02:54:36 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Fri, 07 Jun 2024 11:54:35 +0200
+Subject: [PATCH] ASoC: dt-bindings: convert tas571x.txt to dt-schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240606062538.GA4441@thinkpad>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240607-topic-amlogic-upstream-bindings-convert-tas57xx-v1-1-ebf1e4919bb1@linaro.org>
+X-B4-Tracking: v=1; b=H4sIANrYYmYC/x2NQQrDIBAAvxL23AUN0UC/UnrYmo1daDS4Ngghf
+ 6/0NMxl5gTlIqxwH04ofIhKTl3sbYDwphQZZekOoxkn482MNe8SkLZPjp3fXWth2vAlaZEUFUN
+ OB5eKldTNraGj1bLzE3uy0Kt74VXa//h4XtcPBWNaXIEAAAA=
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5825;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=xw71Qt46ptk8d30DH8IHkvqH28EIKm1Uiz+CLu5ChCo=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmYtjbtOnM9nsOKjv8rCVTFwpsF062BfASvHbHznYA
+ EcDI6UKJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZmLY2wAKCRB33NvayMhJ0VotD/
+ 9ps4/NxGrmtc9INAkC8zjPlR/EAAs+kZOP98PAGhX9/PUPPr2K2pcXLvYNnV/JcgwCbyyxRpeDEZ1R
+ tVCq8bIr0MU9zezrCyED41a4RIK9GlYc/tTCBhzD9RVEMmt3sgqHFqZha+6GEbSW/TGxAgFSYy1GJk
+ /7s0S4+yavWL5RBGCcaj8L8vGQ5m1TjWqjMVT6l40j7rgFHWE7hcOrERYrJSF9NTfMSaZzCMY1ipgC
+ Y2TOwYtqwR/VrllzE6BylqE1YGYBEpJ2hrjFTYoBs/TvBofsUcT+BgXDjreX8uqDyR7ToTrh+RuNP5
+ /raNtL/5YXN07OegMxXiPv15maJrg3RquFBHSGqCgsFpuqA21FGHMmW6WzsD3EQvmlDHHj1Trpf67y
+ PbkaSzQU/55ruVKLFbuEddlF8jXMPPj2yBFkK8Qye8KxsRZFoKVlNcADNssKl1YA4zsvI3eRXJ1f+J
+ W5L1YitYVt870NDkzQKMTrmbBY9rmdzFd4aOcnPYDQjajxF4SJ06DWC1yhjetszZ2QiWF9zlq8u/Cg
+ 3HSUm5C5NU8y7WVBuxvJ8PfNS+o4HijLJuMXOXAQd+pfYYpZzpNSi4esBzLq/a/SYQdhaH3hcesQ2o
+ 5XLIQZ2NvbXSTWREtwTQ4zqv6bwRama0k3OgfStv0PRAyxpIdwu1I9IIeJig==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-On Thu, Jun 06, 2024 at 11:55:38AM +0530, Manivannan Sadhasivam wrote:
-> 
-> I think you misunderstood what I was asking. I was just asking if we still want
-> to keep the term 'legacy' for INTx IRQs in DT binding or not, since we recently
-> got rid of that terminology in PCI drivers.
+Convert the text bindings for the Texas Instruments
+TAS5711/TAS5717/TAS5719/TAS5721 stereo power amplifiers to
+dt-schema.
 
-I still don't think that I understand :)
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ .../devicetree/bindings/sound/tas571x.txt          |  49 --------
+ .../devicetree/bindings/sound/ti,tas57xx.yaml      | 129 +++++++++++++++++++++
+ 2 files changed, 129 insertions(+), 49 deletions(-)
 
-In snps,dw-pcie.yaml we currently (6.10-rc2) have:
+diff --git a/Documentation/devicetree/bindings/sound/tas571x.txt b/Documentation/devicetree/bindings/sound/tas571x.txt
+deleted file mode 100644
+index 1addc75989d5..000000000000
+--- a/Documentation/devicetree/bindings/sound/tas571x.txt
++++ /dev/null
+@@ -1,49 +0,0 @@
+-Texas Instruments TAS5711/TAS5717/TAS5719/TAS5721 stereo power amplifiers
+-
+-The codec is controlled through an I2C interface.  It also has two other
+-signals that can be wired up to GPIOs: reset (strongly recommended), and
+-powerdown (optional).
+-
+-Required properties:
+-
+-- compatible: should be one of the following:
+-  - "ti,tas5707"
+-  - "ti,tas5711",
+-  - "ti,tas5717",
+-  - "ti,tas5719",
+-  - "ti,tas5721"
+-  - "ti,tas5733"
+-- reg: The I2C address of the device
+-- #sound-dai-cells: must be equal to 0
+-
+-Optional properties:
+-
+-- reset-gpios: GPIO specifier for the TAS571x's active low reset line
+-- pdn-gpios: GPIO specifier for the TAS571x's active low powerdown line
+-- clocks: clock phandle for the MCLK input
+-- clock-names: should be "mclk"
+-- AVDD-supply: regulator phandle for the AVDD supply (all chips)
+-- DVDD-supply: regulator phandle for the DVDD supply (all chips)
+-- HPVDD-supply: regulator phandle for the HPVDD supply (5717/5719)
+-- PVDD_AB-supply: regulator phandle for the PVDD_AB supply (5717/5719)
+-- PVDD_CD-supply: regulator phandle for the PVDD_CD supply (5717/5719)
+-- PVDD_A-supply: regulator phandle for the PVDD_A supply (5711)
+-- PVDD_B-supply: regulator phandle for the PVDD_B supply (5711)
+-- PVDD_C-supply: regulator phandle for the PVDD_C supply (5711)
+-- PVDD_D-supply: regulator phandle for the PVDD_D supply (5711)
+-- DRVDD-supply: regulator phandle for the DRVDD supply (5721)
+-- PVDD-supply: regulator phandle for the PVDD supply (5721)
+-
+-Example:
+-
+-	tas5717: audio-codec@2a {
+-		compatible = "ti,tas5717";
+-		reg = <0x2a>;
+-		#sound-dai-cells = <0>;
+-
+-		reset-gpios = <&gpio5 1 GPIO_ACTIVE_LOW>;
+-		pdn-gpios = <&gpio5 2 GPIO_ACTIVE_LOW>;
+-
+-		clocks = <&clk_core CLK_I2S>;
+-		clock-names = "mclk";
+-	};
+diff --git a/Documentation/devicetree/bindings/sound/ti,tas57xx.yaml b/Documentation/devicetree/bindings/sound/ti,tas57xx.yaml
+new file mode 100644
+index 000000000000..fa6d6c1c8535
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/ti,tas57xx.yaml
+@@ -0,0 +1,129 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/ti,tas57xx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments TAS5711/TAS5717/TAS5719/TAS5721 stereo power amplifiers
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++properties:
++  compatible:
++    enum:
++      - ti,tas5707
++      - ti,tas5711
++      - ti,tas5717
++      - ti,tas5719
++      - ti,tas5721
++      - ti,tas5733
++
++  reg:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++    description: GPIO for the active low reset line
++
++  pdn-gpios:
++    maxItems: 1
++    description: GPIO for the active low powerdown line
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: mclk
++
++  AVDD-supply: true
++  DVDD-supply: true
++  HPVDD-supply: true
++  PVDD_AB-supply: true
++  PVDD_CD-supply: true
++  PVDD_A-supply: true
++  PVDD_B-supply: true
++  PVDD_C-supply: true
++  PVDD_D-supply: true
++  DRVDD-supply: true
++  PVDD-supply: true
++
++  '#sound-dai-cells':
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - '#sound-dai-cells'
++
++allOf:
++  - $ref: dai-common.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - ti,tas5717
++              - ti,tas5719
++    then:
++      properties:
++        PVDD_A-supply: false
++        PVDD_B-supply: false
++        PVDD_C-supply: false
++        PVDD_D-supply: false
++        DRVDD-supply: false
++        PVDD-supply: false
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - ti,tas5711
++    then:
++      properties:
++        HPVDD-supply: false
++        PVDD_AB-supply: false
++        PVDD_CD-supply: false
++        DRVDD-supply: false
++        PVDD-supply: false
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - ti,tas5721
++    then:
++      properties:
++        HPVDD-supply: false
++        PVDD_AB-supply: false
++        PVDD_CD-supply: false
++        PVDD_A-supply: false
++        PVDD_B-supply: false
++        PVDD_C-supply: false
++        PVDD_D-supply: false
++
++unevaluatedProperties: false
++
++examples:
++  - |
++   #include <dt-bindings/gpio/gpio.h>
++   i2c {
++     #address-cells = <1>;
++     #size-cells = <0>;
++     codec: codec@2a {
++       compatible = "ti,tas5717";
++       reg = <0x2a>;
++       #sound-dai-cells = <0>;
++       reset-gpios = <&gpio1 15 0>;
++       pdn-gpios = <&gpio1 15 0>;
++       AVDD-supply = <&avdd_supply>;
++       DVDD-supply = <&dvdd_supply>;
++       HPVDD-supply = <&hpvdd_supply>;
++       PVDD_AB-supply = <&pvdd_ab_supply>;
++       PVDD_CD-supply = <&pvdd_cd_supply>;
++     };
++   };
++
++...
 
-const: legacy
-(for the combined IRQ)
+---
+base-commit: c3f38fa61af77b49866b006939479069cd451173
+change-id: 20240607-topic-amlogic-upstream-bindings-convert-tas57xx-5af1e564e6a1
 
-pattern: "^int(a|b|c|d)$"
-(for the individual IRQs)
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
-So we will need to support these indefinitely.
-
-What is it that you would want to rename?
-
-the combined irq?
-
-Doesn't sound like a good idea to me, as we would need to support two
-(perhaps that is what you meant).
-
-But even if you wanted to rename it, it would be hard to come up with
-a name. Perhaps intx, but that would be super confusing since we already
-have inta, intb, intc, intd.
-
-I think it is best just to not touch the binding.
-
-In kernel macros could (that have already been renamed from legacy to intx)
-doesn't really have anything to do with the DT binding IMO.
-
-
-Kind regards,
-Niklas
 
