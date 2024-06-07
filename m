@@ -1,123 +1,131 @@
-Return-Path: <devicetree+bounces-73638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62B7F90021C
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 13:27:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46B20900223
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 13:28:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DEF211F250DB
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:27:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE04D285278
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:28:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CFB718734B;
-	Fri,  7 Jun 2024 11:27:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 243A9188CC0;
+	Fri,  7 Jun 2024 11:28:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M6Uc2teN"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QJW606xc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 903DE15ADB3;
-	Fri,  7 Jun 2024 11:27:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 529FB15B127;
+	Fri,  7 Jun 2024 11:28:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717759637; cv=none; b=UgdwfQW1ipjNyfg/ON5/X2tZnkjwnBoljY3jxizMmTW21EZZ4JobmMTbrAyAgZvmmf2iHDONqboKqzidlnSTNMfaS1/pfTL4IjJU+TsElKMIM1mIe3OEK2yKQDQcPd2Vf3frZ5Gms34xzw8HKAMN1Ncz/xHHaTFObrkjOwFt7ZM=
+	t=1717759726; cv=none; b=piSwfIB41EtdoPIxotR4MnCWPKkp3koBYWRoctnqoKFqNyIe3bAaQgU1MSAcykbqLfOR0QGJscIr7gBUZpdhBTomC+T57Q+Y4vv4BnSBFf81IvfJKnUgFZ2E9sLy7RJcPwf7Yv1NRN0x7vPnJpvVGHu71JW7u6tiuwY+JU8Q23k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717759637; c=relaxed/simple;
-	bh=J05QWbbiw+VgL/MK4wms+4MGEX63h3UCS8wgStsYmVA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NxRyemsQUW0qoGUkjNkVxgVvoibpJ4sHGA0nfGi0vajh6UF+0gjs1lJp536bfV2F8crYmyo04/wNASygtZpCjaij0D/A/hqnH9xrjGFJmi2Vp53hRcBX8jWt3UdlWVou/gN000xI6w2bA2+22EKA1FB4ggTQaBqNmeonk7SLMbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M6Uc2teN; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2eadaac1d28so13719191fa.3;
-        Fri, 07 Jun 2024 04:27:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717759634; x=1718364434; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=4O8PWUHgswtnudfxQ4Sax/Sp/jhho0l5dtDe9E7a3bM=;
-        b=M6Uc2teN2G+Q6/lXaZdQikXeOkA6ZGsy6DsS3wif2Eda2OQKGSCHRl0EGqd6fefaDO
-         ZQnjMOIIeYO7Us6zKVSxN0yjQ0sBggnJT4NP8IMIGNVVArGzzUvqMzLAHb2oYAR172ug
-         +nctpJSQ5A+KBMenkeMQKEydL4JR/Qfi4LUc+mxaDd//quV40xPZiNtQzWF1cs8MWqWY
-         5FFQfNX5uLD301leEOug79T+1yvaQBJoxVVgZVOGvgEhdBnmdS0yWf3bohqMnelbaUs9
-         FV9m90JUBQO7lMZZVCVw7cPhpeadCjukUWw8de7w+rKgh3Wm/ObMgpdaOverIYmk4w//
-         saGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717759634; x=1718364434;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4O8PWUHgswtnudfxQ4Sax/Sp/jhho0l5dtDe9E7a3bM=;
-        b=b8W77/1BBh7BQQkbKAqtLJu5O2xn73gPPvPcD6bcgTxmHsreWJQK7mENDBEF/TBJIL
-         Yfznraoudd73ysUoG8XBAh10vgtqKYdY6i+NmZalR8gRzhzS7OB5O98/3sA2JWLjSkA0
-         FBxrCYOYZABhXma9kznZQZr8Z9nJcHQNNscUx+01Q2bXJdEffoS03gV3PYcimXjuCT+1
-         A/A4vBFf4YHMyFC1v71ht2j2vv6poCDoff4RuniH7CKqE68SnsRhwP9EL+KiANKQZGTb
-         n1ytAQE/TwR363dKvio2X8UgudjcbOAeAjXgbYBmwex4PdzMDHPN+3LGdOiO7vMw0oIF
-         Of2g==
-X-Forwarded-Encrypted: i=1; AJvYcCUcMFCC/pDp6l84KZHQUsStsTvpotE29eFqEpbXHvcCrcdBrhG7bMhRT++KFNzYCNdnRTlNhp33rt5TuzlLylnyWdIyzY7CfbV1SuDfHpKd0GpjJ80CftESAyr26e/DGevqj/VZU319Z4ofLJ85SXHPv1uzoWf51kkjpebfqxGJoQ==
-X-Gm-Message-State: AOJu0YzBcfgDSMQDOFTQpBX2KTavzfm+NWfdMAeZjT/c4On5GTvc5gTe
-	HIwF2y1hYJRB/wYcJBTckamDLmlEsnJ4Gs7aB5LxcnRYI7KQuEXc
-X-Google-Smtp-Source: AGHT+IEm4PlMM5a0ezDNwQ+BL+xESu9UWDny+jAb9AZVTsOALuaSYaPxKESuoehsonsvu/kH+e/j1Q==
-X-Received: by 2002:a05:651c:2119:b0:2e9:4a5b:b6c2 with SMTP id 38308e7fff4ca-2eadce74611mr18005101fa.41.1717759633358;
-        Fri, 07 Jun 2024 04:27:13 -0700 (PDT)
-Received: from skbuf ([188.25.55.166])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57aae202965sm2605980a12.77.2024.06.07.04.27.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jun 2024 04:27:12 -0700 (PDT)
-Date: Fri, 7 Jun 2024 14:27:10 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Martin Schiller <ms@dev.tdt.de>
-Cc: martin.blumenstingl@googlemail.com, hauke@hauke-m.de, andrew@lunn.ch,
-	f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 10/13] net: dsa: lantiq_gswip: Fix error message
- in gswip_add_single_port_br()
-Message-ID: <20240607112710.gbqyhnwisnjfnxrl@skbuf>
-References: <20240606085234.565551-1-ms@dev.tdt.de>
- <20240606085234.565551-11-ms@dev.tdt.de>
+	s=arc-20240116; t=1717759726; c=relaxed/simple;
+	bh=8Z5iJEZWYuzdQo1qOjmBdsXY1Ha0sWF1gHheR8vm0Zs=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PVxNUN/8+0JbchuL+FQSv0EuQBpJQM5BZTeIYATPLFVY7sIS3yXY3+beLul+uQe9qEhHd2tsQt7vGNLE8y9RhnFun83DsgLsFYzAMGxMcJucl10eghc2xO1Idwmbrcp/migdTnZLXz3q3NAXtPO4wYEY0LiJHITeFwO5BvGpggk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QJW606xc; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 457BSa7M091775;
+	Fri, 7 Jun 2024 06:28:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1717759716;
+	bh=WGlF8+GJkHVfeFjfWNrZMjHbi01VWT2jUmPu//YWwwM=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=QJW606xcNstiB3bhr1XyeX5ipmThRwBvgcAAn5ydXCT1X6cPK5MdVeDGG4UotoZ9j
+	 ENatJ4RBK8rO2+po2Kc3H7nP6AonQNZpdPtcJJrh4NNBxCXR2blFekTifPM3A10HDr
+	 0V7WzoHPLDdiBcFMXhNS1ew6qMjwfD7k0Lxcdj6k=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 457BSanu025666
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 7 Jun 2024 06:28:36 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 7
+ Jun 2024 06:28:35 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 7 Jun 2024 06:28:35 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [172.24.227.9])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 457BSZh8108543;
+	Fri, 7 Jun 2024 06:28:35 -0500
+Date: Fri, 7 Jun 2024 16:58:34 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Roger Quadros <rogerq@kernel.org>
+CC: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <afd@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>,
+        <danishanwar@ti.com>, <srk@ti.com>
+Subject: Re: [PATCH v5 1/7] arm64: dts: ti: am62p: Rename am62p-{}.dtsi to
+ am62p-j722s-common-{}.dtsi
+Message-ID: <902f024a-b0a1-4a0a-94e2-7cec064a91c6@ti.com>
+References: <20240604085252.3686037-1-s-vadapalli@ti.com>
+ <20240604085252.3686037-2-s-vadapalli@ti.com>
+ <92af5f36-0c21-4b6e-adde-fcf21b540291@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240606085234.565551-11-ms@dev.tdt.de>
+In-Reply-To: <92af5f36-0c21-4b6e-adde-fcf21b540291@kernel.org>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu, Jun 06, 2024 at 10:52:31AM +0200, Martin Schiller wrote:
-> From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> 
-> The error message is printed when the port cannot be used. Update the
-> error message to reflect that.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  drivers/net/dsa/lantiq_gswip.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/dsa/lantiq_gswip.c b/drivers/net/dsa/lantiq_gswip.c
-> index d2195271ffe9..3c96a62b8e0a 100644
-> --- a/drivers/net/dsa/lantiq_gswip.c
-> +++ b/drivers/net/dsa/lantiq_gswip.c
-> @@ -658,7 +658,8 @@ static int gswip_add_single_port_br(struct gswip_priv *priv, int port, bool add)
->  	int err;
->  
->  	if (port >= max_ports || dsa_is_cpu_port(priv->ds, port)) {
-> -		dev_err(priv->dev, "single port for %i supported\n", port);
-> +		dev_err(priv->dev, "single port for %i is not supported\n",
-> +			port);
->  		return -EIO;
->  	}
->  
-> -- 
-> 2.39.2
-> 
+On Thu, Jun 06, 2024 at 10:51:27AM +0300, Roger Quadros wrote:
 
-Isn't even the original condition (port >= max_ports) dead code? Why not
-remove the condition altogether?
+[...]
+
+> >  5 files changed, 10 insertions(+), 7 deletions(-)
+> >  rename arch/arm64/boot/dts/ti/{k3-am62p-main.dtsi => k3-am62p-j722s-common-main.dtsi} (99%)
+> >  rename arch/arm64/boot/dts/ti/{k3-am62p-mcu.dtsi => k3-am62p-j722s-common-mcu.dtsi} (98%)
+> >  rename arch/arm64/boot/dts/ti/{k3-am62p-wakeup.dtsi => k3-am62p-j722s-common-wakeup.dtsi} (97%)
+> >  rename arch/arm64/boot/dts/ti/{k3-am62p.dtsi => k3-am62p-j722s-common.dtsi} (97%)
+> 
+> This is not correct.
+> If J722 has different CBASS components than AM62p then we should leave k3-am62p.dtsi
+> as it is and introduce a new k3-j722.dtsi with relevant CBASS components.
+
+Roger,
+
+The existing hierarchy prior to this series is as follows:
+k3-am62p.dtsi = k3-am62p-main.dtsi + k3-am62p-mcu.dtsi +
+		k3-am62p-wakeup.dtsi + k3-am62p-thermal.dtsi + <delta-1>
+k3-am62p5.dtsi = k3-am62p.dtsi + <delta-2>
+k3-j722s.dtsi = k3-am62p5.dtsi + <delta-3>
+k3-j722s-evm.dts = k3-j722s.dtsi + <detla-4>
+
+Based on your suggestion, you seem to propose the following hierarchy:
+k3-am62p-{main,mcu,thermal,wakeup}.dtsi = AM62P specific data
+k3-am62p.dtsi = k3-am62p-j722s-common-main.dtsi +
+		k3-am62p-j722s-common-mcu.dtsi +
+		k3-am62p-j722s-common-wakeup.dtsi +
+		k3-am62p-j722s-common-thermal.dtsi +
+		k3-am62p-{main,mcu,thermal,wakeup}.dtsi +
+		<delta-5>
+k3-am62p5.dtsi = k3-am62p.dtsi + <delta-2>
+k3-j722s-{main,mcu,thermal,wakeup}.dtsi = J722S specific data
+k3-j722s.dtsi = k3-am62p-j722s-common-main.dtsi +
+		k3-am62p-j722s-common-mcu.dtsi +
+		k3-am62p-j722s-common-wakeup.dtsi +
+		k3-am62p-j722s-common-thermal.dtsi +
+		k3-j722s-{main,mcu,thermal,wakeup}.dtsi +
+		<delta-6>
+k3-j722s-evm.dts = k3-j722s.dtsi + <delta-4>
+
+Please let me know whether the above organization of files matches what you
+expect it to look like. I will post the v6 series based on your feedback.
+
+Regards,
+Siddharth.
 
