@@ -1,132 +1,103 @@
-Return-Path: <devicetree+bounces-73687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90C0590053B
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 15:42:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D73B8900550
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 15:43:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 457FC1F24AFA
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 13:42:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8BBE1C25183
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 13:43:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B4AF194158;
-	Fri,  7 Jun 2024 13:42:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fRcEbCtO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BBE219415D;
+	Fri,  7 Jun 2024 13:43:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from mxout70.expurgate.net (mxout70.expurgate.net [194.37.255.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB035187354;
-	Fri,  7 Jun 2024 13:42:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1A0A47A6B;
+	Fri,  7 Jun 2024 13:43:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.37.255.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717767753; cv=none; b=JVbXDmXPvo8OkPvIz7CVljXZJ6reT6DrGGozy2WcTQWRv9Ew73w7ha4RykLXy89hGl+yeRTCRYdT+wLp66RqtVX2/gQQNVLEosWu7xz27nU6xhacDB3EOv+D08B7Lk2f2e8Cq3S4NSbWLC7AzRpFpEDLfVr9Gcm5Tw+0QTYAiS4=
+	t=1717767808; cv=none; b=TOVuPwItA/Af9KaNRi4/qz+/+ob4dzfkn41E7CCr+efXHvm+r3FqJBPnCekAd7pDYXCWSH3le4t/T3mdji+FNDIGGLFkFoX8CMc1dY2KXNAEHvzb/7+/WTjVQ+NtC24e7dVDdZhXFo0lu6SlowMSiRvUdXfBTbF5KT3cgQ8H61s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717767753; c=relaxed/simple;
-	bh=REmr8gRL5fCzI1CnEPiyzHJinuYDDoFR05g1kfvGDeY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=dS3Krr+vfUebVz8hv+N6j+gMc2yuoBwlNgCC7tWbRiB9DNGYU37EJyZJpFCeivuiQjW3iiuA9Qm+H0TRF8wfX5mnCdG9V5YAHSjfnEE1p47hhv+41ZduSiMAZqDNwoTVTL+bRc/dUVd0VuiuqOjJOPZzcH4kcupcXMM09IGYhac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fRcEbCtO; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 457DgMct123662;
-	Fri, 7 Jun 2024 08:42:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1717767742;
-	bh=CvDrkn7chnYdqDbadf2hCMD/PyrckQqI/zXquTAVr9U=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=fRcEbCtOseL3XLb0DULaAWbd+KPEjwSpO78Abd5H67EqSmm4su7XrT5mBUYmxolcK
-	 OVeHeoprB5caZ2rvoaWqxjsxWILiCdi+oJJsVBdfOIFuGd6/LAlLWAhp1XAFFXt/c/
-	 iLtQ4Ah5jmMFgqzKmh/3kbqUQ+8kIJLIrV+B9Ruo=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 457DgM15077238
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 7 Jun 2024 08:42:22 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 7
- Jun 2024 08:42:22 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 7 Jun 2024 08:42:22 -0500
-Received: from [172.24.227.193] (devarsht.dhcp.ti.com [172.24.227.193] (may be forged))
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 457DgFSD002578;
-	Fri, 7 Jun 2024 08:42:16 -0500
-Message-ID: <10ccfd56-eef6-4b13-ea89-d0df1c432d40@ti.com>
-Date: Fri, 7 Jun 2024 19:12:14 +0530
+	s=arc-20240116; t=1717767808; c=relaxed/simple;
+	bh=Ig7h/WAJSPZ5uoCGDgSSvbxyZnPPVSC1ewqn6DJmRdo=;
+	h=MIME-Version:Content-Type:Date:From:To:Cc:Subject:In-Reply-To:
+	 References:Message-ID; b=u/DsQaNrestlsQa/jhnFA2wIFo4B1RgwDg7blOE5ZLSE5RkoQahFPWqZdj1jNAsuwMaxMcIVapZ1oYgp3/CfcTv3zLvd1fe+XBIIi2x1fFz7I/14/DwufgZIeDmjX0q/GCjUQxUr/hAurk1CFg47FARTLb4tJ2zwHwo6+16+pZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; arc=none smtp.client-ip=194.37.255.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dev.tdt.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dev.tdt.de
+Received: from [127.0.0.1] (helo=localhost)
+	by relay.expurgate.net with smtp (Exim 4.92)
+	(envelope-from <prvs=990276a841=ms@dev.tdt.de>)
+	id 1sFZsK-0061eg-GO; Fri, 07 Jun 2024 15:43:24 +0200
+Received: from [195.243.126.94] (helo=securemail.tdt.de)
+	by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ms@dev.tdt.de>)
+	id 1sFZsJ-0088wo-Vd; Fri, 07 Jun 2024 15:43:24 +0200
+Received: from securemail.tdt.de (localhost [127.0.0.1])
+	by securemail.tdt.de (Postfix) with ESMTP id 9F940240053;
+	Fri,  7 Jun 2024 15:43:23 +0200 (CEST)
+Received: from mail.dev.tdt.de (unknown [10.2.4.42])
+	by securemail.tdt.de (Postfix) with ESMTP id 2A1CD240050;
+	Fri,  7 Jun 2024 15:43:23 +0200 (CEST)
+Received: from mail.dev.tdt.de (localhost [IPv6:::1])
+	by mail.dev.tdt.de (Postfix) with ESMTP id C1D9120974;
+	Fri,  7 Jun 2024 15:43:22 +0200 (CEST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v12 02/13] media: imagination: Add E5010 JPEG Encoder
- driver
-Content-Language: en-US
-To: Sebastian Fricke <sebastian.fricke@collabora.com>
-CC: <mchehab@kernel.org>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <hverkuil-cisco@xs4all.nl>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <benjamin.gaignard@collabora.com>, <laurent.pinchart@ideasonboard.com>,
-        <praneeth@ti.com>, <nm@ti.com>, <vigneshr@ti.com>, <a-bhatia1@ti.com>,
-        <j-luthra@ti.com>, <b-brnich@ti.com>, <detheridge@ti.com>,
-        <p-mantena@ti.com>, <vijayp@ti.com>, <andrzej.p@collabora.com>,
-        <nicolas@ndufresne.ca>
-References: <20240604104001.2235082-1-devarsht@ti.com>
- <20240604104729.2247253-1-devarsht@ti.com>
- <20240606154234.xfrgi3un667qcjqq@basti-XPS-13-9310>
-From: Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <20240606154234.xfrgi3un667qcjqq@basti-XPS-13-9310>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date: Fri, 07 Jun 2024 15:43:22 +0200
+From: Martin Schiller <ms@dev.tdt.de>
+To: Vladimir Oltean <olteanv@gmail.com>
+Cc: martin.blumenstingl@googlemail.com, hauke@hauke-m.de, andrew@lunn.ch,
+ f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 11/13] net: dsa: lantiq_gswip: Fix comments in
+ gswip_port_vlan_filtering()
+Organization: TDT AG
+In-Reply-To: <20240607114456.sm2wwtu4aqbyn3sk@skbuf>
+References: <20240606085234.565551-1-ms@dev.tdt.de>
+ <20240606085234.565551-12-ms@dev.tdt.de>
+ <20240607114456.sm2wwtu4aqbyn3sk@skbuf>
+Message-ID: <3ff925fb12bc1de7dabf1b0e4eb6b0ac@dev.tdt.de>
+X-Sender: ms@dev.tdt.de
+User-Agent: Roundcube Webmail/1.3.17
+X-purgate: clean
+X-purgate-type: clean
+X-purgate-ID: 151534::1717767804-34DF7522-D85C077F/0/0
 
-Hi Sebastian,
+On 2024-06-07 13:44, Vladimir Oltean wrote:
+> On Thu, Jun 06, 2024 at 10:52:32AM +0200, Martin Schiller wrote:
+>> From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> 
+>> Update the comments in gswip_port_vlan_filtering() so it's clear that
+>> there are two separate cases, one for "tag based VLAN" and another one
+>> for "port based VLAN".
+>> 
+>> Suggested-by: Martin Schiller <ms@dev.tdt.de>
+>> Signed-off-by: Martin Blumenstingl 
+>> <martin.blumenstingl@googlemail.com>
+>> ---
+> 
+> Here and in whatever the previous patch turns into: please make more
+> careful use of the word "fix". It carries connotations of addressing
+> bugs which must be backported. Various automated tools scan the git 
+> tree
+> for bug fixes which were apparently "not properly submitted" and mark
+> them for auto-selection to stable. You don't want to cause that for a
+> minor comment.
 
-On 06/06/24 21:12, Sebastian Fricke wrote:
-> Hey Devarsh,
-> 
-> please see below a warning that I found.
-> 
-> Otherwise I think the patches are ready, so if you can just send a quick
-> fix for that, then I can send the pull requests.
-> 
-[...]
-
->> +
->> +static void e5010_stop_streaming(struct vb2_queue *q)
->> +{
->> +    struct e5010_context *ctx = vb2_get_drv_priv(q);
->> +    struct e5010_q_data *queue;
-> 
-> drivers/media/platform/imagination/e5010-jpeg-enc.c: In function
-> ‘e5010_stop_streaming’:
-> drivers/media/platform/imagination/e5010-jpeg-enc.c:1331:30: warning: variable
-> ‘queue’ set but not used [-Wunused-but-set-variable]
->  1331 |         struct e5010_q_data *queue;
->       |                              ^~~~~
-> drivers/media/platform/imagination/e5010-jpeg-enc.c:1331:30: warning: variable
-> ‘queue’ set but not used [-Wunused-but-set-variable]
-> 
-> Regards,
-> Sebastian
-> 
-
-Thanks for sharing this.
-I have fixed above (and other reported) warnings in V13 series [1]. I have
-also shared the delta w.r.t previous series here [2].
-Kindly let me know if it looks okay to pull in now or any other comments.
-
-[1]: https://lore.kernel.org/all/20240607131900.3535250-1-devarsht@ti.com/
-[2]: https://gist.github.com/devarsht/0bd2e90b7352ed4831252a7962fff65d
-
-Regards
-Devarsh
+OK, I will eliminate the term "fix" wherever it is not appropriate.
 
