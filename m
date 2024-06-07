@@ -1,149 +1,169 @@
-Return-Path: <devicetree+bounces-73491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 618D68FFBD5
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 08:06:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A2998FFC16
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 08:17:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 471FE1C20B64
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 06:06:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0BA90284237
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 06:17:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53DDC27469;
-	Fri,  7 Jun 2024 06:06:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0215C4CB36;
+	Fri,  7 Jun 2024 06:17:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dAERxGI8"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="JTvv5PW0";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="N7apqiiH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD04F1BC2F;
-	Fri,  7 Jun 2024 06:06:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCF9F4204F;
+	Fri,  7 Jun 2024 06:17:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717740398; cv=none; b=PTakbqCD8bdce/irKTHM+VI4enkxnO8jq/C0LnrrJDUUI25yt52qxql3r0kSYqzgyYe5AJGfOJk4i3RJLS2vj3Zx7SXlwgBFtHDrdpB1fGaQBDXlSke8LSBOyJP+HUxNinV3EgTUdsT8WgqjRVxjvD5clz5gZJEmFUuIV/gEa5g=
+	t=1717741072; cv=none; b=uCE6bl1omp+zeXOi7ErSZcH1e6k1WsGOr4GOI6svu1YnU/yH7lma77H41Ed4gPe5a4IAwnrmEKJ28QEeXcJSO55XemCJgqYQEVpjlCdhfRSAs/0grfGONMXD6huCB6p3kwHRGsOuIQjzQCwFp7VIaJDrfWoEAZkSnl3Vh8evQQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717740398; c=relaxed/simple;
-	bh=jNZkxBEs7U5TdwARCjZjVhwqyxR/ZXTvzrddGfOudKA=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=SU7O4GIn/WIuYula//qPWkGeSCXgR+0x9Fv6HwmeS2YxxZCZu35jsKcYxA2LZK9geiSmUGcMd3s0ylI87TE2yfgbv99yvxiRegTXUtF0PJv9NEJrlH525hm6xR4P2WcWbYyEPMPmge4Kh0yBHwN0eb+x/Wga5/KwwgGiqkD9bBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dAERxGI8; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-35dd0c06577so1779188f8f.2;
-        Thu, 06 Jun 2024 23:06:36 -0700 (PDT)
+	s=arc-20240116; t=1717741072; c=relaxed/simple;
+	bh=2JgvIgjIquEs9i/eKxSi+AJCxrhitWDuibgNtQ7ROTU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UtuHlWLJl6sYPFT4BINozsYkrsn/k/NTVhp37ZS9gjL39xVE3R3jJkLykqy7k72O6SvHVJ3hqVdd/j4XJZyQBvYgZ3V6dG0QfvnpZzE/d3vFOO92/8we6k9fRK6aZymfuA7DbaWYa30Mf8DYbAVTuR4v6mDtmH0KlmGsdK8ds04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=JTvv5PW0; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=N7apqiiH reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717740395; x=1718345195; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jNZkxBEs7U5TdwARCjZjVhwqyxR/ZXTvzrddGfOudKA=;
-        b=dAERxGI8++50YtItabwAiNuQR1Zp+tgjBNEQzMQorMHD7XbtGd53jp6qdHqzwxKxwT
-         j8SnSwJZB1EMdx4ipHxpRZm8L6CHGDlC7B8YL77evXL2OwMqk5obeMpjG3Qjf8OlPU0M
-         KQ8iTcwZYovbtpoyXfMzI9XPxFEnEeOSDMFRIUrPGj1z5tE9Ba8URgDOFMO9G3UD9o4r
-         aoJhp+mK0+vuylKY5fHPhy+MaznJqSyNjpIR8bo+lwEnQrpCG5ds0GEHqkz31Ll6IHmW
-         YXPXFr0oleBHNn18a46NHkHOl9lFjOBtd2yDteawikbiVS2XyXdHyEeR9YE2lV55fUtg
-         OTTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717740395; x=1718345195;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jNZkxBEs7U5TdwARCjZjVhwqyxR/ZXTvzrddGfOudKA=;
-        b=tq7OrEpoD2uHq3yaq7dUAC4oAaQe/po5kdgjlTtkKhAW7KpG8sWbmw8qNCLgCbi5Sd
-         yMAtJ1aUd2mAcV3sOORqQ6dfrD/VoldiIQvmJs/DKBhBzoUa0dd99uCjh3ERA3JIPVaO
-         YL6+epJYxToRtXv0586vczpxmXCfY3dani+6kXiu7EYBDoWTazclOV2aM1md6S7EQaaz
-         3in/0cCmnTM5wR+zX4325IqBCrf4d66qqC5vAhSOKxaVEQnXC8p573EHoiAResqTJ1FL
-         hhShTAy/89CLkIBNQMfuTswvwjwJc71sUD/Er47V4MSjPV9KY6tnkru47w1GLf8FC1KV
-         3F/g==
-X-Forwarded-Encrypted: i=1; AJvYcCXqnbysRUbLypYMZow3+iLFgEc9kjCv3EHtzDw4Z0xiNdpHSWQOJoz/n5lQXisB4H0SGpac4/FV6vfbZ2yDwGOa4jR/tv+zj3gF+YtvP7+AK516ZyyNHYy88+2YZFMtMna73aSyzJ8Anw==
-X-Gm-Message-State: AOJu0YyPqQ4dpbwEoNgQswDDy4JLsV2eGg2/kWrBucNtSyUV+IktiJi2
-	p6s1Fe5Qszx32W2QZU9pgMAHGT7x8EOlj40EeFzE6LUEe/QLDEWl
-X-Google-Smtp-Source: AGHT+IEgwZKufWc5FwUuSbx7D4i1LN7jDSiJEogiwEw6n1p0cNIWxHRj+ziKiW0p1rfT+aXoS165cg==
-X-Received: by 2002:a5d:45c9:0:b0:34f:f540:bdbc with SMTP id ffacd0b85a97d-35efed64bdamr1061157f8f.38.1717740394602;
-        Thu, 06 Jun 2024 23:06:34 -0700 (PDT)
-Received: from smtpclient.apple ([167.99.200.149])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5d69867sm3230511f8f.57.2024.06.06.23.06.32
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 06 Jun 2024 23:06:34 -0700 (PDT)
-Content-Type: text/plain;
-	charset=utf-8
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1717741068; x=1749277068;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=jgjECblWOM2Wl+EWq3+KIZ+Ee/nKanxwL2aIXhzXS1s=;
+  b=JTvv5PW0TqZzwcsYA03VjSkL7KS1VdnrU9ThutnluK1tsb8cwcWDU3D8
+   otYM+BrN6VdNWEnjW3rOJoLD33OI6+MeIa4ZEH/HDSYV5NgRPWeRYFxZw
+   uZmKUHT9mmsY1Per1GpqLgJFYDnhTre3tlgCpV25oS3M9FeT0X8cnXwkN
+   3UbcYeXH6hHLToYRaKea24CXEp+lk7ffX1reubw04ETPvwmNTuW0cAV9A
+   qUghq7d8QzGBHcZ7dy1V5jRtmZf91fGRgulIcJy+OSkoOOsA1w8IeSbOu
+   DYpDxpAYLoMBExGxD/xnQiONbPaeeIyPjTm+bhR4ZyDa1pDP2DCDXjuyY
+   w==;
+X-CSE-ConnectionGUID: BR4pfoGUT2ihljEi9lw8/A==
+X-CSE-MsgGUID: L+D5Wu4uQxypwVDEyTxNmg==
+X-IronPort-AV: E=Sophos;i="6.08,220,1712613600"; 
+   d="scan'208";a="37273910"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 07 Jun 2024 08:17:45 +0200
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 25A76175636;
+	Fri,  7 Jun 2024 08:17:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1717741061;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=jgjECblWOM2Wl+EWq3+KIZ+Ee/nKanxwL2aIXhzXS1s=;
+	b=N7apqiiH8hepl+ymp4Vg2VxhP0qh6Cdl9lweSbvU+CsWxL2+PI8P42xt3ltk0hOnBD4HBa
+	0NXtRyvkW6JvAWAzo6U2fO3kH5PQduMrSNv1tXiwrBM51BJJfNlErvQOK4r/XXBfmw5/AP
+	S3H1LabZ7YHryv1K5WSv6Y76Jge7DJxyD4SmJrj0phoDIfdHZ2N4tz0rGqPQMECwwDzGWh
+	0iSBiN/CttYelvDD8tpAQ660dDTrNp7a+aKicjjhMdbaqmn2I42EdvM/nQQFzysrOpAKEs
+	LkSgwOhI442ndKO6GdgC0zM0DELgmb9Jbpk7BkvhA3EPPOq4TzQqKzIWAsOmOQ==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Dong Aisheng <aisheng.dong@nxp.com>, linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>, Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH 5/7] arm64: dts: imx8qm-mek: add i2c in mipi[0,1] subsystem
+Date: Fri, 07 Jun 2024 08:17:39 +0200
+Message-ID: <13531926.dW097sEU6C@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20240606-imx8qm-dts-usb-v1-5-565721b64f25@nxp.com>
+References: <20240606-imx8qm-dts-usb-v1-0-565721b64f25@nxp.com> <20240606-imx8qm-dts-usb-v1-5-565721b64f25@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.600.62\))
-Subject: Re: [PATCH 00/12] arm64: meson: bunch of DT fixes, take 4 (final one
- ??)
-From: Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <20240606-topic-amlogic-upstream-bindings-fixes-dts-v1-0-62e812729541@linaro.org>
-Date: Fri, 7 Jun 2024 10:06:20 +0400
-Cc: Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree <devicetree@vger.kernel.org>,
- linux-arm-kernel@lists.infradead.org,
- AML <linux-amlogic@lists.infradead.org>,
- LKML <linux-kernel@vger.kernel.org>
+MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <34243887-1D78-4D1E-BBB9-607297813CC7@gmail.com>
-References: <20240606-topic-amlogic-upstream-bindings-fixes-dts-v1-0-62e812729541@linaro.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: Apple Mail (2.3774.600.62)
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-> On 6 Jun 2024, at 12:48=E2=80=AFPM, Neil Armstrong =
-<neil.armstrong@linaro.org> wrote:
->=20
-> Along with the following:
-> - =
-https://lore.kernel.org/all/20240422-t7-reset-v2-1-cb82271d3296@amlogic.co=
-m/
-> - =
-https://lore.kernel.org/all/20240513224552.800153-1-jan.dakinevich@saluted=
-evices.com/
-> - =
-https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes=
--power-domains-spifc-v1-1-380f29ba4a16@linaro.org/
-> - =
-https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-conve=
-rt-spdif-receiver-v1-1-262465adbac2@linaro.org/
-> - =
-https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes=
--power-domains-mmc-v1-1-4acbb8cc2626@linaro.org/
-> - =
-https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes=
--power-domains-nvmem-v1-1-ef6f10c86a63@linaro.org/
-> - =
-https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes=
--power-domains-phy-v1-1-c819b0ecd8c8@linaro.org/
-> - =
-https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes=
--power-domains-rng-v1-1-0a55a7ba55e4@linaro.org/
-> - =
-https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes=
--audio-widgets-v1-1-65bd7cc2e09b@linaro.org/
-> - =
-https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes=
--power-domains-sardac-v1-1-40a8de6baa59@linaro.org/
-> - =
-https://lore.kernel.org/all/20240606-topic-amlogic-upstream-bindings-conve=
-rt-g12a-tohdmitx-v2-1-70d44fa30790@linaro.org/
->=20
-> this bunch of changes fixes 99% of the remaining dts check errors.
->=20
-> The two remaining bindings conversions for arm64/amlogic are:
-> - ti,tas5707
-> - everest,es7241
->=20
-> I'm too lazy to do them right now, so if someone is interested
-> in doing the conversion, please do it!
->=20
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Hi,
 
-For the series, tested with multiple =E2=80=98meson=E2=80=99 boards =
-(GXBB/GXL/GXM/G12B):
+Am Donnerstag, 6. Juni 2024, 20:46:59 CEST schrieb Frank Li:
+> Add i2c node in mipi[0,1] subystem for imx8qm-mek.
+>=20
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8qm-mek.dts | 34 ++++++++++++++++++++++=
+++++++
+>  1 file changed, 34 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts b/arch/arm64/bo=
+ot/dts/freescale/imx8qm-mek.dts
+> index 80cb834d56bc2..cdcd5993cc69f 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
+> @@ -388,6 +388,24 @@ &i2c1_lvds1 {
+>  	status =3D "okay";
+>  };
+> =20
+> +&i2c0_mipi0 {
+> +	#address-cells =3D <1>;
+> +	#size-cells =3D <0>;
 
-Tested-by: Christian Hewitt <christianshewitt@gmail.com>=
+These two properties should be part of the .dtsi.
+
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&pinctrl_mipi0_lpi2c0>;
+> +	clock-frequency =3D <100000>;
+> +	status =3D "okay";
+> +};
+> +
+> +&i2c0_mipi1 {
+> +	#address-cells =3D <1>;
+> +	#size-cells =3D <0>;
+
+These two properties should be part of the .dtsi.
+
+Best regards,
+Alexander
+
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&pinctrl_mipi1_lpi2c0>;
+> +	clock-frequency =3D <100000>;
+> +	status =3D "okay";
+> +};
+> +
+>  &flexcan1 {
+>  	pinctrl-names =3D "default";
+>  	pinctrl-0 =3D <&pinctrl_flexcan1>;
+> @@ -660,6 +678,22 @@ IMX8QM_SPI2_CS0_LSIO_GPIO3_IO10		0x21
+>  		>;
+>  	};
+> =20
+> +	pinctrl_mipi0_lpi2c0: mipi0_lpi2c0grp {
+> +		fsl,pins =3D <
+> +			IMX8QM_MIPI_DSI0_I2C0_SCL_MIPI_DSI0_I2C0_SCL      0xc6000020
+> +			IMX8QM_MIPI_DSI0_I2C0_SDA_MIPI_DSI0_I2C0_SDA      0xc6000020
+> +			IMX8QM_MIPI_DSI0_GPIO0_01_LSIO_GPIO1_IO19         0x00000020
+> +		>;
+> +	};
+> +
+> +	pinctrl_mipi1_lpi2c0: mipi1_lpi2c0grp {
+> +		fsl,pins =3D <
+> +			IMX8QM_MIPI_DSI1_I2C0_SCL_MIPI_DSI1_I2C0_SCL      0xc6000020
+> +			IMX8QM_MIPI_DSI1_I2C0_SDA_MIPI_DSI1_I2C0_SDA      0xc6000020
+> +			IMX8QM_MIPI_DSI1_GPIO0_01_LSIO_GPIO1_IO23         0x00000020
+> +		>;
+> +	};
+> +
+>  	pinctrl_flexspi0: flexspi0grp {
+>  		fsl,pins =3D <
+>  			IMX8QM_QSPI0A_DATA0_LSIO_QSPI0A_DATA0     0x06000021
+>=20
+>=20
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
 
