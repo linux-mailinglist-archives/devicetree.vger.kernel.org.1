@@ -1,341 +1,132 @@
-Return-Path: <devicetree+bounces-73737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3010E900781
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 16:52:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C02C900798
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 16:54:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF52628F29D
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 14:52:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDBFB29126B
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 14:54:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E22719AA5A;
-	Fri,  7 Jun 2024 14:42:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B14E5197528;
+	Fri,  7 Jun 2024 14:45:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="hhiYA8rH"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=tronnes.org header.i=@tronnes.org header.b="EVyk/tlt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.domeneshop.no (smtp.domeneshop.no [194.63.252.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5A0C19A2BA;
-	Fri,  7 Jun 2024 14:42:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A63A713F42E;
+	Fri,  7 Jun 2024 14:45:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.63.252.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717771343; cv=none; b=rc06AnSBNGSVDKe1J0iF5Dj2SEa/Gw4hrvZl6l5XPqBTDLNB4qsbitT+dMSkg0KUZG5ag+tpJwBygEIZx6ekOflhCg44iIkh083+EFyixKrBMxAF8hDojNOjA0wqJnZuulr+VBgpWKsN9Cn/E7CBeWuKIXAwQxyvPu3+3cgFdag=
+	t=1717771547; cv=none; b=h84qou6TDzZg877QMAw9Rpxqo1VqIwlIDoj/x3H0tsy+qrNFK+PJjmIMUwejnkFKblPlPasTjZa7ivX9TwQx7mkHFd9X4MSwfAif8OMpvBghvLR6kt+mvYXqbXRP9feSIYZBBUePZNpjgRcfJGFlaHgwQOlFpBP/EHeBZ6hvzzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717771343; c=relaxed/simple;
-	bh=TXfIcxfKZ+HO9/x3g0vX/xX24/WbzhKt8eJbqKRPiYI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QSYjlTCXQmk5ewed9OgMLRJK3w9nBqCiKic557fJqAIYlVmLJJGShC2/I5xvau5beP1y557C8S/lnfDU6t9MUeQVpYituQLohvbIMl1h7ZWzAbW9orzfhpYzYU4m4qnRxt78eqST+eYy7eTUnRJQgcrA288ohlqX2/HvHKb7jbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=hhiYA8rH; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0410C720;
-	Fri,  7 Jun 2024 16:42:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1717771324;
-	bh=TXfIcxfKZ+HO9/x3g0vX/xX24/WbzhKt8eJbqKRPiYI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hhiYA8rHBz74Da65hnnjBv6TmnLse8pBYPca66L+wnUmaI1rJTsMeWX2PkE9FFd2y
-	 2PmAfTk8/Z3/MYjvi6yklgkJ5exQ2LPdUf992QxJ7RhE8rbQ0Wv6AwzYK0ZbMaop5E
-	 D2DpiIgJDKc8PxDE3VdHzpu1nDbpq+iMmUx4j7r4=
-Date: Fri, 7 Jun 2024 17:41:54 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Julien Stephan <jstephan@baylibre.com>,
-	Louis Kuo <louis.kuo@mediatek.com>,
-	Phi-Bang Nguyen <pnguyen@baylibre.com>,
-	Andy Hsieh <andy.hsieh@mediatek.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Florian Sylvestre <fsylvestre@baylibre.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Paul Elder <paul.elder@ideasonboard.com>,
-	Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v4 1/5] dt-bindings: media: add mediatek ISP3.0 sensor
- interface
-Message-ID: <20240607144154.GD18479@pendragon.ideasonboard.com>
-References: <20240110141443.364655-1-jstephan@baylibre.com>
- <20240110141443.364655-2-jstephan@baylibre.com>
- <e0bf8667-cbb8-49ba-bb44-3edf93b019b8@linaro.org>
- <CAEHHSvYt-aqFahi=B_si=duJH8xDgy_9nndgR-P0+U5THX69uw@mail.gmail.com>
+	s=arc-20240116; t=1717771547; c=relaxed/simple;
+	bh=+26zE7pepphgrDVsnqvGEVAq//JALxnWLBjwBy3WjA8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CeYcH3w03SGdSTT7RZUckqCSnqf/79dIwly3YJnNmxaKNrlAw6S8iUVKzfDjrkfLqmOCLGcSDyPc89xDxv/F5ELceEFsW5M5wSXqKnui+sS8WtqZFB1dt7blT5yfnNy2Jn1m+8LZUCyHb8os93HyjcaLZY3ZvCHG4yhBcgfVhsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tronnes.org; spf=pass smtp.mailfrom=tronnes.org; dkim=pass (2048-bit key) header.d=tronnes.org header.i=@tronnes.org header.b=EVyk/tlt; arc=none smtp.client-ip=194.63.252.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tronnes.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tronnes.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+	; s=ds202312; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:From:Sender:Reply-To:
+	Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+	List-Owner:List-Archive; bh=0pBBebWaKItSZZvGMg+oo04bl3J9t4F+/w8mYuUg+g8=; b=E
+	Vyk/tlt0i/iV9mQcEq11i6SevJJysuk7swmpFjcu8RhPQkRNmczBLfrk8FrjPzuQUzM0dFIphbid4
+	HTUyIn0ivC+RYyvkR/DUMzLyYE8tJATa2TN2YPPrzHYPji3zO33H3YMBVE6wboJh3RF310ZpKZf3b
+	ZQy2iPGBVe8fwhT5BninUVixCYGJxU9WkxdVsAZDiC+vPkoSvfCH265bKar765G63F0sYSGfXWWHj
+	MOg7AR010IIYjXIZNikYdjpko6auijngGej5WjtJ51qttMsYCMCRjuxnLcMs7Pfj8AvCWMkoU1dVY
+	oCl7gR84/C0WZWvIvhW+/lQVKGBgpSoHw==;
+Received: from [2a01:799:962:4900:815f:3dd0:60d8:6458] (port=56414)
+	by smtp.domeneshop.no with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <noralf@tronnes.org>)
+	id 1sFaqc-009Va2-0S;
+	Fri, 07 Jun 2024 16:45:42 +0200
+Message-ID: <6537508e-8a67-42d0-911a-45e14852f818@tronnes.org>
+Date: Fri, 7 Jun 2024 16:45:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/5] drm/tiny: panel-mipi-dbi: Support 18 bits per
+ color RGB666
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, David Lechner <david@lechnology.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
+ Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+References: <20240604-panel-mipi-dbi-rgb666-v4-0-d7c2bcb9b78d@tronnes.org>
+Content-Language: en-US
+From: =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>
+In-Reply-To: <20240604-panel-mipi-dbi-rgb666-v4-0-d7c2bcb9b78d@tronnes.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAEHHSvYt-aqFahi=B_si=duJH8xDgy_9nndgR-P0+U5THX69uw@mail.gmail.com>
 
-Hi Krzysztof,
 
-On Fri, Jun 07, 2024 at 10:52:33AM +0200, Julien Stephan wrote:
-> Le ven. 12 janv. 2024 à 08:32, Krzysztof Kozlowski a écrit :
-> > On 10/01/2024 15:14, Julien Stephan wrote:
-> > > From: Louis Kuo <louis.kuo@mediatek.com>
-> > >
-> > > This adds the bindings, for the mediatek ISP3.0 SENINF module embedded in
-> > > some Mediatek SoC, such as the mt8365
-> > >
-> >
-> > ...
-> >
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: camsys
-> > > +      - const: top_mux
-> > > +
-> > > +  phys:
-> > > +    minItems: 1
-> > > +    maxItems: 4
-> > > +    description:
-> > > +      phandle to the PHYs connected to CSI0/A, CSI1, CSI2 and CSI0B
-> > > +
-> > > +  phy-names:
-> > > +    minItems: 1
-> > > +    items:
-> > > +      - const: csi0
-> > > +      - const: csi1
-> > > +      - const: csi2
-> > > +      - const: csi0b
-> >
-> > Why one hardware has flexible number of phys?
+
+On 6/4/24 15:20, Noralf Trønnes via B4 Relay wrote:
+> Hi,
 > 
-> Hi Krzysztof,
+> In this version I've fixed up a commit message that I had forgotten to 
+> write before sending and improved a struct member name.
 > 
-> seninf can have multiple port depending on the soc, each requiring its own phy
+> See version 1 of the patchset for the full cover letter.
 > 
-> > > +
-> > > +  ports:
-> > > +    $ref: /schemas/graph.yaml#/properties/ports
-> > > +
-> > > +    properties:
-> > > +      port@0:
-> > > +        $ref: /schemas/graph.yaml#/$defs/port-base
-> > > +        unevaluatedProperties: false
-> > > +        description: CSI0 or CSI0A port
-> > > +
-> > > +        properties:
-> > > +          endpoint:
-> > > +            $ref: video-interfaces.yaml#
-> > > +            unevaluatedProperties: false
-> > > +
-> > > +            properties:
-> > > +              clock-lanes:
-> > > +                maxItems: 1
-> > > +              data-lanes:
-> > > +                minItems: 1
-> > > +                maxItems: 4
-> > > +
-> > > +      port@1:
-> > > +        $ref: /schemas/graph.yaml#/$defs/port-base
-> > > +        unevaluatedProperties: false
-> > > +        description: CSI1 port
-> > > +
-> > > +        properties:
-> > > +          endpoint:
-> > > +            $ref: video-interfaces.yaml#
-> > > +            unevaluatedProperties: false
-> > > +
-> > > +            properties:
-> > > +              clock-lanes:
-> > > +                maxItems: 1
-> > > +              data-lanes:
-> > > +                minItems: 1
-> > > +                maxItems: 4
-> > > +
-> > > +      port@2:
-> > > +        $ref: /schemas/graph.yaml#/$defs/port-base
-> > > +        unevaluatedProperties: false
-> > > +        description: CSI2 port
-> > > +
-> > > +        properties:
-> > > +          endpoint:
-> > > +            $ref: video-interfaces.yaml#
-> > > +            unevaluatedProperties: false
-> > > +
-> > > +            properties:
-> > > +              clock-lanes:
-> > > +                maxItems: 1
-> > > +              data-lanes:
-> > > +                minItems: 1
-> > > +                maxItems: 4
-> > > +
-> > > +      port@3:
-> > > +        $ref: /schemas/graph.yaml#/$defs/port-base
-> > > +        unevaluatedProperties: false
-> > > +        description: CSI0B port
-> > > +
-> > > +        properties:
-> > > +          endpoint:
-> > > +            $ref: video-interfaces.yaml#
-> > > +            unevaluatedProperties: false
-> > > +
-> > > +            properties:
-> > > +              clock-lanes:
-> > > +                maxItems: 1
-> > > +              data-lanes:
-> > > +                minItems: 1
-> > > +                maxItems: 2
-> > > +
-> > > +      port@4:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: connection point for cam0
-> > > +
-> > > +      port@5:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: connection point for cam1
-> > > +
-> > > +      port@6:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: connection point for camsv0
-> > > +
-> > > +      port@7:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: connection point for camsv1
-> > > +
-> > > +      port@8:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: connection point for camsv2
-> > > +
-> > > +      port@9:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: connection point for camsv3
-> > > +
-> > > +    required:
-> > > +      - port@0
-> > > +      - port@1
-> > > +      - port@2
-> > > +      - port@3
-> > > +      - port@4
-> > > +      - port@5
-> > > +      - port@6
-> > > +      - port@7
-> > > +      - port@8
-> > > +      - port@9
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - interrupts
-> > > +  - clocks
-> > > +  - clock-names
-> > > +  - power-domains
-> > > +  - ports
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/clock/mediatek,mt8365-clk.h>
-> > > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > +    #include <dt-bindings/phy/phy.h>
-> > > +    #include <dt-bindings/power/mediatek,mt8365-power.h>
-> > > +
-> > > +    soc {
-> > > +          #address-cells = <2>;
-> > > +          #size-cells = <2>;
-> >
-> > Use 4 spaces for example indentation.
-> >
-> > > +
-> > > +          seninf: seninf@15040000 {
-> >
-> > Node names should be generic. See also an explanation and list of
-> > examples (not exhaustive) in DT specification:
-> > https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> Signed-off-by: Noralf Trønnes <noralf@tronnes.org>
+> ---
 
-The seninf is (mostly) a set of MIPI CSI-2 receivers. Would you prefer
-'csi', 'mipi-csi', 'csi-2' or any other name ?
+Thanks a lot for reviewing the patches, applied to drm-misc-next.
 
-There's also the camsv IP in the same series that needs a generic name.
-I really don't know what to propose for it. Could you recommend
-something that would make you happy ?
+Noralf.
 
-On a side note, that document lacks appropriate generic names for lots
-of building blocks found in recent SoCs, it would be nice to get it
-updated. You will eventually get better quality DT patches then :-)
-
-> > > +                compatible = "mediatek,mt8365-seninf";
-> > > +                reg = <0 0x15040000 0 0x6000>;
-> > > +                interrupts = <GIC_SPI 210 IRQ_TYPE_LEVEL_LOW>;
-> > > +                clocks = <&camsys CLK_CAM_SENIF>,
-> > > +                         <&topckgen CLK_TOP_SENIF_SEL>;
-> > > +                clock-names = "camsys", "top_mux";
-> > > +
-> > > +                power-domains = <&spm MT8365_POWER_DOMAIN_CAM>;
-> > > +
-> > > +                phys = <&mipi_csi0 PHY_TYPE_DPHY>;
-> > > +                phy-names = "csi0";
-> > > +
-> > > +                ports {
-> > > +                      #address-cells = <1>;
-> > > +                      #size-cells = <0>;
-> > > +
-> > > +                      port@0 {
-> > > +                            reg = <0>;
-> > > +                            seninf_in1: endpoint {
-> > > +                              clock-lanes = <2>;
-> > > +                              data-lanes = <1 3 0 4>;
-> > > +                              remote-endpoint = <&isp1_out>;
-> > > +                            };
-> > > +                      };
-> > > +
-> > > +                      port@1 {
-> > > +                          reg = <1>;
-> > > +                      };
-> > > +
-> > > +                      port@2 {
-> > > +                            reg = <2>;
-> > > +                      };
-> > > +
-> > > +                      port@3 {
-> > > +                            reg = <3>;
-> > > +                      };
-> > > +
-> > > +                      port@4 {
-> > > +                            reg = <4>;
-> > > +                            seninf_camsv1_endpoint: endpoint {
-> > > +                                remote-endpoint = <&camsv1_endpoint>;
-> > > +                            };
-> > > +                      };
-> > > +
-> > > +                      port@5 {
-> > > +                            reg = <5>;
-> > > +                      };
-> > > +
-> > > +                      port@6 {
-> > > +                            reg = <6>;
-> > > +                      };
-> > > +
-> > > +                      port@7 {
-> > > +                            reg = <7>;
-> > > +                      };
-> > > +
-> > > +                      port@8 {
-> > > +                            reg = <8>;
-> > > +                      };
-> > > +
-> > > +                      port@9 {
-> > > +                            reg = <9>;
-> > > +                      };
-> > > +
-> >
-> > Stray blank line
-> >
-> > > +                };
-
--- 
-Regards,
-
-Laurent Pinchart
+> Changes in v4:
+> - Expand the commit message (Dmitry)
+> - s/emulation_format/pixel_format/ (Dmitry)
+> - Link to v3: https://lore.kernel.org/r/20240603-panel-mipi-dbi-rgb666-v3-0-59ed53ca73da@tronnes.org
+> 
+> Changes in v3:
+> - Added r-b's to patch 1 and 5
+> - Link to v2: https://lore.kernel.org/r/20240512-panel-mipi-dbi-rgb666-v2-0-49dd266328a0@tronnes.org
+> 
+> Changes in v2:
+> - binding: Use 'default: r5g6b5' (Rob)
+> - Link to v1: https://lore.kernel.org/r/20240507-panel-mipi-dbi-rgb666-v1-0-6799234afa3e@tronnes.org
+> 
+> ---
+> Noralf Trønnes (5):
+>       dt-bindings: display: panel: mipi-dbi-spi: Add a pixel format property
+>       drm/mipi-dbi: Remove mipi_dbi_machine_little_endian()
+>       drm/mipi-dbi: Make bits per word configurable for pixel transfers
+>       drm/mipi-dbi: Add support for DRM_FORMAT_RGB888
+>       drm/tiny: panel-mipi-dbi: Support the pixel format property
+> 
+>  .../bindings/display/panel/panel-mipi-dbi-spi.yaml | 30 +++++++++
+>  drivers/gpu/drm/drm_mipi_dbi.c                     | 76 +++++++++++++++-------
+>  drivers/gpu/drm/tiny/panel-mipi-dbi.c              | 55 +++++++++++++++-
+>  include/drm/drm_mipi_dbi.h                         | 10 +++
+>  4 files changed, 147 insertions(+), 24 deletions(-)
+> ---
+> base-commit: 0209df3b4731516fe77638bfc52ba2e9629c67cd
+> change-id: 20240405-panel-mipi-dbi-rgb666-4e033787d6c9
+> 
+> Best regards,
 
