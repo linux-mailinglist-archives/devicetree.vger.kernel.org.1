@@ -1,212 +1,107 @@
-Return-Path: <devicetree+bounces-73520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CFD48FFE0B
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 10:31:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 185988FFE30
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 10:42:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B5631F23B5E
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 08:31:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A90D51F25613
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 08:42:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A65315B0F7;
-	Fri,  7 Jun 2024 08:31:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D45115B124;
+	Fri,  7 Jun 2024 08:42:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RK9AJaZ5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ixqdpOuB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DBE1152DFA;
-	Fri,  7 Jun 2024 08:31:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FD0E15B0E1;
+	Fri,  7 Jun 2024 08:42:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717749083; cv=none; b=miYYF0FwgeKJfQj3VjxHtBb+8lYtTOS0qTegMzETqpkyp5bF7OkIsQa8k5eXbnZyyeR1uJbZSAyLlsbC0/B5fshuTobw61Yv5Da6SQ4+7bh3qF5/0AIeu+IjSIvTIiqBFFTiNy03oWEh+DQRKhPFFQeLn4iup6uNCJL5RcXrwbM=
+	t=1717749742; cv=none; b=o7q9KUeVsHYsYkJU536c+emArkvaQQlJnpTLQCBPNyCQHZE40dpRQMx8tqSQBEWugfZXtN45V11xKmaSjreZRs7Q6O7YMfpIY8CNHTEFPRC2h459gfoY2Iopl2YkEL49G2hAznUaT+dA+w0W91z03dyXT9Txib+6fTnfeQF1Rhs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717749083; c=relaxed/simple;
-	bh=UmVEOr6PldRB4UQj7PFbWh0cEkA1HnWZKAihYWYYAVQ=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=l8MPWn3WXzMzp9gpXfrrFjuAHB44qa0aQ1axH3AUbQlTA9ETtqDh6LE9218Yqtn0o5TmEQGC7GNWqR2FKZJNIyT17fqd3MCt0PS3S6qZeNNAxLyBBDBxNFUQePvsDHjLKhADafrOjxXZ0zHVQ/FnrBeFZ/cGLUWEdR70JYO3+ig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RK9AJaZ5; arc=none smtp.client-ip=209.85.208.178
+	s=arc-20240116; t=1717749742; c=relaxed/simple;
+	bh=gKD+CT9f7p/wT8kKDWc+BkVADz15maGFszW302e203U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JY7YZIg6vfsDJWi3dNbjiPsK98gQS1/NFdirRqAu5NfAPSr6W9BwWizwoSNAuaS9LmckHgKguMduvoPNdesGz1Lrz1VFCHLt4+rW2JsVFOJ4wnTH+hgx7mrngpmZqutY0t/hoUvmHU07XvoCEhdJL2rQORhW4Y7Kf3zmfA0PfJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ixqdpOuB; arc=none smtp.client-ip=209.85.208.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2e724bc466fso22877101fa.3;
-        Fri, 07 Jun 2024 01:31:21 -0700 (PDT)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-57a4ce82f30so2260308a12.0;
+        Fri, 07 Jun 2024 01:42:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717749080; x=1718353880; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1717749739; x=1718354539; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7DuO23jZ0yNpZDQlXy4KWuQ3OqB8VX+2cVKHM/HssMw=;
-        b=RK9AJaZ5nZtqRRg6MXSe470jBrOLUIae4TOg6818kwkOsfvySLD8H9HW9CJ/KyHm1t
-         b8SpSiQ45Nz+oEvtz5XQvM8JW8R0d4MM2tXeuqmKk2az0+kdNX5J0shecK9wG3cPy3VT
-         EgYd21bcHeb7Xau0FeMgf+Xu6PMEMfAMgs9v5rM1l1oZnUZD6RH6sJDFabCLSUYffkuo
-         u+Vws5DznoINmBii+gtxOQC1OPAr45PNFqlhK9OXREResIo0uI5qB4FI/uEBPp4pUv6z
-         V5tkumI/8CKfq+tkNUpo9qIovcl1/sj0j3BRTYOcGni8cnxL2BzqlcnwLX34himebV79
-         5MwQ==
+        bh=gKD+CT9f7p/wT8kKDWc+BkVADz15maGFszW302e203U=;
+        b=ixqdpOuBi9SfMGyqw2y4EoqvVNGyaWWO6cSa+kh8tGA80zv9ZEK7UEfwwy2Tz6xHCB
+         /0FVOcpHd5R54cBN9LJO7YpgNj+sKJjaOyxhfQTyVNi4+lmcq531G41op/r1dxlWRL3+
+         2yYfvyRNAQ5UK8K7GVqWDwtoLgtUvwuBLMkgfX4qDl+5wicncOgAU8BfDFDKZ6od62yE
+         A2GAPSK7f2GxiDUbmTOOZn4us1x9NQSbKeHFbFAFgetWc8cQF37c/uA4VHS/er3PsPKi
+         /lwmRRKjtFEfaIQSbFzG+7R2Fxnv7/0V653S348v/EuZtIHDU+JlFiO36H78VrxTqN1T
+         Cu+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717749080; x=1718353880;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1717749739; x=1718354539;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=7DuO23jZ0yNpZDQlXy4KWuQ3OqB8VX+2cVKHM/HssMw=;
-        b=ELVcjKPxTFHBTdO2EWoBivI6hN7bhV3gVvlWDGUAONOKWekmbIJvode8KPWc66JmT3
-         Df1WqRHMLjfYjU5IZCXtQZXJmEuV+QJ+cuprvqbRkjRTqwBv9LXwJ6MHN6QcPti9/Q2F
-         jgS8FkPaGnJeBIF7nBpIjEuXH7hXpY6H8kuQ4Xb288EE4niMkGDBoGrFM3ZgGNiSiJ+7
-         Em/gsT0XXnWuoCDadxYQxuQuQUyvxDoXB0sOITnDcyFYIhm/rtmN2Wkl3XnUQd4taB84
-         gjUDBIAK3Ee60YsPHYYjZcv6CFibzzAfLcIJtPl6NjmVtctwYgsQYt8kGyW7ItUR+Vuo
-         PB6w==
-X-Forwarded-Encrypted: i=1; AJvYcCWetqR62Ii0LCPa2E1yLpBpZsDenY4Pw0QY3e51406jXYrkFE9pdOsoy9/3WErriQaQ3pbbn3cqAmab1hhVKXT/eEmWDQGaQxdMcZIG7IU5CCF1z7x46u12ICknG8pgfw+9wrpnpMwnlQ==
-X-Gm-Message-State: AOJu0YzV4KRMQnTYSLQBhZDHZ4A9SV5wB2D5Vz0oj1hdFFy3ouYEkRBG
-	6z1p/OJGjD2LCi/eerDdkDEXbmckRN9A6YFSnhofOC8DAiyyKrQU
-X-Google-Smtp-Source: AGHT+IF35NHJkt0/GZ2wA+6lejpaPF/1YIbi+EiO5wykf6Binanla8DE0xf9gcQLDJuseJaz3OnbDg==
-X-Received: by 2002:a2e:84d7:0:b0:2ea:8308:841b with SMTP id 38308e7fff4ca-2eadce4cf3dmr15806201fa.31.1717749079372;
-        Fri, 07 Jun 2024 01:31:19 -0700 (PDT)
-Received: from smtpclient.apple ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5d69867sm3485152f8f.57.2024.06.07.01.31.16
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 07 Jun 2024 01:31:19 -0700 (PDT)
-Content-Type: text/plain;
-	charset=utf-8
+        bh=gKD+CT9f7p/wT8kKDWc+BkVADz15maGFszW302e203U=;
+        b=AsMMIOL1ypi41wJsaJhOMm3fRL9IxidFs0lAJmqmcp0p20vgv6Z3Qawxca4JP0cuwz
+         tRO3LWUGaGkRCWDreN1jFmOeKBZVrCKAtonZDzXeiD8CZ4vwXangBhDNRDKJUdTKnY7N
+         VX5oVxaHiyjChvqg35q7crAjbK3yUbdxXVSN91FGStXTX9prCTFMPcI3TOGdn7lnaOfV
+         UpQspddvng5XhpHqwQNHEku0mp85Fi+wQmMVA3qvi4cEUtTD98YavVseV5STOjbp/zCn
+         QuRoN4uMLtZJj2JRTn5+PYNb2q/UFIEqkjj1jKdOIbL8M3hVokz4VwXuSe8I1Ub0Ld/i
+         Z+0A==
+X-Forwarded-Encrypted: i=1; AJvYcCXDoxMP2ukUrNHAF9pPsna55t6zfBxDM6v+vIJa6oSOp3aaxigfZYeNpIfQqFo3pR0G5fbEIes7LKGPK7V1pq8NIGskYH5tyln4uX1NBf7UbUNFBgzOPeq+vppwrDbjyQvYKB09DhdSytn4i29Ex0Hv6nRgJklqdSO/m8Oo9ZVK5i6ADyMG
+X-Gm-Message-State: AOJu0YxXuHoUXe4Tm/XjU0X5zELK194P8Qaf+KD5+yAHenfV1pfvmRwX
+	h2yF5cSyei3zmnthiQoLYsgBNVQly8ZxtahzmnaDemSMafavIsMqQypJhO3z4IatgZl5SPcE6mW
+	2lKVb1T4bzKgSeMMJhmpcF49rvQM=
+X-Google-Smtp-Source: AGHT+IF8hs7c9n2gzMIzh4tdo5RrOfiFRubVngRyaE1i8HeeLwxSf9mRnWBLBk4mBykjVzOhpW+tsTAHkT87qXeYu3s=
+X-Received: by 2002:a17:906:b7c7:b0:a62:b36a:eafa with SMTP id
+ a640c23a62f3a-a6cdaa0fa87mr159211066b.57.1717749738582; Fri, 07 Jun 2024
+ 01:42:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.600.62\))
-Subject: Re: [PATCH 3/3] arm64: dts: meson: add initial support for Dreambox
- One/Two
-From: Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <202406071527.fnfhnkUL-lkp@intel.com>
-Date: Fri, 7 Jun 2024 12:31:04 +0400
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree <devicetree@vger.kernel.org>,
- linux-arm-kernel@lists.infradead.org,
- AML <linux-amlogic@lists.infradead.org>,
- LKML <linux-kernel@vger.kernel.org>,
- oe-kbuild-all@lists.linux.dev
+MIME-Version: 1.0
+References: <20240607055725.38057-1-animeshagarwal28@gmail.com> <87frtps29l.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87frtps29l.wl-kuninori.morimoto.gx@renesas.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Fri, 7 Jun 2024 11:42:06 +0300
+Message-ID: <CAEnQRZCXtoXWmNaoCrLYcSCO=V=O_+yUVoVJmnPkpysUYxBQNw@mail.gmail.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: ak4554: Convert to dtschema
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Animesh Agarwal <animeshagarwal28@gmail.com>, Daniel Baluta <daniel.baluta@nxp.com>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <FB2C9481-FCA2-496D-B916-E429BB8C0C82@gmail.com>
-References: <20240606094513.3949323-3-christianshewitt@gmail.com>
- <202406071527.fnfhnkUL-lkp@intel.com>
-To: kernel test robot <lkp@intel.com>
-X-Mailer: Apple Mail (2.3774.600.62)
 
-> On 7 Jun 2024, at 12:10=E2=80=AFPM, kernel test robot <lkp@intel.com> =
-wrote:
->=20
-> Hi Christian,
->=20
-> kernel test robot noticed the following build warnings:
->=20
-> [auto build test WARNING on robh/for-next]
-> [also build test WARNING on krzk/for-next linus/master v6.10-rc2 =
-next-20240606]
-> [cannot apply to krzk-dt/for-next krzk-mem-ctrl/for-next]
-> [If your patch is applied to the wrong git tree, kindly drop us a =
-note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
->=20
-> url:    =
-https://github.com/intel-lab-lkp/linux/commits/Christian-Hewitt/dt-binding=
-s-arm-amlogic-add-support-for-Dreambox-One-Two/20240606-175427
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git =
-for-next
-> patch link:    =
-https://lore.kernel.org/r/20240606094513.3949323-3-christianshewitt%40gmai=
-l.com
-> patch subject: [PATCH 3/3] arm64: dts: meson: add initial support for =
-Dreambox One/Two
-> compiler: clang version 19.0.0git =
-(https://github.com/llvm/llvm-project =
-d7d2d4f53fc79b4b58e8d8d08151b577c3699d4a)
-> dtschema version: 2024.6.dev1+g833054f
-> reproduce: =
-(https://download.01.org/0day-ci/archive/20240607/202406071527.fnfhnkUL-lk=
-p@intel.com/reproduce)
->=20
-> If you fix the issue in a separate patch/commit (i.e. not just a new =
-version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: =
-https://lore.kernel.org/oe-kbuild-all/202406071527.fnfhnkUL-lkp@intel.com/=
+On Fri, Jun 7, 2024 at 9:19=E2=80=AFAM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+>
+>
+> Hi Animesh
+>
+> > Convert the AK4554 sound codec bindings to DT schema.
+> >
+> > Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+> > Cc: Daniel Baluta <daniel.baluta@nxp.com>
+> > ---
+>
+> Thank you for the patch.
+> But no one is using AK4554, we can remove it instead ?
 
->=20
-> dtcheck warnings: (new ones prefixed by >>)
->   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:266.33-1540.7: =
-Warning (unit_address_vs_reg): /soc/bus@ff600000/bus@34400/pinctrl@40: =
-node has a unit name, but no reg or ranges property
->     also defined at =
-arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:266.33-1540.7
->   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:266.33-1540.7: =
-Warning (simple_bus_reg): /soc/bus@ff600000/bus@34400/pinctrl@40: =
-missing or empty reg/ranges property
->     also defined at =
-arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:266.33-1540.7
->   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:2220.23-2260.6: =
-Warning (avoid_unnecessary_addr_size): /soc/bus@ffd00000/dsi@7000: =
-unnecessary #address-cells/#size-cells without "ranges" or child "reg" =
-property
->     also defined at =
-arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:2220.23-2260.6
->>> arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-one.dtb: =
-/soc/bus@ff600000/bus@42000/clock-controller@0: failed to match any =
-schema with compatible: ['amlogic,g12a-audio-clkc']
->   arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-one.dtb: =
-/soc/bus@ff600000/bus@42000/audio-controller@744: failed to match any =
-schema with compatible: ['amlogic,g12a-tohdmitx']
->>> arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-one.dtb: sys-ctrl@0: =
-'#address-cells', '#size-cells', 'ranges' do not match any of the =
-regexes: 'pinctrl-[0-9]+'
->    from schema $id: =
-http://devicetree.org/schemas/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yam=
-l#
-> --
->   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:266.33-1540.7: =
-Warning (unit_address_vs_reg): /soc/bus@ff600000/bus@34400/pinctrl@40: =
-node has a unit name, but no reg or ranges property
->     also defined at =
-arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:266.33-1540.7
->   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:266.33-1540.7: =
-Warning (simple_bus_reg): /soc/bus@ff600000/bus@34400/pinctrl@40: =
-missing or empty reg/ranges property
->     also defined at =
-arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:266.33-1540.7
->   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:2220.23-2260.6: =
-Warning (avoid_unnecessary_addr_size): /soc/bus@ffd00000/dsi@7000: =
-unnecessary #address-cells/#size-cells without "ranges" or child "reg" =
-property
->     also defined at =
-arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:2220.23-2260.6
->>> arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-two.dtb: =
-/soc/bus@ff600000/bus@42000/clock-controller@0: failed to match any =
-schema with compatible: ['amlogic,g12a-audio-clkc']
->   arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-two.dtb: =
-/soc/bus@ff600000/bus@42000/audio-controller@744: failed to match any =
-schema with compatible: ['amlogic,g12a-tohdmitx']
->>> arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-two.dtb: sys-ctrl@0: =
-'#address-cells', '#size-cells', 'ranges' do not match any of the =
-regexes: 'pinctrl-[0-9]+'
->    from schema $id: =
-http://devicetree.org/schemas/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yam=
-l#
 
-Nothing to fix. The patch just depends on Neil=E2=80=99s binding fixes =
-here:
-
-=
-https://patchwork.kernel.org/project/linux-amlogic/cover/20240606-topic-am=
-logic-upstream-bindings-fixes-dts-v1-0-62e812729541@linaro.org/
-
-Christian
-
+So we just remove the device tree binding file, right? And later if
+there is anyone who will use the
+codec he can later add the yaml file.
 
