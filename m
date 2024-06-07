@@ -1,237 +1,211 @@
-Return-Path: <devicetree+bounces-73596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B1539000FA
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 12:34:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA1DF900107
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 12:36:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 735601C225BD
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 10:34:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09C5C1C2256E
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 10:36:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9578515FD0D;
-	Fri,  7 Jun 2024 10:32:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 155CF15DBC8;
+	Fri,  7 Jun 2024 10:35:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vwEVTxDj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d7POC5YP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D147A15ECFD
-	for <devicetree@vger.kernel.org>; Fri,  7 Jun 2024 10:32:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36D0713DDB1;
+	Fri,  7 Jun 2024 10:35:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717756369; cv=none; b=SAHeEnN62VlwQiqEyIc/yGny3zMef9iop8LHQzntH5GjLoe+ttOGbd0xcevODgonhYfwdu2SLXdJvP190t0znZI40lYE6v8fCWEhvzwF4AkSpwpJEmVl0y/uontD506sFhX29j+00MEScHKzraGGxcxnrS1O61rQX10tAUF+1uE=
+	t=1717756519; cv=none; b=OvPXr2RfNiLxCbW+LjtMTfwTUpXnTnshBtpudK/oNWEWTPNcA7PQc4mvcbZDV4INLHT5tRL3/np/OXMR4ADoiyLbOP6919umOFi7DqtCT209y07kO0dLU7UPDKnI+OIm64go4DXapWUxH+E2FaDrcfihLEfaqv/4B6aarFZn9vE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717756369; c=relaxed/simple;
-	bh=ohK2sslGjClxr9kCmY/gW62DMEkgvC5Tz6xsCMKB8Kw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=gqLTM7oXqW/ZB22NWKLz4XFdbTKZaSI9h18Hrmi+LVSChl01ysqeIAumR+SgJJCP0xEX4AkmZV2H8bSGUIR3SVSqjGAcnR5GYSBxt3d+7rUKdpNTRL2WW+pFoaP9BC0ad3i2KUhRmgHl2Z/Pq6UY2IV7jSI8YaAWwX0D3axzA3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vwEVTxDj; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-52b78ef397bso2879269e87.0
-        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2024 03:32:46 -0700 (PDT)
+	s=arc-20240116; t=1717756519; c=relaxed/simple;
+	bh=cEQNZnsBR2VQSTWPQWXJ4uAtDMxngmedxh84kXa5R9M=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=baNWl3HeGohx3ZdKIhSNMo3Ei1XLdP+Nq5KuaGKZg4IMniTM6+4vt8dCxgQHbBmYfRYxCZrKF7CyW89CSdUimYaMAFAEuBjwwvzhpYw8w7DKNwpv21YEzgOUtpp/xdYiLwolgOORa/GUe6ssI8IAXOw6m1dLaRi/6O7rDbs7+9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d7POC5YP; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-57a2ed9af7dso2805213a12.1;
+        Fri, 07 Jun 2024 03:35:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717756365; x=1718361165; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=o+nA/cIlT4hl2if/i6DmrZViDpHELl0xAbf5HX+dSsg=;
-        b=vwEVTxDjOtNjwJGD7kcMRd/i2OZTrvoxzGUxu9cV7odLPixhjmF/p+8E+dzzX9XaDo
-         WEw+cnqglM1XfG6u69nNHclhobbQLYXBy6NeZJrSl0XWLLGedx8CZOHjdZdB5yD8D/k/
-         MMfWeyUq5vFEqy0Wy2JmfP4G/JjnKksToZ3Qs52TFbTCBNRpMsG/GPsUtsye1fQFWgGM
-         6ro7MkbFjyva0/FBwrxBacc8eL0IJl1llH/O6z2bB9h5SpfNcLQYFUO2sTNimX7ZAZyB
-         bnjLmAGDaHtKcIa2DoADJN9TSqhH1Ep9B6v5Q171aDN+Te0SaZAghrCDj9uGa1PXZz9a
-         uEig==
+        d=gmail.com; s=20230601; t=1717756515; x=1718361315; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=SyqtvUG2CVqjseXG6FBne98Mm50tomI+i8lXDe9236g=;
+        b=d7POC5YPpBjfLjQuHc2aBMWYH0lwnkmV447KUiJ3qtReAtHQMRjayLlEICu5Fl2AZs
+         1zuuIG27dCSGYqD5oWaKPrE46ZAW95DDRnh00huqajmitiNTk4paKYBrwtP4hqrdDs34
+         jJOxZ4hrJq46lXo7Kn67c8fSkleO6rCz35N9Rx8ak9xmUoPMutDc2Ljf2Tg3K3WXgt8s
+         bvQEJrbZRj8x6JB0BNe3BJsM8OFvdZXLjNjHgrSmu59UP8zpaAB4EyTrKPzqbSlu7dZQ
+         yShHK3Mf5h4YXg2CEoQe7TL7OOfHxLBzdnnnJbgIp/7YqpwBv5YoNFOx0nulwY3TyKT8
+         cGhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717756365; x=1718361165;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=o+nA/cIlT4hl2if/i6DmrZViDpHELl0xAbf5HX+dSsg=;
-        b=rzWKQOosfnmIqtYq1YC1eQXaZtXCzLVJlnlGpWa6tcgkOAjib3di+v84gOIbZEZmD/
-         3WC0wvuMBoCHkQAFY59y8m5/RbZRiYxITKA6HUYsNmRoxL2EMxTS6cH/fXfVgUZfOrW1
-         /pA1BKCu/m3VY+by0/QEL9jwDFt/IvfX8L3zssHGLjPaChy3bMs/zdoSCElH2ruMmANm
-         Y8/ouLt+GUGlM99F0JSLoDhUOxEe2GQ59qXO8Ua+Zt8RXs5Bkl1ewk9oePfwki+0Bq5H
-         wyP+2x0TrMGrdbxlkO8JXhFDUp4jc/DPfMLA/+/+e8OxddjZDp7iDLRQK8X8RTQTw7f+
-         gVLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW8vVfFQKxd039eHb8x9sSw02v0Z8Gtxzt/5Sz0GT2EULUSCJm7E5uGuaaRyHFm+Z3gRpqMhM4ggSycELV5gQv6ni9YM/mFoPzTFg==
-X-Gm-Message-State: AOJu0YzBb1RBqn2qlueENAAEl9Bo+V1FUm8hNVsZgHJneaWGjVUmrLf5
-	jeRUxhTJL31SBRe2Bzpv7CBIbmA0f1qzCH3ahVmtLgKBbtPNpPc2hzMLUVUYo3U=
-X-Google-Smtp-Source: AGHT+IHwMriQsM1CMt6lSUr4ex+0paISgflwuPSKyxa2InvrwFrwht9F2G2f6bxRlZR19OZ5frotLg==
-X-Received: by 2002:a05:6512:252c:b0:52b:c2b8:b1d9 with SMTP id 2adb3069b0e04-52bc2b8bd19mr72709e87.26.1717756364765;
-        Fri, 07 Jun 2024 03:32:44 -0700 (PDT)
-Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52bb433ccdbsm483448e87.283.2024.06.07.03.32.44
+        d=1e100.net; s=20230601; t=1717756515; x=1718361315;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SyqtvUG2CVqjseXG6FBne98Mm50tomI+i8lXDe9236g=;
+        b=MRDlOunMbw/H5cUwp+6ds/QCoXYzaDrG/+aNW1DSUxZaYET9LJ4z/qL0wYrB4PtugC
+         d91mFi/6vuuRKgWSaha4oM0oX06GUVMucv+emovfQ7r0FbjjuzgSVR15SBFubOvzjhuV
+         OFmdVhm63oTR/mUFlHX6TKv2lVKDJ0GXyN8Q56RdpcgjX43tcJzezOmjE4ZtMOCaiea/
+         7w5Eo1IFazxi/9W+HJAMXnicypx54xtNY2L0ihgOb1GD/AzKFxKBemQV3Qf2F035W9A9
+         yYS//XRMoaqF0Si1hmYjIGeO+ePMhGF+7JTqhAgHM1Fpd54NtfO3L8dAAc+jfmwNn1V4
+         UVEg==
+X-Forwarded-Encrypted: i=1; AJvYcCVPx84sJgTC9wTYzNQpe4Yqm4OZAv13reKnHVXr7z8GiPo6XkTocLL5PbyDwjVEpVVpekm0sN3Tg7bsluXLpWZpH4mqHeI4TSMCcUmJ34u+4eSMBFp9ssYo+6K9B6Li8EPDVzKf24KAGZ5yQpEqZUHk0nygxuxdl/ZmU+Q+w+6xUNyQiQ==
+X-Gm-Message-State: AOJu0YzfqtwvBI1nYLj6RqlNpNJFDdQi0r+FTI4NIxAX6vnsTL5U0KTw
+	SttbDPvS9E7tFoDxGdSxUTjVeWDNTQf7qxAzN1zHRn4WEPnDu4Rt
+X-Google-Smtp-Source: AGHT+IGDGqZF3EOJmlPdFpdDmBVl9/SkrPsskUQKi/KtpWFdtnkb6SE3DcmvaX2W4n1vN4ppbQl1IA==
+X-Received: by 2002:a17:906:c302:b0:a59:c833:d274 with SMTP id a640c23a62f3a-a6cd76a92f2mr207366866b.37.1717756515271;
+        Fri, 07 Jun 2024 03:35:15 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6c8070e7f3sm223747266b.155.2024.06.07.03.35.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jun 2024 03:32:44 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 07 Jun 2024 13:32:41 +0300
-Subject: [PATCH v5 6/6] arm64: dts: qcom: c630: Add Embedded Controller
- node
+        Fri, 07 Jun 2024 03:35:15 -0700 (PDT)
+Message-ID: <a6c7e97b80e3448a40be95ef7aab0e0e74026edc.camel@gmail.com>
+Subject: Re: [PATCH v6 9/9] iio: adc: ad7173: Add support for AD411x devices
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>, dumitru.ceclan@analog.com
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ David Lechner <dlechner@baylibre.com>,  linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
+Date: Fri, 07 Jun 2024 12:39:02 +0200
+In-Reply-To: <1c6d409b-ba9e-4a19-a6cb-e06209a24154@gmail.com>
+References: <20240606-ad4111-v6-0-573981fb3e2e@analog.com>
+	 <20240606-ad4111-v6-9-573981fb3e2e@analog.com>
+	 <389546877ae11b18928b432e86710acf83974f67.camel@gmail.com>
+	 <1c6d409b-ba9e-4a19-a6cb-e06209a24154@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240607-yoga-ec-driver-v5-6-1ac91a0b4326@linaro.org>
-References: <20240607-yoga-ec-driver-v5-0-1ac91a0b4326@linaro.org>
-In-Reply-To: <20240607-yoga-ec-driver-v5-0-1ac91a0b4326@linaro.org>
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Hans de Goede <hdegoede@redhat.com>, 
- =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
- linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- Nikita Travkin <nikita@trvn.ru>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2519;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=ve9c78TTAFS5VXzgVyLUhE7e1KCToRb1yljm5NLcL8s=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmYuHHRI+9rHUj3nUv35thy/7x99PxS55VdUsZv
- SSnHxDIRyOJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZmLhxwAKCRCLPIo+Aiko
- 1TwKCACyq1kzwkRnJ0/z1CWjVmvAKVwpj73htm8NuAtDYs7+KnRjCoh7ywTxmvYv+PbHdpXmBC+
- lx4KrHjIQzozMzb83fv/2JX2UXbEVDlMj3+f5Z33k41J3GUqcZokk1w6jytKKR4TAN90px/q8F+
- y2CQsXluHQ6KMFPnq5om0SGk5sqSvHy9F2ZNZvXsRliw7nzE4XY+fmJSwhWLElgvmxFqlB0HNVs
- u0PdTEQMVUgxrle4of0kGSBB1c+iS0XYvXG5ocbrD6PGZA8WYPWgDg8ZZfSwsVv0VdVk5PzT3iB
- IpWSTG2MbPJq/SycoaNZIpT2m06L7gbN2gGPeZtZ++uXVw5V
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-From: Bjorn Andersson <andersson@kernel.org>
+On Fri, 2024-06-07 at 12:41 +0300, Ceclan, Dumitru wrote:
+> On 07/06/2024 12:20, Nuno S=C3=A1 wrote:
+> > On Thu, 2024-06-06 at 19:07 +0300, Dumitru Ceclan via B4 Relay wrote:
+> > > From: Dumitru Ceclan <dumitru.ceclan@analog.com>
+> > >=20
+> > > Add support for AD4111/AD4112/AD4114/AD4115/AD4116.
+> > >=20
+> > > The AD411X family encompasses a series of low power, low noise, 24-bi=
+t,
+> > > sigma-delta analog-to-digital converters that offer a versatile range=
+ of
+> > > specifications.
+> > >=20
+> > > This family of ADCs integrates an analog front end suitable for proce=
+ssing
+> > > both fully differential and single-ended, bipolar voltage inputs
+> > > addressing a wide array of industrial and instrumentation requirement=
+s.
+> > >=20
+> > > - All ADCs have inputs with a precision voltage divider with a divisi=
+on
+> > > =C2=A0 ratio of 10.
+> > > - AD4116 has 5 low level inputs without a voltage divider.
+> > > - AD4111 and AD4112 support current inputs (0 mA to 20 mA) using a 50=
+ohm
+> > > =C2=A0 shunt resistor.
+> > >=20
+> > > Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
+> > > ---
+> > > =C2=A0drivers/iio/adc/ad7173.c | 317
+> > > ++++++++++++++++++++++++++++++++++++++++++----
+> > > -
+> > > =C2=A01 file changed, 285 insertions(+), 32 deletions(-)
+> > >=20
+> > > diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
+> > > index 58da5717fd36..cfcd12447e24 100644
+> > > --- a/drivers/iio/adc/ad7173.c
+> > > +++ b/drivers/iio/adc/ad7173.c
+> > >=20
+> > ...
+> >=20
+> > > =C2=A0static const struct ad7173_device_info ad7172_2_device_info =3D=
+ {
+> > > =C2=A0	.name =3D "ad7172-2",
+> > > =C2=A0	.id =3D AD7172_2_ID,
+> > > -	.num_inputs =3D 5,
+> > > +	.num_voltage_in =3D 5,
+> > > =C2=A0	.num_channels =3D 4,
+> > > =C2=A0	.num_configs =3D 4,
+> > > =C2=A0	.num_gpios =3D 2,
+> > > +	.higher_gpio_bits =3D false,
+> >=20
+> > No need to explicitly set to 'false'. Ditto for the other places...
+> >=20
+> > ...
+> >=20
+> > >=20
+> > > =C2=A0static int ad7173_validate_voltage_ain_inputs(struct ad7173_sta=
+te *st,
+> > > =C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int ain0, unsigned
+> > > int
+> > > ain1)
+> > > =C2=A0{
+> > > @@ -946,15 +1145,30 @@ static int
+> > > ad7173_validate_voltage_ain_inputs(struct
+> > > ad7173_state *st,
+> > > =C2=A0	=C2=A0=C2=A0=C2=A0 st->info->has_pow_supply_monitoring)
+> > > =C2=A0		return 0;
+> > > =C2=A0
+> > > -	special_input0 =3D AD7173_IS_REF_INPUT(ain0);
+> > > -	special_input1 =3D AD7173_IS_REF_INPUT(ain1);
+> > > +	special_input0 =3D AD7173_IS_REF_INPUT(ain0) ||
+> > > +			 (ain0 =3D=3D AD4111_VINCOM_INPUT && st->info-
+> > > > has_vincom_input);
+> > > +	special_input1 =3D AD7173_IS_REF_INPUT(ain1) ||
+> > > +			 (ain1 =3D=3D AD4111_VINCOM_INPUT && st->info-
+> > > > has_vincom_input);
+> > > +
+> >=20
+> > Wondering... can ain1 (or ain0) be AD4111_VINCOM_INPUT and !st->info-
+> > > has_vincom_input? Would that actually be acceptable? It would assume =
+it's
+> > > not
+> > so we should check that right? Or am I missing something?
+> >=20
+> > - Nuno S=C3=A1
+> >=20
+>=20
+> It will fail when we check for the number of voltage inputs:
+> (ain0 >=3D st->info->num_voltage_in && !special_input0)=20
+> as special_input will not be true if has_vincom_input is false
+>=20
+> Indeed this check is a bit hidden, should it be more explicit?
+>=20
 
-The Embedded Controller in the Lenovo Yoga C630 is accessible on &i2c1
-and provides battery and adapter status, as well as altmode
-notifications for the second USB Type-C port.
+Hmm I see... Up to you. I guess I was not paying enough attention to=C2=A0
+st->info->num_voltage_in and to the fact that VINCOM and REFs are not count=
+ed by
+it.
 
-Add a definition for the EC.
+OTOH, yes, an explicit check could make sense because the log you output:
 
-Signed-off-by: Bjorn Andersson <andersson@kernel.org>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts      | 75 ++++++++++++++++++++++
- 1 file changed, 75 insertions(+)
+"Input pin number out of range for pair..."
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-index 8402ea2d93a7..f18050848cd8 100644
---- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-@@ -370,6 +370,66 @@ zap-shader {
- &i2c1 {
- 	status = "okay";
- 	clock-frequency = <400000>;
-+
-+	embedded-controller@70 {
-+		compatible = "lenovo,yoga-c630-ec";
-+		reg = <0x70>;
-+
-+		interrupts-extended = <&tlmm 20 IRQ_TYPE_LEVEL_HIGH>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ec_int_state>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		connector@0 {
-+			compatible = "usb-c-connector";
-+			reg = <0>;
-+			power-role = "dual";
-+			data-role = "host";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					ucsi0_hs_in: endpoint {
-+						remote-endpoint = <&usb_1_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					ucsi0_ss_in: endpoint {
-+						remote-endpoint = <&usb_1_qmpphy_out>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					ucsi0_sbu: endpoint {
-+					};
-+				};
-+			};
-+		};
-+
-+		connector@1 {
-+			compatible = "usb-c-connector";
-+			reg = <1>;
-+			power-role = "dual";
-+			data-role = "host";
-+
-+			/*
-+			 * connected to the onboard USB hub, orientation is
-+			 * handled by the controller
-+			 */
-+		};
-+	};
- };
- 
- &i2c3 {
-@@ -695,6 +755,13 @@ mode_pin_active: mode-pin-state {
- 
- 		bias-disable;
- 	};
-+
-+	ec_int_state: ec-int-state {
-+		pins = "gpio20";
-+		function = "gpio";
-+
-+		bias-disable;
-+	};
- };
- 
- &uart6 {
-@@ -742,6 +809,10 @@ &usb_1_dwc3 {
- 	dr_mode = "host";
- };
- 
-+&usb_1_dwc3_hs {
-+	remote-endpoint = <&ucsi0_hs_in>;
-+};
-+
- &usb_1_hsphy {
- 	status = "okay";
- 
-@@ -762,6 +833,10 @@ &usb_1_qmpphy {
- 	vdda-pll-supply = <&vdda_usb1_ss_core>;
- };
- 
-+&usb_1_qmpphy_out {
-+	remote-endpoint = <&ucsi0_ss_in>;
-+};
-+
- &usb_2 {
- 	status = "okay";
- };
+It's really not mentioning the real problem (or it's a very hidden message =
+IOW).
+having something like
 
--- 
-2.39.2
+if (ain0 =3D=3D AD4111_VINCOM_INPUT && !st->info-has_vincom_input)
+	return dev_err_probe(dev, -EINVAL, "VINCOM not supported for %s\n",
+			part_name);
 
+would be something way easier to understand :)
+
+- Nuno S=C3=A1
 
