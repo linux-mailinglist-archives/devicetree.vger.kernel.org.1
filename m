@@ -1,124 +1,142 @@
-Return-Path: <devicetree+bounces-73660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DA0A9002FD
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 14:05:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9534690030A
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 14:09:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03FBEB263FC
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 12:04:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A5BFB1C22010
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 12:09:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86BC9190060;
-	Fri,  7 Jun 2024 12:04:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gCpmLiuC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8605D18F2C9;
+	Fri,  7 Jun 2024 12:09:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mxout70.expurgate.net (mxout70.expurgate.net [194.37.255.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0387518FC63
-	for <devicetree@vger.kernel.org>; Fri,  7 Jun 2024 12:04:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB2351847;
+	Fri,  7 Jun 2024 12:09:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.37.255.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717761883; cv=none; b=EZS4AUNei40nrVl7q6wTGwM9yAyH8LxGCWw4f/qLF3lU09Hl4NbK0AetHreYdQATxMgmi/vfnV7AOPttvM6MaNv2rDFYvghKBP8olp+OJA93PZgyiqgIosfST+yck5FniswGQey+brW73uws0woUXigW3M3dBrQKd/rW/BED49c=
+	t=1717762167; cv=none; b=kGVIeBGpeJZbmv71qswFjD1sbsbS65bgXt+jdVtB3NpKQ353txUuaJkmxmyBL1AK6f0dVY9OHCX1otXmNWw8tPApBVJ3rwnNpO9PjQzcD5RGEzzUtxuNltLHBt2epeA6g4R32TDB42oYJgm9VJMm3w+wSkmAa7vv3PjKIBE5U0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717761883; c=relaxed/simple;
-	bh=fXfeb4+UvRDSQYpRVmIq3/quRpqs6deTuQHw/AEBAIw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lyZG12/8g/uAFcxi9A4UlZmU+gLceTWLW1AxKG4wFKErt5OLAODRBHcUoK/Bc5urMp2AOjt/VN9C7FBYfwtLlrlZlA9z3LP7VVa/TuOOevUHUDS5rCnEsiwY0KnVhz8CB+XjvygzBvQLECXuWbzA9q25Pkar86F3PntxN26nW54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gCpmLiuC; arc=none smtp.client-ip=209.85.210.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-6f9398390fcso643793a34.3
-        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2024 05:04:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717761881; x=1718366681; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DsnAIOZzuHsMblCK5Wyo2qtzh+qW0N73ZweI2cUEP1k=;
-        b=gCpmLiuC9QcxG4hGd5xo2KsVlduLNH5uN8uLb1kXcE94Ek/FCwRmIFVoyVmODrKfae
-         /rfWHzZxtne/rjL4z1uIAMMFYfYTxyIqDQM9OvxzRm1lqOkQV5Y2NnLSZHn8Tuiw6Ld0
-         sK9Ibgmq/FmrdWax1BVaGCRCDjWq61kNpCHvGvNNZSxKQ9GeSMK9yKvtE2Zo+Z/alfVh
-         YLjjrwjPRyFwmFQnWJ3noVgncnVjEbAHrnM6/dUrxmT3KNM7sjM2e5FqUu/hCXzG77Yq
-         TjvvDvPTcBVikZVxqsJIQ1GH8LDNuhWvJ7qxDRAWXoIhjNFf3n4Ft7CppzY/G3y6gIqE
-         oHlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717761881; x=1718366681;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DsnAIOZzuHsMblCK5Wyo2qtzh+qW0N73ZweI2cUEP1k=;
-        b=pjS673QNBgEml44U0583VHL2UFHaD8mJoGdBHGsIB/abYI95BnOR49pZTCVIjsZfs7
-         +US8wu9qtqhKlowd8xcLrL4H5+6jsBFHvG2zRrg5dKJQMWuiBYSdiv03BCOd5ILpz4gN
-         zGhls65OjMlDUHlgYgVeJKU04fYt7swezSDbPlfLWxbFn3Vrk604NuhQD85Z68tljbkb
-         s7t9pb/d49FDBSpXax3dG3YiEvChVNUO8jXERuHqufsdtcKsjOEJn6FPmC0elwVWNAi1
-         EMisaHLDTxT5/glPoFWf9FR2zbFq/YECx1OTfmK08tWIFvBg07xIr6LEEE/Mufhla3WH
-         65MA==
-X-Forwarded-Encrypted: i=1; AJvYcCWwxu2ccD+MOyxDgFzTodrJR6cCu4ptU0rmwJiej6qMJZp9O8PQqDESQqUBRfYf/wbVrzdA38h3U9LNephdQCj57VMd2d5NYpSrkQ==
-X-Gm-Message-State: AOJu0YyJds8Xxvut+f8s+0GvOJMJQwMmUC3DYZE3K0C5ahn3XKaz3NBx
-	k+0TSsyoppIbid+pjjP+De3mmaVIeZ0YqLo25+XUPpN7mMzwkYFl+E4/P+05VKnAbp08OHHjXpt
-	h5IG4yl8szruqVbUP/LWm/COf4UYG+U0YNzyAuw==
-X-Google-Smtp-Source: AGHT+IETi62DUKnC9LFoGDVSrwVYfAj5bLtwDr84JTqNN4MYb1edwtz3sgiNUcALGr6HLEisP7i3zCXtYPAx8jBX/jE=
-X-Received: by 2002:a9d:7d8b:0:b0:6f9:631c:c45c with SMTP id
- 46e09a7af769-6f9631cc6f1mr222367a34.3.1717761880907; Fri, 07 Jun 2024
- 05:04:40 -0700 (PDT)
+	s=arc-20240116; t=1717762167; c=relaxed/simple;
+	bh=gwKwTD1WKix0cop8Lpfa38D2U/BH7EMvYjh2D2pY+1g=;
+	h=MIME-Version:Content-Type:Date:From:To:Cc:Subject:In-Reply-To:
+	 References:Message-ID; b=YWvWC0+i4Cgna+bDaYuMGzimD+0iOanBmLuLe9eP+FWdJuuOIZgU6oPj9UM9cpT2tpRyufdYCP2loQDd3J0c0ZLRgVNFUh6cYJkpxk+BwpZJFj6AxqeHcaT1ED0Z8rDZ8h1BU9h/EVv6ABP0y7c0xJXGbc8JYy5TwqhrgeMrgzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; arc=none smtp.client-ip=194.37.255.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dev.tdt.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dev.tdt.de
+Received: from [127.0.0.1] (helo=localhost)
+	by relay.expurgate.net with smtp (Exim 4.92)
+	(envelope-from <prvs=990276a841=ms@dev.tdt.de>)
+	id 1sFYPD-00F0Vb-S9; Fri, 07 Jun 2024 14:09:15 +0200
+Received: from [195.243.126.94] (helo=securemail.tdt.de)
+	by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ms@dev.tdt.de>)
+	id 1sFYPC-005Nrm-W0; Fri, 07 Jun 2024 14:09:15 +0200
+Received: from securemail.tdt.de (localhost [127.0.0.1])
+	by securemail.tdt.de (Postfix) with ESMTP id A5A7C240053;
+	Fri,  7 Jun 2024 14:09:14 +0200 (CEST)
+Received: from mail.dev.tdt.de (unknown [10.2.4.42])
+	by securemail.tdt.de (Postfix) with ESMTP id 35689240050;
+	Fri,  7 Jun 2024 14:09:14 +0200 (CEST)
+Received: from mail.dev.tdt.de (localhost [IPv6:::1])
+	by mail.dev.tdt.de (Postfix) with ESMTP id E10A43829D;
+	Fri,  7 Jun 2024 14:09:13 +0200 (CEST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240601084528.22502-1-lvzhaoxiong@huaqin.corp-partner.google.com>
- <20240601084528.22502-5-lvzhaoxiong@huaqin.corp-partner.google.com>
- <5yz4uct3dnxqflij34zasu6fhr42gyl6kjfjobftrwpsl6j4y6@3kzp4s3dxktw> <CA+6=WdSpHp6WRwZ3ta6ZR585ON9XSjWB5s1EjbhpBnWGWmhRAw@mail.gmail.com>
-In-Reply-To: <CA+6=WdSpHp6WRwZ3ta6ZR585ON9XSjWB5s1EjbhpBnWGWmhRAw@mail.gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 7 Jun 2024 15:04:30 +0300
-Message-ID: <CAA8EJppknn-doN=1jNBiZFUqF5ZOPxb4jbNe5Cf8uHatS4cbfA@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] drm/panel: starry: add new panel driver
-To: zhaoxiong lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-Cc: dmitry.torokhov@gmail.com, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jikos@kernel.org, 
-	benjamin.tissoires@redhat.co, dianders@google.com, hsinyi@google.com, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date: Fri, 07 Jun 2024 14:09:13 +0200
+From: Martin Schiller <ms@dev.tdt.de>
+To: Vladimir Oltean <olteanv@gmail.com>
+Cc: martin.blumenstingl@googlemail.com, hauke@hauke-m.de, andrew@lunn.ch,
+ f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 03/13] net: dsa: lantiq_gswip: Use dev_err_probe
+ where appropriate
+Organization: TDT AG
+In-Reply-To: <20240607110747.zsiahnzge2bvxd4l@skbuf>
+References: <20240606085234.565551-1-ms@dev.tdt.de>
+ <20240606085234.565551-1-ms@dev.tdt.de>
+ <20240606085234.565551-4-ms@dev.tdt.de>
+ <20240606085234.565551-4-ms@dev.tdt.de>
+ <20240607110747.zsiahnzge2bvxd4l@skbuf>
+Message-ID: <9a9ca4e015446b9a0f76fa3d5e6e9f0b@dev.tdt.de>
+X-Sender: ms@dev.tdt.de
+User-Agent: Roundcube Webmail/1.3.17
+X-purgate-ID: 151534::1717762155-91E7E642-919E136F/0/0
+X-purgate: clean
+X-purgate-type: clean
 
-On Fri, 7 Jun 2024 at 14:51, zhaoxiong lv
-<lvzhaoxiong@huaqin.corp-partner.google.com> wrote:
->
-> hi Dmitry
->
-> These two panels are not the same IC but their timing is the same,
-> only the init cmd and panel parameters are different, so I made it
-> compatible on the kingdisplay driver.
+On 2024-06-07 13:07, Vladimir Oltean wrote:
+> On Thu, Jun 06, 2024 at 10:52:24AM +0200, Martin Schiller wrote:
+>> @@ -2050,8 +2048,9 @@ static int gswip_gphy_fw_list(struct gswip_priv 
+>> *priv,
+>>  			priv->gphy_fw_name_cfg = &xrx200a2x_gphy_data;
+>>  			break;
+>>  		default:
+>> -			dev_err(dev, "unknown GSWIP version: 0x%x", version);
+>> -			return -ENOENT;
+>> +			return dev_err_probe(dev, -ENOENT,
+>> +					     "unknown GSWIP version: 0x%x",
+>> +					     version);
+>>  		}
+>>  	}
+>> 
+>> @@ -2059,10 +2058,9 @@ static int gswip_gphy_fw_list(struct gswip_priv 
+>> *priv,
+>>  	if (match && match->data)
+>>  		priv->gphy_fw_name_cfg = match->data;
+>> 
+>> -	if (!priv->gphy_fw_name_cfg) {
+>> -		dev_err(dev, "GPHY compatible type not supported");
+>> -		return -ENOENT;
+>> -	}
+>> +	if (!priv->gphy_fw_name_cfg)
+>> +		return dev_err_probe(dev, -ENOENT,
+>> +				     "GPHY compatible type not supported");
+>> 
+>>  	priv->num_gphy_fw = of_get_available_child_count(gphy_fw_list_np);
+>>  	if (!priv->num_gphy_fw)
+>> @@ -2163,8 +2161,8 @@ static int gswip_probe(struct platform_device 
+>> *pdev)
+>>  			return -EINVAL;
+>>  		break;
+>>  	default:
+>> -		dev_err(dev, "unknown GSWIP version: 0x%x", version);
+>> -		return -ENOENT;
+>> +		return dev_err_probe(dev, -ENOENT,
+>> +				     "unknown GSWIP version: 0x%x", version);
+>>  	}
+>> 
+>>  	/* bring up the mdio bus */
+>> @@ -2172,28 +2170,27 @@ static int gswip_probe(struct platform_device 
+>> *pdev)
+>>  	if (!dsa_is_cpu_port(priv->ds, priv->hw_info->cpu_port)) {
+>> -		dev_err(dev, "wrong CPU port defined, HW only supports port: %i",
+>> -			priv->hw_info->cpu_port);
+>> -		err = -EINVAL;
+>> +		err = dev_err_probe(dev, -EINVAL,
+>> +				    "wrong CPU port defined, HW only supports port: %i",
+>> +				    priv->hw_info->cpu_port);
+>>  		goto disable_switch;
+>>  	}
+> 
+> Nitpick: there is no terminating \n here.
 
-We usually merge drivers by the driver IC, not by the timings.
-
-Please stop top-posting.
-
->
-> Similar to this driver:  panel-boe-tv101wum-nl6.c
->
-> thanks
->
-> On Sun, Jun 2, 2024 at 12:26=E2=80=AFAM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> >
-> > On Sat, Jun 01, 2024 at 04:45:28PM +0800, Zhaoxiong Lv wrote:
-> > > This Starry panel has the same timing as the Kingdisplay panel,
-> > > so add starry configuration in the Kingdisplay driver.
-> >
-> > Do these two panels share the same driver IC? Programming sequences do
-> > not seem common, so it might be better to have a separate driver for
-> > this panel.
-
-
---=20
-With best wishes
-Dmitry
+Oh, thanks for the hint. I'll correct that (and also check the complete 
+source
+file for that kind of mistakes).
 
