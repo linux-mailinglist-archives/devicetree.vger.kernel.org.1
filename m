@@ -1,116 +1,112 @@
-Return-Path: <devicetree+bounces-73788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AD31900A5D
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 18:30:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E376F900AA0
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 18:46:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B10111F21CEE
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 16:30:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7E1F1C21A89
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 16:46:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D5F319B5B5;
-	Fri,  7 Jun 2024 16:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B207B19753E;
+	Fri,  7 Jun 2024 16:46:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="e/Jzn+6V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UIl0FQ43"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0919119AD5F;
-	Fri,  7 Jun 2024 16:28:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87E7B1474BD;
+	Fri,  7 Jun 2024 16:46:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717777737; cv=none; b=LEba6nUrLwQnSNOo0LjFud0E2PX7X3PAEB0pgPpabY3waZNuSMHPHv9DqOHnTXt7JXu5uA0LVwYlUrTXmTp4MVY/6bZ41G6PhvorqJWs9LZ+ZHdBsEu5AKuQFW95iTWjJ3GEBAQw0dO7v2KeY8ejFgRczcWBPZSKbX1DMRbrYa8=
+	t=1717778784; cv=none; b=NgeqSZwVc2NTN7NEn9CI5euQxL6E5PbfknR19vMbP8k64LznQRnrNa8oobDohaXjRIHXSmHjmf9tlNRUk3JUaZ0iHF6iMDPGhqa0kvb9vDEGouLlk4nL4O2Be5i5sJQmbPUyYFF5Y2E2/EA68EH6OWd/Dh04Ji0/HAmbi5PRk+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717777737; c=relaxed/simple;
-	bh=LGYcD/GKncMY5oK8Nz3hBIpZWTX1l7ulfUh1j09n7V4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QGqlkPx5d4DDsAz4PQubsyhlcfNVzw2hE3fiQJ8PopNUaP1sWeLwQzqnHtEIPHvYYX/aeeko8GFukCiQRO0GKQC34RLsTH9htstcxxTABuWQqWarWooDLU90YvgqzJ2o+QpueTTOoLIcGOfFTTFayRwKWtCgOzK+jGYMlIXAXsQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=e/Jzn+6V; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 457GRvjc025672;
-	Fri, 7 Jun 2024 11:27:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1717777677;
-	bh=eCMwvUXMlOHh+kQoB/O+Bk+VnI6B6QKbo0H+hfHKoZo=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=e/Jzn+6V6xPwJeK5wOiesxtGjkeWs3YVDrLXmvPkYXTUPZZaxgtpSWrdra8awMKzp
-	 D0UtDKY3J2qvuDu0oinCei2aQRNBqExm+jIVxdwasAtpTUJMMfgF1Gwfh+uTfvNEyR
-	 SSsHPOabO9CtzGJpw8lxnTX6Tx8W5i4j0VQ6KXgE=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 457GRv5g096188
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 7 Jun 2024 11:27:57 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 7
- Jun 2024 11:27:56 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 7 Jun 2024 11:27:56 -0500
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 457GRt1o068019;
-	Fri, 7 Jun 2024 11:27:56 -0500
-From: Judith Mendez <jm@ti.com>
-To: Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        William Breathitt Gray <william.gray@linaro.org>
-CC: David Lechner <david@lechnology.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        Nishanth Menon
-	<nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-Subject: [PATCH v3 8/8] counter: ti-eqep: Allow eQEP driver to be built for K3 devices
-Date: Fri, 7 Jun 2024 11:27:55 -0500
-Message-ID: <20240607162755.366144-9-jm@ti.com>
-X-Mailer: git-send-email 2.45.1
-In-Reply-To: <20240607162755.366144-1-jm@ti.com>
-References: <20240607162755.366144-1-jm@ti.com>
+	s=arc-20240116; t=1717778784; c=relaxed/simple;
+	bh=9soF2Dca9cc8N19dsRYxKK4fnoA4knis7MNTRdapdIU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=G0jif43M2ECerQwpsGk624aQyrhdTrYUVE8ckDeSK9RYHoDbvmp2Nj27j3IG3SzMb+TK6pEvf2nzWtJR1utM61Tx3Xoip+7fW38uS4pZ+Wo1aTRjyZmbCLyVGdAdOQ8y+11IqrHSc9jhz4bQfBmeoExNTVX1WXcgKLj8Aeii8HQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UIl0FQ43; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5478C3277B;
+	Fri,  7 Jun 2024 16:46:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717778783;
+	bh=9soF2Dca9cc8N19dsRYxKK4fnoA4knis7MNTRdapdIU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UIl0FQ43kLDTq/5kSJGPigMUBiGF+vWcdmGWSfjdA/e94hdfhvBtHyeiWJhZXGI9K
+	 2aSSfdqFTPn0mSwu9yoxqlNR0sp5DXzs9TpAKzxmUx2CU3RQOPijl5V1t8amEEM9vF
+	 c8PjWyZ/ZCAk21XnMlKPSQU9p7DOiE4e3A9sAPs8HZBuIsD0VkZJyU8EmA5+zbqUJT
+	 V9uGMDBNpLSItYDqL3xme8Oh4oAY+jI9JBtVMypcM0u2N9byQstWt8+tUg9TrydLtn
+	 RF5UlLQTCeBP8PSJO5KeekMzpaDfB7iRoYYBv+jbK9xlxNgxN7T/HxuTPME4BGbk5u
+	 DSnc2XL7KL9tw==
+Date: Fri, 7 Jun 2024 10:46:22 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+Cc: Jens Wiklander <jens.wiklander@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	op-tee@lists.trustedfirmware.org
+Subject: Re: [PATCH v6 3/5] dt-bindings: remoteproc: Add compatibility for
+ TEE support
+Message-ID: <171777877866.3290379.8347507744430863687.robh@kernel.org>
+References: <20240607093326.369090-1-arnaud.pouliquen@foss.st.com>
+ <20240607093326.369090-4-arnaud.pouliquen@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240607093326.369090-4-arnaud.pouliquen@foss.st.com>
 
-TI K3 SoC's support eQEP hardware, so add ARCH_K3 to the depends
-so the TI eQEP driver can be built for K3 devices.
 
-Signed-off-by: Judith Mendez <jm@ti.com>
-Reviewed-by: David Lechner <david@lechnology.com>
----
-Changes since v2:
-- No change
----
- drivers/counter/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Fri, 07 Jun 2024 11:33:24 +0200, Arnaud Pouliquen wrote:
+> The "st,stm32mp1-m4-tee" compatible is utilized in a system configuration
+> where the Cortex-M4 firmware is loaded by the Trusted Execution Environment
+> (TEE).
+> 
+> For instance, this compatible is used in both the Linux and OP-TEE device
+> trees:
+> - In OP-TEE, a node is defined in the device tree with the
+>   "st,stm32mp1-m4-tee" compatible to support signed remoteproc firmware.
+>   Based on DT properties, the OP-TEE remoteproc framework is initiated to
+>   expose a trusted application service to authenticate and load the remote
+>   processor firmware provided by the Linux remoteproc framework, as well
+>   as to start and stop the remote processor.
+> - In Linux, when the compatibility is set, the Cortex-M resets should not
+>   be declared in the device tree. In such a configuration, the reset is
+>   managed by the OP-TEE remoteproc driver and is no longer accessible from
+>   the Linux kernel.
+> 
+> Associated with this new compatible, add the "st,proc-id" property to
+> identify the remote processor. This ID is used to define a unique ID,
+> common between Linux, U-Boot, and OP-TEE, to identify a coprocessor.
+> This ID will be used in requests to the OP-TEE remoteproc Trusted
+> Application to specify the remote processor.
+> 
+> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+> ---
+> update vs previous version
+> - merge [PATCH v5 4/7] remoteproc: core introduce rproc_set_rsc_table_on_start function
+>   as new "st,proc-id" is associated to "st,stm32mp1-m4-tee" compatible
+> - update commit message
+> - remove Reviewed-by: Rob Herring <robh@kernel.org> as patch is updated
+> ---
+>  .../bindings/remoteproc/st,stm32-rproc.yaml   | 58 ++++++++++++++++---
+>  1 file changed, 50 insertions(+), 8 deletions(-)
+> 
 
-diff --git a/drivers/counter/Kconfig b/drivers/counter/Kconfig
-index 497bc05dca4df..d30d22dfe5774 100644
---- a/drivers/counter/Kconfig
-+++ b/drivers/counter/Kconfig
-@@ -138,7 +138,7 @@ config TI_ECAP_CAPTURE
- 
- config TI_EQEP
- 	tristate "TI eQEP counter driver"
--	depends on (SOC_AM33XX || COMPILE_TEST)
-+	depends on SOC_AM33XX || ARCH_K3 || COMPILE_TEST
- 	select REGMAP_MMIO
- 	help
- 	  Select this option to enable the Texas Instruments Enhanced Quadrature
--- 
-2.45.1
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
