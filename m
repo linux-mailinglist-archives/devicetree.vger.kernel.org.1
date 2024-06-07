@@ -1,108 +1,126 @@
-Return-Path: <devicetree+bounces-73807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7910A900BA8
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 20:00:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62721900BDC
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 20:24:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 068FE1C22235
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 18:00:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10259286372
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 18:24:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 175BF19A2B1;
-	Fri,  7 Jun 2024 18:00:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5174513C909;
+	Fri,  7 Jun 2024 18:24:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="YbU/IO9s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LM3uyI6H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BAAC1CD02
-	for <devicetree@vger.kernel.org>; Fri,  7 Jun 2024 18:00:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2389A481A3;
+	Fri,  7 Jun 2024 18:24:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717783231; cv=none; b=JmXfdd5T4b0gUp4vMaR/oAoCp3K4jSaa4xSpmrjV+umr7kY+Y3mKL4EmpbLfY9Aailzgrk+3h6GR1BEBxbh82ewwtS7xF7h95lpEPh6RJr84be5bFgGOv1RX0R/eBKebaaxbWWuCV6yDc/n1VgDY+i/Pldkiwud5G1CdZ5ms4iA=
+	t=1717784661; cv=none; b=KT2T67AY287my7Xmnk7/mkyb1GSSFoc0TvujsWsiUQzyYT0I5QvLP4UmRF8po7mklHGgDTB3PAPaCM9B8Is1Q3xP7yiLpR4hXxQGjZ0mvB6440pJrN8LPzOxuHWiGD3RN89PLdkglZWCMVB5tafYojpUua69IyeMoSIhW7hI0aE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717783231; c=relaxed/simple;
-	bh=0NRGuS2YrkWBCFcj/9uHh/nwyQi8ilhdgYK4XspWfA0=;
+	s=arc-20240116; t=1717784661; c=relaxed/simple;
+	bh=jXS45UQrPnM99RQ0JyTFd4KZqPVi2vCjrSX/9pcHsAg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qA6fky7Qffn//xOlW/yWsuJkQdkWAaMWmRcNaX2MQo4WycCeeyzR0FTIG/LuAK3bZcDvHoK+Y/gmI2DQ0T6BpSraRt9DR1khPf8PfPgAY6dBAQ1TA0D1UMsmWUmRY1a/DLTIISM66zeaovQm5xfs5JFZj01njGDgDxjFGRJp3C8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=YbU/IO9s; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=0NRG
-	uS2YrkWBCFcj/9uHh/nwyQi8ilhdgYK4XspWfA0=; b=YbU/IO9sX3jfXvqlFN/B
-	cpDFyFS+gIkhlS3iwPWzsRnHRBe3vNTqv/Riknz25fD24OQaoo+288/sk277osOA
-	IlK9xRMb0mab9SbpllMkDwwIZblfE1TPoLeNAKsBHiFA3OlPbvyGU6dgkdE+DSKm
-	IpcSeBQY2g2stZlCx38VotzStqSD6xfz/WaIXYPqD/eQVOj2y9BIc0IWGmaa7CPt
-	3eR3cynz4g+Y3AdKSQs4AxWL7VHio6TPyTCv/lcMmTIjA2TX+SXWnlvmSOrkIDni
-	oPhw5Z2uhdNoRX9IpdDQYu3kMyfG1PPXp2S1uoiU4DHyDdJW+D7Nw/SW2lCHPkkk
-	4A==
-Received: (qmail 3413723 invoked from network); 7 Jun 2024 20:00:20 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 7 Jun 2024 20:00:20 +0200
-X-UD-Smtp-Session: l3s3148p1@mbWaklAalMhehhrL
-Date: Fri, 7 Jun 2024 20:00:17 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Armin Wolf <W_Armin@gmx.de>
-Cc: Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org, 
-	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, =?utf-8?B?UmVuw6k=?= Rebe <rene@exactcode.de>, 
-	Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>, Stephen Horvath <s.horvath@outlook.com.au>
-Subject: Re: [PATCH v4 5/6] i2c: smbus: Support DDR5 SPD EEPROMs
-Message-ID: <txliuvufu6muqucno2uex2q6xvnveozpjzahx7zryqlvvvzrs7@flv2zztine6r>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Armin Wolf <W_Armin@gmx.de>, Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org, 
-	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, =?utf-8?B?UmVuw6k=?= Rebe <rene@exactcode.de>, 
-	Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>, Stephen Horvath <s.horvath@outlook.com.au>
-References: <20240604040237.1064024-1-linux@roeck-us.net>
- <20240604040237.1064024-6-linux@roeck-us.net>
- <c939b0c7-2c8c-4cf1-8d5c-9309ce0b371a@gmx.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DrZH92IiqDjCIjXt8p3iLGpjkKEf/U/vT/SsTTR+ow3HIH38VmxnbRj7LzpB/OAHnipABGkACArVe5aNoURFbtHbJgmUbdC9hnf7xhtSW1RBiHQtlfmMRtRM+EPkmg0ki+nPqKTewURVD9dHVYt1KFW0lJJMEESLTJzWbQ+0pyc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LM3uyI6H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7075C2BBFC;
+	Fri,  7 Jun 2024 18:24:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717784660;
+	bh=jXS45UQrPnM99RQ0JyTFd4KZqPVi2vCjrSX/9pcHsAg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LM3uyI6HPiy6Y91PHyCpqMy1KohN4r2IHsdimU3+zCMGAaPl39CljmvqtPCB5Vc8O
+	 r2E5ewjYXjvTHpcb8J43FE0D1bruxW89Clj6mqGVBvaLhv1luzY5gM9FHVg5fnMrGx
+	 +lp6H1dgTd1A23QOXdvC9183UNMCBfFvNZAGgMNYTZbuUFCBupQO8R5k7mw999spRa
+	 oRzfv2GWTfHhp+ve6dntKUVFqxXdptQMundG6GDvbBBLQoPFepsKUzXoxWNRd7S4gv
+	 ZvzpiKvNzfQYG7ZfJSunbnJ39ZqC6JGl8CKHsSTrM9j9gkUBTcq1olNaCiWLrY0sBT
+	 eMaa6Ow2hFuyg==
+Date: Fri, 7 Jun 2024 19:24:14 +0100
+From: Simon Horman <horms@kernel.org>
+To: Diogo Ivo <diogo.ivo@siemens.com>
+Cc: MD Danish Anwar <danishanwar@ti.com>, Roger Quadros <rogerq@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jan Kiszka <jan.kiszka@siemens.com>,
+	Jacob Keller <jacob.e.keller@intel.com>,
+	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v3 2/4] net: ti: icss-iep: Remove spinlock-based
+ synchronization
+Message-ID: <20240607182414.GH27689@kernel.org>
+References: <20240607-iep-v3-0-4824224105bc@siemens.com>
+ <20240607-iep-v3-2-4824224105bc@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="44kjmhkbol2rnepo"
-Content-Disposition: inline
-In-Reply-To: <c939b0c7-2c8c-4cf1-8d5c-9309ce0b371a@gmx.de>
-
-
---44kjmhkbol2rnepo
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20240607-iep-v3-2-4824224105bc@siemens.com>
 
+On Fri, Jun 07, 2024 at 02:02:43PM +0100, Diogo Ivo wrote:
+> As all sources of concurrency in hardware register access occur in
+> non-interrupt context eliminate spinlock-based synchronization and
+> rely on the mutex-based synchronization that is already present.
+> 
+> Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
+> ---
+>  drivers/net/ethernet/ti/icssg/icss_iep.c | 10 ----------
+>  1 file changed, 10 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/ti/icssg/icss_iep.c b/drivers/net/ethernet/ti/icssg/icss_iep.c
+> index 3025e9c18970..1d6ccdf2583f 100644
+> --- a/drivers/net/ethernet/ti/icssg/icss_iep.c
+> +++ b/drivers/net/ethernet/ti/icssg/icss_iep.c
+> @@ -110,7 +110,6 @@ struct icss_iep {
+>  	struct ptp_clock_info ptp_info;
+>  	struct ptp_clock *ptp_clock;
+>  	struct mutex ptp_clk_mutex;	/* PHC access serializer */
+> -	spinlock_t irq_lock; /* CMP IRQ vs icss_iep_ptp_enable access */
+>  	u32 def_inc;
+>  	s16 slow_cmp_inc;
+>  	u32 slow_cmp_count;
+> @@ -199,7 +198,6 @@ static void icss_iep_settime(struct icss_iep *iep, u64 ns)
+>  		return;
+>  	}
+>  
+> -	spin_lock_irqsave(&iep->irq_lock, flags);
+>  	if (iep->pps_enabled || iep->perout_enabled)
+>  		writel(0, iep->base + iep->plat_data->reg_offs[ICSS_IEP_SYNC_CTRL_REG]);
+>  
+> @@ -210,7 +208,6 @@ static void icss_iep_settime(struct icss_iep *iep, u64 ns)
+>  		writel(IEP_SYNC_CTRL_SYNC_N_EN(0) | IEP_SYNC_CTRL_SYNC_EN,
+>  		       iep->base + iep->plat_data->reg_offs[ICSS_IEP_SYNC_CTRL_REG]);
+>  	}
+> -	spin_unlock_irqrestore(&iep->irq_lock, flags);
+>  }
+>  
+>  /**
 
-> the text "Only works for DDR, DDR2, DDR3 and DDR4 for now" should be updated too.
-> With this fixed:
+Hi Diogo,
 
-Yes, maybe this could be simplified to "(LP)DDR memory types"
+This is not a full review, but flags is now unused in icss_iep_settime()
+and should be removed.  Likewise in icss_iep_perout_enable() and
+icss_iep_pps_enable().
 
+Flagged by W=1 builds with gcc-13 and clang-18.
 
---44kjmhkbol2rnepo
-Content-Type: application/pgp-signature; name="signature.asc"
+...
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmZjSq4ACgkQFA3kzBSg
-KbbTbg//cD7sOcvnAnkIomuxZCVkBx0taLNZrNBPEfiUHTdGQ3zontEQMXJ0moHe
-acWUAt/sy6sxemTyRojO0FWsDCGOZ9hPO95F8Tpt921gdDOFF3mSMXv7V4eLVbzV
-H7jI+QIn7hvjUBpCTCgZ0DjDY5ku36tAxcpxbr/7aYsoXPz31lqk9Tb8lthum4+j
-8AfgziLgAaNqvd0tDO5CoVmAiy0d8gs2OvqXfwP5XOOzhGA78CzfxG2GSCqqO73c
-qXxrR3Rhu82NMej7FUUd+eThQvcmgo3eqV7AOHlr0eaT1338DBk3ZIEGFlswn5ae
-LsoeVUtequuqUVbsf5XM0QHaCO8uB/Z9lvgwa1FIHdMvbWT/lUebhtjwlH61WjZk
-aZam6j+Av84nmp9XdPWNm5itz1Yk8YcekN1Eq/rjlDqu8VF9fFofH5caKrtnojEk
-+1tlAyjdoRudnf15D59pcrD/S1NMYxWb94rw0BekOaQYOHAo51dnPMsOS+YW5/H7
-DqSuo2PjSMobSv8GHuUq0Sd/Ghvrc3jxSlEtgUk4jUWv6QJSBIMzrA5wWrPiYjVk
-YHxgS1VSNMApKGgHGcvhzyLSWJllAiZWs3POngn0wVRiTNQwqTLkyypF8fkzOe1Q
-T9IaM1Fjx/+bn2IHZRQaRNhBYfGy7tZVgodo8x5mXaOsjDmP41E=
-=qngC
------END PGP SIGNATURE-----
-
---44kjmhkbol2rnepo--
+-- 
+pw-bot: changes-requested
 
