@@ -1,278 +1,222 @@
-Return-Path: <devicetree+bounces-73651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F44890028B
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 13:46:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EBBF900299
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 13:49:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 514D81C22508
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:46:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7A7D28B887
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:49:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEC46190051;
-	Fri,  7 Jun 2024 11:46:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01F9618F2C6;
+	Fri,  7 Jun 2024 11:49:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CoZhXKKH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oHKUKYSz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFC581527A4;
-	Fri,  7 Jun 2024 11:46:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54898187358
+	for <devicetree@vger.kernel.org>; Fri,  7 Jun 2024 11:49:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717760792; cv=none; b=ltlV5a4+wwxC3vdbJhvdQmtwHHR2Klytb9LvWMlwfwAI6KJSlW+MDWg6k6xJaQ5AuFVwo1gbNHOqzMvpcvFicGkZaouaL4hQcUJKUPgrFTayvl/HNmYP1vv/tB54nsoT/DhG2jBojcMowHz02oK3RcwnkDNlmnAFpa5dqPsvDuM=
+	t=1717760943; cv=none; b=McY8PpEnSp0plojZmY7aaIJ2Xqibq6RnC0vLD9pCnbW2CFPAoadXMVUIrDRTv0bKBamKTNCUjJDvkgxaiSZ+6+bTdAhl4yuAZ/Y6jl1644PYHBFxcJctjUszBBRg4jU83bbq5AvB6Bbrb7pufgBZ9W6rwkrVyOt+P+OsWjdAZoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717760792; c=relaxed/simple;
-	bh=WgoPOvpJBrjFRzJkMr0lOsjcrFohGFp24YpP2tSK04c=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=fAjEXV3hixdSBKzJkqa97qOXDyWT5bHWZ2E04lma6Z3Fu0KFvPSweYgbB9iLHDPLfoppEuzLyCYif82MRWCxlIuvnC70ojIbSopw92XdxqWCeA6C4/j++8Ecps/zBT35tUrEaKLqaT+M2qjjgnXN6PJn3L0x5GJArXMm4v6K860=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CoZhXKKH; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1717760791; x=1749296791;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=WgoPOvpJBrjFRzJkMr0lOsjcrFohGFp24YpP2tSK04c=;
-  b=CoZhXKKHANDuPBh6mFhQQ+Nm+6+uKzTjsT5V6kGS8bwoGm/AJcXeVOLm
-   A7JcjEu4peb+RSg3ifgezvZb3KlWEhNcYoJjHD7Ze+DO/OgAgPgrPtpMx
-   ExcDq3vaKlvWK+eh4SPngIk0Q3IlaQ11McSEof4vB/Ii8NQCzpX6Ir+oI
-   fzC1Vzg+MWUC6BA3N2p+r/kYQIA7JZAKQ67P8cT6hDCB3JP/9+4Zf88rF
-   0oRVa2wF7n16mUq6xwTWz4j1e+lWh00Ly9UeMwYtkYmM/JZX31WWxa9GX
-   Z113+3Otk4/DTVnEWCTRcxk0wJIu5FrWoDiR6+EfbP740LBjQEZSFHC0p
-   w==;
-X-CSE-ConnectionGUID: lLWB/BQ/SMq5f4D/w/WuGg==
-X-CSE-MsgGUID: F/M4WIOqSWCs6hs8Nkno4w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="14321039"
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; 
-   d="scan'208";a="14321039"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jun 2024 04:46:30 -0700
-X-CSE-ConnectionGUID: 4lKNgLrKSGCxUy3it4FE/Q==
-X-CSE-MsgGUID: +x08uut2TuWWc9SfCar14w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; 
-   d="scan'208";a="38400831"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.247.184])
-  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jun 2024 04:46:24 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Fri, 7 Jun 2024 14:46:20 +0300 (EEST)
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
-    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-    Hans de Goede <hdegoede@redhat.com>, 
-    =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
-    Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-    Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-    Konrad Dybcio <konrad.dybcio@linaro.org>, linux-pm@vger.kernel.org, 
-    devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
-    platform-driver-x86@vger.kernel.org, linux-usb@vger.kernel.org, 
-    linux-arm-msm@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>
-Subject: Re: [PATCH v5 2/6] platform: arm64: add Lenovo Yoga C630 WOS EC
- driver
-In-Reply-To: <20240607-yoga-ec-driver-v5-2-1ac91a0b4326@linaro.org>
-Message-ID: <3a9cb5b3-92a0-640d-baac-0429a91a669b@linux.intel.com>
-References: <20240607-yoga-ec-driver-v5-0-1ac91a0b4326@linaro.org> <20240607-yoga-ec-driver-v5-2-1ac91a0b4326@linaro.org>
+	s=arc-20240116; t=1717760943; c=relaxed/simple;
+	bh=9RBdun848oyGcaKII1pvPRbUGsBtrYjKBBsCinPoZw8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LCxJKGUa1C7un/uagionjhLb5OnCYE+2cIclOpb6LRUSsiJVKe04abZNAxB/aRhRln1K0s2JrqIN946Lih+yXcQ5jg/ATbpEStISouI7Iti4bleBd57JXY7eVczX7BvsCoCeooMcTRmVoy7gXAkjmjQpMVH9wnHCKtMoLRCWUPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oHKUKYSz; arc=none smtp.client-ip=209.85.219.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-dfafe87b5fbso535448276.3
+        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2024 04:49:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717760941; x=1718365741; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aaxauWMNivX2Xh96RfVBzt0WPh7okmPnKiLgSACVt0o=;
+        b=oHKUKYSzjMck6aSSnYbg+mwHDVzlENejPoIFx7zkvcBgmSSm/0X0NdcHF8TCTg4cMR
+         43d6FC3LUUY0lMJn+ZzOeUJ2ua3yqS+lN8o1IUCUvQ0zyQuXPDmnZZIR7Xs1hZpRaCpH
+         GAHsREap8PMid8xvr5ed0QcW6nReMHWnNhdYrLKXZqRlYRoxwEAMb7SSroNKtJhIjEo4
+         mxTiEhUQMiLueOgqKw1685hmH5Om8fjsyQ/GmUhIJ8T/wPj6Ix6Xl+JEYqmHhWBZzqM4
+         i9Z+zfldwpS49MxVtUbzZoAG+9jH1fS/F69r/+vsUV+TnjwsLF6vsT2+LOSYAbpzlXhE
+         7ylA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717760941; x=1718365741;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aaxauWMNivX2Xh96RfVBzt0WPh7okmPnKiLgSACVt0o=;
+        b=SqEiepjwwTdY5kPzT+66yZNQEf6H51SwzCWOSTpa3DAIAwF6TdZhWT/wce6EMDTbjG
+         zhCscD5GpjwFI6Ye7gkAxEDm51QnI5+ZnD1A6cODV6j6ZCN+nKlWI7XnbzM2UEBg+FVk
+         RxWlaNE4oxFb6MPDTDi+P98+XK4SD5BX8Dj4je0e4V/AZbv6YZqEbxDdvYXdV0rw4gZl
+         oEKgWYeb96G/IefPor+IiSEc39dR7LpcgS/sZzS/Rc7rBlU4C8V7CRXEZTVky0gSo9wP
+         twoYu84SeKml5TJl929V47TJ0R88P+DwKoTG+ozGjUWo8ybYBzVjFXrHOz6QOCTXkaqM
+         y0uA==
+X-Forwarded-Encrypted: i=1; AJvYcCWYWLFkEfvm7nPvII+ZVXfT8spTP5nFX0A3CXZJIcRmYlOCBVVskyqCMbKaJNec0jJ1ey9R/GvygK5PT8D5vgI9rLJKc0tUzYlvyw==
+X-Gm-Message-State: AOJu0Yy688Js6oBBDC3BNUQ1u+v/S1BCcLsfCk4wlssQ/zzllMgj2nv0
+	vnZcl9Bd406JJaHqkIJIkCNu7U+iHLjD9NSnna7UD0EDnOF5UXLSWBRFDWGNblIz6E/DNEXbfbK
+	iFbYPngwg0ERTmt53PwMwW4au3cILXCccpLm/ag==
+X-Google-Smtp-Source: AGHT+IEvLOEOxMW8QOmpMJOUqm62o8XRyN7BdmXOZVOMDNpN7DmrTQqwPsmrngbZSGqsWg4DDlh5AFn7ma7MoM98/qc=
+X-Received: by 2002:a25:d648:0:b0:dfa:7ac9:fad1 with SMTP id
+ 3f1490d57ef6-dfaf663d8a9mr2327430276.24.1717760941376; Fri, 07 Jun 2024
+ 04:49:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+References: <20240601084528.22502-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <20240601084528.22502-2-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <oo6gggt2kpufvbwg6emoblg4opj2izdfjad4hzojbe7ddp57rp@a5vf23zrk22o> <CA+6=WdTPJxtGUt6pSanmwdYKz2wqCFv73K=BPb+9oDHrQcW=Sw@mail.gmail.com>
+In-Reply-To: <CA+6=WdTPJxtGUt6pSanmwdYKz2wqCFv73K=BPb+9oDHrQcW=Sw@mail.gmail.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 7 Jun 2024 14:48:50 +0300
+Message-ID: <CAA8EJpqOZ2zXQo5F01Q208Bk-KM-awfhNtuq4iM8=FEkLqfkpA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: display: panel: Add KD101NE3-40TI support
+To: zhaoxiong lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+Cc: dmitry.torokhov@gmail.com, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jikos@kernel.org, 
+	benjamin.tissoires@redhat.co, dianders@google.com, hsinyi@google.com, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 7 Jun 2024, Dmitry Baryshkov wrote:
+On Fri, 7 Jun 2024 at 14:38, zhaoxiong lv
+<lvzhaoxiong@huaqin.corp-partner.google.com> wrote:
+>
+> hi Dmitry Baryshkov
+>
+> Because this is a separate mipi dsi driver, I did not put it in
+> panel-sample-dsi.yaml.
 
-> Lenovo Yoga C630 WOS is a laptop using Snapdragon 850 SoC. Like many
-> laptops it uses an embedded controller (EC) to perform various platform
-> operations, including, but not limited, to Type-C port control or power
-> supply handlng.
-> 
-> Add the driver for the EC, that creates devices for UCSI and power
-> supply devices.
-> 
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/platform/arm64/Kconfig                 |  14 ++
->  drivers/platform/arm64/Makefile                |   1 +
->  drivers/platform/arm64/lenovo-yoga-c630.c      | 283 +++++++++++++++++++++++++
->  include/linux/platform_data/lenovo-yoga-c630.h |  43 ++++
->  4 files changed, 341 insertions(+)
-> 
-> diff --git a/drivers/platform/arm64/Kconfig b/drivers/platform/arm64/Kconfig
-> index 8fdca0f8e909..8c103b3150d1 100644
-> --- a/drivers/platform/arm64/Kconfig
-> +++ b/drivers/platform/arm64/Kconfig
-> @@ -32,4 +32,18 @@ config EC_ACER_ASPIRE1
->  	  laptop where this information is not properly exposed via the
->  	  standard ACPI devices.
->  
-> +config EC_LENOVO_YOGA_C630
-> +	tristate "Lenovo Yoga C630 Embedded Controller driver"
-> +	depends on I2C
-> +	help
-> +	  Driver for the Embedded Controller in the Qualcomm Snapdragon-based
-> +	  Lenovo Yoga C630, which provides battery and power adapter
-> +	  information.
-> +
-> +	  This driver provides battery and AC status support for the mentioned
-> +	  laptop where this information is not properly exposed via the
-> +	  standard ACPI devices.
-> +
-> +	  Say M or Y here to include this support.
-> +
->  endif # ARM64_PLATFORM_DEVICES
-> diff --git a/drivers/platform/arm64/Makefile b/drivers/platform/arm64/Makefile
-> index 4fcc9855579b..b2ae9114fdd8 100644
-> --- a/drivers/platform/arm64/Makefile
-> +++ b/drivers/platform/arm64/Makefile
-> @@ -6,3 +6,4 @@
->  #
->  
->  obj-$(CONFIG_EC_ACER_ASPIRE1)	+= acer-aspire1-ec.o
-> +obj-$(CONFIG_EC_LENOVO_YOGA_C630) += lenovo-yoga-c630.o
-> diff --git a/drivers/platform/arm64/lenovo-yoga-c630.c b/drivers/platform/arm64/lenovo-yoga-c630.c
-> new file mode 100644
-> index 000000000000..ffad8c443a13
-> --- /dev/null
-> +++ b/drivers/platform/arm64/lenovo-yoga-c630.c
+Driver and bindings are two separate things. Bindings describe the
+hardware. If there is no other reason to have a separate bindings
+document, please use panel-simple-dsi.yaml.
 
-> +int yoga_c630_ec_read8(struct yoga_c630_ec *ec, u8 addr)
-> +{
-> +	u8 req[2] = { LENOVO_EC_READ_REG, };
-> +	int ret;
-> +	u8 val;
-> +
-> +	scoped_guard(mutex, &ec->lock) {
-> +		req[1] = addr;
-> +		ret = yoga_c630_ec_request(ec, req, sizeof(req), &val, 1);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
-> +	return val;
+Also please don't top-post in public mailing lists.
 
-For simple cases like this which don't do logic after the unlock, guard() 
-would be enough (I don't mind scoped_guard() myself though).
+>
+>
+> On Sun, Jun 2, 2024 at 12:28=E2=80=AFAM Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+> >
+> > On Sat, Jun 01, 2024 at 04:45:25PM +0800, Zhaoxiong Lv wrote:
+> > > Create a new dt-scheam for the kd101ne3-40ti.
+> > > The bias IC of this kindisplay-kd101ne3 panel is placed
+> > > on the panel side, so when the panel is powered on,
+> > > there is no need to control AVDD and AVEE in the driver.
+> > >
+> > > Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.c=
+om>
+> > > ---
+> > >
+> > > Chage since V2:
+> > >
+> > > -  Drop some properties that have already been defined in panel-commo=
+n.
+> > > -  The header file 'dt-bindings/gpio/gpio.h' is not used, delete it
+> > >
+> > > V1: https://lore.kernel.org/all/20240418081548.12160-2-lvzhaoxiong@hu=
+aqin.corp-partner.google.com/
+> > >
+> > > ---
+> > >  .../panel/kingdisplay,kd101ne3-40ti.yaml      | 59 +++++++++++++++++=
+++
+> > >  1 file changed, 59 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/display/panel/k=
+ingdisplay,kd101ne3-40ti.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/display/panel/kingdisp=
+lay,kd101ne3-40ti.yaml b/Documentation/devicetree/bindings/display/panel/ki=
+ngdisplay,kd101ne3-40ti.yaml
+> > > new file mode 100644
+> > > index 000000000000..b0cf12bb727d
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/display/panel/kingdisplay,kd1=
+01ne3-40ti.yaml
+> > > @@ -0,0 +1,59 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/display/panel/kingdisplay,kd101ne=
+3-40ti.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Kingdisplay KD101NE3-40TI based MIPI-DSI panels
+> > > +
+> > > +maintainers:
+> > > +  - Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+> >
+> > Any reason for using a separate bindings instead of extending
+> > panel-simple-dsi.yaml ?
+> >
+> > > +
+> > > +allOf:
+> > > +  - $ref: panel-common.yaml#
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    items:
+> > > +      - enum:
+> > > +          - kingdisplay,kd101ne3-40ti
+> > > +
+> > > +  reg:
+> > > +    description: the virtual channel number of a DSI peripheral
+> > > +
+> > > +  pp3300-supply:
+> > > +    description: core voltage supply
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - pp3300-supply
+> > > +  - enable-gpios
+> > > +  - backlight
+> > > +  - port
+> > > +
+> > > +unevaluatedProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    dsi {
+> > > +        #address-cells =3D <1>;
+> > > +        #size-cells =3D <0>;
+> > > +        panel: panel@0 {
+> > > +            compatible =3D "kingdisplay,kd101ne3-40ti";
+> > > +            reg =3D <0>;
+> > > +            enable-gpios =3D <&pio 98 0>;
+> > > +            pinctrl-names =3D "default";
+> > > +            pinctrl-0 =3D <&panel_pins_default>;
+> > > +            pp3300-supply =3D <&en_pp6000_mipi_disp>;
+> > > +            backlight =3D <&backlight_lcd0>;
+> > > +            rotation =3D <90>;
+> > > +            port {
+> > > +                panel_in: endpoint {
+> > > +                    remote-endpoint =3D <&dsi_out>;
+> > > +                };
+> > > +            };
+> > > +        };
+> > > +    };
+> > > +
+> > > +...
+> > > --
+> > > 2.17.1
+> > >
+> >
+> > --
+> > With best wishes
+> > Dmitry
 
-> +}
-> +EXPORT_SYMBOL_GPL(yoga_c630_ec_read8);
-> +
-> +int yoga_c630_ec_read16(struct yoga_c630_ec *ec, u8 addr)
-> +{
-> +	u8 req[2] = { LENOVO_EC_READ_REG, };
-> +	int ret;
-> +	u8 msb;
-> +	u8 lsb;
-
-addr + 1 could overflow below so it would be good the return -EINVAL if 
-0xff addr is given as a parameter.
-
-> +	scoped_guard(mutex, &ec->lock) {
-> +		req[1] = addr;
-> +		ret = yoga_c630_ec_request(ec, req, sizeof(req), &lsb, 1);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		req[1] = addr + 1;
-> +		ret = yoga_c630_ec_request(ec, req, sizeof(req), &msb, 1);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
-> +	return msb << 8 | lsb;
-> +}
-> +EXPORT_SYMBOL_GPL(yoga_c630_ec_read16);
 
 
-> +
-> +u16 yoga_c630_ec_ucsi_get_version(struct yoga_c630_ec *ec)
-> +{
-> +	u8 req[3] = { 0xb3, 0xf2, 0x20};
-> +	int ret;
-> +	u8 msb;
-> +	u8 lsb;
-> +
-> +	scoped_guard(mutex, &ec->lock) {
-> +		ret = yoga_c630_ec_request(ec, req, sizeof(req), &lsb, 1);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		req[2] = 0x21;
-
-Could you name 0x20 with a define and use it above and with + 1 here?
-
-> +		ret = yoga_c630_ec_request(ec, req, sizeof(req), &msb, 1);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
-> +	return msb << 8 | lsb;
-> +}
-> +EXPORT_SYMBOL_GPL(yoga_c630_ec_ucsi_get_version);
-
-> diff --git a/include/linux/platform_data/lenovo-yoga-c630.h b/include/linux/platform_data/lenovo-yoga-c630.h
-> new file mode 100644
-> index 000000000000..5571dd65ce08
-> --- /dev/null
-> +++ b/include/linux/platform_data/lenovo-yoga-c630.h
-> @@ -0,0 +1,43 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022-2024, Linaro Ltd
-> + * Authors:
-> + *    Bjorn Andersson
-> + *    Dmitry Baryshkov
-> + */
-> +
-> +#ifndef _LENOVO_YOGA_C630_DATA_H
-> +#define _LENOVO_YOGA_C630_DATA_H
-> +
-> +struct yoga_c630_ec;
-> +struct notifier_block;
-> +
-> +#define YOGA_C630_MOD_NAME	"lenovo_yoga_c630"
-> +
-> +#define YOGA_C630_DEV_UCSI	"ucsi"
-> +#define YOGA_C630_DEV_PSY	"psy"
-> +
-> +int yoga_c630_ec_read8(struct yoga_c630_ec *ec, u8 addr);
-> +int yoga_c630_ec_read16(struct yoga_c630_ec *ec, u8 addr);
-> +
-> +int yoga_c630_ec_register_notify(struct yoga_c630_ec *ec, struct notifier_block *nb);
-> +void yoga_c630_ec_unregister_notify(struct yoga_c630_ec *ec, struct notifier_block *nb);
-> +
-> +#define YOGA_C630_UCSI_WRITE_SIZE	8
-> +#define YOGA_C630_UCSI_CCI_SIZE		4
-> +#define YOGA_C630_UCSI_DATA_SIZE	16
-> +#define YOGA_C630_UCSI_READ_SIZE	(YOGA_C630_UCSI_CCI_SIZE + YOGA_C630_UCSI_DATA_SIZE)
-
-Add newline here.
-
-> +u16 yoga_c630_ec_ucsi_get_version(struct yoga_c630_ec *ec);
-> +int yoga_c630_ec_ucsi_write(struct yoga_c630_ec *ec,
-> +			    const u8 req[YOGA_C630_UCSI_WRITE_SIZE]);
-> +int yoga_c630_ec_ucsi_read(struct yoga_c630_ec *ec,
-> +			   u8 resp[YOGA_C630_UCSI_READ_SIZE]);
-> +
-> +#define LENOVO_EC_EVENT_USB		0x20
-> +#define LENOVO_EC_EVENT_UCSI		0x21
-> +#define LENOVO_EC_EVENT_HPD		0x22
-> +#define LENOVO_EC_EVENT_BAT_STATUS	0x24
-> +#define LENOVO_EC_EVENT_BAT_INFO	0x25
-> +#define LENOVO_EC_EVENT_BAT_ADPT_STATUS	0x37
-> +
-> +#endif
-> 
-> 
-
--- 
- i.
-
+--=20
+With best wishes
+Dmitry
 
