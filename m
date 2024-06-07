@@ -1,40 +1,56 @@
-Return-Path: <devicetree+bounces-73773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D659C9009BD
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 17:58:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFA779009D1
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 18:00:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59B9F2818F2
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 15:58:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55CDD1F241F8
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 16:00:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 542881993B5;
-	Fri,  7 Jun 2024 15:58:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5FCA199234;
+	Fri,  7 Jun 2024 16:00:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmx.de header.i=w_armin@gmx.de header.b="Ztllsmqo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 205E419414D;
-	Fri,  7 Jun 2024 15:58:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E66443AA1;
+	Fri,  7 Jun 2024 16:00:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717775897; cv=none; b=DVQRBI9jc9ZTl3gziuTzhVdgMTfgMb1lyETUvYPs6L5yPfsJ0e9dySDt0f95uu6P/Dcr2a/e31QOqXkpRn2A4t/FOnr5zMf4WwUjf/aO6FYsN9KDVGtuozhrwW8S5YT0A1on6aUjnlfmXEHXEcQgZBue/lVcEyG3Jfhls9ehLxI=
+	t=1717776031; cv=none; b=bkjYoA8XO/6ecqtOG6p5CfL1FH4ugVqo4rMc6kwb6tbzS0DS7AiQqHzUNcd0m9A5eVX5n8hFG5JGzPNvKNJqV+ogu4lhGO+MPbRcqSr1/Q90NlqboHjqW6zLS0aiNb4ORA6nM8VPSrAi4ZEyVKLCC/WRHPL7bYdXLGpMd8iqLh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717775897; c=relaxed/simple;
-	bh=wLmEPnGiH2sWjtpPH5jP3Z6lrRzcGqIBWkF60wZBWhs=;
+	s=arc-20240116; t=1717776031; c=relaxed/simple;
+	bh=ipN6NcG+tPJzPSaA+JuANoD3xQXwFm7y+dIl2bp/uhc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Fy5V0rnDwxqhtKTT+zxLCJVkVtvjTvIAkdq0Gk3CE7wxwJXaZxuazDBZi3wg5vs/kfCroPQll6Vz3hUshUBq+gUPTmNrLf4kSZAJx6JgdR1bz67VZ/7gcLsNX/OiDFdMVFVxSo8qXuUW+SbWzuzOrfgvdD5k4EpiaMz6ZQdWfRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 01F4315A1;
-	Fri,  7 Jun 2024 08:58:39 -0700 (PDT)
-Received: from [10.57.70.171] (unknown [10.57.70.171])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DB6B43F64C;
-	Fri,  7 Jun 2024 08:58:12 -0700 (PDT)
-Message-ID: <c803199b-7e0a-4086-96de-00cf95bae2fd@arm.com>
-Date: Fri, 7 Jun 2024 16:58:11 +0100
+	 In-Reply-To:Content-Type; b=Bs8vQYN1R68qeP/p39XyaGS/gCT1HHZN8YWTZDA62ox7evSgVL6lUEAtaoEGnsVhchzUKqmCwpVGXx50totXRfLuFHhLKCTw04HOUKHI9lt39MpMVVT/QZ7eszeTm+ZiEtojCZsO5ZZFXRUybYG+BO9lavaYvj1cIwQ156ewkZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=w_armin@gmx.de header.b=Ztllsmqo; arc=none smtp.client-ip=212.227.17.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
+	s=s31663417; t=1717776000; x=1718380800; i=w_armin@gmx.de;
+	bh=ipN6NcG+tPJzPSaA+JuANoD3xQXwFm7y+dIl2bp/uhc=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=ZtllsmqoYaaNqy0hHE6wovbGb4j13GI2uK4s0Vk3iiZGNgThWWl14KOXsfazQwSc
+	 Kqmk9NUK9Mxd/i3ZJV+uqBjqoq6EYgQFIZpH3lmtkdQgq/Iz5CCy3vVX5OuUxS6sJ
+	 7kUqQAV6ONPSE4xPJ7FzSgpeR+GUm3jLixL6qWH6RpKD92TD/CwTfe91OoWv1IOWn
+	 VjptevYb/EusNgMQygOpsWUGBgP6yW8pOacrY/alTJGj/rKquXtR8/rDLeEAx/HG6
+	 xf45usxPOEFh9cQgJWAnh987hPNnmBvvha9yeGWvSMWjPr/kkLSRf5n9BF6Oh/z76
+	 LOriN1LY5eRbozbmaw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [141.30.226.129] ([141.30.226.129]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1N0oG5-1scehx12mr-00z4Ju; Fri, 07
+ Jun 2024 18:00:00 +0200
+Message-ID: <c6f398f2-a16c-462a-8c79-d2eda3dbd56e@gmx.de>
+Date: Fri, 7 Jun 2024 17:59:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,389 +58,124 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 2/7] coresight: tmc-etr: Add support to use reserved
- trace memory
-Content-Language: en-GB
-To: Linu Cherian <lcherian@marvell.com>, mike.leach@linaro.org,
- james.clark@arm.com
-Cc: linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, sgoutham@marvell.com, gcherian@marvell.com,
- Anil Kumar Reddy <areddy3@marvell.com>
-References: <20240605081725.622953-1-lcherian@marvell.com>
- <20240605081725.622953-3-lcherian@marvell.com>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20240605081725.622953-3-lcherian@marvell.com>
+Subject: Re: [PATCH v4 4/6] hwmon: (spd5118) Add support for reading SPD data
+To: Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org
+Cc: linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ =?UTF-8?Q?Ren=C3=A9_Rebe?= <rene@exactcode.de>,
+ =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+ Stephen Horvath <s.horvath@outlook.com.au>
+References: <20240604040237.1064024-1-linux@roeck-us.net>
+ <20240604040237.1064024-5-linux@roeck-us.net>
+ <4cfe1004-77d4-432b-b07e-557a2e57de58@gmx.de>
+ <2c94220a-29e9-4b83-a427-5ad406ff1c48@roeck-us.net>
+Content-Language: en-US
+From: Armin Wolf <W_Armin@gmx.de>
+In-Reply-To: <2c94220a-29e9-4b83-a427-5ad406ff1c48@roeck-us.net>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:0qDdKGw61X87nQFLHvowo2G5k240GD/KA+cotLxrnQr4berymYb
+ wB1CETpGS2SrWjIHwlcssRK6enPLMKMNfrZ2DZARjqgyntnFWoC9Bu5Nkjp8SnXFKAEO5kL
+ iq+Dd2+XmHgVCTz7xFytLw8oSYLZ6RqCUwqQ+JpjXYPSaiT153hZFvkanO2BAZ0m1mC68VH
+ yWU6d6459Ed314UPd+P4Q==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:wZGDi/oXCIM=;vYmL5x6uzzRQTVhF2LXO3SJZGYa
+ +MFZ5gk2HrpjbVxGHGcRMSDsnCBoSCbgmRMPalOWosmL+RxOtNccoo22PjH2dvQcvNntRv8Ip
+ qWaAoLgBgZ3RTTeZ1aXXwzGaCBkkFml4VErK+8p+vQ32PN2SEEEaexbHGTvMg1Y6zrSvQ3Ky/
+ bUJAnRXzTPVvnt59G3e5YpmygFGmxZP6Ev0IWAhMzOHfa8NjTB4ZhOVZthVH24nDwokr1EYWH
+ EKddhxKiwIVpgdGyntHIsKBbo5m4HkzPIK4zSUFLyW8of+GsUMJAjA659uiRCcUHQduEmjk6+
+ VnKAkhLNWgLlYal/QTOGYI3W6nez6ezXpdkkLeGQV+Iqhw7HkYsLLP2mgHPOKnYKwR55jTrkn
+ 9Kz3HBBxlnH64VRhKQ4trYwgDvwFVFdjXTpx9ibOsYIaead1P1i1qV4Uy3ofaapf/5Tes/Nh4
+ 39VGPwk31EZbol0Q5FAzvnjW5Bedf20Jn9D+D/VVkopW9WhLGvlBEldDGNfR//DxShrycXGsg
+ eCHO1ONCScDqBuo9lOPHiAJhbIaRNEFJGYM3s+WXe7v9AU4N7w3oQM5LXHyo+xIRTK3yQrBpn
+ bLnoDQCIua3AYnNxrNlqPkEbfeAySCwTFAdy0SopyVc8ft8SfWguKaP0yGPeK1xHXC+QvL3sA
+ Mzoa0zWI4AE1tYQ5hUtQTMQ7INI5b1Qoxqc027dhdEsqRIqGUYLVe30FG83Koft5+Z7JzXY3r
+ +tR5Vb8i4Qu7oS3K9htnKVYfFLZbRBxpmkabf5p7P1rm8KbK08oENEBp1IKj1220C6xoOccgQ
+ 1KF8Z/3jzfVRj3w8fxSwBwohCK2bMzKIAgCe2mfscZ0bc=
 
-Hi Linu
+Am 04.06.24 um 16:30 schrieb Guenter Roeck:
 
-On 05/06/2024 09:17, Linu Cherian wrote:
-> Add support to use reserved memory for coresight ETR trace buffer.
-> 
-> Introduce a new ETR buffer mode called ETR_MODE_RESRV, which
-> becomes available when ETR device tree node is supplied with a valid
-> reserved memory region.
-> 
-> ETR_MODE_RESRV can be selected only by explicit user request.
-> 
-> $ echo resrv >/sys/bus/coresight/devices/tmc_etr<N>/buf_mode_preferred
-> 
-> Signed-off-by: Anil Kumar Reddy <areddy3@marvell.com>
-> Signed-off-by: Linu Cherian <lcherian@marvell.com>
-> Reviewed-by: James Clark <james.clark@arm.com>
+> On 6/4/24 04:58, Armin Wolf wrote:
+>> Am 04.06.24 um 06:02 schrieb Guenter Roeck:
+>>
+>>> Add support for reading SPD NVMEM data from SPD5118 (Jedec JESD300)
+>>> compliant memory modules. NVMEM write operation is not supported.
+>>>
+>>> NVMEM support is optional. If CONFIG_NVMEM is disabled, the driver wil=
+l
+>>> still instantiate but not provide NVMEM attribute files.
+>>>
+>>> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
+>>> ---
+>>> v4: Use NVMEM_DEVID_NONE instead of NVMEM_DEVID_AUTO
+>>> =C2=A0=C2=A0=C2=A0=C2=A0 Ignore nvmem registration failure if nvmem su=
+pport is disabled
+>>>
+>>> v3: New patch
+>>>
+>>> =C2=A0 Documentation/hwmon/spd5118.rst |=C2=A0=C2=A0 8 ++
+>>> =C2=A0 drivers/hwmon/spd5118.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 | 147
+>>> +++++++++++++++++++++++++++++++-
+>
+>
+> [ ... ]
+>
+>>> +static int spd5118_nvmem_init(struct device *dev, struct
+>>> spd5118_data *data)
+>>> +{
+>>> +=C2=A0=C2=A0=C2=A0 struct nvmem_config nvmem_config =3D {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .type =3D NVMEM_TYPE_EEPRO=
+M,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .name =3D dev_name(dev),
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .id =3D NVMEM_DEVID_NONE,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .dev =3D dev,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .base_dev =3D dev,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .read_only =3D true,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .root_only =3D false,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .owner =3D THIS_MODULE,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .compat =3D true,
+>>
+>> Hi,
+>>
+>> do we really need this setting here?
+>>
+>
+> The "eeprom" file is only created if both "base_dev" and "compat" are
+> set.
+> decode-dimms depends on it. While decode-dimms has to be updated anyway,
+> I did not want to make that more complicated than necessary.
+>
+I understand.
 
-Some minor comments below.
+> Another option would be not to use the nvmem subsystem in the first
+> place,
+> similar to the ee1004 driver, but my understanding is that the use of th=
+e
+> nvmem subsystem is preferred.
+>
+> [ ... ]
+>
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0 err =3D spd5118_nvmem_init(dev, data);
+>>> +=C2=A0=C2=A0=C2=A0 /* Ignore if NVMEM support is disabled */
+>>> +=C2=A0=C2=A0=C2=A0 if (err && err !=3D -EOPNOTSUPP) {
+>>
+>> Maybe we can use IS_REACHABLE(CONFIG_NVMEM) here?
+>>
+>
+> We could, but I prefer to avoid conditionals in the code if possible,
+> the dummy devm_nvmem_register() is there specifically to cover that
+> situation, and no other driver does that. Also, since the underlying
+> functions are dummy, the compiler should optimize it all away if
+> CONFIG_NVMEM=3Dn.
+>
+> Thanks,
+> Guenter
+>
+Ok, then i am ok with with this patch.
 
-
-> ---
-> Changelog from v8:
-> Added Reviewed-by tag.
-> 
->   .../hwtracing/coresight/coresight-tmc-core.c  | 47 +++++++++++
->   .../hwtracing/coresight/coresight-tmc-etr.c   | 79 +++++++++++++++++++
->   drivers/hwtracing/coresight/coresight-tmc.h   | 27 +++++++
->   3 files changed, 153 insertions(+)
-> 
-> diff --git a/drivers/hwtracing/coresight/coresight-tmc-core.c b/drivers/hwtracing/coresight/coresight-tmc-core.c
-> index 741ce1748e75..6beb69d74d0a 100644
-> --- a/drivers/hwtracing/coresight/coresight-tmc-core.c
-> +++ b/drivers/hwtracing/coresight/coresight-tmc-core.c
-> @@ -23,6 +23,7 @@
->   #include <linux/spinlock.h>
->   #include <linux/pm_runtime.h>
->   #include <linux/of.h>
-> +#include <linux/of_address.h>
->   #include <linux/coresight.h>
->   #include <linux/amba/bus.h>
->   #include <linux/platform_device.h>
-> @@ -400,6 +401,50 @@ static inline bool tmc_etr_has_non_secure_access(struct tmc_drvdata *drvdata)
->   
->   static const struct amba_id tmc_ids[];
->   
-> +static struct device_node *tmc_get_region_byname(struct device_node *node,
-> +						 char *name)
-> +{
-> +	int index;
-> +
-> +	index = of_property_match_string(node, "memory-region-names", name);
-> +	if (index < 0)
-> +		return ERR_PTR(-ENODEV);
-> +
-> +	return of_parse_phandle(node, "memory-region", index);
-> +}
-> +
-> +static void tmc_get_reserved_region(struct device *parent)
-> +{
-> +	struct tmc_drvdata *drvdata = dev_get_drvdata(parent);
-> +	struct device_node *node;
-> +	struct resource res;
-> +	int rc;
-> +
-> +	node = tmc_get_region_byname(parent->of_node, "tracedata");
-> +	if (IS_ERR_OR_NULL(node)) {
-> +		dev_dbg(parent, "No reserved trace buffer specified\n");
-> +		return;
-> +	}
-> +
-> +	rc = of_address_to_resource(node, 0, &res);
-
-This sequence is repeated again in the metadat area, where :
-
-1. We get region by name.
-2. Read the resource details.
-
-Could we not make "the helper" do both and move the "of_node_put()" 
-inside the helper ?
-
-static int of_tmc_get_reserved_resource_by_name(struct device *dev,
-					        const char *name,
-					        struct resource *res)
-{
-
- > +	int index, rc = -ENODEV;
- > +	struct device_node *node;
-
-	if (!is_of_node(dev_fwnode(dev->fwnode)))
-		return -ENODEV;
- > +
- > +	index = of_property_match_string(dev->of_node, 
-"memory-region-names", name);
- > +	if (index < 0)
- > +		return rc;
- > +
- > +	node = of_parse_phandle(node, "memory-region", index);
-	if (!node)
-		return rc;
-
-	if (!of_address_to_resource(node, 0, res) &&
-	    res->start != 0 && resource_size(res) != 0)
-		rc = 0;
-	of_node_put(node);
-	
-	return rc;
-}
-
-
-> +	of_node_put(node);
-> +	if (rc || res.start == 0 || resource_size(&res) == 0) {
-> +		dev_err(parent, "Reserved trace buffer memory is invalid\n");
-> +		return;
-> +	}
-
-and the caller does :
-
-	if (of_tmc_get_reserved_area_by_name(parent, "tracedata", &res))
-		return;
-
-> +
-> +	drvdata->crash_tbuf.vaddr = memremap(res.start,
-> +						resource_size(&res),
-> +						MEMREMAP_WC);
-> +	if (IS_ERR_OR_NULL(drvdata->crash_tbuf.vaddr)) {
-> +		dev_err(parent, "Reserved trace buffer mapping failed\n");
-> +		return;
-> +	}
-> +
-> +	drvdata->crash_tbuf.paddr = res.start;
-> +	drvdata->crash_tbuf.size  = resource_size(&res);
-> +}
-> +
->   /* Detect and initialise the capabilities of a TMC ETR */
->   static int tmc_etr_setup_caps(struct device *parent, u32 devid,
->   			      struct csdev_access *access)
-> @@ -510,6 +555,8 @@ static int __tmc_probe(struct device *dev, struct resource *res)
->   		drvdata->size = readl_relaxed(drvdata->base + TMC_RSZ) * 4;
->   	}
->   
-> +	tmc_get_reserved_region(dev);
-> +
->   	desc.dev = dev;
->   
->   	switch (drvdata->config_type) {
-> diff --git a/drivers/hwtracing/coresight/coresight-tmc-etr.c b/drivers/hwtracing/coresight/coresight-tmc-etr.c
-> index e75428fa1592..041c428dd7cd 100644
-> --- a/drivers/hwtracing/coresight/coresight-tmc-etr.c
-> +++ b/drivers/hwtracing/coresight/coresight-tmc-etr.c
-> @@ -30,6 +30,7 @@ struct etr_buf_hw {
->   	bool	has_iommu;
->   	bool	has_etr_sg;
->   	bool	has_catu;
-> +	bool	has_resrv;
->   };
->   
->   /*
-> @@ -694,6 +695,75 @@ static const struct etr_buf_operations etr_flat_buf_ops = {
->   	.get_data = tmc_etr_get_data_flat_buf,
->   };
->   
-> +/*
-> + * tmc_etr_alloc_resrv_buf: Allocate a contiguous DMA buffer from reserved region.
-> + */
-> +static int tmc_etr_alloc_resrv_buf(struct tmc_drvdata *drvdata,
-> +				  struct etr_buf *etr_buf, int node,
-> +				  void **pages)
-> +{
-> +	struct etr_flat_buf *resrv_buf;
-> +	struct device *real_dev = drvdata->csdev->dev.parent;
-> +
-> +	/* We cannot reuse existing pages for resrv buf */
-> +	if (pages)
-> +		return -EINVAL;
-> +
-> +	resrv_buf = kzalloc(sizeof(*resrv_buf), GFP_KERNEL);
-> +	if (!resrv_buf)
-> +		return -ENOMEM;
-> +
-> +	resrv_buf->daddr = dma_map_resource(real_dev, drvdata->crash_tbuf.paddr,
-> +					   drvdata->crash_tbuf.size,
-> +					   DMA_FROM_DEVICE, 0);
-> +	if (dma_mapping_error(real_dev, resrv_buf->daddr)) {
-> +		dev_err(real_dev, "failed to map source buffer address\n");
-> +		kfree(resrv_buf);
-> +		return -ENOMEM;
-> +	}
-> +
-> +	resrv_buf->vaddr = drvdata->crash_tbuf.vaddr;
-> +	resrv_buf->size = etr_buf->size = drvdata->crash_tbuf.size;
-> +	resrv_buf->dev = &drvdata->csdev->dev;
-> +	etr_buf->hwaddr = resrv_buf->daddr;
-> +	etr_buf->mode = ETR_MODE_RESRV;
-> +	etr_buf->private = resrv_buf;
-> +	return 0;
-> +}
-> +
-> +static void tmc_etr_free_resrv_buf(struct etr_buf *etr_buf)
-> +{
-> +	struct etr_flat_buf *resrv_buf = etr_buf->private;
-> +
-> +	if (resrv_buf && resrv_buf->daddr) {
-
-
-> +		struct device *real_dev = resrv_buf->dev->parent;
-> +
-> +		dma_unmap_resource(real_dev, resrv_buf->daddr,
-> +				resrv_buf->size, DMA_FROM_DEVICE, 0);
-> +	}
-> +	kfree(resrv_buf);
-> +}
-> +
-> +static void tmc_etr_sync_resrv_buf(struct etr_buf *etr_buf, u64 rrp, u64 rwp)
-> +{
-> +	/*
-> +	 * Adjust the buffer to point to the beginning of the trace data
-> +	 * and update the available trace data.
-> +	 */
-> +	etr_buf->offset = rrp - etr_buf->hwaddr;
-> +	if (etr_buf->full)
-> +		etr_buf->len = etr_buf->size;
-> +	else
-> +		etr_buf->len = rwp - rrp;
-> +}
-> +
-> +static const struct etr_buf_operations etr_resrv_buf_ops = {
-> +	.alloc = tmc_etr_alloc_resrv_buf,
-> +	.free = tmc_etr_free_resrv_buf,
-> +	.sync = tmc_etr_sync_resrv_buf,
-> +	.get_data = tmc_etr_get_data_flat_buf,
-> +};
-> +
->   /*
->    * tmc_etr_alloc_sg_buf: Allocate an SG buf @etr_buf. Setup the parameters
->    * appropriately.
-> @@ -800,6 +870,7 @@ static const struct etr_buf_operations *etr_buf_ops[] = {
->   	[ETR_MODE_FLAT] = &etr_flat_buf_ops,
->   	[ETR_MODE_ETR_SG] = &etr_sg_buf_ops,
->   	[ETR_MODE_CATU] = NULL,
-> +	[ETR_MODE_RESRV] = &etr_resrv_buf_ops
->   };
->   
->   void tmc_etr_set_catu_ops(const struct etr_buf_operations *catu)
-> @@ -825,6 +896,7 @@ static inline int tmc_etr_mode_alloc_buf(int mode,
->   	case ETR_MODE_FLAT:
->   	case ETR_MODE_ETR_SG:
->   	case ETR_MODE_CATU:
-> +	case ETR_MODE_RESRV:
->   		if (etr_buf_ops[mode] && etr_buf_ops[mode]->alloc)
->   			rc = etr_buf_ops[mode]->alloc(drvdata, etr_buf,
->   						      node, pages);
-> @@ -843,6 +915,7 @@ static void get_etr_buf_hw(struct device *dev, struct etr_buf_hw *buf_hw)
->   	buf_hw->has_iommu = iommu_get_domain_for_dev(dev->parent);
->   	buf_hw->has_etr_sg = tmc_etr_has_cap(drvdata, TMC_ETR_SG);
->   	buf_hw->has_catu = !!tmc_etr_get_catu_device(drvdata);
-> +	buf_hw->has_resrv = is_tmc_reserved_region_valid(dev->parent);
-
-Minor nit: In line with the other helpers, please could we rename this to :
-
-tmc_has_reserved_buffer(drvdata) ?
-
-We already have access to drvdata and we can pass that directly instead 
-of passing the dev->parent and then fetch drvdata again.
-
->   }
->   
->   static bool etr_can_use_flat_mode(struct etr_buf_hw *buf_hw, ssize_t etr_buf_size)
-> @@ -1830,6 +1903,7 @@ static const char *const buf_modes_str[] = {
->   	[ETR_MODE_FLAT]		= "flat",
->   	[ETR_MODE_ETR_SG]	= "tmc-sg",
->   	[ETR_MODE_CATU]		= "catu",
-> +	[ETR_MODE_RESRV]	= "resrv",
->   	[ETR_MODE_AUTO]		= "auto",
->   };
->   
-> @@ -1848,6 +1922,9 @@ static ssize_t buf_modes_available_show(struct device *dev,
->   	if (buf_hw.has_catu)
->   		size += sysfs_emit_at(buf, size, "%s ", buf_modes_str[ETR_MODE_CATU]);
->   
-> +	if (buf_hw.has_resrv)
-> +		size += sysfs_emit_at(buf, size, "%s ", buf_modes_str[ETR_MODE_RESRV]);
-> +
->   	size += sysfs_emit_at(buf, size, "\n");
->   	return size;
->   }
-> @@ -1875,6 +1952,8 @@ static ssize_t buf_mode_preferred_store(struct device *dev,
->   		drvdata->etr_mode = ETR_MODE_ETR_SG;
->   	else if (sysfs_streq(buf, buf_modes_str[ETR_MODE_CATU]) && buf_hw.has_catu)
->   		drvdata->etr_mode = ETR_MODE_CATU;
-> +	else if (sysfs_streq(buf, buf_modes_str[ETR_MODE_RESRV]) && buf_hw.has_resrv)
-> +		drvdata->etr_mode = ETR_MODE_RESRV;
->   	else if (sysfs_streq(buf, buf_modes_str[ETR_MODE_AUTO]))
->   		drvdata->etr_mode = ETR_MODE_AUTO;
->   	else
-> diff --git a/drivers/hwtracing/coresight/coresight-tmc.h b/drivers/hwtracing/coresight/coresight-tmc.h
-> index c77763b49de0..c23dc9917ab9 100644
-> --- a/drivers/hwtracing/coresight/coresight-tmc.h
-> +++ b/drivers/hwtracing/coresight/coresight-tmc.h
-> @@ -135,6 +135,7 @@ enum etr_mode {
->   	ETR_MODE_FLAT,		/* Uses contiguous flat buffer */
->   	ETR_MODE_ETR_SG,	/* Uses in-built TMC ETR SG mechanism */
->   	ETR_MODE_CATU,		/* Use SG mechanism in CATU */
-> +	ETR_MODE_RESRV,		/* Use reserved region contiguous buffer */
->   	ETR_MODE_AUTO,		/* Use the default mechanism */
->   };
->   
-> @@ -164,6 +165,17 @@ struct etr_buf {
->   	void				*private;
->   };
->   
-> +/**
-> + * @paddr	: Start address of reserved memory region.
-> + * @vaddr	: Corresponding CPU virtual address.
-> + * @size	: Size of reserved memory region.
-> + */
-> +struct tmc_resrv_buf {
-> +	phys_addr_t     paddr;
-> +	void		*vaddr;
-> +	size_t		size;
-> +};
-> +
->   /**
->    * struct tmc_drvdata - specifics associated to an TMC component
->    * @pclk:	APB clock if present, otherwise NULL
-> @@ -188,6 +200,10 @@ struct etr_buf {
->    * @idr_mutex:	Access serialisation for idr.
->    * @sysfs_buf:	SYSFS buffer for ETR.
->    * @perf_buf:	PERF buffer for ETR.
-> + * @crash_tbuf:	Used by ETR as hardware trace buffer and for trace data
-> + *		retention (after crash) only when ETR_MODE_RESRV buffer
-> + *		mode is enabled. Used by ETF for trace data retention
-> + *		(after crash) by default.
-
-Minor nit: This need not be called crash_tbuf, could instead be
-resrv_buf as we use it everywhere.
-
-Suzuki
-
-
->    */
->   struct tmc_drvdata {
->   	struct clk		*pclk;
-> @@ -213,6 +229,7 @@ struct tmc_drvdata {
->   	struct mutex		idr_mutex;
->   	struct etr_buf		*sysfs_buf;
->   	struct etr_buf		*perf_buf;
-> +	struct tmc_resrv_buf	crash_tbuf;
->   };
->   
->   struct etr_buf_operations {
-> @@ -330,6 +347,16 @@ tmc_sg_table_buf_size(struct tmc_sg_table *sg_table)
->   	return (unsigned long)sg_table->data_pages.nr_pages << PAGE_SHIFT;
->   }
->   
-> +static inline bool is_tmc_reserved_region_valid(struct device *dev)
-> +{
-> +	struct tmc_drvdata *drvdata = dev_get_drvdata(dev);
-> +
-> +	if (drvdata->crash_tbuf.paddr &&
-> +		drvdata->crash_tbuf.size)
-> +		return true;
-> +	return false;
-> +}
-> +
->   struct coresight_device *tmc_etr_get_catu_device(struct tmc_drvdata *drvdata);
->   
->   void tmc_etr_set_catu_ops(const struct etr_buf_operations *catu);
+Tested-by: Armin Wolf <W_Armin@gmx.de>
 
 
