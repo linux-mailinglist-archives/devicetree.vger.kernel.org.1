@@ -1,211 +1,123 @@
-Return-Path: <devicetree+bounces-73597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA1DF900107
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 12:36:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01715900151
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 12:58:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09C5C1C2256E
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 10:36:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A55562845AF
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 10:58:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 155CF15DBC8;
-	Fri,  7 Jun 2024 10:35:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 503091862A7;
+	Fri,  7 Jun 2024 10:58:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d7POC5YP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NoDbbT+p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36D0713DDB1;
-	Fri,  7 Jun 2024 10:35:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0D7C186288
+	for <devicetree@vger.kernel.org>; Fri,  7 Jun 2024 10:58:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717756519; cv=none; b=OvPXr2RfNiLxCbW+LjtMTfwTUpXnTnshBtpudK/oNWEWTPNcA7PQc4mvcbZDV4INLHT5tRL3/np/OXMR4ADoiyLbOP6919umOFi7DqtCT209y07kO0dLU7UPDKnI+OIm64go4DXapWUxH+E2FaDrcfihLEfaqv/4B6aarFZn9vE=
+	t=1717757896; cv=none; b=m6cq/ccJ2TS3tvMqdLnKdJfbMqQMx8S54B8lIYOwpcttAkowAS9WKVcM3B/LAwhysKth6FdwwbF7k9xgPfaDBBjG/GLW8AKRxgG0KTWeFZrOWsFImp4QwKMimZO8R69hjTRaUsKP5ZNFf5F/+ry6Fa4YM5xkRqjkJFxvr/vO/Vo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717756519; c=relaxed/simple;
-	bh=cEQNZnsBR2VQSTWPQWXJ4uAtDMxngmedxh84kXa5R9M=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=baNWl3HeGohx3ZdKIhSNMo3Ei1XLdP+Nq5KuaGKZg4IMniTM6+4vt8dCxgQHbBmYfRYxCZrKF7CyW89CSdUimYaMAFAEuBjwwvzhpYw8w7DKNwpv21YEzgOUtpp/xdYiLwolgOORa/GUe6ssI8IAXOw6m1dLaRi/6O7rDbs7+9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d7POC5YP; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-57a2ed9af7dso2805213a12.1;
-        Fri, 07 Jun 2024 03:35:16 -0700 (PDT)
+	s=arc-20240116; t=1717757896; c=relaxed/simple;
+	bh=ycQv3nbAr7OcSxmuMzMW9XRFydQt5R7zli+aLK774Fc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mYNmtHOQajG1Bb6Nt8SwAIz9gHP3U+IsRjA0Rs5V3PSYU0QecrPZDB8lsHnxcpwym1ojgfPeEiM1Uo3tjkqJ19/rVP2Yvy9iyVhTVKZ1ugMu+dc67dZKjbSje/vEwrbJEIbaCBkKdH+0XZ5wBiS50ZRAu2V/kInFmcG8uRzWaN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NoDbbT+p; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4210aa00c94so18361005e9.1
+        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2024 03:58:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717756515; x=1718361315; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=SyqtvUG2CVqjseXG6FBne98Mm50tomI+i8lXDe9236g=;
-        b=d7POC5YPpBjfLjQuHc2aBMWYH0lwnkmV447KUiJ3qtReAtHQMRjayLlEICu5Fl2AZs
-         1zuuIG27dCSGYqD5oWaKPrE46ZAW95DDRnh00huqajmitiNTk4paKYBrwtP4hqrdDs34
-         jJOxZ4hrJq46lXo7Kn67c8fSkleO6rCz35N9Rx8ak9xmUoPMutDc2Ljf2Tg3K3WXgt8s
-         bvQEJrbZRj8x6JB0BNe3BJsM8OFvdZXLjNjHgrSmu59UP8zpaAB4EyTrKPzqbSlu7dZQ
-         yShHK3Mf5h4YXg2CEoQe7TL7OOfHxLBzdnnnJbgIp/7YqpwBv5YoNFOx0nulwY3TyKT8
-         cGhg==
+        d=linaro.org; s=google; t=1717757893; x=1718362693; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AGKUPLlaqu34zNkRMuwZus3nvKRpkYIBrcHRGCQDW/8=;
+        b=NoDbbT+pdNil8HYGtuzjvYWi5sFvib3a4zU7ByWToY5/9QZXFuMZ1kYiJspovsmshc
+         7yC11cj4dTmQXDZQ3TIG2TAFYp22T094IP3gsFlR3ylORJDJAal5su/EN29fQLoul+Hf
+         ysx2UZmbA6ihfWhZOx4W9JS6kh5HTU0Z3OoM1P70uJ6ye2BZGhJcugxmAGKSXBNv/tTy
+         m2Ek5gf8Wqt8hnXZdDgOhkCmFlB7hjQpEQwCTB4fUdnUtylrGiiTOwpROqo7807ZFNS+
+         QFKp+OJcGmQcb7ogpz60KnTMkfRTtMDeXhFa1ns2HZALzRBzYqPgZ3M1+KfhZKdPgq+R
+         QeHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717756515; x=1718361315;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SyqtvUG2CVqjseXG6FBne98Mm50tomI+i8lXDe9236g=;
-        b=MRDlOunMbw/H5cUwp+6ds/QCoXYzaDrG/+aNW1DSUxZaYET9LJ4z/qL0wYrB4PtugC
-         d91mFi/6vuuRKgWSaha4oM0oX06GUVMucv+emovfQ7r0FbjjuzgSVR15SBFubOvzjhuV
-         OFmdVhm63oTR/mUFlHX6TKv2lVKDJ0GXyN8Q56RdpcgjX43tcJzezOmjE4ZtMOCaiea/
-         7w5Eo1IFazxi/9W+HJAMXnicypx54xtNY2L0ihgOb1GD/AzKFxKBemQV3Qf2F035W9A9
-         yYS//XRMoaqF0Si1hmYjIGeO+ePMhGF+7JTqhAgHM1Fpd54NtfO3L8dAAc+jfmwNn1V4
-         UVEg==
-X-Forwarded-Encrypted: i=1; AJvYcCVPx84sJgTC9wTYzNQpe4Yqm4OZAv13reKnHVXr7z8GiPo6XkTocLL5PbyDwjVEpVVpekm0sN3Tg7bsluXLpWZpH4mqHeI4TSMCcUmJ34u+4eSMBFp9ssYo+6K9B6Li8EPDVzKf24KAGZ5yQpEqZUHk0nygxuxdl/ZmU+Q+w+6xUNyQiQ==
-X-Gm-Message-State: AOJu0YzfqtwvBI1nYLj6RqlNpNJFDdQi0r+FTI4NIxAX6vnsTL5U0KTw
-	SttbDPvS9E7tFoDxGdSxUTjVeWDNTQf7qxAzN1zHRn4WEPnDu4Rt
-X-Google-Smtp-Source: AGHT+IGDGqZF3EOJmlPdFpdDmBVl9/SkrPsskUQKi/KtpWFdtnkb6SE3DcmvaX2W4n1vN4ppbQl1IA==
-X-Received: by 2002:a17:906:c302:b0:a59:c833:d274 with SMTP id a640c23a62f3a-a6cd76a92f2mr207366866b.37.1717756515271;
-        Fri, 07 Jun 2024 03:35:15 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6c8070e7f3sm223747266b.155.2024.06.07.03.35.14
+        d=1e100.net; s=20230601; t=1717757893; x=1718362693;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AGKUPLlaqu34zNkRMuwZus3nvKRpkYIBrcHRGCQDW/8=;
+        b=r3y0R8Ub1xU5Z10E1RqBrYE+7JK14gVGyWlCVOfUBdR/1+Igfo0ytHXpoRv7T8iiGE
+         Mj6XGEuHI1wARSjJGReWZnzJfoE1juw1mq0fjm52b4mKblKrk++8AsjujGhIxQ1oMtnD
+         792QpfNNBNs6rlKMUWXw8UaX3EajsdFN9gWkGFcq9MGsJKYcjU4/2KLtXXUeUAMNDbdR
+         iwruC2jmOBunqL0HMgLy149MS21tBQY6bHxgseYBgrFpoEiRfRMXz4yBrOQqb7rzVkEG
+         Y2cdhmnC5p74AAxKNWkS9GsTYHz+XC9qDZxrQyPFVKje+HCkjOTgdDLOXATpbUVDzn5Y
+         d1/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUydGcCw6y8hWECH0PzlMo7XDhkb2D7bvL9T08y6dHHNCE8yMWnp/wtsYaV+AdNh207PB4N755VKHTBAb/hf8Bke+gS/SnqnAvDXg==
+X-Gm-Message-State: AOJu0Yxf4uOuiHWCGBfJMfqjwfRWRfb+7te9CoYQkY697HrysiGfB5bO
+	TRHFshhr5p48i9sYAL8dyH6rWW+hSCp7+/uwSc+jQPXScIWWuP5QE+BHIejzjqU=
+X-Google-Smtp-Source: AGHT+IEq05dxkoUz5lyUwdXJILrFcWqbbvwqZompyFbB5WoQMQiG2JPbouhAI/2QDSQs2s1tVNVLaA==
+X-Received: by 2002:a5d:4bd0:0:b0:35e:7dc9:49d5 with SMTP id ffacd0b85a97d-35efedf2a1emr1381990f8f.43.1717757892978;
+        Fri, 07 Jun 2024 03:58:12 -0700 (PDT)
+Received: from localhost.localdomain ([2.221.137.100])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5fd1c5fsm3739485f8f.113.2024.06.07.03.58.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jun 2024 03:35:15 -0700 (PDT)
-Message-ID: <a6c7e97b80e3448a40be95ef7aab0e0e74026edc.camel@gmail.com>
-Subject: Re: [PATCH v6 9/9] iio: adc: ad7173: Add support for AD411x devices
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>, dumitru.ceclan@analog.com
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- David Lechner <dlechner@baylibre.com>,  linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
-Date: Fri, 07 Jun 2024 12:39:02 +0200
-In-Reply-To: <1c6d409b-ba9e-4a19-a6cb-e06209a24154@gmail.com>
-References: <20240606-ad4111-v6-0-573981fb3e2e@analog.com>
-	 <20240606-ad4111-v6-9-573981fb3e2e@analog.com>
-	 <389546877ae11b18928b432e86710acf83974f67.camel@gmail.com>
-	 <1c6d409b-ba9e-4a19-a6cb-e06209a24154@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.2 
+        Fri, 07 Jun 2024 03:58:12 -0700 (PDT)
+From: Jean-Philippe Brucker <jean-philippe@linaro.org>
+To: will@kernel.org,
+	lpieralisi@kernel.org,
+	kw@linux.com,
+	robh@kernel.org,
+	bhelgaas@google.com,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	liviu.dudau@arm.com,
+	sudeep.holla@arm.com,
+	joro@8bytes.org
+Cc: robin.murphy@arm.com,
+	nicolinc@nvidia.com,
+	ketanp@nvidia.com,
+	linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	iommu@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	Jean-Philippe Brucker <jean-philippe@linaro.org>
+Subject: [PATCH v2 0/3] Enable PCIe ATS for devicetree boot
+Date: Fri,  7 Jun 2024 11:54:13 +0100
+Message-ID: <20240607105415.2501934-2-jean-philippe@linaro.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Fri, 2024-06-07 at 12:41 +0300, Ceclan, Dumitru wrote:
-> On 07/06/2024 12:20, Nuno S=C3=A1 wrote:
-> > On Thu, 2024-06-06 at 19:07 +0300, Dumitru Ceclan via B4 Relay wrote:
-> > > From: Dumitru Ceclan <dumitru.ceclan@analog.com>
-> > >=20
-> > > Add support for AD4111/AD4112/AD4114/AD4115/AD4116.
-> > >=20
-> > > The AD411X family encompasses a series of low power, low noise, 24-bi=
-t,
-> > > sigma-delta analog-to-digital converters that offer a versatile range=
- of
-> > > specifications.
-> > >=20
-> > > This family of ADCs integrates an analog front end suitable for proce=
-ssing
-> > > both fully differential and single-ended, bipolar voltage inputs
-> > > addressing a wide array of industrial and instrumentation requirement=
-s.
-> > >=20
-> > > - All ADCs have inputs with a precision voltage divider with a divisi=
-on
-> > > =C2=A0 ratio of 10.
-> > > - AD4116 has 5 low level inputs without a voltage divider.
-> > > - AD4111 and AD4112 support current inputs (0 mA to 20 mA) using a 50=
-ohm
-> > > =C2=A0 shunt resistor.
-> > >=20
-> > > Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
-> > > ---
-> > > =C2=A0drivers/iio/adc/ad7173.c | 317
-> > > ++++++++++++++++++++++++++++++++++++++++++----
-> > > -
-> > > =C2=A01 file changed, 285 insertions(+), 32 deletions(-)
-> > >=20
-> > > diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
-> > > index 58da5717fd36..cfcd12447e24 100644
-> > > --- a/drivers/iio/adc/ad7173.c
-> > > +++ b/drivers/iio/adc/ad7173.c
-> > >=20
-> > ...
-> >=20
-> > > =C2=A0static const struct ad7173_device_info ad7172_2_device_info =3D=
- {
-> > > =C2=A0	.name =3D "ad7172-2",
-> > > =C2=A0	.id =3D AD7172_2_ID,
-> > > -	.num_inputs =3D 5,
-> > > +	.num_voltage_in =3D 5,
-> > > =C2=A0	.num_channels =3D 4,
-> > > =C2=A0	.num_configs =3D 4,
-> > > =C2=A0	.num_gpios =3D 2,
-> > > +	.higher_gpio_bits =3D false,
-> >=20
-> > No need to explicitly set to 'false'. Ditto for the other places...
-> >=20
-> > ...
-> >=20
-> > >=20
-> > > =C2=A0static int ad7173_validate_voltage_ain_inputs(struct ad7173_sta=
-te *st,
-> > > =C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int ain0, unsigned
-> > > int
-> > > ain1)
-> > > =C2=A0{
-> > > @@ -946,15 +1145,30 @@ static int
-> > > ad7173_validate_voltage_ain_inputs(struct
-> > > ad7173_state *st,
-> > > =C2=A0	=C2=A0=C2=A0=C2=A0 st->info->has_pow_supply_monitoring)
-> > > =C2=A0		return 0;
-> > > =C2=A0
-> > > -	special_input0 =3D AD7173_IS_REF_INPUT(ain0);
-> > > -	special_input1 =3D AD7173_IS_REF_INPUT(ain1);
-> > > +	special_input0 =3D AD7173_IS_REF_INPUT(ain0) ||
-> > > +			 (ain0 =3D=3D AD4111_VINCOM_INPUT && st->info-
-> > > > has_vincom_input);
-> > > +	special_input1 =3D AD7173_IS_REF_INPUT(ain1) ||
-> > > +			 (ain1 =3D=3D AD4111_VINCOM_INPUT && st->info-
-> > > > has_vincom_input);
-> > > +
-> >=20
-> > Wondering... can ain1 (or ain0) be AD4111_VINCOM_INPUT and !st->info-
-> > > has_vincom_input? Would that actually be acceptable? It would assume =
-it's
-> > > not
-> > so we should check that right? Or am I missing something?
-> >=20
-> > - Nuno S=C3=A1
-> >=20
->=20
-> It will fail when we check for the number of voltage inputs:
-> (ain0 >=3D st->info->num_voltage_in && !special_input0)=20
-> as special_input will not be true if has_vincom_input is false
->=20
-> Indeed this check is a bit hidden, should it be more explicit?
->=20
+Before enabling Address Translation Support (ATS) in endpoints, the OS
+needs to confirm that the Root Complex supports it. Obtain this
+information from the firmware description since there is no architected
+method. ACPI provides a bit via IORT tables, so add the devicetree
+equivalent.
 
-Hmm I see... Up to you. I guess I was not paying enough attention to=C2=A0
-st->info->num_voltage_in and to the fact that VINCOM and REFs are not count=
-ed by
-it.
+Since v1 [1] I added the review and ack tags, thanks all. This should be
+ready to go via the IOMMU tree.
 
-OTOH, yes, an explicit check could make sense because the log you output:
+[1] https://lore.kernel.org/all/20240429113938.192706-2-jean-philippe@linaro.org/
 
-"Input pin number out of range for pair..."
+Jean-Philippe Brucker (3):
+  dt-bindings: PCI: generic: Add ats-supported property
+  iommu/of: Support ats-supported device-tree property
+  arm64: dts: fvp: Enable PCIe ATS for Base RevC FVP
 
-It's really not mentioning the real problem (or it's a very hidden message =
-IOW).
-having something like
+ .../devicetree/bindings/pci/host-generic-pci.yaml        | 6 ++++++
+ drivers/iommu/of_iommu.c                                 | 9 +++++++++
+ arch/arm64/boot/dts/arm/fvp-base-revc.dts                | 1 +
+ 3 files changed, 16 insertions(+)
 
-if (ain0 =3D=3D AD4111_VINCOM_INPUT && !st->info-has_vincom_input)
-	return dev_err_probe(dev, -EINVAL, "VINCOM not supported for %s\n",
-			part_name);
+-- 
+2.45.2
 
-would be something way easier to understand :)
-
-- Nuno S=C3=A1
 
