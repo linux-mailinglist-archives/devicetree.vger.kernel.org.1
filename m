@@ -1,111 +1,149 @@
-Return-Path: <devicetree+bounces-73675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E796F900435
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 14:57:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBEE4900464
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 15:15:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E533F1C24049
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 12:57:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5CD428786B
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 13:15:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CE1F198E74;
-	Fri,  7 Jun 2024 12:55:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1C50194C8B;
+	Fri,  7 Jun 2024 13:14:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="qIudx6tl"
+	dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b="puEFBW1i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mta-64-227.siemens.flowmailer.net (mta-64-227.siemens.flowmailer.net [185.136.64.227])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 707A41974FD;
-	Fri,  7 Jun 2024 12:55:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1B791946DC
+	for <devicetree@vger.kernel.org>; Fri,  7 Jun 2024 13:14:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.64.227
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717764911; cv=none; b=ugZPNc+GJ01w+t0pEM/U2GhEPQ8H0OtY5g1P2Dd3UYjT0zCCJDqRZFUb68u+NAYkEihYY3xWh2agrIt6ct8BPhtWitbZSndoR3UZri/eSvhbWtuidC63bP8hLlVidh9WWTFNDtiKh3s16m7qNNXra/rWe9dKiKnw/YMNVakit6g=
+	t=1717766059; cv=none; b=DrPCEiSYyFjC0tOYKaESr9dxFRm8hSuwxtl/7QXl305e/H45/OSZavgwG/I/Ul9AJUgQ2FliVdYaOois1XwDxZfTUDqrMuDAOtuWM9etWYWeVwo/bNOGt24J0v5ptggEk43HcE8PmjWonWgPFgqdQnW0tRkUZeYdQRuHgXraNos=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717764911; c=relaxed/simple;
-	bh=5NWcVpNKympvjmY4ZAfbn8fpM87+EGDnRtTmadAXs2c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mGbDFS/Z4/XxIN8GY+jtuudPAfTozfrk1J+SPg/fOvKVIjaB9uVn8G+cUM16m+EKltlY+eVw1Dmdu1u8oWSbci6kTz+WCv+70+Yae7ZaPAEOci8tEJxFezjunusPwMBFOr+Z0orh3YiS/LvCQIOd6WFKdIKWM5x4hOGQx7UFlV0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=qIudx6tl; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 3FE458843A;
-	Fri,  7 Jun 2024 14:55:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1717764903;
-	bh=P0S/4deZxZJMtdvuT/iptKgogzJiQ+NI/Cuim8aAx14=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qIudx6tlhV1mJzqBeYZgsgKF0cBsiZfsJWaaZp1q+f1Ld9EPcv+p+INR1aeq1RBJa
-	 dplIhKaAlyfG0vCnCYsHWZnMnA5KfseZzghJa4vtxHY1axDZufbv61KbeB4fpfRpBR
-	 wVE0IyYu/RFuTAOmDi2xX7eg8A8E5p54aGJn0N83YIOT/Tj3xuuwgoHbQeDVHQtlzq
-	 yFrc+3GkcVUicRUNfK2AhYcCmgkizEvLaXLAr1syNvjXqLUSDqjjelG+OXZAP68cLF
-	 iYX23iJURj0ozm9EP/BczYi1QlQpbAawemXqPk4vOtDQScDSCofgfCiIGVgM0C4PaD
-	 2FK8zbhmrrqFg==
-Message-ID: <bcb7d95c-9ad3-4b10-b435-cec148aae061@denx.de>
-Date: Fri, 7 Jun 2024 14:50:03 +0200
+	s=arc-20240116; t=1717766059; c=relaxed/simple;
+	bh=M57GmtZA7uRuye5XGW7w65bnbiEuyeFO424hHO+XQY8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qFLbwnZalcm6Dlq5wnDfH3JWpUe1j8HiQUpd+SQIsvT8uKm7Bo5e+Wt3qQjjCc8qsGlDPHZSxAgOxgB21YBPt4Sh4fquOC8RlG5td9cpHJrGmCN0OwxeItdXoBchU1RFpEuwvX3Ho9WQ8V3xpJPUb4OXgoYQwvRY8hn2o7pHsFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b=puEFBW1i; arc=none smtp.client-ip=185.136.64.227
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
+Received: by mta-64-227.siemens.flowmailer.net with ESMTPSA id 2024060713140948e2b161d189a3b3ff
+        for <devicetree@vger.kernel.org>;
+        Fri, 07 Jun 2024 15:14:10 +0200
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm2;
+ d=siemens.com; i=diogo.ivo@siemens.com;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
+ bh=sTjKOiLBJ41DZpxQsI71jhDcMjYRDYvyrj4yxx6L3Vc=;
+ b=puEFBW1ivREMLt24MKBqv3xL4egFgbQFdsko6t6gnS+ZPCsXIEYlp9XGNMdqe60wukEyA1
+ av894e3zYg66Ul5E9MZLDiIQs/4PaQnmSS3jUi1UKuBQFr1a3CpHgwthZuZn0ZAaONAuGYlY
+ gZhjxsaqF2RBP9mepK7SVcEtSMtkU=;
+From: Diogo Ivo <diogo.ivo@siemens.com>
+Subject: [PATCH net-next v3 0/4] Enable PTP timestamping/PPS for AM65x
+ SR1.0 devices
+Date: Fri, 07 Jun 2024 14:02:41 +0100
+Message-Id: <20240607-iep-v3-0-4824224105bc@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 12/12] ARM: multi_v7_defconfig: Add MCP23S08 pinctrl
- support
-To: Christophe Roullier <christophe.roullier@foss.st.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>, Jose Abreu
- <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240607095754.265105-1-christophe.roullier@foss.st.com>
- <20240607095754.265105-13-christophe.roullier@foss.st.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20240607095754.265105-13-christophe.roullier@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+X-B4-Tracking: v=1; b=H4sIAPEEY2YC/1WMwQ6DIBAFf8XsuTQIithT/6PpAXFb9yAaIMTG+
+ O8l9NB4fJk3s0NATxjgVu3gMVGgxeUhLxXYybg3MhrzBsFFw1vRM8KV6WFojLRDz5WG/Fw9vmg
+ rlQc4jMzhFuGZyUQhLv5T8qku/FRKNeOsE520vGt7Mcp7IJzRhatd5lJI4m8p3vwskS00GmvLT
+ au0OlvHcXwBXZs3HtgAAAA=
+To: MD Danish Anwar <danishanwar@ti.com>, Roger Quadros <rogerq@kernel.org>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Richard Cochran <richardcochran@gmail.com>, Nishanth Menon <nm@ti.com>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jan Kiszka <jan.kiszka@siemens.com>, 
+ Jacob Keller <jacob.e.keller@intel.com>, Simon Horman <horms@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Diogo Ivo <diogo.ivo@siemens.com>, 
+ Wojciech Drewek <wojciech.drewek@intel.com>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1717766048; l=3009;
+ i=diogo.ivo@siemens.com; s=20240529; h=from:subject:message-id;
+ bh=M57GmtZA7uRuye5XGW7w65bnbiEuyeFO424hHO+XQY8=;
+ b=qIfW66+YKoQkrc5SJJN2tiHs003VGAqgW6y5350rcJBm/109jXHtPaZiTAK/yAPMRkGG2jQLh
+ 8MkaSvLmFPzC8+gyCxWEwtVlBRJoogcaKmSUfwFxeKwVZjxvI7qDBTO
+X-Developer-Key: i=diogo.ivo@siemens.com; a=ed25519;
+ pk=BRGXhMh1q5KDlZ9y2B8SodFFY8FGupal+NMtJPwRpUQ=
+X-Flowmailer-Platform: Siemens
+Feedback-ID: 519:519-1320519:519-21489:flowmailer
 
-On 6/7/24 11:57 AM, Christophe Roullier wrote:
-> Enable MCP23S08 I/O expanders to manage Ethernet phy
+This patch series enables support for PTP in AM65x SR1.0 devices.
 
-PHY in capitals .
+This feature relies heavily on the Industrial Ethernet Peripheral
+(IEP) hardware module, which implements a hardware counter through
+which time is kept. This hardware block is the basis for exposing
+a PTP hardware clock to userspace and for issuing timestamps for
+incoming/outgoing packets, allowing for time synchronization.
 
-> reset in STM32MP135F-DK board.
-> 
-> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
-> ---
->   arch/arm/configs/multi_v7_defconfig | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-> index 86bf057ac3663..9758f3d41ad70 100644
-> --- a/arch/arm/configs/multi_v7_defconfig
-> +++ b/arch/arm/configs/multi_v7_defconfig
-> @@ -469,6 +469,7 @@ CONFIG_SPI_XILINX=y
->   CONFIG_SPI_SPIDEV=y
->   CONFIG_SPMI=y
->   CONFIG_PINCTRL_AS3722=y
-> +CONFIG_PINCTRL_MCP23S08=y
->   CONFIG_PINCTRL_MICROCHIP_SGPIO=y
->   CONFIG_PINCTRL_OCELOT=y
->   CONFIG_PINCTRL_PALMAS=y
+The IEP also has compare registers that fire an interrupt when the
+counter reaches the value stored in a compare register. This feature
+allows us to support PPS events in the kernel.
 
-Send this as separate patch, this can go in right away.
+The changes are separated into four patches:
+ - PATCH 01/04: Register SR1.0 devices with the IEP infrastructure to
+		expose a PHC clock to userspace, allowing time to be
+		adjusted using standard PTP tools. The code for issuing/
+		collecting packet timestamps is already present in the
+		current state of the driver, so only this needs to be
+		done.
+ - PATCH 02/04: Remove unnecessary spinlock synchronization.
+ - PATCH 03/04: Add support for IEP compare event/interrupt handling
+		to enable PPS events.
+ - PATCH 04/04: Add the interrupts to the IOT2050 device tree.
+
+Currently every compare event generates two interrupts, the first
+corresponding to the actual event and the second being a spurious
+but otherwise harmless interrupt. The root cause of this has been
+identified and has been solved in the platform's SDK. A forward port
+of the SDK's patches also fixes the problem in upstream but is not
+included here since it's upstreaming is out of the scope of this
+series. If someone from TI would be willing to chime in and help
+get the interrupt changes upstream that would be great!
+
+Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
+---
+Changes in v3:
+- Collect Reviewed-by tags
+- Add patch 02/04 removing spinlocks from IEP driver
+- Use mutex-based synchronization when accessing HW registers
+- Link to v2: https://lore.kernel.org/r/20240604-iep-v2-0-ea8e1c0a5686@siemens.com
+
+Changes in v2:
+- Collect Reviewed-by tags
+- PATCH 01/03: Limit line length to 80 characters
+- PATCH 02/03: Proceed with limited functionality if getting IRQ fails,
+	       limit line length to 80 characters
+- Link to v1: https://lore.kernel.org/r/20240529-iep-v1-0-7273c07592d3@siemens.com
+
+---
+Diogo Ivo (4):
+      net: ti: icssg-prueth: Enable PTP timestamping support for SR1.0 devices
+      net: ti: icss-iep: Remove spinlock-based synchronization
+      net: ti: icss-iep: Enable compare events
+      arm64: dts: ti: iot2050: Add IEP interrupts for SR1.0 devices
+
+ .../boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi    | 12 ++++
+ drivers/net/ethernet/ti/icssg/icss_iep.c           | 84 +++++++++++++++++++---
+ drivers/net/ethernet/ti/icssg/icssg_prueth_sr1.c   | 51 ++++++++++++-
+ 3 files changed, 136 insertions(+), 11 deletions(-)
+---
+base-commit: 2f0e3f6a6824dfda2759225326d9c69203c06bc8
+change-id: 20240529-iep-8bb4a3cb9068
+
+Best regards,
+-- 
+Diogo Ivo <diogo.ivo@siemens.com>
+
 
