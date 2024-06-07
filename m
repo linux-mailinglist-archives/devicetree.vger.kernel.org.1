@@ -1,335 +1,95 @@
-Return-Path: <devicetree+bounces-73723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09BF5900643
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 16:19:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D227900676
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 16:26:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 838FE1F222A5
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 14:19:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BEC79B221F1
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 14:26:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08695196C85;
-	Fri,  7 Jun 2024 14:17:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91228195999;
+	Fri,  7 Jun 2024 14:26:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=peacevolution.org header.i=@peacevolution.org header.b="a/gaYwcM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A42C196C65;
-	Fri,  7 Jun 2024 14:17:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from a.peacevolution.org (a.peacevolution.org [206.189.193.133])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 908491667DE;
+	Fri,  7 Jun 2024 14:26:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.193.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717769856; cv=none; b=JbGkrjVVJt+yubTocGEdgp0L+hLGneSjVSYFviF/cDK4TFZp5OqIm2OwCKZ61TBS9GlPUiLjOkN1MYS31pc3D9oH2iukNQbmCHo2Ste/90eFAxjCXeVbZsMuqz9BEdfjavKv9Cfz6JD991PBEiikgtVOF0PkiC/lDZh2js+SudY=
+	t=1717770396; cv=none; b=Ggnn6jFibAqLoPXPz8iMMCEYXvyNLzE9kHNN1uQ9yPu5FRlT0Xvrevzf68Uy3N/TiM5EphJJ/NQNnO63r/Tt+pGnPckZuNhkW1wHdSzY7zrH7aFPE/mj5TxiEKXOggmCi5jCDo9lOXBcSkm69lxQBvUpVgp477LJGoMKARKrkDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717769856; c=relaxed/simple;
-	bh=8Ydd0HPEQjqOxcdyNn+M4mD18QDKZMXTaKlNZ2fiMgE=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=VUh0T58RV7iF/UiJqfjnCKXER1gQnXcZL1UXwONRwusgaHD34A0sadQ0d4PgmjoeUHyYKRKT9slUM4fesDKlSzxgd0omevzqzt28Mrjqq2Klx9Ub2fxk4pDFX0+iXjliDsHicJQoruVn22B4a6Rm/RwPLz4Kb9wma9fpCxpuys8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 83BAC153B;
-	Fri,  7 Jun 2024 07:17:58 -0700 (PDT)
-Received: from [192.168.1.100] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 69E4A3F64C;
-	Fri,  7 Jun 2024 07:17:32 -0700 (PDT)
-Message-ID: <9fe19909-ddfa-4595-99a5-e8edc0805ca8@arm.com>
-Date: Fri, 7 Jun 2024 15:17:31 +0100
+	s=arc-20240116; t=1717770396; c=relaxed/simple;
+	bh=HhNF4gEO9wpQcZi+i8Hge7O/z4YF0BVJjH5/9mep+YA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qXOYZu1rLO2o5yL509pCafY7RjJ5JC/P1hSd0gyRm4lxJdrKymE8H01XL1uL1e472uRENUrtLGoRfwZj7DC4bB0nnKVE4v084JiyWQFKGYyrgdd5P7e/mK2/+ZIcMkviPbVonfgy9HJ2oAfXEdf0XhkEHJeCZl1bYmtINSWl85I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=peacevolution.org; spf=pass smtp.mailfrom=peacevolution.org; dkim=pass (1024-bit key) header.d=peacevolution.org header.i=@peacevolution.org header.b=a/gaYwcM; arc=none smtp.client-ip=206.189.193.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=peacevolution.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=peacevolution.org
+Received: from authenticated-user (PRIMARY_HOSTNAME [PUBLIC_IP])
+	by a.peacevolution.org (Postfix) with ESMTPA id D016947E7E;
+	Fri,  7 Jun 2024 14:19:18 +0000 (UTC)
+Date: Fri, 7 Jun 2024 10:19:16 -0400
+From: Aren <aren@peacevolution.org>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Andy Shevchenko <andy.shevchenko@gmail.com>, Ondrej Jirman <megi@xff.cz>, 
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, linux-iio@vger.kernel.org, phone-devel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	Willow Barraco <contact@willowbarraco.fr>
+Subject: Re: [PATCH v2 2/6] iio: light: stk3310: Implement vdd supply and
+ power it off during suspend
+Message-ID: <nkn5emedlkowgjdlqsvssg5ci3lipasbc5aaxn2krd5a6z3af4@fvvp4ysu5rs2>
+References: <20240423223309.1468198-2-aren@peacevolution.org>
+ <20240423223309.1468198-4-aren@peacevolution.org>
+ <20240428175337.61850e2a@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 5/7] coresight: tmc: Add support for reading crash data
-From: James Clark <james.clark@arm.com>
-To: Linu Cherian <lcherian@marvell.com>
-Cc: linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, sgoutham@marvell.com, gcherian@marvell.com,
- Anil Kumar Reddy <areddy3@marvell.com>, Tanmay Jagdale <tanmay@marvell.com>,
- suzuki.poulose@arm.com, mike.leach@linaro.org
-References: <20240605081725.622953-1-lcherian@marvell.com>
- <20240605081725.622953-6-lcherian@marvell.com>
- <a676105a-2f38-498b-87cb-94e0c2406408@arm.com>
-Content-Language: en-US
-In-Reply-To: <a676105a-2f38-498b-87cb-94e0c2406408@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240428175337.61850e2a@jic23-huawei>
+X-Spamd-Bar: /
+Authentication-Results: auth=pass smtp.auth=aren@peacevolution.org smtp.mailfrom=aren@peacevolution.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=peacevolution.org;
+	s=dkim; t=1717769960;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:in-reply-to:references;
+	bh=XAEyN4AkCHtTFKYLX9Yy5JtVjbYzN1yPHYJt3534IMA=;
+	b=a/gaYwcMwCH5yEh0swQaVtYVZwoEyr5KOx8OT9hrOGq/WzYIGxag68OcknO+ioNpWPzqrp
+	+X0ZhZ+6Ayy4OAseVLcHTZAifciqwFAPQE/uGytxwiMUbCR9bxIRvauaNsb1jnaUQ987R0
+	LyF1ukyJzdq4QZ7RUzLNGqVnAlzBfPY=
 
+On Sun, Apr 28, 2024 at 05:53:37PM GMT, Jonathan Cameron wrote:
+> On Tue, 23 Apr 2024 18:33:05 -0400
+> Aren Moynihan <aren@peacevolution.org> wrote:
+> 
+> > From: Ondrej Jirman <megi@xff.cz>
+> > 
+> > VDD power input can be used to completely power off the chip during
+> > system suspend. Do so if available.
+> > 
+> > Signed-off-by: Ondrej Jirman <megi@xff.cz>
+> > Signed-off-by: Aren Moynihan <aren@peacevolution.org>
+> 
+> Suggestions inline.  Key thing is take the whole thing devm_ managed
+> and your life gets much easier.  It is mixing the two approaches that
+> causes problems and often the best plan is to do everything in probe/remove
+> with devm_ calls to do the cleanup for you.
 
+Thank you for writing this up. I've been a bit distracted lately, but
+I'm hoping to find some time to implement this in a new revision soon.
 
-On 05/06/2024 17:09, James Clark wrote:
-> 
-> 
-> On 05/06/2024 09:17, Linu Cherian wrote:
->> * Introduce a new mode CS_MODE_READ_CRASHDATA for reading trace
->>   captured in previous crash/watchdog reset.
->>
->> * Add special device files for reading ETR/ETF crash data.
->>
->> * User can read the crash data as below
->>
->>   For example, for reading crash data from tmc_etf sink
->>
->>   #dd if=/dev/crash_tmc_etfXX of=~/cstrace.bin
->>
->> Signed-off-by: Anil Kumar Reddy <areddy3@marvell.com>
->> Signed-off-by: Tanmay Jagdale <tanmay@marvell.com>
->> Signed-off-by: Linu Cherian <lcherian@marvell.com>
->> ---
->> Changelog from v8:
->> * Added missing exit path in __tmc_probe
->> * Few whitespace fixes and a checkpatch fix.
->>
->>  .../coresight/coresight-etm4x-core.c          |   1 +
->>  .../hwtracing/coresight/coresight-tmc-core.c  | 150 ++++++++++++++++-
->>  .../hwtracing/coresight/coresight-tmc-etf.c   |  72 +++++++++
->>  .../hwtracing/coresight/coresight-tmc-etr.c   | 151 +++++++++++++++++-
->>  drivers/hwtracing/coresight/coresight-tmc.h   |  11 +-
->>  include/linux/coresight.h                     |  13 ++
->>  6 files changed, 390 insertions(+), 8 deletions(-)
->>
->> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> index a0bdfabddbc6..7924883476c6 100644
->> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> @@ -1011,6 +1011,7 @@ static void etm4_disable(struct coresight_device *csdev,
->>  
->>  	switch (mode) {
->>  	case CS_MODE_DISABLED:
->> +	case CS_MODE_READ_CRASHDATA:
->>  		break;
->>  	case CS_MODE_SYSFS:
->>  		etm4_disable_sysfs(csdev);
->> diff --git a/drivers/hwtracing/coresight/coresight-tmc-core.c b/drivers/hwtracing/coresight/coresight-tmc-core.c
->> index daad08bc693d..0c145477ba66 100644
->> --- a/drivers/hwtracing/coresight/coresight-tmc-core.c
->> +++ b/drivers/hwtracing/coresight/coresight-tmc-core.c
->> @@ -106,6 +106,60 @@ u32 tmc_get_memwidth_mask(struct tmc_drvdata *drvdata)
->>  	return mask;
->>  }
->>  
->> +int tmc_read_prepare_crashdata(struct tmc_drvdata *drvdata)
->> +{
->> +	int ret = 0;
->> +	struct tmc_crash_metadata *mdata;
->> +	struct coresight_device *csdev = drvdata->csdev;
->> +
->> +	if (!drvdata->crash_mdata.vaddr) {
->> +		ret = -ENOMEM;
->> +		goto out;
->> +	}
->> +
->> +	mdata = drvdata->crash_mdata.vaddr;
->> +	/* Check data integrity of metadata */
->> +	if (mdata->crc32_mdata != find_crash_metadata_crc(mdata)) {
->> +		dev_dbg(&drvdata->csdev->dev,
->> +			"CRC mismatch in tmc crash metadata\n");
->> +		ret = -EINVAL;
->> +		goto out;
->> +	}
->> +	/* Check data integrity of tracedata */
->> +	if (mdata->crc32_tdata != find_crash_tracedata_crc(drvdata, mdata)) {
->> +		dev_dbg(&drvdata->csdev->dev,
->> +			"CRC mismatch in tmc crash tracedata\n");
->> +		ret = -EINVAL;
->> +		goto out;
->> +	}
->> +	/* Check for valid metadata */
->> +	if (!mdata->valid) {
->> +		dev_dbg(&drvdata->csdev->dev,
->> +			"Data invalid in tmc crash metadata\n");
->> +		ret = -EINVAL;
->> +		goto out;
->> +	}
->> +
->> +	/* Sink specific crashdata mode preparation */
->> +	ret = crashdata_ops(csdev)->prepare(csdev);
->> +	if (ret)
->> +		goto out;
->> +
->> +	if (mdata->sts & 0x1)
->> +		coresight_insert_barrier_packet(drvdata->buf);
->> +
->> +out:
->> +	return ret;
->> +}
->> +
->> +int tmc_read_unprepare_crashdata(struct tmc_drvdata *drvdata)
->> +{
->> +	struct coresight_device *csdev = drvdata->csdev;
->> +
->> +	/* Sink specific crashdata mode preparation */
->> +	return crashdata_ops(csdev)->unprepare(csdev);
->> +}
->> +
->>  static int tmc_read_prepare(struct tmc_drvdata *drvdata)
->>  {
->>  	int ret = 0;
->> @@ -156,6 +210,9 @@ static int tmc_open(struct inode *inode, struct file *file)
->>  	struct tmc_drvdata *drvdata = container_of(file->private_data,
->>  						   struct tmc_drvdata, miscdev);
->>  
->> +	if (coresight_get_mode(drvdata->csdev) == CS_MODE_READ_CRASHDATA)
->> +		return -EBUSY;
->> +
->>  	ret = tmc_read_prepare(drvdata);
->>  	if (ret)
->>  		return ret;
->> @@ -180,13 +237,12 @@ static inline ssize_t tmc_get_sysfs_trace(struct tmc_drvdata *drvdata,
->>  	return -EINVAL;
->>  }
->>  
->> -static ssize_t tmc_read(struct file *file, char __user *data, size_t len,
->> -			loff_t *ppos)
->> +static ssize_t tmc_read_common(struct tmc_drvdata *drvdata, char __user *data,
->> +			       size_t len, loff_t *ppos)
->>  {
->>  	char *bufp;
->>  	ssize_t actual;
->> -	struct tmc_drvdata *drvdata = container_of(file->private_data,
->> -						   struct tmc_drvdata, miscdev);
->> +
->>  	actual = tmc_get_sysfs_trace(drvdata, *ppos, len, &bufp);
->>  	if (actual <= 0)
->>  		return 0;
->> @@ -203,6 +259,15 @@ static ssize_t tmc_read(struct file *file, char __user *data, size_t len,
->>  	return actual;
->>  }
->>  
->> +static ssize_t tmc_read(struct file *file, char __user *data, size_t len,
->> +			loff_t *ppos)
->> +{
->> +	struct tmc_drvdata *drvdata = container_of(file->private_data,
->> +						   struct tmc_drvdata, miscdev);
->> +
->> +	return tmc_read_common(drvdata, data, len, ppos);
->> +}
->> +
->>  static int tmc_release(struct inode *inode, struct file *file)
->>  {
->>  	int ret;
->> @@ -225,6 +290,61 @@ static const struct file_operations tmc_fops = {
->>  	.llseek		= no_llseek,
->>  };
->>  
->> +static int tmc_crashdata_open(struct inode *inode, struct file *file)
->> +{
->> +	int ret;
->> +	struct tmc_drvdata *drvdata = container_of(file->private_data,
->> +						   struct tmc_drvdata,
->> +						   crashdev);
->> +
->> +	if (!coresight_take_mode(drvdata->csdev, CS_MODE_READ_CRASHDATA))
->> +		return -EBUSY;
->> +
->> +	ret = tmc_read_prepare(drvdata);
->> +	if (ret) {
->> +		coresight_set_mode(drvdata->csdev, CS_MODE_DISABLED);
->> +		return ret;
->> +	}
->> +
->> +	nonseekable_open(inode, file);
->> +
->> +	dev_dbg(&drvdata->csdev->dev, "%s: successfully opened\n", __func__);
->> +	return 0;
->> +}
->> +
->> +static ssize_t tmc_crashdata_read(struct file *file, char __user *data,
->> +				  size_t len, loff_t *ppos)
->> +{
->> +	struct tmc_drvdata *drvdata = container_of(file->private_data,
->> +						   struct tmc_drvdata,
->> +						   crashdev);
->> +
->> +	return tmc_read_common(drvdata, data, len, ppos);
->> +}
->> +
->> +static int tmc_crashdata_release(struct inode *inode, struct file *file)
->> +{
->> +	int ret = 0;
->> +	struct tmc_drvdata *drvdata = container_of(file->private_data,
->> +						   struct tmc_drvdata,
->> +						   crashdev);
->> +
->> +	ret = tmc_read_unprepare(drvdata);
->> +
->> +	coresight_set_mode(drvdata->csdev, CS_MODE_DISABLED);
->> +
->> +	dev_dbg(&drvdata->csdev->dev, "%s: released\n", __func__);
->> +	return ret;
->> +}
->> +
->> +static const struct file_operations tmc_crashdata_fops = {
->> +	.owner		= THIS_MODULE,
->> +	.open		= tmc_crashdata_open,
->> +	.read		= tmc_crashdata_read,
->> +	.release	= tmc_crashdata_release,
->> +	.llseek		= no_llseek,
->> +};
->> +
->>  static enum tmc_mem_intf_width tmc_get_memwidth(u32 devid)
->>  {
->>  	enum tmc_mem_intf_width memwidth;
->> @@ -542,6 +662,18 @@ static u32 tmc_etr_get_max_burst_size(struct device *dev)
->>  	return burst_size;
->>  }
->>  
->> +static void register_crash_dev_interface(struct tmc_drvdata *drvdata,
->> +					 const char *name)
->> +{
->> +	drvdata->crashdev.name =
->> +		devm_kasprintf(&drvdata->csdev->dev, GFP_KERNEL, "%s_%s", "crash", name);
->> +	drvdata->crashdev.minor = MISC_DYNAMIC_MINOR;
->> +	drvdata->crashdev.fops = &tmc_crashdata_fops;
->> +	if (misc_register(&drvdata->crashdev))
->> +		dev_dbg(&drvdata->csdev->dev,
->> +			"Failed to setup user interface for crashdata\n");
->> +}
->> +
->>  static int __tmc_probe(struct device *dev, struct resource *res)
->>  {
->>  	int ret = 0;
->> @@ -642,8 +774,13 @@ static int __tmc_probe(struct device *dev, struct resource *res)
->>  	drvdata->miscdev.minor = MISC_DYNAMIC_MINOR;
->>  	drvdata->miscdev.fops = &tmc_fops;
->>  	ret = misc_register(&drvdata->miscdev);
->> -	if (ret)
->> +	if (ret) {
->>  		coresight_unregister(drvdata->csdev);
->> +		goto out;
->> +	}
->> +
->> +	if (is_tmc_reserved_region_valid(dev))
->> +		register_crash_dev_interface(drvdata, desc.name);
-> 
-> I think this would be better if it checked the CRC of the metadata in
-> the same way it does before reading the file.
-> 
-> Now we have two forms of "region valid", one that's any non-zero value,
-> and the other "really valid" one. And because we don't check the CRC
-> here we register a device that can't be used.
-> 
-> I found it a bit confusing because without enabling debug prints I
-> didn't know why the file couldn't be read. So I wasn't sure if it was
-> because it wasn't valid or some other reason.
-> 
-> I also wasn't able to get a valid region after booting the crash kernel.
-> But maybe the memory isn't preserved across the reboot on my Juno, so I
-> don't think that's necessarily an issue?
-
-Ok so I double checked by writing 0x123456 into the reserved region and
-confirmed that it _is_ preserved when booting the panic kernel on my
-Juno. So I'm not sure why I wasn't able to read out the crash dump.
-
-I did see the "success" message from tmc_panic_sync_etr() at least some
-of the times, although I do remember it not printing out every time. I
-don't know if this is just an issue with outputting to serial after a
-panic or something else was going on?
-
-Did you ever see the success message not print out? Or not able to read
-back the data when you were testing it?
+ - Aren
 
