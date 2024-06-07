@@ -1,70 +1,111 @@
-Return-Path: <devicetree+bounces-73598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEDBA90014A
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 12:56:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5061F90016D
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 13:03:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 362861F24544
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 10:56:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A8071C2262B
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:03:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2BF3186288;
-	Fri,  7 Jun 2024 10:56:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94D615E5A3;
+	Fri,  7 Jun 2024 11:02:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="mYzvl6HA"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="gj/JW0yi";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="fiN7TpU4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from wfout8-smtp.messagingengine.com (wfout8-smtp.messagingengine.com [64.147.123.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E038461FCE;
-	Fri,  7 Jun 2024 10:56:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70AB915DBA5;
+	Fri,  7 Jun 2024 11:02:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717757777; cv=none; b=DlTesZVlteK0IuRD5/Nbq/uYHsyAlGOYp+8dWn+gnUhmvR38p4KuVby3S8cDmvF6/BijU+LSX2INm4NwuLIcNvsN8KnxsGgBaUS5x8P1AFbzAJU78lSj2v52NhJf75zgwhpIeVAwv/ecBuFrWOItpVEG4/qmU49jkbhdPypnJio=
+	t=1717758179; cv=none; b=qpm8yhizYgKFHQP+BjigUoUv93mGkpsIDmjizZPj8Km4jI+Xr2KutVRJSYwvCUfO/FzNG+xqtq4eh8NAkeXCNC7NtZJJTCKBHMmykniuuJzR6UeLWp1LWdJgDK+iVcBshzdJYGGm3ZU/I5OErPjJIDsnFIvCx8NdE6Mz6XUOT40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717757777; c=relaxed/simple;
-	bh=XujjUnM9DMu7rqTP8DTZ2UrETk/uV5hu6vJfTxFT4/M=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=D0hZjaCx18MVNE2eTNhjAEMvfrYz/SWWFLtGASOnAGWqpr0KZ6xl2XG21z2fqQ8nKN4EVE8VDOFUJuGy4Lii4HFrNCpJ1a+4iUmq/plACcoMQLBy9YBC0bX5qsQLPsEaUfXPY/zl8q/uIDi5W+ZlfJ6KlUYsRsCxd7Wd00r3PuE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=mYzvl6HA; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 457Au3GT067900;
-	Fri, 7 Jun 2024 05:56:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1717757763;
-	bh=a5GAfS7C0Tj1XfUzuRZMBoPPEFIo9QtsKjJsgSeV/9k=;
-	h=From:To:CC:Subject:Date;
-	b=mYzvl6HARgzoK2WyuRNbgqzRjlGFvAXndX6jNlfEvwCc6uZD/YHfSfFieMJpb5ElB
-	 n5f2pSuPjJkLzWpjMPA8Ifjf8sNSYgG875YXn/7pVIMCMz3j+lbdKGDyrv9NAa1jAl
-	 9ys2ihkjtPxDG2ctYfX6FT8RWL81eFSOGBv79ca8=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 457Au3Kq125057
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 7 Jun 2024 05:56:03 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 7
- Jun 2024 05:56:03 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 7 Jun 2024 05:56:03 -0500
-Received: from uda0510294.dhcp.ti.com (uda0510294.dhcp.ti.com [10.24.69.66])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 457AtxSV129722;
-	Fri, 7 Jun 2024 05:56:00 -0500
-From: Beleswar Padhi <b-padhi@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <tony@atomide.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j7xx: Change timer nodes status to reserved
-Date: Fri, 7 Jun 2024 16:25:59 +0530
-Message-ID: <20240607105559.771080-1-b-padhi@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1717758179; c=relaxed/simple;
+	bh=lNuQUhZyVc2TRpcE31AXiZ5oHq7xMv/pQRSbI7DtjYQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NL53DtMxPcMEm4VI1x2NAJLCR98uDTUGjEfi2WDRjTriI/wVTAz6hOFLd+0CiRZJ4Ql3KjxmLa40/YAkOzN3i7VKU18fFcM5OuWlzUc7UArpq+CzAr7cC7G+GMJKxOlZDNMxeN7++c4EriaiaumBauD10fqRnK8UoF1DkuZZYak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=gj/JW0yi; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=fiN7TpU4; arc=none smtp.client-ip=64.147.123.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailfout.west.internal (Postfix) with ESMTP id 50A311C000F0;
+	Fri,  7 Jun 2024 07:02:55 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Fri, 07 Jun 2024 07:02:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
+	:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to; s=fm1; t=1717758174; x=1717844574; bh=/orHf0iH33
+	enVQofI8cCRp2yvYBlgN4kUrH/7V8whnw=; b=gj/JW0yiFfEov7yimCujRm8w+Z
+	uJYc0IWVr9G9Em3MLiqZk1MDlp495Wee2LSpel51npGryzwt7Z1fh4n1jh2FAArM
+	1E3BPd+BCv2XeWYyK7bJcH8pNnoaIoasFTVNvvTvIdg/MkdWIwF3dn6Csy3/x3+l
+	IjscfPTJD6Nb+Nyzj1tagmhiA6f7K78h36RW61+Kpdr8Plp48nKQsD6cSyfM98Hf
+	FXZnaY//H2udCvVKwgk7Qm7FcOwaEB2cGSR/5r0bth42Btnwp+2EzaTa2z/SWUlp
+	PTtYbwGJx0jUAz7A3RP2YPV2Hs1OI5Gn1asyS/ktxNti1LboAxLDHNzsYNWQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm1; t=1717758174; x=1717844574; bh=/orHf0iH33enVQofI8cCRp2yvYBl
+	gN4kUrH/7V8whnw=; b=fiN7TpU4g+GtOm99ZWZZeq07PJi4eL80G0lsdMxSNpa8
+	6+b85FYbihuCFbJCNE9oJPzkvCW3XjVMq+i/ukSXPtKf08b3M4vK4RKe7F4JKD/F
+	Nrz4xXz7SOPXhgPCtGrMC1sH9y893fSxgehGP4TX7emxGvg8tgoCdZnD7xKB4ze0
+	dwdUUfdWAEZ83bUcvdmzNHa7SGkML+emKGF+awX+loywRx+h3KkTGwNpnofbogds
+	Z0qzuH8lc50w6pnNJfgGQ82ftZ/S2J4XvaJDsdJphdE2SEdfOuKHNFyKndYNkmpk
+	y0TF6mvA58mMti5TUGGB+0hH0Rfhoo2fH/q4uq9XbA==
+X-ME-Sender: <xms:3ehiZh8vXcPEZSSfB0PtglUliHeJEybKWMGcgfardR6hNIyhP_cRhw>
+    <xme:3ehiZlsGjYHonZlA415BDXJgod40u9dfcbyBtGfCG_EY9BJWjXaKawbERa1uAjI49
+    HEkRAqhdRNqiRvENg>
+X-ME-Received: <xmr:3ehiZvDOBZrKzRzTbVsXBs9Rm7T3-Nb3jFCZDgoZ0kdp7nk_EWWJhuG9LYaDPc305TNUrx5RF751ctwPgFwf40p9E6agLE-KtXOaYGuw1EQBTP_N>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfedtuddgudduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomheptfihrghnucgh
+    rghlkhhlihhnuceorhihrghnsehtvghsthhtohgrshhtrdgtohhmqeenucggtffrrghtth
+    gvrhhnpeeiteekudfgvedukeelueekueekleffhffgueefhfeuueeikeeuheegffeivdek
+    ueenucffohhmrghinhepkhgvrhhnvghlrdhorhhgpdhgihhthhhusgdrtghomhenucevlh
+    hushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehrhigrnhesthgv
+    shhtthhorghsthdrtghomh
+X-ME-Proxy: <xmx:3ehiZlcoiPadFWLYgZh3Hv5oUs6hZPmQH06uVRaQ-_q33Gobba5BGw>
+    <xmx:3ehiZmMbryqMMLUN4gf1M9l8LdyO9i9FsBrtwteD9gYFl4_90IpILA>
+    <xmx:3ehiZnk3VBn2-10izcFj9qMAtxGGoPkJdRHGsa0NsEBBm5Mn7Iwcww>
+    <xmx:3ehiZgvm2_avcDDsG4DCABfmc2Phz6OAUyXJPsKPqR7Ur5UBV2WqRQ>
+    <xmx:3uhiZt9ES1tTKMz4xJ3Q0ccGKzmH8JGz36Nvku7nkj563MiOB70FaeZv>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 7 Jun 2024 07:02:47 -0400 (EDT)
+From: Ryan Walklin <ryan@testtoast.com>
+To: Maxime Ripard <mripard@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>
+Cc: Andre Przywara <andre.przywara@arm.com>,
+	Chris Morgan <macroalpha82@gmail.com>,
+	John Watts <contact@jookia.org>,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	Ryan Walklin <ryan@testtoast.com>
+Subject: [PATCH RFC 0/8] drm: sunxi: support Allwinner Display Engine 3 IP block for H616/H700
+Date: Fri,  7 Jun 2024 22:59:56 +1200
+Message-ID: <20240607110227.49848-1-ryan@testtoast.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,243 +113,82 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-The remoteproc firmware like of R5F and DSPs in the MAIN voltage domain
-use timers. Therefore, change the status of the timer nodes to
-"reserved" to avoid any clash.
+Hi,
 
-This change is already incorporated for timer nodes in the MCU voltage
-domain.
+There is existing mainline support for the DE2 and DE3 AllWinner display pipeline IP blocks, used in the A64 and H6 among others, however the H700 (as well as the H616/H618 and the T507 automotive SoC) have a newer version of the Display Engine (v3.3/DE33) which adds additional high-resolution support as well as YUV colour formats and AFBC compression support.
 
-Fixes: 835d04422f9d ("arm64: dts: ti: k3-j721s2: Add general purpose timers")
+The Anbernic RG35XX (-2024, -Plus -H, -SP) variants are handheld gaming devices based on the H700 SoC. They all have a 3.5" RGB LCD display (WL-355608-A8) with an NV3052 (or clone) RAM-less driver IC, with a patch currently in drm-misc-next [1], as well as a DesignWare HDMI 2.0 output. 
 
-Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j7200-main.dtsi  |  2 ++
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi  |  7 +++++++
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi |  6 ++++++
- arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 10 ++++++++++
- 4 files changed, 25 insertions(+)
+A linked series of patches is intended to add support for the RG35XX LCD display, but will do so in several steps, touching various subsystems. This patch set adds DE33 support:
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-index 9386bf3ef9f68..22351a4f3da6e 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-@@ -1254,6 +1254,7 @@ main_timer0: timer@2400000 {
- 		assigned-clock-parents = <&k3_clks 49 2>;
- 		power-domains = <&k3_pds 49 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer1: timer@2410000 {
-@@ -1266,6 +1267,7 @@ main_timer1: timer@2410000 {
- 		assigned-clock-parents = <&k3_clks 50 2>, <&k3_clks 313 1>;
- 		power-domains = <&k3_pds 50 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer2: timer@2420000 {
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index 0da785be80ff4..944bdbb98e910 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -1102,6 +1102,7 @@ main_timer0: timer@2400000 {
- 		assigned-clock-parents = <&k3_clks 49 2>;
- 		power-domains = <&k3_pds 49 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer1: timer@2410000 {
-@@ -1114,6 +1115,7 @@ main_timer1: timer@2410000 {
- 		assigned-clock-parents = <&k3_clks 50 2>, <&k3_clks 327 1>;
- 		power-domains = <&k3_pds 50 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer2: timer@2420000 {
-@@ -1126,6 +1128,7 @@ main_timer2: timer@2420000 {
- 		assigned-clock-parents = <&k3_clks 51 2>;
- 		power-domains = <&k3_pds 51 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer3: timer@2430000 {
-@@ -1246,6 +1249,7 @@ main_timer12: timer@24c0000 {
- 		assigned-clock-parents = <&k3_clks 63 2>;
- 		power-domains = <&k3_pds 63 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer13: timer@24d0000 {
-@@ -1258,6 +1262,7 @@ main_timer13: timer@24d0000 {
- 		assigned-clock-parents = <&k3_clks 64 2>, <&k3_clks 333 1>;
- 		power-domains = <&k3_pds 64 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer14: timer@24e0000 {
-@@ -1270,6 +1275,7 @@ main_timer14: timer@24e0000 {
- 		assigned-clock-parents = <&k3_clks 65 2>;
- 		power-domains = <&k3_pds 65 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer15: timer@24f0000 {
-@@ -1282,6 +1288,7 @@ main_timer15: timer@24f0000 {
- 		assigned-clock-parents = <&k3_clks 66 2>, <&k3_clks 334 1>;
- 		power-domains = <&k3_pds 66 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer16: timer@2500000 {
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-index 9ed6949b40e9d..c8e49454bd9b0 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-@@ -225,6 +225,7 @@ main_timer0: timer@2400000 {
- 		assigned-clock-parents = <&k3_clks 63 2>;
- 		power-domains = <&k3_pds 63 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer1: timer@2410000 {
-@@ -237,6 +238,7 @@ main_timer1: timer@2410000 {
- 		assigned-clock-parents = <&k3_clks 64 2>;
- 		power-domains = <&k3_pds 64 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer2: timer@2420000 {
-@@ -249,6 +251,7 @@ main_timer2: timer@2420000 {
- 		assigned-clock-parents = <&k3_clks 65 2>;
- 		power-domains = <&k3_pds 65 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer3: timer@2430000 {
-@@ -261,6 +264,7 @@ main_timer3: timer@2430000 {
- 		assigned-clock-parents = <&k3_clks 66 2>;
- 		power-domains = <&k3_pds 66 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer4: timer@2440000 {
-@@ -273,6 +277,7 @@ main_timer4: timer@2440000 {
- 		assigned-clock-parents = <&k3_clks 67 2>;
- 		power-domains = <&k3_pds 67 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer5: timer@2450000 {
-@@ -285,6 +290,7 @@ main_timer5: timer@2450000 {
- 		assigned-clock-parents = <&k3_clks 68 2>;
- 		power-domains = <&k3_pds 68 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer6: timer@2460000 {
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-index 6a4554c6c9c13..d62859c52514e 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-@@ -170,6 +170,7 @@ main_timer0: timer@2400000 {
- 		assigned-clock-parents = <&k3_clks 97 3>;
- 		power-domains = <&k3_pds 97 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer1: timer@2410000 {
-@@ -182,6 +183,7 @@ main_timer1: timer@2410000 {
- 		assigned-clock-parents = <&k3_clks 98 3>;
- 		power-domains = <&k3_pds 98 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer2: timer@2420000 {
-@@ -194,6 +196,7 @@ main_timer2: timer@2420000 {
- 		assigned-clock-parents = <&k3_clks 99 3>;
- 		power-domains = <&k3_pds 99 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer3: timer@2430000 {
-@@ -206,6 +209,7 @@ main_timer3: timer@2430000 {
- 		assigned-clock-parents = <&k3_clks 100 3>;
- 		power-domains = <&k3_pds 100 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer4: timer@2440000 {
-@@ -218,6 +222,7 @@ main_timer4: timer@2440000 {
- 		assigned-clock-parents = <&k3_clks 101 3>;
- 		power-domains = <&k3_pds 101 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer5: timer@2450000 {
-@@ -230,6 +235,7 @@ main_timer5: timer@2450000 {
- 		assigned-clock-parents = <&k3_clks 102 3>;
- 		power-domains = <&k3_pds 102 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer6: timer@2460000 {
-@@ -242,6 +248,7 @@ main_timer6: timer@2460000 {
- 		assigned-clock-parents = <&k3_clks 103 3>;
- 		power-domains = <&k3_pds 103 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer7: timer@2470000 {
-@@ -254,6 +261,7 @@ main_timer7: timer@2470000 {
- 		assigned-clock-parents = <&k3_clks 104 3>;
- 		power-domains = <&k3_pds 104 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer8: timer@2480000 {
-@@ -266,6 +274,7 @@ main_timer8: timer@2480000 {
- 		assigned-clock-parents = <&k3_clks 105 3>;
- 		power-domains = <&k3_pds 105 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer9: timer@2490000 {
-@@ -278,6 +287,7 @@ main_timer9: timer@2490000 {
- 		assigned-clock-parents = <&k3_clks 106 3>;
- 		power-domains = <&k3_pds 106 TI_SCI_PD_EXCLUSIVE>;
- 		ti,timer-pwm;
-+		status = "reserved";
- 	};
- 
- 	main_timer10: timer@24a0000 {
+1. Refactor the existing DE2/DE3 code to support mulitple colour formats.
+2. Add YUV420 colour format support in the DE3 driver.
+3. Add Arm Frame Buffer Compression (AFBC) support to the DE3 driver. This is currently only supported for VI layers (for HW-decoded video output) but is well integrated into these changes and a subsequent patchset to enable the Video Engine is planned.
+4. Extend the DE2/3 driver for the DE33.
+
+A subsequent patch set will enable H616 and RG35XX support:
+
+5. Add DT bindings and clock support for the additional LCD timing controller.
+6. Add H616 DT changes to enable a required SRAM allocation, display engine, timing controllers (TCONs) and RGB and LVDS pins to the H616 DTSI.
+7. Add the required DT nodes for the DE, TCON and LCD panel to the RG35XX device tree.
+
+Further patchsets to enable HDMI support for this device (and the other H616 and H618 boards like the Orange Pi Zero 3) is planned, as is support for the IOMMU and video engine, and u-boot support for the panel and display pipeline.
+
+This DE and forthcoming LCD and HDMI patches are a refactoring of work by Jernej Skrabec, currently out-of-tree [2]. 
+
+Regards,
+
+Ryan
+
+[1] https://lore.kernel.org/dri-devel/171740437725.4156184.17662886246928360602.b4-ty@linaro.org/
+[2] https://github.com/jernejsk/linux-1/tree/okt507c
+
+Jernej Skrabec (4):
+  drm: sun4i: de2/de3: Change CSC argument
+  drm/sun4i: de2/de3: Merge CSC functions into one
+  drm/sun4i: de2/de3: call csc setup also for UI layer
+  drm/sun4i: de2: Initialize layer fields earlier
+
+Ryan Walklin (4):
+  dt-bindings: bus: allwinner: add H616 DE33 bindings
+  drm/sun4i: de3: Add support for YUV420 output
+  drm/sun4i: de3: Implement AFBC support
+  drm: sun4i: add Display Engine 3.3 (DE33) support
+
+ .../bus/allwinner,sun50i-a64-de2.yaml         |   1 +
+ .../clock/allwinner,sun8i-a83t-de2-clk.yaml   |   1 +
+ .../allwinner,sun8i-a83t-de2-mixer.yaml       |   1 +
+ drivers/clk/sunxi-ng/Makefile                 |   2 +-
+ drivers/clk/sunxi-ng/sun8i-de33.c             | 185 ++++++++++
+ drivers/clk/sunxi-ng/sun8i-de33.h             |  19 +
+ drivers/gpu/drm/drm_atomic_state_helper.c     |   7 +
+ drivers/gpu/drm/sun4i/Makefile                |   3 +-
+ drivers/gpu/drm/sun4i/sun4i_tcon.c            |  30 +-
+ drivers/gpu/drm/sun4i/sun4i_tcon.h            |   1 +
+ drivers/gpu/drm/sun4i/sun50i_afbc.c           | 250 +++++++++++++
+ drivers/gpu/drm/sun4i/sun50i_afbc.h           |  87 +++++
+ drivers/gpu/drm/sun4i/sun50i_fmt.c            |  99 +++++
+ drivers/gpu/drm/sun4i/sun50i_fmt.h            |  33 ++
+ drivers/gpu/drm/sun4i/sun8i_csc.c             | 341 +++++++++++++++---
+ drivers/gpu/drm/sun4i/sun8i_csc.h             |  20 +-
+ drivers/gpu/drm/sun4i/sun8i_mixer.c           | 253 ++++++++++---
+ drivers/gpu/drm/sun4i/sun8i_mixer.h           |  33 +-
+ drivers/gpu/drm/sun4i/sun8i_ui_layer.c        |  49 ++-
+ drivers/gpu/drm/sun4i/sun8i_ui_scaler.c       |   2 +-
+ drivers/gpu/drm/sun4i/sun8i_vi_layer.c        | 141 +++++---
+ drivers/gpu/drm/sun4i/sun8i_vi_scaler.c       | 115 ++++--
+ drivers/gpu/drm/sun4i/sun8i_vi_scaler.h       |   3 +-
+ drivers/gpu/drm/sun4i/sunxi_engine.h          |  34 ++
+ 24 files changed, 1501 insertions(+), 209 deletions(-)
+ create mode 100644 drivers/clk/sunxi-ng/sun8i-de33.c
+ create mode 100644 drivers/clk/sunxi-ng/sun8i-de33.h
+ create mode 100644 drivers/gpu/drm/sun4i/sun50i_afbc.c
+ create mode 100644 drivers/gpu/drm/sun4i/sun50i_afbc.h
+ create mode 100644 drivers/gpu/drm/sun4i/sun50i_fmt.c
+ create mode 100644 drivers/gpu/drm/sun4i/sun50i_fmt.h
+
 -- 
-2.34.1
+2.45.2
 
 
