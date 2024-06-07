@@ -1,142 +1,156 @@
-Return-Path: <devicetree+bounces-73661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9534690030A
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 14:09:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07E6F900318
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 14:13:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A5BFB1C22010
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 12:09:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FE4328475E
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 12:13:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8605D18F2C9;
-	Fri,  7 Jun 2024 12:09:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E14D8190677;
+	Fri,  7 Jun 2024 12:13:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AwrRI8y2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout70.expurgate.net (mxout70.expurgate.net [194.37.255.70])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB2351847;
-	Fri,  7 Jun 2024 12:09:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.37.255.70
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2B5B187323;
+	Fri,  7 Jun 2024 12:13:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717762167; cv=none; b=kGVIeBGpeJZbmv71qswFjD1sbsbS65bgXt+jdVtB3NpKQ353txUuaJkmxmyBL1AK6f0dVY9OHCX1otXmNWw8tPApBVJ3rwnNpO9PjQzcD5RGEzzUtxuNltLHBt2epeA6g4R32TDB42oYJgm9VJMm3w+wSkmAa7vv3PjKIBE5U0s=
+	t=1717762388; cv=none; b=aJ+3EZpd2zJkC/Ct7oBHnozauqDn1/ZQsXb5WGc2IH/cMoUTAMpwOzcmJJdhmh4LlY6NUVB2bzAmvuATpkkDOxx+RilR2mHRxlvfqS+9XTX89Eaa5lYkTarNfZedtycKsELM1EVgq2+yW4cUY08C0dKGMdQRE9+pkXAyy2YoUN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717762167; c=relaxed/simple;
-	bh=gwKwTD1WKix0cop8Lpfa38D2U/BH7EMvYjh2D2pY+1g=;
-	h=MIME-Version:Content-Type:Date:From:To:Cc:Subject:In-Reply-To:
-	 References:Message-ID; b=YWvWC0+i4Cgna+bDaYuMGzimD+0iOanBmLuLe9eP+FWdJuuOIZgU6oPj9UM9cpT2tpRyufdYCP2loQDd3J0c0ZLRgVNFUh6cYJkpxk+BwpZJFj6AxqeHcaT1ED0Z8rDZ8h1BU9h/EVv6ABP0y7c0xJXGbc8JYy5TwqhrgeMrgzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; arc=none smtp.client-ip=194.37.255.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dev.tdt.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dev.tdt.de
-Received: from [127.0.0.1] (helo=localhost)
-	by relay.expurgate.net with smtp (Exim 4.92)
-	(envelope-from <prvs=990276a841=ms@dev.tdt.de>)
-	id 1sFYPD-00F0Vb-S9; Fri, 07 Jun 2024 14:09:15 +0200
-Received: from [195.243.126.94] (helo=securemail.tdt.de)
-	by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ms@dev.tdt.de>)
-	id 1sFYPC-005Nrm-W0; Fri, 07 Jun 2024 14:09:15 +0200
-Received: from securemail.tdt.de (localhost [127.0.0.1])
-	by securemail.tdt.de (Postfix) with ESMTP id A5A7C240053;
-	Fri,  7 Jun 2024 14:09:14 +0200 (CEST)
-Received: from mail.dev.tdt.de (unknown [10.2.4.42])
-	by securemail.tdt.de (Postfix) with ESMTP id 35689240050;
-	Fri,  7 Jun 2024 14:09:14 +0200 (CEST)
-Received: from mail.dev.tdt.de (localhost [IPv6:::1])
-	by mail.dev.tdt.de (Postfix) with ESMTP id E10A43829D;
-	Fri,  7 Jun 2024 14:09:13 +0200 (CEST)
+	s=arc-20240116; t=1717762388; c=relaxed/simple;
+	bh=gF5n+zRaU3uzxOxtiMM2LdGmFoHvX4eM2/oevn8fkbA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=JOtM1ay82FwtcASJ4nQQZciL5bacYED16mbGLnNElyO2A4VRMR80menS0VC3zssUKiOV7nLCPFMIUxDL0AgNT9hcKsI4BhGMxNijolH7SVIxsQztI3J4XnRakZtYIi9Pi2epc1DL9bMRancWMyYzlsonRm6cwCjrEBF+vRkiDfI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AwrRI8y2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 3F4C5C2BBFC;
+	Fri,  7 Jun 2024 12:13:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717762388;
+	bh=gF5n+zRaU3uzxOxtiMM2LdGmFoHvX4eM2/oevn8fkbA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=AwrRI8y2rLlk70qtMvL0YNffuEVQsM70xtvUu7fwILFhRUaEHT3kPyhRwLqGJWTQq
+	 DLc86kxEfQBaTwcc+s9rcshNa3OP3MawgKl1Wbjenh2zFrFqg5Acmyem89amPieSbK
+	 eCBlgIhbuDvyRx4PSLZ9Bj4ReavD/jua4urMRie+u2xx6CttVoOO1OLnwhBXGlE522
+	 riH2NwzxRJY9kaVXP2nUAEz6meIBw6XNqUfTY84DMZPHiSzgTcrasxsa7XR+LFu8nj
+	 KiBzvfKAUBVJ/q0tGmE6BbBiifehmgK5tiDBjJTQNJxMf3Mcz0M1DED/WBTg6ycDD9
+	 rqhkTw3rSitEw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 28096C27C55;
+	Fri,  7 Jun 2024 12:13:08 +0000 (UTC)
+From: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>
+Subject: [PATCH v8 0/2] Add support for Loongson1 APB DMA
+Date: Fri, 07 Jun 2024 20:12:22 +0800
+Message-Id: <20240607-loongson1-dma-v8-0-f9992d257250@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Date: Fri, 07 Jun 2024 14:09:13 +0200
-From: Martin Schiller <ms@dev.tdt.de>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: martin.blumenstingl@googlemail.com, hauke@hauke-m.de, andrew@lunn.ch,
- f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 03/13] net: dsa: lantiq_gswip: Use dev_err_probe
- where appropriate
-Organization: TDT AG
-In-Reply-To: <20240607110747.zsiahnzge2bvxd4l@skbuf>
-References: <20240606085234.565551-1-ms@dev.tdt.de>
- <20240606085234.565551-1-ms@dev.tdt.de>
- <20240606085234.565551-4-ms@dev.tdt.de>
- <20240606085234.565551-4-ms@dev.tdt.de>
- <20240607110747.zsiahnzge2bvxd4l@skbuf>
-Message-ID: <9a9ca4e015446b9a0f76fa3d5e6e9f0b@dev.tdt.de>
-X-Sender: ms@dev.tdt.de
-User-Agent: Roundcube Webmail/1.3.17
-X-purgate-ID: 151534::1717762155-91E7E642-919E136F/0/0
-X-purgate: clean
-X-purgate-type: clean
+X-B4-Tracking: v=1; b=H4sIACb5YmYC/12OzY7CIBRGX8WwntvwIxRczXsYFxRuWzK2TEAbt
+ em7D7iYNC6/xTnfWUnGFDCT02ElCZeQQ5zL0F8H4kY7DwjBl0045YIxTuEa4zzkODPwkwWmhO1
+ RtlR3hhTmN2EfHm/f+VJ2n+IEtzGh/bdQwzXjzEjRSH5UVAODHxzu5ax51cvvYbLh2rg4VeMY8
+ i2m5ztwUdVbLUcqmPpoWRRQMNQjd8K58rIT1Zal3dHcfNJtoUXrO6lLk0e5p7dt+wNv2zmPKgE
+ AAA==
+To: Keguang Zhang <keguang.zhang@gmail.com>, Vinod Koul <vkoul@kernel.org>, 
+ Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: linux-mips@vger.kernel.org, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Jiaxun Yang <jiaxun.yang@flygoat.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1717762386; l=2538;
+ i=keguang.zhang@gmail.com; s=20231129; h=from:subject:message-id;
+ bh=gF5n+zRaU3uzxOxtiMM2LdGmFoHvX4eM2/oevn8fkbA=;
+ b=jhRwfB+vpFFBOmYUzSKsBu7OoBFlD0dWV9a6WDqY9cVvwsGut+NtK4HH/lnWannivrsr60YEF
+ EEilt2pYzBFBsDacigUIn5g+pbjy1zwbxhOtweHvvZLG6VWJcV4NRUu
+X-Developer-Key: i=keguang.zhang@gmail.com; a=ed25519;
+ pk=FMKGj/JgKll/MgClpNZ3frIIogsh5e5r8CeW2mr+WLs=
+X-Endpoint-Received: by B4 Relay for keguang.zhang@gmail.com/20231129 with
+ auth_id=102
+X-Original-From: Keguang Zhang <keguang.zhang@gmail.com>
+Reply-To: keguang.zhang@gmail.com
 
-On 2024-06-07 13:07, Vladimir Oltean wrote:
-> On Thu, Jun 06, 2024 at 10:52:24AM +0200, Martin Schiller wrote:
->> @@ -2050,8 +2048,9 @@ static int gswip_gphy_fw_list(struct gswip_priv 
->> *priv,
->>  			priv->gphy_fw_name_cfg = &xrx200a2x_gphy_data;
->>  			break;
->>  		default:
->> -			dev_err(dev, "unknown GSWIP version: 0x%x", version);
->> -			return -ENOENT;
->> +			return dev_err_probe(dev, -ENOENT,
->> +					     "unknown GSWIP version: 0x%x",
->> +					     version);
->>  		}
->>  	}
->> 
->> @@ -2059,10 +2058,9 @@ static int gswip_gphy_fw_list(struct gswip_priv 
->> *priv,
->>  	if (match && match->data)
->>  		priv->gphy_fw_name_cfg = match->data;
->> 
->> -	if (!priv->gphy_fw_name_cfg) {
->> -		dev_err(dev, "GPHY compatible type not supported");
->> -		return -ENOENT;
->> -	}
->> +	if (!priv->gphy_fw_name_cfg)
->> +		return dev_err_probe(dev, -ENOENT,
->> +				     "GPHY compatible type not supported");
->> 
->>  	priv->num_gphy_fw = of_get_available_child_count(gphy_fw_list_np);
->>  	if (!priv->num_gphy_fw)
->> @@ -2163,8 +2161,8 @@ static int gswip_probe(struct platform_device 
->> *pdev)
->>  			return -EINVAL;
->>  		break;
->>  	default:
->> -		dev_err(dev, "unknown GSWIP version: 0x%x", version);
->> -		return -ENOENT;
->> +		return dev_err_probe(dev, -ENOENT,
->> +				     "unknown GSWIP version: 0x%x", version);
->>  	}
->> 
->>  	/* bring up the mdio bus */
->> @@ -2172,28 +2170,27 @@ static int gswip_probe(struct platform_device 
->> *pdev)
->>  	if (!dsa_is_cpu_port(priv->ds, priv->hw_info->cpu_port)) {
->> -		dev_err(dev, "wrong CPU port defined, HW only supports port: %i",
->> -			priv->hw_info->cpu_port);
->> -		err = -EINVAL;
->> +		err = dev_err_probe(dev, -EINVAL,
->> +				    "wrong CPU port defined, HW only supports port: %i",
->> +				    priv->hw_info->cpu_port);
->>  		goto disable_switch;
->>  	}
-> 
-> Nitpick: there is no terminating \n here.
+Add the driver and dt-binding document for Loongson1 APB DMA.
 
-Oh, thanks for the hint. I'll correct that (and also check the complete 
-source
-file for that kind of mistakes).
+Changes in v8:
+- Change 'interrupts' property to an items list
+- Link to v7: https://lore.kernel.org/r/20240329-loongson1-dma-v7-0-37db58608de5@gmail.com
+
+Changes in v7:
+- Change the comptible to 'loongson,ls1*-apbdma' (suggested by Huacai Chen)
+- Update the title and description part accordingly
+- Rename the file to loongson,ls1b-apbdma.yaml
+- Add a compatible string for LS1A
+- Delete minItems of 'interrupts'
+- Change patterns of 'interrupt-names' to const
+- Rename the file to loongson1-apb-dma.c to keep the consistency
+- Update Kconfig and Makefile accordingly
+- Link to v6: https://lore.kernel.org/r/20240316-loongson1-dma-v6-0-90de2c3cc928@gmail.com
+
+Changes in v6:
+- Change the compatible to the fallback
+- Implement .device_prep_dma_cyclic for Loongson1 sound driver,
+- as well as .device_pause and .device_resume.
+- Set the limitation LS1X_DMA_MAX_DESC and put all descriptors
+- into one page to save memory
+- Move dma_pool_zalloc() into ls1x_dma_alloc_desc()
+- Drop dma_slave_config structure
+- Use .remove_new instead of .remove
+- Use KBUILD_MODNAME for the driver name
+- Improve the debug information
+- Some minor fixes
+
+Changes in v5:
+- Add the dt-binding document
+- Add DT support
+- Use DT information instead of platform data
+- Use chan_id of struct dma_chan instead of own id
+- Use of_dma_xlate_by_chan_id() instead of ls1x_dma_filter()
+- Update the author information to my official name
+
+Changes in v4:
+- Use dma_slave_map to find the proper channel.
+- Explicitly call devm_request_irq() and tasklet_kill().
+- Fix namespace issue.
+- Some minor fixes and cleanups.
+
+Changes in v3:
+- Rename ls1x_dma_filter_fn to ls1x_dma_filter.
+
+Changes in v2:
+- Change the config from 'DMA_LOONGSON1' to 'LOONGSON1_DMA',
+- and rearrange it in alphabetical order in Kconfig and Makefile.
+- Fix comment style.
+
+---
+Keguang Zhang (2):
+      dt-bindings: dma: Add Loongson-1 APB DMA
+      dmaengine: Loongson1: Add Loongson-1 APB DMA driver
+
+ .../bindings/dma/loongson,ls1b-apbdma.yaml         |  67 +++
+ drivers/dma/Kconfig                                |   9 +
+ drivers/dma/Makefile                               |   1 +
+ drivers/dma/loongson1-apb-dma.c                    | 665 +++++++++++++++++++++
+ 4 files changed, 742 insertions(+)
+---
+base-commit: d35b2284e966c0bef3e2182a5c5ea02177dd32e4
+change-id: 20231120-loongson1-dma-163afe5708b9
+
+Best regards,
+-- 
+Keguang Zhang <keguang.zhang@gmail.com>
+
+
 
