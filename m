@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-73509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A6758FFD17
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:29:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E5328FFD31
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:33:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8DFBEB21E78
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 07:29:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 792E9284B4F
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 07:33:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E25A015442A;
-	Fri,  7 Jun 2024 07:29:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC9BF157496;
+	Fri,  7 Jun 2024 07:30:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CQ+G+hwu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EEnoQekJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39CAA19D89B;
-	Fri,  7 Jun 2024 07:29:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A946115530F;
+	Fri,  7 Jun 2024 07:30:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717745381; cv=none; b=ZwdgsyPdIT0y/WQsKcFUpMcVrisp6ilvIkL0UGEiR9PXo6usp228hXpMXsfT21NQ+RPmoJ5HBuCKosdhuSmD+RJn0Vq1LYjBu7zL6bEIXm+SZYwde6XqhBzzr/EGxWh6GSzg37SvzYxv3Fivgbp4SBK7KiJBGUTL9SIBtJYca/E=
+	t=1717745448; cv=none; b=skcS13tdWtsUz8DehQ8fsPz1z8H6xX7fZ6W8dGHWr4mct3+AKHFdnBR9+PLMVuiw1cq8sk38mLIamp2xLvk7ZHi2Bf1GAVAvfMXkgO9mSfwFJ/rSgmIfTH48yWoflZh1y4YtWOoAtifXJaF2wDEnReVzH40zeggG/UaEwJ8ensU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717745381; c=relaxed/simple;
-	bh=weMbjAVuFoMzFfr3Po8iOhGCl5HlwO1kTE9xRh9mM/E=;
+	s=arc-20240116; t=1717745448; c=relaxed/simple;
+	bh=Z3FFAvOtY81jdbTzkmiEyBDE39rxcsFJ3zmC1SfF600=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kd8M4h5BDm3L8j5/+Xvq/TltoG+DSuPfAmEYeDMfkVQ2vWBmdGNFzcDcEkInhNMACeB2fHxq6165i/Q510nLkkNipFN3KaSMS29Ehy7fkXzrhIVY1EnQCT19XCNzo1nIWp7Q6DGHRIQNiRksPwDdVo7ywe2mLkG0fXXsHSJmeXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CQ+G+hwu; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-57864327f6eso1880743a12.1;
-        Fri, 07 Jun 2024 00:29:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717745378; x=1718350178; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=i+bAYHtIw7hxjN1lHvR/lj9vmLxgOwdTTQ4DZlhtZa8=;
-        b=CQ+G+hwuFr9kj8wPTFR2UMapC+L9SYh55B7GxxcvqiGkZAK2mkVn/VKeclA60aRRmC
-         Pdq42375V1z4Xd3GZ7hiC4W9G81orbu9AHUcBrEJzPVuuDZ95kH/EsGZV4ee+JCY7l1q
-         WlRR4K40sLODZ+V4rtNA7ArhUsyCd4UwoSWCiWUFL4RxbRgjX6WG2YeMPPRYbalDcGdx
-         mK5S72WT3+EQxhnKR2OEOJP0qTZ4FvBU8wtG/e54CooWCo4I3PJsfQg57itv2dVEdPh0
-         UQWSqukVn3wgyHiJG5ZcmN16urM4Q26GXLQUOu8yKe3HX0UAg3cilG38AXNkL2tPSHx8
-         SXpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717745378; x=1718350178;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=i+bAYHtIw7hxjN1lHvR/lj9vmLxgOwdTTQ4DZlhtZa8=;
-        b=J6ChZlPBWEdIQMVvnjIYyAkTcyn6hoqP1QFY1oFEQfAkyCPScCDa4knbQ6AogzaFgw
-         uFobe/c+0xMykCjvoWFY10X6yn3/2jqXaSm3Hq5kb8QOU3auiEL70UebFCT9v6bLlEpa
-         CFFajyoaW/cI2/DJTDlisanD+sLNvaBrv5ERfNYQbZtDxnwBusR6MVXKptMo4JEbUvTQ
-         oWLnKVR99BrsIW5nfgS3Xedf29Uc+W6Uikpn3qOO1lfnH6vgbtW+Bia79KOndeWLCihL
-         gywSr2Eo9F/OUAjYOB747GVnevrB+OLz1KtW90XoKQ+004FUm+7Y/8dA7I2ji1/s8mN5
-         e55w==
-X-Forwarded-Encrypted: i=1; AJvYcCXlJhvzo1jFCXxmclXEM1OuepCMjzYJNS/4kr/pxcRLxZlN7adxCLMdT7cVZfnYMx0sPdZmXDapoAtwFmr5h8G3ttEJafCHjHmcX/Yf6x9VFpufwsyuylcppO7xR2Sql7M7NpcMJBuva0wz/xK2mdFYng9NVEnko1YoZ0qdbf045b6c+A==
-X-Gm-Message-State: AOJu0Yw4RkC2RE22ZFHkrAq4Gb8PwhzpnUCvPWoCeshatTvveyUqqaDm
-	K1tBnqOmWgu3NPnvJVtSPvsKTCgnJNA4TWqbNm+9yEUNBmnIOHQU
-X-Google-Smtp-Source: AGHT+IGj9GVj1bzF6WZinGCaDqFfjWPTnkAOfM5Lrw3tDB+/eO+m8Klx0LNd/lyxzbqfwxRcV2x7Sw==
-X-Received: by 2002:aa7:c443:0:b0:57c:5ed0:ca65 with SMTP id 4fb4d7f45d1cf-57c5ed0ccd0mr346811a12.21.1717745377909;
-        Fri, 07 Jun 2024 00:29:37 -0700 (PDT)
-Received: from [192.168.0.220] ([83.103.132.21])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57aae13faccsm2315697a12.54.2024.06.07.00.29.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Jun 2024 00:29:37 -0700 (PDT)
-Message-ID: <29dfa7b1-8bf9-4996-b331-5de25bcbaa8c@gmail.com>
-Date: Fri, 7 Jun 2024 10:29:24 +0300
+	 In-Reply-To:Content-Type; b=hynK5eHjclgir6I9TGpIJkMju8Niib9Ki+JnxttMYfwJQEG9F6XDN/IoZS4kt/ozEA9nUrmF0rOROZZ05Gm/igGeql/iIRdp9xTGV9w7kT/FoPH1/+TWYV2dNCB5yf9vm0VWkAEdQvqIYxxl3Qoq6i0Gwsgg6CRVRRND7SBBynY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EEnoQekJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02F6CC4AF0C;
+	Fri,  7 Jun 2024 07:30:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717745448;
+	bh=Z3FFAvOtY81jdbTzkmiEyBDE39rxcsFJ3zmC1SfF600=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EEnoQekJzv20W+ISchcm3xeqM/6W18gDiCqVjix0yEokK0PbYuYHq5p9Cnl6HhB23
+	 1ZDpekv8iXooWSuCZ1y/MAR3WuxkQKZ5qAAbGtDuYTcGPDayMDyq5C3OlzP0a0sda+
+	 YBK/w4xohv9p4jt+STGWLVkBEph0Aa9B7mglkycA5DdhvG9PmUAnVn6QlNya6p1y/Q
+	 RejBcdDEZkK4Ox0XZndfL3kDJDS2luboQ+MFTcG9/XZfLYfaLwzJBJGQDjvDZxEyNN
+	 LikDzCWc0EW5Mj1QOt0fbRjw2+SvSG4kwxy+CE99Q1DlaTxGlFbhgd0b3G82rnZOBv
+	 wHbFoNNiVYTWQ==
+Message-ID: <bd4e31a5-180d-40fb-88bc-e34d2a28f56b@kernel.org>
+Date: Fri, 7 Jun 2024 09:30:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,95 +50,125 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/6] dt-bindings: adc: ad7173: add support for ad411x
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Dumitru Ceclan via B4 Relay
- <devnull+dumitru.ceclan.analog.com@kernel.org>, dumitru.ceclan@analog.com,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240531-ad4111-v4-0-64607301c057@analog.com>
- <20240531-ad4111-v4-1-64607301c057@analog.com>
- <20240601193512.0e17992b@jic23-huawei>
- <efa10caa-5e78-4f3f-8cca-c61d7a01e6fd@gmail.com>
- <20240603210014.6258134d@jic23-huawei>
- <0f0c0b92-af0d-4e68-9880-bacfd53d726f@gmail.com>
- <20240606205813.65b342c4@jic23-huawei>
+Subject: Re: [PATCH 1/1] dt-bindings: usb: cdns,usb3: use common usb-drd yaml
+To: Frank Li <Frank.Li@nxp.com>, Peter Chen <peter.chen@kernel.org>,
+ Pawel Laszczak <pawell@cadence.com>, Roger Quadros <rogerq@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "open list:CADENCE USB3 DRD IP DRIVER" <linux-usb@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Cc: imx@lists.linux.dev
+References: <20240606161509.3201080-1-Frank.Li@nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
-In-Reply-To: <20240606205813.65b342c4@jic23-huawei>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240606161509.3201080-1-Frank.Li@nxp.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 06/06/2024 22:58, Jonathan Cameron wrote:
-> On Wed, 5 Jun 2024 09:54:31 +0300
-> "Ceclan, Dumitru" <mitrutzceclan@gmail.com> wrote:
+On 06/06/2024 18:15, Frank Li wrote:
+> Use common usb-drd yaml for usb OTG related propteries. Allow propertry
+> "usb-role-switch" to fix below DTB_CHECK warning.
 > 
->> On 03/06/2024 23:00, Jonathan Cameron wrote:
->>> On Mon, 3 Jun 2024 12:46:10 +0300
->>> "Ceclan, Dumitru" <mitrutzceclan@gmail.com> wrote:
->>>   
->>>> On 01/06/2024 21:35, Jonathan Cameron wrote:  
->>>>> On Fri, 31 May 2024 22:42:27 +0300
->>>>> Dumitru Ceclan via B4 Relay <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
->>>>>     
->>>>>> From: Dumitru Ceclan <dumitru.ceclan@analog.com>  
->>
->> ...
->>
->>>>>> +          Supported only by AD7172-2, AD7172-4, AD7175-2, AD7175-8, AD7177-2:
->>>>>> +            19: ((AVDD1 − AVSS)/5)+
->>>>>> +            20: ((AVDD1 − AVSS)/5)−    
->>>>>
->>>>> That's what it says on the datasheet (so fine to copy that here) but I'm curious, what does
->>>>> that mean in practice?  How can we have negative and postive signals of the difference
->>>>> between two power supply voltages where I'm fairly sure AVDD1 always greater than AVSS.
->>>>>    
->>>>
->>>> I have not tested that as I do not have a model that supports this wired up.
->>>> If I had to guess they are the same signal but one should be connected to the
->>>> positive input, one to the negative input...but I could be wrong.  
->>>
->>> If they are, then as far as I we are concerned is this one channel with two
->>> representations depending on whether it is 1st or 2nd in the list?
->>> Can we use one number and hide that detail in the driver?
->>>
->>> Seems odd though if that is the case.
->>>
->>> I guess if we find out later this is the case we can tighten the binding to
->>> enforce the right one instead of squashing them to one value, but that
->>> is a bit ugly.  Any chance of digging out the info?  If not we can go ahead
->>> but ideally answering things like this make a our life easier in the long run.
->>>
->>> Jonathan
->>>   
->>
->> "(Avdd1/Avss)/5+ as positive input and (Avdd/Avss)/5- as negative
->>   this is used for monitoring power supplies, the inputs must be selected in pair"
->> Perhaps it's an internal voltage divider...? I dunno
->>
->> So it seems like this cannot be used as a common mode voltage input.
->> I'll restrict the driver to only allow these inputs paired together
->> and rename the define for these selections.
-> Most mysterious :)  I'd be interested to know what value it reads
-> back if you ever get the part.
->
-
-My best guess now is that the reason for /5 is so that you can measure
-the AVDD AVSS difference using the internal 2.5V reference.
-So for AVDD 5V, AVSS 0V using the internal ref it would read 1V
-
-I'll let you know if I test this
- 
-> Ah well, great to have gotten that extra detail even if it leaves
-> more questions!
+> arch/arm64/boot/dts/freescale/imx8qxp-mek.dtb: usb@5b110000: usb@5b120000: 'port', 'usb-role-switch' do not match any of the regexes: 'pinctrl-[0-9]+'
 > 
-> Jonathan
+> Add "port" proptery to use connect type C connector and fix below warning.
+> arch/arm64/boot/dts/freescale/imx8qxp-mek.dtb: usb@5b110000: usb@5b120000: Unevaluated properties are not allowed ('port' was unexpected)
 > 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> 
+> Notes:
+>     pass dt_binding_check
+>     
+>     make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j8  dt_binding_check DT_SCHEMA_FILES=cdns,usb3.yaml
+>       SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>       CHKDT   Documentation/devicetree/bindings
+>       LINT    Documentation/devicetree/bindings
+>       DTEX    Documentation/devicetree/bindings/usb/cdns,usb3.example.dts
+>       DTC_CHK Documentation/devicetree/bindings/usb/cdns,usb3.example.dtb
+> 
+>  .../devicetree/bindings/usb/cdns,usb3.yaml       | 16 +++++++++++++---
+>  1 file changed, 13 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
+> index 69a93a0722f07..38df19bad7c41 100644
+> --- a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
+> @@ -42,8 +42,15 @@ properties:
+>        - const: otg
+>        - const: wakeup
+>  
+> -  dr_mode:
+> -    enum: [host, otg, peripheral]
+> +  dr_mode: true
+> +
+> +  usb-role-switch: true
 
+These two should not be needed now (usage of unevaluatedProps allows
+them), just drop them.
+
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +    description:
+> +      This port is used with the 'usb-role-switch' property  to connect the
+> +      cdns3 to type C connector.
+>  
+>    maximum-speed:
+>      enum: [super-speed, high-speed, full-speed]
+> @@ -77,7 +84,10 @@ required:
+>    - interrupts
+>    - interrupt-names
+
+Missing dependency on "port", see other bindings like dwc2.
+
+
+Best regards,
+Krzysztof
 
 
