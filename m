@@ -1,172 +1,189 @@
-Return-Path: <devicetree+bounces-73540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A1558FFF12
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:17:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D69FD8FFF47
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:23:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 078481F2945B
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:17:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E471287077
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:23:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D50D915B576;
-	Fri,  7 Jun 2024 09:17:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E176A15B57D;
+	Fri,  7 Jun 2024 09:23:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MxWS4c+L"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q70QGk70"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3055873468;
-	Fri,  7 Jun 2024 09:17:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1760A15B96E
+	for <devicetree@vger.kernel.org>; Fri,  7 Jun 2024 09:22:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717751828; cv=none; b=iqnn8HsdbMUDx+fFwpA5Fxb6s5/swyN1VIDdik2kW7UxWnrSp09127IeUaN7cdPmxOi47vQK5mpzKPrZHLE5enXg8QGGUDl9B/Fr6GOR5toYiKNmmP7U2B+jI0dtRlnvxMPBM8C5n/P0puhLZwK+YHICLcHfZ+bN/4XGU8yGVMY=
+	t=1717752180; cv=none; b=Yt6DK28EZUb8dueE/WVYH+lEM+f/DhL07pDPWmWLetU61dcYL6lxAAgAtBhJ4Qk+aLAxVQHl3KnqNWuWyDLP1o70SVzz54qF+YS8hHTMHa6a0Kxro/wVXCofn6j2hKUGCI2aYz2MkZaUl2R8D6v2DgWhnG+mYbDmmF2TjwiI1JY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717751828; c=relaxed/simple;
-	bh=Qc5A8wW1S4AxpcaSX5CLxLhReIvvGxK0np1BQAuHJUs=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=MFOjNOT+PaCXfg36Jdgk/5l9iHC5n8DebZOS0IvV/vrxsqHScV3VvKE6sHiDpsvE4Q4EeTSCTOLzHKQI4637hgfmFj5xVNfEtq2/qqTJGxE+OFa086FdTO7my9Ymqm18z2arWSvgiL83fpV5txMG57AQzDwCMulvDnBEgitsi98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MxWS4c+L; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a63359aaacaso283214666b.1;
-        Fri, 07 Jun 2024 02:17:06 -0700 (PDT)
+	s=arc-20240116; t=1717752180; c=relaxed/simple;
+	bh=YwoUri3ktWMFoZow1yFuIzi/afm7rRFS1XgwQ1LDl9U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZPyUKZzGpEKjbrlysPk4QH74RCTp2JshNgsBOIeQ3a0NjTZbQgur4XAPSFmC3Ws2HbLTvMNt2mTnRfvQCmB1ty2r5lUNA0MEnSo7Bidjgk6DfBt/5Vkgv1Hyizj6fbwERgTX/kCPKtmw2jhGvyLagUDVgai9f9eLhmEMhkyV3Cs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q70QGk70; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-35e4be5bd7fso1647832f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2024 02:22:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717751825; x=1718356625; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=pKVF5H7Af612iT5L8uzEkuJZLPXShQIxa9kUQtrflg8=;
-        b=MxWS4c+LFo4gs6XkijEcTGuEaSYgbfC9v1XFDGNG7re2nu4E0lx815WMGOY6e23mIH
-         Mbyl5wSEjeulI0QfkO9KDZP+HeaSM7ej0g/Xt7BaSzqq2X76iVBjCc0+vUSFhAIeM4gq
-         jUvuteWTtOfQLjvROODAhaWo50zOq0mytKcagCl73IaO40BpvbFskgCyQN3R31OoRe0n
-         SbrJK4DC6aUwgFLxE2Xjk4YfGZC2OT3KmlIQYHT9L0SQDCIS0XsFCCsKdQYGvoW9NbT/
-         glZ4SxLp+nZqx5ZK9yvKGDpHMuaMkNjPBGV3SUt0GaPDy5RDe5YGg0+TPtXtTNt6gnlf
-         zj+A==
+        d=linaro.org; s=google; t=1717752177; x=1718356977; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:reply-to
+         :autocrypt:from:content-language:references:cc:to:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=u0T4B4BXzv7yNTZXWNQwkT6ayKsObAY6eNGwzmrTqAk=;
+        b=q70QGk70GVQHAU2c7EGhfjPd2EFcMJUqqGLi7o+6ToU4BWJ8NeNrAh9QZkq3qZGlZr
+         Uj25mXQjBN+srKogIwoo1y2v0AH5fpm2DWgmclsjN42NRF4IYSWTu8/+z7NFalsdbRbD
+         hpaMWycqGxqTWvMM3PgUP8/A0ZsjgXQDNPIIHal1eV/9yjHdtMS4qGCH1durAj8X7ubw
+         eXxHx3W/ApMWqE7+P3Y/UvWqNH08xzu/gpj4xsrY9z8p4g+Q5wFgvt2ATiI1gyRfMEwP
+         N+jrmWRYyF5FAjukZ6cliguRxsYoIek5AhGXPUb9YGhhHdRLGnkY0UAnc1ugFlYXplQc
+         K9CQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717751825; x=1718356625;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pKVF5H7Af612iT5L8uzEkuJZLPXShQIxa9kUQtrflg8=;
-        b=sscvUXs+ulAch3NjuiWAjvkhzHrmNrcjlAnWgEb5oeKhAFKhSLnbzv5jmwytgqbkrt
-         VjXDj8WTzXae6ZiKeK9aD4Bx1issTmmSSIzePOYbfhgKsOCzRBlqgBxB9N3YlrseOIUi
-         a/XJHEo8UNyKn86t+eq3J/pbIqtAXu+UZtFwDTNusU5alBRwVUA4aa1XyUMjuCQfDLI1
-         +KnszmlOgsdgbeHxGSNiAmgOtd+XMyHnoFz24+YGEYNPDi68umx5YS+g3QCqHWRaSALE
-         rgyzYaDAyLyh93HZ1gYAqg0BQ8x3VflrYwzP5V5fCwutHVGpWjlo7u1u+ojaP/BlSqOO
-         v0TA==
-X-Forwarded-Encrypted: i=1; AJvYcCWGdixuXJKgTS4rDq6Z3k4A39/GABnc3fnsXLIPCHfRqgW80FzcI2ISvmbrcapLFvzjb5oKj5Biu05+6MowO1gjBpdQhNDzcqsf1H/33ROXFGaPuZLdjH3k9UOwM87Q6CJ10Vkd6/788Cz3Ltsk9BP9OZbTGkTXEZPLBILYE/QAxxhbuw==
-X-Gm-Message-State: AOJu0YyTsXVH6AES4n3ZMC4dvUPIK0cXuo01JJSac234zo+NtXK+AlyF
-	lF38yiiyLam5JBNJWS83aQ6+3bjhc1vFDqWGz3zIkp0AzumwYfyP
-X-Google-Smtp-Source: AGHT+IFZ9CrXNfTfZ9TvGHJ1UJDSFIxgqBj3iy3NGjFj3Kcu440uPOWocAks1Fs6i2sTyCvaHKCs/g==
-X-Received: by 2002:a17:906:3610:b0:a69:7d72:b0d6 with SMTP id a640c23a62f3a-a6cdbef7773mr119943166b.71.1717751825299;
-        Fri, 07 Jun 2024 02:17:05 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6c8072ac5asm215679066b.219.2024.06.07.02.17.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jun 2024 02:17:05 -0700 (PDT)
-Message-ID: <389546877ae11b18928b432e86710acf83974f67.camel@gmail.com>
-Subject: Re: [PATCH v6 9/9] iio: adc: ad7173: Add support for AD411x devices
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: dumitru.ceclan@analog.com
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- David Lechner <dlechner@baylibre.com>,  linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org, Dumitru Ceclan
- <mitrutzceclan@gmail.com>
-Date: Fri, 07 Jun 2024 11:20:52 +0200
-In-Reply-To: <20240606-ad4111-v6-9-573981fb3e2e@analog.com>
-References: <20240606-ad4111-v6-0-573981fb3e2e@analog.com>
-	 <20240606-ad4111-v6-9-573981fb3e2e@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.2 
+        d=1e100.net; s=20230601; t=1717752177; x=1718356977;
+        h=content-transfer-encoding:in-reply-to:organization:reply-to
+         :autocrypt:from:content-language:references:cc:to:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=u0T4B4BXzv7yNTZXWNQwkT6ayKsObAY6eNGwzmrTqAk=;
+        b=uKgB4wBbmt1uiXw68B8IfUR5n5k8fm7QfnhGHTkfiUe95FYC8BEto3nso1ytSYmWMD
+         2s0Vid5RgF8n/QtROJyKg39aZEw695eVfuS1zaQhv1kyXGxSmQDinzxjcyLsi9EHtAap
+         CrqIP7kE7ojvpK74JdwkPR3TBQrXNv+WqzhLNxJ72pLxg4WP1n6R/qWeayG3zROvVJx+
+         BaSxmGarYNFN/AHWa0TZLg8tC4RJF1LINSaylIlk+35t16180w/y30/IM931pW4uqqUr
+         fDre6DjIVG7G/2+Ms4zzeYAvTdWLCZSIoxIOQgq95z4sIqIgmcFJQVPcjRQXvleFUQwn
+         NQhg==
+X-Forwarded-Encrypted: i=1; AJvYcCXa0/8exOH1rRBwlJ8PQe10eAEXfoUcp2Kq8VBplQVKnxgj9HXgDV2jC0eYN7s5WVKVzkPXa1WAB9T3wjoxplhrieKTE8I63Ugskg==
+X-Gm-Message-State: AOJu0Yym8/gGc5oF173QNuPowcmKQCD3yLJWP1e1r1PkiqsQqkaOQi1Z
+	J5VlYy57WKlgh3n1tSYrNYL8kIB+D9BdZx7mt9m2SjxXg/nowbH8h/0dtiQkTO0=
+X-Google-Smtp-Source: AGHT+IHI/SRbC76tGKuWAIzzK3sqU7ca676FAKWmmkTRFEoO4cno8PeQyR6PowYlGkQDamtVdfzs9g==
+X-Received: by 2002:a5d:6c65:0:b0:354:b7f0:b09d with SMTP id ffacd0b85a97d-35efed2b454mr1715011f8f.2.1717752177192;
+        Fri, 07 Jun 2024 02:22:57 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:7e4b:b0d3:6a34:6404? ([2a01:e0a:982:cbb0:7e4b:b0d3:6a34:6404])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5fd1d7asm3585930f8f.116.2024.06.07.02.22.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Jun 2024 02:22:56 -0700 (PDT)
+Message-ID: <3b46ff8b-3095-4170-ab94-3410cf841383@linaro.org>
+Date: Fri, 7 Jun 2024 11:22:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] ASoC: dt-bindings: linux,spdif: Convert
+ spdif-reciever.txt to dtschema
+To: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240606041212.78428-1-animeshagarwal28@gmail.com>
+Content-Language: en-US, fr
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Reply-To: neil.armstrong@linaro.org
+Organization: Linaro
+In-Reply-To: <20240606041212.78428-1-animeshagarwal28@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, 2024-06-06 at 19:07 +0300, Dumitru Ceclan via B4 Relay wrote:
-> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
->=20
-> Add support for AD4111/AD4112/AD4114/AD4115/AD4116.
->=20
-> The AD411X family encompasses a series of low power, low noise, 24-bit,
-> sigma-delta analog-to-digital converters that offer a versatile range of
-> specifications.
->=20
-> This family of ADCs integrates an analog front end suitable for processin=
-g
-> both fully differential and single-ended, bipolar voltage inputs
-> addressing a wide array of industrial and instrumentation requirements.
->=20
-> - All ADCs have inputs with a precision voltage divider with a division
-> =C2=A0 ratio of 10.
-> - AD4116 has 5 low level inputs without a voltage divider.
-> - AD4111 and AD4112 support current inputs (0 mA to 20 mA) using a 50ohm
-> =C2=A0 shunt resistor.
->=20
-> Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
+On 06/06/2024 06:12, Animesh Agarwal wrote:
+> Convert the dummy SPDIF receiver bindings to DT schema.
+> 
+> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+> Cc: Daniel Baluta <daniel.baluta@nxp.com>
+> 
 > ---
-> =C2=A0drivers/iio/adc/ad7173.c | 317 ++++++++++++++++++++++++++++++++++++=
-++++++----
+> Changes	in v2:
+> - Add linux,spdif-dir compatible in existing linux,spdif-dit.yaml
+> instead of creating new yaml file specifically for dummy SPDIF receiver.
+> - Change file name to support both transmitter and receiver bindings.
+> ---
+>   .../sound/{linux,spdif-dit.yaml => linux,spdif.yaml}   |  8 +++++---
+>   .../devicetree/bindings/sound/spdif-receiver.txt       | 10 ----------
+>   2 files changed, 5 insertions(+), 13 deletions(-)
+>   rename Documentation/devicetree/bindings/sound/{linux,spdif-dit.yaml => linux,spdif.yaml} (75%)
+>   delete mode 100644 Documentation/devicetree/bindings/sound/spdif-receiver.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/linux,spdif-dit.yaml b/Documentation/devicetree/bindings/sound/linux,spdif.yaml
+> similarity index 75%
+> rename from Documentation/devicetree/bindings/sound/linux,spdif-dit.yaml
+> rename to Documentation/devicetree/bindings/sound/linux,spdif.yaml
+> index fe5f0756af2f..0f4893e11ec4 100644
+> --- a/Documentation/devicetree/bindings/sound/linux,spdif-dit.yaml
+> +++ b/Documentation/devicetree/bindings/sound/linux,spdif.yaml
+> @@ -1,10 +1,10 @@
+>   # SPDX-License-Identifier: GPL-2.0
+>   %YAML 1.2
+>   ---
+> -$id: http://devicetree.org/schemas/sound/linux,spdif-dit.yaml#
+> +$id: http://devicetree.org/schemas/sound/linux,spdif.yaml#
+>   $schema: http://devicetree.org/meta-schemas/core.yaml#
+>   
+> -title: Dummy SPDIF Transmitter
+> +title: Dummy SPDIF Transmitter/Receiver
+>   
+>   maintainers:
+>     - Mark Brown <broonie@kernel.org>
+> @@ -14,7 +14,9 @@ allOf:
+>   
+>   properties:
+>     compatible:
+> -    const: linux,spdif-dit
+> +    enum:
+> +      - linux,spdif-dit
+> +      - linux,spdif-dir
+>   
+>     "#sound-dai-cells":
+>       const: 0
+> diff --git a/Documentation/devicetree/bindings/sound/spdif-receiver.txt b/Documentation/devicetree/bindings/sound/spdif-receiver.txt
+> deleted file mode 100644
+> index 80f807bf8a1d..000000000000
+> --- a/Documentation/devicetree/bindings/sound/spdif-receiver.txt
+> +++ /dev/null
+> @@ -1,10 +0,0 @@
+> -Device-Tree bindings for dummy spdif receiver
 > -
-> =C2=A01 file changed, 285 insertions(+), 32 deletions(-)
->=20
-> diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
-> index 58da5717fd36..cfcd12447e24 100644
-> --- a/drivers/iio/adc/ad7173.c
-> +++ b/drivers/iio/adc/ad7173.c
->=20
-...
+> -Required properties:
+> -	- compatible: should be "linux,spdif-dir".
+> -
+> -Example node:
+> -
+> -	codec: spdif-receiver {
+> -		compatible = "linux,spdif-dir";
+> -	};
 
-> =C2=A0static const struct ad7173_device_info ad7172_2_device_info =3D {
-> =C2=A0	.name =3D "ad7172-2",
-> =C2=A0	.id =3D AD7172_2_ID,
-> -	.num_inputs =3D 5,
-> +	.num_voltage_in =3D 5,
-> =C2=A0	.num_channels =3D 4,
-> =C2=A0	.num_configs =3D 4,
-> =C2=A0	.num_gpios =3D 2,
-> +	.higher_gpio_bits =3D false,
-
-No need to explicitly set to 'false'. Ditto for the other places...
-
-...
-
->=20
-> =C2=A0static int ad7173_validate_voltage_ain_inputs(struct ad7173_state *=
-st,
-> =C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int ain0, unsigned int
-> ain1)
-> =C2=A0{
-> @@ -946,15 +1145,30 @@ static int ad7173_validate_voltage_ain_inputs(stru=
-ct
-> ad7173_state *st,
-> =C2=A0	=C2=A0=C2=A0=C2=A0 st->info->has_pow_supply_monitoring)
-> =C2=A0		return 0;
-> =C2=A0
-> -	special_input0 =3D AD7173_IS_REF_INPUT(ain0);
-> -	special_input1 =3D AD7173_IS_REF_INPUT(ain1);
-> +	special_input0 =3D AD7173_IS_REF_INPUT(ain0) ||
-> +			 (ain0 =3D=3D AD4111_VINCOM_INPUT && st->info-
-> >has_vincom_input);
-> +	special_input1 =3D AD7173_IS_REF_INPUT(ain1) ||
-> +			 (ain1 =3D=3D AD4111_VINCOM_INPUT && st->info-
-> >has_vincom_input);
-> +
-
-Wondering... can ain1 (or ain0) be AD4111_VINCOM_INPUT and !st->info-
->has_vincom_input? Would that actually be acceptable? It would assume it's =
-not
-so we should check that right? Or am I missing something?
-
-- Nuno S=C3=A1
-
+Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
 
