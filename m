@@ -1,111 +1,223 @@
-Return-Path: <devicetree+bounces-73533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D60248FFEB8
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:06:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF89E8FFF0D
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:16:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7134A289D2C
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:06:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D83711C227CA
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:16:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D480915B971;
-	Fri,  7 Jun 2024 09:06:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9566B15B971;
+	Fri,  7 Jun 2024 09:16:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ww4R4mEO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gheovIQd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3227115B15C;
-	Fri,  7 Jun 2024 09:06:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A858915B577
+	for <devicetree@vger.kernel.org>; Fri,  7 Jun 2024 09:16:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717751168; cv=none; b=Hsv9DYzNmdkQEQq2WEbBhMiP3/bS4vmf+PC6JCfxRV+Rn4mPwJs7AiC8PPB9joRV/vaeC+IkxCF/J7WQmsx9p+ZHJHhaBd2xVKsR9CvUypEvyEwK7tMQdTpd5RmYRSiwv6CuQe1MFaMEfr7fAOb6wa7qqGRp8lPjBm3Us04D8K4=
+	t=1717751793; cv=none; b=GLXGiQmYjiZm2Z2mg1y5Dh1zg6TL0ip+bIEzvkmIXwnCYmMeq55Ntovj2KgcxWtWABMSomgPLELSD+HOxMq0wT9wf3YO80Oh8xOGE5TGxCCwtXLQ9Q6ObuLrxuSUXOcgU/sWRwGaH5wvEQUm+jeiNrRIInotJnPISwzRlLzIK6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717751168; c=relaxed/simple;
-	bh=02Ezor/EFk6mpRpX7GE8KDOgJoMksH7wmGt1Ymq2OUE=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=RdvP4REZrPXs+ZzN6c6tWwB8tMiRT6WWgkVKvqQ2J5n2B3L5RxAt+uICTOt7LDF8M0x1WJt3F/Z7KQAtyEbzKtmKnKAuFUCBwg5/qKCChwnXVvxt/aPrsbBTGRY4KymOUF7X8BCKpYgrWKsw6do0Sy5r2fb5dae2Rdj76I+sOm0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ww4R4mEO; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-57a526c6a2cso2118335a12.2;
-        Fri, 07 Jun 2024 02:06:06 -0700 (PDT)
+	s=arc-20240116; t=1717751793; c=relaxed/simple;
+	bh=zIdt3Vb+Dr/QTS2l+2fvCqhwbM0oGZEPKaE2bmeBW9w=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=rIOtzIOfr3paKQHkjm1A4ot3L7jQ0ALEx5iqMDomEIOWbec/uhXrJbZDKp3srKStaRGOlFSKoAP2GYPD3uQgQw+ivvFsgoO7PIORnA6N8g0Xsrwiy+x7DmKYIn6KPX/8A2R7qOwJwkeoLDPh+pTx7rl1ykhXNzAPnBtxLXCW1G4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gheovIQd; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-42172ab4b60so1385355e9.0
+        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2024 02:16:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717751165; x=1718355965; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=02Ezor/EFk6mpRpX7GE8KDOgJoMksH7wmGt1Ymq2OUE=;
-        b=Ww4R4mEOkuQkZ4Vr/RZmCUJAdkKTnZxfHVoXFLBopRgli/Mf72AxRmWne7aes2wBlf
-         gl2Fnn2+EigEF8wKIBUwSOdi2+mGeQQHuEVtjD14XdtLP7zkcb71WMFZNPmr24ZwzeBf
-         JPvp6/IAvrJ2PBFjwWK/fTOfyDkL8a5kxJ9uzgjlFXBgAKMUZ3BbheTZoeyymlzGWABy
-         ap7K7czgGjV817TdPm5kjDMXUTe4Ij7BHtofKrwQOnhFMR7Wb879Qkv0YiZLI+U4O+zC
-         EPPRiOjvEM7HwgQhp5yMA3BPnI6ViQFeeQe75seQvkR2kuo6od7/cDEqEczBdxZhRxyx
-         3H9A==
+        d=linaro.org; s=google; t=1717751790; x=1718356590; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RKhcW2Pv1TQb63OYj0Ad4PZwEbdEXdKfu9Ta+939bwE=;
+        b=gheovIQdX8MqCeEPYnxqkKy87TZqDaoReQVAHtPOSW8xk9EVop6rItgwqA1Z8q+qbc
+         GSWz4No0t/KYRKfiI64BK+uMGqYxjwjMaCeo1vEZginzaAr+MHdnhdHfSltMvx+FJHpw
+         m9pNJu4Wpj8XkOkxFIStpHhmGl8J8Hr+bpmYZO2X7IzFGG2wMKphHowfgYPQyqSTGhfH
+         6niqMTB+ULEQJ7pZ7tIRSQHPSa3WewijOeX6AOXqfMP5xQF12wY4tcfDOkLuiTiKfHOi
+         M/pRdqvUYAHeS616hutggdE3XCc1J8Qf/PXdRG6B3Hw+G1LkJ9CxyJcJmrMU77JlrhQy
+         nj6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717751165; x=1718355965;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=02Ezor/EFk6mpRpX7GE8KDOgJoMksH7wmGt1Ymq2OUE=;
-        b=H6n10+eZwlc3O4RfAUV1+SaKQhxHQRRDVYYrBv1DIlTdHoZD2kt6Uhf4UTNEWfIwYz
-         2B971Xl/8LnZ3xVmcg0pLqA2wp1vIEqyVY5nfzRiqgh3tzozQgnEoMhT6SJFBihgL9Qr
-         pYRlvQxswYwg4OFpjSzgjY6xo38gcrsCUO21kuhekf4Dc/bLobsvqcj/VrBot3Ykib5s
-         X5MU9n6cGM5sSpMJYKu9jImUQqYkJDcXiZLMKxMotC5a+PepfLlm1xwtfyAssrZ0x692
-         KsT+Br2zM5DDPQ8LXquF3GOo4fL2Rc2xBbDtit4CYWT/2VGRfX+NgUSMS89nYn87E9Et
-         EDYA==
-X-Forwarded-Encrypted: i=1; AJvYcCWDSqdJk78HkWXAl8vRADEsvLrqfrH7NRiFWrpNa50i8fIn3ihJ2cRBKI9rG5xkChpC5nqJxFsjixmlgSyMkyZFsbD+8KZBvaZkUxAgWZqlTSRfav8U2x1Jwavt3dnLFLhonfIDMy63EEih4LvokS/knesRXW8jAvaYLbOagiZCYALadQ==
-X-Gm-Message-State: AOJu0Ywsh9oVZm+wnfha9jnUEFSC/4+LAeLVSVTDRR6KPZxYlmcMN6Lx
-	7e1DrziXCC3j01KAathh0USD18TEbFVlMSRErLCQIymuyl1FxvvE
-X-Google-Smtp-Source: AGHT+IEN6md56MkALoiq/calcQIVIkG7jdXgQegNznInubYEMGzzFbk4uZozcFPSfxkdToBhRaUBeg==
-X-Received: by 2002:a50:8719:0:b0:57a:2546:2512 with SMTP id 4fb4d7f45d1cf-57c5099b8b0mr965262a12.34.1717751165181;
-        Fri, 07 Jun 2024 02:06:05 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57aae2023a1sm2399254a12.61.2024.06.07.02.06.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jun 2024 02:06:04 -0700 (PDT)
-Message-ID: <fe4e553875d2d20b4c3994c24bde02184d160ff4.camel@gmail.com>
-Subject: Re: [PATCH v6 8/9] iio: adc: ad7173: document sampling frequency
- behaviour
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: dumitru.ceclan@analog.com
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- David Lechner <dlechner@baylibre.com>,  linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org, Dumitru Ceclan
- <mitrutzceclan@gmail.com>
-Date: Fri, 07 Jun 2024 11:09:51 +0200
-In-Reply-To: <20240606-ad4111-v6-8-573981fb3e2e@analog.com>
-References: <20240606-ad4111-v6-0-573981fb3e2e@analog.com>
-	 <20240606-ad4111-v6-8-573981fb3e2e@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.2 
+        d=1e100.net; s=20230601; t=1717751790; x=1718356590;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=RKhcW2Pv1TQb63OYj0Ad4PZwEbdEXdKfu9Ta+939bwE=;
+        b=xIJ4uNIziE91jhnAtZ6WKOz1MI0pXSoZROmYI4PfRT1AkhM53mFzY+RfEKwrvGBKrf
+         gmStWkFbyPEl2bDn01fzAnv2WKWDy6xpVyJWliNNCM8N9WlxA0qTTgJag0De3mQexqof
+         QTp4vu6hqDeJ9YN08jxFcuhvwAXYDp7sH6R+OQciztPNEjCJAC5u0hb97S9YmzL4qBkc
+         7ZIVtdiA5mkwKL1cB1JTbgwJBvJF7j+u3TKfr4BaUlq96y9LvNHvjtTvdCG1CiwEGrtU
+         GoeFDJttfKHSjhLQGeWuDnVH5HfKdaIFuxQfpcEKN9w8oZN5d0PuUn4fN0gOrpmJURsp
+         8w8A==
+X-Gm-Message-State: AOJu0YxlL7fNtWTQ3X7wexHr9SIbxmj8i8/ks8NB6Ka8bkQuxdWzrR4P
+	Tyj0GKDFAy8EI7///St6rsQLEYnb+DZ9BsmG35bIqKYMdyv/y5/n8UaIX+X/IU8=
+X-Google-Smtp-Source: AGHT+IH6lSQLjPhb+rH7MhIJCz8VcmYFFOPCXGM2LCapictgRME7AWqPy+I8YzSDVKMGrNP+Ca47Lg==
+X-Received: by 2002:a05:600c:4f4a:b0:421:20aa:6048 with SMTP id 5b1f17b1804b1-42164a20b24mr16134255e9.26.1717751789789;
+        Fri, 07 Jun 2024 02:16:29 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:7e4b:b0d3:6a34:6404? ([2a01:e0a:982:cbb0:7e4b:b0d3:6a34:6404])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421580fe37csm82143035e9.3.2024.06.07.02.16.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Jun 2024 02:16:29 -0700 (PDT)
+Message-ID: <88119323-bd54-4d2b-bb63-366c5fe77e39@linaro.org>
+Date: Fri, 7 Jun 2024 11:16:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 00/12] arm64: meson: bunch of DT fixes, take 4 (final one
+ ??)
+To: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
+ <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240606-topic-amlogic-upstream-bindings-fixes-dts-v1-0-62e812729541@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240606-topic-amlogic-upstream-bindings-fixes-dts-v1-0-62e812729541@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, 2024-06-06 at 19:07 +0300, Dumitru Ceclan via B4 Relay wrote:
-> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
->=20
-> The ADCs supported by this driver feature a sequencer that read in a
-> loop all the enabled chanels. When setting the individual sampling
-> frequency for each channel and enabling multiple channels, the effective
-> of each channel will be lower than the actual set value. Document this
-> behaviour in a comment.
->=20
-> Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
+On 06/06/2024 10:48, Neil Armstrong wrote:
+> Along with the following:
+> - https://lore.kernel.org/all/20240422-t7-reset-v2-1-cb82271d3296@amlogic.com/
+> - https://lore.kernel.org/all/20240513224552.800153-1-jan.dakinevich@salutedevices.com/
+> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-spifc-v1-1-380f29ba4a16@linaro.org/
+> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-convert-spdif-receiver-v1-1-262465adbac2@linaro.org/
+> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-mmc-v1-1-4acbb8cc2626@linaro.org/
+> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-nvmem-v1-1-ef6f10c86a63@linaro.org/
+> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-phy-v1-1-c819b0ecd8c8@linaro.org/
+> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-rng-v1-1-0a55a7ba55e4@linaro.org/
+> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-audio-widgets-v1-1-65bd7cc2e09b@linaro.org/
+> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-sardac-v1-1-40a8de6baa59@linaro.org/
+> - https://lore.kernel.org/all/20240606-topic-amlogic-upstream-bindings-convert-g12a-tohdmitx-v2-1-70d44fa30790@linaro.org/
+> 
+> this bunch of changes fixes 99% of the remaining dts check errors.
+> 
+> The two remaining bindings conversions for arm64/amlogic are:
+> - ti,tas5707
+> - everest,es7241
+> 
+> I'm too lazy to do them right now, so if someone is interested
+> in doing the conversion, please do it!
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
+> Neil Armstrong (12):
+>        arm64: dts: amlogic: meson-g12b-bananapi: remove invalid fan on wrong pwm_cd controller
+>        arm64: dts: amlogic: move ao_pinctrl into aobus
+>        arm64: dts: amlogic: move assigned-clocks* from sound to clkc_audio node
+>        arm64: dts: amlogic: sm1: fix tdm audio-controller clock order
+>        arm64: dts: amlogic: sm1: fix tdm controllers compatible
+>        arm64: dts: amlogic: g12a-u200: drop invalid sound-dai-cells
+>        arm64: dts: amlogic: g12a-u200: add missing AVDD-supply to acodec
+>        arm64: dts: amlogic: axg: fix tdm audio-controller clock order
+>        arm64: dts: amlogic: c3: use correct compatible for gpio_intc node
+>        arm64: dts: amlogic: a1: use correct node name for mmc controller
+>        arm64: dts: amlogic: a1: drop the invalid reset-name for usb@fe004400
+>        arm64: dts: amlogic: gxbb-odroidc2: fix invalid reset-gpio property
+> 
+>   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi        |   3 +-
+>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi          |   3 +-
+>   arch/arm64/boot/dts/amlogic/meson-axg-s400.dts     |  17 +-
+>   arch/arm64/boot/dts/amlogic/meson-axg.dtsi         |  24 +-
+>   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  | 427 ++++++++++-----------
+>   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts  |  16 +-
+>   .../boot/dts/amlogic/meson-g12a-radxa-zero.dts     |  16 +-
+>   arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts  |  16 +-
+>   arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts    |  18 +-
+>   arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts |  16 +-
+>   .../dts/amlogic/meson-g12b-bananapi-cm4-cm4io.dts  |  18 +-
+>   .../meson-g12b-bananapi-cm4-mnt-reform2.dts        |  18 +-
+>   .../boot/dts/amlogic/meson-g12b-bananapi.dtsi      |  30 +-
+>   .../arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts |  16 +-
+>   .../boot/dts/amlogic/meson-g12b-gtking-pro.dts     |  16 +-
+>   arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts  |  16 +-
+>   .../dts/amlogic/meson-g12b-odroid-go-ultra.dts     |  16 +-
+>   .../boot/dts/amlogic/meson-g12b-odroid-n2.dtsi     |  18 +-
+>   .../boot/dts/amlogic/meson-g12b-odroid-n2l.dts     |  18 +-
+>   .../boot/dts/amlogic/meson-g12b-radxa-zero2.dts    |  16 +-
+>   .../boot/dts/amlogic/meson-g12b-ugoos-am6.dts      |  16 +-
+>   .../boot/dts/amlogic/meson-gx-libretech-pc.dtsi    |  17 +-
+>   .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi |  18 +-
+>   arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts |  17 +-
+>   .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts      |  17 +-
+>   .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    |  17 +-
+>   .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts |  19 +-
+>   arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts    |  17 +-
+>   arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts    |  17 +-
+>   .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi      |  17 +-
+>   .../boot/dts/amlogic/meson-gxbb-wetek-hub.dts      |  17 +-
+>   .../boot/dts/amlogic/meson-gxbb-wetek-play2.dts    |  17 +-
+>   .../dts/amlogic/meson-gxl-s805x-libretech-ac.dts   |  17 +-
+>   .../boot/dts/amlogic/meson-gxl-s805x-p241.dts      |  17 +-
+>   .../dts/amlogic/meson-gxl-s905x-khadas-vim.dts     |  17 +-
+>   .../amlogic/meson-gxl-s905x-libretech-cc-v2.dts    |  17 +-
+>   .../dts/amlogic/meson-gxl-s905x-libretech-cc.dts   |  17 +-
+>   .../boot/dts/amlogic/meson-gxl-s905x-p212.dts      |  17 +-
+>   .../boot/dts/amlogic/meson-gxm-khadas-vim2.dts     |  17 +-
+>   .../arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts |  17 +-
+>   arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts |  17 +-
+>   arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi |  16 +-
+>   .../dts/amlogic/meson-libretech-cottonwood.dtsi    |  16 +-
+>   .../boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts |  16 +-
+>   .../boot/dts/amlogic/meson-sm1-a95xf3-air.dts      |  16 +-
+>   .../boot/dts/amlogic/meson-sm1-bananapi-m2-pro.dts |  16 +-
+>   .../boot/dts/amlogic/meson-sm1-bananapi-m5.dts     |  16 +-
+>   arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts  |  16 +-
+>   arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi  |  16 +-
+>   arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts   |  16 +-
+>   .../boot/dts/amlogic/meson-sm1-x96-air-gbit.dts    |  16 +-
+>   arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts  |  16 +-
+>   arch/arm64/boot/dts/amlogic/meson-sm1.dtsi         |  36 +-
+>   53 files changed, 679 insertions(+), 630 deletions(-)
+> ---
+> base-commit: c3f38fa61af77b49866b006939479069cd451173
+> change-id: 20240606-topic-amlogic-upstream-bindings-fixes-dts-6a572ad54324
+> 
+> Best regards,
 
-Reviewed-by: Nuno Sa <nuno.sa@analog.com>
+I'll postpone applying patch 3 to be sure it's the right solution,
+but the other ones are trivial and I'll apply them now.
 
-
+Neil
 
