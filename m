@@ -1,75 +1,65 @@
-Return-Path: <devicetree+bounces-73539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF89E8FFF0D
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:16:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24AB08FFF21
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:20:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D83711C227CA
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:16:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADC472867B7
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:20:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9566B15B971;
-	Fri,  7 Jun 2024 09:16:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED82A15B139;
+	Fri,  7 Jun 2024 09:20:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gheovIQd"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="hmGhh3TD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A858915B577
-	for <devicetree@vger.kernel.org>; Fri,  7 Jun 2024 09:16:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 685C0525D;
+	Fri,  7 Jun 2024 09:20:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717751793; cv=none; b=GLXGiQmYjiZm2Z2mg1y5Dh1zg6TL0ip+bIEzvkmIXwnCYmMeq55Ntovj2KgcxWtWABMSomgPLELSD+HOxMq0wT9wf3YO80Oh8xOGE5TGxCCwtXLQ9Q6ObuLrxuSUXOcgU/sWRwGaH5wvEQUm+jeiNrRIInotJnPISwzRlLzIK6M=
+	t=1717752021; cv=none; b=MRcRoHohGvQlt6fHkQgGqjnamw8KhfIv6XGsCXpwiAHRm4gzBLUN9gmbIK94ZcBI9SqUXEi1Cf6nH4KASWKfCnkc7dXpKtWvgdm3ajR32kUrNdgEOPjRZHUUE31OcWPSLMECIvHbxGt+sZLd8lK0XMFgmUnLdjX+JxgiAJDuZjg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717751793; c=relaxed/simple;
-	bh=zIdt3Vb+Dr/QTS2l+2fvCqhwbM0oGZEPKaE2bmeBW9w=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=rIOtzIOfr3paKQHkjm1A4ot3L7jQ0ALEx5iqMDomEIOWbec/uhXrJbZDKp3srKStaRGOlFSKoAP2GYPD3uQgQw+ivvFsgoO7PIORnA6N8g0Xsrwiy+x7DmKYIn6KPX/8A2R7qOwJwkeoLDPh+pTx7rl1ykhXNzAPnBtxLXCW1G4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gheovIQd; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-42172ab4b60so1385355e9.0
-        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2024 02:16:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717751790; x=1718356590; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RKhcW2Pv1TQb63OYj0Ad4PZwEbdEXdKfu9Ta+939bwE=;
-        b=gheovIQdX8MqCeEPYnxqkKy87TZqDaoReQVAHtPOSW8xk9EVop6rItgwqA1Z8q+qbc
-         GSWz4No0t/KYRKfiI64BK+uMGqYxjwjMaCeo1vEZginzaAr+MHdnhdHfSltMvx+FJHpw
-         m9pNJu4Wpj8XkOkxFIStpHhmGl8J8Hr+bpmYZO2X7IzFGG2wMKphHowfgYPQyqSTGhfH
-         6niqMTB+ULEQJ7pZ7tIRSQHPSa3WewijOeX6AOXqfMP5xQF12wY4tcfDOkLuiTiKfHOi
-         M/pRdqvUYAHeS616hutggdE3XCc1J8Qf/PXdRG6B3Hw+G1LkJ9CxyJcJmrMU77JlrhQy
-         nj6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717751790; x=1718356590;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=RKhcW2Pv1TQb63OYj0Ad4PZwEbdEXdKfu9Ta+939bwE=;
-        b=xIJ4uNIziE91jhnAtZ6WKOz1MI0pXSoZROmYI4PfRT1AkhM53mFzY+RfEKwrvGBKrf
-         gmStWkFbyPEl2bDn01fzAnv2WKWDy6xpVyJWliNNCM8N9WlxA0qTTgJag0De3mQexqof
-         QTp4vu6hqDeJ9YN08jxFcuhvwAXYDp7sH6R+OQciztPNEjCJAC5u0hb97S9YmzL4qBkc
-         7ZIVtdiA5mkwKL1cB1JTbgwJBvJF7j+u3TKfr4BaUlq96y9LvNHvjtTvdCG1CiwEGrtU
-         GoeFDJttfKHSjhLQGeWuDnVH5HfKdaIFuxQfpcEKN9w8oZN5d0PuUn4fN0gOrpmJURsp
-         8w8A==
-X-Gm-Message-State: AOJu0YxlL7fNtWTQ3X7wexHr9SIbxmj8i8/ks8NB6Ka8bkQuxdWzrR4P
-	Tyj0GKDFAy8EI7///St6rsQLEYnb+DZ9BsmG35bIqKYMdyv/y5/n8UaIX+X/IU8=
-X-Google-Smtp-Source: AGHT+IH6lSQLjPhb+rH7MhIJCz8VcmYFFOPCXGM2LCapictgRME7AWqPy+I8YzSDVKMGrNP+Ca47Lg==
-X-Received: by 2002:a05:600c:4f4a:b0:421:20aa:6048 with SMTP id 5b1f17b1804b1-42164a20b24mr16134255e9.26.1717751789789;
-        Fri, 07 Jun 2024 02:16:29 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:7e4b:b0d3:6a34:6404? ([2a01:e0a:982:cbb0:7e4b:b0d3:6a34:6404])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421580fe37csm82143035e9.3.2024.06.07.02.16.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Jun 2024 02:16:29 -0700 (PDT)
-Message-ID: <88119323-bd54-4d2b-bb63-366c5fe77e39@linaro.org>
-Date: Fri, 7 Jun 2024 11:16:28 +0200
+	s=arc-20240116; t=1717752021; c=relaxed/simple;
+	bh=5lhAGxbi1WkQqrBzui7aAjXB5BzgLd7FJ24TXfGuHaI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ZzbMph9kimQQMfU5D6OA68qjqZlAC3xZDZoom8hHQ7k9WacZSN8MtBk14Jmt7Y9uxGBqEHQ6USTz4YoUPXCg5CCpzdmm0kolv3w/GpRXQkdnsKusCx9lgyUdFlXVoEsLWvCDBb5016jR+jz+A7L+TiAjHcZAxL0JdpKBeTqHQIg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=hmGhh3TD; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45791ZeF002170;
+	Fri, 7 Jun 2024 11:19:46 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	d3Kov9mztOBAq1R8O1XYu0dkAhTelqCjkvoNBjjUVWM=; b=hmGhh3TDJB9G8snz
+	L5K5RwqNIWpHceqzBF1ct2BcIvol02o5LJ3j30qBCxtKcnwgmquWjFl1O09TLzPr
+	Eydbe7AZr/ipURjAd5X8Xla/9UBd9Dpa64NTB5fRDKF+HzrVnONfvoePLGU5T4Cn
+	nd3TTa/ZprsdHs0Z4ypXaqUkCDTyfAEBPVo4en3InsR4/6ayP1PQtTXi7z+fQ2K2
+	1zYEcMNtNe2wHmAfmlgCPohrhlDGLSXs3uM6AYbgj8k3ubEywwvPKLswyjIHIpwY
+	cRbsUmUWGd8Ig78xP5dm7sVSwYJn0zQQQN3fD4gGExmaVnNsgpw+p4aREqw2mMaU
+	1Oxx3Q==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ygekj809d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 07 Jun 2024 11:19:46 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 5AEA340047;
+	Fri,  7 Jun 2024 11:19:38 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 05BD02138CA;
+	Fri,  7 Jun 2024 11:18:23 +0200 (CEST)
+Received: from [10.252.19.205] (10.252.19.205) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 7 Jun
+ 2024 11:18:19 +0200
+Message-ID: <3aeecd23-355e-4824-8706-a746e84b37b7@foss.st.com>
+Date: Fri, 7 Jun 2024 11:18:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,147 +67,163 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 00/12] arm64: meson: bunch of DT fixes, take 4 (final one
- ??)
-To: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
- <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240606-topic-amlogic-upstream-bindings-fixes-dts-v1-0-62e812729541@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240606-topic-amlogic-upstream-bindings-fixes-dts-v1-0-62e812729541@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v4 08/11] ARM: dts: stm32: add ethernet1 and ethernet2
+ support on stm32mp13
+To: Marek Vasut <marex@denx.de>, "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Richard Cochran
+	<richardcochran@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240604143502.154463-1-christophe.roullier@foss.st.com>
+ <20240604143502.154463-9-christophe.roullier@foss.st.com>
+ <e8e69a34-b9b2-4b4c-9b2e-079c7a23b756@denx.de>
+Content-Language: en-US
+From: Christophe ROULLIER <christophe.roullier@foss.st.com>
+In-Reply-To: <e8e69a34-b9b2-4b4c-9b2e-079c7a23b756@denx.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-07_04,2024-06-06_02,2024-05-17_01
 
-On 06/06/2024 10:48, Neil Armstrong wrote:
-> Along with the following:
-> - https://lore.kernel.org/all/20240422-t7-reset-v2-1-cb82271d3296@amlogic.com/
-> - https://lore.kernel.org/all/20240513224552.800153-1-jan.dakinevich@salutedevices.com/
-> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-spifc-v1-1-380f29ba4a16@linaro.org/
-> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-convert-spdif-receiver-v1-1-262465adbac2@linaro.org/
-> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-mmc-v1-1-4acbb8cc2626@linaro.org/
-> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-nvmem-v1-1-ef6f10c86a63@linaro.org/
-> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-phy-v1-1-c819b0ecd8c8@linaro.org/
-> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-rng-v1-1-0a55a7ba55e4@linaro.org/
-> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-audio-widgets-v1-1-65bd7cc2e09b@linaro.org/
-> - https://lore.kernel.org/all/20240605-topic-amlogic-upstream-bindings-fixes-power-domains-sardac-v1-1-40a8de6baa59@linaro.org/
-> - https://lore.kernel.org/all/20240606-topic-amlogic-upstream-bindings-convert-g12a-tohdmitx-v2-1-70d44fa30790@linaro.org/
-> 
-> this bunch of changes fixes 99% of the remaining dts check errors.
-> 
-> The two remaining bindings conversions for arm64/amlogic are:
-> - ti,tas5707
-> - everest,es7241
-> 
-> I'm too lazy to do them right now, so if someone is interested
-> in doing the conversion, please do it!
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
-> Neil Armstrong (12):
->        arm64: dts: amlogic: meson-g12b-bananapi: remove invalid fan on wrong pwm_cd controller
->        arm64: dts: amlogic: move ao_pinctrl into aobus
->        arm64: dts: amlogic: move assigned-clocks* from sound to clkc_audio node
->        arm64: dts: amlogic: sm1: fix tdm audio-controller clock order
->        arm64: dts: amlogic: sm1: fix tdm controllers compatible
->        arm64: dts: amlogic: g12a-u200: drop invalid sound-dai-cells
->        arm64: dts: amlogic: g12a-u200: add missing AVDD-supply to acodec
->        arm64: dts: amlogic: axg: fix tdm audio-controller clock order
->        arm64: dts: amlogic: c3: use correct compatible for gpio_intc node
->        arm64: dts: amlogic: a1: use correct node name for mmc controller
->        arm64: dts: amlogic: a1: drop the invalid reset-name for usb@fe004400
->        arm64: dts: amlogic: gxbb-odroidc2: fix invalid reset-gpio property
-> 
->   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi        |   3 +-
->   arch/arm64/boot/dts/amlogic/meson-a1.dtsi          |   3 +-
->   arch/arm64/boot/dts/amlogic/meson-axg-s400.dts     |  17 +-
->   arch/arm64/boot/dts/amlogic/meson-axg.dtsi         |  24 +-
->   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  | 427 ++++++++++-----------
->   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts  |  16 +-
->   .../boot/dts/amlogic/meson-g12a-radxa-zero.dts     |  16 +-
->   arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts  |  16 +-
->   arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts    |  18 +-
->   arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts |  16 +-
->   .../dts/amlogic/meson-g12b-bananapi-cm4-cm4io.dts  |  18 +-
->   .../meson-g12b-bananapi-cm4-mnt-reform2.dts        |  18 +-
->   .../boot/dts/amlogic/meson-g12b-bananapi.dtsi      |  30 +-
->   .../arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts |  16 +-
->   .../boot/dts/amlogic/meson-g12b-gtking-pro.dts     |  16 +-
->   arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts  |  16 +-
->   .../dts/amlogic/meson-g12b-odroid-go-ultra.dts     |  16 +-
->   .../boot/dts/amlogic/meson-g12b-odroid-n2.dtsi     |  18 +-
->   .../boot/dts/amlogic/meson-g12b-odroid-n2l.dts     |  18 +-
->   .../boot/dts/amlogic/meson-g12b-radxa-zero2.dts    |  16 +-
->   .../boot/dts/amlogic/meson-g12b-ugoos-am6.dts      |  16 +-
->   .../boot/dts/amlogic/meson-gx-libretech-pc.dtsi    |  17 +-
->   .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi |  18 +-
->   arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts |  17 +-
->   .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts      |  17 +-
->   .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    |  17 +-
->   .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts |  19 +-
->   arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts    |  17 +-
->   arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts    |  17 +-
->   .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi      |  17 +-
->   .../boot/dts/amlogic/meson-gxbb-wetek-hub.dts      |  17 +-
->   .../boot/dts/amlogic/meson-gxbb-wetek-play2.dts    |  17 +-
->   .../dts/amlogic/meson-gxl-s805x-libretech-ac.dts   |  17 +-
->   .../boot/dts/amlogic/meson-gxl-s805x-p241.dts      |  17 +-
->   .../dts/amlogic/meson-gxl-s905x-khadas-vim.dts     |  17 +-
->   .../amlogic/meson-gxl-s905x-libretech-cc-v2.dts    |  17 +-
->   .../dts/amlogic/meson-gxl-s905x-libretech-cc.dts   |  17 +-
->   .../boot/dts/amlogic/meson-gxl-s905x-p212.dts      |  17 +-
->   .../boot/dts/amlogic/meson-gxm-khadas-vim2.dts     |  17 +-
->   .../arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts |  17 +-
->   arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts |  17 +-
->   arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi |  16 +-
->   .../dts/amlogic/meson-libretech-cottonwood.dtsi    |  16 +-
->   .../boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts |  16 +-
->   .../boot/dts/amlogic/meson-sm1-a95xf3-air.dts      |  16 +-
->   .../boot/dts/amlogic/meson-sm1-bananapi-m2-pro.dts |  16 +-
->   .../boot/dts/amlogic/meson-sm1-bananapi-m5.dts     |  16 +-
->   arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts  |  16 +-
->   arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi  |  16 +-
->   arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts   |  16 +-
->   .../boot/dts/amlogic/meson-sm1-x96-air-gbit.dts    |  16 +-
->   arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts  |  16 +-
->   arch/arm64/boot/dts/amlogic/meson-sm1.dtsi         |  36 +-
->   53 files changed, 679 insertions(+), 630 deletions(-)
-> ---
-> base-commit: c3f38fa61af77b49866b006939479069cd451173
-> change-id: 20240606-topic-amlogic-upstream-bindings-fixes-dts-6a572ad54324
-> 
-> Best regards,
+Hi
 
-I'll postpone applying patch 3 to be sure it's the right solution,
-but the other ones are trivial and I'll apply them now.
-
-Neil
+On 6/4/24 18:49, Marek Vasut wrote:
+> On 6/4/24 4:34 PM, Christophe Roullier wrote:
+>> Both instances ethernet based on GMAC SNPS IP on stm32mp13.
+>> GMAC IP version is SNPS 4.20.
+>>
+>> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
+>> ---
+>>   arch/arm/boot/dts/st/stm32mp131.dtsi | 38 ++++++++++++++++++++++++++++
+>>   arch/arm/boot/dts/st/stm32mp133.dtsi | 31 +++++++++++++++++++++++
+>>   2 files changed, 69 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/st/stm32mp131.dtsi 
+>> b/arch/arm/boot/dts/st/stm32mp131.dtsi
+>> index 6704ceef284d3..9d05853ececf7 100644
+>> --- a/arch/arm/boot/dts/st/stm32mp131.dtsi
+>> +++ b/arch/arm/boot/dts/st/stm32mp131.dtsi
+>> @@ -979,6 +979,12 @@ ts_cal1: calib@5c {
+>>               ts_cal2: calib@5e {
+>>                   reg = <0x5e 0x2>;
+>>               };
+>> +            ethernet_mac1_address: mac1@e4 {
+>> +                reg = <0xe4 0x6>;
+>> +            };
+>> +            ethernet_mac2_address: mac2@ea {
+>> +                reg = <0xea 0x6>;
+>> +            };
+>>           };
+>>             etzpc: bus@5c007000 {
+>> @@ -1505,6 +1511,38 @@ sdmmc2: mmc@58007000 {
+>>                   status = "disabled";
+>>               };
+>>   +            ethernet1: ethernet@5800a000 {
+>> +                compatible = "st,stm32mp13-dwmac", "snps,dwmac-4.20a";
+>> +                reg = <0x5800a000 0x2000>;
+>> +                reg-names = "stmmaceth";
+>> +                interrupts-extended = <&intc GIC_SPI 62 
+>> IRQ_TYPE_LEVEL_HIGH>,
+>> +                              <&exti 68 1>;
+>> +                interrupt-names = "macirq", "eth_wake_irq";
+>> +                clock-names = "stmmaceth",
+>> +                          "mac-clk-tx",
+>> +                          "mac-clk-rx",
+>> +                          "ethstp",
+>> +                          "eth-ck";
+>> +                clocks = <&rcc ETH1MAC>,
+>> +                     <&rcc ETH1TX>,
+>> +                     <&rcc ETH1RX>,
+>> +                     <&rcc ETH1STP>,
+>> +                     <&rcc ETH1CK_K>;
+>> +                st,syscon = <&syscfg 0x4 0xff0000>;
+>> +                snps,mixed-burst;
+>> +                snps,pbl = <2>;
+>> +                snps,axi-config = <&stmmac_axi_config_1>;
+>> +                snps,tso;
+>> +                access-controllers = <&etzpc 48>;
+>
+> Please keep the list of properties sorted.
+>
+To be coherent with all other IP, I will keep "access-controllers" 
+property just before "status" property.
+>> +                status = "disabled";
+>> +
+>> +                stmmac_axi_config_1: stmmac-axi-config {
+>> +                    snps,wr_osr_lmt = <0x7>;
+>> +                    snps,rd_osr_lmt = <0x7>;
+>> +                    snps,blen = <0 0 0 0 16 8 4>;
+>
+> Sort here too.
+ok
+>
+>> +                };
+>> +            };
+>> +
+>>               usbphyc: usbphyc@5a006000 {
+>>                   #address-cells = <1>;
+>>                   #size-cells = <0>;
+>> diff --git a/arch/arm/boot/dts/st/stm32mp133.dtsi 
+>> b/arch/arm/boot/dts/st/stm32mp133.dtsi
+>> index 3e394c8e58b92..09c7da1a2eda8 100644
+>> --- a/arch/arm/boot/dts/st/stm32mp133.dtsi
+>> +++ b/arch/arm/boot/dts/st/stm32mp133.dtsi
+>> @@ -67,5 +67,36 @@ channel@18 {
+>>                   label = "vrefint";
+>>               };
+>>           };
+>> +
+>> +        ethernet2: ethernet@5800e000 {
+>> +            compatible = "st,stm32mp13-dwmac", "snps,dwmac-4.20a";
+>> +            reg = <0x5800e000 0x2000>;
+>> +            reg-names = "stmmaceth";
+>> +            interrupts-extended = <&intc GIC_SPI 97 
+>> IRQ_TYPE_LEVEL_HIGH>;
+>> +            interrupt-names = "macirq";
+>> +            clock-names = "stmmaceth",
+>> +                      "mac-clk-tx",
+>> +                      "mac-clk-rx",
+>> +                      "ethstp",
+>> +                      "eth-ck";
+>> +            clocks = <&rcc ETH2MAC>,
+>> +                 <&rcc ETH2TX>,
+>> +                 <&rcc ETH2RX>,
+>> +                 <&rcc ETH2STP>,
+>> +                 <&rcc ETH2CK_K>;
+>> +            st,syscon = <&syscfg 0x4 0xff000000>;
+>> +            snps,mixed-burst;
+>> +            snps,pbl = <2>;
+>> +            snps,axi-config = <&stmmac_axi_config_2>;
+>> +            snps,tso;
+>> +            access-controllers = <&etzpc 49>;
+>
+> Sort here too.
+>
+>> +            status = "disabled";
+>> +
+>> +            stmmac_axi_config_2: stmmac-axi-config {
+>> +                snps,wr_osr_lmt = <0x7>;
+>> +                snps,rd_osr_lmt = <0x7>;
+>> +                snps,blen = <0 0 0 0 16 8 4>;
+>
+> Sort here too.
+>
+> [...]
 
