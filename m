@@ -1,84 +1,78 @@
-Return-Path: <devicetree+bounces-73820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2496900D70
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 23:20:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62C55900DF0
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 00:12:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85CE91F22BB0
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 21:20:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0FF5A1F22104
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 22:12:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E50C15534D;
-	Fri,  7 Jun 2024 21:20:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9912A1553A6;
+	Fri,  7 Jun 2024 22:12:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pTXtcCcx"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YH0KEAic"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60CD015531E
-	for <devicetree@vger.kernel.org>; Fri,  7 Jun 2024 21:20:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB7ED4E1DD;
+	Fri,  7 Jun 2024 22:12:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717795215; cv=none; b=SJDIvDlU81oaqhhSdQJsxoT/Rvfna+B/OBKtx/rKrP+zuaOaEkxuw6QCX2RVIqK/AY6nCxXT6OhYikjUDXFitfUW5WEto2boaGM/Pt5z0F9g+x6FsOJYOs29RHyDHvJ72oiGn1FonT1hybY10IJLyh1WNTtf0RGf1LUZA5LWw1Q=
+	t=1717798372; cv=none; b=BE6fM8zLKVNw+GAwgluTJBn2U2E8i6SExWFXtFAMAeRo5KKAp7Ls0tM6xd1nC/nVskL6E2jsZ3dVhj37SoPtq6vQsqiPb1XWbWYhY+SxPXL8C0j56kAZxOl7Xo7lfmZfM+RUQaKaWXz9WhN4OOrYdHl3YtmsiYuY2ep2ocWA1GI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717795215; c=relaxed/simple;
-	bh=aySmzvHUhmiKwaoVSzWZS0odDaTQuh3Nu0YMMxhK4Qs=;
+	s=arc-20240116; t=1717798372; c=relaxed/simple;
+	bh=212IO9K4Rw0UQcxRjjjO+P6wB5hoCNlztTIYL6Jg6Qk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J7KlnjV0azt1XC4wYDIKXGe7evTNwcqb+ezo/cpfF6esyyResyyKQJvoKkwSsZcW8oSU5IOQ/qYEUiurZyjHjLO+rd0HmO84VN5X/7EqCp1OYMCVvLLGhXiP276CSPHav2s9HYFATDwDeRH1gtBNU22si4L239FiFr69BGSfSfM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pTXtcCcx; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52b8b7b8698so3203741e87.1
-        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2024 14:20:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717795211; x=1718400011; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Rwq0AzFMp187j2qLPSR1sd6fcqjrAziPfnu+JxNPz+M=;
-        b=pTXtcCcxXJrhEWQD+gIZYQlkiZbvYlUk//nTyrb7kWalv1ZFvhu9ew98326TtbH1gA
-         GPHhMR1HgbSyfKLeh2OtXabh+RgKRMESSKzzjW//3BkxtA8y9YLAwegIgT0JPeUq+55e
-         550pMymtZEzp+yU0OzkO7w8+aM3fK/KDD5ApQOHiCexGQMNrneXw+S8DwcqEwUIYWTaM
-         O5zSXjcKwFlg+8wUsJhlzIqZEPB5JzArcvsQXRgTh7DuJJw5pzFVEYlsZd51K/ByjRtE
-         gwPH+J+aZgBEhOxWQXdxU1ONy51lXkY1s1ZxOWQxVU19rRgwrE3iXUNeqMmaRtWfUDUs
-         qjNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717795211; x=1718400011;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Rwq0AzFMp187j2qLPSR1sd6fcqjrAziPfnu+JxNPz+M=;
-        b=uyrq/vAoGBK/8+7Tvu0VrDy3elYZJDG8QNlCORVMikNRLl5yhW/CunS8HUD3T5FIih
-         BW71LsEmyX6YBDHBfSvuwmqgQTolH7wsipam3/XhU0H2yejZDaR9lTKQZ/FdzCFGUCzT
-         Wpt3c0OafUnK9+Jje50aKVmqPszeod3vNuj8iFbJbkCS7IOAA1L5c5R1DOqLnGXZUyXG
-         IPlV5rzE3ngsJA0ddQKLBnUVbkFXHH2V5bO7/Sx4UmHCUHRnGESx7nKm320topTtWAV4
-         ltyr6zY6sKrjVjR/QKS4fDdG9krx2Pa+/bOci2DDT3wnedEU0zJxH2JV7iO90/CTT3zy
-         Rdig==
-X-Forwarded-Encrypted: i=1; AJvYcCWZj7EOZvOluLQ2LiQrbWH0KwZQS0vKa9l47BwunUjaUvDg6ytpr3R516TwhG90R9eqH2StAtSHIBt5H7BD3UqqfGWd4Yc9qNvwKw==
-X-Gm-Message-State: AOJu0Ywab0io/j7dzXSaWLE/sNXKPM0CAGaBTviuLlAnK3uawS6NPQDF
-	mfhSnH1Em3qmSK1OjrbvicnFLIjwdNe36qCvFTEW/BJVs4liKJhBNH9CJIMO8/M=
-X-Google-Smtp-Source: AGHT+IHg41hxBpLHYAYNMwFJftF860pnNCsBHg11W4UZKkkhDoTgKxCKlCyb3fCQH0yW8Eo66fd8DA==
-X-Received: by 2002:ac2:48b5:0:b0:52b:c089:4579 with SMTP id 2adb3069b0e04-52bc08945c6mr1446076e87.49.1717795211460;
-        Fri, 07 Jun 2024 14:20:11 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52bb41e1a2esm653768e87.44.2024.06.07.14.20.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jun 2024 14:20:11 -0700 (PDT)
-Date: Sat, 8 Jun 2024 00:20:09 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Odelu Kukatla <quic_okukatla@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kees Cook <keescook@chromium.org>, cros-qcom-dts-watchers@chromium.org, 
-	"Gustavo A . R . Silva" <gustavoars@kernel.org>, linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
-	quic_rlaggysh@quicinc.com, quic_mdtipton@quicinc.com
-Subject: Re: [PATCH v5 0/4] Add support for QoS configuration
-Message-ID: <bwy4zui54sai36osmcg6sd33xizupzmav54wdvqsl2jcqk2c3v@m4pvefn64pp2>
-References: <20240607173927.26321-1-quic_okukatla@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=f7b4HTPrcbHKR4sJZzX/osN1z8/N4ahL4fLkGXDeLwVIVWCuvSnzPgbffRds8IcEMIFGAUSB2rJ6s3qfGfAvMUTUxU+p9lUjcrMyJ/6NcPjaQYSO3ajKBWm/zJAD2JnwqzEPaihf5Z/dW/t21rl3TitlRQgJ1StV51QfQkTe5O4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YH0KEAic; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1717798371; x=1749334371;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=212IO9K4Rw0UQcxRjjjO+P6wB5hoCNlztTIYL6Jg6Qk=;
+  b=YH0KEAicugAwMmKlYIBOFmJoU6Ko2D94dU5VcSFqV817NJwIZqlfDqwW
+   rimxqoM8WMxMnJLSpSU5QaD7q1oohYGaoPD42zfFUmgIfoAJxRDzLbpc0
+   MreirxkxgWsLB7iCPEnGq/bzIoxDs2vMHZ7xr71qwP52eDckflcHHxWTq
+   XBItwVcXhcZCvTzVFuL/cxI/yonbjqHO3z3x7EDhAQ7PtkOIrw9aM9XrU
+   8ez1WnV8gxiwoRxvNHIZZF/U0LgZZF4jhGfODi69o0hbmDlkGIYEkZVGo
+   DoDGpKcmLO/2by6o5F0CkRWYX7ojQksbqZs1hOra579LtS0b0mnf1AMp5
+   g==;
+X-CSE-ConnectionGUID: qwnsjjsNSumTlywkx38Mog==
+X-CSE-MsgGUID: EYHR/3O9Q7Smi9vgKhwB8Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11096"; a="25944780"
+X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; 
+   d="scan'208";a="25944780"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jun 2024 15:12:50 -0700
+X-CSE-ConnectionGUID: +tx0Ix/uRCyxIsxvayaFLA==
+X-CSE-MsgGUID: YND4BhLMQ2eKBI3TTh6p0A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; 
+   d="scan'208";a="38554876"
+Received: from lkp-server01.sh.intel.com (HELO 472b94a103a1) ([10.239.97.150])
+  by fmviesa010.fm.intel.com with ESMTP; 07 Jun 2024 15:12:47 -0700
+Received: from kbuild by 472b94a103a1 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sFhpF-0000c7-15;
+	Fri, 07 Jun 2024 22:12:45 +0000
+Date: Sat, 8 Jun 2024 06:12:13 +0800
+From: kernel test robot <lkp@intel.com>
+To: srinivas.kandagatla@linaro.org, andersson@kernel.org,
+	linus.walleij@linaro.org
+Cc: oe-kbuild-all@lists.linux.dev, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, srinivas.kandagatla@linaro.org,
+	linux-arm-msm@vger.kernel.org, inux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] pinctrl: qcom: Introduce SM4250 LPI pinctrl driver
+Message-ID: <202406080514.8Yq3kzQr-lkp@intel.com>
+References: <20240606130323.138970-3-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,43 +81,78 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240607173927.26321-1-quic_okukatla@quicinc.com>
+In-Reply-To: <20240606130323.138970-3-srinivas.kandagatla@linaro.org>
 
-On Fri, Jun 07, 2024 at 11:09:23PM +0530, Odelu Kukatla wrote:
-> This series adds QoS support for QNOC type device which can be found on
-> SC7280 platform. It adds support for programming priority,
-> priority forward disable and urgency forwarding. This helps in
-> priortizing the traffic originating from different interconnect masters
-> at NOC (Network On Chip).
-> 
-> Changes in v5:
->  - Replaced platform_get_resource() and devm_ioremap_resource() with
->    devm_platform_ioremap_resource() API.
->  - Initialized the qosbox pointer in ICC node using compound literal.
->  - Added conditional check for clock property in dt-bindings to the 
->    providers which need clocks.
+Hi,
 
-Please don't trim changelog from the previous revisions.
+kernel test robot noticed the following build warnings:
 
-> 
-> Odelu Kukatla (4):
->   interconnect: qcom: icc-rpmh: Add QoS configuration support
->   interconnect: qcom: sc7280: enable QoS configuration
->   dt-bindings: interconnect: add clock property to enable QOS on SC7280
->   arm64: dts: qcom: sc7280: Add clocks for QOS configuration
-> 
->  .../interconnect/qcom,sc7280-rpmh.yaml        |  53 ++++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi          |   3 +
->  drivers/interconnect/qcom/icc-rpmh.c          |  93 ++++++
->  drivers/interconnect/qcom/icc-rpmh.h          |  35 +++
->  drivers/interconnect/qcom/sc7280.c            | 274 ++++++++++++++++++
->  5 files changed, 458 insertions(+)
-> 
-> -- 
-> 2.17.1
-> 
+[auto build test WARNING on linusw-pinctrl/devel]
+[also build test WARNING on linusw-pinctrl/for-next linus/master v6.10-rc2 next-20240607]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/srinivas-kandagatla-linaro-org/dt-bindings-pinctrl-qcom-Add-SM4250-pinctrl/20240606-210728
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git devel
+patch link:    https://lore.kernel.org/r/20240606130323.138970-3-srinivas.kandagatla%40linaro.org
+patch subject: [PATCH 2/2] pinctrl: qcom: Introduce SM4250 LPI pinctrl driver
+config: sh-randconfig-r131-20240608 (https://download.01.org/0day-ci/archive/20240608/202406080514.8Yq3kzQr-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20240608/202406080514.8Yq3kzQr-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406080514.8Yq3kzQr-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/pinctrl/qcom/pinctrl-sm4250-lpass-lpi.c:135:9: sparse: sparse: Initializer entry defined twice
+   drivers/pinctrl/qcom/pinctrl-sm4250-lpass-lpi.c:158:9: sparse:   also defined here
+
+vim +135 drivers/pinctrl/qcom/pinctrl-sm4250-lpass-lpi.c
+
+   125	
+   126	static const struct lpi_function sm4250_functions[] = {
+   127		LPI_FUNCTION(dmic01_clk),
+   128		LPI_FUNCTION(dmic01_data),
+   129		LPI_FUNCTION(dmic23_clk),
+   130		LPI_FUNCTION(dmic23_data),
+   131		LPI_FUNCTION(dmic4_clk),
+   132		LPI_FUNCTION(dmic4_data),
+   133		LPI_FUNCTION(ext_mclk0_a),
+   134		LPI_FUNCTION(ext_mclk0_b),
+ > 135		LPI_FUNCTION(ext_mclk1_a),
+   136		LPI_FUNCTION(ext_mclk1_b),
+   137		LPI_FUNCTION(ext_mclk1_c),
+   138		LPI_FUNCTION(i2s1_clk),
+   139		LPI_FUNCTION(i2s1_data),
+   140		LPI_FUNCTION(i2s1_ws),
+   141		LPI_FUNCTION(i2s2_clk),
+   142		LPI_FUNCTION(i2s2_data),
+   143		LPI_FUNCTION(i2s2_ws),
+   144		LPI_FUNCTION(i2s3_clk),
+   145		LPI_FUNCTION(i2s3_data),
+   146		LPI_FUNCTION(i2s3_ws),
+   147		LPI_FUNCTION(qua_mi2s_data),
+   148		LPI_FUNCTION(qua_mi2s_sclk),
+   149		LPI_FUNCTION(slim_clk),
+   150		LPI_FUNCTION(slim_data),
+   151		LPI_FUNCTION(qua_mi2s_ws),
+   152		LPI_FUNCTION(swr_rx_clk),
+   153		LPI_FUNCTION(swr_rx_data),
+   154		LPI_FUNCTION(swr_tx_clk),
+   155		LPI_FUNCTION(swr_tx_data),
+   156		LPI_FUNCTION(swr_wsa_clk),
+   157		LPI_FUNCTION(swr_wsa_data),
+   158		LPI_FUNCTION(ext_mclk1_a),
+   159		LPI_FUNCTION(ext_mclk1_a),
+   160		LPI_FUNCTION(ext_mclk1_a),
+   161		LPI_FUNCTION(ext_mclk1_a),
+   162	};
+   163	
 
 -- 
-With best wishes
-Dmitry
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
