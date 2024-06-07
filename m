@@ -1,103 +1,137 @@
-Return-Path: <devicetree+bounces-73688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D73B8900550
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 15:43:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39591900587
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 15:49:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8BBE1C25183
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 13:43:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F33F1C20C28
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 13:49:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BBE219415D;
-	Fri,  7 Jun 2024 13:43:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCEF3194C68;
+	Fri,  7 Jun 2024 13:49:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IuwDDmZ8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout70.expurgate.net (mxout70.expurgate.net [194.37.255.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1A0A47A6B;
-	Fri,  7 Jun 2024 13:43:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.37.255.70
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1840C194A66;
+	Fri,  7 Jun 2024 13:49:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717767808; cv=none; b=TOVuPwItA/Af9KaNRi4/qz+/+ob4dzfkn41E7CCr+efXHvm+r3FqJBPnCekAd7pDYXCWSH3le4t/T3mdji+FNDIGGLFkFoX8CMc1dY2KXNAEHvzb/7+/WTjVQ+NtC24e7dVDdZhXFo0lu6SlowMSiRvUdXfBTbF5KT3cgQ8H61s=
+	t=1717768182; cv=none; b=qPLGXdUz+NuvdqlGKPhzeSUKX8FPSuDa75LIcxj5Mh98bIQXx+ymB8BenjGyLQcL8U9wJtjn2HfXi7QSucnbALtWpmgkkVgj25jU6qDYnDPchDckGHqGQkt7QKMuWfwAlGg0sGPKLTjN5AM10zHqvUfRmSCoTzd/6jcz3egyo+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717767808; c=relaxed/simple;
-	bh=Ig7h/WAJSPZ5uoCGDgSSvbxyZnPPVSC1ewqn6DJmRdo=;
-	h=MIME-Version:Content-Type:Date:From:To:Cc:Subject:In-Reply-To:
-	 References:Message-ID; b=u/DsQaNrestlsQa/jhnFA2wIFo4B1RgwDg7blOE5ZLSE5RkoQahFPWqZdj1jNAsuwMaxMcIVapZ1oYgp3/CfcTv3zLvd1fe+XBIIi2x1fFz7I/14/DwufgZIeDmjX0q/GCjUQxUr/hAurk1CFg47FARTLb4tJ2zwHwo6+16+pZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; arc=none smtp.client-ip=194.37.255.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dev.tdt.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dev.tdt.de
-Received: from [127.0.0.1] (helo=localhost)
-	by relay.expurgate.net with smtp (Exim 4.92)
-	(envelope-from <prvs=990276a841=ms@dev.tdt.de>)
-	id 1sFZsK-0061eg-GO; Fri, 07 Jun 2024 15:43:24 +0200
-Received: from [195.243.126.94] (helo=securemail.tdt.de)
-	by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ms@dev.tdt.de>)
-	id 1sFZsJ-0088wo-Vd; Fri, 07 Jun 2024 15:43:24 +0200
-Received: from securemail.tdt.de (localhost [127.0.0.1])
-	by securemail.tdt.de (Postfix) with ESMTP id 9F940240053;
-	Fri,  7 Jun 2024 15:43:23 +0200 (CEST)
-Received: from mail.dev.tdt.de (unknown [10.2.4.42])
-	by securemail.tdt.de (Postfix) with ESMTP id 2A1CD240050;
-	Fri,  7 Jun 2024 15:43:23 +0200 (CEST)
-Received: from mail.dev.tdt.de (localhost [IPv6:::1])
-	by mail.dev.tdt.de (Postfix) with ESMTP id C1D9120974;
-	Fri,  7 Jun 2024 15:43:22 +0200 (CEST)
+	s=arc-20240116; t=1717768182; c=relaxed/simple;
+	bh=eRfiCS4lXI/9Sd/hQTfclFr+REQx+PxoR+f/dcqGGoU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GR7HT2VicuGEv0xEsgBhc0hRQ+gyiV65+7Vz17dVyjb4cknnMMKO/gnQaJetDS+L5jEB+QRryNZJwi0qrguIy4zMTtP2o3PqhMH+KpkwvxV5GuDQhida7AkuAuMS1MqvOVc0mwkydLqp72bt4NnX7qO9YB0j7dlMN/8XSdYigSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IuwDDmZ8; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-572c65cea55so2255649a12.0;
+        Fri, 07 Jun 2024 06:49:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717768179; x=1718372979; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=pTnve0OlkP/Svwep8TruSEF3Sh0+kENp9G4xdXwTQa4=;
+        b=IuwDDmZ8kSvsCD+avgRTY9Uf9SEbJU41aCufgm9PLe2HhXH/Xz2bKkHuzjjLPOvKEw
+         PG9G8gdg2XSB4g1fWHlPLcusGwv9SzYqs/qT4l6dXuIvMbvmgBzzX0d9jbygpfIvKnIe
+         Dw+sUvtfVvDzMLE1XXuI5COTXRjPx0nTVbNQBcXfrPTFnNdon2uQo+eFJUV9+209gj2x
+         tEeFJgaVr9+sUuWcO7ZtE2WD5GVPG/a35OuggTQq3HmHL1BthUaivDtNB12g15rJvn69
+         KufY3w1xBtUjaPGQmY8orsVp+d8FzURGfNwuKSAnlgYKf8PL9wsJHxWfuIUReAGXMZo+
+         3Cdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717768179; x=1718372979;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pTnve0OlkP/Svwep8TruSEF3Sh0+kENp9G4xdXwTQa4=;
+        b=CSnWk1iyikWGoXunmd6/MFAlNTBjeUsO70oa8hf++QNCqywWQcUwN79V3ohGtszWMq
+         3FaUmDwURf26vYVIyL+D2Jz4sGTZkRf8NCJPaTwGQEwb1va9EvDGAaZ2CnJqjUeK7ZJY
+         3pDxAeUQyaF2AhlXjX/ThcT32N2V8TlQfafKIb/3thUGiErhyo+ALZIX4FJ8whYD3Lor
+         3tBuiNBm1m5UlPURpEMsk2DbBnT5iMt9IJ68V4/JSTiOeHnKHNnfE95efUwkoRXJg+bK
+         iNPchrj/xwnFP+ajfYVI/1YEAH9atTZIQU25ix1Cauity8NjaOkWLzLBZfBVB1Pyei+H
+         LF9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXc0RPqmvtnPyuai6PG+vFQ6IV8loY6gbiVKDEM8cFN+kMYmxhRsgXulRJRv5xwbLZRalyDjMJLu4+p8Elyz8kJB/bFpHL5VSlf7sVL6rZg5HWPv/JmYbV2zcOVg9sy6AGRv3hUavyacfjq7bDTFggiLIAqY28m8OuqbAydBr10lA==
+X-Gm-Message-State: AOJu0YxH7GQHKHiKkGNLB742dF+Fq16BUIiaNqFoQvNGGXbruqH3g0mg
+	zFDPHDfL5erMrGJUBFjMOf4/RmbtDSEIUs0fJXRcpNow0TV5eJSw
+X-Google-Smtp-Source: AGHT+IFCyBqh8IuGn1reBr5k76M6n8/rufRVhsjoVDjCtnAMeTIGUiEDpR8iTOf0s0zDWzD3vLoCQw==
+X-Received: by 2002:a50:cdc2:0:b0:574:ebf4:f786 with SMTP id 4fb4d7f45d1cf-57c4e3f5be7mr2329947a12.16.1717768179012;
+        Fri, 07 Jun 2024 06:49:39 -0700 (PDT)
+Received: from skbuf ([188.25.55.166])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57c67432820sm89269a12.75.2024.06.07.06.49.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Jun 2024 06:49:38 -0700 (PDT)
+Date: Fri, 7 Jun 2024 16:49:35 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Martin Schiller <ms@dev.tdt.de>
+Cc: martin.blumenstingl@googlemail.com, hauke@hauke-m.de, andrew@lunn.ch,
+	f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 09/13] net: dsa: lantiq_gswip: Forbid
+ gswip_add_single_port_br on the CPU port
+Message-ID: <20240607134935.k4lrierqlfwpic7n@skbuf>
+References: <20240606085234.565551-1-ms@dev.tdt.de>
+ <20240606085234.565551-10-ms@dev.tdt.de>
+ <20240607112628.igcf6ytqe6wbmbq5@skbuf>
+ <e2439e7d01c4484c59ce3df2707c2e00@dev.tdt.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date: Fri, 07 Jun 2024 15:43:22 +0200
-From: Martin Schiller <ms@dev.tdt.de>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: martin.blumenstingl@googlemail.com, hauke@hauke-m.de, andrew@lunn.ch,
- f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 11/13] net: dsa: lantiq_gswip: Fix comments in
- gswip_port_vlan_filtering()
-Organization: TDT AG
-In-Reply-To: <20240607114456.sm2wwtu4aqbyn3sk@skbuf>
-References: <20240606085234.565551-1-ms@dev.tdt.de>
- <20240606085234.565551-12-ms@dev.tdt.de>
- <20240607114456.sm2wwtu4aqbyn3sk@skbuf>
-Message-ID: <3ff925fb12bc1de7dabf1b0e4eb6b0ac@dev.tdt.de>
-X-Sender: ms@dev.tdt.de
-User-Agent: Roundcube Webmail/1.3.17
-X-purgate: clean
-X-purgate-type: clean
-X-purgate-ID: 151534::1717767804-34DF7522-D85C077F/0/0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e2439e7d01c4484c59ce3df2707c2e00@dev.tdt.de>
 
-On 2024-06-07 13:44, Vladimir Oltean wrote:
-> On Thu, Jun 06, 2024 at 10:52:32AM +0200, Martin Schiller wrote:
->> From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> 
->> Update the comments in gswip_port_vlan_filtering() so it's clear that
->> there are two separate cases, one for "tag based VLAN" and another one
->> for "port based VLAN".
->> 
->> Suggested-by: Martin Schiller <ms@dev.tdt.de>
->> Signed-off-by: Martin Blumenstingl 
->> <martin.blumenstingl@googlemail.com>
->> ---
+On Fri, Jun 07, 2024 at 03:31:57PM +0200, Martin Schiller wrote:
+> On 2024-06-07 13:26, Vladimir Oltean wrote:
+> > On Thu, Jun 06, 2024 at 10:52:30AM +0200, Martin Schiller wrote:
+> > > From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > > 
+> > > Calling gswip_add_single_port_br() with the CPU port would be a bug
+> > > because then only the CPU port could talk to itself. Add the CPU
+> > > port to
+> > > the validation at the beginning of gswip_add_single_port_br().
+> > > 
+> > > Signed-off-by: Martin Blumenstingl
+> > > <martin.blumenstingl@googlemail.com>
+> > > ---
+> > >  drivers/net/dsa/lantiq_gswip.c | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/net/dsa/lantiq_gswip.c
+> > > b/drivers/net/dsa/lantiq_gswip.c
+> > > index ee8296d5b901..d2195271ffe9 100644
+> > > --- a/drivers/net/dsa/lantiq_gswip.c
+> > > +++ b/drivers/net/dsa/lantiq_gswip.c
+> > > @@ -657,7 +657,7 @@ static int gswip_add_single_port_br(struct
+> > > gswip_priv *priv, int port, bool add)
+> > >  	unsigned int max_ports = priv->hw_info->max_ports;
+> > >  	int err;
+> > > 
+> > > -	if (port >= max_ports) {
+> > > +	if (port >= max_ports || dsa_is_cpu_port(priv->ds, port)) {
+> > >  		dev_err(priv->dev, "single port for %i supported\n", port);
+> > >  		return -EIO;
+> > >  	}
+> > > --
+> > > 2.39.2
+> > > 
+> > 
+> > Isn't the new check effectively dead code?
 > 
-> Here and in whatever the previous patch turns into: please make more
-> careful use of the word "fix". It carries connotations of addressing
-> bugs which must be backported. Various automated tools scan the git 
-> tree
-> for bug fixes which were apparently "not properly submitted" and mark
-> them for auto-selection to stable. You don't want to cause that for a
-> minor comment.
+> As long as the dsa_switch_ops .port_bridge_join and .port_bridge_leave are not
+> executed for the cpu port, I agree with you.
 
-OK, I will eliminate the term "fix" wherever it is not appropriate.
+They aren't. The primary trigger for dsa_port_bridge_join() is dsa_user_changeupper(),
+along with other code paths that replay the operation in certain circumstances,
+again only for user ports.
 
