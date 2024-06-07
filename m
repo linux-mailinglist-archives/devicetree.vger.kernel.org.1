@@ -1,241 +1,179 @@
-Return-Path: <devicetree+bounces-73494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D589A8FFC22
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 08:20:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0A5A8FFC52
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 08:38:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F1D7284573
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 06:20:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3102028B3AB
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 06:38:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3412514F9E8;
-	Fri,  7 Jun 2024 06:20:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4DD6153BC3;
+	Fri,  7 Jun 2024 06:38:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="kXpMafWp";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="f5anELor"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Aafw3Sxk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C4A014F9E1;
-	Fri,  7 Jun 2024 06:20:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5ED615357A;
+	Fri,  7 Jun 2024 06:38:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717741209; cv=none; b=iV2pNKQ9/kS7gH8njH952gvn2mJ7h1C4y3wy4D5G2l393R53DcTE1u/45ndtZku3LF/rvRETTxQbp+Hz+jElJpZ2jxA38wBqLR7ODEZc35G2+mqGOo6/gl4lsrdhI07p17poQhbR6Cfl/1MiFVDpPMD/fsphc8cNeQJG9YSpy7Q=
+	t=1717742318; cv=none; b=UtcKjdQucXNoA1srZyO+O2sakyD8I34q3JNqSFV5vUKDHOzv7SaLMnbcdvJfKEiaRBvz4E6SUG43ufIXhqsi8OYF2yevXzio0yT+/UU0hgbKMfRDkHmI3STzgf3aHfvnB9LiLgcYmBaaeLsnLEaW+iRIrYTooOC56ybu5YZtNl8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717741209; c=relaxed/simple;
-	bh=lCB1MCVE67+mUlOQuF+3QwdLl8t7rqouElRMhKyzA/Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uJ+DA+IA5LgZr1LQv8M48xv9NO4f7Ok36XqrFyhpQHeI67W60FIXcjOKfF0sKKh7QYnvVQYJnLmeQQbxLPTySpoUXdrCFZM5bxCzBpqhKIJlCTWUb9fPQnacomfJwXkH4tuZazOhQBg2BLfgoOD9/0r9R7mD4Vgbm15zktkLJXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=kXpMafWp; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=f5anELor reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1717742318; c=relaxed/simple;
+	bh=ERJWnWVnpoGLs0blFqeBB0v+fa49FBV9uXKidkjKQ0A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=igGBpuEM50UBebKyOx/R4J/s139d1R1yTiDvVsx7/KemzcW55GIwB6eX+OZ+5LmhPdsf/K9GFSCnUCQcu1rp4XEy0ZW8Xh6InlgxBL8//wN8bOImTerKqgUZgsSBwcMXvNU+Xf6T5UqVGszLYPVYm6Max4/k7Rzt0KobYbtd8gk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Aafw3Sxk; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52b82d57963so2137633e87.2;
+        Thu, 06 Jun 2024 23:38:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1717741207; x=1749277207;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=TYUiCU86NzvfIZ5FU+rR7VsLlWDOutgcrXN8bRA2fvk=;
-  b=kXpMafWpgxN/4GJkliS7WY7mLWv5wxcPbp11RWQCkglpOvYcWybE9aKH
-   rJLK8VD16yfGT2aWcbBkVzioRoS038A4b5S59ybXfweABlkLEvbDaqVsE
-   6uzm97iJ4Vt6oVxxMMedHHNbnPLF+75K4NByp3xuQArCzQHVET/g65PMH
-   7L1V60HW7uTV9QTmocV2rDrm4XVNt608FG26ts8kazYt5nvSzqApaDhFu
-   cKB2z3sOzZf9yjl1BTjS9dmomNcc++lHc9UP/PmKoGXaqotUE4AgclMrY
-   vkw+GueE36wS1ReyMX7RpVMkxhJHV3ddLSAZbiNmAePcNtlsKwTI0uMiW
-   w==;
-X-CSE-ConnectionGUID: UyQ9L9WXTu6nFkO0h9GhXw==
-X-CSE-MsgGUID: ha2elpDeTF2R3K8bNcdWjQ==
-X-IronPort-AV: E=Sophos;i="6.08,220,1712613600"; 
-   d="scan'208";a="37273943"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 07 Jun 2024 08:20:04 +0200
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EFA42175375;
-	Fri,  7 Jun 2024 08:19:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1717741200;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=TYUiCU86NzvfIZ5FU+rR7VsLlWDOutgcrXN8bRA2fvk=;
-	b=f5anELorGarr2XIX+Hic2CSfVCl9z5f8HC0FpGYN0ATmNwP83B4w62EGfBLXhHQJDVBEr6
-	wO1yx0i5oEPho3OpWO6u/0gcf6HEW0TYx7T4aZln5Hw+0740SsrYIJN0pjOAcwUrsF9dDC
-	VS0Vssab0lmnjKDDvajoAJMYZMnRzC1D7ex/HA498an0eCa7xQvkbmDiIIhicvQkr0S1Ug
-	fz9ObpsKavwEQgsjHG1tl2xv0huAGlYZb8ed43u784DTOuvZSDxgLo3u8LNGUlGURX++GU
-	iC981xDxmofKa3/2a8Ecve4S/Y8DG4HgAvcTPMv3iy2hwdxCnOYfomQcikDQog==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Dong Aisheng <aisheng.dong@nxp.com>, linux-arm-kernel@lists.infradead.org
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>, Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH 4/7] arm64: dts: imx8qm-mek: add pwm and i2c in lvds subsystem
-Date: Fri, 07 Jun 2024 08:19:59 +0200
-Message-ID: <2116653.KlZ2vcFHjT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20240606-imx8qm-dts-usb-v1-4-565721b64f25@nxp.com>
-References: <20240606-imx8qm-dts-usb-v1-0-565721b64f25@nxp.com> <20240606-imx8qm-dts-usb-v1-4-565721b64f25@nxp.com>
+        d=gmail.com; s=20230601; t=1717742315; x=1718347115; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FZkbWYXotXP0D+I4t3xbShikjVMWcCFV6J3lsjGVH3s=;
+        b=Aafw3SxkcgRFHi/b+KCy1TvWikvBQwg2bT+IlGnUTbk0Gar7oOX1VrjMq/qPcvt/qA
+         eyL8N7IikxTGJ5+vEwTg55EAI6uBBPmsrhyrIUYibWKJsUBb5u2CSkc9KDY5G+AwHlR7
+         t9F+z9B9mp0K8KLabG1YvMeT0hDbY/dxGaHuiv/QZzw9E4B8InMJrb6RjgxmdgAap85w
+         qbr8abEc3FtG4ryEAhB9yaQenRKA/Yj87oZY92a2Nnqhd8A7KEVLg6QCO5PyxkGIJKv1
+         7wGGbQAS00XHpXwiP6KFgaOjshMcBwYZIZ62Zxxq9tRTchUL8snwNk5dTfoSZeQ0HhID
+         4C+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717742315; x=1718347115;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FZkbWYXotXP0D+I4t3xbShikjVMWcCFV6J3lsjGVH3s=;
+        b=LGnQj6H1mxBH0NJgPQYMZffbeCXnnFB5kLj8TxNMf9g5nwRDmtbR6sInZJf7bsV9gt
+         Pxrk0qkQGF6L1dRHqL8V8CWWLJERXcP2TIEBlOSAYIXF3Q0FZnEZ7qLGftNbIL4riesy
+         l9EgtFo5i4lDkMn4LOFfovFigEiaw9v6Zby8GhCKc2/jclc/H+8wscaJu8Jn1le1jnLv
+         8zB8DSFxkkm9nrScz0bHXAWXdo+deIxQpRQmXWuCznLx0vxjxvaW8I/pFCoK8PjQ1a6a
+         8fdh0EpwW9L1xMlKuNiyrueIxXKGxCxSvNJcUPEVW2gL2WxJD3tefFEwrkhAr2yvdo1k
+         3S3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUZ+f56NSfC/CmokxexBAJvrb9cE/EnU0cmXgNSzlFwvN7g7ns2vZMgFEVkLGW2Rxoui6a6SYa8INArzPJDx00z22Y7X4wOgCxdI2ddrhrk/FOP+RNVDmMdSlnNqdbqIEYuyGUoCnH4XDxERnEHSTiurF5+YARBKb/zIoSD+DarsA8k0dYUq79F
+X-Gm-Message-State: AOJu0YySyNkvTcHk/86OwYMuXX2gd0N1Gu347kEQEgyOhPaj/fZPi8hy
+	pZDmj8BuUFOodk7lV+KzbUHusfUjCxq4elHPs4ualZnNj3E18qEG
+X-Google-Smtp-Source: AGHT+IEJPE2IkHyGgR9Xlx+xEEalQpxNqOZE+n3WGHVUhojllNSi1XReGieC0Pd/3yUiKOUCrBw0uA==
+X-Received: by 2002:a05:6512:3d0d:b0:528:649b:d7bb with SMTP id 2adb3069b0e04-52bb9f14411mr1284770e87.0.1717742314527;
+        Thu, 06 Jun 2024 23:38:34 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8cfe:d6e7:6701:9dfd? ([2a10:a5c0:800d:dd00:8cfe:d6e7:6701:9dfd])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52bb434dd31sm425529e87.306.2024.06.06.23.38.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Jun 2024 23:38:33 -0700 (PDT)
+Message-ID: <045828bd-4aeb-4d8d-b152-44a816a07221@gmail.com>
+Date: Fri, 7 Jun 2024 09:38:31 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 07/10] irqdomain: Allow giving name suffix for domain
+To: Thomas Gleixner <tglx@linutronix.de>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ Herve Codina <herve.codina@bootlin.com>
+References: <cover.1717486682.git.mazziesaccount@gmail.com>
+ <bbd219c95f4fe88752aee5f21232480fe9b949fb.1717486682.git.mazziesaccount@gmail.com>
+ <87plst28yk.ffs@tglx>
+Content-Language: en-US, en-GB
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <87plst28yk.ffs@tglx>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+Hello Thomas, Herve.
 
-Am Donnerstag, 6. Juni 2024, 20:46:58 CEST schrieb Frank Li:
-> Add pwm[0,1] and i2c[0,1] in lvds subsystem.
->=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8qm-mek.dts | 92 ++++++++++++++++++++++=
-++++++
->  1 file changed, 92 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts b/arch/arm64/bo=
-ot/dts/freescale/imx8qm-mek.dts
-> index dbd478af2e474..80cb834d56bc2 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
-> @@ -93,6 +93,42 @@ rsc_table1: memory@901ff000 {
->  		};
->  	};
-> =20
-> +	lvds_backlight0: backlight-lvds0 {
-> +		compatible =3D "pwm-backlight";
-> +		pwms =3D <&pwm_lvds0 0 100000 0>;
-> +
-> +		brightness-levels =3D < 0  1  2  3  4  5  6  7  8  9
-> +				     10 11 12 13 14 15 16 17 18 19
-> +				     20 21 22 23 24 25 26 27 28 29
-> +				     30 31 32 33 34 35 36 37 38 39
-> +				     40 41 42 43 44 45 46 47 48 49
-> +				     50 51 52 53 54 55 56 57 58 59
-> +				     60 61 62 63 64 65 66 67 68 69
-> +				     70 71 72 73 74 75 76 77 78 79
-> +				     80 81 82 83 84 85 86 87 88 89
-> +				     90 91 92 93 94 95 96 97 98 99
-> +				    100>;
-> +		default-brightness-level =3D <80>;
-> +	};
-> +
-> +	lvds_backlight1: backlight-lvds1 {
-> +		compatible =3D "pwm-backlight";
-> +		pwms =3D <&pwm_lvds1 0 100000 0>;
-> +
-> +		brightness-levels =3D < 0  1  2  3  4  5  6  7  8  9
-> +				     10 11 12 13 14 15 16 17 18 19
-> +				     20 21 22 23 24 25 26 27 28 29
-> +				     30 31 32 33 34 35 36 37 38 39
-> +				     40 41 42 43 44 45 46 47 48 49
-> +				     50 51 52 53 54 55 56 57 58 59
-> +				     60 61 62 63 64 65 66 67 68 69
-> +				     70 71 72 73 74 75 76 77 78 79
-> +				     80 81 82 83 84 85 86 87 88 89
-> +				     90 91 92 93 94 95 96 97 98 99
-> +				    100>;
-> +		default-brightness-level =3D <80>;
-> +	};
-> +
->  	reg_usdhc2_vmmc: usdhc2-vmmc {
->  		compatible =3D "regulator-fixed";
->  		regulator-name =3D "SD1_SPWR";
-> @@ -334,6 +370,24 @@ wm8960: audio-codec@1a {
->  	};
->  };
-> =20
-> +&i2c1_lvds0 {
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <0>;
+On 6/6/24 21:59, Thomas Gleixner wrote:
+> Matti!
+> 
+> On Tue, Jun 04 2024 at 10:55, Matti Vaittinen wrote:
+>>   struct irq_domain *__irq_domain_add(struct fwnode_handle *fwnode, unsigned int size,
+>>   				    irq_hw_number_t hwirq_max, int direct_max,
+>>   				    const struct irq_domain_ops *ops,
+>> -				    void *host_data);
+>> +				    void *host_data, const char *name_suffix);
+>>   struct irq_domain *irq_domain_create_simple(struct fwnode_handle *fwnode,
+>>   					    unsigned int size,
+>>   					    unsigned int first_irq,
+>> @@ -350,7 +350,8 @@ static inline struct irq_domain *irq_domain_add_linear(struct device_node *of_no
+>>   					 const struct irq_domain_ops *ops,
+>>   					 void *host_data)
+>>   {
+>> -	return __irq_domain_add(of_node_to_fwnode(of_node), size, size, 0, ops, host_data);
+>> +	return __irq_domain_add(of_node_to_fwnode(of_node), size, size, 0, ops,
+>> +				host_data, NULL);
+> 
+> ....
+> 
+> Looking at the resulting amount of churn to add that argument, I'm not
+> really enthused. There is some other unrelated change required in this
+> area:
+> 
+>    https://lore.kernel.org/all/8734pr5yq1.ffs@tglx
+> 
+> My suggestion to convert all of this mess into a template based
+> mechanism would nicely solve your problem too.
 
-These two properties should be part of the .dtsi.
+I am not entirely sure what you mean by template based in this context. 
+My brains are somehow fixed to start thinking of C++ templates, or C 
+macro magic with typeof() and I just can't get past that.
 
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&pinctrl_lvds0_lpi2c1>;
-> +	clock-frequency =3D <100000>;
-> +	status =3D "okay";
-> +};
-> +
-> +&i2c1_lvds1 {
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <0>;
+Anyways, what I picked from discussion between you and Herve, is using 
+an initialization structure (struct irq_domain_info) for the new domain 
+creation function (irq_domain_instantiate()) instead of adding bunch of 
+functions with quite a few separate arguments. So, I assume you're 
+referring to a possibility to add the name-suffix in this initialization 
+structure? I hope I got this right.
 
-These two properties should be part of the .dtsi.
+I assume there is no intention to change the existing public 
+irq_domain_creat_foo() APIs to use the new irq_domain_info - and change 
+all the callers(?) But I think changing the internal 
+__irq_domain_create() to use this new info struct should be very much 
+doable - although, in my opinion, making existing callers of the 
+__irq_domain_create() to assign their parameters to this struct so they 
+can pass it to __irq_domain_create() does not seem so nice.
 
-Best regards,
-Alexander
+So, even though I am not really happy about the delay (I secretly hoped 
+to get the series merged before my summer vacations ;) ) - I admit your 
+suggested change looks cleaner (again, at least to me).
 
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&pinctrl_lvds1_lpi2c1>;
-> +	clock-frequency =3D <100000>;
-> +	status =3D "okay";
-> +};
-> +
->  &flexcan1 {
->  	pinctrl-names =3D "default";
->  	pinctrl-0 =3D <&pinctrl_flexcan1>;
-> @@ -449,6 +503,18 @@ &fec2 {
->  	status =3D "okay";
->  };
-> =20
-> +&pwm_lvds0 {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&pinctrl_pwm_lvds0>;
-> +	status =3D "okay";
-> +};
-> +
-> +&pwm_lvds1 {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&pinctrl_pwm_lvds1>;
-> +	status =3D "okay";
-> +};
-> +
->  &usdhc1 {
->  	pinctrl-names =3D "default";
->  	pinctrl-0 =3D <&pinctrl_usdhc1>;
-> @@ -675,6 +741,32 @@ IMX8QM_M41_GPIO0_01_DMA_UART3_TX			0x06000020
->  		>;
->  	};
-> =20
-> +	pinctrl_lvds0_lpi2c1: lvds0lpi2c1grp {
-> +		fsl,pins =3D <
-> +			IMX8QM_LVDS0_I2C1_SCL_LVDS0_I2C1_SCL	0xc600004c
-> +			IMX8QM_LVDS0_I2C1_SDA_LVDS0_I2C1_SDA	0xc600004c
-> +		>;
-> +	};
-> +
-> +	pinctrl_lvds1_lpi2c1: lvds1lpi2c1grp {
-> +		fsl,pins =3D <
-> +			IMX8QM_LVDS1_I2C1_SCL_LVDS1_I2C1_SCL	0xc600004c
-> +			IMX8QM_LVDS1_I2C1_SDA_LVDS1_I2C1_SDA	0xc600004c
-> +		>;
-> +	};
-> +
-> +	pinctrl_pwm_lvds0: pwmlvds0grp {
-> +		fsl,pins =3D <
-> +			IMX8QM_LVDS0_GPIO00_LVDS0_PWM0_OUT		0x00000020
-> +		>;
-> +	};
-> +
-> +	pinctrl_pwm_lvds1: pwmlvds1grp {
-> +		fsl,pins =3D <
-> +			IMX8QM_LVDS1_GPIO00_LVDS1_PWM0_OUT		0x00000020
-> +		>;
-> +	};
-> +
->  	pinctrl_sai0: sai0grp {
->  		fsl,pins =3D <
->  			IMX8QM_SPI0_CS1_AUD_SAI0_TXC				0x0600004c
->=20
->=20
+Herve, do you have any idea when you plan to do further sketching on 
+this? Do you want me to try seeing if I can add the struct 
+irq_domain_info and maybe use that in the __irq_domain_add() to get the 
+name-suffix added? I might be able to send one version out during next 
+week - but then I plan to be offline for couple of weeks ... so it may 
+be I am not much of a help here.
 
+> Can you please have a look and eventually team up with Herve (CC'ed) to
+> sort this out? I'm happy to help and give guidance.
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+I appreciate the guidance! Thanks Thomas.
 
+Yours,
+	-- Matti
+
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
 
