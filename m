@@ -1,189 +1,122 @@
-Return-Path: <devicetree+bounces-73544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D69FD8FFF47
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:23:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B0068FFF4C
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:23:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E471287077
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:23:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C82428673E
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:23:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E176A15B57D;
-	Fri,  7 Jun 2024 09:23:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B058315B576;
+	Fri,  7 Jun 2024 09:23:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q70QGk70"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="UyZ3qryQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1760A15B96E
-	for <devicetree@vger.kernel.org>; Fri,  7 Jun 2024 09:22:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0734D13E043;
+	Fri,  7 Jun 2024 09:23:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717752180; cv=none; b=Yt6DK28EZUb8dueE/WVYH+lEM+f/DhL07pDPWmWLetU61dcYL6lxAAgAtBhJ4Qk+aLAxVQHl3KnqNWuWyDLP1o70SVzz54qF+YS8hHTMHa6a0Kxro/wVXCofn6j2hKUGCI2aYz2MkZaUl2R8D6v2DgWhnG+mYbDmmF2TjwiI1JY=
+	t=1717752218; cv=none; b=MZ6X3IiG9BM7wz9LDRR0ALZe/68YPsgz23VOhCnzIRGDZ2JZV7wavQ3T2luH5KyziSJvRdppk5lfQMpavb40J24yPU7i1ZyQtXht0cp9MdARUdmeJVz/HQZZoXn6UEL/BVjm3SroemYqKW616nBuy5q4cx4kLsZYuad1ODKQyvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717752180; c=relaxed/simple;
-	bh=YwoUri3ktWMFoZow1yFuIzi/afm7rRFS1XgwQ1LDl9U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZPyUKZzGpEKjbrlysPk4QH74RCTp2JshNgsBOIeQ3a0NjTZbQgur4XAPSFmC3Ws2HbLTvMNt2mTnRfvQCmB1ty2r5lUNA0MEnSo7Bidjgk6DfBt/5Vkgv1Hyizj6fbwERgTX/kCPKtmw2jhGvyLagUDVgai9f9eLhmEMhkyV3Cs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q70QGk70; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-35e4be5bd7fso1647832f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2024 02:22:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717752177; x=1718356977; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:reply-to
-         :autocrypt:from:content-language:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=u0T4B4BXzv7yNTZXWNQwkT6ayKsObAY6eNGwzmrTqAk=;
-        b=q70QGk70GVQHAU2c7EGhfjPd2EFcMJUqqGLi7o+6ToU4BWJ8NeNrAh9QZkq3qZGlZr
-         Uj25mXQjBN+srKogIwoo1y2v0AH5fpm2DWgmclsjN42NRF4IYSWTu8/+z7NFalsdbRbD
-         hpaMWycqGxqTWvMM3PgUP8/A0ZsjgXQDNPIIHal1eV/9yjHdtMS4qGCH1durAj8X7ubw
-         eXxHx3W/ApMWqE7+P3Y/UvWqNH08xzu/gpj4xsrY9z8p4g+Q5wFgvt2ATiI1gyRfMEwP
-         N+jrmWRYyF5FAjukZ6cliguRxsYoIek5AhGXPUb9YGhhHdRLGnkY0UAnc1ugFlYXplQc
-         K9CQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717752177; x=1718356977;
-        h=content-transfer-encoding:in-reply-to:organization:reply-to
-         :autocrypt:from:content-language:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=u0T4B4BXzv7yNTZXWNQwkT6ayKsObAY6eNGwzmrTqAk=;
-        b=uKgB4wBbmt1uiXw68B8IfUR5n5k8fm7QfnhGHTkfiUe95FYC8BEto3nso1ytSYmWMD
-         2s0Vid5RgF8n/QtROJyKg39aZEw695eVfuS1zaQhv1kyXGxSmQDinzxjcyLsi9EHtAap
-         CrqIP7kE7ojvpK74JdwkPR3TBQrXNv+WqzhLNxJ72pLxg4WP1n6R/qWeayG3zROvVJx+
-         BaSxmGarYNFN/AHWa0TZLg8tC4RJF1LINSaylIlk+35t16180w/y30/IM931pW4uqqUr
-         fDre6DjIVG7G/2+Ms4zzeYAvTdWLCZSIoxIOQgq95z4sIqIgmcFJQVPcjRQXvleFUQwn
-         NQhg==
-X-Forwarded-Encrypted: i=1; AJvYcCXa0/8exOH1rRBwlJ8PQe10eAEXfoUcp2Kq8VBplQVKnxgj9HXgDV2jC0eYN7s5WVKVzkPXa1WAB9T3wjoxplhrieKTE8I63Ugskg==
-X-Gm-Message-State: AOJu0Yym8/gGc5oF173QNuPowcmKQCD3yLJWP1e1r1PkiqsQqkaOQi1Z
-	J5VlYy57WKlgh3n1tSYrNYL8kIB+D9BdZx7mt9m2SjxXg/nowbH8h/0dtiQkTO0=
-X-Google-Smtp-Source: AGHT+IHI/SRbC76tGKuWAIzzK3sqU7ca676FAKWmmkTRFEoO4cno8PeQyR6PowYlGkQDamtVdfzs9g==
-X-Received: by 2002:a5d:6c65:0:b0:354:b7f0:b09d with SMTP id ffacd0b85a97d-35efed2b454mr1715011f8f.2.1717752177192;
-        Fri, 07 Jun 2024 02:22:57 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:7e4b:b0d3:6a34:6404? ([2a01:e0a:982:cbb0:7e4b:b0d3:6a34:6404])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5fd1d7asm3585930f8f.116.2024.06.07.02.22.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Jun 2024 02:22:56 -0700 (PDT)
-Message-ID: <3b46ff8b-3095-4170-ab94-3410cf841383@linaro.org>
-Date: Fri, 7 Jun 2024 11:22:55 +0200
+	s=arc-20240116; t=1717752218; c=relaxed/simple;
+	bh=j85mgkeTusRS4Itc43hUJSsb/34CpqaC5r9jA8gYgZ0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dWbM1QImsW716+bN2sjB+hhGSuG/5fDXz16uWLBjefDpTIu6Q0LHcBN9ShB5yZKtNdt8RUhiDWR/6SAbrEv5V157OCKmOZaWDWrsXlqlCsRhgCFbBXh6JmeAfyskPHCe5XGDzheT0VqpWkEQu1FrT7xHEeeVmWEPsEIe7KxuuGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=UyZ3qryQ; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id ACD0C240007;
+	Fri,  7 Jun 2024 09:23:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1717752208;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3W3sbBCarayP1thGCleMHMWpqnuZCVKbvI3U++3tYEI=;
+	b=UyZ3qryQfLn/9lb2wCaaS4EvO/2/n0QeRtdYGr6SZjP3SFy/C9O4lHylDlZz/2VcqhSBLS
+	eKJLjNDFFh+rTIHauAiBqx/L0Qh4Z+uBG6DCAPeP8CNG3BlKMvZJdyIAAUWFsIe3Woi/8X
+	AXekPWROEVNTWsf3FezYGaLWmPyKR0IYZo6TUxm7O9Tmt/QnE8npZABBaQwuQvbCvgNuhp
+	tJndOY8PNDVTuLJbrznPaBCQ23lXMkWcZrnysIYgdOwGw8EItzGRMrqtmIzqq2Ck072JCz
+	j0y9GkxfrvR/qFnCgrCA7/BqWZ1kZy9bNbWV07ikJaazn+rt9aUBxF+liPJQyg==
+Date: Fri, 7 Jun 2024 11:23:25 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Matti Vaittinen
+ <matti.vaittinen@fi.rohmeurope.com>, Lee Jones <lee@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter
+ Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH v3 07/10] irqdomain: Allow giving name suffix for domain
+Message-ID: <20240607112325.27e23671@bootlin.com>
+In-Reply-To: <b2b31803-44ff-462b-bc1a-6b1ffa93bdf0@gmail.com>
+References: <cover.1717486682.git.mazziesaccount@gmail.com>
+	<bbd219c95f4fe88752aee5f21232480fe9b949fb.1717486682.git.mazziesaccount@gmail.com>
+	<87plst28yk.ffs@tglx>
+	<045828bd-4aeb-4d8d-b152-44a816a07221@gmail.com>
+	<20240607101356.3ede2a17@bootlin.com>
+	<b2b31803-44ff-462b-bc1a-6b1ffa93bdf0@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] ASoC: dt-bindings: linux,spdif: Convert
- spdif-reciever.txt to dtschema
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240606041212.78428-1-animeshagarwal28@gmail.com>
-Content-Language: en-US, fr
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Reply-To: neil.armstrong@linaro.org
-Organization: Linaro
-In-Reply-To: <20240606041212.78428-1-animeshagarwal28@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-On 06/06/2024 06:12, Animesh Agarwal wrote:
-> Convert the dummy SPDIF receiver bindings to DT schema.
-> 
-> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-> Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> 
-> ---
-> Changes	in v2:
-> - Add linux,spdif-dir compatible in existing linux,spdif-dit.yaml
-> instead of creating new yaml file specifically for dummy SPDIF receiver.
-> - Change file name to support both transmitter and receiver bindings.
-> ---
->   .../sound/{linux,spdif-dit.yaml => linux,spdif.yaml}   |  8 +++++---
->   .../devicetree/bindings/sound/spdif-receiver.txt       | 10 ----------
->   2 files changed, 5 insertions(+), 13 deletions(-)
->   rename Documentation/devicetree/bindings/sound/{linux,spdif-dit.yaml => linux,spdif.yaml} (75%)
->   delete mode 100644 Documentation/devicetree/bindings/sound/spdif-receiver.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/linux,spdif-dit.yaml b/Documentation/devicetree/bindings/sound/linux,spdif.yaml
-> similarity index 75%
-> rename from Documentation/devicetree/bindings/sound/linux,spdif-dit.yaml
-> rename to Documentation/devicetree/bindings/sound/linux,spdif.yaml
-> index fe5f0756af2f..0f4893e11ec4 100644
-> --- a/Documentation/devicetree/bindings/sound/linux,spdif-dit.yaml
-> +++ b/Documentation/devicetree/bindings/sound/linux,spdif.yaml
-> @@ -1,10 +1,10 @@
->   # SPDX-License-Identifier: GPL-2.0
->   %YAML 1.2
->   ---
-> -$id: http://devicetree.org/schemas/sound/linux,spdif-dit.yaml#
-> +$id: http://devicetree.org/schemas/sound/linux,spdif.yaml#
->   $schema: http://devicetree.org/meta-schemas/core.yaml#
->   
-> -title: Dummy SPDIF Transmitter
-> +title: Dummy SPDIF Transmitter/Receiver
->   
->   maintainers:
->     - Mark Brown <broonie@kernel.org>
-> @@ -14,7 +14,9 @@ allOf:
->   
->   properties:
->     compatible:
-> -    const: linux,spdif-dit
-> +    enum:
-> +      - linux,spdif-dit
-> +      - linux,spdif-dir
->   
->     "#sound-dai-cells":
->       const: 0
-> diff --git a/Documentation/devicetree/bindings/sound/spdif-receiver.txt b/Documentation/devicetree/bindings/sound/spdif-receiver.txt
-> deleted file mode 100644
-> index 80f807bf8a1d..000000000000
-> --- a/Documentation/devicetree/bindings/sound/spdif-receiver.txt
-> +++ /dev/null
-> @@ -1,10 +0,0 @@
-> -Device-Tree bindings for dummy spdif receiver
-> -
-> -Required properties:
-> -	- compatible: should be "linux,spdif-dir".
-> -
-> -Example node:
-> -
-> -	codec: spdif-receiver {
-> -		compatible = "linux,spdif-dir";
-> -	};
+On Fri, 7 Jun 2024 11:49:07 +0300
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 
-Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
+> On 6/7/24 11:13, Herve Codina wrote:
+> > Hi Matti,
+> > 
+> > On Fri, 7 Jun 2024 09:38:31 +0300
+> > Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> > 
+> > ...
+> >   
+> >> Herve, do you have any idea when you plan to do further sketching on
+> >> this? Do you want me to try seeing if I can add the struct
+> >> irq_domain_info and maybe use that in the __irq_domain_add() to get the
+> >> name-suffix added? I might be able to send one version out during next
+> >> week - but then I plan to be offline for couple of weeks ... so it may
+> >> be I am not much of a help here.
+> >>  
+> > 
+> > On my side, I plan to work on it next week too.
+> > If you are off a couple of weeks after, I think I can start and move forward
+> > on this topic.  
+> 
+> Thanks for the prompt reply and thanks for working with this :) I'll 
+> leave it to you for now then, as I don't think it makes much sense to 
+> intentionally do conflicting changes. I'll see what you've been up to 
+> when I return to the keyboard :) I'd appreciated if you added me to CC 
+> when sending the irqdomain refactoring patches (but I can dig them up if 
+> you don't).
+
+Sure, you will CC you.
+
+Also, I am not sure that I will perfectly take into account your use-case
+but it should not be a big deal to add it on top of my commits afterwards.
+
+> 
+> Have fun!
+>
+
+Cheers,
+Hervé
 
