@@ -1,105 +1,125 @@
-Return-Path: <devicetree+bounces-73505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9DA28FFCDE
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:18:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 174BD8FFD04
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:24:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46CA11F2176A
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 07:18:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5A801F218FD
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 07:24:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 024331514C3;
-	Fri,  7 Jun 2024 07:17:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C675B155300;
+	Fri,  7 Jun 2024 07:19:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KRDQ/foL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UWeTNnNi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AE29B64E
-	for <devicetree@vger.kernel.org>; Fri,  7 Jun 2024 07:17:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92BA8154C19;
+	Fri,  7 Jun 2024 07:19:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717744673; cv=none; b=W8CGeaIIPYc11jMN/6P3LN29oq69OCB1nJrZHAH4SxNw7hryW1XPz2hlBz19VUi1E0v2kLJHhfpt21AmcL9RZQXQMDXCFKDPdniWdflKijYfseue47AwlsGDsSXDTu6+3Oi+i1ltQJykMb7/ceZGcMK8J3TwnJ8hf5/cRq5loJA=
+	t=1717744781; cv=none; b=mZAF7WElKwydy43WpLFfgDWHzyDV2zWgnGRPatPNSch7cebHtQ1v1q5pVXUTKN5oSgmwGh1fdkABbCzDv4GUmrjo6I402zmSDKw8eMX0KNUlXc2S0keo0RUl5Ky11T4CFm2VV3hMOSunW9OfuaehdedOsTLE29Udv/SVVr643qo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717744673; c=relaxed/simple;
-	bh=YiEZ3bX0ayB1nOs74MObDCAeLmQirzoQwjpYGOfJuoM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eIICW25XEw+X+3tQeUrLmW3Di2EVqUAtbjTrl2kGCEAgN7WdesxLisBlOTXdFeb4bzWQMETyEsOMbIIimtkDspTnZzwoOEe9qcfPmoKt/EqVBBu966v7yW+BkKRIxU5YnsH9ubn4paow1QA9Nuv0xF1lSVJSkzaQxjtA7Ms+ZQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KRDQ/foL; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2e73441edf7so19146761fa.1
-        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2024 00:17:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717744670; x=1718349470; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=goOM+D3enUA/KRbqdIW8pJqTSuZzDywMtVI+QwHEMOs=;
-        b=KRDQ/foLT/jCse0O40EDYjLC/D00LU0Q3n5wc1Q7ifXk/3bM0CpbLF6ib54RG2UcAA
-         wNddXsbSIceeL1/pPbESdBkwvG2+wzvqwI1W1gGsdTfzF7oatc42sByXxedL1AZYDvTZ
-         J2ZeGRKqHDroK+hk0vrJJ3igBm9S9QM8zPdUyGcRDsrXM+Nt1O9IOKbI6yiDWNAu3Crq
-         IhjpzVThRyPSWKLvCEgq1PnQHRvQHUld26TaEigFdlmcM8OZNJJ+MyC4YAPb1YuK2KWg
-         h6bkHg7SZIb1Y/7V2LmICo84YIyMeWCAkc+UsCZb5KPsNdDPxKRLldx0MJO4LbHV/nKJ
-         Vpiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717744670; x=1718349470;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=goOM+D3enUA/KRbqdIW8pJqTSuZzDywMtVI+QwHEMOs=;
-        b=U+hzPSrTue0KmZjuLV9K82xpwUAX8Ffq3tepblAES+u5EK0luvSwohZAwudGZTSJmY
-         VIkj1tLsZIhfgKj9FvV2zYC/71AMrYMFk2P7v58h5zTWsaHq1IOhzaHBPccOEwhcrnFe
-         aKXFf3doSfKs2K2mZGFtKk4a2JgFnPfgQVVfCl/w4t1/HK2c5cY1X5X1mOU+6k6y61qU
-         6a2ZhZ/CZS9T3INRakWzMeRaAjVJla5EHY/PgmGPH0M8c1D9tlNOOUNSmJ3bLiVjKYI8
-         FL6d0j17JzyxNw+d4kdoF71mnv8UhW4FU0uAXpcc62vGS/jkQwwgC0ZTNK2/vlW3XsQd
-         9Hrg==
-X-Forwarded-Encrypted: i=1; AJvYcCXADeQDqaHJV65Xz4QAjF7ogmC+LmJ66w2fR4/Oyf0UjKdBXCcAUyjn8NwukAeWNg3GPVgFPJrRox6g1LVIVRo/+yhplbSa6teiiQ==
-X-Gm-Message-State: AOJu0YyQDHuofbIAY7ms8NMivmtGl4sg22oSihA2lUAXdPZx/c4IV753
-	UoMYuNoZU1HR/jUxg2DPQqQAPiZoocQXv1YG2OBDiNryTqnwMnRCswqbdKTeJ3c=
-X-Google-Smtp-Source: AGHT+IFayl6a5cyRp7UrKG/w8IISxueREsY73BBE8MGwS5t+Zc6w/UW44a5gLOBjcSSlpsNSb9jMLQ==
-X-Received: by 2002:a2e:a487:0:b0:2ea:7dbd:adbb with SMTP id 38308e7fff4ca-2eadce83583mr10384791fa.50.1717744670594;
-        Fri, 07 Jun 2024 00:17:50 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ead41bf12fsm4287171fa.105.2024.06.07.00.17.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jun 2024 00:17:50 -0700 (PDT)
-Date: Fri, 7 Jun 2024 10:17:48 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Jens Reidel <adrian@travitia.xyz>
-Cc: dmitry.torokhov@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, 
-	linux-arm-msm@vger.kernel.org, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: pm6150: Add vibrator
-Message-ID: <ckf2kobxwzlc64lulwroo2gkyoms5kzeufu55id75nsm6y26ug@cgyawalr65bx>
-References: <20240606181027.98537-1-adrian@travitia.xyz>
- <20240606181027.98537-3-adrian@travitia.xyz>
+	s=arc-20240116; t=1717744781; c=relaxed/simple;
+	bh=FZ9YyYfyFZlXqZKGPSR1PvMp0cTL8aloNlUIMO1fzRI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KxD10Tr2Bg1S/QR0kVVvMfNhy/f1Ka4Mllmpp+YOEQnd39RvdoGGT67+N0sZ9wPzPFl5c+YF1JTWe5T8FVjpTYDfJHLAhNZxUHuYq6H1jfTzc0cpaf8rEszKY9u2Ppl/bvgxB0BP9dpgafYk3jW3KGZDr7KevB/MwJ5LH0kd2I8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UWeTNnNi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78F4AC2BBFC;
+	Fri,  7 Jun 2024 07:19:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717744781;
+	bh=FZ9YyYfyFZlXqZKGPSR1PvMp0cTL8aloNlUIMO1fzRI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UWeTNnNiMq1mknjVtXdDx3HvOwWnX+k+XJQG1P3GDZNelUG/70rZ+Te36RmaGxAQH
+	 2VIYmhRi0fhxjQ9hdEHrVtUc4nOAxjZ/oV9OHdZLYbiK9AIYGd6UOkRIotPyyLVKbt
+	 LEEJrrLZAkZNyXPpPi7F/k4GCqPjEV6PyJvCHXJx0La3hz6yNqFC6IB8WrR3j/M3iy
+	 VNkTcL5vMLCBbiboVJBltcZxGdZOGlVPNRYEw18GbfrEwIrN1cbWCk7cYxgoTsilh6
+	 GKSaNEE+5SzLvZDFw3xmbSmgQGCTqk0rWf5IoEHXuFtpCg2M+q3HrffWPFPdXM8ucL
+	 OBxe2QSl4KD9g==
+Message-ID: <1fa46b07-cb32-44cf-b85e-dec2b38a7aa5@kernel.org>
+Date: Fri, 7 Jun 2024 09:19:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240606181027.98537-3-adrian@travitia.xyz>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: input: qcom,pm8xxx-vib: Document PM6150
+ compatible
+To: Jens Reidel <adrian@travitia.xyz>, dmitry.torokhov@gmail.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org
+Cc: linux-arm-msm@vger.kernel.org, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240606181027.98537-1-adrian@travitia.xyz>
+ <20240606181027.98537-2-adrian@travitia.xyz>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240606181027.98537-2-adrian@travitia.xyz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jun 06, 2024 at 08:10:27PM +0200, Jens Reidel wrote:
-> Add a node for the vibrator module found inside the PM6150.
+On 06/06/2024 20:10, Jens Reidel wrote:
+> The PM6150 vibrator module is compatible with the PMI632 vibrator
+> module, document the PM6150 vibrator compatible as fallback for the
+> PMI632 vibrator.
 > 
 > Signed-off-by: Jens Reidel <adrian@travitia.xyz>
 > ---
->  arch/arm64/boot/dts/qcom/pm6150.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
+>  Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml | 1 +
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+Best regards,
+Krzysztof
 
--- 
-With best wishes
-Dmitry
 
