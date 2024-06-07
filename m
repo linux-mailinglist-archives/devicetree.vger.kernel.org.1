@@ -1,146 +1,101 @@
-Return-Path: <devicetree+bounces-73739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6256F9007A3
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 16:55:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71B2C9007B2
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 16:56:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60B5C1C2163A
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 14:54:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 201CE29134B
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 14:56:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12B2A1991A4;
-	Fri,  7 Jun 2024 14:49:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55003198E9D;
+	Fri,  7 Jun 2024 14:52:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F0pt8R5C"
+	dkim=pass (2048-bit key) header.d=lexina.in header.i=@lexina.in header.b="mALkROfw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.adeep.su (mx.adeep.su [185.250.0.168])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D721615748C;
-	Fri,  7 Jun 2024 14:49:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03CD118732F;
+	Fri,  7 Jun 2024 14:52:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.250.0.168
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717771751; cv=none; b=TgwdTf8lm/k1ixMwM23rMXcQ2Tgha3NEMzoERsj1b/1LOtFrBkpnQ4USf/fx552aHaJllRKiAgUghcpLmkqmtQ2zwTnJpGG/tusDlZG+VfGIdS/vtQd2+wZhkAfGy+AJD9UhktJwsNAmF+mbBZkhR84mNSOlJL4wfYz8v1Usx/w=
+	t=1717771939; cv=none; b=c0eSprP8vZ1rmNMPw0D2g4wMqLH6bbz7CWSR5SK4TDSvWQGURTIsu9wug/TR/9G4M0tgdJUnMp09ZCVbLmx9tiMa1D9zLCGMiCeKZ4uj0pEeyY1IZtvUORA3T78pY8a8rTmbmqvx+z1qkstwxy2r9T8/WV11h9kja8c5wuBM2IY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717771751; c=relaxed/simple;
-	bh=Dah+ChQ30COmYKoOSkEp/ZOZCouT1BnT04Y9qNO3bFs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pvHROvybcqglNqId/JmR704kjvJpsE5RRyBmXiXH29NjBl0IZh1BmPl+Mes9ZQKxEE+2iP3nF4ycIG7rsBsZl+uPwo+HHuRiVh2hARQ1TAuCNWf4fB0WJQfg5SP70RoyjF/0c4HrolJMCkm3jeL4F/+3uR+mQME8xlaJrnZx6UY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F0pt8R5C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 803CFC2BBFC;
-	Fri,  7 Jun 2024 14:49:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717771750;
-	bh=Dah+ChQ30COmYKoOSkEp/ZOZCouT1BnT04Y9qNO3bFs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=F0pt8R5CXyV/cemvv21kVco3FGaAkegSMt9veVJm8QdOmEewdp6v2prpOTdK8KqYR
-	 X08/kOkeDW1WRz2D2oerNVjDqpzzAxXe8vW7a6NsvEsuqxfAcIpZk7Ty8OWkaf/mvJ
-	 A78sQx4NdqRKLekmTLXyQ88TCgidS0ldFng0qSylRUzumtGfPaM3Us0fr+vXtLI4lG
-	 i6oD0YBFWTBQI4VRuJYi0rv6HgQTDH3yzXWn/+TxP70fbXXmCrEUSFshmdNFexwxss
-	 5JqThMZbY2K866L/GWanFdtNgo2gFMZkjWK3hQY9Pnz0Xl8deaSb1W9YDZ0pB6pq3G
-	 v9VO+G2u3XgXQ==
-Date: Fri, 7 Jun 2024 15:49:05 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org,
-	lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 5/6] dt-bindings: iio: adc: Add AD4000
-Message-ID: <20240607-declared-chubby-df1c81646794@spud>
-References: <cover.1717539384.git.marcelo.schmitt@analog.com>
- <b8a211e09c17f5a9f0a6aa6e11d6375ff398c918.1717539384.git.marcelo.schmitt@analog.com>
- <20240605-tables-pectin-66d4d4dd12b5@spud>
- <ZmMawAukzpOcdJqy@debian-BULLSEYE-live-builder-AMD64>
+	s=arc-20240116; t=1717771939; c=relaxed/simple;
+	bh=j2UtZvnfethoTFHwn5s9iGaN6lSq9VkOWo0P2Bvb8Ho=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IWTtyN+Xvsie+J92xzuAcqf5UUivzbJupGRTL/5Hea5lbWa5ZEZN2VErS/hh4bA8Ovjo+1iGb6/8nvyDjlJcn+9Afv3kr+AMqC4poX4gYbSN/cMg/+6wL0hq5ceP00qig0XWad4RT7DPBL4nJ1m5iKi/wO7O2v3uKqgNzguTP84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=lexina.in; spf=pass smtp.mailfrom=lexina.in; dkim=pass (2048-bit key) header.d=lexina.in header.i=@lexina.in header.b=mALkROfw; arc=none smtp.client-ip=185.250.0.168
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=lexina.in
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lexina.in
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E6F8D105B34;
+	Fri,  7 Jun 2024 17:51:55 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
+	t=1717771923; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=geCYlXiO0IWtdW5F32VwIPOBGEnsd+xctEzn2zYkT+Q=;
+	b=mALkROfww//auwXsXckN7RnBgbpRARuAQO54gWBvcmpHminERhO/pKBKkhW/pNqaEJB6yZ
+	lBVDM28GVNkz/hPbPqWCNBVPARmoBbPBd2PuNnJkO5kCm7UY7GMnj4Ok9c++lhwer5Sc+A
+	vibn8v8eCzV65Xs6pKFWs4GHZ5zt2TpFB5LII9VHwwO0JjpioZQQJdBHO8ri8zaWIsbIhR
+	K8EQH+XVsmsA6IEJ285aKv0pSN5zSHjV9paZNVpIaDrQs7x06BXwnC3jzz6oFb7yMaC3Hv
+	2UtpdIB0OzsgYuX2mp5qEk+rb6/dOK2M+hzeE5lvDZ3lsSy1g5JIKb8OF78mrQ==
+From: Viacheslav Bocharov <adeep@lexina.in>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH v1 0/2] arm64: meson: add support for JetHome JetHub D2
+Date: Fri,  7 Jun 2024 17:50:02 +0300
+Message-ID: <20240607145148.2246990-1-adeep@lexina.in>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="mGYo5D1kJPq130vJ"
-Content-Disposition: inline
-In-Reply-To: <ZmMawAukzpOcdJqy@debian-BULLSEYE-live-builder-AMD64>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
+
+Add support for new controller.
+JetHome Jethub D2 (j200) is a home automation controller with the following
+features:
+  - DIN Rail Mounting
+  - Amlogic S905X3 (ARM Cortex-A55) quad-core
+  - micro-HDMI video out
+  - 4GB LPDDR4
+  - 32GB eMMC flash
+  - 1 x USB 2.0
+  - 1 x 10/100/1000Mbps ethernet
+  - two module slots for radio/wire interface cards
+  - 2 x gpio LEDS
+  - 1 x 1-Wire
+  - 1 x RS-485
+  - 3 x dry contact digital GPIO inputs
+  - 2 x relay GPIO outputs
+  - DC 9-36V power source with battery UPS on board option
+
+Viacheslav Bocharov (2):
+  dt-bindings: arm: amlogic: add binding for JetHome JetHub D2
+  arm64: dts: meson-axg: add support for JetHome JetHub D2 (j200)
+
+ .../devicetree/bindings/arm/amlogic.yaml      |   1 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+ .../amlogic/meson-sm1-jethome-jethub-j200.dts | 614 ++++++++++++++++++
+ 3 files changed, 616 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dts
 
 
---mGYo5D1kJPq130vJ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+base-commit: 32f88d65f01bf6f45476d7edbe675e44fb9e1d58
+-- 
+2.45.2
 
-On Fri, Jun 07, 2024 at 11:35:44AM -0300, Marcelo Schmitt wrote:
-> On 06/05, Conor Dooley wrote:
-> > On Tue, Jun 04, 2024 at 07:43:53PM -0300, Marcelo Schmitt wrote:
-> > > Add device tree documentation for AD4000 series of ADC devices.
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - adi,ad4000
-> > > +      - adi,ad4001
-> > > +      - adi,ad4002
-> > > +      - adi,ad4003
-> > > +      - adi,ad4004
-> > > +      - adi,ad4005
-> > > +      - adi,ad4006
-> > > +      - adi,ad4007
-> > > +      - adi,ad4008
-> > > +      - adi,ad4010
-> > > +      - adi,ad4011
-> > > +      - adi,ad4020
-> > > +      - adi,ad4021
-> > > +      - adi,ad4022
-> > > +      - adi,adaq4001
-> > > +      - adi,adaq4003
-> >=20
-> > Are all these actually incompatible? I'd like a note in the commit
-> > message as to why that's the case. A quick look at the driver showed
-> > that the differences in the driver between the ad402{0,1,2} are limited
-> > to the "dev_name". Same went for some other devices, like the
-> > ad40{02,06,10}.
->=20
-> Yes, that's correct. Some chips only vary by name and max sample rate whi=
-ch
-> boils down to only having a different dev_name in the driver.
-> Can those have grouped compatible strings?
-> dt_binding_check fails if curly brackets are used.
-> properties:
->   compatible:
->     enum:
->       - adi,ad402{0,1,2}
-
-compatible:
-  oneOf:
-    - const: adi,ad4020
-    - items:
-        - enum:
-            - adi,ad4021
-            - adi,ad4022
-        - const: adi,ad4020
-
->=20
-> The groups of similar chips are:
-> AD4020/AD4021/AD4022
-> AD4003/AD4007/AD4011
-> AD4002/AD4006/AD4010
-> AD4001/AD4005
-> AD4000/AD4004/AD4008
-
-
---mGYo5D1kJPq130vJ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmMd4QAKCRB4tDGHoIJi
-0m3aAQCqm1iAmlqMMULyvGG/jj/YF3eqzO7Wj9CXKpMOs3OTgQD9Hl43+DrEc4x2
-0bmGjvUv5UElOQKUwtXj9J6IRcWdhw8=
-=/nSM
------END PGP SIGNATURE-----
-
---mGYo5D1kJPq130vJ--
 
