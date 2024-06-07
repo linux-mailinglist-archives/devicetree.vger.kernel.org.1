@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-73548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F2418FFF5F
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:26:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 182DF8FFF67
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:27:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43F561C22B62
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:26:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95FF8284298
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:27:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D2827492;
-	Fri,  7 Jun 2024 09:25:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF61915B967;
+	Fri,  7 Jun 2024 09:27:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="deU+NLr/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g2205ldK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6BD215B971;
-	Fri,  7 Jun 2024 09:25:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C031715443F;
+	Fri,  7 Jun 2024 09:27:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717752347; cv=none; b=a0+1ECTj1U9K+iQ3fpid0mXRSZxbOoszzGPT4aSpTz1Gwu1lyzkw5nr0bYMQSB/Ms+wfcyXQNxs4KKMJukcAq1N99kOcTdGe/evgL8Wl3rfSRXCdW0ODv3XyAVq/pcy5zF5bte2d7ZZiAe28DTmbAJzCpnvXpxni0XU9VUZz1wo=
+	t=1717752449; cv=none; b=RjPHiv5QNNr3LOyQ/TDS9ySeWoTnkX9bsgp6wmwVpLHsEGO9q7LReQiK530Dz0YeY88DB5ClZN1jkEkzl9yt7i5UjCWX5/HsajFGWFUg8WmzMsIyFlH4LjQpX9ZBxxgRLjT669iWe+lk5sSK/wxDgngIr++GY70Pwwt+X5XtRJc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717752347; c=relaxed/simple;
-	bh=jBF5v5BVUZ5p9KI5K2L/2p0DPNYB2/IgznDp8NAAQso=;
+	s=arc-20240116; t=1717752449; c=relaxed/simple;
+	bh=pyuBB0CADdDKyEwTxePlZHAJ9a9+BuhFy7t6uYvLGL8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=USNyWfmSVboWQspH/tmkjQchMEAjaQpBJ0kZZjElD7+A5sfzWUXbZnI+4RQ77MFXIL1prnCpfr7q8YcPAButbbiBCDbgC6y4sf+GXLh88vLgv70GvLXH564ZIOr29e7+4LzxIgZuU9a0eIa5GW5Haa8A5HBWlVCadyjxlQqr658=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=deU+NLr/; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-52bc1acb9f0so168410e87.2;
-        Fri, 07 Jun 2024 02:25:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717752344; x=1718357144; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=u9ASv3z6aW5Usf95w5T/QMJgunpGdnmwRFnN/fLCNTU=;
-        b=deU+NLr/yjiInjyDb6oaUP80Fk0ls8Y6UVR3hX2PL+fMqSXye86Fl+7QVfUNcGuSgD
-         2Wm7vMMe8MJKiQW5HljJWotfQzK0VyQ62jmlkr3mEkI5EOH8IHXLXJ30YArtGGhBfS8D
-         lOhk5L9TqISv3Uz3S4kY8ON5zO9wq63eB4rEcdpIZ3f2imj32Kr2hR76khWCIGeO7L6K
-         F17OvbNCcgsPgwujiGQk/qLbzTpYovwg4t3/S0MCNYeWhB5V39Jc6o93tsTYPvbFqCR3
-         QBYViquj+KuPqOErQxwMmOJJIVd4estQatSDid9z5WJcSrVQV6C5MVHqG27BrcWktmYS
-         UqCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717752344; x=1718357144;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=u9ASv3z6aW5Usf95w5T/QMJgunpGdnmwRFnN/fLCNTU=;
-        b=j0La0XztGCrAEOc0w6Z3Oyx3ROpII85gPavKUhJFs9eWN5D8keacu7dn3k2Z9JZVHn
-         nj2HoO52nUJUMhSpR9Wne/yVNLReLsjRjPQ/my/62zqF0wNGoMnuFAN31pmYSSfz3Tbo
-         d+ugi9jsRqp3iZ95lqqNbA6DflptCJ6meXSVXImhcZLzJI2glVJH1XncScT0WR1SljLv
-         O4s1nx6bY8eW/PI/+deIPtM8loewMYOAmusVE8R4KAPxmaWCm1D8yEvIHU9/yUzbLCxb
-         qs6EpJ2lHKhbz8lG4ERPnhM1a96RwMa6TEUdBXtZI5kd+trNjVwl/HgYMmIL8om5AfFJ
-         VtVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVWBUQi/xgmfOiWhZvCX2MZyXRI0nW1si9h9nJ794NcikCm5drosoH43H+Mcu1Ufdx0b4nMorLXZUfDiTRERjquA6YEGNpEOfTVg0tr/eXdIJj4TtaSs6WwsWKEi1QYpe8lbmRQs70GQDJBsdkwJHJugmnOOQf+Xq2N97rcBfqcC3MUHu0Bb/Nn
-X-Gm-Message-State: AOJu0YzwG+QSOt0j0b+uoYO26+8573EvSTIRx4D1NBvpRc3CWz9+HbeU
-	IBUFfs7iBtDQsYi81bfAMKcREBakS5FtdJPkUEPvHMpH3w9I5euw
-X-Google-Smtp-Source: AGHT+IHKQ6Tg3i4tZtYYKEcILbfowk8mCAyKD5fX55Ig/BQHMi2kBGlPe3r2yp8QXxeaMn+lmkOD2Q==
-X-Received: by 2002:a05:6512:3f03:b0:526:f4bc:beeb with SMTP id 2adb3069b0e04-52bb9f84612mr1662158e87.32.1717752343388;
-        Fri, 07 Jun 2024 02:25:43 -0700 (PDT)
-Received: from [172.16.183.82] ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52bb433d081sm464074e87.278.2024.06.07.02.25.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Jun 2024 02:25:42 -0700 (PDT)
-Message-ID: <b4fe1689-4d29-475c-89b9-4bb5c4c1b2aa@gmail.com>
-Date: Fri, 7 Jun 2024 12:25:41 +0300
+	 In-Reply-To:Content-Type; b=CsSpgQkOdVJlSorzfwrvH9IPeNrRkK1ty2aluHiOdKU+l1b5K+AVAcBvD/7aT8fomfso0qUwzXpKqgCLWsmm97Ccsx81D2D3cNVh5pqGT1mOVrTO+gcq3Yh0+ILJYuqB3pt8+qr2B/CVFp25WBk71A7KLMDU1lUmX7zeEbgOu9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g2205ldK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09729C2BBFC;
+	Fri,  7 Jun 2024 09:27:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717752449;
+	bh=pyuBB0CADdDKyEwTxePlZHAJ9a9+BuhFy7t6uYvLGL8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=g2205ldK0x9oacWLpFBz+yXTCkKg41IFuxakyl6x5O6JaQ1uRMhj27La0Di8l03N1
+	 F9rt8FNTtQ7pC78NWC2RDy8S6nC2q0IfbRl7qvmMBfPHrLpMDThzh1o5tVo/nqGdAM
+	 k4UIxI8Vglvos1IA8hzMrL7rxJDHwf0cVZ5auxUqv6nFBCkXwuOuaDItwysldEOPvG
+	 5ZsY6HJlZrc3SDWjuckTWDurt8JFVwNeGbOenpXmx6EIswx5TD/Ux6xm7SU4KEXa5p
+	 LN8b4iMD5NFLOAW78Ddx5PRyAbmvTHT155h7kvbyk44IQ2vKqFpLlYH2eUjSrCXa33
+	 okLTxvw6P+buA==
+Message-ID: <7dc8805e-61ab-40e2-94a4-2e0e36449820@kernel.org>
+Date: Fri, 7 Jun 2024 11:27:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,77 +50,91 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 07/10] irqdomain: Allow giving name suffix for domain
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
- Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
- <linux@roeck-us.net>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-References: <cover.1717486682.git.mazziesaccount@gmail.com>
- <bbd219c95f4fe88752aee5f21232480fe9b949fb.1717486682.git.mazziesaccount@gmail.com>
- <87plst28yk.ffs@tglx> <045828bd-4aeb-4d8d-b152-44a816a07221@gmail.com>
- <20240607101356.3ede2a17@bootlin.com>
- <b2b31803-44ff-462b-bc1a-6b1ffa93bdf0@gmail.com>
- <20240607112325.27e23671@bootlin.com>
-Content-Language: en-US, en-GB
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20240607112325.27e23671@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH] ASoC: dt-bindings: ak4554: Convert to dtschema
+To: Daniel Baluta <daniel.baluta@gmail.com>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Animesh Agarwal <animeshagarwal28@gmail.com>,
+ Daniel Baluta <daniel.baluta@nxp.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240607055725.38057-1-animeshagarwal28@gmail.com>
+ <87frtps29l.wl-kuninori.morimoto.gx@renesas.com>
+ <CAEnQRZCXtoXWmNaoCrLYcSCO=V=O_+yUVoVJmnPkpysUYxBQNw@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CAEnQRZCXtoXWmNaoCrLYcSCO=V=O_+yUVoVJmnPkpysUYxBQNw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 6/7/24 12:23, Herve Codina wrote:
-> On Fri, 7 Jun 2024 11:49:07 +0300
-> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
-> 
->> On 6/7/24 11:13, Herve Codina wrote:
->>> Hi Matti,
->>>
->>> On Fri, 7 Jun 2024 09:38:31 +0300
->>> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
->>>
->>> ...
->>>    
->>>> Herve, do you have any idea when you plan to do further sketching on
->>>> this? Do you want me to try seeing if I can add the struct
->>>> irq_domain_info and maybe use that in the __irq_domain_add() to get the
->>>> name-suffix added? I might be able to send one version out during next
->>>> week - but then I plan to be offline for couple of weeks ... so it may
->>>> be I am not much of a help here.
->>>>   
->>>
->>> On my side, I plan to work on it next week too.
->>> If you are off a couple of weeks after, I think I can start and move forward
->>> on this topic.
+On 07/06/2024 10:42, Daniel Baluta wrote:
+> On Fri, Jun 7, 2024 at 9:19 AM Kuninori Morimoto
+> <kuninori.morimoto.gx@renesas.com> wrote:
 >>
->> Thanks for the prompt reply and thanks for working with this :) I'll
->> leave it to you for now then, as I don't think it makes much sense to
->> intentionally do conflicting changes. I'll see what you've been up to
->> when I return to the keyboard :) I'd appreciated if you added me to CC
->> when sending the irqdomain refactoring patches (but I can dig them up if
->> you don't).
+>>
+>> Hi Animesh
+>>
+>>> Convert the AK4554 sound codec bindings to DT schema.
+>>>
+>>> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+>>> Cc: Daniel Baluta <daniel.baluta@nxp.com>
+>>> ---
+>>
+>> Thank you for the patch.
+>> But no one is using AK4554, we can remove it instead ?
 > 
-> Sure, you will CC you.
+> 
+> So we just remove the device tree binding file, right? And later if
+> there is anyone who will use the
+> codec he can later add the yaml file.
 
-Thanks!
+Remove the binding and the driver.
 
-> Also, I am not sure that I will perfectly take into account your use-case
-> but it should not be a big deal to add it on top of my commits afterwards.
-
-No problem! That's just fine :)
-
-
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
+Best regards,
+Krzysztof
 
 
