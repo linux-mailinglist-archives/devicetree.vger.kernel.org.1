@@ -1,76 +1,56 @@
-Return-Path: <devicetree+bounces-73777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 793EB9009E0
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 18:05:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EFB3900A01
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 18:08:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 624A41C21FA5
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 16:05:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18F331F289C2
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 16:08:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCF1619A285;
-	Fri,  7 Jun 2024 16:05:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB4C219A2A9;
+	Fri,  7 Jun 2024 16:07:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FKyilMZG"
+	dkim=pass (2048-bit key) header.d=gmx.de header.i=w_armin@gmx.de header.b="qmH+qbV1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19B6315ECD6
-	for <devicetree@vger.kernel.org>; Fri,  7 Jun 2024 16:05:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C371993B5;
+	Fri,  7 Jun 2024 16:07:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717776306; cv=none; b=db7DBhIaTf92BTONOxKew6eJR5vDt9Y15rvyhKi2BYqyWeLxtCpSg0oPMjAob5+ayvPJVx/Cjc+pJ3sV+45UIjEkndwVbk/GGuEtI8bLoNYc4mzmkEdrj6SrSRmLgw8d943vlDytskPEucERVBimsVFVHgKZQi+OCMYgTQhyZHM=
+	t=1717776441; cv=none; b=i+UgyepDP8fFvftPvDHBO6TuF7lq2qy27HcDHIiyUu+VdLvXMbP3vLyBQTS8d8vIASlXqHMM9L8wpt+Hekuh2cMU1YSBEjaruOT4DgThsHfP/JpKl0R+8Dgzj47/XDIzfn89ng1MawukGvgqFBFmHfuvWq6jMNDUP0A6MJ109+Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717776306; c=relaxed/simple;
-	bh=Z3oJTka4Vnu4p24r/43x/jH7cJqjxGUr0Ejafh1qAY8=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:References:
-	 In-Reply-To:Content-Type; b=ALztIZ+P6D36aPNq0hPEHx6YOjUwx/Lv0gYxo9lzCbyBKj0bthii26gBAVQCSlAc/PHDgH4jMm4Hyl0fmlGODO2sOiXHkJnea5R6biTocUCC2xEnCkz0Zzy0s0ihSC0BXnfphbQbFFHTY00UB9slk7UKGVJxAXbrrNCeEhm+fRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FKyilMZG; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52c32d934c2so5713e87.2
-        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2024 09:05:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717776303; x=1718381103; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=t+ERCTW4alu+cgTaHP2X1z+HqtWWj2kK39TpxNNGgZs=;
-        b=FKyilMZGTOIzXgDQrGKzzneX+opmfZO9Gyn/1bY02n54AYvm3BASO3dXTPS0kyWJwL
-         YIzjmJZ7mH//sAAJ7MRL06nrxQRAMQZ85xFxzA6EkybF8wb+OcR+kO3eUb5YpWk9fvys
-         HIx1oPF5cfyl3eDLNZmuAmBJIWh0X7SCsoU6mrz8uPyKgBVtUP3EjI2M95NAh/oXkrKo
-         hTxCTMFXtWbcaUzvbOjUEmx/Ox6WWrnd4WXbYdnlSUmzaP2C9ZbKxYOZhLc9glYF08tM
-         cWU6TaDl/Uq4czWmpN09u5rJNGssWlcek2F5XnxACSsHnxySs62JXtgiBvr+YfnF/iuG
-         D0zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717776303; x=1718381103;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=t+ERCTW4alu+cgTaHP2X1z+HqtWWj2kK39TpxNNGgZs=;
-        b=lmfw0ZS/3vBUnMM6kPwQE2HoU9Ss3lVCvlJF8Xb8PP1jB4s/f8ZmyJL919OvTYo+vo
-         8hfxvYx1pqCC3avyKfNlH8xKtU22OYiLBaqNVOQmW61KeFaS5UdJ21CQrquuKfbWVqG4
-         p0inUaskEVe0VtDLkF/j1NLlEGnrBrgBEMhAwXBeAkMsgdhgT7q23wM/sEI27xAQxBsB
-         zkCyMdM4CHeZ3sjwDWwtszkSCIKqWuCBcjgmkh7E3RrQF7aGxV1do90CJkMs4heo9loY
-         2lKTdglUqnH2+uLPy7kTHVls/NFSUslDK2COPqhslRAOyNuj4Z+vc2Sin2eEny61sqEZ
-         5K1g==
-X-Forwarded-Encrypted: i=1; AJvYcCU1nPxAd2wm5AFQ8tkm32Sw5Qm6JQ+a/F3hnbQBZhOSe4V5+lX0ubpS6RHnk30P0HwP793jBn7BUP64RrXqYMfyVJYh6MvYPULjYA==
-X-Gm-Message-State: AOJu0YzIiQXML210/JlORPA8B3vcTS96bC7uezbM6SRMYEb6eywEMXAm
-	zvZIkyAy8POpXkL2eDzeJWW7oqcJMb9e/UONlfDFozkNN4aDhjCB26cpK0XHgl8=
-X-Google-Smtp-Source: AGHT+IEWSEfsueYptPbIG13f/kiC/uiuC1S6W/HOOZZfTghFpVzLYJTB6ysLPC5s/JDRGDPAkjFu6g==
-X-Received: by 2002:a05:6512:2023:b0:52b:c192:c19c with SMTP id 2adb3069b0e04-52bc192c224mr940395e87.21.1717776303255;
-        Fri, 07 Jun 2024 09:05:03 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:7e4b:b0d3:6a34:6404? ([2a01:e0a:982:cbb0:7e4b:b0d3:6a34:6404])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215c2c690dsm57967575e9.34.2024.06.07.09.05.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Jun 2024 09:05:02 -0700 (PDT)
-Message-ID: <ac14cfd4-64fb-4b98-b3cc-b29921606bb9@linaro.org>
-Date: Fri, 7 Jun 2024 18:05:01 +0200
+	s=arc-20240116; t=1717776441; c=relaxed/simple;
+	bh=e060FibAN6dn7MpQtsRShU2TwVWcf8cJXNm5kggqNEE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e9+lpDad3rJtgtJ1ifL65dHy6Y37CtL7MHvZxan+WUviFJb/ccknqN2cwLaAvJ0Sa+xeE4PjUrW75gZobFTWdSrdDHQQUbqPB/JkbhIC0augXvBIrKrg8jj6g5pKIcU8zlqca+TuiyMQUdI1NH6RVOWRE6oaOhlHmcocU13m3x0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=w_armin@gmx.de header.b=qmH+qbV1; arc=none smtp.client-ip=212.227.17.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
+	s=s31663417; t=1717776408; x=1718381208; i=w_armin@gmx.de;
+	bh=WpsPycSkNqefv/DFU2+Dhs9QAFbosKfQE+s+COBHjek=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=qmH+qbV1XlN4xPNaXJca+WdLHKdPj1Zn6fxtZKD/K3DAtdHYELtYdCbsRl+0MXof
+	 Alkg/uxTkONug79tNzrqqhzhq2AWMtls3nYsecfghkuJXxj+J4QIXdF6LIE/Mvvp8
+	 JaY+Mdcp0m8+pGS8KGk01MnVPzbDNZ3mAn4z+2mndHoNXZb9aA8SSP7sfRQvaAtqV
+	 StG+EhQOcBEhcnqE8P6690Cb+HBtQ+/UEjstaRKWskmPKVVto2aydGb6OJ8cHCbKE
+	 lA1TT7CM7RMM/AlqqoZcz42H47fNEldf5g9eR8cvfMTvFfT1gM+embdi13iTJMz4k
+	 hbH1hpQ6MBo1gzWoLQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [141.30.226.129] ([141.30.226.129]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MMobU-1rzBit3cW4-00LrTp; Fri, 07
+ Jun 2024 18:06:47 +0200
+Message-ID: <c939b0c7-2c8c-4cf1-8d5c-9309ce0b371a@gmx.de>
+Date: Fri, 7 Jun 2024 18:06:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,74 +58,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/2] dt-bindings: media: amlogic,gx-vdec: add the GXLX SoC
- family and update GXL
-To: Christian Hewitt <christianshewitt@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240604051533.3312944-1-christianshewitt@gmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240604051533.3312944-1-christianshewitt@gmail.com>
+Subject: Re: [PATCH v4 5/6] i2c: smbus: Support DDR5 SPD EEPROMs
+To: Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org
+Cc: linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ =?UTF-8?Q?Ren=C3=A9_Rebe?= <rene@exactcode.de>,
+ =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+ Stephen Horvath <s.horvath@outlook.com.au>
+References: <20240604040237.1064024-1-linux@roeck-us.net>
+ <20240604040237.1064024-6-linux@roeck-us.net>
+Content-Language: en-US
+From: Armin Wolf <W_Armin@gmx.de>
+In-Reply-To: <20240604040237.1064024-6-linux@roeck-us.net>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:m9nlxK5q1W4gn1wQ+3dfPZz1bRtMa5DYDrz3gb+BT/rgBF6HfRy
+ h4XAlOCE7YNAs/Bmruwyjmk+EeZfKnhrfJMKoQrWSTqUamoqr0e5borArKVYLLOO7xmUp2W
+ UceDH7ayjPB2PK3N0YCgSshSZlSB9y30aV5ctvOjAfvcQztcJJ4171B9GeTIpR3jgfVLo5R
+ ta5Im3gtbwXpqRQT/o6ZA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:5FObOyZ0MWA=;g4SABbYYlkx5KCNJjhK+xGdWk7M
+ 5ftpeTThh7KQ3YRrcb+RwIYzlflxyH9cMYpQ3KaWB4plqiRq9JYd+dwVFh69fQdROQnVKyWTN
+ EbMSAZV2R7dFdf8fVRlpSezV+zJKC44SjTxcC3mPVXzx6oxP0esBOKtLPpazBtYkSU3UHnHSE
+ i6xsBeBfwt4uc7+FU/w0PjAcAAu6NkTStRebWIfmxT0aNupGrV47S4mOoF1SGiXoF83FhUN9s
+ uB27/gCSCpvkRVvG0SkZ0GDkHjTRJq27kXbeN1/EHoMZpXwctI3hBprhNMclEHDblUvETKict
+ X5fP7/6NRqfVdQS7DwM5pj2CcorfEg93XJObAxB48AC7MHKkbut92a8cuJESl7nuRiAjRPD8D
+ 0CdSEOAC/GYNN/5rvSc7zNq/dgrMbtRZ6e+rqZ+qs1x6OFatCcygsf5OWDbY5Uqa0kimlFThk
+ sWLjy+maf2ngG2ndCNvY7YTBDhhhVAt3JwH4BbcSSbnCS8i+dfuCpD0fgws2XOhx/YLuk999X
+ CrbXVqbIbx6fbyTdNTGTBuLKwXK7UShyiUd9u2nso26a3fpT1xpmkfjy1LKKpK6/OHgkavsV5
+ O2P1QU2RwCx4kqJZI/IHUGR2vJBB+0NY0SBRrkYTkpG2ixnYooaIG757CLkFN855FjgSxwg6S
+ AcrPXvj0NbQY3iCAzlV27GtH9QqZ7DUmySWe1SIZKDbJ+wsQPhvv+UimWjONGpghgE7xR5GtU
+ 4df46+9/I0y5s90IK7qODXCewsyQYQAnbmE/+yWm1ZuxpY51Zmn0AVFmO6ZOI1Zk3Hv5+0/yV
+ oYCM2rG+WHOhkg2XIvhLq02VoFNyLAQXuwJpBWiZL41Ow=
 
-On 04/06/2024 07:15, Christian Hewitt wrote:
-> The GXLX SoC is a GXL variant that omits VP9 codec support. Also add S905W
-> and S905Y as GXL chips and sort the GXL comment.
-> 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Am 04.06.24 um 06:02 schrieb Guenter Roeck:
+
+> Detect DDR5 memory and instantiate the SPD5118 driver automatically.
+
+Hi,
+
+the text "Only works for DDR, DDR2, DDR3 and DDR4 for now" should be updat=
+ed too.
+With this fixed:
+
+Reviewed-by: Armin Wolf <W_Armin@gmx.de>
+
+>
+> Suggested-by: Thomas Wei=C3=9Fschuh <linux@weissschuh.net>
+> Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
 > ---
->   Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml b/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
-> index 55930f6107c9..47dce75aeae6 100644
-> --- a/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
-> +++ b/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
-> @@ -31,7 +31,8 @@ properties:
->         - items:
->             - enum:
->                 - amlogic,gxbb-vdec # GXBB (S905)
-> -              - amlogic,gxl-vdec # GXL (S905X, S905D)
-> +              - amlogic,gxl-vdec # GXL (S905D, S905W, S905X, S905Y)
-> +              - amlogic,gxlx-vdec # GXLX (S905L)
->                 - amlogic,gxm-vdec # GXM (S912)
->             - const: amlogic,gx-vdec
->         - enum:
-
-Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
+> v5: New patch
+>
+>   drivers/i2c/i2c-smbus.c | 4 ++++
+>   1 file changed, 4 insertions(+)
+>
+> diff --git a/drivers/i2c/i2c-smbus.c b/drivers/i2c/i2c-smbus.c
+> index 97f338b123b1..8a0dab835761 100644
+> --- a/drivers/i2c/i2c-smbus.c
+> +++ b/drivers/i2c/i2c-smbus.c
+> @@ -382,6 +382,10 @@ void i2c_register_spd(struct i2c_adapter *adap)
+>   	case 0x1E:	/* LPDDR4 */
+>   		name =3D "ee1004";
+>   		break;
+> +	case 0x22:	/* DDR5 */
+> +	case 0x23:	/* LPDDR5 */
+> +		name =3D "spd5118";
+> +		break;
+>   	default:
+>   		dev_info(&adap->dev,
+>   			 "Memory type 0x%02x not supported yet, not instantiating SPD\n",
 
