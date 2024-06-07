@@ -1,108 +1,137 @@
-Return-Path: <devicetree+bounces-73641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7CEE900240
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 13:35:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3663190024A
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 13:37:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B1221F28258
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:35:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5582284EAA
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:37:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BFC518735C;
-	Fri,  7 Jun 2024 11:35:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED00718C328;
+	Fri,  7 Jun 2024 11:36:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SOOuwWsj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c6SBTTTb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD3992837F;
-	Fri,  7 Jun 2024 11:35:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52EB518733D;
+	Fri,  7 Jun 2024 11:36:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717760129; cv=none; b=bGj9ogAE6UAX+E0wKdRzs3JNAz9IEjsWK45X1B073wrQhSYW6ZXlbFqjsidx1tpqypNnbpb+3oMy8foTawCwM3Y/kHrbx6nVbrmhcUowxsdI/b7npjM92Nh+AhXy4l6feQpRX0SYIHapwYQJ3C6/E4wRwteVFyzY6CQlSff6gj0=
+	t=1717760218; cv=none; b=F82eOKgm/kS1LvsfvgswjfcKhL2wFmYVPR+KT4aIEDZpOrpHJmvAC61/QiHYJkFQPePJ1QZ2xkfPZjjW1K7wQhsf2CRgv7XJ2dY6K2dWsiSBsZmTt600noY3vwArB02NqYMDGuLCWSQ/ltzfWPP2JOcwmQahWj5oRN5Z6di74NM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717760129; c=relaxed/simple;
-	bh=y7+8ojeWaklXFdnopbOqrkFJH6Oh8Z5R/PffM5vSdfg=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=V+dKywj8yaASab290sdb3Gi2kBiHlAVD4GsLCRdI3anyMjVNLPrhpejcNt35VrbVcrRZAITDQkdEtP0TIxuYV7LjS5/3t9fdYPSXXmjIlP8VRczyUoPmWieE0SSKgURV0RKO+ccrAVmh8ertfP03hRCb1CNulFWzzPiSkBlWBCA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SOOuwWsj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4913FC2BBFC;
-	Fri,  7 Jun 2024 11:35:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717760128;
-	bh=y7+8ojeWaklXFdnopbOqrkFJH6Oh8Z5R/PffM5vSdfg=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=SOOuwWsj5QcciH77iaCxUtsiio48wUTC8mcnND+OlApkTD7emSSH/tZ3qCHkG1LYA
-	 Brhqf+roHNXGCQKUX9M3eGuUeOYLDdhDvg4FE1MWMxDfwXZehoMsdztnwEQNd6DTZj
-	 PVXdjLiWnXLxJzS9I2AScHWqD6FC6Jizn1rSC+2HzL0EJ970MeahFUO9S2CjzOV7wt
-	 8SHu/TH8VSVGiagQoQ9c17sT08LM3A76RWzmYsvPt6wTjJWaexzD33E/rNMwgBucaS
-	 VW1fg+ErnDwVlk2SMgvdMljfvv6nRWrmrYXz0/YBgjkKjbZRlLQUTji8bEjiEelC65
-	 DhAeuLxS94vkw==
-Date: Fri, 07 Jun 2024 05:35:27 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1717760218; c=relaxed/simple;
+	bh=rpzWODU2bT7sGpuoqGOokFp3uXQbFOAgqULxwSJrvh8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OvZe0+tJn3jW9WRqrUtFTzAP411wL5bzbMQj96ZajzE9cidCvV85KnIWGPailrknj6EEKRuyQV6Fgz1l+a+S1SvZPQs4O++ItOSNvdEheu86NVJNRGZftYGFMRDlCMxGF7SEBWJmL9BOXAtpRJ2WNl0N207IzXexfZr9gHUH0UI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c6SBTTTb; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a68a9a4e9a6so189499966b.3;
+        Fri, 07 Jun 2024 04:36:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717760215; x=1718365015; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=GY/6FiPfv14GcfT0b89l65ZFho8Kww/IYVCcpvAJrKA=;
+        b=c6SBTTTb/FIsaqeHZas2u/GyHFySVHO1oeDtkJxp06LDzXrElMmUo26qhKURgYOfOk
+         zXK1B089cYGlNkkqeNHiK8hrb34a1VE5LFLTg4GAqAWxjtS+fJUNZKsq47GAoUnzF1MK
+         FmXGx0i6urO+vGcnSrj+Y6G14jXtzrePuYc1aZZEesdMfnFsK6Bob+VjxHE7hxQAwcpo
+         eyMa53FmTSx5bUCooaO90QdKPpPbaUnDx4FUakUnSSGY/9ndPtdNkj95j6RCm2HrExpX
+         bI6kZDzpXXH7n+sZY41gZ3LZtXufS0scDEBxeLGSLTU0h1FekmjoBDj0xKKm0nSFEQzL
+         i8gQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717760216; x=1718365016;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GY/6FiPfv14GcfT0b89l65ZFho8Kww/IYVCcpvAJrKA=;
+        b=i986Rs/bK5zKjgjXSRFhLz+6y2j81SM+MasDARgsLjUsQnGPKNGOK7K7UM6wL9O41j
+         M8NDO76peXDDGVOs07Fn2R9V4cZ3fONnleu1kNOGHV/tc6hLWjIkm6VGiIqDNEnWDqTs
+         66YrT+xjcpiSRw1h4eO9g8iYfeGcqWarDVnz0VcQX04/ueoK8ngrNVdQ0zZePNk6YthT
+         OLXd5zZwd/k08vHHkAJBd5H5sV1lNK4ugcSOCTbPh5qfFKWrfcB8NeYWV5xcfwgDbxnf
+         9jCzf69ey6FiqzbkMlv4eQuHnlhdff7wI7q8AxQKs+MgXL96rKo0QBQsGN1XH0G1okq7
+         T6/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU9ANa4BhPpyknXtlvIw32fyCZNeri7o+LiT2/2FE1b0ugQr3NaFQOK3PX3cDpBkbF00f73ZShr/68nTrmQnTcj/ovF3HsAGyLb86AFhNhIpADt/Jc443QQqdchbpHMyY3zxlXH1bF9uQOpU568ybmjNQRtmD3WG/hJd4S+J0P3rA==
+X-Gm-Message-State: AOJu0YxxSGWdLICMrlQ+cavbFZEX4jnx5HQl5Q8wF1RtNuV+86qA5UM6
+	B3TvQ973SqxeNh7zz4vvIbo9ofkDslt1RSbHuOTH3S4xVu36oF3G
+X-Google-Smtp-Source: AGHT+IEJ3QmW0Edfs+b86Z0zcgNfTh5o9Uuil8Nf9vIR8GRiQGZa0MYGATF+Eo0GdsJnYFZz7qh6OA==
+X-Received: by 2002:a17:907:20ed:b0:a6c:8076:1a5e with SMTP id a640c23a62f3a-a6cd7a7e9b6mr191770566b.43.1717760215247;
+        Fri, 07 Jun 2024 04:36:55 -0700 (PDT)
+Received: from skbuf ([188.25.55.166])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6c8070e1c1sm230574666b.168.2024.06.07.04.36.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Jun 2024 04:36:54 -0700 (PDT)
+Date: Fri, 7 Jun 2024 14:36:52 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Martin Schiller <ms@dev.tdt.de>
+Cc: martin.blumenstingl@googlemail.com, hauke@hauke-m.de, andrew@lunn.ch,
+	f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 12/13] net: dsa: lantiq_gswip: Add and use a
+ GSWIP_TABLE_MAC_BRIDGE_FID macro
+Message-ID: <20240607113652.6ryt5gg72he2madn@skbuf>
+References: <20240606085234.565551-1-ms@dev.tdt.de>
+ <20240606085234.565551-13-ms@dev.tdt.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Ricard Wanderlof <ricard.wanderlof@axis.com>
-Cc: Ricard Wanderlof <ricardw@axis.com>, Takashi Iwai <tiwai@suse.com>, 
- linux-sound@vger.kernel.org, Baojun Xu <baojun.xu@ti.com>, 
- Shenghao Ding <shenghao-ding@ti.com>, devicetree@vger.kernel.org, 
- kernel@axis.com, Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, alsa-devel@alsa-project.org, 
- Jaroslav Kysela <perex@perex.cz>, linux-kernel@vger.kernel.org, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Kevin Lu <kevin-lu@ti.com>
-In-Reply-To: <20240607-tlv320adc3xxx-micbias-gpo-v2-1-b140a45ffffe@axis.com>
-References: <20240607-tlv320adc3xxx-micbias-gpo-v2-0-b140a45ffffe@axis.com>
- <20240607-tlv320adc3xxx-micbias-gpo-v2-1-b140a45ffffe@axis.com>
-Message-Id: <171776012736.1713547.9580962210836921996.robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: tlv320adc3xxx: Add
- MICBIAS-as-GPO properties
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240606085234.565551-13-ms@dev.tdt.de>
 
-
-On Fri, 07 Jun 2024 12:00:45 +0200, Ricard Wanderlof wrote:
-> Add properties for configuring the MICBIAS pins as general purpose
-> outputs, with some limitations: The voltage on the pin when activated
-> may be set using another property to 2.0 V, 2.5 V or AVDD.
-> When deactivated the pin will float.
+On Thu, Jun 06, 2024 at 10:52:33AM +0200, Martin Schiller wrote:
+> From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > 
-> Signed-off-by: Ricard Wanderlof <ricard.wanderlof@axis.com>
+> Only bits [5:0] in mac_bridge.key[3] are reserved for the FID. Add a
+> macro so this becomes obvious when reading the driver code.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->  .../bindings/sound/ti,tlv320adc3xxx.yaml           | 24 ++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
+>  drivers/net/dsa/lantiq_gswip.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
+> diff --git a/drivers/net/dsa/lantiq_gswip.c b/drivers/net/dsa/lantiq_gswip.c
+> index f2faee112e33..4bb894e75b81 100644
+> --- a/drivers/net/dsa/lantiq_gswip.c
+> +++ b/drivers/net/dsa/lantiq_gswip.c
+> @@ -238,6 +238,7 @@
+>  #define GSWIP_TABLE_MAC_BRIDGE		0x0b
+>  #define  GSWIP_TABLE_MAC_BRIDGE_STATIC	BIT(0)		/* Static not, aging entry */
+>  #define  GSWIP_TABLE_MAC_BRIDGE_PORT	GENMASK(7, 4)	/* Port on learned entries */
+> +#define  GSWIP_TABLE_MAC_BRIDGE_FID	GENMASK(5, 0)	/* Filtering identifier */
+>  
+>  #define XRX200_GPHY_FW_ALIGN	(16 * 1024)
+>  
+> @@ -1385,7 +1386,7 @@ static int gswip_port_fdb(struct dsa_switch *ds, int port,
+>  	mac_bridge.key[0] = addr[5] | (addr[4] << 8);
+>  	mac_bridge.key[1] = addr[3] | (addr[2] << 8);
+>  	mac_bridge.key[2] = addr[1] | (addr[0] << 8);
+> -	mac_bridge.key[3] = fid;
+> +	mac_bridge.key[3] = FIELD_PREP(GSWIP_TABLE_MAC_BRIDGE_FID, fid);
+>  	mac_bridge.val[0] = add ? BIT(port) : 0; /* port map */
+>  	mac_bridge.val[1] = GSWIP_TABLE_MAC_BRIDGE_STATIC;
+>  	mac_bridge.valid = add;
+> -- 
+> 2.39.2
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On second thought, I disagree with the naming scheme of the
+GSWIP_TABLE_MAC_BRIDGE_* macros. It is completely non obvious that they
+are non-overlapping, because they have the same name prefix, but:
+_STATIC applies to gswip_pce_table_entry :: val[1]
+_PORT applies to gswip_pce_table_entry :: val[0]
+_FID applies to gswip_pce_table_entry :: key[3]
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml:128:25: [warning] too few spaces after comma (commas)
-./Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml:129:25: [warning] too few spaces after comma (commas)
-
-dtschema/dtc warnings/errors:
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240607-tlv320adc3xxx-micbias-gpo-v2-1-b140a45ffffe@axis.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+I think it's all too easy to use the wrong macro on the wrong register field.
+If the macros incorporated names like VAL1, KEY3 etc, it would be much
+more obvious. Could you please do that?
 
