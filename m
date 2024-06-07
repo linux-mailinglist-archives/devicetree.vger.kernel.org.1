@@ -1,132 +1,84 @@
-Return-Path: <devicetree+bounces-73805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E921900B68
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 19:41:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0C5C900B84
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 19:47:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23EB71F2459F
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 17:41:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6F1C1C220D7
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 17:47:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE97E19D08B;
-	Fri,  7 Jun 2024 17:40:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC99E19CCF4;
+	Fri,  7 Jun 2024 17:47:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WDq1TV74"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FC5dhQ8k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74DFF19D076;
-	Fri,  7 Jun 2024 17:40:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ECDC19924F;
+	Fri,  7 Jun 2024 17:47:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717782038; cv=none; b=BLlF/Vt1ycKoOxB2iy+Ixb9h86fsr4Z0sQlny6gHsHdnd0BzF8JUWhpwYeuZzcFMq9zTbufKGOJjZmLqpTV7LnvgyzPuZDe64YeoC7FbFWGpMJT/IaEYiwBt+Rty3DgS1BhQWABSoeu1ruuVPTubYTjK4JioMtH8jg6zmsx15FM=
+	t=1717782437; cv=none; b=FeJpdx6gFDgRF8xCbyqYRTeDpaRNNXjLerji/2RkAiQFppkuGrVH/5t2JPcb0JX8Dj4+OLT8I07XRA7j/F3qdX6pCxVAoqPNVbCEUGepHwXa+a+dWrBgY5/tab3c/Y4sApdAAddpLivSB+PAPpDDrM4mhFXnlxlgHg6ClUpaqIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717782038; c=relaxed/simple;
-	bh=epSMVVuXNACAijVWTrM3ArHfYRBpQLqBQbzPpdgO3Eg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DjpXSrvxgLcxPHB/RnmYNh6dIwX7hi0QYWQGUyNmdGfT+ULic5E00tsFqXBoExNgT5L2lm8VqJmpUjB0epaJMUYYY7AILEr2DOkkGp83tsmHjxqkyz+bAYWeU8cJIez2U1jzB+rpHn2dY5DlbCP227e5LQMBvQMthfBhGxjHbGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WDq1TV74; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 457HeUSj019778;
-	Fri, 7 Jun 2024 17:40:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=6UlsSXBZh5pTvYqrBUJWqJhX
-	gnYP7hCHxrTA0qyIk6c=; b=WDq1TV748rWohgTXNEeAPBc/PWNEDCo/cGIBFHLq
-	/zQKzOc6vu1HxFwuTV+30S5GmT6zhb5D5mOCjI0sQW1I0P5Zeb0cOESTdjlz6Tq0
-	/PglW5TwH5gfVv87mu2qF8WzXJwUjPid9TO/YMjOP7YuqZhQllbmQ0NsPANV9iw6
-	JFCOp3xaSTD5ojSS1rqzE4Egy+os0/P30upZQCUMsimP++W9LdxTijmvQ/i2oevX
-	/RRx//H8jG5sJO2M6YmabAxxqYHfFvkfIQ/x02wEf/u44S0EHxt83Wz46NibATYz
-	DR7IoLcLgW0A7B6igVVkG9t4Zwv1jWALh4lOsapKKLW4wQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ykg2qk69y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 07 Jun 2024 17:40:33 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 457HeXsw020629
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 7 Jun 2024 17:40:33 GMT
-Received: from hu-okukatla-hyd.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 7 Jun 2024 10:40:28 -0700
-From: Odelu Kukatla <quic_okukatla@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Kees Cook <keescook@chromium.org>, <cros-qcom-dts-watchers@chromium.org>,
-        "Gustavo A . R . Silva" <gustavoars@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-hardening@vger.kernel.org>, <quic_rlaggysh@quicinc.com>,
-        <quic_mdtipton@quicinc.com>, <quic_okukatla@quicinc.com>
-Subject: [PATCH v5 4/4] arm64: dts: qcom: sc7280: Add clocks for QOS configuration
-Date: Fri, 7 Jun 2024 23:09:27 +0530
-Message-ID: <20240607173927.26321-5-quic_okukatla@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240607173927.26321-1-quic_okukatla@quicinc.com>
-References: <20240607173927.26321-1-quic_okukatla@quicinc.com>
+	s=arc-20240116; t=1717782437; c=relaxed/simple;
+	bh=Ah3xD2VYfWteOXiiI1LPCE0B+4+uVAXtyTUN+YThnGE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=H2gjsS3YkH08iJYYeA+U+eK+JYVPFP0xWvIRA/d7OEES2X4i0XMApqBz7RTGbjdUsL52HuMB7wJ1YZNcxFk7CnmnKwoSO84nJmOAcT7p+7LZPLRhNoiPStpyw2iHR9w9j2m1S9Uxo9VFjqvkxFWRMx2wHzNfk8VrRepuT4ILggo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FC5dhQ8k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 078E4C32786;
+	Fri,  7 Jun 2024 17:47:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717782437;
+	bh=Ah3xD2VYfWteOXiiI1LPCE0B+4+uVAXtyTUN+YThnGE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=FC5dhQ8k1oE23ig1HbTMiS4JdLzl6fnAdrdp4nKcndmm9XKwBaMkfQK8RiMPnwayd
+	 u4+X0+bwcvil/ueng01fss6gFXTkrGXKRgTR5MsRGSvSn+KA2uxGia8poZvGrzLhLy
+	 4cogYwIf2k8joqOd3OuZlzA4xjGAeIOHOyYeh3PV/qaNBrnijf0qX1Nc5V6hhzUz6A
+	 vtTi8DBWwNWseCP8uCYgnHWzZ1SesQeu9U0CIQkYsi6LO6d73o/MNYKpIcrODpT7wb
+	 KZxaZAL/+MNV+wpG/lprYffVAXLL7vVeNMcZ8ZFpmbXV9Gt0MVI3kl1dRoNxrMkTjy
+	 vnCLVcCwwHRsQ==
+From: Vinod Koul <vkoul@kernel.org>
+To: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20240605003356.46458-1-animeshagarwal28@gmail.com>
+References: <20240605003356.46458-1-animeshagarwal28@gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: dma: fsl,imx-dma: Convert to dtschema
+Message-Id: <171778243367.276050.5441148149906303737.b4-ty@kernel.org>
+Date: Fri, 07 Jun 2024 23:17:13 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: CAg6-UoE0tYABgQQBV5YwsX3GS1BHrbN
-X-Proofpoint-ORIG-GUID: CAg6-UoE0tYABgQQBV5YwsX3GS1BHrbN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-07_10,2024-06-06_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 phishscore=0
- spamscore=0 malwarescore=0 clxscore=1015 bulkscore=0 impostorscore=0
- lowpriorityscore=0 mlxscore=0 suspectscore=0 priorityscore=1501
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406070130
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
-Add clocks which need to be enbaled for configuring
-QoS on sc7280.
 
-Signed-off-by: Odelu Kukatla <quic_okukatla@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+On Wed, 05 Jun 2024 06:03:49 +0530, Animesh Agarwal wrote:
+> Convert the fsl i.MX DMA controller bindings to DT schema. Remove old
+> and deprecated properties #dma-channels and #dma-requests.
+> 
+> 
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index ba43fba2c551..a3c640d394e9 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2130,6 +2130,8 @@
- 			reg = <0 0x016e0000 0 0x1c080>;
- 			#interconnect-cells = <2>;
- 			qcom,bcm-voters = <&apps_bcm_voter>;
-+			clocks = <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
-+				 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>;
- 		};
- 
- 		aggre2_noc: interconnect@1700000 {
-@@ -2137,6 +2139,7 @@
- 			compatible = "qcom,sc7280-aggre2-noc";
- 			#interconnect-cells = <2>;
- 			qcom,bcm-voters = <&apps_bcm_voter>;
-+			clocks = <&rpmhcc RPMH_IPA_CLK>;
- 		};
- 
- 		mmss_noc: interconnect@1740000 {
+Applied, thanks!
+
+[1/1] dt-bindings: dma: fsl,imx-dma: Convert to dtschema
+      commit: 45a24e40581db95f9c7ee08e0f27874daf7d3e7b
+
+Best regards,
 -- 
-2.17.1
+Vinod Koul <vkoul@kernel.org>
 
 
