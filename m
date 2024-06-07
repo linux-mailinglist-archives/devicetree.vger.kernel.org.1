@@ -1,258 +1,201 @@
-Return-Path: <devicetree+bounces-73460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15F558FF816
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 01:25:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDED88FF98F
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 03:28:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9454028A3A7
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jun 2024 23:25:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 515741F233C8
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 01:28:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 514B613C3F6;
-	Thu,  6 Jun 2024 23:25:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B35B9846F;
+	Fri,  7 Jun 2024 01:28:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="PNJhSh3Y"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="SAyuafIp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2041.outbound.protection.outlook.com [40.107.22.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A20426292;
-	Thu,  6 Jun 2024 23:25:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717716317; cv=none; b=Cehz8UCEpoP6fRE2Za+YHCCeDU/Y8VyW1RCYWy4piahYvm9OSPLlW2UD6Zu3c3LWjaTtAt5aP/pTkeLoCNtc/kIeitwpuIBhyaRxKwV9IXtqoEOX7pcfrF0G8alrs30cYKvUlub7Dc6F4PwTNUVAy4aAZ4J0KY1xgNzzCbTqdwo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717716317; c=relaxed/simple;
-	bh=FCHNt6uHeP6/ERgm3lU0NCmUc0kw0E78oG06eYuXtr8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WargcnBxw6WZsqtejFJZDfSoW05MXzI7xcmT4NvSB/fo5B3XrOXcVXDK5WREYgDHCaSEgjWDY1rFOOwEgzsBouspWquLMrA8kY/hUP3diDnx49WoFU7WGbfGzGNZi7YyT0ilrrdwIYKXMxS0cKNoPdamihC4as18nIkXPBy/ZWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=PNJhSh3Y; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1717716313;
-	bh=FCHNt6uHeP6/ERgm3lU0NCmUc0kw0E78oG06eYuXtr8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PNJhSh3YzNZfKgt72Y8Et8spA1ZOtynviPXRlr931YntrbHhVV30Kt528LH92ku87
-	 LmFoY6843Q0hvwnuTFkIaT3yKbPEdM/nEWB0TaXVkZmG95t5HlAqXfmwpNmE103XRO
-	 JssY+wwym0O9KE8znpECg0J16CobMyZFkPR8a1UsHDdiHW021GWg5nAIek5lkIY9HH
-	 WMW+Ld4EE2XwpUQIQOP35fHtmnrhad7sXGg5JAxxjTLd8cJfax+CSf0FDGHP40XV+S
-	 Y8hSMehoAQXpOUSC0L5+hVB5MijaknQ0cl7347SdbluETuXoz6H0R16oPkZ9qjTL4S
-	 cv3HuoFT3AQZA==
-Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 7407E37821C1;
-	Thu,  6 Jun 2024 23:25:09 +0000 (UTC)
-Date: Thu, 6 Jun 2024 19:25:07 -0400
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: chunkuang.hu@kernel.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, matthias.bgg@gmail.com,
-	shawn.sung@mediatek.com, yu-chang.lee@mediatek.com,
-	ck.hu@mediatek.com, jitao.shi@mediatek.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, wenst@chromium.org,
-	kernel@collabora.com
-Subject: Re: [PATCH v4 0/3] drm/mediatek: Add support for OF graphs
-Message-ID: <1b23531d-0365-4163-a443-4ebece2c445e@notapiano>
-References: <20240516081104.83458-1-angelogioacchino.delregno@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6CD033EE;
+	Fri,  7 Jun 2024 01:28:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717723727; cv=fail; b=jAVTU+EXFF1UkvvhYZgLFjzw7NUqbw08/+dTQhuFNhtyjVJs0SYZTL8zQgRqyqb+xhE6yi0OKDt8MPbFtgyxHZr471tWT1szlvnGoq+ugsYVbTrGGpCt9nnXYhPTsJHFbnJ0HSSCxeOlmYbZiv9D6YlJQlyZnCQ1sE957q20hsk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717723727; c=relaxed/simple;
+	bh=PTGmFIFiaGhBOg9C+BMmUKSu+hAwwHGtdygzrIZ4H5k=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=fc7t4I+5+scNymAG9ZaZ4mNLR8/7jBywyKNWOZBeZpIxgmzI+an/zUljQA4f1F+FSWlGAR2qdOSYJI87siBOteeiYa/xWMmIjVrctvIW/2BB7QpI9QXel6aWcC9GA2eHN9dhMAXoZkyl3x6+0GS5Rl48vNj9zHwf/S1OTQWAPDI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=SAyuafIp; arc=fail smtp.client-ip=40.107.22.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SRn2W18zGQMdV78+ZMf0BZiin/AAFoXVlOB6SrZxRVIESM7ueHOTuEN+sOU0A9QDBOQaiL8rtzG5PphxoTcNWMPmfmPo9dMo9/SOF2/2ufSGLooEWHeDSMDjjD+lNafyB7nT+v/5M6oqYuaDrVFwS8PpoUZrYAdrnlr4XkJ66CiaDfYU211diwFuu/yuMFo+nKTS2KCVV7X3Zii/EfL2L1bVpouIhhf9dyccqZENI9bmVGmXUJrNg0nXFJ8uwrBsvs0CZ4J3IOPatXttdF9rm+hKjch/rhJjMYAB72EtkZfxiyo4j015m3fSrLxRWjD8uLEgqMwlyPqe6KvwV9xj7Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PTGmFIFiaGhBOg9C+BMmUKSu+hAwwHGtdygzrIZ4H5k=;
+ b=VHtDn5YJhvhauDerWro4iNu0W3faVCoQdDGfTJRbYTO8/7KhvMbgB6pbEcc8QbDhTWodhQDh6kDX53pk8v6SnNdL5kFGI9+BpG4QAPMqBaVob0y+jO8yFkT4kRc21nZl/a1j9u1FpPUmIftdEamuBQWS17ryyiNSoQyksNyuYaf+ocpIijJU2a+TUCApvlsPSSCRUUyIsaX1zg71SUffr757vFnrC0waGR2qImIhQiE7Z8iskAelYvk2IhD+QfdN3BwRLIrn2d4Vm9nPxG2kSkAH57eGSexBf4lUzOKAbQdYhdRC1Oe4CnZFqmjbshhB7Y60Ej+C7SlL572mymY0lQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PTGmFIFiaGhBOg9C+BMmUKSu+hAwwHGtdygzrIZ4H5k=;
+ b=SAyuafIpTI0fu01MY87ag7L6dWAawVkIoUMyX+F64FipQaL6XEDhgS7QvmDbYJng+W1xqJ3z+FQJGDh9Zrvzz4VPTF5RRUkKKzi7MobXNHEg0eGqTF62dJ9gyZJXnNoCR3eaUTezVtXQZPbHdxI0Bjj0MxOKKPnoDaF2M3PKo3w=
+Received: from AM6PR04MB5941.eurprd04.prod.outlook.com (2603:10a6:20b:9e::16)
+ by AS8PR04MB8326.eurprd04.prod.outlook.com (2603:10a6:20b:3ff::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.33; Fri, 7 Jun
+ 2024 01:28:42 +0000
+Received: from AM6PR04MB5941.eurprd04.prod.outlook.com
+ ([fe80::9f4e:b695:f5f0:5256]) by AM6PR04MB5941.eurprd04.prod.outlook.com
+ ([fe80::9f4e:b695:f5f0:5256%5]) with mapi id 15.20.7611.030; Fri, 7 Jun 2024
+ 01:28:35 +0000
+From: Peng Fan <peng.fan@nxp.com>
+To: Frank Li <frank.li@nxp.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
+	<shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+	Aisheng Dong <aisheng.dong@nxp.com>
+CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, Frank Li <frank.li@nxp.com>
+Subject: RE: [PATCH 1/7] arm64: dts: imx8qm: add lvds subsystem
+Thread-Topic: [PATCH 1/7] arm64: dts: imx8qm: add lvds subsystem
+Thread-Index: AQHauEH+uWtNhufEvEuOQLlQzSS/pbG7gpwA
+Date: Fri, 7 Jun 2024 01:28:35 +0000
+Message-ID:
+ <AM6PR04MB5941C0BBD0A64A9AFDD8EC5A88FB2@AM6PR04MB5941.eurprd04.prod.outlook.com>
+References: <20240606-imx8qm-dts-usb-v1-0-565721b64f25@nxp.com>
+ <20240606-imx8qm-dts-usb-v1-1-565721b64f25@nxp.com>
+In-Reply-To: <20240606-imx8qm-dts-usb-v1-1-565721b64f25@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM6PR04MB5941:EE_|AS8PR04MB8326:EE_
+x-ms-office365-filtering-correlation-id: 9d1be711-59e4-4167-6655-08dc869126a5
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230031|376005|366007|1800799015|7416005|38070700009;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?bW9nbDNTTTN4NnNMeWI0b3VIc29WZnpDOWg1MGVobzhsdmV2RklWMG1NNXI2?=
+ =?utf-8?B?THBQeVVFQlBOTnFLaUxRbUU3NDlRVVZvYnNla0FyMVh3S29NeFpiRGoxbk13?=
+ =?utf-8?B?OEFrV1NyTmNXazk4S0R5blNUL0pSYnU0Q3dGcUsrNzAzaHJ6REJwSU1mczdt?=
+ =?utf-8?B?MGpxTjF0dWJJTUZwS0d5WXpRK3dIeGliSTl6akZ3Skp5NURzcklQWGtKcU8z?=
+ =?utf-8?B?dEdlMlROUm5YZm4ycTJQWFNLOFlFMzBOZThvbjhFQkU5QlRPd3FxY0syV3pN?=
+ =?utf-8?B?V2VkdlFtdkQyY0JKZnYrYjlGc0oxRkZvMURYNG52WDJrcE91UGZGT3JGNFlH?=
+ =?utf-8?B?aUErSEtXL1g5TTlEQW1oRFQzVy8zS2xwc1VhSXJCSVNYc0cyQ0hVV2RmY3VH?=
+ =?utf-8?B?YXRlVm5TUnF5MExZZDV0ejJoeFRSOHpXajlwYlNkcFJQaUJLYU5OY1VqWTdP?=
+ =?utf-8?B?OFZkdlZCNDJodDEzdDlYbkFxMW5DUGhoMjFQLzdnSFRwYUFTcFlHU0ZJeWcx?=
+ =?utf-8?B?SFVZNHhNY0dxMEV3UURxMU5sb1VaUGlZOVJmZ3FRWmZCaWlxZitYWDcvdkVk?=
+ =?utf-8?B?dWZXUzY4YzBHSDhFWWVRZ1ZremVISis1M29Md2xXaVJLNnA1UjBRYVJRNy9l?=
+ =?utf-8?B?M1NVczFBbXl2bmtaNmlqWnZ0a3BVOWpyZ0FhSnpUSjVXeDhCUG5ZV1JoK25B?=
+ =?utf-8?B?ZjhkS3ZiM1NFQ0l0T1pOeHpqZzk3L3hzNHhwTWIzeUJkd1ZyVTdIQkRDRDFh?=
+ =?utf-8?B?R1JJWkp2ZkFHN1hYempBRkEzbjYxaW56WG9rSjY0dk9jd2ZVSTI2TzZQRzND?=
+ =?utf-8?B?dk45dUV1a2dZQS9JeUF3MDBWQ2VNRmkrUU00bFcrZ3IxODM4UzM3aENzSHNB?=
+ =?utf-8?B?WXBUVkR3S3dtcDljbS81RkhyVVcveDk4a1FjOFNMR1AxeENSNXFnMHBHcEky?=
+ =?utf-8?B?eUZvVVlRRldIVWNabEE4YW1udEJ3bngreVMxempWVm5GZkF0VWM3VVNURkRy?=
+ =?utf-8?B?aG9yUmV4VzNIeldXdzRPYkdXMnBCZHRhZTFaMTI2ZzkxWVBKc2xGandibFFl?=
+ =?utf-8?B?c25ib1RsU1BnRnBvRG9RZFlXdCttbkFJRkQwL2pJTVloUkNWSEhGcW10aVdn?=
+ =?utf-8?B?NE9KVHlicVZzcHhTYnpDYThYTERWOXBuUVdzL2lpUFIrYTN3bnBKWnR0M3RN?=
+ =?utf-8?B?akthcUhHQVBubVJ5VEtQbUxDeVNvenhvZHVtOUpqSERCQW5yMDQySFVNNDZj?=
+ =?utf-8?B?VmM2cXRVcE9EKzVGamdIK0hKcWcvbkRaNVZLcWRpd05SajREWWdzU0lwVVlI?=
+ =?utf-8?B?NTZ1ZmVQdXJJalBqZ2lWOWx2dWsxZ0VLVVkrNGZMbmZQaWRMM1M4dmhHTGtB?=
+ =?utf-8?B?RFdFMk1pVkhUSkV3NmxPVXV4RU5UQTV4czRCTTVUNm1yU0NjTU1ZcjhpdHI3?=
+ =?utf-8?B?RTluUW9jK1ZwVE5PSzZKWDZnZHJQTUtCOEh6ajN0eUk5SzhKTFJsY3JSL0ND?=
+ =?utf-8?B?eG1aQWpqWlNrQk1VWnlDRmlBd2dvQUJ4aVd2VURSbGwyd1hyVXhtaTdVSWZx?=
+ =?utf-8?B?cUdUZ0ViZ2RJTDJGaEJPd2JtTHA5NDg3Z3cyQmFaQ2hHaVNFVzRTc3JRWFNx?=
+ =?utf-8?B?ZGl2cytvK2hJOHJLZEJvenJyVm5QTlFGTkxmK2w1cEN6cFNsNEdqVUFSbUIz?=
+ =?utf-8?B?ZW9WVDFrbDB4L0QyVzhYT3A2WHVSa1p0QllVRFBKamc3ZGhBTlY3WmVaQ0hM?=
+ =?utf-8?B?T2xFV253YndCL0RRYzJ5REZXMDAwQjJTbkRIeFJVMGdFVEJPbGdBZm80VW5T?=
+ =?utf-8?Q?I5QwWZz32+6iYapAkb8etS1zccwPDxNsnhN5w=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB5941.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(366007)(1800799015)(7416005)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?RVZOdmZzalAreXVSMTllZ0J3MDBNb0ZWTzBHcXRkdW5BektvRU5HRXhhVmZq?=
+ =?utf-8?B?WWY2MDRRMWhCM0VCTXQ4N3lDYTgxM0NDeHNvQUo3dHFIVjdFVE95MHVPMEFv?=
+ =?utf-8?B?RDk4YTJoQVF3K3lDTW4zUWtueXp4czZWZjZuQzhwaVFKSlQvTnZLN3FvTTZW?=
+ =?utf-8?B?Tzg5N05mR1NBWFhiWGcrZUk2blFlN3pMWUtMSUgyZ0hURGMxREZDY285dzFI?=
+ =?utf-8?B?dVRaTmtoZkVDUDZ0Y2VqakZrdmh0SHdFRGI4S3RxMW9Nay94MndRMm9jUmlx?=
+ =?utf-8?B?T0lUWHNESWxPK0ZqajNlSTVpTk5TUnVoRE9LejFKOU1IaW9kVzUyK3gxV2da?=
+ =?utf-8?B?V3c1N3k0SUNFdGVVVndwbjZRbFJuUGNLdTRsR2NuRS9HV21KZ0pBQWdPaFdw?=
+ =?utf-8?B?d3hxSmw0Snd1Y1AvbHNCdzBnZHh0eFU2VzdnVFNmdnJQMDB4blpmZGd3SVlC?=
+ =?utf-8?B?RGM5TVVlYmlhVGQxWlcwRHJVYjdPWmV2Q20vbW0rcWw1UlRyQVhpOVFUWURV?=
+ =?utf-8?B?RlhjRmtuZXYvMEZYckNLZFBTL1lEbnpsOUlyeU1RRUZkNWZKUU91ZlI3UmVk?=
+ =?utf-8?B?dk9lM3E0TVlUU2loZ0I3RUNXQzE1VGxrVCtET0RHeGlxTm1pOG9YODg2Ry9H?=
+ =?utf-8?B?dlMrbUdLU1JWYTFQUmhBQjNiOWFjUzJNZUYycmtPZ0RRZVZwTk0rVDUzUzQx?=
+ =?utf-8?B?QkxpOG5xT2wrbGtnVHk2K2VMK0psSUM1WW0rSThXYUx1UDJzZU9oV013eGpn?=
+ =?utf-8?B?L29oNkhPa1B2RWlNaFpkcnozWU1hNS9FRFZXSGZQaXUzUjFCL2h5cUR5ZGRi?=
+ =?utf-8?B?SVRwWWtjL1VmbHhlSXBHa0FIbzFWNS84Y0ZsQmtGUS83bHMzdVpsMTQ0R3My?=
+ =?utf-8?B?eDZIUEtQaFBBaFRFVll5bk5nVm5GcDVkODd1elNJbkZlZnRERmM1M2IvZzNo?=
+ =?utf-8?B?M2dZamtiMEE2VUhOdW1kU3dKZ3VHNWFhY1hsYzFSc0ZYL3hHK016QlB0SFNn?=
+ =?utf-8?B?UGtCaURFanB6ZWw2U05BWWVwQU9DNFNLWFN6bzE2eVAwVjJpdzN1NVppNHN1?=
+ =?utf-8?B?REhBWS9WSjl1SlB0UWg5WEU3MHd6WUxaYzRPcFlYNE9DVER0b1lla2s5OHY4?=
+ =?utf-8?B?S1VaZkd4T1g3eGpzUU5NN1dJa0NqZnJyY2JOUjhTOUZQWmQzRTJ1cy9YVllU?=
+ =?utf-8?B?RjgwUUU4T0pGUjc1bHVVYkpDZk1tUkU1MjY2RFNNSjV0UkprdXd1SXNJdXE5?=
+ =?utf-8?B?STJzTW90NEFoWXVHcmtySmowOXBXT2pWckNNRytjSXNIRjJyTFVvbmRqd2lv?=
+ =?utf-8?B?UklDUjhDVXVzUEgwVm01UkNKblRBMGlWKzY3SlNxK2pBdFBYY2pvUmd4Tkln?=
+ =?utf-8?B?YnFmWGRYV3krNVkzOVZRcjM4K3RaZVNLN3g3ckl6QU1mRHpqR3VnYkN6VEgx?=
+ =?utf-8?B?ZHhoMlZoQVBHR28wb2FLbys2OHZzYWVXRkxkbEtmSDQvbCtZRlBzb3ozYzF4?=
+ =?utf-8?B?NWZRcDU5ZkNGenZ0RndINUZpWVhpUk52bmgrVXo3czA4aU1tMGVvaVNBRm1K?=
+ =?utf-8?B?Y3FOUWQrUGxPSU1rSzVSTWJSS0RnTG1qTjlTMFF5ZGg5U0ZYVUg5TXR6eDJS?=
+ =?utf-8?B?Qk1rZWdXYlNjVmtJaEJHbSttclVCMzNhc1FvNGFXb0pyMm4vK3dPZ2R3OU5x?=
+ =?utf-8?B?RUpSVHRiMmR5YmluNDBEY3FqZmx0ZEU2QURWTU5FNnhFK1pVSUwxTVlVYlVB?=
+ =?utf-8?B?NkhLRGU5MkpaT2p6WXZzSldnaUFqdnY5bUFJKy9zT0JNR25LOXJidmJKMlM4?=
+ =?utf-8?B?SENKU05uWXgraU9wZjI5aHdxL01zaXZmUWNQRVdZc255dXBCbzBJUkQxRmdV?=
+ =?utf-8?B?bHc2b2g4WThXNCt1UVBaaTVUUEtEbmt0OHVZdkhiOVFjandBYWZHR0xWeExT?=
+ =?utf-8?B?d2FYWHBCM09IdnhVaFI0dGJlb3lzQy9kNVF5aWpxTm92RmxML05qUmZ2dWVO?=
+ =?utf-8?B?dDA2bTVHWFZ2c1F6blNWeTlnVWUyZjhlSjdXVVVCZGw2RFkreVN3Y0FTbEZa?=
+ =?utf-8?B?aGhOanBDUUxjcDJJaXdRYS9yaHZacmc4UUp0YzZBbEoxdVdUc3ZaMDF4QWlk?=
+ =?utf-8?Q?MEX4=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240516081104.83458-1-angelogioacchino.delregno@collabora.com>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB5941.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9d1be711-59e4-4167-6655-08dc869126a5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jun 2024 01:28:35.6136
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: AEjaxwZ/qsNSs4Ll67sDK62p7Bf7Dtt353XfeKrVUCmNA50py3tKQWzvFFpczmy61YfX6oJkD/oS6f9rdvg4Lg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8326
 
-On Thu, May 16, 2024 at 10:11:01AM +0200, AngeloGioacchino Del Regno wrote:
-> Changes in v4:
->  - Fixed a typo that caused pure OF graphs pipelines multiple
->    concurrent outputs to not get correctly parsed (port->id); 
->  - Added OVL_ADAPTOR support for OF graph specified pipelines;
->  - Now tested with fully OF Graph specified pipelines on MT8195
->    Chromebooks and MT8395 boards;
->  - Rebased on next-20240516
-> 
-> Changes in v3:
->  - Rebased on next-20240502 because of renames in mediatek-drm
-> 
-> Changes in v2:
->  - Fixed wrong `required` block indentation in commit [2/3]
-> 
-> 
-> The display IPs in MediaTek SoCs are *VERY* flexible and those support
-> being interconnected with different instances of DDP IPs (for example,
-> merge0 or merge1) and/or with different DDP IPs (for example, rdma can
-> be connected with either color, dpi, dsi, merge, etc), forming a full
-> Display Data Path that ends with an actual display.
-> 
-> This series was born because of an issue that I've found while enabling
-> support for MT8195/MT8395 boards with DSI output as main display: the
-> current mtk_drm_route variations would not work as currently, the driver
-> hardcodes a display path for Chromebooks, which have a DisplayPort panel
-> with DSC support, instead of a DSI panel without DSC support.
-> 
-> There are other reasons for which I wrote this series, and I find that
-> hardcoding those paths - when a HW path is clearly board-specific - is
-> highly suboptimal. Also, let's not forget about keeping this driver from
-> becoming a huge list of paths for each combination of SoC->board->disp
-> and... this and that.
-> 
-> For more information, please look at the commit description for each of
-> the commits included in this series.
-> 
-> This series is essential to enable support for the MT8195/MT8395 EVK,
-> Kontron i1200, Radxa NIO-12L and, mainly, for non-Chromebook boards
-> and Chromebooks to co-exist without conflicts.
-> 
-> Besides, this is also a valid option for MT8188 Chromebooks which might
-> have different DSI-or-eDP displays depending on the model (as far as I
-> can see from the mtk_drm_route attempt for this SoC that is already
-> present in this driver).
-> 
-> This series was tested on MT8195 Cherry Tomato and on MT8395 Radxa
-> NIO-12L with both hardcoded paths, OF graph support and partially
-> hardcoded paths, and pure OF graph support including pipelines that
-> require OVL_ADAPTOR support.
-> 
-> AngeloGioacchino Del Regno (3):
->   dt-bindings: display: mediatek: Add OF graph support for board path
->   dt-bindings: arm: mediatek: mmsys: Add OF graph support for board path
->   drm/mediatek: Implement OF graphs support for display paths
-> 
->  .../bindings/arm/mediatek/mediatek,mmsys.yaml |  28 ++
->  .../display/mediatek/mediatek,aal.yaml        |  40 +++
->  .../display/mediatek/mediatek,ccorr.yaml      |  21 ++
->  .../display/mediatek/mediatek,color.yaml      |  22 ++
->  .../display/mediatek/mediatek,dither.yaml     |  22 ++
->  .../display/mediatek/mediatek,dpi.yaml        |  25 +-
->  .../display/mediatek/mediatek,dsc.yaml        |  24 ++
->  .../display/mediatek/mediatek,dsi.yaml        |  27 +-
->  .../display/mediatek/mediatek,ethdr.yaml      |  22 ++
->  .../display/mediatek/mediatek,gamma.yaml      |  19 ++
->  .../display/mediatek/mediatek,merge.yaml      |  23 ++
->  .../display/mediatek/mediatek,od.yaml         |  22 ++
->  .../display/mediatek/mediatek,ovl-2l.yaml     |  22 ++
->  .../display/mediatek/mediatek,ovl.yaml        |  22 ++
->  .../display/mediatek/mediatek,postmask.yaml   |  21 ++
->  .../display/mediatek/mediatek,rdma.yaml       |  22 ++
->  .../display/mediatek/mediatek,ufoe.yaml       |  21 ++
->  drivers/gpu/drm/mediatek/mtk_disp_drv.h       |   1 +
->  .../gpu/drm/mediatek/mtk_disp_ovl_adaptor.c   |  40 ++-
->  drivers/gpu/drm/mediatek/mtk_dpi.c            |  16 +-
->  drivers/gpu/drm/mediatek/mtk_drm_drv.c        | 282 ++++++++++++++++--
->  drivers/gpu/drm/mediatek/mtk_drm_drv.h        |   2 +-
->  drivers/gpu/drm/mediatek/mtk_dsi.c            |  10 +-
->  23 files changed, 713 insertions(+), 41 deletions(-)
-> 
-> -- 
-> 2.45.0
-> 
-
-Hi Angelo,
-
-I'm seeing issues with this series on MT8195-Tomato running on next-20240606:
-
-[    4.770965] refcount_t: addition on 0; use-after-free.
-[    4.770975] WARNING: CPU: 5 PID: 171 at lib/refcount.c:25 refcount_warn_saturate+0xa0/0x144
-[    4.770983] Modules linked in: videobuf2_common rfkill(+) kfifo_buf onboard_usb_dev(+) mc hid_multitouch(+) cros_ec_chardev cros_kbd_led_backlight snd_sof_mt8195 elan_i2c mtk_adsp_common sbs_battery snd_soc_mt8195_afe snd_sof_xtensa_dsp pwm_bl lvts_thermal(+) mt6577_auxadc pcie_mediatek_gen3(+) snd_sof_of coreboot_table backlight mtk_scp mtk_rpmsg snd_sof mtk_svs snd_sof_utils mtk_scp_ipi mt8195_mt6359 ramoops reed_solomon
-[    4.771000] CPU: 5 PID: 171 Comm: (udev-worker) Not tainted 6.10.0-rc2-next-20240606-00005-gf8e90366fe4b #472
-[    4.771002] Hardware name: Acer Tomato (rev2) board (DT)
-[    4.771003] pstate: 604000c9 (nZCv daIF +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-[    4.771005] pc : refcount_warn_saturate+0xa0/0x144
-[    4.771007] lr : refcount_warn_saturate+0xa0/0x144
-[    4.771008] sp : ffff800080ce3950
-[    4.771009] x29: ffff800080ce3950 x28: ffff800080ce3c70 x27: ffff800080ce3c70
-[    4.771011] x26: 0000000000000000 x25: ffffaec95d6b53f0 x24: ffff5054d9468368
-[    4.771012] x23: ffff5054c0a81968 x22: 0000000000000000 x21: 0000000000000000
-[    4.771014] x20: ffff800080ce39d8 x19: ffff5054c0a81c68 x18: 0000000000000038
-[    4.771015] x17: ffffa18b9ed32000 x16: ffff800080028000 x15: fffffffffffeab58
-[    4.771017] x14: ffffaec95d181f48 x13: 00000000000006c6 x12: 0000000000000242
-[    4.771018] x11: fffffffffffeab58 x10: ffffaec95d1d9f48 x9 : 00000000fffff000
-[    4.771020] x8 : ffffaec95d181f48 x7 : ffffaec95d1d9f48 x6 : 0000000000000000
-[    4.771021] x5 : 80000000fffff000 x4 : 000000000000aff5 x3 : 00000000ffffffff
-[    4.771023] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff5054d8af33c0
-[    4.771024] Call trace:
-[    4.771025]  refcount_warn_saturate+0xa0/0x144
-[    4.771027]  klist_next+0x184/0x1a8
-[    4.771030]  bus_for_each_dev+0x60/0xd4
-[    4.771033]  driver_attach+0x24/0x30
-[    4.771035]  bus_add_driver+0xe4/0x208
-[    4.771037]  driver_register+0x60/0x128
-[    4.771039]  __platform_driver_register+0x28/0x34
-[    4.771041]  lvts_driver_init+0x20/0x1000 [lvts_thermal]
-[    4.771046]  do_one_initcall+0x6c/0x1b0
-[    4.771048]  do_init_module+0x60/0x1f0
-[    4.771050]  load_module+0x191c/0x1b04
-[    4.771052]  init_module_from_file+0x84/0xc0
-[    4.771054]  __arm64_sys_finit_module+0x1b8/0x27c
-[    4.771056]  invoke_syscall+0x48/0x118
-[    4.771059]  el0_svc_common.constprop.0+0x40/0xe0
-[    4.771061]  do_el0_svc+0x1c/0x28
-[    4.771063]  el0_svc+0x34/0xdc
-[    4.771065]  el0t_64_sync_handler+0xc0/0xc4
-[    4.771067]  el0t_64_sync+0x190/0x194
-
-
-[    4.837189] refcount_t: saturated; leaking memory.
-[    4.837197] WARNING: CPU: 7 PID: 170 at lib/refcount.c:22 refcount_warn_saturate+0x74/0x144
-[    4.837205] Modules linked in: phy_mtk_dp(+) videodev videobuf2_common rfkill kfifo_buf onboard_usb_dev(+) mc hid_multitouch(+) cros_ec_chardev cros_kbd_led_backlight snd_sof_mt8195 elan_i2c mtk_adsp_common sbs_battery snd_soc_mt8195_afe snd_sof_xtensa_dsp pwm_bl lvts_thermal mt6577_auxadc pcie_mediatek_gen3(+) snd_sof_of coreboot_table backlight mtk_scp mtk_rpmsg snd_sof mtk_svs snd_sof_utils mtk_scp_ipi mt8195_mt6359 ramoops reed_solomon
-[    4.837221] CPU: 7 PID: 170 Comm: (udev-worker) Tainted: G        W          6.10.0-rc2-next-20240606-00005-gf8e90366fe4b #472
-[    4.837224] Tainted: [W]=WARN
-[    4.837224] Hardware name: Acer Tomato (rev2) board (DT)
-[    4.837225] pstate: 604000c9 (nZCv daIF +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-[    4.837227] pc : refcount_warn_saturate+0x74/0x144
-[    4.837229] lr : refcount_warn_saturate+0x74/0x144
-[    4.837230] sp : ffff800080cdb950
-[    4.837231] x29: ffff800080cdb950 x28: ffff800080cdbc70 x27: ffff800080cdbc70
-[    4.837232] x26: 0000000000000000 x25: ffffaec95d6b53f0 x24: ffff5054d66544e8
-[    4.837234] x23: ffff5054c0a81968 x22: 0000000000000000 x21: 0000000000000000
-[    4.837235] x20: ffff800080cdb9d8 x19: ffff5054c0a81c68 x18: 0000000000000030
-[    4.837236] x17: 0000000000000000 x16: ffffaec95b03d998 x15: fffffffffffecb70
-[    4.837238] x14: ffffaec95d181f48 x13: 0000000000000825 x12: 00000000000002b7
-[    4.837239] x11: fffffffffffecb70 x10: ffffaec95d1d9f48 x9 : 00000000fffff000
-[    4.837240] x8 : ffffaec95d181f48 x7 : ffffaec95d1d9f48 x6 : 0000000000000000
-[    4.837242] x5 : 80000000fffff000 x4 : 000000000000aff5 x3 : 00000000ffffffff
-[    4.837243] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff5054d8af4500
-[    4.837245] Call trace:
-[    4.837246]  refcount_warn_saturate+0x74/0x144
-[    4.837247]  klist_next+0x178/0x1a8
-[    4.837250]  bus_for_each_dev+0x60/0xd4
-[    4.837253]  driver_attach+0x24/0x30
-[    4.837255]  bus_add_driver+0xe4/0x208
-[    4.837257]  driver_register+0x60/0x128
-[    4.837259]  __platform_driver_register+0x28/0x34
-[    4.837260]  mtk_dp_phy_driver_init+0x20/0x1000 [phy_mtk_dp]
-[    4.837263]  do_one_initcall+0x6c/0x1b0
-[    4.837265]  do_init_module+0x60/0x1f0
-[    4.837268]  load_module+0x191c/0x1b04
-[    4.837269]  init_module_from_file+0x84/0xc0
-[    4.837271]  __arm64_sys_finit_module+0x1b8/0x27c
-[    4.837273]  invoke_syscall+0x48/0x118
-[    4.837276]  el0_svc_common.constprop.0+0x40/0xe0
-[    4.837277]  do_el0_svc+0x1c/0x28
-[    4.837279]  el0_svc+0x34/0xdc
-[    4.837282]  el0t_64_sync_handler+0xc0/0xc4
-[    4.837284]  el0t_64_sync+0x190/0x194
-
-
-and many more occurrences.
-
-Config: http://0x0.st/XbqI.txt
-Full kernel logs: http://0x0.st/Xbq6.txt
-
-Thanks,
-Nícolas
+PiBTdWJqZWN0OiBbUEFUQ0ggMS83XSBhcm02NDogZHRzOiBpbXg4cW06IGFkZCBsdmRzIHN1YnN5
+c3RlbQ0KPiANCj4gQWRkIGlycXN0ZWFyLCBwd20gYW5kIGkyYyBpbiBsdmRzIHN1YnN5c3RlbS4N
+Cg0KaXJxc3RlZXINCg0KPiANCj4gU2lnbmVkLW9mZi1ieTogRnJhbmsgTGkgPEZyYW5rLkxpQG54
+cC5jb20+DQo+IC0tLQ0KPiAgYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OHFtLXNz
+LWx2ZHMuZHRzaSB8IDIzMQ0KPiArKysrKysrKysrKysrKysrKysrKysrDQo+ICBhcmNoL2FybTY0
+L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4cW0uZHRzaSAgICAgICAgIHwgICAxICsNCj4gIDIgZmls
+ZXMgY2hhbmdlZCwgMjMyIGluc2VydGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9hcmNoL2Fy
+bTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4cW0tc3MtbHZkcy5kdHNpDQo+IGIvYXJjaC9hcm02
+NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OHFtLXNzLWx2ZHMuZHRzaQ0KPiBuZXcgZmlsZSBtb2Rl
+IDEwMDY0NA0KPiBpbmRleCAwMDAwMDAwMDAwMDAwLi5lYjgyMDhjZGRlYWY5DQo+IC0tLSAvZGV2
+L251bGwNCj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OHFtLXNzLWx2
+ZHMuZHRzaQ0KPiBAQCAtMCwwICsxLDIzMSBAQA0KPiArLy8gU1BEWC1MaWNlbnNlLUlkZW50aWZp
+ZXI6IEdQTC0yLjArDQoNCkdQTC0yLjAtb25seSBhbmQgTUlUPw0KDQo+ICsNCj4gKy8qDQo+ICsg
+KiBDb3B5cmlnaHQgMjAyNCBOWFANCj4gKyAqLw0KPiArDQo+ICsvew0KPiArDQo+ICsJbHZkczFf
+aXBnX2NsazogbHZkczBfaXBnX2NsazogY2xvY2stY29udHJvbGxlci1sdmRzLWlwZyB7DQoNClR3
+byBhbGlhcyBuYW1lPw0KDQo+ICsJCWNvbXBhdGlibGUgPSAiZml4ZWQtY2xvY2siOw0KPiArCQkj
+Y2xvY2stY2VsbHMgPSA8MD47DQo+ICsJCWNsb2NrLWZyZXF1ZW5jeSA9IDwyNDAwMDAwMD47DQo+
+ICsJCWNsb2NrLW91dHB1dC1uYW1lcyA9ICJsdmRzMF9pcGdfY2xrIjsNCj4gKwl9Ow0KPiArDQoN
+ClJlZ2FyZHMsDQpQZW5nLg0K
 
