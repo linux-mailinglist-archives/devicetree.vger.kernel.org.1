@@ -1,79 +1,72 @@
-Return-Path: <devicetree+bounces-73559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 996948FFFD2
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:45:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C71C8FFFE0
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:50:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA7D01F27C76
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:45:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96377282E5C
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:50:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCB4615B989;
-	Fri,  7 Jun 2024 09:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C7AD136658;
+	Fri,  7 Jun 2024 09:50:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JNywxByP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OJz999IF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32D1415B122;
-	Fri,  7 Jun 2024 09:44:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22773200A0;
+	Fri,  7 Jun 2024 09:50:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717753492; cv=none; b=aKDTWULNlmeGBGWqE72uRHQHIaXF3SilPQLom39KapIrok+hPm3nIR0FDYFkGMJpMzRqvBLxmk3Oc5UI71qzrND7KfXNDWu4Dhzn4rxFPqojV/B60hadq4JLmdQXLY9Uh9YrNnwwanTxwfv6KilysIyCBqQlVBG5HLjXd2uEwtA=
+	t=1717753805; cv=none; b=t0MagDAm8hp+Vl4HiJTktdvI8CAy+mGyaq0IFBAhCOG0f9bJrYjlkmBz+GfsrlRgb6xf9I9m1/2SJ5TkrtXsPzN96c3e3HJnYO//fzNswLd+953O2d7l6gkDLHQe3O8CcQAzQpA3RvnBWOoaVIL1VDVERsq+a0IAWfyZNrOIxG0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717753492; c=relaxed/simple;
-	bh=voo+058tPlgVMfI1TZTTzr4t/Aowjlk+5Zt2NGckp00=;
+	s=arc-20240116; t=1717753805; c=relaxed/simple;
+	bh=akjruwrkh3WPGkPm5XOY0XEKEarFR0VOfCvlpit9/ek=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IfMjVSa/vt/HlW1ITPt5qMZlw5/iW9MDMGs2wjxGkd14V+4EO+8XAxTGfrzaIN4bfljqX10bVKFl+Cht4mLY6ccg4iyVCnygX9LPQALObGPDmMgOOsHEB8e8sejnMd3w42tVGlh1/uTda9HklZLkVbESRmLSUhS4DeO2tk9HL0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JNywxByP; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1717753491; x=1749289491;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=voo+058tPlgVMfI1TZTTzr4t/Aowjlk+5Zt2NGckp00=;
-  b=JNywxByP4NAkGVT66WtDTTWqBF4HYp+lLsKCYfL+AxghellOSM+iYQd3
-   lZUZG0gFC8p48MevClOXH9JQbz/LMVyLL05krRysXFNtlaVp1MZIcWT74
-   63f2xDfZitAi1EUQyK/9bsgO1mTCf002HBEqqWXB7S3/+te5z39f4j3f0
-   rSxNGOKOh0j5yHyxvipBI2LJS5TLc1FUBua/1gGlqsroLBkPaaWxlj9LF
-   IXZXGSsLwplRpP5cA+g/8g5Kjj5Gt7ltMa+Z3Wfb9W2ASc0DckQb+b9Up
-   Axe+BbhWeI8Eun38H/TnI3+u9VPMebtSWiG8HWptBzEisGk3x8/xYAzDb
-   A==;
-X-CSE-ConnectionGUID: tfdbHHTtSCSef3/i0ayuig==
-X-CSE-MsgGUID: A2QAH5TvRbGz9Y89VhfbOA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="18294757"
-X-IronPort-AV: E=Sophos;i="6.08,220,1712646000"; 
-   d="scan'208";a="18294757"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jun 2024 02:44:50 -0700
-X-CSE-ConnectionGUID: 8ZQlJrjIRZii1uvJWoEVGA==
-X-CSE-MsgGUID: UsrlsgBJRDKUnLDBbEx3qA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,220,1712646000"; 
-   d="scan'208";a="61472308"
-Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
-  by fmviesa002.fm.intel.com with ESMTP; 07 Jun 2024 02:44:47 -0700
-Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sFW9M-0004Z5-1b;
-	Fri, 07 Jun 2024 09:44:44 +0000
-Date: Fri, 7 Jun 2024 17:44:36 +0800
-From: kernel test robot <lkp@intel.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm: dts: aspeed: Use standard 'i2c' bus node name
-Message-ID: <202406071717.2B7aM49z-lkp@intel.com>
-References: <20240531193115.3814887-1-robh@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=JrGcHlgx3t8oi25RmD6wdV2kdQJ3YLqHLC8I2E/nRGbCSKsR3B8PDhiRlsDL6XSX0wooesHfBLgGqTGo96mEJsbjBwLtGTJw2o9tGBldY8X0GVh3/NfZbv2IuWPsVLzcAePBCxSYK15Pfhl5VpKAJczxVLiGgAG3/yzr+Tj9jhA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OJz999IF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82E0CC2BBFC;
+	Fri,  7 Jun 2024 09:50:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717753804;
+	bh=akjruwrkh3WPGkPm5XOY0XEKEarFR0VOfCvlpit9/ek=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OJz999IFl1R2Wv1WpGcamcd26uiBC8bgKjv2D0/k3c/2dxRb6z9gvkUv9sZ427y15
+	 hM4bpYCEJOAeaY8H15myrOiJ72h2GW9lgce1l9cvek3Ax5TubupbgSCfTS0oHPXKkb
+	 DtYCP+8q+sXRCl/SsUbj5bpvzVfOMUrCzHRPuME9D+nClgE7XQ5oqQYBx2502mexB4
+	 jQ+GsienBD+TirjkdCuz+oC3CxeksciiMp5qYcyaBntQ8iFhCKaym8zjzWvWpVuryU
+	 CiQsjtNzICfCKWNcOnelZDglN3I9A2fh9C/3Zy9eK/+YY9B5vQeB5XHajdhSQDeHzO
+	 doy3fofa+ItFQ==
+Date: Fri, 7 Jun 2024 11:49:57 +0200
+From: Niklas Cassel <cassel@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Manivannan Sadhasivam <mani@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
+	Jon Lin <jon.lin@rock-chips.com>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v4 03/13] dt-bindings: PCI: snps,dw-pcie-ep: Add
+ tx_int{a,b,c,d} legacy irqs
+Message-ID: <ZmLXxUa_6WTde7OC@ryzen.lan>
+References: <20240529-rockchip-pcie-ep-v1-v4-0-3dc00fe21a78@kernel.org>
+ <20240529-rockchip-pcie-ep-v1-v4-3-3dc00fe21a78@kernel.org>
+ <20240605073402.GE5085@thinkpad>
+ <ZmCQak-m7RWRxiix@ryzen.lan>
+ <20240606062538.GA4441@thinkpad>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,63 +75,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240531193115.3814887-1-robh@kernel.org>
+In-Reply-To: <20240606062538.GA4441@thinkpad>
 
-Hi Rob,
+On Thu, Jun 06, 2024 at 11:55:38AM +0530, Manivannan Sadhasivam wrote:
+> 
+> I think you misunderstood what I was asking. I was just asking if we still want
+> to keep the term 'legacy' for INTx IRQs in DT binding or not, since we recently
+> got rid of that terminology in PCI drivers.
 
-kernel test robot noticed the following build warnings:
+I still don't think that I understand :)
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on krzk/for-next linus/master v6.10-rc2 next-20240607]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+In snps,dw-pcie.yaml we currently (6.10-rc2) have:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Rob-Herring-Arm/arm-dts-aspeed-Use-standard-i2c-bus-node-name/20240601-033514
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240531193115.3814887-1-robh%40kernel.org
-patch subject: [PATCH] arm: dts: aspeed: Use standard 'i2c' bus node name
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240607/202406071717.2B7aM49z-lkp@intel.com/reproduce)
+const: legacy
+(for the combined IRQ)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406071717.2B7aM49z-lkp@intel.com/
+pattern: "^int(a|b|c|d)$"
+(for the individual IRQs)
 
-dtcheck warnings: (new ones prefixed by >>)
->> arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts:541.10-555.4: Warning (avoid_unnecessary_addr_size): /ahb/apb/bus@1e78a000/i2c@480/gpio@77: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+So we will need to support these indefinitely.
 
-vim +541 arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
+What is it that you would want to rename?
 
-36d96827f480e9 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Quan Nguyen  2022-08-17  532  
-695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  533  &i2c8 {
-695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  534  	status = "okay";
-695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  535  
-e998856086a41d arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts Chanh Nguyen 2023-10-05  536  	temperature-sensor@48 {
-e998856086a41d arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts Chanh Nguyen 2023-10-05  537  		compatible = "ti,tmp112";
-e998856086a41d arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts Chanh Nguyen 2023-10-05  538  		reg = <0x48>;
-e998856086a41d arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts Chanh Nguyen 2023-10-05  539  	};
-e998856086a41d arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts Chanh Nguyen 2023-10-05  540  
-695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28 @541  	gpio@77 {
-695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  542  		compatible = "nxp,pca9539";
-695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  543  		reg = <0x77>;
-695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  544  		gpio-controller;
-695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  545  		#address-cells = <1>;
-695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  546  		#size-cells = <0>;
-695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  547  		#gpio-cells = <2>;
-695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  548  
-695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  549  		bmc-ocp0-en-hog {
-695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  550  			gpio-hog;
-695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  551  			gpios = <7 GPIO_ACTIVE_LOW>;
-695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  552  			output-high;
-695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  553  			line-name = "bmc-ocp0-en-n";
-695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  554  		};
-695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  555  	};
-695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  556  };
-695cb117ac2a36 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts        Chanh Nguyen 2023-02-28  557  
+the combined irq?
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Doesn't sound like a good idea to me, as we would need to support two
+(perhaps that is what you meant).
+
+But even if you wanted to rename it, it would be hard to come up with
+a name. Perhaps intx, but that would be super confusing since we already
+have inta, intb, intc, intd.
+
+I think it is best just to not touch the binding.
+
+In kernel macros could (that have already been renamed from legacy to intx)
+doesn't really have anything to do with the DT binding IMO.
+
+
+Kind regards,
+Niklas
 
