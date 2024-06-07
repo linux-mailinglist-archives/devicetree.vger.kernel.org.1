@@ -1,107 +1,141 @@
-Return-Path: <devicetree+bounces-73521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 185988FFE30
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 10:42:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3C408FFE57
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 10:49:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A90D51F25613
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 08:42:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CBAE283F3B
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 08:49:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D45115B124;
-	Fri,  7 Jun 2024 08:42:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D9C3745C2;
+	Fri,  7 Jun 2024 08:49:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ixqdpOuB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZhwYgiFM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FD0E15B0E1;
-	Fri,  7 Jun 2024 08:42:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9E207317C;
+	Fri,  7 Jun 2024 08:49:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717749742; cv=none; b=o7q9KUeVsHYsYkJU536c+emArkvaQQlJnpTLQCBPNyCQHZE40dpRQMx8tqSQBEWugfZXtN45V11xKmaSjreZRs7Q6O7YMfpIY8CNHTEFPRC2h459gfoY2Iopl2YkEL49G2hAznUaT+dA+w0W91z03dyXT9Txib+6fTnfeQF1Rhs=
+	t=1717750153; cv=none; b=MYnbB4HFVfVl5z/9iXLGXsgvJpgVPlmLm0xOCiKv08rqgtRAKB8hqn7sEsH4ivVAT9hwAHE4tdG0tRe2AIexTWO3Kc0TCPAW/JWIXsDAZ9uKhAobX8rH2qwVjojtBxDcjggyke35RUivDbn8cLzOUlaRJV0yP9Raa4yot7dwq6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717749742; c=relaxed/simple;
-	bh=gKD+CT9f7p/wT8kKDWc+BkVADz15maGFszW302e203U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JY7YZIg6vfsDJWi3dNbjiPsK98gQS1/NFdirRqAu5NfAPSr6W9BwWizwoSNAuaS9LmckHgKguMduvoPNdesGz1Lrz1VFCHLt4+rW2JsVFOJ4wnTH+hgx7mrngpmZqutY0t/hoUvmHU07XvoCEhdJL2rQORhW4Y7Kf3zmfA0PfJI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ixqdpOuB; arc=none smtp.client-ip=209.85.208.53
+	s=arc-20240116; t=1717750153; c=relaxed/simple;
+	bh=hMoCi3CiZZrj2+Y22zfqnFud4swZKvdCbQXLn4suIv8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MDSmB2ZXnnddkdcUxVxVglZPlZbjaPWxRHjt9ahJY2tix3t3aaeCtVNO0tI3t4iEoLBkijPCRL39nexsh5UrGGR9OwZGdmKXjj52U2NayXRTyq4pH6mbxq+yZ+5nqeSqEiSOv6PI7EvjlWZ3ZH1q11CgGjoFXUDTjD5+OUS5jC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZhwYgiFM; arc=none smtp.client-ip=209.85.167.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-57a4ce82f30so2260308a12.0;
-        Fri, 07 Jun 2024 01:42:20 -0700 (PDT)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-52bc121fb1eso207057e87.1;
+        Fri, 07 Jun 2024 01:49:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717749739; x=1718354539; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gKD+CT9f7p/wT8kKDWc+BkVADz15maGFszW302e203U=;
-        b=ixqdpOuBi9SfMGyqw2y4EoqvVNGyaWWO6cSa+kh8tGA80zv9ZEK7UEfwwy2Tz6xHCB
-         /0FVOcpHd5R54cBN9LJO7YpgNj+sKJjaOyxhfQTyVNi4+lmcq531G41op/r1dxlWRL3+
-         2yYfvyRNAQ5UK8K7GVqWDwtoLgtUvwuBLMkgfX4qDl+5wicncOgAU8BfDFDKZ6od62yE
-         A2GAPSK7f2GxiDUbmTOOZn4us1x9NQSbKeHFbFAFgetWc8cQF37c/uA4VHS/er3PsPKi
-         /lwmRRKjtFEfaIQSbFzG+7R2Fxnv7/0V653S348v/EuZtIHDU+JlFiO36H78VrxTqN1T
-         Cu+A==
+        d=gmail.com; s=20230601; t=1717750150; x=1718354950; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gOiWxwHu+OpD7Jbm2v+TszlDGCIU7+PiFMWDJObj5oI=;
+        b=ZhwYgiFMIgT6X8TKkcSb/W5Iw7VT4Hu6olzeKa6edNjLRRAw2feklC43h6Nm85IGd3
+         sKfDUtCx8rdiEK3pt6oxZZDSFjWW5yQNedDJEpewpXGoOrDUJKWvH5iB0T6kpN4pG7MI
+         CJHGewzTkVXlYWLVXzOxbkcgJRopE5wtIpsxXZSHQPBQ0bWcGNchNE79v7sUpRjm286f
+         pSKL6xCLGgLgW74yoKGOA7HdvrT8ajoLJTy0q5QVTLOReqBrqQPdL96CmF/YHHM33kaG
+         yJM9MUfmoo3vVjZApcfYxki9IDzjHYr4WGkKUTDp8b+RVNL8wRWpM0jZE2ad/Ju61FyM
+         gm/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717749739; x=1718354539;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gKD+CT9f7p/wT8kKDWc+BkVADz15maGFszW302e203U=;
-        b=AsMMIOL1ypi41wJsaJhOMm3fRL9IxidFs0lAJmqmcp0p20vgv6Z3Qawxca4JP0cuwz
-         tRO3LWUGaGkRCWDreN1jFmOeKBZVrCKAtonZDzXeiD8CZ4vwXangBhDNRDKJUdTKnY7N
-         VX5oVxaHiyjChvqg35q7crAjbK3yUbdxXVSN91FGStXTX9prCTFMPcI3TOGdn7lnaOfV
-         UpQspddvng5XhpHqwQNHEku0mp85Fi+wQmMVA3qvi4cEUtTD98YavVseV5STOjbp/zCn
-         QuRoN4uMLtZJj2JRTn5+PYNb2q/UFIEqkjj1jKdOIbL8M3hVokz4VwXuSe8I1Ub0Ld/i
-         Z+0A==
-X-Forwarded-Encrypted: i=1; AJvYcCXDoxMP2ukUrNHAF9pPsna55t6zfBxDM6v+vIJa6oSOp3aaxigfZYeNpIfQqFo3pR0G5fbEIes7LKGPK7V1pq8NIGskYH5tyln4uX1NBf7UbUNFBgzOPeq+vppwrDbjyQvYKB09DhdSytn4i29Ex0Hv6nRgJklqdSO/m8Oo9ZVK5i6ADyMG
-X-Gm-Message-State: AOJu0YxXuHoUXe4Tm/XjU0X5zELK194P8Qaf+KD5+yAHenfV1pfvmRwX
-	h2yF5cSyei3zmnthiQoLYsgBNVQly8ZxtahzmnaDemSMafavIsMqQypJhO3z4IatgZl5SPcE6mW
-	2lKVb1T4bzKgSeMMJhmpcF49rvQM=
-X-Google-Smtp-Source: AGHT+IF8hs7c9n2gzMIzh4tdo5RrOfiFRubVngRyaE1i8HeeLwxSf9mRnWBLBk4mBykjVzOhpW+tsTAHkT87qXeYu3s=
-X-Received: by 2002:a17:906:b7c7:b0:a62:b36a:eafa with SMTP id
- a640c23a62f3a-a6cdaa0fa87mr159211066b.57.1717749738582; Fri, 07 Jun 2024
- 01:42:18 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1717750150; x=1718354950;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gOiWxwHu+OpD7Jbm2v+TszlDGCIU7+PiFMWDJObj5oI=;
+        b=hFwnogc7wqWCZMGQTEYhugJgCG6wFcmjNt7pbF3RNkt3Jcz05voSXcPP8gskWlANSe
+         zRFosr1zoYb21MoA4ew3HUYS0w4/LQ9UWLFyeTe+HL8W9jDeIh62T1s6XiNFTLN3qrgM
+         PXQCX0HqoHmBf6zcEraktkurKv8ZQV4dowe8qlpqCv+/u8K7nFUKvzenIi6NZ5nYzUu/
+         G+kUeecPYnUJ6sTQcd3vzovYP5rBibx2HV536E2Y6AKP2UdS2zJiXZVUG7km16yNnJoV
+         u4DNJyBMHzqUutv8UB/JuEt1UwO/S3q8f2AAHAyHEvDO/lfmpUHiHLWsOiNqWhYae+Vz
+         6nuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXQ05yIwyT+FCWnPg1jQlZjU8DWVhi84ZBKNujsWxZnvsZckI5TFiu6DMKHz6GGvT+N+wvCjLvcODfSNkaZcjKw5OE807OJbJukeXrg0bngS0DLsG8Z+/tpQP3rm5dEXJZNbDTQ60D9oHcZNEwSfRMlHUSlHhsl6III1HPxr6nt7gpRU5JYtTLK
+X-Gm-Message-State: AOJu0YwhbmMrtitxDRLo/2/fw/5hVDoaBqkCHLtGMM8K4E5AAKU8atNe
+	+xge/VqN47xsfAwamB/dWxqr6bMbSUc8LgXOq4zBc1BkBBlUlXu3
+X-Google-Smtp-Source: AGHT+IH5NzryrJZakVKjwXwY9sWRTl1oxs9lBNSNMkbs9SI6Ib9HPZ7/ynCWYdwr+ryNzSIxPwSNvA==
+X-Received: by 2002:a05:6512:239a:b0:52b:ad6e:87ac with SMTP id 2adb3069b0e04-52bb9f8efd4mr1411884e87.41.1717750149409;
+        Fri, 07 Jun 2024 01:49:09 -0700 (PDT)
+Received: from [172.16.183.82] ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52bb4216514sm453470e87.163.2024.06.07.01.49.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Jun 2024 01:49:08 -0700 (PDT)
+Message-ID: <b2b31803-44ff-462b-bc1a-6b1ffa93bdf0@gmail.com>
+Date: Fri, 7 Jun 2024 11:49:07 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240607055725.38057-1-animeshagarwal28@gmail.com> <87frtps29l.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87frtps29l.wl-kuninori.morimoto.gx@renesas.com>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Fri, 7 Jun 2024 11:42:06 +0300
-Message-ID: <CAEnQRZCXtoXWmNaoCrLYcSCO=V=O_+yUVoVJmnPkpysUYxBQNw@mail.gmail.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: ak4554: Convert to dtschema
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Animesh Agarwal <animeshagarwal28@gmail.com>, Daniel Baluta <daniel.baluta@nxp.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 07/10] irqdomain: Allow giving name suffix for domain
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <cover.1717486682.git.mazziesaccount@gmail.com>
+ <bbd219c95f4fe88752aee5f21232480fe9b949fb.1717486682.git.mazziesaccount@gmail.com>
+ <87plst28yk.ffs@tglx> <045828bd-4aeb-4d8d-b152-44a816a07221@gmail.com>
+ <20240607101356.3ede2a17@bootlin.com>
+Content-Language: en-US, en-GB
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20240607101356.3ede2a17@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jun 7, 2024 at 9:19=E2=80=AFAM Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
->
->
-> Hi Animesh
->
-> > Convert the AK4554 sound codec bindings to DT schema.
-> >
-> > Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-> > Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> > ---
->
-> Thank you for the patch.
-> But no one is using AK4554, we can remove it instead ?
+On 6/7/24 11:13, Herve Codina wrote:
+> Hi Matti,
+> 
+> On Fri, 7 Jun 2024 09:38:31 +0300
+> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> 
+> ...
+> 
+>> Herve, do you have any idea when you plan to do further sketching on
+>> this? Do you want me to try seeing if I can add the struct
+>> irq_domain_info and maybe use that in the __irq_domain_add() to get the
+>> name-suffix added? I might be able to send one version out during next
+>> week - but then I plan to be offline for couple of weeks ... so it may
+>> be I am not much of a help here.
+>>
+> 
+> On my side, I plan to work on it next week too.
+> If you are off a couple of weeks after, I think I can start and move forward
+> on this topic.
 
+Thanks for the prompt reply and thanks for working with this :) I'll 
+leave it to you for now then, as I don't think it makes much sense to 
+intentionally do conflicting changes. I'll see what you've been up to 
+when I return to the keyboard :) I'd appreciated if you added me to CC 
+when sending the irqdomain refactoring patches (but I can dig them up if 
+you don't).
 
-So we just remove the device tree binding file, right? And later if
-there is anyone who will use the
-codec he can later add the yaml file.
+Have fun!
+
+Yours,
+	-- Matti
+
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
+
 
