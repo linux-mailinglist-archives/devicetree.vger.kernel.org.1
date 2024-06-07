@@ -1,126 +1,152 @@
-Return-Path: <devicetree+bounces-73808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62721900BDC
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 20:24:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7620C900BF1
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 20:40:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10259286372
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 18:24:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C7A8DB23A08
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 18:40:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5174513C909;
-	Fri,  7 Jun 2024 18:24:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7A9713E41D;
+	Fri,  7 Jun 2024 18:40:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LM3uyI6H"
+	dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b="e1WwCWtM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0046e701.pphosted.com (mx0b-0046e701.pphosted.com [67.231.157.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2389A481A3;
-	Fri,  7 Jun 2024 18:24:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23F7F7347D;
+	Fri,  7 Jun 2024 18:40:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.157.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717784661; cv=none; b=KT2T67AY287my7Xmnk7/mkyb1GSSFoc0TvujsWsiUQzyYT0I5QvLP4UmRF8po7mklHGgDTB3PAPaCM9B8Is1Q3xP7yiLpR4hXxQGjZ0mvB6440pJrN8LPzOxuHWiGD3RN89PLdkglZWCMVB5tafYojpUua69IyeMoSIhW7hI0aE=
+	t=1717785603; cv=none; b=a+X5qifsZrBItGcupFHlx0b47dMg/UE74x7ohv6/ZR2eKlMKb0OYCVyFB8Lle/ZiMq6yBHHEbOn9PpxZsZeGAl0nDDfmW/dxp7h97TWyBtH2M4Lxk5ECjoedcGCSHC5oX95EoH6e5VP5sujYphBTNKH7wmWWhFUG+PpEEA2bMkQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717784661; c=relaxed/simple;
-	bh=jXS45UQrPnM99RQ0JyTFd4KZqPVi2vCjrSX/9pcHsAg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DrZH92IiqDjCIjXt8p3iLGpjkKEf/U/vT/SsTTR+ow3HIH38VmxnbRj7LzpB/OAHnipABGkACArVe5aNoURFbtHbJgmUbdC9hnf7xhtSW1RBiHQtlfmMRtRM+EPkmg0ki+nPqKTewURVD9dHVYt1KFW0lJJMEESLTJzWbQ+0pyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LM3uyI6H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7075C2BBFC;
-	Fri,  7 Jun 2024 18:24:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717784660;
-	bh=jXS45UQrPnM99RQ0JyTFd4KZqPVi2vCjrSX/9pcHsAg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LM3uyI6HPiy6Y91PHyCpqMy1KohN4r2IHsdimU3+zCMGAaPl39CljmvqtPCB5Vc8O
-	 r2E5ewjYXjvTHpcb8J43FE0D1bruxW89Clj6mqGVBvaLhv1luzY5gM9FHVg5fnMrGx
-	 +lp6H1dgTd1A23QOXdvC9183UNMCBfFvNZAGgMNYTZbuUFCBupQO8R5k7mw999spRa
-	 oRzfv2GWTfHhp+ve6dntKUVFqxXdptQMundG6GDvbBBLQoPFepsKUzXoxWNRd7S4gv
-	 ZvzpiKvNzfQYG7ZfJSunbnJ39ZqC6JGl8CKHsSTrM9j9gkUBTcq1olNaCiWLrY0sBT
-	 eMaa6Ow2hFuyg==
-Date: Fri, 7 Jun 2024 19:24:14 +0100
-From: Simon Horman <horms@kernel.org>
-To: Diogo Ivo <diogo.ivo@siemens.com>
-Cc: MD Danish Anwar <danishanwar@ti.com>, Roger Quadros <rogerq@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jan Kiszka <jan.kiszka@siemens.com>,
-	Jacob Keller <jacob.e.keller@intel.com>,
-	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v3 2/4] net: ti: icss-iep: Remove spinlock-based
- synchronization
-Message-ID: <20240607182414.GH27689@kernel.org>
-References: <20240607-iep-v3-0-4824224105bc@siemens.com>
- <20240607-iep-v3-2-4824224105bc@siemens.com>
+	s=arc-20240116; t=1717785603; c=relaxed/simple;
+	bh=XrnAZQPy5MleIUFVrbjajyCw8B0veQFWvMp+ZkNsN/0=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YNiO0hRRMNYTDOlZwHFVUQE0EKu8erBcasaQxbd0X1sWUG+YOSQBphAPzgEjTPFMIpLeIY8B4QY0FaUYozdcBWxife6D7Y2JIrbL0HtGIlOV5bJ1GB1LiPRt+a477Z9SyvgHXqmTDtuNJL+/zWs4uUPqItUOTm0hpcujyXPcbnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=plexus.com; spf=pass smtp.mailfrom=plexus.com; dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b=e1WwCWtM; arc=none smtp.client-ip=67.231.157.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=plexus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=plexus.com
+Received: from pps.filterd (m0341555.ppops.net [127.0.0.1])
+	by mx0b-0046e701.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 457HbHAV024025;
+	Fri, 7 Jun 2024 18:39:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plexus.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=pps1; bh=f9NZN
+	JGk65djRz0rGyG5q4sFjM+L20Q+9R0VIHl7O7o=; b=e1WwCWtMu3GRh/SPc/J8h
+	tUe5Fc25Q98iVPuWCiKDPVKkrFd5WDyigtqRydTU+EtsAgAdtVkd8K3ikcbglpMI
+	Oy8ZFARdERPHy7op3T8e2MOrjdyqKt9C8BRCQ6yHHjGJWklj+O7cRI94PHZAf2nk
+	PXaad+mpkdJjosUMPWCVkAlLyTY2h8A6YiX/g20+e2ZnWKPIKmxqIZY79rI/urhQ
+	M0aei3V09MUCU3MhW7Qvt/Sxk3MwOGhDNQT+YPDlDnQK3Yzjg9U16RJiGLld8svh
+	wPaX6RY6T/fv6ROlMtZb8Y8hy6ws6NUJ46M+2MfR17exCWi5cvpcJKwoJvDaiCwh
+	Q==
+Received: from gcc-mail-mx-003.na.plexus.com (outbound.plexus.com [64.215.193.254])
+	by mx0b-0046e701.pphosted.com (PPS) with ESMTPS id 3ykv8ha1gy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Fri, 07 Jun 2024 18:39:53 +0000 (GMT)
+Received: from gcc-mail-mx-004.Na.Plexus.com (10.255.51.224) by
+ gcc-mail-mx-003.na.plexus.com (10.255.51.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.37; Fri, 7 Jun 2024 18:39:52 +0000
+Received: from localhost (10.255.48.203) by gcc-mail-mx-004.Na.Plexus.com
+ (10.255.51.224) with Microsoft SMTP Server id 15.1.2507.37 via Frontend
+ Transport; Fri, 7 Jun 2024 18:39:52 +0000
+Date: Fri, 7 Jun 2024 13:38:36 -0500
+From: Danny Kaehn <danny.kaehn@plexus.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Benjamin Tissoires <bentiss@kernel.org>,
+        Jiri Kosina <jikos@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-input@vger.kernel.org>,
+        Dmitry Torokhov
+	<dmitry.torokhov@gmail.com>,
+        Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>,
+        Ethan Twardy <ethan.twardy@plexus.com>
+Subject: Re: [PATCH v11 1/4] dt-bindings: i2c: Add CP2112 HID USB to SMBus
+ Bridge
+Message-ID: <20240607183836.GA965006@LNDCL34533.neenah.na.plexus.com>
+References: <20240605-cp2112-dt-v11-0-d55f0f945a62@plexus.com>
+ <20240605-cp2112-dt-v11-1-d55f0f945a62@plexus.com>
+ <20240606151859.GA3605325-robh@kernel.org>
+ <20240606162438.GA77976@LNDCL34533.neenah.na.plexus.com>
+ <ZmISrFrUVadRS1Do@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20240607-iep-v3-2-4824224105bc@siemens.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZmISrFrUVadRS1Do@smile.fi.intel.com>
+X-Proofpoint-GUID: IKZCxLKVn9kZKbAyueu-J3-gCvVn1dh9
+X-Proofpoint-ORIG-GUID: IKZCxLKVn9kZKbAyueu-J3-gCvVn1dh9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-07_11,2024-06-06_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
+ phishscore=0 bulkscore=0 lowpriorityscore=0 clxscore=1015 malwarescore=0
+ suspectscore=0 mlxlogscore=797 priorityscore=1501 adultscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406070136
 
-On Fri, Jun 07, 2024 at 02:02:43PM +0100, Diogo Ivo wrote:
-> As all sources of concurrency in hardware register access occur in
-> non-interrupt context eliminate spinlock-based synchronization and
-> rely on the mutex-based synchronization that is already present.
+On Thu, Jun 06, 2024 at 10:49:00PM +0300, Andy Shevchenko wrote:
+> On Thu, Jun 06, 2024 at 11:24:38AM -0500, Danny Kaehn wrote:
+> > On Thu, Jun 06, 2024 at 09:18:59AM -0600, Rob Herring wrote:
+> > > On Wed, Jun 05, 2024 at 06:12:44PM -0500, Danny Kaehn wrote:
 > 
-> Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
-> ---
->  drivers/net/ethernet/ti/icssg/icss_iep.c | 10 ----------
->  1 file changed, 10 deletions(-)
+> ...
 > 
-> diff --git a/drivers/net/ethernet/ti/icssg/icss_iep.c b/drivers/net/ethernet/ti/icssg/icss_iep.c
-> index 3025e9c18970..1d6ccdf2583f 100644
-> --- a/drivers/net/ethernet/ti/icssg/icss_iep.c
-> +++ b/drivers/net/ethernet/ti/icssg/icss_iep.c
-> @@ -110,7 +110,6 @@ struct icss_iep {
->  	struct ptp_clock_info ptp_info;
->  	struct ptp_clock *ptp_clock;
->  	struct mutex ptp_clk_mutex;	/* PHC access serializer */
-> -	spinlock_t irq_lock; /* CMP IRQ vs icss_iep_ptp_enable access */
->  	u32 def_inc;
->  	s16 slow_cmp_inc;
->  	u32 slow_cmp_count;
-> @@ -199,7 +198,6 @@ static void icss_iep_settime(struct icss_iep *iep, u64 ns)
->  		return;
->  	}
->  
-> -	spin_lock_irqsave(&iep->irq_lock, flags);
->  	if (iep->pps_enabled || iep->perout_enabled)
->  		writel(0, iep->base + iep->plat_data->reg_offs[ICSS_IEP_SYNC_CTRL_REG]);
->  
-> @@ -210,7 +208,6 @@ static void icss_iep_settime(struct icss_iep *iep, u64 ns)
->  		writel(IEP_SYNC_CTRL_SYNC_N_EN(0) | IEP_SYNC_CTRL_SYNC_EN,
->  		       iep->base + iep->plat_data->reg_offs[ICSS_IEP_SYNC_CTRL_REG]);
->  	}
-> -	spin_unlock_irqrestore(&iep->irq_lock, flags);
->  }
->  
->  /**
+> > > > +  i2c:
+> > > > +    description: The SMBus/I2C controller node for the CP2112
+> > > > +    $ref: /schemas/i2c/i2c-controller.yaml#
+> > > > +    unevaluatedProperties: false
+> > > > +
+> > > > +    properties:
+> > > > +      sda-gpios:
+> > > > +        maxItems: 1
+> > > > +
+> > > > +      scl-gpios:
+> > > > +        maxItems: 1
+> > > 
+> > > These are because I2C can be on any of the pins? It's a bit odd if they 
+> > > aren't used as gpios. Probably should be pinmux, but that's overkill for 
+> > > 2 pins.
+> > >
+> > 
+> > I'm beginning to realize now that this may be a bit non-standard, but it
+> > did solve a stuck bus issue under some conditions.
+> > 
+> > The CP2112's I2C controller is self-contained and can only be on the
+> > specific pins it is attached to (no pinmux, etc..).
+> > 
+> > In this case, these properties are ment to specify additional gpio pins
+> > which are connected to the SCL and SDA lines (this then also assumes those
+> > are configured to be open drain / inputs to not interfere with the bus
+> > during normal operation). This was inspired by what is done ini2c-imx.yaml,
+> > but I realize this is a bit different due to using external pins rather
+> > than pinmuxing to the GPIOs.
+> > 
+> > How I used this was to actually connect some of the CP2112's own GPIO pins
+> > to the SDA and SCL lines to be able to use those pins to recover the
+> > bus. This was able to solve a stuck bus under some real-world cases with
+> > the v2 of the CP2112 containing an errata which caused this
+> > semi-frequently.
+> 
+> Aren't they just for I²C recovery?
 
-Hi Diogo,
+Not sure if you were looking for my reply here, but yes. I guess the
+only "non-standard" thing really here is the idea of using
+external/separate GPIO pins to do the recovery, rather than pinmuxing the
+I2C pins to GPIO which most current implementations seem to do.
 
-This is not a full review, but flags is now unused in icss_iep_settime()
-and should be removed.  Likewise in icss_iep_perout_enable() and
-icss_iep_pps_enable().
+Thanks,
 
-Flagged by W=1 builds with gcc-13 and clang-18.
-
-...
-
--- 
-pw-bot: changes-requested
+Danny Kaehn
 
