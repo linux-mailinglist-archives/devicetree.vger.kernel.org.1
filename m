@@ -1,124 +1,151 @@
-Return-Path: <devicetree+bounces-73730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 659C090066A
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 16:25:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95C21900687
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 16:27:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0FFCE1F24003
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 14:25:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7B991C22A52
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 14:27:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A40CD194A7A;
-	Fri,  7 Jun 2024 14:25:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qqxdS2T0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6651F1990AA;
+	Fri,  7 Jun 2024 14:27:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mxout70.expurgate.net (mxout70.expurgate.net [194.37.255.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E4C11DFC5;
-	Fri,  7 Jun 2024 14:25:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 483A8194AD3;
+	Fri,  7 Jun 2024 14:27:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.37.255.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717770301; cv=none; b=h9rSyaRJBk5Cz3GoxlLEFgdC/8DwxNftT9G4mehyDQax8Z8SSnWsfwEU+++/advLAvy+Zj7eopCItMmXf6M436SL0TQe67xvLDb+OPhgWokBZ/jpVBBb+rHPZYpqVGEESs4pa1MQ7Eqmq/R7X99ECaVgc+/SghXVlP+e5Di7W2Y=
+	t=1717770431; cv=none; b=pX7rc7ttavXPOZbchLg67X9k8z0DbqiBHFyUfCDyLJFmJOZdV02wUBLeo91A2dDwyyZQc0fKcLAjGdMz2dqBvx8pH2VKNOZesinh9KjyUHdZqy9PZtVdS/aX4TwUpBC+l9kZEH2uOPKW+9JhhfEVKZRnFtiKOr3sTUFLZBHkIIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717770301; c=relaxed/simple;
-	bh=EM3y8T6KZ3vV6DsbAyhlHWkY8HcWgcCqtvWsG3kkmwQ=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=K3MfWEzqyijpwf7P+BcimIeraCnoJEYeM8jbzejZSOFMK+k5ItEeDJ18tuqp8qfsBdf4eIKUXXlcF7LYIqyrRcuc+/ncbXwxT01a4VMPXmWGhScd/GLtGmR5JhqmbV9vL7FFJ8SuTR2QHeoW9kH35tCimfuxEXPQolgtu2Wd6dI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qqxdS2T0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CB5EC2BBFC;
-	Fri,  7 Jun 2024 14:25:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717770301;
-	bh=EM3y8T6KZ3vV6DsbAyhlHWkY8HcWgcCqtvWsG3kkmwQ=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=qqxdS2T0eu4K+egRuZvWTSgys3HQFCWU4e7t88yLQzVQPPavacLDal7QeQTsl5wEE
-	 bYtf1LmH+q1O91uaqnir32ck5FLJOaojmPUQeondqDVc3TYBPCkKBVOsH09FQJKcW1
-	 X2IhMa8voAadszLsM38P+dBVCbd9yJ3Rx/SSEhMNPLcc+Ih58Yqwv2cnZdouibcmo/
-	 G9UP14NN9w5l/aJ87Q9co7BaHGATO4DN9V1heqH0ZHw0HEVEsv9UOoCzNmTajGwe3Z
-	 jxb5CpcwYIN2adOTOZ5/Z76JPNMfsoLAaujIU9SRhhbR+SC2QaIs5C0M2DmWsvsxvs
-	 6PjgIutZ1sdAg==
-Date: Fri, 07 Jun 2024 08:25:00 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1717770431; c=relaxed/simple;
+	bh=s/wAF2MKyNyCf80HDbawVNiWCXO6QMjFhK7UDLN3ixk=;
+	h=MIME-Version:Content-Type:Date:From:To:Cc:Subject:In-Reply-To:
+	 References:Message-ID; b=BvU+Hl0gOV6hFB5xKAbjda13Th5UrLY4AyxJ+IgqnZMFUDuUeqOk9yc8W5DLxLYIx3L7tMIA17nojS4NdmCOn2WVSshYicKcDY0KUq2Yr7G0krABl8SmAxQYq0A4XLRLBZ0o+2BMc9IakZCU1l1cgldkdZK8P0oF1c0yQk6p8vI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; arc=none smtp.client-ip=194.37.255.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dev.tdt.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dev.tdt.de
+Received: from [127.0.0.1] (helo=localhost)
+	by relay.expurgate.net with smtp (Exim 4.92)
+	(envelope-from <prvs=990276a841=ms@dev.tdt.de>)
+	id 1sFaYc-008Qz7-Od; Fri, 07 Jun 2024 16:27:06 +0200
+Received: from [195.243.126.94] (helo=securemail.tdt.de)
+	by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ms@dev.tdt.de>)
+	id 1sFaYc-00EhMZ-5Z; Fri, 07 Jun 2024 16:27:06 +0200
+Received: from securemail.tdt.de (localhost [127.0.0.1])
+	by securemail.tdt.de (Postfix) with ESMTP id BF4D5240053;
+	Fri,  7 Jun 2024 16:27:05 +0200 (CEST)
+Received: from mail.dev.tdt.de (unknown [10.2.4.42])
+	by securemail.tdt.de (Postfix) with ESMTP id 4A07B240050;
+	Fri,  7 Jun 2024 16:27:05 +0200 (CEST)
+Received: from mail.dev.tdt.de (localhost [IPv6:::1])
+	by mail.dev.tdt.de (Postfix) with ESMTP id D257E3849A;
+	Fri,  7 Jun 2024 16:27:04 +0200 (CEST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Beleswar Padhi <b-padhi@ti.com>
-Cc: u-kumar1@ti.com, nm@ti.com, krzk+dt@kernel.org, vaishnav.a@ti.com, 
- j-choudhary@ti.com, linux-kernel@vger.kernel.org, conor+dt@kernel.org, 
- kristo@kernel.org, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, vigneshr@ti.com
-In-Reply-To: <20240607090433.488454-1-b-padhi@ti.com>
-References: <20240607090433.488454-1-b-padhi@ti.com>
-Message-Id: <171777012624.2736811.12792442744239321951.robh@kernel.org>
-Subject: Re: [PATCH 0/3] Add Remoteproc Support for TI's J722S SoCs
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date: Fri, 07 Jun 2024 16:27:04 +0200
+From: Martin Schiller <ms@dev.tdt.de>
+To: Vladimir Oltean <olteanv@gmail.com>
+Cc: martin.blumenstingl@googlemail.com, hauke@hauke-m.de, andrew@lunn.ch,
+ f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 12/13] net: dsa: lantiq_gswip: Add and use a
+ GSWIP_TABLE_MAC_BRIDGE_FID macro
+Organization: TDT AG
+In-Reply-To: <20240607113652.6ryt5gg72he2madn@skbuf>
+References: <20240606085234.565551-1-ms@dev.tdt.de>
+ <20240606085234.565551-13-ms@dev.tdt.de>
+ <20240607113652.6ryt5gg72he2madn@skbuf>
+Message-ID: <ae0811c79a126e9f034beccf37e61991@dev.tdt.de>
+X-Sender: ms@dev.tdt.de
+User-Agent: Roundcube Webmail/1.3.17
+X-purgate-ID: 151534::1717770426-CDC4D8CF-65FA3DE4/0/0
+X-purgate: clean
+X-purgate-type: clean
 
-
-On Fri, 07 Jun 2024 14:34:30 +0530, Beleswar Padhi wrote:
-> Hello All,
+On 2024-06-07 13:36, Vladimir Oltean wrote:
+> On Thu, Jun 06, 2024 at 10:52:33AM +0200, Martin Schiller wrote:
+>> From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> 
+>> Only bits [5:0] in mac_bridge.key[3] are reserved for the FID. Add a
+>> macro so this becomes obvious when reading the driver code.
+>> 
+>> Signed-off-by: Martin Blumenstingl 
+>> <martin.blumenstingl@googlemail.com>
+>> ---
+>>  drivers/net/dsa/lantiq_gswip.c | 3 ++-
+>>  1 file changed, 2 insertions(+), 1 deletion(-)
+>> 
+>> diff --git a/drivers/net/dsa/lantiq_gswip.c 
+>> b/drivers/net/dsa/lantiq_gswip.c
+>> index f2faee112e33..4bb894e75b81 100644
+>> --- a/drivers/net/dsa/lantiq_gswip.c
+>> +++ b/drivers/net/dsa/lantiq_gswip.c
+>> @@ -238,6 +238,7 @@
+>>  #define GSWIP_TABLE_MAC_BRIDGE		0x0b
+>>  #define  GSWIP_TABLE_MAC_BRIDGE_STATIC	BIT(0)		/* Static not, aging 
+>> entry */
+>>  #define  GSWIP_TABLE_MAC_BRIDGE_PORT	GENMASK(7, 4)	/* Port on learned 
+>> entries */
+>> +#define  GSWIP_TABLE_MAC_BRIDGE_FID	GENMASK(5, 0)	/* Filtering 
+>> identifier */
+>> 
+>>  #define XRX200_GPHY_FW_ALIGN	(16 * 1024)
+>> 
+>> @@ -1385,7 +1386,7 @@ static int gswip_port_fdb(struct dsa_switch *ds, 
+>> int port,
+>>  	mac_bridge.key[0] = addr[5] | (addr[4] << 8);
+>>  	mac_bridge.key[1] = addr[3] | (addr[2] << 8);
+>>  	mac_bridge.key[2] = addr[1] | (addr[0] << 8);
+>> -	mac_bridge.key[3] = fid;
+>> +	mac_bridge.key[3] = FIELD_PREP(GSWIP_TABLE_MAC_BRIDGE_FID, fid);
+>>  	mac_bridge.val[0] = add ? BIT(port) : 0; /* port map */
+>>  	mac_bridge.val[1] = GSWIP_TABLE_MAC_BRIDGE_STATIC;
+>>  	mac_bridge.valid = add;
+>> --
+>> 2.39.2
 > 
-> The K3 J722S SoCs have one single-core Arm Cortex-R5F processor in each
-> of the WAKEUP, MCU and MAIN voltage domain, and two C71x DSP subsystems
-> in MAIN voltage domain. Thus, Add the DT Nodes and memory carveout
-> regions to add remoteproc support in J722S SoCs.
+> On second thought, I disagree with the naming scheme of the
+> GSWIP_TABLE_MAC_BRIDGE_* macros. It is completely non obvious that they
+> are non-overlapping, because they have the same name prefix, but:
+> _STATIC applies to gswip_pce_table_entry :: val[1]
+> _PORT applies to gswip_pce_table_entry :: val[0]
+> _FID applies to gswip_pce_table_entry :: key[3]
 > 
-> Apurva Nandan (2):
->   arm64: dts: ti: Add R5F and C7x remote processor nodes
->   arm64: dts: ti: k3-j722s-evm: Add memory carveouts for R5F and C7x
-> 
-> Beleswar Padhi (1):
->   arm64: dts: ti: k3-j722s-evm: Enable Mailbox clusters
-> 
->  arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 140 ++++++++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-j722s.dtsi    |  63 +++++++++++
->  2 files changed, 203 insertions(+)
-> 
-> --
-> 2.34.1
-> 
-> 
-> 
+> I think it's all too easy to use the wrong macro on the wrong register 
+> field.
+> If the macros incorporated names like VAL1, KEY3 etc, it would be much
+> more obvious. Could you please do that?
 
+OK, so I'll change the macro names to
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+GSWIP_TABLE_MAC_BRIDGE_KEY3_FID
+GSWIP_TABLE_MAC_BRIDGE_VAL0_PORT
+GSWIP_TABLE_MAC_BRIDGE_VAL1_STATIC
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+Also the comment of GSWIP_TABLE_MAC_BRIDGE_VAL1_STATIC should be changed 
+to
+/* Static, not aging entry */
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y ti/k3-j722s-evm.dtb' for 20240607090433.488454-1-b-padhi@ti.com:
-
-arch/arm64/boot/dts/ti/k3-j722s-evm.dtb: dsp@7e000000: reg: [[0, 2113929216, 0, 2097152]] is too short
-	from schema $id: http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
-arch/arm64/boot/dts/ti/k3-j722s-evm.dtb: dsp@7e000000: reg-names: ['l2sram'] is too short
-	from schema $id: http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
-arch/arm64/boot/dts/ti/k3-j722s-evm.dtb: dsp@7e000000: Unevaluated properties are not allowed ('reg', 'reg-names' were unexpected)
-	from schema $id: http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
-arch/arm64/boot/dts/ti/k3-j722s-evm.dtb: dsp@7e200000: reg: [[0, 2116026368, 0, 2097152]] is too short
-	from schema $id: http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
-arch/arm64/boot/dts/ti/k3-j722s-evm.dtb: dsp@7e200000: reg-names: ['l2sram'] is too short
-	from schema $id: http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
-arch/arm64/boot/dts/ti/k3-j722s-evm.dtb: dsp@7e200000: Unevaluated properties are not allowed ('reg', 'reg-names' were unexpected)
-	from schema $id: http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
-
-
-
+While looking again at this diff above, I noticed that val[0] is set
+incorrectly. Shouldn't it be either "port << 4" or (after the previous 
+patch)
+"FIELD_PREP(GSWIP_TABLE_MAC_BRIDGE_PORT, port);" instead of "BIT(port)"?
 
 
 
