@@ -1,71 +1,84 @@
-Return-Path: <devicetree+bounces-73604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88293900168
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 13:01:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD9C1900179
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 13:03:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E1BA1C235C9
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:01:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A35101C23344
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:03:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4E9E18732E;
-	Fri,  7 Jun 2024 11:01:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 557E21862AD;
+	Fri,  7 Jun 2024 11:03:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RWX2WR2H"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eFZVGfkL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B13D187326;
-	Fri,  7 Jun 2024 11:01:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B487014F9C9;
+	Fri,  7 Jun 2024 11:03:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717758073; cv=none; b=R3LN6NXaHjpAP2FMGUxEOmP86YjjkxT1r9do54rrDgI6d6kKRo0IWemQcW6EaMYYKkCWDVlsngb1YGyuvwaIeGN1yEUom9YP7nhrP8QcM6jOvcX9zyFCGwAMGOPXeJa6vu5oOLiz/1hFBYNbImAEklw2W4paxhVoRirfyTUnf/w=
+	t=1717758205; cv=none; b=cQBPZr2uF+h4XeQZKyO460ewIMVfWtb7gSXpOWOkJNMMzJSTyyeD0n14808LYV1OOGNIH9mps8U4vnn13VdHKf2p0JNKouKpS0JSk2cvST2GS2wkbBiHs8jjvkQFZNcn1DJP27SG0lFlkeBGHNXcT/cc8r3ALRlcXC7xxO8KMfA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717758073; c=relaxed/simple;
-	bh=mtUu/Do/GLFHawm+/M8nMC7SPdHfBpSjez+ss4kMKsU=;
+	s=arc-20240116; t=1717758205; c=relaxed/simple;
+	bh=8nw5+9QSvd75ODQl6YA/tY9wEOPBMobwqxnZqMlfGis=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HeEgIvLlfC6sCGPeYFBqQ0SCM1cLqO9QuOrlEVYhvhV02BCvIA/s9/ZpPbvlr3PJeI9mNQTSa+iljPD+xBtPekOryeAqOPoUoCBJxB71LREOmeBfy3+iKTBlrJN1gUdBpyhr4K4MRl5WyDcjzhQW28sqLNT16vBiV9AAA3JR88w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RWX2WR2H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28329C32781;
-	Fri,  7 Jun 2024 11:01:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717758073;
-	bh=mtUu/Do/GLFHawm+/M8nMC7SPdHfBpSjez+ss4kMKsU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RWX2WR2HyLq3+UnPfPsnprPOtIaGzcPc1bsnV3duitv/Bf6mCReB5QJQvbQadEPEc
-	 iKETSHuQKnY+eo2jADupxpJMgxzbTWoXNji08JTXAIy9E7r8Is/yuqxpYZPJjxy3z3
-	 Rbk0zriDNPXJudyRc7WhjrjSUanOnDvVfn8GFQeA5LxnGgkcCKpGy59iE2rM9PO7lS
-	 yJrN5hb4wgV3KPzMkKCkWsD/nyx2WxfsgGGTX8AEDqp2kfZw722eLixAzwxwEOh3QF
-	 f33GQedooaDeqwMRceIHZLlxhbwXDo5r1wYWn9l9DBKVR+Jyv+BTgKyi7Dv1Qh9f3P
-	 nYOzC0lEjv4GQ==
-Date: Fri, 7 Jun 2024 13:01:06 +0200
-From: Niklas Cassel <cassel@kernel.org>
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
-	Jon Lin <jon.lin@rock-chips.com>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v4 10/13] PCI: dw-rockchip: Add endpoint mode support
-Message-ID: <ZmLocvA9HwomzrED@ryzen.lan>
-References: <20240529-rockchip-pcie-ep-v1-v4-0-3dc00fe21a78@kernel.org>
- <20240529-rockchip-pcie-ep-v1-v4-10-3dc00fe21a78@kernel.org>
- <20240605081753.GK5085@thinkpad>
- <ZmC1PihX_URtZkiA@ryzen.lan>
- <20240606063128.GC4441@thinkpad>
+	 Content-Type:Content-Disposition:In-Reply-To; b=jQlcrMrE0fcMfQixnTlLx0h2apN/tkFyiwwyc6aUA10qmCAfHEPV+HiayIjXFJ2OjzFGYDqIuezvsV9Auhy+Nxu5LxK986NHS7kT5bsIkRCZTpbba4I6ZTkMnK3j6Bp3jeZtH0qgSIzPQ6rJfcFvth2kBLvE2jt+9BC+7bOQckg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eFZVGfkL; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a68b54577aaso255928566b.3;
+        Fri, 07 Jun 2024 04:03:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717758202; x=1718363002; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=V+86wNrn4HfmmxGyr0WWPH87gKM8bg6dMGDirFSvqGQ=;
+        b=eFZVGfkLjsVO+SanAeCf9+MN1dv+1Yhrc/dVzQ0Ygd0U8hQghO5LBxobnLeFzmbDyp
+         RKdNKDB4G2qp2Ghu4B/zSCD2PR7NCpgMDvCd6+UetBy/GzXaOvzxk/zwbjWIJaOjXx2K
+         2/TPuAF6nI9PBL5FSWue5NtRph8AuBPWWp3YLW1DS2UUJtpZlX8XsZ6Se7qEYQjxMV3U
+         ocRiPhA2c//Y3MBLaK9EvPxYb58VWN0XjFG4qV8AazDoZNpZsBbXqZvVZYcpY85IwfV3
+         6pseFWgvamFlXWBE/yUmxDKJdfVp9An4uY23n7LaxvkTmxvYtHf6Ra0oKh7BjzTMrg78
+         fG4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717758202; x=1718363002;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=V+86wNrn4HfmmxGyr0WWPH87gKM8bg6dMGDirFSvqGQ=;
+        b=LPJeNbITW8REZfXLQHZkWJrqnpqz01noILxBn3n12RQyuJu4oK24imVf6ILtK4SqLD
+         TEU1e8wEbBDE+cUWDzRM0a3p6SIb5mEjC9Gv0dpvREbjK/MITecSc1B/i2s32/Qmk0rB
+         kGqu5qRyX0WUHxn6Ukv7hHesUQ6Jgjw36B/5m96h13vbRGzMtyX7TYRkP/xIAMUhJ1S6
+         jo+xZxqIl5bMwgiKTj7uHW/fT7qA7LYSBixT0CIM77BtZickw9WevdrVvpjkxxJN+q1i
+         QzKqd96oDDuJXX7zN+Ps3xLA6Fs7Ia57IUAkkgmuObKPIDRZiqJZBjrwqlXGli0nQmRS
+         qKHg==
+X-Forwarded-Encrypted: i=1; AJvYcCUz0jfwKx13aV6wAZVHqevH1zp0k8WPC/S/XCLqUCZFBWvN1KUxLngEi2NBtBea7JpbHI+gvVMsZqDY+kbrF6fQ2juc6KLNYB0cIvih57D1Ek2HqLlAAhvmDqf3PjSZZrH95ck8+nD9nMf8GIuqy0zkczu7edOKK9NKnn4JwyQc1A==
+X-Gm-Message-State: AOJu0Yziq0PSos0jKRUvus14VjFcrBz/z6bS8GPjG936n3+eNun99AZ9
+	OkBVhscX5uYUjwn4XnYCfrn3iKfXA5YreGAyotbNeDlV3h9onEUY
+X-Google-Smtp-Source: AGHT+IH3/WlA2+Ku0SBN45ZdbPjdWwdhtqhWDCqJW88WoCxPrg6Ehh5A+2AcrjeIKVwaX7V1QKW8Hw==
+X-Received: by 2002:a17:906:7f16:b0:a68:8a2b:6e5b with SMTP id a640c23a62f3a-a6cdb000b03mr157480266b.58.1717758201768;
+        Fri, 07 Jun 2024 04:03:21 -0700 (PDT)
+Received: from skbuf ([188.25.55.166])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6c805cbca9sm229440066b.65.2024.06.07.04.03.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Jun 2024 04:03:21 -0700 (PDT)
+Date: Fri, 7 Jun 2024 14:03:18 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Martin Schiller <ms@dev.tdt.de>
+Cc: martin.blumenstingl@googlemail.com, hauke@hauke-m.de, andrew@lunn.ch,
+	f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 02/13] net: dsa: lantiq_gswip: Only allow
+ phy-mode = "internal" on the CPU port
+Message-ID: <20240607110318.jujco3liryl7om3v@skbuf>
+References: <20240606085234.565551-1-ms@dev.tdt.de>
+ <20240606085234.565551-3-ms@dev.tdt.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,108 +87,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240606063128.GC4441@thinkpad>
+In-Reply-To: <20240606085234.565551-3-ms@dev.tdt.de>
 
-On Thu, Jun 06, 2024 at 12:01:28PM +0530, Manivannan Sadhasivam wrote:
-> On Wed, Jun 05, 2024 at 08:58:06PM +0200, Niklas Cassel wrote:
-> > On Wed, Jun 05, 2024 at 01:47:53PM +0530, Manivannan Sadhasivam wrote:
-> > > On Wed, May 29, 2024 at 10:29:04AM +0200, Niklas Cassel wrote:
-> > > > The PCIe controller in rk3568 and rk3588 can operate in endpoint mode.
-> > > > This endpoint mode support heavily leverages the existing code in
-> > > > pcie-designware-ep.c.
-> > > > 
-> > > > Add support for endpoint mode to the existing pcie-dw-rockchip glue
-> > > > driver.
-> > > > 
-> > > > Signed-off-by: Niklas Cassel <cassel@kernel.org>
-> > > 
-> > > Couple of comments below. With those addressed,
-> > > 
-> > > Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > > 
-> > > > ---
-> > > >  drivers/pci/controller/dwc/Kconfig            |  17 ++-
-> > > >  drivers/pci/controller/dwc/pcie-dw-rockchip.c | 210 ++++++++++++++++++++++++++
-> > > >  2 files changed, 224 insertions(+), 3 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> > > > index 8afacc90c63b..9fae0d977271 100644
-> > > > --- a/drivers/pci/controller/dwc/Kconfig
-> > > > +++ b/drivers/pci/controller/dwc/Kconfig
-> > > > @@ -311,16 +311,27 @@ config PCIE_RCAR_GEN4_EP
-> > > >  	  SoCs. To compile this driver as a module, choose M here: the module
-> > > >  	  will be called pcie-rcar-gen4.ko. This uses the DesignWare core.
-> > > >  
-> > > > +config PCIE_ROCKCHIP_DW
-> > > > +	bool
-> > > 
-> > > Where is this symbol used?
-> > 
-> > It is supposed to be used by
-> > drivers/pci/controller/dwc/Makefile
-> > 
-> > such that the driver is compiled if either _EP or _HOST is selected, just
-> > like how it is done for other drivers that support both in the same driver.
-> > Looks like I missed to update Makefile...
-> > Good catch, thank you!
-> > 
-> > 
-> > > > +static irqreturn_t rockchip_pcie_ep_sys_irq_thread(int irq, void *arg)
-> > > > +{
-> > > > +	struct rockchip_pcie *rockchip = arg;
-> > > > +	struct dw_pcie *pci = &rockchip->pci;
-> > > > +	struct device *dev = pci->dev;
-> > > > +	u32 reg, val;
-> > > > +
-> > > > +	reg = rockchip_pcie_readl_apb(rockchip, PCIE_CLIENT_INTR_STATUS_MISC);
-> > > > +
-> > > > +	dev_dbg(dev, "PCIE_CLIENT_INTR_STATUS_MISC: %#x\n", reg);
-> > > > +	dev_dbg(dev, "LTSSM_STATUS: %#x\n", rockchip_pcie_get_ltssm(rockchip));
-> > > > +
-> > > > +	if (reg & PCIE_LINK_REQ_RST_NOT_INT) {
-> > > > +		dev_dbg(dev, "hot reset or link-down reset\n");
-> > > > +		dw_pcie_ep_linkdown(&pci->ep);
-> > > > +	}
-> > > > +
-> > > > +	if (reg & PCIE_RDLH_LINK_UP_CHGED) {
-> > > > +		val = rockchip_pcie_get_ltssm(rockchip);
-> > > > +		if ((val & PCIE_LINKUP) == PCIE_LINKUP) {
-> > > > +			dev_dbg(dev, "link up\n");
-> > > > +			dw_pcie_ep_linkup(&pci->ep);
-> > > > +		}
-> > > > +	}
-> > > > +
-> > > > +	rockchip_pcie_writel_apb(rockchip, reg, PCIE_CLIENT_INTR_STATUS_MISC);
-> > > 
-> > > It is recommended to clear the IRQs at the start of the handler (after status
-> > > read).
-> > 
-> > Can you quote a reference in the databook to back this recommendation?
-> > 
+On Thu, Jun 06, 2024 at 10:52:23AM +0200, Martin Schiller wrote:
+> From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > 
-> It is just a general recommendation.
+> Add the CPU port to gswip_xrx200_phylink_get_caps() and
+> gswip_xrx300_phylink_get_caps(). It connects through a SoC-internal bus,
+> so the only allowed phy-mode is PHY_INTERFACE_MODE_INTERNAL.
 > 
-> > Otherwise I would lean towards keeping it like it is, since this is how
-> > it looks in the downstream driver (that *should* be well proven), and it
-> > also matches how it's done in dra7xx.
-> > 
-> > (And since you ack only the events you read, you can not accidentally
-> > clear another type of event.)
-> > 
-> 
-> I haven't read the TRM, but if the IRQ line is level triggered, then if you do
-> not clear the IRQs immediately, you will miss some events. So I always suggest
-> to clear the IRQs at the start of the handler for all the platforms.
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
 
-They are level triggered.
-In this specific case, what could happen is that we fail to trigger an IRQ
-if we get two succeeding hot/link-down resets, or two succeding link ups.
-
-In neither case is this a serious case (compared to e.g. a host driver
-missing a MSI irq), but I have incorporated your suggestion for v5,
-thank you!
-
-
-Kind regards,
-Niklas
+This is for the case where those CPU port device tree properties are
+present, right? In the device trees in current circulation they are not,
+and DSA skips phylink registration.
 
