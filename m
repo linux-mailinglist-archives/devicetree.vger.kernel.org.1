@@ -1,87 +1,91 @@
-Return-Path: <devicetree+bounces-73584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2532900055
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 12:09:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15E9B900037
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 12:05:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A8341C20E11
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 10:09:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C38928BB62
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 10:05:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCE9A1581F2;
-	Fri,  7 Jun 2024 10:09:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E846A15ECDF;
+	Fri,  7 Jun 2024 10:02:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="AiExaUJU"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="T73Ux/mM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E29381CA85;
-	Fri,  7 Jun 2024 10:09:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33BDC15B97B;
+	Fri,  7 Jun 2024 10:02:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717754966; cv=none; b=SrkPgKtfSgkQVnod/5iyPTWqZkE7E/k7xqZd232t1pCF36nVARMlfi6q/j2ceajOofhBPFceHGn1DBDX2r2DGLEtkpwccHtz/vCaKhJDkhkKQKpa39p8hD5rClb4I1xyDHwFcRBz9SrWWci2cqhy8tyhKLVzLmW7zvsyL1IfY+k=
+	t=1717754530; cv=none; b=S33tXLf7KZww4+lWwDgAeikQ8q3tWf2pmdeV/5PhxMrEsTrzG/kgyNKWVG8X9BMVEUTC9yE1Tc0+iArB7B2Q2g+Zd1f2DMGc71wOxHJEd2G1Lv7oUJyEOuHBZblm54YNgrz0JQA6X/3J8B0g0oewvY0o7Lz4P4AoiGeDf/grVqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717754966; c=relaxed/simple;
-	bh=W9OC2fUk3FD1xhnbtvYwKD+7Xd1c9IdLOs7cBPZSL7o=;
+	s=arc-20240116; t=1717754530; c=relaxed/simple;
+	bh=h5mN9hSq8pgjzcyt50z4SAsjS4rmHveIiM9R54ksBvM=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kSXMobxpursZ4NftQUVWPKFTI6YZR+NvRYLCyAohhY8ar6uwjIpbLXrrCfIermo9z3WKwPephmxlfrFIEGH9Y8/kl1v7jK3HYrnKLYnQ3kDbJWaYcn2kQ65rAFlLBG1OiZmmlG6Kw/UknVPDrgv1j1CYjE2jwrldBT5im8vcPh4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=AiExaUJU; arc=none smtp.client-ip=185.132.182.106
+	 MIME-Version:Content-Type; b=oeXRFY7u2PUgzmkU+qy5eluh6rFXAd7EuUSmvRNa1V5fk8kCfOjFuOzD4h6kKTHPAg59aOkTx123OH3vrLv88cxpXrJ/IdEvFp72EIofEWu5N0Jwc25a3RmfjylSZuxLY+ejmKCuXPln1RewCo7NkpFSb9jCe/D+IGev2ci84ts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=T73Ux/mM; arc=none smtp.client-ip=91.207.212.93
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45792cwG011010;
-	Fri, 7 Jun 2024 11:35:09 +0200
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45791lAU009506;
+	Fri, 7 Jun 2024 12:01:46 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	luA+ZUFTcJknApwisPNPdZman1Wn25gDMX3CVQ3XRQs=; b=AiExaUJUZZq3X+55
-	5iCmIA+wl2nzg/8jUXBJPv055U+1D7XT2ieww+3axrr0shiNDeo0KGx2RCJUuimq
-	lDtViKJ8Vcp/nVQUEBkZhgDLCACZgGZlv1N5UhZriWmXMWAcyWAt9wb5UpRa6y5N
-	e5/ggHVerLoJ2FJaeqx9F7D3D00vbsKL9aLVltFd+0fOXKfPFSCxqql7MtBZO9Ul
-	cUCMshaMTgW1hrxR6TJj+A6dREx+YgjUr+vj7zulQsDiTgCqE6sDg4kPVv0N+JL1
-	Dl2ELIdWukGZFz2kJIx+Li05ry+2OEGcFqsUn1SdPWUCx8jbn3zKjaEEaVbypLGX
-	8yyTUw==
+	1Q35dkt89KWo1ea1imWMRpqWMEk/sfn0A6SfaG1T7t4=; b=T73Ux/mMrIsPQ8kA
+	cpwacEtniq9kmvZj+gKHQTK17w0fptIdqHw9QZWZILI5kKbcmUuYhW1aFWH790Dm
+	SrLW91zyDR3svp/SqTcHwBkZaYqjltjm2Oq0pVF8mPoxQNT1285z9c5Wx1VsfZ+T
+	Thn8xG2UUtXRIAdee14/WocOL8gWE3tRfQ1z870y45s+NBRTadr5H1bjZOLcmDcu
+	VJ1hQTYkrxdtPu9s/T8yGNkt+s3cNLOdue6rr9RXEn4iB/PZv6PwVxyElOKA2iaF
+	gmZgCOhzNsIdurPDQmkBSig3QBLnxLKQxDIZzbl2hiz/mf88NcjHeZ5acQHZKlZ1
+	NxIk1A==
 Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ykbv549tw-1
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yfw91swqu-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 07 Jun 2024 11:35:09 +0200 (MEST)
+	Fri, 07 Jun 2024 12:01:46 +0200 (MEST)
 Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 5669D40053;
-	Fri,  7 Jun 2024 11:34:58 +0200 (CEST)
-Received: from Webmail-eu.st.com (eqndag1node4.st.com [10.75.129.133])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E9442214532;
-	Fri,  7 Jun 2024 11:34:08 +0200 (CEST)
-Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE4.st.com
- (10.75.129.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 7 Jun
- 2024 11:34:08 +0200
-Received: from localhost (10.252.5.235) by SAFDAG1NODE1.st.com (10.75.90.17)
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 8AF2240045;
+	Fri,  7 Jun 2024 12:01:42 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B4FA9214D0E;
+	Fri,  7 Jun 2024 12:00:29 +0200 (CEST)
+Received: from localhost (10.252.19.205) by SHFDAG1NODE2.st.com (10.75.129.70)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 7 Jun
- 2024 11:34:08 +0200
-From: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
+ 2024 12:00:28 +0200
+From: Christophe Roullier <christophe.roullier@foss.st.com>
+To: "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski
 	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <op-tee@lists.trustedfirmware.org>, <devicetree@vger.kernel.org>,
-        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Subject: [PATCH v6 4/5] remoteproc: stm32: Create sub-functions to request shutdown and release
-Date: Fri, 7 Jun 2024 11:33:25 +0200
-Message-ID: <20240607093326.369090-5-arnaud.pouliquen@foss.st.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark
+ Brown <broonie@kernel.org>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>,
+        Marek Vasut <marex@denx.de>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v5 10/12] ARM: dts: stm32: add ethernet1/2 RMII pins for STM32MP13F-DK board
+Date: Fri, 7 Jun 2024 11:57:52 +0200
+Message-ID: <20240607095754.265105-11-christophe.roullier@foss.st.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240607093326.369090-1-arnaud.pouliquen@foss.st.com>
-References: <20240607093326.369090-1-arnaud.pouliquen@foss.st.com>
+In-Reply-To: <20240607095754.265105-1-christophe.roullier@foss.st.com>
+References: <20240607095754.265105-1-christophe.roullier@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,130 +94,105 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: SAFCAS1NODE2.st.com (10.75.90.13) To SAFDAG1NODE1.st.com
- (10.75.90.17)
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
  definitions=2024-06-07_04,2024-06-06_02,2024-05-17_01
 
-To prepare for the support of TEE remoteproc, create sub-functions
-that can be used in both cases, with and without remoteproc TEE support.
+Those pins are used for Ethernet 1 and 2 on STM32MP13F-DK board.
+ethernet1: RMII with crystal.
+ethernet2: RMII without crystal.
+Add analog gpio pin configuration ("sleep") to manage power mode on
+stm32mp13.
 
-Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
 ---
- drivers/remoteproc/stm32_rproc.c | 84 +++++++++++++++++++-------------
- 1 file changed, 51 insertions(+), 33 deletions(-)
+ arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi | 71 +++++++++++++++++++++
+ 1 file changed, 71 insertions(+)
 
-diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm32_rproc.c
-index 88623df7d0c3..8cd838df4e92 100644
---- a/drivers/remoteproc/stm32_rproc.c
-+++ b/drivers/remoteproc/stm32_rproc.c
-@@ -209,6 +209,54 @@ static int stm32_rproc_mbox_idx(struct rproc *rproc, const unsigned char *name)
- 	return -EINVAL;
- }
+diff --git a/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi b/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
+index 32c5d8a1e06ac..7f72c62da0a64 100644
+--- a/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
++++ b/arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi
+@@ -13,6 +13,77 @@ pins {
+ 		};
+ 	};
  
-+static void stm32_rproc_request_shutdown(struct rproc *rproc)
-+{
-+	struct stm32_rproc *ddata = rproc->priv;
-+	int err, dummy_data, idx;
++	eth1_rmii_pins_a: eth1-rmii-0 {
++		pins1 {
++			pinmux = <STM32_PINMUX('G', 13, AF11)>, /* ETH_RMII_TXD0 */
++				 <STM32_PINMUX('G', 14, AF11)>, /* ETH_RMII_TXD1 */
++				 <STM32_PINMUX('B', 11, AF11)>, /* ETH_RMII_TX_EN */
++				 <STM32_PINMUX('A', 1, AF11)>, /* ETH_RMII_REF_CLK */
++				 <STM32_PINMUX('A', 2, AF11)>, /* ETH_MDIO */
++				 <STM32_PINMUX('G', 2, AF11)>; /* ETH_MDC */
++			bias-disable;
++			drive-push-pull;
++			slew-rate = <1>;
++		};
 +
-+	/* Request shutdown of the remote processor */
-+	if (rproc->state != RPROC_OFFLINE && rproc->state != RPROC_CRASHED) {
-+		idx = stm32_rproc_mbox_idx(rproc, STM32_MBX_SHUTDOWN);
-+		if (idx >= 0 && ddata->mb[idx].chan) {
-+			/* A dummy data is sent to allow to block on transmit. */
-+			err = mbox_send_message(ddata->mb[idx].chan,
-+						&dummy_data);
-+			if (err < 0)
-+				dev_warn(&rproc->dev, "warning: remote FW shutdown without ack\n");
-+		}
-+	}
-+}
++		pins2 {
++			pinmux = <STM32_PINMUX('C', 4, AF11)>, /* ETH_RMII_RXD0 */
++				 <STM32_PINMUX('C', 5, AF11)>, /* ETH_RMII_RXD1 */
++				 <STM32_PINMUX('C', 1, AF10)>; /* ETH_RMII_CRS_DV */
++			bias-disable;
++		};
 +
-+static int stm32_rproc_release(struct rproc *rproc)
-+{
-+	struct stm32_rproc *ddata = rproc->priv;
-+	unsigned int err = 0;
++	};
 +
-+	/* To allow platform Standby power mode, set remote proc Deep Sleep. */
-+	if (ddata->pdds.map) {
-+		err = regmap_update_bits(ddata->pdds.map, ddata->pdds.reg,
-+					 ddata->pdds.mask, 1);
-+		if (err) {
-+			dev_err(&rproc->dev, "failed to set pdds\n");
-+			return err;
-+		}
-+	}
++	eth1_rmii_sleep_pins_a: eth1-rmii-sleep-0 {
++		pins1 {
++			pinmux = <STM32_PINMUX('G', 13, ANALOG)>, /* ETH_RMII_TXD0 */
++				 <STM32_PINMUX('G', 14, ANALOG)>, /* ETH_RMII_TXD1 */
++				 <STM32_PINMUX('B', 11, ANALOG)>, /* ETH_RMII_TX_EN */
++				 <STM32_PINMUX('A', 1, ANALOG)>, /* ETH_RMII_REF_CLK */
++				 <STM32_PINMUX('A', 2, ANALOG)>, /* ETH_MDIO */
++				 <STM32_PINMUX('G', 2, ANALOG)>, /* ETH_MDC */
++				 <STM32_PINMUX('C', 4, ANALOG)>, /* ETH_RMII_RXD0 */
++				 <STM32_PINMUX('C', 5, ANALOG)>, /* ETH_RMII_RXD1 */
++				 <STM32_PINMUX('C', 1, ANALOG)>; /* ETH_RMII_CRS_DV */
++		};
++	};
 +
-+	/* Update coprocessor state to OFF if available. */
-+	if (ddata->m4_state.map) {
-+		err = regmap_update_bits(ddata->m4_state.map,
-+					 ddata->m4_state.reg,
-+					 ddata->m4_state.mask,
-+					 M4_STATE_OFF);
-+		if (err) {
-+			dev_err(&rproc->dev, "failed to set copro state\n");
-+			return err;
-+		}
-+	}
++	eth2_rmii_pins_a: eth2-rmii-0 {
++		pins1 {
++			pinmux = <STM32_PINMUX('F', 7, AF11)>, /* ETH_RMII_TXD0 */
++				 <STM32_PINMUX('G', 11, AF10)>, /* ETH_RMII_TXD1 */
++				 <STM32_PINMUX('G', 8, AF13)>, /* ETH_RMII_ETHCK */
++				 <STM32_PINMUX('F', 6, AF11)>, /* ETH_RMII_TX_EN */
++				 <STM32_PINMUX('B', 2, AF11)>, /* ETH_MDIO */
++				 <STM32_PINMUX('G', 5, AF10)>; /* ETH_MDC */
++			bias-disable;
++			drive-push-pull;
++			slew-rate = <1>;
++		};
 +
-+	return 0;
-+}
++		pins2 {
++			pinmux = <STM32_PINMUX('F', 4, AF11)>, /* ETH_RMII_RXD0 */
++				 <STM32_PINMUX('E', 2, AF10)>, /* ETH_RMII_RXD1 */
++				 <STM32_PINMUX('A', 12, AF11)>; /* ETH_RMII_CRS_DV */
++			bias-disable;
++		};
++	};
 +
- static int stm32_rproc_prepare(struct rproc *rproc)
- {
- 	struct device *dev = rproc->dev.parent;
-@@ -519,17 +567,9 @@ static int stm32_rproc_detach(struct rproc *rproc)
- static int stm32_rproc_stop(struct rproc *rproc)
- {
- 	struct stm32_rproc *ddata = rproc->priv;
--	int err, idx;
-+	int err;
- 
--	/* request shutdown of the remote processor */
--	if (rproc->state != RPROC_OFFLINE && rproc->state != RPROC_CRASHED) {
--		idx = stm32_rproc_mbox_idx(rproc, STM32_MBX_SHUTDOWN);
--		if (idx >= 0 && ddata->mb[idx].chan) {
--			err = mbox_send_message(ddata->mb[idx].chan, "detach");
--			if (err < 0)
--				dev_warn(&rproc->dev, "warning: remote FW shutdown without ack\n");
--		}
--	}
-+	stm32_rproc_request_shutdown(rproc);
- 
- 	err = stm32_rproc_set_hold_boot(rproc, true);
- 	if (err)
-@@ -541,29 +581,7 @@ static int stm32_rproc_stop(struct rproc *rproc)
- 		return err;
- 	}
- 
--	/* to allow platform Standby power mode, set remote proc Deep Sleep */
--	if (ddata->pdds.map) {
--		err = regmap_update_bits(ddata->pdds.map, ddata->pdds.reg,
--					 ddata->pdds.mask, 1);
--		if (err) {
--			dev_err(&rproc->dev, "failed to set pdds\n");
--			return err;
--		}
--	}
--
--	/* update coprocessor state to OFF if available */
--	if (ddata->m4_state.map) {
--		err = regmap_update_bits(ddata->m4_state.map,
--					 ddata->m4_state.reg,
--					 ddata->m4_state.mask,
--					 M4_STATE_OFF);
--		if (err) {
--			dev_err(&rproc->dev, "failed to set copro state\n");
--			return err;
--		}
--	}
--
--	return 0;
-+	return stm32_rproc_release(rproc);
- }
- 
- static void stm32_rproc_kick(struct rproc *rproc, int vqid)
++	eth2_rmii_sleep_pins_a: eth2-rmii-sleep-0 {
++		pins1 {
++			pinmux = <STM32_PINMUX('F', 7, ANALOG)>, /* ETH_RMII_TXD0 */
++				 <STM32_PINMUX('G', 11, ANALOG)>, /* ETH_RMII_TXD1 */
++				 <STM32_PINMUX('G', 8, ANALOG)>, /* ETH_RMII_ETHCK */
++				 <STM32_PINMUX('F', 6, ANALOG)>, /* ETH_RMII_TX_EN */
++				 <STM32_PINMUX('B', 2, ANALOG)>, /* ETH_MDIO */
++				 <STM32_PINMUX('G', 5, ANALOG)>, /* ETH_MDC */
++				 <STM32_PINMUX('F', 4, ANALOG)>, /* ETH_RMII_RXD0 */
++				 <STM32_PINMUX('E', 2, ANALOG)>, /* ETH_RMII_RXD1 */
++				 <STM32_PINMUX('A', 12, ANALOG)>; /* ETH_RMII_CRS_DV */
++		};
++	};
++
+ 	i2c1_pins_a: i2c1-0 {
+ 		pins {
+ 			pinmux = <STM32_PINMUX('D', 12, AF5)>, /* I2C1_SCL */
 -- 
 2.25.1
 
