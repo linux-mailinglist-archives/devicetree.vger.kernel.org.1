@@ -1,108 +1,111 @@
-Return-Path: <devicetree+bounces-73769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BC02900937
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 17:34:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5152490094F
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 17:39:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC6E51F21B9E
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 15:34:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0683F1F220E0
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 15:39:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4182319AA49;
-	Fri,  7 Jun 2024 15:31:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EF7D197A99;
+	Fri,  7 Jun 2024 15:39:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uNabSmtw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pmhw7Knb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1805226288;
-	Fri,  7 Jun 2024 15:31:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A6EE171BB;
+	Fri,  7 Jun 2024 15:39:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717774266; cv=none; b=eiLpAPjrGa7M+GkwE4DFqFAmbNTvDtBahLB1BRyJ4zCo6LuPjBj/tDQyziYrR8KhA05X6mnwHooRRn9vKIhQH+G+dxPWbnRJyqk34yc+U6wvrRAatVNRPicQj6KAP7bEI3bBAYAtHKsZ9lLxh/sagmPC/ZvIwS/0V3ay+7WmNHw=
+	t=1717774742; cv=none; b=O9UIR3PghZeUdG0LPAwX20ikEuU0UWUshzMFsfoPj1pqrPH2mBI0YwziSpBXvbSK+9q6HTFbxoJm0KBTgs9lgti7W33Z70T8R+7Ek00dfobU0WF/3v308xzMPMgexOzcy4iT3BjMKt/+klagHuLu+zQlJS2iBjYVX1FDWCNRh5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717774266; c=relaxed/simple;
-	bh=IIbPTH5Uj8/YQWGzpHSPL0ScEYzR8T8lKL992gm2TBE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jXRuLybeo7rSj/2m2q49YW1/so1VjeiSsLifcSCFZMyCcGm5BIwhhILX6iPBJDrdSMhdxwjMz3vIvmk0LO99z6QwS6hqv5UglijGK8Vnd1ogHr/Xe39xqzZATEZvLwtqAbIDRmTZ2hbF0sDk7o7l5K09sg7yOWE+0cH/myLoABY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uNabSmtw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18A2BC2BBFC;
-	Fri,  7 Jun 2024 15:31:04 +0000 (UTC)
+	s=arc-20240116; t=1717774742; c=relaxed/simple;
+	bh=C8AdvS3D3ulp2oWqS7pqZc6JQsM874Op4YI9otLDZzQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=XNyWj4IxPuLmfMPFUGXlBlHSiFKJZ3Z+DYAo9tPvdQJK/5R8V1HCOZ68n0GfX40xglJgs6WskOrMAiFrA0jEWKuK4yFIuyh81tKVoIEv5Eyjt2odTbIgUY0kiK6vQaS9Fir/0pdMNeNGzoK9eG3qg3qb6RMRczU5fB7cKW3xraM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pmhw7Knb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1AC9C2BBFC;
+	Fri,  7 Jun 2024 15:39:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717774265;
-	bh=IIbPTH5Uj8/YQWGzpHSPL0ScEYzR8T8lKL992gm2TBE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uNabSmtwgyweu5PxB/BpRJRcA9XYT1XRrttmfUcyO1g1y7Iey2E88tQLeq4gPyFN+
-	 nt07kdvRhSOQ5Bp2VBBOy5a5La7kuVJVt90LD5EVHqTOShZ8YnMrAMdl6c2lPImQLT
-	 SQFI+DyiOqJj0hzNgXeH52Qa6w4jm1HS96LfGNhHRbGnXr5cHKjM25e0OIFHBD3xTM
-	 be1P8Q0YqgsQZUyxG2cS8vdeh2xB9WxCi82xg9k4WTSk4jJqzj+pAgLNwCQmpV3jzl
-	 PGWhObv4UBdMVz3OgC/PNqjKO8tgzOJorHb9udy2d/250Zf4BP4VIvqtofgrQrU2uY
-	 HeOxAJF5w3C6g==
-Date: Fri, 7 Jun 2024 16:31:02 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	linux-renesas-soc@vger.kernel.org, linux-phy@lists.infradead.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC v2 2/4] regulator: Add Renesas RZ/G2L USB VBUS
- regulator driver
-Message-ID: <ZmMntvriR32aqI-m@finisterre.sirena.org.uk>
-References: <20240607113745.73934-1-biju.das.jz@bp.renesas.com>
- <20240607113745.73934-3-biju.das.jz@bp.renesas.com>
+	s=k20201202; t=1717774742;
+	bh=C8AdvS3D3ulp2oWqS7pqZc6JQsM874Op4YI9otLDZzQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=Pmhw7Knb5GxmpBpg5yX2ToDHR3HkLAFJLfvbw01dAm89v4WFqgvjHg9DNoWMPnrA7
+	 dds3t1eAE0HTX7MDcNzi98XzEr4f0q2BafnAOutjuDmfJ5pnADIaaF02L8ylli/0t2
+	 9W41U7gvKSP2hnq956uxjk7ZybOt2R55C0nTJ6EOD6W7fEH6cVmU2HIL1V7VgarWFM
+	 TR0VNNihgNG7fVnhsQ1jce1B5BH4x4KWjkZVrATutXc7dg5smQL4vDqsE30NA/VJ4O
+	 PYd2u/ydlvynIZXHa3vLFjgXTHlS7EPAqEbLWsvz0cHU5fWn+sGCCRtFT2IWkD9jeg
+	 IWKHyQuLh2lgw==
+Date: Fri, 7 Jun 2024 10:39:00 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Noah Wang <noahwang.wang@outlook.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, linux@roeck-us.net,
+	conor+dt@kernel.org, jdelvare@suse.com, corbet@lwn.net,
+	Delphine_CC_Chiu@wiwynn.com, peteryin.openbmc@gmail.com,
+	javier.carrasco.cruz@gmail.com, patrick.rudolph@9elements.com,
+	bhelgaas@google.com, lukas@wunner.de, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-i2c@vger.kernel.org
+Subject: Re: [PATCH 0/4] hwmon: Add support for MPS mp2993,mp9941 chip
+Message-ID: <20240607153900.GA847228@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="udQ3zrK5ASc6H/+G"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240607113745.73934-3-biju.das.jz@bp.renesas.com>
-X-Cookie: Your love life will be... interesting.
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <SEYPR04MB64822EE797B0CB024A913DFFFAFB2@SEYPR04MB6482.apcprd04.prod.outlook.com>
 
+On Fri, Jun 07, 2024 at 05:05:40PM +0800, Noah Wang wrote:
+> Add mp2993,mp9941 driver in hwmon and add dt-bindings for them.
+> 
+> Noah Wang (4):
+>   dt-bindings: hwmon: Add MPS mp2993
+>   hwmon: add MP2993 driver
+>   dt-bindings: hwmon: Add MPS mp9941
+>   hwmon: add MP9941 driver
 
---udQ3zrK5ASc6H/+G
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Don't repost just for this, but for some reason the patches in this
+series didn't get posted as responses to this cover letter.  Here's a
+link to the archive, where you can see the lack of responses, and the
+result when you try to download the series with b4:
 
-On Fri, Jun 07, 2024 at 12:37:43PM +0100, Biju Das wrote:
+  https://lore.kernel.org/all/SEYPR04MB64822EE797B0CB024A913DFFFAFB2@SEYPR04MB6482.apcprd04.prod.outlook.com/
 
-> +static const unsigned int vbus_voltages[] = {
-> +	3300000, 0
-> +};
-> +
-> +static const struct regulator_ops rzg2l_usb_vbus_reg_ops = {
-> +	.list_voltage = regulator_list_voltage_table,
-> +};
+  $ b4 am https://lore.kernel.org/all/SEYPR04MB64822EE797B0CB024A913DFFFAFB2@SEYPR04MB6482.apcprd04.prod.outlook.com
+  Analyzing 1 messages in the thread
+  No patches found.
 
-This is an enable control, not a voltage set control?
+Compare to this correctly threaded series and the download with b4:
 
---udQ3zrK5ASc6H/+G
-Content-Type: application/pgp-signature; name="signature.asc"
+  https://lore.kernel.org/all/cover.1717773890.git.jani.nikula@intel.com
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZjJ7UACgkQJNaLcl1U
-h9CssQf+JLOCnhzarGMUeGiWEeWYST/8aXioPhyPv1jeexOoc7SuLhV2fFLl8Wr8
-/MaeUNqFkt2gK/Mb8czUYdEbN/IS6v2jFRdzVYiepgWPZydv8V4Jxf5lJ2ztXHxq
-BdzhfN6+1VOSXqEyv4P+GRWiDeRrwtQu16DCsPCRA7Dh+cKRCRK9HMo215eZ5muG
-VisufBOJcop4wFuSF8uRsROh/uF3FPDR19eWyaFHlrBnBL2adq5Fmw6XezvxhHlT
-jT1xNrZSuZam7u5IZXVEqjagtSAamxPaCKbu1uoG4Rec4SWsq7xXtmC2G1iWokYi
-urhOQJOwIoUlyCDyoEzsKOSwns8sJA==
-=QQ++
------END PGP SIGNATURE-----
-
---udQ3zrK5ASc6H/+G--
+  $ b4 am https://lore.kernel.org/all/cover.1717773890.git.jani.nikula@intel.com
+  Grabbing thread from lore.kernel.org/all/cover.1717773890.git.jani.nikula@intel.com/t.mbox.gz
+  Analyzing 7 messages in the thread
+  Checking attestation on all messages, may take a moment...
+  ---
+    ✓ [PATCH v2 1/6] drm/i915/gvt: remove the unused end parameter from calc_index()
+    ✓ [PATCH v2 2/6] drm/i915/gvt: use proper i915_reg_t for calc_index() parameters
+    ✓ [PATCH v2 3/6] drm/i915/gvt: rename range variable to stride
+    ✓ [PATCH v2 4/6] drm/i915/gvt: do not use implict dev_priv in DSPSURF_TO_PIPE()
+    ✓ [PATCH v2 5/6] drm/i915: relocate some DSPCNTR reg bit definitions
+    ✓ [PATCH v2 6/6] drm/i915: remove unused pipe/plane B register macros
+    ---
+    ✓ Signed: DKIM/intel.com
+  ---
+  Total patches: 6
+  ---
+  Cover: ./v2_20240607_jani_nikula_drm_i915_gvt_register_macro_cleanups_unused_macro_removals.cover
+   Link: https://lore.kernel.org/r/cover.1717773890.git.jani.nikula@intel.com
+   Base: not specified
+	 git am ./v2_20240607_jani_nikula_drm_i915_gvt_register_macro_cleanups_unused_macro_removals.mbx
 
