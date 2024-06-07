@@ -1,235 +1,163 @@
-Return-Path: <devicetree+bounces-73561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 470798FFFDB
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:46:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CB6C8FFF9B
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 11:34:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3E21283022
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:46:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80F071F24E48
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 09:34:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03B2815B54A;
-	Fri,  7 Jun 2024 09:45:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD63F15B13E;
+	Fri,  7 Jun 2024 09:34:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="1SNJ8Att"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NyinHndA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C646156F5A;
-	Fri,  7 Jun 2024 09:45:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DD0C15AACA
+	for <devicetree@vger.kernel.org>; Fri,  7 Jun 2024 09:34:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717753505; cv=none; b=piL5WnkoPZ7Yq4iK4tDbKoNQZaggrNHcF+UzwQmMB9CbrNvwEfLU2hFO6Hi6C57OB3j0jQ05J7dEuwOWwxEu5liifyRZSDWFZbCmmdn8gs1U54OT2G+agFuBnZP6awf82M5ciEeaXFGp13cSX1gs8JKtCK9HJY+CuJpkRfyP0Ak=
+	t=1717752849; cv=none; b=rjRkcEYlX6Jv8sxLnk6Urxc6WvlDSwtMTrbhrBRe3fS/sBAcZWMMQqoEsoflCK9acZxAR/2NzvNVRrwhHWFU9U+GmIaoea168Y9J5KV4N5LVrZl5Tbd5gKM+i6OZkNxqT3d2wT8v8+4wCSlPmK0ry4kToRw523/tQqfkIE7F7fE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717753505; c=relaxed/simple;
-	bh=0jXa/ETpQ8oMk/aE8zUGLVukVp9YzweGLD1Q6nn19g4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tV6PyIaqaz/1dWepbziT0dqTEjFF6/nY1c1gSTypuVdS++jqh1mdCcaPKTbheN3HeSe6iLPKtUNzHax4JA/i/FqKJgkS5VEF3TxD5WZWhvDbAfF3v/Hchr+I+eYh6rsweeZqqdiqDl4dGaCe2rg9HVNnIHugJUJsLkuY/R09W8E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=1SNJ8Att; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45791LPx011040;
-	Fri, 7 Jun 2024 11:35:02 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	x7+/7jGZKQUIxBxNoUHZ9GKuXhsWji229mzGjNW0pPY=; b=1SNJ8AttanJSS/kk
-	109BxJxw4cSpZLjpNJO5oL2mcrvY/nM4NopcngWtLjU1Tre4nKjaLjXRP30/7v71
-	4ibdVKfnwm5lXIbp+MVSD869pRw0BSNcFSgczFd77aYAcGUYwLAl1R2PDapxgEVv
-	YuYth8T2aSLJWbxPxU0R5bHBkjrNoqynQj+5weTpMWIaYkaw2PLYzdmrHdgMNyBc
-	5CwCWTkaRpGAoUzh8Wru1vQDXZ7SDDjSiNOBuZoBUXytLk6KpzD7wKghvJ0FQXJW
-	FO2gvXCtwV7sIqgfyEO9RyI8WYu88Ywd0YWh6DsEh4PoEJ2QSHWCXlTgCH2l4x67
-	us5pkg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yg7r0gtss-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 07 Jun 2024 11:35:02 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 2F35E4004F;
-	Fri,  7 Jun 2024 11:34:58 +0200 (CEST)
-Received: from Webmail-eu.st.com (eqndag1node6.st.com [10.75.129.135])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C3671214534;
-	Fri,  7 Jun 2024 11:34:09 +0200 (CEST)
-Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE6.st.com
- (10.75.129.135) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 7 Jun
- 2024 11:34:09 +0200
-Received: from localhost (10.252.5.235) by SAFDAG1NODE1.st.com (10.75.90.17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 7 Jun
- 2024 11:34:09 +0200
-From: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <op-tee@lists.trustedfirmware.org>, <devicetree@vger.kernel.org>,
-        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Subject: [PATCH v6 5/5] remoteproc: stm32: Add support of an OP-TEE TA to load the firmware
-Date: Fri, 7 Jun 2024 11:33:26 +0200
-Message-ID: <20240607093326.369090-6-arnaud.pouliquen@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240607093326.369090-1-arnaud.pouliquen@foss.st.com>
-References: <20240607093326.369090-1-arnaud.pouliquen@foss.st.com>
+	s=arc-20240116; t=1717752849; c=relaxed/simple;
+	bh=Mkj3XT9ut46CEFNKsKvkQbdS1PkbvW9WWDHM9Wt8rkw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uRzKtkk7Q2ND+EuAm3AF0Inaiii+uaQiAWlnxdutJqLrmDUgaW6l8Rs8k1c4EMAsuomhdktaMAVtxRcaQkac/I29PNGVp+IA6uxUtMpXlckCTnx4ftWtosaLZqv60DLAkhI0DqCpENdRILMNaxjKPhQ9npNl1HZxk6innBEHKEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NyinHndA; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-35e816b735aso2005398f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2024 02:34:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717752846; x=1718357646; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=F1hHYZcjLgSGH8Bo1cMx5LiBf6CRFSTGZkRvw9Ksdw4=;
+        b=NyinHndAq+x4YPlpdtKR4nmNrBNpszzMLDUvKvcZanbkiE8oCAQg1DduQEYU7Ls60i
+         ugRFez4k7PTpsGEE6jXMIrBQtaWkPGSzNDdu9EYS6qwDIVaj4x5ZZUmy8qnU8yOn03NE
+         WFDhtdVF3KUHVZosCV6y3a42uhyuQXjX9UleFB84K/n+IZqbqC6nybPjHS+gnzysgFH2
+         /Tx/puDxzpu7NSttaeli+b6vtR092a7k0xtrekx/Z66Y/Qa3P7VoiQCAb3+dXfbBM79J
+         D2VUlN3CDdhl18gHf3eOc+jPSheya/lgtk4wT1snDtvReqB2am4g4Pp9y8JS0bxnpyiC
+         uWfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717752846; x=1718357646;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=F1hHYZcjLgSGH8Bo1cMx5LiBf6CRFSTGZkRvw9Ksdw4=;
+        b=IiNnAIOTgzsJn7fKxCLSeyqp9+A6mCdO74KQiyJDMwttreOBL0wH5zcu/nQwtUZX2K
+         /O7VfJMPjSnsyQEpKmUL/QqsMd3naWbNgfFp81ecSEA1H1TSYse3oZoe5zN0iNKBdQaf
+         Mo40TIwzDrUqFHaQkzmUt/XObSGfdKLlDAWmAQPnYcA2o/6zhJ2vI08GY3rTe9Kl7vrA
+         nbyLSnIYoXjXdVOR3CNFLgKciRgDRVbvWKd4lc/T6GVfwhowYFuQX4cMDsVMuROgU2SH
+         4uG/58CGp/f5ak52nUlmNt6BE6w0VnEcYdxWuiNcL0P+kV2/Sby0t60mnpkGtZzLG1A2
+         PDnA==
+X-Forwarded-Encrypted: i=1; AJvYcCWADlDH8FtV1EPHPflPWCkEh1MnGA9wmgjA2ihYyPezwLr2iNK0y8BVFehBM3uKaH+klpyvdug6WFj22Wx3wpZpx18zzHb9rDkJQg==
+X-Gm-Message-State: AOJu0Yw1Mj388ig0eSal+bsk7xEmJEaJGsqd9rS/WxJZluXJmHPYG3U4
+	M3uHXMrE8VEUEM2oEMMPWhqYkM5rawNqn8m9lNKn9zsQFxz+Ta5QFugfWoA8fJU=
+X-Google-Smtp-Source: AGHT+IFNNnZHH4kN7xvK0Gl1oFDuJAhYAu++rJbQ7uphPduCYgm5TWYo1rOwC90eb6eUEVeAnd2HiQ==
+X-Received: by 2002:a5d:40c6:0:b0:35f:d4a:ae34 with SMTP id ffacd0b85a97d-35f0d4aaf5fmr137022f8f.17.1717752845768;
+        Fri, 07 Jun 2024 02:34:05 -0700 (PDT)
+Received: from [192.168.2.24] ([110.93.11.116])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35efa97b15dsm2569514f8f.81.2024.06.07.02.34.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Jun 2024 02:34:05 -0700 (PDT)
+Message-ID: <22becbf9-a663-4f25-aee5-8fd195e6fa55@linaro.org>
+Date: Fri, 7 Jun 2024 11:34:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SAFCAS1NODE2.st.com (10.75.90.13) To SAFDAG1NODE1.st.com
- (10.75.90.17)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-07_04,2024-06-06_02,2024-05-17_01
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] clk: qcom: lpassaudiocc-sc7280: Add support for LPASS
+ resets for QCM6490
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ quic_jkona@quicinc.com, quic_imrashai@quicinc.com, devicetree@vger.kernel.org
+References: <20240531102252.26061-1-quic_tdas@quicinc.com>
+ <20240531102252.26061-3-quic_tdas@quicinc.com>
+ <6aad6a71-dd2f-4682-91ea-835357342ba1@linaro.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <6aad6a71-dd2f-4682-91ea-835357342ba1@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The new TEE remoteproc device is used to manage remote firmware in a
-secure, trusted context. The 'st,stm32mp1-m4-tee' compatibility is
-introduced to delegate the loading of the firmware to the trusted
-execution context. In such cases, the firmware should be signed and
-adhere to the image format defined by the TEE.
+On 07/06/2024 11:30, Konrad Dybcio wrote:
+> On 31.05.2024 12:22 PM, Taniya Das wrote:
+>> On the QCM6490 boards the LPASS firmware controls the complete clock
+>> controller functionalities. But the LPASS resets are required to be
+>> controlled from the high level OS. The Audio SW driver should be able to
+>> assert/deassert the audio resets as required. Thus in clock driver add
+>> support for the same.
+>>
+>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>> ---
+> 
+> Please stop ignoring my comments without responding.
+> 
+> https://lore.kernel.org/all/c1d07eff-4832-47d9-8598-aa6709b465ff@linaro.org/
 
-Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
----
-Update from previous version
-- replace find_loaded_rsc_table by  find_loaded_rsc_table ops.
----
- drivers/remoteproc/stm32_rproc.c | 63 ++++++++++++++++++++++++++++++--
- 1 file changed, 60 insertions(+), 3 deletions(-)
+So this was already sent, feedback ignored and now we have again "v1"
+skipping previous talks?
 
-diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm32_rproc.c
-index 8cd838df4e92..c1262e1ccc96 100644
---- a/drivers/remoteproc/stm32_rproc.c
-+++ b/drivers/remoteproc/stm32_rproc.c
-@@ -20,6 +20,7 @@
- #include <linux/remoteproc.h>
- #include <linux/reset.h>
- #include <linux/slab.h>
-+#include <linux/tee_remoteproc.h>
- #include <linux/workqueue.h>
- 
- #include "remoteproc_internal.h"
-@@ -257,6 +258,19 @@ static int stm32_rproc_release(struct rproc *rproc)
- 	return 0;
- }
- 
-+static int stm32_rproc_tee_stop(struct rproc *rproc)
-+{
-+	int err;
-+
-+	stm32_rproc_request_shutdown(rproc);
-+
-+	err = tee_rproc_stop(rproc);
-+	if (err)
-+		return err;
-+
-+	return stm32_rproc_release(rproc);
-+}
-+
- static int stm32_rproc_prepare(struct rproc *rproc)
- {
- 	struct device *dev = rproc->dev.parent;
-@@ -693,8 +707,20 @@ static const struct rproc_ops st_rproc_ops = {
- 	.get_boot_addr	= rproc_elf_get_boot_addr,
- };
- 
-+static const struct rproc_ops st_rproc_tee_ops = {
-+	.prepare	= stm32_rproc_prepare,
-+	.start		= tee_rproc_start,
-+	.stop		= stm32_rproc_tee_stop,
-+	.kick		= stm32_rproc_kick,
-+	.load		= tee_rproc_load_fw,
-+	.parse_fw	= tee_rproc_parse_fw,
-+	.find_loaded_rsc_table = tee_rproc_find_loaded_rsc_table,
-+
-+};
-+
- static const struct of_device_id stm32_rproc_match[] = {
- 	{ .compatible = "st,stm32mp1-m4" },
-+	{ .compatible = "st,stm32mp1-m4-tee" },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, stm32_rproc_match);
-@@ -853,17 +879,42 @@ static int stm32_rproc_probe(struct platform_device *pdev)
- 	struct device *dev = &pdev->dev;
- 	struct stm32_rproc *ddata;
- 	struct device_node *np = dev->of_node;
-+	struct tee_rproc *trproc = NULL;
- 	struct rproc *rproc;
- 	unsigned int state;
-+	u32 proc_id;
- 	int ret;
- 
- 	ret = dma_coerce_mask_and_coherent(dev, DMA_BIT_MASK(32));
- 	if (ret)
- 		return ret;
- 
--	rproc = devm_rproc_alloc(dev, np->name, &st_rproc_ops, NULL, sizeof(*ddata));
--	if (!rproc)
--		return -ENOMEM;
-+	if (of_device_is_compatible(np, "st,stm32mp1-m4-tee")) {
-+		/*
-+		 * Delegate the firmware management to the secure context.
-+		 * The firmware loaded has to be signed.
-+		 */
-+		ret = of_property_read_u32(np, "st,proc-id", &proc_id);
-+		if (ret) {
-+			dev_err(dev, "failed to read st,rproc-id property\n");
-+			return ret;
-+		}
-+
-+		rproc = devm_rproc_alloc(dev, np->name, &st_rproc_tee_ops, NULL, sizeof(*ddata));
-+		if (!rproc)
-+			return -ENOMEM;
-+
-+		trproc = tee_rproc_register(dev, rproc, proc_id);
-+		if (IS_ERR(trproc)) {
-+			dev_err_probe(dev, PTR_ERR(trproc),
-+				      "signed firmware not supported by TEE\n");
-+			return PTR_ERR(trproc);
-+		}
-+	} else {
-+		rproc = devm_rproc_alloc(dev, np->name, &st_rproc_ops, NULL, sizeof(*ddata));
-+		if (!rproc)
-+			return -ENOMEM;
-+	}
- 
- 	ddata = rproc->priv;
- 
-@@ -915,6 +966,9 @@ static int stm32_rproc_probe(struct platform_device *pdev)
- 		dev_pm_clear_wake_irq(dev);
- 		device_init_wakeup(dev, false);
- 	}
-+	if (trproc)
-+		tee_rproc_unregister(trproc);
-+
- 	return ret;
- }
- 
-@@ -935,6 +989,9 @@ static void stm32_rproc_remove(struct platform_device *pdev)
- 		dev_pm_clear_wake_irq(dev);
- 		device_init_wakeup(dev, false);
- 	}
-+	if (rproc->tee_interface)
-+		tee_rproc_unregister(rproc->tee_interface);
-+
- }
- 
- static int stm32_rproc_suspend(struct device *dev)
--- 
-2.25.1
+Best regards,
+Krzysztof
 
 
