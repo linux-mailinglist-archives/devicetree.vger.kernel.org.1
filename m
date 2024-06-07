@@ -1,117 +1,108 @@
-Return-Path: <devicetree+bounces-73813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B41F2900CA8
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 21:56:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37C2F900CE0
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 22:27:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6663F1F22BC0
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 19:56:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D93928A2CE
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 20:27:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BB3414D6F6;
-	Fri,  7 Jun 2024 19:56:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7063514EC66;
+	Fri,  7 Jun 2024 20:27:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="ZIBnH1r7"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="n4Fx1Sc2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6203D50263;
-	Fri,  7 Jun 2024 19:56:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2C3214EC5B;
+	Fri,  7 Jun 2024 20:27:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717790169; cv=none; b=FPz6cEvfFvVj2ldWUTxVkQ/DVXVSWpiAEZGBTw4nAdwYNykQT/BttKZhkAiFzXR1r7X5LogAUuJSOrOpVLSQXok+FowOd4pGp+i8wYR/pQvBcSq6XeHsDycOV/CdmMYgWx5ABaECj2zcq+j4x6UbaW4FtwgwACHF2vfYlvb168A=
+	t=1717792056; cv=none; b=HbufU9epxeJsJJjuYsRTElNvBxNrujPXfDtW9bX+hq+5n3qLQttmnQ/lPgkwLWiZdLM5XBgb3fhx4yC7xiyLYfV6tdl8JfYiTScKmQBzY4Sga+3Iwc1HaxSAENOGwPqV/Q/dRnKdbqwVf5aehb4rb7ssfb/u2w8bG/ICaOgWaUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717790169; c=relaxed/simple;
-	bh=/Q1flr7dswNeFYnTGX4Jad+BBlVofWzXVfjrUHO+k9I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VKIumdELzPOVYpBQox4f0hYzVFXpQpPP3Hsbvwudj+UULkIffCM7YBPnJ0zm6YDtT6tFQ4qwrH9nsSlWTH4qfIfvaCSYxf0YigkkDY32UCfF1slDQ5OUZVgkZGs5JtLG4H6Obwy8FqZI2O/RSHrQOE7X17pLSnObpoqebOfAJWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=ZIBnH1r7; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id C4C2A88495;
-	Fri,  7 Jun 2024 21:56:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1717790165;
-	bh=fcZUQQypZFORhc7qwo/JAaFB/BTgCpG8ND7fMIEShJ8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZIBnH1r7UGj/1c2aR6Ncyb7LZofhdrqOjYfLniiVescmnvmglFwIS7p/f2d+D/HFd
-	 Czqdd3YaX9quFL3YM0z7/PQL+TIYC16wgR8H6Ykyvnh/OCRkW0Oj+wA4ADrxhTwIO+
-	 4HivpYevvRLxlffePldFv0VTazeQeUftkazfs0UO9s7M2z2wACBuHcMXkF3CZa79aD
-	 Mbek8ciDILkweF+jGqeqUq1yUlVSxI9649daiKtmzNSA61d9GE+X++5Ye5XdPiTZOO
-	 Wu4Fnrdk+wVuEu2Zu3L7N7ZvFQrM214cc9UrhTZAJAFePsmpGCO/oO4xGx77UEnQlc
-	 qlRqjxRJuU+zg==
-Message-ID: <329fb476-405e-458e-98a8-883ecd9cf15a@denx.de>
-Date: Fri, 7 Jun 2024 21:54:16 +0200
+	s=arc-20240116; t=1717792056; c=relaxed/simple;
+	bh=hAgy4mrPVii2uqJ/b8Qs9bT1KR7R4yt8+p1r/IVJlLI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=PUM7LdfaBWpkLpFUsv5i4E5O2VmgssJrBQvBwMkCsXSBoO76pFx4IpRLjOtqOeBLy1wwIf/whtMskdxBVFDTgFqHnR0jQ0uN39pdNb6dOF3F3CGPI5HZIRSS9SDVsx4rmxNsnc2Ukop7VS70otiMtlbA5VOHUfWKPBLxloEiAA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=n4Fx1Sc2; arc=none smtp.client-ip=67.231.149.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 457HDVEt011571;
+	Fri, 7 Jun 2024 15:27:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=PODMain02222019; bh=TI9xo4UpTu62M9QE
+	tU5ioOcNSzatJpBxkeRlctUWSPY=; b=n4Fx1Sc28HAJ0VhLSmHCFT8KIbBBcnnq
+	jyF+dhdKuS4KzLdjGvTuZZckBb664td1qMmpbydml/0g9wW9VGGW4kKN/b33h6ZL
+	LdRSLb2/5oj40GLCqc126mkjNfS9ZrnYEDYHmEXI9mDvn/BaE0ei9vdXF3VuB0kK
+	L17QB63NOuAJwAcqDd1YytYCTvTaadc9F/Pqk2r8mO54m9QsxVv8mgmEJt48d8Wq
+	qJ3Inm8fnJS5qaj6lKW460fLSkIhvNITHln0t0wVdcVqf8nNZPwbC9CEsFreS4FF
+	jDCzUReuXbxqbVyDyLsW4WjRxbDrhwRMc3Ah+CmP6fwJrmlwHqItBw==
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3yg11xxvcr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 07 Jun 2024 15:27:23 -0500 (CDT)
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 7 Jun 2024
+ 21:27:21 +0100
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1544.9 via Frontend Transport; Fri, 7 Jun 2024 21:27:21 +0100
+Received: from paulha.crystal.cirrus.com (paulha.ad.cirrus.com [141.131.145.123])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id E378C82F2A1;
+	Fri,  7 Jun 2024 20:27:19 +0000 (UTC)
+From: Paul Handrigan <paulha@opensource.cirrus.com>
+To: <broonie@kernel.org>, <lgirdwood@gmail.com>, <linux-sound@vger.kernel.org>,
+        <patches@opensource.cirrus.com>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: Paul Handrigan <paulha@opensource.cirrus.com>
+Subject: [PATCH 0/2] Cirrus Logic family of ADCs
+Date: Fri, 7 Jun 2024 15:27:06 -0500
+Message-ID: <20240607202708.335752-1-paulha@opensource.cirrus.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 08/12] net: stmmac: dwmac-stm32: add management of
- stm32mp13 for stm32
-To: Christophe ROULLIER <christophe.roullier@foss.st.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>, Jose Abreu
- <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240607095754.265105-1-christophe.roullier@foss.st.com>
- <20240607095754.265105-9-christophe.roullier@foss.st.com>
- <6f44537a-3d60-46f5-a159-919cc2a144ec@denx.de>
- <c3e21cbf-bf9e-45d5-b6eb-f1f4d50e39a3@foss.st.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <c3e21cbf-bf9e-45d5-b6eb-f1f4d50e39a3@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain
+X-Proofpoint-GUID: aS0XWRr0yrKBVjMwclyaDHwQUiFGFoHh
+X-Proofpoint-ORIG-GUID: aS0XWRr0yrKBVjMwclyaDHwQUiFGFoHh
+X-Proofpoint-Spam-Reason: safe
 
-On 6/7/24 2:59 PM, Christophe ROULLIER wrote:
-> 
-> On 6/7/24 14:48, Marek Vasut wrote:
->> On 6/7/24 11:57 AM, Christophe Roullier wrote:
->>
->> [...]
->>
->>> @@ -224,11 +225,18 @@ static int stm32mp1_configure_pmcr(struct 
->>> plat_stmmacenet_data *plat_dat)
->>>   {
->>>       struct stm32_dwmac *dwmac = plat_dat->bsp_priv;
->>>       u32 reg = dwmac->mode_reg;
->>> -    int val;
->>> +    int val = 0;
->>
->> Is the initialization really needed ? It seems the switch-case below 
->> does always initialize $val .
-> 
-> Yes it is needed otherwise:
-> 
->>> drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c:239:4: warning: 
->>> variable 'val' is uninitialized when used here [-Wuninitialized]
-> 
-> val |= SYSCFG_PMCR_ETH_SEL_MII;
->                             ^~~
->     drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c:228:9: note: 
-> initialize the variable 'val' to silence this warning
->             int val;
+This patchset provides ASoC support for the latest family
+of Cirrus Logic multichannel, high performance audio ADCs.
+The devices that are supported are CS5302 (2 channel ADC),
+CS5304 (4 channel ADC), and CS5308 (8 channel ADC).
 
-OK, thanks for checking.
+Please note that this driver only supports I2C control with
+SPI control to be added later.
+
+Paul Handrigan (2):
+  ASoC: dt-bindings: cirrus,cs530x: Add initial DT binding
+  ASoC: cs530x: Support for cs530x ADCs
+
+ .../bindings/sound/cirrus,cs530x.yaml         |  83 ++
+ sound/soc/codecs/Kconfig                      |  14 +
+ sound/soc/codecs/Makefile                     |   4 +
+ sound/soc/codecs/cs530x-i2c.c                 |  89 ++
+ sound/soc/codecs/cs530x.c                     | 991 ++++++++++++++++++
+ sound/soc/codecs/cs530x.h                     | 223 ++++
+ 6 files changed, 1404 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/cirrus,cs530x.yaml
+ create mode 100644 sound/soc/codecs/cs530x-i2c.c
+ create mode 100644 sound/soc/codecs/cs530x.c
+ create mode 100644 sound/soc/codecs/cs530x.h
+
+-- 
+2.34.1
+
 
