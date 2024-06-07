@@ -1,133 +1,126 @@
-Return-Path: <devicetree+bounces-73800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F6FB900B22
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 19:21:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42D8F900B58
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 19:40:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC20D284AF0
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 17:21:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 495B71C21626
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 17:40:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ABC41993B5;
-	Fri,  7 Jun 2024 17:21:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 522CA19AA65;
+	Fri,  7 Jun 2024 17:40:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b="X7jjyOTQ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Q+6EE1we"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0046e701.pphosted.com (mx0b-0046e701.pphosted.com [67.231.157.77])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA9B716D338;
-	Fri,  7 Jun 2024 17:21:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.157.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA0681990C7;
+	Fri,  7 Jun 2024 17:40:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717780909; cv=none; b=oRjrKJ8vxEPjWbKmQj0dDNf369S0PjWRHHZhtZRcAmPGnsCx35IeUTzqtLU/l+3rBaVv2OKjxnutg0bBNMpe6sVKPDZXXwmDS6t+SXUdE9T2rB2puQW+qsGec46cAEorjUKON9J7o0kIT2B4SxssJRloaEWm7JRvjNBl518x1ec=
+	t=1717782020; cv=none; b=dk7wLFva+LkdJwxfm3IZxWUXy5VbfG2ZDVFNchc1CydKsb8NBRDhz/4byDJ5h/JMcbr3hFRtdFdIk4t1B22k3zizJfXQUYHVrjJEavEAfB/S1Ila2rSULt8W7UXmKeuTNcaFbJ29SWxPOhgMk0altuW2VKFqkJYF853ajGTTjrU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717780909; c=relaxed/simple;
-	bh=jAuIltlDaAyff/I80GVbXuPMScpACIOTN4beZe3XSAQ=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hn+pW5g+7GrIxG463zzhC5d6BNZkirLTGplX45tfzZBrVsEW0mrwHP8vrO7GD9VrcZiQLx0Bo0B9KmcX13+P4j0dH3zV6pdL3C5eGPNiiS386XNH1s1bx9rHiBXvhbpSqiGu8+86/qaV4qwCTgEgF0VAW73pT51xhYTXkENK1RM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=plexus.com; spf=pass smtp.mailfrom=plexus.com; dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b=X7jjyOTQ; arc=none smtp.client-ip=67.231.157.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=plexus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=plexus.com
-Received: from pps.filterd (m0341555.ppops.net [127.0.0.1])
-	by mx0b-0046e701.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 457EGEaD031426;
-	Fri, 7 Jun 2024 17:21:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plexus.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=pps1; bh=6BzGGL+iFLYc28uEGbjmQdv4ZnFjt
-	aU0kqTP2qX7EIo=; b=X7jjyOTQt/91AGSD1KCxFSoisPhoT4CDsQRG0SF6+oDls
-	SNBju5gTeXxASYrnYx0a+ZjK9OeufpOiJQT4JvNInvhSQRrG/J2MgOJkD0uN0h9L
-	SxzJBwU7ZqTllVsukyPKZdBzRA/7Xdyer5Ak55SBnJO8a3R7H07UZ3AQ9OxYV392
-	/MsgPRW5oNC8RsWxz3L9G6EzUsoGTq66FVPap32u9l3Dv5yahIF1ApU9z451F0AO
-	uxWsvb1s17Wk5FqJ2Muu6iJFo640uHoOlVtdTimIr9h2QIrVNFqubFT2Fa08q+pq
-	CQfehIUcqbDZ8R/T64QH3vPsU2U4wBxmiPQ2YRFlQ==
-Received: from gcc-mail-mx-003.na.plexus.com (outbound.plexus.com [64.215.193.254])
-	by mx0b-0046e701.pphosted.com (PPS) with ESMTPS id 3ykv8h9u83-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Fri, 07 Jun 2024 17:21:29 +0000 (GMT)
-Received: from gcc-mail-mx-004.Na.Plexus.com (10.255.51.224) by
- gcc-mail-mx-003.na.plexus.com (10.255.51.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.37; Fri, 7 Jun 2024 17:21:28 +0000
-Received: from localhost (10.255.48.203) by gcc-mail-mx-004.Na.Plexus.com
- (10.255.51.224) with Microsoft SMTP Server id 15.1.2507.37 via Frontend
- Transport; Fri, 7 Jun 2024 17:21:28 +0000
-Date: Fri, 7 Jun 2024 12:20:12 -0500
-From: Danny Kaehn <danny.kaehn@plexus.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Benjamin Tissoires <bentiss@kernel.org>,
-        Jiri Kosina <jikos@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-input@vger.kernel.org>,
-        Dmitry Torokhov
-	<dmitry.torokhov@gmail.com>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>,
-        Ethan Twardy <ethan.twardy@plexus.com>
-Subject: Re: [PATCH v11 0/4] Firmware Support for USB-HID Devices and CP2112
-Message-ID: <20240607172012.GA874591@LNDCL34533.neenah.na.plexus.com>
-References: <20240605-cp2112-dt-v11-0-d55f0f945a62@plexus.com>
- <ZmD38oynzhjH2628@smile.fi.intel.com>
- <20240606155453.GA54873@LNDCL34533.neenah.na.plexus.com>
- <ZmISaEIGlxZVK_jf@smile.fi.intel.com>
+	s=arc-20240116; t=1717782020; c=relaxed/simple;
+	bh=5ehjn2LZqwpSxZUdIEwtBAwcjwj0nCHl2AY28EQYwAY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=akWCW5kLpvOTdB4EBiUXP9e4vT5HG1saMYYpccy0GhDKEZgdIoTwjRwIgH69KeQ3tkI5AgZ0e21Ja8YVrFfSe5fHn+bjPi4bCOxDkJyQBd6c1pUptV5yC9MsXDM9pMYwG7s7iutvDiv/u22QG7ESsEoyNet+vVB+IAY7ia7slLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Q+6EE1we; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 457HZUvr007842;
+	Fri, 7 Jun 2024 17:40:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	qcppdkim1; bh=5IKUAiqbsySEKKfuRunWhtwKGIhajIoajUUF2vUjRY0=; b=Q+
+	6EE1weqSdNrtg4YwThDjWMx0jmFpP8pLA4vD2xyDZT8IFNm8NMieqKHuu+cV+DIC
+	mr5xar3fdxvTgPwByEyRPP1Uwiyjug34oQOD37G3GkaRvSQ2mkCEYTfUSl2w3gFw
+	ngNnJe0tap8Ia2X649/QAsKothL5QkGUZPdj/4/VCVxTj00X90CSp+L/PRJrQ1Kx
+	SgfZPQZz4eiUShwQQCUPZobZ9i7XhAUfsS/n/9GQFTA/mFKOst0ddlrhL7T/uuWm
+	3tl5dAGTCua7Iop0P+oPtA2Mrxjd+92QUv0+Kdk3ozDVrfRBKBhbl0+jvXSkpZ1+
+	EDnkiHcXy0ljofywBgaQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yka7pc28y-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 07 Jun 2024 17:40:14 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 457HeCF5020059
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 7 Jun 2024 17:40:12 GMT
+Received: from hu-okukatla-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 7 Jun 2024 10:40:07 -0700
+From: Odelu Kukatla <quic_okukatla@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Kees Cook <keescook@chromium.org>, <cros-qcom-dts-watchers@chromium.org>,
+        "Gustavo A . R . Silva" <gustavoars@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-hardening@vger.kernel.org>, <quic_rlaggysh@quicinc.com>,
+        <quic_mdtipton@quicinc.com>, <quic_okukatla@quicinc.com>
+Subject: [PATCH v5 0/4] Add support for QoS configuration
+Date: Fri, 7 Jun 2024 23:09:23 +0530
+Message-ID: <20240607173927.26321-1-quic_okukatla@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZmISaEIGlxZVK_jf@smile.fi.intel.com>
-X-Proofpoint-GUID: vnU7YcwXu3WvV6ebehQDIrsi8b1W8tT0
-X-Proofpoint-ORIG-GUID: vnU7YcwXu3WvV6ebehQDIrsi8b1W8tT0
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Dx8Ucj6W1Rxdxh1gFd0TL2eZejeybnCd
+X-Proofpoint-ORIG-GUID: Dx8Ucj6W1Rxdxh1gFd0TL2eZejeybnCd
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
  definitions=2024-06-07_10,2024-06-06_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
- phishscore=0 bulkscore=0 lowpriorityscore=0 clxscore=1015 malwarescore=0
- suspectscore=0 mlxlogscore=999 priorityscore=1501 adultscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406070128
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
+ malwarescore=0 adultscore=0 spamscore=0 bulkscore=0 clxscore=1015
+ phishscore=0 mlxlogscore=875 lowpriorityscore=0 impostorscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406070130
 
-On Thu, Jun 06, 2024 at 10:47:52PM +0300, Andy Shevchenko wrote:
-> On Thu, Jun 06, 2024 at 10:54:53AM -0500, Danny Kaehn wrote:
-> > On Thu, Jun 06, 2024 at 02:42:42AM +0300, Andy Shevchenko wrote:
-> > > On Wed, Jun 05, 2024 at 06:12:43PM -0500, Danny Kaehn wrote:
-> 
-> ...
-> 
-> > > > Changes in v11:
-> > > > - Eliminate 'gpio' subnode for DT and ACPI for the CP2112 per comment
-> > > >     from Rob H.
-> > > 
-> > > Hmm... I don't know much about DT, but how is this supposed to work in ACPI?
-> > > I mean if we want to refer to the GPIO in GpioIo() or GpioInt() resources,
-> > > what should we put there as ACPI path?
-> > 
-> > What I tested was essentially taking what Benjamin had done in [1], just
-> > removing the "GPIO" device and combining it with the parent device (the
-> > CP2112 itself). So for the example below, I believe the path would be
-> > "\_SB_.PCI0.SE9_.RHUB.CP2_". If I get the chance (and can figure out how
-> > to do it using ACPI) I'll try to add a "gpio-keys" or something to the
-> > system using this path and make sure that works.
-> 
-> This is counter intuitive and doesn't follow other (ACPI) devices with GPIO.
-> So whatever you do for DT I don't care much, but let's not remove subnode
-> for ACPI case.
->
+This series adds QoS support for QNOC type device which can be found on
+SC7280 platform. It adds support for programming priority,
+priority forward disable and urgency forwarding. This helps in
+priortizing the traffic originating from different interconnect masters
+at NOC (Network On Chip).
 
-Fair enough, will let this sit for a moment to see if there are comments
-from Rob/Krzysztof, and otherwise will rework the driver to support the
-different models for DT and ACPI. For what it's worth, combining the
-GPIO chip and CP2112 nodes in DT also seems unintuitive to me, and it
-seems there's other bindings for multi-function devices which define a
-separate child "gpio" node, so I'm not sure why it's not desired here.
+Changes in v5:
+ - Replaced platform_get_resource() and devm_ioremap_resource() with
+   devm_platform_ioremap_resource() API.
+ - Initialized the qosbox pointer in ICC node using compound literal.
+ - Added conditional check for clock property in dt-bindings to the 
+   providers which need clocks.
 
-Thanks,
+Odelu Kukatla (4):
+  interconnect: qcom: icc-rpmh: Add QoS configuration support
+  interconnect: qcom: sc7280: enable QoS configuration
+  dt-bindings: interconnect: add clock property to enable QOS on SC7280
+  arm64: dts: qcom: sc7280: Add clocks for QOS configuration
 
-Danny Kaehn
+ .../interconnect/qcom,sc7280-rpmh.yaml        |  53 ++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          |   3 +
+ drivers/interconnect/qcom/icc-rpmh.c          |  93 ++++++
+ drivers/interconnect/qcom/icc-rpmh.h          |  35 +++
+ drivers/interconnect/qcom/sc7280.c            | 274 ++++++++++++++++++
+ 5 files changed, 458 insertions(+)
+
+-- 
+2.17.1
 
 
