@@ -1,56 +1,76 @@
-Return-Path: <devicetree+bounces-73775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFA779009D1
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 18:00:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 986879009DD
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 18:05:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55CDD1F241F8
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 16:00:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E77BAB20396
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jun 2024 16:05:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5FCA199234;
-	Fri,  7 Jun 2024 16:00:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39BC1199E9A;
+	Fri,  7 Jun 2024 16:04:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.de header.i=w_armin@gmx.de header.b="Ztllsmqo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tDOUUGK9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E66443AA1;
-	Fri,  7 Jun 2024 16:00:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F35C187340
+	for <devicetree@vger.kernel.org>; Fri,  7 Jun 2024 16:04:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717776031; cv=none; b=bkjYoA8XO/6ecqtOG6p5CfL1FH4ugVqo4rMc6kwb6tbzS0DS7AiQqHzUNcd0m9A5eVX5n8hFG5JGzPNvKNJqV+ogu4lhGO+MPbRcqSr1/Q90NlqboHjqW6zLS0aiNb4ORA6nM8VPSrAi4ZEyVKLCC/WRHPL7bYdXLGpMd8iqLh0=
+	t=1717776297; cv=none; b=nktkuuU4tsXwRrrtZj2MnYBBY/eHcsbIIPZS5kX62SmQO7oo3Dm0xaN6hiCPLz8wPKfi0Kurb0C5YX7uQ149u19DuD4ofmECI+yjWLksymQaBUJR+Dw/AZh4aS730oZ9rRjdeCnXvZbOjsc/iMPYpnqZkpdDqQcw1vrL2NbnYcs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717776031; c=relaxed/simple;
-	bh=ipN6NcG+tPJzPSaA+JuANoD3xQXwFm7y+dIl2bp/uhc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Bs8vQYN1R68qeP/p39XyaGS/gCT1HHZN8YWTZDA62ox7evSgVL6lUEAtaoEGnsVhchzUKqmCwpVGXx50totXRfLuFHhLKCTw04HOUKHI9lt39MpMVVT/QZ7eszeTm+ZiEtojCZsO5ZZFXRUybYG+BO9lavaYvj1cIwQ156ewkZ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=w_armin@gmx.de header.b=Ztllsmqo; arc=none smtp.client-ip=212.227.17.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
-	s=s31663417; t=1717776000; x=1718380800; i=w_armin@gmx.de;
-	bh=ipN6NcG+tPJzPSaA+JuANoD3xQXwFm7y+dIl2bp/uhc=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=ZtllsmqoYaaNqy0hHE6wovbGb4j13GI2uK4s0Vk3iiZGNgThWWl14KOXsfazQwSc
-	 Kqmk9NUK9Mxd/i3ZJV+uqBjqoq6EYgQFIZpH3lmtkdQgq/Iz5CCy3vVX5OuUxS6sJ
-	 7kUqQAV6ONPSE4xPJ7FzSgpeR+GUm3jLixL6qWH6RpKD92TD/CwTfe91OoWv1IOWn
-	 VjptevYb/EusNgMQygOpsWUGBgP6yW8pOacrY/alTJGj/rKquXtR8/rDLeEAx/HG6
-	 xf45usxPOEFh9cQgJWAnh987hPNnmBvvha9yeGWvSMWjPr/kkLSRf5n9BF6Oh/z76
-	 LOriN1LY5eRbozbmaw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [141.30.226.129] ([141.30.226.129]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1N0oG5-1scehx12mr-00z4Ju; Fri, 07
- Jun 2024 18:00:00 +0200
-Message-ID: <c6f398f2-a16c-462a-8c79-d2eda3dbd56e@gmx.de>
-Date: Fri, 7 Jun 2024 17:59:59 +0200
+	s=arc-20240116; t=1717776297; c=relaxed/simple;
+	bh=XF3f6iDBLjVh6WynPeig0UvGb0DigkwMdfgbk338+B4=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:References:
+	 In-Reply-To:Content-Type; b=FMeqhzPXBpWnYc7c7Xh2Z8ldwomKs0uwPSidu28VonTcqTBljBFY3twbyYpNDKmRi3L+/ksIbzUVEyw+3L2rBuBmCEJfabdEyfIPOCYfva78LdPG6XMB/T1MmY6RJNJwwUSsDs/P+ghu1WacD/PheKuEHK8hbuh+xO2MwwMPS8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tDOUUGK9; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-35e4aaa0f33so2253993f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 07 Jun 2024 09:04:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717776294; x=1718381094; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MijIgA09q0PdO32nGZaoZGyK+T1ltd9jm7YiJqErqN4=;
+        b=tDOUUGK9tq/s8sYsF70IoMxp6R+mc+gFfiEnYCisO/IIXHQkVDAol+NWt4SDv3KeGn
+         cFIWDyMlBbbY5UNLh0lGodttXCC+ILpsDFTVf0vIG89OTNkseSgXskkGt22rYqXKJdwF
+         ZuytdG5rHUZ7luYRPgwbauaV92un0H4vlDQp1UW5izvmCRdZf3j6XwywIYi+d5fdz0Oo
+         QQFmD53YrWTNdRMSeFAfr0KuH8x2BMdEJi8+DjKvUX+x57B/a4HM75o6RDGmTkoFq1w7
+         K0VFHefdMGsMJCVRNz9B4ot+jUlnH7m6qksDn7ofz7UDLr7IYCny1z6sEJ6Hj1AhByew
+         fBRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717776294; x=1718381094;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=MijIgA09q0PdO32nGZaoZGyK+T1ltd9jm7YiJqErqN4=;
+        b=KTCrLCHY057NWyxVckiQ1avrq+dkQJg11JT4AE/OD57v/Pw/BiyngglZIAGxw3kl8d
+         VTdK8nrL11ne8QdZsZ6oNCUkzq1A3ylosJVsiRFyseMv0cndovCdpAlRmO6DLGDNB0Jy
+         fZb3ttsqGZcYdUiaXf7sbRLgffs0R5IZRq6G6ScWr6xwZybpJv+3b0yhzZMtylf7KKbn
+         ca2e3vH+WoGR6FNZldx5Fu+zoEwcuGU1MVnVgjpTYPfpux+ujw+zqgu9rnibov+XGuOU
+         y7qGKFBLIwUX5dS4Q5DnGEMMTUllttEmaMUwbEWjEIY5LE8K9+QPCyJjelz1aSE6oO8F
+         bn5w==
+X-Forwarded-Encrypted: i=1; AJvYcCXkW5ng8tjnBxtm3dMCjlTAIr9PjCewamau5wX7lQscmojC+i5aAZ3qqJ/8BjCdTN2kTjiboei4a6kiln733g6lg3gWeQvXBqsNXA==
+X-Gm-Message-State: AOJu0YxNJsOkI5qOw3yamdN5IrO0BqJpmsUfZ2T9Ou16FOvD2ea7V5XD
+	TsKuArcdTXJN86oLmEWQmDk5g1CJjU/qUQDmPTb+POTSU2tnww9RYaC0z/Ccs6M=
+X-Google-Smtp-Source: AGHT+IEU8HYa3hCTxSSYayUA1arnljkwYr7GSlFCw5TxepPqNeXLrtFb+yavJ0gq5yYhVjrRMVV3Lg==
+X-Received: by 2002:a05:6000:50:b0:35f:d60:f183 with SMTP id ffacd0b85a97d-35f0d60f2c0mr1006174f8f.24.1717776293576;
+        Fri, 07 Jun 2024 09:04:53 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:7e4b:b0d3:6a34:6404? ([2a01:e0a:982:cbb0:7e4b:b0d3:6a34:6404])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35f094fbf3esm1392894f8f.77.2024.06.07.09.04.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Jun 2024 09:04:52 -0700 (PDT)
+Message-ID: <94773a91-a845-4821-a6ee-a0be93ea49d9@linaro.org>
+Date: Fri, 7 Jun 2024 18:04:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,124 +78,156 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/6] hwmon: (spd5118) Add support for reading SPD data
-To: Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org
-Cc: linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- =?UTF-8?Q?Ren=C3=A9_Rebe?= <rene@exactcode.de>,
- =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
- Stephen Horvath <s.horvath@outlook.com.au>
-References: <20240604040237.1064024-1-linux@roeck-us.net>
- <20240604040237.1064024-5-linux@roeck-us.net>
- <4cfe1004-77d4-432b-b07e-557a2e57de58@gmx.de>
- <2c94220a-29e9-4b83-a427-5ad406ff1c48@roeck-us.net>
-Content-Language: en-US
-From: Armin Wolf <W_Armin@gmx.de>
-In-Reply-To: <2c94220a-29e9-4b83-a427-5ad406ff1c48@roeck-us.net>
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 2/2] media: meson: vdec: add GXLX SoC platform
+To: Christian Hewitt <christianshewitt@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240604051533.3312944-1-christianshewitt@gmail.com>
+ <20240604051533.3312944-2-christianshewitt@gmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240604051533.3312944-2-christianshewitt@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:0qDdKGw61X87nQFLHvowo2G5k240GD/KA+cotLxrnQr4berymYb
- wB1CETpGS2SrWjIHwlcssRK6enPLMKMNfrZ2DZARjqgyntnFWoC9Bu5Nkjp8SnXFKAEO5kL
- iq+Dd2+XmHgVCTz7xFytLw8oSYLZ6RqCUwqQ+JpjXYPSaiT153hZFvkanO2BAZ0m1mC68VH
- yWU6d6459Ed314UPd+P4Q==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:wZGDi/oXCIM=;vYmL5x6uzzRQTVhF2LXO3SJZGYa
- +MFZ5gk2HrpjbVxGHGcRMSDsnCBoSCbgmRMPalOWosmL+RxOtNccoo22PjH2dvQcvNntRv8Ip
- qWaAoLgBgZ3RTTeZ1aXXwzGaCBkkFml4VErK+8p+vQ32PN2SEEEaexbHGTvMg1Y6zrSvQ3Ky/
- bUJAnRXzTPVvnt59G3e5YpmygFGmxZP6Ev0IWAhMzOHfa8NjTB4ZhOVZthVH24nDwokr1EYWH
- EKddhxKiwIVpgdGyntHIsKBbo5m4HkzPIK4zSUFLyW8of+GsUMJAjA659uiRCcUHQduEmjk6+
- VnKAkhLNWgLlYal/QTOGYI3W6nez6ezXpdkkLeGQV+Iqhw7HkYsLLP2mgHPOKnYKwR55jTrkn
- 9Kz3HBBxlnH64VRhKQ4trYwgDvwFVFdjXTpx9ibOsYIaead1P1i1qV4Uy3ofaapf/5Tes/Nh4
- 39VGPwk31EZbol0Q5FAzvnjW5Bedf20Jn9D+D/VVkopW9WhLGvlBEldDGNfR//DxShrycXGsg
- eCHO1ONCScDqBuo9lOPHiAJhbIaRNEFJGYM3s+WXe7v9AU4N7w3oQM5LXHyo+xIRTK3yQrBpn
- bLnoDQCIua3AYnNxrNlqPkEbfeAySCwTFAdy0SopyVc8ft8SfWguKaP0yGPeK1xHXC+QvL3sA
- Mzoa0zWI4AE1tYQ5hUtQTMQ7INI5b1Qoxqc027dhdEsqRIqGUYLVe30FG83Koft5+Z7JzXY3r
- +tR5Vb8i4Qu7oS3K9htnKVYfFLZbRBxpmkabf5p7P1rm8KbK08oENEBp1IKj1220C6xoOccgQ
- 1KF8Z/3jzfVRj3w8fxSwBwohCK2bMzKIAgCe2mfscZ0bc=
+Content-Transfer-Encoding: 7bit
 
-Am 04.06.24 um 16:30 schrieb Guenter Roeck:
+On 04/06/2024 07:15, Christian Hewitt wrote:
+> Add the GXLX SoC platform which is based on GXL but omits the VP9 codec.
+> 
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>   drivers/staging/media/meson/vdec/vdec.c       |  2 +
+>   .../staging/media/meson/vdec/vdec_platform.c  | 44 +++++++++++++++++++
+>   .../staging/media/meson/vdec/vdec_platform.h  |  2 +
+>   3 files changed, 48 insertions(+)
+> 
+> diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
+> index de3e0345ab7c..5e5b296f93ba 100644
+> --- a/drivers/staging/media/meson/vdec/vdec.c
+> +++ b/drivers/staging/media/meson/vdec/vdec.c
+> @@ -982,6 +982,8 @@ static const struct of_device_id vdec_dt_match[] = {
+>   	  .data = &vdec_platform_gxm },
+>   	{ .compatible = "amlogic,gxl-vdec",
+>   	  .data = &vdec_platform_gxl },
+> +	{ .compatible = "amlogic,gxlx-vdec",
+> +	  .data = &vdec_platform_gxlx },
+>   	{ .compatible = "amlogic,g12a-vdec",
+>   	  .data = &vdec_platform_g12a },
+>   	{ .compatible = "amlogic,sm1-vdec",
+> diff --git a/drivers/staging/media/meson/vdec/vdec_platform.c b/drivers/staging/media/meson/vdec/vdec_platform.c
+> index 70c9fd7c8bc5..66bb307db85a 100644
+> --- a/drivers/staging/media/meson/vdec/vdec_platform.c
+> +++ b/drivers/staging/media/meson/vdec/vdec_platform.c
+> @@ -101,6 +101,44 @@ static const struct amvdec_format vdec_formats_gxl[] = {
+>   	},
+>   };
+>   
+> +static const struct amvdec_format vdec_formats_gxlx[] = {
+> +	{
+> +		.pixfmt = V4L2_PIX_FMT_H264,
+> +		.min_buffers = 2,
+> +		.max_buffers = 24,
+> +		.max_width = 3840,
+> +		.max_height = 2160,
+> +		.vdec_ops = &vdec_1_ops,
+> +		.codec_ops = &codec_h264_ops,
+> +		.firmware_path = "meson/vdec/gxl_h264.bin",
+> +		.pixfmts_cap = { V4L2_PIX_FMT_NV12M, 0 },
+> +		.flags = V4L2_FMT_FLAG_COMPRESSED |
+> +			 V4L2_FMT_FLAG_DYN_RESOLUTION,
+> +	}, {
+> +		.pixfmt = V4L2_PIX_FMT_MPEG1,
+> +		.min_buffers = 8,
+> +		.max_buffers = 8,
+> +		.max_width = 1920,
+> +		.max_height = 1080,
+> +		.vdec_ops = &vdec_1_ops,
+> +		.codec_ops = &codec_mpeg12_ops,
+> +		.firmware_path = "meson/vdec/gxl_mpeg12.bin",
+> +		.pixfmts_cap = { V4L2_PIX_FMT_NV12M, V4L2_PIX_FMT_YUV420M, 0 },
+> +		.flags = V4L2_FMT_FLAG_COMPRESSED,
+> +	}, {
+> +		.pixfmt = V4L2_PIX_FMT_MPEG2,
+> +		.min_buffers = 8,
+> +		.max_buffers = 8,
+> +		.max_width = 1920,
+> +		.max_height = 1080,
+> +		.vdec_ops = &vdec_1_ops,
+> +		.codec_ops = &codec_mpeg12_ops,
+> +		.firmware_path = "meson/vdec/gxl_mpeg12.bin",
+> +		.pixfmts_cap = { V4L2_PIX_FMT_NV12M, V4L2_PIX_FMT_YUV420M, 0 },
+> +		.flags = V4L2_FMT_FLAG_COMPRESSED,
+> +	},
+> +};
+> +
+>   static const struct amvdec_format vdec_formats_gxm[] = {
+>   	{
+>   		.pixfmt = V4L2_PIX_FMT_VP9,
+> @@ -263,6 +301,12 @@ const struct vdec_platform vdec_platform_gxl = {
+>   	.revision = VDEC_REVISION_GXL,
+>   };
+>   
+> +const struct vdec_platform vdec_platform_gxlx = {
+> +	.formats = vdec_formats_gxlx,
+> +	.num_formats = ARRAY_SIZE(vdec_formats_gxlx),
+> +	.revision = VDEC_REVISION_GXLX,
+> +};
+> +
+>   const struct vdec_platform vdec_platform_gxm = {
+>   	.formats = vdec_formats_gxm,
+>   	.num_formats = ARRAY_SIZE(vdec_formats_gxm),
+> diff --git a/drivers/staging/media/meson/vdec/vdec_platform.h b/drivers/staging/media/meson/vdec/vdec_platform.h
+> index 731877a771f4..88ca4a9db8a8 100644
+> --- a/drivers/staging/media/meson/vdec/vdec_platform.h
+> +++ b/drivers/staging/media/meson/vdec/vdec_platform.h
+> @@ -14,6 +14,7 @@ struct amvdec_format;
+>   enum vdec_revision {
+>   	VDEC_REVISION_GXBB,
+>   	VDEC_REVISION_GXL,
+> +	VDEC_REVISION_GXLX,
+>   	VDEC_REVISION_GXM,
+>   	VDEC_REVISION_G12A,
+>   	VDEC_REVISION_SM1,
+> @@ -28,6 +29,7 @@ struct vdec_platform {
+>   extern const struct vdec_platform vdec_platform_gxbb;
+>   extern const struct vdec_platform vdec_platform_gxm;
+>   extern const struct vdec_platform vdec_platform_gxl;
+> +extern const struct vdec_platform vdec_platform_gxlx;
+>   extern const struct vdec_platform vdec_platform_g12a;
+>   extern const struct vdec_platform vdec_platform_sm1;
+>   
 
-> On 6/4/24 04:58, Armin Wolf wrote:
->> Am 04.06.24 um 06:02 schrieb Guenter Roeck:
->>
->>> Add support for reading SPD NVMEM data from SPD5118 (Jedec JESD300)
->>> compliant memory modules. NVMEM write operation is not supported.
->>>
->>> NVMEM support is optional. If CONFIG_NVMEM is disabled, the driver wil=
-l
->>> still instantiate but not provide NVMEM attribute files.
->>>
->>> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
->>> ---
->>> v4: Use NVMEM_DEVID_NONE instead of NVMEM_DEVID_AUTO
->>> =C2=A0=C2=A0=C2=A0=C2=A0 Ignore nvmem registration failure if nvmem su=
-pport is disabled
->>>
->>> v3: New patch
->>>
->>> =C2=A0 Documentation/hwmon/spd5118.rst |=C2=A0=C2=A0 8 ++
->>> =C2=A0 drivers/hwmon/spd5118.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 | 147
->>> +++++++++++++++++++++++++++++++-
->
->
-> [ ... ]
->
->>> +static int spd5118_nvmem_init(struct device *dev, struct
->>> spd5118_data *data)
->>> +{
->>> +=C2=A0=C2=A0=C2=A0 struct nvmem_config nvmem_config =3D {
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .type =3D NVMEM_TYPE_EEPRO=
-M,
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .name =3D dev_name(dev),
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .id =3D NVMEM_DEVID_NONE,
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .dev =3D dev,
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .base_dev =3D dev,
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .read_only =3D true,
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .root_only =3D false,
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .owner =3D THIS_MODULE,
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .compat =3D true,
->>
->> Hi,
->>
->> do we really need this setting here?
->>
->
-> The "eeprom" file is only created if both "base_dev" and "compat" are
-> set.
-> decode-dimms depends on it. While decode-dimms has to be updated anyway,
-> I did not want to make that more complicated than necessary.
->
-I understand.
-
-> Another option would be not to use the nvmem subsystem in the first
-> place,
-> similar to the ee1004 driver, but my understanding is that the use of th=
-e
-> nvmem subsystem is preferred.
->
-> [ ... ]
->
->>> +
->>> +=C2=A0=C2=A0=C2=A0 err =3D spd5118_nvmem_init(dev, data);
->>> +=C2=A0=C2=A0=C2=A0 /* Ignore if NVMEM support is disabled */
->>> +=C2=A0=C2=A0=C2=A0 if (err && err !=3D -EOPNOTSUPP) {
->>
->> Maybe we can use IS_REACHABLE(CONFIG_NVMEM) here?
->>
->
-> We could, but I prefer to avoid conditionals in the code if possible,
-> the dummy devm_nvmem_register() is there specifically to cover that
-> situation, and no other driver does that. Also, since the underlying
-> functions are dummy, the compiler should optimize it all away if
-> CONFIG_NVMEM=3Dn.
->
-> Thanks,
-> Guenter
->
-Ok, then i am ok with with this patch.
-
-Tested-by: Armin Wolf <W_Armin@gmx.de>
-
+Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
 
