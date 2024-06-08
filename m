@@ -1,157 +1,213 @@
-Return-Path: <devicetree+bounces-73856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D599901207
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 16:32:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6059901216
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 16:38:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF1DA282840
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 14:32:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D27E41C209C6
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 14:38:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7FAA1586F3;
-	Sat,  8 Jun 2024 14:32:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LVxr6HeC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E0EF1DDCE;
+	Sat,  8 Jun 2024 14:38:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBD2B1FBB;
-	Sat,  8 Jun 2024 14:32:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E26D9374D9;
+	Sat,  8 Jun 2024 14:38:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717857158; cv=none; b=C1b+WN+vsSHIR1YKYSg1PR+H+Kl2b7edWSIzy7bGiSTc2dWwejgeNlBJ9HwE8+7vJrTrM+YyHn3xDtXSF9E7thcK2jENq9Es4+xwVUS0lO8GWy/Si3YEXkuk1IjOdKAzwOd13CCBV6G0P58ta2kkJ53OXR8kjW3Ass6q5TLpuZw=
+	t=1717857509; cv=none; b=gPpinzWVZQjEERpvxGwuK7OT+EkAzEpZ8vN6XHT8xaIsI0WeIBKYHLDcam8PePNqOn5oKIKhNeeavSAYRWIyrM1yV9te6ngP3rxSF2EijlAb1/gd1RJq1DdchTmuP6T/yG2K4PXPA1PG9r0K2Y1RmeGzbRuGyU0FFwOeeWrshHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717857158; c=relaxed/simple;
-	bh=zGEPcDt853zwTvT5c/vkd82U97Wq4qbke8w4K0IQ1oU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nNXu5WHwCgyQzwbMS/VqspYU9kRV5IkP7LBqljC4dn3Y8RKLp8VNCb8+ZK2kPmCmtDUW+vRn6fJPDsc25h0DLhZV02TkRICO0RToVBigFpA1Iipdrvr1FC5+gHraALk82av/eBF+hmpYXJro51UocuM+vixkUatjP1/PEzyKvFQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LVxr6HeC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91FB9C2BD11;
-	Sat,  8 Jun 2024 14:32:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717857158;
-	bh=zGEPcDt853zwTvT5c/vkd82U97Wq4qbke8w4K0IQ1oU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=LVxr6HeCpiXGfDae+9YHPzHKV4zTBtFO+V66iRYJuTFltZ/q52Xsuo4CsH6ZXqb4Q
-	 NnOTW6mGV6ix5FBND9wB3pxhJd0VRNbAtHDLMrMsj1p5BV3QX0F6l6eelp0RtOs5QZ
-	 pNevnq6SG2FIOZL50RQYMnsEZNTiOUTRYUfIcM5L/tvwIOhvdWPeb5k8kxuByp/ksr
-	 1NLtI9rqxb+3NlYPkVBFtM2chX5LxJvucRPKQrtF6agpjGVL5QbAR+ybBY2AKCb0eX
-	 bngCHOu8SEkAKs5BwqqWoi1mQrez8+gjucTxGz4GzE+OwT2Y9qf6A8kekrddQI0wOQ
-	 ohkiBTM1LBMuA==
-Date: Sat, 8 Jun 2024 15:32:31 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Kim Seer Paller
- <kimseer.paller@analog.com>, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Lars-Peter Clausen
- <lars@metafoo.de>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Michael Hennerich <michael.hennerich@analog.com>,
- Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
-Subject: Re: [PATCH v3 4/5] dt-bindings: iio: dac: Add adi,ltc2672.yaml
-Message-ID: <20240608153231.02f839fd@jic23-huawei>
-In-Reply-To: <3dadacf8-1349-483d-b264-dcb41d2cc3fc@baylibre.com>
-References: <20240603012200.16589-1-kimseer.paller@analog.com>
-	<20240603012200.16589-5-kimseer.paller@analog.com>
-	<2942a938-19b9-4642-8ed0-8e17e4825bc5@baylibre.com>
-	<c4651a18-316b-42e0-a67b-673fedb05b5a@kernel.org>
-	<3dadacf8-1349-483d-b264-dcb41d2cc3fc@baylibre.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1717857509; c=relaxed/simple;
+	bh=I4i+4aTr9I5yZvMerICLtsJD2CYjqPceib8CelHXqUw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BcmRDjAMZBBhk7uq7F0ZkHDvn5IhAGn7dVaREm9YnvVRO7myHhHKI50KNhDNbCJPmyC1wXFj6/mmdsOMHZt3DL8o1YiYrwlqg8y7bTFr/vmplZ0YugIqeXXz75tKEWaal7LZdbxMcxnswlFq7Np0Y9gveJW68tG+kn2WXlMsHes=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from [194.95.143.137] (helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sFxCq-0008TN-F2; Sat, 08 Jun 2024 16:38:08 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Sebastian Kropatsch <seb-dev@mail.de>, linux-rockchip@lists.infradead.org,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Space Meyer <me@the-space.agency>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Dragan Simic <dsimic@manjaro.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Sebastian Kropatsch <seb-dev@web.de>
+Subject:
+ Re: [PATCH v2 2/2] arm64: dts: rockchip: Add FriendlyElec CM3588 NAS board
+Date: Sat, 08 Jun 2024 16:38:07 +0200
+Message-ID: <11747652.CDJkKcVGEf@phil>
+In-Reply-To: <c4087311-cbd2-415e-a582-3565f2f62e81@the-space.agency>
+References:
+ <20240602211901.237769-1-seb-dev@mail.de>
+ <20240602202132.2012-2-seb-dev@mail.de>
+ <c4087311-cbd2-415e-a582-3565f2f62e81@the-space.agency>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Tue, 4 Jun 2024 08:53:27 -0500
-David Lechner <dlechner@baylibre.com> wrote:
+Am Donnerstag, 6. Juni 2024, 15:13:20 CEST schrieb Space Meyer:
+> + Sebastian Reichel regarding pcie3x4 BAR 1 overlap
+> 
 
-> On 6/4/24 1:47 AM, Krzysztof Kozlowski wrote:
-> > On 03/06/2024 21:59, David Lechner wrote:  
-> >> On 6/2/24 8:21 PM, Kim Seer Paller wrote:  
-> >>> Add documentation for ltc2672.
-> >>>
-> >>> Reported-by: Rob Herring (Arm) <robh@kernel.org>
-> >>> Closes: https://lore.kernel.org/all/171643825573.1037396.2749703571529285460.robh@kernel.org/
-> >>> Co-developed-by: Michael Hennerich <michael.hennerich@analog.com>
-> >>> Signed-off-by: Michael Hennerich <michael.hennerich@analog.com>
-> >>> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
-> >>> ---
-> >>>  .../bindings/iio/dac/adi,ltc2672.yaml         | 158 ++++++++++++++++++
-> >>>  MAINTAINERS                                   |   1 +
-> >>>  2 files changed, 159 insertions(+)
-> >>>  create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ltc2672.yaml
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ltc2672.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ltc2672.yaml
-> >>> new file mode 100644
-> >>> index 000000000000..d143a9db7010
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ltc2672.yaml
-> >>> @@ -0,0 +1,158 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/iio/dac/adi,ltc2672.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: Analog Devices LTC2672 DAC
-> >>> +
-> >>> +maintainers:
-> >>> +  - Michael Hennerich <michael.hennerich@analog.com>
-> >>> +  - Kim Seer Paller <kimseer.paller@analog.com>
-> >>> +
-> >>> +description: |
-> >>> +  Analog Devices LTC2672 5 channel, 16 bit, 300mA DAC
-> >>> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ltc2672.pdf
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    enum:
-> >>> +      - adi,ltc2672  
-> >>
-> >> The linked datasheet describes 12-bit and 16-bit versions, so should we have
-> >> two compatibles here? adi,ltc2672-12, adi,ltc2672-16  
+> On 02.06.2024 22:20, Sebastian Kropatsch wrote:
+> > Some RK3588 boards are still using this property, the following quote
+> > is from rk3588-tiger-haikou.dts for example:
+> >      &sdmmc {
+> >          /* while the same pin, sdmmc_det does not detect card changes */
+> >          cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
 > > 
-> > Is their programming model different?
-> >   
+> > I am unsure as to whether this comment from the quote might apply for
+> > the CM3588 as well. Please let me know if you are able to tell :-)
 > 
-> I replied to myself already with the answer. After looking at it more it
-> does not appear that is the case.
+> I don't quite understand this. However GPIO0_A4 *is* routed to the micro 
+> sd CD according to the NAS schematic, page 16 around A5.
+
+for the actual sdmmc_det functionality ... possibly some pinconfig thing?
+I.e. pull-whatever settings?
+
+
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts
 > 
+> > +	adc_keys: adc-keys {
+> 
+> AFAICT this board uses only 1 button per ADC input. Hence I think we 
+> need seperate ADC defs per button. The usual plural "adc-keys" does not 
+> apply.
 
-For a DAC, this is an interesting question.  The wrong impressions of
-precision might be a problem if someone is trying to tune the value.
-
-Say they set it to +15 and look at some other sensor for the affect.
-They expect to see something but get no change at all.  They might
-assume the circuit is broken.
-
-So I think yes the programming model is different and that should
-be discoverable (ideally from hardware, but if not from the compatible)
-To take an extreme example of extending the logic of these being
-the 'same' from a programming model point of view, would we consider
-a regulator that did 0 and 3V only different from one that did 0V,
-1V, 2V, 3V just because the second bit in the register was ignored?
-I think in that case we'd consider them to have an obviously different
-programming model.
-
-We have a few cases where we do paper over similar differences in
-resolution, but within one part with different settings rather than
-between devices (so that's a driver limitation, not a DT thing).
-
-So I might be persuaded no one cares, but in my view the programming
-model is different in a significant way.
-
-Jonathan
+Also if you need to define multiple ones, you'll need distinctive names.
 
 
+> > +	analog-sound {
+> > +		compatible = "simple-audio-card";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&headphone_detect>;
+> > +
+> > +		simple-audio-card,name = "realtek,rt5616-codec";
+> > +		simple-audio-card,format = "i2s";
+> > +		simple-audio-card,mclk-fs = <256>;
+> > +
+> > +		simple-audio-card,hp-det-gpio = <&gpio1 RK_PC4 GPIO_ACTIVE_LOW>;
+> > +
+> > +		simple-audio-card,routing =
+> > +			"Headphones", "HPOL",
+> > +			"Headphones", "HPOR",
+> > +			"MIC1", "Microphone Jack",
+> > +			"Microphone Jack", "micbias1";
+> > +		simple-audio-card,widgets =
+> > +			"Headphone", "Headphones",
+> > +			"Microphone", "Microphone Jack";
+> > +
+> > +		simple-audio-card,cpu {
+> > +			sound-dai = <&i2s0_8ch>;
+> > +		};
+> > +
+> > +		simple-audio-card,codec {
+> > +			sound-dai = <&rt5616>;
+> > +		};
+> > +	};
+> 
+> The rt5616 is on the SoM according to the schematic. Maybe move it all 
+> there and then only define the hp-det-gpio here?
+
+When the codec itself is on the som _it_ should be there.
+For the card itself I don't necessarily think so.
+
+I.e. another baseboard (if it ever exists) might not route sound at all,
+so I guess it might make more sense to leave the actual "card" on the
+baseboard that also provides the actual outputs and inputs.
+
+
+> > +	vcc_3v3_host_32: regulator-vcc-3v3-host-32 {
+> > +		compatible = "regulator-fixed";
+> > +		enable-active-high;
+> > +		gpios = <&gpio3 RK_PA5 GPIO_ACTIVE_HIGH>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&vcc_3v3_host32_en>;
+> > +		regulator-name = "vcc_3v3_host_32";
+> > +		regulator-min-microvolt = <3300000>;
+> > +		regulator-max-microvolt = <3300000>;
+> > +		vin-supply = <&vcc_5v0_sys>;
+> > +	};
+> 
+> I think this is a 5v0 regulator?
+
+At least the vcc_3v3_host_32 naming suggests 3.3V though?
+
+
+> > +	vcc_3v3_pcie30: regulator-vcc-3v3-pcie30 {
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "vcc_3v3_pcie30";
+> > +		regulator-always-on;
+> > +		regulator-boot-on;
+> > +		regulator-min-microvolt = <3300000>;
+> > +		regulator-max-microvolt = <3300000>;
+> > +		vin-supply = <&vcc_5v0_sys>;
+> > +	};
+> 
+> These are 4 seperate regulators according to the schematic. However, as 
+> they are all fixed, idk if they should be split or kept like this.
+
+personally, I really like the power-diagram to match schematics.
+I.e. $debugfs/regulator/regulator_summary will produce a really nice
+graph of all the system's regulators, so it's definitly nice if the
+hirarchy matches. Also prevents head-scratching later on ;-)
+
+
+> > +	fusb302: typec-portc@22 {
+> > +		compatible = "fcs,fusb302";
+> > +		reg = <0x22>;
+> > +		interrupt-parent = <&gpio0>;
+> > +		interrupts = <RK_PD3 IRQ_TYPE_LEVEL_LOW>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&usbc0_int>;
+> > +		vbus-supply = <&vbus_5v0_typec>;
+> 
+> Isn't this missing a `status = "okay";`?
+
+status okay is the default, so when you add a completely new node it is
+"okay" by default and you only add a status if you need something else.
+
+
+> > +&pinctrl {
+> > +	audio {
+> > +		headphone_detect: headphone-detect {
+> > +			rockchip,pins = <1 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
+> 
+> You could use &gpio1 instead of 1. Same for every entry in &pinctrl.
+
+No, that is a number - that of the pin-bank and not a reference to the
+gpio controller. Please any other board/soc with its pin-groups.
+
+
+> > +&pinctrl {
+> > +	gpio-leds {
+> > +		led_sys_pin: led-sys-pin {
+> > +			rockchip,pins = <2 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
+> 
+> You could use &gpio2 instead of 2. Same for every entry in &pinctrl.
+
+same as above
+
+
+Heiko
 
 
 
