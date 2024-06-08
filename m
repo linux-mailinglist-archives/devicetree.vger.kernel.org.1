@@ -1,122 +1,145 @@
-Return-Path: <devicetree+bounces-73861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DF53901232
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 17:06:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9DB9901233
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 17:08:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A4EC1F21BF0
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 15:06:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AABAF1C20D97
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 15:08:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D93AC56446;
-	Sat,  8 Jun 2024 15:06:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5B4515A86A;
+	Sat,  8 Jun 2024 15:08:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="InffNkAR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aUtOClQ6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52E912561B
-	for <devicetree@vger.kernel.org>; Sat,  8 Jun 2024 15:06:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6E5E1E528;
+	Sat,  8 Jun 2024 15:08:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717859195; cv=none; b=I71uQIa9tMwp2bd4JEGEbkdkMVMhoYPjmeUSLSBQw01SMSWPmuocWlhBJ4B8MRGqueg1v/oha8ms3EeGgCi9Z1xZfNkI77D34E3D9LFL1+rOABjVrBcDaY/l2T30Sfk1QNtBX8h9V6/EvncHpn80/5lN37lmJH8y8mkVv3B1dls=
+	t=1717859324; cv=none; b=gfNZgsQjmGUWeQg40XfGnCdThV7tc/h0iDdfBJk44EF9Sla9iYLWWGKjtxTniL31SXK4CBsU4y4Ta3dvkafqn3xcxYeMZH8UNkb1NZ+mbaibTOCQxWA4KpYwcJKlKtDFw8wWKQLWEvvGO/RFomzkdxQfIyj0osLZfnqx9Ywdzec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717859195; c=relaxed/simple;
-	bh=j6BCC+Vbz95kG7AaIGrnoIlXtP848eUSBofX852GX0A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TKSQeqgOLEbl1ghz8JDT1WpNL3bEPDkEsLWyaMnApq1a+wn7ufAUzsSgZ+suM4+aGq6Jq6EscS32zXvWwbRGhA1QYLaRhamtcLbDVhz+CYQXzccLq+Zx6h5LB0AddKj6EB4uu/1P9WzwzBPhzp2nXzLd6EGjdd8fHj0d5c0RocY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=InffNkAR; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A4A23471;
-	Sat,  8 Jun 2024 17:06:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1717859181;
-	bh=j6BCC+Vbz95kG7AaIGrnoIlXtP848eUSBofX852GX0A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=InffNkAREm7P3XrO8k/omxY3XXmf6mHcsGG4HXN2aKvO4wbbMdKjPIoOU5bQJFRse
-	 gQWnRRAOZd5zJhubb/oZsBpoYQZ8qxlTbJrFELa0OkLdM8/LXVaFLOsbyofxAbvbeG
-	 mTU9XY4cD7flNHQshG2iw2z5avS+TimukUNrZndQ=
-Date: Sat, 8 Jun 2024 18:06:13 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>, Marek Vasut <marex@denx.de>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	patchwork-lst@pengutronix.de, kernel@pengutronix.de,
-	Adam Ford <aford173@gmail.com>
-Subject: Re: [PATCH 4/4] arm64: dts: imx8mp-evk: enable HDMI
-Message-ID: <20240608150613.GA13225@pendragon.ideasonboard.com>
-References: <20220826192932.3217260-1-l.stach@pengutronix.de>
- <20220826192932.3217260-4-l.stach@pengutronix.de>
- <20230302163525.007503e4@booty>
- <20230525122628.13b0f28b@booty>
+	s=arc-20240116; t=1717859324; c=relaxed/simple;
+	bh=nHTMnQE4+3vQRN5GII4anVg1/7flaCgbkvpyw0OVhOU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KX2xZPuAPfLge9Ny3FgnrMfXRD4FOK7AlA+F95OEIt9y1djMvBo2WtuiyC2pI1mYsu9RMbKEsIKQaYozBfNUouFlr0x42BOrwAvHvWQG7/wBrtELtB7ei72EvfSsHzdD5UuXiy5yV/dEEtkLf7dX4AxhTA4dx7ePv6ZXPOOqQ8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aUtOClQ6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 328D8C2BD11;
+	Sat,  8 Jun 2024 15:08:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717859324;
+	bh=nHTMnQE4+3vQRN5GII4anVg1/7flaCgbkvpyw0OVhOU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=aUtOClQ6ZtnewY0lHopTLnOsoLJ3X/AiZtlGksHWvgha8CW5AI8lz3qbM3KmsgvtQ
+	 OgfaQaZ3yo8SpCBkKU+H3GQ19ya9wt9hE6kIG0DmgZ5BmgEQqDMv7ZUpaAxLHpqNF5
+	 VfI9cU+y6NqYas1uNnQDdLQyII7YjOkukFoSL1GqPZduiBXC3Z37YSH3hXTDu2Ov37
+	 v1Co4lK0JNCSrpnHu1EDsrm4JyWoHxJlHczcS6sq+t8Rp9XtI36AXowPZ2U094aH3t
+	 qaWXbWkkuaeL2SIMBeEmsHbH/LVIwpRrenBW4q0aXol7rhXidDRH24asJni1+JxTj5
+	 mFiWx+CTCeAgA==
+Date: Sat, 8 Jun 2024 16:08:38 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: Antoniu Miclaus <antoniu.miclaus@analog.com>, Lars-Peter Clausen 
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski  <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] iio: frequency: adf4350: add clk provider
+Message-ID: <20240608160838.16a2a04f@jic23-huawei>
+In-Reply-To: <751abd157213736e376ca43ef1082362a4ca1149.camel@gmail.com>
+References: <20240607095806.3299-1-antoniu.miclaus@analog.com>
+	<20240607095806.3299-2-antoniu.miclaus@analog.com>
+	<751abd157213736e376ca43ef1082362a4ca1149.camel@gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230525122628.13b0f28b@booty>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 25, 2023 at 12:26:28PM +0200, Luca Ceresoli wrote:
-> On Thu, 2 Mar 2023 16:35:25 +0100 Luca Ceresoli wrote:
-> > On Fri, 26 Aug 2022 21:29:32 +0200 Lucas Stach wrote:
-> > 
-> > > Enable the DT nodes for HDMI TX and PHY and add the pinctrl for the few
-> > > involved pins that are configurable.
-> > > 
-> > > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>  
-> 
-> Any updates to these patches? I haven't found any v2 on the list.
 
-This is the last patch in the series that hasn't made it upstream It
-would be really nice to get a new version that could be merged in v6.11.
-Pretty please :-)
+> > +static int adf4350_clk_register(struct adf4350_state *st)
+> > +{
+> > +	struct spi_device *spi =3D st->spi;
+> > +	struct clk_init_data init;
+> > +	struct clk *clk;
+> > +	const char *parent_name;
+> > +	int ret;
+> > +
+> > +	if (!device_property_present(&spi->dev, "#clock-cells"))
+> > +		return 0;
+> > +
+> > +	init.name =3D devm_kasprintf(&spi->dev, GFP_KERNEL, "%s-clk",
+> > +				=C2=A0=C2=A0 fwnode_get_name(dev_fwnode(&spi->dev)));
+> > +	device_property_read_string(&spi->dev, "clock-output-names",
+> > +				=C2=A0=C2=A0=C2=A0 &init.name);
+> > +
+> > +	parent_name =3D of_clk_get_parent_name(spi->dev.of_node, 0);
+> > +	if (!parent_name)
+> > +		return -EINVAL;
+> > +
+> > +	init.ops =3D &adf4350_clk_ops;
+> > +	init.parent_names =3D &parent_name;
+> > +	init.num_parents =3D 1;
+> > +
+> > +	st->output.hw.init =3D &init;
+> > +	clk =3D devm_clk_register(&spi->dev, &st->output.hw);
+> > +	if (IS_ERR(clk))
+> > +		return PTR_ERR(clk);
+> > +
+> > +	ret =3D of_clk_add_provider(spi->dev.of_node, of_clk_src_simple_get,
+> > clk);
+> > +	if (ret)
+> > +		return ret;
+> > + =20
+>=20
+> I totally agree this chip should be a clock provider (maybe it should eve=
+n in
+> drivers/clk from the beginning) but there's one thing that comes to my mi=
+nd.
+> Should we still expose the IIO userspace interface in case we register it=
+ as a
+> clock provider?
 
-> > I'm joining late to this party... Is this the latest version of this
-> > series? I haven't found any more recent, but if it is not the case
-> > would you point me to the most recent one please?
-> > 
-> > > +	pinctrl_hdmi: hdmigrp {
-> > > +		fsl,pins = <
-> > > +			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL	0x1c3
-> > > +			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA	0x1c3  
-> > 
-> > Is the low nibble (0x3) right?BIT(0) is reserved according too the
-> > reference manual.
-> > 
-> > Also, all the non-reserved bits in that nibble are bits 1 and 2, which
-> > set the drive strength. For an I2C line it seems that the minimum drive
-> > strength (0x0) should be enough for an I2C line: with any drive
-> > strength setting the supported frequency is >= 65 MHz.
-> > 
-> > > +			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD		0x19
-> > > +			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC		0x19  
-> > 
-> > Here as well, bits 0 and 3 are reserved.
-> 
-> About these pinctrls, I am using these settings on the MSC SM2-MB-EP1
-> board and they appear to be working just as those you are using (but I
-> haven't tested CEC):
-> 
->   MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL     0x1c2
->   MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA     0x1c2
->   MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC         0x10
->   MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD         0x10
+That's a reasonable suggestion.  If it's wired up as a clock we probably do=
+n't
+want to provide userspace controls via IIO.
 
--- 
-Regards,
+>=20
+> Sure, we do have clk notifiers in the kernel but I still think it's a sen=
+sible
+> question :)
+>=20
+> I suspect we have another "outliers" in drivers/iio/frequency :)
 
-Laurent Pinchart
+We all love the blurry boundaries in the kernel. IIRC when these were orgin=
+ally
+proposed, the IIO thing was mostly about how they were being used in Softwa=
+re
+Defined Radios where the were part of the modulator circuits.
+I can't remember the exact reasoning though.
+
+As to the right answer for these today, I don't have strong feelings on it
+and almost all these parts are ADI ones.
+
+Michael, this is one of yours, so what do you think?
+
+On that note, given this is basically registering as a clock.I'd expect
+to see some clk related +CC
+
+Jonathan
+
+>=20
+> - Nuno S=C3=A1=20
+>=20
+>=20
+
 
