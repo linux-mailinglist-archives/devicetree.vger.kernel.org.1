@@ -1,261 +1,157 @@
-Return-Path: <devicetree+bounces-73840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B45F901133
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 11:53:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 868A390116E
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 14:18:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D4511C20F69
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 09:53:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8B8D281185
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 12:18:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70B24176FB6;
-	Sat,  8 Jun 2024 09:53:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3227B176FC9;
+	Sat,  8 Jun 2024 12:18:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z3dg9TFH"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SkathMvh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAAEE12BE91;
-	Sat,  8 Jun 2024 09:53:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65D0011718;
+	Sat,  8 Jun 2024 12:18:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717840403; cv=none; b=iFx9NFGDO5cQRgFS/2LIeCyXOE8x/scYEVPwJxNiU34w160FomjjyWi1zlSLB1y4BNN3XpJrF0x+HT+muDtZltY/7qSZd83CKR6iFXIqE9LCyWEsnnTJc9k8CIu51zMFgbeYmQgCtSp03k2irTfx8ERx+8oj3JKw0w0Hoex6iKc=
+	t=1717849124; cv=none; b=f7wmnSVHGpYSQ4FoRQC4zSRYKtXzd3n8Slc2bD/DxsAa/ZAC6D0NwZWEOH+4nq4IuyrjRbJqQb0S+8y3vp1ANuW+0YWzKQ29V4qOJYMO5jGyMeZdzUSi61zfvU+F8G/MuLlvWP/3Dg2f+pwj29SVJnRdJDMjQLAmUYQK7E9DhXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717840403; c=relaxed/simple;
-	bh=ICnH9E1Vy2cQKqPrA1Ck3aDm8zat1w0IaApwCIiylXY=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ayBAgxGuQxjfQFwz7qXaEjY5Or6fdiVxGAaTb2mkk6EL1V+UDnGJzswNPLVs35jaFDy7g8eEeusPT7U0IwdnFNJMhrMl7QaatDPRN4uDzxqLYdcnPR2JdbGMV0D1oqlhWntkkBGE/c5XVr+02eg4yhJTPOVOMtNK5kaBKXeVpHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z3dg9TFH; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-1f692d6e990so28451665ad.3;
-        Sat, 08 Jun 2024 02:53:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717840401; x=1718445201; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=cvD3ncXaEoCBCf40kRzJQGFe4ot3LxPDiKmhU0HzD1I=;
-        b=Z3dg9TFHkAe3S+quRkOcFHSGD2Y9dLKw29r23gFVU/uVKPEqZpjGwevBY5cBAC7062
-         mVdrywndwAEaUj3Lpv/yGIgEUSqaX5Gf4B00eDyV1aSsxLg0vz9nBcXh7tKvNVopcwef
-         b2iGAvHT7wyoGiGinhra/2xgq5nE86zizx8nJ8hTFUgpwHDrmTmvrzPF9KAjvqz4hMhu
-         75Z4VkYVO+pyLcVAQ1+3DWFrX/f0ok8urjiqBSXukq5mIb2YeyDHUvocIGAV2YxQ1F9H
-         kNjGLtHejNlH2lP2rpEb1x/xBeSK5I+dtpdMU06s+59RdsrfFDkzvDnb8i3HZLyQRl4y
-         R1JA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717840401; x=1718445201;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cvD3ncXaEoCBCf40kRzJQGFe4ot3LxPDiKmhU0HzD1I=;
-        b=JaaUw6GDoJwLoQKjS/VnhNVtULUV4MYrKNdFU1LbgoqxGYz7slJaVXAbkhk7grNmIS
-         m+2UqNSaqsKMsXv1Y4x51YYhWBESK19I2qZEZQkfQ1G6dtaNSu4TlEPfNztILiED8ygK
-         m0m7UiBGfQtIj105vkKxSAveK2Mlk0T3U586qgQQ2EVrhVqS4JWxl49k0RKOB+blM74t
-         I3CZW7eitUAYr59m6EAF+VF3Pye5rnN+JpsF1BD2ypbqomYEAh9jGQ/laqgDvYW7V90u
-         GsjQcsrO4LK64FbgFaOcUD/ffp4kfIQRztTl19b5/KOqfZy2zy8EgqzSS1ZAJkoK5twd
-         Z4Ug==
-X-Forwarded-Encrypted: i=1; AJvYcCWyoW+VQWKnySCPIf0Agie8qLMz8juC3Z+iCWIccm3PxIQ21UPX7wF0YmoORzrQXHawQdef6R5myDeDQwJZbzbHc9TAVBWTCA0vUEyGjMchfGqAKrYYFg0yJVbFS8JZIqgQyCfmg0DOxUNy/AfvuXJS91IrxHdc2FfnagK/0ezVVyBoHC84
-X-Gm-Message-State: AOJu0YzeqN7uChCAPC0Dh3dx6jKdYUOBel/7s+3dsZ9t0moK1otq5LSH
-	u1mMuRMr6HLtgmsaTpffOxgfOTB+tL1NPAmLTQnzo3BEKHCGToYpu4J6pNkG
-X-Google-Smtp-Source: AGHT+IFhV3NOoaW40VGlv2M13vMd5k4gK++hhzBbIbUAJ59ZDFJqeEc6+RaYccabHAi5XzkCHu6nag==
-X-Received: by 2002:a17:903:22cd:b0:1f4:9158:6b9 with SMTP id d9443c01a7336-1f6d0377274mr57753685ad.47.1717840400852;
-        Sat, 08 Jun 2024 02:53:20 -0700 (PDT)
-Received: from localhost.localdomain ([152.58.55.97])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f6bd76ca92sm48075475ad.78.2024.06.08.02.53.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 08 Jun 2024 02:53:20 -0700 (PDT)
-From: Mighty <bavishimithil@gmail.com>
-To: 
-Cc: peter.ujfalusi@gmail.com,
-	Mithil Bavishi <bavishimithil@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lopez Cruz <misael.lopez@ti.com>,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v7] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
-Date: Sat,  8 Jun 2024 15:23:02 +0530
-Message-Id: <20240608095305.2887-1-bavishimithil@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1717849124; c=relaxed/simple;
+	bh=6ehIePUyXK/oDCmy9u0jQHGJM7TVyOSK66aU5f8sWH4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YDltd+pkWShOzCQ/gnEDfKHQN3kNL8mZRqrsvefzVpr7AOaYi6h0QjcS3q+gYYbpzPLLD/G1KcnZpZGdFuZ6SV9OONbJW782XLV8oHTQiHsQ+nAzJxUuWr69mcp+PEHYHE+gmeD95PTy41Gq20ay0K+8iRk29vYE402N/o3kdC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SkathMvh; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1717849121; x=1749385121;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=6ehIePUyXK/oDCmy9u0jQHGJM7TVyOSK66aU5f8sWH4=;
+  b=SkathMvh5Zr1jOHSJcpW4/83D2e6LoNb38wwtXOo2/AOdqkb6Cgt5vVb
+   JEBNPGeVrE+dfKEO8hQRJHaFs+rsxamNOUw5J14AJCOF+UWG9LxFE6vis
+   0FZxk/TIovKKDOwZ7ukUzIiKUGBBjXw12JglQHUzgqrXUlUdGs41KSO8g
+   jlvMjbvGynz55/CBH66XSJ8Ln3sUg2T/aWyEPkqAZWLku01G01Su4p+D1
+   3mCqRvP9N/TUSwD8peyiQYnARyZj3SxshK51NCgMXdnFD9oo8zyB18W+j
+   r5STHcWIb/O+ebaZsEjKHiNn9Ep57Z1rtfNpj564psax7xQz515/PE140
+   A==;
+X-CSE-ConnectionGUID: KKcoJUdfRk6TbDMisQC9cQ==
+X-CSE-MsgGUID: Rx0UJV1SSyit0QGgIXA2IA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11096"; a="18357919"
+X-IronPort-AV: E=Sophos;i="6.08,223,1712646000"; 
+   d="scan'208";a="18357919"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jun 2024 05:18:41 -0700
+X-CSE-ConnectionGUID: P/27zTV7QSWtpX/1HC7Npg==
+X-CSE-MsgGUID: YJ6G4x4USU6cbOG5jHhHyg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,223,1712646000"; 
+   d="scan'208";a="43712969"
+Received: from lkp-server01.sh.intel.com (HELO 472b94a103a1) ([10.239.97.150])
+  by orviesa004.jf.intel.com with ESMTP; 08 Jun 2024 05:18:38 -0700
+Received: from kbuild by 472b94a103a1 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sFv1n-0001YQ-1E;
+	Sat, 08 Jun 2024 12:18:35 +0000
+Date: Sat, 8 Jun 2024 20:17:39 +0800
+From: kernel test robot <lkp@intel.com>
+To: Viacheslav Bocharov <adeep@lexina.in>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org
+Cc: oe-kbuild-all@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] arm64: dts: meson-axg: add support for JetHome
+ JetHub D2 (j200)
+Message-ID: <202406082025.lTEnYgrR-lkp@intel.com>
+References: <20240607145148.2246990-3-adeep@lexina.in>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240607145148.2246990-3-adeep@lexina.in>
 
-From: Mithil Bavishi <bavishimithil@gmail.com>
+Hi Viacheslav,
 
-Convert the OMAP4+ McPDM bindings from txt to yaml (dtschema).
-Drop ti,hwmods property as it is not needed since the sysc conversion.
-Add dma, dma-names, reg-names properties to match the DTS so as to not
-break the already existing ABI.
-Also update example node to match the existing node in the DTS.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
----
-Changelog v7:
-- Mention the changes in commit message
-- Add entire changelog
+[auto build test WARNING on 32f88d65f01bf6f45476d7edbe675e44fb9e1d58]
 
-Changelog v6:
-- Add dma property
-- Add dma-names property
-- Add reg-names property
-- Remove ti,hwmods completely (no longer needed since the sysc
-  conversion)
-- Update example to match one in DTS
+url:    https://github.com/intel-lab-lkp/linux/commits/Viacheslav-Bocharov/dt-bindings-arm-amlogic-add-binding-for-JetHome-JetHub-D2/20240607-225905
+base:   32f88d65f01bf6f45476d7edbe675e44fb9e1d58
+patch link:    https://lore.kernel.org/r/20240607145148.2246990-3-adeep%40lexina.in
+patch subject: [PATCH v1 2/2] arm64: dts: meson-axg: add support for JetHome JetHub D2 (j200)
+compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project d7d2d4f53fc79b4b58e8d8d08151b577c3699d4a)
+dtschema version: 2024.6.dev1+g833054f
+reproduce: (https://download.01.org/0day-ci/archive/20240608/202406082025.lTEnYgrR-lkp@intel.com/reproduce)
 
-Changelog v5:
-- Add imports for constants
-- Add desc to ti,hwmods
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406082025.lTEnYgrR-lkp@intel.com/
 
-Changelog v4:
-- Changed maintainer name
-- Use $ref and enum in ti-hwmods property
-- Make clocks property only have maxItems, no description
-- Add items to clock-names
-- Fix address of node in example
-- Remove extra line
+dtcheck warnings: (new ones prefixed by >>)
+   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:266.33-1540.7: Warning (unit_address_vs_reg): /soc/bus@ff600000/bus@34400/pinctrl@40: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:266.33-1540.7: Warning (simple_bus_reg): /soc/bus@ff600000/bus@34400/pinctrl@40: missing or empty reg/ranges property
+   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:2220.23-2260.6: Warning (avoid_unnecessary_addr_size): /soc/bus@ffd00000/dsi@7000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+>> arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: /soc/bus@ff600000/bus@60000/clock-controller@0: failed to match any schema with compatible: ['amlogic,sm1-audio-clkc']
+>> arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller@300: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
+   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+   arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller@340: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
+   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+   arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller@380: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
+   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+>> arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller@3c0: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
+   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+   arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: /soc/bus@ff600000/bus@60000/audio-controller@744: failed to match any schema with compatible: ['amlogic,sm1-tohdmitx', 'amlogic,g12a-tohdmitx']
+   arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: /soc/bus@ff600000/bus@60000/audio-controller@744: failed to match any schema with compatible: ['amlogic,sm1-tohdmitx', 'amlogic,g12a-tohdmitx']
+>> arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: sys-ctrl@0: '#address-cells', '#size-cells', 'ranges' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml#
+>> arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-0: clock-names:0: 'sclk' was expected
+   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+>> arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-0: clock-names:1: 'lrclk' was expected
+   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+>> arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-0: clock-names:2: 'mclk' was expected
+   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+   arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-1: clock-names:0: 'sclk' was expected
+   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+   arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-1: clock-names:1: 'lrclk' was expected
+   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+   arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-1: clock-names:2: 'mclk' was expected
+   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+>> arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-1: Unevaluated properties are not allowed ('clock-names' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+   arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-2: clock-names:0: 'sclk' was expected
+   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+   arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-2: clock-names:1: 'lrclk' was expected
+   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+   arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-2: clock-names:2: 'mclk' was expected
+   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+>> arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: sound: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
+   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-sound-card.yaml#
+>> arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: sound: 'anyOf' conditional failed, one must be fixed:
+   	'clocks' is a required property
+   	'#clock-cells' is a required property
+   	from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
 
-Changelog v3:
-- Add subject prefix in commit message
-- Use correct name in Signed-off
-- Change filename to match compatible
-- Use generic node name
-
-Changelog v2:
-- Use maxItems for interrupts and ti,hwmods
-- Change example node address
-
- .../devicetree/bindings/sound/omap-mcpdm.txt  | 30 --------
- .../bindings/sound/ti,omap4-mcpdm.yaml        | 73 +++++++++++++++++++
- 2 files changed, 73 insertions(+), 30 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/omap-mcpdm.txt
- create mode 100644 Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml
-
-diff --git a/Documentation/devicetree/bindings/sound/omap-mcpdm.txt b/Documentation/devicetree/bindings/sound/omap-mcpdm.txt
-deleted file mode 100644
-index ff98a0cb5..000000000
---- a/Documentation/devicetree/bindings/sound/omap-mcpdm.txt
-+++ /dev/null
-@@ -1,30 +0,0 @@
--* Texas Instruments OMAP4+ McPDM
--
--Required properties:
--- compatible: "ti,omap4-mcpdm"
--- reg: Register location and size as an array:
--       <MPU access base address, size>,
--       <L3 interconnect address, size>;
--- interrupts: Interrupt number for McPDM
--- ti,hwmods: Name of the hwmod associated to the McPDM
--- clocks:  phandle for the pdmclk provider, likely <&twl6040>
--- clock-names: Must be "pdmclk"
--
--Example:
--
--mcpdm: mcpdm@40132000 {
--	compatible = "ti,omap4-mcpdm";
--	reg = <0x40132000 0x7f>, /* MPU private access */
--	      <0x49032000 0x7f>; /* L3 Interconnect */
--	interrupts = <0 112 0x4>;
--	interrupt-parent = <&gic>;
--	ti,hwmods = "mcpdm";
--};
--
--In board DTS file the pdmclk needs to be added:
--
--&mcpdm {
--	clocks = <&twl6040>;
--	clock-names = "pdmclk";
--	status = "okay";
--};
-diff --git a/Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml b/Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml
-new file mode 100644
-index 000000000..cdea0a008
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml
-@@ -0,0 +1,73 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,omap4-mcpdm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: OMAP McPDM
-+
-+maintainers:
-+  - Misael Lopez Cruz <misael.lopez@ti.com>
-+
-+description:
-+  OMAP ALSA SoC DAI driver using McPDM port used by TWL6040
-+
-+properties:
-+  compatible:
-+    const: ti,omap4-mcpdm
-+
-+  reg:
-+    items:
-+      - description: MPU access base address
-+      - description: L3 interconnect address
-+
-+  reg-names:
-+    items:
-+      - const: mpu
-+      - const: dma
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  dmas:
-+    maxItems: 2
-+
-+  dma-names:
-+    items:
-+      - const: up_link
-+      - const: dn_link
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: pdmclk
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - dmas
-+  - dma-names
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    mcpdm@0 {
-+      compatible = "ti,omap4-mcpdm";
-+      reg = <0x0 0x7f>, /* MPU private access */
-+            <0x49032000 0x7f>; /* L3 Interconnect */
-+      reg-names = "mpu", "dma";
-+      interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
-+      interrupt-parent = <&gic>;
-+      dmas = <&sdma 65>, <&sdma 66>;
-+      dma-names = "up_link", "dn_link";
-+      clocks = <&twl6040>;
-+      clock-names = "pdmclk";
-+    };
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
