@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-73858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D025901219
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 16:41:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9778590122C
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 16:58:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6EDC1F21AB3
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 14:41:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7FF41C20C21
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 14:58:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83F6C374D9;
-	Sat,  8 Jun 2024 14:41:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1301155349;
+	Sat,  8 Jun 2024 14:57:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MgUEZpTu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VfyOzotg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5386911718;
-	Sat,  8 Jun 2024 14:41:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4FB22557A;
+	Sat,  8 Jun 2024 14:57:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717857663; cv=none; b=PSYSPsSxh9LL5rkb+qJYp6iWrMunP0pM2FJHn9JyBrCxNzBtioqjv797eKxVpXLuLUZgqh2Wdl/kk4dWWBQTmna0cPwvHWnehkPSvwygopvSkA/NTbXMnpY5UvJZKAGEJ/w5iYTCixXw2Uh5EwdILJlLZdMp7uqjh5J9DVCeLJQ=
+	t=1717858676; cv=none; b=NdVxXyLMeAW3lSNC2FF3TdfIrCL5Z2YPToDeYKkSdPrO86xIIJjYKzx9XnTmnaXDwdJ8IzQ+5gXXo/MMh4Ao7xusV7GOHk1QZCM5WBZ75I4u7FmEyE25mA3557jhckne3hRePs5/nwkpzBfCD900jHU1MVImCqKcdabBsXlXCy4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717857663; c=relaxed/simple;
-	bh=50S6Lswn1r44hRlmB2kSl8+Im7fYL4RZp/xxNiPMJhI=;
+	s=arc-20240116; t=1717858676; c=relaxed/simple;
+	bh=frMwjzfh+7i2E8OKbq8u5BCqItbvZYQf9PPxBKISSoA=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dBp7jdN1vW8bhTCez5Do092ztPruwLU7reTp4Zu6yCMVH0u72bfjz7g+IcjDdRZlOtwNiZa+XSgx5a2f1QJrduNks6n0Myth9ly3xq6ChFa+OfQqj6oj2pDEawvGYzSF/QakyJaZPm+rZ9444WZmO2u+ZNml8/gzOOSp8EnIZV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MgUEZpTu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97B3AC2BD11;
-	Sat,  8 Jun 2024 14:40:58 +0000 (UTC)
+	 MIME-Version:Content-Type; b=oH4HhlXFHH3Q2oVIJxaGnMQhVjFs3yUeNHLlfZJZ1wN1rLQtNhdiV89BilX2QXH8kqahFzzxHi8wM095U8uau7eRQIG733BFcQs9XpW6luIveAIWampUjueuXbtuPBdyFcr30bL5XvHgDRCSZaDQsKnUTyh+lXH9uE8/LViuZiM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VfyOzotg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54A6CC2BD11;
+	Sat,  8 Jun 2024 14:57:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717857663;
-	bh=50S6Lswn1r44hRlmB2kSl8+Im7fYL4RZp/xxNiPMJhI=;
+	s=k20201202; t=1717858676;
+	bh=frMwjzfh+7i2E8OKbq8u5BCqItbvZYQf9PPxBKISSoA=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=MgUEZpTuPd524grhZFpsVtXgC+CsvaHZO1Nh54y4V8xKCyxFBqFwZ+z8cj664VE3D
-	 3uJGOy7ZMaSVeY63B0RdiTOOIPqMn9cPxXuDXI9i5dLqQeVi0BUXfhO/RrbrEf/B3M
-	 VayBF9g1W1/hkVWK6mYWqJVe34A5qnLd4bJ7heYLPEToWYh6pQqej3DB8fzPp/AaDp
-	 uLXmoEnWxE/5UZRI17zXirVvFdn1hz1H4B+gSMgbhuDyN2Xugg3zbbjSPYgMrymdo6
-	 ejfJuM2m4JphLcskOt7tUmtAHRcy91ko2ANWQlK26P98DPEW1EMiN2X2eurIlU+j9l
-	 uyRCYPe5O+0GA==
-Date: Sat, 8 Jun 2024 15:40:53 +0100
+	b=VfyOzotgw/ND6GpJDzDvEnmhf3q8s6Jo3/iH2sp5IIvS9AlGa1eBmsD3yPfBbOWCt
+	 quYTbRd4E0ut09BrSQMor9itFmROzjXuu6HhIg93MaicDtMvBD1MurLpjfLy/tQRbY
+	 UgBn2GBTiFdMn3HW9coQ2eoI06DC+08dc5Fl7FHi7qZWNieSHAxG5zvDv2xBjc8Iza
+	 3wZDyAle1xbF+f6psxkRC3fLoECkvCs0dKMe+tw05Wpxl/xVDgxf86VQsN5oVbuIqw
+	 MPlOKHF3XlFDk5wFe2ocujcxgMGmbonsfEBYjbLEHeWN42Im4k1qz0u3MxsT6LoJ5c
+	 q6aQYbDol8SUg==
+Date: Sat, 8 Jun 2024 15:57:46 +0100
 From: Jonathan Cameron <jic23@kernel.org>
 To: Kim Seer Paller <kimseer.paller@analog.com>
 Cc: <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
@@ -51,12 +51,13 @@ Cc: <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, "Rob Herring" <robh@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, "Michael Hennerich"
  <michael.hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
- <noname.nuno@gmail.com>
-Subject: Re: [PATCH v3 1/5] iio: ABI: Generalize ABI documentation for DAC
-Message-ID: <20240608154053.1cf1097e@jic23-huawei>
-In-Reply-To: <20240603012200.16589-2-kimseer.paller@analog.com>
+ <noname.nuno@gmail.com>, "kernel test robot" <lkp@intel.com>
+Subject: Re: [PATCH v3 5/5] iio: dac: ltc2664: Add driver for LTC2664 and
+ LTC2672
+Message-ID: <20240608155746.06bddfdc@jic23-huawei>
+In-Reply-To: <20240603012200.16589-6-kimseer.paller@analog.com>
 References: <20240603012200.16589-1-kimseer.paller@analog.com>
-	<20240603012200.16589-2-kimseer.paller@analog.com>
+	<20240603012200.16589-6-kimseer.paller@analog.com>
 X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -67,93 +68,151 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Mon, 3 Jun 2024 09:21:56 +0800
+On Mon, 3 Jun 2024 09:22:00 +0800
 Kim Seer Paller <kimseer.paller@analog.com> wrote:
 
-> Introduces a more generalized ABI documentation for DAC. Instead of
-> having separate ABI files for each DAC, we now have a single ABI file
-> that covers the common sysfs interface for all DAC.
+> LTC2664 4 channel, 16 bit Voltage Output SoftSpan DAC
+> LTC2672 5 channel, 16 bit Current Output Softspan DAC
 > 
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202405241141.kYcxrSem-lkp@intel.com/
 > Co-developed-by: Michael Hennerich <michael.hennerich@analog.com>
 > Signed-off-by: Michael Hennerich <michael.hennerich@analog.com>
 > Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
 
-A few comments inline.
+A few minor things from me to add to the more detailed comments from Nuno and David.
 
-I wondered if it made sense to combine voltage and current entries of each type
-in single block, but I think the docs would become too complicated with lots
-of wild cards etc.  Hence I think the duplication is fine.
-
-Jonathan
-
-> ---
->  Documentation/ABI/testing/sysfs-bus-iio-dac   | 61 +++++++++++++++++++
->  .../ABI/testing/sysfs-bus-iio-dac-ltc2688     | 31 ----------
->  2 files changed, 61 insertions(+), 31 deletions(-)
->  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-dac
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-dac b/Documentation/ABI/testing/sysfs-bus-iio-dac
-> new file mode 100644
-> index 000000000000..36d316bb75f6
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-bus-iio-dac
-> @@ -0,0 +1,61 @@
-> +What:		/sys/bus/iio/devices/iio:deviceX/out_currentY_toggle_en
-> +KernelVersion:	5.18
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +       		Toggle enable. Write 1 to enable toggle or 0 to disable it. This
-Tab vs space issue - see below.
-
-> +		is useful when one wants to change the DAC output codes. The way
-> +		it should be done is:
+> +static int ltc2664_dac_code_write(struct ltc2664_state *st, u32 chan, u32 input,
+> +				  u16 code)
+> +{
+> +	struct ltc2664_chan *c = &st->channels[chan];
+> +	int ret, reg;
 > +
-> +        	- disable toggle operation;
-> +        	- change out_currentY_rawN, where N is the integer value of the symbol;
-> +        	- enable toggle operation.
-Same question as below on whether this is accurate - Maybe it just needs to mention
-this scheme needs to be used for autonomous toggling (out of software control).
-It works for software toggling but may be overkill!
-
+> +	guard(mutex)(&st->lock);
+> +	/* select the correct input register to write to */
+> +	if (c->toggle_chan) {
+> +		ret = regmap_write(st->regmap, LTC2664_CMD_TOGGLE_SEL,
+> +				   input << chan);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +	/*
+> +	 * If in toggle mode the dac should be updated by an
+> +	 * external signal (or sw toggle) and not here.
+> +	 */
+> +	if (st->toggle_sel & BIT(chan))
+> +		reg = LTC2664_CMD_WRITE_N(chan);
+> +	else
+> +		reg = LTC2664_CMD_WRITE_N_UPDATE_N(chan);
 > +
-> +What:		/sys/bus/iio/devices/iio:deviceX/out_currentY_rawN
-> +KernelVersion:	5.18
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +		This attribute has the same meaning as out_currentY_raw. It is
-> +		specific to toggle enabled channels and refers to the DAC output
-> +		code in INPUT_N (_rawN), where N is the integer value of the symbol.
-> +		The same scale and offset as in out_currentY_raw applies.
+> +	ret = regmap_write(st->regmap, reg, code);
+> +	if (ret)
+> +		return ret;
 > +
-> +What:		/sys/bus/iio/devices/iio:deviceX/out_currentY_symbol
-> +KernelVersion:	5.18
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +		Performs a SW switch to a predefined output symbol. This attribute
-> +		is specific to toggle enabled channels and allows switching between
-> +		multiple predefined symbols. Each symbol corresponds to a different
-> +		output, denoted as out_currentY_rawN, where N is the integer value
-> +		of the symbol. Writing an integer value N will select out_currentY_rawN.
+> +	c->raw[input] = code;
 > +
-> +What:		/sys/bus/iio/devices/iio:deviceX/out_voltageY_toggle_en
-> +KernelVersion:	5.18
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +       		Toggle enable. Write 1 to enable toggle or 0 to disable it. This
+> +	if (c->toggle_chan) {
+> +		ret = regmap_write(st->regmap, LTC2664_CMD_TOGGLE_SEL,
+> +				   st->toggle_sel);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return ret;
 
-Mix of spacing and tabs is inconsistent. Hence the odd indent in this reply version.
+return 0; you won't get here otherwise, and making that explicit
+gives more readable code.
 
-> +		is useful when one wants to change the DAC output codes. The way
-> +		it should be done is:
+> +}
+> +
+> +static int ltc2664_dac_code_read(struct ltc2664_state *st, u32 chan, u32 input,
+> +				 u32 *code)
+> +{
+> +	guard(mutex)(&st->lock);
+> +	*code = st->channels[chan].raw[input];
+> +
+> +	return 0;
+> +}
+> +
+> +static const int ltc2664_raw_range[] = {0, 1, U16_MAX};
+{ 0, 1, U16_MAX };
+preferred (extra spaces)
 
-Hmm. Is this true?  If we are doing autonomous toggling on a clock or similar than agreed.
-If we are using the out_current_symbol software control it would be common to switch
-to A, modify B, switch to B, modify A etc.
-
-I think our interface has probably evolved and so this might need an update.
 
 > +
-> +        	- disable toggle operation;
-> +        	- change out_voltageY_rawN, where N is the integer value of the symbol;
-> +        	- enable toggle operation.
+> +static const struct ltc2664_chip_info ltc2664_chip = {
+> +	.id = LTC2664,
+> +	.name = "ltc2664",
+> +	.scale_get = ltc2664_scale_get,
+> +	.offset_get = ltc2664_offset_get,
+> +	.measurement_type = IIO_VOLTAGE,
+> +	.num_channels = ARRAY_SIZE(ltc2664_channels),
+> +	.iio_chan = ltc2664_channels,
+> +	.span_helper = ltc2664_span_helper,
+> +	.num_span = ARRAY_SIZE(ltc2664_span_helper),
+> +	.internal_vref = 2500,
+> +	.manual_span_support = true,
+> +	.rfsadj_support = false,
+> +};
+> +
+> +static const struct ltc2664_chip_info ltc2672_chip = {
+> +	.id = LTC2672,
+
+As below.  Seeing an id in here made me wonder what was going on given
+we don't have a whoami register on these.  Please remove it as that
+model of handling chip specific stuff always bites us in complexity
+and lack of flexibility as we expand the parts supported by a driver.
+
+> +	.name = "ltc2672",
+> +	.scale_get = ltc2672_scale_get,
+> +	.offset_get = ltc2672_offset_get,
+> +	.measurement_type = IIO_CURRENT,
+> +	.num_channels = ARRAY_SIZE(ltc2672_channels),
+> +	.iio_chan = ltc2672_channels,
+> +	.span_helper = ltc2672_span_helper,
+> +	.num_span = ARRAY_SIZE(ltc2672_span_helper),
+> +	.internal_vref = 1250,
+> +	.manual_span_support = false,
+> +	.rfsadj_support = true,
+> +};
+> +
+> +static int ltc2664_set_span(const struct ltc2664_state *st, int min, int max,
+> +			    int chan)
+> +{
+> +	const struct ltc2664_chip_info *chip_info = st->chip_info;
+> +	const int (*span_helper)[2] = chip_info->span_helper;
+> +	int span, ret;
+> +
+> +	st->iio_channels[chan].type = chip_info->measurement_type;
+> +
+> +	for (span = 0; span < chip_info->num_span; span++) {
+> +		if (min == span_helper[span][0] && max == span_helper[span][1])
+> +			break;
+> +	}
+> +
+> +	if (span == chip_info->num_span)
+> +		return -EINVAL;
+> +
+> +	ret = regmap_write(st->regmap, LTC2664_CMD_SPAN_N(chan),
+> +			   (chip_info->id == LTC2672) ? span + 1 : span);
+Make this specific data, not id based.
+
+The reasoning of there being a magic value (offmode) as 0 is a bit obscure
+so maybe a callback is best plan.
+
+Or... put a 0,0 entry in span_helper[] and check for that + ignore it or
+error out if anyone tries to use it.
+
+Drop that id in the chip_info structure as well as having it there
+will make people not consider if their 'code' should be 'data' in future
+cases similar to this.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	return span;
+> +}
+> +
+
+
 
