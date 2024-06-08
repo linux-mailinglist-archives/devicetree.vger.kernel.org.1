@@ -1,128 +1,117 @@
-Return-Path: <devicetree+bounces-73866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3D02901249
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 17:20:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D12E90124F
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 17:22:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B205282A02
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 15:20:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E27328286E
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 15:22:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3384E178CE7;
-	Sat,  8 Jun 2024 15:20:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0641117966E;
+	Sat,  8 Jun 2024 15:21:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CuR0clWC"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="VOUvEh4w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044701FBB;
-	Sat,  8 Jun 2024 15:20:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D0431FBB;
+	Sat,  8 Jun 2024 15:21:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717860044; cv=none; b=EMvCIYWAAgl6sl0uBG8abv2fI+Y/8KAXNDXXCSYNXXuXhjXv8PIhEQ5qFDjf/ytNNegP/fsKG0tLg7GPWcjdatQK9L2azXrdryzWg4W5O3eoukG/8TBFWRpx/TUwcyntqcH6Yw/Ivd0TxYcpTc5zUxOj4hoURqEwCalkH2vaeYU=
+	t=1717860118; cv=none; b=jnlWlWtaHGQfh0S0SjcKzNzoQTlx0Fnx9LujP0fT9yJdyuuxhBKY9t2YhwV5Ny18jSQZofkrFazUXU6qrI/pa8oW8khBGcJSvXtsUSKvaAw5cBKyvpuN9/dF6CoFen5Eg9KhCQ/f9Ehz8DMgjwdrxcR+iAyccvGQcbioT3rUVj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717860044; c=relaxed/simple;
-	bh=SBrOG5vtgHcP9Ql3D1Fkja1dS+krqo3w5B2YITbmwFE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gCR2XNP/jXV0JBec/U8x47MBQCB/v4b39DRqK2CsC3rdNOGJZhMxQi7f9klndU+DseJnNJBxo1K7rEyI3YuLSAvpU+oSa2xzzfROdMwbY6Sg1UT55bFKlh5DnHYTPb6Cl/WCsisTUodJmiS4iYeu95f38cUWjmfkCzu94RWk6X8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CuR0clWC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E62DAC2BD11;
-	Sat,  8 Jun 2024 15:20:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717860043;
-	bh=SBrOG5vtgHcP9Ql3D1Fkja1dS+krqo3w5B2YITbmwFE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=CuR0clWCH/pu1MIadrb9SDLdxVu8abrLH02ZEcpbh3z+zU8iGdvCZxXWDAWm4os60
-	 sjEAuaQxZZdZP5sNG6shs8cAv7JOwo6pKItN6YYBFeWETejGLAW9oBKqoAG9IfTxmw
-	 vEBBBw4e4raMkXyWnHDHL9Of1WdCa8qroaFGPghwnQllB2QFMLjOZS3f0Er3rOae5B
-	 KP//JGz+LaiM8tOnChOzMOej6wi2n5byFwoPagGtGb2XtCPBWH0un1dcsecR5CTnJ9
-	 f4cUnRLwc/9kcj7ir6jV4hgU1XTSQKDGgeCebP15rVRRq6C/5/f84C2s6z6c643dkI
-	 CCLka07fOPcXQ==
-Date: Sat, 8 Jun 2024 16:20:35 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Mudit Sharma <muditsharma.info@gmail.com>
-Cc: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- ivan.orlov0322@gmail.com, lars@metafoo.de, krzk+dt@kernel.org,
- conor+dt@kernel.org, robh@kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] iio: light: ROHM BH1745 colour sensor
-Message-ID: <20240608162035.6965cad5@jic23-huawei>
-In-Reply-To: <14ac1188-a018-4ebb-bf64-7818fab9ab7b@gmail.com>
-References: <20240603162122.165943-1-muditsharma.info@gmail.com>
-	<20240603162122.165943-2-muditsharma.info@gmail.com>
-	<39710806-3151-4b57-9af4-c0b4a4d21c28@gmail.com>
-	<c0732554-0742-444b-910d-55052e2c0f92@gmail.com>
-	<5c4800f4-3345-415b-b4e0-0099f1d22770@gmail.com>
-	<14ac1188-a018-4ebb-bf64-7818fab9ab7b@gmail.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1717860118; c=relaxed/simple;
+	bh=xKq0uZv7KiOKLRYrpZChOTMRtF6MphQYosnp2/2huOU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pQTa0ozrC49X6fAc3rHyHCX8QhBymMue1uIIUymgC2FexLdft4pbKUP6Ry+suItpVAUT2ptv3znFOvaH7R7v2+ZkJUombzcLsy/k0hHjq+2DXjx+K2qoxxDEjbjQWWkfFgRyvRYOrFTMsvI860PUTdzqvbApsf0jKYCe6OiWuRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=VOUvEh4w; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BF2AF471;
+	Sat,  8 Jun 2024 17:21:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1717860105;
+	bh=xKq0uZv7KiOKLRYrpZChOTMRtF6MphQYosnp2/2huOU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VOUvEh4w+1llZFo92MhZtYmHtpH+Sogq83lkDskbmHy+EskQn7rYFYiGqYDVyrcnw
+	 IjyfCYZdM7dXxP1x0cCK7WisiTYPE6a70mmYP2S6752o8ospb771GTSZKWSQkrcy1M
+	 PSTrgv2jNUZcCVv/6D7JP6yXMhxm0vK0Hgc0tuh4=
+Date: Sat, 8 Jun 2024 18:21:36 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Marco Felsch <m.felsch@pengutronix.de>, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
+	joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
+	devicetree@vger.kernel.org, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next v4 1/3] dt-bindings: net: snps,dwmac: add
+ phy-supply support
+Message-ID: <20240608152136.GA14446@pendragon.ideasonboard.com>
+References: <20230721110345.3925719-1-m.felsch@pengutronix.de>
+ <20230721142433.GA1012219-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230721142433.GA1012219-robh@kernel.org>
 
+Hi Rob,
 
-> >>>
-> >>> Nit: black line before return (it applies to several functions in this
-> >>> driver, but again, not in all of them).  
-> >>
-> >> Hi Javier,
-> >>
-> >> Thank you for the review on this.
-> >>
-> >> Can you please point me to resource/section of code style guide for
-> >> reference which talks about new line before 'return'.
-> >>
-> >> Best regards,
-> >> Mudit Sharma
-> >>
-> >>
-> >>  
-> > 
-> > AFAIK that is not written in stone, but many common practices are not
-> > documented anywhere (e.g. names of error/ret variables). They just copy
-> > what the majority of the code in that subsystem does. There is indeed a
-> > tendency to add a blank line before the last (unconditional, not
-> > labeled) return, but I am sure that some code does not follow that.
-> > 
-> > Having said that, I don't have a strong opinion (it was a nitpick) on
-> > that, but what I would definitely recommend you is following **some**
-> > pattern. There are some functions where you added a blank line, and some
-> > others (the majority, I think), where you didn't. Given that this is new
-> > code, uniformity would be appreciated.
-> > 
-> > Unless an IIO maintainer (I am NOT one) says otherwise, I would find
-> > both approaches (blank/no line) reasonable, even though I like the blank
-> > line in that particular case :)
-> > 
-> > Best regards,
-> > Javier Carrasco  
+On Fri, Jul 21, 2023 at 08:24:33AM -0600, Rob Herring wrote:
+> On Fri, Jul 21, 2023 at 01:03:43PM +0200, Marco Felsch wrote:
+> > Document the common phy-supply property to be able to specify a phy
+> > regulator.
 > 
-> Thanks for the explanation here.
+> What common property? I don't see any such property in 
+> ethernet-controller.yaml.
 > 
-> I agree with having a consistent pattern and will make the necessary 
-> changes to v3.
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
+> > Changelog:
+> > v4:
+> > - no changes
+> > v3:
+> > - no changes
+> > v2
+> > - add ack-by
+> > 
+> >  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 3 +++
+> >  1 file changed, 3 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > index ddf9522a5dc23..847ecb82b37ee 100644
+> > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > @@ -160,6 +160,9 @@ properties:
+> >        can be passive (no SW requirement), and requires that the MAC operate
+> >        in a different mode than the PHY in order to function.
+> >  
+> > +  phy-supply:
+> > +    description: PHY regulator
 > 
-> Best regards,
-> Mudit Sharma
-> 
-I'm feeling grumpy today and you are the unlucky ones, given it's
-been a day of much scrolling.
+> Is this for an serdes, sgmii, etc. type phy or ethernet phy? Either way, 
+> this property belongs in the PHY's node because it is the PHY that has 
+> supply connection. I'm guessing you put this here for the latter case 
+> because ethernet PHYs on MDIO are "discoverable" except for the small 
+> problem that powering them on is not discoverable. 
 
-Crop your replies to just the relevant context as I've done here.
+Any idea on how to solve that problem generically ?
 
-Yes, I prefer the blank line in most cases. However as noted the more
-important factor is local consistency.  Aim here is to make your code
-as easy to review as possible - having it all look the same is a good
-way to help that.
+-- 
+Regards,
 
-Jonathan
- 
-
+Laurent Pinchart
 
