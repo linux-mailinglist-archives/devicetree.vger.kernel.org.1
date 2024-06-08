@@ -1,110 +1,129 @@
-Return-Path: <devicetree+bounces-73889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B6BC9012C9
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 18:38:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D21469012D4
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 18:50:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DEE01C20BB0
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 16:38:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4BE0FB21D55
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 16:50:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F9CB17A938;
-	Sat,  8 Jun 2024 16:38:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9349617B4F2;
+	Sat,  8 Jun 2024 16:50:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dWzPn86l"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="TCF/3c39"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6434158A1F;
-	Sat,  8 Jun 2024 16:38:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B82981E526
+	for <devicetree@vger.kernel.org>; Sat,  8 Jun 2024 16:50:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717864695; cv=none; b=R8YD2VB4I0g/Un5M3ICc675osHWpQm2W/yi+yQmiPkjHCDo0j6RQXnReY/4d/R6SDoa67grxrO2yOxUtLS1MZoO5EnDsE/SvdV3wkzXxOcOPfNrB+db5+FAdC3wMXqxNk9cBTDQf2Bc7z8JlTMBY2gIXpfzF13G/tw5UEatnIQI=
+	t=1717865416; cv=none; b=onvrxxQdIhELUWnPGn4yySuQLoGz2OGE5JFvnnMo83ucUjtXvP/4QtYV/FmEuIMGki+S7RATH1W3XhnUeNCx63AUWSvpJ8Ba1i9nCtd7M9UHyrSDWKsdk9EnVS+Y+pV9bu5j65Ohsqe6QyUZZM0/xu2FTBtVnuUUcxIQTEh1zzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717864695; c=relaxed/simple;
-	bh=lavqlrHogwUC9mmcwJckb+cT8mAaADZdVbxJ/+8gRqw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OZuftdQ+TrY6YaeZ3uxFheQtSXv2dMD+yPXjy8F5KZ6Vd2vXEqALCEGc9KUA78DnK3nQLEmo0KjiIYpTgARxq+x9Sx0SPXq7FyCRUMesiB3K75mgJbrpYQX9CrDnlIuGmvmsqK34bmh2NDthO/9xRbwtXhBftLrOKE4v4dpENuk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dWzPn86l; arc=none smtp.client-ip=209.85.216.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-2c1b39ba2afso452461a91.2;
-        Sat, 08 Jun 2024 09:38:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717864693; x=1718469493; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lFLGmunAqvogS4M4bBRmmOM2b1Zn9U568WT3k8G7wyI=;
-        b=dWzPn86llBqyE8zYrF61iUQymHsTULCuuB0q1P3siTGiL6JMJ7WE+SCSGjrIjrHtZc
-         HFEaoOHfOXKdzubxhUp8QZy+AbXpdBOIHjcR0Ogo4sTWIiyyUN3wsetqQjyHkFCrl8G7
-         xfyTiNfA1pGI2jxVXIpJv4WksotPZFHaGeqTD1sexufkObOYOZC02abc522jEf0ApJuf
-         uuIhtQ9p3hopvOIgI2M7Bvk0i4SWZmllPTBXn4gcxIZOBP2y0mXW/JxahRGYKkpofyD3
-         eV8n9+RSOgi39cHxYhfPinvfmt9fgAFx5zDnQj2YDkqBiybz1lx7wmUiT1dyaCoNyqE3
-         ziiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717864693; x=1718469493;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lFLGmunAqvogS4M4bBRmmOM2b1Zn9U568WT3k8G7wyI=;
-        b=enuIESYQlh0cghFaUyELoDyyp8X1yiZ3FFSBJ6uuqqP3aluUIUo0D0t5Aq7ygjkYEg
-         AzAnYF9PvYXnjZ/SiBcS+gu4bi3xaPYoWu0vujmhgLi8RUCAzh+zOFd4naBUNi7ioN0g
-         WvtH+38rqsyWiRDbgRRtSOIjx0bks0mO8lXjVD+bq2av8kAV9ZsormfNyrvvo1U30kBi
-         7wxN5CLqNqFjbL7EkUuTNv328egH8oGmjf1DXHVySivEaS5yprX8nJ4oqKpALIOxCHFk
-         WZq4e/Zo/w6kAxRCAqIKtxCLTv4GyI/2lVHpfQ6nofeRCC4JCQI6R1yJd7mobCq2J1Sb
-         rnEA==
-X-Forwarded-Encrypted: i=1; AJvYcCWDylFzeGdAYh9SEsclFjUXnPp4qkYl6DRTeefiqZIl/W+gL/y5y8NdLm7WKKFKmLf/parF8+gnqTBXgd9NDxnrKRZPIY/haRDbI64gWacBl8KsIj/XSCsRwzkBPZeD4uU27Qedpt0vfA==
-X-Gm-Message-State: AOJu0Yw3zK1Wxht4s+Jteo0f7W730ARmBPC6nUoO/fBwckORNXM1NdMo
-	HzEESmskrgTU83TWBkIIzfazqYN2Ov2C74Y1yCaq9gIGo7f3DOdZQIQucBLzQm5p87yNbT7ORpy
-	InxfyP6HRbYgqrf416TmFHqBiAaY=
-X-Google-Smtp-Source: AGHT+IE2ziVnC1MC1kTN0mv56FYXjqtcSrVL6RMmoiz89YlFDp70YXWA2nD7FwvijH4AQBDt/5JXZYdR8kCY0SsMays=
-X-Received: by 2002:a17:90a:4591:b0:2bf:eddc:590b with SMTP id
- 98e67ed59e1d1-2c2bcad64d2mr5285074a91.1.1717864693008; Sat, 08 Jun 2024
- 09:38:13 -0700 (PDT)
+	s=arc-20240116; t=1717865416; c=relaxed/simple;
+	bh=QgS5qJIzriFvn4pqiJgPYNG7GRqG9zYmYqqA+pBaoF8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H81kQjDSPJObICoVgE5wdxgwtJLtDHm92jjZW+TwfOHJqGIWgHOniiFb4UVgczpLe0Avhs+gbqvA6AO6ewrOhztxplPSJGyC0+I71pBt+Q00HrMzHnSfHY7iaBBmrG9sme6ZUKhyy6btwkcpcXqQTLetBRhKnGbRownDPCMsOcM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=TCF/3c39; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id C8B0E4CA;
+	Sat,  8 Jun 2024 18:50:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1717865401;
+	bh=QgS5qJIzriFvn4pqiJgPYNG7GRqG9zYmYqqA+pBaoF8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TCF/3c39cmM/y8y2k+elenMr5rLz1b5fzuh/oiTQPNDTf72Ni2IneruBaJobfyIgY
+	 ObZSj+mO6uv95SxRnmoyJ0SUEHSsi7hWX6cS+dCLOcQKEhP4/1EIuDsXES+bChVPL1
+	 NmQHrE/F0WvoX78gNEYbyG0XKiUOxHeKfLlWtFKQ=
+Date: Sat, 8 Jun 2024 19:49:52 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc: linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+	Marco Contenti <marco.c@variscite.com>,
+	Nate Drude <nate.d@variscite.com>,
+	FrancescoFerraro <francesco.f@variscite.com>,
+	Harshesh Valera <harshesh.v@variscite.com>
+Subject: Re: [PATCH v2 3/4] arm64: dts: freescale: Add support for the
+ Variscite i.MX8MP DART8MCustomBoard
+Message-ID: <20240608164952.GE18479@pendragon.ideasonboard.com>
+References: <20231025165058.31697-1-laurent.pinchart@ideasonboard.com>
+ <20231025165058.31697-4-laurent.pinchart@ideasonboard.com>
+ <314ad280-e3e8-4087-8862-439cf45aa0f9@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240605094812.1074027-1-peng.fan@oss.nxp.com> <20240605094812.1074027-2-peng.fan@oss.nxp.com>
-In-Reply-To: <20240605094812.1074027-2-peng.fan@oss.nxp.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Sat, 8 Jun 2024 13:38:01 -0300
-Message-ID: <CAOMZO5DJ0oeOmm-PpDMpGwXfsjcm8ju6+EzpG6f9BxH4okLFxA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: freescale: Support i.MX93 9x9 Quick Start Board
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <314ad280-e3e8-4087-8862-439cf45aa0f9@pengutronix.de>
 
-On Wed, Jun 5, 2024 at 6:39=E2=80=AFAM Peng Fan (OSS) <peng.fan@oss.nxp.com=
-> wrote:
+Hi Ahmad,
 
-> +&usdhc2 {
-> +       pinctrl-names =3D "default", "state_100mhz", "state_200mhz";
-> +       pinctrl-0 =3D <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-> +       pinctrl-1 =3D <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-> +       pinctrl-2 =3D <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-> +       cd-gpios =3D <&gpio3 0 GPIO_ACTIVE_LOW>;
-> +       vmmc-supply =3D <&reg_usdhc2_vmmc>;
-> +       bus-width =3D <4>;
-> +       status =3D "okay";
-> +       no-sdio;
-> +       no-mmc;
+On Mon, Nov 27, 2023 at 07:07:16AM +0100, Ahmad Fatoum wrote:
+> On 25.10.23 18:50, Laurent Pinchart wrote:
+> > The DT8MCustomBoard is a carrier board for DART i.MX8-based modules.
+> > This device tree file adds support for the DT8MCustomBoard v2.0 with a
+> > connected DART-MX8M-PLUS module.
+> > 
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > ---
+> 
+> 
+> > +&eqos {
+> > +	mdio {
+> > +		ethphy1: ethernet-phy@1 {
+> > +			compatible = "ethernet-phy-ieee802.3-c22";
+> > +			reg = <1>;
+> > +			eee-broken-1000t;
+> > +			reset-gpios = <&gpio_exp_2 0 GPIO_ACTIVE_LOW>;
+> > +			reset-assert-us = <10000>;
+> > +			reset-deassert-us = <20000>;
+> 
+> Ouch. So you have a PHY at address 0 (broadcast address) and a PHY at address
+> 1 on the same bus? I think it's worth a comment whether broadcast for this
+> PHY here is disabled by strapping or in the bootloader.
 
-Please remove 'no-sdio'.
+This particular PHY is an ADI1300. The schematics indicates:
 
-On the imx93-11x11-evk, this property prevented me from connecting a
-CMP9010 board into the usdhc2 slot:
+LEDs - active HIGH, address 00001b
+SOM PHY MDIO address 00000b
 
-https://lore.kernel.org/linux-arm-kernel/20240529034854.1595664-1-festevam@=
-gmail.com/
+I tried to investigate, and I haven't found any mention of address 0
+being a broadcast address in the ADIN1300 documentation. Trying to dig a
+bit more, I've read clause 22 of the IEEE 802.3ak specification and
+found this:
+
+22.2.4.5.5 PHYAD (PHY Address)
+
+The PHY Address is five bits, allowing 32 unique PHY addresses. The
+first PHY address bit transmitted and received is the MSB of the
+address. A PHY that is connected to the station management entity via
+the mechanical interface defined in 22.6 shall always respond to
+transactions addressed to PHY Address zero <00000>. A station management
+entity that is attached to multiple PHYs must have prior knowledge of
+the appropriate PHY Address for each PHY.
+
+Section 22.6 defines a 40-pin physical connector, which is not
+applicable here. I've also found
+https://ieee802.org/3/10G_study/email/msg03514.html which states
+
+"People have made all kinds of wild assumptions about the way MDIO/MDC
+work in the past. Some people actually believe that PHYADD <00000> is a
+broadcast address."
+
+-- 
+Regards,
+
+Laurent Pinchart
 
