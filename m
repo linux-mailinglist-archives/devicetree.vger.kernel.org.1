@@ -1,155 +1,100 @@
-Return-Path: <devicetree+bounces-73892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45E1D9012FF
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 19:22:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BD4290130C
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 19:32:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AD272821C2
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 17:22:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 111A31F21ADD
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 17:32:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 162F2134AC;
-	Sat,  8 Jun 2024 17:22:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B79EA182DF;
+	Sat,  8 Jun 2024 17:31:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mail.de header.i=@mail.de header.b="QtPq22zk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BRaztyqo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from shout12.mail.de (shout12.mail.de [62.201.172.58])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 293C2C13D;
-	Sat,  8 Jun 2024 17:22:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.201.172.58
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 844151BF2B;
+	Sat,  8 Jun 2024 17:31:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717867338; cv=none; b=huFBhNfaylP0ZpvXu4D7OVqTrdJ+PSx/bk6/Yiuyzu1icmpLSp0qsig1xztn5PTaCn9PUjr7OkwajWlq7BvARKXkS7BPnKAkwBttfowTPeMxdE9A7P2OyeN4A6D9QhlYqddQN29LUGsQa0+aB5kz/BMztBJZvvVfeRmQspJ3O8I=
+	t=1717867917; cv=none; b=KqSFWUcAzIWhsW9Uiv4WvOW138XCJFB/bw//fBedAhkAUT5uT0Vr59c+mOE+1Ro6p4xOgHtP/F/bxJ4GOV4sBmet72fBmG+/P6C4n2aSDtWfhsZxHHuC4VhqjkudDtYyM3ohoXy3roVPE/zhpt0uKr3gdyM3AL/H3MeTboLEufc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717867338; c=relaxed/simple;
-	bh=nTqQvFr46P0vv3NLlWh3QruttC5WiwbWCLiZjuxYiw4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Aik9nygMvObun6eyDmnnHA8kAoww/OM68lN4aeMA/WOrhXa+WJLFZbqlKsg3E9OdDrRkk1ToNmuzkd0ZgvdlzyWFudYbE5LXxRwEAibxKdCmJtsHO+My6lWac75uJxudT/oJZnR0/KubsDt+LFbIzTIbwyPlF+/GDUv4k1P+MxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mail.de; spf=pass smtp.mailfrom=mail.de; dkim=pass (2048-bit key) header.d=mail.de header.i=@mail.de header.b=QtPq22zk; arc=none smtp.client-ip=62.201.172.58
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mail.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mail.de
-Received: from shout02.mail.de (unknown [10.0.120.222])
-	by shout12.mail.de (Postfix) with ESMTPS id CD59324195D;
-	Sat,  8 Jun 2024 19:22:07 +0200 (CEST)
-Received: from postfix02.mail.de (postfix02.bt.mail.de [10.0.121.126])
-	by shout02.mail.de (Postfix) with ESMTP id 7CB59240D28;
-	Sat,  8 Jun 2024 19:22:07 +0200 (CEST)
-Received: from smtp01.mail.de (smtp03.bt.mail.de [10.0.121.213])
-	by postfix02.mail.de (Postfix) with ESMTP id 56B9FA00E2;
-	Sat,  8 Jun 2024 19:22:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mail.de;
-	s=mailde202009; t=1717867327;
-	bh=nTqQvFr46P0vv3NLlWh3QruttC5WiwbWCLiZjuxYiw4=;
-	h=Message-ID:Date:Subject:To:Cc:From:From:To:CC:Subject:Reply-To;
-	b=QtPq22zkCst/3Odw3H+ZrzKPc1+PJfy5CFLdCIEFwWJf+Ty5hUeca2pvr47pY4cQ6
-	 haBxMXq9Ugs0o2vgBln2sBpNoVHcggwHiOUWQ3mO/Q1MDc6YjFK2SQY1IhjiVzSYxw
-	 dQGcHZsD/nDFfUuQ4YlvPcXCq+O6Rnr8/tFqFvfX660fttgMej8ZcQA0FOF9Cw04Sp
-	 7q8+1n0+RTvUKgS6I7+4QpMmUItv++HH3CH0RHDgFGIc7CERs2Sfx98Rj6N2jiDQir
-	 ExM4+gGeZPlqpzkBS+i/9W8EEKtx5AZEjBS8wYbMn6tcoSSm2WhOoF8oY+mTHfnyvi
-	 qUzdmukmKW3lQ==
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp01.mail.de (Postfix) with ESMTPSA id E0C8124009E;
-	Sat,  8 Jun 2024 19:22:02 +0200 (CEST)
-Message-ID: <f5cfcf3e-27e5-464a-9adf-261753ad6de7@mail.de>
-Date: Sat, 8 Jun 2024 19:22:01 +0200
+	s=arc-20240116; t=1717867917; c=relaxed/simple;
+	bh=9CoFCdmwD77xRwqsXokhReaCzROWC7hV5HtjLditw7k=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DTQ2eU3sNUez5EhRiAaIV+4l1bdJD2GMZQZ3cKZQBpuuC7gKbmx4YAp8D6mq/JUhHtbm41X94bFMiUBGEyMx1X6qz1Orx1Kv8EsKqxPxrL/7wHp9BoyY4gch0lGWOzvyOKnBMOIbg7poukWbuim7eb22AppergyfWXl9+FCGSn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BRaztyqo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7239CC2BD11;
+	Sat,  8 Jun 2024 17:31:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717867917;
+	bh=9CoFCdmwD77xRwqsXokhReaCzROWC7hV5HtjLditw7k=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=BRaztyqoiS7201ErgyBZakfm8XQeSiDCyUypZsurgxGNSJfbysBkD4ylzq/yL3k7b
+	 6c5QAreLpuBj2RVDXVZX/5Khq3uq0L5jj5Gl6n4grZfBR9enG1C8ABIN3RLaz+c/Aa
+	 vmmllsBaBVpaFF3tYkfeHHTYLgSHuaKjo+Z0hYFQCRwPJCe6qBc6pYtygO/kbzA0RD
+	 XRO34b3v28bDxWsdiskHYGBZAyDusQ87DroN50jQX8IelyyBib3jDxed50l+AX15S/
+	 Q8LFfgLFVPUkfihMGTacRv2GMiWnMOJR+k3a2c50Aycvqv3MzXE8UV1Gzp0aWPeHQ3
+	 m9H0ehzpVoGsQ==
+Date: Sat, 8 Jun 2024 18:31:46 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Christian Hewitt <christianshewitt@gmail.com>
+Cc: kernel test robot <lkp@intel.com>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-iio@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
+ linux-arm-kernel@lists.infradead.org, AML
+ <linux-amlogic@lists.infradead.org>, LKML <linux-kernel@vger.kernel.org>,
+ llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH 2/2] iio: adc: meson: add support for the GXLX SoC
+Message-ID: <20240608183146.2a71572f@jic23-huawei>
+In-Reply-To: <1E90764E-5D50-496A-B4DC-3D3982392183@gmail.com>
+References: <20240604055431.3313961-2-christianshewitt@gmail.com>
+	<202406041751.elQWr6cj-lkp@intel.com>
+	<1E90764E-5D50-496A-B4DC-3D3982392183@gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add FriendlyElec CM3588 NAS
- board
-To: Heiko Stuebner <heiko@sntech.de>, linux-rockchip@lists.infradead.org,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Space Meyer <me@the-space.agency>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
- Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240602211901.237769-1-seb-dev@mail.de>
- <20240602202132.2012-2-seb-dev@mail.de>
- <c4087311-cbd2-415e-a582-3565f2f62e81@the-space.agency>
- <11747652.CDJkKcVGEf@phil>
-From: Sebastian Kropatsch <seb-dev@mail.de>
-In-Reply-To: <11747652.CDJkKcVGEf@phil>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-purgate: clean
-X-purgate: This mail is considered clean (visit http://www.eleven.de for further information)
-X-purgate-type: clean
-X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
-X-purgate: This mail is considered clean (visit http://www.eleven.de for further information)
-X-purgate: clean
-X-purgate-size: 2691
-X-purgate-ID: 154282::1717867327-31E241F9-A930B556/0/0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hello,
+On Wed, 5 Jun 2024 07:15:58 +0400
+Christian Hewitt <christianshewitt@gmail.com> wrote:
 
-Am 08.06.2024 um 16:38 schrieb Heiko Stuebner:
-> Am Donnerstag, 6. Juni 2024, 15:13:20 CEST schrieb Space Meyer:
->> On 02.06.2024 22:20, Sebastian Kropatsch wrote:
->>> Some RK3588 boards are still using this property, the following quote
->>> is from rk3588-tiger-haikou.dts for example:
->>>       &sdmmc {
->>>           /* while the same pin, sdmmc_det does not detect card changes */
->>>           cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
->>>
->>> I am unsure as to whether this comment from the quote might apply for
->>> the CM3588 as well. Please let me know if you are able to tell :-)
->>
->> I don't quite understand this. However GPIO0_A4 *is* routed to the micro
->> sd CD according to the NAS schematic, page 16 around A5.
-> 
-> for the actual sdmmc_det functionality ... possibly some pinconfig thing?
-> I.e. pull-whatever settings?
+> > On 4 Jun 2024, at 1:10=E2=80=AFPM, kernel test robot <lkp@intel.com> wr=
+ote:
+> >=20
+> > kernel test robot noticed the following build errors: =20
+>=20
+> Apologies. Build errors are because I wrongly imagined this dependent ser=
+ies from Martin to be merged:
+>=20
+> https://patchwork.kernel.org/project/linux-arm-kernel/cover/2024032323130=
+9.415425-1-martin.blumenstingl@googlemail.com/
+>=20
+> To be continued!
+Given that was a case of not going to right mailing list, if you want
+(and Martin doesn't have time) it is fine to pick that up and send it
+a single series with your changes.
 
-I have no idea. I just removed the "cd-gpios" line in v2 due to a
-suggestion by Jonas Karlman and then stumbled over this comment.
-So I'm not sure whether to include or not include this property
-for the CM3588 NAS since I don't know the consequences.
-Probably in the end it doesn't even matter :)
+Thanks,
 
->>> +	vcc_3v3_pcie30: regulator-vcc-3v3-pcie30 {
->>> +		compatible = "regulator-fixed";
->>> +		regulator-name = "vcc_3v3_pcie30";
->>> +		regulator-always-on;
->>> +		regulator-boot-on;
->>> +		regulator-min-microvolt = <3300000>;
->>> +		regulator-max-microvolt = <3300000>;
->>> +		vin-supply = <&vcc_5v0_sys>;
->>> +	};
->>
->> These are 4 seperate regulators according to the schematic. However, as
->> they are all fixed, idk if they should be split or kept like this.
-> 
-> personally, I really like the power-diagram to match schematics.
-> I.e. $debugfs/regulator/regulator_summary will produce a really nice
-> graph of all the system's regulators, so it's definitly nice if the
-> hirarchy matches. Also prevents head-scratching later on ;-)
+Jonathan
 
-These are indeed 4 different regulators according to the schematic.[1]
-But they don't have any pin to control them separately. I can
-duplicate them 4 times if that's the preferred practice.
-
-But matching the schematics won't be possible either way, since
-e.g. there is only one single 5v regulator acc. to the schematic
-(vcc_5v0_sys), but vcc_5v0_host_20, vcc_5v0_host_30, vbus_5v0_typec
-and so on are needed since each device has a different control pin
-to enable its power. Or is there a better way to solve this while
-having only one 5v regulator node but still being able to set the
-control pins separately for the different USB ports?
-
-Cheers,
-Sebastian
-
-[1] 
-https://wiki.friendlyelec.com/wiki/images/1/15/CM3588_NAS_SDK_2309_SCH.PDF
+>=20
+> Christian
+>=20
+>=20
 
 
