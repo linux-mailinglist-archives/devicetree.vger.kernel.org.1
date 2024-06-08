@@ -1,174 +1,108 @@
-Return-Path: <devicetree+bounces-73868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6666D901252
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 17:27:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 390CD90125B
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 17:36:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 144F12821E3
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 15:27:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1121281D41
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 15:36:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C15AE17966E;
-	Sat,  8 Jun 2024 15:27:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DFD5178392;
+	Sat,  8 Jun 2024 15:36:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K7X0HodN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V8t8n9g3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92C7E1FBB;
-	Sat,  8 Jun 2024 15:27:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C042524C4;
+	Sat,  8 Jun 2024 15:36:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717860430; cv=none; b=RD2GuVILYJmcx0rBiYIlxSJK+CKm6LjZmMGoaANORaMh1tg2iPKFRBhLPVJr4fmelWnRvUvpT6X1WNsKHx3zHprzE/UuA9szq51vLPj6Xrq158DTGfbCNnZwk61tFzBzxt113DnUXh/js7ybGYpBsZ17qUqRayzYR0w6Q8AzkPE=
+	t=1717860999; cv=none; b=cgOUdC1Jm7HkBphHxmBsd9pIx2ICJk/WCv8bD9tUpRzAGTnbJ/c4hY+r8jdFGeUsJZzFDd3xv4mpZznasMKbsX6Z3bvfZ4HLemF/1EPvxk6CixDvi6EywINBMFsB6iwuQa/6xrsLc8+yEeMDhZCHWEUy7VZtdcMZeqVDSEOJqr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717860430; c=relaxed/simple;
-	bh=HqxKqrF6NdA4tO9n7xPACAmfKZHrHqPzpej+VnzOCLQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sJ/hN55r2KyewEVFRXEbkRbYlHZb3R6tpqyRrnE9khuARh6e0T0MkqQctdb61UK5EkcFTTuQiWROOTCeycaphdu3/efY0ifE4e4EpWEvtuBSJCl/Z7PKB3r8uwkfV4b4y3C9Q0iEwfkuRaPEUGdXdWILZfXOASP172zkkEb98Ik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K7X0HodN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B18BC2BD11;
-	Sat,  8 Jun 2024 15:27:04 +0000 (UTC)
+	s=arc-20240116; t=1717860999; c=relaxed/simple;
+	bh=Lxc8FIGJH9AbsQK8+T8lqmbchM2MCKBlEd2TlFucpn0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hgBtnkOOBBP5500M3KbB85bkAz3iRen6IvvK90teKhWlpaCqDmnwrSHbbJFiaMbWlRt6iLtud50HfYxXTMyjGr6CoDNGHdbgjWN+xzTH/wA0a5XPkugzV9Y2xw4nvF0DQ02xmlIB6R6ZuS5xD0HFe6NuaZGGirYwCcm+tP5YlTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V8t8n9g3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B181CC2BD11;
+	Sat,  8 Jun 2024 15:36:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717860429;
-	bh=HqxKqrF6NdA4tO9n7xPACAmfKZHrHqPzpej+VnzOCLQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=K7X0HodNqv90N8UjF1zUvxC9P4G/Njtk+Xx8FtDfcFUkE3L0ZypOMUs8uU/5qEcZp
-	 dUjakglbA7p+NmJS0CRp/e2vZ6pAKVhBVMQMCh3wTsmHEoYERzYlRqhKGHaoev+FRB
-	 B8xPV/irkYm+hrKDqw9pcka+AryRJgAFhide37W/IiLSae/1p0aN5f47OIgn1TE0cM
-	 jYzOZfZSDeb9g+U2eMlhjMLZtXlfv/Gp5lRj60e7xo3rnLxN+XJ1hsRCptqAT+gtZr
-	 PtvEn/Lt4htY6BBgg3HCp6rC6FpfD9RXgDn1lJDfq4sW21K/n90WZzbOVvjDGhYuUh
-	 c4fgBQwEtx29A==
-Date: Sat, 8 Jun 2024 16:27:01 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Mudit Sharma <muditsharma.info@gmail.com>
-Cc: lars@metafoo.de, krzk+dt@kernel.org, conor+dt@kernel.org,
- robh@kernel.org, ivan.orlov0322@gmail.com, javier.carrasco.cruz@gmail.com,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 1/2] dt-bindings: iio: light: ROHM BH1745
-Message-ID: <20240608162701.2e6fe36f@jic23-huawei>
-In-Reply-To: <20240606162948.83903-1-muditsharma.info@gmail.com>
-References: <20240606162948.83903-1-muditsharma.info@gmail.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=k20201202; t=1717860998;
+	bh=Lxc8FIGJH9AbsQK8+T8lqmbchM2MCKBlEd2TlFucpn0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=V8t8n9g3DdnQi6HbzO99CllgnRPCHO0UOdTLP5gY5Pq+6sCOXhFY0hQt145+myUW6
+	 YmU+QPW0vYuZui7LIgfsGPgdc/CwUyKUtCZQZI/i9h7UEUDfjmILlM/J6lenoCUt9a
+	 vUEaES8V4EXvJjBNcUy6HBiLwl867JiPQbeUILCQv9CyzKKhoWeK2usEJwHI/Du2eV
+	 op8s/I6Nf+es87msb+9JE0LoSol1gxnVh3qRXABJYKsRH8jmiSuhJ3ETRtCfrpztSC
+	 eboKEQcXox59QbCdMfdF4QzTs/+DtwFozsipP4+9u3ZSUx/CNDvkKiKHGixK8DjzP3
+	 HciYNAy4c2ofg==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1sFy7Q-0000000034R-2FCt;
+	Sat, 08 Jun 2024 17:36:37 +0200
+Date: Sat, 8 Jun 2024 17:36:36 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>,
+	Mark Brown <broonie@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Das Srinagesh <quic_gurus@quicinc.com>,
+	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+	Stephen Boyd <swboyd@chromium.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 11/14] dt-bindings: mfd: pm8008: rework binding
+Message-ID: <ZmR6hPVZsYlyC5o5@hovoldconsulting.com>
+References: <20240529162958.18081-1-johan+linaro@kernel.org>
+ <20240529162958.18081-12-johan+linaro@kernel.org>
+ <d5omeycp4l3mrzgswga2jkgxydpiayqfdjavwnfswcojawiqkt@zuol3vvkao5r>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d5omeycp4l3mrzgswga2jkgxydpiayqfdjavwnfswcojawiqkt@zuol3vvkao5r>
 
-On Thu,  6 Jun 2024 17:29:41 +0100
-Mudit Sharma <muditsharma.info@gmail.com> wrote:
-
-> Add ROHM BH1745 - 4 channel I2C colour sensor's dt-bindings.
+On Wed, Jun 05, 2024 at 11:43:16AM +0300, Dmitry Baryshkov wrote:
+> On Wed, May 29, 2024 at 06:29:55PM +0200, Johan Hovold wrote:
+> > Rework the pm8008 binding by dropping internal details like register
+> > offsets and interrupts and by adding the missing regulator and
+> > temperature alarm properties.
+> > 
+> > Note that child nodes are still used for pinctrl and regulator
+> > configuration.
+> > 
+> > Also note that the pinctrl state definition will be extended later and
+> > could eventually also be shared with other PMICs (e.g. by breaking out
+> > bits of qcom,pmic-gpio.yaml).
 > 
-> Signed-off-by: Mudit Sharma <muditsharma.info@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Hi Mudit,
+> Obviously we want to adapt this style of bindings for the other PMICs
+> too. My main concern here are PMICs which have two kinds of controlled
+> pins: GPIOs and MPPs. With the existing bindings style those are
+> declared as two subdevices. What would be your suggested way to support
+> MPPs with the proposed kind of bindings?
 
-I'd like to see the vcc-supply in here from the start.
+As far as I understand newer PMICs do not have MPP blocks and we do not
+necessarily want to convert the existing bindings.
 
-Thanks,
+That said, if there is ever a need to describe two separate gpio blocks
+this can, for example, be done using subnodes on those PMICs.
 
-Jonathan
-
-
-> ---
-> v3->v4:
-> - No changes
-> v2->v3:
-> - Move 'additionalProperties' after 'required' block
-> - Remove block style indicator '|' from description
-> v1->v2:
-> - Fix yaml issue: Make `maintainers` a list
-> 
->  .../bindings/iio/light/rohm,bh1745.yaml       | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/light/rohm,bh1745.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/light/rohm,bh1745.yaml b/Documentation/devicetree/bindings/iio/light/rohm,bh1745.yaml
-> new file mode 100644
-> index 000000000000..d5338a0af6b3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/light/rohm,bh1745.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/light/rohm,bh1745.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ROHM BH1745 colour sensor
-> +
-> +maintainers:
-> +  - Mudit Sharma <muditsharma.info@gmail.com>
-> +
-> +description:
-> +  BH1745 is an I2C colour sensor with red, green, blue and clear
-> +  channels. It has a programmable active low interrupt pin.
-> +  Interrupt occurs when the signal from the selected interrupt
-> +  source channel crosses set interrupt threshold high/low level.
-> +
-> +properties:
-> +  compatible:
-> +    const: rohm,bh1745
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-There are some historical bindings that are missing supplies, but
-for everything recent we have tried to document them from the first.
-So this should have
-
-  vcc-supply: true
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-    - vcc-supply
-
-Even though the regulator framework will provide you with a dummy regulator,
-the binding reflects that the device definitely needs power.
-
-Note that there are nice devm_regulator_get_enable() and similar to deal
-with turning the power on at driver load (I guess that doesn't do anything on
-your board) and off at driver remove.  Ideally the driver should use
-that.  There have been many occasions in the past (all a while back)
-where we didn't add power supply control from the start and had to add
-it soon after when it turned out some board didn't default to power
-on for the sensors.
-
-Thanks,
-
-Jonathan
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        colour-sensor@38 {
-> +            compatible = "rohm,bh1745";
-> +            reg = <0x38>;
-> +            interrupt-parent = <&gpio>;
-> +            interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
-> +        };
-> +    };
-> +
-> +...
-
+Johan
 
