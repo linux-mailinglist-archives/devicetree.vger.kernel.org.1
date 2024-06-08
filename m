@@ -1,68 +1,64 @@
-Return-Path: <devicetree+bounces-73860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83219901230
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 17:02:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DF53901232
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 17:06:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00D111F2162C
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 15:02:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A4EC1F21BF0
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 15:06:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB9A315688F;
-	Sat,  8 Jun 2024 15:02:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D93AC56446;
+	Sat,  8 Jun 2024 15:06:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="wbF5FcR1"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="InffNkAR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BC3E15A86A;
-	Sat,  8 Jun 2024 15:02:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52E912561B
+	for <devicetree@vger.kernel.org>; Sat,  8 Jun 2024 15:06:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717858974; cv=none; b=WrlnmU8C6kl42cEhTmYSLjI16PjJNtZOb+cbvEBmOPhOH6VV7N6yrRze0ojy9Jj6cqU2KOri6ztZFBu3UK3tqCYVZHRpD5i2lWveNvivjc3zy3NwMNV6aDUqQIaaph20FXzUdo8c3kOqvrqnZEFj7q4H7SnVGtb7d021YejxmKg=
+	t=1717859195; cv=none; b=I71uQIa9tMwp2bd4JEGEbkdkMVMhoYPjmeUSLSBQw01SMSWPmuocWlhBJ4B8MRGqueg1v/oha8ms3EeGgCi9Z1xZfNkI77D34E3D9LFL1+rOABjVrBcDaY/l2T30Sfk1QNtBX8h9V6/EvncHpn80/5lN37lmJH8y8mkVv3B1dls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717858974; c=relaxed/simple;
-	bh=UQajqenKlrvH5lGzWKTwgn2VoSNwkyZus1uA9XzmJ3w=;
+	s=arc-20240116; t=1717859195; c=relaxed/simple;
+	bh=j6BCC+Vbz95kG7AaIGrnoIlXtP848eUSBofX852GX0A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=idr257xxlJbwHwtiMRESX5t7etOhItDWtBSPJ6kV/J/W3xNSIIGgaMNhwhKsVcOBtmBWN4rRFdzK1fmXrC3N291aL9ydXH8/huLjCAGVAr98yCJb+gB3zr063aILcaK9zGPetXjyCpFRbGqqhLeeH/AaQM9XEkx8HKSija2GvwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=wbF5FcR1; arc=none smtp.client-ip=213.167.242.64
+	 Content-Type:Content-Disposition:In-Reply-To; b=TKSQeqgOLEbl1ghz8JDT1WpNL3bEPDkEsLWyaMnApq1a+wn7ufAUzsSgZ+suM4+aGq6Jq6EscS32zXvWwbRGhA1QYLaRhamtcLbDVhz+CYQXzccLq+Zx6h5LB0AddKj6EB4uu/1P9WzwzBPhzp2nXzLd6EGjdd8fHj0d5c0RocY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=InffNkAR; arc=none smtp.client-ip=213.167.242.64
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
 Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4D90829F;
-	Sat,  8 Jun 2024 17:02:35 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A4A23471;
+	Sat,  8 Jun 2024 17:06:21 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1717858955;
-	bh=UQajqenKlrvH5lGzWKTwgn2VoSNwkyZus1uA9XzmJ3w=;
+	s=mail; t=1717859181;
+	bh=j6BCC+Vbz95kG7AaIGrnoIlXtP848eUSBofX852GX0A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=wbF5FcR1OHHS/6eqX8MBcF5zS9DuwurwCsdj2MFv4nPOUZeuI8VJtUgXWyn8AwoyS
-	 YiHhMSjcXCSqhQ+vBCK5JYimCt/dZYmb6aCYJK8bfJn6uAHJJPW4vXyaqbZtJlQiH4
-	 25xNQyyg3C84xZfskXqZ6JqtMOrIjMPzBjM/+oG0=
-Date: Sat, 8 Jun 2024 18:02:27 +0300
+	b=InffNkAREm7P3XrO8k/omxY3XXmf6mHcsGG4HXN2aKvO4wbbMdKjPIoOU5bQJFRse
+	 gQWnRRAOZd5zJhubb/oZsBpoYQZ8qxlTbJrFELa0OkLdM8/LXVaFLOsbyofxAbvbeG
+	 mTU9XY4cD7flNHQshG2iw2z5avS+TimukUNrZndQ=
+Date: Sat, 8 Jun 2024 18:06:13 +0300
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Christopher Obbard <chris.obbard@collabora.com>
-Cc: Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	linux-kernel@vger.kernel.org,
-	Daniel Scally <dan.scally@ideasonboard.com>, kernel@collabora.com,
-	Conor Dooley <conor+dt@kernel.org>,
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 1/1] arm64: dts: imx8mp-debix-model-a: Add HDMI output
- support
-Message-ID: <20240608150227.GA13024@pendragon.ideasonboard.com>
-References: <20240415114135.25473-1-chris.obbard@collabora.com>
- <20240415114135.25473-2-chris.obbard@collabora.com>
- <171319369093.2333277.9109576229211275635@ping.linuxembedded.co.uk>
- <20240415163520.GA22954@pendragon.ideasonboard.com>
- <525f3c7f7f6613c78ac364c9ce0234cca5e1c710.camel@collabora.com>
+	NXP Linux Team <linux-imx@nxp.com>, Marek Vasut <marex@denx.de>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	patchwork-lst@pengutronix.de, kernel@pengutronix.de,
+	Adam Ford <aford173@gmail.com>
+Subject: Re: [PATCH 4/4] arm64: dts: imx8mp-evk: enable HDMI
+Message-ID: <20240608150613.GA13225@pendragon.ideasonboard.com>
+References: <20220826192932.3217260-1-l.stach@pengutronix.de>
+ <20220826192932.3217260-4-l.stach@pengutronix.de>
+ <20230302163525.007503e4@booty>
+ <20230525122628.13b0f28b@booty>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,196 +67,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <525f3c7f7f6613c78ac364c9ce0234cca5e1c710.camel@collabora.com>
+In-Reply-To: <20230525122628.13b0f28b@booty>
 
-On Mon, Apr 15, 2024 at 06:07:24PM +0100, Christopher Obbard wrote:
-> On Mon, 2024-04-15 at 19:35 +0300, Laurent Pinchart wrote:
-> > On Mon, Apr 15, 2024 at 04:08:10PM +0100, Kieran Bingham wrote:
-> > > Quoting Christopher Obbard (2024-04-15 12:41:27)
-> > > > Enable the HDMI output on the Debix Model A SBC, using the HDMI encoder
-> > > > present in the i.MX8MP SoC.
+On Thu, May 25, 2023 at 12:26:28PM +0200, Luca Ceresoli wrote:
+> On Thu, 2 Mar 2023 16:35:25 +0100 Luca Ceresoli wrote:
+> > On Fri, 26 Aug 2022 21:29:32 +0200 Lucas Stach wrote:
+> > 
+> > > Enable the DT nodes for HDMI TX and PHY and add the pinctrl for the few
+> > > involved pins that are configurable.
 > > > 
-> > > Aha, you beat me to it. I have a commit locally (Dated 2022-09-06) but
-> > > not sent because I didn't realise the HDMI support finally got upstream
-> > > \o/
-> > > 
-> > > > Signed-off-by: Christopher Obbard <chris.obbard@collabora.com>
-> > > > ---
-> > > > 
-> > > >  .../dts/freescale/imx8mp-debix-model-a.dts    | 47 +++++++++++++++++++
-> > > >  1 file changed, 47 insertions(+)
-> > > > 
-> > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> > > > b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> > > > index 2c19766ebf09..29529c2ecac9 100644
-> > > > --- a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> > > > @@ -20,6 +20,18 @@ chosen {
-> > > >                 stdout-path = &uart2;
-> > > >         };
-> > > >  
-> > > > +       hdmi-connector {
-> > > > +               compatible = "hdmi-connector";
-> > > > +               label = "hdmi";
-> > > > +               type = "a";
-> > > > +
-> > > > +               port {
-> > > > +                       hdmi_connector_in: endpoint {
-> > > > +                               remote-endpoint = <&hdmi_tx_out>;
-> > > > +                       };
-> > > > +               };
-> > > > +       };
-> > > > +
-> > > 
-> > > Interesting. My patch missed this. But it looks correct.
-> > > 
-> > > >         leds {
-> > > >                 compatible = "gpio-leds";
-> > > >                 pinctrl-names = "default";
-> > > > @@ -94,6 +106,28 @@ ethphy0: ethernet-phy@0 { /* RTL8211E */
-> > > >         };
-> > > >  };
-> > > >  
-> > > > +&hdmi_pvi {
-> > > > +       status = "okay";
-> > > > +};
-> > > > +
-> > > > +&hdmi_tx {
-> > > > +       pinctrl-names = "default";
-> > > > +       pinctrl-0 = <&pinctrl_hdmi>;
-> > > > +       status = "okay";
-> > > > +
-> > > > +       ports {
-> > > > +               port@1 {
-> > > > +                       hdmi_tx_out: endpoint {
-> > > > +                               remote-endpoint = <&hdmi_connector_in>;
-> > > > +                       };
-> > > > +               };
-> > > > +       };
-> > > > +};
-> > > > +
-> > > > +&hdmi_tx_phy {
-> > > > +       status = "okay";
-> > > > +};
-> > > > +
-> > > >  &i2c1 {
-> > > >         clock-frequency = <400000>;
-> > > >         pinctrl-names = "default";
-> > > > @@ -241,6 +275,10 @@ &i2c6 {
-> > > >         status = "okay";
-> > > >  };
-> > > >  
-> > > > +&lcdif3 {
-> > > > +       status = "okay";
-> > > > +};
-> > > > +
-> > > 
-> > > Except for the addition of the connector, the above matches my patch to
-> > > here.
-> > > 
-> > > >  &snvs_pwrkey {
-> > > >         status = "okay";
-> > > >  };
-> > > 
-> > > But in my patch I have the following hunk here: (I haven't checked to
-> > > see if this still applies on mainline, so take with a pinch of salt if
-> > > it's not there!)
-> > > 
-> > > 
-> > >  &iomuxc {
-> > >  	pinctrl-names = "default";
-> > > -	pinctrl-0 = <&pinctrl_hog>;
-> > > -
-> > > -	pinctrl_hog: hoggrp {
-> > > -		fsl,pins = <
-> > > -
-> > > 			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL					0x400001c3
-> > > -
-> > > 			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA					0x400001c3
-> > > -
-> > > 			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD						0x40000019
-> > > -
-> > > 			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC						0x40000019
-> > > -		>;
-> > > -	};
-> > > 
-> > >  	pinctrl_eqos: eqosgrp {
-> > >  		fsl,pins = <
-> > >  			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC		
-> > > 					0x3
-> > >  			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO		
-> > > 				0x3
-> > > 
-> > > 
-> > > > @@ -358,6 +396,15 @@
-> > > > MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16                              0x19
-> > > >                 >;
-> > > >         };
-> > > >  
-> > > > +       pinctrl_hdmi: hdmigrp {
-> > > > +               fsl,pins = <
-> > > > +                      
-> > > > MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL                    
-> > > > 0x400001c3
-> > > > +                      
-> > > > MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA                    
-> > > > 0x400001c3
-> > > > +                      
-> > > > MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD                        
-> > > > 0x40000019
-> > > > +                      
-> > > > MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC                        
-> > > > 0x40000019
-> > > > +               >;
-> > > > +       };
-> > > > +
-> > > 
-> > > And my addition here is :
-> > > 
-> > > 
+> > > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>  
+> 
+> Any updates to these patches? I haven't found any v2 on the list.
+
+This is the last patch in the series that hasn't made it upstream It
+would be really nice to get a new version that could be merged in v6.11.
+Pretty please :-)
+
+> > I'm joining late to this party... Is this the latest version of this
+> > series? I haven't found any more recent, but if it is not the case
+> > would you point me to the most recent one please?
+> > 
 > > > +	pinctrl_hdmi: hdmigrp {
 > > > +		fsl,pins = <
-> > > +			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL	0
-> > > x1c3
-> > > +			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA	0
-> > > x1c3
-> > > +			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD	
-> > > 	0x19
-> > > +			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC	
-> > > 	0x19
-> > > +		>;
-> > > +	};
-> > > +
-> > > 
-> > > 
-> > > I haven't looked into what the 0x40000000 does yet, but just
-> > > highlighting the difference from the version I've been using to make use
-> > > of HDMI so far.
-> > > 
-> > > Does anyone else know the impact here? Otherwise I'll try to find time
-> > > to check this later. (For some undefined term of later...)
+> > > +			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL	0x1c3
+> > > +			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA	0x1c3  
 > > 
-> > In drivers/pinctrl/freescale/pinctrl-imx.c,
+> > Is the low nibble (0x3) right?BIT(0) is reserved according too the
+> > reference manual.
 > > 
-> > #define IMX_NO_PAD_CTL  0x80000000      /* no pin config need */
-> > #define IMX_PAD_SION 0x40000000         /* set SION */
+> > Also, all the non-reserved bits in that nibble are bits 1 and 2, which
+> > set the drive strength. For an I2C line it seems that the minimum drive
+> > strength (0x0) should be enough for an I2C line: with any drive
+> > strength setting the supported frequency is >= 65 MHz.
 > > 
-> > The SION (Software Input ON) bit forces the input path active for the
-> > pin. This can be used, for instance, to capture through GPIO the value
-> > of a pin driven by a module. I'm not sure that's needed here.
+> > > +			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD		0x19
+> > > +			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC		0x19  
+> > 
+> > Here as well, bits 0 and 3 are reserved.
 > 
-> Thanks for the explanation, makes perfect sense. I will send a v2 without the
-> SION bit set (e.g exactly per the hunk in Kieran's patch).
-
-I'd like to get this merged in v6.11. If you don't have time to send a
-v2, I'm happy resending our version of the patch instead :-)
-
-> > > >         pinctrl_i2c1: i2c1grp {
-> > > >                 fsl,pins = <
-> > > >                        
-> > > > MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL                                
-> > > > 0x400001c2
+> About these pinctrls, I am using these settings on the MSC SM2-MB-EP1
+> board and they appear to be working just as those you are using (but I
+> haven't tested CEC):
+> 
+>   MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL     0x1c2
+>   MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA     0x1c2
+>   MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC         0x10
+>   MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD         0x10
 
 -- 
 Regards,
