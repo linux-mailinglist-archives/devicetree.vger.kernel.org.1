@@ -1,149 +1,206 @@
-Return-Path: <devicetree+bounces-73885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74F3E9012A7
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 18:11:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04D3B9012B5
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 18:19:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 269E62823F2
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 16:11:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A9F31F21B77
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 16:19:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB5B217B4E2;
-	Sat,  8 Jun 2024 16:11:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C53DE1474B9;
+	Sat,  8 Jun 2024 16:18:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PDv4T1md"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Zwc3zGBD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DDED17B411;
-	Sat,  8 Jun 2024 16:11:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A01117966C
+	for <devicetree@vger.kernel.org>; Sat,  8 Jun 2024 16:18:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717863080; cv=none; b=kqfz5drE7HznFj4AJ80dLxN5DjPPWAzpl/PVp6Fz5DJHYIE8w4Td+4kBpJObTie87Lc54eM/F+tsfEIAGnQY4rLGZL5Wnv/r4a86j9QoUCSiaTzhZAH0TIPPi2B/QJa9gaG319kQxpiv9r1aYAqE6+7gyt6jUo+srJM7j4kJsPc=
+	t=1717863535; cv=none; b=R1zU9UlmFXgy6MPKilh25dJdjp9KVaiIV6xLIpHw7NFp10Ra8z+r6A28v1d4Ct8FwHa/S06dbXGllT4zlr97CJEsfOdaAqQyg1JS4NxFoUBsfR+T+TJWBdgz7+WrY7gxysg1YOjIj3Tm893V+G8b2qKMv1msURW81wnqzYxIRIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717863080; c=relaxed/simple;
-	bh=/uwRUI/YsWFpgfwjwsOyJzuR2HOJ5zMOT3h3yHM7+JU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uCJODW9rNaaHv4P7rRFQRj1dSwgZwRdrUjmgmTK8Y/cQD+hz+iLn5MO9Lprdo/HXwqIVsM2YjxOkcgVi+dI9ae7STmuvMV0Amev36wEAfGwU5iKwMdkLQg1VFAGpbGVD/lQ1Rp0t1hH8geVJ2jHY3Pd/tYjCxgPAhUJzGdasYkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PDv4T1md; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AD83C4AF0A;
-	Sat,  8 Jun 2024 16:11:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717863080;
-	bh=/uwRUI/YsWFpgfwjwsOyJzuR2HOJ5zMOT3h3yHM7+JU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=PDv4T1mdEAD6YIw6KhJDrK+44OqV31pIXyBKBjnSw4RhvCBYpool4jpTQGZFDjbqu
-	 3pUe8e4Lv5mwe8HL7D14917qerQjd4jd0+cXIunmWfP1XuZl4AwrUstLDzQm6F+YJm
-	 Y1aUy8ySwLO2GlY6YOHPh1aEG94CMpXEZdHyJITTNtxj8MFVTwIfiWen8xSbjwmcVz
-	 gJg/3rdHsJL6UQaByFBDRDRxL0zy7NcSvQJAD1oddNwHIgpqN5mOBhTXjHAK/xxbSC
-	 FOJ5PIeO5/mOc5VwVHQjKJqhbE75/P2ricR9khxbrwLDksc/wLZJCYVBeXsDqrzpbv
-	 JUYosm/LV5t1g==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1717863535; c=relaxed/simple;
+	bh=x9Fpv1O9XtaMUh9Z3dvrT8x71mFFi+rG8tC/qZ3WeUg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i77M218EfBk1fJLwTl6HzzCieRjILUXXArUYG+1RTsfTcFi+6UGyls+q9HvPDvcxeJaU90JxEJHzOtSQjg/OVOFMfxJE3Ila6Qz6OYGdDu7hdU9YSAr5YsTydZWThxtKTRrdDm5qod2Z4KAU4ZryS8qG1tGzM9brqEEYRwa1onw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Zwc3zGBD; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id DB1EE4CA;
+	Sat,  8 Jun 2024 18:18:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1717863522;
+	bh=x9Fpv1O9XtaMUh9Z3dvrT8x71mFFi+rG8tC/qZ3WeUg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Zwc3zGBDae4FbzWtxuvhLq0OMXxt9wj664LkS6EY5ivxsW7EheHsa/u0AtaJW6Y3h
+	 grihq0No/0heDqmwNpsDGOCvOdESbL/wyswzbW9t9Cr3CpUQX+S54wld516GLZGAh8
+	 W/XJrQcNKEky/JVmJUCYGJX1CPJhCgU2DkC4TdPo=
+Date: Sat, 8 Jun 2024 19:18:33 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc: linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 00/31] Clean up thermal zone polling-delay
-Date: Sat,  8 Jun 2024 11:11:16 -0500
-Message-ID: <171786307408.851553.16016904343712298022.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240510-topic-msm-polling-cleanup-v2-0-436ca4218da2@linaro.org>
-References: <20240510-topic-msm-polling-cleanup-v2-0-436ca4218da2@linaro.org>
+	Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+	Marco Contenti <marco.c@variscite.com>,
+	Nate Drude <nate.d@variscite.com>,
+	FrancescoFerraro <francesco.f@variscite.com>,
+	Harshesh Valera <harshesh.v@variscite.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH v2 2/4] arm64: dts: freescale: Add support for the
+ Variscite DART-MX8M-PLUS SoM
+Message-ID: <20240608161833.GA13794@pendragon.ideasonboard.com>
+References: <20231025165058.31697-1-laurent.pinchart@ideasonboard.com>
+ <20231025165058.31697-3-laurent.pinchart@ideasonboard.com>
+ <962e1d33-bc97-6bf8-b94d-581762dd6afa@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <962e1d33-bc97-6bf8-b94d-581762dd6afa@pengutronix.de>
 
+Hi Ahmad,
 
-On Fri, 10 May 2024 13:59:23 +0200, Konrad Dybcio wrote:
-> A trivial follow-up on the changes introduced in Commit 488164006a28
-> ("thermal/of: Assume polling-delay(-passive) 0 when absent").
+On Mon, Nov 27, 2023 at 06:58:31AM +0100, Ahmad Fatoum wrote:
+> On 25.10.23 18:50, Laurent Pinchart wrote:
+> > +	reg_eqos_phy: regulator-eqos-phy {
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "eqos-phy";
+> > +		regulator-min-microvolt = <3300000>;
+> > +		regulator-max-microvolt = <3300000>;
+> > +		gpio = <&gpio2 20 GPIO_ACTIVE_HIGH>;
+> > +		enable-active-high;
+> > +		regulator-always-on;
 > 
-> Should probably wait until v6.9-rc1 so that the patch in question is
-> in the base tree, otherwise TZs will fail to register.
+> Apparently, https://lore.kernel.org/all/20230721110345.3925719-1-m.felsch@pengutronix.de/
+> didn't make it upstream. Perhaps you mentioning that you could use this would help get
+> it unstuck? :)
+
+I've replied to the series, but I agree with Rob, we need a better
+solution. Someone will need to do the work :-)
+
+> > +&eqos {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_eqos>;
+> > +	phy-mode = "rgmii";
+> > +	phy-handle = <&ethphy0>;
+> > +	status = "okay";
+> > +
+> > +	mdio {
+> > +		compatible = "snps,dwmac-mdio";
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> > +
+> > +		ethphy0: ethernet-phy@0 {
+> > +			compatible = "ethernet-phy-ieee802.3-c22";
+> > +			reg = <0>;
+> > +			eee-broken-1000t;
+> > +			reset-gpios = <&gpio2 11 GPIO_ACTIVE_LOW>;
 > 
-> FWIW, Compile-tested only (except 8280).
+> Nitpick: Separate pinctrl entry for PHY GPIOs that's added to the PHY node?
+> Makes it easier to check that all used signals are indeed muxed.
+
+Fine with me.
+
+> > +	pmic@25 {
+> > +		compatible = "nxp,pca9450c";
+> > +		reg = <0x25>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_pmic>;
+> > +		interrupt-parent = <&gpio1>;
+> > +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> > +
+> > +		regulators {
+> > +			BUCK1 {
+> > +				regulator-name = "BUCK1";
+> > +				regulator-min-microvolt = <600000>;
+> > +				regulator-max-microvolt = <2187500>;
 > 
-> [...]
+> Nitpick: These may be the limits of what the BUCK can output, but they
+> don't look like a safe operating range for the board. The Linux driver already
+> has ranges hardcoded to cover what's possible by the hardware, so if you specify
+> regulator range here, it should pertain to what the board and SoC are designed
+> to handle.
 
-Applied, thanks!
+I'll restrict that to [0.85V 0.95V], which are the typical voltages in
+nominal and overdrive mode. If someone wants to lower it down to 0.805V
+or increase it up to 1.0V, which are the minimum and maximum values
+specified in the SoC's operating ranges, they can send a patch. I will
+similarly restrict BUCK2 to [0.85V 1.0V].
 
-[01/31] arm64: dts: qcom: ipq6018-*: Remove thermal zone polling delays
-        commit: 28930820bf8928c8247d6b001e042ce7e0037350
-[02/31] arm64: dts: qcom: ipq8074-*: Remove thermal zone polling delays
-        commit: bebd3c6476c97d0aee8985eb9544dfd82f6e8e36
-[03/31] arm64: dts: qcom: ipq9574-*: Remove thermal zone polling delays
-        commit: 88dd10e237ee1cfc70595c0feb37c8a71e521bfc
-[04/31] arm64: dts: qcom: msm8916-*: Remove thermal zone polling delays
-        commit: b3f0d522b548e969b138c48c0fd4098703363c53
-[05/31] arm64: dts: qcom: msm8939-*: Remove thermal zone polling delays
-        commit: 19c658e5bfe71b01ae41e85dab076da051814857
-[06/31] arm64: dts: qcom: msm8953-*: Remove thermal zone polling delays
-        commit: 1a43ff5b5f5a51c2dd0859bc46020e7f1c282414
-[07/31] arm64: dts: qcom: msm8976-*: Remove thermal zone polling delays
-        commit: adfb64b78f2f0e894c2520b8e2ff8bd5f2d49825
-[08/31] arm64: dts: qcom: msm8996-*: Remove thermal zone polling delays
-        commit: 612f017315fb466bc9348fb9a5f1d9506f4b5260
-[09/31] arm64: dts: qcom: msm8998-*: Remove thermal zone polling delays
-        commit: 47d92455f59f7e8414ebc962f60bd7a990563a7c
-[10/31] arm64: dts: qcom: pm7550ba: Remove thermal zone polling delays
-        commit: d96854de5d69a08a893d4a137d69c65f2feb40d5
-[11/31] arm64: dts: qcom: pms405: Remove thermal zone polling delays
-        commit: 1a78b5da8164afc1d60bec7c02b8fd8e6451f0f3
-[12/31] arm64: dts: qcom: pmx75: Remove thermal zone polling delays
-        commit: 8e49df9200591c469dfbdd29c93ee6cbe970aa2a
-[13/31] arm64: dts: qcom: qcm2290-*: Remove thermal zone polling delays
-        commit: d3eb8179f21f86439053745bb1504791236d38bf
-[14/31] arm64: dts: qcom: qcs404-*: Remove thermal zone polling delays
-        commit: 8d7807d24746af11ba966bce854ef3cd8df5267e
-[15/31] arm64: dts: qcom: sa8775p-*: Remove thermal zone polling delays
-        commit: a759962163af22b7f50c8f43ed8b3fc5e09bec19
-[16/31] arm64: dts: qcom: sc7180-*: Remove thermal zone polling delays
-        commit: 7cd2d9080a6eb281701f7303b1699719640380d0
-[17/31] arm64: dts: qcom: sc7280-*: Remove thermal zone polling delays
-        commit: 7747a49db7e54978151d74b22907a373c9b4de1b
-[18/31] arm64: dts: qcom: sc8180x-*: Remove thermal zone polling delays
-        commit: 1f57b1cff485c02678ea2dfe0ff7efa3b9f51e9d
-[19/31] arm64: dts: qcom: sc8280xp-*: Remove thermal zone polling delays
-        commit: e388421387e8b1b51c507883aaf13f40277fe137
-[20/31] arm64: dts: qcom: sdm660-*: Remove thermal zone polling delays
-        commit: 82162bf535a76f87e20a6eece83375d2dd791655
-[21/31] arm64: dts: qcom: sdm845-*: Remove thermal zone polling delays
-        commit: 2e58dbeae40e5fc7b2742bed05957cae32031387
-[22/31] arm64: dts: qcom: sm6115-*: Remove thermal zone polling delays
-        commit: 190f743561a44cf0176707b6e2f37b1a1b7ff367
-[23/31] arm64: dts: qcom: sm6125-*: Remove thermal zone polling delays
-        commit: d1a12560ef38021ce42ac31408fc53d2b8e08cc8
-[24/31] arm64: dts: qcom: sm6350-*: Remove thermal zone polling delays
-        commit: 2aad3fd3820d047fa70b62906565c185d830465c
-[25/31] arm64: dts: qcom: sm6375-*: Remove thermal zone polling delays
-        commit: 088d826d5af3cda20deb04dce406c95ef1ed8563
-[26/31] arm64: dts: qcom: sm8150-*: Remove thermal zone polling delays
-        commit: fc2f92b522019a5bfd464c946b15d180c31b092b
-[27/31] arm64: dts: qcom: sm8250-*: Remove thermal zone polling delays
-        commit: 2d10e2e28df7a690d670b3452d4891b50011dc42
-[28/31] arm64: dts: qcom: sm8350-*: Remove thermal zone polling delays
-        commit: 07fab48327ad0d85c2b2763d26ce56c84043515a
-[29/31] arm64: dts: qcom: sm8450-*: Remove thermal zone polling delays
-        commit: d0730a729f1a723f06e7b9db7f1a540cf72de871
-[30/31] arm64: dts: qcom: sm8550-*: Remove thermal zone polling delays
-        commit: fe5cb7d30795d81ed55888bcfb896086af3adc01
-[31/31] arm64: dts: qcom: sm8650-*: Remove thermal zone polling delays
-        commit: 92332cca0551b7c5c44f4236b8d1ce2828888e92
+BUCK4, BUCK5 and BUCK6 are more annoying. There is no public schematics,
+and little information in the board's documentation.
 
-Best regards,
+For BUCK5, there's a mention in the board's documentation that indicates
+it powers NVCC_SAI1_SAI5 with 1.8V by default before LDO4 takes over. It
+is further set to 1.85V in U-Boot with a comment that states
+
+	/* Set BUCK5 voltage to 1.85V to fix Ethernet PHY reset */
+	if (var_detect_board_id() == BOARD_ID_DART)
+		pmic_reg_write(p, PCA9450_BUCK5OUT, 0x32);
+
+I will restrict the range to [1.65V 1.95V] as documented in the i.MX8MP
+operating ranges, and exclude the 3.3V operation mode given the
+explanation in the board's documentation.
+
+BUCK4 and BUCK6 are not mentioned anywhere, and not programmed by
+U-Boot. I can only assume they're used at their 3.3V and 1.1V defaults.
+BUCK6 likely powers NVCC_DRAM as in the EVK, which is consistent with
+the board using LPDDR4. I'll set the output voltages to 3.3V and 1.1V
+respectively.
+
+LDOs are even worse. Only LDO4 is mentioned in the documentation (as
+powering NVCC_SAI1_SAI5) and touched by the boot loader (set to 1.8V).
+I'll modify the LDO4 range from the current 3.3V fixed value to [1.8V
+3.3V], and won't touch the other LDOs.
+
+> > +/* eMMC */
+> > +&usdhc3 {
+> > +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> > +	pinctrl-0 = <&pinctrl_usdhc3>;
+> > +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
+> > +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
+> > +	bus-width = <8>;
+> > +	non-removable;
+> 
+> no-sd
+> no-sdio
+> 
+> may give you a tiny bit of speedup during probe, if you know that there will
+> always be an eMMC here.
+
+I'll add that, thanks.
+
+> > +	pinctrl_i2c1: i2c1grp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL					0x400001c2
+> > +			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA					0x400001c2
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_i2c1_gpio: i2c1gpiogrp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_I2C1_SCL__GPIO5_IO14				0x1c2
+> > +			MX8MP_IOMUXC_I2C1_SDA__GPIO5_IO15				0x1c2
+> 
+> This surprises me. I'd expect that the SION bit needs to be set for
+> GPIO bus recovery.
+
+I haven't tested GPIO bus recovery. I'll add the SION bits, as they make
+sense.
+
 -- 
-Bjorn Andersson <andersson@kernel.org>
+Regards,
+
+Laurent Pinchart
 
