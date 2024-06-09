@@ -1,132 +1,128 @@
-Return-Path: <devicetree+bounces-73923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70E06901572
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 12:03:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8B1B901577
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 12:07:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E1C5CB2115C
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 10:03:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C6EF281234
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 10:07:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72872EAF9;
-	Sun,  9 Jun 2024 10:03:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FF6B1CFAF;
+	Sun,  9 Jun 2024 10:07:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="ANWB1++k"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LvoD8d9a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com [51.77.79.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C58DF1CD3F;
-	Sun,  9 Jun 2024 10:03:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=51.77.79.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3250E57D;
+	Sun,  9 Jun 2024 10:07:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717927388; cv=none; b=eiUv9Aqu43yE7FDia5jnN+qWAB6KQJLgMg7Lc5aBv63+cLFlo6PaCeVaaZfOSqZEnG21TwTJA9joaStGZCFtIgr9xoP4Z4HrwGHJ8PIU5IOBW+r6oHwlGW/dgKoYuImW7IOS4UyTNdMCJirbSRS8pp31zVxvOSBzjkwZdAbmgK4=
+	t=1717927647; cv=none; b=Tk5Y2gWBR9CouLu+Vb3TasQEAje3TYGEQxfKLj4ta6VABkR972FUlR6rvjLpyoG5vArtWo0GeNDY32HqImYBaKZBqwOnexf5HQBfOfZdO/S7js3YWqQrz4nIZfKKonVue+E4A+KlKh2zJ3zjc8yKzTUeljwI7WvOHtoeauE75bI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717927388; c=relaxed/simple;
-	bh=Ht9bQOxIPW6HDnso8i0n0eRfSL1UuLnZowsqNSaw3gI=;
-	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=YR2QPqFzB64DlrEz3O+ROzWmUcSR92OoNsjUMmIOvlmj4hZS/n86il43+Ru/NeTz7ayidbtT3h6E9HRlESRBJsXE/3iqxNIfpZxjTeT0mrRvzZsHMiK6Espe4DOFcQKcbCEajFgOO4w6FOKga6ixgUdZe1G6b11o+btllcvOpEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=ANWB1++k; arc=none smtp.client-ip=51.77.79.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1717927370; x=1718186570;
-	bh=VOk46FEwMPgWj8mRpQofHMOFAUKn4EKkVtGoj+1OqMY=;
-	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
-	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=ANWB1++kGN6S47Kl4YJf8kcOHa4K6Cd1oueLYXJJg4q791UEJCRYJ0oIOvOmdP6RS
-	 MJ2ustHVTAeJ714xastCButVv31Aa479+GH1CwCu0tqoxcxTHLM2NV4RUfe6QXLdIk
-	 nnGUq5UGDr+n/ZAL4FXFQp7bXODIJB60kFq/6kpKqEG5ja0AnZnCxs9PgsGJ9io3Y/
-	 G/QBCw/L0mE27mblHZe85idkyw2EaVaP7z2B0fs8fxpnwMZ05W6NAB+0KDpdAX21rq
-	 xj0Fej3GWmFKwzsn6Gja9Q4+FsHOtn9tGy8uf+jEY72GJ++26MCff3hTBazEVjKu6L
-	 5kCVuqaC0RHWw==
-Date: Sun, 09 Jun 2024 10:02:45 +0000
-To: linux-kernel@vger.kernel.org
-From: Raymond Hackley <raymondhackley@protonmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>, Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: [PATCH] arm64: dts: qcom: msm8916-acer-a1-724: Add sound and modem
-Message-ID: <20240609100243.834169-1-raymondhackley@protonmail.com>
-Feedback-ID: 49437091:user:proton
-X-Pm-Message-ID: c62c1b1d3b5fdaab790a6848a374415dabc5c145
+	s=arc-20240116; t=1717927647; c=relaxed/simple;
+	bh=7ZEIkaa3ksksA6ZUHuB9fHe3Wm9FOY1xVq03Fjce+hM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=WJSLjN2kLp6pI8r6Oh0u66jg1SssPJSMUiFK38jBInvrXSoY4pBZUle/PSD/vpfnFzO2Mb3aV+VOIMp5Poz4ftRGOW8fYTD1mBzQZD7jhPze1OJnID+OgVrZJ/8yvUayV/1Kx7vEcmuXbxjcdWbfrGE0iP+4yZNwWekPVBfFLsI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LvoD8d9a; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-70421e78edcso1051853b3a.3;
+        Sun, 09 Jun 2024 03:07:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717927645; x=1718532445; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=M1KQmgUjsSgxrwDmRsB1VpB7+C1g/y/pi7A9G0zDFo4=;
+        b=LvoD8d9aYBS57+eDx9B6Gi4hrBADB2yhB3wDytzYzt+epFUX/GJ1vsOp+Mz3GW1/sp
+         j5+V/wwImS2ohRzuK/yzt4hAxTRJbcEEJYBg2s/XWzb2Pt4KibXza2qv03+7mU1CqUHz
+         bvmwfCsQAEo6NqoBmu5P8mcnJcfGfJF58DG+pKmx2ODLaNqfFyBIaMO7ZhWwZogD5x37
+         Yxk13+SbM5cNd6fxlXxmMCF3FkKhImRiQvNeTpZCuV03obM6YxJzFCWl4wJBiXjI6hDK
+         zldJBeOM7OFB9gudv4muWIna0S4A0qc9paRQ0tPg0Jj5rN5d4Acsjs92gIfkd07p8KkI
+         tAzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717927645; x=1718532445;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=M1KQmgUjsSgxrwDmRsB1VpB7+C1g/y/pi7A9G0zDFo4=;
+        b=pkE/EnCqIAz+ZJuhigzPRDRRbYr6CaWzgvO2YzNwg61jrdY3xPcyhagaSsD9ly7SsZ
+         /RbIUn0NMPzP8y0heY73dSPl9GqbkjnS/G260Lird3OBAmgxRmK85kwRIuERcVil0gnc
+         8NFPrwPdQp9nRe/SFZZ8cGWqjS1z6P87Nu8pAObdiqmE3UtehXLdUs0Lf1zlRNkIxhvN
+         cosVGfUtrUY8v9kcjIq1AJur6vfIeLSeHW0S/iKvdXEoqfOBeqExJpsxaJ/E92TzKvyx
+         eeUBZUXXqDijHM1+WlyAOM1tYtKPBH+W4sX/JEXwNE24UXTamoAMkgLZEpALi40TvE/3
+         q/Hw==
+X-Forwarded-Encrypted: i=1; AJvYcCVaWJekW6d4z4KQ7/ZV2nDU8unaptqPAS6mbBJvo+6/3lx8l7G1PY/xh6sz48+uyABS5HHZff2uqsZ/cvb6CQYpMmZqpsUgzL+j8hBbVoTyWVDvel8uOz6AEPt+vWHv8lFr8+cwFLtstA==
+X-Gm-Message-State: AOJu0YzFn1scUR3R5Q0lrAY+uE2/NQitsAct8a5JhxUGxLf3SVBO+pEF
+	CAc3sAlhZL/Rxd7/Logur4rytSvn4rYKhWXxPTt90z+0Ez0iP4N9
+X-Google-Smtp-Source: AGHT+IFnXhyUdifmCAO15Ff3pBz2EwzIgiSNqt12ifD8++2AaleAJtT7cLIo4Ej82lah3QaAY6MQ2A==
+X-Received: by 2002:a05:6a00:1409:b0:6ea:b818:f499 with SMTP id d2e1a72fcca58-7040c6a58a6mr8264994b3a.19.1717927644931;
+        Sun, 09 Jun 2024 03:07:24 -0700 (PDT)
+Received: from ga401ii.. ([2401:4900:1cc9:92b2:ce0f:ca96:5cb0:62e5])
+        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-7041c78ac20sm2817534b3a.154.2024.06.09.03.07.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 Jun 2024 03:07:24 -0700 (PDT)
+From: Kanak Shilledar <kanakshilledar@gmail.com>
+To: 
+Cc: kanakshilledar111@protonmail.com,
+	Kanak Shilledar <kanakshilledar@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v4 0/2] dt-bindings: interrupt-controller: riscv,cpu-intc
+Date: Sun,  9 Jun 2024 15:37:06 +0530
+Message-ID: <20240609100710.85055-1-kanakshilledar@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Enable sound and modem for Acer Iconia Talk S A1-724.
-The setup is similar to most MSM8916 devices, i.e.:
+This series of patches converts the RISC-V CPU interrupt controller to
+the newer dt-schema binding.
 
-- QDSP6 audio
-- Earpiece/headphones/microphones via digital/analog codec in
-  MSM8916/PM8916
-- WWAN Internet via BAM-DMUX
+Patch 1:
+This patch is currently at v4 as it has been previously rolled out.
+Contains the bindings for the interrupt controller.
 
-Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
----
- .../boot/dts/qcom/msm8916-acer-a1-724.dts     | 26 +++++++++++++++++++
- 1 file changed, 26 insertions(+)
+Patch 2:
+This patch is currently at v4.
+Contains the reference to the above interrupt controller. Thus, making
+all the RISC-V interrupt controller bindings in a centralized place.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts b/arch/arm64/=
-boot/dts/qcom/msm8916-acer-a1-724.dts
-index b32c7a97394d..b4ce14a79370 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
-@@ -3,6 +3,7 @@
- /dts-v1/;
-=20
- #include "msm8916-pm8916.dtsi"
-+#include "msm8916-modem-qdsp6.dtsi"
-=20
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
-@@ -135,6 +136,17 @@ &blsp_uart2 {
- =09status =3D "okay";
- };
-=20
-+&mpss_mem {
-+=09reg =3D <0x0 0x86800000 0x0 0x4500000>;
-+};
-+
-+&pm8916_codec {
-+=09qcom,micbias-lvl =3D <2800>;
-+=09qcom,mbhc-vthreshold-low =3D <150 237 450 500 590>;
-+=09qcom,mbhc-vthreshold-high =3D <150 237 450 500 590>;
-+=09qcom,hphl-jack-type-normally-open;
-+};
-+
- &pm8916_resin {
- =09linux,code =3D <KEY_VOLUMEDOWN>;
- =09status =3D "okay";
-@@ -170,6 +182,20 @@ &sdhc_2 {
- =09status =3D "okay";
- };
-=20
-+&sound {
-+=09model =3D "acer-a1-724";
-+=09audio-routing =3D
-+=09=09"DMIC1", "MIC BIAS External1",
-+=09=09"DMIC1", "Digital Mic1",
-+=09=09"AMIC2", "MIC BIAS Internal2",
-+=09=09"DMIC2", "MIC BIAS External1",
-+=09=09"DMIC2", "Digital Mic2";
-+
-+=09pinctrl-0 =3D <&cdc_pdm_default &sec_mi2s_default &pri_mi2s_mclk_defaul=
-t &cdc_dmic_default>;
-+=09pinctrl-1 =3D <&cdc_pdm_sleep &sec_mi2s_sleep &pri_mi2s_mclk_sleep &cdc=
-_dmic_sleep>;
-+=09pinctrl-names =3D "default", "sleep";
-+};
-+
- &usb {
- =09extcon =3D <&usb_id>, <&usb_id>;
- =09status =3D "okay";
---=20
-2.39.2
+These patches are interdependent.
+Fixed the patch address mismatch error by changing DCO to @gmail.com
 
+Note: I am sending this patch from a newly cloned kernel source.
+
+Kanak Shilledar (2):
+  dt-bindings: interrupt-controller: riscv,cpu-intc: convert to dtschema
+  dt-bindings: riscv: cpus: add ref to interrupt-controller
+
+ .../interrupt-controller/riscv,cpu-intc.txt   | 52 -------------
+ .../interrupt-controller/riscv,cpu-intc.yaml  | 73 +++++++++++++++++++
+ .../devicetree/bindings/riscv/cpus.yaml       | 21 +-----
+ 3 files changed, 74 insertions(+), 72 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.yaml
+
+
+base-commit: 771ed66105de9106a6f3e4311e06451881cdac5e
+-- 
+2.45.2
 
 
