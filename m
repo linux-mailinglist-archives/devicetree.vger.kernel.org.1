@@ -1,94 +1,82 @@
-Return-Path: <devicetree+bounces-73947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76AD4901782
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 20:23:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E8FF9017B2
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 20:26:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06D27281918
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 18:23:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44AD21C20B02
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 18:26:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5388B6F311;
-	Sun,  9 Jun 2024 18:21:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 300F67C6CE;
+	Sun,  9 Jun 2024 18:23:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g0rphp2c"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JuV+GcOk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EB196F2F6;
-	Sun,  9 Jun 2024 18:21:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1DE177119;
+	Sun,  9 Jun 2024 18:23:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717957315; cv=none; b=u+KlJYiimnwxQrxTzgTQjzCEOmqRI8rHv/Am8DF8lZP5hRih6847TvETUBkIrEdAjWrJIV+QZ9w6Of4ZhE3piYmK28uqC0H7iBabz6hJxSJSA/c8f9u5avInGXXVb4fOiHbfrKSC0GunuEW8xCjY0IpdAx40JKESdV/UFCuSEWE=
+	t=1717957383; cv=none; b=HQos14JwIQTANUJvah9Wt4HRuW3BrTNOnWWA3YJSVZxGsIYGgt77PknZDu4ILCw9VKnsl/pbVgv60/qh1jrORxdjWr7IXwUHtzBz0Wat45hJNSMy89/1pTExQyJkRp4w8Rmaos8UUMceGlFkeKEB1h3fnAYO4m1UbSjiEUrxeio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717957315; c=relaxed/simple;
-	bh=uIrmQEelix3LEmJne/2AfADR5iCGGxuiQSpXb8kYLOs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=SdE0JLGTXRPJzEMZzDUwIu0K7O3KuXmoXWw640CwBsI/MaBC/nB0rIzBj0qEENFOVWEn0P9foU2DcB3Xe4rq8ty+pckJCDbuiHvViSLN8vzZEap7P3X3V4EdTGh5gDiHKv99y2+gx9EptQChqvHMum4QATJIqjkjOkp8qOvMqRQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g0rphp2c; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2e78fe9fc2bso54055591fa.3;
-        Sun, 09 Jun 2024 11:21:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717957311; x=1718562111; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7cTyvCxrK3Xq1bvrTLKc9ITi2Qxz8ox9OMKkDMGhIxo=;
-        b=g0rphp2cjviw5tKkBCVY10WW3umPFEz6t69T9k9BhZ6Luga1gXf3jKg/6nopYNfVB6
-         kssYQIDS16c1l2hNlPK1cl7MUrg7cL+KD/TZDDkY0u8gyf/4lY9ec+aMJ7aKeq8Ext/R
-         6II08aGgpvds6Nwn6v76c6Dnc9l2g4hOpqMbEjEOSC5csgGA/33AqTVqL+ZRb+HeeaOq
-         MMMi1+fG9JEyO6vV8pDrMR0AqblA6gcdo8dg4dl5t3fR44AvBEswktq/tEeCkmVs7/se
-         lQsOHmYZw/cMtyrlrA5qovSHztHhbq14qmpLxGzvzpx81W39Xz1M1sUgm8SgiUM2ENPn
-         Rz9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717957311; x=1718562111;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7cTyvCxrK3Xq1bvrTLKc9ITi2Qxz8ox9OMKkDMGhIxo=;
-        b=Bm8JWuT/zOkmlv4XsKhbBYRwJ4jo7X9y9RO55AlBODVlNuMnfnRRc92/kl0+UnBMZc
-         wvdFXX/8HHqUxSSGxOBNH3fKJWQDJvAG9PEKOxzRLa8L631q/T4Be/TLfRF+jcmBPium
-         rpKYtB6BqnE1djv2iAuChHhLrRbt0hy8a+76f3UatWiaThmC+lcmo9YXq64cymdvPBuQ
-         PekatUfFr3QdL3WDklui21+K2LJkBL46CQakkAWJ/hPytIdQqZ0jZLspH/DvnxOu9FSM
-         fDWUGBjP4PPL8/RytoGdGzRnd3g3Ed9mVNH/GswQea6fQ5VgCdYhauM6GSAB400Pcik2
-         Fuww==
-X-Forwarded-Encrypted: i=1; AJvYcCUJAmGbDDg9dZ1IZsOJSwIDj4cYnY6tUmfTGQwy1ET5veiEzUxd1otJSVO2xShdtt98Zka+PmE3WO+t2xdjMK+P66ODOHSVCyzAlvQ/9GsrjVheGP6SJa1CUZMlyE+Bj6iE/EblbYrvWq6H/DTxDR9FOCZNLNuNb6p3t6wbzO4cpzuGRysCPhTvkjAZhSpRJbSWdPupajcVGVi96kP0u+2MEw==
-X-Gm-Message-State: AOJu0Yyu+npgWJTndhe51zYCeaHhn6R28yH98nfaHBafbilQjrwGrpRR
-	5VMPkn9EEX4yUfySWrJZOzNJC9Ew9+Jsrhhakmmsi5lUt0dK4uZwizT5KdCx
-X-Google-Smtp-Source: AGHT+IEqaU+iUHneGrvnKrfvs6kEjkdYgmEr5+JnTTFLxGXE8SL8TnFJ/s6teQVEaMPIonG0/glQgg==
-X-Received: by 2002:a05:651c:1505:b0:2e0:e470:882f with SMTP id 38308e7fff4ca-2eadce3774amr55597591fa.28.1717957310900;
-        Sun, 09 Jun 2024 11:21:50 -0700 (PDT)
-Received: from localhost.localdomain (bza83.neoplus.adsl.tpnet.pl. [83.30.46.83])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ebd5a63bf2sm6679841fa.33.2024.06.09.11.21.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 09 Jun 2024 11:21:50 -0700 (PDT)
-From: Adam Skladowski <a39.skl@gmail.com>
-To: 
-Cc: phone-devel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht,
-	Adam Skladowski <a39.skl@gmail.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Georgi Djakov <djakov@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 7/7] dt-bindings: interconnect: qcom: msm8939: Fix example
-Date: Sun,  9 Jun 2024 20:21:00 +0200
-Message-Id: <20240609182112.13032-8-a39.skl@gmail.com>
+	s=arc-20240116; t=1717957383; c=relaxed/simple;
+	bh=LUbU/n1NgxZ9o/jU5VEawfYCrXStZSvnsTlPEXFfBns=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ky1EPtBuEHSOUK3k8KuNJrGI8zmUj3+b+QZjC/jvSiGr6LQNmT3t9x1WsDUNUWKXMzUZ3rwDdDV2uoR/rg4jDz2GfGcgYI9otJ/eCRptyiWkqDp+I6dWELwueQodjAJczoVZjw4yvZ2paTlkr+o9u7Ftx2Se2X55X8ydCU4+5Mo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=JuV+GcOk; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 459IMsKs075169;
+	Sun, 9 Jun 2024 13:22:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1717957374;
+	bh=InTJKlyp+itq7Bv0Xtt9P8tR0I50sqpUNLEMeR7dXDU=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=JuV+GcOkQluj7XZH9rYVK9ZfG1a/q0Vl8sHO2sxNWAcixCSdyQ1DWhFglqEYgeyeI
+	 tf1/J8nhwI3l3w56wSVF4VzSZxVuZZLCRYRUxPY1e7u4meMDOggUSCVwwpUyC1B0Ny
+	 G57QBLl0rCmamBE29zrzQnEWu4jE+k2AwiaZuDhQ=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 459IMsCm058855
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sun, 9 Jun 2024 13:22:54 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 9
+ Jun 2024 13:22:54 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sun, 9 Jun 2024 13:22:54 -0500
+Received: from localhost (uda0389739.dhcp.ti.com [137.167.1.114])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 459IMr0t034788;
+	Sun, 9 Jun 2024 13:22:53 -0500
+From: <michael.nemanov@ti.com>
+To: Sabeeh Khan <sabeeh-khan@ti.com>, Kalle Valo <kvalo@kernel.org>,
+        Johannes
+ Berg <johannes.berg@intel.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-wireless@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Michael Nemanov
+	<Michael.Nemanov@ti.com>
+Subject: [PATCH v2 16/17] wifi: cc33xx: Add Kconfig, Makefile Integrate cc33xx into wireless/ti folder
+Date: Sun, 9 Jun 2024 21:21:01 +0300
+Message-ID: <20240609182102.2950457-17-michael.nemanov@ti.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240609182112.13032-1-a39.skl@gmail.com>
-References: <20240609182112.13032-1-a39.skl@gmail.com>
+In-Reply-To: <20240609182102.2950457-1-michael.nemanov@ti.com>
+References: <20240609182102.2950457-1-michael.nemanov@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,55 +84,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-For now example list snoc_mm as children of bimc which is obviously
-not valid, change example and include rest of nocs in it.
+From: Michael Nemanov <Michael.Nemanov@ti.com>
 
-Fixes: 462baaf4c628 ("dt-bindings: interconnect: qcom: Fix and separate out MSM8939")
-Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
 ---
- .../bindings/interconnect/qcom,msm8939.yaml   | 22 ++++++++++++-------
- 1 file changed, 14 insertions(+), 8 deletions(-)
+ drivers/net/wireless/ti/Kconfig         |  1 +
+ drivers/net/wireless/ti/Makefile        |  1 +
+ drivers/net/wireless/ti/cc33xx/Kconfig  | 24 ++++++++++++++++++++++++
+ drivers/net/wireless/ti/cc33xx/Makefile | 10 ++++++++++
+ 4 files changed, 36 insertions(+)
+ create mode 100644 drivers/net/wireless/ti/cc33xx/Kconfig
+ create mode 100644 drivers/net/wireless/ti/cc33xx/Makefile
 
-diff --git a/Documentation/devicetree/bindings/interconnect/qcom,msm8939.yaml b/Documentation/devicetree/bindings/interconnect/qcom,msm8939.yaml
-index fd15ab5014fb..a77e6aa2fbee 100644
---- a/Documentation/devicetree/bindings/interconnect/qcom,msm8939.yaml
-+++ b/Documentation/devicetree/bindings/interconnect/qcom,msm8939.yaml
-@@ -56,19 +56,25 @@ examples:
-   - |
-     #include <dt-bindings/clock/qcom,rpmcc.h>
+diff --git a/drivers/net/wireless/ti/Kconfig b/drivers/net/wireless/ti/Kconfig
+index 3fcd9e395f72..fa7214d6018c 100644
+--- a/drivers/net/wireless/ti/Kconfig
++++ b/drivers/net/wireless/ti/Kconfig
+@@ -14,6 +14,7 @@ if WLAN_VENDOR_TI
+ source "drivers/net/wireless/ti/wl1251/Kconfig"
+ source "drivers/net/wireless/ti/wl12xx/Kconfig"
+ source "drivers/net/wireless/ti/wl18xx/Kconfig"
++source "drivers/net/wireless/ti/cc33xx/Kconfig"
  
--    snoc: interconnect@580000 {
--        compatible = "qcom,msm8939-snoc";
--        reg = <0x00580000 0x14000>;
--        #interconnect-cells = <1>;
--    };
--
-     bimc: interconnect@400000 {
-         compatible = "qcom,msm8939-bimc";
-         reg = <0x00400000 0x62000>;
--        #interconnect-cells = <1>;
-+        #interconnect-cells = <2>;
-+    };
+ # keep last for automatic dependencies
+ source "drivers/net/wireless/ti/wlcore/Kconfig"
+diff --git a/drivers/net/wireless/ti/Makefile b/drivers/net/wireless/ti/Makefile
+index 05ee016594f8..9e028a91ec30 100644
+--- a/drivers/net/wireless/ti/Makefile
++++ b/drivers/net/wireless/ti/Makefile
+@@ -3,3 +3,4 @@ obj-$(CONFIG_WLCORE)			+= wlcore/
+ obj-$(CONFIG_WL12XX)			+= wl12xx/
+ obj-$(CONFIG_WL1251)			+= wl1251/
+ obj-$(CONFIG_WL18XX)			+= wl18xx/
++obj-$(CONFIG_CC33XX)			+= cc33xx/
+\ No newline at end of file
+diff --git a/drivers/net/wireless/ti/cc33xx/Kconfig b/drivers/net/wireless/ti/cc33xx/Kconfig
+new file mode 100644
+index 000000000000..0c3ff97dacc7
+--- /dev/null
++++ b/drivers/net/wireless/ti/cc33xx/Kconfig
+@@ -0,0 +1,24 @@
++# SPDX-License-Identifier: GPL-2.0-only
++config CC33XX
++	tristate "TI CC33XX support"
++	depends on MAC80211
++	select FW_LOADER
++	help
++	  This module contains the main code for TI CC33XX WLAN chips. It abstracts
++	  hardware-specific differences among different chipset families.
++	  Each chipset family needs to implement its own lower-level module
++	  that will depend on this module for the common code.
 +
-+    pcnoc: interconnect@500000 {
-+        compatible = "qcom,msm8939-pcnoc";
-+        reg = <0x00500000 0x11000>;
-+        #interconnect-cells = <2>;
-+    };
++	  If you choose to build a module, it will be called cc33xx. Say N if
++	  unsure.
 +
-+    snoc: interconnect@580000 {
-+        compatible = "qcom,msm8939-snoc";
-+        reg = <0x00580000 0x14080>;
-+        #interconnect-cells = <2>;
- 
-           snoc_mm: interconnect-snoc {
-               compatible = "qcom,msm8939-snoc-mm";
--              #interconnect-cells = <1>;
-+              #interconnect-cells = <2>;
-           };
-     };
++config CC33XX_SDIO
++	tristate "TI CC33XX SDIO support"
++	depends on CC33XX && MMC
++	help
++	  This module adds support for the SDIO interface of adapters using
++	  TI CC33XX WLAN chipsets.  Select this if your platform is using
++	  the SDIO bus.
++
++	  If you choose to build a module, it'll be called cc33xx_sdio.
++	  Say N if unsure.
+diff --git a/drivers/net/wireless/ti/cc33xx/Makefile b/drivers/net/wireless/ti/cc33xx/Makefile
+new file mode 100644
+index 000000000000..6156f778edee
+--- /dev/null
++++ b/drivers/net/wireless/ti/cc33xx/Makefile
+@@ -0,0 +1,10 @@
++# SPDX-License-Identifier: GPL-2.0
++
++cc33xx-objs		= main.o cmd.o io.o event.o tx.o rx.o ps.o acx.o \
++					boot.o init.o scan.o
++
++cc33xx_sdio-objs	= sdio.o
++
++cc33xx-$(CONFIG_NL80211_TESTMODE)	+= testmode.o
++obj-$(CONFIG_CC33XX)				+= cc33xx.o
++obj-$(CONFIG_CC33XX_SDIO)			+= cc33xx_sdio.o
 -- 
-2.45.1
+2.25.1
 
 
