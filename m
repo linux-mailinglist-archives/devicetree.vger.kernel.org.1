@@ -1,202 +1,132 @@
-Return-Path: <devicetree+bounces-73922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A415490155A
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 11:51:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70E06901572
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 12:03:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2CEEBB21240
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 09:51:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E1C5CB2115C
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 10:03:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6716D1CD35;
-	Sun,  9 Jun 2024 09:51:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72872EAF9;
+	Sun,  9 Jun 2024 10:03:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="ANWB1++k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8375A1804E;
-	Sun,  9 Jun 2024 09:51:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com [51.77.79.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C58DF1CD3F;
+	Sun,  9 Jun 2024 10:03:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=51.77.79.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717926666; cv=none; b=tO8Y76Zdxhr+FSfadpavBXkDxKI06raRKAgr+IkI4cuQm26/q8cUAAlooOsJlTa2KG9CXvWwGtbHd6sgZUvawcos1puDC5ufbym44IzQFqNK5Dvzj2XlQclXJdlVgcGynUNnaZTr6bFCjGQNjHn4ZoAcrmXo0KikzWy44on4DtY=
+	t=1717927388; cv=none; b=eiUv9Aqu43yE7FDia5jnN+qWAB6KQJLgMg7Lc5aBv63+cLFlo6PaCeVaaZfOSqZEnG21TwTJA9joaStGZCFtIgr9xoP4Z4HrwGHJ8PIU5IOBW+r6oHwlGW/dgKoYuImW7IOS4UyTNdMCJirbSRS8pp31zVxvOSBzjkwZdAbmgK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717926666; c=relaxed/simple;
-	bh=6Xkm7YiviFoJoemsAi5czJ/Al54+zJfurW20sYufMY8=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ffpj3W69cN1rJ/0RxeWPDyf60LYlfdBovjXhm64q5wcO+7X0lxN7CXoV3GxM0n9irj0/HTSHJibPwI4YyXZqAXgTp8U6CIuHyKDdsLfBNcNrlliHuH7nloOkqAhPcwl3T8EyXVWPtPQJ+uAD2I8+8m7SjdvleVcbuFeSey3Q9YU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-IronPort-AV: E=Sophos;i="6.08,225,1712588400"; 
-   d="scan'208";a="207203928"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 09 Jun 2024 18:50:56 +0900
-Received: from localhost.localdomain (unknown [10.226.92.40])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 8EBE241BA293;
-	Sun,  9 Jun 2024 18:50:52 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>,
-	kernel test robot <lkp@intel.com>
-Subject: [PATCH] arm64: dts: renesas: r9a07g0{43,44,54}: Drop #address-cells/#size-cells from single child node 'endpoint@0'
-Date: Sun,  9 Jun 2024 10:50:49 +0100
-Message-Id: <20240609095049.17193-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1717927388; c=relaxed/simple;
+	bh=Ht9bQOxIPW6HDnso8i0n0eRfSL1UuLnZowsqNSaw3gI=;
+	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=YR2QPqFzB64DlrEz3O+ROzWmUcSR92OoNsjUMmIOvlmj4hZS/n86il43+Ru/NeTz7ayidbtT3h6E9HRlESRBJsXE/3iqxNIfpZxjTeT0mrRvzZsHMiK6Espe4DOFcQKcbCEajFgOO4w6FOKga6ixgUdZe1G6b11o+btllcvOpEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=ANWB1++k; arc=none smtp.client-ip=51.77.79.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1717927370; x=1718186570;
+	bh=VOk46FEwMPgWj8mRpQofHMOFAUKn4EKkVtGoj+1OqMY=;
+	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=ANWB1++kGN6S47Kl4YJf8kcOHa4K6Cd1oueLYXJJg4q791UEJCRYJ0oIOvOmdP6RS
+	 MJ2ustHVTAeJ714xastCButVv31Aa479+GH1CwCu0tqoxcxTHLM2NV4RUfe6QXLdIk
+	 nnGUq5UGDr+n/ZAL4FXFQp7bXODIJB60kFq/6kpKqEG5ja0AnZnCxs9PgsGJ9io3Y/
+	 G/QBCw/L0mE27mblHZe85idkyw2EaVaP7z2B0fs8fxpnwMZ05W6NAB+0KDpdAX21rq
+	 xj0Fej3GWmFKwzsn6Gja9Q4+FsHOtn9tGy8uf+jEY72GJ++26MCff3hTBazEVjKu6L
+	 5kCVuqaC0RHWw==
+Date: Sun, 09 Jun 2024 10:02:45 +0000
+To: linux-kernel@vger.kernel.org
+From: Raymond Hackley <raymondhackley@protonmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>, Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: [PATCH] arm64: dts: qcom: msm8916-acer-a1-724: Add sound and modem
+Message-ID: <20240609100243.834169-1-raymondhackley@protonmail.com>
+Feedback-ID: 49437091:user:proton
+X-Pm-Message-ID: c62c1b1d3b5fdaab790a6848a374415dabc5c145
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Fix the below dtcheck_warnings reported by kernel test robot.
+Enable sound and modem for Acer Iconia Talk S A1-724.
+The setup is similar to most MSM8916 devices, i.e.:
 
-dtcheck warnings: (new ones prefixed by >>)
->> arch/arm64/boot/dts/renesas/r9a07g043u.dtsi:85.11-94.6: Warning
->> (graph_child_address): /soc/video@10830000/ports/port@1: graph node
->> has single child node 'endpoint@0', #address-cells/#size-cells are
->> not necessary
->> arch/arm64/boot/dts/renesas/r9a07g043u.dtsi:120.11-129.6: Warning
->> (graph_child_address): /soc/csi2@10830400/ports/port@1: graph node
->> has single child node 'endpoint@0', #address-cells/#size-cells are
->> not necessary
+- QDSP6 audio
+- Earpiece/headphones/microphones via digital/analog codec in
+  MSM8916/PM8916
+- WWAN Internet via BAM-DMUX
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202406081329.snoMrZsJ-lkp@intel.com
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
 ---
- arch/arm64/boot/dts/renesas/r9a07g043u.dtsi | 12 ++----------
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi  | 17 +++--------------
- arch/arm64/boot/dts/renesas/r9a07g054.dtsi  | 18 +++---------------
- 3 files changed, 8 insertions(+), 39 deletions(-)
+ .../boot/dts/qcom/msm8916-acer-a1-724.dts     | 26 +++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi b/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
-index 165bfcfef3bc..e6a30a669c37 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
-@@ -79,12 +79,8 @@ ports {
- 			#size-cells = <0>;
- 
- 			port@1 {
--				#address-cells = <1>;
--				#size-cells = <0>;
--
- 				reg = <1>;
--				crucsi2: endpoint@0 {
--					reg = <0>;
-+				crucsi2: endpoint {
- 					remote-endpoint = <&csi2cru>;
- 				};
- 			};
-@@ -114,12 +110,8 @@ port@0 {
- 			};
- 
- 			port@1 {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 				reg = <1>;
--
--				csi2cru: endpoint@0 {
--					reg = <0>;
-+				csi2cru: endpoint {
- 					remote-endpoint = <&crucsi2>;
- 				};
- 			};
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-index 88634ae43287..6a5496dbb05a 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-@@ -710,22 +710,14 @@ ports {
- 				#size-cells = <0>;
- 
- 				port@0 {
--					#address-cells = <1>;
--					#size-cells = <0>;
--
- 					reg = <0>;
--					cruparallel: endpoint@0 {
--						reg = <0>;
-+					cruparallel: endpoint {
- 					};
- 				};
- 
- 				port@1 {
--					#address-cells = <1>;
--					#size-cells = <0>;
--
- 					reg = <1>;
--					crucsi2: endpoint@0 {
--						reg = <0>;
-+					crucsi2: endpoint {
- 						remote-endpoint = <&csi2cru>;
- 					};
- 				};
-@@ -755,12 +747,9 @@ port@0 {
- 				};
- 
- 				port@1 {
--					#address-cells = <1>;
--					#size-cells = <0>;
- 					reg = <1>;
- 
--					csi2cru: endpoint@0 {
--						reg = <0>;
-+					csi2cru: endpoint {
- 						remote-endpoint = <&crucsi2>;
- 					};
- 				};
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-index e89bfe4085f5..f37034d136b2 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-@@ -715,22 +715,14 @@ ports {
- 				#size-cells = <0>;
- 
- 				port@0 {
--					#address-cells = <1>;
--					#size-cells = <0>;
--
- 					reg = <0>;
--					cruparallel: endpoint@0 {
--						reg = <0>;
-+					cruparallel: endpoint {
- 					};
- 				};
- 
- 				port@1 {
--					#address-cells = <1>;
--					#size-cells = <0>;
--
- 					reg = <1>;
--					crucsi2: endpoint@0 {
--						reg = <0>;
-+					crucsi2: endpoint {
- 						remote-endpoint = <&csi2cru>;
- 					};
- 				};
-@@ -760,12 +752,8 @@ port@0 {
- 				};
- 
- 				port@1 {
--					#address-cells = <1>;
--					#size-cells = <0>;
- 					reg = <1>;
--
--					csi2cru: endpoint@0 {
--						reg = <0>;
-+					csi2cru: endpoint {
- 						remote-endpoint = <&crucsi2>;
- 					};
- 				};
--- 
-2.25.1
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts b/arch/arm64/=
+boot/dts/qcom/msm8916-acer-a1-724.dts
+index b32c7a97394d..b4ce14a79370 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
+@@ -3,6 +3,7 @@
+ /dts-v1/;
+=20
+ #include "msm8916-pm8916.dtsi"
++#include "msm8916-modem-qdsp6.dtsi"
+=20
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/input/input.h>
+@@ -135,6 +136,17 @@ &blsp_uart2 {
+ =09status =3D "okay";
+ };
+=20
++&mpss_mem {
++=09reg =3D <0x0 0x86800000 0x0 0x4500000>;
++};
++
++&pm8916_codec {
++=09qcom,micbias-lvl =3D <2800>;
++=09qcom,mbhc-vthreshold-low =3D <150 237 450 500 590>;
++=09qcom,mbhc-vthreshold-high =3D <150 237 450 500 590>;
++=09qcom,hphl-jack-type-normally-open;
++};
++
+ &pm8916_resin {
+ =09linux,code =3D <KEY_VOLUMEDOWN>;
+ =09status =3D "okay";
+@@ -170,6 +182,20 @@ &sdhc_2 {
+ =09status =3D "okay";
+ };
+=20
++&sound {
++=09model =3D "acer-a1-724";
++=09audio-routing =3D
++=09=09"DMIC1", "MIC BIAS External1",
++=09=09"DMIC1", "Digital Mic1",
++=09=09"AMIC2", "MIC BIAS Internal2",
++=09=09"DMIC2", "MIC BIAS External1",
++=09=09"DMIC2", "Digital Mic2";
++
++=09pinctrl-0 =3D <&cdc_pdm_default &sec_mi2s_default &pri_mi2s_mclk_defaul=
+t &cdc_dmic_default>;
++=09pinctrl-1 =3D <&cdc_pdm_sleep &sec_mi2s_sleep &pri_mi2s_mclk_sleep &cdc=
+_dmic_sleep>;
++=09pinctrl-names =3D "default", "sleep";
++};
++
+ &usb {
+ =09extcon =3D <&usb_id>, <&usb_id>;
+ =09status =3D "okay";
+--=20
+2.39.2
+
 
 
