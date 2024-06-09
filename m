@@ -1,295 +1,144 @@
-Return-Path: <devicetree+bounces-73966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4C5B90181F
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 22:21:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A33D190182D
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 22:58:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFC581C208A7
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 20:21:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 065F5B20E17
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 20:58:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D047847A7A;
-	Sun,  9 Jun 2024 20:21:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCA8C4D8C8;
+	Sun,  9 Jun 2024 20:58:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZHDE/UtO"
+	dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b="lMJlQJRF";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b="l89tmy8h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fallback20.i.mail.ru (fallback20.i.mail.ru [79.137.243.76])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43FD74D9FE;
-	Sun,  9 Jun 2024 20:21:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C20D217BB5;
+	Sun,  9 Jun 2024 20:58:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.137.243.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717964493; cv=none; b=CXiVCN1QfkjXx97sFtPSAf/QbtEt0qJByXLS+g4uJSJU67zGmUbQk96WLvOPTBwItfPXLZ1O3nCT+12AT3plNp+1i3Y4hBGyfZqtNuZrJBn59oQKdp2Naq1RQcjjOynO0H3B9a/1qCmCXNI+FH3UGEL203oSvfk7epf1DqeQRaI=
+	t=1717966716; cv=none; b=iPvaTh0Hyh/OADaXBKbh2lXiUkpC9eNqTGX8ZjZikAGxZptsMltkhiDgVEu+Sd+bz3h/DQHxLDUpz3WQ60LrV2o4Wtpr0TacH3ioI6IGVnq1Xs84WoOFX4NzVOb9zVo0aWVN6r6rQuQQaJnVYQDiL8zUpvhozfveyy5BZSc59b8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717964493; c=relaxed/simple;
-	bh=4tehNRbbnCKpqarYHQ5EuMHK73mI971qQyoR6Dnl9U8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=s4bUKV1HX7ko3ejFKJbGnBi3r0WN2L/ttB4OgbYzz2P5tp87TCT1EsBIL3j8+hTr1ZEfm4jjfieeJIJxBXBSiIvlIVrRa8cekMx9i0w+D52CwhNl7xeB/zey6zovvMH+ysCC2BsHSJc7RyaVqBRpO4SdWKWiwn9ygHBgNkuvh1c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZHDE/UtO; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-70255d5ddc7so3102702b3a.3;
-        Sun, 09 Jun 2024 13:21:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717964491; x=1718569291; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q1+EBDobohAf7xrKaFheIy46c0hkMGKmqzYkkpLnc0c=;
-        b=ZHDE/UtOGVFqqLzNg0OsFIp9KJLLvCu6gSLXZ2TC9wHECOs2JFPl83JsqvSyCIOIny
-         7Jq5v7rfwAaZfPCjQKrBVce1QBE1zq9NvK6PzPK9ZAwADLOGOhDPd/Z4O4Sa93tZcLkM
-         razLwWLV+0DcQBOum4NJ14PegzziiMvfw+eOxDEmN/L4ZdHHqLicWAsSJrjMJxI2QXhJ
-         VHjtlkIcP6fBDa5jyQD2c5ACL98LUCdznKwPyp/kxEcpgKBn/vyo+GMcKo/a58kJu4cf
-         lEcTVspH4NLUMBsOzDObcpGjaWwrBgPQ2j8IEwvCFPzZRpVe1pAKHujvNZKhDR3DPcvU
-         M2Gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717964491; x=1718569291;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=q1+EBDobohAf7xrKaFheIy46c0hkMGKmqzYkkpLnc0c=;
-        b=ss9j3D+ZjdHA42nHXUWhlaVTDHJX5VbKWSCOuEpfbyfZRAL+6mR8wV0RknOdR5Hb7g
-         Ya/hayi5YpalbbxV0iX1OCe26hrQKYLqGdNwJTdLqPibQTK4PxiULT6xLGmc+XBq9VG0
-         5+qOEHXLAV585uyiD+5l8N77GTHKXK6VRoPYon4/ZlvQ39Ef+45cR82JUF3wPZ+qve89
-         3jvENUEmmpcUjyCNX/0W306FxTutXavO3RvJYs2Jm1Wr8qS38c7Xb65eO95BnO/ZDfm9
-         IEKTpTjkEbpDmNqo5Utm7EABY/pCizgwQx7AQOIasYgEvFztcTZt0D0MCkds47S+sMN2
-         caWA==
-X-Forwarded-Encrypted: i=1; AJvYcCWZt6GVfX/Xu2SF9Ad5lVTTTtmS3V1aTppr5SU2TGJb2SsTXIHQX2XLUqZumHfJqMvTV4d5QVxYRuLmi7cYi9MR35LyfswjPhBzZ6pqDji5UQhbtSADdApNSFNumOIx+Z5ak8jq9RSl
-X-Gm-Message-State: AOJu0Yw1z5L8dyX7BSgwwbInXqihFrYxGUDKIJhaaUK72DbbaHbHH/Cw
-	dYFdDaarI208k+D0scLPYlPJFfgpb/IdBJo/4377FucEIlkpxgzQ8xiZjmVz0fXktSU34cRVNzt
-	zVWXg454TJ+vjcCp2qgCrBgKnGHI=
-X-Google-Smtp-Source: AGHT+IFSfAfZDbtQ1V1Y0Q3kuf3ufZrF7orXXLUWL4QURVMIj++rBRmm+GBK1Kkb46H4PuO82h5X3SpPQORc/VqC7lk=
-X-Received: by 2002:a05:6a20:9f88:b0:1b6:ea39:4d97 with SMTP id
- adf61e73a8af0-1b6ea394e91mr1375237637.29.1717964491280; Sun, 09 Jun 2024
- 13:21:31 -0700 (PDT)
+	s=arc-20240116; t=1717966716; c=relaxed/simple;
+	bh=GR/JlxtZMXwox4E5NYpyR4Lv1v8HQrYc80CFndE8O9A=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BJ5Q2faKnt2LUf/gbWbNByQXDH0zpjsNQ4Dh4WiAPz9BTPeuDUSd+9iGPCLo0efKChgAeS3y+AIEjY9Gkn+Levx1SHQ6G9TxZzJOS4VdZHPxiHJ0zV8/EJMeTPdmdIOYUwcQZC2KnBa+FfGh/xxqPdLOlE1znjqJaja9GEUrMZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jiaxyga.com; spf=pass smtp.mailfrom=jiaxyga.com; dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b=lMJlQJRF; dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b=l89tmy8h; arc=none smtp.client-ip=79.137.243.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jiaxyga.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jiaxyga.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com; s=mailru;
+	h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=jUWmlcuePUdDpLeFLBVk04U0i/kUraSxOcG7isSSgqE=;
+	t=1717966713;x=1718056713; 
+	b=lMJlQJRFJLYq/s9UpM5EESQLfaS82tjQb8CVlAg+WBANUh3sHcbE5yRPKVOTF9PD0nZfZeQl8pbDrXwirgb3ZAlmI8G2ywxshQoL5CjO3ImhSH7NIA4pmHt0bXBzCWFWc9BRF9ShXMbLNMbuFYZm+53VXZcZzr3V4kmRc2PYriU=;
+Received: from [10.12.4.20] (port=39844 helo=smtp44.i.mail.ru)
+	by fallback20.i.mail.ru with esmtp (envelope-from <danila@jiaxyga.com>)
+	id 1sGPHJ-004H9z-OB; Sun, 09 Jun 2024 23:36:38 +0300
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com
+	; s=mailru; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+	Cc:To:From:From:Sender:Reply-To:To:Cc:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive:
+	X-Cloud-Ids:Disposition-Notification-To;
+	bh=jUWmlcuePUdDpLeFLBVk04U0i/kUraSxOcG7isSSgqE=; t=1717965397; x=1718055397; 
+	b=l89tmy8hGitYlk07wsyGA5u+Z5LGCOw9MGxqlRzAi2eaY/qbGnvFKFV7l9t+g+Vb8AnsdY/H8Aq
+	z2ozTUnA7/8NpoXukGVM3YEsHIVbmbwDz6KUEfmX8DadyA0BZIM3pRWqfXiD6hIqYy+J1YNdbRbpO
+	UPFILqDyF6GW88JpATg=;
+Received: by smtp44.i.mail.ru with esmtpa (envelope-from <danila@jiaxyga.com>)
+	id 1sGPH3-00000004YbQ-1IfB; Sun, 09 Jun 2024 23:36:22 +0300
+From: Danila Tikhonov <danila@jiaxyga.com>
+To: neil.armstrong@linaro.org,
+	quic_jesszhan@quicinc.com,
+	sam@ravnborg.org,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	daniel@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	adrian@travitia.xyz,
+	degdagmohamed@gmail.com,
+	Danila Tikhonov <danila@jiaxyga.com>
+Subject: [PATCH 0/2] Add Samsung AMS639RQ08 panel support
+Date: Sun,  9 Jun 2024 23:36:16 +0300
+Message-ID: <20240609203618.49413-1-danila@jiaxyga.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240325151339.19041-1-laurent.pinchart@ideasonboard.com>
- <4879631.GXAFRqVoOG@steina-w> <20240325204924.GY18799@pendragon.ideasonboard.com>
- <2929432.e9J7NaK4W3@steina-w>
-In-Reply-To: <2929432.e9J7NaK4W3@steina-w>
-From: Adam Ford <aford173@gmail.com>
-Date: Sun, 9 Jun 2024 15:21:19 -0500
-Message-ID: <CAHCN7xLFjJUZQZwPbj5xyxnprwAV3TOvd_6A6sBwOPK+V6uQPA@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: imx8mp: Add DT nodes for the two ISPs
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, 
-	Paul Elder <paul.elder@ideasonboard.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Fabio Estevam <festevam@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Marek Vasut <marex@denx.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, 
-	linux-media@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Mailru-Src: smtp
+X-7564579A: B8F34718100C35BD
+X-77F55803: 4F1203BC0FB41BD948651DF6EBC8E8B2F3C2019B50ED79272429E8323770A69B182A05F538085040E5603F6EAF513856D4FF92D56319F197448DE2AD3994A7427A4D2F7B2508D394E9977CD5C7BA570D
+X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE7AD2F2D6F6013FF7FC2099A533E45F2D0395957E7521B51C2CFCAF695D4D8E9FCEA1F7E6F0F101C6778DA827A17800CE716FAD50E497B9C14EA1F7E6F0F101C6723150C8DA25C47586E58E00D9D99D84E1BDDB23E98D2D38B043BF0FB74779F36E96DE96AC6DA6F4C9DA7AAB3940AEFA454139C8A3DDBDD54A471835C12D1D9774AD6D5ED66289B5278DA827A17800CE77E7E81EEA8A9722B8941B15DA834481FCF19DD082D7633A0EF3E4896CB9E6436389733CBF5DBD5E9D5E8D9A59859A8B6BAA8CD687FCDB2EBCC7F00164DA146DA6F5DAA56C3B73B237318B6A418E8EAB8D32BA5DBAC0009BE9E8FC8737B5C22496010E6B77066451176E601842F6C81A12EF20D2F80756B5FB606B96278B59C4276E601842F6C81A127C277FBC8AE2E8BBB75ECA0EAB52AE83AA81AA40904B5D99C9F4D5AE37F343AD1F44FA8B9022EA23BBE47FD9DD3FB595F5C1EE8F4F765FCAE9A1BBD95851C5BE2021AF6380DFAD18AA50765F7900637D64787C5AB2E18C322CA9DD8327EE4931B544F03EFBC4D572219AA581D1B0840C4224003CC83647689D4C264860C145E
+X-87b9d050: 1
+X-C1DE0DAB: 0D63561A33F958A54B00A8D2ECC013395002B1117B3ED69620828F57A5254853406406D89DD9EB8A823CB91A9FED034534781492E4B8EEADB30A456A8F293845C79554A2A72441328621D336A7BC284946AD531847A6065A17B107DEF921CE79BDAD6C7F3747799A
+X-C8649E89: 1C3962B70DF3F0ADE00A9FD3E00BEEDF77DD89D51EBB7742D3581295AF09D3DF87807E0823442EA2ED31085941D9CD0AF7F820E7B07EA4CF3810E75B5F9F66C566EAE38DF7B5FCEACE2C6BC6BB304F9A2C929CB36D555B4CF49F51687F14C9B80FD6CD3E887ECC32579C634A4CDAACC5AE15ADD81BFA704D04A08754E2C765E00D035775BAD7A4FF02C26D483E81D6BE72B480F99247062FEE42F474E8A1C6FD34D382445848F2F3
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojbL9S8ysBdXhO6DXcrkr0XTfOtWPCGr3S
+X-Mailru-Sender: 9EB879F2C80682A09F26F806C73949817A795F5C603EFD0C57FFD5DAF71AD12C93539627FE5850417DE40CF728D4966F2C62728BC403A049225EC17F3711B6CF1A6F2E8989E84EC137BFB0221605B344978139F6FA5A77F05FEEDEB644C299C0ED14614B50AE0675
+X-Mras: Ok
+X-7564579A: 646B95376F6C166E
+X-77F55803: 6242723A09DB00B4B653A1001F6F75E45D3E182DE990518462D9B15B91B4BA89B647ED114AB003ACCE0692C6BF09384D96B65AA5C4D7215703338A50BFA905CDF8EEC2ADE53719C2
+X-7FA49CB5: 0D63561A33F958A5D2136437802185CAC7FF20794776412D35C53782351F85508941B15DA834481FA18204E546F3947C3A8EB65318B1979EF6B57BC7E64490618DEB871D839B7333395957E7521B51C2DFABB839C843B9C08941B15DA834481F8AA50765F7900637C3957E6FF5665BA9389733CBF5DBD5E9B5C8C57E37DE458BD96E472CDF7238E0725E5C173C3A84C3B95D3BAC42CD083E35872C767BF85DA2F004C90652538430E4A6367B16DE6309
+X-87b9d050: 1
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2bioj6D5zjHqYKv0VnfguqaVuAQ==
+X-Mailru-MI: 8000000000000800
+X-Mras: Ok
 
-On Tue, Mar 26, 2024 at 2:14=E2=80=AFAM Alexander Stein
-<alexander.stein@ew.tq-group.com> wrote:
->
-> Hi Laurent,
->
-> Am Montag, 25. M=C3=A4rz 2024, 21:49:24 CET schrieb Laurent Pinchart:
-> > Hi Alexander,
-> >
-> > On Mon, Mar 25, 2024 at 04:52:21PM +0100, Alexander Stein wrote:
-> > > Am Montag, 25. M=C3=A4rz 2024, 16:13:39 CET schrieb Laurent Pinchart:
-> > > > From: Paul Elder <paul.elder@ideasonboard.com>
-> > > >
-> > > > The ISP supports both CSI and parallel interfaces, where port 0
-> > > > corresponds to the former and port 1 corresponds to the latter. Sin=
-ce
-> > > > the i.MX8MP's ISPs are connected by the parallel interface to the C=
-SI
-> > > > receiver, set them both to port 1.
-> > > >
-> > > > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > > ---
-> > > > Changes since v1:
-> > > >
-> > > > - Fix clock ordering
-> > > > - Add #address-cells and #size-cells to ports nodes
-> > > > ---
-> > > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 50 +++++++++++++++++++=
-++++
-> > > >  1 file changed, 50 insertions(+)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64=
-/boot/dts/freescale/imx8mp.dtsi
-> > > > index bfc5c81a5bd4..1d2670b91b53 100644
-> > > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > @@ -1616,6 +1616,56 @@ isi_in_1: endpoint {
-> > > >                           };
-> > > >                   };
-> > > >
-> > > > +                 isp_0: isp@32e10000 {
-> > > > +                         compatible =3D "fsl,imx8mp-isp";
-> > > > +                         reg =3D <0x32e10000 0x10000>;
-> > > > +                         interrupts =3D <GIC_SPI 74 IRQ_TYPE_LEVEL=
-_HIGH>;
-> > > > +                         clocks =3D <&clk IMX8MP_CLK_MEDIA_ISP_ROO=
-T>,
-> > > > +                                  <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>=
-,
-> > > > +                                  <&clk IMX8MP_CLK_MEDIA_APB_ROOT>=
-;
-> > > > +                         clock-names =3D "isp", "aclk", "hclk";
-> > > > +                         assigned-clocks =3D <&clk IMX8MP_CLK_MEDI=
-A_ISP>;
-> > > > +                         assigned-clock-parents =3D <&clk IMX8MP_S=
-YS_PLL2_500M>;
-> > > > +                         assigned-clock-rates =3D <500000000>;
-> > > > +                         power-domains =3D <&media_blk_ctrl IMX8MP=
-_MEDIABLK_PD_ISP>;
-> > > > +                         fsl,blk-ctrl =3D <&media_blk_ctrl 0>;
-> > > > +                         status =3D "disabled";
-> > > > +
-> > > > +                         ports {
-> > > > +                                 #address-cells =3D <1>;
-> > > > +                                 #size-cells =3D <0>;
-> > > > +
-> > > > +                                 port@1 {
-> > > > +                                         reg =3D <1>;
-> > > > +                                 };
-> > > > +                         };
-> > > > +                 };
-> > > > +
-> > > > +                 isp_1: isp@32e20000 {
-> > > > +                         compatible =3D "fsl,imx8mp-isp";
-> > > > +                         reg =3D <0x32e20000 0x10000>;
-> > > > +                         interrupts =3D <GIC_SPI 75 IRQ_TYPE_LEVEL=
-_HIGH>;
-> > > > +                         clocks =3D <&clk IMX8MP_CLK_MEDIA_ISP_ROO=
-T>,
-> > > > +                                  <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>=
-,
-> > > > +                                  <&clk IMX8MP_CLK_MEDIA_APB_ROOT>=
-;
-> > > > +                         clock-names =3D "isp", "aclk", "hclk";
-> > > > +                         assigned-clocks =3D <&clk IMX8MP_CLK_MEDI=
-A_ISP>;
-> > > > +                         assigned-clock-parents =3D <&clk IMX8MP_S=
-YS_PLL2_500M>;
-> > > > +                         assigned-clock-rates =3D <500000000>;
-> > > > +                         power-domains =3D <&media_blk_ctrl IMX8MP=
-_MEDIABLK_PD_ISP>;
-> > > > +                         fsl,blk-ctrl =3D <&media_blk_ctrl 1>;
-> > > > +                         status =3D "disabled";
-> > > > +
-> > > > +                         ports {
-> > > > +                                 #address-cells =3D <1>;
-> > > > +                                 #size-cells =3D <0>;
-> > > > +
-> > > > +                                 port@1 {
-> > > > +                                         reg =3D <1>;
-> > > > +                                 };
-> > > > +                         };
-> > > > +                 };
-> > > > +
-> > >
-> > > The patch itself is okay. But you might not be able to
-> > > configure the parent of IMX8MP_CLK_MEDIA_ISP if dewarp is enabled bef=
-ore.
-> > > This is due to IMX8MP_CLK_MEDIA_ISP_ROOT being enabled in 'pgc_ispdwp=
-'
-> > > power domain. Reparenting is not possible anymore in this case.
-> >
-> > Good point.
-> >
-> > > Something like
-> > > ---8<---
-> > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > @@ -1837,11 +1837,13 @@ media_blk_ctrl: blk-ctrl@32ec0000 {
-> > >                                                   <&clk IMX8MP_CLK_ME=
-DIA_APB>,
-> > >                                                   <&clk IMX8MP_CLK_ME=
-DIA_DISP1_PIX>,
-> > >                                                   <&clk IMX8MP_CLK_ME=
-DIA_DISP2_PIX>,
-> > > +                                                 <&clk IMX8MP_CLK_ME=
-DIA_ISP>,
-> > >                                                   <&clk IMX8MP_VIDEO_=
-PLL1>;
-> > >                                 assigned-clock-parents =3D <&clk IMX8=
-MP_SYS_PLL2_1000M>,
-> > >                                                          <&clk IMX8MP=
-_SYS_PLL1_800M>,
-> > >                                                          <&clk IMX8MP=
-_VIDEO_PLL1_OUT>,
-> > > -                                                        <&clk IMX8MP=
-_VIDEO_PLL1_OUT>;
-> > > +                                                        <&clk IMX8MP=
-_VIDEO_PLL1_OUT>,
-> > > +                                                        <&clk IMX8MP=
-_SYS_PLL2_500M>;
-> > >                                 assigned-clock-rates =3D <500000000>,=
- <200000000>,
-> > >                                                        <0>, <0>, <103=
-9500000>;
-> >
+This series adds Samsung AMS639RQ08 panel support used in:
+- Xiaomi Mi 9 Lite / CC9 (sdm710-xiaomi-pyxis)
+- Xiaomi Mi 9T / Redmi K20 (sm7150-xiaomi-davinci)
+- Xiaomi Mi 9T Pro / Redmi K20 Pro (sm8150-xiaomi-raphael)
 
-According to the i.MX8MP Data sheet, the nominal speed for
-MEDIA_ISP_CLOCL_ROOT is 400MHZ with 500MHz being allowed in overdrive
-mode.
+Was tested on sm7150-xiaomi-davinci and sm8150-xiaomi-raphael. Based on my
+analysis of the downstream DTS, this driver should be fully compatible with the
+sdm710-xiaomi-pyxis (unfortunately not tested) without requiring any
+modifications.
 
-I think this clock rate should drop to  the nominal value of 400MHz
-and those boards who support overdrive can increase it to 500MHz to
-avoid stiability issues and/or running out of spec.  I created an
-imx8mm and imx8mn-overdrive.dtsi file.  If there is interest, I can do
-the same for the 8MP as well.
+To: Neil Armstrong <neil.armstrong@linaro.org>
+To: Jessica Zhang <quic_jesszhan@quicinc.com>
+To: Sam Ravnborg <sam@ravnborg.org>
+To: David Airlie <airlied@gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: Jens Reidel <adrian@travitia.xyz>
+Cc: Degdag Mohamed <degdagmohamed@gmail.com>
+Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
 
-I haven't gone through all the clocks to determine if/what clocks are
-being overdriven.
+Danila Tikhonov (2):
+  dt-bindings: display: panel: Add Samsung AMS639RQ08
+  drm/panel: Add Samsung AMS639RQ08 panel driver
 
-> > With an assigned clock rate here too then ?
->
-> You are right. This posted diff is what I was using for a while now thoug=
-h.
-> Apparently the clock frequency was still correct.
->
-> Best regards,
-> Alexander
->
-> > >                                 #power-domain-cells =3D <1>;
-> > > ---8<---
-> > > is needed.
-> >
-> > Sascha, are you OK with this approach ?
+ .../display/panel/samsung,ams639rq08.yaml     |  80 ++++
+ drivers/gpu/drm/panel/Kconfig                 |   9 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../gpu/drm/panel/panel-samsung-ams639rq08.c  | 362 ++++++++++++++++++
+ 4 files changed, 452 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,ams639rq08.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-samsung-ams639rq08.c
 
-This patch appears to have gone stale.  Is there any way we can push
-this forward?
+-- 
+2.45.2
 
-Thanks,
-
-adam
-
-> >
-> > > >                   dewarp: dwe@32e30000 {
-> > > >                           compatible =3D "nxp,imx8mp-dw100";
-> > > >                           reg =3D <0x32e30000 0x10000>;
-> > > >
-> > > > base-commit: 4cece764965020c22cff7665b18a012006359095
-> >
-> >
->
->
-> --
-> TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Ge=
-rmany
-> Amtsgericht M=C3=BCnchen, HRB 105018
-> Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan S=
-chneider
-> http://www.tq-group.com/
->
->
 
