@@ -1,266 +1,251 @@
-Return-Path: <devicetree+bounces-73905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C69F901364
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 22:04:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94B8E901448
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 05:05:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEB6C282034
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jun 2024 20:04:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DDE6281C03
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 03:05:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E44581CD3B;
-	Sat,  8 Jun 2024 20:04:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A9CF4C79;
+	Sun,  9 Jun 2024 03:05:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mail.de header.i=@mail.de header.b="cBUPyWHz"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OgDFTK/X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from shout11.mail.de (shout11.mail.de [62.201.172.57])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C8396FC6;
-	Sat,  8 Jun 2024 20:04:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.201.172.57
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B584D79C4;
+	Sun,  9 Jun 2024 03:05:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717877093; cv=none; b=YHqrhA6lmjZns8rMzYM2sfWcCQh+vdXbMc/Sb3LPmp3NF3uACQMASAC43BDxeYlvbMgIIWmTZ2YTnrnJutE1PiWrMvyMx6BKFFnH5f71Puwxrj9I89VvwCNPzg2kaBnEPcKCHWsnOAN/t7G7IaCTZU0sv6m11TRAdYXf5PQ2DOs=
+	t=1717902311; cv=none; b=gei+CuuwGRVp349WGHrubz2SuyerLoaR4K4fAloTz4g/XHh7fgry/IoJUtBEOB9GSFIGeTzTUTevn9O8ZOPgQ0xcZZ3abJ3EtidyrSKQGQtFHHLVOkdq6ZenWqs6k4nYzc6DXyV726tM7i60PVn5b+tAeqGgXhncow5ph/v8ZDs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717877093; c=relaxed/simple;
-	bh=WAZOUGHN724lAzJ1hmJHyhH+KpdZGw5w6ew+tZEde5c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m48cBQrX5tEVqM/PZYUy45GGMYgsuCM0OdUwWH50SzYveOT4YLpMKt7FThUnuFSKQvg3Z7/kR++hoQk8MbyY2yFOESd9yx8WqZFKIsLIOp2UBsvMcJrTl79R55JtoT+UmCZYg/sbPb1azRiASZRPr3UjC70voMzeGGq6uCCpGfg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mail.de; spf=pass smtp.mailfrom=mail.de; dkim=pass (2048-bit key) header.d=mail.de header.i=@mail.de header.b=cBUPyWHz; arc=none smtp.client-ip=62.201.172.57
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mail.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mail.de
-Received: from shout02.mail.de (unknown [10.0.120.222])
-	by shout11.mail.de (Postfix) with ESMTPS id B492A24195A;
-	Sat,  8 Jun 2024 21:58:39 +0200 (CEST)
-Received: from postfix01.mail.de (postfix01.bt.mail.de [10.0.121.125])
-	by shout02.mail.de (Postfix) with ESMTP id 8EFDA240C8A;
-	Sat,  8 Jun 2024 21:58:39 +0200 (CEST)
-Received: from smtp01.mail.de (smtp02.bt.mail.de [10.0.121.212])
-	by postfix01.mail.de (Postfix) with ESMTP id 6BD998016E;
-	Sat,  8 Jun 2024 21:58:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mail.de;
-	s=mailde202009; t=1717876719;
-	bh=WAZOUGHN724lAzJ1hmJHyhH+KpdZGw5w6ew+tZEde5c=;
-	h=Message-ID:Date:Subject:To:Cc:From:From:To:CC:Subject:Reply-To;
-	b=cBUPyWHzhE9FFGKHqZKsP9TrT5pZOY0MatSJWtjJ7Z5FXQVaaL/xY+gJYaHhx/sOw
-	 kNciR6uZmC4h4frFuGNhgBiDMiYDMzhYMBnvyosoWAsnV9EuCtf08ZsRcHFplpS3G0
-	 0VMLHyAlOYlyk8RR9APAzajPCCjVfvux7tBFk7LbNPmhyB4nNgPxTw8wGhgsVy6F7q
-	 ZFzGIbGy4Ido9lj+mIJjn6kp2gzGIvIV9mhPoS1/bJt4/BA1RA7/ZwRvPGgahqDkY9
-	 Z9n59vi4c/wUjY+UegMldtFwQaCJ8f/VmLJOswqgAHHSHwXi3MuoTFdQYqKX0MFbQE
-	 24a2ww23b1IfQ==
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp01.mail.de (Postfix) with ESMTPSA id 04491240C95;
-	Sat,  8 Jun 2024 21:58:37 +0200 (CEST)
-Message-ID: <ea39242d-9b2d-4ea0-aa24-8a959e4f875e@mail.de>
-Date: Sat, 8 Jun 2024 21:58:36 +0200
+	s=arc-20240116; t=1717902311; c=relaxed/simple;
+	bh=L59mpxAx7Oy0+v4OF1LzwYpdPH6+XJg2XjvCL4mDy28=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=cn4DhkXnTzGHyko80yYYb/0S6W8aGWDv/YgLGHYBBO83ywxu6r7NX+9AuBatvOHh0oXBRa0PgLdMpQVL3YaKSR58Ujvlm2xzbQWpT+I4G2UV9jrGluyRtlIAI8SaIUU/lafccaxBSgfrrh1/snOBVtBHM/xW/0P/Dg/ecVArDNU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OgDFTK/X; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4591cw9Y025605;
+	Sun, 9 Jun 2024 02:38:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=V0zhxDEiGiHbhoNplvvv4+
+	hjKa5wqd1UOf81oTwOStA=; b=OgDFTK/XwGFfkseVwb144BhTCZtRT/VpjWsnim
+	eUmFnS6/q+LK5llRkFCj1aRn7HwoMh9rKIf4uxYBaGzhrhAryiPHD88YxtP7Ha33
+	gWzZAGb3a38ugOIKVWbeTMjhH6KvzY6Pn9IQXpY5S3YtkcL5E4SuvlOO199yOZq/
+	QzIbmCEEAvWHIRmevlPjkeqYOMp4vuByDOzlMbJZLQfKslB8WcxCdtvnG9A3DOJp
+	4gW31igIlbsJ6kMhuyUmKoBboAF9qfWBNjNrRJlzDQmA/h13k+Hg/+VcInonRtqN
+	ma7upez104wcZnlSGNnP1e8G95XDkygHK4bM7tDAunZ6eSvA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ymemgh7k8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 09 Jun 2024 02:38:35 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 4592cXUR002321
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 9 Jun 2024 02:38:33 GMT
+Received: from hu-krichai-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Sat, 8 Jun 2024 19:38:19 -0700
+From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Subject: [PATCH v14 0/4] PCI: qcom: Add support for OPP
+Date: Sun, 9 Jun 2024 08:08:14 +0530
+Message-ID: <20240609-opp_support-v14-0-801cff862b5a@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add FriendlyElec CM3588 NAS
- board
-To: Space Meyer <me@the-space.agency>, Heiko Stuebner <heiko@sntech.de>,
- linux-rockchip@lists.infradead.org,
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
- Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240602211901.237769-1-seb-dev@mail.de>
- <20240602202132.2012-1-seb-dev@mail.de>
- <20240602202132.2012-2-seb-dev@mail.de>
- <c4087311-cbd2-415e-a582-3565f2f62e81@the-space.agency>
-From: Sebastian Kropatsch <seb-dev@mail.de>
-In-Reply-To: <c4087311-cbd2-415e-a582-3565f2f62e81@the-space.agency>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-purgate: clean
-X-purgate: This mail is considered clean (visit http://www.eleven.de for further information)
-X-purgate-type: clean
-X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
-X-purgate: This mail is considered clean (visit http://www.eleven.de for further information)
-X-purgate: clean
-X-purgate-size: 6206
-X-purgate-ID: 154282::1717876719-BE52C878-BE602C79/0/0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJYVZWYC/x2MQQqAIBAAvxJ7TjAVob4SEVZr7SUXrQjEvycdZ
+ 2AmQ8JImGBoMkR8KFE4K3SmbWA93LmjoK0KUFIZaWUvAvOcbuYQL2HcartFS6+dglpwRE/vvxu
+ nUj4aQCgwXgAAAA==
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        Lorenzo Pieralisi
+	<lpieralisi@kernel.org>,
+        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
+	<kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>, <johan+linaro@kernel.org>,
+        <bmasney@redhat.com>, <djakov@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <vireshk@kernel.org>, <quic_vbadigan@quicinc.com>,
+        <quic_skananth@quicinc.com>, <quic_nitegupt@quicinc.com>,
+        <quic_parass@quicinc.com>, <quic_krichai@quicinc.com>,
+        <krzysztof.kozlowski@linaro.org>,
+        Bryan O'Donoghue
+	<bryan.odonoghue@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.13-dev-83828
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1717900698; l=6392;
+ i=quic_krichai@quicinc.com; s=20230907; h=from:subject:message-id;
+ bh=L59mpxAx7Oy0+v4OF1LzwYpdPH6+XJg2XjvCL4mDy28=;
+ b=UobhBdsLKb2zqDoZwGlIzwqIWO58ckftnkQFywTck6NHkVblK8eSZhcyWXkizZ+OY1HoXo0lB
+ uoFUj+9uWsLA6Dtcy//ptuo9Gm6et+h0mD65Oz+CxB9ILNBskPQeB2/
+X-Developer-Key: i=quic_krichai@quicinc.com; a=ed25519;
+ pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: D614MXHVgyeId6sPFwx4J9fEt7rbwT-7
+X-Proofpoint-ORIG-GUID: D614MXHVgyeId6sPFwx4J9fEt7rbwT-7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-08_16,2024-06-06_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=999
+ suspectscore=0 adultscore=0 impostorscore=0 spamscore=0 priorityscore=1501
+ lowpriorityscore=0 phishscore=0 malwarescore=0 mlxscore=0 clxscore=1011
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405170001
+ definitions=main-2406090019
 
-Hello Space,
+This patch adds support for OPP to vote for the performance state of RPMH
+power domain based upon PCIe speed it got enumerated.
 
-Am 06.06.2024 um 15:13 schrieb Space Meyer:
-> + Sebastian Reichel regarding pcie3x4 BAR 1 overlap
-> [...]
-> However there are some issues:
-> - Type-C: No PD negotiated in or out
-> - Type-C: No USB 1/2/3 devices recognised (I don't have any device to 
-> test DP mode switching)
-> - Audio: No audio (might just be my userspace)
+QCOM Resource Power Manager-hardened (RPMh) is a hardware block which
+maintains hardware state of a regulator by performing max aggregation of
+the requests made by all of the processors.
 
-The audio driver is pretty barebones, at least by looking at the
-dt bindings (search for "realtek,rt5616"). I couldn't find any other
-device apart from the NanoPC T6 and one old rk device that uses it.
-Per dt bindings, properties like clocks and so on are invalid for
-the current rt5616 driver.
+PCIe controller can operate on different RPMh performance state of power
+domain based up on the speed of the link. And this performance state varies
+from target to target.
 
-Just look at FriendlyElec's rt5616 node:
+It is manadate to scale the performance state based up on the PCIe speed
+link operates so that SoC can run under optimum power conditions.
 
-	rt5616: rt5616@1b {
-		status = "okay";
-		#sound-dai-cells = <0>;
-		compatible = "rt5616";
-		reg = <0x1b>;
-		clocks = <&mclkout_i2s0>;
-		clock-names = "mclk";
-		assigned-clocks = <&mclkout_i2s0>;
-		assigned-clock-rates = <12288000>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&i2s0_mclk>;
-	};
+Add Operating Performance Points(OPP) support to vote for RPMh state based
+upon GEN speed link is operating.
 
-Versus this one:
+Before link up PCIe driver will vote for the maximum performance state.
 
-	rt5616: audio-codec@1b {
-		compatible = "realtek,rt5616";
-		reg = <0x1b>;
-		#sound-dai-cells = <0>;
-	};
+As now we are adding ICC BW vote in OPP, the ICC BW voting depends both
+GEN speed and link width using opp-level to indicate the opp entry table
+will be difficult.
 
-I'll try to test the 3.5mm headphones output, but that's pretty
-low priority currently.
+In PCIe certain gen speeds like 2.5GT/s x2 & 5.0 GT/s X1 or 8.0 GT/s x2 &
+16GT/s x1 use same ICC bw if we use freq in the OPP table to represent the
+PCIe speed number of PCIe entries can reduced.
 
-> - I didn't test mmc, hdmi, db, gpu, fan, npu raspi header...
-> - Your regulators are not always following the naming in the schematic 
-> very closely.
-> 
-> Dmesg also has some concerning boot logs:
-> - Missing phy-supply for usbdp_phy1, combphy0_ps, combphy1_ps, 
-> combphy2_psu, pcie30phy
-> - Missing vmmc-supply and vqmmc-supply for sdhci
-> - PCIE: pcie3x4 BAR 1 fails to assign (probably overlapping region due 
-> to untested 1x1x1x1 bifurcation in rk3588.dtsi)
-> - PCIE: a bunch of `bridge configuration invalid` during boot, no idea 
-> whether they having something todo with your DTS though
-> - Sensors: rockchip-thermal fec00000.tsadc fails initializing. 
-> lm-sensors shows me no sensors at all. Maybe I'm just missing the driver?
-> - `rockchip-drm display-subsystem` fails initializing
-> 
+So going back to use freq in the OPP table instead of level.
 
-At least some of your errors are because the features simply haven't
-been upstreamed yet :)
-For example the thermal sensors are still waiting for this patch series:
-https://lore.kernel.org/linux-rockchip/20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com/
+To access PCIe registers of the host controller and endpoint PCIe
+BAR space, config space the CPU-PCIe ICC (interconnect) path should
+be voted otherwise it may lead to NoC (Network on chip) timeout.
+We are surviving because of other driver voting for this path.
 
-Thanks for your testing and feedback! I'll send a v3 soon. Feel free
-to test this as well and if you like, send me a tested-by.
+As there is less access on this path compared to PCIe to mem path
+add minimum vote i.e 1KBps bandwidth always which is sufficient enough
+to keep the path active and is recommended by HW team.
 
->> +        button-vol-up {
->> +            label = "Volume Up";
->> +            linux,code = <KEY_VOLUMEUP>;
-> 
-> I believe this should be `label = "Recovery"`, as it's printed like that 
-> on the silk screen. Maybe also give it a generic function like BTN_1.
+In suspend to ram case there can be some DBI access. Except in suspend
+to ram case disable CPU-PCIe ICC path after register space access
+is done.
 
-Yeah, many of the rk devices use "Volume Up", even though I'm sure
-this likely is not the label on the board :D
+Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+---
+Changes from v13:
+	- Rebased the patch series on top of pci next.
+Changes from v12:
+	- removed icc bw of the memory path as suggested by mayank
+	- Added check for icc_set_bw in the suspend path as suggested by mani.
+	- Link to v12: https://lore.kernel.org/r/20240427-opp_support-v12-0-f6beb0a1f2fc@quicinc.com
+Changes from v11:
+	- added nicpicks suggested by mani.
+	- Link to v11: https://lore.kernel.org/r/20240423-opp_support-v11-0-15fdd40b0f95@quicinc.com
+Changes from v10:
+	- Updated comments and logs as suggested by mani.
+	- Link to v10: https://lore.kernel.org/r/20240409-opp_support-v10-0-1956e6be343f@quicinc.com
+Changes from v9:
+	- Disable interconnect CPU-PCIe path only system is not suspend to ram case.
+	- If opp find freq fails in the probe fail the probe as suggested by mani.
+	- Modify comments as suggested by mani
+	- Link to v9: https://lore.kernel.org/r/20240407-opp_support-v9-0-496184dc45d7@quicinc.com
+Changes from v8:
+	- Removed the ack-by and reviewed by on dt-bindings as dt-bindings moved to new files.
+	- Removed dt-binding patch for interconnects as it is added in the common file.
+	- Added tags for interconnect as suggested by konrad
+	- Added the comments as suggested by mani
+	- In ICC BW vote for CPU to PCIe path if icc_disable() fails log error and return instead of re-init.
+	- Link to v8: https://lore.kernel.org/linux-arm-msm/20240302-opp_support-v8-0-158285b86b10@quicinc.com/
+Changes from v7:
+	- Fix the compilation issue in patch3
+	- Change the commit text and wrap the comments to 80 columns as suggested by bjorn
+	- remove PCIE_MBS2FREQ macro as this is being used by only qcom drivers.
+	- Link to v7: https://lore.kernel.org/r/20240223-opp_support-v7-0-10b4363d7e71@quicinc.com
+Changes from v6:
+	- change CPU-PCIe bandwidth to 1KBps as suggested by HW team.
+	- Create a new API to get frequency based upon PCIe speed as suggested
+	  by mani.
+	- Updated few commit texts and comments.
+	- Setting opp to NULL in suspend to remove any votes.
+	- Link for v6: https://lore.kernel.org/linux-arm-msm/20240112-opp_support-v6-0-77bbf7d0cc37@quicinc.com/
+Changes from v5:
+	- Add ICC BW voting as part of OPP, rebase the latest kernel, and only
+	- either OPP or ICC BW voting will supported we removed the patch to
+	- return error for icc opp update patch.
+	- As we added the icc bw voting in opp table I am not including reviewed
+	- by tags given in previous patch.
+	- Use opp freq to find opp entries as now we need to include pcie link
+	- also in to considerations.
+	- Add CPU-PCIe BW voting which is not present till now.
+	- Drop  PCI: qcom: Return error from 'qcom_pcie_icc_update' as either opp or icc bw
+	- only one executes and there is no need to fail if opp or icc update fails.
+	- Link for v5: https://lore.kernel.org/linux-arm-msm/20231101063323.GH2897@thinkpad/T/
+Changes from v4:
+	- Added a separate patch for returning error from the qcom_pcie_upadate
+	  and moved opp update logic to icc_update and used a bool variable to
+	  update the opp.
+	- Addressed comments made by pavan.
+changes from v3:
+	- Removing the opp vote on suspend when the link is not up and link is not
+	  up and add debug prints as suggested by pavan.
+	- Added dev_pm_opp_find_level_floor API to find the highest opp to vote.
+changes from v2:
+	- Instead of using the freq based opp search use level based as suggested
+	  by Dmitry Baryshkov.
+Changes from v1:
+        - Addressed comments from Krzysztof Kozlowski.
+        - Added the rpmhpd_opp_xxx phandle as suggested by pavan.
+        - Added dev_pm_opp_set_opp API call which was missed on previous patch.
+---
 
-> 
->> +            press-threshold-microvolt = <17000>;
->> +        };
->> +    };
-> 
-> While at it you could also add the button labeled "Mask", which is at 
-> `io-channels = <&saradc 0>;`.
+---
+Krishna chaitanya chundru (4):
+      PCI: qcom: Add ICC bandwidth vote for CPU to PCIe path
+      dt-bindings: pci: qcom: Add OPP table
+      PCI: Bring the PCIe speed to MBps logic to new pcie_link_speed_to_mbps()
+      PCI: qcom: Add OPP support to scale performance
 
-I didn't include this button since it's used to enter MASKROM mode
-before booting (some hard-wired stuff iirc). It could be added, yes,
-but I'm not sure if there's any use or if there's a best practice to
-not include it in the DT.
+ .../devicetree/bindings/pci/qcom,pcie-sm8450.yaml  |   4 +
+ drivers/pci/controller/dwc/pcie-qcom.c             | 134 ++++++++++++++++++---
+ drivers/pci/pci.c                                  |  19 +--
+ drivers/pci/pci.h                                  |  22 ++++
+ 4 files changed, 141 insertions(+), 38 deletions(-)
+---
+base-commit: e150a8a6fb76fb4aa860abf320691dd4860049a3
+change-id: 20240609-opp_support-4ac61b30f3a2
 
->> +    vcc_3v3_host_32: regulator-vcc-3v3-host-32 {
->> +        compatible = "regulator-fixed";
->> +        enable-active-high;
->> +        gpios = <&gpio3 RK_PA5 GPIO_ACTIVE_HIGH>;
->> +        pinctrl-names = "default";
->> +        pinctrl-0 = <&vcc_3v3_host32_en>;
->> +        regulator-name = "vcc_3v3_host_32";
->> +        regulator-min-microvolt = <3300000>;
->> +        regulator-max-microvolt = <3300000>;
->> +        vin-supply = <&vcc_5v0_sys>;
->> +    };
-> 
-> I think this is a 5v0 regulator?
-
-You are correect, thanks! I trusted FriendlyElec too much on getting
-this right in their own devicetree.
-
-Following this mistake, I was just checking if the u2phy devices have
-the correct phy-supply, but it's giving me headache.
-
->> +
->> +        usb_con: connector {
->> +            compatible = "usb-c-connector";
->> +            data-role = "dual";
->> +            label = "USB-C";
->> +            op-sink-microwatt = <1000000>;
->> +            power-role = "dual";
-> 
-> Looking at the schematic, I don't think this is dual role power. I think 
-> it's only a source. Have you tested this working in both directions?
-
-I have not tested USB-C power delivery. But I also don't know exactly
-how the schematic should look if it had PD in both directions.
-Probably more complicated like on the NanoPi R6C. So if you're pretty
-sure about this from reading the schematic, I'm removing it for v3.
-
->> +&pcie30phy {
-> 
-> Not really a review comment, but a note for others: ASPM implementation seems buggy. > Setting CONFIG_PCIEASPM_POWERSAVE to certain values breaks PCIe 
-completely.
-
-Yes! I can confirm that the kernel will hang when trying to access
-a NVMe SSD with aspm powersave enabled. Thought it was just something
-with my configurations. Thanks for confirming this issue!
-
->> +&u2phy0_otg {
-> 
-> Missing `phy-supply = <&vbus_5v0_typec>;`?
-
-Yes, thanks.
-
->  > +    usb-role-switch;
-> 
-> Were you actually able to use the typec in gadget mode?
-> I think this might only work in dr_mode = "host";
-
-Not tested. Vendor devicetree has a dwc3 role switch, but I
-don't think we can necessarily count on that being true :)
-
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588.dtsi
-> 
->> +        led_sys: led-0 {
->> +            color = <LED_COLOR_ID_AMBER>;
-> 
-> This one is LED_COLOR_ID_RED.
-
-Comparing it side by side with a really red LED, it looks more
-like amber (dark orange) to me. But it may also be just some kind
-of red.
-
->> +
->> +        led_usr: led-1 {
->> +            color = <LED_COLOR_ID_AMBER>;
-> 
-> And this one is LED_COLOR_ID_GREEN.
-
-True, copy-paste mistake. Thanks!
-
-
-Cheers, Sebastian
+Best regards,
+-- 
+Krishna chaitanya chundru <quic_krichai@quicinc.com>
 
 
