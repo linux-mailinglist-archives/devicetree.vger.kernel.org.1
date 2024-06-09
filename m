@@ -1,166 +1,295 @@
-Return-Path: <devicetree+bounces-73962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8FDC9017C6
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 20:28:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4C5B90181F
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 22:21:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C7841F20EE8
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 18:28:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFC581C208A7
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 20:21:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 771A881211;
-	Sun,  9 Jun 2024 18:23:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D047847A7A;
+	Sun,  9 Jun 2024 20:21:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="rff9nvNV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZHDE/UtO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFF1E7BAEC;
-	Sun,  9 Jun 2024 18:23:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43FD74D9FE;
+	Sun,  9 Jun 2024 20:21:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717957386; cv=none; b=Kzguc7dr5JW88w5rVM9tGYEkhcuIKA40PtQ4AmJ+F66nvTERao0PQP8vL5zgU35a7joO7fK//4Taj1I/Nrqt3Y0UF7BsqJjvvKcknCeIIUVfKHT07RpW6kXxxwhnAUHn2jEFlJ74sFczYvKmwvdgo5byJ+eQJzMZ2iEHQEwc2XI=
+	t=1717964493; cv=none; b=CXiVCN1QfkjXx97sFtPSAf/QbtEt0qJByXLS+g4uJSJU67zGmUbQk96WLvOPTBwItfPXLZ1O3nCT+12AT3plNp+1i3Y4hBGyfZqtNuZrJBn59oQKdp2Naq1RQcjjOynO0H3B9a/1qCmCXNI+FH3UGEL203oSvfk7epf1DqeQRaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717957386; c=relaxed/simple;
-	bh=nLAtyX+sMSNLownEsioM+2H9J5TUgvIY4KOtJTk8Pxs=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fObeJGuLhPormpHPxo5l77INfkUcAadi4RjiVPIegaHcv7RT0WUT29KaNNnabBp5SKm3EfYy28aPb/57rq3SdQvdQYmAaxe1PWPfpLzf9W8zsRwmTMJfyt+QXaNz9Z+irnGHtrkDt25cmYzHzuZZitFMZLpTThv0k8XYcAtRcKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=rff9nvNV; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 459IMtrj004420;
-	Sun, 9 Jun 2024 13:22:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1717957375;
-	bh=TrImBSsj42vjw87Hnv20IUv4a+9OWTACR1LYASuI6bg=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=rff9nvNVVzK6oz5P35U29agvUk8OblVn7Dne0asvSQwJZgo7osCX30SgthwKk8fyy
-	 lHsa5Q9WKBVDvq/vpl/tgBNNJANbGGa5P+0qgvz53rB/LlExKfVl+Z+E5Kxub5mMi3
-	 FM7X+ESMTJBHrdqyjffYY6FoHD+EtbY6E7iBLrWg=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 459IMt0c035597
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 9 Jun 2024 13:22:55 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 9
- Jun 2024 13:22:55 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 9 Jun 2024 13:22:55 -0500
-Received: from localhost (uda0389739.dhcp.ti.com [137.167.1.114])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 459IMs4t034809;
-	Sun, 9 Jun 2024 13:22:55 -0500
-From: <michael.nemanov@ti.com>
-To: Sabeeh Khan <sabeeh-khan@ti.com>, Kalle Valo <kvalo@kernel.org>,
-        Johannes
- Berg <johannes.berg@intel.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo
- Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-wireless@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Michael Nemanov
-	<michael.nemanov@ti.com>
-Subject: [PATCH v2 17/17] dt-bindings: net: wireless: cc33xx: Add ti,cc33xx.yaml
-Date: Sun, 9 Jun 2024 21:21:02 +0300
-Message-ID: <20240609182102.2950457-18-michael.nemanov@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240609182102.2950457-1-michael.nemanov@ti.com>
-References: <20240609182102.2950457-1-michael.nemanov@ti.com>
+	s=arc-20240116; t=1717964493; c=relaxed/simple;
+	bh=4tehNRbbnCKpqarYHQ5EuMHK73mI971qQyoR6Dnl9U8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=s4bUKV1HX7ko3ejFKJbGnBi3r0WN2L/ttB4OgbYzz2P5tp87TCT1EsBIL3j8+hTr1ZEfm4jjfieeJIJxBXBSiIvlIVrRa8cekMx9i0w+D52CwhNl7xeB/zey6zovvMH+ysCC2BsHSJc7RyaVqBRpO4SdWKWiwn9ygHBgNkuvh1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZHDE/UtO; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-70255d5ddc7so3102702b3a.3;
+        Sun, 09 Jun 2024 13:21:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717964491; x=1718569291; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=q1+EBDobohAf7xrKaFheIy46c0hkMGKmqzYkkpLnc0c=;
+        b=ZHDE/UtOGVFqqLzNg0OsFIp9KJLLvCu6gSLXZ2TC9wHECOs2JFPl83JsqvSyCIOIny
+         7Jq5v7rfwAaZfPCjQKrBVce1QBE1zq9NvK6PzPK9ZAwADLOGOhDPd/Z4O4Sa93tZcLkM
+         razLwWLV+0DcQBOum4NJ14PegzziiMvfw+eOxDEmN/L4ZdHHqLicWAsSJrjMJxI2QXhJ
+         VHjtlkIcP6fBDa5jyQD2c5ACL98LUCdznKwPyp/kxEcpgKBn/vyo+GMcKo/a58kJu4cf
+         lEcTVspH4NLUMBsOzDObcpGjaWwrBgPQ2j8IEwvCFPzZRpVe1pAKHujvNZKhDR3DPcvU
+         M2Gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717964491; x=1718569291;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=q1+EBDobohAf7xrKaFheIy46c0hkMGKmqzYkkpLnc0c=;
+        b=ss9j3D+ZjdHA42nHXUWhlaVTDHJX5VbKWSCOuEpfbyfZRAL+6mR8wV0RknOdR5Hb7g
+         Ya/hayi5YpalbbxV0iX1OCe26hrQKYLqGdNwJTdLqPibQTK4PxiULT6xLGmc+XBq9VG0
+         5+qOEHXLAV585uyiD+5l8N77GTHKXK6VRoPYon4/ZlvQ39Ef+45cR82JUF3wPZ+qve89
+         3jvENUEmmpcUjyCNX/0W306FxTutXavO3RvJYs2Jm1Wr8qS38c7Xb65eO95BnO/ZDfm9
+         IEKTpTjkEbpDmNqo5Utm7EABY/pCizgwQx7AQOIasYgEvFztcTZt0D0MCkds47S+sMN2
+         caWA==
+X-Forwarded-Encrypted: i=1; AJvYcCWZt6GVfX/Xu2SF9Ad5lVTTTtmS3V1aTppr5SU2TGJb2SsTXIHQX2XLUqZumHfJqMvTV4d5QVxYRuLmi7cYi9MR35LyfswjPhBzZ6pqDji5UQhbtSADdApNSFNumOIx+Z5ak8jq9RSl
+X-Gm-Message-State: AOJu0Yw1z5L8dyX7BSgwwbInXqihFrYxGUDKIJhaaUK72DbbaHbHH/Cw
+	dYFdDaarI208k+D0scLPYlPJFfgpb/IdBJo/4377FucEIlkpxgzQ8xiZjmVz0fXktSU34cRVNzt
+	zVWXg454TJ+vjcCp2qgCrBgKnGHI=
+X-Google-Smtp-Source: AGHT+IFSfAfZDbtQ1V1Y0Q3kuf3ufZrF7orXXLUWL4QURVMIj++rBRmm+GBK1Kkb46H4PuO82h5X3SpPQORc/VqC7lk=
+X-Received: by 2002:a05:6a20:9f88:b0:1b6:ea39:4d97 with SMTP id
+ adf61e73a8af0-1b6ea394e91mr1375237637.29.1717964491280; Sun, 09 Jun 2024
+ 13:21:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20240325151339.19041-1-laurent.pinchart@ideasonboard.com>
+ <4879631.GXAFRqVoOG@steina-w> <20240325204924.GY18799@pendragon.ideasonboard.com>
+ <2929432.e9J7NaK4W3@steina-w>
+In-Reply-To: <2929432.e9J7NaK4W3@steina-w>
+From: Adam Ford <aford173@gmail.com>
+Date: Sun, 9 Jun 2024 15:21:19 -0500
+Message-ID: <CAHCN7xLFjJUZQZwPbj5xyxnprwAV3TOvd_6A6sBwOPK+V6uQPA@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: imx8mp: Add DT nodes for the two ISPs
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, 
+	Paul Elder <paul.elder@ideasonboard.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Fabio Estevam <festevam@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Marek Vasut <marex@denx.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, 
+	linux-media@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Michael Nemanov <michael.nemanov@ti.com>
+On Tue, Mar 26, 2024 at 2:14=E2=80=AFAM Alexander Stein
+<alexander.stein@ew.tq-group.com> wrote:
+>
+> Hi Laurent,
+>
+> Am Montag, 25. M=C3=A4rz 2024, 21:49:24 CET schrieb Laurent Pinchart:
+> > Hi Alexander,
+> >
+> > On Mon, Mar 25, 2024 at 04:52:21PM +0100, Alexander Stein wrote:
+> > > Am Montag, 25. M=C3=A4rz 2024, 16:13:39 CET schrieb Laurent Pinchart:
+> > > > From: Paul Elder <paul.elder@ideasonboard.com>
+> > > >
+> > > > The ISP supports both CSI and parallel interfaces, where port 0
+> > > > corresponds to the former and port 1 corresponds to the latter. Sin=
+ce
+> > > > the i.MX8MP's ISPs are connected by the parallel interface to the C=
+SI
+> > > > receiver, set them both to port 1.
+> > > >
+> > > > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
+> > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > > ---
+> > > > Changes since v1:
+> > > >
+> > > > - Fix clock ordering
+> > > > - Add #address-cells and #size-cells to ports nodes
+> > > > ---
+> > > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 50 +++++++++++++++++++=
+++++
+> > > >  1 file changed, 50 insertions(+)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64=
+/boot/dts/freescale/imx8mp.dtsi
+> > > > index bfc5c81a5bd4..1d2670b91b53 100644
+> > > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > > @@ -1616,6 +1616,56 @@ isi_in_1: endpoint {
+> > > >                           };
+> > > >                   };
+> > > >
+> > > > +                 isp_0: isp@32e10000 {
+> > > > +                         compatible =3D "fsl,imx8mp-isp";
+> > > > +                         reg =3D <0x32e10000 0x10000>;
+> > > > +                         interrupts =3D <GIC_SPI 74 IRQ_TYPE_LEVEL=
+_HIGH>;
+> > > > +                         clocks =3D <&clk IMX8MP_CLK_MEDIA_ISP_ROO=
+T>,
+> > > > +                                  <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>=
+,
+> > > > +                                  <&clk IMX8MP_CLK_MEDIA_APB_ROOT>=
+;
+> > > > +                         clock-names =3D "isp", "aclk", "hclk";
+> > > > +                         assigned-clocks =3D <&clk IMX8MP_CLK_MEDI=
+A_ISP>;
+> > > > +                         assigned-clock-parents =3D <&clk IMX8MP_S=
+YS_PLL2_500M>;
+> > > > +                         assigned-clock-rates =3D <500000000>;
+> > > > +                         power-domains =3D <&media_blk_ctrl IMX8MP=
+_MEDIABLK_PD_ISP>;
+> > > > +                         fsl,blk-ctrl =3D <&media_blk_ctrl 0>;
+> > > > +                         status =3D "disabled";
+> > > > +
+> > > > +                         ports {
+> > > > +                                 #address-cells =3D <1>;
+> > > > +                                 #size-cells =3D <0>;
+> > > > +
+> > > > +                                 port@1 {
+> > > > +                                         reg =3D <1>;
+> > > > +                                 };
+> > > > +                         };
+> > > > +                 };
+> > > > +
+> > > > +                 isp_1: isp@32e20000 {
+> > > > +                         compatible =3D "fsl,imx8mp-isp";
+> > > > +                         reg =3D <0x32e20000 0x10000>;
+> > > > +                         interrupts =3D <GIC_SPI 75 IRQ_TYPE_LEVEL=
+_HIGH>;
+> > > > +                         clocks =3D <&clk IMX8MP_CLK_MEDIA_ISP_ROO=
+T>,
+> > > > +                                  <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>=
+,
+> > > > +                                  <&clk IMX8MP_CLK_MEDIA_APB_ROOT>=
+;
+> > > > +                         clock-names =3D "isp", "aclk", "hclk";
+> > > > +                         assigned-clocks =3D <&clk IMX8MP_CLK_MEDI=
+A_ISP>;
+> > > > +                         assigned-clock-parents =3D <&clk IMX8MP_S=
+YS_PLL2_500M>;
+> > > > +                         assigned-clock-rates =3D <500000000>;
+> > > > +                         power-domains =3D <&media_blk_ctrl IMX8MP=
+_MEDIABLK_PD_ISP>;
+> > > > +                         fsl,blk-ctrl =3D <&media_blk_ctrl 1>;
+> > > > +                         status =3D "disabled";
+> > > > +
+> > > > +                         ports {
+> > > > +                                 #address-cells =3D <1>;
+> > > > +                                 #size-cells =3D <0>;
+> > > > +
+> > > > +                                 port@1 {
+> > > > +                                         reg =3D <1>;
+> > > > +                                 };
+> > > > +                         };
+> > > > +                 };
+> > > > +
+> > >
+> > > The patch itself is okay. But you might not be able to
+> > > configure the parent of IMX8MP_CLK_MEDIA_ISP if dewarp is enabled bef=
+ore.
+> > > This is due to IMX8MP_CLK_MEDIA_ISP_ROOT being enabled in 'pgc_ispdwp=
+'
+> > > power domain. Reparenting is not possible anymore in this case.
+> >
+> > Good point.
+> >
+> > > Something like
+> > > ---8<---
+> > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > @@ -1837,11 +1837,13 @@ media_blk_ctrl: blk-ctrl@32ec0000 {
+> > >                                                   <&clk IMX8MP_CLK_ME=
+DIA_APB>,
+> > >                                                   <&clk IMX8MP_CLK_ME=
+DIA_DISP1_PIX>,
+> > >                                                   <&clk IMX8MP_CLK_ME=
+DIA_DISP2_PIX>,
+> > > +                                                 <&clk IMX8MP_CLK_ME=
+DIA_ISP>,
+> > >                                                   <&clk IMX8MP_VIDEO_=
+PLL1>;
+> > >                                 assigned-clock-parents =3D <&clk IMX8=
+MP_SYS_PLL2_1000M>,
+> > >                                                          <&clk IMX8MP=
+_SYS_PLL1_800M>,
+> > >                                                          <&clk IMX8MP=
+_VIDEO_PLL1_OUT>,
+> > > -                                                        <&clk IMX8MP=
+_VIDEO_PLL1_OUT>;
+> > > +                                                        <&clk IMX8MP=
+_VIDEO_PLL1_OUT>,
+> > > +                                                        <&clk IMX8MP=
+_SYS_PLL2_500M>;
+> > >                                 assigned-clock-rates =3D <500000000>,=
+ <200000000>,
+> > >                                                        <0>, <0>, <103=
+9500000>;
+> >
 
----
- .../bindings/net/wireless/ti,cc33xx.yaml      | 60 +++++++++++++++++++
- 1 file changed, 60 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml
+According to the i.MX8MP Data sheet, the nominal speed for
+MEDIA_ISP_CLOCL_ROOT is 400MHZ with 500MHz being allowed in overdrive
+mode.
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml b/Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml
-new file mode 100644
-index 000000000000..08ab2ed93dba
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml
-@@ -0,0 +1,60 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/wireless/ti,cc33xx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments CC33xx Wireless LAN Controller
-+
-+maintainers:
-+  - Michael Nemanov <michael.nemanov@ti.com>
-+
-+description:
-+  These are dt entries for the IEEE 802.11ax chips CC33xx from Texas Instruments.
-+  Currently, these chips must be connected via SDIO.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,cc3300
-+      - ti,cc3301
-+      - ti,cc3350
-+      - ti,cc3351
-+
-+  reg:
-+    description:
-+      For WLAN communication, <reg> must be set to 2.
-+    maxItems: 1
-+
-+  interrupts:
-+    description: The interrupt line. Can be IRQ_TYPE_EDGE_RISING or IRQ_TYPE_LEVEL_HIGH.
-+      When SDIO is used, the "in-band" interrupt provided by the SDIO bus is used
-+      unless an interrupt is defined in the Device Tree.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    // SDIO example:
-+    mmc3 {
-+        vmmc-supply = <&wlan_en_reg>;
-+        bus-width = <4>;
-+        cap-power-off-card;
-+        keep-power-in-suspend;
-+
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        cc33xx: cc33xx@0 {
-+            compatible = "ti,cc3300";
-+            reg = <2>;
-+            interrupts = <19 IRQ_TYPE_EDGE_RISING>;
-+        };
-+    };
--- 
-2.25.1
+I think this clock rate should drop to  the nominal value of 400MHz
+and those boards who support overdrive can increase it to 500MHz to
+avoid stiability issues and/or running out of spec.  I created an
+imx8mm and imx8mn-overdrive.dtsi file.  If there is interest, I can do
+the same for the 8MP as well.
 
+I haven't gone through all the clocks to determine if/what clocks are
+being overdriven.
+
+> > With an assigned clock rate here too then ?
+>
+> You are right. This posted diff is what I was using for a while now thoug=
+h.
+> Apparently the clock frequency was still correct.
+>
+> Best regards,
+> Alexander
+>
+> > >                                 #power-domain-cells =3D <1>;
+> > > ---8<---
+> > > is needed.
+> >
+> > Sascha, are you OK with this approach ?
+
+This patch appears to have gone stale.  Is there any way we can push
+this forward?
+
+Thanks,
+
+adam
+
+> >
+> > > >                   dewarp: dwe@32e30000 {
+> > > >                           compatible =3D "nxp,imx8mp-dw100";
+> > > >                           reg =3D <0x32e30000 0x10000>;
+> > > >
+> > > > base-commit: 4cece764965020c22cff7665b18a012006359095
+> >
+> >
+>
+>
+> --
+> TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Ge=
+rmany
+> Amtsgericht M=C3=BCnchen, HRB 105018
+> Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan S=
+chneider
+> http://www.tq-group.com/
+>
+>
 
