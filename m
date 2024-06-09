@@ -1,168 +1,101 @@
-Return-Path: <devicetree+bounces-73938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40453901708
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 18:46:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42E38901756
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 20:05:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C574C1F2119B
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 16:46:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A93C32813F3
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 18:05:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C35C042ABB;
-	Sun,  9 Jun 2024 16:46:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 630E847773;
+	Sun,  9 Jun 2024 18:05:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mail.de header.i=@mail.de header.b="hkHs631w"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hmZU2N9W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from shout12.mail.de (shout12.mail.de [62.201.172.58])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15A71DDBD;
-	Sun,  9 Jun 2024 16:46:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.201.172.58
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1464E63C7;
+	Sun,  9 Jun 2024 18:05:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717951576; cv=none; b=vEsgej041vngvm+87NDkeZgeIqfpLBVn8O+dg5xTM8iuM9nTWswURSrCQUriF4awzFpaE9T00nNCj/4Pj/z4URDhjPzyrvXkoS8ZLWmc01Bs6iTDNGeAGT1iuiFDPdz5neQAepyt1ca8nkjO5ajh9Eyk0TQTJYDq0Monx0IfaRw=
+	t=1717956349; cv=none; b=eTckUQC9NzV5Mulo5J9AFchDXuPAm4LSJS4OAxoKi5LnJuAnaYZ7vkvpD9b7eQgMuDiFI4Qox4CMI2AQYadAByq11dARntLjc1Dm6QRAXxijc9nN4/bs/dMY9nOI/ryP7O5ye8wcwXC3y7F8iN2SUxMSjRolEUcgrM7wHMCt+6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717951576; c=relaxed/simple;
-	bh=jfyGvlGEvYiwFZvbfeRUSKsLW6JLidUM2IzOwSvkqQk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PA/EVsQnYYae4dYhitZWrjlhYgCx4xlXPeZBKeACPTjNCXJxpqESioBGBUVzoKXH+CHh7EZaLbgpxPzB3XRvLe/9HZaWhpqSVZQa4FEErEewhziRbNj0zPzOdYmLtvMULQv9t6n0F2itynq3KGH/xuwpLPwvkBDF19DBPDtJREE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mail.de; spf=pass smtp.mailfrom=mail.de; dkim=pass (2048-bit key) header.d=mail.de header.i=@mail.de header.b=hkHs631w; arc=none smtp.client-ip=62.201.172.58
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mail.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mail.de
-Received: from shout01.mail.de (unknown [10.0.120.221])
-	by shout12.mail.de (Postfix) with ESMTPS id C2B7B2409FD;
-	Sun,  9 Jun 2024 18:46:12 +0200 (CEST)
-Received: from postfix01.mail.de (postfix01.bt.mail.de [10.0.121.125])
-	by shout01.mail.de (Postfix) with ESMTP id 90618240B96;
-	Sun,  9 Jun 2024 18:46:12 +0200 (CEST)
-Received: from smtp01.mail.de (smtp02.bt.mail.de [10.0.121.212])
-	by postfix01.mail.de (Postfix) with ESMTP id 6AD4580208;
-	Sun,  9 Jun 2024 18:46:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mail.de;
-	s=mailde202009; t=1717951572;
-	bh=jfyGvlGEvYiwFZvbfeRUSKsLW6JLidUM2IzOwSvkqQk=;
-	h=Message-ID:Date:Subject:To:Cc:From:From:To:CC:Subject:Reply-To;
-	b=hkHs631wRZz1GbWKIX3UpR9O1OykwtF24iobhVeHL1/2HnaQzh3XrqcBfaXByZ2gl
-	 wSAfOPiJzuHv84dxGJ0rLkMZdvereVZO+myZ7FEY2ZHiAmKTFtpUZDbwFgit87eE60
-	 krVRwg8LZIViCzNAg+7LpzptSCicGp9DZnUQM9fvpm8EP4qpytEtaorzPbBR5w2RS9
-	 hyI6//dy+QnvitRz0lwsltlFRkRjDndc02KAf4rUCy7adjAYCwnKDe32VzIQQcmRfR
-	 5hjfpAajtwoBjJYhRxqN1+ZSD40LzNQTWS7RL8ChoLFL9Zoqx9LqH5M3GBmdxC8sUW
-	 CuPcQ5xFbGn5A==
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp01.mail.de (Postfix) with ESMTPSA id 80DE7240EBC;
-	Sun,  9 Jun 2024 18:46:10 +0200 (CEST)
-Message-ID: <9150cfa3-ab22-4b1e-a392-2cb9469f3821@mail.de>
-Date: Sun, 9 Jun 2024 18:46:09 +0200
+	s=arc-20240116; t=1717956349; c=relaxed/simple;
+	bh=7fdJx1+lP8/j+XLW/PaQm/1rXuLy8qetAlJzAMA6k3A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ayGosPKLDioHrkMywKg41eQPxMj6viZlbaF8DIDUm6ut1eghIjADP5nhDbpgxcEacOG9MKVjY96nufD5E03yZLiCjmwL9/U5fzVLZzLIhR8kxqE+yjLY8w1Wi7bBY5j+djvNB7pMOKqpUB+cxhuHr8LIdDInCvAHVzvmtd2DrU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hmZU2N9W; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-701b0b0be38so3521783b3a.0;
+        Sun, 09 Jun 2024 11:05:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717956347; x=1718561147; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=IANG2WFqu0P+9CPWFfIfVa8HF99uBjdVoBx9tFnaoiM=;
+        b=hmZU2N9Wmjksb51S1IfgIThIZaAzQwsw7aEJxMtFZuBxFiraw+LjPXrMDH30kjqSx1
+         0CxazOS/AvL8vS4o3XIu5qrQt2buCmyCDQs4fES5iwAKOPOdnnsG5d9dB1tMJqsHaUJZ
+         CaxrTaR8Xwiw5QXi+zdgaln62unCmjC4u0uRNiUnWEkZyzrVMeutdmyfFu4o8jG6UZoT
+         dw+iBEmV63jZ0tQ487+sNv6GQKfSbhzLxiNuS1qJ7dcj1d3o5cjHHq4bRuiyCJnXZn0J
+         Xj1RXjYU9HKEGYNH9KYF3ZBtYoxkeKJLBw4YSZm5wukr9siT1UBuLII2iS8KffBm0aXh
+         SgqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717956347; x=1718561147;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IANG2WFqu0P+9CPWFfIfVa8HF99uBjdVoBx9tFnaoiM=;
+        b=FojfzxYok+nNiKEVmy1kf4y0USnSjH6E/p5l1R9iwP9YO5LTXoHYTNWQDShyL2PTC9
+         ojfwP4z7Klw+eLfjTMulI6WsYXO7buYIYR3cvVdY5CWMGRs1RxFs56J5YPj8MQqmPCMo
+         wDMdCmt8ob7YhOGA3v/5AliI/4Yw74TSRTraKBuWX4hBKq8DxLyCJ7bAqsz9kezNiXbh
+         1tc8lAmy/tcSl46frZbtRHREXICA2iSeiOKt/2Rh3yw9THzSIZGbARALANOd+xZos7BS
+         ol1g9KIXJSKm4meDqyLOaZq6xVVNKcVid2igYmOc+dTI0WQItByCeOfQEHT13doVoFX4
+         D5EQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVAb85Iedsdd94t0lsLNBNIhDdUH6aN36XvFX4ZRzx5vxtYjVBS83jKSbZUHIBM1oaZ9PlRrsCiyDk42E6kdrqzLF15WvVdinx8EKRglNg1Dfk2//wfDjhJsyRZGEwUjvQH1uAZqOGimWAHeUVCg6NcgcnKEzdhM/rybGZQzRnyK2TlHg==
+X-Gm-Message-State: AOJu0Yxl+zIIJfDec5XcKmyjO6k6auOZx3WQtSFp2vPqticXPH/aKRVo
+	s6eN5uWpLcsic+IODoQ2Pai6oG0t9xCIbe7O3E6g3vYI5hFxaQg0
+X-Google-Smtp-Source: AGHT+IFd9wbAaBYz16lGAusX0aIPhJpbi5xdvpCGI35zgbY09//watj1ORR0uxVygR0fHo4Mzjq5fQ==
+X-Received: by 2002:a05:6a20:9185:b0:1b6:d9fa:8be with SMTP id adf61e73a8af0-1b6d9fa0af6mr1834751637.40.1717956347100;
+        Sun, 09 Jun 2024 11:05:47 -0700 (PDT)
+Received: from archlinux ([189.101.166.155])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70426c9f2bfsm2496536b3a.219.2024.06.09.11.05.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 Jun 2024 11:05:46 -0700 (PDT)
+Date: Sun, 9 Jun 2024 15:05:38 -0300
+From: Gustavo Silva <gustavograzs@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	lars@metafoo.de, christophe.jaillet@wanadoo.fr, devicetree@vger.kernel.org, 
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/6] Add driver for ENS160 sensor
+Message-ID: <g3x3hltujhcb5qs7klppikdvy2baej3lff2fucmx7efmvgg7wj@slcuwwb776kt>
+References: <20240604225747.7212-1-gustavograzs@gmail.com>
+ <20240609103655.29a1b53d@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add FriendlyElec CM3588 NAS
- board
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- linux-rockchip@lists.infradead.org,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Space Meyer <me@the-space.agency>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
- Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240602211901.237769-1-seb-dev@mail.de>
- <11747652.CDJkKcVGEf@phil> <f5cfcf3e-27e5-464a-9adf-261753ad6de7@mail.de>
- <4035271.e99z0qppnp@diego>
-From: Sebastian Kropatsch <seb-dev@mail.de>
-In-Reply-To: <4035271.e99z0qppnp@diego>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-purgate: clean
-X-purgate: This mail is considered clean (visit http://www.eleven.de for further information)
-X-purgate-type: clean
-X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
-X-purgate: This mail is considered clean (visit http://www.eleven.de for further information)
-X-purgate: clean
-X-purgate-size: 3052
-X-purgate-ID: 154282::1717951572-1AD2B878-FAB12F85/0/0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240609103655.29a1b53d@jic23-huawei>
 
-Am 09.06.2024 um 18:05 schrieb Heiko Stübner:
-> Am Samstag, 8. Juni 2024, 19:22:01 CEST schrieb Sebastian Kropatsch:
->> Am 08.06.2024 um 16:38 schrieb Heiko Stuebner:
->>> Am Donnerstag, 6. Juni 2024, 15:13:20 CEST schrieb Space Meyer:
->>>> On 02.06.2024 22:20, Sebastian Kropatsch wrote:
->>>>> +	vcc_3v3_pcie30: regulator-vcc-3v3-pcie30 {
->>>>> +		compatible = "regulator-fixed";
->>>>> +		regulator-name = "vcc_3v3_pcie30";
->>>>> +		regulator-always-on;
->>>>> +		regulator-boot-on;
->>>>> +		regulator-min-microvolt = <3300000>;
->>>>> +		regulator-max-microvolt = <3300000>;
->>>>> +		vin-supply = <&vcc_5v0_sys>;
->>>>> +	};
->>>>
->>>> These are 4 seperate regulators according to the schematic. However, as
->>>> they are all fixed, idk if they should be split or kept like this.
->>>
->>> personally, I really like the power-diagram to match schematics.
->>> I.e. $debugfs/regulator/regulator_summary will produce a really nice
->>> graph of all the system's regulators, so it's definitly nice if the
->>> hirarchy matches. Also prevents head-scratching later on ;-)
->>
->> These are indeed 4 different regulators according to the schematic.[1]
->> But they don't have any pin to control them separately. I can
->> duplicate them 4 times if that's the preferred practice.
->>
->> But matching the schematics won't be possible either way, since
->> e.g. there is only one single 5v regulator acc. to the schematic
->> (vcc_5v0_sys), but vcc_5v0_host_20, vcc_5v0_host_30, vbus_5v0_typec
->> and so on are needed since each device has a different control pin
->> to enable its power. Or is there a better way to solve this while
->> having only one 5v regulator node but still being able to set the
->> control pins separately for the different USB ports?
+On Sun, Jun 09, 2024 at 10:36:55AM GMT, Jonathan Cameron wrote:
+> Series applied with minor tweaks as called out for individual patches.
 > 
-> The other option we often use is to define multiple phandles
-> for a regulator. For exactly that case where one gpio controls
-> a set of regulators.
+> Applied to the togreg branch of iio.git and pushed out initially as
+> testing for 0-day to see if it can find anything we missed.
 > 
-> So you have one regulator
+> Thanks,
 > 
-> vcc_5v0_host_20: vcc_5v0_host_30: vbus_5v0_typec: regulator-vcc-whatever {
-> 	foo;
-> }
+> Jonathan
 > 
-> So in short there is not set rule, but more like a best-effort to get as
-> close to the schematics as possible. I.e. someone going from dt
-> to schematics should be able to just search for an identifier
-> (of course same for the other direction).
 
-I see. And then later in the file have something like this?
-
-&vcc_5v0_host_20{
-	gpios = <&gpio1 RK_PA4 GPIO_ACTIVE_HIGH>;
-};
-
-&vcc_5v0_host_30{
-	gpios = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
-};
-
-&vbus_5v0_typec{
-	gpios = <&gpio1 RK_PD2 GPIO_ACTIVE_HIGH>;
-};
-
-Will this work? I thought these gpios would then all just go into
-the above mentioned "regulator-vcc-whatever" node, overwriting
-each other. If so, I think the solution of keeping them as separate
-regulators would still be fine, since as Space Meyer mentioned that,
-although all USBs are connected to the same regulator, they have one
-SY6280AAC power switch each and these switches have enable pins (which
-are seen above in the gpios).
-
-
-Cheers,
-Sebastian
+Thank you!
 
