@@ -1,137 +1,138 @@
-Return-Path: <devicetree+bounces-73936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ADF990167F
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 17:42:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C4A49016F1
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 18:06:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 746B61C2084C
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 15:42:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D065B2148C
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 16:06:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42CBC45BEF;
-	Sun,  9 Jun 2024 15:42:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="F3jXnIak"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1B5B43AC3;
+	Sun,  9 Jun 2024 16:06:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 285B742A91;
-	Sun,  9 Jun 2024 15:42:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D71E14265;
+	Sun,  9 Jun 2024 16:06:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717947740; cv=none; b=DNJFJovhA0UR5wx43miEDq0CqSCEm/NuvzbTMZaQmkmxs1Cvtkn4JFLfGMbHfBYUclm7wccCU6gk7X06TGsJK5CXMs1hhVotXfroxhbtZS1b5Hqhwd1qdNfRSmc2VRvQV+7lKRZM5RyFN2IhE+8IeuNkWTNUEFrDEUHlpBw0jUc=
+	t=1717949176; cv=none; b=I+GFQqoLhbjqb6HXUPinnt1lB5iGuyJyhJPc/+Pb/4i4k3M65pEtIdIAHxMbk4rk4cnTAJs3KcWkpd7OTVs3beA1DlmjszRQGMatDLmVrTFIWcrKvJC0q7dAa+9EE3gra3qi/CUANkqCfutYe0tAV6zE7I8xqMOI/kHP3oX/zI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717947740; c=relaxed/simple;
-	bh=jjZOAJDH3CXwj+75keK9jfIEu+0mkRJEuEOYmcBRoHQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FTuC50ETLmICE0l+i/vRxt5Tjbx3uXqv8AB48NV4jqeV267FoBFKauD1LevkMRFr9nWIHIrslkgPDr5kSscxL5OHdBWVg52wSyz8PbKuw4qQ3U4wdnBSO86Bn+iXQFHn8cF6MwyzWY47KQAX8a87k7qKyXvroQremfOPWBP5pcM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=F3jXnIak; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1717947738; x=1749483738;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jjZOAJDH3CXwj+75keK9jfIEu+0mkRJEuEOYmcBRoHQ=;
-  b=F3jXnIakmWKSTGAWlq/CFng+zDqs96WBEq7Hot4zdYyrMFjEO1TmCeAq
-   JXB72Xcf1ETYe1K37Q+3h+E5V3gxnoMu8Kj0FvwwPACtnCFdXp6uDKXOU
-   TxJ6xGgjtL/0qvddnJWuQ0qJDv7F7N7tWHLQo5uy1jYhIIl2jHMPbOJZB
-   U2gO4GLd99PA/dlSGOO5HETSKaxHv8jcvy9z4anvjqjtU3XwnYlhFv8YG
-   RiXgRe6N5LFMpmjpC511aT1HSN9LO1K69zR1jgmXLLhCI0oVBlGa53L/d
-   PEzpZkPm1SN6K4wis0eU+GdGOsDggtjz6z+yJhAbY3rbpZAQ+WYdR/UFt
-   g==;
-X-CSE-ConnectionGUID: HpLoFEvASyqNtxBdr5thPA==
-X-CSE-MsgGUID: 3v5+Lr9cRKa8bwYsv5BsKg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11098"; a="32151653"
-X-IronPort-AV: E=Sophos;i="6.08,225,1712646000"; 
-   d="scan'208";a="32151653"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2024 08:42:17 -0700
-X-CSE-ConnectionGUID: schCzkAoRBSIby+nbUxnhQ==
-X-CSE-MsgGUID: li9A0onhT+eAevH2f6SmgQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,225,1712646000"; 
-   d="scan'208";a="43256567"
-Received: from lkp-server01.sh.intel.com (HELO 8967fbab76b3) ([10.239.97.150])
-  by fmviesa003.fm.intel.com with ESMTP; 09 Jun 2024 08:42:14 -0700
-Received: from kbuild by 8967fbab76b3 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sGKgO-0001MA-1E;
-	Sun, 09 Jun 2024 15:42:12 +0000
-Date: Sun, 9 Jun 2024 23:41:15 +0800
-From: kernel test robot <lkp@intel.com>
-To: Viacheslav Bocharov <adeep@lexina.in>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Cc: oe-kbuild-all@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] arm64: dts: meson-axg: add support for JetHome
- JetHub D2 (j200)
-Message-ID: <202406092342.w4H7PE64-lkp@intel.com>
-References: <20240607145148.2246990-3-adeep@lexina.in>
+	s=arc-20240116; t=1717949176; c=relaxed/simple;
+	bh=53/N3nydP1Frzk260uGA223xS+Df7guFfr89dKFOU10=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=urslX9vjfQKOsaIYeuxUzZFDPE3Bf1JoNY9tEfau7AghAIG1vdZLeiAKzORwKgELCgkYRpQTuDS+ASjqSoNwHT51/x2ofzU0WLK9ueH/OfejFq9m+a9vJNHgor12i3J7CHHjHl96rFI4KK0PmwVvn8BMEgMA1pK/Ap+G+RQLsts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875b65.versanet.de ([83.135.91.101] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sGL3G-0004V8-Ee; Sun, 09 Jun 2024 18:05:50 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: linux-rockchip@lists.infradead.org,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Space Meyer <me@the-space.agency>, Sebastian Kropatsch <seb-dev@mail.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+ Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH v2 2/2] arm64: dts: rockchip: Add FriendlyElec CM3588 NAS board
+Date: Sun, 09 Jun 2024 18:05:49 +0200
+Message-ID: <4035271.e99z0qppnp@diego>
+In-Reply-To: <f5cfcf3e-27e5-464a-9adf-261753ad6de7@mail.de>
+References:
+ <20240602211901.237769-1-seb-dev@mail.de> <11747652.CDJkKcVGEf@phil>
+ <f5cfcf3e-27e5-464a-9adf-261753ad6de7@mail.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240607145148.2246990-3-adeep@lexina.in>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi Viacheslav,
+Am Samstag, 8. Juni 2024, 19:22:01 CEST schrieb Sebastian Kropatsch:
+> Hello,
+> 
+> Am 08.06.2024 um 16:38 schrieb Heiko Stuebner:
+> > Am Donnerstag, 6. Juni 2024, 15:13:20 CEST schrieb Space Meyer:
+> >> On 02.06.2024 22:20, Sebastian Kropatsch wrote:
+> >>> Some RK3588 boards are still using this property, the following quote
+> >>> is from rk3588-tiger-haikou.dts for example:
+> >>>       &sdmmc {
+> >>>           /* while the same pin, sdmmc_det does not detect card changes */
+> >>>           cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+> >>>
+> >>> I am unsure as to whether this comment from the quote might apply for
+> >>> the CM3588 as well. Please let me know if you are able to tell :-)
+> >>
+> >> I don't quite understand this. However GPIO0_A4 *is* routed to the micro
+> >> sd CD according to the NAS schematic, page 16 around A5.
+> > 
+> > for the actual sdmmc_det functionality ... possibly some pinconfig thing?
+> > I.e. pull-whatever settings?
+> 
+> I have no idea. I just removed the "cd-gpios" line in v2 due to a
+> suggestion by Jonas Karlman and then stumbled over this comment.
+> So I'm not sure whether to include or not include this property
+> for the CM3588 NAS since I don't know the consequences.
+> Probably in the end it doesn't even matter :)
+> 
+> >>> +	vcc_3v3_pcie30: regulator-vcc-3v3-pcie30 {
+> >>> +		compatible = "regulator-fixed";
+> >>> +		regulator-name = "vcc_3v3_pcie30";
+> >>> +		regulator-always-on;
+> >>> +		regulator-boot-on;
+> >>> +		regulator-min-microvolt = <3300000>;
+> >>> +		regulator-max-microvolt = <3300000>;
+> >>> +		vin-supply = <&vcc_5v0_sys>;
+> >>> +	};
+> >>
+> >> These are 4 seperate regulators according to the schematic. However, as
+> >> they are all fixed, idk if they should be split or kept like this.
+> > 
+> > personally, I really like the power-diagram to match schematics.
+> > I.e. $debugfs/regulator/regulator_summary will produce a really nice
+> > graph of all the system's regulators, so it's definitly nice if the
+> > hirarchy matches. Also prevents head-scratching later on ;-)
+> 
+> These are indeed 4 different regulators according to the schematic.[1]
+> But they don't have any pin to control them separately. I can
+> duplicate them 4 times if that's the preferred practice.
+> 
+> But matching the schematics won't be possible either way, since
+> e.g. there is only one single 5v regulator acc. to the schematic
+> (vcc_5v0_sys), but vcc_5v0_host_20, vcc_5v0_host_30, vbus_5v0_typec
+> and so on are needed since each device has a different control pin
+> to enable its power. Or is there a better way to solve this while
+> having only one 5v regulator node but still being able to set the
+> control pins separately for the different USB ports?
 
-kernel test robot noticed the following build warnings:
+The other option we often use is to define multiple phandles
+for a regulator. For exactly that case where one gpio controls
+a set of regulators.
 
-[auto build test WARNING on 32f88d65f01bf6f45476d7edbe675e44fb9e1d58]
+So you have one regulator
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Viacheslav-Bocharov/dt-bindings-arm-amlogic-add-binding-for-JetHome-JetHub-D2/20240607-225905
-base:   32f88d65f01bf6f45476d7edbe675e44fb9e1d58
-patch link:    https://lore.kernel.org/r/20240607145148.2246990-3-adeep%40lexina.in
-patch subject: [PATCH v1 2/2] arm64: dts: meson-axg: add support for JetHome JetHub D2 (j200)
-compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project d7d2d4f53fc79b4b58e8d8d08151b577c3699d4a)
-dtschema version: 2024.6.dev1+g833054f
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240609/202406092342.w4H7PE64-lkp@intel.com/reproduce)
+vcc_5v0_host_20: vcc_5v0_host_30: vbus_5v0_typec: regulator-vcc-whatever {
+	foo;
+}
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406092342.w4H7PE64-lkp@intel.com/
+So in short there is not set rule, but more like a best-effort to get as
+close to the schematics as possible. I.e. someone going from dt
+to schematics should be able to just search for an identifier
+(of course same for the other direction).
 
-dtcheck warnings: (new ones prefixed by >>)
-   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:2220.23-2260.6: Warning (avoid_unnecessary_addr_size): /soc/bus@ffd00000/dsi@7000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-   arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: /soc/bus@ff600000/bus@60000/clock-controller@0: failed to match any schema with compatible: ['amlogic,sm1-audio-clkc']
-   arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller@300: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
-   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
-   arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller@340: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
-   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
-   arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller@380: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
-   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
-   arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller@3c0: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
-   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
->> arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: /soc/bus@ff600000/bus@60000/audio-controller@744: failed to match any schema with compatible: ['amlogic,sm1-tohdmitx', 'amlogic,g12a-tohdmitx']
->> arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: /soc/bus@ff600000/bus@60000/audio-controller@744: failed to match any schema with compatible: ['amlogic,sm1-tohdmitx', 'amlogic,g12a-tohdmitx']
-   arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: sys-ctrl@0: '#address-cells', '#size-cells', 'ranges' do not match any of the regexes: 'pinctrl-[0-9]+'
-   	from schema $id: http://devicetree.org/schemas/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml#
-   arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-0: clock-names:0: 'sclk' was expected
-   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-   arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-0: clock-names:1: 'lrclk' was expected
-   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-   arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-0: clock-names:2: 'mclk' was expected
-   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-   arch/arm64/boot/dts/amlogic/meson-sm1-jethome-jethub-j200.dtb: audio-controller-1: clock-names:0: 'sclk' was expected
-   	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Heiko
+
+
 
