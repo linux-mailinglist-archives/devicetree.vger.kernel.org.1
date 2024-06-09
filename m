@@ -1,304 +1,172 @@
-Return-Path: <devicetree+bounces-73927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C95F901586
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 12:18:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 189579015D9
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 13:05:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B7741C208F5
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 10:18:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81F1A2818CB
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 11:05:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C716020B04;
-	Sun,  9 Jun 2024 10:18:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65EC428DCC;
+	Sun,  9 Jun 2024 11:05:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I3h9CX1G"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gVcGTYyt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ABEA22619;
-	Sun,  9 Jun 2024 10:18:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9D2A249F9;
+	Sun,  9 Jun 2024 11:05:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717928318; cv=none; b=QObW4J2AoOutSQ7kp2ZkmRkHXizHgwbtsAe1ODzXzu7cHEIn71xbhgBuA0F4rRDKtb02T2c8FO2n5x+JcMnKhXMO4DIM+HQzjn9URgHEktg04wqfWF699qpqtQ3nKR81BAvaN0MWGplhHQSXh6LHQwkpFgZ69ZsEHiHgNOFKlfg=
+	t=1717931149; cv=none; b=sF2mXyC/X/3ph0plQQI3NCtSIThJS4fbmuhdCfRhZuySKqmCA08O31lakFk1Uxo9/RZDic5LEKtq9g6hauiSQhhO5/4pFVA09SDTDacB5ehCfg3ewflPVX5suKL1LuLfVoqNpKk5GZKGZdDY0M8osZL1wBFXULfS35ulufaD9PI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717928318; c=relaxed/simple;
-	bh=fy4wqIGP/0XPQnNOrnmxbqYJ84UFY/vN3hZc+RbEo2E=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DFuOiIfev8tlNApnZkrRzqAE9dKHaMnY7YuNn6uQUcFf7wOvSrPwbA4Xx1pjHR0vjDvDrw9k/G531gL8BjFmp/QXofolGY40uKUBUQcbZ8/ov/GxrSntUrzQQ8xjItCxjJVDzmkD1eS8GTAQUHNPBlzK/dOk0hd05UAeFZBz5g4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I3h9CX1G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3CBCC2BD10;
-	Sun,  9 Jun 2024 10:18:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717928318;
-	bh=fy4wqIGP/0XPQnNOrnmxbqYJ84UFY/vN3hZc+RbEo2E=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=I3h9CX1GPHvxMGFCT0woGd59deltw5THyyUnHqHwwGn357o/S5lO/m6ft/Vj4HuvZ
-	 m4iRydXXf1Z8tbGu5ME+nkSY5kF5xhJC8P2lQGIhXUouDYbgeSwmwlltuCsoR8dr7i
-	 Pm7Sir7aOVVQCxu5eb44zTDuo6oJH8TY1XhNhbS/RurFdDWXrHcaZVuwN10MOXNVsc
-	 S4PeMybJwU0qCTxFajs4o26hADH7gfxraZtdLyEJfk7Ubnv9tp8q3+Ha6td0PPRN7L
-	 JDbhCcJyAeYIrxNr9AqQp5q2unefpATxjA1iDewKmuJLc1pyhv6ivtw7N+BGNTSTlE
-	 v18AETj417kjA==
-Date: Sun, 9 Jun 2024 11:17:40 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: =?UTF-8?B?Sm/Do28=?= Paulo =?UTF-8?B?R29uw6dhbHZlcw==?=
- <jpaulo.silvagoncalves@gmail.com>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, =?UTF-8?B?Sm/Do28=?= Paulo
- =?UTF-8?B?R29uw6dhbHZlcw==?= <joao.goncalves@toradex.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Francesco Dolcini
- <francesco.dolcini@toradex.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: add ti,ads1119
-Message-ID: <20240609111740.1c61ce07@jic23-huawei>
-In-Reply-To: <20240606163529.87528-2-francesco@dolcini.it>
-References: <20240606163529.87528-1-francesco@dolcini.it>
-	<20240606163529.87528-2-francesco@dolcini.it>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1717931149; c=relaxed/simple;
+	bh=PWjuma657JHSCyYAkXbvSDzqdk7odz+k9Uhz/JiiDJo=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=QkomDiunlYmDKyIXEfYfLQLANGu1QJ6AtnCff3FoMRHl4NUAVYxqpK1L5w5lG2juRwLfNs16B0z/STQmTIIq25N/IJQN3JT+4W8ZbRLYO23kSOnL/07jVXR9bT3sQeEVevBhq2kBqueY8JBAajfHhUG14HaV9jGjlEYit87gYsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gVcGTYyt; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a6f0c3d0792so110549766b.3;
+        Sun, 09 Jun 2024 04:05:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717931146; x=1718535946; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wpM5CSHQ7BjZsm86jY13nUms8C9enIOcpR5asKG1/Ro=;
+        b=gVcGTYyt0fX+pzbjefearwwirDJ/BrJeJfaXoJsHEsXrKDl2Aq6prG7ikcZE7s5Z0a
+         lHfVaVthY3aiq4Bbz0Ky4vfAVjxXFOXY9MrrGGypxoIKzCzcpf23UMoNPlAVA9uO85Lw
+         kb9KsrjsnPJceCgHmGF2RNyrt+Inkwvr8rY2XiI/BwmBt9Czi3cfBR+8KdchbmEAZ/vH
+         6rKcF4IBqojKA+yehc2emN8+cbIXrDhu5nxUfdWG21/yQzEUUwVRggACYJvN6f2w/dRv
+         sbl1chW0Aetqcid6+4RuTsUQND8fmEbvCsyzGd3eRL23WuKuiahriyjRvmS0MmlDhrdf
+         ypcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717931146; x=1718535946;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wpM5CSHQ7BjZsm86jY13nUms8C9enIOcpR5asKG1/Ro=;
+        b=xNiPLs1SIP5ScJmluCLt0WnEgwkH09RcjurxcWpQRjRyKUoJPM4IvnCsVjp0eSuXhu
+         2E4KHhpJ0hLQ8lKfOEsXh5Zi6pCZjVYKBOjV34vm4ql3O80VNJp/zwhuKuwU8iasNYFj
+         UCcjtd1foiR3hrLU/AeVX6xy+e0MlbfYrdMEVqGWXJJOg1fgyucGAN37WXNcN5FEeAyM
+         ItrE2NjgSw5vuSqpuCsJRiotE65e5fJiGO3nhtz/xRASzGq7HE7FANbA5m+F0Z91wAHh
+         vTlLo87XuFdK9aloSshNMKcruQkDvmVC8q/fVXSNg1MGxxTuLvLEF7pmAMHTEkwMtbgo
+         oPpw==
+X-Forwarded-Encrypted: i=1; AJvYcCXWly7tIkS289rdIaZyPcnGqpsXklTCrTWkx+CEqk/KRjh3ELTnGJMIBv4wvsPABTES3Xxl7pYSlOkDtJYIUQSogvEezhXvVLdURAxc8WcfpbYFP2e7QDEG07LxTxnXGlwdoeyZYZBOAExGTIl5wL8LqKyI/b4B1OqXCPotq2IAty8QwBB8
+X-Gm-Message-State: AOJu0Yw6KbflnRNV4HxV7OGYh9MYkG3dBQRQ4FdXOBcV9sB4ZBRTpVuA
+	0isXBl/kkKX5lsoYlPJLD3D9YWfIITBaH/Rmvql50zLYInDI+tov
+X-Google-Smtp-Source: AGHT+IFMn/iHi3S62iXJonXfBdAPUVD5+Y6loLLU+/1VysHfn0b6aGHs2T+z7LzchWh08FlOKqtnxQ==
+X-Received: by 2002:a17:907:7d9e:b0:a6f:ea6:9534 with SMTP id a640c23a62f3a-a6f0ea698d6mr217343866b.76.1717931145707;
+        Sun, 09 Jun 2024 04:05:45 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6c806eaa41sm508317766b.115.2024.06.09.04.05.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 Jun 2024 04:05:45 -0700 (PDT)
+Date: Sun, 9 Jun 2024 13:05:43 +0200
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, phone-devel@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: qcom: motorola-falcon: add accelerometer,
+ magnetometer
+Message-ID: <ZmWMh6fuLasvGkR/@standask-GA-A55M-S2HP>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Thu,  6 Jun 2024 18:35:28 +0200
-Francesco Dolcini <francesco@dolcini.it> wrote:
+Add the accelerometer and magnetometer that are present on the Motorola
+Moto G (2013) device.
 
-> From: Jo=C3=A3o Paulo Gon=C3=A7alves <joao.goncalves@toradex.com>
->=20
-> Add devicetree bindings for Texas Instruments ADS1119 16-bit ADC
-> with I2C interface.
->=20
-> Datasheet: https://www.ti.com/lit/gpn/ads1119
-> Signed-off-by: Jo=C3=A3o Paulo Gon=C3=A7alves <joao.goncalves@toradex.com>
-> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+---
+ .../boot/dts/qcom/msm8226-motorola-falcon.dts | 53 +++++++++++++++++++
+ 1 file changed, 53 insertions(+)
 
-I missed it on previous version but you only have description in here
-for vref and few devices power them selves from something called vref!
-
-The binding should describe the other power supplies as well and mark
-them as required.
-
-We've left these out too many times in the past and ended up having
-a patch very soon after adding them. Better to have them from the start.
-Driver should just use devm_regulator_get_enabled() to turn them on and
-register them to be turned off on driver removal, and ignore them
-after that.  If anyone has controlled supplies and wants to do more
-sophisticated handling they can add it later.
-
-Note that even though the dt-binding will list them as required, if
-a particular DTS doesn't provide them the regulator framework will
-give a dummy uncontrolled regulator to represent the assumption that
-the power is always there.  We still document them as required in
-the dt-binding though as other OS may not be so clever.
-
-Only needs minimal entries though - see inline
-
-Jonathan
-
-> ---
-> v2:
->  - add diff-channels and single-channel
->  - add XOR check to make diff/single channel property required=20
->  - add interrupts, reset-gpios and vref-supply to the example=20
->  - fix missing additionalProperties/unevaluatedProperties warning in chan=
-nels
->  - remove ti,gain and ti,datarate as they aren't fixed hw properties
->  - remove unnecessary |=20
-> ---
->  .../bindings/iio/adc/ti,ads1119.yaml          | 148 ++++++++++++++++++
->  MAINTAINERS                                   |   7 +
->  2 files changed, 155 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1119.=
-yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml b/=
-Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
-> new file mode 100644
-> index 000000000000..cbf0d4ef3a11
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
-> @@ -0,0 +1,148 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/ti,ads1119.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments ADS1119 ADC
-> +
-> +maintainers:
-> +  - Jo=C3=A3o Paulo Gon=C3=A7alves <jpaulo.silvagoncalves@gmail.com>
-> +
-> +description:
-> +  The TI ADS1119 is a precision 16-bit ADC over I2C that offers single-e=
-nded and
-> +  differential measurements using a multiplexed input. It features a pro=
-grammable
-> +  gain, a programmable sample rate, an internal oscillator and voltage r=
-eference,
-> +  and a 50/60Hz rejection filter.
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,ads1119
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-avdd-supply: true
-dvdd-supply: true
-
-> +  vref-supply:
-> +    description:
-> +      ADC external reference voltage (VREF).
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  "#io-channel-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-    - avdd-supply
-    - dvdd-supply
-
-> +
-> +patternProperties:
-> +  "^channel@([0-6])$":
-> +    $ref: adc.yaml
-> +    type: object
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 6
-> +
-> +      diff-channels:
-> +        description:
-> +          Differential input channels AIN0-AIN1, AIN2-AIN3 and AIN1-AIN2.
-> +        oneOf:
-> +          - items:
-> +              - const: 0
-> +              - const: 1
-> +          - items:
-> +              - const: 2
-> +              - const: 3
-> +          - items:
-> +              - const: 1
-> +              - const: 2
-> +
-> +      single-channel:
-> +        description:
-> +          Single-ended input channels AIN0, AIN1, AIN2 and AIN3.
-> +        minimum: 0
-> +        maximum: 3
-> +
-> +    oneOf:
-> +      - required:
-> +          - diff-channels
-> +      - required:
-> +          - single-channel
-> +
-> +    required:
-> +      - reg
-> +
-> +    unevaluatedProperties: false
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        adc@40 {
-> +            compatible =3D "ti,ads1119";
-> +            reg =3D <0x40>;
-> +            interrupt-parent =3D <&gpio1>;
-> +            interrupts =3D <25 IRQ_TYPE_EDGE_FALLING>;
-> +            reset-gpios =3D <&gpio1 10 GPIO_ACTIVE_LOW>;
-> +            vref-supply =3D <&reg_vref_ads1119>;
-> +            #address-cells =3D <1>;
-> +            #size-cells =3D <0>;
-> +            #io-channel-cells =3D <1>;
-> +
-> +            channel@0 {
-> +                reg =3D <0>;
-> +                single-channel =3D <0>;
-> +            };
-> +
-> +            channel@1 {
-> +                reg =3D <1>;
-> +                diff-channels =3D <0 1>;
-> +            };
-> +
-> +            channel@2 {
-> +                reg =3D <2>;
-> +                single-channel =3D <3>;
-> +            };
-> +
-> +            channel@3 {
-> +                reg =3D <3>;
-> +                single-channel =3D <1>;
-> +            };
-> +
-> +            channel@4 {
-> +                reg =3D <4>;
-> +                single-channel =3D <2>;
-> +            };
-> +
-> +            channel@5 {
-> +                reg =3D <5>;
-> +                diff-channels =3D <1 2>;
-> +            };
-> +
-> +            channel@6 {
-> +                reg =3D <6>;
-> +                diff-channels =3D <2 3>;
-> +            };
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d6c90161c7bf..f1b2c4b815e2 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -22380,6 +22380,13 @@ M:	Robert Richter <rric@kernel.org>
->  S:	Odd Fixes
->  F:	drivers/gpio/gpio-thunderx.c
-> =20
-> +TI ADS1119 ADC DRIVER
-> +M:	Francesco Dolcini <francesco@dolcini.it>
-> +M:	Jo=C3=A3o Paulo Gon=C3=A7alves <jpaulo.silvagoncalves@gmail.com>
-> +L:	linux-iio@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
-> +
->  TI ADS7924 ADC DRIVER
->  M:	Hugo Villeneuve <hvilleneuve@dimonoff.com>
->  L:	linux-iio@vger.kernel.org
+diff --git a/arch/arm/boot/dts/qcom/msm8226-motorola-falcon.dts b/arch/arm/boot/dts/qcom/msm8226-motorola-falcon.dts
+index 029e1b1659c9..5dbca83f2230 100644
+--- a/arch/arm/boot/dts/qcom/msm8226-motorola-falcon.dts
++++ b/arch/arm/boot/dts/qcom/msm8226-motorola-falcon.dts
+@@ -96,6 +96,35 @@ reserved@fb00000 {
+ 	};
+ };
+ 
++&blsp1_i2c2 {
++	status = "okay";
++
++	magnetometer@c {
++		compatible = "asahi-kasei,ak8963";
++		reg = <0xc>;
++		interrupts-extended = <&tlmm 66 IRQ_TYPE_EDGE_FALLING>;
++		reset-gpios = <&tlmm 62 GPIO_ACTIVE_LOW>;
++		vdd-supply = <&pm8226_l19>;
++		vid-supply = <&pm8226_lvs1>;
++		pinctrl-0 = <&mag_int_default &mag_reset_default>;
++		pinctrl-names = "default";
++	};
++
++	accelerometer@19 {
++		compatible = "st,lis3dh-accel";
++		reg = <0x19>;
++		interrupts-extended = <&tlmm 63 IRQ_TYPE_EDGE_FALLING>;
++		vdd-supply = <&pm8226_l19>;
++		vddio-supply = <&pm8226_lvs1>;
++		pinctrl-0 = <&accel_int_default>;
++		pinctrl-names = "default";
++		mount-matrix = "0", "1", "0",
++			       "1", "0", "0",
++			       "0", "0", "-1";
++		st,drdy-int-pin = <1>;
++	};
++};
++
+ &blsp1_i2c3 {
+ 	status = "okay";
+ 
+@@ -321,6 +350,30 @@ &smbb {
+ };
+ 
+ &tlmm {
++	accel_int_default: accel-int-default-state {
++		pins = "gpio63";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++		output-disable;
++	};
++
++	mag_int_default: mag-int-default-state {
++		pins = "gpio66";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++		output-disable;
++	};
++
++	mag_reset_default: mag-reset-default-state {
++		pins = "gpio62";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++		output-high;
++	};
++
+ 	reg_lcd_default: reg-lcd-default-state {
+ 		pins = "gpio31", "gpio33";
+ 		function = "gpio";
+-- 
+2.34.1
 
 
