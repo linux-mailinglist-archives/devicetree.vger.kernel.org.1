@@ -1,119 +1,202 @@
-Return-Path: <devicetree+bounces-73921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F044901555
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 11:37:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A415490155A
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 11:51:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C1AF1C2153F
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 09:37:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2CEEBB21240
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 09:51:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3D681CD35;
-	Sun,  9 Jun 2024 09:37:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HZTgY9v7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6716D1CD35;
+	Sun,  9 Jun 2024 09:51:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78B7F1CD11;
-	Sun,  9 Jun 2024 09:37:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8375A1804E;
+	Sun,  9 Jun 2024 09:51:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717925842; cv=none; b=BsVkKqW+cUTwfoXQ2zR1R2AiTgTxA7o2XoYnZir1lxm3hEFR4WMhKO6Cd6HGHmrrrgShrrFJ4jQOFD3u7x64D3Ci2ufNBhDdG4oUhYUaQLMcsYKpqCYi+BBan/+5f0y9FuSnN/d4bO5BAhVHe2GcLv68mYOPQhoZK1nIJuty9NY=
+	t=1717926666; cv=none; b=tO8Y76Zdxhr+FSfadpavBXkDxKI06raRKAgr+IkI4cuQm26/q8cUAAlooOsJlTa2KG9CXvWwGtbHd6sgZUvawcos1puDC5ufbym44IzQFqNK5Dvzj2XlQclXJdlVgcGynUNnaZTr6bFCjGQNjHn4ZoAcrmXo0KikzWy44on4DtY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717925842; c=relaxed/simple;
-	bh=XN5bruVCFWDk6NK36GBzKNiw4s708+m+M96Lip7+3vE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bfXKX2cp1PZzxrfX67rqdogwmUJ6lkWMz+UmggvQkQS2n3bJjlbwldVBJP1tHDCzBcAaSsKu8jzkGsMbBJur/+Vs8IpRgy8l3c7JmTW6GwxXMK0WpUkhF7pzMfq7QoDgTjkWICKft1PJRj1APJrwXRIbb16CGtcU3k15m34s/xE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HZTgY9v7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F7DAC2BD10;
-	Sun,  9 Jun 2024 09:37:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717925841;
-	bh=XN5bruVCFWDk6NK36GBzKNiw4s708+m+M96Lip7+3vE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=HZTgY9v7/JASD7XqrrqsDrzIXIkS3nOJ3RCPLsmnNhJYgCSw2IMxtuqJkdzd1OLPS
-	 2dfBhMJvdPVzzUVhcJgB43rCO0zPdkFUDejU1mLPw6N4QOq18ey2YPD+ItAqmtaToL
-	 PK5IuW8DyAswoW9iXU77X5lo5NNzazz2blMDxOIuxtWb4UPrmsWRKcJLDbdr4MthE2
-	 AsuwsEp7Ft0Ch/7oFC9l8ZfACeaz7pdmQc78XeFopsQE68z2THw6nnqtGT7sf1z2Yr
-	 kC2qkzUntlvOATRrs1v0OAVotnIsGE1zh+M6NcndGu9fU2MAOgeR7eBhrFRekUAPEw
-	 B4AVpnm9XAsEg==
-Date: Sun, 9 Jun 2024 10:36:55 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Gustavo Silva <gustavograzs@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- lars@metafoo.de, christophe.jaillet@wanadoo.fr, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/6] Add driver for ENS160 sensor
-Message-ID: <20240609103655.29a1b53d@jic23-huawei>
-In-Reply-To: <20240604225747.7212-1-gustavograzs@gmail.com>
-References: <20240604225747.7212-1-gustavograzs@gmail.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1717926666; c=relaxed/simple;
+	bh=6Xkm7YiviFoJoemsAi5czJ/Al54+zJfurW20sYufMY8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ffpj3W69cN1rJ/0RxeWPDyf60LYlfdBovjXhm64q5wcO+7X0lxN7CXoV3GxM0n9irj0/HTSHJibPwI4YyXZqAXgTp8U6CIuHyKDdsLfBNcNrlliHuH7nloOkqAhPcwl3T8EyXVWPtPQJ+uAD2I8+8m7SjdvleVcbuFeSey3Q9YU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-IronPort-AV: E=Sophos;i="6.08,225,1712588400"; 
+   d="scan'208";a="207203928"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 09 Jun 2024 18:50:56 +0900
+Received: from localhost.localdomain (unknown [10.226.92.40])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 8EBE241BA293;
+	Sun,  9 Jun 2024 18:50:52 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>,
+	kernel test robot <lkp@intel.com>
+Subject: [PATCH] arm64: dts: renesas: r9a07g0{43,44,54}: Drop #address-cells/#size-cells from single child node 'endpoint@0'
+Date: Sun,  9 Jun 2024 10:50:49 +0100
+Message-Id: <20240609095049.17193-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Tue,  4 Jun 2024 19:57:24 -0300
-Gustavo Silva <gustavograzs@gmail.com> wrote:
+Fix the below dtcheck_warnings reported by kernel test robot.
 
-> This series of patches adds a driver for ScioSense ENS160 multi-gas
-> sensor, designed for indoor air quality monitoring.
-Series applied with minor tweaks as called out for individual patches.
+dtcheck warnings: (new ones prefixed by >>)
+>> arch/arm64/boot/dts/renesas/r9a07g043u.dtsi:85.11-94.6: Warning
+>> (graph_child_address): /soc/video@10830000/ports/port@1: graph node
+>> has single child node 'endpoint@0', #address-cells/#size-cells are
+>> not necessary
+>> arch/arm64/boot/dts/renesas/r9a07g043u.dtsi:120.11-129.6: Warning
+>> (graph_child_address): /soc/csi2@10830400/ports/port@1: graph node
+>> has single child node 'endpoint@0', #address-cells/#size-cells are
+>> not necessary
 
-Applied to the togreg branch of iio.git and pushed out initially as
-testing for 0-day to see if it can find anything we missed.
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202406081329.snoMrZsJ-lkp@intel.com
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+ arch/arm64/boot/dts/renesas/r9a07g043u.dtsi | 12 ++----------
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi  | 17 +++--------------
+ arch/arm64/boot/dts/renesas/r9a07g054.dtsi  | 18 +++---------------
+ 3 files changed, 8 insertions(+), 39 deletions(-)
 
-Thanks,
-
-Jonathan
-
-> 
-> ---
-> Changes in v3:
-> - Add missing `$ref: /schemas/spi/spi-peripheral-props.yaml#` in
->   devicetree binding
-> - Move the devm_add_action_or_reset() call to right after setting the
->   operation mode to standard
-> - Remove "_spi" and "_i2c" suffixes from device name
-> - Add a comment explaining what data the mutex is protecting
-> - Format register address macro
-> 
-> Link to v2: https://lore.kernel.org/linux-iio/20240529001504.33648-1-gustavograzs@gmail.com/
-> 
-> ---
-> Gustavo Silva (6):
->   dt-bindings: vendor-prefixes: add ScioSense
->   dt-bindings: iio: chemical: add ENS160 sensor
->   iio: chemical: add driver for ENS160 sensor
->   iio: chemical: ens160: add triggered buffer support
->   iio: chemical: ens160: add power management support
->   MAINTAINERS: Add ScioSense ENS160
-> 
->  .../iio/chemical/sciosense,ens160.yaml        |  70 ++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  MAINTAINERS                                   |   8 +
->  drivers/iio/chemical/Kconfig                  |  22 ++
->  drivers/iio/chemical/Makefile                 |   3 +
->  drivers/iio/chemical/ens160.h                 |  10 +
->  drivers/iio/chemical/ens160_core.c            | 367 ++++++++++++++++++
->  drivers/iio/chemical/ens160_i2c.c             |  62 +++
->  drivers/iio/chemical/ens160_spi.c             |  61 +++
->  9 files changed, 605 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/chemical/sciosense,ens160.yaml
->  create mode 100644 drivers/iio/chemical/ens160.h
->  create mode 100644 drivers/iio/chemical/ens160_core.c
->  create mode 100644 drivers/iio/chemical/ens160_i2c.c
->  create mode 100644 drivers/iio/chemical/ens160_spi.c
-> 
-> 
-> base-commit: 084eeee1d8da6b4712719264b01cb27b41307f54
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi b/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
+index 165bfcfef3bc..e6a30a669c37 100644
+--- a/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
+@@ -79,12 +79,8 @@ ports {
+ 			#size-cells = <0>;
+ 
+ 			port@1 {
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-
+ 				reg = <1>;
+-				crucsi2: endpoint@0 {
+-					reg = <0>;
++				crucsi2: endpoint {
+ 					remote-endpoint = <&csi2cru>;
+ 				};
+ 			};
+@@ -114,12 +110,8 @@ port@0 {
+ 			};
+ 
+ 			port@1 {
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+ 				reg = <1>;
+-
+-				csi2cru: endpoint@0 {
+-					reg = <0>;
++				csi2cru: endpoint {
+ 					remote-endpoint = <&crucsi2>;
+ 				};
+ 			};
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+index 88634ae43287..6a5496dbb05a 100644
+--- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+@@ -710,22 +710,14 @@ ports {
+ 				#size-cells = <0>;
+ 
+ 				port@0 {
+-					#address-cells = <1>;
+-					#size-cells = <0>;
+-
+ 					reg = <0>;
+-					cruparallel: endpoint@0 {
+-						reg = <0>;
++					cruparallel: endpoint {
+ 					};
+ 				};
+ 
+ 				port@1 {
+-					#address-cells = <1>;
+-					#size-cells = <0>;
+-
+ 					reg = <1>;
+-					crucsi2: endpoint@0 {
+-						reg = <0>;
++					crucsi2: endpoint {
+ 						remote-endpoint = <&csi2cru>;
+ 					};
+ 				};
+@@ -755,12 +747,9 @@ port@0 {
+ 				};
+ 
+ 				port@1 {
+-					#address-cells = <1>;
+-					#size-cells = <0>;
+ 					reg = <1>;
+ 
+-					csi2cru: endpoint@0 {
+-						reg = <0>;
++					csi2cru: endpoint {
+ 						remote-endpoint = <&crucsi2>;
+ 					};
+ 				};
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
+index e89bfe4085f5..f37034d136b2 100644
+--- a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
+@@ -715,22 +715,14 @@ ports {
+ 				#size-cells = <0>;
+ 
+ 				port@0 {
+-					#address-cells = <1>;
+-					#size-cells = <0>;
+-
+ 					reg = <0>;
+-					cruparallel: endpoint@0 {
+-						reg = <0>;
++					cruparallel: endpoint {
+ 					};
+ 				};
+ 
+ 				port@1 {
+-					#address-cells = <1>;
+-					#size-cells = <0>;
+-
+ 					reg = <1>;
+-					crucsi2: endpoint@0 {
+-						reg = <0>;
++					crucsi2: endpoint {
+ 						remote-endpoint = <&csi2cru>;
+ 					};
+ 				};
+@@ -760,12 +752,8 @@ port@0 {
+ 				};
+ 
+ 				port@1 {
+-					#address-cells = <1>;
+-					#size-cells = <0>;
+ 					reg = <1>;
+-
+-					csi2cru: endpoint@0 {
+-						reg = <0>;
++					csi2cru: endpoint {
+ 						remote-endpoint = <&crucsi2>;
+ 					};
+ 				};
+-- 
+2.25.1
 
 
