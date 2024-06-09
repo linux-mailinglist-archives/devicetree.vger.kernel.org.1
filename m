@@ -1,94 +1,82 @@
-Return-Path: <devicetree+bounces-73945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C41DE901779
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 20:22:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCBCB9017AF
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 20:26:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48D7E2815B9
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 18:22:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6817B1F212A1
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 18:26:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2833457C8E;
-	Sun,  9 Jun 2024 18:21:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EB4278C97;
+	Sun,  9 Jun 2024 18:23:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ABcuWkEb"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Wzy7dMNm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3719755C29;
-	Sun,  9 Jun 2024 18:21:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0CE47603F;
+	Sun,  9 Jun 2024 18:22:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717957309; cv=none; b=ioXBzWeQxSLDEmFnsicgOFI86evUaVP8bHsG88YPdSUmg3jNkiH99CJCLzsAIx+UEiQkco/EGNRCFKYMqSv7Q52X+K3ETAKyFtyX+jIhlmpPXx/Hn/2udfVa625gGkKDehxK1rl/Sx8pHDjHWci3kSIyUUu//5asFJHNFUsHl4A=
+	t=1717957381; cv=none; b=Oq5CwOxZgMHkITt4y5zoMgxF12UAq7A5Qq/e0X7EltVVvYThMP6qAWqs6m98dwgGx55htMB2dMB7GEm0vsw4UfPEj61je7F5MuksEWZ7+fnU9+iPpyTmNfd77SYcw1WW8bcDj2s+uqwrHmmcagQh0HEJ8oRZG0zBjzIi4VOmvSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717957309; c=relaxed/simple;
-	bh=f/MWTHna41N+m8Wn2onK20Tl7PJEkpPFvxTr2WP4e4E=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=LiFyaLFQ/YqhsPf7AbFxD1QPZOCZENGdm/m8UKKb37Wprd2ydnDXapio8hgPrEtiuH9vRvi7y2o4Cl8bKRZmyadapw4126Smy+yiyRO4DYQbxbJCizH4Z932H86M7YDg3kM2KeCHcJYEENeRJjWV3etPvUnSWP8t2Im7BqYVjCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ABcuWkEb; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2eaea28868dso26760761fa.3;
-        Sun, 09 Jun 2024 11:21:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717957305; x=1718562105; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jCBOXlxAW6upddldnr67f5IFSYPd/pFRqdVbEJi1GYc=;
-        b=ABcuWkEbxvtnEjxJyZkfeZzTjKtYj7rw4+PpHQoqD9aLOsQLVqUuBr6nlM6Ynfeg/L
-         o0Zkvl8mkyIMmjmku/Mq8Kb6QHFktwGloF1xIe2bcMTCal6Bicco+sAujTGckx5nfmzm
-         52nqcSrDdcqJt3xcgK9Zqq4UStYam2MByJqub6Rj0lifgsYYq8ufe2xO7CYCkNZWhTNt
-         +B9XscElos6Wf+v0dl1vny/tfjA7ss+DrctiRApvJgAwAkidzMpnqABjzHwOFUfIgrSS
-         e6wW4izXZmSWex9PiW99R16udMLzy+RAvgU4aFzy8XFjXxEaRWUqU/adDMw57eIMLoBD
-         SsfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717957305; x=1718562105;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jCBOXlxAW6upddldnr67f5IFSYPd/pFRqdVbEJi1GYc=;
-        b=q49wnCNYu5JqcXNqXzm7qFsLvZPer3ESwjPTRiBWJYr+2z01VkSlLHgBrWiqARz60S
-         a/SqzqnzzJk5/oBi5ZyuY0Q+dWhNAOxn9vv4KtOxBmC72oAqhTkDbGX7CpyFhcgw7iJ2
-         i/1ZVSdarsrd5RRe/IRU9vdLMNTasYQ7939d6z6jYoyBAR1v50LLuB0qTys3+XEhd1/7
-         oMvEL0SZAcDPaEO7xGtAfZqRDGT6F0clLfdpuem4SF3XYqCkSy4m2gYpTIgsAgikfPV2
-         oZ1Tbo3uJiF60611qLsQeNxPA7KI5C90UUWOGw68hUL26zFxGbS3Gh62+91M4aOC11fE
-         HFzA==
-X-Forwarded-Encrypted: i=1; AJvYcCVMjA10Wh/Ksi7ioch8mcIPMOB/Wgz8m4IZrCLuwbkt4H1IoG70La5IieKSQKGl3VLjjmFJZdVq1NUp1ADHu69hkXIRaKS1tHygW20QOuHaK1HKj1N+pqcJhWNLL9UGfZKQLkE/KPx6AgXGnc/eD3/4UVbcVTrW2j5vTPk7BaXbdVAzywrQ67AAeeCHOSN90mgz+Q6L+epCqRcr37YaORPj7w==
-X-Gm-Message-State: AOJu0YxR12q6j09OpGQYUwW3oQFbpLw1EcBuL9RJXUtTn2WvVAR6tlzM
-	pA9uRf/jIv82o+7LeRB0FCTebViJuBxim932V0YfJukaC+Pc1EmdkpsNjkxr
-X-Google-Smtp-Source: AGHT+IFtjLblw6xgI0MyRtm6az8wi4JLU273QHrzWh7VUVSlInRZRTZeRYIJOdJdlIPs+OJLyPxPjQ==
-X-Received: by 2002:a2e:9149:0:b0:2ea:ea79:4fa4 with SMTP id 38308e7fff4ca-2eaea7951a2mr46258431fa.30.1717957304493;
-        Sun, 09 Jun 2024 11:21:44 -0700 (PDT)
-Received: from localhost.localdomain (bza83.neoplus.adsl.tpnet.pl. [83.30.46.83])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ebd5a63bf2sm6679841fa.33.2024.06.09.11.21.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 09 Jun 2024 11:21:43 -0700 (PDT)
-From: Adam Skladowski <a39.skl@gmail.com>
-To: 
-Cc: phone-devel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht,
-	Adam Skladowski <a39.skl@gmail.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Georgi Djakov <djakov@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 5/7] interconnect: qcom: qcs404: Introduce AP-owned nodes
-Date: Sun,  9 Jun 2024 20:20:58 +0200
-Message-Id: <20240609182112.13032-6-a39.skl@gmail.com>
+	s=arc-20240116; t=1717957381; c=relaxed/simple;
+	bh=i8K3Ux3Z/cBupX2WMMCK5fZqPW621c1mS4TOzZjAAWE=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=h+YSDgBvCg1te7OZRt4R0oPxUPCM22Byf0h9uCMku9870VCNum0wfjJAbs4XfO35ROGxgSrM/JOKRgz9PbC38kYE5xLH7ITok76dx1fsmxqArrl1JzKjg3DbgrFAyw0yktXDptYJrpL+wtI/ajG4gawwpcuHc5g0XV+94TF7P5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Wzy7dMNm; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 459IMpvT075158;
+	Sun, 9 Jun 2024 13:22:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1717957371;
+	bh=YKpb1uxx/sJKyGxHuWsphCI/VgLTO2hem/+/azo+pdE=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=Wzy7dMNmyPBtiNn85Lh9eb9PGSouacVQeWms1E6PiPF3x5z6NWOM5BdJQBDK4VYvw
+	 MKUJX81gU2EaUxJh3ZVSC+qiFTCYMIRLzCU5PX5MI05A5lyTaB/XB/fce8nj1fsKUd
+	 vY+tFxO1dBHk0Yp1RHg4VLBoIF7XzG7DiVRa7nr8=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 459IMpKn053617
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sun, 9 Jun 2024 13:22:51 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 9
+ Jun 2024 13:22:51 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sun, 9 Jun 2024 13:22:51 -0500
+Received: from localhost (uda0389739.dhcp.ti.com [137.167.1.114])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 459IMoBo067823;
+	Sun, 9 Jun 2024 13:22:50 -0500
+From: <michael.nemanov@ti.com>
+To: Sabeeh Khan <sabeeh-khan@ti.com>, Kalle Valo <kvalo@kernel.org>,
+        Johannes
+ Berg <johannes.berg@intel.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-wireless@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Michael Nemanov
+	<Michael.Nemanov@ti.com>
+Subject: [PATCH v2 14/17] wifi: cc33xx: Add ps.c, ps.h
+Date: Sun, 9 Jun 2024 21:20:59 +0300
+Message-ID: <20240609182102.2950457-15-michael.nemanov@ti.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240609182112.13032-1-a39.skl@gmail.com>
-References: <20240609182112.13032-1-a39.skl@gmail.com>
+In-Reply-To: <20240609182102.2950457-1-michael.nemanov@ti.com>
+References: <20240609182102.2950457-1-michael.nemanov@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,280 +84,166 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-When driver was first sent it seems ap_owned nodes were not available,
-bring them now.
+From: Michael Nemanov <Michael.Nemanov@ti.com>
 
-Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
+80211 power-save modes are handled automictically by HW but
+can be overridden here.
 ---
- drivers/interconnect/qcom/qcs404.c | 85 ++++++++++++++++++++++++++++++
- 1 file changed, 85 insertions(+)
+ drivers/net/wireless/ti/cc33xx/ps.c | 117 ++++++++++++++++++++++++++++
+ drivers/net/wireless/ti/cc33xx/ps.h |  16 ++++
+ 2 files changed, 133 insertions(+)
+ create mode 100644 drivers/net/wireless/ti/cc33xx/ps.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/ps.h
 
-diff --git a/drivers/interconnect/qcom/qcs404.c b/drivers/interconnect/qcom/qcs404.c
-index 11b49a89c03d..91b2ccc56a33 100644
---- a/drivers/interconnect/qcom/qcs404.c
-+++ b/drivers/interconnect/qcom/qcs404.c
-@@ -101,6 +101,11 @@ static struct qcom_icc_node mas_apps_proc = {
- 	.buswidth = 8,
- 	.mas_rpm_id = 0,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_FIXED,
-+	.qos.areq_prio = 0,
-+	.qos.prio_level = 0,
-+	.qos.qos_port = 0,
- 	.num_links = ARRAY_SIZE(mas_apps_proc_links),
- 	.links = mas_apps_proc_links,
- };
-@@ -116,6 +121,11 @@ static struct qcom_icc_node mas_oxili = {
- 	.buswidth = 8,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_FIXED,
-+	.qos.areq_prio = 0,
-+	.qos.prio_level = 0,
-+	.qos.qos_port = 2,
- 	.num_links = ARRAY_SIZE(mas_oxili_links),
- 	.links = mas_oxili_links,
- };
-@@ -131,6 +141,11 @@ static struct qcom_icc_node mas_mdp = {
- 	.buswidth = 8,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_FIXED,
-+	.qos.areq_prio = 0,
-+	.qos.prio_level = 1,
-+	.qos.qos_port = 4,
- 	.num_links = ARRAY_SIZE(mas_mdp_links),
- 	.links = mas_mdp_links,
- };
-@@ -145,6 +160,10 @@ static struct qcom_icc_node mas_snoc_bimc_1 = {
- 	.buswidth = 8,
- 	.mas_rpm_id = 76,
- 	.slv_rpm_id = -1,
-+	.qos.qos_mode = NOC_QOS_MODE_BYPASS,
-+	.qos.areq_prio = 0,
-+	.qos.prio_level = 0,
-+	.qos.qos_port = 5,
- 	.num_links = ARRAY_SIZE(mas_snoc_bimc_1_links),
- 	.links = mas_snoc_bimc_1_links,
- };
-@@ -160,6 +179,11 @@ static struct qcom_icc_node mas_tcu_0 = {
- 	.buswidth = 8,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_FIXED,
-+	.qos.areq_prio = 0,
-+	.qos.prio_level = 2,
-+	.qos.qos_port = 6,
- 	.num_links = ARRAY_SIZE(mas_tcu_0_links),
- 	.links = mas_tcu_0_links,
- };
-@@ -174,6 +198,8 @@ static struct qcom_icc_node mas_spdm = {
- 	.buswidth = 4,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_INVALID,
- 	.num_links = ARRAY_SIZE(mas_spdm_links),
- 	.links = mas_spdm_links,
- };
-@@ -231,6 +257,11 @@ static struct qcom_icc_node mas_crypto = {
- 	.buswidth = 8,
- 	.mas_rpm_id = 23,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_FIXED,
-+	.qos.areq_prio = 1,
-+	.qos.prio_level = 1,
-+	.qos.qos_port = 0,
- 	.num_links = ARRAY_SIZE(mas_crypto_links),
- 	.links = mas_crypto_links,
- };
-@@ -287,6 +318,11 @@ static struct qcom_icc_node mas_qpic = {
- 	.buswidth = 4,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_FIXED,
-+	.qos.areq_prio = 1,
-+	.qos.prio_level = 1,
-+	.qos.qos_port = 14,
- 	.num_links = ARRAY_SIZE(mas_qpic_links),
- 	.links = mas_qpic_links,
- };
-@@ -301,6 +337,11 @@ static struct qcom_icc_node mas_qdss_bam = {
- 	.buswidth = 4,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_FIXED,
-+	.qos.areq_prio = 1,
-+	.qos.prio_level = 1,
-+	.qos.qos_port = 1,
- 	.num_links = ARRAY_SIZE(mas_qdss_bam_links),
- 	.links = mas_qdss_bam_links,
- };
-@@ -348,6 +389,11 @@ static struct qcom_icc_node mas_qdss_etr = {
- 	.buswidth = 8,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_FIXED,
-+	.qos.areq_prio = 1,
-+	.qos.prio_level = 1,
-+	.qos.qos_port = 0,
- 	.num_links = ARRAY_SIZE(mas_qdss_etr_links),
- 	.links = mas_qdss_etr_links,
- };
-@@ -363,6 +409,11 @@ static struct qcom_icc_node mas_emac = {
- 	.buswidth = 8,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_FIXED,
-+	.qos.areq_prio = 1,
-+	.qos.prio_level = 1,
-+	.qos.qos_port = 17,
- 	.num_links = ARRAY_SIZE(mas_emac_links),
- 	.links = mas_emac_links,
- };
-@@ -378,6 +429,11 @@ static struct qcom_icc_node mas_pcie = {
- 	.buswidth = 8,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_FIXED,
-+	.qos.areq_prio = 1,
-+	.qos.prio_level = 1,
-+	.qos.qos_port = 8,
- 	.num_links = ARRAY_SIZE(mas_pcie_links),
- 	.links = mas_pcie_links,
- };
-@@ -393,6 +449,11 @@ static struct qcom_icc_node mas_usb3 = {
- 	.buswidth = 8,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_FIXED,
-+	.qos.areq_prio = 1,
-+	.qos.prio_level = 1,
-+	.qos.qos_port = 16,
- 	.num_links = ARRAY_SIZE(mas_usb3_links),
- 	.links = mas_usb3_links,
- };
-@@ -491,6 +552,8 @@ static struct qcom_icc_node pcnoc_s_2 = {
- 	.buswidth = 4,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_INVALID,
- 	.num_links = ARRAY_SIZE(pcnoc_s_2_links),
- 	.links = pcnoc_s_2_links,
- };
-@@ -626,6 +689,8 @@ static struct qcom_icc_node qdss_int = {
- 	.buswidth = 8,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_INVALID,
- 	.num_links = ARRAY_SIZE(qdss_int_links),
- 	.links = qdss_int_links,
- };
-@@ -704,6 +769,8 @@ static struct qcom_icc_node slv_spdm = {
- 	.buswidth = 4,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_INVALID,
- };
- 
- static struct qcom_icc_node slv_pdm = {
-@@ -752,6 +819,8 @@ static struct qcom_icc_node slv_disp_ss_cfg = {
- 	.buswidth = 4,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_INVALID,
- };
- 
- static struct qcom_icc_node slv_gpu_cfg = {
-@@ -760,6 +829,8 @@ static struct qcom_icc_node slv_gpu_cfg = {
- 	.buswidth = 4,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_INVALID,
- };
- 
- static struct qcom_icc_node slv_blsp_1 = {
-@@ -784,6 +855,8 @@ static struct qcom_icc_node slv_pcie = {
- 	.buswidth = 4,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_INVALID,
- };
- 
- static struct qcom_icc_node slv_ethernet = {
-@@ -792,6 +865,8 @@ static struct qcom_icc_node slv_ethernet = {
- 	.buswidth = 4,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_INVALID,
- };
- 
- static struct qcom_icc_node slv_blsp_2 = {
-@@ -816,6 +891,8 @@ static struct qcom_icc_node slv_tcu = {
- 	.buswidth = 8,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_INVALID,
- };
- 
- static struct qcom_icc_node slv_pmic_arb = {
-@@ -894,6 +971,8 @@ static struct qcom_icc_node slv_kpss_ahb = {
- 	.buswidth = 4,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_INVALID,
- };
- 
- static struct qcom_icc_node slv_wcss = {
-@@ -954,6 +1033,8 @@ static struct qcom_icc_node slv_cats_0 = {
- 	.buswidth = 16,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_INVALID,
- };
- 
- static struct qcom_icc_node slv_cats_1 = {
-@@ -962,6 +1043,8 @@ static struct qcom_icc_node slv_cats_1 = {
- 	.buswidth = 8,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_INVALID,
- };
- 
- static struct qcom_icc_node slv_lpass = {
-@@ -970,6 +1053,8 @@ static struct qcom_icc_node slv_lpass = {
- 	.buswidth = 4,
- 	.mas_rpm_id = -1,
- 	.slv_rpm_id = -1,
-+	.qos.ap_owned = true,
-+	.qos.qos_mode = NOC_QOS_MODE_INVALID,
- };
- 
- static struct qcom_icc_node * const qcs404_bimc_nodes[] = {
+diff --git a/drivers/net/wireless/ti/cc33xx/ps.c b/drivers/net/wireless/ti/cc33xx/ps.c
+new file mode 100644
+index 000000000000..e708ef8d5f46
+--- /dev/null
++++ b/drivers/net/wireless/ti/cc33xx/ps.c
+@@ -0,0 +1,117 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright (C) 2022-2024 Texas Instruments Incorporated - https://www.ti.com/
++ */
++
++#include "ps.h"
++#include "tx.h"
++#include "debug.h"
++
++int cc33xx_ps_set_mode(struct cc33xx *cc, struct cc33xx_vif *wlvif,
++		       enum cc33xx_cmd_ps_mode_e mode)
++{
++	int ret;
++	u16 timeout = cc->conf.host_conf.conn.dynamic_ps_timeout;
++
++	switch (mode) {
++	case STATION_AUTO_PS_MODE:
++	case STATION_POWER_SAVE_MODE:
++		cc33xx_debug(DEBUG_PSM, "entering psm (mode=%d,timeout=%u)",
++			     mode, timeout);
++
++		ret = cc33xx_cmd_ps_mode(cc, wlvif, mode, timeout);
++		if (ret < 0)
++			return ret;
++
++		set_bit(WLVIF_FLAG_IN_PS, &wlvif->flags);
++		break;
++
++	case STATION_ACTIVE_MODE:
++		cc33xx_debug(DEBUG_PSM, "leaving psm");
++
++		ret = cc33xx_cmd_ps_mode(cc, wlvif, mode, 0);
++		if (ret < 0)
++			return ret;
++
++		clear_bit(WLVIF_FLAG_IN_PS, &wlvif->flags);
++		break;
++
++	default:
++		cc33xx_warning("trying to set ps to unsupported mode %d", mode);
++		ret = -EINVAL;
++	}
++
++	return ret;
++}
++
++static void cc33xx_ps_filter_frames(struct cc33xx *cc, u8 hlid)
++{
++	int i;
++	struct sk_buff *skb;
++	struct ieee80211_tx_info *info;
++	unsigned long flags;
++	int filtered[NUM_TX_QUEUES];
++	struct cc33xx_link *lnk = &cc->links[hlid];
++
++	/* filter all frames currently in the low level queues for this hlid */
++	for (i = 0; i < NUM_TX_QUEUES; i++) {
++		filtered[i] = 0;
++		while ((skb = skb_dequeue(&lnk->tx_queue[i]))) {
++			filtered[i]++;
++
++			if (WARN_ON(cc33xx_is_dummy_packet(cc, skb)))
++				continue;
++
++			info = IEEE80211_SKB_CB(skb);
++			info->flags |= IEEE80211_TX_STAT_TX_FILTERED;
++			info->status.rates[0].idx = -1;
++			ieee80211_tx_status_ni(cc->hw, skb);
++		}
++	}
++
++	spin_lock_irqsave(&cc->cc_lock, flags);
++	for (i = 0; i < NUM_TX_QUEUES; i++) {
++		cc->tx_queue_count[i] -= filtered[i];
++		if (lnk->wlvif)
++			lnk->wlvif->tx_queue_count[i] -= filtered[i];
++	}
++
++	spin_unlock_irqrestore(&cc->cc_lock, flags);
++	cc33xx_handle_tx_low_watermark(cc);
++}
++
++void cc33xx_ps_link_start(struct cc33xx *cc, struct cc33xx_vif *wlvif,
++			  u8 hlid, bool clean_queues)
++{
++	struct ieee80211_sta *sta;
++	struct ieee80211_vif *vif = cc33xx_wlvif_to_vif(wlvif);
++
++	if (WARN_ON_ONCE(wlvif->bss_type != BSS_TYPE_AP_BSS))
++		return;
++
++	if (!test_bit(hlid, wlvif->ap.sta_hlid_map) ||
++	    test_bit(hlid, &cc->ap_ps_map))
++		return;
++
++	cc33xx_debug(DEBUG_PSM,
++		     "start mac80211 PSM on hlid %d pkts %d clean_queues %d",
++		     hlid, cc->links[hlid].allocated_pkts, clean_queues);
++
++	rcu_read_lock();
++	sta = ieee80211_find_sta(vif, cc->links[hlid].addr);
++	if (!sta) {
++		cc33xx_error("could not find sta %pM for starting ps",
++			     cc->links[hlid].addr);
++		rcu_read_unlock();
++		return;
++	}
++
++	ieee80211_sta_ps_transition_ni(sta, true);
++	rcu_read_unlock();
++
++	/* do we want to filter all frames from this link's queues? */
++	if (clean_queues)
++		cc33xx_ps_filter_frames(cc, hlid);
++
++	__set_bit(hlid, &cc->ap_ps_map);
++}
+diff --git a/drivers/net/wireless/ti/cc33xx/ps.h b/drivers/net/wireless/ti/cc33xx/ps.h
+new file mode 100644
+index 000000000000..47f65b684b52
+--- /dev/null
++++ b/drivers/net/wireless/ti/cc33xx/ps.h
+@@ -0,0 +1,16 @@
++/* SPDX-License-Identifier: GPL-2.0-only
++ *
++ * Copyright (C) 2022-2024 Texas Instruments Incorporated - https://www.ti.com/
++ */
++
++#ifndef __PS_H__
++#define __PS_H__
++
++#include "acx.h"
++
++int cc33xx_ps_set_mode(struct cc33xx *cc, struct cc33xx_vif *wlvif,
++		       enum cc33xx_cmd_ps_mode_e mode);
++void cc33xx_ps_link_start(struct cc33xx *cc, struct cc33xx_vif *wlvif,
++			  u8 hlid, bool clean_queues);
++
++#endif /* __PS_H__ */
 -- 
-2.45.1
+2.25.1
 
 
