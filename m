@@ -1,82 +1,94 @@
-Return-Path: <devicetree+bounces-73954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BD7E9017A4
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 20:25:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A85B90176E
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 20:22:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8341283CEB
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 18:25:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9DD821F2125A
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jun 2024 18:22:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6C8D770E7;
-	Sun,  9 Jun 2024 18:22:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C97364CB35;
+	Sun,  9 Jun 2024 18:21:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MD3Nr7nd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kycPeJE1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7619B7406D;
-	Sun,  9 Jun 2024 18:22:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBF4C4E1DD;
+	Sun,  9 Jun 2024 18:21:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717957379; cv=none; b=O1sVHQ+6jjPIjD4DRNjIcwinY0azCUVekJV/R5wmCfjTRt9Kgw/A/51ynERh1YufRudTs4ATk5uq+IR8j3lrDmDzMsXhryusYrFcEJliM3LlQg1BZEBVp0T9sZjS5LoYz8ePnZZen++/6yEt7JBqbUZTM4BF1LPPwXdFVfYp/Sk=
+	t=1717957299; cv=none; b=SQZhp23rvEjsvb7aSRXBwsUO66plmivP1fqxueFCjUu3lImMFBueWn0OjGCJ9/0X9u1Y78w7yrl45w8UiIxDlPesx2oxuWz69FZHkEcmgAijPpFlFUiHXYxcNALIgElsl+XyFcWDRzfLYcOKoXI3KJUdRkOTVOAkm0FuJ4HnCjM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717957379; c=relaxed/simple;
-	bh=muBmN1226zJl8fTqaCDPFRJ4kxWik6pw6zoeM/rM/X8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IrsfGrsGL63xbbL5sszouay4/pgC3hVBrq8u+wkFbzSuFQ3qarrWWhQqUTPNzgSKvZorTrXroSL5HJW7dmZEJtR7aPimL++4j8q9OL2HPFeCzLx8/4SyqZnVNqijHCUpPNA1S2cROmTQtueAeJ5GpjxwWtbyZBNfcO+RtCz1Vvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=MD3Nr7nd; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 459IMirL075125;
-	Sun, 9 Jun 2024 13:22:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1717957364;
-	bh=JuiOqzvwWEdGtM1iM7NryaiyTVAN6BYzcnNFJTeuRqk=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=MD3Nr7ndr95boVT6+0M66ecTJXTkp7UWaYuXr9sIhkr3r2GDZbKgHWJolck8VKuSz
-	 tPtxd8iVYlhztUEnoh81QEvytaJsssoAXfhWhQuSmWKOXIVkASOEssAhc3wuUY0E75
-	 vYvaum/oX1DQjIim1DGtwBduW/b0kP1ahLLHp3nI=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 459IMiDR035494
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 9 Jun 2024 13:22:44 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 9
- Jun 2024 13:22:44 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 9 Jun 2024 13:22:44 -0500
-Received: from localhost (uda0389739.dhcp.ti.com [137.167.1.114])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 459IMhRl034653;
-	Sun, 9 Jun 2024 13:22:43 -0500
-From: <michael.nemanov@ti.com>
-To: Sabeeh Khan <sabeeh-khan@ti.com>, Kalle Valo <kvalo@kernel.org>,
-        Johannes
- Berg <johannes.berg@intel.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo
- Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-wireless@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Michael Nemanov
-	<Michael.Nemanov@ti.com>
-Subject: [PATCH v2 09/17] wifi: cc33xx: Add rx.c, rx.h
-Date: Sun, 9 Jun 2024 21:20:54 +0300
-Message-ID: <20240609182102.2950457-10-michael.nemanov@ti.com>
+	s=arc-20240116; t=1717957299; c=relaxed/simple;
+	bh=+5O1b/i/8tDwgoR9Cqo9/bOGnsniRmkxUrs/5UoCjqY=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=sKJIQQ1oikx4YK0RR6nqwF4jme79/IlVG6XgQtLKHUR8GzlTIkthkJ0NApmPNO1XK8zr46Ssy6b2JDSIhhcic+va0bCZmXa+QwGAI7cAxXr0RmLKjcgj4b+jB+FaG/YoJJkNsvBTTvcLzaO4OOKbDoPM/GeS/h27fYyl3RYyTqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kycPeJE1; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2ebdfe26242so6941381fa.0;
+        Sun, 09 Jun 2024 11:21:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717957294; x=1718562094; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Unn+F2JO82P04Foors1mfVBh/1gXnl9g0g5LXf777aY=;
+        b=kycPeJE1bD3U/qqbpB+MDompvD5XrZd73Nulwqn6HFtPgpEKd94nomSvLFhzvwDtTd
+         zb5FTNX6PMZUIcaAokGg1CS5Zbpa3lafEP4JKeKtZ99aP700niUrR+xu6+4MLtupP7iv
+         fWNpB42UR/K82QBbT/3LFLK8FFYx6ne+x0zwmV87R34PGafXWfWI8CxAWHeS54TuNFWo
+         RksnQSUJrgDpBtt7UXUfHTH53iW7E3HQ1OEOm9xSk5VSrViS/sEeQjiDsP0qtDOpdV8x
+         qMYcYVoljA/myosoXVcK/n2G06URi2B2H9ZuqgxfUEsmdfpNSvj/hq2RvIJ2sRYluu3Y
+         mP1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717957294; x=1718562094;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Unn+F2JO82P04Foors1mfVBh/1gXnl9g0g5LXf777aY=;
+        b=eyqf3obQu4QcZ4Nf+8oTLUgp5ern1ludLYeIL65556Lq5OwqjESXRmUTuXqWyq1LO2
+         ImKcoNop4DbO5fl8FgVu2pJ2bJ2mleNfUQrZBHVlNhLQH7qaV/ulVXtjnhqEBjvI5Mfh
+         NVxh+uPLOHaZSmmbUVeUVyhKtJ+Wfb+6K9dM5TZL7VjF/wsfBVpR6lxr/KAIs71izJNb
+         doo2N2z9jTkjb7ms50adYQlL2FJyqAyMGCNK4hkjFlVp4zeOcl3vu405Shvynk/ifHZj
+         TcldWYSM6sUIPFOs1qzk0wpittQzk5Bi+ZtIY5pg5RDdH2OM0Oo6YR4RGxHhXFJ5dIF2
+         9BQA==
+X-Forwarded-Encrypted: i=1; AJvYcCWFPS/LbhkTUBKGKFNUS10BwPYE4mjV8Mg6xoM8fFQkhplhexfDnsKRKnS7ov5/yMwqQBm2bs9Hg37capmIx4WZhaanZo8N3u73lrpCul9dARGFFwpYpmjB5HGVL8wMXL2HRGdn6y2laIaj/MQQZgVCjSkHM9CdtyW+/xUhwyg8zVOVqU9zhXwj6HRE19H/dnueByMZ6tuRGRsOZaSVRIKGfg==
+X-Gm-Message-State: AOJu0YxEp4RnxhF45yEMj0OhAda8yJhJbOhntKOo0ill605EHkaEQkVm
+	EuoUTP2XZqfp4JCdnhyOm4B9SE5qcYr/47g1X7jVw3vGaTdFmWApd9RzMqob
+X-Google-Smtp-Source: AGHT+IEBp7RdSB12T6LGTgtmLvEMAdet2eQkYa7dieAZu0RQGn1fk8JZuWVG+mOO7+8EtIEvLyQfcw==
+X-Received: by 2002:a2e:a548:0:b0:2eb:e45d:686a with SMTP id 38308e7fff4ca-2ebe45d7eb2mr13319391fa.50.1717957293860;
+        Sun, 09 Jun 2024 11:21:33 -0700 (PDT)
+Received: from localhost.localdomain (bza83.neoplus.adsl.tpnet.pl. [83.30.46.83])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ebd5a63bf2sm6679841fa.33.2024.06.09.11.21.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 Jun 2024 11:21:33 -0700 (PDT)
+From: Adam Skladowski <a39.skl@gmail.com>
+To: 
+Cc: phone-devel@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht,
+	Adam Skladowski <a39.skl@gmail.com>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Georgi Djakov <djakov@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 2/7] interconnect: qcom: Add MSM8976 interconnect provider driver
+Date: Sun,  9 Jun 2024 20:20:55 +0200
+Message-Id: <20240609182112.13032-3-a39.skl@gmail.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240609182102.2950457-1-michael.nemanov@ti.com>
-References: <20240609182102.2950457-1-michael.nemanov@ti.com>
+In-Reply-To: <20240609182112.13032-1-a39.skl@gmail.com>
+References: <20240609182112.13032-1-a39.skl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,517 +96,1509 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-From: Michael Nemanov <Michael.Nemanov@ti.com>
+Add driver for interconnect busses found in MSM8976 based platforms.
+The topology consists of four NoCs that are partially controlled
+by a RPM processor.
 
-Code that handles parsing raw Rx data buffer from HW and, splitting
-it in to SKBs and handing them to MAC80211.
-
-Rx handling starts at cc33xx_rx. Full SKBs are stored at
-cc->deferred_rx_queue from where they are handed to MAC80211 by calling
-cc->netstack_work (cc33xx_netstack_work @ main.c). This allows
-calling ieee80211_rx_ni while new data is being read from HW.
+Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
 ---
- drivers/net/wireless/ti/cc33xx/rx.c | 393 ++++++++++++++++++++++++++++
- drivers/net/wireless/ti/cc33xx/rx.h |  86 ++++++
- 2 files changed, 479 insertions(+)
- create mode 100644 drivers/net/wireless/ti/cc33xx/rx.c
- create mode 100644 drivers/net/wireless/ti/cc33xx/rx.h
+ drivers/interconnect/qcom/Kconfig   |    9 +
+ drivers/interconnect/qcom/Makefile  |    2 +
+ drivers/interconnect/qcom/msm8976.c | 1443 +++++++++++++++++++++++++++
+ 3 files changed, 1454 insertions(+)
+ create mode 100644 drivers/interconnect/qcom/msm8976.c
 
-diff --git a/drivers/net/wireless/ti/cc33xx/rx.c b/drivers/net/wireless/ti/cc33xx/rx.c
+diff --git a/drivers/interconnect/qcom/Kconfig b/drivers/interconnect/qcom/Kconfig
+index 1446a839184e..a0e9c09954ed 100644
+--- a/drivers/interconnect/qcom/Kconfig
++++ b/drivers/interconnect/qcom/Kconfig
+@@ -44,6 +44,15 @@ config INTERCONNECT_QCOM_MSM8974
+ 	 This is a driver for the Qualcomm Network-on-Chip on msm8974-based
+ 	 platforms.
+ 
++config INTERCONNECT_QCOM_MSM8976
++	tristate "Qualcomm MSM8976 interconnect driver"
++	depends on INTERCONNECT_QCOM
++	depends on QCOM_SMD_RPM
++	select INTERCONNECT_QCOM_SMD_RPM
++	help
++	 This is a driver for the Qualcomm Network-on-Chip on msm8976-based
++	 platforms.
++
+ config INTERCONNECT_QCOM_MSM8996
+ 	tristate "Qualcomm MSM8996 interconnect driver"
+ 	depends on INTERCONNECT_QCOM
+diff --git a/drivers/interconnect/qcom/Makefile b/drivers/interconnect/qcom/Makefile
+index 2ea3113d0a4d..21ce45438258 100644
+--- a/drivers/interconnect/qcom/Makefile
++++ b/drivers/interconnect/qcom/Makefile
+@@ -8,6 +8,7 @@ qnoc-msm8909-objs			:= msm8909.o
+ qnoc-msm8916-objs			:= msm8916.o
+ qnoc-msm8939-objs			:= msm8939.o
+ qnoc-msm8974-objs			:= msm8974.o
++qnoc-msm8976-objs			:= msm8976.o
+ qnoc-msm8996-objs			:= msm8996.o
+ icc-osm-l3-objs				:= osm-l3.o
+ qnoc-qcm2290-objs			:= qcm2290.o
+@@ -42,6 +43,7 @@ obj-$(CONFIG_INTERCONNECT_QCOM_MSM8909) += qnoc-msm8909.o
+ obj-$(CONFIG_INTERCONNECT_QCOM_MSM8916) += qnoc-msm8916.o
+ obj-$(CONFIG_INTERCONNECT_QCOM_MSM8939) += qnoc-msm8939.o
+ obj-$(CONFIG_INTERCONNECT_QCOM_MSM8974) += qnoc-msm8974.o
++obj-$(CONFIG_INTERCONNECT_QCOM_MSM8976) += qnoc-msm8976.o
+ obj-$(CONFIG_INTERCONNECT_QCOM_MSM8996) += qnoc-msm8996.o
+ obj-$(CONFIG_INTERCONNECT_QCOM_OSM_L3) += icc-osm-l3.o
+ obj-$(CONFIG_INTERCONNECT_QCOM_QCM2290) += qnoc-qcm2290.o
+diff --git a/drivers/interconnect/qcom/msm8976.c b/drivers/interconnect/qcom/msm8976.c
 new file mode 100644
-index 000000000000..e6467e1e223e
+index 000000000000..b6cefdf0fecb
 --- /dev/null
-+++ b/drivers/net/wireless/ti/cc33xx/rx.c
-@@ -0,0 +1,393 @@
++++ b/drivers/interconnect/qcom/msm8976.c
+@@ -0,0 +1,1443 @@
 +// SPDX-License-Identifier: GPL-2.0-only
 +/*
-+ * Copyright (C) 2022-2024 Texas Instruments Incorporated - https://www.ti.com/
++ * Based on data from msm8976-bus.dtsi in Qualcomm's msm-3.10 release:
++ *   Copyright (c) 2014-2016, The Linux Foundation. All rights reserved.
 + */
 +
-+#include "acx.h"
-+#include "rx.h"
-+#include "tx.h"
-+#include "io.h"
 +
-+#define RSSI_LEVEL_BITMASK	0x7F
-+#define ANT_DIVERSITY_BITMASK	BIT(7)
-+#define ANT_DIVERSITY_SHIFT		7
++#include <linux/device.h>
++#include <linux/interconnect-provider.h>
++#include <linux/mod_devicetable.h>
++#include <linux/module.h>
++#include <linux/platform_device.h>
++#include <linux/regmap.h>
 +
-+/* Construct the rx status structure for upper layers */
-+static void cc33xx_rx_status(struct cc33xx *cc,
-+			     struct cc33xx_rx_descriptor *desc,
-+			     struct ieee80211_rx_status *status,
-+			     u8 beacon, u8 probe_rsp)
-+{
-+	memset(status, 0, sizeof(struct ieee80211_rx_status));
 +
-+	if ((desc->flags & CC33XX_RX_DESC_BAND_MASK) == CC33XX_RX_DESC_BAND_BG)
-+		status->band = NL80211_BAND_2GHZ;
-+	else if ((desc->flags & CC33XX_RX_DESC_BAND_MASK) == CC33XX_RX_DESC_BAND_J)
-+		status->band = NL80211_BAND_2GHZ;
-+	else if ((desc->flags & CC33XX_RX_DESC_BAND_MASK) == CC33XX_RX_DESC_BAND_A)
-+		status->band = NL80211_BAND_5GHZ;
-+	else
-+		status->band = NL80211_BAND_5GHZ; /* todo -Should be 6GHZ when added */
++#include <dt-bindings/interconnect/qcom,msm8976.h>
 +
-+	status->rate_idx = cc33xx_rate_to_idx(cc, desc->rate, status->band);
++#include "icc-rpm.h"
 +
-+	if (desc->frame_format == CC33xx_VHT)
-+		status->encoding = RX_ENC_VHT;
-+	else if ((desc->frame_format == CC33xx_HT_MF) ||
-+		 (desc->frame_format == CC33xx_HT_GF))
-+		status->encoding = RX_ENC_HT;
-+	else if ((desc->frame_format == CC33xx_B_SHORT) ||
-+		 (desc->frame_format == CC33xx_B_LONG) ||
-+		(desc->frame_format == CC33xx_LEGACY_OFDM))
-+		status->encoding = RX_ENC_LEGACY;
-+	else
-+		status->encoding = RX_ENC_HE;
++static const char * const snoc_intf_clocks[] = {
++	"ipa", /* mas_ipa */
++};
 +
-+	/* Read the signal level and antenna diversity indication.
-+	 * The msb in the signal level is always set as it is a
-+	 * negative number.
-+	 * The antenna indication is the msb of the rssi.
-+	 */
-+	status->signal = ((desc->rssi & RSSI_LEVEL_BITMASK) | BIT(7));
-+	status->antenna = ((desc->rssi & ANT_DIVERSITY_BITMASK) >> ANT_DIVERSITY_SHIFT);
-+	status->freq = ieee80211_channel_to_frequency(desc->channel,
-+						      status->band);
-+
-+	if (desc->flags & CC33XX_RX_DESC_ENCRYPT_MASK) {
-+		u8 desc_err_code = desc->status & CC33XX_RX_DESC_STATUS_MASK;
-+
-+		/* Frame is sent to driver with the IV (for PN replay check)
-+		 * but without the MIC
-+		 */
-+		status->flag |=  RX_FLAG_MMIC_STRIPPED |
-+				 RX_FLAG_DECRYPTED | RX_FLAG_MIC_STRIPPED;
-+
-+		if (unlikely(desc_err_code & CC33XX_RX_DESC_MIC_FAIL)) {
-+			status->flag |= RX_FLAG_MMIC_ERROR;
-+			cc33xx_warning("Michael MIC error. Desc: 0x%x",
-+				       desc_err_code);
-+		}
-+	}
-+
-+	if (beacon || probe_rsp)
-+		status->boottime_ns = ktime_get_boottime_ns();
-+
-+	if (beacon)
-+		cc33xx_set_pending_regdomain_ch(cc, (u16)desc->channel,
-+						status->band);
-+	status->nss = 1;
-+}
-+
-+/* Copy part\ all of the descriptor. Allocate skb, or drop corrupted packet
-+ */
-+static int cc33xx_rx_get_packet_descriptor(struct cc33xx *cc, u8 *raw_buffer_ptr,
-+					   u16 *raw_buffer_len)
-+{
-+	u16 missing_desc_bytes;
-+	u16 available_desc_bytes;
-+	u16 pkt_data_len;
-+	struct sk_buff *skb;
-+	u16 prev_buffer_len = *raw_buffer_len;
-+
-+	missing_desc_bytes = sizeof(struct cc33xx_rx_descriptor);
-+	missing_desc_bytes -= cc->partial_rx.handled_bytes;
-+	available_desc_bytes = min(*raw_buffer_len, missing_desc_bytes);
-+	memcpy(((u8 *)(&cc->partial_rx.desc)) + cc->partial_rx.handled_bytes,
-+	       raw_buffer_ptr, available_desc_bytes);
-+
-+	/* If descriptor was not completed */
-+	if (available_desc_bytes != missing_desc_bytes) {
-+		cc->partial_rx.handled_bytes += *raw_buffer_len;
-+		cc->partial_rx.status = CURR_RX_DESC;
-+		*raw_buffer_len = 0;
-+		goto out;
-+	} else {
-+		cc->partial_rx.handled_bytes += available_desc_bytes;
-+		*raw_buffer_len -= available_desc_bytes;
-+	}
-+
-+	/* Descriptor was fully copied */
-+	pkt_data_len = cc->partial_rx.original_bytes;
-+	pkt_data_len -=	sizeof(struct cc33xx_rx_descriptor);
-+
-+	if (unlikely(cc->partial_rx.desc.status & CC33XX_RX_DESC_DECRYPT_FAIL)) {
-+		cc33xx_warning("corrupted packet in RX: status: 0x%x len: %d",
-+			       cc->partial_rx.desc.status & CC33XX_RX_DESC_STATUS_MASK,
-+			pkt_data_len);
-+
-+		/* If frame can be fully dropped */
-+		if (pkt_data_len <= *raw_buffer_len) {
-+			*raw_buffer_len -=  pkt_data_len;
-+			cc->partial_rx.status = CURR_RX_START;
-+		} else {
-+			cc->partial_rx.handled_bytes += *raw_buffer_len;
-+			cc->partial_rx.status = CURR_RX_DROP;
-+			*raw_buffer_len = 0;
-+		}
-+		goto out;
-+	}
-+
-+	skb = __dev_alloc_skb(pkt_data_len, GFP_KERNEL);
-+	if (!skb) {
-+		cc33xx_error("Couldn't allocate RX frame");
-+		/* If frame can be fully dropped */
-+		if (pkt_data_len <= *raw_buffer_len) {
-+			*raw_buffer_len -=  pkt_data_len;
-+			cc->partial_rx.status = CURR_RX_START;
-+		} else {
-+		/* Dropped partial frame */
-+			cc->partial_rx.handled_bytes += *raw_buffer_len;
-+			cc->partial_rx.status = CURR_RX_DROP;
-+			*raw_buffer_len = 0;
-+		}
-+		goto out;
-+	}
-+
-+	cc->partial_rx.skb = skb;
-+	cc->partial_rx.status = CURR_RX_DATA;
-+
-+out:
-+	/* Function return the amount of consumed bytes */
-+	return (prev_buffer_len - *raw_buffer_len);
-+}
-+
-+/* Copy part or all of the packet's data. push skb to queue if possible */
-+static int cc33xx_rx_get_packet_data(struct cc33xx *cc, u8 *raw_buffer_ptr,
-+				     u16 *raw_buffer_len)
-+{
-+	u16 missing_data_bytes;
-+	u16 available_data_bytes;
-+	u32 defer_count;
-+	enum cc33xx_rx_buf_align rx_align;
-+	u16 extra_bytes;
-+	struct ieee80211_hdr *hdr;
-+	u8 beacon = 0;
-+	u8 is_probe_resp = 0;
-+	u16 seq_num;
-+	u16 prev_buffer_len = *raw_buffer_len;
-+
-+	missing_data_bytes = cc->partial_rx.original_bytes;
-+	missing_data_bytes -= cc->partial_rx.handled_bytes;
-+	available_data_bytes = min(missing_data_bytes, *raw_buffer_len);
-+
-+	cc33xx_debug(DEBUG_RX, "current rx data: original bytes: %d, handled bytes %d, desc pad len %d, missing_data_bytes %d",
-+		     cc->partial_rx.original_bytes,
-+		     cc->partial_rx.handled_bytes,
-+		     cc->partial_rx.desc.pad_len, missing_data_bytes);
-+
-+	skb_put_data(cc->partial_rx.skb, raw_buffer_ptr, available_data_bytes);
-+
-+	/* Check if we didn't manage to copy the entire packet - got out,
-+	 * continue next time
-+	 */
-+	if (available_data_bytes != missing_data_bytes) {
-+		cc->partial_rx.handled_bytes += *raw_buffer_len;
-+		cc->partial_rx.status = CURR_RX_DATA;
-+		*raw_buffer_len = 0;
-+		goto out;
-+	} else {
-+		*raw_buffer_len -=  available_data_bytes;
-+	}
-+
-+	/* Data fully copied */
-+
-+	rx_align = cc->partial_rx.desc.header_alignment;
-+	if (rx_align == CC33XX_RX_BUF_PADDED)
-+		skb_pull(cc->partial_rx.skb, RX_BUF_ALIGN);
-+
-+	extra_bytes = cc->partial_rx.desc.pad_len;
-+	if (extra_bytes != 0)
-+		skb_trim(cc->partial_rx.skb,
-+			 cc->partial_rx.skb->len - extra_bytes);
-+
-+	hdr = (struct ieee80211_hdr *)cc->partial_rx.skb->data;
-+
-+	if (ieee80211_is_beacon(hdr->frame_control))
-+		beacon = 1;
-+	if (ieee80211_is_probe_resp(hdr->frame_control))
-+		is_probe_resp = 1;
-+
-+	cc33xx_rx_status(cc, &cc->partial_rx.desc,
-+			 IEEE80211_SKB_RXCB(cc->partial_rx.skb),
-+			 beacon, is_probe_resp);
-+
-+	seq_num = (le16_to_cpu(hdr->seq_ctrl) & IEEE80211_SCTL_SEQ) >> 4;
-+	cc33xx_debug(DEBUG_RX, "rx skb 0x%p: %d B %s seq %d link id %d",
-+		     cc->partial_rx.skb,
-+		     cc->partial_rx.skb->len - cc->partial_rx.desc.pad_len,
-+		     beacon ? "beacon" : "", seq_num, cc->partial_rx.desc.hlid);
-+
-+	cc33xx_debug(DEBUG_RX, "rx frame. frame type 0x%x, frame length 0x%x, frame address 0x%lx",
-+		     hdr->frame_control, cc->partial_rx.skb->len,
-+		     (unsigned long)cc->partial_rx.skb->data);
-+
-+	/* Adding frame to queue */
-+	skb_queue_tail(&cc->deferred_rx_queue, cc->partial_rx.skb);
-+	cc->rx_counter++;
-+	cc->partial_rx.status = CURR_RX_START;
-+
-+	/* Make sure the deferred queues don't get too long */
-+	defer_count = skb_queue_len(&cc->deferred_tx_queue);
-+	defer_count += skb_queue_len(&cc->deferred_rx_queue);
-+	if (defer_count >= CC33XX_RX_QUEUE_MAX_LEN)
-+		cc33xx_flush_deferred_work(cc);
-+	else
-+		queue_work(cc->freezable_netstack_wq, &cc->netstack_work);
-+
-+out:
-+	return (prev_buffer_len - *raw_buffer_len);
-+}
-+
-+static int cc33xx_rx_drop_packet_data(struct cc33xx *cc, u8 *raw_buffer_ptr,
-+				      u16 *raw_buffer_len)
-+{
-+	u16 prev_buffer_len = *raw_buffer_len;
-+
-+	/* Can we drop the entire frame ? */
-+	if (*raw_buffer_len >=
-+		(cc->partial_rx.original_bytes - cc->partial_rx.handled_bytes)) {
-+		*raw_buffer_len -= cc->partial_rx.original_bytes -
-+				cc->partial_rx.handled_bytes;
-+		cc->partial_rx.handled_bytes = 0;
-+		cc->partial_rx.status = CURR_RX_START;
-+	} else {
-+		cc->partial_rx.handled_bytes += *raw_buffer_len;
-+		*raw_buffer_len = 0;
-+	}
-+
-+	return (prev_buffer_len - *raw_buffer_len);
-+}
-+
-+/* Handle single packet from the RX buffer. We don't have to be aligned to
-+ * packet boundary (buffer may start \ end in the middle of packet)
-+ */
-+static void cc33xx_rx_handle_packet(struct cc33xx *cc, u8 *raw_buffer_ptr,
-+				    u16 *raw_buffer_len)
-+{
-+	struct cc33xx_rx_descriptor *desc;
-+	u16 consumed_bytes;
-+
-+	if (cc->partial_rx.status == CURR_RX_START) {
-+		WARN_ON(*raw_buffer_len < 2);
-+		desc = (struct cc33xx_rx_descriptor *)raw_buffer_ptr;
-+		cc->partial_rx.original_bytes = le16_to_cpu(desc->length);
-+		cc->partial_rx.handled_bytes = 0;
-+		cc->partial_rx.status = CURR_RX_DESC;
-+
-+		cc33xx_debug(DEBUG_RX, "rx frame. desc length 0x%x, alignment 0x%x, padding 0x%x",
-+			     desc->length, desc->header_alignment, desc->pad_len);
-+	}
-+
-+	/* start \ continue copy descriptor */
-+	if (cc->partial_rx.status == CURR_RX_DESC) {
-+		consumed_bytes = cc33xx_rx_get_packet_descriptor(cc,
-+								 raw_buffer_ptr,
-+								 raw_buffer_len);
-+		raw_buffer_ptr += consumed_bytes;
-+	}
-+
-+	/* Check if we are in the middle of dropped packet */
-+	if (unlikely(cc->partial_rx.status == CURR_RX_DROP)) {
-+		consumed_bytes = cc33xx_rx_drop_packet_data(cc, raw_buffer_ptr,
-+							    raw_buffer_len);
-+		raw_buffer_ptr += consumed_bytes;
-+	}
-+
-+	/* start \ continue copy descriptor */
-+	if (cc->partial_rx.status == CURR_RX_DATA) {
-+		consumed_bytes = cc33xx_rx_get_packet_data(cc, raw_buffer_ptr,
-+							   raw_buffer_len);
-+		raw_buffer_ptr += consumed_bytes;
-+	}
-+}
-+
-+/* It is assumed that SDIO buffer was read prior to this function (data buffer
-+ * is read along with the status). The RX function gets pointer to the RX data
-+ * and its length. This buffer may contain unknown number of packets, separated
-+ * by hif descriptor and 0-3 bytes padding if required.
-+ * The last packet may be truncated in the middle, and should be saved for next
-+ * iteration.
-+ */
-+int cc33xx_rx(struct cc33xx *cc, u8 *rx_buf_ptr, u16 rx_buf_len)
-+{
-+	u16 local_rx_buffer_len = rx_buf_len;
-+	u16 pkt_offset = 0;
-+	u16 consumed_bytes;
-+	u16 prev_rx_buf_len;
-+
-+	/* Split data into separate packets */
-+	while (local_rx_buffer_len > 0) {
-+		cc33xx_debug(DEBUG_RX, "start loop. buffer length %d",
-+			     local_rx_buffer_len);
-+
-+		/* the handle data call can only fail in memory-outage
-+		 * conditions, in that case the received frame will just
-+		 * be dropped.
-+		 */
-+		prev_rx_buf_len = local_rx_buffer_len;
-+		cc33xx_rx_handle_packet(cc, rx_buf_ptr + pkt_offset,
-+					&local_rx_buffer_len);
-+		consumed_bytes = prev_rx_buf_len - local_rx_buffer_len;
-+
-+		pkt_offset +=  consumed_bytes;
-+
-+		cc33xx_debug(DEBUG_RX, "end rx loop. buffer length %d, packet counter %d, current packet status %d",
-+			     local_rx_buffer_len, cc->rx_counter,
-+			     cc->partial_rx.status);
-+	}
-+
-+	return 0;
-+}
-+
-+#ifdef CONFIG_PM
-+int cc33xx_rx_filter_enable(struct cc33xx *cc, int index, bool enable,
-+			    struct cc33xx_rx_filter *filter)
-+{
-+	int ret;
-+
-+	if (!!test_bit(index, cc->rx_filter_enabled) == enable) {
-+		cc33xx_warning("Request to enable an already enabled rx filter %d",
-+			       index);
-+		return 0;
-+	}
-+
-+	ret = cc33xx_acx_set_rx_filter(cc, index, enable, filter);
-+
-+	if (ret) {
-+		cc33xx_error("Failed to %s rx data filter %d (err=%d)",
-+			     enable ? "enable" : "disable", index, ret);
-+		return ret;
-+	}
-+
-+	if (enable)
-+		__set_bit(index, cc->rx_filter_enabled);
-+	else
-+		__clear_bit(index, cc->rx_filter_enabled);
-+
-+	return 0;
-+}
-+
-+int cc33xx_rx_filter_clear_all(struct cc33xx *cc)
-+{
-+	int i, ret = 0;
-+
-+	for (i = 0; i < CC33XX_MAX_RX_FILTERS; i++) {
-+		if (!test_bit(i, cc->rx_filter_enabled))
-+			continue;
-+		ret = cc33xx_rx_filter_enable(cc, i, 0, NULL);
-+		if (ret)
-+			goto out;
-+	}
-+
-+out:
-+	return ret;
-+}
-+#else
-+int cc33xx_rx_filter_enable(struct cc33xx *cc, int index, bool enable,
-+			    struct cc33xx_rx_filter *filter)
-+{
-+	return 0;
-+}
-+
-+int cc33xx_rx_filter_clear_all(struct cc33xx *cc) { return 0; }
-+#endif /* CONFIG_PM */
-diff --git a/drivers/net/wireless/ti/cc33xx/rx.h b/drivers/net/wireless/ti/cc33xx/rx.h
-new file mode 100644
-index 000000000000..46ff6867749f
---- /dev/null
-+++ b/drivers/net/wireless/ti/cc33xx/rx.h
-@@ -0,0 +1,86 @@
-+/* SPDX-License-Identifier: GPL-2.0-only
-+ *
-+ * Copyright (C) 2022-2024 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+#ifndef __RX_H__
-+#define __RX_H__
-+
-+/* RX Descriptor flags:
-+ *
-+ * Bits 0-1 - band
-+ * Bit  2   - STBC
-+ * Bit  3   - A-MPDU
-+ * Bit  4   - HT
-+ * Bits 5-7 - encryption
-+ */
-+#define CC33XX_RX_DESC_BAND_MASK    0x03
-+#define CC33XX_RX_DESC_ENCRYPT_MASK 0xE0
-+
-+#define CC33XX_RX_DESC_BAND_BG      0x00
-+#define CC33XX_RX_DESC_BAND_J       0x01
-+#define CC33XX_RX_DESC_BAND_A       0x02
-+
-+/* RX Descriptor status
-+ *
-+ * Bits 0-2 - error code
-+ * Bits 3-5 - process_id tag (AP mode FW)
-+ * Bits 6-7 - reserved
-+ */
 +enum {
-+	CC33XX_RX_DESC_SUCCESS		= 0x00,
-+	CC33XX_RX_DESC_DECRYPT_FAIL	= 0x01,
-+	CC33XX_RX_DESC_MIC_FAIL		= 0x02,
-+	CC33XX_RX_DESC_STATUS_MASK	= 0x07
++	QNOC_MASTER_AMPSS_M0 = 1,
++	QNOC_MNOC_BIMC_MAS,
++	QNOC_SNOC_BIMC_MAS,
++	QNOC_MASTER_TCU_0,
++	QNOC_MASTER_USB_HS2,
++	QNOC_MASTER_BLSP_1,
++	QNOC_MASTER_USB_HS,
++	QNOC_MASTER_BLSP_2,
++	QNOC_MASTER_CRYPTO_CORE0,
++	QNOC_MASTER_SDCC_1,
++	QNOC_MASTER_SDCC_2,
++	QNOC_MASTER_SDCC_3,
++	QNOC_SNOC_PNOC_MAS,
++	QNOC_MASTER_LPASS_AHB,
++	QNOC_MASTER_SPDM,
++	QNOC_MASTER_DEHR,
++	QNOC_MASTER_XM_USB_HS1,
++	QNOC_MASTER_QDSS_BAM,
++	QNOC_BIMC_SNOC_MAS,
++	QNOC_MASTER_JPEG,
++	QNOC_MASTER_GRAPHICS_3D,
++	QNOC_MASTER_MDP_PORT0,
++	QNOC_MASTER_MDP_PORT1,
++	QNOC_PNOC_SNOC_MAS,
++	QNOC_MASTER_VIDEO_P0,
++	QNOC_MASTER_VIDEO_P1,
++	QNOC_MASTER_VFE0,
++	QNOC_MASTER_VFE1,
++	QNOC_MASTER_CPP,
++	QNOC_MASTER_QDSS_ETR,
++	QNOC_MASTER_LPASS_PROC,
++	QNOC_MASTER_IPA,
++	QNOC_PNOC_M_0,
++	QNOC_PNOC_M_1,
++	QNOC_PNOC_INT_0,
++	QNOC_PNOC_INT_1,
++	QNOC_PNOC_INT_2,
++	QNOC_PNOC_SLV_1,
++	QNOC_PNOC_SLV_2,
++	QNOC_PNOC_SLV_3,
++	QNOC_PNOC_SLV_4,
++	QNOC_PNOC_SLV_8,
++	QNOC_PNOC_SLV_9,
++	QNOC_SNOC_MM_INT_0,
++	QNOC_SNOC_QDSS_INT,
++	QNOC_SNOC_INT_0,
++	QNOC_SNOC_INT_1,
++	QNOC_SNOC_INT_2,
++	QNOC_SLAVE_EBI_CH0,
++	QNOC_BIMC_SNOC_SLV,
++	QNOC_SLAVE_TCSR,
++	QNOC_SLAVE_TLMM,
++	QNOC_SLAVE_CRYPTO_0_CFG,
++	QNOC_SLAVE_MESSAGE_RAM,
++	QNOC_SLAVE_PDM,
++	QNOC_SLAVE_PRNG,
++	QNOC_SLAVE_PMIC_ARB,
++	QNOC_SLAVE_SNOC_CFG,
++	QNOC_SLAVE_DCC_CFG,
++	QNOC_SLAVE_CAMERA_CFG,
++	QNOC_SLAVE_DISPLAY_CFG,
++	QNOC_SLAVE_VENUS_CFG,
++	QNOC_SLAVE_SDCC_1,
++	QNOC_SLAVE_BLSP_1,
++	QNOC_SLAVE_USB_HS,
++	QNOC_SLAVE_SDCC_3,
++	QNOC_SLAVE_SDCC_2,
++	QNOC_SLAVE_GRAPHICS_3D_CFG,
++	QNOC_SLAVE_USB_HS2,
++	QNOC_SLAVE_BLSP_2,
++	QNOC_PNOC_SNOC_SLV,
++	QNOC_SLAVE_APPSS,
++	QNOC_MNOC_BIMC_SLV,
++	QNOC_SNOC_BIMC_SLV,
++	QNOC_SLAVE_SYSTEM_IMEM,
++	QNOC_SNOC_PNOC_SLV,
++	QNOC_SLAVE_QDSS_STM,
++	QNOC_SLAVE_CATS_128,
++	QNOC_SLAVE_OCMEM_64,
++	QNOC_SLAVE_LPASS,
 +};
 +
-+/* Account for the padding inserted by the FW in case of RX_ALIGNMENT
-+ * or for fixing alignment in case the packet wasn't aligned.
-+ */
-+#define RX_BUF_ALIGN                 2
-+
-+/* Describes the alignment state of a Rx buffer */
-+enum cc33xx_rx_buf_align {
-+	CC33XX_RX_BUF_ALIGNED,
-+	CC33XX_RX_BUF_UNALIGNED,
-+	CC33XX_RX_BUF_PADDED,
++static const u16 mas_apps_proc_links[] = {
++	QNOC_SLAVE_EBI_CH0,
++	QNOC_BIMC_SNOC_SLV
 +};
 +
-+enum cc33xx_rx_curr_status {
-+	CURR_RX_START,
-+	CURR_RX_DROP,
-+	CURR_RX_DESC,
-+	CURR_RX_DATA
++static struct qcom_icc_node mas_apps_proc = {
++	.name = "mas_apps_proc",
++	.id = QNOC_MASTER_AMPSS_M0,
++	.buswidth = 16,
++	.mas_rpm_id = 0,
++	.slv_rpm_id = -1,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_FIXED,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 0,
++	.num_links = ARRAY_SIZE(mas_apps_proc_links),
++	.links = mas_apps_proc_links,
 +};
 +
-+struct cc33xx_rx_descriptor {
-+	__le16 length;
-+	u8  header_alignment;
-+	u8  status;
-+	__le32 timestamp;
-+
-+	u8  flags;
-+	u8  rate;
-+	u8  channel;
-+	s8  rssi;
-+	u8  snr;
-+
-+	u8  hlid;
-+	u8  pad_len;
-+	u8  frame_format;
-+} __packed;
-+
-+struct partial_rx_frame {
-+	struct sk_buff *skb;
-+	struct cc33xx_rx_descriptor desc;
-+	u16 handled_bytes;
-+	u16 original_bytes; /* including descriptor */
-+	enum cc33xx_rx_curr_status status;
++static const u16 mas_smmnoc_bimc_links[] = {
++	QNOC_SLAVE_EBI_CH0
 +};
 +
-+int cc33xx_rx(struct cc33xx *cc, u8 *rx_buf_ptr, u16 rx_buf_len);
-+int cc33xx_rx_filter_enable(struct cc33xx *cc, int index, bool enable,
-+			    struct cc33xx_rx_filter *filter);
-+int cc33xx_rx_filter_clear_all(struct cc33xx *cc);
++static struct qcom_icc_node mas_smmnoc_bimc = {
++	.name = "mas_smmnoc_bimc",
++	.id = QNOC_MNOC_BIMC_MAS,
++	.channels = 2,
++	.buswidth = 16,
++	.mas_rpm_id = 135,
++	.slv_rpm_id = -1,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_BYPASS,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 2,
++	.num_links = ARRAY_SIZE(mas_smmnoc_bimc_links),
++	.links = mas_smmnoc_bimc_links,
++};
 +
-+#endif /* __RX_H__ */
++static const u16 mas_snoc_bimc_links[] = {
++	QNOC_SLAVE_EBI_CH0
++};
++
++static struct qcom_icc_node mas_snoc_bimc = {
++	.name = "mas_snoc_bimc",
++	.id = QNOC_SNOC_BIMC_MAS,
++	.channels = 2,
++	.buswidth = 16,
++	.mas_rpm_id = 3,
++	.slv_rpm_id = -1,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_BYPASS,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 3,
++	.num_links = ARRAY_SIZE(mas_snoc_bimc_links),
++	.links = mas_snoc_bimc_links,
++};
++
++static const u16 mas_tcu_0_links[] = {
++	QNOC_SLAVE_EBI_CH0,
++	QNOC_BIMC_SNOC_SLV
++};
++
++static struct qcom_icc_node mas_tcu_0 = {
++	.name = "mas_tcu_0",
++	.id = QNOC_MASTER_TCU_0,
++	.buswidth = 16,
++	.mas_rpm_id = 102,
++	.slv_rpm_id = -1,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_FIXED,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 2,
++	.qos.qos_port = 4,
++	.num_links = ARRAY_SIZE(mas_tcu_0_links),
++	.links = mas_tcu_0_links,
++};
++
++static const u16 mas_usb_hs2_links[] = {
++	QNOC_PNOC_M_0
++};
++
++static struct qcom_icc_node mas_usb_hs2 = {
++	.name = "mas_usb_hs2",
++	.id = QNOC_MASTER_USB_HS2,
++	.buswidth = 4,
++	.mas_rpm_id = 57,
++	.slv_rpm_id = -1,
++	.num_links = ARRAY_SIZE(mas_usb_hs2_links),
++	.links = mas_usb_hs2_links,
++};
++
++static const u16 mas_blsp_1_links[] = {
++	QNOC_PNOC_M_1
++};
++
++static struct qcom_icc_node mas_blsp_1 = {
++	.name = "mas_blsp_1",
++	.id = QNOC_MASTER_BLSP_1,
++	.buswidth = 4,
++	.mas_rpm_id = 41,
++	.slv_rpm_id = -1,
++	.num_links = ARRAY_SIZE(mas_blsp_1_links),
++	.links = mas_blsp_1_links,
++};
++
++static const u16 mas_usb_hs1_links[] = {
++	QNOC_PNOC_M_1
++};
++
++static struct qcom_icc_node mas_usb_hs1 = {
++	.name = "mas_usb_hs1",
++	.id = QNOC_MASTER_USB_HS,
++	.buswidth = 4,
++	.mas_rpm_id = 42,
++	.slv_rpm_id = -1,
++	.num_links = ARRAY_SIZE(mas_usb_hs1_links),
++	.links = mas_usb_hs1_links,
++};
++
++static const u16 mas_blsp_2_links[] = {
++	QNOC_PNOC_M_1
++};
++
++static struct qcom_icc_node mas_blsp_2 = {
++	.name = "mas_blsp_2",
++	.id = QNOC_MASTER_BLSP_2,
++	.buswidth = 4,
++	.mas_rpm_id = 39,
++	.slv_rpm_id = -1,
++	.num_links = ARRAY_SIZE(mas_blsp_2_links),
++	.links = mas_blsp_2_links,
++};
++
++static const u16 mas_crypto_links[] = {
++	QNOC_PNOC_INT_1
++};
++
++static struct qcom_icc_node mas_crypto = {
++	.name = "mas_crypto",
++	.id = QNOC_MASTER_CRYPTO_CORE0,
++	.buswidth = 8,
++	.mas_rpm_id = 23,
++	.slv_rpm_id = -1,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_FIXED,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 0,
++	.num_links = ARRAY_SIZE(mas_crypto_links),
++	.links = mas_crypto_links,
++};
++
++static const u16 mas_sdcc_1_links[] = {
++	QNOC_PNOC_INT_1
++};
++
++static struct qcom_icc_node mas_sdcc_1 = {
++	.name = "mas_sdcc_1",
++	.id = QNOC_MASTER_SDCC_1,
++	.buswidth = 8,
++	.mas_rpm_id = 33,
++	.slv_rpm_id = -1,
++	.qos.qos_mode = NOC_QOS_MODE_FIXED,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 7,
++	.num_links = ARRAY_SIZE(mas_sdcc_1_links),
++	.links = mas_sdcc_1_links,
++};
++
++static const u16 mas_sdcc_2_links[] = {
++	QNOC_PNOC_INT_1
++};
++
++static struct qcom_icc_node mas_sdcc_2 = {
++	.name = "mas_sdcc_2",
++	.id = QNOC_MASTER_SDCC_2,
++	.buswidth = 8,
++	.mas_rpm_id = 35,
++	.slv_rpm_id = -1,
++	.qos.qos_mode = NOC_QOS_MODE_FIXED,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 8,
++	.num_links = ARRAY_SIZE(mas_sdcc_2_links),
++	.links = mas_sdcc_2_links,
++};
++
++static const u16 mas_sdcc_3_links[] = {
++	QNOC_PNOC_INT_1
++};
++
++static struct qcom_icc_node mas_sdcc_3 = {
++	.name = "mas_sdcc_3",
++	.id = QNOC_MASTER_SDCC_3,
++	.buswidth = 8,
++	.mas_rpm_id = 34,
++	.slv_rpm_id = -1,
++	.qos.qos_mode = NOC_QOS_MODE_FIXED,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 10,
++	.num_links = ARRAY_SIZE(mas_sdcc_3_links),
++	.links = mas_sdcc_3_links,
++};
++
++static const u16 mas_snoc_pcnoc_links[] = {
++	QNOC_PNOC_INT_2
++};
++
++static struct qcom_icc_node mas_snoc_pcnoc = {
++	.name = "mas_snoc_pcnoc",
++	.id = QNOC_SNOC_PNOC_MAS,
++	.buswidth = 8,
++	.mas_rpm_id = 77,
++	.slv_rpm_id = -1,
++	.qos.qos_mode = NOC_QOS_MODE_FIXED,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 9,
++	.num_links = ARRAY_SIZE(mas_snoc_pcnoc_links),
++	.links = mas_snoc_pcnoc_links,
++};
++
++static const u16 mas_lpass_ahb_links[] = {
++	QNOC_PNOC_SNOC_SLV
++};
++
++static struct qcom_icc_node mas_lpass_ahb = {
++	.name = "mas_lpass_ahb",
++	.id = QNOC_MASTER_LPASS_AHB,
++	.buswidth = 8,
++	.mas_rpm_id = 18,
++	.slv_rpm_id = -1,
++	.qos.qos_mode = NOC_QOS_MODE_BYPASS,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 12,
++	.num_links = ARRAY_SIZE(mas_lpass_ahb_links),
++	.links = mas_lpass_ahb_links,
++};
++
++static const u16 mas_spdm_links[] = {
++	QNOC_PNOC_M_0
++};
++
++static struct qcom_icc_node mas_spdm = {
++	.name = "mas_spdm",
++	.id = QNOC_MASTER_SPDM,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = -1,
++	.num_links = ARRAY_SIZE(mas_spdm_links),
++	.links = mas_spdm_links,
++};
++
++static const u16 mas_dehr_links[] = {
++	QNOC_PNOC_M_0
++};
++
++static struct qcom_icc_node mas_dehr = {
++	.name = "mas_dehr",
++	.id = QNOC_MASTER_DEHR,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = -1,
++	.num_links = ARRAY_SIZE(mas_dehr_links),
++	.links = mas_dehr_links,
++};
++
++static const u16 mas_xm_usb_hs1_links[] = {
++	QNOC_PNOC_INT_0
++};
++
++static struct qcom_icc_node mas_xm_usb_hs1 = {
++	.name = "mas_xm_usb_hs1",
++	.id = QNOC_MASTER_XM_USB_HS1,
++	.buswidth = 8,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = -1,
++	.num_links = ARRAY_SIZE(mas_xm_usb_hs1_links),
++	.links = mas_xm_usb_hs1_links,
++};
++
++static const u16 mas_qdss_bam_links[] = {
++	QNOC_SNOC_QDSS_INT
++};
++
++static struct qcom_icc_node mas_qdss_bam = {
++	.name = "mas_qdss_bam",
++	.id = QNOC_MASTER_QDSS_BAM,
++	.buswidth = 4,
++	.mas_rpm_id = 19,
++	.slv_rpm_id = -1,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_FIXED,
++	.qos.areq_prio = 1,
++	.qos.prio_level = 1,
++	.qos.qos_port = 11,
++	.num_links = ARRAY_SIZE(mas_qdss_bam_links),
++	.links = mas_qdss_bam_links,
++};
++
++static const u16 mas_bimc_snoc_links[] = {
++	QNOC_SNOC_INT_2
++};
++
++static struct qcom_icc_node mas_bimc_snoc = {
++	.name = "mas_bimc_snoc",
++	.id = QNOC_BIMC_SNOC_MAS,
++	.buswidth = 8,
++	.mas_rpm_id = 21,
++	.slv_rpm_id = -1,
++	.num_links = ARRAY_SIZE(mas_bimc_snoc_links),
++	.links = mas_bimc_snoc_links,
++};
++
++static const u16 mas_jpeg_links[] = {
++	QNOC_SNOC_MM_INT_0,
++	QNOC_MNOC_BIMC_SLV
++};
++
++static struct qcom_icc_node mas_jpeg = {
++	.name = "mas_jpeg",
++	.id = QNOC_MASTER_JPEG,
++	.buswidth = 16,
++	.mas_rpm_id = 7,
++	.slv_rpm_id = -1,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_BYPASS,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 6,
++	.num_links = ARRAY_SIZE(mas_jpeg_links),
++	.links = mas_jpeg_links,
++};
++
++static const u16 mas_oxili_links[] = {
++	QNOC_MNOC_BIMC_SLV,
++	QNOC_SNOC_MM_INT_0
++};
++
++static struct qcom_icc_node mas_oxili = {
++	.name = "mas_oxili",
++	.id = QNOC_MASTER_GRAPHICS_3D,
++	.channels = 2,
++	.buswidth = 16,
++	.mas_rpm_id = 6,
++	.slv_rpm_id = -1,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_BYPASS,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 16, /* [16, 17] */
++	.num_links = ARRAY_SIZE(mas_oxili_links),
++	.links = mas_oxili_links,
++};
++
++static const u16 mas_mdp0_links[] = {
++	QNOC_SNOC_MM_INT_0,
++	QNOC_MNOC_BIMC_SLV
++};
++
++static struct qcom_icc_node mas_mdp0 = {
++	.name = "mas_mdp0",
++	.id = QNOC_MASTER_MDP_PORT0,
++	.buswidth = 16,
++	.mas_rpm_id = 8,
++	.slv_rpm_id = -1,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_BYPASS,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 7,
++	.num_links = ARRAY_SIZE(mas_mdp0_links),
++	.links = mas_mdp0_links,
++};
++
++static const u16 mas_mdp1_links[] = {
++	QNOC_SNOC_MM_INT_0,
++	QNOC_MNOC_BIMC_SLV
++};
++
++static struct qcom_icc_node mas_mdp1 = {
++	.name = "mas_mdp1",
++	.id = QNOC_MASTER_MDP_PORT1,
++	.buswidth = 16,
++	.mas_rpm_id = 61,
++	.slv_rpm_id = -1,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_BYPASS,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 13,
++	.num_links = ARRAY_SIZE(mas_mdp1_links),
++	.links = mas_mdp1_links,
++};
++
++static const u16 mas_pcnoc_snoc_links[] = {
++	QNOC_SNOC_INT_2
++};
++
++static struct qcom_icc_node mas_pcnoc_snoc = {
++	.name = "mas_pcnoc_snoc",
++	.id = QNOC_PNOC_SNOC_MAS,
++	.buswidth = 8,
++	.mas_rpm_id = 29,
++	.slv_rpm_id = -1,
++	.qos.qos_mode = NOC_QOS_MODE_FIXED,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 5,
++	.num_links = ARRAY_SIZE(mas_pcnoc_snoc_links),
++	.links = mas_pcnoc_snoc_links,
++};
++
++static const u16 mas_venus_0_links[] = {
++	QNOC_SNOC_MM_INT_0,
++	QNOC_MNOC_BIMC_SLV
++};
++
++static struct qcom_icc_node mas_venus_0 = {
++	.name = "mas_venus_0",
++	.id = QNOC_MASTER_VIDEO_P0,
++	.buswidth = 16,
++	.mas_rpm_id = 9,
++	.slv_rpm_id = -1,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_BYPASS,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 8,
++	.num_links = ARRAY_SIZE(mas_venus_0_links),
++	.links = mas_venus_0_links,
++};
++
++static const u16 mas_venus_1_links[] = {
++	QNOC_SNOC_MM_INT_0,
++	QNOC_MNOC_BIMC_SLV
++};
++
++static struct qcom_icc_node mas_venus_1 = {
++	.name = "mas_venus_1",
++	.id = QNOC_MASTER_VIDEO_P1,
++	.buswidth = 16,
++	.mas_rpm_id = 10,
++	.slv_rpm_id = -1,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_BYPASS,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 14,
++	.num_links = ARRAY_SIZE(mas_venus_1_links),
++	.links = mas_venus_1_links,
++};
++
++static const u16 mas_vfe_0_links[] = {
++	QNOC_SNOC_MM_INT_0,
++	QNOC_MNOC_BIMC_SLV
++};
++
++static struct qcom_icc_node mas_vfe_0 = {
++	.name = "mas_vfe_0",
++	.id = QNOC_MASTER_VFE0,
++	.buswidth = 16,
++	.mas_rpm_id = 11,
++	.slv_rpm_id = -1,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_BYPASS,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 9,
++	.num_links = ARRAY_SIZE(mas_vfe_0_links),
++	.links = mas_vfe_0_links,
++};
++
++static const u16 mas_vfe_1_links[] = {
++	QNOC_SNOC_MM_INT_0,
++	QNOC_MNOC_BIMC_SLV
++};
++
++static struct qcom_icc_node mas_vfe_1 = {
++	.name = "mas_vfe_1",
++	.id = QNOC_MASTER_VFE1,
++	.buswidth = 16,
++	.mas_rpm_id = 133,
++	.slv_rpm_id = -1,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_BYPASS,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 15,
++	.num_links = ARRAY_SIZE(mas_vfe_1_links),
++	.links = mas_vfe_1_links,
++};
++
++static const u16 mas_cpp_links[] = {
++	QNOC_SNOC_MM_INT_0,
++	QNOC_MNOC_BIMC_SLV
++};
++
++static struct qcom_icc_node mas_cpp = {
++	.name = "mas_cpp",
++	.id = QNOC_MASTER_CPP,
++	.buswidth = 16,
++	.mas_rpm_id = 115,
++	.slv_rpm_id = -1,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_BYPASS,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 12,
++	.num_links = ARRAY_SIZE(mas_cpp_links),
++	.links = mas_cpp_links,
++};
++
++static const u16 mas_qdss_etr_links[] = {
++	QNOC_SNOC_QDSS_INT
++};
++
++static struct qcom_icc_node mas_qdss_etr = {
++	.name = "mas_qdss_etr",
++	.id = QNOC_MASTER_QDSS_ETR,
++	.buswidth = 8,
++	.mas_rpm_id = 31,
++	.slv_rpm_id = -1,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_FIXED,
++	.qos.areq_prio = 1,
++	.qos.prio_level = 1,
++	.qos.qos_port = 10,
++	.num_links = ARRAY_SIZE(mas_qdss_etr_links),
++	.links = mas_qdss_etr_links,
++};
++
++static const u16 mas_lpass_proc_links[] = {
++	QNOC_SNOC_INT_0,
++	QNOC_SNOC_INT_1,
++	QNOC_SNOC_BIMC_SLV
++};
++
++static struct qcom_icc_node mas_lpass_proc = {
++	.name = "mas_lpass_proc",
++	.id = QNOC_MASTER_LPASS_PROC,
++	.buswidth = 8,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = -1,
++	.qos.qos_mode = NOC_QOS_MODE_BYPASS,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 19,
++	.num_links = ARRAY_SIZE(mas_lpass_proc_links),
++	.links = mas_lpass_proc_links,
++};
++
++static const u16 mas_ipa_links[] = {
++	QNOC_SNOC_INT_2
++};
++
++static struct qcom_icc_node mas_ipa = {
++	.name = "mas_ipa",
++	.id = QNOC_MASTER_IPA,
++	.buswidth = 8,
++	.mas_rpm_id = 59,
++	.slv_rpm_id = -1,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_FIXED,
++	.qos.areq_prio = 1,
++	.qos.prio_level = 1,
++	.qos.qos_port = 18,
++	.num_links = ARRAY_SIZE(mas_ipa_links),
++	.links = mas_ipa_links,
++};
++
++static const u16 pcnoc_m_0_links[] = {
++	QNOC_PNOC_SNOC_SLV
++};
++
++static struct qcom_icc_node pcnoc_m_0 = {
++	.name = "pcnoc_m_0",
++	.id = QNOC_PNOC_M_0,
++	.buswidth = 4,
++	.mas_rpm_id = 87,
++	.slv_rpm_id = 116,
++	.qos.qos_mode = NOC_QOS_MODE_FIXED,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 5,
++	.num_links = ARRAY_SIZE(pcnoc_m_0_links),
++	.links = pcnoc_m_0_links,
++};
++
++static const u16 pcnoc_m_1_links[] = {
++	QNOC_PNOC_SNOC_SLV
++};
++
++static struct qcom_icc_node pcnoc_m_1 = {
++	.name = "pcnoc_m_1",
++	.id = QNOC_PNOC_M_1,
++	.buswidth = 4,
++	.mas_rpm_id = 88,
++	.slv_rpm_id = 117,
++	.qos.qos_mode = NOC_QOS_MODE_FIXED,
++	.qos.areq_prio = 0,
++	.qos.prio_level = 0,
++	.qos.qos_port = 6,
++	.num_links = ARRAY_SIZE(pcnoc_m_1_links),
++	.links = pcnoc_m_1_links,
++};
++
++static const u16 pcnoc_int_0_links[] = {
++	QNOC_PNOC_SNOC_SLV,
++	QNOC_PNOC_INT_2
++};
++
++static struct qcom_icc_node pcnoc_int_0 = {
++	.name = "pcnoc_int_0",
++	.id = QNOC_PNOC_INT_0,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = -1,
++	.num_links = ARRAY_SIZE(pcnoc_int_0_links),
++	.links = pcnoc_int_0_links,
++};
++
++static const u16 pcnoc_int_1_links[] = {
++	QNOC_PNOC_SNOC_SLV,
++	QNOC_PNOC_INT_2
++};
++
++static struct qcom_icc_node pcnoc_int_1 = {
++	.name = "pcnoc_int_1",
++	.id = QNOC_PNOC_INT_1,
++	.buswidth = 8,
++	.mas_rpm_id = 86,
++	.slv_rpm_id = 115,
++	.num_links = ARRAY_SIZE(pcnoc_int_1_links),
++	.links = pcnoc_int_1_links,
++};
++
++static const u16 pcnoc_int_2_links[] = {
++	QNOC_PNOC_SLV_1,
++	QNOC_PNOC_SLV_2,
++	QNOC_PNOC_SLV_4,
++	QNOC_PNOC_SLV_8,
++	QNOC_PNOC_SLV_9,
++	QNOC_PNOC_SLV_3
++};
++
++static struct qcom_icc_node pcnoc_int_2 = {
++	.name = "pcnoc_int_2",
++	.id = QNOC_PNOC_INT_2,
++	.buswidth = 8,
++	.mas_rpm_id = 124,
++	.slv_rpm_id = 184,
++	.num_links = ARRAY_SIZE(pcnoc_int_2_links),
++	.links = pcnoc_int_2_links,
++};
++
++static const u16 pcnoc_s_1_links[] = {
++	QNOC_SLAVE_CRYPTO_0_CFG,
++	QNOC_SLAVE_PRNG,
++	QNOC_SLAVE_PDM,
++	QNOC_SLAVE_MESSAGE_RAM
++};
++
++static struct qcom_icc_node pcnoc_s_1 = {
++	.name = "pcnoc_s_1",
++	.id = QNOC_PNOC_SLV_1,
++	.buswidth = 4,
++	.mas_rpm_id = 90,
++	.slv_rpm_id = 119,
++	.num_links = ARRAY_SIZE(pcnoc_s_1_links),
++	.links = pcnoc_s_1_links,
++};
++
++static const u16 pcnoc_s_2_links[] = {
++	QNOC_SLAVE_PMIC_ARB
++};
++
++static struct qcom_icc_node pcnoc_s_2 = {
++	.name = "pcnoc_s_2",
++	.id = QNOC_PNOC_SLV_2,
++	.buswidth = 4,
++	.mas_rpm_id = 91,
++	.slv_rpm_id = 120,
++	.num_links = ARRAY_SIZE(pcnoc_s_2_links),
++	.links = pcnoc_s_2_links,
++};
++
++static const u16 pcnoc_s_3_links[] = {
++	QNOC_SLAVE_SNOC_CFG,
++	QNOC_SLAVE_DCC_CFG
++};
++
++static struct qcom_icc_node pcnoc_s_3 = {
++	.name = "pcnoc_s_3",
++	.id = QNOC_PNOC_SLV_3,
++	.buswidth = 4,
++	.mas_rpm_id = 92,
++	.slv_rpm_id = 121,
++	.num_links = ARRAY_SIZE(pcnoc_s_3_links),
++	.links = pcnoc_s_3_links,
++};
++
++static const u16 pcnoc_s_4_links[] = {
++	QNOC_SLAVE_CAMERA_CFG,
++	QNOC_SLAVE_DISPLAY_CFG,
++	QNOC_SLAVE_VENUS_CFG
++};
++
++static struct qcom_icc_node pcnoc_s_4 = {
++	.name = "pcnoc_s_4",
++	.id = QNOC_PNOC_SLV_4,
++	.buswidth = 4,
++	.mas_rpm_id = 93,
++	.slv_rpm_id = 122,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_INVALID,
++	.num_links = ARRAY_SIZE(pcnoc_s_4_links),
++	.links = pcnoc_s_4_links,
++};
++
++static const u16 pcnoc_s_8_links[] = {
++	QNOC_SLAVE_USB_HS,
++	QNOC_SLAVE_SDCC_3,
++	QNOC_SLAVE_BLSP_1,
++	QNOC_SLAVE_SDCC_1
++};
++
++static struct qcom_icc_node pcnoc_s_8 = {
++	.name = "pcnoc_s_8",
++	.id = QNOC_PNOC_SLV_8,
++	.buswidth = 4,
++	.mas_rpm_id = 96,
++	.slv_rpm_id = 125,
++	.num_links = ARRAY_SIZE(pcnoc_s_8_links),
++	.links = pcnoc_s_8_links,
++};
++
++static const u16 pcnoc_s_9_links[] = {
++	QNOC_SLAVE_GRAPHICS_3D_CFG,
++	QNOC_SLAVE_USB_HS2,
++	QNOC_SLAVE_SDCC_2,
++	QNOC_SLAVE_BLSP_2
++};
++
++static struct qcom_icc_node pcnoc_s_9 = {
++	.name = "pcnoc_s_9",
++	.id = QNOC_PNOC_SLV_9,
++	.buswidth = 4,
++	.mas_rpm_id = 97,
++	.slv_rpm_id = 126,
++	.num_links = ARRAY_SIZE(pcnoc_s_9_links),
++	.links = pcnoc_s_9_links,
++};
++
++static const u16 mm_int_0_links[] = {
++	QNOC_SNOC_INT_0
++};
++
++static struct qcom_icc_node mm_int_0 = {
++	.name = "mm_int_0",
++	.id = QNOC_SNOC_MM_INT_0,
++	.buswidth = 16,
++	.mas_rpm_id = 79,
++	.slv_rpm_id = 108,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_INVALID,
++	.num_links = ARRAY_SIZE(mm_int_0_links),
++	.links = mm_int_0_links,
++};
++
++static const u16 qdss_int_links[] = {
++	QNOC_SNOC_INT_2
++};
++
++static struct qcom_icc_node qdss_int = {
++	.name = "qdss_int",
++	.id = QNOC_SNOC_QDSS_INT,
++	.buswidth = 8,
++	.mas_rpm_id = 98,
++	.slv_rpm_id = 128,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_INVALID,
++	.num_links = ARRAY_SIZE(qdss_int_links),
++	.links = qdss_int_links,
++};
++
++static const u16 snoc_int_0_links[] = {
++	QNOC_SLAVE_QDSS_STM,
++	QNOC_SLAVE_SYSTEM_IMEM,
++	QNOC_SNOC_PNOC_SLV
++};
++
++static struct qcom_icc_node snoc_int_0 = {
++	.name = "snoc_int_0",
++	.id = QNOC_SNOC_INT_0,
++	.buswidth = 8,
++	.mas_rpm_id = 99,
++	.slv_rpm_id = 130,
++	.num_links = ARRAY_SIZE(snoc_int_0_links),
++	.links = snoc_int_0_links,
++};
++
++static const u16 snoc_int_1_links[] = {
++	QNOC_SLAVE_LPASS,
++	QNOC_SLAVE_CATS_128,
++	QNOC_SLAVE_OCMEM_64,
++	QNOC_SLAVE_APPSS
++};
++
++static struct qcom_icc_node snoc_int_1 = {
++	.name = "snoc_int_1",
++	.id = QNOC_SNOC_INT_1,
++	.buswidth = 8,
++	.mas_rpm_id = 100,
++	.slv_rpm_id = 131,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_INVALID,
++	.num_links = ARRAY_SIZE(snoc_int_1_links),
++	.links = snoc_int_1_links,
++};
++
++static const u16 snoc_int_2_links[] = {
++	QNOC_SNOC_INT_0,
++	QNOC_SNOC_INT_1,
++	QNOC_SNOC_BIMC_SLV
++};
++
++static struct qcom_icc_node snoc_int_2 = {
++	.name = "snoc_int_2",
++	.id = QNOC_SNOC_INT_2,
++	.buswidth = 8,
++	.mas_rpm_id = 134,
++	.slv_rpm_id = 197,
++	.num_links = ARRAY_SIZE(snoc_int_2_links),
++	.links = snoc_int_2_links,
++};
++
++static struct qcom_icc_node slv_ebi = {
++	.name = "slv_ebi",
++	.id = QNOC_SLAVE_EBI_CH0,
++	.channels = 2,
++	.buswidth = 16,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 0,
++};
++
++static const u16 slv_bimc_snoc_links[] = {
++	QNOC_BIMC_SNOC_MAS
++};
++
++static struct qcom_icc_node slv_bimc_snoc = {
++	.name = "slv_bimc_snoc",
++	.id = QNOC_BIMC_SNOC_SLV,
++	.buswidth = 16,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 2,
++	.num_links = ARRAY_SIZE(slv_bimc_snoc_links),
++	.links = slv_bimc_snoc_links,
++};
++
++static struct qcom_icc_node slv_tcsr = {
++	.name = "slv_tcsr",
++	.id = QNOC_SLAVE_TCSR,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 50,
++};
++
++static struct qcom_icc_node slv_tlmm = {
++	.name = "slv_tlmm",
++	.id = QNOC_SLAVE_TLMM,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 51,
++};
++
++static struct qcom_icc_node slv_crypto_0_cfg = {
++	.name = "slv_crypto_0_cfg",
++	.id = QNOC_SLAVE_CRYPTO_0_CFG,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 52,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_INVALID,
++};
++
++static struct qcom_icc_node slv_message_ram = {
++	.name = "slv_message_ram",
++	.id = QNOC_SLAVE_MESSAGE_RAM,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 55,
++};
++
++static struct qcom_icc_node slv_pdm = {
++	.name = "slv_pdm",
++	.id = QNOC_SLAVE_PDM,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 41,
++};
++
++static struct qcom_icc_node slv_prng = {
++	.name = "slv_prng",
++	.id = QNOC_SLAVE_PRNG,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 44,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_INVALID,
++};
++
++static struct qcom_icc_node slv_pmic_arb = {
++	.name = "slv_pmic_arb",
++	.id = QNOC_SLAVE_PMIC_ARB,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 59,
++};
++
++static struct qcom_icc_node slv_snoc_cfg = {
++	.name = "slv_snoc_cfg",
++	.id = QNOC_SLAVE_SNOC_CFG,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 70,
++};
++
++static struct qcom_icc_node slv_dcc_cfg = {
++	.name = "slv_dcc_cfg",
++	.id = QNOC_SLAVE_DCC_CFG,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 155,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_INVALID,
++};
++
++static struct qcom_icc_node slv_camera_ss_cfg = {
++	.name = "slv_camera_ss_cfg",
++	.id = QNOC_SLAVE_CAMERA_CFG,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 3,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_INVALID,
++};
++
++static struct qcom_icc_node slv_disp_ss_cfg = {
++	.name = "slv_disp_ss_cfg",
++	.id = QNOC_SLAVE_DISPLAY_CFG,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 4,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_INVALID,
++};
++
++static struct qcom_icc_node slv_venus_cfg = {
++	.name = "slv_venus_cfg",
++	.id = QNOC_SLAVE_VENUS_CFG,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 10,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_INVALID,
++};
++
++static struct qcom_icc_node slv_sdcc_1 = {
++	.name = "slv_sdcc_1",
++	.id = QNOC_SLAVE_SDCC_1,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 31,
++};
++
++static struct qcom_icc_node slv_blsp_1 = {
++	.name = "slv_blsp_1",
++	.id = QNOC_SLAVE_BLSP_1,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 39,
++};
++
++static struct qcom_icc_node slv_usb_hs = {
++	.name = "slv_usb_hs",
++	.id = QNOC_SLAVE_USB_HS,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 40,
++};
++
++static struct qcom_icc_node slv_sdcc_3 = {
++	.name = "slv_sdcc_3",
++	.id = QNOC_SLAVE_SDCC_3,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 32,
++};
++
++static struct qcom_icc_node slv_sdcc_2 = {
++	.name = "slv_sdcc_2",
++	.id = QNOC_SLAVE_SDCC_2,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 33,
++};
++
++static struct qcom_icc_node slv_gpu_cfg = {
++	.name = "slv_gpu_cfg",
++	.id = QNOC_SLAVE_GRAPHICS_3D_CFG,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 11,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_INVALID,
++};
++
++static struct qcom_icc_node slv_usb_hs2 = {
++	.name = "slv_usb_hs2",
++	.id = QNOC_SLAVE_USB_HS2,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 79,
++};
++
++static struct qcom_icc_node slv_blsp_2 = {
++	.name = "slv_blsp_2",
++	.id = QNOC_SLAVE_BLSP_2,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 37,
++};
++
++static const u16 slv_pcnoc_snoc_links[] = {
++	QNOC_PNOC_SNOC_MAS
++};
++
++static struct qcom_icc_node slv_pcnoc_snoc = {
++	.name = "slv_pcnoc_snoc",
++	.id = QNOC_PNOC_SNOC_SLV,
++	.buswidth = 8,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 45,
++	.num_links = ARRAY_SIZE(slv_pcnoc_snoc_links),
++	.links = slv_pcnoc_snoc_links,
++};
++
++static struct qcom_icc_node slv_kpss_ahb = {
++	.name = "slv_kpss_ahb",
++	.id = QNOC_SLAVE_APPSS,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 20,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_INVALID,
++};
++
++static const u16 slv_smmnoc_bimc_links[] = {
++	QNOC_MNOC_BIMC_MAS
++};
++
++static struct qcom_icc_node slv_smmnoc_bimc = {
++	.name = "slv_smmnoc_bimc",
++	.id = QNOC_MNOC_BIMC_SLV,
++	.channels = 2,
++	.buswidth = 16,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 198,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_INVALID,
++	.num_links = ARRAY_SIZE(slv_smmnoc_bimc_links),
++	.links = slv_smmnoc_bimc_links,
++};
++
++static const u16 slv_snoc_bimc_links[] = {
++	QNOC_SNOC_BIMC_MAS
++};
++
++static struct qcom_icc_node slv_snoc_bimc = {
++	.name = "slv_snoc_bimc",
++	.id = QNOC_SNOC_BIMC_SLV,
++	.channels = 2,
++	.buswidth = 8,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 24,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_INVALID,
++	.num_links = ARRAY_SIZE(slv_snoc_bimc_links),
++	.links = slv_snoc_bimc_links,
++};
++
++static struct qcom_icc_node slv_imem = {
++	.name = "slv_imem",
++	.id = QNOC_SLAVE_SYSTEM_IMEM,
++	.buswidth = 8,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 26,
++};
++
++static const u16 slv_snoc_pcnoc_links[] = {
++	QNOC_SNOC_PNOC_MAS
++};
++
++static struct qcom_icc_node slv_snoc_pcnoc = {
++	.name = "slv_snoc_pcnoc",
++	.id = QNOC_SNOC_PNOC_SLV,
++	.buswidth = 8,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 28,
++	.num_links = ARRAY_SIZE(slv_snoc_pcnoc_links),
++	.links = slv_snoc_pcnoc_links,
++};
++
++static struct qcom_icc_node slv_qdss_stm = {
++	.name = "slv_qdss_stm",
++	.id = QNOC_SLAVE_QDSS_STM,
++	.buswidth = 4,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 30,
++};
++
++static struct qcom_icc_node slv_cats_0 = {
++	.name = "slv_cats_0",
++	.id = QNOC_SLAVE_CATS_128,
++	.buswidth = 16,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 106,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_INVALID,
++};
++
++static struct qcom_icc_node slv_cats_1 = {
++	.name = "slv_cats_1",
++	.id = QNOC_SLAVE_OCMEM_64,
++	.buswidth = 8,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 107,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_INVALID,
++};
++
++static struct qcom_icc_node slv_lpass = {
++	.name = "slv_lpass",
++	.id = QNOC_SLAVE_LPASS,
++	.buswidth = 8,
++	.mas_rpm_id = -1,
++	.slv_rpm_id = 21,
++	.qos.ap_owned = true,
++	.qos.qos_mode = NOC_QOS_MODE_INVALID,
++};
++
++static struct qcom_icc_node * const msm8976_bimc_nodes[] = {
++	[MAS_APPS_PROC] = &mas_apps_proc,
++	[MAS_SMMNOC_BIMC] = &mas_smmnoc_bimc,
++	[MAS_SNOC_BIMC] = &mas_snoc_bimc,
++	[MAS_TCU_0] = &mas_tcu_0,
++	[SLV_EBI] = &slv_ebi,
++	[SLV_BIMC_SNOC] = &slv_bimc_snoc,
++};
++
++static const struct regmap_config msm8976_bimc_regmap_config = {
++	.reg_bits = 32,
++	.reg_stride = 4,
++	.val_bits = 32,
++	.max_register = 0x62000,
++	.fast_io = true,
++};
++
++static const struct qcom_icc_desc msm8976_bimc = {
++	.type = QCOM_ICC_BIMC,
++	.nodes = msm8976_bimc_nodes,
++	.num_nodes = ARRAY_SIZE(msm8976_bimc_nodes),
++	.bus_clk_desc = &bimc_clk,
++	.regmap_cfg = &msm8976_bimc_regmap_config,
++	.qos_offset = 0x8000,
++	.ab_coeff = 154,
++};
++
++static struct qcom_icc_node * const msm8976_pcnoc_nodes[] = {
++	[MAS_USB_HS2] = &mas_usb_hs2,
++	[MAS_BLSP_1] = &mas_blsp_1,
++	[MAS_USB_HS1] = &mas_usb_hs1,
++	[MAS_BLSP_2] = &mas_blsp_2,
++	[MAS_CRYPTO] = &mas_crypto,
++	[MAS_SDCC_1] = &mas_sdcc_1,
++	[MAS_SDCC_2] = &mas_sdcc_2,
++	[MAS_SDCC_3] = &mas_sdcc_3,
++	[MAS_SNOC_PCNOC] = &mas_snoc_pcnoc,
++	[MAS_LPASS_AHB] = &mas_lpass_ahb,
++	[MAS_SPDM] = &mas_spdm,
++	[MAS_DEHR] = &mas_dehr,
++	[MAS_XM_USB_HS1] = &mas_xm_usb_hs1,
++	[PCNOC_M_0] = &pcnoc_m_0,
++	[PCNOC_M_1] = &pcnoc_m_1,
++	[PCNOC_INT_0] = &pcnoc_int_0,
++	[PCNOC_INT_1] = &pcnoc_int_1,
++	[PCNOC_INT_2] = &pcnoc_int_2,
++	[PCNOC_S_1] = &pcnoc_s_1,
++	[PCNOC_S_2] = &pcnoc_s_2,
++	[PCNOC_S_3] = &pcnoc_s_3,
++	[PCNOC_S_4] = &pcnoc_s_4,
++	[PCNOC_S_8] = &pcnoc_s_8,
++	[PCNOC_S_9] = &pcnoc_s_9,
++	[SLV_TCSR] = &slv_tcsr,
++	[SLV_TLMM] = &slv_tlmm,
++	[SLV_CRYPTO_0_CFG] = &slv_crypto_0_cfg,
++	[SLV_MESSAGE_RAM] = &slv_message_ram,
++	[SLV_PDM] = &slv_pdm,
++	[SLV_PRNG] = &slv_prng,
++	[SLV_PMIC_ARB] = &slv_pmic_arb,
++	[SLV_SNOC_CFG] = &slv_snoc_cfg,
++	[SLV_DCC_CFG] = &slv_dcc_cfg,
++	[SLV_CAMERA_SS_CFG] = &slv_camera_ss_cfg,
++	[SLV_DISP_SS_CFG] = &slv_disp_ss_cfg,
++	[SLV_VENUS_CFG] = &slv_venus_cfg,
++	[SLV_SDCC_1] = &slv_sdcc_1,
++	[SLV_BLSP_1] = &slv_blsp_1,
++	[SLV_USB_HS] = &slv_usb_hs,
++	[SLV_SDCC_3] = &slv_sdcc_3,
++	[SLV_SDCC_2] = &slv_sdcc_2,
++	[SLV_GPU_CFG] = &slv_gpu_cfg,
++	[SLV_USB_HS2] = &slv_usb_hs2,
++	[SLV_BLSP_2] = &slv_blsp_2,
++	[SLV_PCNOC_SNOC] = &slv_pcnoc_snoc,
++};
++
++static const struct regmap_config msm8976_pcnoc_regmap_config = {
++	.reg_bits = 32,
++	.reg_stride = 4,
++	.val_bits = 32,
++	.max_register = 0x14000,
++	.fast_io = true,
++};
++
++static const struct qcom_icc_desc msm8976_pcnoc = {
++	.type = QCOM_ICC_NOC,
++	.nodes = msm8976_pcnoc_nodes,
++	.num_nodes = ARRAY_SIZE(msm8976_pcnoc_nodes),
++	.bus_clk_desc = &bus_0_clk,
++	.qos_offset = 0x7000,
++	.keep_alive = true,
++	.regmap_cfg = &msm8976_pcnoc_regmap_config,
++};
++
++static struct qcom_icc_node * const msm8976_snoc_nodes[] = {
++	[MAS_QDSS_BAM] = &mas_qdss_bam,
++	[MAS_BIMC_SNOC] = &mas_bimc_snoc,
++	[MAS_PCNOC_SNOC] = &mas_pcnoc_snoc,
++	[MAS_QDSS_ETR] = &mas_qdss_etr,
++	[MAS_LPASS_PROC] = &mas_lpass_proc,
++	[MAS_IPA] = &mas_ipa,
++	[QDSS_INT] = &qdss_int,
++	[SNOC_INT_0] = &snoc_int_0,
++	[SNOC_INT_1] = &snoc_int_1,
++	[SNOC_INT_2] = &snoc_int_2,
++	[SLV_KPSS_AHB] = &slv_kpss_ahb,
++	[SLV_SNOC_BIMC] = &slv_snoc_bimc,
++	[SLV_IMEM] = &slv_imem,
++	[SLV_SNOC_PCNOC] = &slv_snoc_pcnoc,
++	[SLV_QDSS_STM] = &slv_qdss_stm,
++	[SLV_CATS_0] = &slv_cats_0,
++	[SLV_CATS_1] = &slv_cats_1,
++	[SLV_LPASS] = &slv_lpass,
++};
++
++static const struct regmap_config msm8976_snoc_regmap_config = {
++	.reg_bits = 32,
++	.reg_stride = 4,
++	.val_bits = 32,
++	.max_register = 0x1A000,
++	.fast_io = true,
++};
++
++static const struct qcom_icc_desc msm8976_snoc = {
++	.type = QCOM_ICC_NOC,
++	.nodes = msm8976_snoc_nodes,
++	.num_nodes = ARRAY_SIZE(msm8976_snoc_nodes),
++	.bus_clk_desc = &bus_1_clk,
++	.intf_clocks = snoc_intf_clocks,
++	.num_intf_clocks = ARRAY_SIZE(snoc_intf_clocks),
++	.regmap_cfg = &msm8976_snoc_regmap_config,
++	.qos_offset = 0x7000,
++};
++
++static struct qcom_icc_node * const msm8976_snoc_mm_nodes[] = {
++	[MAS_JPEG] = &mas_jpeg,
++	[MAS_OXILI] = &mas_oxili,
++	[MAS_MDP0] = &mas_mdp0,
++	[MAS_MDP1] = &mas_mdp1,
++	[MAS_VENUS_0] = &mas_venus_0,
++	[MAS_VENUS_1] = &mas_venus_1,
++	[MAS_VFE_0] = &mas_vfe_0,
++	[MAS_VFE_1] = &mas_vfe_1,
++	[MAS_CPP] = &mas_cpp,
++	[MM_INT_0] = &mm_int_0,
++	[SLV_SMMNOC_BIMC] = &slv_smmnoc_bimc,
++};
++
++static const struct qcom_icc_desc msm8976_snoc_mm = {
++	.type = QCOM_ICC_NOC,
++	.nodes = msm8976_snoc_mm_nodes,
++	.num_nodes = ARRAY_SIZE(msm8976_snoc_mm_nodes),
++	.bus_clk_desc = &bus_2_clk,
++	.regmap_cfg = &msm8976_snoc_regmap_config,
++	.qos_offset = 0x7000,
++	.ab_coeff = 154,
++};
++
++static const struct of_device_id msm8976_noc_of_match[] = {
++	{ .compatible = "qcom,msm8976-bimc", .data = &msm8976_bimc },
++	{ .compatible = "qcom,msm8976-pcnoc", .data = &msm8976_pcnoc },
++	{ .compatible = "qcom,msm8976-snoc", .data = &msm8976_snoc },
++	{ .compatible = "qcom,msm8976-snoc-mm", .data = &msm8976_snoc_mm },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, msm8976_noc_of_match);
++
++static struct platform_driver msm8976_noc_driver = {
++	.probe = qnoc_probe,
++	.remove_new = qnoc_remove,
++	.driver = {
++		.name = "qnoc-msm8976",
++		.of_match_table = msm8976_noc_of_match,
++		.sync_state = icc_sync_state,
++	},
++};
++module_platform_driver(msm8976_noc_driver);
++
++MODULE_DESCRIPTION("Qualcomm MSM8976 NoC driver");
++MODULE_LICENSE("GPL");
 -- 
-2.25.1
+2.45.1
 
 
