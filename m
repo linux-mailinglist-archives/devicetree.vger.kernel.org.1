@@ -1,113 +1,252 @@
-Return-Path: <devicetree+bounces-74011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 461A6901B3D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 08:27:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6197E901B6A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 08:54:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF4811F22097
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 06:27:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A486EB2180D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 06:54:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B95A17BD2;
-	Mon, 10 Jun 2024 06:27:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE2DA17C66;
+	Mon, 10 Jun 2024 06:53:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bzcadobU"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="N7+p5tiP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E88291CF8A;
-	Mon, 10 Jun 2024 06:27:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEB76224E8;
+	Mon, 10 Jun 2024 06:53:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718000831; cv=none; b=SLt/Z6OIUvOqleFMM5APuOjH8CRStniW+ZCdNNFjPpyXBUyu+R3M5435Dk9h6mZ9R7ON7z1F/xe+jdj0Ng3YnoaTEmBte6SDozlwhWi4JxhrjgLCVeavCruefSL93ABQtvL7dJQfyoVmC2oLkdPpSQGznlWcTeLjA6PbUX7IxtA=
+	t=1718002434; cv=none; b=Xazj0YFLhhKhC9nXRrnZPE5EtjkNDMQcEDyb4YqQtE008690IwEP3j+Wld3cMfS47cKZEmLqYJSZ+t+gF3zbOa4waW24IYtdThN1I8kiMwnH/86ltYjX9ysoOLITRZdAPZ3qJIJYXx4ofZZxotzjDC3aDRoO5IW+SSxyE/9sKKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718000831; c=relaxed/simple;
-	bh=46ontKYFYxBeCCy+CgEUCpaMHxEXAnXsVFaJAmuzFd4=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=ut5it7/ajUhfQlqjUVLNVddZH1OMeREYsWDF4pXxf9O8yAQppYOGPSXoJhdODc0gs9a2NdGSvjJMLH5f+Cfku2tN3mqFqFqFiIpEIFnbK5VOrGijCwQ4lZU0loivQg33H+LxfmU+TL+zHG1CbqFDa7edq11d1k1OvE4kKos0Qrs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bzcadobU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B88FC2BBFC;
-	Mon, 10 Jun 2024 06:27:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718000830;
-	bh=46ontKYFYxBeCCy+CgEUCpaMHxEXAnXsVFaJAmuzFd4=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=bzcadobUAHWCAsVpT480gaT0KnUkKTEceCmaDDbtm6xomykD5xW9NEl/cU9kwvlo7
-	 d/rM1rTG1tw55LKH1fWQ3/PLw4AD3TfFM4bUvU6VBrrJY1zcdULJKfPPRA5xr33SpV
-	 UKRuQkhSCjxeJtl10wwV2fQd2sEwaufKqPrRcSPDONcWRNfgOUonB3LHRPX2ioT3Fi
-	 G94UasDurkk8+B806ivHWRipGLfjuvYw+GZlnBOLschWwlYMzWVYaTNWAix4TIoljc
-	 TZ1+svjB2kHXJ6rCIqhkWPu7LFLe5pcGnQc1g0OlWvhYJa53wg2jivRsm5AEfdjTXa
-	 Hsnz9lqE3/Ryg==
-Date: Mon, 10 Jun 2024 00:27:09 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1718002434; c=relaxed/simple;
+	bh=UUCkxg6F+ZFRb1qsY17FUuhKbviHXLlzPpVxYybdOew=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=WziG1Ld/SwBNeAYIliVp8piWKk0N/ustnhpBkw2VRe8xFtS+xdFVzHYQ8Y/u3tEYEjY499HKDA07K2TWFhfrAdPhp0ef86OndSwxPpz2mJIHjgtjHDFubyRTGpxI2cGY6n3KtGdYZAs1EeYhNA1p0LfJ3pYVNPinjT6YGBH89uY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=N7+p5tiP; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45A6rgTQ062074;
+	Mon, 10 Jun 2024 01:53:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718002422;
+	bh=PxnIiwyzOSMm+O787G/I/NLCdKWBirKxD1GYw/nsyIU=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=N7+p5tiPlvsZQvFvwivsnqRlra8BPzjGA184BMns9VSKNEkxyxB2dN+oKMEp+n8kB
+	 8mNj5MKwjfeuAGLwgO9P1WS7wTv0CYypqJdwHlmHHos0qCmtjwp0HMT+rd9Fe/vQTA
+	 LjqbArHlGoMgwUb74IJ7/fJ1WbPrGqKTq4AcSo3Y=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45A6rgZI125131
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 10 Jun 2024 01:53:42 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 10
+ Jun 2024 01:53:42 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 10 Jun 2024 01:53:42 -0500
+Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45A6rbgZ112839;
+	Mon, 10 Jun 2024 01:53:37 -0500
+Message-ID: <1156c363-93a8-4c31-8305-39d5da99653e@ti.com>
+Date: Mon, 10 Jun 2024 12:23:36 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org, 
- Jisheng Zhang <jszhang@kernel.org>, linux-kselftest@vger.kernel.org, 
- Samuel Holland <samuel@sholland.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, Jonathan Corbet <corbet@lwn.net>, 
- Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, 
- linux-kernel@vger.kernel.org, Andy Chiu <andy.chiu@sifive.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
- Shuah Khan <shuah@kernel.org>, linux-sunxi@lists.linux.dev, 
- devicetree@vger.kernel.org, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Evan Green <evan@rivosinc.com>, linux-doc@vger.kernel.org, 
- Guo Ren <guoren@kernel.org>
-In-Reply-To: <20240609-xtheadvector-v1-2-3fe591d7f109@rivosinc.com>
-References: <20240609-xtheadvector-v1-0-3fe591d7f109@rivosinc.com>
- <20240609-xtheadvector-v1-2-3fe591d7f109@rivosinc.com>
-Message-Id: <171800082930.1000302.5109301877296329341.robh@kernel.org>
-Subject: Re: [PATCH 02/13] dt-bindings: thead: add a vlen register length
- property
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 4/7] arm64: dts: ti: k3-j722s: Switch to
+ k3-am62p-j722s-common.dtsi
+To: Roger Quadros <rogerq@kernel.org>,
+        Siddharth Vadapalli
+	<s-vadapalli@ti.com>, <nm@ti.com>, <afd@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>,
+        <danishanwar@ti.com>, <srk@ti.com>
+References: <20240604085252.3686037-1-s-vadapalli@ti.com>
+ <20240604085252.3686037-5-s-vadapalli@ti.com>
+ <79eedaea-bf4f-4a20-8a52-751ce7187523@ti.com>
+ <c6d1b64b-48bf-435f-823c-fb4c588819cc@kernel.org>
+From: Vignesh Raghavendra <vigneshr@ti.com>
+Content-Language: en-US
+In-Reply-To: <c6d1b64b-48bf-435f-823c-fb4c588819cc@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
 
-On Sun, 09 Jun 2024 21:45:07 -0700, Charlie Jenkins wrote:
-> Add a property analogous to the vlenb CSR so that software can detect
-> the vector length of each CPU prior to it being brought online.
-> Currently software has to assume that the vector length read from the
-> boot CPU applies to all possible CPUs. On T-Head CPUs implementing
-> pre-ratification vector, reading the th.vlenb CSR may produce an illegal
-> instruction trap, so this property is required on such systems.
+
+On 06/06/24 13:04, Roger Quadros wrote:
 > 
-> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
-> ---
->  Documentation/devicetree/bindings/riscv/thead.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+> 
+> On 06/06/2024 07:05, Vignesh Raghavendra wrote:
+>>
+>>
+>> On 04/06/24 14:22, Siddharth Vadapalli wrote:
+>>> Update "k3-j722s.dtsi" to use "k3-am62p-j722s-common.dtsi" which
+>>> contains the nodes shared with AM62P, followed by including the J722S
+>>> specific main domain peripherals contained in "k3-j722s-main.dtsi".
+>>>
+>>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>>> ---
+>>> v4:
+>>> https://lore.kernel.org/r/20240601121554.2860403-5-s-vadapalli@ti.com/
+>>> No changes since v4.
+>>>
+>>>  arch/arm64/boot/dts/ti/k3-j722s.dtsi | 97 +++++++++++++++++++++++++++-
+>>>  1 file changed, 96 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-j722s.dtsi b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
+>>> index c75744edb143..9e04e6a5c0fd 100644
+>>> --- a/arch/arm64/boot/dts/ti/k3-j722s.dtsi
+>>> +++ b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
+>>> @@ -10,12 +10,107 @@
+>>>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>>  #include <dt-bindings/soc/ti,sci_pm_domain.h>
+>>>  
+>>> -#include "k3-am62p5.dtsi"
+>>> +#include "k3-am62p-j722s-common.dtsi"
+>>> +#include "k3-j722s-main.dtsi"
+>>>  
+>>>  / {
+>>>  	model = "Texas Instruments K3 J722S SoC";
+>>>  	compatible = "ti,j722s";
+>>>  
+>>> +	cpus {
+>>> +		#address-cells = <1>;
+>>> +		#size-cells = <0>;
+>>> +
+>>> +		cpu-map {
+>>> +			cluster0: cluster0 {
+>>> +				core0 {
+>>> +					cpu = <&cpu0>;
+>>> +				};
+>>> +
+>>> +				core1 {
+>>> +					cpu = <&cpu1>;
+>>> +				};
+>>> +
+>>> +				core2 {
+>>> +					cpu = <&cpu2>;
+>>> +				};
+>>> +
+>>> +				core3 {
+>>> +					cpu = <&cpu3>;
+>>> +				};
+>>> +			};
+>>> +		};
+>>> +
+>>> +		cpu0: cpu@0 {
+>>> +			compatible = "arm,cortex-a53";
+>>> +			reg = <0x000>;
+>>> +			device_type = "cpu";
+>>> +			enable-method = "psci";
+>>> +			i-cache-size = <0x8000>;
+>>> +			i-cache-line-size = <64>;
+>>> +			i-cache-sets = <256>;
+>>> +			d-cache-size = <0x8000>;
+>>> +			d-cache-line-size = <64>;
+>>> +			d-cache-sets = <128>;
+>>> +			next-level-cache = <&l2_0>;
+>>> +			clocks = <&k3_clks 135 0>;
+>>> +		};
+>>> +
+>>> +		cpu1: cpu@1 {
+>>> +			compatible = "arm,cortex-a53";
+>>> +			reg = <0x001>;
+>>> +			device_type = "cpu";
+>>> +			enable-method = "psci";
+>>> +			i-cache-size = <0x8000>;
+>>> +			i-cache-line-size = <64>;
+>>> +			i-cache-sets = <256>;
+>>> +			d-cache-size = <0x8000>;
+>>> +			d-cache-line-size = <64>;
+>>> +			d-cache-sets = <128>;
+>>> +			next-level-cache = <&l2_0>;
+>>> +			clocks = <&k3_clks 136 0>;
+>>> +		};
+>>> +
+>>> +		cpu2: cpu@2 {
+>>> +			compatible = "arm,cortex-a53";
+>>> +			reg = <0x002>;
+>>> +			device_type = "cpu";
+>>> +			enable-method = "psci";
+>>> +			i-cache-size = <0x8000>;
+>>> +			i-cache-line-size = <64>;
+>>> +			i-cache-sets = <256>;
+>>> +			d-cache-size = <0x8000>;
+>>> +			d-cache-line-size = <64>;
+>>> +			d-cache-sets = <128>;
+>>> +			next-level-cache = <&l2_0>;
+>>> +			clocks = <&k3_clks 137 0>;
+>>> +		};
+>>> +
+>>> +		cpu3: cpu@3 {
+>>> +			compatible = "arm,cortex-a53";
+>>> +			reg = <0x003>;
+>>> +			device_type = "cpu";
+>>> +			enable-method = "psci";
+>>> +			i-cache-size = <0x8000>;
+>>> +			i-cache-line-size = <64>;
+>>> +			i-cache-sets = <256>;
+>>> +			d-cache-size = <0x8000>;
+>>> +			d-cache-line-size = <64>;
+>>> +			d-cache-sets = <128>;
+>>> +			next-level-cache = <&l2_0>;
+>>> +			clocks = <&k3_clks 138 0>;
+>>> +		};
+>>> +	};
+>>> +
+>>> +	l2_0: l2-cache0 {
+>>> +		compatible = "cache";
+>>> +		cache-unified;
+>>> +		cache-level = <2>;
+>>> +		cache-size = <0x80000>;
+>>> +		cache-line-size = <64>;
+>>> +		cache-sets = <512>;
+>>> +	};
+>>> +
+>>>  	cbass_main: bus@f0000 {
+>>>  		compatible = "simple-bus";
+>>>  		#address-cells = <2>;
+>>
+>>
+>> You would need to move the rest of main domain overrides and cbass_main
+>> definitions to k3-j722s-main.dtsi and limit this file to CPU definitions
+>> similar to k3-am62p5.dtsi
+> 
+> Not exactly.
+> In existing cases there are 2 soc.dtsi files. e.g. k3-am62p.dtsi and k3-am62p5.dtsi.
+> or k3-am2.dtsi and k3-am625.dtsi.
+> 
+> The former includes everything that is required for the SOC variant except the CPU, OPP and cache.
+> The later includes just the CPU, OPP and cache.
+> 
+> I suppose this only makes sense if there are multiple variants of the SoC where only
+> the number of CPUs change. Would this be the case for J722S?
+
+
+Part numbers with different OPPs are expected besides difference in
+number of cores for J722s.
+
+> 
+> If not then one soc.dtsi file should be sufficient. If yes then we need to have 2 soc.dtsi files
+> for J722S like the rest.
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/riscv/thead.yaml: 'thead,vlenb' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'dependentRequired', 'dependentSchemas', 'patternProperties', 'properties', 'not', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select', '$ref']
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240609-xtheadvector-v1-2-3fe591d7f109@rivosinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+Regards
+Vignesh
 
