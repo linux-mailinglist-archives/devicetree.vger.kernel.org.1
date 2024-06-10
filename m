@@ -1,153 +1,131 @@
-Return-Path: <devicetree+bounces-74239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A8FC90267F
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 18:20:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 576D2902688
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 18:20:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E0D38B26EBC
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 16:19:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6F051B25804
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 16:20:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3899C142E7F;
-	Mon, 10 Jun 2024 16:19:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77ECC142E7F;
+	Mon, 10 Jun 2024 16:19:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UCBZuDqG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WcUCHTx2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D85E81754;
-	Mon, 10 Jun 2024 16:19:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B1F043146;
+	Mon, 10 Jun 2024 16:19:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718036360; cv=none; b=Qf0Tx4OZiPAh+9UN5DBYycSc9ibX2Bov5cRNghcL0Wn1FrxhGoBcxNAsU0fNGZ1hqvcaHtVTR2Z6zGDr3+Zrn4hgl66urS/yV2xI9hqkj3/8hNr1Df3YI+1U90Mj3bNVn/qTP3xcUYxztjCCmYmR+gIU9NQCISQh/TqSM7NJX9U=
+	t=1718036390; cv=none; b=NquIehsDORvGBBgPKFjc9o87ZTp0+pMyViL+We8/V0mwgYUYlM2avI0T6srY2rfpfXt3AH0eKUifwaAEcd/YXHsnmkgGvzghdn3Io/XnHpWhXd0gC4nuP3us9mX09SjNgEo0ZSZGIC3EXhLJiL8em+gXe1vaz2Vka5PY9BnHgZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718036360; c=relaxed/simple;
-	bh=BbqJ1v2auCLBE0bToKR5V2m6jVtwM9b3QEfzCJ0IEGk=;
+	s=arc-20240116; t=1718036390; c=relaxed/simple;
+	bh=R6WzIULq9+fnQYcQS1bKOAdon3jwK1WH/CKRPxb9Dg0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PKe4/V0V9ulX9YeEzXsx7UGAvxBZG0nZX62es1vCf5ygD8aG++jdXJTU2ukLgNAL6guLXNPBCBFZbqv0201BWmc1wt2HvrWzpAZ3oicg7qtl1nZZlSrKjWp9P2PBOITbdhpeW81kY2pWRi1pvlGhzSio2M1k8x6U07fGFMUfqm0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UCBZuDqG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E7C4C2BBFC;
-	Mon, 10 Jun 2024 16:19:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qj/hwgUyvSoonkv3miGfcWmZ4Zg7y1Q8mH5UcqcS+ZdCWveXrELnVEmuq7JFr0wCZ6ux3m+6lOOQAF05D7pxRId2E2VOkEDpaMRoxbroIF2uufUazXyLEKjO2ezZbrJ7fQPStSmhI8+M78LsJg4gITC63HmRWjSKuETizNNfHF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WcUCHTx2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D7CBC2BBFC;
+	Mon, 10 Jun 2024 16:19:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718036359;
-	bh=BbqJ1v2auCLBE0bToKR5V2m6jVtwM9b3QEfzCJ0IEGk=;
+	s=k20201202; t=1718036389;
+	bh=R6WzIULq9+fnQYcQS1bKOAdon3jwK1WH/CKRPxb9Dg0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UCBZuDqGMZksQ02K0c6Tu0igtY4udAd2HSprodAzpj7y20CG1Rp94dBhi67W4sV4B
-	 FhxwAU00PLHQNegE7o9BEdkh5U+D7udL5MwHWWoZrVh2WfsZGTz66KaZmYvVZQVLCf
-	 xwGRR8JC3MnNGlePNimuEgxrBFE03d8DilPpCt5P5tdrZKUiM9AgItec9FwZva0xTX
-	 KK7oBHuHbIXWXJSzDJy+m+WXd/pYdmKi1ZK6pr30JO5EADzooTkT8fu7Q5HaWrciHb
-	 Dj6ZjPLUBy8/5Q0Am01/D1LK5yfOG+VtG+FipVcnVWt/TTN0x3Ivu/inudTdlekQ/t
-	 qFyzKDvshmAGQ==
-Date: Mon, 10 Jun 2024 17:19:16 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Witold Sadowski <wsadowski@marvell.com>
-Cc: linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	pthombar@cadence.com
-Subject: Re: [PATCH v8 4/4] spi: cadence: Add MRVL overlay xfer operation
- support
-Message-ID: <ZmcnhGH2fcmrXn1G@finisterre.sirena.org.uk>
-References: <20240607151831.3858304-1-wsadowski@marvell.com>
- <20240607151831.3858304-5-wsadowski@marvell.com>
+	b=WcUCHTx2EYJ/GmvexbgWlXn/OfbnPQSqd7Ez4p3BHSxY17Zysbn59If0ApIbKoL8X
+	 dfuMWERYIYCSIfs9Y+5D9NXh8Sa+ovgFSVd9ZWe4w/HdTpVWeyQoVkGuQvskYmi03w
+	 jRS1wiQ9jpbd+YasQZ7/8IzhTbbgL7ycFng863AT5ChQnNdvVgh2USaFXEwAStnpQi
+	 pEErYLW8kKB8/VnkteCKuf9zsk4OVBNTXYvcRLZV91t52Tf9jUbpww3YL4ojm82zD7
+	 N7RLatbkOjGPMs/W4md3UjI8PPNu4xVmmMB4fOXqzamMy7L8+CTP029x76g2W8c2I2
+	 ubSRFZdU3vO6A==
+Date: Mon, 10 Jun 2024 17:19:44 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Julien Stephan <jstephan@baylibre.com>,
+	Louis Kuo <louis.kuo@mediatek.com>,
+	Phi-Bang Nguyen <pnguyen@baylibre.com>,
+	Andy Hsieh <andy.hsieh@mediatek.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Florian Sylvestre <fsylvestre@baylibre.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Paul Elder <paul.elder@ideasonboard.com>,
+	Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 1/5] dt-bindings: media: add mediatek ISP3.0 sensor
+ interface
+Message-ID: <20240610-eligibly-gainfully-7b1caad07aaa@spud>
+References: <20240110141443.364655-1-jstephan@baylibre.com>
+ <20240110141443.364655-2-jstephan@baylibre.com>
+ <e0bf8667-cbb8-49ba-bb44-3edf93b019b8@linaro.org>
+ <CAEHHSvYt-aqFahi=B_si=duJH8xDgy_9nndgR-P0+U5THX69uw@mail.gmail.com>
+ <20240607144154.GD18479@pendragon.ideasonboard.com>
+ <cf49fbb3-9de6-4e57-bc38-d720f76118a7@linaro.org>
+ <20240610085424.GH26663@pendragon.ideasonboard.com>
+ <e9a44b0b-1930-42fa-ab5e-a7eac1470041@linaro.org>
+ <20240610-roping-ninja-56074ad61f77@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="QscN4rSe5xkktnMl"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="krd0kZavuSZAemTC"
 Content-Disposition: inline
-In-Reply-To: <20240607151831.3858304-5-wsadowski@marvell.com>
-X-Cookie: Your love life will be... interesting.
+In-Reply-To: <20240610-roping-ninja-56074ad61f77@spud>
 
 
---QscN4rSe5xkktnMl
+--krd0kZavuSZAemTC
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 07, 2024 at 08:18:31AM -0700, Witold Sadowski wrote:
+On Mon, Jun 10, 2024 at 05:10:51PM +0100, Conor Dooley wrote:
+> On Mon, Jun 10, 2024 at 12:18:12PM +0200, Krzysztof Kozlowski wrote:
+> > On 10/06/2024 10:54, Laurent Pinchart wrote:
+> > >>
+> > >>> There's also the camsv IP in the same series that needs a generic n=
+ame.
+> > >>> I really don't know what to propose for it. Could you recommend
+> > >>> something that would make you happy ?
+> > >>
+> > >> Sorry,that's almost half year old thread. Not present in my inbox.
+> > >=20
+> > > I remember someone presenting a talk titled "Beginner Linux kernel
+> > > maintainer's toolbox" in Prague last year. The talk mentioned a tool
+> > > call b4. I highly recommend it ;-)
+> >=20
+> > Wouldn't solve it. I would need to download the thread and import to
+> > mailbox (several clicks needed) or open in some other tool just to see
+> > the email. Or find it on lore.kernel.org - anyway just not convenient.
+>=20
+> Apparently you can use b4 from within mutt to populate threads, but I am
+> yet to figure out if it works with non-local maildirs:
+> https://b4.docs.kernel.org/en/latest/maintainer/mbox.html#using-with-mutt
 
-> +static int cdns_xspi_prepare_generic(int cs, const void *dout, int len, int glue, u32 *cmd_regs)
-> +{
-> +	u8 *data = (u8 *)dout;
-> +	int i;
-> +	int data_counter = 0;
-> +
-> +	memset(cmd_regs, 0x00, 6*4);
+That should read "how to make it work", I know it doesn't work like
+documented there with non-local mailboxes.
 
-The magic numbers here aren't great...
 
-> +static unsigned char reverse_bits(unsigned char num)
-> +{
-> +	unsigned int count = sizeof(num) * 8 - 1;
-> +	unsigned int reverse_num = num;
-> +
-> +	num >>= 1;
-> +	while (num) {
-> +		reverse_num <<= 1;
-> +		reverse_num |= num & 1;
-> +		num >>= 1;
-> +		count--;
-> +	}
-> +	reverse_num <<= count;
-> +	return reverse_num;
-> +}
 
-I can't help but think there ought to be a helper for this though I
-can't think what it is off the top of my head.  If there isn't it
-probably makes sense to add this as one.
-
-> +	/* Enable xfer state machine */
-> +	if (!cdns_xspi->xfer_in_progress) {
-> +		u32 xfer_control = readl(cdns_xspi->xferbase + MRVL_XFER_FUNC_CTRL);
-> +
-> +		cdns_xspi->current_xfer_qword = 0;
-> +		cdns_xspi->xfer_in_progress = true;
-> +		xfer_control |= (MRVL_XFER_RECEIVE_ENABLE |
-> +				 MRVL_XFER_CLK_CAPTURE_POL |
-> +				 MRVL_XFER_FUNC_START |
-> +				 MRVL_XFER_SOFT_RESET |
-> +				 FIELD_PREP(MRVL_XFER_CS_N_HOLD, (1 << cs)));
-> +		xfer_control &= ~(MRVL_XFER_FUNC_ENABLE | MRVL_XFER_CLK_DRIVE_POL);
-> +		writel(xfer_control, cdns_xspi->xferbase + MRVL_XFER_FUNC_CTRL);
-> +	}
-
-Could this just be a prepare_transfer_hardware() and we could just use
-transfer_one()?
-
-> +	list_for_each_entry(t, &m->transfers, transfer_list) {
-> +		u8 *txd = (u8 *) t->tx_buf;
-> +		u8 *rxd = (u8 *) t->rx_buf;
-> +		u8 data[10];
-> +		u32 cmd_regs[6];
-> +
-> +		if (!txd)
-> +			txd = data;
-> +
-> +		cdns_xspi->in_buffer = txd + 1;
-> +		cdns_xspi->out_buffer = txd + 1;
-
-Oh?
-
---QscN4rSe5xkktnMl
+--krd0kZavuSZAemTC
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZnJ4QACgkQJNaLcl1U
-h9Dp1wf/WWCSFxYA9ICwOA6a517Qv5oZM6qYTRD9DXmo/lVgjct+IPOYv8EzpMJn
-6R13HN446bDgxlYUEKBj3khExObjLdA+JbrEa50OV6ylKDWUcYfhGw7l4FNKQdmp
-dlztImDchBdOisfrcVyLk/yzZZ5YHlFzmYldqrcVDQYQySDtuRt3uGm7wwWDdcu4
-BaOSqwoBskBGobu3S/TFdOa1wNusmc8s6K3Ti5j6y0q0X1lgRfmanltHuD6XBWn5
-NGrkO7xN/v2DyQKmCkKcDpSWUllFYEqHDhDZjr8EkrUQlkIvhtI5Tf1/E1r5qyOY
-kkyDt6TcBguiNI+NuByW8RL9kB2QjA==
-=LJaH
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmcnoAAKCRB4tDGHoIJi
+0qtrAP9YPh0+sV/kjtNmXMwP7T5usLhhX5vZzAjPc0mwr5965wD/Wx7GB6CXgeXI
+q3vmSBs2jnhda3KzpGbgmbxGrNjp0Qw=
+=HyAB
 -----END PGP SIGNATURE-----
 
---QscN4rSe5xkktnMl--
+--krd0kZavuSZAemTC--
 
