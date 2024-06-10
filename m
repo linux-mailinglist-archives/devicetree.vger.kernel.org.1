@@ -1,64 +1,54 @@
-Return-Path: <devicetree+bounces-74222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BF12902599
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 17:28:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2164B9025A0
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 17:29:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1F701F260DE
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 15:28:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 312991C23166
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 15:29:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D282B142E78;
-	Mon, 10 Jun 2024 15:26:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3695C13F458;
+	Mon, 10 Jun 2024 15:27:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="guGRf5sY"
+	dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b="KymDzr1k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 142991422CA;
-	Mon, 10 Jun 2024 15:26:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 951214D8A0;
+	Mon, 10 Jun 2024 15:27:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.126.157
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718033178; cv=none; b=ZYeT2n1EuDOFLLOO9wLx1oR/mNZQpJs8Um+EKCX4m6vBJMhcnVEtlK8AsP9RbAo8EgeAFDuUmhs7tOO5nVYalyxDgThOgTeSFCGZVmkUTucxVQJhY6VIEgjztqirCwP/lwhbhnvki4c7xZyspcTpnLGzPWZnBR5vMjwg3+DvC+w=
+	t=1718033267; cv=none; b=na3zEOXrEypGlzvnqTRzBwu6PDBOkEroxpOy2N4YwJMsPeMgXUc1q8uUUrLmyZLu4NxoyONgVdfOONif+a918HmLPm+KPAkWjHH1ciiT+fdPCRTefe9L1ZqjDBOQ1uw7lDXX+WmKfCFZDkMw9zO37zYxaypXYC82179vMojIL+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718033178; c=relaxed/simple;
-	bh=1vFvZ2zJd0CuPcM/ebA1+wFn+pbF96AW6hJNpLAk5Ww=;
+	s=arc-20240116; t=1718033267; c=relaxed/simple;
+	bh=UtTPpDqVMWYeL4JSg0XAjH/IxWdPTSAlXcPH9xMs0EY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lLkqNN9S1tlZtaGWwm4UuJ4i47jWlkOF9rPKHTtylO8GXNqlh/yIJyjpIGxpByWbhf6RbpDd+HsglXANZb1BEeIxXom7eRX+v0xgtXrbKuGYSPi6IeyTJaaqDsv+m97nt4HowJBtGUGPvO2425CjKpoq1/A1ZtgO9loDB1y8e3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=guGRf5sY; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3FB6266F;
-	Mon, 10 Jun 2024 17:26:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1718033163;
-	bh=1vFvZ2zJd0CuPcM/ebA1+wFn+pbF96AW6hJNpLAk5Ww=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZmPFRVp0gdFayCAtAx8VteWW0VZ1NFtmJCOS0aulYL7hHou83UQdfCiP7tgmXHgY2KV8s/MFRdDoFKCelovbNmm1r7ipthm8TCEDISmfUUcTetS5r4v7z1L3BtRNQDu/krxQcbVwHaXZIL2AIe2HCQNTMOvvALZ8MOJWHznhMWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weissschuh.net; spf=pass smtp.mailfrom=weissschuh.net; dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b=KymDzr1k; arc=none smtp.client-ip=159.69.126.157
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weissschuh.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=weissschuh.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
+	s=mail; t=1718033254;
+	bh=UtTPpDqVMWYeL4JSg0XAjH/IxWdPTSAlXcPH9xMs0EY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=guGRf5sYrgq1r6A4VgY7eAsmcM1uh5KGYdHpDcvYJ3srl/fSySgs//5bLsL2Kz1oP
-	 6m8fKsRK0qyGVPhfKMozSFcDadniOuWZUnSiEukS2oNT6z6KLDTy4RDRR5jqKuph7Q
-	 YhlIhcdXRs/ADnH4sJeqxfGKVVG+UUCHWM2KAz0g=
-Date: Mon, 10 Jun 2024 18:25:55 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Haibo Chen <haibo.chen@nxp.com>
-Subject: Re: [PATCH v4 3/4] gpio: adp5585: Add Analog Devices ADP5585 support
-Message-ID: <20240610152555.GV18479@pendragon.ideasonboard.com>
-References: <20240608141633.2562-1-laurent.pinchart@ideasonboard.com>
- <20240608141633.2562-4-laurent.pinchart@ideasonboard.com>
- <ZmcYnDf0YIWA9A85@surfacebook.localdomain>
+	b=KymDzr1kSmWo/H+8aO5XZeAo8+ApERRUiyZMWfleW903o1iQJDAU8QYAvcxn2sJSq
+	 HsEj94P96CqJBTSkOkEufCSkw6M4AQ0gzEey4ZfvKVNn0kYshetb6CTxN8x6Qoi12V
+	 J9yJQQurMqVAm9+Fl1rHJkZZQsE5gkeS5HHbhznI=
+Date: Mon, 10 Jun 2024 17:27:33 +0200
+From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	=?utf-8?B?UmVuw6k=?= Rebe <rene@exactcode.de>, Armin Wolf <W_Armin@gmx.de>, 
+	Stephen Horvath <s.horvath@outlook.com.au>, Paul Menzel <pmenzel@molgen.mpg.de>
+Subject: Re: [PATCH v5 0/6] hwmon: Add support for SPD5118 compliant chips
+Message-ID: <12f2b0e5-5130-4e07-be1f-38402f677f0c@t-8ch.de>
+References: <20240610144103.1970359-1-linux@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,37 +57,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <ZmcYnDf0YIWA9A85@surfacebook.localdomain>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240610144103.1970359-1-linux@roeck-us.net>
 
-On Mon, Jun 10, 2024 at 06:15:40PM +0300, Andy Shevchenko wrote:
-> Sat, Jun 08, 2024 at 05:16:32PM +0300, Laurent Pinchart kirjoitti:
-> > From: Haibo Chen <haibo.chen@nxp.com>
-> > 
-> > The ADP5585 is a 10/11 input/output port expander with a built in keypad
-> > matrix decoder, programmable logic, reset generator, and PWM generator.
-> > This driver supports the GPIO function using the platform device
-> > registered by the core MFD driver.
-> > 
-> > The driver is derived from an initial implementation from NXP, available
-> > in commit 451f61b46b76 ("MLK-25917-2 gpio: adp5585-gpio: add
-> > adp5585-gpio support") in their BSP kernel tree. It has been extensively
-> > rewritten.
+On 2024-06-10 07:40:57+0000, Guenter Roeck wrote:
+> Add support for SPD5118 (Jedec JESD300) compliant chips supporting
+> a temperature sensor and SPD NVRAM. Such devices are typically found on
+> DDR5 memory modules.
+
+<snip>
+
+> ----------------------------------------------------------------
+> Guenter Roeck (6):
+>       dt-bindings: trivial-devices: Add jedec,spd5118
+>       hwmon: Add support for SPD5118 compliant temperature sensors
+>       hwmon: (spd5118) Add suspend/resume support
+>       hwmon: (spd5118) Add support for reading SPD data
+>       i2c: smbus: Support DDR5 and LPDDR5 SPD EEPROMs
+>       hwmon: (spd5118) Add configuration option for auto-detection
 > 
-> ...
-> 
-> > +static const struct platform_device_id adp5585_gpio_id_table[] = {
-> > +	{ "adp5585-gpio" },
-> 
-> > +	{ /* Sentinel */ },
-> 
-> Drop the comma.
+>  .../devicetree/bindings/trivial-devices.yaml       |   2 +
+>  Documentation/hwmon/index.rst                      |   1 +
+>  Documentation/hwmon/spd5118.rst                    |  63 ++
+>  drivers/hwmon/Kconfig                              |  31 +
+>  drivers/hwmon/Makefile                             |   1 +
+>  drivers/hwmon/spd5118.c                            | 658 +++++++++++++++++++++
+>  drivers/i2c/i2c-smbus.c                            |   6 +-
+>  7 files changed, 761 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/hwmon/spd5118.rst
+>  create mode 100644 drivers/hwmon/spd5118.c
 
-I prefer keeping it.
-
-> > +};
-
--- 
-Regards,
-
-Laurent Pinchart
+Reviewed-by: Thomas Weißschuh <linux@weissschuh.net>
 
