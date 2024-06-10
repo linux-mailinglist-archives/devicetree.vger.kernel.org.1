@@ -1,519 +1,184 @@
-Return-Path: <devicetree+bounces-73988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80AFC901A0D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 06:48:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F42C901A3A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 07:39:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 058651F21ADF
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 04:48:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6285B1C20E6F
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 05:39:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 789486F2E6;
-	Mon, 10 Jun 2024 04:46:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 496EDDDBB;
+	Mon, 10 Jun 2024 05:39:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="NyrNu1G/"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="X3vhCa9D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2072.outbound.protection.outlook.com [40.107.101.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60CFE14287
-	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 04:46:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717994765; cv=none; b=BygcGsRw0JFUhJ8rVE+0TlKAOlzDz8YogZjdesWno/i+9nMh9MZHpRiasIYcjLS4GWJIvWHnoT6FY+xG3fPmtOmjO6aw77b9hkaF4RoT70Z6GS6G1DPhVJ7nT888ENr68XZ2MKhuc9dIau3ZrlYhGIbr4MKYURJcn1vkYdTQBdk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717994765; c=relaxed/simple;
-	bh=89do+Iu5RzVkWiXYu8asYhzFXtnE5ZFmYADPVBsb7VU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=sGJ2IB+Ya8SjK+K7ef2ZkZg+8EVNzyIMQSajjpWvvOKiHkn6hfitGCmeCp+2hZ8138Ha//m/0u/U+oRg5I4F7AgNzSg5B9GswZndbvf95FbZoNa+ld9FeUdajfgfajyf2M9oDZZZIbzJfCfpOPlsnrDeBDiZDuzM4R+uK1Mn93k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=NyrNu1G/; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-1f47f07aceaso34139925ad.0
-        for <devicetree@vger.kernel.org>; Sun, 09 Jun 2024 21:46:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1717994763; x=1718599563; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=f2sfNsaQxId1BqeFASEoVxo8c/eR/7T/BctdU8871Fw=;
-        b=NyrNu1G/KQW1Kfliqtl6pbyKcqteuL29g5IX2hFrmmSJkhsK3gn70sY9zk7pNKHbDl
-         ImqeDCyR4pn/KskI7yUlha+iQPzhcSgaQzL3Brr1W/7mY+Wre5pN5IQZ3bq6CPmFQ5/x
-         lwAs9vH4C64gmxYO1EF9SUQsDs7CnVUDa3f0xd1jYm8RveaKykdQItKLdcoEOn41hwva
-         xd+8FGHlGpYpQT6Qjo89NmHU2oNjgYNzvRrvdcUVrTYaZqKwrA7n+x08KOfUZJkt1ByK
-         5rqVPU65f0etNHEAaH7ROUlw2w3GDevISQP4SnQ+aTzqWxr5jD8rxioPVIs8OEgxnnIc
-         Wqbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717994763; x=1718599563;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=f2sfNsaQxId1BqeFASEoVxo8c/eR/7T/BctdU8871Fw=;
-        b=uc8yQi4Jai6gJxO5i1NZdyDEjtXMpfqoadmzcBzLsMJvZxxI7ysud5gtr/UMH1SkRX
-         gJQiMhZ6/q/05RlospWLhYbJM6W4QnMBTUj6p0MwMa7BFw/SfIRZ4AiXIHB1PJk7csCJ
-         i9Qdwn7dxxplCur3MiLUPpxxYCYrhQqQxb+EDmravxC8nOkSGXAAlU53BC9BfHD2MdSc
-         jzeKSypsV3tYgqLKxBi4YqwjDaGmShPybnfzm4WY//stvDWCfJ2K/iFVCnIDHHIB0N2K
-         42IRkUM+FErWE83Pdb+Fh/K3tgOGSoEJTqlU4b5hBKrMnUK23vDfyPhscgV+OBx0QlFk
-         SipA==
-X-Forwarded-Encrypted: i=1; AJvYcCX0d1v735nSiH0MxgkOuhF9A53AWjaPCItfrw6qXVPWqMnG2ABALxbL4j1Beu1m45GB/E/z54n+WbHncQU3o1CGqndOL9UQGwyl5g==
-X-Gm-Message-State: AOJu0YytBcbaHh4z1frCUYgPJ8ezRA++mqXxugxb4A+Di59SMKWof5jX
-	t4IDQ5hePyDPrSZTa67p0Qn7fPjIezojCbQ0/3DacWKFU3bY7Iq3lKf5hZwV2Vg=
-X-Google-Smtp-Source: AGHT+IGzFIKn4oe74vjWI+nQxzlKuj7RnKDlQQ7ToGun10qPUfHRxLbkmgSLo9Q400U96OtUdpdlBQ==
-X-Received: by 2002:a17:902:ea08:b0:1f6:8314:50f5 with SMTP id d9443c01a7336-1f6d02e6d36mr98504295ad.15.1717994762790;
-        Sun, 09 Jun 2024 21:46:02 -0700 (PDT)
-Received: from charlie.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f6bd76ce8asm73124095ad.77.2024.06.09.21.46.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 09 Jun 2024 21:46:01 -0700 (PDT)
-From: Charlie Jenkins <charlie@rivosinc.com>
-Date: Sun, 09 Jun 2024 21:45:18 -0700
-Subject: [PATCH 13/13] selftests: riscv: Support xtheadvector in vector
- tests
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36C5B1400A;
+	Mon, 10 Jun 2024 05:39:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.101.72
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717997993; cv=fail; b=SRqXgu0D0X6YHK0esPzchk1hDNE7Bh+dvfHbPaSlFDdnk2DMxdIo9YOqdEGDhdJHXxnfTcYrDSxRetKfbJ1Tl5qqKKkY4zpa2lAqfov7/87IEgMTuXTLV1+Wg5CrTTyoovKe1UFjnj3N1VHZ3mGJg0rfKGCHeUGV6Bvmb+wcTHg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717997993; c=relaxed/simple;
+	bh=BkRt+PK4h2q/gUfcjGqWjU2QsW3Fqv2KJEyJzBFOkIg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=SajouPHKy5fum49BPRA+lq6+M4Zc5Hm+93hqylWFD7HoIo0HDwCs5bjoLW6i2fPym6U9GaeYWW+IHdrMsMhuFp6gDkiq+Ay4sjpBT5LluZKXxWAe7t3WZZhSUqJd9rq2Sszdq4m43s5Ii/1KrFZSlXZalN0Cw72Irv3AXLw7nyU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=X3vhCa9D; arc=fail smtp.client-ip=40.107.101.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CqzBrE0u/Gq36JVuG2scuhVRWYWuaJ19F00dnkWa8PXAfk6khXONpAaHxZBr04sSlGh7lVNVexU0tlXsph0VONbrDyztb2e0KKEg2PNQkEGt13n6dsAgxHf1p3iZxpt8jcs8bEuIRjm9rtaqMv37yZIW8taQ7MpQo1CMbGeGZniRmT1yLaYkkSgF1gfDtywxeA0UdktWzkV8N1yj1bMmeT30Er1sR2aFJefCNlJWEg65iCQHd88OvuiWGFaagIvVz9TZj0YSGm9U6SerrxN0ZOnao8ci29J7DanahsKDMtmYH20vW2KKUnzpRO/u+3kSG3P1n2sCfKTYgFENTZeG1Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CU9Xff99lbJvR1rL7BQU9wZPeJVP9SxHQ6svRyzy79Y=;
+ b=RY9kYR28fLae+f6uZ/Ofy96CpUe/uoy2jPu9gOjBMeUlMJ0u8w3S9zf/18B3EF/X2wBqHmU6/K3PNjPpptBN+6bYkweYZhjKlCGcqj+Wl+f8B+t/OmRlQE8gLyQf4K9Ip12AIP80BNECqakwTkXlWBfLYujVdwVlI9Ho5v2i/VbwyHWo5upvmCppApqiWY55bWIDqQ3m+Z4odopFtWRLZQD0IJ1E7kBs8sI9ry66X7EXrXYTsTw0NM9KGpcB2bNP4HKiRLXEM0l4/E7yc24re5onb/JdESf6J69ZSmUEsHZoehnJ3pZA/iJztIDa78fznTclUZ4sNCCMhwt2uBNbig==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=microchip.com smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CU9Xff99lbJvR1rL7BQU9wZPeJVP9SxHQ6svRyzy79Y=;
+ b=X3vhCa9DvJnxGxwJ6GYkMu+Fwd2UQubhoubCDwzSyyBZSIEDBreSveT2wwzDHvgMfm1RZ2N3TFFLQ5B0Qu65kINksmSXJBJymuz6uC+PvgN6CAP82ktVwHTMDfX2qZOAELUndiSU+Q31zUaOzC6pfXRfzCFYNMHr3hA5tjn47RQ=
+Received: from PH8PR22CA0019.namprd22.prod.outlook.com (2603:10b6:510:2d1::28)
+ by DM4PR12MB5745.namprd12.prod.outlook.com (2603:10b6:8:5c::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7633.36; Mon, 10 Jun 2024 05:39:48 +0000
+Received: from CO1PEPF000044F0.namprd05.prod.outlook.com
+ (2603:10b6:510:2d1:cafe::f6) by PH8PR22CA0019.outlook.office365.com
+ (2603:10b6:510:2d1::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7656.25 via Frontend
+ Transport; Mon, 10 Jun 2024 05:39:47 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CO1PEPF000044F0.mail.protection.outlook.com (10.167.241.70) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7677.15 via Frontend Transport; Mon, 10 Jun 2024 05:39:47 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 10 Jun
+ 2024 00:39:46 -0500
+Received: from xhdvineethc40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Mon, 10 Jun 2024 00:39:42 -0500
+From: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
+To: <nicolas.ferre@microchip.com>, <claudiu.beznea@tuxon.dev>,
+	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+	<pabeni@redhat.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<linux@armlinux.org.uk>, <vadim.fedorenko@linux.dev>, <andrew@lunn.ch>
+CC: <vineeth.karumanchi@amd.com>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, <git@amd.com>
+Subject: [PATCH net-next v4 0/4] net: macb: WOL enhancements 
+Date: Mon, 10 Jun 2024 11:09:32 +0530
+Message-ID: <20240610053936.622237-1-vineeth.karumanchi@amd.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240609-xtheadvector-v1-13-3fe591d7f109@rivosinc.com>
-References: <20240609-xtheadvector-v1-0-3fe591d7f109@rivosinc.com>
-In-Reply-To: <20240609-xtheadvector-v1-0-3fe591d7f109@rivosinc.com>
-To: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <shuah@kernel.org>, Guo Ren <guoren@kernel.org>, 
- Evan Green <evan@rivosinc.com>, Andy Chiu <andy.chiu@sifive.com>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev, 
- linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- Charlie Jenkins <charlie@rivosinc.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1717994732; l=13221;
- i=charlie@rivosinc.com; s=20231120; h=from:subject:message-id;
- bh=89do+Iu5RzVkWiXYu8asYhzFXtnE5ZFmYADPVBsb7VU=;
- b=cPWLT+3iSTWOGDVUiyQgiH39Ne+yNXrdZId3fvSeCYyWYMtkXPaeZbjrnddBPWAx61JSTE+np
- s/p3zXqMIFECoNIXmSnJMP+fuV3gs3cX5Dw9SODO8ME5u95efvXur7m
-X-Developer-Key: i=charlie@rivosinc.com; a=ed25519;
- pk=t4RSWpMV1q5lf/NWIeR9z58bcje60/dbtxxmoSfBEcs=
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB03.amd.com: vineeth.karumanchi@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000044F0:EE_|DM4PR12MB5745:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0dc7e479-abac-48eb-aaed-08dc890fbd85
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230031|82310400017|376005|7416005|36860700004|1800799015|921011;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?HC5mHpGMSDs3DgQEZ3t0bLyII3TWIvFxIU8iVRCdPu9sCN/6QuQ7Hxauw6XY?=
+ =?us-ascii?Q?w3TJfRluQtUQK5uB5J+iRI3abJgQf/fO4JqKD1wKxNDQ0+lGkYpOGK6kXTA9?=
+ =?us-ascii?Q?J6iatdK/iBnCldnj124p6iYFmodfHKdVI/yfpL1+3NBPtTFHJ6e9YD/tT6bv?=
+ =?us-ascii?Q?5RkoNjOWnNrYWczGEw9vPi8UEu+8FbbaHA1+59GJ66jOmSSmGfhTZzRgGJMq?=
+ =?us-ascii?Q?lWnffS6QCKmyHSVTGieWKhVEirPoBtc+j1kcUhhkiSVYWRVezzd5hCYADqqs?=
+ =?us-ascii?Q?ydRHbfa8rzLHewNJDYDMXf2Le7X/tNZ3SgccxKV/kyeBB41ko7XBweJhl1my?=
+ =?us-ascii?Q?/fp1uvux2EI3cqoJ49J1SEB9kRrsQ0/i99xF0by2DAyLpseFW0zKjehlz6++?=
+ =?us-ascii?Q?grz2TQ1maId2uwkhyemI4oS8YgwgVhquxlwxoDitpBQUFtdo40gYF2JP3o3w?=
+ =?us-ascii?Q?rEcrbDY/yrCPjezYo3pr7fE9qtqSoNFCBp5RJ7YbTy2ZJKwVanB/Ovyx/r5L?=
+ =?us-ascii?Q?AlgarUcuMjdoBB4MGzUURxK18fWTh7XETi7jG9K7fGjS4nQqrMQbIzi7CLxa?=
+ =?us-ascii?Q?CIBqvabAIGbybQUOisdyl18TWkPZPPpBBy3ADCgXFQ7D4ZtRIBFGJxMWG4fT?=
+ =?us-ascii?Q?yXyWz3FeOjFKYYWqMC0qToClvvgahkg48Fb8my5Ve6jlHi5P3bKbN6jpefWn?=
+ =?us-ascii?Q?6H5FIZ3SgIh5cwV2eKWQ+LbXU2jC19VJ5/9IWMTpYYoFFLF4U5loO3wI/e+j?=
+ =?us-ascii?Q?42aiW/zlRCSqkIKWDB/UMpgtKRzHVNQ9ST6yX37DtRQbYsUlWFd3h8sZvFk7?=
+ =?us-ascii?Q?QIcSKP2bw91XAnhUmdMHKVF9aN0Dj+axJavyu+ke+MQiCpiBT/E0JHhvUAhX?=
+ =?us-ascii?Q?2qypBU41h/ZRcGrenbiL50bwW8YvnEnEysdJSrUjs4SXxmNdVpgztAUKFMK3?=
+ =?us-ascii?Q?HGhpQ6GEwiiRdAlyn5x8q/7wXLSnuwDQy2SXhTxoKl/5B6wJYoQ8kwpLDrWu?=
+ =?us-ascii?Q?ZmFphVz47DNDBUbePhPeP3Z41Dheln9WRGsmC4G6pq8haTz7olwDieBHKIqh?=
+ =?us-ascii?Q?nr7ADPD9/MJEN2X6oYLSTcTicTltztf0DDy7P2cJQPNROEytaky+FrkUG0Hr?=
+ =?us-ascii?Q?MX1cKKfsmbPt6RLTVHlonHcCRNYlUlUczdjFIcds5PxiKf3CivQma3nTRRNV?=
+ =?us-ascii?Q?LjUM0arFVWCs53xnTGktE/SNg8JIEHzHQ1Ec+AEdTghAyMaiOaVLDRi0urlE?=
+ =?us-ascii?Q?7a4sar/PJBb/2CBQogO5FU5uupoC5wW36VdIaiIBkXvQTlNxWEe1VZxeMAvh?=
+ =?us-ascii?Q?wHcx2W8i7ZqPVJqU+CpL9QGwZ+szjuzSmBy5mg0xUVV/dIwG5FHX0IGyt9po?=
+ =?us-ascii?Q?YTDEEwCxkNHvlveUtfI/7f2DYeDa?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(82310400017)(376005)(7416005)(36860700004)(1800799015)(921011);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2024 05:39:47.5061
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0dc7e479-abac-48eb-aaed-08dc890fbd85
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CO1PEPF000044F0.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5745
 
-Extend existing vector tests to be compatible with the xtheadvector
-instructions.
+- Add provisioning for queue tie-off and queue disable during suspend.
+- Add support for ARP packet types to WOL.
+- Advertise WOL attributes by default.
+- Extend MACB supported wol modes to the PHY supported WOL modes.
+- Depricate magic-packet property.
 
-Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
----
- .../selftests/riscv/vector/v_exec_initval_nolibc.c | 23 ++++--
- tools/testing/selftests/riscv/vector/v_helpers.c   | 17 +++-
- tools/testing/selftests/riscv/vector/v_helpers.h   |  4 +-
- tools/testing/selftests/riscv/vector/v_initval.c   | 12 ++-
- .../selftests/riscv/vector/vstate_exec_nolibc.c    | 20 +++--
- .../testing/selftests/riscv/vector/vstate_prctl.c  | 91 ++++++++++++++--------
- 6 files changed, 115 insertions(+), 52 deletions(-)
+Changes in V4:
+- Extend MACB supported wol modes to the PHY supported modes.
+- Drop previous ACK from v2 series on 4/4 patch for further review.
 
-diff --git a/tools/testing/selftests/riscv/vector/v_exec_initval_nolibc.c b/tools/testing/selftests/riscv/vector/v_exec_initval_nolibc.c
-index 74b13806baf0..58c29ea91b80 100644
---- a/tools/testing/selftests/riscv/vector/v_exec_initval_nolibc.c
-+++ b/tools/testing/selftests/riscv/vector/v_exec_initval_nolibc.c
-@@ -18,13 +18,22 @@ int main(int argc, char **argv)
- 	unsigned long vl;
- 	int first = 1;
- 
--	asm volatile (
--		".option push\n\t"
--		".option arch, +v\n\t"
--		"vsetvli	%[vl], x0, e8, m1, ta, ma\n\t"
--		".option pop\n\t"
--		: [vl] "=r" (vl)
--	);
-+	if (argc > 2 && strcmp(argv[2], "x"))
-+		asm volatile (
-+			// 0 | zimm[10:0] | rs1 | 1 1 1 | rd |1010111| vsetvli
-+			// vsetvli	t4, x0, e8, m1, d1
-+			".insn		0b00000000000000000111111011010111\n\t"
-+			"mv		%[vl], t4\n\t"
-+			: [vl] "=r" (vl) : : "t4"
-+		);
-+	else
-+		asm volatile (
-+			".option push\n\t"
-+			".option arch, +v\n\t"
-+			"vsetvli	%[vl], x0, e8, m1, ta, ma\n\t"
-+			".option pop\n\t"
-+			: [vl] "=r" (vl)
-+		);
- 
- #define CHECK_VECTOR_REGISTER(register) ({					\
- 	for (int i = 0; i < vl; i++) {						\
-diff --git a/tools/testing/selftests/riscv/vector/v_helpers.c b/tools/testing/selftests/riscv/vector/v_helpers.c
-index 15c22318db72..2c4df76eefe9 100644
---- a/tools/testing/selftests/riscv/vector/v_helpers.c
-+++ b/tools/testing/selftests/riscv/vector/v_helpers.c
-@@ -1,11 +1,21 @@
- // SPDX-License-Identifier: GPL-2.0-only
- 
- #include "../hwprobe/hwprobe.h"
-+#include <asm/vendor/thead.h>
- #include <stdlib.h>
- #include <stdio.h>
- #include <unistd.h>
- #include <sys/wait.h>
- 
-+int is_xtheadvector_supported(void)
-+{
-+	struct riscv_hwprobe pair;
-+
-+	pair.key = RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0;
-+	riscv_hwprobe(&pair, 1, 0, NULL, 0);
-+	return pair.value & RISCV_HWPROBE_VENDOR_EXT_XTHEADVECTOR;
-+}
-+
- int is_vector_supported(void)
- {
- 	struct riscv_hwprobe pair;
-@@ -15,9 +25,9 @@ int is_vector_supported(void)
- 	return pair.value & RISCV_HWPROBE_IMA_V;
- }
- 
--int launch_test(char *next_program, int test_inherit)
-+int launch_test(char *next_program, int test_inherit, int xtheadvector)
- {
--	char *exec_argv[3], *exec_envp[1];
-+	char *exec_argv[4], *exec_envp[1];
- 	int rc, pid, status;
- 
- 	pid = fork();
-@@ -29,7 +39,8 @@ int launch_test(char *next_program, int test_inherit)
- 	if (!pid) {
- 		exec_argv[0] = next_program;
- 		exec_argv[1] = test_inherit != 0 ? "x" : NULL;
--		exec_argv[2] = NULL;
-+		exec_argv[2] = xtheadvector != 0 ? "x" : NULL;
-+		exec_argv[3] = NULL;
- 		exec_envp[0] = NULL;
- 		/* launch the program again to check inherit */
- 		rc = execve(next_program, exec_argv, exec_envp);
-diff --git a/tools/testing/selftests/riscv/vector/v_helpers.h b/tools/testing/selftests/riscv/vector/v_helpers.h
-index 88719c4be496..67d41cb6f871 100644
---- a/tools/testing/selftests/riscv/vector/v_helpers.h
-+++ b/tools/testing/selftests/riscv/vector/v_helpers.h
-@@ -1,5 +1,7 @@
- /* SPDX-License-Identifier: GPL-2.0-only */
- 
-+int is_xtheadvector_supported(void);
-+
- int is_vector_supported(void);
- 
--int launch_test(char *next_program, int test_inherit);
-+int launch_test(char *next_program, int test_inherit, int xtheadvector);
-diff --git a/tools/testing/selftests/riscv/vector/v_initval.c b/tools/testing/selftests/riscv/vector/v_initval.c
-index f38b5797fa31..be9e1d18ad29 100644
---- a/tools/testing/selftests/riscv/vector/v_initval.c
-+++ b/tools/testing/selftests/riscv/vector/v_initval.c
-@@ -7,10 +7,16 @@
- 
- TEST(v_initval)
- {
--	if (!is_vector_supported())
--		SKIP(return, "Vector not supported");
-+	int xtheadvector = 0;
- 
--	ASSERT_EQ(0, launch_test(NEXT_PROGRAM, 0));
-+	if (!is_vector_supported()) {
-+		if (is_xtheadvector_supported())
-+			xtheadvector = 1;
-+		else
-+			SKIP(return, "Vector not supported");
-+	}
-+
-+	ASSERT_EQ(0, launch_test(NEXT_PROGRAM, 0, xtheadvector));
- }
- 
- TEST_HARNESS_MAIN
-diff --git a/tools/testing/selftests/riscv/vector/vstate_exec_nolibc.c b/tools/testing/selftests/riscv/vector/vstate_exec_nolibc.c
-index 1f9969bed235..12d30d3b90fa 100644
---- a/tools/testing/selftests/riscv/vector/vstate_exec_nolibc.c
-+++ b/tools/testing/selftests/riscv/vector/vstate_exec_nolibc.c
-@@ -6,13 +6,16 @@
- 
- int main(int argc, char **argv)
- {
--	int rc, pid, status, test_inherit = 0;
-+	int rc, pid, status, test_inherit = 0, xtheadvector = 0;
- 	long ctrl, ctrl_c;
- 	char *exec_argv[2], *exec_envp[2];
- 
--	if (argc > 1)
-+	if (argc > 1 && strcmp(argv[1], "x"))
- 		test_inherit = 1;
- 
-+	if (argc > 2 && strcmp(argv[2], "x"))
-+		xtheadvector = 1;
-+
- 	ctrl = my_syscall1(__NR_prctl, PR_RISCV_V_GET_CONTROL);
- 	if (ctrl < 0) {
- 		puts("PR_RISCV_V_GET_CONTROL is not supported\n");
-@@ -53,11 +56,14 @@ int main(int argc, char **argv)
- 				puts("child's vstate_ctrl not equal to parent's\n");
- 				exit(-1);
- 			}
--			asm volatile (".option push\n\t"
--				      ".option arch, +v\n\t"
--				      "vsetvli x0, x0, e32, m8, ta, ma\n\t"
--				      ".option pop\n\t"
--				      );
-+			if (xtheadvector)
-+				asm volatile (".insn	0x00007ed7");
-+			else
-+				asm volatile (".option push\n\t"
-+					".option arch, +v\n\t"
-+					"vsetvli x0, x0, e32, m8, ta, ma\n\t"
-+					".option pop\n\t"
-+					);
- 			exit(ctrl);
- 		}
- 	}
-diff --git a/tools/testing/selftests/riscv/vector/vstate_prctl.c b/tools/testing/selftests/riscv/vector/vstate_prctl.c
-index 528e8c544db0..375af40e88e6 100644
---- a/tools/testing/selftests/riscv/vector/vstate_prctl.c
-+++ b/tools/testing/selftests/riscv/vector/vstate_prctl.c
-@@ -11,7 +11,7 @@
- 
- #define NEXT_PROGRAM "./vstate_exec_nolibc"
- 
--int test_and_compare_child(long provided, long expected, int inherit)
-+int test_and_compare_child(long provided, long expected, int inherit, int xtheadvector)
- {
- 	int rc;
- 
-@@ -21,7 +21,7 @@ int test_and_compare_child(long provided, long expected, int inherit)
- 		       provided, rc);
- 		return -1;
- 	}
--	rc = launch_test(NEXT_PROGRAM, inherit);
-+	rc = launch_test(NEXT_PROGRAM, inherit, xtheadvector);
- 	if (rc != expected) {
- 		printf("Test failed, check %d != %ld\n", rc,  expected);
- 		return -2;
-@@ -36,7 +36,7 @@ TEST(get_control_no_v)
- {
- 	long rc;
- 
--	if (is_vector_supported())
-+	if (is_vector_supported() || is_xtheadvector_supported())
- 		SKIP(return, "Test expects vector to be not supported");
- 
- 	rc = prctl(PR_RISCV_V_GET_CONTROL);
-@@ -48,7 +48,7 @@ TEST(set_control_no_v)
- {
- 	long rc;
- 
--	if (is_vector_supported())
-+	if (is_vector_supported() || is_xtheadvector_supported())
- 		SKIP(return, "Test expects vector to be not supported");
- 
- 	rc = prctl(PR_RISCV_V_SET_CONTROL, PR_RISCV_V_VSTATE_CTRL_ON);
-@@ -61,12 +61,12 @@ TEST(vstate_on_current)
- 	long flag;
- 	long rc;
- 
--	if (!is_vector_supported())
-+	if (!is_vector_supported() && !is_xtheadvector_supported())
- 		SKIP(return, "Vector not supported");
- 
- 	flag = PR_RISCV_V_VSTATE_CTRL_ON;
- 	rc = prctl(PR_RISCV_V_SET_CONTROL, flag);
--	EXPECT_EQ(0, rc) TH_LOG("Enabling V for current should always success");
-+	EXPECT_EQ(0, rc) TH_LOG("Enabling V for current should always succeed");
- }
- 
- TEST(vstate_off_eperm)
-@@ -74,99 +74,128 @@ TEST(vstate_off_eperm)
- 	long flag;
- 	long rc;
- 
--	if (!is_vector_supported())
-+	if (!is_vector_supported() && !is_xtheadvector_supported())
- 		SKIP(return, "Vector not supported");
- 
- 	flag = PR_RISCV_V_VSTATE_CTRL_OFF;
- 	rc = prctl(PR_RISCV_V_SET_CONTROL, flag);
--	EXPECT_EQ(EPERM, errno) TH_LOG("Disabling current's V alive must fail with EPERM(%d)", errno);
--	EXPECT_EQ(-1, rc) TH_LOG("Disabling current's V alive must fail with EPERM(%d)", errno);
-+	EXPECT_EQ(EPERM, errno) TH_LOG("Disabling V in current thread with V enabled must fail with EPERM(%d)", errno);
-+	EXPECT_EQ(-1, rc) TH_LOG("Disabling V in current thread with V enabled must fail with EPERM(%d)", errno);
- }
- 
- TEST(vstate_on_no_nesting)
- {
- 	long flag;
-+	int xtheadvector = 0;
- 
--	if (!is_vector_supported())
--		SKIP(return, "Vector not supported");
-+	if (!is_vector_supported()) {
-+		if (is_xtheadvector_supported())
-+			xtheadvector = 1;
-+		else
-+			SKIP(return, "Vector not supported");
-+	}
- 
- 	/* Turn on next's vector explicitly and test */
- 	flag = PR_RISCV_V_VSTATE_CTRL_ON << PR_RISCV_V_VSTATE_CTRL_NEXT_SHIFT;
- 
--	EXPECT_EQ(0, test_and_compare_child(flag, PR_RISCV_V_VSTATE_CTRL_ON, 0));
-+	EXPECT_EQ(0, test_and_compare_child(flag, PR_RISCV_V_VSTATE_CTRL_ON, 0, xtheadvector));
- }
- 
- TEST(vstate_off_nesting)
- {
- 	long flag;
-+	int xtheadvector = 0;
- 
--	if (!is_vector_supported())
--		SKIP(return, "Vector not supported");
-+	if (!is_vector_supported()) {
-+		if (is_xtheadvector_supported())
-+			xtheadvector = 1;
-+		else
-+			SKIP(return, "Vector not supported");
-+	}
- 
- 	/* Turn off next's vector explicitly and test */
- 	flag = PR_RISCV_V_VSTATE_CTRL_OFF << PR_RISCV_V_VSTATE_CTRL_NEXT_SHIFT;
- 
--	EXPECT_EQ(0, test_and_compare_child(flag, PR_RISCV_V_VSTATE_CTRL_OFF, 1));
-+	EXPECT_EQ(0, test_and_compare_child(flag, PR_RISCV_V_VSTATE_CTRL_OFF, 1, xtheadvector));
- }
- 
- TEST(vstate_on_inherit_no_nesting)
- {
- 	long flag, expected;
-+	int xtheadvector = 0;
- 
--	if (!is_vector_supported())
--		SKIP(return, "Vector not supported");
-+	if (!is_vector_supported()) {
-+		if (is_xtheadvector_supported())
-+			xtheadvector = 1;
-+		else
-+			SKIP(return, "Vector not supported");
-+	}
- 
- 	/* Turn on next's vector explicitly and test no inherit */
- 	flag = PR_RISCV_V_VSTATE_CTRL_ON << PR_RISCV_V_VSTATE_CTRL_NEXT_SHIFT;
- 	flag |= PR_RISCV_V_VSTATE_CTRL_INHERIT;
- 	expected = flag | PR_RISCV_V_VSTATE_CTRL_ON;
- 
--	EXPECT_EQ(0, test_and_compare_child(flag, expected, 0));
-+	EXPECT_EQ(0, test_and_compare_child(flag, expected, 0, xtheadvector));
- }
- 
- TEST(vstate_on_inherit)
- {
- 	long flag, expected;
-+	int xtheadvector = 0;
- 
--	if (!is_vector_supported())
--		SKIP(return, "Vector not supported");
-+	if (!is_vector_supported()) {
-+		if (is_xtheadvector_supported())
-+			xtheadvector = 1;
-+		else
-+			SKIP(return, "Vector not supported");
-+	}
- 
- 	/* Turn on next's vector explicitly and test inherit */
- 	flag = PR_RISCV_V_VSTATE_CTRL_ON << PR_RISCV_V_VSTATE_CTRL_NEXT_SHIFT;
- 	flag |= PR_RISCV_V_VSTATE_CTRL_INHERIT;
- 	expected = flag | PR_RISCV_V_VSTATE_CTRL_ON;
- 
--	EXPECT_EQ(0, test_and_compare_child(flag, expected, 1));
-+	EXPECT_EQ(0, test_and_compare_child(flag, expected, 1, xtheadvector));
- }
- 
- TEST(vstate_off_inherit_no_nesting)
- {
- 	long flag, expected;
-+	int xtheadvector = 0;
- 
--	if (!is_vector_supported())
--		SKIP(return, "Vector not supported");
--
-+	if (!is_vector_supported()) {
-+		if (is_xtheadvector_supported())
-+			xtheadvector = 1;
-+		else
-+			SKIP(return, "Vector not supported");
-+	}
- 	/* Turn off next's vector explicitly and test no inherit */
- 	flag = PR_RISCV_V_VSTATE_CTRL_OFF << PR_RISCV_V_VSTATE_CTRL_NEXT_SHIFT;
- 	flag |= PR_RISCV_V_VSTATE_CTRL_INHERIT;
- 	expected = flag | PR_RISCV_V_VSTATE_CTRL_OFF;
- 
--	EXPECT_EQ(0, test_and_compare_child(flag, expected, 0));
-+	EXPECT_EQ(0, test_and_compare_child(flag, expected, 0, xtheadvector));
- }
- 
- TEST(vstate_off_inherit)
- {
- 	long flag, expected;
-+	int xtheadvector = 0;
- 
--	if (!is_vector_supported())
--		SKIP(return, "Vector not supported");
-+	if (!is_vector_supported()) {
-+		if (is_xtheadvector_supported())
-+			xtheadvector = 1;
-+		else
-+			SKIP(return, "Vector not supported");
-+	}
- 
- 	/* Turn off next's vector explicitly and test inherit */
- 	flag = PR_RISCV_V_VSTATE_CTRL_OFF << PR_RISCV_V_VSTATE_CTRL_NEXT_SHIFT;
- 	flag |= PR_RISCV_V_VSTATE_CTRL_INHERIT;
- 	expected = flag | PR_RISCV_V_VSTATE_CTRL_OFF;
- 
--	EXPECT_EQ(0, test_and_compare_child(flag, expected, 1));
-+	EXPECT_EQ(0, test_and_compare_child(flag, expected, 1, xtheadvector));
- }
- 
- /* arguments should fail with EINVAL */
-@@ -174,7 +203,7 @@ TEST(inval_set_control_1)
- {
- 	int rc;
- 
--	if (!is_vector_supported())
-+	if (!is_vector_supported() && !is_xtheadvector_supported())
- 		SKIP(return, "Vector not supported");
- 
- 	rc = prctl(PR_RISCV_V_SET_CONTROL, 0xff0);
-@@ -187,7 +216,7 @@ TEST(inval_set_control_2)
- {
- 	int rc;
- 
--	if (!is_vector_supported())
-+	if (!is_vector_supported() && !is_xtheadvector_supported())
- 		SKIP(return, "Vector not supported");
- 
- 	rc = prctl(PR_RISCV_V_SET_CONTROL, 0x3);
-@@ -200,7 +229,7 @@ TEST(inval_set_control_3)
- {
- 	int rc;
- 
--	if (!is_vector_supported())
-+	if (!is_vector_supported() && !is_xtheadvector_supported())
- 		SKIP(return, "Vector not supported");
- 
- 	rc = prctl(PR_RISCV_V_SET_CONTROL, 0xc);
+Changes in V3:
+- Advertise WOL by default.
+- Drop previous ACK for further review.
+v3 link : https://lore.kernel.org/netdev/20240605102457.4050539-1-vineeth.karumanchi@amd.com/
+
+Changes in v2:
+- Re-implement WOL using CAPS instead of device-tree attribute.
+- Deprecate device-tree "magic-packet" property.
+- Sorted CAPS values.
+- New Bit fields inline with existing implementation.
+- Optimize code.
+- Fix sparse warnings.
+- Addressed minor review comments.
+v2 link : https://lore.kernel.org/netdev/20240222153848.2374782-1-vineeth.karumanchi@amd.com/
+
+v1 link : https://lore.kernel.org/lkml/20240130104845.3995341-1-vineeth.karumanchi@amd.com/#t
+
+Vineeth Karumanchi (4):
+  net: macb: queue tie-off or disable during WOL suspend
+  net: macb: Enable queue disable
+  net: macb: Add ARP support to WOL
+  dt-bindings: net: cdns,macb: Deprecate magic-packet property
+
+ .../devicetree/bindings/net/cdns,macb.yaml    |   1 +
+ drivers/net/ethernet/cadence/macb.h           |   8 ++
+ drivers/net/ethernet/cadence/macb_main.c      | 119 +++++++++++++-----
+ 3 files changed, 98 insertions(+), 30 deletions(-)
 
 -- 
-2.44.0
+2.34.1
 
 
