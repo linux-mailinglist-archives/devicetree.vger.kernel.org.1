@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-74151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 448EE902223
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 14:57:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15639902234
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 14:59:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D98C72845C0
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 12:57:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E9511F2266C
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 12:59:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D34081722;
-	Mon, 10 Jun 2024 12:57:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B80A81AD2;
+	Mon, 10 Jun 2024 12:58:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dJ9yMHim"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o99VGThd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F007FBA8
-	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 12:57:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3082F81219
+	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 12:58:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718024244; cv=none; b=mWC95Em+sAC6+KgTBG00b3brJFlomeWkiMfoadTpXlHdKbKoIhIS9FzSIDAdBeEgXC7v5B21mq7X8Ori8zNGRfhIqlITuzOzRLaRBsgZQq75sHK7wIN1q2Top+BZIHuEbL4IwhQOGoT4bfWgyJTZcC7QBrvK/bFDd7FIRxkPCuo=
+	t=1718024331; cv=none; b=IZoW7QcracDhQ30jDKQJQHp6Ckn2L7CDArvFnQJ1CuIVJ5Ud1QoXbmxdNIIQlIeJYOCUopruZefntQlmVCY5L1XeozwONrIKfF4aXu3crxH9+vJHa5OF7gAaHqL/+cN9M012cvLxZVlfmB+DBDOtf7Txe8sVzXHGZn8jb8ceKQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718024244; c=relaxed/simple;
-	bh=yg1xPoHNtnIUumoATGu6LmkAR1aS+hHVXOLPzoPOgE0=;
+	s=arc-20240116; t=1718024331; c=relaxed/simple;
+	bh=69yZ/2KQxzDzZZIRemtwFN2dhIn84qTlZc+PTH2+QiU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r/Trv0RHLABELcU6ucv7D1L22iH7DIoCXVkJfI3QrYLTeWXDrCNDmZCy+3rJUhIPjI2hwFc/EaIjY97MDhnotSi1bbvbNTTX37v2f4INqzOEjr+YcGXAehm5FWDI3jNJut5Tzu+/6/t5wCCLhUp6X2FnSOMS5hTVQE0bQznTKrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dJ9yMHim; arc=none smtp.client-ip=209.85.208.53
+	 In-Reply-To:Content-Type; b=BFy6TnNNnOtDup6dyQEZmVGSltoS/IYMQ/6Gr55+FhOSR4DMDeNeCpYzGKFfWv/GHA7zVmbzS6cN5UpcWdJsDp7ExGImb2KUJ/KliHvnGyq01s0QAZ9a/VcKXVX2onYOTeDL5QGcETUob3k18jmf67KiiRerUYJ6SMGGzHNo4mc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o99VGThd; arc=none smtp.client-ip=209.85.208.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-57864327f6eso6447877a12.1
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 05:57:22 -0700 (PDT)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-572c65cea55so5844107a12.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 05:58:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718024241; x=1718629041; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1718024326; x=1718629126; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=P4YW+LJlPWVCF1oCUQwCJYAu8LrhPqKFR1EwKZrTF2U=;
-        b=dJ9yMHimpc8YQQPWERTOEtoAoO84Fw2Qy1c+fN8TAZVg3dbFaws20GjVQ/6p4U2d8l
-         GsgueHSdLfP4HFNSVKcdkYpqdVwwjyAMPBiCCKoFt71lfhI3rSfnDUEWtP7J72dbpI+/
-         8SKZUOHa7JI6u6UDzyLDbBoJ0YvPcJhxi86XJm2ZXLM6QMVgZbsR/SS6XL6gRwxl82Pe
-         10coWBnbHn5Oy7WRXcMqxkDw/jpuAUVLf7dVEvV0afbGFAaRJiDx6WEnW7Eyhxi+7f6k
-         XCDIEZ5+rHZptr9VOE1RzrGi+GQnBDUGd+51KGFTHw6kPxtaFJM628tIGN8QnVMxvL7e
-         kDqg==
+        bh=KAUSKKQr31j0lfTllkRYhCjky92C69fh0mBqZOOmhtQ=;
+        b=o99VGThdJeuGk0QU6HRTEiuKmSq+eEkka6C8Qas9tsQHprqiOJg1TShKz2lJqs+HNi
+         gJLXFCxGkWB5WllaJwDGVwjsYj5qf8DaY+OmtVoCPSRUS3hDMGBNjzxQMDrrsyiTzsQh
+         F/eFX3vp6VKQWIIg1XOJRUk1hsYtJQ8/AYlz5Yr0tNXseM3ghn/kwps8TNLmoHVdfpyj
+         DWeWWRkyz/tIdDqMQ0Q4n0yGdvIIXiAIOb5fZVas05oIgx8ZDY0fIXhLsu6uCMGbHYnl
+         QoTDGjQJvQ57GO9DvorFOYb1wMhDceBgQ5OahCJz2fy5F2wle+7ydLhXtxhdYjmwibKA
+         zHsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718024241; x=1718629041;
+        d=1e100.net; s=20230601; t=1718024326; x=1718629126;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=P4YW+LJlPWVCF1oCUQwCJYAu8LrhPqKFR1EwKZrTF2U=;
-        b=rOkqf2IdQWiOZxPqZib9ObilqfS+FlemE8cqA11qoqyQWFYQ1u/MSp1IBJ+fcMQ0hu
-         619cR4KA/5tfq2GOVwg1fE7k5QZG4fxsj3i7F+lzIhN4Fg2Ucgjurjom17MIeDqfDaBb
-         w6z6MNLONVfyo3FzsGUg3wVKrS2vmUwdTn9fw3hw2MTbe0HJy4VFAgHu9Ek9jGgHexN2
-         7H2jaNtigpJt2iFDyOYQ8MpoVylMlYSQBsrK7ISsusazkqqRSdVi7k7CYXSQ2BrcyehQ
-         U+imiYarIPlZZXZEO46GvWMV2/B+HMFck4il6U+aUXy/onax9+IT4dSZGhL56GYl17k8
-         90qg==
-X-Forwarded-Encrypted: i=1; AJvYcCVe4/rrI2SqmDRQoFEeOEVUI27PcLt4W01BL3n2SkxKbEclYizCQwg13BAW3ZkLwf+Nlg8fUyxgnfV5EZuIGKnzq2Bx3gaTFaV3+w==
-X-Gm-Message-State: AOJu0Yyv4od2WBLPxHEKmihZ2cEs5MUCyqYeje97Vbz60GuiKoPDbK30
-	S8Jik2JdpS6FACJgJsJ1cky66hT59w0RFkLlKhUitFuxbLsYU2RdZIM1QB43KrU=
-X-Google-Smtp-Source: AGHT+IG+FeCeTet+g006PrNx4Oxxdd0ygI0KsztkfpC9VYROLRJPSKBsn/ij3w2B7yqDBKHzj0cmyg==
-X-Received: by 2002:a05:6402:b7b:b0:57c:735f:3967 with SMTP id 4fb4d7f45d1cf-57c735f3978mr2686598a12.8.1718024240999;
-        Mon, 10 Jun 2024 05:57:20 -0700 (PDT)
+        bh=KAUSKKQr31j0lfTllkRYhCjky92C69fh0mBqZOOmhtQ=;
+        b=hZIvIkNOc5jTnZzMJi2DK1/1B0CB7IaRIX9WMQi3BU3u0V8k1wNPS7aVzGZhI1awqB
+         cjMJ4G5fYdlytUZvZeTddvOcajOiScheiglRWr5rudsn0eirrYzyadMIb3MaIkzD3lvG
+         JhQuASCSqHmqIshjh+bw7bC9TCy7c7N7VSzt+Tnjbbc76fh58HclLlzP75dpQvdWBPzx
+         In7mSU9iUglUOGmxUyY2NKWOuEw7IUpY7PckSRjrFiveWoIZdcoXkPb6w8ctDb/sGygn
+         TVkG741I1rtjmmCIyaL/ehZ15CTX9iu/XPt3B2xrVJtQgruoCZ2rjneXQOJbqttv11JA
+         +Qyw==
+X-Forwarded-Encrypted: i=1; AJvYcCXGwny8SVna2VotXNY0ob4RbtNnOzvQd81ob4+x27k9cNrgz1iKZg2ZeDbVkgf0lGglVJi3Rd4TRQdRKlOBWVaIEfaDtkpvN5SwSw==
+X-Gm-Message-State: AOJu0YxNy5yPX7+zkxDOlvAEN10fxEVO4CUvG5+yZNeqKffNDRzE2vDJ
+	av7Pw55cWjJ7G0wz76R6H4PrXdwHIHVHHo8ujinDK2cvzl+AXwd0vwhQ2Ah4b1g=
+X-Google-Smtp-Source: AGHT+IEF2KnAADfbdRtjjWnR2KUo3BAEuzWm3ctSGFFiz4WPn91BY12s9PEsAp3i8HayF5Tp6Xgw+g==
+X-Received: by 2002:a50:9e6d:0:b0:579:fa8e:31a0 with SMTP id 4fb4d7f45d1cf-57aa5410e6bmr9682767a12.10.1718024326380;
+        Mon, 10 Jun 2024 05:58:46 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57c8f3a0c33sm87824a12.82.2024.06.10.05.57.19
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57aae20238asm7451990a12.73.2024.06.10.05.58.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jun 2024 05:57:20 -0700 (PDT)
-Message-ID: <08822480-a909-4724-9250-e7286d5ce90a@linaro.org>
-Date: Mon, 10 Jun 2024 14:57:18 +0200
+        Mon, 10 Jun 2024 05:58:45 -0700 (PDT)
+Message-ID: <8256bca3-5175-4c0a-a3f0-6a9087efd0df@linaro.org>
+Date: Mon, 10 Jun 2024 14:58:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,18 +77,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/7] dt-bindings: interconnect: qcom: msm8939: Fix example
-To: Adam Skladowski <a39.skl@gmail.com>
-Cc: phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Georgi Djakov <djakov@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH 1/1] ARM: multi_v7_defconfig: Add MCP23S08 pinctrl support
+To: Christophe ROULLIER <christophe.roullier@foss.st.com>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240609182112.13032-1-a39.skl@gmail.com>
- <20240609182112.13032-8-a39.skl@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Richard Cochran <richardcochran@gmail.com>, Jose Abreu
+ <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Marek Vasut <marex@denx.de>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240610080604.291102-1-christophe.roullier@foss.st.com>
+ <06703c03-e1ce-4a94-942d-b556c6084728@linaro.org>
+ <ef4d2ebb-dd2a-423d-acd1-43fdb42c1896@foss.st.com>
+ <e7f1ea08-41af-47e0-b478-652e67e5aebb@linaro.org>
+ <ede482e3-58a1-4664-84b1-f80e59841e28@foss.st.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -135,58 +143,36 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240609182112.13032-8-a39.skl@gmail.com>
+In-Reply-To: <ede482e3-58a1-4664-84b1-f80e59841e28@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/06/2024 20:21, Adam Skladowski wrote:
-> For now example list snoc_mm as children of bimc which is obviously
-> not valid, change example and include rest of nocs in it.
+On 10/06/2024 14:52, Christophe ROULLIER wrote:
 > 
-> Fixes: 462baaf4c628 ("dt-bindings: interconnect: qcom: Fix and separate out MSM8939")
-> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
-> ---
->  .../bindings/interconnect/qcom,msm8939.yaml   | 22 ++++++++++++-------
->  1 file changed, 14 insertions(+), 8 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,msm8939.yaml b/Documentation/devicetree/bindings/interconnect/qcom,msm8939.yaml
-> index fd15ab5014fb..a77e6aa2fbee 100644
-> --- a/Documentation/devicetree/bindings/interconnect/qcom,msm8939.yaml
-> +++ b/Documentation/devicetree/bindings/interconnect/qcom,msm8939.yaml
-> @@ -56,19 +56,25 @@ examples:
->    - |
->      #include <dt-bindings/clock/qcom,rpmcc.h>
->  
-> -    snoc: interconnect@580000 {
-> -        compatible = "qcom,msm8939-snoc";
-> -        reg = <0x00580000 0x14000>;
-> -        #interconnect-cells = <1>;
-> -    };
-> -
->      bimc: interconnect@400000 {
->          compatible = "qcom,msm8939-bimc";
->          reg = <0x00400000 0x62000>;
-> -        #interconnect-cells = <1>;
-> +        #interconnect-cells = <2>;
-> +    };
-> +
-> +    pcnoc: interconnect@500000 {
-> +        compatible = "qcom,msm8939-pcnoc";
-> +        reg = <0x00500000 0x11000>;
-> +        #interconnect-cells = <2>;
-> +    };
+> On 6/10/24 14:27, Krzysztof Kozlowski wrote:
+>> On 10/06/2024 10:14, Christophe ROULLIER wrote:
+>>>>> @@ -469,6 +469,7 @@ CONFIG_SPI_XILINX=y
+>>>>>    CONFIG_SPI_SPIDEV=y
+>>>>>    CONFIG_SPMI=y
+>>>>>    CONFIG_PINCTRL_AS3722=y
+>>>>> +CONFIG_PINCTRL_MCP23S08=y
+>>>> This is not an on-SoC pinctrl, so it should be module (=m).
+>>> The stmmac is in built-in, if IO-Expander (MCP23S08) is on module, we
+>>> have huge of message during kernel boot
+>>>
+>>> because stmmac driver is deferred several times. (need to wait that
+>>> module are ready)
+>> Which is normal and not a reason to change defconfig. It it was a
+>> problem, you should solve it not in defconfig but in kernel. That's just
+>> defconfig, an example, reference or debugging tool if you wish, so
+>> fixing issue here is not a fix at all.
+> Ok so it will not be possible to boot in NFS mode
 
-Don't grow the examples.
+Why? You need to fix your initrd, not change defconfig. We all work with
+initrds and modules are not a problem at all.
 
-It is enough to have one example to validate the schema and show how the
-binding is used. If schema covers multiple combinations of devices and
-their properties, then more than one example seems reasonable. This is
-not the case. All of this is redundant... and redundant information is
-not good because as this commit shows it leads to something which people
-think is not correct and they find bugs. So just drop the redundant
-information.
-
-Keep only one, correct example.
+Really, this is jut a defconfig, not a distro config! And even distro
+config would make it a module...
 
 Best regards,
 Krzysztof
