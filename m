@@ -1,99 +1,173 @@
-Return-Path: <devicetree+bounces-74230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFA2690262A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 17:56:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86F1390263D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 18:02:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68FAF1F2169C
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 15:56:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B01D1F21430
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 16:02:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83A1213F450;
-	Mon, 10 Jun 2024 15:56:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A8E912E1F1;
+	Mon, 10 Jun 2024 16:02:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="SvRgusrj"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="cY7rvHzp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2AAF13E3F2;
-	Mon, 10 Jun 2024 15:56:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B34B1DFF7;
+	Mon, 10 Jun 2024 16:02:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718034987; cv=none; b=KWvR8KbYbJX8l+rGe0H3eVpGwr6Y2/K33r9CsV73tsOGiZ6qEwt+HuH3FnRt9m8YpFUaGfP5xKU35fRcaeGDlSks/mGFaQoVBdgHjNiJUx+1XQFRv3wy2BlIi1+b1zEhBlCAWtmVhUypOknJk0bK60Lkg/i6qx7nMssts0mF/lI=
+	t=1718035373; cv=none; b=rBJZCqkHp+IGMVgOG21i1troXsKDAHD4NaCmdeiu5J5UWSAgfhu3PPzbngFvmxnupW28byhHWddtgqzkC5moTWG0GOwG/iyZZyzml2pHij2h06jLHGi0R5LDVu7wp9BHJD58yW6LYtRwvD9cy0DZ094H11nlCUU/6vkk2b33hfU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718034987; c=relaxed/simple;
-	bh=NdsLQXtIKnQUgcAMngPqTOE8svKUVkptCdvAQ9EX1sA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=MBVQUEj02pYyXavcxHIMwKJ9Bwg6XsCmzHQnpootSNGm3Ysi01SeFfBORFxdBELSy0kVQz64L86lGTId934jy8matu+NsaBGVVioMxAFtz59AaoU5X7gX2dcmOkfUlVi0PgjCCzthi1+yhMM2aduvti7W5EYkPggsvRzflEBOz0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=SvRgusrj; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45AFuACL011756;
-	Mon, 10 Jun 2024 10:56:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1718034970;
-	bh=7074N/sdQ0CvMJHsCbj+7QDe2Ffm0Xx9w9h9wwazciM=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=SvRgusrj2t9r/NnEedCblXvdrKOfr5xlMkPqSOjIwqaf55IEDdDPF1hdg26b1vnos
-	 4GXJQRHjavMpsfkHz+FS/WqMEStb64RPAw4mOobq4xAUMm24U0GZfw7/qxIh6zmSe5
-	 edwMpVra1tohi0lsFhjsS1/rKbo4cDxWFuQtqNPU=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45AFuATR046511
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 10 Jun 2024 10:56:10 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 10
- Jun 2024 10:56:10 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 10 Jun 2024 10:56:10 -0500
-Received: from [10.249.48.175] ([10.249.48.175])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45AFuAaa074284;
-	Mon, 10 Jun 2024 10:56:10 -0500
-Message-ID: <4405d53a-bb9b-24bc-9bbc-b5dbecefdba4@ti.com>
-Date: Mon, 10 Jun 2024 10:56:10 -0500
+	s=arc-20240116; t=1718035373; c=relaxed/simple;
+	bh=Gcz7fOwlXUqLJ4zlLKeiHljHg40e3aKdlbVyk5EEDGs=;
+	h=MIME-Version:Date:From:To:Cc:Subject:Message-ID:Content-Type; b=sRD/Zmf/gv6a9PE2bVHXctVhLET2XMbWc/urS91Guxwfi7zWmTD5uFwMN8y6O6a7BcLZy7ZFTg1XOgnHavXagKYzP97bLwMiDMJW07VhEVMLmDA4t91vgubZ5AbCphZasuOp4ogbN/qByK7olz77oAHKqOMyQMTBRK1QZ5wDR8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=cY7rvHzp; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+X-Virus-Scanned: SPAM Filter at disroot.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3 4/4] arm64: dts: ti: k3-am62a7-sk: Enable ipc with
- remote proc nodes
-Content-Language: en-US
-To: Vignesh Raghavendra <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <nm@ti.com>
-CC: <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-References: <20240605124859.3034-1-hnagalla@ti.com>
- <20240605124859.3034-5-hnagalla@ti.com>
- <1b03ae72-b1c4-4165-b3cc-df85255b9dbf@ti.com>
-From: Hari Nagalla <hnagalla@ti.com>
-In-Reply-To: <1b03ae72-b1c4-4165-b3cc-df85255b9dbf@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1718035360; bh=Gcz7fOwlXUqLJ4zlLKeiHljHg40e3aKdlbVyk5EEDGs=;
+	h=Date:From:To:Cc:Subject;
+	b=cY7rvHzpRMXwsmhsJSGll6SdR8r8rWnLcNK/KByWC0cvkOBNqbbEWdKBXCMi6eXmz
+	 58WCDt/qRq3MjLCflUMzZ04axAo4s47gDgd61ql0YXNsCR8D5PKepW37m9o+F4LHwk
+	 bE9FCknKjlm8i/r9YDhc9ROcfatNYcgr5YjEQHQMTMVjjdss6UPoJT6O044T329ed4
+	 AzvAQj/WljTusirMKa1s1HwgQfzDUjh32v55kBdpY2fCTQnv5+I7da8/oRqLB8po8G
+	 WZQTyby+TuqOhvd/OFbiAQBN/gsLALg8lv0QTnRBqAFjDy5voM7AmSgfTVom+8/n2C
+	 WZIZYFgKWbS+Q==
+Date: Mon, 10 Jun 2024 16:02:40 +0000
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Conor Dooley <conor@kernel.org>, linux-iio@vger.kernel.org,
+ denis.ciocca@st.com, devicetree@vger.kernel.org, linus.walleij@linaro.org,
+ robh+dt@kernel.org
+Subject: Re: [PATCH v3] iio: accel: st_accel: add LIS2DS12
+Message-ID: <db376ece42e4eee823212ca3700f3d57@disroot.org>
+X-Sender: kauschluss@disroot.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 6/10/24 02:02, Vignesh Raghavendra wrote:
->> Reserve memory for remote rpoc IPC and bind the mailbox assignments
->> for each remote proc. Two memory regions are reserved for each
->> remote processor. The first region of 1Mb of memory is used for Vring
-> s/1Mb/1MB?
+On 2024-06-06 20:05, Jonathan Cameron wrote:
+> On Thu, 06 Jun 2024 10:12:11 +0000
+> kauschluss <kauschluss@disroot.org> wrote:
 > 
-Yes, will correct it to 1MB.
+>> On 2024-06-02 08:54, Jonathan Cameron wrote:
+>> > On Sat, 1 Jun 2024 20:49:25 +0100
+>> > Conor Dooley <conor@kernel.org> wrote:
+>> >
+>> >> On Sun, Jun 02, 2024 at 12:56:41AM +0530, Kaustabh Chakraborty wrote:
+>> >> > diff --git a/drivers/iio/accel/st_accel_i2c.c b/drivers/iio/accel/st_accel_i2c.c
+>> >> > index fd3749871121..329a4d6fb2ec 100644
+>> >> > --- a/drivers/iio/accel/st_accel_i2c.c
+>> >> > +++ b/drivers/iio/accel/st_accel_i2c.c
+>> >> > @@ -102,6 +102,10 @@ static const struct of_device_id st_accel_of_match[] = {
+>> >> >  		.compatible = "st,lis2de12",
+>> >> >  		.data = LIS2DE12_ACCEL_DEV_NAME,
+>> >> >  	},
+>> >> > +	{
+>> >> > +		.compatible = "st,lis2ds12",
+>> >> > +		.data = LIS2DS12_ACCEL_DEV_NAME,
+>> >> > +	},
+>> >> >  	{
+>> >> >  		.compatible = "st,lis2hh12",
+>> >> >  		.data = LIS2HH12_ACCEL_DEV_NAME,
+>> >>
+>> >> > diff --git a/drivers/iio/accel/st_accel_spi.c b/drivers/iio/accel/st_accel_spi.c
+>> >> > index f72a24f45322..825adab37105 100644
+>> >> > --- a/drivers/iio/accel/st_accel_spi.c
+>> >> > +++ b/drivers/iio/accel/st_accel_spi.c
+>> >> > @@ -64,6 +64,10 @@ static const struct of_device_id st_accel_of_match[] = {
+>> >> >  		.compatible = "st,lis2dh12-accel",
+>> >> >  		.data = LIS2DH12_ACCEL_DEV_NAME,
+>> >> >  	},
+>> >> > +	{
+>> >> > +		.compatible = "st,lis2ds12",
+>> >> > +		.data = LIS2DS12_ACCEL_DEV_NAME,
+>> >> > +	},
+>> >> >  	{
+>> >> >  		.compatible = "st,lis3l02dq",
+>> >> >  		.data = LIS3L02DQ_ACCEL_DEV_NAME,
+>> >>
+>> >> Any new compatibles need to be documented in st,st-sensors.yaml
+>> >
+>> > At the moment the st_sensors core is doing hard matching against whoami values
+>> > which isn't good.  That should ideally be fixed and the binding for this
+>> > device should use a fallback compatible if the statement about compatibility
+>> > is accurate.
+>> 
+>> I apologize for not wording the description accurately. By 
+>> "compatibility",
+>> I mean that the sensor settings of LIS2DE12 (such as the gain values) 
+>> seem
+>> to be well-suited for LIS2DS12, as per my experimentation. Both 
+>> devices are
+>> manufactured by ST and have no correlation regarding compatibility 
+>> whatsoever.
+>> In that case, a fallback compatible isn't required, right?
+> 
+> If only the Who Am I value prevents it working if you give the 
+> compatible
+> as lisde12 then even though ST rarely if ever identifies it in 
+> datasheets, they are
+> software compatible.  In that case we should allow for a fallback 
+> compatible.
+> + fix the driver not to fail on the whoami mismatch.
+> Note we don't care if they have totally different packages as long as
+> the driver doesn't need to know that.  If they have different numbers
+> of interrupts though or power supplies, then they aren't compatible and
+> we shouldn't provide a fallback.
+> 
+> Roughly speaking you have to compare datahsheet sections for pins (not 
+> which
+> but what) and register maps.
 
- >> +			reg = <0x00 0x99900000 0x00 0x01efffff>;
- > 0x01efffff -> are you sure this is correct? Just missing a byte to a
- > nice round number size. looks like typo of using range vs size?
- >
-You are right. Will round it to 0x01f00000.
+I've thoroughly checked the registers, and indeed, a lot of registers 
+addresses
+and other settings are different. Although the sensor settings of 
+LIS2DE12
+"work", they are technically incorrect.
+
+I've fixed it, and will send it with v4 in a day or two.
+
+Thank you!
+
+> That applies even if the current driver will fail to probe (for now)
+>> 
+>> I'll make sure to rewrite the description more accurately in v4.
+>> 
+>> > It may just be a case of relaxing the check in st_sensors_verify_id()
+>> > to printing a warning not an error message and not returning an error code
+>> > (reserving error returns in that function for bus error etc.
+>> 
+>> I agree, if you want I may send a patch for that after I'm done with 
+>> this
+>> one.
+> Thanks,
+> 
+> Jonathan
+> 
+>> 
+>> > That doesn't need to be in this patch though.  Just have the fallback
+>> > stuff in the binding and for now we can rely on matching the more
+>> > precise compatible.
+>> >
+>> > Jonathan
+>> >
+>> >
+>> >>
+>> >> Thanks,
+>> >> Conor.
+>> >>
 
