@@ -1,178 +1,237 @@
-Return-Path: <devicetree+bounces-73993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC9AF901A46
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 07:41:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B7D6901A54
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 07:46:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6854F1F21907
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 05:41:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22B541C20E67
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 05:46:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFD63125C9;
-	Mon, 10 Jun 2024 05:40:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A0F6DDC0;
+	Mon, 10 Jun 2024 05:46:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="oXzwbyNf"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jM/6Mk4L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2052.outbound.protection.outlook.com [40.107.100.52])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 254DF25624;
-	Mon, 10 Jun 2024 05:40:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.100.52
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717998011; cv=fail; b=n/791sC71ZR/QDm4UuKQtp4fquJVB+EayqRc6AjNjM+dVfBvV9q6gdGOy8YOvJoYD/0W73bRyCKqaeYEKs8TS46RAz0h7135p3TxNLw4Xzt9noHbSzHku5nNAe7YiEhMpPAsryPMyKYoFBwkO1kiXrUShh1sJwJvjjDhX0ny46I=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717998011; c=relaxed/simple;
-	bh=rv1HkEVwmSbXx/GKTMDAvGBjaI7QlzYIntakiKfD6Mg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CVLX289kbDymVXrZT1ggd/7CfFwPPA1JtqBWCpEHQFJH9SA84FXlbLeC49qubywLiZva2Y4CqRPhZOXqWS9xn2yk2LOpdSwcI2PhCcPaLleRmdTAnVuJL48dYNg6tsfD6sa7piqfpeaCCtHFeiCVTQYn641MmZLWcdsCm3Smht4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=oXzwbyNf; arc=fail smtp.client-ip=40.107.100.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ro0d/qUHlLYyBSzbjWKXOjazteKAoJ0crwlruQ4NdG/IkNxhM8su1I2NMd4f5e+yEblIZcAee02CQNzEbdA07hkmxh/XmaRhk+Z0FwjoNr29JmXaQP75LytAs6bH2KjCjWyLZb5+N/xzNBuLfNL0UPUhpOk6OSKy/3ku91OrCJGCxVsJl7rNlgdozVvQujB8imNhTPc1/l27lkvrEQtoMkKUB6s4kDhgyxWJiuE8lOI0ooIGssVEnHcMqYDtkU6+80ESzP7ce55V4ANK0Qwm41LWU4/MnNPhTaLywJLb+qDfG8XoYPcVW6AoHF8PUx8tvwp3iHfVGm+3uitKvownyw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GJLCKp3k6CCREhzfteb/jFBtqzIvVXMti4yIf4496WY=;
- b=FcfCsbZ4KEFT2TmweiKB7aclo9kjVMf+gQekqC2FgLEwpF4EteKWpWqHjc0JHasEgNe9BZwDv9PtGA4NwEr5bXPvfCS9NCBoLQ1m1B/1ZvVdiEU5tL6Hx3qqVIvKuK/qTPgZxatZKhh+wJbOUs5W2NIKFqpNXnJGveU/trlh/XqYG4SE646PM/G9RxW6IxQfaEcrwFlSnnnxFlwH7W8SgtPm4lxO9Zqd4YNlWqOHWDxeR7CWFWi6MOEt/WiORfop/BESNw4obC23X5YoMwlptpxFnbg2nRPNpJYY9TQ0tbN8dX3YDWkVTi10eT373FnkvqPUFfSBD2gLNAbBfM2/OA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=microchip.com smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GJLCKp3k6CCREhzfteb/jFBtqzIvVXMti4yIf4496WY=;
- b=oXzwbyNfG1FCTc3oHwMHI1HVb6ZNGxJnM3NXYRrKMX0w4yY+q/oSF7Gnx7OIKV69aWQlNw5gRgMuouCqwUdeTe1k547pgE9GgXQeXyyjvUda5H9WQb59XB59QsmYbJeBR8Vb8vqbvfVFdwolEHTeKrCVy0Bgn/c/uvW9lI8NcdQ=
-Received: from PH8PR22CA0018.namprd22.prod.outlook.com (2603:10b6:510:2d1::24)
- by PH7PR12MB8825.namprd12.prod.outlook.com (2603:10b6:510:26a::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.36; Mon, 10 Jun
- 2024 05:40:06 +0000
-Received: from CO1PEPF000044F0.namprd05.prod.outlook.com
- (2603:10b6:510:2d1:cafe::d1) by PH8PR22CA0018.outlook.office365.com
- (2603:10b6:510:2d1::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7656.24 via Frontend
- Transport; Mon, 10 Jun 2024 05:40:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1PEPF000044F0.mail.protection.outlook.com (10.167.241.70) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7677.15 via Frontend Transport; Mon, 10 Jun 2024 05:40:05 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 10 Jun
- 2024 00:40:04 -0500
-Received: from xhdvineethc40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Mon, 10 Jun 2024 00:40:00 -0500
-From: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
-To: <nicolas.ferre@microchip.com>, <claudiu.beznea@tuxon.dev>,
-	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-	<pabeni@redhat.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<linux@armlinux.org.uk>, <vadim.fedorenko@linux.dev>, <andrew@lunn.ch>
-CC: <vineeth.karumanchi@amd.com>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, <git@amd.com>
-Subject: [PATCH net-next v4 4/4] dt-bindings: net: cdns,macb: Deprecate magic-packet property
-Date: Mon, 10 Jun 2024 11:09:36 +0530
-Message-ID: <20240610053936.622237-5-vineeth.karumanchi@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240610053936.622237-1-vineeth.karumanchi@amd.com>
-References: <20240610053936.622237-1-vineeth.karumanchi@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43A6217F6;
+	Mon, 10 Jun 2024 05:46:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717998407; cv=none; b=lb8R8yC0p599inAaOV3yaKh/E9mo68ogX0aP373C1MnhvoDAWddRYbq/e+WlmlbUmFSgLgWH5U4sVZMHj40/gMv9Ulwx2rk0DlClnvNKIUoVL8aimOc6in1vdtUsTRhzy4ZfHb16oFGfd3rL9tzl/q4cTdUpDu6cBudAzENFrIo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717998407; c=relaxed/simple;
+	bh=XbhYBwVPqpt29+w0LmozsqSODlI6R8kdk85kSFDG0ek=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=jyqJMVNZdUdjmecakZwdhZkico1dwTZVVBnBjccSju9WAj9xdiqjz0XlVQwaqqfbQaTmflXbLfxzOBXXSyayrssX70ljqOs29m/BlzZPwAzqsqs0zv5Z5CUt8g7J9IM6g83UP+PaU8EQxvCNzWMTjIhucBvEAqWGeSSOSc9LT34=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jM/6Mk4L; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45A3ObdG002331;
+	Mon, 10 Jun 2024 05:46:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	8+R3FfBVHH53yF1hEFqLmkirCoKue9yVbij80F+66XQ=; b=jM/6Mk4L6Xe53e2n
+	8MTasK+YKlzCfP/QfkbAciKjBUL+5Jg+4Ru5KjyeD1PjrYrUPJ8C863Ddg6ufD/E
+	gsL+CdSAWM5lC1kHiJNJg4BAKm9Y5KmllN6TeGE6FnrfH7a1qxKBnKv7VEA2foJj
+	SSIhGbyLofSaHT1bkvtuF2UCinl298q7zq0+j53eatqDvrEP/tG8+4nFLRw/Zgih
+	yMpAOlretpcWhquwpkUvaw4ecEXFXM1mUCgHwV8VkW5VBVOMWrreGfVkdgjdbpvD
+	98wfQlkmKlb5pEfBw4rhG3jNnWyIa4S8v3mKnBBGe5wJwpineSBvhtA2mZ7eMBdl
+	x9P7zQ==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ymfcv2ncg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Jun 2024 05:46:20 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45A5kJQF024800
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Jun 2024 05:46:19 GMT
+Received: from [10.50.54.237] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 9 Jun 2024
+ 22:46:05 -0700
+Message-ID: <f42559f5-9d4c-4667-bf0e-7abfd9983c36@quicinc.com>
+Date: Mon, 10 Jun 2024 11:15:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB03.amd.com: vineeth.karumanchi@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000044F0:EE_|PH7PR12MB8825:EE_
-X-MS-Office365-Filtering-Correlation-Id: b707b10e-f00e-4bdf-167b-08dc890fc858
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230031|1800799015|7416005|376005|36860700004|82310400017|921011;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?5Q9u1nSpAhhjSQZBNoOuHyOq+tMZEO185SOtzi6a9zlttV8Bf2+PMiLG+zsj?=
- =?us-ascii?Q?klXD+GCHmSK93xeSMIawyzJoHJtn7u7Oajtm1rxIOpqILM2hjIRiOEmQLF/8?=
- =?us-ascii?Q?bbD1S8IPcTKiocPxeqilE7JnrU1su9NZoHscjMHxv6ROy+n+5X4fv8BNAvXf?=
- =?us-ascii?Q?SPJLZbnaI425ARzNz4s4lQBSp13o5PgKHXLWcMVCL2ZdCWsEcvLQ0QM/oiBQ?=
- =?us-ascii?Q?O6SAxoP/dgog1UO9nD64dbPCk8NuxXDf6od4xPsJLp33FkdhNXQHr1sRPT+w?=
- =?us-ascii?Q?kSMJprU4pHeeKDTcMAGdUd2Um+T968m+IULz/DcJxYAyeVFDZhEZ3nKJmwcl?=
- =?us-ascii?Q?c36ES8Kn3A82fv0RESB3GVebV2XIdml60z5hC1l8qtJE8UCXkJv2mh89vlLk?=
- =?us-ascii?Q?5tMY7IJIiaV2nCDT1O3obh1u3Tn3KsX+rFVgoiqVpmFU2SdHbBOy/OWbmUK3?=
- =?us-ascii?Q?dIsXqT/YWf3F6R63gAsQpHnZZioFpsgnuxfMOtDmXRKowHXzq24NFCCo7XCD?=
- =?us-ascii?Q?TDNc5V7k6ttJjUgI2P1ErIcwk82qo5O1l3U6xqYa8gIXuNN8fzmnNB7Guy9S?=
- =?us-ascii?Q?ZbAp98ppLsyd5SV389/PWYgjCVLvKXv1W+QLK+XL9MkNHF23KkYkJ7TOQpme?=
- =?us-ascii?Q?bNpaszdWKJ9caHav7iN/IdZm1B2mTkzGD33Y5tP2DaQ2gAbqcMwMokzhdwYx?=
- =?us-ascii?Q?K5MqvqMPFxRoSQwErrLEFtYDwXk83jt7B7iWKKUItU4o1q1RL5MbP4joiXaT?=
- =?us-ascii?Q?8Zw90/pJJfvuFyn2VRRknHlOanas1fI5MWJ7HXbseYhH68emzwqkbIz4ujLg?=
- =?us-ascii?Q?7DfpO35E8R6zo2ruV7yiMQcnyT0JV9owJ7s465X1dPgtzqbui4QXe7VMcVAQ?=
- =?us-ascii?Q?u9BgSf9wyUPXbWjkWU3C/VhgTM4NmFxGZd9yqU7Hmf0dIRd8tl/WuGRg9he7?=
- =?us-ascii?Q?+dKSEESnPqlcGtysxjnsR0NG/15NvaHbLIqWQhZD0lnGAryRn8OzbYAl+n/u?=
- =?us-ascii?Q?248p0ok0TIstp16GGO5So4S1lheRuKaIkr4WAO/0ymisyv05cxUh+HlKj3FE?=
- =?us-ascii?Q?IYx0XIaFy+x1Pn0oEnruMdw5SCmdp0nqZ4Ji5ZCFmppTKTRLB6iLIz010mDG?=
- =?us-ascii?Q?2+6P5qqXjXW/+AlY9ShIVB9fdIQk4Mwy/jEk+8FqGlNVuT7LvK7nFsjb6qGp?=
- =?us-ascii?Q?18EgzIzbNVvUcqw9b30zvpEN3rvp49QihohOETyuUSlkdD4fvotmTzlXeHpn?=
- =?us-ascii?Q?a9ds4RlUHm1N9SZvKIAKUHHxloU7AH9hXpPVp9nQ7xBb8nVKZnaZK6VMGwi7?=
- =?us-ascii?Q?7ouFTfW5k8XzGpf4jXKpQos9Ms8pslQprpQ4BEI4VaZItCGjvhAoxabb8DmE?=
- =?us-ascii?Q?O0puOaPHcAVvWzxX2Vs7/0pjV9wyU3Cizb37WuGKYmwQuSLTIzAYIf6zziE6?=
- =?us-ascii?Q?xGf9nqsKhsE=3D?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(1800799015)(7416005)(376005)(36860700004)(82310400017)(921011);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2024 05:40:05.6779
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b707b10e-f00e-4bdf-167b-08dc890fc858
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000044F0.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8825
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V5 6/6] PCI: qcom: Add support for IPQ9574
+To: Manivannan Sadhasivam <mani@kernel.org>
+CC: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <manivannan.sadhasivam@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+References: <20240512082858.1806694-1-quic_devipriy@quicinc.com>
+ <20240512082858.1806694-7-quic_devipriy@quicinc.com>
+ <20240530144730.GG2770@thinkpad>
+Content-Language: en-US
+From: Devi Priya <quic_devipriy@quicinc.com>
+In-Reply-To: <20240530144730.GG2770@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: ZlnDledWP7shLPwQ7xvLG6ZXuzoG-dz1
+X-Proofpoint-GUID: ZlnDledWP7shLPwQ7xvLG6ZXuzoG-dz1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-10_02,2024-06-06_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
+ mlxlogscore=999 phishscore=0 priorityscore=1501 malwarescore=0
+ suspectscore=0 lowpriorityscore=0 clxscore=1011 spamscore=0 adultscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406100043
 
-WOL modes such as magic-packet should be an OS policy.
-By default, advertise supported modes and use ethtool to activate
-the required mode.
 
-Suggested-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
----
-Changes in v4:
-Changes in v3:
-	- Drop previous ACK for further review.
----
- Documentation/devicetree/bindings/net/cdns,macb.yaml | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-index 2c71e2cf3a2f..3c30dd23cd4e 100644
---- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
-+++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-@@ -146,6 +146,7 @@ patternProperties:
- 
-       magic-packet:
-         type: boolean
-+        deprecated: true
-         description:
-           Indicates that the hardware supports waking up via magic packet.
- 
--- 
-2.34.1
+On 5/30/2024 8:17 PM, Manivannan Sadhasivam wrote:
+> On Sun, May 12, 2024 at 01:58:58PM +0530, devi priya wrote:
+>> The IPQ9574 platform has 4 Gen3 PCIe controllers:
+>> two single-lane and two dual-lane based on SNPS core 5.70a
+>>
+>> The Qcom IP rev is 1.27.0 and Synopsys IP rev is 5.80a
+>> Added a new compatible 'qcom,pcie-ipq9574' and 'ops_1_27_0'
+>> which reuses all the members of 'ops_2_9_0' except for the post_init
+>> as the SLV_ADDR_SPACE_SIZE configuration differs between 2_9_0
+>> and 1_27_0.
+>>
+>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
+>> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
+>> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+>> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
+>> ---
+>>   Changes in V5:
+>> 	- Rebased on top of the below series which adds support for fetching
+>> 	  clocks from the device tree
+>> 	  https://lore.kernel.org/linux-pci/20240417-pci-qcom-clk-bulk-v1-1-52ca19b3d6b2@linaro.org/
+>>
+>>   drivers/pci/controller/dwc/pcie-qcom.c | 36 +++++++++++++++++++++++---
+>>   1 file changed, 32 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+>> index 3d2eeff9a876..af36a29c092e 100644
+>> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+>> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+>> @@ -106,6 +106,7 @@
+>>   
+>>   /* PARF_SLV_ADDR_SPACE_SIZE register value */
+>>   #define SLV_ADDR_SPACE_SZ			0x10000000
+>> +#define SLV_ADDR_SPACE_SZ_1_27_0		0x08000000
+> 
+> Can you please explain what this value corresponds to? Even though there is an
+> old value, I didn't get much info earlier on what it is.
 
+The PARF_SLV_ADDR_SPACE_SIZE register indicates the range of RC accesses
+to the EP's memory space. Default PoR value is 16MB, which seems to be 
+sufficient for IPQ9574 SoC.
+As per the memory map, the memory space corresponding to each PCIe 
+region is 128Mb. As the older value corresponds to 256Mb we see PCIe 
+enumeration failures.
+This register should either be updated to 128Mb(0x8000000) or left at 
+the PoR value 16Mb (0x1000000).
+
+Thanks,
+Devi Priya
+> 
+> - Mani
+> 
+>>   
+>>   /* PARF_MHI_CLOCK_RESET_CTRL register fields */
+>>   #define AHB_CLK_EN				BIT(0)
+>> @@ -1095,16 +1096,13 @@ static int qcom_pcie_init_2_9_0(struct qcom_pcie *pcie)
+>>   	return clk_bulk_prepare_enable(res->num_clks, res->clks);
+>>   }
+>>   
+>> -static int qcom_pcie_post_init_2_9_0(struct qcom_pcie *pcie)
+>> +static int qcom_pcie_post_init(struct qcom_pcie *pcie)
+>>   {
+>>   	struct dw_pcie *pci = pcie->pci;
+>>   	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+>>   	u32 val;
+>>   	int i;
+>>   
+>> -	writel(SLV_ADDR_SPACE_SZ,
+>> -		pcie->parf + PARF_SLV_ADDR_SPACE_SIZE);
+>> -
+>>   	val = readl(pcie->parf + PARF_PHY_CTRL);
+>>   	val &= ~PHY_TEST_PWR_DOWN;
+>>   	writel(val, pcie->parf + PARF_PHY_CTRL);
+>> @@ -1144,6 +1142,22 @@ static int qcom_pcie_post_init_2_9_0(struct qcom_pcie *pcie)
+>>   	return 0;
+>>   }
+>>   
+>> +static int qcom_pcie_post_init_1_27_0(struct qcom_pcie *pcie)
+>> +{
+>> +	writel(SLV_ADDR_SPACE_SZ_1_27_0,
+>> +	       pcie->parf + PARF_SLV_ADDR_SPACE_SIZE);
+>> +
+>> +	return qcom_pcie_post_init(pcie);
+>> +}
+>> +
+>> +static int qcom_pcie_post_init_2_9_0(struct qcom_pcie *pcie)
+>> +{
+>> +	writel(SLV_ADDR_SPACE_SZ,
+>> +	       pcie->parf + PARF_SLV_ADDR_SPACE_SIZE);
+>> +
+>> +	return qcom_pcie_post_init(pcie);
+>> +}
+>> +
+>>   static int qcom_pcie_link_up(struct dw_pcie *pci)
+>>   {
+>>   	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+>> @@ -1297,6 +1311,15 @@ static const struct qcom_pcie_ops ops_2_9_0 = {
+>>   	.ltssm_enable = qcom_pcie_2_3_2_ltssm_enable,
+>>   };
+>>   
+>> +/* Qcom IP rev.: 1.27.0  Synopsys IP rev.: 5.80a */
+>> +static const struct qcom_pcie_ops ops_1_27_0 = {
+>> +	.get_resources = qcom_pcie_get_resources_2_9_0,
+>> +	.init = qcom_pcie_init_2_9_0,
+>> +	.post_init = qcom_pcie_post_init_1_27_0,
+>> +	.deinit = qcom_pcie_deinit_2_9_0,
+>> +	.ltssm_enable = qcom_pcie_2_3_2_ltssm_enable,
+>> +};
+>> +
+>>   static const struct qcom_pcie_cfg cfg_1_0_0 = {
+>>   	.ops = &ops_1_0_0,
+>>   };
+>> @@ -1334,6 +1357,10 @@ static const struct qcom_pcie_cfg cfg_sc8280xp = {
+>>   	.no_l0s = true,
+>>   };
+>>   
+>> +static const struct qcom_pcie_cfg cfg_1_27_0 = {
+>> +	.ops = &ops_1_27_0,
+>> +};
+>> +
+>>   static const struct dw_pcie_ops dw_pcie_ops = {
+>>   	.link_up = qcom_pcie_link_up,
+>>   	.start_link = qcom_pcie_start_link,
+>> @@ -1603,6 +1630,7 @@ static const struct of_device_id qcom_pcie_match[] = {
+>>   	{ .compatible = "qcom,pcie-ipq8064-v2", .data = &cfg_2_1_0 },
+>>   	{ .compatible = "qcom,pcie-ipq8074", .data = &cfg_2_3_3 },
+>>   	{ .compatible = "qcom,pcie-ipq8074-gen3", .data = &cfg_2_9_0 },
+>> +	{ .compatible = "qcom,pcie-ipq9574", .data = &cfg_1_27_0 },
+>>   	{ .compatible = "qcom,pcie-msm8996", .data = &cfg_2_3_2 },
+>>   	{ .compatible = "qcom,pcie-qcs404", .data = &cfg_2_4_0 },
+>>   	{ .compatible = "qcom,pcie-sa8540p", .data = &cfg_sc8280xp },
+>> -- 
+>> 2.34.1
+>>
+> 
 
