@@ -1,220 +1,226 @@
-Return-Path: <devicetree+bounces-74333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34F97902BE5
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 00:56:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DFA9902BED
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 00:57:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B59311F22619
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 22:56:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51A6AB21D22
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 22:57:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E232114F123;
-	Mon, 10 Jun 2024 22:55:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC6B7152181;
+	Mon, 10 Jun 2024 22:56:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ezcvoj8p"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="qu9ICgvU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E5003BB48;
-	Mon, 10 Jun 2024 22:55:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF2AB1514D1
+	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 22:56:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718060159; cv=none; b=oSS+lvL4/bb5VOy9KZpdyCeHhXOIo32zTKnM26r/a3AC5CiSlxpugHzYhMrqF3OcWrkTMdCCBd1BXkgtqmDMVHhySUfijov//8bfWPefvWHZueDagvdUZNRlxbT0femY0CVmhZecc40mAWrBYQtZG440K2QpNaB9VydyU3nMKlA=
+	t=1718060209; cv=none; b=nP48Q9vetUUJUEwPt5IL6lLW14KDzmuHn3SGHAjA2iTGeV56nciS0oCK3VWLj/r10z/1D8/meRern2B6GzbG0Zf2Rnb9nOnwp/usq8G7VUw1Sw09NFTZSRxH0R6seJ5JzyqX4D/N5uIH2FCRL7CeykcU3fxOAdobK1lxLuZhxB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718060159; c=relaxed/simple;
-	bh=5c+cupG43q3JxOZFm9CLv4boFt7YHyL3IM0TYOplEQI=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=lAYTr1GcydhwNCtZPySXFNFsdkMmWoeAJApYVczDERGkbZDhLc1Vb9AAz2N8Oqf/GhhEtJYAkGC210ffGeexnXdqcaAODvKoFz5zum4yt8fR8lqQpjD3uz7tdYY/kr51KRBEE+8biZX8+XvSsorcvDIe7H5NZqtBUP5oZkJndI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ezcvoj8p; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718060152;
-	bh=5c+cupG43q3JxOZFm9CLv4boFt7YHyL3IM0TYOplEQI=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=ezcvoj8pZwuSFCTOy956WEli/FfETd7rsBuJ2mucC2Y3C6CqWHUFnu6/FKWAD0QbR
-	 kJwAuKJNX5TJMRWoajl0xLjoDtGRRMQCQfNTP38q56dofEEvd11Z7aKleiVVHsIU34
-	 hJRza2Hvc0n8c1rjrvVaZ1KSIR8iE7Rwo+LEIv48mBBYZGrFqp+9gkqfhTx4f7iotX
-	 MqnmjKVelYdeUxOMQIbr31IzhllTErx44mfLN+wETeTk68iE2kkD58FoTukFnhp4aW
-	 HkBAO08Vmtp7il3sw638PhV0yZLsrBdv6ZCk7MM5d+fPmltIX2BZnae0L5feWfW4IP
-	 9IhWKMET/uHCw==
-Received: from [100.77.12.232] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: obbardc)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 995FB378113A;
-	Mon, 10 Jun 2024 22:55:51 +0000 (UTC)
-Message-ID: <6c98da19b4978197213cb7b9cbcafc10480c0a73.camel@collabora.com>
-Subject: Re: [PATCH v1 1/1] arm64: dts: imx8mp-debix-model-a: Add HDMI
- output support
-From: Christopher Obbard <chris.obbard@collabora.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Kieran Bingham <kieran.bingham@ideasonboard.com>, 
- linux-kernel@vger.kernel.org, Daniel Scally <dan.scally@ideasonboard.com>, 
- kernel@collabora.com, Conor Dooley <conor+dt@kernel.org>, Fabio Estevam
- <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>,  Shawn Guo <shawnguo@kernel.org>,
- devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org
-Date: Mon, 10 Jun 2024 23:55:50 +0100
-In-Reply-To: <20240608150227.GA13024@pendragon.ideasonboard.com>
-References: <20240415114135.25473-1-chris.obbard@collabora.com>
-	 <20240415114135.25473-2-chris.obbard@collabora.com>
-	 <171319369093.2333277.9109576229211275635@ping.linuxembedded.co.uk>
-	 <20240415163520.GA22954@pendragon.ideasonboard.com>
-	 <525f3c7f7f6613c78ac364c9ce0234cca5e1c710.camel@collabora.com>
-	 <20240608150227.GA13024@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.52.2-2 
+	s=arc-20240116; t=1718060209; c=relaxed/simple;
+	bh=7yn3BGahmO2D4NAvhm94NVTCl/ESTkKkPcznWJjCw7E=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jv358q3RutVnKKkQLd3JI68JHs5pMQbkJI8pOcqZCOVFgQIppJ0YOPdIujOExH2cWeL3FeP5MZFWEYgdPJORurJycnH+7U7ui5TKKoS1Rdrx2zzb59a8APqhk5cWz3khKD8fU7visP8P9HOZGrPVgSJktJmuMDAwx8T0S/Vy6aE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=qu9ICgvU; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1f6f1677b26so16248515ad.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 15:56:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1718060206; x=1718665006; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7xaAL6mDzc8Ua7Uil1eoXhoziP2pbU1z9G+JbW0VWGQ=;
+        b=qu9ICgvUkFSM6LjRKNoEmJ1y2u/DbSNBT4xFognd1n/fbtufcVgAA9rut/avPMNpkd
+         ttlGt7lbZN36zFplTB5trRXZuDHuNe6bECTJG/mH7ZjevSzl/Jj90AzzZoD1wnNovBdx
+         vd746kCTG0hun7VYGlTKa3sXbARq+DcjhAfDeNh50e1glmaUwlVzlkXIuHT6Q5ohjn62
+         X9YjqOUD2GNuqptwAbzZd5E7wdDacu0h+iiN754Lfhevxwv8gy3ke52VDnwcJzYYU4QP
+         jRb73GbklND4uy8SMsr0kSj6grvG/aUUF0GGJZRv7P9uRktEVxuk1o4Kn+G3Y1SeABJB
+         RQnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718060206; x=1718665006;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7xaAL6mDzc8Ua7Uil1eoXhoziP2pbU1z9G+JbW0VWGQ=;
+        b=JwRg19IaLXLNqSGHqMN9FAAVQsbPIBWBjVkCXzABbLdPp4t4Wl/7UX2d4FIuEfrnh5
+         xHuNDy54Zrubf6eUa7/4EjQGAHzuqNDyPUCGXMbsTL7+1Cw1jVEC/QmUdka9++V5kFcO
+         lKYWcytQNIYW1KddQoSX4IfyruJW6qaDLFSDkZ0niPKUzQ9scaTy2U3BUdwL4yn0FUDA
+         V6Gg4RVbFQy9Dbdb2ITIrBRllR5uYRsjX2WGg0VjFGaMiIiY80PJ6jKO0kCQOWATiXI0
+         TfiRvh/Hy/ng2Uzr5Cx1XhhN5Mix5xjqL6D5bF5tF2aA5nq4EWaqsabI3BmFv9kezHrN
+         4gnA==
+X-Forwarded-Encrypted: i=1; AJvYcCWHJcA/kuX4t8CG5+SZaz5aLYVuxm8uQJYcVUbeknooS9P1OAEkdkpoZHSDYaBjSeRa9d2bg6bKzd6qw18GguPP9sB3Wbaz1vNAOQ==
+X-Gm-Message-State: AOJu0YyVkvbDKHieHbnxCYTUpAxQ0B221gOHhSViNVSM3Rnf4iZOUArX
+	nXOokN13k0LNDW4Sq1MWkPu4W7EUIcQmX/HmYwN4RePjn9K/qOuCBfHD4AqDlds=
+X-Google-Smtp-Source: AGHT+IH0EtEGHbX5ApyZIVdES36LP0XGBvM2hKDhoUpKqZn5ftRptugylvf3HeNdb58ZBATZntKZIQ==
+X-Received: by 2002:a17:902:e846:b0:1f6:fa4a:5083 with SMTP id d9443c01a7336-1f72879254emr14893265ad.2.1718060205922;
+        Mon, 10 Jun 2024 15:56:45 -0700 (PDT)
+Received: from charlie.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f71b597072sm18355865ad.99.2024.06.10.15.56.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Jun 2024 15:56:45 -0700 (PDT)
+From: Charlie Jenkins <charlie@rivosinc.com>
+Subject: [PATCH v2 00/13] riscv: Add support for xtheadvector
+Date: Mon, 10 Jun 2024 15:56:37 -0700
+Message-Id: <20240610-xtheadvector-v2-0-97a48613ad64@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKWEZ2YC/1XMTQ7CIBCG4as0sxbDT2vFlfcwXVQYZBaCgYbUN
+ NxdrCuX72S+Z4OMiTDDpdsgYaFMMbSQhw6Mn8MDGdnWILns+aA4WxePsy1olpjYWSmrrBjvvVT
+ QJq+Ejtadu02tPeX29t71Ir7XH3Ti+h8qgnGmHA5a2NEJrq+JSswUzNHEJ0y11g/mg9GXqwAAA
+ A==
+To: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Jonathan Corbet <corbet@lwn.net>, 
+ Shuah Khan <shuah@kernel.org>, Guo Ren <guoren@kernel.org>, 
+ Evan Green <evan@rivosinc.com>, Andy Chiu <andy.chiu@sifive.com>, 
+ Jessica Clarke <jrtc27@jrtc27.com>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+ linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ Charlie Jenkins <charlie@rivosinc.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, Heiko Stuebner <heiko@sntech.de>, 
+ Heiko Stuebner <heiko@sntech.de>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1718060203; l=6113;
+ i=charlie@rivosinc.com; s=20231120; h=from:subject:message-id;
+ bh=7yn3BGahmO2D4NAvhm94NVTCl/ESTkKkPcznWJjCw7E=;
+ b=bGYgH0YrXsBKhxUzHQhY3NWmhuQ8kA3B68ceJaHQqhB6G+LSu+9z38fXG0VaXeVEmLY0r3VRP
+ Tlnuuq0dCezAU12s96C58bPw+1oMF0syF6ZOIWkp7SAmOIDCZvDuUiZ
+X-Developer-Key: i=charlie@rivosinc.com; a=ed25519;
+ pk=t4RSWpMV1q5lf/NWIeR9z58bcje60/dbtxxmoSfBEcs=
 
-SGkgTGF1cmVudCwKCk9uIFNhdCwgMjAyNC0wNi0wOCBhdCAxODowMiArMDMwMCwgTGF1cmVudCBQ
-aW5jaGFydCB3cm90ZToKPiBPbiBNb24sIEFwciAxNSwgMjAyNCBhdCAwNjowNzoyNFBNICswMTAw
-LCBDaHJpc3RvcGhlciBPYmJhcmQgd3JvdGU6Cj4gPiBPbiBNb24sIDIwMjQtMDQtMTUgYXQgMTk6
-MzUgKzAzMDAsIExhdXJlbnQgUGluY2hhcnQgd3JvdGU6Cj4gPiA+IE9uIE1vbiwgQXByIDE1LCAy
-MDI0IGF0IDA0OjA4OjEwUE0gKzAxMDAsIEtpZXJhbiBCaW5naGFtIHdyb3RlOgo+ID4gPiA+IFF1
-b3RpbmcgQ2hyaXN0b3BoZXIgT2JiYXJkICgyMDI0LTA0LTE1IDEyOjQxOjI3KQo+ID4gPiA+ID4g
-RW5hYmxlIHRoZSBIRE1JIG91dHB1dCBvbiB0aGUgRGViaXggTW9kZWwgQSBTQkMsIHVzaW5nIHRo
-ZSBIRE1JCj4gPiA+ID4gPiBlbmNvZGVyCj4gPiA+ID4gPiBwcmVzZW50IGluIHRoZSBpLk1YOE1Q
-IFNvQy4KPiA+ID4gPiAKPiA+ID4gPiBBaGEsIHlvdSBiZWF0IG1lIHRvIGl0LiBJIGhhdmUgYSBj
-b21taXQgbG9jYWxseSAoRGF0ZWQgMjAyMi0wOS0wNikgYnV0Cj4gPiA+ID4gbm90IHNlbnQgYmVj
-YXVzZSBJIGRpZG4ndCByZWFsaXNlIHRoZSBIRE1JIHN1cHBvcnQgZmluYWxseSBnb3QKPiA+ID4g
-PiB1cHN0cmVhbQo+ID4gPiA+IFxvLwo+ID4gPiA+IAo+ID4gPiA+ID4gU2lnbmVkLW9mZi1ieTog
-Q2hyaXN0b3BoZXIgT2JiYXJkIDxjaHJpcy5vYmJhcmRAY29sbGFib3JhLmNvbT4KPiA+ID4gPiA+
-IC0tLQo+ID4gPiA+ID4gCj4gPiA+ID4gPiDCoC4uLi9kdHMvZnJlZXNjYWxlL2lteDhtcC1kZWJp
-eC1tb2RlbC1hLmR0c8KgwqDCoCB8IDQ3Cj4gPiA+ID4gPiArKysrKysrKysrKysrKysrKysrCj4g
-PiA+ID4gPiDCoDEgZmlsZSBjaGFuZ2VkLCA0NyBpbnNlcnRpb25zKCspCj4gPiA+ID4gPiAKPiA+
-ID4gPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAt
-ZGViaXgtbW9kZWwtYS5kdHMKPiA+ID4gPiA+IGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2Nh
-bGUvaW14OG1wLWRlYml4LW1vZGVsLWEuZHRzCj4gPiA+ID4gPiBpbmRleCAyYzE5NzY2ZWJmMDku
-LjI5NTI5YzJlY2FjOSAxMDA2NDQKPiA+ID4gPiA+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMv
-ZnJlZXNjYWxlL2lteDhtcC1kZWJpeC1tb2RlbC1hLmR0cwo+ID4gPiA+ID4gKysrIGIvYXJjaC9h
-cm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1wLWRlYml4LW1vZGVsLWEuZHRzCj4gPiA+ID4g
-PiBAQCAtMjAsNiArMjAsMTggQEAgY2hvc2VuIHsKPiA+ID4gPiA+IMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCBzdGRvdXQtcGF0aCA9ICZ1YXJ0MjsKPiA+ID4gPiA+IMKgwqDCoMKgwqDC
-oMKgIH07Cj4gPiA+ID4gPiDCoAo+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoCBoZG1pLWNvbm5lY3Rv
-ciB7Cj4gPiA+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlID0g
-ImhkbWktY29ubmVjdG9yIjsKPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-IGxhYmVsID0gImhkbWkiOwo+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-dHlwZSA9ICJhIjsKPiA+ID4gPiA+ICsKPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIHBvcnQgewo+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIGhkbWlfY29ubmVjdG9yX2luOiBlbmRwb2ludCB7Cj4gPiA+ID4gPiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-IHJlbW90ZS1lbmRwb2ludCA9IDwmaGRtaV90eF9vdXQ+Owo+ID4gPiA+ID4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4gPiA+ID4gPiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCB9Owo+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoCB9Owo+ID4gPiA+
-ID4gKwo+ID4gPiA+IAo+ID4gPiA+IEludGVyZXN0aW5nLiBNeSBwYXRjaCBtaXNzZWQgdGhpcy4g
-QnV0IGl0IGxvb2tzIGNvcnJlY3QuCj4gPiA+ID4gCj4gPiA+ID4gPiDCoMKgwqDCoMKgwqDCoCBs
-ZWRzIHsKPiA+ID4gPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxl
-ID0gImdwaW8tbGVkcyI7Cj4gPiA+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-cGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsKPiA+ID4gPiA+IEBAIC05NCw2ICsxMDYsMjggQEAg
-ZXRocGh5MDogZXRoZXJuZXQtcGh5QDAgeyAvKiBSVEw4MjExRSAqLwo+ID4gPiA+ID4gwqDCoMKg
-wqDCoMKgwqAgfTsKPiA+ID4gPiA+IMKgfTsKPiA+ID4gPiA+IMKgCj4gPiA+ID4gPiArJmhkbWlf
-cHZpIHsKPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqAgc3RhdHVzID0gIm9rYXkiOwo+ID4gPiA+ID4g
-K307Cj4gPiA+ID4gPiArCj4gPiA+ID4gPiArJmhkbWlfdHggewo+ID4gPiA+ID4gK8KgwqDCoMKg
-wqDCoCBwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOwo+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoCBw
-aW5jdHJsLTAgPSA8JnBpbmN0cmxfaGRtaT47Cj4gPiA+ID4gPiArwqDCoMKgwqDCoMKgIHN0YXR1
-cyA9ICJva2F5IjsKPiA+ID4gPiA+ICsKPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqAgcG9ydHMgewo+
-ID4gPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcG9ydEAxIHsKPiA+ID4gPiA+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBoZG1pX3R4X291
-dDogZW5kcG9pbnQgewo+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZW1vdGUtZW5kcG9pbnQgPQo+ID4gPiA+ID4g
-PCZoZG1pX2Nvbm5lY3Rvcl9pbj47Cj4gPiA+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgfTsKPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIH07Cj4gPiA+ID4gPiArwqDCoMKgwqDCoMKgIH07Cj4gPiA+ID4gPiArfTsKPiA+ID4g
-PiA+ICsKPiA+ID4gPiA+ICsmaGRtaV90eF9waHkgewo+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoCBz
-dGF0dXMgPSAib2theSI7Cj4gPiA+ID4gPiArfTsKPiA+ID4gPiA+ICsKPiA+ID4gPiA+IMKgJmky
-YzEgewo+ID4gPiA+ID4gwqDCoMKgwqDCoMKgwqAgY2xvY2stZnJlcXVlbmN5ID0gPDQwMDAwMD47
-Cj4gPiA+ID4gPiDCoMKgwqDCoMKgwqDCoCBwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOwo+ID4g
-PiA+ID4gQEAgLTI0MSw2ICsyNzUsMTAgQEAgJmkyYzYgewo+ID4gPiA+ID4gwqDCoMKgwqDCoMKg
-wqAgc3RhdHVzID0gIm9rYXkiOwo+ID4gPiA+ID4gwqB9Owo+ID4gPiA+ID4gwqAKPiA+ID4gPiA+
-ICsmbGNkaWYzIHsKPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqAgc3RhdHVzID0gIm9rYXkiOwo+ID4g
-PiA+ID4gK307Cj4gPiA+ID4gPiArCj4gPiA+ID4gCj4gPiA+ID4gRXhjZXB0IGZvciB0aGUgYWRk
-aXRpb24gb2YgdGhlIGNvbm5lY3RvciwgdGhlIGFib3ZlIG1hdGNoZXMgbXkgcGF0Y2gKPiA+ID4g
-PiB0bwo+ID4gPiA+IGhlcmUuCj4gPiA+ID4gCj4gPiA+ID4gPiDCoCZzbnZzX3B3cmtleSB7Cj4g
-PiA+ID4gPiDCoMKgwqDCoMKgwqDCoCBzdGF0dXMgPSAib2theSI7Cj4gPiA+ID4gPiDCoH07Cj4g
-PiA+ID4gCj4gPiA+ID4gQnV0IGluIG15IHBhdGNoIEkgaGF2ZSB0aGUgZm9sbG93aW5nIGh1bmsg
-aGVyZTogKEkgaGF2ZW4ndCBjaGVja2VkIHRvCj4gPiA+ID4gc2VlIGlmIHRoaXMgc3RpbGwgYXBw
-bGllcyBvbiBtYWlubGluZSwgc28gdGFrZSB3aXRoIGEgcGluY2ggb2Ygc2FsdCBpZgo+ID4gPiA+
-IGl0J3Mgbm90IHRoZXJlISkKPiA+ID4gPiAKPiA+ID4gPiAKPiA+ID4gPiDCoCZpb211eGMgewo+
-ID4gPiA+IMKgCXBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7Cj4gPiA+ID4gLQlwaW5jdHJsLTAg
-PSA8JnBpbmN0cmxfaG9nPjsKPiA+ID4gPiAtCj4gPiA+ID4gLQlwaW5jdHJsX2hvZzogaG9nZ3Jw
-IHsKPiA+ID4gPiAtCQlmc2wscGlucyA9IDwKPiA+ID4gPiAtCj4gPiA+ID4gCQkJTVg4TVBfSU9N
-VVhDX0hETUlfRERDX1NDTF9fSERNSU1JWF9IRE1JX1NDTAo+ID4gPiA+IAkJCQkJMHg0MDAwMDFj
-Mwo+ID4gPiA+IC0KPiA+ID4gPiAJCQlNWDhNUF9JT01VWENfSERNSV9ERENfU0RBX19IRE1JTUlY
-X0hETUlfU0RBCj4gPiA+ID4gCQkJCQkweDQwMDAwMWMzCj4gPiA+ID4gLQo+ID4gPiA+IAkJCU1Y
-OE1QX0lPTVVYQ19IRE1JX0hQRF9fSERNSU1JWF9IRE1JX0hQRAo+ID4gPiA+IAkJCQkJCTB4NDAw
-MDAwMTkKPiA+ID4gPiAtCj4gPiA+ID4gCQkJTVg4TVBfSU9NVVhDX0hETUlfQ0VDX19IRE1JTUlY
-X0hETUlfQ0VDCj4gPiA+ID4gCQkJCQkJMHg0MDAwMDAxOQo+ID4gPiA+IC0JCT47Cj4gPiA+ID4g
-LQl9Owo+ID4gPiA+IAo+ID4gPiA+IMKgCXBpbmN0cmxfZXFvczogZXFvc2dycCB7Cj4gPiA+ID4g
-wqAJCWZzbCxwaW5zID0gPAo+ID4gPiA+IMKgCQkJTVg4TVBfSU9NVVhDX0VORVRfTURDX19FTkVU
-X1FPU19NREMJCj4gPiA+ID4gCQo+ID4gPiA+IAkJCQkJMHgzCj4gPiA+ID4gwqAJCQlNWDhNUF9J
-T01VWENfRU5FVF9NRElPX19FTkVUX1FPU19NRElPCQo+ID4gPiA+IAkKPiA+ID4gPiAJCQkJMHgz
-Cj4gPiA+ID4gCj4gPiA+ID4gCj4gPiA+ID4gPiBAQCAtMzU4LDYgKzM5NiwxNSBAQAo+ID4gPiA+
-ID4gTVg4TVBfSU9NVVhDX05BTkRfUkVBRFlfQl9fR1BJTzNfSU8xNsKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAKPiA+ID4gPiA+IDB4MTkK
-PiA+ID4gPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA+Owo+ID4gPiA+ID4gwqDC
-oMKgwqDCoMKgwqAgfTsKPiA+ID4gPiA+IMKgCj4gPiA+ID4gPiArwqDCoMKgwqDCoMKgIHBpbmN0
-cmxfaGRtaTogaGRtaWdycCB7Cj4gPiA+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCBmc2wscGlucyA9IDwKPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoAo+ID4gPiA+ID4gTVg4TVBfSU9NVVhDX0hETUlfRERDX1NDTF9fSERNSU1J
-WF9IRE1JX1NDTMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAKPiA+ID4g
-PiA+IDB4NDAwMDAxYzMKPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoAo+ID4gPiA+ID4gTVg4TVBfSU9NVVhDX0hETUlfRERDX1NEQV9fSERNSU1J
-WF9IRE1JX1NEQcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAKPiA+ID4g
-PiA+IDB4NDAwMDAxYzMKPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoAo+ID4gPiA+ID4gTVg4TVBfSU9NVVhDX0hETUlfSFBEX19IRE1JTUlYX0hE
-TUlfSFBEwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgCj4g
-PiA+ID4gPiAweDQwMDAwMDE5Cj4gPiA+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAKPiA+ID4gPiA+IE1YOE1QX0lPTVVYQ19IRE1JX0NFQ19fSERNSU1J
-WF9IRE1JX0NFQ8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oAo+ID4gPiA+ID4gMHg0MDAwMDAxOQo+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgPjsKPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqAgfTsKPiA+ID4gPiA+ICsKPiA+ID4gPiAK
-PiA+ID4gPiBBbmQgbXkgYWRkaXRpb24gaGVyZSBpcyA6Cj4gPiA+ID4gCj4gPiA+ID4gCj4gPiA+
-ID4gKwlwaW5jdHJsX2hkbWk6IGhkbWlncnAgewo+ID4gPiA+ICsJCWZzbCxwaW5zID0gPAo+ID4g
-PiA+ICsJCQlNWDhNUF9JT01VWENfSERNSV9ERENfU0NMX19IRE1JTUlYX0hETUlfU0NMCj4gPiA+
-ID4gCTAKPiA+ID4gPiB4MWMzCj4gPiA+ID4gKwkJCU1YOE1QX0lPTVVYQ19IRE1JX0REQ19TREFf
-X0hETUlNSVhfSERNSV9TREEKPiA+ID4gPiAJMAo+ID4gPiA+IHgxYzMKPiA+ID4gPiArCQkJTVg4
-TVBfSU9NVVhDX0hETUlfSFBEX19IRE1JTUlYX0hETUlfSFBECj4gPiA+ID4gCQo+ID4gPiA+IAkw
-eDE5Cj4gPiA+ID4gKwkJCU1YOE1QX0lPTVVYQ19IRE1JX0NFQ19fSERNSU1JWF9IRE1JX0NFQwo+
-ID4gPiA+IAkKPiA+ID4gPiAJMHgxOQo+ID4gPiA+ICsJCT47Cj4gPiA+ID4gKwl9Owo+ID4gPiA+
-ICsKPiA+ID4gPiAKPiA+ID4gPiAKPiA+ID4gPiBJIGhhdmVuJ3QgbG9va2VkIGludG8gd2hhdCB0
-aGUgMHg0MDAwMDAwMCBkb2VzIHlldCwgYnV0IGp1c3QKPiA+ID4gPiBoaWdobGlnaHRpbmcgdGhl
-IGRpZmZlcmVuY2UgZnJvbSB0aGUgdmVyc2lvbiBJJ3ZlIGJlZW4gdXNpbmcgdG8gbWFrZQo+ID4g
-PiA+IHVzZQo+ID4gPiA+IG9mIEhETUkgc28gZmFyLgo+ID4gPiA+IAo+ID4gPiA+IERvZXMgYW55
-b25lIGVsc2Uga25vdyB0aGUgaW1wYWN0IGhlcmU/IE90aGVyd2lzZSBJJ2xsIHRyeSB0byBmaW5k
-IHRpbWUKPiA+ID4gPiB0byBjaGVjayB0aGlzIGxhdGVyLiAoRm9yIHNvbWUgdW5kZWZpbmVkIHRl
-cm0gb2YgbGF0ZXIuLi4pCj4gPiA+IAo+ID4gPiBJbiBkcml2ZXJzL3BpbmN0cmwvZnJlZXNjYWxl
-L3BpbmN0cmwtaW14LmMsCj4gPiA+IAo+ID4gPiAjZGVmaW5lIElNWF9OT19QQURfQ1RMwqAgMHg4
-MDAwMDAwMMKgwqDCoMKgwqAgLyogbm8gcGluIGNvbmZpZyBuZWVkICovCj4gPiA+ICNkZWZpbmUg
-SU1YX1BBRF9TSU9OIDB4NDAwMDAwMDDCoMKgwqDCoMKgwqDCoMKgIC8qIHNldCBTSU9OICovCj4g
-PiA+IAo+ID4gPiBUaGUgU0lPTiAoU29mdHdhcmUgSW5wdXQgT04pIGJpdCBmb3JjZXMgdGhlIGlu
-cHV0IHBhdGggYWN0aXZlIGZvciB0aGUKPiA+ID4gcGluLiBUaGlzIGNhbiBiZSB1c2VkLCBmb3Ig
-aW5zdGFuY2UsIHRvIGNhcHR1cmUgdGhyb3VnaCBHUElPIHRoZSB2YWx1ZQo+ID4gPiBvZiBhIHBp
-biBkcml2ZW4gYnkgYSBtb2R1bGUuIEknbSBub3Qgc3VyZSB0aGF0J3MgbmVlZGVkIGhlcmUuCj4g
-PiAKPiA+IFRoYW5rcyBmb3IgdGhlIGV4cGxhbmF0aW9uLCBtYWtlcyBwZXJmZWN0IHNlbnNlLiBJ
-IHdpbGwgc2VuZCBhIHYyIHdpdGhvdXQKPiA+IHRoZQo+ID4gU0lPTiBiaXQgc2V0IChlLmcgZXhh
-Y3RseSBwZXIgdGhlIGh1bmsgaW4gS2llcmFuJ3MgcGF0Y2gpLgo+IAo+IEknZCBsaWtlIHRvIGdl
-dCB0aGlzIG1lcmdlZCBpbiB2Ni4xMS4gSWYgeW91IGRvbid0IGhhdmUgdGltZSB0byBzZW5kIGEK
-PiB2MiwgSSdtIGhhcHB5IHJlc2VuZGluZyBvdXIgdmVyc2lvbiBvZiB0aGUgcGF0Y2ggaW5zdGVh
-ZCA6LSkKCkkndmUganVzdCBkdXN0ZWQgdGhlIGJvYXJkIG9mZiBhbmQgd2lsbCBzZW5kIHYyIHNo
-b3J0bHkgYWZ0ZXIgdGVzdGluZy4KClRoYW5rcyBmb3IgdGhlIHJlbWluZGVyIDotKS4KCj4gCj4g
-PiA+ID4gPiDCoMKgwqDCoMKgwqDCoCBwaW5jdHJsX2kyYzE6IGkyYzFncnAgewo+ID4gPiA+ID4g
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGZzbCxwaW5zID0gPAo+ID4gPiA+ID4gwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoAo+ID4gPiA+ID4gTVg4
-TVBfSU9NVVhDX0kyQzFfU0NMX19JMkMxX1NDTMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAKPiA+ID4gPiA+IDB4NDAwMDAxYzIK
-PiAKPiAtLSAKPiBSZWdhcmRzLAo+IAo+IExhdXJlbnQgUGluY2hhcnQK
+xtheadvector is a custom extension that is based upon riscv vector
+version 0.7.1 [1]. All of the vector routines have been modified to
+support this alternative vector version based upon whether xtheadvector
+was determined to be supported at boot.
+
+vlenb is not supported on the existing xtheadvector hardware, so a
+devicetree property thead,vlenb is added to provide the vlenb to Linux.
+
+There is a new hwprobe key RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0 that is
+used to request which thead vendor extensions are supported on the
+current platform. This allows future vendors to allocate hwprobe keys
+for their vendor.
+
+Support for xtheadvector is also added to the vector kselftests.
+
+Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+
+[1] https://github.com/T-head-Semi/thead-extension-spec/blob/95358cb2cca9489361c61d335e03d3134b14133f/xtheadvector.adoc
+
+---
+This series is a continuation of a different series that was fragmented
+into two other series in an attempt to get part of it merged in the 6.10
+merge window. The split-off series did not get merged due to a NAK on
+the series that added the generic riscv,vlenb devicetree entry. This
+series has converted riscv,vlenb to thead,vlenb to remedy this issue.
+
+The original series is titled "riscv: Support vendor extensions and
+xtheadvector" [3].
+
+The series titled "riscv: Extend cpufeature.c to detect vendor
+extensions" is still under development and this series is based on that
+series! [4]
+
+I have tested this with an Allwinner Nezha board. I ran into issues
+booting the board after 6.9-rc1 so I applied these patches to 6.8. There
+are a couple of minor merge conflicts that do arrise when doing that, so
+please let me know if you have been able to boot this board with a 6.9
+kernel. I used SkiffOS [1] to manage building the image, but upgraded
+the U-Boot version to Samuel Holland's more up-to-date version [2] and
+changed out the device tree used by U-Boot with the device trees that
+are present in upstream linux and this series. Thank you Samuel for all
+of the work you did to make this task possible.
+
+[1] https://github.com/skiffos/SkiffOS/tree/master/configs/allwinner/nezha
+[2] https://github.com/smaeul/u-boot/commit/2e89b706f5c956a70c989cd31665f1429e9a0b48
+[3] https://lore.kernel.org/all/20240503-dev-charlie-support_thead_vector_6_9-v6-0-cb7624e65d82@rivosinc.com/
+[4] https://lore.kernel.org/linux-riscv/20240609-support_vendor_extensions-v2-0-9a43f1fdcbb9@rivosinc.com/
+
+---
+Changes in v2:
+- Removed extraneous references to "riscv,vlenb" (Jess)
+- Moved declaration of "thead,vlenb" into cpus.yaml and added
+  restriction that it's only applicable to thead cores (Conor)
+- Check CONFIG_RISCV_ISA_XTHEADVECTOR instead of CONFIG_RISCV_ISA_V for
+  thead,vlenb (Jess)
+- Fix naming of hwprobe variables (Evan)
+- Link to v1: https://lore.kernel.org/r/20240609-xtheadvector-v1-0-3fe591d7f109@rivosinc.com
+
+---
+Charlie Jenkins (12):
+      dt-bindings: riscv: Add xtheadvector ISA extension description
+      dt-bindings: cpus: add a thead vlen register length property
+      riscv: dts: allwinner: Add xtheadvector to the D1/D1s devicetree
+      riscv: Add thead and xtheadvector as a vendor extension
+      riscv: vector: Use vlenb from DT for thead
+      riscv: csr: Add CSR encodings for VCSR_VXRM/VCSR_VXSAT
+      riscv: Add xtheadvector instruction definitions
+      riscv: vector: Support xtheadvector save/restore
+      riscv: hwprobe: Add thead vendor extension probing
+      riscv: hwprobe: Document thead vendor extensions and xtheadvector extension
+      selftests: riscv: Fix vector tests
+      selftests: riscv: Support xtheadvector in vector tests
+
+Heiko Stuebner (1):
+      RISC-V: define the elements of the VCSR vector CSR
+
+ Documentation/arch/riscv/hwprobe.rst               |  10 +
+ Documentation/devicetree/bindings/riscv/cpus.yaml  |  19 ++
+ .../devicetree/bindings/riscv/extensions.yaml      |  10 +
+ arch/riscv/Kconfig.vendor                          |  26 ++
+ arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi      |   3 +-
+ arch/riscv/include/asm/cpufeature.h                |   2 +
+ arch/riscv/include/asm/csr.h                       |  13 +
+ arch/riscv/include/asm/hwprobe.h                   |   4 +-
+ arch/riscv/include/asm/switch_to.h                 |   2 +-
+ arch/riscv/include/asm/vector.h                    | 249 +++++++++++++----
+ arch/riscv/include/asm/vendor_extensions/thead.h   |  42 +++
+ .../include/asm/vendor_extensions/thead_hwprobe.h  |  18 ++
+ .../include/asm/vendor_extensions/vendor_hwprobe.h |  37 +++
+ arch/riscv/include/uapi/asm/hwprobe.h              |   3 +-
+ arch/riscv/include/uapi/asm/vendor/thead.h         |   3 +
+ arch/riscv/kernel/cpufeature.c                     |  51 +++-
+ arch/riscv/kernel/kernel_mode_vector.c             |   8 +-
+ arch/riscv/kernel/process.c                        |   4 +-
+ arch/riscv/kernel/signal.c                         |   6 +-
+ arch/riscv/kernel/sys_hwprobe.c                    |   5 +
+ arch/riscv/kernel/vector.c                         |  25 +-
+ arch/riscv/kernel/vendor_extensions.c              |  10 +
+ arch/riscv/kernel/vendor_extensions/Makefile       |   2 +
+ arch/riscv/kernel/vendor_extensions/thead.c        |  18 ++
+ .../riscv/kernel/vendor_extensions/thead_hwprobe.c |  19 ++
+ tools/testing/selftests/riscv/vector/.gitignore    |   3 +-
+ tools/testing/selftests/riscv/vector/Makefile      |  17 +-
+ .../selftests/riscv/vector/v_exec_initval_nolibc.c |  93 +++++++
+ tools/testing/selftests/riscv/vector/v_helpers.c   |  67 +++++
+ tools/testing/selftests/riscv/vector/v_helpers.h   |   7 +
+ tools/testing/selftests/riscv/vector/v_initval.c   |  22 ++
+ .../selftests/riscv/vector/v_initval_nolibc.c      |  68 -----
+ .../selftests/riscv/vector/vstate_exec_nolibc.c    |  20 +-
+ .../testing/selftests/riscv/vector/vstate_prctl.c  | 295 ++++++++++++---------
+ 34 files changed, 910 insertions(+), 271 deletions(-)
+---
+base-commit: 11cc01d4d2af304b7288251aad7e03315db8dffc
+change-id: 20240530-xtheadvector-833d3d17b423
+-- 
+- Charlie
 
 
