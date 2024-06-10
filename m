@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-74030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5CBF901C0A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 09:40:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2214A901C1F
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 09:54:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4532D2838E9
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 07:40:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09EE81C21BAB
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 07:54:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 804F42D05D;
-	Mon, 10 Jun 2024 07:40:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EA3E3BBC5;
+	Mon, 10 Jun 2024 07:54:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d29hRgK+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Au2wHBkd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2B472374E
-	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 07:39:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77D063611E
+	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 07:54:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718005200; cv=none; b=cxea1anPZ3bavSQVG/xaVpLj1bMfzRqmcFxkk6m2YEEUHnSl6iqs/qlEar98hLuDx7/Olyyyl4fLk4lj651knfZakFqk/Hl9g7bo+S8j2QkjpBmhXasZ03lamRQrKybBZhlgDZGvVYA/cE8g9xAMROBahtq1X2s9u+VlVx92viE=
+	t=1718006049; cv=none; b=fTyQoJNqy77x7EmQ8b2iKOw14G+1p02f5lh4STJvH1oz0Dav6d92uWqGIG74WdbEdrvy4MEESkrXEQN6KvBrG8pOwMoEU9jK+G//HKK53c+iDsviTGQguanswK8r+7vEhBtTIX3oBcisNY0jfuqmks93WpJp+3S6phUzYCZTF2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718005200; c=relaxed/simple;
-	bh=Pl77bQGDVfj6d6436tUg9NqhuIW1Q6mVmn4dFwdM2so=;
+	s=arc-20240116; t=1718006049; c=relaxed/simple;
+	bh=zqamPiF739sol86TOJ8tkxxMTNunwcjcMwV8NwVkf+0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EByAio36gy2rCjzdZZQOVVioQqsTjugK1VcT+Dmb/LY8s0JO0kQoRa05FfoF2ePVeeYdjR+Ue2UXXjH1jNzvEkN5looh+zMUFbMlLbrcC+dMPbnPfxh1djzr7DBQVP4yGkgVDreUcbnHmyCENCaYK+v+1nG9c0uQG1o1x/wcBxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=d29hRgK+; arc=none smtp.client-ip=209.85.128.43
+	 In-Reply-To:Content-Type; b=e/oDqHGy5JnKT5qQemSM/2oUcQerWq3jfKJDzKAO+h9n4Z1llx8AQr5wPfAVRIrRXkPP4pRdnv1zRKdbbiCLFx+e9Cu1fYeGhiJuGNOWDiOGoMggaEwpJ8NocMg4yifOwUcp2WyF0Rcb6hq7LZCW2DXJVtEerAR3iR+SPNTUetQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Au2wHBkd; arc=none smtp.client-ip=209.85.208.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4217c7eb6b4so10490385e9.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 00:39:58 -0700 (PDT)
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-57a5bcfb2d3so2782692a12.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 00:54:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718005197; x=1718609997; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1718006046; x=1718610846; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=vMjwlRoB1zUBrxnoriQTxC4qGPUpj37/BX99GwdlmqQ=;
-        b=d29hRgK+tiCkGKm0DamqIAJl3g4Qh0EMH0smk2muJ/rkyMmVU+e4RUySdOBBAbCeMW
-         9NQqWwwdJXpr5HCeQU93tny2pWki2NiztNXZ0hIO52S6nyyoaJzTcN+cAN87XH4/W/P9
-         whwFG8yDB5leVGfWKjIcLjxO0yfGmfIgOA4zJRUIRhkxBuh0JGdfN6hZ5y79bmIVS+ci
-         MI5hgRHQzUzsk5/AwXVdlxDyT9htJeBfUCw3jS4l4V4Jt9NI/pq3K9StoLr22V+kvJdt
-         g0RP3IbtnipmA/xU7B54ttWWA55HpEHRnx8IGiTsfBW1YxRRgpteiCAYbPQAqiCdM6Re
-         m8NA==
+        bh=ynBzD6IDnomBAQa1qUjkFMCs1faPI4vdoJ0aRWuOqhM=;
+        b=Au2wHBkdHsBVF7F9w5rMzcj4Lax6MbTXov5vqhEs6GDvGX1YvUK9VrZ2p+KG0rx82D
+         ELRCW7aCoOZY5UU8x20XE/e0zezxw2TnbQ4fhJdcVLbMq/G9KDTv3Mxz7PSlI5eXvWt8
+         X4KO9DHOZUY1n9gJvdggp1EWpmbVBGk3cB53BdVim3mbVx/hYhLCxtOrVrFcIjXQcZ3T
+         O/wpQfkoDnzlB9mkNEKzkZs/S8Uzdw63x8QZ4/q59uhCldDkQ9N0kHdYF5wKqqcRrNG3
+         AnYMxn8UX+5bXUF2Pg5x+xOv/jlMgd2IAjSc3M3kjGT4ezuZCn/csJVCepf91YzGA4MH
+         o1Mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718005197; x=1718609997;
+        d=1e100.net; s=20230601; t=1718006046; x=1718610846;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=vMjwlRoB1zUBrxnoriQTxC4qGPUpj37/BX99GwdlmqQ=;
-        b=pep6a/RMBw7uFsPhrT4glmRnBidSzYrZfSghvybhupo/y2prXK6/I4smMK3AMyCdyW
-         xm8kUy5Asxx2ANN3Bj1JeRrcP/rmyy9F+tbenkS0rmxwKCK8vDY2hPG5SG9EQ8qEgFPJ
-         dPGGhMC2N9ZyAP6jU6lEI2ykHtRDsHSoyVJovDacT37JCqJR7lz1mw0ix3dmJ9AHCW4a
-         FUQiEdeHuU/mmRLoTZ8q1Duf7lCWYzf1Tcl52P+zv0Qta/eRmFY7SeEDMoOSPM4c/Vjb
-         uqsxIHVWJS6F8FhBXU2oE5Mtz2w4+omV1YVHx+MBAQPaFj4EfQ5cjWHuC9NMHqCWnp5K
-         N/pg==
-X-Forwarded-Encrypted: i=1; AJvYcCXWfDA0Z3iY2GNK9WNVvjs/mEl0hidQiKI1ttYjDOfU0ZunpiEpcs14eZ1tpbGqLkz1R+O/SJABQeVtumMygEE+paSACfo/qjMfIw==
-X-Gm-Message-State: AOJu0YxYk6nNHILQator8rEMN6OsJqN3klXgTFm06Qvqf9TWn24OCPTw
-	gqSyHy+2dGvelTuKvGTzCxGiWswqOE2w9bRPI6/evpvRkz31nXMRpfPRTpTofVo=
-X-Google-Smtp-Source: AGHT+IHMiLWtX71Xx57Du6Ke2BkcUOQRP6QZlXWDuZkcsDBndrQKFGzjYwkJnyZxt0sr/S5vnuNI5A==
-X-Received: by 2002:a05:600c:1d88:b0:421:7e76:b85c with SMTP id 5b1f17b1804b1-4217e76b8b1mr33386945e9.23.1718005197169;
-        Mon, 10 Jun 2024 00:39:57 -0700 (PDT)
+        bh=ynBzD6IDnomBAQa1qUjkFMCs1faPI4vdoJ0aRWuOqhM=;
+        b=r8MthEjWyYac4HI7bqVF7XqIbZczEBCJzUre0MO/NngyPU4P94b+RIx7XHzMTQSaZc
+         RzP6wy0B48EhQCYkAGX3x2ctON3f6Y0AZ13TAQSrysv5+sk5HW5CTDnJDQnuRvgv74Lo
+         eVG/AcoE+y42MMihk9ruXzVkDwSPyx7ONg6zX6NIBmKQv5bMW6/E91IvJFUKBKjV9ozN
+         +zyKco7d3U7dkiSTyEWf0IGJOBAD3WnIIDXryqVgmtummG7rceWde2sH/FSIpV/GBfNo
+         bcS76U2PP+/QOE0UiedJ+fzDfFuKe24W8SmrIM+zBt2+VPtX+03XErbuweeGVtriKWc6
+         wADw==
+X-Forwarded-Encrypted: i=1; AJvYcCUBNaV2mJVlweFdvvrEcEla/4Lfx6ao59UtijMxCca0D/Atoss3MZmj8e7Qjv80vRyJasYzjNIIQeqMZSakC54to8TOTrtbao+vzw==
+X-Gm-Message-State: AOJu0YzFWR0gSLLXD88m3gLCBlSs27pqOnS/7vTOKkoRXaRsdqPlooir
+	6Ws3XA04pm7RaLUAGCe3zpelTCR6M6v8Qfqj7+34E01MT+o+4+WtLKTpgwtEB1E=
+X-Google-Smtp-Source: AGHT+IHdRdyLJ6WsyrheYFHxIeRPB0oABICESCj9zuJtPpg8iBOyfbB7pnW2O0rRtS8oYHhFAWfpQA==
+X-Received: by 2002:a50:f60b:0:b0:57c:5874:4f5c with SMTP id 4fb4d7f45d1cf-57c5874587emr6584352a12.32.1718006045617;
+        Mon, 10 Jun 2024 00:54:05 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421dd8c3a9esm21868815e9.27.2024.06.10.00.39.55
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57c71885170sm3350965a12.2.2024.06.10.00.54.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jun 2024 00:39:56 -0700 (PDT)
-Message-ID: <68c9bf8d-38c6-4f1b-b73d-a8ea03f8e1cd@linaro.org>
-Date: Mon, 10 Jun 2024 09:39:54 +0200
+        Mon, 10 Jun 2024 00:54:05 -0700 (PDT)
+Message-ID: <cf49fbb3-9de6-4e57-bc38-d720f76118a7@linaro.org>
+Date: Mon, 10 Jun 2024 09:54:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,10 +79,10 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v4 1/5] dt-bindings: media: add mediatek ISP3.0 sensor
  interface
-To: Julien Stephan <jstephan@baylibre.com>
-Cc: Louis Kuo <louis.kuo@mediatek.com>, Phi-Bang Nguyen
- <pnguyen@baylibre.com>, Laurent Pinchart
- <laurent.pinchart@ideasonboard.com>, Andy Hsieh <andy.hsieh@mediatek.com>,
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Julien Stephan <jstephan@baylibre.com>, Louis Kuo
+ <louis.kuo@mediatek.com>, Phi-Bang Nguyen <pnguyen@baylibre.com>,
+ Andy Hsieh <andy.hsieh@mediatek.com>,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
  Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
  Florian Sylvestre <fsylvestre@baylibre.com>,
@@ -96,6 +96,7 @@ References: <20240110141443.364655-1-jstephan@baylibre.com>
  <20240110141443.364655-2-jstephan@baylibre.com>
  <e0bf8667-cbb8-49ba-bb44-3edf93b019b8@linaro.org>
  <CAEHHSvYt-aqFahi=B_si=duJH8xDgy_9nndgR-P0+U5THX69uw@mail.gmail.com>
+ <20240607144154.GD18479@pendragon.ideasonboard.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -142,49 +143,50 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAEHHSvYt-aqFahi=B_si=duJH8xDgy_9nndgR-P0+U5THX69uw@mail.gmail.com>
+In-Reply-To: <20240607144154.GD18479@pendragon.ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 07/06/2024 10:52, Julien Stephan wrote:
-> Le ven. 12 janv. 2024 à 08:32, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> a écrit :
->>
->> On 10/01/2024 15:14, Julien Stephan wrote:
->>> From: Louis Kuo <louis.kuo@mediatek.com>
->>>
->>> This adds the bindings, for the mediatek ISP3.0 SENINF module embedded in
->>> some Mediatek SoC, such as the mt8365
->>>
->>
->> ...
->>
->>> +  clock-names:
->>> +    items:
->>> +      - const: camsys
->>> +      - const: top_mux
->>> +
->>> +  phys:
->>> +    minItems: 1
->>> +    maxItems: 4
->>> +    description:
->>> +      phandle to the PHYs connected to CSI0/A, CSI1, CSI2 and CSI0B
->>> +
->>> +  phy-names:
->>> +    minItems: 1
->>> +    items:
->>> +      - const: csi0
->>> +      - const: csi1
->>> +      - const: csi2
->>> +      - const: csi0b
->>
->> Why one hardware has flexible number of phys?
-> 
+On 07/06/2024 16:41, Laurent Pinchart wrote:
 > Hi Krzysztof,
 > 
-> seninf can have multiple port depending on the soc, each requiring its own phy
+> On Fri, Jun 07, 2024 at 10:52:33AM +0200, Julien Stephan wrote:
+>> Le ven. 12 janv. 2024 à 08:32, Krzysztof Kozlowski a écrit :
+>>> On 10/01/2024 15:14, Julien Stephan wrote:
 
-So it is fixed per soc? Then make it fixed per soc.
+Eeeh? January?
+
+...
+
+>>>
+>>>> +
+>>>> +          seninf: seninf@15040000 {
+>>>
+>>> Node names should be generic. See also an explanation and list of
+>>> examples (not exhaustive) in DT specification:
+>>> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> 
+> The seninf is (mostly) a set of MIPI CSI-2 receivers. Would you prefer
+> 'csi', 'mipi-csi', 'csi-2' or any other name ?
+
+csi@ works for me
+
+> 
+> There's also the camsv IP in the same series that needs a generic name.
+> I really don't know what to propose for it. Could you recommend
+> something that would make you happy ?
+
+Sorry,that's almost half year old thread. Not present in my inbox.
+
+> 
+> On a side note, that document lacks appropriate generic names for lots
+> of building blocks found in recent SoCs, it would be nice to get it
+> updated. You will eventually get better quality DT patches then :-)
+
+
+The list grew recently, so just add something there. But it is okay if
+some name is not really generic, it's just recommendation.
+
 
 Best regards,
 Krzysztof
