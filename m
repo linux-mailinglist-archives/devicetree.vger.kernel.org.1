@@ -1,57 +1,75 @@
-Return-Path: <devicetree+bounces-74048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1D75901CDC
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 10:22:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2127C901C82
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 10:09:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03C56B21972
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 08:22:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9351A1F227D0
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 08:09:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1986957CA2;
-	Mon, 10 Jun 2024 08:22:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C89C75674D;
+	Mon, 10 Jun 2024 08:09:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="HxBPM3Vq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ygATvNS0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CF954D8BC
-	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 08:22:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ABCE14265
+	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 08:09:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718007758; cv=none; b=SiIp/p7jPFgSjjH9p+gIt46s/LqZz/VwtXjWrOLZOW0HSF1d6ezhk75OI30eq8xE7zQnNf+tSYdOazO/19P1Gi8Ykbk3N41CBt/SAu0pT52IoLojAQqXQhJ4VqwsEgwiGRnuCcGMHVRK4gOweiY0BOrwQ5m+3Abnd51D2ER/RuU=
+	t=1718006975; cv=none; b=qV1lQUYeC9KQGerzD/YMXnotJhljQtcX7Xqr+EBo/nXZV/YoxRzMBBAmbW517UVgqPdb8GrW7oGCUn3nOSxM9lj2KIo88PZRaEvsBbywdf1iiL6j6YtPTpmcBucrWpWt8bi6h3w4B8YjmonC+BT/j3mDG3a1r/ormGnDlOgU9+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718007758; c=relaxed/simple;
-	bh=pI21Ud12UwCRn2MFzxI2TOXHV2HzWH6YI5gOx+RbkII=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=eTE+nkDx6RaSSRY8S6oLLuSpAM3fvdvU253enEI6z3c4fq7121mvsaIfOcBdIGxNBSXbAyszA+3cKvVsBhT1NIJVo+rmmNIQcVNyuwBNcOmYrTau4nn7asHtGD8/IKUFIPHInTf7Vd0xt1WMFOPhBDFoaTIXOtcAB5Rx0xRZi8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=HxBPM3Vq; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1718006843; x=1720598843;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=pI21Ud12UwCRn2MFzxI2TOXHV2HzWH6YI5gOx+RbkII=;
-	b=HxBPM3Vq0Bu+H0QFFW0j4YUcqYQ/v8HwIV6brCi1GR0kJSitC+zIeWb2lFtJwwqr
-	6CI0EYcqrB8Hw3+RtDnNFQEE3iR3AZOjKXEpR1SRmbkXr72UYhGDIzXavr02qG26
-	bvXfWFMw6qugeJPgscc5YPkDMgEkHDNpnGwQEq7/VKk=;
-X-AuditID: ac14000a-03251700000021bc-e4-6666b43b80f6
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id B1.6B.08636.B34B6666; Mon, 10 Jun 2024 10:07:23 +0200 (CEST)
-Received: from [192.168.10.3] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Mon, 10 Jun
- 2024 10:07:22 +0200
-Message-ID: <33084cb0-95f4-414d-b094-bf704376fd02@phytec.de>
-Date: Mon, 10 Jun 2024 10:07:21 +0200
+	s=arc-20240116; t=1718006975; c=relaxed/simple;
+	bh=xsiVgWwf8tEcYvNe8T+wvALmiE19ow4nyg2jCjGLLPY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hF4Aps4duUX96bYHFgMcVd1Bx/qOuWcs8zPrxfv2//vaehLNYXhRu59Spdup+wUrhZ1GwkwZM2sa0QENXCbzA9bLc1WUJb5Zm9lO5VG7qoeLsFbi/BAp8iD4a7JZ+xpIW9VBmE8wDXx5e32N3N5Biq3GEPNkIs72LJUcx8Suqbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ygATvNS0; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4218314a6c7so7001155e9.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 01:09:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718006972; x=1718611772; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=O26ZQZ42kdMs4NSwfkP0iGW25Gptvgsjc1HUsuZIhi4=;
+        b=ygATvNS0u5Ve3pTaqKxqeKQVxd+OUBC2YTA7Ad+UYoqb+qr2ExhanAW2gfQ1M7dlh4
+         b2NvOhKbTu5E5V1U8tI4D7c21FpFv1T0Cn4HrSi0PsDi8cwnyE5CYelW/eaTl86sZK6x
+         EbV29L4xgYt0A+vBNUyZFz4KQGLwRMwWqyz+AEIuSqrckwzBTbT2ZT1EqyChPfQTwnqA
+         Be10VHUqcP8pndYyoD4jhm4IoBZTfzKPqUUmL3sTrNU8BrmTgb0R3TmobH5NxGujm6Qk
+         fN9vm2KvVMCxQ2Hnt3NxBkkgHrCRSLYpJmWkU5a5lFC3DOldjyWB4C2VkvAmkzHVUQf4
+         PdwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718006972; x=1718611772;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=O26ZQZ42kdMs4NSwfkP0iGW25Gptvgsjc1HUsuZIhi4=;
+        b=qCm4U4LAmy4IyR5nUsfUy/Esd4wYtVliyPc49TtTdjz572Ii/9JJl/2RB8eYHCB02Q
+         pLhUzlBGhRtbncskSqlTAE4mesEjvvpc3AX0C2m2uhsdObumTs2soXLkZWX235C+rTuI
+         jLbGhfVZjndi668KAXN0St0c68xcsQQpbDeJHPO7vO4LOgsFgDiKDiO7ak+4f5lPeDR1
+         UBK4gV7s7d3WFo+s+tBhUP/D6z5LWGMVXaGJRQ/IfuydjlHZOZOVZD36aJG9PmVGQx/x
+         5NqseUZQ6mJCOrJYj8XnW/m7tA/CMfX2v+95Ay/cgPnYY9RGKyCbIp17EoLSmWFI2760
+         VM3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXDTZROg8gwofc9r86GPC98DhYWZVX/G0Ee07vw2n5Q3Bt8uWjRkyg+m3tf1RFIk3+0rrRcbYDnGkwgg1biVvRvkO3JsATn8Oahkw==
+X-Gm-Message-State: AOJu0YwaPvDHXLRi4N3e6ZDkq13AZZt0+HG17w8IVMn85mKUoz9AMwcm
+	t98PMeKAxMQhUFy1K9eJ02zKjROSjw1Jr9uXidF3BTYvxb+uR2s11jH+MP+avdU=
+X-Google-Smtp-Source: AGHT+IHbNAoAXoN3cBs7beKvD9cwJojs7VpfwXzvPkldiWMqyY1eSiIgtjiW6pFiuiDTnzOUJbYITA==
+X-Received: by 2002:a05:600c:524e:b0:421:2cb3:160 with SMTP id 5b1f17b1804b1-421649ea5b7mr68833275e9.8.1718006972522;
+        Mon, 10 Jun 2024 01:09:32 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421710f31b5sm93994275e9.7.2024.06.10.01.09.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Jun 2024 01:09:32 -0700 (PDT)
+Message-ID: <06703c03-e1ce-4a94-942d-b556c6084728@linaro.org>
+Date: Mon, 10 Jun 2024 10:09:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,81 +77,94 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/4] Add overlays to disable optional hardware in
- k3-am6xx-phycore-som boards
-To: Vignesh Raghavendra <vigneshr@ti.com>, Nathan Morrisson
-	<nmorrisson@phytec.com>, <nm@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, Daniel Schultz
-	<D.Schultz@phytec.de>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>
-References: <20240528225137.3629698-1-nmorrisson@phytec.com>
- <4ac40139-eda0-4f6a-8bbe-99110605f91e@ti.com>
+Subject: Re: [PATCH 1/1] ARM: multi_v7_defconfig: Add MCP23S08 pinctrl support
+To: Christophe Roullier <christophe.roullier@foss.st.com>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Richard Cochran <richardcochran@gmail.com>, Jose Abreu
+ <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Marek Vasut <marex@denx.de>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240610080604.291102-1-christophe.roullier@foss.st.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-From: Wadim Egorov <w.egorov@phytec.de>
-In-Reply-To: <4ac40139-eda0-4f6a-8bbe-99110605f91e@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240610080604.291102-1-christophe.roullier@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprEIsWRmVeSWpSXmKPExsWyRpKBR9d6S1qawbkWY4s1e88xWcw/co7V
-	Yvnn2ewWL2fdY7PY9Pgaq8XlXXPYLN78OMtk8aFxM5vF/z072C2636lb/D/7gd2B22PTqk42
-	j81L6j36u1tYPf5cfMfqcfzGdiaPz5vkAtiiuGxSUnMyy1KL9O0SuDLeT2hgLrjIXzFx8y62
-	BsaDPF2MnBwSAiYSR+9MZ+pi5OIQEljCJNGy4xGUc5dR4vCal4wgVbwCNhIz7y4Dsjk4WARU
-	Jc5cSIcIC0qcnPmEBcQWFZCXuH9rBjtIibBAmsTlPiOQMSICDxklFl/9ATaTWaCNUeLJwwPM
-	IA1CAjkSzRNvgTUzC4hL3HoynwnEZhNQl7iz4RsriM0pYCWx/sVXJogaC4nFbw6yQ9jyEtvf
-	zoGaIy/x4tJyFohv5CWmnXvNDGGHSmz9sp1pAqPwLCS3zkKybhaSsbOQjF3AyLKKUSg3Mzk7
-	tSgzW68go7IkNVkvJXUTIyjeRBi4djD2zfE4xMjEwXiIUYKDWUmEVygjOU2INyWxsiq1KD++
-	qDQntfgQozQHi5I47+qO4FQhgfTEktTs1NSC1CKYLBMHp1QDY7B87i97g6RTm38LmR/1YF0m
-	VeVwUTjnUc8EC+8+njCrfYyyL02kuY5phBVaHT9T1CF0xmXfuzuek8rV/xy7coJLaYnOPWbz
-	hx81WtNnzFppICCQMW2uSuXnu8rzNrz4v9EuR3Xbkv7P5dOcFhRmm7WuyrrEt23Ls1PCf5gj
-	HnXlPtf2C1u4SImlOCPRUIu5qDgRAJHZ5p6lAgAA
 
-Add: Daniel Schultz
+On 10/06/2024 10:06, Christophe Roullier wrote:
+> Enable MCP23S08 I/O expanders to manage Ethernet PHY
+> reset in STM32MP135F-DK board.
+> 
+> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
+> ---
+>  arch/arm/configs/multi_v7_defconfig | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
+> index 86bf057ac3663..9758f3d41ad70 100644
+> --- a/arch/arm/configs/multi_v7_defconfig
+> +++ b/arch/arm/configs/multi_v7_defconfig
+> @@ -469,6 +469,7 @@ CONFIG_SPI_XILINX=y
+>  CONFIG_SPI_SPIDEV=y
+>  CONFIG_SPMI=y
+>  CONFIG_PINCTRL_AS3722=y
+> +CONFIG_PINCTRL_MCP23S08=y
 
-Am 03.06.24 um 19:41 schrieb Vignesh Raghavendra:
-> Hi Nathan,
-> 
-> On 29/05/24 04:21, Nathan Morrisson wrote:
->> Add three overlays to disable the eth phy, rtc, and spi nor. These
->> overlays will be used to disable device tree nodes for components
->> that are optionally not populated.
->>
->> v2:
->>    - Add build time tests in makefile
->>
->> Nathan Morrisson (4):
->>    arm64: dts: ti: k3-am64-phycore-som: Add serial_flash label
-> 
-> 
->>    arm64: dts: ti: k3-am6xx-phycore-som: Add overlay to disable eth phy
->>    arm64: dts: ti: k3-am6xx-phycore-som: Add overlay to disable rtc
->>    arm64: dts: ti: k3-am6xx-phycore-som: Add overlay to disabl spi nor
->>
->>   arch/arm64/boot/dts/ti/Makefile               | 17 +++++++++++++++++
->>   .../boot/dts/ti/k3-am64-phycore-som.dtsi      |  2 +-
->>   .../ti/k3-am6xx-phycore-disable-eth-phy.dtso  | 19 +++++++++++++++++++
->>   .../dts/ti/k3-am6xx-phycore-disable-rtc.dtso  | 15 +++++++++++++++
->>   .../ti/k3-am6xx-phycore-disable-spi-nor.dtso  | 15 +++++++++++++++
->>   5 files changed, 67 insertions(+), 1 deletion(-)
-> 
->>   create mode 100644 arch/arm64/boot/dts/ti/k3-am6xx-phycore-disable-eth-phy.dtso
->>   create mode 100644 arch/arm64/boot/dts/ti/k3-am6xx-phycore-disable-rtc.dtso
->>   create mode 100644 arch/arm64/boot/dts/ti/k3-am6xx-phycore-disable-spi-nor.dtso
->>
-> 
-> I am not sure if this a common practice to have overlays to disable
-> missing components (at least I dont see such dtso in kernel). I would
-> like to see an what DT maintainers feel as such dtsos can explode in
-> numbers.
-> 
-> Is this something that U-Boot can detect and fix up for the Linux DT?
-> 
-> Unpopulated SPI flash and RTC should ideally not be an issue as drivers
-> would gracefully fail albeit with some sort of error msg.
-> Not so sure about Eth PHYs though.
-> 
-> Also, Are these dtso's mutually exclusive? ie can SoM have SPI flash but
-> not RTC, have RTC and SPI Flash but no ETH PHY?
-> 
+This is not an on-SoC pinctrl, so it should be module (=m).
+
+Best regards,
+Krzysztof
+
 
