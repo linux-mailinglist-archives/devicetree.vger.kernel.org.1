@@ -1,127 +1,109 @@
-Return-Path: <devicetree+bounces-74182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 441AF9023F9
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 16:21:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8828902402
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 16:25:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 388C9B218B4
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 14:21:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6ECE8B22EEF
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 14:25:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAA7B82D9F;
-	Mon, 10 Jun 2024 14:21:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B84A84D2A;
+	Mon, 10 Jun 2024 14:25:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O+KSrTCa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AMsgFN04"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D3E12BE91
-	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 14:21:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1C47824BC;
+	Mon, 10 Jun 2024 14:25:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718029279; cv=none; b=nwLxyGBGeXEK8JcelE8dATKQMroq+5XogpwI73BTT3cED8mvmJKaHv1412ivdXWPBIUmpGtvwKIK8BkiLgu4fHatDmZMtHwz6k33PvqKldbbP9/oM1fTPzXC7eEWw9XQvlIBCAGneHp5xN5Gx9ZAz9RwdgN5MLzeiIj9OcWmCEo=
+	t=1718029538; cv=none; b=MdkgsGYIUdlGu22cQ3l2t16BqD+pidGZhCqjae2DRvtTKA4F+i8IUJyZROlrTLcoDAjLnLqM4cePDtytIPeOPLBz37FP2lDDQ212t9OIOB4luZH5w9am41I+01VwYFuyQF9OnetenhEUTlHye9dHOJ3ydYIOVjTGsVZQyW90Qik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718029279; c=relaxed/simple;
-	bh=AGMqVFffoxlZnc4UMQ2rh9ctrwKxHdLKuKeIt2AGAnU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dOBr9CqvxfLt20RRpdv3DliiUUdjSCWC7MooAPqmjKPmulZuz2NV/nhb95GTBNe+ILEqId5hpPUviKPI+j+NYVFGL5waN4QiPkLwol0FmmyLQ94KeS6NFRThMnBAF4abqnP1fUEgkukP/2AUMWqvYo52LRgeMMds5r978hPA8/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O+KSrTCa; arc=none smtp.client-ip=209.85.219.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-dfb12fe6f96so1595244276.1
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 07:21:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718029276; x=1718634076; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=609nhEks7Zh1KnZUal4usjWqxEdaNAgYUODDdUetHO8=;
-        b=O+KSrTCaoTXxEKNfTQgOWGIeJGNoipf2C/xrcpNje3t4B7Qc85a2Cb7a+5+RVFW3Yw
-         GDS1hxlcoSMoG8fUEeIzGfnFBbME6cHyat0pGfTH4/3HyKh1K5uVGI8DXog0zY3U1NIT
-         qmwtBwf4UDYTaK5yQFkux3csnJu92JSZS6cDMqJ5YMR0MMvu3vUHftPJ/XASWuRHw5t9
-         1HRVAUANnV/hgLTQsGTLgZaCKK9ZguawojWumBqDmJeW6V7rdPEzxiiJjvpr/ztWyM1B
-         Db3UZbOeF4TywnaNSYcOTEd76S6GQ9sNIAXPjAqmV6rV+chG3cYyqNZ/RDs6N0GFcQL8
-         FkUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718029276; x=1718634076;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=609nhEks7Zh1KnZUal4usjWqxEdaNAgYUODDdUetHO8=;
-        b=EQVWhjUa4bv7/xNf+h0b5AdYhvKThCv5Z1qkomCCMGv7nAwicKAAhk0afGHoCTi8B+
-         h4uOKstvmKyqy3/f56ktHS9XYLiwWj6ScUJPU2VLKC2vtGAmnVYichY/UUd/V9icZFSH
-         01R/o4pTioKwCkCXvL7aNt13J+QIKOADZcP29bg5ZQUU8Kg7YtUm3cyA0+AoxOADzg8i
-         wJIEvRBDiXlholHx8x2xts2mQ4GwrY2zDyNcvsNg6HOmBOcd5m/dELEg12d5u8Om5gOq
-         Zj7YZg6W/k5Y8TVzjYLXo2laKQC/SwUgGEVjTaTVkMRmp8eSY1+fuP58ko45wXYwsH3+
-         LCeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUOnMn/M+E75MHDP1x5ARjb0vW84NwpV5QCy9igwr7vFEffKibTTAfUesMG7Q+m8j6cWMTG3fSuiIaXfkeWQ72GU6BYuXU8x3bL4Q==
-X-Gm-Message-State: AOJu0YxRoVeVe79InMnScDGFUu+zQNLrp3UKLDh4c+EEgA3zQorWfIzj
-	tRxol+SaLMp+u7EFq/rlxqh9Iofjc2xaRqhG5rmBbbfDHJdKFASoSnQsJdHmAAk4DO6IUavKWQW
-	BB70OjZ00aHZGDYSe9glKUeO6m/8QIDwalUubhA==
-X-Google-Smtp-Source: AGHT+IHoLwnHudRkBd9FlzoLDTTCeU9TkBRvSaQLs0M46ytBLEBxCuzZWLLsA/eXcLgbGrm/YTtoVzzDIcGtxZj8s10=
-X-Received: by 2002:a25:c744:0:b0:df7:8fdd:1ca9 with SMTP id
- 3f1490d57ef6-dfaf65f730dmr9276763276.1.1718029276379; Mon, 10 Jun 2024
- 07:21:16 -0700 (PDT)
+	s=arc-20240116; t=1718029538; c=relaxed/simple;
+	bh=2oNIHC1/qajiws6A5qnA832XS8nRceNwT6VYS3zw6hI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ay8+TVbGiRvzD7KdlBLANJLWmNvlnPmDPPVKXu1heqvokmjfXaLj2u/l0ZDXHclUJGogNCpxVRUnhwtzWxfbya9KgkP/a/WPhDOwv8BCcTUA/6kp6RU5H1t7fkgU0FSZGVvJyf3q+/Ze5zvgxIQ4cKmJay1fI3mT3HvPIgfTiPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AMsgFN04; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9743EC2BBFC;
+	Mon, 10 Jun 2024 14:25:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718029538;
+	bh=2oNIHC1/qajiws6A5qnA832XS8nRceNwT6VYS3zw6hI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AMsgFN04/6zYDUEgta/tqx/wvy22e6q2954Ge7IN7SZBJYplQ/VoYBC9o3ahbfNkD
+	 88s0GBrWAYIRjnlmUCe1JpsucKPgK1A8Qcu7RkZcwVKUKyIBXHVaudEoKWyM2mPiwq
+	 MAFfFovh5oDJOOLCGB/9RZvBxUmnDEBTk3wgFrYqdkADlME2kbjJuouPWhjozNjEYC
+	 wvPvkNh3nwCk9e0NytDHcTFZRbqcm/jYLCjh7wzh6CBfodscXwF5x9Ftyooiys5Ixx
+	 641yfrmnEdSaqlWxTvd8jVctvwYc/D8v0hFfyKyCsO5dVtp33mnl14l2zSNdtBr6nH
+	 BCIA9iCtr/IjQ==
+Date: Mon, 10 Jun 2024 15:25:30 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Johan Hovold <johan+linaro@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Das Srinagesh <quic_gurus@quicinc.com>,
+	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Stephen Boyd <swboyd@chromium.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 11/12] regulator: add pm8008 pmic regulator driver
+Message-ID: <ZmcM2v02IXHM-xld@finisterre.sirena.org.uk>
+References: <20240608155526.12996-1-johan+linaro@kernel.org>
+ <20240608155526.12996-12-johan+linaro@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240605-topic-amlogic-upstream-bindings-fixes-power-domains-mmc-v1-1-4acbb8cc2626@linaro.org>
-In-Reply-To: <20240605-topic-amlogic-upstream-bindings-fixes-power-domains-mmc-v1-1-4acbb8cc2626@linaro.org>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 10 Jun 2024 16:20:40 +0200
-Message-ID: <CAPDyKFrNGzNqTfsYF6bwbZy8kJtRTcBJ3Xr99HFumtOGZOpxtw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: meson-gx: add optional power-domains
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="nDGQNZhoUiVNni7Y"
+Content-Disposition: inline
+In-Reply-To: <20240608155526.12996-12-johan+linaro@kernel.org>
+X-Cookie: Your love life will be... interesting.
 
-On Wed, 5 Jun 2024 at 11:34, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->
-> On newer SoCs, the MMC controller can require a power-domain to operate,
-> add it as optional.
->
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Applied for next, thanks!
+--nDGQNZhoUiVNni7Y
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Kind regards
-Uffe
+On Sat, Jun 08, 2024 at 05:55:25PM +0200, Johan Hovold wrote:
+> The Qualcomm PM8008 is an I2C-controlled PMIC containing seven LDO
+> regulators.
+>=20
+> The driver is based on a driver submitted by Satya Priya, but it has
+> been cleaned up and reworked to match the new devicetree binding which
+> no longer describes each regulator as a separate device.
 
-> ---
->  Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-> index bc403ae9e5d9..57646575a13f 100644
-> --- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-> @@ -51,6 +51,9 @@ properties:
->        set when controller's internal DMA engine cannot access the DRAM memory,
->        like on the G12A dedicated SDIO controller.
->
-> +  power-domains:
-> +    maxItems: 1
-> +
->  required:
->    - compatible
->    - reg
->
-> ---
-> base-commit: c3f38fa61af77b49866b006939479069cd451173
-> change-id: 20240605-topic-amlogic-upstream-bindings-fixes-power-domains-mmc-a94d681d2e69
->
-> Best regards,
-> --
-> Neil Armstrong <neil.armstrong@linaro.org>
->
+Reviewed-by: Mark Brown <broonie@kernel.org>
+
+--nDGQNZhoUiVNni7Y
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZnDNkACgkQJNaLcl1U
+h9DhtQf9FEs9YHno5v2nXIHxCEySbIXyo4E4uiBYgMdUgo2xSADqPu+47muKU0dc
+MUMjal9spLFWGwmEZYfeIIZcXy37mqHltnjzb9ukwjkif0XVqG6EiBkYH71CgWoL
+Kk7ynxUURlvq/mRcOHxhXo5e3hbJ9sqwTZsPxqWcl11gy8dp5OcyjqxZisueB/3W
+e8/Nvb6uEEbvHe0u1fq7pqVq2A9e6kpGVRPlyUDvaRbnFnlAIwbnrGK560TBiyzm
+EMP+xJdubQSlxCeAjkyzlcRnD2RkvyYePyEuW541I3B5mZt3KewJEEpq6+HxZzan
+c8wP9JrbazrvCvopPADDELl1v/6NSw==
+=mFc2
+-----END PGP SIGNATURE-----
+
+--nDGQNZhoUiVNni7Y--
 
