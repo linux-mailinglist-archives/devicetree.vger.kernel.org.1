@@ -1,102 +1,172 @@
-Return-Path: <devicetree+bounces-74142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 713DA9021D8
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 14:46:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 825B99021F2
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 14:49:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 111CD1F21B93
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 12:46:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8938D1C20F36
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 12:49:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42C4580617;
-	Mon, 10 Jun 2024 12:46:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAE3380C04;
+	Mon, 10 Jun 2024 12:49:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="BwVfcNT6"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="T19j8tbm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C986F7E576;
-	Mon, 10 Jun 2024 12:46:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C98D80637;
+	Mon, 10 Jun 2024 12:49:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718023584; cv=none; b=G7Mge9CPS1Fxb5WLkG3Gq8TilZN8Yof4hoBLGSX26DR5JLI1/iitfejYDcQqnMzl7jPmqSzA2E6c2pUm4YRl9HRKt4neEIRyTGDVNAJ6ypNLOGhSqxzCimVdiEdvo0QPlqIPL2kO8UnYvxkvojG3nw0lJHFuISAVv6rq4PYJfwU=
+	t=1718023774; cv=none; b=Wk4d+IAdHVGfayroWieQjvrVLkiRF4SUJ3uRKg+KpGFbTQk9T6DPpyU6mzgFTYloZCtnErqTuE8jSpVisJ1iR4p06+sWoLICuVQgjMhaA+xW7ukE3g6Nxbko9sGYeWngogB6+EpW55Zw4ugqHzhRxRwPTxCFrHqyoS3YuZ1o+O4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718023584; c=relaxed/simple;
-	bh=1KSrYV9LSAMiVSDqg4YllA/qK2mV4TYwx0hJ+/HkKLw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S2TEGWkrQL1o62qNslenOWIj6Lrp8F8RIXV6gQXOSDFV84Tymv/MO3C9jnkY7ymobOWvyZPdWH5onfhLzu/LocEzWCJHfJMWYOBH3n56r8Y6iIWZMYws5a7uYvI59+mdISMdptrBer7ZgoYtEvjGvmZ1BkrZNxLgXMX6S5I6Tjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=BwVfcNT6; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=bN/MqI/H7ST5s3XZJ2g/NEy+WWWfgWgz/Insw+RA3PA=; b=BwVfcNT6d9uK+bJOp8evPMyN3M
-	Aoi5RqklnpHf7t6Xbf+RFXQdS4BMeQ5EHqxTtbQJA+hDCjY27zmkG9wythBzIaj+6rffWvt8/7Xcw
-	j0tp9VGMcW4LIQDvCAz7xuGoFlDfbfoj5mJdJgVxV0fmnf4wsgW7i53lKO/CaE20z1jI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sGePX-00HISO-TM; Mon, 10 Jun 2024 14:46:07 +0200
-Date: Mon, 10 Jun 2024 14:46:07 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
-Cc: nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux@armlinux.org.uk, vadim.fedorenko@linux.dev,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, git@amd.com
-Subject: Re: [PATCH net-next v4 3/4] net: macb: Add ARP support to WOL
-Message-ID: <b46427d8-2b8c-4b26-b53a-6dcc3d0ea27f@lunn.ch>
-References: <20240610053936.622237-1-vineeth.karumanchi@amd.com>
- <20240610053936.622237-4-vineeth.karumanchi@amd.com>
+	s=arc-20240116; t=1718023774; c=relaxed/simple;
+	bh=5gClVd7Hxm0FgBkjvQhHCXMpiq9XWfBlxTHw2Fl17mA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=PF1ibXnzvyNZ34BgPDfI/DsEnkfhaHHclAjwyhNhmeViLdcwa73HKK0ksVWFgNJgCPSNsF27MHAPIXaSS0WAU+vm/ldNGPwjBNIbVAV4mvoLDOkyDsSELcsXoqIuqfias9oJzIp9AcqM7Q1KgObkEPksEdJD0fv5KL+8GtjjDCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=T19j8tbm; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45ACUjv2011463;
+	Mon, 10 Jun 2024 14:49:01 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	DlvjTDhAewRmsQzkTjZ5kyD/9jV9SyUh5OV0cymIvvM=; b=T19j8tbmVLhAfEEL
+	LtDZjXBORaDCTSc8L8BKpVn8kvicYFTsql8dTHE0wnCOAkKpKOo+vYFqxkpeZXSU
+	iqR1lBF9/Q5mS4lqDN7LffB7KBfxRlyQ8bZ8Bo8lSumCPBlpY4ePny05h5k19Jjs
+	+A1iUBeE5U5Qgf14sc4dkA2/ZErzOidxl1KtOtp2BoIFxENRfISU3MVEhT6LMkIr
+	nY5FhDQDy6OI/kBOHxCbLD1l3b1jBsiqyCCaYNP2hv4NumZ3nk1FNFblSWVMfA00
+	SdqOgElYVE6Nujzkg6YAnyDXnfaz9nn6GVgzBj1lXzozApI9gHuDuyQys4xk8kLD
+	tKNagA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yme6d6vm3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Jun 2024 14:49:01 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 32E954004D;
+	Mon, 10 Jun 2024 14:48:54 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0C63D217B83;
+	Mon, 10 Jun 2024 14:47:52 +0200 (CEST)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 10 Jun
+ 2024 14:47:51 +0200
+Message-ID: <be1e4321-2aa1-455b-a373-8c9e1f69b33f@foss.st.com>
+Date: Mon, 10 Jun 2024 14:47:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240610053936.622237-4-vineeth.karumanchi@amd.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 09/12] ARM: dts: stm32: add ethernet1 and ethernet2
+ support on stm32mp13
+To: Marek Vasut <marex@denx.de>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Richard
+ Cochran <richardcochran@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Liam
+ Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240607095754.265105-1-christophe.roullier@foss.st.com>
+ <20240607095754.265105-10-christophe.roullier@foss.st.com>
+ <6d60bbc6-5ed3-4bb1-ad72-18a2be140b81@denx.de>
+ <036c9f0d-681d-461d-b839-f781fa220e94@foss.st.com>
+ <c5cb092d-dccd-48a4-b1da-4f057581618e@denx.de>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <c5cb092d-dccd-48a4-b1da-4f057581618e@denx.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-10_02,2024-06-10_01,2024-05-17_01
 
-> @@ -3294,22 +3292,15 @@ static int macb_set_wol(struct net_device *netdev, struct ethtool_wolinfo *wol)
->  
->  	/* Pass the order to phylink layer */
->  	ret = phylink_ethtool_set_wol(bp->phylink, wol);
-> -	/* Don't manage WoL on MAC if handled by the PHY
-> -	 * or if there's a failure in talking to the PHY
-> -	 */
-> -	if (!ret || ret != -EOPNOTSUPP)
-> +	/* Don't manage WoL on MAC if there's a failure in talking to the PHY */
-> +	if (!!ret && ret != -EOPNOTSUPP)
->  		return ret;
-
-The comment is wrong. You could be happily talking to the PHY, it just
-does not support what you asked it to do.
-
-> @@ -5257,6 +5247,12 @@ static int __maybe_unused macb_suspend(struct device *dev)
->  		return 0;
->  
->  	if (bp->wol & MACB_WOL_ENABLED) {
-> +		/* Check for IP address in WOL ARP mode */
-> +		ifa = rcu_dereference(__in_dev_get_rcu(bp->dev)->ifa_list);
-> +		if ((bp->wolopts & WAKE_ARP) && !ifa) {
-> +			netdev_err(netdev, "IP address not assigned\n");
-
-"IP address not assigned" on its own does not give a user whos suspend
-fails a very good idea why.  "IP address not assigned as required by
-WoL walk ARP" would be better.
 
 
-    Andrew
+On 6/10/24 12:37, Marek Vasut wrote:
+> On 6/10/24 10:06 AM, Alexandre TORGUE wrote:
+>> Hi Marek
+> 
+> Hi,
+> 
+>> On 6/7/24 14:48, Marek Vasut wrote:
+>>> On 6/7/24 11:57 AM, Christophe Roullier wrote:
+>>>
+>>> [...]
+>>>
+>>>> @@ -1505,6 +1511,38 @@ sdmmc2: mmc@58007000 {
+>>>>                   status = "disabled";
+>>>>               };
+>> no space here ?
+>>>> +            ethernet1: ethernet@5800a000 {
+>>>> +                compatible = "st,stm32mp13-dwmac", "snps,dwmac-4.20a";
+>>>> +                reg = <0x5800a000 0x2000>;
+>>>> +                reg-names = "stmmaceth";
+>>>> +                interrupts-extended = <&intc GIC_SPI 62 
+>>>> IRQ_TYPE_LEVEL_HIGH>,
+>>>> +                              <&exti 68 1>;
+>>>> +                interrupt-names = "macirq", "eth_wake_irq";
+>>>> +                clock-names = "stmmaceth",
+>>>> +                          "mac-clk-tx",
+>>>> +                          "mac-clk-rx",
+>>>> +                          "ethstp",
+>>>> +                          "eth-ck";
+>>>> +                clocks = <&rcc ETH1MAC>,
+>>>> +                     <&rcc ETH1TX>,
+>>>> +                     <&rcc ETH1RX>,
+>>>> +                     <&rcc ETH1STP>,
+>>>> +                     <&rcc ETH1CK_K>;
+>>>> +                st,syscon = <&syscfg 0x4 0xff0000>;
+>>>> +                snps,mixed-burst;
+>>>> +                snps,pbl = <2>;
+>>>> +                snps,axi-config = <&stmmac_axi_config_1>;
+>>>> +                snps,tso;
+>>>> +                access-controllers = <&etzpc 48>;
+>>>
+>>> Keep the list sorted.
+>>
+>> The list is currently not sorted. I agree that it is better to have a 
+>> common rule to easy the read but it should be applied to all the nodes 
+>> for the whole STM32 family. Maybe to address by another series. For 
+>> the time being we can keep it as it is.
+> 
+> Why is the st,... and snps,... swapped anyway ? That can be fixed right 
+> here.
 
----
-pw-bot: cr
+I agree.
+
+> 
+> Why is the access-controllers at the end ? That can be fixed in separate 
+> series, since that seems to have proliferated considerably.
+
+Yes for all other nodes using this bus firewall binding  but in a 
+separate series
+
+
+
+
 
