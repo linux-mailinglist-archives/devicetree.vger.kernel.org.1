@@ -1,173 +1,153 @@
-Return-Path: <devicetree+bounces-74231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86F1390263D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 18:02:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FAEC902640
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 18:03:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B01D1F21430
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 16:02:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21E811C22076
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 16:03:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A8E912E1F1;
-	Mon, 10 Jun 2024 16:02:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E56C13E3F2;
+	Mon, 10 Jun 2024 16:03:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="cY7rvHzp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EWlBJeyW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B34B1DFF7;
-	Mon, 10 Jun 2024 16:02:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E7031DFF7;
+	Mon, 10 Jun 2024 16:03:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718035373; cv=none; b=rBJZCqkHp+IGMVgOG21i1troXsKDAHD4NaCmdeiu5J5UWSAgfhu3PPzbngFvmxnupW28byhHWddtgqzkC5moTWG0GOwG/iyZZyzml2pHij2h06jLHGi0R5LDVu7wp9BHJD58yW6LYtRwvD9cy0DZ094H11nlCUU/6vkk2b33hfU=
+	t=1718035425; cv=none; b=W++EGgAWXfsDcRm23wcksP9dbDELlyIgr1ejGojgbRoRXNRdqvLGwjdCb1buDx2kLPSodWp76pg0Eb44MtFZJ+9AKrXuGMTqEPLZP7VDDu6yFdQbF4MJwSBYQjxVFl0VwIvAyjwWitlrb0H3lnor6lcrGcihilb+2IR14jHm3z0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718035373; c=relaxed/simple;
-	bh=Gcz7fOwlXUqLJ4zlLKeiHljHg40e3aKdlbVyk5EEDGs=;
-	h=MIME-Version:Date:From:To:Cc:Subject:Message-ID:Content-Type; b=sRD/Zmf/gv6a9PE2bVHXctVhLET2XMbWc/urS91Guxwfi7zWmTD5uFwMN8y6O6a7BcLZy7ZFTg1XOgnHavXagKYzP97bLwMiDMJW07VhEVMLmDA4t91vgubZ5AbCphZasuOp4ogbN/qByK7olz77oAHKqOMyQMTBRK1QZ5wDR8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=cY7rvHzp; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-X-Virus-Scanned: SPAM Filter at disroot.org
+	s=arc-20240116; t=1718035425; c=relaxed/simple;
+	bh=V9fIEFBlHACQSU+XdBBetn3CjXbSlvURx9sdZBrEgxM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PFpmCbqjgRsivc2/aAtHz9NpiHpehpd2gCzgP01ezEd0DuLGpHrul5H9FaoTYxfmxIwDWN60/opZ/jSI5TmzNMmjTYABhXPCOFD8ixVeA1CJhQLdDNbQn+IMsK3Hhypuvr1RoLJ+cYMJ/1gWXz1fvRkIznl4OaA/9dpccQGB76c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EWlBJeyW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66198C32786;
+	Mon, 10 Jun 2024 16:03:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718035425;
+	bh=V9fIEFBlHACQSU+XdBBetn3CjXbSlvURx9sdZBrEgxM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EWlBJeyWsdb0rLnTNGJssv0sPX4kkqjZxnewEOeCxpnhWsrsfvAurWHJ4KLS9Vm+g
+	 RGwpBFGvBzK3SUC8hriMi/z+oQaPC8q/5mQcbFqvmAB6kOkfKQg7U09I5oIRbM6w42
+	 KrxWGrfcd6ap4DgwsHByzzKud6jBaEkAgKMfS8U2qGa3hGiKBkNpr3IuS8zhv2I8sg
+	 hUF11Uh/tDhcvksy4HZqBTj6dzX246cXCp7A4is5W9qIUYfaU9FioF1NfncjPNwVrs
+	 WD735ntYQWf1ChdFdLjrdhvm+OY8TedswiqezpcktPQq8AStHtwvvvmzbzNgpRRwQH
+	 /IAl87viVttYA==
+Date: Mon, 10 Jun 2024 17:03:41 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Witold Sadowski <wsadowski@marvell.com>
+Cc: linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	pthombar@cadence.com
+Subject: Re: [PATCH v8 2/4] spi: cadence: Add Marvell xSPI IP overlay changes
+Message-ID: <Zmcj3fZ4DF8r_qf0@finisterre.sirena.org.uk>
+References: <20240607151831.3858304-1-wsadowski@marvell.com>
+ <20240607151831.3858304-3-wsadowski@marvell.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1718035360; bh=Gcz7fOwlXUqLJ4zlLKeiHljHg40e3aKdlbVyk5EEDGs=;
-	h=Date:From:To:Cc:Subject;
-	b=cY7rvHzpRMXwsmhsJSGll6SdR8r8rWnLcNK/KByWC0cvkOBNqbbEWdKBXCMi6eXmz
-	 58WCDt/qRq3MjLCflUMzZ04axAo4s47gDgd61ql0YXNsCR8D5PKepW37m9o+F4LHwk
-	 bE9FCknKjlm8i/r9YDhc9ROcfatNYcgr5YjEQHQMTMVjjdss6UPoJT6O044T329ed4
-	 AzvAQj/WljTusirMKa1s1HwgQfzDUjh32v55kBdpY2fCTQnv5+I7da8/oRqLB8po8G
-	 WZQTyby+TuqOhvd/OFbiAQBN/gsLALg8lv0QTnRBqAFjDy5voM7AmSgfTVom+8/n2C
-	 WZIZYFgKWbS+Q==
-Date: Mon, 10 Jun 2024 16:02:40 +0000
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, linux-iio@vger.kernel.org,
- denis.ciocca@st.com, devicetree@vger.kernel.org, linus.walleij@linaro.org,
- robh+dt@kernel.org
-Subject: Re: [PATCH v3] iio: accel: st_accel: add LIS2DS12
-Message-ID: <db376ece42e4eee823212ca3700f3d57@disroot.org>
-X-Sender: kauschluss@disroot.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="RkdGdrXXm7o+ukvS"
+Content-Disposition: inline
+In-Reply-To: <20240607151831.3858304-3-wsadowski@marvell.com>
+X-Cookie: Your love life will be... interesting.
 
-On 2024-06-06 20:05, Jonathan Cameron wrote:
-> On Thu, 06 Jun 2024 10:12:11 +0000
-> kauschluss <kauschluss@disroot.org> wrote:
-> 
->> On 2024-06-02 08:54, Jonathan Cameron wrote:
->> > On Sat, 1 Jun 2024 20:49:25 +0100
->> > Conor Dooley <conor@kernel.org> wrote:
->> >
->> >> On Sun, Jun 02, 2024 at 12:56:41AM +0530, Kaustabh Chakraborty wrote:
->> >> > diff --git a/drivers/iio/accel/st_accel_i2c.c b/drivers/iio/accel/st_accel_i2c.c
->> >> > index fd3749871121..329a4d6fb2ec 100644
->> >> > --- a/drivers/iio/accel/st_accel_i2c.c
->> >> > +++ b/drivers/iio/accel/st_accel_i2c.c
->> >> > @@ -102,6 +102,10 @@ static const struct of_device_id st_accel_of_match[] = {
->> >> >  		.compatible = "st,lis2de12",
->> >> >  		.data = LIS2DE12_ACCEL_DEV_NAME,
->> >> >  	},
->> >> > +	{
->> >> > +		.compatible = "st,lis2ds12",
->> >> > +		.data = LIS2DS12_ACCEL_DEV_NAME,
->> >> > +	},
->> >> >  	{
->> >> >  		.compatible = "st,lis2hh12",
->> >> >  		.data = LIS2HH12_ACCEL_DEV_NAME,
->> >>
->> >> > diff --git a/drivers/iio/accel/st_accel_spi.c b/drivers/iio/accel/st_accel_spi.c
->> >> > index f72a24f45322..825adab37105 100644
->> >> > --- a/drivers/iio/accel/st_accel_spi.c
->> >> > +++ b/drivers/iio/accel/st_accel_spi.c
->> >> > @@ -64,6 +64,10 @@ static const struct of_device_id st_accel_of_match[] = {
->> >> >  		.compatible = "st,lis2dh12-accel",
->> >> >  		.data = LIS2DH12_ACCEL_DEV_NAME,
->> >> >  	},
->> >> > +	{
->> >> > +		.compatible = "st,lis2ds12",
->> >> > +		.data = LIS2DS12_ACCEL_DEV_NAME,
->> >> > +	},
->> >> >  	{
->> >> >  		.compatible = "st,lis3l02dq",
->> >> >  		.data = LIS3L02DQ_ACCEL_DEV_NAME,
->> >>
->> >> Any new compatibles need to be documented in st,st-sensors.yaml
->> >
->> > At the moment the st_sensors core is doing hard matching against whoami values
->> > which isn't good.  That should ideally be fixed and the binding for this
->> > device should use a fallback compatible if the statement about compatibility
->> > is accurate.
->> 
->> I apologize for not wording the description accurately. By 
->> "compatibility",
->> I mean that the sensor settings of LIS2DE12 (such as the gain values) 
->> seem
->> to be well-suited for LIS2DS12, as per my experimentation. Both 
->> devices are
->> manufactured by ST and have no correlation regarding compatibility 
->> whatsoever.
->> In that case, a fallback compatible isn't required, right?
-> 
-> If only the Who Am I value prevents it working if you give the 
-> compatible
-> as lisde12 then even though ST rarely if ever identifies it in 
-> datasheets, they are
-> software compatible.  In that case we should allow for a fallback 
-> compatible.
-> + fix the driver not to fail on the whoami mismatch.
-> Note we don't care if they have totally different packages as long as
-> the driver doesn't need to know that.  If they have different numbers
-> of interrupts though or power supplies, then they aren't compatible and
-> we shouldn't provide a fallback.
-> 
-> Roughly speaking you have to compare datahsheet sections for pins (not 
-> which
-> but what) and register maps.
 
-I've thoroughly checked the registers, and indeed, a lot of registers 
-addresses
-and other settings are different. Although the sensor settings of 
-LIS2DE12
-"work", they are technically incorrect.
+--RkdGdrXXm7o+ukvS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I've fixed it, and will send it with v4 in a day or two.
+On Fri, Jun 07, 2024 at 08:18:29AM -0700, Witold Sadowski wrote:
+> This commit adds support for the basic v2 Marvell overlay block. Key
+> features included are:
+>     - Clock configuration
+>     - PHY configuration
+>     - Interrupt configuration (enabling)
 
-Thank you!
+This feels like it could usefully be split up so these three bits are
+separate, and there appear to be other changes buried in here as well.
+I can't tell what changes either the PHY or interrupt configuration
+might be referencing.
 
-> That applies even if the current driver will fail to probe (for now)
->> 
->> I'll make sure to rewrite the description more accurately in v4.
->> 
->> > It may just be a case of relaxing the check in st_sensors_verify_id()
->> > to printing a warning not an error message and not returning an error code
->> > (reserving error returns in that function for bus error etc.
->> 
->> I agree, if you want I may send a patch for that after I'm done with 
->> this
->> one.
-> Thanks,
-> 
-> Jonathan
-> 
->> 
->> > That doesn't need to be in this patch though.  Just have the fallback
->> > stuff in the binding and for now we can rely on matching the more
->> > precise compatible.
->> >
->> > Jonathan
->> >
->> >
->> >>
->> >> Thanks,
->> >> Conor.
->> >>
+> @@ -295,6 +450,10 @@ static void cdns_xspi_set_interrupts(struct cdns_xsp=
+i_dev *cdns_xspi,
+>  				     bool enabled)
+>  {
+>  	u32 intr_enable;
+> +	u32 irq_status;
+> +
+> +	irq_status =3D readl(cdns_xspi->iobase + CDNS_XSPI_INTR_STATUS_REG);
+> +	writel(irq_status, cdns_xspi->iobase + CDNS_XSPI_INTR_STATUS_REG);
+> =20
+>  	intr_enable =3D readl(cdns_xspi->iobase + CDNS_XSPI_INTR_ENABLE_REG);
+>  	if (enabled)
+
+This seems like a separate change which applies to everything, not just
+Marvell versions of the IP, and should be split out and explained.
+
+> @@ -319,6 +478,9 @@ static int cdns_xspi_controller_init(struct cdns_xspi=
+_dev *cdns_xspi)
+>  		return -EIO;
+>  	}
+> =20
+> +	writel(FIELD_PREP(CDNS_XSPI_CTRL_WORK_MODE, CDNS_XSPI_WORK_MODE_STIG),
+> +	       cdns_xspi->iobase + CDNS_XSPI_CTRL_CONFIG_REG);
+> +
+
+This wasn't clearly mentioned in the changelog and is again being done
+unconditionally for all instances of the IP, probably best to split out
+and explain.
+
+> +static void mrvl_ioreadq(void __iomem  *addr, void *buf, int len)
+> +{
+> +	int i =3D 0;
+> +	int rcount =3D len / 8;
+> +	int rcount_nf =3D len % 8;
+> +	uint64_t tmp;
+> +	uint64_t *buf64 =3D (uint64_t *)buf;
+
+Any need to cast away from void * indicates a problem.
+
+> @@ -337,13 +563,11 @@ static void cdns_xspi_sdma_handle(struct cdns_xspi_=
+dev *cdns_xspi)
+> =20
+>  	switch (sdma_dir) {
+>  	case CDNS_XSPI_SDMA_DIR_READ:
+> -		ioread8_rep(cdns_xspi->sdmabase,
+> -			    cdns_xspi->in_buffer, sdma_size);
+> +		cdns_xspi_sdma_memread(cdns_xspi, sdma_size);
+>  		break;
+
+It's feeling like it might make sense to have an ops structure rather
+than sprinkling checks for the Marvell overlay everywhere.
+
+--RkdGdrXXm7o+ukvS
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZnI9wACgkQJNaLcl1U
+h9CzPgf+JyAR7k5ZPBd12HbSQXaHdbPWE/6SchRs/BN0GDlC5Csl6a5+ZQ6BCE5h
+1JHRAs1RKu57n2zZCs+xR9+tuj9jWg3kfMMHBpH6azUIcYhkw7P16YShyHhckFo+
+M1fbuFMAg9z3r8QuwXiMWM5vqlU2YgL1CscbdJXbT74DIfugc8OwIlcqo9qiPgFp
+6UsO1/Tsdcqj//0DDldViIDt3pyPNRZYAO8DbJ2PHOaADiM1wyDC1TYto00yJfwV
+QTV1CPRsd8qWZtICX39LkHoNj4WSye8GsaSocu8ncgNS4rL4ik4GxBohG+fViMMz
+pbRU8JPrCzezMdbFkluhWugrV66aIw==
+=MVb7
+-----END PGP SIGNATURE-----
+
+--RkdGdrXXm7o+ukvS--
 
