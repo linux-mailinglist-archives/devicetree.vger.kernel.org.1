@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-74209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 565789024C6
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 16:58:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF6CB9024D9
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 17:01:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52B72287945
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 14:58:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A90A1F24952
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 15:01:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FDE5135A7E;
-	Mon, 10 Jun 2024 14:58:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61E38139580;
+	Mon, 10 Jun 2024 15:01:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OZN6VBXg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m+K3epd/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B46B386126
-	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 14:58:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E36E823DD
+	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 15:01:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718031507; cv=none; b=lokb1dfIIqRYIoCgcjGc8eBEL671kYlG5Mfy0SBW7fqu/TsjaQ6Sbp10wl1Qx7ylJY823kqomqoUIrOWvgth6a1OYxfY6SWpRqQ8vAl+8Vhe2rz/0P59PdktcMm1iPY1AiAPggxYLiXtY7c8lNcKFyoE6jNfGWYzktiYPxR0fM8=
+	t=1718031662; cv=none; b=VLUtORn3Bg38AYPmIQ2jYKsCgZkrJcLiDOlch/7PlZPS/McS0Jphf7IgY8gdydYp64upNZiqTM/pbcOEqnLUOkWV1SbkuiuGiwg4BubyB8RY88suqYsG8be1aGc/4WhXeOYtNvWOo5WxvE+hqmb3+eNt/L5Cv3E75VQnM5xR+RU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718031507; c=relaxed/simple;
-	bh=/rFiPiui5xo91cfen1ZKOTLUC/gwQuIUFjSjhxS+xP8=;
+	s=arc-20240116; t=1718031662; c=relaxed/simple;
+	bh=D5KYx4UV0BPcphBF/q1eXrI7Cy6QB56NSIYd+Nl3uDA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Dg9SwhViGKL2GM0ISqyfAQyKge6wZS7rHbg3B5NKaOFWlWIL0/Pu2qvTRwdGK3qqvXj/bXvQpfN+V3KDkJiNidI+IXKqjvvaOD+bmPvGGvwaMYWd1iXhEpAGNbn9eJd2y7pGix9QacBMAVFMqbk3/vRflsL2LUOMnoIa7iW8kXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OZN6VBXg; arc=none smtp.client-ip=209.85.208.175
+	 In-Reply-To:Content-Type; b=JHKkLWvYcn1joWM0EF/xmbluRjwt5x8wlAPFeRf1IyobbaStpMw+ZdyzxSLpB+vq0Vf8nFqAk3/ovP2yNuDKseEX4yh2C4MYHm2n7o23PsmZGDgK2sHzuwrdM3RQVsXgYoaPStoBLkj+py3FtqyzI60JIJbOW7Th1cBQV6zkg2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m+K3epd/; arc=none smtp.client-ip=209.85.218.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2ebe6495aedso10094441fa.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 07:58:25 -0700 (PDT)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a6f0dc80ab9so247583566b.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 08:01:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718031504; x=1718636304; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1718031659; x=1718636459; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=WTNVAtPq8Wiju79U9wF0E7Uh3c2Y74GejBDhFhsm/oA=;
-        b=OZN6VBXg6NWTp0nRsTo4Y53nFLHFa7oI1UMfY27NjyDgiAwTTflkFUJWtXab+YG/+1
-         asyiOPLNpA9jmk/dS5ZzItyEPjE9aLuGa11D7ZEWmf1SMxNuds2rkt5PhP0EPbqGtTCb
-         LFLGG1ix0olnGMj8Anid2ivGl0ZVOviFE5ywIi/cKxKwrOaRwKmHe0uGiulGKwEM2YUX
-         rSLtEfHINIMrm8cYSW1dorQf7Agdc1VnAQBix09RDakP/P21Z24cv4unS69hrFzcY28j
-         bWTj3VXgsaX2+5CeIznRND6csOBt41OGJyYCrxPlobaP6Kcr2ijUzyzwNZiRtz1cpXLX
-         UJ0Q==
+        bh=r1plcsllFAfR72DMNf9dBiFZimQ3jkBHlFjNsM9boX0=;
+        b=m+K3epd/a71oro4k5NZC2PoiJdAZyvCkac3leWQnai3x8p6zV7UXCfb8jrwS+2CPM5
+         Gji+CiRmIFGpTZFcf9E2VKK0w84I23m2tvygFgx6u1vnKOr/iMF3p/CwIfXmczAUnaNj
+         QHkzT8oNHCvpvnmMHtJgFklEv/1XujDsHS3HrxbNKevgRuSuSRqaBqFjqHzQHk8wUlhd
+         1HBS2PtEvu8tP4JpYMqw0JjPeNo3nrPbAjxzYVWeiXcjVLa2GdZrCTgc1ugkZGlms3lm
+         GAXvk2O1s1G29hOOZ65LDy2zBu3IWwvadfjhJw1jyUJmWaWXYuIwf1klWXMiEfuz8RCK
+         CZWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718031504; x=1718636304;
+        d=1e100.net; s=20230601; t=1718031659; x=1718636459;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=WTNVAtPq8Wiju79U9wF0E7Uh3c2Y74GejBDhFhsm/oA=;
-        b=uSZ7cj+cYPntFTmBTDOfxW4DJ2N73BZFWNygSSRh8793HcG+iuifU9ANB/zRaaPDhv
-         mRCjFtxsDKXsOfXSQADzTE2nAjgNyw+tDMVps/zw0JrwHJEICUhPK75tAVdA8US+fEbx
-         9p+Fr2qmWDQhu0LveQL54Rr1dVd/r+AZxayo1jVnmu/Ra6NJmin4ESIBduohWvyj2dYB
-         Qwg1uoyGVPxRWrIpfzV5IACjlK7xSNN0Oy0HGuh6Bvgk0PjnebbSEscEN0Frad9tIOta
-         NCjOAq3U5lF2UnoYyJa7ZRBlO4AhHLLk0nGtavZbb5CNlQQgP3+JfQNIUdmIpdiKFj5M
-         lqOw==
-X-Forwarded-Encrypted: i=1; AJvYcCUzlsnasVX/DldXz+GioxF7tdJLpYREBHlarWePVKe10JoObPNjjXqvjBeHGji2y/NE8bTw3Lhfxu6jCiNJKvbNGSU+IvwXJJgtmQ==
-X-Gm-Message-State: AOJu0Yyksrp8+LQ998H57FO2XV2XC4C/Te4mQjnSJMivFq6w0W9sqpPc
-	+EfastqKv7iGcWfweMKuJ5j/SLJcHtio0KjA/nPgtWWLk0770ltj6DMLcTS+N8A=
-X-Google-Smtp-Source: AGHT+IFviEXi4tfz0YwerHwnZsIqKdNFd5xa53pVj8I49cG4hFmskJxGt5vPhLUEI3RbN1nfv8c3tA==
-X-Received: by 2002:a2e:9c09:0:b0:2eb:dced:71a7 with SMTP id 38308e7fff4ca-2ebdced7261mr27185451fa.13.1718031503940;
-        Mon, 10 Jun 2024 07:58:23 -0700 (PDT)
+        bh=r1plcsllFAfR72DMNf9dBiFZimQ3jkBHlFjNsM9boX0=;
+        b=as+oVIt+/oL7Sa6T1FP7fJhMdwGsPb0234LvMUDepjCvffQiehJAHHC3MSkG5g5w2S
+         MLy9s+F640SnEW0twsF4DzNTo4Np1vn0Poag5P4d6s3zkBUNUbVX5nvYzwzZC/PKiCEg
+         0PlIz1RP97okE4V3z1jnpp5akwQ3MLpbvgfBJucJdEdTFfGyRREmq0ixDDQlmtsK02MC
+         GgolDJU7EvNKFWF7RZaXamA+xEkMGVeYXyJLiLufZbJQ1kbxjq8ROSLN1r1EHPX5dxNt
+         KHZz6WHlGuUhpo4jxF2k+TDVEMnmWivM5jEh4GG6U3giQA8WLhs5xa/O8KMc/P8VKcqo
+         Rvzw==
+X-Forwarded-Encrypted: i=1; AJvYcCULvlSO9iOOJU80YHZ1D6dlMrz2Wcn+z5lYXrdgc1UelmAQSeUx/Hbqh8z0Ao9QDQ7Wdm4ODZrPamTXBYW08p9WLSuz7J9BOxuvGA==
+X-Gm-Message-State: AOJu0YwEdDipnPDOPquWcvyLR00B9ds6mTHQdDeFS3fqTSkmQnBC7lzP
+	y8d9VvuXuQl6rp+3HBCPMpEgSWuORCy4AQxaNJkhgvztpoaKhMcE48DEEAmHGOs=
+X-Google-Smtp-Source: AGHT+IGS4N0kEO/Hpqa8SDN6T//sm93JIQ7t/nyb8hA/8RdebhYZcjZDId60nW41KUAmTMZihs4X0g==
+X-Received: by 2002:a17:907:2d89:b0:a6f:d1d:75f4 with SMTP id a640c23a62f3a-a6f0d1d76b4mr399269666b.55.1718031658768;
+        Mon, 10 Jun 2024 08:00:58 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57c82a5e0f9sm1794446a12.12.2024.06.10.07.58.22
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f116dc32fsm272802866b.26.2024.06.10.08.00.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jun 2024 07:58:23 -0700 (PDT)
-Message-ID: <5ad5cf7a-c5c6-449e-9ed9-3d9f74959a19@linaro.org>
-Date: Mon, 10 Jun 2024 16:58:21 +0200
+        Mon, 10 Jun 2024 08:00:58 -0700 (PDT)
+Message-ID: <c800f92d-511e-4b85-86c1-3df99c799917@linaro.org>
+Date: Mon, 10 Jun 2024 17:00:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,18 +77,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/8] dt-bindings: counter: Add new ti,am62-eqep
- compatible
-To: Judith Mendez <jm@ti.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v9 2/2] power: pwrseq: add a driver for the PMU module on
+ the QCom WCN chipsets
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, William Breathitt Gray <wbg@kernel.org>,
- Nishanth Menon <nm@ti.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, linux-arm-kernel@lists.infradead.org,
- David Lechner <david@lechnology.com>
-References: <20240610144637.477954-1-jm@ti.com>
- <20240610144637.477954-2-jm@ti.com>
+ Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Saravana Kannan <saravanak@google.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>, Arnd Bergmann <arnd@arndb.de>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Alex Elder <elder@linaro.org>,
+ Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Abel Vesa <abel.vesa@linaro.org>, Manivannan Sadhasivam <mani@kernel.org>,
+ Lukas Wunner <lukas@wunner.de>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Amit Pundir <amit.pundir@linaro.org>, Xilin Wu <wuxilin123@gmail.com>,
+ linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+ linux-pm@vger.kernel.org,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Caleb Connolly <caleb.connolly@linaro.org>
+References: <20240605123850.24857-1-brgl@bgdev.pl>
+ <20240605123850.24857-3-brgl@bgdev.pl>
+ <d19e49f9-7f3c-42cd-a0fd-f9cdb07d0e35@linaro.org>
+ <CAMRc=Mdma1WJ_VAyNsWVO66m5qo1xf+RP0A+ABXuHmsuOvKWgg@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -135,51 +158,44 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240610144637.477954-2-jm@ti.com>
+In-Reply-To: <CAMRc=Mdma1WJ_VAyNsWVO66m5qo1xf+RP0A+ABXuHmsuOvKWgg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 10/06/2024 16:46, Judith Mendez wrote:
-> Add new compatible ti,am62-eqep for TI K3 devices. If a device
-> uses this compatible, require power-domains property.
+On 10/06/2024 16:55, Bartosz Golaszewski wrote:
+> On Mon, Jun 10, 2024 at 4:54 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 05/06/2024 14:38, Bartosz Golaszewski wrote:
+>>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>>
+>>> This adds the power sequencing driver for the PMU modules present on the
+>>> Qualcomm WCN Bluetooth and Wifi chipsets. It uses the pwrseq subsystem
+>>> and knows how to match the sequencer to the consumer device by verifying
+>>> the relevant properties and DT layout. Using this driver will allow the
+>>> BT and WLAN drivers to respect the required delays between enabling the
+>>> two modules.
+>>
+>> ...
+>>
+>>> +
+>>> +static const struct of_device_id pwrseq_qcom_wcn_of_match[] = {
+>>> +     {
+>>> +             .compatible = "qcom,qca6390-pmu",
+>>> +             .data = &pwrseq_qca6390_of_data,
+>>
+>> Bindings *must* be part of this patchset. I missed the moment this was
+>> split into such chunks.
+>>
+>> Best regards,
+>> Krzysztof
+>>
 > 
-> Since there is only one functional and interface clock for eqep,
-> clock-names is not really required, so removed from required
-> section, make it optional for ti,am3352-eqep compatible, and
-> update the example.
-> 
+> The bindings are already in next via Mark Brown's tree.
 
-...
-
-
->          interrupts = <79>;
->      };
->  
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
-> +
-> +    bus {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +        eqep1: counter@23210000 {
-
-No need for label
-
-> +          compatible = "ti,am62-eqep";
-> +          reg = <0x00 0x23210000 0x00 0x100>;
-> +          power-domains = <&k3_pds 60 TI_SCI_PD_EXCLUSIVE>;
-> +          clocks = <&k3_clks 60 0>;
-> +          interrupts = <GIC_SPI 117 IRQ_TYPE_EDGE_RISING>;
-> +          status = "disabled";
-
-Drop... which also points to another comment - since this was no-op and
-example is basically the same, then just don't add it. No point.
-
-> +        };
-> +    };
->  ...
+OK, I checked linux-next from a day before Mark merged it. Cover letter
+should mention it, because it is a bit unusual (and would save you
+reviewer's question).
 
 Best regards,
 Krzysztof
