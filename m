@@ -1,123 +1,151 @@
-Return-Path: <devicetree+bounces-74267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FE73902812
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 19:54:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47A1D902841
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 20:06:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7405D287CBB
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 17:54:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDA1C1C220EA
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 18:06:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96A331487F1;
-	Mon, 10 Jun 2024 17:54:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E972414C5BE;
+	Mon, 10 Jun 2024 18:06:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="vA76jLLq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68C4E147C74;
-	Mon, 10 Jun 2024 17:54:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44F421420DD;
+	Mon, 10 Jun 2024 18:06:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718042062; cv=none; b=PTo6GWOY1N4C3SILLeGAtlQZuaq/cCkLGmx8fBPRtNmTGUrQAgIJJccVBWHEj+gbUTlBaMxk3n+QcdZawscTjZTzfADm5B9KqDEA3dYgd96w7GC+Jp+Q/GX1tr56En3q4RvknJ4rhcaC7iSq7XJiJQgwAxOit6WynQEJ0UwyVXU=
+	t=1718042792; cv=none; b=Be5uU/baFMdkjA74sm505rvr47ZneXCMKoVMzL9dET7EGrP1+SiESjP+3CXeFr8Wy+yI1aJkF9yysMhcpcfNPfJWJ8RGmqyhsrna603jgugIRUWvyHf/IXxp3UsYsMOh1wIfaoeOUHRCpWjNPMFioSxJdyQnwwrVxgHPjctiNy0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718042062; c=relaxed/simple;
-	bh=leKKf29U173teK1FhuP+pu+V4jq3YaQC555HqoGy8Fo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QhlSxc0ePThzxBi61CJgPCjdIKESBfO4KQtbbIAwi9fe57LXgwm23WKgy7eaol5basMHNbZufZNxx1SNboF8Fd3BpyX5XO10hsgfQ4lnaOwfP9jWgn324+6OELOw8xfUKBksrlFkMMhcn5A/JFnc1Iu7pMpILxkrROia2NjmklQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4248FC2BBFC;
-	Mon, 10 Jun 2024 17:54:17 +0000 (UTC)
-Date: Mon, 10 Jun 2024 23:24:12 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Devi Priya <quic_devipriy@quicinc.com>
-Cc: Manivannan Sadhasivam <mani@kernel.org>, bhelgaas@google.com,
-	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
-	konrad.dybcio@linaro.org, mturquette@baylibre.com, sboyd@kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH V5 6/6] PCI: qcom: Add support for IPQ9574
-Message-ID: <20240610175412.GB7660@thinkpad>
-References: <20240512082858.1806694-1-quic_devipriy@quicinc.com>
- <20240512082858.1806694-7-quic_devipriy@quicinc.com>
- <20240530144730.GG2770@thinkpad>
- <f42559f5-9d4c-4667-bf0e-7abfd9983c36@quicinc.com>
+	s=arc-20240116; t=1718042792; c=relaxed/simple;
+	bh=SGlTXlbAHbufnPd6Eo1oHjPC/WB5/kPMxMReDNymQY8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=SOLfcB7Ab4VXWokScUAhgNrzJNsKllzfJiRS2g3P3t5nGmfNy6yJEDYmiyZRMHJeQC7kczG6ZD1Q2gwZWKPYctTtkWwiN0K+UWIzTh/qG9wvee38oQRVZ4joE+xa3xjzzaTwoukKpCvoVPfT7rXW7Jc6leZvqiIDqceAa0KOHYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=vA76jLLq; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45AI6HdW057292;
+	Mon, 10 Jun 2024 13:06:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718042777;
+	bh=h5VEq1G9dRBm6MKM7VYTq1WEKIHpwg4F8MH0iitI/x0=;
+	h=From:To:CC:Subject:Date;
+	b=vA76jLLqRjRRQ+XjFIFTkUne3Ll1Orh2yVNdhBXfBnjcFkRA3LHd6rpPdMfLbyhsx
+	 qkUp3oStrWXExp8HXxsk7XS+Z5WjwCAUrh7TmWXjye9MbppGXq0pgVS5rQl2JNEZyj
+	 Ns6WSvDZPRROSMmWrniouy1bWI7cGr9n4B7/4Adc=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45AI6H96011773
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 10 Jun 2024 13:06:17 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 10
+ Jun 2024 13:06:16 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 10 Jun 2024 13:06:16 -0500
+Received: from lelvsmtp5.itg.ti.com ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45AI6Gtf056905;
+	Mon, 10 Jun 2024 13:06:16 -0500
+From: Andrew Davis <afd@ti.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth
+ Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo
+	<kristo@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Hari Nagalla
+	<hnagalla@ti.com>
+CC: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Andrew Davis <afd@ti.com>
+Subject: [PATCH v10 0/8] TI K3 M4F support on AM62 and AM64 SoCs
+Date: Mon, 10 Jun 2024 13:06:07 -0500
+Message-ID: <20240610180615.313622-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <f42559f5-9d4c-4667-bf0e-7abfd9983c36@quicinc.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Mon, Jun 10, 2024 at 11:15:55AM +0530, Devi Priya wrote:
-> 
-> 
-> On 5/30/2024 8:17 PM, Manivannan Sadhasivam wrote:
-> > On Sun, May 12, 2024 at 01:58:58PM +0530, devi priya wrote:
-> > > The IPQ9574 platform has 4 Gen3 PCIe controllers:
-> > > two single-lane and two dual-lane based on SNPS core 5.70a
-> > > 
-> > > The Qcom IP rev is 1.27.0 and Synopsys IP rev is 5.80a
-> > > Added a new compatible 'qcom,pcie-ipq9574' and 'ops_1_27_0'
-> > > which reuses all the members of 'ops_2_9_0' except for the post_init
-> > > as the SLV_ADDR_SPACE_SIZE configuration differs between 2_9_0
-> > > and 1_27_0.
-> > > 
-> > > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
-> > > Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
-> > > Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
-> > > Signed-off-by: devi priya <quic_devipriy@quicinc.com>
-> > > ---
-> > >   Changes in V5:
-> > > 	- Rebased on top of the below series which adds support for fetching
-> > > 	  clocks from the device tree
-> > > 	  https://lore.kernel.org/linux-pci/20240417-pci-qcom-clk-bulk-v1-1-52ca19b3d6b2@linaro.org/
-> > > 
-> > >   drivers/pci/controller/dwc/pcie-qcom.c | 36 +++++++++++++++++++++++---
-> > >   1 file changed, 32 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> > > index 3d2eeff9a876..af36a29c092e 100644
-> > > --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> > > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> > > @@ -106,6 +106,7 @@
-> > >   /* PARF_SLV_ADDR_SPACE_SIZE register value */
-> > >   #define SLV_ADDR_SPACE_SZ			0x10000000
-> > > +#define SLV_ADDR_SPACE_SZ_1_27_0		0x08000000
-> > 
-> > Can you please explain what this value corresponds to? Even though there is an
-> > old value, I didn't get much info earlier on what it is.
-> 
-> The PARF_SLV_ADDR_SPACE_SIZE register indicates the range of RC accesses
-> to the EP's memory space. Default PoR value is 16MB, which seems to be
-> sufficient for IPQ9574 SoC.
-> As per the memory map, the memory space corresponding to each PCIe region is
-> 128Mb. As the older value corresponds to 256Mb we see PCIe enumeration
-> failures.
+Hello all,
 
-What kind of failure? Is it because kernel is trying to allocate memory region >
-128MB range?
+This is the continuation of the M4F RProc support series from here[0].
+I'm helping out with the upstream task for Hari and so versions (v8+)
+is a little different than the previous(v7-) postings[0]. Most notable
+change I've introduced being the patches factoring out common support
+from the current K3 R5 and DSP drivers have been dropped. I'd like
+to do that re-factor *after* getting this driver in shape, that way
+we have 3 similar drivers to factor out from vs trying to make those
+changes in parallel with the series adding M4 support.
 
-> This register should either be updated to 128Mb(0x8000000) or left at the
-> PoR value 16Mb (0x1000000).
-> 
+Anyway, details on our M4F subsystem can be found the
+the AM62 TRM in the section on the same:
 
-Ok, so this is essentially the same as the PCI MEM region defined in DT? In that
-case, this value should be extracted from DT instead of being hardcoded.
+AM62x Technical Reference Manual (SPRUIV7A – MAY 2022)
+https://www.ti.com/lit/pdf/SPRUIV7A
 
-But PCI MEM region range in DT is low on many platforms. Maybe that's due to all
-PCIe instances sharing the 256MB range?
+Thanks,
+Andrew
 
-- Mani
+[0] https://lore.kernel.org/linux-arm-kernel/20240202175538.1705-5-hnagalla@ti.com/T/
+
+Changes for v10:
+ - Rebased on v6.10-rc3
+ - Added AM64 M4 support in DT
+ - Addressed comments by Mathieu from v9
+
+Changes for v9:
+ - Fixed reserved-memory.yaml text in [1/5]
+ - Split dts patch into one for SoC and one for board enable
+ - Corrected DT property order and formatting [4/5][5/5]
+
+Hari Nagalla (7):
+  dt-bindings: remoteproc: k3-m4f: Add K3 AM64x SoCs
+  arm64: dts: ti: k3-am62: Add M4F remoteproc node
+  arm64: dts: ti: k3-am625-sk: Add M4F remoteproc node
+  arm64: dts: ti: k3-am64: Add M4F remoteproc node
+  arm64: dts: ti: k3-am642-sk: Add M4F remoteproc node
+  arm64: dts: ti: k3-am642-evm: Add M4F remoteproc node
+  arm64: defconfig: Enable TI K3 M4 remoteproc driver
+
+Martyn Welch (1):
+  remoteproc: k3-m4: Add a remoteproc driver for M4F subsystem
+
+ .../bindings/remoteproc/ti,k3-m4f-rproc.yaml  | 125 +++
+ arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi       |  13 +
+ .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |  19 +
+ arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi       |  13 +
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  19 +
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts        |  19 +
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/remoteproc/Kconfig                    |  13 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/ti_k3_m4_remoteproc.c      | 760 ++++++++++++++++++
+ 10 files changed, 983 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
+ create mode 100644 drivers/remoteproc/ti_k3_m4_remoteproc.c
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.39.2
+
 
