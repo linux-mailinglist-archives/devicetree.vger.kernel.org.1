@@ -1,111 +1,104 @@
-Return-Path: <devicetree+bounces-74255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F31A902779
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 19:10:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D15C902799
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 19:16:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A60301C21351
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 17:10:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 407CB1F21E56
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 17:16:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2613E143896;
-	Mon, 10 Jun 2024 17:10:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8F9D130AFC;
+	Mon, 10 Jun 2024 17:16:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="XcvL1n7f"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="AZcN0L1s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.15.4])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCC48142E98;
-	Mon, 10 Jun 2024 17:10:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C06CD77F2F;
+	Mon, 10 Jun 2024 17:16:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718039448; cv=none; b=qrVG+br6ahRzUi444U992QQ5z8mm1pr0nM8Ztd42g2LQrMPyqInMVADKYvEjRWmNuHsVrO/vCQTQvJgg5SxV0dTAuxeLcBM+HU7ZsNHJnBa7i6AuoMxhSJetAVDINUq5NQfnB9Dveck95trRLtvbwtYnBmxIy+w2YsRVBpzfZ8g=
+	t=1718039769; cv=none; b=AenOK3gkdlSWaRQklXyuYTVd+SptnxuLydFVnbVn97xtfZncY3zR7iJ2+J5M88+iLuq7qSrrPDSvm9nRWjNLnbQS/kJn0OApOi6xpEL41MPm6O0O3Phol7KJHwjoILDsK1fpVctXrN11BgnUp/dFoKqpXyyNeuFsMl8Dvo6iGAE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718039448; c=relaxed/simple;
-	bh=KFZLKRJgQQZenPBAgjVr/0fLpBXVmplQTRwYwWy3zRA=;
-	h=Message-ID:Date:MIME-Version:To:References:Subject:From:Cc:
-	 In-Reply-To:Content-Type; b=KdWdpKdwxhbUFt3bG3aLzTLaJZZu+Jx0CGdBCBd3aHi9zzlCE5xwLJY3FXRO4lNCSWqY0Fu2DDaXpkKwl/D0UhC6lYmMGRYuhpVK9zQ+GGfcYdKQLUZjzlKsCmiDpM4EMdtE2tmTEzyw8lD5YbECGnS2eykV5PyEYIUgQhRwRGw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=XcvL1n7f; arc=none smtp.client-ip=212.227.15.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1718039398; x=1718644198; i=markus.elfring@web.de;
-	bh=PI0cKSPt9y9ms7d09bbx92IbLJG836EONN5o/9dG9ho=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:References:
-	 Subject:From:Cc:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=XcvL1n7fEkSA1yTH4Juqe4oy+/f0vZ52IzqGBSVhV3S04BJShr6KMel5nF92DuvD
-	 NDNWO3NaK2WhXTy8lBKdsV+rZRI2FKf3ZSL5YgqMKEarqtl9V6GK/VGHCOOrH933O
-	 AD0SUatgiFswk6BgLPvNnykQ8amaikbLKo/Knl7vB4IU8CSqOnH2L/ppxdoW1J4Ca
-	 JaQCR1+fh+IVlZd7DaWmdCiCSNkdx1gto5lWvGxQLdcXfwJTSZg9H5h5V56WvdRxJ
-	 J+/VuAvCtyC5sM4Vus/8skXEt5t50zBuWjJwle201qB5Kp+Kf5tQ16M9PEczxAOYb
-	 Gqt5Nkg/Upt+dFhDTw==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.83.95]) by smtp.web.de (mrweb005
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MXGKA-1rvIQV3RD4-00NQcB; Mon, 10
- Jun 2024 19:09:57 +0200
-Message-ID: <70516ad7-fc85-4ce5-8a7f-e3e02d499d02@web.de>
-Date: Mon, 10 Jun 2024 19:09:43 +0200
+	s=arc-20240116; t=1718039769; c=relaxed/simple;
+	bh=HinoY02p1LpLPOjaaEHb1JVXGrzq+rrnxJRiEJ48xlw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pZYnzr2V2jflIGly7o4Xvt9V0kcdioNBHmen0s+Ta9zq5nZaCAxO+fzTNDzzI5AhZNumUh2E1fw5CG0uKtUF92vigltgqXROi9WM8psgXni5776HUTmI9f/Odn8P49qC0ZJngoBqt/XEUBUouKAItvDz9y92BZj2ADY4AVuun6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=AZcN0L1s; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=rwMOeMtIESGwI5KegBNglkXRUu/oEgFYhH+CJMDK8wM=; b=AZcN0L1s1aXflwtaQLdqmXEwhR
+	l0YTaETKG2vL5RvkAJkkf5zPiawQ0Wg3ApdT954vOH+8N3GZOFHHXC+k8yZDh9uEQztQq/pmK5mjg
+	qeAFGIy4dMEthS7CeV9R2Lh8NV1AIbmY6TsibUF3Va98myxlVlrhKeF+OikoBUzKzdEs=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sGick-00HJnh-QN; Mon, 10 Jun 2024 19:16:02 +0200
+Date: Mon, 10 Jun 2024 19:16:02 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-arm-kernel@lists.infradead.org, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, imx@lists.linux.dev,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Johannes Zink <j.zink@pengutronix.de>
+Subject: Re: [PATCH v2 2/5] arm64: dts: freescale: Add device tree for
+ Compulab UCM-iMX8M-Plus
+Message-ID: <92d20188-d1e5-4983-ae70-14ef2f5a2342@lunn.ch>
+References: <20240317164850.32708-1-laurent.pinchart@ideasonboard.com>
+ <20240317164850.32708-3-laurent.pinchart@ideasonboard.com>
+ <c5f5fd07-99e3-4a43-a92e-9e622932ea1b@lunn.ch>
+ <20240317185722.GA24220@pendragon.ideasonboard.com>
+ <7deaf04a-7433-4712-9fb8-1c89fc283346@lunn.ch>
+ <20240317235030.GB18202@pendragon.ideasonboard.com>
+ <be18ffcf-3157-4f8c-9bb1-10d6520900f5@lunn.ch>
+ <20240606223823.GA2245@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Noah Wang <noahwang.wang@outlook.com>, devicetree@vger.kernel.org,
- linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, =?UTF-8?B?R8O8bnRlciBSw7Zjaw==?=
- <linux@roeck-us.net>, Jean Delvare <jdelvare@suse.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>
-References: <KL1PR0401MB64911C4D68B4361C9EA97422FAFF2@KL1PR0401MB6491.apcprd04.prod.outlook.com>
-Subject: Re: [v4,2/2] hwmon: add MP2891 driver
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-Cc: LKML <linux-kernel@vger.kernel.org>, linux-doc@vger.kernel.org,
- Bjorn Helgaas <bhelgaas@google.com>, Cosmo Chou <chou.cosmo@gmail.com>,
- DelphineCCChiu <delphine_cc_chiu@wiwynn.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Jonathan Corbet <corbet@lwn.net>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Lukas Wunner <lukas@wunner.de>,
- Patrick Rudolph <patrick.rudolph@9elements.com>,
- Peter Yin <peteryin.openbmc@gmail.com>
-In-Reply-To: <KL1PR0401MB64911C4D68B4361C9EA97422FAFF2@KL1PR0401MB6491.apcprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:MGcOBqdhPn6PNd+nWXDeFns0YHTOPA44mXmtXzb6LFdRmzmb79g
- sKBhtHsyP+CY1EpA7f7AWWSxB0RoNohEsHFZiynxd0ftT+tWICq5x5KcWL2Upexhf4SnwNO
- VvcCU1X9fPAX0T4/gAJuy9ZAKrczURGnW4x+ev4sNBOzvVroJkiQv7cCzfkblocdVlFBdYW
- 76CNEIO20xkyeKIlT7+Gw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:gexMoFMv7zI=;6tw9e7rsPkNJLiplCwiPpUfF4OU
- bveq/kR1QbnOfW83CVSdlF4CoAdMQjk9Mt3zZyfERfRu1LnrSew2rCnV+AKdd/mZrmo99Sfi9
- GAqmO3a5LaWvjovn7Kq7zp3mxMLplsO2RzmWDnXpgFH5duFpc/AzMxbsoLKdbY4FJTZLd/URY
- R/DZQPqhoSwnTcBQX4aE6gHoYTNgYhvO7mITaZCJ9GW22ZTP3T5/0Y5Wk2EjFWlGumBJJ1bRl
- ulvdpQ9PBaHVY7W8qcvfWdJBJ/u2jq6zll9JXWKDsvxnacTLR4NTFCq5dqHjB6ldGbvD7zYWE
- Mn/1c5d25p3iX9DLARyiFeXOYaVMajdjww9rVI9CNGzpiMulBIVZmVYRhF1ko2VDKgDeDyHRM
- h6IhbL7OqNXgcnwrtA5b0PteBwT8lSsYCQZVU0HTwYOQ2LvC1cXwa6FW4mpvJaC7W4aW2ao9H
- B7eh/MYBGd75ED02mxfoutxZwFQ9ja9SnlTOKFofku1atWT18O5xzakUzKr3v/D32T2aAZDWr
- amDTPbQEOfW/60tSWbLqlZV/FGXIikq6xPtGO9QnOdmKcBttk95aNSUQq7pxIX9wAxddCpi9F
- z0EmCBMFkoUerkhQpAkqxbM63FVg5TDSAmjTV+5qqjnT6zg4hIZ1vrfmQ554L3BHP1VBD3eRU
- ASE6tHi3DAYgw7TDqvJ1eQvOusgJX+GXB5a4JX2g1ovgmKtF4Vf1fwSekZwwOISFmv+hJRq7r
- D0NXZe7jMAuZaSmVoIGtZP1ttBPg7xwswFgOqtOQzdaC7auQyuRg8cF3Macoz1rL7/iPY0aXN
- FAySYQgtunOZUN0yMD+gRkePi0YbJRkZCxbtIzkX+0ecc=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240606223823.GA2245@pendragon.ideasonboard.com>
 
-> Add support for MPS VR controller mp2891. This driver exposes
-> telemetry and limit value readings and writtings.
+On Fri, Jun 07, 2024 at 01:38:23AM +0300, Laurent Pinchart wrote:
+> Hi Andrew,
+> 
+> On Mon, Mar 18, 2024 at 01:58:56PM +0100, Andrew Lunn wrote:
+> > > I don't know if there are public errata about this issue. It is beyong
+> > > my areas of expertise. I've found a relatively recent e-mail on the
+> > > netdev mailing list that seems related ([1]), but there was no reply.
+> > > 
+> > > [1] https://lore.kernel.org/netdev/9c1c9408-88ac-4ade-b8ec-2ae5d8922cac@pengutronix.de/
+> > 
+> > Thanks for the link.
+> > 
+> > Has anybody tried setting STMMAC_FLAG_RX_CLK_RUNS_IN_LPI.
+> > 
+> > https://elixir.bootlin.com/linux/latest/source/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c#L816
+> > 
+> > The problem description makes it sound like the hardware does not like
+> > the clock being turned off. Setting this flag might fix that.
+> 
+> How would you recommend proceeding with this patch ? I can drop the
+> eee-broken-1000t property as I didn't notice any issue, or keep with the
+> risk that it my be cargo-cult.
 
-                limits?                  writings?
+If you have not noticed any issues, drop it. This thread should
+hopefully pop up in a search engine if anybody runs into problems.
 
-
-Should the presented message subjects have contained the key word =E2=80=
-=9CPATCH=E2=80=9D?
-
-Regards,
-Markus
+	  Andrew
 
