@@ -1,111 +1,113 @@
-Return-Path: <devicetree+bounces-74010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2292B901B14
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 08:21:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 461A6901B3D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 08:27:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 906B71F2233D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 06:21:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF4811F22097
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 06:27:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90FA315E81;
-	Mon, 10 Jun 2024 06:21:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B95A17BD2;
+	Mon, 10 Jun 2024 06:27:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="maD5NkFL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bzcadobU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC9F117556;
-	Mon, 10 Jun 2024 06:21:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E88291CF8A;
+	Mon, 10 Jun 2024 06:27:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718000475; cv=none; b=pQmW/SeFD0rAPz0RVUM4EyQjPnxOpMUBiJjSKU4yXgCCIXjFPTi0TZsXsSz+JZe1+oBiXEfQoUcXfQeq7HlPNSrQsZz1VfNW3OqRofGOuPVjOxg/AyQNl76ohcGe9yWqfIFEp/zpQYKgMRAOrTLahG1S0HCJ/fbJge8GQCRTztk=
+	t=1718000831; cv=none; b=SLt/Z6OIUvOqleFMM5APuOjH8CRStniW+ZCdNNFjPpyXBUyu+R3M5435Dk9h6mZ9R7ON7z1F/xe+jdj0Ng3YnoaTEmBte6SDozlwhWi4JxhrjgLCVeavCruefSL93ABQtvL7dJQfyoVmC2oLkdPpSQGznlWcTeLjA6PbUX7IxtA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718000475; c=relaxed/simple;
-	bh=htMYL62EBgOyd3NO98KvEswQedQdv3hijD5lAZErPDo=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=L1wOuq4BYxJRDle2gqKs4EvkKW1Rhgjh/Sa2Mq4fed4yOsnBmGV4jKCerjcUNBHLp1ZND9Ep77WHYm7WI5PDOSxqnDBXiHe5yiPe/sIfymUSlKRTHV2rIHlddXmYG/lESsB+jnncKk/X29J3dCEEAwDACIXfngRWS06N2dWiT/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=maD5NkFL; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a6f21ff4e6dso29384366b.3;
-        Sun, 09 Jun 2024 23:21:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718000472; x=1718605272; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=qswQsB6GG8jzu3P/wsKzIrL88cPkFRyaSp1SLy9L8Mg=;
-        b=maD5NkFLfZrBb7/OzLIZXmcXUF1IDNvRVZg4wMMpXKtL+36dGruk61Rki8WIWB/6bv
-         L0/bSxCnXRnTfzOa/jKtJebo6XLtH4sfTxxJwTPuTOeBVtBOqYLrejYQmABAErL8uGS0
-         zQgkfD4aWiYO1m6SILrvLfCX+dEG2cpA45PaLFijd1tFXiifagMo03/K6bD6unoJiA9Y
-         oSflNH0BGOx/wvLPQgn9iQFacCC/G9Zm3O09AebRegQQw+w14SRgbDHlrSYjIG3T8nAW
-         LNJxNc5Uzy18HLV2R/DpmE9LYnZlkzIBXxFmsMyaFs7pEl3TBlrh9nleuXxbiMS++8Ux
-         Mp9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718000472; x=1718605272;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qswQsB6GG8jzu3P/wsKzIrL88cPkFRyaSp1SLy9L8Mg=;
-        b=fGeL40Sx/FAVvfWSY1FG7Hh1HtzbhsJsYqdmKb+BA3OeHkwGvo5nJeAgUATYyaB5gw
-         +nHMqC9LGXBF+/Jc9G6No+SlFn7BMP+joH9PlQCnHPfuMyAVwF4/VDhPZDpBsv7wMape
-         fC21Ixpw3iuA8nznu9n/eqSs2RIrOHnPJMmcDeTgNQSvn9LoNtHN8D+a91dyNfqWcTYK
-         cFAtbXT0wpULw4izlb0NnkYX6flncr8TMxRLCbYuPetduhKXxlp9mN1IVrXwP2klZfyq
-         XJI5MpYoK/8rYAHVmLJUcluo8ILU0B2rZLlGm82Q0RjgJrXmw+Mez8rXQT2IgHRkPj87
-         gwtA==
-X-Forwarded-Encrypted: i=1; AJvYcCWJ/Pb1Wu34Biu/fbituRiJlselWwKFm4dZcGzgocrm964kNMK8EmutXYw1m84AUwOJaS8dzH9X6xPdUVn5YdmwWSrqbSDaXrABUMY5dyg1evn5kH+B9yKRlYivlRHZjAvI8VjUvY2U6vo5rZBQQErUph2ivZn89XEyU3iq7MB/fpVwn8wwZNNeiBSz4zG3BxixaXvpT8GEI8XqtFcyISM=
-X-Gm-Message-State: AOJu0YwYdLJ+Z2dMha6zdiTljbMiuc+7n57F7yumvecssZ/7+Ahb8oIi
-	NgTqVeMeuZFg50dMMzDkccTX/zvVXOEYtdS/b2Z9G5wXuC4NK7d3
-X-Google-Smtp-Source: AGHT+IFqLPALWZIZIbUadkqAjMgHaOSVsBi7G9vJUL51aSZdsu42FcyFDDDbBNSEzUxFl7u7eCdaIg==
-X-Received: by 2002:a17:906:46da:b0:a6f:2dd9:1449 with SMTP id a640c23a62f3a-a6f2dd91a59mr849466b.49.1718000472082;
-        Sun, 09 Jun 2024 23:21:12 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6c805cc38csm600798666b.71.2024.06.09.23.21.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 09 Jun 2024 23:21:11 -0700 (PDT)
-Date: Mon, 10 Jun 2024 08:21:09 +0200
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: laurent.pinchart@ideasonboard.com
-Cc: brgl@bgdev.pl, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	krzk+dt@kernel.org, lee@kernel.org, linus.walleij@linaro.org,
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org, robh@kernel.org, ukleinek@kernel.org
-Subject: Re: [PATCH v4 1/4] dt-bindings: mfd: Add Analog Devices ADP5585
-Message-ID: <ZmabVXaztPbp1ENV@standask-GA-A55M-S2HP>
+	s=arc-20240116; t=1718000831; c=relaxed/simple;
+	bh=46ontKYFYxBeCCy+CgEUCpaMHxEXAnXsVFaJAmuzFd4=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=ut5it7/ajUhfQlqjUVLNVddZH1OMeREYsWDF4pXxf9O8yAQppYOGPSXoJhdODc0gs9a2NdGSvjJMLH5f+Cfku2tN3mqFqFqFiIpEIFnbK5VOrGijCwQ4lZU0loivQg33H+LxfmU+TL+zHG1CbqFDa7edq11d1k1OvE4kKos0Qrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bzcadobU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B88FC2BBFC;
+	Mon, 10 Jun 2024 06:27:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718000830;
+	bh=46ontKYFYxBeCCy+CgEUCpaMHxEXAnXsVFaJAmuzFd4=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=bzcadobUAHWCAsVpT480gaT0KnUkKTEceCmaDDbtm6xomykD5xW9NEl/cU9kwvlo7
+	 d/rM1rTG1tw55LKH1fWQ3/PLw4AD3TfFM4bUvU6VBrrJY1zcdULJKfPPRA5xr33SpV
+	 UKRuQkhSCjxeJtl10wwV2fQd2sEwaufKqPrRcSPDONcWRNfgOUonB3LHRPX2ioT3Fi
+	 G94UasDurkk8+B806ivHWRipGLfjuvYw+GZlnBOLschWwlYMzWVYaTNWAix4TIoljc
+	 TZ1+svjB2kHXJ6rCIqhkWPu7LFLe5pcGnQc1g0OlWvhYJa53wg2jivRsm5AEfdjTXa
+	 Hsnz9lqE3/Ryg==
+Date: Mon, 10 Jun 2024 00:27:09 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240608141633.2562-2-laurent.pinchart@ideasonboard.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org, 
+ Jisheng Zhang <jszhang@kernel.org>, linux-kselftest@vger.kernel.org, 
+ Samuel Holland <samuel@sholland.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, Jonathan Corbet <corbet@lwn.net>, 
+ Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, 
+ linux-kernel@vger.kernel.org, Andy Chiu <andy.chiu@sifive.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+ Shuah Khan <shuah@kernel.org>, linux-sunxi@lists.linux.dev, 
+ devicetree@vger.kernel.org, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Evan Green <evan@rivosinc.com>, linux-doc@vger.kernel.org, 
+ Guo Ren <guoren@kernel.org>
+In-Reply-To: <20240609-xtheadvector-v1-2-3fe591d7f109@rivosinc.com>
+References: <20240609-xtheadvector-v1-0-3fe591d7f109@rivosinc.com>
+ <20240609-xtheadvector-v1-2-3fe591d7f109@rivosinc.com>
+Message-Id: <171800082930.1000302.5109301877296329341.robh@kernel.org>
+Subject: Re: [PATCH 02/13] dt-bindings: thead: add a vlen register length
+ property
 
-Hi Laurent,
 
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index 0a419453d183..91e62df4b296 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -39,10 +39,6 @@ properties:
->              # AD5110 - Nonvolatile Digital Potentiometer
->            - adi,ad5110
->              # Analog Devices ADP5585 Keypad Decoder and I/O Expansion
-> -          - adi,adp5585
-> -            # Analog Devices ADP5585 Keypad Decoder and I/O Expansion with support for Row5
-> -          - adi,adp5585-02
-> -            # Analog Devices ADP5589 Keypad Decoder and I/O Expansion
->            - adi,adp5589
->              # Analog Devices LT7182S Dual Channel 6A, 20V PolyPhase Step-Down Silent Switcher
->            - adi,lt7182s
+On Sun, 09 Jun 2024 21:45:07 -0700, Charlie Jenkins wrote:
+> Add a property analogous to the vlenb CSR so that software can detect
+> the vector length of each CPU prior to it being brought online.
+> Currently software has to assume that the vector length read from the
+> boot CPU applies to all possible CPUs. On T-Head CPUs implementing
+> pre-ratification vector, reading the th.vlenb CSR may produce an illegal
+> instruction trap, so this property is required on such systems.
+> 
+> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> ---
+>  Documentation/devicetree/bindings/riscv/thead.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
 
-seems like you removed the wrong comment here? With this, ADP5589 would have
-a comment describing ADP5585.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Regards,
-Stanislav
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/riscv/thead.yaml: 'thead,vlenb' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'dependentRequired', 'dependentSchemas', 'patternProperties', 'properties', 'not', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select', '$ref']
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240609-xtheadvector-v1-2-3fe591d7f109@rivosinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
