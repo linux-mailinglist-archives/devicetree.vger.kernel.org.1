@@ -1,231 +1,145 @@
-Return-Path: <devicetree+bounces-74014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBE70901B86
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 09:05:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7975B901BA2
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 09:17:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 263C7B218F4
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 07:05:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E5DA1F221AB
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 07:17:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 990381CF9B;
-	Mon, 10 Jun 2024 07:05:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D44C20B0F;
+	Mon, 10 Jun 2024 07:17:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CdRZ5nnK"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="VeBkoF70"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0FD61A716
-	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 07:05:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CA321946F;
+	Mon, 10 Jun 2024 07:17:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718003124; cv=none; b=FGFfq0/MbtnF8HFZvT2RqPdIfRvQKvV0+Vk2wJQXy85KxjTjyXKYSlWEEG5ADyuRytPD/1epk+KJeuCPM9fpqPMSi6UE35oD55cI+KZrt03uu5cvuUToTxCK+KsKt1gNSrWsqC2tCEyfMS4JEjg2ZrFWGe1HKqSDzYgORu31yyQ=
+	t=1718003851; cv=none; b=e29mNPcmxruetI1K/YLNKIx19E6K7Mi+twImpudIOCxGMuiNzf0ZxFLP/lf62wbGZJtrN1DeHj0+eica7J9l5nfDU5MDRAHkNhXZ1atdGZKA8NUJC/vXmGTV5v98M2H2jbHkrxouR+ynq+qaJ/l2CIy03jOAOc8UpXuDs5c5xSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718003124; c=relaxed/simple;
-	bh=/AvsbsUJd/zTGNO42rFXKAiiuS8ZEWlCyClzMR+cMBU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iEafR9JCtLxnS8INjlM753JOZJx7uSHkNuS4tU4V6GDTv/BYZVDbQ842tFZZjZ/Ge7mJMaT5G1qsbWP0Q5QJmTjWqghI1uqjEreO2kWkB3G7JgN44J3WyVpZGvZecizrYfZfk1kte7txx8dUuO3t9NhsMTKDCN7lMoJQ09iHPR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CdRZ5nnK; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a6ef8e62935so229200066b.3
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 00:05:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718003120; x=1718607920; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cPZSLa5VJ9ZJ5ThCXQZcFW6Ti5Z+EHbBJU7SLERjk6Q=;
-        b=CdRZ5nnK12/P3OrRhY2mW8r9y79KJ8tDxDEsbc+1YCHKhg6Mpk/48GN5tnd1dXIBz3
-         f+7bw+eRHk6TCMGV3BY91p+720Bo/sQF9LXS+Prg4ejkS/34nIDygXbYywF5yqoIuptA
-         NmVbIa9yaCctoUQW8tllBDO27ljO0DLtADcfWxRzf7zRWfU1mTkEIukoMXMACzLKGt2W
-         zlqAM2HUeJETWMMJQGdSn2ah/RlsEoWz6dgPbqaoTOZyCBvV+Tx22dOMv+iDfMnO4Kr4
-         PeB5olWdW3SM8Z4QTgOlMZKdCbceeuiSmJ6EVrEByjfkYQ6mXGbcaKJOlZGpB79Jqr3Y
-         pohw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718003120; x=1718607920;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cPZSLa5VJ9ZJ5ThCXQZcFW6Ti5Z+EHbBJU7SLERjk6Q=;
-        b=qVfgZ3w3tnR71kbo3ocNUfnxW+x1YMO3iUJfg0P+AgVFWfCf6GxM4y0+qnzZYdh0Do
-         H9wM4DAsKj3CRw/AU2Vvji5z8SoH5N+NqGD8USTTOHGX0Zybneea/OhvH9AwRB9nJ79Y
-         hkA1VLYXtfV6cQhxARlM90XPKDcwiQ3/TFwOymKaMqZBdmRl+vYXg9IOLTqzLyk1LLQi
-         rm6F2zByt0ZC3X4NfWigMVtQCuLK6ye7hQh0EvH3OOF7/SHI0yvs1hw+h+73Nt1E6l/0
-         JpSYjU0hhSt8ohertQ+YhXt3mhqWB3ehHwNFBLMpKdffm9ihTlsNZbPhB2wmJMCIu2HV
-         cY6A==
-X-Forwarded-Encrypted: i=1; AJvYcCUGnxCTnKWa93CSybIIqhYwU1rl2XkRK5Z9+BnnA6F/KmVhfYPYKMspifOI7vATlK3ZmJCTKufnxRsMwOn4Fj3IJRfLd8112GfREg==
-X-Gm-Message-State: AOJu0Yyd1510dZjufExVmd0OKpYTLyCBQfeKf1aaXeCiEqsi4BlpdvDh
-	HZt7l98C5kH1kvD0KgFoSCMcecHwHErodZOFfmMviXc0WjCnoFimgPpPNN91j7Q=
-X-Google-Smtp-Source: AGHT+IEgv3JegFvQ+6vLGmNwNKNTfnIzW5enFDnscw96CRYsquxgRG1RrvcEtuTnAeCT9o3J9KN8iQ==
-X-Received: by 2002:a17:906:4ecd:b0:a6f:7cb:6e76 with SMTP id a640c23a62f3a-a6f07cb723emr358812166b.51.1718003120208;
-        Mon, 10 Jun 2024 00:05:20 -0700 (PDT)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-a6f2d4138ccsm7698766b.220.2024.06.10.00.05.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jun 2024 00:05:19 -0700 (PDT)
-Message-ID: <ba911ebd-aef5-46af-ace1-84d13bee6876@linaro.org>
-Date: Mon, 10 Jun 2024 08:05:18 +0100
+	s=arc-20240116; t=1718003851; c=relaxed/simple;
+	bh=HL1/PgFcmvtq8Mgs03MygUKUe0HGx+ZKEBK7mpchO1c=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=SWT2FGVQsAZdaiZkQS4paB7gyuOWqDACfTWuYF6KxmUwKTL6HekPNN2woAc8mQazc/gofRCt+Ch7WKBHAtxAtQXrPVG7a2t1g+WNC45G6T2G592kl2cJhz+kFA3RSo0Ck8BX4VG8iRGhUwOV9KPm19ZXFx+tHgWlOB+rqtUa7Zs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=VeBkoF70; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 459Lv4or018093;
+	Mon, 10 Jun 2024 09:16:59 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=ywgMJ0d2V3+vIlguLKK9it
+	AB89YC4L19ERf/9tF4bzM=; b=VeBkoF70/fwECtDm4mHRr0Zb2ky3B6Yvxu6Rj/
+	BVbEoElFZzv1eAOAYlfs5z6718PeInL+KrTc7o1TOkKScQFd6pH1wNfhg2EuCxFF
+	NzZMR+bUqseslvwu71xf0PJzXpe2qE8zdAWXZAHXyusuMcMX+199nWP/XHN8ZLke
+	Y4JsajJzcWgxvM7a+qCUy67pzhRzWBKJtX2dFRvHg7b0YxgKGeXmJXkpUrpX26OE
+	kD3Uy8xYQADW2zeIFbfGDwm0T7t+/Zx677yd2iLspK2S+Bl0u9PLCpU4YHAI0IMd
+	Rkt8n3NC8nHd04kzVRyMEQ59R5ixRIfP7f9WTLCuhoyoPpDQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yme6d5cb4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Jun 2024 09:16:55 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 2B42D40047;
+	Mon, 10 Jun 2024 09:16:22 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 75074210757;
+	Mon, 10 Jun 2024 09:15:07 +0200 (CEST)
+Received: from localhost (10.48.86.164) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 10 Jun
+ 2024 09:15:07 +0200
+From: Christophe Roullier <christophe.roullier@foss.st.com>
+To: "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark
+ Brown <broonie@kernel.org>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>,
+        Marek Vasut <marex@denx.de>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [net-next,PATCH v6 0/8] Series to deliver Ethernet for STM32MP13
+Date: Mon, 10 Jun 2024 09:14:51 +0200
+Message-ID: <20240610071459.287500-1-christophe.roullier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND v5 6/7] ASoC: codecs: wcd937x: add capture dapm widgets
-To: Mohammad Rafi Shaik <quic_mohs@quicinc.com>,
- Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>
-Cc: alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
- quic_pkumpatl@quicinc.com, Konrad Dybcio <konrad.dybcio@linaro.org>
-References: <20240527111956.444425-1-quic_mohs@quicinc.com>
- <20240527111956.444425-7-quic_mohs@quicinc.com>
-Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20240527111956.444425-7-quic_mohs@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-10_02,2024-06-06_02,2024-05-17_01
+
+STM32MP13 is STM32 SOC with 2 GMACs instances
+    GMAC IP version is SNPS 4.20.
+    GMAC IP configure with 1 RX and 1 TX queue.
+    DMA HW capability register supported
+    RX Checksum Offload Engine supported
+    TX Checksum insertion supported
+    Wake-Up On Lan supported
+    TSO supported
+Rework dwmac glue to simplify management for next stm32 (integrate RFC from Marek)
+
+V2: - Remark from Rob Herring (add Krzysztof's ack in patch 02/11, update in yaml)
+      Remark from Serge Semin (upate commits msg)
+V3: - Remove PHY regulator patch and Ethernet2 DT because need to clarify how to
+      manage PHY regulator (in glue or PHY side)
+    - Integrate RFC from Marek
+    - Remark from Rob Herring in YAML documentation
+V4: - Remark from Marek (remove max-speed, extra space in DT, update commit msg)
+    - Remark from Rasmus (add sign-off, add base-commit)
+    - Remark from Sai Krishna Gajula
+V5: - Fix warning during build CHECK_DTBS
+    - Remark from Marek (glue + DT update)
+    - Remark from Krzysztof about YAML (Make it symmetric)
+V6: - Replace pr_debug by dev_dbg
+    - Split serie driver/DTs separately 
+
+Christophe Roullier (3):
+  dt-bindings: net: add STM32MP13 compatible in documentation for stm32
+  net: stmmac: dwmac-stm32: Mask support for PMCR configuration
+  net: stmmac: dwmac-stm32: add management of stm32mp13 for stm32
+
+Marek Vasut (5):
+  net: stmmac: dwmac-stm32: Separate out external clock rate validation
+  net: stmmac: dwmac-stm32: Separate out external clock selector
+  net: stmmac: dwmac-stm32: Extract PMCR configuration
+  net: stmmac: dwmac-stm32: Clean up the debug prints
+  net: stmmac: dwmac-stm32: Fix Mhz to MHz
+
+ .../devicetree/bindings/net/stm32-dwmac.yaml  |  43 ++++-
+ .../net/ethernet/stmicro/stmmac/dwmac-stm32.c | 174 +++++++++++++-----
+ 2 files changed, 169 insertions(+), 48 deletions(-)
 
 
+base-commit: 28f961f9d5b7c3d9b9f93cc59e54477ba1278cf9
+-- 
+2.25.1
 
-On 27/05/2024 12:19, Mohammad Rafi Shaik wrote:
-> +static int __wcd937x_codec_enable_micbias(struct snd_soc_dapm_widget *w,
-> +					  int event)
-> +{
-> +	struct snd_soc_component *component = snd_soc_dapm_to_component(w->dapm);
-> +	int micb_num;
-> +
-> +	if (strnstr(w->name, "MIC BIAS1", sizeof("MIC BIAS1")))
-> +		micb_num = MIC_BIAS_1;
-> +	else if (strnstr(w->name, "MIC BIAS2", sizeof("MIC BIAS2")))
-> +		micb_num = MIC_BIAS_2;
-> +	else if (strnstr(w->name, "MIC BIAS3", sizeof("MIC BIAS3")))
-> +		micb_num = MIC_BIAS_3;
-> +	else
-> +		return -EINVAL;
-> +
-See last comment..
-
-> +	switch (event) {
-> +	case SND_SOC_DAPM_PRE_PMU:
-> +		wcd937x_micbias_control(component, micb_num,
-> +					MICB_ENABLE, true);
-> +		break;
-> +	case SND_SOC_DAPM_POST_PMU:
-> +		usleep_range(1000, 1100);
-> +		break;
-> +	case SND_SOC_DAPM_POST_PMD:
-> +		wcd937x_micbias_control(component, micb_num,
-> +					MICB_DISABLE, true);
-> +		break;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int wcd937x_codec_enable_micbias(struct snd_soc_dapm_widget *w,
-> +					struct snd_kcontrol *kcontrol,
-> +					int event)
-> +{
-> +	return __wcd937x_codec_enable_micbias(w, event);
-> +}
-> +
-> +static int __wcd937x_codec_enable_micbias_pullup(struct snd_soc_dapm_widget *w,
-> +						 int event)
-> +{
-> +	struct snd_soc_component *component = snd_soc_dapm_to_component(w->dapm);
-> +	int micb_num;
-> +
-> +	if (strnstr(w->name, "VA MIC BIAS1", sizeof("VA MIC BIAS1")))
-> +		micb_num = MIC_BIAS_1;
-> +	else if (strnstr(w->name, "VA MIC BIAS2", sizeof("VA MIC BIAS2")))
-> +		micb_num = MIC_BIAS_2;
-> +	else if (strnstr(w->name, "VA MIC BIAS3", sizeof("VA MIC BIAS3")))
-> +		micb_num = MIC_BIAS_3;
-> +	else
-> +		return -EINVAL;
-> +
-same..
-> +	switch (event) {
-> +	case SND_SOC_DAPM_PRE_PMU:
-> +		wcd937x_micbias_control(component, micb_num, MICB_PULLUP_ENABLE, true);
-> +		break;
-> +	case SND_SOC_DAPM_POST_PMU:
-> +		usleep_range(1000, 1100);
-> +		break;
-> +	case SND_SOC_DAPM_POST_PMD:
-> +		wcd937x_micbias_control(component, micb_num, MICB_PULLUP_DISABLE, true);
-> +		break;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-
-...
-
->   static const struct snd_soc_dapm_widget wcd937x_dapm_widgets[] = {
-...> +	/* MIC_BIAS widgets */
-> +	SND_SOC_DAPM_SUPPLY("MIC BIAS1", SND_SOC_NOPM, 0, 0,
-Please use shift here like
-         SND_SOC_DAPM_SUPPLY("MIC BIAS1", SND_SOC_NOPM, MIC_BIAS_1, 0,
-         SND_SOC_DAPM_SUPPLY("MIC BIAS2", SND_SOC_NOPM, MIC_BIAS_2, 0,
-
-to avoid doing a string compares on wideget name.
-
---srini
-
-> +			    wcd937x_codec_enable_micbias,
-> +			    SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMU |
-> +			    SND_SOC_DAPM_POST_PMD),
-> +	SND_SOC_DAPM_SUPPLY("MIC BIAS2", SND_SOC_NOPM, 0, 0,
-> +			    wcd937x_codec_enable_micbias,
-> +			    SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMU |
-> +			    SND_SOC_DAPM_POST_PMD),
-> +	SND_SOC_DAPM_SUPPLY("MIC BIAS3", SND_SOC_NOPM, 0, 0,
-> +			    wcd937x_codec_enable_micbias,
-> +			    SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMU |
-> +			    SND_SOC_DAPM_POST_PMD),
-> +
->   	SND_SOC_DAPM_SUPPLY("VDD_BUCK", SND_SOC_NOPM, 0, 0,
->   			    wcd937x_codec_enable_vdd_buck,
->   			    SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMD),
-> @@ -2007,11 +2312,101 @@ static const struct snd_soc_dapm_widget wcd937x_dapm_widgets[] = {
->   	SND_SOC_DAPM_MIXER("HPHR_RDAC", SND_SOC_NOPM, 0, 0,
->   			   hphr_rdac_switch, ARRAY_SIZE(hphr_rdac_switch)),
->   
-> +	/* TX output widgets */
-> +	SND_SOC_DAPM_OUTPUT("ADC1_OUTPUT"),
-> +	SND_SOC_DAPM_OUTPUT("ADC2_OUTPUT"),
-> +	SND_SOC_DAPM_OUTPUT("ADC3_OUTPUT"),
-> +	SND_SOC_DAPM_OUTPUT("WCD_TX_OUTPUT"),
-> +
->   	/* RX output widgets */
->   	SND_SOC_DAPM_OUTPUT("EAR"),
->   	SND_SOC_DAPM_OUTPUT("AUX"),
->   	SND_SOC_DAPM_OUTPUT("HPHL"),
->   	SND_SOC_DAPM_OUTPUT("HPHR"),
-> +
-> +	/* MIC_BIAS pull up widgets */
-> +	SND_SOC_DAPM_SUPPLY("VA MIC BIAS1", SND_SOC_NOPM, 0, 0,
-> +			    wcd937x_codec_enable_micbias_pullup,
-> +			    SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMU |
-> +			    SND_SOC_DAPM_POST_PMD),
-> +	SND_SOC_DAPM_SUPPLY("VA MIC BIAS2", SND_SOC_NOPM, 0, 0,
-> +			    wcd937x_codec_enable_micbias_pullup,
-> +			    SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMU |
-> +			    SND_SOC_DAPM_POST_PMD),
-> +	SND_SOC_DAPM_SUPPLY("VA MIC BIAS3", SND_SOC_NOPM, 0, 0,
-> +			    wcd937x_codec_enable_micbias_pullup,
-> +			    SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMU |
-> +			    SND_SOC_DAPM_POST_PMD),
 
