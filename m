@@ -1,84 +1,80 @@
-Return-Path: <devicetree+bounces-73973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BA82901942
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 03:34:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8C0A901981
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 05:09:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 597F41C212B0
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 01:34:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BAB4AB21407
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 03:09:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7348A1879;
-	Mon, 10 Jun 2024 01:34:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EFDE63A9;
+	Mon, 10 Jun 2024 03:09:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XumhwjRT"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Tso34vRF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6806C1852
-	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 01:34:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A39B3C0C;
+	Mon, 10 Jun 2024 03:09:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717983242; cv=none; b=ROVh7EGknkyfXw54SGVuMXcX7qeiUfjfFbY3HDQ9QDWlH7OGXFNEl+g5X2SHLATYeMaayTA2ciXw4YnN1FGd/0dw+Cuu+LUoVKUBXCXPr7fO1iBoYwJYOLTvzmnd0evoyvK/ystgOKELS4SC00GUVk/Q/kFbZaZ6f6JS5oI4zmk=
+	t=1717988979; cv=none; b=V/tj1Nb0wQMFZgJOQZaWLmyck6y/3S4C8c2e+OMzdu47QvkMYzLh+C1pW2iL4b5gqUbEDqlWvT1TWjPR9nD/m3OZh99U3/Dwq84HsNv2feQzSeDx+XUAPs2a0GBf+ocFAUKZx9xXZ/i77+J6hhGzEfXQ7TzuAjxt1KdjvvDaOvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717983242; c=relaxed/simple;
-	bh=Q4HDVCK0RP5fR7/9Wm1KAIacjGw3JnIYUq6KRiAmIbw=;
+	s=arc-20240116; t=1717988979; c=relaxed/simple;
+	bh=Wj11lGYu3WhMhBwkounnR1AUHlkuhFRRPVG9yWN6Bms=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iWmCLxXA9qwLKxrRWI8SSAXFKQXP2QlW1l15ohMJiGcXVU0htZvKCSZ92lA7DaDu2ByWoWP0VlJw4cQ5r0I/lRNrbQXlTw/YAxOOYmxgdiLJ5toXQ3aXQ/QweOwwH0DSyzked5sEJ5sPN+l2emEydqAeEnol5fXZJs+i0dUVzw4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XumhwjRT; arc=none smtp.client-ip=198.175.65.18
+	 Content-Type:Content-Disposition:In-Reply-To; b=cLmwx+sw5vd07brpNAuc35+cHtluXwXir3Tctqj3Ga5VexcxskUAXbjsz2x00yTONKZlvwKgBDxBa4D3xI9IS2E3+flGh4wQQbRpP0+n32AXEzjUqy8lar6E4mm0vQIGQzCz8nwGh6WLh6hMRrBw80tB3S9kFkQPoNllLASlRiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Tso34vRF; arc=none smtp.client-ip=192.198.163.15
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1717983240; x=1749519240;
+  t=1717988977; x=1749524977;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=Q4HDVCK0RP5fR7/9Wm1KAIacjGw3JnIYUq6KRiAmIbw=;
-  b=XumhwjRTSXtfXBtNURnG4nT6B1i5E9TUJ7bjBtEbPmO/wAroSPd3+TdI
-   hG2DybNrk+fKknvmLeL9MF7JOYwHGyvFEOjdSfqBNnl9gsDnQeuHq1dwe
-   /tzE8TtVWR6ILFuS1dxrOuTqdmeq8z4s2HJqkjw6qpM9zUvEnnpmsqY6w
-   jXwnc/a7H0PfJwfyIXh6oRI+65mmzlBNQWEwkgCVPF+oL6QkmhilQ2LUl
-   WgHpf2ON433dEQ83cRw44lsIN0dYXrdNL/HyzE4F+i6lddp6NSgfnTjAi
-   oXGqz4oZA2O/PdzZQEkUtX8GSBhV/3vgNwB5EQFnd8u/3qSbN9EeTVCrD
-   Q==;
-X-CSE-ConnectionGUID: yEDxvAduSgKISs0RmFFUPg==
-X-CSE-MsgGUID: QhzzRzGrQ+eNc6yc6xhXIA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11098"; a="14784623"
+  bh=Wj11lGYu3WhMhBwkounnR1AUHlkuhFRRPVG9yWN6Bms=;
+  b=Tso34vRFDCsjnG1D7j9dczPUYkwaB09cIzsHlvk0ZcFHD0qHrmiPxTtX
+   /+fr1kpVrq9rpRCyVSY3YF+WWYF9KJhniSl6Yq6O12lXuarld4rYg2xHW
+   z2UpE+tH6r0l7PXbXqo6pYAmHnXS+asEyDP1QrPqV1xYJeCXk6mN478AZ
+   ve4uNQXElc7lBmESrbqUMj4hV6JaUn48adSSx9379Oa9jUeLb5vXCUeAc
+   UOOIe48lFuI88vjXkT6EiqvydJcy+0luYntr2ASHMiN84af0KglqcLLc4
+   cph/KO/xUnpATeu45HcIr911OIDFwjtbuXd/0xMookwvwSVvRmoTnPlg8
+   w==;
+X-CSE-ConnectionGUID: A2GS6remTDCx8lvD0WT3zg==
+X-CSE-MsgGUID: L6I7MHU0Tyqn0RrqGzNh2w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11098"; a="14813717"
 X-IronPort-AV: E=Sophos;i="6.08,226,1712646000"; 
-   d="scan'208";a="14784623"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2024 18:34:00 -0700
-X-CSE-ConnectionGUID: hfqCE1wcSFO2cLj3EjMQqQ==
-X-CSE-MsgGUID: EZWbifg8TvK4d6fSj4yRgA==
+   d="scan'208";a="14813717"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2024 20:09:36 -0700
+X-CSE-ConnectionGUID: DOrcTPmaQCSduc8ZxamjnQ==
+X-CSE-MsgGUID: uO0dE4BRQO204xwXNkATKQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.08,226,1712646000"; 
-   d="scan'208";a="44030684"
+   d="scan'208";a="38844834"
 Received: from lkp-server01.sh.intel.com (HELO 8967fbab76b3) ([10.239.97.150])
-  by orviesa004.jf.intel.com with ESMTP; 09 Jun 2024 18:33:57 -0700
+  by fmviesa006.fm.intel.com with ESMTP; 09 Jun 2024 20:09:34 -0700
 Received: from kbuild by 8967fbab76b3 with local (Exim 4.96)
 	(envelope-from <lkp@intel.com>)
-	id 1sGTv0-0001kE-0l;
-	Mon, 10 Jun 2024 01:33:54 +0000
-Date: Mon, 10 Jun 2024 09:33:26 +0800
+	id 1sGVPY-0001nu-0F;
+	Mon, 10 Jun 2024 03:09:32 +0000
+Date: Mon, 10 Jun 2024 11:09:04 +0800
 From: kernel test robot <lkp@intel.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-	Marco Contenti <marco.c@variscite.com>,
-	Nate Drude <nate.d@variscite.com>,
-	FrancescoFerraro <francesco.f@variscite.com>,
-	Harshesh Valera <harshesh.v@variscite.com>,
-	Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Re: [PATCH v3 3/4] arm64: dts: freescale: Add support for the
- Variscite i.MX8MP DART8MCustomBoard
-Message-ID: <202406100920.2CdVa6rb-lkp@intel.com>
-References: <20240608180447.31378-4-laurent.pinchart@ideasonboard.com>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: convert tas571x.txt to dt-schema
+Message-ID: <202406101035.nanF90LS-lkp@intel.com>
+References: <20240607-topic-amlogic-upstream-bindings-convert-tas57xx-v1-1-ebf1e4919bb1@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,41 +83,65 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240608180447.31378-4-laurent.pinchart@ideasonboard.com>
+In-Reply-To: <20240607-topic-amlogic-upstream-bindings-convert-tas57xx-v1-1-ebf1e4919bb1@linaro.org>
 
-Hi Laurent,
+Hi Neil,
 
 kernel test robot noticed the following build warnings:
 
-[auto build test WARNING on 41f93a496af2696d970cbcb3814261a9b32dbaa2]
+[auto build test WARNING on c3f38fa61af77b49866b006939479069cd451173]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Laurent-Pinchart/dt-bindings-arm-fsl-Add-Variscite-DT8MCustomBoard-with-DART-MX8M-PLUS/20240609-020751
-base:   41f93a496af2696d970cbcb3814261a9b32dbaa2
-patch link:    https://lore.kernel.org/r/20240608180447.31378-4-laurent.pinchart%40ideasonboard.com
-patch subject: [PATCH v3 3/4] arm64: dts: freescale: Add support for the Variscite i.MX8MP DART8MCustomBoard
-config: arm64-randconfig-051-20240609 (https://download.01.org/0day-ci/archive/20240610/202406100920.2CdVa6rb-lkp@intel.com/config)
+url:    https://github.com/intel-lab-lkp/linux/commits/Neil-Armstrong/ASoC-dt-bindings-convert-tas571x-txt-to-dt-schema/20240607-175726
+base:   c3f38fa61af77b49866b006939479069cd451173
+patch link:    https://lore.kernel.org/r/20240607-topic-amlogic-upstream-bindings-convert-tas57xx-v1-1-ebf1e4919bb1%40linaro.org
+patch subject: [PATCH] ASoC: dt-bindings: convert tas571x.txt to dt-schema
+config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20240610/202406101035.nanF90LS-lkp@intel.com/config)
 compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project d7d2d4f53fc79b4b58e8d8d08151b577c3699d4a)
 dtschema version: 2024.6.dev1+g833054f
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240610/202406100920.2CdVa6rb-lkp@intel.com/reproduce)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240610/202406101035.nanF90LS-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406100920.2CdVa6rb-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406101035.nanF90LS-lkp@intel.com/
 
 dtcheck warnings: (new ones prefixed by >>)
-   ti,x-plate-ohms: size (2) error for type uint32-array
->> arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb: touch@0: ti,settle-delay-usec: b'\x00\x96' is not of type 'object', 'array', 'boolean', 'null'
-   	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
->> arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb: touch@0: ti,debounce-tol: b'\x00\x03' is not of type 'object', 'array', 'boolean', 'null'
-   	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
->> arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb: touch@0: ti,debounce-rep: b'\x00\x01' is not of type 'object', 'array', 'boolean', 'null'
-   	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
->> arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb: touch@0: ti,x-plate-ohms: size is 16, expected 32
-   	from schema $id: http://devicetree.org/schemas/property-units.yaml#
->> arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb: /soc@0/bus@30800000/spba-bus@30800000/spi@30820000/touch@0: failed to match any schema with compatible: ['ti,tsc2046']
->> arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb: interrupt-controller@32fc2000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
-   	from schema $id: http://devicetree.org/schemas/interrupt-controller/fsl,irqsteer.yaml#
+   arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi:263.22-266.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@3: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi:268.22-273.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@4: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi:275.24-278.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@5: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi:280.22-283.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@6: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi:285.22-288.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@7: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi:290.29-293.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@8: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi:305.11-309.6: Warning (unit_address_vs_reg): /soc@0/codec@57900000/port@0: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi:311.11-315.6: Warning (unit_address_vs_reg): /soc@0/codec@57900000/port@1: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/socionext/uniphier-ld11-global.dts:71.10-75.5: Warning (unit_address_vs_reg): /spdif-out/port@0: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/socionext/uniphier-ld11-global.dts:82.10-86.5: Warning (unit_address_vs_reg): /comp-spdif-out/port@0: node has a unit name, but no reg or ranges property
+>> arch/arm64/boot/dts/socionext/uniphier-ld11-global.dtb: audio-codec@1d: Unevaluated properties are not allowed ('port' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/sound/ti,tas57xx.yaml#
+   arch/arm64/boot/dts/socionext/uniphier-ld11-global.dtb: /soc@0/smpctrl@59801000: failed to match any schema with compatible: ['socionext,uniphier-smpctrl']
+   arch/arm64/boot/dts/socionext/uniphier-ld11-global.dtb: spdif-out: 'port@0' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/sound/linux,spdif-dit.yaml#
+   arch/arm64/boot/dts/socionext/uniphier-ld11-global.dtb: comp-spdif-out: 'port@0' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/sound/linux,spdif-dit.yaml#
+--
+   arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi:396.22-399.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@3: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi:401.22-406.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@4: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi:408.24-411.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@5: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi:413.22-416.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@6: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi:418.22-421.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@7: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi:423.29-426.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@8: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi:438.11-442.6: Warning (unit_address_vs_reg): /soc@0/codec@57900000/port@0: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi:444.11-448.6: Warning (unit_address_vs_reg): /soc@0/codec@57900000/port@1: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/socionext/uniphier-ld20-global.dts:71.10-75.5: Warning (unit_address_vs_reg): /spdif-out/port@0: node has a unit name, but no reg or ranges property
+   arch/arm64/boot/dts/socionext/uniphier-ld20-global.dts:82.10-86.5: Warning (unit_address_vs_reg): /comp-spdif-out/port@0: node has a unit name, but no reg or ranges property
+>> arch/arm64/boot/dts/socionext/uniphier-ld20-global.dtb: audio-codec@1b: Unevaluated properties are not allowed ('port' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/sound/ti,tas57xx.yaml#
+   arch/arm64/boot/dts/socionext/uniphier-ld20-global.dtb: /soc@0/smpctrl@59801000: failed to match any schema with compatible: ['socionext,uniphier-smpctrl']
+   arch/arm64/boot/dts/socionext/uniphier-ld20-global.dtb: /soc@0/usb@65a00000: failed to match any schema with compatible: ['socionext,uniphier-dwc3', 'snps,dwc3']
+   arch/arm64/boot/dts/socionext/uniphier-ld20-global.dtb: spdif-out: 'port@0' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/sound/linux,spdif-dit.yaml#
+   arch/arm64/boot/dts/socionext/uniphier-ld20-global.dtb: comp-spdif-out: 'port@0' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/sound/linux,spdif-dit.yaml#
 
 -- 
 0-DAY CI Kernel Test Service
