@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-74288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18BC6902988
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 21:55:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65705902989
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 21:55:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7CE53B23AB2
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 19:55:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E25971F23000
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 19:55:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F254D14F9ED;
-	Mon, 10 Jun 2024 19:55:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED0E150991;
+	Mon, 10 Jun 2024 19:55:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZrWNiMoE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NY1lwu5H"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE7F214F9E4
-	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 19:55:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 585F915098E;
+	Mon, 10 Jun 2024 19:55:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718049315; cv=none; b=XlqwZQCBlKj5TMwBEonoEI7PWymW66gy4EyxxFXd/MVO/2pHEgXygK182ClgzPizhL8llZ6E7yeKIURbIWJUKlwox/GwWESqPV4jf0sasRzQqL4p80eecKU9pYXYyx4puwM2FQT6rGIVO9LLmEI4a2tba1//NZdaGqY3QUpUCKg=
+	t=1718049317; cv=none; b=PQuBvtgS58jK5OdPhM2SLU/yRff0axJkiFmAGZLYLkApnwRLDlC4HJ8ZDp+OTb1ZWLflr3Kd7ncJAfk4B19475bhd70QsCoJpWw1we3y3KmlNfdt8KMD1MVuHTer/9tIVx9KRaqGLrLO/kGfvG5DfD5IxC7f4gqByE4+JOZsR+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718049315; c=relaxed/simple;
-	bh=LgwfT+NlcekJn/xBU7CuSKhAj48i5B9TsbBtDkPsoEQ=;
+	s=arc-20240116; t=1718049317; c=relaxed/simple;
+	bh=FMJO4ULCYTIM7qrpWE1pAVxm9TK6/kPaBt39/nRm6Q8=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=teUmWh6KnFrCq0GHTx7cnkKzPpmDeQQc03R2i8aCUIG5C+qzD9MjZfCxs7Koyy9VHHiO297Jqzff1SSzKiOptbPHbSEZJCUvo8vezz/MlyPnC7/JW1evgStfpwE8mAqj/4WD2uo7uAPSik/NyLJPddD6Hk66/EXIG/dpTETbTus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZrWNiMoE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A3D9C2BBFC;
-	Mon, 10 Jun 2024 19:55:15 +0000 (UTC)
+	 Message-Id:Subject; b=lxnlBFGH+t337YQMVK8wcrZi60SBO5CQBhYnVuzjpSoNkb0Z8uX3RRyME7PxKfzkLqFbonSjXcbH4FfNmlGZff3QdMQro5L2Ql6SumE43T1BuBdG780ghVPC+uQB6MBmFizOZ5EtfDLniYKSQeE5amFJKfXE10BG1Qv0dz+SgXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NY1lwu5H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB33CC4AF49;
+	Mon, 10 Jun 2024 19:55:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718049315;
-	bh=LgwfT+NlcekJn/xBU7CuSKhAj48i5B9TsbBtDkPsoEQ=;
+	s=k20201202; t=1718049316;
+	bh=FMJO4ULCYTIM7qrpWE1pAVxm9TK6/kPaBt39/nRm6Q8=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=ZrWNiMoEFb5XzmI0cWBqy9iCFfaZVMo+YT9ESg/t2QqSBX+TAPQYzOPoj3hI0E0iQ
-	 rVav7WXcnUMQ5tqHzqQbgn5b8lDUYXbsOy/GzvOshUJYwT4bLqqLlEUPs/geIIQhvX
-	 0Mg8XUxRQ2osyy2uOJgXsC2fhJgA5s+bCyoPZNkkKH/Sn12QZqjnRj6GvKABH4HNJy
-	 ++vCs08JvYvlon+/T9CpWXjRyIKGEMvTKm/UFxOOB7nM4IqM2vcnkNa2ElMQKEk6a0
-	 2o4wagmY2vOz42w9NwpT0shKgvGfesJ05KFYw56obpi+D/lwPtXKBO2ynj21mZBaZ+
-	 H45ntW9qJuJtQ==
-Date: Mon, 10 Jun 2024 13:55:14 -0600
+	b=NY1lwu5HVhW/dJDtsIInDzWrIkbm/3gMJq34meF+F28eZdiZlKRI1n0ABh8Nwt5BF
+	 HsuUt+gP+U6djyGdDUtyRYDJnHd+ASwsAV60/wajItY3VS4lEYKt5F34lI3EQDl/Fa
+	 +9LOBv/uRF8QaWJijJTgJTflXAv6E8CABAzqgtOG2bzEK9G8gIL/3Uqt9AERGM2Nu/
+	 IcQEbDo/mHoD7VMlRhoVw7ohGkni/01gIxQsZ9uON1Jh85uSivHDg9xqy/0WyNqStr
+	 ZryDQGF/C+gzRPSR6c5/MOPESknkZ2uJsRo4NRxfSIl4ZEsRRjtuU5VfZJvnCoXMbF
+	 spW2e+0jC+iMg==
+Date: Mon, 10 Jun 2024 13:55:15 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,78 +51,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Conor Dooley <conor.dooley@microchip.com>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>, 
- Daire McNamara <daire.mcnamara@microchip.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, 
- Samuel Holland <samuel.holland@sifive.com>, devicetree@vger.kernel.org, 
- conor@kernel.org, linux-riscv@lists.infradead.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-In-Reply-To: <20240610-vertical-frugally-a92a55427dd9@wendy>
-References: <20240610-vertical-frugally-a92a55427dd9@wendy>
-Message-Id: <171804879964.2984749.10332965123533794635.robh@kernel.org>
-Subject: Re: [PATCH v1 0/5] PolarFire SoC Icicle Reference Design PCIe
- ?support?/fixes
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: devicetree@vger.kernel.org, 
+ FrancescoFerraro <francesco.f@variscite.com>, 
+ Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Ahmad Fatoum <a.fatoum@pengutronix.de>, 
+ Harshesh Valera <harshesh.v@variscite.com>, 
+ Nate Drude <nate.d@variscite.com>, Shawn Guo <shawnguo@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Marco Contenti <marco.c@variscite.com>, imx@lists.linux.dev
+In-Reply-To: <20240608180447.31378-1-laurent.pinchart@ideasonboard.com>
+References: <20240608180447.31378-1-laurent.pinchart@ideasonboard.com>
+Message-Id: <171804879863.2984705.9370632116551818195.robh@kernel.org>
+Subject: Re: [PATCH v3 0/4] arm64: dts: freescale: Add Variscite i.MX8MP
+ DART8MCustomBoard v2
 
 
-On Mon, 10 Jun 2024 12:09:12 +0100, Conor Dooley wrote:
-> Hey all,
+On Sat, 08 Jun 2024 21:04:43 +0300, Laurent Pinchart wrote:
+> Hello,
 > 
-> Here's some patches that add an Erratum to enable non-coherent DMA
-> support for PolarFire SoC. By nature of being an FPGA, and due to the
-> PCIe root ports being only 32-bit capable, many bitstreams configure the
-> FPGA fabric such that peripherals in the fabric become non-coherent. The
-> PCIe root ports on PolarFire SoC are connected to the core-complex via
-> the fabric, and therefore can be (and regularly are) made DMA
-> non-coherent. The Icicle Kit Reference Design has been configuring the
-> PCIe root port in this manner since late 2022 and in a way unsupported
-> by mainline since earlier that year. Adding this non-coherent DMA
-> support makes PCIe functional on those FPGA designs. Daire did almost all
-> the work to figure out how to support these kinds of designs, and this
-> series depends on his patches to introduce the required dma-ranges
-> handling for the root port driver:
-> https://lore.kernel.org/linux-pci/20240531085333.2501399-1-daire.mcnamara@microchip.com/
+> This patch series adds support for the Variscite DART8MCustomBoard v2
+> carrier board with a DART-MX8M-PLUS module.
 > 
-> The final patch depends on:
-> https://lore.kernel.org/linux-pci/20240527-slather-backfire-db4605ae7cd7@wendy/
+> The device tree code originates from Variscite's BSP, and has been
+> heavily refactored to adapt to mainline DT bindings. Some features have
+> been left out:
 > 
-> I'm not sure if an Erratum is really the right way to go about doing
-> this, but I didn't want to make ARCH_MICROCHIP depend on NONPORTABLE.
-> An alternative would be to add a menu under drivers/soc like Renesas
-> does and allow it to be toggled as an option there instead.
+> - Camera: cameras should be enabled through overlays as they're not part
+>   of the carrier board itself. I have successfully tested both camera
+>   ports with modules that currently require out-of-tree drivers, so I
+>   haven't included them in this series.
 > 
-> Thanks,
-> Conor.
+> - USB OTG: the carrier board has a PTN5150 but doesn't route its
+>   interrupt pin to the SoC. It should be possible to work around that in
+>   the driver by implementing polling, but that requires more work that I
+>   can perform at the moment.
 > 
-> CC: Paul Walmsley <paul.walmsley@sifive.com>
-> CC: Palmer Dabbelt <palmer@dabbelt.com>
-> CC: Conor Dooley <conor.dooley@microchip.com>
-> CC: Daire McNamara <daire.mcnamara@microchip.com>
-> CC: Rob Herring <robh@kernel.org>
-> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> CC: Samuel Holland <samuel.holland@sifive.com>
-> CC: linux-riscv@lists.infradead.org
-> CC: devicetree@vger.kernel.org
+> - WiFi, Bluetooth and audio support: those are part of the DART SoM
+>   itself, for which schematics isn't available, so I can't easily
+>   troubleshoot them.
 > 
-> Conor Dooley (5):
->   cache: ccache: allow building for PolarFire
->   cache: ccache: add mpfs to nonstandard cache ops list
->   RISC-V: Add an MPFS erratum for PCIe
->   riscv: dts: microchip: modify memory map & add dma-ranges for pcie on
->     icicle
->   riscv: dts: microchip: update pcie reg properties
+> - PCIe: I lack test hardware for this.
 > 
->  arch/riscv/Kconfig.errata                     | 19 +++++
->  .../dts/microchip/mpfs-icicle-kit-fabric.dtsi | 77 ++++++++++++-------
->  .../boot/dts/microchip/mpfs-icicle-kit.dts    | 44 +++++++++--
->  .../dts/microchip/mpfs-m100pfs-fabric.dtsi    |  6 +-
->  .../dts/microchip/mpfs-polarberry-fabric.dtsi |  6 +-
->  drivers/cache/Kconfig                         |  2 +-
->  drivers/cache/sifive_ccache.c                 |  2 +
->  7 files changed, 116 insertions(+), 40 deletions(-)
+> May I tempt someone from Variscite to submit patches to enable at least
+> WiFi, Bluetooth, audio and PCIe ? :-)
 > 
+> The LVDS display panel is integrated in the carrier board device tree in
+> the BSP, I have split it out to an overlay in this series as it is
+> shipped with the development kit but isn't an integral part of the
+> carrier board. In the review of v2, Shawn pointed out that this overlay
+> caused the DT compiler to spit ou warnings. This is still the case here:
+> 
+>   DTC     arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb
+>   DTC     arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo
+> arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso:54.3-16: Warning (reg_format): /fragment@1/__overlay__/touch@38:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+> arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+> arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+> arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+> arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+> arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso:52.11-68.4: Warning (avoid_default_addr_size): /fragment@1/__overlay__/touch@38: Relying on default #address-cells value
+> arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso:52.11-68.4: Warning (avoid_default_addr_size): /fragment@1/__overlay__/touch@38: Relying on default #size-cells value
+> arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo: Warning (graph_port): /fragment@3: graph port node name should be 'port'
+> arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso:85.15-87.3: Warning (graph_endpoint): /fragment@3/__overlay__: graph endpoint node name should be 'endpoint'
+> arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso:85.15-87.3: Warning (graph_endpoint): /fragment@3/__overlay__: graph connection to node '/fragment@0/__overlay__/panel/port/endpoint' is not bidirectional
+>   DTOVL   arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtb
+> 
+> When compiling the overlay in isolation, the compiler doesn't know in
+> which context it will be applied, and thus lacks information to validate
+> the device tree. I don't think the issue is specific to this overlay,
+> and I don't know if there are plans to handle it. If this is a blocker
+> for the time being, patches 1/4 to 3/4 can already be merged without the
+> overlay.
+
+This has come up before. My suggestion is that you add the necessary 
+information to the overlay. Specifically, just add the #address-cells 
+and #size-cells to the overlay. That might mean you have to move up a 
+parent for the target path.
+
+> 
+> Laurent Pinchart (4):
+>   dt-bindings: arm: fsl: Add Variscite DT8MCustomBoard with DART
+>     MX8M-PLUS
+>   arm64: dts: freescale: Add support for the Variscite DART-MX8M-PLUS
+>     SoM
+>   arm64: dts: freescale: Add support for the Variscite i.MX8MP
+>     DART8MCustomBoard
+>   arm64: dts: freescale: Add panel overlay for Variscite DART
+> 
+>  .../devicetree/bindings/arm/fsl.yaml          |   6 +
+>  arch/arm64/boot/dts/freescale/Makefile        |   3 +
+>  .../imx8mp-var-dart-dt8mcustomboard-v2.dts    | 529 ++++++++++++++++++
+>  .../imx8mp-var-dart-panel-gktw70sdae4se.dtso  |  99 ++++
+>  .../boot/dts/freescale/imx8mp-var-dart.dtsi   | 340 +++++++++++
+>  5 files changed, 977 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dts
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-dart.dtsi
+> 
+> 
+> base-commit: 41f93a496af2696d970cbcb3814261a9b32dbaa2
 > --
-> 2.43.2
+> Regards,
+> 
+> Laurent Pinchart
 > 
 > 
 > 
@@ -142,16 +174,20 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y microchip/mpfs-icicle-kit.dtb' for 20240610-vertical-frugally-a92a55427dd9@wendy:
+New warnings running 'make CHECK_DTBS=y freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb' for 20240608180447.31378-1-laurent.pinchart@ideasonboard.com:
 
-arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dtb: pcie@3000000000: reg: [[48, 0, 0, 134217728], [0, 1124106240, 0, 8192], [0, 1124114432, 0, 8192]] is too long
-	from schema $id: http://devicetree.org/schemas/pci/microchip,pcie-host.yaml#
-arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dtb: pcie@3000000000: reg-names:1: 'apb' was expected
-	from schema $id: http://devicetree.org/schemas/pci/microchip,pcie-host.yaml#
-arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dtb: pcie@3000000000: reg-names: ['cfg', 'bridge', 'ctrl'] is too long
-	from schema $id: http://devicetree.org/schemas/pci/microchip,pcie-host.yaml#
-arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dtb: pcie@3000000000: Unevaluated properties are not allowed ('#address-cells', '#interrupt-cells', '#size-cells', 'bus-range', 'device_type', 'dma-noncoherent', 'interrupt-controller', 'interrupt-map', 'interrupt-map-mask', 'interrupt-parent', 'interrupts', 'msi-parent', 'reg', 'reg-names' were unexpected)
-	from schema $id: http://devicetree.org/schemas/pci/microchip,pcie-host.yaml#
+ti,x-plate-ohms: size (2) error for type uint32-array
+arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb: touch@0: ti,x-plate-ohms: size is 16, expected 32
+	from schema $id: http://devicetree.org/schemas/property-units.yaml#
+arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb: touch@0: ti,settle-delay-usec: b'\x00\x96' is not of type 'object', 'array', 'boolean', 'null'
+	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb: touch@0: ti,debounce-tol: b'\x00\x03' is not of type 'object', 'array', 'boolean', 'null'
+	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb: touch@0: ti,debounce-rep: b'\x00\x01' is not of type 'object', 'array', 'boolean', 'null'
+	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb: /soc@0/bus@30800000/spba-bus@30800000/spi@30820000/touch@0: failed to match any schema with compatible: ['ti,tsc2046']
+arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb: interrupt-controller@32fc2000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/fsl,irqsteer.yaml#
 
 
 
