@@ -1,168 +1,389 @@
-Return-Path: <devicetree+bounces-74072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25941901D96
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 11:00:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5C57901DA1
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 11:01:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3804C1C213BB
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 09:00:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50F0B284687
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 09:01:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19C3F74050;
-	Mon, 10 Jun 2024 08:58:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1CCB7F7E3;
+	Mon, 10 Jun 2024 08:58:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GDHCD/ie"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FQcpCe0K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f68.google.com (mail-wr1-f68.google.com [209.85.221.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9381674048;
-	Mon, 10 Jun 2024 08:58:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB1CF76F1B;
+	Mon, 10 Jun 2024 08:58:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718009892; cv=none; b=ItaI67X0YtDXOqFmiC9rzXkryQ2dBnMTfQIgMqpsMR+8vtOAkt9jDKUp4En+fveSUZRYzmbBPUNAWJi3+UnH8Ji19SNIws2aoQnOUw1XyhKvW7PTq2Z6pwARTGcoBwirvbqDurfa/5UAtiHIlgjJMVb0svgIJx0Y80+bZTUmSfU=
+	t=1718009930; cv=none; b=J/lgpTv8RbeOaBqyzbyCCEspMgTKFiZw/mSpNgmMbnGHLhO3rg5XUMoJuyF8ivuTELEFS+965MdacfipXu9E9bvuJK+/9kzQZwd6XXfOVllrv/2kudu4RS/adcmdJVMJ6bBpsOaoF9PPZodMKgkavHcNdy/DxavYdRb9Bcw7prs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718009892; c=relaxed/simple;
-	bh=kCLgm/ob7tKIJpCCqdEArhf70gyowPRyHlr6YQKmgN0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=gUpQ2XGmifhsJGUIWx3TgVCSlEYWjx5HF+jt0dpNLDTKMvHm4omlX3SDSA2OxQXlriJ9V+NpdEsBvWeqEKAr0HJGcy8aJZQ9frdeQ902tbXg7+sZI6qgCtUjeJp8JDyA3XeF5iWK/imppMvpaAYOD4JNQZk1TsSQXF4wUYUT2Bw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GDHCD/ie; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45A1QNT4011973;
-	Mon, 10 Jun 2024 08:58:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	IRXb8CbQK9AsGPcEcK+89IETcDeKaP+c/nhkH2j229Y=; b=GDHCD/ieV4uEAfqY
-	VlOr+LoNur9M6FDPbs/vQpMPmbOp2FNTvC+oN/8hqzynCm7h0FIJPD5Z5DmqIOCU
-	pN7xia8ahr4KN7fiIfMl+CkfPmumiqSd6rdRGwGm31/axuzH2rVzTI7umkyTQElI
-	fUBSmCLBu8zXR3/VjVvEUPkaGTw4NxASxB9vmwECnVmGbOarEAQ8QfxPq5NhZHv5
-	8gzXLLh38vpa1JPn2MNdgyVBDbolgMnZs0927I0gWR1dtvMCEZ3IgoExZd76WwmA
-	jEXXlV66VP0QEWCebtbbKMsocI/1YxkS82LuruNP6/NWIedWSTfB4DApNvqgwx2R
-	pycXPQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ymgk8u420-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Jun 2024 08:58:06 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45A8w5sW011138
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Jun 2024 08:58:05 GMT
-Received: from [10.218.0.85] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 10 Jun
- 2024 01:58:01 -0700
-Message-ID: <e6eb1eb3-1130-41ec-bae9-25dad6d22bdc@quicinc.com>
-Date: Mon, 10 Jun 2024 14:27:58 +0530
+	s=arc-20240116; t=1718009930; c=relaxed/simple;
+	bh=zG9Nk1i9CpO30iwDpBCYAJoPe2JWUw3aG89GN5vsBvQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nkVWbJdYCkAHpYrNo3Sm1s45JVWm4k6h0xnPvYGRvq9nOMdun0mj9N9LvciRzj864gSclHdokkItdzDM/x9IhxSaefCAOt1FdEKcSQ5TJEuACmE3Eu4X5OSiDMw3XwE2Qj7xsiNdI7LlEEKSLwUfyLjRpZb+PbbXnMCwEehMVQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FQcpCe0K; arc=none smtp.client-ip=209.85.221.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f68.google.com with SMTP id ffacd0b85a97d-35dc1d8867eso3230888f8f.0;
+        Mon, 10 Jun 2024 01:58:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718009927; x=1718614727; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qOAtN7oXCzbDYC+AN7vSfI2DUaJdROI9p4SpPCnLXBM=;
+        b=FQcpCe0KLELg9A4nD2R3T85VjMwnJgAQSQ3tCtn7Qot177qYE/2tI0VFdr7ASlSWs0
+         d8ukYNfCyS9ceR8suRg4EDprNGVzpg2sOdd3c0Wqd821+QRgmCN1/WOnMo8udoBow77X
+         zw/IPIq/v+hbwKaRG0BONi7RTDa6vC+oxKrEdhq66kSQKzrvwCLwhur7eXTrr8GxEefE
+         UmUTAA6VwUBUeixqZL8rxuCcVF6p1qc98Bx2KvGaAEVk7xCUrPh18PZXPDEmAIwjrXZP
+         +3TKI91jS4LjcVDCxfffgeJqvSXk2ri8KdpNsnXvcDetTyT2oSu7QK3jaqG9GK7dRtb7
+         itzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718009927; x=1718614727;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qOAtN7oXCzbDYC+AN7vSfI2DUaJdROI9p4SpPCnLXBM=;
+        b=nN/yCDvzSohP5tG/4HsbmYOT4+1HBpVrIz8+EVpIjh8NP6b9YTtKk3ohxcYiBTDFj6
+         bqocGC+cOf5XyBO1VBoe63ajFA4wisF9J31sdc3LufynM6AghO9JdKhh4sCFBFhT1Qv4
+         Mo1w03U38slAXdrwDoU1UhAP/pIa5VdC30HQw5lXmgZqlIAAL4AF3GPTC73x+hI0BXvM
+         UcUCpRKUPmg7IODovzqFk9Ys3uvNciRaRLsddUEH4yqrJru9uqRISZLQHcdspzojq89B
+         mOG46sUXJRkaPUNhdyNJQ/omjJOJypdmDZpYtmrIRTFNSRnEjeRCnoOjRlvJTetPFbqa
+         GbMw==
+X-Forwarded-Encrypted: i=1; AJvYcCVjEaBxrcMdIuTIrfNl97VSlP3FI0InXY1nos45DIAtKHZiJofjIbqaH1eVw1umHuXVUfDWO0djOaHmzpbUeqq7CwNql8qcPrQD3u78Svfi40ZLLLyZ7wJ8Ez30MtQfq7A0Kijb/CcShA==
+X-Gm-Message-State: AOJu0Yxpv0sHHoJgG6Nsm9J85+dMf7Tv+Wwvh9NnN2zVlmWNhYsJnYfi
+	feUx05eavy8tXN/KvpJifNBvCjhj8Q6dZXgDCDOR+CJlSjMtCcOu97dotY1ost4HG3ZCaNyMUvX
+	X84OVml6OBR7gbxPNvPMS8x7aTeU=
+X-Google-Smtp-Source: AGHT+IFPU6+LOf8PgX7KOs5qPDS8vsX5Vv8RXv8XleCs5E5DIcHCc8fIioa/JjHQYg24T8SZZtlR3JvXWMYc84EnZ4U=
+X-Received: by 2002:adf:b1dc:0:b0:35d:bd46:960a with SMTP id
+ ffacd0b85a97d-35efed4e09emr7157345f8f.23.1718009926938; Mon, 10 Jun 2024
+ 01:58:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/13] clk: qcom: gcc-sa8775p: Update the GDSC wait_val
- fields and flags
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen
- Boyd" <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_jkona@quicinc.com>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>
-References: <20240531090249.10293-1-quic_tdas@quicinc.com>
- <20240531090249.10293-3-quic_tdas@quicinc.com>
- <9163bc46-983f-4d5a-b009-c12ddd5a5c8a@linaro.org>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <9163bc46-983f-4d5a-b009-c12ddd5a5c8a@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: nVjpNyfzdLR8qCFhgpeB6KJb3I06h5JS
-X-Proofpoint-ORIG-GUID: nVjpNyfzdLR8qCFhgpeB6KJb3I06h5JS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-10_02,2024-06-06_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 mlxlogscore=999 mlxscore=0 adultscore=0 malwarescore=0
- priorityscore=1501 suspectscore=0 spamscore=0 bulkscore=0 clxscore=1015
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406100068
+References: <CADFWO8EQUkGcbE=RXjxXbub2tZge9+ss=gB-Q6wngFAvwFygRg@mail.gmail.com>
+ <20240505181829.49864540@jic23-huawei>
+In-Reply-To: <20240505181829.49864540@jic23-huawei>
+From: Petar Stoykov <pd.pstoykov@gmail.com>
+Date: Mon, 10 Jun 2024 10:58:35 +0200
+Message-ID: <CADFWO8FGqD5GyrRtvFptjMdYBhfFFwOzgZ1XnVVEPeY3E8CZPg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] iio: pressure: Add driver for Sensirion SDP500
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: linux-iio@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Rob Herring <robh+dt@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Angel Iglesias <ang.iglesiasg@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Konrad,
+On Sun, May 5, 2024 at 7:18=E2=80=AFPM Jonathan Cameron <jic23@kernel.org> =
+wrote:
+>
+> On Tue, 30 Apr 2024 17:27:24 +0200
+> Petar Stoykov <pd.pstoykov@gmail.com> wrote:
+>
+> > From 6ae7537517f551540121ca6fb3b99080b7580410 Mon Sep 17 00:00:00 2001
+> > From: Petar Stoykov <pd.pstoykov@gmail.com>
+> > Date: Mon, 15 Jan 2024 12:21:26 +0100
+> > Subject: [PATCH 2/3] iio: pressure: Add driver for Sensirion SDP500
+> >
+> > Sensirion SDP500 is a digital differential pressure sensor. The sensor =
+is
+> > accessed over I2C.
+> >
+> > Signed-off-by: Petar Stoykov <pd.pstoykov@gmail.com>
+> Hi Petar
+>
+> Ignoring the patch formatting which others have already given feedback on=
+,
+> a few minor comments inline.
+>
+> Also, I'd expect some regulator handling to turn the power on.
+> Obviously on your particular board there may be nothing to do but good to
+> have the support in place anyway and it will be harmless if the power
+> is always on.
+>
+> Jonathan
+>
+Hi Jonathan,
 
-Thanks for your review.
+Thank you for looking past the formatting!
 
-On 5/31/2024 6:52 PM, Konrad Dybcio wrote:
-> On 31.05.2024 11:02 AM, Taniya Das wrote:
->> Update the GDSC wait_val fields as per the default hardware values as
->> otherwise they would lead to GDSC FSM state to be stuck and causing
->> failures to power on/off. Also add the GDSC flags as applicable and
->> add support to control PCIE GDSC's using collapse vote registers.
->>
->> Fixes: 08c51ceb12f7 ("clk: qcom: add the GCC driver for sa8775p")
->> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->> ---
->>   drivers/clk/qcom/gcc-sa8775p.c | 40 ++++++++++++++++++++++++++++++++++
->>   1 file changed, 40 insertions(+)
->>
->> diff --git a/drivers/clk/qcom/gcc-sa8775p.c b/drivers/clk/qcom/gcc-sa8775p.c
->> index 7bb7aa3a7be5..71fa95f59a0a 100644
->> --- a/drivers/clk/qcom/gcc-sa8775p.c
->> +++ b/drivers/clk/qcom/gcc-sa8775p.c
->> @@ -4203,74 +4203,114 @@ static struct clk_branch gcc_video_axi1_clk = {
->>   
->>   static struct gdsc pcie_0_gdsc = {
->>   	.gdscr = 0xa9004,
->> +	.collapse_ctrl = 0x4b104,
->> +	.collapse_mask = BIT(0),
->> +	.en_rest_wait_val = 0x2,
->> +	.en_few_wait_val = 0x2,
->> +	.clk_dis_wait_val = 0xf,
->>   	.pd = {
->>   		.name = "pcie_0_gdsc",
->>   	},
->>   	.pwrsts = PWRSTS_OFF_ON,
->> +	.flags = VOTABLE | RETAIN_FF_ENABLE | POLL_CFG_GDSCR,
-> 
-> I have some old dt for this platform, and it doesn't mention the downstream
-> counterpart flag for it (qcom,support-cfg-gdscr), so please double-check
-> whether you really want to poll gdcsr + 0x4.
-> 
+I wrongly assumed the power regulator would be handled automatically :)
+I see examples of how to do it in other pressure drivers now.
 
-Yes, the older code did not have the cfg-gdscr updated in the DT, but as 
-per the latest discussions with design we have concluded to use the 
-polling of GDSCR from the CFG register on all latest designs. We added 
-the support in the latest DT as well to support for 
-'qcom,support-cfg-gdscr'.
+> >  st_pressure-$(CONFIG_IIO_BUFFER) +=3D st_pressure_buffer.o
+> > diff --git a/drivers/iio/pressure/sdp500.c b/drivers/iio/pressure/sdp50=
+0.c
+> > new file mode 100644
+> > index 000000000000..7efcc69e829c
+> > --- /dev/null
+> > +++ b/drivers/iio/pressure/sdp500.c
+> > @@ -0,0 +1,144 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +#include <linux/i2c.h>
+> > +#include <linux/crc8.h>
+> > +#include <linux/iio/iio.h>
+> > +#include <asm/unaligned.h>
+> > +
+> > +#define SDP500_CRC8_POLYNOMIAL  0x31   // x8 + x5 + x4 + 1 (normalized=
+ to 0x31)
+> > +#define SDP500_READ_SIZE        3
+> > +#define SDP500_CRC8_WORD_LENGTH 2
+>
+> As below. I'd establish these off the data the are the lengths of by usin=
+g
+> a structure definition.  That will be more obvious and less fragile than
+> defines hiding up here.
+>
+>
+> > +#define SDP500_CRC8_INIT        0x00
+>
+> I'd just use the number inline.  Can't see what the define is adding.
 
-> The magic values I trust you have better sources for, the collapse off/masks
-> look good.
-> 
+I've been taught to avoid magic numbers as much as possible.
+Giving it a define directly explains what the number is, even if it's used =
+once.
+But I'll follow the community (in this case, you) for this.
 
-Yes, these are the Power-on Reset (PoR) values which the current GDSC 
-driver overrides in gdsc_init(). The GDSC driver for older designs 
-needed these overrides from SW, but the newer designs did not want to 
-make any such changes.
+>
+> > +
+> > +#define SDP500_SCALE_FACTOR 60
+> > +
+> > +#define SDP500_I2C_START_MEAS 0xF1
+> > +
+> > +struct sdp500_data {
+> > +    struct device *dev;
+> > +};
+> > +
+> > +DECLARE_CRC8_TABLE(sdp500_crc8_table);
+> > +
+> > +static int sdp500_start_measurement(struct sdp500_data *data, const
+> > struct iio_dev *indio_dev)
+> > +{
+> > +    struct i2c_client *client =3D to_i2c_client(data->dev);
+> > +
+> > +    return i2c_smbus_write_byte(client, SDP500_I2C_START_MEAS);
+> Doesn't seem worth a wrapper function. I would just put this code inline.
+> > +}
+> > +
+> > +static const struct iio_chan_spec sdp500_channels[] =3D {
+> > +    {
+> > +        .type =3D IIO_PRESSURE,
+> > +        .info_mask_separate =3D BIT(IIO_CHAN_INFO_PROCESSED),
+>
+> As below. It's a linear scale factor, so I would prefer _RAW and _SCALE
+> to let userspace deal with the maths.
 
-> Konrad
+I saw your other e-mail with further explanation and I begrudgingly agree.
+I would much prefer if the "SDP500_SCALE_FACTOR" return code is not
+accepted for the "IIO_CHAN_INFO_PROCESSED" case. And I also saw
+other drivers do the same as me which gave me confidence it was the right
+thing to do.
+But, again, it makes sense to avoid this so I'll change it as suggested.
 
--- 
-Thanks & Regards,
-Taniya Das.
+>
+> > +    },
+> > +};
+> > +
+> > +static int sdp500_read_raw(struct iio_dev *indio_dev,
+> > +              struct iio_chan_spec const *chan,
+> > +              int *val, int *val2, long mask)
+> > +{
+> > +    int ret;
+> > +    u8 rxbuf[SDP500_READ_SIZE];
+> You could define this as a struct so all the data types are obvious.
+>
+>         struct {
+>                 __be16 data;
+>                 u8 crc;
+>         } __packed rxbuf;
+> The  __packed let's you use sizeof(rxbuf) for the transfer size.
+> Beware though as IIRC that will mean data is not necessarily aligned
+> so you'll still need the unaligned accessors.
+>
+
+I know, but I prefer to receive data in simple arrays and then deal with it=
+.
+
+> > +    u8 rec_crc, calculated_crc;
+> > +    s16 dec_value;
+> > +    struct sdp500_data *data =3D iio_priv(indio_dev);
+> > +    struct i2c_client *client =3D to_i2c_client(data->dev);
+> > +
+> > +    switch (mask) {
+> > +    case IIO_CHAN_INFO_PROCESSED:
+> > +        ret =3D i2c_master_recv(client, rxbuf, SDP500_READ_SIZE);
+> > +        if (ret < 0) {
+> > +            dev_err(indio_dev->dev.parent, "Failed to receive data");
+> > +            return ret;
+> > +        }
+> > +        if (ret !=3D SDP500_READ_SIZE) {
+> > +            dev_err(indio_dev->dev.parent, "Data is received wrongly")=
+;
+>
+> I'd guess indio_dev->dev.parent =3D=3D data->dev
+> If so use data->dev as more compact and that's where you are getting the
+> i2c_client from.
+>
+
+Makes sense.
+
+> > +            return -EIO;
+> > +        }
+> > +
+> > +        rec_crc =3D rxbuf[2];
+> > +        calculated_crc =3D crc8(sdp500_crc8_table, rxbuf,
+> > SDP500_CRC8_WORD_LENGTH,
+>
+> I'd use the number 2 for length directly as it's useful to know this is t=
+he
+> __be16 only, or sizeof(__be16)
+> What is the point in rec_crc local variable?
+
+Ok, I will use sizeof(rxbuff) - 1 instead of the define.
+The rec_crc is again for readability, like the SDP500_CRC8_INIT define.
+I will change it to "received_crc" which is clearer though.
+
+>
+> > +            SDP500_CRC8_INIT);
+> > +        if (rec_crc !=3D calculated_crc) {
+> > +            dev_err(indio_dev->dev.parent, "calculated crc =3D 0x%.2X,
+> > received 0x%.2X",
+> > +                calculated_crc, rec_crc);
+> > +            return -EIO;
+> > +        }
+> > +
+> > +        dec_value =3D get_unaligned_be16(rxbuf);
+> > +        dev_dbg(indio_dev->dev.parent, "dec value =3D %d", dec_value);
+>
+> When you move to returning scale and _raw this print won't add anything s=
+o
+> drop it.
+>
+> > +
+> > +        *val =3D dec_value;
+> > +        *val2 =3D SDP500_SCALE_FACTOR;
+> For linear transforms like this it is normally better to provide separate
+> raw and scale interfaces.
+>
+> Then if anyone does want to add buffered support in the future that is ea=
+sier
+> to do as it is much more compact + userspace has floating point which is =
+always
+> going to be better for division than we can do in kernel.
+>
+> > +        return IIO_VAL_FRACTIONAL;
+> > +    default:
+> > +        return -EINVAL;
+> > +    }
+> > +}
+> > +
+> > +static const struct iio_info sdp500_info =3D {
+> > +    .read_raw =3D &sdp500_read_raw,
+> > +};
+> > +
+> > +static int sdp500_probe(struct i2c_client *client)
+> > +{
+> > +    struct iio_dev *indio_dev;
+> > +    struct sdp500_data *data;
+> > +    struct device *dev =3D &client->dev;
+> > +    int ret;
+> > +    u8 rxbuf[SDP500_READ_SIZE];
+> > +
+> > +    indio_dev =3D devm_iio_device_alloc(dev, sizeof(*data));
+> > +    if (!indio_dev)
+> > +        return -ENOMEM;
+> > +
+> > +    /* has to be done before the first i2c communication */
+> > +    crc8_populate_msb(sdp500_crc8_table, SDP500_CRC8_POLYNOMIAL);
+> > +
+> > +    data =3D iio_priv(indio_dev);
+> > +    data->dev =3D dev;
+> > +
+> > +    indio_dev->name =3D "sdp500";
+> > +    indio_dev->channels =3D sdp500_channels;
+> > +    indio_dev->info =3D &sdp500_info;
+> > +    indio_dev->modes =3D INDIO_DIRECT_MODE;
+> > +    indio_dev->num_channels =3D ARRAY_SIZE(sdp500_channels);
+> > +
+> > +    ret =3D sdp500_start_measurement(data, indio_dev);
+> > +    if (ret)
+> > +        return dev_err_probe(dev, ret, "Failed to start measurement");
+>
+> Blank line here would help readability a tiny bit.
+>
+> > +    /* First measurement is not correct, read it out to get rid of it =
+*/
+> > +    i2c_master_recv(client, rxbuf, SDP500_READ_SIZE);
+> > +
+> > +    ret =3D devm_iio_device_register(dev, indio_dev);
+> > +    if (ret < 0)
+> > +        return dev_err_probe(dev, ret, "Failed to register indio_dev")=
+;
+>
+> We rarely bother with error prints on failure to register as it is unlike=
+ly
+> to fail because of something that happened at runtime and if it does, tha=
+t
+> is easy to track down.  So I'd drop this print.
+> If you really want to keep it I don't mind that much.
+>
+> > +
+> > +    return 0;
+> > +}
+> > +
+> > +static const struct i2c_device_id sdp500_id[] =3D {
+> > +    { "sdp500" },
+> > +    { }
+> > +};
+> > +MODULE_DEVICE_TABLE(i2c, sdp500_id);
+> > +
+> > +static const struct of_device_id sdp500_of_match[] =3D {
+> > +    { .compatible =3D "sensirion,sdp500" },
+> > +    { }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, sdp500_of_match);
+> > +
+> > +static struct i2c_driver sdp500_driver =3D {
+> > +    .driver =3D {
+> > +        .name    =3D "sensirion,sdp500",
+> > +        .of_match_table =3D sdp500_of_match,
+> > +    },
+> > +    .probe       =3D sdp500_probe,
+> > +    .id_table    =3D sdp500_id,
+> I'd not bother with aligning =3D signs. It just tends to create noise
+> as drivers evolve and people try to keep things aligned (resulting in rea=
+ligning
+> everything).
+>
+
+Good point. It does also bothers me when commits are muddied by
+realigning things.
+
+> > +};
+> > +module_i2c_driver(sdp500_driver);
+> > +
+> > +MODULE_AUTHOR("Thomas Sioutas <thomas.sioutas@prodrive-technologies.co=
+m>");
+> > +MODULE_DESCRIPTION("Driver for Sensirion SDP500 differential pressure =
+sensor");
+> > +MODULE_LICENSE("GPL");
+>
+
+I will test the driver with the suggested changes as soon as I get the
+hardware again
+and I will try using the b4 tool with "web submission endpoint". Thanks aga=
+in!
 
