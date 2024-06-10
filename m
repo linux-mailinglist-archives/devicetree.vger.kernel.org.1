@@ -1,172 +1,140 @@
-Return-Path: <devicetree+bounces-74282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FD369028E4
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 20:48:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56892902941
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 21:28:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 870ED1C20929
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 18:48:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5CD5282657
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 19:28:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 610C917BD2;
-	Mon, 10 Jun 2024 18:48:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC93F14F121;
+	Mon, 10 Jun 2024 19:28:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="yZzLfl6/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TzjQlIS/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8CD719470
-	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 18:48:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F9C14F10E;
+	Mon, 10 Jun 2024 19:28:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718045317; cv=none; b=ZGyf/lIV4sbqqTwZpZG1bETmcLVS4FmUHVb3miiDOB4DzLqxYYRbwdJlMf8DE16+KxUQ/mTrie6tXLuMw5b5EEwi2gVI9+wKFw58YgOHt/Sc4un+OBdY64HouZCw7OL3dy3JQDshwzX3cUh8oQsXsWP7Fm0OhzOoi6Cys4d6ntw=
+	t=1718047708; cv=none; b=S0rlFD+LJrqBGLH9WE1dB6iWor6+RjfC/WEZg90s/NqZsFMuEFg2ffrf2/bRL3xwjstYQPo5uGkCb6Qe/AAc+SXtdJ0bjjopq0zhaYSiZXRPu+T4UCH4STTm2NT9tUCfX/bucYOOJdnVGaDX0qfOlMIrmcoKfzg/F2sILJe1EQw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718045317; c=relaxed/simple;
-	bh=uwH3l4n/N5erM0poSH/fMhqelMaa5SHGi2i3looQLt4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ildeAsU0b1VZJghVjoJlpeCS0KFVf5eRG5S5QEiOAN1QwEvV5QygmoWQpQefl/81Pg+bn+eCgqVnZlMyxir3mLBAdrCJv1voR0KBF1So5SutpifJ/L/gqfNj6SbVOvLDHOsIYiqVjezTJtQ3Jvs9zelU8sredIw3DMQZApKWYOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=yZzLfl6/; arc=none smtp.client-ip=209.85.216.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2c315b569c8so257571a91.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 11:48:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1718045315; x=1718650115; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=g1zkxMfHh2XP11CPVX//08KVDgqqC8nwRqfn9/6C548=;
-        b=yZzLfl6/y+qfEX8AxiFpbnQ3ZbGhBNnsS+aeCwI80kJK6ByXjehqZ7FwpKfVv7vk/t
-         1EDrBGbJU4yWaD4kKANKXwEZI+mfCT06FSobPOy5GGq/477k8b5wyxh8ZTApu6fLVDNj
-         D8Z6p6Oms+LcREij126JxVlITvr+8BJN2sDYuwDKpZTIyA3NuqwCDKJMj2WcWs+pqCwP
-         3fWKGS4s8POjvnsqC8VwA3URsd+3Su8wsxfggXgXzX1WWLkdvUvnhjJMOs8Y8QogKuin
-         04ZqmYjRu0soQ7Bbi8Rq04rF0M5pMxx/PJJ2lUIKPTws16Ybr9091w5ZQkiO8CzJWwTF
-         sJYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718045315; x=1718650115;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=g1zkxMfHh2XP11CPVX//08KVDgqqC8nwRqfn9/6C548=;
-        b=rz0rsHKPXQ/OP/+sFPiw8cq1RErLVFhQ05k16IZ5pySRdPGvJU4TdEcMIwZS5V4Xub
-         a23jtmKlXVN5aqqHLB9iMX5geXlMZoA51fBowFvg8UDLd20xe0APFlq34h0sktRRoCM9
-         VpXrHqqdTOrjgPxbMKhmSPdv4h+w4oy9i2TEADPLp2vsH0aGbE2XI8gQslR8pYmdel9W
-         oyUE2lNU3i5vgS80W4hsNfiLilGHJVPpJ1rLhdKP5/qdKY5dXzSRD5jJH4nWkiiwYLRf
-         VAmpznLFC/cpUUh5emYx7lli7E51Gz5VnqksRgtZsLSiU2XsJz20tLIStfHVC9ho732B
-         vrgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUjwX3Jso4iWu+TgfJ6EC/4uaAXf0dDXkxtzfqswhp8JSH7wpPTlLfsVV1kCl8stsw46vVc2LrJAaDPxR24rMGLUJ/Yia6Y8ALoGA==
-X-Gm-Message-State: AOJu0Yzx09Ig8MxbLXgFiaHrQJuk/nrVY0xOLgE8JdtsYoTQatx+BqnR
-	7W2O+dii36AvO4VyYXaRLZ9prkoNv6GkLjRu2qa8gOELCbLqxcaDzrIPtPNLEhw91EQNpOk/Gg9
-	ZCb5xWDxXQVeOOUsIcJFWzhf5dTHEciiP03gB5A==
-X-Google-Smtp-Source: AGHT+IGBy6VZxEdF6cbSLt6ZlKOXJu423/i8aKL4dzbh+nLx8RnrXexnJssaOg3HPDyzDxqJnqu3KJgm5ET48MCaFWo=
-X-Received: by 2002:a17:90a:fa01:b0:2c3:792:a649 with SMTP id
- 98e67ed59e1d1-2c30792a75amr2976706a91.2.1718045315113; Mon, 10 Jun 2024
- 11:48:35 -0700 (PDT)
+	s=arc-20240116; t=1718047708; c=relaxed/simple;
+	bh=9PZjDT0V6Lj4GRK41zPSetvsgEiAtuFunhoEXkc3IY4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WFvHkgMLTUO8m9y+g99r6QUDcO4GX4oK/0Vl4wjICoN1FzQd/ORgqWmHUwyGNA4soHMaIA6FwETvvyqDpMg+G3q0QPYSDkUyyxg3+vfMmxCaU7D8VXUlNvPP2/VQNUHIm84FJMw3C2SH8lslBOpLrmKZ0hIsnXC8MZmqDiUDYtw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TzjQlIS/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 468B4C4AF1A;
+	Mon, 10 Jun 2024 19:28:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718047708;
+	bh=9PZjDT0V6Lj4GRK41zPSetvsgEiAtuFunhoEXkc3IY4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TzjQlIS/V6CcADcn39qu2MVD/FOA+Yr1qULzWAMawj4+ebOtJTsjTS8PWQReYHTUG
+	 t+b10QtTD4rZWBvXYcPEAXJyraxXaxdRcUcmIa/r/WJBUz8+ASC1ep3qdO5S8FAOBU
+	 OBfzwXkUZW57K73lsfZdzbkmqc3oyftFUt8BMrHSkwiTqIovF/ssJpOtVa9PkT7fJb
+	 W4+IRELYJ3POTYVbrVtiGU6Vl1PfN4RwR978eiSDoU7Dr/53/hcmvcGsZWM9uyEIsa
+	 P+HafwBaOUMhDp8SPgHnxzpgbr8YJHO+llEdJbpVEgLymDlFY+Q3jKcbI47wglfe73
+	 ALVBkh4DUZJdg==
+Date: Mon, 10 Jun 2024 20:28:22 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	Guo Ren <guoren@kernel.org>, Evan Green <evan@rivosinc.com>,
+	Andy Chiu <andy.chiu@sifive.com>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-sunxi@lists.linux.dev, linux-doc@vger.kernel.org,
+	linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH 02/13] dt-bindings: thead: add a vlen register length
+ property
+Message-ID: <20240610-envision-impart-7211e512f987@spud>
+References: <20240609-xtheadvector-v1-0-3fe591d7f109@rivosinc.com>
+ <20240609-xtheadvector-v1-2-3fe591d7f109@rivosinc.com>
+ <20240610-unaltered-crazily-5b63e224d633@spud>
+ <Zmcr7pP+XEWHYTsy@ghost>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1716578450.git.tjeznach@rivosinc.com> <e18ec8ac169ae7f76e9044c26d0768e6469bad19.1716578450.git.tjeznach@rivosinc.com>
- <CANXhq0p4gERQeROSCSKqxnRZq9-fGfmROGV8JZyqFaenNpnsLA@mail.gmail.com> <20240610174934.GM791043@ziepe.ca>
-In-Reply-To: <20240610174934.GM791043@ziepe.ca>
-From: Tomasz Jeznach <tjeznach@rivosinc.com>
-Date: Mon, 10 Jun 2024 11:48:23 -0700
-Message-ID: <CAH2o1u4c6ttUWTb1zrc8DScDMuDJJYR-tTHCPYW_3FV4uuQDtA@mail.gmail.com>
-Subject: Re: [PATCH v6 5/7] iommu/riscv: Device directory management.
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Zong Li <zong.li@sifive.com>, Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Anup Patel <apatel@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Nick Kossifidis <mick@ics.forth.gr>, Sebastien Boeuf <seb@rivosinc.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	iommu@lists.linux.dev, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux@rivosinc.com, 
-	Lu Baolu <baolu.lu@linux.intel.com>, Jim Shu <jim.shu@sifive.com>, 
-	Vincent Chen <vincent.chen@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="zZEd5eFtiVuoCvyW"
+Content-Disposition: inline
+In-Reply-To: <Zmcr7pP+XEWHYTsy@ghost>
+
+
+--zZEd5eFtiVuoCvyW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 10, 2024 at 10:49=E2=80=AFAM Jason Gunthorpe <jgg@ziepe.ca> wro=
-te:
->
-> On Fri, May 31, 2024 at 02:25:15PM +0800, Zong Li wrote:
->
-> > > +static void riscv_iommu_iodir_update(struct riscv_iommu_device *iomm=
-u,
-> > > +                                    struct device *dev, u64 fsc, u64=
- ta)
-> > > +{
-> > > +       struct iommu_fwspec *fwspec =3D dev_iommu_fwspec_get(dev);
-> > > +       struct riscv_iommu_dc *dc;
-> > > +       u64 tc;
-> > > +       int i;
-> > > +
-> > > +       /* Device context invalidation ignored for now. */
-> > > +
-> > > +       /*
-> > > +        * For device context with DC_TC_PDTV =3D 0, translation attr=
-ibutes valid bit
-> > > +        * is stored as DC_TC_V bit (both sharing the same location a=
-t BIT(0)).
-> > > +        */
-> > > +       for (i =3D 0; i < fwspec->num_ids; i++) {
-> > > +               dc =3D riscv_iommu_get_dc(iommu, fwspec->ids[i]);
-> > > +               tc =3D READ_ONCE(dc->tc);
-> > > +               tc |=3D ta & RISCV_IOMMU_DC_TC_V;
-> > > +
-> > > +               WRITE_ONCE(dc->fsc, fsc);
-> > > +               WRITE_ONCE(dc->ta, ta & RISCV_IOMMU_PC_TA_PSCID);
-> > > +               /* Update device context, write TC.V as the last step=
-. */
-> > > +               dma_wmb();
-> > > +               WRITE_ONCE(dc->tc, tc);
-> > > +       }
-> >
-> > Does it make sense to invalidate the DDTE after we update the DDTE in
-> > memory? This behavior will affect the nested IOMMU mechanism. The VMM
-> > has to catch the event of a DDTE update from the guest and then
-> > eventually go into the host IOMMU driver to configure the IOMMU
-> > hardware.
->
-> Right, this is why I asked about negative caching.
->
-> The VMMs are a prime example of negative caching, in something like
-> the SMMU implementation the VMM will cache the V=3D0 STE until they see
-> an invalidation.
->
-> Driving the VMM shadowing/caching entirely off of the standard
-> invalidation mechanism is so much better than any other option.
->
-> IMHO you should have the RISCV spec revised to allow negative caching
-> in any invalidated data structure to permit the typical VMM design
-> driven off of shadowing triggered by invalidation commands.
->
-> Once the spec permits negative caching then the software would have to
-> invalidate after going V=3D0 -> V=3D1.
->
-> Jason
+On Mon, Jun 10, 2024 at 09:38:06AM -0700, Charlie Jenkins wrote:
+> On Mon, Jun 10, 2024 at 05:29:23PM +0100, Conor Dooley wrote:
+> > On Sun, Jun 09, 2024 at 09:45:07PM -0700, Charlie Jenkins wrote:
+> > > Add a property analogous to the vlenb CSR so that software can detect
+> > > the vector length of each CPU prior to it being brought online.
+> > > Currently software has to assume that the vector length read from the
+> > > boot CPU applies to all possible CPUs. On T-Head CPUs implementing
+> > > pre-ratification vector, reading the th.vlenb CSR may produce an ille=
+gal
+> > > instruction trap, so this property is required on such systems.
+> > >=20
+> > > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/riscv/thead.yaml | 7 +++++++
+> > >  1 file changed, 7 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/riscv/thead.yaml b/Doc=
+umentation/devicetree/bindings/riscv/thead.yaml
+> > > index 301912dcd290..5e578df36ac5 100644
+> > > --- a/Documentation/devicetree/bindings/riscv/thead.yaml
+> > > +++ b/Documentation/devicetree/bindings/riscv/thead.yaml
+> > > @@ -28,6 +28,13 @@ properties:
+> > >            - const: sipeed,lichee-module-4a
+> > >            - const: thead,th1520
+> > > =20
+> > > +thead,vlenb:
+> >=20
+> > This needs to move back into cpus.yaml, this file documents root node
+> > compatibles (boards and socs etc) and is not for CPUs. If you want to
+> > restrict this to T-Head CPUs only, it must be done in cpus.yaml with
+> > a conditional `if: not: ... then: properties: thead,vlenb: false`.
+> >=20
+> > Please test your bindings.
+>=20
+> Now that I know `make dt_binding_check` exists I will use that in the
+> future!
 
-Allowing negative cacheing by the spec (e.g. for VMM use cases) and
-documenting required invalidation sequences would definitely help
-here. I'm hesitating adding IODIR.INVAL that is not required by the
-spec [1], but this is something that can be controlled by a
-capabilities/feature bit once added to the specification or based on
-VID:DID of the emulated Risc-V IOMMU.
+And in this case dtbs_check would also complain about riscv,vlenb being
+undocumented - and complain about thead,vlenb not being a permitted cpu
+property either.
 
-Another option to consider for VMM is to utilize the WARL property of
-DDTP, and provide fixed location of the single level DDTP, pointing to
-MMIO region, where DDTE updates will result in vmm exit / fault
-handler. This will likely not be as efficient as IODIR.INVAL issued
-for any DDTE updates.
+Thanks,
+Conor.
 
-[1] https://github.com/riscv-non-isa/riscv-iommu/blob/main/src/iommu_data_s=
-tructures.adoc#caching-in-memory-data-structures
+--zZEd5eFtiVuoCvyW
+Content-Type: application/pgp-signature; name="signature.asc"
 
-- Tomasz
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmdT1gAKCRB4tDGHoIJi
+0gELAP9N4Tu6RdQuKtMCvloFTO6BrRXNU2iSwXxMepsikmv0PQEAsVNMYTrc/cIX
+AooXc0b3saxiQGxb2MiZo/UtbA/dcAo=
+=DctY
+-----END PGP SIGNATURE-----
+
+--zZEd5eFtiVuoCvyW--
 
