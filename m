@@ -1,509 +1,213 @@
-Return-Path: <devicetree+bounces-74290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 620AD9029BB
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 22:10:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BFBA9029CD
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 22:14:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA3971F21007
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 20:10:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F19231F2334A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 20:14:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15ADB14F11E;
-	Mon, 10 Jun 2024 20:10:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 762C914EC73;
+	Mon, 10 Jun 2024 20:14:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="QuuLqwCx"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="twx9GJqs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D69D41B812;
-	Mon, 10 Jun 2024 20:10:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B7711CF9B
+	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 20:14:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718050230; cv=none; b=Q3Z+Sd1LmEIgKTQc25aY1IZFxzV9xYLyyPh9vh3RmmN4CZ8oYAv0Rh6hK+Hqb/u9LRnGAzYJEeBiLCtgNDwLvJEUgtlCNIhFBxWUf5Hxr1ArcD7mogirL2O9dBHF7osYOQY/OGOPWj1HLFr3K5cuxfZvzTsjX/mDomQMUBFpYD4=
+	t=1718050489; cv=none; b=f5p3Kqvm4eYVXK3m3BjqvR5ig3xZtvPHiFgLVL0I8M763apIEd7gobVwwSWzuohBiywqSXpGekC4/hMrPYshp9kMzYUF7diABHr6jnOcXd/vCFL2IQAgdEF8mS9cHe5/8oZGkhrCbbYPAjNEfqi1V/vDZm/HOPP0eXcFgAGut2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718050230; c=relaxed/simple;
-	bh=6uixyUWYSj3kgndB5cgUrZNGgpCXWIIZ9W1XOnK8m5k=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BeRdO0HjMfQlPS+niruuxYiqH+352kbh8Fr3z0JubopgeH6ojpSNt6a7+yG4XXfygx1MIZ62EGcSa6V5cQfsPkcvaOgpd5+55ESdrEUVteLmB2R+oQoeNrr9/x+dr2GHFRu61Wv0SXUSCBtwK8qYNj9FX56NVTTWcxNj7mYSHvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=QuuLqwCx; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id DDC78120002;
-	Mon, 10 Jun 2024 23:10:21 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru DDC78120002
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1718050221;
-	bh=CyjAD39Adp9YwtacIJu4i0hG6rQt5kSGw9YY6Ugq/9U=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=QuuLqwCxereQliyq65cKfCVAjsgIdKyiQjvZOA4iEWZyIGzvCqXalBYideWIO4VAa
-	 wF2FNblb8PntwV+ncoMago15ud6S3gi1d33ktZ2NpOLt1okDA0T99VQlo/XNmg98ZO
-	 Gq2gWpToFdUkAJi3WkAFY2d1PDTUPPvQexK9Oo1BrksmA4Tk9Y35xcQMksjtJHAQkn
-	 4uCNJL4saexygvckBqYOZ0IVkasb+UtvPe5Z+9tQxaH73GFMTG5JV5h8sg21xJssu8
-	 O0WYwVkQqb+CPvMg9aO2YyZsJPbygBfyxd+khBgZ8Un8JK1jVz+qLJAhN9Kx6RGgv/
-	 gJ40wS8EmnHyA==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon, 10 Jun 2024 23:10:21 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
- (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 10 Jun
- 2024 23:10:21 +0300
-Date: Mon, 10 Jun 2024 23:10:16 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-CC: <neil.armstrong@linaro.org>, <mturquette@baylibre.com>,
-	<sboyd@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <jian.hu@amlogic.com>,
-	<kernel@sberdevices.ru>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 7/7] clk: meson: a1: add Amlogic A1 CPU clock
- controller driver
-Message-ID: <20240610201016.3ufzf6oh43sccxqx@CAB-WSD-L081021>
-References: <20240515185103.20256-1-ddrokosov@salutedevices.com>
- <20240515185103.20256-8-ddrokosov@salutedevices.com>
- <1jmsntp0wo.fsf@starbuckisacylon.baylibre.com>
- <20240610130824.dt7matrj4tespizl@CAB-WSD-L081021>
+	s=arc-20240116; t=1718050489; c=relaxed/simple;
+	bh=bdvJlbw1/chnYOtLBpIve21xjV9IQLVV4o87fmIs9pQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o8cCeByvAubcB/8q7YRCmG+KJ212bGdDLoBhqAZ9lQYLiemrAABwDvkZL1zC0oLZcN0Zl+EkNj3Wam+sRtBrsU5zUkkGyU65JEiCzoSaVWXMlLuoTOrAp6k26OkE5GZ/yOI2Qbv7uAxVuqUwuHYhECiElenCCZZI8w2RmPMrk4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=twx9GJqs; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8CE3C512;
+	Mon, 10 Jun 2024 22:14:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1718050467;
+	bh=bdvJlbw1/chnYOtLBpIve21xjV9IQLVV4o87fmIs9pQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=twx9GJqsl9G3bcmwUXpH6J5IOTOjz8S3xKO3CrI/3+sQ07n9QjwcrFfk/NzYrqUut
+	 +XOfpLbG3QWcDl882laJ8sT7n1ilyAaNAlBrHe7CjvDXt1Ksb5EhhCt2eR0cLTwyCJ
+	 5FOBMNmfIjiHt9JMMlgEN1Orua4ePV95Zj1idzeE=
+Date: Mon, 10 Jun 2024 23:14:20 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	FrancescoFerraro <francesco.f@variscite.com>,
+	Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Ahmad Fatoum <a.fatoum@pengutronix.de>,
+	Harshesh Valera <harshesh.v@variscite.com>,
+	Nate Drude <nate.d@variscite.com>, Shawn Guo <shawnguo@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Marco Contenti <marco.c@variscite.com>, imx@lists.linux.dev
+Subject: Re: [PATCH v3 0/4] arm64: dts: freescale: Add Variscite i.MX8MP
+ DART8MCustomBoard v2
+Message-ID: <20240610201420.GO26663@pendragon.ideasonboard.com>
+References: <20240608180447.31378-1-laurent.pinchart@ideasonboard.com>
+ <171804879863.2984705.9370632116551818195.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240610130824.dt7matrj4tespizl@CAB-WSD-L081021>
-User-Agent: NeoMutt/20220415
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 185845 [Jun 10 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/06/10 15:05:00 #25537858
-X-KSMG-AntiVirus-Status: Clean, skipped
+In-Reply-To: <171804879863.2984705.9370632116551818195.robh@kernel.org>
 
-On Mon, Jun 10, 2024 at 04:08:24PM +0300, Dmitry Rokosov wrote:
-> On Mon, Jun 10, 2024 at 12:06:31PM +0200, Jerome Brunet wrote:
-> > On Wed 15 May 2024 at 21:47, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
-> > 
-> > > The CPU clock controller plays a general role in the Amlogic A1 SoC
-> > > family by generating CPU clocks. As an APB slave module, it offers the
-> > > capability to inherit the CPU clock from two sources: the internal fixed
-> > > clock known as 'cpu fixed clock' and the external input provided by the
-> > > A1 PLL clock controller, referred to as 'syspll'.
-> > >
-> > > It is important for the driver to handle cpu_clk rate switching
-> > > effectively by transitioning to the CPU fixed clock to avoid any
-> > > potential execution freezes.
-> > >
-> > > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> > > ---
-> > >  drivers/clk/meson/Kconfig  |  10 ++
-> > >  drivers/clk/meson/Makefile |   1 +
-> > >  drivers/clk/meson/a1-cpu.c | 331 +++++++++++++++++++++++++++++++++++++
-> > >  3 files changed, 342 insertions(+)
-> > >  create mode 100644 drivers/clk/meson/a1-cpu.c
-> > >
-> > > diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-> > > index 80c4a18c83d2..148d4495eee3 100644
-> > > --- a/drivers/clk/meson/Kconfig
-> > > +++ b/drivers/clk/meson/Kconfig
-> > > @@ -111,6 +111,16 @@ config COMMON_CLK_AXG_AUDIO
-> > >  	  Support for the audio clock controller on AmLogic A113D devices,
-> > >  	  aka axg, Say Y if you want audio subsystem to work.
-> > >  
-> > > +config COMMON_CLK_A1_CPU
-> > > +	tristate "Amlogic A1 SoC CPU controller support"
-> > > +	depends on ARM64
-> > > +	select COMMON_CLK_MESON_REGMAP
-> > > +	select COMMON_CLK_MESON_CLKC_UTILS
-> > > +	help
-> > > +	  Support for the CPU clock controller on Amlogic A113L based
-> > > +	  device, A1 SoC Family. Say Y if you want A1 CPU clock controller
-> > > +	  to work.
-> > > +
-> > >  config COMMON_CLK_A1_PLL
-> > >  	tristate "Amlogic A1 SoC PLL controller support"
-> > >  	depends on ARM64
-> > > diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-> > > index 4968fc7ad555..2a06eb0303d6 100644
-> > > --- a/drivers/clk/meson/Makefile
-> > > +++ b/drivers/clk/meson/Makefile
-> > > @@ -18,6 +18,7 @@ obj-$(CONFIG_COMMON_CLK_MESON_AUDIO_RSTC) += meson-audio-rstc.o
-> > >  
-> > >  obj-$(CONFIG_COMMON_CLK_AXG) += axg.o axg-aoclk.o
-> > >  obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
-> > > +obj-$(CONFIG_COMMON_CLK_A1_CPU) += a1-cpu.o
-> > >  obj-$(CONFIG_COMMON_CLK_A1_PLL) += a1-pll.o
-> > >  obj-$(CONFIG_COMMON_CLK_A1_PERIPHERALS) += a1-peripherals.o
-> > >  obj-$(CONFIG_COMMON_CLK_A1_AUDIO) += a1-audio.o
-> > > diff --git a/drivers/clk/meson/a1-cpu.c b/drivers/clk/meson/a1-cpu.c
-> > > new file mode 100644
-> > > index 000000000000..a9edabeafea9
-> > > --- /dev/null
-> > > +++ b/drivers/clk/meson/a1-cpu.c
-> > > @@ -0,0 +1,331 @@
-> > > +// SPDX-License-Identifier: GPL-2.0+
-> > > +/*
-> > > + * Amlogic A1 SoC family CPU Clock Controller driver.
-> > > + *
-> > > + * Copyright (c) 2024, SaluteDevices. All Rights Reserved.
-> > > + * Author: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> > > + */
-> > > +
-> > > +#include <linux/clk.h>
-> > > +#include <linux/clk-provider.h>
-> > > +#include <linux/mod_devicetable.h>
-> > > +#include <linux/platform_device.h>
-> > > +#include "clk-regmap.h"
-> > > +#include "meson-clkc-utils.h"
-> > > +
-> > > +#include <dt-bindings/clock/amlogic,a1-cpu-clkc.h>
-> > > +
-> > > +/* CPU Clock Controller register offset */
-> > > +#define CPUCTRL_CLK_CTRL0	0x0
-> > > +#define CPUCTRL_CLK_CTRL1	0x4
-> > > +
-> > > +static u32 cpu_fsource_sel_table[] = { 0, 1, 2 };
-> > > +static const struct clk_parent_data cpu_fsource_sel_parents[] = {
-> > > +	{ .fw_name = "xtal" },
-> > > +	{ .fw_name = "fclk_div2" },
-> > > +	{ .fw_name = "fclk_div3" },
-> > > +};
-> > > +
-> > > +static struct clk_regmap cpu_fsource_sel0 = {
-> > > +	.data = &(struct clk_regmap_mux_data) {
-> > > +		.offset = CPUCTRL_CLK_CTRL0,
-> > > +		.mask = 0x3,
-> > > +		.shift = 0,
-> > > +		.table = cpu_fsource_sel_table,
-> > > +	},
-> > > +	.hw.init = &(struct clk_init_data) {
-> > > +		.name = "cpu_fsource_sel0",
-> > > +		.ops = &clk_regmap_mux_ops,
-> > > +		.parent_data = cpu_fsource_sel_parents,
-> > > +		.num_parents = ARRAY_SIZE(cpu_fsource_sel_parents),
-> > > +		.flags = CLK_SET_RATE_PARENT,
-> > 
-> > I don't think setting the rates of controller parents is appropriate
-> > 
-> > > +	},
-> > > +};
-> > > +
-> > > +static struct clk_regmap cpu_fsource_div0 = {
-> > > +	.data = &(struct clk_regmap_div_data) {
-> > > +		.offset = CPUCTRL_CLK_CTRL0,
-> > > +		.shift = 4,
-> > > +		.width = 6,
-> > > +	},
-> > > +	.hw.init = &(struct clk_init_data) {
-> > > +		.name = "cpu_fsource_div0",
-> > > +		.ops = &clk_regmap_divider_ops,
-> > > +		.parent_hws = (const struct clk_hw *[]) {
-> > > +			&cpu_fsource_sel0.hw
-> > > +		},
-> > > +		.num_parents = 1,
-> > > +		.flags = CLK_SET_RATE_PARENT,
-> > > +	},
-> > > +};
-> > > +
-> > > +static struct clk_regmap cpu_fsel0 = {
-> > > +	.data = &(struct clk_regmap_mux_data) {
-> > > +		.offset = CPUCTRL_CLK_CTRL0,
-> > > +		.mask = 0x1,
-> > > +		.shift = 2,
-> > > +	},
-> > > +	.hw.init = &(struct clk_init_data) {
-> > > +		.name = "cpu_fsel0",
-> > > +		.ops = &clk_regmap_mux_ops,
-> > > +		.parent_hws = (const struct clk_hw *[]) {
-> > > +			&cpu_fsource_sel0.hw,
-> > > +			&cpu_fsource_div0.hw,
-> > > +		},
-> > > +		.num_parents = 2,
-> > > +		.flags = CLK_SET_RATE_GATE | CLK_SET_RATE_PARENT,
-> > > +	},
-> > > +};
-> > > +
-> > > +static struct clk_regmap cpu_fsource_sel1 = {
-> > > +	.data = &(struct clk_regmap_mux_data) {
-> > > +		.offset = CPUCTRL_CLK_CTRL0,
-> > > +		.mask = 0x3,
-> > > +		.shift = 16,
-> > > +		.table = cpu_fsource_sel_table,
-> > > +	},
-> > > +	.hw.init = &(struct clk_init_data) {
-> > > +		.name = "cpu_fsource_sel1",
-> > > +		.ops = &clk_regmap_mux_ops,
-> > > +		.parent_data = cpu_fsource_sel_parents,
-> > > +		.num_parents = ARRAY_SIZE(cpu_fsource_sel_parents),
-> > > +		.flags = CLK_SET_RATE_PARENT,
-> > > +	},
-> > > +};
-> > > +
-> > > +static struct clk_regmap cpu_fsource_div1 = {
-> > > +	.data = &(struct clk_regmap_div_data) {
-> > > +		.offset = CPUCTRL_CLK_CTRL0,
-> > > +		.shift = 20,
-> > > +		.width = 6,
-> > > +	},
-> > > +	.hw.init = &(struct clk_init_data) {
-> > > +		.name = "cpu_fsource_div1",
-> > > +		.ops = &clk_regmap_divider_ops,
-> > > +		.parent_hws = (const struct clk_hw *[]) {
-> > > +			&cpu_fsource_sel1.hw
-> > > +		},
-> > > +		.num_parents = 1,
-> > > +		.flags = CLK_SET_RATE_PARENT,
-> > > +	},
-> > > +};
-> > > +
-> > > +static struct clk_regmap cpu_fsel1 = {
-> > > +	.data = &(struct clk_regmap_mux_data) {
-> > > +		.offset = CPUCTRL_CLK_CTRL0,
-> > > +		.mask = 0x1,
-> > > +		.shift = 18,
-> > > +	},
-> > > +	.hw.init = &(struct clk_init_data) {
-> > > +		.name = "cpu_fsel1",
-> > > +		.ops = &clk_regmap_mux_ops,
-> > > +		.parent_hws = (const struct clk_hw *[]) {
-> > > +			&cpu_fsource_sel1.hw,
-> > > +			&cpu_fsource_div1.hw,
-> > > +		},
-> > > +		.num_parents = 2,
-> > > +		.flags = CLK_SET_RATE_GATE | CLK_SET_RATE_PARENT,
-> > > +	},
-> > > +};
-> > > +
-> > > +static struct clk_regmap cpu_fclk = {
-> > > +	.data = &(struct clk_regmap_mux_data) {
-> > > +		.offset = CPUCTRL_CLK_CTRL0,
-> > > +		.mask = 0x1,
-> > > +		.shift = 10,
-> > > +	},
-> > > +	.hw.init = &(struct clk_init_data) {
-> > > +		.name = "cpu_fclk",
-> > > +		.ops = &clk_regmap_mux_ops,
-> > > +		.parent_hws = (const struct clk_hw *[]) {
-> > > +			&cpu_fsel0.hw,
-> > > +			&cpu_fsel1.hw,
-> > > +		},
-> > > +		.num_parents = 2,
-> > > +		.flags = CLK_SET_RATE_PARENT,
-> > > +	},
-> > > +};
-> > > +
-> > > +static struct clk_regmap cpu_clk = {
-> > > +	.data = &(struct clk_regmap_mux_data) {
-> > > +		.offset = CPUCTRL_CLK_CTRL0,
-> > > +		.mask = 0x1,
-> > > +		.shift = 11,
-> > > +	},
-> > > +	.hw.init = &(struct clk_init_data) {
-> > > +		.name = "cpu_clk",
-> > > +		.ops = &clk_regmap_mux_ops,
-> > > +		.parent_data = (const struct clk_parent_data []) {
-> > > +			{ .hw = &cpu_fclk.hw },
-> > > +			{ .fw_name = "sys_pll", },
-> > > +		},
-> > 
-> > You've put CLK_SET_RATE_GATE on fixed clock path but not the SYS_PLL
-> > ... that is odd. IMO there should be a bypass input clock to the sys_pll
-> > with that flag.
-> > 
-> 
-> Apologies for any confusion caused. To clarify, are you proposing the
-> idea of creating an additional sys_pll_input clock object with the
-> CLK_SET_RATE_PARENT property, and then using it as the parent clock for
-> cpu_clk?
-> 
-> > > +		.num_parents = 2,
-> > > +		.flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
-> > > +	},
-> > > +};
-> > > +
-> > > +/* Array of all clocks registered by this provider */
-> > > +static struct clk_hw *a1_cpu_hw_clks[] = {
-> > > +	[CLKID_CPU_FSOURCE_SEL0]	= &cpu_fsource_sel0.hw,
-> > > +	[CLKID_CPU_FSOURCE_DIV0]	= &cpu_fsource_div0.hw,
-> > > +	[CLKID_CPU_FSEL0]		= &cpu_fsel0.hw,
-> > > +	[CLKID_CPU_FSOURCE_SEL1]	= &cpu_fsource_sel1.hw,
-> > > +	[CLKID_CPU_FSOURCE_DIV1]	= &cpu_fsource_div1.hw,
-> > > +	[CLKID_CPU_FSEL1]		= &cpu_fsel1.hw,
-> > > +	[CLKID_CPU_FCLK]		= &cpu_fclk.hw,
-> > > +	[CLKID_CPU_CLK]			= &cpu_clk.hw,
-> > > +};
-> > > +
-> > > +static struct clk_regmap *const a1_cpu_regmaps[] = {
-> > > +	&cpu_fsource_sel0,
-> > > +	&cpu_fsource_div0,
-> > > +	&cpu_fsel0,
-> > > +	&cpu_fsource_sel1,
-> > > +	&cpu_fsource_div1,
-> > > +	&cpu_fsel1,
-> > > +	&cpu_fclk,
-> > > +	&cpu_clk,
-> > > +};
-> > > +
-> > > +static struct regmap_config a1_cpu_regmap_cfg = {
-> > > +	.reg_bits   = 32,
-> > > +	.val_bits   = 32,
-> > > +	.reg_stride = 4,
-> > > +	.max_register = CPUCTRL_CLK_CTRL1,
-> > > +};
-> > > +
-> > > +static struct meson_clk_hw_data a1_cpu_clks = {
-> > > +	.hws = a1_cpu_hw_clks,
-> > > +	.num = ARRAY_SIZE(a1_cpu_hw_clks),
-> > > +};
-> > > +
-> > > +struct a1_sys_pll_nb_data {
-> > > +	struct notifier_block nb;
-> > > +	struct clk_hw *cpu_clk;
-> > > +	struct clk_hw *cpu_fclk;
-> > > +	struct clk *sys_pll;
-> > > +};
-> > 
-> > There are number of things which are wrong with this notifier.
-> > 
-> > First, and foremost, this is a clock controller driver ... it should not
-> > handle cpufreq policy. There is subsystem for that
-> > 
-> > > +
-> > > +static int meson_a1_sys_pll_notifier_cb(struct notifier_block *nb,
-> > > +					unsigned long event, void *data)
-> > > +{
-> > > +	struct a1_sys_pll_nb_data *nbd;
-> > > +	int ret = 0;
-> > > +
-> > > +	nbd = container_of(nb, struct a1_sys_pll_nb_data, nb);
-> > > +
-> > > +	switch (event) {
-> > > +	case PRE_RATE_CHANGE:
-> > > +		/*
-> > > +		 * Clock sys_pll will be changed to feed cpu_clk,
-> > > +		 * configure cpu_clk to use cpu_fclk fixed clock.
-> > > +		 */
-> > > +		ret = clk_hw_set_parent(nbd->cpu_clk, nbd->cpu_fclk);
-> > 
-> > 
-> > This jumps to whatever was the last frequency below 768MHz ... that does
-> > not seems deterministic or safe.
-> 
-> Ah, that's an aspect I hadn't considered. You make a valid point. So,
-> this implies that the g12a clock driver could potentially encounter the
-> same issue, correct?
-> 
-> > > +
-> > > +		/* Wait for clock propagation */
-> > > +		if (!ret)
-> > > +			udelay(100);
-> > > +
-> > > +		break;
-> > > +
-> > > +	case POST_RATE_CHANGE:
-> > > +		 /*
-> > > +		  * Clock sys_pll rate has ben calculated,
-> > > +		  * switch back cpu_clk to sys_pll
-> > > +		  */
-> > > +		ret = clk_set_parent(nbd->cpu_clk->clk, nbd->sys_pll);
-> > 
-> > So whenever sys_pll changes, even if was not used by the CPU at that
-> > time, this will change back to the sys_pll. Again, that seems fragile
-> > 
-> 
-> From what I comprehend, only the GEN clock is capable of using sys_pll
-> as its parent clock. The GEN clock seems more comparable to a diagnostic
-> clock, implying that when utilized, it should be done with full
-> awareness and control over its operations.
-> 
-> > > +
-> > > +		/* Wait for clock propagation */
-> > > +		if (!ret)
-> > > +			udelay(100);
-> > > +		break;
-> > > +
-> > > +	default:
-> > > +		pr_warn("Unknown event %lu for sys_pll notifier\n", event);
-> > > +		break;
-> > > +	}
-> > > +
-> > > +	return notifier_from_errno(ret);
-> > > +}
-> > > +
-> > > +static struct a1_sys_pll_nb_data a1_sys_pll_nb_data = {
-> > > +	.nb.notifier_call = meson_a1_sys_pll_notifier_cb,
-> > > +	.cpu_clk = &cpu_clk.hw,
-> > > +	.cpu_fclk = &cpu_fclk.hw,
-> > > +};
-> > > +
-> > > +static int meson_a1_dvfs_setup(struct platform_device *pdev)
-> > > +{
-> > > +	struct device *dev = &pdev->dev;
-> > > +	struct clk *sys_pll;
-> > > +	int ret;
-> > > +
-> > > +	/* Setup clock notifier for sys_pll clk */
-> > > +	sys_pll = devm_clk_get(dev, "sys_pll");
-> > > +	if (IS_ERR(sys_pll))
-> > > +		return dev_err_probe(dev, PTR_ERR(sys_pll),
-> > > +				     "can't get sys_pll as notifier clock\n");
-> > > +
-> > > +	a1_sys_pll_nb_data.sys_pll = sys_pll;
-> > > +	ret = devm_clk_notifier_register(dev, sys_pll,
-> > > +					 &a1_sys_pll_nb_data.nb);
-> > > +	if (ret)
-> > > +		return dev_err_probe(dev, ret,
-> > > +				     "can't register sys_pll notifier\n");
-> > > +
-> > > +	return ret;
-> > > +}
-> > 
-> > I don't think these notifiers are appropriate to handle CPU frequency
-> > change. Cpufreq has a .target_intermediate() callback that seems more
-> > appropriate to switch the CPU to a safe clock while relocking a PLL.
-> > 
-> > You should have a look at it and probably at the imx-cpufreq-dt.c which
-> > improves on cpufreq-dt.c to handle platform quirks
-> > 
-> 
-> I believed that the same approach was employed with the g12a clock,
-> which uses a sys_pll <-> cpu fixed clock transition to ensure stable CPU
-> clocking. Am I overlooking something? Or does the g12a cpu clock
-> maintain a fixed frequency, thus indicating it is not fragile?
-> 
-> [...]
+Hi Rob,
 
-Based on your suggestion, I explored the imx-cpufreq-dt driver and it
-does seem like a more suitable place to implement CPU clock switching.
-Thank you for pointing that out!
+On Mon, Jun 10, 2024 at 01:55:15PM -0600, Rob Herring (Arm) wrote:
+> On Sat, 08 Jun 2024 21:04:43 +0300, Laurent Pinchart wrote:
+> > Hello,
+> > 
+> > This patch series adds support for the Variscite DART8MCustomBoard v2
+> > carrier board with a DART-MX8M-PLUS module.
+> > 
+> > The device tree code originates from Variscite's BSP, and has been
+> > heavily refactored to adapt to mainline DT bindings. Some features have
+> > been left out:
+> > 
+> > - Camera: cameras should be enabled through overlays as they're not part
+> >   of the carrier board itself. I have successfully tested both camera
+> >   ports with modules that currently require out-of-tree drivers, so I
+> >   haven't included them in this series.
+> > 
+> > - USB OTG: the carrier board has a PTN5150 but doesn't route its
+> >   interrupt pin to the SoC. It should be possible to work around that in
+> >   the driver by implementing polling, but that requires more work that I
+> >   can perform at the moment.
+> > 
+> > - WiFi, Bluetooth and audio support: those are part of the DART SoM
+> >   itself, for which schematics isn't available, so I can't easily
+> >   troubleshoot them.
+> > 
+> > - PCIe: I lack test hardware for this.
+> > 
+> > May I tempt someone from Variscite to submit patches to enable at least
+> > WiFi, Bluetooth, audio and PCIe ? :-)
+> > 
+> > The LVDS display panel is integrated in the carrier board device tree in
+> > the BSP, I have split it out to an overlay in this series as it is
+> > shipped with the development kit but isn't an integral part of the
+> > carrier board. In the review of v2, Shawn pointed out that this overlay
+> > caused the DT compiler to spit ou warnings. This is still the case here:
+> > 
+> >   DTC     arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb
+> >   DTC     arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo
+> > arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso:54.3-16: Warning (reg_format): /fragment@1/__overlay__/touch@38:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+> > arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+> > arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+> > arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+> > arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+> > arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso:52.11-68.4: Warning (avoid_default_addr_size): /fragment@1/__overlay__/touch@38: Relying on default #address-cells value
+> > arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso:52.11-68.4: Warning (avoid_default_addr_size): /fragment@1/__overlay__/touch@38: Relying on default #size-cells value
+> > arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo: Warning (graph_port): /fragment@3: graph port node name should be 'port'
+> > arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso:85.15-87.3: Warning (graph_endpoint): /fragment@3/__overlay__: graph endpoint node name should be 'endpoint'
+> > arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso:85.15-87.3: Warning (graph_endpoint): /fragment@3/__overlay__: graph connection to node '/fragment@0/__overlay__/panel/port/endpoint' is not bidirectional
+> >   DTOVL   arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtb
+> > 
+> > When compiling the overlay in isolation, the compiler doesn't know in
+> > which context it will be applied, and thus lacks information to validate
+> > the device tree. I don't think the issue is specific to this overlay,
+> > and I don't know if there are plans to handle it. If this is a blocker
+> > for the time being, patches 1/4 to 3/4 can already be merged without the
+> > overlay.
+> 
+> This has come up before. My suggestion is that you add the necessary 
+> information to the overlay. Specifically, just add the #address-cells 
+> and #size-cells to the overlay. That might mean you have to move up a 
+> parent for the target path.
 
-However, from my understanding, it appears that we also need to redesign
-the g12a clock driver's CPU clock notifier. I would love to hear your
-thoughts on this. It seems like a necessary step to ensure a
-comprehensive solution.
+It's not ideal as the overlay should really not care about that, but it
+will probably work around the warnings for this specific case. I'll have
+a look.
+
+Do you envision we will fix this problem in a nicer way in the future ?
+I wonder if it would become part of the DT connector support (or
+whatever becomes of that). I've heard multiple people telling me they
+would like to revive the proposal (or see it revived), so maybe there's
+hope. I know I have many copies of essentially the same overlays for the
+same Raspberry Pi camera modules connected to different boards which I
+would like to upstream.
+
+> > Laurent Pinchart (4):
+> >   dt-bindings: arm: fsl: Add Variscite DT8MCustomBoard with DART
+> >     MX8M-PLUS
+> >   arm64: dts: freescale: Add support for the Variscite DART-MX8M-PLUS
+> >     SoM
+> >   arm64: dts: freescale: Add support for the Variscite i.MX8MP
+> >     DART8MCustomBoard
+> >   arm64: dts: freescale: Add panel overlay for Variscite DART
+> > 
+> >  .../devicetree/bindings/arm/fsl.yaml          |   6 +
+> >  arch/arm64/boot/dts/freescale/Makefile        |   3 +
+> >  .../imx8mp-var-dart-dt8mcustomboard-v2.dts    | 529 ++++++++++++++++++
+> >  .../imx8mp-var-dart-panel-gktw70sdae4se.dtso  |  99 ++++
+> >  .../boot/dts/freescale/imx8mp-var-dart.dtsi   | 340 +++++++++++
+> >  5 files changed, 977 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dts
+> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso
+> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-dart.dtsi
+> > 
+> > 
+> > base-commit: 41f93a496af2696d970cbcb3814261a9b32dbaa2
+> > --
+> > Regards,
+> > 
+> > Laurent Pinchart
+> 
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+> 
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+> 
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+> 
+>   pip3 install dtschema --upgrade
+> 
+> 
+> New warnings running 'make CHECK_DTBS=y freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb' for 20240608180447.31378-1-laurent.pinchart@ideasonboard.com:
+> 
+> ti,x-plate-ohms: size (2) error for type uint32-array
+> arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb: touch@0: ti,x-plate-ohms: size is 16, expected 32
+> 	from schema $id: http://devicetree.org/schemas/property-units.yaml#
+> arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb: touch@0: ti,settle-delay-usec: b'\x00\x96' is not of type 'object', 'array', 'boolean', 'null'
+> 	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+> arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb: touch@0: ti,debounce-tol: b'\x00\x03' is not of type 'object', 'array', 'boolean', 'null'
+> 	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+> arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb: touch@0: ti,debounce-rep: b'\x00\x01' is not of type 'object', 'array', 'boolean', 'null'
+> 	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+> arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb: /soc@0/bus@30800000/spba-bus@30800000/spi@30820000/touch@0: failed to match any schema with compatible: ['ti,tsc2046']
+
+I'll check that. Sorry for not noticiting it before.
+
+> arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb: interrupt-controller@32fc2000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/interrupt-controller/fsl,irqsteer.yaml#
+
+This one is caused by an issue in imx8mp.dtsi. A patch has been posted,
+see https://lore.kernel.org/all/2690282.X9hSmTKtgW@steina-w/. I think
+Alexander would appreciate feedback :-)
 
 -- 
-Thank you,
-Dmitry
+Regards,
+
+Laurent Pinchart
 
