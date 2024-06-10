@@ -1,109 +1,111 @@
-Return-Path: <devicetree+bounces-74248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 491299026C1
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 18:31:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E73E59026C7
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 18:32:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF1491F228DF
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 16:31:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FB6E1F22383
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 16:32:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20235143746;
-	Mon, 10 Jun 2024 16:31:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA8FE14389B;
+	Mon, 10 Jun 2024 16:32:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nTOI5Bra"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Iwa32bmP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83716839E4;
-	Mon, 10 Jun 2024 16:31:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF3D6143746;
+	Mon, 10 Jun 2024 16:32:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718037111; cv=none; b=I/FEaK3FLINpNiHdBsl9UQC14wg3fyy/nKm/JT+u+W+vJkNf3kQRWHSM2afoOxm6QFrImKpqi6zPfupQffRZKO+6hMf+/dBFOg1/EfeRezmiFBvCdz+WKWm8o5oYdIPGwHcGNO6AodSzzmXNHizzGVx9u+NEi4fYWHGshXGuwSU=
+	t=1718037153; cv=none; b=T949qwjkKuPDxG3i/jEn3RatSeAwoLl7PEgA6KnDQ8aMQiGftyjocjzQoEZZfGo/vl2RETlvBesCNqswa+OBtQcfBxm+DY3w2XA0mXhV1Ce3rFUg4an8PY9T82+jC1wjjGIMmOBx1aSPAY6ZY7XchtsCjlBClUFdcBXHKwogDPs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718037111; c=relaxed/simple;
-	bh=9ju4vPIcuEWGdz0y0evlD7cX8DwQqllGs7fJHjYcWWM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gyYyu9vhZGDb9s3UfVJFvYollT/DYyopl5zdl/n0WjaTD2502yJxRwm5IAHxaDYh93frTvaK8gaNTPvaPDbvXwA2UmCPeM/M2gR/UJH8xSt89hvdFcmfbsVhdo+L2KXe5ugCn3AnR8T7g6lDw19Hq2tlURsHv9W4zUPw/qWAPf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nTOI5Bra; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-57c73a3b3d7so2270842a12.1;
-        Mon, 10 Jun 2024 09:31:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718037108; x=1718641908; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9ju4vPIcuEWGdz0y0evlD7cX8DwQqllGs7fJHjYcWWM=;
-        b=nTOI5BraqF487tCVNIEAx2D3tsmWo/0R2xbWJtkMFKADKx4CNl+or+JojcMsLIwRFI
-         DBNzHFzYa4CxMBZbbVQBuGBcIHongf32Vvmnh5+p3vQgiZGM1n2u3roFEcJQCzkXWtFb
-         sqBXnXtCPDuqOOX0Ip/zIvdA0KWYfYTaTp8iVkT9ZxwT32rhzfw+NO6l86Uo0xOICn3o
-         rgbmmewI+f2Ea5QEbkmUdCJbHlNC6TQy0DQtVI4m3p06Bo7J8TddGt2st3z9Z2Ymml8j
-         UnmOvryCv1twk7sHsidP9OJanpxwia/AyaPriU8wUKGNVYQsL871yH3w/xgO444lo/rx
-         uqOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718037108; x=1718641908;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9ju4vPIcuEWGdz0y0evlD7cX8DwQqllGs7fJHjYcWWM=;
-        b=sP1+P7cj5qQldn8nAjBrSJhChEj6bL7tip3wi5KDPqBr/d7RRcTQth2I9dwD4Wj+8x
-         YYdcZXTd5owKPRLd0yRH/xphoPWN10jM0JjNzjrBj9towWq/aJTCvMWPTWEfB1MAKxWh
-         I37qHWiJZrx5gFDGH7q5NgS3uaIu2YOWkQtIuDShimCjsya1GJMZtsSnOdZwTb5m7Rhq
-         ChgzOFvv1loKw2IVCjxd7+fCEarp5H4krtLoF+Og8SSKwJhAyniL24mBzpgFo82FSfXH
-         4li/vCg+jRsTzjDdQx1FGin1yDxvgIYDP5cy4K4dmwGOONrhe88Qcz/bf446VYwXxzSW
-         w+KA==
-X-Forwarded-Encrypted: i=1; AJvYcCW94mZKxoOCRfIz+tZU7YcZ4zdSlJD+QpwGybfwGol8ESlKeEoPn1BrLI0jElOcHK1htONZvMDYuTuMZisyK1SDxxgRixe66DBUlT3+bE+zuUoFYcSstj6wYL+K1baRji+BnLeNoIYFDkkr5GlgzNu3Irrnt2lsU8bkDtsAhQzEAYo=
-X-Gm-Message-State: AOJu0Yx8JLrYIF2A91/HNQ/2WtV6cA7xgog2SqQQtlw0R0qym7ineZ0U
-	IDTKjAJVy6sBhw3U0QF8epOdtP4BHwGROmgxBRs0C9tIjnjKEE6zfuZYh6q/6RuCpfroI+2iUU/
-	cT+vZC0kZDycd7qwrnAhA6Qj3fHA=
-X-Google-Smtp-Source: AGHT+IHQf3MV0Q/UjU07vgHR5NPfetvVAiyS7lJZpzQDbY8N+GF7jT4TpL3zNI4S9k3S8xBNtVxYqKks+HIUG1tPSqI=
-X-Received: by 2002:a17:906:25cb:b0:a6e:fdc8:ae3a with SMTP id
- a640c23a62f3a-a6efdc8b0a6mr381112766b.6.1718037107672; Mon, 10 Jun 2024
- 09:31:47 -0700 (PDT)
+	s=arc-20240116; t=1718037153; c=relaxed/simple;
+	bh=t3huLbYF+iqIvyjBa2Lrl3w5SrJDDUFNPpkhxQFR8lE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DX37Z/jloGrTWwD234DYhMy4Visx9QE/3l1XAfcYd4pld/ot0z4QDymAsRGeYvc6xSsgpLIyyhZdNn7t6Aws4ofIlRDm+2iTmcg1qWaJ4ZWRcwvTpiwct+YJw0HnoFkPrqWvhebMtzKr3104W9c+ryPbClphSOLwfPOxUmR0G5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Iwa32bmP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E2D9C2BBFC;
+	Mon, 10 Jun 2024 16:32:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718037153;
+	bh=t3huLbYF+iqIvyjBa2Lrl3w5SrJDDUFNPpkhxQFR8lE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Iwa32bmP1FleUw+0UYiDwS1tt+D4BxK7bOYhNs/ktjU28WW/ryG8MQ3gjjilliHDC
+	 rrcwcHYjJwE5SqfJMbNveCT4SwsMBYEFhHsZtM+sweE290C2KlhwKByytFl9aqiwxx
+	 9NCgVlT+0vhqFFJhNYg6B4wVvrhGMPVBExNKmST18i82qUIQas7Ozc+QE6+U4Gd5FU
+	 RJK9RLAbVz/E4S/ks6fIi8fHABIUDKpUJDoAGVV0scmUSFKLIoVHw6rI9j/AlwRri0
+	 4+GR87IyfXBEN38PzAjtPUXvpsEqaPXI831o0177KxHP52BX/9V2pD2yu5KXXeoMUl
+	 fZ43wlAmvr7yw==
+Date: Mon, 10 Jun 2024 17:32:27 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Ryan Walklin <ryan@testtoast.com>
+Cc: Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Chris Morgan <macroalpha82@gmail.com>,
+	John Watts <contact@jookia.org>, dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH RFC 1/8] dt-bindings: bus: allwinner: add H616 DE33
+ bindings
+Message-ID: <20240610-morbidity-slum-d733494f1939@spud>
+References: <20240607110227.49848-1-ryan@testtoast.com>
+ <20240607110227.49848-2-ryan@testtoast.com>
+ <20240607-gag-radiantly-37bc3ac76907@spud>
+ <e9e7a362-c41e-41f8-b6cd-02fbbd16ce8c@app.fastmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240608141633.2562-1-laurent.pinchart@ideasonboard.com>
- <20240608141633.2562-5-laurent.pinchart@ideasonboard.com> <ZmcWi08u6-u4MyKu@surfacebook.localdomain>
- <20240610152833.GW18479@pendragon.ideasonboard.com>
-In-Reply-To: <20240610152833.GW18479@pendragon.ideasonboard.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 10 Jun 2024 19:31:11 +0300
-Message-ID: <CAHp75VfcTHty-Vzcc+B4iMk33qS_AafvU10Qn3AQftrfQRBebw@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] pwm: adp5585: Add Analog Devices ADP5585 support
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Clark Wang <xiaoning.wang@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="p5IxoNo8buJ/UBHS"
+Content-Disposition: inline
+In-Reply-To: <e9e7a362-c41e-41f8-b6cd-02fbbd16ce8c@app.fastmail.com>
+
+
+--p5IxoNo8buJ/UBHS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 10, 2024 at 6:28=E2=80=AFPM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
-> On Mon, Jun 10, 2024 at 06:06:51PM +0300, Andy Shevchenko wrote:
-> > Sat, Jun 08, 2024 at 05:16:33PM +0300, Laurent Pinchart kirjoitti:
+On Sun, Jun 09, 2024 at 03:19:55PM +1200, Ryan Walklin wrote:
+> On Sat, 8 Jun 2024, at 2:23 AM, Conor Dooley wrote:
 
-...
+> >> +      - const: allwinner,sun50i-h616-de33-clk
+> >
+> > I think this is not right, as a corresponding driver change is missing.
+> > Either you're missing a clock driver patch or you didn't test your dts.
+>=20
+> The clock driver patch with this compatible string is in patch 8/8.
 
-> Andy, we're reaching a level of nitpicking and yakshaving that even I
-> can't deal with. I will have to simply ignore the comments I disagree
-> with.
+Ahh, I didn't notice that " drm: sun4i: add Display Engine 3.3 (DE33)
+support" had a clk driver. That needs to go into a patch of its own.
 
-Do you think using bulk APIs is nit-picking?
+--p5IxoNo8buJ/UBHS
+Content-Type: application/pgp-signature; name="signature.asc"
 
---=20
-With Best Regards,
-Andy Shevchenko
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmcqmwAKCRB4tDGHoIJi
+0tu7AQCo8gZn4juYCM25OwzfJQq7/23ZcuOT80PyC9J9xBK+qQEA/EVLDLvMiLow
+eaJLi+JsbSGZdPTSG/nuSu8+I+D9eQc=
+=1+Ai
+-----END PGP SIGNATURE-----
+
+--p5IxoNo8buJ/UBHS--
 
