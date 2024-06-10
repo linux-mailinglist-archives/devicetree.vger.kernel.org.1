@@ -1,271 +1,122 @@
-Return-Path: <devicetree+bounces-74136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60690902102
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 13:59:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1EB0902158
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 14:14:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF895287115
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 11:59:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A3E51F215C8
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 12:14:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E68F7F7F7;
-	Mon, 10 Jun 2024 11:56:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F32E17E58C;
+	Mon, 10 Jun 2024 12:14:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5CFD7E78E;
-	Mon, 10 Jun 2024 11:56:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F02D4AEC8;
+	Mon, 10 Jun 2024 12:14:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718020619; cv=none; b=J+0mSuzccZEm50tJZQMLO+mWJt3lPWAlR1F7WWUrmBEigkWrjn2QrX8qfqIO6lycD6s3ashdTS3CMvzWWi0cNwZeZdS+2s7ScBsUF23V0a1OC0t6Zrgn6Dk6XNKBPNAVykJhgAB9wSCl/V+TuDyi6lE1e84QcAzPJEymurqnkpE=
+	t=1718021674; cv=none; b=oFUWsU3PY5XFSfXqFReVDw4bxH15E/6XRDqIBApxIFlWgXrxJIpv2m5Gv51Ru6I3Lfa8JjjGtZohfehTi0fgin1Vn4vAc829+zo6kyjxqf0koDMOSdt5Gxny3sRhZ8yxXmnf7zfXaFZiivWc8zKBGf4bTSJqgFb5mgYTpcQru7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718020619; c=relaxed/simple;
-	bh=yfvQPJysBAS5tq4DgyRk+/g0oNJiaAomBFVbp3DexF0=;
+	s=arc-20240116; t=1718021674; c=relaxed/simple;
+	bh=tSD/spwG0jlfg5BNTrfBgNtnqVVQfXYcZXTvLSD3ctc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IsFR+yg5GTgjzxuDAtTYzxHvRm9zJvaFJvnUMsPltOiMnNs3hk+h0CefruzsDUqlW/E2+sVKqaP1UOPG1ueCQqd5upmJWLWxz8hnwGMICO22XzbtWCS35HBBznCcJyZQf9J9fBhr60GxJDtmjIBwq5OfDBnQZP5v4gp+OIqEuss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.173
+	 To:Cc:Content-Type; b=W39DYci1GXLkw95ivQz8ypbcMQL4XIExC0Bg7GXb1aj42hlYpCqYvZQVHTsPz3I9HdqqmQ4dfe6UNZdYSyPms45nuTROKOfViEin8FETOJFcbxXkHBhwhUi5Rjm09f/FX5mOyWo/qJ+nVW90O1XC261P7bmF2vKgO32ojbprRQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dfab4375f94so4572884276.1;
-        Mon, 10 Jun 2024 04:56:56 -0700 (PDT)
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-62a080a171dso44182737b3.0;
+        Mon, 10 Jun 2024 05:14:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718020615; x=1718625415;
+        d=1e100.net; s=20230601; t=1718021672; x=1718626472;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=zcLA78389m9B5qQY2E8zkAEsIi5pEwW58EBR2IWm7wk=;
-        b=pfZsvbwXFzRJYialU3AA1JB7Kf9f0h83MB4Mgy9/dI7gsvi+6FV5ban48/u9PT1yRa
-         5iwzOTUTiiYRLyeIAwVCoK00IU2gpKC6k7NJag5nzR/mKoWEJWN8KMct9mcmXB+8A1vi
-         6AF6Le+7xtLH+pgE8hrLqZ94z164RXty/sZY6sLTmIt/KsKMprI0Cs8lu/7ioDSiB+60
-         2YsWTQ8LvT1zI8/O0nPh6Wh89MRsArMN2a3s9/30pKXYlTJhEXZDCi89H6vYCCfxtWBB
-         U5jmeA6hSkxD6NQTB3XvHBZQTlDu2p8D8kuhHHJaTcpuqSAHpHuV0UMxMzYAoFJSLqHW
-         +XlQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVV2r2PHenevhKFr0MxFxMtI58iEVrdQoog+ko0IcB4771FlRXEFfsaCXZ9S7a0dbR9agGyBoRtIXHsGST1C2VOoC2iobo5bH9kNTaufE81VEPCk1nw/kH3FqGKOWbujdYLikmw6E1TDKpRJLCO
-X-Gm-Message-State: AOJu0YzUP6HgjrUK4DN/0tuwvOlPqww/EVXltGc6j0QK3KcLyXrMhMh1
-	GZQhlWZCkqGA4HmM4oEwCvOVczpdwMpsmmsZluagkFXCsWNd4YD2LhfKIPMp
-X-Google-Smtp-Source: AGHT+IGI9nqb29/xgAsn9EMJ0chffCeAAfJ/0rPXNf/nSiSu7k5uCNy42+a5c9qreEjWnU6qQV5i7A==
-X-Received: by 2002:a25:8007:0:b0:dfa:5895:781f with SMTP id 3f1490d57ef6-dfaf64f175dmr8078310276.37.1718020615336;
-        Mon, 10 Jun 2024 04:56:55 -0700 (PDT)
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-dfb0acd1c62sm939729276.44.2024.06.10.04.56.55
+        bh=rHN5PNSfpyJJMvIa1bV6iDaPxyd3BjfSogHZhJiBWEk=;
+        b=ck6OqPMukpBWSWK43K8dz4Z0kI4aXNByw4UC4CHyRDcrMcuhR4efizpY9C2tlWvd7P
+         8KZ7b/lABd/XSxhu2yacXWUv3ZG9QxRYZUTsuge8jfJBgxOw6IR++cEt/Rq0hNaMenk9
+         Ok+JvauTo8lAxWcIaySEX14l6e44Nbdcg1MsZbJ9aUbCbEVs9Un0eDyjI0M18Zq74dIy
+         UrLMWb02NHPoLbrhafD10q0DcvWDpdUwL6sU5GZg7+dbMbCWtgYsxNEwjRWxDeWYlJ3j
+         LwQT06DJv1W1tkHJDBTfzdT/QWcF1LemXrDgrloUCayBMkpqwZk+c/so40DE+F64ABuh
+         pu8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXqsLOw/mJkCwZp6L1gerbt+CB7YZiH6NzIMn2CKtF+UgLD1YWx8r22f+IP9ferW6Ms7Hoee2v2GOFDV3InusyW/1nN2M7NkENQ1/FBuIvyHR4u1/KWQyXT9VPaYIbvH9IKD1ttd5icNavtGSSllqnNFD82oWQaON2MINUArFpTWpwQQkBmq+hChGE=
+X-Gm-Message-State: AOJu0Yw8nlsj1mSUDaq0DWiu5z2r+g5EIf1QjXlDHbQ7wFfEUgF+IRs6
+	WUGb8xQEyIooz8nv0TO1UjQKd0/Q6BHIb423v3en04v3xZn0UAGKgDH9PPTw
+X-Google-Smtp-Source: AGHT+IHvS5l89CXOreedNxW7h0jInGjTe8YMGJp1kmIeF7iohejDwc4vfqSdBfapodUl36KAHthkMA==
+X-Received: by 2002:a81:a7c4:0:b0:62a:530:472f with SMTP id 00721157ae682-62cd568e9b9mr92371547b3.32.1718021671572;
+        Mon, 10 Jun 2024 05:14:31 -0700 (PDT)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-62d0889cc81sm4400717b3.70.2024.06.10.05.14.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jun 2024 04:56:55 -0700 (PDT)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-62cecde1db9so20161807b3.2;
-        Mon, 10 Jun 2024 04:56:55 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWtx8h0/pRJ1Wa27u86JzAnI+YXKGxvanLFcdRkxfXU4v3TjmTEkpTDRVyeXLKxP/hsvWfULKC66+85GrZlWI/O82jthZ1dXkgf6r8uIv3Bq7xHNxFaTcEfLMK630OkqNIj/zNCF9b+d3IoXves
-X-Received: by 2002:a81:84ca:0:b0:61a:bc2d:5186 with SMTP id
- 00721157ae682-62cd56622famr92553337b3.32.1718020614672; Mon, 10 Jun 2024
- 04:56:54 -0700 (PDT)
+        Mon, 10 Jun 2024 05:14:31 -0700 (PDT)
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-dfaff6bee06so2299395276.1;
+        Mon, 10 Jun 2024 05:14:31 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV4b1/ooVzzrH9xpDvG2TrMT6kxFYgs5i1oA4D1KNMAkhTw73a/l4OV0rvaUhp9DDuwGIByxYZogc1AgQl+YKFnQ3trgLo4OCLazyFnxPNvS+Ue0P/rODtcVX/f/mG+msc4Seg9Ispmlv1vc2aJ4xcmWgYEoF+6uNApAxpDbBz/k+FN8aPXF6o4Z2Q=
+X-Received: by 2002:a25:255:0:b0:dfb:538:6a49 with SMTP id 3f1490d57ef6-dfb05386d33mr7559585276.5.1718021671217;
+ Mon, 10 Jun 2024 05:14:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240609095049.17193-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20240609095049.17193-1-biju.das.jz@bp.renesas.com>
+References: <20240610113124.2396688-1-niklas.soderlund+renesas@ragnatech.se> <20240610113124.2396688-3-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20240610113124.2396688-3-niklas.soderlund+renesas@ragnatech.se>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 10 Jun 2024 13:56:42 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVLrEcRUCJzxUKfoOKE5WzV3QNr0f4TjJS-mz=DZ7M7iw@mail.gmail.com>
-Message-ID: <CAMuHMdVLrEcRUCJzxUKfoOKE5WzV3QNr0f4TjJS-mz=DZ7M7iw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r9a07g0{43,44,54}: Drop
- #address-cells/#size-cells from single child node 'endpoint@0'
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>, 
-	kernel test robot <lkp@intel.com>, =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Date: Mon, 10 Jun 2024 14:14:19 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUJqY=CRdhSe68tgE6xFAko-bEemwZBqJuXyX+9iP9eZA@mail.gmail.com>
+Message-ID: <CAMuHMdUJqY=CRdhSe68tgE6xFAko-bEemwZBqJuXyX+9iP9eZA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] media: rcar-vin: Add support for R-Car V4M
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Biju,
+Hi Niklas,
 
-Thanks for your patch!
-
-On Sun, Jun 9, 2024 at 11:51=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
-> Fix the below dtcheck_warnings reported by kernel test robot.
+On Mon, Jun 10, 2024 at 1:32=E2=80=AFPM Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Add support for R-Car V4M. The V4M is similar to V4H and uses the ISP
+> Channel Selector as its only possible video input source. Reuse and
+> rename the info structure from V4H to cover all current Gen4 SoCs.
 >
-> dtcheck warnings: (new ones prefixed by >>)
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
+> ---
+> * Changes since v1
+> - Create a shared Gen4 info strucutre.
 
-What is dtcheck?
+Thanks for the update!
 
-> >> arch/arm64/boot/dts/renesas/r9a07g043u.dtsi:85.11-94.6: Warning
-> >> (graph_child_address): /soc/video@10830000/ports/port@1: graph node
-> >> has single child node 'endpoint@0', #address-cells/#size-cells are
-> >> not necessary
-> >> arch/arm64/boot/dts/renesas/r9a07g043u.dtsi:120.11-129.6: Warning
-> >> (graph_child_address): /soc/csi2@10830400/ports/port@1: graph node
-> >> has single child node 'endpoint@0', #address-cells/#size-cells are
-> >> not necessary
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+> --- a/drivers/media/platform/renesas/rcar-vin/rcar-core.c
+> +++ b/drivers/media/platform/renesas/rcar-vin/rcar-core.c
+> @@ -1283,7 +1283,7 @@ static const struct rvin_info rcar_info_r8a779a0 =
+=3D {
+>         .max_height =3D 4096,
+>  };
 >
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202406081329.snoMrZsJ-lkp@i=
-ntel.com
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> --- a/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
-> @@ -79,12 +79,8 @@ ports {
->                         #size-cells =3D <0>;
->
->                         port@1 {
-> -                               #address-cells =3D <1>;
-> -                               #size-cells =3D <0>;
-> -
->                                 reg =3D <1>;
-> -                               crucsi2: endpoint@0 {
-> -                                       reg =3D <0>;
-> +                               crucsi2: endpoint {
+> -static const struct rvin_info rcar_info_r8a779g0 =3D {
+> +static const struct rvin_info rcar_info_gen4 =3D {
+>         .model =3D RCAR_GEN3,
+>         .use_mc =3D true,
+>         .use_isp =3D true,
 
-Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
-does not document any endpoints under port@1, so I do not know which
-one is correct.
-Note that the example in the bindings also uses endpoint@0.
-
->                                         remote-endpoint =3D <&csi2cru>;
->                                 };
->                         };
-> @@ -114,12 +110,8 @@ port@0 {
->                         };
->
->                         port@1 {
-> -                               #address-cells =3D <1>;
-> -                               #size-cells =3D <0>;
->                                 reg =3D <1>;
-> -
-> -                               csi2cru: endpoint@0 {
-> -                                       reg =3D <0>;
-> +                               csi2cru: endpoint {
-
-Same comment here, instead using
-Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
-The example in the bindings also uses endpoint@0.
-
->                                         remote-endpoint =3D <&crucsi2>;
->                                 };
->                         };
-> diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot=
-/dts/renesas/r9a07g044.dtsi
-> index 88634ae43287..6a5496dbb05a 100644
-> --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> @@ -710,22 +710,14 @@ ports {
->                                 #size-cells =3D <0>;
->
->                                 port@0 {
-> -                                       #address-cells =3D <1>;
-> -                                       #size-cells =3D <0>;
-> -
->                                         reg =3D <0>;
-> -                                       cruparallel: endpoint@0 {
-> -                                               reg =3D <0>;
-> +                                       cruparallel: endpoint {
-
-This part is OK, as
-Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
-documents that port@0 has a single endpoint without unit address.
-
->                                         };
->                                 };
->
->                                 port@1 {
-> -                                       #address-cells =3D <1>;
-> -                                       #size-cells =3D <0>;
-> -
->                                         reg =3D <1>;
-> -                                       crucsi2: endpoint@0 {
-> -                                               reg =3D <0>;
-> +                                       crucsi2: endpoint {
-
-Again, under port@1, so which one is correct?
-
->                                                 remote-endpoint =3D <&csi=
-2cru>;
->                                         };
->                                 };
-> @@ -755,12 +747,9 @@ port@0 {
->                                 };
->
->                                 port@1 {
-> -                                       #address-cells =3D <1>;
-> -                                       #size-cells =3D <0>;
->                                         reg =3D <1>;
->
-> -                                       csi2cru: endpoint@0 {
-> -                                               reg =3D <0>;
-> +                                       csi2cru: endpoint {
-
-Likewise.
-
->                                                 remote-endpoint =3D <&cru=
-csi2>;
->                                         };
->                                 };
-> diff --git a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi b/arch/arm64/boot=
-/dts/renesas/r9a07g054.dtsi
-> index e89bfe4085f5..f37034d136b2 100644
-> --- a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-> @@ -715,22 +715,14 @@ ports {
->                                 #size-cells =3D <0>;
->
->                                 port@0 {
-> -                                       #address-cells =3D <1>;
-> -                                       #size-cells =3D <0>;
-> -
->                                         reg =3D <0>;
-> -                                       cruparallel: endpoint@0 {
-> -                                               reg =3D <0>;
-> +                                       cruparallel: endpoint {
-
-OK.
-
->                                         };
->                                 };
->
->                                 port@1 {
-> -                                       #address-cells =3D <1>;
-> -                                       #size-cells =3D <0>;
-> -
->                                         reg =3D <1>;
-> -                                       crucsi2: endpoint@0 {
-> -                                               reg =3D <0>;
-> +                                       crucsi2: endpoint {
-
-port@1, so is this correct?
-
->                                                 remote-endpoint =3D <&csi=
-2cru>;
->                                         };
->                                 };
-> @@ -760,12 +752,8 @@ port@0 {
->                                 };
->
->                                 port@1 {
-> -                                       #address-cells =3D <1>;
-> -                                       #size-cells =3D <0>;
->                                         reg =3D <1>;
-> -
-> -                                       csi2cru: endpoint@0 {
-> -                                               reg =3D <0>;
-> +                                       csi2cru: endpoint {
-
-Likewise.
-
->                                                 remote-endpoint =3D <&cru=
-csi2>;
->                                         };
->                                 };
+FTR, rcar_info_gen4 is (still) identical to rcar_info_r8a779a0.
 
 Gr{oetje,eeting}s,
 
                         Geert
 
---
+--=20
 Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
 .org
 
