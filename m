@@ -1,223 +1,137 @@
-Return-Path: <devicetree+bounces-74260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B5F99027BB
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 19:26:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2F849027E7
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 19:43:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 155D91C21C5A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 17:26:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43F8D1F21D3B
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 17:43:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDF68147C60;
-	Mon, 10 Jun 2024 17:26:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1680147C6E;
+	Mon, 10 Jun 2024 17:43:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qlUCcM8P"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="WQBUSD37"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A428145B09
-	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 17:26:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B89B1142E79;
+	Mon, 10 Jun 2024 17:43:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718040385; cv=none; b=Vllj8Yc/LwA9hYafmWV7UlMFfD+Wlsn9PtJsLxflzWdekUdXzXW4cvpodJC51liDhs/KVIA5/+M1CaNvk/YztDgEPXnxrcjsVtpkFyOq76Ld/3K/P57Bg2X53alSgSKcK4Daut7JZxc7vIuNEUWw/xhCMyPK1t4lro6fO17bVSQ=
+	t=1718041385; cv=none; b=a6J+4d+aDI+/wFeCm6CITIFUrBUdu19Wuk0hr0gM08rqxXwX7PCpTqnO1gRZyxeHQiuDpLuS38Mm5ExSpEadEWSbiIBkxK8e+zzVQdFfPgCWAW/Scb1Lp+FverM1p60QegVb9nU9dycCsCCEUecF7iaHrIHvxJD0/v2ZjOZpJI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718040385; c=relaxed/simple;
-	bh=Q/MZThhTl0D4X3vzKFJNi7/NHlOmG0Lu7+ra8XkSC8M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HXiQmNzeoRzBms6PZsV70XjKCBvfS26S/1MBofBFOCCRqKD3wlkClu3EE+qhgZ6W0e8ooV9h+0ukkzQn4HjrjM8TW3UvBWmsinP3SVD58GIA7A003Pd9PCTvpR56Xx+r+/fdlpIWowfUjsfD4o/FUWfU3s5/dnVZWZVt9CTm49E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qlUCcM8P; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-1f44b594deeso38631875ad.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 10:26:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718040383; x=1718645183; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=z/kTTkUUgstNH0kO/w/zYM9NQPPa4QuRLLbk/mR4trg=;
-        b=qlUCcM8PZqanmM5+PHgvuW/bmNqqHiiv5Eel9/9v5McLAdeBqxcVEAY/hzLEOLmsKJ
-         JtdPGLRxa69c+FHGAB3U+64ZIJZMnvCAV0UOFWm6m+k9/pemCSHvAbLUbilmJo0zKP2N
-         nVqacfecU75kSSV9NSPcBGjladRxTeczkXwbwBaK0w4Yn6ndu64GnaAq2ike9n+vN9+6
-         Z/WaAxuBth6/s1LQEjKFAjXmH+kviynTB6MbPD9J0Bq+8OLYWVPB+oYgGD6yv5YzSIwC
-         apAEeRhXVQv+H3bEu0Hud4ON4SM54mt4z2h2ozJjy96AOFZeJmIkWc66MI2yjUzm4Mvc
-         rCFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718040383; x=1718645183;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=z/kTTkUUgstNH0kO/w/zYM9NQPPa4QuRLLbk/mR4trg=;
-        b=nC8K20/1dXSEagvkC5QNFTavkBjGLrwEek76/Ktkk+yF1B+HgLV88H6jUhJp+T4aHN
-         K58TlaKsiQfMNELDBg6IGZl8mjrZGXsUXbBS2Q24GrcGIznjiHkS6BFf9Z7l0K6BWsV5
-         RoDB9xsdeiPxEORJqo3dJ6xCn7QrbX7ZpdB261MWeGDAJvPJKbM/4cWmUa3MnsvegBCZ
-         ZjOYpATuRNzrYb3Mys5iJSQ9GHUsQzOgV4KNZ0iDaGdePyfVlwPJiyRGEbLbudGM1pjJ
-         zxNVt+jENMWtjIWjhlDFRoz6TVEtyRJoy76ZfbRpuqQX/bvLuuN1Yuvqz1vXrRD40Hfo
-         zjqg==
-X-Forwarded-Encrypted: i=1; AJvYcCVxTwCvAH8GD6bEOu5Rh5ey6wedbJYDRzK1Gjjc9iHZuKqNwElUZV4q1LS/hk1rJqD+FtSfCeQZAJeennKRTpBGM+1/BoerdyrgnA==
-X-Gm-Message-State: AOJu0Yyx9h6LpCb83W3WSK54fkshakbbu2jYzS34+Q2AhgCmCVRCSA6S
-	YI4vNcB7GSLquOsSIw+ku67bjmPrx5GuSy2LkPoGRUpZjK/2JJD2c77rjviDBHE=
-X-Google-Smtp-Source: AGHT+IH8YAOO/uT7J0A/QVv5pT52XllYU+TIkKyiNkH2Hu0YlR1K/R1KeIL1Bvd96mmeM9shiu/DVQ==
-X-Received: by 2002:a17:902:ec87:b0:1f7:234b:4f28 with SMTP id d9443c01a7336-1f7234b9815mr13600575ad.25.1718040383611;
-        Mon, 10 Jun 2024 10:26:23 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:9b34:fecc:a6c:e2bc])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c2f8fc6dd0sm3568404a91.22.2024.06.10.10.26.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jun 2024 10:26:23 -0700 (PDT)
-Date: Mon, 10 Jun 2024 11:26:19 -0600
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Hari Nagalla <hnagalla@ti.com>
-Cc: andersson@kernel.org, robh+dt@kernel.org, devarsht@ti.com,
-	s-anna@ti.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, linux-remoteproc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: remoteproc: k3-dsp: correct optional
- sram properties for AM62A SoCs
-Message-ID: <Zmc3O+mAP8v9GVQl@p14s>
-References: <20240604171450.2455-1-hnagalla@ti.com>
+	s=arc-20240116; t=1718041385; c=relaxed/simple;
+	bh=pukq89EYTWZWICSg4WGUTWv7xVz+jUHs/C8/2F8z0KM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HuwxqlTmhe2Mq2e40yNTk9LXPVw3NxflUJeHF8xt4GYrZzsJmJ1Q6Tu3y47nmYJLtm8cDKqlDiPWCZuEsEUlBK7XJDlB0+nDH3Au46qLrT5zMI62Qif/M2eOVDeqoYCGm7JskBwDSAPBbd3bVKvqwGIt2OAYLTPY9mWurKmHx/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=WQBUSD37; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 684A2885A5;
+	Mon, 10 Jun 2024 19:42:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1718041381;
+	bh=oaOQDVrDft+8XHfut53lIpAIfzu9c8ayaQ0+Eg7Nxow=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WQBUSD3704u5IksQ+4ToSk+UzpJxx5XDQUX1YPYUz2ydq/y8quhOFWlrcza8nueUx
+	 YjyxaYOzD3WEXXa6xqFxLJrdCr6zaNB9WgGZY/cwqTySfG2ktmoLSn+IAAWJ39aYaz
+	 lPQro+4RKDvhuztSWyu8q/z3j1tMDLNlwddixzQkrqjyXL2HnaTqIiulZaLTRSXTEv
+	 f8smfN95RqhPw7Oe0wrkOqrAfmJtowy0aeaOUH9SM+MfZjRXqzbNp6lgRvVKq1y57y
+	 RJ6FKOabNXnR1VORrukqhc/kzNhX7sErSjR5iOTp5aBK2NyQwk34IH9z00pYbnV5NW
+	 O/HppF4vFXwGA==
+Message-ID: <bf3238fb-4fad-49b2-975c-e35d93cafe7c@denx.de>
+Date: Mon, 10 Jun 2024 19:29:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240604171450.2455-1-hnagalla@ti.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [net-next,PATCH v6 7/8] net: stmmac: dwmac-stm32: Mask support
+ for PMCR configuration
+To: Christophe ROULLIER <christophe.roullier@foss.st.com>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Richard Cochran <richardcochran@gmail.com>, Jose Abreu
+ <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240610071459.287500-1-christophe.roullier@foss.st.com>
+ <20240610071459.287500-8-christophe.roullier@foss.st.com>
+ <20139233-4e95-4fe5-84ca-734ee866afca@denx.de>
+ <c5ea12e7-5ee6-4960-9141-e774ccd9977b@foss.st.com>
+ <09105afe-1123-407a-96c3-2ea88602aad0@denx.de>
+ <91af5c61-f23f-4f72-a8c8-f32b2c368768@foss.st.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <91af5c61-f23f-4f72-a8c8-f32b2c368768@foss.st.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Tue, Jun 04, 2024 at 12:14:50PM -0500, Hari Nagalla wrote:
-> The C7xv-dsp on AM62A have 32KB L1 I-cache and a 64KB L1 D-cache. It
-> does not have an addressable l1dram . So, remove this optional sram
-> property from the bindings to fix device tree build warnings.
+On 6/10/24 3:49 PM, Christophe ROULLIER wrote:
 > 
-> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-> ---
-> Changes in v3:
-> *) Use allOf keyword with separate ifs for each variant instead 
->    of nested if/else conditions.
-> 
-> v2: https://lore.kernel.org/all/20240530164816.1051-1-hnagalla@ti.com/
-> 
->  .../bindings/remoteproc/ti,k3-dsp-rproc.yaml  | 89 +++++++++++--------
->  1 file changed, 51 insertions(+), 38 deletions(-)
->
+> On 6/10/24 15:43, Marek Vasut wrote:
+>> On 6/10/24 1:45 PM, Christophe ROULLIER wrote:
+>>>
+>>> On 6/10/24 12:39, Marek Vasut wrote:
+>>>> On 6/10/24 9:14 AM, Christophe Roullier wrote:
+>>>>
+>>>> [...]
+>>>>
+>>>>>   static int stm32mp1_set_mode(struct plat_stmmacenet_data *plat_dat)
+>>>>> @@ -303,7 +307,7 @@ static int stm32mcu_set_mode(struct 
+>>>>> plat_stmmacenet_data *plat_dat)
+>>>>>       dev_dbg(dwmac->dev, "Mode %s", 
+>>>>> phy_modes(plat_dat->mac_interface));
+>>>>>         return regmap_update_bits(dwmac->regmap, reg,
+>>>>> -                 dwmac->ops->syscfg_eth_mask, val << 23);
+>>>>> +                 SYSCFG_MCU_ETH_MASK, val << 23);
+>>>>>   }
+>>>>>     static void stm32_dwmac_clk_disable(struct stm32_dwmac *dwmac, 
+>>>>> bool suspend)
+>>>>> @@ -348,8 +352,15 @@ static int stm32_dwmac_parse_data(struct 
+>>>>> stm32_dwmac *dwmac,
+>>>>>           return PTR_ERR(dwmac->regmap);
+>>>>>         err = of_property_read_u32_index(np, "st,syscon", 1, 
+>>>>> &dwmac->mode_reg);
+>>>>> -    if (err)
+>>>>> +    if (err) {
+>>>>>           dev_err(dev, "Can't get sysconfig mode offset (%d)\n", err);
+>>>>> +        return err;
+>>>>> +    }
+>>>>> +
+>>>>> +    dwmac->mode_mask = SYSCFG_MP1_ETH_MASK;
+>>>>> +    err = of_property_read_u32_index(np, "st,syscon", 2, 
+>>>>> &dwmac->mode_mask);
+>>>>> +    if (err)
+>>>>> +        dev_dbg(dev, "Warning sysconfig register mask not set\n");
+>>>>
+>>>> Isn't this an error , so dev_err() ?
+>>> No, it is only "warning" information, for MP1 the mask is not needed 
+>>> (and for backward compatibility is not planned to put mask parameter 
+>>> mandatory)
+>>
+>> Should this be an error for anything newer than MP15 then ?
+> For MP25, no need of mask, so for moment it is specific to MP13.
 
-Applied
-
-Thanks,
-Mathieu
-
-> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> index 9768db8663eb..b51bb863d759 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> @@ -25,9 +25,6 @@ description: |
->    host processor (Arm CorePac) to perform the device management of the remote
->    processor and to communicate with the remote processor.
->  
-> -allOf:
-> -  - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
-> -
->  properties:
->    compatible:
->      enum:
-> @@ -89,41 +86,57 @@ properties:
->        should be defined as per the generic bindings in,
->        Documentation/devicetree/bindings/sram/sram.yaml
->  
-> -if:
-> -  properties:
-> -    compatible:
-> -      enum:
-> -        - ti,j721e-c66-dsp
-> -then:
-> -  properties:
-> -    reg:
-> -      items:
-> -        - description: Address and Size of the L2 SRAM internal memory region
-> -        - description: Address and Size of the L1 PRAM internal memory region
-> -        - description: Address and Size of the L1 DRAM internal memory region
-> -    reg-names:
-> -      items:
-> -        - const: l2sram
-> -        - const: l1pram
-> -        - const: l1dram
-> -else:
-> -  if:
-> -    properties:
-> -      compatible:
-> -        enum:
-> -          - ti,am62a-c7xv-dsp
-> -          - ti,j721e-c71-dsp
-> -          - ti,j721s2-c71-dsp
-> -  then:
-> -    properties:
-> -      reg:
-> -        items:
-> -          - description: Address and Size of the L2 SRAM internal memory region
-> -          - description: Address and Size of the L1 DRAM internal memory region
-> -      reg-names:
-> -        items:
-> -          - const: l2sram
-> -          - const: l1dram
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - ti,j721e-c66-dsp
-> +    then:
-> +      properties:
-> +        reg:
-> +          items:
-> +            - description: Address and Size of the L2 SRAM internal memory region
-> +            - description: Address and Size of the L1 PRAM internal memory region
-> +            - description: Address and Size of the L1 DRAM internal memory region
-> +        reg-names:
-> +          items:
-> +            - const: l2sram
-> +            - const: l1pram
-> +            - const: l1dram
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - ti,j721e-c71-dsp
-> +            - ti,j721s2-c71-dsp
-> +    then:
-> +      properties:
-> +        reg:
-> +          items:
-> +            - description: Address and Size of the L2 SRAM internal memory region
-> +            - description: Address and Size of the L1 DRAM internal memory region
-> +        reg-names:
-> +          items:
-> +            - const: l2sram
-> +            - const: l1dram
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - ti,am62a-c7xv-dsp
-> +    then:
-> +      properties:
-> +        reg:
-> +          items:
-> +            - description: Address and Size of the L2 SRAM internal memory region
-> +        reg-names:
-> +          items:
-> +            - const: l2sram
-> +
-> +  - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
->  
->  required:
->    - compatible
-> -- 
-> 2.34.1
-> 
+Make this a warning for MP15, error for MP13, do not check st,syscon 
+presence for MP2 at all. Would that work ?
 
