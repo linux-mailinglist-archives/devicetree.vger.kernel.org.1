@@ -1,48 +1,65 @@
-Return-Path: <devicetree+bounces-74042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 495AB901CAB
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 10:15:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14FBC901CB3
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 10:16:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C75EF1F24C79
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 08:15:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25B981C210B3
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 08:16:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B113C57C8E;
-	Mon, 10 Jun 2024 08:11:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ABD04D8B3;
+	Mon, 10 Jun 2024 08:16:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RAmzu/uI"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="rZPTBWm0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82B16210E7;
-	Mon, 10 Jun 2024 08:11:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D0DE21A0D;
+	Mon, 10 Jun 2024 08:16:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718007091; cv=none; b=KN8j6xiwrV9OWkpqs287r0Yw+cS2o7iU8a9i3YdkAkVMEMBipcFEOCAmQCe34rwRWBbap7z19twQ3QoNtDUqRfuEBQI1UsCZ3u/JN91a4yHxxbJYXK83qdLtk5Ku8YnYkdvWdF+y19cPLk9FCKA799urqyrViUgZjOsW2ZbiBIg=
+	t=1718007373; cv=none; b=sfWxg7Ruu5FXXHN8H9yIT0hMBWoyBaBXz4jaFJtbLMO0wX15gUJ9jVT4cu9+G6gdYlhy4PcIlYqUBOAKJHZglF104DE60wHgxKxe4M0+Vft4zDYFqATN3zKYs0OfT+kWKrRjxo/C3qKJQ4rxy6Qo2YQq4Wt/VyPC7HNtKUhQg6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718007091; c=relaxed/simple;
-	bh=WNW6uVie7dJechkQDiJ6liwBJVvv34dcJAVhMCnhhBw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Xd26+9g6k4QFOZnPj1BcAFuSP5LzZ8lhZCNosgAhPzw+XEMRTFCbRJTYkAalW2sEOeNKs/eOuNIM/2da8UjFZj7MSxqQOzdcJ0vOL3C9T3IjNeiGcwOc+n+IAR5Va9Mh8IAxR5rMmZ96laEPMePIbus5WXy+6QOMhj8XsnrhARg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RAmzu/uI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CE3CC2BBFC;
-	Mon, 10 Jun 2024 08:11:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718007090;
-	bh=WNW6uVie7dJechkQDiJ6liwBJVvv34dcJAVhMCnhhBw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RAmzu/uICfW3UAwgCO+CFYui3EkqmKsxxAKT929bfOMjWZUjdd+H4t62kxAWXSuc2
-	 iN8517Ev5ZB1FTDJ20jZi6Kks2Gnm5PBV8V4F9YXOK5czctcpOKcKggYmPJWGiraoA
-	 SDPOgIcgR4gQ+82u7TH9LDAQiPXTqBG5bVM7NS2JG/e5OKqa1sEehf3cD+D8/48e+c
-	 0ai8PDvshwPxi0Q7N5SNJ3Fh+6NE9Xt2QTmAhgbiauyjdaic49ElZ8cBUJCg6QiAMz
-	 JG1sB29IvuPof3cGC6uiW+qSSZujl56ymwnNfb78a/SfTwW6LHlNebzOsg2mMxJLK8
-	 YX7XQ/Y9i4XSg==
-Message-ID: <d3b9f4b5-2c21-4f55-a189-c6250ff8eba2@kernel.org>
-Date: Mon, 10 Jun 2024 10:11:22 +0200
+	s=arc-20240116; t=1718007373; c=relaxed/simple;
+	bh=rRQys8joHD9dH+r0LBeh4CsDcfuPa7n+yqWQ2JDoZlY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=cPpptO1ZRNgEmYNmaRl1Wv95bGxh+c1k0Z7XgkVXoZmtq7U6zawgBa0gvIQEKPwX/de5wXc848a/u77CW6wDbfa/aaGUf5RPILJBnLWnuPYl6XILFSjB1fAOHsE6VnAJEnJvrvkDln3xqDBKvMjgHyLI8kDKMaKM9kCKT/qvYFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=rZPTBWm0; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 459LdCa7025381;
+	Mon, 10 Jun 2024 10:15:43 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	luPvYi2+bdeQnMajOwT0mxxtNvrSHDJwHEH0GYgBZKI=; b=rZPTBWm0ZyRUTdUs
+	WQGUpECn8E4EU1jCXf/0waiFKus+/i4Tmh5mvEjeN3RVZkjIMk5x53R459Hsnezh
+	ig2jrKrG74gbb739nA5b/jD9wFs3JlBpUXqAwOnNGw1GCDt9fLfZJvP2HwvVnLEf
+	GMu3rZkR/a/ADJbV9tgiG6h3ekCl8oVgA2zrOHVTqnSkFyv6k1A0UNXly0AzdAPM
+	wx6mHzoQhLLdj6KlEfq3t1sjS1k92jQqIgfvHroQ7rrPU31o5aNqcbqaneK1ttRB
+	xBiUlVIQJcNABkxgOgj8hkG62cSDyAyleV80Ob4btGGTl1wAKhffIybjXGG1eU4T
+	FxyFyg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yme6d5nm4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Jun 2024 10:15:43 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1CDB74002D;
+	Mon, 10 Jun 2024 10:15:38 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 78892211F37;
+	Mon, 10 Jun 2024 10:14:20 +0200 (CEST)
+Received: from [10.48.86.164] (10.48.86.164) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 10 Jun
+ 2024 10:14:18 +0200
+Message-ID: <ef4d2ebb-dd2a-423d-acd1-43fdb42c1896@foss.st.com>
+Date: Mon, 10 Jun 2024 10:14:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,132 +67,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add Samsung AMS639RQ08
-To: Danila Tikhonov <danila@jiaxyga.com>, neil.armstrong@linaro.org,
- quic_jesszhan@quicinc.com, sam@ravnborg.org,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, daniel@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, adrian@travitia.xyz, degdagmohamed@gmail.com
-References: <20240609203618.49413-1-danila@jiaxyga.com>
- <20240609203618.49413-2-danila@jiaxyga.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 1/1] ARM: multi_v7_defconfig: Add MCP23S08 pinctrl support
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "David S . Miller"
+	<davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark
+ Brown <broonie@kernel.org>, Marek Vasut <marex@denx.de>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240610080604.291102-1-christophe.roullier@foss.st.com>
+ <06703c03-e1ce-4a94-942d-b556c6084728@linaro.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240609203618.49413-2-danila@jiaxyga.com>
-Content-Type: text/plain; charset=UTF-8
+From: Christophe ROULLIER <christophe.roullier@foss.st.com>
+In-Reply-To: <06703c03-e1ce-4a94-942d-b556c6084728@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-10_02,2024-06-06_02,2024-05-17_01
 
-On 09/06/2024 22:36, Danila Tikhonov wrote:
-> The Samsung AMS639RQ08 is a 6.39 inch 1080x2340 MIPI-DSI CMD mode
-> AMOLED panel used in:
-> - Xiaomi Mi 9 Lite / CC9 (sdm710-xiaomi-pyxis)
-> - Xiaomi Mi 9T / Redmi K20 (sm7150-xiaomi-davinci)
-> - Xiaomi Mi 9T Pro / Redmi K20 Pro (sm8150-xiaomi-raphael)
-> Add a dt-binding for it.
-> 
-> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+Hi Krzysztof,
 
-If there is going to be any new posting, then two changes:
+On 6/10/24 10:09, Krzysztof Kozlowski wrote:
+> On 10/06/2024 10:06, Christophe Roullier wrote:
+>> Enable MCP23S08 I/O expanders to manage Ethernet PHY
+>> reset in STM32MP135F-DK board.
+>>
+>> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
+>> ---
+>>   arch/arm/configs/multi_v7_defconfig | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
+>> index 86bf057ac3663..9758f3d41ad70 100644
+>> --- a/arch/arm/configs/multi_v7_defconfig
+>> +++ b/arch/arm/configs/multi_v7_defconfig
+>> @@ -469,6 +469,7 @@ CONFIG_SPI_XILINX=y
+>>   CONFIG_SPI_SPIDEV=y
+>>   CONFIG_SPMI=y
+>>   CONFIG_PINCTRL_AS3722=y
+>> +CONFIG_PINCTRL_MCP23S08=y
+> This is not an on-SoC pinctrl, so it should be module (=m).
 
+The stmmac is in built-in, if IO-Expander (MCP23S08) is on module, we 
+have huge of message during kernel boot
 
-> +maintainers:
-> +  - Danila Tikhonov <danila@jiaxyga.com>
-> +  - Jens Reidel <adrian@travitia.xyz>
-> +
-> +description: |
+because stmmac driver is deferred several times. (need to wait that 
+module are ready)
 
-Do not need '|' unless you need to preserve formatting.
+Thanks
 
-> +  The Samsung AMS639RQ08 is a 6.39 inch 1080x2340 MIPI-DSI CMD mode AMOLED panel.
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: samsung,ams639rq08
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vdd3p3-supply:
-> +    description: 3.3V source voltage rail
-> +
-> +  vddio-supply:
-> +    description: I/O source voltage rail
-> +
-> +  vsn-supply:
-> +    description: Positive source voltage rail
-> +
-> +  vsp-supply:
-> +    description: Negative source voltage rail
-> +
-> +  reset-gpios: true
-> +  port: true
-> +
-> +additionalProperties: false
-
-This goes after "required:" block.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vdd3p3-supply
-> +  - vddio-supply
-> +  - vsn-supply
-> +  - vsp-supply
-> +  - reset-gpios
-> +  - port
-> +
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+>
+> Best regards,
+> Krzysztof
+>
 
