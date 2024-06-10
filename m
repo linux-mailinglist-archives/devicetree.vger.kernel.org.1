@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-74316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE7F7902B16
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 23:59:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30FAA902B3B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 00:01:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 570C5285172
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 21:59:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D81931F23779
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 22:01:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 918E314659A;
-	Mon, 10 Jun 2024 21:58:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 987E814BF89;
+	Mon, 10 Jun 2024 22:00:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lF/qV0tg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="huEybc9Y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64185558A5;
-	Mon, 10 Jun 2024 21:58:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B0055337F;
+	Mon, 10 Jun 2024 22:00:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718056739; cv=none; b=ehrws0CovnecZDIgV4TDuN3uVzno2HpJ2+WYKre0wUVKaWs1UtZfgBzdCCYMHlEU87q+3HU7fFGz/NydlnfQF40BleBFTXtfdEEaMBR+QV6xuXnrubds4EUuvdQ2GutCNJdiIb4UdQO9PAMEa41hO0uzL+VdN7mSGv29CXhHEwE=
+	t=1718056852; cv=none; b=eDsAjj4UwCI5H0Q72E7p5ilxFbAYEiUOtvopCjydDxxWlVKaE8KDdPvGlP1Noz5tiGFa3MrAgQGZzkUS/Xequ/Tkz5KRSSbDJaHQBBi2q4oVKCuYnDq0R7V6SNxfy6BmcXghVSMV87BoRUS1EOS6hvveMcgzB3vUblj6hGhqHNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718056739; c=relaxed/simple;
-	bh=3+G51pF9+5TTxrYCW+LOYlmhyGNeooEaJCa+EPjFDwQ=;
+	s=arc-20240116; t=1718056852; c=relaxed/simple;
+	bh=4hNrFc5LQ7zPOmlhF4e5T18BjWyq+GThHayn0/NaZ8I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r1iKhBbdk40MvLK7TY2VidhZtH8gGA8FhlwmJcc4vdtSM+OTlbqB1nnPvYNscDcdRyzGlwzdM0MvlZCICdu8h6ShOqdArPAkohBxWzjzwRX3cSG4j/ITcR+BuhLRY6DMowDLcW4J/U+01BSuvbRtKFYusvifCkV3zJvlPpr7K0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lF/qV0tg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ECEDC2BBFC;
-	Mon, 10 Jun 2024 21:58:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=e2A3br9f0Q1kxS2i1Z36i6WRY4ROghP29UlGvHbT84Q8w6k4HNZPnMFmRbxEhfanmYu9P/GBZ3KBjS9oG1QdsYhdyR742hQ1MwnLLfZfbamazEei1AqPwQSbCpoG7AojgS5oROM1sEPeSbnO1lHsKlmUXp+ZxsYfAHiZIJUYb2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=huEybc9Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B717CC2BBFC;
+	Mon, 10 Jun 2024 22:00:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718056738;
-	bh=3+G51pF9+5TTxrYCW+LOYlmhyGNeooEaJCa+EPjFDwQ=;
+	s=k20201202; t=1718056852;
+	bh=4hNrFc5LQ7zPOmlhF4e5T18BjWyq+GThHayn0/NaZ8I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lF/qV0tg9QnCE5AFbg5IKgjBp4KPr+9Jg4wZHRRzb7/c9uiIECEpNNcnvFAh597Jn
-	 dZNo/NdYPFm+1F6FmUqfUb3facW9x8fwkt+fMV10i7tj4zyBpyBF7PUNA+yxp7g48y
-	 pvw5aVY1MmQU4NMgTf/ztN3Ue0iVMlyarM6Wa+bHgA6ttraJByB3kKb5L/kDc51dnr
-	 qdOcBNPQXhMEDX18e6+wBk9OSTBL3Tb2bxedWfK/wQBbluYnX7wCusr2eHoo0qCTE2
-	 M2LHNGXG6wJFwEfRQ/V7TOWrRGpdLa+qK8xawDaj3ZfvjlZ+911arOMjlxNYwoa7Nj
-	 djIm7Pwz2IwFA==
-Date: Mon, 10 Jun 2024 15:58:57 -0600
-From: Rob Herring <robh@kernel.org>
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
+	b=huEybc9YuEj0AZwnpmz5EXvHdpAREfdtqHkySmqqhzG3SNpEtBUesnoPIL6ndf4P1
+	 UNxE7hu5V0shaT0L8hhi+YeUmp2us+aHrr3XY/CTcTBc3j+TuA4QD5MDAkK9Q0p4i6
+	 Laij4U3VHDklXrUH8YhDxMzV2vbetKGgxts5PCtWsfxAiumelUv8f+tLnDp4Xydj8E
+	 G2c+p0kiKlssgBeLTXH0G/eFMG/1e7gm3Y2i+3Xsji4CQhdd9hjU3A2ruFzwZ8X/d4
+	 dpOpbN8xy+GXEGdlGVFEddOdZiLLzjoF8P5dcbLawM0H1pivb57o0et6/9woy7Noo4
+	 ADSX+cTDtdVcg==
+Date: Mon, 10 Jun 2024 16:00:50 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] ASoC: dt-bindings: linux,spdif: Convert
- spdif-reciever.txt to dtschema
-Message-ID: <20240610215857.GA3135318-robh@kernel.org>
-References: <20240606041212.78428-1-animeshagarwal28@gmail.com>
+	Magnus Damm <magnus.damm@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-kernel@vger.kernel.org,
+	Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v4] dt-bindings: pinctrl: renesas: Document RZ/V2H(P) SoC
+Message-ID: <171805684854.3144242.13947017914816663654.robh@kernel.org>
+References: <20240606085133.632307-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,31 +65,81 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240606041212.78428-1-animeshagarwal28@gmail.com>
+In-Reply-To: <20240606085133.632307-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Thu, Jun 06, 2024 at 09:42:00AM +0530, Animesh Agarwal wrote:
-> Convert the dummy SPDIF receiver bindings to DT schema.
 
-Really the subject should be something like "Merge linux,spdif-dir into 
-linux,spdif-dit". Then the commit message should say why (they are the 
-same other than compatible. "sound-name-prefix" wasn't documented for 
-linux,spdif-dir, but is in use already.)
-
+On Thu, 06 Jun 2024 09:51:33 +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-> Cc: Daniel Baluta <daniel.baluta@nxp.com>
+> Add documentation for the pin controller found on the Renesas RZ/V2H(P)
+> (R9A09G057) SoC. The RZ/V2H PFC varies slightly compared to the RZ/G2L
+> family:
+> - Additional bits need to be set during pinmuxing.
+> - The GPIO pin count is different.
 > 
+> Hence, a SoC-specific compatible string, 'renesas,r9a09g057-pinctrl', is
+> added for the RZ/V2H(P) SoC.
+> 
+> Also, add the 'renesas,output-impedance' property. The drive strength
+> setting on RZ/V2H(P) depends on the different power rails coming out from
+> the PMIC (connected via I2C). These power rails (required for drive
+> strength) can be 1.2V, 1.8V, or 3.3V.
+> 
+> Pins are grouped into 4 groups:
+> 
+> Group 1: Impedance
+> - 150/75/38/25 ohms (at 3.3V)
+> - 130/65/33/22 ohms (at 1.8V)
+> 
+> Group 2: Impedance
+> - 50/40/33/25 ohms (at 1.8V)
+> 
+> Group 3: Impedance
+> - 150/75/37.5/25 ohms (at 3.3V)
+> - 130/65/33/22 ohms (at 1.8V)
+> 
+> Group 4: Impedance
+> - 110/55/30/20 ohms (at 1.8V)
+> - 150/75/38/25 ohms (at 1.2V)
+> 
+> The 'renesas,output-impedance' property, as documented, can be
+> [0, 1, 2, 3], these correspond to register bit values that can
+> be set in the PFC_IOLH_mn register, which adjusts the drive
+> strength value and is pin-dependent.
+> 
+> As power rail information may not be available very early in the boot
+> process, the 'renesas,output-impedance' property is added instead of
+> reusing the 'output-impedance-ohms' property.
+> 
+> Also, allow bias-disable, bias-pull-down and bias-pull-up properties
+> as these can be used to configure the pins.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
-> Changes	in v2:
-> - Add linux,spdif-dir compatible in existing linux,spdif-dit.yaml
-> instead of creating new yaml file specifically for dummy SPDIF receiver.
-> - Change file name to support both transmitter and receiver bindings.
+> Sending just the binding patch of series [0] as reset of the patches have
+> been Reviewed.
+> 
+> [0] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20240530173857.164073-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> 
+> v3->v4
+> - Added a conditional schema for ensuring the reset length
+>   is 2 for RZ/V2H and 3 otherwise
+> - Updated description for renesas,output-impedance property
+> - Dropped '|'
+> 
+> v2->v3
+> - Updated description for renesas,output-impedance property
+> - Updated commit description
+> 
+> RFC->v2
+> - Renamed renesas-rzv2h,output-impedance -> renesas,output-impedance
+> - Updated values for renesas,output-impedance
+> - Added bias properties
 > ---
->  .../sound/{linux,spdif-dit.yaml => linux,spdif.yaml}   |  8 +++++---
->  .../devicetree/bindings/sound/spdif-receiver.txt       | 10 ----------
->  2 files changed, 5 insertions(+), 13 deletions(-)
->  rename Documentation/devicetree/bindings/sound/{linux,spdif-dit.yaml => linux,spdif.yaml} (75%)
->  delete mode 100644 Documentation/devicetree/bindings/sound/spdif-receiver.txt
+>  .../pinctrl/renesas,rzg2l-pinctrl.yaml        | 37 +++++++++++++++++--
+>  1 file changed, 33 insertions(+), 4 deletions(-)
+> 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
 
