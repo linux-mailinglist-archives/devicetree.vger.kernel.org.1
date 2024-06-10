@@ -1,137 +1,154 @@
-Return-Path: <devicetree+bounces-74005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 797A7901AC6
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 08:00:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF11F901ACC
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 08:01:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE933286BF0
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 06:00:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E42831C23DB2
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 06:01:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 220B63B182;
-	Mon, 10 Jun 2024 05:57:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B04D45026;
+	Mon, 10 Jun 2024 05:58:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="OX5FfR/X"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cQABKIef"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E0432E633
-	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 05:57:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F9FBF9E8;
+	Mon, 10 Jun 2024 05:58:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717999062; cv=none; b=WFwBc0pFg3LZv7BaHYw4dDipty4nw1VYMslayDffHdesOxhYsyHVoc08RkST8HtJfrQhA1pLPcV2WIxwsqASQ54DeuRI0NUvuWwwii2kYOZp3GTzKf8xLH1LUM9QH1g/kK9I7BWMdu/XtXjIgU+uabjJE7eG4RR9VkeWvAWtBog=
+	t=1717999138; cv=none; b=m0/qXVdzip+C8PMPEp+NmRRON4StKjzjC1HN/2HrV5nOlKjUqzdii4X1Njmlzs4itjzha1iS3GROe1eH0ITP+GETAaKXXzwlfo9PPlkpRQGnvTsAL4X5ahX4ZupmetMcFqmI/jQ+gmWE99wQsamIb50cjkBxOyGc5UAiwH2HNmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717999062; c=relaxed/simple;
-	bh=H9e1DtrBKyasjGaY6GRjDrdJMaI7XGOcU8lHh4uKUgs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C2iriPK6C/cWzXnXaGVf3HAtSBcNDMCMSnNBSYrJzs14JP6pkP8bilFvqUtQ1SwW3MlQPKmltG8FtSCNA4x+UySZNZpvjo/w8Q5UiJtISDayKDAL7EE5VyU7Ox0LhWU2ui1WvrStUrZ2aAJeRjERJhvUINh1ffSE4418Xf8r4RE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=OX5FfR/X; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-35f1cb7a40fso985190f8f.0
-        for <devicetree@vger.kernel.org>; Sun, 09 Jun 2024 22:57:40 -0700 (PDT)
+	s=arc-20240116; t=1717999138; c=relaxed/simple;
+	bh=5sPxgNb7QXqMc4Oi2NV5XP2Q5AV6CY3tLZJ9mDEwS6Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=G3bu+mwEXp0Vuhyz34GeOChXlcx1eYcL5QcifHx3+OiSDYbS0gUJFUPzrCcAxh/6m4tXQN7/xeSXxdx6ANd/8ngRy/nREARb0tnXTLBbwYrcOwpF0vFbP/93miNb+9iZDaH+fpMAUA6cun5HOdN0EnroAdkHNnTpCJKyP6Eo0CY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cQABKIef; arc=none smtp.client-ip=209.85.216.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-2c195eb9af3so3038845a91.0;
+        Sun, 09 Jun 2024 22:58:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1717999059; x=1718603859; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FC/HmJJiWdO+PsgBiIdzngU/gSiU+MnAOVhV61bqZaM=;
-        b=OX5FfR/X5NI7YtAupgZVf6dCXy7GZnyRCkiiasrFCP+Yq9CrZ9MymBm+o5Nash7v9f
-         QfumGyi5Lac5R1sDTeSHORYcOT16s+b3s98mbow9mGSDGe1jZXbi2ODTebYnCk5NU7pn
-         LPxKFknCoG392FM7VmHVHtAEFt5ynz+U7D7Mm59MYQKdJ2VNfQnDWR2j95s06gWGe9VU
-         Ripnkk4d+9XWFbmncqwQmAwmuBEY5YravRq+vNztcAIBGMUutW03MgoLo5HR/3cLpcR5
-         iF1nOltiloOOiBJHCW9NWqfUbTMgw9CHl6WBGGLnIlbwaV1HPjP+pHGa1MpddFS5W8nI
-         56oQ==
+        d=gmail.com; s=20230601; t=1717999136; x=1718603936; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=m5ohG+dnxK58rDxnX6ohZaoZPwLRCAnxJI0xnrHXGNU=;
+        b=cQABKIefVCOzXr2rox1+T8wJAh18xfy2AJUoA+oQTf8GLH5hwcDi0oqU/ZJlGbucwj
+         GvC2WKZjE02ZycTGlMewXMnPjRWtT+nts2eWhAejAEeqapfov051tT5RHf4OqAncrFpf
+         d06oQjjUc6ZQeU1o76qh4IY3Ze3FquNbpLAkYiDPt7eoNDZZPZsFrJMkNjp+kuzYHXpQ
+         f9F+MPwSpkUWeUPrzZjZiiDxARWvpKKGknZ/yndrlSXOxQPtkrf6dW4WYeZBF7ZT/Lnf
+         ODH0Icn0WXx4VpMN7CUiU5FnSd6i9kOC81+81m/CXmSilhg8Zqx7UQIpG0A852JQ72sx
+         bE+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717999059; x=1718603859;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FC/HmJJiWdO+PsgBiIdzngU/gSiU+MnAOVhV61bqZaM=;
-        b=fXvZ03WHkIfvX2GyG4Uw+NHvBY6iX1XkCLEMjLcm76Ts+AvoNM1nq3iFyAew3/Epxn
-         Y/BihRL2WgHtYZx4aHeIgRXrf0CwCti8UnlO/NLLTIBCyKuPCwAyk4UUHgfKIEcbu7z5
-         it9Ct+rUeTg3DF1qbiw7vgVzRSja5qwUiaWNIyRtOpwj/BSMfhUiJXrZVOHlOzo8+LK8
-         sG5O57H5Jef449SpEH1+4fiPh+AW93g5SMlYNo0EhJdqWZbkC9bXn9Cc1X5JRmr5jKoh
-         hsqH9mVZXKsHJy6UBnKxUraImpdnH1CEiE9zP8xJ/IMAiLQz8cGlwihtIgnYhSjnRsBB
-         uL5g==
-X-Forwarded-Encrypted: i=1; AJvYcCXyyHfnuCCkTbRGcIrQ8t2G3HxqSm2hbKmMHrLF+nVP6hRnryM10u47dcYXQRQDzCsRUJSZQ28vw0V714g6+cdUY+dY9/NXE+kwOg==
-X-Gm-Message-State: AOJu0YzvOolKWpKsZu/MbD3w/5qP5bhSqv/IT08rpSifh6sCmq2eSbAp
-	BZ0TDCkp7MjOEtIQ8D3MfPj+XOZkLrbb2AbBHLMJ01h3kkoIxBYiqODrFpdsMBw=
-X-Google-Smtp-Source: AGHT+IEtjY19VU7Eq089Pqm61jMuYTQI/xyPIM77aNuSXET+VPetxzvIJkA3ZyLcTqGk+vK8y9ETnw==
-X-Received: by 2002:a5d:634e:0:b0:35f:1384:de4d with SMTP id ffacd0b85a97d-35f1384e1e3mr3120844f8f.37.1717999059053;
-        Sun, 09 Jun 2024 22:57:39 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.189])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5d29e57sm10097602f8f.2.2024.06.09.22.57.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 09 Jun 2024 22:57:38 -0700 (PDT)
-Message-ID: <b139a965-607a-4245-91b7-11ef9fd97082@tuxon.dev>
-Date: Mon, 10 Jun 2024 08:57:37 +0300
+        d=1e100.net; s=20230601; t=1717999136; x=1718603936;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=m5ohG+dnxK58rDxnX6ohZaoZPwLRCAnxJI0xnrHXGNU=;
+        b=SEzJ91oSyVLnk6puXd2Knw1bY/qnKcNXSDZlZ26OvGO9X2OyENvijuT4zY49YFlD+2
+         YiP/609fGuOBO/SEyWBs2Ziwg1lfp5g4wiGJECAk90x8hjXfnGxNdtle4REBLfIp6EDt
+         ZX/twdFHE9s6ZFx3/yyJKO+z7P0hZFCLXX+1kEpwyaCP0n6ENIhfc2KuD+ynrw5N/4En
+         Pgxhe2DgpiCgM6h6ec7CLhAQ9098c7IkjYlvmJ8JvqggQUb0NnXVvHDHZbAlHFIjEhVn
+         /e9v4tGONylfb61+1NiSVHf+PmzJHA7EDaEyYYove3R6pql5F2+YzwwndRStlHmuWrvC
+         CF0A==
+X-Forwarded-Encrypted: i=1; AJvYcCVCUZOIFSw9gv0Hj3xkoSLD5kXjTaKMIjZrz8+JRJM+H4Tg67ng1gZ2yVfyLDbWzYO5rav/Xr2INDW6Gt3CYiXt303M+InudIW5F0MukBD5GyUAlfVhaW2f/cV71+lDAoAdsgzPb34+m2QDC5vSf2F73d5XajzhOaTjf0iG1hmejbtY+g==
+X-Gm-Message-State: AOJu0YzwzdysnL6itEOTzK5ugbDo2x+yMH+h6eKT8QPyAHOwiY0+LrWV
+	EjHpNudZtIU8dVthXfKGbvbGcTWJjpbKXrNuvnstYgdelpCUce+OoLbZSQLfP+oWgP8gMo9UtRj
+	ErEPqcW3weMN8cftIx3zkpIQ7sp0=
+X-Google-Smtp-Source: AGHT+IGDKDQOkgqMhS7o7jBkgNM6RNRKZtE5gDaGYIq2pn1N/abNFj6XqC13hPSeaarIJCe9b88AxWZZuVUUNhIhOrw=
+X-Received: by 2002:a17:90b:4fc7:b0:2c2:f6e9:54fe with SMTP id
+ 98e67ed59e1d1-2c2f6e95818mr2373559a91.27.1717999136165; Sun, 09 Jun 2024
+ 22:58:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 12/15] pinctrl: renesas: pinctrl-rzg2l: Pass pincontrol
- device pointer to pinconf_generic_parse_dt_config()
-Content-Language: en-US
-To: Prabhakar <prabhakar.csengg@gmail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Biju Das <biju.das.jz@bp.renesas.com>,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Paul Barker <paul.barker.ct@bp.renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240530173857.164073-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240530173857.164073-13-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20240530173857.164073-13-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240606162948.83903-1-muditsharma.info@gmail.com>
+ <20240606162948.83903-2-muditsharma.info@gmail.com> <20240608172227.17996c75@jic23-huawei>
+In-Reply-To: <20240608172227.17996c75@jic23-huawei>
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+Date: Mon, 10 Jun 2024 08:58:44 +0300
+Message-ID: <CANhJrGM9czj0RL3OLCgRHEKc2QOjG9P0AZTrZxvYUk65TCpHRg@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] iio: light: ROHM BH1745 colour sensor
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Mudit Sharma <muditsharma.info@gmail.com>, lars@metafoo.de, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, robh@kernel.org, ivan.orlov0322@gmail.com, 
+	javier.carrasco.cruz@gmail.com, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+la 8. kes=C3=A4k. 2024 klo 19.22 Jonathan Cameron (jic23@kernel.org) kirjoi=
+tti:
+>
+> On Thu,  6 Jun 2024 17:29:42 +0100
+> Mudit Sharma <muditsharma.info@gmail.com> wrote:
+>
+> > Add support for BH1745, which is an I2C colour sensor with red, green,
+> > blue and clear channels. It has a programmable active low interrupt
+> > pin. Interrupt occurs when the signal from the selected interrupt
+> > source channel crosses set interrupt threshold high or low level.
+> >
+> > This driver includes device attributes to configure the following:
+> > - Interrupt pin latch: The interrupt pin can be configured to
+> >   be latched (until interrupt register (0x60) is read or initialized)
+> >   or update after each measurement.
+> > - Interrupt source: The colour channel that will cause the interrupt
+> >   when channel will cross the set threshold high or low level.
+> >
+> > This driver also includes device attributes to present valid
+> > configuration options/values for:
+> > - Integration time
+> > - Interrupt colour source
+> > - Hardware gain
+> >
+
+> > +
+> > +#define BH1745_CHANNEL(_colour, _si, _addr)                           =
+        \
+> > +     {                                                                =
+     \
+> > +             .type =3D IIO_INTENSITY, .modified =3D 1,                =
+         \
+> > +             .info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW),          =
+       \
+> > +             .info_mask_shared_by_type =3D BIT(IIO_CHAN_INFO_HARDWAREG=
+AIN) | \
+>
+> Provide _SCALE instead of HARDWAREGAIN
+> As it's an intensity channel (and units are tricky for color sensors give=
+n
+> frequency dependence etc) all you need to do is ensure that if you halve
+> the _scale and measure the same light source, the computed
+> _RAW * _SCALE value remains constant.
+
+...Which is likely to cause also the integration time setting to
+impact the SCALE.
+
+You may or may not want to see the GTS-helpers
+(drivers/iio/industrialio-gts-helper.c) - which have their own tricky
+corners. I think Jonathan once suggested to me to keep the
+HARDWAREGAIN as a read-only attribute to ease seeing what is going on.
+For the last couple of days I've been reworking the BU27034 driver to
+work with the new sensor variant - and I can definitely see the value
+of the read-only HARDWAREGAIN when we have per channel gain settings +
+integration time setting which all contribute to the scale...
 
 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
 
-On 30.05.2024 20:38, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Pass pincontrol device pointer to pinconf_generic_parse_dt_config() in
-> preparation for passing custom params.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+~~ When things go utterly wrong vim users can always type :help! ~~
 
-Tested-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com> # on RZ/G3S
-
-> ---
-> v2->v3
-> - Included RB tag
-> 
-> RFC->v2
-> - No change
-> ---
->  drivers/pinctrl/renesas/pinctrl-rzg2l.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pinctrl/renesas/pinctrl-rzg2l.c b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> index e60049b66203..ea1a08d272a1 100644
-> --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> @@ -532,7 +532,7 @@ static int rzg2l_dt_subnode_to_map(struct pinctrl_dev *pctldev,
->  		return -EINVAL;
->  	}
->  
-> -	ret = pinconf_generic_parse_dt_config(np, NULL, &configs, &num_configs);
-> +	ret = pinconf_generic_parse_dt_config(np, pctldev, &configs, &num_configs);
->  	if (ret < 0)
->  		return ret;
->  
+Discuss - Estimate - Plan - Report and finally accomplish this:
+void do_work(int time) __attribute__ ((const));
 
