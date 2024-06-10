@@ -1,473 +1,220 @@
-Return-Path: <devicetree+bounces-74332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E340902BC9
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 00:37:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34F97902BE5
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 00:56:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8FEA0B21A86
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 22:37:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B59311F22619
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 22:56:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 056C61514E1;
-	Mon, 10 Jun 2024 22:37:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E232114F123;
+	Mon, 10 Jun 2024 22:55:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="xsRnp9jC"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ezcvoj8p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com [91.218.175.188])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B46FD150997
-	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 22:37:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.188
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E5003BB48;
+	Mon, 10 Jun 2024 22:55:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718059032; cv=none; b=M2o1RRm3/Zttw8SigP6YDXc0V4ySDBleujxAFgG8vHBRE65qLABR4xGzTts0bspE9jvv+NZhtESSS72fFECi2Y89mTHVC+En921c87NJBRpqDxtcsTZMm0BcazQX9okRr9Ny/s5q4OvDzaWJmr+T0A144F55W2ct5ZCy8IJBnP0=
+	t=1718060159; cv=none; b=oSS+lvL4/bb5VOy9KZpdyCeHhXOIo32zTKnM26r/a3AC5CiSlxpugHzYhMrqF3OcWrkTMdCCBd1BXkgtqmDMVHhySUfijov//8bfWPefvWHZueDagvdUZNRlxbT0femY0CVmhZecc40mAWrBYQtZG440K2QpNaB9VydyU3nMKlA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718059032; c=relaxed/simple;
-	bh=C6alZJrDTXY52QxfH6bDjxG3GDmAKN794qeoJbME/zU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=KBAgIqM0NFf1Pc0bsl6YYYnLh9/RrbvbeIOGAkcIlECZIP7rvEpUJr0XRWqXB/w54AeOR5OfqWLb+2wCNKnQkSHDNiAhtDhKYCwjPCuX6Z9HuED/82SfjaBMzCi/QSC1Xt+HnydMA3vNBLn+WkUNNfN/kjJmpgu7uJ7VPrqU/7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=xsRnp9jC; arc=none smtp.client-ip=91.218.175.188
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-X-Envelope-To: linus.walleij@linaro.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1718059026;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vYkRKvM1qDttue+yo7GygC5Ag7ipY70yGBjtSb4sClU=;
-	b=xsRnp9jC7Hc3B7NFGqX1dghPNdtGyrf7H6vB7GW1ZfJj7AfwNTEd6HPV51jnPoQkecGDXR
-	PUdu8hK1beVqkEvK3769vOU/vp5A0RT9BqAUXxx3vpWNsNcepYeazJ7h9XNuhtP+2/+mmI
-	jPnknPwDqZNH9dJLFs9BuKWpZpY2fd4=
-X-Envelope-To: michal.simek@amd.com
-X-Envelope-To: linux-gpio@vger.kernel.org
-X-Envelope-To: andy.shevchenko@gmail.com
-X-Envelope-To: sai.krishna.potthuri@amd.com
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-X-Envelope-To: linux-kernel@vger.kernel.org
-X-Envelope-To: sean.anderson@linux.dev
-X-Envelope-To: conor+dt@kernel.org
-X-Envelope-To: krzk+dt@kernel.org
-X-Envelope-To: robh@kernel.org
-X-Envelope-To: devicetree@vger.kernel.org
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Sean Anderson <sean.anderson@linux.dev>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Michal Simek <michal.simek@amd.com>,
-	linux-gpio@vger.kernel.org
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Krishna Potthuri <sai.krishna.potthuri@amd.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Sean Anderson <sean.anderson@linux.dev>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v3 1/2] dt-bindings: pinctrl: xilinx: Add support for function with pins
-Date: Mon, 10 Jun 2024 18:35:49 -0400
-Message-Id: <20240610223550.2449230-2-sean.anderson@linux.dev>
-In-Reply-To: <20240610223550.2449230-1-sean.anderson@linux.dev>
-References: <20240610223550.2449230-1-sean.anderson@linux.dev>
+	s=arc-20240116; t=1718060159; c=relaxed/simple;
+	bh=5c+cupG43q3JxOZFm9CLv4boFt7YHyL3IM0TYOplEQI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=lAYTr1GcydhwNCtZPySXFNFsdkMmWoeAJApYVczDERGkbZDhLc1Vb9AAz2N8Oqf/GhhEtJYAkGC210ffGeexnXdqcaAODvKoFz5zum4yt8fR8lqQpjD3uz7tdYY/kr51KRBEE+8biZX8+XvSsorcvDIe7H5NZqtBUP5oZkJndI0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ezcvoj8p; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718060152;
+	bh=5c+cupG43q3JxOZFm9CLv4boFt7YHyL3IM0TYOplEQI=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=ezcvoj8pZwuSFCTOy956WEli/FfETd7rsBuJ2mucC2Y3C6CqWHUFnu6/FKWAD0QbR
+	 kJwAuKJNX5TJMRWoajl0xLjoDtGRRMQCQfNTP38q56dofEEvd11Z7aKleiVVHsIU34
+	 hJRza2Hvc0n8c1rjrvVaZ1KSIR8iE7Rwo+LEIv48mBBYZGrFqp+9gkqfhTx4f7iotX
+	 MqnmjKVelYdeUxOMQIbr31IzhllTErx44mfLN+wETeTk68iE2kkD58FoTukFnhp4aW
+	 HkBAO08Vmtp7il3sw638PhV0yZLsrBdv6ZCk7MM5d+fPmltIX2BZnae0L5feWfW4IP
+	 9IhWKMET/uHCw==
+Received: from [100.77.12.232] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: obbardc)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 995FB378113A;
+	Mon, 10 Jun 2024 22:55:51 +0000 (UTC)
+Message-ID: <6c98da19b4978197213cb7b9cbcafc10480c0a73.camel@collabora.com>
+Subject: Re: [PATCH v1 1/1] arm64: dts: imx8mp-debix-model-a: Add HDMI
+ output support
+From: Christopher Obbard <chris.obbard@collabora.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Kieran Bingham <kieran.bingham@ideasonboard.com>, 
+ linux-kernel@vger.kernel.org, Daniel Scally <dan.scally@ideasonboard.com>, 
+ kernel@collabora.com, Conor Dooley <conor+dt@kernel.org>, Fabio Estevam
+ <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, Sascha
+ Hauer <s.hauer@pengutronix.de>,  Shawn Guo <shawnguo@kernel.org>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org
+Date: Mon, 10 Jun 2024 23:55:50 +0100
+In-Reply-To: <20240608150227.GA13024@pendragon.ideasonboard.com>
+References: <20240415114135.25473-1-chris.obbard@collabora.com>
+	 <20240415114135.25473-2-chris.obbard@collabora.com>
+	 <171319369093.2333277.9109576229211275635@ping.linuxembedded.co.uk>
+	 <20240415163520.GA22954@pendragon.ideasonboard.com>
+	 <525f3c7f7f6613c78ac364c9ce0234cca5e1c710.camel@collabora.com>
+	 <20240608150227.GA13024@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.52.2-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
 
-Support specifying the function per-pin. The driver doesn't care
-whether you use pins or groups for this purpose.
-
-Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
----
-
-Changes in v3:
-- Express groups/pins exclusivity using oneOf
-
- .../bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml | 349 +++++++++---------
- 1 file changed, 180 insertions(+), 169 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
-index f13d315b5d5e..ce66fd15ff9c 100644
---- a/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
-@@ -42,179 +42,187 @@ patternProperties:
-         $ref: pinmux-node.yaml#
- 
-         properties:
-+          pins:
-+            description:
-+              List of pins to select (either this or "groups" must be specified)
-+            items:
-+              pattern: '^MIO([0-9]|[1-6][0-9]|7[0-7])$'
-+
-           groups:
-             description:
-               List of groups to select (either this or "pins" must be
-               specified), available groups for this subnode.
-             items:
--              enum: [ethernet0_0_grp, ethernet1_0_grp, ethernet2_0_grp,
--                     ethernet3_0_grp, gemtsu0_0_grp, gemtsu0_1_grp,
--                     gemtsu0_2_grp, mdio0_0_grp, mdio1_0_grp,
--                     mdio1_1_grp, mdio2_0_grp, mdio3_0_grp,
--                     qspi0_0_grp, qspi_ss_0_grp, qspi_fbclk_0_grp,
--                     spi0_0_grp, spi0_ss_0_grp, spi0_ss_1_grp,
--                     spi0_ss_2_grp, spi0_1_grp, spi0_ss_3_grp,
--                     spi0_ss_4_grp, spi0_ss_5_grp, spi0_2_grp,
--                     spi0_ss_6_grp, spi0_ss_7_grp, spi0_ss_8_grp,
--                     spi0_3_grp, spi0_ss_9_grp, spi0_ss_10_grp,
--                     spi0_ss_11_grp, spi0_4_grp, spi0_ss_12_grp,
--                     spi0_ss_13_grp, spi0_ss_14_grp, spi0_5_grp,
--                     spi0_ss_15_grp, spi0_ss_16_grp, spi0_ss_17_grp,
--                     spi1_0_grp, spi1_ss_0_grp, spi1_ss_1_grp,
--                     spi1_ss_2_grp, spi1_1_grp, spi1_ss_3_grp,
--                     spi1_ss_4_grp, spi1_ss_5_grp, spi1_2_grp,
--                     spi1_ss_6_grp, spi1_ss_7_grp, spi1_ss_8_grp,
--                     spi1_3_grp, spi1_ss_9_grp, spi1_ss_10_grp,
--                     spi1_ss_11_grp, spi1_4_grp, spi1_ss_12_grp,
--                     spi1_ss_13_grp, spi1_ss_14_grp, spi1_5_grp,
--                     spi1_ss_15_grp, spi1_ss_16_grp, spi1_ss_17_grp,
--                     sdio0_0_grp, sdio0_1_grp, sdio0_2_grp,
--                     sdio0_3_grp, sdio0_4_grp, sdio0_5_grp,
--                     sdio0_6_grp, sdio0_7_grp, sdio0_8_grp,
--                     sdio0_9_grp, sdio0_10_grp, sdio0_11_grp,
--                     sdio0_12_grp, sdio0_13_grp, sdio0_14_grp,
--                     sdio0_15_grp, sdio0_16_grp, sdio0_17_grp,
--                     sdio0_18_grp, sdio0_19_grp, sdio0_20_grp,
--                     sdio0_21_grp, sdio0_22_grp, sdio0_23_grp,
--                     sdio0_24_grp, sdio0_25_grp, sdio0_26_grp,
--                     sdio0_27_grp, sdio0_28_grp, sdio0_29_grp,
--                     sdio0_30_grp, sdio0_31_grp, sdio0_32_grp,
--                     sdio0_pc_0_grp, sdio0_cd_0_grp, sdio0_wp_0_grp,
--                     sdio0_pc_1_grp, sdio0_cd_1_grp, sdio0_wp_1_grp,
--                     sdio0_pc_2_grp, sdio0_cd_2_grp, sdio0_wp_2_grp,
--                     sdio1_0_grp, sdio1_1_grp, sdio1_2_grp,
--                     sdio1_3_grp, sdio1_4_grp, sdio1_5_grp,
--                     sdio1_6_grp, sdio1_7_grp, sdio1_8_grp,
--                     sdio1_9_grp, sdio1_10_grp, sdio1_11_grp,
--                     sdio1_12_grp, sdio1_13_grp, sdio1_14_grp,
--                     sdio1_15_grp, sdio1_pc_0_grp, sdio1_cd_0_grp,
--                     sdio1_wp_0_grp, sdio1_pc_1_grp, sdio1_cd_1_grp,
--                     sdio1_wp_1_grp, nand0_0_grp, nand0_ce_0_grp,
--                     nand0_rb_0_grp, nand0_dqs_0_grp, nand0_ce_1_grp,
--                     nand0_rb_1_grp, nand0_dqs_1_grp, can0_0_grp,
--                     can0_1_grp, can0_2_grp, can0_3_grp,
--                     can0_4_grp, can0_5_grp, can0_6_grp,
--                     can0_7_grp, can0_8_grp, can0_9_grp,
--                     can0_10_grp, can0_11_grp, can0_12_grp,
--                     can0_13_grp, can0_14_grp, can0_15_grp,
--                     can0_16_grp, can0_17_grp, can0_18_grp,
--                     can1_0_grp, can1_1_grp, can1_2_grp,
--                     can1_3_grp, can1_4_grp, can1_5_grp,
--                     can1_6_grp, can1_7_grp, can1_8_grp,
--                     can1_9_grp, can1_10_grp, can1_11_grp,
--                     can1_12_grp, can1_13_grp, can1_14_grp,
--                     can1_15_grp, can1_16_grp, can1_17_grp,
--                     can1_18_grp, can1_19_grp, uart0_0_grp,
--                     uart0_1_grp, uart0_2_grp, uart0_3_grp,
--                     uart0_4_grp, uart0_5_grp, uart0_6_grp,
--                     uart0_7_grp, uart0_8_grp, uart0_9_grp,
--                     uart0_10_grp, uart0_11_grp, uart0_12_grp,
--                     uart0_13_grp, uart0_14_grp, uart0_15_grp,
--                     uart0_16_grp, uart0_17_grp, uart0_18_grp,
--                     uart1_0_grp, uart1_1_grp, uart1_2_grp,
--                     uart1_3_grp, uart1_4_grp, uart1_5_grp,
--                     uart1_6_grp, uart1_7_grp, uart1_8_grp,
--                     uart1_9_grp, uart1_10_grp, uart1_11_grp,
--                     uart1_12_grp, uart1_13_grp, uart1_14_grp,
--                     uart1_15_grp, uart1_16_grp, uart1_17_grp,
--                     uart1_18_grp, i2c0_0_grp, i2c0_1_grp,
--                     i2c0_2_grp, i2c0_3_grp, i2c0_4_grp,
--                     i2c0_5_grp, i2c0_6_grp, i2c0_7_grp,
--                     i2c0_8_grp, i2c0_9_grp, i2c0_10_grp,
--                     i2c0_11_grp, i2c0_12_grp, i2c0_13_grp,
--                     i2c0_14_grp, i2c0_15_grp, i2c0_16_grp,
--                     i2c0_17_grp, i2c0_18_grp, i2c1_0_grp,
--                     i2c1_1_grp, i2c1_2_grp, i2c1_3_grp,
--                     i2c1_4_grp, i2c1_5_grp, i2c1_6_grp,
--                     i2c1_7_grp, i2c1_8_grp, i2c1_9_grp,
--                     i2c1_10_grp, i2c1_11_grp, i2c1_12_grp,
--                     i2c1_13_grp, i2c1_14_grp, i2c1_15_grp,
--                     i2c1_16_grp, i2c1_17_grp, i2c1_18_grp,
--                     i2c1_19_grp, ttc0_clk_0_grp, ttc0_wav_0_grp,
--                     ttc0_clk_1_grp, ttc0_wav_1_grp, ttc0_clk_2_grp,
--                     ttc0_wav_2_grp, ttc0_clk_3_grp, ttc0_wav_3_grp,
--                     ttc0_clk_4_grp, ttc0_wav_4_grp, ttc0_clk_5_grp,
--                     ttc0_wav_5_grp, ttc0_clk_6_grp, ttc0_wav_6_grp,
--                     ttc0_clk_7_grp, ttc0_wav_7_grp, ttc0_clk_8_grp,
--                     ttc0_wav_8_grp, ttc1_clk_0_grp, ttc1_wav_0_grp,
--                     ttc1_clk_1_grp, ttc1_wav_1_grp, ttc1_clk_2_grp,
--                     ttc1_wav_2_grp, ttc1_clk_3_grp, ttc1_wav_3_grp,
--                     ttc1_clk_4_grp, ttc1_wav_4_grp, ttc1_clk_5_grp,
--                     ttc1_wav_5_grp, ttc1_clk_6_grp, ttc1_wav_6_grp,
--                     ttc1_clk_7_grp, ttc1_wav_7_grp, ttc1_clk_8_grp,
--                     ttc1_wav_8_grp, ttc2_clk_0_grp, ttc2_wav_0_grp,
--                     ttc2_clk_1_grp, ttc2_wav_1_grp, ttc2_clk_2_grp,
--                     ttc2_wav_2_grp, ttc2_clk_3_grp, ttc2_wav_3_grp,
--                     ttc2_clk_4_grp, ttc2_wav_4_grp, ttc2_clk_5_grp,
--                     ttc2_wav_5_grp, ttc2_clk_6_grp, ttc2_wav_6_grp,
--                     ttc2_clk_7_grp, ttc2_wav_7_grp, ttc2_clk_8_grp,
--                     ttc2_wav_8_grp, ttc3_clk_0_grp, ttc3_wav_0_grp,
--                     ttc3_clk_1_grp, ttc3_wav_1_grp, ttc3_clk_2_grp,
--                     ttc3_wav_2_grp, ttc3_clk_3_grp, ttc3_wav_3_grp,
--                     ttc3_clk_4_grp, ttc3_wav_4_grp, ttc3_clk_5_grp,
--                     ttc3_wav_5_grp, ttc3_clk_6_grp, ttc3_wav_6_grp,
--                     ttc3_clk_7_grp, ttc3_wav_7_grp, ttc3_clk_8_grp,
--                     ttc3_wav_8_grp, swdt0_clk_0_grp, swdt0_rst_0_grp,
--                     swdt0_clk_1_grp, swdt0_rst_1_grp, swdt0_clk_2_grp,
--                     swdt0_rst_2_grp, swdt0_clk_3_grp, swdt0_rst_3_grp,
--                     swdt0_clk_4_grp, swdt0_rst_4_grp, swdt0_clk_5_grp,
--                     swdt0_rst_5_grp, swdt0_clk_6_grp, swdt0_rst_6_grp,
--                     swdt0_clk_7_grp, swdt0_rst_7_grp, swdt0_clk_8_grp,
--                     swdt0_rst_8_grp, swdt0_clk_9_grp, swdt0_rst_9_grp,
--                     swdt0_clk_10_grp, swdt0_rst_10_grp, swdt0_clk_11_grp,
--                     swdt0_rst_11_grp, swdt0_clk_12_grp, swdt0_rst_12_grp,
--                     swdt1_clk_0_grp, swdt1_rst_0_grp, swdt1_clk_1_grp,
--                     swdt1_rst_1_grp, swdt1_clk_2_grp, swdt1_rst_2_grp,
--                     swdt1_clk_3_grp, swdt1_rst_3_grp, swdt1_clk_4_grp,
--                     swdt1_rst_4_grp, swdt1_clk_5_grp, swdt1_rst_5_grp,
--                     swdt1_clk_6_grp, swdt1_rst_6_grp, swdt1_clk_7_grp,
--                     swdt1_rst_7_grp, swdt1_clk_8_grp, swdt1_rst_8_grp,
--                     swdt1_clk_9_grp, swdt1_rst_9_grp, swdt1_clk_10_grp,
--                     swdt1_rst_10_grp, swdt1_clk_11_grp, swdt1_rst_11_grp,
--                     swdt1_clk_12_grp, swdt1_rst_12_grp, gpio0_0_grp,
--                     gpio0_1_grp, gpio0_2_grp, gpio0_3_grp,
--                     gpio0_4_grp, gpio0_5_grp, gpio0_6_grp,
--                     gpio0_7_grp, gpio0_8_grp, gpio0_9_grp,
--                     gpio0_10_grp, gpio0_11_grp, gpio0_12_grp,
--                     gpio0_13_grp, gpio0_14_grp, gpio0_15_grp,
--                     gpio0_16_grp, gpio0_17_grp, gpio0_18_grp,
--                     gpio0_19_grp, gpio0_20_grp, gpio0_21_grp,
--                     gpio0_22_grp, gpio0_23_grp, gpio0_24_grp,
--                     gpio0_25_grp, gpio0_26_grp, gpio0_27_grp,
--                     gpio0_28_grp, gpio0_29_grp, gpio0_30_grp,
--                     gpio0_31_grp, gpio0_32_grp, gpio0_33_grp,
--                     gpio0_34_grp, gpio0_35_grp, gpio0_36_grp,
--                     gpio0_37_grp, gpio0_38_grp, gpio0_39_grp,
--                     gpio0_40_grp, gpio0_41_grp, gpio0_42_grp,
--                     gpio0_43_grp, gpio0_44_grp, gpio0_45_grp,
--                     gpio0_46_grp, gpio0_47_grp, gpio0_48_grp,
--                     gpio0_49_grp, gpio0_50_grp, gpio0_51_grp,
--                     gpio0_52_grp, gpio0_53_grp, gpio0_54_grp,
--                     gpio0_55_grp, gpio0_56_grp, gpio0_57_grp,
--                     gpio0_58_grp, gpio0_59_grp, gpio0_60_grp,
--                     gpio0_61_grp, gpio0_62_grp, gpio0_63_grp,
--                     gpio0_64_grp, gpio0_65_grp, gpio0_66_grp,
--                     gpio0_67_grp, gpio0_68_grp, gpio0_69_grp,
--                     gpio0_70_grp, gpio0_71_grp, gpio0_72_grp,
--                     gpio0_73_grp, gpio0_74_grp, gpio0_75_grp,
--                     gpio0_76_grp, gpio0_77_grp, usb0_0_grp,
--                     usb1_0_grp, pmu0_0_grp, pmu0_1_grp,
--                     pmu0_2_grp, pmu0_3_grp, pmu0_4_grp,
--                     pmu0_5_grp, pmu0_6_grp, pmu0_7_grp,
--                     pmu0_8_grp, pmu0_9_grp, pmu0_10_grp,
--                     pmu0_11_grp, pcie0_0_grp, pcie0_1_grp,
--                     pcie0_2_grp, pcie0_3_grp, pcie0_4_grp,
--                     pcie0_5_grp, pcie0_6_grp, pcie0_7_grp,
--                     csu0_0_grp, csu0_1_grp, csu0_2_grp,
--                     csu0_3_grp, csu0_4_grp, csu0_5_grp,
--                     csu0_6_grp, csu0_7_grp, csu0_8_grp,
--                     csu0_9_grp, csu0_10_grp, csu0_11_grp,
--                     dpaux0_0_grp, dpaux0_1_grp, dpaux0_2_grp,
--                     dpaux0_3_grp, pjtag0_0_grp, pjtag0_1_grp,
--                     pjtag0_2_grp, pjtag0_3_grp, pjtag0_4_grp,
--                     pjtag0_5_grp, trace0_0_grp, trace0_clk_0_grp,
--                     trace0_1_grp, trace0_clk_1_grp, trace0_2_grp,
--                     trace0_clk_2_grp, testscan0_0_grp]
-+              anyOf:
-+                - pattern: '^MIO([0-9]|[1-6][0-9]|7[0-7])$'
-+                - enum: [ethernet0_0_grp, ethernet1_0_grp, ethernet2_0_grp,
-+                         ethernet3_0_grp, gemtsu0_0_grp, gemtsu0_1_grp,
-+                         gemtsu0_2_grp, mdio0_0_grp, mdio1_0_grp,
-+                         mdio1_1_grp, mdio2_0_grp, mdio3_0_grp,
-+                         qspi0_0_grp, qspi_ss_0_grp, qspi_fbclk_0_grp,
-+                         spi0_0_grp, spi0_ss_0_grp, spi0_ss_1_grp,
-+                         spi0_ss_2_grp, spi0_1_grp, spi0_ss_3_grp,
-+                         spi0_ss_4_grp, spi0_ss_5_grp, spi0_2_grp,
-+                         spi0_ss_6_grp, spi0_ss_7_grp, spi0_ss_8_grp,
-+                         spi0_3_grp, spi0_ss_9_grp, spi0_ss_10_grp,
-+                         spi0_ss_11_grp, spi0_4_grp, spi0_ss_12_grp,
-+                         spi0_ss_13_grp, spi0_ss_14_grp, spi0_5_grp,
-+                         spi0_ss_15_grp, spi0_ss_16_grp, spi0_ss_17_grp,
-+                         spi1_0_grp, spi1_ss_0_grp, spi1_ss_1_grp,
-+                         spi1_ss_2_grp, spi1_1_grp, spi1_ss_3_grp,
-+                         spi1_ss_4_grp, spi1_ss_5_grp, spi1_2_grp,
-+                         spi1_ss_6_grp, spi1_ss_7_grp, spi1_ss_8_grp,
-+                         spi1_3_grp, spi1_ss_9_grp, spi1_ss_10_grp,
-+                         spi1_ss_11_grp, spi1_4_grp, spi1_ss_12_grp,
-+                         spi1_ss_13_grp, spi1_ss_14_grp, spi1_5_grp,
-+                         spi1_ss_15_grp, spi1_ss_16_grp, spi1_ss_17_grp,
-+                         sdio0_0_grp, sdio0_1_grp, sdio0_2_grp,
-+                         sdio0_3_grp, sdio0_4_grp, sdio0_5_grp,
-+                         sdio0_6_grp, sdio0_7_grp, sdio0_8_grp,
-+                         sdio0_9_grp, sdio0_10_grp, sdio0_11_grp,
-+                         sdio0_12_grp, sdio0_13_grp, sdio0_14_grp,
-+                         sdio0_15_grp, sdio0_16_grp, sdio0_17_grp,
-+                         sdio0_18_grp, sdio0_19_grp, sdio0_20_grp,
-+                         sdio0_21_grp, sdio0_22_grp, sdio0_23_grp,
-+                         sdio0_24_grp, sdio0_25_grp, sdio0_26_grp,
-+                         sdio0_27_grp, sdio0_28_grp, sdio0_29_grp,
-+                         sdio0_30_grp, sdio0_31_grp, sdio0_32_grp,
-+                         sdio0_pc_0_grp, sdio0_cd_0_grp, sdio0_wp_0_grp,
-+                         sdio0_pc_1_grp, sdio0_cd_1_grp, sdio0_wp_1_grp,
-+                         sdio0_pc_2_grp, sdio0_cd_2_grp, sdio0_wp_2_grp,
-+                         sdio1_0_grp, sdio1_1_grp, sdio1_2_grp,
-+                         sdio1_3_grp, sdio1_4_grp, sdio1_5_grp,
-+                         sdio1_6_grp, sdio1_7_grp, sdio1_8_grp,
-+                         sdio1_9_grp, sdio1_10_grp, sdio1_11_grp,
-+                         sdio1_12_grp, sdio1_13_grp, sdio1_14_grp,
-+                         sdio1_15_grp, sdio1_pc_0_grp, sdio1_cd_0_grp,
-+                         sdio1_wp_0_grp, sdio1_pc_1_grp, sdio1_cd_1_grp,
-+                         sdio1_wp_1_grp, nand0_0_grp, nand0_ce_0_grp,
-+                         nand0_rb_0_grp, nand0_dqs_0_grp, nand0_ce_1_grp,
-+                         nand0_rb_1_grp, nand0_dqs_1_grp, can0_0_grp,
-+                         can0_1_grp, can0_2_grp, can0_3_grp,
-+                         can0_4_grp, can0_5_grp, can0_6_grp,
-+                         can0_7_grp, can0_8_grp, can0_9_grp,
-+                         can0_10_grp, can0_11_grp, can0_12_grp,
-+                         can0_13_grp, can0_14_grp, can0_15_grp,
-+                         can0_16_grp, can0_17_grp, can0_18_grp,
-+                         can1_0_grp, can1_1_grp, can1_2_grp,
-+                         can1_3_grp, can1_4_grp, can1_5_grp,
-+                         can1_6_grp, can1_7_grp, can1_8_grp,
-+                         can1_9_grp, can1_10_grp, can1_11_grp,
-+                         can1_12_grp, can1_13_grp, can1_14_grp,
-+                         can1_15_grp, can1_16_grp, can1_17_grp,
-+                         can1_18_grp, can1_19_grp, uart0_0_grp,
-+                         uart0_1_grp, uart0_2_grp, uart0_3_grp,
-+                         uart0_4_grp, uart0_5_grp, uart0_6_grp,
-+                         uart0_7_grp, uart0_8_grp, uart0_9_grp,
-+                         uart0_10_grp, uart0_11_grp, uart0_12_grp,
-+                         uart0_13_grp, uart0_14_grp, uart0_15_grp,
-+                         uart0_16_grp, uart0_17_grp, uart0_18_grp,
-+                         uart1_0_grp, uart1_1_grp, uart1_2_grp,
-+                         uart1_3_grp, uart1_4_grp, uart1_5_grp,
-+                         uart1_6_grp, uart1_7_grp, uart1_8_grp,
-+                         uart1_9_grp, uart1_10_grp, uart1_11_grp,
-+                         uart1_12_grp, uart1_13_grp, uart1_14_grp,
-+                         uart1_15_grp, uart1_16_grp, uart1_17_grp,
-+                         uart1_18_grp, i2c0_0_grp, i2c0_1_grp,
-+                         i2c0_2_grp, i2c0_3_grp, i2c0_4_grp,
-+                         i2c0_5_grp, i2c0_6_grp, i2c0_7_grp,
-+                         i2c0_8_grp, i2c0_9_grp, i2c0_10_grp,
-+                         i2c0_11_grp, i2c0_12_grp, i2c0_13_grp,
-+                         i2c0_14_grp, i2c0_15_grp, i2c0_16_grp,
-+                         i2c0_17_grp, i2c0_18_grp, i2c1_0_grp,
-+                         i2c1_1_grp, i2c1_2_grp, i2c1_3_grp,
-+                         i2c1_4_grp, i2c1_5_grp, i2c1_6_grp,
-+                         i2c1_7_grp, i2c1_8_grp, i2c1_9_grp,
-+                         i2c1_10_grp, i2c1_11_grp, i2c1_12_grp,
-+                         i2c1_13_grp, i2c1_14_grp, i2c1_15_grp,
-+                         i2c1_16_grp, i2c1_17_grp, i2c1_18_grp,
-+                         i2c1_19_grp, ttc0_clk_0_grp, ttc0_wav_0_grp,
-+                         ttc0_clk_1_grp, ttc0_wav_1_grp, ttc0_clk_2_grp,
-+                         ttc0_wav_2_grp, ttc0_clk_3_grp, ttc0_wav_3_grp,
-+                         ttc0_clk_4_grp, ttc0_wav_4_grp, ttc0_clk_5_grp,
-+                         ttc0_wav_5_grp, ttc0_clk_6_grp, ttc0_wav_6_grp,
-+                         ttc0_clk_7_grp, ttc0_wav_7_grp, ttc0_clk_8_grp,
-+                         ttc0_wav_8_grp, ttc1_clk_0_grp, ttc1_wav_0_grp,
-+                         ttc1_clk_1_grp, ttc1_wav_1_grp, ttc1_clk_2_grp,
-+                         ttc1_wav_2_grp, ttc1_clk_3_grp, ttc1_wav_3_grp,
-+                         ttc1_clk_4_grp, ttc1_wav_4_grp, ttc1_clk_5_grp,
-+                         ttc1_wav_5_grp, ttc1_clk_6_grp, ttc1_wav_6_grp,
-+                         ttc1_clk_7_grp, ttc1_wav_7_grp, ttc1_clk_8_grp,
-+                         ttc1_wav_8_grp, ttc2_clk_0_grp, ttc2_wav_0_grp,
-+                         ttc2_clk_1_grp, ttc2_wav_1_grp, ttc2_clk_2_grp,
-+                         ttc2_wav_2_grp, ttc2_clk_3_grp, ttc2_wav_3_grp,
-+                         ttc2_clk_4_grp, ttc2_wav_4_grp, ttc2_clk_5_grp,
-+                         ttc2_wav_5_grp, ttc2_clk_6_grp, ttc2_wav_6_grp,
-+                         ttc2_clk_7_grp, ttc2_wav_7_grp, ttc2_clk_8_grp,
-+                         ttc2_wav_8_grp, ttc3_clk_0_grp, ttc3_wav_0_grp,
-+                         ttc3_clk_1_grp, ttc3_wav_1_grp, ttc3_clk_2_grp,
-+                         ttc3_wav_2_grp, ttc3_clk_3_grp, ttc3_wav_3_grp,
-+                         ttc3_clk_4_grp, ttc3_wav_4_grp, ttc3_clk_5_grp,
-+                         ttc3_wav_5_grp, ttc3_clk_6_grp, ttc3_wav_6_grp,
-+                         ttc3_clk_7_grp, ttc3_wav_7_grp, ttc3_clk_8_grp,
-+                         ttc3_wav_8_grp, swdt0_clk_0_grp, swdt0_rst_0_grp,
-+                         swdt0_clk_1_grp, swdt0_rst_1_grp, swdt0_clk_2_grp,
-+                         swdt0_rst_2_grp, swdt0_clk_3_grp, swdt0_rst_3_grp,
-+                         swdt0_clk_4_grp, swdt0_rst_4_grp, swdt0_clk_5_grp,
-+                         swdt0_rst_5_grp, swdt0_clk_6_grp, swdt0_rst_6_grp,
-+                         swdt0_clk_7_grp, swdt0_rst_7_grp, swdt0_clk_8_grp,
-+                         swdt0_rst_8_grp, swdt0_clk_9_grp, swdt0_rst_9_grp,
-+                         swdt0_clk_10_grp, swdt0_rst_10_grp, swdt0_clk_11_grp,
-+                         swdt0_rst_11_grp, swdt0_clk_12_grp, swdt0_rst_12_grp,
-+                         swdt1_clk_0_grp, swdt1_rst_0_grp, swdt1_clk_1_grp,
-+                         swdt1_rst_1_grp, swdt1_clk_2_grp, swdt1_rst_2_grp,
-+                         swdt1_clk_3_grp, swdt1_rst_3_grp, swdt1_clk_4_grp,
-+                         swdt1_rst_4_grp, swdt1_clk_5_grp, swdt1_rst_5_grp,
-+                         swdt1_clk_6_grp, swdt1_rst_6_grp, swdt1_clk_7_grp,
-+                         swdt1_rst_7_grp, swdt1_clk_8_grp, swdt1_rst_8_grp,
-+                         swdt1_clk_9_grp, swdt1_rst_9_grp, swdt1_clk_10_grp,
-+                         swdt1_rst_10_grp, swdt1_clk_11_grp, swdt1_rst_11_grp,
-+                         swdt1_clk_12_grp, swdt1_rst_12_grp, gpio0_0_grp,
-+                         gpio0_1_grp, gpio0_2_grp, gpio0_3_grp,
-+                         gpio0_4_grp, gpio0_5_grp, gpio0_6_grp,
-+                         gpio0_7_grp, gpio0_8_grp, gpio0_9_grp,
-+                         gpio0_10_grp, gpio0_11_grp, gpio0_12_grp,
-+                         gpio0_13_grp, gpio0_14_grp, gpio0_15_grp,
-+                         gpio0_16_grp, gpio0_17_grp, gpio0_18_grp,
-+                         gpio0_19_grp, gpio0_20_grp, gpio0_21_grp,
-+                         gpio0_22_grp, gpio0_23_grp, gpio0_24_grp,
-+                         gpio0_25_grp, gpio0_26_grp, gpio0_27_grp,
-+                         gpio0_28_grp, gpio0_29_grp, gpio0_30_grp,
-+                         gpio0_31_grp, gpio0_32_grp, gpio0_33_grp,
-+                         gpio0_34_grp, gpio0_35_grp, gpio0_36_grp,
-+                         gpio0_37_grp, gpio0_38_grp, gpio0_39_grp,
-+                         gpio0_40_grp, gpio0_41_grp, gpio0_42_grp,
-+                         gpio0_43_grp, gpio0_44_grp, gpio0_45_grp,
-+                         gpio0_46_grp, gpio0_47_grp, gpio0_48_grp,
-+                         gpio0_49_grp, gpio0_50_grp, gpio0_51_grp,
-+                         gpio0_52_grp, gpio0_53_grp, gpio0_54_grp,
-+                         gpio0_55_grp, gpio0_56_grp, gpio0_57_grp,
-+                         gpio0_58_grp, gpio0_59_grp, gpio0_60_grp,
-+                         gpio0_61_grp, gpio0_62_grp, gpio0_63_grp,
-+                         gpio0_64_grp, gpio0_65_grp, gpio0_66_grp,
-+                         gpio0_67_grp, gpio0_68_grp, gpio0_69_grp,
-+                         gpio0_70_grp, gpio0_71_grp, gpio0_72_grp,
-+                         gpio0_73_grp, gpio0_74_grp, gpio0_75_grp,
-+                         gpio0_76_grp, gpio0_77_grp, usb0_0_grp,
-+                         usb1_0_grp, pmu0_0_grp, pmu0_1_grp,
-+                         pmu0_2_grp, pmu0_3_grp, pmu0_4_grp,
-+                         pmu0_5_grp, pmu0_6_grp, pmu0_7_grp,
-+                         pmu0_8_grp, pmu0_9_grp, pmu0_10_grp,
-+                         pmu0_11_grp, pcie0_0_grp, pcie0_1_grp,
-+                         pcie0_2_grp, pcie0_3_grp, pcie0_4_grp,
-+                         pcie0_5_grp, pcie0_6_grp, pcie0_7_grp,
-+                         csu0_0_grp, csu0_1_grp, csu0_2_grp,
-+                         csu0_3_grp, csu0_4_grp, csu0_5_grp,
-+                         csu0_6_grp, csu0_7_grp, csu0_8_grp,
-+                         csu0_9_grp, csu0_10_grp, csu0_11_grp,
-+                         dpaux0_0_grp, dpaux0_1_grp, dpaux0_2_grp,
-+                         dpaux0_3_grp, pjtag0_0_grp, pjtag0_1_grp,
-+                         pjtag0_2_grp, pjtag0_3_grp, pjtag0_4_grp,
-+                         pjtag0_5_grp, trace0_0_grp, trace0_clk_0_grp,
-+                         trace0_1_grp, trace0_clk_1_grp, trace0_2_grp,
-+                         trace0_clk_2_grp, testscan0_0_grp]
-             maxItems: 78
- 
-           function:
-@@ -230,9 +238,12 @@ patternProperties:
-                    pcie0, csu0, dpaux0, pjtag0, trace0, trace0_clk, testscan0]
- 
-         required:
--          - groups
-           - function
- 
-+        oneOf:
-+          - required: [ groups ]
-+          - required: [ pins ]
-+
-         additionalProperties: false
- 
-       '^conf':
--- 
-2.35.1.1320.gc452695387.dirty
+SGkgTGF1cmVudCwKCk9uIFNhdCwgMjAyNC0wNi0wOCBhdCAxODowMiArMDMwMCwgTGF1cmVudCBQ
+aW5jaGFydCB3cm90ZToKPiBPbiBNb24sIEFwciAxNSwgMjAyNCBhdCAwNjowNzoyNFBNICswMTAw
+LCBDaHJpc3RvcGhlciBPYmJhcmQgd3JvdGU6Cj4gPiBPbiBNb24sIDIwMjQtMDQtMTUgYXQgMTk6
+MzUgKzAzMDAsIExhdXJlbnQgUGluY2hhcnQgd3JvdGU6Cj4gPiA+IE9uIE1vbiwgQXByIDE1LCAy
+MDI0IGF0IDA0OjA4OjEwUE0gKzAxMDAsIEtpZXJhbiBCaW5naGFtIHdyb3RlOgo+ID4gPiA+IFF1
+b3RpbmcgQ2hyaXN0b3BoZXIgT2JiYXJkICgyMDI0LTA0LTE1IDEyOjQxOjI3KQo+ID4gPiA+ID4g
+RW5hYmxlIHRoZSBIRE1JIG91dHB1dCBvbiB0aGUgRGViaXggTW9kZWwgQSBTQkMsIHVzaW5nIHRo
+ZSBIRE1JCj4gPiA+ID4gPiBlbmNvZGVyCj4gPiA+ID4gPiBwcmVzZW50IGluIHRoZSBpLk1YOE1Q
+IFNvQy4KPiA+ID4gPiAKPiA+ID4gPiBBaGEsIHlvdSBiZWF0IG1lIHRvIGl0LiBJIGhhdmUgYSBj
+b21taXQgbG9jYWxseSAoRGF0ZWQgMjAyMi0wOS0wNikgYnV0Cj4gPiA+ID4gbm90IHNlbnQgYmVj
+YXVzZSBJIGRpZG4ndCByZWFsaXNlIHRoZSBIRE1JIHN1cHBvcnQgZmluYWxseSBnb3QKPiA+ID4g
+PiB1cHN0cmVhbQo+ID4gPiA+IFxvLwo+ID4gPiA+IAo+ID4gPiA+ID4gU2lnbmVkLW9mZi1ieTog
+Q2hyaXN0b3BoZXIgT2JiYXJkIDxjaHJpcy5vYmJhcmRAY29sbGFib3JhLmNvbT4KPiA+ID4gPiA+
+IC0tLQo+ID4gPiA+ID4gCj4gPiA+ID4gPiDCoC4uLi9kdHMvZnJlZXNjYWxlL2lteDhtcC1kZWJp
+eC1tb2RlbC1hLmR0c8KgwqDCoCB8IDQ3Cj4gPiA+ID4gPiArKysrKysrKysrKysrKysrKysrCj4g
+PiA+ID4gPiDCoDEgZmlsZSBjaGFuZ2VkLCA0NyBpbnNlcnRpb25zKCspCj4gPiA+ID4gPiAKPiA+
+ID4gPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAt
+ZGViaXgtbW9kZWwtYS5kdHMKPiA+ID4gPiA+IGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2Nh
+bGUvaW14OG1wLWRlYml4LW1vZGVsLWEuZHRzCj4gPiA+ID4gPiBpbmRleCAyYzE5NzY2ZWJmMDku
+LjI5NTI5YzJlY2FjOSAxMDA2NDQKPiA+ID4gPiA+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMv
+ZnJlZXNjYWxlL2lteDhtcC1kZWJpeC1tb2RlbC1hLmR0cwo+ID4gPiA+ID4gKysrIGIvYXJjaC9h
+cm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1wLWRlYml4LW1vZGVsLWEuZHRzCj4gPiA+ID4g
+PiBAQCAtMjAsNiArMjAsMTggQEAgY2hvc2VuIHsKPiA+ID4gPiA+IMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoCBzdGRvdXQtcGF0aCA9ICZ1YXJ0MjsKPiA+ID4gPiA+IMKgwqDCoMKgwqDC
+oMKgIH07Cj4gPiA+ID4gPiDCoAo+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoCBoZG1pLWNvbm5lY3Rv
+ciB7Cj4gPiA+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlID0g
+ImhkbWktY29ubmVjdG9yIjsKPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IGxhYmVsID0gImhkbWkiOwo+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+dHlwZSA9ICJhIjsKPiA+ID4gPiA+ICsKPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIHBvcnQgewo+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIGhkbWlfY29ubmVjdG9yX2luOiBlbmRwb2ludCB7Cj4gPiA+ID4gPiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IHJlbW90ZS1lbmRwb2ludCA9IDwmaGRtaV90eF9vdXQ+Owo+ID4gPiA+ID4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4gPiA+ID4gPiArwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCB9Owo+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoCB9Owo+ID4gPiA+
+ID4gKwo+ID4gPiA+IAo+ID4gPiA+IEludGVyZXN0aW5nLiBNeSBwYXRjaCBtaXNzZWQgdGhpcy4g
+QnV0IGl0IGxvb2tzIGNvcnJlY3QuCj4gPiA+ID4gCj4gPiA+ID4gPiDCoMKgwqDCoMKgwqDCoCBs
+ZWRzIHsKPiA+ID4gPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxl
+ID0gImdwaW8tbGVkcyI7Cj4gPiA+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+cGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsKPiA+ID4gPiA+IEBAIC05NCw2ICsxMDYsMjggQEAg
+ZXRocGh5MDogZXRoZXJuZXQtcGh5QDAgeyAvKiBSVEw4MjExRSAqLwo+ID4gPiA+ID4gwqDCoMKg
+wqDCoMKgwqAgfTsKPiA+ID4gPiA+IMKgfTsKPiA+ID4gPiA+IMKgCj4gPiA+ID4gPiArJmhkbWlf
+cHZpIHsKPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqAgc3RhdHVzID0gIm9rYXkiOwo+ID4gPiA+ID4g
+K307Cj4gPiA+ID4gPiArCj4gPiA+ID4gPiArJmhkbWlfdHggewo+ID4gPiA+ID4gK8KgwqDCoMKg
+wqDCoCBwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOwo+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoCBw
+aW5jdHJsLTAgPSA8JnBpbmN0cmxfaGRtaT47Cj4gPiA+ID4gPiArwqDCoMKgwqDCoMKgIHN0YXR1
+cyA9ICJva2F5IjsKPiA+ID4gPiA+ICsKPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqAgcG9ydHMgewo+
+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcG9ydEAxIHsKPiA+ID4gPiA+
+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBoZG1pX3R4X291
+dDogZW5kcG9pbnQgewo+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZW1vdGUtZW5kcG9pbnQgPQo+ID4gPiA+ID4g
+PCZoZG1pX2Nvbm5lY3Rvcl9pbj47Cj4gPiA+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgfTsKPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIH07Cj4gPiA+ID4gPiArwqDCoMKgwqDCoMKgIH07Cj4gPiA+ID4gPiArfTsKPiA+ID4g
+PiA+ICsKPiA+ID4gPiA+ICsmaGRtaV90eF9waHkgewo+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoCBz
+dGF0dXMgPSAib2theSI7Cj4gPiA+ID4gPiArfTsKPiA+ID4gPiA+ICsKPiA+ID4gPiA+IMKgJmky
+YzEgewo+ID4gPiA+ID4gwqDCoMKgwqDCoMKgwqAgY2xvY2stZnJlcXVlbmN5ID0gPDQwMDAwMD47
+Cj4gPiA+ID4gPiDCoMKgwqDCoMKgwqDCoCBwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOwo+ID4g
+PiA+ID4gQEAgLTI0MSw2ICsyNzUsMTAgQEAgJmkyYzYgewo+ID4gPiA+ID4gwqDCoMKgwqDCoMKg
+wqAgc3RhdHVzID0gIm9rYXkiOwo+ID4gPiA+ID4gwqB9Owo+ID4gPiA+ID4gwqAKPiA+ID4gPiA+
+ICsmbGNkaWYzIHsKPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqAgc3RhdHVzID0gIm9rYXkiOwo+ID4g
+PiA+ID4gK307Cj4gPiA+ID4gPiArCj4gPiA+ID4gCj4gPiA+ID4gRXhjZXB0IGZvciB0aGUgYWRk
+aXRpb24gb2YgdGhlIGNvbm5lY3RvciwgdGhlIGFib3ZlIG1hdGNoZXMgbXkgcGF0Y2gKPiA+ID4g
+PiB0bwo+ID4gPiA+IGhlcmUuCj4gPiA+ID4gCj4gPiA+ID4gPiDCoCZzbnZzX3B3cmtleSB7Cj4g
+PiA+ID4gPiDCoMKgwqDCoMKgwqDCoCBzdGF0dXMgPSAib2theSI7Cj4gPiA+ID4gPiDCoH07Cj4g
+PiA+ID4gCj4gPiA+ID4gQnV0IGluIG15IHBhdGNoIEkgaGF2ZSB0aGUgZm9sbG93aW5nIGh1bmsg
+aGVyZTogKEkgaGF2ZW4ndCBjaGVja2VkIHRvCj4gPiA+ID4gc2VlIGlmIHRoaXMgc3RpbGwgYXBw
+bGllcyBvbiBtYWlubGluZSwgc28gdGFrZSB3aXRoIGEgcGluY2ggb2Ygc2FsdCBpZgo+ID4gPiA+
+IGl0J3Mgbm90IHRoZXJlISkKPiA+ID4gPiAKPiA+ID4gPiAKPiA+ID4gPiDCoCZpb211eGMgewo+
+ID4gPiA+IMKgCXBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7Cj4gPiA+ID4gLQlwaW5jdHJsLTAg
+PSA8JnBpbmN0cmxfaG9nPjsKPiA+ID4gPiAtCj4gPiA+ID4gLQlwaW5jdHJsX2hvZzogaG9nZ3Jw
+IHsKPiA+ID4gPiAtCQlmc2wscGlucyA9IDwKPiA+ID4gPiAtCj4gPiA+ID4gCQkJTVg4TVBfSU9N
+VVhDX0hETUlfRERDX1NDTF9fSERNSU1JWF9IRE1JX1NDTAo+ID4gPiA+IAkJCQkJMHg0MDAwMDFj
+Mwo+ID4gPiA+IC0KPiA+ID4gPiAJCQlNWDhNUF9JT01VWENfSERNSV9ERENfU0RBX19IRE1JTUlY
+X0hETUlfU0RBCj4gPiA+ID4gCQkJCQkweDQwMDAwMWMzCj4gPiA+ID4gLQo+ID4gPiA+IAkJCU1Y
+OE1QX0lPTVVYQ19IRE1JX0hQRF9fSERNSU1JWF9IRE1JX0hQRAo+ID4gPiA+IAkJCQkJCTB4NDAw
+MDAwMTkKPiA+ID4gPiAtCj4gPiA+ID4gCQkJTVg4TVBfSU9NVVhDX0hETUlfQ0VDX19IRE1JTUlY
+X0hETUlfQ0VDCj4gPiA+ID4gCQkJCQkJMHg0MDAwMDAxOQo+ID4gPiA+IC0JCT47Cj4gPiA+ID4g
+LQl9Owo+ID4gPiA+IAo+ID4gPiA+IMKgCXBpbmN0cmxfZXFvczogZXFvc2dycCB7Cj4gPiA+ID4g
+wqAJCWZzbCxwaW5zID0gPAo+ID4gPiA+IMKgCQkJTVg4TVBfSU9NVVhDX0VORVRfTURDX19FTkVU
+X1FPU19NREMJCj4gPiA+ID4gCQo+ID4gPiA+IAkJCQkJMHgzCj4gPiA+ID4gwqAJCQlNWDhNUF9J
+T01VWENfRU5FVF9NRElPX19FTkVUX1FPU19NRElPCQo+ID4gPiA+IAkKPiA+ID4gPiAJCQkJMHgz
+Cj4gPiA+ID4gCj4gPiA+ID4gCj4gPiA+ID4gPiBAQCAtMzU4LDYgKzM5NiwxNSBAQAo+ID4gPiA+
+ID4gTVg4TVBfSU9NVVhDX05BTkRfUkVBRFlfQl9fR1BJTzNfSU8xNsKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAKPiA+ID4gPiA+IDB4MTkK
+PiA+ID4gPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA+Owo+ID4gPiA+ID4gwqDC
+oMKgwqDCoMKgwqAgfTsKPiA+ID4gPiA+IMKgCj4gPiA+ID4gPiArwqDCoMKgwqDCoMKgIHBpbmN0
+cmxfaGRtaTogaGRtaWdycCB7Cj4gPiA+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCBmc2wscGlucyA9IDwKPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoAo+ID4gPiA+ID4gTVg4TVBfSU9NVVhDX0hETUlfRERDX1NDTF9fSERNSU1J
+WF9IRE1JX1NDTMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAKPiA+ID4g
+PiA+IDB4NDAwMDAxYzMKPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoAo+ID4gPiA+ID4gTVg4TVBfSU9NVVhDX0hETUlfRERDX1NEQV9fSERNSU1J
+WF9IRE1JX1NEQcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAKPiA+ID4g
+PiA+IDB4NDAwMDAxYzMKPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoAo+ID4gPiA+ID4gTVg4TVBfSU9NVVhDX0hETUlfSFBEX19IRE1JTUlYX0hE
+TUlfSFBEwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgCj4g
+PiA+ID4gPiAweDQwMDAwMDE5Cj4gPiA+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAKPiA+ID4gPiA+IE1YOE1QX0lPTVVYQ19IRE1JX0NFQ19fSERNSU1J
+WF9IRE1JX0NFQ8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oAo+ID4gPiA+ID4gMHg0MDAwMDAxOQo+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgPjsKPiA+ID4gPiA+ICvCoMKgwqDCoMKgwqAgfTsKPiA+ID4gPiA+ICsKPiA+ID4gPiAK
+PiA+ID4gPiBBbmQgbXkgYWRkaXRpb24gaGVyZSBpcyA6Cj4gPiA+ID4gCj4gPiA+ID4gCj4gPiA+
+ID4gKwlwaW5jdHJsX2hkbWk6IGhkbWlncnAgewo+ID4gPiA+ICsJCWZzbCxwaW5zID0gPAo+ID4g
+PiA+ICsJCQlNWDhNUF9JT01VWENfSERNSV9ERENfU0NMX19IRE1JTUlYX0hETUlfU0NMCj4gPiA+
+ID4gCTAKPiA+ID4gPiB4MWMzCj4gPiA+ID4gKwkJCU1YOE1QX0lPTVVYQ19IRE1JX0REQ19TREFf
+X0hETUlNSVhfSERNSV9TREEKPiA+ID4gPiAJMAo+ID4gPiA+IHgxYzMKPiA+ID4gPiArCQkJTVg4
+TVBfSU9NVVhDX0hETUlfSFBEX19IRE1JTUlYX0hETUlfSFBECj4gPiA+ID4gCQo+ID4gPiA+IAkw
+eDE5Cj4gPiA+ID4gKwkJCU1YOE1QX0lPTVVYQ19IRE1JX0NFQ19fSERNSU1JWF9IRE1JX0NFQwo+
+ID4gPiA+IAkKPiA+ID4gPiAJMHgxOQo+ID4gPiA+ICsJCT47Cj4gPiA+ID4gKwl9Owo+ID4gPiA+
+ICsKPiA+ID4gPiAKPiA+ID4gPiAKPiA+ID4gPiBJIGhhdmVuJ3QgbG9va2VkIGludG8gd2hhdCB0
+aGUgMHg0MDAwMDAwMCBkb2VzIHlldCwgYnV0IGp1c3QKPiA+ID4gPiBoaWdobGlnaHRpbmcgdGhl
+IGRpZmZlcmVuY2UgZnJvbSB0aGUgdmVyc2lvbiBJJ3ZlIGJlZW4gdXNpbmcgdG8gbWFrZQo+ID4g
+PiA+IHVzZQo+ID4gPiA+IG9mIEhETUkgc28gZmFyLgo+ID4gPiA+IAo+ID4gPiA+IERvZXMgYW55
+b25lIGVsc2Uga25vdyB0aGUgaW1wYWN0IGhlcmU/IE90aGVyd2lzZSBJJ2xsIHRyeSB0byBmaW5k
+IHRpbWUKPiA+ID4gPiB0byBjaGVjayB0aGlzIGxhdGVyLiAoRm9yIHNvbWUgdW5kZWZpbmVkIHRl
+cm0gb2YgbGF0ZXIuLi4pCj4gPiA+IAo+ID4gPiBJbiBkcml2ZXJzL3BpbmN0cmwvZnJlZXNjYWxl
+L3BpbmN0cmwtaW14LmMsCj4gPiA+IAo+ID4gPiAjZGVmaW5lIElNWF9OT19QQURfQ1RMwqAgMHg4
+MDAwMDAwMMKgwqDCoMKgwqAgLyogbm8gcGluIGNvbmZpZyBuZWVkICovCj4gPiA+ICNkZWZpbmUg
+SU1YX1BBRF9TSU9OIDB4NDAwMDAwMDDCoMKgwqDCoMKgwqDCoMKgIC8qIHNldCBTSU9OICovCj4g
+PiA+IAo+ID4gPiBUaGUgU0lPTiAoU29mdHdhcmUgSW5wdXQgT04pIGJpdCBmb3JjZXMgdGhlIGlu
+cHV0IHBhdGggYWN0aXZlIGZvciB0aGUKPiA+ID4gcGluLiBUaGlzIGNhbiBiZSB1c2VkLCBmb3Ig
+aW5zdGFuY2UsIHRvIGNhcHR1cmUgdGhyb3VnaCBHUElPIHRoZSB2YWx1ZQo+ID4gPiBvZiBhIHBp
+biBkcml2ZW4gYnkgYSBtb2R1bGUuIEknbSBub3Qgc3VyZSB0aGF0J3MgbmVlZGVkIGhlcmUuCj4g
+PiAKPiA+IFRoYW5rcyBmb3IgdGhlIGV4cGxhbmF0aW9uLCBtYWtlcyBwZXJmZWN0IHNlbnNlLiBJ
+IHdpbGwgc2VuZCBhIHYyIHdpdGhvdXQKPiA+IHRoZQo+ID4gU0lPTiBiaXQgc2V0IChlLmcgZXhh
+Y3RseSBwZXIgdGhlIGh1bmsgaW4gS2llcmFuJ3MgcGF0Y2gpLgo+IAo+IEknZCBsaWtlIHRvIGdl
+dCB0aGlzIG1lcmdlZCBpbiB2Ni4xMS4gSWYgeW91IGRvbid0IGhhdmUgdGltZSB0byBzZW5kIGEK
+PiB2MiwgSSdtIGhhcHB5IHJlc2VuZGluZyBvdXIgdmVyc2lvbiBvZiB0aGUgcGF0Y2ggaW5zdGVh
+ZCA6LSkKCkkndmUganVzdCBkdXN0ZWQgdGhlIGJvYXJkIG9mZiBhbmQgd2lsbCBzZW5kIHYyIHNo
+b3J0bHkgYWZ0ZXIgdGVzdGluZy4KClRoYW5rcyBmb3IgdGhlIHJlbWluZGVyIDotKS4KCj4gCj4g
+PiA+ID4gPiDCoMKgwqDCoMKgwqDCoCBwaW5jdHJsX2kyYzE6IGkyYzFncnAgewo+ID4gPiA+ID4g
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGZzbCxwaW5zID0gPAo+ID4gPiA+ID4gwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoAo+ID4gPiA+ID4gTVg4
+TVBfSU9NVVhDX0kyQzFfU0NMX19JMkMxX1NDTMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAKPiA+ID4gPiA+IDB4NDAwMDAxYzIK
+PiAKPiAtLSAKPiBSZWdhcmRzLAo+IAo+IExhdXJlbnQgUGluY2hhcnQK
 
 
