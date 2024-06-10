@@ -1,155 +1,176 @@
-Return-Path: <devicetree+bounces-74305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8919D902A6E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 23:11:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91F83902A8C
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 23:26:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B2DC1C2152F
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 21:11:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F3C48B20E49
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 21:26:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93A094DA0E;
-	Mon, 10 Jun 2024 21:11:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 923DD55897;
+	Mon, 10 Jun 2024 21:26:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="nU497WuI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ORu9PJOD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 350C547A40
-	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 21:11:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 679C11B7FD;
+	Mon, 10 Jun 2024 21:26:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718053896; cv=none; b=RMIHQC2GGnhCL3DsJcgr7iAZL7j4U65sSEOVZ9EJTfyrNHt+HutrrkArRPGhR8C+CRB5xmePniRFFKnYENsaaQ/BhhYffhZuVAyUiRr0X4ltLh4S9IPjwkXNMPyBIMjBRGzM9EN2v9g4Z0hbhDqcFsN6yVdkzp/1zoGhcz/LH4Q=
+	t=1718054781; cv=none; b=IuD2ZGvkyeqJYtynKfrJortijuDFM3AoOs0V2wIuwkdsCZA2C0BAdhJcHK0EpiJ0Sdi+MElI1RH2lvgzVlyOhaTI5gWUOHMNNh/vFIVZiMcN9KO/hOhdSGHoQj1jsc5E1M3YO183BLAV2TTYq/jeaRWlMaiYgL9zJcMeVJCVzxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718053896; c=relaxed/simple;
-	bh=dHfq/Y8UJm8GbkHmEQXODyizeDi9XIeLkMTzcTcIpkY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NTtJfykMejv+OIm9jwhXrP1Wm/+C+A44YbMRtFAukzn33T4AsNSQAFDHo/G1wP+IW2zMdLo25Z2WHrJqNnx+AIB+l0FA8Lgi0m4KntajWXRVpYTrU17Jo7EoX2otGATifSyVWg8BhIeWjSqpfkv8WTgChKge5BBeHdeL0oICnmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=nU497WuI; arc=none smtp.client-ip=209.85.215.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-6e57506bb2dso315363a12.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 14:11:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1718053894; x=1718658694; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=atjVVvhqJGVBGQeQC15VPPq3ZmuONR7VOIjSThozUfs=;
-        b=nU497WuIcZ71I1UJ0FearPWvRCfOLd13aaggzt4XOOvyJ5cTehWu4Qa9wtrXYY2aQx
-         1MdxWelzbZFd2ZIKA6wfUN4CALtYwjl3ExKevPFTduU0in61Q2n+dwNtBRi1GD8Swdrn
-         l/LKu+Kxvr+WMOHP0Y9RrXhjuAXK417G4qW/Y+FtnaWKEmveS6ML0Cfw0QPkjEYiAQv9
-         la0jRJXlHVqbDAdaBZ5bPoVAfOOcmdLHqWhwj0UzbOueke21IQU/eihAn/dlsSOSvndN
-         vkzh7B/rmg9xng2PZdJMms1jiTLgT+ET7Zm/1BL4bFu+nq+NK07LtxDeOwCQCTAvyS6z
-         vcQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718053894; x=1718658694;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=atjVVvhqJGVBGQeQC15VPPq3ZmuONR7VOIjSThozUfs=;
-        b=FVIepDiu+q3QZd5Hdjwz3s2i64Pt7TVTOpetYafFnwjIHe/uBW9LGT0/ghhg7rxKrP
-         LDP/wp/ABNBqGtWnhIQUw5isPiVAnvNAQdXsqOgg5h26HBhdtTa+16//OY94Emy4zryu
-         NxcVq4j9NfuS+ejvzKz+5ApPHFzsk3CZVI4kFPETzFtF+oVOIpY7NtZ1qk2PasYfuLmJ
-         dwXXQQZhNhldxn1NF0Powi/oddB1yMmz7GaVQXE39eqfyOsjdqT4XUcuBtmGgKUHHYAw
-         vsgp/5dAn893+5UHmxXNH2W9/iAvGAqsQe9WNtaHC/utU9u7096I3xE7WlH2QjGvESEr
-         FH2w==
-X-Forwarded-Encrypted: i=1; AJvYcCUdtr7aN5D4EoMGBBTmtn4d5b6zGyMPRctrG+5RhVBBYH9KR+B5EYwkIXtdmlEB7k2F/ksf2GyhBobYl/TPo716USNhsM8piQ3hlg==
-X-Gm-Message-State: AOJu0YzqeiFAkzVnGfhtGrdeyyfli7gxxPcSgtQ/F0uoJTN+FQTwl8fx
-	tGaeOwYnCX5D4SwRiTf5g/cQIO8saLI70Djdi70lQ1nxrBuSSpA8Py1wYBvCKi7u9ukdoWluH8E
-	XKxJwJOjskU9hG05j5yAjzYZf78hyqk3M6xfirw==
-X-Google-Smtp-Source: AGHT+IGchpbaicHoHxCHYTOkBWbMZo1yhnrL8jazakPLDq3AVxHuApmXC5MJskUmy1m+m4dJ2ZJiSm2/UdJlr5SLmnI=
-X-Received: by 2002:a17:90a:5785:b0:2c2:9591:342c with SMTP id
- 98e67ed59e1d1-2c2bcac2c65mr9210122a91.3.1718053894451; Mon, 10 Jun 2024
- 14:11:34 -0700 (PDT)
+	s=arc-20240116; t=1718054781; c=relaxed/simple;
+	bh=A++antt0ngnPaH7P9ajVsd25v87qidwiVx6G2IvSwm8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KQqzxiZs+UeOP90kFaIrwND7hDifUmj3JQQ8FcnXRDLa1gz0LlK3oaw+cCZuk7XJK4NU6eIZtR6/gEYTuCK0x4ZekUAJH1t/uppCSf+v/LwJknYlLIgQOpnCXx6NI5MNgm6nIFcdnfxh9DwQfnohBR0AWHTrlt2gEi2hsI6j5lU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ORu9PJOD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB4B9C2BBFC;
+	Mon, 10 Jun 2024 21:26:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718054781;
+	bh=A++antt0ngnPaH7P9ajVsd25v87qidwiVx6G2IvSwm8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ORu9PJOD1WfIIfxqrIcuyaB44TIMdzqFvF9p0XsxJploDjdabCY0WW+NuQKejmVqu
+	 cpMNbbKFhMh8bhh8A1sMbY5dOymDAUyu9j4ZSoXs8A775jrecevG88+tHwMet4lJPC
+	 7NEmpz3Oa2krsq98rhVAcKnEo6aGyoFeXBhvJnanUlaipoDHJHhYXDJ6Zh5Bm0DEIT
+	 ke92Gtyarj3V3trvbNCTj5j3XOg6z1GU3CATcJREk99Kc8EjhkvGnnVxdN8iOWlGgA
+	 Gq1M9XZhg1TM7rUoq0lUDWFMnwRtzwTIZ9GkutzZGQ10YcaJP1csMV6+sXl0iP0n1p
+	 rxuiSMVtcC+sw==
+Date: Mon, 10 Jun 2024 15:26:19 -0600
+From: Rob Herring <robh@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: devicetree@vger.kernel.org,
+	FrancescoFerraro <francesco.f@variscite.com>,
+	Li Yang <leoyang.li@nxp.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Ahmad Fatoum <a.fatoum@pengutronix.de>,
+	Harshesh Valera <harshesh.v@variscite.com>,
+	Nate Drude <nate.d@variscite.com>, Shawn Guo <shawnguo@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Marco Contenti <marco.c@variscite.com>, imx@lists.linux.dev
+Subject: Re: [PATCH v3 0/4] arm64: dts: freescale: Add Variscite i.MX8MP
+ DART8MCustomBoard v2
+Message-ID: <20240610212619.GA3067703-robh@kernel.org>
+References: <20240608180447.31378-1-laurent.pinchart@ideasonboard.com>
+ <171804879863.2984705.9370632116551818195.robh@kernel.org>
+ <20240610201420.GO26663@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1717612298.git.tjeznach@rivosinc.com> <422f66285da1b164466b223f83d7f06564968f09.1717612299.git.tjeznach@rivosinc.com>
- <20240610-3cd1ba07c1b488a451dd7ddd@orel>
-In-Reply-To: <20240610-3cd1ba07c1b488a451dd7ddd@orel>
-From: Tomasz Jeznach <tjeznach@rivosinc.com>
-Date: Mon, 10 Jun 2024 14:11:23 -0700
-Message-ID: <CAH2o1u6Yav1i=EUX-a4XY4OLtU5RvshHU5ffGE99mgSTrqmN2w@mail.gmail.com>
-Subject: Re: [PATCH v7 6/7] iommu/riscv: Command and fault queue support
-To: Andrew Jones <ajones@ventanamicro.com>
-Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Anup Patel <apatel@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Nick Kossifidis <mick@ics.forth.gr>, Sebastien Boeuf <seb@rivosinc.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	iommu@lists.linux.dev, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux@rivosinc.com, 
-	Lu Baolu <baolu.lu@linux.intel.com>, Zong Li <zong.li@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240610201420.GO26663@pendragon.ideasonboard.com>
 
-On Mon, Jun 10, 2024 at 4:06=E2=80=AFAM Andrew Jones <ajones@ventanamicro.c=
-om> wrote:
->
-> On Wed, Jun 05, 2024 at 12:57:48PM GMT, Tomasz Jeznach wrote:
-> ...
-> > +static int riscv_iommu_queue_alloc(struct riscv_iommu_device *iommu,
-> > +                                struct riscv_iommu_queue *queue,
-> > +                                size_t entry_size)
-> > +{
-> > +     unsigned int logsz;
-> > +     u64 qb, rb;
-> > +
-> > +     /*
-> > +      * Use WARL base register property to discover maximum allowed
-> > +      * number of entries and optional fixed IO address for queue loca=
-tion.
-> > +      */
-> > +     riscv_iommu_writeq(iommu, queue->qbr, RISCV_IOMMU_QUEUE_LOG2SZ_FI=
-ELD);
-> > +     qb =3D riscv_iommu_readq(iommu, queue->qbr);
-> > +
-> > +     /*
-> > +      * Calculate and verify hardware supported queue length, as repor=
-ted
-> > +      * by the field LOG2SZ, where max queue length is equal to 2^(LOG=
-2SZ + 1).
-> > +      * Update queue size based on hardware supported value.
-> > +      */
-> > +     logsz =3D ilog2(queue->mask);
-> > +     if (logsz > FIELD_GET(RISCV_IOMMU_QUEUE_LOG2SZ_FIELD, qb))
-> > +             logsz =3D FIELD_GET(RISCV_IOMMU_QUEUE_LOG2SZ_FIELD, qb);
-> > +
-> > +     /*
-> > +      * Use WARL base register property to discover an optional fixed =
-IO
-> > +      * address for queue ring buffer location. Otherwise allocate con=
-tiguous
-> > +      * system memory.
-> > +      */
-> > +     if (FIELD_GET(RISCV_IOMMU_PPN_FIELD, qb)) {
-> > +             const size_t queue_size =3D entry_size << (logsz + 1);
-> > +
-> > +             queue->phys =3D ppn_to_phys(FIELD_GET(RISCV_IOMMU_PPN_FIE=
-LD, qb));
->
-> Shouldn't this be something like
->
->   FIELD_GET(RISCV_IOMMU_PPN_FIELD, qb) << PAGE_SHIFT
->
-> ppn_to_phys() assumes the ppn it's converting to be shifted up by 10, but
-> FIELD_GET has shifted it down to zero.
->
+On Mon, Jun 10, 2024 at 11:14:20PM +0300, Laurent Pinchart wrote:
+> Hi Rob,
+> 
+> On Mon, Jun 10, 2024 at 01:55:15PM -0600, Rob Herring (Arm) wrote:
+> > On Sat, 08 Jun 2024 21:04:43 +0300, Laurent Pinchart wrote:
+> > > Hello,
+> > > 
+> > > This patch series adds support for the Variscite DART8MCustomBoard v2
+> > > carrier board with a DART-MX8M-PLUS module.
+> > > 
+> > > The device tree code originates from Variscite's BSP, and has been
+> > > heavily refactored to adapt to mainline DT bindings. Some features have
+> > > been left out:
+> > > 
+> > > - Camera: cameras should be enabled through overlays as they're not part
+> > >   of the carrier board itself. I have successfully tested both camera
+> > >   ports with modules that currently require out-of-tree drivers, so I
+> > >   haven't included them in this series.
+> > > 
+> > > - USB OTG: the carrier board has a PTN5150 but doesn't route its
+> > >   interrupt pin to the SoC. It should be possible to work around that in
+> > >   the driver by implementing polling, but that requires more work that I
+> > >   can perform at the moment.
+> > > 
+> > > - WiFi, Bluetooth and audio support: those are part of the DART SoM
+> > >   itself, for which schematics isn't available, so I can't easily
+> > >   troubleshoot them.
+> > > 
+> > > - PCIe: I lack test hardware for this.
+> > > 
+> > > May I tempt someone from Variscite to submit patches to enable at least
+> > > WiFi, Bluetooth, audio and PCIe ? :-)
+> > > 
+> > > The LVDS display panel is integrated in the carrier board device tree in
+> > > the BSP, I have split it out to an overlay in this series as it is
+> > > shipped with the development kit but isn't an integral part of the
+> > > carrier board. In the review of v2, Shawn pointed out that this overlay
+> > > caused the DT compiler to spit ou warnings. This is still the case here:
+> > > 
+> > >   DTC     arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dtb
+> > >   DTC     arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo
+> > > arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso:54.3-16: Warning (reg_format): /fragment@1/__overlay__/touch@38:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+> > > arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+> > > arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+> > > arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+> > > arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+> > > arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso:52.11-68.4: Warning (avoid_default_addr_size): /fragment@1/__overlay__/touch@38: Relying on default #address-cells value
+> > > arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso:52.11-68.4: Warning (avoid_default_addr_size): /fragment@1/__overlay__/touch@38: Relying on default #size-cells value
+> > > arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtbo: Warning (graph_port): /fragment@3: graph port node name should be 'port'
+> > > arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso:85.15-87.3: Warning (graph_endpoint): /fragment@3/__overlay__: graph endpoint node name should be 'endpoint'
+> > > arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso:85.15-87.3: Warning (graph_endpoint): /fragment@3/__overlay__: graph connection to node '/fragment@0/__overlay__/panel/port/endpoint' is not bidirectional
+> > >   DTOVL   arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtb
+> > > 
+> > > When compiling the overlay in isolation, the compiler doesn't know in
+> > > which context it will be applied, and thus lacks information to validate
+> > > the device tree. I don't think the issue is specific to this overlay,
+> > > and I don't know if there are plans to handle it. If this is a blocker
+> > > for the time being, patches 1/4 to 3/4 can already be merged without the
+> > > overlay.
+> > 
+> > This has come up before. My suggestion is that you add the necessary 
+> > information to the overlay. Specifically, just add the #address-cells 
+> > and #size-cells to the overlay. That might mean you have to move up a 
+> > parent for the target path.
+> 
+> It's not ideal as the overlay should really not care about that, but it
+> will probably work around the warnings for this specific case. I'll have
+> a look.
 
-Good catch. It should be pfn_to_phys(). Fixed & verified on IOMMU with
-queue ring buffers in fixed memory location.
+If an overlay uses "reg", then you have to care what the cell sizes are. 
+Sure, I2C is fairly hard to get wrong. But what about an overlay with 
+MMIO devices where the sizes could be any combination of 1 or 2 cells.
 
-Thanks,
-- Tomasz
 
-> Thanks,
-> drew
+> Do you envision we will fix this problem in a nicer way in the future ?
+
+I think the current overlay format is crap and that's largely due to 
+inheriting FDT format limitations. Primarily, I'm talking about 
+the __fixups__ nodes. That exists because there's no type and size 
+information stored within the FDT format. We of course would like type 
+information for other reasons. We could kill off #foo-cells for example.
+
+I'd really like to us rev the FDT format to add new tags to store type 
+information. Frank captured some discussion on this a while back on 
+elinux.org. The problem is 'new FDT format' becomes a shopping list, so 
+I don't hold out much hope. It's been discussed for at least 10 years 
+now. If we at least did enough now to allow and ignore unknown FDT tags, 
+then we could add new tags in the future with little pain or 
+compatibility problems.
+
+
+> I wonder if it would become part of the DT connector support (or
+> whatever becomes of that). I've heard multiple people telling me they
+> would like to revive the proposal (or see it revived), so maybe there's
+> hope. I know I have many copies of essentially the same overlays for the
+> same Raspberry Pi camera modules connected to different boards which I
+> would like to upstream.
+
+I think a connector would largely avoid this particular problem. Take 
+I2C for example, we'd just define an I2C bus node for each I2C bus 
+under the connector node and then map that bus into a parent bus. So 
+you're going to have the properties to be able to parse things anyways.
+
+Rob
 
