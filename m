@@ -1,186 +1,108 @@
-Return-Path: <devicetree+bounces-74098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A19B901F5F
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 12:28:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 108E3901F75
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 12:33:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0075D1F21CA6
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 10:28:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0FCA5B24043
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 10:32:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3B2D7A705;
-	Mon, 10 Jun 2024 10:28:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B03A78C93;
+	Mon, 10 Jun 2024 10:32:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kFs1QQuA"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="FpdsPS7Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BFD415B3;
-	Mon, 10 Jun 2024 10:28:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F237452F6A
+	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 10:32:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718015298; cv=none; b=Trb6+mck/zUY8q/kpDn58WD/duLZcj3xn3ZQxC1f6GNC7ppYcekMbqrCZ1E9YrBhvCadiNofCTLacUWckO2udf1U9AOdy9TnrxSbWK8utqrixrHx0Rd0AcQQIcQKJTCo3FsgiQODdyKNhGFg+n5NNsxVZbQqiaa7ua9lRPT30qw=
+	t=1718015560; cv=none; b=c88YdhtrvWWR70ptEcKYCONe+uvPysw3GVl3Sxo6lT+s/rYLropzhl8uWWHNkKaw8E9xd4qfJ6qgPEGshe8KSAfUx9w/Az9sh3SP3GLDV01xO8xIVwZZbQwAVAQSoJjTl1Mb6BO1/h+K9vLu1o1WjHn8LgmvYKGAx91D2VuZ8A0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718015298; c=relaxed/simple;
-	bh=VppLaZwdIzDPRXgBc45hQUcWc09/PIctN50tY/+9gfw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=hI/1XnHvwglvpVnw94GvllPfI9ZxuHaWsmzV3PCGG4XSk5ESJPKV0wUku9CX/Islbl4sS2gd/9i6lNkE6K2mq59Iuu3iBt87QwugWq3CnE5q/KgXeGo/zKEZ1zxoFsLELOORAyHXNltSeOyRGkmYFLDDQV5hd5EkRuq6SiQdG3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kFs1QQuA; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45A1UK8h018769;
-	Mon, 10 Jun 2024 10:28:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	g3w2uKhJ8Na0K7GW2N3B7O3jkirD+gODu3mdSz1ngq8=; b=kFs1QQuA+DflrYaE
-	ORcAFT8uhMpMxiMuoJaTQmj03Sgi/hio45J3rIvW3Zgvj/uv8rmaVlQWBSY5rzOH
-	YuJtbvce65NSAr7mv8IYk7N7SdiPeAClHiFldx5XL4rFsJlCTQZSPW1xf+kACcL3
-	ev3oP2paF9u8r8CJZJGDNqImM3C90ccgAM2JBCr7KYlBg3cZgFWmYLjHAmvcpErm
-	SBH/Dx1WnGcJDXCK3PmLadUVFxm+868DLZ7Igs6xUjK/wK6JOOPlXxA9YdLg8SHk
-	MYM2zMjJbaPWf5tQgi9iHSMBxb2EbYQ8sgI/WkKEJENdmU5Ko0EDVvEe8wG9OmQO
-	Wq5ysw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ymemgk8ee-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Jun 2024 10:28:12 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45AARfWq021590
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Jun 2024 10:27:41 GMT
-Received: from [10.218.0.85] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 10 Jun
- 2024 03:27:37 -0700
-Message-ID: <3710a210-265c-493d-9d2f-27ebf486d00e@quicinc.com>
-Date: Mon, 10 Jun 2024 15:57:34 +0530
+	s=arc-20240116; t=1718015560; c=relaxed/simple;
+	bh=OcNCNxQjyElxIcrEZhK8KOZ1sEwgrkb9YkFTm5vr/ks=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=P5G9DHQA7blhE76KMf6EqQOysYDK139IlGxqccDHfxuTd46TjexQGAOkw1W1f5PNs8VZLnjQte0UG9V158BfWkkl7GCsoXsJ6y/HoC/GgVRS/I+jHXzpHNZpGr10tvb6hLNi9kIIDmfET8cBDmBhf8GvNWychYCC8dnsOiXbTsY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=FpdsPS7Y; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-35f123bf735so1427924f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 03:32:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1718015555; x=1718620355; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MXXg9qprKu/qiLNvKW8mzWq7DARUrTSzjJdZFxDwHKA=;
+        b=FpdsPS7Y5OZz7a0VchLZejedd5yprC9uzWu8lo54DUrS5gMrgtPu4pKm//9joJcbHS
+         +ZDtu3sN98Kuti1EFdNbil7xNyFfsEiPBEEHBKaqiADW01rrCNB3TKPYgMRMt7d0mMIw
+         WQd9V+H4EViTcxiS8IHPab1CeE49QSQqFoRh/DtMdkKvA9Z46UHhnL64kRXYNqQ93Rvx
+         G5b0bJg1v14Rz90O5FD1MxaudpIchkyMtSNx9dykFgmiQgwyTteflPkUWeznXPL838BE
+         cS6KcDdyZw1uRpSYUntiIJ08dzTq7f5cth/UcYF3eM/gmYJIfZucrBCU3f+Aml6AniZq
+         KJeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718015555; x=1718620355;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MXXg9qprKu/qiLNvKW8mzWq7DARUrTSzjJdZFxDwHKA=;
+        b=Ytmtlr5mIhbz6YLTZpZNu2xzfC1LklRxZsar0KvNqBscmWWGSZYMQ8lL39daN+aOWc
+         rG47anXRb1ChD41BrQKNlfhkCFmdecL2Z10EZUCOF6K9RUZolnh5d2Txbu0zGlkgGsHI
+         btTlv53+Z31+lacwq0MnCEd5ej99XVWp62EKEP4yAmIXW6Je13ig5s2mf1TDoR4wgAus
+         JKeiPB+tjMt3cUj7zf8DpiziInVHTDADaqSdz+VzvFxpz2GdonFOnj5WBwiL3juf+ymQ
+         ojWPafrezmyR5ZVPRStPxMewgEjI+b/3nU397oyVINnOlFZcIucreYaNgnXZRgniQ6NQ
+         bbvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUzyiYaV2Qq4yDOvaKOnJ+4NPOsFIaxpd7uOTGBdiQ7zJbtS6lxwzHMRbeStkQhjOLfHV94L46qoWPalCNKcNGaANOubebZKrzuFw==
+X-Gm-Message-State: AOJu0Yz6WHcs/JqCjSVYWqzjQikU/GMH3Nci0QFfeobaj2LP23AWC9KF
+	Hujjdg92yFgQvGXLL3q72xw/5jkCwoPHxiqKJbFn6Fl0tG3U1dz/GtNh5LLjv2s=
+X-Google-Smtp-Source: AGHT+IE+UMWspFxOkW0VMFhc6ufITIhWfVtf8wdrgpK/+aRYj657WAU4bd9S2VLhpwjXlkDwo9fr4w==
+X-Received: by 2002:adf:fa4d:0:b0:35f:18be:227b with SMTP id ffacd0b85a97d-35f18be22e2mr4263828f8f.14.1718015555378;
+        Mon, 10 Jun 2024 03:32:35 -0700 (PDT)
+Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:afd3:66ee:5486:4249])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-35f2774bb64sm1136213f8f.103.2024.06.10.03.32.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Jun 2024 03:32:35 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: neil.armstrong@linaro.org, mturquette@baylibre.com, sboyd@kernel.org, 
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com, 
+ martin.blumenstingl@googlemail.com, 
+ Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com, 
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20240515185103.20256-1-ddrokosov@salutedevices.com>
+References: <20240515185103.20256-1-ddrokosov@salutedevices.com>
+Subject: Re: (subset) [PATCH v3 0/7] clk: meson: introduce Amlogic A1 SoC
+ Family CPU clock controller driver
+Message-Id: <171801555454.91134.14151750531513287014.b4-ty@baylibre.com>
+Date: Mon, 10 Jun 2024 12:32:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: qcm6490-idp: Update protected
- clocks list
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <quic_jkona@quicinc.com>,
-        <quic_imrashai@quicinc.com>, <devicetree@vger.kernel.org>
-References: <20240531102252.26061-1-quic_tdas@quicinc.com>
- <20240531102252.26061-4-quic_tdas@quicinc.com>
- <4dvqegoz45ct5rqknf6vgi6rvh4osaecfyp7fcrs26lcsq4npu@dwoyubuqlbss>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <4dvqegoz45ct5rqknf6vgi6rvh4osaecfyp7fcrs26lcsq4npu@dwoyubuqlbss>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Pd1bGnX5RXDU_lRTA-PZrwOL6Jid8maJ
-X-Proofpoint-ORIG-GUID: Pd1bGnX5RXDU_lRTA-PZrwOL6Jid8maJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-10_02,2024-06-10_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=999
- suspectscore=0 adultscore=0 impostorscore=0 spamscore=0 priorityscore=1501
- lowpriorityscore=0 phishscore=0 malwarescore=0 mlxscore=0 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405170001
- definitions=main-2406100078
+X-Mailer: b4 0.13.0
 
+Applied to clk-meson (v6.11/drivers), thanks!
 
+[1/7] clk: meson: add 'NOINIT_ENABLED' flag to eliminate init for enabled PLL
+      https://github.com/BayLibre/clk-meson/commit/d4c83ac16c65
+[2/7] dt-bindings: clock: meson: a1: pll: introduce new syspll bindings
+      https://github.com/BayLibre/clk-meson/commit/96f3b9787363
+[4/7] dt-bindings: clock: meson: a1: peripherals: support sys_pll input
+      https://github.com/BayLibre/clk-meson/commit/41056416ed53
 
-On 5/31/2024 5:34 PM, Dmitry Baryshkov wrote:
-> On Fri, May 31, 2024 at 03:52:51PM +0530, Taniya Das wrote:
->> Certain clocks are not accessible on QCM6490-IDP board,
->> thus mark them as protected. Update the lpassaudio node to
->> support the new compatible as the lpassaudio needs to support
->> the reset functionality on the QCM6490 board and the rest of
->> the Audio functionality would be provided from the LPASS
->> firmware.
->>
->> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 28 +++++++++++++++++++++++-
->>   1 file changed, 27 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
->> index a0668f767e4b..4eece564331a 100644
->> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
->> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
->> @@ -1,6 +1,6 @@
->>   // SPDX-License-Identifier: BSD-3-Clause
->>   /*
->> - * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
->> + * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
->>    */
->>   
->>   /dts-v1/;
->> @@ -688,3 +688,29 @@
->>   &wifi {
->>   	memory-region = <&wlan_fw_mem>;
->>   };
->> +
->> +&gcc {
->> +	protected-clocks = <GCC_AGGRE_NOC_PCIE_1_AXI_CLK> ,<GCC_PCIE_1_AUX_CLK>,
->> +			<GCC_PCIE_1_AUX_CLK_SRC>, <GCC_PCIE_1_CFG_AHB_CLK>,
->> +			<GCC_PCIE_1_MSTR_AXI_CLK>, <GCC_PCIE_1_PHY_RCHNG_CLK_SRC>,
->> +			<GCC_PCIE_1_PIPE_CLK>, <GCC_PCIE_1_PIPE_CLK_SRC>,
->> +			<GCC_PCIE_1_SLV_AXI_CLK>, <GCC_PCIE_1_SLV_Q2A_AXI_CLK>,
->> +			<GCC_QSPI_CNOC_PERIPH_AHB_CLK>, <GCC_QSPI_CORE_CLK>,
->> +			<GCC_QSPI_CORE_CLK_SRC>,<GCC_USB30_SEC_MASTER_CLK>,
->> +			<GCC_USB30_SEC_MASTER_CLK_SRC>, <GCC_USB30_SEC_MOCK_UTMI_CLK>,
->> +			<GCC_USB30_SEC_MOCK_UTMI_CLK_SRC>,
->> +			<GCC_USB30_SEC_MOCK_UTMI_POSTDIV_CLK_SRC>, <GCC_USB30_SEC_SLEEP_CLK>,
->> +			<GCC_USB3_SEC_PHY_AUX_CLK>, <GCC_USB3_SEC_PHY_AUX_CLK_SRC>,
->> +			<GCC_USB3_SEC_PHY_COM_AUX_CLK>, <GCC_USB3_SEC_PHY_PIPE_CLK>,
->> +			<GCC_USB3_SEC_PHY_PIPE_CLK_SRC>, <GCC_CFG_NOC_LPASS_CLK>,
->> +			<GCC_MSS_GPLL0_MAIN_DIV_CLK_SRC>, <GCC_MSS_CFG_AHB_CLK>,
->> +			<GCC_MSS_OFFLINE_AXI_CLK>, <GCC_MSS_SNOC_AXI_CLK>,
->> +			<GCC_MSS_Q6_MEMNOC_AXI_CLK>, <GCC_MSS_Q6SS_BOOT_CLK_SRC>,
->> +			<GCC_SEC_CTRL_CLK_SRC>, <GCC_WPSS_AHB_CLK>,
->> +			<GCC_WPSS_AHB_BDG_MST_CLK>, <GCC_WPSS_RSCP_CLK>;
-> 
-> Is there any reason why this list is significantly larger than a list
-> for RB3g2 or FP5?
-> 
+Best regards,
+--
+Jerome
 
-Unfortunately these are all protected on the IDP board and any access 
-would cause a NoC error and then board will fail to boot up.
-
->> +};
->> +
->> +&lpass_audiocc {
->> +	compatible = "qcom,qcm6490-lpassaudiocc";
->> +	/delete-property/ power-domains;
->> +};
-> 
-> Separate commits, please.
-
-I will separate the commits.
-
-> 
->> -- 
->> 2.17.1
->>
-> 
-
--- 
-Thanks & Regards,
-Taniya Das.
 
