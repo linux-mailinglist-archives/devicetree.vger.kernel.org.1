@@ -1,107 +1,260 @@
-Return-Path: <devicetree+bounces-74119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2D8290209C
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 13:46:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2AA49020A4
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 13:47:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 050271C21990
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 11:46:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D5CB41C21A1D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 11:47:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65DB37E107;
-	Mon, 10 Jun 2024 11:46:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E56657E761;
+	Mon, 10 Jun 2024 11:47:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="JcA32OQb"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="xjNQzTA0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5CDC7D071;
-	Mon, 10 Jun 2024 11:46:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.156.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CC5D7E576
+	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 11:47:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718020004; cv=none; b=I2MYdCgh5NRc/yU67dh78prIiakQXgnnRPlQOtq2g1QDqBQamCghCtG/xe/8QgNF3UdV0T4Qwx0w51uee8VN+8msun0EBqCMSaHEq3KnP+VJVfYbfxQqrciyrXYFJ45/silBswq9t3RRYMULPaoO/DDR/btGy0YPFZRp/z2trNQ=
+	t=1718020032; cv=none; b=CO4cINYxxq+v2uWwzUjzaLIYtq/UD5UPl7FpQLZ7QXA8D8xOff1caknZ5qya5uTcOlCe873ikSwOlbwCEECHpUddE8++Hjf/Bvoew6Tc0gD8gvFLAU/Oq4Ta2u77YXMgmrYxfGzWK0AgQCb5vMFLrUmIm3BzaeKocZ57/WQ52VE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718020004; c=relaxed/simple;
-	bh=Pw3XMzxkqBcYJK8n3Hl44rHcXbi9ISiDEWqAeKRSZa0=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ltaVeCWJ8B+AajGor2pTOsy/RIyoKAjyXIE3XPrdk0WsIgcPB2Pi58sZj9GWUgZmKp5wcF08GGVX36On6TdMvu3ZXZuKtUfNhMxjwWHpT6eQSJjbeOEuEiapOy8SU0uA32+63L6zmALFhHIvVSupOmiFSMbqW3oe8iLxITVPD2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b=JcA32OQb; arc=none smtp.client-ip=67.231.156.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
-Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
-	by mx0b-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 459Mua2u012266;
-	Mon, 10 Jun 2024 04:46:15 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=pfpt0220; bh=6pulhWIr94j2TGUi2m0B9hvD1
-	Du6IzbTRrsDCUT7KnE=; b=JcA32OQbVl4yJ+lHz5UbcgHplD+k9oU9UnSzT+wVW
-	TpwfbOlqCq/vMjTvSLd27Dk2efvsudD0S5zF2Whz2XDB3GgvoD1/7jkux2dwdCEW
-	E0ta+C/KloXw1bIEx75UkMl7Kiw0hYuNUxo40AomLWpBedwGNeIkava6nzZg5ulD
-	PueQxwDZaMGB/tSQdZdF5e688m80U8PX5mcyD2wrynPuGW85syo9cGe8xb77+qRp
-	bpdBHAJ3zCsVDjh5ZvERybsKsEYty5BpTRB/kTBezr1BRbcR8sK7dzNXb8e/QGPW
-	DJ9W39x2xCF8NNdLqdTRbuMmky1lQtXhxRoRYtg7sOCrg==
-Received: from dc6wp-exch02.marvell.com ([4.21.29.225])
-	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3ympth4wga-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Jun 2024 04:46:15 -0700 (PDT)
-Received: from DC6WP-EXCH02.marvell.com (10.76.176.209) by
- DC6WP-EXCH02.marvell.com (10.76.176.209) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.4; Mon, 10 Jun 2024 04:46:14 -0700
-Received: from maili.marvell.com (10.69.176.80) by DC6WP-EXCH02.marvell.com
- (10.76.176.209) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
- Transport; Mon, 10 Jun 2024 04:46:14 -0700
-Received: from maili.marvell.com (unknown [10.28.36.165])
-	by maili.marvell.com (Postfix) with SMTP id C822C3F707B;
-	Mon, 10 Jun 2024 04:46:08 -0700 (PDT)
-Date: Mon, 10 Jun 2024 17:16:07 +0530
-From: Ratheesh Kannoth <rkannoth@marvell.com>
-To: Christophe Roullier <christophe.roullier@foss.st.com>
-CC: "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark
- Brown <broonie@kernel.org>, Marek Vasut <marex@denx.de>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 02/12] net: stmmac: dwmac-stm32: Separate out external
- clock rate validation
-Message-ID: <20240610114607.GA3818685@maili.marvell.com>
-References: <20240607095754.265105-1-christophe.roullier@foss.st.com>
- <20240607095754.265105-3-christophe.roullier@foss.st.com>
+	s=arc-20240116; t=1718020032; c=relaxed/simple;
+	bh=tOvzwj5vokdXnrKvZHntZn8CKFCMZxBZ2+KO2btHdC0=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=TSRy7GERhcElTwvBSHZe7Zj3xOXpKSYwqkuH+zuGwLzmyFg90gOlGz3Zzyu0il5yPl9+wbrQBzh0OXfuEZg3VXlzn6aDLfaiOx2DF+SR1Eu5yhA6px5P7c28ymHZnCmpjmbt+pLt5jmBNL7u5odPEygMlg/E50pl8Eg3Z2k1XvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=xjNQzTA0; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-35f22d3abf1so914392f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 04:47:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1718020028; x=1718624828; darn=vger.kernel.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rb8Pgp2xqT7cIYki1CL83VCOh424IkKn+0tsBgMjwTI=;
+        b=xjNQzTA0mihmhrpbuYY0JfiCN+AFdFwcjdRTzmpMg7z4UDu37JzXgLnNyRpMCd0pN/
+         9BpetK/fJw56rdeP46i8kQhNCKVtX9yQMalKC9U5wozmmLjAQtR5VIqoIai6YSca/xmn
+         a5GwQXehViYhMShwEENU98FYHbn4irU9RQVorIVhLTrgNXyAbPyodHSLzV8GBhtUTSNe
+         AZu82932erNaEu6BH7EkkQonFubl51OK9VRxLXz2wpH56ut6cj2LjeLFV3419PrNYSeU
+         J8fIIu39YtviJsv4eo6NR9xkluR2/mLK5FfKlqmWjil5S9FZrFtmZXyuiOoV07vOi5eJ
+         9oHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718020028; x=1718624828;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rb8Pgp2xqT7cIYki1CL83VCOh424IkKn+0tsBgMjwTI=;
+        b=M3Heqnl5b+yCCQs+zr2jCNqwo4h50hQbd3+GxOJfsT3wcdgvev53AcJQQvl10rj9A4
+         5U+zpMvlFq6NkNsEtwnZumi7aIgakQrGlhkd952iEf91oHiJL/QtCYwpKwVXlhXlELGp
+         7vkE5dNu6l+VKhn2w9FLCdw/ZPwGzUToNXaGYMYQg5FcsKq+ErbLH4Y+gRfU6dnS1Mjx
+         YzEEucc2DC+t3Dd4HkvV0Rc/oZVSmtuDgrPXXA43b1KcB6N31/3kpmZ3pdSH1543nNPj
+         pmFCL1XRUIEC/CL+PW1jQ3S37jkSe2PisTI6g3VzLH3JTcxeswsZuB8mbo+QHShW3nFg
+         nB8w==
+X-Forwarded-Encrypted: i=1; AJvYcCVigwZbrbjQpPFmigoJ+cYUUUZKPk6jg46e3dCRVsJXqqvjd5gtGfUv/qGQK/eTEYOD5XVG3r8jX21IT3IeKMUadsrR6f9SdjVwjw==
+X-Gm-Message-State: AOJu0Yyuj2OJYloOGQ5eb3aS7Bn+g6jc9YkYDAYBXc3y9QOhMMJ2+one
+	XvjhaWo8VqkNUnAyG7iSpInHna5/2uZCRpfnYOD7a59S8y1QjIyjshQnoEYP+QQ=
+X-Google-Smtp-Source: AGHT+IHALXrUP/ilTuRks1bDqpKHDSOZ0fxOLIroYwbtLGrwC2bQGMJQpHI/3NMnoy0xSxmxFpGrmw==
+X-Received: by 2002:a05:6000:1886:b0:35f:17c8:fe2d with SMTP id ffacd0b85a97d-35f17c8ff54mr5235072f8f.37.1718020027718;
+        Mon, 10 Jun 2024 04:47:07 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:afd3:66ee:5486:4249])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35f209c4a4asm3601821f8f.43.2024.06.10.04.47.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Jun 2024 04:47:07 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: <neil.armstrong@linaro.org>,  <mturquette@baylibre.com>,
+  <sboyd@kernel.org>,  <robh+dt@kernel.org>,
+  <krzysztof.kozlowski+dt@linaro.org>,  <khilman@baylibre.com>,
+  <martin.blumenstingl@googlemail.com>,  <jian.hu@amlogic.com>,
+  <kernel@sberdevices.ru>,  <rockosov@gmail.com>,
+  <linux-amlogic@lists.infradead.org>,  <linux-clk@vger.kernel.org>,
+  <devicetree@vger.kernel.org>,  <linux-kernel@vger.kernel.org>,
+  <linux-arm-kernel@lists.infradead.org>,  Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v3 6/7] dt-bindings: clock: meson: add A1 CPU clock
+ controller bindings
+In-Reply-To: <20240610111826.im3mz64hjfkxrxhr@CAB-WSD-L081021> (Dmitry
+	Rokosov's message of "Mon, 10 Jun 2024 14:18:26 +0300")
+References: <20240515185103.20256-1-ddrokosov@salutedevices.com>
+	<20240515185103.20256-7-ddrokosov@salutedevices.com>
+	<1jtti1p10m.fsf@starbuckisacylon.baylibre.com>
+	<20240610111826.im3mz64hjfkxrxhr@CAB-WSD-L081021>
+Date: Mon, 10 Jun 2024 13:47:06 +0200
+Message-ID: <1j7cexow91.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240607095754.265105-3-christophe.roullier@foss.st.com>
-X-Proofpoint-GUID: 0poOBUDz3LSw5F2jxMlud8T4HHieX8pu
-X-Proofpoint-ORIG-GUID: 0poOBUDz3LSw5F2jxMlud8T4HHieX8pu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-10_02,2024-06-10_01,2024-05-17_01
+Content-Type: text/plain
 
-On 2024-06-07 at 15:27:44, Christophe Roullier (christophe.roullier@foss.st.com) wrote:
-> +static int stm32mp1_validate_ethck_rate(struct plat_stmmacenet_data *plat_dat)
-> +{
-> +	struct stm32_dwmac *dwmac = plat_dat->bsp_priv;
-> +	const u32 clk_rate = clk_get_rate(dwmac->clk_eth_ck);
-nit: reverse xmas tree, split definitions and assignment.
+On Mon 10 Jun 2024 at 14:18, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
+
+> Hello Jerome,
+>
+> Thank you for the review!
+>
+> On Mon, Jun 10, 2024 at 12:04:09PM +0200, Jerome Brunet wrote:
+>> On Wed 15 May 2024 at 21:47, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
+>> 
+>> > Add the documentation and dt bindings for Amlogic A1 CPU clock
+>> > controller.
+>> >
+>> > This controller consists of the general 'cpu_clk' and two main parents:
+>> > 'cpu fixed clock' and 'syspll'. The 'cpu fixed clock' is an internal
+>> > fixed clock, while the 'syspll' serves as an external input from the A1
+>> > PLL clock controller.
+>> >
+>> > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+>> > Reviewed-by: Rob Herring <robh@kernel.org>
+>> > ---
+>> >  .../bindings/clock/amlogic,a1-cpu-clkc.yaml   | 64 +++++++++++++++++++
+>> >  .../dt-bindings/clock/amlogic,a1-cpu-clkc.h   | 19 ++++++
+>> >  2 files changed, 83 insertions(+)
+>> >  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-cpu-clkc.yaml
+>> >  create mode 100644 include/dt-bindings/clock/amlogic,a1-cpu-clkc.h
+>> >
+>> > diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-cpu-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-cpu-clkc.yaml
+>> > new file mode 100644
+>> > index 000000000000..f4958b315ed4
+>> > --- /dev/null
+>> > +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-cpu-clkc.yaml
+>> > @@ -0,0 +1,64 @@
+>> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> > +%YAML 1.2
+>> > +---
+>> > +$id: http://devicetree.org/schemas/clock/amlogic,a1-cpu-clkc.yaml#
+>> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> > +
+>> > +title: Amlogic A1 CPU Clock Control Unit
+>> > +
+>> > +maintainers:
+>> > +  - Neil Armstrong <neil.armstrong@linaro.org>
+>> > +  - Jerome Brunet <jbrunet@baylibre.com>
+>> > +  - Dmitry Rokosov <ddrokosov@salutedevices.com>
+>> > +
+>> > +properties:
+>> > +  compatible:
+>> > +    const: amlogic,a1-cpu-clkc
+>> > +
+>> > +  '#clock-cells':
+>> > +    const: 1
+>> > +
+>> > +  reg:
+>> > +    maxItems: 1
+>> > +
+>> > +  clocks:
+>> > +    items:
+>> > +      - description: input fixed pll div2
+>> > +      - description: input fixed pll div3
+>> > +      - description: input sys pll
+>> > +      - description: input oscillator (usually at 24MHz)
+>> 
+>> According to the documentation, fdiv5 is also an input of the CPU clock
+>> tree.
+>> 
+>> That is typically the kind of things we'd prefer to get right from the
+>> beginning to avoid modifying the bindings later.
+>> 
+>
+> Could you please share which documentation you are referencing? I have
+> the A113L documentation, and there is no mention of the CPU clock IP.
+
+You should get in touch with Amlogic.
+
+> I retrieved below register map from the vendor's custom driver:
+>
+> ===
+> CPUCTRL_CLK_CTRL0
+>
+> bits 1:0 - cpu_fsource_sel0
+>     0 - xtal
+>     1 - fclk_div2
+>     2 - fclk_div3
+>
+> bit 2 - cpu_fsel0
+>     0 - cpu_fsource_sel0
+>     1 - cpu_fsource_div0
+>
+> bit 3 - UNKNONWN
+>
+> bits 9:4 - cpu_fsource_div0
+>     Divider value
+>
+> bit 10 - cpu_fclk
+>     0 - cpu_fsel0
+>     1 - cpu_fsel1
+>
+> bit 11 - cpu_clk
+>     0 - cpu_fclk
+>     1 - sys_pll
+>
+> bits 15:12 - UNKNONWN
+>
+> bits 17:16 - cpu_fsource_sel1
+>     0 - xtal
+>     1 - fclk_div2
+>     2 - fclk_div3
+>
+> bit 18 - cpu_fsel1
+>     0 - cpu_fsource_sel1
+>     1 - cpu_fsource_div1
+>
+> bit 19 - UNKNONWN
+>
+> bits 25:20 - cpu_fsource_div1
+>     Divider value
+>
+> bits 31:26 - UNKNONWN
+> ===
+>
+> As you can see it doesn't have any other inputs except fclk_div2,
+> fclk_div3, sys_pll and xtal.
+
+You might not know what to do with it yet, still it is part of the
+documentation and should be part of the bindings too
+
+>
+>> > +
+>> > +  clock-names:
+>> > +    items:
+>> > +      - const: fclk_div2
+>> > +      - const: fclk_div3
+>> > +      - const: sys_pll
+>> > +      - const: xtal
+>> > +
+>> > +required:
+>> > +  - compatible
+>> > +  - '#clock-cells'
+>> > +  - reg
+>> > +  - clocks
+>> > +  - clock-names
+>> > +
+>> > +additionalProperties: false
+>> > +
+>> > +examples:
+>> > +  - |
+>> > +    #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
+>> > +    apb {
+>> > +        #address-cells = <2>;
+>> > +        #size-cells = <2>;
+>> > +
+>> > +        clock-controller@fd000000 {
+>> > +            compatible = "amlogic,a1-cpu-clkc";
+>> > +            reg = <0 0xfd000080 0 0x8>;
+>> 
+>> If reg is <0 0xfd000080 0 0x8> then node name should be clock-controller@fd000080
+>> 
+>
+> Okay, I will fix that example in the next version.
+>
+> [...]
+
+-- 
+Jerome
 
