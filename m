@@ -1,113 +1,104 @@
-Return-Path: <devicetree+bounces-74219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 731E6902527
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 17:14:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32C4090250D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 17:11:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 844851C21F5C
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 15:14:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C70C9280EC0
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 15:11:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7750713B5AB;
-	Mon, 10 Jun 2024 15:14:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDD30136E0E;
+	Mon, 10 Jun 2024 15:11:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="1H0IFhza"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="Qgnpjarw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C7651E4A0;
-	Mon, 10 Jun 2024 15:14:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34F441E4A0;
+	Mon, 10 Jun 2024 15:11:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718032491; cv=none; b=WqaJKtD+rjldkebKadzffIZyCHjmBflwVpji9sbRvHc508WC36Zexz6bXwDFrkhtiN45X6RTu3ZmLRIL3dDD78BDpR1xeHp4v3O/PGvVqwp9reOcbtonOgpU9iOTH1QPQKfCbD5lDh0oWe1bxLvJwApBjcQPt3GzzOrEbg/f3i8=
+	t=1718032297; cv=none; b=HH+GptyEkAb1JqcQVvwYq5EUiNe10ZN/Au+/KsSXbfSidZkOpeLdj78cCThD5CIdmHvLWX/0b3dULN9/2mAtO5YDOJvNKE9U1CupPPOYYqqLNOdBdMLnWo9IC1iECDPNp2jPB0ZYukma8YK2Tsw52qnKy7XjdzkLbgrcWHY0F7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718032491; c=relaxed/simple;
-	bh=IjlJcW2rpcpR2AhzMpx2AVjJOXObCUBp5FaDLv7xw4M=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Op7Ljwc486bI4rtP5u9w9iHeORyaZo6B+vauES8uoqL9aEZ3G0fYtTbI0ok337rNsaaM2mVB2RGtc2FHB8gAN52GA24KVujCx5QTjdJ6HqHvcRjtazF5jB593M8Jh0ayUnlZJnbiJ8fVNgyjnTAP+rjaUqQwkIGYMKuPGPKXpfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=1H0IFhza; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45ACQhJW012970;
-	Mon, 10 Jun 2024 17:14:41 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	NW9V2p3c6jEdfWsts/AzRAESe219hPF54H1y4m1f7Hk=; b=1H0IFhzamhX0Dprg
-	4UXoYUi8bj956wyWORsaplevL7RVsSYmXr62lwovRdP884aIiv8ldwaN2Mz2AhZo
-	QsknU78+knd5BoVhPGK0Qmr4GqF1dVOeIDWD8RhTrhoovkaeosDIuYLYXCuiOepg
-	OCvn1JN18ufLjTScuQ2kJWTU7BYXGBRJjoh4qWTqVqbmmTvnYfLD4osSirF4E1az
-	Lma+2RCe3w6q2WYDAcHhH8cmWBNGBE3L3vG2CoBoEBeUHH+MOF2x8bm+o7xP+LyB
-	gYoeOkZBLVLMyPkN5voQ/zKOX96TrcxkkN+ZNWkYMorT4xuEC/QCGjXkcwtbT/gD
-	J/CZZg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ymcqgfsee-1
+	s=arc-20240116; t=1718032297; c=relaxed/simple;
+	bh=2MRFIZHEDXMO59T2YYB546qg4m19ZfuyPNpaTj4oPmE=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FXZ2USSKWzzm9/+k2IkKLVgkzjUORQ3mgR6ZMy3Iw5oOmpfnNSoCSzpSy7/QK/m7wqpupZ0AfWZ99PQ/ywBOuWq0oOqnQvkIV403Xa51MrGPV9pMfAOlWAWCUUZnWcr5nGzDOSBo54LLeBT+Ginoh0r18xxZSGZaERwndTLf6o0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=Qgnpjarw; arc=none smtp.client-ip=67.231.149.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45AEOOUb020276;
+	Mon, 10 Jun 2024 10:11:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=PODMain02222019; bh=Aeq3fpVnqki4diYYjp
+	/uVIFurTx413cN+qB6SABonpY=; b=QgnpjarwJEnP2pQylyOrlsymbCi58E5Vqc
+	uTZD90SX6ft/6q5NHGths6YwJlMcqJLvWl9MaGYaaOJtt2IW3cJTGpqfuCW5p/5M
+	gefX7/wV5ZX/OppUCR7IBlw6GzBy1fepy2ZTBF0pabfsuCeTgRZpO5FZ9GShKvIq
+	JJj1lLMxneOxYO4blvZ7FmRIWtyOH2UztlZCPik0EypX/DuULtY5NlEaX78n8OZ+
+	Hdti3LRZjdVCyD57J9risGdGNaH84VSvtcjGnxxMD2b8uPbg3eol0RUk9ppJdSva
+	PAupBNEyaDorIfa9FntPHa8JAWDJcUBnXtYPMKrvwIwJjAC2Q+oQ==
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3ymmq09n4w-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Jun 2024 17:14:41 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 74D774002D;
-	Mon, 10 Jun 2024 17:14:24 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9F61921B53E;
-	Mon, 10 Jun 2024 17:13:48 +0200 (CEST)
-Received: from localhost (10.130.72.241) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 10 Jun
- 2024 17:13:48 +0200
-From: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sylvain Petinot <sylvain.petinot@foss.st.com>,
-        Sakari Ailus
-	<sakari.ailus@linux.intel.com>,
-        Laurent Pinchart
-	<laurent.pinchart@ideasonboard.com>
-CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Benjamin Mugnier
-	<benjamin.mugnier@foss.st.com>
-Subject: [PATCH 3/3] media: vgxy61: Add MODULE_ALIAS()
-Date: Mon, 10 Jun 2024 17:08:15 +0200
-Message-ID: <20240610150815.228790-4-benjamin.mugnier@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240610150815.228790-1-benjamin.mugnier@foss.st.com>
-References: <20240610150815.228790-1-benjamin.mugnier@foss.st.com>
+	Mon, 10 Jun 2024 10:11:27 -0500 (CDT)
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 10 Jun
+ 2024 16:11:25 +0100
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1544.9 via Frontend Transport; Mon, 10 Jun 2024 16:11:25 +0100
+Received: from opensource.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPS id 7EA9E820249;
+	Mon, 10 Jun 2024 15:11:25 +0000 (UTC)
+Date: Mon, 10 Jun 2024 15:11:24 +0000
+From: Charles Keepax <ckeepax@opensource.cirrus.com>
+To: James Ogletree <jogletre@opensource.cirrus.com>
+CC: <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <lee@kernel.org>, <broonie@kernel.org>, <jeff@labundy.com>,
+        <patches@opensource.cirrus.com>, <linux-sound@vger.kernel.org>,
+        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v11 1/5] firmware: cs_dsp: Add write sequence interface
+Message-ID: <ZmcXnL3xQ0IyJ6TF@opensource.cirrus.com>
+References: <20240605135249.361082-1-jogletre@opensource.cirrus.com>
+ <20240605135249.361082-2-jogletre@opensource.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-10_02,2024-06-10_01,2024-05-17_01
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240605135249.361082-2-jogletre@opensource.cirrus.com>
+X-Proofpoint-GUID: cpT-NqtVu1njgP8mEQQqgX7w6pof0QqB
+X-Proofpoint-ORIG-GUID: cpT-NqtVu1njgP8mEQQqgX7w6pof0QqB
+X-Proofpoint-Spam-Reason: safe
 
-Preserve user space retro compatibility after the device rename.
+On Wed, Jun 05, 2024 at 01:52:45PM +0000, James Ogletree wrote:
+> A write sequence is a sequence of register addresses
+> and values executed by some Cirrus DSPs following
+> certain power state transitions.
+> 
+> Add support for Cirrus drivers to update or add to a
+> write sequence present in firmware.
+> 
+> Reviewed-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+> Signed-off-by: James Ogletree <jogletre@opensource.cirrus.com>
+> ---
 
-Signed-off-by: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
----
- drivers/media/i2c/vgxy61.c | 1 +
- 1 file changed, 1 insertion(+)
+I would suggest we just apply this patch, it is unlikely to
+change from review comments on the rest of the series and could
+well be useful to other parts in the meantime. It would also
+mean less traffic each time this series is sent up.
 
-diff --git a/drivers/media/i2c/vgxy61.c b/drivers/media/i2c/vgxy61.c
-index ca3b43608dad..c85f356946ca 100644
---- a/drivers/media/i2c/vgxy61.c
-+++ b/drivers/media/i2c/vgxy61.c
-@@ -1898,3 +1898,4 @@ MODULE_AUTHOR("Mickael Guene <mickael.guene@st.com>");
- MODULE_AUTHOR("Sylvain Petinot <sylvain.petinot@foss.st.com>");
- MODULE_DESCRIPTION("VGXY61 camera subdev driver");
- MODULE_LICENSE("GPL");
-+MODULE_ALIAS("platform:st-vgxy61");
--- 
-2.25.1
-
+Thanks,
+Charles
 
