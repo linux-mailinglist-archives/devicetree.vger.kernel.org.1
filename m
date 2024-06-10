@@ -1,149 +1,214 @@
-Return-Path: <devicetree+bounces-73974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-73975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8C0A901981
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 05:09:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB7189019D9
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 06:45:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BAB4AB21407
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 03:09:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2EB21C20C91
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 04:45:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EFDE63A9;
-	Mon, 10 Jun 2024 03:09:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC64DD27E;
+	Mon, 10 Jun 2024 04:45:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Tso34vRF"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="i5STZ3Fe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A39B3C0C;
-	Mon, 10 Jun 2024 03:09:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCC14AD5A
+	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 04:45:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717988979; cv=none; b=V/tj1Nb0wQMFZgJOQZaWLmyck6y/3S4C8c2e+OMzdu47QvkMYzLh+C1pW2iL4b5gqUbEDqlWvT1TWjPR9nD/m3OZh99U3/Dwq84HsNv2feQzSeDx+XUAPs2a0GBf+ocFAUKZx9xXZ/i77+J6hhGzEfXQ7TzuAjxt1KdjvvDaOvA=
+	t=1717994737; cv=none; b=I1+WMozkg8bQE5pkwwJ94mL6OjKydflgmMZ1kDT/Tvl5ksQc5YRx2gaGd8osL8HlF2AAf7GxSH6USB/difoWRnm5mu2dCb9EFYccIIHIezfzNT93dJDhWInpubIgQqzmioVqaZliVAI/Vjo1c/ryOirO5dkpi06SruBcYQVBGxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717988979; c=relaxed/simple;
-	bh=Wj11lGYu3WhMhBwkounnR1AUHlkuhFRRPVG9yWN6Bms=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cLmwx+sw5vd07brpNAuc35+cHtluXwXir3Tctqj3Ga5VexcxskUAXbjsz2x00yTONKZlvwKgBDxBa4D3xI9IS2E3+flGh4wQQbRpP0+n32AXEzjUqy8lar6E4mm0vQIGQzCz8nwGh6WLh6hMRrBw80tB3S9kFkQPoNllLASlRiA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Tso34vRF; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1717988977; x=1749524977;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Wj11lGYu3WhMhBwkounnR1AUHlkuhFRRPVG9yWN6Bms=;
-  b=Tso34vRFDCsjnG1D7j9dczPUYkwaB09cIzsHlvk0ZcFHD0qHrmiPxTtX
-   /+fr1kpVrq9rpRCyVSY3YF+WWYF9KJhniSl6Yq6O12lXuarld4rYg2xHW
-   z2UpE+tH6r0l7PXbXqo6pYAmHnXS+asEyDP1QrPqV1xYJeCXk6mN478AZ
-   ve4uNQXElc7lBmESrbqUMj4hV6JaUn48adSSx9379Oa9jUeLb5vXCUeAc
-   UOOIe48lFuI88vjXkT6EiqvydJcy+0luYntr2ASHMiN84af0KglqcLLc4
-   cph/KO/xUnpATeu45HcIr911OIDFwjtbuXd/0xMookwvwSVvRmoTnPlg8
-   w==;
-X-CSE-ConnectionGUID: A2GS6remTDCx8lvD0WT3zg==
-X-CSE-MsgGUID: L6I7MHU0Tyqn0RrqGzNh2w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11098"; a="14813717"
-X-IronPort-AV: E=Sophos;i="6.08,226,1712646000"; 
-   d="scan'208";a="14813717"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2024 20:09:36 -0700
-X-CSE-ConnectionGUID: DOrcTPmaQCSduc8ZxamjnQ==
-X-CSE-MsgGUID: uO0dE4BRQO204xwXNkATKQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,226,1712646000"; 
-   d="scan'208";a="38844834"
-Received: from lkp-server01.sh.intel.com (HELO 8967fbab76b3) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 09 Jun 2024 20:09:34 -0700
-Received: from kbuild by 8967fbab76b3 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sGVPY-0001nu-0F;
-	Mon, 10 Jun 2024 03:09:32 +0000
-Date: Mon, 10 Jun 2024 11:09:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] ASoC: dt-bindings: convert tas571x.txt to dt-schema
-Message-ID: <202406101035.nanF90LS-lkp@intel.com>
-References: <20240607-topic-amlogic-upstream-bindings-convert-tas57xx-v1-1-ebf1e4919bb1@linaro.org>
+	s=arc-20240116; t=1717994737; c=relaxed/simple;
+	bh=vkSpLdTOCKmV5IhZYXnWR8/RElz7fkjEtj2s36qYkjY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=M9p/N59U7O6xUDpKtfiXkJZV/itAwwG38WQsMTz62CqNnc6i5bVoLsxSGfQS4zJgWo98DskndZ/5CFta93CaMFt8q+1sJKri4kq6N8Rb+9l3vsMHQ0TDvaqAXnYg1U/SqfAyiNkGdClHe30M1b+GCrh9wHKWKxFWYQYljlA49i8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=i5STZ3Fe; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1f6559668e1so32899245ad.3
+        for <devicetree@vger.kernel.org>; Sun, 09 Jun 2024 21:45:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1717994735; x=1718599535; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dN55AJF0PHuFpfwbQ/DJHVULjunoR3y3+KEw1Zkzgt0=;
+        b=i5STZ3FeaXcWmhvT5UVchXoV0MVop1kwyyYt6Cbm4CUnnSQE8ke4sr1kAqG4PJlCAU
+         phxYKIJgcCWaRWB/7i0/9LGDB1zzV3403j6BMb5LSTQX5XINYO8lLeIlNT250bonSWIv
+         Jbdks5kgz1nollG5X+mHB/DpLgiX7dNdi8oI8KARhI00yCTVi4QZIYMgPqXQ3r/6jiev
+         bLPnwU0SuYZHZXNuUYjrC/SnKeyqeXw6ZUFIJjBFbfO3l3TY4PS79T681A7XCZ5oKKYU
+         GufQaJV8C4d8eHtH/pKWHYgXSy1OXWyneT3KrIj7v2cXZ4KLg+9cCRQHlSCCegBwGf+I
+         5nxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717994735; x=1718599535;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dN55AJF0PHuFpfwbQ/DJHVULjunoR3y3+KEw1Zkzgt0=;
+        b=ExFQQ9fa6KsyCD9vxQxevakVfWkS0ceG27tzF3IJVlk8mgEdTkviVyERfb9sngiGGN
+         sAkMUlFRLkT625SdiVUuNEIMVkE6HFyHTbe73eUqGOSa0bhu1A/5nZ5FUh53VdkKCTOr
+         c/J00L0GAcMkiaQmqWRCzr3dYBfw1zT5jWJ1e7GcFZdGMyMOECq0jldSfof+UwndMCzF
+         EMF1YJ7B7WVo0Tjh1MWQDiCc6IjsrdyXhdvgEzzrR6eE/DDM5fvfj71tzlbHWtxDMozo
+         rrrivh1lY3JEvjxn8TMm9T7iVW1m4AlK+lCtXY3ZDbVTJ8fRTYmzQ3SQMa8gZCq1h3f2
+         hUUA==
+X-Forwarded-Encrypted: i=1; AJvYcCWRYO64sOqT77Qnt1bH9g3PHqpAr6rBnJKru4Kp4uIf4pVdaMrt4/L4riH1fyebP9xCAQSq5q+U+/vbsIUHyitQUXtPbykKsAkbxg==
+X-Gm-Message-State: AOJu0Yy3uMv1l3PgX1Ee0w0h7Ec/IUOzfpaRNjOFaBiQ+JZDucYHr3yV
+	Wi0aIteJB/RQ40DKJ3X24BlX2Ga2L8iEm3so6BFlk/O6W0Oxm6fuW7wHg7gnAZM=
+X-Google-Smtp-Source: AGHT+IG9ZML7kOKf0moW7WjG6bvAFzHf7/IU/wowJpUgrFMvTbXgWuSVm5Gfggt/Rs9gPxYhtiFXlQ==
+X-Received: by 2002:a17:902:e811:b0:1f7:1821:77ad with SMTP id d9443c01a7336-1f718217cbemr8801395ad.14.1717994735007;
+        Sun, 09 Jun 2024 21:45:35 -0700 (PDT)
+Received: from charlie.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f6bd76ce8asm73124095ad.77.2024.06.09.21.45.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 Jun 2024 21:45:34 -0700 (PDT)
+From: Charlie Jenkins <charlie@rivosinc.com>
+Subject: [PATCH 00/13] riscv: Add support for xtheadvector
+Date: Sun, 09 Jun 2024 21:45:05 -0700
+Message-Id: <20240609-xtheadvector-v1-0-3fe591d7f109@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240607-topic-amlogic-upstream-bindings-convert-tas57xx-v1-1-ebf1e4919bb1@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANGEZmYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDU2MD3YqSjNTElLLU5JL8Il0LY+MU4xRD8yQTI2MloJaCotS0zAqwcdG
+ xtbUAHd9+x14AAAA=
+To: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Jonathan Corbet <corbet@lwn.net>, 
+ Shuah Khan <shuah@kernel.org>, Guo Ren <guoren@kernel.org>, 
+ Evan Green <evan@rivosinc.com>, Andy Chiu <andy.chiu@sifive.com>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+ linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ Charlie Jenkins <charlie@rivosinc.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, Heiko Stuebner <heiko@sntech.de>, 
+ Heiko Stuebner <heiko@sntech.de>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1717994732; l=5669;
+ i=charlie@rivosinc.com; s=20231120; h=from:subject:message-id;
+ bh=vkSpLdTOCKmV5IhZYXnWR8/RElz7fkjEtj2s36qYkjY=;
+ b=F8iBE/qU+gWHTYOUzgJ49eC5lJBiserczetPXroe2jYge4JeZOhpyar3pRnFA6RzDVYnQPUxO
+ 91UulT4jaLZCLDyQtCbwIv10SEdkoX15vesDG1F1IZMrDbhIKYXPJyh
+X-Developer-Key: i=charlie@rivosinc.com; a=ed25519;
+ pk=t4RSWpMV1q5lf/NWIeR9z58bcje60/dbtxxmoSfBEcs=
 
-Hi Neil,
+xtheadvector is a custom extension that is based upon riscv vector
+version 0.7.1 [1]. All of the vector routines have been modified to
+support this alternative vector version based upon whether xtheadvector
+was determined to be supported at boot.
 
-kernel test robot noticed the following build warnings:
+vlenb is not supported on the existing xtheadvector hardware, so a
+devicetree property thead,vlenb is added to provide the vlenb to Linux.
 
-[auto build test WARNING on c3f38fa61af77b49866b006939479069cd451173]
+There is a new hwprobe key RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0 that is
+used to request which thead vendor extensions are supported on the
+current platform. This allows future vendors to allocate hwprobe keys
+for their vendor.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Neil-Armstrong/ASoC-dt-bindings-convert-tas571x-txt-to-dt-schema/20240607-175726
-base:   c3f38fa61af77b49866b006939479069cd451173
-patch link:    https://lore.kernel.org/r/20240607-topic-amlogic-upstream-bindings-convert-tas57xx-v1-1-ebf1e4919bb1%40linaro.org
-patch subject: [PATCH] ASoC: dt-bindings: convert tas571x.txt to dt-schema
-config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20240610/202406101035.nanF90LS-lkp@intel.com/config)
-compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project d7d2d4f53fc79b4b58e8d8d08151b577c3699d4a)
-dtschema version: 2024.6.dev1+g833054f
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240610/202406101035.nanF90LS-lkp@intel.com/reproduce)
+Support for xtheadvector is also added to the vector kselftests.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406101035.nanF90LS-lkp@intel.com/
+Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
 
-dtcheck warnings: (new ones prefixed by >>)
-   arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi:263.22-266.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@3: node has a unit name, but no reg or ranges property
-   arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi:268.22-273.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@4: node has a unit name, but no reg or ranges property
-   arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi:275.24-278.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@5: node has a unit name, but no reg or ranges property
-   arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi:280.22-283.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@6: node has a unit name, but no reg or ranges property
-   arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi:285.22-288.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@7: node has a unit name, but no reg or ranges property
-   arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi:290.29-293.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@8: node has a unit name, but no reg or ranges property
-   arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi:305.11-309.6: Warning (unit_address_vs_reg): /soc@0/codec@57900000/port@0: node has a unit name, but no reg or ranges property
-   arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi:311.11-315.6: Warning (unit_address_vs_reg): /soc@0/codec@57900000/port@1: node has a unit name, but no reg or ranges property
-   arch/arm64/boot/dts/socionext/uniphier-ld11-global.dts:71.10-75.5: Warning (unit_address_vs_reg): /spdif-out/port@0: node has a unit name, but no reg or ranges property
-   arch/arm64/boot/dts/socionext/uniphier-ld11-global.dts:82.10-86.5: Warning (unit_address_vs_reg): /comp-spdif-out/port@0: node has a unit name, but no reg or ranges property
->> arch/arm64/boot/dts/socionext/uniphier-ld11-global.dtb: audio-codec@1d: Unevaluated properties are not allowed ('port' was unexpected)
-   	from schema $id: http://devicetree.org/schemas/sound/ti,tas57xx.yaml#
-   arch/arm64/boot/dts/socionext/uniphier-ld11-global.dtb: /soc@0/smpctrl@59801000: failed to match any schema with compatible: ['socionext,uniphier-smpctrl']
-   arch/arm64/boot/dts/socionext/uniphier-ld11-global.dtb: spdif-out: 'port@0' does not match any of the regexes: 'pinctrl-[0-9]+'
-   	from schema $id: http://devicetree.org/schemas/sound/linux,spdif-dit.yaml#
-   arch/arm64/boot/dts/socionext/uniphier-ld11-global.dtb: comp-spdif-out: 'port@0' does not match any of the regexes: 'pinctrl-[0-9]+'
-   	from schema $id: http://devicetree.org/schemas/sound/linux,spdif-dit.yaml#
---
-   arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi:396.22-399.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@3: node has a unit name, but no reg or ranges property
-   arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi:401.22-406.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@4: node has a unit name, but no reg or ranges property
-   arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi:408.24-411.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@5: node has a unit name, but no reg or ranges property
-   arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi:413.22-416.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@6: node has a unit name, but no reg or ranges property
-   arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi:418.22-421.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@7: node has a unit name, but no reg or ranges property
-   arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi:423.29-426.6: Warning (unit_address_vs_reg): /soc@0/audio@56000000/port@8: node has a unit name, but no reg or ranges property
-   arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi:438.11-442.6: Warning (unit_address_vs_reg): /soc@0/codec@57900000/port@0: node has a unit name, but no reg or ranges property
-   arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi:444.11-448.6: Warning (unit_address_vs_reg): /soc@0/codec@57900000/port@1: node has a unit name, but no reg or ranges property
-   arch/arm64/boot/dts/socionext/uniphier-ld20-global.dts:71.10-75.5: Warning (unit_address_vs_reg): /spdif-out/port@0: node has a unit name, but no reg or ranges property
-   arch/arm64/boot/dts/socionext/uniphier-ld20-global.dts:82.10-86.5: Warning (unit_address_vs_reg): /comp-spdif-out/port@0: node has a unit name, but no reg or ranges property
->> arch/arm64/boot/dts/socionext/uniphier-ld20-global.dtb: audio-codec@1b: Unevaluated properties are not allowed ('port' was unexpected)
-   	from schema $id: http://devicetree.org/schemas/sound/ti,tas57xx.yaml#
-   arch/arm64/boot/dts/socionext/uniphier-ld20-global.dtb: /soc@0/smpctrl@59801000: failed to match any schema with compatible: ['socionext,uniphier-smpctrl']
-   arch/arm64/boot/dts/socionext/uniphier-ld20-global.dtb: /soc@0/usb@65a00000: failed to match any schema with compatible: ['socionext,uniphier-dwc3', 'snps,dwc3']
-   arch/arm64/boot/dts/socionext/uniphier-ld20-global.dtb: spdif-out: 'port@0' does not match any of the regexes: 'pinctrl-[0-9]+'
-   	from schema $id: http://devicetree.org/schemas/sound/linux,spdif-dit.yaml#
-   arch/arm64/boot/dts/socionext/uniphier-ld20-global.dtb: comp-spdif-out: 'port@0' does not match any of the regexes: 'pinctrl-[0-9]+'
-   	from schema $id: http://devicetree.org/schemas/sound/linux,spdif-dit.yaml#
+[1] https://github.com/T-head-Semi/thead-extension-spec/blob/95358cb2cca9489361c61d335e03d3134b14133f/xtheadvector.adoc
 
+---
+This series is a continuation of a different series that was fragmented
+into two other series in an attempt to get part of it merged in the 6.10
+merge window. The split-off series did not get merged due to a NAK on
+the series that added the generic riscv,vlenb devicetree entry. This
+series has converted riscv,vlenb to thead,vlenb to remedy this issue.
+
+The original series is titled "riscv: Support vendor extensions and
+xtheadvector" [3].
+
+The series titled "riscv: Extend cpufeature.c to detect vendor
+extensions" is still under development and this series is based on that
+series! [4]
+
+I have tested this with an Allwinner Nezha board. I ran into issues
+booting the board after 6.9-rc1 so I applied these patches to 6.8. There
+are a couple of minor merge conflicts that do arrise when doing that, so
+please let me know if you have been able to boot this board with a 6.9
+kernel. I used SkiffOS [1] to manage building the image, but upgraded
+the U-Boot version to Samuel Holland's more up-to-date version [2] and
+changed out the device tree used by U-Boot with the device trees that
+are present in upstream linux and this series. Thank you Samuel for all
+of the work you did to make this task possible.
+
+[1] https://github.com/skiffos/SkiffOS/tree/master/configs/allwinner/nezha
+[2] https://github.com/smaeul/u-boot/commit/2e89b706f5c956a70c989cd31665f1429e9a0b48
+[3] https://lore.kernel.org/all/20240503-dev-charlie-support_thead_vector_6_9-v6-0-cb7624e65d82@rivosinc.com/
+[4] https://lore.kernel.org/linux-riscv/20240609-support_vendor_extensions-v2-0-9a43f1fdcbb9@rivosinc.com/
+
+---
+Charlie Jenkins (12):
+      dt-bindings: riscv: Add xtheadvector ISA extension description
+      dt-bindings: thead: add a vlen register length property
+      riscv: dts: allwinner: Add xtheadvector to the D1/D1s devicetree
+      riscv: Add thead and xtheadvector as a vendor extension
+      riscv: vector: Use vlenb from DT for thead
+      riscv: csr: Add CSR encodings for VCSR_VXRM/VCSR_VXSAT
+      riscv: Add xtheadvector instruction definitions
+      riscv: vector: Support xtheadvector save/restore
+      riscv: hwprobe: Add thead vendor extension probing
+      riscv: hwprobe: Document thead vendor extensions and xtheadvector extension
+      selftests: riscv: Fix vector tests
+      selftests: riscv: Support xtheadvector in vector tests
+
+Heiko Stuebner (1):
+      RISC-V: define the elements of the VCSR vector CSR
+
+ Documentation/arch/riscv/hwprobe.rst               |  10 +
+ .../devicetree/bindings/riscv/extensions.yaml      |  10 +
+ Documentation/devicetree/bindings/riscv/thead.yaml |   7 +
+ arch/riscv/Kconfig.vendor                          |  26 ++
+ arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi      |   3 +-
+ arch/riscv/include/asm/cpufeature.h                |   2 +
+ arch/riscv/include/asm/csr.h                       |  13 +
+ arch/riscv/include/asm/hwprobe.h                   |   4 +-
+ arch/riscv/include/asm/switch_to.h                 |   2 +-
+ arch/riscv/include/asm/vector.h                    | 249 +++++++++++++----
+ arch/riscv/include/asm/vendor_extensions/thead.h   |  42 +++
+ .../include/asm/vendor_extensions/thead_hwprobe.h  |  18 ++
+ .../include/asm/vendor_extensions/vendor_hwprobe.h |  37 +++
+ arch/riscv/include/uapi/asm/hwprobe.h              |   3 +-
+ arch/riscv/include/uapi/asm/vendor/thead.h         |   3 +
+ arch/riscv/kernel/cpufeature.c                     |  51 +++-
+ arch/riscv/kernel/kernel_mode_vector.c             |   8 +-
+ arch/riscv/kernel/process.c                        |   4 +-
+ arch/riscv/kernel/signal.c                         |   6 +-
+ arch/riscv/kernel/sys_hwprobe.c                    |   5 +
+ arch/riscv/kernel/vector.c                         |  25 +-
+ arch/riscv/kernel/vendor_extensions.c              |  10 +
+ arch/riscv/kernel/vendor_extensions/Makefile       |   2 +
+ arch/riscv/kernel/vendor_extensions/thead.c        |  18 ++
+ .../riscv/kernel/vendor_extensions/thead_hwprobe.c |  19 ++
+ tools/testing/selftests/riscv/vector/.gitignore    |   3 +-
+ tools/testing/selftests/riscv/vector/Makefile      |  17 +-
+ .../selftests/riscv/vector/v_exec_initval_nolibc.c |  93 +++++++
+ tools/testing/selftests/riscv/vector/v_helpers.c   |  67 +++++
+ tools/testing/selftests/riscv/vector/v_helpers.h   |   7 +
+ tools/testing/selftests/riscv/vector/v_initval.c   |  22 ++
+ .../selftests/riscv/vector/v_initval_nolibc.c      |  68 -----
+ .../selftests/riscv/vector/vstate_exec_nolibc.c    |  20 +-
+ .../testing/selftests/riscv/vector/vstate_prctl.c  | 295 ++++++++++++---------
+ 34 files changed, 898 insertions(+), 271 deletions(-)
+---
+base-commit: 11cc01d4d2af304b7288251aad7e03315db8dffc
+change-id: 20240530-xtheadvector-833d3d17b423
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+- Charlie
+
 
