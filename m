@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-74000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A77A0901A87
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 07:54:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71F41901A8C
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 07:55:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF2881C225F0
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 05:54:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C3228B2168C
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 05:55:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7827117C8B;
-	Mon, 10 Jun 2024 05:53:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE24F405E6;
+	Mon, 10 Jun 2024 05:53:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="lVpmfPeY"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="nJ//xrUB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B604D17BAA
-	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 05:53:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D9823D556
+	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 05:53:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717998799; cv=none; b=dP6mw0rgOwKuVyCFTLCQuiR+ZFesujohnfDLJmQqm3aTnuj109bpJiUi1P25kUvrSK3ItxRexjgjvWrHfJoGHApbprALIbSIPr9iorgSHfe/+ru8On4WH5lwow5nm60rn4w0hum9RcYeMLMbvVFRy9LZF3hP74dG1b4aTfbT3Iw=
+	t=1717998811; cv=none; b=XxhMVCU4LB9j0SU2yFkoidE8P665j8ps/ZzIzmS4ijqOjw5KT6YZ7j+lNME4LCwv3y9/g8wbV7IvOrZTAwmVC6zSH8T5ZjTAvrOg698yGgfzHDssDqoaCA3ZHBSOMR8MZAdhvOfZOa9EV0OkozIKJuC6Hq4hDP7A0rw0Chc+cgk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717998799; c=relaxed/simple;
-	bh=irF8ph+PrFtqkoPopgFU4I8t5Afbf3NJWtvx9cvnnNg=;
+	s=arc-20240116; t=1717998811; c=relaxed/simple;
+	bh=3alQsF5cXJcp1eB6veFck3wP14TcpMIr2boHKhCezgw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n36rHpjw6tCvzi+obnHXQTB/FqshxApTvoU2it0AVKna+lhc5SdLBQkUi7snq0H/dEY0HyCwdXCU5kVkrc0lyVc2qAfkDDzLdhm9bp5YWtqvkFSamqIK9fwl9LfctxNzJ9XdNYEmeEeKGmFsoModUxIdgPfNr12GC4WdZkQmMZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=lVpmfPeY; arc=none smtp.client-ip=209.85.128.44
+	 In-Reply-To:Content-Type; b=Wpy51TgTyXG8L0NMyDSMPmBQ3h9Ilb5gnsndOiEjFM9tookjEdmlMYvIHfM5VODsAAMB5SL3V2HL5V7K/ju+DWLBj6bNafRiuYRjpxPqDDR92171u1FuZgtqvFGwlkcW8Eu8tPDMvvSvhTAdwrGSxF0FQEQzVru78hk98Coc6ik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=nJ//xrUB; arc=none smtp.client-ip=209.85.128.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-421757d217aso20547645e9.3
-        for <devicetree@vger.kernel.org>; Sun, 09 Jun 2024 22:53:17 -0700 (PDT)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4217d451f69so9820135e9.0
+        for <devicetree@vger.kernel.org>; Sun, 09 Jun 2024 22:53:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1717998796; x=1718603596; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1717998808; x=1718603608; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1bnbZBagSaTn2JXJEWNJzTIrkukPRASk2JO9D05+bKc=;
-        b=lVpmfPeYKugBdCI73C8xvFZN8+yWzNJWjZTdXNwtqGc0ynTdTXiPqK6USARFrMPUKC
-         cSDz/PfjoWLgYYdrxLxPxr+Q+pyhshmBIlWSD/wjMbYbrVg0Gy5YsANPthcsl+DMB7Dd
-         tgCM0rgz2/lABsnfT0P2d3bS1LB3RSZ0dy24Nzra+Uu1+w6Ks5X1ikjf1o81jrLPi4I0
-         3olxMxVPm2J6LIGPzTV9V3HFppAqCUsr18CEUC24vIPxN2eZ1OBIgTQNjyOHuWG4pjFy
-         q9+oudRypJnmxSd3mZhbac7D4ESUhG8gO5tnBkv8bgS9sXr1ZUc3T5QwLByQvYkQxP12
-         lSMg==
+        bh=GkUhmOLbHVpb+NlbhLeXbIAVL7bf+BVkPJnytKdhiUQ=;
+        b=nJ//xrUBGdAPGGKYPtLyj68p2YDNqhoR1odLs95uv1F0PjHw6IsE5pQ7YNwNF30+Bx
+         dIbQDEiLWOPQ12sYCQDC65LvuIvp7Rus6CjiXsskJZ7vFZiOvCJMw6j0F3g4NVwsoU/7
+         o1+G17rxLTUiU5yOIBrMRPpfxH1pxkKMLluO3XCi+knyDTIEkkIBP4IHNRhEu6wg5MGO
+         xM9jN+lEW5WpaK9+zZCwIE0ODXDq3nNCegKm0xb/YrzKluIM/CEtddGcZtXtePsAdDtF
+         SeogudDndydWnjS321EDzK6PxJGbmuunH08s5h7kuO9sK+ujVP59MzMi2/uDPFGmKWyP
+         MCuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717998796; x=1718603596;
+        d=1e100.net; s=20230601; t=1717998808; x=1718603608;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1bnbZBagSaTn2JXJEWNJzTIrkukPRASk2JO9D05+bKc=;
-        b=mEtsK03tE4yw8K2ve0ED4UevPVwUJA+oMRB4GSBWFIlnqw9KuavrLvb7h8jD+NNDK+
-         wiy1P0M5d+UL3GNMNYyZFKVQ6fJj2jXZQKnbat+JECDSLvjcYRyIptYT4dtkhNyNcfm4
-         V4OSAQlwqiuWRBMVEQRW3QVkkX45WPbMSPrkEllGISvmtl2WMMBed5MKSIiC6f95i829
-         oZbtD0i+k/wkJlokOseLRpD3lT+58YLVPYvmAvNSf8AevDoVK0WQiz6dhTBKybZzbIk/
-         TXK5+vV0xdgrWc0d6JsSXSs9flAi00dbjs1bJKjERI0X9DdkOS5fyESJ+V6JRGStdfS2
-         Fs0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU9YbpCgLfwduMIlQwJBfV2rLr/s4FCh7kRHuVxZGMjrIkdG9dATfAg7CMQnyATzYFFO0hB/Zfku6u/iVf76CwUIOgjwDr72hInXw==
-X-Gm-Message-State: AOJu0YwOG21si5rREtsdb5vXjXXHFWYP4i4lHFugy4oDNFNQliO12YlK
-	4MbetxvtorjEd20dzs9ULJqfrE4v77KnyMu0hq5Iog8StzXYXAFEVr2S9mZXgbM=
-X-Google-Smtp-Source: AGHT+IHkqS3HnQXP1SM4LUXFiNo/Si5rJY65Z+dzTqZYGUmZoPX12HJYXMHMRVy8hlem/Uo5GeZbEw==
-X-Received: by 2002:a05:6000:1e81:b0:35f:650:e8ff with SMTP id ffacd0b85a97d-35f0650ebb8mr5580030f8f.28.1717998796001;
-        Sun, 09 Jun 2024 22:53:16 -0700 (PDT)
+        bh=GkUhmOLbHVpb+NlbhLeXbIAVL7bf+BVkPJnytKdhiUQ=;
+        b=tP11MsTykzdkwS54RneIawow8EHOdyW4MiY1tybHjHN/ug0oaI/YQ2CQtdvjoSnOsZ
+         nC5PDwAWep46UCG333U0wSK7JPkzUH9O0RYL7K5LpKm25NwyXiiQUQFFOWIwftPok7QU
+         3W95Q/98khQKuy4ym4ha3/kHDSFylzFLMK6u72EbwJkN6F9AP04815rB7zt7T2ylAZ7M
+         NMZZB96KjEH+IY75F2+Kd0BqSQZB+cRjnlloYS6QiodIttnGZyNC7s8GrjVB0eLxOkJ/
+         tkdY/64FnwgCxzhwVLtd8tJr2XpvOmtdDSYrh56nC9whbLJwPqpzLP+v+M4xIE6wO3Y2
+         oJHw==
+X-Forwarded-Encrypted: i=1; AJvYcCXmj661NXs9RpfFu7o37vBfPKZvD1VZHEI0QZ3f8H2Lig2eBEChCarQN0mBeiG431n+O7HwTYssXbIPsT1C32es1CWVMvdzH29kLg==
+X-Gm-Message-State: AOJu0YzNed0NVWAfRpUfgqF24yuEIjmyNcHti7Xcmn9bUa83N0QBZXFO
+	pMpIMPTTlRN2umC+/QC7b3pjdwz3X9rFNNr9BhVSTre2kHdF9dYOoIWawYO9wU0=
+X-Google-Smtp-Source: AGHT+IHg2tNbYnA2TznKTM7iMvhXh86Wjk4NqEykG9atDu1gG/ivW7L/85gd91UYrGOEEtVjRWrFLw==
+X-Received: by 2002:a05:600c:350f:b0:422:1163:44b2 with SMTP id 5b1f17b1804b1-422116354d0mr1096165e9.7.1717998808576;
+        Sun, 09 Jun 2024 22:53:28 -0700 (PDT)
 Received: from [192.168.50.4] ([82.78.167.189])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421cc89e055sm25464975e9.13.2024.06.09.22.53.13
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421cc89e055sm25464975e9.13.2024.06.09.22.53.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 09 Jun 2024 22:53:14 -0700 (PDT)
-Message-ID: <48262d5c-4dde-40c5-991c-f373f24b2018@tuxon.dev>
-Date: Mon, 10 Jun 2024 08:53:13 +0300
+        Sun, 09 Jun 2024 22:53:27 -0700 (PDT)
+Message-ID: <438a8c1e-5d78-49ae-86de-4f91acf9e76d@tuxon.dev>
+Date: Mon, 10 Jun 2024 08:53:26 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,8 +76,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 06/15] pinctrl: renesas: pinctrl-rzg2l: Validate power
- registers for SD and ETH
+Subject: Re: [PATCH v3 07/15] pinctrl: renesas: pinctrl-rzg2l: Add function
+ pointer for locking/unlocking the PFC register
 Content-Language: en-US
 To: Prabhakar <prabhakar.csengg@gmail.com>,
  Geert Uytterhoeven <geert+renesas@glider.be>,
@@ -92,9 +92,9 @@ Cc: linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
  Paul Barker <paul.barker.ct@bp.renesas.com>,
  Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 References: <20240530173857.164073-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240530173857.164073-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240530173857.164073-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
 From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20240530173857.164073-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240530173857.164073-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
@@ -103,54 +103,163 @@ Content-Transfer-Encoding: 7bit
 On 30.05.2024 20:38, Prabhakar wrote:
 > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> On RZ/V2H(P) SoC, the power registers for SD and ETH do not exist,
-> resulting in invalid register offsets. Ensure that the register offsets
-> are valid before any read/write operations are performed. If the power
-> registers are not available, both SD and ETH will be set to '0'.
+> On the RZ/G2L SoC, the PFCWE bit controls writing to PFC registers.
+> However, on the RZ/V2H(P) SoC, the PFCWE (REGWE_A on RZ/V2H) bit controls
+> writing to both PFC and PMC registers. Additionally, BIT(7) B0WI is
+> undocumented for the PWPR register on RZ/V2H(P) SoC. To accommodate these
+> differences across SoC variants, introduce the pwpr_pfc_lock_unlock()
+> function pointer.
+> 
+> Note, in rzg2l_pinctrl_set_pfc_mode() the pwpr_pfc_lock_unlock(.., false)
+> is now called before PMC read/write and pwpr_pfc_lock_unlock(.., true) is
+> now called after PMC read/write this is to keep changes minimal for
+> RZ/V2H(P) SoC.
 > 
 > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
 Tested-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com> # on RZ/G3S
 
 > ---
 > v2->v3
-> - Included RB tag
+> - Introduced single function pointer to (un)lock
+> - Updated commit message
 > 
 > RFC->v2
-> - Update check to != 0 instead of -EINVAL
+> - Introduced function pointer for (un)lock
 > ---
->  drivers/pinctrl/renesas/pinctrl-rzg2l.c | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
+>  drivers/pinctrl/renesas/pinctrl-rzg2l.c | 44 +++++++++++++++----------
+>  1 file changed, 27 insertions(+), 17 deletions(-)
 > 
 > diff --git a/drivers/pinctrl/renesas/pinctrl-rzg2l.c b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> index 89716e842c63..6e3b1adb95f6 100644
+> index 6e3b1adb95f6..a3fd14b95c5a 100644
 > --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
 > +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> @@ -2503,8 +2503,10 @@ static int rzg2l_pinctrl_suspend_noirq(struct device *dev)
->  	rzg2l_pinctrl_pm_setup_dedicated_regs(pctrl, true);
+> @@ -241,6 +241,8 @@ struct rzg2l_dedicated_configs {
+>  	u64 config;
+>  };
 >  
->  	for (u8 i = 0; i < 2; i++) {
-> -		cache->sd_ch[i] = readb(pctrl->base + SD_CH(regs->sd_ch, i));
-> -		cache->eth_poc[i] = readb(pctrl->base + ETH_POC(regs->eth_poc, i));
-> +		if (regs->sd_ch)
-> +			cache->sd_ch[i] = readb(pctrl->base + SD_CH(regs->sd_ch, i));
-> +		if (regs->eth_poc)
-> +			cache->eth_poc[i] = readb(pctrl->base + ETH_POC(regs->eth_poc, i));
+> +struct rzg2l_pinctrl;
+> +
+>  struct rzg2l_pinctrl_data {
+>  	const char * const *port_pins;
+>  	const u64 *port_pin_configs;
+> @@ -251,6 +253,7 @@ struct rzg2l_pinctrl_data {
+>  	const struct rzg2l_hwcfg *hwcfg;
+>  	const u64 *variable_pin_cfg;
+>  	unsigned int n_variable_pin_cfg;
+> +	void (*pwpr_pfc_lock_unlock)(struct rzg2l_pinctrl *pctrl, bool lock);
+>  };
+>  
+>  /**
+> @@ -383,7 +386,6 @@ static const u64 r9a07g043f_variable_pin_cfg[] = {
+>  static void rzg2l_pinctrl_set_pfc_mode(struct rzg2l_pinctrl *pctrl,
+>  				       u8 pin, u8 off, u8 func)
+>  {
+> -	const struct rzg2l_register_offsets *regs = &pctrl->data->hwcfg->regs;
+>  	unsigned long flags;
+>  	u32 reg;
+>  
+> @@ -394,27 +396,23 @@ static void rzg2l_pinctrl_set_pfc_mode(struct rzg2l_pinctrl *pctrl,
+>  	reg &= ~(PM_MASK << (pin * 2));
+>  	writew(reg, pctrl->base + PM(off));
+>  
+> +	pctrl->data->pwpr_pfc_lock_unlock(pctrl, false);
+> +
+>  	/* Temporarily switch to GPIO mode with PMC register */
+>  	reg = readb(pctrl->base + PMC(off));
+>  	writeb(reg & ~BIT(pin), pctrl->base + PMC(off));
+>  
+> -	/* Set the PWPR register to allow PFC register to write */
+> -	writel(0x0, pctrl->base + regs->pwpr);		/* BOWI=0, PFCWE=0 */
+> -	writel(PWPR_PFCWE, pctrl->base + regs->pwpr);	/* BOWI=0, PFCWE=1 */
+> -
+>  	/* Select Pin function mode with PFC register */
+>  	reg = readl(pctrl->base + PFC(off));
+>  	reg &= ~(PFC_MASK << (pin * 4));
+>  	writel(reg | (func << (pin * 4)), pctrl->base + PFC(off));
+>  
+> -	/* Set the PWPR register to be write-protected */
+> -	writel(0x0, pctrl->base + regs->pwpr);		/* BOWI=0, PFCWE=0 */
+> -	writel(PWPR_BOWI, pctrl->base + regs->pwpr);	/* BOWI=1, PFCWE=0 */
+> -
+>  	/* Switch to Peripheral pin function with PMC register */
+>  	reg = readb(pctrl->base + PMC(off));
+>  	writeb(reg | BIT(pin), pctrl->base + PMC(off));
+>  
+> +	pctrl->data->pwpr_pfc_lock_unlock(pctrl, true);
+> +
+>  	spin_unlock_irqrestore(&pctrl->lock, flags);
+>  };
+>  
+> @@ -2439,12 +2437,8 @@ static void rzg2l_pinctrl_pm_setup_dedicated_regs(struct rzg2l_pinctrl *pctrl, b
+>  static void rzg2l_pinctrl_pm_setup_pfc(struct rzg2l_pinctrl *pctrl)
+>  {
+>  	u32 nports = pctrl->data->n_port_pins / RZG2L_PINS_PER_PORT;
+> -	const struct rzg2l_hwcfg *hwcfg = pctrl->data->hwcfg;
+> -	const struct rzg2l_register_offsets *regs = &hwcfg->regs;
+>  
+> -	/* Set the PWPR register to allow PFC register to write. */
+> -	writel(0x0, pctrl->base + regs->pwpr);		/* BOWI=0, PFCWE=0 */
+> -	writel(PWPR_PFCWE, pctrl->base + regs->pwpr);	/* BOWI=0, PFCWE=1 */
+> +	pctrl->data->pwpr_pfc_lock_unlock(pctrl, false);
+>  
+>  	/* Restore port registers. */
+>  	for (u32 port = 0; port < nports; port++) {
+> @@ -2487,9 +2481,7 @@ static void rzg2l_pinctrl_pm_setup_pfc(struct rzg2l_pinctrl *pctrl)
+>  		}
 >  	}
 >  
->  	cache->qspi = readb(pctrl->base + QSPI);
-> @@ -2535,8 +2537,10 @@ static int rzg2l_pinctrl_resume_noirq(struct device *dev)
->  	writeb(cache->qspi, pctrl->base + QSPI);
->  	writeb(cache->eth_mode, pctrl->base + ETH_MODE);
->  	for (u8 i = 0; i < 2; i++) {
-> -		writeb(cache->sd_ch[i], pctrl->base + SD_CH(regs->sd_ch, i));
-> -		writeb(cache->eth_poc[i], pctrl->base + ETH_POC(regs->eth_poc, i));
-> +		if (regs->sd_ch)
-> +			writeb(cache->sd_ch[i], pctrl->base + SD_CH(regs->sd_ch, i));
-> +		if (regs->eth_poc)
-> +			writeb(cache->eth_poc[i], pctrl->base + ETH_POC(regs->eth_poc, i));
->  	}
+> -	/* Set the PWPR register to be write-protected. */
+> -	writel(0x0, pctrl->base + regs->pwpr);		/* BOWI=0, PFCWE=0 */
+> -	writel(PWPR_BOWI, pctrl->base + regs->pwpr);	/* BOWI=1, PFCWE=0 */
+> +	pctrl->data->pwpr_pfc_lock_unlock(pctrl, true);
+>  }
 >  
->  	rzg2l_pinctrl_pm_setup_pfc(pctrl);
+>  static int rzg2l_pinctrl_suspend_noirq(struct device *dev)
+> @@ -2551,6 +2543,21 @@ static int rzg2l_pinctrl_resume_noirq(struct device *dev)
+>  	return 0;
+>  }
+>  
+> +static void rzg2l_pwpr_pfc_lock_unlock(struct rzg2l_pinctrl *pctrl, bool lock)
+> +{
+> +	const struct rzg2l_register_offsets *regs = &pctrl->data->hwcfg->regs;
+> +
+> +	if (lock) {
+> +		/* Set the PWPR register to be write-protected */
+> +		writel(0x0, pctrl->base + regs->pwpr);		/* BOWI=0, PFCWE=0 */
+> +		writel(PWPR_BOWI, pctrl->base + regs->pwpr);	/* BOWI=1, PFCWE=0 */
+> +	} else {
+> +		/* Set the PWPR register to allow PFC register to write */
+> +		writel(0x0, pctrl->base + regs->pwpr);		/* BOWI=0, PFCWE=0 */
+> +		writel(PWPR_PFCWE, pctrl->base + regs->pwpr);	/* BOWI=0, PFCWE=1 */
+> +	}
+> +}
+> +
+>  static const struct rzg2l_hwcfg rzg2l_hwcfg = {
+>  	.regs = {
+>  		.pwpr = 0x3014,
+> @@ -2608,6 +2615,7 @@ static struct rzg2l_pinctrl_data r9a07g043_data = {
+>  	.variable_pin_cfg = r9a07g043f_variable_pin_cfg,
+>  	.n_variable_pin_cfg = ARRAY_SIZE(r9a07g043f_variable_pin_cfg),
+>  #endif
+> +	.pwpr_pfc_lock_unlock = &rzg2l_pwpr_pfc_lock_unlock,
+>  };
+>  
+>  static struct rzg2l_pinctrl_data r9a07g044_data = {
+> @@ -2619,6 +2627,7 @@ static struct rzg2l_pinctrl_data r9a07g044_data = {
+>  	.n_dedicated_pins = ARRAY_SIZE(rzg2l_dedicated_pins.common) +
+>  		ARRAY_SIZE(rzg2l_dedicated_pins.rzg2l_pins),
+>  	.hwcfg = &rzg2l_hwcfg,
+> +	.pwpr_pfc_lock_unlock = &rzg2l_pwpr_pfc_lock_unlock,
+>  };
+>  
+>  static struct rzg2l_pinctrl_data r9a08g045_data = {
+> @@ -2629,6 +2638,7 @@ static struct rzg2l_pinctrl_data r9a08g045_data = {
+>  	.n_port_pins = ARRAY_SIZE(r9a08g045_gpio_configs) * RZG2L_PINS_PER_PORT,
+>  	.n_dedicated_pins = ARRAY_SIZE(rzg3s_dedicated_pins),
+>  	.hwcfg = &rzg3s_hwcfg,
+> +	.pwpr_pfc_lock_unlock = &rzg2l_pwpr_pfc_lock_unlock,
+>  };
+>  
+>  static const struct of_device_id rzg2l_pinctrl_of_table[] = {
 
