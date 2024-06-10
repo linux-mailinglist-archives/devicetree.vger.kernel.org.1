@@ -1,148 +1,261 @@
-Return-Path: <devicetree+bounces-74265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63E1E902803
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 19:51:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02D4090280A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 19:52:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 661041C22013
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 17:51:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 923522873C3
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 17:52:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EE70149007;
-	Mon, 10 Jun 2024 17:51:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54024149007;
+	Mon, 10 Jun 2024 17:52:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="yE0KIRH9"
+	dkim=pass (2048-bit key) header.d=jrtc27.com header.i=@jrtc27.com header.b="Xkfjvm60"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC7F11482F6
-	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 17:51:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85E8F1487F1
+	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 17:52:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718041888; cv=none; b=ntw8q08rlR+1XvgeBvGQNQJusCDgsFMpMYYlIEM92bNhxVHzmbTje6LkGLMaNLdns6X7kqPBLf3weo04IWUrI8x8ZR20pxTCmq18z2VvwRXTcm5RTCnLcqDOl5Eg/5lhQVtK96wYjKien/3tvhtRUieguwNVFGdR7oabMzkvxOg=
+	t=1718041931; cv=none; b=We9qK11FuvBj12RAG6jdE6U/C3Sn/O2p9CuY9wy/QSVR/2UHreLsm4a2sqimw4kxTWkurg22RUmre05g8CjpfdAHzOMv1o0MnNMZWiTBA7QI5RzO4MV1+oOOpUeHoWYeXTLBn1KAsT4XGbx29zpc8C40Hb1Vu5/1i47EV1BhxVk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718041888; c=relaxed/simple;
-	bh=FneSkAV3jCsGNrND9Mj7IMRiPZCTqIkhyvxDpV4xx9U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qD+OaxW5XrDAeE+yG+P8GfiY6v3tNODCMbVjIpzFghyY4TdgWhwrkbt6RaVzrJSF5CblqRNsxdO7xx0zyxD+r4ID4DS76CfTO6Z0TPYc2W74/AR/mk9XMX68GjN5moa3E8zwhf0nJS/tH22M9HS6oJ/0WrLIjG/SmmfSB1DmPhs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=yE0KIRH9; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1f64ecb1766so36507305ad.1
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 10:51:26 -0700 (PDT)
+	s=arc-20240116; t=1718041931; c=relaxed/simple;
+	bh=v44YU+l8fDTIyQ/px7h3zXXND4kIzPFteQ4qkB7IQ/0=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=gkX1hva3joHaVJwgEX1dkNMfOxI3HwLkubjw00KpcnIUJXjUMbKwX7QGeyxEmcGQMskdW26F70SLRMqbvTDjEX15n4JCwBzKPCvbaL9zEH8kRlqrET7ut0PctmRd18f1Gsiuxz5lAmFwbNtPmxchSwakR2Qk/sAs9/DeTkpOZjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jrtc27.com; spf=pass smtp.mailfrom=jrtc27.com; dkim=pass (2048-bit key) header.d=jrtc27.com header.i=@jrtc27.com header.b=Xkfjvm60; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jrtc27.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jrtc27.com
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-52bbdc237f0so283336e87.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 10:52:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1718041886; x=1718646686; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=XqAidOJkzifwbi0aDp05YiJHEtIMzMs4UmIa/z6sCUY=;
-        b=yE0KIRH9+P2WH31mEKxGqMl6YrJ2kM3lDc2H7CjK/4nFbG5zIHxnzLypiGDiDe/EAb
-         l3Z/OxaYHvAH2OT6OlwkH78xLTO70SVgHxRXOafcvewJa/zCXSig0+QQc2oxsHw1S0dw
-         6ZjN5wl3WbVAzNk9ng8ceDT5j7zAz/5es2/MNLWZea2MhWYhg0M/XrzmjtYKIyjaE8Ws
-         M8l26/4sWYlgJbrY0binfq0UVC3bseNp1YnissWeCwLV8uskDnPxd325dW5/Hj2qOtsv
-         pA2YbEZgSQbumZZiNtXJ4x/m/1kJY8QXwjII1o+rBNnxLD2mMHanz73u1tCDsVqYSdkC
-         NZhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718041886; x=1718646686;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=jrtc27.com; s=gmail.jrtc27.user; t=1718041928; x=1718646728; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=XqAidOJkzifwbi0aDp05YiJHEtIMzMs4UmIa/z6sCUY=;
-        b=mfC1vHZzpbtcA6NOh3l/ODU2/zPQDCzR5hBMiE6/29bTyKPuO439syGcAOq2YXrtAl
-         Adm1qDkbb9/7j3Rct4nJFjnaIAZ5SW9QFBLMmitT5K2/DtKjZq/WA7d8MqIC5saVH25C
-         dnnbiRN+njJ3pozGTiRJdMZ40/ORLLgWpwEKF4EGHcVBCWs6xKU/SwuCz2iU1WXVW/eM
-         qkP8CoyPQ57vq1L8st2cMI87uIboWmkas8cMiRrnBBzXYmEWRMOTgS0b1Qql2G6UVO/O
-         bmo0H7GdJ3v9wO/7sVDxFWvjPTfd/GwwJvhumsRyYKP2Qt/t5nwy2a95Dfqgn2UMlvnZ
-         8UKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXpnizBHwAhok0FUUWuvLrf3lMp0njA+F+6CbhpKyttGyywE5NxmAAkxAgqC8aoXf1HDayTrf5dtyGPY7/+vmhUficsjwnkQCB+Ow==
-X-Gm-Message-State: AOJu0Ywge8H25Zsnv8+f1Y3T6RntEJSWBrYsSDI9ucCbvd6OCSE3lroU
-	63jn0uSjyYUL96/7dlMpw11F4nYVItSqoNp+3TBDh+GRlurMESrcy0Ned4zBpu8=
-X-Google-Smtp-Source: AGHT+IGI7ZtC5yMFeVhgobcpC4ELjQ0rXq8graZvm2aNnJqlgdJJt9Tf50Z+1bVL5t64KhWiB1DChw==
-X-Received: by 2002:a17:902:cf04:b0:1f6:f5bc:51c5 with SMTP id d9443c01a7336-1f6f5bc5391mr72332595ad.47.1718041886043;
-        Mon, 10 Jun 2024 10:51:26 -0700 (PDT)
-Received: from ghost ([2601:647:5700:6860:129d:83bc:830b:8292])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f70eeaedf7sm27441255ad.84.2024.06.10.10.51.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jun 2024 10:51:25 -0700 (PDT)
-Date: Mon, 10 Jun 2024 10:51:23 -0700
-From: Charlie Jenkins <charlie@rivosinc.com>
-To: Jessica Clarke <jrtc27@jrtc27.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	Guo Ren <guoren@kernel.org>, Evan Green <evan@rivosinc.com>,
-	Andy Chiu <andy.chiu@sifive.com>,
-	linux-riscv <linux-riscv@lists.infradead.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	LKML <linux-kernel@vger.kernel.org>, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH 03/13] riscv: dts: allwinner: Add xtheadvector to the
- D1/D1s devicetree
-Message-ID: <Zmc9G2syeLF2rBZM@ghost>
-References: <20240609-xtheadvector-v1-0-3fe591d7f109@rivosinc.com>
- <20240609-xtheadvector-v1-3-3fe591d7f109@rivosinc.com>
- <FD6771F5-5739-469A-9C0B-952AAC62AB68@jrtc27.com>
+        bh=FWkRgN4oixQz2NDH8nagYU0C/GTWILi37MSJzJ0VQmc=;
+        b=Xkfjvm60rSiK5MZ6kKgSBTLIF3o1sgDk9J0ffR3u0kpgAQqAjxxTebLcryI2mi70Em
+         LMsY9/q7l0vERkJrql17vk4jA/Rqyw+YaMJyCo+8psQHrYYX4xeA2O009bUpATJFkjRv
+         H+nVIUyl4hsVPg+TjxlXewpiPI8XIUxZ8ddR0f7qzdaHKbOXjyblh2rsNCoSyzHssT9X
+         QYnNc6MSi2HAsR3HPmL5iD7Uhrw+6CNEXnHLiC0CTtXM/ROxQ+CxN73PDUyDfjiv0mhu
+         VsbXst/qCNQMxzylu7qiBbTyPn7j2Gps0eVnZiqag+Cp3tHP+VxMShjBzn61qvX5BVjH
+         hdhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718041928; x=1718646728;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FWkRgN4oixQz2NDH8nagYU0C/GTWILi37MSJzJ0VQmc=;
+        b=mIrSHGRCLiiFCe1rjwSL3TrnZ2+NUCIsShj627flYUA05dAY3xNYW/r0/L1TApFvY7
+         WZzoVkqFcJVrkI952ZFo7Eh2a77tSKwyllCnnRmJv9799mDTQz1rOtFQGv8+cAELeyRI
+         OFEXGYoPA7dwgJtbg+1mZAFuIy1ZrLf7UcTMugO9WZSYYE4xqePDIet46X3O7O1iRPrz
+         Vjsam+sqryNor0toZeFApzoetP0uK3fJnVmpAGMfawE7psccDo4I6n6kS33u1yQ4UiJu
+         xkBZ8d/Nr01h5WqvjDQlaThYj74SCKKnEe1haC0wfruXi1jAEhXv+H8rXQVO9pmIMTLQ
+         KFAg==
+X-Forwarded-Encrypted: i=1; AJvYcCWy3nhtTWwyFWSp9uwK6pZz+zkBBYRM5AHmOCqvrltnLXJq5EsF9q2kHBe+b7uxu/4yOiavznzN5yeOjhSOhABfrctmjlJe0MEOeA==
+X-Gm-Message-State: AOJu0Yzr7EAvQRsCCgWh0TP4MLFlkoMvduPJ7CmVPmUNdbFaGYknQBbo
+	Q8p0y6SlW2xQeVE2K8SFiM++jZ8p866WWm6P+XzPfcX8P7p6v/bvyW7Ax49uV98=
+X-Google-Smtp-Source: AGHT+IH5OdYzcnTJ6D+zS8aIAAaJJTXjxs59RqwCSCJ2ph2wWmR2x/JtfntC1ryqtH5pn476yLkmFg==
+X-Received: by 2002:a05:6512:3baa:b0:52c:8ea3:1aea with SMTP id 2adb3069b0e04-52c8ea31d06mr2106714e87.34.1718041927588;
+        Mon, 10 Jun 2024 10:52:07 -0700 (PDT)
+Received: from smtpclient.apple ([131.111.5.201])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35f2598ac1esm2762915f8f.93.2024.06.10.10.52.06
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 10 Jun 2024 10:52:07 -0700 (PDT)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <FD6771F5-5739-469A-9C0B-952AAC62AB68@jrtc27.com>
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.500.171.1.1\))
+Subject: Re: [PATCH 05/13] riscv: vector: Use vlenb from DT for thead
+From: Jessica Clarke <jrtc27@jrtc27.com>
+In-Reply-To: <20240609-xtheadvector-v1-5-3fe591d7f109@rivosinc.com>
+Date: Mon, 10 Jun 2024 18:51:56 +0100
+Cc: Conor Dooley <conor@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>,
+ Jisheng Zhang <jszhang@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Jonathan Corbet <corbet@lwn.net>,
+ Shuah Khan <shuah@kernel.org>,
+ Guo Ren <guoren@kernel.org>,
+ Evan Green <evan@rivosinc.com>,
+ Andy Chiu <andy.chiu@sifive.com>,
+ linux-riscv <linux-riscv@lists.infradead.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ linux-sunxi@lists.linux.dev,
+ linux-doc@vger.kernel.org,
+ linux-kselftest@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <0944414F-321F-4159-AB85-C4B66AE9550B@jrtc27.com>
+References: <20240609-xtheadvector-v1-0-3fe591d7f109@rivosinc.com>
+ <20240609-xtheadvector-v1-5-3fe591d7f109@rivosinc.com>
+To: Charlie Jenkins <charlie@rivosinc.com>
+X-Mailer: Apple Mail (2.3774.500.171.1.1)
 
-On Mon, Jun 10, 2024 at 06:49:30PM +0100, Jessica Clarke wrote:
-> On 10 Jun 2024, at 05:45, Charlie Jenkins <charlie@rivosinc.com> wrote:
-> > 
-> > The D1/D1s SoCs support xtheadvector so it can be included in the
-> > devicetree. Also include vlenb for the cpu.
-> > 
-> > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
-> > ---
-> > arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 3 ++-
-> > 1 file changed, 2 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> > index 64c3c2e6cbe0..50c9f4ec8a7f 100644
-> > --- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> > +++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> > @@ -27,7 +27,8 @@ cpu0: cpu@0 {
-> > riscv,isa = "rv64imafdc";
-> > riscv,isa-base = "rv64i";
-> > riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
-> > -       "zifencei", "zihpm";
-> > +       "zifencei", "zihpm", "xtheadvector";
-> > + riscv,vlenb = <128>;
-> 
-> thread,vlenb
+On 10 Jun 2024, at 05:45, Charlie Jenkins <charlie@rivosinc.com> wrote:
+>=20
+> If thead,vlenb is provided in the device tree, prefer that over =
+reading
+> the vlenb csr.
+>=20
+> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> ---
+> arch/riscv/include/asm/cpufeature.h |  2 ++
+> arch/riscv/kernel/cpufeature.c      | 48 =
++++++++++++++++++++++++++++++++++++++
+> arch/riscv/kernel/vector.c          | 12 +++++++++-
+> 3 files changed, 61 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/arch/riscv/include/asm/cpufeature.h =
+b/arch/riscv/include/asm/cpufeature.h
+> index b029ca72cebc..e0a3164c7a06 100644
+> --- a/arch/riscv/include/asm/cpufeature.h
+> +++ b/arch/riscv/include/asm/cpufeature.h
+> @@ -31,6 +31,8 @@ DECLARE_PER_CPU(struct riscv_cpuinfo, =
+riscv_cpuinfo);
+> /* Per-cpu ISA extensions. */
+> extern struct riscv_isainfo hart_isa[NR_CPUS];
+>=20
+> +extern u32 thead_vlenb_of;
+> +
+> void riscv_user_isa_enable(void);
+>=20
+> #define _RISCV_ISA_EXT_DATA(_name, _id, _subset_exts, =
+_subset_exts_size) { \
+> diff --git a/arch/riscv/kernel/cpufeature.c =
+b/arch/riscv/kernel/cpufeature.c
+> index 2107c59575dd..0c01f33f2348 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -37,6 +37,8 @@ static DECLARE_BITMAP(riscv_isa, RISCV_ISA_EXT_MAX) =
+__read_mostly;
+> /* Per-cpu ISA extensions. */
+> struct riscv_isainfo hart_isa[NR_CPUS];
+>=20
+> +u32 thead_vlenb_of;
+> +
+> /**
+>  * riscv_isa_extension_base() - Get base extension word
+>  *
+> @@ -625,6 +627,46 @@ static void __init riscv_fill_vendor_ext_list(int =
+cpu)
+> }
+> }
+>=20
+> +static int has_thead_homogeneous_vlenb(void)
+> +{
+> + int cpu;
+> + u32 prev_vlenb =3D 0;
+> + u32 vlenb;
+> +
+> + /* Ignore vlenb if vector is not enabled in the kernel */
+> + if (!IS_ENABLED(CONFIG_RISCV_ISA_V))
 
-Oh right, thank you!
+It=E2=80=99s not V though. You probably want to split out =E2=80=9Cvector=E2=
+=80=9D from =E2=80=9CV=E2=80=9D in
+Kconfig land. Most places want the former, I assume, but some want the
+latter.
 
-- Charlie
+Jess
 
-> 
-> Jess
-> 
-> > #cooling-cells = <2>;
-> > 
-> > cpu0_intc: interrupt-controller {
-> > 
-> > -- 
-> > 2.44.0
-> > 
-> > 
-> > _______________________________________________
-> > linux-riscv mailing list
-> > linux-riscv@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-riscv
-> 
+> + return 0;
+> +
+> + for_each_possible_cpu(cpu) {
+> + struct device_node *cpu_node;
+> +
+> + cpu_node =3D of_cpu_device_node_get(cpu);
+> + if (!cpu_node) {
+> + pr_warn("Unable to find cpu node\n");
+> + return -ENOENT;
+> + }
+> +
+> + if (of_property_read_u32(cpu_node, "thead,vlenb", &vlenb)) {
+> + of_node_put(cpu_node);
+> +
+> + if (prev_vlenb)
+> + return -ENOENT;
+> + continue;
+> + }
+> +
+> + if (prev_vlenb && vlenb !=3D prev_vlenb) {
+> + of_node_put(cpu_node);
+> + return -ENOENT;
+> + }
+> +
+> + prev_vlenb =3D vlenb;
+> + of_node_put(cpu_node);
+> + }
+> +
+> + thead_vlenb_of =3D vlenb;
+> + return 0;
+> +}
+> +
+> static int __init riscv_fill_hwcap_from_ext_list(unsigned long =
+*isa2hwcap)
+> {
+> unsigned int cpu;
+> @@ -689,6 +731,12 @@ static int __init =
+riscv_fill_hwcap_from_ext_list(unsigned long *isa2hwcap)
+> riscv_fill_vendor_ext_list(cpu);
+> }
+>=20
+> + if (riscv_isa_vendor_extension_available(THEAD_VENDOR_ID, =
+XTHEADVECTOR) &&
+> +    has_thead_homogeneous_vlenb() < 0) {
+> + pr_warn("Unsupported heterogeneous vlenb detected, vector extension =
+disabled.\n");
+> + elf_hwcap &=3D ~COMPAT_HWCAP_ISA_V;
+> + }
+> +
+> if (bitmap_empty(riscv_isa, RISCV_ISA_EXT_MAX))
+> return -ENOENT;
+>=20
+> diff --git a/arch/riscv/kernel/vector.c b/arch/riscv/kernel/vector.c
+> index 6727d1d3b8f2..3ba2f2432483 100644
+> --- a/arch/riscv/kernel/vector.c
+> +++ b/arch/riscv/kernel/vector.c
+> @@ -33,7 +33,17 @@ int riscv_v_setup_vsize(void)
+> {
+> unsigned long this_vsize;
+>=20
+> - /* There are 32 vector registers with vlenb length. */
+> + /*
+> + * There are 32 vector registers with vlenb length.
+> + *
+> + * If the thead,vlenb property was provided by the firmware, use that
+> + * instead of probing the CSRs.
+> + */
+> + if (thead_vlenb_of) {
+> + this_vsize =3D thead_vlenb_of * 32;
+> + return 0;
+> + }
+> +
+> riscv_v_enable();
+> this_vsize =3D csr_read(CSR_VLENB) * 32;
+> riscv_v_disable();
+>=20
+> --=20
+> 2.44.0
+>=20
+>=20
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
+
 
