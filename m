@@ -1,64 +1,61 @@
-Return-Path: <devicetree+bounces-74302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81E87902A3C
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 22:52:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AE81902A46
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 22:54:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2BA431F21EFF
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 20:52:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2F982859C5
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 20:54:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B390854673;
-	Mon, 10 Jun 2024 20:52:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D0D34DA0E;
+	Mon, 10 Jun 2024 20:54:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sHdfPePU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iDBskrnh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84FB45381A;
-	Mon, 10 Jun 2024 20:52:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 310D84D8BE;
+	Mon, 10 Jun 2024 20:54:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718052751; cv=none; b=RVv8h1l+4CzbqYbk11/0xSxXbkIBahoY5/MfCUpoKqkUAW96YFPqCWEEVumKVXPc23c5jzv7TbjpXxLajv1CbNrVm4r1XfJhkYATBSn3dt6AA8nDp//a8POs4IB8+OWnSo7P2cOYMrtzoggicQkIQdWoMAjdhF+UI3aZAtd60/Q=
+	t=1718052848; cv=none; b=RSBwqTtT2qTgb0VK0MpgPEGsOGE4S2joWo16BUwP3Uqs81WdT89NCUsgSeDU7UXBTPr1+AY3+JziHoDyB6VvHYMP7VNXzSXMtPJ99cIR9+WoUh1IvDVi2mCWLkjJvbeb6NZQP6bUQVDgBulGuD87pipTYs3Yk7MTKDa3Fmx61wg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718052751; c=relaxed/simple;
-	bh=4hIjoTr6HdWSvD0G3QUg4Lr3Kco2HBimTods46JnAXs=;
+	s=arc-20240116; t=1718052848; c=relaxed/simple;
+	bh=9DzOZmQjpktfQznnYQuj10wn3q7CxC2o+sBzzMxdbqE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CdAFbZ7UWy9K6bPFyz45McsxpW9ZXWQofToj09MOBTblarm7a8WIT2Tpe0TfRkn7EMqTpPT3UjlvIJxdhEU1EaONVhulMgTHNjRpC/2oq7ryaueQ0JkdCIJLmMhGJUljWXPI666rwrCMF3Ai1+gnJ731RkYV2UrdUtk/tviz5rc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sHdfPePU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 991A2C4AF48;
-	Mon, 10 Jun 2024 20:52:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YGaMrpo7w7WVSnGS1UtZKo1+IFAkiAPPRMUOva4WFzY6wxc8sNocEJ5ms7QhgZUzBY7WAf1ntw7lC8nMo15U33qwSTxQCIy+UYyAa2AXPVWzJGwOOtVTAeoifG/3wDCcmRAS9XMtFjz+ac4w34jRx5hKoR4ij6OEXnMNU0X3vWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iDBskrnh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54A66C2BBFC;
+	Mon, 10 Jun 2024 20:54:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718052750;
-	bh=4hIjoTr6HdWSvD0G3QUg4Lr3Kco2HBimTods46JnAXs=;
+	s=k20201202; t=1718052847;
+	bh=9DzOZmQjpktfQznnYQuj10wn3q7CxC2o+sBzzMxdbqE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sHdfPePUc+heQmnwI98OvWFT6GG9U899x+utPnguM+6uox9EWwky8p1YE7XfixdXR
-	 kgh+MOa8NDAyGqa2l20VYBAqScvFquLCPmShl8mQ1c2tVpOF+P5h3ssi19dYum9GJK
-	 rFd2yJd9x8uEj4YfERBeL6vy/tdXkyexdtk8lyDLuvnOXP/mV0R/PmE37pPX56FX5C
-	 eWeKjKs6s4Zt/vbRDXeeKUUnVkCKHWSgPAOD3ewEVHGoYNTztAywle8OfdvyV0ehUk
-	 roDXW7X3SpY9dZ8+Q19NgDAbwTzcrIi5BRozgrTCc2wEjLgfNJIn9efUAP6ShrO491
-	 uO5piI9NL+QOQ==
-Date: Mon, 10 Jun 2024 14:52:28 -0600
+	b=iDBskrnhFNvqFwfXM+aa/ZowHHnTtWHKgQdxfjMhzaoPTl7TgAdKYw4+f73vHsep7
+	 kIWGn4yQD2icORVeX3VUc74+b+8LcbiI0BuwDEHHos2F2jNaPeF5MJsSkMQG2CxyGr
+	 zZ1IZEHwrF8qcY7tB7lu6snnvldy59u0yR/IvjNmccx6qoE8GIXhgLeGW0S5tzbOo6
+	 3Qcpj8mP6Id8yfA8ke8ac3OKoWlD0q9+AGhB051nWheRoAafDE4aCvZ9o7Tnopat9m
+	 6OdefXbsLDzWkAnISa5DraaAN9DrwbvxFsyGRRVm6r72sOIFN0adblBlXueo7XbDxZ
+	 YGQ1MTgbeho1g==
+Date: Mon, 10 Jun 2024 14:54:06 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Fabio Estevam <festevam@gmail.com>, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Thomas Gleixner <tglx@linutronix.de>, imx@lists.linux.dev,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH v5 1/2] dt-bindings: interrupt-controller: fsl,irqsteer:
- Add imx8mp/imx8qxp support
-Message-ID: <171805274611.3064088.2841677280217853044.robh@kernel.org>
-References: <20240528071141.92003-1-alexander.stein@ew.tq-group.com>
- <20240528071141.92003-2-alexander.stein@ew.tq-group.com>
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH v2] dt-bindings: timer: renesas,tmu: Make interrupt-names
+ required
+Message-ID: <171805284387.3066238.15673238620541550531.robh@kernel.org>
+References: <65fdd0425be0cc1bae9e6f7996aceaa5ad34e510.1716985947.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,18 +64,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240528071141.92003-2-alexander.stein@ew.tq-group.com>
+In-Reply-To: <65fdd0425be0cc1bae9e6f7996aceaa5ad34e510.1716985947.git.geert+renesas@glider.be>
 
 
-On Tue, 28 May 2024 09:11:40 +0200, Alexander Stein wrote:
-> Some SoC like i.MX8MP or i.MX8QXP use a power-domain for this IP. Add
-> SoC-specific compatibles, which also requires a power-domain.
+On Wed, 29 May 2024 14:32:32 +0200, Geert Uytterhoeven wrote:
+> Now all in-tree users have been updated with interrupt-names properties
+> according to commit 0076a37a426b6c85 ("dt-bindings: timer: renesas,tmu:
+> Document input capture interrupt"), make interrupt-names required.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  .../interrupt-controller/fsl,irqsteer.yaml    | 23 ++++++++++++++++++-
->  1 file changed, 22 insertions(+), 1 deletion(-)
+> v2:
+>   - Add Acked-by.
+> ---
+>  Documentation/devicetree/bindings/timer/renesas,tmu.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Applied, thanks!
