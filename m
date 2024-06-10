@@ -1,72 +1,59 @@
-Return-Path: <devicetree+bounces-74315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3DD1902ADF
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 23:50:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE7F7902B16
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 23:59:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF4A71C21497
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 21:50:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 570C5285172
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 21:59:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7446823A3;
-	Mon, 10 Jun 2024 21:49:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 918E314659A;
+	Mon, 10 Jun 2024 21:58:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RcAE+08L"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lF/qV0tg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6A016AB6;
-	Mon, 10 Jun 2024 21:49:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64185558A5;
+	Mon, 10 Jun 2024 21:58:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718056195; cv=none; b=fXRrd/3p41jn4R7H4/0Me2Jp6BMv2v9ui3Ler5nsPXBBUSMUZWzyQUBIJn9M54eTQa2uuUxEFsCXu7/tOn3q+Pm4byoi8jiVNK7slAO+JR5ndnd9mLuKNHhlLRMooQfK6ZW2iL+28I1xK1/a08LOSBjjomDyhJeKkd3BOg6WMQs=
+	t=1718056739; cv=none; b=ehrws0CovnecZDIgV4TDuN3uVzno2HpJ2+WYKre0wUVKaWs1UtZfgBzdCCYMHlEU87q+3HU7fFGz/NydlnfQF40BleBFTXtfdEEaMBR+QV6xuXnrubds4EUuvdQ2GutCNJdiIb4UdQO9PAMEa41hO0uzL+VdN7mSGv29CXhHEwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718056195; c=relaxed/simple;
-	bh=iqoeqU7qrd7+cqZSSIW9HJHlvFu1ZrsTtWb1zfe2NEE=;
+	s=arc-20240116; t=1718056739; c=relaxed/simple;
+	bh=3+G51pF9+5TTxrYCW+LOYlmhyGNeooEaJCa+EPjFDwQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xr+XcsC1NFbRRAfCRz76tqALs0h/eefcxFb687X/RL7BPPgokM25OCW/hJveF3o6aSZkbH7SI2KNE3ORDeT/wDcWi7D2eXIYpx9KfNsuT7W3XmVU5FjS7+LU/J8lWeuBavnrp3065NW8dNcGD7aYm9cbAEnTqWb+pLsxVNXjtxQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RcAE+08L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 071A9C2BBFC;
-	Mon, 10 Jun 2024 21:49:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=r1iKhBbdk40MvLK7TY2VidhZtH8gGA8FhlwmJcc4vdtSM+OTlbqB1nnPvYNscDcdRyzGlwzdM0MvlZCICdu8h6ShOqdArPAkohBxWzjzwRX3cSG4j/ITcR+BuhLRY6DMowDLcW4J/U+01BSuvbRtKFYusvifCkV3zJvlPpr7K0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lF/qV0tg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ECEDC2BBFC;
+	Mon, 10 Jun 2024 21:58:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718056195;
-	bh=iqoeqU7qrd7+cqZSSIW9HJHlvFu1ZrsTtWb1zfe2NEE=;
+	s=k20201202; t=1718056738;
+	bh=3+G51pF9+5TTxrYCW+LOYlmhyGNeooEaJCa+EPjFDwQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RcAE+08LJLvIeH1O5c/0fRi76GuNfP6Cuyb7ml4RWOzjFj8R1PrjnmA/XhR8Nmvn6
-	 n/jcXxhQly2HiTRB6BYiW+O5sYjqTQmaMtr7U5MUqxNb+++EtY4f4nWiCFPCZ8azAI
-	 6cJbGMov8EFNNT+TACSr4w6D4M35B4dH8yrm1n/HK0cFCzH2WvAdR2z8qU750YLIFV
-	 0oOQpMpf80gU6OOIpqKVGkNihXM3FddFKoMZqSIoX3feVs/wiK2xOjfERX9uvLAljU
-	 ieJzoFNUWpQgLx27C+0HIfz4GXHW0Bkio5izHEc0pkrdrt6Yd8TMfEySCeFDwPhhIj
-	 SLFZJAX9flCsw==
-Date: Mon, 10 Jun 2024 15:49:53 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Josua Mayer <josua@solid-run.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
-	linux-iio@vger.kernel.org,
-	Richard Cochran <richardcochran@gmail.com>,
+	b=lF/qV0tg9QnCE5AFbg5IKgjBp4KPr+9Jg4wZHRRzb7/c9uiIECEpNNcnvFAh597Jn
+	 dZNo/NdYPFm+1F6FmUqfUb3facW9x8fwkt+fMV10i7tj4zyBpyBF7PUNA+yxp7g48y
+	 pvw5aVY1MmQU4NMgTf/ztN3Ue0iVMlyarM6Wa+bHgA6ttraJByB3kKb5L/kDc51dnr
+	 qdOcBNPQXhMEDX18e6+wBk9OSTBL3Tb2bxedWfK/wQBbluYnX7wCusr2eHoo0qCTE2
+	 M2LHNGXG6wJFwEfRQ/V7TOWrRGpdLa+qK8xawDaj3ZfvjlZ+911arOMjlxNYwoa7Nj
+	 djIm7Pwz2IwFA==
+Date: Mon, 10 Jun 2024 15:58:57 -0600
+From: Rob Herring <robh@kernel.org>
+To: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Yazan Shhady <yazan.shhady@solid-run.com>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	linux-phy@lists.infradead.org,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Lars-Peter Clausen <lars@metafoo.de>, netdev@vger.kernel.org,
-	Andrew Lunn <andrew@lunn.ch>, Daniel Baluta <daniel.baluta@nxp.com>,
-	linux-kernel@vger.kernel.org,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Konstantin Porotchkin <kostap@marvell.com>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 4/7] dt-bindings: phy: armada-cp110-utmi: add optional
- swap-dx-lanes property
-Message-ID: <171805619146.3132064.3390412132436424626.robh@kernel.org>
-References: <20240602-cn9130-som-v6-0-89393e86d4c7@solid-run.com>
- <20240602-cn9130-som-v6-4-89393e86d4c7@solid-run.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] ASoC: dt-bindings: linux,spdif: Convert
+ spdif-reciever.txt to dtschema
+Message-ID: <20240610215857.GA3135318-robh@kernel.org>
+References: <20240606041212.78428-1-animeshagarwal28@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,25 +62,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240602-cn9130-som-v6-4-89393e86d4c7@solid-run.com>
+In-Reply-To: <20240606041212.78428-1-animeshagarwal28@gmail.com>
 
+On Thu, Jun 06, 2024 at 09:42:00AM +0530, Animesh Agarwal wrote:
+> Convert the dummy SPDIF receiver bindings to DT schema.
 
-On Sun, 02 Jun 2024 17:49:39 +0200, Josua Mayer wrote:
-> Armada CP110 UTMI supports swapping D+ and D- signals.
-> usb251xb.yaml already describes a suitable device-tree property for the
-> same purpose but as child usb controller node.
+Really the subject should be something like "Merge linux,spdif-dir into 
+linux,spdif-dit". Then the commit message should say why (they are the 
+same other than compatible. "sound-name-prefix" wasn't documented for 
+linux,spdif-dir, but is in use already.)
+
 > 
-> Add optional swap-dx-lanes device-tree property to armada cp110 utmi phy
-> with same semantics as usb251xb:
-> The property lists all ports that swap D+ and D-, unlisted ports are
-> considered correct.
+> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+> Cc: Daniel Baluta <daniel.baluta@nxp.com>
 > 
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
 > ---
->  .../devicetree/bindings/phy/marvell,armada-cp110-utmi-phy.yaml      | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
+> Changes	in v2:
+> - Add linux,spdif-dir compatible in existing linux,spdif-dit.yaml
+> instead of creating new yaml file specifically for dummy SPDIF receiver.
+> - Change file name to support both transmitter and receiver bindings.
+> ---
+>  .../sound/{linux,spdif-dit.yaml => linux,spdif.yaml}   |  8 +++++---
+>  .../devicetree/bindings/sound/spdif-receiver.txt       | 10 ----------
+>  2 files changed, 5 insertions(+), 13 deletions(-)
+>  rename Documentation/devicetree/bindings/sound/{linux,spdif-dit.yaml => linux,spdif.yaml} (75%)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/spdif-receiver.txt
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
 
