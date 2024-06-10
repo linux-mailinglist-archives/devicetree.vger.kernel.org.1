@@ -1,127 +1,129 @@
-Return-Path: <devicetree+bounces-74060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DEF5901D4F
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 10:52:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8049E901D55
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 10:54:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAD04284049
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 08:52:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94D691C20401
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 08:54:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CCE241C69;
-	Mon, 10 Jun 2024 08:52:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C6D84D8C9;
+	Mon, 10 Jun 2024 08:54:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ur2pS+2J"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="B/bfl5HB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F04B57319C;
-	Mon, 10 Jun 2024 08:52:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ADC76F2E7;
+	Mon, 10 Jun 2024 08:54:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718009555; cv=none; b=SY0PdGD3oxPsrAfYNXt/TR5E7bnffB67ZcPFYcZZolSFT0gb17HzFyVDe4WbSHVmzFpRCmAOWlFo8Hf3OW5HFk3z6AIFPFQxJ7I2jMJj2Y/CxLHyKqq7Rmt4jQZsSW3X9GEK/LjVa/twp7sypl04AeLc9TfGaAk53ZCKpoqaVgo=
+	t=1718009689; cv=none; b=JkrxUYsaJQ64KFUgyuqRo0WHWLCmNlvw9NJNeglHrTNh2QpiAN9XZPWPN2Q7vBPTPncpwS4gD+4efsVtjy93IehzCqPmco0TaIkwVfB16VXXHswtCg1TS0GhXtTtvuY51hycxmSKAamiMCTA14DZFZxT4S6MZpq4xtvhDR6g+MI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718009555; c=relaxed/simple;
-	bh=GJZS6RB6gkk1hpkpI7x7W36L8J2xD7Y13wZs2GUF5LA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AP1tjXvBpI9ES2sJds5XfYVMHx7unjlt/QUdlKCPgyuAXgb4laV9WX+KilW0myyj57tkAnIVC/ABC6rzlAdRQgx4WKJdMUuS1x90s4skAEjKYVHrDjU3pyo46vQieuDh31ryf30ZFUe3U/6StkRwEqx+niL2Awle3kohQD2qSJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ur2pS+2J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D164C2BBFC;
-	Mon, 10 Jun 2024 08:52:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718009554;
-	bh=GJZS6RB6gkk1hpkpI7x7W36L8J2xD7Y13wZs2GUF5LA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ur2pS+2J/e5VYQYsPF+xViLcxkODV9zMbQQFDL4G4nzOqw2Jc8+c7XY/9/CpxPieE
-	 A2fkvDDUBfGUau8Rp+zBHhhpGG+VHeW3GfKaxq+s9IF7FKSCftmMd2rar6hrrP1s7r
-	 F9LAxZnK4F8SFdJmR6OL14ZCnKIJeiXBMc6D5dD9Zsy088SadRUckh+OGQYuKm3FH3
-	 Gp0Mu1J964MHtudlQ+npEjMbmWo7WFjPSl7yVUOmJzu8lcoYN0AyeJ0EApayVHkjk3
-	 QSwCfuazzscPUQQUEB+E6YxCAssZwI+glqSxu8n0OUAE+O8ZUNym7ckLksgwawyuCg
-	 qEdJCRMehsJwg==
-Message-ID: <15b2981a-d505-4d68-bff4-1bb0c977fb34@kernel.org>
-Date: Mon, 10 Jun 2024 10:52:28 +0200
+	s=arc-20240116; t=1718009689; c=relaxed/simple;
+	bh=1uMH5ebVeQ4Wu83z83imey9mwf02x2hoI5G0NYSkvZY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QlbFK/X+FodW7IZyLQeog6VXFIXG+zV8SgeoWmKr0Nn4gyAiNac7OSRMryYhOBwScRDDx3MAyelrllqFFRmBLGAlMmjiMS9orwdckL643CD6YgoAzUFQOY7zNreDwn/ZG6gSIYdTB7IAtuOL8vhuXPQJCAWXGGTpvFdTt/URVAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=B/bfl5HB; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 10ED8397;
+	Mon, 10 Jun 2024 10:54:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1718009673;
+	bh=1uMH5ebVeQ4Wu83z83imey9mwf02x2hoI5G0NYSkvZY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=B/bfl5HBaA7nFpgLad02WGpvLjlGXYbbAV4ty6j4/RpX5kv1Q2wgz41Q5KSoelibo
+	 uTiq449X1R9B0IMnEs5FaInqPD27kZ4XeNltKl+Z5NZefD0QIzaAGAR78RuLM/Cnz3
+	 oR6T/B3sHY4GLIurI9PqMVRO6xjC6nQvUanY/CkY=
+Date: Mon, 10 Jun 2024 11:54:24 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Julien Stephan <jstephan@baylibre.com>,
+	Louis Kuo <louis.kuo@mediatek.com>,
+	Phi-Bang Nguyen <pnguyen@baylibre.com>,
+	Andy Hsieh <andy.hsieh@mediatek.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Florian Sylvestre <fsylvestre@baylibre.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Paul Elder <paul.elder@ideasonboard.com>,
+	Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 1/5] dt-bindings: media: add mediatek ISP3.0 sensor
+ interface
+Message-ID: <20240610085424.GH26663@pendragon.ideasonboard.com>
+References: <20240110141443.364655-1-jstephan@baylibre.com>
+ <20240110141443.364655-2-jstephan@baylibre.com>
+ <e0bf8667-cbb8-49ba-bb44-3edf93b019b8@linaro.org>
+ <CAEHHSvYt-aqFahi=B_si=duJH8xDgy_9nndgR-P0+U5THX69uw@mail.gmail.com>
+ <20240607144154.GD18479@pendragon.ideasonboard.com>
+ <cf49fbb3-9de6-4e57-bc38-d720f76118a7@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
-To: Mighty <bavishimithil@gmail.com>
-Cc: peter.ujfalusi@gmail.com, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Lopez Cruz <misael.lopez@ti.com>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240608095305.2887-1-bavishimithil@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240608095305.2887-1-bavishimithil@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cf49fbb3-9de6-4e57-bc38-d720f76118a7@linaro.org>
 
-On 08/06/2024 11:53, Mighty wrote:
-> From: Mithil Bavishi <bavishimithil@gmail.com>
+Hi Krzysztof,
+
+On Mon, Jun 10, 2024 at 09:54:03AM +0200, Krzysztof Kozlowski wrote:
+> On 07/06/2024 16:41, Laurent Pinchart wrote:
+> > On Fri, Jun 07, 2024 at 10:52:33AM +0200, Julien Stephan wrote:
+> >> Le ven. 12 janv. 2024 à 08:32, Krzysztof Kozlowski a écrit :
+> >>> On 10/01/2024 15:14, Julien Stephan wrote:
 > 
-> Convert the OMAP4+ McPDM bindings from txt to yaml (dtschema).
-> Drop ti,hwmods property as it is not needed since the sysc conversion.
-> Add dma, dma-names, reg-names properties to match the DTS so as to not
-> break the already existing ABI.
-> Also update example node to match the existing node in the DTS.
+> Eeeh? January?
 > 
-> Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
+> ...
+> 
+> >>>
+> >>>> +
+> >>>> +          seninf: seninf@15040000 {
+> >>>
+> >>> Node names should be generic. See also an explanation and list of
+> >>> examples (not exhaustive) in DT specification:
+> >>> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> > 
+> > The seninf is (mostly) a set of MIPI CSI-2 receivers. Would you prefer
+> > 'csi', 'mipi-csi', 'csi-2' or any other name ?
+> 
+> csi@ works for me
+> 
+> > There's also the camsv IP in the same series that needs a generic name.
+> > I really don't know what to propose for it. Could you recommend
+> > something that would make you happy ?
+> 
+> Sorry,that's almost half year old thread. Not present in my inbox.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I remember someone presenting a talk titled "Beginner Linux kernel
+maintainer's toolbox" in Prague last year. The talk mentioned a tool
+call b4. I highly recommend it ;-)
 
-Best regards,
-Krzysztof
+> > On a side note, that document lacks appropriate generic names for lots
+> > of building blocks found in recent SoCs, it would be nice to get it
+> > updated. You will eventually get better quality DT patches then :-)
+> 
+> The list grew recently, so just add something there. But it is okay if
+> some name is not really generic, it's just recommendation.
 
+OK, then I think we can go for 'csi' for seninf, and keep 'camsv'.
+
+-- 
+Regards,
+
+Laurent Pinchart
 
