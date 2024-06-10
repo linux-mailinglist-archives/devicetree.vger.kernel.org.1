@@ -1,251 +1,136 @@
-Return-Path: <devicetree+bounces-74277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7020B902862
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 20:10:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E903B902873
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 20:13:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 573321C2233E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 18:10:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D1591F23887
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 18:13:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F73D14E2DE;
-	Mon, 10 Jun 2024 18:10:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 812E214B084;
+	Mon, 10 Jun 2024 18:12:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="LKXTYqZQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FBXCreDw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A2AC7E761
-	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 18:10:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC2D21482EE
+	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 18:12:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718043010; cv=none; b=UhTXNRYV51Zj9SwNc/6mh7KXvs2PAuR0dPJSRRX2JseIqDv0SEQUKgZN4eXFqB+CYo1rNSFJqbmCKEPS7TqfooxoRQLCHvtYN5eneIMhEDYnmOe4kC44bNB99pG4ES4TzpUDihtb6M5R4tmQgx82xLsoDMm3NkvOwEV4RQqYKqA=
+	t=1718043158; cv=none; b=WhIsWmo/Hqpn9x18540pQ1pGdeL1blcGW3SUOHuEkKkcl0a/rk1TwpLh93lJN/cyVv0DHuaMpx9lsqt9JUfkcWbTmRN/C4NjCLI5Xy93qTWDto2WSXQQnkpR29Qici0z/SYVVaPDvv7oVE7wFAO+fUIksUQz0vzZtIypIbmKCmE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718043010; c=relaxed/simple;
-	bh=AR6o8sCr9wM693qULvIgN8SNexb4nDicp0kqFWb7vVg=;
+	s=arc-20240116; t=1718043158; c=relaxed/simple;
+	bh=TmYk8AQTt77I88b8Jz/JLqc7LmxM/K3bVUUXLSf/MFc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QfXY2kuZlj6pqCJlZx3rQCNuRatRak1/cjJc9Wfs6GqAxPXbYasdOekjTHxQd/kXiPtMnmWJX9aDrdE1J3xbvVqmxghp0yznr75Sogb42e7DLGXb2ifTxTVF9vQJmdk8+kT90IFMgsuc/pbFT/M3WR0C4IyYuEHuBdN7dp2fboc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=LKXTYqZQ; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-70255d5ddc7so217107b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 11:10:08 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BzAW738MOb9K/yYy3y4u2hhdmNrmjSCV/UOv4CnHAl42PpjOsRUmAchDrTZCaJfGQ+/DwYe/zN5VpjkRaFNDHRO+eRisEFbueoM6cplFqTUVgZrcEj8+rNormfbNi/Mt8e9R3HQVUC3bks1prvkRde1nuVSPD8lVvKevVsmORcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FBXCreDw; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2ebdfe262feso19762641fa.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 11:12:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1718043008; x=1718647808; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=eOMzuUW5DFxk4CTOU+Df7AwgNRpvbW8uNLdeQ0PQ3JQ=;
-        b=LKXTYqZQHoLDxtQHF+wdqtWCe6LGkzc3T/rvGsUfYfWB11LEmoaDHhIWuP7S3dRYZX
-         GdKD92Hu0tnYeTi5a8bhQ+Irm5Cy+jppE1IF73EU6TnrNDgib4TBepg895VokxKBT08h
-         df9CASuTRYXdPzuI+f2CRP/D2G2CoZgjGq79aFRoYmwCnGuFLFQrg4Ku3fJI70qKHzdL
-         PwHyTaL25+YT9lL/pU4dyw5UKC/a8VPhhsNAmPA6OJb/Kb4G8ibiBqbiw3mx2Kl8qNQD
-         701V4qPkA3qIKbkMc7GjEhvrgC6xLnFYSN7IfnXquKWtsatQjqws4B78964iHebGyNIS
-         vxSQ==
+        d=linaro.org; s=google; t=1718043155; x=1718647955; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=1eyvHhcPEWgM5aVu/hiZDwHX5cRNXDZircOMLa2sfD8=;
+        b=FBXCreDwKRje1BUo9+JZHZ4h2eZdb1N+LWmBD9aJ5BeG+IR11JSevZMHBPx6iCfofz
+         EMSXDQtmBr/LI7Q/zYFMJ8XOwBomBMQVvNaf9OkVIUObHD0Mtej95R7ip8HePz5LXFo0
+         NgOf8D0ZbWZtjVAOvfLiPaQWE82Q6uxvmYzkKzglZuthY3bDhXZMtL5Mj8igygbQTOeU
+         XbLKQh+OuWHqG04eTSwlhjdZPhaNSxCQqQsERxudy74+L0EDgabacbD98GozqR2kCLjX
+         teVRCizsbWgxgkHcQCh5pKlBeZC1gGS7dFBOi6vFZPHIifpUFZ/MWWdcaCG4+7hGk2Rc
+         t67A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718043008; x=1718647808;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eOMzuUW5DFxk4CTOU+Df7AwgNRpvbW8uNLdeQ0PQ3JQ=;
-        b=wmccpbcR4L75rskYyRwrMWVX/N29EB2eGijBgX7xf42F5JN+zh65VpmYlySWmbaE/A
-         QfWS9H8p77DCB/ejH3STDW2NVIC8jW7ZczdE0ZTKVvZkiQCddxggv8xuvgC4/oDdVY/q
-         KXmyp5TpbxjcEY/QI771CJRtBiEfXZPhEuCApFOnIcl+6Uk6d+6dlPlk/qbfffKPbNPJ
-         O5yFdfFNbwuLxe8AgjJXpE1GR4xfQfrqcG2E5+LUM/jL0Coz0omyse7l5zmKAoIdAI4p
-         BeT006/SAJZq5g9jnFlSJnCs6Yr9Q+k8eID7ZBlCAKjrmKzA20YRUAAaaX+0eazUT/IR
-         r2JQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUnYh/imt14SqelQh46kuFi0LW8MVc1wzTBrjIrDdRd9CVFa1aK7WyCdv0LpB7wnXUfcfDJ302OqMBoJo+/iXFK21ToJAdXYlkfjA==
-X-Gm-Message-State: AOJu0Yxc8EcWy4pt8L2hlyeMTyCymEjQwr3l3aXVC4ScA+D0R4BX4EgA
-	HBXQN6CboFIG7BTTv/K1mpuSAJNBfY1oUGwzp2aUErhaGKEbIDFo8kw3u3JTU3c=
-X-Google-Smtp-Source: AGHT+IFL20+JEL0d7wQg9UxFST3rvmSUr0csbDVx1uyEXk7E2CThJ5CBB+HSUAFnBhFOYk8GVfwt2g==
-X-Received: by 2002:aa7:88cd:0:b0:705:a5c1:e519 with SMTP id d2e1a72fcca58-705a5c1ed1fmr1285257b3a.10.1718043007682;
-        Mon, 10 Jun 2024 11:10:07 -0700 (PDT)
-Received: from ghost ([2601:647:5700:6860:129d:83bc:830b:8292])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70434a4a7dfsm2950294b3a.95.2024.06.10.11.10.06
+        d=1e100.net; s=20230601; t=1718043155; x=1718647955;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1eyvHhcPEWgM5aVu/hiZDwHX5cRNXDZircOMLa2sfD8=;
+        b=dV8F3VJx/MIQJz4Cm+Pdh+83zqu7PJ+yTQ6snUGPutzmkKj1XVJi9RRjc48stzdgDO
+         AKFUcC3lNrP/Mqik/FtG54lJjC/1PgJ1VBxe5gDJBrX0wpCCMQ24yfIAYyGfa9g1Hib2
+         o6Jb0ylHhmnyr3Rzzb30qtNWpfPsxCfUEL4iQ3UuABj5PQxTupkVljQKMh2tYvRN2FNB
+         WT5eO8nDbppu069qC/26hwCEKWN6oMNWo8Em1etjvrwD8ntxRPPmFdBTXPKgFii1O4fi
+         qu4tZT6i5SDMbH9Dkuqxb/6FAVQ88xLyJgQJK0DXT4IekBwjTtmBKe4Uogam/3PfMNif
+         lLTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWNtfKCGdsbTwc3ormL5/bsZOOp+Est2wuRJ6meiqr+z0sCIhQdARROKoU2L2e8jeQ+O978WM/9V1qPrDUZspdJxo94CO42x6Z6tQ==
+X-Gm-Message-State: AOJu0YxvrnXDxjdSn9z540CO2+xjcwLk77MDPY2DqE0apQ3N5/y0X1xj
+	3+VGtbXq4yLkzAEDe9fP1Y10Gynx2qYlvv1fSkbQr9DqlHuZjozD7NBUsxb+Xz8=
+X-Google-Smtp-Source: AGHT+IHptFF4qjzY9OneEo387ydgbKnCmTpXLrXWpOn78SwqX3YAdGo0qVjscWhklES7rFVJ6YV8jg==
+X-Received: by 2002:a2e:9eca:0:b0:2eb:e634:fee6 with SMTP id 38308e7fff4ca-2ebe634ff29mr24562661fa.18.1718043155042;
+        Mon, 10 Jun 2024 11:12:35 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ebdf286a1dsm9815661fa.65.2024.06.10.11.12.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jun 2024 11:10:06 -0700 (PDT)
-Date: Mon, 10 Jun 2024 11:10:04 -0700
-From: Charlie Jenkins <charlie@rivosinc.com>
-To: Jessica Clarke <jrtc27@jrtc27.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	Guo Ren <guoren@kernel.org>, Evan Green <evan@rivosinc.com>,
-	Andy Chiu <andy.chiu@sifive.com>,
-	linux-riscv <linux-riscv@lists.infradead.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	LKML <linux-kernel@vger.kernel.org>, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH 05/13] riscv: vector: Use vlenb from DT for thead
-Message-ID: <ZmdBfNRujzuVvvCp@ghost>
-References: <20240609-xtheadvector-v1-0-3fe591d7f109@rivosinc.com>
- <20240609-xtheadvector-v1-5-3fe591d7f109@rivosinc.com>
- <0944414F-321F-4159-AB85-C4B66AE9550B@jrtc27.com>
+        Mon, 10 Jun 2024 11:12:34 -0700 (PDT)
+Date: Mon, 10 Jun 2024 21:12:32 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Mark Brown <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Das Srinagesh <quic_gurus@quicinc.com>, Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, 
+	Stephen Boyd <swboyd@chromium.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+	Andy Shevchenko <andy.shevchenko@gmail.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 11/14] dt-bindings: mfd: pm8008: rework binding
+Message-ID: <5ecytnzonh2m4p2zpw5ms6ljjvlo3zkasce6tnhmal2twlo4i3@trf3f53bwdxt>
+References: <20240529162958.18081-1-johan+linaro@kernel.org>
+ <20240529162958.18081-12-johan+linaro@kernel.org>
+ <d5omeycp4l3mrzgswga2jkgxydpiayqfdjavwnfswcojawiqkt@zuol3vvkao5r>
+ <ZmR6hPVZsYlyC5o5@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0944414F-321F-4159-AB85-C4B66AE9550B@jrtc27.com>
+In-Reply-To: <ZmR6hPVZsYlyC5o5@hovoldconsulting.com>
 
-On Mon, Jun 10, 2024 at 06:51:56PM +0100, Jessica Clarke wrote:
-> On 10 Jun 2024, at 05:45, Charlie Jenkins <charlie@rivosinc.com> wrote:
+On Sat, Jun 08, 2024 at 05:36:36PM +0200, Johan Hovold wrote:
+> On Wed, Jun 05, 2024 at 11:43:16AM +0300, Dmitry Baryshkov wrote:
+> > On Wed, May 29, 2024 at 06:29:55PM +0200, Johan Hovold wrote:
+> > > Rework the pm8008 binding by dropping internal details like register
+> > > offsets and interrupts and by adding the missing regulator and
+> > > temperature alarm properties.
+> > > 
+> > > Note that child nodes are still used for pinctrl and regulator
+> > > configuration.
+> > > 
+> > > Also note that the pinctrl state definition will be extended later and
+> > > could eventually also be shared with other PMICs (e.g. by breaking out
+> > > bits of qcom,pmic-gpio.yaml).
 > > 
-> > If thead,vlenb is provided in the device tree, prefer that over reading
-> > the vlenb csr.
-> > 
-> > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
-> > ---
-> > arch/riscv/include/asm/cpufeature.h |  2 ++
-> > arch/riscv/kernel/cpufeature.c      | 48 +++++++++++++++++++++++++++++++++++++
-> > arch/riscv/kernel/vector.c          | 12 +++++++++-
-> > 3 files changed, 61 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/arch/riscv/include/asm/cpufeature.h b/arch/riscv/include/asm/cpufeature.h
-> > index b029ca72cebc..e0a3164c7a06 100644
-> > --- a/arch/riscv/include/asm/cpufeature.h
-> > +++ b/arch/riscv/include/asm/cpufeature.h
-> > @@ -31,6 +31,8 @@ DECLARE_PER_CPU(struct riscv_cpuinfo, riscv_cpuinfo);
-> > /* Per-cpu ISA extensions. */
-> > extern struct riscv_isainfo hart_isa[NR_CPUS];
-> > 
-> > +extern u32 thead_vlenb_of;
-> > +
-> > void riscv_user_isa_enable(void);
-> > 
-> > #define _RISCV_ISA_EXT_DATA(_name, _id, _subset_exts, _subset_exts_size) { \
-> > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> > index 2107c59575dd..0c01f33f2348 100644
-> > --- a/arch/riscv/kernel/cpufeature.c
-> > +++ b/arch/riscv/kernel/cpufeature.c
-> > @@ -37,6 +37,8 @@ static DECLARE_BITMAP(riscv_isa, RISCV_ISA_EXT_MAX) __read_mostly;
-> > /* Per-cpu ISA extensions. */
-> > struct riscv_isainfo hart_isa[NR_CPUS];
-> > 
-> > +u32 thead_vlenb_of;
-> > +
-> > /**
-> >  * riscv_isa_extension_base() - Get base extension word
-> >  *
-> > @@ -625,6 +627,46 @@ static void __init riscv_fill_vendor_ext_list(int cpu)
-> > }
-> > }
-> > 
-> > +static int has_thead_homogeneous_vlenb(void)
-> > +{
-> > + int cpu;
-> > + u32 prev_vlenb = 0;
-> > + u32 vlenb;
-> > +
-> > + /* Ignore vlenb if vector is not enabled in the kernel */
-> > + if (!IS_ENABLED(CONFIG_RISCV_ISA_V))
+> > Obviously we want to adapt this style of bindings for the other PMICs
+> > too. My main concern here are PMICs which have two kinds of controlled
+> > pins: GPIOs and MPPs. With the existing bindings style those are
+> > declared as two subdevices. What would be your suggested way to support
+> > MPPs with the proposed kind of bindings?
 > 
-> It’s not V though. You probably want to split out “vector” from “V” in
-> Kconfig land. Most places want the former, I assume, but some want the
-> latter.
+> As far as I understand newer PMICs do not have MPP blocks and we do not
+> necessarily want to convert the existing bindings.
 
-There is the xtheadvector kconfig that is introduced later in this
-series in the "riscv: vector: Support xtheadvector save/restore" patch.
-I think I should shuffle the code in these patches around so I can use
-CONFIG_RISCV_ISA_XTHEADVECTOR here instead.
+Well, I definitely want to do so.
 
-- Charlie
+> That said, if there is ever a need to describe two separate gpio blocks
+> this can, for example, be done using subnodes on those PMICs.
 
-> 
-> Jess
-> 
-> > + return 0;
-> > +
-> > + for_each_possible_cpu(cpu) {
-> > + struct device_node *cpu_node;
-> > +
-> > + cpu_node = of_cpu_device_node_get(cpu);
-> > + if (!cpu_node) {
-> > + pr_warn("Unable to find cpu node\n");
-> > + return -ENOENT;
-> > + }
-> > +
-> > + if (of_property_read_u32(cpu_node, "thead,vlenb", &vlenb)) {
-> > + of_node_put(cpu_node);
-> > +
-> > + if (prev_vlenb)
-> > + return -ENOENT;
-> > + continue;
-> > + }
-> > +
-> > + if (prev_vlenb && vlenb != prev_vlenb) {
-> > + of_node_put(cpu_node);
-> > + return -ENOENT;
-> > + }
-> > +
-> > + prev_vlenb = vlenb;
-> > + of_node_put(cpu_node);
-> > + }
-> > +
-> > + thead_vlenb_of = vlenb;
-> > + return 0;
-> > +}
-> > +
-> > static int __init riscv_fill_hwcap_from_ext_list(unsigned long *isa2hwcap)
-> > {
-> > unsigned int cpu;
-> > @@ -689,6 +731,12 @@ static int __init riscv_fill_hwcap_from_ext_list(unsigned long *isa2hwcap)
-> > riscv_fill_vendor_ext_list(cpu);
-> > }
-> > 
-> > + if (riscv_isa_vendor_extension_available(THEAD_VENDOR_ID, XTHEADVECTOR) &&
-> > +    has_thead_homogeneous_vlenb() < 0) {
-> > + pr_warn("Unsupported heterogeneous vlenb detected, vector extension disabled.\n");
-> > + elf_hwcap &= ~COMPAT_HWCAP_ISA_V;
-> > + }
-> > +
-> > if (bitmap_empty(riscv_isa, RISCV_ISA_EXT_MAX))
-> > return -ENOENT;
-> > 
-> > diff --git a/arch/riscv/kernel/vector.c b/arch/riscv/kernel/vector.c
-> > index 6727d1d3b8f2..3ba2f2432483 100644
-> > --- a/arch/riscv/kernel/vector.c
-> > +++ b/arch/riscv/kernel/vector.c
-> > @@ -33,7 +33,17 @@ int riscv_v_setup_vsize(void)
-> > {
-> > unsigned long this_vsize;
-> > 
-> > - /* There are 32 vector registers with vlenb length. */
-> > + /*
-> > + * There are 32 vector registers with vlenb length.
-> > + *
-> > + * If the thead,vlenb property was provided by the firmware, use that
-> > + * instead of probing the CSRs.
-> > + */
-> > + if (thead_vlenb_of) {
-> > + this_vsize = thead_vlenb_of * 32;
-> > + return 0;
-> > + }
-> > +
-> > riscv_v_enable();
-> > this_vsize = csr_read(CSR_VLENB) * 32;
-> > riscv_v_disable();
-> > 
-> > -- 
-> > 2.44.0
-> > 
-> > 
-> > _______________________________________________
-> > linux-riscv mailing list
-> > linux-riscv@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-riscv
-> 
+This creates an asymmetry between older and newer PMICs. Wouldn't it be
+better to always use gpios subnode for GPIO pins? This way older PMICS
+will use the same approach _plus_ mpps {} subnode instead of having
+either nothing or two subnodes.
+
+The same approach probably applies to some other subdevices: temp-alarm
+vs adc-tm, etc.
+
+-- 
+With best wishes
+Dmitry
 
