@@ -1,121 +1,98 @@
-Return-Path: <devicetree+bounces-74354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC019902C88
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 01:37:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CEF9902C92
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 01:43:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 842E31F2215E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 23:37:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 329471F22C71
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 23:43:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 823F814F9F4;
-	Mon, 10 Jun 2024 23:37:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECF0615219E;
+	Mon, 10 Jun 2024 23:43:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MWnef0DN"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="s1yaOO5q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 133343C0C;
-	Mon, 10 Jun 2024 23:37:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 739893C0C;
+	Mon, 10 Jun 2024 23:43:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718062633; cv=none; b=eFvqX22qiSHjK1hU8Rb1aIhU0NL8i33dG9Sm2XrDF1qchVa6KK2cYGuWQlRbAKhC1hxA9sqedn+qlsTrGM7PtjdXSWM3U3kfmMEI+z8cQhdqUabLUofOiHusdVDDReeQmQQ/bQbEHKGIq8LGk7CNpxe0GCiHEoFLxggYNXTsZog=
+	t=1718062993; cv=none; b=qLf2YY5OcJ7gsjc3G/fTGe3P5+Zo3DNR3HkbozdoFzidStv1rlejFBHgHg9Rtq+poVTjvoz/T5PZL+I4cB5Cel5k8g0SQPsZceqttGhMhNZzmip208X6s2lMPka6OfATY6C8Dx/Yi2DbDyER1nvtibsibFlOo2oDgRR8UlRyDL4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718062633; c=relaxed/simple;
-	bh=9cEJOPE2RpbqEAENzqQsuPtohaf5MRTGcoYQvOo+FjI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Ojrby8pyKEYOdhWs4wLFZ6gM6nrqI3jyq1HCgCDuCqIQnkUuaz+7SkvFsbxCaHTJ9hT0HCue0pYMzvgLh8g0odD8tgqBd51z99PxCAef+Cepu91j2SCr1QqF0rJfZZFXBPKoLq8YEBfZHjMjr3aP6oniUcNg/B4ViMEAfRbyEw0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MWnef0DN; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45AECaKx021412;
-	Mon, 10 Jun 2024 23:36:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	EO1UzCQ1xrz9eOEjnbCgqr2cmZlDFwe8lIz5c9cEIyc=; b=MWnef0DNKfKuZ1fK
-	ZN7ZGdRFVpslCF4wZONOZE2y/ZkEUFZJ/uqpTd5LldQbE9h/A5piYfoDpMmCk6RI
-	FoQrmMwM58/i7bmBmO0qYrxYtifVE5pOoZsL20CHGW8MQLNF4Ijh7MZfiKZJ2A83
-	3QEhUR4klMRN6HPtVPOsAWTfKh5HORUoQ9JTWeCUatBVtagx1SbuGPYFeKdhW4R3
-	KOkW/hKI0ZxJKk5X+98E5K5O+wwMoEful11F8bc5I+qTkm8WWc3uG57/wq8+/Vuh
-	L0TFbPGUv/ZLPfb1m8fm1q4UGUyW8Nl+0DvvFwHGFM0YoJxngT33fJYdk8LEIx2s
-	UoTrQQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ymgk8vyd8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Jun 2024 23:36:52 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45ANapJU028562
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Jun 2024 23:36:51 GMT
-Received: from [10.110.56.180] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 10 Jun
- 2024 16:36:50 -0700
-Message-ID: <de13199e-1c3f-df75-6357-d3c2333fc43b@quicinc.com>
-Date: Mon, 10 Jun 2024 16:36:46 -0700
+	s=arc-20240116; t=1718062993; c=relaxed/simple;
+	bh=nPNzVptm/f18wTbcMhm0vYE+658NKVvbwwpRS+Up3zA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GpATaIuXWhTayiswpSSU/TkpAIuJ+SYs/Mkt819m+iaeaLyqVolZLzbzy5FYQqK+l43Ttc/aE2xVMaVpPKNYK1Yzj9nexFR5+3F1OWjLRplyha6sxCkb5W5ftzejGKmfE3lV0IOjhITkCz4+z5XiZyngGORk6jm8MsHczvBvc7k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=s1yaOO5q; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718062990;
+	bh=nPNzVptm/f18wTbcMhm0vYE+658NKVvbwwpRS+Up3zA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=s1yaOO5qxsDnFtvgvS05IYym3DEKp/WuUAfZ7uDnQIhh4IFz7bnNuc3835QkZHhkS
+	 O0Ep2yeX96b6O2nYGZDtRwyFSi5Dky6ZTZg2pJ8wMa04LYS9cG0MbS7YL1F46YE+yc
+	 f86xBX5VRcvgdxre4ANSpsxQmENzZm3uUQF3nMYD2Zq/YSoslxdMe7CrI4KKQl7ACV
+	 C6yp9H/3lCBRLHda2Yw90L8TqqIsdggCM6ANHVSLf0zutxwcErMuF/Yqepodt48xvZ
+	 TtLcdtxpX+1Oxbcz+g/KGwEIHFANTSkShmnRDl/kr517dyfYd+dnpC5ze0umnpo1NP
+	 rpjAmCP7xLNzQ==
+Received: from obbardc-t14.home (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: obbardc)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D4AAE378065F;
+	Mon, 10 Jun 2024 23:43:09 +0000 (UTC)
+From: Christopher Obbard <chris.obbard@collabora.com>
+To: linux-kernel@vger.kernel.org
+Cc: kernel@collabora.com,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Daniel Scally <dan.scally@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Christopher Obbard <chris.obbard@collabora.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/1] Enable HDMI output support on the Debix Model A SBC
+Date: Tue, 11 Jun 2024 00:42:37 +0100
+Message-ID: <20240610234307.96766-1-chris.obbard@collabora.com>
+X-Mailer: git-send-email 2.45.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v22 03/38] xhci: sideband: add initial api to register a
- sideband entity
-To: Jeff Johnson <quic_jjohnson@quicinc.com>, <srinivas.kandagatla@linaro.org>,
-        <mathias.nyman@intel.com>, <perex@perex.cz>, <conor+dt@kernel.org>,
-        <corbet@lwn.net>, <lgirdwood@gmail.com>, <tiwai@suse.com>,
-        <krzk+dt@kernel.org>, <Thinh.Nguyen@synopsys.com>,
-        <broonie@kernel.org>, <bgoswami@quicinc.com>, <robh@kernel.org>,
-        <gregkh@linuxfoundation.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>,
-        Mathias Nyman <mathias.nyman@linux.intel.com>
-References: <20240524001043.10141-1-quic_wcheng@quicinc.com>
- <20240524001043.10141-4-quic_wcheng@quicinc.com>
- <40e65895-fc87-4754-ab5c-29d7c95b6d17@quicinc.com>
-Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <40e65895-fc87-4754-ab5c-29d7c95b6d17@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: _L7t0l-o42xEQg3DEh7wPU1rsmp4SbO1
-X-Proofpoint-ORIG-GUID: _L7t0l-o42xEQg3DEh7wPU1rsmp4SbO1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-10_06,2024-06-10_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 mlxlogscore=999 mlxscore=0 adultscore=0 malwarescore=0
- priorityscore=1501 suspectscore=0 spamscore=0 bulkscore=0 clxscore=1011
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406100175
+Content-Transfer-Encoding: 8bit
 
+This series brings up the HDMI output on the Debix Model A SBC.
 
+With support for the HDMI transmitter for the i.MX8MP SoC in mainline,
+we can now enable the HDMI output on the Debix Model A SBC.
 
-On 6/4/2024 4:13 PM, Jeff Johnson wrote:
-> On 5/23/2024 5:10 PM, Wesley Cheng wrote:
->> From: Mathias Nyman <mathias.nyman@linux.intel.com>
-> [...]
->> +EXPORT_SYMBOL_GPL(xhci_sideband_unregister);
->> +MODULE_LICENSE("GPL");
-> 
-> Please add missing MODULE_DESCRIPTION()
-> 
+Changes in v2:
+- Do not set SION (Software Input ON) bit in pinmux pin config register.
+- Small changes to commit log/cover letter.
+- v1: https://lore.kernel.org/linux-arm-kernel/20240415114135.25473-1-chris.obbard@collabora.com/
 
-Thanks, Jeff, will add this to the drivers that need it.
+Christopher Obbard (1):
+  arm64: dts: imx8mp-debix-model-a: Enable HDMI output
 
-Thanks
-Wesley Cheng
+ .../dts/freescale/imx8mp-debix-model-a.dts    | 47 +++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+
+-- 
+2.45.1
+
 
