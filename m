@@ -1,40 +1,48 @@
-Return-Path: <devicetree+bounces-74159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3FF8902298
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 15:23:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0FC49022B4
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 15:29:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 406FB1F23AD3
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 13:23:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 65CAB1F24CDD
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 13:29:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCCD686126;
-	Mon, 10 Jun 2024 13:22:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 275FD8248B;
+	Mon, 10 Jun 2024 13:29:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bgtdTudY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C74DD8286B;
-	Mon, 10 Jun 2024 13:22:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1C7F74048;
+	Mon, 10 Jun 2024 13:29:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718025776; cv=none; b=JEmyTR5lRxT+LeA/+rikOXTqRCECBYyzkfhD52Hl6o2vaLOrmok3iiwCmbgwv18FVYEUWpExDjPh/WmCJpkQcbOn5USAizeXfhBzrfTUxazwBEFs2oLVKn9UH8G5ZgErHeY4vCdGybl22LlX5A8hBzrtG4xbxcwjina+4unuOrc=
+	t=1718026184; cv=none; b=lchpmUtjLFJUBfLihSbE/Eh8pzgOv6XojHa3b2i2mPKqfos0xBBnjhvqydZlCSNdB2lyiDIkPHSCAYz/32TCt1/IoZMXaeyvxHptj1ddzfE/QvQTiHT0ldk0snkYvA00HojQmVV7z6KJpiBFMvCv4ugSLzoz419YvVOGjPd4jLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718025776; c=relaxed/simple;
-	bh=u5ShvXm+1cSW8UOkTIBHJzzTnCCahteBzvKDbsw3ZXU=;
+	s=arc-20240116; t=1718026184; c=relaxed/simple;
+	bh=D/A37FeOcM3AFIwnZJ4YD0OpZPJ+P4kW0Fs+sqCR0ho=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YkfEOlCPoN3XuGhcTwD4PWEtFjIWPWlv0LFiYZPl7wOrzoyPLadVu0qsGLnF+JIThYQ2f3PZGFJ7Tsj8jYZtKmwWQX9sQKdAOSPkBn/WzH+XqdYaOJTooHvM/NERWSqKVWQcWOshGKM350F+rl4Vjx10eYULDmV12Su+RIEWnlE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 91F2211FB;
-	Mon, 10 Jun 2024 06:23:17 -0700 (PDT)
-Received: from [10.57.42.97] (unknown [10.57.42.97])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 19B263F58B;
-	Mon, 10 Jun 2024 06:22:50 -0700 (PDT)
-Message-ID: <6e97de10-1d46-4bfc-b865-536dd16cc2ce@arm.com>
-Date: Mon, 10 Jun 2024 14:22:50 +0100
+	 In-Reply-To:Content-Type; b=Kt6B1lzrQoiIcl1mVwN2pS85nIe0c3Kqp6iaz4XPn2F/EMlh5c6PauJmktm7oW7kYpjiKE+BO8xfdx9/M2F5X/qUpcrNRrIVI3tN2rY6WxzLCw3fARbrot8KvZhi8Eh/WACMiIMwvBkgNp17vjzfe78pv4mP8SohAIMPxU/oj7E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bgtdTudY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C54EC2BBFC;
+	Mon, 10 Jun 2024 13:29:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718026183;
+	bh=D/A37FeOcM3AFIwnZJ4YD0OpZPJ+P4kW0Fs+sqCR0ho=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=bgtdTudYgkDnJy4JYVgZ2IAIClCbEPtz4RTcn1s7l84b3o2EILwrkc9Yf4ofztBDZ
+	 ltuZn/I/PJFzQ+O8IQEA+HejniKPc0GFXFOuA00sh6WVfeZEdOfz7LAWf8e9sVegpE
+	 GXWhk9x4m4qcImnKTc7T5ktoJPORNs/sfQLgl0o8X5JVQInntrmEWDUv3YJ3CRlR/2
+	 1WRQCMABJt95eB6TvyO30WA93pAWMcrNOsmr5YLHVjt0Jy2l5A9l6bTwAzvex4uq4J
+	 KLizo3IMxTwXP/rNU63SA6Juse1BCDhZOFSdCTH/jL20idPy64jNflsTDYUoKKdvIo
+	 EXLAAusuzA2fw==
+Message-ID: <572c35c8-3a37-452d-a9cf-ba726d7e9eab@kernel.org>
+Date: Mon, 10 Jun 2024 15:29:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,488 +50,346 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 0/7] Coresight for Kernel panic and watchdog reset
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
- Linu Cherian <lcherian@marvell.com>, mike.leach@linaro.org
-Cc: linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, sgoutham@marvell.com, gcherian@marvell.com
-References: <20240605081725.622953-1-lcherian@marvell.com>
- <c6d3a25f-d9f2-426f-a15e-93aa37718d97@arm.com>
+Subject: Re: [PATCH] ASoC: fsl: Add i2s and pcm drivers for LPC32xx CPUs
+To: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, Vladimir Zapolskiy <vz@mleia.com>,
+ Russell King <linux@armlinux.org.uk>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240610102415.79740-1-piotr.wojtaszczyk@timesys.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: James Clark <james.clark@arm.com>
-In-Reply-To: <c6d3a25f-d9f2-426f-a15e-93aa37718d97@arm.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240610102415.79740-1-piotr.wojtaszczyk@timesys.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+
+On 10/06/2024 12:24, Piotr Wojtaszczyk wrote:
+> This driver was ported from an old version in linux 2.6.27 and adjusted
+> for the new ASoC framework and DMA API.
+> 
+> Signed-off-by: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
+> ---
+>  .../bindings/sound/nxp,lpc3220-i2s.yaml       |  50 +++
+>  arch/arm/boot/dts/lpc32xx.dtsi                |   4 +
+>  arch/arm/mach-lpc32xx/phy3250.c               |  60 +++
+>  sound/soc/fsl/Kconfig                         |   7 +
+>  sound/soc/fsl/Makefile                        |   2 +
+>  sound/soc/fsl/lpc3xxx-i2s.c                   | 411 ++++++++++++++++++
+>  sound/soc/fsl/lpc3xxx-i2s.h                   |  94 ++++
+>  sound/soc/fsl/lpc3xxx-pcm.c                   |  75 ++++
+>  8 files changed, 703 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/nxp,lpc3220-i2s.yaml
+>  create mode 100644 sound/soc/fsl/lpc3xxx-i2s.c
+>  create mode 100644 sound/soc/fsl/lpc3xxx-i2s.h
+>  create mode 100644 sound/soc/fsl/lpc3xxx-pcm.c
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/nxp,lpc3220-i2s.yaml b/Documentation/devicetree/bindings/sound/nxp,lpc3220-i2s.yaml
+> new file mode 100644
+
+Please run scripts/checkpatch.pl and fix reported warnings. Then please
+run `scripts/checkpatch.pl --strict` and (probably) fix more warnings.
+Some warnings can be ignored, especially from --strict run, but the code
+here looks like it needs a fix. Feel free to get in touch if the warning
+is not clear.
 
 
+> index 000000000000..e41330b6775c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/nxp,lpc3220-i2s.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/nxp,lpc3220-i2s.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP LPC32XX I2S Controller
+> +
+> +description:
+> +  The block adds I2S and PCM drivers for LPC32XX
 
-On 10/06/2024 14:06, Suzuki K Poulose wrote:
-> On 05/06/2024 09:17, Linu Cherian wrote:
->> This patch series is rebased on coresight-next-v6.10.
->>
->>
->> Changelog from v8:
->> * Added missing exit path on error in __tmc_probe.
->> * Few whitespace fixes, checkpatch fixes.
->> * With perf sessions honouring stop_on_flush sysfs attribute,
->>    removed redundant variable stop_on_flush_en.
->>
->> Changelog from v7:
->> * Fixed breakage on perf test -vvvv  "arm coresight".
->>    No issues seen with and without "resrv" buffer mode
->> * Moved the crashdev registration into a seperate function.
->> * Removed redundant variable in tmc_etr_setup_crashdata_buf
->> * Avoided a redundant memcpy in tmc_panic_sync_etf.
->> * Tested kernel panic with trace session started uisng perf.
->>    Please see the title "Perf based testing" below for details.
->>    For this, stop_on_flush sysfs attribute is taken into
->>    consideration while starting perf sessions as well.
->>
->> Changelog from v6:
->> * Added special device files for reading crashdata, so that
->>    read_prevboot mode flag is removed.
->> * Added new sysfs TMC device attribute, stop_on_flush.
->>    Stop on flush trigger event is disabled by default.
->>    User need to explicitly enable this from sysfs for panic stop
->>    to work.
->> * Address parameter for panicstop ETM configuration is
->>    chosen as kernel "panic" address by default.
->> * Added missing tmc_wait_for_tmcready during panic handling
->> * Few other misc code rearrangements.
->>
->> Changelog from v5:
->> * Fixed issues reported by CONFIG_DEBUG_ATOMIC_SLEEP
->> * Fixed a memory leak while reading data from /dev/tmc_etrx in
->>    READ_PREVBOOT mode
->> * Tested reading trace data from crashdump kernel
->>
->> Changelog from v4:
->> * Device tree binding
->>    - Description is made more explicit on the usage of reserved memory
->>      region
->>    - Mismatch in memory region names in dts binding and driver fixed
->>    - Removed "mem" suffix from the memory region names
->> * Rename "struct tmc_register_snapshot" ->  "struct tmc_crash_metadata",
->>    since it contains more than register snapshot.
->>    Related variables are named accordingly.
->> * Rename struct tmc_drvdata members
->>     resrv_buf -> crash_tbuf
->>     metadata  -> crash_mdata
->> * Size field in metadata refers to RSZ register and hence indicates the
->>    size in 32 bit words. ETR metadata follows this convention, the same
->>    has been extended to ETF metadata as well.
->> * Added crc32 for more robust metadata and tracedata validation.
->> * Added/modified dev_dbg messages during metadata validation
->> * Fixed a typo in patch 5 commit description
->>
->> Changelog from v3:
->> * Converted the Coresight ETM driver change to a named configuration.
->>    RFC tag has been removed with this change.
->> * Fixed yaml issues reported by "make dt_binding_check"
->> * Added names for reserved memory regions 0 and 1
->> * Added prevalidation checks for metadata processing
->> * Fixed a regression introduced in RFC v3
->>    - TMC Status register was getting saved wrongly
->> * Reverted memremap attribute changes from _WB to _WC to match
->>    with the dma map attributes
->> * Introduced reserved buffer mode specific .sync op.
->>    This fixes a possible crash when reserved buffer mode was used in
->>    normal trace capture, due to unwanted dma maintenance operations.
->>
->> v8 is posted here:
->> https://lore.kernel.org/lkml/20240531042745.494222-4-lcherian@marvell.com/T/
-> 
-> --8>-- CUT HERE ----
->>
->> Using Coresight for Kernel panic and Watchdog reset
->> ===================================================
->> This patch series is about extending Linux coresight driver support to
->> address kernel panic and watchdog reset scenarios. This would help
->> coresight users to debug kernel panic and watchdog reset using
->> coresight trace data.
->>
->> Coresight trace capture: Kernel panic
->> -------------------------------------
->>  From the coresight driver point of view, addressing the kernel panic
->> situation has four main requirements.
->>
->> a. Support for allocation of trace buffer pages from reserved memory
->> area.
->>     Platform can advertise this using a new device tree property added to
->>     relevant coresight nodes.
->>
->> b. Support for stopping coresight blocks at the time of panic
->>
->> c. Saving required metadata in the specified format
->>
->> d. Support for reading trace data captured at the time of panic
->>
->> Allocation of trace buffer pages from reserved RAM
->> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> A new optional device tree property "memory-region" is added to the
->> ETR/ETF device nodes, that would give the base address and size of trace
->> buffer.
->>
->> Static allocation of trace buffers would ensure that both IOMMU enabled
->> and disabled cases are handled. Also, platforms that support persistent
->> RAM will allow users to read trace data in the subsequent boot without
->> booting the crashdump kernel.
->>
->> Note:
->> For ETR sink devices, this reserved region will be used for both trace
->> capture and trace data retrieval.
->> For ETF sink devices, internal SRAM would be used for trace capture,
->> and they would be synced to reserved region for retrieval.
->>
->> Note: Patches 1 & 2 adds support for this.
->>
->> Disabling coresight blocks at the time of panic
->> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> In order to avoid the situation of losing relevant trace data after a
->> kernel panic, it would be desirable to stop the coresight blocks at the
->> time of panic.
->>
->> This can be achieved by configuring the comparator, CTI and sink
->> devices as below,
->>
->> Comparator(triggers on kernel panic) --->External out --->CTI --
->>                                 |
->>          ETR/ETF stop <------External In <--------------
->> Note:
->>
->> * Patch 6 provides the necessary ETR configuration.
->> * Patch 7 provides the necessary ETM configuration.
->>
->> Saving metadata at the time of kernel panic
->> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> Coresight metadata involves all additional data that are required for a
->> successful trace decode in addition to the trace data. This involves
->> ETR/ETF, ETE register snapshot etc.
->>
->> A new optional device property "memory-region" is added to
->> the ETR/ETF/ETE device nodes for this.
->>
->> Note: Patches 3 & 4 adds support for this.
->>
->> Reading trace data captured at the time of panic
->> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> Trace data captured at the time of panic, can be read from rebooted
->> kernel
->> or from crashdump kernel using the below mentioned interface.
->>
->> Note: Patch 5 adds support for this.
->>
->> Steps for reading trace data captured in previous boot
->> ++++++++++++++++++++++++++++++++++++++++++++++++++++++
->> 1. cd /sys/bus/coresight/devices/tmc_etrXX/
->>
->> 2. Dump trace buffer crashdata to a file,
->>
->>     #dd if=/dev/crash_tmc_etrXX of=~/cstrace.bin
->>
->>
->> General flow of trace capture and decode incase of kernel panic
->> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> 1. Enable source and sink on all the cores using the sysfs interface.
->>     ETR sink will have trace buffers allocated from reserved memory,
->>     by selecting "resrv" buffer mode from sysfs.
->>
->> 2. Run relevant tests.
->>
->> 3. On a kernel panic, all coresight blocks are disabled, necessary
->>     metadata is synced by kernel panic handler.
->>
->>     System would eventually reboot or boot a crashdump kernel.
->>
->> 4. For  platforms that supports crashdump kernel, raw trace data can be
->>     dumped using the coresight sysfs interface from the crashdump kernel
->>     itself. Persistent RAM is not a requirement in this case.
->>
->> 5. For platforms that supports persistent RAM, trace data can be dumped
->>     using the coresight sysfs interface in the subsequent Linux boot.
->>     Crashdump kernel is not a requirement in this case. Persistent RAM
->>     ensures that trace data is intact across reboot.
->>
->> Coresight trace capture: Watchdog reset
->> ---------------------------------------
->> The main difference between addressing the watchdog reset and kernel
->> panic
->> case are below,
->>
->> a. Saving coresight metadata need to be taken care by the
->>     SCP(system control processor) firmware in the specified format,
->>     instead of kernel.
->>
->> b. Reserved memory region given by firmware for trace buffer and metadata
->>     has to be in persistent RAM.
->>     Note: This is a requirement for watchdog reset case but optional
->>     in kernel panic case.
->>
->> Watchdog reset can be supported only on platforms that meet the above
->> two requirements.
->>
->> Testing Kernel panic on Linux 6.8
->> ---------------------------------
->> 1. Enable the preloaded ETM configuration
->>
->>    #echo 1 > /sys/kernel/config/cs-syscfg/configurations/panicstop/enable
->>
->> 2. Configure CTI using sysfs interface
->>
->>    #./cti_setup.sh
->>
->>    #cat cti_setup.sh
->>
->>    cd /sys/bus/coresight/devices/
->>
->>    ap_cti_config () {
->>      #ETM trig out[0] trigger to Channel 0
->>      echo 0 4 > channels/trigin_attach
->>    }
->>
->>    etf_cti_config () {
->>      #ETF Flush in trigger from Channel 0
->>      echo 0 1 > channels/trigout_attach
->>      echo 1 > channels/trig_filter_enable
->>    }
->>
->>    etr_cti_config () {
->>      #ETR Flush in from Channel 0
->>      echo 0 1 > channels/trigout_attach
->>      echo 1 > channels/trig_filter_enable
->>    }
->>
->>    ctidevs=`find . -name "cti*"`
->>
->>    for i in $ctidevs
->>    do
->>            cd $i
->>
->>            connection=`find . -name "ete*"`
->>            if [ ! -z "$connection" ]
->>            then
->>                    echo "AP CTI config for $i"
->>                    ap_cti_config
->>            fi
->>
->>            connection=`find . -name "tmc_etf*"`
->>            if [ ! -z "$connection" ]
->>            then
->>                    echo "ETF CTI config for $i"
->>                    etf_cti_config
->>            fi
->>
->>            connection=`find . -name "tmc_etr*"`
->>            if [ ! -z "$connection" ]
->>            then
->>                    echo "ETR CTI config for $i"
->>                    etr_cti_config
->>            fi
->>
->>            cd ..
->>    done
->>
->> Note: CTI connections are SOC specific and hence the above script is
->> added just for reference.
->>
->> 3. Choose reserved buffer mode for ETR buffer
->>    #echo "resrv" > /sys/bus/coresight/devices/tmc_etr0/buf_mode_preferred
->>
->> 4. Enable stop on flush trigger configuration
->>    #echo 1 > /sys/bus/coresight/devices/tmc_etr0/stop_on_flush
->>
->> 4. Start Coresight tracing on cores 1 and 2 using sysfs interface
->>
->> 5. Run some application on core 1
->>    #taskset -c 1 dd if=/dev/urandom of=/dev/null &
->>
->> 6. Invoke kernel panic on core 2
->>    #echo 1 > /proc/sys/kernel/panic
->>    #taskset -c 2 echo c > /proc/sysrq-trigger
->>
->> 7. From rebooted kernel or crashdump kernel, read crashdata
->>      Note: For crashdump kernel option, please make sure
->> "crash_kexec_post_notifiers" is
->>    added to the kernel bootargs.
->>
->>    #dd if=/dev/crash_tmc_etr0 of=/trace/cstrace.bin
->>
->> 8. Run opencsd decoder tools/scripts to generate the instruction trace.
->>
->> Sample Core 1 instruction trace dump:
->> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->>     A                                  etm4_enable_hw: ffff800008ae1dd4
->>     CONTEXT EL2                        etm4_enable_hw: ffff800008ae1dd4
->>     I                                  etm4_enable_hw: ffff800008ae1dd4:
->>     d503201f   nop
->>     I                                  etm4_enable_hw: ffff800008ae1dd8:
->>     d503201f   nop
->>     I                                  etm4_enable_hw: ffff800008ae1ddc:
->>     d503201f   nop
->>     I                                  etm4_enable_hw: ffff800008ae1de0:
->>     d503201f   nop
->>     I                                  etm4_enable_hw: ffff800008ae1de4:
->>     d503201f   nop
->>     I                                  etm4_enable_hw: ffff800008ae1de8:
->>     d503233f   paciasp
->>     I                                  etm4_enable_hw: ffff800008ae1dec:
->>     a9be7bfd   stp     x29, x30, [sp, #-32]!
->>     I                                  etm4_enable_hw: ffff800008ae1df0:
->>     910003fd   mov     x29, sp
->>     I                                  etm4_enable_hw: ffff800008ae1df4:
->>     a90153f3   stp     x19, x20, [sp, #16]
->>     I                                  etm4_enable_hw: ffff800008ae1df8:
->>     2a0003f4   mov     w20, w0
->>     I                                  etm4_enable_hw: ffff800008ae1dfc:
->>     900085b3   adrp    x19, ffff800009b95000 <reserved_mem+0xc48>
->>     I                                  etm4_enable_hw: ffff800008ae1e00:
->>     910f4273   add     x19, x19, #0x3d0
->>     I                                  etm4_enable_hw: ffff800008ae1e04:
->>     f8747a60   ldr     x0, [x19, x20, lsl #3]
->>     E                                  etm4_enable_hw: ffff800008ae1e08:
->>     b4000140   cbz     x0, ffff800008ae1e30 <etm4_starting_cpu+0x50>
->>     I    149.039572921                 etm4_enable_hw: ffff800008ae1e30:
->>     a94153f3   ldp     x19, x20, [sp, #16]
->>     I    149.039572921                 etm4_enable_hw: ffff800008ae1e34:
->>     52800000   mov     w0, #0x0                        // #0
->>     I    149.039572921                 etm4_enable_hw: ffff800008ae1e38:
->>     a8c27bfd   ldp     x29, x30, [sp], #32
->>
->>     ..snip
->>
->>         149.052324811           chacha_block_generic: ffff800008642d80:
->>     9100a3e0   add     x0,
->>     I    149.052324811           chacha_block_generic: ffff800008642d84:
->>     b86178a2   ldr     w2, [x5, x1, lsl #2]
->>     I    149.052324811           chacha_block_generic: ffff800008642d88:
->>     8b010803   add     x3, x0, x1, lsl #2
->>     I    149.052324811           chacha_block_generic: ffff800008642d8c:
->>     b85fc063   ldur    w3, [x3, #-4]
->>     I    149.052324811           chacha_block_generic: ffff800008642d90:
->>     0b030042   add     w2, w2, w3
->>     I    149.052324811           chacha_block_generic: ffff800008642d94:
->>     b8217882   str     w2, [x4, x1, lsl #2]
->>     I    149.052324811           chacha_block_generic: ffff800008642d98:
->>     91000421   add     x1, x1, #0x1
->>     I    149.052324811           chacha_block_generic: ffff800008642d9c:
->>     f100443f   cmp     x1, #0x11
->>
->>
->> Sample Core 2 instruction trace dump(kernel panic triggered core):
->> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->>     A                                  etm4_enable_hw: ffff800008ae1dd4
->>     CONTEXT EL2                        etm4_enable_hw: ffff800008ae1dd4
->>     I                                  etm4_enable_hw: ffff800008ae1dd4:
->>     d503201f   nop
->>     I                                  etm4_enable_hw: ffff800008ae1dd8:
->>     d503201f   nop
->>     I                                  etm4_enable_hw: ffff800008ae1ddc:
->>     d503201f   nop
->>     I                                  etm4_enable_hw: ffff800008ae1de0:
->>     d503201f   nop
->>     I                                  etm4_enable_hw: ffff800008ae1de4:
->>     d503201f   nop
->>     I                                  etm4_enable_hw: ffff800008ae1de8:
->>     d503233f   paciasp
->>     I                                  etm4_enable_hw: ffff800008ae1dec:
->>     a9be7bfd   stp     x29, x30, [sp, #-32]!
->>     I                                  etm4_enable_hw: ffff800008ae1df0:
->>     910003fd   mov     x29, sp
->>     I                                  etm4_enable_hw: ffff800008ae1df4:
->>     a90153f3   stp     x19, x20, [sp, #16]
->>     I                                  etm4_enable_hw: ffff800008ae1df8:
->>     2a0003f4   mov     w20, w0
->>     I                                  etm4_enable_hw: ffff800008ae1dfc:
->>     900085b3   adrp    x19, ffff800009b95000 <reserved_mem+0xc48>
->>     I                                  etm4_enable_hw: ffff800008ae1e00:
->>     910f4273   add     x19, x19, #0x3d0
->>     I                                  etm4_enable_hw: ffff800008ae1e04:
->>     f8747a60   ldr     x0, [x19, x20, lsl #3]
->>     E                                  etm4_enable_hw: ffff800008ae1e08:
->>     b4000140   cbz     x0, ffff800008ae1e30 <etm4_starting_cpu+0x50>
->>     I    149.046243445                 etm4_enable_hw: ffff800008ae1e30:
->>     a94153f3   ldp     x19, x20, [sp, #16]
->>     I    149.046243445                 etm4_enable_hw: ffff800008ae1e34:
->>     52800000   mov     w0, #0x0                        // #0
->>     I    149.046243445                 etm4_enable_hw: ffff800008ae1e38:
->>     a8c27bfd   ldp     x29, x30, [sp], #32
->>     I    149.046243445                 etm4_enable_hw: ffff800008ae1e3c:
->>     d50323bf   autiasp
->>     E    149.046243445                 etm4_enable_hw: ffff800008ae1e40:
->>     d65f03c0   ret
->>     A                                ete_sysreg_write: ffff800008adfa18
->>
->>     ..snip
->>
->>     I     149.05422547                          panic: ffff800008096300:
->>     a90363f7   stp     x23, x24, [sp, #48]
->>     I     149.05422547                          panic: ffff800008096304:
->>     6b00003f   cmp     w1, w0
->>     I     149.05422547                          panic: ffff800008096308:
->>     3a411804   ccmn    w0, #0x1, #0x4, ne  // ne = any
->>     N     149.05422547                          panic: ffff80000809630c:
->>     540001e0   b.eq    ffff800008096348 <panic+0xe0>  // b.none
->>     I     149.05422547                          panic: ffff800008096310:
->>     f90023f9   str     x25, [sp, #64]
->>     E     149.05422547                          panic: ffff800008096314:
->>     97fe44ef   bl      ffff8000080276d0 <panic_smp_self_stop>
->>     A                                           panic: ffff80000809634c
->>     I     149.05422547                          panic: ffff80000809634c:
->>     910102d5   add     x21, x22, #0x40
->>     I     149.05422547                          panic: ffff800008096350:
->>     52800020   mov     w0, #0x1                        // #1
->>     E     149.05422547                          panic: ffff800008096354:
->>     94166b8b   bl      ffff800008631180 <bust_spinlocks>
->>     N    149.054225518                 bust_spinlocks: ffff800008631180:
->>     340000c0   cbz     w0, ffff800008631198 <bust_spinlocks+0x18>
->>     I    149.054225518                 bust_spinlocks: ffff800008631184:
->>     f000a321   adrp    x1, ffff800009a98000 <pbufs.0+0xbb8>
->>     I    149.054225518                 bust_spinlocks: ffff800008631188:
->>     b9405c20   ldr     w0, [x1, #92]
->>     I    149.054225518                 bust_spinlocks: ffff80000863118c:
->>     11000400   add     w0, w0, #0x1
->>     I    149.054225518                 bust_spinlocks: ffff800008631190:
->>     b9005c20   str     w0, [x1, #92]
->>     E    149.054225518                 bust_spinlocks: ffff800008631194:
->>     d65f03c0   ret
->>     A                                           panic: ffff800008096358
->>
->> Perf based testing
->> ------------------
->> Kernel panic during perf trace sessions has been tested with this series.
->>
->> Starting perf session
->> ~~~~~~~~~~~~~~~~~~~~~
->> ETF:
->> ./tools/perf/perf record -e cs_etm/panicstop,@tmc_etf1/ -C 1
->> ./tools/perf/perf record -e cs_etm/panicstop,@tmc_etf2/ -C 2
->>
->> ETR:
->> ./tools/perf/perf record -e cs_etm/panicstop,@tmc_etr0/ -C 1,2
->>
->> Reading trace data after panic
->> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> Same sysfs based method explained above can be used to retrieve and
->> decode the trace data after the reboot on kernel panic.
-> 
-> 
-> --8>-- End here ---<8--
-> 
-> 
-> Please add the above section into a Documentation/trace/coresight/panic.rst
-> 
-> Cover letter doesn't get saved anywhere (except archives). Please
-> have the above useful information documented for people to try it.
-> 
-> Kind Regards
-> Suzuki
-> 
-> 
+Please describe the hardware. What is "this block"? What is a driver?
+Like a Linux driver? Then not, describe the hardware.
 
-And in the example in the docs put booting with "crashkernel=512M
-crash_kexec_post_notifiers" as step 1. I know it might be possible read
-back after a normal reboot on some systems but it would be good to have
-one beginning to end example that's most likely to work for everyone.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,lpc3220-i2s
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: input clock of the peripheral.
+> +
+> +  clock-names:
+> +    items:
+> +      - const: i2s_clk
+
+Drop _clk. Or actually drop entire clock-names, obvious and not needed.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+
+That's not a DAI?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/lpc32xx-clock.h>
+> +
+> +    i2s0: i2s@20094000 {
+> +      compatible = "nxp,lpc3220-i2s";
+> +      reg = <0x20094000 0x1000>;
+> +      clocks = <&clk LPC32XX_CLK_I2S0>;
+> +      clock-names = "i2s_clk";
+
+Make the example complete - missing interrupts.
+
+
+> +    };
+> +
+> +...
+> diff --git a/arch/arm/boot/dts/lpc32xx.dtsi b/arch/arm/boot/dts/lpc32xx.dtsi
+> index c87066d6c995..dc5738f2b42d 100644
+> --- a/arch/arm/boot/dts/lpc32xx.dtsi
+> +++ b/arch/arm/boot/dts/lpc32xx.dtsi
+
+
+? DTS is not ASoC. This MUST go via entirely different tree.
+
+
+> @@ -221,6 +221,8 @@ spi2: spi@20090000 {
+
+
+> +
+> +const struct snd_soc_dai_ops lpc3xxx_i2s_dai_ops = {
+> +	.startup = lpc3xxx_i2s_startup,
+> +	.shutdown = lpc3xxx_i2s_shutdown,
+> +	.prepare = lpc3xxx_i2s_prepare,
+> +	.trigger = lpc3xxx_i2s_trigger,
+> +	.hw_params = lpc3xxx_i2s_hw_params,
+> +	.set_sysclk = lpc3xxx_i2s_set_dai_sysclk,
+> +	.set_fmt = lpc3xxx_i2s_set_dai_fmt,
+> +};
+> +
+> +static int lpc3xxx_i2s_dai_probe(struct snd_soc_dai *dai)
+> +{
+> +	struct lpc3xxx_i2s_info *i2s_info_p = snd_soc_dai_get_drvdata(dai);
+> +
+> +	snd_soc_dai_init_dma_data(dai, &i2s_info_p->playback_dma_config,
+> +							&i2s_info_p->capture_dma_config);
+> +	return 0;
+> +}
+> +
+> +struct snd_soc_dai_driver lpc3xxx_i2s_dai_driver = {
+> +	 .probe	= lpc3xxx_i2s_dai_probe,
+> +	 .playback = {
+> +		      .channels_min = 1,
+> +		      .channels_max = 2,
+> +		      .rates = LPC3XXX_I2S_RATES,
+> +		      .formats = LPC3XXX_I2S_FORMATS,
+> +		      },
+> +	 .capture = {
+> +		     .channels_min = 1,
+> +		     .channels_max = 2,
+> +		     .rates = LPC3XXX_I2S_RATES,
+> +		     .formats = LPC3XXX_I2S_FORMATS,
+> +		     },
+> +	 .ops = &lpc3xxx_i2s_dai_ops,
+> +	 .symmetric_rate = 1,
+> +	 .symmetric_channels = 1,
+> +	 .symmetric_sample_bits = 1,
+> +};
+> +
+> +static const struct snd_soc_component_driver lpc32xx_i2s_component = {
+> +	.name = "lpc32xx-i2s",
+> +};
+> +
+> +static const struct regmap_config lpc32xx_i2s_regconfig = {
+> +	.reg_bits = 32,
+> +	.reg_stride = 4,
+> +	.val_bits = 32,
+> +	.max_register = I2S_RX_RATE,
+> +};
+> +
+> +static int lpc32xx_i2s_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct lpc3xxx_i2s_info *i2s_info_p;
+> +	struct resource *res;
+> +	void __iomem *iomem;
+> +	int ret;
+> +
+> +	i2s_info_p = devm_kzalloc(dev, sizeof(*i2s_info_p), GFP_KERNEL);
+> +	if (!i2s_info_p)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, i2s_info_p);
+> +	i2s_info_p->dev = dev;
+> +
+> +	iomem = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
+> +	if (IS_ERR(iomem)) {
+> +		dev_err(dev, "Can't map registers\n");
+
+return dev_err_probe()
+
+> +		return PTR_ERR(iomem);
+> +	}
+> +
+> +	i2s_info_p->regs = devm_regmap_init_mmio(dev, iomem, &lpc32xx_i2s_regconfig);
+> +	if (IS_ERR(i2s_info_p->regs)) {
+> +		ret = PTR_ERR(i2s_info_p->regs);
+> +		dev_err(dev, "failed to init register map: %d\n", ret);
+
+return dev_err_probe()
+
+> +		return ret;
+> +	}
+> +
+> +	i2s_info_p->clk = devm_clk_get(dev, "i2s_clk");
+> +	if (IS_ERR(i2s_info_p->clk)) {
+> +		dev_err(dev, "Can't get clock\n");
+
+return dev_err_probe()
+
+
+> +		return PTR_ERR(i2s_info_p->clk);
+> +	}
+> +
+> +	i2s_info_p->clkrate = clk_get_rate(i2s_info_p->clk);
+> +	if (i2s_info_p->clkrate == 0) {
+> +		dev_err(dev, "Invalid returned clock rate\n");
+> +		goto err_clk_disable;
+> +	}
+> +
+> +	mutex_init(&i2s_info_p->lock);
+> +
+> +	ret = devm_snd_soc_register_component(dev, &lpc32xx_i2s_component,
+> +					 &lpc3xxx_i2s_dai_driver, 1);
+> +	if (ret) {
+> +		dev_err(dev, "Can't register cpu_dai component\n");
+> +		goto err_clk_disable;
+
+Where is the clock disable? It's just return dev_err_probe.
+
+> +	}
+> +
+> +	i2s_info_p->playback_dma_config.addr = (dma_addr_t)(res->start + I2S_TX_FIFO);
+> +	i2s_info_p->playback_dma_config.maxburst = 4;
+> +	i2s_info_p->playback_dma_config.filter_data = "i2s-tx";
+> +	i2s_info_p->capture_dma_config.addr = (dma_addr_t)(res->start + I2S_RX_FIFO);
+> +	i2s_info_p->capture_dma_config.maxburst = 4;
+> +	i2s_info_p->capture_dma_config.filter_data = "i2s-rx";
+> +
+> +	ret = lpc3xxx_pcm_register(pdev);
+> +	if (ret) {
+> +		dev_err(dev, "Can't register pcm component\n");
+> +		goto err_clk_disable;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_clk_disable:
+> +	return ret;
+
+
+> +}
+> +
+> +static int lpc32xx_i2s_remove(struct platform_device *pdev)
+> +{
+> +	return 0;
+> +}
+
+Why do you need empty function?
+
+> +
+> +static const struct of_device_id lpc32xx_i2s_match[] = {
+> +	{ .compatible = "nxp,lpc3220-i2s" },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, lpc32xx_i2s_match);
+> +
+> +static struct platform_driver lpc32xx_i2s_driver = {
+> +	.probe = lpc32xx_i2s_probe,
+> +	.remove = lpc32xx_i2s_remove,
+> +	.driver		= {
+> +		.name	= "lpc3xxx-i2s",
+> +		.of_match_table = of_match_ptr(lpc32xx_i2s_match),
+
+Drop of_match_ptr, you will have here warnings.
+
+> +	},
+> +};
+> +
+> +module_platform_driver(lpc32xx_i2s_driver);
+> +
+> +MODULE_AUTHOR("Kevin Wells <kevin.wells@nxp.com>");
+> +MODULE_AUTHOR("Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>");
+> +MODULE_DESCRIPTION("ASoC LPC3XXX I2S interface");
+> +MODULE_LICENSE("GPL");
+> diff --git a/sound/soc/fsl/lpc3xxx-i2s.h b/sound/soc/fsl/lpc3xxx-i2s.h
+> new file mode 100644
+> index 000000000000..f88ab74cfe41
+
+
+Best regards,
+Krzysztof
+
 
