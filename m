@@ -1,107 +1,104 @@
-Return-Path: <devicetree+bounces-74091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5342F901F08
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 12:13:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6922901F5D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 12:27:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EFDA61F29785
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 10:13:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2B9EB295DD
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 10:25:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D80977F2F;
-	Mon, 10 Jun 2024 10:13:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78EDB78C70;
+	Mon, 10 Jun 2024 10:24:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="2viRkphC"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="hVn0UGjo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD3EC7711A
-	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 10:13:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B22D378B4C
+	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 10:24:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718014425; cv=none; b=pIyyoVZ6ryGFEggblerUXUbr5ZN1hZ9i3qTq62ESCes9nA3pyDoZIJ1hmgVuVnO7eVHu+jgmv0P65reH5qgSBIdoCoDB/RPOglTFhszVkfzpq3rGn70+tDBHOrSnpX8yZejJXrA5hvhRlpcqRj8fD3T3l05V8L+JqOXDotmovUE=
+	t=1718015045; cv=none; b=SR4WmdETsSn7V4RBmbjvfAGaNW4uupnvVq9jOOJopUyA7F1QmN6qnQMkux7qWjcUPwo5VRiXy4ty0CWePI17ePUFBoZKbr+ljMl+lSuyPGY44LuOf/yI3tcHVR+8PasD8uTvHed0DuINC8Lh1CNSem1pg1naU1WX387IuIPGJqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718014425; c=relaxed/simple;
-	bh=hgx2T9kylilWsH1G1Hk710ItCP12Cz3Ph1mFoLPeyWc=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=CrYxgV3yq+/jbdX6sMJjH5JRqg/1YWTiJ3NXgQesyC4lbV6X2iuMctA6i0gae0h792xtk7qM+gCOEJvQVniNc1seuH8gG+qzCnYoPGoMldRdLaqvJdCkNEkGJXL/Vyg8DPPhxXZGuklIv3pJQvIbW77Sp1u6dOKw3Dwtw1RT3XQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=2viRkphC; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-35f14af40c2so1302600f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 03:13:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1718014422; x=1718619222; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=hgx2T9kylilWsH1G1Hk710ItCP12Cz3Ph1mFoLPeyWc=;
-        b=2viRkphC877u/OoBcaiPi4r2CmfPGaSyO7jTaD5BgCFpj6X6sjiukveOi/lkBrdqAK
-         KGqKnRPBYG55VP3eMXW1WaOHd6ejfhYnEdlkKxdf0ESF2pDfNctEDhMwASZ3C3XytNAW
-         9F+h98540K8udA+4YBlDp4PaLiVTGfYRilat8xYHleM7X3OmGuJgLM1sUTxZHBsUuX4O
-         UUboxKrxzIp8meWJ/TMZsxJC0e3PRgZjp9yPKnGid5elIQk13Wb2LK8R8wzcuFsZJKAm
-         jpgYXTojbaumhAyRYn2AvTIjetJg2EjExO2TiqsMa6IbREWwhXTZnJxinx+AHZeGaomQ
-         Cb6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718014422; x=1718619222;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hgx2T9kylilWsH1G1Hk710ItCP12Cz3Ph1mFoLPeyWc=;
-        b=byrcRd/RVMiNuA+nZebY65m0dPC8wm6tenVcIxDGOQH1KFbGSz295iV0H5jAsm9MSh
-         mVzLfj1RMt+7w5HGtoB11WTjLm3F0fdhQc4aXjYYdHbEODrIzpbkDpoNkGlAzFzV8ZaU
-         uhDXbuUdmBmmpTgEhdF3kjLcLskfytoha17bLqWBX28BXQIULVS6K682bzfxi3BW+r7z
-         /JO5+3zsqeg+RaKwUX4OYH/+fxSxSSlCSAY1MDOaaYuoCCV5f0FK6G/jlBSSDt6Y/Rir
-         Z2NrorjMzcD1g8ng5GcC235WEQ5VaUC3RnYvPRyL2cz0AwASP/ZEetVYgPuU2YD9pDTs
-         agJA==
-X-Forwarded-Encrypted: i=1; AJvYcCU1TeKR5ph0fPjFKiTkAdK7i/7OeznyDyQlsDcBJeQzUlkFpRgBUnDIrsDqDs/mCNABhwJULxoyo6aLoSNqO19cOJGYT7Ad1KH5mg==
-X-Gm-Message-State: AOJu0Yzx76nN31k4+xRRzKLLk20WL+j1DfTQtwET2o5Iq6vi9Mqu8c8+
-	aP3wuq/wEo+GujBoE5S2hoPZu++I1L6WgR1DCcrHPBTnLI4t3JrXIAg2leQcF7s=
-X-Google-Smtp-Source: AGHT+IGgeOOdto077Okd7vLn2j1OX9iKBjMp6WWe5i6+dhSZlAdwPE+HQyeM0KQew5XncDF0WV2dlQ==
-X-Received: by 2002:a5d:47a2:0:b0:35f:2550:e276 with SMTP id ffacd0b85a97d-35f2550e366mr1516821f8f.5.1718014422196;
-        Mon, 10 Jun 2024 03:13:42 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:afd3:66ee:5486:4249])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35f24ebfbbbsm2136085f8f.61.2024.06.10.03.13.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jun 2024 03:13:41 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Dmitry Rokosov <ddrokosov@salutedevices.com>
-Cc: <neil.armstrong@linaro.org>,  <mturquette@baylibre.com>,
-  <sboyd@kernel.org>,  <robh+dt@kernel.org>,
-  <krzysztof.kozlowski+dt@linaro.org>,  <khilman@baylibre.com>,
-  <martin.blumenstingl@googlemail.com>,  <jian.hu@amlogic.com>,
-  <kernel@sberdevices.ru>,  <rockosov@gmail.com>,
-  <linux-amlogic@lists.infradead.org>,  <linux-clk@vger.kernel.org>,
-  <devicetree@vger.kernel.org>,  <linux-kernel@vger.kernel.org>,
-  <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 0/7] clk: meson: introduce Amlogic A1 SoC Family CPU
- clock controller driver
-In-Reply-To: <20240515185103.20256-1-ddrokosov@salutedevices.com> (Dmitry
-	Rokosov's message of "Wed, 15 May 2024 21:47:23 +0300")
-References: <20240515185103.20256-1-ddrokosov@salutedevices.com>
-Date: Mon, 10 Jun 2024 12:13:41 +0200
-Message-ID: <1jed95p0kq.fsf@starbuckisacylon.baylibre.com>
+	s=arc-20240116; t=1718015045; c=relaxed/simple;
+	bh=/dvlPaDX7JS7HUc0xymxE8GPZRJ/dZ9lSf050PDmGgg=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ppnKQnJZdrdmjiuB7qQW0bwbLmx8ecvpmvPp//YgMS99zuBIH1uVy9gPT8ixbR0kMyEPDeJs3lF7isEAHTe918Malg3R63kxbpFh+HsJ7hr/A4gc/rf7fLe9zEtRyVHkfQYPOFdcaqnJP0YKnsMYvIaGbbWIqytgLVyaBwB9P0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=hVn0UGjo; arc=none smtp.client-ip=185.67.36.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id 804A2240029
+	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 12:17:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.de; s=2017;
+	t=1718014679; bh=/dvlPaDX7JS7HUc0xymxE8GPZRJ/dZ9lSf050PDmGgg=;
+	h=Message-ID:Subject:From:To:Date:Content-Type:
+	 Content-Transfer-Encoding:MIME-Version:From;
+	b=hVn0UGjoEIWpc28KZUIuvmIHaQbdQaEf3UKUxFL+kKAtBKX0YufCaSqfPQW38hMc7
+	 E+g3jfDEKiWm2aMQUGqxcAbNSwO3UNe+y3qMYmx2IGwpJrS+EAEHId9ptYHW6ny4tb
+	 9fLSMosWMplnFr8b8EGb97nKQPL184qNrgRBHIhTMhnwWJ1cJykCFkl5HUW+uKvm2G
+	 d+cIUN6ms9YrBeEs/l0VJxypPTcnpINuU/jJNm8uhy4Tn0VG0863uWyAbKxb6YDalk
+	 4Q5BorAp1mpG7Co5wlLlWgS58BPptqWFZ8YjlxOc7dB4uF6X2uCrdkW/IPksgtYYXh
+	 jW70aQ438k0xg==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4VySRl4VHgz6tvp;
+	Mon, 10 Jun 2024 12:17:55 +0200 (CEST)
+Message-ID: <6cc32fceb4d74833e045e0acbc51515b5ef3065b.camel@posteo.de>
+Subject: Re: [PATCH] dts: imx8mq-librem5: Don't wake up on volume key press
+From: Martin Kepplinger <martink@posteo.de>
+To: Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev,  linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org,  phone-devel@vger.kernel.org, kernel@puri.sm
+Date: Mon, 10 Jun 2024 10:17:55 +0000
+In-Reply-To: <fa416916049e85ca159805e8602fa8361d5e6d83.1716202515.git.agx@sigxcpu.org>
+References: 
+	<fa416916049e85ca159805e8602fa8361d5e6d83.1716202515.git.agx@sigxcpu.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
 
-On Wed 15 May 2024 at 21:47, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
+QW0gTW9udGFnLCBkZW0gMjAuMDUuMjAyNCB1bSAxMjo1NyArMDIwMCBzY2hyaWViIEd1aWRvIEfD
+vG50aGVyOgo+IFRoZSBvbmx5IGtleSB0aGF0IHNob3VsZCB3YWtlIHVwIHRoZSBwaG9uZSBpcyBw
+b3dlciBidXR0b24gcHJlc3MuCj4gVGhpcwo+IHByZXZlbnRzIGFjY2lkZW50YWwgd2FrZXVwIGR1
+ZSB0byBlLmcuIHByZXNzaW5nIHRoZSBidXR0b25zIGluIHRoZQo+IHBvY2tldCBvciBiYWNrcGFj
+ayBhbmQgaXMgaW4gbGluZSB3aGF0IHVzZXJzcGFjZSB1c2VzIHRvIHVuYmxhbmsgdGhlCj4gZGV2
+aWNlLgo+IAo+IFNpZ25lZC1vZmYtYnk6IEd1aWRvIEfDvG50aGVyIDxhZ3hAc2lneGNwdS5vcmc+
+CgpSZXZpZXdlZC1ieTogTWFydGluIEtlcHBsaW5nZXIgPG1hcnRpbmtAcG9zdGVvLmRlPgoKdGhh
+bmsgeW91LAoKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbWFydGluCgo+IC0tLQo+IMKg
+YXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1xLWxpYnJlbTUuZHRzaSB8IDIgLS0K
+PiDCoDEgZmlsZSBjaGFuZ2VkLCAyIGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9hcmNo
+L2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXEtbGlicmVtNS5kdHNpCj4gYi9hcmNoL2Fy
+bTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXEtbGlicmVtNS5kdHNpCj4gaW5kZXggZmZiNWZl
+NjE2MzBkLi4xYjM5NTE0ZDVjMTIgMTAwNjQ0Cj4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9m
+cmVlc2NhbGUvaW14OG1xLWxpYnJlbTUuZHRzaQo+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMv
+ZnJlZXNjYWxlL2lteDhtcS1saWJyZW01LmR0c2kKPiBAQCAtNDUsNyArNDUsNiBAQCBrZXktdm9s
+LWRvd24gewo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oGdwaW9zID0gPCZncGlvMSAxNyBHUElPX0FDVElWRV9MT1c+Owo+IMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGxpbnV4LGNvZGUgPSA8S0VZX1ZPTFVNRURP
+V04+Owo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGRl
+Ym91bmNlLWludGVydmFsID0gPDUwPjsKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoHdha2V1cC1zb3VyY2U7Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqB9Owo+IMKgCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBrZXktdm9s
+LXVwIHsKPiBAQCAtNTMsNyArNTIsNiBAQCBrZXktdm9sLXVwIHsKPiDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBncGlvcyA9IDwmZ3BpbzEgMTYgR1BJT19B
+Q1RJVkVfTE9XPjsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqBsaW51eCxjb2RlID0gPEtFWV9WT0xVTUVVUD47Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZGVib3VuY2UtaW50ZXJ2YWwgPSA8NTA+Owo+IC3C
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgd2FrZXVwLXNvdXJj
+ZTsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoH07Cj4gwqDCoMKgwqDCoMKgwqDC
+oH07Cj4gwqAKCg==
 
-> The CPU clock controller plays a general role in the Amlogic A1 SoC
-> family by generating CPU clocks. As an APB slave module, it offers the
-> capability to inherit the CPU clock from two sources: the internal fixed
-> clock known as 'cpu fixed clock' and the external input provided by the
-> A1 PLL clock controller, referred to as 'syspll'.
->
-> It is important for the driver to handle the cpu_clk rate switching
-> effectively by transitioning to the CPU fixed clock to avoid any
-> potential execution freezes.
->
-
-Please group your changes, fixes then bindings then driver.
 
