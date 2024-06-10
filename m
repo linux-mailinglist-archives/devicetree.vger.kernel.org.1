@@ -1,101 +1,56 @@
-Return-Path: <devicetree+bounces-74326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A202902B7B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 00:21:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00A2A902B7D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 00:21:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AEE88B22CD8
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 22:21:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D0491F224AC
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 22:21:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB7E314F9EF;
-	Mon, 10 Jun 2024 22:20:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBE2F1509B6;
+	Mon, 10 Jun 2024 22:21:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="DKN6L52Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P4YSj1We"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 063FE745F4
-	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 22:20:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC1A218E2A;
+	Mon, 10 Jun 2024 22:21:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718058057; cv=none; b=ANuAL138zHck5gX3UH4Wv+2jDrE+Xc2XbI8ek3HfAukDrXWQDrtmWI6iFN1t8FudJg4+Tozx9N48lwqZ2mugErjm5WSKAWU3iAgYrjPeme725sHwcXys5IeC/OYKdznc1sSe7L5m58i0zwXj6uq8Yz7FbAiIqQSdYhcF/EKG7Sg=
+	t=1718058064; cv=none; b=n1W7eTroLibYTbxXJ/T4Yb/Gx0QWIn4fCPOhv698C9UK6JQqq/VFKnNNDUvGMBJNniDmYMb+8vypEuBxmTl2PkEAdoVH7cHApaREYwzj2o7g21fzGIKfAVD9ULwMrgWhMaOs1mC/2CLadk3j6bOBzlpJpuoetyLpmRxE932d8LQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718058057; c=relaxed/simple;
-	bh=g/PhggfIv0EWCrJhXnxNBPYjMM0MmpbQ2pNY+JxsEzs=;
+	s=arc-20240116; t=1718058064; c=relaxed/simple;
+	bh=pl6keJwPlGBjGuebt18yLI6GtwU9xIevymMuRab/vLk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IJrY6EfdupGmTFLr3chE33/Vg1pUxfiVVRbOq1+hqYES5ZmG9I+Rmyht/7gumsiM0EBuULmVRoy8ZskJUvhGKuxdxLiQl75USxB452ASrJfY0y13z5mSZYZrNRDhaUmFOnmUxcaeySuGMJ9m+ZaXSjJQ9LkiuUDjxpyYO293NQE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=DKN6L52Q; arc=none smtp.client-ip=209.85.222.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-7958133cca2so143938485a.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 15:20:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1718058055; x=1718662855; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=IK36WmyP6FxP12hNW+mAYXAuqO1K5/Xu82XpbAGcEYI=;
-        b=DKN6L52Q3QUjtumuUcOj3NNFs75fO7XGRdyjbTyU7y8cvvn9M6McPIYlhJ1X6d/w/K
-         dhLYveG7Q9YZQxNHjmfOq7WE2T6+jJbYaj4vql9yo3q1zWNtaHVg0OxGgYWbWlsqFJCM
-         UrV2NZVOinACUuNuDUNZkp79e9sYynja64qIH0wjhBhqtQln5w7EUvkkZSpt/K7G+RUY
-         qN6DYN2ezCKkuQERpAtp4Qn/T+0zZmziL8c7D7PaLe30cKBfgS0YjqDJ/PnR90u7pNae
-         wRYDVHX9kbgtTme7pGEmXGVx+XxkNeBfE9MN3zZkP6r0WgA5NoJkr/QPv588wPeX5rEk
-         yDAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718058055; x=1718662855;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IK36WmyP6FxP12hNW+mAYXAuqO1K5/Xu82XpbAGcEYI=;
-        b=nrM+U6qjMpfcN6ciA5EvodUhIVyXTabtCq1W6qM1E7L/d+0cuIV4TwwV1AUFLArtto
-         GtTDg9+41Ow9e7SflYPkgSHgV5+IyPLMU8/W5/Ka8Uu/Cb9ctQuQXy8g2h4Xyu3G6VAw
-         VrV7x88D1PbymlmdQVVGuReZxdid2m7PfPmUD/1qkttd+yau+hO63mGFnN2DgsCZ7CPP
-         o8hR+H+XDsaNBH6qhcdF5m+X6halGA1OGX2Gn5PYOIQlA6gLImspv7v2+V5l7iuZTbeC
-         tfo9pr461OFVFMTG68/EK//7b3ihDiaIL+aGUjUwQQo5r5BRg3nMuHAby1gO5oEY1srV
-         JaOA==
-X-Forwarded-Encrypted: i=1; AJvYcCUGh/Qwet8WrS32Rf7HEoMrZVluPOH4c5CY4sEV+lrvIuo4jOPBN3EvWHfxjo0UXYvH0VIG+dg/KDcjwC/vtwBofxfO5cRoi41OQw==
-X-Gm-Message-State: AOJu0YzJb6JRxWXhIF/jDuUfvo52i8fnuQuFxbZ8ctWQL64l87XD7BTA
-	VlQmmEgpvRo4RDrEQokTcnS8ZqwoBTf1/TH9ev3TBIg2Gz6WWEFPVWMy08SiOGc=
-X-Google-Smtp-Source: AGHT+IHVjlKMfA9VJCEHaoVM/zmJJzh0SiPbzZERcL72L1VgK0N7xsovbpdRc0foi5BzwXCYoYpsjA==
-X-Received: by 2002:a05:620a:4094:b0:796:5fd7:5219 with SMTP id af79cd13be357-797c2d9fffcmr157451985a.20.1718058054627;
-        Mon, 10 Jun 2024 15:20:54 -0700 (PDT)
-Received: from ziepe.ca ([128.77.69.89])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7954f6f337dsm302830785a.42.2024.06.10.15.20.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jun 2024 15:20:52 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.95)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1sGnNj-00Ftbc-6y;
-	Mon, 10 Jun 2024 19:20:51 -0300
-Date: Mon, 10 Jun 2024 19:20:51 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Tomasz Jeznach <tjeznach@rivosinc.com>
-Cc: Zong Li <zong.li@sifive.com>, Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Anup Patel <apatel@ventanamicro.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Nick Kossifidis <mick@ics.forth.gr>,
-	Sebastien Boeuf <seb@rivosinc.com>,
-	Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=ea8WqdF4VJpYsCcnmzDNOLhdZDSKnWYukNvXVbmmfMkeAisteq2e3BGBtZ7gbYGUU7baQKctGa/s1cSRmnp94Pz+B8YOBVv7aoIR5mJR/71mhDziJcv8vrKaVh9LRjnuZUdpDYWko/wUaFpKjv6ZfiOrC08u/PYcFUxfKS9oYWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P4YSj1We; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 578A9C2BBFC;
+	Mon, 10 Jun 2024 22:21:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718058064;
+	bh=pl6keJwPlGBjGuebt18yLI6GtwU9xIevymMuRab/vLk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=P4YSj1Wek5SPedwirmW2S6v4vcVcKkM/ixw20phNWnY8ljYuYUOgu7bGEbaN44uA6
+	 GcdJJigQwwTnIyzrEjVL5CGHv70AGx0NlxrI2V2q2YvIxewHElXyzpcRS0Qi6Axd0W
+	 Bw4JRSP+bUWIaFqHV97RDyd9dbvw/h1AVwY+lbcGw+uA2EfhzVyN7H6mfKK/NgfjAJ
+	 0BSPn+eZScC0g0nu+73N40DigghH6sAHBmotrpP2lz3NdzZp8dYCQBxMY39WN/0rJ/
+	 iUMyKdPXTsN/Pj+oEXq0R2MBmkJym0GXu2fn6HjyAKIM2fWl/rEKEsHDN8KMM30JmT
+	 EREj7kR19fo5Q==
+Date: Mon, 10 Jun 2024 16:21:03 -0600
+From: Rob Herring <robh@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	iommu@lists.linux.dev, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux@rivosinc.com,
-	Lu Baolu <baolu.lu@linux.intel.com>, Jim Shu <jim.shu@sifive.com>,
-	Vincent Chen <vincent.chen@sifive.com>
-Subject: Re: [PATCH v6 5/7] iommu/riscv: Device directory management.
-Message-ID: <20240610222051.GO791043@ziepe.ca>
-References: <cover.1716578450.git.tjeznach@rivosinc.com>
- <e18ec8ac169ae7f76e9044c26d0768e6469bad19.1716578450.git.tjeznach@rivosinc.com>
- <CANXhq0p4gERQeROSCSKqxnRZq9-fGfmROGV8JZyqFaenNpnsLA@mail.gmail.com>
- <20240610174934.GM791043@ziepe.ca>
- <CAH2o1u4c6ttUWTb1zrc8DScDMuDJJYR-tTHCPYW_3FV4uuQDtA@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ASoC: dt-bindings: convert tas571x.txt to dt-schema
+Message-ID: <20240610222103.GA3160412-robh@kernel.org>
+References: <20240607-topic-amlogic-upstream-bindings-convert-tas57xx-v1-1-ebf1e4919bb1@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,73 +59,172 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAH2o1u4c6ttUWTb1zrc8DScDMuDJJYR-tTHCPYW_3FV4uuQDtA@mail.gmail.com>
+In-Reply-To: <20240607-topic-amlogic-upstream-bindings-convert-tas57xx-v1-1-ebf1e4919bb1@linaro.org>
 
-On Mon, Jun 10, 2024 at 11:48:23AM -0700, Tomasz Jeznach wrote:
-> > Right, this is why I asked about negative caching.
-> >
-> > The VMMs are a prime example of negative caching, in something like
-> > the SMMU implementation the VMM will cache the V=0 STE until they see
-> > an invalidation.
-> >
-> > Driving the VMM shadowing/caching entirely off of the standard
-> > invalidation mechanism is so much better than any other option.
-> >
-> > IMHO you should have the RISCV spec revised to allow negative caching
-> > in any invalidated data structure to permit the typical VMM design
-> > driven off of shadowing triggered by invalidation commands.
-> >
-> > Once the spec permits negative caching then the software would have to
-> > invalidate after going V=0 -> V=1.
-> >
-> > Jason
+On Fri, Jun 07, 2024 at 11:54:35AM +0200, Neil Armstrong wrote:
+> Convert the text bindings for the Texas Instruments
+> TAS5711/TAS5717/TAS5719/TAS5721 stereo power amplifiers to
+> dt-schema.
 > 
-> Allowing negative cacheing by the spec (e.g. for VMM use cases) and
-> documenting required invalidation sequences would definitely help
-> here. 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  .../devicetree/bindings/sound/tas571x.txt          |  49 --------
+>  .../devicetree/bindings/sound/ti,tas57xx.yaml      | 129 +++++++++++++++++++++
+>  2 files changed, 129 insertions(+), 49 deletions(-)
 
-Yes, you probably should really do that.
+Looks like 'port' was undocumented and should be added.
 
-> I'm hesitating adding IODIR.INVAL that is not required by the
-> spec [1],
+> diff --git a/Documentation/devicetree/bindings/sound/ti,tas57xx.yaml b/Documentation/devicetree/bindings/sound/ti,tas57xx.yaml
+> new file mode 100644
+> index 000000000000..fa6d6c1c8535
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/ti,tas57xx.yaml
+> @@ -0,0 +1,129 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/ti,tas57xx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments TAS5711/TAS5717/TAS5719/TAS5721 stereo power amplifiers
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,tas5707
+> +      - ti,tas5711
+> +      - ti,tas5717
+> +      - ti,tas5719
+> +      - ti,tas5721
+> +      - ti,tas5733
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: GPIO for the active low reset line
+> +
+> +  pdn-gpios:
+> +    maxItems: 1
+> +    description: GPIO for the active low powerdown line
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: mclk
+> +
+> +  AVDD-supply: true
+> +  DVDD-supply: true
+> +  HPVDD-supply: true
+> +  PVDD_AB-supply: true
+> +  PVDD_CD-supply: true
+> +  PVDD_A-supply: true
+> +  PVDD_B-supply: true
+> +  PVDD_C-supply: true
+> +  PVDD_D-supply: true
+> +  DRVDD-supply: true
+> +  PVDD-supply: true
+> +
+> +  '#sound-dai-cells':
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#sound-dai-cells'
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,tas5717
+> +              - ti,tas5719
+> +    then:
+> +      properties:
+> +        PVDD_A-supply: false
+> +        PVDD_B-supply: false
+> +        PVDD_C-supply: false
+> +        PVDD_D-supply: false
+> +        DRVDD-supply: false
+> +        PVDD-supply: false
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,tas5711
+> +    then:
+> +      properties:
+> +        HPVDD-supply: false
+> +        PVDD_AB-supply: false
+> +        PVDD_CD-supply: false
+> +        DRVDD-supply: false
+> +        PVDD-supply: false
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,tas5721
+> +    then:
+> +      properties:
+> +        HPVDD-supply: false
+> +        PVDD_AB-supply: false
+> +        PVDD_CD-supply: false
+> +        PVDD_A-supply: false
+> +        PVDD_B-supply: false
+> +        PVDD_C-supply: false
+> +        PVDD_D-supply: false
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +   #include <dt-bindings/gpio/gpio.h>
 
-If you expect to rapidly revise the spec then you should add it right
-now so that all SW implementations that exist are
-conforming. Otherwise you'll have compatability problems when you come
-to implement nesting.
+You aren't using this.
 
-Obviously the VMM can't rely on a negative caching technique unless
-the spec says it can.
+> +   i2c {
+> +     #address-cells = <1>;
+> +     #size-cells = <0>;
 
-> but this is something that can be controlled by a
-> capabilities/feature bit once added to the specification or based on
-> VID:DID of the emulated Risc-V IOMMU.
+blank line
 
-I'm not sure it really can. Once you start shipping SW people will run
-it in a VM and the VMM will have to forever work without negative
-caching.
+> +     codec: codec@2a {
 
-My strong advice is to not expect the VMM trap random pages in guest
-memory, that is a huge mess to implement and will delay your VMM side.
+Drop label
 
-> Another option to consider for VMM is to utilize the WARL property of
-> DDTP, and provide fixed location of the single level DDTP, pointing to
-> MMIO region, where DDTE updates will result in vmm exit / fault
-> handler. This will likely not be as efficient as IODIR.INVAL issued
-> for any DDTE updates.
-
-I don't know what all those things mean, but if you mean to have the
-VMM supply faulting MMIO space that the VM is forced to put the DDTE
-table into, then that would be better. It is still quite abnormal from
-the VMM side..
-
-My strong advice is to fix this. It is trivial to add the negative
-caching language to the spec and will cause insignificant extra work
-in this driver.
-
-The gains on at least the ease of VMM implementation and architectural
-similarity to other arches are well worth the effort. Otherwise I fear
-it will be a struggle to get nesting support completed :(
-
-Jason
+> +       compatible = "ti,tas5717";
+> +       reg = <0x2a>;
+> +       #sound-dai-cells = <0>;
+> +       reset-gpios = <&gpio1 15 0>;
+> +       pdn-gpios = <&gpio1 15 0>;
+> +       AVDD-supply = <&avdd_supply>;
+> +       DVDD-supply = <&dvdd_supply>;
+> +       HPVDD-supply = <&hpvdd_supply>;
+> +       PVDD_AB-supply = <&pvdd_ab_supply>;
+> +       PVDD_CD-supply = <&pvdd_cd_supply>;
+> +     };
+> +   };
+> +
+> +...
+> 
+> ---
+> base-commit: c3f38fa61af77b49866b006939479069cd451173
+> change-id: 20240607-topic-amlogic-upstream-bindings-convert-tas57xx-5af1e564e6a1
+> 
+> Best regards,
+> -- 
+> Neil Armstrong <neil.armstrong@linaro.org>
+> 
 
