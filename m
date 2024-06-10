@@ -1,172 +1,278 @@
-Return-Path: <devicetree+bounces-74144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 825B99021F2
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 14:49:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E65369021E7
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 14:48:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8938D1C20F36
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 12:49:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B4A81F215FA
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 12:48:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAE3380C04;
-	Mon, 10 Jun 2024 12:49:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75EAD80639;
+	Mon, 10 Jun 2024 12:48:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="T19j8tbm"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="CB7tWaAS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C98D80637;
-	Mon, 10 Jun 2024 12:49:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F27380BF3;
+	Mon, 10 Jun 2024 12:48:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718023774; cv=none; b=Wk4d+IAdHVGfayroWieQjvrVLkiRF4SUJ3uRKg+KpGFbTQk9T6DPpyU6mzgFTYloZCtnErqTuE8jSpVisJ1iR4p06+sWoLICuVQgjMhaA+xW7ukE3g6Nxbko9sGYeWngogB6+EpW55Zw4ugqHzhRxRwPTxCFrHqyoS3YuZ1o+O4=
+	t=1718023731; cv=none; b=rwM40I0HLk7iI3P+htqcQk2yiE2PaXm+ray5yQrfvkYqNN3igqbzdF393yX0EprlILoC98IFJYP3CdmwbZnyk2vEVx5ekmO/mz/AXnqcuX7RAtQuEd/ygSsQj9AXH9FW2VL8ZoPHzuy/36+R/Q9C2iCaLczKrc9/3dHlCi1Bvx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718023774; c=relaxed/simple;
-	bh=5gClVd7Hxm0FgBkjvQhHCXMpiq9XWfBlxTHw2Fl17mA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=PF1ibXnzvyNZ34BgPDfI/DsEnkfhaHHclAjwyhNhmeViLdcwa73HKK0ksVWFgNJgCPSNsF27MHAPIXaSS0WAU+vm/ldNGPwjBNIbVAV4mvoLDOkyDsSELcsXoqIuqfias9oJzIp9AcqM7Q1KgObkEPksEdJD0fv5KL+8GtjjDCQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=T19j8tbm; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45ACUjv2011463;
-	Mon, 10 Jun 2024 14:49:01 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	DlvjTDhAewRmsQzkTjZ5kyD/9jV9SyUh5OV0cymIvvM=; b=T19j8tbmVLhAfEEL
-	LtDZjXBORaDCTSc8L8BKpVn8kvicYFTsql8dTHE0wnCOAkKpKOo+vYFqxkpeZXSU
-	iqR1lBF9/Q5mS4lqDN7LffB7KBfxRlyQ8bZ8Bo8lSumCPBlpY4ePny05h5k19Jjs
-	+A1iUBeE5U5Qgf14sc4dkA2/ZErzOidxl1KtOtp2BoIFxENRfISU3MVEhT6LMkIr
-	nY5FhDQDy6OI/kBOHxCbLD1l3b1jBsiqyCCaYNP2hv4NumZ3nk1FNFblSWVMfA00
-	SdqOgElYVE6Nujzkg6YAnyDXnfaz9nn6GVgzBj1lXzozApI9gHuDuyQys4xk8kLD
-	tKNagA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yme6d6vm3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Jun 2024 14:49:01 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 32E954004D;
-	Mon, 10 Jun 2024 14:48:54 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0C63D217B83;
-	Mon, 10 Jun 2024 14:47:52 +0200 (CEST)
-Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 10 Jun
- 2024 14:47:51 +0200
-Message-ID: <be1e4321-2aa1-455b-a373-8c9e1f69b33f@foss.st.com>
-Date: Mon, 10 Jun 2024 14:47:51 +0200
+	s=arc-20240116; t=1718023731; c=relaxed/simple;
+	bh=5xSpIRs+951Kve6tBfW/525+iQeRJrLClC3SoiW2dso=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LHSG2k+dO5haRlcK/x3NF550iebSLUnuH7PPfhLECkFMwvT7IFvZd+cdlNdLMeds3tOeenZXOsh8ei95IJpfHjc2dRe96VWln6THkM/m5SHOPNCS6Nj1oKgAeWWH0ytOBiACRDWw+0Xd7HCnz3a1J9JyJl9fh1kx2+mT1xR1Oko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=CB7tWaAS; arc=none smtp.client-ip=37.18.73.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 98D27100009;
+	Mon, 10 Jun 2024 15:48:43 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 98D27100009
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1718023723;
+	bh=j3YIK2h8usjuYp/Fn/WGb0hwIgDEYJptTOyzUDckVro=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=CB7tWaAS8L4T5u/Wb2APAq8IO977ijed2j4sGe3NIrXrMlsmZut3p/ZpF4ctKtlGh
+	 a93blyqI8tBcdKl+ERNn6ynyI01ennDmN7EBkBwdCVE/xj6eocjEVS5v50qcBoOApR
+	 k6T/oldjby4wS8M2XYVAYATdwYZ6CVKmNiCRQUH3kzMXoTLcviYavRJww9XbUnN0xd
+	 HElrjKQV8Y6rCagOJwpUnPd04NzU+sthDEGoiKksRSJ1bdFMAfi7B/5W4tDBHIIdqf
+	 6VxowPklrawKgENcAEbg71g5wzZsypgd46BLgpjg+c7/FUUypunquZhkd7ftdULRzd
+	 0uNyhFXvhkqPw==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon, 10 Jun 2024 15:48:43 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
+ (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 10 Jun
+ 2024 15:48:43 +0300
+Date: Mon, 10 Jun 2024 15:48:42 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+CC: <neil.armstrong@linaro.org>, <mturquette@baylibre.com>,
+	<sboyd@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <jian.hu@amlogic.com>,
+	<kernel@sberdevices.ru>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v3 6/7] dt-bindings: clock: meson: add A1 CPU clock
+ controller bindings
+Message-ID: <20240610124842.mpy4rtlwtwasqf7h@CAB-WSD-L081021>
+References: <20240515185103.20256-1-ddrokosov@salutedevices.com>
+ <20240515185103.20256-7-ddrokosov@salutedevices.com>
+ <1jtti1p10m.fsf@starbuckisacylon.baylibre.com>
+ <20240610111826.im3mz64hjfkxrxhr@CAB-WSD-L081021>
+ <1j7cexow91.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 09/12] ARM: dts: stm32: add ethernet1 and ethernet2
- support on stm32mp13
-To: Marek Vasut <marex@denx.de>,
-        Christophe Roullier
-	<christophe.roullier@foss.st.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo
- Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Richard
- Cochran <richardcochran@gmail.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20240607095754.265105-1-christophe.roullier@foss.st.com>
- <20240607095754.265105-10-christophe.roullier@foss.st.com>
- <6d60bbc6-5ed3-4bb1-ad72-18a2be140b81@denx.de>
- <036c9f0d-681d-461d-b839-f781fa220e94@foss.st.com>
- <c5cb092d-dccd-48a4-b1da-4f057581618e@denx.de>
-Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <c5cb092d-dccd-48a4-b1da-4f057581618e@denx.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-10_02,2024-06-10_01,2024-05-17_01
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1j7cexow91.fsf@starbuckisacylon.baylibre.com>
+User-Agent: NeoMutt/20220415
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185833 [Jun 10 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, devicetree.org:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;salutedevices.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/06/10 11:00:00
+X-KSMG-LinksScanning: Clean, bases: 2024/06/10 11:00:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/06/10 11:09:00 #25535815
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-
-
-On 6/10/24 12:37, Marek Vasut wrote:
-> On 6/10/24 10:06 AM, Alexandre TORGUE wrote:
->> Hi Marek
+On Mon, Jun 10, 2024 at 01:47:06PM +0200, Jerome Brunet wrote:
+> On Mon 10 Jun 2024 at 14:18, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
 > 
-> Hi,
+> > Hello Jerome,
+> >
+> > Thank you for the review!
+> >
+> > On Mon, Jun 10, 2024 at 12:04:09PM +0200, Jerome Brunet wrote:
+> >> On Wed 15 May 2024 at 21:47, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
+> >> 
+> >> > Add the documentation and dt bindings for Amlogic A1 CPU clock
+> >> > controller.
+> >> >
+> >> > This controller consists of the general 'cpu_clk' and two main parents:
+> >> > 'cpu fixed clock' and 'syspll'. The 'cpu fixed clock' is an internal
+> >> > fixed clock, while the 'syspll' serves as an external input from the A1
+> >> > PLL clock controller.
+> >> >
+> >> > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> >> > Reviewed-by: Rob Herring <robh@kernel.org>
+> >> > ---
+> >> >  .../bindings/clock/amlogic,a1-cpu-clkc.yaml   | 64 +++++++++++++++++++
+> >> >  .../dt-bindings/clock/amlogic,a1-cpu-clkc.h   | 19 ++++++
+> >> >  2 files changed, 83 insertions(+)
+> >> >  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-cpu-clkc.yaml
+> >> >  create mode 100644 include/dt-bindings/clock/amlogic,a1-cpu-clkc.h
+> >> >
+> >> > diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-cpu-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-cpu-clkc.yaml
+> >> > new file mode 100644
+> >> > index 000000000000..f4958b315ed4
+> >> > --- /dev/null
+> >> > +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-cpu-clkc.yaml
+> >> > @@ -0,0 +1,64 @@
+> >> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> >> > +%YAML 1.2
+> >> > +---
+> >> > +$id: http://devicetree.org/schemas/clock/amlogic,a1-cpu-clkc.yaml#
+> >> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> > +
+> >> > +title: Amlogic A1 CPU Clock Control Unit
+> >> > +
+> >> > +maintainers:
+> >> > +  - Neil Armstrong <neil.armstrong@linaro.org>
+> >> > +  - Jerome Brunet <jbrunet@baylibre.com>
+> >> > +  - Dmitry Rokosov <ddrokosov@salutedevices.com>
+> >> > +
+> >> > +properties:
+> >> > +  compatible:
+> >> > +    const: amlogic,a1-cpu-clkc
+> >> > +
+> >> > +  '#clock-cells':
+> >> > +    const: 1
+> >> > +
+> >> > +  reg:
+> >> > +    maxItems: 1
+> >> > +
+> >> > +  clocks:
+> >> > +    items:
+> >> > +      - description: input fixed pll div2
+> >> > +      - description: input fixed pll div3
+> >> > +      - description: input sys pll
+> >> > +      - description: input oscillator (usually at 24MHz)
+> >> 
+> >> According to the documentation, fdiv5 is also an input of the CPU clock
+> >> tree.
+> >> 
+> >> That is typically the kind of things we'd prefer to get right from the
+> >> beginning to avoid modifying the bindings later.
+> >> 
+> >
+> > Could you please share which documentation you are referencing? I have
+> > the A113L documentation, and there is no mention of the CPU clock IP.
 > 
->> On 6/7/24 14:48, Marek Vasut wrote:
->>> On 6/7/24 11:57 AM, Christophe Roullier wrote:
->>>
->>> [...]
->>>
->>>> @@ -1505,6 +1511,38 @@ sdmmc2: mmc@58007000 {
->>>>                   status = "disabled";
->>>>               };
->> no space here ?
->>>> +            ethernet1: ethernet@5800a000 {
->>>> +                compatible = "st,stm32mp13-dwmac", "snps,dwmac-4.20a";
->>>> +                reg = <0x5800a000 0x2000>;
->>>> +                reg-names = "stmmaceth";
->>>> +                interrupts-extended = <&intc GIC_SPI 62 
->>>> IRQ_TYPE_LEVEL_HIGH>,
->>>> +                              <&exti 68 1>;
->>>> +                interrupt-names = "macirq", "eth_wake_irq";
->>>> +                clock-names = "stmmaceth",
->>>> +                          "mac-clk-tx",
->>>> +                          "mac-clk-rx",
->>>> +                          "ethstp",
->>>> +                          "eth-ck";
->>>> +                clocks = <&rcc ETH1MAC>,
->>>> +                     <&rcc ETH1TX>,
->>>> +                     <&rcc ETH1RX>,
->>>> +                     <&rcc ETH1STP>,
->>>> +                     <&rcc ETH1CK_K>;
->>>> +                st,syscon = <&syscfg 0x4 0xff0000>;
->>>> +                snps,mixed-burst;
->>>> +                snps,pbl = <2>;
->>>> +                snps,axi-config = <&stmmac_axi_config_1>;
->>>> +                snps,tso;
->>>> +                access-controllers = <&etzpc 48>;
->>>
->>> Keep the list sorted.
->>
->> The list is currently not sorted. I agree that it is better to have a 
->> common rule to easy the read but it should be applied to all the nodes 
->> for the whole STM32 family. Maybe to address by another series. For 
->> the time being we can keep it as it is.
+> You should get in touch with Amlogic.
 > 
-> Why is the st,... and snps,... swapped anyway ? That can be fixed right 
-> here.
 
-I agree.
+Okay, I will double check with Amlogic and back with accurate
+information.
 
+> > I retrieved below register map from the vendor's custom driver:
+> >
+> > ===
+> > CPUCTRL_CLK_CTRL0
+> >
+> > bits 1:0 - cpu_fsource_sel0
+> >     0 - xtal
+> >     1 - fclk_div2
+> >     2 - fclk_div3
+> >
+> > bit 2 - cpu_fsel0
+> >     0 - cpu_fsource_sel0
+> >     1 - cpu_fsource_div0
+> >
+> > bit 3 - UNKNONWN
+> >
+> > bits 9:4 - cpu_fsource_div0
+> >     Divider value
+> >
+> > bit 10 - cpu_fclk
+> >     0 - cpu_fsel0
+> >     1 - cpu_fsel1
+> >
+> > bit 11 - cpu_clk
+> >     0 - cpu_fclk
+> >     1 - sys_pll
+> >
+> > bits 15:12 - UNKNONWN
+> >
+> > bits 17:16 - cpu_fsource_sel1
+> >     0 - xtal
+> >     1 - fclk_div2
+> >     2 - fclk_div3
+> >
+> > bit 18 - cpu_fsel1
+> >     0 - cpu_fsource_sel1
+> >     1 - cpu_fsource_div1
+> >
+> > bit 19 - UNKNONWN
+> >
+> > bits 25:20 - cpu_fsource_div1
+> >     Divider value
+> >
+> > bits 31:26 - UNKNONWN
+> > ===
+> >
+> > As you can see it doesn't have any other inputs except fclk_div2,
+> > fclk_div3, sys_pll and xtal.
 > 
-> Why is the access-controllers at the end ? That can be fixed in separate 
-> series, since that seems to have proliferated considerably.
+> You might not know what to do with it yet, still it is part of the
+> documentation and should be part of the bindings too
+> 
+> >
+> >> > +
+> >> > +  clock-names:
+> >> > +    items:
+> >> > +      - const: fclk_div2
+> >> > +      - const: fclk_div3
+> >> > +      - const: sys_pll
+> >> > +      - const: xtal
+> >> > +
+> >> > +required:
+> >> > +  - compatible
+> >> > +  - '#clock-cells'
+> >> > +  - reg
+> >> > +  - clocks
+> >> > +  - clock-names
+> >> > +
+> >> > +additionalProperties: false
+> >> > +
+> >> > +examples:
+> >> > +  - |
+> >> > +    #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
+> >> > +    apb {
+> >> > +        #address-cells = <2>;
+> >> > +        #size-cells = <2>;
+> >> > +
+> >> > +        clock-controller@fd000000 {
+> >> > +            compatible = "amlogic,a1-cpu-clkc";
+> >> > +            reg = <0 0xfd000080 0 0x8>;
+> >> 
+> >> If reg is <0 0xfd000080 0 0x8> then node name should be clock-controller@fd000080
+> >> 
+> >
+> > Okay, I will fix that example in the next version.
+> >
+> > [...]
+> 
+> -- 
+> Jerome
 
-Yes for all other nodes using this bus firewall binding  but in a 
-separate series
-
-
-
-
+-- 
+Thank you,
+Dmitry
 
