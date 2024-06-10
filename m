@@ -1,161 +1,126 @@
-Return-Path: <devicetree+bounces-74166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5348902351
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 16:01:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05DAD902368
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 16:03:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 984C41C221C6
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 14:01:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86E9E285F73
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 14:03:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D82F314E2D9;
-	Mon, 10 Jun 2024 13:56:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KR64bmM+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E85A184DE0;
+	Mon, 10 Jun 2024 14:02:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mxout70.expurgate.net (mxout70.expurgate.net [194.37.255.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 112091411D7;
-	Mon, 10 Jun 2024 13:56:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFAEE78B4C;
+	Mon, 10 Jun 2024 14:02:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.37.255.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718027795; cv=none; b=Td/BoxqHHw0EevRJnM6Id/0+Re4ISZsCwFwvxSGepiBtMLXZokxWtkutfmpXymHl8SsDfsGVORdv99ONavE7bBjf8AUWca2Xa96kKn5ZKo/EtUVsw2oKwCUciJrAro1MWCXHk/dNVaGbaOcsdjlPSBYXlgIeNX9kBWQhtBK353I=
+	t=1718028156; cv=none; b=Hmmo91wb9q0br3tLMQvG+CJGdize8CuYqrHityOhe0XoNK79HmlTgmXQfvneTnbuV5+bS7+NybEg+q+gw0gjUZw3Xdq7lV2xt5TyfZO8GeX5cmkSUlKcz3uYx9QEnRwCHnTjPbrlHVnsWyAddVjth+KNZlXu4Rl+r96F9YBEwV4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718027795; c=relaxed/simple;
-	bh=cL4zYHOUTrROgPJMTGHdIkSCW0JMb4J3yiWWX+7hroE=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=meYiUdX7He3DTepCOfOJ0kbvm7/tSrrwEM89B5NYGSllFArUyqndT1tyEKDMpYa4kTD/UBU2WdamDReHAOseoc15F45n4wPxfDO1YlFxO51orVIG4pwYj55Qk7C9MnNPXD3TrHvJqFtlmz5EiH/IdmVYB9qWRj1GInn1X2cVSTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KR64bmM+; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a68b41ef3f6so494477466b.1;
-        Mon, 10 Jun 2024 06:56:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718027792; x=1718632592; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=aKiRdG6IE0dAu5/ML0DRkz7ioaoUbf9nHeDRsbZ/6cg=;
-        b=KR64bmM+1CLMhzKb9oqmw/GqeVwcX4XEVknJyfBu3AQA6H/9F/YrmaWgp+AspnhZrE
-         wflqtCIqwLxOL4Kstjf6ZmpD/hwrS+ULGK9cgfHlstMWu2ppKGAl5WFpdf26hD9BBwHi
-         i1E5G/i0TrMBe6Hdbpnx79tyfXmUx7ZjJGeGfQYikiqJXpo8UOuok6XM1oBJAh0usY0H
-         3Y1c/8lCa/Bb6nz8MEtCu3Y8g4XuhSIFGdIEytqv8JlXWVfKtnqs2PwhrFClCsL0Opj/
-         EJ959NRhvPF4GOZMOAt8NVBQiqu/MS3sRrnJTT8+tnt8nhYuJn/NpZQVF3ZqAuuWFwfs
-         ruKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718027792; x=1718632592;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aKiRdG6IE0dAu5/ML0DRkz7ioaoUbf9nHeDRsbZ/6cg=;
-        b=YY6GjyVh/xMRo6q0bv1Sk0odB+K8YyARvGCj0qEFw+HHEQu95b568/VWvjuBAyOzur
-         9MXsZEebdd8WiAc9/mMZfdlh7BrN9AVSfh/x75lcKDCyTp6POfLK5M2LXLjQ9qp9CAZK
-         BpXP7pxP9+BHvZsJ9JB4FQCp3eKCFkqrWLBWBLov4GoYJexUXvdy0Ca3WIHoXtesIcoI
-         /ReASP9/EaiWI5irdCYX593WF4cHbe5/iPPwsQ5UeDvUsIw+xcXaFNj+g0mTUBd25wxf
-         8f07EoR2GvKv77oxuTQUZQ/fCT17Lpdm1Wf/Mk6CpkGZ6y1RQvebhEoinOkG2Idkq5eO
-         5f9A==
-X-Forwarded-Encrypted: i=1; AJvYcCXZ9g/uNIaSX21CpyVVnHfN81mH0n1dbddvElLXyuE+2P1MdOG6wCRwZ6Piw9ew8F2K4GcLKi+mQrz8ydDbQWm0OqZs+vlVBsG2+EUfL78iUOL529k12sByXIMU9udCErpWjbylwGPIIkB2WqkwbafaqPGNveCBG7FOl/Ir9qrzxeQTzk1w
-X-Gm-Message-State: AOJu0YwkLPB59IntwEViVEsRZwCUhhgVIrNw+3i0jABnjxc0Ma2Pn/Jn
-	miWYKH3X9nv0hzZ43KH1i3Nk7Ry8sWwY9tc/KPr4CTiVLEs9NYk=
-X-Google-Smtp-Source: AGHT+IEaCfhpaGaeNvro0IJoqapFgXHDI0HHYONRa7o82dj+8EDsxBZg7VHJktoUt9EW7H6Z824NaQ==
-X-Received: by 2002:a17:906:285a:b0:a6f:1f18:2b72 with SMTP id a640c23a62f3a-a6f1f182ccamr169363966b.0.1718027792023;
-        Mon, 10 Jun 2024 06:56:32 -0700 (PDT)
-Received: from ?IPV6:2a02:810b:f40:4600:efc5:4499:36c1:811e? ([2a02:810b:f40:4600:efc5:4499:36c1:811e])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f200ce38esm122278266b.92.2024.06.10.06.56.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jun 2024 06:56:31 -0700 (PDT)
-Message-ID: <aa475252-701c-4d1a-b495-8079dfd01a86@gmail.com>
-Date: Mon, 10 Jun 2024 15:56:30 +0200
+	s=arc-20240116; t=1718028156; c=relaxed/simple;
+	bh=8ogpqPg5B9gzD1GjH3xhnCf8GsTsdcFwCOJjrYZ4NgU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=U8mhfOmyRZv2seprXnmaEGad1GmkwPruonbQXVcIsOkEHf9+VyZd4+OtmiyCyGCl1hYun/GH20HDHKZNPrwgdKSzePVTfYDbXQlqwr2AxIv9H9wU5IZYa8wP+AwNM2RnpiET2wLEdvwZfH7vR5XqXBm0Oh2aoyWTwEYXrVUiex8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; arc=none smtp.client-ip=194.37.255.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dev.tdt.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dev.tdt.de
+Received: from [127.0.0.1] (helo=localhost)
+	by relay.expurgate.net with smtp (Exim 4.92)
+	(envelope-from <prvs=9905c7c8d6=ms@dev.tdt.de>)
+	id 1sGfbT-00C8Ke-RZ; Mon, 10 Jun 2024 16:02:31 +0200
+Received: from [195.243.126.94] (helo=securemail.tdt.de)
+	by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ms@dev.tdt.de>)
+	id 1sGfbT-00CRgN-9o; Mon, 10 Jun 2024 16:02:31 +0200
+Received: from securemail.tdt.de (localhost [127.0.0.1])
+	by securemail.tdt.de (Postfix) with ESMTP id 06CE3240053;
+	Mon, 10 Jun 2024 16:02:31 +0200 (CEST)
+Received: from mail.dev.tdt.de (unknown [10.2.4.42])
+	by securemail.tdt.de (Postfix) with ESMTP id 85E4F240050;
+	Mon, 10 Jun 2024 16:02:30 +0200 (CEST)
+Received: from mschiller1.dev.tdt.de (unknown [10.2.3.20])
+	by mail.dev.tdt.de (Postfix) with ESMTPSA id F06A236F2E;
+	Mon, 10 Jun 2024 16:02:29 +0200 (CEST)
+From: Martin Schiller <ms@dev.tdt.de>
+To: martin.blumenstingl@googlemail.com,
+	hauke@hauke-m.de,
+	andrew@lunn.ch,
+	f.fainelli@gmail.com,
+	olteanv@gmail.com,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	ms@dev.tdt.de
+Subject: [PATCH net-next v3 00/12] net: dsa: lantiq_gswip: code improvements
+Date: Mon, 10 Jun 2024 16:02:07 +0200
+Message-ID: <20240610140219.2795167-1-ms@dev.tdt.de>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Alex Bee <knaerzche@gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: media: rockchip,vpu: Document RK3128
- compatible
-To: Sebastian Fricke <sebastian.fricke@collabora.com>,
- Hans Verkuil <hverkuil@xs4all.nl>, Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240523185633.71355-1-knaerzche@gmail.com>
- <20240523185633.71355-2-knaerzche@gmail.com> <3639993.hdfAi7Kttb@diego>
- <20240528083747.z55laxnmioorzaru@basti-XPS-13-9310>
-Content-Language: en-US
-In-Reply-To: <20240528083747.z55laxnmioorzaru@basti-XPS-13-9310>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-purgate-ID: 151534::1718028151-92C5D34D-2800A53D/0/0
+X-purgate-type: clean
+X-purgate: clean
 
-Hi,
+This patchset for the lantiq_gswip driver is a collection of minor fixes
+and coding improvements by Martin Blumenstingl without any real changes
+in the actual functionality.
 
-Am 28.05.24 um 10:37 schrieb Sebastian Fricke:
-> Hey Heiko,
->
-> On 28.05.2024 10:19, Heiko Stübner wrote:
->> Am Donnerstag, 23. Mai 2024, 20:56:31 CEST schrieb Alex Bee:
->>> The integration for this SoC is similar to RK3066/RK3188.
->>>
->>> Document it's compatible.
->>>
->>> Signed-off-by: Alex Bee <knaerzche@gmail.com>
->>
->> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
->>
->> Media people, can you apply this patch alone from the series?
->
-> Yes, will do got this on my list already :).
->
-is there anything holding you back from applying this? It's really only the
-bindings which go though the media tree (i.e. this patch) and it has
-been acked and reviewed some weeks ago. It'd be great if we could add the
-vpu to the SoC DT before 6.11 merge window opens but the addition depends
-on the compatible to be documented. Please let me know if there's anything
-left to do for me.
+=3D=3D=3D Changelog =3D=3D=3D
+From v2:
+- removed unused variable max_ports in gswip_add_single_port_br()
 
-Alex
->>
->> Thanks
->> Heiko
->
-> Regards,
-> Sebastian
->
->>
->>> ---
->>>  Documentation/devicetree/bindings/media/rockchip-vpu.yaml | 4 +++-
->>>  1 file changed, 3 insertions(+), 1 deletion(-)
->>>
->>> diff --git 
->>> a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml 
->>> b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
->>> index c57e1f488895..d1b47b14ca57 100644
->>> --- a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
->>> +++ b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
->>> @@ -26,7 +26,9 @@ properties:
->>>            - rockchip,rk3568-vpu
->>>            - rockchip,rk3588-av1-vpu
->>>        - items:
->>> -          - const: rockchip,rk3188-vpu
->>> +          - enum:
->>> +              - rockchip,rk3128-vpu
->>> +              - rockchip,rk3188-vpu
->>>            - const: rockchip,rk3066-vpu
->>>        - items:
->>>            - const: rockchip,rk3228-vpu
->>>
->>
->>
->>
->>
->>
+From v1:
+- signal that we only update example code in dt-bindings
+- don't use the word 'fix' if not appropriate
+- new patch: add terminating '\n' where missing
+- renamed MAC_BRIDGE macros to make it obvious which register field is
+  used
+- new patch: remove dead code from gswip_add_single_port_br()
+- updated error message if FID not found in gswip_port_fdb()
+
+Martin Blumenstingl (9):
+  dt-bindings: net: dsa: lantiq_gswip: Add missing CPU port phy-mode and
+    fixed-link to example
+  net: dsa: lantiq_gswip: Only allow phy-mode =3D "internal" on the CPU
+    port
+  net: dsa: lantiq_gswip: Use dev_err_probe where appropriate
+  net: dsa: lantiq_gswip: Don't manually call gswip_port_enable()
+  net: dsa: lantiq_gswip: Use dsa_is_cpu_port() in
+    gswip_port_change_mtu()
+  net: dsa: lantiq_gswip: Change literal 6 to ETH_ALEN
+  net: dsa: lantiq_gswip: Consistently use macros for the mac bridge
+    table
+  net: dsa: lantiq_gswip: Update comments in gswip_port_vlan_filtering()
+  net: dsa: lantiq_gswip: Improve error message in gswip_port_fdb()
+
+Martin Schiller (3):
+  net: dsa: lantiq_gswip: add terminating \n where missing
+  net: dsa: lantiq_gswip: do also enable or disable cpu port
+  net: dsa: lantiq_gswip: Remove dead code from
+    gswip_add_single_port_br()
+
+ .../bindings/net/dsa/lantiq-gswip.txt         |   6 +
+ drivers/net/dsa/lantiq_gswip.c                | 123 ++++++++----------
+ 2 files changed, 61 insertions(+), 68 deletions(-)
+
+--=20
+2.39.2
+
 
