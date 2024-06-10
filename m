@@ -1,139 +1,140 @@
-Return-Path: <devicetree+bounces-74105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A29890201A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 13:06:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9E9A902022
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 13:10:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2ECEF1C214E4
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 11:06:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 582E12879EE
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jun 2024 11:10:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E95B679DD4;
-	Mon, 10 Jun 2024 11:06:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8822E7BB0A;
+	Mon, 10 Jun 2024 11:10:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="ljljwTWM"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="2avrT7jY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 542D278C6D
-	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 11:06:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36C6674C14
+	for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 11:10:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718017573; cv=none; b=MmPHnirZviUsvwx2lkUH0EJ9Y2gsY/zsFtHQgmWwNjzTg1oL+AX/VXmO45G1J9Lj7yb3PB0MD/h5OBvOonuRG6HlZDf5n1kimeNIZ48qVWsssxBXl23tXQLjXWWeq7zsAfspLMU6T8b1lTpCSK104KykNDGOYVO8sgBBwkCpBzI=
+	t=1718017819; cv=none; b=mIkr0k/q60MDtcScST2/CrTq8nwh0Tb2Upf9osuScmyRlPXbn4l+Ox7KY2QZSdewl9OP4NrieEQOg2cXoLvhr7KYtRw5C/AXwXUMb0IDSVmRieix1xQPFWjft28gsXJ1UospdC8w+ySWY4bnJ58obID1EC9VwH5tN8AfRq48EQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718017573; c=relaxed/simple;
-	bh=UHAN2MQAwy4F3MaHAlvjKZuTSk8SgdbiqOaACYFrup8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ibEYSus7Jrm11xSZ+XNOE35o2U0yJLYb9vKrmFt8JX8TcvBvHurx8BmWYQy8n58mXKYhl6ApWRgppiQy04i8WVjt2oAPtmi4Qc/ZkBFjfvSlXIs2B/mesxSbUKlu5qkQIXwek0Cb4kZGbyrkyB5rCN4J9M5EbEf8R9Gr3sx6LP4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=ljljwTWM; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-57c7681ccf3so1373916a12.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 04:06:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1718017571; x=1718622371; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZKRDnT36YiO5NHWmifxOcGKSpN9i3QJZvUnqhc0HlYc=;
-        b=ljljwTWMZs2m1H3DSxmzx/qxIuNFsYHxsqZpRR+pPKfbJeW3wXnHX38UV4owxET6lS
-         BB41rs6JptuSMByojqTi4zciFOn8xCMAg/vtdCaskGi+CxOEpX4EuD5+0ZwjadEhpZMC
-         cZH+nwGwOxEjx6x8XPdlMKfESG+Ok6aTTwyzKxGRjJt5wLI96ZZG8BVTplbq2WNzrzL/
-         9ZCdxCkl1q81XP0amhOAWjxi9bNGuIWgQngrKLSM89Hm90I9TPJBgShzJsQQ38s+8HSg
-         /tc6P/K6n+QspSbphl0VmPQ8ItBqo0c3C1l//Msb7n5odGIIjEvO6gAZiaHKpFR7Jdhc
-         YGDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718017571; x=1718622371;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZKRDnT36YiO5NHWmifxOcGKSpN9i3QJZvUnqhc0HlYc=;
-        b=v6bJo3S91dEGuBsnaiDNBmyCfWNRHD0F3omaE+aRZHJRRAk1K9oXgrD0C0qOfiJaDK
-         mjnkMCxWxFT/YdKoxvm4V1Bc75rDZ51//wytpbYsaKd3YQmYQYUd6skvkBm8vBXJbT4i
-         hYerbSwCacxKITb108eYuWURuHJUS/ICGaUjF2lmjypEqfGBYiKBp+M1cFuevFK4O89o
-         oB5k2Yk6zogSFempgQNVZ3Kk5ulzAOhuk2MUoU4GN23hF0SQlKDgWzNrRpCXO0JPfcts
-         3JOWNAOWl/fAk4zN9gqEDzfbWsrCus37RL17nMJ7UMNe+4L6TttE77mAc/OwuEyBktOC
-         kb0A==
-X-Forwarded-Encrypted: i=1; AJvYcCWjgIWkgyVblsU+ofvhct7NQn2zavJdpcOTR0NSRGu9bn89H8GC3qOUtiBGFpyxKgglwcz3BdhGqP8gDA6W0rK6xyInhRAqnYLRAg==
-X-Gm-Message-State: AOJu0YwXY22jdDmDtYmxWRDNRsg+YJhKbKbfuB1tlyFkW15yxW3odNrb
-	/4s3pv82WcH2gmJOHRfWhowKsEQ5wvQY1gFEN4kEXYolycNFD/GvlOK+gTh8nmo=
-X-Google-Smtp-Source: AGHT+IHo0tOX7ZoqFEj30qNwq0kZf+ky7YJbEiSPIgRIvjy2gNXCneqdIFwRINKKmlx0kL4JUlY/jw==
-X-Received: by 2002:a50:8d43:0:b0:57c:6d89:eaf0 with SMTP id 4fb4d7f45d1cf-57c6d89f06cmr3373682a12.14.1718017570481;
-        Mon, 10 Jun 2024 04:06:10 -0700 (PDT)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57aadf9e093sm7201840a12.13.2024.06.10.04.06.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jun 2024 04:06:10 -0700 (PDT)
-Date: Mon, 10 Jun 2024 13:06:09 +0200
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Tomasz Jeznach <tjeznach@rivosinc.com>
-Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Anup Patel <apatel@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Nick Kossifidis <mick@ics.forth.gr>, Sebastien Boeuf <seb@rivosinc.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, iommu@lists.linux.dev, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, linux@rivosinc.com, 
-	Lu Baolu <baolu.lu@linux.intel.com>, Zong Li <zong.li@sifive.com>
-Subject: Re: [PATCH v7 6/7] iommu/riscv: Command and fault queue support
-Message-ID: <20240610-3cd1ba07c1b488a451dd7ddd@orel>
-References: <cover.1717612298.git.tjeznach@rivosinc.com>
- <422f66285da1b164466b223f83d7f06564968f09.1717612299.git.tjeznach@rivosinc.com>
+	s=arc-20240116; t=1718017819; c=relaxed/simple;
+	bh=NsjQbAmUmlOlgifCA2KPWGuT+GynfWTjmgtIMLdbQcc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KXYKrUdvWMW8tAqLpqkFE5xUXxwefgLyjVtrlMvhDezKcSkEQ5ckPsxXg5tt9hBRKVIABlpumqxQJwHTnRJKZY7Y3BpVIKIN5GrpYPlkwGkeyTAjttPFD6UzrqexaQ3F/3g4Ljws9JnQruz3GuVlaxsv/Z/0C3ITBo+JwIRdJ7U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=2avrT7jY; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1718017817; x=1749553817;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=NsjQbAmUmlOlgifCA2KPWGuT+GynfWTjmgtIMLdbQcc=;
+  b=2avrT7jYbrkw33l4szAAfgUrqMR+Ew1lCNlKyG3U0lXIeMcC4VGscH76
+   I4DaqMfFYh2pJkEw1BaE4lJAYwvveCk/hVBQ/OmG6kMJW3H+oKkUP4ZZA
+   zWX7qYKWBEJHCHNTxkhZPDBTtRzmJmRVWHfYSCt2b1FIgRoVRG2FY6A0D
+   Ub8Gn1JA75DywHRs9m1QpI3W8cv4KFlmAVlQQSj1q+wH7PtS2rv8HPj8k
+   QCRdr5txjymTNOKdfE8+cngx02QrnPlp39F1BhT90ACRHb3fHqMaqljVn
+   NAIv7KdTwTuzKEiEpHc7xunPviupL1doimMQPabKVjN58EwDkeAcp/fhA
+   A==;
+X-CSE-ConnectionGUID: BcDt+H4qQZa2Sjv9BSuOAw==
+X-CSE-MsgGUID: qoMeJWC2RsKc3uE6dYlZFQ==
+X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; 
+   d="scan'208";a="194602811"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 10 Jun 2024 04:10:15 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 10 Jun 2024 04:09:35 -0700
+Received: from wendy.microchip.com (10.10.85.11) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Mon, 10 Jun 2024 04:09:33 -0700
+From: Conor Dooley <conor.dooley@microchip.com>
+To: <linux-riscv@lists.infradead.org>
+CC: <conor@kernel.org>, <conor.dooley@microchip.com>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, "Daire
+ McNamara" <daire.mcnamara@microchip.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Samuel Holland
+	<samuel.holland@sifive.com>, <devicetree@vger.kernel.org>
+Subject: [PATCH v1 0/5] PolarFire SoC Icicle Reference Design PCIe ?support?/fixes
+Date: Mon, 10 Jun 2024 12:09:12 +0100
+Message-ID: <20240610-vertical-frugally-a92a55427dd9@wendy>
+X-Mailer: git-send-email 2.43.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <422f66285da1b164466b223f83d7f06564968f09.1717612299.git.tjeznach@rivosinc.com>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2570; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=NsjQbAmUmlOlgifCA2KPWGuT+GynfWTjmgtIMLdbQcc=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDGlp927uk9Wy2+Gote/W7y99N4VsbkT1zpL58l5DvH/7rS0y Qtr/OkpZGMQ4GGTFFFkSb/e1SK3/47LDuectzBxWJpAhDFycAjCRfy8ZGc7/05c6kzE9atczjjN77w ZtXtqkaB7AsTK/vjTnrbv4TF9GhnUpE1bHL2zUEgp3OMeow9q/JPpPFleUQZKnppDe1RO/+AE=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Wed, Jun 05, 2024 at 12:57:48PM GMT, Tomasz Jeznach wrote:
-...
-> +static int riscv_iommu_queue_alloc(struct riscv_iommu_device *iommu,
-> +				   struct riscv_iommu_queue *queue,
-> +				   size_t entry_size)
-> +{
-> +	unsigned int logsz;
-> +	u64 qb, rb;
-> +
-> +	/*
-> +	 * Use WARL base register property to discover maximum allowed
-> +	 * number of entries and optional fixed IO address for queue location.
-> +	 */
-> +	riscv_iommu_writeq(iommu, queue->qbr, RISCV_IOMMU_QUEUE_LOG2SZ_FIELD);
-> +	qb = riscv_iommu_readq(iommu, queue->qbr);
-> +
-> +	/*
-> +	 * Calculate and verify hardware supported queue length, as reported
-> +	 * by the field LOG2SZ, where max queue length is equal to 2^(LOG2SZ + 1).
-> +	 * Update queue size based on hardware supported value.
-> +	 */
-> +	logsz = ilog2(queue->mask);
-> +	if (logsz > FIELD_GET(RISCV_IOMMU_QUEUE_LOG2SZ_FIELD, qb))
-> +		logsz = FIELD_GET(RISCV_IOMMU_QUEUE_LOG2SZ_FIELD, qb);
-> +
-> +	/*
-> +	 * Use WARL base register property to discover an optional fixed IO
-> +	 * address for queue ring buffer location. Otherwise allocate contiguous
-> +	 * system memory.
-> +	 */
-> +	if (FIELD_GET(RISCV_IOMMU_PPN_FIELD, qb)) {
-> +		const size_t queue_size = entry_size << (logsz + 1);
-> +
-> +		queue->phys = ppn_to_phys(FIELD_GET(RISCV_IOMMU_PPN_FIELD, qb));
+Hey all,
 
-Shouldn't this be something like
+Here's some patches that add an Erratum to enable non-coherent DMA
+support for PolarFire SoC. By nature of being an FPGA, and due to the
+PCIe root ports being only 32-bit capable, many bitstreams configure the
+FPGA fabric such that peripherals in the fabric become non-coherent. The
+PCIe root ports on PolarFire SoC are connected to the core-complex via
+the fabric, and therefore can be (and regularly are) made DMA
+non-coherent. The Icicle Kit Reference Design has been configuring the
+PCIe root port in this manner since late 2022 and in a way unsupported
+by mainline since earlier that year. Adding this non-coherent DMA
+support makes PCIe functional on those FPGA designs. Daire did almost all
+the work to figure out how to support these kinds of designs, and this
+series depends on his patches to introduce the required dma-ranges
+handling for the root port driver:
+https://lore.kernel.org/linux-pci/20240531085333.2501399-1-daire.mcnamara@microchip.com/
 
-  FIELD_GET(RISCV_IOMMU_PPN_FIELD, qb) << PAGE_SHIFT
+The final patch depends on:
+https://lore.kernel.org/linux-pci/20240527-slather-backfire-db4605ae7cd7@wendy/
 
-ppn_to_phys() assumes the ppn it's converting to be shifted up by 10, but
-FIELD_GET has shifted it down to zero.
+I'm not sure if an Erratum is really the right way to go about doing
+this, but I didn't want to make ARCH_MICROCHIP depend on NONPORTABLE.
+An alternative would be to add a menu under drivers/soc like Renesas
+does and allow it to be toggled as an option there instead.
 
 Thanks,
-drew
+Conor.
+
+CC: Paul Walmsley <paul.walmsley@sifive.com>
+CC: Palmer Dabbelt <palmer@dabbelt.com>
+CC: Conor Dooley <conor.dooley@microchip.com>
+CC: Daire McNamara <daire.mcnamara@microchip.com>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: Samuel Holland <samuel.holland@sifive.com>
+CC: linux-riscv@lists.infradead.org
+CC: devicetree@vger.kernel.org
+
+Conor Dooley (5):
+  cache: ccache: allow building for PolarFire
+  cache: ccache: add mpfs to nonstandard cache ops list
+  RISC-V: Add an MPFS erratum for PCIe
+  riscv: dts: microchip: modify memory map & add dma-ranges for pcie on
+    icicle
+  riscv: dts: microchip: update pcie reg properties
+
+ arch/riscv/Kconfig.errata                     | 19 +++++
+ .../dts/microchip/mpfs-icicle-kit-fabric.dtsi | 77 ++++++++++++-------
+ .../boot/dts/microchip/mpfs-icicle-kit.dts    | 44 +++++++++--
+ .../dts/microchip/mpfs-m100pfs-fabric.dtsi    |  6 +-
+ .../dts/microchip/mpfs-polarberry-fabric.dtsi |  6 +-
+ drivers/cache/Kconfig                         |  2 +-
+ drivers/cache/sifive_ccache.c                 |  2 +
+ 7 files changed, 116 insertions(+), 40 deletions(-)
+
+-- 
+2.43.2
+
 
