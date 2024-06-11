@@ -1,76 +1,55 @@
-Return-Path: <devicetree+bounces-74423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82A9090330C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 08:51:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35C19903315
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 08:54:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1879628B868
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 06:51:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3B171F27784
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 06:54:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D98F2171E43;
-	Tue, 11 Jun 2024 06:51:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85826171E6E;
+	Tue, 11 Jun 2024 06:54:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CRDA086L"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iiLcw0kA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26FA3171095
-	for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 06:51:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89877171E66;
+	Tue, 11 Jun 2024 06:54:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718088712; cv=none; b=JyU/BeB88dthxqnJelqnSAkq7th9ECA3jhsaqzKQnTmHASU95TY4Yyu12cS8iRYtDd4S2+AwjtQXHm5S9Fg5huMAqxLGtE+4Kp8m+Mk6H+9FauAu5QtUOdAjW1LjwgL/YRj3srA6cHiiXApKxlbsR9y1HNFYsAy6zSApBH2Sa8s=
+	t=1718088860; cv=none; b=P0KF9Gi1UD/54Z80RTg2jx6NoVqhzftRUMnv312y9b98dHGaXZGzOzOgiA+g4wvbh9+WkFqZi0NIUnvwuCvd9nHrhUYsWpluGOZQd0EwWShz2hUt8JV3c/W1DYDPIpJrIb0DLpINxtkJs4YyhFO+3Un7mTHBwe5Wj7uMAzmCm58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718088712; c=relaxed/simple;
-	bh=xPaKqZXY8+rZSzCNEHIXxp0fXCO0Yb0gtSM3Yp6G/P0=;
+	s=arc-20240116; t=1718088860; c=relaxed/simple;
+	bh=L2glcEBJPqTLQO8Gdi0zVPEY8C63eL0dUxrZNc/ueBk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YjSfSOhYh4wiQwwyST75Uqz3TOGNZWpbHoQY25Sxb1i+z50FUHGzxcGVA6ZkGUy32S3EFcbUcjsFhqJrkJ0zSulKlTHDQ16T44CDBmXpEd3VF948zQG9XY7pX7t/M6vNlmEN0MiZewJE53zWc01M/TgoCiMJWd7VivonGK1CwBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CRDA086L; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-52bc1261e8fso3975453e87.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 23:51:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718088709; x=1718693509; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=z38MPwFQKXdREohYh3s3TC8Pf+UGMYC2uW4CqnuIGJA=;
-        b=CRDA086Lk2Wscye+62Mbe4JIpQ1ZJ8QQGs7s+DnOzuf0Z/wGjvlebB78pvbxwZ9OIo
-         KM2O1cKBMidNx+76/mwx96C4RIa6EiZ4LLNPBBVpfDHbHx7C5PE7lkcfSjKFpGzSnLP7
-         U52CdnqFTwNHlMgAJM2gcSJXEEBXuBGtEtJku67C/W35cqG1KO2y9kQa0gFuFoUmN2uF
-         AV1rpgVnE5pfe5ySFPcV8JaXVeuJiSIGuL9G9ARbWx/4lpdzXW+Mr54aBTjpRvBOoN/a
-         Y76ALIBypekDrChWvasMFPTZpS+NR2+WclXR+0Z96/F2HBNlPJpcqxNACVudPUnQybah
-         rvGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718088709; x=1718693509;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=z38MPwFQKXdREohYh3s3TC8Pf+UGMYC2uW4CqnuIGJA=;
-        b=lRVg7dEyZMr8VtLi/mtuBMStdrmVgh9u0/XRGMlBdEpG5ahOgtxlpNehQAFwCrdoGr
-         laXK1xKQGk3gMOGhb1EKI+fqOGRm2qIiZdEq7OM6fV+FrX1118JzgOG10gm/ubMOlkuR
-         irGbF7hFkzGzYw2jwUXmcKVXkql/EkotQDukbhMFFTrDDE5P35pI7zqYsOYg6cJnvYFk
-         v1F33A+h3/lo+WzUL8TM+3dlUjXPG42npTH3eJU887CErPr2aCz5vVxv9xxKoAavk8ca
-         8Mr3m0/C4CI+qmQcU7zwFOvHpPtsYvlUi5GfoG0j1wr+ovJpuHS3sAXlb2v+jPV0ufRm
-         FxXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWfLTjgdplhHY6NkKI1CCVdsoyjLbhDiCEb/6MDv5hv5+zQW5DwQIfIZrzcROvzwHq/giP/7vYNdzFZWbgMqgvf2kN0A15Kg1dCTA==
-X-Gm-Message-State: AOJu0YwEtCdxRPQrkK28fS6Qui3lhYe/g81RLTfBgGwUdwKaSBqb2riW
-	iP8A292oIGNUQx/kHQ1CvL777MS8yPQzuE+N+K53us8qosOMrWYfi/gdKivzds1mVRZhT03Vtq5
-	a
-X-Google-Smtp-Source: AGHT+IFUXACqMPP5rYDfAaS7Ux21IP0rI+n3GTObz8SP/rhmlr6cYYe6cmvZgVJc+4n+xDE0bDIzog==
-X-Received: by 2002:a05:6512:158e:b0:52c:8df9:2e6f with SMTP id 2adb3069b0e04-52c8df92eeemr2792169e87.42.1718088709319;
-        Mon, 10 Jun 2024 23:51:49 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4221defede0sm31072695e9.7.2024.06.10.23.51.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jun 2024 23:51:48 -0700 (PDT)
-Message-ID: <b72164f9-1b1b-4329-8d4a-66fc626c45fe@linaro.org>
-Date: Tue, 11 Jun 2024 08:51:47 +0200
+	 In-Reply-To:Content-Type; b=taDeY1YKH9XKlCxGD52QfuAgYEGQbvbd3Ub6JYNBljnCa2iMV4H6P/Fj/dMzm9Lmc0D+DGrfKaM1EZBqshS7jBK110nUxGj8CSsOcJ/m0b2E32riF682MegYXyiqeR8z5u84TNsyhk71KrnUjUWRwOU8RLWRpPUUzHid6m0xiWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=iiLcw0kA; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718088850;
+	bh=L2glcEBJPqTLQO8Gdi0zVPEY8C63eL0dUxrZNc/ueBk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=iiLcw0kA6mk7hFiX5Y1591cgeb/Ga9Ubf84v4VB0213cIV28cEdq4NBAvhLWFK73B
+	 aYC9owce1ydMJEuVlGqL0CObz/YJrGP3bO5N9r2c9SnNSJ9dQ/SITzarkyyslqv0BM
+	 mqv0JIN6AF7+7hwmh3Tn5ekQ5ZzRwiyAcnyMLXr3DiINpryoOz3/JpW8YN5SONFoPe
+	 YvibWtk5xpnjTCLamTVnnSEFfxiyZWqGa/bDNLP/XUPYcWECSNvKO9BkPblf8e8NdG
+	 oIJoGQNPcWTCuYU4Md5FoWCDXktCwmdliD7TCiRQFV9Xh5y1WmpXVyBODcJRIkxgPP
+	 NgnFa+18pgHHA==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 9070A3780EC6;
+	Tue, 11 Jun 2024 06:54:09 +0000 (UTC)
+Message-ID: <aa991aa4-7e9e-4cc6-b6ae-69539700691f@collabora.com>
+Date: Tue, 11 Jun 2024 08:54:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,124 +57,273 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/8] dt-bindings: counter: Add new ti,am62-eqep
- compatible
-To: Judith Mendez <jm@ti.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, linux-arm-kernel@lists.infradead.org,
- David Lechner <david@lechnology.com>, Nishanth Menon <nm@ti.com>,
- William Breathitt Gray <wbg@kernel.org>
-References: <20240610144637.477954-1-jm@ti.com>
- <20240610144637.477954-2-jm@ti.com>
- <5ad5cf7a-c5c6-449e-9ed9-3d9f74959a19@linaro.org>
- <01433df1-aa19-4abb-9d87-c54e4c0dff17@ti.com>
+Subject: Re: [PATCH v5 2/3] dt-bindings: arm: mediatek: mmsys: Add OF graph
+ support for board path
+To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "wenst@chromium.org" <wenst@chromium.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ =?UTF-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?= <Shawn.Sung@mediatek.com>,
+ "mripard@kernel.org" <mripard@kernel.org>,
+ =?UTF-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?= <jitao.shi@mediatek.com>,
+ "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "kernel@collabora.com" <kernel@collabora.com>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ =?UTF-8?B?WXUtY2hhbmcgTGVlICjmnY7nprnnkosp?= <Yu-chang.Lee@mediatek.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "amergnat@baylibre.com" <amergnat@baylibre.com>
+References: <20240521075717.50330-1-angelogioacchino.delregno@collabora.com>
+ <20240521075717.50330-3-angelogioacchino.delregno@collabora.com>
+ <e7845300fa822413f6308cb6297222cde89c39e0.camel@mediatek.com>
+ <0e0fe86c-92da-43f5-89d7-8084274a908a@collabora.com>
+ <0f20214ab3a86f68669ad1392398b16228e699ee.camel@mediatek.com>
+ <47f05439-815e-4ca1-b20d-8e427fef0a2a@collabora.com>
+ <ee0209dac731b36ffe2ee20a2ff537ce7758b01f.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <01433df1-aa19-4abb-9d87-c54e4c0dff17@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <ee0209dac731b36ffe2ee20a2ff537ce7758b01f.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 11/06/2024 00:13, Judith Mendez wrote:
-> 
-> Hi Krzysztof,
-> 
-> On 6/10/24 9:58 AM, Krzysztof Kozlowski wrote:
->> On 10/06/2024 16:46, Judith Mendez wrote:
->>> Add new compatible ti,am62-eqep for TI K3 devices. If a device
->>> uses this compatible, require power-domains property.
+Il 11/06/24 08:48, CK Hu (胡俊光) ha scritto:
+> On Mon, 2024-06-10 at 10:28 +0200, AngeloGioacchino Del Regno wrote:
+>> Il 06/06/24 07:29, CK Hu (胡俊光) ha scritto:
+>>> Hi, Angelo:
 >>>
->>> Since there is only one functional and interface clock for eqep,
->>> clock-names is not really required, so removed from required
->>> section, make it optional for ti,am3352-eqep compatible, and
->>> update the example.
+>>> On Wed, 2024-06-05 at 13:15 +0200, AngeloGioacchino Del Regno wrote:
+>>>> Il 05/06/24 03:38, CK Hu (胡俊光) ha scritto:
+>>>>> Hi, Angelo:
+>>>>>
+>>>>> On Tue, 2024-05-21 at 09:57 +0200, AngeloGioacchino Del Regno wrote:
+>>>>>> Document OF graph on MMSYS/VDOSYS: this supports up to three DDP paths
+>>>>>> per HW instance (so potentially up to six displays for multi-vdo SoCs).
+>>>>>>
+>>>>>> The MMSYS or VDOSYS is always the first component in the DDP pipeline,
+>>>>>> so it only supports an output port with multiple endpoints - where each
+>>>>>> endpoint defines the starting point for one of the (currently three)
+>>>>>> possible hardware paths.
+>>>>>>
+>>>>>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+>>>>>> Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+>>>>>> Tested-by: Alexandre Mergnat <amergnat@baylibre.com>
+>>>>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>>>>> ---
+>>>>>>     .../bindings/arm/mediatek/mediatek,mmsys.yaml | 28 +++++++++++++++++++
+>>>>>>     1 file changed, 28 insertions(+)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+>>>>>> index b3c6888c1457..0ef67ca4122b 100644
+>>>>>> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+>>>>>> @@ -93,6 +93,34 @@ properties:
+>>>>>>       '#reset-cells':
+>>>>>>         const: 1
+>>>>>>     
+>>>>>> +  port:
+>>>>>> +    $ref: /schemas/graph.yaml#/properties/port
+>>>>>> +    description:
+>>>>>> +      Output port node. This port connects the MMSYS/VDOSYS output to
+>>>>>> +      the first component of one display pipeline, for example one of
+>>>>>> +      the available OVL or RDMA blocks.
+>>>>>> +      Some MediaTek SoCs support multiple display outputs per MMSYS.
+>>>>>
+>>>>> This patch looks good to me. Just want to share another information for you.
+>>>>> Here is an example that mmsys/vdosys could point to the display interface node.
+>>>>>
+>>>>> vdosys0: syscon@1c01a000 {
+>>>>>              mmsys-display-interface = <&dsi0>, <&dsi1>, <&dp_intf0>;
+>>>>> };
+>>>>>     
+>>>>> vdosys1: syscon@1c100000 {
+>>>>>              mmsys-display-interface = <&dp_intf1>;
+>>>>> };
+>>>>>
+>>>>> There is no conflict that mmsys/vdosys point to first component of one display pipeline or point to display interface.
+>>>>> Both could co-exist.
+>>>>>
+>>>>
+>>>> Hey CK,
+>>>>
+>>>> yes, this could be an alternative to the OF graphs, and I'm sure that it'd work,
+>>>> even though this kind of solution would still require partial hardcoding of the
+>>>> display paths up until mmsys-display-interface (so, up until DSI0, or DSI1, etc).
+>>>>
+>>>> The problem with a solution like this is that, well, even though it would work,
+>>>> even if we ignore the suboptimal partial hardcoding, OF graphs are something
+>>>> generic, while the mmsys-display-interface would be a MediaTek specific/custom
+>>>> property.
+>>>>
+>>>> In the end, reusing generic kernel apis/interfaces/etc is always preferred
+>>>> compared to custom solutions, especially in this case, in which the generic
+>>>> stuff is on-par (or actually, depending purely on personal opinions, superior).
+>>>>
+>>>> As for the two to co-exist, I'm not sure that this is actually needed, as the
+>>>> OF graphs are already (at the end of the graph) pointing to the display interface.
+>>>>
+>>>> In any case, just as a reminder: if there will be any need to add any custom
+>>>> MediaTek specific properties later, it's ok and we can do that at any time.
+>>>
+>>> The alternative solution is using OF graphs to point display interface and use MediaTek specific property to first component:
+>>>
+>>> vdosys0: syscon@1c01a000 {
+>>>             ports {
+>>>                      port@0 {
+>>>                                endpoint {
+>>>                                         remote-endpoint = <&dsi0_endpoint>;
+>>>                                };
+>>>                      };
+>>>    
+>>>                      port@1 {
+>>>                                endpoint {
+>>>                                         remote-endpoint = <&dsi1_endpoint>;
+>>>                                };
+>>>                      };
+>>>    
+>>>                      port@2 {
+>>>                                endpoint {
+>>>                                         remote-endpoint = <&dp_intf0_endpoint>;
+>>>                                };
+>>>                      };
+>>>             };
+>>>    
+>>>             display-first-component = <&ovl0>;
+>>> };
+>>>
+>>> And I agree to it's better to keep only OF graphs property, so it would be
+>>>
+>>> vdosys0: syscon@1c01a000 {
+>>>             ports {
+>>>                      port@0 {
+>>>                                endpoint {
+>>>                                         remote-endpoint = <&dsi0_endpoint>;
+>>>                     
+>>>              };
+>>>                      };
+>>>    
+>>>                      port@1 {
+>>>                                endpoint {
+>>>                                         remote-endpoint = <&dsi1_endpoint>;
+>>>                             
+>>>      };
+>>>                      };
+>>>    
+>>>                      port@2 {
+>>>                                endpoint {
+>>>                                         remote-endpoint = <&dp_intf0_endpoint>;
+>>>                                }
+>>> ;
+>>>                      };
+>>>             };
+>>> };
+>>>
+>>> Maybe we could use OF graphs for both first component and display interface and drop using MediaTek specific property.
 >>>
 >>
->> ...
+>> We could, or we can simply walk through the OF Graph in the driver and get the
+>> display interface like that, as it's board-specific ;-)
 >>
+>> ...but anyway, let's see that later: after getting this series upstreamed, I will
+>> convert all MediaTek boards (including Chromebooks) to use the graphs instead, and
+>> you'll see that, at least for the currently supported boards, there's no need for
+>> any custom property.
 >>
->>>           interrupts = <79>;
->>>       };
->>>   
->>> +  - |
->>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
->>> +
->>> +    bus {
->>> +        #address-cells = <2>;
->>> +        #size-cells = <2>;
->>> +        eqep1: counter@23210000 {
+>> Also, setting the DSI0/1/dpintf endpoint to VDO0 is technically wrong, as that is
+>> supposed to be the last one, and a graph is conceptually supposed to go from the
+>> first to the last in sequence.
 >>
->> No need for label
+>> *if* we will ever need (probably not) to get the VDO0 node to point directly to
+>> the last node for whatever reason, the right way would be the first one you said,
+>> so, mediatek,mmsys-display-interface = <&dsi0>, <&dsi1>, etc etc
 >>
->>> +          compatible = "ti,am62-eqep";
->>> +          reg = <0x00 0x23210000 0x00 0x100>;
->>> +          power-domains = <&k3_pds 60 TI_SCI_PD_EXCLUSIVE>;
->>> +          clocks = <&k3_clks 60 0>;
->>> +          interrupts = <GIC_SPI 117 IRQ_TYPE_EDGE_RISING>;
->>> +          status = "disabled";
+>> ...or mediatek,mmsys-possible-displays = < ... phandles >
 >>
->> Drop... which also points to another comment - since this was no-op and
->> example is basically the same, then just don't add it. No point.
+>> ...or anyway, many other solutions are possible - but again, I think this is not
+>> the right time to think about that. Knowing that there are eventual solutions for
+>> any need that might arise in the future is enough, IMO :-)
 > 
-> Ok, then I will drop the new example, thanks.
+> This is one routing of display pipeline and the relation of VDOSYS0 with display pipeline.
 > 
-> BTW..
-> In the existing example for ti,am3352-eqep compatible,
-> do you know if it is appropriate to drop clock-names
-> from the example if it is no longer required?
+>                 +-- VDOSYS0 ---------------------------------------------+
+>                 |                                                        |
+>                 |                                                        |
+> DRAM -> IOMMU ---> OVL0 -> RDMA0 -> ... -> DSC0 -> MERGE0 -> DP_INTF0 ---->
+>                 |                                                        |
+>                 |                                                        |
+>                 +--------------------------------------------------------+
 > 
+> Video data is read by IOMMU from DRAM and send to display pipeline. Then video data travel through first component to display interface.
+> VDOSYS0 manage each component in the pipeline include first component and display interface.
+> The management include clock gating, reset, video data input/output routing.
+> The relationship of VDOSYTS0 with first component is the same as the relationship of VDOSYS0 with display interface.
+> If VDOSYS0 is not suitable using OF graph point to display interface, VDOSYS0 is also not suitable using OF graph point to first component.
 
-It does not really matter.
+In the cases in which VDO goes directly to the display, it *is* possible to make it
+point directly to the display.
 
-Best regards,
-Krzysztof
+In the cases in which the pipeline is larger, VDO still points to the display, but
+only later in the pipeline.
+
+> The job of the component in display pipeline is to process the video data,
+> but the job of VDOSYS0 is to manage (clock gating, reset, routing) the pipeline.
+> If the OF graph is to show the video data travel path, VDOSYS0 should not exist in the OF graph.
+> 
+> Regards,
+> CK
+> 
+>>
+>> Cheers,
+>> Angelo
+>>
+>>> Regards,
+>>> CK
+>>>
+>>>>
+>>>> Cheers!
+>>>> Angelo
+>>>>
+>>>>> Regards,
+>>>>> CK
+>>>>>
+>>>>>> +    properties:
+>>>>>> +      endpoint@0:
+>>>>>> +        $ref: /schemas/graph.yaml#/properties/endpoint
+>>>>>> +        description: Output to the primary display pipeline
+>>>>>> +
+>>>>>> +      endpoint@1:
+>>>>>> +        $ref: /schemas/graph.yaml#/properties/endpoint
+>>>>>> +        description: Output to the secondary display pipeline
+>>>>>> +
+>>>>>> +      endpoint@2:
+>>>>>> +        $ref: /schemas/graph.yaml#/properties/endpoint
+>>>>>> +        description: Output to the tertiary display pipeline
+>>>>>> +
+>>>>>> +    anyOf:
+>>>>>> +      - required:
+>>>>>> +          - endpoint@0
+>>>>>> +      - required:
+>>>>>> +          - endpoint@1
+>>>>>> +      - required:
+>>>>>> +          - endpoint@2
+>>>>>> +
+>>>>>>     required:
+>>>>>>       - compatible
+>>>>>>       - reg
+>>>>
+>>>>
+>>
+>>
+
+
 
 
