@@ -1,292 +1,541 @@
-Return-Path: <devicetree+bounces-74446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6509B90343E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 09:48:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 522FA903485
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 09:59:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F183B1F25019
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 07:48:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9399DB2CB1D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 07:52:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D47BA175563;
-	Tue, 11 Jun 2024 07:47:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41A2817333C;
+	Tue, 11 Jun 2024 07:51:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="b1L7DrE0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LQ/LTyf/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EA45174EFE;
-	Tue, 11 Jun 2024 07:47:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01970172BC1
+	for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 07:51:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718092036; cv=none; b=j1EVEpA1uDK6+vdHeoY7eIddVZGKQTB/BwoQ2L3AkB3/UvUBlcnCuFuF+IXdxmFu8Xe2EkcDTKTNlC6DRPvJrwfyC/eGWnPqCiYBjih8SIsLcc8QXnmWTrh6+BJ8WThye87AL8xO5EE+kt07bTITeKAmJn6NhQh9m5PmzBq1kKU=
+	t=1718092305; cv=none; b=N0FpmKq5kiO/77mYwdndngH4CtSUz/fXA3jrJGd+hY45c9saHTQf8221hT7MqP+fSD0tnSnMv47HFDl1ID/8WuAgLlkUYEVr1y426v9kVmmCECgiy1W+uyj8iInCDh8ZPcw4bwDiE7WJOCJipqd2/ffxw6RgUe4PWkp3UPKmuJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718092036; c=relaxed/simple;
-	bh=EPOf6UQp2hHyq5RAW12K2zU7Sn4jlLp9JPGb9s1xKSc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=leRfhU5agKHkK6krwY7HyuUBKSClRmnWFvQTvxzxfd+/Ix/GkfA7OqZRehbHUHug1RiDSO/cC5STRfBv1aNZdy6dVOpuJO0rVZIN0YxEIXf4JSSM/3KD5/sXASffpr389y/2cJ0XdY4f3YUq4PdUFotvBlAEB5XiKwFFaQZyB8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=b1L7DrE0; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45B0BbCO018285;
-	Tue, 11 Jun 2024 07:47:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	x2Q89o88fi+D5TptacwxxTVY3WRA3wJOrYnfBHG2y9I=; b=b1L7DrE0aA+NbqRf
-	5p55pQLVMGHt0mjXKgp1LbYfCIyLr27gDv/YgROkDD2DGHcmUZ0L/HYplIWHufT1
-	x3omL/4z0RqJqlu9v1yrxC/xHclLmkEGK/idNlKBbEmJo/SkbzChEYK/Cql55FLV
-	wS8H98X9NQ9k8mkR5rraJ3Wv3ONjR57KHwb2UJsLhom8n/y+/dS0gJOk++ijblpI
-	QVlY05QVinNlZW1LWw+8dAWMnokoW+8SZiR8Kg4VpkZhhR2sr9zXdA+jgcGr/fCk
-	UmXqTfzym0eOfqcqd8ES9ETkkSgmozvdwELieib2dezYFZkAf3/g4GUOyJsEYfVM
-	RNLeJg==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ymfh36eug-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 11 Jun 2024 07:47:02 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45B7l1ZS012551
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 11 Jun 2024 07:47:01 GMT
-Received: from hu-mohs-hyd.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 11 Jun 2024 00:46:56 -0700
-From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami
-	<bgoswami@quicinc.com>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
-	<broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela
-	<perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>
-CC: <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_rohkumar@quicinc.com>,
-        <quic_pkumpatl@quicinc.com>, Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Subject: [PATCH v6 7/7] ASoC: codecs: wcd937x: add audio routing and Kconfig
-Date: Tue, 11 Jun 2024 13:15:57 +0530
-Message-ID: <20240611074557.604250-8-quic_mohs@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240611074557.604250-1-quic_mohs@quicinc.com>
-References: <20240611074557.604250-1-quic_mohs@quicinc.com>
+	s=arc-20240116; t=1718092305; c=relaxed/simple;
+	bh=A75FD6DytObZXtVAQa7UpZHf8XqVcKXKzHIlv2OZqY0=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=hskkZmi43ctxJpubY41tcg7E3kkmvCyi1h8w4hjf9zDfmjCsQ9UYffopbtsZP76OLFfEC+VItpD85q+vwkYjHtBOLfZkdkh4WSRlgBZHbObqe9OnmE4PtGcAlAGrPmRVzuJjJe5I6uvrb6w7G84g5IbVM5VU78iMFNMyPD0wQI4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LQ/LTyf/; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-35f090093d8so2686027f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 00:51:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718092301; x=1718697101; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=P4p6K0G6wV9PB0oWVckGjSIKaLa97Rva83QHCXxZmHI=;
+        b=LQ/LTyf//U30FgZ6ofzdezBebYuqfD8isjvZWFSCOQDeDHpo/NocWR9O1IKS2+RUnS
+         gTCP3S7mj3ytxSF0VRhL3oI3AG67Oxi7WyeFDKGfpGN4cyeFFMdnBs8Yd3pWKrlLYATQ
+         AqzhadgOxKVKWlv/wkJ2aBye/GtiL8SnzTwb2QdBdMXeprGpll/Qvlyi2g1XPIWwnh2D
+         53LQZt77wh8KcCOZdccl/5aaEMBVSeoI+zuR/azDa6w+db5Pl/l8cSDqoU/x1qiGOwoT
+         CoKLWtCeVxHlVjasiT3vmAT2Hf/PXBKvE7Ceb5V20eMEYDy4SKBk3En05/ULFLxVdZ3T
+         vh1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718092301; x=1718697101;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=P4p6K0G6wV9PB0oWVckGjSIKaLa97Rva83QHCXxZmHI=;
+        b=gHZcsXuDuNZyISyIj6Ab7MZZw6dTHDjmKZp0zbb2sO7DABXscvvRx/2pWvC0EBvgxl
+         QFDPluSwulqfgzrredTYzWkiW3REHu9Qauqg0LCoYD/+7qdJDQ1WYfX146x8xHHav8VS
+         a8cj2EEyk7ofome+wSno5MLvOz5qsSk0nuhlFQmNM94GZWB1aFqTqd7samY99vRtCcDG
+         dFd9kNR7ZPyQPGHRM5fN2bmwv5ilOVPuxZQr8sX+hmUrsbVIJaYWV2Mj8mAup5kXqZ0C
+         4B7ogH4poEaFw385n+VCQvHu61WYtYiEeEfBt4hVHzbUHjCA9nmonYsqQNXtUKtf62g9
+         ySXg==
+X-Forwarded-Encrypted: i=1; AJvYcCXg3a2pDzEapuH3yre+7apZSRJKte9y/flxh3+FMM+DgzFauJERD+r0h4+xUDsdPa88yC9c8YKQoefxS2yCUjOunENUDCuhxclFew==
+X-Gm-Message-State: AOJu0Yy2qv3qhecbjTwD++MwEPLjAXc/48KvXAH+OkLj+StZxR4/ANxr
+	Ez+vNoRgojOY4Perv61Lb0iF0pQeo8EXbqgcqRS6OSco43StWnGF/N0kCzlyJhI=
+X-Google-Smtp-Source: AGHT+IFZ+i1Qz1ahRuGcKGins4bu7z8M9C1FwDbIDVWNBp3KcbGS663YTxh6LRJKMcCBjv5AyDj1MQ==
+X-Received: by 2002:a5d:6da8:0:b0:35f:22e4:c575 with SMTP id ffacd0b85a97d-35f22e4c5d5mr4373683f8f.56.1718092301169;
+        Tue, 11 Jun 2024 00:51:41 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:5a4:3b2:c750:ef5c? ([2a01:e0a:982:cbb0:5a4:3b2:c750:ef5c])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35f1bcbc31bsm7356546f8f.44.2024.06.11.00.51.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Jun 2024 00:51:40 -0700 (PDT)
+Message-ID: <c3cd2399-05a6-4cdc-ad28-79a85534112d@linaro.org>
+Date: Tue, 11 Jun 2024 09:51:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: BCQqYgQcu_5_VzU-xCd-Fwp_kXKlCfAw
-X-Proofpoint-GUID: BCQqYgQcu_5_VzU-xCd-Fwp_kXKlCfAw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-11_03,2024-06-11_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0
- suspectscore=0 clxscore=1015 bulkscore=0 phishscore=0 adultscore=0
- mlxscore=0 mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406110058
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 2/2] drm/panel: Add Samsung AMS639RQ08 panel driver
+To: Danila Tikhonov <danila@jiaxyga.com>, quic_jesszhan@quicinc.com,
+ sam@ravnborg.org, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, adrian@travitia.xyz, degdagmohamed@gmail.com
+References: <20240609203618.49413-1-danila@jiaxyga.com>
+ <20240609203618.49413-3-danila@jiaxyga.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240609203618.49413-3-danila@jiaxyga.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+On 09/06/2024 22:36, Danila Tikhonov wrote:
+> Add the driver for Samsung AMS639RQ08 FHD Plus CMD mode panel support
+> found in:
+> - Xiaomi Mi 9 Lite / CC9 (sdm710-xiaomi-pyxis)
+> - Xiaomi Mi 9T / Redmi K20 (sm7150-xiaomi-davinci)
+> - Xiaomi Mi 9T Pro / Redmi K20 Pro (sm8150-xiaomi-raphael)
+> 
+> Tested-by: Degdag Mohamed <degdagmohamed@gmail.com> # xiaomi-raphael
+> Tested-by: Jens Reidel <adrian@travitia.xyz> # xiaomi-davinci
+> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> ---
+>   drivers/gpu/drm/panel/Kconfig                 |   9 +
+>   drivers/gpu/drm/panel/Makefile                |   1 +
+>   .../gpu/drm/panel/panel-samsung-ams639rq08.c  | 362 ++++++++++++++++++
+>   3 files changed, 372 insertions(+)
+>   create mode 100644 drivers/gpu/drm/panel/panel-samsung-ams639rq08.c
+> 
+> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> index 2ae0eb0638f32..8a86960ae812a 100644
+> --- a/drivers/gpu/drm/panel/Kconfig
+> +++ b/drivers/gpu/drm/panel/Kconfig
+> @@ -576,6 +576,15 @@ config DRM_PANEL_RONBO_RB070D30
+>   	  Say Y here if you want to enable support for Ronbo Electronics
+>   	  RB070D30 1024x600 DSI panel.
+>   
+> +config DRM_PANEL_SAMSUNG_AMS639RQ08
+> +	tristate "Samsung AMS639RQ08 panel"
+> +	depends on OF
+> +	depends on DRM_MIPI_DSI
+> +	depends on BACKLIGHT_CLASS_DEVICE
+> +	help
+> +	  Say Y or M here if you want to enable support for the
+> +	  Samsung AMS639RQ08 FHD Plus (2340x1080@60Hz) CMD mode panel.
+> +
+>   config DRM_PANEL_SAMSUNG_S6E88A0_AMS452EF01
+>   	tristate "Samsung AMS452EF01 panel with S6E88A0 DSI video mode controller"
+>   	depends on OF
+> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+> index f0203f6e02f44..eb87bc01b0414 100644
+> --- a/drivers/gpu/drm/panel/Makefile
+> +++ b/drivers/gpu/drm/panel/Makefile
+> @@ -58,6 +58,7 @@ obj-$(CONFIG_DRM_PANEL_RAYDIUM_RM68200) += panel-raydium-rm68200.o
+>   obj-$(CONFIG_DRM_PANEL_RAYDIUM_RM692E5) += panel-raydium-rm692e5.o
+>   obj-$(CONFIG_DRM_PANEL_RAYDIUM_RM69380) += panel-raydium-rm69380.o
+>   obj-$(CONFIG_DRM_PANEL_RONBO_RB070D30) += panel-ronbo-rb070d30.o
+> +obj-$(CONFIG_DRM_PANEL_SAMSUNG_AMS639RQ08) += panel-samsung-ams639rq08.o
+>   obj-$(CONFIG_DRM_PANEL_SAMSUNG_ATNA33XC20) += panel-samsung-atna33xc20.o
+>   obj-$(CONFIG_DRM_PANEL_SAMSUNG_DB7430) += panel-samsung-db7430.o
+>   obj-$(CONFIG_DRM_PANEL_SAMSUNG_LD9040) += panel-samsung-ld9040.o
+> diff --git a/drivers/gpu/drm/panel/panel-samsung-ams639rq08.c b/drivers/gpu/drm/panel/panel-samsung-ams639rq08.c
+> new file mode 100644
+> index 0000000000000..f9789fdd6c326
+> --- /dev/null
+> +++ b/drivers/gpu/drm/panel/panel-samsung-ams639rq08.c
+> @@ -0,0 +1,362 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2024, Danila Tikhonov <danila@jiaxyga.com>
+> + */
+> +
+> +#include <linux/backlight.h>
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/regulator/consumer.h>
+> +
+> +#include <video/mipi_display.h>
+> +
+> +#include <drm/drm_mipi_dsi.h>
+> +#include <drm/drm_modes.h>
+> +#include <drm/drm_panel.h>
+> +#include <drm/drm_probe_helper.h>
+> +
+> +/* Manufacturer Command Set */
+> +#define MCS_ACCESS_PROT_OFF	0xb0
+> +#define MCS_UNKNOWN_B7		0xb7
+> +#define MCS_BIAS_CURRENT_CTRL	0xd1
+> +#define MCS_PASSWD1		0xf0
+> +#define MCS_PASSWD2		0xfc
+> +#define MCS_UNKNOWN_FF		0xff
+> +
+> +struct ams639rq08 {
+> +	struct drm_panel panel;
+> +	struct mipi_dsi_device *dsi;
+> +	struct gpio_desc *reset_gpio;
+> +	struct regulator_bulk_data supplies[4];
+> +};
+> +
+> +static inline struct ams639rq08 *to_ams639rq08(struct drm_panel *panel)
+> +{
+> +	return container_of(panel, struct ams639rq08, panel);
+> +}
+> +
+> +static void ams639rq08_reset(struct ams639rq08 *ctx)
+> +{
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +	usleep_range(1000, 2000);
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> +	usleep_range(10000, 11000);
+> +}
+> +
+> +static int ams639rq08_on(struct ams639rq08 *ctx)
+> +{
+> +	struct mipi_dsi_device *dsi = ctx->dsi;
+> +	struct device *dev = &dsi->dev;
+> +	int ret;
+> +
+> +	/* Delay 2ms for VCI1 power */
+> +	mipi_dsi_dcs_write_seq(dsi, MCS_PASSWD1, 0x5a, 0x5a);
+> +	mipi_dsi_dcs_write_seq(dsi, MCS_PASSWD2, 0x5a, 0x5a);
+> +	mipi_dsi_dcs_write_seq(dsi, MCS_ACCESS_PROT_OFF, 0x0c);
+> +	mipi_dsi_dcs_write_seq(dsi, MCS_UNKNOWN_FF, 0x10);
+> +	mipi_dsi_dcs_write_seq(dsi, MCS_ACCESS_PROT_OFF, 0x2f);
+> +	mipi_dsi_dcs_write_seq(dsi, MCS_BIAS_CURRENT_CTRL, 0x01);
+> +	mipi_dsi_dcs_write_seq(dsi, MCS_PASSWD1, 0xa5, 0xa5);
+> +	mipi_dsi_dcs_write_seq(dsi, MCS_PASSWD2, 0xa5, 0xa5);
+> +
+> +	/* Sleep Out */
+> +	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
+> +		return ret;
+> +	}
+> +	usleep_range(10000, 11000);
+> +
+> +	/* TE OUT (Vsync On) */
+> +	mipi_dsi_dcs_write_seq(dsi, MCS_PASSWD1, 0x5a, 0x5a);
+> +
+> +	ret = mipi_dsi_dcs_set_tear_on(dsi, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to set tear on: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/* DBV Smooth Transition */
+> +	mipi_dsi_dcs_write_seq(dsi, MCS_UNKNOWN_B7, 0x01, 0x4b);
+> +
+> +	/* Edge Dimming Speed Setting */
+> +	mipi_dsi_dcs_write_seq(dsi, MCS_ACCESS_PROT_OFF, 0x06);
+> +	mipi_dsi_dcs_write_seq(dsi, MCS_UNKNOWN_B7, 0x10);
+> +	mipi_dsi_dcs_write_seq(dsi, MCS_PASSWD1, 0xa5, 0xa5);
+> +
+> +	/* Page Address Set */
+> +	ret = mipi_dsi_dcs_set_page_address(dsi, 0x0000, 0x0923);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to set page address: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	mipi_dsi_dcs_write_seq(dsi, MCS_PASSWD1, 0x5a, 0x5a);
+> +	mipi_dsi_dcs_write_seq(dsi, MCS_PASSWD2, 0x5a, 0x5a);
+> +
+> +	/* Set DDIC internal HFP */
+> +	mipi_dsi_dcs_write_seq(dsi, MCS_ACCESS_PROT_OFF, 0x23);
+> +	mipi_dsi_dcs_write_seq(dsi, MCS_BIAS_CURRENT_CTRL, 0x11);
+> +
+> +	/* OFC Setting 84.1 Mhz */
+> +	mipi_dsi_dcs_write_seq(dsi, 0xe9, 0x11, 0x55,
+> +				    0xa6, 0x75, 0xa3,
+> +				    0xb9, 0xa1, 0x4a,
+> +				    0x00, 0x1a, 0xb8);
+> +
+> +	/* Err_FG Setting */
+> +	mipi_dsi_dcs_write_seq(dsi, 0xe1,
+> +				    0x00, 0x00, 0x02,
+> +				    0x02, 0x42, 0x02);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xe2,
+> +				    0x00, 0x00, 0x00,
+> +				    0x00, 0x00, 0x00);
+> +	mipi_dsi_dcs_write_seq(dsi, MCS_ACCESS_PROT_OFF, 0x0c);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xe1, 0x19);
+> +	mipi_dsi_dcs_write_seq(dsi, MCS_PASSWD1, 0xa5, 0xa5);
+> +	mipi_dsi_dcs_write_seq(dsi, MCS_PASSWD2, 0xa5, 0xa5);
+> +	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_CONTROL_DISPLAY, 0x20);
+> +
+> +	/* Brightness Control */
+> +	ret = mipi_dsi_dcs_set_display_brightness(dsi, 0x0000);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to set display brightness: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/* Display On */
+> +	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_POWER_SAVE, 0x00);
+> +	msleep(67);
+> +
+> +	ret = mipi_dsi_dcs_set_display_on(dsi);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to set display on: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int ams639rq08_off(struct ams639rq08 *ctx)
+> +{
+> +	struct mipi_dsi_device *dsi = ctx->dsi;
+> +	struct device *dev = &dsi->dev;
+> +	int ret;
+> +
+> +	ret = mipi_dsi_dcs_set_display_off(dsi);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to set display off: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to enter sleep mode: %d\n", ret);
+> +		return ret;
+> +	}
+> +	msleep(120);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ams639rq08_prepare(struct drm_panel *panel)
+> +{
+> +	struct ams639rq08 *ctx = to_ams639rq08(panel);
+> +	struct device *dev = &ctx->dsi->dev;
+> +	int ret;
+> +
+> +	ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to enable regulators: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ams639rq08_reset(ctx);
+> +
+> +	ret = ams639rq08_on(ctx);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to initialize panel: %d\n", ret);
+> +		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +		regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int ams639rq08_unprepare(struct drm_panel *panel)
+> +{
+> +	struct ams639rq08 *ctx = to_ams639rq08(panel);
+> +	struct device *dev = &ctx->dsi->dev;
+> +	int ret;
+> +
+> +	ret = ams639rq08_off(ctx);
+> +	if (ret < 0)
+> +		dev_err(dev, "Failed to un-initialize panel: %d\n", ret);
+> +
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +	regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct drm_display_mode ams639rq08_mode = {
+> +	.clock = (1080 + 64 + 20 + 64) * (2340 + 64 + 20 + 64) * 60 / 1000,
+> +	.hdisplay = 1080,
+> +	.hsync_start = 1080 + 64,
+> +	.hsync_end = 1080 + 64 + 20,
+> +	.htotal = 1080 + 64 + 20 + 64,
+> +	.vdisplay = 2340,
+> +	.vsync_start = 2340 + 64,
+> +	.vsync_end = 2340 + 64 + 20,
+> +	.vtotal = 2340 + 64 + 20 + 64,
+> +	.width_mm = 68,
+> +	.height_mm = 147,
+> +	.type = DRM_MODE_TYPE_DRIVER,
+> +};
+> +
+> +static int ams639rq08_get_modes(struct drm_panel *panel,
+> +					struct drm_connector *connector)
+> +{
+> +	return drm_connector_helper_get_modes_fixed(connector, &ams639rq08_mode);
+> +}
+> +
+> +static const struct drm_panel_funcs ams639rq08_panel_funcs = {
+> +	.prepare = ams639rq08_prepare,
+> +	.unprepare = ams639rq08_unprepare,
+> +	.get_modes = ams639rq08_get_modes,
+> +};
+> +
+> +static int ams639rq08_bl_update_status(struct backlight_device *bl)
+> +{
+> +	struct mipi_dsi_device *dsi = bl_get_data(bl);
+> +	u16 brightness = backlight_get_brightness(bl);
+> +	int ret;
+> +
+> +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> +
+> +	ret = mipi_dsi_dcs_set_display_brightness_large(dsi, brightness);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+> +
+> +	return 0;
+> +}
+> +
+> +static int ams639rq08_bl_get_brightness(struct backlight_device *bl)
+> +{
+> +	struct mipi_dsi_device *dsi = bl_get_data(bl);
+> +	u16 brightness;
+> +	int ret;
+> +
+> +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> +
+> +	ret = mipi_dsi_dcs_get_display_brightness_large(dsi, &brightness);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+> +
+> +	return brightness;
+> +}
+> +
+> +static const struct backlight_ops ams639rq08_bl_ops = {
+> +	.update_status = ams639rq08_bl_update_status,
+> +	.get_brightness = ams639rq08_bl_get_brightness,
+> +};
+> +
+> +static struct backlight_device *
+> +ams639rq08_create_backlight(struct mipi_dsi_device *dsi)
+> +{
+> +	struct device *dev = &dsi->dev;
+> +	const struct backlight_properties props = {
+> +		.type = BACKLIGHT_RAW,
+> +		.brightness = 1023,
+> +		.max_brightness = 2047,
+> +	};
+> +
+> +	return devm_backlight_device_register(dev, dev_name(dev), dev, dsi,
+> +						&ams639rq08_bl_ops, &props);
+> +}
+> +
+> +static int ams639rq08_probe(struct mipi_dsi_device *dsi)
+> +{
+> +	struct device *dev = &dsi->dev;
+> +	struct ams639rq08 *ctx;
+> +	int ret;
+> +
+> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
+> +	if (!ctx)
+> +		return -ENOMEM;
+> +
+> +	ctx->supplies[0].supply = "vdd3p3";
+> +	ctx->supplies[1].supply = "vddio";
+> +	ctx->supplies[2].supply = "vsn";
+> +	ctx->supplies[3].supply = "vsp";
+> +	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(ctx->supplies),
+> +								ctx->supplies);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "Failed to get regulators\n");
+> +
+> +	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(ctx->reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
+> +					"Failed to get reset-gpios\n");
+> +
+> +	ctx->dsi = dsi;
+> +	mipi_dsi_set_drvdata(dsi, ctx);
+> +
+> +	dsi->lanes = 4;
+> +	dsi->format = MIPI_DSI_FMT_RGB888;
+> +	dsi->mode_flags = MIPI_DSI_MODE_VIDEO_BURST |
+> +			  MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_LPM;
+> +
+> +	drm_panel_init(&ctx->panel, dev, &ams639rq08_panel_funcs,
+> +			DRM_MODE_CONNECTOR_DSI);
+> +	ctx->panel.prepare_prev_first = true;
+> +
+> +	ctx->panel.backlight = ams639rq08_create_backlight(dsi);
+> +	if (IS_ERR(ctx->panel.backlight))
+> +		return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
+> +					"Failed to create backlight\n");
+> +
+> +	drm_panel_add(&ctx->panel);
+> +
+> +	ret = devm_mipi_dsi_attach(dev, dsi);
+> +	if (ret < 0) {
+> +		drm_panel_remove(&ctx->panel);
+> +		return dev_err_probe(dev, ret, "Failed to attach to DSI host\n");
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void ams639rq08_remove(struct mipi_dsi_device *dsi)
+> +{
+> +	struct ams639rq08 *ctx = mipi_dsi_get_drvdata(dsi);
+> +
+> +	drm_panel_remove(&ctx->panel);
+> +}
+> +
+> +static const struct of_device_id ams639rq08_of_match[] = {
+> +	{ .compatible = "samsung,ams639rq08" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, ams639rq08_of_match);
+> +
+> +static struct mipi_dsi_driver ams639rq08_driver = {
+> +	.probe = ams639rq08_probe,
+> +	.remove = ams639rq08_remove,
+> +	.driver = {
+> +		.name = "panel-samsung-ams639rq08",
+> +		.of_match_table = ams639rq08_of_match,
+> +	},
+> +};
+> +module_mipi_dsi_driver(ams639rq08_driver);
+> +
+> +MODULE_AUTHOR("Danila Tikhonov <danila@jiaxyga.com>");
+> +MODULE_DESCRIPTION("DRM driver for SAMSUNG AMS639RQ08 cmd mode dsi panel");
+> +MODULE_LICENSE("GPL");
 
-This patch adds audio routing for both playback and capture and
-Makefile and Kconfigs changes for wcd937x.
-
-Co-developed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-Co-developed-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
----
- sound/soc/codecs/Kconfig   | 20 ++++++++++
- sound/soc/codecs/Makefile  |  7 ++++
- sound/soc/codecs/wcd937x.c | 80 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 107 insertions(+)
-
-diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index 3621781d63c4..7b99556f24d3 100644
---- a/sound/soc/codecs/Kconfig
-+++ b/sound/soc/codecs/Kconfig
-@@ -279,6 +279,7 @@ config SND_SOC_ALL_CODECS
- 	imply SND_SOC_UDA1380
- 	imply SND_SOC_WCD9335
- 	imply SND_SOC_WCD934X
-+	imply SND_SOC_WCD937X_SDW
- 	imply SND_SOC_WCD938X_SDW
- 	imply SND_SOC_WCD939X_SDW
- 	imply SND_SOC_LPASS_MACRO_COMMON
-@@ -2111,6 +2112,25 @@ config SND_SOC_WCD934X
- 	  The WCD9340/9341 is a audio codec IC Integrated in
- 	  Qualcomm SoCs like SDM845.
- 
-+config SND_SOC_WCD937X
-+	depends on SND_SOC_WCD937X_SDW
-+	tristate
-+	depends on SOUNDWIRE || !SOUNDWIRE
-+	select SND_SOC_WCD_CLASSH
-+
-+config SND_SOC_WCD937X_SDW
-+	tristate "WCD9370/WCD9375 Codec - SDW"
-+	select SND_SOC_WCD937X
-+	select SND_SOC_WCD_MBHC
-+	select REGMAP_IRQ
-+	depends on SOUNDWIRE
-+	select REGMAP_SOUNDWIRE
-+	help
-+	  The WCD9370/9375 is an audio codec IC used with SoCs
-+	  like SC7280 or QCM6490 chipsets, and it connected
-+	  via soundwire.
-+	  To compile this codec driver say Y or m.
-+
- config SND_SOC_WCD938X
- 	depends on SND_SOC_WCD938X_SDW
- 	tristate
-diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
-index d343d23c8f0f..ca69f35cc0f7 100644
---- a/sound/soc/codecs/Makefile
-+++ b/sound/soc/codecs/Makefile
-@@ -318,6 +318,8 @@ snd-soc-wcd-classh-y := wcd-clsh-v2.o
- snd-soc-wcd-mbhc-y := wcd-mbhc-v2.o
- snd-soc-wcd9335-y := wcd9335.o
- snd-soc-wcd934x-y := wcd934x.o
-+snd-soc-wcd937x-objs := wcd937x.o
-+snd-soc-wcd937x-sdw-objs := wcd937x-sdw.o
- snd-soc-wcd938x-y := wcd938x.o
- snd-soc-wcd938x-sdw-y := wcd938x-sdw.o
- snd-soc-wcd939x-y := wcd939x.o
-@@ -714,6 +716,11 @@ obj-$(CONFIG_SND_SOC_WCD_CLASSH)	+= snd-soc-wcd-classh.o
- obj-$(CONFIG_SND_SOC_WCD_MBHC)	+= snd-soc-wcd-mbhc.o
- obj-$(CONFIG_SND_SOC_WCD9335)	+= snd-soc-wcd9335.o
- obj-$(CONFIG_SND_SOC_WCD934X)	+= snd-soc-wcd934x.o
-+obj-$(CONFIG_SND_SOC_WCD937X)	+= snd-soc-wcd937x.o
-+ifdef CONFIG_SND_SOC_WCD937X_SDW
-+# avoid link failure by forcing sdw code built-in when needed
-+obj-$(CONFIG_SND_SOC_WCD937X) += snd-soc-wcd937x-sdw.o
-+endif
- obj-$(CONFIG_SND_SOC_WCD938X)	+= snd-soc-wcd938x.o
- ifdef CONFIG_SND_SOC_WCD938X_SDW
- # avoid link failure by forcing sdw code built-in when needed
-diff --git a/sound/soc/codecs/wcd937x.c b/sound/soc/codecs/wcd937x.c
-index 97356f73eac5..4fd7dad810b5 100644
---- a/sound/soc/codecs/wcd937x.c
-+++ b/sound/soc/codecs/wcd937x.c
-@@ -2391,6 +2391,77 @@ static const struct snd_soc_dapm_widget wcd9375_dapm_widgets[] = {
- 	SND_SOC_DAPM_OUTPUT("DMIC6_OUTPUT"),
- };
- 
-+static const struct snd_soc_dapm_route wcd937x_audio_map[] = {
-+	{ "ADC1_OUTPUT", NULL, "ADC1_MIXER" },
-+	{ "ADC1_MIXER", "Switch", "ADC1 REQ" },
-+	{ "ADC1 REQ", NULL, "ADC1" },
-+	{ "ADC1", NULL, "AMIC1" },
-+
-+	{ "ADC2_OUTPUT", NULL, "ADC2_MIXER" },
-+	{ "ADC2_MIXER", "Switch", "ADC2 REQ" },
-+	{ "ADC2 REQ", NULL, "ADC2" },
-+	{ "ADC2", NULL, "ADC2 MUX" },
-+	{ "ADC2 MUX", "INP3", "AMIC3" },
-+	{ "ADC2 MUX", "INP2", "AMIC2" },
-+
-+	{ "IN1_HPHL", NULL, "VDD_BUCK" },
-+	{ "IN1_HPHL", NULL, "CLS_H_PORT" },
-+	{ "RX1", NULL, "IN1_HPHL" },
-+	{ "RDAC1", NULL, "RX1" },
-+	{ "HPHL_RDAC", "Switch", "RDAC1" },
-+	{ "HPHL PGA", NULL, "HPHL_RDAC" },
-+	{ "HPHL", NULL, "HPHL PGA" },
-+
-+	{ "IN2_HPHR", NULL, "VDD_BUCK" },
-+	{ "IN2_HPHR", NULL, "CLS_H_PORT" },
-+	{ "RX2", NULL, "IN2_HPHR" },
-+	{ "RDAC2", NULL, "RX2" },
-+	{ "HPHR_RDAC", "Switch", "RDAC2" },
-+	{ "HPHR PGA", NULL, "HPHR_RDAC" },
-+	{ "HPHR", NULL, "HPHR PGA" },
-+
-+	{ "IN3_AUX", NULL, "VDD_BUCK" },
-+	{ "IN3_AUX", NULL, "CLS_H_PORT" },
-+	{ "RX3", NULL, "IN3_AUX" },
-+	{ "RDAC4", NULL, "RX3" },
-+	{ "AUX_RDAC", "Switch", "RDAC4" },
-+	{ "AUX PGA", NULL, "AUX_RDAC" },
-+	{ "AUX", NULL, "AUX PGA" },
-+
-+	{ "RDAC3_MUX", "RX3", "RX3" },
-+	{ "RDAC3_MUX", "RX1", "RX1" },
-+	{ "RDAC3", NULL, "RDAC3_MUX" },
-+	{ "EAR_RDAC", "Switch", "RDAC3" },
-+	{ "EAR PGA", NULL, "EAR_RDAC" },
-+	{ "EAR", NULL, "EAR PGA" },
-+};
-+
-+static const struct snd_soc_dapm_route wcd9375_audio_map[] = {
-+	{ "ADC3_OUTPUT", NULL, "ADC3_MIXER" },
-+	{ "ADC3_OUTPUT", NULL, "ADC3_MIXER" },
-+	{ "ADC3_MIXER", "Switch", "ADC3 REQ" },
-+	{ "ADC3 REQ", NULL, "ADC3" },
-+	{ "ADC3", NULL, "AMIC4" },
-+
-+	{ "DMIC1_OUTPUT", NULL, "DMIC1_MIXER" },
-+	{ "DMIC1_MIXER", "Switch", "DMIC1" },
-+
-+	{ "DMIC2_OUTPUT", NULL, "DMIC2_MIXER" },
-+	{ "DMIC2_MIXER", "Switch", "DMIC2" },
-+
-+	{ "DMIC3_OUTPUT", NULL, "DMIC3_MIXER" },
-+	{ "DMIC3_MIXER", "Switch", "DMIC3" },
-+
-+	{ "DMIC4_OUTPUT", NULL, "DMIC4_MIXER" },
-+	{ "DMIC4_MIXER", "Switch", "DMIC4" },
-+
-+	{ "DMIC5_OUTPUT", NULL, "DMIC5_MIXER" },
-+	{ "DMIC5_MIXER", "Switch", "DMIC5" },
-+
-+	{ "DMIC6_OUTPUT", NULL, "DMIC6_MIXER" },
-+	{ "DMIC6_MIXER", "Switch", "DMIC6" },
-+};
-+
- static int wcd937x_set_micbias_data(struct wcd937x_priv *wcd937x)
- {
- 	int vout_ctl[3];
-@@ -2527,6 +2598,13 @@ static int wcd937x_soc_codec_probe(struct snd_soc_component *component)
- 			dev_err(component->dev, "Failed to add snd_ctls\n");
- 			return ret;
- 		}
-+
-+		ret = snd_soc_dapm_add_routes(dapm, wcd9375_audio_map,
-+					      ARRAY_SIZE(wcd9375_audio_map));
-+		if (ret < 0) {
-+			dev_err(component->dev, "Failed to add routes\n");
-+			return ret;
-+		}
- 	}
- 
- 	ret = wcd937x_mbhc_init(component);
-@@ -2570,6 +2648,8 @@ static const struct snd_soc_component_driver soc_codec_dev_wcd937x = {
- 	.num_controls = ARRAY_SIZE(wcd937x_snd_controls),
- 	.dapm_widgets = wcd937x_dapm_widgets,
- 	.num_dapm_widgets = ARRAY_SIZE(wcd937x_dapm_widgets),
-+	.dapm_routes = wcd937x_audio_map,
-+	.num_dapm_routes = ARRAY_SIZE(wcd937x_audio_map),
- 	.set_jack = wcd937x_codec_set_jack,
- 	.endianness = 1,
- };
--- 
-2.25.1
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
