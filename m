@@ -1,171 +1,94 @@
-Return-Path: <devicetree+bounces-74661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25417903E47
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 16:01:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D591903E60
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 16:08:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BE491C2570D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 14:01:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C53321F21E97
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 14:08:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B08617D88C;
-	Tue, 11 Jun 2024 14:00:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="H1evq0Dq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D2A217C7BE;
+	Tue, 11 Jun 2024 14:08:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44361176ABA;
-	Tue, 11 Jun 2024 14:00:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DF441DDF4;
+	Tue, 11 Jun 2024 14:07:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718114444; cv=none; b=ghcsUAI0Ki/tTzQPvyUTQkRe9WSMeKfMDHUmlBhkYeyivhSQQnpr9dpWa8PSd/gtK49esLrbIBio3BFRC/RtgNW4IMyv0cDJsrbe6ANxS7qqMm+8YWBRyoW3qUpLyksbirBz3aS01CNzG3WdMYfpV0S+w0kMRSPsiDSez4UQcPM=
+	t=1718114883; cv=none; b=dlJyHpIi+D5JoZfz4UpsngodjF3wnkKS/Cq3rYkN6WnIJg/z1n5dGfw6r7g1Vgz4+31sGOM9zsU74/ZpEUYegWlhahq/zIK38Esd8Rrxmh41Xs7U4oJGtc5G01w6QJTtnFWzd+822mBjwA0RfRXZuKlYhRwY/TRP2rNQCY1xEtU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718114444; c=relaxed/simple;
-	bh=Nn4o4q+BV9qqo5+3JXOfWLj3V0S/VMi7dVbqAdD7kd0=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=TkINHqSrjKcX/XxBH02DwpBy0BzZE053MuDdHg/3x2dIIKE53psgNUaokCoE37nyJ95/Tdsu7MlHFyY3/0+pxZhXU/fuu9i0bsvkS5mGJVOG0MP1n6y7LCXgo8sJ4TrORQGVOXpJ9xlnEcqVd4u2W3+sY+75Z9Q4DV0CzTDF1o4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=H1evq0Dq; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45BE0aVY077223;
-	Tue, 11 Jun 2024 09:00:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1718114436;
-	bh=UksPvX2iT5jFoUevaSSujIFfKusReYrJlUO5ZImZzJE=;
-	h=From:To:CC:Subject:Date;
-	b=H1evq0Dq7+r1lVU+TBUsSZjRTmrtz/7ql5n8LTuhfc1+wJg2fvZ/qHiyYHjfVZtIt
-	 sMrC2Kfz2395Weq+epIIQtiGNT5L2i448dffVg8VghhWO4thcybUMoPCrGtlQ5eAOm
-	 CL28OAs1Y8bgTaxRSp7vIth/7Gviqp18CTyE2QYU=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45BE0aIl055885
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 11 Jun 2024 09:00:36 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 11
- Jun 2024 09:00:35 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 11 Jun 2024 09:00:35 -0500
-Received: from lelvsmtp5.itg.ti.com ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45BE0Zc9102178;
-	Tue, 11 Jun 2024 09:00:35 -0500
-From: Andrew Davis <afd@ti.com>
-To: Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski
-	<brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
-Subject: [PATCH] dt-bindings: gpio: lsi,zevio-gpio: convert to YAML
-Date: Tue, 11 Jun 2024 09:00:34 -0500
-Message-ID: <20240611140034.24685-1-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1718114883; c=relaxed/simple;
+	bh=v75fYsSUIgFo9A9XwziCLVc5Lj+NmGuKOUWo8pr3H+Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=h2xJedNPMBroNVDHTC2RerPG7/Zi7Vjl4x+Lk0maEg2jW2VL4qahr5zev5baow93tLgs7i5UBpkm3vdGpEOZaCbVehP/CP7yDiEbPT2yEEPoEq9tewvA3TcyZ0ZPHfYOx5wtH4LqZEcsay/FGz5EDrY4WqxzKO3+uX+vbfniByo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1sH2AG-00031H-00; Tue, 11 Jun 2024 16:07:56 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id 087DAC031A; Tue, 11 Jun 2024 16:03:41 +0200 (CEST)
+Date: Tue, 11 Jun 2024 16:03:41 +0200
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Hauke Mehrtens <hauke@hauke-m.de>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	=?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>,
+	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 1/5] mips: bmips: BCM6358: make sure CBR is correctly
+ set
+Message-ID: <ZmhZPdr9MpESOXgm@alpha.franken.de>
+References: <20240611113538.9004-1-ansuelsmth@gmail.com>
+ <20240611113538.9004-2-ansuelsmth@gmail.com>
+ <ZmhHw5QZCQ6G6EbK@alpha.franken.de>
+ <6668503a.050a0220.9ec4a.4777@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6668503a.050a0220.9ec4a.4777@mx.google.com>
 
-Convert Zevio GPIO controller bindings to DT schema.
+On Tue, Jun 11, 2024 at 03:04:36PM +0200, Christian Marangi wrote:
+> On Tue, Jun 11, 2024 at 02:49:07PM +0200, Thomas Bogendoerfer wrote:
+> > On Tue, Jun 11, 2024 at 01:35:33PM +0200, Christian Marangi wrote:
+> > > It was discovered that some device have CBR address set to 0 causing
+> > > kernel panic when arch_sync_dma_for_cpu_all is called.
+> > > 
+> > > This was notice in situation where the system is booted from TP1 and
+> > > BMIPS_GET_CBR() returns 0 instead of a valid address and
+> > > !!(read_c0_brcm_cmt_local() & (1 << 31)); not failing.
+> > > 
+> > > The current check whether RAC flush should be disabled or not are not
+> > > enough hence lets check if CBR is a valid address or not.
+> > > 
+> > > Fixes: ab327f8acdf8 ("mips: bmips: BCM6358: disable RAC flush for TP1")
+> > 
+> > should I apply it to mips-fixes ? If not could you just ammend
+> > it with the following patch, where this is changed again ?
+> >
+> 
+> Ideally this should be backported to stable kernel since it does cause
+> kernel panic. This is why it's split and it's the first patch of the
+> series.
 
-Changes during conversion:
- - Add used but undocumented interrupts property
+ok, I'll apply it to mips-fixes then.
 
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- .../devicetree/bindings/gpio/gpio-zevio.txt   | 16 -------
- .../bindings/gpio/lsi,zevio-gpio.yaml         | 46 +++++++++++++++++++
- 2 files changed, 46 insertions(+), 16 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-zevio.txt
- create mode 100644 Documentation/devicetree/bindings/gpio/lsi,zevio-gpio.yaml
+Thomas.
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-zevio.txt b/Documentation/devicetree/bindings/gpio/gpio-zevio.txt
-deleted file mode 100644
-index a37bd9ae27307..0000000000000
---- a/Documentation/devicetree/bindings/gpio/gpio-zevio.txt
-+++ /dev/null
-@@ -1,16 +0,0 @@
--Zevio GPIO controller
--
--Required properties:
--- compatible: Should be "lsi,zevio-gpio"
--- reg: Address and length of the register set for the device
--- #gpio-cells: Should be two. The first cell is the pin number and the
--  second cell is used to specify optional parameters (currently unused).
--- gpio-controller: Marks the device node as a GPIO controller.
--
--Example:
--	gpio: gpio@90000000 {
--		compatible = "lsi,zevio-gpio";
--		reg = <0x90000000 0x1000>;
--		gpio-controller;
--		#gpio-cells = <2>;
--	};
-diff --git a/Documentation/devicetree/bindings/gpio/lsi,zevio-gpio.yaml b/Documentation/devicetree/bindings/gpio/lsi,zevio-gpio.yaml
-new file mode 100644
-index 0000000000000..542b5f9a495d9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/lsi,zevio-gpio.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/lsi,zevio-gpio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Zevio GPIO controller
-+
-+maintainers:
-+  - Andrew Davis <afd@ti.com>
-+
-+properties:
-+  compatible:
-+    const: lsi,zevio-gpio
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  gpio-controller: true
-+
-+  "#gpio-cells":
-+    description: The first cell is the pin number and the second cell is used
-+      to specify optional parameters (currently unused).
-+    const: 2
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - gpio-controller
-+  - "#gpio-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    gpio: gpio@90000000 {
-+        compatible = "lsi,zevio-gpio";
-+        reg = <0x90000000 0x1000>;
-+        interrupts = <7>;
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+    };
 -- 
-2.39.2
-
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
