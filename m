@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-74426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EAED90331E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 08:58:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 931CF903322
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 08:59:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A13D2885B8
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 06:58:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39A671F26F97
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 06:59:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA7D7171E4C;
-	Tue, 11 Jun 2024 06:58:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01DF4171E5A;
+	Tue, 11 Jun 2024 06:59:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zj1ls3oT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AYfOlCiI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A139F17167D;
-	Tue, 11 Jun 2024 06:58:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5AA8171672;
+	Tue, 11 Jun 2024 06:59:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718089102; cv=none; b=EFGUYkFkbDiQUUt5CmI0C7fNty7mSJs/mISwb9wPZUaqfpJrK96ka1J9l2/yFhiqdhcv9ikDZZAG7ApGOr/wvPqG3mgnaKygK4M/IwIexTN009Dhqu9plcUdvnRjQO/MV4hJilMS3vC1Q6cf45ekfDJFOEoL5cw/MtTlYl8NSjA=
+	t=1718089181; cv=none; b=pQbsVpuyLI0csZq6aSkxQsnU8g4BRuww7GXepS6ag2qtXZNx0sWCpRkOlrcMa5tdlOZPyNZe8CuuH5EGj7n1U8HzxgDdi0tQ+eMYIeY+SzKyXxQNlWA5hzK8tqhhNK1lcm9s08jaz5aBaHvBW790lrCeA4TgFaZv676NF96gTYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718089102; c=relaxed/simple;
-	bh=v2PsGaYEzz0rlG5E+lRyZ/7nwsnb7FOfPFly0rvXOjU=;
+	s=arc-20240116; t=1718089181; c=relaxed/simple;
+	bh=ieOwu/4E4GUsrrGVCKDF7Y9DKM0YIT0VeEJfE3M4Sck=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BPmRyva26JUFGA4yyewN+ZyzLCCqc+RrBCDMnNReNdAVmWf/MTzj/NBcIox8KJ/fJqerKwyoobKP4Gt3mwQGzJ2S0iRHGyYxM9K49MuI0jk2kY2OsGjWfc/gXWMUXEUFCt1g48/+78Mmjw399s9kQqFzgjUTUNjGelXwwWxCvis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zj1ls3oT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A881C2BD10;
-	Tue, 11 Jun 2024 06:58:16 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=cWeAiAKScyrjQttCZiTLQzWD30Yr87CJrgG3sdWjxJ2p0oFgLk/9ntmGpOAGVcz7p2XGrqe/nBVwpSZdrb+ssq/2Ecbh7Fqrj0odlVBBZsAtVhNRaPFG+xZ7e3CaNIPhFEfNI1QwR/eyCSBgd0/3o+bP72uKHxcfMHZvfjUzaIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AYfOlCiI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 150E2C2BD10;
+	Tue, 11 Jun 2024 06:59:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718089102;
-	bh=v2PsGaYEzz0rlG5E+lRyZ/7nwsnb7FOfPFly0rvXOjU=;
+	s=k20201202; t=1718089181;
+	bh=ieOwu/4E4GUsrrGVCKDF7Y9DKM0YIT0VeEJfE3M4Sck=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Zj1ls3oTCMZNuQ5ZiKd+ZrVZF39ucCCR5KAeXzMgurmLxPdOTn2iov7BC90XV5KbZ
-	 5EyQHhvFkObEy1tXgprBfY3tdL8w/WNY/IvIiLDrefmYe3l74aZwNMfsinZYDjNKM9
-	 cWzbtMf8OPpSTQs+3WTqTCA5pgruCwzEoCkge9bLUI5egls6EsZS1m4lyLSaqLndVP
-	 sMX4Js28y3bXpk0kMHmGY5ZIv6nwBywc9F46z6etgDeK3SOvQdfXpLyG7A+V7MIOVL
-	 hrLTkGwgIftBuvTPtwdSo6fFHJO2QjpNfhjwxZk0PVT7HbBzqW5JQEqbHh9ch04QAp
-	 t6vcb63kPBbNQ==
-Message-ID: <398ee3a7-513e-4dd6-8ff9-b7585f005d28@kernel.org>
-Date: Tue, 11 Jun 2024 08:58:14 +0200
+	b=AYfOlCiIjPfkiUmh0+ABpWHSvunkQ+ZnbtUCHVO5fVMZpAjW+WLCMGOl+NsNTieWB
+	 x1PxwAvGSu6/M5FqlIT/26L8N17PkLHnLkiaVzKvUdhiq2w8whFjwkkc32NB5QIQ81
+	 SmrVvhy+R6HsiHCCNargMpo2pu8nshfeVQ9TIPAIvt91SPPrLRAoKP0jZR1Tqo5lwB
+	 Rs1HbMw/XywPC4wDOJD08NZ/8bLdTG6w/gFe6m5x+1UPlfFdrlQaKYtGuzqciYQUok
+	 qOcyXWPSmFfSslyk56BQ9dQulKgcHaQHawqzsV7ocs4TxF8qstPs3HzKKLtWXBJrvP
+	 wMEWEPVCsDINg==
+Message-ID: <6b3fe242-3733-4f16-b727-494dc1d82002@kernel.org>
+Date: Tue, 11 Jun 2024 08:59:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: reset: brcm,bcm63138-pmb: convert to yaml
-To: Kanak Shilledar <kanakshilledar@gmail.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+Subject: Re: [RFC PATCH v2 2/4] dt-bindings: clock: Add R9A09G057 core clocks
+To: Prabhakar <prabhakar.csengg@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, William Zhang <william.zhang@broadcom.com>,
- Anand Gore <anand.gore@broadcom.com>, Kursad Oney
- <kursad.oney@broadcom.com>, Florian Fainelli
- <florian.fainelli@broadcom.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- Kanak Shilledar <kanakshilledar111@protonmail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240611035329.33648-2-kanakshilledar@gmail.com>
+ <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20240610233221.242749-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240610233221.242749-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,25 +108,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240611035329.33648-2-kanakshilledar@gmail.com>
+In-Reply-To: <20240610233221.242749-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/06/2024 05:53, Kanak Shilledar wrote:
-> Convert the Broadcom BCM63138 Processor Monitor Bus to newer DT
-> schema. Created DT schema based on the .txt file which had `compatible`,
-> `reg` and `"#reset-cells" as required properties.
-> Added one line description which was missing in the original .txt file.
-> Added Philipp Zabel as the maintainer (took from MAINTAINERS file).
+On 11/06/2024 01:32, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Define RZ/V2H(P) (R9A09G057) Clock Pulse Generator core clocks.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v1->v2
+> - Dropped the module clocks and just added the core clocks
+> 
+> Note the core clocks are the once which are listed as part
+> of section 4.4.2 which cannot be controlled by CLKON register.
+> ---
+>  include/dt-bindings/clock/r9a09g057-cpg.h | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/r9a09g057-cpg.h
 
-One of the necessary steps EVERYTIME you make conversion of some random
-binding is to grep. git grep. You grep for stale paths and usage of
-compatible in DTS. Sometimes you find nothing, sometimes you would find
-something.
+Missing vendor prefix.
 
-`git grep bcm63138-pmb` gives you:
-1. stale path which you did not fix,
-2. duplicated schema...
+This belongs to the binding patch, so squash it.
 
 Best regards,
 Krzysztof
