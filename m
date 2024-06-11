@@ -1,117 +1,84 @@
-Return-Path: <devicetree+bounces-74731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EF5D904361
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 20:17:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EA93904385
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 20:28:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96A3CB25C5F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 18:17:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5CEE1C24DFB
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 18:28:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E320605BA;
-	Tue, 11 Jun 2024 18:17:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B98D1763F2;
+	Tue, 11 Jun 2024 18:27:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RYr3z6ib"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M9MVZZky"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1578D376E9;
-	Tue, 11 Jun 2024 18:17:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85D8B74BE8;
+	Tue, 11 Jun 2024 18:27:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718129842; cv=none; b=e2kbGfLdMWig3p63DlEQT3pkSWNYAJp+ktNVapEMO87yo13rqUqf5pqSD+yCdKg2r8nG/3egFBrai6Nq3B09g6BE03I0wDSqPNxKVWJJ7jQLs7n3tHRAGMe41A8FE66YHNwX7Jq+nZMg9eLNABj0GvBxdCdrkEIqEpQzDaun8To=
+	t=1718130479; cv=none; b=vC8dzE2trl1+QGfemGvsngPgOw0z1Z6QKi7MTDF//tyWzwpmrTZua/dcKal+WbQrAkNN1ubv4HRK4iAETJSd+qqvfz3lXT8BmYUPXu9easXnXZfvLR9CW+4pbPNbFvEWLnx905oqoELocGEwhaKKnhcfGRhMNIaDOohpiPy/iPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718129842; c=relaxed/simple;
-	bh=vAq9v37lvJRm6xxE15oLaANy4ox3DXYXkORfdowFKus=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oWAIMslFzgI/c+qMnM1ut0bMJL7p4P0sxcDulYXFBSwth3aBpiQ2mvUHmXHtnCDxLQJhzfAvFtXMtKDUZ7ugYWy+ybTDIam2/rG9FcgSfm5pI6ba6oLcrHnbK+Yg5Ab/VQRPpkFmVouHGCY71+7YDByDI4Tla6s5qS+lJwCLdyk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RYr3z6ib; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A5B4C2BD10;
-	Tue, 11 Jun 2024 18:17:19 +0000 (UTC)
+	s=arc-20240116; t=1718130479; c=relaxed/simple;
+	bh=6CSNMxxBSxOg2wytumtFbB+a4+h3V2IFBw3MlO5EU3Q=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=PtlSJjaj2Q7znIqn+aCfETQ5vjkBEg1kP8RP7X3KDUAaNL+j2qcIjbaRqqJXsxndvb6lDYymjn/US78cZfnZ9QKFZgu7oBBSeaVZRt0Pbz19mNQZweSGsndkSRKPky3qFT4QUeP1J34aEUQRaS4UZuo6xQnsCdLjcIA1MLoaLgg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M9MVZZky; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D35CDC32786;
+	Tue, 11 Jun 2024 18:27:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718129841;
-	bh=vAq9v37lvJRm6xxE15oLaANy4ox3DXYXkORfdowFKus=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RYr3z6ibJlMpqOY/t9lhUTqyWLnfuPWDJ1FnE0nNAKGEh69zKJbuzrOYKCLqE8hYG
-	 6tSj61HesZYDtJBXVOL0UQrVpNsuEHliPeNTAbTdm4hA59v5sztfR/SuGlWIGSCy4p
-	 x8EBD2QIGbLQ8Iyefnsl1ZvwaAkmMX84XN5+yenphJIcv7jpAsNLKhXiujA+orPGUj
-	 zMan6XGOkvuPUUrohLIdK9V5YklJhuf//RwJdfFe21mU54dmcaYWtfS6bB1xXpCVm1
-	 RFHiTu0ucXGhr+p4658NFAUQCX+ut3nibak/XxT/uPeCVzEXa5LVEe8rwahOBAgi32
-	 xU5KWLuRU6Rcw==
-Date: Tue, 11 Jun 2024 19:17:18 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: linux-iio@vger.kernel.org, jic23@kernel.org, denis.ciocca@st.com,
-	devicetree@vger.kernel.org, linus.walleij@linaro.org,
-	robh+dt@kernel.org
-Subject: Re: [PATCH v4 2/2] dt-bindings: iio: st-sensors: add LIS2DS12
- accelerometer
-Message-ID: <20240611-reassign-eliminate-b05e4a302cfb@spud>
-References: <20240611160821.13941-1-kauschluss@disroot.org>
- <20240611160821.13941-2-kauschluss@disroot.org>
+	s=k20201202; t=1718130479;
+	bh=6CSNMxxBSxOg2wytumtFbB+a4+h3V2IFBw3MlO5EU3Q=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=M9MVZZkyp9REtuItIrCF3J+xoeWLhhKnsmYGD5Op+QZmTQC0RuiSCIHHuEmxbc1Rl
+	 vx02zqODkzr9ZKY8gS9trDMn+PpGm18pY1x57HsJQhJCxPaPkDsQMdZ9zsGi2lCXUZ
+	 9PShElK12B2XcEm1iFDTDUnkj6FiAYIw2aaoy+5Gmix08zqSUVy2kGAqB8IfkkDONg
+	 l58RMbc4VyW60alqO2FVa/z3+7db/uM0MOrCRNESwUiSPWsJ4/YPTJqgvUBdJWZSXq
+	 wpzyFhVzLdXNXLILCVhUWPsWPEImJcgDeL3H9HwwkAUeggPjYziIwU8SYOLJaqo40Y
+	 i9RziCFpL/E2A==
+From: Vinod Koul <vkoul@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
+ imx@lists.linux.dev, dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: stable@vger.kernel.org
+In-Reply-To: <20240521083002.23262-1-krzysztof.kozlowski@linaro.org>
+References: <20240521083002.23262-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] dt-bindings: dma: fsl-edma: fix dma-channels
+ constraints
+Message-Id: <171813047547.475489.5206693494651133919.b4-ty@kernel.org>
+Date: Tue, 11 Jun 2024 23:57:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="nu6bNi20vSq7UFgt"
-Content-Disposition: inline
-In-Reply-To: <20240611160821.13941-2-kauschluss@disroot.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
 
---nu6bNi20vSq7UFgt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, 21 May 2024 10:30:02 +0200, Krzysztof Kozlowski wrote:
+> dma-channels is a number, not a list.  Apply proper constraints on the
+> actual number.
+> 
+> 
 
-On Tue, Jun 11, 2024 at 09:35:53PM +0530, Kaustabh Chakraborty wrote:
-> Add compatible for LIS2DS12 accelerometer by STMicroelectronics.
+Applied, thanks!
 
-I can see that! Your commit message should mention why this device
-is not compatible with existing variants.
+[1/1] dt-bindings: dma: fsl-edma: fix dma-channels constraints
+      commit: 1345a13f18370ad9e5bc98995959a27f9bd71464
 
-Thanks,
-Conor.
+Best regards,
+-- 
+Vinod Koul <vkoul@kernel.org>
 
->=20
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> ---
->  Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/D=
-ocumentation/devicetree/bindings/iio/st,st-sensors.yaml
-> index fff7e3d83a02..71c1ee33a393 100644
-> --- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> +++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> @@ -26,6 +26,7 @@ properties:
->            - st,lis2dw12
->            - st,lis2hh12
->            - st,lis2dh12-accel
-> +          - st,lis2ds12
->            - st,lis302dl
->            - st,lis331dl-accel
->            - st,lis331dlh-accel
-> --=20
-> 2.45.1
->=20
->=20
-
---nu6bNi20vSq7UFgt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmiUrQAKCRB4tDGHoIJi
-0qEqAQCVRcgvhVlMOSSsQ39vFTlnK/tiqhnsa3c2vFU6YIyU2gEAnojZRQ4tQsAU
-xWH5Vs5gt3fzWn0kWP8/aHMLBKLJVQE=
-=/Qza
------END PGP SIGNATURE-----
-
---nu6bNi20vSq7UFgt--
 
