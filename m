@@ -1,76 +1,77 @@
-Return-Path: <devicetree+bounces-74489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EBF29037AE
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 11:19:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ED5C9037B1
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 11:19:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 290311C21665
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 09:19:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9F97286CF3
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 09:19:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11D56176AD7;
-	Tue, 11 Jun 2024 09:19:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B5DD17837C;
+	Tue, 11 Jun 2024 09:19:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="da8muCxR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pbf3plzH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C43D176244
-	for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 09:19:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53E80176ACD
+	for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 09:19:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718097563; cv=none; b=DeB6jPO+YrnkrKmATBYBRDghhJ2jSpsEby4cw2nFrdcXx35LkghagisLt4k2XgaXwuxXGuiOyy8bGOm2eZG8J2QhDzr63AZQ3qeG4Sca6GADnOAZSk+AyJhxslvjLsUAfFyxrVbCYPod27KiNzk/DhLYRsKdkGRVH3/H2ok+VK8=
+	t=1718097564; cv=none; b=LPFFtKB+RqX9iHUiT87Ew47L/FiGqrVGqfxc9msfLogEZz3a81bwb3i2EOHa/pIui8g692RNn0TwO+ayx2jHGyO4jeZMiBcuIUPYbKLQor0rw2YWlEp4ihxN4OpeAA3N8jb1bz+K+xY8YdLzTLYTL8gsKAEcwwaqU9A1Y8iP4DU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718097563; c=relaxed/simple;
-	bh=kXlUklN20Q8eUu9WxiS+OZ+JObXF15mPXqfLY0fCwxk=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oslKObf/ZS6anHSsLQ4ullLLC7wcEsDGkZX2uahp0PtTGefEuiXM0gcnNpxhTSy0LvUO2vHp/vil2i20nnQkSklasldeIboGpgobyBN5A92fDOAjqGALhAfsJHOOfOmULRDCDNUsmRTVniq4cStDYPhGmRKdu2H1MTwJHiDpx/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=da8muCxR; arc=none smtp.client-ip=209.85.221.53
+	s=arc-20240116; t=1718097564; c=relaxed/simple;
+	bh=1cs5TGFPvTYKhtCHEa9TjM2PD54r5lUpqR+/FnQDjtQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=glPKTlRsIKOFI5Ose00DjZpNSeTAxATlYQVNwF5Wy/F0OUmIc03ezgWlXIMM6oesh5C5mhjE1DY4EVo4r9E9z1jL4Ald3KEOiK7qbofJJ/UsU5KxYOItVNwSt+Z6ob98O3+VY7fUd626qrKU5aT9PC7zJE0yhp5CnSuDWRasIDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pbf3plzH; arc=none smtp.client-ip=209.85.221.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-35f1bc2ab37so2112062f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 02:19:21 -0700 (PDT)
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-354f3f6c3b1so4347472f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 02:19:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718097560; x=1718702360; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=vi/zJoTaekHU+/osjmDHmN4bmVrKAfe+svHOjhmObm8=;
-        b=da8muCxRGTWyRD+kyFxo+SiZ1pLavOh6/trQn6tB8Jmy7uXAzKKJg72c3mrlYtL/IX
-         nZUaDaJXLux5xyz5Eqj4QugPPfxuj6++pMdohDSU6DibwA02bZmxZxGXwVN/9/fW70qh
-         bjEZYq3Jzb9gDGW+WuHbrf6ee12fODPaTXT9bfMnE68S8mBatGhkbXBiZx0pZZuPWqHE
-         BhK6nKDtjiNR+UrmmbrFq//G0LfqnaOWa8k5XLzy6MvSjsD0zw/6q6Ms6tsgZID2/xy4
-         LzA21ahh3BuFcOCLkWKQku+fa/L8eTCH6Tu6V4nZeIHF4VWErjeyEBgWOHMoCKWlOy9p
-         QXFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718097560; x=1718702360;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1718097561; x=1718702361; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=vi/zJoTaekHU+/osjmDHmN4bmVrKAfe+svHOjhmObm8=;
-        b=eDqxhjtvCYJ95ZnokRnKAfuWwRR46JFksn4CFK6x70r25CsIXHD+AYk0YPKwSAPX6N
-         5ZA7JXE+HE3YcR3bXP49TA8yiCgCyvsghJ2GdVeE0l3+ah92OsUEru0MVsYk8jNMnWHz
-         4zy+rwwd9ZdK2Hznu7BHFsKeVvQdPU82LqPHhHIehBr8h1vH7u2OuX2iCsQPhHSMN2V4
-         nleKV3Y5RZ//CkYwgfH0u3TdxdT4CfJm9Qu5s1TvV+HChw+68LdiSiNTTrlTHNZ5uVDK
-         zT67UFEnkHFMSRY1sNUIEJXUB5muUg9vNCS+zgSVoIdgLbqMg+1GlWLtPcGO7pLpyDgE
-         nsHw==
-X-Forwarded-Encrypted: i=1; AJvYcCWjA8eqG0FV69BlBW+8YwKTuS1bEUyOiyV7qjg45N2SQD6GPmK+9C9fzTqEAlEiisXS8TKO+sPkazrQGsL7D2g8m+4Vfne3pAcdBA==
-X-Gm-Message-State: AOJu0Yzo5hK3sFYZmiRS9iqcrvjoU/Tu07NYyUpXg8hSi23vZMAnYsZJ
-	znQ9kDvwHKFO3Y2Tu+X2ylhQJYJEnd3Qj+PmdnLrwPTyhCh6w+M+Nsw4pMcdWL7UPW6hv9+BvrM
-	LLho=
-X-Google-Smtp-Source: AGHT+IHQSTbevIphGHCvbrOMQjG9ACIHi9SFdQoe+sA54Qnbx7zzX31Uv88M+9SOlhZj8f5WihFAeQ==
-X-Received: by 2002:a05:6000:a84:b0:35f:1f3c:b62a with SMTP id ffacd0b85a97d-35f1f3cb667mr4223027f8f.58.1718097559838;
-        Tue, 11 Jun 2024 02:19:19 -0700 (PDT)
+        bh=qAotCT98J9DGPM0wloiNQgoKSF4/BliAqLtlTwFXIJM=;
+        b=pbf3plzH3HztTDDCbMLmWIzCw3uuTpWnsmtzCKMAHMlVLUGQQgNYEMfDc6S3VzTBOc
+         BwwIGxt+AT07S601iLShbqILyVq4qh1AoqbZ6O4dWiS8KXCKq6WwhiYSLwcMsXyPdNY5
+         8j/r41zhe89cQSczIIfxauL412KorZUJe8xztwFLmbnmZv+Z2WD17Oh7JJh/skJJgXKF
+         Dmnp24dsYf/1B6zS2wh+rxmPZTABMVo0dKJiHLNz0nY3jInOy9IHjKEM1jmSj1Cy59uO
+         6R5Zm9EbykOX0BYCAzAsXec/AWKK9dqez6jTlnuI4j8v4Fke6WAiqLZI519BIE2y1WQ1
+         GpeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718097561; x=1718702361;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qAotCT98J9DGPM0wloiNQgoKSF4/BliAqLtlTwFXIJM=;
+        b=mb7Y3wL5jzCz2yYWSwEPg7DbTaT50s/trPS+3FgM7Dns9+5mjhmUTXmsZAk4AMZ8HR
+         R6FW3ng97MX+zppbN1y6hX36wt5Woq5hLSxYMXwqrR6Sbutd2MFmw+XlhxOkH4NV0LYm
+         4Ky+AJCskK+/p/HcQEGV+emfTinweeqv6Fd+WSgnJOxw+nIq2mJVNBLmsvMW69f0ZWT+
+         5ZVVbuLKSEx8nls5LqdWIZTF7gK+pOBNr3vnz+0Jm3csZGn7BVLxUhnCRaLIOu1Db8To
+         3tEFnS9BNnrxn5xOVE0NP2YE3mv3NWDFQQNUBqLAPPsCL7tLchWerTP/oaWh306SbEuk
+         ki2w==
+X-Forwarded-Encrypted: i=1; AJvYcCXsnH7T7SykkTVdDv+hBDJC2DuTUeA/o3xX7MlGKDn/21Xs3YZNGSHQXSr43KSzTehgXrBhLpy32PKRcUJkJnOPq9H+VSW5AhsYxg==
+X-Gm-Message-State: AOJu0YxtKx4Qgaq3Ut4ykfpXzA6sE18Dbb56xpI+Y8qlGXlC+DwQt+R4
+	DC8i6pA7FICuU6xA1UASAbx//snPmHkekd2NhEP2fOpm2sMCfwT9mFvv0GfBIq2qz42kuLnHyjq
+	At4A=
+X-Google-Smtp-Source: AGHT+IEIFRba6q3D9B0hOwfS+XRDGy4lOjv38Bc2+qra3hHB40ylNIX1noo/SC++PN5cxundgQ9AXA==
+X-Received: by 2002:a5d:4d4d:0:b0:35f:1e39:4079 with SMTP id ffacd0b85a97d-35f1e3940dcmr4248482f8f.0.1718097560722;
+        Tue, 11 Jun 2024 02:19:20 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
         by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5fc3197sm13334619f8f.101.2024.06.11.02.19.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jun 2024 02:19:19 -0700 (PDT)
+        Tue, 11 Jun 2024 02:19:20 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH 0/2] ASoC: dt-bindings: convert everest,es7134.txt &
- everest,es7241.txt to dt-schema
-Date: Tue, 11 Jun 2024 11:19:16 +0200
-Message-Id: <20240611-topic-amlogic-upstream-bindings-convert-everest-v1-0-a7f9b4c9005c@linaro.org>
+Date: Tue, 11 Jun 2024 11:19:17 +0200
+Subject: [PATCH 1/2] ASoC: dt-bindings: convert everest,es7241.txt to
+ dt-schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,52 +80,149 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAJQWaGYC/x2NQQrDIBBFrxJm3QENJotepXRh448daFQcGwIhd
- 6908z5v899JiipQug8nVeyiklMXextoefsUwRK602hGZ2ZrueUiC/vtk2Pfb9FW4Td+SQqSovK
- S047aGJ3Qxi5MfjYWDutE/bVUrHL8i4/ndf0AD/EKGYEAAAA=
+Message-Id: <20240611-topic-amlogic-upstream-bindings-convert-everest-v1-1-a7f9b4c9005c@linaro.org>
+References: <20240611-topic-amlogic-upstream-bindings-convert-everest-v1-0-a7f9b4c9005c@linaro.org>
+In-Reply-To: <20240611-topic-amlogic-upstream-bindings-convert-everest-v1-0-a7f9b4c9005c@linaro.org>
 To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>
 Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=899;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3415;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=kXlUklN20Q8eUu9WxiS+OZ+JObXF15mPXqfLY0fCwxk=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmaBaVzg33iyMvF9EviNJegXkWD7JUrsT/u5Nycm9r
- lTpqliiJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZmgWlQAKCRB33NvayMhJ0bbID/
- 9NPSONOA42tIRng3nhZEKZPYGZ8Qdz8lXwd1AC7mmo3ri603pUmJ+vq/+KE668TrM9Y8jImbnm/PGn
- aMZcM9eNlQI1Vm/Z8YjSCkWFeOFeUbX0JdVINQd5WUgupYUxz/pVLv+WMcnyeVYZ7FSB+BZQo7flYc
- f6bsAllTCUjBC3xOXFVtK1ijFRoq++pjh4ciYD/Vb5cM66KzIp3un/m0fObrHQayHcVf0ug4XN5qJn
- +9GzGKBa+hgt6In3FUBcJWJ2J8STIq85V4XoAPsL3c3DqqQk/od8ZW/DBm3DJGYa7g2P2Rs1IYnBsZ
- RXpZLprDhFKqrQA8qSaB2Zh9j5G/smvqUsSSuQBBBw3/R5/X+wTYmBzjQaSgUmfLYPqdl5mh6jh3Dj
- AJG7OtQFEMUYgAKanvCgxiYnB6gQMWwCoqUxJFUtnKBQI0VNQLmKrT2b4vhpGRC2WpcJWA/IG7VKAL
- 2TholFfMyEsWhYMpyBt8TMbDmJZmF4B/D5sa6VyjtLUBtTTDgb9RlHzP9wvIsbu5CBmF49WEJJC1oq
- 79nqfxMgFIP7Uag9MjCxvZgtiYx3h1ChiG+1pXNC9lyGocC50gsYw7oFUeOBPDYdKnAb2diTSbn6HH
- w/XroLHBnNbtys+MUGLselm2HoUsQRdSbQTOO/9SXj/QmkovkZ6E4IiGzpRA==
+ bh=1cs5TGFPvTYKhtCHEa9TjM2PD54r5lUpqR+/FnQDjtQ=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmaBaWMs4BdnUrsNhbin/f8ULd8qsrytgAW1Y1t6GU
+ MQDH0X6JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZmgWlgAKCRB33NvayMhJ0RjYD/
+ 9+UEEq/VMc1zkdDhx7JiEKEJa+539lj6I5Iv/XLR321W3gp/yjra37phZ7VM3HpFDh/2+hVvREn1+Z
+ fPMH9NEcQdYnwqVUtKARPsp0eT257lY9U9F9MI6ybH3t1caWf08m+XfMm0EleCiZ5785oEuwGSIEPH
+ 85kOpGBIjtNtzSU/B7PphRq8CeWFvn//API1rvYwVIP5OwAgq4wyDXr3UNGgqPWgWAbVk85gZ1vhMh
+ Rlu/zo4RlS8dGUnjmKFXoXtHGt7mClhQiBeUSJYNhqqMVpDWFjEghWbBMydtEZ64MzFcUgzPq2b3PD
+ YYhI/N+z8SmNOEyASTVWXjmGSxbtvMH1lbZS6tl3RZ5RKRS8/7G/yF0woXNNa3xmIK2APNhnfH0Tr3
+ ZAyvsN2IrQUWBlkyUTYOfHmS33SSesMLSshecmDSBmr5kH35zaE82kIAqItupUrrY8orY4djuSnMQ+
+ KJJiNJYaQiJyzfiiZK2UNp6II/cAebDzBHimndkCzHqwO187VaesVjghoAM6ZqB2hyZuP24Pm+nnQk
+ oP9GoI6a3pWK5UokUVccjV0RLPPdytkqniVudWiU3lg9bzG8I2kG4marmHuWnN+ihVEFwK0Wc7t95p
+ b779uYePLNPSm76xUaXmSUcF2dl8FebSKKRlR/HScA6pTW4VknsWFU7PLsZQ==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Convert the text bindings of the Everest ES7241/ES7134/7144/7154 2 channels
-I2S analog to digital converter to dt-schema.
+Convert the text biddings for the Everest ES7241 2 channels I2S analog
+to digital converter to dt-schema.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
-Neil Armstrong (2):
-      ASoC: dt-bindings: convert everest,es7241.txt to dt-schema
-      ASoC: dt-bindings: convert everest,es7134.txt to dt-schema
-
- .../devicetree/bindings/sound/everest,es7134.txt   | 15 -----
- .../devicetree/bindings/sound/everest,es71x4.yaml  | 62 ++++++++++++++++++++
  .../devicetree/bindings/sound/everest,es7241.txt   | 28 ---------
  .../devicetree/bindings/sound/everest,es7241.yaml  | 66 ++++++++++++++++++++++
- 4 files changed, 128 insertions(+), 43 deletions(-)
----
-base-commit: c3f38fa61af77b49866b006939479069cd451173
-change-id: 20240611-topic-amlogic-upstream-bindings-convert-everest-4d5a601e4ef5
+ 2 files changed, 66 insertions(+), 28 deletions(-)
 
-Best regards,
+diff --git a/Documentation/devicetree/bindings/sound/everest,es7241.txt b/Documentation/devicetree/bindings/sound/everest,es7241.txt
+deleted file mode 100644
+index 28f82cf4959f..000000000000
+--- a/Documentation/devicetree/bindings/sound/everest,es7241.txt
++++ /dev/null
+@@ -1,28 +0,0 @@
+-ES7241 i2s AD converter
+-
+-Required properties:
+-- compatible : "everest,es7241"
+-- VDDP-supply: regulator phandle for the VDDA supply
+-- VDDA-supply: regulator phandle for the VDDP supply
+-- VDDD-supply: regulator phandle for the VDDD supply
+-
+-Optional properties:
+-- reset-gpios: gpio connected to the reset pin
+-- m0-gpios   : gpio connected to the m0 pin
+-- m1-gpios   : gpio connected to the m1 pin
+-- everest,sdout-pull-down:
+-   Format used by the serial interface is controlled by pulling
+-   the sdout. If the sdout is pulled down, leftj format is used.
+-   If this property is not provided, sdout is assumed to pulled
+-   up and i2s format is used
+-
+-Example:
+-
+-linein: audio-codec@2 {
+-	#sound-dai-cells = <0>;
+-	compatible = "everest,es7241";
+-	VDDA-supply = <&vcc_3v3>;
+-	VDDP-supply = <&vcc_3v3>;
+-	VDDD-supply = <&vcc_3v3>;
+-	reset-gpios = <&gpio GPIOH_42>;
+-};
+diff --git a/Documentation/devicetree/bindings/sound/everest,es7241.yaml b/Documentation/devicetree/bindings/sound/everest,es7241.yaml
+new file mode 100644
+index 000000000000..57ab429b320f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/everest,es7241.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/everest,es7241.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Everest ES7241 2 channels I2S analog to digital converter
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++properties:
++  compatible:
++    enum:
++      - everest,es7241
++
++  reset-gpios:
++    maxItems: 1
++    description: GPIO connected to the reset pin
++
++  m0-gpios:
++    maxItems: 1
++    description: GPIO connected to the m0 pin
++
++  m1-gpios:
++    maxItems: 1
++    description: GPIO connected to the m0 pin
++
++  everest,sdout-pull-down:
++    type: boolean
++    description:
++      Format used by the serial interface is controlled by pulling
++      the sdout. If the sdout is pulled down, leftj format is used.
++      If this property is not provided, sdout is assumed to pulled
++      up and i2s format is used
++
++  VDDP-supply: true
++  VDDA-supply: true
++  VDDD-supply: true
++
++  '#sound-dai-cells':
++    const: 0
++
++required:
++  - compatible
++  - VDDP-supply
++  - VDDA-supply
++  - VDDD-supply
++
++allOf:
++  - $ref: dai-common.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++   codec-0 {
++       compatible = "everest,es7241";
++       #sound-dai-cells = <0>;
++       reset-gpios = <&gpio1 15 0>;
++       VDDP-supply = <&vddp_supply>;
++       VDDA-supply = <&vdda_supply>;
++       VDDD-supply = <&vddd_supply>;
++   };
++
++...
+
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
+2.34.1
 
 
