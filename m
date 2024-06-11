@@ -1,188 +1,256 @@
-Return-Path: <devicetree+bounces-74407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D410902F5E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 05:54:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16EB3902F95
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 06:40:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABDE928307C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 03:54:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BBA51F235B2
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 04:40:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E484A14B96C;
-	Tue, 11 Jun 2024 03:54:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DADC16FF47;
+	Tue, 11 Jun 2024 04:40:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QFNhhsbB"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GQ10t7eF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AAA564B;
-	Tue, 11 Jun 2024 03:54:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACCA88488;
+	Tue, 11 Jun 2024 04:40:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718078057; cv=none; b=GIomLdhYP/hBMFOiwYO2SlRkesRybJU0ha0kRDe875Qgw+TIhpEfmnGr5D2qzXAId8LTOTIAC4PBjFd2mw0l9OQ92FOFJV4sUDU6WW2ytPDn6UaQ4F9/vZEbCDrv42cp+X1C5tyXWp60Y+UVSaBkHizUj3EXBx/IYnV5zRCsmZU=
+	t=1718080825; cv=none; b=CtnrSXQM9bgyOrEA6613K5FbFdur8BMV6AjCDap1w639tvaNVQv9tjL2vw31gzy8+2rL0T7sHBJJiUJb9aMDwAReudXkZJsQTR07MEGgSi3zt5NmnFixROAbXxjS3oEOylSQFHLRB+gI6O0/hQ91a8N9eCQvMoW+7h/2MlBoWcs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718078057; c=relaxed/simple;
-	bh=P/JlWkj1d4lbqMVcIecB6nL36p87uwx5huDvmxRLP50=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=POHZFuaLWPFFMMCwHYH0gGrx5FsS0BeK9nbBvDQvk4Ztd4SiR/Ou1/g2gviPl8IOgUikzjB1aQdMvULAherbM1tMoT6uZfx7Wc2s2l6tHagS/sSRptt4H57yBmxcMptSYMOSGKEpyV0Ud97ghPEUphettRJ2orOSQRJPAVee7No=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QFNhhsbB; arc=none smtp.client-ip=209.85.166.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-375ae697214so3095095ab.1;
-        Mon, 10 Jun 2024 20:54:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718078055; x=1718682855; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=JZOXFTXYUG3Q3znuwbPKJY/6pkvj0jJfwfifudPkm/g=;
-        b=QFNhhsbB0KXPiglzELpfBKtQTsCdgjvjRM2rfU4Zbmrz+tkamdgw6R9PqN8Sq4rtUi
-         W5BNDLzRhmh+RLzKHyyPAxXH8vnbrPqPTat5Hy16SBS2z4rdwVCVJhAwb29453Swuj6O
-         9tsEZRNub/q2ul2sSLL/ydLxyRg+yUE/lwzZ+LzVrqDPZ2MNXTeSVW85/Ggpbz+nQrmc
-         X1hXkNlrqXZtF9lwXI455y/u/qjuIsircBtxUVe54fY0A7d/XpZKbQEqOP/0RCy/aQry
-         JQcoXkS0XTbBwU2JQdw/Tyam+nlHtOS8EMEN+iBhqQ3U6rNdZNgxiTRFe8ZlsU1DHHHj
-         8eDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718078055; x=1718682855;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JZOXFTXYUG3Q3znuwbPKJY/6pkvj0jJfwfifudPkm/g=;
-        b=RJDtmjK3sp8BIbLBQ8Pv1qBfDKyFrEG+5/ZQnV7f/vizsVbYFJd6e5/XZMqjGYax9L
-         gbht15kzXkhttR/y+z9bGUpZjwlRctQejq6QP45l/APYG01oyoMEhTGpf4yxJF/uRDDw
-         XJLjcYgoRExLGIp6aBQC7MCQhSWhaImSj0h2qhFA4yQ8cQyS/RuK87sZmiOdyqDEZ/sK
-         lgaxAB2a22DGFQztZOJZSTqZ8hDqrl3bgRuI153YE7dgUBJUY1SLMhLHmxlVKYXc2F/d
-         G92yxrVOtP40s3yvM6xHVOTrmfmoEG8jPJQbXFjBnxgrQs7yOf7Xw+YEajoaWYu5JanA
-         7eEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW23Nf1/Q7CDz/1jv398IaBzQF0/vn2OdEOzGu3698hlwgChRSXEaVTs9thYSurIaxfbcItmBeTxnS5oWjrTSUASFHxWgJaPqihjwNzuuqVjuZHFdBNWiiDYKopQ6TpRGi1adeIcgXJPQ==
-X-Gm-Message-State: AOJu0YzHGqSl2kNGMCKZl7YCYogaESnY4m3k6/MbDMUDrQhH7eEU5AEv
-	YuSkGV1QgGoUmoaLTIReA1YtFqn1TmIPyv+DWnzmOKYfD+AXQ0T2
-X-Google-Smtp-Source: AGHT+IHvVho54m9hVhHxrAOmzVD1b15JqFTjH/MROr8cx0rEmOV1us0+bFPZHq5JZQE63gPj2sWKdQ==
-X-Received: by 2002:a92:c244:0:b0:374:a176:e26e with SMTP id e9e14a558f8ab-375803a4565mr125901145ab.31.1718078055139;
-        Mon, 10 Jun 2024 20:54:15 -0700 (PDT)
-Received: from ga401ii.SRMIST.EDU.IN ([59.152.80.69])
-        by smtp.googlemail.com with ESMTPSA id 41be03b00d2f7-6eb420e918esm3005937a12.2.2024.06.10.20.54.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jun 2024 20:54:14 -0700 (PDT)
-From: Kanak Shilledar <kanakshilledar@gmail.com>
-To: 
-Cc: Kanak Shilledar <kanakshilledar@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	William Zhang <william.zhang@broadcom.com>,
-	Anand Gore <anand.gore@broadcom.com>,
-	Kursad Oney <kursad.oney@broadcom.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Kanak Shilledar <kanakshilledar111@protonmail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: reset: brcm,bcm63138-pmb: convert to yaml
-Date: Tue, 11 Jun 2024 09:23:23 +0530
-Message-ID: <20240611035329.33648-2-kanakshilledar@gmail.com>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1718080825; c=relaxed/simple;
+	bh=tdXTvR04YG95vGC2ed5np4cY7vgENhLoagNUvO9j+Qg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=mZdRU2J84C62xSfO0PPiIsN1Ma08BkXjGPBPhoSEbZvtJHexN7IObxmb2ljWf+MuQ8+L95fhnrJb42SoOJtedIxvqnSywW4R/Ivsf9w8GtwN+FD6bkj9taajXgynSIhxG9Pdx1Umy/BaMOPHPzpc9SFbh1YoRWN6x5ZJy5JMzXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GQ10t7eF; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45B3AsR9001377;
+	Tue, 11 Jun 2024 04:40:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	R46nk5Y8f5YTvCdl64rWRkPICciSGOAHSIkHk+Ko2+w=; b=GQ10t7eFboebjCCY
+	95eg3icGoCg+jlFS6YFrmkgBVzuL43kPhpokmGkI1R0a7S32JNntLmvedCbqJGd0
+	hWH5KLsigHU/z6yLVo2XU60m8btu5dNr8+IUlm73tr5l2tZ2lovlwehKqIlAWn8t
+	6rmR18NmtwhCD0t0LDUZaZYpc2WqITRRokDiFYFZNCZPA9MvfUYEFV4ZWsLTF+nO
+	r9ERzXF7OvWUnB7pbbz1RS4SCC1etngJ1a9xjpa1njCGPq4rG8Dd4IeBoRH02HAi
+	czkrV6mVkch4C30crp4usqaUzXh+FIUbOBZN/zBkuc57zoL55lhumTPUI7A+Lmi6
+	2KWYhQ==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yme8rwsxs-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Jun 2024 04:40:06 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45B4e58O005393
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Jun 2024 04:40:06 GMT
+Received: from [10.216.24.176] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 10 Jun
+ 2024 21:39:54 -0700
+Message-ID: <33772eab-74c6-c5c3-fa25-3a643a2f9c57@quicinc.com>
+Date: Tue, 11 Jun 2024 10:09:52 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [RESEND v5 6/7] ASoC: codecs: wcd937x: add capture dapm widgets
+Content-Language: en-US
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami
+	<bgoswami@quicinc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+	<broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela
+	<perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>
+CC: <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_rohkumar@quicinc.com>,
+        <quic_pkumpatl@quicinc.com>, Konrad Dybcio <konrad.dybcio@linaro.org>
+References: <20240527111956.444425-1-quic_mohs@quicinc.com>
+ <20240527111956.444425-7-quic_mohs@quicinc.com>
+ <ba911ebd-aef5-46af-ace1-84d13bee6876@linaro.org>
+From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+In-Reply-To: <ba911ebd-aef5-46af-ace1-84d13bee6876@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: KrdaIhs0KhVaQSe_Yq6TEnDlFBkT1WmU
+X-Proofpoint-GUID: KrdaIhs0KhVaQSe_Yq6TEnDlFBkT1WmU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-10_08,2024-06-10_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 adultscore=0
+ suspectscore=0 bulkscore=0 phishscore=0 spamscore=0 lowpriorityscore=0
+ priorityscore=1501 mlxlogscore=775 impostorscore=0 mlxscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406110033
 
-Convert the Broadcom BCM63138 Processor Monitor Bus to newer DT
-schema. Created DT schema based on the .txt file which had `compatible`,
-`reg` and `"#reset-cells" as required properties.
-Added one line description which was missing in the original .txt file.
-Added Philipp Zabel as the maintainer (took from MAINTAINERS file).
+On 6/10/2024 12:35 PM, Srinivas Kandagatla wrote:
+> 
+> 
+> On 27/05/2024 12:19, Mohammad Rafi Shaik wrote:
+>> +static int __wcd937x_codec_enable_micbias(struct snd_soc_dapm_widget *w,
+>> +                      int event)
+>> +{
+>> +    struct snd_soc_component *component = 
+>> snd_soc_dapm_to_component(w->dapm);
+>> +    int micb_num;
+>> +
+>> +    if (strnstr(w->name, "MIC BIAS1", sizeof("MIC BIAS1")))
+>> +        micb_num = MIC_BIAS_1;
+>> +    else if (strnstr(w->name, "MIC BIAS2", sizeof("MIC BIAS2")))
+>> +        micb_num = MIC_BIAS_2;
+>> +    else if (strnstr(w->name, "MIC BIAS3", sizeof("MIC BIAS3")))
+>> +        micb_num = MIC_BIAS_3;
+>> +    else
+>> +        return -EINVAL;
+>> +
+> See last comment..
+> 
+>> +    switch (event) {
+>> +    case SND_SOC_DAPM_PRE_PMU:
+>> +        wcd937x_micbias_control(component, micb_num,
+>> +                    MICB_ENABLE, true);
+>> +        break;
+>> +    case SND_SOC_DAPM_POST_PMU:
+>> +        usleep_range(1000, 1100);
+>> +        break;
+>> +    case SND_SOC_DAPM_POST_PMD:
+>> +        wcd937x_micbias_control(component, micb_num,
+>> +                    MICB_DISABLE, true);
+>> +        break;
+>> +    }
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +static int wcd937x_codec_enable_micbias(struct snd_soc_dapm_widget *w,
+>> +                    struct snd_kcontrol *kcontrol,
+>> +                    int event)
+>> +{
+>> +    return __wcd937x_codec_enable_micbias(w, event);
+>> +}
+>> +
+>> +static int __wcd937x_codec_enable_micbias_pullup(struct 
+>> snd_soc_dapm_widget *w,
+>> +                         int event)
+>> +{
+>> +    struct snd_soc_component *component = 
+>> snd_soc_dapm_to_component(w->dapm);
+>> +    int micb_num;
+>> +
+>> +    if (strnstr(w->name, "VA MIC BIAS1", sizeof("VA MIC BIAS1")))
+>> +        micb_num = MIC_BIAS_1;
+>> +    else if (strnstr(w->name, "VA MIC BIAS2", sizeof("VA MIC BIAS2")))
+>> +        micb_num = MIC_BIAS_2;
+>> +    else if (strnstr(w->name, "VA MIC BIAS3", sizeof("VA MIC BIAS3")))
+>> +        micb_num = MIC_BIAS_3;
+>> +    else
+>> +        return -EINVAL;
+>> +
+> same..
+>> +    switch (event) {
+>> +    case SND_SOC_DAPM_PRE_PMU:
+>> +        wcd937x_micbias_control(component, micb_num, 
+>> MICB_PULLUP_ENABLE, true);
+>> +        break;
+>> +    case SND_SOC_DAPM_POST_PMU:
+>> +        usleep_range(1000, 1100);
+>> +        break;
+>> +    case SND_SOC_DAPM_POST_PMD:
+>> +        wcd937x_micbias_control(component, micb_num, 
+>> MICB_PULLUP_DISABLE, true);
+>> +        break;
+>> +    }
+>> +
+>> +    return 0;
+>> +}
+>> +
+> 
+> ...
+> 
+>>   static const struct snd_soc_dapm_widget wcd937x_dapm_widgets[] = {
+> ...> +    /* MIC_BIAS widgets */
+>> +    SND_SOC_DAPM_SUPPLY("MIC BIAS1", SND_SOC_NOPM, 0, 0,
+> Please use shift here like
+>          SND_SOC_DAPM_SUPPLY("MIC BIAS1", SND_SOC_NOPM, MIC_BIAS_1, 0,
+>          SND_SOC_DAPM_SUPPLY("MIC BIAS2", SND_SOC_NOPM, MIC_BIAS_2, 0,
+> 
+> to avoid doing a string compares on wideget name.
+> 
+> --srini
+> 
 
-Signed-off-by: Kanak Shilledar <kanakshilledar@gmail.com>
----
- .../bindings/reset/brcm,bcm63138-pmb.txt      | 19 --------
- .../bindings/reset/brcm,bcm63138-pmb.yaml     | 43 +++++++++++++++++++
- 2 files changed, 43 insertions(+), 19 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/reset/brcm,bcm63138-pmb.txt
- create mode 100644 Documentation/devicetree/bindings/reset/brcm,bcm63138-pmb.yaml
+ACK
 
-diff --git a/Documentation/devicetree/bindings/reset/brcm,bcm63138-pmb.txt b/Documentation/devicetree/bindings/reset/brcm,bcm63138-pmb.txt
-deleted file mode 100644
-index a98872d27872..000000000000
---- a/Documentation/devicetree/bindings/reset/brcm,bcm63138-pmb.txt
-+++ /dev/null
-@@ -1,19 +0,0 @@
--Broadcom BCM63138 Processor Monitor Bus binding
--===============================================
--
--Please also refer to reset.txt in this directory for common reset
--controller binding usage.
--
--Require properties:
--
--- compatible: must be "brcm,bcm63138-pmb"
--- reg: base register address and size for this bus controller
--- #reset-cells: must be 2 first cell is the address within the bus instance designated
--  by the phandle, and the second is the number of zones for this peripheral
--
--Example:
--	pmb0: reset-controller@4800c0 {
--		compatible = "brcm,bcm63138-pmb";
--		reg = <0x4800c0 0x10>;
--		#reset-cells = <2>;
--	};
-diff --git a/Documentation/devicetree/bindings/reset/brcm,bcm63138-pmb.yaml b/Documentation/devicetree/bindings/reset/brcm,bcm63138-pmb.yaml
-new file mode 100644
-index 000000000000..162b4c472c18
---- /dev/null
-+++ b/Documentation/devicetree/bindings/reset/brcm,bcm63138-pmb.yaml
-@@ -0,0 +1,43 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/reset/brcm,bcm63138-pmb.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom BCM63138 Processor Monitor Bus
-+
-+description: This document describes the BCM63138 processor monitor bus.
-+
-+maintainers:
-+  - Philipp Zabel <p.zabel@pengutronix.de>
-+  - Kanak Shilledar <kanakshilledar111@protonmail.com>
-+
-+properties:
-+  compatible:
-+    const: brcm,bcm63138-pmb
-+
-+  reg:
-+    description: base register address and size for this bus controller
-+    maxItems: 1
-+
-+  "#reset-cells":
-+    description: |
-+      must be 2 first cell is the address within the bus instance
-+      designated by the phandle, and the second is the number of zones
-+      for this peripheral.
-+    const: 2
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#reset-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pmb0: reset-controller@4800c0 {
-+        compatible = "brcm,bcm63138-pmb";
-+        reg = <0x4800c0 0x10>;
-+        #reset-cells = <2>;
-+    };
--- 
-2.45.2
+Will remove the string compares on widget name and will use the shift here.
+
+Thanks & Regards,
+Rafi.
+
+>> +                wcd937x_codec_enable_micbias,
+>> +                SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMU |
+>> +                SND_SOC_DAPM_POST_PMD),
+>> +    SND_SOC_DAPM_SUPPLY("MIC BIAS2", SND_SOC_NOPM, 0, 0,
+>> +                wcd937x_codec_enable_micbias,
+>> +                SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMU |
+>> +                SND_SOC_DAPM_POST_PMD),
+>> +    SND_SOC_DAPM_SUPPLY("MIC BIAS3", SND_SOC_NOPM, 0, 0,
+>> +                wcd937x_codec_enable_micbias,
+>> +                SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMU |
+>> +                SND_SOC_DAPM_POST_PMD),
+>> +
+>>       SND_SOC_DAPM_SUPPLY("VDD_BUCK", SND_SOC_NOPM, 0, 0,
+>>                   wcd937x_codec_enable_vdd_buck,
+>>                   SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMD),
+>> @@ -2007,11 +2312,101 @@ static const struct snd_soc_dapm_widget 
+>> wcd937x_dapm_widgets[] = {
+>>       SND_SOC_DAPM_MIXER("HPHR_RDAC", SND_SOC_NOPM, 0, 0,
+>>                  hphr_rdac_switch, ARRAY_SIZE(hphr_rdac_switch)),
+>> +    /* TX output widgets */
+>> +    SND_SOC_DAPM_OUTPUT("ADC1_OUTPUT"),
+>> +    SND_SOC_DAPM_OUTPUT("ADC2_OUTPUT"),
+>> +    SND_SOC_DAPM_OUTPUT("ADC3_OUTPUT"),
+>> +    SND_SOC_DAPM_OUTPUT("WCD_TX_OUTPUT"),
+>> +
+>>       /* RX output widgets */
+>>       SND_SOC_DAPM_OUTPUT("EAR"),
+>>       SND_SOC_DAPM_OUTPUT("AUX"),
+>>       SND_SOC_DAPM_OUTPUT("HPHL"),
+>>       SND_SOC_DAPM_OUTPUT("HPHR"),
+>> +
+>> +    /* MIC_BIAS pull up widgets */
+>> +    SND_SOC_DAPM_SUPPLY("VA MIC BIAS1", SND_SOC_NOPM, 0, 0,
+>> +                wcd937x_codec_enable_micbias_pullup,
+>> +                SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMU |
+>> +                SND_SOC_DAPM_POST_PMD),
+>> +    SND_SOC_DAPM_SUPPLY("VA MIC BIAS2", SND_SOC_NOPM, 0, 0,
+>> +                wcd937x_codec_enable_micbias_pullup,
+>> +                SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMU |
+>> +                SND_SOC_DAPM_POST_PMD),
+>> +    SND_SOC_DAPM_SUPPLY("VA MIC BIAS3", SND_SOC_NOPM, 0, 0,
+>> +                wcd937x_codec_enable_micbias_pullup,
+>> +                SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMU |
+>> +                SND_SOC_DAPM_POST_PMD),
 
 
