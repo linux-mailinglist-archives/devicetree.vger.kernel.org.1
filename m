@@ -1,62 +1,56 @@
-Return-Path: <devicetree+bounces-74733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86C6B90439C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 20:31:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C7AF9043A2
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 20:31:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3946B1F22A2D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 18:31:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 262C7B25115
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 18:31:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E464F7D08D;
-	Tue, 11 Jun 2024 18:28:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C61D8155A39;
+	Tue, 11 Jun 2024 18:28:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HEOECfqE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S+hBWzQr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD72D155381;
-	Tue, 11 Jun 2024 18:28:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95B277F7E3;
+	Tue, 11 Jun 2024 18:28:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718130499; cv=none; b=Nre3GNuwjz2QewKbQWaJWgpfR2x4RYxYoCDxxBMs+WXZaEsJE3++ABo2YhHeybX1rIOthxlC43LqraaydKwiUA405JXH4COvPjsBPP7pLviV6yXDwI7VFXEz/WbqbnVUjkInMxODykFlfv8aOSVudN/YFAg+PIFGRoPrHN2DX4U=
+	t=1718130505; cv=none; b=V5pfr9GIO3A/T5pGyIsGD+2pkgrI5+hFqdyNNw194KCd48GRCwZjHT9AT6D/RVV/9UjWrETbYA+9TUHYthq2Sz71Yr1UMkNf/MPkr6Ux2K+yaGzMpR2CArEKajOzSb01bGLWrVT2bzMS18IIhZqG5erkTT787O6i4TWs9YJP398=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718130499; c=relaxed/simple;
-	bh=M8VvlnlUjzh3Qu8nJHCfsOa6/1J5iwG41LtzZqxWHm8=;
+	s=arc-20240116; t=1718130505; c=relaxed/simple;
+	bh=ASTVQ3g9Rf3VqgMx9wDJe2koGCVSLXH24rsi7ZnRAT8=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=aU401MtauN2EggQN/s0wMqeHlzVmxlGe0+x0kWUwQJ69ajVd6jtlE6XAeugA+Z+ro0DNHwaSGd3WYE0e3SXNXOhY5R/XR6U2LSc/vB4Dhx81pTPr1Z2EKp7Bs6tenRV68+yuBPzzZefpzBTyQdfGF9znTnmvnL5/6qKuBSECbEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HEOECfqE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03089C32786;
-	Tue, 11 Jun 2024 18:28:15 +0000 (UTC)
+	 MIME-Version:Content-Type; b=dpqzgZHSE+LWQGHvm/wWiZNwMGlTwsu2z8lClfw+mFwR7leyk/yidZQus1Fc6UanZm6CmSaQ9RMgdwfUYNMKmFe4XYJcB7/5aqv4ff/vPiFlPnpztMVBYTaX+r0VZmQmDiwu9jrftlv3tuVwUurHRH2TZJyd9NIOa48B0dWuUIE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S+hBWzQr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B0F7C4AF54;
+	Tue, 11 Jun 2024 18:28:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718130499;
-	bh=M8VvlnlUjzh3Qu8nJHCfsOa6/1J5iwG41LtzZqxWHm8=;
+	s=k20201202; t=1718130505;
+	bh=ASTVQ3g9Rf3VqgMx9wDJe2koGCVSLXH24rsi7ZnRAT8=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=HEOECfqEBC5j/q2OiERUKWFJxR5y54QbznP3jsIBdNaNGLfkfPxJk3GwHEudo/0ot
-	 UlWuOi2uMdo4qlZEvgsTV7JryMg8M0ZinRe2Vrv96KyeVDlgXvNVqaQgDODtrfIPTA
-	 8xIE/3HfiId0owOZZT6dUa45MYdbntPtGBAVYpWBHNOv6QdgRy5Vhvx4tMsYBWIljb
-	 AVd10qke6TVwR5/c+DF/qBROpQwATpYw0pt8/gzpoWB0Pj5ALNLceGg+TxtwX1L6U9
-	 JtUoNUxfLFT87J41+4ofil1xIidaBygDlD8C36pvaOdMYCSZ4hBK4Hfuy9uCZYqcVF
-	 RU4eY8awZh7Dg==
+	b=S+hBWzQr1Sudx/3LF9FtyOg4syZNNYbEbchXihrKVy9i2edfgjA5vaMamJJp3/KoO
+	 seuDlC9bLA+cmQFCQLnRQKL6Sk0/HKu38cYe9DwlFnyUB0Pj1XZ4eJ7Yy0BX0fMEn5
+	 ThxSyOYtP2ataPsCR76IEonBA5aeaA3XqPE6DgfckpVNNPZbCb/rQkLjW1HHMREZHk
+	 HzAeCCnF5VqeBlfGAsJyoIBIu9u6LDFduIWChE2qZ8+rt7KBHlZraOGrUlSrn2sQHK
+	 7LeT6Aiq9ucQ5qEB99mc7N19jHu7UDGzsFx5XmvJLQVuWD7gLGZC0ofeol8rwuBxQC
+	 RBdI9pDBNPI5g==
 From: Vinod Koul <vkoul@kernel.org>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Amelie Delaunay <amelie.delaunay@foss.st.com>
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-hardening@vger.kernel.org
-In-Reply-To: <20240531150712.2503554-1-amelie.delaunay@foss.st.com>
-References: <20240531150712.2503554-1-amelie.delaunay@foss.st.com>
-Subject: Re: (subset) [PATCH v4 00/12] Introduce STM32 DMA3 support
-Message-Id: <171813049557.475662.12255622136346083429.b4-ty@kernel.org>
-Date: Tue, 11 Jun 2024 23:58:15 +0530
+To: krzk@kernel.org, Frank Li <Frank.Li@nxp.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, 
+ dmaengine@vger.kernel.org, imx@lists.linux.dev, krzk+dt@kernel.org, 
+ linux-kernel@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20240528163734.2471268-1-Frank.Li@nxp.com>
+References: <20240528163734.2471268-1-Frank.Li@nxp.com>
+Subject: Re: [PATCH v2 1/1] dt-bindings: fsl-qdma: Convert to yaml format
+Message-Id: <171813050173.475662.8322119332604104990.b4-ty@kernel.org>
+Date: Tue, 11 Jun 2024 23:58:21 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,41 +62,20 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13.0
 
 
-On Fri, 31 May 2024 17:07:00 +0200, Amelie Delaunay wrote:
-> STM32 DMA3 is a direct memory access controller with different features
-> depending on its hardware configuration. It is either called LPDMA (Low
-> Power), GPDMA (General Purpose) or HPDMA (High Performance), and it can
-> be found in new STM32 MCUs and MPUs.
+On Tue, 28 May 2024 12:37:34 -0400, Frank Li wrote:
+> Convert binding doc from txt to yaml.
 > 
-> In STM32MP25 SoC [1], 3 HPDMAs and 1 LPDMA are embedded. Only HPDMAs are
-> used by Linux.
+> Re-order interrupt-names to align example.
+> Add #dma-cell in example.
+> Change 'reg' in example to 32bit address.
+> 
 > 
 > [...]
 
 Applied, thanks!
 
-[01/12] dt-bindings: dma: New directory for STM32 DMA controllers bindings
-        commit: 8494ae75dde4495c73b7425543138d088133f75f
-[02/12] dmaengine: stm32: New directory for STM32 DMA controllers drivers
-        commit: 76178a2c49a7c01ef684b0d689f3da4fd12e0154
-[03/12] MAINTAINERS: Add entry for STM32 DMA controllers drivers and documentation
-        commit: 81d09bb5249e5f844ee342cc1419e97fc9108cda
-[04/12] dt-bindings: dma: Document STM32 DMA3 controller bindings
-        commit: a204f64d9f834bdf7085c617aed229eb7500e331
-[05/12] dmaengine: Add STM32 DMA3 support
-        commit: f561ec8b2b33da6a07cf211e43c8eb35b2dd97a2
-[06/12] dmaengine: stm32-dma3: add DMA_CYCLIC capability
-        commit: 08ea31024ab9cd512c4a897bd1afd2a5820c53e6
-[07/12] dmaengine: stm32-dma3: add DMA_MEMCPY capability
-        commit: b3b893a937764731c41423aab4cc0c1a6821e31e
-[08/12] dmaengine: stm32-dma3: add device_pause and device_resume ops
-        commit: b62a13071cffad03690ee19656248077cb388a14
-[09/12] dmaengine: stm32-dma3: improve residue granularity
-        commit: 2088473802ab9641114681bee92ba902bccdc19b
-[10/12] dmaengine: add channel device name to channel registration
-        commit: 10b8e0fd3f7234a38db2c8d2c8dec0bd6eeede44
-[11/12] dmaengine: stm32-dma3: defer channel registration to specify channel name
-        commit: 49b1c21ff815168eca44e81ab0612b1f00759efb
+[1/1] dt-bindings: fsl-qdma: Convert to yaml format
+      commit: 671bc17fc4d14fed69ee86e1f7c2c972010c49ac
 
 Best regards,
 -- 
