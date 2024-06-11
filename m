@@ -1,84 +1,76 @@
-Return-Path: <devicetree+bounces-74734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C7AF9043A2
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 20:31:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04AC09043BE
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 20:34:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 262C7B25115
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 18:31:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2C461C2411F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 18:34:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C61D8155A39;
-	Tue, 11 Jun 2024 18:28:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4837815217D;
+	Tue, 11 Jun 2024 18:31:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S+hBWzQr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uk8FmGu2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95B277F7E3;
-	Tue, 11 Jun 2024 18:28:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ABF54D8BB;
+	Tue, 11 Jun 2024 18:31:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718130505; cv=none; b=V5pfr9GIO3A/T5pGyIsGD+2pkgrI5+hFqdyNNw194KCd48GRCwZjHT9AT6D/RVV/9UjWrETbYA+9TUHYthq2Sz71Yr1UMkNf/MPkr6Ux2K+yaGzMpR2CArEKajOzSb01bGLWrVT2bzMS18IIhZqG5erkTT787O6i4TWs9YJP398=
+	t=1718130719; cv=none; b=O0sJZQNPljv+5IkzfIg6SN9vnlZb+m95O/+qXxXjkmxMZdMsnSJyZJDEj/SqokHIuQ5rBeAcRb+19Ss4PopYMIRaCExF25SO6RuuQPhTrZXk1WpMnvTBJc2fyllAbojaXN5hTvGZp2g+C597/HJQLSP56IV7WUIn6SlO2nRJjio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718130505; c=relaxed/simple;
-	bh=ASTVQ3g9Rf3VqgMx9wDJe2koGCVSLXH24rsi7ZnRAT8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=dpqzgZHSE+LWQGHvm/wWiZNwMGlTwsu2z8lClfw+mFwR7leyk/yidZQus1Fc6UanZm6CmSaQ9RMgdwfUYNMKmFe4XYJcB7/5aqv4ff/vPiFlPnpztMVBYTaX+r0VZmQmDiwu9jrftlv3tuVwUurHRH2TZJyd9NIOa48B0dWuUIE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S+hBWzQr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B0F7C4AF54;
-	Tue, 11 Jun 2024 18:28:21 +0000 (UTC)
+	s=arc-20240116; t=1718130719; c=relaxed/simple;
+	bh=k/LX02xjY1QLx7XZ1cDklsyZMvVB8elbP70y/dBD3oA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ngnq6PdrOIE/J4HlP3wUEwY3lQusw0+YgHtdrAkZK7pYf+yyAZBbOQ6tSW1abwYAVd3DsKQNb5JyznUq5tffUE1QG1Gn6rL6QuXWMnZ5AM2fUhRJ/oLWH9qnCPDqeVCuxB0C3i9C0qSeps1zkyy/lVm8X/W0Z4gYdj6bTsizZ3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uk8FmGu2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1802C2BD10;
+	Tue, 11 Jun 2024 18:31:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718130505;
-	bh=ASTVQ3g9Rf3VqgMx9wDJe2koGCVSLXH24rsi7ZnRAT8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=S+hBWzQr1Sudx/3LF9FtyOg4syZNNYbEbchXihrKVy9i2edfgjA5vaMamJJp3/KoO
-	 seuDlC9bLA+cmQFCQLnRQKL6Sk0/HKu38cYe9DwlFnyUB0Pj1XZ4eJ7Yy0BX0fMEn5
-	 ThxSyOYtP2ataPsCR76IEonBA5aeaA3XqPE6DgfckpVNNPZbCb/rQkLjW1HHMREZHk
-	 HzAeCCnF5VqeBlfGAsJyoIBIu9u6LDFduIWChE2qZ8+rt7KBHlZraOGrUlSrn2sQHK
-	 7LeT6Aiq9ucQ5qEB99mc7N19jHu7UDGzsFx5XmvJLQVuWD7gLGZC0ofeol8rwuBxQC
-	 RBdI9pDBNPI5g==
+	s=k20201202; t=1718130718;
+	bh=k/LX02xjY1QLx7XZ1cDklsyZMvVB8elbP70y/dBD3oA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uk8FmGu25nd07HTP2i5rnnjV2v7lhDN4L2UNieaPTEssfiDNP9YJPq9772Z5xw5bW
+	 v6iv/itgFC5VnxeFeIpMFIXdxGHsNALWMQ8+uQKn0lP092X49UqBJQASoB/vTyLcXk
+	 B2+pW9SYEWQNVv30NtbkaWeYBi8Y6jDYl1GtN9hOPmTddvdrSjL12C9bohTvzbzrw1
+	 AVs+FMXyOftC803X5VsBZyap4wT5DX+H6cGpzD/60sAhV5AYDxemblpz9H17NGqk8U
+	 n8m5OWLi1SJOg7bVW0st0QD8+YjqLNrGawmOeEanjMZwHFXJZ7I6a7cXdLYlnsELpO
+	 4HG35OB46DOzw==
+Date: Wed, 12 Jun 2024 00:01:54 +0530
 From: Vinod Koul <vkoul@kernel.org>
-To: krzk@kernel.org, Frank Li <Frank.Li@nxp.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, 
- dmaengine@vger.kernel.org, imx@lists.linux.dev, krzk+dt@kernel.org, 
- linux-kernel@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20240528163734.2471268-1-Frank.Li@nxp.com>
-References: <20240528163734.2471268-1-Frank.Li@nxp.com>
-Subject: Re: [PATCH v2 1/1] dt-bindings: fsl-qdma: Convert to yaml format
-Message-Id: <171813050173.475662.8322119332604104990.b4-ty@kernel.org>
-Date: Tue, 11 Jun 2024 23:58:21 +0530
+To: keguang.zhang@gmail.com
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-mips@vger.kernel.org, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>
+Subject: Re: [PATCH v8 0/2] Add support for Loongson1 APB DMA
+Message-ID: <ZmiYGos4MFJWd-bL@matsya>
+References: <20240607-loongson1-dma-v8-0-f9992d257250@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240607-loongson1-dma-v8-0-f9992d257250@gmail.com>
 
+On 07-06-24, 20:12, Keguang Zhang via B4 Relay wrote:
+> Add the driver and dt-binding document for Loongson1 APB DMA.
 
-On Tue, 28 May 2024 12:37:34 -0400, Frank Li wrote:
-> Convert binding doc from txt to yaml.
-> 
-> Re-order interrupt-names to align example.
-> Add #dma-cell in example.
-> Change 'reg' in example to 32bit address.
-> 
-> 
-> [...]
+I get build warnings with this. Please build with W=1 and C=1 and fix
+all the errors and warnings reported and update
 
-Applied, thanks!
-
-[1/1] dt-bindings: fsl-qdma: Convert to yaml format
-      commit: 671bc17fc4d14fed69ee86e1f7c2c972010c49ac
-
-Best regards,
 -- 
-Vinod Koul <vkoul@kernel.org>
-
+~Vinod
 
