@@ -1,133 +1,222 @@
-Return-Path: <devicetree+bounces-74519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9E09903928
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:45:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89AE290393B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:49:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05C2A1C23AE3
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 10:45:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F0421F21832
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 10:49:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEBD417A91B;
-	Tue, 11 Jun 2024 10:45:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0A8014F9CD;
+	Tue, 11 Jun 2024 10:49:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VrZptkwX"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="222edido"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0DF05684;
-	Tue, 11 Jun 2024 10:45:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B65A178385
+	for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 10:49:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718102730; cv=none; b=Qt3jocxpK5N8o3hFX2uGSWsIyQGHHDSjkOJa3GVe1cNtmwXJDzwUrCyqlvhjs71RJsULRTOyJtyyWjz35vQNYghFtwmMst/LNuqC9e/axv7/ls4fKg09uV5GdyBsfhWr3I7Z4xGl3+lOAGP3+7s4pqr3KbE+olfzu3bixGZyEx8=
+	t=1718102977; cv=none; b=FQOgex9ciu3bZobwBr6yLcEltzlb+3PtfoGauy74OmvFJOIt+hLcaPHNE5TwfIgv35icOHMZG4syfcCbepXJk10ywfAijzftMl85blNdUaN56aH2UroiTgTJCtBHMxqiEftCHxYPg81uYXqij2Kvm50Rx0JQmoBN+zCpHCyQiYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718102730; c=relaxed/simple;
-	bh=kDY1/eqRNFAnNwO/Y7Pd+N1Dge6LbOM+YMJu9kfyMH8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gvqHvaRL001fAU1ytPtXHWrlGsI6EqMrKB/LC/Xjoz+YlJ92N6HAL+6PIwx9m+suojoZmEVjnqdEbiSt3VtnFtM0C2pnGk5aPZGCBrWFWVCIRb7l0XwCyMZwZ3LHCHYuRWMkSYcpsPFtE+5OwQUZQvH98cuk5DCr/QDbpgXv+cY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VrZptkwX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10249C4AF1C;
-	Tue, 11 Jun 2024 10:45:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718102730;
-	bh=kDY1/eqRNFAnNwO/Y7Pd+N1Dge6LbOM+YMJu9kfyMH8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VrZptkwXb9BteP4t/EMOYZ3PRn6Aromry5TzPuV6zidd4P2XoqUMOgVcpkS/fDCSy
-	 MUwvuVq/bDximpEHFUkDBox9h/oLjj9VHHkgBb/7vgh9r8kMDN95u6tAZdtcQg+BZc
-	 +ejiUIpOarfBriLWxWsHvkv9KfuwL+G9yyIZ0/nRjUiR3IqzGJYEmigdveQKXvNBUb
-	 CUkJkDnY5oJI/PT+Tkk5jyN1TfnDQ9/x2OQYAz5J3uAwIJK9FJ5pd04+bAw+ctswVZ
-	 kxd9DbDKsyx58gaFgglEbDVNharAKlNbUmh7TZ4cw/c/6cKyn9RbmZgqDSbIlWUNsl
-	 zujj6QGC/NrZA==
-Message-ID: <51eeec03-47da-44b5-a21e-f280d0c4b47c@kernel.org>
-Date: Tue, 11 Jun 2024 12:45:22 +0200
+	s=arc-20240116; t=1718102977; c=relaxed/simple;
+	bh=4O2Uxmz/F3XBT6FyYTlGE7PHtHM5nOk8ldOnR0efqfk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rouJRgH5efLwSHg/DqOLcf8nKCT46QCGF4uGYL/FmGRtCi44Nrc9qygTnRL7cHQ79CLgJu862rZTt4xyPYxm63zzYSm0/mGtY+Ddx4YKosYFonaVJVCZRLrimDAXViQ0EhTQOmEkHtGg2RgWyIfLxc+k1gss8VF7AvhLtWaNKkY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=222edido; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4216d9952d2so56845e9.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 03:49:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1718102974; x=1718707774; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=HSVKo2pe01AB7x7GbbPrXmfw4EIFhok1cqIc+dcHHns=;
+        b=222edidoL4/s3k/k9oDV4Ia+ILrMbySgrkWAGIjceFA6dj+DMwc+8YNbt0KiGBfsAg
+         0RLpGGorcM2zPRhaH+q4eJM5aKwmd1BcB53s1uw/2wFld4vCkGbpGknfxkrkiJtfGJPG
+         qe/J+sYAIjEqrtP7YXPHpWNhCqzi07O6Wfb5hkyfQVwT4ZcCOf+08Oas15BjJ06HcCXW
+         Ve2zkRj9TwoiiFRWvarEvH94O2JPEfWl7bVDU7xZjBZH/3IVHCd1DUJzz/XpOP3FDuQb
+         uN4qcdzx9RDSEgJbjordkhiNVK4iLztyZNJSycrKwKjqNCMkBbmf12aGh9x37CshvyyG
+         uilQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718102974; x=1718707774;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HSVKo2pe01AB7x7GbbPrXmfw4EIFhok1cqIc+dcHHns=;
+        b=p/WKRbKwA5moUL/PdENJdxMWM43YQO2h1fXKb/wPOOk2SuZw/xerEeigI2lb5VLy2e
+         lEFbCS0/KI4bD9LNwJGr1Ka8KXR/XvuV6teDtwxHmy/fRqIhhP3VntgMNx9VL6ZdGMCh
+         9Peyl20BBGlaHwBM9xZy11v11cTuSuuZTz732LjEpPa5ikWTnbyGYPbSzg4OGia2ia2+
+         tw0bjH5CSexL1U1NLyCabxP/PaA0IfzY986gH52FWN7RSgTAgFitzRo/EGB/GOoyooyY
+         Im9NFC0xVFQeUpT34QkOC6R1818EtLGe2pFirFe13jluYFnxVSHdDH4jFZyasj5RRjV2
+         hCYg==
+X-Forwarded-Encrypted: i=1; AJvYcCV/wPfeP1oT0/WwcZPFF5LAKMKVCoKPTVkw+spErBqXuZi+WL1LrXTjjPSWFPTMCJtm+Ok6LJYCaO0xhPjaodjQS7LycqA5jKbdGg==
+X-Gm-Message-State: AOJu0YwH6CgMikFLLQPdJlzDLOjiEZUtblde4EHUrnIgPl7Qfm5vqWEl
+	BE+6KyMz3CzllPFGBch28Y+XMmYsY/QBKhlMuRpaaejeqrmREVbbx/KeX1KrTA==
+X-Google-Smtp-Source: AGHT+IE5yzeTqofjnZB7D8WgGPQP5pjB7l7vijEDXFyCgt3o0q6KfIKPTWLi9xb+HTV8eET3Fu25Qw==
+X-Received: by 2002:a05:600c:c0d:b0:421:292d:f1e7 with SMTP id 5b1f17b1804b1-42244f454ecmr1465415e9.6.1718102974037;
+        Tue, 11 Jun 2024 03:49:34 -0700 (PDT)
+Received: from google.com (203.75.199.104.bc.googleusercontent.com. [104.199.75.203])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4221defede0sm38840675e9.7.2024.06.11.03.49.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jun 2024 03:49:33 -0700 (PDT)
+Date: Tue, 11 Jun 2024 10:49:31 +0000
+From: Sebastian Ene <sebastianene@google.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: arnd@arndb.de, gregkh@linuxfoundation.org, will@kernel.org,
+	maz@kernel.org, Rob Herring <robh+dt@kernel.org>,
+	Dragan Cvetic <dragan.cvetic@xilinx.com>,
+	Guenter Roeck <linux@roeck-us.net>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, kernel-team@android.com
+Subject: Re: [PATCH 2/2] misc: Register a PPI for the vcpu stall detection
+ virtual device
+Message-ID: <Zmgru836nv3CP5wt@google.com>
+References: <20240523160413.868830-1-sebastianene@google.com>
+ <20240523160413.868830-3-sebastianene@google.com>
+ <20240524-joyous-fantastic-2747ab94e83d@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [Patch v2 2/2] ASoC: dt-bindings: lpc32xx: Add lpc32xx i2s DT
- binding
-To: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Vladimir Zapolskiy <vz@mleia.com>,
- Russell King <linux@armlinux.org.uk>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Arnd Bergmann <arnd@arndb.de>,
- Chancel Liu <chancel.liu@nxp.com>, Michael Ellerman <mpe@ellerman.id.au>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- alsa-devel@alsa-project.org, linuxppc-dev@lists.ozlabs.org
-References: <[PATCH] ASoC: fsl: Add i2s and pcm drivers for LPC32xx CPUs>
- <20240611094810.27475-1-piotr.wojtaszczyk@timesys.com>
- <20240611094810.27475-2-piotr.wojtaszczyk@timesys.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240611094810.27475-2-piotr.wojtaszczyk@timesys.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240524-joyous-fantastic-2747ab94e83d@spud>
 
-On 11/06/2024 11:47, Piotr Wojtaszczyk wrote:
-> Add nxp,lpc3220-i2s DT binding documentation.
+On Fri, May 24, 2024 at 08:00:42PM +0100, Conor Dooley wrote:
+> On Thu, May 23, 2024 at 04:04:13PM +0000, Sebastian Ene wrote:
+> > Request a PPI for each vCPU during probe which will be used by the host
+> > to communicate a stall detected event on the vCPU. When the host raises
+> > this interrupt from the virtual machine monitor, the guest is expected to
+> > handle the interrupt and panic.
+> > 
+> > Signed-off-by: Sebastian Ene <sebastianene@google.com>
+> > ---
+> >  drivers/misc/vcpu_stall_detector.c | 41 ++++++++++++++++++++++++++++--
+> >  1 file changed, 39 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/misc/vcpu_stall_detector.c b/drivers/misc/vcpu_stall_detector.c
+> > index e2015c87f03f..c580cd7fd225 100644
+> > --- a/drivers/misc/vcpu_stall_detector.c
+> > +++ b/drivers/misc/vcpu_stall_detector.c
+> > @@ -32,6 +32,7 @@
+> >  struct vcpu_stall_detect_config {
+> >  	u32 clock_freq_hz;
+> >  	u32 stall_timeout_sec;
+> > +	int ppi_irq;
+> >  
+> >  	void __iomem *membase;
+> >  	struct platform_device *dev;
+> > @@ -77,6 +78,12 @@ vcpu_stall_detect_timer_fn(struct hrtimer *hrtimer)
+> >  	return HRTIMER_RESTART;
+> >  }
+> >  
+> > +static irqreturn_t vcpu_stall_detector_irq(int irq, void *dev)
+> > +{
+> > +	panic("vCPU stall detector");
+> > +	return IRQ_HANDLED;
+> > +}
+> > +
+> >  static int start_stall_detector_cpu(unsigned int cpu)
+> >  {
+> >  	u32 ticks, ping_timeout_ms;
+> > @@ -132,7 +139,7 @@ static int stop_stall_detector_cpu(unsigned int cpu)
+> >  
+> >  static int vcpu_stall_detect_probe(struct platform_device *pdev)
+> >  {
+> > -	int ret;
+> > +	int ret, irq, num_irqs;
+> >  	struct resource *r;
+> >  	void __iomem *membase;
+> >  	u32 clock_freq_hz = VCPU_STALL_DEFAULT_CLOCK_HZ;
+> > @@ -169,9 +176,32 @@ static int vcpu_stall_detect_probe(struct platform_device *pdev)
+> >  	vcpu_stall_config = (struct vcpu_stall_detect_config) {
+> >  		.membase		= membase,
+> >  		.clock_freq_hz		= clock_freq_hz,
+> > -		.stall_timeout_sec	= stall_timeout_sec
+> > +		.stall_timeout_sec	= stall_timeout_sec,
+> > +		.ppi_irq		= -1,
+> >  	};
+> >  
+> > +	num_irqs = platform_irq_count(pdev);
+> > +	if (num_irqs < 0) {
+> > +		dev_err(&pdev->dev, "Failed to get irqs\n");
+
+Hello Conor,
+
+
 > 
-> Signed-off-by: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
-> ---
-> Changes for v2:
-> - Added maintainers field
-> - Dropped clock-names
-> - Dropped unused unneded interrupts field
+> platform_irq_count() either returns a number or EPROBE_DEFER, I don't
+> think emitting an error on deferred probe is the correct thing to do
+> here?
 
-Does the device has interrupts or not? This should justify decision, not
-current usage by drivers.
+I will drop this.
 
-Best regards,
-Krzysztof
 
+> > +		ret = num_irqs;
+> > +		goto err;
+> > +	} else if (num_irqs > 1) {
+> > +		dev_err(&pdev->dev, "Multipple irqs detected\n");
+> 
+> Typo. I don't really see why you're going to this level of complexity
+> though, why aren't you just doing a single get_irq_optional()?
+> 
+
+Thanks for the feedback, I simplified it by using the
+platform_get_irq_optional as you suggested.
+
+
+> > +		ret = -EINVAL;
+> > +		goto err;
+> > +	} else if (num_irqs == 1) {
+> > +		irq = platform_get_irq(pdev, 0);
+> > +		if ((irq > 0) && irq_is_percpu_devid(irq)) {
+> > +			ret = request_percpu_irq(irq,
+> > +						 vcpu_stall_detector_irq,
+> > +						 "vcpu_stall_detector",
+> > +						 vcpu_stall_detectors);
+> > +			if (!ret)
+> > +				vcpu_stall_config.ppi_irq = irq;
+> > +
+> > +		}
+> > +	}
+> > +
+> >  	ret = cpuhp_setup_state(CPUHP_AP_ONLINE_DYN,
+> >  				"virt/vcpu_stall_detector:online",
+> >  				start_stall_detector_cpu,
+> > @@ -184,6 +214,9 @@ static int vcpu_stall_detect_probe(struct platform_device *pdev)
+> >  	vcpu_stall_config.hp_online = ret;
+> >  	return 0;
+> >  err:
+> > +	if (vcpu_stall_config.ppi_irq > 0)
+> > +		free_percpu_irq(vcpu_stall_config.ppi_irq,
+> > +				vcpu_stall_detectors);
+> >  	return ret;
+> >  }
+> >  
+> > @@ -193,6 +226,10 @@ static void vcpu_stall_detect_remove(struct platform_device *pdev)
+> >  
+> >  	cpuhp_remove_state(vcpu_stall_config.hp_online);
+> >  
+> > +	if (vcpu_stall_config.ppi_irq > 0)
+> > +		free_percpu_irq(vcpu_stall_config.ppi_irq,
+> > +				vcpu_stall_detectors);
+> > +
+> >  	for_each_possible_cpu(cpu)
+> >  		stop_stall_detector_cpu(cpu);
+> >  }
+> > -- 
+> > 2.45.1.288.g0e0cd299f1-goog
+> > 
+> > 
+
+Cheers,
+Seb
 
