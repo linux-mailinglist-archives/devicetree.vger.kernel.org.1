@@ -1,162 +1,220 @@
-Return-Path: <devicetree+bounces-74673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F50F904014
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 17:36:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE63A904034
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 17:39:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 233F81F22B7B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 15:36:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01979281977
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 15:39:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60A372F50A;
-	Tue, 11 Jun 2024 15:35:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A391374CB;
+	Tue, 11 Jun 2024 15:39:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hCgWR8ew"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="FAXcNqXS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD9872D05D;
-	Tue, 11 Jun 2024 15:35:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33A652E417
+	for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 15:39:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718120157; cv=none; b=XuscDZHhK3KGA68Pq3Qol+qvbQjemXlHeahf+wFHtQt/KfDv1q5mv1jSXL6WrmuQ61nrf6svKVhWwu5nTxOt2EFKrT/sR3vsLVCXEYaj+7xDqXkfPTGFUfP4ZYBqNK6NPUum9R/1k4H0hjkcn3hZVJpV1FF9OMtQJLZq1bxiX+k=
+	t=1718120351; cv=none; b=iPy9g78iUSt3tFbAd9Fpn/6QL/dAx9bqhM4NgWWb5Cu/Uv0OW3RTx3+l5gZ8ZofsJ7+zmRl9xkD9w3B/vrkBHL8CWiZMVbKXXpREMMk+o9K518Pvz6fqHgF3QLg+H0Hq7IpciZGfsylz/gW7/WEsRROMjwnWm1B9G50IU3NFmOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718120157; c=relaxed/simple;
-	bh=hnAvc10FT35qHL9JjkLYDA/CoQIaDGbohFelgn1Dq0Y=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=sK8k0W6pJf7A/VIVVNwwujd/NXLXiDl3m9iiYIla17YLLtbBo4ABD4v15LuCE0xS1aM7QyPiEsBWU6dYNaFaFRLOEh5zCTA/YGI8Cw8cATwdtfrnxUuK7yqPDIbEH554waQI13+nZ1lkmpJbAYTdXJ6XXhDpazZctfJBKGqnwnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hCgWR8ew; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45B9gaw0018706;
-	Tue, 11 Jun 2024 15:35:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Zh7hRH/t/TFXOcDbW1kHqQU0HKEImm5ajDRSuU566vg=; b=hCgWR8ewdh0XcTwE
-	Qt+gEwGIOVAG0y2I2bWswITb2LACHDar9Sxe9BuCCKSsQ9I9vVwJtmHTSj1wGC8N
-	FowixMNVyfywDaUT9EhagjUDMVBsslucYH8kVNpq9GVNHeQ37vvwlwARL+W1lDyB
-	nRxQP0M/w9X2KVjZGyZV2TQOMkcFu4HYjptLudruUwVjgp2hG1Z4KWJtjtbVeKqc
-	OEuvEXcu7tewe8zIFsW2RJE9Jh3EUlqcj2W3jAwo7k8qH7TL+NASeRyyqUEPczV1
-	+NgP/cOH/2jlnVI/TKSoCcWd5+zQyUG6sV7NRr5yD32x86oUYfCfd6TgnIEE67om
-	o+ZF1A==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ypm6b8xce-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 11 Jun 2024 15:35:33 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45BFZWFT009152
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 11 Jun 2024 15:35:32 GMT
-Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 11 Jun 2024 08:35:31 -0700
-From: Elliot Berman <quic_eberman@quicinc.com>
-Date: Tue, 11 Jun 2024 08:35:16 -0700
-Subject: [PATCH v4 4/4] arm64: dts: qcom: Add PSCI SYSTEM_RESET2 types for
- qcm6490-idp
+	s=arc-20240116; t=1718120351; c=relaxed/simple;
+	bh=OTaL90AXV5eLd7cwrRGQ6YBQCVQKp35jIqJFQ1iMDAc=;
+	h=From:Date:To:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=cZmetBBUK3JNBAsKKQjDFb3Lk4mbkBbruGBwFbditVDjMxntdx5XoQ0H07NQ99ftmbujnkASrz6ysgBVvwMrHqh/hSFBl9xnlurv7uVPsCWhCzEcgMAPXcfdo1kHWc5elpZ78f3bLI+JF1v/Z5SmMO8Oes6y9iym9H0SxYFdFK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=FAXcNqXS; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a6f13dddf7eso346606866b.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 08:39:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1718120346; x=1718725146; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-disposition:mime-version
+         :mail-followup-to:message-id:subject:to:date:from:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=hLG3B4Y+fGWVVVSqMDpP2O4ocS16RJ3mfLQLjDGSKMU=;
+        b=FAXcNqXSV5pzEq2B9cnkll0/geRAUviZ7LxQF8B4EfZk1vZ/uRHgmzrrbftN8h1xJI
+         gqXFEFJS1cppmNBgWZoTKr77URR+GxTnn+flLC55oPLfhXrbGtEMeUhMbDUJkxhKt9bF
+         BXkuRfgXa5jUDr6bUzVhMggF7LbTzI08LscuGazw4DHWUk3hCJ7a5Xgh8Os40tu+YT45
+         vcWTjyPXvQ1E8Dge8X7tsr9AVMyXb8jL6x6nnIwLBGdJ3yyAK1Hmb6kon1woeh6zXvqp
+         NkVvOyJ5hqL+hfzKYANWv4zcgo4j2F0aekkm0TeHOfmEhLl58nAjyd0jPlDWAUh/lKFy
+         QL3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718120346; x=1718725146;
+        h=content-transfer-encoding:content-disposition:mime-version
+         :mail-followup-to:message-id:subject:to:date:from:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hLG3B4Y+fGWVVVSqMDpP2O4ocS16RJ3mfLQLjDGSKMU=;
+        b=grbug7BYqryFZzRgXOuhqkWTTvbWRRvgIHzkeCnBOlNeCTLcICtZjh1MXYYm3ATmHl
+         AzjGcn9tSQQWbyXM7F/JejQ3e0404Z/IYY1BeT3xrI3upuXDI9qdoIj5cHgUHA+dj9bL
+         WeFSFa32rR5h1Te9MK98B7FkGNqVuiTmYhkgGgIlAuDIRB2Rob0SIJo1TKhT4Ij6dhb/
+         AhfzzXj5TUSlWwsYbdIOsdkiAguue11Nyx3S5wTzlu4h3UUQ+LitZB8imAtKJACxYAer
+         UjAlV+6LlMIl49bfVCIu5D6kOVyX3O7uE66XAokY/Wsj9h6CWRvm43sCa6HDFNNnf4fn
+         eN5g==
+X-Forwarded-Encrypted: i=1; AJvYcCVzpqcwlxjc6k+VCXiQtl0F9iVoeHatjdcLY08F8nY2poKhjGG1x5DDslP/5dayztFOIzf03Kl4gcnZz7Bo9aBXUUW8HJXTIZboYw==
+X-Gm-Message-State: AOJu0YxO5IRycEaA1GDhAqWNYA356PAj9ywpJKdGi4+MXPPq+ymxjYVQ
+	oZ6V1Ureywa04ZTfLRPFn4jEfQNsSwwcViecXKF0GMD0AnH3/AnbtNzzq1QTqE4=
+X-Google-Smtp-Source: AGHT+IGAiKP4S1ta0ypfd8GPYxs98AzoX0FvmrkDa7V2d9yDAJ1SdodaZM4gcGz3kq8Xk2Ny5tPKCw==
+X-Received: by 2002:a17:906:128d:b0:a6f:40d5:e287 with SMTP id a640c23a62f3a-a6f40d5e332mr58510666b.74.1718120346331;
+        Tue, 11 Jun 2024 08:39:06 -0700 (PDT)
+Received: from localhost (host-79-27-228-9.retail.telecomitalia.it. [79.27.228.9])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6ef7913eb8sm537255666b.178.2024.06.11.08.39.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jun 2024 08:39:06 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Tue, 11 Jun 2024 17:39:23 +0200
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Stefan Wahren <wahrenst@gmx.net>, devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
+	Dave Ertman <david.m.ertman@intel.com>,
+	Lizhi Hou <lizhi.hou@amd.com>, clement.leger@bootlin.com
+Subject: Raspberry Pi5 - RP1 driver - RFC
+Message-ID: <ZmhvqwnOIdpi7EhA@apocalypse>
+Mail-Followup-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Stefan Wahren <wahrenst@gmx.net>, devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
+	Dave Ertman <david.m.ertman@intel.com>,
+	Lizhi Hou <lizhi.hou@amd.com>, clement.leger@bootlin.com
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240611-arm-psci-system_reset2-vendor-reboots-v4-4-98f55aa74ae8@quicinc.com>
-References: <20240611-arm-psci-system_reset2-vendor-reboots-v4-0-98f55aa74ae8@quicinc.com>
-In-Reply-To: <20240611-arm-psci-system_reset2-vendor-reboots-v4-0-98f55aa74ae8@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Andy Yan
-	<andy.yan@rock-chips.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        "Mark
- Rutland" <mark.rutland@arm.com>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>
-CC: Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
-        Melody Olvera
-	<quic_molvera@quicinc.com>,
-        Shivendra Pratap <quic_spratap@quicinc.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Florian Fainelli
-	<florian.fainelli@broadcom.com>,
-        <linux-pm@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        Elliot Berman <quic_eberman@quicinc.com>
-X-Mailer: b4 0.13.0
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: UvPybJV7kFcRDd2tp1i6692A33506-VC
-X-Proofpoint-GUID: UvPybJV7kFcRDd2tp1i6692A33506-VC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-11_09,2024-06-11_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- mlxlogscore=782 impostorscore=0 spamscore=0 priorityscore=1501
- lowpriorityscore=0 adultscore=0 bulkscore=0 phishscore=0 mlxscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406110110
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-Add nodes for the vendor-defined system resets. "bootloader" will cause
-device to reboot and stop in the bootloader's fastboot mode. "edl" will
-cause device to reboot into "emergency download mode", which permits
-loading images via the Firehose protocol.
+Hi,
+I'm on the verge of reworking the RP1 driver from downstream in order for it to be
+in good shape for upstream inclusion.
+RP1 is an MFD chipset that acts as a south-bridge PCIe endpoint sporting a pletora
+of subdevices (i.e.  Ethernet, USB host controller, I2C, PWM, etc.) whose registers
+are all reachable starting from an offset from the BAR address.
+The main point here is that while the RP1 as an endpoint itself is discoverable via
+usual PCI enumeraiton, the devices it contains are not discoverable and must be
+declared e.g. via the devicetree. This is an RFC about the correct approach to use
+in integrating the driver and registering the subdevices.
 
-Co-developed-by: Shivendra Pratap <quic_spratap@quicinc.com>
-Signed-off-by: Shivendra Pratap <quic_spratap@quicinc.com>
-Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 7 +++++++
- arch/arm64/boot/dts/qcom/sc7280.dtsi     | 2 +-
- 2 files changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-index e4bfad50a669..fd0a7dd14483 100644
---- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-@@ -448,6 +448,13 @@ led@3 {
- 	};
- };
- 
-+&psci {
-+	reset-types {
-+		mode-bootloader = <0x10001 0x2>;
-+		mode-edl = <0 0x1>;
-+	};
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 7e7f0f0fb41b..da25a3089419 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -848,7 +848,7 @@ pmu {
- 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
- 	};
- 
--	psci {
-+	psci: psci {
- 		compatible = "arm,psci-1.0";
- 		method = "smc";
- 
+--- CURRENT DOWNSTREAM APPROACH ---
 
--- 
-2.34.1
+The DTS shows something like this (see [1] and [2]):
 
+pcie {
+	compatible = "brcm,bcm2712-pcie";
+	#address-cells = <0x03>;
+	#size-cells = <0x02>;
+	ranges = <0x2000000 0x00 0x00   0x1f 0x00   0x00 0xfffffffc>;
+	...
+
+	rp1 {
+		compatible = "simple-bus";
+		#address-cells = <0x02>;
+               	#size-cells = <0x02>;
+
+		ranges = <0xc0 0x40000000   0x2000000 0x00 0x00   0x00 0x400000>;
+		...
+
+		serial@34000 {
+			compatible = "arm,pl011-axi";
+			reg = <0xc0 0x40034000   0x00 0x100>;
+			...
+		};
+	};
+};
+
+The PCI bar address here is at CPU physical address 0x1f00000000 and the RP1 driver
+probe function calls of_platform_populate() on the 'rp1' node to register the platform
+drivers for each subdevices (e.g. in the above example: 'serial@34000').
+
+Pros:
+- quite straightforward to implement
+- RP1's dts resides in the directory it should (possibly but not necessarily) belong to,
+  e.g. somewhere under arch/*/boot/dts/...
+
+Cons:
+- the board dts must manually override 'pcie' ranges (in this case 0x1f00000000)
+  depending on the BAR address value, while it should be retrieved by reading the PCI
+  config register instead
+- the probe() function retieves a reference to 'rp1' node via of_find_node_by_name(NULL, 
+  "rp1"), harcoding the node name. This is not desirable since the node name is then set
+  in stone, or otherwise if the node name needs to be changed it must be changed either
+  in the dts *and* in driver code.
+
+
+--- ROB HERRING, LIZHI HOU (et al.) PROPOSED APPROACH ---
+
+A proposal (see [3]) presented at  LPC advise to create a PCI bridge DT node ('pcie') leveraging
+the current OF dynamic infrastructure, adding a dtb overlay ('rpi1' node in the example
+above) on top of it during probe and rearranging the 'ranges' mapping dynamically.
+This sounds like the correct approach and is somewhat used in at least a couple of drivers
+(namely for Alveo U50 card and MicroChip LAN9662 SoC) but AFAIK none of them made their way
+to mainline, leaving some doubts about the applicability of this paradigm.
+
+Pros:
+- no need to provide the BAR address manually since it will be discovered and automatically
+  amended into the 'ranges' property
+- no harcoded reference to 'rp1' node since the endpoint node will be reparented to the 'pcie'
+  node automatically
+- the core OF dynamic infrastructure on which to base these changes are basically already in 
+  mainline (see [4] for discussions)
+
+Cons (albeit I'd consider them minor ones):
+- CONFIG_PCI_DYNAMIC_OF_NODES must be enabled
+- the dtb should probably reside somewhere near the driver source code, e.g. in drivers/mfd/...
+
+
+--- AUXILIARY BUS APPROACH ---
+
+The thread in [5] seems to advise to use the auxiliary bus for this kind of devices. In this
+case, here's the drawbacks:
+
+- as stated in kernel docs for aux bus (cit.) "need a mechanism to connect and provide access
+  to a shared object allocated by the auxiliary_device’s registering driver...", and again 
+  (cit.) "A key requirement for utilizing the auxiliary bus is that there is no dependency on
+  a physical bus...These individual devices split from the core cannot live on the platform
+  bus as they are not physical devices that are controlled by DT/ACPI". Those statements are
+  of course at the opposite of how RP1 behaves
+- subdevices drivers may need rework in order to cope with the auxiliary bus, while we need to
+  use the already existing drivers without modifications
+
+so, for all of the above (and probably other cons I'm not aware of right now), the auxiliary bus
+does not seems feasible to be used, but I'm mentioning it just because of the discussionin in [5]
+that let me wonder whether I may be missing something relevant here.
+
+
+CONCLUSIONS
+
+All in all, I'd say Rob's approach should be the way to go, any thoughts about it will be
+greatly appreciated.
+
+Many thanks,
+Andrea della Porta
+
+Link:
+- [1]: https://github.com/raspberrypi/linux/blob/rpi-6.6.y/arch/arm/boot/dts/broadcom/rp1.dtsi
+- [2]: https://github.com/raspberrypi/linux/blob/rpi-6.6.y/drivers/mfd/rp1.c
+- [3]: https://lpc.events/event/17/contributions/1421/attachments/1337/2680/LPC2023%20Non-discoverable%20devices%20in%20PCI.pdf
+- [4]: https://lore.kernel.org/lkml/20230419231155.GA899497-robh@kernel.org/t/
+- [5]: https://lore.kernel.org/lkml/Y862WTT03%2FJxXUG8@kroah.com/
 
