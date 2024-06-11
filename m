@@ -1,59 +1,57 @@
-Return-Path: <devicetree+bounces-74757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7108A9045C4
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 22:30:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23EEA9045D0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 22:35:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 614521C22DE6
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 20:30:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C04EE1F2154F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 20:35:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44A2850288;
-	Tue, 11 Jun 2024 20:30:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 444F61514DA;
+	Tue, 11 Jun 2024 20:35:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bW7O3OV8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sxrc8EQj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19B5E63CB;
-	Tue, 11 Jun 2024 20:30:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16FA712E61;
+	Tue, 11 Jun 2024 20:35:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718137846; cv=none; b=fEYUxzFbLoyhJYz5cqNMstLkQgG3H+sv318ZEtFTfyt+BU+KpBoP4bxoPgCohhcpEgBLUKmSUOCJ2CP8+wRclUdBKGGsRrSPvBk0q5ohBvSrM/d0l/BXDabVS/r0Wy0Zdn22A7N26ORO7P9WTReBrLsYRLMC2Rjh5+w8/iwOpuo=
+	t=1718138125; cv=none; b=gzGU9SZy2EvaGsVxDWbmx0cla5q3GroG4DXjSO8OUdd/WrgOvruLchy+FwOlaZlXHTbKTVW6aDST5KxgN7MmC6v0VNlhbxhwYDijKF2naaVybnISLnu0WBolIt8ULzJbmmNv9v+wsMnGLIbVugRHZj9lN1lrLQBQMOUPKZiOxWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718137846; c=relaxed/simple;
-	bh=QJUAl/HXNGAn4ey6eyXBFTC8hrQJC413PQTjAxPjThk=;
+	s=arc-20240116; t=1718138125; c=relaxed/simple;
+	bh=Jt8rKRPa7/P92ZHQ4z+Vuw/hztGwjZGN29K72DrkOnU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dzspR0eMCdqVDv3FcRJo6LQcTWbq0/SFoo/LqsnabL0F1eEVwa4Qf45zJaHqE9XLp2AgmXG27miZV/Gz0phBuglzW7OM7OOB7dwx04o+hZNEsL2hWfArjR6bB3dBuydPu8SX3e4ImIhM6BUqSbZ1CfpZ1AsRn6AvltbuQCBhqAQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bW7O3OV8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43329C2BD10;
-	Tue, 11 Jun 2024 20:30:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=CT+8/1VmWmWt7yM+2UBabVYk6goAuKwUsJVCkSz5k+Ly1mHO3uYtg+A4yTkLkELfNlqOFwT1N/AV7whH2+t3aGatIE+y/NyR8ZGTQHQDsL2aVEuIdWcEZnZHTgeuBkYiPyLnQLZy5j7kIYKHvlTO8BKCeA6xlG7YZnFiVxNfp70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sxrc8EQj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52CDDC2BD10;
+	Tue, 11 Jun 2024 20:35:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718137845;
-	bh=QJUAl/HXNGAn4ey6eyXBFTC8hrQJC413PQTjAxPjThk=;
+	s=k20201202; t=1718138124;
+	bh=Jt8rKRPa7/P92ZHQ4z+Vuw/hztGwjZGN29K72DrkOnU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bW7O3OV8ugvr4+2JAkhQRVVzKvCrCFkqU+WdGxvW1Yl4oov2GnUwYBSXitB6a5fe7
-	 hwXyKd3MnF4wByIvv+LG9Ha9IMKjtGDamPJuoATnfPbXaFkim/vfaPDAcQx4wD0CW1
-	 +eh5xmSQAHaALYTYF0lHEHD47WgaiuioP8u+96T46uIOBNvLf5zSTKKh74MPoqnnkh
-	 FAQEbPyBS50fjHOvID67kjMxJy6kxtruxSL6z/twRdhflXJbGYIkScG6NjBvqCooKE
-	 V/LP+gY8sZWzuaTvuDVR9iwYmm4W7sbJJS7cEg4WMH0tqKE1Uzeb/TncwvmVIxwLum
-	 H1CTNT0/ch8GQ==
-Date: Tue, 11 Jun 2024 14:30:43 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Martin Schiller <ms@dev.tdt.de>
-Cc: netdev@vger.kernel.org, krzk+dt@kernel.org, davem@davemloft.net,
-	edumazet@google.com, olteanv@gmail.com, conor+dt@kernel.org,
-	kuba@kernel.org, devicetree@vger.kernel.org, pabeni@redhat.com,
-	hauke@hauke-m.de, martin.blumenstingl@googlemail.com,
-	f.fainelli@gmail.com, andrew@lunn.ch, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v5 01/12] dt-bindings: net: dsa: lantiq,gswip:
- convert to YAML schema
-Message-ID: <171813784153.3020916.2558169964634930233.robh@kernel.org>
-References: <20240611135434.3180973-1-ms@dev.tdt.de>
- <20240611135434.3180973-2-ms@dev.tdt.de>
+	b=sxrc8EQjAq+8MBvImItsoM0G+Tf5SH5qNCLJGe0orXVS1NZbHlk0vSzg8b1xNX0mF
+	 /mpGb4sEYTCtXy6DnCKTdw7LII5hA/5gAqSHUxX4hZXTQWZ9m3+tjLYPMIzqNwNoE2
+	 wa7+FAzkZn3kdfUbrlM2r98Fcm5kIGzh7UstCuOHUvmkyg8w8YUlIm1hc1wm+gtS5A
+	 7BkVVX3Z2dPfDmRzAzML2kOjYJP3RUmNJ2xvEwz48iNNwz/b8dKnxeBH/2T2xKa/Uy
+	 3HhRrGHZSFgm5zgl6iKP0seToMKTkrNr+03ICB73bYnvuNYIlC3SmWJjyWZr2IkIn4
+	 qLvRA/Znfzbtw==
+Date: Tue, 11 Jun 2024 14:35:22 -0600
+From: Rob Herring <robh@kernel.org>
+To: Andrew Davis <afd@ti.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: gpio: lsi,zevio-gpio: convert to YAML
+Message-ID: <20240611203522.GA3021149-robh@kernel.org>
+References: <20240611140034.24685-1-afd@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,30 +60,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240611135434.3180973-2-ms@dev.tdt.de>
+In-Reply-To: <20240611140034.24685-1-afd@ti.com>
 
+On Tue, Jun 11, 2024 at 09:00:34AM -0500, Andrew Davis wrote:
+> Convert Zevio GPIO controller bindings to DT schema.
+> 
+> Changes during conversion:
+>  - Add used but undocumented interrupts property
 
-On Tue, 11 Jun 2024 15:54:23 +0200, Martin Schiller wrote:
-> Convert the lantiq,gswip bindings to YAML format.
+An interrupt on a GPIO controller generally means it is also an 
+interrupt-controller. Do you need to add those properties too?
+
 > 
-> Also add this new file to the MAINTAINERS file.
-> 
-> Furthermore, the CPU port has to specify a phy-mode and either a phy or
-> a fixed-link. Since GSWIP is connected using a SoC internal protocol
-> there's no PHY involved. Add phy-mode = "internal" and a fixed-link to
-> the example code to describe the communication between the PMAC
-> (Ethernet controller) and GSWIP switch.
-> 
-> Signed-off-by: Martin Schiller <ms@dev.tdt.de>
+> Signed-off-by: Andrew Davis <afd@ti.com>
 > ---
->  .../bindings/net/dsa/lantiq,gswip.yaml        | 202 ++++++++++++++++++
->  .../bindings/net/dsa/lantiq-gswip.txt         | 146 -------------
->  MAINTAINERS                                   |   1 +
->  3 files changed, 203 insertions(+), 146 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
->  delete mode 100644 Documentation/devicetree/bindings/net/dsa/lantiq-gswip.txt
-> 
+>  .../devicetree/bindings/gpio/gpio-zevio.txt   | 16 -------
+>  .../bindings/gpio/lsi,zevio-gpio.yaml         | 46 +++++++++++++++++++
+>  2 files changed, 46 insertions(+), 16 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-zevio.txt
+>  create mode 100644 Documentation/devicetree/bindings/gpio/lsi,zevio-gpio.yaml
+
+Otherwise,
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
 
