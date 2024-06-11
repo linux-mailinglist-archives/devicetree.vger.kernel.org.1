@@ -1,169 +1,95 @@
-Return-Path: <devicetree+bounces-74608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3970B903C83
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 14:56:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34659903C8B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 14:57:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC5F3282355
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:56:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3E74B22C69
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:57:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9794F17C23D;
-	Tue, 11 Jun 2024 12:56:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7969617C7A9;
+	Tue, 11 Jun 2024 12:57:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="dCLceSUs"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="RNrk4ENy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 337D017C20E;
-	Tue, 11 Jun 2024 12:56:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5034B17C7A6;
+	Tue, 11 Jun 2024 12:57:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718110577; cv=none; b=ScMtuYAMNKMK+2C78EwPuAap0MNkcnrXK7GE4d9jb8cJ28Wa3vqqjfzi9R4FDu+Ntaj//0UucXJ0fTRsaHFcBxbMuxyeYJOf89jtiWCqxGaU6TcGfQ46tYdKVyYUQ0zzWZd+qebLq/xDgdIAiwT9VqhHQWrzEHnrwag9uwYd4ko=
+	t=1718110664; cv=none; b=gxnD28mAWB6XZSURuRkHAWN2ZCWwTtHxYw0OtsYGYxutNhJwwylqeLQUIMmZxHrz2c/jVxM5gDc0h3ivqMn/OFDuqzcmCYv9BRaFkO8Iw07DRYOmV4CyeGfO36vLwiqWqP9x4/PplfiZ0sWzqhm0M72CVylUzJMCWL182fk4lGc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718110577; c=relaxed/simple;
-	bh=0xHND71O47luA8tSgp2PR2pGO/Wvc9q6sb8c6ONUlIg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AKZaF9Q03fhszfhTddW6bBDvgPkKGhmgAl8WlUp1WnSuYhWQcBoKn0uuoyl8QXuyARVbUPLkDPzhLan9mMySwYroKHIc09lElwvqDw3NaF2lig4wnmBl70vcuw8Hp33zKIgVx3j95WcDlVLe2fwa+S58dYL1bkIl9ZVTXtlI8Dw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=dCLceSUs; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 593C51C0005;
-	Tue, 11 Jun 2024 12:56:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-	t=1718110573;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=gRBXuK79B6qtIkeZB4guCW1GEiypIyRuTLhk26GSAxw=;
-	b=dCLceSUsIr4URAOuKTFnqrPKGy1Ub/ZCASu+Oa83xf4VOOzZmJO3X7kZ7BoC83jXbSttO3
-	GrNLlVGK+4xXZF6+1mOasACZHEOnLVnCcRUf/dx2M28hqKwJWX8Y0kE4rSh80NrEknNu2b
-	YHO1065rVkqvffAvNZTq2yrDobqOlSzgr30E9/nSoAP2W6iZ4XhsCf0J06T5c4Ay4IOtdk
-	OUJPqAlNb5KveKsAYPSJG6bG2TCdqBd2sAf+xIUWxaIw62++ojG5UEJ0Dqjlm1bjIbq5mk
-	2A4fEar7cQma0LNGWIa9jyBnAuDjpKHwsTRH/S30FcgYH/D3f3Uw2wwm5n+ozQ==
-Message-ID: <16e9c06e-9908-455d-a387-614fefe5bcf8@arinc9.com>
-Date: Tue, 11 Jun 2024 15:56:08 +0300
+	s=arc-20240116; t=1718110664; c=relaxed/simple;
+	bh=2CHV3JqDCTzemfzBFGBrj/c0ALmTXYa8bakw+BsFzDM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AJd5YOVrqQP0YteYYLvU4lXASXs6QKUu9X8LT6qYSIFlAnmkymNsts9A2HQc57XgBwJ08RIC0M1iF/TIFrGXNQn6Caa8Nkzq3Kk9nXqEUB2/7B3CG1SuSy46Txjt38L26f/kHlRkBQgcwSQM8TYGzKQighWCq+nSU2Ke7mS+QIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=RNrk4ENy; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=43M/sVt50RU4a9KtHKnWJdS5bCQ8XkR5rl3Sgok+z+Y=; b=RNrk4ENyXK9TwbH6pjcRUATroF
+	oIKSsEXmnKu0n1NjLvnG0dgEgtThhhGXxKut1BQNZNWfsMuLhUYm51woR2aF/iAeOaliuZtvlI0X+
+	ZDFx+88r3tzTtrMC70b6yTmkrHusdpj25JnW8sBShX1JwvrAghXoODdm2g2iVNjAsEJA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sH13t-00HO4O-T0; Tue, 11 Jun 2024 14:57:17 +0200
+Date: Tue, 11 Jun 2024 14:57:17 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
+Cc: nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux@armlinux.org.uk, vadim.fedorenko@linux.dev,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, git@amd.com
+Subject: Re: [PATCH net-next v4 3/4] net: macb: Add ARP support to WOL
+Message-ID: <a95e3b77-bdda-428e-9d25-f9be017fd40a@lunn.ch>
+References: <20240610053936.622237-1-vineeth.karumanchi@amd.com>
+ <20240610053936.622237-4-vineeth.karumanchi@amd.com>
+ <b46427d8-2b8c-4b26-b53a-6dcc3d0ea27f@lunn.ch>
+ <6c01bed7-580e-4f1a-9986-39c20f063e67@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Thorsten Leemhuis <regressions@leemhuis.info>, Rob Herring
- <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Daniel Golle <daniel@makrotopia.org>, frank-w@public-files.de,
- Linux regressions mailing list <regressions@lists.linux.dev>,
- Frank Wunderlich <linux@fw-web.de>, Paolo Abeni <pabeni@redhat.com>
-References: <20240516204847.171029-1-linux@fw-web.de>
- <a29dd7d1-40a8-4c88-99aa-651a3305b640@arinc9.com>
- <5AEE5668-0C8E-4EE4-A398-66CB99DF5650@public-files.de>
- <43aacd9d-b851-4100-8ccc-878ac6ae10f8@leemhuis.info>
- <698cf562-1ca9-4aa3-be7e-a1474b612c5b@leemhuis.info>
- <0cba095c-3d55-416a-a7ad-b359129731cf@arinc9.com>
- <714da201-654b-4183-8e5e-8ff0b64fe621@leemhuis.info>
- <2cac4cf68304e81abffbd9ff0387ee100323c2b7.camel@redhat.com>
- <b49c801c-6628-40a6-8294-0876d8871ba7@leemhuis.info>
- <e92c3ca0-c9be-44ac-a4fc-57ca5ebedbc5@leemhuis.info>
- <1807a142-1534-4fa4-ad4b-d1c03af014c2@arinc9.com>
- <58d8ddea-71cc-427a-94cc-a95f6bce61d2@collabora.com>
-Content-Language: en-US
-From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <58d8ddea-71cc-427a-94cc-a95f6bce61d2@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: arinc.unal@arinc9.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6c01bed7-580e-4f1a-9986-39c20f063e67@amd.com>
 
-On 11/06/2024 15:28, AngeloGioacchino Del Regno wrote:
-> Il 11/06/24 13:38, Arınç ÜNAL ha scritto:
->> On 11/06/2024 14:30, Thorsten Leemhuis wrote:
->>> On 07.06.24 16:15, Thorsten Leemhuis wrote:
->>>> On 07.06.24 16:03, Paolo Abeni wrote:
->>>>> On Thu, 2024-06-06 at 10:26 +0200, Thorsten Leemhuis wrote:
->>>>>> On 31.05.24 08:10, Arınç ÜNAL wrote:
->>>>>>> On 31/05/2024 08.40, Thorsten Leemhuis wrote:
->>>>>>>> [adding Paolo, who committed the culprit]
->>>>>>
->>>>>> /me slowly wonders if the culprit should be reverted for now (see below)
->>>>>> and should be reapplied later together with the matching changes from
->>>>>> Arınç ÜNAL.
->>>>>
->>>>> FWIS I think a revert should be avoided, given that a fix is available
->>>>> and nicely small.
->>>>
->>>> Yeah, on one hand I agree; but on the other it seems that the
->>>> maintainers that would have to take care of the dt changes to fix this
->>>> until now remained silent in this thread, apart from Rob who sent the
->>>> mail regarding the warnings.
->>>>
->>>> I put those maintainers in the To: field of this mail, maybe that might
->>>> lead to some reaction.
->>>
->>> Still no reply from the DRS folks or any other progress I noticed. Guess
->>> that means I will soon have no other choice than to get Linus involved,
->>> as this looks stuck. :-( #sigh
->>
->> Does it have to be Linus that needs to apply "[PATCH 0/2] Set PHY address
->> of MT7531 switch to 0x1f on MediaTek arm64 boards"? Aren't there any other
->> ARM maintainers that can apply the fix to their tree?
->>
->> Arınç
+> > > +	/* Don't manage WoL on MAC if there's a failure in talking to the PHY */
+> > > +	if (!!ret && ret != -EOPNOTSUPP)
+> > >   		return ret;
+> > 
+> > The comment is wrong. You could be happily talking to the PHY, it just
+> > does not support what you asked it to do.
+> > 
 > 
-> You have feedback from two people on the series that you mentioned, and noone
-> is going to apply something that needs to be fixed.
 > 
-> I'm giving you the possibility of addressing the comments in your patch, but
-> I don't want to see any mention of the driver previously ignoring this or that
-> as this is irrelevant for a hardware description. Devicetree only describes HW.
+> These are the 3 possible return scenarios
 > 
-> Adding up, in commit 868ff5f4944a ("net: dsa: mt7530-mdio: read PHY address of switch from device tree"),
-> you have created a regression.
+> 1. -EOPNOTSUPP. : When there is no PHY or no set_wol() in PHY driver.
+> 2. 0 : Success
+> 3. any error (-EINVAL, ... ) from set_wol()
 > 
-> Regressions should be fixed - as in - if the driver did work before with the old
-> devicetrees, it shall still work. You can't break ABI. Any changes that you do
-> to your driver must not break functionality with old devicetrees.
+> we are returning in case 3.
 > 
-> So...
-> 
-> ------> Fix the driver that you broke <------
+> The comment can be "Don't manage WoL on MAC, if PHY set_wol() fails"
 
-The device tree ABI before the change on the driver:
+O.K.
 
-The reg value represents the PHY address of the switch.
+You don't need the !! on ret.
 
-The device tree ABI after the change on the driver:
-
-The reg value represents the PHY address of the switch.
-
-I see no device tree ABI breakage. What I see instead is the driver
-starting enforcing the device tree ABI. No change had been made on the
-device tree ABI so any non-Linux driver that controls this switch continues
-to work.
-
-These old device tree source files in question did not abide by the device
-tree ABI in the first place, which is why they don't work anymore as the
-Linux driver now enforces the ABI. Device tree source files not conforming
-to the ABI is not something to maintain but to fix. The patch series that
-fixes them are already submitted.
-
-> 
-> After you've fixed it - and I repeat - only after, *and* after someone (Frank?)
-> validates that the old devicetrees do work with the fixed driver, I will take
-> the device tree fixes for that MDIO address (as those are, again, fixing a
-> description of the hardware on those boards, so I agree that those must be fixed
-> AS WELL).
-
-Sorry, this approach makes no sense to me.
-
-Arınç
+	Andrew
 
