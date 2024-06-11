@@ -1,175 +1,311 @@
-Return-Path: <devicetree+bounces-74502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C268903826
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 11:48:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA53490385A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:05:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FE401F250C1
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 09:48:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68F551F23A1D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 10:05:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39987176FC9;
-	Tue, 11 Jun 2024 09:48:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD002178367;
+	Tue, 11 Jun 2024 10:05:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=timesys-com.20230601.gappssmtp.com header.i=@timesys-com.20230601.gappssmtp.com header.b="mbiD2GPs"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Vsd3mMsu";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="B+lpaBY+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBCC21779BA
-	for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 09:48:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C70A5178364;
+	Tue, 11 Jun 2024 10:05:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718099329; cv=none; b=MnSUQ8hF3k0rhV26JC7mLhcIGbuPLUKif1Wap9SpSJ4XtJDWPphdJcAjRPrB5NupSz+0iakmw+aZ2tcyyhD3asH0Pxtztv8cbQR8bZz/NuUr/oduOx3pzPoOZzH5Q8paKSxIAFZOY7eACNHHRfYBW78t8bn5FsQLL86dGFBWoRY=
+	t=1718100351; cv=none; b=Oc6Qnd922iEbW7O5CshgpXTFnGEL5LtZ0AQ11fSFZCAv/FKmwtK6Z0jloFUrlG4HbqP83f7L+jCB24ZjCOlrrLa5lC01uRZDpsj4m1bQWgliu4XBifx+/sdaTANtVgkQIES1sYGstlJKcdXSr9kDsnTIbpDJT8mEUm0cD2X504Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718099329; c=relaxed/simple;
-	bh=rY1E63AFRlnvfo6oM5WyAgqbtSr3Iiigk/dvnbD7cdM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=NX7MObi6t/Ee/JfqLcOr/Nv0MN08zHpZY3kzT0prWHr7XWctvAsRvQPxQENRyssbD6bk7pY65PexgnNYFMiO2i4yibhJL1Nad75NfyvOy8JwgaYM8xLQul4FwHGlhqdG3iVBUs3VJH0HxLVx77aOZx71pGVepikSOWfwPLndyC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timesys.com; spf=pass smtp.mailfrom=timesys.com; dkim=pass (2048-bit key) header.d=timesys-com.20230601.gappssmtp.com header.i=@timesys-com.20230601.gappssmtp.com header.b=mbiD2GPs; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timesys.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timesys.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-57c7440876bso1074007a12.0
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 02:48:46 -0700 (PDT)
+	s=arc-20240116; t=1718100351; c=relaxed/simple;
+	bh=Efn05NVXQ8LL12SEOgebkSabzxCq2BMNBnhaIh464Dk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=LzQhZdruymaHkpoiAmPPQynmOZbuxutSsW5wrz5k0VVu8jJoXUCRzqvQOTau0XWJ0EHAbBKYZYQYq+hMePYja7Npm4UdkD4ko4zJatK2aC7+/68mhYZ2cnaXF3CifVQNUB1i0swqPVtBH1xw9Dn+5It0baUogfBg9b0h4uY7gcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Vsd3mMsu; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=B+lpaBY+ reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=timesys-com.20230601.gappssmtp.com; s=20230601; t=1718099325; x=1718704125; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3URf1bqoxt6RvPsq+unfHOhtdPyrUcD08+rrLeED5Co=;
-        b=mbiD2GPsD6Euborju0ealfurXCJ9AUldpWjr+zUpduWNfqoI5gwBAbs138T2aiLOVB
-         KNd6f2Htb6jJkJhztl7EG1dNAmpQJigtjWbdHyTfb/EL2OzDaOfJ1St9Pgg/8Mff1Ji1
-         63xZBSOS9QPEI4GCWw7HcJiIGff5qkwyp0p/zaJd/Y99xn3pBRk7x4Id96aysuTB9Z5i
-         QRvhI5MHe3ZeeBcYIgeWRJSqdmjj19ZyXEpN61B7Pr8E8iBkmQSKCkLcEYSE/ej0oi40
-         BW65Cy6jLpXAazSe3FRXECggmCXtZnA82hmrp53/GP/ZusXo2k59yEovTru+qVhyqQ4g
-         Xg1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718099325; x=1718704125;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3URf1bqoxt6RvPsq+unfHOhtdPyrUcD08+rrLeED5Co=;
-        b=YK4JAB4LDfzBQk7GJ40XowHh1oznaU67QgCPzEbXLXX3AhyQJvxAmkSlTZV5ioAiq7
-         uee1GaU2qqlVGTL1J+elLbZXds74v+yttolY71iqDOH/0JQhjbemc39KsMFhkVw+Sy1S
-         KAqZ5WERkBGRD+ckzG3gp990JwDIHJF4Cq6+/ZS5s4kDIMp+8gvcRSJOz0ak5wUEy7NH
-         GXw3rt3OddgOKlQcSJ7AM4BMaUg/ujPkW9PK36af98RJoxcNolROz/GyNIMTKnUBDet7
-         a8oldnkRNH15koZYucC0yUWzuf20138ukwYrMc2WFYnEK/4Tw7ia80pBeQfitpwuc2gR
-         pADw==
-X-Forwarded-Encrypted: i=1; AJvYcCU2jq1MTm5xJlD1bK04SLuBz8y+Bn3lY/phNrFwxXWtFtDk48u1hd4KiRCYxQvSmK7f6WGwtg1bOeeDgJLUuLmBzrKSsaz1LlzAag==
-X-Gm-Message-State: AOJu0YyRfalcDgmijxLWe3BX6KqtMzkYdIaRe3R/f1dPrjUsZoataJWj
-	ac2CwkX6b3TSe8dPZbUKr80wUSDSw1k30kuk0TtnhFM1dwUqyHENQM0TWJ/bSU8=
-X-Google-Smtp-Source: AGHT+IF14ZNnXOfobI/WB8lXVND+Ohqa5JoXFDW/TfmN1pVZr0QdPr6CGSC0zuZrHL1qY/x7lEYXOA==
-X-Received: by 2002:a50:d712:0:b0:579:e6ff:c61f with SMTP id 4fb4d7f45d1cf-57c508fd7f6mr11085689a12.25.1718099325105;
-        Tue, 11 Jun 2024 02:48:45 -0700 (PDT)
-Received: from localhost.localdomain ([91.216.213.152])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57aae2340f6sm9059647a12.90.2024.06.11.02.48.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jun 2024 02:48:44 -0700 (PDT)
-From: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
-To: 
-Cc: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vladimir Zapolskiy <vz@mleia.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Chancel Liu <chancel.liu@nxp.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	alsa-devel@alsa-project.org,
-	linuxppc-dev@lists.ozlabs.org
-Subject: [Patch v2 2/2] ASoC: dt-bindings: lpc32xx: Add lpc32xx i2s DT binding
-Date: Tue, 11 Jun 2024 11:47:52 +0200
-Message-Id: <20240611094810.27475-2-piotr.wojtaszczyk@timesys.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240611094810.27475-1-piotr.wojtaszczyk@timesys.com>
-References: <[PATCH] ASoC: fsl: Add i2s and pcm drivers for LPC32xx CPUs>
- <20240611094810.27475-1-piotr.wojtaszczyk@timesys.com>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1718100348; x=1749636348;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=IpeC1QAyGp7/ecmPqLy+8ePCuBDPCsaQb8tByibuhG4=;
+  b=Vsd3mMsuvLcrMtLCGYuG5BlsfKvEUCycM7BYMtK1ln/NGBC42K/dn9Cm
+   2LWZRdcpM5OIoC/k2jkErTY31knN9qOdwkDQjRdImQwvq8QqPU3xK3rTO
+   i06UnZXrKjZbcgDuof1r8RJMkDfhv0Mm7TIqC052rE+UXKQ3Pv7iMkwlw
+   pYCiZ7eAgbisa/h7dZ+W6jSSb9EQJkI49p7DqflPmBcvtcMPWlPmKPWPi
+   JpLv4rFKRhr7TVSXjI9YJezN49eWSeAAfyIBEJA1mcMStHZviWNuX0tHe
+   jERpGGKXfWZw5Go7ZAs+uSFGCqHIq5Oy4oLei9RjwMQfcTsKga3/A2AjB
+   A==;
+X-CSE-ConnectionGUID: 1P99VBzoRRaTc8rrIT8Wsw==
+X-CSE-MsgGUID: vPHOmii7R1+khm3rIbi4Rg==
+X-IronPort-AV: E=Sophos;i="6.08,229,1712613600"; 
+   d="scan'208";a="37329397"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 11 Jun 2024 12:05:39 +0200
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 468ED163947;
+	Tue, 11 Jun 2024 12:05:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1718100335;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=IpeC1QAyGp7/ecmPqLy+8ePCuBDPCsaQb8tByibuhG4=;
+	b=B+lpaBY+5PQduUy26+YMD3o23CtOQFLQsz5x6J4Bt41aIzZw2yep1fBN9tF4XmrU3x84Mg
+	AT+P7LWVDCPZxxfSli8hNWh3rI/T6pF0nxH4eRTMuuBfxQUR2sDYTFaZm+POUCx7MliTn/
+	Zk8kcDj0RolsedtKYfgHMw2sCKl7Qpm0xwZY6OMG8hx0HZU1sJE/U4cbPXcw21aKB8XDZk
+	qz1GdbGMnMIZmC3+1B1p+wnnQ1DbexlkunLL8axoxwTmxPH15a/m1LQMkhDeQNITQVDGBr
+	ThRuSVUFwwBuLkocjKXqSSzlo/T2uccWpUxv/PQmDfgsLQMiOJt6DwcYtG6evg==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Dong Aisheng <aisheng.dong@nxp.com>, linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>, Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH v2 1/9] arm64: dts: imx8: add basic lvds and lvds2 subsystem
+Date: Tue, 11 Jun 2024 12:05:35 +0200
+Message-ID: <5792284.DvuYhMxLoT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20240610-imx8qm-dts-usb-v2-1-788417116fb1@nxp.com>
+References: <20240610-imx8qm-dts-usb-v2-0-788417116fb1@nxp.com> <20240610-imx8qm-dts-usb-v2-1-788417116fb1@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-Add nxp,lpc3220-i2s DT binding documentation.
+Hi Frank,
 
-Signed-off-by: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
----
-Changes for v2:
-- Added maintainers field
-- Dropped clock-names
-- Dropped unused unneded interrupts field
+Am Montag, 10. Juni 2024, 22:46:18 CEST schrieb Frank Li:
+> Add basic lvds and lvds2 subsystem for imx8qm an imx8qxp.
+>=20
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi |  63 +++++++++++++
+>  arch/arm64/boot/dts/freescale/imx8-ss-lvds1.dtsi | 114 +++++++++++++++++=
+++++++
+>  2 files changed, 177 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi b/arch/arm6=
+4/boot/dts/freescale/imx8-ss-lvds0.dtsi
+> new file mode 100644
+> index 0000000000000..55fd60446ad21
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi
+> @@ -0,0 +1,63 @@
+> +// SPDX-License-Identifier: GPL-2.0-only and MIT
+> +
+> +/*
+> + * Copyright 2024 NXP
+> + */
+> +
+> +lvds0_subsys: bus@56240000 {
+> +	compatible =3D "simple-bus";
+> +	#address-cells =3D <1>;
+> +	#size-cells =3D <1>;
+> +	ranges =3D <0x56240000 0x0 0x56240000 0x10000>;
+> +
+> +	qm_lvds0_lis_lpcg: qxp_mipi1_lis_lpcg: clock-controller@56243000 {
+> +		compatible =3D "fsl,imx8qxp-lpcg";
+> +		reg =3D <0x56243000 0x4>;
+> +		#clock-cells =3D <1>;
+> +		clock-output-names =3D "mipi1_lis_lpcg_ipg_clk";
+> +		power-domains =3D <&pd IMX_SC_R_MIPI_1>;
+> +	};
+> +
+> +	qm_lvds0_pwm_lpcg: qxp_mipi1_pwm_lpcg: clock-controller@5624300c {
+> +		compatible =3D "fsl,imx8qxp-lpcg";
+> +		reg =3D <0x5624300c 0x4>;
+> +		#clock-cells =3D <1>;
+> +		clock-output-names =3D "mipi1_pwm_lpcg_clk",
+> +				     "mipi1_pwm_lpcg_ipg_clk",
+> +				     "mipi1_pwm_lpcg_32k_clk";
+> +		power-domains =3D <&pd IMX_SC_R_MIPI_1_PWM_0>;
+> +	};
+> +
+> +	qm_lvds0_i2c0_lpcg: qxp_mipi1_i2c0_lpcg: clock-controller@56243010 {
+> +		compatible =3D "fsl,imx8qxp-lpcg";
+> +		reg =3D <0x56243010 0x4>;
+> +		#clock-cells =3D <1>;
+> +		clock-output-names =3D "mipi1_i2c0_lpcg_clk",
+> +				     "mipi1_i2c0_lpcg_ipg_clk";
+> +		power-domains =3D <&pd IMX_SC_R_MIPI_1_I2C_0>;
+> +	};
+> +
+> +	qm_pwm_lvds0: qxp_pwm_mipi_lvds1: pwm@56244000 {
+> +		compatible =3D "fsl,imx8qxp-pwm", "fsl,imx27-pwm";
+> +		reg =3D <0x56244000 0x1000>;
+> +		clock-names =3D "ipg", "per";
+> +		assigned-clocks =3D <&clk IMX_SC_R_MIPI_1_I2C_0 IMX_SC_PM_CLK_PER>;
 
- .../bindings/sound/nxp,lpc3220-i2s.yaml       | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/nxp,lpc3220-i2s.yaml
+Is IMX_SC_R_MIPI_1_I2C_0 actually correct? I would have assumed
+it's IMX_SC_R_MIPI_1_PWM_0.
 
-diff --git a/Documentation/devicetree/bindings/sound/nxp,lpc3220-i2s.yaml b/Documentation/devicetree/bindings/sound/nxp,lpc3220-i2s.yaml
-new file mode 100644
-index 000000000000..66e48d8a5a1b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/nxp,lpc3220-i2s.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/nxp,lpc3220-i2s.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP LPC32XX I2S Controller
-+
-+description:
-+  The I2S controller in LPC32XX SoCs to interface codecs and other audo devices.
-+
-+maintainers:
-+  - Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - nxp,lpc3220-i2s
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: input clock of the peripheral.
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/lpc32xx-clock.h>
-+
-+    i2s0: i2s@20094000 {
-+      compatible = "nxp,lpc3220-i2s";
-+      reg = <0x20094000 0x1000>;
-+      clocks = <&clk LPC32XX_CLK_I2S0>;
-+      clock-names = "i2s_clk";
-+      status = "disabled";
-+    };
-+
-+...
--- 
-2.25.1
+> +		assigned-clock-rates =3D <24000000>;
+> +		#pwm-cells =3D <3>;
+> +		power-domains =3D <&pd IMX_SC_R_MIPI_1_PWM_0>;
+> +		status =3D "disabled";
+> +	};
+> +
+> +	qm_i2c0_lvds0: qxp_i2c0_mipi_lvds1: i2c@56246000 {
+> +		compatible =3D "fsl,imx8qxp-lpi2c", "fsl,imx7ulp-lpi2c";
+> +		reg =3D <0x56246000 0x1000>;
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +		interrupts =3D <8>;
+> +		clock-names =3D "per", "ipg";
+> +		assigned-clocks =3D <&clk IMX_SC_R_MIPI_1_I2C_0 IMX_SC_PM_CLK_PER>;
+> +		assigned-clock-rates =3D <24000000>;
+> +		power-domains =3D <&pd IMX_SC_R_MIPI_1_I2C_0>;
+> +		status =3D "disabled";
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-lvds1.dtsi b/arch/arm6=
+4/boot/dts/freescale/imx8-ss-lvds1.dtsi
+> new file mode 100644
+> index 0000000000000..12ae4f48e1e1c
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8-ss-lvds1.dtsi
+
+This is only for imx8qm, no?
+
+It maybe makes sense to rename this file to imx8qm-ss-lvds1.dtsi
+
+Best regards,
+Alexander
+
+> @@ -0,0 +1,114 @@
+> +// SPDX-License-Identifier: GPL-2.0-only and MIT
+> +
+> +/*
+> + * Copyright 2024 NXP
+> + */
+> +
+> +lvds1_subsys: bus@57240000 {
+> +	compatible =3D "simple-bus";
+> +	interrupt-parent =3D <&irqsteer_lvds1>;
+> +	#address-cells =3D <1>;
+> +	#size-cells =3D <1>;
+> +	ranges =3D <0x57240000 0x0 0x57240000 0x10000>;
+> +
+> +	irqsteer_lvds1: interrupt-controller@57240000 {
+> +		compatible =3D "fsl,imx8qm-irqsteer", "fsl,imx-irqsteer";
+> +		reg =3D <0x57240000 0x1000>;
+> +		interrupts =3D <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-controller;
+> +		interrupt-parent =3D <&gic>;
+> +		#interrupt-cells =3D <1>;
+> +		clocks =3D <&lvds1_lis_lpcg IMX_LPCG_CLK_4>;
+> +		clock-names =3D "ipg";
+> +		power-domains =3D <&pd IMX_SC_R_LVDS_1>;
+> +		fsl,channel =3D <0>;
+> +		fsl,num-irqs =3D <32>;
+> +	};
+> +
+> +	lvds1_lis_lpcg: clock-controller@57243000 {
+> +		compatible =3D "fsl,imx8qxp-lpcg";
+> +		reg =3D <0x57243000 0x4>;
+> +		#clock-cells =3D <1>;
+> +		clocks =3D <&lvds_ipg_clk>;
+> +		clock-indices =3D <IMX_LPCG_CLK_4>;
+> +		clock-output-names =3D "lvds1_lis_lpcg_ipg_clk";
+> +		power-domains =3D <&pd IMX_SC_R_LVDS_1>;
+> +	};
+> +
+> +	lvds1_pwm_lpcg: clock-controller@5724300c {
+> +		compatible =3D "fsl,imx8qxp-lpcg";
+> +		reg =3D <0x5724300c 0x4>;
+> +		#clock-cells =3D <1>;
+> +		clocks =3D <&clk IMX_SC_R_LVDS_1_PWM_0 IMX_SC_PM_CLK_PER>,
+> +			 <&lvds_ipg_clk>;
+> +		clock-indices =3D <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
+> +		clock-output-names =3D "lvds1_pwm_lpcg_clk",
+> +				     "lvds1_pwm_lpcg_ipg_clk";
+> +		power-domains =3D <&pd IMX_SC_R_LVDS_1_PWM_0>;
+> +	};
+> +
+> +	lvds1_i2c0_lpcg: clock-controller@57243010 {
+> +		compatible =3D "fsl,imx8qxp-lpcg";
+> +		reg =3D <0x57243010 0x4>;
+> +		#clock-cells =3D <1>;
+> +		clocks =3D <&clk IMX_SC_R_LVDS_1_I2C_0 IMX_SC_PM_CLK_PER>,
+> +			 <&lvds_ipg_clk>;
+> +		clock-indices =3D <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
+> +		clock-output-names =3D "lvds1_i2c0_lpcg_clk",
+> +				     "lvds1_i2c0_lpcg_ipg_clk";
+> +		power-domains =3D <&pd IMX_SC_R_LVDS_1_I2C_0>;
+> +	};
+> +
+> +	lvds1_i2c1_lpcg: clock-controller@57243014 {
+> +		compatible =3D "fsl,imx8qxp-lpcg";
+> +		reg =3D <0x57243014 0x4>;
+> +		#clock-cells =3D <1>;
+> +		clocks =3D <&clk IMX_SC_R_LVDS_1_I2C_0 IMX_SC_PM_CLK_PER>,
+> +			 <&lvds_ipg_clk>;
+> +		clock-indices =3D <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
+> +		clock-output-names =3D "lvds1_i2c1_lpcg_clk",
+> +				     "lvds1_i2c1_lpcg_ipg_clk";
+> +		power-domains =3D <&pd IMX_SC_R_LVDS_1_I2C_0>;
+> +	};
+> +
+> +	pwm_lvds1: pwm@57244000 {
+> +		compatible =3D "fsl,imx8qxp-pwm", "fsl,imx27-pwm";
+> +		reg =3D <0x57244000 0x1000>;
+> +		clocks =3D <&lvds1_pwm_lpcg IMX_LPCG_CLK_4>,
+> +			 <&lvds1_pwm_lpcg IMX_LPCG_CLK_0>;
+> +		clock-names =3D "ipg", "per";
+> +		assigned-clocks =3D <&clk IMX_SC_R_LVDS_1_PWM_0 IMX_SC_PM_CLK_PER>;
+> +		assigned-clock-rates =3D <24000000>;
+> +		#pwm-cells =3D <3>;
+> +		power-domains =3D <&pd IMX_SC_R_LVDS_1_PWM_0>;
+> +		status =3D "disabled";
+> +	};
+> +
+> +	i2c0_lvds1: i2c@57246000 {
+> +		compatible =3D "fsl,imx8qm-lpi2c", "fsl,imx7ulp-lpi2c";
+> +		reg =3D <0x57246000 0x1000>;
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +		interrupts =3D <8>;
+> +		clocks =3D <&lvds1_i2c0_lpcg IMX_LPCG_CLK_0>,
+> +			 <&lvds1_i2c0_lpcg IMX_LPCG_CLK_4>;
+> +		clock-names =3D "per", "ipg";
+> +		assigned-clocks =3D <&clk IMX_SC_R_LVDS_1_I2C_0 IMX_SC_PM_CLK_PER>;
+> +		assigned-clock-rates =3D <24000000>;
+> +		power-domains =3D <&pd IMX_SC_R_LVDS_1_I2C_0>;
+> +		status =3D "disabled";
+> +	};
+> +
+> +	i2c1_lvds1: i2c@57247000 {
+> +		compatible =3D "fsl,imx8qm-lpi2c", "fsl,imx7ulp-lpi2c";
+> +		reg =3D <0x57247000 0x1000>;
+> +		interrupts =3D <9>;
+> +		clocks =3D <&lvds1_i2c1_lpcg IMX_LPCG_CLK_0>,
+> +			 <&lvds1_i2c1_lpcg IMX_LPCG_CLK_4>;
+> +		clock-names =3D "per", "ipg";
+> +		assigned-clocks =3D <&clk IMX_SC_R_LVDS_1_I2C_0 IMX_SC_PM_CLK_PER>;
+> +		assigned-clock-rates =3D <24000000>;
+> +		power-domains =3D <&pd IMX_SC_R_LVDS_1_I2C_0>;
+> +		status =3D "disabled";
+> +	};
+> +};
+>=20
+>=20
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
