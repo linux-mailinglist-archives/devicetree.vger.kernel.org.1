@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-74628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24FD5903D62
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 15:32:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9CD3903D64
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 15:32:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C41AA1F25B4D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 13:32:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 27E3DB2175B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 13:32:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5743817CA1B;
-	Tue, 11 Jun 2024 13:32:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19A3E17D354;
+	Tue, 11 Jun 2024 13:32:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cycm0Ht6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jElkHqQU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F8D117C21D;
-	Tue, 11 Jun 2024 13:32:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E512C1EA71;
+	Tue, 11 Jun 2024 13:32:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718112728; cv=none; b=qT5Proty5KfcEJi08LDBsxJMTsfANFpeaceJKsH3OvGtwbWiTgI3glc7CCapQG9J+7elV+CiuhNKlaGFYFKtmFoVFpRQ8lJMBG6QHkHeDlmYVDS0UPxmlnRJv/+aiEMNYxWYFvwwVDUENFMWgUTbIPw7eV/D5cFcUw2kZQR2Z30=
+	t=1718112730; cv=none; b=jyU6ukmG7Sb+SXhCFBTbWnVxXgzNZREFivZCYLJnpIrlNQ12z7WFW6qNqjw2fuJlE5Q1Lb665a3ixYyMxDEIT4DJbAlECeZz1vAuIsaPCEK5+UZZuJ43scm0DS9th9Ha5lMNazrCx9UzbehxRTGM0loGB1Hgg7/Y4IPHFXmLj70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718112728; c=relaxed/simple;
-	bh=jFnq2FBPHkfxPczuJQqEV38ac8nO/wqjWQJ0K6zPlFI=;
+	s=arc-20240116; t=1718112730; c=relaxed/simple;
+	bh=4Ecmaz+tOqycgV8YUD4eHo7O50NZPOPSrgUB34T1RJ4=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=rKmWcwpf4ngTAbnvVeR5BvXWZjjQLt5VJkAU+rLz5f2Ogbnk3XAqsqcMTYdvmGE09TW10rfPCL8Y0man1afC16PO1ZeWjW16wFfkSpT0D1f5sgEBSn25qDv1ixkuJBzZ2aSjJ3gXSYSi1K5udoQEhfqrWsxWndH1ly6l9Ql5jwo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cycm0Ht6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1DE7C2BD10;
-	Tue, 11 Jun 2024 13:32:07 +0000 (UTC)
+	 Message-Id:Subject; b=VL99mLtCCx7PpoicN71uye07BeL4YO9lvyD905/NQM2eXVK4nDgTwQvLmkSMyLsE+uFH1DqsjThV4xjWDppZbYKoIFpQYLSrqtPr3fe+wZ5dR1vNx3UQ4AIKA4v2IpL+naCbmELUFWWNJHn10FsLoqK/7r/n5kBDOQHqbIwBg9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jElkHqQU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DFDCC4AF48;
+	Tue, 11 Jun 2024 13:32:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718112728;
-	bh=jFnq2FBPHkfxPczuJQqEV38ac8nO/wqjWQJ0K6zPlFI=;
+	s=k20201202; t=1718112729;
+	bh=4Ecmaz+tOqycgV8YUD4eHo7O50NZPOPSrgUB34T1RJ4=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=cycm0Ht6+j3y6WsTE+CTck5qn2Fg3n/vwCWelIGFAOD+PQLQsFXBIKXwUE63m/5UF
-	 aVblHL0y/mQsGvoUgmtF6L7wJLkhxTJ7qLUMOIvX0/PZ/5zFUt1cOQtOTa68pFoW+m
-	 OCgEmTXUqZTnEmdHrsmAFzfhveC4wH8Tczl/InNwvNOk4KIJWZibtMklUQ0Yvl3/Fp
-	 U/J9roxqq1tcZvue0or59388QC/n2YL86XvB0X6Pm6x+SmrchqN3A39b8uPVZdhmBE
-	 N0EPrbREnS2EUGv+5yLVyya1ZiTEy8EDbB+jrHWtqjAP2iL5vuysgYfHokRyhNlGHA
-	 +J1fYMoexgU6A==
-Date: Tue, 11 Jun 2024 07:32:06 -0600
+	b=jElkHqQUFHlVRUi7T7S/jhRumOqUf0ZwvAPaaYe06sfGivntg1J3V8Gjtsmz2KSFx
+	 0g3pg3U+JkJLSS8SkvqQeMvlTw3mMYgSOmhlJw+t7bgacBYVScxt0H3O+nlgG5NYKl
+	 HRZXUrjOAriySKK/GxXWQ0X50z+2j/5Thaa6Owey7qeWS+fLf/JPb0uvcLEe7Wga9M
+	 njjVB00G/4nbw8YfPKGZA8h99V+TVP0GQJjzWry1Z26Fp7fStDJNJl1X3AftYSLNEe
+	 2UxS+D/hpF8nDNm0+SmsYwSElBOclJ93gEvH0i9ectiZYLXk0R56UqV1529lXvctiX
+	 qhyvjSF0tmnGA==
+Date: Tue, 11 Jun 2024 07:32:08 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,39 +51,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jayesh Choudhary <j-choudhary@ti.com>
-Cc: vigneshr@ti.com, conor+dt@kernel.org, linux-kernel@vger.kernel.org, 
- kristo@kernel.org, j-luthra@ti.com, linux-arm-kernel@lists.infradead.org, 
- u-kumar1@ti.com, devicetree@vger.kernel.org, krzk+dt@kernel.org, nm@ti.com
-In-Reply-To: <20240611082820.17442-1-j-choudhary@ti.com>
-References: <20240611082820.17442-1-j-choudhary@ti.com>
-Message-Id: <171811267198.1781695.14762038214615295188.robh@kernel.org>
-Subject: Re: [PATCH] arm64: dts: ti: k3-j722s-evm: Enable analog audio
- support
+To: Farouk Bouabid <farouk.bouabid@cherry.de>
+Cc: Conor Dooley <conor+dt@kernel.org>, linux-rockchip@lists.infradead.org, 
+ Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Quentin Schulz <quentin.schulz@cherry.de>, Heiko Stuebner <heiko@sntech.de>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ linux-i2c@vger.kernel.org, Andi Shyti <andi.shyti@kernel.org>, 
+ Peter Rosin <peda@axentia.se>, linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20240611-dev-mule-i2c-mux-v3-0-08d26a28e001@cherry.de>
+References: <20240611-dev-mule-i2c-mux-v3-0-08d26a28e001@cherry.de>
+Message-Id: <171811267304.1781724.4665185672258305049.robh@kernel.org>
+Subject: Re: [PATCH v3 0/7] Add Mule I2C multiplexer support
 
 
-On Tue, 11 Jun 2024 13:58:19 +0530, Jayesh Choudhary wrote:
-> The audio support on J722S-EVM is using TLV320AIC3106[0] codec
-> connected to McASP1 serializers.
+On Tue, 11 Jun 2024 13:43:51 +0200, Farouk Bouabid wrote:
+> Mule is an mcu that emulates a set of I2C devices which are reachable
+> through an I2C-mux.
 > 
-> - Add the nodes for sound-card, audio codec and McASP1.
-> - Add hog for TRC_MUX_SEL to select between McASP and TRACE signals
-> - Add hogs for GPIO_AUD_RSTn and MCASP1_FET_SEL which is used to
->   switch between HDMI audio and codec audio.
-> - Add pinmux for MCASP1 and AUDIO_EXT_REFCLK1.
-> - Add syscon node for audio_refclk1 to set the enable bit in
->   CTRL_MMR reg and select the parent clock for the external clock.
+> The emulated devices share a single I2C address with the mux itself
+> where the requested register is what determines which logic is executed
+> (muxing logic or device logic):
 > 
-> [0]: <https://www.ti.com/lit/gpn/TLV320AIC3106>
+> 1- The devices on the mux can be selected (muxing functionality) by
+> writing the appropriate device number to an I2C config register (0xff)
+> that is not used by any device logic.
 > 
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> 2- Any access to a register other than the config register will be
+> handled by the previously selected device.
+> 
+>       +-------------------------------------------------------+
+>       |  Mule                                                 |
+>       |        +---------------+                              |
+>     ----+-(1)->|Config register|-----+                        |
+>       | |      +---------------+     |                        |
+>       | |                            V_                       |
+>       | |                            |  \          +--------+ |
+>       | |                            |   \-------->| dev #0 | |
+>       | |                            |   |         +--------+ |
+>       | |                            | M |-------->| dev #1 | |
+>       | +-----------(2)------------->| U |         +--------+ |
+>       |                              | X |-------->| dev #2 | |
+>       |                              |   |         +--------+ |
+>       |                              |   /-------->| dev #3 | |
+>       |                              |__/          +--------+ |
+>       +-------------------------------------------------------+
+> 
+> The current I2C-mux implementation does not allow the mux to use the
+> I2C address of a child device. As a workaround, A new I2C-adapter quirk is
+> introduced to skip the check for conflict between a child device and the
+> mux core I2C address when adding the child device.
+> 
+> This patch-series adds support for this multiplexer. Mule is integrated
+> as part of rk3399-puma, px30-ringneck, rk3588-tiger and rk3588-jaguar
+> boards.
+> 
+> Signed-off-by: Farouk Bouabid <farouk.bouabid@cherry.de>
+> 
+> Changes in v3:
+> - Change "i2c" in comments/commit-logs to "I2C"
+> - Fix long line-length
+> - Warn when "share_addr_with_children" is set and the Mux is not an I2C device
+> - Fix/stop propagating "I2C_AQ_SKIP_ADDR_CHECK" flag if "share_addr_with_children"
+>   is not set.
+> - Fix "old_fw" variable is used to indicate the reversed meaning.
+> 
+> - Link to v2: https://lore.kernel.org/r/20240506-dev-mule-i2c-mux-v2-0-a91c954f65d7@cherry.de
+> 
+> Changes in v2:
+> - Add i2c-adapter quirks to skip checking for conflict between the mux core
+>   and a child device address.
+> - Rename dt-binding to "tsd,mule-i2c-mux.yaml"
+> - Add Mule description to kconfig
+> - Fix indentation
+> - Move device table after probe
+> 
+> - Link to v1: https://lore.kernel.org/r/20240426-dev-mule-i2c-mux-v1-0-045a482f6ffb@theobroma-systems.com
+> 
 > ---
+> Farouk Bouabid (7):
+>       i2c: mux: add the ability to share mux address with child nodes
+>       dt-bindings: i2c: mux: mule: add dt-bindings for mule i2c multiplexer
+>       i2c: muxes: add support for mule i2c multiplexer
+>       arm64: dts: rockchip: add mule i2c mux (0x18) on rk3399-puma
+>       arm64: dts: rockchip: add mule i2c mux (0x18) on rk3588-tiger
+>       arm64: dts: rockchip: add mule i2c mux (0x18) on px30-ringneck
+>       arm64: dts: rockchip: add mule i2c mux (0x18) on rk3588-jaguar
 > 
-> This patch depends upon the bcdma driver fix posted upstream:
-> <https://lore.kernel.org/all/20240607-bcdma_chan_cnt-v2-1-bf1a55529d91@ti.com/>
+>  .../devicetree/bindings/i2c/tsd,mule-i2c-mux.yaml  |  80 +++++++++++
+>  arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi    |  20 ++-
+>  arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi      |  20 ++-
+>  arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts     |  19 ++-
+>  arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi     |  19 ++-
+>  drivers/i2c/i2c-core-base.c                        |   6 +-
+>  drivers/i2c/i2c-mux.c                              |  48 ++++++-
+>  drivers/i2c/muxes/Kconfig                          |  18 +++
+>  drivers/i2c/muxes/Makefile                         |   1 +
+>  drivers/i2c/muxes/i2c-mux-mule.c                   | 157 +++++++++++++++++++++
+>  include/linux/i2c-mux.h                            |   1 +
+>  include/linux/i2c.h                                |   7 +
+>  12 files changed, 384 insertions(+), 12 deletions(-)
+> ---
+> base-commit: 79c1f584335af42ce359ee3ff0f4e9cc324296ed
+> change-id: 20240404-dev-mule-i2c-mux-9103cde07021
 > 
->  arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 121 ++++++++++++++++++++++++
->  1 file changed, 121 insertions(+)
+> Best regards,
+> --
+> Farouk Bouabid <farouk.bouabid@cherry.de>
+> 
+> 
 > 
 
 
@@ -101,10 +177,10 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y ti/k3-j722s-evm.dtb' for 20240611082820.17442-1-j-choudhary@ti.com:
+New warnings running 'make CHECK_DTBS=y rockchip/rk3588-jaguar.dtb' for 20240611-dev-mule-i2c-mux-v3-0-08d26a28e001@cherry.de:
 
-arch/arm64/boot/dts/ti/k3-j722s-evm.dtb: pinctrl@f4000: 'audi-ext-refclk1-pins-default' does not match any of the regexes: '-pins(-[0-9]+)?$|-pin$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+arch/arm64/boot/dts/rockchip/rk3588-jaguar.dtb: fan@18: '#cooling-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
 
 
 
