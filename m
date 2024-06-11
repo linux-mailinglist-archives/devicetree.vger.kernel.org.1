@@ -1,125 +1,173 @@
-Return-Path: <devicetree+bounces-74595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12D5E903B97
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 14:12:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B45EF903BAD
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 14:13:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C9F4B23506
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:12:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E9401C22B47
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:13:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2591E17C20A;
-	Tue, 11 Jun 2024 12:12:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 891C117B50A;
+	Tue, 11 Jun 2024 12:13:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="bbHlvtLn"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eBJlOGPn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADA6C17C205
-	for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 12:12:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCE6F481B4;
+	Tue, 11 Jun 2024 12:13:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718107944; cv=none; b=KOd7cxQ/KhWojqlwG1DeXb8HCBFSSH+xsZQ0gpkyYEoj4ncxuKEig6QrpEuRBOQYdQj1RqrFVw1cXF3YB/WTHOPxx7goJ9lBsePRXzrcTdeq0P0cpNun+E1I9LBvaJyAEL1Mck4DXiqmxCBpW9ZOBATqjpcsTYOL3LSZ9o+01Lc=
+	t=1718108024; cv=none; b=MDL7olqFPuUK5wMdUPzWsooLUnZdNeVJsM9cstcKqWCI95ZCJgcaqhTOfmjaXmOGOxwsAJN4d8NjL5DM/KO0VX6DBntv18WhL2V9arpDwXxbZvXqiHIDPcFwXQwga2XklmNrnujngvcHAmnbIc4TFCG4ol/3HY77CuuaKA6p/Hg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718107944; c=relaxed/simple;
-	bh=sIbNJUSxjDR6r4OKpjG9oJgb7z911EUrOwt9KL6BXgo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lOoaIstEqXHkZiZGFuOTsn6DH5rEf74QTOHylMnuLw0FJikJhXf6O1TQj3VB3bm9dt0HqhHbjHbM8Iw7mhZGglBf2e4ky9Dm19NK9ROb8VCFqE4EGJoidrpAhJyq1KACbyXiPXY5M28ZRAc02U4SRWUigUCSUV988hYeHmr9rMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=bbHlvtLn; arc=none smtp.client-ip=209.85.222.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7955c585af0so64877885a.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 05:12:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1718107942; x=1718712742; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=sIbNJUSxjDR6r4OKpjG9oJgb7z911EUrOwt9KL6BXgo=;
-        b=bbHlvtLnqwR2l0To927wd2CoZZUEy4Ubp/VJUKMeBRdWVCvtGXyRfGbuSK4PEWfe+T
-         5wxzVkr6YR6cDRnELrS5jZfpNDx979050vJn+KzmAjL1/CWcS9nLggUcKO1b4yMUli6K
-         x3gWcdaffnXVkUPk4j3s+wR7QrlSc75RLOSghf7CZmCkrvL3M+9Jxqi2L4P3/iyQGJ37
-         EMNojekvv2DcVFMZ21/r7/OpdDegAYwGfjOdAmO4z+4Sxye/1YEzXQwAHTioIeLiUdWX
-         bl1+N8YDfjextD4kmgK5dmsQHe4GVGj1CPWBATFqOwTnj7ilGs4wg/31AJ2T3jyRQTkZ
-         ZYyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718107942; x=1718712742;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sIbNJUSxjDR6r4OKpjG9oJgb7z911EUrOwt9KL6BXgo=;
-        b=E22e0PJc+kmNjfE0tIXQNC4+V9nC6Qbxm4hQNKLl0Db64uDgl5y12rz/Wo/5E+VSX3
-         zLLRmmkiYH78rek8gK0tIHnZ2Ktc/0VP5y5VzEw16nuPBASGFyuV/CdsYGTWMNucR7BI
-         RTHCP4X71+uUOYGHibm2TBoKhljk4+xcyUMD2cLnbEPg9uQFQAkNoEDpVRAMMvw/SkpE
-         McdwX6koXI7IC0Nn/L3DFis/jUXQHAZenLLsbva365vb4g8GYpEUsO8cvqzGL2/2Vump
-         M9SLZ7EIweK5tsIPlIs0e63wrpMur59vtrdCl7Dg8s7AHyxnjDZX6mP2fzF26YVEAETM
-         kxyw==
-X-Forwarded-Encrypted: i=1; AJvYcCW5x0vVN6ahcFdP6d7M2FNl3rE8TzfwjT4MeW+Y72sl5VlWxr5qaMfitroL+cyFfYrCaf88HOi2mQUNa5zNql/eHDxCzOa4n3Qt/w==
-X-Gm-Message-State: AOJu0YzE/5NE7er6GFrllUqzEaCeSg1pf+VeVAsH3ZJ9C+Cq0byeXsf7
-	0gmforOZUke+hy72IE4wHBkMG4/zY5+W/F5zxaF6ZkTzQpLH5xEL2sjhXniRBgw=
-X-Google-Smtp-Source: AGHT+IGrA5stCDnRo1H5n9Y5w5ElO81oVmgd60ewDFQ3Fm5sCDbN4V5n/Tt2xc1pS6BW64I2SfmIhA==
-X-Received: by 2002:a05:620a:24cb:b0:795:4cde:3b1c with SMTP id af79cd13be357-7954cde3cf7mr1271288985a.6.1718107941369;
-        Tue, 11 Jun 2024 05:12:21 -0700 (PDT)
-Received: from ziepe.ca ([128.77.69.89])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-79556b3ac83sm292416485a.127.2024.06.11.05.12.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jun 2024 05:12:20 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.95)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1sH0MN-001OhE-1j;
-	Tue, 11 Jun 2024 09:12:19 -0300
-Date: Tue, 11 Jun 2024 09:12:19 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Tomasz Jeznach <tjeznach@rivosinc.com>
-Cc: Zong Li <zong.li@sifive.com>, Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Anup Patel <apatel@ventanamicro.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Nick Kossifidis <mick@ics.forth.gr>,
-	Sebastien Boeuf <seb@rivosinc.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	iommu@lists.linux.dev, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux@rivosinc.com,
-	Lu Baolu <baolu.lu@linux.intel.com>, Jim Shu <jim.shu@sifive.com>,
-	Vincent Chen <vincent.chen@sifive.com>
-Subject: Re: [PATCH v6 5/7] iommu/riscv: Device directory management.
-Message-ID: <20240611121219.GP791043@ziepe.ca>
-References: <cover.1716578450.git.tjeznach@rivosinc.com>
- <e18ec8ac169ae7f76e9044c26d0768e6469bad19.1716578450.git.tjeznach@rivosinc.com>
- <CANXhq0p4gERQeROSCSKqxnRZq9-fGfmROGV8JZyqFaenNpnsLA@mail.gmail.com>
- <20240610174934.GM791043@ziepe.ca>
- <CAH2o1u4c6ttUWTb1zrc8DScDMuDJJYR-tTHCPYW_3FV4uuQDtA@mail.gmail.com>
- <20240610222051.GO791043@ziepe.ca>
- <CAH2o1u7X2zu42ZYA9wBe4bmCXN9v+d6j9vo5DMifJA3BUew91w@mail.gmail.com>
+	s=arc-20240116; t=1718108024; c=relaxed/simple;
+	bh=Jv18zFh8XQWgM9b7LINvHYAD1Eh4fxPjv6vjA9pRihg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=RWAEfAW/QiVdCfM8vargQ+HGnf4xN2f1MyCvU+TikmsKpcy76PEkaWlB6/w5CzhERTEMCH5sjup4pEmfOGzAidxMWTVhIb8gIh0AUT1bJ6hDHITV8WlErn2flM5dmpKL9bPXfVGoIbhdxLCVOaoYuEddQENMMlVygvzrCrpthdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eBJlOGPn; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45B9gDTW018553;
+	Tue, 11 Jun 2024 12:13:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	x82hK8NhnLBb+QSZuUivDPcUai/65dDyEZPXvkHYaXI=; b=eBJlOGPn5olPi8aN
+	PRLlYwaMyEsxtgX4i/BtRqLUdlg3aAuKCa9OBg3UO6oJhXn/ebaMNr7c7HSnQUsx
+	2fps7fQK1R+ELquu9SbhF0HG/VAWNzV+S+7s5boTQza1m2P8Okwq20UcrBHAvEmm
+	ucLCfsJlOTS9mj9guEJ2XaoPbMjugjbUZLBhYjdDvpIsD1vUBRig0a55ReBNjBvN
+	fR2bxqWkczgS/ixhBOplJv1MBW0142D4ojSlBNn1sFxJIC5CyoZUEbnAS1Phx6Sc
+	UCHOTA2kbhYNH3aG05/xKyskOPXYGaxVr3QP5m0EGrf7bIBjwrfGP7PZCXX4qRal
+	mFVUjA==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ypm6b8bwx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Jun 2024 12:13:28 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45BCDREZ014102
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Jun 2024 12:13:27 GMT
+Received: from [10.216.24.176] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 11 Jun
+ 2024 05:13:22 -0700
+Message-ID: <9a14cb7b-8d6a-14b3-1d3a-b61086e4d4a9@quicinc.com>
+Date: Tue, 11 Jun 2024 17:43:19 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAH2o1u7X2zu42ZYA9wBe4bmCXN9v+d6j9vo5DMifJA3BUew91w@mail.gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v5 0/7] ASoC: codecs: wcd937x: add wcd937x audio codec
+ support
+Content-Language: en-US
+To: Mark Brown <broonie@kernel.org>,
+        Srinivas Kandagatla
+	<srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        "Jaroslav Kysela" <perex@perex.cz>, Takashi Iwai
+	<tiwai@suse.com>
+CC: <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_rohkumar@quicinc.com>,
+        <quic_pkumpatl@quicinc.com>
+References: <20240524035535.3119208-1-quic_mohs@quicinc.com>
+ <171810116692.177725.17513047102055843084.b4-ty@kernel.org>
+From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+In-Reply-To: <171810116692.177725.17513047102055843084.b4-ty@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: ycAQg5a7LKzw2oSSesGUY8tCsYXkrZJV
+X-Proofpoint-GUID: ycAQg5a7LKzw2oSSesGUY8tCsYXkrZJV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-11_07,2024-06-11_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
+ mlxlogscore=963 impostorscore=0 spamscore=0 priorityscore=1501
+ lowpriorityscore=0 adultscore=0 bulkscore=0 phishscore=0 mlxscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406110091
 
-On Mon, Jun 10, 2024 at 07:00:34PM -0700, Tomasz Jeznach wrote:
+On 6/11/2024 3:49 PM, Mark Brown wrote:
+> On Fri, 24 May 2024 09:25:28 +0530, Mohammad Rafi Shaik wrote:
+>> This patchset adds support for Qualcomm WCD9370/WCD9375 codec.
+>>
+>> Qualcomm WCD9370/WCD9375 Codec is a standalone Hi-Fi audio codec IC
+>> connected over SoundWire. This device has two SoundWire devices, RX and
+>> TX respectively supporting 3 x ADCs, ClassH, Ear, Aux PA, 2xHPH,
+>> 6 DMICs and MBHC.
+>>
+>> [...]
+> 
+> Applied to
+> 
+>     https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+> 
+> Thanks!
+> 
+> [1/7] ASoC: dt-bindings: document wcd937x Audio Codec
+>        commit: 27173bb0b64461acf4e00f1bae3b15d8d2348c14
+> [2/7] ASoC: codecs: wcd937x-sdw: add SoundWire driver
+>        commit: c99a515ff15380ec5f8827049914145ba908e8da
+> [3/7] ASoC: codecs: wcd937x: add wcd937x codec driver
+>        commit: 9be3ec196da41b20b624ae4ed0303df58548644e
+> [4/7] ASoC: codecs: wcd937x: add basic controls
+>        commit: 82be8c62a38c6a44e64ecb29d7a9b5cb35c6cad4
+> [5/7] ASoC: codecs: wcd937x: add playback dapm widgets
+>        commit: 57fe69db7a015e828ec69d819707c5b8eac6d052
+> [6/7] ASoC: codecs: wcd937x: add capture dapm widgets
+>        commit: 8ee78493be89c42d016f941a9b00c203ec08daab
+> [7/7] ASoC: codecs: wcd937x: add audio routing and Kconfig
+>        commit: 313e978df7fc38b9e949ac5933d0d9d56d5e8a9c
+> 
+> All being well this means that it will be integrated into the linux-next
+> tree (usually sometime in the next 24 hours) and sent to Linus during
+> the next merge window (or sooner if it is a bug fix), however if
+> problems are discovered then the patch may be dropped or reverted.
+> 
+> You may get further e-mails resulting from automated or manual testing
+> and review of the tree, please engage with people reporting problems and
+> send followup patches addressing any issues that are reported if needed.
+> 
+> If any updates are required or you are submitting further changes they
+> should be sent as incremental updates against current git, existing
+> patches will not be replaced.
+> 
+> Please add any relevant lists and maintainers to the CCs when replying
+> to this mail.
+> 
+> Thanks,
+> Mark
 
-> For now, I'll change the implementation to assume negative caching for
-> DDTE and will follow up with device tree / driver updates to make the
-> invalidation optional when revised specifications will be available.
 
-Is there a reason to make it optional? It seems like it doesn't have
-any performance downside to just always invalidate, attachment is not
-a critical path operation.
+Hi Mark,
 
-I could see making something like negative PTE invalidation optional
-as that is more performance path..
+The new v6 patch set is posted with review comments addressed.
 
-Jason
+The v5 is old patch set.
+
+if possible please revert v5 and pick new v6 patch set.
+
+Thanks & Regards,
+Rafi
+
+
+> 
+
 
