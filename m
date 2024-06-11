@@ -1,106 +1,136 @@
-Return-Path: <devicetree+bounces-74627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C3FA903D55
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 15:29:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 759D0903CC9
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 15:11:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF68A284B80
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 13:29:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEB892848B7
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 13:11:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8D8617D377;
-	Tue, 11 Jun 2024 13:29:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A4D317C7C1;
+	Tue, 11 Jun 2024 13:11:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="l4M1o7OC"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EtrGVFNO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFF4617D34F;
-	Tue, 11 Jun 2024 13:29:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDBD9178CCF;
+	Tue, 11 Jun 2024 13:11:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718112552; cv=none; b=O/Ru4NjVbBM9tvJkopGDFVJtRnv+3arDS/8BJ9UnXF78WXUnnRvVYEs8v4TwitgN37EvlSdnDLeljQlz9he/RKsaCRoOwDlQ87KvRJuxA/NAS/xkG9ldepnOGkXRSO7YjyyVUHumcxySWWsgAvaEiu+NC7X2Q/glstNC/hIko6Y=
+	t=1718111485; cv=none; b=nT6+A2GjkFLxyMZ3aZJ21LtpOTAgfJtoYR8ZZyLEzCog21SIQmKO4dxzdufpQ7h0nAjWUJg3ZXWYaom9XZwVhoIZ7CKg9sHibRe7BbFFAFTv8CHua5GRLXiDaUVSWWuVOXbPC6tjFG1vzVmlZbax+F7nTUYWTZLxu0bq9GqSg4I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718112552; c=relaxed/simple;
-	bh=S8kq1YKPY2YCYXE468OBoSzyuhbV4hblKCD/W3a2KBw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UpBy1Py3X/JkQ7rglYTjTLcMsnB3aaJ0zrcmyoptbxnqWa+xszAb2hvBmEkzyQcs9SJSK6aVSwnvGBd9rGTfJ5lOC2mAE12RNk8IMDcuEVPoUEfhf8kUf30QV8+Nc7RR2bs14r6A441T0kIIglKSCCGVoXWAAojCq2mYxSr9ItI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=l4M1o7OC; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 4D6D188660;
-	Tue, 11 Jun 2024 15:29:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1718112542;
-	bh=7LztJLOQjw+XAg+XEIr7kZCsERJxxOYihnXImFPkkvU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=l4M1o7OCYl/dvkVYQ/gVTUxO5H8WmdwW6wYCO18/FhCWi6iOhr24pSYUn+k8qvQP8
-	 fHesy9waWPJOAJPEAZWHRCr883+AT4Zj++F45dWOMtmtIAX2aITK76JXYrq/AHJaIy
-	 2kOr5BPz3dIVZ2n88vorYGBcXlaaZX+vVTGJ5a1Nqvax4dEs1oNuymGg0bPuauQCbU
-	 JSKIl4GVx7MEF7Z2B2tDyJfr07QITjIwMCTED7iiZJ8wo0IeafezCZ9nEPrj3AX68n
-	 OLepqilR0f5rtmQDJ4Yaz7ZYFRm8i1w5V14xT/6z+lq/Fph9cQrrVLydPk3n/pWXWu
-	 laQYJ2zEWl6Tw==
-Message-ID: <ee101ca5-4444-4610-9473-1a725a542c91@denx.de>
-Date: Tue, 11 Jun 2024 15:07:52 +0200
+	s=arc-20240116; t=1718111485; c=relaxed/simple;
+	bh=AJ+FVeoX597QSQeGv0zyxdp+YRSUUfAPTtc7B1soBNc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=J0rXbegkVJwkExdaCNIA7OFgrKZlMQvzHKkxL/GFNzzY1HYbjcCnOvf44eMI47HRHqEt8eprQ3EwjXlRhm1pKRWVPqOhPcxX7dlNnXRcVImZqXsnAae/lp4av6vlDAi+5MYURFC0tyikzgi3qcJvKnHrD4E3+lzmdxqgEdbGqQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EtrGVFNO; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1718111484; x=1749647484;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=AJ+FVeoX597QSQeGv0zyxdp+YRSUUfAPTtc7B1soBNc=;
+  b=EtrGVFNO3ZXlFWfvxWCD6fyKw6ImR5JF2bAThfuzQ0n4XYMjpaPYAlFP
+   ouW/iFBfkxTRNPGgVoLHv4udeULWbO06Ma+feDldkvph4A29A42KzxYAT
+   pCRsZsJ/akgIMfq1ZDmX29wLp5ZQM8VANb1N09OA5KrLYbCZTEkbtxO/i
+   wk2uO60ckdWVhSmkH48vBH+qHwnEJyAUySOi6DpozO6bMBvsFRnd1UZXv
+   hvCohJcynlmlVAPiQthDsV/3LdkVFURC7uSpzBwhIrD+/3GbDNivj/9fb
+   zOWowlcOLn9+Lnz4lX5oZ2SRGD9VyFRRZJ6XF1IJBSs6xHMN57niXOWuc
+   g==;
+X-CSE-ConnectionGUID: Zct+zZL0QGapf65AYDxqSQ==
+X-CSE-MsgGUID: /XYFdoFUQKq5aUM3hhN/qg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="26221684"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; 
+   d="scan'208";a="26221684"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2024 06:11:23 -0700
+X-CSE-ConnectionGUID: 1hHzB3iSSUGYXeCyYB2n9g==
+X-CSE-MsgGUID: xF1Yj6jeR0+Gl5QSM3jLGA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; 
+   d="scan'208";a="62592569"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2024 06:11:21 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 5ADA011FA94;
+	Tue, 11 Jun 2024 16:11:18 +0300 (EEST)
+Date: Tue, 11 Jun 2024 13:11:18 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] media: vgxy61: Add MODULE_ALIAS()
+Message-ID: <ZmhM9mAcQqMGKnzw@kekkonen.localdomain>
+References: <20240610150815.228790-1-benjamin.mugnier@foss.st.com>
+ <20240610150815.228790-4-benjamin.mugnier@foss.st.com>
+ <ZmgI8nET4sdhdwQx@kekkonen.localdomain>
+ <76fd2e25-3a9c-49fa-994f-6a392e42a6bb@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next,PATCH v7 7/8] net: stmmac: dwmac-stm32: Mask support
- for PMCR configuration
-To: Christophe Roullier <christophe.roullier@foss.st.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>, Jose Abreu
- <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240611083606.733453-1-christophe.roullier@foss.st.com>
- <20240611083606.733453-8-christophe.roullier@foss.st.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20240611083606.733453-8-christophe.roullier@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <76fd2e25-3a9c-49fa-994f-6a392e42a6bb@foss.st.com>
 
-On 6/11/24 10:36 AM, Christophe Roullier wrote:
+Hi Benjamin,
 
-[...]
+On Tue, Jun 11, 2024 at 01:57:24PM +0200, Benjamin Mugnier wrote:
+> Hi Sakari,
+> 
+> On 6/11/24 10:21, Sakari Ailus wrote:
+> > Hi Benjamin,
+> > 
+> > On Mon, Jun 10, 2024 at 05:08:15PM +0200, Benjamin Mugnier wrote:
+> >> Preserve user space retro compatibility after the device rename.
+> >>
+> >> Signed-off-by: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+> >> ---
+> >>  drivers/media/i2c/vgxy61.c | 1 +
+> >>  1 file changed, 1 insertion(+)
+> >>
+> >> diff --git a/drivers/media/i2c/vgxy61.c b/drivers/media/i2c/vgxy61.c
+> >> index ca3b43608dad..c85f356946ca 100644
+> >> --- a/drivers/media/i2c/vgxy61.c
+> >> +++ b/drivers/media/i2c/vgxy61.c
+> >> @@ -1898,3 +1898,4 @@ MODULE_AUTHOR("Mickael Guene <mickael.guene@st.com>");
+> >>  MODULE_AUTHOR("Sylvain Petinot <sylvain.petinot@foss.st.com>");
+> >>  MODULE_DESCRIPTION("VGXY61 camera subdev driver");
+> >>  MODULE_LICENSE("GPL");
+> >> +MODULE_ALIAS("platform:st-vgxy61");
+> > 
+> > Perhaps just "st-vgxy61" so that the module still loads if someone loads it
+> > explicitly? That's what you'd want, right, as the old compatible string
+> > will remain?
+> > 
+> 
+> Yes it is for explicit loading. I'll remove the "platform" prefix.
+> 
+> But maybe I'm overthinking and I could just remove the MODULE_ALIAS()
+> completely from this series. What do you think ?
 
->   static void stm32_dwmac_clk_disable(struct stm32_dwmac *dwmac, bool suspend)
-> @@ -348,8 +352,15 @@ static int stm32_dwmac_parse_data(struct stm32_dwmac *dwmac,
->   		return PTR_ERR(dwmac->regmap);
->   
->   	err = of_property_read_u32_index(np, "st,syscon", 1, &dwmac->mode_reg);
-> -	if (err)
-> +	if (err) {
->   		dev_err(dev, "Can't get sysconfig mode offset (%d)\n", err);
-> +		return err;
-> +	}
-> +
-> +	dwmac->mode_mask = SYSCFG_MP1_ETH_MASK;
-> +	err = of_property_read_u32_index(np, "st,syscon", 2, &dwmac->mode_mask);
-> +	if (err)
-> +		dev_dbg(dev, "Warning sysconfig register mask not set\n");
+Most of the time the modules are loaded based on devices found, so this
+would likely not change things much.
 
-My comment on V6 was not addressed I think ?
+Up to you.
+
+-- 
+Kind regards,
+
+Sakari Ailus
 
