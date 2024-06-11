@@ -1,311 +1,168 @@
-Return-Path: <devicetree+bounces-74503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA53490385A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:05:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02AD9903872
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:10:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68F551F23A1D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 10:05:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3C6C1B21A3E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 10:10:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD002178367;
-	Tue, 11 Jun 2024 10:05:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F2BA17836F;
+	Tue, 11 Jun 2024 10:10:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Vsd3mMsu";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="B+lpaBY+"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="qTC4hI/i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01olkn2098.outbound.protection.outlook.com [40.92.107.98])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C70A5178364;
-	Tue, 11 Jun 2024 10:05:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718100351; cv=none; b=Oc6Qnd922iEbW7O5CshgpXTFnGEL5LtZ0AQ11fSFZCAv/FKmwtK6Z0jloFUrlG4HbqP83f7L+jCB24ZjCOlrrLa5lC01uRZDpsj4m1bQWgliu4XBifx+/sdaTANtVgkQIES1sYGstlJKcdXSr9kDsnTIbpDJT8mEUm0cD2X504Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718100351; c=relaxed/simple;
-	bh=Efn05NVXQ8LL12SEOgebkSabzxCq2BMNBnhaIh464Dk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LzQhZdruymaHkpoiAmPPQynmOZbuxutSsW5wrz5k0VVu8jJoXUCRzqvQOTau0XWJ0EHAbBKYZYQYq+hMePYja7Npm4UdkD4ko4zJatK2aC7+/68mhYZ2cnaXF3CifVQNUB1i0swqPVtBH1xw9Dn+5It0baUogfBg9b0h4uY7gcs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Vsd3mMsu; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=B+lpaBY+ reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1718100348; x=1749636348;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=IpeC1QAyGp7/ecmPqLy+8ePCuBDPCsaQb8tByibuhG4=;
-  b=Vsd3mMsuvLcrMtLCGYuG5BlsfKvEUCycM7BYMtK1ln/NGBC42K/dn9Cm
-   2LWZRdcpM5OIoC/k2jkErTY31knN9qOdwkDQjRdImQwvq8QqPU3xK3rTO
-   i06UnZXrKjZbcgDuof1r8RJMkDfhv0Mm7TIqC052rE+UXKQ3Pv7iMkwlw
-   pYCiZ7eAgbisa/h7dZ+W6jSSb9EQJkI49p7DqflPmBcvtcMPWlPmKPWPi
-   JpLv4rFKRhr7TVSXjI9YJezN49eWSeAAfyIBEJA1mcMStHZviWNuX0tHe
-   jERpGGKXfWZw5Go7ZAs+uSFGCqHIq5Oy4oLei9RjwMQfcTsKga3/A2AjB
-   A==;
-X-CSE-ConnectionGUID: 1P99VBzoRRaTc8rrIT8Wsw==
-X-CSE-MsgGUID: vPHOmii7R1+khm3rIbi4Rg==
-X-IronPort-AV: E=Sophos;i="6.08,229,1712613600"; 
-   d="scan'208";a="37329397"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 11 Jun 2024 12:05:39 +0200
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 468ED163947;
-	Tue, 11 Jun 2024 12:05:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1718100335;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=IpeC1QAyGp7/ecmPqLy+8ePCuBDPCsaQb8tByibuhG4=;
-	b=B+lpaBY+5PQduUy26+YMD3o23CtOQFLQsz5x6J4Bt41aIzZw2yep1fBN9tF4XmrU3x84Mg
-	AT+P7LWVDCPZxxfSli8hNWh3rI/T6pF0nxH4eRTMuuBfxQUR2sDYTFaZm+POUCx7MliTn/
-	Zk8kcDj0RolsedtKYfgHMw2sCKl7Qpm0xwZY6OMG8hx0HZU1sJE/U4cbPXcw21aKB8XDZk
-	qz1GdbGMnMIZmC3+1B1p+wnnQ1DbexlkunLL8axoxwTmxPH15a/m1LQMkhDeQNITQVDGBr
-	ThRuSVUFwwBuLkocjKXqSSzlo/T2uccWpUxv/PQmDfgsLQMiOJt6DwcYtG6evg==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Dong Aisheng <aisheng.dong@nxp.com>, linux-arm-kernel@lists.infradead.org
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>, Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v2 1/9] arm64: dts: imx8: add basic lvds and lvds2 subsystem
-Date: Tue, 11 Jun 2024 12:05:35 +0200
-Message-ID: <5792284.DvuYhMxLoT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20240610-imx8qm-dts-usb-v2-1-788417116fb1@nxp.com>
-References: <20240610-imx8qm-dts-usb-v2-0-788417116fb1@nxp.com> <20240610-imx8qm-dts-usb-v2-1-788417116fb1@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73F6BE57E;
+	Tue, 11 Jun 2024 10:10:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.107.98
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718100630; cv=fail; b=P1NixjZHgeDdRbAJY/iMwv2xFBqp/24+8P19gV/Y8+fbBuT2A3X58pHl2UDOnVlTlZ35ctVHDr+Ey2Ct/jo6XEN+4OfhF0sct6qmB2qg+viMKbCy3cFkILxzvlEKFKFpZnrr4LorrD88a/fqjsGNY0o+lPmjNynrODcF5YGvAN8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718100630; c=relaxed/simple;
+	bh=v3z+yl0/8RG/qR+fpQ53KEXYcUF0MZT14FPj2D9chLI=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=hEPqQxiq+zWuucdbq57M/7QseZIgvfT2RMX838sFBc7zsfl0gTNwE7DtHsI5r2M32WrVBZTVMDR/LfRfS7SPGhuC8bySvF8395XdACKbf8uAxdNDmU+9EyQST9c6p8Df3G5VWiOmwChlmwnIpOWGNZuomD2fgzXPpMSbu48cZv0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=qTC4hI/i; arc=fail smtp.client-ip=40.92.107.98
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZkPaSjM0gVMUIu8jcO6qMWjps6mvvm2TcrqYXKAi5FBEhHL9doHdIxEmkJ/Op5evsURCTQufabJ9P0q9l3WZjdlEcGaHIgjz+NwIzCqfDc/I5ZzYJ6o9/cTyIOl1TSlflEtOLsh3Gn7/C2TgDJjmRyUM/QT+v3C3KfcqBX+kzIObUgWf0UFZgdAt62PzaJxszy7NjgXVGzHK064zQ7HVQOe2Cy1r/RZXNHiFh3XdTUODqPfmT0tzZdI5o1HcWoq34Drn0HzBWB14wKlqSmxQ0KpROwzPVzLfOagtKLZj6Q2Px0yeGE2XTtRhY4HH0OnoE4jQ7Mch/xWhZhkTlXQKXQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MlTC0MmEqUPF1Xw7+pgYaDiwDi/HOhKbMMZyttZyx7Y=;
+ b=gIc3Xf0sEUlUKACgqezcKQha7YtIPV+WrqWYuOgXYo2Ko7duJho5l4ocBnzZlqjbg55pT5cxpOArA7yX8dayIbFUyfAP4SjGfG5K2LVFKQGBL8jzBGMSgODPROCwf5wMrhfTb6KU7lQy8hYriAPlvD18j/RnDHEXa/STqs/HPDcyAhF3N+PfsggRX3oCZmCpj8c+MyJxq63B7FbfsqamuU6RuXV9bE1Qjz+qeIsMeipywkI23QgoVrm+2nrjgSGI7HS5eTnG9sgsipAvfC+Rq+/kpYxGSpKmzOvzNfR9gV8PbQoLwipGhIWcKKipak5vOdNNuJxMqppt9PkEUaz0eQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MlTC0MmEqUPF1Xw7+pgYaDiwDi/HOhKbMMZyttZyx7Y=;
+ b=qTC4hI/imiXwyZTOu9tqDmlHY3RL1QNi5MLfWWWGWfFZM4oRkukjvSh4ty63/PUnRMTKUTanAYb2o9/IJKOFPaQTmAyoU3iMFx1LnXvYaOmiwnbZvmeKJZXMOMIUjyYPwXcDE5e7nxdbyniyt4yw8kJ1oeoNqz18Vu28vVTVLJnWcuMws0emcxuhc0+xGEVA0NTrJtcmHugu70B0Z8d8VrcoLvtw9/qT/cocXVifu5VOua5ztF8vIWcs3+MxPcQxZfS50dJwHy9xkrLTs2nvmw4cP1X66Oe88dSXkJ9T0aHtI2VNrf0Y0eHS8KNGmtlMwE3jYj5B/lt9aFSWE1cAKA==
+Received: from SEYPR04MB6482.apcprd04.prod.outlook.com (2603:1096:101:be::7)
+ by TY0PR04MB6255.apcprd04.prod.outlook.com (2603:1096:400:328::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.36; Tue, 11 Jun
+ 2024 10:10:23 +0000
+Received: from SEYPR04MB6482.apcprd04.prod.outlook.com
+ ([fe80::ca2b:8a48:a7ab:60e5]) by SEYPR04MB6482.apcprd04.prod.outlook.com
+ ([fe80::ca2b:8a48:a7ab:60e5%5]) with mapi id 15.20.7633.036; Tue, 11 Jun 2024
+ 10:10:17 +0000
+From: Noah Wang <noahwang.wang@outlook.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	linux@roeck-us.net,
+	conor+dt@kernel.org,
+	jdelvare@suse.com
+Cc: corbet@lwn.net,
+	Delphine_CC_Chiu@Wiwynn.com,
+	peteryin.openbmc@gmail.com,
+	javier.carrasco.cruz@gmail.com,
+	patrick.rudolph@9elements.com,
+	bhelgaas@google.com,
+	lukas@wunner.de,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	linux-i2c@vger.kernel.org,
+	Noah Wang <noahwang.wang@outlook.com>
+Subject: [PATCH v2 0/4] hwmon: Add support for MPS mp2993,mp9941 chip
+Date: Tue, 11 Jun 2024 18:09:59 +0800
+Message-ID:
+ <SEYPR04MB6482721F71C0527767A149DEFAC72@SEYPR04MB6482.apcprd04.prod.outlook.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [jcbAmZ4/zojxLzvi+3QccIyef+OQScRm]
+X-ClientProxiedBy: SG2PR06CA0234.apcprd06.prod.outlook.com
+ (2603:1096:4:ac::18) To SEYPR04MB6482.apcprd04.prod.outlook.com
+ (2603:1096:101:be::7)
+X-Microsoft-Original-Message-ID:
+ <20240611101000.75593-1-noahwang.wang@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SEYPR04MB6482:EE_|TY0PR04MB6255:EE_
+X-MS-Office365-Filtering-Correlation-Id: 567e8d97-381b-4fc3-21b0-08dc89feb128
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|461199019|440099019|3412199016|1710799017;
+X-Microsoft-Antispam-Message-Info:
+	3ZOxf9RFatiexFt+A7dZ4H6O3PFOm6aQtJM9iiLq9R/NoXKT46epW+KrCy7Re1zANK36dby5w7rRTAr7y4x5dLN8pO6vPY92NP474dN1/bjnOcpic7wA9i9oFKAgWKNGwyw97pw8S473d9Q7L3TCTG3N9Rgu2wE34yFN/+lRuMHPHh7E9mr+DOcIB5Wj/lgkDqeCr/TqgGC/yTDBJGG2eIF4/XQeF4bBLB9JGC2v40FXfQ+4+rgGdTc2McBXaCUHqRQzwcBHBgiv9rfA5IZqotAP/4E5UYGWN5T/6ebmAhiasSh0CsTb60f3bZ+7u7RdydtijPsZbKZghAxHyA3paNbDVBO1ThuA/yNLb5PcoJn7lk3YOjViA+u8salko7wA6Pm14cf7iBu2VqHBqqecmsgyr4T4MdpeLPRiEdpuoklzKKZ+DuhW3XDOTsA1l+AHEDxzLJcUqcFPlJeTanjaN/1lEr5picdbx7zagZLmGCToKnpCeaFhP4fK7SK529W5tqs3y8b3H1YJyR/qoBbrMzkGKO4NJ8UziyJ0ZL4+ykA2bWL/cL+if84AwdmDu7EGyH+oYuvwvQLhTEWoJd1Y0fcrD9NqAfwazM8lsluYwFomstOrpcXsAnuhQ0sVtL11
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?thNI4O4cn1BtMay3ORTbOyZ3QbidVSWBfRT5SZEH1hGTAZZHxyA8OEx7srjc?=
+ =?us-ascii?Q?pqYjSeEMcHUymI4lXKb6P37D8fS7+h76/YEfBZnRGFX/Je2rUqMoXH2+o420?=
+ =?us-ascii?Q?SswD/8Yg71dtPPU/EzCzDOjW2qqkrb8zcvzN4l5JDBYMuAq2eu7P5qo1j8Zq?=
+ =?us-ascii?Q?l89eMSm0vm8Uu398HIsOwUwufuDQehLL4SZIVXA7vqOCRWseqkPvPfF2xtLf?=
+ =?us-ascii?Q?X7jPkPsuEeRDmBQCIKbroXdrHHNBvpPpiC0dHjagOLIjmT1Xy4Cu8eF0zHU+?=
+ =?us-ascii?Q?vUkd2lvTzSgEwyLCZtGtkoJOnJ/76w6xa0lbZiewmhrGnmofYwYNd2XQ6HmZ?=
+ =?us-ascii?Q?23foKKLUO3z3wqLHLTGBqmdFMsAhDNdSQ4lJdTHNkD/8wAXekybGIhgLyeFl?=
+ =?us-ascii?Q?i4DZe0dNmQG1xU+qVm1uUxM++SyNzLlJ807DXI3PSE3qmn+TjCmK7PlRyc2Y?=
+ =?us-ascii?Q?oojMrKkB0gkZryN/e3JzB6aWT0XSB2T3wBYnRYv7vU+FpttNjFXYA406odwx?=
+ =?us-ascii?Q?DIkm99G0XmQJWaQnSTpPKERmpJpdVnEfN5MrLEYpw64Qa2gvHLyCTLSHUlBh?=
+ =?us-ascii?Q?A/miJFF0P2XMBenEtXsgTDs6+QtP04mEoXkzNUSsAvnJRBojeABLQ+dXI4+0?=
+ =?us-ascii?Q?afjwkPLT1boq2+2oGCURzms1xDW3g615t+dwXa8yG7WcmWunWsi8hpJtwt0I?=
+ =?us-ascii?Q?0BFvgpnvsXvtvTFtzb2GGBxSALst+2ms4+ZbMhSoq+Ebv0aT4/ZZj5Jy+YJ1?=
+ =?us-ascii?Q?ugDXbhVXHwZVEQCM7ClqjJVnj9ftJLkzgwkwuqjUgMNDz+X9251g/KwyG0t0?=
+ =?us-ascii?Q?BWaOeNj8HTEWOYxm2tz1gSemOi5fQyzgkZX5Ri3GpY/eDVETgrcwOyGeLccn?=
+ =?us-ascii?Q?8c+3mLIYM+qPqYRFoH5zaKO4jTKMk08v9wXowAP5Qr2H5BToXCubvkd3RNmP?=
+ =?us-ascii?Q?40kmqET3KC7aYQZIXBlkSBCWzWM/QOXZuQdUBxv0JIzwAtogsJSzeK6LtPOV?=
+ =?us-ascii?Q?dkd9MwZTvd158iffFIWObui0fWBN+vTfTpoxQIeGIGd8mf1w7uwyQ7jy8sDy?=
+ =?us-ascii?Q?OhNb2fGJrLHM3J0rRux4f1GTOJGUCDr0zy5PCuESxo/H1i3jLHdX9wcfLdx9?=
+ =?us-ascii?Q?Av2AKSQltK5JbZzjY5lVhfkRk8obd6SIZY60dcktY9XAyEQEBcr5EUWQbRFh?=
+ =?us-ascii?Q?VjJNlnwrB6Z6AzrQuNAT2XfI/OpO4ev3DVql+PEa+AJe9m6DYiyCPlceJkd8?=
+ =?us-ascii?Q?9w6SGuz4Lr/Bb4CuBJ46?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 567e8d97-381b-4fc3-21b0-08dc89feb128
+X-MS-Exchange-CrossTenant-AuthSource: SEYPR04MB6482.apcprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2024 10:10:17.0722
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR04MB6255
 
-Hi Frank,
+Add mp2993,mp9941 driver in hwmon and add dt-bindings for them.
 
-Am Montag, 10. Juni 2024, 22:46:18 CEST schrieb Frank Li:
-> Add basic lvds and lvds2 subsystem for imx8qm an imx8qxp.
->=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi |  63 +++++++++++++
->  arch/arm64/boot/dts/freescale/imx8-ss-lvds1.dtsi | 114 +++++++++++++++++=
-++++++
->  2 files changed, 177 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi b/arch/arm6=
-4/boot/dts/freescale/imx8-ss-lvds0.dtsi
-> new file mode 100644
-> index 0000000000000..55fd60446ad21
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi
-> @@ -0,0 +1,63 @@
-> +// SPDX-License-Identifier: GPL-2.0-only and MIT
-> +
-> +/*
-> + * Copyright 2024 NXP
-> + */
-> +
-> +lvds0_subsys: bus@56240000 {
-> +	compatible =3D "simple-bus";
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <1>;
-> +	ranges =3D <0x56240000 0x0 0x56240000 0x10000>;
-> +
-> +	qm_lvds0_lis_lpcg: qxp_mipi1_lis_lpcg: clock-controller@56243000 {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x56243000 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clock-output-names =3D "mipi1_lis_lpcg_ipg_clk";
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_1>;
-> +	};
-> +
-> +	qm_lvds0_pwm_lpcg: qxp_mipi1_pwm_lpcg: clock-controller@5624300c {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x5624300c 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clock-output-names =3D "mipi1_pwm_lpcg_clk",
-> +				     "mipi1_pwm_lpcg_ipg_clk",
-> +				     "mipi1_pwm_lpcg_32k_clk";
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_1_PWM_0>;
-> +	};
-> +
-> +	qm_lvds0_i2c0_lpcg: qxp_mipi1_i2c0_lpcg: clock-controller@56243010 {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x56243010 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clock-output-names =3D "mipi1_i2c0_lpcg_clk",
-> +				     "mipi1_i2c0_lpcg_ipg_clk";
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_1_I2C_0>;
-> +	};
-> +
-> +	qm_pwm_lvds0: qxp_pwm_mipi_lvds1: pwm@56244000 {
-> +		compatible =3D "fsl,imx8qxp-pwm", "fsl,imx27-pwm";
-> +		reg =3D <0x56244000 0x1000>;
-> +		clock-names =3D "ipg", "per";
-> +		assigned-clocks =3D <&clk IMX_SC_R_MIPI_1_I2C_0 IMX_SC_PM_CLK_PER>;
+v1 -> v2:
+    1. add Krzysztof's Acked-by
+    2. remove useless code in mp2993.c and mp9941.c
 
-Is IMX_SC_R_MIPI_1_I2C_0 actually correct? I would have assumed
-it's IMX_SC_R_MIPI_1_PWM_0.
+Noah Wang (4):
+  dt-bindings: hwmon: Add MPS mp2993
+  hwmon: add MP2993 driver
+  dt-bindings: hwmon: Add MPS mp9941
+  hwmon: add MP9941 driver
 
-> +		assigned-clock-rates =3D <24000000>;
-> +		#pwm-cells =3D <3>;
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_1_PWM_0>;
-> +		status =3D "disabled";
-> +	};
-> +
-> +	qm_i2c0_lvds0: qxp_i2c0_mipi_lvds1: i2c@56246000 {
-> +		compatible =3D "fsl,imx8qxp-lpi2c", "fsl,imx7ulp-lpi2c";
-> +		reg =3D <0x56246000 0x1000>;
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +		interrupts =3D <8>;
-> +		clock-names =3D "per", "ipg";
-> +		assigned-clocks =3D <&clk IMX_SC_R_MIPI_1_I2C_0 IMX_SC_PM_CLK_PER>;
-> +		assigned-clock-rates =3D <24000000>;
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_1_I2C_0>;
-> +		status =3D "disabled";
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-lvds1.dtsi b/arch/arm6=
-4/boot/dts/freescale/imx8-ss-lvds1.dtsi
-> new file mode 100644
-> index 0000000000000..12ae4f48e1e1c
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8-ss-lvds1.dtsi
+ .../devicetree/bindings/trivial-devices.yaml  |   4 +
+ Documentation/hwmon/index.rst                 |   2 +
+ Documentation/hwmon/mp2993.rst                | 150 +++++++++
+ Documentation/hwmon/mp9941.rst                |  92 +++++
+ MAINTAINERS                                   |  14 +
+ drivers/hwmon/pmbus/Kconfig                   |  18 +
+ drivers/hwmon/pmbus/Makefile                  |   2 +
+ drivers/hwmon/pmbus/mp2993.c                  | 261 ++++++++++++++
+ drivers/hwmon/pmbus/mp9941.c                  | 317 ++++++++++++++++++
+ 9 files changed, 860 insertions(+)
+ create mode 100644 Documentation/hwmon/mp2993.rst
+ create mode 100644 Documentation/hwmon/mp9941.rst
+ create mode 100644 drivers/hwmon/pmbus/mp2993.c
+ create mode 100644 drivers/hwmon/pmbus/mp9941.c
 
-This is only for imx8qm, no?
-
-It maybe makes sense to rename this file to imx8qm-ss-lvds1.dtsi
-
-Best regards,
-Alexander
-
-> @@ -0,0 +1,114 @@
-> +// SPDX-License-Identifier: GPL-2.0-only and MIT
-> +
-> +/*
-> + * Copyright 2024 NXP
-> + */
-> +
-> +lvds1_subsys: bus@57240000 {
-> +	compatible =3D "simple-bus";
-> +	interrupt-parent =3D <&irqsteer_lvds1>;
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <1>;
-> +	ranges =3D <0x57240000 0x0 0x57240000 0x10000>;
-> +
-> +	irqsteer_lvds1: interrupt-controller@57240000 {
-> +		compatible =3D "fsl,imx8qm-irqsteer", "fsl,imx-irqsteer";
-> +		reg =3D <0x57240000 0x1000>;
-> +		interrupts =3D <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-controller;
-> +		interrupt-parent =3D <&gic>;
-> +		#interrupt-cells =3D <1>;
-> +		clocks =3D <&lvds1_lis_lpcg IMX_LPCG_CLK_4>;
-> +		clock-names =3D "ipg";
-> +		power-domains =3D <&pd IMX_SC_R_LVDS_1>;
-> +		fsl,channel =3D <0>;
-> +		fsl,num-irqs =3D <32>;
-> +	};
-> +
-> +	lvds1_lis_lpcg: clock-controller@57243000 {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x57243000 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&lvds_ipg_clk>;
-> +		clock-indices =3D <IMX_LPCG_CLK_4>;
-> +		clock-output-names =3D "lvds1_lis_lpcg_ipg_clk";
-> +		power-domains =3D <&pd IMX_SC_R_LVDS_1>;
-> +	};
-> +
-> +	lvds1_pwm_lpcg: clock-controller@5724300c {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x5724300c 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&clk IMX_SC_R_LVDS_1_PWM_0 IMX_SC_PM_CLK_PER>,
-> +			 <&lvds_ipg_clk>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-> +		clock-output-names =3D "lvds1_pwm_lpcg_clk",
-> +				     "lvds1_pwm_lpcg_ipg_clk";
-> +		power-domains =3D <&pd IMX_SC_R_LVDS_1_PWM_0>;
-> +	};
-> +
-> +	lvds1_i2c0_lpcg: clock-controller@57243010 {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x57243010 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&clk IMX_SC_R_LVDS_1_I2C_0 IMX_SC_PM_CLK_PER>,
-> +			 <&lvds_ipg_clk>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-> +		clock-output-names =3D "lvds1_i2c0_lpcg_clk",
-> +				     "lvds1_i2c0_lpcg_ipg_clk";
-> +		power-domains =3D <&pd IMX_SC_R_LVDS_1_I2C_0>;
-> +	};
-> +
-> +	lvds1_i2c1_lpcg: clock-controller@57243014 {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x57243014 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&clk IMX_SC_R_LVDS_1_I2C_0 IMX_SC_PM_CLK_PER>,
-> +			 <&lvds_ipg_clk>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-> +		clock-output-names =3D "lvds1_i2c1_lpcg_clk",
-> +				     "lvds1_i2c1_lpcg_ipg_clk";
-> +		power-domains =3D <&pd IMX_SC_R_LVDS_1_I2C_0>;
-> +	};
-> +
-> +	pwm_lvds1: pwm@57244000 {
-> +		compatible =3D "fsl,imx8qxp-pwm", "fsl,imx27-pwm";
-> +		reg =3D <0x57244000 0x1000>;
-> +		clocks =3D <&lvds1_pwm_lpcg IMX_LPCG_CLK_4>,
-> +			 <&lvds1_pwm_lpcg IMX_LPCG_CLK_0>;
-> +		clock-names =3D "ipg", "per";
-> +		assigned-clocks =3D <&clk IMX_SC_R_LVDS_1_PWM_0 IMX_SC_PM_CLK_PER>;
-> +		assigned-clock-rates =3D <24000000>;
-> +		#pwm-cells =3D <3>;
-> +		power-domains =3D <&pd IMX_SC_R_LVDS_1_PWM_0>;
-> +		status =3D "disabled";
-> +	};
-> +
-> +	i2c0_lvds1: i2c@57246000 {
-> +		compatible =3D "fsl,imx8qm-lpi2c", "fsl,imx7ulp-lpi2c";
-> +		reg =3D <0x57246000 0x1000>;
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +		interrupts =3D <8>;
-> +		clocks =3D <&lvds1_i2c0_lpcg IMX_LPCG_CLK_0>,
-> +			 <&lvds1_i2c0_lpcg IMX_LPCG_CLK_4>;
-> +		clock-names =3D "per", "ipg";
-> +		assigned-clocks =3D <&clk IMX_SC_R_LVDS_1_I2C_0 IMX_SC_PM_CLK_PER>;
-> +		assigned-clock-rates =3D <24000000>;
-> +		power-domains =3D <&pd IMX_SC_R_LVDS_1_I2C_0>;
-> +		status =3D "disabled";
-> +	};
-> +
-> +	i2c1_lvds1: i2c@57247000 {
-> +		compatible =3D "fsl,imx8qm-lpi2c", "fsl,imx7ulp-lpi2c";
-> +		reg =3D <0x57247000 0x1000>;
-> +		interrupts =3D <9>;
-> +		clocks =3D <&lvds1_i2c1_lpcg IMX_LPCG_CLK_0>,
-> +			 <&lvds1_i2c1_lpcg IMX_LPCG_CLK_4>;
-> +		clock-names =3D "per", "ipg";
-> +		assigned-clocks =3D <&clk IMX_SC_R_LVDS_1_I2C_0 IMX_SC_PM_CLK_PER>;
-> +		assigned-clock-rates =3D <24000000>;
-> +		power-domains =3D <&pd IMX_SC_R_LVDS_1_I2C_0>;
-> +		status =3D "disabled";
-> +	};
-> +};
->=20
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+-- 
+2.25.1
 
 
