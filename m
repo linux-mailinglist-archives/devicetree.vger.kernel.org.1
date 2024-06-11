@@ -1,179 +1,256 @@
-Return-Path: <devicetree+bounces-74642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E5A9903DC1
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 15:41:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D875903DB0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 15:40:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C51941C2387A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 13:41:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ACE732810F9
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 13:40:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3CEC17E902;
-	Tue, 11 Jun 2024 13:40:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C27E17DE2A;
+	Tue, 11 Jun 2024 13:39:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ETJtlXqv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d9V0wJQ0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6577D17D8A3;
-	Tue, 11 Jun 2024 13:40:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF83417D363;
+	Tue, 11 Jun 2024 13:39:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718113203; cv=none; b=qZSvsdkDU3WWtFEKGYMYx+Rkeu25uWH77HAlX/QO8b9XWn+vCTvejQOcsrbkbcSyyIQqhYhrsYvJvkQcH+klsU8tcGypMflVaJLFKzsSf/ZXW+wL/6ny2pvVaFegTGM2ebmMGoJRqB/XWq6tpP+ZLsycxH+Q2I0s2dw0xTlwMNM=
+	t=1718113180; cv=none; b=jBLneT4BOhUqfD/hm2EY8fuD1pJIn1okD1tuRNx+cMIkq2y3emptk6k6GFNl4xmvcxTYc/Ix7nVzw+tTIbiEbeSD+3zchsVoPKpSs/G9d+836Prpl9v9XXiEVCXRa09cs8tHitkSKlpIavEa0d1HqCBBDXJkowe2JH5IKiq1F08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718113203; c=relaxed/simple;
-	bh=vDGZgQ7d5Q+m3KmN0tfKVcSqnjvHGILwo3+BDQbQtZI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=F5hG2UGsSiOaK9wYJkPmM4hKhquQiBwyidcoj0+Ubc7mHOpHYjjuD5UFNLJaGaOfuhIyA/yQaZcfd3lr3ZtdCEK236QrpHs266FsL50ffZoAVjrdkbPy+sUQe35cJhkanjiQ+SMGgadV58Ag3Qrv2BGL+CcZSp89cUL0VmqsyGo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ETJtlXqv; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45B6wK0R001684;
-	Tue, 11 Jun 2024 13:39:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	pcy6dURWO36Am+KzTv+fEfO8f+AJqgoWh9CdkLC0kxs=; b=ETJtlXqvg9lr2edw
-	P8uF8oTcAsFdgqiX35pVAxskVwm50LqEtJWhi1tVt6wARUmipozuOLVNj7TowNPO
-	+gO3mvp/SMC6rdRrBe7FibtJkUWroNrQVK2KXJ4+wbERNoAr6JMrw5TEe5EYWdu9
-	tdDnDL7FDaZo9Y/QrBjUpDIxXF/XLc6fWZ+b076dga7yLKwCtIRJG7ilfbWsZ+OU
-	GcRpijdkCT/mTI9XhCfDwqXBvPJHeFCektz6OZ1qt53Ehu+hAdKJ/tcpwta5x4/i
-	KlE8QwXGvsnvmsTzIfp6SKWY6+xX7A8yGy/CpAF8UVQ4pLkt35iFROZ9Xq94LI30
-	oMn3tg==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yphsas1n2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 11 Jun 2024 13:39:58 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45BDdwWH001470
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 11 Jun 2024 13:39:58 GMT
-Received: from hu-ajipan-hyd.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 11 Jun 2024 06:39:52 -0700
-From: Ajit Pandey <quic_ajipan@quicinc.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
-	<sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Vladimir Zapolskiy
-	<vladimir.zapolskiy@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Taniya Das
-	<quic_tdas@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Satya Priya Kakitapalli
-	<quic_skakitap@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>
-Subject: [PATCH V4 8/8] arm64: dts: qcom: sm4450: add camera, display and gpu clock controller
-Date: Tue, 11 Jun 2024 19:07:52 +0530
-Message-ID: <20240611133752.2192401-9-quic_ajipan@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240611133752.2192401-1-quic_ajipan@quicinc.com>
-References: <20240611133752.2192401-1-quic_ajipan@quicinc.com>
+	s=arc-20240116; t=1718113180; c=relaxed/simple;
+	bh=Tn9aGOOYb+LH+bFDSFJ3gb5u4+83blw2N03mcxJkcPo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tCtdHD9c8EYgRwb+XDB2EPMEXdzuZ1i/iJmycKivwFSUvvHgGkr9Vn6Rm6hiOarznTdvQYJywB17s6r0TmqcWSDGa5DhrYpCyACgVE30CJcz+4/SfyUIWgZxrdqLm2VW+kirZvSjnbj/lC7SkhRLPCA5TZoi5XfohKnT3u1q37A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d9V0wJQ0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61911C32789;
+	Tue, 11 Jun 2024 13:39:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718113180;
+	bh=Tn9aGOOYb+LH+bFDSFJ3gb5u4+83blw2N03mcxJkcPo=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=d9V0wJQ0TR4PWiyRJB7suPif/f/9P8jN1s2raC2Yyt/25BVEXZHt3NFTRbAqyV7Kj
+	 UshYLZNhNX7CfT8hSjiHzqKjEISQSgFlX0lloEC6qxlMI9dL8wZIiGeNzQsK8E2mxp
+	 W4rou+XM6DRmGS9lDZCeid961euyOKV0GBsYu8BA/4areCsiGjtAuj4f7KIQRbpyrt
+	 l8yPAI8t25NqyFkyOllFI6O++CFoI7p3yVmboF7mPaCj6K+21YmRJuzr4zDGiT0K4R
+	 FsS3BQdY3pdT8OuGmhkEoryuxLnY62cyzXv6MsTxNUkzIovaA0MyoSFMzuhd+Rier/
+	 s92BhHAKwuhRA==
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52c9034860dso2007361e87.2;
+        Tue, 11 Jun 2024 06:39:40 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWKxN8xb9LVp/LCPe5QXcE0CrZCCKh4vZSh/nuKv2PUymb3/qww59I6jPpo36QP4ry7F24vKK5ZpW9uzfPogd3LojowawtRbhhSShPAKcMdLzmiKOcnThKVJhe2dFrWDrU+HTN+RQxpfdEfRMMDGCIHsznkwqDGRYHfHng4iPWzZlHEfO8=
+X-Gm-Message-State: AOJu0YwS2ZdRRTxcC0nKuNbMdzY2ViVOHwrgP71nsQK3HjZd60r+VNsV
+	MXc1CHaopLAt6AZGsOQeKkHqRZQfD9IYZ38mER5xAZVFpUcT6joAVO0vNyyWS8kYcTcJLWN8OBD
+	fEPterh5zVBj8YivsLJF7/QBwhA==
+X-Google-Smtp-Source: AGHT+IGFUiU6exeIzAEFH36DTSIP2uz/FoyVESFoi5eHT5vpw31YK47X/5GhyzpZlDYY7TRlOrRvzOT6Gll+o03Kb2w=
+X-Received: by 2002:a05:6512:3d23:b0:52c:868f:a28d with SMTP id
+ 2adb3069b0e04-52c868fa524mr5757868e87.50.1718113178740; Tue, 11 Jun 2024
+ 06:39:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: FKZeT07I3VVxaplddcgpC83T0QELm1Ba
-X-Proofpoint-GUID: FKZeT07I3VVxaplddcgpC83T0QELm1Ba
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-11_07,2024-06-11_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
- adultscore=0 spamscore=0 mlxlogscore=999 impostorscore=0
- lowpriorityscore=0 clxscore=1015 phishscore=0 mlxscore=0
- priorityscore=1501 suspectscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2405170001 definitions=main-2406110099
+References: <20240606111611.371463-1-andreas@kemnade.info>
+In-Reply-To: <20240606111611.371463-1-andreas@kemnade.info>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 11 Jun 2024 07:39:25 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+9v0i-6xvPY6cvnJUSLV1d4irqcPv60p+KwC5sx7WDDg@mail.gmail.com>
+Message-ID: <CAL_Jsq+9v0i-6xvPY6cvnJUSLV1d4irqcPv60p+KwC5sx7WDDg@mail.gmail.com>
+Subject: Re: [PATCH v4] dt-bindings: regulator: twl-regulator: convert to yaml
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: lee@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	lgirdwood@gmail.com, broonie@kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add device node for camera, display and graphics clock controller on
-Qualcomm SM4450 platform.
+On Thu, Jun 6, 2024 at 5:16=E2=80=AFAM Andreas Kemnade <andreas@kemnade.inf=
+o> wrote:
+>
+> Convert the regulator bindings to yaml.
+>
+> Drop one twl5030 compatible due to no documentation on mfd side and no
+> users of the twl5030.
+>
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> Changes in v4:
+> - remove a sentence in the commit message which only applies
+>   to v1 design
+> - add R-by
+>
+> Changes in v3:
+> - define regulator stuff in toplevel
+> - simplified regulator-inital-mode
+> - extended example to contain both regulator-initial-mode and
+>   retain-on-reset
+>
+> Changes in v2:
+> - add regulators directly to ti,twl.yaml
+> - less restrictions on regulator node name
+>
+>  .../devicetree/bindings/mfd/ti,twl.yaml       | 166 +++++++++++++++++-
+>  .../bindings/regulator/twl-regulator.txt      |  80 ---------
+>  2 files changed, 164 insertions(+), 82 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/regulator/twl-regul=
+ator.txt
+>
+> diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml b/Document=
+ation/devicetree/bindings/mfd/ti,twl.yaml
+> index c2357fecb56c..2cbdd238f48f 100644
+> --- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+> @@ -22,6 +22,32 @@ allOf:
+>            contains:
+>              const: ti,twl4030
+>      then:
+> +      patternProperties:
+> +        "^regulator-":
+> +          properties:
+> +            compatible:
+> +              enum:
+> +                - ti,twl4030-vaux1
+> +                - ti,twl4030-vaux2
+> +                - ti,twl4030-vaux3
+> +                - ti,twl4030-vaux4
+> +                - ti,twl4030-vmmc1
+> +                - ti,twl4030-vmmc2
+> +                - ti,twl4030-vpll1
+> +                - ti,twl4030-vpll2
+> +                - ti,twl4030-vsim
+> +                - ti,twl4030-vdac
+> +                - ti,twl4030-vintana2
+> +                - ti,twl4030-vio
+> +                - ti,twl4030-vdd1
+> +                - ti,twl4030-vdd2
+> +                - ti,twl4030-vintana1
+> +                - ti,twl4030-vintdig
+> +                - ti,twl4030-vusb1v5
+> +                - ti,twl4030-vusb1v8
+> +                - ti,twl4030-vusb3v1
+> +            ti,retain-on-reset: false
+> +
+>        properties:
+>          madc:
+>            type: object
+> @@ -50,13 +76,34 @@ allOf:
+>            properties:
+>              compatible:
+>                const: ti,twl4030-wdt
+> -
+>    - if:
+>        properties:
+>          compatible:
+>            contains:
+>              const: ti,twl6030
+>      then:
+> +      patternProperties:
+> +        "^regulator-":
+> +          properties:
+> +            compatible:
+> +              enum:
+> +                - ti,twl6030-vaux1
+> +                - ti,twl6030-vaux2
+> +                - ti,twl6030-vaux3
+> +                - ti,twl6030-vmmc
+> +                - ti,twl6030-vpp
+> +                - ti,twl6030-vusim
+> +                - ti,twl6030-vana
+> +                - ti,twl6030-vcxio
+> +                - ti,twl6030-vdac
+> +                - ti,twl6030-vusb
+> +                - ti,twl6030-v1v8
+> +                - ti,twl6030-v2v1
+> +                - ti,twl6030-vdd1
+> +                - ti,twl6030-vdd2
+> +                - ti,twl6030-vdd3
+> +            regulator-initial-mode: false
+> +
+>        properties:
+>          gpadc:
+>            type: object
+> @@ -69,6 +116,25 @@ allOf:
+>            contains:
+>              const: ti,twl6032
+>      then:
+> +      patternProperties:
+> +        "^regulator-":
+> +          properties:
+> +            compatible:
+> +              enum:
+> +                - ti,twl6032-ldo1
+> +                - ti,twl6032-ldo2
+> +                - ti,twl6032-ldo3
+> +                - ti,twl6032-ldo4
+> +                - ti,twl6032-ldo5
+> +                - ti,twl6032-ldo6
+> +                - ti,twl6032-ldo7
+> +                - ti,twl6032-ldoln
+> +                - ti,twl6032-ldousb
+> +                - ti,twl6032-smps3
+> +                - ti,twl6032-smps4
+> +                - ti,twl6032-vio
+> +            regulator-initial-mode: false
+> +
+>        properties:
+>          gpadc:
+>            type: object
+> @@ -112,6 +178,27 @@ properties:
+>        interrupts:
+>          maxItems: 1
+>
+> +patternProperties:
+> +  "^regulator-":
+> +    type: object
+> +    unevaluatedProperties: false
+> +    $ref: /schemas/regulator/regulator.yaml
+> +    properties:
+> +      compatible: true
+> +      regulator-initial-mode:
+> +        enum:
+> +          - 0x08 # Sleep mode, the nominal output voltage is maintained
+> +                 # with low power consumption with low load current capa=
+bility
+> +          - 0x0e # Active mode, the regulator can deliver its nominal ou=
+tput
+> +                 # voltage with full-load current capability
+> +      ti,retain-on-reset:
+> +        description:
+> +          Does not turn off the supplies during warm
+> +          reset. Could be needed for VMMC, as TWL6030
+> +          reset sequence for this signal does not comply
+> +          with the SD specification.
+> +        type: boolean
+> +
+>  unevaluatedProperties: false
+>
+>  required:
+> @@ -131,9 +218,84 @@ examples:
+>          compatible =3D "ti,twl6030";
+>          reg =3D <0x48>;
+>          interrupts =3D <39>; /* IRQ_SYS_1N cascaded to gic */
+> +        interrupt-parent =3D <&gic>;
+>          interrupt-controller;
+>          #interrupt-cells =3D <1>;
+> -        interrupt-parent =3D <&gic>;
+> +
+> +        gpadc {
+> +          compatible =3D "ti,twl6030-gpadc";
+> +          interrupts =3D <6>;
 
-Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sm4450.dtsi | 38 ++++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+Now a warning in linux-next:
 
-diff --git a/arch/arm64/boot/dts/qcom/sm4450.dtsi b/arch/arm64/boot/dts/qcom/sm4450.dtsi
-index 9c9919e78fbd..1e05cd00b635 100644
---- a/arch/arm64/boot/dts/qcom/sm4450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm4450.dtsi
-@@ -4,7 +4,10 @@
-  */
- 
- #include <dt-bindings/clock/qcom,rpmh.h>
-+#include <dt-bindings/clock/qcom,sm4450-camcc.h>
-+#include <dt-bindings/clock/qcom,sm4450-dispcc.h>
- #include <dt-bindings/clock/qcom,sm4450-gcc.h>
-+#include <dt-bindings/clock/qcom,sm4450-gpucc.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-@@ -422,6 +425,41 @@ tcsr_mutex: hwlock@1f40000 {
- 			#hwlock-cells = <1>;
- 		};
- 
-+		gpucc: clock-controller@3d90000 {
-+			compatible = "qcom,sm4450-gpucc";
-+			reg = <0x0 0x03d90000 0x0 0xa000>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <&gcc GCC_GPU_GPLL0_CLK_SRC>,
-+				 <&gcc GCC_GPU_GPLL0_DIV_CLK_SRC>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
-+		camcc: clock-controller@ade0000 {
-+			compatible = "qcom,sm4450-camcc";
-+			reg = <0x0 0x0ade0000 0x0 0x20000>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <&gcc GCC_CAMERA_AHB_CLK>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
-+		dispcc: clock-controller@af00000 {
-+			compatible = "qcom,sm4450-dispcc";
-+			reg = <0x0 0x0af00000 0x0 0x20000>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK_A>,
-+				 <&gcc GCC_DISP_AHB_CLK>,
-+				 <&sleep_clk>,
-+				 <0>,
-+				 <0>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		pdc: interrupt-controller@b220000 {
- 			compatible = "qcom,sm4450-pdc", "qcom,pdc";
- 			reg = <0 0x0b220000 0 0x30000>, <0 0x174000f0 0 0x64>;
--- 
-2.25.1
-
+Documentation/devicetree/bindings/mfd/ti,twl.example.dtb: gpadc:
+'#io-channel-cells' is a required property
+        from schema $id:
+http://devicetree.org/schemas/iio/adc/ti,twl6030-gpadc.yaml#
 
