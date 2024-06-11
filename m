@@ -1,435 +1,260 @@
-Return-Path: <devicetree+bounces-74534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CE889039C2
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 13:14:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C6C0903A13
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 13:30:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E05EB21E59
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 11:14:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F5081C20CEB
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 11:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 243C117A92D;
-	Tue, 11 Jun 2024 11:14:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C07D17B417;
+	Tue, 11 Jun 2024 11:29:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="pyeJevoR";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="cMy3t+t2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fC+KaHaQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D0EE14F9EE;
-	Tue, 11 Jun 2024 11:14:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55EC417A930;
+	Tue, 11 Jun 2024 11:29:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718104475; cv=none; b=VvaZFoSasFLllUXXhaI7kjFUk5fYlNwl1wH50hk99lK/D/Cga7+47qCJGrGM/PbBsOv6nt+P6WW38rcDEZNZgM7fqQy03QxU2xCj4EIeGNoB9iVEC+9UrDLOfiij+mJAk5x5ebri1hPe1NFQLp+dv8oXRi6EALqI5FK5Pj6Z+Fg=
+	t=1718105395; cv=none; b=t7cAjMHvAim57lLZvNJgKjElQI+Ybp03suclFaxHwGoSX7tZ+Q1FyNfT2+6lPJMivphBIKkK146mCZcrXbJHhjQT9CCnH3dviZ7aean5WX69sJF4zjvhLpSvd1q1/rywbBL/agzsW2fc2f8GQ0rEHUq5GNNS75+2ZLDwGFerIoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718104475; c=relaxed/simple;
-	bh=CkiMqKxPiGR645vdpz18V4Euqo7gdC1GDpwS0frfJ08=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AzeKPVbhEvU62hvCChRbGAAoOBIhrYWigtRE4+B0ZcqHutlhDBwIcRQJMbL0pe+B5t6TZl03fq7GvgiwUezzR4GQ3HBpQOGME8x/kqpX5NHUfQ1rzID909dhMia8z0v/uLUo7WSpLd2/A3tlglh31EiTM+vSW0nIXV78/IGuNi4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=pyeJevoR; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=cMy3t+t2 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1718104471; x=1749640471;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=4PjT/MrSudGoxdl+OLVToOZpc+RsOaj2dmxQ6UUv+H0=;
-  b=pyeJevoR5A+9rPWGJz0OEHmiBRPSMXq2dVPh/ewPmSDCDTiSnw2WcU9S
-   c3586IkFiV7FaTRm9dJR3XhV5xNe92j/2lislvkU0wLCFaHyfFx9sXiWm
-   LjLy5Uv4CJehynLCc80rnDXWeBSj70HOPTEIHa4ak8x3ANn/T7fZdH7Bv
-   wQcLiEgisAknfrBbmXBolrPDvOndiTGIEmYCXC0ExxyC1rL7GlQhf3F5B
-   C2mKuRA1FgVgP25wO8vP5bPTfk5r7ode+pOJr3Gil0GSRr7ELwmwQHweO
-   +E5hyXey6gUCau4mX7jdhARspyzK6SUa00gjhQYb5aWVv2q49vumQpsSv
-   g==;
-X-CSE-ConnectionGUID: CE35JlwyRz6QaDhcyCEtxg==
-X-CSE-MsgGUID: 23UtiwDmR8+YUI0+AI/E6Q==
-X-IronPort-AV: E=Sophos;i="6.08,229,1712613600"; 
-   d="scan'208";a="37330923"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 11 Jun 2024 13:14:29 +0200
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8FC6916372F;
-	Tue, 11 Jun 2024 13:14:19 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1718104464;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=4PjT/MrSudGoxdl+OLVToOZpc+RsOaj2dmxQ6UUv+H0=;
-	b=cMy3t+t2kqcsAjGSDPgcLesGLRvKqfzy69dRWYhppH/FYAy7q4na2UyjOiBR2dXRFRMsnq
-	qgeRYhWh+0T8ez79sWqsr5AtoNxnbQTowCeUdqNLaB3C9Ws8/8K5lsFadlns31nOrz9Qan
-	kR42h8wYXIOHoUdvfLR+8iKSAzE0qSGoJlHWybIyQgdDCbh1PGUmlfWSH5MqaM8EeOniDN
-	ihIhyOUq10mcg69SDmmsy5uk2l2/Pxea4c2YMDviTtYg+rrcKk4SZIBuWclXKQuj5TGxMm
-	xaMFyvAumCv/hcRv6650oKnFqeRalSoNf1mYRbdY3TDyJKN9DFp55CygWvK+Rg==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Dong Aisheng <aisheng.dong@nxp.com>, linux-arm-kernel@lists.infradead.org
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>, Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v2 3/9] arm64: dts: imx8: add basic mipi subsystem
-Date: Tue, 11 Jun 2024 13:14:20 +0200
-Message-ID: <13535816.uLZWGnKmhe@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20240610-imx8qm-dts-usb-v2-3-788417116fb1@nxp.com>
-References: <20240610-imx8qm-dts-usb-v2-0-788417116fb1@nxp.com> <20240610-imx8qm-dts-usb-v2-3-788417116fb1@nxp.com>
+	s=arc-20240116; t=1718105395; c=relaxed/simple;
+	bh=v1wPmjm6dFdn2OBU3/MOe0zu3EOVJMs/Uhyx/PeNHUo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RkiM0m0f+CiorydOL8f0vUnyPszOE6XUoGv2yox1WJjPa+/kiGT5WPaBAKqJZiF3JqS5QKgE0R9IZ+q2ngrkB0O9mvKxRVef0R7/ypUixrvLTPoYcVoMsTPDfhjeyfkDyV8AKpq1VDl0vDhbSu7xIuJigBFpnvp9EiUfd1HvUiU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fC+KaHaQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA104C2BD10;
+	Tue, 11 Jun 2024 11:29:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718105394;
+	bh=v1wPmjm6dFdn2OBU3/MOe0zu3EOVJMs/Uhyx/PeNHUo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=fC+KaHaQzvpP3LpHfg/9JTHwp4d3p7VqEZQR1G3nQjQVo+OPdv+e2mMncshGJTNZE
+	 utBtuZH8BtOdSpLC1hDWHS221jrBU2YFdIfhoWKZ3BNEKovw08s+2h7tU2jJtikE1I
+	 EvQTS/VWrRBIaOsJLsFAV940ZwmIl9VQtml/valvz/q2E4yac4N+Rk0DtgbhTeXJ+s
+	 sT028DprkflkR/pIVy3f/6S546l0MupgNqBvgFAsiFhdeUFPnR0mDSnACtMRavRadq
+	 2ASWJetbt87CET8H7tuNR6Fvo7NM+Vn1CcVLtO1D5ehoRezuA7BHvKyf24pQQaFwrZ
+	 YIW9CPET6mYfg==
+Message-ID: <176137e5-6312-4d46-97b6-c4494bc1c61b@kernel.org>
+Date: Tue, 11 Jun 2024 14:29:48 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 6/6] arm64: dts: qcom: ipq9574: Add icc provider
+ ability to gcc
+To: Varadarajan Narayanan <quic_varada@quicinc.com>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, andersson@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, quic_anusha@quicinc.com,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20240418092305.2337429-1-quic_varada@quicinc.com>
+ <20240418092305.2337429-7-quic_varada@quicinc.com>
+ <a7194edd-a2c8-46fc-bea1-f26b0960e535@linaro.org>
+ <Ziov6bWBXYXJ4Zp8@hu-varada-blr.qualcomm.com>
+ <27f4f3dd-9375-40cf-8c8f-1c4edf66e31b@linaro.org>
+ <ZjNdTmmXucjtRxJt@hu-varada-blr.qualcomm.com>
+ <c015b3a5-2213-4ebd-b960-d97ed1fe7062@kernel.org>
+ <ZjshR0ekcn0gxwOa@hu-varada-blr.qualcomm.com>
+ <CAA8EJpqENsojPQmCbma_nQLEZq8nK1fz1K0JdtvLd=kPrH_DBw@mail.gmail.com>
+ <1a08ef42-b52f-4c97-90d7-e7fdee7725b4@linaro.org>
+ <Zmgb+OjdBNw71sC1@hu-varada-blr.qualcomm.com>
+Content-Language: en-US
+From: Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <Zmgb+OjdBNw71sC1@hu-varada-blr.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Am Montag, 10. Juni 2024, 22:46:20 CEST schrieb Frank Li:
-> ********************
-> Achtung externe E-Mail: =D6ffnen Sie Anh=E4nge und Links nur, wenn Sie wi=
-ssen, dass diese aus einer sicheren Quelle stammen und sicher sind. Leiten =
-Sie die E-Mail im Zweifelsfall zur Pr=FCfung an den IT-Helpdesk weiter.
-> Attention external email: Open attachments and links only if you know tha=
-t they are from a secure source and are safe. In doubt forward the email to=
- the IT-Helpdesk to check it.
-> ********************
->=20
-> Add basic mipi subsystem for imx8qm and imx8qxp.
->=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8-ss-mipi0.dtsi | 138 +++++++++++++++++=
-++++++
->  arch/arm64/boot/dts/freescale/imx8-ss-mipi1.dtsi | 138 +++++++++++++++++=
-++++++
->  2 files changed, 276 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-mipi0.dtsi b/arch/arm6=
-4/boot/dts/freescale/imx8-ss-mipi0.dtsi
-> new file mode 100644
-> index 0000000000000..6b56315e8c434
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8-ss-mipi0.dtsi
-> @@ -0,0 +1,138 @@
-> +// SPDX-License-Identifier: GPL-2.0-only and MIT
-> +
-> +/*
-> + * Copyright 2024 NXP
-> + */
-> +
-> +mipi0_subsys: bus@56220000 {
-> +	compatible =3D "simple-bus";
-> +	interrupt-parent =3D <&irqsteer_mipi0>;
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <1>;
-> +	ranges =3D <0x56220000 0x0 0x56220000 0x10000>;
-> +
-> +	irqsteer_mipi0: interrupt-controller@56220000 {
-> +		compatible =3D "fsl,imx8qxp-irqsteer", "fsl,imx-irqsteer";
-> +		reg =3D <0x56220000 0x1000>;
-> +		interrupts =3D <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-controller;
-> +		interrupt-parent =3D <&gic>;
-> +		#interrupt-cells =3D <1>;
-> +		clocks =3D <&mipi0_lis_lpcg IMX_LPCG_CLK_0>;
-> +		clock-names =3D "ipg";
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_0>;
-> +		fsl,channel =3D <0>;
-> +		fsl,num-irqs =3D <32>;
-> +	};
-> +
-> +	mipi0_lis_lpcg: clock-controller@56223000 {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x56223000 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&dsi_ipg_clk>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>;
+On 11.06.24 12:42, Varadarajan Narayanan wrote:
+> On Thu, Jun 06, 2024 at 04:06:01PM +0200, Konrad Dybcio wrote:
+>> On 8.05.2024 10:10 AM, Dmitry Baryshkov wrote:
+>>> On Wed, 8 May 2024 at 09:53, Varadarajan Narayanan
+>>> <quic_varada@quicinc.com> wrote:
+>>>>
+>>>> On Fri, May 03, 2024 at 04:51:04PM +0300, Georgi Djakov wrote:
+>>>>> Hi Varada,
+>>>>>
+>>>>> Thank you for your work on this!
+>>>>>
+>>>>> On 2.05.24 12:30, Varadarajan Narayanan wrote:
+>>>>>> On Tue, Apr 30, 2024 at 12:05:29PM +0200, Konrad Dybcio wrote:
+>>>>>>> On 25.04.2024 12:26 PM, Varadarajan Narayanan wrote:
+>>>>>>>> On Tue, Apr 23, 2024 at 02:58:41PM +0200, Konrad Dybcio wrote:
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> On 4/18/24 11:23, Varadarajan Narayanan wrote:
+>>>>>>>>>> IPQ SoCs dont involve RPM in managing NoC related clocks and
+>>>>>>>>>> there is no NoC scaling. Linux itself handles these clocks.
+>>>>>>>>>> However, these should not be exposed as just clocks and align
+>>>>>>>>>> with other Qualcomm SoCs that handle these clocks from a
+>>>>>>>>>> interconnect provider.
+>>>>>>>>>>
+>>>>>>>>>> Hence include icc provider capability to the gcc node so that
+>>>>>>>>>> peripherals can use the interconnect facility to enable these
+>>>>>>>>>> clocks.
+>>>>>>>>>>
+>>>>>>>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>>>>>>>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+>>>>>>>>>> ---
+>>>>>>>>>
+>>>>>>>>> If this is all you do to enable interconnect (which is not the case,
+>>>>>>>>> as this patch only satisfies the bindings checker, the meaningful
+>>>>>>>>> change happens in the previous patch) and nothing explodes, this is
+>>>>>>>>> an apparent sign of your driver doing nothing.
+>>>>>>>>
+>>>>>>>> It appears to do nothing because, we are just enabling the clock
+>>>>>>>> provider to also act as interconnect provider. Only when the
+>>>>>>>> consumers are enabled with interconnect usage, this will create
+>>>>>>>> paths and turn on the relevant NOC clocks.
+>>>>>>>
+>>>>>>> No, with sync_state it actually does "something" (sets the interconnect
+>>>>>>> path bandwidths to zero). And *this* patch does nothing functionally,
+>>>>>>> it only makes the dt checker happy.
+>>>>>>
+>>>>>> I understand.
+>>>>>>
+>>>>>>>> This interconnect will be used by the PCIe and NSS blocks. When
+>>>>>>>> those patches were posted earlier, they were put on hold until
+>>>>>>>> interconnect driver is available.
+>>>>>>>>
+>>>>>>>> Once this patch gets in, PCIe for example will make use of icc.
+>>>>>>>> Please refer to https://lore.kernel.org/linux-arm-msm/20230519090219.15925-5-quic_devipriy@quicinc.com/.
+>>>>>>>>
+>>>>>>>> The 'pcieX' nodes will include the following entries.
+>>>>>>>>
+>>>>>>>>          interconnects = <&gcc MASTER_ANOC_PCIE0 &gcc SLAVE_ANOC_PCIE0>,
+>>>>>>>>                          <&gcc MASTER_SNOC_PCIE0 &gcc SLAVE_SNOC_PCIE0>;
+>>>>>>>>          interconnect-names = "pcie-mem", "cpu-pcie";
+>>>>>>>
+>>>>>>> Okay. What about USB that's already enabled? And BIMC/MEMNOC?
+>>>>>>
+>>>>>> For USB, the GCC_ANOC_USB_AXI_CLK is enabled as part of the iface
+>>>>>> clock. Hence, interconnect is not specified there.
+>>>>>>
+>>>>>> MEMNOC to System NOC interfaces seem to be enabled automatically.
+>>>>>> Software doesn't have to turn on or program specific clocks.
+>>>>>>
+>>>>>>>>> The expected reaction to "enabling interconnect" without defining the
+>>>>>>>>> required paths for your hardware would be a crash-on-sync_state, as all
+>>>>>>>>> unused (from Linux's POV) resources ought to be shut down.
+>>>>>>>>>
+>>>>>>>>> Because you lack sync_state, the interconnects silently retain the state
+>>>>>>>>> that they were left in (which is not deterministic), and that's precisely
+>>>>>>>>> what we want to avoid.
+>>>>>>>>
+>>>>>>>> I tried to set 'sync_state' to icc_sync_state to be invoked and
+>>>>>>>> didn't see any crash.
+>>>>>>>
+>>>>>>> Have you confirmed that the registers are actually written to, and with
+>>>>>>> correct values?
+>>>>>>
+>>>>>> I tried the following combinations:-
+>>>>>>
+>>>>>> 1. Top of tree linux-next + This patch set
+>>>>>>
+>>>>>>      * icc_sync_state called
+>>>>>>      * No crash or hang observed
+>>>>>>      * From /sys/kernel/debug/clk/clk_summary can see the
+>>>>>>        relevant clocks are set to the expected rates (compared
+>>>>>>        with downstream kernel)
+>>>>>>
+>>>>>> 2. Top of tree linux-next + This patch set + PCIe enablement
+>>>>>>
+>>>>>>      * icc_sync_state NOT called
+>>>>>
+>>>>> If sync_state() is not being called, that usually means that there
+>>>>> are interconnect consumers that haven't probed successfully (PCIe?)
+>>>>> or their dependencies. That can be checked in /sys/class/devlink/.../status
+>>>>> But i am not sure how this works for PCI devices however.
+>>>>>
+>>>>> You can also manually force a call to sync_state by writing "1" to
+>>>>> the interconnect provider's /sys/devices/.../state_synced
+>>>>>
+>>>>> Anyway, the question is if PCIe and NSS work without this driver?
+>>>>
+>>>> No.
+>>>>
+>>>>> If they work, is this because the clocks are turned on by default
+>>>>> or by the boot loader?
+>>>>
+>>>> Initially, the PCIe/NSS driver enabled these clocks directly
+>>>> by having them in their DT nodes itself. Based on community
+>>>> feedback this was removed and after that PCIe/NSS did not work.
+>>>>
+>>>>> Then if an interconnect path (clock) gets disabled either when we
+>>>>> reach a sync_state (with no bandwidth requests) or we explicitly
+>>>>> call icc_set_bw() with 0 bandwidth values, i would expect that
+>>>>> these PCIe and NSS devices would not function anymore (it might
+>>>>> save some power etc) and if this is unexpected we should see a
+>>>>> a crash or hang...
+>>>>>
+>>>>> Can you confirm this?
+>>>>
+>>>> With ICC enabled, icc_set_bw (with non-zero values) is called by
+>>>> PCIe and NSS drivers. Haven't checked with icc_set_bw with zero
+>>>> values.
+>>>>
+>>>> PCIe:   qcom_pcie_probe -> qcom_pcie_icc_init -> icc_set_bw
+>>>> NSS:    ppe_icc_init -> icc_set_bw
+>>>>
+>>>> I believe sync_state is not getting called since there is a
+>>>> non-zero set bandwidth request. Which seems to be aligned with
+>>>> your explanation.
+>>>
+>>> This doesn't look correct. sync_state is being called once all
+>>> consumers are probed. It doesn't matter whether those consumers have
+>>> non-zero bandwidth requests or no.
+>>
+>> /sys/kernel/debug/devices_deferred may have some useful info, too
+> 
+> /sys/kernel/debug/devices_deferred seems to be empty
+> 
+> 	# mount | grep -w debugfs
+> 	none on /sys/kernel/debug type debugfs (rw,relatime)
+> 
+> 	# cat /sys/kernel/debug/devices_deferred  | wc -l
+> 	0
+> 
+> Added the following print to icc_sync_state,
+> 
+> 	@@ -1096,6 +1096,7 @@ void icc_sync_state(struct device *dev)
+> 		struct icc_node *n;
+> 		static int count;
+> 
+> 	+	printk("--> %s: %d %d\n", __func__, providers_count, count);
+> 		count++;
+> 
+> 		if (count < providers_count)
+> 			return;
+> 
+> icc_sync_state seems to be called once,
+> 
+> 	# dmesg | grep icc_sync_state
+> 	[   12.260544] --> icc_sync_state: 2 0
+> 
+> Since 'providers_count' is greated than 'count' icc_sync_state
+> seems to return before doing anything.
 
-That's LPCG_DI_LVDS_LPCG_0 for imx8qxp, no? So clock-indices and
-clock-output-names should be split similar to patch.
+Is there also another interconnect provider on this platform, other
+than the gcc? Check for DT nodes that have the #interconnect-cells
+property. Are all providers probing successfully?
 
-> +		clock-output-names =3D "mipi0_lis_lpcg_ipg_clk";
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_0>;
-> +	};
-> +
-> +	mipi0_pwm_lpcg: clock-controller@5622300c {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x5622300c 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&clk IMX_SC_R_MIPI_0_PWM_0 IMX_SC_PM_CLK_PER>,
-> +			 <&dsi_ipg_clk>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-> +		clock-output-names =3D "mipi0_pwm_lpcg_clk",
-> +				     "mipi0_pwm_lpcg_ipg_clk";
+All providers must probe, as there might be paths that cross multiple
+providers and we can't get into sync-state with a topology that is
+only partially initialized.
 
-That's LPCG_DI_MIPI_LPCG_12, no? imx8qm RM Rev 0 just lists one clock.
-Also it's different on imx8qxp.
-
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_0_PWM_0>;
-> +	};
-> +
-> +	mipi0_i2c0_lpcg_ipg_clk: clock-controller@56223014 {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x56223014 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&mipi0_i2c0_lpcg_ipg_s_clk IMX_LPCG_CLK_0>;
-
-Just 0 instead of IMX_LPCG_CLK_0.
-
-> +		clock-indices =3D <IMX_LPCG_CLK_0>;
-> +		clock-output-names =3D "mipi0_i2c0_lpcg_ipg_clk";
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_0_I2C_0>;
-> +	};
-> +
-> +	mipi0_i2c0_lpcg_ipg_s_clk: clock-controller@56223018 {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x56223018 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&dsi_ipg_clk>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>;
-> +		clock-output-names =3D "mipi0_i2c0_lpcg_ipg_s_clk";
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_0_I2C_0>;
-> +	};
-> +
-> +	mipi0_i2c0_lpcg_clk: clock-controller@5622301c {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x5622301c 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&clk IMX_SC_R_MIPI_0_I2C_0 IMX_SC_PM_CLK_MISC2>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>;
-> +		clock-output-names =3D "mipi0_i2c0_lpcg_clk";
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_0_I2C_0>;
-> +	};
-> +
-> +	mipi0_i2c1_lpcg_ipg_clk: clock-controller@56223024 {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x56223024 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&mipi0_i2c1_lpcg_ipg_s_clk IMX_LPCG_CLK_0>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>;
-> +		clock-output-names =3D "mipi0_i2c1_lpcg_ipg_clk";
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_0_I2C_1>;
-> +	};
-> +
-> +	mipi0_i2c1_lpcg_clk: clock-controller@5622302c {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x5622302c 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&clk IMX_SC_R_MIPI_0_I2C_1 IMX_SC_PM_CLK_MISC2>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>;
-> +		clock-output-names =3D "mipi0_i2c1_lpcg_clk";
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_0_I2C_1>;
-> +	};
-> +
-> +	mipi0_i2c1_lpcg_ipg_s_clk: clock-controller@56223028 {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x56223028 0x4>;
-
-Order nodes by base address please.
-
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&dsi_ipg_clk>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>;
-> +		clock-output-names =3D "mipi0_i2c1_lpcg_ipg_s_clk";
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_0_I2C_1>;
-> +	};
-> +
-> +	pwm_mipi0: pwm@56224000 {
-> +		compatible =3D "fsl,imx8qxp-pwm", "fsl,imx27-pwm";
-> +		reg =3D <0x56224000 0x1000>;
-> +		clocks =3D <&mipi0_pwm_lpcg IMX_LPCG_CLK_4>,
-> +			 <&mipi0_pwm_lpcg IMX_LPCG_CLK_0>;
-
-I don't think that's correct. IMX_LPCG_CLK_4 evaluates to 16.
-'mipi0_pwm_lpcg' only has 2 clocks, so you should use just '1' and '0'.
-
-> +		clock-names =3D "ipg", "per";
-> +		assigned-clocks =3D <&clk IMX_SC_R_MIPI_0_PWM_0 IMX_SC_PM_CLK_PER>;
-> +		assigned-clock-rates =3D <24000000>;
-> +		#pwm-cells =3D <3>;
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_0_PWM_0>;
-> +		status =3D "disabled";
-> +	};
-> +
-> +	i2c0_mipi0: i2c@56226000 {
-> +		compatible =3D "fsl,imx8qm-lpi2c", "fsl,imx7ulp-lpi2c";
-> +		reg =3D <0x56226000 0x1000>;
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +		interrupts =3D <8>;
-> +		clocks =3D <&mipi0_i2c0_lpcg_clk IMX_LPCG_CLK_0>,
-> +			 <&mipi0_i2c0_lpcg_ipg_clk IMX_LPCG_CLK_0>;
-
-Just use 0 instead of IMX_LPCG_CLK_0.
-
-> +		clock-names =3D "per", "ipg";
-> +		assigned-clocks =3D <&mipi0_i2c0_lpcg_clk IMX_LPCG_CLK_0>;
-> +		assigned-clock-rates =3D <24000000>;
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_0_I2C_0>;
-> +		status =3D "disabled";
-> +	};
-> +};
-> +
-> diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-mipi1.dtsi b/arch/arm6=
-4/boot/dts/freescale/imx8-ss-mipi1.dtsi
-> new file mode 100644
-> index 0000000000000..5b1f08e412b24
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8-ss-mipi1.dtsi
-
-This is only for imx8qm, no?
-
-It maybe makes sense to rename this file to imx8qm-ss-mipi1.dtsi
-
-Best regards,
-Alexander
-
-> @@ -0,0 +1,138 @@
-> +// SPDX-License-Identifier: GPL-2.0-only and MIT
-> +
-> +/*
-> + * Copyright 2024 NXP
-> + */
-> +
-> +mipi1_subsys: bus@57220000 {
-> +	compatible =3D "simple-bus";
-> +	interrupt-parent =3D <&irqsteer_mipi1>;
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <1>;
-> +	ranges =3D <0x57220000 0x0 0x57220000 0x10000>;
-> +
-> +	irqsteer_mipi1: interrupt-controller@57220000 {
-> +		compatible =3D "fsl,imx8qm-irqsteer", "fsl,imx-irqsteer";
-> +		reg =3D <0x57220000 0x1000>;
-> +		interrupts =3D <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-controller;
-> +		interrupt-parent =3D <&gic>;
-> +		#interrupt-cells =3D <1>;
-> +		clocks =3D <&mipi1_lis_lpcg IMX_LPCG_CLK_0>;
-> +		clock-names =3D "ipg";
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_1>;
-> +		fsl,channel =3D <0>;
-> +		fsl,num-irqs =3D <32>;
-> +	};
-> +
-> +	mipi1_lis_lpcg: clock-controller@57223000 {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x57223000 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&dsi_ipg_clk>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>;
-> +		clock-output-names =3D "mipi1_lis_lpcg_ipg_clk";
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_1>;
-> +	};
-> +
-> +	mipi1_pwm_lpcg: clock-controller@5722300c {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x5722300c 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&clk IMX_SC_R_MIPI_1_PWM_0 IMX_SC_PM_CLK_PER>,
-> +			 <&dsi_ipg_clk>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-> +		clock-output-names =3D "mipi1_pwm_lpcg_clk",
-> +				     "mipi1_pwm_lpcg_ipg_clk";
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_1_PWM_0>;
-> +	};
-> +
-> +	mipi1_i2c0_lpcg_clk: clock-controller@5722301c {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x5722301c 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&clk IMX_SC_R_MIPI_1_I2C_0 IMX_SC_PM_CLK_MISC2>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>;
-> +		clock-output-names =3D "mipi1_i2c0_lpcg_clk";
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_1_I2C_0>;
-> +	};
-> +
-> +	mipi1_i2c0_lpcg_ipg_clk: clock-controller@57223014 {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x57223014 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&mipi1_i2c0_lpcg_ipg_s_clk IMX_LPCG_CLK_0>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>;
-> +		clock-output-names =3D "mipi1_i2c0_lpcg_ipg_clk";
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_1_I2C_0>;
-> +	};
-> +
-> +	mipi1_i2c0_lpcg_ipg_s_clk: clock-controller@57223018 {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x57223018 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&dsi_ipg_clk>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>;
-> +		clock-output-names =3D "mipi1_i2c0_lpcg_ipg_s_clk";
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_1_I2C_0>;
-> +	};
-> +
-> +	mipi1_i2c1_lpcg_ipg_clk: clock-controller@57223024 {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x57223024 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&mipi1_i2c1_lpcg_ipg_s_clk IMX_LPCG_CLK_0>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>;
-> +		clock-output-names =3D "mipi1_i2c1_lpcg_ipg_clk";
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_1_I2C_1>;
-> +	};
-> +
-> +	mipi1_i2c1_lpcg_ipg_s_clk: clock-controller@57223028 {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x57223028 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&dsi_ipg_clk>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>;
-> +		clock-output-names =3D "mipi1_i2c1_lpcg_ipg_s_clk";
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_1_I2C_1>;
-> +	};
-> +
-> +	mipi1_i2c1_lpcg_clk: clock-controller@5722302c {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x5722302c 0x4>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&clk IMX_SC_R_MIPI_1_I2C_1 IMX_SC_PM_CLK_MISC2>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>;
-> +		clock-output-names =3D "mipi1_i2c1_lpcg_clk";
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_1_I2C_1>;
-> +	};
-> +
-> +	pwm_mipi1: pwm@57224000 {
-> +		compatible =3D "fsl,imx8qxp-pwm", "fsl,imx27-pwm";
-> +		reg =3D <0x57224000 0x1000>;
-> +		clocks =3D <&mipi1_pwm_lpcg IMX_LPCG_CLK_4>,
-> +			 <&mipi1_pwm_lpcg IMX_LPCG_CLK_0>;
-> +		clock-names =3D "ipg", "per";
-> +		assigned-clocks =3D <&clk IMX_SC_R_MIPI_1_PWM_0 IMX_SC_PM_CLK_PER>;
-> +		assigned-clock-rates =3D <24000000>;
-> +		#pwm-cells =3D <3>;
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_1_PWM_0>;
-> +		status =3D "disabled";
-> +	};
-> +
-> +	i2c0_mipi1: i2c@57226000 {
-> +		compatible =3D "fsl,imx8qm-lpi2c", "fsl,imx7ulp-lpi2c";
-> +		reg =3D <0x57226000 0x1000>;
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +		interrupts =3D <8>;
-> +		interrupt-parent =3D <&irqsteer_mipi1>;
-> +		clocks =3D <&mipi1_i2c0_lpcg_clk IMX_LPCG_CLK_0>,
-> +			 <&mipi1_i2c0_lpcg_ipg_clk IMX_LPCG_CLK_0>;
-> +		clock-names =3D "per", "ipg";
-> +		assigned-clocks =3D <&mipi1_i2c0_lpcg_clk IMX_LPCG_CLK_0>;
-> +		assigned-clock-rates =3D <24000000>;
-> +		power-domains =3D <&pd IMX_SC_R_MIPI_1_I2C_0>;
-> +		status =3D "disabled";
-> +	};
-> +};
->=20
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+Thanks,
+Georgi
 
