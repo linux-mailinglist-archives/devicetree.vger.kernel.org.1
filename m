@@ -1,203 +1,125 @@
-Return-Path: <devicetree+bounces-74593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FDF0903B90
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 14:11:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12D5E903B97
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 14:12:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6697D1C20ED7
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:11:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C9F4B23506
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:12:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 686A31791FC;
-	Tue, 11 Jun 2024 12:10:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2591E17C20A;
+	Tue, 11 Jun 2024 12:12:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iWT8Oc4g"
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="bbHlvtLn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA03B481B4;
-	Tue, 11 Jun 2024 12:10:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADA6C17C205
+	for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 12:12:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718107859; cv=none; b=vC2bPhRcGQ4VEj0Pg5kUmejF6vtAdsakva2gB9Up/MhBGwHaRDWP6L265hbPLmxe+Y/9o+Ft9BHo5z9/s1fuxlwn5UVePhxwzQXhdv+2/X67cYersQ4L7g/dsKTnI1romiXKnbhcLPtuTmDdFNOzC2/dpGrw0x5U9eGFvAM0YX4=
+	t=1718107944; cv=none; b=KOd7cxQ/KhWojqlwG1DeXb8HCBFSSH+xsZQ0gpkyYEoj4ncxuKEig6QrpEuRBOQYdQj1RqrFVw1cXF3YB/WTHOPxx7goJ9lBsePRXzrcTdeq0P0cpNun+E1I9LBvaJyAEL1Mck4DXiqmxCBpW9ZOBATqjpcsTYOL3LSZ9o+01Lc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718107859; c=relaxed/simple;
-	bh=4sJF+qZgkff6mhxsiuML1SPXQa2f0RAQarao62dDJoA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ngI2Pqf4btVkCquSGezhfqf+4Zsc3RV/fHrmXw9MASIy91+U9I9bWiO/v3N7r0MwyBonygUVEPeLEmy9YhWfDgTegltjSkXnXqBnMoQTONKsxIWY+/ILLfBcT3kH+aNGPA84LsjiwBIFsKWbWBmuufn2BWYqvZKj366UDKXqcZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iWT8Oc4g; arc=none smtp.client-ip=209.85.210.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-701b0b0be38so5159451b3a.0;
-        Tue, 11 Jun 2024 05:10:57 -0700 (PDT)
+	s=arc-20240116; t=1718107944; c=relaxed/simple;
+	bh=sIbNJUSxjDR6r4OKpjG9oJgb7z911EUrOwt9KL6BXgo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lOoaIstEqXHkZiZGFuOTsn6DH5rEf74QTOHylMnuLw0FJikJhXf6O1TQj3VB3bm9dt0HqhHbjHbM8Iw7mhZGglBf2e4ky9Dm19NK9ROb8VCFqE4EGJoidrpAhJyq1KACbyXiPXY5M28ZRAc02U4SRWUigUCSUV988hYeHmr9rMs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=bbHlvtLn; arc=none smtp.client-ip=209.85.222.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7955c585af0so64877885a.2
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 05:12:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718107857; x=1718712657; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=D5Ql3E99ts31vP7gjuJD0BPHmyWgl0tnb3i3qEJrOeA=;
-        b=iWT8Oc4gXWERTH6W/lDw8u0nMHSeVy701nGNxacukSRd8KwbYUGYeWA+cBjwtk+Rr7
-         hn9OjidCCkY4v6bVSrAX38mFiNlWhp+yyJ3CXqyRzdMjFzf4ch3aA0SytBf0iOfyD7N8
-         H58B+oqUFJV68NVa2YpHwZq7sP6oTnROvPEny++j4idAmYUW9XEKXQj29gRLgPkOlnU1
-         h31E/Krsa6U2WH8CBQNcrYwSZ+RpEr9X3nD4fBWn1OjpzpjJgWlmX3CpntLMvZIFS4EV
-         Zjvhkq25rz2BwAO0539jqsQzgVR8xtt8g8tmi1kOs+hk/YsBO1urwCk/VHSj7TPTKyJ0
-         cXsQ==
+        d=ziepe.ca; s=google; t=1718107942; x=1718712742; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=sIbNJUSxjDR6r4OKpjG9oJgb7z911EUrOwt9KL6BXgo=;
+        b=bbHlvtLnqwR2l0To927wd2CoZZUEy4Ubp/VJUKMeBRdWVCvtGXyRfGbuSK4PEWfe+T
+         5wxzVkr6YR6cDRnELrS5jZfpNDx979050vJn+KzmAjL1/CWcS9nLggUcKO1b4yMUli6K
+         x3gWcdaffnXVkUPk4j3s+wR7QrlSc75RLOSghf7CZmCkrvL3M+9Jxqi2L4P3/iyQGJ37
+         EMNojekvv2DcVFMZ21/r7/OpdDegAYwGfjOdAmO4z+4Sxye/1YEzXQwAHTioIeLiUdWX
+         bl1+N8YDfjextD4kmgK5dmsQHe4GVGj1CPWBATFqOwTnj7ilGs4wg/31AJ2T3jyRQTkZ
+         ZYyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718107857; x=1718712657;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=D5Ql3E99ts31vP7gjuJD0BPHmyWgl0tnb3i3qEJrOeA=;
-        b=GSPcKo4WkNKko1+dvkjXIf6Bd5cBUsifUuJ50ak0muqCfi8mdDELu3GCXW3dVQnPmU
-         hpo0FNqgoYAN1oyqSnpmAmmekCTbWPraUE4Xfhkeihmt0+zYMM3oJ1KJJOlPcrPAKcGv
-         w5QmVUrXa/FOm5U1Qvz+RtQ58bRgrSzSVrk1mCfSI7YzxU9GOIyvez4aJ6Mjd3lNIAC8
-         VveKtSKn0W6+POG5jgANOKROhmhQh+r8Y/2luuCcPliJ6nlEUKqeE+olwcWlWjFXdm1q
-         cUE4/W/+iGFbGeZeXBURgczjX/CRFIflhgsd9YIYoi6iXoVUN8lLHJO71MqzzZpTlwXZ
-         TUXw==
-X-Forwarded-Encrypted: i=1; AJvYcCVqbktOpWe7ueVV3gge2S/wpyB3X0lP6MQN5xqtiZHYpeU/z4R2x98+FJXPu2hQrr99KogrYuTnm2yT8vILG2w53piwM690EZQRi2sQzxIjR+MbpXH1BKLfF7pA1Yv9tYJRl61nWjRj1jCVPVtlai8cQBlmLwG8K4I+z4oEatetJ334qB8SnA==
-X-Gm-Message-State: AOJu0YyHAH50RysSbdCLKmqtGsPTAUMI/Pzii5ceQ2oMABziET7BIQE1
-	AZMid5bmfzYsNDORF/E7egiK8to6Xr4p2CbJ0mefH3x+v439swref5OTicZJ
-X-Google-Smtp-Source: AGHT+IH3JgY4FxwCV8ogCWJcpmZesJGwCMt7JXMZ93/eOIkxKQav/aW2bwneP0DCcrHgK1NtfQQdeQ==
-X-Received: by 2002:a05:6a20:3d91:b0:1b2:b104:594 with SMTP id adf61e73a8af0-1b2f9a0cb23mr14517494637.21.1718107857161;
-        Tue, 11 Jun 2024 05:10:57 -0700 (PDT)
-Received: from ga401ii.. ([223.178.82.151])
-        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-70594077c64sm3644955b3a.6.2024.06.11.05.10.54
+        d=1e100.net; s=20230601; t=1718107942; x=1718712742;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sIbNJUSxjDR6r4OKpjG9oJgb7z911EUrOwt9KL6BXgo=;
+        b=E22e0PJc+kmNjfE0tIXQNC4+V9nC6Qbxm4hQNKLl0Db64uDgl5y12rz/Wo/5E+VSX3
+         zLLRmmkiYH78rek8gK0tIHnZ2Ktc/0VP5y5VzEw16nuPBASGFyuV/CdsYGTWMNucR7BI
+         RTHCP4X71+uUOYGHibm2TBoKhljk4+xcyUMD2cLnbEPg9uQFQAkNoEDpVRAMMvw/SkpE
+         McdwX6koXI7IC0Nn/L3DFis/jUXQHAZenLLsbva365vb4g8GYpEUsO8cvqzGL2/2Vump
+         M9SLZ7EIweK5tsIPlIs0e63wrpMur59vtrdCl7Dg8s7AHyxnjDZX6mP2fzF26YVEAETM
+         kxyw==
+X-Forwarded-Encrypted: i=1; AJvYcCW5x0vVN6ahcFdP6d7M2FNl3rE8TzfwjT4MeW+Y72sl5VlWxr5qaMfitroL+cyFfYrCaf88HOi2mQUNa5zNql/eHDxCzOa4n3Qt/w==
+X-Gm-Message-State: AOJu0YzE/5NE7er6GFrllUqzEaCeSg1pf+VeVAsH3ZJ9C+Cq0byeXsf7
+	0gmforOZUke+hy72IE4wHBkMG4/zY5+W/F5zxaF6ZkTzQpLH5xEL2sjhXniRBgw=
+X-Google-Smtp-Source: AGHT+IGrA5stCDnRo1H5n9Y5w5ElO81oVmgd60ewDFQ3Fm5sCDbN4V5n/Tt2xc1pS6BW64I2SfmIhA==
+X-Received: by 2002:a05:620a:24cb:b0:795:4cde:3b1c with SMTP id af79cd13be357-7954cde3cf7mr1271288985a.6.1718107941369;
+        Tue, 11 Jun 2024 05:12:21 -0700 (PDT)
+Received: from ziepe.ca ([128.77.69.89])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-79556b3ac83sm292416485a.127.2024.06.11.05.12.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jun 2024 05:10:56 -0700 (PDT)
-From: Kanak Shilledar <kanakshilledar@gmail.com>
-To: 
-Cc: Kanak Shilledar <kanakshilledar@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+        Tue, 11 Jun 2024 05:12:20 -0700 (PDT)
+Received: from jgg by wakko with local (Exim 4.95)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1sH0MN-001OhE-1j;
+	Tue, 11 Jun 2024 09:12:19 -0300
+Date: Tue, 11 Jun 2024 09:12:19 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Tomasz Jeznach <tjeznach@rivosinc.com>
+Cc: Zong Li <zong.li@sifive.com>, Joerg Roedel <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Anup Patel <apatel@ventanamicro.com>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	Nick Kossifidis <mick@ics.forth.gr>,
+	Sebastien Boeuf <seb@rivosinc.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kanak Shilledar <kanakshilledar111@protonmail.com>,
-	linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: serial: vt8500-uart: convert to json-schema
-Date: Tue, 11 Jun 2024 17:40:43 +0530
-Message-ID: <20240611121048.225887-1-kanakshilledar@gmail.com>
-X-Mailer: git-send-email 2.45.2
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	iommu@lists.linux.dev, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux@rivosinc.com,
+	Lu Baolu <baolu.lu@linux.intel.com>, Jim Shu <jim.shu@sifive.com>,
+	Vincent Chen <vincent.chen@sifive.com>
+Subject: Re: [PATCH v6 5/7] iommu/riscv: Device directory management.
+Message-ID: <20240611121219.GP791043@ziepe.ca>
+References: <cover.1716578450.git.tjeznach@rivosinc.com>
+ <e18ec8ac169ae7f76e9044c26d0768e6469bad19.1716578450.git.tjeznach@rivosinc.com>
+ <CANXhq0p4gERQeROSCSKqxnRZq9-fGfmROGV8JZyqFaenNpnsLA@mail.gmail.com>
+ <20240610174934.GM791043@ziepe.ca>
+ <CAH2o1u4c6ttUWTb1zrc8DScDMuDJJYR-tTHCPYW_3FV4uuQDtA@mail.gmail.com>
+ <20240610222051.GO791043@ziepe.ca>
+ <CAH2o1u7X2zu42ZYA9wBe4bmCXN9v+d6j9vo5DMifJA3BUew91w@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAH2o1u7X2zu42ZYA9wBe4bmCXN9v+d6j9vo5DMifJA3BUew91w@mail.gmail.com>
 
-Convert the VIA VT8500 and WonderMedia WM8xxx UART Controller to
-newer DT schema. Created DT schema based on the .txt file which had
-`compatible`, `reg`, `interrupts` and `clocks` as required properties.
+On Mon, Jun 10, 2024 at 07:00:34PM -0700, Tomasz Jeznach wrote:
 
-Additions to the original binding
-- changed the file name from vt8500-uart to via,vt8500-uart.yaml
-- removed unnecessary alias from the example.
-- added Greg and Jiri as maintainers (referred MAINTAINERS file).
+> For now, I'll change the implementation to assume negative caching for
+> DDTE and will follow up with device tree / driver updates to make the
+> invalidation optional when revised specifications will be available.
 
-Signed-off-by: Kanak Shilledar <kanakshilledar@gmail.com>
----
- .../bindings/serial/via,vt8500-uart.yaml      | 52 +++++++++++++++++++
- .../bindings/serial/vt8500-uart.txt           | 27 ----------
- 2 files changed, 52 insertions(+), 27 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/serial/via,vt8500-uart.yaml
- delete mode 100644 Documentation/devicetree/bindings/serial/vt8500-uart.txt
+Is there a reason to make it optional? It seems like it doesn't have
+any performance downside to just always invalidate, attachment is not
+a critical path operation.
 
-diff --git a/Documentation/devicetree/bindings/serial/via,vt8500-uart.yaml b/Documentation/devicetree/bindings/serial/via,vt8500-uart.yaml
-new file mode 100644
-index 000000000000..b38925ab23a1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/serial/via,vt8500-uart.yaml
-@@ -0,0 +1,52 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/serial/via,vt8500-uart.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: VIA VT8500 and WonderMedia WM8xxx UART Controller
-+
-+maintainers:
-+  - Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-+  - Jiri Slaby <jirislaby@kernel.org>
-+  - Kanak Shilledar <kanakshilledar111@protonmail.com>
-+
-+allOf:
-+  - $ref: serial.yaml
-+
-+properties:
-+  compatible:
-+    enum:
-+      - via,vt8500-uart
-+      - wm,wm8880-uart
-+
-+    description: |
-+      Should be "via,vt8500-uart" (for VIA/WonderMedia chips up to and
-+      including WM8850/WM8950), or "wm,wm8880-uart" (for WM8880 and later)
-+
-+  clocks:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - clocks
-+  - interrupts
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    serial@d8200000 {
-+        compatible = "via,vt8500-uart";
-+        reg = <0xd8200000 0x1040>;
-+        interrupts = <32>;
-+        clocks = <&clkuart0>;
-+    };
-diff --git a/Documentation/devicetree/bindings/serial/vt8500-uart.txt b/Documentation/devicetree/bindings/serial/vt8500-uart.txt
-deleted file mode 100644
-index 2b64e6107fb3..000000000000
---- a/Documentation/devicetree/bindings/serial/vt8500-uart.txt
-+++ /dev/null
-@@ -1,27 +0,0 @@
--* VIA VT8500 and WonderMedia WM8xxx UART Controller
--
--Required properties:
--- compatible: should be "via,vt8500-uart" (for VIA/WonderMedia chips up to and
--	including WM8850/WM8950), or "wm,wm8880-uart" (for WM8880 and later)
--
--- reg: base physical address of the controller and length of memory mapped
--	region.
--
--- interrupts: hardware interrupt number
--
--- clocks: shall be the input parent clock phandle for the clock. This should
--	be the 24Mhz reference clock.
--
--Aliases may be defined to ensure the correct ordering of the uarts.
--
--Example:
--	aliases {
--		serial0 = &uart0;
--	};
--
--	uart0: serial@d8200000 {
--		compatible = "via,vt8500-uart";
--		reg = <0xd8200000 0x1040>;
--		interrupts = <32>;
--		clocks = <&clkuart0>;
--	};
--- 
-2.45.2
+I could see making something like negative PTE invalidation optional
+as that is more performance path..
 
+Jason
 
