@@ -1,65 +1,48 @@
-Return-Path: <devicetree+bounces-74417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D0DC9032E8
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 08:44:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 808789032EC
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 08:45:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05A71284786
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 06:44:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2190E284B67
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 06:45:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 702FC171E4C;
-	Tue, 11 Jun 2024 06:44:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2873171E44;
+	Tue, 11 Jun 2024 06:44:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="XxpiP6H7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F6fJAa9U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 156EA36D;
-	Tue, 11 Jun 2024 06:44:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 741A017167F;
+	Tue, 11 Jun 2024 06:44:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718088275; cv=none; b=dbffSufeoGFU1hTwSm9wjdATXg4VfnZBdjjJjn85vxtIgJ93tHUe+Tq2sQdVgJtjpi3HczZ5u0M9629whznQCDjOg7BTd9CrvanvLVIDKcIVajaAHp63ILMmAiyaDR5PbwHF/dsEDIGMmfzdMnlLfXc0oolA/1yxkOgl9AiSS34=
+	t=1718088297; cv=none; b=lGzPVMYWi1A1GbJpBbbAxW8C/1oEfvOO/TEYctGY8vAbiE0o2mY0dEYlH/Tv9O+qhPvB5mnVqTbtzNpl68fhPKkveIzjxZ3+2ExUlZB+idMkjrfJe7pTKO6l7xVM/rlaqCZ4K7XlxGUBH6M3iOJjGyT4XRXvDLBIZoQRGz8ylEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718088275; c=relaxed/simple;
-	bh=o5S39l1tYgIoGcHQeO0L6gwPeg33zlYc8tlh8+eu7PY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=dBE3UxTSGmWUP9krkkjuFeLPr2lLpVAmkHt004cMojQ+cSe5NA7fud7BGb558aDV0uh6YSOX/lf4Euv1q7/GRGZq/7fbApxQIs8pEMOVqmmY2uIlTKQP7E9DwKX0J9ZaBP5Fy2F+jndpMVPMeH26GJkTMo2C7y0G62gS4B6hTj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=XxpiP6H7; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45B02Ku2016579;
-	Tue, 11 Jun 2024 08:43:57 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	q8JK+u2uObSJN81tlPPbtHTFk/XuqwYf8cios9yw3NY=; b=XxpiP6H74g1pCFqu
-	+ZzpDUGthw9L08wvN1dqX+eOysGbG4hBzDqZoJtvj+4+M8fclxQx0nhkUIRLrW5I
-	ff/xJ3fgPCE6c8+Kk98XluN3gmlmrGBQrMNvewv+J0DUg6J7Eal+L2qLfRix68rq
-	QysYRLwETt9gAJTFBbZ4szi3AgXqqxMPGAmUr+5Yqd9Gf5eb/xHiEdOuhmnGZZJp
-	Bh7fo7yJYb0H9eXHueh33vGmExN4a1IWS3+QxnSXoA6yQ40fGIdBPZjH5BIeePhN
-	sgDxKwgBhStMmcegraCHIQi9BeSnfLVnqzY94GQrSTpYlhfcDVZpowjMkZN7d7u7
-	38NfFg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ypbp4h71m-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 11 Jun 2024 08:43:57 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 27E254002D;
-	Tue, 11 Jun 2024 08:43:51 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2C85220E1EF;
-	Tue, 11 Jun 2024 08:42:38 +0200 (CEST)
-Received: from [10.48.86.164] (10.48.86.164) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 11 Jun
- 2024 08:42:35 +0200
-Message-ID: <eea0ef13-58e9-4541-ac67-8246602b8e5d@foss.st.com>
-Date: Tue, 11 Jun 2024 08:42:35 +0200
+	s=arc-20240116; t=1718088297; c=relaxed/simple;
+	bh=iy1Lrua7h7pyuJRoJuN3UDsLYmIYRnZyzDVImo/6rbg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QJ26L2AXGwRILOBIPnFMKoqnS1MpGqRl2eBjqrQkIUulcZG8OL8CcMwE6QxZNxp6aG47lIyKQrxyT2yZbAO61xi7GtSC1R3c+I0lnZSESkmzwVGvbzLa/Jk95v+6KzuPdXjg+TSU2QQR/HWFmvsKFRSkxCuk+4wkhaCCyQ8qp38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F6fJAa9U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E2A2C2BD10;
+	Tue, 11 Jun 2024 06:44:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718088297;
+	bh=iy1Lrua7h7pyuJRoJuN3UDsLYmIYRnZyzDVImo/6rbg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=F6fJAa9UopUa4dpJPmy+JW0+x8mDZUlTa7EdyWacRHHOmG/IgfJT12Gw/s5i5LAtl
+	 FZ27OvTTZ8qGqH4PRGYAR1Uyu0MwCiHR4kaNEK7Nu6fyijglSvSeOcM5fGNzNgZpFK
+	 7LJOi6RGMxuKATL4jhIjoeeoZ5MO3Qul3Tt5rXHYb3G4VsF3ge5IcsDSQzNILcWOWQ
+	 2/eNYjaryIXhMnUO7ZdsNJ06P8m6s0wqGwqE+riOGRWDtuBNAvwkRCnbWrhPqRJWs4
+	 AeU0+kSDlWiXuarJUmA+t5GlIyMJEp2z/POMYErrTh2jsXzR/UKpaGdBNSzD+hdHPp
+	 HjfKWLHBJO0mw==
+Message-ID: <1a5144e3-aad6-4a1e-ab9f-4c879b050d45@kernel.org>
+Date: Tue, 11 Jun 2024 08:44:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,96 +50,95 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next,PATCH v6 7/8] net: stmmac: dwmac-stm32: Mask support
- for PMCR configuration
-To: Marek Vasut <marex@denx.de>, "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo
- Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Richard Cochran
-	<richardcochran@gmail.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20240610071459.287500-1-christophe.roullier@foss.st.com>
- <20240610071459.287500-8-christophe.roullier@foss.st.com>
- <20139233-4e95-4fe5-84ca-734ee866afca@denx.de>
- <c5ea12e7-5ee6-4960-9141-e774ccd9977b@foss.st.com>
- <09105afe-1123-407a-96c3-2ea88602aad0@denx.de>
- <91af5c61-f23f-4f72-a8c8-f32b2c368768@foss.st.com>
- <bf3238fb-4fad-49b2-975c-e35d93cafe7c@denx.de>
+Subject: Re: [PATCH v3 1/1] dt-bindings: mmc: Convert fsl-esdhc.txt to yaml
+To: Frank Li <Frank.li@nxp.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ krzk+dt@kernel.org, linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+ robh@kernel.org, ulf.hansson@linaro.org
+References: <20240605185046.1057877-1-Frank.Li@nxp.com>
+ <b1c51acc-441d-4484-adef-1da368571097@kernel.org>
+ <8901d498-d30a-43db-bda2-25d3d1d58e8d@kernel.org>
+ <ZmcOyVmI5GhRUuVc@lizhi-Precision-Tower-5810>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Christophe ROULLIER <christophe.roullier@foss.st.com>
-In-Reply-To: <bf3238fb-4fad-49b2-975c-e35d93cafe7c@denx.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-11_02,2024-06-11_01,2024-05-17_01
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <ZmcOyVmI5GhRUuVc@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On 6/10/24 19:29, Marek Vasut wrote:
-> On 6/10/24 3:49 PM, Christophe ROULLIER wrote:
->>
->> On 6/10/24 15:43, Marek Vasut wrote:
->>> On 6/10/24 1:45 PM, Christophe ROULLIER wrote:
+On 10/06/2024 16:33, Frank Li wrote:
+> On Mon, Jun 10, 2024 at 02:29:57PM +0200, Krzysztof Kozlowski wrote:
+>> On 06/06/2024 08:44, Krzysztof Kozlowski wrote:
+>>> On 05/06/2024 20:50, Frank Li wrote:
+>>>> Convert layerscape fsl-esdhc binding doc from txt to yaml format.
 >>>>
->>>> On 6/10/24 12:39, Marek Vasut wrote:
->>>>> On 6/10/24 9:14 AM, Christophe Roullier wrote:
->>>>>
->>>>> [...]
->>>>>
->>>>>>   static int stm32mp1_set_mode(struct plat_stmmacenet_data 
->>>>>> *plat_dat)
->>>>>> @@ -303,7 +307,7 @@ static int stm32mcu_set_mode(struct 
->>>>>> plat_stmmacenet_data *plat_dat)
->>>>>>       dev_dbg(dwmac->dev, "Mode %s", 
->>>>>> phy_modes(plat_dat->mac_interface));
->>>>>>         return regmap_update_bits(dwmac->regmap, reg,
->>>>>> -                 dwmac->ops->syscfg_eth_mask, val << 23);
->>>>>> +                 SYSCFG_MCU_ETH_MASK, val << 23);
->>>>>>   }
->>>>>>     static void stm32_dwmac_clk_disable(struct stm32_dwmac 
->>>>>> *dwmac, bool suspend)
->>>>>> @@ -348,8 +352,15 @@ static int stm32_dwmac_parse_data(struct 
->>>>>> stm32_dwmac *dwmac,
->>>>>>           return PTR_ERR(dwmac->regmap);
->>>>>>         err = of_property_read_u32_index(np, "st,syscon", 1, 
->>>>>> &dwmac->mode_reg);
->>>>>> -    if (err)
->>>>>> +    if (err) {
->>>>>>           dev_err(dev, "Can't get sysconfig mode offset (%d)\n", 
->>>>>> err);
->>>>>> +        return err;
->>>>>> +    }
->>>>>> +
->>>>>> +    dwmac->mode_mask = SYSCFG_MP1_ETH_MASK;
->>>>>> +    err = of_property_read_u32_index(np, "st,syscon", 2, 
->>>>>> &dwmac->mode_mask);
->>>>>> +    if (err)
->>>>>> +        dev_dbg(dev, "Warning sysconfig register mask not set\n");
->>>>>
->>>>> Isn't this an error , so dev_err() ?
->>>> No, it is only "warning" information, for MP1 the mask is not 
->>>> needed (and for backward compatibility is not planned to put mask 
->>>> parameter mandatory)
+>>>> Addtional change during convert:
+>>>> - Deprecate "sdhci,wp-inverted", "sdhci,1-bit-only".
+>>>> - Add "reg" and "interrupts" property.
+>>>> - Change example "sdhci@2e000" to "mmc@2e000".
+>>>> - Compatible string require fsl,<chip>-esdhc followed by fsl,esdhc to match
+>>>> most existed dts file.
+>>>> - Set clock-frequency to 100mhz in example.
+>>>>
 >>>
->>> Should this be an error for anything newer than MP15 then ?
->> For MP25, no need of mask, so for moment it is specific to MP13.
->
-> Make this a warning for MP15, error for MP13, do not check st,syscon 
-> presence for MP2 at all. Would that work ?
-Ok I will make a warning for MP15 and MP25 and error for MP13.
+>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> Or not... are you sure that DTS validates? Did you test it? kbuild has a
+>> bit different opinion.
+> 
+> Need additional patch to fix this DTS warnings. It needs convert to yaml
+> firstly. If you like, I can create big patch set to fix all emmc related
+> warnings.
+
+We kind of been here... I raise the problem and you answer with
+something unspecific requiring me to dig more to prove my point. I am
+not going to play more of that game.
+
+Did you analyze the errors?
+
+Best regards,
+Krzysztof
+
 
