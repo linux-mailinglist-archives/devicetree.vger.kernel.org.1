@@ -1,87 +1,80 @@
-Return-Path: <devicetree+bounces-74436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69E3F9033F6
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 09:41:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6866903428
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 09:46:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 632DD1C2300F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 07:40:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32EB7B2424E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 07:46:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A45AA17333C;
-	Tue, 11 Jun 2024 07:40:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9292F172796;
+	Tue, 11 Jun 2024 07:46:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="atsoTnnH"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="phl5OF5p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89790172791;
-	Tue, 11 Jun 2024 07:40:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C17052E620;
+	Tue, 11 Jun 2024 07:46:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718091628; cv=none; b=GwXDjQ7kInh8raYdmC0kdGwxRgBeXXb88Q9/DWA0NBhsFGyh06gvNB01/d4xDInw0zDNItUxZC8V2KV1uopgJnJKDl8ZqZvGRUiSv4eTcpBHMfgobo8tADuk2iplmidieBepriBXHGGgVaivNBI/vulzaDrA9vuq0x8wQe+rt2Y=
+	t=1718092003; cv=none; b=q68IAtlD1hWAGn5pz0cJBmNvOX1V9yKMOA/H3g7nwcxN/bJNw+AgGfo/YLBL823lr0c3W4GDX8Ah4B8sgWhnVVikhNEYLTmJujW+KUdaiiUgNMcDlkUOQkhlKNrmdSJ7KK8YVDkhtVcjXR6ORD9zLB2wUXwQA4pujSKrU+87Q+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718091628; c=relaxed/simple;
-	bh=HlfZJ9v/mqyCLSzwWiNdGntRYJrbKHRF7/AKWkRHpag=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=u1hjV5Z8h5F3duD5bzIQdZJdoG0csRoKhttCiYM+QUrnMO4zuih8DsQJgIPwnCG8zKaKX1zGK/b+yXUffGBRe5pPdRJcNB97ck0+0SPkmnMvH9sWBd40cXksmj1/WNwtbSLRE7YWOaFVupHwvPuhQ5GKicHouRAlPfrAgLhTuHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=atsoTnnH; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45B01Z9Q011633;
-	Tue, 11 Jun 2024 09:40:06 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	EyuQN2GhdTtBokTusmMg0L4ie6cxQ4QtcN24al+W9Wg=; b=atsoTnnHbJSfQ0OO
-	EdbWNgS2DEtTs8pNpKegXFE3ZU0MR3Qq0oFOfCBXkru9ZxtktlAwHS2DlbYDgJRt
-	nGDsX9f25D7cv8D4SgutLWvhCgbFu+mxCA3heXcsqrRlRsK7W/U1k+3GIpvvegvA
-	kEL0wYr2lSlyL+jhv0Ra8e578ThKNcs+HWMA4GQMNV/KegMOynhen8PI+c5HNGgU
-	pNavgNlXYJJf9dapMunp2A0QqGas4uBqQJPiwmaL9JJ6cXL9V/rJbE3m4YEzozq0
-	JQLQ75zPnk/D3BT+APRA208XzDPJTc8LI15EQNuFl6kfVSpo7PKRXQxE60qo3uoj
-	+c+AgQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ypbp3sfdu-1
+	s=arc-20240116; t=1718092003; c=relaxed/simple;
+	bh=KYXwkV7c/bPtlWVVNa3FqDeuCVfhvpj+GgJs/yjEk4M=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=r/Y3UIpGXcp6ieRWCfPl6Bu4S4QZH3uUU0c+Q5M7FXEi+q0Yb71E2M0hiBD/16EvMogf2n6EMgjMxL1Ca2QuWd04mqJ7YuLy/LRkwR1xIuhW/1PGv9E7Ce1xWJ/GDGH0ndQOntJyyfpnlJqHaKVOzyFbrVjAdt/uHVkVQYpk60k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=phl5OF5p; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45B2sEZp004782;
+	Tue, 11 Jun 2024 07:46:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=/oIEzahvZHJr/HDCqTTDLf
+	ktPUFuY2YJdqN+Q9hmrmQ=; b=phl5OF5pWHYtpu5yFa0hh4cdXyaI0sc2DKXS2j
+	U008w7i5ejmYh3vYV5msHX4IKHy/2ONry19c6xQp+BqOvlRu4ATd0tHfo4OVDjOV
+	JzfCu5URe4JGjGrko3vuZbDpFwBqKAMPxVhBFedc0ipnfSPkiEpFCsUOK1Eeb9K3
+	z3IE17vM4yWeUXL04+Gkrn1LXnIAQ2R0LGzi4yfS0z+UF7YSG+2uJkMbaofk09QA
+	QkRna71ZAIEXjepzkwgtPSF0xMXZiggyPnxKC6qBU95uARIEwmV4a+RKykcbwjR3
+	snlGEaAI+hP48FfPho3dbk2k76hsXsY8RHpwEd4l+uPzDocw==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ymd0ee941-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 11 Jun 2024 09:40:05 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 8BA6040047;
-	Tue, 11 Jun 2024 09:40:01 +0200 (CEST)
-Received: from Webmail-eu.st.com (eqndag1node6.st.com [10.75.129.135])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BDEA220F579;
-	Tue, 11 Jun 2024 09:39:12 +0200 (CEST)
-Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE6.st.com
- (10.75.129.135) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 11 Jun
- 2024 09:39:12 +0200
-Received: from localhost (10.48.86.121) by SAFDAG1NODE1.st.com (10.75.90.17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 11 Jun
- 2024 09:39:12 +0200
-From: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
+	Tue, 11 Jun 2024 07:46:25 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45B7kOYg017491
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Jun 2024 07:46:24 GMT
+Received: from hu-mohs-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 11 Jun 2024 00:46:19 -0700
+From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami
+	<bgoswami@quicinc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+	<broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <op-tee@lists.trustedfirmware.org>, <devicetree@vger.kernel.org>,
-        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Subject: [PATCH v7 5/5] remoteproc: stm32: Add support of an OP-TEE TA to load the firmware
-Date: Tue, 11 Jun 2024 09:39:04 +0200
-Message-ID: <20240611073904.475019-6-arnaud.pouliquen@foss.st.com>
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela
+	<perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>
+CC: <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_rohkumar@quicinc.com>,
+        <quic_pkumpatl@quicinc.com>,
+        Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+Subject: [PATCH v6 0/7] ASoC: codecs: wcd937x: add wcd937x audio codec support
+Date: Tue, 11 Jun 2024 13:15:50 +0530
+Message-ID: <20240611074557.604250-1-quic_mohs@quicinc.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240611073904.475019-1-arnaud.pouliquen@foss.st.com>
-References: <20240611073904.475019-1-arnaud.pouliquen@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,146 +83,94 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: SAFCAS1NODE1.st.com (10.75.90.11) To SAFDAG1NODE1.st.com
- (10.75.90.17)
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: _TGTFeKk33Ej8NXuWmF1PDBdaobimq5p
+X-Proofpoint-ORIG-GUID: _TGTFeKk33Ej8NXuWmF1PDBdaobimq5p
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
  definitions=2024-06-11_03,2024-06-11_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=622
+ lowpriorityscore=15 priorityscore=1501 malwarescore=0 suspectscore=0
+ adultscore=0 spamscore=0 mlxscore=0 clxscore=1015 bulkscore=15
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406110058
 
-The new TEE remoteproc device is used to manage remote firmware in a
-secure, trusted context. The 'st,stm32mp1-m4-tee' compatibility is
-introduced to delegate the loading of the firmware to the trusted
-execution context. In such cases, the firmware should be signed and
-adhere to the image format defined by the TEE.
+This patchset adds support for Qualcomm WCD9370/WCD9375 codec.
 
-Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
----
-Update from V5
-- replace find_loaded_rsc_table by  find_loaded_rsc_table ops.
----
----
- drivers/remoteproc/stm32_rproc.c | 63 ++++++++++++++++++++++++++++++--
- 1 file changed, 60 insertions(+), 3 deletions(-)
+Qualcomm WCD9370/WCD9375 Codec is a standalone Hi-Fi audio codec IC
+connected over SoundWire. This device has two SoundWire devices, RX and
+TX respectively supporting 3 x ADCs, ClassH, Ear, Aux PA, 2xHPH,
+6 DMICs and MBHC.
 
-diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm32_rproc.c
-index 8cd838df4e92..c1262e1ccc96 100644
---- a/drivers/remoteproc/stm32_rproc.c
-+++ b/drivers/remoteproc/stm32_rproc.c
-@@ -20,6 +20,7 @@
- #include <linux/remoteproc.h>
- #include <linux/reset.h>
- #include <linux/slab.h>
-+#include <linux/tee_remoteproc.h>
- #include <linux/workqueue.h>
+For codec driver to be functional it would need both tx and rx Soundwire devices
+to be up and this is taken care by using device component framework and device-links
+are used to ensure proper pm dependencies. Ex tx does not enter suspend
+before rx or codec is suspended.
+
+This patchset along with other SoundWire patches on the list
+have been tested on QCM6490 IDP device.
+
+Changes since v5:
+ - Remove the string compare in MIC BIAS widget settings as suggested by Srinivas Kandagatla
+ - Fixed Unbalanced pm_runtime_enable! in wcd937x-sdw soundwire slave.
+
+Changes since v4:
+ - Removed volatile/read-only registers from defaults list
+ - Added wcd939x_volatile_register() with only volatile registers
+ - Added a wcd939x_readable_register() with read-only and read-write registers, so cache does it's job
+ - Fixed Spurious events for mixer controls and validated with mixer selftest tool
+ - Used TLV instead of enum for ear_pa_gain mixer control
+ - Used enum constraints instead of OneOf in dt-binding patch
+ - Added vdd-px supply property as non optional in dt-binding patch
+ - Reworked and done driver cleanup
  
- #include "remoteproc_internal.h"
-@@ -257,6 +258,19 @@ static int stm32_rproc_release(struct rproc *rproc)
- 	return 0;
- }
+Changes since v3:
+ - Fixed dt binding check errors.
+ - Added constraints on values in v4-0001 binding patch as suggested by Krzysztof
+ - Change the patch sequence soundwire driver first then codec driver
+ - Added missing .remove soundwire driver function
+ - Reworked and done driver cleanup
+
+Changes since v2:
+ - Used common qcom,wcd93xx-common.yaml. removed duplicate properties.
+ - Merged bindings patches "v2-0001" and "v2-0003" in single patch for easy review.
+ - Fixed dt binding check errors.
+ - Added missing "qcom,wcd9375-codec" in v3-0001 dt binding patch.
+ - Added constraints on values in v3-0001 binding patch as suggested by Krzysztof
+ - Fix the typo mistake in v2 cover letter
  
-+static int stm32_rproc_tee_stop(struct rproc *rproc)
-+{
-+	int err;
-+
-+	stm32_rproc_request_shutdown(rproc);
-+
-+	err = tee_rproc_stop(rproc);
-+	if (err)
-+		return err;
-+
-+	return stm32_rproc_release(rproc);
-+}
-+
- static int stm32_rproc_prepare(struct rproc *rproc)
- {
- 	struct device *dev = rproc->dev.parent;
-@@ -693,8 +707,20 @@ static const struct rproc_ops st_rproc_ops = {
- 	.get_boot_addr	= rproc_elf_get_boot_addr,
- };
- 
-+static const struct rproc_ops st_rproc_tee_ops = {
-+	.prepare	= stm32_rproc_prepare,
-+	.start		= tee_rproc_start,
-+	.stop		= stm32_rproc_tee_stop,
-+	.kick		= stm32_rproc_kick,
-+	.load		= tee_rproc_load_fw,
-+	.parse_fw	= tee_rproc_parse_fw,
-+	.find_loaded_rsc_table = tee_rproc_find_loaded_rsc_table,
-+
-+};
-+
- static const struct of_device_id stm32_rproc_match[] = {
- 	{ .compatible = "st,stm32mp1-m4" },
-+	{ .compatible = "st,stm32mp1-m4-tee" },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, stm32_rproc_match);
-@@ -853,17 +879,42 @@ static int stm32_rproc_probe(struct platform_device *pdev)
- 	struct device *dev = &pdev->dev;
- 	struct stm32_rproc *ddata;
- 	struct device_node *np = dev->of_node;
-+	struct tee_rproc *trproc = NULL;
- 	struct rproc *rproc;
- 	unsigned int state;
-+	u32 proc_id;
- 	int ret;
- 
- 	ret = dma_coerce_mask_and_coherent(dev, DMA_BIT_MASK(32));
- 	if (ret)
- 		return ret;
- 
--	rproc = devm_rproc_alloc(dev, np->name, &st_rproc_ops, NULL, sizeof(*ddata));
--	if (!rproc)
--		return -ENOMEM;
-+	if (of_device_is_compatible(np, "st,stm32mp1-m4-tee")) {
-+		/*
-+		 * Delegate the firmware management to the secure context.
-+		 * The firmware loaded has to be signed.
-+		 */
-+		ret = of_property_read_u32(np, "st,proc-id", &proc_id);
-+		if (ret) {
-+			dev_err(dev, "failed to read st,rproc-id property\n");
-+			return ret;
-+		}
-+
-+		rproc = devm_rproc_alloc(dev, np->name, &st_rproc_tee_ops, NULL, sizeof(*ddata));
-+		if (!rproc)
-+			return -ENOMEM;
-+
-+		trproc = tee_rproc_register(dev, rproc, proc_id);
-+		if (IS_ERR(trproc)) {
-+			dev_err_probe(dev, PTR_ERR(trproc),
-+				      "signed firmware not supported by TEE\n");
-+			return PTR_ERR(trproc);
-+		}
-+	} else {
-+		rproc = devm_rproc_alloc(dev, np->name, &st_rproc_ops, NULL, sizeof(*ddata));
-+		if (!rproc)
-+			return -ENOMEM;
-+	}
- 
- 	ddata = rproc->priv;
- 
-@@ -915,6 +966,9 @@ static int stm32_rproc_probe(struct platform_device *pdev)
- 		dev_pm_clear_wake_irq(dev);
- 		device_init_wakeup(dev, false);
- 	}
-+	if (trproc)
-+		tee_rproc_unregister(trproc);
-+
- 	return ret;
- }
- 
-@@ -935,6 +989,9 @@ static void stm32_rproc_remove(struct platform_device *pdev)
- 		dev_pm_clear_wake_irq(dev);
- 		device_init_wakeup(dev, false);
- 	}
-+	if (rproc->tee_interface)
-+		tee_rproc_unregister(rproc->tee_interface);
-+
- }
- 
- static int stm32_rproc_suspend(struct device *dev)
+Changes since v1:
+ - Split the patch per driver for easier review as suggested by Krzysztof
+ - Used devm_gpiod_get api to get reset gpio as suggested by Krzysztof
+
+Prasad Kumpatla (7):
+  ASoC: dt-bindings: document wcd937x Audio Codec
+  ASoC: codecs: wcd937x-sdw: add SoundWire driver
+  ASoC: codecs: wcd937x: add wcd937x codec driver
+  ASoC: codecs: wcd937x: add basic controls
+  ASoC: codecs: wcd937x: add playback dapm widgets
+  ASoC: codecs: wcd937x: add capture dapm widgets
+  ASoC: codecs: wcd937x: add audio routing and Kconfig
+
+ .../bindings/sound/qcom,wcd937x-sdw.yaml      |   91 +
+ .../bindings/sound/qcom,wcd937x.yaml          |   82 +
+ sound/soc/codecs/Kconfig                      |   20 +
+ sound/soc/codecs/Makefile                     |    7 +
+ sound/soc/codecs/wcd937x-sdw.c                | 1136 +++++++
+ sound/soc/codecs/wcd937x.c                    | 3011 +++++++++++++++++
+ sound/soc/codecs/wcd937x.h                    |  653 ++++
+ 7 files changed, 5000 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd937x.yaml
+ create mode 100644 sound/soc/codecs/wcd937x-sdw.c
+ create mode 100644 sound/soc/codecs/wcd937x.c
+ create mode 100644 sound/soc/codecs/wcd937x.h
+
+
+base-commit: d35b2284e966c0bef3e2182a5c5ea02177dd32e4
 -- 
 2.25.1
 
