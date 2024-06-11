@@ -1,145 +1,117 @@
-Return-Path: <devicetree+bounces-74592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B3FB903B81
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 14:07:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAE3D903B94
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 14:12:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86989284A04
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:07:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 666BDB215A1
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:12:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF72A17CA11;
-	Tue, 11 Jun 2024 12:06:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DeJj4q5+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6F18179202;
+	Tue, 11 Jun 2024 12:12:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AECB017CA0B;
-	Tue, 11 Jun 2024 12:06:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE367481B4
+	for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 12:12:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718107608; cv=none; b=t11j3Xp/MslrMosrEnAr+Z5Rw+ApaxK7f3NmjOIyHtJ3Gi1A9nOVG5zAfpUZlLCxP07MFS0ZkBcDGe0YduLUiPOvig+LdklU2jMCs49fT7LtONQabMIYYzIW8fJOV1D2veBLBLb1iQqYBRW4eTyjP9X2dGgHjdlVGsT8UXXxd4s=
+	t=1718107935; cv=none; b=hgaHKN9NKp1GuX3Eh9WWxVWjAkL7MhsvJJlmjfScfybpIG/brCvPgZ9Fd1YMTBdPEPpHYuayLMS85EkOWIcgaLqJljO00DVKfmV2AKwISXoFmQWxkJQVYuEFJ76mo7MN+dL7WD32zjmccEMad8j3X4X3lq1L59h3wU74Fl6RmEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718107608; c=relaxed/simple;
-	bh=izbQACBXKg7/xAfr+T6NfWco5xbmu+bfnAsIHYpOdVw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iRH+V9CO0MF6s1QgUf9BzcOyx0gUv/7i4gtViyYRB1pJ3kDdpaHSbG/i1d+yeWE7O54UT98HnMkmVnzJMIQVzA4JiPU6pitqfSiasT2gq5/XTLT7V9NLa0/zx3LNHTXjt53LtOYj09/g59qQaKGE7HHITb0BZ7HpeuDdheuc+Ho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DeJj4q5+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2ACB9C2BD10;
-	Tue, 11 Jun 2024 12:06:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718107608;
-	bh=izbQACBXKg7/xAfr+T6NfWco5xbmu+bfnAsIHYpOdVw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=DeJj4q5++zj+R3KhmhuzK4d1y38/q9RlXNvB80U8sWohX93yRvAYBbRWeNJI+hEkm
-	 k+6zKhoYuXFyb07P2kL/gMmg/FK9/y7H81SPPXOQI54Ebtv+gaujOBYPQ2BRaVYtr9
-	 4lnDhr8IOcynWAd4LHkUKBtKY+YHivapA0KcI4qKSTAzc4SDzmPp4RqbTJTVrp/i06
-	 yeFezpNqoJVDv03VNIjOBZEqJZ7lwd6ZgUNgF0gsfzovWKsFQcHGsAyw1jhVsfafjZ
-	 Lbe7woGXDn9ZOOtxQ1qkBeigUZLfV/hyl1O4hYcRLn41/8zOCV4apxu/JPqpRIYjBJ
-	 hgZeTXX2xJnaA==
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-579fa270e53so1420336a12.3;
-        Tue, 11 Jun 2024 05:06:48 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXbSviWFWJfPK0DRPTFHzrDVYAa3DrAB+bk4EHedGoObZXKD5al0wKx3VdNcoOsDV8TiJYo0+vNS/vq16CxTfUmQ8Aq+fgLttN9a9jPrZg1YLEL69jT3e1uHJqIua+Qvj7o8u8GlbMKETX0h+jiOy4GFoP+l1oeshbiVH5ZvqyV7MMP/nGwg05F4+wKwTc8e517Su8NUQiRLJAHm03R9akMPEDcrw==
-X-Gm-Message-State: AOJu0Yyarp9ksieeZnbCbAf8duz7DQZehWSw1BG4/KCYm81xFAJ28x5t
-	LAISqQwnKksuLLvctj4XvVfxpjWde9lbBxVQbiokmPBOhy4b+lwjPaAGtRxza8BQ2Vzy29ap6DO
-	XWWvu83SAU9GcwL+6oI/QejE27CE=
-X-Google-Smtp-Source: AGHT+IFFPTTll7ACEEwwlIU5pUww8R0bMpeHE5EPA9sRicSO1H8r8Hj10JvtLT4RCL9oaDh0AQArdk5Tw1koxKQr8oM=
-X-Received: by 2002:a17:906:b810:b0:a6f:1f66:8335 with SMTP id
- a640c23a62f3a-a6f1f66841fmr408155266b.4.1718107606517; Tue, 11 Jun 2024
- 05:06:46 -0700 (PDT)
+	s=arc-20240116; t=1718107935; c=relaxed/simple;
+	bh=cp7RUYWrEwqgPdEshrdw2M2O1qmUD8UF335UOEPMFiU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=eQ41GFe4xcOGwxw0dlzGlZ74UyliqLMS/Sh+a8fTH/srgFJspSJZiRhqtQ4WyDaPKwTL28Y+ugJqr10l5MhFsbRVvGpcKCVhl1zxe4VWXCLmYL+ri3H3o3HcNU69t8LawnBcuPnf2S7Q77rhtIXNabUsn4aCQfSXS3gxV4bPPE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
+Received: from secure.fukaumi.org ([10.0.0.2])
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 45BC89dK028411;
+	Tue, 11 Jun 2024 21:08:09 +0900
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        kever.yang@rock-chips.com, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, FUKAUMI Naoki <naoki@radxa.com>
+Subject: [PATCH] Revert "arm64: dts: rockchip: remove redundant cd-gpios from rk3588 sdmmc nodes"
+Date: Tue, 11 Jun 2024 21:06:44 +0900
+Message-ID: <20240611120645.457-1-naoki@radxa.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240609-xtheadvector-v1-0-3fe591d7f109@rivosinc.com> <20240609-xtheadvector-v1-1-3fe591d7f109@rivosinc.com>
-In-Reply-To: <20240609-xtheadvector-v1-1-3fe591d7f109@rivosinc.com>
-From: Guo Ren <guoren@kernel.org>
-Date: Tue, 11 Jun 2024 20:06:34 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTTVu4ZQt+gK7pVYEDVG23Sic=jswkVvX4To=VAD0TMzxw@mail.gmail.com>
-Message-ID: <CAJF2gTTVu4ZQt+gK7pVYEDVG23Sic=jswkVvX4To=VAD0TMzxw@mail.gmail.com>
-Subject: Re: [PATCH 01/13] dt-bindings: riscv: Add xtheadvector ISA extension description
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, Evan Green <evan@rivosinc.com>, 
-	Andy Chiu <andy.chiu@sifive.com>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-sunxi@lists.linux.dev, linux-doc@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jun 10, 2024 at 12:45=E2=80=AFPM Charlie Jenkins <charlie@rivosinc.=
-com> wrote:
->
-> The xtheadvector ISA extension is described on the T-Head extension spec
-> Github page [1] at commit 95358cb2cca9.
->
-> Link: https://github.com/T-head-Semi/thead-extension-spec/blob/95358cb2cc=
-a9489361c61d335e03d3134b14133f/xtheadvector.adoc [1]
->
-> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  Documentation/devicetree/bindings/riscv/extensions.yaml | 10 ++++++++++
->  1 file changed, 10 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
-cumentation/devicetree/bindings/riscv/extensions.yaml
-> index 468c646247aa..99d2a9e8c52d 100644
-> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> @@ -477,6 +477,10 @@ properties:
->              latency, as ratified in commit 56ed795 ("Update
->              riscv-crypto-spec-vector.adoc") of riscv-crypto.
->
-> +        # vendor extensions, each extension sorted alphanumerically unde=
-r the
-> +        # vendor they belong to. Vendors are sorted alphanumerically as =
-well.
-> +
-> +        # Andes
->          - const: xandespmu
->            description:
->              The Andes Technology performance monitor extension for count=
-er overflow
-> @@ -484,5 +488,11 @@ properties:
->              Registers in the AX45MP datasheet.
->              https://www.andestech.com/wp-content/uploads/AX45MP-1C-Rev.-=
-5.0.0-Datasheet.pdf
->
-> +        # T-HEAD
-> +        - const: xtheadvector
-> +          description:
-> +            The T-HEAD specific 0.7.1 vector implementation as written i=
-n
-> +            https://github.com/T-head-Semi/thead-extension-spec/blob/953=
-58cb2cca9489361c61d335e03d3134b14133f/xtheadvector.adoc.
-URL changed
-https://github.com/XUANTIE-RV/thead-extension-spec/blob/95358cb2cca9489361c=
-61d335e03d3134b14133f/xtheadvector.adoc
+This reverts commit d859ad305ed19d9a77d8c8ecd22459b73da36ba6.
 
-Others, LGTM.
+inserting and removing microSD card is not detected since this commit.
+tested on rock-5a and rock-5b.
 
-> +
->  additionalProperties: true
->  ...
->
-> --
-> 2.44.0
->
+Fixes: d859ad305ed1 ("arm64: dts: rockchip: remove redundant cd-gpios from rk3588 sdmmc nodes")
 
+Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts | 1 +
+ arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts     | 1 +
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts         | 1 +
+ arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts        | 1 +
+ 4 files changed, 4 insertions(+)
 
---=20
-Best Regards
- Guo Ren
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+index 1a604429fb26..e74871491ef5 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+@@ -444,6 +444,7 @@ &sdhci {
+ &sdmmc {
+ 	bus-width = <4>;
+ 	cap-sd-highspeed;
++	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+ 	disable-wp;
+ 	max-frequency = <150000000>;
+ 	no-sdio;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
+index b4f22d95ac0e..e80caa36f8e4 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
+@@ -435,6 +435,7 @@ &sdhci {
+ &sdmmc {
+ 	bus-width = <4>;
+ 	cap-sd-highspeed;
++	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+ 	disable-wp;
+ 	max-frequency = <150000000>;
+ 	no-sdio;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+index 4e2bf4eaef2b..df845929b084 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+@@ -390,6 +390,7 @@ &sdmmc {
+ 	bus-width = <4>;
+ 	cap-mmc-highspeed;
+ 	cap-sd-highspeed;
++	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+ 	disable-wp;
+ 	sd-uhs-sdr104;
+ 	vmmc-supply = <&vcc_3v3_s3>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+index 8e2a07612d17..b070955627be 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+@@ -366,6 +366,7 @@ &sdmmc {
+ 	bus-width = <4>;
+ 	cap-mmc-highspeed;
+ 	cap-sd-highspeed;
++	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+ 	disable-wp;
+ 	max-frequency = <150000000>;
+ 	no-sdio;
+-- 
+2.43.0
+
 
