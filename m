@@ -1,124 +1,199 @@
-Return-Path: <devicetree+bounces-74433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF57F9033D4
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 09:36:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DCAF9033EF
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 09:40:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6455F29028F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 07:36:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F2BE1C228AE
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 07:40:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A06517276D;
-	Tue, 11 Jun 2024 07:36:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E189172BB6;
+	Tue, 11 Jun 2024 07:40:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aKd5cXl5"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="ktY96qGx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BD98171E7C;
-	Tue, 11 Jun 2024 07:36:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8981D172BAD;
+	Tue, 11 Jun 2024 07:40:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718091366; cv=none; b=CJlsyWksYazfmxLVdX1XbRMfj9/fxOCh2gIKK0ZqnYwKr3Bim4b4XnOIuKcTlD0mTDMQUORTs3L/zfw4aaIkbSkY68Y3xQk0BYsU3yTbZko5FkQWB+HDF5X9/2072///T8MEXVRSO7qeAJ1rzK7PlvKiOsaS+0jP7+ak/wqBQkA=
+	t=1718091627; cv=none; b=nAIYhttfYG+tJbGKiA3EuFVk3o5QlxJ5LjWH6kINMiIcdCOCdw+XXzXXyk6+4N9Huqt8tB8KW6baEm3rd7LFDgfGuxRvlgERDq4gBTz9Wiim3Uv6lEi8n2htRMCCH4huc12w/p3vxEQVH7cNzqIiu6qg85oIX/w14rdXXJ5Zrkg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718091366; c=relaxed/simple;
-	bh=h5lWjlmg4j2trX70zrGXvV0gKEBmsyN3kR6SWh2/Xik=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XDqM3V/qdOkrF0Di58BDsibAY8El4SjYBt3vmwwcog96ktcJ0fwmfRkNXpqYswZ7Opykj215M1OKK+JAFcn4hoh0ZHQ47JLg76bIVutTU4yM2CqxIzt7BcelQBMy5oTlTFsXLc0JIIK/Fh/A7ajpP2/5NNkYsi8VHr3UqdP/6bs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aKd5cXl5; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718091364; x=1749627364;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=h5lWjlmg4j2trX70zrGXvV0gKEBmsyN3kR6SWh2/Xik=;
-  b=aKd5cXl58N/2m+3heoUmgZ6qN920lDq3wvuKJAaL7XaSVFPb9OAqZAnF
-   RXD1JqAAw6zN9QFmRLvfzP+dLubVxe4e/tSOGpoGalU98aNiY/b1r+Vsm
-   w0U6baCB+ois+1l2KnWSZATmzlYWOek6d8UUxwGG1FQqRrS+CpyYVU5Ra
-   bFnx6bNva/tZ4utYa6C/ft+7ZnIoTzz/YYUzhBvYjtNst2x9YVJtWGlVX
-   Ze4zD+kGXhFRpLUQTS2OUnMUqsNGzpILJU05KwxR53fGdl+kWzzB8eoUO
-   7gn1Jz/4B57qRIkCQkrF/diSAPec1gORJycYoacHwIXYILogSPxNczQNg
-   w==;
-X-CSE-ConnectionGUID: qTOGRrSLSpKA3Cz0JchD2g==
-X-CSE-MsgGUID: bwHUADkWTjulqxbyxbgS3Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="25448850"
-X-IronPort-AV: E=Sophos;i="6.08,229,1712646000"; 
-   d="scan'208";a="25448850"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2024 00:36:04 -0700
-X-CSE-ConnectionGUID: WFtqwmd2SqGqXWeXlVpBrQ==
-X-CSE-MsgGUID: fGQrY9XXROaEisoh+KQgPw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,229,1712646000"; 
-   d="scan'208";a="44282695"
-Received: from lkp-server01.sh.intel.com (HELO 628d7d8b9fc6) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 11 Jun 2024 00:36:00 -0700
-Received: from kbuild by 628d7d8b9fc6 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sGw2v-0000Bd-2E;
-	Tue, 11 Jun 2024 07:35:57 +0000
-Date: Tue, 11 Jun 2024 15:35:10 +0800
-From: kernel test robot <lkp@intel.com>
-To: Beleswar Padhi <b-padhi@ti.com>, nm@ti.com, vigneshr@ti.com
-Cc: oe-kbuild-all@lists.linux.dev, kristo@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, vaishnav.a@ti.com, j-choudhary@ti.com,
-	u-kumar1@ti.com
-Subject: Re: [PATCH 1/3] arm64: dts: ti: Add R5F and C7x remote processor
- nodes
-Message-ID: <202406111537.bNPc0hYx-lkp@intel.com>
-References: <20240607090433.488454-2-b-padhi@ti.com>
+	s=arc-20240116; t=1718091627; c=relaxed/simple;
+	bh=qzje3sYU1WIKZiIPjc4DmoKB6qgaXBjYoxgEvqjOXWQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=oRaR44uKhH/l/la6kuVCQrojZGNuKCM9y2EwRu5jkDTEiYPuiznq/++U5BTN8POvlV8sWo0SzM07eLhwCfp68QqlsdBiZPuYjruTQE7WAXdF6ZxE3bKQV76B29WEXPQCXKmlooTXCMGtWLuckwBXZ1dDPaKLPrfN/rgc8R2JKRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=ktY96qGx; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45B7XuOI012243;
+	Tue, 11 Jun 2024 09:39:49 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=/hlZYM3ZTO4WkdaB5sfY6D
+	eqBGgAr0GqV3xBZuxJ8Zs=; b=ktY96qGxRB+tok22dAlKsu8H/Azpkn3LJDtKzP
+	STHOm2BKKxyJp3EiP6HzUjwhebwdcrIuQi7vLr5B1JZLlho3s752QRNuwvrBsigl
+	kkhvoTaW9Co6P3wBTnA+eEf+nwZ119MpVnWlwkUf7jLetLPfFsqHwjFutxGK1yh8
+	m4eSR3sdj2yqDDruCBCVGe8DtHGeZRaAzqW00qOdfWx525u+LdcY8FQWU1kpv/4a
+	mRqTu6IdcPCI6IIxqD4e4mXk1Mq1LeqgWvLwY43lfkBKQ8+GEy8M/off9SF2YReU
+	Xc7ZuSOlLix8nBhw58I1PHqG+JcaUAkLmYnONgr3mlI9E/Ew==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ypbp3sfb7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Jun 2024 09:39:49 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 181D640052;
+	Tue, 11 Jun 2024 09:39:41 +0200 (CEST)
+Received: from Webmail-eu.st.com (eqndag1node5.st.com [10.75.129.134])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2207620FA2A;
+	Tue, 11 Jun 2024 09:39:09 +0200 (CEST)
+Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE5.st.com
+ (10.75.129.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 11 Jun
+ 2024 09:39:08 +0200
+Received: from localhost (10.48.86.121) by SAFDAG1NODE1.st.com (10.75.90.17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 11 Jun
+ 2024 09:39:08 +0200
+From: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Jens Wiklander <jens.wiklander@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <op-tee@lists.trustedfirmware.org>, <devicetree@vger.kernel.org>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+Subject: [PATCH v7 0/5] Introduction of a remoteproc tee to load signed firmware
+Date: Tue, 11 Jun 2024 09:38:59 +0200
+Message-ID: <20240611073904.475019-1-arnaud.pouliquen@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240607090433.488454-2-b-padhi@ti.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SAFCAS1NODE1.st.com (10.75.90.11) To SAFDAG1NODE1.st.com
+ (10.75.90.17)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-11_03,2024-06-11_01,2024-05-17_01
 
-Hi Beleswar,
+Main updates from version V6:
+------------------------------------------
 
-kernel test robot noticed the following build warnings:
+- Fix kernel robot build report on in tee_rproc_find_loaded_rsc_table() inline
+  default definition.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.10-rc3 next-20240607]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Main updates from version V5[1][2]:
+------------------------------------------
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Beleswar-Padhi/arm64-dts-ti-Add-R5F-and-C7x-remote-processor-nodes/20240607-170843
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240607090433.488454-2-b-padhi%40ti.com
-patch subject: [PATCH 1/3] arm64: dts: ti: Add R5F and C7x remote processor nodes
-config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20240611/202406111537.bNPc0hYx-lkp@intel.com/config)
-compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project d7d2d4f53fc79b4b58e8d8d08151b577c3699d4a)
-dtschema version: 2024.6.dev1+g833054f
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240611/202406111537.bNPc0hYx-lkp@intel.com/reproduce)
+1) Rework resource table management
+  - Rework tee_rproc_parse_fw to temporary map the resource table address
+    to create a cached_table (similar to what is done in
+    rproc_elf_load_rsc_table()).
+  - Rename tee_rproc_get_loaded_rsc_table to tee_rproc_find_loaded_rsc_table
+  - Introduce rproc_pa_to_va() allowing to translate the resource table
+    physical address to virtual address based on remoteproc carveouts.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406111537.bNPc0hYx-lkp@intel.com/
+2) Merge the 2 "st,stm32-rproc.yaml" bindings patch in one
+   As the st,rproc-id" is linked to the introduction of the
+   "st,stm32mp1-m4-tee" compatible, merge following patches to address
+   Krzysztof concern.
+   - [PATCH v5 2/7] dt-bindings: remoteproc: Add compatibility for TEE support
+   - [PATCH v5 3/7] dt-bindings: remoteproc: Add processor identifier property
 
-dtcheck warnings: (new ones prefixed by >>)
->> arch/arm64/boot/dts/ti/k3-j722s-evm.dtb: dsp@7e000000: reg: [[0, 2113929216, 0, 2097152]] is too short
-   	from schema $id: http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
->> arch/arm64/boot/dts/ti/k3-j722s-evm.dtb: dsp@7e000000: reg-names: ['l2sram'] is too short
-   	from schema $id: http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
->> arch/arm64/boot/dts/ti/k3-j722s-evm.dtb: dsp@7e200000: reg: [[0, 2116026368, 0, 2097152]] is too short
-   	from schema $id: http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
->> arch/arm64/boot/dts/ti/k3-j722s-evm.dtb: dsp@7e200000: reg-names: ['l2sram'] is too short
-   	from schema $id: http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
+More details on updates are listed in commits messages.
 
+[1] https://lore.kernel.org/lkml/Zlil4YSjHxb0FRgf@p14s/T/
+[2] https://lore.kernel.org/lkml/20240521122458.3517054-1-arnaud.pouliquen@foss.st.com/
+
+base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
+
+Description of the feature:
+--------------------------
+This series proposes the implementation of a remoteproc tee driver to
+communicate with a TEE trusted application responsible for authenticating
+and loading the remoteproc firmware image in an Arm secure context.
+
+1) Principle:
+
+The remoteproc tee driver provides services to communicate with the OP-TEE
+trusted application running on the Trusted Execution Context (TEE).
+The trusted application in TEE manages the remote processor lifecycle:
+
+- authenticating and loading firmware images,
+- isolating and securing the remote processor memories,
+- supporting multi-firmware (e.g., TF-M + Zephyr on a Cortex-M33),
+- managing the start and stop of the firmware by the TEE.
+
+2) Format of the signed image:
+
+Refer to:
+https://github.com/OP-TEE/optee_os/blob/master/ta/remoteproc/src/remoteproc_core.c#L18-L57
+
+3) OP-TEE trusted application API:
+
+Refer to:
+https://github.com/OP-TEE/optee_os/blob/master/ta/remoteproc/include/ta_remoteproc.h
+
+4) OP-TEE signature script
+
+Refer to:
+https://github.com/OP-TEE/optee_os/blob/master/scripts/sign_rproc_fw.py
+
+Example of usage:
+sign_rproc_fw.py --in <fw1.elf> --in <fw2.elf> --out <signed_fw.sign> --key ${OP-TEE_PATH}/keys/default.pem
+
+
+5) Impact on User space Application
+
+No sysfs impact.the user only needs to provide the signed firmware image
+instead of the ELF image.
+
+
+For more information about the implementation, a presentation is available here
+(note that the format of the signed image has evolved between the presentation
+and the integration in OP-TEE).
+
+https://resources.linaro.org/en/resource/6c5bGvZwUAjX56fvxthxds
+
+Arnaud Pouliquen (5):
+  remoteproc: core: Introduce rproc_pa_to_va helper
+  remoteproc: Add TEE support
+  dt-bindings: remoteproc: Add compatibility for TEE support
+  remoteproc: stm32: Create sub-functions to request shutdown and
+    release
+  remoteproc: stm32: Add support of an OP-TEE TA to load the firmware
+
+ .../bindings/remoteproc/st,stm32-rproc.yaml   |  58 ++-
+ drivers/remoteproc/Kconfig                    |  10 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/remoteproc_core.c          |  74 ++-
+ drivers/remoteproc/stm32_rproc.c              | 147 ++++--
+ drivers/remoteproc/tee_remoteproc.c           | 451 ++++++++++++++++++
+ include/linux/remoteproc.h                    |   7 +
+ include/linux/tee_remoteproc.h                | 100 ++++
+ 8 files changed, 802 insertions(+), 46 deletions(-)
+ create mode 100644 drivers/remoteproc/tee_remoteproc.c
+ create mode 100644 include/linux/tee_remoteproc.h
+
+
+base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.25.1
+
 
