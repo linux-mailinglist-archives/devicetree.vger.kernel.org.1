@@ -1,155 +1,129 @@
-Return-Path: <devicetree+bounces-74449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35F5C90352E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 10:14:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D27890359D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 10:19:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DBC8BB248D9
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 08:14:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB82B1F21E36
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 08:19:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A37E117335E;
-	Tue, 11 Jun 2024 08:14:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CE58173321;
+	Tue, 11 Jun 2024 08:19:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p+5lu3N4"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="azgTWYMU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D8DA2AF11;
-	Tue, 11 Jun 2024 08:14:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B8DE18643;
+	Tue, 11 Jun 2024 08:19:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718093660; cv=none; b=uQNLUWOzW4cvlW+aOVZwg3ScCqu95AJkh62vr6i12CN2FiRLxuRSLQnWGVixYttB566MAcP039iCwoMyp9vjDNz8ARiPTZbkWlOHq06P/zS0423ArMZO03OOtaGEzSPP7z2f7KnQkSdiI8DE11oS/u3HrilUKtTz72+xg60pAos=
+	t=1718093968; cv=none; b=r22HsTu+FG+0VFg/FD5aDN1cgh+QoMcvYDmTQbFbkcpIGF2NOXz95s44OOxaqXNR3cUYh4gx6LWA1XPSPPboMWJHLB5zw7gyBu3V2E6lwxRV5LE9bufjm3nq3fLla2tyK449yxi3c2HVmyJweQj+30yZZgK0GPFX0st4f870c6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718093660; c=relaxed/simple;
-	bh=qKklO2/0IzUpWC2mnVvYrITg/AldogrbkQZ0Zp4CLew=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JD6kU1Rmhd68YYVtGB7gq8mqVvRYbNV+vTXOmQf+TucwJVpLmYz+OIQixk11Nc7xcCQoHi4MCXi1gx/H6ameu0cmccvSF64eUFCWD2tQV6TcffqGd7UbI1KIGlR+9Fv5fkYR/z3rNVpz2/OeIgFprRfMe3kGE9RJhJm7hubVhDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p+5lu3N4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F47EC2BD10;
-	Tue, 11 Jun 2024 08:14:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718093659;
-	bh=qKklO2/0IzUpWC2mnVvYrITg/AldogrbkQZ0Zp4CLew=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=p+5lu3N4W/oVf25Zb7MPEW8VaDrMztoBFQQ0O2BQuDCHj86dEKHcavAO9EcR7f67p
-	 P3DJRiZTHdSnLGlRaVEsFp1V3GcexyQzMMC/91Gak9jqERu8jN0G4eHPnyDylTi6JM
-	 Vq/PWL0Mp79l5kauUoMhaxZ3n4Mfbc9L4LfS9lyfuFG8RtrZ3knkLPPmUKlsFfkzxS
-	 RrINqRaeSc5E/HExpjv6OvcTrBgI4GUFlntsSMUzjU23lKk6NMMgzG+sM8bRLu/uYY
-	 TVsIRLfbvfqirXMabb7IcSrGvzyjfA3uUBsBUz5O5uHpgRWUu5a/L7aGOIDcje2E/C
-	 iNYcXZBK7mjcQ==
-Message-ID: <f669ccf9-8a69-4d2b-a8b1-f486d97413fe@kernel.org>
-Date: Tue, 11 Jun 2024 10:14:12 +0200
+	s=arc-20240116; t=1718093968; c=relaxed/simple;
+	bh=4CsqlWG3GWi6NQ7T5qx9u1MmnX3MRaWnL37ltfXOGk0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u4Y1YcGOrA2VZSm42CURZTXAYqh/qFzLz50IJZU2AnCwfZRYVb3LJTX+azWSFeVZzh8DKUsoZ6D73dvFtNEFK92uN1dQ991/olbD7VkxUgIxeJsw3jVwoNDeQCNWHEf5cmMasEmPgrA/al8WEQR83arP95G55IjyLYd1FVt1ejI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=azgTWYMU; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1718093968; x=1749629968;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=4CsqlWG3GWi6NQ7T5qx9u1MmnX3MRaWnL37ltfXOGk0=;
+  b=azgTWYMU1/fxCWycMwaYe2HApq+QgjUGX2wo7YZZUJxb8QE21T2yUdeD
+   ZHnXf4t9kOCAD0aBPWwNd+WLIdp6lcPeCOdj8cs7luM+slLoMWu37EgWR
+   OO6RQRFcy43RJS5fByoSKj7XtkJ57mLJweAgS8Ej+9mVX7dkXC4e+ekba
+   ZAcmSFeGTXk3ODfkgeFXndnh2bDTrd5oalQzbf31lwzERbKmN00T6Q2vJ
+   12JPEc38HO7fS9+kcnq6M2HNx44Y5gobZoEKY38cTjrIxrFtwhy+cNMpg
+   lDtAUTfO9wSKL3Motd7hwoTYsmQt5dimRJb97ZUTdj1jLmAtpF7GWVT6n
+   g==;
+X-CSE-ConnectionGUID: 6C+jZOUERjy6HPptJG9T6A==
+X-CSE-MsgGUID: ZeAVmCISQq+lmEDit4K9jA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="14915114"
+X-IronPort-AV: E=Sophos;i="6.08,229,1712646000"; 
+   d="scan'208";a="14915114"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2024 01:19:27 -0700
+X-CSE-ConnectionGUID: 6d1AAFPMT6+vCWnxuSctQw==
+X-CSE-MsgGUID: MbD3fdBFSRyeY0XO5oy+zg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,229,1712646000"; 
+   d="scan'208";a="43786868"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2024 01:19:24 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 68CFC11F9C0;
+	Tue, 11 Jun 2024 11:19:21 +0300 (EEST)
+Date: Tue, 11 Jun 2024 08:19:21 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] media: vgxy61: Add legacy compatible string
+Message-ID: <ZmgIiaqJy1tWL4Yz@kekkonen.localdomain>
+References: <20240610150815.228790-1-benjamin.mugnier@foss.st.com>
+ <20240610150815.228790-3-benjamin.mugnier@foss.st.com>
+ <b4de42ba-d884-44b1-9f0e-12f5818c6781@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: reset: brcm,bcm63138-pmb: convert to yaml
-To: Kanak Shilledar <kanakshilledar@gmail.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, William Zhang <william.zhang@broadcom.com>,
- Anand Gore <anand.gore@broadcom.com>, Kursad Oney
- <kursad.oney@broadcom.com>, Florian Fainelli
- <florian.fainelli@broadcom.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- Kanak Shilledar <kanakshilledar111@protonmail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240611035329.33648-2-kanakshilledar@gmail.com>
- <398ee3a7-513e-4dd6-8ff9-b7585f005d28@kernel.org>
- <CAGLn_=u9jnKL1Y=-+d2-A6BrO7xDZJS4VHtwO=mBHnww6qOaew@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <CAGLn_=u9jnKL1Y=-+d2-A6BrO7xDZJS4VHtwO=mBHnww6qOaew@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b4de42ba-d884-44b1-9f0e-12f5818c6781@kernel.org>
 
-On 11/06/2024 09:23, Kanak Shilledar wrote:
-> On Tue, Jun 11, 2024 at 12:28 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 11/06/2024 05:53, Kanak Shilledar wrote:
->>> Convert the Broadcom BCM63138 Processor Monitor Bus to newer DT
->>> schema. Created DT schema based on the .txt file which had `compatible`,
->>> `reg` and `"#reset-cells" as required properties.
->>> Added one line description which was missing in the original .txt file.
->>> Added Philipp Zabel as the maintainer (took from MAINTAINERS file).
->>
->> One of the necessary steps EVERYTIME you make conversion of some random
->> binding is to grep. git grep. You grep for stale paths and usage of
->> compatible in DTS. Sometimes you find nothing, sometimes you would find
->> something.
->>
->> `git grep bcm63138-pmb` gives you:
->> 1. stale path which you did not fix,
->> 2. duplicated schema...
+Hi Krzysztof,
+
+On Tue, Jun 11, 2024 at 08:47:25AM +0200, Krzysztof Kozlowski wrote:
+> On 10/06/2024 17:08, Benjamin Mugnier wrote:
+> > As the driver has been renamed from 'st-vgxy61' to 'vgxy61', its
+> > compatible string has been updated to reflect this change. Therefore old
+> > device trees will not work anymore.
+> > Add the old driver name as another compatible name to handle the
+> > retro compatibility.
+> > 
+> > Signed-off-by: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+> > ---
+> >  drivers/media/i2c/vgxy61.c | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/drivers/media/i2c/vgxy61.c b/drivers/media/i2c/vgxy61.c
+> > index 30378e962016..ca3b43608dad 100644
+> > --- a/drivers/media/i2c/vgxy61.c
+> > +++ b/drivers/media/i2c/vgxy61.c
+> > @@ -1867,6 +1867,11 @@ static void vgxy61_remove(struct i2c_client *client)
+> >  }
+> >  
+> >  static const struct of_device_id vgxy61_dt_ids[] = {
+> > +	{ .compatible = "st,vgxy61" },
+> > +	/*
+> > +	 * Previously the driver was named 'st-vgxy61' instead of simply
+> > +	 * 'vgxy61', keep it for retrocompatibility purposes.
 > 
-> There is `brcm,bcm63138-pmb` defined in "/power/brcm,bcm-pmb.yaml" and
-> "/reset/brcm,bcm63138-pmb.txt" but they both are for different purposes.
+> NAK.
 
-What do you mean by "different purposes"? It is the same device. You
-cannot have same device with same compatible and two different bindings.
-Testing also told you that: warnings.
+Is that because the comment says "driver" rather than "device"?
 
-> By stale path are you referring that I will need to convert
-> "/arm/bcm/brcm,bcm63138.txt"
-> to DT Schema as well?
+Please try to express clearer what you'd expect from the patch author.
 
-No, I mean each wrong/stale path needs to be fixed. E.g. dropped or
-updated, depending on the case.
+-- 
+Kind regards,
 
-Best regards,
-Krzysztof
-
+Sakari Ailus
 
