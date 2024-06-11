@@ -1,62 +1,57 @@
-Return-Path: <devicetree+bounces-74730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50909904358
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 20:16:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EF5D904361
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 20:17:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE6FAB25107
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 18:16:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96A3CB25C5F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 18:17:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD802249E5;
-	Tue, 11 Jun 2024 18:16:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E320605BA;
+	Tue, 11 Jun 2024 18:17:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pEPxnzB8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RYr3z6ib"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1CF274418;
-	Tue, 11 Jun 2024 18:16:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1578D376E9;
+	Tue, 11 Jun 2024 18:17:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718129789; cv=none; b=RtxiRcypHlQBDILSODBeNGxVRpJBx6dJ+QqRJOzllb605rd8pAnuo3UNrHuxAt3UVfTzpEVzL6xlY81KSNTgcFE8nru28nc1CKfwiG2KZQ/u6lX3yRaz50GMBJKE26bhZn6AklKchjAesvDpuEKcw2GoLCL8Uev83UMWAH5vkKw=
+	t=1718129842; cv=none; b=e2kbGfLdMWig3p63DlEQT3pkSWNYAJp+ktNVapEMO87yo13rqUqf5pqSD+yCdKg2r8nG/3egFBrai6Nq3B09g6BE03I0wDSqPNxKVWJJ7jQLs7n3tHRAGMe41A8FE66YHNwX7Jq+nZMg9eLNABj0GvBxdCdrkEIqEpQzDaun8To=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718129789; c=relaxed/simple;
-	bh=QhiccRUa8nUsNwUtkF0DHVHRaqAFjgzP5RrKB+6T1JY=;
+	s=arc-20240116; t=1718129842; c=relaxed/simple;
+	bh=vAq9v37lvJRm6xxE15oLaANy4ox3DXYXkORfdowFKus=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bQMvk29cuZ5pdYpRdxHQcNsniITSmJCuGViZluiWpsh8tDE3goO35BMvXwEaHaMsJOVeAhrDnYlJ39OwBvgpVqMNYNe6vCNnfIRLIoPwaEDmeHv7wfAJKku58HLqPzLc3SEKm/eM3cYTc2If0NpugLH9UQTqxwFfJljJeB2uy3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pEPxnzB8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08239C2BD10;
-	Tue, 11 Jun 2024 18:16:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oWAIMslFzgI/c+qMnM1ut0bMJL7p4P0sxcDulYXFBSwth3aBpiQ2mvUHmXHtnCDxLQJhzfAvFtXMtKDUZ7ugYWy+ybTDIam2/rG9FcgSfm5pI6ba6oLcrHnbK+Yg5Ab/VQRPpkFmVouHGCY71+7YDByDI4Tla6s5qS+lJwCLdyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RYr3z6ib; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A5B4C2BD10;
+	Tue, 11 Jun 2024 18:17:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718129789;
-	bh=QhiccRUa8nUsNwUtkF0DHVHRaqAFjgzP5RrKB+6T1JY=;
+	s=k20201202; t=1718129841;
+	bh=vAq9v37lvJRm6xxE15oLaANy4ox3DXYXkORfdowFKus=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pEPxnzB8t7dMfbQEPHmexKo0L4OWfieS9RXtZ4ZFc3/2fSzLcXqPQepAcvTrqtHLd
-	 swqvZEK56Eai0ZNq9HFFFks6VlBoARyn+FIZNySty+FPp2GocnCdVhAkdDnOqpDRQs
-	 wq1MUYKD6OWlM+vNeRH3hkV8OrzY7PU5ZVj/Ywnk0A2sbb0MsoC+LXX9uyoryiqRgg
-	 Z7HVuzfDTubzLDmHXjYRWFW5rqFEtNiHOB3Au83wdMtTIR7+7QxfqhxnmAGVN2GAp3
-	 A1lCO5FZvpfLxspUkn5zrF+iLAmcXC3F/AH7mhrHGwAAyu5UIKGM6C4/DfmLcDArhI
-	 NoX7FEHV+mhuA==
-Date: Tue, 11 Jun 2024 19:16:24 +0100
+	b=RYr3z6ibJlMpqOY/t9lhUTqyWLnfuPWDJ1FnE0nNAKGEh69zKJbuzrOYKCLqE8hYG
+	 6tSj61HesZYDtJBXVOL0UQrVpNsuEHliPeNTAbTdm4hA59v5sztfR/SuGlWIGSCy4p
+	 x8EBD2QIGbLQ8Iyefnsl1ZvwaAkmMX84XN5+yenphJIcv7jpAsNLKhXiujA+orPGUj
+	 zMan6XGOkvuPUUrohLIdK9V5YklJhuf//RwJdfFe21mU54dmcaYWtfS6bB1xXpCVm1
+	 RFHiTu0ucXGhr+p4658NFAUQCX+ut3nibak/XxT/uPeCVzEXa5LVEe8rwahOBAgi32
+	 xU5KWLuRU6Rcw==
+Date: Tue, 11 Jun 2024 19:17:18 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Valentin Caron <valentin.caron@foss.st.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: rtc: stm32: introduce new
- st,stm32mp25-rtc compatible
-Message-ID: <20240611-sample-remold-a75d6f6515d8@spud>
-References: <20240611161958.469209-1-valentin.caron@foss.st.com>
- <20240611161958.469209-2-valentin.caron@foss.st.com>
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: linux-iio@vger.kernel.org, jic23@kernel.org, denis.ciocca@st.com,
+	devicetree@vger.kernel.org, linus.walleij@linaro.org,
+	robh+dt@kernel.org
+Subject: Re: [PATCH v4 2/2] dt-bindings: iio: st-sensors: add LIS2DS12
+ accelerometer
+Message-ID: <20240611-reassign-eliminate-b05e4a302cfb@spud>
+References: <20240611160821.13941-1-kauschluss@disroot.org>
+ <20240611160821.13941-2-kauschluss@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,85 +59,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="KKwSS3olauYNtTau"
+	protocol="application/pgp-signature"; boundary="nu6bNi20vSq7UFgt"
 Content-Disposition: inline
-In-Reply-To: <20240611161958.469209-2-valentin.caron@foss.st.com>
+In-Reply-To: <20240611160821.13941-2-kauschluss@disroot.org>
 
 
---KKwSS3olauYNtTau
+--nu6bNi20vSq7UFgt
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jun 11, 2024 at 06:19:57PM +0200, Valentin Caron wrote:
-> Introduce new st,stm32mp25-rtc compatible. It is based on st,stm32mp1-rtc.
->=20
-> Difference is that stm32mp25 SoC implements a triple protection on RTC
-> registers:
-> - Secure bit based protection
-> - Privileged context based protection
-> - Compartment ID filtering based protection
-> This driver will now check theses configurations before probing to avoid
-> exceptions and fake reads on register.
->=20
-> Link: https://www.st.com/resource/en/reference_manual/rm0457-stm32mp25xx-=
-advanced-armbased-3264bit-mpus-stmicroelectronics.pdf#page=3D4081
-> Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
-> ---
->  Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml b/Do=
-cumentation/devicetree/bindings/rtc/st,stm32-rtc.yaml
-> index 4703083d1f11f..65a8a93ef5753 100644
-> --- a/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml
-> @@ -15,6 +15,7 @@ properties:
->        - st,stm32-rtc
->        - st,stm32h7-rtc
->        - st,stm32mp1-rtc
-> +      - st,stm32mp25-rtc
-> =20
->    reg:
->      maxItems: 1
-> @@ -90,7 +91,9 @@ allOf:
->        properties:
->          compatible:
->            contains:
-> -            const: st,stm32mp1-rtc
-> +            anyOf:
-> +              - const: st,stm32mp1-rtc
+On Tue, Jun 11, 2024 at 09:35:53PM +0530, Kaustabh Chakraborty wrote:
+> Add compatible for LIS2DS12 accelerometer by STMicroelectronics.
 
-anyOf:
-  - const: foo
-  - const: bar
-
-is just the same as using
-enum:
-  - foo
-  - bar
+I can see that! Your commit message should mention why this device
+is not compatible with existing variants.
 
 Thanks,
 Conor.
 
-> +              - const: st,stm32mp25-rtc
-> =20
->      then:
->        properties:
+>=20
+> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> ---
+>  Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/D=
+ocumentation/devicetree/bindings/iio/st,st-sensors.yaml
+> index fff7e3d83a02..71c1ee33a393 100644
+> --- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+> +++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+> @@ -26,6 +26,7 @@ properties:
+>            - st,lis2dw12
+>            - st,lis2hh12
+>            - st,lis2dh12-accel
+> +          - st,lis2ds12
+>            - st,lis302dl
+>            - st,lis331dl-accel
+>            - st,lis331dlh-accel
 > --=20
-> 2.25.1
+> 2.45.1
+>=20
 >=20
 
---KKwSS3olauYNtTau
+--nu6bNi20vSq7UFgt
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmiUeAAKCRB4tDGHoIJi
-0vaeAP40eEjU5fOjvpKKJDIRxVKhVBgtjG8rxLq1chsBTt6ukQEAoXjCusbWQHYQ
-5OMNChI7TBH/+N8h7CaL9XazCcw9CwY=
-=91pq
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmiUrQAKCRB4tDGHoIJi
+0qEqAQCVRcgvhVlMOSSsQ39vFTlnK/tiqhnsa3c2vFU6YIyU2gEAnojZRQ4tQsAU
+xWH5Vs5gt3fzWn0kWP8/aHMLBKLJVQE=
+=/Qza
 -----END PGP SIGNATURE-----
 
---KKwSS3olauYNtTau--
+--nu6bNi20vSq7UFgt--
 
