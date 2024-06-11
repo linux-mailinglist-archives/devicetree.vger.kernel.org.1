@@ -1,74 +1,60 @@
-Return-Path: <devicetree+bounces-74690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7FB09040DD
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 18:08:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FB5C9040EE
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 18:12:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3ADE71F2398B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 16:08:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 050811F22C6B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 16:12:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4014339FC6;
-	Tue, 11 Jun 2024 16:08:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDDBA3AC1F;
+	Tue, 11 Jun 2024 16:12:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZOnkZBxI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dl9FMEwg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41DFB383B2
-	for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 16:08:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A294511720;
+	Tue, 11 Jun 2024 16:12:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718122084; cv=none; b=JWso7WFH6J68qTAORWTq5or1HrxQjPOjcZTCpsONnoa8fKliqUOHzb9k9Y09GePcOTZZdY88APn9Vr9RizksSwG2JZRA5extsdlsFi6wOaSUedEkvxadlkbLfECbgK1WzCjJVhr9tgglDdVxHeJdqzCWbsBEIPwcbsAd8xdJRVk=
+	t=1718122370; cv=none; b=ii31TFzbyWjgMTdtwURBNJKQIg7XFpqS6HRoTP8DosREQCKKxNDT0xQWeHZTc45ntR4vsqcH5XlrkNhh3/ZrTA6XWU4tdQe5vOQinbRfsiSSfea21nlkjUH4A3Ih4mi/LVuhUobC1v2TG1U9NMoRMbr39WZdxl8uUHHVkM6IYDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718122084; c=relaxed/simple;
-	bh=OSxpykUCDOtz4FP2u13GeoHJw2xF6TOx7thtDiW8Q7M=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=acB0CSAgUzVQ2SDPd9XdXsaSgR9MH3XZqOSW7jU6Q9XfPPHwpgR7f3BP3Nyh7o/0Nk+8j7xM7bW0bD+nMX3BNQ9y7MgAwnLqoHBVIq/UDYYXAFnZ5cHwEH3HB8mLihJVo7tnuSoG//8WTIplW+U5tlcnz6zDTkNZap7OpGmCnmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZOnkZBxI; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-57c5c51cb89so1785822a12.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 09:08:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718122080; x=1718726880; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Usr3iQr9P44DbTK5za8+K7ebuiDZp91g0I8Srd02vj4=;
-        b=ZOnkZBxIBrIizyaYP9WQLL+f5hWy1BcBFw39Orbly/61pDYIVrcf+kp8AOXhRfVp4O
-         hn1gZu30D8643v1XiKCgwD8kveLVlmNgZNwxbuC7QRr4/m2OCTDJBN6TV50DUQVkxWw4
-         WogAretDDshWN1PzWgE6X/4CgLa7a9m/rAy17s1+IDG8B+wnsfNSjCH1HcLZGzjLmc4v
-         ab7R83h/RAILIdajwk3gYlO+RqxjNDP5GWl1L7d7bpgeTR6Rl3kOpcATHDqkbBvhAF9N
-         f81zszQGsdBU1sFxrS2bAEnHCtlZzl1mvoJ+tJkl4EqLGT5QFzArwXRZh4UEsYekL00S
-         YjWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718122080; x=1718726880;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Usr3iQr9P44DbTK5za8+K7ebuiDZp91g0I8Srd02vj4=;
-        b=ERkvKyZlv/GRu/+9U5SN1kbEbV+kmVXFveoS7Gy4ujdt5gtpa05XDn+KYFlOof96gO
-         CHYy3E1z1MnH2WKms74zaXCSL7WNFJ/qH8nqJezMpNqpK31je/4LSyFR3IUsThBf8rMH
-         qvfy5p579ntxQyHjTo0NeevAp5rkkj+9dU1F5XsT95uVLr6ibu+H3jo1Tthx19kMARWu
-         aQ64dnOgfsNN/eYGD8pGa88gRn4D5GZwi0umNf661KmpyeWlFkdNPOgbh5tELaD/yFOz
-         5LmN093qwkGnUkhdKLLn1u3DP++qWbsvWQ26m1b6u4sTutxPqW3hW4If84/S2Pzq8/fZ
-         JRCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXzb1RVmlL1zJBo6TJmeGhw4IRtpGyeq7teJ7FwtnW9ekKdisU7c28wPm3hAPPPjX7p9bOVL8f2RxxzlBhAbzwvkWpirUY5vFCMNw==
-X-Gm-Message-State: AOJu0YxTI5LRNGWYXbfgftypMrruTMaYu2Bkr7VGOhF5gHR+6yPptNUf
-	u+teyeU/ODfipAHhKp8RwBwzr+7cTda6r0IdT3WsRN1qoiuVASTAb68ECU0hwh0=
-X-Google-Smtp-Source: AGHT+IEowbwwQtXxbAT06y7Gg7FQMQ53Bw7eHa7p2QqiWVbkjUjQbUvUYPw++jPdElsPq62dNgJEBA==
-X-Received: by 2002:a50:d5da:0:b0:57c:6d9a:914e with SMTP id 4fb4d7f45d1cf-57c6d9a9263mr9092206a12.30.1718122080489;
-        Tue, 11 Jun 2024 09:08:00 -0700 (PDT)
-Received: from puffmais.c.googlers.com (94.189.141.34.bc.googleusercontent.com. [34.141.189.94])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57c8492fb96sm3503740a12.11.2024.06.11.09.08.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jun 2024 09:08:00 -0700 (PDT)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Tue, 11 Jun 2024 17:07:59 +0100
-Subject: [PATCH] arm64: dts: exynos: gs101: reorder properties as per
- guidelines
+	s=arc-20240116; t=1718122370; c=relaxed/simple;
+	bh=/2cQVTuJO9C88TSfeHS2I4PccXrdEUkcAQ3hBE1u/0I=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=cl6UAIuGVODn9kRI9KjNAX8pFqXSENyWTg6dogpBZVtnR7413kyX/La+/ZPUcKc+bn98B09HhrarqbgUQnzjUs87nARsvCNmBWKtMJ8JS9/WRFf+AfVeCw+QFZB7PxCOHn9yDr67+6twGlcshB8xLRqotS58BDnGlo5w1pyIxQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dl9FMEwg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 616BEC2BD10;
+	Tue, 11 Jun 2024 16:12:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718122370;
+	bh=/2cQVTuJO9C88TSfeHS2I4PccXrdEUkcAQ3hBE1u/0I=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=dl9FMEwg4HfQ3gszUr4kZTQ5Ou1hMo1t00S9dOq/3lsejxDOOfJVhZAIEFz5G5Tgc
+	 NiyL/JKm1HBYfuWdGXZHwRsLCFUD5AS37sLZ3FATgpiicNutxV57b90DNpiUQ6XGVx
+	 ldiM05vhdrGsVYAPjq/dgPldRrIqgWCEIS6Wz5zOD6v4n1awzHcnVqDJR0y+VPmC4L
+	 h75ksb/+bDmehXNvRcnBmF5PlfhAeENMOobcb87TJqQf2tS2X/IAY1t2fUQP67WtgU
+	 nkHntEJsdbqE7MUK5pB0CsaQR3dQbWRy8jN7Q6nLwQAHeDB0dGNmwxP0F9J7EpLG/s
+	 b3e0LzpziPSig==
+From: Mark Brown <broonie@kernel.org>
+To: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240607055725.38057-1-animeshagarwal28@gmail.com>
+References: <20240607055725.38057-1-animeshagarwal28@gmail.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: ak4554: Convert to dtschema
+Message-Id: <171812236787.201359.12608772770752770380.b4-ty@kernel.org>
+Date: Tue, 11 Jun 2024 17:12:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,188 +62,40 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240611-gs101-dts-cleanup-v1-1-877358cd6536@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAF52aGYC/x2MQQqAIBAAvxJ7TlDJpL4SHUS3WggTtyII/550G
- ZjDzAuMmZBhbF7IeBPTEauotgG/ubiioFAdtNSdNFKJlVVlOFn4HV28kpDaLn2waui9gdqljAs
- 9/3OaS/kABH6ev2MAAAA=
-To: Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-X-Mailer: b4 0.13.0
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14-dev-4c370
 
-* 'interrupts' & 'cpus' & 'clocks' are standard/common properties as
-  per the Devicetree Sources (DTS) Coding Style and therefore should be
-  sorted alphabetically within the standard/common section
-* vendor properties should be last
-* reg / ranges should be 2nd/3rd (after compatible)
-* status should be last
+On Fri, 07 Jun 2024 11:27:20 +0530, Animesh Agarwal wrote:
+> Convert the AK4554 sound codec bindings to DT schema.
+> 
+> 
 
-Do so.
+Applied to
 
-Note: I've left the cpus{} node untouched to keep the grouping of
-relatedd properties.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
----
- arch/arm64/boot/dts/exynos/google/gs101-oriole.dts |  2 +-
- arch/arm64/boot/dts/exynos/google/gs101.dtsi       | 22 +++++++++++-----------
- 2 files changed, 12 insertions(+), 12 deletions(-)
+Thanks!
 
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-index 5e8ffe065081..b10bde2ec716 100644
---- a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-+++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-@@ -131,9 +131,9 @@ &ufs_0_phy {
- };
- 
- &usbdrd31 {
--	status = "okay";
- 	vdd10-supply = <&reg_placeholder>;
- 	vdd33-supply = <&reg_placeholder>;
-+	status = "okay";
- };
- 
- &usbdrd31_dwc3 {
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-index a66e996666b8..eadb8822e6d4 100644
---- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-+++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-@@ -213,9 +213,9 @@ pmu-2 {
- 
- 	pmu-3 {
- 		compatible = "arm,dsu-pmu";
--		interrupts = <GIC_SPI 257 IRQ_TYPE_LEVEL_HIGH 0>;
- 		cpus = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>,
- 		       <&cpu4>, <&cpu5>, <&cpu6>, <&cpu7>;
-+		interrupts = <GIC_SPI 257 IRQ_TYPE_LEVEL_HIGH 0>;
- 	};
- 
- 	psci {
-@@ -288,6 +288,8 @@ timer@10050000 {
- 			compatible = "google,gs101-mct",
- 				     "samsung,exynos4210-mct";
- 			reg = <0x10050000 0x800>;
-+			clocks = <&ext_24_5m>, <&cmu_misc CLK_GOUT_MISC_MCT_PCLK>;
-+			clock-names = "fin_pll", "mct";
- 			interrupts = <GIC_SPI 753 IRQ_TYPE_LEVEL_HIGH 0>,
- 				     <GIC_SPI 754 IRQ_TYPE_LEVEL_HIGH 0>,
- 				     <GIC_SPI 755 IRQ_TYPE_LEVEL_HIGH 0>,
-@@ -300,17 +302,15 @@ timer@10050000 {
- 				     <GIC_SPI 762 IRQ_TYPE_LEVEL_HIGH 0>,
- 				     <GIC_SPI 763 IRQ_TYPE_LEVEL_HIGH 0>,
- 				     <GIC_SPI 764 IRQ_TYPE_LEVEL_HIGH 0>;
--			clocks = <&ext_24_5m>, <&cmu_misc CLK_GOUT_MISC_MCT_PCLK>;
--			clock-names = "fin_pll", "mct";
- 		};
- 
- 		watchdog_cl0: watchdog@10060000 {
- 			compatible = "google,gs101-wdt";
- 			reg = <0x10060000 0x100>;
--			interrupts = <GIC_SPI 765 IRQ_TYPE_LEVEL_HIGH 0>;
- 			clocks = <&cmu_misc CLK_GOUT_MISC_WDT_CLUSTER0_PCLK>,
- 				 <&ext_24_5m>;
- 			clock-names = "watchdog", "watchdog_src";
-+			interrupts = <GIC_SPI 765 IRQ_TYPE_LEVEL_HIGH 0>;
- 			samsung,syscon-phandle = <&pmu_system_controller>;
- 			samsung,cluster-index = <0>;
- 			status = "disabled";
-@@ -319,10 +319,10 @@ watchdog_cl0: watchdog@10060000 {
- 		watchdog_cl1: watchdog@10070000 {
- 			compatible = "google,gs101-wdt";
- 			reg = <0x10070000 0x100>;
--			interrupts = <GIC_SPI 766 IRQ_TYPE_LEVEL_HIGH 0>;
- 			clocks = <&cmu_misc CLK_GOUT_MISC_WDT_CLUSTER1_PCLK>,
- 				 <&ext_24_5m>;
- 			clock-names = "watchdog", "watchdog_src";
-+			interrupts = <GIC_SPI 766 IRQ_TYPE_LEVEL_HIGH 0>;
- 			samsung,syscon-phandle = <&pmu_system_controller>;
- 			samsung,cluster-index = <1>;
- 			status = "disabled";
-@@ -776,12 +776,12 @@ hsi2c_8: i2c@10970000 {
- 				compatible = "google,gs101-hsi2c",
- 					     "samsung,exynosautov9-hsi2c";
- 				reg = <0x10970000 0xc0>;
--				interrupts = <GIC_SPI 642 IRQ_TYPE_LEVEL_HIGH 0>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				clocks = <&cmu_peric0 CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_7>,
- 					 <&cmu_peric0 CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_7>;
- 				clock-names = "hsi2c", "hsi2c_pclk";
-+				interrupts = <GIC_SPI 642 IRQ_TYPE_LEVEL_HIGH 0>;
- 				pinctrl-0 = <&hsi2c8_bus>;
- 				pinctrl-names = "default";
- 				status = "disabled";
-@@ -831,10 +831,10 @@ usi_uart: usi@10a000c0 {
- 			serial_0: serial@10a00000 {
- 				compatible = "google,gs101-uart";
- 				reg = <0x10a00000 0xc0>;
--				interrupts = <GIC_SPI 634 IRQ_TYPE_LEVEL_HIGH 0>;
- 				clocks = <&cmu_peric0 CLK_GOUT_PERIC0_PERIC0_TOP1_PCLK_0>,
- 					 <&cmu_peric0 CLK_GOUT_PERIC0_PERIC0_TOP1_IPCLK_0>;
- 				clock-names = "uart", "clk_uart_baud0";
-+				interrupts = <GIC_SPI 634 IRQ_TYPE_LEVEL_HIGH 0>;
- 				pinctrl-0 = <&uart0_bus>;
- 				pinctrl-names = "default";
- 				samsung,uart-fifosize = <256>;
-@@ -1157,12 +1157,12 @@ hsi2c_12: i2c@10d50000 {
- 				compatible = "google,gs101-hsi2c",
- 					     "samsung,exynosautov9-hsi2c";
- 				reg = <0x10d50000 0xc0>;
--				interrupts = <GIC_SPI 655 IRQ_TYPE_LEVEL_HIGH 0>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				clocks = <&cmu_peric1 CLK_GOUT_PERIC1_PERIC1_TOP0_IPCLK_5>,
- 					 <&cmu_peric1 CLK_GOUT_PERIC1_PERIC1_TOP0_PCLK_5>;
- 				clock-names = "hsi2c", "hsi2c_pclk";
-+				interrupts = <GIC_SPI 655 IRQ_TYPE_LEVEL_HIGH 0>;
- 				pinctrl-0 = <&hsi2c12_bus>;
- 				pinctrl-names = "default";
- 				status = "disabled";
-@@ -1277,13 +1277,14 @@ usbdrd31_phy: phy@11100000 {
- 				 <&cmu_hsi0 CLK_GOUT_HSI0_UASC_HSI0_CTRL_PCLK>,
- 				 <&cmu_hsi0 CLK_GOUT_HSI0_USB31DRD_I_USBDPPHY_SCL_APB_PCLK>;
- 			clock-names = "phy", "ref", "ctrl_aclk", "ctrl_pclk", "scl_pclk";
--			samsung,pmu-syscon = <&pmu_system_controller>;
- 			#phy-cells = <1>;
-+			samsung,pmu-syscon = <&pmu_system_controller>;
- 			status = "disabled";
- 		};
- 
- 		usbdrd31: usb@11110000 {
- 			compatible = "google,gs101-dwusb3";
-+			ranges = <0x0 0x11110000 0x10000>;
- 			clocks = <&cmu_hsi0 CLK_GOUT_HSI0_USB31DRD_BUS_CLK_EARLY>,
- 				<&cmu_hsi0 CLK_GOUT_HSI0_USB31DRD_I_USB31DRD_SUSPEND_CLK_26>,
- 				<&cmu_hsi0 CLK_GOUT_HSI0_UASC_HSI0_LINK_ACLK>,
-@@ -1291,14 +1292,13 @@ usbdrd31: usb@11110000 {
- 			clock-names = "bus_early", "susp_clk", "link_aclk", "link_pclk";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
--			ranges = <0x0 0x11110000 0x10000>;
- 			status = "disabled";
- 
- 			usbdrd31_dwc3: usb@0 {
- 				compatible = "snps,dwc3";
-+				reg = <0x0 0x10000>;
- 				clocks = <&cmu_hsi0 CLK_GOUT_HSI0_USB31DRD_I_USB31DRD_REF_CLK_40>;
- 				clock-names = "ref";
--				reg = <0x0 0x10000>;
- 				interrupts = <GIC_SPI 463 IRQ_TYPE_LEVEL_HIGH 0>;
- 				phys = <&usbdrd31_phy 0>, <&usbdrd31_phy 1>;
- 				phy-names = "usb2-phy", "usb3-phy";
+[1/1] ASoC: dt-bindings: ak4554: Convert to dtschema
+      commit: 0ac3f1a4c2a345c48d22e8eb5b5aeb9304cb11db
 
----
-base-commit: d35b2284e966c0bef3e2182a5c5ea02177dd32e4
-change-id: 20240501-gs101-dts-cleanup-027f6d7196c5
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-Best regards,
--- 
-André Draszik <andre.draszik@linaro.org>
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
