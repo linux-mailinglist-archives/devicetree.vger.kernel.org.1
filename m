@@ -1,122 +1,112 @@
-Return-Path: <devicetree+bounces-74739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14DF19043F6
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 20:48:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 710B3904403
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 20:51:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9AC68B217B0
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 18:48:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2363328394D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 18:51:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 119EE74413;
-	Tue, 11 Jun 2024 18:48:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D72887E0E4;
+	Tue, 11 Jun 2024 18:50:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="dmPM0NPF"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="XdZ0+PDC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BC3B7404F;
-	Tue, 11 Jun 2024 18:48:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 776587D3FA
+	for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 18:50:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718131705; cv=none; b=To/+3tGcrNi7dQkN8X/DW55PVW8A96PLOtztMrKRHPAL3rY2o0hI/yf9so1RHC6T5xk04XUproWaD/wdCtobyyNzOXrDUAJBq6oEzGFb511Neb9ASiwxqGlzY/qnxdLUwKEz3moDwiFu7fxh8Z4hVUHq1ngxkwUlv8N+z1hBhdw=
+	t=1718131844; cv=none; b=nwzlpxC057TzNeqqvdBTzWwULfetOtJgPdTCoZ4jvHFBYsnQpnbyNcaRrZDp2/ZkPFtcnYgtmKhTNPhnmJH/NMHgx1RqfcRaoPSrqzZFyDU8hrgp6VP6Eu+VcVjY5G0yG5Rmqsh1whcTesu1FPZWpgvOkUCNgISb7z/dAQZpUnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718131705; c=relaxed/simple;
-	bh=Icqk58bHNQpmqcH0SQq+ysoIzb40fVRvR1VlJKa7kBE=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=FkkrCxCNEQseYASJBzoDc6Mx9QttfLLvT/QEQkDAn5zvjaWSKdL+QIr2XYs8XYFMdc+9EY3lbxusEGj8CapxjACf3QIrPSFdFUUygOpMaTdXO6laVxfeoyswtXdaZ0yvjRAo5/k+b4JiIQiSg2wBlcUiqKa2ojaScwH17mziM8k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=dmPM0NPF; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1718131844; c=relaxed/simple;
+	bh=QJqYqkyXvyEJqzCyzCjtVTtnILSZj6FSjyYeZF5lv0g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SdwH8f8mYQLN5zggK3RSJh/ZP59XhPl6wE+xh1zCJ+WL5iNT+AsP+6IpavJgjGPUCxPG9ADdRDs8gySBFTo62eMapcZ0xB9W2Oljp4lsdrNhG70/jubAfCH6uQLJdLKzQ/wYPSUmzYqTo+5+bPYcwMWLzw1aXTBO/iVhSeKNwE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=XdZ0+PDC; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=QJqY
+	qkyXvyEJqzCyzCjtVTtnILSZj6FSjyYeZF5lv0g=; b=XdZ0+PDCvsB9qeJnMpWz
+	s5Gyi610tc9fF8xw5cx4aH+UD4nXdBERyx0eTBoJCQ8HOoJLsuy0jtFN+IjoqdN1
+	+ApJR9hG0LHfbrzOgt47WziFg3BVJTLE7OzTxM9OM0ih6lznuxxaiadOZc8466xF
+	/nTSLsejBReljD3WThHpC0p10IqGC8TyWvt1bZZlXeGdvOpcIvEhYPh4qAM34b7c
+	jrFqWXZ2PxSp3N7rCI3Q5ROKcgi0DjRvQjjw/arBYIkdjIxjw7E1FXZqGZKqVyJB
+	WncDeM8VCJ9c36bVOo3ngyyF1rk7Nw4Y4Pe+jG8h2oxfKUQtmOdyHhjTaLiApCrv
+	UQ==
+Received: (qmail 528448 invoked from network); 11 Jun 2024 20:50:37 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Jun 2024 20:50:37 +0200
+X-UD-Smtp-Session: l3s3148p1@k73TvaEaPoVehhrL
+Date: Tue, 11 Jun 2024 20:50:35 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Farouk Bouabid <farouk.bouabid@cherry.de>
+Cc: Peter Rosin <peda@axentia.se>, Andi Shyti <andi.shyti@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Quentin Schulz <quentin.schulz@cherry.de>, 
+	Heiko Stuebner <heiko@sntech.de>, linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v3 3/7] i2c: muxes: add support for mule i2c multiplexer
+Message-ID: <dzou6uwvxnsgjmhzzhfui372bsan7jbjn4uraz6lgclibnih4s@l7lb55cvrr3w>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Farouk Bouabid <farouk.bouabid@cherry.de>, Peter Rosin <peda@axentia.se>, 
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Quentin Schulz <quentin.schulz@cherry.de>, Heiko Stuebner <heiko@sntech.de>, linux-i2c@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org
+References: <20240611-dev-mule-i2c-mux-v3-0-08d26a28e001@cherry.de>
+ <20240611-dev-mule-i2c-mux-v3-3-08d26a28e001@cherry.de>
+ <80883dd5-2be0-4f8b-8298-ca076e6ac558@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1718131699;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hBtxcdOxJTOjlj2FBleR4Qh4QGHB6NSgACszEOvwy/I=;
-	b=dmPM0NPFa+Pl1FLHihlW+/5Ay7uMd4qTXv3RqSCicUE3xta3wnPvuDzJZIeipr7W6xeTXP
-	om3pKp4287ufJnbrlPLjpu2D/oe2MPTjYmx3R9i4WAanGMu3d2zrKoSPPBxUzNPR+a6+WI
-	MBJ3qaMe595YKVTuOhGqrokM2mOYfKQZOQCrB/vxajtHjpz18GtMcoNIJ0v/B90JwRjMNG
-	VmeUTLNbUxm9KhdxixH8oArxSmQGRXypm0+Gp6gj51ch8UbD24cCRdwBXx2w5IJwNr9bG9
-	djVKzsb/kZYybEOEJ54lTBlW8WXVMUIrBvx+N50J6GGEDsd8Jd4Km+5bjF6kQQ==
-Date: Tue, 11 Jun 2024 20:48:19 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- imx@lists.linux.dev
-Subject: Re: [PATCH v4 0/8] arm64: dts: convert fsl,esdhc.txt to yaml and fix
- layerscape dts warning
-In-Reply-To: <20240611-ls_waring_esdhc-v4-0-d0d8a5b3f3cb@nxp.com>
-References: <20240611-ls_waring_esdhc-v4-0-d0d8a5b3f3cb@nxp.com>
-Message-ID: <ea54d6b7794fbbd81df7653b4e988915@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="l65abzh75bgiesz6"
+Content-Disposition: inline
+In-Reply-To: <80883dd5-2be0-4f8b-8298-ca076e6ac558@cherry.de>
 
-Hello Frank,
 
-Please see my comment below.
+--l65abzh75bgiesz6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 2024-06-11 18:01, Frank Li wrote:
-> Start from v4 because fsl.esdhc.txt to yaml already sent out as v3.
-> 
-> Change from v3 to v4
-> - Add dts warning fixes
-> - Add mmc-spi-slot's voltage range fix, (not sure why it apply to
-> layserscape's dts file.
-> - clock-frequency is not required property
-> - add dma-conherence: true in binding doc
-> 
-> Now only "bit-endian" proptery warning left.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> Frank Li (8):
->       dt-bindings: mmc: Convert fsl-esdhc.txt to yaml
->       dt-bindings: mmc: mmc-spi-slot: Change voltage-ranges to 
-> uint32-matrix
->       arm64: dts: ls1012a: Chang node name from 'esdhc' to 'mmc'
->       arm64: dts: ls1043a: Chang node name from 'esdhc' to 'mmc'
->       arm64: dts: ls1046a: Chang node name from 'esdhc' to 'mmc'
->       arm64: dts: ls1088a: Chang node name from 'esdhc' to 'mmc'
->       arm64: dts: ls208ax: Chang node name from 'esdhc' to 'mmc'
->       arm64: dts: lx2160a: Chang node name from 'esdhc' to 'mmc'
 
-s/Chang /Change / -- in all patch subjects
+> The class parameter was recently removed from this function but I forgot to
+> remove it. Sorry for the noise, I will send a v4 for this fix.
 
->  .../devicetree/bindings/mmc/fsl,esdhc.yaml         | 105 
-> +++++++++++++++++++++
->  .../devicetree/bindings/mmc/fsl-esdhc.txt          |  52 ----------
->  .../devicetree/bindings/mmc/mmc-spi-slot.yaml      |  17 ++--
->  arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi     |   4 +-
->  arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi     |   2 +-
->  arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi     |   2 +-
->  arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi     |   2 +-
->  arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi     |   2 +-
->  arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi     |   8 +-
->  9 files changed, 125 insertions(+), 69 deletions(-)
-> ---
-> base-commit: d35b2284e966c0bef3e2182a5c5ea02177dd32e4
-> change-id: 20240610-ls_waring_esdhc-93136a5dd794
-> 
-> Best regards,
-> ---
-> Frank Li <Frank.Li@nxp.com>
+Please wait for my comments to the series. Hopefully later this evening.
+
+
+--l65abzh75bgiesz6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmZonHcACgkQFA3kzBSg
+KbZSwg/+L3bctenTnBzk2jty+XZIdBqaYWfv/0Q9sWI38wPTRj7QOS+2CVp7IMj/
+e4HGYCQmVT1UamUF5bcdedgfQ1L4crkjzZAmqZLCZjrjut992zSwq+GHrVfX2Jdo
+V10Ow+MyykNiQVUPMzSsOwcO3lcxp82ECBSdeDgeS/c/rfGyd5Fh3VbFXjdyA/h3
+667ujGtLNYMFqKc02ghYe/LmN9c5i6l+id6DDv+Gy/UzRDjbuRfKMylotiSx8Vtv
+E+ACZ1sbe889SUV77nJ/JZ+vJ9ckF6riq2NKsfQvtxGuB4o5W42m21Ni+WKxErId
+cs/TUl6aQycoiC6rrCjIN0B3J39+nJuHUxqkhuZeO7nYIMe16svuZWgUCZYZ7VSK
++LY0r660fBEWlXh5e0HLerw3N+Xd+7H8Y6byuRsxO2ojNp8Ta0O2o/Pyw+33/qjF
+T/yU7vvCFl1FbmgD7uR+2MMTBzDd/J0kq07JXbLZGz7XCTza2MVgrvLaaI0Ab3XJ
+e17YccZDOm3j3/0S4d4gsEDu4QPBGMBd1mDlE/9BGjdRUSt4KqojNSg+wDxCjnQ7
+EqxSZ0H7InLKgai/kI92hOT1+NY0brOByko0f/lOmfN7kX7ufJnYAxABnQojmWt5
+s66HhO1wDNMIXqkuddwJtEwyjBvic4VQlr0+o64joXxqscYecWg=
+=c19E
+-----END PGP SIGNATURE-----
+
+--l65abzh75bgiesz6--
 
