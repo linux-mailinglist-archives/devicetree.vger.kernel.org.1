@@ -1,194 +1,132 @@
-Return-Path: <devicetree+bounces-74395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A92B2902E2B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 04:00:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6290B902EA0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 04:54:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 327B91F22AF6
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 02:00:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C3621F22757
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 02:54:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD098AD2D;
-	Tue, 11 Jun 2024 02:00:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2D9616F85E;
+	Tue, 11 Jun 2024 02:54:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="lHUN7OiI"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="LIwdmBe2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAA77A934
-	for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 02:00:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9BBF1581E2;
+	Tue, 11 Jun 2024 02:54:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718071247; cv=none; b=PfKVnPLYEZ1IiQQuhmUdD3A8PUlrnLzObeREHdKec7hdPQhjUwMq/FN2F8tXAZGY63g4+9BCUQ+acLkgehRXoEf+f52ZVbHUyNWVw94n/b2Vqz24iJWBMeEOV5aPfWGN4S1wfePdrlsP9Y6M2Dac8Da3jW2e01/oXwXEpXg/emk=
+	t=1718074473; cv=none; b=JSVXOe/8kFrSXWvY8yeL18rXgHe5AQwOTJLkWSnwFQL1kkjfb/vA6eXez4PqWmeITvg1BSF0Xkj8oW7+gp2W5WS9QGG9Effov3v5w+og3ols0QP6j7+c0qqND1vnYY/NMtSOoJkj5esMig5WiIC9YYQ1yVcAWy6R80IA9QUsN0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718071247; c=relaxed/simple;
-	bh=+DSf+TQt/ykv0XritXEDrZm1XQB4nWMsT88cdtUciK4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cUFLWzH3ebfsyUFdyeyTiamISY/kA5U1swRqG13exKbZocU4zuwciXLxMclbzFYQ9PssyPkG+KjP/zMBngp8y8DCklh3fgyM8TxuLKjWV1nMqVRZaNhYwdQi8BeWCOIQ2QOfRkZFNIf3vB9mjkJZnAh8bchXSN9zKwwgqujdkUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=lHUN7OiI; arc=none smtp.client-ip=209.85.216.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2c2f8f73010so1662809a91.1
-        for <devicetree@vger.kernel.org>; Mon, 10 Jun 2024 19:00:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1718071245; x=1718676045; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+DSf+TQt/ykv0XritXEDrZm1XQB4nWMsT88cdtUciK4=;
-        b=lHUN7OiIIYLra2o+vI//EAgcxdKhKdA0sNjputGNmY0MWDVyftbRczZYO6Qgu9YA7r
-         m+cwItEMs5vzR8QK4BpEgRtEGlnkPz4F2SsOsVsCi51OS7wD4C/kPjdb+ID+2FVgI3gv
-         Y41LZaPxo8Hq4Asbwypc0IhX5X/IZiViy21IOtVGt4jeAtxQVgBWG+2mktUsVfUR5v8S
-         oO1Ab9Hmqy3fSithVorbhaMw/whBzGqs8MM9IZBUfsgDZYEokCEP4jYDsWZy4pwhSPoe
-         OTmKOAWhGlPAf8/IGxNAx1Xz4d6BG/PtQ3GNr5zP8CcBNTTc6nm5TeKFJXh9ystGvXmA
-         7tQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718071245; x=1718676045;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+DSf+TQt/ykv0XritXEDrZm1XQB4nWMsT88cdtUciK4=;
-        b=xE/FVVhSKAcXBfHFUkMD1DrlMz0MHHpaUVFyUHzpVVjJ5KBR8bXK1zu8g0qjy10wIU
-         XBUVhrHmJocteGYbZ8K8kpI2rAXKdwDkHDFGeng9yba3/bMpDgkE3o4dimpyvoAuiUsU
-         5OpwMrqZua44UGIV6ekmLbcWLYj+ORDACOHmcxX5zmpFDUmg1x/sfzkJuDogU/WZ/WnS
-         T1kpZ90D0fMeFa4Ru6PW7BKUlctmTN9NDYLcSazqj9bjgVT/3WJ6bY9HUnKX2IddhJex
-         l98egziGHn1rWWQjfSc0dkv/DOpri4DW+w9iREvM2afetC/Ila9C9qQ4SNafujR9jj3+
-         mz8g==
-X-Forwarded-Encrypted: i=1; AJvYcCVVMF7X+H4ESBnJy+DY5JQ8iJ5rb8eY3USgRd8Tp6GJVkqqF6FZytYkjkCTS+0Q2ZeJz63UgyA+ydj6M83uoNWYde2yz0bvEEEWRA==
-X-Gm-Message-State: AOJu0Yx1Dr8GB7LAHP7S4WjLcctnzVgU/ft1u1RDkcPAIVtDmZdMzNGu
-	q1NH6WbB5YmW2N3jt5EgKXjXoGKwo+g0ycWWiLDU7bW/6sO71lMIMNXaDYs8tU6C0eFKqVxTZff
-	5xHfyPmarZBhoOw76WaatglyQOWtTXAINjYtZ0w==
-X-Google-Smtp-Source: AGHT+IFaEf66/Vg3vZYbnuRls+xXc/YHx5d34274xkIrynnlPOHBe1Yws9C0iL9BtwTmDzbsneqNZTkOP1VlcYJjqz4=
-X-Received: by 2002:a17:90a:12c2:b0:2c2:5341:7ed6 with SMTP id
- 98e67ed59e1d1-2c2bcc5a26emr10217116a91.38.1718071245048; Mon, 10 Jun 2024
- 19:00:45 -0700 (PDT)
+	s=arc-20240116; t=1718074473; c=relaxed/simple;
+	bh=B6JrR8spYLAtMxuiTQPXoUh3bzKZddatUwstvKi5B0Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oatxT+ypsXWwapvC5znwjJ9YQgCFToRDTT0lXv/LvMyEbqqfhV1+4ANv2tnt4cSwsS/3w9D2R50iTvB6dDtQTfj8G+E4R8M3XmVncVRtq6iVMhUiNbE9hlwxz5MnbVsA2cKPrMRDjoGEAllMWM2v9TIm32+rk3LUPTA2gJuMEJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=LIwdmBe2; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 82774882F0;
+	Tue, 11 Jun 2024 04:54:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1718074469;
+	bh=3wcGmMprIXyqpMErHENzofPCAVoUfxmFpUsgL6R8fkY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LIwdmBe2sDkkvDx3BCYuUulWJsOIryQwDL7dtfbohiFn+1+ChNG59/PZZvHsSyw+A
+	 2vu7XD2EB6TNK/dBRay2CvnrJQmbGJephxGflR83O116QBuTzJ1wAxcbF4C7mrVu9r
+	 9omvqqx0hjRrjsZbVcqpZaOKgjHLZhEM50BQOHHtj11erGj0/L65DRdjp4ZyxLidwt
+	 mkwLsKGLmrHnDNjgBYw+r+P9RXFMEQR9nfvcco6+jmCuarO8Pp95/pzkm65rDKN5df
+	 eKDbRKPTJg5SVORHzCQnc0a1MvAr3FHkv13oO9X+BGZUnlLEtDnqOWMoqu5VnbmlYJ
+	 cCskrSbQlTFCQ==
+Message-ID: <6ba1db19-32d6-4d25-824d-731bea65b583@denx.de>
+Date: Tue, 11 Jun 2024 03:34:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1716578450.git.tjeznach@rivosinc.com> <e18ec8ac169ae7f76e9044c26d0768e6469bad19.1716578450.git.tjeznach@rivosinc.com>
- <CANXhq0p4gERQeROSCSKqxnRZq9-fGfmROGV8JZyqFaenNpnsLA@mail.gmail.com>
- <20240610174934.GM791043@ziepe.ca> <CAH2o1u4c6ttUWTb1zrc8DScDMuDJJYR-tTHCPYW_3FV4uuQDtA@mail.gmail.com>
- <20240610222051.GO791043@ziepe.ca>
-In-Reply-To: <20240610222051.GO791043@ziepe.ca>
-From: Tomasz Jeznach <tjeznach@rivosinc.com>
-Date: Mon, 10 Jun 2024 19:00:34 -0700
-Message-ID: <CAH2o1u7X2zu42ZYA9wBe4bmCXN9v+d6j9vo5DMifJA3BUew91w@mail.gmail.com>
-Subject: Re: [PATCH v6 5/7] iommu/riscv: Device directory management.
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Zong Li <zong.li@sifive.com>, Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Anup Patel <apatel@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Nick Kossifidis <mick@ics.forth.gr>, Sebastien Boeuf <seb@rivosinc.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	iommu@lists.linux.dev, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux@rivosinc.com, 
-	Lu Baolu <baolu.lu@linux.intel.com>, Jim Shu <jim.shu@sifive.com>, 
-	Vincent Chen <vincent.chen@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: imx8mp: Add DT nodes for the two ISPs
+To: Peng Fan <peng.fan@nxp.com>, Adam Ford <aford173@gmail.com>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ Paul Elder <paul.elder@ideasonboard.com>, Conor Dooley
+ <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>
+References: <20240325151339.19041-1-laurent.pinchart@ideasonboard.com>
+ <4879631.GXAFRqVoOG@steina-w>
+ <20240325204924.GY18799@pendragon.ideasonboard.com>
+ <2929432.e9J7NaK4W3@steina-w>
+ <CAHCN7xLFjJUZQZwPbj5xyxnprwAV3TOvd_6A6sBwOPK+V6uQPA@mail.gmail.com>
+ <AM6PR04MB59412D143AA8C20AFB479E8F88C72@AM6PR04MB5941.eurprd04.prod.outlook.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <AM6PR04MB59412D143AA8C20AFB479E8F88C72@AM6PR04MB5941.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Mon, Jun 10, 2024 at 3:20=E2=80=AFPM Jason Gunthorpe <jgg@ziepe.ca> wrot=
-e:
->
-> On Mon, Jun 10, 2024 at 11:48:23AM -0700, Tomasz Jeznach wrote:
-> > > Right, this is why I asked about negative caching.
-> > >
-> > > The VMMs are a prime example of negative caching, in something like
-> > > the SMMU implementation the VMM will cache the V=3D0 STE until they s=
-ee
-> > > an invalidation.
-> > >
-> > > Driving the VMM shadowing/caching entirely off of the standard
-> > > invalidation mechanism is so much better than any other option.
-> > >
-> > > IMHO you should have the RISCV spec revised to allow negative caching
-> > > in any invalidated data structure to permit the typical VMM design
-> > > driven off of shadowing triggered by invalidation commands.
-> > >
-> > > Once the spec permits negative caching then the software would have t=
-o
-> > > invalidate after going V=3D0 -> V=3D1.
-> > >
-> > > Jason
-> >
-> > Allowing negative cacheing by the spec (e.g. for VMM use cases) and
-> > documenting required invalidation sequences would definitely help
-> > here.
->
-> Yes, you probably should really do that.
->
-> > I'm hesitating adding IODIR.INVAL that is not required by the
-> > spec [1],
->
-> If you expect to rapidly revise the spec then you should add it right
-> now so that all SW implementations that exist are
-> conforming. Otherwise you'll have compatability problems when you come
-> to implement nesting.
->
-> Obviously the VMM can't rely on a negative caching technique unless
-> the spec says it can.
->
-> > but this is something that can be controlled by a
-> > capabilities/feature bit once added to the specification or based on
-> > VID:DID of the emulated Risc-V IOMMU.
->
-> I'm not sure it really can. Once you start shipping SW people will run
-> it in a VM and the VMM will have to forever work without negative
-> caching.
->
-> My strong advice is to not expect the VMM trap random pages in guest
-> memory, that is a huge mess to implement and will delay your VMM side.
->
-> > Another option to consider for VMM is to utilize the WARL property of
-> > DDTP, and provide fixed location of the single level DDTP, pointing to
-> > MMIO region, where DDTE updates will result in vmm exit / fault
-> > handler. This will likely not be as efficient as IODIR.INVAL issued
-> > for any DDTE updates.
->
-> I don't know what all those things mean, but if you mean to have the
-> VMM supply faulting MMIO space that the VM is forced to put the DDTE
-> table into, then that would be better. It is still quite abnormal from
-> the VMM side..
->
-> My strong advice is to fix this. It is trivial to add the negative
-> caching language to the spec and will cause insignificant extra work
-> in this driver.
->
-> The gains on at least the ease of VMM implementation and architectural
-> similarity to other arches are well worth the effort. Otherwise I fear
-> it will be a struggle to get nesting support completed :(
->
-> Jason
->
+On 6/11/24 3:04 AM, Peng Fan wrote:
+>> Subject: Re: [PATCH v2] arm64: dts: imx8mp: Add DT nodes for the two ISPs
+>>>>
+>>>>> Something like
+>>>>> ---8<---
+>>>>> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>>>>> @@ -1837,11 +1837,13 @@ media_blk_ctrl: blk-ctrl@32ec0000 {
+>>>>>                                                    <&clk IMX8MP_CLK_MEDIA_APB>,
+>>>>>                                                    <&clk IMX8MP_CLK_MEDIA_DISP1_PIX>,
+>>>>>                                                    <&clk
+>>>>> IMX8MP_CLK_MEDIA_DISP2_PIX>,
+>>>>> +                                                 <&clk
+>>>>> + IMX8MP_CLK_MEDIA_ISP>,
+>>>>>                                                    <&clk IMX8MP_VIDEO_PLL1>;
+>>>>>                                  assigned-clock-parents = <&clk
+>> IMX8MP_SYS_PLL2_1000M>,
+>>>>>                                                           <&clk IMX8MP_SYS_PLL1_800M>,
+>>>>>                                                           <&clk IMX8MP_VIDEO_PLL1_OUT>,
+>>>>> -                                                        <&clk IMX8MP_VIDEO_PLL1_OUT>;
+>>>>> +                                                        <&clk IMX8MP_VIDEO_PLL1_OUT>,
+>>>>> +                                                        <&clk
+>>>>> + IMX8MP_SYS_PLL2_500M>;
+>>>>>                                  assigned-clock-rates = <500000000>, <200000000>,
+>>>>>                                                         <0>, <0>,
+>>>>> <1039500000>;
+>>>>
+>>
+>> According to the i.MX8MP Data sheet, the nominal speed for
+>> MEDIA_ISP_CLOCL_ROOT is 400MHZ with 500MHz being allowed in
+>> overdrive mode.
+>>
+>> I think this clock rate should drop to  the nominal value of 400MHz and those
+>> boards who support overdrive can increase it to 500MHz to avoid stiability
+>> issues and/or running out of spec.  I created an imx8mm and imx8mn-
+>> overdrive.dtsi file.  If there is interest, I can do the same for the 8MP as well.
+>>
+>> I haven't gone through all the clocks to determine if/what clocks are being
+>> overdriven.
+> 
+> Shouldn't the bootloader take the work to runtime update the freq?
+> Why need introduce an extra overdrive.dtsi?
 
-Thanks for the comments, it definitely makes sense.
-
-We will revise the wording in the RISC-V IOMMU spec to note that
-certain implementations may require invalidating commands to be issued
-when making DDT entries valid, and device tree / ACPI may be used to
-report such requirement.
-
-For now, I'll change the implementation to assume negative caching for
-DDTE and will follow up with device tree / driver updates to make the
-invalidation optional when revised specifications will be available.
-
-Best,
-- Tomasz
-
-> --
-> You received this message because you are subscribed to the Google Groups=
- "linux" group.
-> To unsubscribe from this group and stop receiving emails from it, send an=
- email to linux+unsubscribe@rivosinc.com.
-> To view this discussion on the web visit https://groups.google.com/a/rivo=
-sinc.com/d/msgid/linux/20240610222051.GO791043%40ziepe.ca.
-> For more options, visit https://groups.google.com/a/rivosinc.com/d/optout=
-.
+Shouldn't the overdrive/non-overdrive decision be done in board DT instead ?
 
