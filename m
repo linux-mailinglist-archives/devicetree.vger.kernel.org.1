@@ -1,190 +1,149 @@
-Return-Path: <devicetree+bounces-74604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C67B903C1D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 14:44:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A82C1903C29
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 14:49:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 332D7284829
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:44:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3EBE0284EA0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:49:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85BE317BB1B;
-	Tue, 11 Jun 2024 12:44:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F05217C207;
+	Tue, 11 Jun 2024 12:49:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ATlhLdVb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pF+iJvKN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10E3517994D;
-	Tue, 11 Jun 2024 12:44:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D58571E86F;
+	Tue, 11 Jun 2024 12:49:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718109863; cv=none; b=hGn3rBDx1I4id2MpIX8uSTKV4q6+QGj+wynvsSe4zII/yUixKbm3xV4BrSVqI3vEgWBWXvCjBDeQm333eW6UaSrKQ06AoR/TT85VSWXp5B44sIQot8yeU7yVdxHX+3j2AZW/sZX3dWf7kTFrE3EjCIbX2UL3GyqldSfPjjLBP2g=
+	t=1718110147; cv=none; b=CFj8/Rx13tjwB3/ILX9U9RXUjYJHtw1mFC83yVkSxGyK1tc+mtTeQo4q+94Oxd1OShUJJbaAIv97BYEHv6millyuEOkJPc2jMWRi6oT1KwdafoPTzFHoNXAqVKVnc3YuNACj1Z8lc1I14+cNxMuNeZ3QMx4YmbOrcvuEMBQugyk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718109863; c=relaxed/simple;
-	bh=wvAyPUBns/uNl9S66bSDSvxN3bhNbvQLJE39DQGbjLI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kG1b7O6rUVxPaKIE6lyAZP03FNYPRSMrvnwe4MTy1PM3f5EIQSjcBeFjUQfvVo21Lu+woaXHnIKViJCDBCMqWA5cIttNux+j321L8xnES2XycAMrWlyFZ7PK7Z/kxQR8TcOQ7kxVHqtcRcryfBIenansexIBHUJSqaL1V0K+UhU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ATlhLdVb; arc=none smtp.client-ip=209.85.215.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-6e3ff7c4cc8so2920571a12.3;
-        Tue, 11 Jun 2024 05:44:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718109861; x=1718714661; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=AVwIlcHjQo8eh6OrUJ43oxF3efWtPUA/bK44QL6w+l8=;
-        b=ATlhLdVbV024YS0KFj1k5uUqAx5cYTIIzEhumjeWvgx2U7KqaHuSTgIqA5KXik71Bf
-         MH3V/WzRnN81ZArlvusjX/H9vCqnMdibCiBSyn1shcHHZtcUIR4Liap81uUYVSpxDvr2
-         +q11TFO/5AIyh5fycVfBPzPf8VZWCnkrZp99FtusEFfo5lSVkXF0Mjd8tbsUmthRpbow
-         CIws7g/N5I8L548NYtQkJ7gc6eXAmdNhpuRSt2xjkYbb53ypz8AOPi61oYv/MSkhLK6B
-         xlpOkASgVcgNJgb7xS+XOsgdI1BCKWeVvM1+6XtB+WxRH8LvY1NKFqqJgx8l1Q1YHzD8
-         pt6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718109861; x=1718714661;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AVwIlcHjQo8eh6OrUJ43oxF3efWtPUA/bK44QL6w+l8=;
-        b=KPZY4IWqBrn/anLtqosb3w/yR3rp0V2WD0DbOJDgWhpMro5fXwKWHd/La2ZpwLXpdE
-         Au+MQAobK922XJmO7ykeyQuiSeJWELRe7ZyW+Thvnt7GGuFrqt68famEQqibzjKKdTk0
-         HCISi3SMK/L6bJn9oUnu2G4bk97rbpIMk/xA4DFh2wixSQc7T3696JiJ8Tg3wOU6iKFZ
-         HJqmc6Bl9exq1vvn7jXJCPBDMyXwDoOwnN/8gNWleGg0Rdl2E4QVP1wH/l1S+6aQavBz
-         U4KiRLLMqxdgswKeE1qI8V4yq/cSxIpoMG/YGcG93F+N3QRUmwnplJ40mkSuZ/hfgqsn
-         acbA==
-X-Forwarded-Encrypted: i=1; AJvYcCWMVEmIbs5lKyED+RUCJo1UwFyu7q0GCeNDO3DjXdTgCkFCzkxJeBbD/z+BOdTZsGKTjrfGmU2QAciBnydkkM8i9wUWt58Qdz106eQ/OmfW1j/4D6xprmctNhGooCOMc4XRexXpmjkGrwXcpH5FUq7iLO3v4dP71FMHmoxXMBlfQK9KvND8
-X-Gm-Message-State: AOJu0YzHcBae5pviPJVwoOnET2xXe4gV/T58uf+/6zIIA0D7scItlUIo
-	vGMRwILl0E5rhuhZ1XVejBt32PWk1TNJf6/ZezguOnrWJG1SQgdeKKwapI6g
-X-Google-Smtp-Source: AGHT+IGxYFQHUxLPouK/1ioV0eCRyouOGRoF0w2WN75pt0GtljsQjw6+Rf0APD0pqim83/wxnkvyUw==
-X-Received: by 2002:a05:6a20:72a3:b0:1b7:82b4:a380 with SMTP id adf61e73a8af0-1b782b4a72amr5655759637.29.1718109861271;
-        Tue, 11 Jun 2024 05:44:21 -0700 (PDT)
-Received: from fedora.one.one.one.one ([2405:201:6013:c0b2:ea4b:30e0:4e3a:ab56])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-6eac1dea8b2sm3950627a12.63.2024.06.11.05.44.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jun 2024 05:44:20 -0700 (PDT)
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-To: 
-Cc: animeshagarwal28@gmail.com,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	patches@opensource.cirrus.com,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: wlf,wm8782: Convert to dtschema
-Date: Tue, 11 Jun 2024 18:14:00 +0530
-Message-ID: <20240611124405.63427-1-animeshagarwal28@gmail.com>
-X-Mailer: git-send-email 2.45.1
+	s=arc-20240116; t=1718110147; c=relaxed/simple;
+	bh=SqGmJKcY4gkFhyDsTHEsAic8Y0hCLTtAEwZofi8+QJ8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=p222H+BRVSmjyf6jE7ITgGQWQXh1fAErWO8zdgF6tstMxqzNtmqq240wvnhNhZMG6WgU+XEMb6nyC1x0/4G9GvyXZHhBixwoOtnPXoI2IL9W0IrLY5/4tqMOW+1W93zIvCzBV4smdqOziAmZa+jfyrIHENRsfRwBduYgz+c0mrI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pF+iJvKN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DC20C2BD10;
+	Tue, 11 Jun 2024 12:49:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718110147;
+	bh=SqGmJKcY4gkFhyDsTHEsAic8Y0hCLTtAEwZofi8+QJ8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pF+iJvKNRLX7Bg+C4MZEttmfuP0Xp2IUdYUAG0xqtG7TTMIVS0qXPWRTt5cnHefG2
+	 n9i1VQ2Kt0vOLw5muaomjRShUJnBy+BhesKoFmjvunPFRvucbOMFR2q1b3SmTm02Yv
+	 vPl9BbXhZaTCx8/PwlsnBkML1+fYmPj8NUcK70vHT1hhoCZ2FOqkImojX80fSCje3M
+	 BH1Xz2HwbWjYROdqvZzws+pPn5o5FBUe+NKdVaGH7beKg8BOD/AzUhm6nd7wO1GiP6
+	 CpSn7BCff5EIeqNyK5yDkJhJCi7EsEE6TxIC4pk8gwSRroveWVaPEfP1jKMbJ0o8CE
+	 7KRBRIKTo5LvA==
+Message-ID: <34fe20d5-c67a-44e6-8ec1-566d80e25447@kernel.org>
+Date: Tue, 11 Jun 2024 14:49:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/2] hwmon: (ina2xx):Add Suppor for passing alert
+ polarity from device tree to driver
+To: Amna Waseem <Amna.Waseem@axis.com>, Jean Delvare <jdelvare@suse.com>,
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@axis.com
+References: <20240611-apol-ina2xx-fix-v4-0-8df1d2282fc5@axis.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240611-apol-ina2xx-fix-v4-0-8df1d2282fc5@axis.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Convert the WM8782 audio codec bindings to DT schema.
+On 11/06/2024 11:36, Amna Waseem wrote:
+> The INA230 has alert polarity bit in Mask/Enable register which can be
+> configured to be active high or active low depending upon the requirements
+> of the hardware using this chip. The patches in this series adds the support
+> for passing alert polarity value from device tree to the driver. Alert polarity
+> property is added device tree bindings and the driver is modified to read
+> this property and set the Alert polarity (APOL) bit value in Mask/Enable register
+> of INA230.
+> 
+> Signed-off-by: Amna Waseem <Amna.Waseem@axis.com>
+> ---
+> Changes in v4:
+> - Remove unnecessary checks while setting alert polarity bit
+> - Link to v3: https://lore.kernel.org/r/20240603-apol-ina2xx-fix-v3-0-b9eff3158e4e@axis.com
 
-Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>
----
- .../devicetree/bindings/sound/wlf,wm8782.yaml | 47 +++++++++++++++++++
- .../devicetree/bindings/sound/wm8782.txt      | 24 ----------
- 2 files changed, 47 insertions(+), 24 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8782.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/wm8782.txt
+<form letter>
+This is a friendly reminder during the review process.
 
-diff --git a/Documentation/devicetree/bindings/sound/wlf,wm8782.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8782.yaml
-new file mode 100644
-index 000000000000..d0bbdc9f9ced
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/wlf,wm8782.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/wlf,wm8782.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Wolfson Microelectromics WM8782 audio CODEC
-+
-+maintainers:
-+  - patches@opensource.cirrus.com
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: wlf,wm8782
-+
-+  Vdda-supply:
-+    description: Regulator for the analog power supply (2.7V - 5.5V)
-+
-+  Vdd-supply:
-+    description: Regulator for the digital power supply (2.7V - 3.6V)
-+
-+  wlf,fsampen:
-+    description: FSAMPEN pin value, 0 for low, 1 for high, 2 for disconnected.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1, 2]
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - Vdda-supply
-+  - Vdd-supply
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    wm8782: codec {
-+        compatible = "wlf,wm8782";
-+        Vdda-supply = <&vdda_supply>;
-+        Vdd-supply = <&vdd_supply>;
-+        wlf,fsampen = <2>;
-+    };
-diff --git a/Documentation/devicetree/bindings/sound/wm8782.txt b/Documentation/devicetree/bindings/sound/wm8782.txt
-deleted file mode 100644
-index 1a28f3280972..000000000000
---- a/Documentation/devicetree/bindings/sound/wm8782.txt
-+++ /dev/null
-@@ -1,24 +0,0 @@
--WM8782 stereo ADC
--
--This device does not have any control interface or reset pins.
--
--Required properties:
--
-- - compatible  : "wlf,wm8782"
-- - Vdda-supply : phandle to a regulator for the analog power supply (2.7V - 5.5V)
-- - Vdd-supply  : phandle to a regulator for the digital power supply (2.7V - 3.6V)
--
--Optional properties:
--
-- - wlf,fsampen:
--   FSAMPEN pin value, 0 for low, 1 for high, 2 for disconnected.
--   Defaults to 0 if left unspecified.
--
--Example:
--
--wm8782: stereo-adc {
--	compatible = "wlf,wm8782";
--	Vdda-supply = <&vdda_supply>;
--	Vdd-supply = <&vdd_supply>;
--	wlf,fsampen = <2>; /* 192KHz */
--};
--- 
-2.45.1
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
+
+Missing this is really odd, considering you are using b4. Please read
+the b4 guide.
+
+Best regards,
+Krzysztof
 
 
