@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-74754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB66A9045B2
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 22:23:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2002E9045BC
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 22:28:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 70FC11F20C37
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 20:23:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD59E1F22EDC
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 20:28:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 109E380607;
-	Tue, 11 Jun 2024 20:23:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A30F14F135;
+	Tue, 11 Jun 2024 20:28:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TUVtHTD+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pqkVo+uV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC70F7350E;
-	Tue, 11 Jun 2024 20:23:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CE5880607;
+	Tue, 11 Jun 2024 20:28:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718137394; cv=none; b=WsMoowsAO/I+REqRoxcN2VSFo9rOt1qvl9KQxIn5L+fxPW+6Rc+A/XQ+MIMBaEiJeB71hksJT2S3JSbxyDqc2+aQKBrPXrVfanrhahz62oxiIkvvk47PUxU2VBEshbK+cO8TaaPOlUmJFVrdMdM2u3z4LFE2C0hhye2BoBYcTww=
+	t=1718137722; cv=none; b=P1VdPRNzbDBhQr8onqf929LLPoRn66etALie6RzKUH0R8C0+1WtgB2KIl7SGHwqtGoxBerX/cp3q9LPLLgBivVTt2KYHin6OdRt7+GrfP9J3YpqX2jjyIOgCR0FvHUsrvyPW9RI1sDfIQhCXPNDqts/67NLgi6dF9voLlB/bZjM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718137394; c=relaxed/simple;
-	bh=56NOMgdsoxv7ugc+ao6X6J5QmSuvu4JChgfjXogleMI=;
+	s=arc-20240116; t=1718137722; c=relaxed/simple;
+	bh=luJqMwS1juyB7P9FhCZ/2se2iPbzDsWfhWxvaQJ4Lx8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fy1J9EBA65DbVrk8il+eIlwN/v32SYVJqWh7dnlDtxbdoBiL+vOVGU5izWpliwLrEmyE0fA2Z1gbqCJt4EoEbVXXuWQRIXvZ/8eP3czz/6LU8uZ+lsFt8hQu5JyWOoagMv+dcWItq9XJM2KH3oehsoE2d7GY9g71FLqUUx9PzU4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TUVtHTD+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E708AC2BD10;
-	Tue, 11 Jun 2024 20:23:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jY7xrrlBLIu0hlXmmEgov1yhD3xdK0Ogf6s8GS9B6tnpt3LTlV28/cL0CznrLqlbeF5BCSfT84w+Dhjxte+pnQt5MzF/EeU2F0QyldT+yurPxsrInf6F0Pg2PwtlSfG9/g4WI2YzOy6Fm/iclwm8MQLG6KJAA+kHlAwwOeCKnr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pqkVo+uV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68795C2BD10;
+	Tue, 11 Jun 2024 20:28:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718137393;
-	bh=56NOMgdsoxv7ugc+ao6X6J5QmSuvu4JChgfjXogleMI=;
+	s=k20201202; t=1718137721;
+	bh=luJqMwS1juyB7P9FhCZ/2se2iPbzDsWfhWxvaQJ4Lx8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TUVtHTD+w/kTSIrjuW9puv0jtLqV5sx4w5q2Sq5hPhdc/gbV9VUlDReL9JiSnuzXq
-	 Vno81Y9nhfHacE7rS+MKwGs+UAVaTcbHX+ZyoFhmPHlhBh2ZL4qEIdrDj4VDPX4/4J
-	 KxQNFqcKrS6Ds/JYog6j/FJLtwHh24UhhgBQ9lwxkBqZjMF490WVFxoJ4p0lCZhQt4
-	 TIsxSktoFBXqKlhSJFKYr7mwKUXYufcall3mTa/cdnz74amEMeXZd9ReaZZdBtQ/50
-	 dQh+bcge7VuRkTxZbPLYyqzYi+9J/AVNR7MeNWeO4MSZuTTX/i//UtDiCPnSofEMz3
-	 JuTWOdSrUCVgQ==
-Date: Tue, 11 Jun 2024 14:23:11 -0600
+	b=pqkVo+uVymCiP3JT77u6WNfcHkvoxjkXutcuhekMKo20I1IoAblmmG/t9e9X4vmFX
+	 0HOxijcjlxHswh2xFpVEwfqvkjTt0s8Yb0mrXcxhfUrp9ph2N1/3DCOPcfNBEBdwew
+	 E0D/mFVERXxwZCPUQhvL+Ddlje9dku/CLAAGAfA5U0ACrZGbSsm9EscwN4ItitVA/c
+	 9zzcYv2ZwPv3bRQkeWtS9f4RyRJhGllD9sa6dM06ZcjqKvWyDaT/v8MPgi9nEsAGp8
+	 FXHNQxmNRwSkXwG6Oou+HM5B78ZhyR/rXY064HEyyhKmIkdUIwnyXdMBJ53NTJ3VZd
+	 u9tKcAXmG9tGQ==
+Date: Tue, 11 Jun 2024 14:28:40 -0600
 From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+To: Kanak Shilledar <kanakshilledar@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v4 2/8] dt-bindings: mmc: mmc-spi-slot: Change
- voltage-ranges to uint32-matrix
-Message-ID: <20240611202311.GB3003237-robh@kernel.org>
-References: <20240611-ls_waring_esdhc-v4-0-d0d8a5b3f3cb@nxp.com>
- <20240611-ls_waring_esdhc-v4-2-d0d8a5b3f3cb@nxp.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Kanak Shilledar <kanakshilledar111@protonmail.com>,
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: serial: vt8500-uart: convert to json-schema
+Message-ID: <20240611202840.GA3013140-robh@kernel.org>
+References: <20240611121048.225887-1-kanakshilledar@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,58 +62,130 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240611-ls_waring_esdhc-v4-2-d0d8a5b3f3cb@nxp.com>
+In-Reply-To: <20240611121048.225887-1-kanakshilledar@gmail.com>
 
-On Tue, Jun 11, 2024 at 12:01:47PM -0400, Frank Li wrote:
-> According to common mmc core, voltages-ranges should be matrix.
+On Tue, Jun 11, 2024 at 05:40:43PM +0530, Kanak Shilledar wrote:
+> Convert the VIA VT8500 and WonderMedia WM8xxx UART Controller to
+> newer DT schema. Created DT schema based on the .txt file which had
+> `compatible`, `reg`, `interrupts` and `clocks` as required properties.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Additions to the original binding
+> - changed the file name from vt8500-uart to via,vt8500-uart.yaml
+> - removed unnecessary alias from the example.
+> - added Greg and Jiri as maintainers (referred MAINTAINERS file).
 > 
+> Signed-off-by: Kanak Shilledar <kanakshilledar@gmail.com>
 > ---
-> Not sure why it impact other mmc yaml's voltage-ranges.
-
-It's a quirk of the tools. When decoding properties, the tools only know 
-all possible types. Types are global, not per binding. Sometimes it can 
-be figured out, but cases like this cannot be.
-
-> ---
->  Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml | 17 ++++++++++-------
->  1 file changed, 10 insertions(+), 7 deletions(-)
+>  .../bindings/serial/via,vt8500-uart.yaml      | 52 +++++++++++++++++++
+>  .../bindings/serial/vt8500-uart.txt           | 27 ----------
+>  2 files changed, 52 insertions(+), 27 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/serial/via,vt8500-uart.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/serial/vt8500-uart.txt
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml b/Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml
-> index 36acc40c7d181..05815b837219d 100644
-> --- a/Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml
-> @@ -27,17 +27,20 @@ properties:
->      maxItems: 1
->  
->    voltage-ranges:
-> -    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
->      description: |
->        Two cells are required, first cell specifies minimum slot voltage (mV),
->        second cell specifies maximum slot voltage (mV).
->      items:
-> -      - description: |
-> -          value for minimum slot voltage in mV
-> -        default: 3200
-> -      - description: |
-> -          value for maximum slot voltage in mV
-> -        default: 3400
-> +      items:
-> +        - description: |
-> +            value for minimum slot voltage in mV
-> +          default: 3200
-> +        - description: |
-> +            value for maximum slot voltage in mV
-> +          default: 3400
-> +    minItems: 1
-> +    maxItems: 8
+> diff --git a/Documentation/devicetree/bindings/serial/via,vt8500-uart.yaml b/Documentation/devicetree/bindings/serial/via,vt8500-uart.yaml
+> new file mode 100644
+> index 000000000000..b38925ab23a1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/serial/via,vt8500-uart.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/serial/via,vt8500-uart.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: VIA VT8500 and WonderMedia WM8xxx UART Controller
+> +
+> +maintainers:
+> +  - Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> +  - Jiri Slaby <jirislaby@kernel.org>
 
-From what I remember, SPI mode doesn't support voltage changes. 
-Switching to 1.8V came much later in the spec. So it should be 
-'maxItems: 1'. Or better yet, make the outer 'items' a list (of 1 
-entry).
+Don't put subsystem maintainers here. It should be someone with h/w. 
+(The VT8500 maintainer if there is one?). If you can't come up with 
+anyone, you can put me.
 
-Rob
+> +  - Kanak Shilledar <kanakshilledar111@protonmail.com>
+> +
+> +allOf:
+> +  - $ref: serial.yaml
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - via,vt8500-uart
+> +      - wm,wm8880-uart
+> +
+> +    description: |
+
+Don't need '|' if no formatting.
+
+> +      Should be "via,vt8500-uart" (for VIA/WonderMedia chips up to and
+> +      including WM8850/WM8950), or "wm,wm8880-uart" (for WM8880 and later)
+
+Just add a comment after the compatible strings (e.g. "# up 
+to WM8850/WM8950") and drop this.
+
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - interrupts
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    serial@d8200000 {
+> +        compatible = "via,vt8500-uart";
+> +        reg = <0xd8200000 0x1040>;
+> +        interrupts = <32>;
+> +        clocks = <&clkuart0>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/serial/vt8500-uart.txt b/Documentation/devicetree/bindings/serial/vt8500-uart.txt
+> deleted file mode 100644
+> index 2b64e6107fb3..000000000000
+> --- a/Documentation/devicetree/bindings/serial/vt8500-uart.txt
+> +++ /dev/null
+> @@ -1,27 +0,0 @@
+> -* VIA VT8500 and WonderMedia WM8xxx UART Controller
+> -
+> -Required properties:
+> -- compatible: should be "via,vt8500-uart" (for VIA/WonderMedia chips up to and
+> -	including WM8850/WM8950), or "wm,wm8880-uart" (for WM8880 and later)
+> -
+> -- reg: base physical address of the controller and length of memory mapped
+> -	region.
+> -
+> -- interrupts: hardware interrupt number
+> -
+> -- clocks: shall be the input parent clock phandle for the clock. This should
+> -	be the 24Mhz reference clock.
+> -
+> -Aliases may be defined to ensure the correct ordering of the uarts.
+> -
+> -Example:
+> -	aliases {
+> -		serial0 = &uart0;
+> -	};
+> -
+> -	uart0: serial@d8200000 {
+> -		compatible = "via,vt8500-uart";
+> -		reg = <0xd8200000 0x1040>;
+> -		interrupts = <32>;
+> -		clocks = <&clkuart0>;
+> -	};
+> -- 
+> 2.45.2
+> 
 
