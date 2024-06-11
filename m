@@ -1,95 +1,126 @@
-Return-Path: <devicetree+bounces-74609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34659903C8B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 14:57:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22FA4903CA6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 15:04:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3E74B22C69
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:57:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C612285102
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 13:04:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7969617C7A9;
-	Tue, 11 Jun 2024 12:57:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8FE417CA13;
+	Tue, 11 Jun 2024 13:03:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="RNrk4ENy"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="XgyFRk1Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5034B17C7A6;
-	Tue, 11 Jun 2024 12:57:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 091EB17BB2B;
+	Tue, 11 Jun 2024 13:03:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718110664; cv=none; b=gxnD28mAWB6XZSURuRkHAWN2ZCWwTtHxYw0OtsYGYxutNhJwwylqeLQUIMmZxHrz2c/jVxM5gDc0h3ivqMn/OFDuqzcmCYv9BRaFkO8Iw07DRYOmV4CyeGfO36vLwiqWqP9x4/PplfiZ0sWzqhm0M72CVylUzJMCWL182fk4lGc=
+	t=1718111035; cv=none; b=IHnCPSffN5feRWLBz90MuuljKMGyfkE+5qErCEdyAjqHx6NnrVtqtlPepr/1m2llgK1E5JE8UBR3J1V8BkwAN3nKDMpjPye4mgYFk2FCXZVzMLMav6J0F1aLZSOXy84GmjM9/7fhOIgVuY2EQn+yty06C5GPnbhov1TRbb1EDgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718110664; c=relaxed/simple;
-	bh=2CHV3JqDCTzemfzBFGBrj/c0ALmTXYa8bakw+BsFzDM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AJd5YOVrqQP0YteYYLvU4lXASXs6QKUu9X8LT6qYSIFlAnmkymNsts9A2HQc57XgBwJ08RIC0M1iF/TIFrGXNQn6Caa8Nkzq3Kk9nXqEUB2/7B3CG1SuSy46Txjt38L26f/kHlRkBQgcwSQM8TYGzKQighWCq+nSU2Ke7mS+QIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=RNrk4ENy; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=43M/sVt50RU4a9KtHKnWJdS5bCQ8XkR5rl3Sgok+z+Y=; b=RNrk4ENyXK9TwbH6pjcRUATroF
-	oIKSsEXmnKu0n1NjLvnG0dgEgtThhhGXxKut1BQNZNWfsMuLhUYm51woR2aF/iAeOaliuZtvlI0X+
-	ZDFx+88r3tzTtrMC70b6yTmkrHusdpj25JnW8sBShX1JwvrAghXoODdm2g2iVNjAsEJA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sH13t-00HO4O-T0; Tue, 11 Jun 2024 14:57:17 +0200
-Date: Tue, 11 Jun 2024 14:57:17 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
-Cc: nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux@armlinux.org.uk, vadim.fedorenko@linux.dev,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, git@amd.com
-Subject: Re: [PATCH net-next v4 3/4] net: macb: Add ARP support to WOL
-Message-ID: <a95e3b77-bdda-428e-9d25-f9be017fd40a@lunn.ch>
-References: <20240610053936.622237-1-vineeth.karumanchi@amd.com>
- <20240610053936.622237-4-vineeth.karumanchi@amd.com>
- <b46427d8-2b8c-4b26-b53a-6dcc3d0ea27f@lunn.ch>
- <6c01bed7-580e-4f1a-9986-39c20f063e67@amd.com>
+	s=arc-20240116; t=1718111035; c=relaxed/simple;
+	bh=GIiD8mBBYkVKmuFLiCQc9SWoCqqgQN3ghdMmVHdOTJE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=UMjdFEuNiNX/N9G3lIBA9DilmJD/UX18miQwlzp4nS5dmnnvB5rt5MuxhkEeiaYDpurRVEAtxrGk31QRmF/4R1vQ0hXRnoDB4s6AYu50WQcTFW8TBbtpER47HJVsQxEWMkyOhVWt8DpFKaV3YLMw+wfF5CVC+OA9jGRdbCuyEUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=XgyFRk1Q; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45BCQIjU027505;
+	Tue, 11 Jun 2024 15:03:15 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=770aedpq5182TConoS3+r5
+	AzAObytUS0CGK7qabj53w=; b=XgyFRk1Qx4Cf5ZD3cl26C1XN/u2//ehCvZYwSH
+	uBoFwcst7xTeQCqCBDS6HKoiY/U/ZkYa5rNjyFFBwoOloE4AEu8j6YGXP3bYvT+e
+	9IYM7R/kHAIYxXPQ+Hfl/y90nMAKXKbAN5NkAWl3R8tFHMERZSdXlRsrUiacth/O
+	1eZIUZEbEKO6j0UBA860eVUkImayWPkFIPwZ8B+/xPrGCPcabPzM2+8lHf2YqWZ7
+	LEPX8GUjX/5CrxoNUxUXZwQiPNHgJiRBTLH87fVH85I7XMpc3XZrOle8gqPoEwkv
+	D3E3pdgrMWWgslLPJnG1b4B5Fr4YVHdY+9t2/xtwcrNhrMyg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ypbp42y21-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Jun 2024 15:03:15 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 4F6064005B;
+	Tue, 11 Jun 2024 15:03:09 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 27955214D30;
+	Tue, 11 Jun 2024 15:01:57 +0200 (CEST)
+Received: from localhost (10.48.86.164) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 11 Jun
+ 2024 15:01:56 +0200
+From: Christophe Roullier <christophe.roullier@foss.st.com>
+To: "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark
+ Brown <broonie@kernel.org>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>,
+        Marek Vasut <marex@denx.de>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/3] Series DTs to deliver Ethernet for STM32MP13
+Date: Tue, 11 Jun 2024 15:01:07 +0200
+Message-ID: <20240611130110.841591-1-christophe.roullier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6c01bed7-580e-4f1a-9986-39c20f063e67@amd.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-11_07,2024-06-11_01,2024-05-17_01
 
-> > > +	/* Don't manage WoL on MAC if there's a failure in talking to the PHY */
-> > > +	if (!!ret && ret != -EOPNOTSUPP)
-> > >   		return ret;
-> > 
-> > The comment is wrong. You could be happily talking to the PHY, it just
-> > does not support what you asked it to do.
-> > 
-> 
-> 
-> These are the 3 possible return scenarios
-> 
-> 1. -EOPNOTSUPP. : When there is no PHY or no set_wol() in PHY driver.
-> 2. 0 : Success
-> 3. any error (-EINVAL, ... ) from set_wol()
-> 
-> we are returning in case 3.
-> 
-> The comment can be "Don't manage WoL on MAC, if PHY set_wol() fails"
+STM32MP13 is STM32 SOC with 2 GMACs instances
+    GMAC IP version is SNPS 4.20.
+    GMAC IP configure with 1 RX and 1 TX queue.
+    DMA HW capability register supported
+    RX Checksum Offload Engine supported
+    TX Checksum insertion supported
+    Wake-Up On Lan supported
+    TSO supported
 
-O.K.
+V2: - Remark from Marek (sort properties, typo fix in commit msg)
 
-You don't need the !! on ret.
+Christophe Roullier (3):
+  ARM: dts: stm32: add ethernet1 and ethernet2 support on stm32mp13
+  ARM: dts: stm32: add ethernet1/2 RMII pins for STM32MP13F-DK board
+  ARM: dts: stm32: add ethernet1 for STM32MP135F-DK board
 
-	Andrew
+ arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi | 71 +++++++++++++++++++++
+ arch/arm/boot/dts/st/stm32mp131.dtsi        | 38 +++++++++++
+ arch/arm/boot/dts/st/stm32mp133.dtsi        | 31 +++++++++
+ arch/arm/boot/dts/st/stm32mp135f-dk.dts     | 23 +++++++
+ 4 files changed, 163 insertions(+)
+
+
+base-commit: bb678f01804ccaa861b012b2b9426d69673d8a84
+-- 
+2.25.1
+
 
