@@ -1,64 +1,61 @@
-Return-Path: <devicetree+bounces-74724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 451BD904322
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 20:07:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25E4B904334
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 20:10:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6778E1C21E28
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 18:07:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9305328B9C9
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 18:10:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCAD356B72;
-	Tue, 11 Jun 2024 18:07:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83EBD5B05E;
+	Tue, 11 Jun 2024 18:10:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BKozxI8G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p8tNwlcK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2B4838FA1;
-	Tue, 11 Jun 2024 18:07:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5926843AD5;
+	Tue, 11 Jun 2024 18:10:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718129253; cv=none; b=dCCxK01Ll/6CW7nQea7AvoGA+TNkYS9quj9sjevFIoA67/MawUO3k6bmTaxjhbE3KaYJmcgQW3pEy/SL46h0FtRg5XXhpt6jN7XIANdoiroloP16IbkS04LB3/yxsWyoHWhyYy0F9xzFXVqWJe8iRKmI0rS25qcx+3ySySOel4w=
+	t=1718129445; cv=none; b=p1/r/3qfN04LX0SVgW0dccsKEsaQrumjnOWDUHL9B77jxvIfUZGlXCZe/Ct4YUuwwPetgdm/1dd07oyYPJQ9DiXEz0nASuOs+CQSWLWbBtrLKkkGtRjBaw+67a1nUNvwBfnLfdRlCE6OQG1JUpbnBZ54esmcB1mUlAb5Mks8Fec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718129253; c=relaxed/simple;
-	bh=q4ZS2OwCpxxeV67ovBwERfgyqxYXGvy54YBgY6MfW2M=;
+	s=arc-20240116; t=1718129445; c=relaxed/simple;
+	bh=TjzdMfhIprBIYXA1Ded7MQ848LN5/jfRqWbIpulmQvQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hntWRRR1ebdmO4gUL+wRt1vqoiFb+2OnzXMMN8EZVmJJWeXbMuQ+jB1Rd9vjzNiKnv+7p25kYU5osOpn13bF2tkqLudeM8dp9zTU7L6NZO9wNXh/UAGIoBy/+/ldJQWbARYlLYNNifuy7cjh0VT4HRVtmpr1Lqc21oMQ2Ex49ww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BKozxI8G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D37D2C2BD10;
-	Tue, 11 Jun 2024 18:07:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AXRbHJJYig7oi2045dySM1I+6R2qgS/4YkyjcrlLF5lWfjkexLy766WZd+JJa9O9k0Z/A5F7QH8VN8XPbNykxT2ONUp3J9VzTk8AdWsWnlwumC3C3PetVHCVwevlXG0Ff4Y9oTNBShVFb1z+JwwCV1QbQwmSj0/uex7OfXRcxPg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p8tNwlcK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4745C2BD10;
+	Tue, 11 Jun 2024 18:10:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718129253;
-	bh=q4ZS2OwCpxxeV67ovBwERfgyqxYXGvy54YBgY6MfW2M=;
+	s=k20201202; t=1718129445;
+	bh=TjzdMfhIprBIYXA1Ded7MQ848LN5/jfRqWbIpulmQvQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BKozxI8GgPA73uR1P6gT1vsk/yJQHb2TFCDkYWU+nLY9ttHzEZHv+Gr4gFgbCh/UY
-	 3Yu0KevNqdZ6b2xzAXLbiX8KB4OEJMqC0CLkIWlj0xGJYrL4sgu/JN4A8j2FqXyriG
-	 AuvPQCRvyZbDri+T0EWxs3AcT8pAq/Z8Ym5Krv4myK6d5iuUkn5a4no4ZHSlxIwQjo
-	 kmasB1D9gohJi4qBWI+bDyyKq++i7ga6f3AsDPSE4G0bRMDZAmlNLPgIZKO7dffKbO
-	 Y5KzLxP0UVSwU482LCUpDIFgKYZrcdcE4lnRM4ESl+Ygy60w2sJNx+hcMhkPeCP65h
-	 y3Mat9pprabgA==
-Date: Tue, 11 Jun 2024 19:07:28 +0100
+	b=p8tNwlcKIt1/wAXVS5HNNI/G+aDoD+Cy+B+GzOC7ogR+dsbMBzRZbp/0A1sAsXeRP
+	 WYTHIkKi3hMbzKEJqCOqJyC+sosflnqJmszos6oMHQSg2vtqnr2FY8sse1g2e5W0+H
+	 AeR8PR1iXxAQwBm9sQdjCkyEjqGepvnEvaS3vawHoioswWRdx/GXHO4RFf3q3m4hTI
+	 zlvxZhb0yDfDRLb+XHdgQy8w+8OQ3mmlxkSAovU6m+NCT9dI/Ox9kCOgkicNXK85as
+	 Klr5HC5t3x1ML/lwytCzyTf248TqKivtJ82ZpzlxdhkqTDjDnfGwWKC/Mqw8vhGeKQ
+	 lANhMUqeLhBzQ==
+Date: Tue, 11 Jun 2024 19:10:40 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Viacheslav <adeep@lexina.in>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 3/4] dt-bindings: arm: amlogic:
- amlogic,meson-gx-ao-secure: add secure-monitor property
-Message-ID: <20240611-undying-earthy-00236ac251aa@spud>
-References: <20240610084032.3096614-1-adeep@lexina.in>
- <20240610084032.3096614-4-adeep@lexina.in>
- <20240610-dropout-compress-6d6a9b749524@spud>
- <4866f6d4-2e3c-40c7-a8cb-ba4e422ffef6@lexina.in>
+To: Aniket <aniketmaurya@google.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Jeremy Kerr <jk@codeconstruct.com.au>,
+	Joel Stanley <joel@jms.id.au>,
+	Billy Tsai <billy_tsai@aspeedtech.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: i3c: dw: Add clock binding
+Message-ID: <20240611-alphabet-dubbed-d6c3a56e7208@spud>
+References: <20240611171600.1105124-1-aniketmaurya@google.com>
+ <20240611171600.1105124-2-aniketmaurya@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,104 +63,98 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="sJ1nEYGXW16faEE9"
+	protocol="application/pgp-signature"; boundary="AJEiS4jL6BfZv+VG"
 Content-Disposition: inline
-In-Reply-To: <4866f6d4-2e3c-40c7-a8cb-ba4e422ffef6@lexina.in>
+In-Reply-To: <20240611171600.1105124-2-aniketmaurya@google.com>
 
 
---sJ1nEYGXW16faEE9
+--AJEiS4jL6BfZv+VG
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jun 11, 2024 at 01:25:11PM +0300, Viacheslav wrote:
-> Hi!
->=20
-> 10/06/2024 19.08, Conor Dooley wrote:
-> > On Mon, Jun 10, 2024 at 11:39:49AM +0300, Viacheslav Bocharov wrote:
-> > > Add secure-monitor property to schema for meson-gx-socinfo-sm driver.
-> >=20
-> > "bindings are for hardware, not drivers". Why purpose does the "secure
-> > monitor" serve that the secure firmware needs a reference to it?
->=20
-> This driver is an extension to the meson-gx-socinfo driver: it supplements
-> information obtained from the register with information from the
-> SM_GET_CHIP_ID secure monitor call. Due to the specifics of the module
-> loading order, we cannot do away with meson-gx-socinfo, as it is used for
-> platform identification in some drivers. Therefore, the extended informat=
-ion
-> is formatted as a separate driver, which is loaded after the secure-monit=
-or
-> driver.
+On Tue, Jun 11, 2024 at 05:15:59PM +0000, Aniket wrote:
+> Add dt binding for optional apb clock.
+> Core clock is mandatory. Also add
+> an example.
 
-Please stop talking about drivers, this is a binding which is about
-hardware. Please provide, in your next version, a commit message that
-justifies adding this property without talking about driver probing
-order etc, and instead focuses on what service the "secure monitor"
-provides etc.
+Please fix your line wrapping here.
 
-> The ability to obtain additional information depends on the support for t=
-he
-> call in the secure-monitor, which can be described by an additional link
-> from the amlogic,meson-gx-ao-secure node to the secure-monitor node, simi=
-lar
-> to how it is done for amlogic,meson-gxbb-efuse.
->=20
-> >=20
-> > Thanks,
-> > Conor.
-> >=20
-> > >=20
-> > > Signed-off-by: Viacheslav Bocharov <adeep@lexina.in>
-> > > ---
-> > >   .../bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml      | 4 +=
-+++
-> > >   1 file changed, 4 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/arm/amlogic/amlogic,me=
-son-gx-ao-secure.yaml b/Documentation/devicetree/bindings/arm/amlogic/amlog=
-ic,meson-gx-ao-secure.yaml
-> > > index 7dff32f373cb..1128a794ec89 100644
-> > > --- a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-=
-ao-secure.yaml
-> > > +++ b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-=
-ao-secure.yaml
-> > > @@ -32,6 +32,10 @@ properties:
-> > >     reg:
-> > >       maxItems: 1
-> > > +  secure-monitor:
-> >=20
-> > Missing a vendor prefix.
-> >=20
-> > > +    description: phandle to the secure-monitor node
-> > > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > > +
-> > >     amlogic,has-chip-id:
-> > >       description: |
-> > >         A firmware register encodes the SoC type, package and revision
-> > > --=20
-> > > 2.45.2
-> > >=20
-> > >=20
-> > > _______________________________________________
-> > > linux-amlogic mailing list
-> > > linux-amlogic@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-amlogic
->=20
-> --
-> with regards,
-> Viacheslav
+> Signed-off-by: Aniket <aniketmaurya@google.com>
 
---sJ1nEYGXW16faEE9
+Full name please.
+
+> ---
+>  .../bindings/i3c/snps,dw-i3c-master.yaml      | 19 ++++++++++++++++++-
+>  1 file changed, 18 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.yam=
+l b/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.yaml
+> index c0e805e531be..7e3d4f308477 100644
+> --- a/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.yaml
+> +++ b/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.yaml
+> @@ -20,7 +20,16 @@ properties:
+>      maxItems: 1
+> =20
+>    clocks:
+> -    maxItems: 1
+> +    minItems: 1
+> +    items:
+> +      - description: Core interface clock
+
+s/interface //.
+
+> +      - description: APB interface clock
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    items:
+> +      - const: core_clk
+> +      - const: pclk
+
+Why not name them "core" and "apb"? Putting "clk" in both names is
+redundant infomration, we already know they're clocks.
+
+> =20
+>    interrupts:
+>      maxItems: 1
+> @@ -49,4 +58,12 @@ examples:
+>              pagesize =3D <0x8>;
+>          };
+>      };
+> +  - |
+> +    i3c@10400 {
+
+No need for an extra example for this.
+
+Thanks,
+Conor.
+
+> +      compatible =3D "snps,dw-i3c-master-1.00a";
+> +      reg =3D <0x10400 0x1000>;
+> +      interrupts =3D <8>;
+> +      clocks =3D <&i3c0_cclk>,<&i3c0_pclk>;
+                              ^^
+			missing a space here.
+
+> +      clock-names =3D "core_clk", "pclk";
+> +    };
+>  ...
+> --=20
+> 2.45.2.505.gda0bf45e8d-goog
+>=20
+>=20
+
+--AJEiS4jL6BfZv+VG
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmiSYAAKCRB4tDGHoIJi
-0jycAQCDqoXCDGSzgqjdRrhl84TptzMFUZFgRNdHcGZOOTvlbQEA8E53g1Xc26vR
-Urb8lH1R3nEkVzk3384ZJv7yIgQXtw8=
-=wUCV
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmiTIAAKCRB4tDGHoIJi
+0vecAQC9e41GbhP5Enju1g8aTW6hHW9ASQpnsTQWipyRbCAcGAEAry2a4LactviZ
+jCwkwT8BlTp06IV6M5Mh7kQR13zwJgE=
+=/2we
 -----END PGP SIGNATURE-----
 
---sJ1nEYGXW16faEE9--
+--AJEiS4jL6BfZv+VG--
 
