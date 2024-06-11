@@ -1,235 +1,188 @@
-Return-Path: <devicetree+bounces-74666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1066903F07
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 16:43:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DFF0903F17
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 16:45:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5BE42B249FF
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 14:43:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 097F81C2301E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 14:45:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F7B417D8A4;
-	Tue, 11 Jun 2024 14:43:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47BB0BA46;
+	Tue, 11 Jun 2024 14:45:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="O5UyJSFe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="juGmJXBM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3B5B5336D;
-	Tue, 11 Jun 2024 14:43:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AD5BBA34;
+	Tue, 11 Jun 2024 14:45:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718117005; cv=none; b=mxpnqQIvD1Qp0BYmrWRRf64q4B7z/m4IpsMAncd8dAhxv90GpLHQwRnKOPHY5JEB3ZGw0P6xgg7qW0Xrg4jJTXXHulQiUCF8i89lbqIIdmvl7urHIYPF4h0Gz2tu0WIA5H+BaNtWLqwlI6pjGDQKc6+ks0cKubFMpFVWvf8+H3U=
+	t=1718117152; cv=none; b=Ks7u8N7Sa/lK1KpEpgYqpOXx4o3o2Zfsd4VXTyv1OtcxNyhZeW5za5Jp6l/DxzHYVExRFsLgqM4jCUQ1+EcXlWZ2ZOkQ71mEnUWRda3eUBkNV87PNaaDh3j5SFUidMhZpSxi+dXlY9+kjnh5HsYJp+6k3UW5P6+iKTEm0wSaoXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718117005; c=relaxed/simple;
-	bh=ku6qOjGqxKvBFbmOLLJ5xchcQT1HGT23J6TUWkvY6NY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lVV1UC2UxIsiPRbI7uEcBUIhYVyqP1dtS2hN1GME29CK0ieFl4y/LZbL7DFULALXANaEkseq76LkmeSimeBYUXLFZIHmbXgO52CAHCrcRiNixWZPtV73oeN/qPSswIFKIzSX3LPDA2xzHMkzMF8vsKopgwr+ZI6V22dOQF4BgBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=O5UyJSFe; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E372920009;
-	Tue, 11 Jun 2024 14:43:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1718117000;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qWHfpv+jXiy2o9uspnLye8WVPnOeDHAl++BqV0w7CAE=;
-	b=O5UyJSFeA2xPnA/OYrMwNbImlf+JqBITKgrNDlruVVA74nZbE8la1RTak3sR+cQPD66/PS
-	ucxHox0AAUqO7xw8PPEgJz0V0Ni771LgSFDfhz/sp0KyDW+lYM/826n3jy4FvoYaM+FFOE
-	5oeASV2NlTjgEj4F7ed5X3Mtpm+3rsMnay+dOGoBd8+KMCeQjXjQtOYIjLi+pchGVpWpie
-	ElX1jduFhWIqZkkTj45eIdaU20f0QoQO/QA8e1ygU3EpYj7epRCNEiazShVpIWNi2oSDmz
-	+7ZYyOeK9zSqiG68gxeXn5AeXkTnDMos+F+vjy34NXp6OCOIEbnWIX6vnD7PLQ==
-Date: Tue, 11 Jun 2024 16:43:15 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
- Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Derek Kiernan
- <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, Arnd
- Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Saravana Kannan <saravanak@google.com>, Paul Kocialkowski
- <contact@paulk.fr>, =?UTF-8?Q?Herv=C3=A9?= Codina
- <herve.codina@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Paul
- Kocialkowski <paul.kocialkowski@bootlin.com>, Srinivas Kandagatla
- <srinivas.kandagatla@linaro.org>, Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH v2 1/5] dt-bindings: connector: add GE SUNH hotplug
- addon connector
-Message-ID: <20240611164315.64414552@booty>
-In-Reply-To: <20240605144531.GA2642279-robh@kernel.org>
-References: <20240510-hotplug-drm-bridge-v2-0-ec32f2c66d56@bootlin.com>
-	<20240510-hotplug-drm-bridge-v2-1-ec32f2c66d56@bootlin.com>
-	<20240510163625.GA336987-robh@kernel.org>
-	<20240514185125.58225238@booty>
-	<20240605144531.GA2642279-robh@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1718117152; c=relaxed/simple;
+	bh=V3zghL8937UdbAnh4MFjMK3vjv6PMWnvoOCbMkWbe1s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ft1JKVL6Fw7lmRCC1NtnsdVw9gTAbvFPr/fY7tqYznwe4s2jYoBwSvxuBxSwEkSwJmjorXqds4UEXa0kJojE7+3biDyMx7objJeDbiszCZ134AHil5IA88qnGociHSQB5zX16D7VmTvQam0ekV/uXHRhYHuZetFjoYAxSSTe4tg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=juGmJXBM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A28F2C32789;
+	Tue, 11 Jun 2024 14:45:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718117151;
+	bh=V3zghL8937UdbAnh4MFjMK3vjv6PMWnvoOCbMkWbe1s=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=juGmJXBMyGZXQ/0x55ti+I4UYFcXSeLviZnT+ww10SZAgbmT19fchqxVRSvE7FWls
+	 aP3sH6FxjPUK+4byqsD5/Q0AVxPyNh4iwOq5XEaaJvXxzQuDvaJD0j85gWZR3zs5TS
+	 8nJ9pQ3fclffSl7Fs1/bnQVtU+Qo+YaQysEF/buMn0y1xmPwhJ4mTnhKB9bBPhphq+
+	 36P2a7T6Z5qWl+jSnowHFjXd7ArbsfW+oxc6WG/iNzzCGfixmEnTUZlBAbzRdVvy1V
+	 8rPKvQPoH9DoHRbwwfTp4LppIXFJtkr+A2vQDEfoBrT30HFa5PF0b6zslg53StQT/C
+	 OHmkDNMHh2JuA==
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52c7f7fdd24so1506948e87.1;
+        Tue, 11 Jun 2024 07:45:51 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXITQpUVLrF7Ln2FebfLlYIfaYX2ggv4pavUPGQOtBXmJ/GzLAWqX4fuxBSd9s54al/yePPQMWCCpsisimTNwWxgm399tT3NHJdrseVoWrItWy3kAw/4m4xF1/z+4liyoW37h4Wkt6ptFTgwVW2iNyMJQmB5iIo708VjW/6exJwa1MwpSYk9Q==
+X-Gm-Message-State: AOJu0Yw6ixV/mxozBrVH64jKT+2ZF9TtKEPyUW+5FdVVZe94tuTKCygE
+	R2Ir/CdfE0HQzcVs66OYgM4Bsv6gwulQtM5Etj8aLWf//dSZt37hNMIj56hAlCTwRYT7v4giQov
+	xPNPNOzMQW7rdAfrlJgIzYII3O7A=
+X-Google-Smtp-Source: AGHT+IEp/gao3GqGPVG3agUDrZC/bx+9rcwsP/3NVeoATZzgw4jCanRBgPt4F03bVMSDqekKU4mOSqOkrmL+rgGhI9k=
+X-Received: by 2002:a19:5e44:0:b0:52b:796e:66a5 with SMTP id
+ 2adb3069b0e04-52bb9fd281cmr6792120e87.66.1718117150327; Tue, 11 Jun 2024
+ 07:45:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+References: <20240605094843.4141730-1-wenst@chromium.org> <CAFLszTjX=ixC3pRRGJeaP=ie_yc+KcCRyQ06MBFeSZnBepaXaw@mail.gmail.com>
+ <CAGXv+5EcEYGqXq2C1OCK4J4t1NusV7nWp16zb74P6_tCeLnSGw@mail.gmail.com>
+In-Reply-To: <CAGXv+5EcEYGqXq2C1OCK4J4t1NusV7nWp16zb74P6_tCeLnSGw@mail.gmail.com>
+From: Masahiro Yamada <masahiroy@kernel.org>
+Date: Tue, 11 Jun 2024 23:45:14 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAQ7XAGgzhBXQWPFVgqJwdBcO3mF5pmQ3mSsmdrZ0EBL9Q@mail.gmail.com>
+Message-ID: <CAK7LNAQ7XAGgzhBXQWPFVgqJwdBcO3mF5pmQ3mSsmdrZ0EBL9Q@mail.gmail.com>
+Subject: Re: [PATCH] scripts/make_fit: Support decomposing DTBs
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Simon Glass <sjg@chromium.org>, Nathan Chancellor <nathan@kernel.org>, 
+	Nicolas Schier <nicolas@fjasle.eu>, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, 
+	Elliot Berman <quic_eberman@quicinc.com>, Devicetree List <devicetree@vger.kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: luca.ceresoli@bootlin.com
 
-Hello Rob,
+On Tue, Jun 11, 2024 at 5:52=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> w=
+rote:
+>
+> On Mon, Jun 10, 2024 at 11:16=E2=80=AFPM Simon Glass <sjg@chromium.org> w=
+rote:
+> >
+> > Hi Chen-Yu,
+> >
+> > On Wed, 5 Jun 2024 at 03:48, Chen-Yu Tsai <wenst@chromium.org> wrote:
+> > >
+> > > The kernel tree builds some "composite" DTBs, where the final DTB is =
+the
+> > > result of applying one or more DTB overlays on top of a base DTB with
+> > > fdtoverlay.
+> > >
+> > > The FIT image specification already supports configurations having on=
+e
+> > > base DTB and overlays applied on top. It is then up to the bootloader=
+ to
+> > > apply said overlays and either use or pass on the final result. This
+> > > allows the FIT image builder to reuse the same FDT images for multipl=
+e
+> > > configurations, if such cases exist.
+> > >
+> > > The decomposition function depends on the kernel build system, readin=
+g
+> > > back the .cmd files for the to-be-packaged DTB files to check for the
+> > > fdtoverlay command being called. This will not work outside the kerne=
+l
+> > > tree. The function is off by default to keep compatibility with possi=
+ble
+> > > existing users.
+> > >
+> > > To facilitate the decomposition and keep the code clean, the model an=
+d
+> > > compatitble string extraction have been moved out of the output_dtb
+> > > function. The FDT image description is replaced with the base file na=
+me
+> > > of the included image.
+> > >
+> > > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> > > ---
+> > > This is a feature I alluded to in my replies to Simon's original
+> > > submission of the make_fit.py script [1].
+> > >
+> > > This is again made a runtime argument as not all firmware out there
+> > > that boot FIT images support applying overlays. Like my previous
+> > > submission for disabling compression for included FDT images, the
+> > > bootloader found in RK3399 and MT8173 Chromebooks do not support
+> > > applying overlays. Another case of this is U-boot shipped by developm=
+ent
+> > > board vendors in binary form (without upstream) in an image or in
+> > > SPI flash on the board that were built with OF_LIBFDT_OVERLAY=3Dn.
+> > > These would fail to boot FIT images with DT overlays. One such
+> > > example is my Hummingboard Pulse. In these cases the firmware is
+> > > either not upgradable or very hard to upgrade.
+> > >
+> > > I believe there is value in supporting these cases. A common script
+> > > shipped with the kernel source that can be shared by distros means
+> > > the distro people don't have to reimplement this in their downstream
+> > > repos or meta-packages. For ChromeOS this means reducing the amount
+> > > of package code we have in shell script.
+> > >
+> > > [1] https://lore.kernel.org/linux-kbuild/20231207142723.GA3187877@goo=
+gle.com/
+> > > [2]
+> > >
+> > >  scripts/Makefile.lib |  1 +
+> > >  scripts/make_fit.py  | 70 ++++++++++++++++++++++++++++++------------=
+--
+> > >  2 files changed, 49 insertions(+), 22 deletions(-)
+> >
+> > This is a clever way to discover the included files. Does it need to
+> > rely on the Linux build information, or could this information somehow
+> > be in the .dtb files? I had expected some sort of overlay scheme in
+>
+> (+CC DT folks and mailing list)
+>
+> I suppose we could make the `fdtoverlay` program embed this data during
+> the kernel build. That would keep the information together, while also
+> having one source of truth (the kernel Makefiles). Whether it belongs
+> in the DTB or not is a separate matter.
 
-thanks for the follow up. I still have a couple questions for you
-before I see a clear direction forward, see below.
 
-On Wed, 5 Jun 2024 08:45:31 -0600
-Rob Herring <robh@kernel.org> wrote:
+Some time ago, I asked a similar question
+with a similar motivation.
 
-[...]
+https://lore.kernel.org/devicetree-compiler/CAK7LNARV8Bo-tBXMdOu55Wg9uZRXvN=
+iRdkDJ4LH8PwVMnMp4cA@mail.gmail.com/
 
-> > > > +  # "base" overlay describing the common components on every add-o=
-n that
-> > > > +  # are required to read the model ID   =20
-> > >=20
-> > > This is located on the add-on board, right? =20
-> >=20
-> > Exactly. Each add-on has an EEPROM with the add-on model ID stored
-> > along with other data.
-> >  =20
-> > > Is it really any better to have this as a separate overlay rather tha=
-n=20
-> > > just making it an include? Better to have just 1 overlay per board=20
-> > > applied atomically than splitting it up. =20
-> >=20
-> > (see below)
-> >  =20
-> > > > +  - |
-> > > > +    &i2c1 {   =20
-> > >=20
-> > > Generally, I think everything on an add-on board should be underneath=
-=20
-> > > the connector node. For starters, that makes controlling probing and=
-=20
-> > > removal of devices easier. For example, you'll want to handle=20
-> > > reset-gpios and powergood-gpios before any devices 'appear'. Otherwis=
-e,=20
-> > > you add devices on i2c1, start probing them, and then reset them at s=
-ome=20
-> > > async time? =20
-> >=20
-> > This is not a problem because the code is asserting reset before
-> > loading the first overlay. From patch 5/5: =20
->=20
-> What if the bootloader happened to load the overlay already? Or you=20
-> kexec into a new kernel?
 
-When an overlay is loaded by the bootloader, IIRC it becomes an
-integral part of the live device tree and is not removable anymore.
-This does not make sense for a physically removable add-on: as the
-add-on can be physically removed, its device tree representation must
-be removable as well.
 
-And the main board is able to work autonomously without the add-on, so
-I don't see any reason for loading the overlay in the bootloader.
 
-For the kexec case, the main use cases I can think of involves 'kexec
---dtb=3D...' to loads its own copy of the base DT (without overlays). So
-everything will probe again, and the overlays will be loaded again
-by the connector driver if/whan the add-on is connected.
 
-And if there are use cases of kexec when the 2nd kernel finds the DT
-with the overlays already loaded, this is just as wrong as in the
-bootloader case.
 
-> Keeping things underneath a connector node makes managing the=20
-> dependencies easier. It also can allow us to have some control over what=
-=20
-> overlays can and can't modify. It also reflects reality that these=20
-> devices sit behind the connector.
 
-=46rom my limited point of view, these points appear all nice to have but
-not strictly needed. About the last one, referring to your example:
+>
+> > the source, but perhaps people have given up on that?
+>
+> I wouldn't say given up, since we haven't agreed on anything either.
+> Elliot had some concerns when I brought this up earlier [1] though.
+>
+> ChenYu
+>
+> [1] https://lore.kernel.org/linux-mediatek/20240314113908471-0700.eberman=
+@hu-eberman-lv.qualcomm.com/
+>
 
-> > > For i2c, it could look something like this:
-> > >=20
-> > > connector {
-> > >   i2c {
-> > > 	i2c-parent =3D <&i2c1>;
-> > >=20
-> > > 	eeprom@50 {...};
-> > >   };
-> > > }; =20
-
-I definitely understand the usefulness of such an additional level of
-indirection in the most general case, to decouple the add-on side of the
-I2C bus from the base board side of it, thus allowing multiple different
-base board models and even helping with having multiple connectors
-(multiple add-ons at the same time) on the same main board.
-
-But I also see drawbacks.
-
-The first one is added complexity.
-
-The second is that this representation seems to suggest that the 'i2c'
-node above is another bus w.r.t. '&i2c1', somewhat similarly to what
-happens with child busses of an i2c mux being a different node from the
-parent bus. But in this case they are really the same bus on the same
-electrical lines (when the add-on is connected).
-
-So I think both representations have pros and cons.
-
-Back to the specific product I'm working on: there is only one base
-board model, and also only one connector per main board, and this is by
-the very nature of the product, i.e. it would not make sense to have
-two connectors on the same board.
-
-So in the specific case of this product, do you think it would be OK to
-keep the representation I proposed initially?
-
-> > > Do you load the first overlay and then from it decide which=20
-> > > specific overlay to apply? =20
-> >=20
-> > Exactly.
-> >=20
-> > The first overlay (the example you quoted above) describes enough to
-> > reach the model ID in the EEPROM, and this is identical for all add-on
-> > models. The second add-on is model-specific, there is one for each
-> > model, and the model ID allows to know which one to load. =20
->=20
-> So you don't really need an overlay for this unless the EEPROM model=20
-> changes or the model-id offset changes.
-
-The EEPROM model is the same on all add-on models, or at least it's
-fully compatible. Otherwise finding out the model ID would become very
-annoying.
-
-However the EEPROM is on the add-on, so describing it in the main DT
-would be wrong. Not only conceptually, as hardware not present should
-not be in the live DT, but also practically, as when the add-on is
-removed and then a possibly different add-on is connected we need the
-EEPROM driver to probe again, in order to do any initialization that
-might be needed in the EEPROM driver probe function.
-
-So I see no option but adding the EEPROM in an overlay. But it cannot
-be the "full" overlay because before accessing the EEPROM we don't know
-which model is loaded.
-
-Do you have in mind a better approach that I just didn't think about?
-
-Best regards,
-Luca
-
---=20
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+--
+Best Regards
+Masahiro Yamada
 
