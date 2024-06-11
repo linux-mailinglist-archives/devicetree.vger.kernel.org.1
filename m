@@ -1,239 +1,170 @@
-Return-Path: <devicetree+bounces-74397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AACF902E73
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 04:35:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1430902E87
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 04:41:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 956E4B22DFD
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 02:35:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8C471C21BEE
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 02:41:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47F1E16F852;
-	Tue, 11 Jun 2024 02:35:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0010516F859;
+	Tue, 11 Jun 2024 02:41:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cv0kkC45"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ufYhnMNL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC0DA16F847;
-	Tue, 11 Jun 2024 02:35:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0C5E15B0E2;
+	Tue, 11 Jun 2024 02:41:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718073305; cv=none; b=MLhBAN2a5Y/4bPKdBeRWfOt+rovKBTtPNA42vIsPeV8cDFHfjEMaDAWmUMkQoUqeZrqOSE+8Tts02U2CU7Q+6fPWiIq5lorw9D8SY0z8xXK5/YCFcY3nUpsFyiphJEd0XXqCaCCwGDjVim8otY9HVDR5QoqA5hLosMqYDGVEhS8=
+	t=1718073691; cv=none; b=YP0mFpOK5ygcq7bQvN30E3m7VfwymquT67eqybPVBW47M62JVcAM33PXxqkB11pcdoQWjVL0ctrK9J6EiepvoM2iPzUnQlpHQ0js0Ws/uIHMN/ihlqUmgJCabERINWgWwVmj0A7E759opeWc2H9g1uGUMwlHDXjQTkke0SqMa7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718073305; c=relaxed/simple;
-	bh=uX23ExG6CnBtKrCFcOoTf4iiV2uXPJwIj4H+fGp/ph8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=L87jCjGmJOe10UKSzQGQ3SW0aZ3WeQg3fZYaBLtI2H0iFaukcAds1ZwF0wINFkF/aRyOpOlYOkxmRU/mvX8a5kFm5b2TIb/zhtGkdpc+dKZe1DruhWeKFsjnylPIIQbPLcOvnu+O3GWJpA2C2YuMujhTNkJmZMNbJBr8qjVisKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cv0kkC45; arc=none smtp.client-ip=209.85.166.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-3737dc4a669so3109545ab.0;
-        Mon, 10 Jun 2024 19:35:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718073302; x=1718678102; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5Gfi1U2YocN7eKZd+4TAjGD3Blv7pzKIBpTmBX7SoCw=;
-        b=Cv0kkC45AbIB8qZfkBxjGB/uY47FiMFZ4m/BFpOa806f7BkXLME3lDBp9vER5wzQXb
-         LwBIxi6sBmgjOhG93kzB1dtXb+sxe56ZtwbpcZVquNBHPSfaTG5g0S79Wd0VUkrV81Xw
-         zSNHTZgMEhwG28xwYaQswNaW8rk5yYtHViFe/+pSw63kBP02ytPNXaKhmpSMBa3Hu4BT
-         c1F2d0+KVrSGcTVt5+rR6g6++MWZCftdQ8CAo0/sggVsjUKDx6StSQAkZdsHk0FNaA2u
-         vZWA7ynpyIoKwQEPStrIPAZBUWqnIIw3v8NJdgwAm3e4+fea3a4RLHF4nSPAAmPdNdbQ
-         AMJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718073302; x=1718678102;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5Gfi1U2YocN7eKZd+4TAjGD3Blv7pzKIBpTmBX7SoCw=;
-        b=Awg0PF22R6SYi/wbjiIrnzPFZv6ri2KLR2qqO2IN+eh7zFS04qc7wDWhwisNLdgnhV
-         fXhhGisdyNZ2ipC5iARq2HLmLdAlsgvRIGPDK7AJlmzRq7mxYb4Xz7yNXyD6pgpxByoK
-         2XAk1oymQMqxOlPYDMMUeeJ67Z86dxkivFWroVqbKgQLMk2KwBwJO2D1x1nTDstR2dtK
-         sbyTjbtuXvFDp3kTO1KS52YyjV+48IUDadYZovm7fZL7PrCT1QcxlsB3m0UwK41ugSUG
-         MusXw9s9uRELXyvdkBzjiAb442hpn0HGwOu6Rhqqm6qa+8Q9SkmEmN0BL0xoJykpmApK
-         Gd6w==
-X-Forwarded-Encrypted: i=1; AJvYcCUrqxG3yyYtwx1Ba+D6wpWhdcIFrPc/5jPLu/6dmKQJiHDWIW9qmt3ml0bii+VgTH3pXakUYZRhRHR+tXdtkDW2HtxR6pUPimP1nJTGho2T+AqlEnmPxSDzR7Tv4JxFDWL2VUnXw5zopWmbwGoBpL7AIR/3vYCwlSk6QSf30HBOEHhOig==
-X-Gm-Message-State: AOJu0YxGZUVVuVHKtExYT5pXXqhs6HKS0r4mx0CQHM67GKtgKrD/44gW
-	8IBhTHSNlVDT4f/T94jc8YeqZSzfWa+UFT9gcwa0U2IKFcjRVvD7OAxBWxb7w9DnhRUu3LEWtMQ
-	bV5wl9Kx1ffzR/ns7oKsPNqraX8U=
-X-Google-Smtp-Source: AGHT+IFMzXCoGvT54xrVUmElOG6ITA/pDCGx5P7kEv4zMKFvgLbChT4GvzIFhyASquV0eQSJFmz3vN3JDrgQJHAkFK0=
-X-Received: by 2002:a92:dac1:0:b0:375:88ec:811b with SMTP id
- e9e14a558f8ab-37588ec880emr95209215ab.10.1718073301702; Mon, 10 Jun 2024
- 19:35:01 -0700 (PDT)
+	s=arc-20240116; t=1718073691; c=relaxed/simple;
+	bh=ngSu0hl09RV+E8XRDs8cHoJzfg925aoWxQhKadjgzKo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=fMPgpFqFt0VQKJP3z6YgdtJYSBHvxLB7d63j/7z3Goi2a+xt05TR7IQ5sIkx/p9I0bC8WzdQeY5Gc2ORMfTxED2NlR5dUJQGqdYD8xFYtmJetV6b9p71G9f6QsW9mzGBlEBdxecpNtvRXWMXRsowqxhQw1LNNcFjMQim8BAc41o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ufYhnMNL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02361C2BBFC;
+	Tue, 11 Jun 2024 02:41:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718073690;
+	bh=ngSu0hl09RV+E8XRDs8cHoJzfg925aoWxQhKadjgzKo=;
+	h=From:Date:Subject:To:Cc:From;
+	b=ufYhnMNLWqbW9ijJzuDGnG6ObssMrGf/RmZVa8M7p5NRA14ZDAjH47XEipL/Iwr83
+	 +1RERdjXcI/SM/NL4f2G98FIZ2PeRpclDue9teOQcFQHjyYbLUuWLB0pqGMgas0uMg
+	 24S5C1UMIxgb+6VFnBMPvK8qgVvcSfsuWYYpruWOoUE2QAiF85GhX/g7Js3nGWnUEI
+	 y4j8yaOpY7Ago1EnjzcY4MdRecGnvI8FHn+P7gWa+OTLxlKHx3pQvYQuHwwU4IZQAc
+	 1gHpdv25JOdhL7VoXSs6NJFuGsVVl7rXskUW8yYQSdYn4APpRP4gyQuMDTSd6Pvq6n
+	 ns743Nh3M5snw==
+From: Bjorn Andersson <andersson@kernel.org>
+Date: Mon, 10 Jun 2024 19:46:27 -0700
+Subject: [PATCH v2] dt-bindings: usb: qcom,dwc3: Add SC8180X compatibles
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <1717036278-3515-1-git-send-email-shengjiu.wang@nxp.com>
- <1717036278-3515-3-git-send-email-shengjiu.wang@nxp.com> <20240530085115.ttmzx4dve4x6nep2@pengutronix.de>
-In-Reply-To: <20240530085115.ttmzx4dve4x6nep2@pengutronix.de>
-From: Shengjiu Wang <shengjiu.wang@gmail.com>
-Date: Tue, 11 Jun 2024 10:34:50 +0800
-Message-ID: <CAA+D8AP++bNzE4cccKP_NaxDK-MWN3jtkcB_P5jj0tNiZYYFSg@mail.gmail.com>
-Subject: Re: [PATCH v6 2/5] clk: imx: clk-audiomix: Add reset controller
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, p.zabel@pengutronix.de, abelvesa@kernel.org, 
-	peng.fan@nxp.com, mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
-	marex@denx.de, linux-clk@vger.kernel.org, imx@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240610-sc8180x-dwc3-binding-compatible-v2-1-c7d5db9702a2@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIAIK6Z2YC/z2NSw6CMBQAr0K69pl+EVx5D8OitAVeIgVbQAzh7
+ lZMXM4sZjYSXUAXyTXbSHALRhx8An7KiOm0bx2gTUw45ZLmjEI0BSvoCvZlBNToLfoWzNCPesL
+ 64cA1SpRa8uaiLUmVMbgG1+NwrxJ3GKchvI/hwr7211Zc/dtzrKEfYWGgIKe6pFKUXIri9pzRo
+ Dfn9CPVvu8fFQHElL8AAAA=
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Bjorn Andersson <quic_bjorande@quicinc.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2665;
+ i=quic_bjorande@quicinc.com; h=from:subject:message-id;
+ bh=4pCsrXGH6ET4igc6QE7tpvtvcfisF38chpMSor9ddc8=;
+ b=owEBgwJ8/ZANAwAIAQsfOT8Nma3FAcsmYgBmZ7qGkjHz2zOVGsS8ukF12DSyki+wLYa2VsqpK
+ DDaq6Ohr5aJAkkEAAEIADMWIQQF3gPMXzXqTwlm1SULHzk/DZmtxQUCZme6hhUcYW5kZXJzc29u
+ QGtlcm5lbC5vcmcACgkQCx85Pw2ZrcXBiA/+Lf9MkeQrm2AYlt4JU41fT+8HMz50a4oK2fHqcFp
+ /7CCRd0+DBzNDeX4avL3rp5AVmw84pvluA2mMcsa+fbe/CxzOKoBhRWkiNBj2sR57LtzB1q3YcB
+ MRQ5FvFmzDWv/ufEPvA2zTCSfrZmHSKsH9GeQ5SW8UALIWUsdXV2sbf0xGsFeejA/ND7Txl/alg
+ zEfgoZyOljmpblzSkBReeypIhV8QTqvHmuBq8yB5QhTH34nZAW4Vl7LVu2FtT4dMV3rJAfISL31
+ 5j1C8D2dwGEDaEOxn2h6NgXnpdYID9rmrihuPHIoz00EEmzDLqTNc+LGx99IBnHSuL/cUbQy1mb
+ VtLV3wVuTitXEZ56+hY2CqFLBGTCaIer3rvmipl+QKr74IYSGOWVWzWQP9ZB//1g7iENjmDgkxT
+ crsSS45ZhaGkxauAeBnYSWvDjvxTjTKb6Bt0whie170wUD5PndggyNbHSl0tR/WVbSYtJCVyL58
+ 714T82eEqv00lpwcUMeM/6orMwn4KQi/E3oKB1L3LOVKGiVn2avfAVJmdY0aIVCZoZ8L/y11GwF
+ lmOvU83C6hENUDSrk7VR38c0VsPpCwPw9Gv+NfVaVTuxbjiQ/4P9R6Abh3KBIvN9XkWxiX4Ss0k
+ iSee0X9FwKSopwr5IadbYy9x7phcsRcK7TpoosKZw+QI=
+X-Developer-Key: i=quic_bjorande@quicinc.com; a=openpgp;
+ fpr=05DE03CC5F35EA4F0966D5250B1F393F0D99ADC5
 
-On Thu, May 30, 2024 at 4:51=E2=80=AFPM Marco Felsch <m.felsch@pengutronix.=
-de> wrote:
->
-> On 24-05-30, Shengjiu Wang wrote:
-> > Audiomix block control can be a reset controller for
-> > Enhanced Audio Return Channel (EARC), which is one of
-> > modules in this audiomix subsystem.
-> >
-> > The reset controller is supported by the auxiliary device
-> > framework.
-> >
-> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> >  drivers/clk/imx/Kconfig               |  1 +
-> >  drivers/clk/imx/clk-imx8mp-audiomix.c | 60 +++++++++++++++++++++++++++
-> >  2 files changed, 61 insertions(+)
-> >
-> > diff --git a/drivers/clk/imx/Kconfig b/drivers/clk/imx/Kconfig
-> > index 6da0fba68225..9edfb030bea9 100644
-> > --- a/drivers/clk/imx/Kconfig
-> > +++ b/drivers/clk/imx/Kconfig
-> > @@ -81,6 +81,7 @@ config CLK_IMX8MP
-> >       tristate "IMX8MP CCM Clock Driver"
-> >       depends on ARCH_MXC || COMPILE_TEST
-> >       select MXC_CLK
-> > +     select AUXILIARY_BUS
-> >       help
-> >           Build the driver for i.MX8MP CCM Clock Driver
-> >
-> > diff --git a/drivers/clk/imx/clk-imx8mp-audiomix.c b/drivers/clk/imx/cl=
-k-imx8mp-audiomix.c
-> > index b381d6f784c8..a3dc2f3606ee 100644
-> > --- a/drivers/clk/imx/clk-imx8mp-audiomix.c
-> > +++ b/drivers/clk/imx/clk-imx8mp-audiomix.c
-> > @@ -5,6 +5,7 @@
-> >   * Copyright (C) 2022 Marek Vasut <marex@denx.de>
-> >   */
-> >
-> > +#include <linux/auxiliary_bus.h>
-> >  #include <linux/clk-provider.h>
-> >  #include <linux/device.h>
-> >  #include <linux/io.h>
-> > @@ -13,6 +14,7 @@
-> >  #include <linux/of.h>
-> >  #include <linux/platform_device.h>
-> >  #include <linux/pm_runtime.h>
-> > +#include <linux/slab.h>
-> >
-> >  #include <dt-bindings/clock/imx8mp-clock.h>
-> >
-> > @@ -217,6 +219,60 @@ struct clk_imx8mp_audiomix_priv {
-> >       struct clk_hw_onecell_data clk_data;
-> >  };
-> >
-> > +#if IS_ENABLED(CONFIG_RESET_CONTROLLER)
-> > +
-> > +static void clk_imx8mp_audiomix_reset_unregister_adev(void *_adev)
-> > +{
-> > +     struct auxiliary_device *adev =3D _adev;
-> > +
-> > +     auxiliary_device_delete(adev);
-> > +     auxiliary_device_uninit(adev);
-> > +}
-> > +
-> > +static void clk_imx8mp_audiomix_reset_adev_release(struct device *dev)
-> > +{
-> > +     struct auxiliary_device *adev =3D to_auxiliary_dev(dev);
-> > +
-> > +     kfree(adev);
-> > +}
-> > +
-> > +static int clk_imx8mp_audiomix_reset_controller_register(struct device=
- *dev,
-> > +                                                      struct clk_imx8m=
-p_audiomix_priv *priv)
-> > +{
-> > +     struct auxiliary_device *adev __free(kfree) =3D NULL;
-> > +     int ret;
->
-> Since the reset-controller is optional you need to check the existence
-> of the '#reset-cells' property before you register it.
->
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
 
-ok, will add it.
+The SC8180X platform has two single port DWC3 instances and a two-port
+DWC3 instance. Add compatibles for these to the binding.
 
-best regards
-Shengjiu Wang
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+---
+Changes in v2:
+- Pick up Krzysztof's r-b and resubmit separate from the dts changes
+- Link to v1: https://lore.kernel.org/r/20240525-sc8180x-usb-mp-v1-5-60a904392438@quicinc.com
+---
+ .../devicetree/bindings/usb/qcom,dwc3.yaml         | 29 ++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
 
-> Regards,
->   Marco
->
-> > +
-> > +     adev =3D kzalloc(sizeof(*adev), GFP_KERNEL);
-> > +     if (!adev)
-> > +             return -ENOMEM;
-> > +
-> > +     adev->name =3D "reset";
-> > +     adev->dev.parent =3D dev;
-> > +     adev->dev.release =3D clk_imx8mp_audiomix_reset_adev_release;
-> > +
-> > +     ret =3D auxiliary_device_init(adev);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     ret =3D auxiliary_device_add(adev);
-> > +     if (ret) {
-> > +             auxiliary_device_uninit(adev);
-> > +             return ret;
-> > +     }
-> > +
-> > +     return devm_add_action_or_reset(dev, clk_imx8mp_audiomix_reset_un=
-register_adev,
-> > +                                     no_free_ptr(adev));
-> > +}
-> > +
-> > +#else /* !CONFIG_RESET_CONTROLLER */
-> > +
-> > +static int clk_imx8mp_audiomix_reset_controller_register(struct clk_im=
-x8mp_audiomix_priv *priv)
-> > +{
-> > +     return 0;
-> > +}
-> > +
-> > +#endif /* !CONFIG_RESET_CONTROLLER */
-> > +
-> >  static void clk_imx8mp_audiomix_save_restore(struct device *dev, bool =
-save)
-> >  {
-> >       struct clk_imx8mp_audiomix_priv *priv =3D dev_get_drvdata(dev);
-> > @@ -337,6 +393,10 @@ static int clk_imx8mp_audiomix_probe(struct platfo=
-rm_device *pdev)
-> >       if (ret)
-> >               goto err_clk_register;
-> >
-> > +     ret =3D clk_imx8mp_audiomix_reset_controller_register(dev, priv);
-> > +     if (ret)
-> > +             goto err_clk_register;
-> > +
-> >       pm_runtime_put_sync(dev);
-> >       return 0;
-> >
-> > --
-> > 2.34.1
-> >
-> >
-> >
+diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+index cf633d488c3f..efde47a5b145 100644
+--- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
++++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+@@ -30,6 +30,8 @@ properties:
+           - qcom,sa8775p-dwc3
+           - qcom,sc7180-dwc3
+           - qcom,sc7280-dwc3
++          - qcom,sc8180x-dwc3
++          - qcom,sc8180x-dwc3-mp
+           - qcom,sc8280xp-dwc3
+           - qcom,sc8280xp-dwc3-mp
+           - qcom,sdm660-dwc3
+@@ -334,6 +336,8 @@ allOf:
+           contains:
+             enum:
+               - qcom,qcm2290-dwc3
++              - qcom,sc8180x-dwc3
++              - qcom,sc8180x-dwc3-mp
+               - qcom,sm6115-dwc3
+               - qcom,sm6125-dwc3
+               - qcom,sm8150-dwc3
+@@ -448,6 +452,7 @@ allOf:
+               - qcom,sa8775p-dwc3
+               - qcom,sc7180-dwc3
+               - qcom,sc7280-dwc3
++              - qcom,sc8180x-dwc3
+               - qcom,sc8280xp-dwc3
+               - qcom,sdm670-dwc3
+               - qcom,sdm845-dwc3
+@@ -475,6 +480,30 @@ allOf:
+             - const: dm_hs_phy_irq
+             - const: ss_phy_irq
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,sc8180x-dwc3-mp
++    then:
++      properties:
++        interrupts:
++          minItems: 10
++          maxItems: 10
++        interrupt-names:
++          items:
++            - const: pwr_event_1
++            - const: pwr_event_2
++            - const: hs_phy_1
++            - const: hs_phy_2
++            - const: dp_hs_phy_1
++            - const: dm_hs_phy_1
++            - const: dp_hs_phy_2
++            - const: dm_hs_phy_2
++            - const: ss_phy_1
++            - const: ss_phy_2
++
+   - if:
+       properties:
+         compatible:
+
+---
+base-commit: d35b2284e966c0bef3e2182a5c5ea02177dd32e4
+change-id: 20240610-sc8180x-dwc3-binding-compatible-ef539a42f7ad
+
+Best regards,
+-- 
+Bjorn Andersson <quic_bjorande@quicinc.com>
+
 
