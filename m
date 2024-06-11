@@ -1,107 +1,126 @@
-Return-Path: <devicetree+bounces-74599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D71A903BC6
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 14:22:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DC2A903B55
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 14:03:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0AEA6B214D5
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:22:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF2C3283D18
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:03:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDEBE17C224;
-	Tue, 11 Jun 2024 12:22:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57F05176AA9;
+	Tue, 11 Jun 2024 12:03:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="v4UzXkw7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AB3B17623D;
-	Tue, 11 Jun 2024 12:22:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
+Received: from mout.web.de (mout.web.de [212.227.15.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23234171E60;
+	Tue, 11 Jun 2024 12:03:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718108543; cv=none; b=UFdRm0EmWHIp/L4aFcFt+OmfhG6iVxqyoO22ZnkSJ1ozASKsRsTafI47bS/3miXrcca/PCdgqEeSHZxbI1AkSaPUiZ0kGZzIzJsG5Rkj8bIHAVvVhcICquGsn8WIfn5sX46cM5QfdPpV+6VmqKIfhfcQeJHDpCkjsmrsROHkYto=
+	t=1718107429; cv=none; b=JzSwVYetZYhZdQVoEKoB55570RtMIKx1ECeFOr0lkeToq9siLIjoF4RymkLsoLc7gEh3Ihy3RgbKzHFLBXRHU7K9asCzm4e4GI0pbq7cKvbOmND4nwGsvCGdgtgKacx57LsISgKpJM7VF+4cq5eWDasg+8bn+bvX7rPU2BLnM7E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718108543; c=relaxed/simple;
-	bh=HJ+Q9A0b0sRWunjfn/hvX1NjHm8Ef3Hcvu4jm5Haf+8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HE8FOQBcbxjobL2fInOUZ9/CPksWJP3H/kozD9FT1qM8/JXztOCveuG5vEDzBuuYGQs/hHl8JfeLYjJ3P3+weewCSyitC/DLCeAvYtrEp9n79chwp9CJaTSnOy5iS0b6WKB+EMJ6mxxz7/JK9kksXMXj2ctZxR6n3iVtT/rocOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
-Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
-	id 1sH0Vq-0002Bd-00; Tue, 11 Jun 2024 14:22:06 +0200
-Received: by alpha.franken.de (Postfix, from userid 1000)
-	id 60A9AC0120; Tue, 11 Jun 2024 13:15:44 +0200 (CEST)
-Date: Tue, 11 Jun 2024 13:15:44 +0200
-From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To: Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc: Huacai Chen <chenhuacai@kernel.org>,
-	Aleksandar Markovic <aleksandar.qemu.devel@gmail.com>,
-	Paolo Bonzini <pbonzini@redhat.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org,
-	kvm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/4] MIPS: Loongson64: Sweeping build warnings
-Message-ID: <Zmgx4CdyAiFuzOyR@alpha.franken.de>
-References: <20240507-loongson64-warnings-v1-0-2cad88344e9e@flygoat.com>
+	s=arc-20240116; t=1718107429; c=relaxed/simple;
+	bh=6iL5d5+TpVoppRR7mPjEQaHzLpdbiQSHhhT9BJKLh3I=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=NvvxSbtX9/7l6oyWZko3P0joa/f+1FXFszmF5krQRnj43rjXqMdnxOx0TxbXQMS7H6G+yYqWyoMyPoTfO05WGd45cDId0u4zwZUyxSq59r1CONz4BDHX9SGNdGFzoNx304OQ49Xljqfj9ot8qoWT8V8Zuq3UVo03iSCfT5x0u8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=v4UzXkw7; arc=none smtp.client-ip=212.227.15.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1718107378; x=1718712178; i=markus.elfring@web.de;
+	bh=v4MG0q9MnuPY4++cJH4EjME8ABWNsolzfGyYD+ZIsYU=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=v4UzXkw7bizGPdAA35we5ZahpMfu+ZtwZNGftCytLLW7WsytaCSWwTVnydrGfkf1
+	 oK/ZgNXHm3vpMwOwPNJaTR1ozrYCotWRwmkEjkvwqSxaKtXnFCdvWl7BWkUzIqFCS
+	 gIZagFE4szymyPe2/f4PTzw8l/ZSBWTr6Javsc6tAMAUPJBNgae9OxCZAV80jPYbh
+	 NaigegF64eXlcvvhNoh0riYBNQAcs9DfWfqcn5GNVlVHnCuc6XKWXtoPFQveEsvl2
+	 ywNmQI4Yqagr0EUDQODHk9pq5lLKLP27RCYJ1ytTAQJG7IzSDUY5u0ZSF4xH3Od3g
+	 ph0NW7vK707lcLT9gQ==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.83.95]) by smtp.web.de (mrweb005
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1Mc1ZT-1sq3Jt0QsJ-00jIxb; Tue, 11
+ Jun 2024 14:02:58 +0200
+Message-ID: <32303d99-c5ba-4fec-8981-9b9966dc3291@web.de>
+Date: Tue, 11 Jun 2024 14:02:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240507-loongson64-warnings-v1-0-2cad88344e9e@flygoat.com>
+User-Agent: Mozilla Thunderbird
+To: Kamlesh Gurudasani <kamlesh@ti.com>, devicetree@vger.kernel.org,
+ linux-crypto@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ Herbert Xu <herbert@gondor.apana.org.au>, Tero Kristo <kristo@kernel.org>,
+ Will Deacon <will@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley
+ <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, Rob Herring <robh@kernel.org>,
+ Vignesh Raghavendra <vigneshr@ti.com>
+References: <20240524-mcrc64-upstream-v3-4-24b94d8e8578@ti.com>
+Subject: Re: [PATCH v3 4/6] crypto: ti - add driver for MCRC64 engine
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20240524-mcrc64-upstream-v3-4-24b94d8e8578@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:TJ+M3A+ZwHBv8zbRqkd8DEM7qjVhITuWZRUhZtq7FNJIWGkAGBW
+ 3CoM26cD78kPrZKl9pVWI0m31RFhWOtge/YrCgXqxxV5jOYOmntQo7ZymX+uPbr1E54hC4g
+ 2xYdC00lN417YXdoybmTuYwz5Fszf18GbPLT86PKnchC2KQ7FeKSSpyNPzVqFKprfp7WCKK
+ iS3XbhLEABKTBCzWlaBZw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:YogUS1Yz1Ys=;phEEUBQ3iH6xYdFv8skbZzBR14h
+ X+6Sz3DaRZye53CTBaNq5iAc3w2zfBrL0OMLLDI7LbCNNbCdBr/D4WTeCEoTtVjJ6Xg3Cz636
+ yXCpyBv1pv97bbuTZMENguGkw8NMIl0r1j3svqVgPM9Ga5wOd+gLLqhscwaPD0vi2gyTrWBqj
+ w2ONOFtEUdjQx7Vj3gpWrxfNDbqVklHCu5zaZX5b9OKbpKyRI5JIx0rJ5JNGRYqhC4qidhpTb
+ zQj2fIl/nIJd7l9KmtF4gvONU3TndNcRrwkGf0Vof27i6MienOPKxS4ds+a7nZ73MBIyXb/R2
+ 1w391fKmFkSuaRPjaYn8Lt1xC0NRVXS8w7j3nYT2DvEf8Yp+7i7PcE3/zYwBXBfQOo2RvKFyT
+ 3s7OHuqCJygN0ECVZ57Aiat6FL2evaSmaAvpl46VGhruRblcmRIvwNMdmo3hCz3SRlQf3VDnP
+ aO59pXvfXJvR2DbVUWPtCaCKbyww/Fi/lRfMS/J0rKEOxOz8qJ6gzaErPnBn1VZHDJUdi2KVG
+ wDHqn9Y8MKbM3GHjUv289hSAXlWFLdkND2BnKcFdoMYLAo7T2L2vVeSOgK0SYgh+cPtTrCL9u
+ Pg/A2En23qftgKq6bluP9KC1QKm3Zbj4g3azip3R2avn8d51eaMrR3S/9jhOiDvhPFctnQAD3
+ Yy3WkRkUk6KgmJAIMH+PDeZpLRObzXy+N5DUqgnXbaZwNVRh30u+GjhvAODjj10La3DRLkxOq
+ 6qN1/0vPgbsSgGmnPVzYQtiL1+WEjnexyZ+u6mBa5/KDVF9MA+AzYPfIbS7+erBP0mYnvA4zG
+ Eez1Dz4hRxH5b4QSa6kObgEBkhBJI0lV9uv4wEB1k1EmY=
 
-On Tue, May 07, 2024 at 07:51:18PM +0100, Jiaxun Yang wrote:
-> Hi all,
-> 
-> This series sweeped various build warnings for loongson3_defconfig.
-> This is based on next-20240507.
-> 
-> There are still some warnings remain in pm.c, those errors are
-> covered by [1].
-> 
-> Thanks
-> 
-> [1]: https://lore.kernel.org/linux-mips/20240507-loongson64-suspend-v1-0-534d92a4e09a@flygoat.com/
-> 
-> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> ---
-> To: Huacai Chen <chenhuacai@kernel.org>
-> To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> To: Aleksandar Markovic <aleksandar.qemu.devel@gmail.com>
-> To: Paolo Bonzini <pbonzini@redhat.com>
-> To: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> To: Rob Herring <robh@kernel.org>
-> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> To: Conor Dooley <conor+dt@kernel.org>
-> Cc: linux-mips@vger.kernel.org
-> Cc: kvm@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> 
-> ---
-> Jiaxun Yang (4):
->       MIPS: kvm: Declare prototype for kvm_init_loongson_ipi
->       MIPS: Loongson64: Include bootinfo.h in dma.c
->       MIPS: Loongson64: DTS: Fix msi node for ls7a
->       MIPS: Loongson64: DTS: Fix PCIe port nodes for ls7a
-> 
->  arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi | 37 ++++++++++++++++++----
->  .../boot/dts/loongson/loongson64g_4core_ls7a.dts   |  1 +
->  arch/mips/kvm/interrupt.h                          |  4 +++
->  arch/mips/kvm/loongson_ipi.c                       |  2 ++
->  arch/mips/kvm/mips.c                               |  2 --
->  arch/mips/loongson64/dma.c                         |  1 +
->  6 files changed, 38 insertions(+), 9 deletions(-)
+=E2=80=A6
+> +++ b/drivers/crypto/ti/mcrc64.c
+=E2=80=A6
+> +static int mcrc64_probe(struct platform_device *pdev)
+> +{
+=E2=80=A6
+> +	platform_set_drvdata(pdev, dev_data);
+> +
+> +	spin_lock(&mcrc64_dev_list.lock);
+> +	list_add(&dev_data->list, &mcrc64_dev_list.dev_list);
+> +	spin_unlock(&mcrc64_dev_list.lock);
+> +
+> +	mutex_lock(&refcnt_lock);
+> +	if (!refcnt) {
+> +		ret =3D crypto_register_shashes(algs, ARRAY_SIZE(algs));
+=E2=80=A6
+> +	}
+> +	refcnt++;
+> +	mutex_unlock(&refcnt_lock);
+=E2=80=A6
 
-series applied to mips-next.
+Would you become interested to apply lock guards?
+https://elixir.bootlin.com/linux/v6.10-rc2/source/include/linux/cleanup.h#=
+L124
 
-Thomas.
-
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+Regards,
+Markus
 
