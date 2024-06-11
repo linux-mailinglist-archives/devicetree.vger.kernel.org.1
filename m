@@ -1,126 +1,145 @@
-Return-Path: <devicetree+bounces-74591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DC2A903B55
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 14:03:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B3FB903B81
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 14:07:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF2C3283D18
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:03:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86989284A04
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:07:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57F05176AA9;
-	Tue, 11 Jun 2024 12:03:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF72A17CA11;
+	Tue, 11 Jun 2024 12:06:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="v4UzXkw7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DeJj4q5+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.15.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23234171E60;
-	Tue, 11 Jun 2024 12:03:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AECB017CA0B;
+	Tue, 11 Jun 2024 12:06:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718107429; cv=none; b=JzSwVYetZYhZdQVoEKoB55570RtMIKx1ECeFOr0lkeToq9siLIjoF4RymkLsoLc7gEh3Ihy3RgbKzHFLBXRHU7K9asCzm4e4GI0pbq7cKvbOmND4nwGsvCGdgtgKacx57LsISgKpJM7VF+4cq5eWDasg+8bn+bvX7rPU2BLnM7E=
+	t=1718107608; cv=none; b=t11j3Xp/MslrMosrEnAr+Z5Rw+ApaxK7f3NmjOIyHtJ3Gi1A9nOVG5zAfpUZlLCxP07MFS0ZkBcDGe0YduLUiPOvig+LdklU2jMCs49fT7LtONQabMIYYzIW8fJOV1D2veBLBLb1iQqYBRW4eTyjP9X2dGgHjdlVGsT8UXXxd4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718107429; c=relaxed/simple;
-	bh=6iL5d5+TpVoppRR7mPjEQaHzLpdbiQSHhhT9BJKLh3I=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=NvvxSbtX9/7l6oyWZko3P0joa/f+1FXFszmF5krQRnj43rjXqMdnxOx0TxbXQMS7H6G+yYqWyoMyPoTfO05WGd45cDId0u4zwZUyxSq59r1CONz4BDHX9SGNdGFzoNx304OQ49Xljqfj9ot8qoWT8V8Zuq3UVo03iSCfT5x0u8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=v4UzXkw7; arc=none smtp.client-ip=212.227.15.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1718107378; x=1718712178; i=markus.elfring@web.de;
-	bh=v4MG0q9MnuPY4++cJH4EjME8ABWNsolzfGyYD+ZIsYU=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=v4UzXkw7bizGPdAA35we5ZahpMfu+ZtwZNGftCytLLW7WsytaCSWwTVnydrGfkf1
-	 oK/ZgNXHm3vpMwOwPNJaTR1ozrYCotWRwmkEjkvwqSxaKtXnFCdvWl7BWkUzIqFCS
-	 gIZagFE4szymyPe2/f4PTzw8l/ZSBWTr6Javsc6tAMAUPJBNgae9OxCZAV80jPYbh
-	 NaigegF64eXlcvvhNoh0riYBNQAcs9DfWfqcn5GNVlVHnCuc6XKWXtoPFQveEsvl2
-	 ywNmQI4Yqagr0EUDQODHk9pq5lLKLP27RCYJ1ytTAQJG7IzSDUY5u0ZSF4xH3Od3g
-	 ph0NW7vK707lcLT9gQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.83.95]) by smtp.web.de (mrweb005
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1Mc1ZT-1sq3Jt0QsJ-00jIxb; Tue, 11
- Jun 2024 14:02:58 +0200
-Message-ID: <32303d99-c5ba-4fec-8981-9b9966dc3291@web.de>
-Date: Tue, 11 Jun 2024 14:02:52 +0200
+	s=arc-20240116; t=1718107608; c=relaxed/simple;
+	bh=izbQACBXKg7/xAfr+T6NfWco5xbmu+bfnAsIHYpOdVw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iRH+V9CO0MF6s1QgUf9BzcOyx0gUv/7i4gtViyYRB1pJ3kDdpaHSbG/i1d+yeWE7O54UT98HnMkmVnzJMIQVzA4JiPU6pitqfSiasT2gq5/XTLT7V9NLa0/zx3LNHTXjt53LtOYj09/g59qQaKGE7HHITb0BZ7HpeuDdheuc+Ho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DeJj4q5+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2ACB9C2BD10;
+	Tue, 11 Jun 2024 12:06:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718107608;
+	bh=izbQACBXKg7/xAfr+T6NfWco5xbmu+bfnAsIHYpOdVw=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=DeJj4q5++zj+R3KhmhuzK4d1y38/q9RlXNvB80U8sWohX93yRvAYBbRWeNJI+hEkm
+	 k+6zKhoYuXFyb07P2kL/gMmg/FK9/y7H81SPPXOQI54Ebtv+gaujOBYPQ2BRaVYtr9
+	 4lnDhr8IOcynWAd4LHkUKBtKY+YHivapA0KcI4qKSTAzc4SDzmPp4RqbTJTVrp/i06
+	 yeFezpNqoJVDv03VNIjOBZEqJZ7lwd6ZgUNgF0gsfzovWKsFQcHGsAyw1jhVsfafjZ
+	 Lbe7woGXDn9ZOOtxQ1qkBeigUZLfV/hyl1O4hYcRLn41/8zOCV4apxu/JPqpRIYjBJ
+	 hgZeTXX2xJnaA==
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-579fa270e53so1420336a12.3;
+        Tue, 11 Jun 2024 05:06:48 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXbSviWFWJfPK0DRPTFHzrDVYAa3DrAB+bk4EHedGoObZXKD5al0wKx3VdNcoOsDV8TiJYo0+vNS/vq16CxTfUmQ8Aq+fgLttN9a9jPrZg1YLEL69jT3e1uHJqIua+Qvj7o8u8GlbMKETX0h+jiOy4GFoP+l1oeshbiVH5ZvqyV7MMP/nGwg05F4+wKwTc8e517Su8NUQiRLJAHm03R9akMPEDcrw==
+X-Gm-Message-State: AOJu0Yyarp9ksieeZnbCbAf8duz7DQZehWSw1BG4/KCYm81xFAJ28x5t
+	LAISqQwnKksuLLvctj4XvVfxpjWde9lbBxVQbiokmPBOhy4b+lwjPaAGtRxza8BQ2Vzy29ap6DO
+	XWWvu83SAU9GcwL+6oI/QejE27CE=
+X-Google-Smtp-Source: AGHT+IFFPTTll7ACEEwwlIU5pUww8R0bMpeHE5EPA9sRicSO1H8r8Hj10JvtLT4RCL9oaDh0AQArdk5Tw1koxKQr8oM=
+X-Received: by 2002:a17:906:b810:b0:a6f:1f66:8335 with SMTP id
+ a640c23a62f3a-a6f1f66841fmr408155266b.4.1718107606517; Tue, 11 Jun 2024
+ 05:06:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Kamlesh Gurudasani <kamlesh@ti.com>, devicetree@vger.kernel.org,
- linux-crypto@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com,
- Herbert Xu <herbert@gondor.apana.org.au>, Tero Kristo <kristo@kernel.org>,
- Will Deacon <will@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley
- <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, Rob Herring <robh@kernel.org>,
- Vignesh Raghavendra <vigneshr@ti.com>
-References: <20240524-mcrc64-upstream-v3-4-24b94d8e8578@ti.com>
-Subject: Re: [PATCH v3 4/6] crypto: ti - add driver for MCRC64 engine
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20240524-mcrc64-upstream-v3-4-24b94d8e8578@ti.com>
-Content-Type: text/plain; charset=UTF-8
+References: <20240609-xtheadvector-v1-0-3fe591d7f109@rivosinc.com> <20240609-xtheadvector-v1-1-3fe591d7f109@rivosinc.com>
+In-Reply-To: <20240609-xtheadvector-v1-1-3fe591d7f109@rivosinc.com>
+From: Guo Ren <guoren@kernel.org>
+Date: Tue, 11 Jun 2024 20:06:34 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTTVu4ZQt+gK7pVYEDVG23Sic=jswkVvX4To=VAD0TMzxw@mail.gmail.com>
+Message-ID: <CAJF2gTTVu4ZQt+gK7pVYEDVG23Sic=jswkVvX4To=VAD0TMzxw@mail.gmail.com>
+Subject: Re: [PATCH 01/13] dt-bindings: riscv: Add xtheadvector ISA extension description
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, Evan Green <evan@rivosinc.com>, 
+	Andy Chiu <andy.chiu@sifive.com>, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-sunxi@lists.linux.dev, linux-doc@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:TJ+M3A+ZwHBv8zbRqkd8DEM7qjVhITuWZRUhZtq7FNJIWGkAGBW
- 3CoM26cD78kPrZKl9pVWI0m31RFhWOtge/YrCgXqxxV5jOYOmntQo7ZymX+uPbr1E54hC4g
- 2xYdC00lN417YXdoybmTuYwz5Fszf18GbPLT86PKnchC2KQ7FeKSSpyNPzVqFKprfp7WCKK
- iS3XbhLEABKTBCzWlaBZw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:YogUS1Yz1Ys=;phEEUBQ3iH6xYdFv8skbZzBR14h
- X+6Sz3DaRZye53CTBaNq5iAc3w2zfBrL0OMLLDI7LbCNNbCdBr/D4WTeCEoTtVjJ6Xg3Cz636
- yXCpyBv1pv97bbuTZMENguGkw8NMIl0r1j3svqVgPM9Ga5wOd+gLLqhscwaPD0vi2gyTrWBqj
- w2ONOFtEUdjQx7Vj3gpWrxfNDbqVklHCu5zaZX5b9OKbpKyRI5JIx0rJ5JNGRYqhC4qidhpTb
- zQj2fIl/nIJd7l9KmtF4gvONU3TndNcRrwkGf0Vof27i6MienOPKxS4ds+a7nZ73MBIyXb/R2
- 1w391fKmFkSuaRPjaYn8Lt1xC0NRVXS8w7j3nYT2DvEf8Yp+7i7PcE3/zYwBXBfQOo2RvKFyT
- 3s7OHuqCJygN0ECVZ57Aiat6FL2evaSmaAvpl46VGhruRblcmRIvwNMdmo3hCz3SRlQf3VDnP
- aO59pXvfXJvR2DbVUWPtCaCKbyww/Fi/lRfMS/J0rKEOxOz8qJ6gzaErPnBn1VZHDJUdi2KVG
- wDHqn9Y8MKbM3GHjUv289hSAXlWFLdkND2BnKcFdoMYLAo7T2L2vVeSOgK0SYgh+cPtTrCL9u
- Pg/A2En23qftgKq6bluP9KC1QKm3Zbj4g3azip3R2avn8d51eaMrR3S/9jhOiDvhPFctnQAD3
- Yy3WkRkUk6KgmJAIMH+PDeZpLRObzXy+N5DUqgnXbaZwNVRh30u+GjhvAODjj10La3DRLkxOq
- 6qN1/0vPgbsSgGmnPVzYQtiL1+WEjnexyZ+u6mBa5/KDVF9MA+AzYPfIbS7+erBP0mYnvA4zG
- Eez1Dz4hRxH5b4QSa6kObgEBkhBJI0lV9uv4wEB1k1EmY=
 
-=E2=80=A6
-> +++ b/drivers/crypto/ti/mcrc64.c
-=E2=80=A6
-> +static int mcrc64_probe(struct platform_device *pdev)
-> +{
-=E2=80=A6
-> +	platform_set_drvdata(pdev, dev_data);
+On Mon, Jun 10, 2024 at 12:45=E2=80=AFPM Charlie Jenkins <charlie@rivosinc.=
+com> wrote:
+>
+> The xtheadvector ISA extension is described on the T-Head extension spec
+> Github page [1] at commit 95358cb2cca9.
+>
+> Link: https://github.com/T-head-Semi/thead-extension-spec/blob/95358cb2cc=
+a9489361c61d335e03d3134b14133f/xtheadvector.adoc [1]
+>
+> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  Documentation/devicetree/bindings/riscv/extensions.yaml | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
+cumentation/devicetree/bindings/riscv/extensions.yaml
+> index 468c646247aa..99d2a9e8c52d 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -477,6 +477,10 @@ properties:
+>              latency, as ratified in commit 56ed795 ("Update
+>              riscv-crypto-spec-vector.adoc") of riscv-crypto.
+>
+> +        # vendor extensions, each extension sorted alphanumerically unde=
+r the
+> +        # vendor they belong to. Vendors are sorted alphanumerically as =
+well.
 > +
-> +	spin_lock(&mcrc64_dev_list.lock);
-> +	list_add(&dev_data->list, &mcrc64_dev_list.dev_list);
-> +	spin_unlock(&mcrc64_dev_list.lock);
+> +        # Andes
+>          - const: xandespmu
+>            description:
+>              The Andes Technology performance monitor extension for count=
+er overflow
+> @@ -484,5 +488,11 @@ properties:
+>              Registers in the AX45MP datasheet.
+>              https://www.andestech.com/wp-content/uploads/AX45MP-1C-Rev.-=
+5.0.0-Datasheet.pdf
+>
+> +        # T-HEAD
+> +        - const: xtheadvector
+> +          description:
+> +            The T-HEAD specific 0.7.1 vector implementation as written i=
+n
+> +            https://github.com/T-head-Semi/thead-extension-spec/blob/953=
+58cb2cca9489361c61d335e03d3134b14133f/xtheadvector.adoc.
+URL changed
+https://github.com/XUANTIE-RV/thead-extension-spec/blob/95358cb2cca9489361c=
+61d335e03d3134b14133f/xtheadvector.adoc
+
+Others, LGTM.
+
 > +
-> +	mutex_lock(&refcnt_lock);
-> +	if (!refcnt) {
-> +		ret =3D crypto_register_shashes(algs, ARRAY_SIZE(algs));
-=E2=80=A6
-> +	}
-> +	refcnt++;
-> +	mutex_unlock(&refcnt_lock);
-=E2=80=A6
+>  additionalProperties: true
+>  ...
+>
+> --
+> 2.44.0
+>
 
-Would you become interested to apply lock guards?
-https://elixir.bootlin.com/linux/v6.10-rc2/source/include/linux/cleanup.h#=
-L124
 
-Regards,
-Markus
+--=20
+Best Regards
+ Guo Ren
 
