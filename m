@@ -1,131 +1,146 @@
-Return-Path: <devicetree+bounces-74618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7DC4903CCF
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 15:12:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95FEE903CD7
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 15:14:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE69F1C23031
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 13:12:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE30F1C22B66
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 13:14:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFE9917C7C1;
-	Tue, 11 Jun 2024 13:12:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FCC917C7D2;
+	Tue, 11 Jun 2024 13:14:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dkfn9bGA"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="t1v78wLD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AAF1178CCF;
-	Tue, 11 Jun 2024 13:12:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64BF017C7CD;
+	Tue, 11 Jun 2024 13:14:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718111570; cv=none; b=tbnxSbTcl0AzCuVwh/I30SFt7DjKf1crdgD68bGXnQp+/5VFZvl3cXbqgKPk1RHD1cVltMaWx4N01/BzL/+dPvk8hyFf6uFC58dgtlvo4Mi0vutPp6oyNL7OY+rrylyOMgWqxV3WNpkHZnD2alhoyggbfmIHKn9vatGLLshpBxQ=
+	t=1718111651; cv=none; b=T+QkEws28atmD05G28AWHDighPvf4hFJ3k6WlRWXD3+8x5rh/0PnlA4rJO+Q+SF178xWayJfd9Pu9QtCLLn+gq7Ea+UOu2DUSwPl+N40fv5Hat5sbjozz/osUAklhuWgt9U4mco6onSGqZ3l6aWkJC/v2OTiPg0FrDh0HDthP+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718111570; c=relaxed/simple;
-	bh=OGe3r2/6pOkH3bSOKeGtF6RD1v4JiSo+hRENqhCkqew=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=naif1t1/8A/vUWp5zTkQW39GvJ4LcF96ztRwQqL59HiVfkhN1dBxyvm5Y/ntjhtCQYS1kmLU+l685dldwLnG27kaYH3n5IIAVZs1ilyBVKe5r9d9VJ0XQIylZE6YHpquHP2K+twkvbisrYBbewp9Wb7msrwxlXBrsmGKhE5S6qM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dkfn9bGA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A823CC2BD10;
-	Tue, 11 Jun 2024 13:12:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718111570;
-	bh=OGe3r2/6pOkH3bSOKeGtF6RD1v4JiSo+hRENqhCkqew=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Dkfn9bGAJxiqPyULSPh28vzRbnNR6uLlnIrDo64O2djHmmF+9RmhcOl1CvS6RlPCw
-	 pEJ2EeFIlvJ2EkvwVCxHDm6slBdVLgQr4kN+c7fu1vggrJNAQ9FU4FVyenGIoeEKIZ
-	 GepRVPGZdqhokEa+3vxMyNcH4/J0S6sBObj0+l1nCYzNlO0dGTz9njTbNCnfqNnsSW
-	 k2nXmY37Jup2keBhBI+3nFdUIX9sYSAJ+XVaGfcfvON3MDtvtB3cBR5RM/GwnlHNj1
-	 +5k/Mos4HWpzcryvLv3rM0CC0LbLDh3IMsleknX2XOrTBCPVUhzp8aMzyluerjV77T
-	 PGUGdv3n3DVTA==
-Date: Tue, 11 Jun 2024 14:12:45 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Conor Dooley <conor.dooley@microchip.com>
-Cc: Daire McNamara <daire.mcnamara@microchip.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v1 2/2] PCI: microchip: rework reg region handing
-Message-ID: <20240611-relapsing-hurt-3a5f37743784@spud>
-References: <20240527-slather-backfire-db4605ae7cd7@wendy>
- <20240527-flint-whacky-4fb21c38476b@wendy>
+	s=arc-20240116; t=1718111651; c=relaxed/simple;
+	bh=1px+pBBKwT/kT5Nl3k339zWLK3XeVGSfRfAFkwQM8u0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=L3xWR02TMUJ7062oz0dX/hpd248BmJXXYd05jYqFT7P9B+4u9ehIxpRZPEGeSpLB/N4lbeFSN046k7ApemyNjl+i0UX/CsmCjcza0BRhvkPE/rWFOPcjHYClDgADvZBkG1jG5n7OiySuvJs+8/Q0hp9xXCAqwxAs4HRXkwq+RKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=t1v78wLD; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45BCUnRS012090;
+	Tue, 11 Jun 2024 15:14:00 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	5IHnpbmUpj49Nn64F1e9zeYA5D+TVXazrWvkh/paJ8k=; b=t1v78wLDWtTfw8mu
+	7MBgnI05q8pF4ynt4ihNaiIRMv0k/4o22f/lxfwrCffE84APqMyCg482VVBleRmF
+	jVhufqLYNP24cYDAk0uMcg2WMJWo0W1q2ZfbpTUNHnaWipex0ZXUg+F+cPdGmnJB
+	MWOSmoxbYA7hCAvHUeBbkgNpRtqqFwNJPqVfh7a+h8a04hDFp3k13DGEkvmWlfU7
+	LUZGU14v99r+5v4TF98nSFFrn4MsFSZEIiSwCGizUVtTVp9hxjeQFPqV9/wTuoVW
+	ngWuoolT+IVbnm6Cbqv5PXOst958BiGSyYfCOD1q7H5fzPDS1/yxb3zyYXEUIDC5
+	sMrv/Q==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ypbp3u0b6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Jun 2024 15:14:00 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id E3C744002D;
+	Tue, 11 Jun 2024 15:13:56 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1B105216842;
+	Tue, 11 Jun 2024 15:13:19 +0200 (CEST)
+Received: from [10.130.72.241] (10.130.72.241) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 11 Jun
+ 2024 15:13:18 +0200
+Message-ID: <02daa868-17d6-44c8-8508-555ab258f77d@foss.st.com>
+Date: Tue, 11 Jun 2024 15:13:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="66+HdzG+IeYp/nLS"
-Content-Disposition: inline
-In-Reply-To: <20240527-flint-whacky-4fb21c38476b@wendy>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] media: vgxy61: Add MODULE_ALIAS()
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+CC: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sylvain Petinot <sylvain.petinot@foss.st.com>,
+        Laurent Pinchart
+	<laurent.pinchart@ideasonboard.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20240610150815.228790-1-benjamin.mugnier@foss.st.com>
+ <20240610150815.228790-4-benjamin.mugnier@foss.st.com>
+ <ZmgI8nET4sdhdwQx@kekkonen.localdomain>
+ <76fd2e25-3a9c-49fa-994f-6a392e42a6bb@foss.st.com>
+ <ZmhM9mAcQqMGKnzw@kekkonen.localdomain>
+Content-Language: en-US
+From: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+In-Reply-To: <ZmhM9mAcQqMGKnzw@kekkonen.localdomain>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-11_07,2024-06-11_01,2024-05-17_01
 
+On 6/11/24 15:11, Sakari Ailus wrote:
+> Hi Benjamin,
+> 
+> On Tue, Jun 11, 2024 at 01:57:24PM +0200, Benjamin Mugnier wrote:
+>> Hi Sakari,
+>>
+>> On 6/11/24 10:21, Sakari Ailus wrote:
+>>> Hi Benjamin,
+>>>
+>>> On Mon, Jun 10, 2024 at 05:08:15PM +0200, Benjamin Mugnier wrote:
+>>>> Preserve user space retro compatibility after the device rename.
+>>>>
+>>>> Signed-off-by: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+>>>> ---
+>>>>  drivers/media/i2c/vgxy61.c | 1 +
+>>>>  1 file changed, 1 insertion(+)
+>>>>
+>>>> diff --git a/drivers/media/i2c/vgxy61.c b/drivers/media/i2c/vgxy61.c
+>>>> index ca3b43608dad..c85f356946ca 100644
+>>>> --- a/drivers/media/i2c/vgxy61.c
+>>>> +++ b/drivers/media/i2c/vgxy61.c
+>>>> @@ -1898,3 +1898,4 @@ MODULE_AUTHOR("Mickael Guene <mickael.guene@st.com>");
+>>>>  MODULE_AUTHOR("Sylvain Petinot <sylvain.petinot@foss.st.com>");
+>>>>  MODULE_DESCRIPTION("VGXY61 camera subdev driver");
+>>>>  MODULE_LICENSE("GPL");
+>>>> +MODULE_ALIAS("platform:st-vgxy61");
+>>>
+>>> Perhaps just "st-vgxy61" so that the module still loads if someone loads it
+>>> explicitly? That's what you'd want, right, as the old compatible string
+>>> will remain?
+>>>
+>>
+>> Yes it is for explicit loading. I'll remove the "platform" prefix.
+>>
+>> But maybe I'm overthinking and I could just remove the MODULE_ALIAS()
+>> completely from this series. What do you think ?
+> 
+> Most of the time the modules are loaded based on devices found, so this
+> would likely not change things much.
+> 
+> Up to you.
+> 
 
---66+HdzG+IeYp/nLS
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Then I'd rather remove it entirely. The less legacy code the better.
+Thank you.
 
-On Mon, May 27, 2024 at 10:37:17AM +0100, Conor Dooley wrote:
-> @@ -1150,28 +1129,44 @@ static int mc_host_probe(struct platform_device *=
-pdev)
-> =20
->  	port->dev =3D dev;
-> =20
-> -	port->axi_base_addr =3D devm_platform_ioremap_resource(pdev, 1);
-> -	if (IS_ERR(port->axi_base_addr))
-> -		return PTR_ERR(port->axi_base_addr);
-> +	/*
-> +	 * The original, incorrect, binding that lumped the control and
-> +	 * bridge addresses together still needs to be handled by the driver.
-> +	 */
-> +	axi_base_addr =3D devm_platform_ioremap_resource_byname(pdev, "apb");
+-- 
+Regards,
 
-I noticed yesterday that this will print an error during boot, which I
-don't really want for the devices using the updated format. I'll send a
-v2 tomorrow with the reg region probing inverted.
-
-Thanks,
-Conor.
-
-> +	if (!IS_ERR(axi_base_addr)) {
-> +		port->bridge_base_addr =3D axi_base_addr + MC_PCIE1_BRIDGE_ADDR;
-> +		port->ctrl_base_addr =3D axi_base_addr + MC_PCIE1_CTRL_ADDR;
-> +		goto addrs_set;
-> +	}
-> =20
-> +	port->bridge_base_addr =3D devm_platform_ioremap_resource_byname(pdev, =
-"bridge");
-> +	if (IS_ERR(port->bridge_base_addr))
-> +		return dev_err_probe(dev, PTR_ERR(port->bridge_base_addr),
-> +				     "legacy apb register and bridge region missing");
-> +
-> +	port->ctrl_base_addr =3D devm_platform_ioremap_resource_byname(pdev, "c=
-trl");
-> +	if (IS_ERR(port->ctrl_base_addr))
-> +		return dev_err_probe(dev, PTR_ERR(port->ctrl_base_addr),
-> +				     "legacy apb register and ctrl region missing");
-> +
-> +addrs_set:
->
-
---66+HdzG+IeYp/nLS
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmhNTQAKCRB4tDGHoIJi
-0m6kAP9Yi9S7w0ZvHdiZWSo84UEHKpHj2Y1/n5bHC+FrPclaqgD8DZbVakSMXx/j
-Ui6ZHfzPJVENrprpWkS4r/azLfon1A4=
-=qPrU
------END PGP SIGNATURE-----
-
---66+HdzG+IeYp/nLS--
+Benjamin
 
