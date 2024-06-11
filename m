@@ -1,143 +1,115 @@
-Return-Path: <devicetree+bounces-74410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 317A1902FC2
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 07:11:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 170C590312D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 07:34:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9657D282118
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 05:11:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C5441C2517F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 05:34:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00498170846;
-	Tue, 11 Jun 2024 05:11:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 576CC147C79;
+	Tue, 11 Jun 2024 05:30:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="szioNOFz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QuB7FUOu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C72B763C;
-	Tue, 11 Jun 2024 05:11:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 301F2433C4;
+	Tue, 11 Jun 2024 05:30:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718082660; cv=none; b=jmcxGIA8UMyvpPNiqfn1WCQgv6o1SIpwB/vL6e+z8H10ssvG5mt0Ma2M2oAgzPgjOZdRuchANchaYA35tyKkqK7SePZ/gqReTEPbDZOG3WfDkIB3DXCE5cqTiM2qlw1I6wWVOWJgJH5xio7wmB0SnboF8iBg6ufBMEAHA2dUz+M=
+	t=1718083839; cv=none; b=AwVDATx7ORXQBbj8OgalcjjCsYbUXlXRvnVXe/tQzePte2sAT41CYhoYX5PPqQYqU1XtfnSHzo/ZE4hWzQthe1hE+U++PCs2S5JbodbryEp0KwTVG7oTA2CtjKWtRPKMU/fFJgmhDKJkqaiRiHi5sdu/YhRuMc79RL44XlOFWbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718082660; c=relaxed/simple;
-	bh=fNglPpq1OR578DdMVdAmSf59MmLIadxgL7Jtj0YqXm8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=DgSlgzVYCkYsYbQjdQs/zFYTh881syiaIuET/lnw/UndqLMMvR9RnZ/K199nD7Yow0oiaLfOnbhjZbLjxLbJqeEtpPMN19mfD1ziBIjwkObqyi2dvITCkDqkqpxhbYCHqVku5fvCDZbdwwlkLtKVdpVBfrF+AiQiBcpiPDR8v/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=szioNOFz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 781D1C4AF51;
-	Tue, 11 Jun 2024 05:11:00 +0000 (UTC)
+	s=arc-20240116; t=1718083839; c=relaxed/simple;
+	bh=mYrRznVRP3/LER6a3P+Bz/NvuHfeT8MQQDa9NDjpK+w=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=GLsW750wyHlz9eUDlp0hdKjPRSPzv2tH895kNMl7aWIhCuo+Jot9O34azvVdXhd7Ipz1OiNjhPYba9qdJs4IdHjb58s9pjVpR2W7ppFA/vuwPyTe/545/grWQdBscNs4E7juuP68zd5K4c1rvolZXsMzf1npoGs21BPfO4OLzh0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QuB7FUOu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D9A1C3277B;
+	Tue, 11 Jun 2024 05:30:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718082660;
-	bh=fNglPpq1OR578DdMVdAmSf59MmLIadxgL7Jtj0YqXm8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=szioNOFzEU16gF2REnhbCPQsvmebHMEDMhgN7l7rcDdPIi3BWJnTZc46OdZoUOMgz
-	 uxCw/oYU3bLzKNaBoo0JkUBO+qMr9Ma64tLaP+UXQhxNUtK3ESBd4xgIquAREdF7eF
-	 sJrM+by1SsnF+xLRSvPb9Bd5uofiF0xeyQ5ub2+EBoZnSl1XoygdpKnZunDpACL58V
-	 cjMgC+TvO/yxTHYNv/8qVCsxKJPlwoMSckc21vJlwHneXMJWpBzVtf4/T5xT1dxfzM
-	 pdpiI6waVMe3ANqi1rCpsy/aqE0eY9S+y8+AczpVm4wbZ5ca+5l8K8aZ7D1LhM+QTP
-	 Y80tJnWgau/0A==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 63950C25B76;
-	Tue, 11 Jun 2024 05:11:00 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Tue, 11 Jun 2024 13:10:59 +0800
-Subject: [PATCH 3/3] arm64: dts: amlogic: a4: add pinctrl node
+	s=k20201202; t=1718083838;
+	bh=mYrRznVRP3/LER6a3P+Bz/NvuHfeT8MQQDa9NDjpK+w=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=QuB7FUOuWPKOZp5mRnLxVa54EASLNyohTlp038o5kMMOJ9Xzs4HjBrFT2JnBOfZ0K
+	 dIILW20JcO/FU8XPH8ib8jxIn92zmBjyLJyE3/R7WJV1ff+QoEw/3fXP6wuDb6PCIY
+	 MQAVluODUz5CbjhwUcw9+NnOHJ8e+AgNGekwEy/hLA9iQIdTmejX3qIVSQp5AT5SUY
+	 Yqa+J/xwz8eQhbR9aI1gXD1zOYIgQmI/xHk0bGDGfVLnz0gV0z8LJYbSFVIi+G0nbf
+	 61OLFqJbwuQfZsUg/rgO14OF7OpNe3BF0d05rau+44abQHM9LJNLXVDJVZo8y5b5Js
+	 h8tP9ZlOKTvmg==
+Date: Mon, 10 Jun 2024 23:30:37 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240611-a4_pinctrl-v1-3-dc487b1977b3@amlogic.com>
-References: <20240611-a4_pinctrl-v1-0-dc487b1977b3@amlogic.com>
-In-Reply-To: <20240611-a4_pinctrl-v1-0-dc487b1977b3@amlogic.com>
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Kanak Shilledar <kanakshilledar@gmail.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ William Zhang <william.zhang@broadcom.com>, 
+ Kanak Shilledar <kanakshilledar111@protonmail.com>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1718082658; l=1392;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=dK1sBro4y44HxdZ7xq97Zu8WXKXsyY0hjnlhV/Rfko0=;
- b=fPWr6+NYpqH9T8KWCXZZwBxdMkk0QoKEll2gzJAqwC8lX8rYr4earPV3u9ulD3JKWLmCCM0Er
- J/t1A1E3N49DhS0Sn5+Kwlpv/+j4TTt7DWisWrT3bHqlHN9cgK+8iQa
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
+ linux-arm-kernel@lists.infradead.org, 
+ Kursad Oney <kursad.oney@broadcom.com>, devicetree@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ Anand Gore <anand.gore@broadcom.com>
+In-Reply-To: <20240611035329.33648-2-kanakshilledar@gmail.com>
+References: <20240611035329.33648-2-kanakshilledar@gmail.com>
+Message-Id: <171808383738.4093720.10401571726065539411.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: reset: brcm,bcm63138-pmb: convert to yaml
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Add pinctrl device to support Amlogic A4.
+On Tue, 11 Jun 2024 09:23:23 +0530, Kanak Shilledar wrote:
+> Convert the Broadcom BCM63138 Processor Monitor Bus to newer DT
+> schema. Created DT schema based on the .txt file which had `compatible`,
+> `reg` and `"#reset-cells" as required properties.
+> Added one line description which was missing in the original .txt file.
+> Added Philipp Zabel as the maintainer (took from MAINTAINERS file).
+> 
+> Signed-off-by: Kanak Shilledar <kanakshilledar@gmail.com>
+> ---
+>  .../bindings/reset/brcm,bcm63138-pmb.txt      | 19 --------
+>  .../bindings/reset/brcm,bcm63138-pmb.yaml     | 43 +++++++++++++++++++
+>  2 files changed, 43 insertions(+), 19 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/reset/brcm,bcm63138-pmb.txt
+>  create mode 100644 Documentation/devicetree/bindings/reset/brcm,bcm63138-pmb.yaml
+> 
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi | 36 +++++++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-index de10e7aebf21..5d858bb93eb7 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-@@ -47,4 +47,40 @@ pwrc: power-controller {
- 			#power-domain-cells = <1>;
- 		};
- 	};
-+
-+	soc {
-+		aobus_pinctrl: pinctrl@fe08e700 {
-+			compatible = "amlogic,a4-aobus-pinctrl";
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			ao_gpio: bank@fe08e700 {
-+				reg = <0x0 0xfe08e700 0x0 0x04>,
-+				      <0x0 0xfe08e704 0x0 0x60>;
-+				reg-names = "mux", "gpio";
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+				gpio-ranges = <&aobus_pinctrl 0 0 8>;
-+			};
-+		};
-+	};
-+};
-+
-+&apb {
-+	periphs_pinctrl: pinctrl@4000 {
-+		compatible = "amlogic,a4-periphs-pinctrl";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		gpio: bank@4000 {
-+			reg = <0x0 0x4000 0x0 0x0050>,
-+			      <0x0 0x40c0 0x0 0x0220>;
-+			reg-names = "mux", "gpio";
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			gpio-ranges = <&periphs_pinctrl 0 0 73>;
-+		};
-+	};
- };
+yamllint warnings/errors:
 
--- 
-2.37.1
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/reset/brcm,bcm63138-pmb.example.dtb: reset-controller@4800c0: '#power-domain-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/power/brcm,bcm-pmb.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/reset/brcm,bcm63138-pmb.example.dtb: reset-controller@4800c0: '#reset-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/power/brcm,bcm-pmb.yaml#
 
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240611035329.33648-2-kanakshilledar@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
