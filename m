@@ -1,65 +1,59 @@
-Return-Path: <devicetree+bounces-74752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 366E790459F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 22:14:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 330499045A6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 22:16:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B08D4281C3F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 20:14:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0BCD1F20FC5
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 20:16:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B3711514F5;
-	Tue, 11 Jun 2024 20:13:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC86A5B5B6;
+	Tue, 11 Jun 2024 20:16:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="APCG1fyL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QfmV+4HT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB7CC14AD3F;
-	Tue, 11 Jun 2024 20:13:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B6F212E61;
+	Tue, 11 Jun 2024 20:16:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718136784; cv=none; b=DFR6tehXGeK5DO3OPF75Fq5/kYO7UOyDgJYTCEcWecOcIXWOEC+miiWwAsvRpBuTND/oE7lK6n5h6GhC9PYk5IDTK+uEGMj5cbum3kCtj09IrS8H86EBRNTXoAAHwuM6740VYq7xmVodE0TPJL3utfyNL7PDJbKvAwrzTbTl2Rk=
+	t=1718136993; cv=none; b=n7nH/t4d60Eb7XaQz/PlzuYU2F6FAH+xWqKlU4NCsXjkGEsvHzX6SOuPBI9FxpC69cIQcI88RULL+RMsIksnopLwE0Nwl/o6fBVR/aY2B4x7xiZ2yCfP+g2h6iD47HDW6Vhgpxn6WM3iP2/JAmNswSFfcRq1BZh74dTicEVl3jk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718136784; c=relaxed/simple;
-	bh=N3W/a4Lfz3f8B3FxigKAG79YiP/qLpQxtg00dXAXt08=;
+	s=arc-20240116; t=1718136993; c=relaxed/simple;
+	bh=ypjaG6RRmQ019AQrSCd6Tnv5zFqudupklgD00PZTb0o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KQRuN3LiftcwDhYCtGm8Yuceb1I+Anw4oBMpy0g5bXLoIno3k6BrZnrsA+Mm2SX7FGYOHo9cF0jZGev4kkBm3iduB4xOkL+iRxUYYBzpaFZcUsV+YAhpAO0KXkrdYN9C3Z7X5E1rvyYQSEOtDaW7UwZs14KljskfQ5/Qx4BjOjs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=APCG1fyL; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=kHAoa/OJkPqP/DFn6fqwfpyDNzhM8R9ekFcSQK7Rigg=; b=APCG1fyLIzuIMJ28F/4ZogT/Ru
-	kOr3vmBpRa6ef0QB73z87iuA6sx5qCC8ZWSfhHYIsu8JkfIB9d4MfJzcOwmxNabgH7S6wAHSqlTNS
-	K0ti0luqp568pq8jnF+i4ZHuu0eYNrUw6XTAirNwFYV6fHECzxtKZk4Rs11j9H9fcICs=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sH7rI-00HQBb-VF; Tue, 11 Jun 2024 22:12:44 +0200
-Date: Tue, 11 Jun 2024 22:12:44 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=GTSF4ermusMn23Lt0V8Q2u0quQToSZY0zTVlp7FxVHIHYvHoz/gbzE1DxttVj49YwQVdv4LfUbGGuhV1Fm9QAF2VYGCvG7n+uM9sYH8KoLWz27D/ym+n51Op0YmBfsNuoYjoAe5QcL2XZgTlulAesqtCXoVhmOBGpCy3PcE5smM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QfmV+4HT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE569C2BD10;
+	Tue, 11 Jun 2024 20:16:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718136993;
+	bh=ypjaG6RRmQ019AQrSCd6Tnv5zFqudupklgD00PZTb0o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QfmV+4HTAuNi17zzOZZge2d9OmlcazjXGzXNMsh+/nlePzdP8VpoBL1cnX6bZM1RC
+	 D5PHW76sSoUHMIQL/oBIBI9MJTKO6e34DKpHW22nJzBzdhpo1Ts/f4mmjcsVyNFr9P
+	 Zkqfq561aJ56e2xqYyEho8w7Yk0iPpRTxhwUZmDhVqJ+UZ/i1Zf+wn/MOE33yGP3Ld
+	 NxtzY0h8fps8+Rh4BuQAC4pP1DyzAbeK+P+XWqEvCwutXCn30xSsd8vIwqfdXtGedM
+	 Ne6RQivU2UPhCD//IunnJUa+f+RIlxUnLY+7FRv8X6G7OcUvEfJd5x7fQDU9qMQ0Uw
+	 RbG0kXapbLEdA==
+Date: Tue, 11 Jun 2024 14:16:31 -0600
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
-	Dave Ertman <david.m.ertman@intel.com>,
-	Lizhi Hou <lizhi.hou@amd.com>, clement.leger@bootlin.com,
-	Jeremy Linton <jeremy.linton@arm.com>
-Subject: Re: Raspberry Pi5 - RP1 driver - RFC
-Message-ID: <73e05c77-6d53-4aae-95ac-415456ff0ae4@lunn.ch>
-References: <ZmhvqwnOIdpi7EhA@apocalypse>
- <ba8cdf39-3ba3-4abc-98f5-d394d6867f95@gmx.net>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev
+Subject: Re: [PATCH v4 0/8] arm64: dts: convert fsl,esdhc.txt to yaml and fix
+ layerscape dts warning
+Message-ID: <20240611201631.GA3003237-robh@kernel.org>
+References: <20240611-ls_waring_esdhc-v4-0-d0d8a5b3f3cb@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,44 +62,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ba8cdf39-3ba3-4abc-98f5-d394d6867f95@gmx.net>
+In-Reply-To: <20240611-ls_waring_esdhc-v4-0-d0d8a5b3f3cb@nxp.com>
 
-On Tue, Jun 11, 2024 at 09:05:24PM +0200, Stefan Wahren wrote:
-> Hi Andrea,
+On Tue, Jun 11, 2024 at 12:01:45PM -0400, Frank Li wrote:
+> Start from v4 because fsl.esdhc.txt to yaml already sent out as v3.
 > 
-> i added Jeremy, because AFAIK he was deeply involved in ACPI
-> implementation of the RPi 4.
+> Change from v3 to v4
+> - Add dts warning fixes
+> - Add mmc-spi-slot's voltage range fix, (not sure why it apply to
+> layserscape's dts file.
+> - clock-frequency is not required property
+> - add dma-conherence: true in binding doc
 > 
-> Am 11.06.24 um 17:39 schrieb Andrea della Porta:
-> > Hi,
-> > I'm on the verge of reworking the RP1 driver from downstream in order for it to be
-> > in good shape for upstream inclusion.
-> > RP1 is an MFD chipset that acts as a south-bridge PCIe endpoint sporting a pletora
-> > of subdevices (i.e.  Ethernet, USB host controller, I2C, PWM, etc.) whose registers
-> > are all reachable starting from an offset from the BAR address.
-> > The main point here is that while the RP1 as an endpoint itself is discoverable via
-> > usual PCI enumeraiton, the devices it contains are not discoverable and must be
-> > declared e.g. via the devicetree. This is an RFC about the correct approach to use
-> > in integrating the driver and registering the subdevices.
-> > 
-> I cannot provide much input into the technical discussion, but i would
-> prefer an approach which works good with DT and ACPI.
+> Now only "bit-endian" proptery warning left.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Frank Li (8):
+>       dt-bindings: mmc: Convert fsl-esdhc.txt to yaml
+>       dt-bindings: mmc: mmc-spi-slot: Change voltage-ranges to uint32-matrix
 
-There is a small and slowly growing interest in using DT overlays on
-ACPI systems. It makes a lot of sense when you have an already working
-set of drivers based on DT, and then need to make them work on ACPI
-systems.
+>       arm64: dts: ls1012a: Chang node name from 'esdhc' to 'mmc'
+>       arm64: dts: ls1043a: Chang node name from 'esdhc' to 'mmc'
+>       arm64: dts: ls1046a: Chang node name from 'esdhc' to 'mmc'
+>       arm64: dts: ls1088a: Chang node name from 'esdhc' to 'mmc'
+>       arm64: dts: ls208ax: Chang node name from 'esdhc' to 'mmc'
+>       arm64: dts: lx2160a: Chang node name from 'esdhc' to 'mmc'
 
-The Microchip LAN996x is an ARM SoC with lots of peripherals and an
-Ethernet switch. There is a full DT description of it and
-drivers. However, it also has a PCIe interface which allows access to
-all the peripherals and the Ethernet switch. Bootlin are adding
-patches to allow any host with a PCIe bus use all the existing drivers
-and a DT overlay to glue it all together.
+It is all the same change to the same maintainer, so these can be just 
+one patch. Then you just have 1 typo to fix.
 
-https://patchwork.kernel.org/project/linux-pci/cover/20240527161450.326615-1-herve.codina@bootlin.com/
-
-ACPI and DT should not be considered mutually exclusive.
-
-     Andrew
+Rob
 
