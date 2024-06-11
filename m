@@ -1,220 +1,112 @@
-Return-Path: <devicetree+bounces-74678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE63A904034
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 17:39:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AED8890406D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 17:47:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01979281977
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 15:39:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC5871C22D78
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 15:47:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A391374CB;
-	Tue, 11 Jun 2024 15:39:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326BD39856;
+	Tue, 11 Jun 2024 15:47:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="FAXcNqXS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZwiXetjh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33A652E417
-	for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 15:39:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 961D2364A9
+	for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 15:47:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718120351; cv=none; b=iPy9g78iUSt3tFbAd9Fpn/6QL/dAx9bqhM4NgWWb5Cu/Uv0OW3RTx3+l5gZ8ZofsJ7+zmRl9xkD9w3B/vrkBHL8CWiZMVbKXXpREMMk+o9K518Pvz6fqHgF3QLg+H0Hq7IpciZGfsylz/gW7/WEsRROMjwnWm1B9G50IU3NFmOg=
+	t=1718120836; cv=none; b=fg4SFTQr+k6h+ZPXimhMe7t8fpOAodL00QPc2cywSaktKaVXglwdj0KXuw5ZCTbUw6otyUwLaXuc56KiPUW240Egdeu7nTWeDi/NtPX66khw27UCh4EonW1O7hmIdHsPwL1zpMzqX11Mwqwb/OMLQPPSj6AbPEJiCYMVpSdPikI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718120351; c=relaxed/simple;
-	bh=OTaL90AXV5eLd7cwrRGQ6YBQCVQKp35jIqJFQ1iMDAc=;
-	h=From:Date:To:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=cZmetBBUK3JNBAsKKQjDFb3Lk4mbkBbruGBwFbditVDjMxntdx5XoQ0H07NQ99ftmbujnkASrz6ysgBVvwMrHqh/hSFBl9xnlurv7uVPsCWhCzEcgMAPXcfdo1kHWc5elpZ78f3bLI+JF1v/Z5SmMO8Oes6y9iym9H0SxYFdFK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=FAXcNqXS; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a6f13dddf7eso346606866b.0
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 08:39:07 -0700 (PDT)
+	s=arc-20240116; t=1718120836; c=relaxed/simple;
+	bh=F5BWENXEo3o1WWI4CxCWwY1vrialDPlJgFzabTHdxUM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MbKJE3vlLdavrcxVRfuDKhVVcq1v+B7o9F//Mf2P/SOmtroNtjKTbSG0PSddFAJLJkkHolO1e/e3ne3vhRXm2GspIaRN4Lb0KRVoaCi5Vei2pyYX8mlfmnnTAtdYW11lXc9db4JmVpK5KkOdc2v90Wma/jpgYPxTI1rKj4b8Mjs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZwiXetjh; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-52c525257feso4243986e87.1
+        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 08:47:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1718120346; x=1718725146; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-disposition:mime-version
-         :mail-followup-to:message-id:subject:to:date:from:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=hLG3B4Y+fGWVVVSqMDpP2O4ocS16RJ3mfLQLjDGSKMU=;
-        b=FAXcNqXSV5pzEq2B9cnkll0/geRAUviZ7LxQF8B4EfZk1vZ/uRHgmzrrbftN8h1xJI
-         gqXFEFJS1cppmNBgWZoTKr77URR+GxTnn+flLC55oPLfhXrbGtEMeUhMbDUJkxhKt9bF
-         BXkuRfgXa5jUDr6bUzVhMggF7LbTzI08LscuGazw4DHWUk3hCJ7a5Xgh8Os40tu+YT45
-         vcWTjyPXvQ1E8Dge8X7tsr9AVMyXb8jL6x6nnIwLBGdJ3yyAK1Hmb6kon1woeh6zXvqp
-         NkVvOyJ5hqL+hfzKYANWv4zcgo4j2F0aekkm0TeHOfmEhLl58nAjyd0jPlDWAUh/lKFy
-         QL3Q==
+        d=linaro.org; s=google; t=1718120833; x=1718725633; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=nw8/LuxiTJ04FrRfjacvt3XWvtMEY1Dsg0HiFZPTY74=;
+        b=ZwiXetjhE+zy8f/csRnJsnVF6oXx2JL0FbnJqcLUqeTBFkXUYHxfY40mlKSEUwCbsd
+         kaumfY5c4gSOWNCZbmgMXHmT46jar21cajZWBlGq9MRlYWz9tWp6sNo596/J4dnbY7Qc
+         ggR+qWJrzR1VMFr0eRFW+ABiKb91SAxKjz5Z5cHtv/sKvAcQYXc7wKOxwl5JwxRcacCK
+         TtaJjQKRZxiFRsixUjpXcOavB5Y/W0pLjKD2fIxIuJiXkU5Vp6EfNqMTIZQ+Y5uqAQJJ
+         /AiS1XChQyaFNDomP51MtGMNJU2Q9giB7ccU29tOwrTgtWaZurCFi5Ywk5MUHtNFkGC6
+         n0Bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718120346; x=1718725146;
-        h=content-transfer-encoding:content-disposition:mime-version
-         :mail-followup-to:message-id:subject:to:date:from:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hLG3B4Y+fGWVVVSqMDpP2O4ocS16RJ3mfLQLjDGSKMU=;
-        b=grbug7BYqryFZzRgXOuhqkWTTvbWRRvgIHzkeCnBOlNeCTLcICtZjh1MXYYm3ATmHl
-         AzjGcn9tSQQWbyXM7F/JejQ3e0404Z/IYY1BeT3xrI3upuXDI9qdoIj5cHgUHA+dj9bL
-         WeFSFa32rR5h1Te9MK98B7FkGNqVuiTmYhkgGgIlAuDIRB2Rob0SIJo1TKhT4Ij6dhb/
-         AhfzzXj5TUSlWwsYbdIOsdkiAguue11Nyx3S5wTzlu4h3UUQ+LitZB8imAtKJACxYAer
-         UjAlV+6LlMIl49bfVCIu5D6kOVyX3O7uE66XAokY/Wsj9h6CWRvm43sCa6HDFNNnf4fn
-         eN5g==
-X-Forwarded-Encrypted: i=1; AJvYcCVzpqcwlxjc6k+VCXiQtl0F9iVoeHatjdcLY08F8nY2poKhjGG1x5DDslP/5dayztFOIzf03Kl4gcnZz7Bo9aBXUUW8HJXTIZboYw==
-X-Gm-Message-State: AOJu0YxO5IRycEaA1GDhAqWNYA356PAj9ywpJKdGi4+MXPPq+ymxjYVQ
-	oZ6V1Ureywa04ZTfLRPFn4jEfQNsSwwcViecXKF0GMD0AnH3/AnbtNzzq1QTqE4=
-X-Google-Smtp-Source: AGHT+IGAiKP4S1ta0ypfd8GPYxs98AzoX0FvmrkDa7V2d9yDAJ1SdodaZM4gcGz3kq8Xk2Ny5tPKCw==
-X-Received: by 2002:a17:906:128d:b0:a6f:40d5:e287 with SMTP id a640c23a62f3a-a6f40d5e332mr58510666b.74.1718120346331;
-        Tue, 11 Jun 2024 08:39:06 -0700 (PDT)
-Received: from localhost (host-79-27-228-9.retail.telecomitalia.it. [79.27.228.9])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6ef7913eb8sm537255666b.178.2024.06.11.08.39.05
+        d=1e100.net; s=20230601; t=1718120833; x=1718725633;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nw8/LuxiTJ04FrRfjacvt3XWvtMEY1Dsg0HiFZPTY74=;
+        b=jEnqscbXgnhvBJWTBgzx+cfK+NvqkPCCRiMmpNenK79iBJk1K7QvrVwFR1diqmF2MF
+         qUjGbPzHtE4QWGlaFy7wg2H9DzH1bF2vAqwC8AmL3URi/phBDwH8rSf0uHsNHNrg0ywA
+         EKcMV71jCL4VG7tYR8mNxIfHT1xrFBrCmmEIyVVAl+HSg7gU4MWPQU++uqCrativd8vT
+         Jzh2xAs3RT0u2D4IGRkDtWarnmqggavRqlCc7qYoov39aCzWB+xV5/6z12KEJWdPgmDI
+         IlWoPp8zv0UqA3nYZDIhUu60DxzgnpYiwZEFkXcdwx/n/K6pkmVM8nLd6ACxlZvqqkSi
+         nMZg==
+X-Forwarded-Encrypted: i=1; AJvYcCWOiLC3DwnsNGO2v0VRGbFbvWJIMj9HPvLgmw1LBcZOYFZIeSQkp/idayzQsOPWZrvp66GiH7zgrSRHLV0AhtHlbrqLhfaD7mpowQ==
+X-Gm-Message-State: AOJu0YzBtQnIMnLkN4t+acVA9axiAcp7W6wr0TmmyZ7xxkkJpdA1a989
+	Lk6DcRDrf1fZICiyef4xOMqsOjSQpDHGH880+2onTqdX0TMpdyZicyrIe6qdUys=
+X-Google-Smtp-Source: AGHT+IFHillVbdPIfFDh7/7ug2ke7MoTVtAgBViv6Ex/VT0dLFNs7Kce4qyvplMjkvLsBubqW+QkLw==
+X-Received: by 2002:a19:3846:0:b0:52c:8051:5799 with SMTP id 2adb3069b0e04-52c8051599cmr4531904e87.11.1718120832839;
+        Tue, 11 Jun 2024 08:47:12 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52c80d6b04dsm1471344e87.136.2024.06.11.08.47.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jun 2024 08:39:06 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Tue, 11 Jun 2024 17:39:23 +0200
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Stefan Wahren <wahrenst@gmx.net>, devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
-	Dave Ertman <david.m.ertman@intel.com>,
-	Lizhi Hou <lizhi.hou@amd.com>, clement.leger@bootlin.com
-Subject: Raspberry Pi5 - RP1 driver - RFC
-Message-ID: <ZmhvqwnOIdpi7EhA@apocalypse>
-Mail-Followup-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Stefan Wahren <wahrenst@gmx.net>, devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
-	Dave Ertman <david.m.ertman@intel.com>,
-	Lizhi Hou <lizhi.hou@amd.com>, clement.leger@bootlin.com
+        Tue, 11 Jun 2024 08:47:12 -0700 (PDT)
+Date: Tue, 11 Jun 2024 18:47:10 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Ajit Pandey <quic_ajipan@quicinc.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Vinod Koul <vkoul@kernel.org>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Taniya Das <quic_tdas@quicinc.com>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, 
+	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+Subject: Re: [PATCH V4 8/8] arm64: dts: qcom: sm4450: add camera, display and
+ gpu clock controller
+Message-ID: <5z52xmqrgngi7xckhner34f2wgnmikkhmvwnxbwvhh7ixhj52s@5yofsg7yr765>
+References: <20240611133752.2192401-1-quic_ajipan@quicinc.com>
+ <20240611133752.2192401-9-quic_ajipan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240611133752.2192401-9-quic_ajipan@quicinc.com>
 
-Hi,
-I'm on the verge of reworking the RP1 driver from downstream in order for it to be
-in good shape for upstream inclusion.
-RP1 is an MFD chipset that acts as a south-bridge PCIe endpoint sporting a pletora
-of subdevices (i.e.  Ethernet, USB host controller, I2C, PWM, etc.) whose registers
-are all reachable starting from an offset from the BAR address.
-The main point here is that while the RP1 as an endpoint itself is discoverable via
-usual PCI enumeraiton, the devices it contains are not discoverable and must be
-declared e.g. via the devicetree. This is an RFC about the correct approach to use
-in integrating the driver and registering the subdevices.
+On Tue, Jun 11, 2024 at 07:07:52PM +0530, Ajit Pandey wrote:
+> Add device node for camera, display and graphics clock controller on
+> Qualcomm SM4450 platform.
+> 
+> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sm4450.dtsi | 38 ++++++++++++++++++++++++++++
+>  1 file changed, 38 insertions(+)
+> 
 
-
---- CURRENT DOWNSTREAM APPROACH ---
-
-The DTS shows something like this (see [1] and [2]):
-
-pcie {
-	compatible = "brcm,bcm2712-pcie";
-	#address-cells = <0x03>;
-	#size-cells = <0x02>;
-	ranges = <0x2000000 0x00 0x00   0x1f 0x00   0x00 0xfffffffc>;
-	...
-
-	rp1 {
-		compatible = "simple-bus";
-		#address-cells = <0x02>;
-               	#size-cells = <0x02>;
-
-		ranges = <0xc0 0x40000000   0x2000000 0x00 0x00   0x00 0x400000>;
-		...
-
-		serial@34000 {
-			compatible = "arm,pl011-axi";
-			reg = <0xc0 0x40034000   0x00 0x100>;
-			...
-		};
-	};
-};
-
-The PCI bar address here is at CPU physical address 0x1f00000000 and the RP1 driver
-probe function calls of_platform_populate() on the 'rp1' node to register the platform
-drivers for each subdevices (e.g. in the above example: 'serial@34000').
-
-Pros:
-- quite straightforward to implement
-- RP1's dts resides in the directory it should (possibly but not necessarily) belong to,
-  e.g. somewhere under arch/*/boot/dts/...
-
-Cons:
-- the board dts must manually override 'pcie' ranges (in this case 0x1f00000000)
-  depending on the BAR address value, while it should be retrieved by reading the PCI
-  config register instead
-- the probe() function retieves a reference to 'rp1' node via of_find_node_by_name(NULL, 
-  "rp1"), harcoding the node name. This is not desirable since the node name is then set
-  in stone, or otherwise if the node name needs to be changed it must be changed either
-  in the dts *and* in driver code.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
---- ROB HERRING, LIZHI HOU (et al.) PROPOSED APPROACH ---
-
-A proposal (see [3]) presented at  LPC advise to create a PCI bridge DT node ('pcie') leveraging
-the current OF dynamic infrastructure, adding a dtb overlay ('rpi1' node in the example
-above) on top of it during probe and rearranging the 'ranges' mapping dynamically.
-This sounds like the correct approach and is somewhat used in at least a couple of drivers
-(namely for Alveo U50 card and MicroChip LAN9662 SoC) but AFAIK none of them made their way
-to mainline, leaving some doubts about the applicability of this paradigm.
-
-Pros:
-- no need to provide the BAR address manually since it will be discovered and automatically
-  amended into the 'ranges' property
-- no harcoded reference to 'rp1' node since the endpoint node will be reparented to the 'pcie'
-  node automatically
-- the core OF dynamic infrastructure on which to base these changes are basically already in 
-  mainline (see [4] for discussions)
-
-Cons (albeit I'd consider them minor ones):
-- CONFIG_PCI_DYNAMIC_OF_NODES must be enabled
-- the dtb should probably reside somewhere near the driver source code, e.g. in drivers/mfd/...
-
-
---- AUXILIARY BUS APPROACH ---
-
-The thread in [5] seems to advise to use the auxiliary bus for this kind of devices. In this
-case, here's the drawbacks:
-
-- as stated in kernel docs for aux bus (cit.) "need a mechanism to connect and provide access
-  to a shared object allocated by the auxiliary_device’s registering driver...", and again 
-  (cit.) "A key requirement for utilizing the auxiliary bus is that there is no dependency on
-  a physical bus...These individual devices split from the core cannot live on the platform
-  bus as they are not physical devices that are controlled by DT/ACPI". Those statements are
-  of course at the opposite of how RP1 behaves
-- subdevices drivers may need rework in order to cope with the auxiliary bus, while we need to
-  use the already existing drivers without modifications
-
-so, for all of the above (and probably other cons I'm not aware of right now), the auxiliary bus
-does not seems feasible to be used, but I'm mentioning it just because of the discussionin in [5]
-that let me wonder whether I may be missing something relevant here.
-
-
-CONCLUSIONS
-
-All in all, I'd say Rob's approach should be the way to go, any thoughts about it will be
-greatly appreciated.
-
-Many thanks,
-Andrea della Porta
-
-Link:
-- [1]: https://github.com/raspberrypi/linux/blob/rpi-6.6.y/arch/arm/boot/dts/broadcom/rp1.dtsi
-- [2]: https://github.com/raspberrypi/linux/blob/rpi-6.6.y/drivers/mfd/rp1.c
-- [3]: https://lpc.events/event/17/contributions/1421/attachments/1337/2680/LPC2023%20Non-discoverable%20devices%20in%20PCI.pdf
-- [4]: https://lore.kernel.org/lkml/20230419231155.GA899497-robh@kernel.org/t/
-- [5]: https://lore.kernel.org/lkml/Y862WTT03%2FJxXUG8@kroah.com/
+-- 
+With best wishes
+Dmitry
 
