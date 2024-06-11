@@ -1,155 +1,134 @@
-Return-Path: <devicetree+bounces-74718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F1EE904244
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 19:17:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 597E6904249
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 19:18:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3ABDD1C247EB
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 17:17:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB097286B13
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 17:18:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8654A4D8BB;
-	Tue, 11 Jun 2024 17:16:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC43843AD2;
+	Tue, 11 Jun 2024 17:18:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="slrw+cMz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rDkpK9Nn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f202.google.com (mail-yw1-f202.google.com [209.85.128.202])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044384D8AB
-	for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 17:16:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.202
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B54BA11720;
+	Tue, 11 Jun 2024 17:18:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718126203; cv=none; b=hkDaAO3g1wqOEL4h3Kxw4KaU8QUjgbSPp1y6QQkRfVHCXIg3aRbWyIsLWtGvg3Po+JSlN0+7HzzBiO+U0zyTxdKiCF1SvNVcUYRiZlrQaziwWKgySI7MarxrH1gggfLqYyEZSIwkMWBKIDvRfGloLx9OOrfwYDfvVv24c0D2fOg=
+	t=1718126320; cv=none; b=hWvrAkY7Cn+Zm3yZIxQQpel/Txb/LBlKGoVOzWgoO9p9Mep1Am+7vUtdDrcZJ4XYMOiKmtKe3fmDcdaKQmHP7TVxLXeAGgTL1Dc9966ziMPX5lYq96Xh2fHGs7fPT44tqPxAOFBqbIhmSTgygodglLuEdgOsg922b62cugiyygA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718126203; c=relaxed/simple;
-	bh=1oz7gki1JBAUNilIN2nJWm3wkdsH+gB30VbNTMLX0iA=;
-	h=Date:In-Reply-To:Mime-Version:References:Message-ID:Subject:From:
-	 To:Cc:Content-Type; b=MXaV2tb/kolKGvNEBqFK8m3TSEvrEmEBDpdZgw3bQVlLo6d72n69uAciTUeImv8r55CxuGKjCw77ZJf+EMxWJaQziSIb1zBvN6lXSM9IRtdXiDwaO1gBYpKeYFhk/EnZ4tjGyXzHAndz+jJ/2YytfKp5gEWf/JPDx39woXioK48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--aniketmaurya.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=slrw+cMz; arc=none smtp.client-ip=209.85.128.202
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--aniketmaurya.bounces.google.com
-Received: by mail-yw1-f202.google.com with SMTP id 00721157ae682-62a083e617aso26463317b3.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Jun 2024 10:16:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1718126201; x=1718731001; darn=vger.kernel.org;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=x32GJJg0AlSw6J5DmY/hNwb8LZyaDbs+mRkSRyx7dxM=;
-        b=slrw+cMzaam7oFGE7q2ka4lbuntMgEAvdSFZfRJsV/ZBd3igUTgvSXiLsx8B3XRNt8
-         M2YV9qnXBQwC/pU5huWwFWnm9bt4v4svGq7b1WsbGLtrBXK8adPxfL+Te0y2Uk+RR4Md
-         T5PyPyMoNX4HcBiGuD0ZRZxoYLoO2naUbWcBDMUgAr6abFLFpMyyLcoSjIos6+6id+mh
-         i3l4KBeHjlDE+9rmIEArrSix6curI5jTVn3lwKsHR8MsSpazBH8nVvMjZRwoXu+vka1z
-         o4tj87FOEpThB8+UX/3ePI2SL0YuexGTyoQdoNI/cIUAA3UJsmL6IVjs+vkz+3UXJ4dE
-         4ewA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718126201; x=1718731001;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=x32GJJg0AlSw6J5DmY/hNwb8LZyaDbs+mRkSRyx7dxM=;
-        b=attCKMXCiqKVi2+2cDPizNU3S7qB7+pOo9EqbiU0LevHo+QcnqS1PJwrhyAclfird5
-         d195quQAjMEW8ARW5bl05xh70mEj/f0eYvwiBtJeFFeK6uuqrQmkUoZNZTMlwWaagvDn
-         DW3UirlIICi3qIov+4w6IaEcvjf54UqTFb4+Lw+l6nv8gK+WpopF34TFS2y6Sh3eHSD4
-         ltwL2DXshvX4OsAOmuSy0Js5t9+zY90t9Vo6ExDM297AG2HuwJ5kGyJLuWmkmm3bVPe3
-         IZAaFqfPeO+eorJMi039dwJIhiai6nnOGRZAMMOgZdpj1xpdGcIK5JWtvogW9N0Odk+9
-         34tg==
-X-Forwarded-Encrypted: i=1; AJvYcCWDAklF+EnY8WDv/s/6FrV13j2Kb/Swr13gLj5suWkmqTKvOMWk/H5mRWCQ+XHNaif/t59dsxtvwI1BNZRE5rqK1KM2MKHmkhrmFA==
-X-Gm-Message-State: AOJu0YxKCM3Q8J4PAPdrs22jCMybRJwDSdZAGgufw7uU8633GteAnXm4
-	hfT1UyNxNgDu3ZCB/FfhsiHJb2eB1zIqKV5lbx4S9c9gyrgI2AdZexR6RqpYm6lwAWcHdFOA0t1
-	tQIWyVbQX8IQrPI9bLOTzIT3Ltg==
-X-Google-Smtp-Source: AGHT+IFZGNAg9puiuuskmC+xjdohP7kvB0J4VVKVnjwy0UefCG8+X6DP4ehy6KYfVSkTF9cqPe0yp7vlXGzijUCB35k=
-X-Received: from aniketm.c.googlers.com ([fda3:e722:ac3:cc00:4f:4b78:c0a8:3387])
- (user=aniketmaurya job=sendgmr) by 2002:a05:690c:dcf:b0:61b:791a:9850 with
- SMTP id 00721157ae682-62cd568d31cmr39052507b3.9.1718126200989; Tue, 11 Jun
- 2024 10:16:40 -0700 (PDT)
-Date: Tue, 11 Jun 2024 17:16:00 +0000
-In-Reply-To: <20240611171600.1105124-1-aniketmaurya@google.com>
+	s=arc-20240116; t=1718126320; c=relaxed/simple;
+	bh=qvAX7WRUwbPnmNhkzzwzMZtOfqEdP2x3+Qxn6fabTL8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Q5VQipXkILg3+58Bq/42jYXxbhCQpmuG2DVuTSvW/FU1KFS+PnccUqa4P+HZiMN7Z12NUeyy1xuTnskiFgsE0P53Rx/EL7aXh9PNMIFpiC9kv+wGyWxwsPvGNxMmAvCRWeiOPeQb8gdXrDGz4SuhYz43+sY7o3I8wUlZUeVuDN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rDkpK9Nn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3507DC2BD10;
+	Tue, 11 Jun 2024 17:18:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718126320;
+	bh=qvAX7WRUwbPnmNhkzzwzMZtOfqEdP2x3+Qxn6fabTL8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rDkpK9Nn43GWS2Lla9XQIlhY8C3lqaC+YjsRqKRExEfcz5Uz8qpH9KGgXSxg1aKie
+	 Qgqjf0Cc0AttJ2MZhEhpsFmwsTTE+tccvoDHh7o49MfM2n2har3u+rAbexTdJnZQXS
+	 EqQSxsY8TagfPRmE/f9u4vOR3ZRsNIdlpOsjZV/6/+L4DwR+ITDaXK8lVNEyjYBykM
+	 nR0+pSqvyh2BdNPqtbh/nPUa6DICjYRu/NngUb151g4/e14VRlHS9bUU7ZUCexz0a/
+	 YcfNvQIIAXgyemG6Mb0fLeK5WJXc/78MBe1X7NtyjID8pTDArSyc1YOFjmpXfzK1B6
+	 v7Ulwe+NrDqJw==
+Message-ID: <efcb16cd-83de-403c-885d-cf9d819e5da7@kernel.org>
+Date: Tue, 11 Jun 2024 20:18:34 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-References: <20240611171600.1105124-1-aniketmaurya@google.com>
-X-Mailer: git-send-email 2.45.2.505.gda0bf45e8d-goog
-Message-ID: <20240611171600.1105124-3-aniketmaurya@google.com>
-Subject: [PATCH 2/2] i3c: dw: Add optional apb clock
-From: Aniket <aniketmaurya@google.com>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>, Jeremy Kerr <jk@codeconstruct.com.au>, 
-	Joel Stanley <joel@jms.id.au>, Billy Tsai <billy_tsai@aspeedtech.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Aniket <aniketmaurya@google.com>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/7] arm64: dts: ti: am62p: Rename am62p-{}.dtsi to
+ am62p-j722s-common-{}.dtsi
+To: Vignesh Raghavendra <vigneshr@ti.com>,
+ Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc: nm@ti.com, afd@ti.com, kristo@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ u-kumar1@ti.com, danishanwar@ti.com, srk@ti.com
+References: <20240604085252.3686037-1-s-vadapalli@ti.com>
+ <20240604085252.3686037-2-s-vadapalli@ti.com>
+ <92af5f36-0c21-4b6e-adde-fcf21b540291@kernel.org>
+ <902f024a-b0a1-4a0a-94e2-7cec064a91c6@ti.com>
+ <6959494a-98ba-4ccf-973c-14d079b76f27@kernel.org>
+ <975c90b1-6657-40c6-a336-7f1f58acf531@ti.com>
+ <9e7d3f9b-c762-40cd-9d0d-2f071aa3c371@ti.com>
+Content-Language: en-US
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <9e7d3f9b-c762-40cd-9d0d-2f071aa3c371@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Besides the core clock, IP also has an apb
-interface clock. Add an optional hook for
-the same and appropriately enable and disable.
 
-Signed-off-by: Aniket <aniketmaurya@google.com>
----
- drivers/i3c/master/dw-i3c-master.c | 12 ++++++++++++
- drivers/i3c/master/dw-i3c-master.h |  1 +
- 2 files changed, 13 insertions(+)
 
-diff --git a/drivers/i3c/master/dw-i3c-master.c b/drivers/i3c/master/dw-i3c-master.c
-index 77a2a1c3fd1d..41cdfd6741e3 100644
---- a/drivers/i3c/master/dw-i3c-master.c
-+++ b/drivers/i3c/master/dw-i3c-master.c
-@@ -1470,12 +1470,20 @@ int dw_i3c_common_probe(struct dw_i3c_master *master,
- 	if (IS_ERR(master->core_clk))
- 		return PTR_ERR(master->core_clk);
- 
-+	master->pclk = devm_clk_get_optional(&pdev->dev, "pclk");
-+	if (IS_ERR(master->pclk))
-+		return PTR_ERR(master->pclk);
-+
- 	master->core_rst = devm_reset_control_get_optional_exclusive(&pdev->dev,
- 								    "core_rst");
- 	if (IS_ERR(master->core_rst))
- 		return PTR_ERR(master->core_rst);
- 
- 	ret = clk_prepare_enable(master->core_clk);
-+	if (ret)
-+		return ret;
-+
-+	ret = clk_prepare_enable(master->pclk);
- 	if (ret)
- 		goto err_disable_core_clk;
- 
-@@ -1520,6 +1528,8 @@ int dw_i3c_common_probe(struct dw_i3c_master *master,
- err_assert_rst:
- 	reset_control_assert(master->core_rst);
- 
-+	clk_disable_unprepare(master->pclk);
-+
- err_disable_core_clk:
- 	clk_disable_unprepare(master->core_clk);
- 
-@@ -1533,6 +1543,8 @@ void dw_i3c_common_remove(struct dw_i3c_master *master)
- 
- 	reset_control_assert(master->core_rst);
- 
-+	clk_disable_unprepare(master->pclk);
-+
- 	clk_disable_unprepare(master->core_clk);
- }
- EXPORT_SYMBOL_GPL(dw_i3c_common_remove);
-diff --git a/drivers/i3c/master/dw-i3c-master.h b/drivers/i3c/master/dw-i3c-master.h
-index 8cb617b8147e..50c38e790c0e 100644
---- a/drivers/i3c/master/dw-i3c-master.h
-+++ b/drivers/i3c/master/dw-i3c-master.h
-@@ -36,6 +36,7 @@ struct dw_i3c_master {
- 	void __iomem *regs;
- 	struct reset_control *core_rst;
- 	struct clk *core_clk;
-+	struct clk *pclk;
- 	char version[5];
- 	char type[5];
- 	bool ibi_capable;
+On 11/06/2024 12:10, Vignesh Raghavendra wrote:
+> 
+> 
+> On 11/06/24 14:24, Siddharth Vadapalli wrote:
+>> On Mon, Jun 10, 2024 at 10:31:07PM +0300, Roger Quadros wrote:
+>>
+>> [...]
+>>
+>>>> Based on your suggestion, you seem to propose the following hierarchy:
+>>>> k3-am62p-{main,mcu,thermal,wakeup}.dtsi = AM62P specific data
+>>>> k3-am62p.dtsi = k3-am62p-j722s-common-main.dtsi +
+>>>> 		k3-am62p-j722s-common-mcu.dtsi +
+>>>> 		k3-am62p-j722s-common-wakeup.dtsi +
+>>>> 		k3-am62p-j722s-common-thermal.dtsi +
+>>>> 		k3-am62p-{main,mcu,thermal,wakeup}.dtsi +
+>>>> 		<delta-5>
+>>>> k3-am62p5.dtsi = k3-am62p.dtsi + <delta-2>
+>>>> k3-j722s-{main,mcu,thermal,wakeup}.dtsi = J722S specific data
+>>>> k3-j722s.dtsi = k3-am62p-j722s-common-main.dtsi +
+>>>> 		k3-am62p-j722s-common-mcu.dtsi +
+>>>> 		k3-am62p-j722s-common-wakeup.dtsi +
+>>>> 		k3-am62p-j722s-common-thermal.dtsi +
+>>>> 		k3-j722s-{main,mcu,thermal,wakeup}.dtsi +
+>>>> 		<delta-6>
+>>>
+>>> What is the equivalent of k3-am62p5.dtsi here?
+>>> That should contain k3-j722s.dtsi + CPU and OPP stuff.
+>>>
+>>> I suppose it should be named specific to the SoC variant part number?
+>>
+>> AM62P (https://www.ti.com/product/AM62P) has two variants:
+>> 1. 2 Arm Cortex-A53 => AM62P3
+>> 2. 4 Arm Cortex-A53 => AM62P5
+>> Both variants will share the common k3-am62p.dtsi
+>>
+>> J722S (https://www.ti.com/product/TDA4VEN-Q1) has only one variant:
+>> 4 Arm Cortex-A53 => J722S
+>> Which is currently identical to AM62P5 w.r.t. the number of A53s.
+>>
+>> So there isn't an equivalent of AM62P5/k3-am62p5.dtsi for J722S.
+>> k3-j722s.dtsi is a combination of k3-am62p.dtsi and k3-am62p5.dtsi.
+>>
+> 
+> 
+> Historically AM6xx devices have had CPUs in separte file as there are OPNs with different number of CPU cores Hence, how about
+> k3-am62p5.dtsi => k3-am62p.dtsi + k3-am62p-j722s-common-{main,mcu,wakeup}.dtsi + k3-am62p-main.dtsi (USB2 and other deltas specific to AM62P)
+> 
+> and since J722s has no variants with less than 4 cores (and along the lines of rest of J7xx devices):
+> 
+> k3-j722s.dtsi => k3-am62p-j722s-common-{main,mcu,wakeup}.dtsi + k3-j722s-main.dtsi (USB3, C7x and other deltas specific to J722s;
+> 
+> 
+
+Seems OK to me.
+
 -- 
-2.45.2.505.gda0bf45e8d-goog
-
+cheers,
+-roger
 
