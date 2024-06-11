@@ -1,114 +1,116 @@
-Return-Path: <devicetree+bounces-74711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7BF090421A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 19:04:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66FE7904220
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 19:06:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 678F72888DC
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 17:04:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E60FDB215C4
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 17:06:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40FE440C03;
-	Tue, 11 Jun 2024 17:04:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pdyZk8sc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41B5742058;
+	Tue, 11 Jun 2024 17:06:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F75B3FB83;
-	Tue, 11 Jun 2024 17:04:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 243093FB83;
+	Tue, 11 Jun 2024 17:06:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718125453; cv=none; b=TUf5/DpDaiFCnQAcTrw0EaQOJHqz8Qid1uD58Qnsf9IffkcpsBMIbOXnqNJZvt+cbFJMqVFQ9olsoQCnoedyxmliLS3cGm7w2HPkyrBHVtSfKfmnt9FzP4xisw4P9RtM0WUY6bwVyWey/qcq22+/a+jBNKdTC1dWlb9cMcZmJxk=
+	t=1718125565; cv=none; b=KpcsE9ESOQ97YzABDuK/Pgm1rEdAeugbhw2+r2+oXe0KtkU3l7a6PVGc4rf5z2dAhMfiMNwqEnPQ3JzJ5m5K+zHUAtLT7b5ntrY39fZDBxEkayHrZw4pVfKYOpszvI7DPmwRAtJgK0LybpahLTqG9IAT6Zq5gkD6TRv70J46xo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718125453; c=relaxed/simple;
-	bh=D7nsRPRmxIs0jY7N1vqy4P7tamwNORJta5X6eAl1P1E=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=Bc5tk1+zklMFl5r/KRP/Hbrwuhp1kTjU1sL7p4joXZiyZ7koBM45EFj4SS9oIB0GqpKWyoKeO2BWM5wIwOKxNO4IJsREaO1lxePAaUX11v1VoHvP8VJFSmiqK2Xrl1MBwBhu7u5zZqu/qwrVtddLI/kstqQKfPTpJaXKfkPe6vM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pdyZk8sc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62977C2BD10;
-	Tue, 11 Jun 2024 17:04:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718125452;
-	bh=D7nsRPRmxIs0jY7N1vqy4P7tamwNORJta5X6eAl1P1E=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=pdyZk8scEe3XbhVlanhkDHhDlGCT6hFwwfx2X7Z/YREiPn2gXlWFWnWxVHg+wKQ5W
-	 3ZVwmblInsG8/Tdaf4L+u9azaV1zjmjATCizQqPiEfTjdE4aVTejjigcISknSy8xoU
-	 gWSf4jTZIYypzX7WSw5I+wlK+PLB11jA6qcy1+4FlrJULQ5BHlJch79iH9WzBdUjR5
-	 FygURBx42o293b5CIdfVWcdXZY5wqX58HgIqWxvuawbTXwVUaRVj1HIe33VG5nKcn6
-	 psvsAxLoiAql6T8/lKqhu2N/7oK/We7jmC8ZzTdHtFr+lYZJ34nh1549FW04+r+lrR
-	 X/PylG3G4OfUw==
-Date: Tue, 11 Jun 2024 12:04:10 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: matthew.gerlach@linux.intel.com
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, joyce.ooi@intel.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] PCI: altera: support dt binding update
-Message-ID: <20240611170410.GA989554@bhelgaas>
+	s=arc-20240116; t=1718125565; c=relaxed/simple;
+	bh=T1GLK5swXm9ffi3GijVN1uaXajq/zCynYioG+5H0AvA=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZOQqhSotp1s42hIg+qXDO/tbUKGLckONXF3/cumZtWr8Lb/vd8eLr55VqObZHpT0WFLohpKFpvhqEyrMDr9Z8qoFGmpFcHgd3ZMTMo5AJOe312EhituYRDWn2NDHnDhSheBy0wBEOS3a5SeRVU5WalT6d16xLAO7pfFgOr2NIjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4VzFLT6Db9z6K6tC;
+	Wed, 12 Jun 2024 01:01:05 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id D371C140A70;
+	Wed, 12 Jun 2024 01:06:00 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Tue, 11 Jun
+ 2024 18:06:00 +0100
+Date: Tue, 11 Jun 2024 18:05:59 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+CC: Jonathan Cameron <jic23@kernel.org>, Nuno =?ISO-8859-1?Q?S=E1?=
+	<noname.nuno@gmail.com>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	<broonie@kernel.org>, <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <nuno.sa@analog.com>, <dlechner@baylibre.com>,
+	<marcelo.schmitt1@gmail.com>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: Re: [PATCH v3 6/6] iio: adc: Add support for AD4000
+Message-ID: <20240611180559.000052c7@Huawei.com>
+In-Reply-To: <ZmgoNRkso4egGWgJ@surfacebook.localdomain>
+References: <cover.1717539384.git.marcelo.schmitt@analog.com>
+	<e340f48324b0ea3afb1c715cb2fba184c27112a1.1717539384.git.marcelo.schmitt@analog.com>
+	<e92871489d416e4f8a350fd24fc5ed0012b3cf2b.camel@gmail.com>
+	<20240609102354.02aa1128@jic23-huawei>
+	<ZmgoNRkso4egGWgJ@surfacebook.localdomain>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240611163525.4156688-2-matthew.gerlach@linux.intel.com>
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
-On Tue, Jun 11, 2024 at 11:35:25AM -0500, matthew.gerlach@linux.intel.com wrote:
-> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+On Tue, 11 Jun 2024 13:34:29 +0300
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+
+> Sun, Jun 09, 2024 at 10:23:54AM +0100, Jonathan Cameron kirjoitti:
 > 
-> Add support for the device tree binding update. As part of
-> converting the binding document from text to yaml, with schema
-> validation, a device tree subnode was added to properly map
-> legacy interrupts. Maintain backward compatibility with previous binding.
-
-If something was *added* to the binding, I think it would be helpful
-to split that into two patches: (1) convert to YAML with zero
-functional changes, (2) add the new stuff.  Adding something at the
-same time as changing the format makes it hard to review.
-
-Then we could have a more specific subject and commit log for *this*
-patch.
-
-> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
-> ---
->  drivers/pci/controller/pcie-altera.c | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
+> ...
 > 
-> diff --git a/drivers/pci/controller/pcie-altera.c b/drivers/pci/controller/pcie-altera.c
-> index a9536dc4bf96..88511fa2f078 100644
-> --- a/drivers/pci/controller/pcie-altera.c
-> +++ b/drivers/pci/controller/pcie-altera.c
-> @@ -667,11 +667,20 @@ static void altera_pcie_isr(struct irq_desc *desc)
->  static int altera_pcie_init_irq_domain(struct altera_pcie *pcie)
->  {
->  	struct device *dev = &pcie->pdev->dev;
-> -	struct device_node *node = dev->of_node;
-> +	struct device_node *node, *child;
->  
->  	/* Setup INTx */
-> +	child = of_get_next_child(dev->of_node, NULL);
-> +	if (child)
-> +		node = child;
-> +	else
-> +		node = dev->of_node;
-> +
->  	pcie->irq_domain = irq_domain_add_linear(node, PCI_NUM_INTX,
-> -					&intx_domain_ops, pcie);
-> +						 &intx_domain_ops, pcie);
-> +	if (child)
-> +		of_node_put(child);
-> +
->  	if (!pcie->irq_domain) {
->  		dev_err(dev, "Failed to get a INTx IRQ domain\n");
->  		return -ENOMEM;
-> -- 
-> 2.34.1
+> > > > +	/*
+> > > > +	 * In 4-wire mode, the CNV line is held high for the entire
+> > > > conversion
+> > > > +	 * and acquisition process. In other modes st->cnv_gpio is NULL and
+> > > > is
+> > > > +	 * ignored (CS is wired to CNV in those cases).
+> > > > +	 */
+> > > > +	gpiod_set_value_cansleep(st->cnv_gpio, 1);    
+> > > 
+> > > Not sure it's a good practise to assume internal details as you're going for
+> > > GPIO. I would prefer to have an explicit check for st->cnv_gpio being NULL or
+> > > not.  
+> > 
+> > Hmm. I had it in my head that this was documented behaviour, but
+> > I can't find such in the docs, so agreed checking it makes sense.
+> > 
+> > I would be very surprised if this ever changed as it's one of the
+> > things that makes optional gpios easy to work with but who knows!  
 > 
+> Not Linus and not Bart, but we have tons of drivers that call GPIO APIs
+> unconditionally as long as they want optional GPIO.
+> 
+> What I see here is the comment that should be rewritten to say something like
+> 
+> "if GPIO is defined blablabla, otherwise blablabla."
+> 
+> I.o.w. do not mention that implementation detail (being NULL, i.e. optional).
+> 
+
+Good point - handy comment there already and this minor tweak will make it clear.
+
+Thanks Andy!
+
+Jonathan
 
