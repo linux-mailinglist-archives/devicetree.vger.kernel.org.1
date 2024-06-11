@@ -1,120 +1,168 @@
-Return-Path: <devicetree+bounces-74513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78F319038BA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:19:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87A709038CE
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 12:25:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F28B1C228B3
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 10:19:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1FA81F2184F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 10:25:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A975314F109;
-	Tue, 11 Jun 2024 10:19:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 850CF14F9EA;
+	Tue, 11 Jun 2024 10:25:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BqBHRojf"
+	dkim=pass (2048-bit key) header.d=lexina.in header.i=@lexina.in header.b="JDHn4zCx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.adeep.su (mx.adeep.su [185.250.0.168])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A4014502C;
-	Tue, 11 Jun 2024 10:19:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F022314F9F0;
+	Tue, 11 Jun 2024 10:25:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.250.0.168
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718101170; cv=none; b=WArshJrJjaFg2+JD8rhVIgcqon0dRYe0DzUmbRofciZbOjxga/YJaFg4BNhP8P5M/fGkYYUqTPgLxUohFW/3o3XqCvx3dAa2dBlOZfvqvGQ2uZeuPoz1HvGrSGaJQR2TI0I3xkI4Mi8AV2tNyREO9cLblEhz5wm+4h0JchdGnf4=
+	t=1718101545; cv=none; b=DEVux3wLL3kQOiOYb4X10sESIMU9VRiT8tHIfpxrJmJ7ZTaK6WY0FxUFad6gW2TRj5thbaf/3rqzUUtAOMaP+IXeR7CQaSLhCOJmkxd23PdoraUyzyOkWZa+9tLJSjpqNkNc/UOqn3zIJbn1uxVuuXQovmIA0GW6cHnWAJgow5o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718101170; c=relaxed/simple;
-	bh=w/yxPxCvkaDeWtKKMpFlZEVsnhxa4e1/eJvbybjHLrE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=eg+c+ZTnQLmvsARi5GAQCsCTla28LqeJY+pubMxYfbSXX6CxUBF3csljMiCC6J3O2mzy4KSFNleOYz0LCpJ7bw73IeVp8KPKh4/hf7lQHU6iNWkr/5falGGycZ/ztm0ZvSZkPFpGKgWJVxerBvsycMgG3TYh2kc1oWZ5vITIQ9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BqBHRojf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBB9BC2BD10;
-	Tue, 11 Jun 2024 10:19:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718101170;
-	bh=w/yxPxCvkaDeWtKKMpFlZEVsnhxa4e1/eJvbybjHLrE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=BqBHRojfxWBJxHMMY8/swGUpBo8czC2/+DcqD1cxVFPHLamyhEjgOs3lWpEcDw6hT
-	 467sC4Tcdemtc9jX9HV8WTGIUxxcouz72HxLi7DpaMP1Q+TgodAGTLT/FH7nEPyRx9
-	 n3jC0XkBo5PyfatcDJIsI76TwUiROfk3tG8pa1FrhgTz9yTGSGTySDqc4PdDD4y5Bu
-	 qPUgNsBktIyQdkxLB25GWOAwTANPZ35+RMmM1OD0rXJblWnMc0wC05eYWc1LYsQOvv
-	 jp/xvRw6WKMLAcFAGK3p4+vMm8mnrcTfOoFxRNUFOGyULalKIC8jxg0ol+JH5R33RY
-	 to4VzzHl7zCfw==
-From: Mark Brown <broonie@kernel.org>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Cc: alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org, 
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com, 
- quic_pkumpatl@quicinc.com
-In-Reply-To: <20240524035535.3119208-1-quic_mohs@quicinc.com>
-References: <20240524035535.3119208-1-quic_mohs@quicinc.com>
-Subject: Re: [PATCH v5 0/7] ASoC: codecs: wcd937x: add wcd937x audio codec
- support
-Message-Id: <171810116692.177725.17513047102055843084.b4-ty@kernel.org>
-Date: Tue, 11 Jun 2024 11:19:26 +0100
+	s=arc-20240116; t=1718101545; c=relaxed/simple;
+	bh=qyQC/+nHWKRiwRIjTlFbMH4bzMl2g+3evAo+vGkwdOg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MB3bg5BgxCHu/8AIkHn+RSvw+vuwBgecifD+WmHA7bhYDSaRT+710lv/d6niBYe8kbrL+91UmOvoZB5H6Sp/If+g/PL5L2CN/WauF3PFJdIeA4cvVBss4uSkLYiuRNLDEcEOPXsby3Cdz8lg7TKgkeZpbXBW/yWKQUy8KgpodAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=lexina.in; spf=pass smtp.mailfrom=lexina.in; dkim=pass (2048-bit key) header.d=lexina.in header.i=@lexina.in header.b=JDHn4zCx; arc=none smtp.client-ip=185.250.0.168
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=lexina.in
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lexina.in
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 703C81CE260;
+	Tue, 11 Jun 2024 13:25:13 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
+	t=1718101531; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references:autocrypt;
+	bh=MEdCQgjM3nOB37rAToIyGZH6oxZZXWG+KBwDS6+xGt4=;
+	b=JDHn4zCxz7fjwFmmRTyuplQ6iWIukT2rjvhLsh46T/+wWRBfRLt0wzV93kHjxOhnNZm/tK
+	MuoQi0A847lVu3zOVC1kmfhWRLEdVOTnUBTa8WGkScxk4VaLPgCIbOoSgbxhNBSDMvjuWp
+	P4pqi7BIfY6K5yUbGcXHsCMcY7unXN3j/s5b6pj7xRR78218KROk0whZizGhjDPziGM5Gl
+	EGh9laBchUFBJoob4tyjDsJCVHmDfb627bsWY6Kekkwi9gfs0z7TvjAd002nqPqt/usXzi
+	+AG3/h0NrU3INMLUzx8DgbaohLbmJg/VGHo4Mg8LSvNwsH5IvW0bNUraHy0y1g==
+Message-ID: <4866f6d4-2e3c-40c7-a8cb-ba4e422ffef6@lexina.in>
+Date: Tue, 11 Jun 2024 13:25:11 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/4] dt-bindings: arm: amlogic:
+ amlogic,meson-gx-ao-secure: add secure-monitor property
+To: Conor Dooley <conor@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20240610084032.3096614-1-adeep@lexina.in>
+ <20240610084032.3096614-4-adeep@lexina.in>
+ <20240610-dropout-compress-6d6a9b749524@spud>
+Content-Language: en-US, ru-RU
+From: Viacheslav <adeep@lexina.in>
+Autocrypt: addr=adeep@lexina.in; keydata=
+ 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
+In-Reply-To: <20240610-dropout-compress-6d6a9b749524@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14-dev-4c370
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Fri, 24 May 2024 09:25:28 +0530, Mohammad Rafi Shaik wrote:
-> This patchset adds support for Qualcomm WCD9370/WCD9375 codec.
+Hi!
+
+10/06/2024 19.08, Conor Dooley wrote:
+> On Mon, Jun 10, 2024 at 11:39:49AM +0300, Viacheslav Bocharov wrote:
+>> Add secure-monitor property to schema for meson-gx-socinfo-sm driver.
 > 
-> Qualcomm WCD9370/WCD9375 Codec is a standalone Hi-Fi audio codec IC
-> connected over SoundWire. This device has two SoundWire devices, RX and
-> TX respectively supporting 3 x ADCs, ClassH, Ear, Aux PA, 2xHPH,
-> 6 DMICs and MBHC.
+> "bindings are for hardware, not drivers". Why purpose does the "secure
+> monitor" serve that the secure firmware needs a reference to it?
+
+This driver is an extension to the meson-gx-socinfo driver: it 
+supplements information obtained from the register with information from 
+the SM_GET_CHIP_ID secure monitor call. Due to the specifics of the 
+module loading order, we cannot do away with meson-gx-socinfo, as it is 
+used for platform identification in some drivers. Therefore, the 
+extended information is formatted as a separate driver, which is loaded 
+after the secure-monitor driver.
+
+The ability to obtain additional information depends on the support for 
+the call in the secure-monitor, which can be described by an additional 
+link from the amlogic,meson-gx-ao-secure node to the secure-monitor 
+node, similar to how it is done for amlogic,meson-gxbb-efuse.
+
 > 
-> [...]
+> Thanks,
+> Conor.
+> 
+>>
+>> Signed-off-by: Viacheslav Bocharov <adeep@lexina.in>
+>> ---
+>>   .../bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml      | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
+>> index 7dff32f373cb..1128a794ec89 100644
+>> --- a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
+>> @@ -32,6 +32,10 @@ properties:
+>>     reg:
+>>       maxItems: 1
+>>   
+>> +  secure-monitor:
+> 
+> Missing a vendor prefix.
+> 
+>> +    description: phandle to the secure-monitor node
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +
+>>     amlogic,has-chip-id:
+>>       description: |
+>>         A firmware register encodes the SoC type, package and revision
+>> -- 
+>> 2.45.2
+>>
+>>
+>> _______________________________________________
+>> linux-amlogic mailing list
+>> linux-amlogic@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/7] ASoC: dt-bindings: document wcd937x Audio Codec
-      commit: 27173bb0b64461acf4e00f1bae3b15d8d2348c14
-[2/7] ASoC: codecs: wcd937x-sdw: add SoundWire driver
-      commit: c99a515ff15380ec5f8827049914145ba908e8da
-[3/7] ASoC: codecs: wcd937x: add wcd937x codec driver
-      commit: 9be3ec196da41b20b624ae4ed0303df58548644e
-[4/7] ASoC: codecs: wcd937x: add basic controls
-      commit: 82be8c62a38c6a44e64ecb29d7a9b5cb35c6cad4
-[5/7] ASoC: codecs: wcd937x: add playback dapm widgets
-      commit: 57fe69db7a015e828ec69d819707c5b8eac6d052
-[6/7] ASoC: codecs: wcd937x: add capture dapm widgets
-      commit: 8ee78493be89c42d016f941a9b00c203ec08daab
-[7/7] ASoC: codecs: wcd937x: add audio routing and Kconfig
-      commit: 313e978df7fc38b9e949ac5933d0d9d56d5e8a9c
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+--
+with regards,
+Viacheslav
 
