@@ -1,100 +1,143 @@
-Return-Path: <devicetree+bounces-75142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCEC69059A2
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 19:10:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA68E905A06
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 19:33:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 72E161F24099
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:10:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6CE681F240DD
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:33:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D548181B86;
-	Wed, 12 Jun 2024 17:09:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 701C51836D1;
+	Wed, 12 Jun 2024 17:32:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nfkZA/dt"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="rLiCeW0i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FB5716C84F;
-	Wed, 12 Jun 2024 17:09:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86978170824;
+	Wed, 12 Jun 2024 17:32:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718212183; cv=none; b=adjlf9A3uP8c3fPNKaivEdA1NGQ17r2aPf6vtS9D+EcKu4T+XuJ8p4UtGZfilDbxvDVwohZv0uB9Ov677hhZqdU3xuUBZVlAi1wacF0i4ZFVobX5wEm/HQ6dAjzEyxjCTfen0GjFbb/lAVq1KsLkwwceVaGvzVhgCVpfAdKXdxc=
+	t=1718213546; cv=none; b=hkwN5AxdEchwJQljRAdf9j59yRYaku0gUerB7xxcJv3MjahGXDahD7jNVCQFjYCzBuH3aQwgfFrOlIP75pGEzoNcFw9jo1L44YQtix/rgkYv2Asf+61gvjSkgXk+iTNIEK8aCqxS84AHjaDDyP54uiHgUcHZI8wITyhKklikX6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718212183; c=relaxed/simple;
-	bh=qXn2J2Ad1IeHu7jqmyxVFj5XlOylI3qbh7DnQSO8Dgo=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=NBeRHq3A9thcOT/L8sqK3/9kZYvl8n1oEMpR84VErcCoecsSTXJIivO3bsPi7GMAvsVEG0HFvo1XlcLxRDJ1abYCSP2C+2oPsMWavOIwTEsMai24TilkY5F60SPgQSq0ol4vsgbA/7XfZgg1dInJYeyYbwu/xKEuIG9KSEj0jBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nfkZA/dt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76482C116B1;
-	Wed, 12 Jun 2024 17:09:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718212182;
-	bh=qXn2J2Ad1IeHu7jqmyxVFj5XlOylI3qbh7DnQSO8Dgo=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=nfkZA/dt8kMAeWdKD4n12L0JnifHFVghUZLjoBySN1jvxF0V5b8fYdoW5dYgDQ+w8
-	 kzWjwJI7ODj/cQVjuCPPdRZBUrTBQxjOW6Md0Y6pfATWk4bCmhj/YIx0LhjegDpBao
-	 oCVnrCt60f6XirBObzQZwjiSarLhk/kHsbRJYsqRgLRsJLJKQEnMrXTLqQMh/e0Ff1
-	 +0Hkoh59khSdACfTzhupW7rOlITO1d4zuXB7lhljxVBkoCMTgskAzmmLARXRMlirPS
-	 iICF1MKWpzMX4Do0in0epfyJ74rSLLJT5Hia1yfWSeVASv9s70YWZP8o50XyuQ8S7q
-	 x635lx9uDVqsg==
-From: Mark Brown <broonie@kernel.org>
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20240606041212.78428-1-animeshagarwal28@gmail.com>
-References: <20240606041212.78428-1-animeshagarwal28@gmail.com>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: linux,spdif: Convert
- spdif-reciever.txt to dtschema
-Message-Id: <171821218010.232443.15741334839027344442.b4-ty@kernel.org>
-Date: Wed, 12 Jun 2024 18:09:40 +0100
+	s=arc-20240116; t=1718213546; c=relaxed/simple;
+	bh=H+1Gh32TLe9//W5DEjtFjRYrLhHpR4ykiLSiVsQC96s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=B1JUKRyN4WjAOqe5cjv6mzfUq93tQ4oZES7eEU0xGLpNfbJLySWsfRq9CIGMIYnwaUn621h9oNg0L+vJxIraEnv9MGxQnm/iCtv4CFmsk7UE3B8RATgWwaZQKFfKFatT1b+AiHUE3g9QsElfMAIyFY/B/6O8nOLn7cqlJqfjJGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=rLiCeW0i; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718213541;
+	bh=H+1Gh32TLe9//W5DEjtFjRYrLhHpR4ykiLSiVsQC96s=;
+	h=From:To:Cc:Subject:Date:From;
+	b=rLiCeW0iJDT+jJlR3bYdUqudRoD6iXy2Z5kB2zdmWqiPWgu2smHSHKdln9Y7OUUDC
+	 F4/TYcdQ29dmUBoYPgbCNxbTI+gJpTpsel0GjhdLCV7P+NV+bv7RYG3Ir24KJz9opu
+	 PKAxif+1wQMOKokJ4iWkgPLex2dfZDzNot/+gktQKHeovfImt8MX0t1bk7UhT+Ylji
+	 MED8xsU2AKugrDLgfTJ09SAIWdHV4y7OLRHhAICKDhwGvG5hEuwKxDoTXZVsRsiPyS
+	 Ty7J0xcTQWfEGQISIQqjgZ9SDzMg8nT1O3iTklXwE+1bW4dcRrT30ClicWA8t64poL
+	 /1HJcfS3le7DQ==
+Received: from jupiter.universe (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id A8DE03782191;
+	Wed, 12 Jun 2024 17:32:21 +0000 (UTC)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id 5958C4800C9; Wed, 12 Jun 2024 19:32:21 +0200 (CEST)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jianfeng Liu <liujianfeng1994@gmail.com>,
+	Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	linux-media@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	kernel@collabora.com
+Subject: [PATCH v5 0/5] RK3588 VEPU121/VPU121 support
+Date: Wed, 12 Jun 2024 19:15:40 +0200
+Message-ID: <20240612173213.42827-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14-dev-4c370
+Content-Transfer-Encoding: 8bit
 
-On Thu, 06 Jun 2024 09:42:00 +0530, Animesh Agarwal wrote:
-> Convert the dummy SPDIF receiver bindings to DT schema.
-> 
-> 
+Hi,
 
-Applied to
+This series enables Hantro support for RK3588. It is based on these two
+previous series from Emmanuel Gil Peyrot and Jianfeng Liu, which looked
+stall to me. Considering the full driver is already upstream, I think
+this low hanging fruit should be enabled in 6.11:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+ * https://lore.kernel.org/all/20240316071100.2419369-1-liujianfeng1994@gmail.com/
+ * https://lore.kernel.org/linux-rockchip/20240412151515.837824-1-linkmauve@linkmauve.fr/
 
-Thanks!
+Their series got some feedback from Nicolas Dufresne, that there should be a
+plan how multi-core processing will be handled once it is supported in the
+kernel. I had a look (and internal discussion with Nicolas) and came up with a
+patch, which allows describing all the Hantro IP in DT. The driver will only
+probe for the first instance. This involves dropping the RK3568 compatible
+for the VEPU121, so that only kernels with the driver change will try to
+handle these IP. Once the kernel is capable of multi-core support, the same
+technique to disable cores 1-3 can be used to combine them all into one
+cluster.
 
-[1/1] ASoC: dt-bindings: linux,spdif: Convert spdif-reciever.txt to dtschema
-      commit: a694956df4ca75d74bcd422908ddcd8e2ea3042e
+We also discussed, if they should be described as a cluster (e.g. by creating
+some kind of virtual bus for the 4 encoders in DT). Apparently the VSI doc
+describes the grouping of up to 4 instances. But there is no obvious reason
+why only these groups can be used as a cluster. It seems that even the 5th
+encoder from the combo VPU121 could be used together with the other clustered
+cores in theory. In practice this is probably a bad idea because of the shared
+cache of that encoder. Since that is handled with a different compatible, this
+can be thought about at a later point of time and handled in the kernel. Thus
+no special cluster description is needed in DT.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+The series is based on Heiko's for-next branch.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Changes since PATCHv3 (VEPU121) / PATCHv4 (VPU121)
+ * combine both patchsets, since there is some overleap
+ * add patch to disable multi-core handling in the hantro driver
+ * drop the RK3568 fallback compatible for VEPU (see above for the reason)
+ * describe all RK3588 VEPU cores (possible because of driver change)
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+Greetings,
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+-- Sebastian
 
-Thanks,
-Mark
+Emmanuel Gil Peyrot (2):
+  media: dt-bindings: rk3568-vepu: Add RK3588 VEPU121
+  arm64: dts: rockchip: Add VEPU121 to RK3588
+
+Jianfeng Liu (2):
+  media: dt-bindings: rockchip-vpu: Add RK3588 VPU121
+  arm64: dts: rockchip: Add VPU121 support for RK3588
+
+Sebastian Reichel (1):
+  media: hantro: Add RK3588 VEPU121 support
+
+ .../bindings/media/rockchip,rk3568-vepu.yaml  |   5 +-
+ .../bindings/media/rockchip-vpu.yaml          |   3 +
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 101 ++++++++++++++++++
+ .../media/platform/verisilicon/hantro_drv.c   |  38 +++++++
+ 4 files changed, 145 insertions(+), 2 deletions(-)
+
+-- 
+2.43.0
 
 
