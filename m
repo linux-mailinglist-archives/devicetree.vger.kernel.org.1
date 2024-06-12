@@ -1,112 +1,148 @@
-Return-Path: <devicetree+bounces-75154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94508905A45
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 19:55:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF6BC905A64
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 20:09:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D6AF1F24B7D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:55:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7BCB0B21157
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 18:09:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C83AC181BBD;
-	Wed, 12 Jun 2024 17:55:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="zHkmsg6A"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 417511822FC;
+	Wed, 12 Jun 2024 18:09:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D87AAFBF3;
-	Wed, 12 Jun 2024 17:55:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71922180A99;
+	Wed, 12 Jun 2024 18:09:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718214909; cv=none; b=P8D+jjmp9yPn10E6hoRlzap1p8ppbSQSTKne1ZhuX2gxxhAT3Y+eEo2L04vf16ZitU66pvl6sQgXWnGPk54YRs4asYYRQlwqpF5xHJql9V/ZIUK7bXttQZ7oUXUZCUp5jXd7LNsFD5LPfNXauiLwjxTFTcU+JqPfkiKVrvGVU/Q=
+	t=1718215751; cv=none; b=kXCpjTucJ42aII5eYk7uKD7582o7sGogmUMt4itPLKDwQ79Dmhw6k1H1p5p/Krl0eB0LR1/VphjxnPUohv4yEtSN8+G7sHPt6MXmEYopILtk2co8D0GtP47BLmhW3tmYCvsBNxNZS3AVm7zoyzi0lPtDDIW3lB2TrN4XVzOuAv8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718214909; c=relaxed/simple;
-	bh=VqUGFelUc+HYeis6jtgBeWXp71F6ifc31vMuMY5Ac9E=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gF+toHZgj7ZJC3JB3NSdepiznP53FANeTA77LSdZlfBLeSKi4GN+IW5u+clfTxqoIcV7ITY+soqn0qKMFqAMFySZxSTEgdMBdeT2EnJZecV6yY7AFK1TgyyEk86Bgi1NJUZMHVKCXaYtY13g70Zqji7o5jqr6FE5hHhUndbvxK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=zHkmsg6A; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45CHsvbX055304;
-	Wed, 12 Jun 2024 12:54:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1718214897;
-	bh=EtQt1y41w+i0eABY5up/EAejlkwfhzYydG/WhSqbVsI=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=zHkmsg6AAWm+NHJNLl9z7HX/yXEU+frJGLl8Nh0rbB/avHtYy+aHmXLk1QIHuPDuB
-	 eAOsx+iw1Ty1mXTrFj0OCdhjYuLWW55bPB3gASJEvn8rfb+CAuE3tSFPO8w8GRYXuw
-	 j6drJ4SPdiSPdUjfokRxAX/6AmchVhlXNSr8IH4k=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45CHsviO094132
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 12 Jun 2024 12:54:57 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 12
- Jun 2024 12:54:57 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 12 Jun 2024 12:54:57 -0500
-Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45CHsvNl077238;
-	Wed, 12 Jun 2024 12:54:57 -0500
-Date: Wed, 12 Jun 2024 12:54:57 -0500
-From: Bryan Brattlof <bb@ti.com>
-To: Conor Dooley <conor@kernel.org>
-CC: "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar
-	<viresh.kumar@linaro.org>, Lee Jones <lee@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Vibhore Vardhan
-	<vibhore@ti.com>,
-        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 3/5] DONOTMERGE: dt-bindings: mfd: syscon: add TI's opp
- table compatible
-Message-ID: <20240612175457.b6q37nm6x4vsdnks@bryanbrattlof.com>
-X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
-References: <20240612-ti-opp-updates-v1-0-3551c31d9872@ti.com>
- <20240612-ti-opp-updates-v1-3-3551c31d9872@ti.com>
- <20240612-unranked-unsalted-b32674a98d4a@spud>
+	s=arc-20240116; t=1718215751; c=relaxed/simple;
+	bh=RJNEvCAGIRZVQUyhqg15HbW6QCiKD5U3VFi2YuLgGgQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rGsWa9eY0D22A8IRDSt212F64uVxu+ws4cl6BsVeZQJavT62p8A2xCcc8N+mA0YMLS3pRbmIXavpHAUBKnbWWPsmimaWuyyqRMOD16AnVPi4wa+SJw54AUQfmRke0HTpPZNK8H/3CqZtlRGqtALNN7SrEuioBF/DcltsSwYZGNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875be5.versanet.de ([83.135.91.229] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sHSOy-00025Y-8s; Wed, 12 Jun 2024 20:08:52 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jianfeng Liu <liujianfeng1994@gmail.com>,
+ Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com
+Subject: Re: [PATCH v5 3/5] media: hantro: Add RK3588 VEPU121 support
+Date: Wed, 12 Jun 2024 20:08:51 +0200
+Message-ID: <1739853.izSxrag8PF@diego>
+In-Reply-To: <20240612173213.42827-4-sebastian.reichel@collabora.com>
+References:
+ <20240612173213.42827-1-sebastian.reichel@collabora.com>
+ <20240612173213.42827-4-sebastian.reichel@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20240612-unranked-unsalted-b32674a98d4a@spud>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On June 12, 2024 thus sayeth Conor Dooley:
-> On Wed, Jun 12, 2024 at 11:41:52AM -0500, Bryan Brattlof wrote:
-> > The JTAG_USER_ID_USERCODE efuse address, which is located inside the
-> > WKUP_CTRL_MMR0 range holds information to identify the speed grades of
-> > various components on TI's K3 SoCs. Add a compatible to allow the
-> > cpufreq driver to obtain the data to limit the maximum frequency for the
-> > CPUs under Linux control.
-> > 
-> > Signed-off-by: Bryan Brattlof <bb@ti.com>
+Am Mittwoch, 12. Juni 2024, 19:15:43 CEST schrieb Sebastian Reichel:
+> Avoid exposing each of the 4 Hantro H1 cores separately to userspace.
+> For now just expose the first one.
 > 
-> $subject: DONOTMERGE: dt-bindings: mfd: syscon: add TI's opp table compatible
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>  .../media/platform/verisilicon/hantro_drv.c   | 38 +++++++++++++++++++
+>  1 file changed, 38 insertions(+)
 > 
-> Okay, if this isn't for merging then I won't Ack it.
+> diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/media/platform/verisilicon/hantro_drv.c
+> index 34b123dafd89..b722a20c5fe3 100644
+> --- a/drivers/media/platform/verisilicon/hantro_drv.c
+> +++ b/drivers/media/platform/verisilicon/hantro_drv.c
+> @@ -722,6 +722,7 @@ static const struct of_device_id of_hantro_match[] = {
+>  	{ .compatible = "rockchip,rk3399-vpu", .data = &rk3399_vpu_variant, },
+>  	{ .compatible = "rockchip,rk3568-vepu", .data = &rk3568_vepu_variant, },
+>  	{ .compatible = "rockchip,rk3568-vpu", .data = &rk3568_vpu_variant, },
+> +	{ .compatible = "rockchip,rk3588-vepu121", .data = &rk3568_vpu_variant, },
+>  	{ .compatible = "rockchip,rk3588-av1-vpu", .data = &rk3588_vpu981_variant, },
+>  #endif
+>  #ifdef CONFIG_VIDEO_HANTRO_IMX8M
+> @@ -992,6 +993,39 @@ static const struct media_device_ops hantro_m2m_media_ops = {
+>  	.req_queue = v4l2_m2m_request_queue,
+>  };
+>  
+> +/*
+> + * Some SoCs, like RK3588 have multiple identical Hantro cores, but the
+> + * kernel is currently missing support for multi-core handling. Exposing
+> + * separate devices for each core to userspace is bad, since that does
+> + * not allow scheduling tasks properly (and creates ABI). With this workaround
+> + * the driver will only probe for the first core and early exit for the other
+> + * cores. Once the driver gains multi-core support, the same technique
+> + * for detecting the main core can be used to cluster all cores together.
+> + */
+> +static int hantro_disable_multicore(struct hantro_dev *vpu)
+> +{
+> +	const char *compatible;
+> +	struct device_node *node;
+> +	int ret;
+> +
+> +	/* Intentionally ignores the fallback strings */
+> +	ret = of_property_read_string(vpu->dev->of_node, "compatible", &compatible);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* first compatible node found from the root node is considered the main core */
+> +	node = of_find_compatible_node(NULL, NULL, compatible);
+> +	if (!node)
+> +		return -EINVAL; /* broken DT? */
+> +
+> +	if (vpu->dev->of_node != node) {
+> +		dev_info(vpu->dev, "missing multi-core support, ignoring this instance\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int hantro_probe(struct platform_device *pdev)
+>  {
+>  	const struct of_device_id *match;
+> @@ -1011,6 +1045,10 @@ static int hantro_probe(struct platform_device *pdev)
+>  	match = of_match_node(of_hantro_match, pdev->dev.of_node);
+>  	vpu->variant = match->data;
+>  
+> +	ret = hantro_disable_multicore(vpu);
+> +	if (ret)
+> +		return ret;
+> +
 
-Ha! Nice. If I don't hear anything from anyone else I'll send a v2 in a 
-few hours.
+I think this might be better as two patches?
 
-~Bryan
+As this patch stands, the disable-multicore handling is done for _all_
+hantro variants, so part of me wants this to be labeled as such.
+
+The whole reasoning is completely ok, but somehow having this under
+the "add rk3588" umbrella feels strange ;-)
+
+
+Heiko
+
+
+
 
