@@ -1,165 +1,141 @@
-Return-Path: <devicetree+bounces-75078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CE2A905616
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:00:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD6ED905638
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:04:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A8961C23DE9
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:00:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4A9D6B22253
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:04:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E60FE17F502;
-	Wed, 12 Jun 2024 15:00:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8BBD17E90D;
+	Wed, 12 Jun 2024 15:04:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="oz43gLUA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iQTL64+m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47DF617E90A
-	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 15:00:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C3181DDF6;
+	Wed, 12 Jun 2024 15:04:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718204425; cv=none; b=K15P4rqc4wqGp6eRhgTmOwL5Yd48sFY7n2JRXzCCcQNNuaEMhchLjkdXuwyDdUVh5QCIBPeJPMLDYOs/wU4v79Km3TEOYSargbiNNoknQcNVC2gAA/olksjanLv0mtXwgwaeC0bIzeMFcC+93sQJq+HaqWw6XjZaoy/Czybz9DA=
+	t=1718204688; cv=none; b=Wtx+dq7HaoZKa776jp7eR/qMZ5yN+HNlpO+HCZkpvMTOAmEJ4AnhHzMZLR8Ad08SvkfLFDXJ7o0pwb+tKkuIJyzwxCy6sVDkfYCU2MXAQCW26GUecOSfSvhEfHe7HJzIGAHV7czGjKEi9elEg+e+E3SdCbNFWLM0ZmfPOyRqiVk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718204425; c=relaxed/simple;
-	bh=C4UELV9HUoTObjhE2z/Y+N/eSyCnSY+vNYVC8euckgc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Te9rC1yioYSdPoXp/e8in0uz/4q5M9RmqqviYVel09wAY5hkMt9g4kAQ3+AiB7BeDxOMgpME+PK6aK69debSMf7aH+ZO8MTOSAw+gdiMznxKyrXR6KDrlxxc39IKmizajOEowl/jnSQ1hccp7vkGmZvUzTsxBlSOqzGLEJFsNkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=oz43gLUA; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-52bbdc237f0so3020576e87.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 08:00:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1718204422; x=1718809222; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F6rL/BDIQftoREsF4MukuWgtFD7Xz/O/PdkqT1JwzBs=;
-        b=oz43gLUA7clGp8IShwOmyPkd2VsJBMVuCFpBNLAkbZCXpNoEeHepsatlnrrCx249Lu
-         vku0O+xdOEbUuJGgyy82WGi5DG/O8MhhyqllcfxvgKgzFKOwHJQs/DCYXRElNIaoCiIU
-         RaaOpGyaH2O+qPcAhLBbZT4RdVJohrhhw50VktNZOn3h96cm9Bat9Bhve67p435ZKe6k
-         74VmPxJWSPVW5KzoUi5HRm9ecHvBvIJne9f3nl4z+8izhNMqDr32O8KpGBoJ4/kLOCnL
-         B7gQb1G8cKTNZ00vDdHGxbP21Zy7Br8BTTSldmaMuSuZODzmAskFqG1Eid9GGN2oKIwv
-         phAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718204422; x=1718809222;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=F6rL/BDIQftoREsF4MukuWgtFD7Xz/O/PdkqT1JwzBs=;
-        b=o3KQCeIcLIoyfW4Bfqsaqh2XY3AUMFcNgW4lVtFwtmcNds7MUOPiSyHkQK4++3MUZ0
-         Sh/184n0ATe+qoc90j2qrEkcxREH6Zw3wRXQfEGKOK8sC4EkKYNcIGvxWLrKQMelNc1q
-         xlU1DOg/X4wuRsKeMSflsSyq8wxSV5g0wJ51/gRms/TRtYx51bymmMQ5OjD35+eWr2eS
-         qqnpBQiUF69S0qums2HJEHV/Zy8xkU9BIVa1mL07lUdQ8ctQ8TarHZTWGb2VixgqtWnb
-         86rWaBIMxYiyF/hl7qAOjTK6eGPxtZc6AhSwR+q6qSz94YX8Z88GKBgwpv23IwKLzjOS
-         ECbA==
-X-Forwarded-Encrypted: i=1; AJvYcCUOFoflkNdnARyT37k8JyFy8aMOVSWCvEHKutfqT691ENik9S8vEM0HaBAReRwlPRwGQKsuvwat+xWEtXJDfUWufZbzlSq5f8HCVQ==
-X-Gm-Message-State: AOJu0YwCQOzv6Y4B0t+g0vEnuwxX5F7QsA/EQPRTOguqWDHmisF5pdAj
-	LgFIsltfco0/hnxuIVslH3Ii3Ebj29NKs3JiOyRiVK36/OzQq01gv9QPeUt/1v5BGlScBbAgw2B
-	Xa6ah9zEbxtBejhemC9kD6LxjWuOaiz5nfxlGzuXZ2+RMFGaK
-X-Google-Smtp-Source: AGHT+IGTgh1dIQ9+D2m/9bJRIpMZfry0OF0lmud8oD8sCLp6CWzI5quV6C91M4FXuD+64Vh450FwuHsfhkL2cCm4O1s=
-X-Received: by 2002:ac2:4e0d:0:b0:52c:9725:b334 with SMTP id
- 2adb3069b0e04-52c9a3fcc59mr1743084e87.54.1718204422361; Wed, 12 Jun 2024
- 08:00:22 -0700 (PDT)
+	s=arc-20240116; t=1718204688; c=relaxed/simple;
+	bh=4mJ2JcUDVyd/bz6lXNXn2sgwg3vdEufQ7VUArRgiut8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nW3Q8wDf6keysNtAGaN2sBSCgn7ETNG9hV/OuW35GGoC/NmqAqPB5QRd+hWRh6cd1i/y4nUR4kHU85WLXck6tYayKHxmCOcLHWl8I/d6wjSwhGx5z4Sh1lnfDb8lrm0bDJV4l1UQJckmZMNnZdt1w1rXPqF6VNCCJoJ++oU7YIY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iQTL64+m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74679C116B1;
+	Wed, 12 Jun 2024 15:04:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718204688;
+	bh=4mJ2JcUDVyd/bz6lXNXn2sgwg3vdEufQ7VUArRgiut8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=iQTL64+m+QpAQjEZwurYn65aCF4nU58DW8JNIjv8/C4u4FvcCY0ZuYxNIDRQD9mUr
+	 R4Wg1ztu67eHZr6tLtzCLeIdmO2vmHpvKPhIzAIpR6fG7MeIwc6d3kc0zOWBN/HLQ3
+	 fGlTpmzApCI6oxREOxt3b5xy0BXbaW7/yZHCj2agSzi6N+rcoSxnS3eFa94rRyaQuM
+	 +yYJlZTfV4/YC24RI30pdBs+eWyfML8KWH7h4+CpwATLSfJuh8mp0YrR1sLroksToQ
+	 ekvsONOmTw8dhrXi3bs9R1B41F2zQddoU5sxfBjvyRU6iO4QiRG5BYNNfiEvulbLO2
+	 X2F+S3QjI2XhA==
+Message-ID: <a5357897-9bb3-4297-843d-c97dadc3de4b@kernel.org>
+Date: Wed, 12 Jun 2024 17:04:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240612075829.18241-1-brgl@bgdev.pl> <CABBYNZLrwgj848w97GP+ijybt-yU8yMNnW5UWhb2y5Zq6b5H9A@mail.gmail.com>
- <CAMRc=Mdb31YGUUXRWACnx55JawayFaRjEPYSdjOCMrYr5xDYag@mail.gmail.com> <CABBYNZLPv3zk_UX67yPetQKWiQ-g+Dv9ZjZydhwG3jfaeV+48w@mail.gmail.com>
-In-Reply-To: <CABBYNZLPv3zk_UX67yPetQKWiQ-g+Dv9ZjZydhwG3jfaeV+48w@mail.gmail.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 12 Jun 2024 17:00:11 +0200
-Message-ID: <CAMRc=Mdsw5c_BDwUwP2Ss4Bogz-d+waZVd8LLaZ5oyc9dWS2Qg@mail.gmail.com>
-Subject: Re: [GIT PULL] Immutable tag between the Bluetooth and pwrseq
- branches for v6.11-rc1
-To: Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Cc: Marcel Holtmann <marcel@holtmann.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: sound: Convert max98088 to dtschema
+To: Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, lgirdwood@gmail.com,
+ broonie@kernel.org
+Cc: skhan@linuxfoundation.org, javier.carrasco.cruz@gmail.com,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240612145903.497758-1-abdulrasaqolawani@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240612145903.497758-1-abdulrasaqolawani@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jun 12, 2024 at 4:54=E2=80=AFPM Luiz Augusto von Dentz
-<luiz.dentz@gmail.com> wrote:
->
-> Hi Bartosz,
->
-> On Wed, Jun 12, 2024 at 10:45=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev.=
-pl> wrote:
-> >
-> > On Wed, Jun 12, 2024 at 4:43=E2=80=AFPM Luiz Augusto von Dentz
-> > <luiz.dentz@gmail.com> wrote:
-> > >
-> > > Hi Bartosz,
-> > >
-> > > On Wed, Jun 12, 2024 at 3:59=E2=80=AFAM Bartosz Golaszewski <brgl@bgd=
-ev.pl> wrote:
-> > > >
-> > > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > > >
-> > > > Hi Marcel, Luiz,
-> > > >
-> > > > Please pull the following power sequencing changes into the Bluetoo=
-th tree
-> > > > before applying the hci_qca patches I sent separately.
-> > > >
-> > > > Link: https://lore.kernel.org/linux-kernel/20240605174713.GA767261@=
-bhelgaas/T/
-> > > >
-> > > > The following changes since commit 83a7eefedc9b56fe7bfeff13b6c73566=
-88ffa670:
-> > > >
-> > > >   Linux 6.10-rc3 (2024-06-09 14:19:43 -0700)
-> > > >
-> > > > are available in the Git repository at:
-> > > >
-> > > >   git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git tags=
-/pwrseq-initial-for-v6.11
-> > > >
-> > > > for you to fetch changes up to 2f1630f437dff20d02e4b3f07e836f428691=
-28dd:
-> > > >
-> > > >   power: pwrseq: add a driver for the PMU module on the QCom WCN ch=
-ipsets (2024-06-12 09:20:13 +0200)
-> > > >
-> > > > ----------------------------------------------------------------
-> > > > Initial implementation of the power sequencing subsystem for linux =
-v6.11
-> > > >
-> > > > ----------------------------------------------------------------
-> > > > Bartosz Golaszewski (2):
-> > > >       power: sequencing: implement the pwrseq core
-> > > >       power: pwrseq: add a driver for the PMU module on the QCom WC=
-N chipsets
-> > >
-> > > Is this intended to go via bluetooth-next or it is just because it is
-> > > a dependency of another set? You could perhaps send another set
-> > > including these changes to avoid having CI failing to compile.
-> > >
-> >
-> > No, the pwrseq stuff is intended to go through its own pwrseq tree
-> > hence the PR. We cannot have these commits in next twice.
->
-> Not following you here, why can't we have these commits on different
-> next trees? If that is the case how can we apply the bluetooth
-> specific ones without causing build regressions?
->
+On 12/06/2024 16:59, Abdulrasaq Lawani wrote:
+> Convert the max98088 audio codec txt bindings to DT schema.
+> 
+> Signed-off-by: Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
+> ---
+> Validated with dtschema and tested against samsung/exynos5800-peach-pi.dts.
 
-We can't have the same commits twice with different hashes in next
-because Stephen Rothwell will yell at us both.
+What?
 
-Just pull the tag I provided and then apply the Bluetooth specific
-changes I sent on top of it. When sending to Linus Torvalds/David
-Miller (not sure how your tree gets upstream) mention that you pulled
-in the pwrseq changes in your PR cover letter.
+This is not a codec for this board. You are mixing now
+Documentation/devicetree/bindings/sound/maxim,max98090.yaml
 
-Bart
+Whatever you validated against Peach Pi DTS is wrong or not enough. You
+need to validate it against DTS using this binding.
+
+
+> +
+> +maintainers:
+> +  - Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxim,max98088
+> +      - maxim,max98091
+
+91? You meant 89...
+
+Best regards,
+Krzysztof
+
 
