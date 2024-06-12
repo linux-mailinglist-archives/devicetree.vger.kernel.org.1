@@ -1,137 +1,165 @@
-Return-Path: <devicetree+bounces-75077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C966C90560B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:00:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CE2A905616
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:00:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD0B31C21BCE
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:00:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A8961C23DE9
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:00:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1E1A17F502;
-	Wed, 12 Jun 2024 14:59:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E60FE17F502;
+	Wed, 12 Jun 2024 15:00:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WGgBAM1K"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="oz43gLUA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57D5517F4F9;
-	Wed, 12 Jun 2024 14:59:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47DF617E90A
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 15:00:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718204395; cv=none; b=M+rQiTg7udEZDSmKiwhXWrjLlRZDKTWY0Owlr6SlTuWN9EI43L2Pjj8bT4dElg+5UlQBiT/2W8kVRQusp0mcpMo/uTU/MLrXL5k4aU1E3T3g6W6DYt7vBUbf9uCNqSLzGIIZMgcvKVmv4jWx4JHkq/Hh9zx7tMyHLLstioTZrgA=
+	t=1718204425; cv=none; b=K15P4rqc4wqGp6eRhgTmOwL5Yd48sFY7n2JRXzCCcQNNuaEMhchLjkdXuwyDdUVh5QCIBPeJPMLDYOs/wU4v79Km3TEOYSargbiNNoknQcNVC2gAA/olksjanLv0mtXwgwaeC0bIzeMFcC+93sQJq+HaqWw6XjZaoy/Czybz9DA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718204395; c=relaxed/simple;
-	bh=ClXfKtrObNYFGJH3nO4MkQnRpdoJTRqan1XfI/UCRmQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oZCNyD3YmVXhsULi5lLGfan/sFT5NivtKvt6RWT0Pwoz7i+m52gtnlT1OrO/OeS/BOKzEbyy6CCHGS8RC5mqu+LBCAxI0J8dqydRIY/blI6LvZzHJB6sI2tdiHgtGTpXHKFEzjHrEcqcm6msBY+f6sy4RjtmVB0AcMVVlsv9Ix8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WGgBAM1K; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718204394; x=1749740394;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=ClXfKtrObNYFGJH3nO4MkQnRpdoJTRqan1XfI/UCRmQ=;
-  b=WGgBAM1KGSABw5nU+48YRz4JkUvsszlwO++Gg6smvO+zM1JRju8NdE7V
-   +AnfphSmzna+rLoKI9ckaNV0ZXraMrei+Jj8Rb/5zu2D9JMXf9/IZgAZu
-   YJEVFjDpxN4Awo5T+X7QyWTpmzkXJHAC7Oc9kb2hfwc/aq1otTlI493gl
-   xnvT6i714HM5iTfvsjS463lpjqEZYs5HPv4gXwDCKpnB7tP8HPBlPj59r
-   Uyr93YzqHQt3P8v/ZAc/+SiFW9+imOKfShgYFhnE9x5VKibTkpxVz3+1e
-   bBzHrEAc9SMfjxZjgZK81A7H7HJgpZjBYZzMqWzOH2UdB35I9rQM7VRAU
-   A==;
-X-CSE-ConnectionGUID: wLJMRod/TfeyL19UeHZS4g==
-X-CSE-MsgGUID: 8qUZB+4BR1C6L/Y1p6uz+Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="25551549"
-X-IronPort-AV: E=Sophos;i="6.08,233,1712646000"; 
-   d="scan'208";a="25551549"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2024 07:59:54 -0700
-X-CSE-ConnectionGUID: 841aPa7dSOKPs3kKUGyVwg==
-X-CSE-MsgGUID: +1nNoP70T1e7w8bmaCZ8AQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,233,1712646000"; 
-   d="scan'208";a="44938104"
-Received: from iklimasz-mobl1.ger.corp.intel.com (HELO [10.245.246.56]) ([10.245.246.56])
-  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2024 07:59:48 -0700
-Message-ID: <fabc7ac8-6c44-4395-bd16-59257a949e9b@linux.intel.com>
-Date: Wed, 12 Jun 2024 16:59:45 +0200
+	s=arc-20240116; t=1718204425; c=relaxed/simple;
+	bh=C4UELV9HUoTObjhE2z/Y+N/eSyCnSY+vNYVC8euckgc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Te9rC1yioYSdPoXp/e8in0uz/4q5M9RmqqviYVel09wAY5hkMt9g4kAQ3+AiB7BeDxOMgpME+PK6aK69debSMf7aH+ZO8MTOSAw+gdiMznxKyrXR6KDrlxxc39IKmizajOEowl/jnSQ1hccp7vkGmZvUzTsxBlSOqzGLEJFsNkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=oz43gLUA; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-52bbdc237f0so3020576e87.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 08:00:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1718204422; x=1718809222; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=F6rL/BDIQftoREsF4MukuWgtFD7Xz/O/PdkqT1JwzBs=;
+        b=oz43gLUA7clGp8IShwOmyPkd2VsJBMVuCFpBNLAkbZCXpNoEeHepsatlnrrCx249Lu
+         vku0O+xdOEbUuJGgyy82WGi5DG/O8MhhyqllcfxvgKgzFKOwHJQs/DCYXRElNIaoCiIU
+         RaaOpGyaH2O+qPcAhLBbZT4RdVJohrhhw50VktNZOn3h96cm9Bat9Bhve67p435ZKe6k
+         74VmPxJWSPVW5KzoUi5HRm9ecHvBvIJne9f3nl4z+8izhNMqDr32O8KpGBoJ4/kLOCnL
+         B7gQb1G8cKTNZ00vDdHGxbP21Zy7Br8BTTSldmaMuSuZODzmAskFqG1Eid9GGN2oKIwv
+         phAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718204422; x=1718809222;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=F6rL/BDIQftoREsF4MukuWgtFD7Xz/O/PdkqT1JwzBs=;
+        b=o3KQCeIcLIoyfW4Bfqsaqh2XY3AUMFcNgW4lVtFwtmcNds7MUOPiSyHkQK4++3MUZ0
+         Sh/184n0ATe+qoc90j2qrEkcxREH6Zw3wRXQfEGKOK8sC4EkKYNcIGvxWLrKQMelNc1q
+         xlU1DOg/X4wuRsKeMSflsSyq8wxSV5g0wJ51/gRms/TRtYx51bymmMQ5OjD35+eWr2eS
+         qqnpBQiUF69S0qums2HJEHV/Zy8xkU9BIVa1mL07lUdQ8ctQ8TarHZTWGb2VixgqtWnb
+         86rWaBIMxYiyF/hl7qAOjTK6eGPxtZc6AhSwR+q6qSz94YX8Z88GKBgwpv23IwKLzjOS
+         ECbA==
+X-Forwarded-Encrypted: i=1; AJvYcCUOFoflkNdnARyT37k8JyFy8aMOVSWCvEHKutfqT691ENik9S8vEM0HaBAReRwlPRwGQKsuvwat+xWEtXJDfUWufZbzlSq5f8HCVQ==
+X-Gm-Message-State: AOJu0YwCQOzv6Y4B0t+g0vEnuwxX5F7QsA/EQPRTOguqWDHmisF5pdAj
+	LgFIsltfco0/hnxuIVslH3Ii3Ebj29NKs3JiOyRiVK36/OzQq01gv9QPeUt/1v5BGlScBbAgw2B
+	Xa6ah9zEbxtBejhemC9kD6LxjWuOaiz5nfxlGzuXZ2+RMFGaK
+X-Google-Smtp-Source: AGHT+IGTgh1dIQ9+D2m/9bJRIpMZfry0OF0lmud8oD8sCLp6CWzI5quV6C91M4FXuD+64Vh450FwuHsfhkL2cCm4O1s=
+X-Received: by 2002:ac2:4e0d:0:b0:52c:9725:b334 with SMTP id
+ 2adb3069b0e04-52c9a3fcc59mr1743084e87.54.1718204422361; Wed, 12 Jun 2024
+ 08:00:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v23 00/32] Introduce QC USB SND audio offloading support
-To: =?UTF-8?Q?Amadeusz_S=C5=82awi=C5=84ski?=
- <amadeuszx.slawinski@linux.intel.com>, Wesley Cheng
- <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
- mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
- corbet@lwn.net, broonie@kernel.org, lgirdwood@gmail.com, krzk+dt@kernel.org,
- Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com, tiwai@suse.com,
- robh@kernel.org, gregkh@linuxfoundation.org
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
- alsa-devel@alsa-project.org
-References: <20240610235808.22173-1-quic_wcheng@quicinc.com>
- <80fefd6b-0f3a-4f6a-869e-fd2225315801@linux.intel.com>
-Content-Language: en-US
-From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <80fefd6b-0f3a-4f6a-869e-fd2225315801@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240612075829.18241-1-brgl@bgdev.pl> <CABBYNZLrwgj848w97GP+ijybt-yU8yMNnW5UWhb2y5Zq6b5H9A@mail.gmail.com>
+ <CAMRc=Mdb31YGUUXRWACnx55JawayFaRjEPYSdjOCMrYr5xDYag@mail.gmail.com> <CABBYNZLPv3zk_UX67yPetQKWiQ-g+Dv9ZjZydhwG3jfaeV+48w@mail.gmail.com>
+In-Reply-To: <CABBYNZLPv3zk_UX67yPetQKWiQ-g+Dv9ZjZydhwG3jfaeV+48w@mail.gmail.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Wed, 12 Jun 2024 17:00:11 +0200
+Message-ID: <CAMRc=Mdsw5c_BDwUwP2Ss4Bogz-d+waZVd8LLaZ5oyc9dWS2Qg@mail.gmail.com>
+Subject: Re: [GIT PULL] Immutable tag between the Bluetooth and pwrseq
+ branches for v6.11-rc1
+To: Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Cc: Marcel Holtmann <marcel@holtmann.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Jun 12, 2024 at 4:54=E2=80=AFPM Luiz Augusto von Dentz
+<luiz.dentz@gmail.com> wrote:
+>
+> Hi Bartosz,
+>
+> On Wed, Jun 12, 2024 at 10:45=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev.=
+pl> wrote:
+> >
+> > On Wed, Jun 12, 2024 at 4:43=E2=80=AFPM Luiz Augusto von Dentz
+> > <luiz.dentz@gmail.com> wrote:
+> > >
+> > > Hi Bartosz,
+> > >
+> > > On Wed, Jun 12, 2024 at 3:59=E2=80=AFAM Bartosz Golaszewski <brgl@bgd=
+ev.pl> wrote:
+> > > >
+> > > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > > >
+> > > > Hi Marcel, Luiz,
+> > > >
+> > > > Please pull the following power sequencing changes into the Bluetoo=
+th tree
+> > > > before applying the hci_qca patches I sent separately.
+> > > >
+> > > > Link: https://lore.kernel.org/linux-kernel/20240605174713.GA767261@=
+bhelgaas/T/
+> > > >
+> > > > The following changes since commit 83a7eefedc9b56fe7bfeff13b6c73566=
+88ffa670:
+> > > >
+> > > >   Linux 6.10-rc3 (2024-06-09 14:19:43 -0700)
+> > > >
+> > > > are available in the Git repository at:
+> > > >
+> > > >   git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git tags=
+/pwrseq-initial-for-v6.11
+> > > >
+> > > > for you to fetch changes up to 2f1630f437dff20d02e4b3f07e836f428691=
+28dd:
+> > > >
+> > > >   power: pwrseq: add a driver for the PMU module on the QCom WCN ch=
+ipsets (2024-06-12 09:20:13 +0200)
+> > > >
+> > > > ----------------------------------------------------------------
+> > > > Initial implementation of the power sequencing subsystem for linux =
+v6.11
+> > > >
+> > > > ----------------------------------------------------------------
+> > > > Bartosz Golaszewski (2):
+> > > >       power: sequencing: implement the pwrseq core
+> > > >       power: pwrseq: add a driver for the PMU module on the QCom WC=
+N chipsets
+> > >
+> > > Is this intended to go via bluetooth-next or it is just because it is
+> > > a dependency of another set? You could perhaps send another set
+> > > including these changes to avoid having CI failing to compile.
+> > >
+> >
+> > No, the pwrseq stuff is intended to go through its own pwrseq tree
+> > hence the PR. We cannot have these commits in next twice.
+>
+> Not following you here, why can't we have these commits on different
+> next trees? If that is the case how can we apply the bluetooth
+> specific ones without causing build regressions?
+>
 
+We can't have the same commits twice with different hashes in next
+because Stephen Rothwell will yell at us both.
 
-On 6/12/24 16:50, Amadeusz Sławiński wrote:
-> On 6/11/2024 1:57 AM, Wesley Cheng wrote:
-> 
->> Wesley Cheng (32):
->>    ASoC: Add SOC USB APIs for adding an USB backend
->>    ASoC: dt-bindings: qcom,q6dsp-lpass-ports: Add USB_RX port
->>    ASoC: qcom: qdsp6: Introduce USB AFE port to q6dsp
->>    ASoC: qdsp6: q6afe: Increase APR timeout
->>    ASoC: qcom: qdsp6: Add USB backend ASoC driver for Q6
->>    ALSA: usb-audio: Introduce USB SND platform op callbacks
->>    ALSA: usb-audio: Export USB SND APIs for modules
->>    ALSA: usb-audio: Save UAC sample size information
->>    usb: dwc3: Specify maximum number of XHCI interrupters
->>    usb: host: xhci-plat: Set XHCI max interrupters if property is present
->>    ALSA: usb-audio: qcom: Add USB QMI definitions
->>    ALSA: usb-audio: qcom: Introduce QC USB SND offloading support
->>    ALSA: usb-audio: Check for support for requested audio format
->>    ASoC: usb: Add PCM format check API for USB backend
->>    ASoC: qcom: qdsp6: Ensure PCM format is supported by USB audio device
->>    ALSA: usb-audio: Prevent starting of audio stream if in use
->>    ALSA: usb-audio: Do not allow USB offload path if PCM device is in use
->>    ASoC: dt-bindings: Update example for enabling USB offload on SM8250
->>    ALSA: usb-audio: qcom: Populate PCM and USB chip information
->>    ASoC: qcom: qdsp6: Add support to track available USB PCM devices
->>    ASoC: Introduce SND kcontrols to select sound card and PCM device
->>    ASoC: qcom: qdsp6: Add SOC USB offload select get/put callbacks
->>    ASoC: Introduce SND kcontrols to track USB offloading state
->>    ASoC: qcom: qdsp6: Add PCM ops to track current state
->>    ASoC: usb: Create SOC USB SND jack kcontrol
->>    ASoC: qcom: qdsp6: Add headphone jack for offload connection status
->>    ASoC: usb: Fetch ASoC sound card information
->>    ALSA: usb-audio: Add USB offloading capable kcontrol
->>    ALSA: usb-audio: Allow for rediscovery of connected USB SND devices
->>    ALSA: usb-audio: qcom: Use card and PCM index from QMI request
->>    ASoC: usb: Rediscover USB SND devices on USB port add
->>    ASoC: doc: Add documentation for SOC USB
-> 
-> I'm not sure how other reviewers feel about this, but is there any
-> chance to group patches in some logical order? It is bit hard to review
-> when I need to jump from generic ALSA to ASoC then QCOM code and then
-> there are dt-bindings mixed in between and back again.
+Just pull the tag I provided and then apply the Bluetooth specific
+changes I sent on top of it. When sending to Linus Torvalds/David
+Miller (not sure how your tree gets upstream) mention that you pulled
+in the pwrseq changes in your PR cover letter.
 
-Completely agree. And splitting the 32 patches in smaller sets would
-help as well, every time I want to review I just don't have the time to
-go through 32 heavy-duty patches across USB/ALSA/ASoC.
+Bart
 
