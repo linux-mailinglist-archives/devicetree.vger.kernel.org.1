@@ -1,84 +1,86 @@
-Return-Path: <devicetree+bounces-75171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5D5E905B66
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 20:45:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61790905B84
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 20:52:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5109528E28C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 18:45:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA26B28EA39
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 18:52:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 972B83E470;
-	Wed, 12 Jun 2024 18:45:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F33D59160;
+	Wed, 12 Jun 2024 18:51:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nbVw++sh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nK5UDmox"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A42627FB;
-	Wed, 12 Jun 2024 18:45:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A968E53392
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 18:51:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718217914; cv=none; b=BfxViW79TfuhJ7+JpY7SFZ/MjF7n7SzhLJKmcdGTfmaeHI3Eb3laS3E+pqaJnucghO5eVUFc1DtdEMyGkuQGGcnW2b3FhWlH7V4xgTvURN1dPqmmM1U+xszbqmqYP6gdC2eUoUrKXu1NJBrHC9aUX0Kr/x6Fwa5G3Gj97bYiu+Q=
+	t=1718218310; cv=none; b=n/MiGW8QwlfPYy9SC7tpk+Mz1SwHFM/6geA7KMEGsueQLfvJguTIaDLFu/KylXAPX+Qw0hpimtz6fJ4yWx0rW3DOgy7kG7H87Lx1WVZyHCBDx82IFyVtk2ZMr7b8PFrQWimCaL1LQVYwZkaKVCQrO46649vpIFc5QaVaeQRqWeM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718217914; c=relaxed/simple;
-	bh=XwaC2sMvqlChtzdhaOcsngo4tLTQfibpe6co8NUeT9Y=;
+	s=arc-20240116; t=1718218310; c=relaxed/simple;
+	bh=U5QI5NzQdtq/i7YaiyZgQTvbEfv9KV/0x5LyAbdfU3c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rUpMqAMbhTBLR21+5VhoJsEU/Xm9NL+pG8hH3kUxfVedpg2B+nBXV0FMUXdXaMOwgWnxDQUxVHSU0fH9LsZofyvc5DGs6lqyISyI6d2aCqTkeXSBFU8l8vOmTL5cCgGB/BmndoKs06nx95BUB+wbmhkilsN9dNwE00OXBhvAmk4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nbVw++sh; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718217912; x=1749753912;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=XwaC2sMvqlChtzdhaOcsngo4tLTQfibpe6co8NUeT9Y=;
-  b=nbVw++shD7o3KTtzKzAlsmKTXXFyehDDYHzg5uK0QfJbkRa2uEvvWnuR
-   GAM6Emef/QRTbTccdZymgJc0iyMpN5bMWCrrEXjb7uH0HHtRuwiWjMUzJ
-   AOIt5VyMk7vhzRAemad9YlJHg2X6HlcwbaM6/R7QzFkjEowRuYqMcGOn9
-   D0lkkp7cQfOXVQA+CEJsHqXvvD+KsKjFOIFOnXxujvNO+JKqsLWZPPBNF
-   v8EU42DZT48yWfD1THVlGsfOwHGyuHdQuH6Jkdu5wRMeBg0Mo4y0p1ajw
-   BqC4ezjTU2SbVPyHz77pPGU1YoKeZdHMw7AoJclCmq2Q6Mksmvk0D/uES
-   g==;
-X-CSE-ConnectionGUID: 6cUmCSChT4GDjyEHTqzVVw==
-X-CSE-MsgGUID: Rzs4suJ4T5yIXlBeTIKGMA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="26422775"
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; 
-   d="scan'208";a="26422775"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2024 11:45:12 -0700
-X-CSE-ConnectionGUID: WT8uOIzsSXSL2VO9DIULLA==
-X-CSE-MsgGUID: ruXB3rWDQYKmzCjAjTUNfQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; 
-   d="scan'208";a="39986248"
-Received: from lkp-server01.sh.intel.com (HELO 628d7d8b9fc6) ([10.239.97.150])
-  by fmviesa009.fm.intel.com with ESMTP; 12 Jun 2024 11:45:09 -0700
-Received: from kbuild by 628d7d8b9fc6 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sHSy2-0001pW-2o;
-	Wed, 12 Jun 2024 18:45:06 +0000
-Date: Thu, 13 Jun 2024 02:44:42 +0800
-From: kernel test robot <lkp@intel.com>
-To: Raymond Hackley <raymondhackley@protonmail.com>,
-	linux-kernel@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Markuss Broks <markuss.broks@gmail.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Stephan Gerhold <stephan@gerhold.net>,
-	Nikita Travkin <nikita@trvn.ru>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 2/3] input/touchscreen: imagis: Add supports for Imagis
- IST3038
-Message-ID: <202406130224.G2LpMsby-lkp@intel.com>
-References: <20240612032036.33103-3-raymondhackley@protonmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=CLaafQ7EVgpICB0QLC7M7O+DyKBDTgOmQVRr5L0Yxj3sTUnSHUu1PeRFhBsGAdpCTHkLsmbhUTSSzJUB+aLALwWMAwdaRUhduQAenBuhW7pdoIAJw5hXAjt/WbgltrVZ6WdQtXe8isAjCDkL6WpkVkljbCSb7K/zKYnrm282/Go=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nK5UDmox; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-52962423ed8so263265e87.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 11:51:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718218307; x=1718823107; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=YFYPQEigFT5TfOCN8eDaCIrl7HC+yeqeYN0ZmGZ+Sr8=;
+        b=nK5UDmoxgplZ0H9eUTpjOQAf5J6X/e2iZT5Lzfwih6CD7r90lFoUTaicRS+5K+VfSl
+         RSdRV6tOsiUydzwJ11+bW0YV8Ef+e4SFBue71RWdWiq+cz/JdHyQuN/TJa6PE2owIk3m
+         KDksWWkpRLbNbZxWT8iqF+dt8Wcu6luHP2Vt/6gEwmvwNzdUONeL9w+/N3cHvtMJaLTk
+         HAq7pRwaVu+acKN6DG/MDu4bKWSWXsegnMmna3xyL2WaLDHaULeXRCoPpNUbXxFyfLgh
+         dRQca+5k3pJ9lkReyR7q7NRz3Da7ecRMcjeeLLYQwZsGU7qd4mo1tb04pCsjCp4/S+2q
+         QrgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718218307; x=1718823107;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YFYPQEigFT5TfOCN8eDaCIrl7HC+yeqeYN0ZmGZ+Sr8=;
+        b=BrZBCLxILSjSLyrgrxc7BR3J43G8aQD+y6IjO18XeVAl/oANiH28xdZ3TIWfHtPDIc
+         I5WpjmGNO4Rv0N4G2+ZAldmM1QYAGCj11BPMh72VJSuoIB7psuNV87yEXsOztOO04iKR
+         0hKhPzALW9JyfQEqOERdUSQcp7IrYTbCQUtz0t7icZkT1bLWAbRVHEOqisRETWqukINE
+         ZUssVuJbB5E8VniDQiZyw9FbwsjSq7vp++btbcBoLWizchW2MZfdwXC3smIBPDVmZQPV
+         VbjGa2CcHIWTlHkeuv3x1ayYFy/BnZQSJQ+rf5ELHradTSzennmbYu7irqLLjFgPX4bz
+         Ai1A==
+X-Forwarded-Encrypted: i=1; AJvYcCVz61E5QFY+P/hgR+GxL1SbyihmEXP2bRd2pbdRwIhv93zmdROGTWtknK0yhgJSkZM8fpoOL1HaBkdw1T33qHnXIPvOAYzH4hSX+A==
+X-Gm-Message-State: AOJu0YzD2pC6gyRrR5IRqlMWTuoJ0QkzoDNLSDxOTVI4KIcbS7C33/Uz
+	uzgifdMjZPJ7xexkHuPTewj/M3XXcR/dDF9Tsr/B/2b9fmcETGdCG2cOY1jvohs=
+X-Google-Smtp-Source: AGHT+IHjX90AGX8knBQHaw6dOK8zsSJKlpbuIZ1J3ZLU/93MWJ/OAchtptQelggFqTZRz8uB2Ye9ZQ==
+X-Received: by 2002:ac2:4850:0:b0:52c:8023:aa9 with SMTP id 2adb3069b0e04-52c9a3dfb4emr1809326e87.36.1718218306834;
+        Wed, 12 Jun 2024 11:51:46 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52c9d2f57a0sm327045e87.284.2024.06.12.11.51.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jun 2024 11:51:46 -0700 (PDT)
+Date: Wed, 12 Jun 2024 21:51:44 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Danila Tikhonov <danila@jiaxyga.com>
+Cc: robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run, 
+	marijn.suijten@somainline.org, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, quic_rmccann@quicinc.com, 
+	konrad.dybcio@linaro.org, neil.armstrong@linaro.org, jonathan@marek.ca, 
+	swboyd@chromium.org, quic_khsieh@quicinc.com, quic_jesszhan@quicinc.com, 
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] drm/msm: mdss: Add SM7150 support
+Message-ID: <grpc4inh7d2wpwrkvssehapa7z7mw4loecjt3p4qcjjefobvco@6g5sll2bkcbv>
+References: <20240612184336.11794-1-danila@jiaxyga.com>
+ <20240612184336.11794-3-danila@jiaxyga.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,61 +89,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240612032036.33103-3-raymondhackley@protonmail.com>
+In-Reply-To: <20240612184336.11794-3-danila@jiaxyga.com>
 
-Hi Raymond,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on dtor-input/next]
-[also build test WARNING on robh/for-next linus/master v6.10-rc3 next-20240612]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Raymond-Hackley/input-touchscreen-imagis-Clarify-the-usage-of-protocol_b/20240612-112300
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
-patch link:    https://lore.kernel.org/r/20240612032036.33103-3-raymondhackley%40protonmail.com
-patch subject: [PATCH 2/3] input/touchscreen: imagis: Add supports for Imagis IST3038
-config: x86_64-buildonly-randconfig-006-20240612 (https://download.01.org/0day-ci/archive/20240613/202406130224.G2LpMsby-lkp@intel.com/config)
-compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240613/202406130224.G2LpMsby-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406130224.G2LpMsby-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/input/touchscreen/imagis.c:397:39: warning: unused variable 'imagis_3032c_data' [-Wunused-const-variable]
-     397 | static const struct imagis_properties imagis_3032c_data = {
-         |                                       ^~~~~~~~~~~~~~~~~
->> drivers/input/touchscreen/imagis.c:406:39: warning: unused variable 'imagis_3038_data' [-Wunused-const-variable]
-     406 | static const struct imagis_properties imagis_3038_data = {
-         |                                       ^~~~~~~~~~~~~~~~
-   drivers/input/touchscreen/imagis.c:414:39: warning: unused variable 'imagis_3038b_data' [-Wunused-const-variable]
-     414 | static const struct imagis_properties imagis_3038b_data = {
-         |                                       ^~~~~~~~~~~~~~~~~
-   drivers/input/touchscreen/imagis.c:421:39: warning: unused variable 'imagis_3038c_data' [-Wunused-const-variable]
-     421 | static const struct imagis_properties imagis_3038c_data = {
-         |                                       ^~~~~~~~~~~~~~~~~
-   4 warnings generated.
+On Wed, Jun 12, 2024 at 09:43:34PM +0300, Danila Tikhonov wrote:
+> Add support for MDSS on SM7150.
+> 
+> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> ---
+>  drivers/gpu/drm/msm/msm_mdss.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
 
 
-vim +/imagis_3038_data +406 drivers/input/touchscreen/imagis.c
-
-   405	
- > 406	static const struct imagis_properties imagis_3038_data = {
-   407		.interrupt_msg_cmd = IST30XX_REG_STATUS,
-   408		.touch_coord_cmd = IST30XX_REG_STATUS,
-   409		.whoami_cmd = IST30XX_REG_CHIPID,
-   410		.whoami_val = IST3038_WHOAMI,
-   411		.touch_keys_supported = true,
-   412	};
-   413	
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
