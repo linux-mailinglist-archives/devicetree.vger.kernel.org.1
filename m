@@ -1,190 +1,199 @@
-Return-Path: <devicetree+bounces-74881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C05C2904DCA
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:15:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A76D6904E0F
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:23:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BF761F219A5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 08:15:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EEDE7B26D27
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 08:23:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C2A216C852;
-	Wed, 12 Jun 2024 08:15:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B64CC16D33B;
+	Wed, 12 Jun 2024 08:23:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="NI1FLGzG"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="5ztkh6O4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75A05168C33
-	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 08:15:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1742616C847;
+	Wed, 12 Jun 2024 08:23:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718180125; cv=none; b=ZjpgqZkDwTei8ogr4I6EZKlDihIahcp82f0TGQ+aLA6zbqk5UHuzu/IK8H7frvZhkPaHDajIl2yYNd0c3EvRto4MKrpyiQ6rP1Dm0eRh61KVU7MhDhwzhqcg1AIK+EfFlbfPP3fniqtIuXFAuleiY1rTWkSBbYDkHRLQdzLP0gI=
+	t=1718180591; cv=none; b=KwAGYS645I8l2HCy9sQChct1b3uKE6/OwFedG9xBoGqABQepRRZRA6Iej2nNGs8eiIWVP+EImMcri9ZwPyV10dwRj9shiIxSMh8qPhypaYKAFYwsoRy4l+yIJ+5sTVakh6fh+2V8uTn7SVWy0rVg/VGQJacAUlTCY2i8LROh85E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718180125; c=relaxed/simple;
-	bh=8ZjoDG6AdLp9DrAUpZbOs5O/3KdItU+ylOPmYLZXOLc=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=WhX58jisYFLfIDo95kUSpG8AM9YfPMIO2kHbVzbViJWguUQJaOzoYuETVyZMDGVwWhSQKz7VXhaxq9Z1QYFEbXRYqY3KBRoAVrycevtOr+4zN+Gv/qmQq4OFtUdsqotVvsqJh2EC/RNFvJQDTl9E5pgzzAyUnipmZ+1PCqZD7pM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=NI1FLGzG; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52bc274f438so2690391e87.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 01:15:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1718180120; x=1718784920; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2i7JgKL6b8AoADzVvoe4uoGCOL76aOnzRK1ZmUzoPt0=;
-        b=NI1FLGzGksABEF/A5IBK52wMjY8CJyqLkjnvtJqyTn1DjdlJFJ6KFV165lA0TQlZCv
-         dmKJRZijKHoGLZomhpGjajW971W9l6spnzlf9ilPYil6T0MtMCfWs8inCBRw8M8Cb4D3
-         RCMUdBvRbGuhhHlZ8xrMVQAxNL4shbaI2fRIiSsvREjGy5XZZmQNHR5RFnbpZZJeuRhA
-         la3G5K9mgX/QAU2tITpaSWHDgunqQYwFhnF6JCekGSy6sRmQFU0CLIMdwW4ka/kGrWZy
-         7+UdM40q3rSCf3FVv9L0QXRi+kEfBhPf4uPhzWDDwJFsO23iwshm9wF4ORkshpcsEg7H
-         Bg3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718180120; x=1718784920;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2i7JgKL6b8AoADzVvoe4uoGCOL76aOnzRK1ZmUzoPt0=;
-        b=rt+Bmg3CV3WYVln1q6NODZkIhfJjU+Aurywya47u5nkF1gklGU8qKp3vnv5vz1AqOp
-         ZhJo64mwOjYcGHHsxGqy383wOl72E/dEuJKQ6Lz/Bqz6Og8YiF1+ehZsroZgvUxplXs9
-         Ir979u9wEmUk8/EBLQ3Ba8wnqULR5Du6Cz1G7vlXVkKCgNc1G900DbLkYktHNa+JZs/g
-         9Pd47QdbSvebvs0rp6bZ+RHcwCOfJBiiPYC0L+E/aKAkefLLjp2gdpzja3oKPmlNxqyx
-         Vf1cw1pp+mw4tFg1XzYuMLMCLctHjXUfkwtpB8uDiy4FjU63YEHTNTkJb/ua+dz1/yaN
-         IvmA==
-X-Forwarded-Encrypted: i=1; AJvYcCUDVYXTkDNVDILKaKehe0kA98zSykqk7wolJwQlnUl9REZYM8JeLMJjuJpKhonci9SJ/c0xWnNiR5fZAOgH0F5Jiphc2HfKWlm78Q==
-X-Gm-Message-State: AOJu0YwM0YNHkXgQsuB+qQenpMWNtyU8pLV642YfH1/849xLeC77R7+u
-	Q8pFajBC79MPpuyz0N+c3qzsHci2JlUWk3y4byl7+EkdsWmoRKGoQuDA9I1gX3+izrjr58qTWdV
-	k
-X-Google-Smtp-Source: AGHT+IGNH0ntu3rGfl1MqkI2eXzc0qzg5Mxlmb5NxjjgXhC4jOBw5TLIubZnIB6RoLfSBwtPdwuHiA==
-X-Received: by 2002:a2e:7c19:0:b0:2eb:d924:43fb with SMTP id 38308e7fff4ca-2ebfc92c231mr6922271fa.41.1718180120393;
-        Wed, 12 Jun 2024 01:15:20 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:9163:6ed9:3c9a:d6c9])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42286eefa07sm15947595e9.8.2024.06.12.01.15.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jun 2024 01:15:19 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: George Stark <gnstark@salutedevices.com>
-Cc: <kelvin.zhang@amlogic.com>,  Rob Herring <robh@kernel.org>,  Krzysztof
- Kozlowski <krzk+dt@kernel.org>,  Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>,  Kevin Hilman
- <khilman@baylibre.com>,  Neil Armstrong <neil.armstrong@linaro.org>,  Uwe
- =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,  Conor
- Dooley
- <conor+dt@kernel.org>,  <linux-pwm@vger.kernel.org>,
-  <linux-arm-kernel@lists.infradead.org>,
-  <linux-amlogic@lists.infradead.org>,  <linux-kernel@vger.kernel.org>,
-  <devicetree@vger.kernel.org>,  Junyi Zhao <junyi.zhao@amlogic.com>
-Subject: Re: [DMARC error][DKIM error] [PATCH v7 1/2] pwm: meson: Add
- support for Amlogic S4 PWM
-In-Reply-To: <ce3c2772-8e91-4fd3-b52e-2a35d5759664@salutedevices.com> (George
-	Stark's message of "Wed, 5 Jun 2024 15:12:54 +0300")
-References: <20240605-s4-pwm-v7-0-e822b271d7b0@amlogic.com>
-	<20240605-s4-pwm-v7-1-e822b271d7b0@amlogic.com>
-	<ce3c2772-8e91-4fd3-b52e-2a35d5759664@salutedevices.com>
-Date: Wed, 12 Jun 2024 10:15:19 +0200
-Message-ID: <1jikyek25k.fsf@starbuckisacylon.baylibre.com>
+	s=arc-20240116; t=1718180591; c=relaxed/simple;
+	bh=9N3OweDQgcGJyws9SM6sqrkHn9fTMjWjILZBLGP8XK8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=MDAOu6SO0XqVAvM06DqX/+/NK20ckY7Trum2dVEEzuxl8H+6skTMoyRsZ42pKnqAquQ79NnhijU1AZwsKheCdAjoP9EaWRg/0e/2FgcXhS0SN76tPg6hwp8CjWrOyAlCfyQoYEkiO/lHuj9fMMwGQVStTIlVLF57dggF9YU21+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=5ztkh6O4; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45C6GZ02015552;
+	Wed, 12 Jun 2024 10:22:15 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=sQynSTz9r90PygX8PsR9BB
+	DC55tTFZGRrls4Q247R6I=; b=5ztkh6O4h2I4N3LzISQoI96ZThMJgS6gOZvB61
+	rjKt3iSU4Ns5HE8BlpOG7F3kT+/yoaRC4mqrF0jEYcgGO2SI4FviAlK9BahNmHHQ
+	Dsw2ph1B4HkJoMcyy5ze8qgwIf9AsL6I/yeWaPar+MzKEi6D9iHInUU9xVwdcFf/
+	SvCkfshNh2HNkk0dIJxzw243sajNbHtRE8ZERptrk7+4b64HPR+TDvwakBGuGEZs
+	fwaAxOywHGJn8p3OPkMb7xMUSyAoV//McpxRjc4Ig+T3g4q/oCsZbMQpIufLXv2J
+	LZi3fSxT+nIqMtzBvZNOZeX7/3SihzDVkXC6Fmb99qaVrh3g==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ypub3aax8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Jun 2024 10:22:15 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 17AE54002D;
+	Wed, 12 Jun 2024 10:22:10 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 913B820F56F;
+	Wed, 12 Jun 2024 10:21:32 +0200 (CEST)
+Received: from localhost (10.130.72.241) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 12 Jun
+ 2024 10:21:32 +0200
+From: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sylvain Petinot <sylvain.petinot@foss.st.com>,
+        Sakari Ailus
+	<sakari.ailus@linux.intel.com>,
+        Laurent Pinchart
+	<laurent.pinchart@ideasonboard.com>
+CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Benjamin Mugnier
+	<benjamin.mugnier@foss.st.com>
+Subject: [PATCH v2] media: i2c: vgxy61: Fix device name
+Date: Wed, 12 Jun 2024 10:21:14 +0200
+Message-ID: <20240612082114.43125-1-benjamin.mugnier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-12_04,2024-06-11_01,2024-05-17_01
 
-On Wed 05 Jun 2024 at 15:12, George Stark <gnstark@salutedevices.com> wrote:
+Rename 'st-vgxy61' to 'vgxy61', dropping the vendor prefix to follow the
+same naming scheme as the vast majority of device drivers.
+The device tree binding does not fall into binding rename exceptions and
+therefore must not be changed. Keep its legacy name.
 
-> Hello Kelvin, Junyi
->
-> On 6/5/24 05:44, Kelvin Zhang via B4 Relay wrote:
->> From: Junyi Zhao <junyi.zhao@amlogic.com>
->> Add support for Amlogic S4 PWM.
->> Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
->> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
->> ---
->>   drivers/pwm/pwm-meson.c | 36 ++++++++++++++++++++++++++++++++++++
->>   1 file changed, 36 insertions(+)
->> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
->> index b2f97dfb01bb..4f01847525b2 100644
->> --- a/drivers/pwm/pwm-meson.c
->> +++ b/drivers/pwm/pwm-meson.c
->> @@ -460,6 +460,34 @@ static int meson_pwm_init_channels_meson8b_v2(struct pwm_chip *chip)
->>   	return meson_pwm_init_clocks_meson8b(chip, mux_parent_data);
->>   }
->>   +static void meson_pwm_s4_put_clk(void *data)
->> +{
->> +	struct clk *clk = data;
->> +
->> +	clk_put(clk);
->> +}
->> +
->> +static int meson_pwm_init_channels_s4(struct pwm_chip *chip)
->> +{
->> +	struct device *dev = pwmchip_parent(chip);
->> +	struct device_node *np = dev->of_node;
->> +	struct meson_pwm *meson = to_meson_pwm(chip);
->> +	int i, ret;
->> +
->> +	for (i = 0; i < MESON_NUM_PWMS; i++) {
->> +		meson->channels[i].clk = of_clk_get(np, i);
->> +		if (IS_ERR(meson->channels[i].clk)) {
->> +			ret = PTR_ERR(meson->channels[i].clk);
->> +			dev_err_probe(dev, ret, "Failed to get clk\n");
->> +			return ret;
->> +		}
->> +		devm_add_action_or_reset(dev, meson_pwm_s4_put_clk,
->> +					 meson->channels[i].clk);
->
-> devm_add_action_or_reset() result should be checked
->
->> +	}
->> +
->> +	return 0;
->> +}
->
-> You can rewrite it a bit to always have a single allocation for devm node:
->
-> static void meson_pwm_s4_put_clk(void *data)
-> {
-> 	struct meson_pwm *meson = data;
-> 	int i;
->
-> 	for (i = 0; i < MESON_NUM_PWMS; i++)
-> 		clk_put(meson->channels[i].clk);
-> }
+Signed-off-by: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+---
+ Documentation/userspace-api/media/drivers/index.rst         | 2 +-
+ .../media/drivers/{st-vgxy61.rst => vgxy61.rst}             | 0
+ MAINTAINERS                                                 | 6 +++---
+ drivers/media/i2c/Kconfig                                   | 2 +-
+ drivers/media/i2c/Makefile                                  | 2 +-
+ drivers/media/i2c/{st-vgxy61.c => vgxy61.c}                 | 2 +-
+ 6 files changed, 7 insertions(+), 7 deletions(-)
+ rename Documentation/userspace-api/media/drivers/{st-vgxy61.rst => vgxy61.rst} (100%)
+ rename drivers/media/i2c/{st-vgxy61.c => vgxy61.c} (99%)
 
-This has already been discussed on v6.
-
-This make the code un-necessarily complex and potentially put clock that
-have not even been claimed.
-
->
-> static int meson_pwm_init_channels_s4(struct pwm_chip *chip)
-> {
-> 	struct device *dev = pwmchip_parent(chip);
-> 	struct device_node *np = dev->of_node;
-> 	struct meson_pwm *meson = to_meson_pwm(chip);
-> 	int i, ret;
->
-> 	ret = devm_add_action(dev, meson_pwm_s4_put_clk, meson);
-> 	if (ret)
-> 		return ret;
->
-> 	for (i = 0; i < MESON_NUM_PWMS; i++) {
-> 		meson->channels[i].clk = of_clk_get(np, i);
-> 		if (IS_ERR(meson->channels[i].clk)) {
-> 			ret = PTR_ERR(meson->channels[i].clk);
-> 			dev_err_probe(dev, ret, "Failed to get clk\n");
-> 			return ret;
-> 		}
-> 	}
->
-> 	return 0;
-> }
-
+diff --git a/Documentation/userspace-api/media/drivers/index.rst b/Documentation/userspace-api/media/drivers/index.rst
+index 2252063593bf..d706cb47b112 100644
+--- a/Documentation/userspace-api/media/drivers/index.rst
++++ b/Documentation/userspace-api/media/drivers/index.rst
+@@ -35,6 +35,6 @@ For more details see the file COPYING in the source distribution of Linux.
+ 	max2175
+ 	npcm-video
+ 	omap3isp-uapi
+-	st-vgxy61
+ 	thp7312
+ 	uvcvideo
++	vgxy61
+diff --git a/Documentation/userspace-api/media/drivers/st-vgxy61.rst b/Documentation/userspace-api/media/drivers/vgxy61.rst
+similarity index 100%
+rename from Documentation/userspace-api/media/drivers/st-vgxy61.rst
+rename to Documentation/userspace-api/media/drivers/vgxy61.rst
+diff --git a/MAINTAINERS b/MAINTAINERS
+index ef6be9d95143..33ee4d5e7f0e 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -20892,8 +20892,8 @@ L:	linux-media@vger.kernel.org
+ S:	Maintained
+ T:	git git://linuxtv.org/media_tree.git
+ F:	Documentation/devicetree/bindings/media/i2c/st,st-vgxy61.yaml
+-F:	Documentation/userspace-api/media/drivers/st-vgxy61.rst
+-F:	drivers/media/i2c/st-vgxy61.c
++F:	Documentation/userspace-api/media/drivers/vgxy61.rst
++F:	drivers/media/i2c/vgxy61.c
+ 
+ ST VL53L0X ToF RANGER(I2C) IIO DRIVER
+ M:	Song Qiang <songqiang1304521@gmail.com>
+@@ -23210,7 +23210,7 @@ F:	drivers/media/i2c/mt*
+ F:	drivers/media/i2c/og*
+ F:	drivers/media/i2c/ov*
+ F:	drivers/media/i2c/s5*
+-F:	drivers/media/i2c/st-vgxy61.c
++F:	drivers/media/i2c/vgxy61.c
+ 
+ VF610 NAND DRIVER
+ M:	Stefan Agner <stefan@agner.ch>
+diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+index c6d3ee472d81..25619d5e29c4 100644
+--- a/drivers/media/i2c/Kconfig
++++ b/drivers/media/i2c/Kconfig
+@@ -659,7 +659,7 @@ config VIDEO_S5K6A3
+ 	  This is a V4L2 sensor driver for Samsung S5K6A3 raw
+ 	  camera sensor.
+ 
+-config VIDEO_ST_VGXY61
++config VIDEO_VGXY61
+ 	tristate "ST VGXY61 sensor support"
+ 	select V4L2_CCI_I2C
+ 	depends on OF && GPIOLIB
+diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
+index dfbe6448b549..d322ba161da5 100644
+--- a/drivers/media/i2c/Makefile
++++ b/drivers/media/i2c/Makefile
+@@ -124,7 +124,6 @@ obj-$(CONFIG_VIDEO_SAA717X) += saa717x.o
+ obj-$(CONFIG_VIDEO_SAA7185) += saa7185.o
+ obj-$(CONFIG_VIDEO_SONY_BTF_MPX) += sony-btf-mpx.o
+ obj-$(CONFIG_VIDEO_ST_MIPID02) += st-mipid02.o
+-obj-$(CONFIG_VIDEO_ST_VGXY61) += st-vgxy61.o
+ obj-$(CONFIG_VIDEO_TC358743) += tc358743.o
+ obj-$(CONFIG_VIDEO_TC358746) += tc358746.o
+ obj-$(CONFIG_VIDEO_TDA1997X) += tda1997x.o
+@@ -148,6 +147,7 @@ obj-$(CONFIG_VIDEO_TW9910) += tw9910.o
+ obj-$(CONFIG_VIDEO_UDA1342) += uda1342.o
+ obj-$(CONFIG_VIDEO_UPD64031A) += upd64031a.o
+ obj-$(CONFIG_VIDEO_UPD64083) += upd64083.o
++obj-$(CONFIG_VIDEO_VGXY61) += vgxy61.o
+ obj-$(CONFIG_VIDEO_VP27SMPX) += vp27smpx.o
+ obj-$(CONFIG_VIDEO_VPX3220) += vpx3220.o
+ obj-$(CONFIG_VIDEO_WM8739) += wm8739.o
+diff --git a/drivers/media/i2c/st-vgxy61.c b/drivers/media/i2c/vgxy61.c
+similarity index 99%
+rename from drivers/media/i2c/st-vgxy61.c
+rename to drivers/media/i2c/vgxy61.c
+index b9e7c57027b1..30378e962016 100644
+--- a/drivers/media/i2c/st-vgxy61.c
++++ b/drivers/media/i2c/vgxy61.c
+@@ -1878,7 +1878,7 @@ static const struct dev_pm_ops vgxy61_pm_ops = {
+ 
+ static struct i2c_driver vgxy61_i2c_driver = {
+ 	.driver = {
+-		.name  = "st-vgxy61",
++		.name  = "vgxy61",
+ 		.of_match_table = vgxy61_dt_ids,
+ 		.pm = &vgxy61_pm_ops,
+ 	},
 -- 
-Jerome
+2.25.1
+
 
