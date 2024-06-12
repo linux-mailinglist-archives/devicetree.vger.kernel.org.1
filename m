@@ -1,639 +1,488 @@
-Return-Path: <devicetree+bounces-74844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E843E904C14
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 08:57:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F69F904C50
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 09:07:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A2261F21EB0
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 06:57:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E87F61F2348E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 07:07:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0E6916C6AA;
-	Wed, 12 Jun 2024 06:56:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9065016B73C;
+	Wed, 12 Jun 2024 07:07:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ceVuqgwR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AqMuC+K6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5339D16C457;
-	Wed, 12 Jun 2024 06:56:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8299816B755;
+	Wed, 12 Jun 2024 07:07:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718175412; cv=none; b=lZvsKdp/hCJthXRrTWU9VK5qws6OTyqrUlFxO6lrs6pvdCy94SGaKxDNALwNNB5p71oABLshOeNCnXhrKjva4ufisigiE4+QjnIYYhqg/InGqZh6OWaQkovoV5FY1jXqbf/uuJwYGCN9UUu6TiTxz9IERz0BXHlZ+3w/5UII8bY=
+	t=1718176044; cv=none; b=tTSH9/7UrB2sRJ/nSMhKwW1B4fvV58NRcGuPVT/wcS1lCYfgDMMmd3VPT2t0IMSSPRxZXvG39jNyZoB+howVDqph7BCkOlpRuco1AkRd/p124ujDRuGLXL8N2WZwwoP0pshty8yo9phlYR2kmdNvSSRKpMymerJjiJ7rW17SSYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718175412; c=relaxed/simple;
-	bh=SkIftQirDdLlyxmCDt5htuLPjcMwEi5kzUdi13oBLd8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=FrwFObMixxvVd7Y1Cj7OvwRYQhoFIw6SPHVTQZrOSlxkYWPt9nn3IUEMKY87v9Kk+QYpYuwve9rfO3NQMV1dOW6BRlyVphNAvduhUARiCgFFRCCw6XVZfDmL6DoNWJskt8wIKZqZYLT6D0hlk6iXz1V/JT1oHCtr9B6lCE7U84A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ceVuqgwR; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718175403;
-	bh=SkIftQirDdLlyxmCDt5htuLPjcMwEi5kzUdi13oBLd8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ceVuqgwRF7oGSa7XW+MN4G6MN4pNght+XEi/CkQSlF1A2sZD4OEqU2boimzM2eKFK
-	 pwDcKPN3p9B11f85R62mYHGmEUp+OBqDkAY/qUeshOx83UezDZO1tQVk/2z1utZpr1
-	 1rkH7MhJZXKQHOqOdy7E9a4PQIMcJ3Hqj47k7DYIoYgMquYJbPqRl+nGXTk919DEn8
-	 zlqxijDPpwGwH4zfmi2Yg7Yk8mpa0R/2pU0ge6u2xnhXxABjKKfUK8wUQQ4U4DiDtr
-	 GVkS+xuOiaowm3o4/Qoy/pRqnF5YEA3g1Mq1c1KgJAfdSiKmCQOViXsYXT9tBh5cLz
-	 qIlDAtoly7deg==
-Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id DC148378219F;
-	Wed, 12 Jun 2024 06:56:41 +0000 (UTC)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: chunkuang.hu@kernel.org
-Cc: robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	p.zabel@pengutronix.de,
-	airlied@gmail.com,
-	daniel@ffwll.ch,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	shawn.sung@mediatek.com,
-	yu-chang.lee@mediatek.com,
-	ck.hu@mediatek.com,
-	jitao.shi@mediatek.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	wenst@chromium.org,
-	kernel@collabora.com,
-	sui.jinfeng@linux.dev,
-	michael@walle.cc,
-	Alexandre Mergnat <amergnat@baylibre.com>
-Subject: [PATCH v7 3/3] drm/mediatek: Implement OF graphs support for display paths
-Date: Wed, 12 Jun 2024 08:56:34 +0200
-Message-ID: <20240612065634.26569-4-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240612065634.26569-1-angelogioacchino.delregno@collabora.com>
-References: <20240612065634.26569-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1718176044; c=relaxed/simple;
+	bh=lArGn66nle1XMxFjFD+Z0TcsjJVfje2Mzuf04W7Hsxk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=nWZMFTddc+mzf6iIYOTHGlpSDDrZbvEX7g3Yrhjh0UA/6wof8b3jMW0aMVJh8/z8htD/2FNI1oOLzAyAQib/RO8882kHzcjPMpLYt6V0w5zP6SO7jc2JT4CO/YNrS3ksg5ia3kXTcvEHl9Js7n+R+IGKEvfhd/Mk70V1D4hpVnI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AqMuC+K6; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45C6Fvwo002433;
+	Wed, 12 Jun 2024 07:07:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	vKB4jSLL7SPrZFZZCzmdTJDNZl87xAWNfYLH20krfj8=; b=AqMuC+K6qp4M1gGa
+	GMLpsqITwGL37DnDlUo6JgouiZKNjeBPJD7aOulw4HG+Uzm21KZcgYZUTI3kfbpf
+	7BTXOSxrME0eWsTQpMkEboTGbEtBpYixvXDqTG6rKaJ73z7fDSLYotnJvRg36Wbu
+	cqlPfapBDdPxc/wv47jra63A0pTaKr0CYvpHON7y/5gYIv6TA3Cu39wtNSQpPw1o
+	Z/mttscS/h+UAAigeIm/Bf1T1L04oSZqe3COaTybw7U/RV3f9i5UFMaF3kdngrwY
+	LaYOajBgPyv4gyA7f9vg+1I73dhaa2A2GeR6NmKr2B4lWXlPA1buFEvdTX6ngo3p
+	F54pCA==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yptuy1f0j-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Jun 2024 07:07:05 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45C774cY025746
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Jun 2024 07:07:04 GMT
+Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 12 Jun
+ 2024 00:06:56 -0700
+Message-ID: <2ad59b57-7285-4c1e-af03-c3a0a1c8a1e6@quicinc.com>
+Date: Wed, 12 Jun 2024 15:06:54 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 2/4] arm64: dts: qcom: qcs8550: introduce qcs8550 dtsi
+To: Caleb Connolly <caleb.connolly@linaro.org>,
+        Tengfei Fan
+	<quic_tengfan@quicinc.com>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <dmitry.baryshkov@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
+References: <20240529100926.3166325-1-quic_tengfan@quicinc.com>
+ <20240529100926.3166325-3-quic_tengfan@quicinc.com>
+ <a95fed63-f48d-42c6-856b-0636a50c9dd4@linaro.org>
+ <18ff1bf2-be4d-4d82-a4b3-28242b1d1d59@quicinc.com>
+ <580f629d-6fae-4cf7-9137-f98b901ae29d@linaro.org>
+ <5a3a7033-0cc3-40cd-8560-2dfa6939fe7f@quicinc.com>
+ <4c03413b-34f4-44d3-8f12-786af265d59c@linaro.org>
+From: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <4c03413b-34f4-44d3-8f12-786af265d59c@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: h2-M1eB-Z8aEYmjkyXj2sr2RBU6mYNlZ
+X-Proofpoint-ORIG-GUID: h2-M1eB-Z8aEYmjkyXj2sr2RBU6mYNlZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-12_03,2024-06-11_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 bulkscore=0
+ impostorscore=0 mlxscore=0 priorityscore=1501 lowpriorityscore=0
+ suspectscore=0 clxscore=1015 mlxlogscore=999 phishscore=0 spamscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406120049
 
-It is impossible to add each and every possible DDP path combination
-for each and every possible combination of SoC and board: right now,
-this driver hardcodes configuration for 10 SoCs and this is going to
-grow larger and larger, and with new hacks like the introduction of
-mtk_drm_route which is anyway not enough for all final routes as the
-DSI cannot be connected to MERGE if it's not a dual-DSI, or enabling
-DSC preventively doesn't work if the display doesn't support it, or
-others.
 
-Since practically all display IPs in MediaTek SoCs support being
-interconnected with different instances of other, or the same, IPs
-or with different IPs and in different combinations, the final DDP
-pipeline is effectively a board specific configuration.
 
-Implement OF graphs support to the mediatek-drm drivers, allowing to
-stop hardcoding the paths, and preventing this driver to get a huge
-amount of arrays for each board and SoC combination, also paving the
-way to share the same mtk_mmsys_driver_data between multiple SoCs,
-making it more straightforward to add support for new chips.
+On 6/5/2024 8:00 PM, Caleb Connolly wrote:
+> Hi,
+> 
+> On 05/06/2024 06:51, Aiqun Yu (Maria) wrote:
+>>
+>>
+>> On 6/4/2024 7:20 PM, Caleb Connolly wrote:
+>>>
+>>>
+>>> On 04/06/2024 12:51, Aiqun Yu (Maria) wrote:
+>>>>
+>>>>
+>>>> On 6/3/2024 5:20 PM, Caleb Connolly wrote:
+>>>>> Hi Tengfei,
+>>>>>
+>>>>> On 29/05/2024 12:09, Tengfei Fan wrote:
+>>>>>> QCS8550 is derived from SM8550. The difference between SM8550 and
+>>>>>> QCS8550 is QCS8550 doesn't have modem RF system. QCS8550 is mainly
+>>>>>> used
+>>>>>> in IoT products.
+>>>>>> QCS8550 firmware has different memory map compared to SM8550.
+>>>>>> The memory map will be runtime added through bootloader.
+>>>>>> There are 3 types of reserved memory regions here:
+>>>>>> 1. Firmware related regions which aren't shared with kernel.
+>>>>>>        The device tree source in kernel doesn't need to have node to
+>>>>>> indicate
+>>>>>> the firmware related reserved information. Bootloader converys the
+>>>>>> information by updating devicetree at runtime.
+>>>>>>        This will be described as: UEFI saves the physical address
+>>>>>> of the
+>>>>>> UEFI System Table to dts file's chosen node. Kernel read this
+>>>>>> table and
+>>>>>> add reserved memory regions to efi config table. Current reserved
+>>>>>> memory
+>>>>>> region may have reserved region which was not yet used, release
+>>>>>> note of
+>>>>>> the firmware have such kind of information.
+>>>>>
+>>>>> Are you describing some particular quirk of the platform here, or just
+>>>>> standard UEFI booting?
+>>>>
+>>>> It's standard UEFI booting efi config table.
+>>>
+>>> Ok, thanks for confirming.
+>>>>>
+>>>>> When booting with UEFI, the memory map is passed via the ESRT, so
+>>>>> having
+>>>>> memory that the kernel shouldn't use it pretty simple (and typical).
+>>>
+>>> woo! \o/
+>>>>
+>>>> yes. It is very simple. And the bootloader firmware config the
+>>>> "reserved" region in the efi config table from the uefi firmware.
+>>>>>> 2. Firmware related memory regions which are shared with Kernel
+>>>>>>        The device tree source in the kernel needs to include nodes
+>>>>>> that
+>>>>>> indicate fimware-related shared information. A label name is
+>>>>>> suggested
+>>>>>> because this type of shared information needs to be referenced by
+>>>>>> specific drivers for handling purposes.
+>>>>>
+>>>>> Again, is there something non-standard here? If not I would suggest
+>>>>> dropping these detail comments as they might be misleading.
+>>>>
+>>>> Detailed comments is used to describe current device tree reserved
+>>>> memory regions.
+>>>>
+>>>> Current patch is not creating a new mechanism to have memory map
+>>>> described. But it is the first time qcom device trees use this design,
+>>>> and have a simplified(also more compatible) device tree reserved memory
+>>>> region(memory map). Previously, bootloader(apps bootloader) only pass
+>>>> the whole physical memory base and size, and use reserved memory nodes
+>>>> only in device tree(which is also a standard choose).
+>>>>
+>>>> So that's why it is detailed comments for other qcom platform
+>>>> reference.
+>>>
+>>> Doesn't the rb3gen2 also use this design?
+>>
+>> Checked current qcs6490-rb3gen2.dts still use the device tree to have
+>> all the reserved regions, even have detailed regions like "Firmware
+>> related regions which aren't shared with kernel."
+> 
+> Right,
+>>
+>> Not sure current qcs6490 firmware efi config table looks like, if it
+>> have all the reserved region marked carefully on efi config table, then
+>> device tree don't need to mention the reserved regions which is not
+>> shared to kernel.
+> 
+> That makes sense.
+>>
+>> The qcom memory map in device tree discussion was happened after qcs6490
+>> rb3gen2 time frame. efi config table is standard. But we still need to
+>> check what's the final config placed in the table for different
+>> platforms. I will suggest to have current qcs8550 as an example to
+>> config the current memory non-kernel needed to know region inside the
+>> efi config table in bootloader, and have kernel shared reserved region
+>> marked in the device tree.
+> 
+> Ok, thanks for explaining the context here. Using the ESRT for this
+> certainly makes more sense to me.
+> 
+> So regarding the comment in the reserved-memory node below, I think this
+> could be simplified to just a sentence or two explaining how this
+> platform is different. Maybe something like:
+> 
+> /* Unlike previous platforms, QCS8550 boots using EFI and describes most
+> reserved regions in the ESRT memory map. As a result, reserved memory
+> regions which aren't relevant to the kernel (like the hypervisor region)
+> don't need to be described in DT. */
 
-Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
-Tested-by: Alexandre Mergnat <amergnat@baylibre.com>
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/gpu/drm/mediatek/mtk_disp_drv.h       |   1 +
- .../gpu/drm/mediatek/mtk_disp_ovl_adaptor.c   |  40 ++-
- drivers/gpu/drm/mediatek/mtk_dpi.c            |  21 +-
- drivers/gpu/drm/mediatek/mtk_drm_drv.c        | 301 ++++++++++++++++--
- drivers/gpu/drm/mediatek/mtk_drm_drv.h        |   2 +-
- drivers/gpu/drm/mediatek/mtk_dsi.c            |  14 +-
- 6 files changed, 341 insertions(+), 38 deletions(-)
+The previous message still accounts per my understanding since it can be
+referenced to others who are not familiar with the memory map change or
+ESRT memory map solution.
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_drv.h b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-index 082ac18fe04a..94843974851f 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-@@ -108,6 +108,7 @@ size_t mtk_ovl_get_num_formats(struct device *dev);
- 
- void mtk_ovl_adaptor_add_comp(struct device *dev, struct mtk_mutex *mutex);
- void mtk_ovl_adaptor_remove_comp(struct device *dev, struct mtk_mutex *mutex);
-+bool mtk_ovl_adaptor_is_comp_present(struct device_node *node);
- void mtk_ovl_adaptor_connect(struct device *dev, struct device *mmsys_dev,
- 			     unsigned int next);
- void mtk_ovl_adaptor_disconnect(struct device *dev, struct device *mmsys_dev,
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c b/drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c
-index 02dd7dcdfedb..400519d1ca1f 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c
-@@ -491,6 +491,38 @@ static int compare_of(struct device *dev, void *data)
- 	return dev->of_node == data;
- }
- 
-+static int ovl_adaptor_of_get_ddp_comp_type(struct device_node *node,
-+					    enum mtk_ovl_adaptor_comp_type *ctype)
-+{
-+	const struct of_device_id *of_id = of_match_node(mtk_ovl_adaptor_comp_dt_ids, node);
-+
-+	if (!of_id)
-+		return -EINVAL;
-+
-+	*ctype = (enum mtk_ovl_adaptor_comp_type)((uintptr_t)of_id->data);
-+
-+	return 0;
-+}
-+
-+bool mtk_ovl_adaptor_is_comp_present(struct device_node *node)
-+{
-+	enum mtk_ovl_adaptor_comp_type type;
-+	int ret;
-+
-+	ret = ovl_adaptor_of_get_ddp_comp_type(node, &type);
-+	if (ret)
-+		return false;
-+
-+	if (type >= OVL_ADAPTOR_TYPE_NUM)
-+		return false;
-+
-+	/*
-+	 * ETHDR and Padding are used exclusively in OVL Adaptor: if this
-+	 * component is not one of those, it's likely not an OVL Adaptor path.
-+	 */
-+	return type == OVL_ADAPTOR_TYPE_ETHDR || type == OVL_ADAPTOR_TYPE_PADDING;
-+}
-+
- static int ovl_adaptor_comp_init(struct device *dev, struct component_match **match)
- {
- 	struct mtk_disp_ovl_adaptor *priv = dev_get_drvdata(dev);
-@@ -500,12 +532,11 @@ static int ovl_adaptor_comp_init(struct device *dev, struct component_match **ma
- 	parent = dev->parent->parent->of_node->parent;
- 
- 	for_each_child_of_node(parent, node) {
--		const struct of_device_id *of_id;
- 		enum mtk_ovl_adaptor_comp_type type;
--		int id;
-+		int id, ret;
- 
--		of_id = of_match_node(mtk_ovl_adaptor_comp_dt_ids, node);
--		if (!of_id)
-+		ret = ovl_adaptor_of_get_ddp_comp_type(node, &type);
-+		if (ret)
- 			continue;
- 
- 		if (!of_device_is_available(node)) {
-@@ -514,7 +545,6 @@ static int ovl_adaptor_comp_init(struct device *dev, struct component_match **ma
- 			continue;
- 		}
- 
--		type = (enum mtk_ovl_adaptor_comp_type)(uintptr_t)of_id->data;
- 		id = ovl_adaptor_comp_get_id(dev, node, type);
- 		if (id < 0) {
- 			dev_warn(dev, "Skipping unknown component %pOF\n",
-diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
-index bfe8653005db..966716ec26c8 100644
---- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-@@ -704,6 +704,20 @@ static int mtk_dpi_bridge_attach(struct drm_bridge *bridge,
- 				 enum drm_bridge_attach_flags flags)
- {
- 	struct mtk_dpi *dpi = bridge_to_dpi(bridge);
-+	int ret;
-+
-+	dpi->next_bridge = devm_drm_of_get_bridge(dpi->dev, dpi->dev->of_node, 1, -1);
-+	if (IS_ERR(dpi->next_bridge)) {
-+		ret = PTR_ERR(dpi->next_bridge);
-+		if (ret == -EPROBE_DEFER)
-+			return ret;
-+
-+		/* Old devicetree has only one endpoint */
-+		dpi->next_bridge = devm_drm_of_get_bridge(dpi->dev, dpi->dev->of_node, 0, 0);
-+		if (IS_ERR(dpi->next_bridge))
-+			return dev_err_probe(dpi->dev, PTR_ERR(dpi->next_bridge),
-+					     "Failed to get bridge\n");
-+	}
- 
- 	return drm_bridge_attach(bridge->encoder, dpi->next_bridge,
- 				 &dpi->bridge, flags);
-@@ -1055,13 +1069,6 @@ static int mtk_dpi_probe(struct platform_device *pdev)
- 	if (dpi->irq < 0)
- 		return dpi->irq;
- 
--	dpi->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 0, 0);
--	if (IS_ERR(dpi->next_bridge))
--		return dev_err_probe(dev, PTR_ERR(dpi->next_bridge),
--				     "Failed to get bridge\n");
--
--	dev_info(dev, "Found bridge node: %pOF\n", dpi->next_bridge->of_node);
--
- 	platform_set_drvdata(pdev, dpi);
- 
- 	dpi->bridge.funcs = &mtk_dpi_bridge_funcs;
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-index b5f605751b0a..ae148093fcdc 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-@@ -26,6 +26,7 @@
- 
- #include "mtk_crtc.h"
- #include "mtk_ddp_comp.h"
-+#include "mtk_disp_drv.h"
- #include "mtk_drm_drv.h"
- #include "mtk_gem.h"
- 
-@@ -798,12 +799,245 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
- 	{ }
- };
- 
-+static int mtk_drm_of_get_ddp_comp_type(struct device_node *node, enum mtk_ddp_comp_type *ctype)
-+{
-+	const struct of_device_id *of_id = of_match_node(mtk_ddp_comp_dt_ids, node);
-+
-+	if (!of_id)
-+		return -EINVAL;
-+
-+	*ctype = (enum mtk_ddp_comp_type)((uintptr_t)of_id->data);
-+
-+	return 0;
-+}
-+
-+static int mtk_drm_of_get_ddp_ep_cid(struct device_node *node,
-+				     int output_port, enum mtk_crtc_path crtc_path,
-+				     struct device_node **next, unsigned int *cid)
-+{
-+	struct device_node *ep_dev_node, *ep_out;
-+	enum mtk_ddp_comp_type comp_type;
-+	int ret;
-+
-+	ep_out = of_graph_get_endpoint_by_regs(node, output_port, crtc_path);
-+	if (!ep_out)
-+		return -ENOENT;
-+
-+	ep_dev_node = of_graph_get_remote_port_parent(ep_out);
-+	of_node_put(ep_out);
-+	if (!ep_dev_node)
-+		return -EINVAL;
-+
-+	/*
-+	 * Pass the next node pointer regardless of failures in the later code
-+	 * so that if this function is called in a loop it will walk through all
-+	 * of the subsequent endpoints anyway.
-+	 */
-+	*next = ep_dev_node;
-+
-+	if (!of_device_is_available(ep_dev_node))
-+		return -ENODEV;
-+
-+	ret = mtk_drm_of_get_ddp_comp_type(ep_dev_node, &comp_type);
-+	if (ret) {
-+		if (mtk_ovl_adaptor_is_comp_present(ep_dev_node)) {
-+			*cid = (unsigned int)DDP_COMPONENT_DRM_OVL_ADAPTOR;
-+			return 0;
-+		}
-+		return ret;
-+	}
-+
-+	ret = mtk_ddp_comp_get_id(ep_dev_node, comp_type);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* All ok! Pass the Component ID to the caller. */
-+	*cid = (unsigned int)ret;
-+
-+	return 0;
-+}
-+
-+/**
-+ * mtk_drm_of_ddp_path_build_one - Build a Display HW Pipeline for a CRTC Path
-+ * @dev:          The mediatek-drm device
-+ * @cpath:        CRTC Path relative to a VDO or MMSYS
-+ * @out_path:     Pointer to an array that will contain the new pipeline
-+ * @out_path_len: Number of entries in the pipeline array
-+ *
-+ * MediaTek SoCs can use different DDP hardware pipelines (or paths) depending
-+ * on the board-specific desired display configuration; this function walks
-+ * through all of the output endpoints starting from a VDO or MMSYS hardware
-+ * instance and builds the right pipeline as specified in device trees.
-+ *
-+ * Return:
-+ * * %0       - Display HW Pipeline successfully built and validated
-+ * * %-ENOENT - Display pipeline was not specified in device tree
-+ * * %-EINVAL - Display pipeline built but validation failed
-+ * * %-ENOMEM - Failure to allocate pipeline array to pass to the caller
-+ */
-+static int mtk_drm_of_ddp_path_build_one(struct device *dev, enum mtk_crtc_path cpath,
-+					 const unsigned int **out_path,
-+					 unsigned int *out_path_len)
-+{
-+	struct device_node *next, *prev, *vdo = dev->parent->of_node;
-+	unsigned int temp_path[DDP_COMPONENT_DRM_ID_MAX] = { 0 };
-+	unsigned int *final_ddp_path;
-+	unsigned short int idx = 0;
-+	bool ovl_adaptor_comp_added = false;
-+	int ret;
-+
-+	/* Get the first entry for the temp_path array */
-+	ret = mtk_drm_of_get_ddp_ep_cid(vdo, 0, cpath, &next, &temp_path[idx]);
-+	if (ret) {
-+		if (next && temp_path[idx] == DDP_COMPONENT_DRM_OVL_ADAPTOR) {
-+			dev_err(dev, "Adding OVL Adaptor for %pOF\n", next);
-+			ovl_adaptor_comp_added = true;
-+		} else {
-+			if (next)
-+				dev_err(dev, "Invalid component %pOF\n", next);
-+			else
-+				dev_err(dev, "Cannot find first endpoint for path %d\n", cpath);
-+
-+			return ret;
-+		}
-+	}
-+	idx++;
-+
-+	/*
-+	 * Walk through port outputs until we reach the last valid mediatek-drm component.
-+	 * To be valid, this must end with an "invalid" component that is a display node.
-+	 */
-+	do {
-+		prev = next;
-+		ret = mtk_drm_of_get_ddp_ep_cid(next, 1, cpath, &next, &temp_path[idx]);
-+		of_node_put(prev);
-+		if (ret) {
-+			of_node_put(next);
-+			break;
-+		}
-+
-+		/*
-+		 * If this is an OVL adaptor exclusive component and one of those
-+		 * was already added, don't add another instance of the generic
-+		 * DDP_COMPONENT_OVL_ADAPTOR, as this is used only to decide whether
-+		 * to probe that component master driver of which only one instance
-+		 * is needed and possible.
-+		 */
-+		if (temp_path[idx] == DDP_COMPONENT_DRM_OVL_ADAPTOR) {
-+			if (!ovl_adaptor_comp_added)
-+				ovl_adaptor_comp_added = true;
-+			else
-+				idx--;
-+		}
-+	} while (++idx < DDP_COMPONENT_DRM_ID_MAX);
-+
-+	/*
-+	 * The device component might not be disabled: in that case, don't
-+	 * check the last entry and just report that the device is missing.
-+	 */
-+	if (ret == -ENODEV)
-+		return ret;
-+
-+	/* If the last entry is not a final display output, the configuration is wrong */
-+	switch (temp_path[idx - 1]) {
-+	case DDP_COMPONENT_DP_INTF0:
-+	case DDP_COMPONENT_DP_INTF1:
-+	case DDP_COMPONENT_DPI0:
-+	case DDP_COMPONENT_DPI1:
-+	case DDP_COMPONENT_DSI0:
-+	case DDP_COMPONENT_DSI1:
-+	case DDP_COMPONENT_DSI2:
-+	case DDP_COMPONENT_DSI3:
-+		break;
-+	default:
-+		dev_err(dev, "Invalid display hw pipeline. Last component: %d (ret=%d)\n",
-+			temp_path[idx - 1], ret);
-+		return -EINVAL;
-+	}
-+
-+	final_ddp_path = devm_kmemdup(dev, temp_path, idx * sizeof(temp_path[0]), GFP_KERNEL);
-+	if (!final_ddp_path)
-+		return -ENOMEM;
-+
-+	dev_dbg(dev, "Display HW Pipeline built with %d components.\n", idx);
-+
-+	/* Pipeline built! */
-+	*out_path = final_ddp_path;
-+	*out_path_len = idx;
-+
-+	return 0;
-+}
-+
-+static int mtk_drm_of_ddp_path_build(struct device *dev, struct device_node *node,
-+				     struct mtk_mmsys_driver_data *data)
-+{
-+	struct device_node *ep_node;
-+	struct of_endpoint of_ep;
-+	bool output_present[MAX_CRTC] = { false };
-+	bool valid_output_found = false;
-+	int ret;
-+
-+	for_each_endpoint_of_node(node, ep_node) {
-+		ret = of_graph_parse_endpoint(ep_node, &of_ep);
-+		if (ret) {
-+			dev_err_probe(dev, ret, "Cannot parse endpoint\n");
-+			break;
-+		}
-+
-+		if (of_ep.id >= MAX_CRTC) {
-+			ret = dev_err_probe(dev, -EINVAL,
-+					    "Invalid endpoint%u number\n", of_ep.port);
-+			break;
-+		}
-+
-+		output_present[of_ep.id] = true;
-+	}
-+
-+	if (ret) {
-+		of_node_put(ep_node);
-+		return ret;
-+	}
-+
-+	if (output_present[CRTC_MAIN]) {
-+		ret = mtk_drm_of_ddp_path_build_one(dev, CRTC_MAIN,
-+						    &data->main_path, &data->main_len);
-+		if (ret == 0)
-+			valid_output_found = true;
-+		else if (ret != -ENODEV)
-+			return ret;
-+	}
-+
-+	if (output_present[CRTC_EXT]) {
-+		ret = mtk_drm_of_ddp_path_build_one(dev, CRTC_EXT,
-+						    &data->ext_path, &data->ext_len);
-+		if (ret == 0)
-+			valid_output_found = true;
-+		else if (ret != -ENODEV)
-+			return ret;
-+	}
-+
-+	if (output_present[CRTC_THIRD]) {
-+		ret = mtk_drm_of_ddp_path_build_one(dev, CRTC_THIRD,
-+						    &data->third_path, &data->third_len);
-+		if (ret == 0)
-+			valid_output_found = true;
-+		else if (ret != -ENODEV)
-+			return ret;
-+	}
-+
-+	if (!valid_output_found)
-+		return -ENODEV;
-+
-+	return 0;
-+}
-+
- static int mtk_drm_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct device_node *phandle = dev->parent->of_node;
- 	const struct of_device_id *of_id;
- 	struct mtk_drm_private *private;
-+	struct mtk_mmsys_driver_data *mtk_drm_data;
- 	struct device_node *node;
- 	struct component_match *match = NULL;
- 	struct platform_device *ovl_adaptor;
-@@ -824,7 +1058,31 @@ static int mtk_drm_probe(struct platform_device *pdev)
- 	if (!of_id)
- 		return -ENODEV;
- 
--	private->data = of_id->data;
-+	mtk_drm_data = (struct mtk_mmsys_driver_data *)of_id->data;
-+	if (!mtk_drm_data)
-+		return -EINVAL;
-+
-+	private->data = kmemdup(mtk_drm_data, sizeof(*mtk_drm_data), GFP_KERNEL);
-+	if (!private->data)
-+		return -ENOMEM;
-+
-+	/* Try to build the display pipeline from devicetree graphs */
-+	if (of_graph_is_present(phandle)) {
-+		dev_dbg(dev, "Building display pipeline for MMSYS %u\n",
-+			mtk_drm_data->mmsys_id);
-+		private->data = devm_kmemdup(dev, mtk_drm_data,
-+					     sizeof(*mtk_drm_data), GFP_KERNEL);
-+		if (!private->data)
-+			return -ENOMEM;
-+
-+		ret = mtk_drm_of_ddp_path_build(dev, phandle, private->data);
-+		if (ret)
-+			return ret;
-+	} else {
-+		/* No devicetree graphs support: go with hardcoded paths if present */
-+		dev_dbg(dev, "Using hardcoded paths for MMSYS %u\n", mtk_drm_data->mmsys_id);
-+		private->data = mtk_drm_data;
-+	};
- 
- 	private->all_drm_private = devm_kmalloc_array(dev, private->data->mmsys_dev_num,
- 						      sizeof(*private->all_drm_private),
-@@ -846,12 +1104,11 @@ static int mtk_drm_probe(struct platform_device *pdev)
- 
- 	/* Iterate over sibling DISP function blocks */
- 	for_each_child_of_node(phandle->parent, node) {
--		const struct of_device_id *of_id;
- 		enum mtk_ddp_comp_type comp_type;
- 		int comp_id;
- 
--		of_id = of_match_node(mtk_ddp_comp_dt_ids, node);
--		if (!of_id)
-+		ret = mtk_drm_of_get_ddp_comp_type(node, &comp_type);
-+		if (ret)
- 			continue;
- 
- 		if (!of_device_is_available(node)) {
-@@ -860,8 +1117,6 @@ static int mtk_drm_probe(struct platform_device *pdev)
- 			continue;
- 		}
- 
--		comp_type = (enum mtk_ddp_comp_type)(uintptr_t)of_id->data;
--
- 		if (comp_type == MTK_DISP_MUTEX) {
- 			int id;
- 
-@@ -890,22 +1145,24 @@ static int mtk_drm_probe(struct platform_device *pdev)
- 		 * blocks have separate component platform drivers and initialize their own
- 		 * DDP component structure. The others are initialized here.
- 		 */
--		if (comp_type == MTK_DISP_AAL ||
--		    comp_type == MTK_DISP_CCORR ||
--		    comp_type == MTK_DISP_COLOR ||
--		    comp_type == MTK_DISP_GAMMA ||
--		    comp_type == MTK_DISP_MERGE ||
--		    comp_type == MTK_DISP_OVL ||
--		    comp_type == MTK_DISP_OVL_2L ||
--		    comp_type == MTK_DISP_OVL_ADAPTOR ||
--		    comp_type == MTK_DISP_RDMA ||
--		    comp_type == MTK_DP_INTF ||
--		    comp_type == MTK_DPI ||
--		    comp_type == MTK_DSI) {
--			dev_info(dev, "Adding component match for %pOF\n",
--				 node);
--			drm_of_component_match_add(dev, &match, component_compare_of,
--						   node);
-+		switch (comp_type) {
-+		default:
-+			break;
-+		case MTK_DISP_AAL:
-+		case MTK_DISP_CCORR:
-+		case MTK_DISP_COLOR:
-+		case MTK_DISP_GAMMA:
-+		case MTK_DISP_MERGE:
-+		case MTK_DISP_OVL:
-+		case MTK_DISP_OVL_2L:
-+		case MTK_DISP_OVL_ADAPTOR:
-+		case MTK_DISP_RDMA:
-+		case MTK_DP_INTF:
-+		case MTK_DPI:
-+		case MTK_DSI:
-+			dev_info(dev, "Adding component match for %pOF\n", node);
-+			drm_of_component_match_add(dev, &match, component_compare_of, node);
-+			break;
- 		}
- 
- 		ret = mtk_ddp_comp_init(node, &private->ddp_comp[comp_id], comp_id);
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.h b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
-index 78d698ede1bf..7e54d86e25a3 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.h
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
-@@ -59,7 +59,7 @@ struct mtk_drm_private {
- 	struct device *mmsys_dev;
- 	struct device_node *comp_node[DDP_COMPONENT_DRM_ID_MAX];
- 	struct mtk_ddp_comp ddp_comp[DDP_COMPONENT_DRM_ID_MAX];
--	const struct mtk_mmsys_driver_data *data;
-+	struct mtk_mmsys_driver_data *data;
- 	struct drm_atomic_state *suspend_state;
- 	unsigned int mbox_index;
- 	struct mtk_drm_private **all_drm_private;
-diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
-index c255559cc56e..880ea37937da 100644
---- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-@@ -904,9 +904,17 @@ static int mtk_dsi_host_attach(struct mipi_dsi_host *host,
- 	dsi->lanes = device->lanes;
- 	dsi->format = device->format;
- 	dsi->mode_flags = device->mode_flags;
--	dsi->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 0, 0);
--	if (IS_ERR(dsi->next_bridge))
--		return PTR_ERR(dsi->next_bridge);
-+	dsi->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
-+	if (IS_ERR(dsi->next_bridge)) {
-+		ret = PTR_ERR(dsi->next_bridge);
-+		if (ret == -EPROBE_DEFER)
-+			return ret;
-+
-+		/* Old devicetree has only one endpoint */
-+		dsi->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 0, 0);
-+		if (IS_ERR(dsi->next_bridge))
-+			return PTR_ERR(dsi->next_bridge);
-+	}
- 
- 	drm_bridge_add(&dsi->bridge);
- 
+I think we can add your above message into the commit message to have
+more information. Appreciate the comments if others have similar doubts
+as you have.
+> 
+> A few more comments in-line.
+>>
+>>>>
+>>>>>
+>>>>> Thanks and regards,
+>>>>>> 3. Remoteproc regions.
+>>>>>>        Remoteproc regions will be reserved and then assigned to
+>>>>>> subsystem
+>>>>>> firmware later.
+>>>>>> Here is a reserved memory map for this platform:
+>>>>>> 0x100000000 +-------------------+
+>>>>>>                |                   |
+>>>>>>                | Firmware Related  |
+>>>>>>                |                   |
+>>>>>>     0xd4d00000 +-------------------+
+>>>>>>                |                   |
+>>>>>>                | Kernel Available  |
+>>>>>>                |                   |
+>>>>>>     0xa7000000 +-------------------+
+>>>>>>                |                   |
+>>>>>>                | Remoteproc Region |
+>>>>>>                |                   |
+>>>>>>     0x8a800000 +-------------------+
+>>>>>>                |                   |
+>>>>>>                | Firmware Related  |
+>>>>>>                |                   |
+>>>>>>     0x80000000 +-------------------+
+>>>>>>
+>>>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>>>>>> ---
+>>>>>>     arch/arm64/boot/dts/qcom/qcs8550.dtsi | 167
+>>>>>> ++++++++++++++++++++++++++
+>>>>>>     1 file changed, 167 insertions(+)
+>>>>>>     create mode 100644 arch/arm64/boot/dts/qcom/qcs8550.dtsi
+>>>>>>
+>>>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs8550.dtsi
+>>>>>> b/arch/arm64/boot/dts/qcom/qcs8550.dtsi
+>>>>>> new file mode 100644
+>>>>>> index 000000000000..685668c6ad14
+>>>>>> --- /dev/null
+>>>>>> +++ b/arch/arm64/boot/dts/qcom/qcs8550.dtsi
+>>>>>> @@ -0,0 +1,167 @@
+>>>>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>>>>> +/*
+>>>>>> + * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All
+>>>>>> rights reserved.
+>>>>>> + */
+>>>>>> +
+>>>>>> +#include "sm8550.dtsi"
+>>>>>> +
+>>>>>> +/delete-node/ &reserved_memory;
+>>>>>> +
+>>>>>> +/ {
+>>>>>> +    reserved_memory: reserved-memory {
+>>>>>> +        #address-cells = <2>;
+>>>>>> +        #size-cells = <2>;
+>>>>>> +        ranges;
+>>>>>> +
+>>>>>> +
+>>>>>> +        /* These are 3 types of reserved memory regions here:
+>>>>>> +         * 1. Firmware related regions which aren't shared with
+>>>>>> kernel.
+>>>>>> +         *     The device tree source in kernel doesn't need to have
+>>>>>> node to
+>>>>>> +         * indicate the firmware related reserved information.
+>>>>>> Bootloader
+>>>>>> +         * conveys the information by updating devicetree at
+>>>>>> runtime.
+>>>>>> +         *     This will be described as: UEFI saves the physical
+>>>>>> address of
+>>>>>> +         * the UEFI System Table to dts file's chosen node. Kernel
+>>>>>> read this
+>>>>>> +         * table and add reserved memory regions to efi config
+>>>>>> table.
+>>>>>> Current
+>>>>>> +         * reserved memory region may have reserved region which was
+>>>>>> not yet
+>>>>>> +         * used, release note of the firmware have such kind of
+>>>>>> information.
+>>>>>> +         * 2. Firmware related memory regions which are shared with
+>>>>>> Kernel
+>>>>>> +         *     The device tree source in the kernel needs to include
+>>>>>> nodes
+>>>>>> +         * that indicate fimware-related shared information. A label
+>>>>>> name
+>>>>>> +         * is suggested because this type of shared information
+>>>>>> needs to
+>>>>>> +         * be referenced by specific drivers for handling purposes.
+>>>>>> +         * 3. Remoteproc regions.
+>>>>>> +         *     Remoteproc regions will be reserved and then
+>>>>>> assigned to
+>>>>>> +         * subsystem firmware later.
+>>>>>> +         * Here is a reserved memory map for this platform:
+>>>>>> +         * 0x100000000 +-------------------+
+>>>>>> +         *             |                   |
+>>>>>> +         *             | Firmware Related  |
+>>>>>> +         *             |                   |
+>>>>>> +         *  0xd4d00000 +-------------------+
+>>>>>> +         *             |                   |
+>>>>>> +         *             | Kernel Available  |
+>>>>>> +         *             |                   |
+>>>>>> +         *  0xa7000000 +-------------------+
+>>>>>> +         *             |                   |
+>>>>>> +         *             | Remoteproc Region |
+>>>>>> +         *             |                   |
+>>>>>> +         *  0x8a800000 +-------------------+
+>>>>>> +         *             |                   |
+>>>>>> +         *             | Firmware Related  |
+>>>>>> +         *             |                   |
+>>>>>> +         *  0x80000000 +-------------------+
+> 
+> I guess this is quite subjective, but this diagram looks "upside down"
+> to me. I think it's generally more popular to have the lower addresses
+> at the top.
+
+ack.
+> 
+>>>>>> +         */
+>>>>>> +
+>>>>>> +        /*
+>>>>>> +         * Firmware related regions, bootloader will possible
+>>>>>> reserve
+>>>>>> parts of
+>>>>>> +         * region from 0x80000000..0x8a800000.
+> 
+> This is just duplicating info from the table, please drop this comment
+> (it should be obvious from the above explanation).
+
+ack.
+>>>>>> +         */
+>>>>>> +        aop_image_mem: aop-image-region@81c00000 {
+>>>>>> +            reg = <0x0 0x81c00000 0x0 0x60000>;
+>>>>>> +            no-map;
+>>>>>> +        };
+>>>>>> +
+>>>>>> +        aop_cmd_db_mem: aop-cmd-db-region@81c60000 {
+>>>>>> +            compatible = "qcom,cmd-db";
+>>>>>> +            reg = <0x0 0x81c60000 0x0 0x20000>;
+>>>>>> +            no-map;
+>>>>>> +        };
+>>>>>> +
+>>>>>> +        aop_config_mem: aop-config-region@81c80000 {
+>>>>>> +            no-map;
+>>>>>> +            reg = <0x0 0x81c80000 0x0 0x20000>;
+>>>>>> +        };
+>>>>>> +
+>>>>>> +        smem_mem: smem-region@81d00000 {
+>>>>>> +            compatible = "qcom,smem";
+>>>>>> +            reg = <0x0 0x81d00000 0x0 0x200000>;
+>>>>>> +            hwlocks = <&tcsr_mutex 3>;
+>>>>>> +            no-map;
+>>>>>> +        };
+>>>>>> +
+>>>>>> +        adsp_mhi_mem: adsp-mhi-region@81f00000 {
+>>>>>> +            reg = <0x0 0x81f00000 0x0 0x20000>;
+>>>>>> +            no-map;
+>>>>>> +        };
+>>>>>> +
+>>>>>> +        /* PIL region */
+> 
+> Drop this comment
+
+ack.
+>>>>>> +        mpss_mem: mpss-region@8a800000 {
+>>>>>> +            reg = <0x0 0x8a800000 0x0 0x10800000>;
+>>>>>> +            no-map;
+>>>>>> +        };
+>>>>>> +
+>>>>>> +        q6_mpss_dtb_mem: q6-mpss-dtb-region@9b000000 {
+>>>>>> +            reg = <0x0 0x9b000000 0x0 0x80000>;
+>>>>>> +            no-map;
+>>>>>> +        };
+>>>>>> +
+>>>>>> +        ipa_fw_mem: ipa-fw-region@9b080000 {
+>>>>>> +            reg = <0x0 0x9b080000 0x0 0x10000>;
+>>>>>> +            no-map;
+>>>>>> +        };
+>>>>>> +
+>>>>>> +        ipa_gsi_mem: ipa-gsi-region@9b090000 {
+>>>>>> +            reg = <0x0 0x9b090000 0x0 0xa000>;
+>>>>>> +            no-map;
+>>>>>> +        };
+>>>>>> +
+>>>>>> +        gpu_micro_code_mem: gpu-micro-code-region@9b09a000 {
+>>>>>> +            reg = <0x0 0x9b09a000 0x0 0x2000>;
+>>>>>> +            no-map;
+>>>>>> +        };
+>>>>>> +
+>>>>>> +        spss_region_mem: spss-region@9b100000 {
+>>>>>> +            reg = <0x0 0x9b100000 0x0 0x180000>;
+>>>>>> +            no-map;
+>>>>>> +        };
+>>>>>> +
+>>>>>> +        spu_secure_shared_memory_mem:
+>>>>>> spu-secure-shared-memory-region@9b280000 {
+>>>>>> +            reg = <0x0 0x9b280000 0x0 0x80000>;
+>>>>>> +            no-map;
+>>>>>> +        };
+>>>>>> +
+>>>>>> +        camera_mem: camera-region@9b300000 {
+>>>>>> +            reg = <0x0 0x9b300000 0x0 0x800000>;
+>>>>>> +            no-map;
+>>>>>> +        };
+>>>>>> +
+>>>>>> +        video_mem: video-region@9bb00000 {
+>>>>>> +            reg = <0x0 0x9bb00000 0x0 0x700000>;
+>>>>>> +            no-map;
+>>>>>> +        };
+>>>>>> +
+>>>>>> +        cvp_mem: cvp-region@9c200000 {
+>>>>>> +            reg = <0x0 0x9c200000 0x0 0x700000>;
+>>>>>> +            no-map;
+>>>>>> +        };
+>>>>>> +
+>>>>>> +        cdsp_mem: cdsp-region@9c900000 {
+>>>>>> +            reg = <0x0 0x9c900000 0x0 0x2000000>;
+>>>>>> +            no-map;
+>>>>>> +        };
+>>>>>> +
+>>>>>> +        q6_cdsp_dtb_mem: q6-cdsp-dtb-region@9e900000 {
+>>>>>> +            reg = <0x0 0x9e900000 0x0 0x80000>;
+>>>>>> +            no-map;
+>>>>>> +        };
+>>>>>> +
+>>>>>> +        q6_adsp_dtb_mem: q6-adsp-dtb-region@9e980000 {
+>>>>>> +            reg = <0x0 0x9e980000 0x0 0x80000>;
+>>>>>> +            no-map;
+>>>>>> +        };
+>>>>>> +
+>>>>>> +        adspslpi_mem: adspslpi-region@9ea00000 {
+>>>>>> +            reg = <0x0 0x9ea00000 0x0 0x4080000>;
+>>>>>> +            no-map;
+>>>>>> +        };
+>>>>>> +
+>>>>>> +        /*
+>>>>>> +         * Firmware related regions, bootloader will possible
+>>>>>> reserve
+>>>>>> parts of
+>>>>>> +         * region from 0xd8000000..0x100000000.
+>>>>>> +         */
+> 
+> The address specified in this comment (0xd8000000) doesn't match the
+> mpss_dsm_mem region OR the diagram above. I would suggest dropping this
+> comment too.
+
+ack.
+>>>>>> +        mpss_dsm_mem: mpss_dsm_region@d4d00000 {
+>>>>>> +            reg = <0x0 0xd4d00000 0x0 0x3300000>;
+>>>>>> +            no-map;
+>>>>>> +        };
+>>>>>> +    };
+>>>>>> +};
+>>>>>
+>>>>
+>>>
+>>
+> 
+> Kind regards,
+
 -- 
-2.45.2
-
+Thx and BRs,
+Aiqun(Maria) Yu
 
