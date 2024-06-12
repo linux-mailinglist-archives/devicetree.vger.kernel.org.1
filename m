@@ -1,108 +1,105 @@
-Return-Path: <devicetree+bounces-75092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A6D29056C3
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:25:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F9699056E0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:30:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3AEDF1C21801
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:25:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D01B3281996
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:30:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E32417F507;
-	Wed, 12 Jun 2024 15:25:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 845C71802AF;
+	Wed, 12 Jun 2024 15:30:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G0Y1Yd3s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MmGs0Ryw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14EE317F504;
-	Wed, 12 Jun 2024 15:25:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D28F18622;
+	Wed, 12 Jun 2024 15:30:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718205916; cv=none; b=g6kwX07iL5cEnmQeNEClJuIaqntpyQp7B+Y0ubWRJ5wlZXbJ4vu17RnGh0Sb8g9nfeb0aNKaU0mvg3y6SHsyp1Fq7SrhUgwyS1iWfc+nxhKzrZ67PcHwWIxuiaeIObV+gcP6TqNtBOn/kVWd/cckfR91/9KpQWB7p4Mhyd7hA2Q=
+	t=1718206253; cv=none; b=tEVBkqgr2UsTek/MKJueE7JR7Zlm04uPKEFdUaS32RAQhyVmJUEXcM6Urac23FOFrHaBqX4Ncu2VlcZTGoyzQrC2XT+aLBCmcw+KzZqE5TDSmom/qHtAyf60wMaU3rAuXbuFfnd3MvbPQEb8YXYYNkZy3MHnZgRoVM11QwsLzdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718205916; c=relaxed/simple;
-	bh=ZUjo3FL1LCdGSIPPmkJ/6gP5dCY2FOu4qlSrdDKhcos=;
+	s=arc-20240116; t=1718206253; c=relaxed/simple;
+	bh=CUlq4d9WwLarlHKch8/wOlIU1KBwXlSH4EPb02NZQBk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rJX5lTnZfpDKaK1YaPRStuagR8HkZnKzbv1xAVsnqFCKtORNv+vSaKsb3aTCjnzR/n7le5E5mKivLwCT0EFu3ff8UV/nJY6IuVOyVeRBBnYQrmzo2WJvRKIm/qvuZ/va/fa83f/ArbUVgBuQ2s4ZKZeadbQSaPbhakZstTLxT9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G0Y1Yd3s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1C0AC116B1;
-	Wed, 12 Jun 2024 15:25:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LcpDp327y/ahPO/tKG8uyXHT7yV9A6oyZx40cQAWodTxAQFmCsGnz9RQqrtcBT7DuuZhId5GiKiNPMPJcC8qUOrgmlnz2C7US1L7ZJNerLUVD4Ny7oh+W8eMizW/UVE8vitJhNxU6D3vP6OHJsI0vhX1APbIHURwmdiY9nK1fVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MmGs0Ryw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA8DFC116B1;
+	Wed, 12 Jun 2024 15:30:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718205915;
-	bh=ZUjo3FL1LCdGSIPPmkJ/6gP5dCY2FOu4qlSrdDKhcos=;
+	s=k20201202; t=1718206253;
+	bh=CUlq4d9WwLarlHKch8/wOlIU1KBwXlSH4EPb02NZQBk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=G0Y1Yd3s3I2J3XTgOcsz/umRnlQZUS9QKRpUVqKHBt2++uCccgow+ooF11DFcyx4E
-	 1bWdq68DZRo4cvCLQoT7ythsvGCCr4ZBfC9YGljBQ6lEWfRyXqeVK/Nwqj9wApm45Q
-	 1mDyNoMdzfF5iYEYKuWlDGJJNUypKc/tIh9Q6uavij5I6uXlhgWvqvSSY2X2qcFj5i
-	 IwgOenALmO5MX6/ncRQU6yKv+KXa/AX6uWAXLwRRucOrYB3WiVhQa62ccpfwksM/p3
-	 Oodx1ZGfAaU5B7/Tgd4xbZOZm2oST/IYIeqV8KRpbruuT5pqI6xnkWXD85enaiAmDO
-	 hkrOY9CqWA9lg==
-Date: Wed, 12 Jun 2024 16:25:10 +0100
-From: Lee Jones <lee@kernel.org>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Chen-Yu Tsai <wens@csie.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Ryan Walklin <ryan@testtoast.com>,
-	Chris Morgan <macroalpha82@gmail.com>
-Subject: Re: [PATCH v2 1/5] mfd: axp20x: AXP717: Fix missing IRQ status
- registers range
-Message-ID: <20240612152510.GE1504919@google.com>
-References: <20240418000736.24338-1-andre.przywara@arm.com>
- <20240418000736.24338-2-andre.przywara@arm.com>
- <20240502093907.GM5338@google.com>
- <56aef347-7582-497e-be02-d82eda7b3528@arm.com>
+	b=MmGs0RywaTnZC4quAJ0PEgt7pvh09ZXcb5OYLjUgkqKwkHAKGxzOiJkOFbIJw3usv
+	 VLv/S9jmg8sttMUF622W6bUGdFmWfPqsX9imxlDrYRK+pxF9XsWyVTFo3HXT3g9vdc
+	 E5IZxmw84RAL472ncu6iYJd3265aGxgPsryDXs0cQnZHz8wGU1eBDusA1OJxJb7ee6
+	 PxWzWiUvMljtOvzUL/WoKq0B5Pl9pgSavJa8HuqoUomuWkYZWQCvnPON27UmxaDvtA
+	 4/8tIIuW0F0IO+A6+JW4cI7qGDdo9R8DR3KGXOQun0O2LJLqXKN213tosCSNQKPr5a
+	 t0ldmbBnRGkBg==
+Date: Wed, 12 Jun 2024 09:30:51 -0600
+From: Rob Herring <robh@kernel.org>
+To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Chao Wei <chao.wei@sophgo.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	=?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 2/6] dt-bindings: interrupt-controller: Add SOPHGO
+ SG2002 plic
+Message-ID: <20240612153051.GA2633500-robh@kernel.org>
+References: <20240612-sg2002-v2-0-19a585af6846@bootlin.com>
+ <20240612-sg2002-v2-2-19a585af6846@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <56aef347-7582-497e-be02-d82eda7b3528@arm.com>
+In-Reply-To: <20240612-sg2002-v2-2-19a585af6846@bootlin.com>
 
-On Wed, 12 Jun 2024, Andre Przywara wrote:
-
-> Hi Lee,
+On Wed, Jun 12, 2024 at 10:02:32AM +0200, Thomas Bonnefille wrote:
+> Add compatible string for SOPHGO SG2002 Platform-Level Interruter
+> Controller.
 > 
-> On 02/05/2024 10:39, Lee Jones wrote:
-> > On Thu, 18 Apr 2024, Andre Przywara wrote:
-> > 
-> > > While we list the "IRQ status *and acknowledge*" registers as volatile,
-> > > they are missing from the writable range array, so acknowledging any
-> > > interrupts was met with an -EIO error.
-> > > 
-> > > Add the five registers that hold those bits to the writable array.
-> > > 
-> > > Fixes: b5bfc8ab2484 ("mfd: axp20x: Add support for AXP717 PMIC")
-> > > Reported-by: Chris Morgan <macromorgan@hotmail.com>
-> > > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > > ---
-> > >   drivers/mfd/axp20x.c | 1 +
-> > >   1 file changed, 1 insertion(+)
-> > 
-> > Acked-by: Lee Jones <lee@kernel.org>
+> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+
+Missing Conor's ack. When sending new versions, it is your 
+responsibility to add tags.
+
+> ---
+>  .../devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml      | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> Can you please take just this patch as a fix for 6.10? This fixes the power
-> key operation.
-> This applies cleanly on top of v6.10-rc3, so there is no need for any extra
-> immutable branch or coordination with regulator.
-> (The same is true independently for patch 2/5, on the regulator side).
-
-What does the Fixes: commit break?
-
-Or is it the case that it never worked properly?
-
--- 
-Lee Jones [李琼斯]
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> index 709b2211276b..7e1451f9786a 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> @@ -67,6 +67,7 @@ properties:
+>                - allwinner,sun20i-d1-plic
+>                - sophgo,cv1800b-plic
+>                - sophgo,cv1812h-plic
+> +              - sophgo,sg2002-plic
+>                - sophgo,sg2042-plic
+>                - thead,th1520-plic
+>            - const: thead,c900-plic
+> 
+> -- 
+> 2.45.2
+> 
 
