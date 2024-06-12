@@ -1,106 +1,268 @@
-Return-Path: <devicetree+bounces-75106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97D13905826
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 18:08:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72EAA90581B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 18:06:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D470BB29F93
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:05:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BB971C21585
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:06:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A78E183080;
-	Wed, 12 Jun 2024 16:01:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71EAF181325;
+	Wed, 12 Jun 2024 16:04:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E0982kqa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MpTrPoiP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD88F181CE3;
-	Wed, 12 Jun 2024 16:01:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEB3D181321;
+	Wed, 12 Jun 2024 16:04:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718208063; cv=none; b=kJEr0YqkxVjXLFrdM1yWpuQLxetVr8WbycGeZD/U9FZG+dEZ/ntKzf7eYtnbv69eUup5/X7XbszUMTkiXzeNifYRGGiKCHdYV45RicL9NuaCheLM2Mqrmqb+h8vVm5OEXBPaa6JIM9Z3gYZGAfWJmP8M5vR08RqDXbqe0S6rkdg=
+	t=1718208254; cv=none; b=iLUQux/YrN8RAM0GKKLSldAVQ/0WvPTtx8KxkQFPOXvpb01LhORGiKu5HNtV/OeOnmIbBiv7ku/NvJAOhU+GVC/9ZwX8EFkx+bs/3f8tCYG7VkXsdopRnhTVoEYyDJRqpQCYpngivo7M6lcB6ZZcIFB15/VIxJPVAYd00EdjOZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718208063; c=relaxed/simple;
-	bh=gOIGUfpMIXTLd85TDqSteq8y5fBFgShIqKowQU29gLg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XLbu/0bE0EI3r276PUrVlZ2EfBiiZLl1QIz+IhFberzO/NxU6XZDYMtCRKEb6QPWzvSAr+xmOe4Sj6Y/0kLiGDSucKFcxmd7p8efgfrwOY5MZyK5HPi8ja4D7JOU6ueXoDleqD/G3ZxnWTgMMLEwPzG0vv22ILv7J3aEtMhlfrk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E0982kqa; arc=none smtp.client-ip=209.85.215.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	s=arc-20240116; t=1718208254; c=relaxed/simple;
+	bh=KDemYi20FzCyN4R11poSytu7smnSLYTz4hF35CJ5RWA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jMRHsg6ir+ZX1cA0yAiYFFUiMTXrLTdy7cetBSV5c2cmY5G4alsLb1LVg2gOVrkgwfUD2yqo2eYDWZ6pHyeYbtQ6Cktn6c/RaNFhSxygVQOA4+pPjWGAGSZAIV1RIqVpEgdFk2LPhgMXx4z1GT3cQnlBnSSFUBFkAmYnSzcIVTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MpTrPoiP; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-6818eea9c3aso5209371a12.1;
-        Wed, 12 Jun 2024 09:01:01 -0700 (PDT)
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-7042cb2abc8so3211052b3a.0;
+        Wed, 12 Jun 2024 09:04:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718208061; x=1718812861; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oUyvR87tz84oToC+KHHrCPTMpSX3BtZmVsSn8BAKS4E=;
-        b=E0982kqa1iqlvyYPItPkLSSWAqIPb3VrkfCUQw0ZTBVASJrMJkQSE/vrXJsnBhlcmB
-         A6G4lJR+wWJPmiVg0m1o2Vwc49weAECfgoMMG2Api3VQXPU5k7Bvgx/VDZmt7WaYJVeS
-         kOU05iy5aEpVnKU6p5th2v5gLYSxY0Hf1UNeU+zL/c8AByIefnVLWzbG7OnxbbaAKZyS
-         PiRRYW8T2VcsY2n8BlZ/KB4tuVTw39NYmGOiD8Yv9T+70Xowkikk2jHvek0HYGUTAn96
-         fLgG1IpuEb89f6Nl5iK1uImL9k6nKVvNNHsEznmvaYL9G8uunLmHOqIJL1TgwtcUhBlm
-         M3xg==
+        d=gmail.com; s=20230601; t=1718208252; x=1718813052; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AH50orR5FyIlpjugYepr6bfFOHdgPbrZzYYt/ypEgjU=;
+        b=MpTrPoiPiep5+rNGz7sXxHtnjGPxP90pTPDu9O4jHdmGnXy5K459y9k+p5e1WKYaep
+         BAQNVECQiUMmw1nIzRNo7+wl0rr61AR7QwxjNW8br8LlMxT+XLuJgv9aF5YO6W6NsMTJ
+         4H9poZUzTk1AZ4iqSAj1VklhSNRbH0qzgGnYuHHnAF2MG1uX+hUvmz5vcvHMtvxnpLxL
+         hrUgxshFNSEh60bWwEG3VxdimuVlq35YX7ew9TINgAtNM43GJfANNRG9ZqsfmRkRXWNQ
+         zYHNQVy65i+TSREfuJjkneHa+TE6FqEJcT16VWPDLYR6AzLMBxSGpWfw0iXBqnA8hQSX
+         aw4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718208061; x=1718812861;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oUyvR87tz84oToC+KHHrCPTMpSX3BtZmVsSn8BAKS4E=;
-        b=GNZFsc8huy+9TOhCIjelbFsUwfHIVa+mTlru8SlbJcJqWWYiSLaPQ8G1PQSfdKmuG8
-         5PfkC0xgecMomTFqt8/o2kHXwtl3392fA2TPE8hvZJBD/2KSD7PKoZnlzsPryKoTYR7d
-         Rsrg/3P+Oxtgex8Wc7i3vyfRCInxylYfu8ol9kqFdXq1vHRkUOG0Af8qte5xJZyg80yn
-         sFhnepxN5eubc8Wsa2YHRejsftlsYhXU5KWRuh/Nmvv9bhGM3TYKLG7K7kvVnLj/NvhR
-         GQmVnPLqd7uZPaiVHPmscu09HX0yBF99xqQBsbAbtkH0oN0rp6kp756vBPfdcIGsIg/6
-         M8qg==
-X-Forwarded-Encrypted: i=1; AJvYcCUTZJe689SnMQlg56kOj4UCnH0QniyILbbUHRi9yWTVtkYvI14IkTRUUroD78+FUd3izzmABzy8Fe5h0k/nZIn84DhnYwXVAgX9+5TlRKVYj/A3Rwlw7QIJTWOP1X+l21eqEen2xdKDkAdMtjjcSgga2FmJZpQjNyp4ee/iG0vUtY5ZDVk9WBDf1/J/NCYduqp2nT2UsGqIRgvAOn+cCXSeAPyonIJRzQnIt9BvKnqAQ5+Rx79gyT1ksMOs
-X-Gm-Message-State: AOJu0YymyuW0FpAndP9A1ucDKcztgMmadsEdUws2T3xA8PVZS+TxlHE/
-	jvRzcmatEUQHP59s7QIYU5tO42xHwyCWJ3J1a5jEQsHYuBFNLuYX
-X-Google-Smtp-Source: AGHT+IFt4IGyic5ndUD67jLTkXGXA3pbljy0S0BUqnqtpDXM9+DHeTRpjrpMQomwy/Si1QcCBDRxRw==
-X-Received: by 2002:a17:90a:4a0e:b0:2c2:dd1d:ce6a with SMTP id 98e67ed59e1d1-2c4a76f724amr1973255a91.45.1718208060984;
-        Wed, 12 Jun 2024 09:01:00 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c4a75f3584sm1957320a91.20.2024.06.12.09.01.00
+        d=1e100.net; s=20230601; t=1718208252; x=1718813052;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AH50orR5FyIlpjugYepr6bfFOHdgPbrZzYYt/ypEgjU=;
+        b=CzBOwr2PdNV768WYRligvvSuVqyxHb1YgI9lV7a2lXlBJkG4rnyzsSfFpB9ZHBNags
+         mKmhabNLoKpqwsCOixjz6gdady/JjoGt4V1mCZESGYrgjrZWrwHqpJczw8DQ/lDJ07MY
+         lXd5NyA8Wmpn+dVQfZNtfinSbbhtw3ndjppm/E8kcDcr/owz0N6PBgj7EssTpTRBU+lX
+         +vuqbBiuOjcvRrFnRYmi+9qNP3ZIKN3IIHgcWjl+3MIfXYvYdnaH/WB9Q3xisQuGWdyh
+         xJXLR+4PVAl4STs0AiA4ZSvakwfezwK/+QBcdkYtnLixB1kdKF+FXxFqXmIC36EoPq4h
+         0Wbw==
+X-Forwarded-Encrypted: i=1; AJvYcCXi6jDgBp439BGPAiohbzz1BnDs+QraMe69XZvJjqBeJo585ceiveQnrdqM3AeNSwfmtBO4Z4mx5MdrUZjZDhpTQcswBuBcyG6qnqRZZnID/kSqmQZRd6SBAm2GPzywieKqE6ryJOn1NA==
+X-Gm-Message-State: AOJu0YwNUe9zJxMqdlU9QeOYLFDr5lrBF0x8KqdVpiEnoa2sKRPkVlKA
+	chgnMOBy/FAUv9wg3K8q5y6WiMIHOIBS8Yb8DeosSdTMBGaJbQdD
+X-Google-Smtp-Source: AGHT+IHc7rN5RhTKgGX+U2xnByt7BB6V+V8NYKfp2g4qSX34Lk1wtCxbkckFHtg4nNii+mCRqOfJPg==
+X-Received: by 2002:a05:6a00:a14:b0:6fc:fcc8:cb38 with SMTP id d2e1a72fcca58-705bcf1accamr2931743b3a.33.1718208251825;
+        Wed, 12 Jun 2024 09:04:11 -0700 (PDT)
+Received: from shresth-aspirea71576g.abesec.ac.in ([139.5.197.147])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-705382784b9sm5911884b3a.48.2024.06.12.09.04.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jun 2024 09:01:00 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Wed, 12 Jun 2024 09:00:59 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Noah Wang <noahwang.wang@outlook.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	jdelvare@suse.com, corbet@lwn.net, Delphine_CC_Chiu@wiwynn.com,
-	peteryin.openbmc@gmail.com, javier.carrasco.cruz@gmail.com,
-	patrick.rudolph@9elements.com, bhelgaas@google.com, lukas@wunner.de,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] hwmon: add MP9941 driver
-Message-ID: <7e58e227-7896-486d-bf3a-1b4db647ea81@roeck-us.net>
-References: <SEYPR04MB6482721F71C0527767A149DEFAC72@SEYPR04MB6482.apcprd04.prod.outlook.com>
- <20240611101417.76911-1-noahwang.wang@outlook.com>
- <SEYPR04MB648294005D55F70736B519F6FAC72@SEYPR04MB6482.apcprd04.prod.outlook.com>
+        Wed, 12 Jun 2024 09:04:11 -0700 (PDT)
+From: Shresth Prasad <shresthprasad7@gmail.com>
+To: vkoul@kernel.org,
+	kishon@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	sebastian.reichel@collabora.com,
+	s.hauer@pengutronix.de,
+	cristian.ciocaltea@collabora.com,
+	andy.yan@rock-chips.com
+Cc: linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	skhan@linuxfoundation.org,
+	javier.carrasco.cruz@gmail.com,
+	Shresth Prasad <shresthprasad7@gmail.com>
+Subject: [PATCH v2] dt-bindings: phy: rockchip-emmc-phy: Convert to dtschema
+Date: Wed, 12 Jun 2024 21:33:37 +0530
+Message-ID: <20240612160336.5132-2-shresthprasad7@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <SEYPR04MB648294005D55F70736B519F6FAC72@SEYPR04MB6482.apcprd04.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jun 11, 2024 at 06:14:17PM +0800, Noah Wang wrote:
-> Add support for MPS step-down converter mp9941. This driver exposes
-> telemetry and limit value readings and writtings.
-> 
-> Signed-off-by: Noah Wang <noahwang.wang@outlook.com>
+Convert txt bindings of Rockchip EMMC PHY to dtschema to allow
+for validation.
 
-Applied.
+Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
+---
+Changes in v2:
+    - Fixed example
+    - Changed file referenced in grf.yaml
 
-Thanks,
-Guenter
+Tested against `rockchip/rk3399-firefly.dtb`, `rockchip/rk3399-orangepi.dtb`
+and `rockchip/rk3399-pinebook-pro.dtb`.
+
+ .../bindings/phy/rockchip,emmc-phy.yaml       | 79 +++++++++++++++++++
+ .../bindings/phy/rockchip-emmc-phy.txt        | 43 ----------
+ .../devicetree/bindings/soc/rockchip/grf.yaml |  2 +-
+ 3 files changed, 80 insertions(+), 44 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
+ delete mode 100644 Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+
+diff --git a/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
+new file mode 100644
+index 000000000000..f42045389383
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
+@@ -0,0 +1,79 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/rockchip,emmc-phy.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Rockchip EMMC PHY
++
++maintainers:
++  - Shresth Prasad <shresthprasad7@gmail.com>
++
++properties:
++  "#phy-cells":
++    const: 0
++
++  compatible:
++    const: rockchip,rk3399-emmc-phy
++
++  reg:
++    description:
++      PHY register address offset and length in "general register files"
++    maxItems: 1
++
++  clock-names:
++    description: |
++      Although this is not a required property (because most boards can get
++      basic functionality without having access to it), it is strongly
++      suggested.
++    const: emmcclk
++
++  clocks:
++    description:
++      Should have a phandle to the card clock exported by the SDHCI driver.
++    maxItems: 1
++
++  drive-impedance-ohm:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Specifies the drive impedance in Ohm.
++    enum: [33, 40, 50, 66, 100]
++    default: 50
++
++  rockchip,enable-strobe-pulldown:
++    type: boolean
++    description: |
++      Enable internal pull-down for the strobe
++      line.  If not set, pull-down is not used.
++
++  rockchip,output-tapdelay-select:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Specifies the phyctrl_otapdlysec register.
++    default: 0x4
++    maximum: 0xf
++
++required:
++  - "#phy-cells"
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    grf: syscon@ff770000 {
++      compatible = "rockchip,rk3399-grf", "syscon", "simple-mfd";
++      reg = <0x0 0xff770000 0x0 0x10000>;
++      #address-cells = <1>;
++      #size-cells = <1>;
++
++      emmcphy: phy@f780 {
++        #phy-cells = <0>;
++        compatible = "rockchip,rk3399-emmc-phy";
++        reg = <0xf780 0x20>;
++        clocks = <&sdhci>;
++        clock-names = "emmcclk";
++        drive-impedance-ohm = <50>;
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt b/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+deleted file mode 100644
+index 57d28c0d5696..000000000000
+--- a/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
++++ /dev/null
+@@ -1,43 +0,0 @@
+-Rockchip EMMC PHY
+------------------------
+-
+-Required properties:
+- - compatible: rockchip,rk3399-emmc-phy
+- - #phy-cells: must be 0
+- - reg: PHY register address offset and length in "general
+-   register files"
+-
+-Optional properties:
+- - clock-names: Should contain "emmcclk".  Although this is listed as optional
+-		(because most boards can get basic functionality without having
+-		access to it), it is strongly suggested.
+-		See ../clock/clock-bindings.txt for details.
+- - clocks: Should have a phandle to the card clock exported by the SDHCI driver.
+- - drive-impedance-ohm: Specifies the drive impedance in Ohm.
+-                        Possible values are 33, 40, 50, 66 and 100.
+-                        If not set, the default value of 50 will be applied.
+- - rockchip,enable-strobe-pulldown: Enable internal pull-down for the strobe
+-                                    line.  If not set, pull-down is not used.
+- - rockchip,output-tapdelay-select: Specifies the phyctrl_otapdlysec register.
+-                                    If not set, the register defaults to 0x4.
+-                                    Maximum value 0xf.
+-
+-Example:
+-
+-
+-grf: syscon@ff770000 {
+-	compatible = "rockchip,rk3399-grf", "syscon", "simple-mfd";
+-	#address-cells = <1>;
+-	#size-cells = <1>;
+-
+-...
+-
+-	emmcphy: phy@f780 {
+-		compatible = "rockchip,rk3399-emmc-phy";
+-		reg = <0xf780 0x20>;
+-		clocks = <&sdhci>;
+-		clock-names = "emmcclk";
+-		drive-impedance-ohm = <50>;
+-		#phy-cells = <0>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+index 79798c747476..1f88416657cc 100644
+--- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
++++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+@@ -178,7 +178,7 @@ allOf:
+       patternProperties:
+         "phy@[0-9a-f]+$":
+           description:
+-            Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
++            Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
+ 
+   - if:
+       properties:
+-- 
+2.45.2
+
 
