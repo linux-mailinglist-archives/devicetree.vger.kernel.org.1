@@ -1,64 +1,89 @@
-Return-Path: <devicetree+bounces-74922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66710905002
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 12:06:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2051D905014
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 12:09:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABE29B2109A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:06:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1E59282207
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:09:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A32F816E875;
-	Wed, 12 Jun 2024 10:06:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47A1F16EBE6;
+	Wed, 12 Jun 2024 10:08:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EvugnS9e"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="vzMRfhY8";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="jTlIT4pC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from fhigh4-smtp.messagingengine.com (fhigh4-smtp.messagingengine.com [103.168.172.155])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11AE216D9D0;
-	Wed, 12 Jun 2024 10:06:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9052316E881;
+	Wed, 12 Jun 2024 10:08:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718186803; cv=none; b=RI8sGal26XzQUnEDoaPftpVEgv0Lfyy9Z4X5wI58q63PHpQF5M5s6EdwXPd3gOagE3vwyVZarq5Fz8qbhE1wQnbljE2aM4PJMcJEFLg27WSgAF9kmZjhC6U+04AL0CIX0iavanW+UxfOIFyfh9nM/2Da4FaT3Ysuv/LJw1blGuQ=
+	t=1718186938; cv=none; b=tERVmUqTp9lFbJBMnv+Pa5yMA7nTRgePhYy5oZ0sbYNbAsaHGujeT3IxXx10ozDwXVjRAHWUHvXqt+mqfdRW7sib+wt9SWKe+9PexTp75mKQ84HEeALO2VK/iIdJoviS764C1eaY8mQH+deBidDSxIlyld8a7YIPyhMTbUSVwkM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718186803; c=relaxed/simple;
-	bh=IVKEwgNHIcsqKi3KaJI7BZKK53+kZnzMOSBZPucSbY8=;
-	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=jznB1gM6rN2hGRKGSYUv2qe7m4ZRm6n5JBtD5hUpUt25pCMRIte4AjUq/nLfjCXARQ32ypmjVbBA/3Lz0jB3oNHdft6tXuDkzulyqF551q60W4/zSNxILNXpuQVYwNj3QiHuWu9CuYQ1aY9rCPmwgXvj6q43y7WNLOx/iETgFdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=EvugnS9e; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45C8mNew018016;
-	Wed, 12 Jun 2024 10:06:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=mgdW+0UCbIM/mwP/K73Pdv
-	dIj9QE3kUeANIqtl06EOU=; b=EvugnS9ebwigKhx7n69+XitcVuP8U7H6BrgJpZ
-	DtSb8KnjMnKHBSx7tkED3TWikaGtb4l82Qtdwi/eUXGqmOKqOymKJ32RlpyDOLAU
-	l1vY5pvMEyXz7VCIekAFG7U/W9DrtCIzWbLCVkaWuD1VI3+naPNu3sCvspdtsV7x
-	0WJ5dGqx4GQZHy05m5OKaU4BRfzOfilgA+YZlb9TKb77neiuHRyyk8T91UgBz8dG
-	eriaSzB/IyCjPi327jmL+Y5wRkx9C9wCHFtLAMAaLEZkHwrpxxNXpOgGtQkx/fvd
-	oB/1nunj1GQeFp7rHcjoT/UpkRljeMOhGNqa/xsi6HsmuUaw==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ypmjau4gt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 12 Jun 2024 10:06:37 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45CA6a24013996
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 12 Jun 2024 10:06:36 GMT
-Received: from hu-tdas-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 12 Jun 2024 03:06:31 -0700
-From: Taniya Das <quic_tdas@quicinc.com>
-Subject: [PATCH v2 0/8] Add support for SA8775P Multimedia clock
- controllers
-Date: Wed, 12 Jun 2024 15:36:05 +0530
-Message-ID: <20240612-lemans-v2-split-mm-series-12-6-v2-0-056e828b0001@quicinc.com>
+	s=arc-20240116; t=1718186938; c=relaxed/simple;
+	bh=kDKnbPN2HdEb0ASZjrHmYSVseFvVUKnuH39mFiiBr68=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jS+v95moMPOJbQRv4Yck7aDN3x76VEs5bR0A5QO2J8dEjgPGo3Swj9jk4dfzvY/QpTFSuVV3ZpBylz//2GxWXmoQtHXdLU69lR8OsGAaGeSIYUFI2m5FXnoWirhUEJ2Rq1XNVLyL5dL7jaMSnPcOKGA4C5fxoyABWwsxlwF/kbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=vzMRfhY8; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=jTlIT4pC; arc=none smtp.client-ip=103.168.172.155
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+	by mailfhigh.nyi.internal (Postfix) with ESMTP id B3A6411401D4;
+	Wed, 12 Jun 2024 06:08:55 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Wed, 12 Jun 2024 06:08:55 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm2; t=1718186935; x=1718273335; bh=4N
+	V1RUD3ve28x6fczxn0+RvtHY141lPA7ObponZntjo=; b=vzMRfhY8ZbaxC34eaW
+	OUJ/XJKXR12u8+fg8LlsvPD89szTORzdYXxim8Xx4HkSMwjsmAVLONaZb+SzrXLr
+	Z40suefOzJupm5FfgydmPRj69XHsMfQ9P8KsHhB8enuy7NwNFIoovOZ1wBfHS9p9
+	hcYrjZ6A/P/OUr5phyStjefg6GB+phrwd2xGAKixVXekWupF71nMQvsVKxD4bHDJ
+	khKFzoKNrc4k0Fj39nZk9OcZG68P3DOZPD3RhRF2Mcf41ljUfz0v3w39lHSFKsC9
+	vL141PErK4HgIFnNNvuhQk99RRH3q6zGb3LqWMfwl9I52it414MapvyB1MWhfFGd
+	PHKA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm1; t=1718186935; x=1718273335; bh=4NV1RUD3ve28x
+	6fczxn0+RvtHY141lPA7ObponZntjo=; b=jTlIT4pCXhfMLcMJ/OvH8p+etmINn
+	9djp5coQBWDgWcjqlhJKm5ceG0LH6fKwYPjCDE4U2s4hfT5DwMs5vwrLmXvYCf2G
+	fLCP+rs7eh1F8CxoG032p96MHZWTHW1jBTHTi2r2emxf9GWiLMncRD5f60Wmncjt
+	ZFDKPPSAkncMhuOcYuSv1gJ65IQMbR/iLUb0refiQ2RYLSUwq9XeMKI6UE7AwLFt
+	7TmVTHIyWBj07gpaDWq6ECk1zc/+VOjucKoe4YdMbG/IkafiMi3d8EJP2Ji7N9VE
+	lbWYc/lSPX5rEBQKDRPbsAWrG9GY3sFr4knCYBFYPn7mHTC+VyOx3DOnA==
+X-ME-Sender: <xms:t3NpZqsX6vwlilyTVitDQD5Hf9ZxueORMmgFjc3FNvvmxTVxFHNm0g>
+    <xme:t3NpZvfRiWQhsQkPakQT2VJBQWsOttk4vNf5JkVvxDZs1QYnTu5tDm_0sNruHkMPv
+    jSh9elP2shIuFaV_LM>
+X-ME-Received: <xmr:t3NpZlyoZlqYg2Bz0l3cUW4vv6igXjCTo3-czPw_aeKdKXEloSowjrQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfedugedgvdegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffufffkgggtgffvvefosehtjeertdertdejnecuhfhrohhmpeflihgrgihu
+    nhcujggrnhhguceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomheqnecugg
+    ftrfgrthhtvghrnhepgfevffejteegjeeflefgkeetleekhfeugfegvdeuueejkeejteek
+    kedvfffffedunecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghruf
+    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehjihgrgihunhdrhigrnhhgsehf
+    lhihghhorghtrdgtohhm
+X-ME-Proxy: <xmx:t3NpZlPDq_r47ps23fCXNUlV_0LjvaGmTLdfaKT9MG-1m4bHji-3PQ>
+    <xmx:t3NpZq-AZlNIqzOOJpe8yNY1IBdAlCK0Gk2K8Aywo2flmZvgYUevew>
+    <xmx:t3NpZtWgfH5XJTLu6RthrfImfOBcpZdSOQa6ut1tuJLt0YxClxcRuA>
+    <xmx:t3NpZjdqiUCH036LvaceS3DtUZmdqGCEUxt0llGvP0gUe3tnSSE4gw>
+    <xmx:t3NpZr2cunn_r3xhveMz35WN8GTa0qUO93cKDAsJE5iZA2z9LxYG1Q4m>
+Feedback-ID: ifd894703:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 12 Jun 2024 06:08:54 -0400 (EDT)
+From: Jiaxun Yang <jiaxun.yang@flygoat.com>
+Subject: [PATCH v2 0/6] MIPS: cm: Probe GCR address from devicetree
+Date: Wed, 12 Jun 2024 11:08:52 +0100
+Message-Id: <20240612-cm_probe-v2-0-a5b55440563c@flygoat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,136 +92,68 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAA1zaWYC/42NQQ6CMBBFr2Jm7Rg6IUhdeQ/DoilTmYQWbLHRE
- O5uxQu4fP8n762QOAonuBxWiJwlyRQK0PEAdjDhzih9YaCK6qpRhCN7ExJmwjSPsqD3+FNgORu
- syVDL2lnjGIpkjuzktQduXeFB0jLF997L6rv+rc4KK1Tntibd61Y7vj6eYiXYk508dNu2fQCvi
- buQzgAAAA==
-To: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>
-CC: <devicetree@vger.kernel.org>, <quic_jkona@quicinc.com>,
-        <quic_imrashai@quicinc.com>, <quic_imrashai@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-X-Mailer: b4 0.14-dev-f7c49
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: pkfiWNrtj4hsYy7sfEux5eVoYheE5xCy
-X-Proofpoint-ORIG-GUID: pkfiWNrtj4hsYy7sfEux5eVoYheE5xCy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-12_06,2024-06-11_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 malwarescore=0
- clxscore=1011 mlxscore=0 impostorscore=0 mlxlogscore=999
- lowpriorityscore=0 spamscore=0 phishscore=0 bulkscore=0 priorityscore=1501
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406120073
+X-B4-Tracking: v=1; b=H4sIALRzaWYC/0XM0QqCMBTG8VeRc91imzmtq94jJNw80wPpZJORy
+ N69JUSX/4+P3w4BPWGAW7GDx0iB3JxDngowYzcPyKjPDZLLC6+4YmZ6Lt5pZNwoVZtGq1JbyPf
+ Fo6X3QT3a3COF1fntkKP4rj+k/iNRMM6E6LXtq2tjS3O3r21w3Xo2boI2pfQBMi8ZqqIAAAA=
+To: Paul Burton <paulburton@kernel.org>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Serge Semin <fancer.lancer@gmail.com>, linux-mips@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Jiaxun Yang <jiaxun.yang@flygoat.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1491;
+ i=jiaxun.yang@flygoat.com; h=from:subject:message-id;
+ bh=kDKnbPN2HdEb0ASZjrHmYSVseFvVUKnuH39mFiiBr68=;
+ b=owGbwMvMwCXmXMhTe71c8zDjabUkhrTM4m0saiFHVm7n7Naeo7y895vme2eH6VPOrt0gumNS0
+ owr53fd6ihlYRDjYpAVU2QJEVDq29B4ccH1B1l/YOawMoEMYeDiFICJZF1i+B9yYt/+aV7rzoaX
+ /dpe1b/t2FnznxvnrHm4VWGTxnPx+bN4GBnumFtOFVDedOrm1I0CS0xlrjn8z+pbOY/v63nJuo2
+ 3ergZAQ==
+X-Developer-Key: i=jiaxun.yang@flygoat.com; a=openpgp;
+ fpr=980379BEFEBFBF477EA04EF9C111949073FC0F67
 
-Add support for videocc, camcc, dispcc0 and dispcc1 on Qualcomm SA8775P
-platform.
+Hi all,
 
-These multimedia clock controller and device tree patches are split
-from the below series.
-https://lore.kernel.org/all/20240531090249.10293-1-quic_tdas@quicinc.com/
+This series enabled mips-cm code to probe GCR address from devicetree.
 
-Changes in this series compared to above series:
- [PATCH 1/8]: Updated bindings to reference qcom,gcc.yaml
- [PATCH 3/8]: Updated bindings to reference qcom,gcc.yaml
- [PATCH 5/8]: Updated bindings to reference qcom,gcc.yaml
- [PATCH 7/8]: Split updating sleep_clk frequency to separate patch
- [PATCH 8/8]: Newly added to update sleep_clk frequency to 32000
+This feature has been implemented in MIPS's out-of-tree kernel for
+a while, and MIPS's u-boot fork on boston will generate required
+"mti,mips-cm" node as well.
 
-Taniya Das (8):
-  dt-bindings: clock: qcom: Add SA8775P video clock controller
-  clk: qcom: Add support for Video clock controller on SA8775P
-  dt-bindings: clock: qcom: Add SA8775P camera clock controller
-  clk: qcom: Add support for Camera Clock Controller on SA8775P
-  dt-bindings: clock: qcom: Add SA8775P display clock controllers
-  clk: qcom: Add support for Display clock Controllers on SA8775P
-  arm64: dts: qcom: Add support for multimedia clock controllers
-  arm64: dts: qcom: Update sleep_clk frequency to 32000 on SA8775P
+Please review.
+Thanks
 
- .../bindings/clock/qcom,sa8775p-camcc.yaml    |   62 +
- .../bindings/clock/qcom,sa8775p-dispcc.yaml   |   79 +
- .../bindings/clock/qcom,sa8775p-videocc.yaml  |   62 +
- arch/arm64/boot/dts/qcom/sa8775p-ride.dts     |    2 +-
- arch/arm64/boot/dts/qcom/sa8775p.dtsi         |   59 +
- drivers/clk/qcom/Kconfig                      |   31 +
- drivers/clk/qcom/Makefile                     |    3 +
- drivers/clk/qcom/camcc-sa8775p.c              | 1849 +++++++++++++++++
- drivers/clk/qcom/dispcc0-sa8775p.c            | 1481 +++++++++++++
- drivers/clk/qcom/dispcc1-sa8775p.c            | 1481 +++++++++++++
- drivers/clk/qcom/videocc-sa8775p.c            |  576 +++++
- .../dt-bindings/clock/qcom,sa8775p-camcc.h    |  107 +
- .../dt-bindings/clock/qcom,sa8775p-dispcc.h   |   87 +
- .../dt-bindings/clock/qcom,sa8775p-videocc.h  |   47 +
- 14 files changed, 5925 insertions(+), 1 deletion(-)
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,sa8775p-camcc.yaml
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,sa8775p-dispcc.yaml
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,sa8775p-videocc.yaml
- create mode 100644 drivers/clk/qcom/camcc-sa8775p.c
- create mode 100644 drivers/clk/qcom/dispcc0-sa8775p.c
- create mode 100644 drivers/clk/qcom/dispcc1-sa8775p.c
- create mode 100644 drivers/clk/qcom/videocc-sa8775p.c
- create mode 100644 include/dt-bindings/clock/qcom,sa8775p-camcc.h
- create mode 100644 include/dt-bindings/clock/qcom,sa8775p-dispcc.h
- create mode 100644 include/dt-bindings/clock/qcom,sa8775p-videocc.h
-
---
-2.43.0
-
+Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
 ---
 Changes in v2:
-- EDITME: describe what is new in this series revision.
-- EDITME: use bulletpoints and terse descriptions.
-- Link to v1: https://lore.kernel.org/r/20240612-lemans-v2-split-mm-series-12-6-v1-0-178429d989fe@quicinc.com
+- Fix probe order on malta (Serge)
+- dt binding improvements (Conor)
+- Build warning fix
+- Link to v1: https://lore.kernel.org/r/20240507-cm_probe-v1-0-11dbfd598f3c@flygoat.com
 
 ---
-Taniya Das (8):
-      dt-bindings: clock: qcom: Add SA8775P video clock controller
-      clk: qcom: Add support for Video clock controller on SA8775P
-      dt-bindings: clock: qcom: Add SA8775P camera clock controller
-      clk: qcom: Add support for Camera Clock Controller on SA8775P
-      dt-bindings: clock: qcom: Add SA8775P display clock controllers
-      clk: qcom: Add support for Display clock Controllers on SA8775P
-      arm64: dts: qcom: Add support for multimedia clock controllers
-      arm64: dts: qcom: Update sleep_clk frequency to 32000 on SA8775P
+Jiaxun Yang (6):
+      MIPS: generic: Do __dt_setup_arch in prom_init
+      MIPS: malta: Move SMP initialisation to device_tree_init
+      MIPS: cm: Prefix probe functions with __init
+      MIPS: Move mips_cm_probe after prom_init
+      dt-bindings: mips: Document mti,mips-cm
+      MIPS: cm: Probe GCR address from DeviceTree
 
- .../bindings/clock/qcom,sa8775p-camcc.yaml         |   62 +
- .../bindings/clock/qcom,sa8775p-dispcc.yaml        |   79 +
- .../bindings/clock/qcom,sa8775p-videocc.yaml       |   62 +
- arch/arm64/boot/dts/qcom/sa8775p-ride.dts          |    2 +-
- arch/arm64/boot/dts/qcom/sa8775p.dtsi              |   59 +
- drivers/clk/qcom/Kconfig                           |   31 +
- drivers/clk/qcom/Makefile                          |    3 +
- drivers/clk/qcom/camcc-sa8775p.c                   | 1849 ++++++++++++++++++++
- drivers/clk/qcom/dispcc0-sa8775p.c                 | 1481 ++++++++++++++++
- drivers/clk/qcom/dispcc1-sa8775p.c                 | 1481 ++++++++++++++++
- drivers/clk/qcom/videocc-sa8775p.c                 |  576 ++++++
- include/dt-bindings/clock/qcom,sa8775p-camcc.h     |  107 ++
- include/dt-bindings/clock/qcom,sa8775p-dispcc.h    |   87 +
- include/dt-bindings/clock/qcom,sa8775p-videocc.h   |   47 +
- 14 files changed, 5925 insertions(+), 1 deletion(-)
+ .../devicetree/bindings/mips/mti,mips-cm.yaml      | 38 ++++++++++++
+ arch/mips/generic/init.c                           |  9 ++-
+ arch/mips/include/asm/mips-cm.h                    |  4 +-
+ arch/mips/kernel/mips-cm.c                         | 69 ++++++++++++++++++----
+ arch/mips/kernel/setup.c                           |  2 +-
+ arch/mips/mti-malta/malta-init.c                   |  8 ++-
+ 6 files changed, 111 insertions(+), 19 deletions(-)
 ---
-base-commit: 03d44168cbd7fc57d5de56a3730427db758fc7f6
-change-id: 20240612-lemans-v2-split-mm-series-12-6-42a28e9fcafe
+base-commit: 2b84edefcad14934796fad37b16512b6a2ca467e
+change-id: 20240506-cm_probe-0c667c8b63bf
 
 Best regards,
 -- 
-Taniya Das <quic_tdas@quicinc.com>
+Jiaxun Yang <jiaxun.yang@flygoat.com>
 
 
