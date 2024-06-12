@@ -1,125 +1,134 @@
-Return-Path: <devicetree+bounces-74862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6A93904D32
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 09:55:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16A09904D4E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 09:59:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F2B3283BEC
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 07:55:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B03332850B0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 07:59:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA54A16C69A;
-	Wed, 12 Jun 2024 07:55:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9596116D303;
+	Wed, 12 Jun 2024 07:59:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=timesys-com.20230601.gappssmtp.com header.i=@timesys-com.20230601.gappssmtp.com header.b="Af/GNqtC"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="I5gXvipR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F305D16B736
-	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 07:55:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60BA116C857
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 07:59:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718178910; cv=none; b=nR5YQMkenxzo+OZX344j8JdvFSfo/lVJYGojOMl6RP431Ul88XbrbNgqN/Nr6li/GzUyABPyFDlSQWUdHKsACiB8lWTrCJsoW9/SorGWtcI2fV6fTKxVXiailZDEN8CK0yd4W99lPW8AHZoyYZV9dvVy+OXILUab3sxQrD1GNTw=
+	t=1718179153; cv=none; b=TlQm1ZW8A1lemKOM+r/B7aLkL1SGbxQENpNzrpnMlxwI2G5h1cgxWua0BFAp1X8r9vydiTV9TV6IoSIBy+lajyHA+ZKX/41HTCapJSg47VB95LbpD8sdxjkdkMk9cQF3tkeyke1TOEaBWapbrmxGDZav/dpAEd1bigSqHHWyLFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718178910; c=relaxed/simple;
-	bh=/jcoXUR9wDP6KAAPbxMnAdcj2368TaJUtRP9CxBQamU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=p+NZsbgyRbuaqDR3bS/aLwM7sB39AIckkNL2lMwquFwZfQAtMYro7Xkycz+sFZ6a7/aqTWc1h8Vk0j60lWYyOrgkp5QpEt0+KS3betaUnGnfMHGMx4UOO3zyOthU6qq+j4dL3pdz/QHAuBQyKmWhIk/Jd0SV8x4dJl9X2fwMXrE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timesys.com; spf=pass smtp.mailfrom=timesys.com; dkim=pass (2048-bit key) header.d=timesys-com.20230601.gappssmtp.com header.i=@timesys-com.20230601.gappssmtp.com header.b=Af/GNqtC; arc=none smtp.client-ip=209.85.219.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timesys.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timesys.com
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dfa6e0add60so6486459276.3
-        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 00:55:08 -0700 (PDT)
+	s=arc-20240116; t=1718179153; c=relaxed/simple;
+	bh=vwNJ897gwBvDgypF3Aq9mgPnj8YQo/CTPzx+egzni4c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LkUjLnESaeg3GMfGxd+0w2jSpnWNnbPfc/IzbO2mOGQ3N2o4veGhXtc2ObEuf6IN9R/aXBGIe0apzmPYBn1Yx/6+LfA+ZBb9q7IMRIs+kqfc11C8fSW386YFqFTtD5bFnRuhy84cm6P8ZFCKbimK30GbpD7gS1MsYc8SPOBEdzk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=I5gXvipR; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-52bd48cf36bso5357838e87.3
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 00:59:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=timesys-com.20230601.gappssmtp.com; s=20230601; t=1718178908; x=1718783708; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=s8zvLumEmzHSVfDBX+K3KODMcTb3eNmXQ7W6gFdSMig=;
-        b=Af/GNqtCTkyI2n74kjCoTQa2O4IpWQO7pwNbUD4DMkqFjuLpI9PNJx/iQvPMBYlSfH
-         fnmXHerNMpYuCmU2a2vAg8e+dDTHIaPf81ZBb02eOEUGLcJU6kYNJH+fKK0yDAtozCsK
-         FIXehBzv509pz24GxQ+DbAw1GRwL1WIqb1Xe2oKZIAsnSQwKKwZh42j1EV1024pSfc5E
-         0RdzQJViPhK4kIOqV1ELzknGGc7ZQaPoK+iXouEdU3ay5FD+N/xg7+Y5Fg7W4ARQdZ4L
-         ayeaq9+kxnbIganHelSaDuund1F8A9NjBbNar7UmCT/GblIPv2eFJPAtiJu5CUafKHRa
-         9XPQ==
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1718179149; x=1718783949; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=J9bGYOos+5ZAvSBq70WnnGsqeYl9M4GtIdifUxXDp6M=;
+        b=I5gXvipR80R28yg5gbkUSptWsHbXOtdB2Bceasn9V6GRTzx14TuvcP2yFcsQjpU34s
+         rApwinPS8KOsRdnrQyVzMhergOJPYr0sU5Ip85rHekWMgpKl1Zo9xXE5WDNhRU3739pV
+         jzBElr9hD7hz8MrcU5OvhAOyjYl/xDXbP21YXId5JEOi3QTpqCc3/mYVL32izVozpSXB
+         9LQyynlsXXqrssTII9Y9IUTVOXSsjqzN7mr03uFnQZBFAbFvjWjrmKJqTW7uUpt8tGOJ
+         wFHv+ToJCu8YIJlB/Sb7thlvGjd6OX6eFQ4Xgy2HbNrfpwvugNQErl/xi9BqKsP6mdWT
+         grZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718178908; x=1718783708;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=s8zvLumEmzHSVfDBX+K3KODMcTb3eNmXQ7W6gFdSMig=;
-        b=si2GL2ws7AWd2roh6+794kkGCSq+Ov5THCdpdgRnp3aL+DvsUcILdTMUadEGFgat+I
-         NiFKOV7CPC0/UWsEHNoR9B7VwP9j3dxWmSeAnoSAAGRDQV+VAvKN9WwrAGzsBABQmvWF
-         lMVywayI0nb30Jjxup9mu5WEc22NCTqXN8MQ2JhBCcWGWMY/d5FJw8SA1hDU00GROa19
-         R/gAELKsup9fjIOJ2hZ7bvEgW2ZQBqU+lw+tL2oQuKjaWU29n1H8Kv7MT6han7EwslhH
-         Rxb3ngNxtGPwH/xsUBC8SstgW6KitgTEyhACWEghTQksRlyoISlVkkTFxzDXoC9osS0L
-         c2Ug==
-X-Forwarded-Encrypted: i=1; AJvYcCXjhNhQ8iqrmVrHWTQlEnDr17im/AzRmwcyCWGIk/T/ZlmdAszCEv2zqqz222RL8boJ6E591IRRzqFe7YCYj0AebBPd2W8q5LIxsw==
-X-Gm-Message-State: AOJu0YxBKQquacbE+hFvS79strzOmdkVpcCCXPXOxr7kv3DibxT3tf6l
-	SGbhiimAGUFaFxV4bzZaRne/m4oNAOSBx+5gy/hCaNRIU7h4F9vyKyI0/32CtrxCPGThJI5J/eh
-	FrhablLIYzrfJ0cih9qAJSSTypBs6hA0erVq1nw==
-X-Google-Smtp-Source: AGHT+IFPLy4bDjB26DeJ3OyETqud+YR8g7kmBRh3/NifyRwyRcvSuS2NJ859y2s2TX4hnMNdepvtl112sIycLjmhYjk=
-X-Received: by 2002:a25:918a:0:b0:dfe:ed7:84be with SMTP id
- 3f1490d57ef6-dfe67064dedmr951615276.25.1718178907988; Wed, 12 Jun 2024
- 00:55:07 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1718179149; x=1718783949;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=J9bGYOos+5ZAvSBq70WnnGsqeYl9M4GtIdifUxXDp6M=;
+        b=aaH7B9zX6Q8F3dxoJ9+YexDdG+wCsKp6FJS4ugH/MtLv17RKols518RabG1eqaM8hQ
+         2GFjC371RKviaoHuK5qRBLF1HQujvLwOxMQwAYKDkPM1NIVHtNE7srIanLWQu42FpJnI
+         bS8g56TENX48HtbG1dX+e2UWNMBvpAy2yH3Zq9fxwlMrcuiTNxOsMEZBX2o+nbqOUiKK
+         xgCYihqyRcCKzVF246+m/O96Wu4sP7LRxaxDPCH0t6rzBIOGpBygRQ0A+lF5o/YhmhIy
+         H5byebNuZgnHuESWIqT6imViYB+ib2kzUf5aIyoAID+aDGn9HVWliGnljjSVOqefPaCO
+         qs9A==
+X-Forwarded-Encrypted: i=1; AJvYcCV6HvqSiuF0twXTaRrfc1KacYcv/sJIYvuh32GkOJMZV288fRz6BTMZyDtmmcchNQ/VlBG6+66BEmj58akIZoPa4t5Kz7b2Vn8SnA==
+X-Gm-Message-State: AOJu0YwUaeGG2BI8D1JbTsH00VCmiqte+Sm+lXqD5pq5QWGbDNCQ7E9y
+	mO8w60vnaDAdJH8yakIsChVgny7ZjzZIk8ho6SUpFgOFjeYbSNCzoYXpVXW0zdo=
+X-Google-Smtp-Source: AGHT+IHW4NIxUvz4W89OLc8Yhve4W25GsEQm/AZgXDZVaD85P+vCuq8RK+JIPGo75+rm9H3KVgiVuA==
+X-Received: by 2002:a05:6512:1243:b0:52b:bf8f:5690 with SMTP id 2adb3069b0e04-52c9a3fd437mr800598e87.52.1718179149308;
+        Wed, 12 Jun 2024 00:59:09 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:8d3:3800:a172:4e8b:453e:2f03])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422874de607sm15312315e9.34.2024.06.12.00.59.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jun 2024 00:59:09 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-bluetooth@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [GIT PULL] Immutable tag between the Bluetooth and pwrseq branches for v6.11-rc1
+Date: Wed, 12 Jun 2024 09:58:29 +0200
+Message-ID: <20240612075829.18241-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240611094810.27475-1-piotr.wojtaszczyk@timesys.com> <Zmgor8accyAiUkUO@finisterre.sirena.org.uk>
-In-Reply-To: <Zmgor8accyAiUkUO@finisterre.sirena.org.uk>
-From: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
-Date: Wed, 12 Jun 2024 09:54:57 +0200
-Message-ID: <CAG+cZ05=w5KbxOOtpo99B=OHBaLNRKKJVrFT67CH1-6z1gP7ZA@mail.gmail.com>
-Subject: Re: [Patch v2 1/2] ASoC: fsl: Add i2s and pcm drivers for LPC32xx CPUs
-To: Mark Brown <broonie@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vladimir Zapolskiy <vz@mleia.com>, Russell King <linux@armlinux.org.uk>, Jaroslav Kysela <perex@perex.cz>, 
-	Takashi Iwai <tiwai@suse.com>, Chancel Liu <chancel.liu@nxp.com>, Arnd Bergmann <arnd@arndb.de>, 
-	Michael Ellerman <mpe@ellerman.id.au>, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org, 
-	linuxppc-dev@lists.ozlabs.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jun 11, 2024 at 12:36=E2=80=AFPM Mark Brown <broonie@kernel.org> wr=
-ote:
-> > +FREESCALE SOC LPC32XX SOUND DRIVERS
-> > +M:   Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
-> > +L:   alsa-devel@alsa-project.org (moderated for non-subscribers)
-> > +L:   linuxppc-dev@lists.ozlabs.org
-> > +S:   Orphan
-> > +F:   sound/soc/fsl/lpc3xxx-*
-> > +
->
-> It seems a bit odd to add yourself as a maintainer while also marking
-> the driver as orphan?
-Nautel Ltd agreed to maintain this driver, I will add them.
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-> > +     i2s_info_p->clk =3D devm_clk_get(dev, "i2s_clk");
-> > +     if (IS_ERR(i2s_info_p->clk))
-> > +             return dev_err_probe(dev, PTR_ERR(i2s_info_p->clk), "Can'=
-t get clock\n");
-> > +
-> > +     i2s_info_p->clkrate =3D clk_get_rate(i2s_info_p->clk);
-> > +     if (i2s_info_p->clkrate =3D=3D 0)
-> > +             return dev_err_probe(dev, -EINVAL, "Invalid returned cloc=
-k rate\n");
->
-> Nothing ever enables this clock.
-It's enabled in lpc3xxx_i2s_startup() and disabled in lpc3xxx_i2s_shutdown(=
-).
-When the clock is enabled the bit clock on I2S interface always runs.
-So this is to avoid active clock when the interface isn't used.
+Hi Marcel, Luiz,
 
---=20
-Piotr Wojtaszczyk
-Timesys
+Please pull the following power sequencing changes into the Bluetooth tree
+before applying the hci_qca patches I sent separately.
+
+Link: https://lore.kernel.org/linux-kernel/20240605174713.GA767261@bhelgaas/T/
+
+The following changes since commit 83a7eefedc9b56fe7bfeff13b6c7356688ffa670:
+
+  Linux 6.10-rc3 (2024-06-09 14:19:43 -0700)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git tags/pwrseq-initial-for-v6.11
+
+for you to fetch changes up to 2f1630f437dff20d02e4b3f07e836f42869128dd:
+
+  power: pwrseq: add a driver for the PMU module on the QCom WCN chipsets (2024-06-12 09:20:13 +0200)
+
+----------------------------------------------------------------
+Initial implementation of the power sequencing subsystem for linux v6.11
+
+----------------------------------------------------------------
+Bartosz Golaszewski (2):
+      power: sequencing: implement the pwrseq core
+      power: pwrseq: add a driver for the PMU module on the QCom WCN chipsets
+
+ MAINTAINERS                                |    8 +
+ drivers/power/Kconfig                      |    1 +
+ drivers/power/Makefile                     |    1 +
+ drivers/power/sequencing/Kconfig           |   29 +
+ drivers/power/sequencing/Makefile          |    6 +
+ drivers/power/sequencing/core.c            | 1105 ++++++++++++++++++++++++++++
+ drivers/power/sequencing/pwrseq-qcom-wcn.c |  336 +++++++++
+ include/linux/pwrseq/consumer.h            |   56 ++
+ include/linux/pwrseq/provider.h            |   75 ++
+ 9 files changed, 1617 insertions(+)
+ create mode 100644 drivers/power/sequencing/Kconfig
+ create mode 100644 drivers/power/sequencing/Makefile
+ create mode 100644 drivers/power/sequencing/core.c
+ create mode 100644 drivers/power/sequencing/pwrseq-qcom-wcn.c
+ create mode 100644 include/linux/pwrseq/consumer.h
+ create mode 100644 include/linux/pwrseq/provider.h
 
