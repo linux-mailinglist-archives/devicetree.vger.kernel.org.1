@@ -1,155 +1,149 @@
-Return-Path: <devicetree+bounces-74850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5056D904CBE
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 09:26:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61955904CF4
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 09:43:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 697F01C23EA6
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 07:26:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DAA65B244F1
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 07:43:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F51616C6AF;
-	Wed, 12 Jun 2024 07:25:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 884B0167D98;
+	Wed, 12 Jun 2024 07:43:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="eNd5Ceix"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="cABS5A2D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBAB516C6B0
-	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 07:25:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2AE6B651;
+	Wed, 12 Jun 2024 07:43:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718177103; cv=none; b=pdWaviXRj8rQA9kXt59p4T5eIfRwelLiKm6CG4FxiwPASt6lQyVbb2TccqGRHelHfrsu6wpUH9OK/Oye2+HRMolowhNtyWZOnbQHWAmCouDOJuRdASpYuXyAOIpwY2zuAMuvq4rWzs/GodSa4gx1f7JV57zKiQaH1xwxLBnteHY=
+	t=1718178205; cv=none; b=uWyxHgSdRPGrE1VWm8UF9CskdpWu+iuTny7eze094W8JyXligguIOeWTRzP9Kcekiz+TcxDjQDMdnsXNDX7ilQoBM/PYnF/4LOZs2PSiKmWpj2vKYJu7KIQCeQyCXqtvIc1IiotGpNoMIskqijP+jWTPlNx2aR+lYdr8osfCcEQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718177103; c=relaxed/simple;
-	bh=GV8vhLk5W+15Fu37cvfJGGkkE6AbEn/05xw+plQAHrs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hxHJ2CDfghp1HuJ+cCIwSaG/DnJxUSUwhQCM/asB4leyXr+2t3wZWbd3RPDYSiq3LTjR0NhV8IO+v//BDsCFLSmPNdjNT6FC/MWwwf/M/mbe0mv4Nd4oYHztQLydw2gnHE3Doum+EFCBh5FoSOb/Q7CqtLrZhuQKd+HLockUHe0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=eNd5Ceix; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-421d32fda86so29864425e9.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 00:25:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1718177100; x=1718781900; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nZZ648vF2hGd45hekWosmU80qN8L5wlOVqhbijLkjGE=;
-        b=eNd5Ceixs5u/g3v6ODZjFyxjAEDPzadGTSf/6GUQL7AfM8wJycLhpqO50pAS875tqF
-         pg+mNBSeEF7bXrFHJo9gihBclpdBSOEVmvXZIOw+od0s+EhKU7y+XEdx8FQsmCZL/V9a
-         LeEY2OVP4QZOeFICVlJxoNQ61YWf5BHY63T+p624Daf1A8qank+N2v3o0rZSAykbW9W5
-         +vylme+bJks+NgvEyucWZ7G8dgWY3kT7Q4sJWubMgbPALPNtJsFcGzKYrP82VtCdiQs7
-         nh6saJxbGvhw+xi0l05gHc3uU/GxIAy12BRCGYvNigqyXA9PnY/DtWXlj0c4QURYFkpB
-         C6EA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718177100; x=1718781900;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nZZ648vF2hGd45hekWosmU80qN8L5wlOVqhbijLkjGE=;
-        b=MdwYFKoD00mIM9i4Jemzpc2+Si1HESj/ydq7ijqZDoRJGz5Z+YCh8VFqSHssIzzfEZ
-         P1MzJBUaoI4bJ8Npy4j5Fys4A7Vh2XnuWVzgeNf6HZStHaK7m5Ky2Qn6PpoTP3BYmKNR
-         F6xy8M3rgpDEyzaEYfL+O4uBuxSRmjy27wtA71zlzaRUyVrTi+MfY6y8FKeOzp+DwgRF
-         M5j18MzCX8ZEBmxHzhljSEa61eWZ7d8rSpO6I0oYFJLWs7ocoq7gtJIPh2J0dmzVrVXk
-         y7Lf1EQnAfHCnAAUlTJ2kqUDD15bBXKp1lLXr/gcq3SNDl/W4mLQ2MD0Kj5KvWUdP3uy
-         cYEA==
-X-Forwarded-Encrypted: i=1; AJvYcCU7BeDy05K23+UfvIPYGfApGibkrLeEUDhUdpJ59xO+SoICVlSMmvMIVSVawEyz1qrAokcJhdeMP/862TE1phKGkjJHMWQDSUzLoQ==
-X-Gm-Message-State: AOJu0YwEWeajlN4KvKuGObr/XFmYAclDcS0tfKa4xcufhjX2Cx66sbnA
-	HKQ5kYMdvBnmtV4YU14nc6j23EXD5oSNAQXHtt8tDKbTLMTEjkiHqj8k4q5dQJ0=
-X-Google-Smtp-Source: AGHT+IHzJQZOo7VhfwHUIA0Rvt2UNlF28rgiuiNCV0gXUegLqiznXfYjxQF2KbE4ePZs0+9rQ3O3JQ==
-X-Received: by 2002:adf:e6c1:0:b0:354:eb62:365a with SMTP id ffacd0b85a97d-35fdf7adcd2mr650626f8f.25.1718177100076;
-        Wed, 12 Jun 2024 00:25:00 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:8d3:3800:a172:4e8b:453e:2f03])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35f0f551c20sm11692172f8f.69.2024.06.12.00.24.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jun 2024 00:24:59 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kalle Valo <kvalo@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Lukas Wunner <lukas@wunner.de>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Amit Pundir <amit.pundir@linaro.org>,
-	Xilin Wu <wuxilin123@gmail.com>,
-	Alex Elder <elder@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	linux-bluetooth@vger.kernel.org,
-	netdev@vger.kernel.org,
+	s=arc-20240116; t=1718178205; c=relaxed/simple;
+	bh=QHmdx0T93KlMa0bAVjuFjeI5sMM5BrBaWcIHBFNDdIU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ky/l/GOKTRW3U5//9wtQeUqKmsh3b/HGGAbS3wLoVJ7z8osSO8uDiFYEz9kfdZcOIKmVdR50y343/H5XNhUmaGnDaV1eqpteRGsrDPV4sQnmX1B+7JkW7HYBj1cH1irTK9a819XvtiDV4sS/Kuqzt2DJJEAHDaFrZPw3T3TTmNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=cABS5A2D; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718178202;
+	bh=QHmdx0T93KlMa0bAVjuFjeI5sMM5BrBaWcIHBFNDdIU=;
+	h=From:To:Cc:Subject:Date:From;
+	b=cABS5A2D46NNjU2XYkoKIpIpxaFkbqZ5J6LFiXJfNs/7wCEz0umyq0B4HpOooDbAL
+	 o79Ojstduxq2Ht+OQvLdrD3xg9XDNrkj14ny/VnSFT6xyhRhwQuyksxi2Tuy3AMQx7
+	 q7/jJdrDjIUJS0rdBYGIToWN1cNXK4kbnloRGN3Y4NQ8FBkO4Rhib6VjGpAZ7tr6Nl
+	 E/oITx2EqXOWtLO9w5GkN19L9L992pQ6Ogx2O2q25Sc7HZkSlX70PHaWuxJkYrz+eQ
+	 mGNTy0zI+9CcZoHVWH+PEclJ76pTaHglvT+dunJOpPkEEbDOiTiLBIbt9h8inBtHso
+	 5PLYwAmAjyThQ==
+Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id E6A253781188;
+	Wed, 12 Jun 2024 07:43:20 +0000 (UTC)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: linux-scsi@vger.kernel.org
+Cc: alim.akhtar@samsung.com,
+	avri.altman@wdc.com,
+	bvanassche@acm.org,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	peter.wang@mediatek.com,
+	jejb@linux.ibm.com,
+	martin.petersen@oracle.com,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-wireless@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-pci@vger.kernel.org,
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH v9 0/2] pwrseq: introduce the subsystem and first driver
-Date: Wed, 12 Jun 2024 09:24:56 +0200
-Message-ID: <171817709104.16429.1270997690165832044.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240605123850.24857-1-brgl@bgdev.pl>
-References: <20240605123850.24857-1-brgl@bgdev.pl>
+	wenst@chromium.org,
+	michael@walle.cc
+Subject: [PATCH v5 0/8] MediaTek UFS fixes and cleanups - Part 1
+Date: Wed, 12 Jun 2024 09:43:01 +0200
+Message-ID: <20240612074309.50278-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Changes in v5:
+ - Rebased on next-20240612
+ - Tested again on MT8195 and MT8395
+
+Changes in v4:
+ - Replaced Stanley Chu with myself in maintainers as his email is gone
+ - Fixed commit [5/8]
+
+Changes in v3:
+ - Disallowed mt8192 compatible in isolation
+ - Added maxItems to clocks
+
+Changes in v2:
+ - Rebased over next-20240409 (because of merge issue for patch 1)
+ - Added ufs: prefix to patch 1
+ - Added forgotten ufs-rx-symbol clock to the binding
 
 
-On Wed, 05 Jun 2024 14:38:48 +0200, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> Hi!
-> 
-> These are the power sequencing patches sent separately after some
-> improvements suggested by Bjorn Helgaas. I intend to pick them up into a
-> new branch and maintain the subsystem from now on. I then plan to
-> provide an immutable tag to the Bluetooth and PCI subsystems so that the
-> rest of the C changes can be applied. This new branch will then be
-> directly sent to Linus Torvalds for the next merge window.
-> 
-> [...]
+This series performs some fixes and cleanups for the MediaTek UFSHCI
+controller driver.
 
-Applied, thanks!
+In particular, while adding the MT8195 compatible to the mediatek,ufs
+binding, I noticed that it was allowing just one clock, completely
+ignoring the optional ones, including the crypt-xxx clocks, all of
+the optional regulators, and other properties.
 
-[1/2] power: sequencing: implement the pwrseq core
-      commit: 249ebf3f65f8530beb2cbfb91bff1d83ba88d23c
-[2/2] power: pwrseq: add a driver for the PMU module on the QCom WCN chipsets
-      commit: 2f1630f437dff20d02e4b3f07e836f42869128dd
+Between all the other properties, two are completely useless, as they
+are there just to activate features that, on SoCs that don't support
+these, won't anyway be activated because of missing clocks or missing
+regulators, or missing other properties;
+as for the other vendor-specific properties, like ufs-disable-ah8,
+ufs-broken-vcc, ufs-pmc-via-fastauto, since the current merge window
+is closing, I didn't do extensive research so I've left them in place
+but didn't add them to the devicetree binding yet.
 
-Best regards,
+The plan is to check those later and eventually give them a removal
+treatment, or add them to the bindings in a part two series.
+
+For now, at least, this is already a big improvement.
+
+P.S.: The only SoC having UFSHCI upstream is MT8183, which only has
+just one clock, and *nothing else* uses properties, clocks, etc that
+were renamed in this cleanup.
+
+Cheers!
+
+AngeloGioacchino Del Regno (8):
+  scsi: ufs: ufs-mediatek: Remove useless mediatek,ufs-support-va09
+    property
+  scsi: ufs: ufs-mediatek: Fix property name for crypt boost voltage
+  scsi: ufs: ufs-mediatek: Remove useless mediatek,ufs-boost-crypt
+    property
+  scsi: ufs: ufs-mediatek: Avoid underscores in crypt clock names
+  dt-bindings: ufs: mediatek,ufs: Document MT8192 compatible with MT8183
+  dt-bindings: ufs: mediatek,ufs: Document MT8195 compatible
+  dt-bindings: ufs: mediatek,ufs: Document additional clocks
+  dt-bindings: ufs: mediatek,ufs: Document optional dvfsrc/va09
+    regulators
+
+ .../devicetree/bindings/ufs/mediatek,ufs.yaml | 29 +++++-
+ drivers/ufs/host/ufs-mediatek.c               | 91 +++++++++++--------
+ 2 files changed, 79 insertions(+), 41 deletions(-)
+
 -- 
-Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+2.45.2
+
 
