@@ -1,129 +1,129 @@
-Return-Path: <devicetree+bounces-74781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D90B904835
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 03:15:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 452BB904846
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 03:20:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 177C6285A70
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 01:15:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF2001F2407D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 01:20:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C124219E;
-	Wed, 12 Jun 2024 01:15:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3590F17C9;
+	Wed, 12 Jun 2024 01:20:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="dhhfKCQS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg154.qq.com (smtpbg154.qq.com [15.184.224.54])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F032AD35
-	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 01:15:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=15.184.224.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFD7F4A0A;
+	Wed, 12 Jun 2024 01:20:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718154922; cv=none; b=TikNbEju++RtPRhTMeV+eMqq9ueF0RY5dsWGDy+fHfcaji9sk2mZbah8bEESFUsUgJNW7ZuLX2jqyqqrvKLcFg3x+0+LX7eGV3A8AWa6GrM8KtF41n7Hg0HXZqTPigAIVCTQcUSBjtQ0a2kJUEcc5+Y7zrLd2bHxZxuDMz3gapQ=
+	t=1718155238; cv=none; b=hJJgSZDjDt89ibhLavt4GkHydPqmZM6bkljkPZgvrAIgLIvHjR31DJtiuc94mwwYo4K0zgtFzV77Lv5324OTo23qL5M+RNZmvQGvZ6MvrkKa/vaKvguBrxU39Q6Hv5G8onJsN+t3OLEfDHjJge0/WRYm5N99Y2NgMEDX6LOOdaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718154922; c=relaxed/simple;
-	bh=KvXcdo3XOHMOxIMMl3JEaSt03y2EjrHcDHQy6n4Fnck=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PzkvlwOWwUYVYJ3LxXhhaMenW2orC3KS7eD0wghDRZXrwsjnJ8wy6n5Z8ELQ2qk+p0tzOoeY2Kd6wnDnNyJmrJmxUVtOjS1GzyWOWxVWoiK/xovcrPJmkxLjib4e3PZK1JxyejHpprkxo2VYWm4j1lNRgohy/0U6OGLyQOz3YBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=15.184.224.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtp77t1718154838tmm3c9ui
-X-QQ-Originating-IP: hzFwlcaF6A3ehe/ZfSkHF2KUdnPUxqRl4fZFJNOFJDo=
-Received: from [192.168.159.131] ( [106.150.157.243])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 12 Jun 2024 09:13:55 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 17490978406212277040
-Message-ID: <3BA71BD12E90A400+a882cc79-85c5-48c7-acb0-bb31f45c7b9a@radxa.com>
-Date: Wed, 12 Jun 2024 10:13:54 +0900
+	s=arc-20240116; t=1718155238; c=relaxed/simple;
+	bh=UFCfQ0hrhFG/Vxf7U9u47frkRuW4P5y2nTaEQJReSsA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=AJCiIu731DXUb7xGFJTG1558RWgbLG9H9TtvEzMA8dUGui8fF6i1oZqG7zOC1Wrz4iD0fgwmgLvjWb44uwJx4SoIF5plQPScnAKEz4mCEQ/LBpz1JlEsVkiuz0uc/P0wBjy8CwMoj9nEAsbILFG5HadrkKSTayy02Hv3rV1qmvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=dhhfKCQS; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: f63dabc6285911efa54bbfbb386b949c-20240612
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=204HJCc8S6y1MsmDodpJho9HqhzErabCckCS1J9ulx8=;
+	b=dhhfKCQSHK8ikh1VwEwQv1layrNwulIxekQhXLsOwldNIWW/1u23bQv/27HlNvzlahxE0Dy14ucwb392bu29OyKmlXiFPdwVVU1bcScshQSqmStGKPQmYEtRGxTX+2sS7Ll8ttowq9cASLH5KgevQYepl0DUKVLUyksdGfNRP4Q=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.39,REQID:0d94837d-31ff-4ef6-9ed2-945d9baca99b,IP:0,U
+	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:393d96e,CLOUDID:63f7df93-e2c0-40b0-a8fe-7c7e47299109,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: f63dabc6285911efa54bbfbb386b949c-20240612
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+	(envelope-from <zhi.mao@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 15499936; Wed, 12 Jun 2024 09:20:32 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ MTKMBS09N1.mediatek.inc (172.21.101.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 12 Jun 2024 09:20:30 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 12 Jun 2024 09:20:29 +0800
+From: Zhi Mao <zhi.mao@mediatek.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Zhi Mao <zhi.mao@mediatek.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, Laurent Pinchart
+	<laurent.pinchart+renesas@ideasonboard.com>, Heiko Stuebner
+	<heiko@sntech.de>, Sakari Ailus <sakari.ailus@linux.intel.com>, Hans Verkuil
+	<hverkuil-cisco@xs4all.nl>, Hans de Goede <hdegoede@redhat.com>, Tomi
+ Valkeinen <tomi.valkeinen@ideasonboard.com>, Alain Volmat
+	<alain.volmat@foss.st.com>, Paul Elder <paul.elder@ideasonboard.com>, Mehdi
+ Djait <mehdi.djait@bootlin.com>, Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Bingbu Cao <bingbu.cao@intel.com>, <linux-media@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<shengnan.wang@mediatek.com>, <yaya.chang@mediatek.com>,
+	<yunkec@chromium.org>, <10572168@qq.com>
+Subject: [PATCH v3 0/3] media: i2c: Add support for GT97xx VCM
+Date: Wed, 12 Jun 2024 09:20:16 +0800
+Message-ID: <20240612012019.19078-1-zhi.mao@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: make "poweroff" work on rock-5a
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20240611122746.751-1-naoki@radxa.com>
- <f623e316c7f94a318c78da9c48f66dc7@manjaro.org>
- <bf202a47cc6453d5aaacf09a29009380@manjaro.org>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <bf202a47cc6453d5aaacf09a29009380@manjaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:radxa.com:qybglogicsvrgz:qybglogicsvrgz6a-0
+Content-Type: text/plain
+X-MTK: N
 
-Hello Dragan,
+This series add YAML DT binding and V4L2 sub-device driver for Giantec's GT9768&GT9769.
+GT9768&GT9769 is a 10-bit DAC with 100mA output current sink capability, designed
+for voice coil motor(VCM) with I2C control bus.
 
-Thank you so much for your reply!
+This driver supports:
+ - support pm runtime function for suspend/resume
+ - support camera lens focus position by V4L2_CID_FOCUS_ABSOLUTE CMD
+ - used in camera features on ChromeOS application
 
-Best regards,
+Previous versions of this patch-set can be found here:
+v2:https://lore.kernel.org/all/20240427012613.6621-1-zhi.mao@mediatek.com/
+v1:https://lore.kernel.org/all/20240420011840.23148-1-zhi.mao@mediatek.com/
+v0:https://lore.kernel.org/all/20240410104002.1197-1-zhi.mao@mediatek.com/
 
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
+This series is based on linux-next, tag: next-20240611
+Changes in v3:
+- Add maintainer entry for GT97xx VCM driver
 
-On 6/11/24 22:45, Dragan Simic wrote:
-> On 2024-06-11 15:37, Dragan Simic wrote:
->> Hello Fukami,
->>
->> On 2024-06-11 14:27, FUKAUMI Naoki wrote:
->>> to make "poweroff" command work, add "system-power-controller;" into
->>> pmic@0. without this, "poweroff" works as same as "reboot".
-> 
-> Sorry, I forgot to add that the description above could be reworded
-> a bit, e.g. not to repeat what's already visible in the patch itself.
-> 
-> For example:
-> 
->      Designate the RK806 PMIC on the Radxa ROCK 5A as the system power
->      controller, so the board shuts down properly on poweroff(8).
-> 
-> The patch subject could also be tweaked a bit, e.g. to refer to the
-> board as "Radxa ROCK 5A".
-> 
->>> Fixes: 75fdcbc8f4c1 ("arm64: dts: rockchip: add PMIC to rock-5a")
->>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->>
->> Looking good to me, with a small remark below.
->>
->> Reviewed-by: Dragan Simic <dsimic@manjaro.org>
->>
->>> ---
->>>  arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts | 2 ++
->>>  1 file changed, 2 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
->>> b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
->>> index b070955627be..cf7b878a3eb2 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
->>> @@ -395,6 +395,8 @@ pmic@0 {
->>>                  <&rk806_dvs2_null>, <&rk806_dvs3_null>;
->>>          spi-max-frequency = <1000000>;
->>>
->>
->> I don't think there's need for the empty line right above, i.e.
->> between the "spi-max-frequency" and "system-power-controller" lines.
->>
->>> +        system-power-controller;
->>> +
->>>          vcc1-supply = <&vcc5v0_sys>;
->>>          vcc2-supply = <&vcc5v0_sys>;
->>>          vcc3-supply = <&vcc5v0_sys>;
->>
->> _______________________________________________
->> Linux-rockchip mailing list
->> Linux-rockchip@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-rockchip
-> 
+Thanks
+
+Zhi Mao (3):
+  media: dt-bindings: i2c: add Giantec GT97xx VCM
+  media: i2c: Add GT97xx VCM driver
+  MAINTAINERS: Add entry for GT97xx VCM driver
+
+ .../bindings/media/i2c/giantec,gt9769.yaml    |  55 +++
+ MAINTAINERS                                   |   8 +
+ drivers/media/i2c/Kconfig                     |  13 +
+ drivers/media/i2c/Makefile                    |   1 +
+ drivers/media/i2c/gt97xx.c                    | 436 ++++++++++++++++++
+ 5 files changed, 513 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/giantec,gt9769.yaml
+ create mode 100644 drivers/media/i2c/gt97xx.c
+
+-- 
+2.25.1
+
+
 
