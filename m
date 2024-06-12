@@ -1,99 +1,139 @@
-Return-Path: <devicetree+bounces-74904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A3FA904F41
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 11:28:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90FA5904ED2
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 11:11:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E81531F27167
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 09:28:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 13B75B21C74
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 09:11:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5303916DEC9;
-	Wed, 12 Jun 2024 09:27:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AB2516D4E3;
+	Wed, 12 Jun 2024 09:11:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="LGUBHCRf"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gYKIzj0t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8C0216D9DA;
-	Wed, 12 Jun 2024 09:27:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0144816C440;
+	Wed, 12 Jun 2024 09:11:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718184467; cv=none; b=Hhc4Qhvzf7CZ2sOJViRhWt51k4oZmzTowT6ZJi7cvRUcaywOeF9BgiV2cV7gGyr0ahe8xjb2FpG+FE9QwJB+lahCn900uCn+MjHWbs9A3hMUBBV47ei8Xc7JXbczeYrwU/Mb4KswUatso4SzJSeRfT22V9M1ffTWfMxvWhAavuE=
+	t=1718183498; cv=none; b=gm3/phiMoR4e4DjjhDAiokIzPHn6mlIfYRJVsVABJBJypudqvdqtTeRrOEcoJcIoW6d8vHopsfQ7v++uHYDqheLzOhrw5Sbr7BbezvJvbY+WHdmaqK/tvA32LXkvLQNU/qrift58G34RW+ZybMApHITtAvFnC/13LAWwUnTRPuk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718184467; c=relaxed/simple;
-	bh=jNl9krKqdv3h3FBhaJeSLkU+2tKNmbM6HO56+msSGUc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uigW8zPPR4R2AiUx2Z/pJ/0Cw9W0Nk95AWdC4PYIRmeOafyYJnsncvKBIZULyIIPSXrgERazGAiwD3yG72mxZ8H4QB1srA3CCmd2iDzi9Uz5bPUwBJoeVxQf2eN96ZuPsADeEZlR1Zav5uNKOrHwJF25+ILtPbDZlkOB/xXHRwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=LGUBHCRf; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id A6F72887BF;
-	Wed, 12 Jun 2024 11:27:42 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1718184463;
-	bh=mtONI3bvKfCZrp6Zei50iwnX9L5tGQyt3Bsl2/4/U/E=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LGUBHCRfITJs+jq8AZV85hrLdtml2rxOZbPwMSQ4PGGS3PZiRI0km5KaT5Ml+jTpz
-	 aMir1DGK1B9hO+iDEz2lRsBUbqPdTuboZk80XA0rR8vYI3ivtjPVZ8ch8vHqqSZ6uE
-	 NREzCFZwukfhixSPVvJVP04yHqlCLC4GrmSns+rbJdn5GhKo1/NV77YYV9HliDGFFC
-	 LfTdk7QeAIgb5AkHrbVrW/Vqh/pHyjK3eEbfWGlDbqYHTTGTl12M91Jl0ls7c7uZ2X
-	 kf3+oCUeRRE6LquMcpaQO3+ViJrjQB9yqzHaQxzZwzfqQLgW01GSbMzYRm/Yws5ynE
-	 bXvw6zzFx/STw==
-Message-ID: <50bd0dae-f489-4c7a-a250-7e999aab4a07@denx.de>
-Date: Wed, 12 Jun 2024 11:09:21 +0200
+	s=arc-20240116; t=1718183498; c=relaxed/simple;
+	bh=NrQbjJLU21e6GXf/NiG18RADNv5NRWSmGn1C1T60kto=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TC3G0UubjDTdH7qLbtNthpEuBkKuHomEBs8VW/Uom1Utb2078B9kaH9q31yI4fXXAhhkCq9nM7UB5+XjE1qYSSV3SJ3Ywx+MYnSryQr0L247WlU2HkFg/AmUCrfgPGXSlRB6mL1t3zsWMrrL48UMekw85/P+AmX1SR57IxscTfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gYKIzj0t; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45C9BTKl125620;
+	Wed, 12 Jun 2024 04:11:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718183489;
+	bh=bq4wdMSaN4e+DblCXL5gIeFx8/S7d1V58QJzFk+BJGA=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=gYKIzj0tmQ+xJPNwJ/xbmwyIcBvrGWrkugvvsp16f2EDDsL02v56Dhk9hp5V9BSWF
+	 by+xgdTZUBh1VZaB8tqHAAZ5eVK40OsNWWxi+G3pdrWlSrF52cmzqjrkKVMo756XXo
+	 G176ClMsVCw7oLp69QwCzBfH1BhLuY7G/25mKlWc=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45C9BTxb054174
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 12 Jun 2024 04:11:29 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 12
+ Jun 2024 04:11:28 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 12 Jun 2024 04:11:28 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [172.24.227.9])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45C9BSUl048466;
+	Wed, 12 Jun 2024 04:11:28 -0500
+Date: Wed, 12 Jun 2024 14:41:27 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Roger Quadros <rogerq@kernel.org>
+CC: Vignesh Raghavendra <vigneshr@ti.com>,
+        Siddharth Vadapalli
+	<s-vadapalli@ti.com>, <nm@ti.com>, <afd@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <u-kumar1@ti.com>, <danishanwar@ti.com>, <srk@ti.com>
+Subject: Re: [PATCH v5 1/7] arm64: dts: ti: am62p: Rename am62p-{}.dtsi to
+ am62p-j722s-common-{}.dtsi
+Message-ID: <2f1aa07a-5a51-49aa-8829-c616cb9431bc@ti.com>
+References: <20240604085252.3686037-1-s-vadapalli@ti.com>
+ <20240604085252.3686037-2-s-vadapalli@ti.com>
+ <92af5f36-0c21-4b6e-adde-fcf21b540291@kernel.org>
+ <902f024a-b0a1-4a0a-94e2-7cec064a91c6@ti.com>
+ <6959494a-98ba-4ccf-973c-14d079b76f27@kernel.org>
+ <975c90b1-6657-40c6-a336-7f1f58acf531@ti.com>
+ <9e7d3f9b-c762-40cd-9d0d-2f071aa3c371@ti.com>
+ <efcb16cd-83de-403c-885d-cf9d819e5da7@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next,PATCH v7 8/8] net: stmmac: dwmac-stm32: add management
- of stm32mp13 for stm32
-To: Christophe Roullier <christophe.roullier@foss.st.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>, Jose Abreu
- <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240611083606.733453-1-christophe.roullier@foss.st.com>
- <20240611083606.733453-9-christophe.roullier@foss.st.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20240611083606.733453-9-christophe.roullier@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <efcb16cd-83de-403c-885d-cf9d819e5da7@kernel.org>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 6/11/24 10:36 AM, Christophe Roullier wrote:
-> Add Ethernet support for STM32MP13.
-> STM32MP13 is STM32 SOC with 2 GMACs instances.
-> GMAC IP version is SNPS 4.20.
-> GMAC IP configure with 1 RX and 1 TX queue.
-> DMA HW capability register supported
-> RX Checksum Offload Engine supported
-> TX Checksum insertion supported
-> Wake-Up On Lan supported
-> TSO supported
+On Tue, Jun 11, 2024 at 08:18:34PM +0300, Roger Quadros wrote:
 > 
-> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
+> 
+> On 11/06/2024 12:10, Vignesh Raghavendra wrote:
+> > 
+> > 
+> > On 11/06/24 14:24, Siddharth Vadapalli wrote:
+> >> On Mon, Jun 10, 2024 at 10:31:07PM +0300, Roger Quadros wrote:
 
-Reviewed-by: Marek Vasut <marex@denx.de>
+[...]
+
+> >>>
+> >>> What is the equivalent of k3-am62p5.dtsi here?
+> >>> That should contain k3-j722s.dtsi + CPU and OPP stuff.
+> >>>
+> >>> I suppose it should be named specific to the SoC variant part number?
+> >>
+> >> AM62P (https://www.ti.com/product/AM62P) has two variants:
+> >> 1. 2 Arm Cortex-A53 => AM62P3
+> >> 2. 4 Arm Cortex-A53 => AM62P5
+> >> Both variants will share the common k3-am62p.dtsi
+> >>
+> >> J722S (https://www.ti.com/product/TDA4VEN-Q1) has only one variant:
+> >> 4 Arm Cortex-A53 => J722S
+> >> Which is currently identical to AM62P5 w.r.t. the number of A53s.
+> >>
+> >> So there isn't an equivalent of AM62P5/k3-am62p5.dtsi for J722S.
+> >> k3-j722s.dtsi is a combination of k3-am62p.dtsi and k3-am62p5.dtsi.
+> >>
+> > 
+> > 
+> > Historically AM6xx devices have had CPUs in separte file as there are OPNs with different number of CPU cores Hence, how about
+> > k3-am62p5.dtsi => k3-am62p.dtsi + k3-am62p-j722s-common-{main,mcu,wakeup}.dtsi + k3-am62p-main.dtsi (USB2 and other deltas specific to AM62P)
+> > 
+> > and since J722s has no variants with less than 4 cores (and along the lines of rest of J7xx devices):
+> > 
+> > k3-j722s.dtsi => k3-am62p-j722s-common-{main,mcu,wakeup}.dtsi + k3-j722s-main.dtsi (USB3, C7x and other deltas specific to J722s;
+> > 
+> > 
+> 
+> Seems OK to me.
+
+Vignesh, Roger,
+
+I will implement the above in the v6 series.
+
+Regards,
+Siddharth.
 
