@@ -1,65 +1,55 @@
-Return-Path: <devicetree+bounces-75069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5CF99055B6
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:50:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C30A9055BB
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:50:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8779928B07F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 14:50:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6C101F24E8B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 14:50:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71A6517F36F;
-	Wed, 12 Jun 2024 14:50:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B7C417F4EB;
+	Wed, 12 Jun 2024 14:50:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ludUtzU7"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="ebLq0quz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from smtp-relay-canonical-1.canonical.com (smtp-relay-canonical-1.canonical.com [185.125.188.121])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94D791DFC6;
-	Wed, 12 Jun 2024 14:50:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52E8117F4F5;
+	Wed, 12 Jun 2024 14:50:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.121
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718203812; cv=none; b=jrD3kCMYf0S6sOy7lVh3fxVYGqMshJBsGW1KNAwMn8Z+Bb2GIAf7In2eBLcDzzqXUUHs0dVqTVD3FNLNPipOTzXf6tNDI98R7KHZmA/pQEMHL1Fx5RkVd2xthtab6rah207yWZSddtL3x4JWD1SbFneqlLyTuUE3ke09egFMC7c=
+	t=1718203817; cv=none; b=n2WetYcr3nrs8OtHuDNR0TK+jWbeWj0Io+gBfQmqTLGSr0oO1kTscdrd8AX8yZD+spk/bNZu9dCyI5D8mwdpcpypDUmp+vtOu3Q7H+N9So70WLmbjXbEsTVD6kKeFnw36PtMIH7kEPZirGL2n5+xShBbC1d76Smdk2wtwBDKGGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718203812; c=relaxed/simple;
-	bh=A3ALZuSC7JFA7FKUWJ7dtEFKaiBbbWF3EU24yn8PEOM=;
+	s=arc-20240116; t=1718203817; c=relaxed/simple;
+	bh=gTVjA1lU2IXRk2J6/Gdpx6FdAP/OUlGWT/y2xhtrS7w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=l3EnbwRBWyUicWBoImu5Kf4AujSwNxEM98bvPUl3zhhLB3xa72i44MzMfa2tdpNWdGfWe1EEgbQm81JYDwGxCbk2OUj95/eF+s1xtTSCpmu9NzQS1SctRPqImEuruhkM+Zgr0NdRbGtWa9VlNu5/yr81ImOsQJRSJCaNaP18sPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ludUtzU7; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718203811; x=1749739811;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=A3ALZuSC7JFA7FKUWJ7dtEFKaiBbbWF3EU24yn8PEOM=;
-  b=ludUtzU7LmTO+kSNJthOdS/BQde4iLc2wy8s+ObKl4kOgNgWqkoZFsZb
-   c8rLZFYEsIbq1bWB9uhOCDG5VS6ZYxiNrXeuNZRwcNPkQbIVsmmN9Y2OO
-   DgyA4JrgZWWnGRq7oHfX0UC94v79AV1VAqR6vTlExzrcbgUaernowYvek
-   u8mfqetKQMso/YxM6OznL77FvO0rIHvhWmAAB/tnca2QDhoHq1UzLnpbK
-   WPlut+tjhu5j/xkc6pNGJQTlBnSID1MwB72n1l9NdRcdt95OPEwPsQXwN
-   9k1fWiOUwWhmU/Yd+kIK3sf3iYfIbm0zCOnkUpc7heNJPimpM5pgOc06t
-   g==;
-X-CSE-ConnectionGUID: wIze13QBTKmuKkcdNb4mOQ==
-X-CSE-MsgGUID: krqLjsqNQrWDuIXnA7J2mA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="25603908"
-X-IronPort-AV: E=Sophos;i="6.08,233,1712646000"; 
-   d="scan'208";a="25603908"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2024 07:50:09 -0700
-X-CSE-ConnectionGUID: sIB8IIaFR/u7dDoKj/j2Iw==
-X-CSE-MsgGUID: V8mahd+5QBSIdsk5KEyVLQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,233,1712646000"; 
-   d="scan'208";a="39925635"
-Received: from aslawinx-mobl.ger.corp.intel.com (HELO [10.94.0.53]) ([10.94.0.53])
-  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2024 07:50:04 -0700
-Message-ID: <80fefd6b-0f3a-4f6a-869e-fd2225315801@linux.intel.com>
-Date: Wed, 12 Jun 2024 16:50:01 +0200
+	 In-Reply-To:Content-Type; b=X+IMxhdUbSIRNbVMRb9LMawHqq4ZSNSG0LlGIRqGgkJKc3Oy9R8xPEKouD3/E7loEzpd9obbqLoLPOqWAJW1ZCTAH/xLKPZCGl3U+fC4si+z6+XetrMiqOStmajCttoMoQ9ASRlOJqjYHALVGxM2mzsTL4HLBoSp8s0J284M/r0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=ebLq0quz; arc=none smtp.client-ip=185.125.188.121
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from [192.168.0.106] (unknown [123.112.65.116])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPSA id 96AFE3F1D3;
+	Wed, 12 Jun 2024 14:50:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1718203811;
+	bh=EVeO/ntZpuwYpx+X1bX9nEioZ0b1qYOSTHEmiyczwwk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type;
+	b=ebLq0quzNIevLXUytjTmaDHbW2I5o8dvNodx7eydc53D/s8ulZACazCg9DjpFkyTv
+	 HUzkcVf6LUtIjxIbqJWwgGXqyPmdLq0vAesah+vow7BWRx+ktFSkAf0j9Bt2jGAvZK
+	 nosqeMGn/v4pvirKDcCm2a3Ux/A8NFvtqwV7MGEEflsAIXiQ6Ue8/9n42i/kBensND
+	 6dlYjAVfHEdsmFqvdCag7Gw4sp11Gy4wJpPtjw41xCqRnhbtKJdKjH7KZ6wVZpbWze
+	 yGbjMz1YMK2iWTzKld1aZVblZfRSSw0N8yxqSFZo3IgG9i+Ns0ZHaCBJUdjwgrUH0O
+	 kRwR35VOV98Pg==
+Message-ID: <a4daaf0e-2484-4943-9ac2-589485d69993@canonical.com>
+Date: Wed, 12 Jun 2024 22:50:01 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,62 +57,132 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v23 00/32] Introduce QC USB SND audio offloading support
+Subject: Re: [PATCH v3 2/2] serial: sc16is7xx: hardware reset chip if
+ reset-gpios is defined in DT
+To: Lech Perczak <lech.perczak@camlingroup.com>,
+ linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+ gregkh@linuxfoundation.org
+Cc: jirislaby@kernel.org, hvilleneuve@dimonoff.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org,
+ Maarten.Brock@sttls.nl
+References: <20240612131454.49671-1-hui.wang@canonical.com>
+ <20240612131454.49671-2-hui.wang@canonical.com>
+ <18a1beeb-e45b-4d6d-bd21-74b85c33dc2c@camlingroup.com>
 Content-Language: en-US
-To: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
- mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
- corbet@lwn.net, broonie@kernel.org, lgirdwood@gmail.com, krzk+dt@kernel.org,
- Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com, tiwai@suse.com,
- robh@kernel.org, gregkh@linuxfoundation.org
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
- alsa-devel@alsa-project.org
-References: <20240610235808.22173-1-quic_wcheng@quicinc.com>
-From: =?UTF-8?Q?Amadeusz_S=C5=82awi=C5=84ski?=
- <amadeuszx.slawinski@linux.intel.com>
-In-Reply-To: <20240610235808.22173-1-quic_wcheng@quicinc.com>
+From: Hui Wang <hui.wang@canonical.com>
+In-Reply-To: <18a1beeb-e45b-4d6d-bd21-74b85c33dc2c@camlingroup.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 6/11/2024 1:57 AM, Wesley Cheng wrote:
 
-> Wesley Cheng (32):
->    ASoC: Add SOC USB APIs for adding an USB backend
->    ASoC: dt-bindings: qcom,q6dsp-lpass-ports: Add USB_RX port
->    ASoC: qcom: qdsp6: Introduce USB AFE port to q6dsp
->    ASoC: qdsp6: q6afe: Increase APR timeout
->    ASoC: qcom: qdsp6: Add USB backend ASoC driver for Q6
->    ALSA: usb-audio: Introduce USB SND platform op callbacks
->    ALSA: usb-audio: Export USB SND APIs for modules
->    ALSA: usb-audio: Save UAC sample size information
->    usb: dwc3: Specify maximum number of XHCI interrupters
->    usb: host: xhci-plat: Set XHCI max interrupters if property is present
->    ALSA: usb-audio: qcom: Add USB QMI definitions
->    ALSA: usb-audio: qcom: Introduce QC USB SND offloading support
->    ALSA: usb-audio: Check for support for requested audio format
->    ASoC: usb: Add PCM format check API for USB backend
->    ASoC: qcom: qdsp6: Ensure PCM format is supported by USB audio device
->    ALSA: usb-audio: Prevent starting of audio stream if in use
->    ALSA: usb-audio: Do not allow USB offload path if PCM device is in use
->    ASoC: dt-bindings: Update example for enabling USB offload on SM8250
->    ALSA: usb-audio: qcom: Populate PCM and USB chip information
->    ASoC: qcom: qdsp6: Add support to track available USB PCM devices
->    ASoC: Introduce SND kcontrols to select sound card and PCM device
->    ASoC: qcom: qdsp6: Add SOC USB offload select get/put callbacks
->    ASoC: Introduce SND kcontrols to track USB offloading state
->    ASoC: qcom: qdsp6: Add PCM ops to track current state
->    ASoC: usb: Create SOC USB SND jack kcontrol
->    ASoC: qcom: qdsp6: Add headphone jack for offload connection status
->    ASoC: usb: Fetch ASoC sound card information
->    ALSA: usb-audio: Add USB offloading capable kcontrol
->    ALSA: usb-audio: Allow for rediscovery of connected USB SND devices
->    ALSA: usb-audio: qcom: Use card and PCM index from QMI request
->    ASoC: usb: Rediscover USB SND devices on USB port add
->    ASoC: doc: Add documentation for SOC USB
+On 6/12/24 21:56, Lech Perczak wrote:
+> Hi,
+> Some comments inline.
+>
+> W dniu 12.06.2024 o 15:14, Hui Wang pisze:
+>> Some boards connect a GPIO to the reset pin, and the reset pin needs
+>> to be setup correctly before accessing the chip.
+>>
+>> Add a function to handle the chip reset. If the reset-gpios is defined
+>> in the DT, do hardware reset through this GPIO, othwerwise do software
+>> reset as before.
+>>
+>> Signed-off-by: Hui Wang <hui.wang@canonical.com>
+>> ---
+>> In the v3:
+>>   - drop Reviewed-by
+>>   - adjust the sequence of if, else if and else
+>>   - replace PTR_ERR(reset_gpiod) with dev_err_probe
+>>   - change GPIOD_OUT_LOW to GPIOD_OUT_HIGH, this will assert the reset pin after requesting the GPIO
+>>   - change the 2nd parameter struct regmap *regmap[] to struct regmap *regmap
+>>   - address all spelling and description issues in the v2
+>>
+>>   drivers/tty/serial/sc16is7xx.c | 33 +++++++++++++++++++++++++++++----
+>>   1 file changed, 29 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
+>> index bf0065d1c8e9..8c7e0fe76049 100644
+>> --- a/drivers/tty/serial/sc16is7xx.c
+>> +++ b/drivers/tty/serial/sc16is7xx.c
+>> @@ -14,6 +14,7 @@
+>>   #include <linux/delay.h>
+>>   #include <linux/device.h>
+>>   #include <linux/export.h>
+>> +#include <linux/gpio/consumer.h>
+>>   #include <linux/gpio/driver.h>
+>>   #include <linux/idr.h>
+>>   #include <linux/kthread.h>
+>> @@ -1467,6 +1468,30 @@ static const struct serial_rs485 sc16is7xx_rs485_supported = {
+>>          .delay_rts_after_send = 1,      /* Not supported but keep returning -EINVAL */
+>>   };
+>>
+>> +/* Reset device, purging any pending irq / data */
+>> +static int sc16is7xx_reset(struct device *dev, struct regmap *regmap)
+>> +{
+>> +       struct gpio_desc *reset_gpio;
+>> +
+>> +       /* The reset GPIO is ACTIVE_LOW, flag GPIOD_OUT_HIGH asserts the reset GPIO */
+> s/reset GPIO is ACTIVE_LOW /reset input is active low/ - because we're referring to the chip input here, and this is reflected in DT bindings.
+>
+> Also, it isn't clear from the comment that GPIO is asserted immediately.
+Got it.
+>
+>
+>> +       reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+>> +       if (IS_ERR(reset_gpio))
+>> +               return dev_err_probe(dev, PTR_ERR(reset_gpio), "Failed to get reset GPIO\n");
+>> +
+>> +       if (reset_gpio) {
+>> +               /* The minimum reset pulse width is 3 us. */
+>> +               udelay(5);
+> Prefer usleep_range() over that, since maximum reset time isn't all that critical.
+Got it.
+>
+>
+>> +               gpiod_set_value_cansleep(reset_gpio, 0);
+>> +               /* Deassert GPIO */
+> This comment should go one line above or be removed entirely.
 
-I'm not sure how other reviewers feel about this, but is there any 
-chance to group patches in some logical order? It is bit hard to review 
-when I need to jump from generic ALSA to ASoC then QCOM code and then 
-there are dt-bindings mixed in between and back again.
+Got it.
+
+Thanks.
+
+>
+>
+>> +       } else {
+>> +               /* Software reset */
+>> +               regmap_write(regmap, SC16IS7XX_IOCONTROL_REG,
+>> +                            SC16IS7XX_IOCONTROL_SRESET_BIT);
+>> +       }
+>> +
+>> +       return 0;
+>> +}
+>> +
+>>   int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+>>                      struct regmap *regmaps[], int irq)
+>>   {
+>> @@ -1527,6 +1552,10 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+>>          s->devtype = devtype;
+>>          dev_set_drvdata(dev, s);
+>>
+>> +       ret = sc16is7xx_reset(dev, regmaps[0]);
+>> +       if (ret)
+>> +               goto out_clk;
+>> +
+>>          kthread_init_worker(&s->kworker);
+>>          s->kworker_task = kthread_run(kthread_worker_fn, &s->kworker,
+>>                                        "sc16is7xx");
+>> @@ -1536,10 +1565,6 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+>>          }
+>>          sched_set_fifo(s->kworker_task);
+>>
+>> -       /* reset device, purging any pending irq / data */
+>> -       regmap_write(regmaps[0], SC16IS7XX_IOCONTROL_REG,
+>> -                    SC16IS7XX_IOCONTROL_SRESET_BIT);
+>> -
+>>          /* Mark each port line and status as uninitialised. */
+>>          for (i = 0; i < devtype->nr_uart; ++i) {
+>>                  s->p[i].port.line = SC16IS7XX_MAX_DEVS;
+>> --
+>> 2.34.1
 
