@@ -1,139 +1,141 @@
-Return-Path: <devicetree+bounces-74934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D567905068
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 12:31:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D840590506B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 12:31:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 445F91C20F89
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:31:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7389AB20EF6
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:31:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4728F155300;
-	Wed, 12 Jun 2024 10:31:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B20A16C856;
+	Wed, 12 Jun 2024 10:31:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Ic1SBS4l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OjtPeTTE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9F2E1C6AE;
-	Wed, 12 Jun 2024 10:30:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 507A21C6AE;
+	Wed, 12 Jun 2024 10:31:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718188261; cv=none; b=JERGm1PGj123y5r8hFWsTTzXg/3FES6ONI/mHbEi8WXUaRna4WLrvUQ27sksDP/CcimeA/vf3FD9i6ZQWxiqDK0ROGNb9X7llr/wRJjnIrJ2jJZEt0wfNnsVBdj+336aCF/nLdQ8JXla0szzHVpigiSqrwQqQjr8stfAIl4XA/I=
+	t=1718188310; cv=none; b=KbuAzhvUwJTw1/cZpWj6EM4phOxGQGMeXb3N6wOKIrlkd1K2SSciZGLHF7gJIjwHRQZDYpE1GUA9V5LBHycvUGenzsnIPA8zOaUrgNQiqy0LKpkOvpjY467E09P5wjTlashE1/48l5nXNU41K9XnX4zthrMCSSegvR7YSLRMJ4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718188261; c=relaxed/simple;
-	bh=iIl3J4Y4su5oerBe+xzxiQKX7+mUafM34hKHCQLBLHM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=aJF+T7CdOlOIa+FhF3eqbGviDvJqzo976pztXC2B87/REhqB2Y9Jukr4CJ5cvxIaWbKGdV7LO9+ZpXIkSqGA8dIE2Cq4E5as+v8rXxIW/z2lqgsKrH4Z5vbNaExu8EbuNk2QizXG4VVHNzJ4UTsP28fLYK+/Fyq858PxPemLyD8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Ic1SBS4l; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45C66kgd002994;
-	Wed, 12 Jun 2024 10:30:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lKwpwKZHWzQt+e7holbzQrF20Me1OIuVQ5ao6YWhUsc=; b=Ic1SBS4lWOlP1FbK
-	KZGpQJVXSmiRHXxaWI5QXZymEAOhSvku3xGrAdDj+scTum3UQcvOU5Petnd0r+ZC
-	9JRlvLEYoYQNiSm+yqIjtrnRC/PcrjtEY/UmVZZ6KkvfM9q2JWrDz5cODbEu9mNA
-	Vwe9ESJWTsQ5Wf/2fzShJYBQk1zoD4vaYxkvMTeLysIDzQXbtbGFuIyE6z9WeuRr
-	nzpIvuF2LUJCthN13NPb0jOUODv5SxBe2lTknEzLT0TiOu3DEiPK0HNpTcBYx+Ep
-	M+xaM/Z0AOzBqw1suqMqrrUI+xNsbSZBNcKaAhn/eQeVJZgyqKzEOQVAR6BPEu35
-	6UKUMA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yphsaum0n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 12 Jun 2024 10:30:56 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45CAUt4E003819
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 12 Jun 2024 10:30:55 GMT
-Received: from [10.217.216.152] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 12 Jun
- 2024 03:30:50 -0700
-Message-ID: <9ea7bd3a-0d41-418b-8162-266862e1467f@quicinc.com>
-Date: Wed, 12 Jun 2024 16:00:47 +0530
+	s=arc-20240116; t=1718188310; c=relaxed/simple;
+	bh=IKnzRWbZIW0uMBjg3hPVKLFJtN6YgQCWwnKZsfQ2BtI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tbwjYF3RplOmyvxgF2U/9ZhsHBjqxDn0Vgf8fY8f4WDNgfVMVrKwXr+PwRk5XuvBrIM3CfpWPe1vrgvmRcgLjf2hERfk5/NsnNCpLLMtdey6j+ynj8RgsfJWB54hYTIr/A/z+E+du4Ep1EOsEHYzluHWYm3sf0k9OvH/HDF5Ios=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OjtPeTTE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14164C4AF1A;
+	Wed, 12 Jun 2024 10:31:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718188309;
+	bh=IKnzRWbZIW0uMBjg3hPVKLFJtN6YgQCWwnKZsfQ2BtI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OjtPeTTE8aznrDm5OVgGIHxoLsNXOnhepszN2pDUXVV88OtMRWHojv2jAz+k3SZbw
+	 PkgzY75Hbt3qPZLNkk1uqYXmh0JdUQSb1aNTAeODYhe7j6Nns6+2yb1CaS4m+whVit
+	 I6c4U8w9n3P6Zt3fkCZe97sUVYmrnXI2fUFWRp4wgAmarSyCWGo/nmrsZ5WCp1YkB7
+	 vNDnRKgWZbJWxnoAje5gTmCHnXVM5Y4MlSiZXGYH17RF9yQSvlYR47+/X0KAqAAIXi
+	 Sn5RePqW7rEpIQH9UYst+ndPNDm/28+HHQ8jVJh+vngAp+3kTrIUx8Jw1UrQwqSCkC
+	 VUXM3MwYigrFA==
+Date: Wed, 12 Jun 2024 11:31:40 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Witold Sadowski <wsadowski@marvell.com>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"pthombar@cadence.com" <pthombar@cadence.com>
+Subject: Re: [EXTERNAL] Re: [PATCH v8 2/4] spi: cadence: Add Marvell xSPI IP
+ overlay changes
+Message-ID: <Zml5DD5s7OZopVkU@finisterre.sirena.org.uk>
+References: <20240607151831.3858304-1-wsadowski@marvell.com>
+ <20240607151831.3858304-3-wsadowski@marvell.com>
+ <Zmcj3fZ4DF8r_qf0@finisterre.sirena.org.uk>
+ <CO6PR18MB4098E3DEF64621FB147BC345B0C72@CO6PR18MB4098.namprd18.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/13] clk: qcom: gpucc-sa8775p: Park RCG's clk source at
- XO during disable
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen
- Boyd" <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <quic_jkona@quicinc.com>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>
-References: <20240531090249.10293-1-quic_tdas@quicinc.com>
- <20240531090249.10293-6-quic_tdas@quicinc.com>
- <2fd8bcea-8bea-48ea-8052-d7fe6c1e8f59@linaro.org>
- <61eb731d-1928-4d72-97a0-397d8cf45e0d@quicinc.com>
- <d7jtqigvcmjv6swbifprjmf7ofgselxmrssbkptmbr2cj7izt5@a33lyesbdr5u>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <d7jtqigvcmjv6swbifprjmf7ofgselxmrssbkptmbr2cj7izt5@a33lyesbdr5u>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 2h7nCDdfupOpv0zO7Qrp_4Ovcfp1xG3v
-X-Proofpoint-GUID: 2h7nCDdfupOpv0zO7Qrp_4Ovcfp1xG3v
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-12_06,2024-06-11_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
- adultscore=0 spamscore=0 mlxlogscore=619 impostorscore=0
- lowpriorityscore=0 clxscore=1015 phishscore=0 mlxscore=0
- priorityscore=1501 suspectscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2405170001 definitions=main-2406120076
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="xvH9bqAg6EKL9q/g"
+Content-Disposition: inline
+In-Reply-To: <CO6PR18MB4098E3DEF64621FB147BC345B0C72@CO6PR18MB4098.namprd18.prod.outlook.com>
+X-Cookie: Your love life will be... interesting.
 
 
+--xvH9bqAg6EKL9q/g
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 6/10/2024 11:44 PM, Dmitry Baryshkov wrote:
-> On Mon, Jun 10, 2024 at 02:41:10PM +0530, Taniya Das wrote:
->>
->>
->> On 5/31/2024 6:53 PM, Konrad Dybcio wrote:
->>> On 31.05.2024 11:02 AM, Taniya Das wrote:
->>>> The RCG's clk src has to be parked at XO while disabling as per the
->>>> HW recommendation, hence use clk_rcg2_shared_ops to achieve the same.
->>>> Also gpu_cc_cb_clk is recommended to be kept always ON, hence use
->>>> clk_branch2_aon_ops to keep the clock always ON.
->>>>
->>>> Fixes: 0afa16afc36d ("clk: qcom: add the GPUCC driver for sa8775p")
->>>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->>>> ---
->>>
->>> Should the same fixes apply to 8350?
->>>
->>
->> Yes Konrad, it is applicable for 8350 as well.
-> 
-> Can we please get the corresponding patches (as a separate patchset)?
-> 
-I will send the patch for 8350.
+On Tue, Jun 11, 2024 at 09:51:58PM +0000, Witold Sadowski wrote:
+> > On Fri, Jun 07, 2024 at 08:18:29AM -0700, Witold Sadowski wrote:
 
--- 
-Thanks & Regards,
-Taniya Das.
+> > > features included are:
+> > >     - Clock configuration
+> > >     - PHY configuration
+> > >     - Interrupt configuration (enabling)
+
+> > This feels like it could usefully be split up so these three bits are
+> > separate, and there appear to be other changes buried in here as well.
+> > I can't tell what changes either the PHY or interrupt configuration might
+> > be referencing.
+
+> That changes are in single commit as, using not all of them will result in
+> total xSPI failure. Configuring PHY makes no sense if clock is not enabled.
+> But I can try to split that into 3 separate commits.
+
+They won't actually do anything until we detect the Marvell IP.
+
+> > > +static void mrvl_ioreadq(void __iomem  *addr, void *buf, int len) {
+> > > +	int i = 0;
+> > > +	int rcount = len / 8;
+> > > +	int rcount_nf = len % 8;
+> > > +	uint64_t tmp;
+> > > +	uint64_t *buf64 = (uint64_t *)buf;
+
+> > Any need to cast away from void * indicates a problem.
+
+> I will check that, but code is checking alignment of that pointer.
+
+A cast won't do anything to fix alignment issues.
+
+> > >  	case CDNS_XSPI_SDMA_DIR_READ:
+> > > -		ioread8_rep(cdns_xspi->sdmabase,
+> > > -			    cdns_xspi->in_buffer, sdma_size);
+> > > +		cdns_xspi_sdma_memread(cdns_xspi, sdma_size);
+> > >  		break;
+
+> > It's feeling like it might make sense to have an ops structure rather than
+> > sprinkling checks for the Marvell overlay everywhere.
+
+> Won't it cause big code duplication? There are some differences, but whole
+> Part of SPI stig mode configuration is the same.
+
+No more than having a bunch of functions which are called a single time
+with checks in them will?
+
+--xvH9bqAg6EKL9q/g
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZpeQsACgkQJNaLcl1U
+h9ADNAf/WTR0H0Qn2OWdd/BymBjuQCwA8E904iCChNKnS4OQO/0+hIrOvaP17XKx
+CC+pD4RcnGfxAo7ZaSt+e/4x+FSwvCrvehnKyf/SyDsdGM9L7xiSA1DkaTUB17nn
+2i4VK0aHKc1Dsl6/FBpX557xiWLY0/2Cvp7pSFvrKkserLjBXZQOK/bAKe+91DTg
+W1Khh+gxUR2WExITICPU9oK2mPMQLICmv2OESHgG5KORduKk89GtcS0UNHngP+Zt
+Rk1R8BwlDkdx9iGZSghCSZxMF+0Uce2z7xDL9iJiR6lCXvFKk2i2jTbX9vxy8v5/
+D7z6idrOqBxEOijFsYLWngShvjw+NQ==
+=oof7
+-----END PGP SIGNATURE-----
+
+--xvH9bqAg6EKL9q/g--
 
