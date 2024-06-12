@@ -1,136 +1,118 @@
-Return-Path: <devicetree+bounces-75149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CC89905A0C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 19:33:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB6269059DA
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 19:26:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BC2EBB26523
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:33:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 70EC51F23E59
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:26:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A49C185090;
-	Wed, 12 Jun 2024 17:32:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEA0D181D15;
+	Wed, 12 Jun 2024 17:26:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ChRObb4c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LypDdc56"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA8AF1836F7;
-	Wed, 12 Jun 2024 17:32:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B54513209;
+	Wed, 12 Jun 2024 17:26:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718213548; cv=none; b=VpOKqkxrp+2qJHlXaO1i5GWFv6PIoJ+R0KSotAGOVX6H/lD6nDdWV5uPkUN3tpfG2K41IGxI6C9t33mQvCCVFKDQCAxIEHIaqjB2/5D0NPwt2XC7DLzOw1ElRJKt00xBPCnJBZt8DPHxXD1j3kF+Ils87cnMWtpwaSr1RRkPa5I=
+	t=1718213179; cv=none; b=oZaMeQtH1ObpckbJSkEmG1ylWMkrxFirB9CEa5Otk3ad12i20jLJkQj0rrgFIAnwcXBoIeMCIWpYVFEYulGusjdV5AWtP7+mNb5Q4HWyPvZFmlidNQ9C+bYZhSZpGz3r3hsXwwCxFzbJlOc1BGxsKP7jdqCBXsxXkJsbdYoGcbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718213548; c=relaxed/simple;
-	bh=09CuY792gYzujtrKgRSq5WilLJwPVg6zDs+yUzN6Tus=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=U1d7g1xoc0IuhAKmcDwFqBwv1rXaH23hgQMfK9lPPK+v86BxEk74hARCAOoYGbC3aEe4DGEA5p13YyTxZ4VKmi/8Xl8nWnqTF2Owz6qYWK3N61ncxfhWXcIE2kGrLtVFsgrI6nTz/+EIGXyCIIOO0Jr00VhNOtzlMU7/BGph5V0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ChRObb4c; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718213542;
-	bh=09CuY792gYzujtrKgRSq5WilLJwPVg6zDs+yUzN6Tus=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ChRObb4cGRQZCu7ko5Pmmb3VO70BNnD1QJBg+PJckCN1aDpi+ABBzjsl+VfAIPrwx
-	 miEp470WoHAj1pEiLwbGAbZTta0smRqyjwEZOXkazG55sUZctz+17lKJQ3qQqxsUlU
-	 n7ogL6s/897T+61wHIKarYCgKscaPcw1tC7ENA4UMR8Lz5XwbxoNTrehhmMJvaEkfs
-	 mrA47oip4cdMHnNF+Nf1prOzycQIpC5fSAYnCOHBPrXTUw7HLC1GA53ZAiR3IqSALq
-	 uOF3fGKByuDD9q88p93qgoL51GRmjqHR1mMs7MCcskL3Vnh662CmRnr5+vXjodEk8B
-	 m/AgKX1gDZW1A==
-Received: from jupiter.universe (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 3260037821A3;
-	Wed, 12 Jun 2024 17:32:22 +0000 (UTC)
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id 624CA4800D0; Wed, 12 Jun 2024 19:32:21 +0200 (CEST)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jianfeng Liu <liujianfeng1994@gmail.com>,
-	Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	linux-media@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	kernel@collabora.com,
-	Hugh Cole-Baker <sigmaris@gmail.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: [PATCH v5 5/5] arm64: dts: rockchip: Add VPU121 support for RK3588
-Date: Wed, 12 Jun 2024 19:15:45 +0200
-Message-ID: <20240612173213.42827-6-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240612173213.42827-1-sebastian.reichel@collabora.com>
-References: <20240612173213.42827-1-sebastian.reichel@collabora.com>
+	s=arc-20240116; t=1718213179; c=relaxed/simple;
+	bh=8mAINEWgGiadV1kEJND+F9WvJE3WuJIALswoL9FapSI=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=sLFLsAUD3jkw6ri8Yt0YKT6vqVJJIR5M6zslCc9qmcwqPwPbkCIeaI+b31YjK1jZH/LRFa0qfoM2IuYIm8KPcD0KHTEp4V3wTeUT/kTV8CChdsAsIkV3MmJHUt6gDK4lr3bGs5WLpfLJuEZaiOUxgsoWxL9cVKtEJM+WNe51WEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LypDdc56; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58848C116B1;
+	Wed, 12 Jun 2024 17:26:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718213179;
+	bh=8mAINEWgGiadV1kEJND+F9WvJE3WuJIALswoL9FapSI=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=LypDdc56kiZi2JjvRRlVxTTMRS9WLepzejGCDmQSSqGvE8U5TsAtu5H7PCR7GWD2R
+	 +V0vb9dzRZdgXA/g8wDH85Ykf4fzHukdkp1eeNKP+zPvnocP0m15T1hyy8vIZjm+sI
+	 hZWYo5G91IrrSKFHkF6uATS6vQeP8wnNmRkjmDh1QI4l330XPyLK7vX1UUO4xEOzSd
+	 lSz0C1gpZyZLJ6XEs/TI3I55reyrrvf5ZZS+SB5ArmB+yErQn/fGulgKkQAYUGc0g4
+	 RXvFduL9Y9KlCeTYEfQZC/uvOb5lB2e3ERkH+SJHxK8V78Xu8YwttIPlA334EtlbOe
+	 AzBB30DTa/aiA==
+Date: Wed, 12 Jun 2024 11:26:18 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Shresth Prasad <shresthprasad7@gmail.com>
+Cc: skhan@linuxfoundation.org, linux-phy@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, cristian.ciocaltea@collabora.com, 
+ javier.carrasco.cruz@gmail.com, krzk+dt@kernel.org, 
+ sebastian.reichel@collabora.com, heiko@sntech.de, 
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org, 
+ s.hauer@pengutronix.de, vkoul@kernel.org, andy.yan@rock-chips.com, 
+ kishon@kernel.org
+In-Reply-To: <20240612160336.5132-2-shresthprasad7@gmail.com>
+References: <20240612160336.5132-2-shresthprasad7@gmail.com>
+Message-Id: <171821317822.3213383.11527359300023322395.robh@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: phy: rockchip-emmc-phy: Convert to
+ dtschema
 
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
 
-Enable Hantro G1 video decoder in RK3588's devicetree.
+On Wed, 12 Jun 2024 21:33:37 +0530, Shresth Prasad wrote:
+> Convert txt bindings of Rockchip EMMC PHY to dtschema to allow
+> for validation.
+> 
+> Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
+> ---
+> Changes in v2:
+>     - Fixed example
+>     - Changed file referenced in grf.yaml
+> 
+> Tested against `rockchip/rk3399-firefly.dtb`, `rockchip/rk3399-orangepi.dtb`
+> and `rockchip/rk3399-pinebook-pro.dtb`.
+> 
+>  .../bindings/phy/rockchip,emmc-phy.yaml       | 79 +++++++++++++++++++
+>  .../bindings/phy/rockchip-emmc-phy.txt        | 43 ----------
+>  .../devicetree/bindings/soc/rockchip/grf.yaml |  2 +-
+>  3 files changed, 80 insertions(+), 44 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+> 
 
-Tested with FFmpeg v4l2_request code taken from [1]
-with MPEG2, H.264 and VP8 samples.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-[1] https://github.com/LibreELEC/LibreELEC.tv/blob/master/packages/multimedia/ffmpeg/patches/v4l2-request/ffmpeg-001-v4l2-request.patch
+yamllint warnings/errors:
 
-Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
-Tested-by: Hugh Cole-Baker <sigmaris@gmail.com>
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.example.dtb: syscon@ff770000: reg: [[0, 4285988864], [0, 65536]] is too long
+	from schema $id: http://devicetree.org/schemas/soc/rockchip/grf.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.example.dtb: syscon@ff770000: reg: [[0, 4285988864], [0, 65536]] is too long
+	from schema $id: http://devicetree.org/schemas/mfd/syscon.yaml#
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-index 9edbcfe778ca..e7e1b456b9b9 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-@@ -1239,6 +1239,27 @@ jpeg_enc3_mmu: iommu@fdbac800 {
- 		#iommu-cells = <0>;
- 	};
- 
-+	vpu: video-codec@fdb50000 {
-+		compatible = "rockchip,rk3588-vpu121", "rockchip,rk3568-vpu";
-+		reg = <0x0 0xfdb50000 0x0 0x800>;
-+		interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH 0>;
-+		interrupt-names = "vdpu";
-+		clocks = <&cru ACLK_VPU>, <&cru HCLK_VPU>;
-+		clock-names = "aclk", "hclk";
-+		iommus = <&vpu_mmu>;
-+		power-domains = <&power RK3588_PD_VDPU>;
-+	};
-+
-+	vpu_mmu: iommu@fdb50800 {
-+		compatible = "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-+		reg = <0x0 0xfdb50800 0x0 0x40>;
-+		interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clock-names = "aclk", "iface";
-+		clocks = <&cru ACLK_VPU>, <&cru HCLK_VPU>;
-+		power-domains = <&power RK3588_PD_VDPU>;
-+		#iommu-cells = <0>;
-+	};
-+
- 	av1d: video-codec@fdc70000 {
- 		compatible = "rockchip,rk3588-av1-vpu";
- 		reg = <0x0 0xfdc70000 0x0 0x800>;
--- 
-2.43.0
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240612160336.5132-2-shresthprasad7@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
