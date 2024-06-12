@@ -1,55 +1,65 @@
-Return-Path: <devicetree+bounces-75067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B296790559A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:47:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C02439055A6
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:48:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4F190B21EFF
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 14:47:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C9A21F21143
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 14:48:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A10E417E912;
-	Wed, 12 Jun 2024 14:46:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B50C917F37F;
+	Wed, 12 Jun 2024 14:47:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="ZqkJNYn3"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="grGqWBkB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-canonical-1.canonical.com (smtp-relay-canonical-1.canonical.com [185.125.188.121])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 597E717F4EB;
-	Wed, 12 Jun 2024 14:46:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.121
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 528C21E504;
+	Wed, 12 Jun 2024 14:47:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718203597; cv=none; b=fx4ZYuAZE7UxkdiDpze6zc1BOT52mquWh6AZ22qQQriOQzkZ63cWUs60bsf0Kb9F5OKYR3s+9WzzqI8Vyk1Iy/c7sby/DQMg8aaZeI+n+S3rQhJxNGYiZZpcVaCwvDsHX6o33lL19WTTmAy94S98iW3/G12pFMcsf6Tk2nBrulM=
+	t=1718203664; cv=none; b=SLO86olC37nGUwDl4inOE7HqfzNhey+H//p7Krv8eQyXnA5OYRnTqV3vBfB67WffvaF//3cNFnk6zYmdv82e+aNDMrGf0iSOOX9xRFLAHulnQwS67/llMjNsXfx/nHow5gXfRWMR1Vw+X6idJ7uY9S8ZBtsOejJfCdktVckCP9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718203597; c=relaxed/simple;
-	bh=XJT/PCOkR0tlDddtOt5cCGCqD4uw4jewvUumGQpbGiY=;
+	s=arc-20240116; t=1718203664; c=relaxed/simple;
+	bh=afYKfX5WiT24a7vRcOHvX/frxR+u+IAFVv0AQdtNlWs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RbK1EXwNEkTnlVy+tTHPWpHd2xIYrJLQ/dYevqb4euu0QIK05Il6Y/jsQbQkf3XHoRNNHkrjqGEzLDYeAMjLkvVTUONEOdD81hahgm4ROHi3vJhHYZikA8j/wvNdR1aGgOm6UHcuG77Uy1fu0hE3sBEZLyXH2nRbHcvSFBpI1gw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=ZqkJNYn3; arc=none smtp.client-ip=185.125.188.121
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from [192.168.0.106] (unknown [123.112.65.116])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPSA id 8FDE33F5F5;
-	Wed, 12 Jun 2024 14:46:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1718203584;
-	bh=P2ZpUzVfDEqnrfh2KnWliiZ1HuIVAcENcZDvsUv2EO8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type;
-	b=ZqkJNYn337W6uYB7tURrrNEz4FsgyY2hhGF3CqzRRlvsDEelTHIqJ2tLLSViA6eoC
-	 duhISS/yIk2Rl2unIPDHRO1WWiktzxGh91xfl61hoNRL0kPAqG0iuQ2bwgnz7Ms137
-	 fRJ9vC+8cWy43s2FX0V2f2hnTg3olbB6F+UawTOKES4jWHoiiB39rY7qtB9oggqMKl
-	 8sXVCS+aHkQ7m103aOWOmNvWb+lMswwV88b4EsLwjoD73D69cGvIHRbYR4Uga5TPq/
-	 UxjvmczR0CkgcaWSU7Ad812unLMqUIlyNhtR2rvtWfWKZDb03cUcAETZq/Pqmw3oLb
-	 phYezzF2nafdg==
-Message-ID: <2cbbb6cf-7dff-4b28-9b98-a795d92937ae@canonical.com>
-Date: Wed, 12 Jun 2024 22:46:12 +0800
+	 In-Reply-To:Content-Type; b=lzzHYRp813k/cuM3XLTZw3zt5OE3fK8MTEwH5iujQjQJq9LK2go/h+fjsS7+kCkPYyD4D62Q6/5iF0obty8uLuIM4D7Eoryy+zgEkRy++VPioCh5pOITz2uBaDOmSe2koPzZEJcNFZsGWD6G/aowTXHg4xbaYBalLSr5SI4sbFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=grGqWBkB; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1718203663; x=1749739663;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=afYKfX5WiT24a7vRcOHvX/frxR+u+IAFVv0AQdtNlWs=;
+  b=grGqWBkBrKX6Msb/pvvAOHn2rH4uV6Qb4CJO1tFzD+6GU18XlXSAXUWd
+   oAqBUpmV20lrCMDqbIW7gf+JUeJ5efRIYEFlpa4/rBRMVhb6PuVMrhq6i
+   3jR2/G2RcbpqfaxoniGJoeOKy31B4d+8uYv+V9mpLABrfVd5ZUj+COHm0
+   tx21xtLqs5F23FhWS5j2q5bRfjp/nalZL/xLjNyVzTgTYDwbVr0VdjN0U
+   /BtxqqgXrSKRknC/Y55XC2nGOzAHqTQYVQ0q+FeTnLOBjLMiQcAJ+B/SR
+   p+MKvpLnPW+5Oto47i9YhHk/FXrg3HXpCXRFkmh2cL5iLZ4/YdW15U2QG
+   g==;
+X-CSE-ConnectionGUID: jWqhhuq5RhGZ7B+MzB90kg==
+X-CSE-MsgGUID: O1xhuSP7TYm6zrnXWMr0HA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14846470"
+X-IronPort-AV: E=Sophos;i="6.08,233,1712646000"; 
+   d="scan'208";a="14846470"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2024 07:47:41 -0700
+X-CSE-ConnectionGUID: lXJttGFaTCK21oTjZ4kGZw==
+X-CSE-MsgGUID: iGl843MOR66bAy93XUaE6w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,233,1712646000"; 
+   d="scan'208";a="44375086"
+Received: from aslawinx-mobl.ger.corp.intel.com (HELO [10.94.0.53]) ([10.94.0.53])
+  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2024 07:47:36 -0700
+Message-ID: <5be51e1f-70c9-4bbc-96fa-1e50e441bd35@linux.intel.com>
+Date: Wed, 12 Jun 2024 16:47:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,90 +67,155 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] serial: sc16is7xx: hardware reset chip if
- reset-gpios is defined in DT
-To: Hugo Villeneuve <hugo@hugovil.com>
-Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- gregkh@linuxfoundation.org, jirislaby@kernel.org, hvilleneuve@dimonoff.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org,
- lech.perczak@camlingroup.com, Maarten.Brock@sttls.nl
-References: <20240612131454.49671-1-hui.wang@canonical.com>
- <20240612131454.49671-2-hui.wang@canonical.com>
- <20240612095023.946d77e6c30f7ecc4cdad672@hugovil.com>
+Subject: Re: [PATCH v23 32/32] ASoC: doc: Add documentation for SOC USB
 Content-Language: en-US
-From: Hui Wang <hui.wang@canonical.com>
-In-Reply-To: <20240612095023.946d77e6c30f7ecc4cdad672@hugovil.com>
+To: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
+ mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
+ corbet@lwn.net, broonie@kernel.org, lgirdwood@gmail.com, krzk+dt@kernel.org,
+ Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com, tiwai@suse.com,
+ robh@kernel.org, gregkh@linuxfoundation.org
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
+ alsa-devel@alsa-project.org
+References: <20240610235808.22173-1-quic_wcheng@quicinc.com>
+ <20240610235808.22173-33-quic_wcheng@quicinc.com>
+From: =?UTF-8?Q?Amadeusz_S=C5=82awi=C5=84ski?=
+ <amadeuszx.slawinski@linux.intel.com>
+In-Reply-To: <20240610235808.22173-33-quic_wcheng@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
+On 6/11/2024 1:58 AM, Wesley Cheng wrote:
 
-On 6/12/24 21:50, Hugo Villeneuve wrote:
-> On Wed, 12 Jun 2024 21:14:54 +0800
-> Hui Wang <hui.wang@canonical.com> wrote:
->
-> Hi Hui,
->
->> Some boards connect a GPIO to the reset pin, and the reset pin needs
->> to be setup correctly before accessing the chip.
->>
->> Add a function to handle the chip reset. If the reset-gpios is defined
->> in the DT, do hardware reset through this GPIO, othwerwise do software
->> reset as before.
-...
->> +		/* The minimum reset pulse width is 3 us. */
->> +		udelay(5);
->> +		gpiod_set_value_cansleep(reset_gpio, 0);
->> +		/* Deassert GPIO */
-> Move this comment after its corresponding statement:
->      gpiod_set_value_cansleep(reset_gpio, 0); /* Deassert GPIO */
->
-Got it.
->> +	} else {
->> +		/* Software reset */
->> +		regmap_write(regmap, SC16IS7XX_IOCONTROL_REG,
->> +			     SC16IS7XX_IOCONTROL_SRESET_BIT);
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->>   int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
->>   		    struct regmap *regmaps[], int irq)
->>   {
->> @@ -1527,6 +1552,10 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
->>   	s->devtype = devtype;
->>   	dev_set_drvdata(dev, s);
->>   
->> +	ret = sc16is7xx_reset(dev, regmaps[0]);
->> +	if (ret)
->> +		goto out_clk;
->> +
-> You could move this block where the original software reset was
-> located, unless you have a good reason to move it here? This will make
-> the review (diff) easier...
+(...)
 
-If I move it to the place where the original software reset was located, 
-I can't use "goto out_clk" anymore, it not only needs to release clk but 
-also needs to stop the kthread, so I have to add a new tag before the 
-kthread_stop(s->kworker_task) and goto that tag.
+> +In the case where the USB offload driver is unbounded, while USB SND is
 
-Thanks.
+unbounded -> unbound
 
->>   	kthread_init_worker(&s->kworker);
->>   	s->kworker_task = kthread_run(kthread_worker_fn, &s->kworker,
->>   				      "sc16is7xx");
->> @@ -1536,10 +1565,6 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
->>   	}
->>   	sched_set_fifo(s->kworker_task);
->>   
->> -	/* reset device, purging any pending irq / data */
->> -	regmap_write(regmaps[0], SC16IS7XX_IOCONTROL_REG,
->> -		     SC16IS7XX_IOCONTROL_SRESET_BIT);
->> -
->>   	/* Mark each port line and status as uninitialised. */
->>   	for (i = 0; i < devtype->nr_uart; ++i) {
->>   		s->p[i].port.line = SC16IS7XX_MAX_DEVS;
->> -- 
->> 2.34.1
->
+(...)
+
+> +SOC USB and USB Sound Kcontrols
+> +===============================
+> +Details
+> +-------
+> +SOC USB and USB sound expose a set of SND kcontrols for applications to select
+> +and fetch the current offloading status for the ASoC platform sound card. Kcontrols
+> +are split between two layers:
+> +
+> +	- USB sound - Notifies the sound card number for the ASoC platform sound
+> +	  card that it is registered to for supporting audio offload.
+> +
+> +	- SOC USB - Maintains the current status of the offload path, and device
+> +	  (USB sound card and PCM device) information.  This would be the main
+> +	  card that applications can read to determine offloading capabilities.
+> +
+> +Implementation
+> +--------------
+> +
+> +**Example:**
+> +
+> +  **Sound Cards**:
+> +
+> +	::
+> +
+> +	  0 [SM8250MTPWCD938]: sm8250 - SM8250-MTP-WCD9380-WSA8810-VA-D
+> +                     SM8250-MTP-WCD9380-WSA8810-VA-DMIC
+> +	  1 [C320M          ]: USB-Audio - Plantronics C320-M
+> +                     Plantronics Plantronics C320-M at usb-xhci-hcd.1.auto-1, full speed
+> +
+> +
+> +  **Platform Sound Card** - card#0:
+> +
+> +	::
+> +
+> +	  USB Offload Playback Route Card Select  1 (range -1->32)
+> +	  USB Offload Playback Route PCM Select   0 (range -1->255)
+> +	  USB Offload Playback Route Card Status  -1 (range -1->32)
+> +	  USB Offload Playback Route PCM Status   -1 (range -1->255)
+> +
+> +
+> +  **USB Sound Card** - card#1:
+> +
+> +	::
+> +
+> +	  USB Offload Playback Capable Card         0 (range -1->32)
+> +
+> +
+> +The platform sound card(card#0) kcontrols are created as part of adding the SOC
+> +USB device using **snd_soc_usb_add_port()**.  The following kcontrols are defined
+> +as:
+> +
+> +  - ``USB Offload Playback Route Card Status`` **(R)**: USB sound card device index
+> +    that defines which USB SND resources are currently offloaded.  If -1 is seen, it
+> +    signifies that offload is not active.
+> +  - ``USB Offload Playback Route PCM Status`` **(R)**: USB PCM device index
+> +    that defines which USB SND resources are currently offloaded.  If -1 is seen, it
+> +    signifies that offload is not active.
+> +  - ``USB Offload Playback Route Card Select`` **(R/W)**: USB sound card index which
+> +    selects the USB device to initiate offloading on.  If no value is written to the
+> +    kcontrol, then the last USB device discovered card index will be chosen.
+
+I see only one kcontrol, what if hardware is capable of offloading on 
+more cards, is it possible to do offloading on more than one device?
+
+> +  - ``USB Offload Playback Route PCM Select`` **(R/W)**: USB PCM index which selects
+> +    the USB device to initiate offloading on.  If no value is written to the
+> +    kcontrol, then the last USB device discovered PCM zero index will be chosen.
+> +
+> +The USB sound card(card#1) kcontrols are created as USB audio devices are plugged
+> +into the physical USB port and enumerated.  The kcontrols are defined as:
+> +
+> +  - ``USB Offload Playback Capable Card`` **(R)**: Provides the sound card
+> +    number/index that supports USB offloading.  Further/follow up queries about
+> +    the current offload state can be handled by reading the offload status
+> +    kcontrol exposed by the platform card.
+> +
+
+
+Why do we need to some magic between cards? I feel like whole kcontrol 
+thing is overengineered a bit - I'm not sure I understand the need to do 
+linking between cards. It would feel a lot simpler if USB card exposed 
+one "USB Offload" kcontrol on USB card if USB controller supports 
+offloading and allowed to set it to true/false to allow user to choose 
+if they want to do offloading on device.
+
+(...)
+> +Mixer Examples
+> +--------------
+> +
+> +	::
+> +
+> +	  tinymix -D 0 set 'USB Offload Playback Route Card Select' 2
+> +	  tinymix -D 0 set 'USB Offload Playback Route PCM Select' 0
+> +
+> +
+> +	::
+> +
+> +	  tinymix -D 0 get 'USB Offload Playback Route Card Select'
+> +	  --> 2 (range -1->32)
+> +	  tinymix -D 0 get 'USB Offload Playback Route PCM Select'
+> +	  --> 0 (range -1->255)
+> +
+> +	::
+> +
+> +	  tinymix -D 0 get 'USB Offload Playback Route Card Status'
+> +	  --> 2 (range -1->32)   [OFFLD active]
+> +	  --> -1 (range -1->32) [OFFLD idle]
+> +	  tinymix -D 0 get 'USB Offload Playback Route PCM Status'
+> +	  --> 0 (range -1->255)   [OFFLD active]
+> +	  --> -1 (range -1->255) [OFFLD idle]
+> +
+> +	::
+> +
+> +	  tinymix -D 1 get 'USB Offload Playback Capable Card'
+> +	  --> 0 (range -1->32)
+> 
+
+Yes, looking at examples again, I'm still not sure I understand. There 
+are two cards and you do linking between them, this feels broken by 
+design. From my point of view USB Offload should be property of USB card 
+and not involve any other card in a system.
+
 
