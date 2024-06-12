@@ -1,182 +1,140 @@
-Return-Path: <devicetree+bounces-75028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1C2F905429
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:51:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 287A490543D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:53:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E67C1C2095E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 13:51:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BF071C21883
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 13:53:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5610317C7D5;
-	Wed, 12 Jun 2024 13:50:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="glClZLY2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A017D17D894;
+	Wed, 12 Jun 2024 13:53:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58EB2176ACE;
-	Wed, 12 Jun 2024 13:50:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5BDA16F271;
+	Wed, 12 Jun 2024 13:53:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718200257; cv=none; b=K6aE2PSz5EIYsOQlTSwiW1ano+ooR0ZnCzLqO5VAHzZ86F1UqbXWvPOiT/fHOHeazeuTk5GD6uqdF1Hw3zq1n4O7AIpoCVH4RdAUvbDrLQek51VAN5BW3XPaGuPPRyhY5aP5HGnxpYEvpBksGYxNzriVwpZ2uiVM994avmUey7s=
+	t=1718200386; cv=none; b=E7IdmuaBkBwCyU5Syz0PBNmOvPcsmMKe5/iMf+y7XBnaau8hCREJdSZt997PN4QGVMT57ceLvVyO6oMRZnBI8pmiU9o2nF++7R5FwwKEFnvhQrw+aLPS/GphJQAAJzaMDiMe5+ND2AUigDN0qDSL/SPfsLOp/q1yArLGJAXg/Bg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718200257; c=relaxed/simple;
-	bh=UC7647RDCtTIWhBFEBcjvrpuMqG1qyvU5D3QlhdgvwY=;
-	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
-	 Content-Type:Subject; b=DPpoeUNp+fMd6WUGh9vEkEM+m+rfFxDqaYowHp3e4X11G5KAdWXQ5NoPF3J64HLMSkANhUOrCqT4yl3j8fVPjmndwXul8oQIIpuyXuusfpSMSEOjMPLG8i1SoXqssgQdeZpP6mWxZ6HxXBN03lRDnXTh669/pIx3vC3cM11l3mk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=glClZLY2; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
-	:Date:subject:date:message-id:reply-to;
-	bh=VbFDZPH5MzHyCgFyYR92b3OqxCJLflFP20uE8YGsh3Y=; b=glClZLY2JoOOu/KWCg3V69Efut
-	VuFG7tYxcl5zuA65qHYSa5o3RxVM29Ar3llHyA1plr5oM2t+4N1yKwF+qMzSdmBl+OVb+gvTNf3se
-	fy0KTq0nNMg6e8h+aPusiNs4krGuUBqid6RLOcfTXIRTN7qYqx4CPsqLQawKzZdoa7LY=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:49618 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1sHONA-00065E-Ac; Wed, 12 Jun 2024 09:50:45 -0400
-Date: Wed, 12 Jun 2024 09:50:23 -0400
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Hui Wang <hui.wang@canonical.com>
-Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- gregkh@linuxfoundation.org, jirislaby@kernel.org, hvilleneuve@dimonoff.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org,
- lech.perczak@camlingroup.com, Maarten.Brock@sttls.nl
-Message-Id: <20240612095023.946d77e6c30f7ecc4cdad672@hugovil.com>
-In-Reply-To: <20240612131454.49671-2-hui.wang@canonical.com>
-References: <20240612131454.49671-1-hui.wang@canonical.com>
-	<20240612131454.49671-2-hui.wang@canonical.com>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1718200386; c=relaxed/simple;
+	bh=VwTo+mvW090vyc3G2pODaN13478wwyTxNG0+WDia1OE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hlvsfanZifzjh4fRswBpqxinjHLoSjiopoKpGETNiTj7EzVNcP9dYl18EzDT//kun22JF8I2PjZ50Fbx76hKq8EEyFNjRCAEPYMYhoY5TDdIbxTF9XLSa+6RjZgsrPTsnXoMLSkkeR/YxdqmY0zvZ+195zxyvYGfOUSWogw0obQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-42278f3aea4so11709005e9.1;
+        Wed, 12 Jun 2024 06:53:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718200383; x=1718805183;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TGBcr2RK+U/upO1TBgkbMQlKphC74REv/dCO0ULM5Bc=;
+        b=qeRxbPrEdE4VK9/36PUjq/7JZzAzW5sMcyOBf3oj+R/A7wKEaedUf1UeukjmM2fEpa
+         95e7zsZqNg52lJr2/umQ0+YC/48VNYIUKgUEUGKOqFjLSinB/dRIMuTFiZwKWmsYHxPt
+         aqqaXZMubm0qyEJpFzD1DkwW9qAaZKJanuLQDh64depwpUUOBGzVkorS941DhudJqRLu
+         SkHxcVDV+3/FGuVne3CAqUElm9cn+x/G1qj2qb6ZuHhLJ8ndU/sGm0sYzP5WEOYgHNfm
+         BN4r4wOYIFXU/6fBZzlzvEJ1ZjZ5+tDI4JoRSl17toq8hKAp62NvrLsNxOqOBG91l4vt
+         IEbg==
+X-Forwarded-Encrypted: i=1; AJvYcCWjCojKLEB+Prf4qMy8GwmowZuQ22RceLmIqd8LyeXYpkSHBdgkaDa/dTh6lBaqFj8ixQrh8FNCINRK36RJTZIkMoTNqdsmUEoXJR96gF8E9mjy/ptYrdnizJid3PHJS4Kr5Au5NjWbMzPj6his+xi4PcEx72CxfE2eUtirYspVHBJIj/Nc
+X-Gm-Message-State: AOJu0YxaIEmM0vlCPvZDFDvNRCxN96b8H3Xks6d/mADXyzvUWIZf0EMA
+	k3msITYN+3VgboYz0tkYT2fIP53EA7bHXgkO5Vt/Fi9lJ097suNl
+X-Google-Smtp-Source: AGHT+IFpLlhCxjJHPHBYfibghuC2LyUOVhxW9VizojTuoZbWMakCG+/4bvOBPIPTBmnYXt2VZXwpnA==
+X-Received: by 2002:a5d:45c7:0:b0:35f:2161:1fc0 with SMTP id ffacd0b85a97d-35fe892bddamr1198669f8f.70.1718200382941;
+        Wed, 12 Jun 2024 06:53:02 -0700 (PDT)
+Received: from ramallet.home (cst-prg-45-36.cust.vodafone.cz. [46.135.45.36])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422871ec9e6sm28201695e9.38.2024.06.12.06.53.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jun 2024 06:53:02 -0700 (PDT)
+From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Subject: [PATCH 0/9] New DRM accel driver for Rockchip's RKNN NPU
+Date: Wed, 12 Jun 2024 15:52:53 +0200
+Message-Id: <20240612-6-10-rocket-v1-0-060e48eea250@tomeuvizoso.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-X-Spam-Report: 
-	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-	* -0.0 T_SCC_BODY_TEXT_LINE No description available.
-	* -1.0 NICE_REPLY_A Looks like a legit reply (A)
-Subject: Re: [PATCH v3 2/2] serial: sc16is7xx: hardware reset chip if
- reset-gpios is defined in DT
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+X-B4-Tracking: v=1; b=H4sIADaoaWYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDM0MjXTNdQwPdovzk7NQSXUtjQ7OU1LRkQ5NkcyWgjoKi1LTMCrBp0bG
+ 1tQDVw8QnXQAAAA==
+To: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+ Robin Murphy <robin.murphy@arm.com>, Heiko Stuebner <heiko@sntech.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, 
+ Tomeu Vizoso <tomeu.vizoso@tomeuvizoso.net>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org, 
+ Tomeu Vizoso <tomeu@tomeuvizoso.net>
+X-Mailer: b4 0.13.0
 
-On Wed, 12 Jun 2024 21:14:54 +0800
-Hui Wang <hui.wang@canonical.com> wrote:
+This series adds a new driver for the NPU that Rockchip includes in its
+newer SoCs, developed by them on the NVDLA base.
 
-Hi Hui,
+In its current form, it supports the specific NPU in the RK3588 SoC.
 
-> Some boards connect a GPIO to the reset pin, and the reset pin needs
-> to be setup correctly before accessing the chip.
-> 
-> Add a function to handle the chip reset. If the reset-gpios is defined
-> in the DT, do hardware reset through this GPIO, othwerwise do software
-> reset as before.
-> 
-> Signed-off-by: Hui Wang <hui.wang@canonical.com>
-> ---
-> In the v3:
->  - drop Reviewed-by
->  - adjust the sequence of if, else if and else
->  - replace PTR_ERR(reset_gpiod) with dev_err_probe
->  - change GPIOD_OUT_LOW to GPIOD_OUT_HIGH, this will assert the reset pin after requesting the GPIO
->  - change the 2nd parameter struct regmap *regmap[] to struct regmap *regmap
->  - address all spelling and description issues in the v2
->  
->  drivers/tty/serial/sc16is7xx.c | 33 +++++++++++++++++++++++++++++----
->  1 file changed, 29 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
-> index bf0065d1c8e9..8c7e0fe76049 100644
-> --- a/drivers/tty/serial/sc16is7xx.c
-> +++ b/drivers/tty/serial/sc16is7xx.c
-> @@ -14,6 +14,7 @@
->  #include <linux/delay.h>
->  #include <linux/device.h>
->  #include <linux/export.h>
-> +#include <linux/gpio/consumer.h>
->  #include <linux/gpio/driver.h>
->  #include <linux/idr.h>
->  #include <linux/kthread.h>
-> @@ -1467,6 +1468,30 @@ static const struct serial_rs485 sc16is7xx_rs485_supported = {
->  	.delay_rts_after_send = 1,	/* Not supported but keep returning -EINVAL */
->  };
->  
-> +/* Reset device, purging any pending irq / data */
-> +static int sc16is7xx_reset(struct device *dev, struct regmap *regmap)
-> +{
-> +	struct gpio_desc *reset_gpio;
-> +
-> +	/* The reset GPIO is ACTIVE_LOW, flag GPIOD_OUT_HIGH asserts the reset GPIO */
-> +	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(reset_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(reset_gpio), "Failed to get reset GPIO\n");
-> +
-> +	if (reset_gpio) {
-> +		/* The minimum reset pulse width is 3 us. */
-> +		udelay(5);
-> +		gpiod_set_value_cansleep(reset_gpio, 0);
-> +		/* Deassert GPIO */
+The userspace driver is part of Mesa and an initial draft can be found at:
 
-Move this comment after its corresponding statement:
-    gpiod_set_value_cansleep(reset_gpio, 0); /* Deassert GPIO */
+https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29698
 
+Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+---
+Tomeu Vizoso (9):
+      iommu/rockchip: Add compatible for rockchip,rk3588-iommu
+      iommu/rockchip: Attach multiple power domains
+      dt-bindings: mailbox: rockchip,rknn: Add bindings
+      arm64: dts: rockchip: Add nodes for NPU and its MMU to rk3588s
+      arm64: dts: rockchip: Enable the NPU on quartzpro64
+      accel/rocket: Add a new driver for Rockchip's NPU
+      accel/rocket: Add IOCTL for BO creation
+      accel/rocket: Add job submission IOCTL
+      accel/rocket: Add IOCTLs for synchronizing memory accesses
 
-> +	} else {
-> +		/* Software reset */
-> +		regmap_write(regmap, SC16IS7XX_IOCONTROL_REG,
-> +			     SC16IS7XX_IOCONTROL_SRESET_BIT);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
->  		    struct regmap *regmaps[], int irq)
->  {
-> @@ -1527,6 +1552,10 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
->  	s->devtype = devtype;
->  	dev_set_drvdata(dev, s);
->  
-> +	ret = sc16is7xx_reset(dev, regmaps[0]);
-> +	if (ret)
-> +		goto out_clk;
-> +
+ .../devicetree/bindings/npu/rockchip,rknn.yaml     |  123 +
+ MAINTAINERS                                        |    8 +
+ .../arm64/boot/dts/rockchip/rk3588-quartzpro64.dts |    8 +
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi          |   53 +
+ drivers/accel/Kconfig                              |    1 +
+ drivers/accel/Makefile                             |    1 +
+ drivers/accel/rocket/Kconfig                       |   13 +
+ drivers/accel/rocket/Makefile                      |   10 +
+ drivers/accel/rocket/rocket_core.c                 |  155 +
+ drivers/accel/rocket/rocket_core.h                 |   48 +
+ drivers/accel/rocket/rocket_device.c               |   39 +
+ drivers/accel/rocket/rocket_device.h               |   40 +
+ drivers/accel/rocket/rocket_drv.c                  |  243 ++
+ drivers/accel/rocket/rocket_drv.h                  |   16 +
+ drivers/accel/rocket/rocket_gem.c                  |  136 +
+ drivers/accel/rocket/rocket_gem.h                  |   33 +
+ drivers/accel/rocket/rocket_job.c                  |  708 ++++
+ drivers/accel/rocket/rocket_job.h                  |   49 +
+ drivers/accel/rocket/rocket_registers.h            | 4449 ++++++++++++++++++++
+ drivers/iommu/rockchip-iommu.c                     |   39 +
+ include/uapi/drm/rocket_accel.h                    |  116 +
+ 21 files changed, 6288 insertions(+)
+---
+base-commit: 83a7eefedc9b56fe7bfeff13b6c7356688ffa670
+change-id: 20240612-6-10-rocket-9316defc14c7
 
-You could move this block where the original software reset was
-located, unless you have a good reason to move it here? This will make
-the review (diff) easier...
-
->  	kthread_init_worker(&s->kworker);
->  	s->kworker_task = kthread_run(kthread_worker_fn, &s->kworker,
->  				      "sc16is7xx");
-> @@ -1536,10 +1565,6 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
->  	}
->  	sched_set_fifo(s->kworker_task);
->  
-> -	/* reset device, purging any pending irq / data */
-> -	regmap_write(regmaps[0], SC16IS7XX_IOCONTROL_REG,
-> -		     SC16IS7XX_IOCONTROL_SRESET_BIT);
-> -
->  	/* Mark each port line and status as uninitialised. */
->  	for (i = 0; i < devtype->nr_uart; ++i) {
->  		s->p[i].port.line = SC16IS7XX_MAX_DEVS;
-> -- 
-> 2.34.1
-
-
+Best regards,
 -- 
-Hugo Villeneuve
+Tomeu Vizoso <tomeu@tomeuvizoso.net>
+
 
