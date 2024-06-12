@@ -1,140 +1,175 @@
-Return-Path: <devicetree+bounces-74994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC98290525A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 14:25:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C78E59052AE
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 14:41:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 70C021F23D69
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 12:25:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B40E1F22B51
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 12:41:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F235F16F830;
-	Wed, 12 Jun 2024 12:25:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F069170835;
+	Wed, 12 Jun 2024 12:41:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mtrf2Ssy"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dp6+j6TW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97D7D208C3;
-	Wed, 12 Jun 2024 12:25:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A8CA16F29C;
+	Wed, 12 Jun 2024 12:41:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718195124; cv=none; b=JI37Wy8KctsCh6NtL+Jw4y8Qv+p7BDbkK4atbokPkRM9KZGDws+T0VEOK+WyaxtOimvJRhdfSJMRZyOQdr+Ttxvo7j1Zl4k4LthuOb+ZBa9w5/HVLkWHHx7f+/zS3A+6PYar9ZKcp+hcOJ6uzHklnkEGPV1E3+YZaYHjA45Db28=
+	t=1718196088; cv=none; b=iTNgq5fdvgUb+ifkPcSf6xb0pvD1GVC2fMzXNHvNxpj0fTj05vrNGbXSFAuxiUPIZ4ckzDIsCWxdgkho2If2rB1hTtvzBFB6Nkly1RDyDIkiLpuaQokFrxudnQCTlfHfOPhfRz6FV3iVYDnbV21WKjwHpFV4fZ84fwmqZHCmNz8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718195124; c=relaxed/simple;
-	bh=Wrzhzu7bIdEAEmG7BQsLuO7wEyAX0cCb7hQvsk2N+G0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iaaDEGr9g1R25XxyjFuNvfdgylj5DOnoRhKAtu+pWcNQYnJTs7f3pMoHXCRqlnzkKUiqEvfsIkwndbedEyCnW7ChHOO9NVv03Wcxa1Ve41VjfldYeDQUHgR5P66xXwXuPITiPB2CYAAs8udrMyi4fDIncLfqVuge1mx9KyyO6Is=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mtrf2Ssy; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-7041ed475acso3831297b3a.2;
-        Wed, 12 Jun 2024 05:25:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718195123; x=1718799923; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=jC+Unx6/L3Ahsjr160FqlUlQIcBGGCTwQ+U7pYUCZQ0=;
-        b=mtrf2Ssy5+xJS8eAuqn0r6Qpu9caoLMkvtUQgqv8iaan+cCnTHe9yW72t3+RoivsoY
-         osxa1qrqQJmd5Z6vl09xbtkgLO18dV9pb6JPFOUWb9nAo1CwjlHiLdBYWdrxmTeRYctD
-         Zpzq1LPD4rIch96M/KeFySietP0YcRez2sIjHb6Qj2NbYbfGqpPBvRhVTPpN1hSQgQ4N
-         nm17TZRSy8kpbabl1bTYnp7RxXORGzUztKOijLbLwRVxeMxb3rUu1OrEaT9I7Ot/3yS5
-         st/I4lwu1X/I59wndSqh3ntFguu/57OOwkaxR/is4/h0RxPIcBlceZu4T7RA6YY0BJRX
-         1JtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718195123; x=1718799923;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jC+Unx6/L3Ahsjr160FqlUlQIcBGGCTwQ+U7pYUCZQ0=;
-        b=WX17RLb+3T691ALkA5HVbZPOg0cbMMOZcgMKw+a4G5zPlxip+/fOjTjH8Iad271aMF
-         j/NURa7ByAsdY4m9l+isE0PXOi9zId0Com6GKMiTiBOMXaWezhLH5JW1wOWeXww6y/uj
-         tPWrWGsVOiXez8SY9M3C8JzvLcyUNaGoMqVlBBcz48weS7m3fmkiswy8CdkyO2KE5t57
-         o+kOHsnIIMyE/AaclHc+D79+xhpV9ivusUSgyr0NOeq7kBjJgUQ/Lm+JI9jIZEjmVzVD
-         hWn48dUjWiONRl4ehufAXmIvFvqiltR23O/Q6zaTvbFdGrpveVcgBxZ7/yCsatFQOgqC
-         5Ltg==
-X-Forwarded-Encrypted: i=1; AJvYcCVKRgrOLCIpDYHgtXNCJygTPjgLvADYDayexPOpXpizd973jlaSuWj2ePZ9QUzWTPrGGhNlBCC4zWYwicrTUwr68z4IGXPxGhNQ0ETxwVqKer2XjvglHO0xakM4s/0Ki1X0O4bVHVP2oNxLIMaXs07hmFp6Ien4WqCtxcMmbQy+yxF6CiMCawiyH3arj3Rd1QzvZWBtEk1LikoMesNxP4skFzf2qApShj9zDBHIEMZEiNEBFzUuHubi858yLg==
-X-Gm-Message-State: AOJu0YxtUD0F9c3Ds6OkuHDgKua7Bu8Wr0bLN7inY502Q7YKjlivrSd+
-	f7Fu3HI0xTrwWP+r3Xt/UerBci9eUNMFQ5iXJFH5Tf2DhR1XPvrn
-X-Google-Smtp-Source: AGHT+IErt7uVvEdoTI+9BxF9U3hhKUgJvir/IBG5VhQMRaKn/1u60z5z026VLtNbbSWbrgj1SHg2Bg==
-X-Received: by 2002:a05:6a21:32a4:b0:1b8:54f8:385d with SMTP id adf61e73a8af0-1b8a9c688e8mr1858023637.47.1718195122807;
-        Wed, 12 Jun 2024 05:25:22 -0700 (PDT)
-Received: from archie.me ([103.124.138.155])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f6bd7e3e71sm121898095ad.219.2024.06.12.05.25.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jun 2024 05:25:22 -0700 (PDT)
-Received: by archie.me (Postfix, from userid 1000)
-	id 5B4DE182522A0; Wed, 12 Jun 2024 19:25:19 +0700 (WIB)
-Date: Wed, 12 Jun 2024 19:25:19 +0700
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-To: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
-	mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
-	corbet@lwn.net, broonie@kernel.org, lgirdwood@gmail.com,
-	krzk+dt@kernel.org, Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com,
-	tiwai@suse.com, robh@kernel.org, gregkh@linuxfoundation.org
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
-	alsa-devel@alsa-project.org
-Subject: Re: [PATCH v23 32/32] ASoC: doc: Add documentation for SOC USB
-Message-ID: <ZmmTr48zLCxRVlYf@archie.me>
-References: <20240610235808.22173-1-quic_wcheng@quicinc.com>
- <20240610235808.22173-33-quic_wcheng@quicinc.com>
+	s=arc-20240116; t=1718196088; c=relaxed/simple;
+	bh=QKNi1AnJcoaWSExqqXnv1fwPnCX7d8tJdIQZQ5sLTLg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=peKpkElDWmUMq/R0r8hS1vq8CskSvn+g+15f1uPAPxgh/T2ywxfGZrnnBd0Mzsyr1NoVNxlj/AVUsYnmBQrkSp/vqRYOw0umPrpbM/7mIFB5xLwd7QAJ3cNc0dFZDy/UOQExcw9phPQlXVlS+dMQ4iaDtN79QMU/ty35PqYdD5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dp6+j6TW; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45C5FpOs026048;
+	Wed, 12 Jun 2024 12:41:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=4w9NEFBq31+/OpwZoJSdmS
+	qWfK/PiX4zNunRe6a0SyE=; b=dp6+j6TW7nWc9elNgo/XTtQUx3DdqbL0CQDIPy
+	sEiMsnzYWJ1SbjnTxlB+LYPKN+kXDJ7z+lV9KAdZMR+kR1UnY4PK3XY67YCoaf9r
+	oB+Gtd07s81QDDY9Pg+HA7SFHmR+YgeimuCcdS5Z8BQkdzAsMucst7AXABywB0HN
+	ZUkXqlCPi4KzbAU7g0lVeox/6UkS9zi5DL1WouidQYivY0okUrcUHc13yjLFsfOm
+	nCflnln6CKrFdbxrspnncoTUcmOdNpYrw0P1wDhDAXyGm3tUgQHjh/HRg91eCr/r
+	p0MHRnOoh5Rvt+lc0V2o2ydwfpBi0YeFKo9WF+x739kEPErg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yps5xak42-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Jun 2024 12:41:18 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45CCfHwl003077
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Jun 2024 12:41:17 GMT
+Received: from hu-sibis-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 12 Jun 2024 05:41:11 -0700
+From: Sibi Sankar <quic_sibis@quicinc.com>
+To: <sudeep.holla@arm.com>, <cristian.marussi@arm.com>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <jassisinghbrar@gmail.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <dmitry.baryshkov@linaro.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_rgottimu@quicinc.com>,
+        <quic_kshivnan@quicinc.com>, <quic_sibis@quicinc.com>,
+        <conor+dt@kernel.org>, <quic_nkela@quicinc.com>,
+        <quic_psodagud@quicinc.com>, <abel.vesa@linaro.org>
+Subject: [PATCH V6 0/5] qcom: x1e80100: Enable CPUFreq
+Date: Wed, 12 Jun 2024 18:10:51 +0530
+Message-ID: <20240612124056.39230-1-quic_sibis@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="P13nW3ExZUkt8gyc"
-Content-Disposition: inline
-In-Reply-To: <20240610235808.22173-33-quic_wcheng@quicinc.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: vUAtslI0AYZvWHAMOgUuY4fAXaXabGRf
+X-Proofpoint-ORIG-GUID: vUAtslI0AYZvWHAMOgUuY4fAXaXabGRf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-12_06,2024-06-12_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 clxscore=1015 malwarescore=0 mlxlogscore=999
+ spamscore=0 suspectscore=0 adultscore=0 bulkscore=0 mlxscore=0
+ phishscore=0 priorityscore=1501 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2405170001 definitions=main-2406120092
 
+This series enables CPUFreq support on the X1E SoC using the SCMI perf
+protocol. This was originally part of the RFC: firmware: arm_scmi:
+Qualcomm Vendor Protocol [1]. I've split it up so that this part can
+land earlier.
 
---P13nW3ExZUkt8gyc
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+V5:
+* Fix build error reported by kernel test robot by adding 64BIT requirement
+  to COMPILE_TEST
+* Pick Rbs
 
-On Mon, Jun 10, 2024 at 04:58:08PM -0700, Wesley Cheng wrote:
-> +Overview
-> +=3D=3D=3D=3D=3D=3D=3D=3D
-> +In order to leverage the existing USB sound device support in ALSA, the
-> +introduction of the ASoC USB APIs, allow for the entities to communicate
-> +with one another.
-"... ASoC USB APIs are introduced to allow for ..."
+V4:
+* Move val, flag and chan to local loop variables. [Jassi]
+* Add cpucp mailbox to the MAINTAINERS file. [Jassi]
+* Move to core_initcall. [Konrad]
+* Skip explicitly setting txdone_irq/txdone_poll to zero. [Konrad]
 
-> +USB Audio Device Connection Flow
-> +--------------------------------
-> +USB devices can be hotplugged into the USB root hub at any point in time.
-> +The BE DAI link should be aware of the current state of the physical USB
-> +port, i.e. if there are any USB devices with audio interface(s) connecte=
-d.
-> +The following callback can be used to notify the BE DAI link of any chan=
-ge:
-> +
-> +	**connection_status_cb()**
-"... connection_status_cb() can be used to ..."
+V3:
+* Fix Maintainer info in cpucp mbox bindings. [Bjorn]
+* Fix copyright info in cpucp driver. [Bjorn]
+* Drop unused APSS_CPUCP_TX_MBOX_IDR, value init and drv_data. [Bjorn/Dmitry]
+* Convert to lower case hex. [Bjorn]
+* Convert irq and dev to local variables. [Bjorn]
+* Replace for and if with for_each_set_bit. [Bjorn]
+* Document the need for spinlock. [Bjorn]
+* Add space after " for aesthetics. [Bjorn]
+* Fix err in calc and add fixes tag. [Bjorn]
+* Include io.h and re-order platform_device.h
+* Use GENMASK_ULL to generate APSS_CPUCP_RX_MBOX_CMD_MASK.
 
-Thanks.
+V2:
+* Fix series version number [Rob]
+* Pickup Rbs from Dimitry and Rob.
+* Use power-domain instead of clocks. [Sudeep/Ulf]
+* Rename sram sub-nodes according to schema. [Dmitry]
+* Use BIT() instead of manual shift. [Dmitry]
+* Define RX_MBOX_CMD to account for chan calculation. [Dmitry]
+* Clear the bit instead of the entire status within the spinlock. [Dmitry]
+* Use dev_err_probe instead. [Dmitry]
+* Drop superfluous error message while handling errors from get_irq. [Dmitry]
+* Use devm_mbox_controller_register and drop remove path. [Dmitry]
+* Define TX_MBOX_CMD to account for chan calculation.
+* Use cpucp->dev in probe path for conformity.
 
---=20
-An old man doll... just what I always wanted! - Clara
+RFC V1:
+* Use x1e80100 as the fallback for future SoCs using the cpucp-mbox
+  controller. [Krzysztoff/Konrad/Rob]
+* Use chan->lock and chan->cl to detect if the channel is no longer
+  Available. [Dmitry]
+* Use BIT() instead of using manual shifts. [Dmitry]
+* Don't use integer as a pointer value. [Dmitry]
+* Allow it to default to of_mbox_index_xlate. [Dmitry]
+* Use devm_of_iomap. [Dmitry]
+* Use module_platform_driver instead of module init/exit. [Dmitry]
+* Get channel number using mailbox core (like other drivers) and
+  further simplify the driver by dropping setup_mbox func.
 
---P13nW3ExZUkt8gyc
-Content-Type: application/pgp-signature; name="signature.asc"
+[1]: https://lore.kernel.org/lkml/20240117173458.2312669-1-quic_sibis@quicinc.com/#r
 
------BEGIN PGP SIGNATURE-----
+Other relevant Links:
+https://lore.kernel.org/lkml/be2e475a-349f-4e98-b238-262dd7117a4e@linaro.org/
 
-iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZmmTqwAKCRD2uYlJVVFO
-owd6AQCEY5WzdrzzRuY11wLRsArm4PXhVeYX76BrwKtOEaytPAEA0vFiTnhwd+vZ
-Dthl3BItVCKR0K2COEv+kWuRoxJD1As=
-=YNu/
------END PGP SIGNATURE-----
+Sibi Sankar (5):
+  dt-bindings: mailbox: qcom: Add CPUCP mailbox controller bindings
+  mailbox: Add support for QTI CPUCP mailbox controller
+  arm64: dts: qcom: x1e80100: Resize GIC Redistributor register region
+  arm64: dts: qcom: x1e80100: Add cpucp mailbox and sram nodes
+  arm64: dts: qcom: x1e80100: Enable cpufreq
 
---P13nW3ExZUkt8gyc--
+ .../bindings/mailbox/qcom,cpucp-mbox.yaml     |  49 +++++
+ MAINTAINERS                                   |   7 +
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi        |  91 ++++++---
+ drivers/mailbox/Kconfig                       |   8 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/qcom-cpucp-mbox.c             | 187 ++++++++++++++++++
+ 6 files changed, 319 insertions(+), 25 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
+ create mode 100644 drivers/mailbox/qcom-cpucp-mbox.c
+
+-- 
+2.34.1
+
 
