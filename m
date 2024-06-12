@@ -1,93 +1,86 @@
-Return-Path: <devicetree+bounces-74799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D9A990497C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 05:22:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 745EC9049AF
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 05:37:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 055451F248E5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 03:22:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2B61285251
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 03:37:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 346D3364BA;
-	Wed, 12 Jun 2024 03:21:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="Vhy73vMD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33E95B663;
+	Wed, 12 Jun 2024 03:37:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-43167.protonmail.ch (mail-43167.protonmail.ch [185.70.43.167])
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A22C828DD1
-	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 03:21:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.167
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B51563BF
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 03:36:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718162491; cv=none; b=HPDGF6noUnW2L69yr/nyeYvJDIPSPwSLqbJ97N8bSmiZ8nTYJ2ilt6ZwAQqQs0rqtE1C4P0ahBS+k8Qj8zlx/G2vP+Mz4ay+QUNE3Tq+NGtn2WiBIjtIFof5nIwgWXR30htBMiGywocGdwggo4WCEFo3ZK/4f0IKpo5J4L7iqDM=
+	t=1718163422; cv=none; b=i/HAbP6XB1vNxE7xDckAr1MDzIuVna3ljz2YnR/Kv9gjk1tQeHrUPZdNfF4AbDfpnSYc8QydK91hufVBFHFS2wD1fUPfV9jLXaylkgDda+fFWX8h33F1h+fR1kgwQ1E44gxfY3P6IEJCkhw9RqpaNerpy9iXCoTaLURzvAMYOak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718162491; c=relaxed/simple;
-	bh=DWxPsEhJZsPyLSnh9ioNt5dXQHtNNFp1hy4BIqKzpF8=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=C/oWmzlx4CmJFFXsgm/KZNlxDhT12ATFWRcnR+s5FndzDR/ECtCX+fKHBlY6rmWkdZZnNFGFD3uUDn/aIr8jJthLCTAJKJyFjrZhC5GHJGsyHgKys1wmOrqT5FF5d3YhXL0+P+XX8q2uSUqFQtb5KhFkFpFC0mW+dBy9K5/Ir3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=Vhy73vMD; arc=none smtp.client-ip=185.70.43.167
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1718162487; x=1718421687;
-	bh=H1GLr5Hux1N4JOpyjG066oNxDyD7VpK2fBNM2y98AvA=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=Vhy73vMDoLTJXkODvRsg1B6lSLY8TxMun2DqUxf9Ie8mkOfXc0euOywBNDt7aJGWK
-	 AiFoO+/sDWSQPwJZehH1DUXJrP2KPwDjn+jC/YATFFGtoKRBVHpPXLgTRmbq2r8v6I
-	 BHrLTkm4h4AUkJfR7958Ab5JvWPWDA63RKFAGoTr1IqDwKUeeuxTZ71MN3LcmEEk3d
-	 Nv5eY76vIR1Z3dOsCtxLT+4Tiua4gR88hERiCI7Jhkl0gB6PG91EFapVZ2zghdKWlp
-	 mRGGk8eqo5pN7f2gsiXMF2f8yrnxYWT6EmKGfJybAX+d69DUgkN1SYOtbr9G713Sfl
-	 xQ40mwwsoS0Ug==
-Date: Wed, 12 Jun 2024 03:21:24 +0000
-To: linux-kernel@vger.kernel.org
-From: Raymond Hackley <raymondhackley@protonmail.com>
-Cc: Markuss Broks <markuss.broks@gmail.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>, Nikita Travkin <nikita@trvn.ru>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: [PATCH 3/3] dt-bindings: input/touchscreen: imagis: Document ist3038
-Message-ID: <20240612032036.33103-4-raymondhackley@protonmail.com>
-In-Reply-To: <20240612032036.33103-1-raymondhackley@protonmail.com>
-References: <20240612032036.33103-1-raymondhackley@protonmail.com>
-Feedback-ID: 49437091:user:proton
-X-Pm-Message-ID: 62ef74be6eb55fe10e27fc423f06e173d02acdd0
+	s=arc-20240116; t=1718163422; c=relaxed/simple;
+	bh=YGYhqyjEU+MUzE8uFmh+cPOOLFIMr3CV7/XoyXvCzUo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=ZZvdAITBK3trfT9Vu+Vx0b8APzxgI4EWl8k3SH+LP7efcA47S9Ip3ShJqqXz+YTvqJdL0XQry9F6VAs/PTR9eF6C6omfcJ+cNNf2Ns5yHw6WGb1d4NRXBCKuLwJyE1MSrhi0iJjwWz8CV3sYX7eDHYdLpGNfmRHbdq+mPXhnnyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
+Received: from secure.fukaumi.org ([10.0.0.2])
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 45C3ZiVM030458;
+	Wed, 12 Jun 2024 12:35:45 +0900
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>
+Subject: [PATCH v3] arm64: dts: rockchip: make poweroff(8) work on Radxa ROCK 5A
+Date: Wed, 12 Jun 2024 12:35:23 +0900
+Message-ID: <20240612033523.37166-1-naoki@radxa.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240612011221.822-1-naoki@radxa.com>
+References: <20240612011221.822-1-naoki@radxa.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Imagis IST3038 is a variant of Imagis touchscreen IC. Document it in
-imagis,ist3038c bindings.
+Designate the RK806 PMIC on the Radxa ROCK 5A as the system power
+controller, so the board shuts down properly on poweroff(8).
 
-Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
+Fixes: 75fdcbc8f4c1 ("arm64: dts: rockchip: add PMIC to rock-5a")
+Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+
+Changes in v3:
+- sort tags
+Changes in v2:
+- remove an empty line above "system-power-controller;"
+- reword commit message
+- add R-b tag
 ---
- .../devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml   | 1 +
+ arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist=
-3038c.yaml b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist=
-3038c.yaml
-index 77ba280b3bdc..2aea21bfe6ac 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.y=
-aml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.y=
-aml
-@@ -15,6 +15,7 @@ properties:
-=20
-   compatible:
-     enum:
-+      - imagis,ist3038
-       - imagis,ist3032c
-       - imagis,ist3038b
-       - imagis,ist3038c
---=20
-2.39.2
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+index b070955627be..3b9a349362db 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+@@ -394,6 +394,7 @@ pmic@0 {
+ 		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
+ 			    <&rk806_dvs2_null>, <&rk806_dvs3_null>;
+ 		spi-max-frequency = <1000000>;
++		system-power-controller;
+ 
+ 		vcc1-supply = <&vcc5v0_sys>;
+ 		vcc2-supply = <&vcc5v0_sys>;
+-- 
+2.43.0
 
 
