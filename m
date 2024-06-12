@@ -1,185 +1,182 @@
-Return-Path: <devicetree+bounces-75027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A876C905404
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:43:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1C2F905429
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:51:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 446202817E1
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 13:43:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E67C1C2095E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 13:51:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F412517BB37;
-	Wed, 12 Jun 2024 13:43:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5610317C7D5;
+	Wed, 12 Jun 2024 13:50:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dFPYVq0S"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="glClZLY2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2695B16E874
-	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 13:43:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58EB2176ACE;
+	Wed, 12 Jun 2024 13:50:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718199804; cv=none; b=hrM69w5nFWsket6KJVKkuiuOHOZfoTtEjQBbPfVf1ApATUCL7kVJWxHQq7rP4T213+FEZHe7odWIpUskfhQBh+8hEQGCnGHtyJpnAAaaXgQ9Ce5NHz2GmV9lv1MievIiD0Bmk3fdIlLIgVKc/Zq/sa4bq1UTM4YrFecNuF5MpGg=
+	t=1718200257; cv=none; b=K6aE2PSz5EIYsOQlTSwiW1ano+ooR0ZnCzLqO5VAHzZ86F1UqbXWvPOiT/fHOHeazeuTk5GD6uqdF1Hw3zq1n4O7AIpoCVH4RdAUvbDrLQek51VAN5BW3XPaGuPPRyhY5aP5HGnxpYEvpBksGYxNzriVwpZ2uiVM994avmUey7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718199804; c=relaxed/simple;
-	bh=AQvzJWgWpkJxPhs5qk71PyEz+V1dhT5cp0cCp9Ezdek=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i9QqcxJLA3/f0FvzJ2kX0iqdF0G7u5gbvyu9oR/GmTfa8TWz1dq6nVdS1wlw92Aesno0cbaPUPgiZVFd/yeD0eItaJ2Cf6JARKS165BqQCwckAYkEoc0Ssbau+7swcNGgIZ+4ackMJ7aJp/a/5TvEhybH0NFIIoyo0FMVJMlIiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dFPYVq0S; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a6f1da33826so309226466b.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 06:43:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718199801; x=1718804601; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tw/7zGdTsSeZNmEJkjTPH0b3j/r5J+D7HHf+/YeS7UQ=;
-        b=dFPYVq0S8BIcG+EC5tsyGtyJ4WxHk+oFLE6LkXGPThcc2mvxvaBE0o4Akvoe/OY7pG
-         7Ee34kgEUcxRb4mh7D/CDqffHy99AM9VyxmZYvTsUWsY/71WhtyHHsS7tDjOBO07YU3u
-         JlaRmssQWw6EF8ZRYsiOsMVyeG8sbiFT7nx4U2DCw+lRHu96+l/x11VaBrLgGAZOuZDA
-         xcAKpY9WorUtVCg3hlrMovCzdsmzvL1Nl1EbdAXmZLLlh4cKIxvWbA4sKr6k73NEhFfz
-         0JRHz4vFESwtprEoEhQBUFRUrZYE/TD4O6qg6H+Y8wAP6MyZa78o5dMYYXcHNJt9tc/C
-         EdQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718199801; x=1718804601;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Tw/7zGdTsSeZNmEJkjTPH0b3j/r5J+D7HHf+/YeS7UQ=;
-        b=AzUz6ewdAaMNfXud7ISjJxCon0KYv5C6ajsjSJ0LgwM5YCa/RVo9nL2xCi3RCCulVC
-         LEh6cTCBBZToTyJBw6vNWT6FIyo53jj+6vtx4EbEWP0TA8iXeqzR8AmDBURlD85Sdsi3
-         4MYOAzySDcLB83/Q7EMFib8thlE65NfklFfgNB1QGfqN16bB37i1tfZ4qHBDkrDFh6Tk
-         fFK/n3VyINYsUAvJCg31wRwBXTQnWRJDgwrc0OtkLuvhXG+RtetZoVuMDygSqDuz/+Eh
-         pgZcG2gSXr1TNrLsre3z++dOKxyAwOGyN5iEdY+4cOMkoZEQREqPfRM3prFH0ObKTv9i
-         zeSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUlcjRFmoQTJKDXAlkWo8j2vYG1wM7tfD9cY5ZQL1wPbMhnMwmC7E3lnNbHcNdDvoezT6VLPoVJ7yYbTkNqf3H9tlCOq+eyZcZKjA==
-X-Gm-Message-State: AOJu0YxSZsU1m5Sue2DaDooo55Wjz2VsQUeBWV2UlaDaQF4JOniQq/jV
-	loDuDfirQXYmuGAbUVVmpBu+u/wdWeIf+6c2idfgiVUcgnBeV6KYHWWziU/AD08=
-X-Google-Smtp-Source: AGHT+IHasYGYvCuR/gsemBMGOL3ZriQj+qaAAw0drH8GGQv4k/nCBqBPPkv10ZqO1bYW25jArgP9UQ==
-X-Received: by 2002:a17:906:3e4a:b0:a6f:1a1a:d3f5 with SMTP id a640c23a62f3a-a6f47d4ef5emr140675366b.8.1718199801286;
-        Wed, 12 Jun 2024 06:43:21 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f0a4c4c72sm570792366b.193.2024.06.12.06.43.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jun 2024 06:43:20 -0700 (PDT)
-Message-ID: <82482ddc-9f0f-45b6-b1a1-6de2617b6980@linaro.org>
-Date: Wed, 12 Jun 2024 15:43:18 +0200
+	s=arc-20240116; t=1718200257; c=relaxed/simple;
+	bh=UC7647RDCtTIWhBFEBcjvrpuMqG1qyvU5D3QlhdgvwY=;
+	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
+	 Content-Type:Subject; b=DPpoeUNp+fMd6WUGh9vEkEM+m+rfFxDqaYowHp3e4X11G5KAdWXQ5NoPF3J64HLMSkANhUOrCqT4yl3j8fVPjmndwXul8oQIIpuyXuusfpSMSEOjMPLG8i1SoXqssgQdeZpP6mWxZ6HxXBN03lRDnXTh669/pIx3vC3cM11l3mk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=glClZLY2; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=VbFDZPH5MzHyCgFyYR92b3OqxCJLflFP20uE8YGsh3Y=; b=glClZLY2JoOOu/KWCg3V69Efut
+	VuFG7tYxcl5zuA65qHYSa5o3RxVM29Ar3llHyA1plr5oM2t+4N1yKwF+qMzSdmBl+OVb+gvTNf3se
+	fy0KTq0nNMg6e8h+aPusiNs4krGuUBqid6RLOcfTXIRTN7qYqx4CPsqLQawKzZdoa7LY=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:49618 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1sHONA-00065E-Ac; Wed, 12 Jun 2024 09:50:45 -0400
+Date: Wed, 12 Jun 2024 09:50:23 -0400
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Hui Wang <hui.wang@canonical.com>
+Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+ gregkh@linuxfoundation.org, jirislaby@kernel.org, hvilleneuve@dimonoff.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org,
+ lech.perczak@camlingroup.com, Maarten.Brock@sttls.nl
+Message-Id: <20240612095023.946d77e6c30f7ecc4cdad672@hugovil.com>
+In-Reply-To: <20240612131454.49671-2-hui.wang@canonical.com>
+References: <20240612131454.49671-1-hui.wang@canonical.com>
+	<20240612131454.49671-2-hui.wang@canonical.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] MAINTAINERS: ARM: vt8500: add Krzysztof Kozlowski as
- maintainer
-To: Alexey Charkov <alchark@gmail.com>, Arnd Bergmann <arnd@arndb.de>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, arm <arm@kernel.org>, soc@kernel.org,
- Olof Johansson <olof@lixom.net>
-References: <20240612111623.102868-1-krzysztof.kozlowski@linaro.org>
- <b1f14e92-4491-45f5-90ca-cc3d5ceea81f@app.fastmail.com>
- <CABjd4YxxmNqDXe7SSzTpr4gsf4-Rp4sgB8x2sYSGzDDx5CWo2A@mail.gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CABjd4YxxmNqDXe7SSzTpr4gsf4-Rp4sgB8x2sYSGzDDx5CWo2A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -0.0 T_SCC_BODY_TEXT_LINE No description available.
+	* -1.0 NICE_REPLY_A Looks like a legit reply (A)
+Subject: Re: [PATCH v3 2/2] serial: sc16is7xx: hardware reset chip if
+ reset-gpios is defined in DT
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-On 12/06/2024 14:57, Alexey Charkov wrote:
-> Hi Arnd, Krzystof,
+On Wed, 12 Jun 2024 21:14:54 +0800
+Hui Wang <hui.wang@canonical.com> wrote:
+
+Hi Hui,
+
+> Some boards connect a GPIO to the reset pin, and the reset pin needs
+> to be setup correctly before accessing the chip.
 > 
-> On Wed, Jun 12, 2024 at 3:43 PM Arnd Bergmann <arnd@arndb.de> wrote:
->>
->> On Wed, Jun 12, 2024, at 13:16, Krzysztof Kozlowski wrote:
->>> The ARM VIA/WonderMedia VT8500 platform became orphaned in
->>> commit 8f1b7ba55c61 ("MAINTAINERS: ARM/VT8500, remove defunct e-mail")
->>> and clearly it is on the way out of the kernel.  However few folks send
->>> patches to it and it is nice to actually take them, till the platform is
->>> in the kernel.
->>>
->>> I do not plan to actively support/maintain ARM VT8500 but I can take odd
->>> fixes now and then.
->>>
->>> Extend the maintainer entry to cover also VT8500 DTS.
->>>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> Cc: Alexey Charkov
->>
->> Thanks for stepping up. A few years ago, Alexey also had
->> some interest in this platform and knew some other remaining
->> users.
+> Add a function to handle the chip reset. If the reset-gpios is defined
+> in the DT, do hardware reset through this GPIO, othwerwise do software
+> reset as before.
 > 
-> Indeed, I'm still interested in getting it up and running, and even
-> got my good old WM8950-based APC Rock board out of storage for it
-> recently. I also have a WM8880-based laptop and another WM8850-based
-> one at hand, but need to bring them up to speed. Should also have a
-> number of older WM8750, WM8650 and VT8500 (but not WM8505) devices
-> somewhere deeper in storage.
+> Signed-off-by: Hui Wang <hui.wang@canonical.com>
+> ---
+> In the v3:
+>  - drop Reviewed-by
+>  - adjust the sequence of if, else if and else
+>  - replace PTR_ERR(reset_gpiod) with dev_err_probe
+>  - change GPIOD_OUT_LOW to GPIOD_OUT_HIGH, this will assert the reset pin after requesting the GPIO
+>  - change the 2nd parameter struct regmap *regmap[] to struct regmap *regmap
+>  - address all spelling and description issues in the v2
+>  
+>  drivers/tty/serial/sc16is7xx.c | 33 +++++++++++++++++++++++++++++----
+>  1 file changed, 29 insertions(+), 4 deletions(-)
 > 
-> I haven't touched the related code in a while, but as the original
-> author of VT8500 and WM8505 support code from over a decade back I'd
-> love to keep it all alive and functional, including reviewing and
-> testing stuff as well as (hopefully) adding extra functionality that's
-> been on my backlog for years. Does that count as support/maintain?
-> Happy to be listed in maintainers and be in the loop if I qualify.
+> diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
+> index bf0065d1c8e9..8c7e0fe76049 100644
+> --- a/drivers/tty/serial/sc16is7xx.c
+> +++ b/drivers/tty/serial/sc16is7xx.c
+> @@ -14,6 +14,7 @@
+>  #include <linux/delay.h>
+>  #include <linux/device.h>
+>  #include <linux/export.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/gpio/driver.h>
+>  #include <linux/idr.h>
+>  #include <linux/kthread.h>
+> @@ -1467,6 +1468,30 @@ static const struct serial_rs485 sc16is7xx_rs485_supported = {
+>  	.delay_rts_after_send = 1,	/* Not supported but keep returning -EINVAL */
+>  };
+>  
+> +/* Reset device, purging any pending irq / data */
+> +static int sc16is7xx_reset(struct device *dev, struct regmap *regmap)
+> +{
+> +	struct gpio_desc *reset_gpio;
+> +
+> +	/* The reset GPIO is ACTIVE_LOW, flag GPIOD_OUT_HIGH asserts the reset GPIO */
+> +	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(reset_gpio), "Failed to get reset GPIO\n");
+> +
+> +	if (reset_gpio) {
+> +		/* The minimum reset pulse width is 3 us. */
+> +		udelay(5);
+> +		gpiod_set_value_cansleep(reset_gpio, 0);
+> +		/* Deassert GPIO */
 
-You can take the sole maintainership thus handle patches/pull requests,
-or become added as a co-maintainer.
+Move this comment after its corresponding statement:
+    gpiod_set_value_cansleep(reset_gpio, 0); /* Deassert GPIO */
 
-Best regards,
-Krzysztof
 
+> +	} else {
+> +		/* Software reset */
+> +		regmap_write(regmap, SC16IS7XX_IOCONTROL_REG,
+> +			     SC16IS7XX_IOCONTROL_SRESET_BIT);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+>  		    struct regmap *regmaps[], int irq)
+>  {
+> @@ -1527,6 +1552,10 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+>  	s->devtype = devtype;
+>  	dev_set_drvdata(dev, s);
+>  
+> +	ret = sc16is7xx_reset(dev, regmaps[0]);
+> +	if (ret)
+> +		goto out_clk;
+> +
+
+You could move this block where the original software reset was
+located, unless you have a good reason to move it here? This will make
+the review (diff) easier...
+
+>  	kthread_init_worker(&s->kworker);
+>  	s->kworker_task = kthread_run(kthread_worker_fn, &s->kworker,
+>  				      "sc16is7xx");
+> @@ -1536,10 +1565,6 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+>  	}
+>  	sched_set_fifo(s->kworker_task);
+>  
+> -	/* reset device, purging any pending irq / data */
+> -	regmap_write(regmaps[0], SC16IS7XX_IOCONTROL_REG,
+> -		     SC16IS7XX_IOCONTROL_SRESET_BIT);
+> -
+>  	/* Mark each port line and status as uninitialised. */
+>  	for (i = 0; i < devtype->nr_uart; ++i) {
+>  		s->p[i].port.line = SC16IS7XX_MAX_DEVS;
+> -- 
+> 2.34.1
+
+
+-- 
+Hugo Villeneuve
 
