@@ -1,101 +1,102 @@
-Return-Path: <devicetree+bounces-75132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57AA0905919
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 18:46:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26981905921
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 18:50:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04C2A2842C2
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:46:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 81520B20F9A
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:50:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4779181318;
-	Wed, 12 Jun 2024 16:46:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76D66181B98;
+	Wed, 12 Jun 2024 16:50:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A0xJupUw"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="cLZPPb87"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C01517FAB2;
-	Wed, 12 Jun 2024 16:46:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C93B5180A9D;
+	Wed, 12 Jun 2024 16:50:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718210792; cv=none; b=jtAalGpSQ6FfD9TSRyzGWCpczETt/Ed2G0MH9LaVDEruZ1/YLoBFECeJt3rn/HMERPZOIUGH46/xhm7DE23DzqucWYuNAExDrJJOlZuwC3h3CCnjWflTd/qskrwd3EdKZvxXWy0iZbaDepDwg6wXns3+HT21u8XKQU0QOmmDLW8=
+	t=1718211013; cv=none; b=tUkXlVs8kgNT8YxVkPwc7wwfx7thmpl7KW53uQdk9K2H/3bjs8vXKpbjGNPVGXBLskTF48G21Sz79Nj2StQIIetNWPjgMkPrumgjddN98k+9MJ3DtzJnajstP8uV1SUoYllRH2ZCoJoBEhbCfTUlXumRwBg1uOS1bLO4Utllz1E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718210792; c=relaxed/simple;
-	bh=q4OYz17flZuLgbGuuOwxi5CCitZmXBx2iQmSgXo/YpM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SjfOoUJo8h8rOoMIU/eqVcOGJ7jEM5jb/I9Bg/vPt9iYsgOBiWf0dUh2PeleDxAvwiS5qQ2XMWEL7HZgnC1Ri5IqZFx3T1h68XQy8g5dizqsfG5KLZMiwudfqQL+GNXOPBxpd2x7iTN66Rr+nRVkjDi9GFZzkbI+IKwwsr1twZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A0xJupUw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B49B9C116B1;
-	Wed, 12 Jun 2024 16:46:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718210792;
-	bh=q4OYz17flZuLgbGuuOwxi5CCitZmXBx2iQmSgXo/YpM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=A0xJupUwYeVC+FXlzIcpVp6Yz+UZu9cGDWHfG5bjKDs6oY8ysl0pgRwo368TZTPrO
-	 j5zpNMycbZ+7WFL6N4QyUmMJ7V4SnXpO3uEx/vR7amDfjg39+tupcWIIVAtCilEog+
-	 yUVmhYUgpYuoTv8li8kEWC4SUSYcHhxyHwlLQO42Qces2KvNcTSb2zDXnzDAv0FhIL
-	 gj4jwnoDQkZVua5tNEmrbglvK7CiAh/MrzEkt27vFIgL89S00nHbZPqjbyWL5vr70p
-	 bTfukH0n1Xnd7NXB05qb98WSHvzkJbg3r7WyVBqklQ2ztLb9iy4i+tvW72y/vgEOM8
-	 rUqIfQU4WTEng==
-Date: Wed, 12 Jun 2024 17:46:26 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Chao Wei <chao.wei@sophgo.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 3/6] dt-bindings: timer: Add SOPHGO SG2002 clint
-Message-ID: <20240612-violate-unmade-a310d133e5b8@spud>
-References: <20240612-sg2002-v2-0-19a585af6846@bootlin.com>
- <20240612-sg2002-v2-3-19a585af6846@bootlin.com>
+	s=arc-20240116; t=1718211013; c=relaxed/simple;
+	bh=1+I5V9NYee1bHQnUE0DpjcmsjTOMx2yLHVVcxFh2xUc=;
+	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
+	 Content-Type:Subject; b=JXheR4bNbo9T4w9ktP66Ddrg6jTeGjHjkBC27e91KireeDyZk3Kr7t1KFKyLqOKc7CP8dLX3lAi3Qu4eIT5nqhpW78o9KPhqxnzs+UTXZf0dTkuYdZm8x+YDqb+C9aJ1NIXfo3uC3I/duQ8eorHnE5OWusFDdM+fPiNfmzGXNog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=cLZPPb87; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=qLxkdcofhQumVijzICDBQTPcWLQYVU9tUB2EIf7Q9XI=; b=cLZPPb87XkYkaqmDJQCAOfq5ii
+	4oLHbHGeAPJq8UGVM8nb7VSUzxVu2t5duSceJXP8AGVZjG9iZrHNirlDtnE5b9jlidn4BRf80W8qz
+	TF5NDLYcUj0sVw67vtC8mMq8OVaI+a+1AqTJRcNxpzrOW+q6bwgt/Gvi+xYogBI9Xb0s=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:34928 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1sHRAi-00005w-Ep; Wed, 12 Jun 2024 12:50:04 -0400
+Date: Wed, 12 Jun 2024 12:49:43 -0400
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Hui Wang <hui.wang@canonical.com>, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
+ jirislaby@kernel.org, hvilleneuve@dimonoff.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org,
+ lech.perczak@camlingroup.com, Maarten.Brock@sttls.nl
+Message-Id: <20240612124943.5ce6996abdf670651d0231a5@hugovil.com>
+In-Reply-To: <20240612-skeleton-bullseye-71067b2244b4@spud>
+References: <20240612131454.49671-1-hui.wang@canonical.com>
+	<20240612-skeleton-bullseye-71067b2244b4@spud>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="2p0/8tFuzhCfJUHx"
-Content-Disposition: inline
-In-Reply-To: <20240612-sg2002-v2-3-19a585af6846@bootlin.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -0.0 T_SCC_BODY_TEXT_LINE No description available.
+	* -1.0 NICE_REPLY_A Looks like a legit reply (A)
+Subject: Re: [PATCH v3 1/2] dt-bindings: serial: sc16is7xx: add reset-gpios
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
+On Wed, 12 Jun 2024 17:37:30 +0100
+Conor Dooley <conor@kernel.org> wrote:
 
---2p0/8tFuzhCfJUHx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On Wed, Jun 12, 2024 at 09:14:53PM +0800, Hui Wang wrote:
+> > In some designs, the chip reset pin is connected to a GPIO, and this
+> > GPIO needs to be set correctly before probing the driver, so add a
+> > reset-gpios in the device tree.
+> > 
+> > Signed-off-by: Hui Wang <hui.wang@canonical.com>
+> > ---
+> > In the v3:
+> >  - drop the Reviewed-by
+> >  - change gpio to GPIO
+> >  - change "this GPIO" to "and this GPIO"
+> >  - change "so adding" to "so add"
+> 
+> There's no need to drop an R-b for grammar changes in a commit message.
 
-On Wed, Jun 12, 2024 at 10:02:33AM +0200, Thomas Bonnefille wrote:
-> Add compatible string for SOPHGO SG2002 Core-Local Interrupt Controller.
->=20
-> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Hi Conor,
+The R-b tags were never given in the first place, that is why they are
+removed:
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+https://lore.kernel.org/all/6b1b0635-304c-48d7-a941-fae30962083a@canonical.com/
 
---2p0/8tFuzhCfJUHx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmnQ4gAKCRB4tDGHoIJi
-0p6lAP9a1NLKF9juqOF+2O0g28e9Wi9JHHkMJ3CRhpeD6kRSbwD+I9GNNisFVzIm
-RgDqcyrsNSVUeMcthTqV9O/fgdVH+gQ=
-=dDND
------END PGP SIGNATURE-----
-
---2p0/8tFuzhCfJUHx--
+-- 
+Hugo Villeneuve
 
