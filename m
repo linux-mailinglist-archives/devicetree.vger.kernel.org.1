@@ -1,162 +1,359 @@
-Return-Path: <devicetree+bounces-75183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B2B1905C2D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 21:42:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACE92905C3C
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 21:45:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58FF91C21EB5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 19:42:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D4C41C218CC
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 19:45:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0CDC83CA3;
-	Wed, 12 Jun 2024 19:42:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16F1783CC7;
+	Wed, 12 Jun 2024 19:44:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="W/uDea87"
+	dkim=pass (2048-bit key) header.d=gmx.de header.i=friedrich.vock@gmx.de header.b="baG+frdo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69E90433D8;
-	Wed, 12 Jun 2024 19:42:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8053E82860;
+	Wed, 12 Jun 2024 19:44:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718221339; cv=none; b=TYm/B6FQaLScRi0ZENE+p50sC90z7xonz0xwmFm2OHt8lAdP2lZGZrUhpgCv8INqq80YgI9wdsk/p1huFv1g4K2oOLI48abn1cKRJiHQ+yfSKHPF2/dGRoPsOdYEjGiQAfrbiwIHyQ5UqVTkfGJ8BJ6q78nJhEjt3AGbLcWuHnA=
+	t=1718221496; cv=none; b=CUqhU61KK7brMQBZPvCmlTdtq3fdsdkY60Mf0J/mVuNOr3ykVazC4e4e2ZmEKW2sKF0vuym/q9JK3LZv5koVNlcAZolQnn//mEwWxmKCKlMTZdzAAca3bOVEsD2r2v3V6sm+6uOOoksa0CYqvgV/7hULGpBPMCP22oYMD+U/sIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718221339; c=relaxed/simple;
-	bh=pDSZX9Af0xVAg7LLNOszTGqVEN82uIz8zv48UiJ6S0M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=To7zuh3O+l9y3Cx/4/2V+NzMEAobGMCRpiYYNFvbwGoQW5lp+U1WtGuLffxbTiqRzf41nNDGw7ar+5QWTme1wJx83LQiYEiOA4ONC5NGQEC8mzwWCvrr73d6KHalwkmHbT9oo+3PAh0k1Dhmwoo1/0P4sUxsnwhsLpXtWozWmuk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=W/uDea87; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45CGP0sX011626;
-	Wed, 12 Jun 2024 19:41:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	NdJiCwseTYEbH67fNg3E7Ksutmzps8Sc9w3Of4YBUg4=; b=W/uDea87Eq/bxFk+
-	k7GEaJmZEuucMsc8CRnC0CjZMr2jOm9a8+xmhIk0LsNnOIXNkWAthHGg2wOCzO83
-	SXJU3h1qWYT+ZUlLBliF/j7QWx2NX+J4Ns7iwWGOjiH0g3Dfina6mh+wNkaMheK9
-	Z23bEGO4WgGwr0nQaCKk+82KQzrd5MGah3CVYslGVFx9ScGjUnY9ivu2fQU3PtgE
-	AicnAdDq/t4Z5aKOGfQXBOyE6pL1O/tYeihBLxVcEtwmT7kJ5jygcxo2042aKdR8
-	S9exrw6YXtb3L7lZcpsDk9AXcus9VE3F3Q4FLP9tOKl3rIzDstA6ZdV7h7xoDPwW
-	efF4OA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yq83wha90-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 12 Jun 2024 19:41:56 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45CJfsI4025685
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 12 Jun 2024 19:41:54 GMT
-Received: from [10.110.56.180] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 12 Jun
- 2024 12:41:53 -0700
-Message-ID: <093fbd61-1687-d3fd-7a0b-9d8c8c6391eb@quicinc.com>
-Date: Wed, 12 Jun 2024 12:41:53 -0700
+	s=arc-20240116; t=1718221496; c=relaxed/simple;
+	bh=vJp1SDZ8pIanK1GFLVZC/0Pnzfiew1AXbG2Tcgp+wDg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=piMsuzNBYycbcKBJI2yQyaZsP2ZgnzILFF9qIxZHRIUyWXPEwkBclF2KnjDTw6uPDyVBbKtqtDmXkVxPN6VqS5DcD7ui8O5oRtxHfXFSj3U3/97Cjx3szUCrP5o2Qm8dLBRSXZ6piQ2WGYa+XOoZtcAAt7mcqhwrzaOugf9rMTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=friedrich.vock@gmx.de header.b=baG+frdo; arc=none smtp.client-ip=212.227.17.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
+	s=s31663417; t=1718221456; x=1718826256; i=friedrich.vock@gmx.de;
+	bh=kCfiqnjt/bPpXo7/vLfDlRT2K8nIqWSIueiTsisVfDw=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=baG+frdoosFnvTxPbHzfzQXGnPEjs06W5BMELQSX2U5pS2OuHpvlVS1SPSota9yX
+	 sKX+ksSQH8NkL89Kw26LT357DCLBwBlZNW1Nbl+GFjVFxJcfNpfFuzTBa31giqnAc
+	 2+5uNOwsJm0tpagv/frLp0KERyOC0nYQ3TnlhO43bGIIU2e+n3cLViaQQkwKNTUHf
+	 aOEVI5M8NDLj4UHRqUfbfv753qXNMVxb9wJpXZ+vZyvIqMPlqD01RJZVeogbmrSwW
+	 NnjlDslw7jiSfQkuLpQCMQZNqGD8JG20uo1+iSSRMc4Xl6xZfvAtmtqCa0Jy6Uqyv
+	 gZIc/MVdmXcs2ugjpg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.177.3] ([213.152.117.92]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1N79yG-1sTJme1Vts-00rStL; Wed, 12
+ Jun 2024 21:44:16 +0200
+Message-ID: <e9eab3c2-1cef-41fb-8bf0-a477dd319b3e@gmx.de>
+Date: Wed, 12 Jun 2024 21:44:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v23 00/32] Introduce QC USB SND audio offloading support
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 9/9] accel/rocket: Add IOCTLs for synchronizing memory
+ accesses
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Oded Gabbay <ogabbay@kernel.org>,
+ Tomeu Vizoso <tomeu.vizoso@tomeuvizoso.net>, David Airlie
+ <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+References: <20240612-6-10-rocket-v1-0-060e48eea250@tomeuvizoso.net>
+ <20240612-6-10-rocket-v1-9-060e48eea250@tomeuvizoso.net>
 Content-Language: en-US
-To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        =?UTF-8?Q?Amadeusz_S=c5=82awi=c5=84ski?=
-	<amadeuszx.slawinski@linux.intel.com>,
-        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-        <broonie@kernel.org>, <lgirdwood@gmail.com>, <krzk+dt@kernel.org>,
-        <Thinh.Nguyen@synopsys.com>, <bgoswami@quicinc.com>, <tiwai@suse.com>,
-        <robh@kernel.org>, <gregkh@linuxfoundation.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>
-References: <20240610235808.22173-1-quic_wcheng@quicinc.com>
- <80fefd6b-0f3a-4f6a-869e-fd2225315801@linux.intel.com>
- <fabc7ac8-6c44-4395-bd16-59257a949e9b@linux.intel.com>
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <fabc7ac8-6c44-4395-bd16-59257a949e9b@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: DNRhbyszMdFqqGGLMNOftX4yZCUTolrU
-X-Proofpoint-ORIG-GUID: DNRhbyszMdFqqGGLMNOftX4yZCUTolrU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-12_10,2024-06-12_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
- bulkscore=0 spamscore=0 mlxlogscore=999 suspectscore=0 clxscore=1011
- lowpriorityscore=0 malwarescore=0 priorityscore=1501 mlxscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406120139
+From: Friedrich Vock <friedrich.vock@gmx.de>
+Autocrypt: addr=friedrich.vock@gmx.de; keydata=
+ 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
+ f7+xmX0X3AMtWz/15Y+7cPO2
+In-Reply-To: <20240612-6-10-rocket-v1-9-060e48eea250@tomeuvizoso.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:64DUXvbzAN1e0DJGDaKyj19kGaJ5itxcBVlwNjoBR1NCoP/PVJc
+ LR8OCxdh8f3hHQYVvZRUq/0AtWehfwq/DfBbIjIxBJkiV5m9neTUJK/VniXP5d3GyAoRzkt
+ brmhK+jcsSl1GxwGNJwGx3BtNshKU11ZaKxfMfGNbbgegvWMn835A8CVxFUrFIt2WAvm+pk
+ eg+qphqG0j+/7c+I67hzg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:xqFTV1fLAB0=;gEPUI9P8h5BeEFETfNN/eaNzGT8
+ uVIizXC/BBnWEf17hM+iiIfojeJ7VDbd6rccMh7S1t6D64UY4/RVT4MvQAfZn+L7MDDr0KRxl
+ 6C7yaxSGhiq4cbEG8qZLTSdyNg3Y8BVe6SBlsTx0yiOqntBACulQRshB0DZ6Y3EzqRg0cDhjo
+ deijmxJ2cz3D8uG610wgseu9aNGsAU7k7OY2qlQQuDkXDGxOOt+VzVz7IWSo/VBw6WnloLtf/
+ uFqJO5pXaziYjiLJmDxWKMEAtAzZocGn3MEd3RU5AnWFx72+cKlJSvl5m+bGS/AoleixcLArj
+ YfxiCBowV/T8gRx788MLKchiHNcjFVcLJWG/lC6LPPcA854CsfjPmTgGvPEaCH+OpUjqCrRi7
+ gJJDV0P08utfN+XdC86mWMFIIZKlPfMUB88sZVaIIyQDIPsI+ex5bMPXTfHIPj2x4oMPXnT/B
+ qxRQoN5ajZYE3d4gpuPJQIg7yJUYMwVdwNxLjpPMz3xjWDzbLoNbZO8ZyvkulcVy+mhtydtJH
+ e4Ozh3UOhEF3ViFJFk2Gho6VYmMt+uKzOxsa8Ry81bDzYw+rjFQbMXCHPI8uRCcXv0uOiIIEV
+ B0VQye55RU6c9U0bMwOS1GjkNm9TTtOCZgo7gRW3ti3gMabuhG4+Lde+iA+aZLm3vx8dVSmbg
+ cSzJaD+EzM0gMmAyTcUeEasBDz+uUuW5Lx7mx3EQMtgJu9lj1UWI2zoSEYVa5/epn11VZsGNK
+ J8gk/DU53fvyykxxjRNrEo7ChGlh9Jbn3tDmZdj+9kWnqVdlhr6tbGkYto0LUBl7Vj/xRWLy0
+ KpLqenWI/+Q2UBn15v7fM8rhyWgq/dlsma6T3+I1heKOE=
 
-Hi Pierre,
+On 12.06.24 15:53, Tomeu Vizoso wrote:
+> The NPU cores have their own access to the memory bus, and this isn't
+> cache coherent with the CPUs.
+>
+> Add IOCTLs so userspace can mark when the caches need to be flushed, and
+> also when a writer job needs to be waited for before the buffer can be
+> accessed from the CPU.
+>
+> Initially based on the same IOCTLs from the Etnaviv driver.
+>
+> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> ---
+>   drivers/accel/rocket/rocket_drv.c |  2 ++
+>   drivers/accel/rocket/rocket_gem.c | 68 +++++++++++++++++++++++++++++++=
+++++++++
+>   drivers/accel/rocket/rocket_gem.h |  7 +++-
+>   include/uapi/drm/rocket_accel.h   | 20 +++++++++++-
+>   4 files changed, 95 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/accel/rocket/rocket_drv.c b/drivers/accel/rocket/ro=
+cket_drv.c
+> index adcb9a685dd8..d41a4f4b330d 100644
+> --- a/drivers/accel/rocket/rocket_drv.c
+> +++ b/drivers/accel/rocket/rocket_drv.c
+> @@ -73,6 +73,8 @@ static const struct drm_ioctl_desc rocket_drm_driver_i=
+octls[] =3D {
+>   	DRM_IOCTL_DEF_DRV(ROCKET_##n, rocket_ioctl_##func, 0)
+>
+>   	ROCKET_IOCTL(CREATE_BO, create_bo),
+> +	ROCKET_IOCTL(PREP_BO, prep_bo),
+> +	ROCKET_IOCTL(FINI_BO, fini_bo),
+>   	ROCKET_IOCTL(SUBMIT, submit),
+>   };
+>
+> diff --git a/drivers/accel/rocket/rocket_gem.c b/drivers/accel/rocket/ro=
+cket_gem.c
+> index e10eb886f150..afacdf91491e 100644
+> --- a/drivers/accel/rocket/rocket_gem.c
+> +++ b/drivers/accel/rocket/rocket_gem.c
+> @@ -2,7 +2,9 @@
+>   /* Copyright 2024 Tomeu Vizoso <tomeu@tomeuvizoso.net> */
+>
+>   #include <drm/drm_device.h>
+> +#include <drm/drm_utils.h>
+>   #include <drm/rocket_accel.h>
+> +#include <linux/dma-mapping.h>
+>
+>   #include "rocket_gem.h"
+>
+> @@ -66,3 +68,69 @@ int rocket_ioctl_create_bo(struct drm_device *dev, vo=
+id *data, struct drm_file *
+>
+>   	return ret;
+>   }
+> +
+> +static inline enum dma_data_direction rocket_op_to_dma_dir(u32 op)
+> +{
+> +	if (op & ROCKET_PREP_READ)
+> +		return DMA_FROM_DEVICE;
+> +	else if (op & ROCKET_PREP_WRITE)
+> +		return DMA_TO_DEVICE;
+> +	else
+> +		return DMA_BIDIRECTIONAL;
 
-On 6/12/2024 7:59 AM, Pierre-Louis Bossart wrote:
-> 
-> 
-> On 6/12/24 16:50, Amadeusz Sławiński wrote:
->> On 6/11/2024 1:57 AM, Wesley Cheng wrote:
->>
->>> Wesley Cheng (32):
->>>     ASoC: Add SOC USB APIs for adding an USB backend
->>>     ASoC: dt-bindings: qcom,q6dsp-lpass-ports: Add USB_RX port
->>>     ASoC: qcom: qdsp6: Introduce USB AFE port to q6dsp
->>>     ASoC: qdsp6: q6afe: Increase APR timeout
->>>     ASoC: qcom: qdsp6: Add USB backend ASoC driver for Q6
->>>     ALSA: usb-audio: Introduce USB SND platform op callbacks
->>>     ALSA: usb-audio: Export USB SND APIs for modules
->>>     ALSA: usb-audio: Save UAC sample size information
->>>     usb: dwc3: Specify maximum number of XHCI interrupters
->>>     usb: host: xhci-plat: Set XHCI max interrupters if property is present
->>>     ALSA: usb-audio: qcom: Add USB QMI definitions
->>>     ALSA: usb-audio: qcom: Introduce QC USB SND offloading support
->>>     ALSA: usb-audio: Check for support for requested audio format
->>>     ASoC: usb: Add PCM format check API for USB backend
->>>     ASoC: qcom: qdsp6: Ensure PCM format is supported by USB audio device
->>>     ALSA: usb-audio: Prevent starting of audio stream if in use
->>>     ALSA: usb-audio: Do not allow USB offload path if PCM device is in use
->>>     ASoC: dt-bindings: Update example for enabling USB offload on SM8250
->>>     ALSA: usb-audio: qcom: Populate PCM and USB chip information
->>>     ASoC: qcom: qdsp6: Add support to track available USB PCM devices
->>>     ASoC: Introduce SND kcontrols to select sound card and PCM device
->>>     ASoC: qcom: qdsp6: Add SOC USB offload select get/put callbacks
->>>     ASoC: Introduce SND kcontrols to track USB offloading state
->>>     ASoC: qcom: qdsp6: Add PCM ops to track current state
->>>     ASoC: usb: Create SOC USB SND jack kcontrol
->>>     ASoC: qcom: qdsp6: Add headphone jack for offload connection status
->>>     ASoC: usb: Fetch ASoC sound card information
->>>     ALSA: usb-audio: Add USB offloading capable kcontrol
->>>     ALSA: usb-audio: Allow for rediscovery of connected USB SND devices
->>>     ALSA: usb-audio: qcom: Use card and PCM index from QMI request
->>>     ASoC: usb: Rediscover USB SND devices on USB port add
->>>     ASoC: doc: Add documentation for SOC USB
->>
->> I'm not sure how other reviewers feel about this, but is there any
->> chance to group patches in some logical order? It is bit hard to review
->> when I need to jump from generic ALSA to ASoC then QCOM code and then
->> there are dt-bindings mixed in between and back again.
-> 
-> Completely agree. And splitting the 32 patches in smaller sets would
-> help as well, every time I want to review I just don't have the time to
-> go through 32 heavy-duty patches across USB/ALSA/ASoC.
+Drive-by comment: This logic looks incorrect to me? If op =3D=3D
+ROCKET_PREP_READ | ROCKET_PREP_WRITE, this code will return
+DMA_FROM_DEVICE when it should return DMA_BIDIRECTIONAL.
 
-Will try my best, but I've already attempted to compartmentalize 
-everything as how it is.  Will try to first re-organize the patches 
-based on what Amadeusz recommended and see if that helps.
+The logic would work if it was inverted:
+if (!(op & ROCKET_PREP_WRITE))
+	return DMA_FROM_DEVICE;
+else if (!(op & ROCKET_PREP_READ))
+	return DMA_TO_DEVICE;
+else
+	return DMA_BIDIRECTIONAL;
 
-Thanks
-Wesley Cheng
+Thanks,
+Friedrich
+
+> +}
+> +
+> +int rocket_ioctl_prep_bo(struct drm_device *dev, void *data, struct drm=
+_file *file)
+> +{
+> +	struct drm_rocket_prep_bo *args =3D data;
+> +	unsigned long timeout =3D drm_timeout_abs_to_jiffies(args->timeout_ns)=
+;
+> +	struct drm_gem_object *gem_obj;
+> +	struct drm_gem_shmem_object *shmem_obj;
+> +	bool write =3D !!(args->op & ROCKET_PREP_WRITE);
+> +	long ret =3D 0;
+> +
+> +	if (args->op & ~(ROCKET_PREP_READ | ROCKET_PREP_WRITE))
+> +		return -EINVAL;
+> +
+> +	gem_obj =3D drm_gem_object_lookup(file, args->handle);
+> +	if (!gem_obj)
+> +		return -ENOENT;
+> +
+> +	ret =3D dma_resv_wait_timeout(gem_obj->resv, dma_resv_usage_rw(write),
+> +				    true, timeout);
+> +	if (!ret)
+> +		ret =3D timeout ? -ETIMEDOUT : -EBUSY;
+> +
+> +	shmem_obj =3D &to_rocket_bo(gem_obj)->base;
+> +
+> +	dma_sync_sgtable_for_cpu(dev->dev, shmem_obj->sgt, rocket_op_to_dma_di=
+r(args->op));
+> +	to_rocket_bo(gem_obj)->last_cpu_prep_op =3D args->op;
+> +
+> +	drm_gem_object_put(gem_obj);
+> +
+> +	return ret;
+> +}
+> +
+> +int rocket_ioctl_fini_bo(struct drm_device *dev, void *data, struct drm=
+_file *file)
+> +{
+> +	struct drm_rocket_fini_bo *args =3D data;
+> +	struct drm_gem_object *gem_obj;
+> +	struct rocket_gem_object *rkt_obj;
+> +	struct drm_gem_shmem_object *shmem_obj;
+> +
+> +	gem_obj =3D drm_gem_object_lookup(file, args->handle);
+> +	if (!gem_obj)
+> +		return -ENOENT;
+> +
+> +	rkt_obj =3D to_rocket_bo(gem_obj);
+> +	shmem_obj =3D &rkt_obj->base;
+> +
+> +	WARN_ON(rkt_obj->last_cpu_prep_op =3D=3D 0);
+> +
+> +	dma_sync_sgtable_for_device(dev->dev, shmem_obj->sgt,
+> +				    rocket_op_to_dma_dir(rkt_obj->last_cpu_prep_op));
+> +	rkt_obj->last_cpu_prep_op =3D 0;
+> +
+> +	drm_gem_object_put(gem_obj);
+> +
+> +	return 0;
+> +}
+> diff --git a/drivers/accel/rocket/rocket_gem.h b/drivers/accel/rocket/ro=
+cket_gem.h
+> index 2cb294f25c19..9b1c485ec600 100644
+> --- a/drivers/accel/rocket/rocket_gem.h
+> +++ b/drivers/accel/rocket/rocket_gem.h
+> @@ -13,16 +13,21 @@ struct rocket_gem_object {
+>   	struct mutex mutex;
+>   	size_t size;
+>   	u32 offset;
+> +	u32 last_cpu_prep_op;
+>   };
+>
+>   struct drm_gem_object *rocket_gem_create_object(struct drm_device *dev=
+, size_t size);
+>
+>   int rocket_ioctl_create_bo(struct drm_device *dev, void *data, struct =
+drm_file *file);
+>
+> +int rocket_ioctl_prep_bo(struct drm_device *dev, void *data, struct drm=
+_file *file);
+> +
+> +int rocket_ioctl_fini_bo(struct drm_device *dev, void *data, struct drm=
+_file *file);
+> +
+>   static inline
+>   struct  rocket_gem_object *to_rocket_bo(struct drm_gem_object *obj)
+>   {
+>   	return container_of(to_drm_gem_shmem_obj(obj), struct rocket_gem_obje=
+ct, base);
+>   }
+>
+> -#endif
+> \ No newline at end of file
+> +#endif
+> diff --git a/include/uapi/drm/rocket_accel.h b/include/uapi/drm/rocket_a=
+ccel.h
+> index 888c9413e4cd..1539af0af4fe 100644
+> --- a/include/uapi/drm/rocket_accel.h
+> +++ b/include/uapi/drm/rocket_accel.h
+> @@ -12,9 +12,13 @@ extern "C" {
+>   #endif
+>
+>   #define DRM_ROCKET_CREATE_BO			0x00
+> -#define DRM_ROCKET_SUBMIT			0x01
+> +#define DRM_ROCKET_PREP_BO			0x01
+> +#define DRM_ROCKET_FINI_BO			0x02
+> +#define DRM_ROCKET_SUBMIT			0x03
+>
+>   #define DRM_IOCTL_ROCKET_CREATE_BO		DRM_IOWR(DRM_COMMAND_BASE + DRM_RO=
+CKET_CREATE_BO, struct drm_rocket_create_bo)
+> +#define DRM_IOCTL_ROCKET_PREP_BO		DRM_IOW(DRM_COMMAND_BASE + DRM_ROCKET=
+_PREP_BO, struct drm_rocket_prep_bo)
+> +#define DRM_IOCTL_ROCKET_FINI_BO		DRM_IOW(DRM_COMMAND_BASE + DRM_ROCKET=
+_FINI_BO, struct drm_rocket_fini_bo)
+>   #define DRM_IOCTL_ROCKET_SUBMIT			DRM_IOW(DRM_COMMAND_BASE + DRM_ROCKE=
+T_SUBMIT, struct drm_rocket_submit)
+>
+>   /**
+> @@ -38,6 +42,20 @@ struct drm_rocket_create_bo {
+>   	__u64 offset;
+>   };
+>
+> +#define ROCKET_PREP_READ        0x01
+> +#define ROCKET_PREP_WRITE       0x02
+> +
+> +struct drm_rocket_prep_bo {
+> +	__u32 handle;		/* in */
+> +	__u32 op;		/* in, mask of ROCKET_PREP_x */
+> +	__s64 timeout_ns;	/* in */
+> +};
+> +
+> +struct drm_rocket_fini_bo {
+> +	__u32 handle;		/* in */
+> +	__u32 flags;		/* in, placeholder for now, no defined values */
+> +};
+> +
+>   /**
+>    * struct drm_rocket_task - A task to be run on the NPU
+>    *
+>
 
