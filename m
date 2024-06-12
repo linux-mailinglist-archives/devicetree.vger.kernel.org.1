@@ -1,102 +1,129 @@
-Return-Path: <devicetree+bounces-75133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26981905921
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 18:50:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32B03905924
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 18:51:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 81520B20F9A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:50:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E58CB1C214E7
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:51:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76D66181B98;
-	Wed, 12 Jun 2024 16:50:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D8C2181BA6;
+	Wed, 12 Jun 2024 16:51:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="cLZPPb87"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rng/KsFr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C93B5180A9D;
-	Wed, 12 Jun 2024 16:50:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4438180A9D;
+	Wed, 12 Jun 2024 16:51:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718211013; cv=none; b=tUkXlVs8kgNT8YxVkPwc7wwfx7thmpl7KW53uQdk9K2H/3bjs8vXKpbjGNPVGXBLskTF48G21Sz79Nj2StQIIetNWPjgMkPrumgjddN98k+9MJ3DtzJnajstP8uV1SUoYllRH2ZCoJoBEhbCfTUlXumRwBg1uOS1bLO4Utllz1E=
+	t=1718211078; cv=none; b=rJWPs7VXuMVkCSgzqHoN9dcwRq0XLEqsKYL4h/SZs8Kt8flF7dsrVY6KRQbPajifE0gvc//FL3tHQJkWQ9ALdbVKufiTscQMoXg4jlo/3I6HI8fc6JMaHV6J1ydUMHZkBpOEomJ8DTp/zr+dIlourImPYYj3Vi4CkWS8SepDopI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718211013; c=relaxed/simple;
-	bh=1+I5V9NYee1bHQnUE0DpjcmsjTOMx2yLHVVcxFh2xUc=;
-	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
-	 Content-Type:Subject; b=JXheR4bNbo9T4w9ktP66Ddrg6jTeGjHjkBC27e91KireeDyZk3Kr7t1KFKyLqOKc7CP8dLX3lAi3Qu4eIT5nqhpW78o9KPhqxnzs+UTXZf0dTkuYdZm8x+YDqb+C9aJ1NIXfo3uC3I/duQ8eorHnE5OWusFDdM+fPiNfmzGXNog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=cLZPPb87; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
-	:Date:subject:date:message-id:reply-to;
-	bh=qLxkdcofhQumVijzICDBQTPcWLQYVU9tUB2EIf7Q9XI=; b=cLZPPb87XkYkaqmDJQCAOfq5ii
-	4oLHbHGeAPJq8UGVM8nb7VSUzxVu2t5duSceJXP8AGVZjG9iZrHNirlDtnE5b9jlidn4BRf80W8qz
-	TF5NDLYcUj0sVw67vtC8mMq8OVaI+a+1AqTJRcNxpzrOW+q6bwgt/Gvi+xYogBI9Xb0s=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:34928 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1sHRAi-00005w-Ep; Wed, 12 Jun 2024 12:50:04 -0400
-Date: Wed, 12 Jun 2024 12:49:43 -0400
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Hui Wang <hui.wang@canonical.com>, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
- jirislaby@kernel.org, hvilleneuve@dimonoff.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org,
- lech.perczak@camlingroup.com, Maarten.Brock@sttls.nl
-Message-Id: <20240612124943.5ce6996abdf670651d0231a5@hugovil.com>
-In-Reply-To: <20240612-skeleton-bullseye-71067b2244b4@spud>
-References: <20240612131454.49671-1-hui.wang@canonical.com>
-	<20240612-skeleton-bullseye-71067b2244b4@spud>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1718211078; c=relaxed/simple;
+	bh=RCaHtACj2SxL4hUQI5V+jP3OfLSwL9/Qp69eRQVinrI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VKFqDwOCoDt2wYihLhXkspicsyakCXEduxKREYyQcE+9oFbC9C4HvHdJ2cGnyXz6NFsGsQJKIyc50PcOIKA7B4252TBAJIMg2iwqmTtC1M50i1HmPp0DNw5NeSHsi/rWnFJ8rWCwLRwN0BL9SVqtP40hEbWYVfYFsU+TFIJ03Vo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rng/KsFr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C534CC116B1;
+	Wed, 12 Jun 2024 16:51:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718211078;
+	bh=RCaHtACj2SxL4hUQI5V+jP3OfLSwL9/Qp69eRQVinrI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rng/KsFrm67z5muQdvve4Da1go0NZ3uq+e5l4cMdvn9JltfTYbk6e/bnXM473NcQZ
+	 KZEv/buQTkLr8MtKpXimApeaLy8lkQOOC747dIaIaT5nbOSJUAdeoHreVPrEJC7HNg
+	 gs6aE+jBfHJa2zfr0Z32CLvJcvsyQ4cm3wLYGviFFvVZwP7Bl9BpMnrqZEJ06ahNO6
+	 l8vM9HZ8YMjel4kB7+HLiwWO/CMtsRl0b+O+YFqnxD/Avs3fNakdqUIf40jI1alsAK
+	 qlPIs+Z6yXagJxifwgoBKNfnu8cXuNjZSvovUKnPfiLKfeBq9BqiEmn6ZsgKPFjEWw
+	 bP26jT61u94Cw==
+Date: Wed, 12 Jun 2024 17:51:13 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Bryan Brattlof <bb@ti.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Vibhore Vardhan <vibhore@ti.com>,
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/5] DONOTMERGE: dt-bindings: mfd: syscon: add TI's opp
+ table compatible
+Message-ID: <20240612-unranked-unsalted-b32674a98d4a@spud>
+References: <20240612-ti-opp-updates-v1-0-3551c31d9872@ti.com>
+ <20240612-ti-opp-updates-v1-3-3551c31d9872@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-X-Spam-Report: 
-	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-	* -0.0 T_SCC_BODY_TEXT_LINE No description available.
-	* -1.0 NICE_REPLY_A Looks like a legit reply (A)
-Subject: Re: [PATCH v3 1/2] dt-bindings: serial: sc16is7xx: add reset-gpios
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="RLdNql4jJBieNqa9"
+Content-Disposition: inline
+In-Reply-To: <20240612-ti-opp-updates-v1-3-3551c31d9872@ti.com>
 
-On Wed, 12 Jun 2024 17:37:30 +0100
-Conor Dooley <conor@kernel.org> wrote:
 
-> On Wed, Jun 12, 2024 at 09:14:53PM +0800, Hui Wang wrote:
-> > In some designs, the chip reset pin is connected to a GPIO, and this
-> > GPIO needs to be set correctly before probing the driver, so add a
-> > reset-gpios in the device tree.
-> > 
-> > Signed-off-by: Hui Wang <hui.wang@canonical.com>
-> > ---
-> > In the v3:
-> >  - drop the Reviewed-by
-> >  - change gpio to GPIO
-> >  - change "this GPIO" to "and this GPIO"
-> >  - change "so adding" to "so add"
-> 
-> There's no need to drop an R-b for grammar changes in a commit message.
+--RLdNql4jJBieNqa9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hi Conor,
-The R-b tags were never given in the first place, that is why they are
-removed:
+On Wed, Jun 12, 2024 at 11:41:52AM -0500, Bryan Brattlof wrote:
+> The JTAG_USER_ID_USERCODE efuse address, which is located inside the
+> WKUP_CTRL_MMR0 range holds information to identify the speed grades of
+> various components on TI's K3 SoCs. Add a compatible to allow the
+> cpufreq driver to obtain the data to limit the maximum frequency for the
+> CPUs under Linux control.
+>=20
+> Signed-off-by: Bryan Brattlof <bb@ti.com>
 
-https://lore.kernel.org/all/6b1b0635-304c-48d7-a941-fae30962083a@canonical.com/
+$subject: DONOTMERGE: dt-bindings: mfd: syscon: add TI's opp table compatib=
+le
 
--- 
-Hugo Villeneuve
+Okay, if this isn't for merging then I won't Ack it.
+
+Thanks,
+Conor.
+
+> ---
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Document=
+ation/devicetree/bindings/mfd/syscon.yaml
+> index 7ed12a938baa3..ab1fcbe2148f7 100644
+> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> @@ -88,6 +88,7 @@ properties:
+>                - rockchip,rv1126-qos
+>                - starfive,jh7100-sysmain
+>                - ti,am62-usb-phy-ctrl
+> +              - ti,am62-opp-efuse-table
+>                - ti,am62p-cpsw-mac-efuse
+>                - ti,am654-dss-oldi-io-ctrl
+>                - ti,am654-serdes-ctrl
+>=20
+> --=20
+> 2.45.2
+>
+
+--RLdNql4jJBieNqa9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmnSAQAKCRB4tDGHoIJi
+0sWBAQCOPrkQuLnJ8hVCTnNLC9CZqP/gnQc6qb+FonTElR9zSQEA+XVKyJ8OzunD
+0pSEZE1WzJwXwAz9j/q1rshvEKDl5gs=
+=yCht
+-----END PGP SIGNATURE-----
+
+--RLdNql4jJBieNqa9--
 
