@@ -1,284 +1,152 @@
-Return-Path: <devicetree+bounces-74942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE5249050AF
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 12:47:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E8279050CC
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 12:49:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A68431C20F32
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:47:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BEBC2817CE
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:49:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1202416EC1B;
-	Wed, 12 Jun 2024 10:47:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0432416F82F;
+	Wed, 12 Jun 2024 10:48:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="LM1DEBRY"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LmWCfbPV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B53284A21;
-	Wed, 12 Jun 2024 10:47:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7517716F29C;
+	Wed, 12 Jun 2024 10:48:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718189230; cv=none; b=nPiifurahNhLwxpbQX1+8cJFEkxgwaebtdjsqK4Dn0Fyehbkkzh92ZFqLDGMCUBRCHhOISXLs9GcZgNA3YKIHAjsm428dLINpuCNlSAxYjPyfzV2KUDHTvi7oHeg1RAoWGPj+HP2kkY58xjs2/X5/yaZaRl9J9RUXnZj3PRLGAY=
+	t=1718189332; cv=none; b=pPF6jn0o7oFLy/uMR5ajWOwA6Ih0C1dtLQErxWLLteAS1ZoJ+IzwMwWKUf/sHrAVx1Sg9qXkjSz+HL0U3oMd30yN4hIDphfV8OIxFFvp14DebDnI+xg5Sqrp+ILBoRXHGwKCRGjcbpEWgYCflC8NVjJpVPkdzt3uMoWhpon9ntw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718189230; c=relaxed/simple;
-	bh=iTEej2Ta055SYm/SSutwn0oI1HnBNxDX/VFXVmrxSRE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EIAuTlZuVgugCjCP0e/ByqJs3L+GZqzpTcR99J7H4r0InCUNPdcA8J53UkjltJM6cMeEp1bki0aWGqzZqqGgv63qrpyr+VZHOfGa39kSQ6BALgHjtL6mlakT8hB1VAIAyxMPJgff2YcasyfgbKGQyL3+FUFhGeKRDRlgS2Xw7tY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=LM1DEBRY; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45C76RAt000790;
-	Wed, 12 Jun 2024 06:46:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=Ir72Z
-	FW2hmY2nEJhSVMNROhUNR+GhP1bgbA55YU/Lgg=; b=LM1DEBRYxXYDpEwpJOjij
-	tL6KbzBD+a6zdcnM7ccMKwP3dWyi4oUzotaT4p/snHC4Ut4vRx01vSc8ZdNjDak0
-	am8hSngTJPkFRu4zwYcEuocZt0elYkUZlgqxVp0ZoAxOp4KG59CKXi0HMRYaOhiR
-	F+EiodTjcGhzYUatI+8bvkgXKbXjrtczZMoS1zoCPtT2ycPk5D0LK58tTPk5DwpE
-	hd6WpJ+KCkyORLDBb2W99jXlzcaZGtGppf1pHXh4ohhde8sfy8vDB871jpgpqlcy
-	1bhp4padC2kqKm1rSV0Unb0LegE+MsYnZOZx0dZE6Vqc/GNeL9/NtFpYycw0+uEC
-	A==
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3ymm726sna-1
+	s=arc-20240116; t=1718189332; c=relaxed/simple;
+	bh=PlYH2OwBBcttSkvr8o5/xKWY+A0ZE9cwWl5A68RcHz0=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=n8KSChb4FSZPiGg6EDVvkZkep9T11kMKM05qQs/u7d7qIqDRz9P53gjxlXh07i/YfkrwJguOIGZow8t5lkJzw35seaHSwAdTeSOC+jdGIPz0TpAkIo0MkdsiUQLsIhXnydf5fH8tI0YzllIHwL/jyQkN5Rttz2XUhkBSdcZAGpc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LmWCfbPV; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45C4QklN025946;
+	Wed, 12 Jun 2024 10:48:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=ncQ6Kepu2XYMg1KEqoS4xg
+	xCZZxEeYjYvRff0fzY/o0=; b=LmWCfbPVjfSGihZTEbe3By2AscUyyNWZbQdsFP
+	G4UzUsOL89pFcN4bP066sNZuUD8wVnG3jmpGSmnmSgwM2JVJ/BfsdRYznL658IWb
+	nThGjUId05EyZKe42Ez4WfbzZym987BTQaJXTKyIg6hCvyqJwPBKZMf9IStNAqKS
+	eLfR/zZrSfpwyEpzHfRoHSI9LHR1s4c/V4Js7XTaYrrUZxHRT3RRaBc2qLs6xGKt
+	CuU5xub+ihjLtwAcd5F160HgeEqVUQ6ncHBzptncsYXijxl+XjG2hIItqUMtLQbQ
+	nVTAdjc3IpKuWTvGJhSQl1bNNbuyBQQ99ZbCk7iDh725LozQ==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yps5xabae-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 12 Jun 2024 06:46:55 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 45CAkreA035544
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 12 Jun 2024 06:46:53 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Wed, 12 Jun
- 2024 06:46:52 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Wed, 12 Jun 2024 06:46:52 -0400
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.163])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 45CAkc53009636;
-	Wed, 12 Jun 2024 06:46:47 -0400
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich
-	<Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>, Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH v3 2/2] iio: frequency: adf4350: add clk provider
-Date: Wed, 12 Jun 2024 13:45:52 +0300
-Message-ID: <20240612104554.66851-2-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240612104554.66851-1-antoniu.miclaus@analog.com>
-References: <20240612104554.66851-1-antoniu.miclaus@analog.com>
+	Wed, 12 Jun 2024 10:48:47 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45CAmFY3011181
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Jun 2024 10:48:15 GMT
+Received: from hu-tdas-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 12 Jun 2024 03:48:10 -0700
+From: Taniya Das <quic_tdas@quicinc.com>
+Subject: [PATCH 0/8] Add support for SA8775P Multimedia clock controllers
+Date: Wed, 12 Jun 2024 16:17:41 +0530
+Message-ID: <20240612-sa8775p-mm-clock-controllers-v1-0-db295a846ee7@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: wHflmqshyuWGU7LhKRR-0i57pAeHnOvl
-X-Proofpoint-GUID: wHflmqshyuWGU7LhKRR-0i57pAeHnOvl
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAM18aWYC/x3MwQrCMAwA0F8ZORtYq7XDXxEPW0w12LUjERmM/
+ fuKx3d5GxirsMGt20D5Jya1NLhTB/Qey4tRns3ge3/pr86jjUOMYcF5RsqVPki1fLXmzGqYhni
+ mMLkppQCtWJSTrP/+/tj3A/myyLtuAAAA
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_jkona@quicinc.com>, <quic_imrashai@quicinc.com>
+X-Mailer: b4 0.14-dev-f7c49
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: kflZ4fh2gIImidgoPR3g9u-cJt8RPR6m
+X-Proofpoint-ORIG-GUID: kflZ4fh2gIImidgoPR3g9u-cJt8RPR6m
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
  definitions=2024-06-12_06,2024-06-12_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- bulkscore=0 suspectscore=0 adultscore=0 impostorscore=0 spamscore=0
- phishscore=0 clxscore=1015 mlxscore=0 priorityscore=1501 mlxlogscore=999
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406120077
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 clxscore=1015 malwarescore=0 mlxlogscore=977
+ spamscore=0 suspectscore=0 adultscore=0 bulkscore=0 mlxscore=0
+ phishscore=0 priorityscore=1501 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2405170001 definitions=main-2406120077
 
-Add clk provider feature for the adf4350.
+Add support for videocc, camcc, dispcc0 and dispcc1 on Qualcomm SA8775P
+platform.
 
-Even though the driver was sent as an IIO driver in most cases the
-device is actually seen as a clock provider.
+These multimedia clock controller and device tree patches are split
+from the below series.
+https://lore.kernel.org/all/20240531090249.10293-1-quic_tdas@quicinc.com/
 
-This patch aims to cover actual usecases requested by users in order to
-completely control the output frequencies from userspace.
+Changes in this series compared to above series:
+ [PATCH 1/8]: Updated bindings to reference qcom,gcc.yaml
+ [PATCH 3/8]: Updated bindings to reference qcom,gcc.yaml
+ [PATCH 5/8]: Updated bindings to reference qcom,gcc.yaml
+ [PATCH 7/8]: Split updating sleep_clk frequency to separate patch
+ [PATCH 8/8]: Newly added to update sleep_clk frequency to 32000
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 ---
-changes in v3:
- - use container_of to directly access the adf4350_state structure.
- drivers/iio/frequency/adf4350.c | 118 ++++++++++++++++++++++++++++++++
- 1 file changed, 118 insertions(+)
+Taniya Das (8):
+      dt-bindings: clock: qcom: Add SA8775P video clock controller
+      clk: qcom: Add support for Video clock controller on SA8775P
+      dt-bindings: clock: qcom: Add SA8775P camera clock controller
+      clk: qcom: Add support for Camera Clock Controller on SA8775P
+      dt-bindings: clock: qcom: Add SA8775P display clock controllers
+      clk: qcom: Add support for Display clock Controllers on SA8775P
+      arm64: dts: qcom: Add support for multimedia clock controllers
+      arm64: dts: qcom: Update sleep_clk frequency to 32000 on SA8775P
 
-diff --git a/drivers/iio/frequency/adf4350.c b/drivers/iio/frequency/adf4350.c
-index 4abf80f75ef5..f716f744baa9 100644
---- a/drivers/iio/frequency/adf4350.c
-+++ b/drivers/iio/frequency/adf4350.c
-@@ -19,6 +19,7 @@
- #include <linux/gpio/consumer.h>
- #include <asm/div64.h>
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- 
- #include <linux/iio/iio.h>
- #include <linux/iio/sysfs.h>
-@@ -36,6 +37,9 @@ struct adf4350_state {
- 	struct gpio_desc		*lock_detect_gpiod;
- 	struct adf4350_platform_data	*pdata;
- 	struct clk			*clk;
-+	struct clk			*clkout;
-+	const char			*clk_out_name;
-+	struct clk_hw			hw;
- 	unsigned long			clkin;
- 	unsigned long			chspc; /* Channel Spacing */
- 	unsigned long			fpfd; /* Phase Frequency Detector */
-@@ -61,6 +65,8 @@ struct adf4350_state {
- 	__be32				val __aligned(IIO_DMA_MINALIGN);
- };
- 
-+#define to_state(_hw) container_of(_hw, struct adf4350_state, hw)
-+
- static struct adf4350_platform_data default_pdata = {
- 	.channel_spacing = 10000,
- 	.r2_user_settings = ADF4350_REG2_PD_POLARITY_POS |
-@@ -264,6 +270,10 @@ static ssize_t adf4350_write(struct iio_dev *indio_dev,
- 	mutex_lock(&st->lock);
- 	switch ((u32)private) {
- 	case ADF4350_FREQ:
-+		if (st->clkout) {
-+			ret = clk_set_rate(st->clkout, readin);
-+			break;
-+		}
- 		ret = adf4350_set_freq(st, readin);
- 		break;
- 	case ADF4350_FREQ_REFIN:
-@@ -381,6 +391,110 @@ static const struct iio_info adf4350_info = {
- 	.debugfs_reg_access = &adf4350_reg_access,
- };
- 
-+static void adf4350_clk_del_provider(void *data)
-+{
-+	struct adf4350_state *st = data;
-+
-+	of_clk_del_provider(st->spi->dev.of_node);
-+}
-+
-+static unsigned long adf4350_clk_recalc_rate(struct clk_hw *hw,
-+					     unsigned long parent_rate)
-+{
-+	struct adf4350_state *st = to_state(hw);
-+	unsigned long long tmp;
-+
-+	tmp = (u64)(st->r0_int * st->r1_mod + st->r0_fract) * st->fpfd;
-+	do_div(tmp, st->r1_mod * (1 << st->r4_rf_div_sel));
-+
-+	return tmp;
-+}
-+
-+static int adf4350_clk_set_rate(struct clk_hw *hw,
-+				unsigned long rate,
-+				unsigned long parent_rate)
-+{
-+	struct adf4350_state *st = to_state(hw);
-+
-+	if (parent_rate == 0 || parent_rate > ADF4350_MAX_FREQ_REFIN)
-+		return -EINVAL;
-+
-+	st->clkin = parent_rate;
-+
-+	return adf4350_set_freq(st, rate);
-+}
-+
-+static int adf4350_clk_prepare(struct clk_hw *hw)
-+{
-+	struct adf4350_state *st = to_state(hw);
-+
-+	st->regs[ADF4350_REG2] &= ~ADF4350_REG2_POWER_DOWN_EN;
-+
-+	return adf4350_sync_config(st);
-+}
-+
-+static void adf4350_clk_unprepare(struct clk_hw *hw)
-+{
-+	struct adf4350_state *st = to_state(hw);
-+
-+	st->regs[ADF4350_REG2] |= ADF4350_REG2_POWER_DOWN_EN;
-+
-+	adf4350_sync_config(st);
-+}
-+
-+static int adf4350_clk_is_enabled(struct clk_hw *hw)
-+{
-+	struct adf4350_state *st = to_state(hw);
-+
-+	return (st->regs[ADF4350_REG2] & ADF4350_REG2_POWER_DOWN_EN);
-+}
-+
-+static const struct clk_ops adf4350_clk_ops = {
-+	.recalc_rate = adf4350_clk_recalc_rate,
-+	.set_rate = adf4350_clk_set_rate,
-+	.prepare = adf4350_clk_prepare,
-+	.unprepare = adf4350_clk_unprepare,
-+	.is_enabled = adf4350_clk_is_enabled,
-+};
-+
-+static int adf4350_clk_register(struct adf4350_state *st)
-+{
-+	struct spi_device *spi = st->spi;
-+	struct clk_init_data init;
-+	struct clk *clk;
-+	const char *parent_name;
-+	int ret;
-+
-+	if (!device_property_present(&spi->dev, "#clock-cells"))
-+		return 0;
-+
-+	init.name = devm_kasprintf(&spi->dev, GFP_KERNEL, "%s-clk",
-+				   fwnode_get_name(dev_fwnode(&spi->dev)));
-+	device_property_read_string(&spi->dev, "clock-output-names",
-+				    &init.name);
-+
-+	parent_name = of_clk_get_parent_name(spi->dev.of_node, 0);
-+	if (!parent_name)
-+		return -EINVAL;
-+
-+	init.ops = &adf4350_clk_ops;
-+	init.parent_names = &parent_name;
-+	init.num_parents = 1;
-+
-+	st->hw.init = &init;
-+	clk = devm_clk_register(&spi->dev, &st->hw);
-+	if (IS_ERR(clk))
-+		return PTR_ERR(clk);
-+
-+	ret = of_clk_add_provider(spi->dev.of_node, of_clk_src_simple_get, clk);
-+	if (ret)
-+		return ret;
-+
-+	st->clkout = clk;
-+
-+	return devm_add_action_or_reset(&spi->dev, adf4350_clk_del_provider, st);
-+}
-+
- static struct adf4350_platform_data *adf4350_parse_dt(struct device *dev)
- {
- 	struct adf4350_platform_data *pdata;
-@@ -551,6 +665,10 @@ static int adf4350_probe(struct spi_device *spi)
- 			return ret;
- 	}
- 
-+	ret = adf4350_clk_register(st);
-+	if (ret)
-+		return ret;
-+
- 	ret = devm_add_action_or_reset(&spi->dev, adf4350_power_down, indio_dev);
- 	if (ret)
- 		return dev_err_probe(&spi->dev, ret,
+ .../bindings/clock/qcom,sa8775p-camcc.yaml         |   62 +
+ .../bindings/clock/qcom,sa8775p-dispcc.yaml        |   79 +
+ .../bindings/clock/qcom,sa8775p-videocc.yaml       |   62 +
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dts          |    2 +-
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi              |   59 +
+ drivers/clk/qcom/Kconfig                           |   31 +
+ drivers/clk/qcom/Makefile                          |    3 +
+ drivers/clk/qcom/camcc-sa8775p.c                   | 1849 ++++++++++++++++++++
+ drivers/clk/qcom/dispcc0-sa8775p.c                 | 1481 ++++++++++++++++
+ drivers/clk/qcom/dispcc1-sa8775p.c                 | 1481 ++++++++++++++++
+ drivers/clk/qcom/videocc-sa8775p.c                 |  576 ++++++
+ include/dt-bindings/clock/qcom,sa8775p-camcc.h     |  107 ++
+ include/dt-bindings/clock/qcom,sa8775p-dispcc.h    |   87 +
+ include/dt-bindings/clock/qcom,sa8775p-videocc.h   |   47 +
+ 14 files changed, 5925 insertions(+), 1 deletion(-)
+---
+base-commit: 03d44168cbd7fc57d5de56a3730427db758fc7f6
+change-id: 20240612-sa8775p-mm-clock-controllers-f873c5b1bff5
+
+Best regards,
 -- 
-2.45.2
+Taniya Das <quic_tdas@quicinc.com>
 
 
