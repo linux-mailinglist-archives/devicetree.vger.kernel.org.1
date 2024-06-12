@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-74778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3020B9047AD
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 01:33:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF3E7904809
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 02:34:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C897B1F22B5D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jun 2024 23:33:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55E0A284AFB
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 00:34:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5377F155314;
-	Tue, 11 Jun 2024 23:33:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAAC3EBB;
+	Wed, 12 Jun 2024 00:34:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="okXRkvGd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vONq4abH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13E667FBD2;
-	Tue, 11 Jun 2024 23:33:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74CC6394;
+	Wed, 12 Jun 2024 00:34:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718148833; cv=none; b=iMOsVjUoBOEQxy7CZ+1mL+qUeOzMYH/SDkNOJN5pKWHDllcCIvOwHuJ2Rp8rwYaKRMs83imnkZ8W+IBFcJCfOM//uAtpVxeg+SmdXV4Nd5t6cs3svVa29U5J5T+N8+RtDk3Jiq7c/3WIV6MaMPPrk6CNDk0xsbZQyjAog1m4Vvc=
+	t=1718152446; cv=none; b=rtzf38vra4osJNruhXvKuaq2smXz7IVUJ47/Jz04BTw+rFoiWOIAMQ6Ixa5lvWo4nNyHQN0iM/nwHeCeSYMfZ/ImiWZqmkhI9yH4mA/RsRnIqrk/QOxotWyr9LA4MmCWTpdRc6ygkUTxoeKUu4aL0i0IXbkjraMMv51rEDz0FpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718148833; c=relaxed/simple;
-	bh=PAJmKNOlaPn4rqZ+atyu5CwMxZWPwxMlxuC2B34gYBA=;
+	s=arc-20240116; t=1718152446; c=relaxed/simple;
+	bh=5fRGuvJp6cBf5p4D5mJF23NkzpveK8jJGPPtUPoL47Y=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=TqclPGIESqc8yFEyrksGHF9RI6GnzS1rp0Tcoah7mZgORQteC8CNSyGzZ4hrJWCw0N5+Ig8D2LH0wXUoYAS+HD3pNEYFrJPVMQGLFhL2rSoTJNzEci1hw5NsS06MeNGqNM1we0NvmQZql18UViZrZhVHnwGa5MJOwckd8MnS2vo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=okXRkvGd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40878C2BD10;
-	Tue, 11 Jun 2024 23:33:52 +0000 (UTC)
+	 Message-Id:Subject; b=qNMgf9HaGNJiNlJkxtmAYmAesmcbb9cADd52eDAyCSCuZDFqUYakrDs6ybvQQ2r0QsL96weFfjQ4YE7NJO0497xmTw3+hHKi8tQl3roZfg8to4fOepZBTNWvLV4vnW72Ofdh7hZ/y3wnzYiczlRryl/PdOkzV2AgOK9PD4z2EGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vONq4abH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92413C2BD10;
+	Wed, 12 Jun 2024 00:34:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718148832;
-	bh=PAJmKNOlaPn4rqZ+atyu5CwMxZWPwxMlxuC2B34gYBA=;
+	s=k20201202; t=1718152446;
+	bh=5fRGuvJp6cBf5p4D5mJF23NkzpveK8jJGPPtUPoL47Y=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=okXRkvGdCe1XdVvPJ/B3x/XBUJKvAc+c/+bwlGU9W54Ab5gmcbKJWX54Capoo60sJ
-	 3QJpZ6tJLCd7givRILbxl7GVREwZBJF2P2jjEmADI+Vi1fGbX+C4Pz5QjmtFVx6LnR
-	 tkSHlgGrGviOwJM8a+FTVMXUf2Vug5BgOkX9Hvya/CwSqYlg0+QF1+oBMP2Kj1vezv
-	 KPd96BvLwpWBsrA/Lk4rZB1wgSSvy/p7HRu16yNadwVx6cQWnEQEr9GWv15M089tmr
-	 JnypYQy2nt56nHqiJiWGGgY94FyfmXO6AQcp5MdIi/No12URTEXg+jLJC2MLOP1NwB
-	 f9bkuf23XdKjw==
-Date: Tue, 11 Jun 2024 17:33:51 -0600
+	b=vONq4abHtLrO1CV8n8jkL2JI7V/e8C71ZawuNB8izsThmZ7zeuBNf6L9pjUeYOb0L
+	 ABkkhSjNK1tGGBdcEQHF+QGGr0Boc3xPaNH4pwF0gf7uFwWoYnPcQEaTuwdROGl5lG
+	 76cXGQwCz2LHb0c4UDqX5k19r2FM7x0cdHoA/bq8tmU00FBoLSECTlNLrlhnxDsY9T
+	 r3d6Cg7iQfrVsoDV0MeUpKPiEDPvkcurn31SYc7xAQeHoTGMoMgkG7JqfFzjBE13c9
+	 4rM354UbjF2TpJsCOG0dG8Lou2GbSuhMEhWK4+EDi6nZHNJl1E9hEOfld92kQKqESx
+	 eMMDN65Z+ALkg==
+Date: Tue, 11 Jun 2024 18:34:04 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -52,31 +52,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Danila Tikhonov <danila@jiaxyga.com>
-Cc: tzimmermann@suse.de, konrad.dybcio@linaro.org, 
- dmitry.baryshkov@linaro.org, krzk+dt@kernel.org, mripard@kernel.org, 
- daniel@ffwll.ch, robdclark@gmail.com, dri-devel@lists.freedesktop.org, 
- quic_rmccann@quicinc.com, freedreno@lists.freedesktop.org, 
- devicetree@vger.kernel.org, airlied@gmail.com, quic_abhinavk@quicinc.com, 
- sean@poorly.run, marijn.suijten@somainline.org, conor+dt@kernel.org, 
- swboyd@chromium.org, neil.armstrong@linaro.org, 
- linux-kernel@vger.kernel.org, quic_khsieh@quicinc.com, 
- quic_jesszhan@quicinc.com, linux-arm-msm@vger.kernel.org, jonathan@marek.ca, 
- maarten.lankhorst@linux.intel.com
-In-Reply-To: <20240611223743.113223-4-danila@jiaxyga.com>
+Cc: jonathan@marek.ca, krzk+dt@kernel.org, quic_khsieh@quicinc.com, 
+ linux-arm-msm@vger.kernel.org, quic_rmccann@quicinc.com, sean@poorly.run, 
+ dmitry.baryshkov@linaro.org, tzimmermann@suse.de, mripard@kernel.org, 
+ linux-kernel@vger.kernel.org, konrad.dybcio@linaro.org, 
+ dri-devel@lists.freedesktop.org, maarten.lankhorst@linux.intel.com, 
+ daniel@ffwll.ch, freedreno@lists.freedesktop.org, 
+ marijn.suijten@somainline.org, robdclark@gmail.com, conor+dt@kernel.org, 
+ swboyd@chromium.org, quic_abhinavk@quicinc.com, devicetree@vger.kernel.org, 
+ airlied@gmail.com, quic_jesszhan@quicinc.com, neil.armstrong@linaro.org
+In-Reply-To: <20240611223743.113223-2-danila@jiaxyga.com>
 References: <20240611223743.113223-1-danila@jiaxyga.com>
- <20240611223743.113223-4-danila@jiaxyga.com>
-Message-Id: <171814883103.3303009.2789653537051980409.robh@kernel.org>
-Subject: Re: [PATCH 3/4] dt-bindings: display/msm: Add SM7150 DPU
+ <20240611223743.113223-2-danila@jiaxyga.com>
+Message-Id: <171815244421.3448243.12009673117592867975.robh@kernel.org>
+Subject: Re: [PATCH 1/4] dt-bindings: display/msm: Add SM7150 MDSS
 
 
-On Wed, 12 Jun 2024 01:37:42 +0300, Danila Tikhonov wrote:
-> Document the DPU hardware found on the Qualcomm SM7150 platform.
+On Wed, 12 Jun 2024 01:37:40 +0300, Danila Tikhonov wrote:
+> Document the MDSS hardware found on the Qualcomm SM7150 platform.
 > 
 > Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
 > ---
->  .../bindings/display/msm/qcom,sm7150-dpu.yaml | 145 ++++++++++++++++++
->  1 file changed, 145 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm7150-dpu.yaml
+>  .../display/msm/qcom,sm7150-mdss.yaml         | 460 ++++++++++++++++++
+>  1 file changed, 460 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm7150-mdss.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
@@ -84,18 +83,18 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/display/msm/qcom,sm7150-dpu.example.dts:24:18: fatal error: dt-bindings/clock/qcom,sm7150-dispcc.h: No such file or directory
-   24 |         #include <dt-bindings/clock/qcom,sm7150-dispcc.h>
+Documentation/devicetree/bindings/display/msm/qcom,sm7150-mdss.example.dts:25:18: fatal error: dt-bindings/clock/qcom,sm7150-dispcc.h: No such file or directory
+   25 |         #include <dt-bindings/clock/qcom,sm7150-dispcc.h>
       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 compilation terminated.
-make[2]: *** [scripts/Makefile.lib:427: Documentation/devicetree/bindings/display/msm/qcom,sm7150-dpu.example.dtb] Error 1
+make[2]: *** [scripts/Makefile.lib:427: Documentation/devicetree/bindings/display/msm/qcom,sm7150-mdss.example.dtb] Error 1
 make[2]: *** Waiting for unfinished jobs....
 make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
 make: *** [Makefile:240: __sub-make] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240611223743.113223-4-danila@jiaxyga.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240611223743.113223-2-danila@jiaxyga.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
