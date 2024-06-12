@@ -1,267 +1,158 @@
-Return-Path: <devicetree+bounces-74965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF402905145
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 13:23:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2BDB90516B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 13:35:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DD0D2878A1
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 11:23:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 822811C21370
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 11:35:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E9EA16F278;
-	Wed, 12 Jun 2024 11:23:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2173516C685;
+	Wed, 12 Jun 2024 11:34:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="R19Yq5TI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Es9dlowL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1A8616F0FB;
-	Wed, 12 Jun 2024 11:23:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 667F816C84F
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 11:34:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718191400; cv=none; b=Iuze3wh9sHSIMCP1TuhAK1YM5S1wxWxA6tiC5Sj0Fol5q296cTG8jKXFweiJ0q0Dv1CYcnh+7HNkuFTWpCmrb10M+VDJmMCbUxAbtRu+eNpouy7jFtrOP5U7zEvRZ8mCnPTVuW8KSCPgv+o6aHO3yqGizuKKJBlHyl5I9RPrcKA=
+	t=1718192099; cv=none; b=onarjE0twcJYxhHwkTE89lAZDzT6Yd9xhYGpXOGo7lEV0d+jTeDZYAPu+C0R1e0kSZZbXg4ZkgPhgAxIPiqf1Imw3aE6W3E7MvybmuVfLt8yZbufRO16J6CHXZljW5VsR2mCjQ22pl+jWW//sKZz6KVk9sRac5XnPN4WXeikJ5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718191400; c=relaxed/simple;
-	bh=eyqk4BWKM+w8zgI+2BHLFLdZGQatPIJSvGdKBMHkdnQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lPNZWuaFVGtpJsf7AkOddaHef/msG1JEQb9he6uVgyb4d2bYe8WUjDUGZ/+yI9WcjG2IBu872706KjtRx7AgqpDE4bCUjFRPJQ5jB1opiRLWcq1ATfljdCZ9t8utY938i75knO7CRSXwRNR2oPbwg/NL18uthf+DRej+FJalkzU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=R19Yq5TI; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45CBNCwP080336;
-	Wed, 12 Jun 2024 06:23:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1718191392;
-	bh=650Q/oEA4q0guSCa793ebYVf7QtXHsuFmq4zcJ/TXek=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=R19Yq5TIeFdUD4hvyy0acdnq7K8stejhKcBaJfMX9E0HGmWmZZdzijVJf8QhreDxF
-	 uSaJFZJ1nEf2DT/ohbt4R1ly5yrvWc0Od8fX3eWMHfuN5SgGBDqg4N2Gliny8GmLeb
-	 Stcjx+U3U8yo29oLWgAVqTjHdYxIe6OPprfDYk+U=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45CBNCk9022931
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 12 Jun 2024 06:23:12 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 12
- Jun 2024 06:23:11 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 12 Jun 2024 06:23:12 -0500
-Received: from uda0510294.dhcp.ti.com (uda0510294.dhcp.ti.com [10.24.69.66])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45CBMxe4120263;
-	Wed, 12 Jun 2024 06:23:08 -0500
-From: Beleswar Padhi <b-padhi@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <j-choudhary@ti.com>, <vaishnav.a@ti.com>,
-        <afd@ti.com>, <u-kumar1@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 2/2] arm64: dts: ti: k3-j722s-evm: Add memory carveouts for R5F and C7x
-Date: Wed, 12 Jun 2024 16:52:59 +0530
-Message-ID: <20240612112259.1131653-3-b-padhi@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240612112259.1131653-1-b-padhi@ti.com>
-References: <20240612112259.1131653-1-b-padhi@ti.com>
+	s=arc-20240116; t=1718192099; c=relaxed/simple;
+	bh=MZ0bROeIy+CQjHZ+rRTQWtZgMMK1yDMg4Ruh2BA2+4g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:Cc:
+	 In-Reply-To:Content-Type; b=G0iFVrFInr03FoEjT6IzTcjtQVcwWVOlQoa0xGfkVQqYKk/jWEVnaX/+1aCOHciHAA+/WR0WKM5YXW0DxGnrqII+slPIwAsahRDFRyKDaOWXhff6MJpcu0C2plKNzHhB84+8ZCahb+GYC5JLUMXUYUfXNdbAaQTbh2V6nK9NItQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Es9dlowL; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2eaafda3b5cso85701681fa.3
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 04:34:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718192095; x=1718796895; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:cc:content-language
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5U7UdpN2UfJDP/46wGRPZr5KWrtreWY0N2ItY8olYtU=;
+        b=Es9dlowLnjP/QONCi6Z9g2vUF/LgntDdjI6+dIsRFGiocbJD6SoS1ciipC8MRHE+oe
+         4JVvZfpecZSvllV9fSRxWmZeKeA4QMJunnDJbCUw2JS9GuDGpKZ8XxVX9ADOFHQ96zyt
+         LJT4voLBfts5PkswvFc4j1vA8MC0ypZSp994P8qaFOQS6DJxtVcc89U2TGk17gsRSHPD
+         s+DxA39OJ7/g2fJNYdqdMFzfdl9tbG41tplL/jTS9yWovGG0eNfDO75dlFenBmF8Lc6g
+         r7pAa0qVMJ0+KiqzvPpoMxn69nb1hIIX6Ke4WU0clDDusmikYJ9BLYujIC0M9dCB48PU
+         ptOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718192095; x=1718796895;
+        h=content-transfer-encoding:in-reply-to:autocrypt:cc:content-language
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5U7UdpN2UfJDP/46wGRPZr5KWrtreWY0N2ItY8olYtU=;
+        b=EU/+UFVUsfC2sujq5JIX3l38S7NCZRJ24C+5F4KBrBXk94JR11hilT9k1PD0c3tFcl
+         4Rp/+Myy351I3OaDZO9u2P4wIiknyfTkF6b7OaR0yst0+QzS8FiEUiBSXcZBtUbQySjq
+         p/kBlZQ24HWqTdolbX2OP17MEQsIFMS9zoVm/lpynwfuNcvqnPRvRmsFX1hYfxFRGlTT
+         d39R9jhZkHQoLiPkcSrrJ46SDKDcIXM4G6pxSMRZSPMVUTpflyxWiKc2pEuEH7uo1c56
+         rxZ/X8OzLduwv63qWImCXZeNY6o1f1W2l3egNbCcKdaFHNPAWiFinUJLq8Xj3YoPnNhV
+         ONXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXg1pfZGvpmWZjg4dhnFNV3jQMn+abhFUHO8uzop6WYjcP2uleiQ9QZGPNJdrk0bYzvcjX0iIQW1yFxNDmGVd85xd7nleAU04CMsA==
+X-Gm-Message-State: AOJu0YzVX4jgC3K4iCsV1QNyDtQ3ovBl09QfAEqreie/nlsI/5aQRXIv
+	AgD1mKHmcXr1BWlveqFXALvxwkEGWwTSmPDYEFunJU+6xQQ54oDfqYDZ1pbLpKw=
+X-Google-Smtp-Source: AGHT+IH1FWrncntpv/c77frag4GdO+EyR92d48FIIj1Ou8KKpm5o3pPW5TO+GoBcdkGISymABL4kPQ==
+X-Received: by 2002:a2e:9ed1:0:b0:2eb:ee24:d5bc with SMTP id 38308e7fff4ca-2ebfc8ffbd4mr9774881fa.8.1718192095565;
+        Wed, 12 Jun 2024 04:34:55 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42286fe75e0sm23408775e9.1.2024.06.12.04.34.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Jun 2024 04:34:55 -0700 (PDT)
+Message-ID: <58d0b3ed-582b-4a59-9599-6582d5953f12@linaro.org>
+Date: Wed, 12 Jun 2024 13:34:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] ARM: dts: imx: align panel timings node name with
+ dtschema
+To: Shawn Guo <shawnguo@kernel.org>
+References: <20240509104838.216773-1-krzysztof.kozlowski@linaro.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Cc: Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240509104838.216773-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Apurva Nandan <a-nandan@ti.com>
+On 09/05/2024 12:48, Krzysztof Kozlowski wrote:
+> DT schema expects panel timings node to follow certain pattern,
+> dtbs_check warnings:
+> 
+>   imx6dl-gw54xx.dtb: display-timings: 'hsd100pxn1' does not match any of the regexes: '^timing', 'pinctrl-[0-9]+'
+> 
+> Linux drivers do not care about node name, so this should not have
+> effect on Linux.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 
-The K3 J722S SoCs have one single-core Arm Cortex-R5F processor in each
-of the WAKEUP, MCU and MAIN voltage domain, and two C71x DSP subsystems
-in MAIN voltage domain.
+Hi Shawn,
 
-The Inter-Processor communication between the main A72 cores and these
-R5F and DSP remote cores is achieved through shared memory and
-Mailboxes. Thus, add the memory carveouts and enable the mailbox
-clusters required for communication.
+Any comments here? Can you pick the series?
 
-Signed-off-by: Apurva Nandan <a-nandan@ti.com>
-[ Added and enabled mailbox instances ]
-Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 140 ++++++++++++++++++++++++
- 1 file changed, 140 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-index 253b02f0437de..643a017833572 100644
---- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-@@ -51,12 +51,71 @@ secure_ddr: optee@9e800000 {
- 			no-map;
- 		};
- 
-+		wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@a0000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa0000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
- 		wkup_r5fss0_core0_memory_region: r5f-memory@a0100000 {
- 			compatible = "shared-dma-pool";
- 			reg = <0x00 0xa0100000 0x00 0xf00000>;
- 			no-map;
- 		};
- 
-+		mcu_r5fss0_core0_dma_memory_region: mcu-r5fss-dma-memory-region@a1000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa1000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		mcu_r5fss0_core0_memory_region: mcu-r5fss-memory-region@a1100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa1100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		main_r5fss0_core0_dma_memory_region: main-r5fss-dma-memory-region@a2000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa2000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		main_r5fss0_core0_memory_region: main-r5fss-memory-region@a2100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa2100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		c7x_0_dma_memory_region: c7x-dma-memory@a3000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa3000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		c7x_0_memory_region: c7x-memory@a3100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa3100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		c7x_1_dma_memory_region: c7x-dma-memory@a4000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa4000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		c7x_1_memory_region: c7x-memory@a4100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa4100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		rtos_ipc_memory_region: ipc-memories@a5000000 {
-+			reg = <0x00 0xa5000000 0x00 0x1c00000>;
-+			alignment = <0x1000>;
-+			no-map;
-+		};
- 	};
- 
- 	vmain_pd: regulator-0 {
-@@ -400,6 +459,87 @@ &sdhci1 {
- 	bootph-all;
- };
- 
-+&mailbox0_cluster0 {
-+	status = "okay";
-+	mbox_r5_0: mbox-r5-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster1 {
-+	status = "okay";
-+	mbox_mcu_r5_0: mbox-mcu-r5-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster2 {
-+	status = "okay";
-+	mbox_c7x_0: mbox-c7x-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster3 {
-+	status = "okay";
-+	mbox_main_r5_0: mbox-main-r5-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+
-+	mbox_c7x_1: mbox-c7x-1 {
-+		ti,mbox-rx = <2 0 0>;
-+		ti,mbox-tx = <3 0 0>;
-+	};
-+};
-+
-+&wkup_r5fss0 {
-+	status = "okay";
-+};
-+
-+&wkup_r5fss0_core0 {
-+	mboxes = <&mailbox0_cluster0 &mbox_r5_0>;
-+	memory-region = <&wkup_r5fss0_core0_dma_memory_region>,
-+			<&wkup_r5fss0_core0_memory_region>;
-+};
-+
-+&mcu_r5fss0 {
-+	status = "okay";
-+};
-+
-+&mcu_r5fss0_core0 {
-+	mboxes = <&mailbox0_cluster1 &mbox_mcu_r5_0>;
-+	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
-+			<&mcu_r5fss0_core0_memory_region>;
-+};
-+
-+&main_r5fss0 {
-+	status = "okay";
-+};
-+
-+&main_r5fss0_core0 {
-+	mboxes = <&mailbox0_cluster3 &mbox_main_r5_0>;
-+	memory-region = <&main_r5fss0_core0_dma_memory_region>,
-+			<&main_r5fss0_core0_memory_region>;
-+};
-+
-+&c7x_0 {
-+	status = "okay";
-+	mboxes = <&mailbox0_cluster2 &mbox_c7x_0>;
-+	memory-region = <&c7x_0_dma_memory_region>,
-+			<&c7x_0_memory_region>;
-+};
-+
-+&c7x_1 {
-+	status = "okay";
-+	mboxes = <&mailbox0_cluster3 &mbox_c7x_1>;
-+	memory-region = <&c7x_1_dma_memory_region>,
-+			<&c7x_1_memory_region>;
-+};
-+
- &serdes_ln_ctrl {
- 	idle-states = <J722S_SERDES0_LANE0_USB>,
- 		      <J722S_SERDES1_LANE0_PCIE0_LANE0>;
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
