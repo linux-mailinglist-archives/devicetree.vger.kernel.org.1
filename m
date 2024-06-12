@@ -1,142 +1,195 @@
-Return-Path: <devicetree+bounces-74785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B12FA90484F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 03:21:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF919904869
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 03:28:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 935991C22F08
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 01:21:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB5AEB21833
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 01:28:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BF6117C9;
-	Wed, 12 Jun 2024 01:21:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48F6E1FB5;
+	Wed, 12 Jun 2024 01:28:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="iSb0nmpb"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="He1Nf2sb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93EA7391;
-	Wed, 12 Jun 2024 01:21:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BEBB4411;
+	Wed, 12 Jun 2024 01:28:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718155294; cv=none; b=jjEiYnVO5U9hMhl2jzIL4cRbIjuQju6ZNAKMA5l1O46jw0sNX4StYhti/cz2RL3uAg0dzqM/pHtLMjED/f0ug9EAXEf5CWESz/UqsR4YSOlhDxz/ge8dk2MB04z+g6Pt5hOL7l6mTJRPdNH400Kg539Zth7DlU18IMwybLI2d74=
+	t=1718155705; cv=none; b=ZV0xG495fga/VL/Uv60Dc/CGIVc0ZMNCO7esHRLePrBiRYFft19YC5995Tjp5IBE1dwHUV8wMLJAcy/FDg7bn9Q6WfjThKj9/yo890Is/aP5rVEwY2N9AhnsZdO/nltKFdWLYXGiOqTjcIiKsg8Agdo/KjU/l5VwEpbkH/OQEIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718155294; c=relaxed/simple;
-	bh=QGO5DNB1ktBaq18MrT3YSf2fdBgNWF96qt+lNFGXEjs=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZDiXeQONM0ombjl5oDh4TU9okRbPogBOUD+/OI46uxHki9yTWqwsIZ8DtildmTWP6dZNHlKnT7MN6RceXZVJFl7QwR194KKbe73qUQRwDWyuYA3Occ8eN62p+lUThtvNeLBH6tfGjtWeaO2S9y5hDhc/Cxi362KbQosCaG0jsJ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=iSb0nmpb; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 16d67b2e285a11efa22eafcdcd04c131-20240612
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=GoDbejxUQ5CH3/w/X+WKXRuM50NCUjo+XMdENx3Q9sc=;
-	b=iSb0nmpbzwz+qwAH2d9XJwIcH3JbYsdkwv77GMJft1Br5dpug4R4lKiZMAOSI8FB9LcrUnSAKvCNgZmA/lpyMBeXQJ6dCkff59JvsDX/hOg/+q/8pV9gogXMxMVCWOtWgmCjjsf8dYsf9KNtqtGUhtP8i2O1i7OS5tBHe1jU+Vw=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.39,REQID:ef24ff04-c1ce-4d88-b794-01e9fe46a064,IP:0,U
-	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:-5
-X-CID-META: VersionHash:393d96e,CLOUDID:f6157988-8d4f-477b-89d2-1e3bdbef96d1,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 16d67b2e285a11efa22eafcdcd04c131-20240612
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
-	(envelope-from <zhi.mao@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 560014558; Wed, 12 Jun 2024 09:21:26 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Wed, 12 Jun 2024 09:21:24 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Wed, 12 Jun 2024 09:21:22 +0800
-From: Zhi Mao <zhi.mao@mediatek.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Zhi Mao <zhi.mao@mediatek.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Laurent Pinchart
-	<laurent.pinchart+renesas@ideasonboard.com>, Heiko Stuebner
-	<heiko@sntech.de>, Sakari Ailus <sakari.ailus@linux.intel.com>, Hans Verkuil
-	<hverkuil-cisco@xs4all.nl>, Hans de Goede <hdegoede@redhat.com>, "Tomi
- Valkeinen" <tomi.valkeinen@ideasonboard.com>, Alain Volmat
-	<alain.volmat@foss.st.com>, Paul Elder <paul.elder@ideasonboard.com>, "Mehdi
- Djait" <mehdi.djait@bootlin.com>, Andy Shevchenko
-	<andy.shevchenko@gmail.com>, Bingbu Cao <bingbu.cao@intel.com>,
-	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <shengnan.wang@mediatek.com>,
-	<yaya.chang@mediatek.com>, <yunkec@chromium.org>, <10572168@qq.com>
-Subject: [PATCH v3 3/3] MAINTAINERS: Add entry for GT97xx VCM driver
-Date: Wed, 12 Jun 2024 09:20:19 +0800
-Message-ID: <20240612012019.19078-4-zhi.mao@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240612012019.19078-1-zhi.mao@mediatek.com>
-References: <20240612012019.19078-1-zhi.mao@mediatek.com>
+	s=arc-20240116; t=1718155705; c=relaxed/simple;
+	bh=+yxlnGeFBeZpOu9F46jpspVd+qUy3HO7R8cCMNex2xY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TXljKV3JshRIfvCq+/rpEf5Y4ThlB50R/KGfEy/LuIC91MP4fQHAPC+boj+PHVJfZIhUemaemRyHkws4qNBP9EtTUgSGR9J7M4rwGbUnRqjIrOtaq97tGipD1FhUDqQGEZRH8l/X6B31v6zmm5I6FvkMqEBmPLf+843i4jMRrRM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=He1Nf2sb; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1718155703; x=1749691703;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+yxlnGeFBeZpOu9F46jpspVd+qUy3HO7R8cCMNex2xY=;
+  b=He1Nf2sbhSnJsKRcSs4WtbTWzy5bKQN7Bg4BOnjTa3svTlO/qrrxI8WB
+   NbiN8OgcYvshoP6nWWRFy6jEBRcQusopqwMJrLHHDdjQZRGdsB0jFzg8k
+   tq/Xe8Hdy/ykA4IfqM01mqG4owT+El7hbhZrNzijt+oGFaTjrdwHVr+K3
+   q4ze6FF90tCGT0lXixq+aMX2eOWu3iegjo1CDyrmPGYuM2seyEzqmcuBO
+   R3XeVrhdu3w12Dme1d/Y9eeNOJT2340m4RuC0zNQKLYYqNn52VymItks4
+   w6fiFjoh5ZS4SreakXNe0EeLjxdHXxDxigyRLJdXx2dbKe6zgfJo2Btym
+   w==;
+X-CSE-ConnectionGUID: Vvy6Qk20SKCfzOXk5387tw==
+X-CSE-MsgGUID: MmjAwTNgSQuXOkPUW/84+A==
+X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="26307472"
+X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; 
+   d="scan'208";a="26307472"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2024 18:28:22 -0700
+X-CSE-ConnectionGUID: fVlgSjgFSjaCyzUxBhze6A==
+X-CSE-MsgGUID: XnTGlzf6RJuHrUVzF6vsdQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; 
+   d="scan'208";a="44532709"
+Received: from lkp-server01.sh.intel.com (HELO 628d7d8b9fc6) ([10.239.97.150])
+  by orviesa003.jf.intel.com with ESMTP; 11 Jun 2024 18:28:16 -0700
+Received: from kbuild by 628d7d8b9fc6 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sHCmb-00014Z-30;
+	Wed, 12 Jun 2024 01:28:13 +0000
+Date: Wed, 12 Jun 2024 09:27:24 +0800
+From: kernel test robot <lkp@intel.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	chunkuang.hu@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com, shawn.sung@mediatek.com,
+	yu-chang.lee@mediatek.com, ck.hu@mediatek.com,
+	jitao.shi@mediatek.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, wenst@chromium.org,
+	kernel@collabora.com, sui.jinfeng@linux.dev, michael@walle.cc,
+	Alexandre Mergnat <amergnat@baylibre.com>
+Subject: Re: [PATCH v6 3/3] drm/mediatek: Implement OF graphs support for
+ display paths
+Message-ID: <202406120934.xJkzoJYC-lkp@intel.com>
+References: <20240611082831.477566-4-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--1.740300-8.000000
-X-TMASE-MatchedRID: GIpmbigRs3Y9S3IiQd+eNQPZZctd3P4BFuNF4lJG6xtGL0g1nVmkYTcG
-	i0cOVVasRcK0DrBkisuAMuqetGVetksDkkP3zIjqavP8b9lJtWr6C0ePs7A07fH8XRQwShO7Ayk
-	Qe1sIa0XYNwoFzR6TfCnyQECDq3YS+cAQf7nhiHEBxwmF6nT2v0FNSQkI9yjefYyfbAjKfD6cXr
-	SpsbyZea6edyNz+tV1oydMlEjRcid9fBQSbWi4PMsNjEULX/uufoZ02Tg1aYA=
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--1.740300-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	BBF44A3C6038B97E8327B33B45543D43F4733C587BBDE6740BD7819DB45B6D542000:8
-X-MTK: N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240611082831.477566-4-angelogioacchino.delregno@collabora.com>
 
-Add maintainer entry for GT97xx VCM driver
+Hi AngeloGioacchino,
 
-Signed-off-by: Zhi Mao <zhi.mao@mediatek.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+kernel test robot noticed the following build errors:
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 670b8201973b..d12694c743ab 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9328,6 +9328,13 @@ F:	Documentation/filesystems/gfs2*
- F:	fs/gfs2/
- F:	include/uapi/linux/gfs2_ondisk.h
- 
-+GIANTEC GT9769 LENS VOICE COIL DRIVER
-+M:	Zhi Mao <zhi.mao@mediatek.com>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/media/i2c/giantec,gt9769.yaml
-+F:	drivers/media/i2c/gt97xx.c
-+
- GIGABYTE WATERFORCE SENSOR DRIVER
- M:	Aleksa Savic <savicaleksa83@gmail.com>
- L:	linux-hwmon@vger.kernel.org
-@@ -23590,6 +23597,7 @@ L:	linux-media@vger.kernel.org
- S:	Maintained
- F:	drivers/media/i2c/ak*
- F:	drivers/media/i2c/dw*
-+F:	drivers/media/i2c/gt*
- F:	drivers/media/i2c/lm*
- 
- V4L2 CAMERA SENSOR DRIVERS
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.10-rc3 next-20240611]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/dt-bindings-display-mediatek-Add-OF-graph-support-for-board-path/20240611-163327
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240611082831.477566-4-angelogioacchino.delregno%40collabora.com
+patch subject: [PATCH v6 3/3] drm/mediatek: Implement OF graphs support for display paths
+config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20240612/202406120934.xJkzoJYC-lkp@intel.com/config)
+compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project 4403cdbaf01379de96f8d0d6ea4f51a085e37766)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240612/202406120934.xJkzoJYC-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406120934.xJkzoJYC-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/gpu/drm/mediatek/mtk_dpi.c:21:
+   In file included from include/drm/drm_atomic_helper.h:31:
+   In file included from include/drm/drm_crtc.h:32:
+   In file included from include/drm/drm_modes.h:33:
+   In file included from include/drm/drm_connector.h:32:
+   In file included from include/drm/drm_util.h:36:
+   In file included from include/linux/kgdb.h:19:
+   In file included from include/linux/kprobes.h:28:
+   In file included from include/linux/ftrace.h:13:
+   In file included from include/linux/kallsyms.h:13:
+   In file included from include/linux/mm.h:2253:
+   include/linux/vmstat.h:500:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     500 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     501 |                            item];
+         |                            ~~~~
+   include/linux/vmstat.h:507:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     507 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     508 |                            NR_VM_NUMA_EVENT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/vmstat.h:514:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
+     514 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+   include/linux/vmstat.h:519:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     519 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     520 |                            NR_VM_NUMA_EVENT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/vmstat.h:528:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     528 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     529 |                            NR_VM_NUMA_EVENT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/mediatek/mtk_dpi.c:711:17: error: use of undeclared identifier 'dsi'; did you mean 'dpi'?
+     711 |                 ret = PTR_ERR(dsi->next_bridge);
+         |                               ^~~
+         |                               dpi
+   drivers/gpu/drm/mediatek/mtk_dpi.c:706:18: note: 'dpi' declared here
+     706 |         struct mtk_dpi *dpi = bridge_to_dpi(bridge);
+         |                         ^
+   5 warnings and 1 error generated.
+
+
+vim +711 drivers/gpu/drm/mediatek/mtk_dpi.c
+
+   702	
+   703	static int mtk_dpi_bridge_attach(struct drm_bridge *bridge,
+   704					 enum drm_bridge_attach_flags flags)
+   705	{
+   706		struct mtk_dpi *dpi = bridge_to_dpi(bridge);
+   707		int ret;
+   708	
+   709		dpi->next_bridge = devm_drm_of_get_bridge(dpi->dev, dpi->dev->of_node, 1, -1);
+   710		if (IS_ERR(dpi->next_bridge)) {
+ > 711			ret = PTR_ERR(dsi->next_bridge);
+   712			if (ret == -EPROBE_DEFER)
+   713				return ret;
+   714	
+   715			/* Old devicetree has only one endpoint */
+   716			dpi->next_bridge = devm_drm_of_get_bridge(dpi->dev, dpi->dev->of_node, 0, 0);
+   717			if (IS_ERR(dpi->next_bridge))
+   718				return dev_err_probe(dpi->dev, PTR_ERR(dpi->next_bridge),
+   719						     "Failed to get bridge\n");
+   720		}
+   721	
+   722		return drm_bridge_attach(bridge->encoder, dpi->next_bridge,
+   723					 &dpi->bridge, flags);
+   724	}
+   725	
+
 -- 
-2.25.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
