@@ -1,136 +1,137 @@
-Return-Path: <devicetree+bounces-75076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0641F90560A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:00:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C966C90560B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:00:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1268E1C21FA2
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:00:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD0B31C21BCE
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:00:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C40C17F4EB;
-	Wed, 12 Jun 2024 14:59:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1E1A17F502;
+	Wed, 12 Jun 2024 14:59:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tPP5HYTw"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WGgBAM1K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CDBD17E908;
-	Wed, 12 Jun 2024 14:59:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57D5517F4F9;
+	Wed, 12 Jun 2024 14:59:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718204390; cv=none; b=r3zmAO3A7j8NswgI4ighBC9/Bpek6d1QsFEd9ZUUi/inC3yUk/qZz1043TFBlBOztwqyZZF+DQfQB4oD0LyJ7EChcSZADYmVZIaw1yT4/MROFUGukbA3QxhOFNjlnyPBJkRffHAETpXghoInp8arV2mmTqAQQg9GBcR3PtMLajw=
+	t=1718204395; cv=none; b=M+rQiTg7udEZDSmKiwhXWrjLlRZDKTWY0Owlr6SlTuWN9EI43L2Pjj8bT4dElg+5UlQBiT/2W8kVRQusp0mcpMo/uTU/MLrXL5k4aU1E3T3g6W6DYt7vBUbf9uCNqSLzGIIZMgcvKVmv4jWx4JHkq/Hh9zx7tMyHLLstioTZrgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718204390; c=relaxed/simple;
-	bh=xjUBwltqpAe6aYRnfriue1Gh2w11fmbRUGTxTQAXaYs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WY8nN6xezMkfFsQQhFjlnaQ94nqDJojco1hRTZjYrZfqKIYhhHHohwMdg4fcBVjFTrupoUoSIhp/fx3vT3Ujh9QH2r6UyyWYS9jmgS8FX2QejhuHOq/Vwz9vnwUhy3Ts84T88q5CDAWZyYHwdH3MTLMtb5dx8zWPV799A2LKf/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tPP5HYTw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91A70C4AF1A;
-	Wed, 12 Jun 2024 14:59:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718204389;
-	bh=xjUBwltqpAe6aYRnfriue1Gh2w11fmbRUGTxTQAXaYs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tPP5HYTwgbOgZecxq8aShvk9LnNbGElMzF2+hLVKYBiH0im11j6KEK+BXzjdF9XXA
-	 snF7aFCimfCsZmCl6+ialg8qrZpsKH2AD2/LnWQrcjmS+9Eh5Kph3FmiElC2KmXwAo
-	 H7ROI58qlZBRlVq2FJQRyhYvmx3LniZ3cS1Z3PO3/wpfPIjS7bNREgMH4HiL5NQYe1
-	 xsPWQr/Oe9u3oHRXRSpkW3JsEpL2Ic2amMftS5oiVft0H7s9MdycMUVhMj7M8TPCNN
-	 GvjGRtTk+bgWnkoE0MSWuqPERUFOS9wSm/dk/cck5Ju5mHAP9Kc7aThLydsiERXWm/
-	 YoMZI/lSV65qA==
-Date: Wed, 12 Jun 2024 20:29:33 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
-	"bhelgaas@google.com" <bhelgaas@google.com>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-	"marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH v8 4/5] PCI: rcar-gen4: Add support for r8a779g0
-Message-ID: <20240612145933.GC58302@thinkpad>
-References: <20240520074300.125969-1-yoshihiro.shimoda.uh@renesas.com>
- <20240520074300.125969-5-yoshihiro.shimoda.uh@renesas.com>
- <20240608082455.GA3282@thinkpad>
- <TYCPR01MB11040691A48BD866E9F387D78D8C72@TYCPR01MB11040.jpnprd01.prod.outlook.com>
- <CAMuHMdXStQGDNP8c79Bc46kM7BMkbxi=2aVKnLrupWj9Ytn7Ug@mail.gmail.com>
+	s=arc-20240116; t=1718204395; c=relaxed/simple;
+	bh=ClXfKtrObNYFGJH3nO4MkQnRpdoJTRqan1XfI/UCRmQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oZCNyD3YmVXhsULi5lLGfan/sFT5NivtKvt6RWT0Pwoz7i+m52gtnlT1OrO/OeS/BOKzEbyy6CCHGS8RC5mqu+LBCAxI0J8dqydRIY/blI6LvZzHJB6sI2tdiHgtGTpXHKFEzjHrEcqcm6msBY+f6sy4RjtmVB0AcMVVlsv9Ix8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WGgBAM1K; arc=none smtp.client-ip=198.175.65.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1718204394; x=1749740394;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=ClXfKtrObNYFGJH3nO4MkQnRpdoJTRqan1XfI/UCRmQ=;
+  b=WGgBAM1KGSABw5nU+48YRz4JkUvsszlwO++Gg6smvO+zM1JRju8NdE7V
+   +AnfphSmzna+rLoKI9ckaNV0ZXraMrei+Jj8Rb/5zu2D9JMXf9/IZgAZu
+   YJEVFjDpxN4Awo5T+X7QyWTpmzkXJHAC7Oc9kb2hfwc/aq1otTlI493gl
+   xnvT6i714HM5iTfvsjS463lpjqEZYs5HPv4gXwDCKpnB7tP8HPBlPj59r
+   Uyr93YzqHQt3P8v/ZAc/+SiFW9+imOKfShgYFhnE9x5VKibTkpxVz3+1e
+   bBzHrEAc9SMfjxZjgZK81A7H7HJgpZjBYZzMqWzOH2UdB35I9rQM7VRAU
+   A==;
+X-CSE-ConnectionGUID: wLJMRod/TfeyL19UeHZS4g==
+X-CSE-MsgGUID: 8qUZB+4BR1C6L/Y1p6uz+Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="25551549"
+X-IronPort-AV: E=Sophos;i="6.08,233,1712646000"; 
+   d="scan'208";a="25551549"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2024 07:59:54 -0700
+X-CSE-ConnectionGUID: 841aPa7dSOKPs3kKUGyVwg==
+X-CSE-MsgGUID: +1nNoP70T1e7w8bmaCZ8AQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,233,1712646000"; 
+   d="scan'208";a="44938104"
+Received: from iklimasz-mobl1.ger.corp.intel.com (HELO [10.245.246.56]) ([10.245.246.56])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2024 07:59:48 -0700
+Message-ID: <fabc7ac8-6c44-4395-bd16-59257a949e9b@linux.intel.com>
+Date: Wed, 12 Jun 2024 16:59:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v23 00/32] Introduce QC USB SND audio offloading support
+To: =?UTF-8?Q?Amadeusz_S=C5=82awi=C5=84ski?=
+ <amadeuszx.slawinski@linux.intel.com>, Wesley Cheng
+ <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
+ mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
+ corbet@lwn.net, broonie@kernel.org, lgirdwood@gmail.com, krzk+dt@kernel.org,
+ Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com, tiwai@suse.com,
+ robh@kernel.org, gregkh@linuxfoundation.org
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
+ alsa-devel@alsa-project.org
+References: <20240610235808.22173-1-quic_wcheng@quicinc.com>
+ <80fefd6b-0f3a-4f6a-869e-fd2225315801@linux.intel.com>
+Content-Language: en-US
+From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <80fefd6b-0f3a-4f6a-869e-fd2225315801@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdXStQGDNP8c79Bc46kM7BMkbxi=2aVKnLrupWj9Ytn7Ug@mail.gmail.com>
 
-On Tue, Jun 11, 2024 at 12:10:22PM +0200, Geert Uytterhoeven wrote:
-> On Tue, Jun 11, 2024 at 11:21 AM Yoshihiro Shimoda
-> <yoshihiro.shimoda.uh@renesas.com> wrote:
-> > > From: Manivannan Sadhasivam, Sent: Saturday, June 8, 2024 5:25 PM
-> > > On Mon, May 20, 2024 at 04:42:59PM +0900, Yoshihiro Shimoda wrote:
-> > > > +static void rcar_gen4_pcie_phy_reg_update_bits(struct rcar_gen4_pcie *rcar,
-> > > > +                                          u32 offset, u32 mask, u32 val)
-> > > > +{
-> > > > +   u32 tmp;
-> > > > +
-> > > > +   tmp = readl(rcar->phy_base + offset);
-> > > > +   tmp &= ~mask;
-> > > > +   tmp |= val;
-> > >
-> > > Use FIELD_* macros to avoid using the shift value.
-> >
-> > According to the bitfield.h,
-> > ---
-> > * FIELD_{GET,PREP} macros take as first parameter shifted mask
-> >  * from which they extract the base mask and shift amount.
-> >  * Mask must be a compilation time constant.
-> > ---
-> > So, since the mask is a variable here, we cannot use FIELD_* macros for this function.
-> 
-> Indeed.
-> 
 
-I just can't keep the constant factor in mind for some reason.
 
-> I tried introducing non-constant field_{prep,get}() helpers[1] in series
-> [2], but there were some pushbacks.
+On 6/12/24 16:50, Amadeusz Sławiński wrote:
+> On 6/11/2024 1:57 AM, Wesley Cheng wrote:
 > 
-> Feel free to up-vote ;-)
+>> Wesley Cheng (32):
+>>    ASoC: Add SOC USB APIs for adding an USB backend
+>>    ASoC: dt-bindings: qcom,q6dsp-lpass-ports: Add USB_RX port
+>>    ASoC: qcom: qdsp6: Introduce USB AFE port to q6dsp
+>>    ASoC: qdsp6: q6afe: Increase APR timeout
+>>    ASoC: qcom: qdsp6: Add USB backend ASoC driver for Q6
+>>    ALSA: usb-audio: Introduce USB SND platform op callbacks
+>>    ALSA: usb-audio: Export USB SND APIs for modules
+>>    ALSA: usb-audio: Save UAC sample size information
+>>    usb: dwc3: Specify maximum number of XHCI interrupters
+>>    usb: host: xhci-plat: Set XHCI max interrupters if property is present
+>>    ALSA: usb-audio: qcom: Add USB QMI definitions
+>>    ALSA: usb-audio: qcom: Introduce QC USB SND offloading support
+>>    ALSA: usb-audio: Check for support for requested audio format
+>>    ASoC: usb: Add PCM format check API for USB backend
+>>    ASoC: qcom: qdsp6: Ensure PCM format is supported by USB audio device
+>>    ALSA: usb-audio: Prevent starting of audio stream if in use
+>>    ALSA: usb-audio: Do not allow USB offload path if PCM device is in use
+>>    ASoC: dt-bindings: Update example for enabling USB offload on SM8250
+>>    ALSA: usb-audio: qcom: Populate PCM and USB chip information
+>>    ASoC: qcom: qdsp6: Add support to track available USB PCM devices
+>>    ASoC: Introduce SND kcontrols to select sound card and PCM device
+>>    ASoC: qcom: qdsp6: Add SOC USB offload select get/put callbacks
+>>    ASoC: Introduce SND kcontrols to track USB offloading state
+>>    ASoC: qcom: qdsp6: Add PCM ops to track current state
+>>    ASoC: usb: Create SOC USB SND jack kcontrol
+>>    ASoC: qcom: qdsp6: Add headphone jack for offload connection status
+>>    ASoC: usb: Fetch ASoC sound card information
+>>    ALSA: usb-audio: Add USB offloading capable kcontrol
+>>    ALSA: usb-audio: Allow for rediscovery of connected USB SND devices
+>>    ALSA: usb-audio: qcom: Use card and PCM index from QMI request
+>>    ASoC: usb: Rediscover USB SND devices on USB port add
+>>    ASoC: doc: Add documentation for SOC USB
 > 
+> I'm not sure how other reviewers feel about this, but is there any
+> chance to group patches in some logical order? It is bit hard to review
+> when I need to jump from generic ALSA to ASoC then QCOM code and then
+> there are dt-bindings mixed in between and back again.
 
-For sure! This will be very useful, thanks.
-
-- Mani
-
-> [1] "[PATCH 01/17] bitfield: Add non-constant field_{prep,get}() helpers"
-> https://lore.kernel.org/all/3a54a6703879d10f08cf0275a2a69297ebd2b1d4.1637592133.git.geert+renesas@glider.be/
-> 
-> [2] "[PATCH 00/17] Non-const bitfield helper conversions"
-> https://lore.kernel.org/all/cover.1637592133.git.geert+renesas@glider.be/
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
-> -- 
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> 
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
+Completely agree. And splitting the 32 patches in smaller sets would
+help as well, every time I want to review I just don't have the time to
+go through 32 heavy-duty patches across USB/ALSA/ASoC.
 
