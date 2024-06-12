@@ -1,61 +1,55 @@
-Return-Path: <devicetree+bounces-75049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FCCE9054AB
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:02:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86D049054B0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:03:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A3831C21C49
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 14:02:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0EBF0B24C38
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 14:03:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 469AB17D896;
-	Wed, 12 Jun 2024 14:02:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8238517D363;
+	Wed, 12 Jun 2024 14:03:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BTmhKbuc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VrG6lVNe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18DFC171E70;
-	Wed, 12 Jun 2024 14:02:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B63017B4F1;
+	Wed, 12 Jun 2024 14:03:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718200934; cv=none; b=rprD+uzmYJRVDinAavaNFIzETn+2+9Wca1web/IfPaoo6PhuEkaEADFplcrf6hVNVkhCU/w2BeHrfEhQ5nTXcBONHIQQjI9sNV8MuwhdwhoFSqa4nDF7fWEt0gm56f+XLErZzv45tXyxc2eqbELyrxYJ/WyXMFrPZNx2qfeDILQ=
+	t=1718201013; cv=none; b=gFWDvzWqGpP2X1/A5RT6uXH8atDRiHKraLQhHT282OngWlQ/JrOEdEg4Koif5I4+kT+dTKwiMuAnx3OoiKGMMBOiJLERac0UPg85yzT/ZEfqb6eAbUbHAIddmFvZlKjZNsGGYn6ECZhYYo40ZiSWyp5ghO5iMxgf3VVqzaLUaJw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718200934; c=relaxed/simple;
-	bh=eX92Qy5bBbTvqj1rZW1BZWOEF8jJThi6VroQb/e/KDE=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CadSyP/ovRoKlzXQ/22a+OeT8OfExxLlfZ1S+R2ESLR5gTJ+IbRGsCJnKUNmsptYVYZkNG1ToOadQ02EjpmZ/BXRsVTELU/n2i6hunn0Tl8whE2VyoUSAtokJqTYws76bpm3sfxblyPfr0DPtOoIspNGMVVuoFFN5fMq+7mk2vw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BTmhKbuc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6F57C116B1;
-	Wed, 12 Jun 2024 14:02:10 +0000 (UTC)
+	s=arc-20240116; t=1718201013; c=relaxed/simple;
+	bh=T+d5/w/TrCDK3gbxr4NrNSoQldtcv42SmPQU3MNE7+8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ag0gI6I0fRmAXQRjrvfo/kDZn8u8+EYVUt8Ulbx4GUTmrZ+N4GSBoo2NRVRWdOd6/rJpfX9Jy3Xqc/Ibe9f+di6PXuHc3oe2LlD60rOa0PiyrTYKXljHKwdtXdacUnwhR6tVvHowdCuGUxZ8ubTCpPd2iOgrAVqXIxuES5Xzfg0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VrG6lVNe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52A89C4AF1A;
+	Wed, 12 Jun 2024 14:03:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718200933;
-	bh=eX92Qy5bBbTvqj1rZW1BZWOEF8jJThi6VroQb/e/KDE=;
-	h=Date:From:To:Subject:References:In-Reply-To:From;
-	b=BTmhKbucnDuEtueX2mqWsxi3l0U+qHJnfPaoCg30YwnXvATwGTaAx34g+62SNl4hZ
-	 /Yznn88XbrM/n7iZjZXZbE18sVs6wM5F5KaREoGPwCIRB6H+DTAUVBOBoyMAnxHAYo
-	 k4nU7z7BXjwTQWMa2L+z7VW5vVA8t5CyhMfWXFIjjTgIe/RV8paY3Ti/tfFFv2UfxQ
-	 US34jUqyhWXVFaFYel1To6uXVmFjiTpBu4bHvGAx5WzN0wR9id1uNhVW5BauMaD08d
-	 rQJXAFtfl/FO2ufhGj+l6KimCGBB3EM2avaynF2ifZzIMgxacVFFgdIqydGImQl0CO
-	 mFzs9Knngkohg==
-Date: Wed, 12 Jun 2024 15:02:08 +0100
+	s=k20201202; t=1718201010;
+	bh=T+d5/w/TrCDK3gbxr4NrNSoQldtcv42SmPQU3MNE7+8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VrG6lVNebfEEcNcaKfdsPm/90t3QuvUTE9d47oKtx4M8Hbu/H24D/4BKoxQvOElGM
+	 l6ebdhLXq3nsuvcxOoKZ4q1OCoWRiaklCEdcwQwY+602efpNbpkIQNZIsdkGpD9zqW
+	 es7b2cN3IyrSvOOrepEQRYs1sJvRXVyujYHVJqSDFowzt3nJSABh7+wbPgbMg28Qud
+	 Op3T3ShwqploZFnEfzphqXkXVpi2cHRvgy8t6LJzjtaALblib8gPTorAkfTiLkjnKN
+	 LcZ7XLjaJUUiiUInxUgIIswwiN3BTNhS0fpiOcChJuLCNUMOURhj6og2Y7bIMO4JNw
+	 nCaaW6BLdJ77w==
+Date: Wed, 12 Jun 2024 15:03:26 +0100
 From: Lee Jones <lee@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Stefan Wahren <wahrenst@gmx.net>, devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
-	Dave Ertman <david.m.ertman@intel.com>,
-	Lizhi Hou <lizhi.hou@amd.com>, clement.leger@bootlin.com
-Subject: Re: Raspberry Pi5 - RP1 driver - RFC
-Message-ID: <20240612140208.GC1504919@google.com>
-References: <ZmhvqwnOIdpi7EhA@apocalypse>
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	broonie@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH -next] dt-bindings: mfd: twl: Fix example
+Message-ID: <20240612140326.GD1504919@google.com>
+References: <20240612134039.1089839-1-andreas@kemnade.info>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,22 +59,39 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZmhvqwnOIdpi7EhA@apocalypse>
+In-Reply-To: <20240612134039.1089839-1-andreas@kemnade.info>
 
-On Tue, 11 Jun 2024, Andrea della Porta wrote:
+On Wed, 12 Jun 2024, Andreas Kemnade wrote:
 
-> Hi,
-> I'm on the verge of reworking the RP1 driver from downstream in order for it to be
-> in good shape for upstream inclusion.
-> RP1 is an MFD chipset that acts as a south-bridge PCIe endpoint sporting a pletora
-> of subdevices (i.e.  Ethernet, USB host controller, I2C, PWM, etc.) whose registers
-> are all reachable starting from an offset from the BAR address.
+> Fix example to also conform to rules specified in the separate
+> not-included gpadc binding.
+> 
+> Fixes: 62e4f3396197 ("dt-bindings: regulator: twl-regulator: convert to yaml")
 
-It's less of an MFD and more of an SoC.
+If this was applied via Regulator, that's where the fix will need to go.
 
-Please refrain from implemented entire SoCs in drivers/mfd.
+Acked-by: Lee Jones <lee@kernel.org>
 
-Take a look in drivers/soc and drivers/platform.
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> ---
+>  Documentation/devicetree/bindings/mfd/ti,twl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+> index 2cbdd238f48f..e94b0fd7af0f 100644
+> --- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+> @@ -225,6 +225,7 @@ examples:
+>          gpadc {
+>            compatible = "ti,twl6030-gpadc";
+>            interrupts = <6>;
+> +          #io-channel-cells = <1>;
+>          };
+>  
+>          rtc {
+> -- 
+> 2.39.2
+> 
 
 -- 
 Lee Jones [李琼斯]
