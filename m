@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-74834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CE04904BCC
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 08:44:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64A2E904BE8
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 08:49:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1241D286CDF
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 06:44:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DEF53B241D5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 06:49:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C95216B726;
-	Wed, 12 Jun 2024 06:44:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D787167D8C;
+	Wed, 12 Jun 2024 06:49:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y4dV9Gje"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b82DGUwJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F77E1369AF;
-	Wed, 12 Jun 2024 06:44:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6D411667E1;
+	Wed, 12 Jun 2024 06:49:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718174646; cv=none; b=L/N2tTCdYQEv8KMj8vshVoB6YJRL00LmNMa6nKfHy9FipT7YAlFVlw9p5mId6ybv8Vrj17e/Z6CPzMJOGou4igJf/XUN3ix+HAWoEgyi8qgJBZ8HAD2QRPZHVGGjzV1dgIPOuROQdwwCxS7SL7ewShOj/PLARyEHfmJek5/f9Ks=
+	t=1718174948; cv=none; b=LMW+7jS/EhqP9/8oCHRz8u4gQRkGRKbeZtyiEU3VfGNkwwBpSuucAYyAqtoNAFFL68H8ailKrCgrrYrhP6ix0PsJEMRhVWsneY/635p5eLkB+PXdBCU+P/3yfK2a599CT3Ac0gw97C/mMoX5GQLEG2U8BbqvDO58wGGXpcnAbcg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718174646; c=relaxed/simple;
-	bh=BEFgyoE8vW2U8F2KDjAIyID/KafdcxfCbZQ9cwUPUrk=;
+	s=arc-20240116; t=1718174948; c=relaxed/simple;
+	bh=3v7o25DeiUqqhC7XTOjvu3yyIzYFItffr6hbnN4xY0o=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KvNOzpYED1aV3CrSMdIBS1zGHU7sbT+wyCTohda9x0NTaaTglmvN/Uvtpq30uvXjUWA010C6f7bwBSIzh63PFlRGOtBAZYR1F0iznJvenvum9oCmFDWW0dSSzPa84aM98XPh2we3de/5Gl/K6SY/22nAetmJdYCCojbk21p+enI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y4dV9Gje; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28979C32786;
-	Wed, 12 Jun 2024 06:44:01 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=EWACCwfvVjgkFcOfEwqQIYC7TSJEbxXZ6TADYhOPbjU8irhSlVYOS8BHoEZyD2Vsi4oD36mQfUjVdJpPafrLoFS6w6rGGVuJuT+rGTZENkXcM1FW33U8b8gSc7CJBQAI2PiZdhrGw0IBJ327y3EBoOmB1HNcX3V16CDyh8PyAe8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b82DGUwJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46381C32786;
+	Wed, 12 Jun 2024 06:49:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718174645;
-	bh=BEFgyoE8vW2U8F2KDjAIyID/KafdcxfCbZQ9cwUPUrk=;
+	s=k20201202; t=1718174947;
+	bh=3v7o25DeiUqqhC7XTOjvu3yyIzYFItffr6hbnN4xY0o=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Y4dV9GjeGkY75zWEy57tTqTS82wUugpbAdC2+NdSsjoOXT+gaEt4ZdyaLR7dhePLG
-	 hF+Ql/xAHq/RICgsi/IDeODCgzLksSPADzyrlYWeiufwJMkv2ucQBTB//Tv4y0Q8Do
-	 5O4ePHkzFYzef+JUP8bDdTIoT4Idp/BWkm/nMTtUNF0K5J+g3vxhKLTQT4RwhB3ugJ
-	 lbcyv+m3M19FASo7v3gamwu/mOILmpz/ljwAJC9bMWvA8FT0q9yTEHNinpOZXl5qdK
-	 uWg7igwPVNghafAdVz8v4a1TQT9Vc7Yvm+R86DLiFT7OvR6ONP1oBDPd6bmRkN6SGv
-	 qBpsUswHqpG1Q==
-Message-ID: <2e0eeac2-891e-44c8-a1e1-36ec759d1b84@kernel.org>
-Date: Wed, 12 Jun 2024 08:44:00 +0200
+	b=b82DGUwJq6ks1QqEbPHuiZtrU5py53atxmPeBiRgiEQ+AUFhtETBl8RI/deM5ZYEU
+	 z3IfMb2brUY9y2aKpoiBSYu680Gv1j+U49XwGsq3JfObYZHAdOZGolfcOpAfrdUCts
+	 d9jBp7msaBSSjPnBJQ0I4VLo6rsSOS3aVhDK+brJyHL55k2EF5lpPNWTqWcQxE1phg
+	 ywvVI0EQPpRhgW0rbXuE7V/ehj/2AnODR7kdHe+ug6pwpl9E+otbqbWkZ4QIb0SJ1G
+	 NYuVxuHuXgufqEiaMWs608Fv/8Hio3EExQd6y6wBsT8mk9TGr29od4St2qcUw2emZn
+	 yTZHQguU0yDNA==
+Message-ID: <3c02302b-84e8-4064-b3cf-d8f28c7ff9ac@kernel.org>
+Date: Wed, 12 Jun 2024 08:49:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/2] hwmon: (ina2xx):Add Suppor for passing alert
- polarity from device tree to driver
-To: Amna Waseem <Amna.Waseem@axis.com>, Jean Delvare <jdelvare@suse.com>,
- Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@axis.com
-References: <20240611-apol-ina2xx-fix-v4-0-8df1d2282fc5@axis.com>
- <34fe20d5-c67a-44e6-8ec1-566d80e25447@kernel.org>
- <ef71090e-13c7-4ef1-b34e-d6fe9546b705@axis.com>
- <629a1867-94b7-4f89-821a-a38b92189af5@kernel.org>
- <4af156a3-37a6-4995-a3cd-8340c17345c2@axis.com>
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: convert everest,es7241.txt to
+ dt-schema
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240611-topic-amlogic-upstream-bindings-convert-everest-v1-0-a7f9b4c9005c@linaro.org>
+ <20240611-topic-amlogic-upstream-bindings-convert-everest-v1-1-a7f9b4c9005c@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,20 +105,40 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <4af156a3-37a6-4995-a3cd-8340c17345c2@axis.com>
+In-Reply-To: <20240611-topic-amlogic-upstream-bindings-convert-everest-v1-1-a7f9b4c9005c@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/06/2024 08:37, Amna Waseem wrote:
-> On 6/12/24 08:20, Krzysztof Kozlowski wrote:
->> So you require someone to re-review?
-> 
-> Yes that will be great if someone re-review.
+On 11/06/2024 11:19, Neil Armstrong wrote:
+> +required:
+> +  - compatible
+> +  - VDDP-supply
+> +  - VDDA-supply
+> +  - VDDD-supply
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
 
-You are joking, right? We have hundreds of other patches to take care of
-and you ignore review tag, so you get duplicated work from the same
-reviewer? That's huge waste of time and actually quite disrespectful to
-our time.
+If there is going to be new version:
+
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +   codec-0 {
+
+codec {
+
+> +       compatible = "everest,es7241";
+> +       #sound-dai-cells = <0>;
+> +       reset-gpios = <&gpio1 15 0>;
+
+and use define for the GPIO flag (need also to include header).
+
+No need to resend just for this:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
