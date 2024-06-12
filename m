@@ -1,86 +1,108 @@
-Return-Path: <devicetree+bounces-74800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 745EC9049AF
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 05:37:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07C9F904A09
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 06:35:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2B61285251
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 03:37:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74F1CB2299D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 04:35:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33E95B663;
-	Wed, 12 Jun 2024 03:37:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C35D020DC8;
+	Wed, 12 Jun 2024 04:35:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y4wSSCCu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B51563BF
-	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 03:36:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45ECE3209;
+	Wed, 12 Jun 2024 04:35:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718163422; cv=none; b=i/HAbP6XB1vNxE7xDckAr1MDzIuVna3ljz2YnR/Kv9gjk1tQeHrUPZdNfF4AbDfpnSYc8QydK91hufVBFHFS2wD1fUPfV9jLXaylkgDda+fFWX8h33F1h+fR1kgwQ1E44gxfY3P6IEJCkhw9RqpaNerpy9iXCoTaLURzvAMYOak=
+	t=1718166909; cv=none; b=NRPqBInKzj6JlhYot8PslEP9ohHAzbq4PCYAVne50oRmL3b9gujYmzxxbOQpVDCRfcwe8z/UF4V0bZD7VRBlkBGWCvVsAc3EuLySKOtiwk9LYsxyaxdBUmE3pZwRrQS9hI7QRV2m3lwSsPleb40p66YKB4f2h5gv15NWpJbozSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718163422; c=relaxed/simple;
-	bh=YGYhqyjEU+MUzE8uFmh+cPOOLFIMr3CV7/XoyXvCzUo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZZvdAITBK3trfT9Vu+Vx0b8APzxgI4EWl8k3SH+LP7efcA47S9Ip3ShJqqXz+YTvqJdL0XQry9F6VAs/PTR9eF6C6omfcJ+cNNf2Ns5yHw6WGb1d4NRXBCKuLwJyE1MSrhi0iJjwWz8CV3sYX7eDHYdLpGNfmRHbdq+mPXhnnyA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
-Received: from secure.fukaumi.org ([10.0.0.2])
-	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 45C3ZiVM030458;
-	Wed, 12 Jun 2024 12:35:45 +0900
-From: FUKAUMI Naoki <naoki@radxa.com>
-To: heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>
-Subject: [PATCH v3] arm64: dts: rockchip: make poweroff(8) work on Radxa ROCK 5A
-Date: Wed, 12 Jun 2024 12:35:23 +0900
-Message-ID: <20240612033523.37166-1-naoki@radxa.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240612011221.822-1-naoki@radxa.com>
-References: <20240612011221.822-1-naoki@radxa.com>
+	s=arc-20240116; t=1718166909; c=relaxed/simple;
+	bh=U4LY/dmzfg+kHzvbhMb1NS3BJ9kksTomksJ3XlEHAjE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=WVUWWD9Hn+95FsomelTyp9a9V81MKesqaQhuBccB9aJxSfBHiuygniOwK7GUYSJanzjZMGnWAruVQsFnUBIc4mrP6gc1ZHbfVywM3oSN6yR8hxJELX/RbIquCYmxNIwFzt0XpvRkrk8oRhDPFwfJ6+Z2DtjWlcvyLxXfZgRbZMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y4wSSCCu; arc=none smtp.client-ip=209.85.167.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-3c9c36db8eeso928418b6e.0;
+        Tue, 11 Jun 2024 21:35:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718166907; x=1718771707; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FcgKiRFptA5wGMWvTtSCxIu+CVZgMKx0LwpVaGdU3m0=;
+        b=Y4wSSCCuVYi0CGbhDv0oom4R5cWutryNnNHfdGI4ch9zNMCOlCjEO+xmFd38/CfJEo
+         BiJF8rcSm1Y721FizGS3oVQNJIBBM/BEmTGo2peFOhkUCIpaDtZWFy4Nio8kxIal3AiZ
+         j2kR/BWcYVs5yk9E2RKvD8nab0EThyWyakhviFBnrheMK9LqmStJg7likgh5Rv2qvGmY
+         7p4uxxH5qEy54MiMMwq1jF+bodQNjpdIAsfsudFISJZDoLOAt3cq6QfGJtKHJQ+W29Py
+         lMyNpGUVJcyEpgGh1T8HFNJC0l2DH51bNXFrCg57StIVH8etDFG8VBRJ8wFwkdGzIUSz
+         yNTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718166907; x=1718771707;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FcgKiRFptA5wGMWvTtSCxIu+CVZgMKx0LwpVaGdU3m0=;
+        b=KNf9qBezdxDHC46g+QkXWnhDciyiGdx/dx6ffcnJ/XyQaC1d3YodsVHAElNq514sen
+         jaz2Bb/Au2sTr9VKTLtUultaKigV5hUubFw5yIScAS9bu4PGiLFj82Rbi28rkYC7wFoa
+         k/+9Cv5STqLCZIoKrP90jXLZ9M1ZPPikOO3zBonW+tMgdQ7jlVsnhYSgwIb7uzSU0hO+
+         LXSYMZS/M7XnhzaGKrKqBnRBLSJg2oFJhbcQIyUAyasjK395JYCA4OJINa9URlDcp5r3
+         yW2nCQXkQ68MPUs62H9bgadGM3IZahozsfoHm6x76lGyhpNRNo/a3OChOiJKu5MHyHcd
+         JLNw==
+X-Forwarded-Encrypted: i=1; AJvYcCU1mKUDi0Mb52NT3MGy111QUcJQa0WwMkiidwYu1ye03eJGdj3uMkdJNTFOvqKc44vbOH9S8C98xu6Y/5pC+o+6901ZiMTZcQi+jJkjuBdQ3+/m0TfMpgzo1Wf01xOLYS1pfNkdopF9IA==
+X-Gm-Message-State: AOJu0YwRsvcmjNfy3Z/WQeIyncBAFnsTqV1YS9XltDKQxrKCA2ntS6H6
+	8EDjg7L9j2s809M4akGvQ6RCsaQEFmEkx8RX/g2NkZZpc3or5OxH
+X-Google-Smtp-Source: AGHT+IEJDGJTwJnI3MRL/73vf8uDAdbsr6Xop1CeeCIYUnDnzlja3WAixsMCdC76m2jl4wXONrXsWA==
+X-Received: by 2002:a05:6808:10d6:b0:3d2:3dba:f5a8 with SMTP id 5614622812f47-3d23e01b462mr1084539b6e.9.1718166905613;
+        Tue, 11 Jun 2024 21:35:05 -0700 (PDT)
+Received: from localhost.localdomain (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-6de276061e3sm9021275a12.80.2024.06.11.21.35.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jun 2024 21:35:05 -0700 (PDT)
+From: Potin Lai <potin.lai.pt@gmail.com>
+To: Corey Minyard <minyard@acm.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Quan Nguyen <quan@os.amperecomputing.com>
+Cc: openipmi-developer@lists.sourceforge.net,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Patrick Williams <patrick@stwcx.xyz>,
+	Cosmo Chou <cosmo.chou@quantatw.com>,
+	Potin Lai <potin.lai@quantatw.com>,
+	Potin Lai <potin.lai.pt@gmail.com>
+Subject: [PATCH 0/2] ipmi: ssif_bmc: add support of skipping ARM SBMR boot progress response
+Date: Wed, 12 Jun 2024 12:32:53 +0800
+Message-Id: <20240612043255.1849007-1-potin.lai.pt@gmail.com>
+X-Mailer: git-send-email 2.31.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Designate the RK806 PMIC on the Radxa ROCK 5A as the system power
-controller, so the board shuts down properly on poweroff(8).
+Adding support of skipping ARM SBMR boot progress response, to avoid
+SSIF state machine problem if host chosse not read back the response.
 
-Fixes: 75fdcbc8f4c1 ("arm64: dts: rockchip: add PMIC to rock-5a")
-Reviewed-by: Dragan Simic <dsimic@manjaro.org>
-Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+Potin Lai (2):
+  bindings: ipmi: Add property for skipping SBMR boot progress response
+  ipmi: ssif_bmc: support skipping ARM SBMR bootprogress response
 
-Changes in v3:
-- sort tags
-Changes in v2:
-- remove an empty line above "system-power-controller;"
-- reword commit message
-- add R-b tag
----
- arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts | 1 +
- 1 file changed, 1 insertion(+)
+ .../devicetree/bindings/ipmi/ssif-bmc.yaml    |  5 ++++
+ drivers/char/ipmi/ssif_bmc.c                  | 25 +++++++++++++++++++
+ 2 files changed, 30 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-index b070955627be..3b9a349362db 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-@@ -394,6 +394,7 @@ pmic@0 {
- 		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
- 			    <&rk806_dvs2_null>, <&rk806_dvs3_null>;
- 		spi-max-frequency = <1000000>;
-+		system-power-controller;
- 
- 		vcc1-supply = <&vcc5v0_sys>;
- 		vcc2-supply = <&vcc5v0_sys>;
 -- 
-2.43.0
+2.31.1
 
 
