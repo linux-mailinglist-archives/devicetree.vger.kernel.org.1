@@ -1,195 +1,180 @@
-Return-Path: <devicetree+bounces-74786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF919904869
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 03:28:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 171A29048B7
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 04:04:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB5AEB21833
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 01:28:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 560C6B21E97
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 02:04:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48F6E1FB5;
-	Wed, 12 Jun 2024 01:28:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="He1Nf2sb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40EB54696;
+	Wed, 12 Jun 2024 02:03:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2114.outbound.protection.partner.outlook.cn [139.219.146.114])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BEBB4411;
-	Wed, 12 Jun 2024 01:28:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718155705; cv=none; b=ZV0xG495fga/VL/Uv60Dc/CGIVc0ZMNCO7esHRLePrBiRYFft19YC5995Tjp5IBE1dwHUV8wMLJAcy/FDg7bn9Q6WfjThKj9/yo890Is/aP5rVEwY2N9AhnsZdO/nltKFdWLYXGiOqTjcIiKsg8Agdo/KjU/l5VwEpbkH/OQEIY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718155705; c=relaxed/simple;
-	bh=+yxlnGeFBeZpOu9F46jpspVd+qUy3HO7R8cCMNex2xY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TXljKV3JshRIfvCq+/rpEf5Y4ThlB50R/KGfEy/LuIC91MP4fQHAPC+boj+PHVJfZIhUemaemRyHkws4qNBP9EtTUgSGR9J7M4rwGbUnRqjIrOtaq97tGipD1FhUDqQGEZRH8l/X6B31v6zmm5I6FvkMqEBmPLf+843i4jMRrRM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=He1Nf2sb; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718155703; x=1749691703;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=+yxlnGeFBeZpOu9F46jpspVd+qUy3HO7R8cCMNex2xY=;
-  b=He1Nf2sbhSnJsKRcSs4WtbTWzy5bKQN7Bg4BOnjTa3svTlO/qrrxI8WB
-   NbiN8OgcYvshoP6nWWRFy6jEBRcQusopqwMJrLHHDdjQZRGdsB0jFzg8k
-   tq/Xe8Hdy/ykA4IfqM01mqG4owT+El7hbhZrNzijt+oGFaTjrdwHVr+K3
-   q4ze6FF90tCGT0lXixq+aMX2eOWu3iegjo1CDyrmPGYuM2seyEzqmcuBO
-   R3XeVrhdu3w12Dme1d/Y9eeNOJT2340m4RuC0zNQKLYYqNn52VymItks4
-   w6fiFjoh5ZS4SreakXNe0EeLjxdHXxDxigyRLJdXx2dbKe6zgfJo2Btym
-   w==;
-X-CSE-ConnectionGUID: Vvy6Qk20SKCfzOXk5387tw==
-X-CSE-MsgGUID: MmjAwTNgSQuXOkPUW/84+A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="26307472"
-X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; 
-   d="scan'208";a="26307472"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2024 18:28:22 -0700
-X-CSE-ConnectionGUID: fVlgSjgFSjaCyzUxBhze6A==
-X-CSE-MsgGUID: XnTGlzf6RJuHrUVzF6vsdQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; 
-   d="scan'208";a="44532709"
-Received: from lkp-server01.sh.intel.com (HELO 628d7d8b9fc6) ([10.239.97.150])
-  by orviesa003.jf.intel.com with ESMTP; 11 Jun 2024 18:28:16 -0700
-Received: from kbuild by 628d7d8b9fc6 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sHCmb-00014Z-30;
-	Wed, 12 Jun 2024 01:28:13 +0000
-Date: Wed, 12 Jun 2024 09:27:24 +0800
-From: kernel test robot <lkp@intel.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	chunkuang.hu@kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com, shawn.sung@mediatek.com,
-	yu-chang.lee@mediatek.com, ck.hu@mediatek.com,
-	jitao.shi@mediatek.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, wenst@chromium.org,
-	kernel@collabora.com, sui.jinfeng@linux.dev, michael@walle.cc,
-	Alexandre Mergnat <amergnat@baylibre.com>
-Subject: Re: [PATCH v6 3/3] drm/mediatek: Implement OF graphs support for
- display paths
-Message-ID: <202406120934.xJkzoJYC-lkp@intel.com>
-References: <20240611082831.477566-4-angelogioacchino.delregno@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38A4CAD54;
+	Wed, 12 Jun 2024 02:03:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.114
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718157836; cv=fail; b=B75dUer0x2+vy8eyM0ksDPEUTmaH2NXOKn3rXLBDkfRpghQLtvDfjb2O+l6yUWolta6r3OJgzSmNAKPVLFxIu9nVAj9/yDCNNeuCCd99iQvuRAlhdpWf2IbVMUMV5ia/Wov82NZnmIlRZc+pcf25Jd/DlmSUGlBT0Q2EonAR69g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718157836; c=relaxed/simple;
+	bh=/gAG+sPoJVKAt9UQa6uWHGHXIprSw11MyzlmEjbGwyA=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=ObyWAWtI4OWdm9MC+gKzOoGyB1mE1nipukw+UTa+IxjUE5Frovpc/IQyvOy07PArOXhkA8/jiWeZKhXeKKX3ibQdDKMgTlSaEcHJnt9lHTfsHvFLp+M9iJmjN9p+yGJuqet5xAV0ezngn8LjxIX9OioFfQZEommW26djTOgiXUM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.114
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UN+WIZA4nHCXnvCFhZrjuwbMD93i7hz2oVTgBcKa6wuAc3WS9GbPQmaQVywJoIU7skIMrFFT4cOVrgPd1KRgw5c/qiQ66tH5YIkbFEeVQM6lGFgWTL6Sftuxs9IfMDX72LE7Wx7NkueWYKE5k5bxdv0FME8Sh4ZO3kDf5ssaJFmqsOVOIo0RAkX7Ls5KtT7tkhQarz10bVYQeGRuTBdws9t/KhXrLXk0epzNJLKhV3m5gcCYLlpdJzs7VI7Npq9vkq6lBKKpHq7JyDtg2CYpFJ6rSjCCeOzri2VvNgr7QZKKcDCGsKPY4Jsfp8Oy7wMQRngGuki23QQX1iLVCPlKEA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uZOWGyYhl+Jp5HAj4A6YQPblAkBM6DKRwdTqd6roCwI=;
+ b=bLCO5FfAosCaUJvBVmVrhgHPz8CnMMCylO/z7cpfADWHW23TbOJfsp8GpwKycT+wUBg4TYzKjo2TgLvLRv8PPHGnV1Xx5i3NHJaE0UecVQplxDeZwh72pq5WODUrPiI/cBscOHxPgzPpLENqfJvMNnmvg8CglHhuI1trZeWxz/f3PSeBBXWxpnNmzfWb6jf6Zuk2aFBblDPJnpBfKO2UnC9awfUTbDpE7Sy6QIh7mbf2xCQZRqaGRcZz2MR+qXbRO1dYhmwy328xkQXHmrToq87LluJ061tivOnIuR25d3B+PYuClgUImoJZZP1qccXNIIWDvJY3OnUhr5RPiP6LcQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:25::15) by SHXPR01MB0831.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:25::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.42; Wed, 12 Jun
+ 2024 01:48:55 +0000
+Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+ ([fe80::358e:d57d:439f:4e8a]) by
+ SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn ([fe80::358e:d57d:439f:4e8a%7])
+ with mapi id 15.20.7611.039; Wed, 12 Jun 2024 01:48:55 +0000
+From: Minda Chen <minda.chen@starfivetech.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Rob Herring <robh+dt@kernel.org>, Emil Renner Berthing
+	<emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-riscv@lists.infradead.org"
+	<linux-riscv@lists.infradead.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+Subject: Re : [PATCH v1] riscv: dts: starfive: add PCIe dts configuration for
+ JH7110
+Thread-Topic: [PATCH v1] riscv: dts: starfive: add PCIe dts configuration for
+ JH7110
+Thread-Index: AQHau6H4HWcv0PbsKE2MIzy9iFiWZbHCwFiAgACdwFA=
+Date: Wed, 12 Jun 2024 01:48:55 +0000
+Message-ID:
+ <SHXPR01MB0863CFE4519C0D69E961620CE6C02@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
+References: <20240611015200.40996-1-minda.chen@starfivetech.com>
+ <20240611-irk-hypocrite-a53e98e6c394@spud>
+In-Reply-To: <20240611-irk-hypocrite-a53e98e6c394@spud>
+Accept-Language: en-US
+Content-Language: zh-CN
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SHXPR01MB0863:EE_|SHXPR01MB0831:EE_
+x-ms-office365-filtering-correlation-id: b5943f68-2ab4-4e3b-e675-08dc8a81d18c
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam:
+ BCL:0;ARA:13230032|41320700005|7416006|366008|1800799016|38070700010;
+x-microsoft-antispam-message-info:
+ REkP3XbPtL2E/iZ8LSMQ7A7ikRkOGvmrvl9wJK2QD9CLTuYRqUSojsszPhRrHwJdPlFEBc7pbKLsmpV8/46E5Q6sv3xcSr6xPPl+BEYOT6AtnuIN1cSWNZyq2DXCERaKpaOuVQG9S9okMeDGz/twtyThOoT1JKYxhBW3PEmosUhcvMYQQMnhLUdUh68HmSWMT+brd/OF0qfBMLUgvJBWVaQQwdjYZloQTuP1RTY/NON5ewSS2iBoi+1U//4HAo0D79T3xhg44tKucChQHr3jd+mTntBXJ+pTDzubfHgNy9Dxm3Nt6+pePd+JozpR5eEOpM86P3MHnSoH8lZszj/tZu0Ip9KEcSEjMIJ66YspSzBl8sizayvJQfRQgvOuUetfxOc3kMl7EcwoArsu+E/dMPb5U5FLHt1G6XWvDRNhmj4Gtz25UmtTHGaxNW49Z1wreFWea5WH7QMaSLDcM35WaWib/YHQh2IGe69twGphFVMg1Zkg+XXqVcuEjxgxqYGutkFdgdx5ZxnS5amlH4NEt+r0CmOQ/TsI3G8JoZ90FjkdZvSBX1U0jAYroJ++2ce9ePNeRegPd/efT1iQD/1h9XkUwQDn0B1DJe5Fhr8OPYF8UEUgM60VWQ5L8KuuFIC3
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230032)(41320700005)(7416006)(366008)(1800799016)(38070700010);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?uPTxhKZcb92yYp2X/PvHQg9a06W1gfTstFujzB/G7KcYM+ThmZ9eRIl37wNZ?=
+ =?us-ascii?Q?LiiOH3gU4i3IBgIv1BjWn/0QNdMPKXcz6gsll0z1Jd1LjIU7cmH3936jej7Q?=
+ =?us-ascii?Q?DJkKfPfe7bm9y9lU/5tPdMjKJignka+cZlWvJCdp/rLYWgOlVqGyBrMkHEnu?=
+ =?us-ascii?Q?At0zOUnVR1nCPzJvY4CDKUG/nlSBg8cwKkaXFtshbVo+74WRisLNJOOsuj0O?=
+ =?us-ascii?Q?vnT0mG9D1D1LmW1+3kR0TwYzHNftj/XxnVYbC4dCugvpmcdnKaLPnvEi2XHz?=
+ =?us-ascii?Q?dew7r5v6QiicTl3SCU9JomGd/0f5biXaFYFDTNm2Do9o7eAaZJKYygvOzT9G?=
+ =?us-ascii?Q?MNaSFtUcYFgPRNP8UBBqWXM3cGN/nluRPLphXN7hTyayVtZCjqamUYaLiDG2?=
+ =?us-ascii?Q?U0ZJ2kOrh4niUA5t/fSVMVd+ivsl9sSWXgtec/aMI7otU8e7Yh/v/pAHTKZE?=
+ =?us-ascii?Q?6i2PC9dTzsG+CZrpjVYoIf9kDy7lPwxY5DXt+jm0VAVTVHA69h0gGWPwYZFa?=
+ =?us-ascii?Q?wDf9+cnMowuDPIkGb9kcYA0XhjV4RHU2xVbbwPwar0edEJXceJ3pAwwb9/L6?=
+ =?us-ascii?Q?qLh3JaguuIsM8FlD657iPna2UNZWyUPZqSQBy/HAMUF3xse90MtlEII6wzRh?=
+ =?us-ascii?Q?CA9DOtXrKT74pN7vaIVakezdCq8coHxXJr50MocX6QF3wHGZsxr23a+pKEpv?=
+ =?us-ascii?Q?V4NVL+s4s/IBmZBEwha3R/koboIq2HbSONTDIu+maGkTkcEtNqdWofCwfQkL?=
+ =?us-ascii?Q?XFmIBzU82HupWOBkFmsx50Ko0bAom1QYb3moymxMYrXa2ieeoCPyzfEas4Yp?=
+ =?us-ascii?Q?pkNajMrFKU1zNFEiuSe+atfTPt1oWZQN3kvIzJQS6Tosw4nlZDaRbWI1pkR0?=
+ =?us-ascii?Q?IYwEi9BZa7gyr4vLqqLWGv/OI18Rf/HbZTwvqv5EKliHe891+KpCyj+yaac/?=
+ =?us-ascii?Q?g9jp2tBK5wO+6e0PAxqj3hplWp7N3nYCmAWtnACVJMAHbGyM/ZTb9JT86diw?=
+ =?us-ascii?Q?/VYrfgAuWkGpeJqRG6rmPFOV1QM7qooZgLLwN99fHqN6/j7TKjtJ4psNI5k9?=
+ =?us-ascii?Q?+C52PPb89E/tSKkp69rHnKiaFgyV08fii8eRghd0tNZI1Ueg6t30VG2le0LN?=
+ =?us-ascii?Q?W3wLGqc+W5XC1L/RiFO+NrCxLVZqBfT/4pm3TNE4lrSGUcXjYcVzphEOJDQW?=
+ =?us-ascii?Q?+vxNtIgndyRj+05hIRdC/BacZi6C3IGcQs9NiU93w38gJMHfXU8VAFcZb2Fj?=
+ =?us-ascii?Q?3KqB7zhOuxsfSLCylVfsNduLxXbGIgDnb8jLr8Mh173A5INz4wgKG8cYLu5H?=
+ =?us-ascii?Q?zmCgmK8YRsyqfTaW8cHkBjwKyFzJbNNgY/tHMLeOi+exEolXbkczsi/mvMoq?=
+ =?us-ascii?Q?PeFZ/x9o+epaprCUrySRMk2/ykJQmvjhewVlSc/Z3gWY8daOCB+KOJVpJDcy?=
+ =?us-ascii?Q?EOSQDEGCZ36ITnnIyg8nvQMlzLDzSLQaDhwmP6bsDyh+bKGkzL8s1wql4/D8?=
+ =?us-ascii?Q?aQm1wshAwXjwmMUg0iV045ucdHMYeQvPpHbpoLiLUJvyKOJyQ92/tWb0nLcC?=
+ =?us-ascii?Q?z2o9xP3/fLwhZU1l/88rjsL2odRF+aW6xQCYpbzv?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240611082831.477566-4-angelogioacchino.delregno@collabora.com>
-
-Hi AngeloGioacchino,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.10-rc3 next-20240611]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/dt-bindings-display-mediatek-Add-OF-graph-support-for-board-path/20240611-163327
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240611082831.477566-4-angelogioacchino.delregno%40collabora.com
-patch subject: [PATCH v6 3/3] drm/mediatek: Implement OF graphs support for display paths
-config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20240612/202406120934.xJkzoJYC-lkp@intel.com/config)
-compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project 4403cdbaf01379de96f8d0d6ea4f51a085e37766)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240612/202406120934.xJkzoJYC-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406120934.xJkzoJYC-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/gpu/drm/mediatek/mtk_dpi.c:21:
-   In file included from include/drm/drm_atomic_helper.h:31:
-   In file included from include/drm/drm_crtc.h:32:
-   In file included from include/drm/drm_modes.h:33:
-   In file included from include/drm/drm_connector.h:32:
-   In file included from include/drm/drm_util.h:36:
-   In file included from include/linux/kgdb.h:19:
-   In file included from include/linux/kprobes.h:28:
-   In file included from include/linux/ftrace.h:13:
-   In file included from include/linux/kallsyms.h:13:
-   In file included from include/linux/mm.h:2253:
-   include/linux/vmstat.h:500:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     500 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     501 |                            item];
-         |                            ~~~~
-   include/linux/vmstat.h:507:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     507 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     508 |                            NR_VM_NUMA_EVENT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/vmstat.h:514:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     514 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
-   include/linux/vmstat.h:519:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     519 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     520 |                            NR_VM_NUMA_EVENT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/vmstat.h:528:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     528 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     529 |                            NR_VM_NUMA_EVENT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/mediatek/mtk_dpi.c:711:17: error: use of undeclared identifier 'dsi'; did you mean 'dpi'?
-     711 |                 ret = PTR_ERR(dsi->next_bridge);
-         |                               ^~~
-         |                               dpi
-   drivers/gpu/drm/mediatek/mtk_dpi.c:706:18: note: 'dpi' declared here
-     706 |         struct mtk_dpi *dpi = bridge_to_dpi(bridge);
-         |                         ^
-   5 warnings and 1 error generated.
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: b5943f68-2ab4-4e3b-e675-08dc8a81d18c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jun 2024 01:48:55.0702
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Q57qnS4Gbh4lXzHTRoobpnCCGKxDl7DEzUIEzCQB+tJ2GwUWw5J9FfnX5NlyaxcPXOLxDpQfzk5BIYEBJLoZ4BduDUEXBBlOuHiEELCwyGc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SHXPR01MB0831
 
 
-vim +711 drivers/gpu/drm/mediatek/mtk_dpi.c
 
-   702	
-   703	static int mtk_dpi_bridge_attach(struct drm_bridge *bridge,
-   704					 enum drm_bridge_attach_flags flags)
-   705	{
-   706		struct mtk_dpi *dpi = bridge_to_dpi(bridge);
-   707		int ret;
-   708	
-   709		dpi->next_bridge = devm_drm_of_get_bridge(dpi->dev, dpi->dev->of_node, 1, -1);
-   710		if (IS_ERR(dpi->next_bridge)) {
- > 711			ret = PTR_ERR(dsi->next_bridge);
-   712			if (ret == -EPROBE_DEFER)
-   713				return ret;
-   714	
-   715			/* Old devicetree has only one endpoint */
-   716			dpi->next_bridge = devm_drm_of_get_bridge(dpi->dev, dpi->dev->of_node, 0, 0);
-   717			if (IS_ERR(dpi->next_bridge))
-   718				return dev_err_probe(dpi->dev, PTR_ERR(dpi->next_bridge),
-   719						     "Failed to get bridge\n");
-   720		}
-   721	
-   722		return drm_bridge_attach(bridge->encoder, dpi->next_bridge,
-   723					 &dpi->bridge, flags);
-   724	}
-   725	
+>=20
+> On Tue, Jun 11, 2024 at 09:52:00AM +0800, Minda Chen wrote:
+> > Add PCIe dts configuraion for JH7110 SoC platform.
+> >
+> > Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> > Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+> > ---
+> >  .../boot/dts/starfive/jh7110-common.dtsi      | 64 ++++++++++++++
+> >  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 86 +++++++++++++++++++
+> >  2 files changed, 150 insertions(+)
+> >
+> > diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> > b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> > index 8ff6ea64f048..1da7379f4e08 100644
+> > --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> > +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> > @@ -294,6 +294,22 @@
+> >  	status =3D "okay";
+> >  };
+> >
+> > +&pcie0 {
+> > +	perst-gpios =3D <&sysgpio 26 GPIO_ACTIVE_LOW>;
+> > +	phys =3D <&pciephy0>;
+> > +	pinctrl-names =3D "default";
+> > +	pinctrl-0 =3D <&pcie0_pins>;
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +&pcie1 {
+> > +	perst-gpios =3D <&sysgpio 28 GPIO_ACTIVE_LOW>;
+> > +	phys =3D <&pciephy1>;
+> > +	pinctrl-names =3D "default";
+> > +	pinctrl-0 =3D <&pcie1_pins>;
+> > +	status =3D "okay";
+> > +};
+>=20
+> Do all 3 of the mars, star64 and visionfive 2 have both PCIe ports expose=
+d? I
+> assume if one does, all does, since they're basically identical?
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Visionfive 2 and milkv mars are all the same. Star64 do NOT enable PCIe0, P=
+CIe1 pins are the same.
 
