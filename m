@@ -1,220 +1,176 @@
-Return-Path: <devicetree+bounces-75062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3467905547
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:37:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8BF7905562
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:41:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8C291C2158F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 14:37:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41FD8283FDB
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 14:41:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD82F17E470;
-	Wed, 12 Jun 2024 14:37:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="PxuPfFmM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29FD617E474;
+	Wed, 12 Jun 2024 14:40:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2072.outbound.protection.outlook.com [40.107.103.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C11D17E466;
-	Wed, 12 Jun 2024 14:36:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.103.72
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718203020; cv=fail; b=Qs4sJP19rI5H9cj/skVG4oOl3NoytII7UD7zmEGZEL+dyf6jFj77/0GkQN/DPZmEEvByJ3d4CyHpHu9zwlgFY+46lZX0UI5asdGMmTOnqd5bllN6+xI0YLaA9FGJT1AvKZrQDnuhNlgjrD4tGnPDD5BdWtBrN+EJo9n/u4G57iQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718203020; c=relaxed/simple;
-	bh=ZDWRmj2Ohpcn0g/j/x42JDtu48plH+FZvg8fT2rbZco=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=T8p/iR52meD8q+GP0VhSRD+NhVB7tDW7IRU8XF54h3DMZD2v/27JxdXz3xyklwiG8Pv4xrqci7mqcAodCDEtftt/Pgm/0NqTtFrDUC2iCNLJif6HYkhUElFSGkYUwQgAkF8mLlMso3uOKwuiuiYnCAXAnDrYwcGC5FBKhWF+tDM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=PxuPfFmM; arc=fail smtp.client-ip=40.107.103.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Tljj/m6JSn9hqEUUzWnb9bTWUHhBoCsesg6M7Fxltdvrsu8hA0YPilUUbQx8zq6WXibdSqq4JyCdZrm1ny3Talv93ts5utOwCjmZbjqZWzHFRwTpRqBvt600aQrgR6G9/kxpr8uyA9TL23vk5BmqMTVFceyZoYMPEKQt+oWjK1K/+4rC8WemEFHRoA/cX3n8RYhrOhLUVgSmMljpQhkP+0d2JCr/nXYeM+oJhtbxNK8eP4yFdIK3JNK7ye0+pM792eHwF8OpFKDvfeloZ9FioihHeklaQTzL54G3LYd3NGj23afrV7yYims7Cn5PtwhEuutFiPXJYLoibpnWrHWXEg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YPDA2sIE4yEDkMfPIxHFrhtZUV7nqEzh3+gMGZrP6tM=;
- b=Lq/fKgRMw3LOyUOUoP9mGhLReTcCXAwdpBD80BohPJkqXJvkPbYNQbmD8QRrkrlHFTwWFajsAcxkvkYeCOc+a62qvhjctqQ6YwLIQQ6YiTsXW+ARO0x+yVpvSHkiYfZEFyfwX7I5gou4JNxZ+TNNm6mdPzgzI8R3FZXBt+O1yw6fv5l9mg8//dHKFvC0SdQ6/WimtaxrcV7vqynQA6HEI0K1IB0oNWP+oYhX5BSU6iu1w0HHeBxcnEpizpVzhhpKrntSLlE1cFxx89+apSJmDGJBR86qLMz7IH0/E2zgANtAxKY9U24O78MJspbwFG0xUMW5wx7LYfoP/QOxb6Il0g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YPDA2sIE4yEDkMfPIxHFrhtZUV7nqEzh3+gMGZrP6tM=;
- b=PxuPfFmM3gvCyzQTzAibF81/cSvjofRsOpSjUyuZ+0jI7T2QfCw5lNzPP1/6KNh6yz3cRhXtmj44GWgiLWUzYQRTMM8qQ63iDPkmSWhiUbT4qDVfWrFuIa5NBvAOcPzifmOTTP9UzAcCpdWm1MwmYe+d1lRUsdsOG9/b19v/pwE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DB9PR04MB8218.eurprd04.prod.outlook.com (2603:10a6:10:24a::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.36; Wed, 12 Jun
- 2024 14:36:55 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7633.036; Wed, 12 Jun 2024
- 14:36:55 +0000
-Date: Wed, 12 Jun 2024 10:36:46 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v4 2/8] dt-bindings: mmc: mmc-spi-slot: Change
- voltage-ranges to uint32-matrix
-Message-ID: <Zmmyfna+DoAcYzHp@lizhi-Precision-Tower-5810>
-References: <20240611-ls_waring_esdhc-v4-0-d0d8a5b3f3cb@nxp.com>
- <20240611-ls_waring_esdhc-v4-2-d0d8a5b3f3cb@nxp.com>
- <20240611202311.GB3003237-robh@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240611202311.GB3003237-robh@kernel.org>
-X-ClientProxiedBy: SJ0PR03CA0070.namprd03.prod.outlook.com
- (2603:10b6:a03:331::15) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4617F17E46F;
+	Wed, 12 Jun 2024 14:40:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718203259; cv=none; b=gSmdTZw48JmbsanbJL44tv25ToxJIohqhOqiTM8cGI8BijBcfIm7iSFgQE+irnO0uey5xEVor7Jk2hIjZNTNQvfxfQJ1C38Ok9Ptyi3OJ313YO4zgnBOQi/zzoBlA/pTqrl621NRZlnjftZuzCRubLO7lYOQOFkMO99SZlDdJus=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718203259; c=relaxed/simple;
+	bh=LUiu7PHuCd17OsUpd5Mn2HbzQBhX7B6ZhtroeOKvBcM=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=mU4T8zZ3KQ5Z1jL43StiHXmGbO4hq82cYGthV0jCLiSHg/Ko11RxuJUp8mQxt1gsdGZOXdAQAGEtblzv3xOAskYI5RdmNPaUfhLm9GFuYBWQs6cWRUcasOgxUfnHSnKqan8DiYoXlhRbFOpzMocdG9PILf+qat2ZZWnqE9Xy89g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 305431042;
+	Wed, 12 Jun 2024 07:41:20 -0700 (PDT)
+Received: from [10.1.29.46] (e110479.arm.com [10.1.29.46])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F3BB93F64C;
+	Wed, 12 Jun 2024 07:40:52 -0700 (PDT)
+Message-ID: <f685b49a-36b1-46c9-a0a3-734bca8bd968@arm.com>
+Date: Wed, 12 Jun 2024 15:40:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DB9PR04MB8218:EE_
-X-MS-Office365-Filtering-Correlation-Id: 124be509-f42e-45f9-bbb1-08dc8aed1b4e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230032|376006|366008|1800799016|7416006|52116006|38350700006;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?i3IhzMz9hxlKNoU9pftge9TELJSc2Y8qlSM3NwM+E1bblKhn1m2HY1/c86q4?=
- =?us-ascii?Q?iDJvo9imPyV8IV8/cwNvD9ewVduW18Xa7lHtEc5jKplIFQF2O0hUZmezNYJJ?=
- =?us-ascii?Q?H/kOf7mtYdSzSuxNoRs3ZLS/3SqhONK2Tg7Y4BPJ9rjCwdzuM+jkKyJXvkuI?=
- =?us-ascii?Q?MRdyELXBgFL0rBrCl1YXtCh3/kc7OENy9pNcEnIgy5PTKIGrbynJGlWDIGiG?=
- =?us-ascii?Q?zA7aZqcq2U0SzK3CRjUnVUL5Tjxj5UbLdGtRjrxAmsEjl2BujhaaYq2aOYZY?=
- =?us-ascii?Q?sNnu7UhsQ2SKhzmfFFivj2QCKjTd6Tv07/Qcp0G93P88J2bNkhLeIl3zRsIL?=
- =?us-ascii?Q?a5XD5xM6+LoH8nb+/i+0UcchelPMfTzV45fpIVKXUtGdrf4tk42wyIC7/fyA?=
- =?us-ascii?Q?5dgtk4C/oKEEiknF8RynHaTBr9s5oGsW5vo1n7ycJc10+PkS0y7/7POg513Q?=
- =?us-ascii?Q?7KSCX3qGVsfU9z8Xv+hyKez2iQ4hC0jfLbEgTM3ZwbzVkkeiV5Nf8buRGtLX?=
- =?us-ascii?Q?74RuGMycNw3EQZ5ddSL2aaNHRp6PrnWQGw7VhGkTWR2fMiHI0ax7957gIJ1j?=
- =?us-ascii?Q?8qALdqofcfxGIqjYK1Q3g9NSQyIhqJzkw/yCW/P+gVtLBetHlVJqlYmg5UEl?=
- =?us-ascii?Q?FW+yDUDKU/f4M5/Tx6HICGt0qUEiPlvUyZr4GfuyDReKbpnXhs8mRE2UNJpL?=
- =?us-ascii?Q?7dMcASWO0BypvpbVd39c6T4+dBNBbGi0u7/8xzL2VMq4TuZmxpTw6vwbt3i0?=
- =?us-ascii?Q?OJuOFzmiyBXUylsuJim+Hn5LsBrJ0gDrFAfzjd+XUB4arFspzzKgXuC7tGji?=
- =?us-ascii?Q?Kz10AY+UIihhHBl+o+z19cTwv8iZgaUJrGLCnPVDDtyNVO33Pd9i/W8MiajU?=
- =?us-ascii?Q?Xa5IG/jEE1SsS+uYoY5G5Mw4Ingv9NapjaNv1HTDd4WVwj2we0h0hf7/rwUV?=
- =?us-ascii?Q?lYtJISIl1lLrI1EibXrObP35yMS6Hc0YWKKpyR7BCTQFgMXOj/IeOSAilpb/?=
- =?us-ascii?Q?ZQ7lzJbyYjb7eAHyZRUeJiSxdIC9xnOWMG9Ch+8WIY+ooWaWYLxUfymsoaqc?=
- =?us-ascii?Q?e0kkaI/yYsNxWjsneoLzI/R15x9suPZ30IcNUEAAsM685okUQ+GTHn8zZznh?=
- =?us-ascii?Q?eWZ75kvaWRoUdPXwTkSdxmQDjkPI+t79Zf68udDGmyyqqdHsGtg+T2bGgVk9?=
- =?us-ascii?Q?pYy+D6z2vuMabBSdFZn/e2TC00gVNfnOfaZVYlt77YxtfJ5Fv6yXdScknmJt?=
- =?us-ascii?Q?Id077Bq8/ThnwNqUpJ8gKkJmMDAlfcbUppON/o6poltWa76pK3lGm3kj60md?=
- =?us-ascii?Q?a+ihwUfG0v4mtViV2Filct4qEvG+BT+6ZHQ0tICD0d88oGWRNfuzZvyGjZCE?=
- =?us-ascii?Q?sH3ULiQ=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230032)(376006)(366008)(1800799016)(7416006)(52116006)(38350700006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?oWDPmcHdEWq6jqhndtWVkUA+5turB6L1K30P/TY2TrHtH7cKG3TrkH1GJE0S?=
- =?us-ascii?Q?53hfCUxZfxh6fEW4Mn6Tsw6dTlWS2LK33Mh/r7S3D3a/t59PjHD198pGlmyQ?=
- =?us-ascii?Q?H1bwBFAstMa46zNXLHqBaSyJ7fG9/Z3R2sG8vvcGDL/sPA6sAPfDjurgFVL0?=
- =?us-ascii?Q?lBnLpcbjEHf60I/qr8D/47PhkMCCw8DwpyGOJ+VeQ5cUrzNOhNojoQ3Rqgqo?=
- =?us-ascii?Q?DoT2WAdTEty+tl3FbsDwbqyRMyRzxNE5x9nPMdw7AzOi/6NJSbtpDzjnZ5k8?=
- =?us-ascii?Q?eUxzPTnpGPuQz9kDQ2kvj4HPsp0fegUn11nILJAiRrQpPi28nUm+GucZyCoD?=
- =?us-ascii?Q?whcA6j5lKQYmtLyy8NdONdkAoJjpCLDDUFEiMX/VmCiSyOKWMC0ZCJqj6UU2?=
- =?us-ascii?Q?Bk0nOtBUFGiJx1Bn1ZzXJEB602cdxVVqJauSQ+BLIDUu2xgPyDA0DZZoBQqj?=
- =?us-ascii?Q?bHUaQ7AN3lODNmVznAVTU/aEetn6UbpgnkmCVq9UOvI0pOGebFxloUr5bren?=
- =?us-ascii?Q?JTtpAsUYZ2EDfcEb1hPFqLlB03g49aVPIijPCIVM2lwQ4aInQ4VeYhEwHrgx?=
- =?us-ascii?Q?7nv+PO8doqYKBfGTT6L1Luk5wUTG542WsCRQ9pjQDFMhTNAejx38dp3VHJEh?=
- =?us-ascii?Q?65chaDhDN8CxlTzHVd7lqNRxpXihh/cKONdJTbra1dRKAehoBmBP6/+9Yn/x?=
- =?us-ascii?Q?INH0MPKwlR6Vq7JkwcqntoBjUxVdQNGq5T9lRAsxO8duYkmGGrAlheDEqOMd?=
- =?us-ascii?Q?gIuY1rTSN9oM1zxsak985uq3qshfg/+pJoupX3JyMKUSo4JeTJ0ncru4rZAM?=
- =?us-ascii?Q?4hucO3dcUCdJu84JVeqG1G/ERBC8Cya6EsGrwq3w3LdokoTZrvwiGAN356lg?=
- =?us-ascii?Q?GJ/1hCJog3R8wRMvGHpNtNDmLLGKwDDQWv6TPDTIOgN5M3/onl61+CI9t2oo?=
- =?us-ascii?Q?ZdSICAprBQfK06F0LbT26NuCZKGIlCnP5OKSH3Dz5k3ZlWmcRAyFN3Yw/R5d?=
- =?us-ascii?Q?t+OeE7RBzYolBm11NEjcyA5HdxY10Zw62ZSxDl/uG7olzys7apwOP+Uh6+hp?=
- =?us-ascii?Q?GLZ8c3tPLdcfXGAFWk9sIDbeC3C6xm6KOD70fHI3bugETq98q6LndmWKC99F?=
- =?us-ascii?Q?Vuk9aXg6nKvpfCOaGrpZ4QhAg1RzC0f8HhEkl+vPNrVw6qPBxxUpiEobIKij?=
- =?us-ascii?Q?TcHCm0kBIsPnbXPYa0LAt+lR5n16e3PBbFX5ImL9QoCYOZQrlRkxaneq71iF?=
- =?us-ascii?Q?ZbVl3tHQTlJG2qCJyHge6upq7zDHVMn/eFsQtlLdjJGXQO74fCeoj2Ri4bBS?=
- =?us-ascii?Q?tVBfEFdBCdPTLJ+TPTlGsha6ygeFzvh8ZoSjcqdTOLmcL70DqabQp5yqqeEt?=
- =?us-ascii?Q?pHHSasFJTLHY1CnBNy23FWgzTHLoYeiMVg13CTgg9oLxxmI5BskHMIKpuhp8?=
- =?us-ascii?Q?hOawCLyKMFTocSHyqntrSaTPZ5K74x1qqp+28fJCETm7kAB08u+Dtz0cheHx?=
- =?us-ascii?Q?MENeZc/KX3g24XVeVCDtXzAy5/evnb6ZZ/hg+l+fwYPz2c1dQy6qjBCiZ454?=
- =?us-ascii?Q?3lq463wpVbyfCT7PVCs9NjtVRdnigMukr5oRhVtq?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 124be509-f42e-45f9-bbb1-08dc8aed1b4e
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2024 14:36:55.1091
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7/a+0hQjyWrNjdI9Cf+fidvJM5UU8zorjLA+2gZ+vA8YzkSX5RYd/c3+ph8pQJKjm1dQ+Ya2Im08XSl0aIo26g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8218
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/5] regulator: axp20x: AXP717: fix LDO supply rails
+ and off-by-ones
+From: Andre Przywara <andre.przywara@arm.com>
+To: Chen-Yu Tsai <wens@csie.org>, Lee Jones <lee@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-sunxi@lists.linux.dev, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Ryan Walklin <ryan@testtoast.com>,
+ Chris Morgan <macroalpha82@gmail.com>
+References: <20240418000736.24338-1-andre.przywara@arm.com>
+ <20240418000736.24338-3-andre.przywara@arm.com>
+Content-Language: en-US
+In-Reply-To: <20240418000736.24338-3-andre.przywara@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jun 11, 2024 at 02:23:11PM -0600, Rob Herring wrote:
-> On Tue, Jun 11, 2024 at 12:01:47PM -0400, Frank Li wrote:
-> > According to common mmc core, voltages-ranges should be matrix.
-> > 
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > 
-> > ---
-> > Not sure why it impact other mmc yaml's voltage-ranges.
-> 
-> It's a quirk of the tools. When decoding properties, the tools only know 
-> all possible types. Types are global, not per binding. Sometimes it can 
-> be figured out, but cases like this cannot be.
-> 
-> > ---
-> >  Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml | 17 ++++++++++-------
-> >  1 file changed, 10 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml b/Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml
-> > index 36acc40c7d181..05815b837219d 100644
-> > --- a/Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml
-> > +++ b/Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml
-> > @@ -27,17 +27,20 @@ properties:
-> >      maxItems: 1
-> >  
-> >    voltage-ranges:
-> > -    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> >      description: |
-> >        Two cells are required, first cell specifies minimum slot voltage (mV),
-> >        second cell specifies maximum slot voltage (mV).
-> >      items:
-> > -      - description: |
-> > -          value for minimum slot voltage in mV
-> > -        default: 3200
-> > -      - description: |
-> > -          value for maximum slot voltage in mV
-> > -        default: 3400
-> > +      items:
-> > +        - description: |
-> > +            value for minimum slot voltage in mV
-> > +          default: 3200
-> > +        - description: |
-> > +            value for maximum slot voltage in mV
-> > +          default: 3400
-> > +    minItems: 1
-> > +    maxItems: 8
-> 
-> From what I remember, SPI mode doesn't support voltage changes. 
-> Switching to 1.8V came much later in the spec. So it should be 
-> 'maxItems: 1'. Or better yet, make the outer 'items' a list (of 1 
-> entry).
+Hi Broonie,
 
-I don't understand "make the outer 'items' a list (of 1 entry)." Can guide
-me how to write it?
-
-Frank 
-
+On 18/04/2024 01:07, Andre Przywara wrote:
+> The X-Powers AXP717 PMIC has separate input supply pins for each group
+> of LDOs, so they are not all using the same DCDC1 input, as described
+> currently.
 > 
-> Rob
+> Replace the "supply" member of each LDO description with the respective
+> group supply name, so that the supply dependencies can be correctly
+> described in the devicetree.
+> 
+> Also fix two off-by-ones in the regulator macros, after some double
+> checking the numbers against the datasheet. This uncovered a bug in the
+> datasheet: add a comment to document this.
+> 
+> Fixes: d2ac3df75c3a ("regulator: axp20x: add support for the AXP717")
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+
+Can you please take (at least) this one patch as a fix for 6.10? Applies 
+cleanly on top of v6.10-rc3. The changes are not super-critical, but 
+worth fixing nevertheless.
+
+Thanks,
+Andre
+
+> ---
+>   drivers/regulator/axp20x-regulator.c | 33 ++++++++++++++++------------
+>   1 file changed, 19 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/regulator/axp20x-regulator.c b/drivers/regulator/axp20x-regulator.c
+> index 34fcdd82b2eaa..f3c447ecdc3bf 100644
+> --- a/drivers/regulator/axp20x-regulator.c
+> +++ b/drivers/regulator/axp20x-regulator.c
+> @@ -140,7 +140,7 @@
+>   
+>   #define AXP717_DCDC1_NUM_VOLTAGES	88
+>   #define AXP717_DCDC2_NUM_VOLTAGES	107
+> -#define AXP717_DCDC3_NUM_VOLTAGES	104
+> +#define AXP717_DCDC3_NUM_VOLTAGES	103
+>   #define AXP717_DCDC_V_OUT_MASK		GENMASK(6, 0)
+>   #define AXP717_LDO_V_OUT_MASK		GENMASK(4, 0)
+>   
+> @@ -763,10 +763,15 @@ static const struct linear_range axp717_dcdc1_ranges[] = {
+>   	REGULATOR_LINEAR_RANGE(1220000, 71, 87, 20000),
+>   };
+>   
+> +/*
+> + * The manual says that the last voltage is 3.4V, encoded as 0b1101011 (107),
+> + * but every other method proves that this is wrong, so it's really 106 that
+> + * programs the final 3.4V.
+> + */
+>   static const struct linear_range axp717_dcdc2_ranges[] = {
+>   	REGULATOR_LINEAR_RANGE(500000,   0,  70,  10000),
+>   	REGULATOR_LINEAR_RANGE(1220000, 71,  87,  20000),
+> -	REGULATOR_LINEAR_RANGE(1600000, 88, 107, 100000),
+> +	REGULATOR_LINEAR_RANGE(1600000, 88, 106, 100000),
+>   };
+>   
+>   static const struct linear_range axp717_dcdc3_ranges[] = {
+> @@ -790,40 +795,40 @@ static const struct regulator_desc axp717_regulators[] = {
+>   	AXP_DESC(AXP717, DCDC4, "dcdc4", "vin4", 1000, 3700, 100,
+>   		 AXP717_DCDC4_CONTROL, AXP717_DCDC_V_OUT_MASK,
+>   		 AXP717_DCDC_OUTPUT_CONTROL, BIT(3)),
+> -	AXP_DESC(AXP717, ALDO1, "aldo1", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, ALDO1, "aldo1", "aldoin", 500, 3500, 100,
+>   		 AXP717_ALDO1_CONTROL, AXP717_LDO_V_OUT_MASK,
+>   		 AXP717_LDO0_OUTPUT_CONTROL, BIT(0)),
+> -	AXP_DESC(AXP717, ALDO2, "aldo2", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, ALDO2, "aldo2", "aldoin", 500, 3500, 100,
+>   		 AXP717_ALDO2_CONTROL, AXP717_LDO_V_OUT_MASK,
+>   		 AXP717_LDO0_OUTPUT_CONTROL, BIT(1)),
+> -	AXP_DESC(AXP717, ALDO3, "aldo3", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, ALDO3, "aldo3", "aldoin", 500, 3500, 100,
+>   		 AXP717_ALDO3_CONTROL, AXP717_LDO_V_OUT_MASK,
+>   		 AXP717_LDO0_OUTPUT_CONTROL, BIT(2)),
+> -	AXP_DESC(AXP717, ALDO4, "aldo4", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, ALDO4, "aldo4", "aldoin", 500, 3500, 100,
+>   		 AXP717_ALDO4_CONTROL, AXP717_LDO_V_OUT_MASK,
+>   		 AXP717_LDO0_OUTPUT_CONTROL, BIT(3)),
+> -	AXP_DESC(AXP717, BLDO1, "bldo1", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, BLDO1, "bldo1", "bldoin", 500, 3500, 100,
+>   		 AXP717_BLDO1_CONTROL, AXP717_LDO_V_OUT_MASK,
+>   		 AXP717_LDO0_OUTPUT_CONTROL, BIT(4)),
+> -	AXP_DESC(AXP717, BLDO2, "bldo2", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, BLDO2, "bldo2", "bldoin", 500, 3500, 100,
+>   		 AXP717_BLDO2_CONTROL, AXP717_LDO_V_OUT_MASK,
+>   		 AXP717_LDO0_OUTPUT_CONTROL, BIT(5)),
+> -	AXP_DESC(AXP717, BLDO3, "bldo3", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, BLDO3, "bldo3", "bldoin", 500, 3500, 100,
+>   		 AXP717_BLDO3_CONTROL, AXP717_LDO_V_OUT_MASK,
+>   		 AXP717_LDO0_OUTPUT_CONTROL, BIT(6)),
+> -	AXP_DESC(AXP717, BLDO4, "bldo4", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, BLDO4, "bldo4", "bldoin", 500, 3500, 100,
+>   		 AXP717_BLDO4_CONTROL, AXP717_LDO_V_OUT_MASK,
+>   		 AXP717_LDO0_OUTPUT_CONTROL, BIT(7)),
+> -	AXP_DESC(AXP717, CLDO1, "cldo1", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, CLDO1, "cldo1", "cldoin", 500, 3500, 100,
+>   		 AXP717_CLDO1_CONTROL, AXP717_LDO_V_OUT_MASK,
+>   		 AXP717_LDO1_OUTPUT_CONTROL, BIT(0)),
+> -	AXP_DESC(AXP717, CLDO2, "cldo2", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, CLDO2, "cldo2", "cldoin", 500, 3500, 100,
+>   		 AXP717_CLDO2_CONTROL, AXP717_LDO_V_OUT_MASK,
+>   		 AXP717_LDO1_OUTPUT_CONTROL, BIT(1)),
+> -	AXP_DESC(AXP717, CLDO3, "cldo3", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, CLDO3, "cldo3", "cldoin", 500, 3500, 100,
+>   		 AXP717_CLDO3_CONTROL, AXP717_LDO_V_OUT_MASK,
+>   		 AXP717_LDO1_OUTPUT_CONTROL, BIT(2)),
+> -	AXP_DESC(AXP717, CLDO4, "cldo4", "vin1", 500, 3500, 100,
+> +	AXP_DESC(AXP717, CLDO4, "cldo4", "cldoin", 500, 3500, 100,
+>   		 AXP717_CLDO4_CONTROL, AXP717_LDO_V_OUT_MASK,
+>   		 AXP717_LDO1_OUTPUT_CONTROL, BIT(3)),
+>   	AXP_DESC(AXP717, CPUSLDO, "cpusldo", "vin1", 500, 1400, 50,
 
