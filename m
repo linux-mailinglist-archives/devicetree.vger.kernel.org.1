@@ -1,188 +1,154 @@
-Return-Path: <devicetree+bounces-75070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C30A9055BB
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:50:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0152C9055DE
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:54:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6C101F24E8B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 14:50:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A148287163
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 14:54:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B7C417F4EB;
-	Wed, 12 Jun 2024 14:50:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC17717F39A;
+	Wed, 12 Jun 2024 14:54:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="ebLq0quz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZqGE9Z35"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-canonical-1.canonical.com (smtp-relay-canonical-1.canonical.com [185.125.188.121])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52E8117F4F5;
-	Wed, 12 Jun 2024 14:50:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.121
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 096BA17F374;
+	Wed, 12 Jun 2024 14:54:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718203817; cv=none; b=n2WetYcr3nrs8OtHuDNR0TK+jWbeWj0Io+gBfQmqTLGSr0oO1kTscdrd8AX8yZD+spk/bNZu9dCyI5D8mwdpcpypDUmp+vtOu3Q7H+N9So70WLmbjXbEsTVD6kKeFnw36PtMIH7kEPZirGL2n5+xShBbC1d76Smdk2wtwBDKGGo=
+	t=1718204088; cv=none; b=p4uNGbL0WBB6fvrheG4bcnOOP7zY7f2rCGhFioCJEsjC7s3nhPyUyt6gGah98/0GIbBeGkMrh4afOUlgrFlz8KK1CqoTjU7KrdZJYAGxmKxYD638aCpvwyBgpHfYCoPLq+KKlBsmVvRNWUyBbdNpjuz0jbuz0Ai/S6Kg2LiaTJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718203817; c=relaxed/simple;
-	bh=gTVjA1lU2IXRk2J6/Gdpx6FdAP/OUlGWT/y2xhtrS7w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X+IMxhdUbSIRNbVMRb9LMawHqq4ZSNSG0LlGIRqGgkJKc3Oy9R8xPEKouD3/E7loEzpd9obbqLoLPOqWAJW1ZCTAH/xLKPZCGl3U+fC4si+z6+XetrMiqOStmajCttoMoQ9ASRlOJqjYHALVGxM2mzsTL4HLBoSp8s0J284M/r0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=ebLq0quz; arc=none smtp.client-ip=185.125.188.121
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from [192.168.0.106] (unknown [123.112.65.116])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPSA id 96AFE3F1D3;
-	Wed, 12 Jun 2024 14:50:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1718203811;
-	bh=EVeO/ntZpuwYpx+X1bX9nEioZ0b1qYOSTHEmiyczwwk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type;
-	b=ebLq0quzNIevLXUytjTmaDHbW2I5o8dvNodx7eydc53D/s8ulZACazCg9DjpFkyTv
-	 HUzkcVf6LUtIjxIbqJWwgGXqyPmdLq0vAesah+vow7BWRx+ktFSkAf0j9Bt2jGAvZK
-	 nosqeMGn/v4pvirKDcCm2a3Ux/A8NFvtqwV7MGEEflsAIXiQ6Ue8/9n42i/kBensND
-	 6dlYjAVfHEdsmFqvdCag7Gw4sp11Gy4wJpPtjw41xCqRnhbtKJdKjH7KZ6wVZpbWze
-	 yGbjMz1YMK2iWTzKld1aZVblZfRSSw0N8yxqSFZo3IgG9i+Ns0ZHaCBJUdjwgrUH0O
-	 kRwR35VOV98Pg==
-Message-ID: <a4daaf0e-2484-4943-9ac2-589485d69993@canonical.com>
-Date: Wed, 12 Jun 2024 22:50:01 +0800
+	s=arc-20240116; t=1718204088; c=relaxed/simple;
+	bh=OHIuj+cu4kdvIF7ubfsWz5g8ux/ANr5PX5Lbo01ZnRs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=phO3TYZkEGc7Te/qUHlGEiKDV03t4pbXBiXSBFPTL0Oz8+7oKDQlWKLbfI1n2OBflAw3QFuoFVgejHjbtEuHdpYZ5RITayov89dli6s76iMg0RELVUf8YR5TxCGsmaCgcyoYJQWM3goAHZLs4Uod4Wj6GZJvGDGXGZ39onQZmXI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZqGE9Z35; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2ebe785b234so33448241fa.1;
+        Wed, 12 Jun 2024 07:54:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718204085; x=1718808885; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eFvoluEX8O1ZuVrZ4TkWpRmCK6s/5ISbLklS0xYIk/Q=;
+        b=ZqGE9Z35hfWlSEBRa29VsoKWUEH0VxNtUmpWcb6+e+nMSEAa/qFDdTC6lTKVsm60QB
+         e6/NWNHVOnUK+jcm2X5fHdnmgzAx7/wudfNyFjZ1cDgaYX9jRgrqzkDeGS69xm+klIJd
+         EFsc0LcTntbZKmmBOIMeY34K6W7ELpn9efpqHfQP9NXwIlxsLaWvJ0aW6jMDlCogEcTE
+         VPcDUGqavuZFW+Xix7PlzVhdinmuPR8/Sns0CWf7tkMd4aLZgqoS5edIekQa/i9Q+yFr
+         Ck5FfN5Qp1YzZHcSj8MFrRfZnZnfmWN4NUIem/eZyfnPCyV9locpqSWnGJQSaMhxva1d
+         WPgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718204085; x=1718808885;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eFvoluEX8O1ZuVrZ4TkWpRmCK6s/5ISbLklS0xYIk/Q=;
+        b=hyZXht01v/sfLDwLr4yf5/nlZuRNtQpwbIGPFPJkQKh0VNDkCkCb4HrM2naOXOEk9Y
+         3dS+6iv0MVL/g/R/98/vIJ2pJ8v/9SliTqFbmRkZ0lpVfYbb1CQSBDmn86KmpQqsWfWY
+         /qYsVoJcNENzCoDPZHOk7/6x1xB5BC2hHZSQk6nAJGEtUMuDM2uI4Pv0wA2RMnVVIXwY
+         4fN6owqrZn8Dofu+FeSbrrYBBjAPil03+Gnx7iTfejRspK/LWsSrGy4ruKzYJZV/FWRc
+         o6SH8AOvpWwhbMbEI+/PtgnkE/O78Z5SegjQk0HMdJ+ZgWJwO4KAFf6VL+N3mg/ooF2/
+         /HbA==
+X-Forwarded-Encrypted: i=1; AJvYcCVWENKjSZXzw1UkqqHoCSgzO1rpi/bme6VTMutCNpy6BjL9aGlSj17te+OV4IhKxWvui7MOEcphSUowqMaqKY+ECU1vIXD0IWbKbMOJDFvxbpfl79u4HhBBgrTn+CPUTW1IxxPyOWBw1cEC8dUBjSC8oxYx/KckFUgHizVFbTzFDgR254BWJlptfntLz++Fr+6nTkfJYGImIjosz+NH4da8Tg==
+X-Gm-Message-State: AOJu0YwWTqYwb4p1ZpgYng89rwKo4ngYMRbWxda8nEB3HXe/Cdn/Qc+U
+	5t823Ay5IXiNi+dZZGHYgCEkPvvApGrCWDfd4LYEpjpi0gLPunL2XGxVllRYLSytDQeAUnTBB6/
+	49dkxyMDf05vG8RZFvSQteH+uE41UNg==
+X-Google-Smtp-Source: AGHT+IEdMHZiLDsGBMrK9SAia7MmzWrOkgMko6njHoqmapJDPT6oys75Nm5/b67yHbBOs+Nsqvk1c8udWrC6CRDgao0=
+X-Received: by 2002:a2e:9290:0:b0:2ea:df2e:428c with SMTP id
+ 38308e7fff4ca-2ebfca5dd9amr13446111fa.49.1718204084938; Wed, 12 Jun 2024
+ 07:54:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] serial: sc16is7xx: hardware reset chip if
- reset-gpios is defined in DT
-To: Lech Perczak <lech.perczak@camlingroup.com>,
- linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- gregkh@linuxfoundation.org
-Cc: jirislaby@kernel.org, hvilleneuve@dimonoff.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org,
- Maarten.Brock@sttls.nl
-References: <20240612131454.49671-1-hui.wang@canonical.com>
- <20240612131454.49671-2-hui.wang@canonical.com>
- <18a1beeb-e45b-4d6d-bd21-74b85c33dc2c@camlingroup.com>
-Content-Language: en-US
-From: Hui Wang <hui.wang@canonical.com>
-In-Reply-To: <18a1beeb-e45b-4d6d-bd21-74b85c33dc2c@camlingroup.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20240612075829.18241-1-brgl@bgdev.pl> <CABBYNZLrwgj848w97GP+ijybt-yU8yMNnW5UWhb2y5Zq6b5H9A@mail.gmail.com>
+ <CAMRc=Mdb31YGUUXRWACnx55JawayFaRjEPYSdjOCMrYr5xDYag@mail.gmail.com>
+In-Reply-To: <CAMRc=Mdb31YGUUXRWACnx55JawayFaRjEPYSdjOCMrYr5xDYag@mail.gmail.com>
+From: Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Date: Wed, 12 Jun 2024 10:54:32 -0400
+Message-ID: <CABBYNZLPv3zk_UX67yPetQKWiQ-g+Dv9ZjZydhwG3jfaeV+48w@mail.gmail.com>
+Subject: Re: [GIT PULL] Immutable tag between the Bluetooth and pwrseq
+ branches for v6.11-rc1
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Marcel Holtmann <marcel@holtmann.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Bartosz,
 
-On 6/12/24 21:56, Lech Perczak wrote:
-> Hi,
-> Some comments inline.
+On Wed, Jun 12, 2024 at 10:45=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev.pl=
+> wrote:
 >
-> W dniu 12.06.2024 o 15:14, Hui Wang pisze:
->> Some boards connect a GPIO to the reset pin, and the reset pin needs
->> to be setup correctly before accessing the chip.
->>
->> Add a function to handle the chip reset. If the reset-gpios is defined
->> in the DT, do hardware reset through this GPIO, othwerwise do software
->> reset as before.
->>
->> Signed-off-by: Hui Wang <hui.wang@canonical.com>
->> ---
->> In the v3:
->>   - drop Reviewed-by
->>   - adjust the sequence of if, else if and else
->>   - replace PTR_ERR(reset_gpiod) with dev_err_probe
->>   - change GPIOD_OUT_LOW to GPIOD_OUT_HIGH, this will assert the reset pin after requesting the GPIO
->>   - change the 2nd parameter struct regmap *regmap[] to struct regmap *regmap
->>   - address all spelling and description issues in the v2
->>
->>   drivers/tty/serial/sc16is7xx.c | 33 +++++++++++++++++++++++++++++----
->>   1 file changed, 29 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
->> index bf0065d1c8e9..8c7e0fe76049 100644
->> --- a/drivers/tty/serial/sc16is7xx.c
->> +++ b/drivers/tty/serial/sc16is7xx.c
->> @@ -14,6 +14,7 @@
->>   #include <linux/delay.h>
->>   #include <linux/device.h>
->>   #include <linux/export.h>
->> +#include <linux/gpio/consumer.h>
->>   #include <linux/gpio/driver.h>
->>   #include <linux/idr.h>
->>   #include <linux/kthread.h>
->> @@ -1467,6 +1468,30 @@ static const struct serial_rs485 sc16is7xx_rs485_supported = {
->>          .delay_rts_after_send = 1,      /* Not supported but keep returning -EINVAL */
->>   };
->>
->> +/* Reset device, purging any pending irq / data */
->> +static int sc16is7xx_reset(struct device *dev, struct regmap *regmap)
->> +{
->> +       struct gpio_desc *reset_gpio;
->> +
->> +       /* The reset GPIO is ACTIVE_LOW, flag GPIOD_OUT_HIGH asserts the reset GPIO */
-> s/reset GPIO is ACTIVE_LOW /reset input is active low/ - because we're referring to the chip input here, and this is reflected in DT bindings.
+> On Wed, Jun 12, 2024 at 4:43=E2=80=AFPM Luiz Augusto von Dentz
+> <luiz.dentz@gmail.com> wrote:
+> >
+> > Hi Bartosz,
+> >
+> > On Wed, Jun 12, 2024 at 3:59=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev=
+.pl> wrote:
+> > >
+> > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > >
+> > > Hi Marcel, Luiz,
+> > >
+> > > Please pull the following power sequencing changes into the Bluetooth=
+ tree
+> > > before applying the hci_qca patches I sent separately.
+> > >
+> > > Link: https://lore.kernel.org/linux-kernel/20240605174713.GA767261@bh=
+elgaas/T/
+> > >
+> > > The following changes since commit 83a7eefedc9b56fe7bfeff13b6c7356688=
+ffa670:
+> > >
+> > >   Linux 6.10-rc3 (2024-06-09 14:19:43 -0700)
+> > >
+> > > are available in the Git repository at:
+> > >
+> > >   git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git tags/p=
+wrseq-initial-for-v6.11
+> > >
+> > > for you to fetch changes up to 2f1630f437dff20d02e4b3f07e836f42869128=
+dd:
+> > >
+> > >   power: pwrseq: add a driver for the PMU module on the QCom WCN chip=
+sets (2024-06-12 09:20:13 +0200)
+> > >
+> > > ----------------------------------------------------------------
+> > > Initial implementation of the power sequencing subsystem for linux v6=
+.11
+> > >
+> > > ----------------------------------------------------------------
+> > > Bartosz Golaszewski (2):
+> > >       power: sequencing: implement the pwrseq core
+> > >       power: pwrseq: add a driver for the PMU module on the QCom WCN =
+chipsets
+> >
+> > Is this intended to go via bluetooth-next or it is just because it is
+> > a dependency of another set? You could perhaps send another set
+> > including these changes to avoid having CI failing to compile.
+> >
 >
-> Also, it isn't clear from the comment that GPIO is asserted immediately.
-Got it.
->
->
->> +       reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
->> +       if (IS_ERR(reset_gpio))
->> +               return dev_err_probe(dev, PTR_ERR(reset_gpio), "Failed to get reset GPIO\n");
->> +
->> +       if (reset_gpio) {
->> +               /* The minimum reset pulse width is 3 us. */
->> +               udelay(5);
-> Prefer usleep_range() over that, since maximum reset time isn't all that critical.
-Got it.
->
->
->> +               gpiod_set_value_cansleep(reset_gpio, 0);
->> +               /* Deassert GPIO */
-> This comment should go one line above or be removed entirely.
+> No, the pwrseq stuff is intended to go through its own pwrseq tree
+> hence the PR. We cannot have these commits in next twice.
 
-Got it.
+Not following you here, why can't we have these commits on different
+next trees? If that is the case how can we apply the bluetooth
+specific ones without causing build regressions?
 
-Thanks.
-
->
->
->> +       } else {
->> +               /* Software reset */
->> +               regmap_write(regmap, SC16IS7XX_IOCONTROL_REG,
->> +                            SC16IS7XX_IOCONTROL_SRESET_BIT);
->> +       }
->> +
->> +       return 0;
->> +}
->> +
->>   int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
->>                      struct regmap *regmaps[], int irq)
->>   {
->> @@ -1527,6 +1552,10 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
->>          s->devtype = devtype;
->>          dev_set_drvdata(dev, s);
->>
->> +       ret = sc16is7xx_reset(dev, regmaps[0]);
->> +       if (ret)
->> +               goto out_clk;
->> +
->>          kthread_init_worker(&s->kworker);
->>          s->kworker_task = kthread_run(kthread_worker_fn, &s->kworker,
->>                                        "sc16is7xx");
->> @@ -1536,10 +1565,6 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
->>          }
->>          sched_set_fifo(s->kworker_task);
->>
->> -       /* reset device, purging any pending irq / data */
->> -       regmap_write(regmaps[0], SC16IS7XX_IOCONTROL_REG,
->> -                    SC16IS7XX_IOCONTROL_SRESET_BIT);
->> -
->>          /* Mark each port line and status as uninitialised. */
->>          for (i = 0; i < devtype->nr_uart; ++i) {
->>                  s->p[i].port.line = SC16IS7XX_MAX_DEVS;
->> --
->> 2.34.1
+--=20
+Luiz Augusto von Dentz
 
