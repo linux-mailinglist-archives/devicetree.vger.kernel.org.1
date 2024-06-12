@@ -1,164 +1,153 @@
-Return-Path: <devicetree+bounces-75084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D353E90568A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:13:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5C4290568D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:13:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5CC15282B7B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:13:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59D3D1F21691
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:13:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8426C17F518;
-	Wed, 12 Jun 2024 15:10:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6C5E17F396;
+	Wed, 12 Jun 2024 15:12:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HZUtami8"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="U9xbURPo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B89FC17A931;
-	Wed, 12 Jun 2024 15:10:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1FAD15444E;
+	Wed, 12 Jun 2024 15:12:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718205040; cv=none; b=AVDuYJwODerTyNxOf4Z+RXctnroVaDJqL4auBFhMwFDgIJN9vpxullwKbJFGrSglB86fwwZS62LrOhlp6bxuRuwfuFrgCiNHfaJRK4KdAETr4fzTPH3OE43uQ1nMKcxXUUuGQGMYmcdE3WMkHW5wMUlIGqbnJ7FPhPrKapZBd/A=
+	t=1718205136; cv=none; b=kNRQY+avigFzvelUyFj/V3GJAyYGhEU+F+Q9/aznje9SeIL8eIOxhBBcvCn4R+9MoQtmkB1D4j9Lh1l6MzdRBP18JPusDoNqZfebfHEJHpzpjLQ6D/0Ze+upUEtP/cZ0J+/xaS5uJQcT8PS7mIeQjXF4s8pI+sMd1ps2hkvXkPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718205040; c=relaxed/simple;
-	bh=08X+8GVT+TiFiZvVfHbVgUCyb01zFog3sj0t9IBoQcQ=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VnyjQOdIK7HpKgvzH7mikjRyxSY+Dn8XVaNpwvwl2U6gd5ik1sb9n+p7b1xVrIyIPQi/MbjMWPatYs9mqPGPwu8BKkQx8Cj/9SWsKOdLmihYLQ4xo/UtGFeRJV4N2zX4G0EixddyDph3ZVPh4jxBd2IO1KQHruSLfUOQPkwfjzg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HZUtami8; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45CFAOcW112956;
-	Wed, 12 Jun 2024 10:10:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1718205024;
-	bh=l2S0IDfKuLt9bQulBhVNfq3zB4+JOecc8rEkeL+2prs=;
-	h=From:To:CC:Subject:Date;
-	b=HZUtami8i93fZrX2XFoz/LEwbg9pXs1cyP4fyNyjyaB+QMHRcs18C3QTJIo/0R68B
-	 gxeRfwcmFw8+aKrpfvpm6cfpm6j121aDd8WKYTsh2HorYDp+iHftijs+oJj6ARpSq7
-	 3+bHrmNY9PlC6Km0UjujkbEriErVv/b51wapRSVk=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45CFAO4O130047
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 12 Jun 2024 10:10:24 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 12
- Jun 2024 10:10:24 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 12 Jun 2024 10:10:24 -0500
-Received: from fllvsmtp7.itg.ti.com ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45CFAOG2099675;
-	Wed, 12 Jun 2024 10:10:24 -0500
-From: Andrew Davis <afd@ti.com>
-To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Andrew Davis
-	<afd@ti.com>
-Subject: [PATCH] dt-bindings: interrupt-controller: lsi,zevio-intc: convert to YAML
-Date: Wed, 12 Jun 2024 10:10:23 -0500
-Message-ID: <20240612151023.27187-1-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1718205136; c=relaxed/simple;
+	bh=WjhyEVrS4YOsT148Yx89pL+UkzPas9bEKkZhjJS5Oho=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=kIzghlzF12PdQ41E0muJiE9yYbpNXwAQc051GDxHa8/1qq5ZBfvJopaLANWLbArl687rr+V5Iue6LiO0b7QHHW35NHEiJ1D5p9ieCldPMBqEHP43gNi0to43u5ei7BomTEe0nSBSm9IQ1M+HN2tLE4wZ22l1MwZ8CImVtNmmLCs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=U9xbURPo; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1718205135; x=1749741135;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=WjhyEVrS4YOsT148Yx89pL+UkzPas9bEKkZhjJS5Oho=;
+  b=U9xbURPov/qbSTaDL2rVhzPlBZA1eEKoNe7JYU7QJAoHllyDOH8Ni/D1
+   D0AV/v8d4itHREp6ExyoIrt37Yg291TG6mPWCmrysitaLOXjSLkZsWwJf
+   e6YX9nTzv+1qSYTnwAfeliLx+jAkxIVzxrzLKDRMhCcanP3IUSHLUb+8u
+   OZX1Dk41J8pweO3SjM08znDaGmGpjLF3MI6w3HqxCwfMCENdQYa6hC1RJ
+   5vQssUnn8OQGiEXYeMZp9IgV/HekZkbhGc1D0OzGn0rdcIM06bA1/L+gu
+   gB1dvkx2TdnjDAt0lbfKyFx1g5UTxk2R+OXSXOkYEFZhFtSfLAE/Ar/+X
+   g==;
+X-CSE-ConnectionGUID: Ltfxjm6yRc+LAV03ZV4Scw==
+X-CSE-MsgGUID: /TS8zCxARyeE/2h67+oLvQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="26394319"
+X-IronPort-AV: E=Sophos;i="6.08,233,1712646000"; 
+   d="scan'208";a="26394319"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2024 08:12:14 -0700
+X-CSE-ConnectionGUID: kwDaRzc1TQiY9jarYnCxdg==
+X-CSE-MsgGUID: 5Rrxm+96Skqw7TKKe3UrOQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,233,1712646000"; 
+   d="scan'208";a="40295494"
+Received: from sj-4150-psse-sw-opae-dev2.sj.intel.com ([10.233.115.162])
+  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2024 08:12:14 -0700
+Date: Wed, 12 Jun 2024 08:12:05 -0700 (PDT)
+From: matthew.gerlach@linux.intel.com
+X-X-Sender: mgerlach@sj-4150-psse-sw-opae-dev2
+To: Bjorn Helgaas <helgaas@kernel.org>
+cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, bhelgaas@google.com, 
+    krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+    joyce.ooi@intel.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+    linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] PCI: altera: support dt binding update
+In-Reply-To: <20240611170410.GA989554@bhelgaas>
+Message-ID: <alpine.DEB.2.22.394.2406120744350.662691@sj-4150-psse-sw-opae-dev2>
+References: <20240611170410.GA989554@bhelgaas>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=US-ASCII; format=flowed
 
-Convert Zevio interrupt controller bindings to DT schema.
 
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- .../interrupt-controller/lsi,zevio-intc.txt   | 18 --------
- .../interrupt-controller/lsi,zevio-intc.yaml  | 42 +++++++++++++++++++
- 2 files changed, 42 insertions(+), 18 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/lsi,zevio-intc.txt
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/lsi,zevio-intc.yaml
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/lsi,zevio-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/lsi,zevio-intc.txt
-deleted file mode 100644
-index aee38e7c13e7d..0000000000000
---- a/Documentation/devicetree/bindings/interrupt-controller/lsi,zevio-intc.txt
-+++ /dev/null
-@@ -1,18 +0,0 @@
--TI-NSPIRE interrupt controller
--
--Required properties:
--- compatible: Compatible property value should be "lsi,zevio-intc".
--
--- reg: Physical base address of the controller and length of memory mapped
--	region.
--
--- interrupt-controller : Identifies the node as an interrupt controller
--
--Example:
--
--interrupt-controller {
--	compatible = "lsi,zevio-intc";
--	interrupt-controller;
--	reg = <0xDC000000 0x1000>;
--	#interrupt-cells = <1>;
--};
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/lsi,zevio-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/lsi,zevio-intc.yaml
-new file mode 100644
-index 0000000000000..2b77d84ddae17
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/lsi,zevio-intc.yaml
-@@ -0,0 +1,42 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/interrupt-controller/lsi,zevio-intc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI NSPIRE interrupt controller
-+
-+maintainers:
-+  - Andrew Davis <afd@ti.com>
-+
-+allOf:
-+  - $ref: /schemas/interrupt-controller.yaml#
-+
-+properties:
-+  compatible:
-+    const: lsi,zevio-intc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  "#interrupt-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#interrupt-cells"
-+  - interrupt-controller
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    interrupt-controller@dc000000 {
-+        compatible = "lsi,zevio-intc";
-+        reg = <0xdc000000 0x1000>;
-+        interrupt-controller;
-+        #interrupt-cells = <1>;
-+    };
--- 
-2.39.2
+On Tue, 11 Jun 2024, Bjorn Helgaas wrote:
 
+> On Tue, Jun 11, 2024 at 11:35:25AM -0500, matthew.gerlach@linux.intel.com wrote:
+>> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+>>
+>> Add support for the device tree binding update. As part of
+>> converting the binding document from text to yaml, with schema
+>> validation, a device tree subnode was added to properly map
+>> legacy interrupts. Maintain backward compatibility with previous binding.
+>
+> If something was *added* to the binding, I think it would be helpful
+> to split that into two patches: (1) convert to YAML with zero
+> functional changes, (2) add the new stuff.  Adding something at the
+> same time as changing the format makes it hard to review.
+
+Thanks for feedback. It was during the conversion to YAML that a problem 
+with the original binding was discovered. As Rob Herring pointed out in
+https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240513205913.313592-1-matthew.gerlach@linux.intel.com/
+
+"Making the PCI host the interrupt parent didn't even work in the kernel
+  until somewhat recently (maybe a few years now). That's why a bunch of PCI
+  hosts have an interrupt-controller child node."
+
+This was an attempt to fix the problem. I can resubmit a conversion to YAML 
+with zero functional changes.
+
+Matthew Gerlach
+
+
+>
+> Then we could have a more specific subject and commit log for *this*
+> patch.
+>
+>> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+>> ---
+>>  drivers/pci/controller/pcie-altera.c | 13 +++++++++++--
+>>  1 file changed, 11 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/pci/controller/pcie-altera.c b/drivers/pci/controller/pcie-altera.c
+>> index a9536dc4bf96..88511fa2f078 100644
+>> --- a/drivers/pci/controller/pcie-altera.c
+>> +++ b/drivers/pci/controller/pcie-altera.c
+>> @@ -667,11 +667,20 @@ static void altera_pcie_isr(struct irq_desc *desc)
+>>  static int altera_pcie_init_irq_domain(struct altera_pcie *pcie)
+>>  {
+>>  	struct device *dev = &pcie->pdev->dev;
+>> -	struct device_node *node = dev->of_node;
+>> +	struct device_node *node, *child;
+>>
+>>  	/* Setup INTx */
+>> +	child = of_get_next_child(dev->of_node, NULL);
+>> +	if (child)
+>> +		node = child;
+>> +	else
+>> +		node = dev->of_node;
+>> +
+>>  	pcie->irq_domain = irq_domain_add_linear(node, PCI_NUM_INTX,
+>> -					&intx_domain_ops, pcie);
+>> +						 &intx_domain_ops, pcie);
+>> +	if (child)
+>> +		of_node_put(child);
+>> +
+>>  	if (!pcie->irq_domain) {
+>>  		dev_err(dev, "Failed to get a INTx IRQ domain\n");
+>>  		return -ENOMEM;
+>> --
+>> 2.34.1
+>>
+>
 
