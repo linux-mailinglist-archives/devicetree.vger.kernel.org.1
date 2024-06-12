@@ -1,133 +1,102 @@
-Return-Path: <devicetree+bounces-74990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C4119051DA
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 13:59:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E4729051E5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 14:02:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9087B1F27321
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 11:59:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A61BA280D73
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 12:02:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AEA316F0E4;
-	Wed, 12 Jun 2024 11:59:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BAA016F277;
+	Wed, 12 Jun 2024 12:02:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ixEJTeCt"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="fnqZgEYx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACA8116E882;
-	Wed, 12 Jun 2024 11:59:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C902D16D4F6
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 12:02:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718193588; cv=none; b=qV96ylVLL/2CoyDpbSPXnfoxfox9KC3Wr2aeRjBMctSYCQ5q4tF2SOG9oFqnB9CzSeqXpfcT3oh6zLTyRlJUTtmzLUz7o5ARJdNuF9tFLmPXNshxhnFY4yujXa4zZkLw2Zxcn5smt6uARInQNJv8nxuA/bI5tAk+ORwl6lXMrik=
+	t=1718193725; cv=none; b=raJqK5EecEwJwOMrO5BLfUW3GySIheh2HLjfMf5isk3lIRoHcZXwvydWlUpnQGgpcy2EqXZoGDin5UEt2zkk9mzR98XxmBz1ugHQ8UjNGtu5IJ36vmHml6w9/3td6ZQqQxasBTOOUSPuc/fwyKkMZhhyrzfUgk8mh6+yLbwwJNQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718193588; c=relaxed/simple;
-	bh=g+KF8NdttgCTb5bfAiBABlmcgbDcCXSiriG2NAgXuKE=;
+	s=arc-20240116; t=1718193725; c=relaxed/simple;
+	bh=yD6R8w4UBkKJudrIwQyum7bH4UdiU/mENrrdT4nd20I=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=s1Lb1ILVeAZ7yJSliouYr88GMZwGlfBpXC83nhixGEwH8r5wgQpzYq6lhie8Q/1JRMrRA3rv1vODksReJyT80WDagK87dio4ivnsKCwe1P4nnX/4RPg/cceMSC9OQFm6bJPDJP87avLnrnGYHWzNundvT3rXVKNJ2+i+Sf8IeHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ixEJTeCt; arc=none smtp.client-ip=209.85.160.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-24c9f6338a4so3372769fac.1;
-        Wed, 12 Jun 2024 04:59:46 -0700 (PDT)
+	 To:Cc:Content-Type; b=a7Ghsicjb87hahHP+JC/+g9F+2+fyv9iSnWC9tIXEH+j4q7ht5OnXUurKgfLOGOV/lFKfckWEyQAixEOcms4lPt6LIA1vlU10U9vAW69PcFrz7oGlUNOuRwtdfJEjmJ3DpkeMr2RsyN6tEgpaE/NtTSy13XjK7eOnqxYKXY7dwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=fnqZgEYx; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52bc27cfb14so6386611e87.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 05:02:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718193586; x=1718798386; darn=vger.kernel.org;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1718193722; x=1718798522; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3rw4oq0Ohf7tU3ClnNhFQL/oCvaY2J0yWIQIMUVmHN0=;
-        b=ixEJTeCtTOVvkp2gDvfhUuvxB28UEj5iDD9i2SxMoY9ahlAvLOlSgHhbeCGQ7s4mYf
-         fIqugPjmMJkwgTHyuETClCprJTe67oDXavgWPJefQof/19hnhlKo5K1n2ToOzNFHlvqK
-         pyyORjwhCeG2ERQbcl45Ov4Z5HnZWViI7d+9NrwnyYqyxFAUFXWs2uzZdse9m5WqaiBm
-         K+/iajScuggrufPcJwToda6gBh0KSg41TNNCqNbkhPLZ3bqZdVOx9jNgMYJlpQO8IF38
-         bRBH2q2F0YaJxqdQ64O8rffTPyUWmFad+NDFTGokWt3KoKt9tCGicviKdOOVrh8mPLER
-         LnIQ==
+        bh=pgHNgP5mgQQhJMbmzukrZ80r1nI1t333GxSKlDaG7So=;
+        b=fnqZgEYx18dNfHggOD1+6+vQV8fw1RHjlS0bzrZXoVVJIj5VyIq2EvXZP4YfH6cf7x
+         nnfk4ah0AJQHeMm46e5psUFjEoJKZ6NksRHR4zJGaP4Hcp6jBwMjmCe/6vrPmpZx9HGQ
+         OoWqDzY9HSdOfZUgySymyzQbQFL3qlZSVF82bUqZe7fdrpM18jGlojVTFde2XFOwW0gR
+         SAv1ZoSJ18SrgXEdS9W8On3LZt0yaXHD5YePpSnGbtg4jdi9LmRb8kjz6Z7u/tQ87LSq
+         m/HnNATGUv3XBPSLhCEDITN9MSlUkTHxL47DDzHMnmk5e0xCTP9m+VMN7S2cPOl3oDYd
+         j7Qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718193586; x=1718798386;
+        d=1e100.net; s=20230601; t=1718193722; x=1718798522;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3rw4oq0Ohf7tU3ClnNhFQL/oCvaY2J0yWIQIMUVmHN0=;
-        b=AnGkD9ehjWx0Tr/P02DMerokqkBr3rL9LOfsWgSCHi6nkuW9RPbqF7636shk+ir288
-         9lCCaGIe1Lwatct0rJXdlkywFqL/euIln9JutfYtmrdh3wnoGcFmdLJudI2d3CcvOxNA
-         qfnGNreXTo9xZKDF0/+m/imog1hYJD7dU+dZOkdh0UiniNgQoZWSELk0cmVD2AMoJkJk
-         HZCdho7YB86UWU01Kn6d/9Sw1tjR2ZT7h+BQ2MTITUMpIfkCVEfIETXlZUC+zawZPoBZ
-         h4cy3aAbX2Dcl+fOEJbawFINTfe7D4wNo7RohPLf0Xb41jhUeqNvDSoLbyGPyk/4/IuN
-         RI/g==
-X-Forwarded-Encrypted: i=1; AJvYcCU9/fCMkHcjkwcLuXx23IEW34TjC05Qb2oVMKD0AyXslt9cqTzPzKVWio3z4PkwAfof0ObcL+GQYYNegPYCJSh2Dx3xZFrexajkRjcfBvfJuaOj3M+k1oypCBAiHV6n6xPFQe94gAW7hDoii5DzOL4oR42pRERX4yZtoMjayCGzt33j/PxX
-X-Gm-Message-State: AOJu0YzaGmVIOVDMyYNmdpJxK9LEXh00fTfWHKIC6J2VVr+Fk3aybSPn
-	4z8xWYvJYUT5Pdfmq0+7mRMbiWKEL0BC/rUQjoYzzzL+tpFffZbBfLHJR/plS9gNwshoCV5bNkM
-	+bS41boFCYSsD4IVjBM4ueJztI3Q=
-X-Google-Smtp-Source: AGHT+IFFf4hE4u3P0SMg8Z9wDg4GkGs4lvBLHNeR6wq+yEuT+bu0jRI3VhYDYsU3aM/1SnRiCtH56OVzz4nlSeUuYMo=
-X-Received: by 2002:a05:6870:c0d1:b0:24f:c892:d02b with SMTP id
- 586e51a60fabf-255147aa8a0mr1721343fac.0.1718193585675; Wed, 12 Jun 2024
- 04:59:45 -0700 (PDT)
+        bh=pgHNgP5mgQQhJMbmzukrZ80r1nI1t333GxSKlDaG7So=;
+        b=LvPXlLbSmAJJupFkcf60kboPra/955NyVfip2kzQCX50OdaIAlmHyEHbAbhLj6z9LL
+         f0lLH3Wwcd1P6l1z6jtjIgA94lOMATMJmYWbt97B9ToPEFzwbmqdaizFYKoyPdqbEv1s
+         l9IEP897uPi/haXxv13HQX/FX3jnhnLrQVJ2Q3vEH5KsA/7XSD2btbo/BPy6vY2vrOs2
+         Lg4Gauw68sip3wcgTLa2+eihlghs8JbZ/nScailjZO9KwSu8KeXlP9eogWq3w0DQ7brA
+         MiwVmsQtCs4f5I3l1sEtTb081tnhZptmz9xghEA6Nq5jQHmdE9BLKD+se3/5CYXvfi/i
+         iG/A==
+X-Forwarded-Encrypted: i=1; AJvYcCU+Enspn5FTfhD5gKi6d/qJmcdWwb7Zvktov6x4OBpi8i3P2iP/mis0Xh1DAqScSLgM+YeiCfhIGkkYYbyq+ux4J2kwGgcgTWj9hA==
+X-Gm-Message-State: AOJu0YwvXHeR4vt71PHHFt4oeetChlttedEvgOU4WXqpqabLv8iu8TA4
+	2Cz8/4zaq5ugs1PP5YgCRvPi8cW6NqF9Fy+ksP6yzQx1INExroEVTWyXnRMqiSN73RjXooduXSz
+	T4zcQ+sMal2ckuovCYOGQfqPVy1My/T7245sJcA==
+X-Google-Smtp-Source: AGHT+IFTsWHoTu0eHCUEIDfT+ze11HzmE/etIZ7sNoJT7JzsAgwhY3+Wp9mO51T7N/HcjZr5s9IGNKEKawNEM8cxd5A=
+X-Received: by 2002:a19:8c41:0:b0:52b:be6b:d16a with SMTP id
+ 2adb3069b0e04-52c9a3e3b86mr1025330e87.31.1718193722025; Wed, 12 Jun 2024
+ 05:02:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240611124405.63427-1-animeshagarwal28@gmail.com> <20240611200048.GA2966276-robh@kernel.org>
-In-Reply-To: <20240611200048.GA2966276-robh@kernel.org>
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-Date: Wed, 12 Jun 2024 17:29:34 +0530
-Message-ID: <CAE3Oz81AP-5RGK0Xef72XT3x4Je1tu223BMwk7-mzKrJWKqTbA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: wlf,wm8782: Convert to dtschema
-To: Rob Herring <robh@kernel.org>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, patches@opensource.cirrus.com, 
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+References: <20240611140034.24685-1-afd@ti.com>
+In-Reply-To: <20240611140034.24685-1-afd@ti.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Wed, 12 Jun 2024 14:01:50 +0200
+Message-ID: <CAMRc=Md4ayrVmiD1xPSmCrF6KrjiZGyFVpnrQt5SX46KY0WZ_Q@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: gpio: lsi,zevio-gpio: convert to YAML
+To: Andrew Davis <afd@ti.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 12, 2024 at 1:30=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
+On Tue, Jun 11, 2024 at 4:00=E2=80=AFPM Andrew Davis <afd@ti.com> wrote:
 >
-> On Tue, Jun 11, 2024 at 06:14:00PM +0530, Animesh Agarwal wrote:
-> > Convert the WM8782 audio codec bindings to DT schema.
+> Convert Zevio GPIO controller bindings to DT schema.
 >
-> Missing "ASoC" on the subject. Mark may not see it.
+> Changes during conversion:
+>  - Add used but undocumented interrupts property
 >
-> > Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-> > Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> > ---
-> >  .../devicetree/bindings/sound/wlf,wm8782.yaml | 47 +++++++++++++++++++
-> >  .../devicetree/bindings/sound/wm8782.txt      | 24 ----------
-> >  2 files changed, 47 insertions(+), 24 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8782.=
-yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/sound/wm8782.txt
->
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
->
->
-> This is yet another binding with no in tree DTS user. That's fine, but
-> not what I would prioritize converting. There are several ways I would
-> prioritize what to work on.
+> Signed-off-by: Andrew Davis <afd@ti.com>
+> ---
 
-I'll resend this patch adding "ASOC" in the subject, thanks for the
-advice I'll not prioritize bindings that do not have their DTS in the
-tree.
+The conversion of this file by another author is already in next as
+commit e4608bbccf2b ("dt-bindings: gpio: lsi,zevio-gpio: convert to
+dtschema").
 
-> - There's a list maintained in CI of number of occurrences of
-> undocumented (by schema) compatibles[1]. Start at the top (most
-> occurrences).
-> - Pick a platform (or family of platform) and get the warnings down to
-> 0 or close. There's a grouping of warnings and undocumented
-> compatibles by platform family at the same link. Pick something that's
-> widely used like RPi or RK3399.
-> - Prioritize newer platforms over older (arm64 rather than
-> arm32(though there's still new arm32 stuff)).
-> - Fix warnings treewide from common schemas (i.e. from dtschema).
-> That's not conversions, but related.
-
-Thanks for the tips. I'll work accordingly.
-
-Animesh
+Bart
 
