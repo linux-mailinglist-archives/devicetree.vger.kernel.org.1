@@ -1,203 +1,161 @@
-Return-Path: <devicetree+bounces-74936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63318905070
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 12:33:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EF16905088
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 12:38:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69ECF1C20E3D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:33:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDF8A1F239B7
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:38:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96E6E16C856;
-	Wed, 12 Jun 2024 10:33:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA3A316EBE6;
+	Wed, 12 Jun 2024 10:38:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Fqm5mmwA"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="Z2gWX/CZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01olkn2027.outbound.protection.outlook.com [40.92.99.27])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13C737BB19;
-	Wed, 12 Jun 2024 10:33:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718188408; cv=none; b=SRzIs8alI+FiKVMaddjfyzCmv47BX35P0bq7kPxrOR6ICPIJuNwkK6HMa7zOZgpIr2UelwPF0N6cqWbFf5PTY4akrU1Ugsa2nxSsl2HO7UWGII5pT221eYkEVnfHA1sEK0sGPgIg7QKJ+Mwz2+rWNrVrZ2qGPcCXTQGmJKPT9W8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718188408; c=relaxed/simple;
-	bh=ASdXSqRcFDtv4s/QXkOD0rx2u5bMuGLH7Iy5d2Q8dhU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=u+PHtbFMCaAgP0rI6ogToolkC1UNbEGNaWMQS2D/xxJFvS+A6ctoNALNObXisA1WLYmSw0Rt0PRuPYhZ1nmmmhw0bZqNZIfYMlNq4w2VGEkCz2vAbhC9bsxcWFl3dXvcOMhD8v3DDKGqMv7JX3NhQYD6O3MUjr9ZtEGJjkxnt7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Fqm5mmwA; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45CA57nA032587;
-	Wed, 12 Jun 2024 10:33:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	SPXLtaBZREkBKSHgG7dppp2FZNOxxWlO6RPqI9GKYmg=; b=Fqm5mmwAXPdhJuAw
-	lYl5YdZHLyNvbGoxB/1wH+seJIvitLAPwknn2pjJs1CUDkVo4aCUUoTDGJUgni3K
-	l6ST/gQpRYlFpXF6e6JEO0uXIabmJY57vFRNXF6vra/liX24lUHtcyRXL3dwhJmH
-	nteGWl8g4tnR4aX8arOlYWpKnggo/C+RgBE1m3xjHFes2QcaxY9VQ2qjgI7Ve5Gb
-	R2TtMJPqozmkgOaUTqxtIYQQStVLyi/3zJeviLTTpLAXoW0y0ZZ6rZP3aqWwo7ZJ
-	KhlC3ewzjBHf5D4W689eHFuCVSj9qseGkQNF0L0qefv88ajx094I0CYhjrWI27R8
-	d5GlPw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ypp87twuw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 12 Jun 2024 10:33:23 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45CAXLwR020724
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 12 Jun 2024 10:33:21 GMT
-Received: from [10.217.216.152] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 12 Jun
- 2024 03:33:17 -0700
-Message-ID: <fc2c7682-a091-4605-8c4c-a4f68a079b08@quicinc.com>
-Date: Wed, 12 Jun 2024 16:03:14 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B607216EBE8;
+	Wed, 12 Jun 2024 10:38:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.99.27
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718188702; cv=fail; b=efqqVBInmC8WlnbNXgs1uSe/jQ5WHsVhMgUkimg9T923UhHyVJgqAfXmZ2aXd5ZwOThC/b/87yQ6S6Pfg9dXwpBOTdBKjekN8uH1lTN8LYmgoD9d/zjv6kioA54ZMt1Bm6/zmYY3baAhX9JkcIXuBUZSdgIliCmFbLeU9zQ7AWI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718188702; c=relaxed/simple;
+	bh=+XUVXU+GnYeMP9gQXZx51MfXjzuOQ9IMDc1KSz2WNnk=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=HPkpozhXbhE73jyfWliUfA8N+5+1zMJDgg4mHC/icVfz6c2uDy09uqoDZbO749V5ysEfrwG8d2v1WK7NLnN3CAQ3MdxuiQS8mcJrexw02uJg5VdVtrLkQNrkYiziSMN9XUdYJKBs2rkP8llZa4X2qg3Bcqust1D4KCFLzPdkaS8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=Z2gWX/CZ; arc=fail smtp.client-ip=40.92.99.27
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XOMPYWp7M+OYAacCHnyNiDynkKzsCkAyEuvXR1rU2fLdSmEulD5m4VFRRs6kDNyRqzE0gwVInQwaR/KvPKMlhkjSBI6EKkKN+yiRajyCBxoglFHQXuQ4xp6PoJYtZlTinGAqoJ0Cu7M4AGzh5xY7Ra868EvgIRFHXXQrc68i6kq1qcNX8NVYyYJPz12FXfVqP5acglR4m5ll+guxiuKCJncbfdCXTD8Aa05aPRR3awOss/jgjajB0r5YlXaEzIUIwcHTGOll0PnroOQMYeLCdBr2aSkWMtk2ayluRIWZEHYkhwMcGOe9FyVLdljEerT+lLBKb68XD6+rP48FY17L/w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BGVrSRCvjD5dJcnAsvpt9t9djgnirPYJ6kPJLhgjknY=;
+ b=IpIVKS21UkGSZVTlkSlf8+E4s1MFGG5WEOF5Xaf0/S/EiM/lflTW/IeIehUxibD/larcEH5DV3Af5xkJSmMuziLaO02X4jLwZKJILEkjpZqJLSMdTaY8TAX78osFaG7tjFqlJDsyiijhdTujgfFQ5F9RZ2RUQs1gBK9aWUVxfuCZzL2EjRbWZkjIAuxFcW8ciEZmMdohtkgEggGozRROq8CIYvqMrrBfXFnEY4QKNtBtLQP+Ij+msE2lYH1RUJ756HRy+wMYovzz7YCOGGbaVuo0ZAW2Fus6/3qdoqka3GpWcKdRqvGjocYNPbxdqfqN4FutS/3xbJLZ57eapgIAUQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BGVrSRCvjD5dJcnAsvpt9t9djgnirPYJ6kPJLhgjknY=;
+ b=Z2gWX/CZv/Db8yhzIGwnMs/qGtksnyoAYCxRjsMESJIcS7dX07qeNiyesZwVIgcaJUCMjZHwtlKpZF07iXsBg7QlrvQMp2c4JHmxNQRRCaVwwiMkY75u6KxSIyt4wXsoH1hbXWBvrw7z1kJHT6EYVjExBwaudfniLS6fD6zY3tBlUtZpEQVbJ3hGfXVQN/GS2o8R49hLbF6WUjbJxRHnWVNrhxfNf8BciSH5jAGZoy5e3rMKaNuEb5QyTNXLv1pe8/BaZgiPA3yLqiWhbxPoNtCvNlpqGyF6puqfY4EIKawKgcrVMxXnyT8Rl4mP8fM7e2XARTj3HN+NcsQobF1ctQ==
+Received: from TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:23e::10)
+ by TYWP286MB3208.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:2d7::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.36; Wed, 12 Jun
+ 2024 10:38:16 +0000
+Received: from TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::85b8:3d49:3d3e:2b3]) by TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::85b8:3d49:3d3e:2b3%5]) with mapi id 15.20.7677.019; Wed, 12 Jun 2024
+ 10:38:16 +0000
+From: Shengyu Qu <wiagn233@outlook.com>
+To: kernel@esmil.dk,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	william.qiu@starfivetech.com,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Cc: Shengyu Qu <wiagn233@outlook.com>,
+	stable@vger.kernel.org
+Subject: [PATCH v2] riscv: dts: starfive: Set EMMC vqmmc maximum voltage to 3.3V on JH7110 boards
+Date: Wed, 12 Jun 2024 18:33:31 +0800
+Message-ID:
+ <TY3P286MB261189B5D946BDE69398EE3A98C02@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+X-Mailer: git-send-email 2.39.2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [G87vWAOj5j+EnV6LHJTQcIMi3nWtEb0LNSHZCwZ0pFM=]
+X-ClientProxiedBy: SG2PR01CA0135.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:8f::15) To TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:23e::10)
+X-Microsoft-Original-Message-ID: <20240612103331.1475-1-wiagn233@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/8] Add support for SA8775P Multimedia clock
- controllers
-To: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Bartosz
- Golaszewski" <bartosz.golaszewski@linaro.org>
-CC: <devicetree@vger.kernel.org>, <quic_jkona@quicinc.com>,
-        <quic_imrashai@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240612-lemans-v2-split-mm-series-12-6-v2-0-056e828b0001@quicinc.com>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <20240612-lemans-v2-split-mm-series-12-6-v2-0-056e828b0001@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: EdAq0xX-2gRdKdohlGJKtm01YdH29Nw3
-X-Proofpoint-ORIG-GUID: EdAq0xX-2gRdKdohlGJKtm01YdH29Nw3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-12_06,2024-06-11_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 malwarescore=0
- spamscore=0 suspectscore=0 mlxlogscore=999 priorityscore=1501 adultscore=0
- bulkscore=0 mlxscore=0 clxscore=1015 impostorscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405170001
- definitions=main-2406120076
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY3P286MB2611:EE_|TYWP286MB3208:EE_
+X-MS-Office365-Filtering-Correlation-Id: 93b217a6-a3dd-4ca0-2101-08dc8acbc4a6
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|461199020|440099020|3412199017|1710799020;
+X-Microsoft-Antispam-Message-Info:
+	IOFDULolZfQjmEf6+rPOAZzBo5mx0jqHG0mOQ2pyo6QLORaO+A+tc2CHruNrxe1bDQMpGuS89bMmx4Wn3rHW85g5eBbeJaCbTDLwcgfbzNMBwqDNW8cefXXFsQHH0sB0hMUVaYW0/XuOxPQHg65HMFktPbFmRl/46TFRDvYxZRu4tAiJxsypN4dOkY1g1IrZ1+fkaIz9Z8EN3iJXa/grIyJh6EA+k5v34uNir1AaV+b0c1ZF7mJ6bqtHR3uubhF3phwB/uop0rORnuFVz0Lo8Tg/ELQQROgAee4ia9YOfOqJw+K3QZkfj+dvNhY5elkD7R5zeqK9jLQZJbhiy2FzJHWz8DpF6hSn0L6TZBJO+0gGeRBkthKz81Ga9ak4nBqJBS4ytwQCgqg7hOmk30e1a8Usfo8l69wNF2gCf6+/n6P+6DErdI+heU9ubWrpJXXMQ0vG6fI8jYfz8wfrh1q2r+w8MnggYAmwm+cQi7Y10ZsHgWgUOovXWeiJOBH84Ou4+lEQ6e6KJKmfrzBZH2P5m2iFPcfn4E0MnBStgfA8mDHCX+ImkdKvWJna0ZztOFeJvgAeY1emnYhca4+kPe+Wvm01Dk4r6wB4VQtrVIzErXSpyxQoxr8bDAd9/e++wBrp
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?CM7Li2Z+dk+l04R4/ZCW+vHrsuJpcqOdL6EENMZslva7cFGxVR7xDpS+uy7A?=
+ =?us-ascii?Q?N/N/OdLuC768uYf0fIjXfLyX+vPEmQAUk+j9EOkqJW7cTUMgYeOa7jX/Il3J?=
+ =?us-ascii?Q?vEGCd9nFkiZs7IzGFHcqxxQmcmRcCAmItfkZzG/gbckH51aAFC51ViEPADP2?=
+ =?us-ascii?Q?nRhlPD3LfQHqVzWvaB65zCmk2YpmTf0+gbTG76n5faGeuOggWA4I+XXqsN4B?=
+ =?us-ascii?Q?ylZ5UyZUlN7N6gjkFe2GIHx6rHI4/5H/X9g4RIS9zw2XG3cAC/s4QKriS+DP?=
+ =?us-ascii?Q?DfqQrw8gR9lqYokDiiTpAi/6EtO3FOIyE6POjrpv9u/+gUCC81RtDCkBOWZg?=
+ =?us-ascii?Q?GnM5U0FzgTH0qwW+sHKukoU/B3NK55itHFSVcAucBYSRIN9q1nCe5HdK7KCd?=
+ =?us-ascii?Q?L9GC0s/x9jl4JXe50bQ9d7rp94bsbDFU7ixvCWLl8sWRpjSRJ+WR6EfGhjhI?=
+ =?us-ascii?Q?zodoV5lIPvNj7kRDYjgOUvlKD6NTydbnmAWB+R7xBTDmFa+X39xD6TWOGltz?=
+ =?us-ascii?Q?fg3HYKLuEbJYQ3JhbhYmL/kyCRJrMWdtkSxpRXiX0zw+1/RwDXENwiWY+Y+n?=
+ =?us-ascii?Q?0bgv1hKKB7YYa/d5w+OajaT4XLpQ7OfdycSEd/p+ScsYqVEeP5TEkqIc1G0O?=
+ =?us-ascii?Q?2H58ltv7JkKFoa/GiCbfsqQWuwwAkBdgM5E3WbVsB8BzlotSJxMRdLlT+yc5?=
+ =?us-ascii?Q?l0yySN88TfOsB+a199M4zKdh8F9ToHiel1ihAzrbolOWRg1fV0DUKDSl1ayo?=
+ =?us-ascii?Q?Na3VQ9Ii8oFYD8L+TR0iF9J/w+6pcV0UQbVRbGCICV9bDoiKutvlH0UL9jEd?=
+ =?us-ascii?Q?KpAc2wzEnIi5QvtQcB1vwBp+2DdUM+YwElkTgXZ5yoUqOLYDo8Jj2KkkUet6?=
+ =?us-ascii?Q?EuQuA6LbR8ezaPdFtDEOkOZZkfzvg53eD4wsGE2m3cLIBRSFwxJCkLMTX1To?=
+ =?us-ascii?Q?Wb3OfMxEy2xIcg7LPpWSOnHfH4hZ8uuMiZg218QlXkL9Ag/r+OHJKYgAqcqw?=
+ =?us-ascii?Q?8rl29l8Jh/bpoOmM6RNDnzNAb/DEv8poIEsOE5VnJGkaFQ2PArQhvhVscZDG?=
+ =?us-ascii?Q?8zEFyD/hQnsPwk2BOvTR2zvFAHIvbpEyOhfxRqr/Z1y81oRShc568jCYLjJq?=
+ =?us-ascii?Q?XrYce0aSzaE+Fek2EPNb1LwFskMu6WP1zPjwLbYcMqMEfI2dIFR7kPGScYI+?=
+ =?us-ascii?Q?wXR23d0cAAM4R8skezQWjlhYokHsuKV5yMXvcZdnWqMSrx5lWT7xrU4wv1A?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 93b217a6-a3dd-4ca0-2101-08dc8acbc4a6
+X-MS-Exchange-CrossTenant-AuthSource: TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2024 10:38:16.6270
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWP286MB3208
 
+Currently, for JH7110 boards with EMMC slot, vqmmc voltage for EMMC is
+fixed to 1.8V, while the spec needs it to be 3.3V on low speed mode and
+should support switching to 1.8V when using higher speed mode. Since
+there are no other peripherals using the same voltage source of EMMC's
+vqmmc(ALDO4) on every board currently supported by mainline kernel,
+regulator-max-microvolt of ALDO4 should be set to 3.3V.
 
-Please ignore this series, something got messed up in my b4.
+Cc: stable@vger.kernel.org
+Signed-off-by: Shengyu Qu <wiagn233@outlook.com>
+Fixes: 7dafcfa79cc9 ("riscv: dts: starfive: enable DCDC1&ALDO4 node in axp15060")
+---
+ arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On 6/12/2024 3:36 PM, Taniya Das wrote:
-> Add support for videocc, camcc, dispcc0 and dispcc1 on Qualcomm SA8775P
-> platform.
-> 
-> These multimedia clock controller and device tree patches are split
-> from the below series.
-> https://lore.kernel.org/all/20240531090249.10293-1-quic_tdas@quicinc.com/
-> 
-> Changes in this series compared to above series:
->   [PATCH 1/8]: Updated bindings to reference qcom,gcc.yaml
->   [PATCH 3/8]: Updated bindings to reference qcom,gcc.yaml
->   [PATCH 5/8]: Updated bindings to reference qcom,gcc.yaml
->   [PATCH 7/8]: Split updating sleep_clk frequency to separate patch
->   [PATCH 8/8]: Newly added to update sleep_clk frequency to 32000
-> 
-> Taniya Das (8):
->    dt-bindings: clock: qcom: Add SA8775P video clock controller
->    clk: qcom: Add support for Video clock controller on SA8775P
->    dt-bindings: clock: qcom: Add SA8775P camera clock controller
->    clk: qcom: Add support for Camera Clock Controller on SA8775P
->    dt-bindings: clock: qcom: Add SA8775P display clock controllers
->    clk: qcom: Add support for Display clock Controllers on SA8775P
->    arm64: dts: qcom: Add support for multimedia clock controllers
->    arm64: dts: qcom: Update sleep_clk frequency to 32000 on SA8775P
-> 
->   .../bindings/clock/qcom,sa8775p-camcc.yaml    |   62 +
->   .../bindings/clock/qcom,sa8775p-dispcc.yaml   |   79 +
->   .../bindings/clock/qcom,sa8775p-videocc.yaml  |   62 +
->   arch/arm64/boot/dts/qcom/sa8775p-ride.dts     |    2 +-
->   arch/arm64/boot/dts/qcom/sa8775p.dtsi         |   59 +
->   drivers/clk/qcom/Kconfig                      |   31 +
->   drivers/clk/qcom/Makefile                     |    3 +
->   drivers/clk/qcom/camcc-sa8775p.c              | 1849 +++++++++++++++++
->   drivers/clk/qcom/dispcc0-sa8775p.c            | 1481 +++++++++++++
->   drivers/clk/qcom/dispcc1-sa8775p.c            | 1481 +++++++++++++
->   drivers/clk/qcom/videocc-sa8775p.c            |  576 +++++
->   .../dt-bindings/clock/qcom,sa8775p-camcc.h    |  107 +
->   .../dt-bindings/clock/qcom,sa8775p-dispcc.h   |   87 +
->   .../dt-bindings/clock/qcom,sa8775p-videocc.h  |   47 +
->   14 files changed, 5925 insertions(+), 1 deletion(-)
->   create mode 100644 Documentation/devicetree/bindings/clock/qcom,sa8775p-camcc.yaml
->   create mode 100644 Documentation/devicetree/bindings/clock/qcom,sa8775p-dispcc.yaml
->   create mode 100644 Documentation/devicetree/bindings/clock/qcom,sa8775p-videocc.yaml
->   create mode 100644 drivers/clk/qcom/camcc-sa8775p.c
->   create mode 100644 drivers/clk/qcom/dispcc0-sa8775p.c
->   create mode 100644 drivers/clk/qcom/dispcc1-sa8775p.c
->   create mode 100644 drivers/clk/qcom/videocc-sa8775p.c
->   create mode 100644 include/dt-bindings/clock/qcom,sa8775p-camcc.h
->   create mode 100644 include/dt-bindings/clock/qcom,sa8775p-dispcc.h
->   create mode 100644 include/dt-bindings/clock/qcom,sa8775p-videocc.h
-> 
-> --
-> 2.43.0
-> 
-> ---
-> Changes in v2:
-> - EDITME: describe what is new in this series revision.
-> - EDITME: use bulletpoints and terse descriptions.
-> - Link to v1: https://lore.kernel.org/r/20240612-lemans-v2-split-mm-series-12-6-v1-0-178429d989fe@quicinc.com
-> 
-> ---
-> Taniya Das (8):
->        dt-bindings: clock: qcom: Add SA8775P video clock controller
->        clk: qcom: Add support for Video clock controller on SA8775P
->        dt-bindings: clock: qcom: Add SA8775P camera clock controller
->        clk: qcom: Add support for Camera Clock Controller on SA8775P
->        dt-bindings: clock: qcom: Add SA8775P display clock controllers
->        clk: qcom: Add support for Display clock Controllers on SA8775P
->        arm64: dts: qcom: Add support for multimedia clock controllers
->        arm64: dts: qcom: Update sleep_clk frequency to 32000 on SA8775P
-> 
->   .../bindings/clock/qcom,sa8775p-camcc.yaml         |   62 +
->   .../bindings/clock/qcom,sa8775p-dispcc.yaml        |   79 +
->   .../bindings/clock/qcom,sa8775p-videocc.yaml       |   62 +
->   arch/arm64/boot/dts/qcom/sa8775p-ride.dts          |    2 +-
->   arch/arm64/boot/dts/qcom/sa8775p.dtsi              |   59 +
->   drivers/clk/qcom/Kconfig                           |   31 +
->   drivers/clk/qcom/Makefile                          |    3 +
->   drivers/clk/qcom/camcc-sa8775p.c                   | 1849 ++++++++++++++++++++
->   drivers/clk/qcom/dispcc0-sa8775p.c                 | 1481 ++++++++++++++++
->   drivers/clk/qcom/dispcc1-sa8775p.c                 | 1481 ++++++++++++++++
->   drivers/clk/qcom/videocc-sa8775p.c                 |  576 ++++++
->   include/dt-bindings/clock/qcom,sa8775p-camcc.h     |  107 ++
->   include/dt-bindings/clock/qcom,sa8775p-dispcc.h    |   87 +
->   include/dt-bindings/clock/qcom,sa8775p-videocc.h   |   47 +
->   14 files changed, 5925 insertions(+), 1 deletion(-)
-> ---
-> base-commit: 03d44168cbd7fc57d5de56a3730427db758fc7f6
-> change-id: 20240612-lemans-v2-split-mm-series-12-6-42a28e9fcafe
-> 
-> Best regards,
-
+diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+index 37b4c294ffcc..c7a549ec7452 100644
+--- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
++++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+@@ -244,7 +244,7 @@ emmc_vdd: aldo4 {
+ 				regulator-boot-on;
+ 				regulator-always-on;
+ 				regulator-min-microvolt = <1800000>;
+-				regulator-max-microvolt = <1800000>;
++				regulator-max-microvolt = <3300000>;
+ 				regulator-name = "emmc_vdd";
+ 			};
+ 		};
 -- 
-Thanks & Regards,
-Taniya Das.
+2.39.2
+
 
