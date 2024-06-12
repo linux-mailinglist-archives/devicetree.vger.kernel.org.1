@@ -1,55 +1,75 @@
-Return-Path: <devicetree+bounces-74879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5999D904DA1
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:09:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9421C904DC2
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:14:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9F519B27037
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 08:08:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 004C6B2590C
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 08:14:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 245B016D9C8;
-	Wed, 12 Jun 2024 08:06:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7067516C84E;
+	Wed, 12 Jun 2024 08:14:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RrBlPfTd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mJsVsgyV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F51116D304;
-	Wed, 12 Jun 2024 08:06:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B171816C6BD
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 08:14:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718179602; cv=none; b=S2nie1a6c0sQTED+1okPajY2PIoTKnKQX2ckh47X+kAUQwQ8mBJQO8YSPcczXt31syiM6VIuImYpkqlZlR2V7SG3s0/FrCGVfi6pMsA7Dx2xYJgT/1jkz4O9S3R1UhsNPc0xUWeHldWqb93bFs3S+0V3VMPC67yTZJN2zkGc/VA=
+	t=1718180081; cv=none; b=QecthiWs+JRMazoVA3tbU1LM4bEJvKFE1gpfS6RR/fpwslT4g6xCqH8JTXxbzqcgnEcL2rcQhJ49Scmdsu2iB/IZ3/Uk/qk+BkRDHcgYYtVcv7GCx/6BCOnufjCTjeWF3542eaYxZ1y95aVjnTmO+fYcJQDQKUAwwHzvy09jxB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718179602; c=relaxed/simple;
-	bh=jPtvV6cI4IaUN8bG0z14lTBXPPiVocDIFTrTuYid7D0=;
+	s=arc-20240116; t=1718180081; c=relaxed/simple;
+	bh=JcLliFmzK8Tep6OJhj8il39PMa1YxEJNDlcLj+H3oLc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kYOO8/ZgVmHu+C17XsjY28jyxBXc4qUaiHGolnaBkGf9JapU49oDQ8G3kV2gw6baf8/7o5cGMd3MoURgr8xLhmYft0CT6sy46Fp4+Yn4G8Bp/UV9oc3U5lkKBVpknJlmq892aw43vLTsz8ehpC/vvCxdOkhw773fBdWrlC++oaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=RrBlPfTd; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718179597;
-	bh=jPtvV6cI4IaUN8bG0z14lTBXPPiVocDIFTrTuYid7D0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RrBlPfTddm7q2nVzhaf6zJY9gzbFooIpyJMeL6zQFCnrHNlGpNNRqI+HhjeCWKeOl
-	 YLIpTiy+9JMjW8DO2IMpxDxKru+3lUDbcInRCFpZEYRP3ExkYrREj5dcUVcMB2vKF0
-	 Od6Hzjx79h30yVw1MPqJu5jRse4NfT5W6xlbz/HN5ffWyCuOS61bZ+mHdzD28rpslV
-	 Aht+7k+oHH5d4bwkcAmJPNyVsPrYk3b9ZfqLktdsFAuyWD4m2izhgBB9nPTWMGYN7t
-	 RetIcXth9AETgcIypktPpgWTyhQz9NhbjF7LQRjcBR9le21iCwRpNM9Lw/nUCFFQfc
-	 kRN1mAsJbfKVw==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 21C4237820A9;
-	Wed, 12 Jun 2024 08:06:36 +0000 (UTC)
-Message-ID: <53838e76-bfa4-41f5-a015-a37472e98991@collabora.com>
-Date: Wed, 12 Jun 2024 10:06:35 +0200
+	 In-Reply-To:Content-Type; b=CbzB9ipmbbQALIn4XP2zxjSHZ4LnEiDyUlUgoM30gdvO+UJm3E42F/PNoU52JDGpNInvbejIQFGbC2wxDC4cD15H5+fhFqJm0VNrE3R7VbaiTMlw2oUqiGscs7GxCPLYmuRedv7OWFBW6L2wWQayERoyv2XCdlRviBA3ljNFB2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mJsVsgyV; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-35f1bc63981so349844f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 01:14:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718180078; x=1718784878; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=1PdksSUg8dwtLunozeU7Sxcg4SfJDpMyI7RXzrJNAzc=;
+        b=mJsVsgyVIv8flF+Q0dcteomGAnZB8A4Q/reM0wPvkQjQNPa4/5/JaQSUTBx/BYE25v
+         pJvA+E1/DtNBeDlElAAePH8yO7zTJo1Ef+xTBo5lM54uWZt5mOcWJyUbvoWkT8rugF+u
+         niPEcxKsAJNT2RgVHULxB+aFG8tNO3HlggOz5pKaw+hRc0z1jrRR0Lcmt70TPfy1ztxw
+         pUHp1z9uyqg8apqKayMN/JgO/QarR27+/V8HwvwQfj1QiUAVAP/EgM3Fsw0jt5h3xlWM
+         E4Tg37qFlGF4bFc4HvjfZ5/JInx5AaHzkuMn6CREZfGKm7+DzBXjW8lljkQIh4Lw6DVx
+         PEzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718180078; x=1718784878;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1PdksSUg8dwtLunozeU7Sxcg4SfJDpMyI7RXzrJNAzc=;
+        b=b3gBmdb7dQHSDsa7GNEZtZZ+g6fOp+2pyNBLLBRdGQ179idCWnflAhSvuHknC9vieL
+         2EW34GbMA2V7wcW0fmOVNy2DK8W0veM3QFSBhjaST04/BC0WxY+fLWglRa+Q2mwAWo10
+         ujOXSljn44aTxaNAy8gfTdV1w5mmm8wtenK8QIARYYQVce2aKJjBlNZQUV/ya7LUzLZT
+         6lYy2vaVa3mgN0TQpMAscjlEcT2vfY4o2m1Fptz9Wy0kidlpb7eSWYOd7GKqkOZtYo5Q
+         wcnKScMT3AuInDpZJBfAbDlW23Y+QscmyH5d4fM0jO1OndM+TI1ruxDMqyYnLAZT2eME
+         rPTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUVsb2ptCG1p5cIShsWvuX8Wd1LO66pNSLaN0zKU7mw2PReX6mI2mBw4kmRwhQxjcP/p8rTFkWg+ZVqKzdqvQVB2XKeBNq4x9dEiA==
+X-Gm-Message-State: AOJu0YwhXLSO6DLJB+1Kx9LFrUr0VOLUuGNgPmIbnXlWeRG75QJRwf5C
+	aGKVkJPcYAhS56vBduFm4A3w2qqpabBZckWsar2Nz9HAuL0WqGO7O39gIdx4XEY=
+X-Google-Smtp-Source: AGHT+IEbZutML2NJ0LZ8NN7NJ/Uudc+CSJQVZMvAjNEH6d/1TWr7ms4MOXRGR4kuhjntdsKXQXPlUw==
+X-Received: by 2002:a5d:5005:0:b0:35f:2af4:cccd with SMTP id ffacd0b85a97d-35f5a9da24amr1193697f8f.17.1718180078080;
+        Wed, 12 Jun 2024 01:14:38 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35f252193d9sm7240988f8f.54.2024.06.12.01.14.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Jun 2024 01:14:37 -0700 (PDT)
+Message-ID: <106b6911-3097-487e-85db-f8de5958adcb@linaro.org>
+Date: Wed, 12 Jun 2024 10:14:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,889 +77,100 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/5] media: platform: mediatek: isp_30: add mediatek
- ISP3.0 sensor interface
-To: Julien Stephan <jstephan@baylibre.com>
-Cc: Louis Kuo <louis.kuo@mediatek.com>, Phi-bang Nguyen
- <pnguyen@baylibre.com>, Florian Sylvestre <fsylvestre@baylibre.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Andy Hsieh <andy.hsieh@mediatek.com>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Paul Elder <paul.elder@ideasonboard.com>, Rob Herring <robh+dt@kernel.org>
-References: <20240110141443.364655-1-jstephan@baylibre.com>
- <20240110141443.364655-4-jstephan@baylibre.com>
- <3c2bee40-3792-409c-b42f-f8b013ff641c@collabora.com>
- <CAEHHSvaT_U+HNzWQUoK9EuqGuqEd11+Lu0CLz_rL7uQf0Q5isw@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH] ARM: dts: vt8500: replace "uhci" nodename with generic
+ name "usb"
+To: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240423150728.91527-1-sheharyaar48@gmail.com>
+ <f60aac7f-dbba-4cba-8bb6-302b5c911b8c@linaro.org>
+ <CAHTLo_=Gg-KN2zOtjOBCxQURq+Ap913Miph2FMhvkoV+GybFNA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-In-Reply-To: <CAEHHSvaT_U+HNzWQUoK9EuqGuqEd11+Lu0CLz_rL7uQf0Q5isw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CAHTLo_=Gg-KN2zOtjOBCxQURq+Ap913Miph2FMhvkoV+GybFNA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Il 10/06/24 16:39, Julien Stephan ha scritto:
-> Le jeu. 11 janv. 2024 à 13:04, AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> a écrit :
+On 15/05/2024 06:53, Mohammad Shehar Yaar Tausif wrote:
+> On Tue, Apr 23, 2024 at 8:46 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> Il 10/01/24 15:14, Julien Stephan ha scritto:
->>> From: Louis Kuo <louis.kuo@mediatek.com>
+>> On 23/04/2024 17:07, Mohammad Shehar Yaar Tausif wrote:
+>>> Replace "uhci" nodenames with "usb" as it's generic and aligns with
+>>> the schema binding.
 >>>
->>> This will add the mediatek ISP3.0 seninf (sensor interface) driver found
->>> on several Mediatek SoCs such as the mt8365.
->>>
->>> Then seninf module has 4 physical CSI-2 inputs. Depending on the soc they
->>> may not be all connected.
->>>
->>> Signed-off-by: Louis Kuo <louis.kuo@mediatek.com>
->>> Signed-off-by: Phi-bang Nguyen <pnguyen@baylibre.com>
->>> Signed-off-by: Florian Sylvestre <fsylvestre@baylibre.com>
->>> Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->>> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->>> Co-developed-by: Julien Stephan <jstephan@baylibre.com>
->>> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+>>> Signed-off-by: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
 >>> ---
->>>    MAINTAINERS                                   |    1 +
->>>    drivers/media/platform/mediatek/Kconfig       |    1 +
->>>    drivers/media/platform/mediatek/Makefile      |    1 +
->>>    drivers/media/platform/mediatek/isp/Kconfig   |    2 +
->>>    drivers/media/platform/mediatek/isp/Makefile  |    3 +
->>>    .../platform/mediatek/isp/isp_30/Kconfig      |   16 +
->>>    .../platform/mediatek/isp/isp_30/Makefile     |    3 +
->>>    .../mediatek/isp/isp_30/seninf/Makefile       |    5 +
->>>    .../mediatek/isp/isp_30/seninf/mtk_seninf.c   | 1488 +++++++++++++++++
->>>    .../isp/isp_30/seninf/mtk_seninf_reg.h        |  112 ++
->>>    10 files changed, 1632 insertions(+)
->>>    create mode 100644 drivers/media/platform/mediatek/isp/Kconfig
->>>    create mode 100644 drivers/media/platform/mediatek/isp/Makefile
->>>    create mode 100644 drivers/media/platform/mediatek/isp/isp_30/Kconfig
->>>    create mode 100644 drivers/media/platform/mediatek/isp/isp_30/Makefile
->>>    create mode 100644 drivers/media/platform/mediatek/isp/isp_30/seninf/Makefile
->>>    create mode 100644 drivers/media/platform/mediatek/isp/isp_30/seninf/mtk_seninf.c
->>>    create mode 100644 drivers/media/platform/mediatek/isp/isp_30/seninf/mtk_seninf_reg.h
->>>
->>> diff --git a/MAINTAINERS b/MAINTAINERS
->>> index 3ea2158864e1..52d200d5e36c 100644
->>> --- a/MAINTAINERS
->>> +++ b/MAINTAINERS
->>> @@ -13618,6 +13618,7 @@ M:    Andy Hsieh <andy.hsieh@mediatek.com>
->>>    S:  Supported
->>>    F:  Documentation/devicetree/bindings/media/mediatek,mt8365-camsv.yaml
->>>    F:  Documentation/devicetree/bindings/media/mediatek,mt8365-seninf.yaml
->>> +F:   drivers/media/platform/mediatek/isp/isp_30/seninf/*
->>>
->>>    MEDIATEK SMI DRIVER
->>>    M:  Yong Wu <yong.wu@mediatek.com>
->>> diff --git a/drivers/media/platform/mediatek/Kconfig b/drivers/media/platform/mediatek/Kconfig
->>> index 84104e2cd024..4e0a5a43f35e 100644
->>> --- a/drivers/media/platform/mediatek/Kconfig
->>> +++ b/drivers/media/platform/mediatek/Kconfig
->>> @@ -7,3 +7,4 @@ source "drivers/media/platform/mediatek/mdp/Kconfig"
->>>    source "drivers/media/platform/mediatek/vcodec/Kconfig"
->>>    source "drivers/media/platform/mediatek/vpu/Kconfig"
->>>    source "drivers/media/platform/mediatek/mdp3/Kconfig"
->>> +source "drivers/media/platform/mediatek/isp/Kconfig"
->>> diff --git a/drivers/media/platform/mediatek/Makefile b/drivers/media/platform/mediatek/Makefile
->>> index 38e6ba917fe5..695f05f525a6 100644
->>> --- a/drivers/media/platform/mediatek/Makefile
->>> +++ b/drivers/media/platform/mediatek/Makefile
->>> @@ -4,3 +4,4 @@ obj-y += mdp/
->>>    obj-y += vcodec/
->>>    obj-y += vpu/
->>>    obj-y += mdp3/
->>> +obj-y += isp/
->>> diff --git a/drivers/media/platform/mediatek/isp/Kconfig b/drivers/media/platform/mediatek/isp/Kconfig
->>> new file mode 100644
->>> index 000000000000..708b9a6660d2
->>> --- /dev/null
->>> +++ b/drivers/media/platform/mediatek/isp/Kconfig
->>> @@ -0,0 +1,2 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only
->>> +source "drivers/media/platform/mediatek/isp/isp_30/Kconfig"
->>> diff --git a/drivers/media/platform/mediatek/isp/Makefile b/drivers/media/platform/mediatek/isp/Makefile
->>> new file mode 100644
->>> index 000000000000..a81ab33d0dd3
->>> --- /dev/null
->>> +++ b/drivers/media/platform/mediatek/isp/Makefile
->>> @@ -0,0 +1,3 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only
->>> +
->>> +obj-y += isp_30/
->>> diff --git a/drivers/media/platform/mediatek/isp/isp_30/Kconfig b/drivers/media/platform/mediatek/isp/isp_30/Kconfig
->>> new file mode 100644
->>> index 000000000000..9791312589fb
->>> --- /dev/null
->>> +++ b/drivers/media/platform/mediatek/isp/isp_30/Kconfig
->>> @@ -0,0 +1,16 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only
->>> +config MTK_SENINF30
->>> +     tristate "MediaTek ISP3.0 SENINF driver"
->>> +     depends on VIDEO_V4L2_SUBDEV_API
->>> +     depends on MEDIA_CAMERA_SUPPORT
->>> +     depends on ARCH_MEDIATEK || COMPILE_TEST
->>> +     depends on OF
->>> +     select V4L2_FWNODE
->>> +     default n
->>> +     help
->>> +       This driver provides a MIPI CSI-2 receiver interface to connect
->>> +       an external camera module with MediaTek ISP3.0. It is able to handle
->>> +       multiple cameras at the same time.
->>> +
->>> +       To compile this driver as a module, choose M here: the
->>> +       module will be called mtk-seninf.
->>> diff --git a/drivers/media/platform/mediatek/isp/isp_30/Makefile b/drivers/media/platform/mediatek/isp/isp_30/Makefile
->>> new file mode 100644
->>> index 000000000000..ac3142de4739
->>> --- /dev/null
->>> +++ b/drivers/media/platform/mediatek/isp/isp_30/Makefile
->>> @@ -0,0 +1,3 @@
->>> +# SPDX-License-Identifier: GPL-2.0
->>> +
->>> +obj-$(CONFIG_MTK_SENINF30) += seninf/
->>> diff --git a/drivers/media/platform/mediatek/isp/isp_30/seninf/Makefile b/drivers/media/platform/mediatek/isp/isp_30/seninf/Makefile
->>> new file mode 100644
->>> index 000000000000..f28480d6d6c3
->>> --- /dev/null
->>> +++ b/drivers/media/platform/mediatek/isp/isp_30/seninf/Makefile
->>> @@ -0,0 +1,5 @@
->>> +# SPDX-License-Identifier: GPL-2.0
->>> +
->>> +mtk-seninf-objs += mtk_seninf.o
->>> +
->>> +obj-$(CONFIG_MTK_SENINF30) += mtk-seninf.o
->>> diff --git a/drivers/media/platform/mediatek/isp/isp_30/seninf/mtk_seninf.c b/drivers/media/platform/mediatek/isp/isp_30/seninf/mtk_seninf.c
->>> new file mode 100644
->>> index 000000000000..67b2c697d9ca
->>> --- /dev/null
->>> +++ b/drivers/media/platform/mediatek/isp/isp_30/seninf/mtk_seninf.c
->>> @@ -0,0 +1,1488 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/*
->>> + * Copyright (c) 2022 MediaTek Inc.
->>> + */
->>> +#include <linux/bitfield.h>
->>> +#include <linux/clk.h>
->>> +#include <linux/delay.h>
->>> +#include <linux/interrupt.h>
->>> +#include <linux/module.h>
->>> +#include <linux/of_graph.h>
->>> +#include <linux/of_platform.h>
->>> +#include <linux/phy/phy.h>
->>> +#include <linux/platform_device.h>
->>> +#include <linux/pm_runtime.h>
->>> +#include <linux/videodev2.h>
->>> +#include <media/media-device.h>
->>> +#include <media/media-entity.h>
->>> +#include <media/v4l2-async.h>
->>> +#include <media/v4l2-common.h>
->>> +#include <media/v4l2-ctrls.h>
->>> +#include <media/v4l2-dev.h>
->>> +#include <media/v4l2-device.h>
->>> +#include <media/v4l2-event.h>
->>> +#include <media/v4l2-fwnode.h>
->>> +#include <media/v4l2-mc.h>
->>> +#include <media/v4l2-subdev.h>
->>> +
->>> +#include "mtk_seninf_reg.h"
->>> +
->>> +#define SENINF_TIMESTAMP_STEP                0x67
->>> +#define SENINF_SETTLE_DELAY          0x15
->>> +#define SENINF_HS_TRAIL_PARAMETER    0x8
->>> +
->>> +#define SENINF_MAX_NUM_INPUTS                4
->>> +#define SENINF_MAX_NUM_OUTPUTS               6
->>> +#define SENINF_MAX_NUM_MUXES         6
->>> +#define SENINF_MAX_NUM_PADS          (SENINF_MAX_NUM_INPUTS + \
->>> +                                      SENINF_MAX_NUM_OUTPUTS)
->>> +
->>> +#define SENINF_DEFAULT_BUS_FMT               MEDIA_BUS_FMT_SGRBG10_1X10
->>> +#define SENINF_DEFAULT_WIDTH         1920
->>> +#define SENINF_DEFAULT_HEIGHT                1080
->>> +
->>> +#define SENINF_PAD_10BIT             0
->>> +
->>> +#define SENINF_TEST_MODEL            0
->>> +#define SENINF_NORMAL_MODEL          1
->>> +#define SENINF_ALL_ERR_IRQ_EN                0x7f
->>> +#define SENINF_IRQ_CLR_SEL           0x80000000
->>> +
->>> +#define SENINF_MIPI_SENSOR           0x8
->>> +
->>> +#define MTK_CSI_MAX_LANES 4
->>> +
->>> +/* Port number in the device tree. */
->>> +enum mtk_seninf_port {
->>> +     CSI_PORT_0 = 0, /* 4D1C or 2D1C */
->>> +     CSI_PORT_1,     /* 4D1C */
->>> +     CSI_PORT_2,     /* 4D1C */
->>> +     CSI_PORT_0B,    /* 2D1C */
->>> +};
->>> +
->>> +enum mtk_seninf_id {
->>> +     SENINF_1 = 0,
->>> +     SENINF_2 = 1,
->>> +     SENINF_3 = 2,
->>> +     SENINF_5 = 4,
->>> +};
->>> +
->>> +static const u32 port_to_seninf_id[] = {
->>> +     [CSI_PORT_0] = SENINF_1,
->>> +     [CSI_PORT_1] = SENINF_3,
->>> +     [CSI_PORT_2] = SENINF_5,
->>> +     [CSI_PORT_0B] = SENINF_2,
->>> +};
->>> +
->>> +enum mtk_seninf_phy_mode {
->>> +     SENINF_PHY_MODE_NONE,
->>> +     SENINF_PHY_MODE_4D1C,
->>> +     SENINF_PHY_MODE_2D1C,
->>> +};
->>> +
->>> +enum mtk_seninf_format_flag {
->>> +     MTK_SENINF_FORMAT_BAYER = BIT(0),
->>> +     MTK_SENINF_FORMAT_DPCM = BIT(1),
->>> +     MTK_SENINF_FORMAT_JPEG = BIT(2),
->>> +     MTK_SENINF_FORMAT_INPUT_ONLY = BIT(3),
->>> +};
->>> +
->>> +/**
->>> + * struct mtk_seninf_conf - Model-specific SENINF parameters
->>> + * @model: Model description
->>> + * @nb_inputs: Number of SENINF inputs
->>> + * @nb_muxes: Number of SENINF MUX (FIFO) instances
->>> + * @nb_outputs: Number of outputs (to CAM and CAMSV instances)
->>> + */
->>> +struct mtk_seninf_conf {
->>> +     const char *model;
->>> +     u8 nb_inputs;
->>> +     u8 nb_muxes;
->>> +     u8 nb_outputs;
->>> +};
->>> +
->>> +/**
->>> + * struct mtk_seninf_format_info - Information about media bus formats
->>> + * @code: V4L2 media bus code
->>> + * @flags: Flags describing the format, as a combination of MTK_SENINF_FORMAT_*
->>> + */
->>> +struct mtk_seninf_format_info {
->>> +     u32 code;
->>> +     u32 flags;
->>> +};
->>> +
->>> +/**
->>> + * struct mtk_seninf_input - SENINF input block
->>> + * @pad: DT port and media entity pad number
->>> + * @seninf_id: SENINF hardware instance ID
->>> + * @base: Memory mapped I/O based address
->>> + * @seninf: Back pointer to the mtk_seninf
->>> + * @phy: PHY connected to the input
->>> + * @phy_mode: PHY operation mode (NONE when the input is not connected)
->>> + * @bus: CSI-2 bus configuration from DT
->>> + * @source_sd: Source subdev connected to the input
->>> + */
->>> +struct mtk_seninf_input {
->>> +     enum mtk_seninf_port pad;
->>> +     enum mtk_seninf_id seninf_id;
->>> +     void __iomem *base;
->>> +     struct mtk_seninf *seninf;
->>> +
->>> +     struct phy *phy;
->>> +     enum mtk_seninf_phy_mode phy_mode;
->>> +
->>> +     struct v4l2_mbus_config_mipi_csi2 bus;
->>> +
->>> +     struct v4l2_subdev *source_sd;
->>> +};
->>> +
->>> +/**
->>> + * struct mtk_seninf_mux - SENINF MUX channel
->>> + * @pad: DT port and media entity pad number
->>> + * @mux_id: MUX hardware instance ID
->>> + * @base: Memory mapped I/O based address
->>> + * @seninf: Back pointer to the mtk_seninf
->>> + */
->>> +struct mtk_seninf_mux {
->>> +     unsigned int pad;
->>> +     unsigned int mux_id;
->>> +     void __iomem *base;
->>> +     struct mtk_seninf *seninf;
->>> +};
->>> +
->>> +/**
->>> + * struct mtk_seninf - Top-level SENINF device
->>> + * @dev: The (platform) device
->>> + * @phy: PHYs at the SENINF inputs
->>> + * @num_clks: Number of clocks in the clks array
->>> + * @clks: Clocks
->>> + * @base: Memory mapped I/O base address
->>> + * @media_dev: Media controller device
->>> + * @v4l2_dev: V4L2 device
->>> + * @subdev: V4L2 subdevice
->>> + * @pads: Media entity pads
->>> + * @notifier: V4L2 async notifier for source subdevs
->>> + * @ctrl_handler: V4L2 controls handler
->>> + * @source_format: Active format on the source pad
->>> + * @inputs: Array of SENINF inputs
->>> + * @muxes: Array of MUXes
->>> + * @conf: Model-specific SENINF parameters
->>> + * @is_testmode: Whether or not the test pattern generator is enabled
->>> + */
->>> +struct mtk_seninf {
->>> +     struct device *dev;
->>> +     struct phy *phy[5];
->>> +     unsigned int num_clks;
->>> +     struct clk_bulk_data *clks;
->>> +     void __iomem *base;
->>> +
->>> +     struct media_device media_dev;
->>> +     struct v4l2_device v4l2_dev;
->>> +     struct v4l2_subdev subdev;
->>> +     struct media_pad pads[SENINF_MAX_NUM_PADS];
->>> +     struct v4l2_async_notifier notifier;
->>> +     struct v4l2_ctrl_handler ctrl_handler;
->>> +
->>> +     struct mtk_seninf_input inputs[SENINF_MAX_NUM_INPUTS];
->>> +     struct mtk_seninf_mux muxes[SENINF_MAX_NUM_MUXES];
->>> +
->>> +     const struct mtk_seninf_conf *conf;
->>> +
->>> +     bool is_testmode;
->>> +};
->>> +
->>> +inline struct mtk_seninf *sd_to_mtk_seninf(struct v4l2_subdev *sd)
->>> +{
->>> +     return container_of(sd, struct mtk_seninf, subdev);
->>> +}
->>> +
->>> +static inline bool mtk_seninf_pad_is_sink(struct mtk_seninf *priv,
->>> +                                       unsigned int pad)
->>> +{
->>> +     return pad < priv->conf->nb_inputs;
->>> +}
->>> +
->>> +static inline bool mtk_seninf_pad_is_source(struct mtk_seninf *priv,
->>> +                                         unsigned int pad)
->>> +{
->>> +     return !mtk_seninf_pad_is_sink(priv, pad);
->>> +}
->>> +
->>> +/* -----------------------------------------------------------------------------
->>> + * Formats
->>> + */
->>> +
->>> +static const struct mtk_seninf_format_info mtk_seninf_formats[] = {
->>> +     {
->>> +             .code = MEDIA_BUS_FMT_SBGGR8_1X8,
->>> +             .flags = MTK_SENINF_FORMAT_BAYER,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SGBRG8_1X8,
->>> +             .flags = MTK_SENINF_FORMAT_BAYER,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SGRBG8_1X8,
->>> +             .flags = MTK_SENINF_FORMAT_BAYER,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SRGGB8_1X8,
->>> +             .flags = MTK_SENINF_FORMAT_BAYER,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SGRBG10_1X10,
->>> +             .flags = MTK_SENINF_FORMAT_BAYER,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SRGGB10_1X10,
->>> +             .flags = MTK_SENINF_FORMAT_BAYER,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SBGGR10_1X10,
->>> +             .flags = MTK_SENINF_FORMAT_BAYER,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SGBRG10_1X10,
->>> +             .flags = MTK_SENINF_FORMAT_BAYER,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SBGGR12_1X12,
->>> +             .flags = MTK_SENINF_FORMAT_BAYER,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SGBRG12_1X12,
->>> +             .flags = MTK_SENINF_FORMAT_BAYER,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SGRBG12_1X12,
->>> +             .flags = MTK_SENINF_FORMAT_BAYER,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SRGGB12_1X12,
->>> +             .flags = MTK_SENINF_FORMAT_BAYER,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SBGGR14_1X14,
->>> +             .flags = MTK_SENINF_FORMAT_BAYER,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SGBRG14_1X14,
->>> +             .flags = MTK_SENINF_FORMAT_BAYER,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SGRBG14_1X14,
->>> +             .flags = MTK_SENINF_FORMAT_BAYER,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SRGGB14_1X14,
->>> +             .flags = MTK_SENINF_FORMAT_BAYER,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SBGGR16_1X16,
->>> +             .flags = MTK_SENINF_FORMAT_BAYER,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SGBRG16_1X16,
->>> +             .flags = MTK_SENINF_FORMAT_BAYER,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SGRBG16_1X16,
->>> +             .flags = MTK_SENINF_FORMAT_BAYER,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SRGGB16_1X16,
->>> +             .flags = MTK_SENINF_FORMAT_BAYER,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_UYVY8_1X16,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_VYUY8_1X16,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_YUYV8_1X16,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_YVYU8_1X16,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_JPEG_1X8,
->>> +             .flags = MTK_SENINF_FORMAT_JPEG,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_S5C_UYVY_JPEG_1X8,
->>> +             .flags = MTK_SENINF_FORMAT_JPEG,
->>> +     },
->>> +     /* Keep the input-only formats last. */
+>>>  arch/arm/boot/dts/vt8500/vt8500.dtsi | 2 +-
+>>>  arch/arm/boot/dts/vt8500/wm8505.dtsi | 2 +-
+>>>  arch/arm/boot/dts/vt8500/wm8650.dtsi | 2 +-
+>>>  arch/arm/boot/dts/vt8500/wm8750.dtsi | 4 ++--
+>>>  arch/arm/boot/dts/vt8500/wm8850.dtsi | 4 ++--
+>>>  5 files changed, 7 insertions(+), 7 deletions(-)
 >>
->> Your comment doesn't make me understand why input-only formats shall be
->> placed last - and makes me think that having two arrays (one for both
->> and one for input only) would be easier and less error prone, other than
->> making you able to drop the MTK_SENINF_FORMAT_INPUT_ONLY flag entirely.
 >>
->>> +     {
->>> +             .code = MEDIA_BUS_FMT_SGRBG10_DPCM8_1X8,
->>> +             .flags = MTK_SENINF_FORMAT_DPCM | MTK_SENINF_FORMAT_INPUT_ONLY,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SRGGB10_DPCM8_1X8,
->>> +             .flags = MTK_SENINF_FORMAT_DPCM | MTK_SENINF_FORMAT_INPUT_ONLY,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SBGGR10_DPCM8_1X8,
->>> +             .flags = MTK_SENINF_FORMAT_DPCM | MTK_SENINF_FORMAT_INPUT_ONLY,
->>> +     }, {
->>> +             .code = MEDIA_BUS_FMT_SGBRG10_DPCM8_1X8,
->>> +             .flags = MTK_SENINF_FORMAT_DPCM | MTK_SENINF_FORMAT_INPUT_ONLY,
->>> +     }
->>> +};
->>> +
->>> +static const struct mtk_seninf_format_info *mtk_seninf_format_info(u32 code)
->>> +{
->>> +     unsigned int i;
->>> +
->>> +     for (i = 0; i < ARRAY_SIZE(mtk_seninf_formats); ++i) {
->>> +             if (mtk_seninf_formats[i].code == code)
->>> +                     return &mtk_seninf_formats[i];
->>> +     }
->>> +
->>> +     return NULL;
->>> +}
->>> +
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 >>
->> ..snip..
+>> Best regards,
+>> Krzysztof
 >>
->>> +
->>> +static void mtk_seninf_input_setup_csi2(struct mtk_seninf_input *input,
->>> +                                     struct v4l2_subdev_state *state)
->>> +{
->>> +     const struct mtk_seninf_format_info *fmtinfo;
->>> +     const struct v4l2_mbus_framefmt *format;
->>> +     unsigned int num_data_lanes = input->bus.num_data_lanes;
->>> +     unsigned int val = 0;
->>> +
->>> +     format = v4l2_subdev_state_get_stream_format(state, input->pad, 0);
->>> +     fmtinfo = mtk_seninf_format_info(format->code);
->>> +
->>> +     /* Configure timestamp */
->>> +     writel(SENINF_TIMESTAMP_STEP, input->base + SENINF_TG1_TM_STP);
->>> +
->>> +     /* HQ */
->>> +     writel(0x0, input->base + SENINF_TG1_PH_CNT);
->>
->> Zero means:
->>    - Sensor master clock: ISP_CLK
->>    - Sensor clock polarity: Rising edge
->>    - Sensor reset deasserted
->>    - Sensor powered up
->>    - Pixel clock inversion disabled
->>    - Sensor master clock polarity disabled
->>    - Phase counter disabled
->>
->>> +     writel(0x10001, input->base + SENINF_TG1_SEN_CK);
->>
->> Unroll this one... this is the TG1 sensor clock divider.
->>
->> CLKFL GENMASK(5, 0)
->> CLKRS GENMASK(13, 8)
->> CLKCNT GENMASK(21,16)
->>
->> Like this, I don't get what you're trying to set, because you're using a fixed
->> sensor clock rate, meaning that only a handful of camera sensors will be usable.
->>
->> Is this 8Mhz? 16? 24? what? :-)
->>
->> Two hints:
->>    - sensor_clk = clk_get_rate(isp_clk) / (tg1_sen_ck_clkcnt + 1);
->>    - int mtk_seninf_set_sensor_clk(u8 rate_mhz);
->>
->> Please :-)
 > 
-> Hi Angelo,
+> Hi,
 > 
-> I think I get your point about not hardcoding the sensor rate, but I
-> am not sure how to use
-> a mtk_seninf_set_sensor_clk(u8 rate_mhz); function.
-> 
-> Where would it be called? How is it exposed to the user?
-> 
+> Is there any further feedback or update for this ? This patch is not
+> yet merged but the related dt-binding patch that has been merged :
+> https://lore.kernel.org/all/20240423150550.91055-1-sheharyaar48@gmail.com/.
+> I understand that this is a trivial patch and the maintainers may be
+> busy with important work.
 
-As for where: setup, streaming start, resolution change (which may be covered
-by streaming start anyway, as a change should be calling stop->start anyway).
+I don't see you Cc any maintainers, so no one will pick it up.
 
-And for the how is it exposed to the user - well, depends what you mean for user,
-but it's all standard V4L2 API :-)
-
-Last but not least, I can give you another hint....
-
-struct media_entity *entity = (something_here);
-struct media_pad *mpad;
-struct v4l2_subdev *cam_subdev;
-struct v4l2_ctrl *ctl;
-s64 link_frequency, pixel_clock;
-
-if (entity->pads[0].flags & MEDIA_PAD_FL_SINK)
-    return -E_NOT_A_CAMERA_SENSOR_WE_IGNORE_THIS_ONE;
-
-pad = media_pad_remote_pad_first(&entity->pads[0]);
-if (!pad)
-   return -ENOENT;
-
-if (!is_media_entity_v4l2_subdev(pad->entity))
-   return -ENOENT;
-
-if (pad->entity->function != MEDIA_ENT_F_CAM_SENSOR)
-   return -ENOENT;
-
-cam_subdev = media_entity_to_v4l2_subdev(pad->entity);
-ctl = v4l2_ctrl_find(subdev->ctrl_handler, V4L2_CID_PIXEL_RATE);
-
-/* multiplier is usually bits per pixel, divider is usually num of lanes */
-link_frequency = v4l2_get_link_freq(cam_subdev->ctrl_handler, multiplier, divider);
-pixel_clock = v4l2_ctrl_g_ctrl_int64(ctl);
-
-
-....now you know what the sensor wants, set the seninf sensor clock accordingly.
-
-Cheers
-Angelo
-
-> Cheers
-> Julien
-> 
->>
->>> +
->>> +     /* First Enable Sensor interface and select pad (0x1a04_0200) */
->>> +     mtk_seninf_input_update(input, SENINF_CTRL, SENINF_EN, 1);
->>> +     mtk_seninf_input_update(input, SENINF_CTRL, PAD2CAM_DATA_SEL, SENINF_PAD_10BIT);
->>> +     mtk_seninf_input_update(input, SENINF_CTRL, SENINF_SRC_SEL, 0);
->>> +     mtk_seninf_input_update(input, SENINF_CTRL_EXT, SENINF_CSI2_IP_EN, 1);
->>> +     mtk_seninf_input_update(input, SENINF_CTRL_EXT, SENINF_NCSI2_IP_EN, 0);
->>> +
->>> +     /* DPCM Enable */
->>> +     if (fmtinfo->flags & MTK_SENINF_FORMAT_DPCM)
->>> +             val = SENINF_CSI2_DPCM_DI_2A_DPCM_EN;
->>> +     else
->>> +             val = SENINF_CSI2_DPCM_DI_30_DPCM_EN;
->>> +     writel(val, input->base + SENINF_CSI2_DPCM);
->>> +
->>> +     /* Settle delay */
->>> +     mtk_seninf_input_update(input, SENINF_CSI2_LNRD_TIMING,
->>> +                             DATA_SETTLE_PARAMETER, SENINF_SETTLE_DELAY);
->>> +
->>> +     /* HQ */
->>> +     writel(0x10, input->base + SENINF_CSI2_LNRC_FSM);
->>
->> As far as I know, SENINF_CSI2_LNRC_FSM is a read-only register: this write will do
->> exactly nothing...
->>
->>> +
->>> +     /* CSI2 control */
->>> +     val = readl(input->base + SENINF_CSI2_CTL)
->>> +         | (FIELD_PREP(SENINF_CSI2_CTL_ED_SEL, DATA_HEADER_ORDER_DI_WCL_WCH)
->>> +         | SENINF_CSI2_CTL_CLOCK_LANE_EN | (BIT(num_data_lanes) - 1));
->>> +     writel(val, input->base + SENINF_CSI2_CTL);
->>> +
->>> +     mtk_seninf_input_update(input, SENINF_CSI2_RESYNC_MERGE_CTL,
->>> +                             BYPASS_LANE_RESYNC, 0);
->>
->> 93 columns: fits in one line (not only this one!).
->>
->>> +     mtk_seninf_input_update(input, SENINF_CSI2_RESYNC_MERGE_CTL, CDPHY_SEL, 0);
->>> +     mtk_seninf_input_update(input, SENINF_CSI2_RESYNC_MERGE_CTL,
->>> +                             CPHY_LANE_RESYNC_CNT, 3);
->>> +     mtk_seninf_input_update(input, SENINF_CSI2_MODE, CSR_CSI2_MODE, 0);
->>> +     mtk_seninf_input_update(input, SENINF_CSI2_MODE, CSR_CSI2_HEADER_LEN, 0);
->>> +     mtk_seninf_input_update(input, SENINF_CSI2_DPHY_SYNC, SYNC_SEQ_MASK_0, 0xff00);
->>> +     mtk_seninf_input_update(input, SENINF_CSI2_DPHY_SYNC, SYNC_SEQ_PAT_0, 0x001d);
->>> +
->>> +     mtk_seninf_input_update(input, SENINF_CSI2_CTL, CLOCK_HS_OPTION, 0);
->>> +     mtk_seninf_input_update(input, SENINF_CSI2_CTL, HSRX_DET_EN, 0);
->>> +     mtk_seninf_input_update(input, SENINF_CSI2_CTL, HS_TRAIL_EN, 1);
->>> +     mtk_seninf_input_update(input, SENINF_CSI2_HS_TRAIL, HS_TRAIL_PARAMETER,
->>> +                             SENINF_HS_TRAIL_PARAMETER);
->>> +
->>> +     /* Set debug port to output packet number */
->>> +     mtk_seninf_input_update(input, SENINF_CSI2_DGB_SEL, DEBUG_EN, 1);
->>> +     mtk_seninf_input_update(input, SENINF_CSI2_DGB_SEL, DEBUG_SEL, 0x1a);
->>> +
->>> +     /* HQ */
->>> +     writel(0xfffffffe, input->base + SENINF_CSI2_SPARE0);
->>
->> I have no idea what this SPARE0 does, but I think that this is something that you
->> want to get from platform_data, as I guess this would be different on various SoCs?
->>
->>> +
->>> +     /* Enable CSI2 IRQ mask */
->>> +     /* Turn on all interrupt */
->>> +     writel(0xffffffff, input->base + SENINF_CSI2_INT_EN);
->>> +     /* Write clear CSI2 IRQ */
->>> +     writel(0xffffffff, input->base + SENINF_CSI2_INT_STATUS);
->>> +     /* Enable CSI2 Extend IRQ mask */
->>
->> You missed:
->>          writel(0xffffffff, input->base + SENINF_CSI2_INT_EN_EXT);
->>
->> P.S.: #define SENINF_CSI2_INT_EN_EXT 0x0b10
->>
->>
->>> +     /* Turn on all interrupt */
->>
->> /* Reset the CSI2 to commit changes */ <-- makes more sense, doesn't it?
->>
->>> +     mtk_seninf_input_update(input, SENINF_CTRL, CSI2_SW_RST, 1);
->>> +     udelay(1);
->>> +     mtk_seninf_input_update(input, SENINF_CTRL, CSI2_SW_RST, 0);
->>> +}
->>> +
->>> +static void mtk_seninf_mux_setup(struct mtk_seninf_mux *mux,
->>> +                              struct mtk_seninf_input *input,
->>> +                              struct v4l2_subdev_state *state)
->>> +{
->>> +     const struct mtk_seninf_format_info *fmtinfo;
->>> +     const struct v4l2_mbus_framefmt *format;
->>> +     unsigned int pix_sel_ext;
->>> +     unsigned int pix_sel;
->>> +     unsigned int hs_pol = 0;
->>> +     unsigned int vs_pol = 0;
->>> +     unsigned int val;
->>> +     u32 rst_mask;
->>> +
->>> +     format = v4l2_subdev_state_get_stream_format(state, input->pad, 0);
->>> +     fmtinfo = mtk_seninf_format_info(format->code);
->>> +
->>> +     /* Enable mux */
->>> +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_MUX_EN, 1);
->>> +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_SRC_SEL, SENINF_MIPI_SENSOR);
->>> +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL_EXT, SENINF_SRC_SEL_EXT, SENINF_NORMAL_MODEL);
->>> +
->>> +     pix_sel_ext = 0;
->>> +     pix_sel = 1;
->>
->>
->>          pixels_per_cycle = 1;
->>          bus_width = pixels_per_cycle >> 1;
->>
->> because:  0 == 1pix/cyc, 1 == 2pix/cyc, 2 == 4pix/cyc, 3 == 8pix... etc
->> ...but the width of this register depends on the SoC, so you also want to set
->> constraints to the bus width on a per-soc basis (platform data again, or at
->> least leave a comment here).
->>
->>          mtk_seninf_mux_update(....  PIX_SEL_EXT, bus_width);
->>          mtk_seninf_mux_update(....  PIX_SEL, bus_width);
->>
->>> +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL_EXT, SENINF_PIX_SEL_EXT, pix_sel_ext);
->>> +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_PIX_SEL, pix_sel);
->>> +
->>> +     if (fmtinfo->flags & MTK_SENINF_FORMAT_JPEG) {
->>> +             mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, FIFO_FULL_WR_EN, 0);
->>> +             mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, FIFO_FLUSH_EN,
->>> +                                   FIFO_FLUSH_EN_JPEG_2_PIXEL_MODE);
->>> +             mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, FIFO_PUSH_EN,
->>> +                             FIFO_PUSH_EN_JPEG_2_PIXEL_MODE);
->>> +     } else {
->>> +             mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, FIFO_FULL_WR_EN, 2);
->>> +             mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, FIFO_FLUSH_EN,
->>> +                                  FIFO_FLUSH_EN_NORMAL_MODE);
->>> +             mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, FIFO_PUSH_EN,
->>> +                             FIFO_PUSH_EN_NORMAL_MODE);
->>> +     }
->>> +
->>> +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_HSYNC_POL, hs_pol);
->>> +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_VSYNC_POL, vs_pol);
->>> +
->>> +     val = mtk_seninf_mux_read(mux, SENINF_MUX_CTRL);
->>> +     rst_mask = SENINF_MUX_CTRL_SENINF_IRQ_SW_RST | SENINF_MUX_CTRL_SENINF_MUX_SW_RST;
->>> +
->>> +     mtk_seninf_mux_write(mux, SENINF_MUX_CTRL, val | rst_mask);
->>
->> Are you sure that you don't need any wait between assertion and deassertion of RST?
->> Looks strange, but I don't really know then.
->>
->>> +     mtk_seninf_mux_write(mux, SENINF_MUX_CTRL, val & ~rst_mask);
->>> +
->>> +     /* HQ */
->>> +     mtk_seninf_mux_write(mux, SENINF_MUX_SPARE, 0xc2000);
->>
->> val = SENINF_FIFO_FULL_SEL;
->>
->> /* SPARE field meaning is unknown */
->> val |= 0xc0000;
->>
->>          mtk_seninf_mux_write(mux, SENINF_MUX_SPARE, val);
->>
->>> +}
->>> +
->>> +static void mtk_seninf_top_mux_setup(struct mtk_seninf *priv,
->>> +                                  enum mtk_seninf_id seninf_id,
->>> +                                  struct mtk_seninf_mux *mux)
->>> +{
->>> +     unsigned int val;
->>> +
->>> +     /*
->>> +      * Use the top mux (from SENINF input to MUX) to configure routing, and
->>> +      * hardcode a 1:1 mapping from the MUX instances to the SENINF outputs.
->>> +      */
->>> +     val = readl(priv->base + SENINF_TOP_MUX_CTRL)
->>> +             & ~(0xf << (mux->mux_id * 4));
->>> +     val |= (seninf_id & 0xf) << (mux->mux_id * 4);
->>> +     writel(val, priv->base + SENINF_TOP_MUX_CTRL);
->>> +
->>> +     writel(0x76541010, priv->base + SENINF_TOP_CAM_MUX_CTRL);
->>
->> Each four bits of TOP_CAM_MUX_CTRL selects between seninf1 to seninf8 muxes, and
->> TOP_MUX_CTRL is laid out in the very same way.
->>
->> This means that if you're calculating a value for TOP_MUX_CTRL, you can do exactly
->> the same for TOP_CAM_MUX_CTRL.
->>
->>> +}
->>> +
->>> +static void seninf_enable_test_pattern(struct mtk_seninf *priv,
->>> +                                    struct v4l2_subdev_state *state)
->>> +{
->>> +     struct mtk_seninf_input *input = &priv->inputs[CSI_PORT_0];
->>> +     struct mtk_seninf_mux *mux = &priv->muxes[0];
->>> +     const struct mtk_seninf_format_info *fmtinfo;
->>> +     const struct v4l2_mbus_framefmt *format;
->>> +     unsigned int val;
->>> +     unsigned int pix_sel_ext;
->>> +     unsigned int pix_sel;
->>> +     unsigned int hs_pol = 0;
->>> +     unsigned int vs_pol = 0;
->>> +     unsigned int seninf = 0;
->>> +     unsigned int tm_size = 0;
->>> +     unsigned int mux_id = mux->mux_id;
->>> +
->>> +     format = v4l2_subdev_state_get_stream_format(state, priv->conf->nb_inputs, 0);
->>> +     fmtinfo = mtk_seninf_format_info(format->code);
->>> +
->>> +     mtk_seninf_update(priv, SENINF_TOP_CTRL, MUX_LP_MODE, 0);
->>> +
->>> +     mtk_seninf_update(priv, SENINF_TOP_CTRL, SENINF_PCLK_EN, 1);
->>> +     mtk_seninf_update(priv, SENINF_TOP_CTRL, SENINF2_PCLK_EN, 1);
->>> +
->>> +     mtk_seninf_input_update(input, SENINF_CTRL, SENINF_EN, 1);
->>> +     mtk_seninf_input_update(input, SENINF_CTRL, SENINF_SRC_SEL, 1);
->>> +     mtk_seninf_input_update(input, SENINF_CTRL_EXT,
->>> +                             SENINF_TESTMDL_IP_EN, 1);
->>> +
->>> +     mtk_seninf_input_update(input, SENINF_TG1_TM_CTL, TM_EN, 1);
->>> +     mtk_seninf_input_update(input, SENINF_TG1_TM_CTL, TM_PAT, 0xc);
->>> +     mtk_seninf_input_update(input, SENINF_TG1_TM_CTL, TM_VSYNC, 4);
->>> +     mtk_seninf_input_update(input, SENINF_TG1_TM_CTL, TM_DUMMYPXL, 0x28);
->>> +
->>> +     if (fmtinfo->flags & MTK_SENINF_FORMAT_BAYER)
->>> +             mtk_seninf_input_update(input, SENINF_TG1_TM_CTL, TM_FMT, 0x0);
->>> +     else
->>> +             mtk_seninf_input_update(input, SENINF_TG1_TM_CTL, TM_FMT, 0x1);
->>> +
->>> +     tm_size = FIELD_PREP(SENINF_TG1_TM_SIZE_TM_LINE, format->height + 8);
->>> +     switch (format->code) {
->>> +     case MEDIA_BUS_FMT_UYVY8_1X16:
->>> +     case MEDIA_BUS_FMT_VYUY8_1X16:
->>> +     case MEDIA_BUS_FMT_YUYV8_1X16:
->>> +     case MEDIA_BUS_FMT_YVYU8_1X16:
->>> +             tm_size |= FIELD_PREP(SENINF_TG1_TM_SIZE_TM_PXL, format->width * 2);
->>> +             break;
->>> +     default:
->>> +             tm_size |= FIELD_PREP(SENINF_TG1_TM_SIZE_TM_PXL, format->width);
->>> +             break;
->>> +     }
->>> +     writel(tm_size, input->base + SENINF_TG1_TM_SIZE);
->>> +
->>> +     writel(TEST_MODEL_CLK_DIVIDED_CNT, input->base + SENINF_TG1_TM_CLK);
->>> +     writel(TIME_STAMP_DIVIDER, input->base + SENINF_TG1_TM_STP);
->>> +
->>> +     /* Set top mux */
->>> +     val = (readl(priv->base + SENINF_TOP_MUX_CTRL) & (~(0xf << (mux_id * 4)))) |
->>> +             ((seninf & 0xf) << (mux_id * 4));
->>> +     writel(val, priv->base + SENINF_TOP_MUX_CTRL);
->>
->> This is duplicated, and it is the same that you have in mtk_seninf_top_mux_setup()
->>
->>> +
->>> +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_MUX_EN, 1);
->>> +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL_EXT,
->>> +                           SENINF_SRC_SEL_EXT, SENINF_TEST_MODEL);
->>> +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_SRC_SEL, 1);
->>> +
->>> +     pix_sel_ext = 0;
->>> +     pix_sel = 1;
->>> +
->>
->> This is in mtk_seninf_mux_setup(), but if you apply my suggestion, it won't be in
->> there anymore, so you'll call a function here to set the right value :-)
->>
->>> +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL_EXT,
->>> +                           SENINF_PIX_SEL_EXT, pix_sel_ext);
->>> +
->>> +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_PIX_SEL, pix_sel);
->>> +
->>> +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, FIFO_PUSH_EN, 0x1f);
->>> +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, FIFO_FLUSH_EN, 0x1b);
->>> +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, FIFO_FULL_WR_EN, 2);
->>> +
->>> +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_HSYNC_POL, hs_pol);
->>> +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_VSYNC_POL, vs_pol);
->>> +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_HSYNC_MASK, 1);
->>> +
->>> +     mtk_seninf_mux_write(mux, SENINF_MUX_INTEN,
->>> +                          SENINF_IRQ_CLR_SEL | SENINF_ALL_ERR_IRQ_EN);
->>> +
->>> +     mtk_seninf_mux_write(mux, SENINF_MUX_CTRL,
->>> +                          mtk_seninf_mux_read(mux, SENINF_MUX_CTRL) |
->>> +                          SENINF_MUX_CTRL_SENINF_IRQ_SW_RST |
->>> +                          SENINF_MUX_CTRL_SENINF_MUX_SW_RST);
->>> +     udelay(1);
->>> +     mtk_seninf_mux_write(mux, SENINF_MUX_CTRL,
->>> +                          mtk_seninf_mux_read(mux, SENINF_MUX_CTRL) &
->>> +                          ~(SENINF_MUX_CTRL_SENINF_IRQ_SW_RST |
->>> +                            SENINF_MUX_CTRL_SENINF_MUX_SW_RST));
->>> +
->>> +     //check this
->>> +     writel(0x76540010, priv->base + SENINF_TOP_CAM_MUX_CTRL);
->>> +
->>> +     dev_dbg(priv->dev, "%s: OK\n", __func__);
->>> +}
->>> +
->>
->> Cheers,
->> Angelo
->>
+Best regards,
+Krzysztof
 
 
