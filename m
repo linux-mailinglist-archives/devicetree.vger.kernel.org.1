@@ -1,131 +1,116 @@
-Return-Path: <devicetree+bounces-74909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C811904F95
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 11:49:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EB02904FA6
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 11:54:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 070FAB20F0F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 09:49:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B7511F25F41
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 09:54:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9097F16DEB7;
-	Wed, 12 Jun 2024 09:49:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF28916DED6;
+	Wed, 12 Jun 2024 09:53:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iSsVYfJJ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Nr22xxNX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 667566F2F0;
-	Wed, 12 Jun 2024 09:49:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C70716DED2;
+	Wed, 12 Jun 2024 09:53:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718185745; cv=none; b=e5hXwdOoVHn9gjz2ZtYs/FoikNpfev+UFBtO/nuP8CWlTqmMiM2c15/vEIUu3E9sk2ztzXiUowv+EEeaOcSuA3IwBKEqIph1CfaU+M66H5rKuIdDV7e1BwI3gHOV9XPLWo4Jdok1l7aOtROUrR2S1Jmb3sQZwvRZVgFgPXoCn1A=
+	t=1718186031; cv=none; b=c9Z0oTewCko/yxiGS9N0hw3KFP5TInd/i2PWGipUvbXg9w5Zvyl+iDs0BfH8Qq7/gNJjE+U/cySNxVSfbRh0Rm5XPQSQH6HH0t6KFqJBNrPTMYonzpm7AlLxsiBLx5c1774KWY+LMOTUFoJo6/wu6X8xAmhHAAi05k2NPxgYcls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718185745; c=relaxed/simple;
-	bh=bhyxd81qpjN+o30sLHTHf1HrEYZ4g+4BZaf33WFZmjc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RZNrQCebJTY1n7kx17slb9eaUssArbkmr4mdYu0o1czrkXGjTUjTtWsqKAbsKeyw2nXKMOH3MqDhgdtFWGva0RC/xSYvqzkBEkwbNvq8RqjmUVA9kXL9ISDiJRfyocMnrMj2rrm/eDd6WjEpPGBw6AbTK8npfdg5hfPhAMmXVYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iSsVYfJJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC5DEC3277B;
-	Wed, 12 Jun 2024 09:49:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718185745;
-	bh=bhyxd81qpjN+o30sLHTHf1HrEYZ4g+4BZaf33WFZmjc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iSsVYfJJDDddJqS200gpwg/REcyhoIY8u91H1Ab2qzOUKxJAJzi83Ed1zWuNkpajT
-	 qRm7XPpN+lvNX/QAdWlxql+zUYkye2s20xv5tVa51u25Xl4eTr8iTXWkz4R5Qi+z2V
-	 hHMcE3IlmGJJ12FqNR7QNPnYckqHKynImSFxIyW0iE4Wtoimll/NdhRaBiCRXo1MgW
-	 fpv1PJnN404qnClJyhwOFgeCJZR9VYIyWbhCxNLdsAajhDWy+LGLiHhgf8Arxgw4d3
-	 kU8iiS1R26jNJkC2hvozt50hw+HL4BYxByOOgb9jNtb4r5MFGE500H5c01rk6jV8+c
-	 aqylfEu4pa3Ng==
-Message-ID: <4d424752-509c-46a0-8942-94d900c55bb2@kernel.org>
-Date: Wed, 12 Jun 2024 11:49:00 +0200
+	s=arc-20240116; t=1718186031; c=relaxed/simple;
+	bh=yRlmiQo1uibOoBDJDgUIhh3gKKJ8sqPtUMS2oriWl9k=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=DBkWj5SSwWEfQ3oIEPsEg7p03qEBlgCz+sFk7cz1k9XbuFpEXXZQ3HQY4jYc3d9y9YrtAvwMobFKCvOX6xJ9lNc09D81c++wVyn+gEs/OYoFGtI5PvY8Cdyi/D1I/kMDNHphk9KAn8KKMGcpNk8doUHt4z75niqd4S1i5bz9L+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Nr22xxNX; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45C6cKkN001361;
+	Wed, 12 Jun 2024 09:53:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=nsxJ81OnUl8js+adMpv2E1
+	+5d/b+K4/IU2AKkSrL+E4=; b=Nr22xxNXXQMnvw9cNdIV1qA14ugNe2cbtVB3xi
+	N7D8VvwS4mWG2JfFvPo4HXA+ob3b+E4ZVQCAFU0P+ll6utPIQ3mPoBKWBxNQTnGT
+	BAogH4TGAL/kU3yAOeyoBae2ZMnwP9wMeLppwif1G+1lGtweJbYFDj7QvHXxbxsS
+	9ZD15I4KjzA11VRTIUSRMolpw3wMjA727l6JMm/OEh3jpJ/6MPYtOKh97eAiWePR
+	0HSpbZK3VRwXMP/fb1YkO3OotNLMKIQodpfBpsFndBHZgUfFqe/6gSRH5TLPQZ6f
+	2EioqnW6lNFub5//Pvqd4GIWqoDVq1cwKolLDxA5Ai42mwsA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yptuy1uru-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Jun 2024 09:53:33 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45C9rXSh013682
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Jun 2024 09:53:33 GMT
+Received: from luoj-gv.qualcomm.com (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 12 Jun
+ 2024 02:53:29 -0700
+From: Luo Jie <quic_luoj@quicinc.com>
+To: <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <andrew@lunn.ch>, <hkallweit1@gmail.com>,
+        <linux@armlinux.org.uk>, <corbet@lwn.net>, <vladimir.oltean@nxp.com>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
+Subject: [PATCH net-next 0/2] Introduce PHY mode 10G-QXGMII
+Date: Wed, 12 Jun 2024 17:53:15 +0800
+Message-ID: <20240612095317.1261855-1-quic_luoj@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] dt-bindings: eeprom: at25: add fujitsu,mb85rs256
- compatible
-To: Francesco Dolcini <francesco@dolcini.it>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Christian Eggers <ceggers@arri.de>
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240612092934.12282-1-francesco@dolcini.it>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240612092934.12282-1-francesco@dolcini.it>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: g_iMA5xOiqjxnp3lsznu5Ie_Cx3rYknf
+X-Proofpoint-ORIG-GUID: g_iMA5xOiqjxnp3lsznu5Ie_Cx3rYknf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-12_06,2024-06-11_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 bulkscore=0
+ impostorscore=0 mlxscore=0 priorityscore=1501 lowpriorityscore=0
+ suspectscore=0 clxscore=1011 mlxlogscore=748 phishscore=0 spamscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406120071
 
-On 12/06/2024 11:29, Francesco Dolcini wrote:
-> From: Francesco Dolcini <francesco.dolcini@toradex.com>
-> 
-> The fujitsu,mb85rs256 is a 256 Kbit SPI memory FRAM in the same family
-> as the two existing fujitsu,mb85rs* compatibles and at25 compatible.
-> 
-> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> ---
-> No changes in the driver is required for this to be used, a device tree
-> file using it will come in a later step. Sending to minimize work
-> slowdown because of TI DT maintainer requirements on DT bindings, see
-> https://lore.kernel.org/all/469be7c2-6865-40d4-bd06-15dc3a08b3e3@kernel.org/
-> for more details.
-> ---
+This patch series adds 10G-QXGMII mode for PHY driver. The patch
+series is split from the QCA8084 PHY driver patch series below.
+https://lore.kernel.org/all/20231215074005.26976-1-quic_luoj@quicinc.com/
+ 
+Per Andrew Lunn’s advice, submitting this patch series for acceptance
+as they already include the necessary 'Reviewed-by:' tags. This way,
+they need not wait for QCA8084 series patches to conclude review.
+
+Vladimir Oltean (2):
+  net: phy: introduce core support for phy-mode = "10g-qxgmii"
+  dt-bindings: net: ethernet-controller: add 10g-qxgmii mode
+
+ .../devicetree/bindings/net/ethernet-controller.yaml |  1 +
+ Documentation/networking/phy.rst                     |  6 ++++++
+ drivers/net/phy/phy-core.c                           |  1 +
+ drivers/net/phy/phylink.c                            | 12 ++++++++++--
+ include/linux/phy.h                                  |  4 ++++
+ include/linux/phylink.h                              |  1 +
+ 6 files changed, 23 insertions(+), 2 deletions(-)
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+base-commit: 91579c93a9b207725559e3199870419afd50220f
+-- 
+2.34.1
 
 
