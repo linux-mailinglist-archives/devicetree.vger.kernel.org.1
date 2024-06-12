@@ -1,273 +1,223 @@
-Return-Path: <devicetree+bounces-74805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFE72904AAC
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 07:13:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82B90904ACA
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 07:24:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6B9C1C23812
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 05:13:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07641283D2F
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 05:24:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB8E82D057;
-	Wed, 12 Jun 2024 05:13:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6750B38FA3;
+	Wed, 12 Jun 2024 05:23:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Mh25kMJ9"
+	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="SE8oQZwu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 825E928DD1;
-	Wed, 12 Jun 2024 05:13:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1160381AF
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 05:23:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718169183; cv=none; b=IFyiYwa6ADj98cH+fn5a4FCBYfUvSw6hl32W9IPknTL5AnB1oe+GscJKzJZVf9+44Jqzoa4pntozkIjW8z+XBO+6xfjs6iSK2t6H47ewNG6T23JVmZHbcCNCP+2i9mz1aTamR77tCsBefqKhWjr2mHCydwu7vujr92AqaepX2IY=
+	t=1718169822; cv=none; b=m5BrHp+Cyk14edqKO8xno7jF9QzUlYRd9jEVXF1k9TqvTC7pyHfrNWS/ruBqTjeoYh7qQPTuZ4h/0Ng6/g7bl3DrlLqWrUAB5fx7kWIZ7exPb3QSePfIKv5FWPdRuH+gDrsoWPKA1+oqfB8SRpbMZxDflPoB5vBscG3PWKrQIXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718169183; c=relaxed/simple;
-	bh=QuKgoKhkRC9lkLuEWouInKhzEjvQYEbbMHXsX9D/WKw=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=HsEj1cpo7poB+OHT06jEssmpFBFG6q3/HMtgrfNkkL/sn9Zvtc8oZCFA1FCNXl3uQ5IlR8UMf6VPTGJqjZNgtvd2is6YeYXm1x2/X7PaB8PNdDqSM8msfgbZFC1k9VMNmGV4qj0Ri9RLg5a+BZH9Ih6Y9UF5+Tb6O5kywQgRkss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Mh25kMJ9; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45C5Cm6n113921;
-	Wed, 12 Jun 2024 00:12:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1718169168;
-	bh=xVJ3m/Bj+QeP46W8FNEFQooN15bLt4kkNLLkhHLR5og=;
-	h=From:To:CC:Subject:Date;
-	b=Mh25kMJ91tnTdBFSIr6+9OWYsFlFSTizQbkAaIfXZXJbTKofRuJi7t580JWk6yi+1
-	 3tKi8iDIBE47sS9yuBU2l04bolVFPSKHqaX+G/MOZwmXjG8U7/IKQOetrZFK4StwVL
-	 msyAFNyQaHK/O8KX64kuzY1Bc6XWYlQGTPvHpAZ0=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45C5CmnR046932
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 12 Jun 2024 00:12:48 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 12
- Jun 2024 00:12:47 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 12 Jun 2024 00:12:48 -0500
-Received: from localhost (jayesh-hp-probook-440-g8-notebook-pc.dhcp.ti.com [172.24.227.55])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45C5Cldo072964;
-	Wed, 12 Jun 2024 00:12:47 -0500
-From: Jayesh Choudhary <j-choudhary@ti.com>
-To: <linux-kernel@vger.kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
-        <robh@kernel.org>, <j-luthra@ti.com>, <u-kumar1@ti.com>,
-        <j-choudhary@ti.com>
-CC: <kristo@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v2] arm64: dts: ti: k3-j722s-evm: Enable analog audio support
-Date: Wed, 12 Jun 2024 10:42:46 +0530
-Message-ID: <20240612051246.41117-1-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1718169822; c=relaxed/simple;
+	bh=26a9aogFFQ6QWc11kY+KtmVRlU7+xrXNx1HH+oHtcXs=;
+	h=Date:From:Subject:To:Cc:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=F/98x8hKwSCFsuC19Jl3nLyFqM/+hKD293PLjoWioX6vfwyAH9LToUsBW1HYoY5w7p2Xe1YlrQ48E0qC7FtUhc9sLs7RSHvpEdQ4tTv1sPS6bsg7ozrVrZTjhou+pR4dJqBtkitpVd2R4qwoA3bd0xV9+t+sZ4q2npLa9xZcDng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=SE8oQZwu; arc=none smtp.client-ip=95.215.58.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
+X-Envelope-To: mehdi.djait.k@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
+	s=key1; t=1718169817;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wbMyZcQy/EuPZsKGMdB3xw3iRWsXhVM6qxIencI5Uio=;
+	b=SE8oQZwuF1or8Al4mBxdn/0hs5SnM7LHqHb7yl9lhhh/qYKpJUZos0HclWWvhTG14RAkSZ
+	VPXy1gDXUZfjJpyKqayxAK+AvCTd8Mnwj5M7ex7crP1uW5PeM89hltSvay24efM6ZndDhQ
+	JLxWQ43LUItgAaPkw/BUMOtFLXEvAZWWZYZW5zjRqp+L8Nunuzw245iy9KpNRWfpztGu4f
+	Hv6wwAXeGDLB2NIi0S7JDAMsL9H/L65xef6VKKmGcgcswRc5Bya8pLJPJSwy622ixVgz9s
+	t4XwvrxlWx7Zc1eQxslbZDz8wddKtSvbPJSTneehQEf+TGg7cF+h18b/1IC2Ew==
+X-Envelope-To: mchehab@kernel.org
+X-Envelope-To: heiko@sntech.de
+X-Envelope-To: hverkuil-cisco@xs4all.nl
+X-Envelope-To: krzysztof.kozlowski+dt@linaro.org
+X-Envelope-To: robh+dt@kernel.org
+X-Envelope-To: conor+dt@kernel.org
+X-Envelope-To: linux-media@vger.kernel.org
+X-Envelope-To: devicetree@vger.kernel.org
+X-Envelope-To: linux-kernel@vger.kernel.org
+X-Envelope-To: thomas.petazzoni@bootlin.com
+X-Envelope-To: alexandre.belloni@bootlin.com
+X-Envelope-To: maxime.chevallier@bootlin.com
+X-Envelope-To: paul.kocialkowski@bootlin.com
+X-Envelope-To: michael.riesch@wolfvision.net
+X-Envelope-To: laurent.pinchart@ideasonboard.com
+X-Envelope-To: mehdi.djait@bootlin.com
+Date: Wed, 12 Jun 2024 02:23:13 -0300
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Val Packett <val@packett.cool>
+Subject: Re: [RESEND Patch v13 2/3] media: rockchip: Add a driver for
+ Rockchip's camera interface
+To: Mehdi Djait <mehdi.djait.k@gmail.com>
+Cc: mchehab@kernel.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, conor+dt@kernel.org,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
+	alexandre.belloni@bootlin.com, maxime.chevallier@bootlin.com,
+	paul.kocialkowski@bootlin.com, michael.riesch@wolfvision.net,
+	laurent.pinchart@ideasonboard.com, Mehdi Djait <mehdi.djait@bootlin.com>
+Message-Id: <PACYES.KP3K6W0JOIAK1@packett.cool>
+In-Reply-To: <715d89214d1ed6a8bb16cbb6268718a737485560.1707677804.git.mehdi.djait.k@gmail.com>
+References: <cover.1707677804.git.mehdi.djait.k@gmail.com>
+	<715d89214d1ed6a8bb16cbb6268718a737485560.1707677804.git.mehdi.djait.k@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii; format=flowed
+X-Migadu-Flow: FLOW_OUT
 
-The audio support on J722S-EVM is using TLV320AIC3106[0] codec
-connected to McASP1 serializers.
+Hi,
 
-- Add the nodes for sound-card, audio codec and McASP1.
-- Add hog for TRC_MUX_SEL to select between McASP and TRACE signals
-- Add hogs for GPIO_AUD_RSTn and MCASP1_FET_SEL which is used to
-  switch between HDMI audio and codec audio.
-- Add pinmux for MCASP1 and AUDIO_EXT_REFCLK1.
-- Add syscon node for audio_refclk1 to set the enable bit in
-  CTRL_MMR reg and select the parent clock for the external clock.
+a couple more comments on this driver:
 
-[0]: <https://www.ti.com/lit/gpn/TLV320AIC3106>
+On Sun, Feb 11 2024 at 20:03:31 +01:00:00, Mehdi Djait 
+<mehdi.djait.k@gmail.com> wrote:
+> +static int cif_stream_start(struct cif_stream *stream)
+> +{
+> +	u32 val, fmt_type, xfer_mode = 0;
+> +	struct cif_device *cif_dev = stream->cifdev;
+> +	struct cif_remote *remote_info = &cif_dev->remote;
+> +	int ret;
+> +	u32 input_mode;
+> +
+> +	stream->frame_idx = 0;
+> +	stream->frame_phase = 0;
+> +
+> +	fmt_type = stream->cif_fmt_in->fmt_type;
+> +	input_mode = (remote_info->std == V4L2_STD_NTSC) ?
+> +		      CIF_FORMAT_INPUT_MODE_NTSC :
+> +		      CIF_FORMAT_INPUT_MODE_PAL;
 
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
----
+Mode logic needs to be expanded for cameras; I'm trying to get it 
+working correctly,
+so far managed to get some cursed selfies with the wrong pixel format 
+:) but either
+way I could send a patch when I have it working well.
 
-This patch depends upon the bcdma driver fix posted upstream:
-<https://lore.kernel.org/all/20240607-bcdma_chan_cnt-v2-1-bf1a55529d91@ti.com/>
+> +static int subdev_notifier_complete(struct v4l2_async_notifier 
+> *notifier)
+> +{
+> +	struct cif_device *cif_dev;
+> +	struct v4l2_subdev *sd;
+> +	int ret;
+> +
+> +	cif_dev = container_of(notifier, struct cif_device, notifier);
+> +	sd = cif_dev->remote.sd;
+> +
+> +	mutex_lock(&cif_dev->media_dev.graph_mutex);
+> +
 
-v1 patch:
-<https://lore.kernel.org/all/20240611082820.17442-1-j-choudhary@ti.com/>
+Potential deadlock with this lock:
 
-Changelog v1->v2:
-- Fix dtb warning for pin-muxing
+[    3.438667] ======================================================
+[    3.438672] WARNING: possible circular locking dependency detected
+[    3.438677] 6.10.0-rc1-next-20240531 #151 Not tainted
+[    3.438684] ------------------------------------------------------
+[    3.438687] kworker/u8:1/25 is trying to acquire lock:
+[    3.438695] c152d41c (videodev_lock){+.+.}-{4:4}, at: 
+__video_register_device+0xf4/0x15b0
+[    3.438737]
+[    3.438737] but task is already holding lock:
+[    3.438740] c31981fc (&mdev->graph_mutex){+.+.}-{4:4}, at: 
+subdev_notifier_complete+0x20/0x80
+[    3.438765]
+[    3.438765] which lock already depends on the new lock.
+[    3.438765]
+[    3.438769]
+[    3.438769] the existing dependency chain (in reverse order) is:
+[    3.438772]
+[    3.438772] -> #1 (&mdev->graph_mutex){+.+.}-{4:4}:
+[    3.438786]        lock_acquire+0x110/0x374
+[    3.438809]        __mutex_lock+0xac/0xf2c
+[    3.438828]        mutex_lock_nested+0x1c/0x24
+[    3.438843]        media_device_register_entity+0x80/0x1e8
+[    3.438857]        __video_register_device+0xab0/0x15b0
+[    3.438869]        cif_register_stream_vdev+0x158/0x18c
+[    3.438880]        cif_plat_probe+0x20c/0x424
+[    3.438888]        platform_probe+0x5c/0xb0
+[    3.438905]        really_probe+0xc8/0x2cc
+[    3.438916]        __driver_probe_device+0x88/0x1a0
+[    3.438926]        driver_probe_device+0x30/0x108
+[    3.438936]        __driver_attach+0x94/0x184
+[    3.438946]        bus_for_each_dev+0x7c/0xcc
+[    3.438955]        bus_add_driver+0xcc/0x1ec
+[    3.438964]        driver_register+0x7c/0x114
+[    3.438975]        do_one_initcall+0x7c/0x2f8
+[    3.438989]        kernel_init_freeable+0x1b0/0x20c
+[    3.439010]        kernel_init+0x14/0x12c
+[    3.439024]        ret_from_fork+0x14/0x28
+[    3.439033]
+[    3.439033] -> #0 (videodev_lock){+.+.}-{4:4}:
+[    3.439048]        check_prev_add+0x134/0x17d8
+[    3.439065]        __lock_acquire+0x17e0/0x21fc
+[    3.439080]        lock_acquire+0x110/0x374
+[    3.439095]        __mutex_lock+0xac/0xf2c
+[    3.439109]        mutex_lock_nested+0x1c/0x24
+[    3.439123]        __video_register_device+0xf4/0x15b0
+[    3.439135]        __v4l2_device_register_subdev_nodes+0xd8/0x1a0
+[    3.439152]        subdev_notifier_complete+0x2c/0x80
+[    3.439160]        __v4l2_async_register_subdev+0xa8/0x1a0
+[    3.439176]        gc0308_probe+0x654/0x6f4
+[    3.439187]        i2c_device_probe+0x168/0x268
+[    3.439201]        really_probe+0xc8/0x2cc
+[    3.439211]        __driver_probe_device+0x88/0x1a0
+[    3.439221]        driver_probe_device+0x30/0x108
+[    3.439231]        __device_attach_driver+0x94/0x10c
+[    3.439241]        bus_for_each_drv+0x90/0xe4
+[    3.439250]        __device_attach+0xac/0x1b0
+[    3.439260]        bus_probe_device+0x8c/0x90
+[    3.439269]        deferred_probe_work_func+0x7c/0xac
+[    3.439279]        process_one_work+0x23c/0x6bc
+[    3.439295]        worker_thread+0x190/0x3d8
+[    3.439308]        kthread+0xf8/0x114
+[    3.439321]        ret_from_fork+0x14/0x28
+[    3.439330]
+[    3.439330] other info that might help us debug this:
+[    3.439330]
+[    3.439333]  Possible unsafe locking scenario:
+[    3.439333]
+[    3.439336]        CPU0                    CPU1
+[    3.439339]        ----                    ----
+[    3.439341]   lock(&mdev->graph_mutex);
+[    3.439349]                                lock(videodev_lock);
+[    3.439356]                                lock(&mdev->graph_mutex);
+[    3.439363]   lock(videodev_lock);
+[    3.439370]
+[    3.439370]  *** DEADLOCK ***
+[    3.439370]
+[    3.439373] 5 locks held by kworker/u8:1/25:
+[    3.439379]  #0: c28106b4 
+((wq_completion)events_unbound){+.+.}-{0:0}, at: 
+process_one_work+0x1ac/0x6bc
+[    3.439408]  #1: f0889f20 (deferred_probe_work){+.+.}-{0:0}, at: 
+process_one_work+0x1d4/0x6bc
+[    3.439436]  #2: c303ec9c (&dev->mutex){....}-{4:4}, at: 
+__device_attach+0x30/0x1b0
+[    3.439461]  #3: c152d3d0 (list_lock){+.+.}-{4:4}, at: 
+__v4l2_async_register_subdev+0x50/0x1a0
+[    3.439491]  #4: c31981fc (&mdev->graph_mutex){+.+.}-{4:4}, at: 
+subdev_notifier_complete+0x20/0x80
 
- arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 121 ++++++++++++++++++++++++
- 1 file changed, 121 insertions(+)
+> 
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-index bf3c246d13d1..426ae3e8a839 100644
---- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-@@ -105,6 +105,16 @@ vdd_sd_dv: regulator-TLV71033 {
- 			 <3300000 0x1>;
- 	};
- 
-+	vcc_3v3_aud: regulator-vcc3v3 {
-+		/* Output of LM5140 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
- 	vsys_io_1v8: regulator-vsys-io-1v8 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vsys_io_1v8";
-@@ -122,6 +132,35 @@ vsys_io_1v2: regulator-vsys-io-1v2 {
- 		regulator-always-on;
- 		regulator-boot-on;
- 	};
-+
-+	codec_audio: sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "J722S-EVM";
-+		simple-audio-card,widgets =
-+			"Headphone",	"Headphone Jack",
-+			"Line",		"Line In",
-+			"Microphone",	"Microphone Jack";
-+		simple-audio-card,routing =
-+			"Headphone Jack",	"HPLOUT",
-+			"Headphone Jack",	"HPROUT",
-+			"LINE1L",		"Line In",
-+			"LINE1R",		"Line In",
-+			"MIC3R",		"Microphone Jack",
-+			"Microphone Jack",	"Mic Bias";
-+		simple-audio-card,format = "dsp_b";
-+		simple-audio-card,bitclock-master = <&sound_master>;
-+		simple-audio-card,frame-master = <&sound_master>;
-+		simple-audio-card,bitclock-inversion;
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&mcasp1>;
-+		};
-+
-+		sound_master: simple-audio-card,codec {
-+			sound-dai = <&tlv320aic3106>;
-+			clocks = <&audio_refclk1>;
-+		};
-+	};
- };
- 
- &main_pmx0 {
-@@ -202,6 +241,21 @@ J722S_IOPAD(0x0130, PIN_OUTPUT, 0) /* (AG26) RGMII1_TXC */
- 			J722S_IOPAD(0x012c, PIN_OUTPUT, 0) /* (AF25) RGMII1_TX_CTL */
- 		>;
- 	};
-+
-+	main_mcasp1_pins_default: main-mcasp1-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x0090, PIN_INPUT, 2) /* (U24) GPMC0_BE0n_CLE.MCASP1_ACLKX */
-+			J722S_IOPAD(0x0098, PIN_INPUT, 2) /* (AA24) GPMC0_WAIT0.MCASP1_AFSX */
-+			J722S_IOPAD(0x008c, PIN_OUTPUT, 2) /* (T25) GPMC0_WEn.MCASP1_AXR0 */
-+			J722S_IOPAD(0x0084, PIN_INPUT, 2) /* (R25) GPMC0_ADVn_ALE.MCASP1_AXR2 */
-+		>;
-+	};
-+
-+	audio_ext_refclk1_pins_default: audio-ext-refclk1-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x0a0, PIN_OUTPUT, 1) /* (N24) GPMC0_WPn.AUDIO_EXT_REFCLK1 */
-+		>;
-+	};
- };
- 
- &cpsw3g {
-@@ -277,6 +331,12 @@ &wkup_i2c0 {
- 	bootph-all;
- };
- 
-+&k3_clks {
-+	/* Configure AUDIO_EXT_REFCLK1 pin as output */
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&audio_ext_refclk1_pins_default>;
-+};
-+
- &main_i2c0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_i2c0_pins_default>;
-@@ -301,6 +361,41 @@ exp1: gpio@23 {
- 				  "PCIe0_1L_RC_RSTz", "PCIe0_1L_PRSNT#",
- 				  "ENET1_EXP_SPARE2", "ENET1_EXP_PWRDN",
- 				  "PD_I2ENET1_I2CMUX_SELC_IRQ", "ENET1_EXP_RESETZ";
-+
-+		p01_hog: p01-hog {
-+			/* P01 - TRC_MUX_SEL */
-+			gpio-hog;
-+			gpios = <0 GPIO_ACTIVE_HIGH>;
-+			output-low;
-+			line-name = "TRC_MUX_SEL";
-+		};
-+
-+		p02_hog: p02-hog {
-+			/* P02 - MCASP1_FET_SEL */
-+			gpio-hog;
-+			gpios = <2 GPIO_ACTIVE_HIGH>;
-+			output-high;
-+			line-name = "MCASP1_FET_SEL";
-+		};
-+
-+		p13_hog: p13-hog {
-+			/* P13 - GPIO_AUD_RSTn */
-+			gpio-hog;
-+			gpios = <13 GPIO_ACTIVE_HIGH>;
-+			output-high;
-+			line-name = "GPIO_AUD_RSTn";
-+		};
-+	};
-+
-+	tlv320aic3106: audio-codec@1b {
-+		#sound-dai-cells = <0>;
-+		compatible = "ti,tlv320aic3106";
-+		reg = <0x1b>;
-+		ai3x-micbias-vg = <1>;  /* 2.0V */
-+		AVDD-supply = <&vcc_3v3_aud>;
-+		IOVDD-supply = <&vcc_3v3_aud>;
-+		DRVDD-supply = <&vcc_3v3_aud>;
-+		DVDD-supply = <&vsys_io_1v8>;
- 	};
- };
- 
-@@ -384,3 +479,29 @@ &sdhci1 {
- 	status = "okay";
- 	bootph-all;
- };
-+
-+&mcasp1 {
-+	status = "okay";
-+	#sound-dai-cells = <0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mcasp1_pins_default>;
-+	op-mode = <0>; /* MCASP_IIS_MODE */
-+	tdm-slots = <2>;
-+	serial-dir = < /* 0: INACTIVE, 1: TX, 2: RX */
-+	       1 0 2 0
-+	       0 0 0 0
-+	       0 0 0 0
-+	       0 0 0 0
-+	>;
-+};
-+
-+&main_conf {
-+	audio_refclk1: clock@82e4 {
-+		compatible = "ti,am62-audio-refclk";
-+		reg = <0x82e4 0x4>;
-+		clocks = <&k3_clks 157 18>;
-+		assigned-clocks = <&k3_clks 157 18>;
-+		assigned-clock-parents = <&k3_clks 157 33>;
-+		#clock-cells = <0>;
-+	};
-+};
--- 
-2.25.1
 
 
