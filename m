@@ -1,170 +1,216 @@
-Return-Path: <devicetree+bounces-75058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2DD39054F0
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:18:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1F6D90550F
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:24:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60E0D28287A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 14:18:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FCAE2869D9
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 14:24:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA25717DE1F;
-	Wed, 12 Jun 2024 14:18:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4E7817E47E;
+	Wed, 12 Jun 2024 14:24:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hwNHUoEr"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="lfSuRqIh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-188.mta1.migadu.com (out-188.mta1.migadu.com [95.215.58.188])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F9A417DE06;
-	Wed, 12 Jun 2024 14:18:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6AAB17E444
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 14:24:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.188
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718201890; cv=none; b=iZ7iU09FrDt46h3DM3wVD3Z1MKzbMsMD6HCy6wiIcUUCs2EJC+lE3X9OOen9ORlTbEkssq56HrL4g75CgbU7L/mrxVtcV7kHhlavFAyqIsKI2EBakw2ArUd4kH7GS6KHUAHycA/q0Q5Hb6egOYC30+1IEFEDQJ8T6VQ1yM3cwZc=
+	t=1718202269; cv=none; b=WOwmFFu2HfGMkSFsatEhd7MoQJUngDCzG9ib7nfQqfjas12UxNuy4jxTuYPb2KXrXEHm6mcEVZ0jTA1fIdY8ScsDHvehnfNS/cIJmCB7+IE/ok1riKSZs8rBdJXB/g5JMS0HgYD4cDlLtjxtGDJ54eJdWkh9u7rgZyG86o/jwk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718201890; c=relaxed/simple;
-	bh=YXIdG8Cu8DfnRnzDjLA/KcUHFB8cUiSt1hLOsWlN2MU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uPLGwAYo11ZY1zpaHS9Irnl4fotjmU6tNEQz2RcVUbkmwVnNev+gQceIxTSUXCvJwaCf5SsEp2qCJmN3gorR2XhCmUJZ9RGNrub8jm1Zon35aSl/kYtpa1evciJrZxAmTn2RmJXo4xWLzQZSJK7Ek0y87pA6mqh0YeyPdal/K74=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hwNHUoEr; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-705bf368037so575483b3a.0;
-        Wed, 12 Jun 2024 07:18:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718201888; x=1718806688; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=pxqNL565NWmPeGrXLhi1hyl8lckCal08zSMZyztgL+Y=;
-        b=hwNHUoEr7eB5hmTiHYkQRQG6ualX5wK+66DWuCXq+e05vJ1Q5PlUEpejdSgOB6okG3
-         6bg685gdhlvbY8HZNB109JW2fCgyAaIsmx97XFqq26Qnq+UFjNKN4WGYVXLgzBm7j3QT
-         Fjswx9hS8tdjusIXNxC1rqDyzc0AawQwXeeKFb5iAAxbsiW7QLt7puiCnNXkNxVVHR8z
-         hdHn8k+TAtAApS/VSSBfVsGF8/3W65sObcL3+0HVnP/ei5kh1DvITLuQ1Et4rfLn/ikU
-         rrn35968B9yC9BViuYh4GqBYnEGD+gKOZyboySVX6jU2zCq5uEHe+MR5+ekNXtvHycNO
-         yEdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718201888; x=1718806688;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pxqNL565NWmPeGrXLhi1hyl8lckCal08zSMZyztgL+Y=;
-        b=bimVLO42KczrVxhmSvIpODDKjlt+7HkgzOEuAuhJN0KjrXZsMWTWIOz1aGi4HyMmQJ
-         /n7cS4Ls1yJtP5VGr0vIJo0tO9nZmjpbDp+vV4Ij2C/80/yszUZ/cQfUgdL9cgVTFgcQ
-         erUcOcRvObFW8Q2wlHrB3MZnz+iDw9EqeARWlaGol1c6wz8rM7odX9dLcmlSnK1VX5gP
-         HC0Qny3FUG9FgzjsnEDgpXAUsBxtoyUh4M3jQiU5UwTB2ERiddm8kgKttU4SSCzuXaqo
-         YA7Lvk46Tc+IuwMRgjl8+r24fxe/3YATsOk6BD6yIAB5imrT16Iu+66kan29njsQcz1V
-         afwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUPfNiPE3gJQDDVTNLpBe6Ejd4R8u36myh8I4CqRgJWHPzsKyluNoFGh4wxlwIQ5TDADjXdyp4txXkZajmrkKtWG4MtxdJGc092bIJ7oUeb4a6zLTZMkAu2U75q91gmgC3Vd7XN0SFLng==
-X-Gm-Message-State: AOJu0Yw4wGvsJRSVXg3AxAJLQysnwLtzHmWVDrOWUeoQNLEfzZsQFPTL
-	AUSMnlkKH8ZchlTqU54CDzCGV5sacSkksz1lAN96hMEW974nJkfVCenPDg==
-X-Google-Smtp-Source: AGHT+IHDQvXjMLdL88OFf+YQ7k2+FaY0EqKRh17/5byTfA0vFMPAWVjc1fzka1+etT7NKq31JPWM4g==
-X-Received: by 2002:a05:6a00:b41:b0:704:3521:fb58 with SMTP id d2e1a72fcca58-705bceac04fmr2598102b3a.27.1718201888444;
-        Wed, 12 Jun 2024 07:18:08 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70419ec2bfdsm8647589b3a.167.2024.06.12.07.18.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jun 2024 07:18:07 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <ab648952-769a-42bf-b7bb-ee13b58f8794@roeck-us.net>
-Date: Wed, 12 Jun 2024 07:18:06 -0700
+	s=arc-20240116; t=1718202269; c=relaxed/simple;
+	bh=hqdCAfu6vTn5//idU2+5pKvAi77w1mVADDY6sbxvcy0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=W8xc/lLTf+hVHhntzBOS0f6OVBQTtTXLUERE1bmWGfBKMknDIK70vF+OoJbAgRgOIbppYaO59H3dJWTVVYY8mA6AW76tIrzC3l4u0faxbSgmkydbxuliZoTR6LH2xBQU7h8SaVWpVPcpcFpXJivH3L7GOYx2zuOvH7gKk5qVa8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=lfSuRqIh; arc=none smtp.client-ip=95.215.58.188
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+X-Envelope-To: joro@8bytes.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1718202264;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=dpPWUTmJskkL811ZPGgtfh8tQuspDzkS2632APAKQFw=;
+	b=lfSuRqIhAXKLPwhZQmRblMlHj7Tj1mrbpRluGLYCIWYMVK+T2JJkVrdjj43/F9GkV7CMnW
+	UqtxVVjJYdz0rn60ei4ai17cv3isPimZrwn7AaKmTGCDKzsLKHUqLhPGW7Y1nfuqMNdgum
+	98FtYL2kwC0qsfhrDKk/QjUX06GWzb1hkwrTmAX+v39PJl2ySVT6GzjISsGdW2217+eanZ
+	tw0SWvRnexpB7waRtRhcegPFa1GMAJ2O6B11YByjXExKOXB6XbvrWPiXjvCOLjgH00IgCs
+	yWvuGyMRoKbIdmLfU+XBtXXGHUy+XjPu18ZTBT5W/BcUiqdRc8mfE5WHUW4VVw==
+X-Envelope-To: will@kernel.org
+X-Envelope-To: robin.murphy@arm.com
+X-Envelope-To: heiko@sntech.de
+X-Envelope-To: robh@kernel.org
+X-Envelope-To: krzk+dt@kernel.org
+X-Envelope-To: conor+dt@kernel.org
+X-Envelope-To: ogabbay@kernel.org
+X-Envelope-To: tomeu.vizoso@tomeuvizoso.net
+X-Envelope-To: airlied@gmail.com
+X-Envelope-To: daniel@ffwll.ch
+X-Envelope-To: maarten.lankhorst@linux.intel.com
+X-Envelope-To: mripard@kernel.org
+X-Envelope-To: tzimmermann@suse.de
+X-Envelope-To: p.zabel@pengutronix.de
+X-Envelope-To: sumit.semwal@linaro.org
+X-Envelope-To: christian.koenig@amd.com
+X-Envelope-To: linux-rockchip@lists.infradead.org
+X-Envelope-To: iommu@lists.linux.dev
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+X-Envelope-To: linux-rockchip@lists.infradead.org
+X-Envelope-To: linux-kernel@vger.kernel.org
+X-Envelope-To: devicetree@vger.kernel.org
+X-Envelope-To: dri-devel@lists.freedesktop.org
+X-Envelope-To: linux-media@vger.kernel.org
+X-Envelope-To: linaro-mm-sig@lists.linaro.org
+X-Envelope-To: tomeu@tomeuvizoso.net
+X-Envelope-To: tomeu@tomeuvizoso.net
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Diederik de Haas <didi.debian@cknow.org>
+To: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Heiko Stuebner <heiko@sntech.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Oded Gabbay <ogabbay@kernel.org>,
+ Tomeu Vizoso <tomeu.vizoso@tomeuvizoso.net>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ linux-rockchip@lists.infradead.org
+Cc: iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
+ Tomeu Vizoso <tomeu@tomeuvizoso.net>, Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Subject:
+ Re: [PATCH 4/9] arm64: dts: rockchip: Add nodes for NPU and its MMU to
+ rk3588s
+Date: Wed, 12 Jun 2024 16:24:13 +0200
+Message-ID: <2746394.siuavCmBn6@bagend>
+Organization: Connecting Knowledge
+In-Reply-To: <20240612-6-10-rocket-v1-4-060e48eea250@tomeuvizoso.net>
+References:
+ <20240612-6-10-rocket-v1-0-060e48eea250@tomeuvizoso.net>
+ <20240612-6-10-rocket-v1-4-060e48eea250@tomeuvizoso.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/2] hwmon: (ina2xx):Add Suppor for passing alert
- polarity from device tree to driver
-To: Krzysztof Kozlowski <krzk@kernel.org>, Amna Waseem
- <Amna.Waseem@axis.com>, Jean Delvare <jdelvare@suse.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@axis.com
-References: <20240611-apol-ina2xx-fix-v4-0-8df1d2282fc5@axis.com>
- <34fe20d5-c67a-44e6-8ec1-566d80e25447@kernel.org>
- <ef71090e-13c7-4ef1-b34e-d6fe9546b705@axis.com>
- <629a1867-94b7-4f89-821a-a38b92189af5@kernel.org>
- <4af156a3-37a6-4995-a3cd-8340c17345c2@axis.com>
- <2e0eeac2-891e-44c8-a1e1-36ec759d1b84@kernel.org>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <2e0eeac2-891e-44c8-a1e1-36ec759d1b84@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; boundary="nextPart5733380.qv8PDGWfNk";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
+X-Migadu-Flow: FLOW_OUT
 
-On 6/11/24 23:44, Krzysztof Kozlowski wrote:
-> On 12/06/2024 08:37, Amna Waseem wrote:
->> On 6/12/24 08:20, Krzysztof Kozlowski wrote:
->>> So you require someone to re-review?
->>
->> Yes that will be great if someone re-review.
+--nextPart5733380.qv8PDGWfNk
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Diederik de Haas <didi.debian@cknow.org>
+Date: Wed, 12 Jun 2024 16:24:13 +0200
+Message-ID: <2746394.siuavCmBn6@bagend>
+Organization: Connecting Knowledge
+In-Reply-To: <20240612-6-10-rocket-v1-4-060e48eea250@tomeuvizoso.net>
+MIME-Version: 1.0
+
+Hi,
+
+On Wednesday, 12 June 2024 15:52:57 CEST Tomeu Vizoso wrote:
+> arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 53
+> +++++++++++++++++++++++++++++++ 1 file changed, 53 insertions(+)
 > 
-> You are joking, right? We have hundreds of other patches to take care of
-> and you ignore review tag, so you get duplicated work from the same
-> reviewer? That's huge waste of time and actually quite disrespectful to
-> our time.
-> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi index
+> 6ac5ac8b48ab..a5d53578c8f6 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> @@ -2665,6 +2665,59 @@ gpio4: gpio@fec50000 {
+>                         #interrupt-cells = <2>;
+>                 };
+>         };
+> +
+> +       rknn: npu@fdab0000 {
+> +               compatible = "rockchip,rk3588-rknn", "rockchip,rknn";
+> +               reg = <0x0 0xfdab0000 0x0 0x9000>,
+> +                     <0x0 0xfdac0000 0x0 0x9000>,
+> +                     <0x0 0xfdad0000 0x0 0x9000>;
+> +               interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                            <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                            <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH 0>;
+> +               interrupt-names = "npu0_irq", "npu1_irq", "npu2_irq";
+> +               clocks = <&scmi_clk SCMI_CLK_NPU>, <&cru ACLK_NPU0>,
+> +                        <&cru ACLK_NPU1>, <&cru ACLK_NPU2>,
+> +                        <&cru HCLK_NPU0>, <&cru HCLK_NPU1>,
+> +                        <&cru HCLK_NPU2>, <&cru PCLK_NPU_ROOT>;
+> +               clock-names = "clk_npu",
+> +                             "aclk0", "aclk1", "aclk2",
+> +                             "hclk0", "hclk1", "hclk2",
+> +                             "pclk";
+> +               assigned-clocks = <&scmi_clk SCMI_CLK_NPU>;
+> +               assigned-clock-rates = <200000000>;
+> +               resets = <&cru SRST_A_RKNN0>, <&cru SRST_A_RKNN1>, <&cru
+> SRST_A_RKNN2>, +                        <&cru SRST_H_RKNN0>, <&cru
+> SRST_H_RKNN1>, <&cru SRST_H_RKNN2>; +               reset-names =
+> "srst_a0", "srst_a1", "srst_a2",
+> +                             "srst_h0", "srst_h1", "srst_h2";
+> +               power-domains = <&power RK3588_PD_NPUTOP>,
+> +                               <&power RK3588_PD_NPU1>,
+> +                               <&power RK3588_PD_NPU2>;
+> +               power-domain-names = "npu0", "npu1", "npu2";
+> +               iommus = <&rknn_mmu>;
+> +               status = "disabled";
+> +       };
+> +
+> +       rknn_mmu: iommu@fdab9000 {
+> +               compatible = "rockchip,rk3588-iommu";
+> +               reg = <0x0 0xfdab9000 0x0 0x100>,
+> +                     <0x0 0xfdaba000 0x0 0x100>,
+> +                     <0x0 0xfdaca000 0x0 0x100>,
+> +                     <0x0 0xfdada000 0x0 0x100>;
+> +               interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                            <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                            <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH 0>;
+> +               interrupt-names = "npu0_mmu", "npu1_mmu", "npu2_mmu";
+> +               clocks = <&cru ACLK_NPU0>, <&cru ACLK_NPU1>, <&cru
+> ACLK_NPU2>, +                        <&cru HCLK_NPU0>, <&cru HCLK_NPU1>,
+> <&cru HCLK_NPU2>; +               clock-names = "aclk0", "aclk1", "aclk2",
+> +                             "iface0", "iface1", "iface2";
+> +               #iommu-cells = <0>;
+> +               power-domains = <&power RK3588_PD_NPUTOP>,
+> +                               <&power RK3588_PD_NPU1>,
+> +                               <&power RK3588_PD_NPU2>;
+> +               power-domain-names = "npu0", "npu1", "npu2";
+> +               status = "disabled";
+> +       };
 
-I applied v3 of the devicetree patch (after comparing the two to make sure
-there are no changes).
+The nodes should be sorted by address, so these nodes should come between
+pmu: power-management@fd8d8000 {
+and 
+av1d: video-codec@fdc70000 {
 
-Amna, I would suggest to run checkpatch on your patches in the future
-to find problems such as the following.
+Cheers,
+  Diederik
+--nextPart5733380.qv8PDGWfNk
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-ERROR: trailing whitespace
-#178: FILE: Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml:74:
-+      the alert polarity to active-high. $
+-----BEGIN PGP SIGNATURE-----
 
-Thanks,
-Guenter
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZmmvjQAKCRDXblvOeH7b
+bq4nAP0bM7IIJSkR5Cpa0v55rfayhz1GtgK4oP8lmrY/U1t8fQD+Nf56dyaoEOoP
+DY/YRTGxOjhhH6YlVSmtPw3bDw2VTAg=
+=1S9B
+-----END PGP SIGNATURE-----
+
+--nextPart5733380.qv8PDGWfNk--
+
+
 
 
