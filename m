@@ -1,176 +1,190 @@
-Return-Path: <devicetree+bounces-74880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9421C904DC2
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:14:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C05C2904DCA
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:15:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 004C6B2590C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 08:14:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BF761F219A5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 08:15:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7067516C84E;
-	Wed, 12 Jun 2024 08:14:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C2A216C852;
+	Wed, 12 Jun 2024 08:15:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mJsVsgyV"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="NI1FLGzG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B171816C6BD
-	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 08:14:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75A05168C33
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 08:15:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718180081; cv=none; b=QecthiWs+JRMazoVA3tbU1LM4bEJvKFE1gpfS6RR/fpwslT4g6xCqH8JTXxbzqcgnEcL2rcQhJ49Scmdsu2iB/IZ3/Uk/qk+BkRDHcgYYtVcv7GCx/6BCOnufjCTjeWF3542eaYxZ1y95aVjnTmO+fYcJQDQKUAwwHzvy09jxB0=
+	t=1718180125; cv=none; b=ZjpgqZkDwTei8ogr4I6EZKlDihIahcp82f0TGQ+aLA6zbqk5UHuzu/IK8H7frvZhkPaHDajIl2yYNd0c3EvRto4MKrpyiQ6rP1Dm0eRh61KVU7MhDhwzhqcg1AIK+EfFlbfPP3fniqtIuXFAuleiY1rTWkSBbYDkHRLQdzLP0gI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718180081; c=relaxed/simple;
-	bh=JcLliFmzK8Tep6OJhj8il39PMa1YxEJNDlcLj+H3oLc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CbzB9ipmbbQALIn4XP2zxjSHZ4LnEiDyUlUgoM30gdvO+UJm3E42F/PNoU52JDGpNInvbejIQFGbC2wxDC4cD15H5+fhFqJm0VNrE3R7VbaiTMlw2oUqiGscs7GxCPLYmuRedv7OWFBW6L2wWQayERoyv2XCdlRviBA3ljNFB2I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mJsVsgyV; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-35f1bc63981so349844f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 01:14:39 -0700 (PDT)
+	s=arc-20240116; t=1718180125; c=relaxed/simple;
+	bh=8ZjoDG6AdLp9DrAUpZbOs5O/3KdItU+ylOPmYLZXOLc=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=WhX58jisYFLfIDo95kUSpG8AM9YfPMIO2kHbVzbViJWguUQJaOzoYuETVyZMDGVwWhSQKz7VXhaxq9Z1QYFEbXRYqY3KBRoAVrycevtOr+4zN+Gv/qmQq4OFtUdsqotVvsqJh2EC/RNFvJQDTl9E5pgzzAyUnipmZ+1PCqZD7pM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=NI1FLGzG; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52bc274f438so2690391e87.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 01:15:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718180078; x=1718784878; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=1PdksSUg8dwtLunozeU7Sxcg4SfJDpMyI7RXzrJNAzc=;
-        b=mJsVsgyVIv8flF+Q0dcteomGAnZB8A4Q/reM0wPvkQjQNPa4/5/JaQSUTBx/BYE25v
-         pJvA+E1/DtNBeDlElAAePH8yO7zTJo1Ef+xTBo5lM54uWZt5mOcWJyUbvoWkT8rugF+u
-         niPEcxKsAJNT2RgVHULxB+aFG8tNO3HlggOz5pKaw+hRc0z1jrRR0Lcmt70TPfy1ztxw
-         pUHp1z9uyqg8apqKayMN/JgO/QarR27+/V8HwvwQfj1QiUAVAP/EgM3Fsw0jt5h3xlWM
-         E4Tg37qFlGF4bFc4HvjfZ5/JInx5AaHzkuMn6CREZfGKm7+DzBXjW8lljkQIh4Lw6DVx
-         PEzg==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1718180120; x=1718784920; darn=vger.kernel.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2i7JgKL6b8AoADzVvoe4uoGCOL76aOnzRK1ZmUzoPt0=;
+        b=NI1FLGzGksABEF/A5IBK52wMjY8CJyqLkjnvtJqyTn1DjdlJFJ6KFV165lA0TQlZCv
+         dmKJRZijKHoGLZomhpGjajW971W9l6spnzlf9ilPYil6T0MtMCfWs8inCBRw8M8Cb4D3
+         RCMUdBvRbGuhhHlZ8xrMVQAxNL4shbaI2fRIiSsvREjGy5XZZmQNHR5RFnbpZZJeuRhA
+         la3G5K9mgX/QAU2tITpaSWHDgunqQYwFhnF6JCekGSy6sRmQFU0CLIMdwW4ka/kGrWZy
+         7+UdM40q3rSCf3FVv9L0QXRi+kEfBhPf4uPhzWDDwJFsO23iwshm9wF4ORkshpcsEg7H
+         Bg3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718180078; x=1718784878;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1PdksSUg8dwtLunozeU7Sxcg4SfJDpMyI7RXzrJNAzc=;
-        b=b3gBmdb7dQHSDsa7GNEZtZZ+g6fOp+2pyNBLLBRdGQ179idCWnflAhSvuHknC9vieL
-         2EW34GbMA2V7wcW0fmOVNy2DK8W0veM3QFSBhjaST04/BC0WxY+fLWglRa+Q2mwAWo10
-         ujOXSljn44aTxaNAy8gfTdV1w5mmm8wtenK8QIARYYQVce2aKJjBlNZQUV/ya7LUzLZT
-         6lYy2vaVa3mgN0TQpMAscjlEcT2vfY4o2m1Fptz9Wy0kidlpb7eSWYOd7GKqkOZtYo5Q
-         wcnKScMT3AuInDpZJBfAbDlW23Y+QscmyH5d4fM0jO1OndM+TI1ruxDMqyYnLAZT2eME
-         rPTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUVsb2ptCG1p5cIShsWvuX8Wd1LO66pNSLaN0zKU7mw2PReX6mI2mBw4kmRwhQxjcP/p8rTFkWg+ZVqKzdqvQVB2XKeBNq4x9dEiA==
-X-Gm-Message-State: AOJu0YwhXLSO6DLJB+1Kx9LFrUr0VOLUuGNgPmIbnXlWeRG75QJRwf5C
-	aGKVkJPcYAhS56vBduFm4A3w2qqpabBZckWsar2Nz9HAuL0WqGO7O39gIdx4XEY=
-X-Google-Smtp-Source: AGHT+IEbZutML2NJ0LZ8NN7NJ/Uudc+CSJQVZMvAjNEH6d/1TWr7ms4MOXRGR4kuhjntdsKXQXPlUw==
-X-Received: by 2002:a5d:5005:0:b0:35f:2af4:cccd with SMTP id ffacd0b85a97d-35f5a9da24amr1193697f8f.17.1718180078080;
-        Wed, 12 Jun 2024 01:14:38 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35f252193d9sm7240988f8f.54.2024.06.12.01.14.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jun 2024 01:14:37 -0700 (PDT)
-Message-ID: <106b6911-3097-487e-85db-f8de5958adcb@linaro.org>
-Date: Wed, 12 Jun 2024 10:14:36 +0200
+        d=1e100.net; s=20230601; t=1718180120; x=1718784920;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2i7JgKL6b8AoADzVvoe4uoGCOL76aOnzRK1ZmUzoPt0=;
+        b=rt+Bmg3CV3WYVln1q6NODZkIhfJjU+Aurywya47u5nkF1gklGU8qKp3vnv5vz1AqOp
+         ZhJo64mwOjYcGHHsxGqy383wOl72E/dEuJKQ6Lz/Bqz6Og8YiF1+ehZsroZgvUxplXs9
+         Ir979u9wEmUk8/EBLQ3Ba8wnqULR5Du6Cz1G7vlXVkKCgNc1G900DbLkYktHNa+JZs/g
+         9Pd47QdbSvebvs0rp6bZ+RHcwCOfJBiiPYC0L+E/aKAkefLLjp2gdpzja3oKPmlNxqyx
+         Vf1cw1pp+mw4tFg1XzYuMLMCLctHjXUfkwtpB8uDiy4FjU63YEHTNTkJb/ua+dz1/yaN
+         IvmA==
+X-Forwarded-Encrypted: i=1; AJvYcCUDVYXTkDNVDILKaKehe0kA98zSykqk7wolJwQlnUl9REZYM8JeLMJjuJpKhonci9SJ/c0xWnNiR5fZAOgH0F5Jiphc2HfKWlm78Q==
+X-Gm-Message-State: AOJu0YwM0YNHkXgQsuB+qQenpMWNtyU8pLV642YfH1/849xLeC77R7+u
+	Q8pFajBC79MPpuyz0N+c3qzsHci2JlUWk3y4byl7+EkdsWmoRKGoQuDA9I1gX3+izrjr58qTWdV
+	k
+X-Google-Smtp-Source: AGHT+IGNH0ntu3rGfl1MqkI2eXzc0qzg5Mxlmb5NxjjgXhC4jOBw5TLIubZnIB6RoLfSBwtPdwuHiA==
+X-Received: by 2002:a2e:7c19:0:b0:2eb:d924:43fb with SMTP id 38308e7fff4ca-2ebfc92c231mr6922271fa.41.1718180120393;
+        Wed, 12 Jun 2024 01:15:20 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:9163:6ed9:3c9a:d6c9])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42286eefa07sm15947595e9.8.2024.06.12.01.15.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jun 2024 01:15:19 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: George Stark <gnstark@salutedevices.com>
+Cc: <kelvin.zhang@amlogic.com>,  Rob Herring <robh@kernel.org>,  Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  Kevin Hilman
+ <khilman@baylibre.com>,  Neil Armstrong <neil.armstrong@linaro.org>,  Uwe
+ =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,  Conor
+ Dooley
+ <conor+dt@kernel.org>,  <linux-pwm@vger.kernel.org>,
+  <linux-arm-kernel@lists.infradead.org>,
+  <linux-amlogic@lists.infradead.org>,  <linux-kernel@vger.kernel.org>,
+  <devicetree@vger.kernel.org>,  Junyi Zhao <junyi.zhao@amlogic.com>
+Subject: Re: [DMARC error][DKIM error] [PATCH v7 1/2] pwm: meson: Add
+ support for Amlogic S4 PWM
+In-Reply-To: <ce3c2772-8e91-4fd3-b52e-2a35d5759664@salutedevices.com> (George
+	Stark's message of "Wed, 5 Jun 2024 15:12:54 +0300")
+References: <20240605-s4-pwm-v7-0-e822b271d7b0@amlogic.com>
+	<20240605-s4-pwm-v7-1-e822b271d7b0@amlogic.com>
+	<ce3c2772-8e91-4fd3-b52e-2a35d5759664@salutedevices.com>
+Date: Wed, 12 Jun 2024 10:15:19 +0200
+Message-ID: <1jikyek25k.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: vt8500: replace "uhci" nodename with generic
- name "usb"
-To: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240423150728.91527-1-sheharyaar48@gmail.com>
- <f60aac7f-dbba-4cba-8bb6-302b5c911b8c@linaro.org>
- <CAHTLo_=Gg-KN2zOtjOBCxQURq+Ap913Miph2FMhvkoV+GybFNA@mail.gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAHTLo_=Gg-KN2zOtjOBCxQURq+Ap913Miph2FMhvkoV+GybFNA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On 15/05/2024 06:53, Mohammad Shehar Yaar Tausif wrote:
-> On Tue, Apr 23, 2024 at 8:46 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 23/04/2024 17:07, Mohammad Shehar Yaar Tausif wrote:
->>> Replace "uhci" nodenames with "usb" as it's generic and aligns with
->>> the schema binding.
->>>
->>> Signed-off-by: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
->>> ---
->>>  arch/arm/boot/dts/vt8500/vt8500.dtsi | 2 +-
->>>  arch/arm/boot/dts/vt8500/wm8505.dtsi | 2 +-
->>>  arch/arm/boot/dts/vt8500/wm8650.dtsi | 2 +-
->>>  arch/arm/boot/dts/vt8500/wm8750.dtsi | 4 ++--
->>>  arch/arm/boot/dts/vt8500/wm8850.dtsi | 4 ++--
->>>  5 files changed, 7 insertions(+), 7 deletions(-)
->>
->>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> Hi,
-> 
-> Is there any further feedback or update for this ? This patch is not
-> yet merged but the related dt-binding patch that has been merged :
-> https://lore.kernel.org/all/20240423150550.91055-1-sheharyaar48@gmail.com/.
-> I understand that this is a trivial patch and the maintainers may be
-> busy with important work.
+On Wed 05 Jun 2024 at 15:12, George Stark <gnstark@salutedevices.com> wrote:
 
-I don't see you Cc any maintainers, so no one will pick it up.
+> Hello Kelvin, Junyi
+>
+> On 6/5/24 05:44, Kelvin Zhang via B4 Relay wrote:
+>> From: Junyi Zhao <junyi.zhao@amlogic.com>
+>> Add support for Amlogic S4 PWM.
+>> Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
+>> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
+>> ---
+>>   drivers/pwm/pwm-meson.c | 36 ++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 36 insertions(+)
+>> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+>> index b2f97dfb01bb..4f01847525b2 100644
+>> --- a/drivers/pwm/pwm-meson.c
+>> +++ b/drivers/pwm/pwm-meson.c
+>> @@ -460,6 +460,34 @@ static int meson_pwm_init_channels_meson8b_v2(struct pwm_chip *chip)
+>>   	return meson_pwm_init_clocks_meson8b(chip, mux_parent_data);
+>>   }
+>>   +static void meson_pwm_s4_put_clk(void *data)
+>> +{
+>> +	struct clk *clk = data;
+>> +
+>> +	clk_put(clk);
+>> +}
+>> +
+>> +static int meson_pwm_init_channels_s4(struct pwm_chip *chip)
+>> +{
+>> +	struct device *dev = pwmchip_parent(chip);
+>> +	struct device_node *np = dev->of_node;
+>> +	struct meson_pwm *meson = to_meson_pwm(chip);
+>> +	int i, ret;
+>> +
+>> +	for (i = 0; i < MESON_NUM_PWMS; i++) {
+>> +		meson->channels[i].clk = of_clk_get(np, i);
+>> +		if (IS_ERR(meson->channels[i].clk)) {
+>> +			ret = PTR_ERR(meson->channels[i].clk);
+>> +			dev_err_probe(dev, ret, "Failed to get clk\n");
+>> +			return ret;
+>> +		}
+>> +		devm_add_action_or_reset(dev, meson_pwm_s4_put_clk,
+>> +					 meson->channels[i].clk);
+>
+> devm_add_action_or_reset() result should be checked
+>
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>
+> You can rewrite it a bit to always have a single allocation for devm node:
+>
+> static void meson_pwm_s4_put_clk(void *data)
+> {
+> 	struct meson_pwm *meson = data;
+> 	int i;
+>
+> 	for (i = 0; i < MESON_NUM_PWMS; i++)
+> 		clk_put(meson->channels[i].clk);
+> }
 
-Best regards,
-Krzysztof
+This has already been discussed on v6.
 
+This make the code un-necessarily complex and potentially put clock that
+have not even been claimed.
+
+>
+> static int meson_pwm_init_channels_s4(struct pwm_chip *chip)
+> {
+> 	struct device *dev = pwmchip_parent(chip);
+> 	struct device_node *np = dev->of_node;
+> 	struct meson_pwm *meson = to_meson_pwm(chip);
+> 	int i, ret;
+>
+> 	ret = devm_add_action(dev, meson_pwm_s4_put_clk, meson);
+> 	if (ret)
+> 		return ret;
+>
+> 	for (i = 0; i < MESON_NUM_PWMS; i++) {
+> 		meson->channels[i].clk = of_clk_get(np, i);
+> 		if (IS_ERR(meson->channels[i].clk)) {
+> 			ret = PTR_ERR(meson->channels[i].clk);
+> 			dev_err_probe(dev, ret, "Failed to get clk\n");
+> 			return ret;
+> 		}
+> 	}
+>
+> 	return 0;
+> }
+
+-- 
+Jerome
 
