@@ -1,63 +1,55 @@
-Return-Path: <devicetree+bounces-74845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F69F904C50
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 09:07:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75010904C59
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 09:08:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E87F61F2348E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 07:07:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ECC781F241AE
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 07:08:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9065016B73C;
-	Wed, 12 Jun 2024 07:07:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5C1216B750;
+	Wed, 12 Jun 2024 07:07:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AqMuC+K6"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="QqI6QVlx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8299816B755;
-	Wed, 12 Jun 2024 07:07:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 816B057CAB;
+	Wed, 12 Jun 2024 07:07:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718176044; cv=none; b=tTSH9/7UrB2sRJ/nSMhKwW1B4fvV58NRcGuPVT/wcS1lCYfgDMMmd3VPT2t0IMSSPRxZXvG39jNyZoB+howVDqph7BCkOlpRuco1AkRd/p124ujDRuGLXL8N2WZwwoP0pshty8yo9phlYR2kmdNvSSRKpMymerJjiJ7rW17SSYU=
+	t=1718176070; cv=none; b=Anpptp42j1G8EpuYdLW4JAkbFbO96F3zyJZvH6CikgWcC1GA5jKCCL7I8LSwR7g98RnJntvR9+iz1vUxTAYSR9frt074Y7AjD9V/F1bWQuMBNWJAyxED9TzNDHpMxuYI3Q6sjHGFgP44oz5lyDwJV/RKQQ/l/QVrxkSYzbFJg8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718176044; c=relaxed/simple;
-	bh=lArGn66nle1XMxFjFD+Z0TcsjJVfje2Mzuf04W7Hsxk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=nWZMFTddc+mzf6iIYOTHGlpSDDrZbvEX7g3Yrhjh0UA/6wof8b3jMW0aMVJh8/z8htD/2FNI1oOLzAyAQib/RO8882kHzcjPMpLYt6V0w5zP6SO7jc2JT4CO/YNrS3ksg5ia3kXTcvEHl9Js7n+R+IGKEvfhd/Mk70V1D4hpVnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AqMuC+K6; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45C6Fvwo002433;
-	Wed, 12 Jun 2024 07:07:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vKB4jSLL7SPrZFZZCzmdTJDNZl87xAWNfYLH20krfj8=; b=AqMuC+K6qp4M1gGa
-	GMLpsqITwGL37DnDlUo6JgouiZKNjeBPJD7aOulw4HG+Uzm21KZcgYZUTI3kfbpf
-	7BTXOSxrME0eWsTQpMkEboTGbEtBpYixvXDqTG6rKaJ73z7fDSLYotnJvRg36Wbu
-	cqlPfapBDdPxc/wv47jra63A0pTaKr0CYvpHON7y/5gYIv6TA3Cu39wtNSQpPw1o
-	Z/mttscS/h+UAAigeIm/Bf1T1L04oSZqe3COaTybw7U/RV3f9i5UFMaF3kdngrwY
-	LaYOajBgPyv4gyA7f9vg+1I73dhaa2A2GeR6NmKr2B4lWXlPA1buFEvdTX6ngo3p
-	F54pCA==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yptuy1f0j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 12 Jun 2024 07:07:05 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45C774cY025746
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 12 Jun 2024 07:07:04 GMT
-Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 12 Jun
- 2024 00:06:56 -0700
-Message-ID: <2ad59b57-7285-4c1e-af03-c3a0a1c8a1e6@quicinc.com>
-Date: Wed, 12 Jun 2024 15:06:54 +0800
+	s=arc-20240116; t=1718176070; c=relaxed/simple;
+	bh=0FgsU6j7T4RtfSQxL6glhcvtiU7T8QVoGJB2s91r5tw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IBFjgJOwnnMRRF21y9nV6CHR5rPlX+EYv88jyiy3G2ge/z+Ll/R5mOiSzbYFrHny2qASGSPaxnMYSO8A0jhAkRfcPuCen7UsZ5Vw6GsqHhpjeW9Qq6FZRw5b0CTQongHM5MdLNqNzkloWPEcYOv7KrHtyZ2hQGuRou3NF2VQXJ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=QqI6QVlx; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718176066;
+	bh=0FgsU6j7T4RtfSQxL6glhcvtiU7T8QVoGJB2s91r5tw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=QqI6QVlxLv+L7Nq4DGysBlxuKtnkM9NyEjNvt6a3A4Ma35OYUrmlDir87kYqgM9IV
+	 kLAo9rkMWM21cae7H45qOu4Iah0Lcau7f8/GMZPrzNauQBGoCP7D/8CgCTUNLKaoYD
+	 o+3TAvEJOC68JZsobWQFAmC/TsmNssngNDwVFtA734TZlhTX2nOkcIeLA8GL2N6X/C
+	 QPQ06B7ipzSV20boeII+fxzwHqr4S9K2SzPl1rVZ6CX1lM2/u3/Spj4UlIk9c9Kvks
+	 +Sbdh1gIc2xL1ZV19aKOYner0i/8kP+ITUFTXynykTaSboEa9k0ErEW4usGxYReurP
+	 CxGu8Ku0hC+0w==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id F33583780016;
+	Wed, 12 Jun 2024 07:07:44 +0000 (UTC)
+Message-ID: <7c71534f-9815-4ea3-969f-c04d249d35d2@collabora.com>
+Date: Wed, 12 Jun 2024 09:07:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,424 +57,534 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 2/4] arm64: dts: qcom: qcs8550: introduce qcs8550 dtsi
-To: Caleb Connolly <caleb.connolly@linaro.org>,
-        Tengfei Fan
-	<quic_tengfan@quicinc.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <dmitry.baryshkov@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
-References: <20240529100926.3166325-1-quic_tengfan@quicinc.com>
- <20240529100926.3166325-3-quic_tengfan@quicinc.com>
- <a95fed63-f48d-42c6-856b-0636a50c9dd4@linaro.org>
- <18ff1bf2-be4d-4d82-a4b3-28242b1d1d59@quicinc.com>
- <580f629d-6fae-4cf7-9137-f98b901ae29d@linaro.org>
- <5a3a7033-0cc3-40cd-8560-2dfa6939fe7f@quicinc.com>
- <4c03413b-34f4-44d3-8f12-786af265d59c@linaro.org>
-From: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
+Subject: Re: [PATCH v3 2/3] media: i2c: Add GT97xx VCM driver
+To: Zhi Mao <zhi.mao@mediatek.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ Heiko Stuebner <heiko@sntech.de>, Sakari Ailus
+ <sakari.ailus@linux.intel.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+ Hans de Goede <hdegoede@redhat.com>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Alain Volmat <alain.volmat@foss.st.com>,
+ Paul Elder <paul.elder@ideasonboard.com>,
+ Mehdi Djait <mehdi.djait@bootlin.com>,
+ Andy Shevchenko <andy.shevchenko@gmail.com>,
+ Bingbu Cao <bingbu.cao@intel.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ shengnan.wang@mediatek.com, yaya.chang@mediatek.com, yunkec@chromium.org,
+ 10572168@qq.com
+References: <20240612012019.19078-1-zhi.mao@mediatek.com>
+ <20240612012019.19078-3-zhi.mao@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <4c03413b-34f4-44d3-8f12-786af265d59c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: h2-M1eB-Z8aEYmjkyXj2sr2RBU6mYNlZ
-X-Proofpoint-ORIG-GUID: h2-M1eB-Z8aEYmjkyXj2sr2RBU6mYNlZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-12_03,2024-06-11_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 bulkscore=0
- impostorscore=0 mlxscore=0 priorityscore=1501 lowpriorityscore=0
- suspectscore=0 clxscore=1015 mlxlogscore=999 phishscore=0 spamscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406120049
+In-Reply-To: <20240612012019.19078-3-zhi.mao@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Il 12/06/24 03:20, Zhi Mao ha scritto:
+> Add a V4L2 sub-device driver for Giantec GT97xx VCM.
+> 
+> Signed-off-by: Zhi Mao <zhi.mao@mediatek.com>
+
+Hello Zhi,
+
+I fail to see why would you need to upstream this new driver instead of
+simply adding the IC_INFO_REG to the already existing (and more featureful)
+dw9768 driver, which also seems to support the Giantec GT9769 VCM.
+
+Cheers,
+Angelo
+
+> ---
+>   drivers/media/i2c/Kconfig  |  13 ++
+>   drivers/media/i2c/Makefile |   1 +
+>   drivers/media/i2c/gt97xx.c | 436 +++++++++++++++++++++++++++++++++++++
+>   3 files changed, 450 insertions(+)
+>   create mode 100644 drivers/media/i2c/gt97xx.c
+> 
+> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+> index 5498128773c7..9976f02575a3 100644
+> --- a/drivers/media/i2c/Kconfig
+> +++ b/drivers/media/i2c/Kconfig
+> @@ -772,6 +772,19 @@ config VIDEO_DW9807_VCM
+>   	  capability. This is designed for linear control of
+>   	  voice coil motors, controlled via I2C serial interface.
+>   
+> +config VIDEO_GT97XX
+> +	tristate "GT97xx lens voice coil support"
+> +	depends on I2C && VIDEO_DEV
+> +	select MEDIA_CONTROLLER
+> +	select VIDEO_V4L2_SUBDEV_API
+> +	select V4L2_FWNODE
+> +	select V4L2_CCI_I2C
+> +	help
+> +	  This is a driver for the GT97xx camera lens voice coil.
+> +	  GT97xx is a 10 bit DAC with 100mA output current sink
+> +	  capability. It is designed for linear control of
+> +	  voice coil motors, controlled via I2C serial interface.
+> +
+>   endmenu
+>   
+>   menu "Flash devices"
+> diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
+> index d1403e3273ca..0009d3d6d6af 100644
+> --- a/drivers/media/i2c/Makefile
+> +++ b/drivers/media/i2c/Makefile
+> @@ -39,6 +39,7 @@ obj-$(CONFIG_VIDEO_DW9807_VCM) += dw9807-vcm.o
+>   obj-$(CONFIG_VIDEO_ET8EK8) += et8ek8/
+>   obj-$(CONFIG_VIDEO_GC0308) += gc0308.o
+>   obj-$(CONFIG_VIDEO_GC2145) += gc2145.o
+> +obj-$(CONFIG_VIDEO_GT97XX) += gt97xx.o
+>   obj-$(CONFIG_VIDEO_HI556) += hi556.o
+>   obj-$(CONFIG_VIDEO_HI846) += hi846.o
+>   obj-$(CONFIG_VIDEO_HI847) += hi847.o
+> diff --git a/drivers/media/i2c/gt97xx.c b/drivers/media/i2c/gt97xx.c
+> new file mode 100644
+> index 000000000000..ccae190ffba6
+> --- /dev/null
+> +++ b/drivers/media/i2c/gt97xx.c
+> @@ -0,0 +1,436 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Driver for Giantec gt97xx VCM lens device
+> + *
+> + * Copyright 2024 MediaTek
+> + *
+> + * Zhi Mao <zhi.mao@mediatek.com>
+> + */
+> +#include <linux/array_size.h>
+> +#include <linux/bits.h>
+> +#include <linux/clk.h>
+> +#include <linux/container_of.h>
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/property.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/types.h>
+> +#include <linux/units.h>
+> +
+> +#include <media/v4l2-cci.h>
+> +#include <media/v4l2-ctrls.h>
+> +#include <media/v4l2-event.h>
+> +#include <media/v4l2-fwnode.h>
+> +#include <media/v4l2-subdev.h>
+> +
+> +/* gt97xx chip info register and name */
+> +#define GT97XX_IC_INFO_REG CCI_REG8(0x00)
+> +#define GT9768_ID 0xE9
+> +#define GT9769_ID 0xE1
+> +#define GT97XX_NAME "gt97xx"
+> +
+> +/*
+> + * Ring control and Power control register
+> + * Bit[1] RING_EN
+> + * 0: Direct mode
+> + * 1: AAC mode (ringing control mode)
+> + * Bit[0] PD
+> + * 0: Normal operation mode
+> + * 1: Power down mode
+> + * requires waiting time after PD reset takes place.
+> + */
+> +#define GT97XX_RING_PD_CONTROL_REG CCI_REG8(0x02)
+> +#define GT97XX_PD_MODE_OFF 0x00
+> +#define GT97XX_PD_MODE_EN BIT(0)
+> +#define GT97XX_AAC_MODE_EN BIT(1)
+> +
+> +/*
+> + * DAC is a 10bit address to control the VCM position.
+> + * DAC_MSB: D[9:8] (ADD: 0x03)
+> + * DAC_LSB: D[7:0] (ADD: 0x04)
+> + */
+> +#define GT97XX_DAC_ADDR_REG CCI_REG16(0x03)
+> +
+> +#define GT97XX_MOVE_STEPS 16
+> +#define GT97XX_MAX_FOCUS_POS (BIT(10) - 1)
+> +
+> +#define GT97XX_SLEEP_US (1 * USEC_PER_MSEC)
+> +
+> +enum vcm_giantec_reg_desc {
+> +	GT_IC_INFO_REG,
+> +	GT_RING_PD_CONTROL_REG,
+> +	GT_DAC_ADDR_REG,
+> +	GT_MAX_REG
+> +};
+> +
+> +struct vcm_giantec_of_data {
+> +	unsigned int id;
+> +	unsigned int regs[GT_MAX_REG];
+> +};
+> +
+> +static const char *const gt97xx_supply_names[] = {
+> +	"vin",
+> +	"vdd",
+> +};
+> +
+> +/* gt97xx device structure */
+> +struct gt97xx {
+> +	struct v4l2_subdev sd;
+> +
+> +	struct regulator_bulk_data supplies[ARRAY_SIZE(gt97xx_supply_names)];
+> +
+> +	struct v4l2_ctrl_handler ctrls;
+> +	struct v4l2_ctrl *focus;
+> +
+> +	struct regmap *regmap;
+> +
+> +	const struct vcm_giantec_of_data *chip;
+> +};
+> +
+> +static inline struct gt97xx *sd_to_gt97xx(struct v4l2_subdev *subdev)
+> +{
+> +	return container_of(subdev, struct gt97xx, sd);
+> +}
+> +
+> +struct regval_list {
+> +	u8 reg_num;
+> +	u8 value;
+> +};
+> +
+> +static int gt97xx_set_dac(struct gt97xx *gt97xx, u16 val)
+> +{
+> +	/* Write VCM position to registers */
+> +	return cci_write(gt97xx->regmap,
+> +			 gt97xx->chip->regs[GT_DAC_ADDR_REG], val, NULL);
+> +}
+> +
+> +static int gt97xx_identify_module(struct gt97xx *gt97xx)
+> +{
+> +	int ret;
+> +	u64 ic_id;
+> +	struct i2c_client *client = v4l2_get_subdevdata(&gt97xx->sd);
+> +
+> +	ret = cci_read(gt97xx->regmap, gt97xx->chip->regs[GT_IC_INFO_REG],
+> +		       &ic_id, NULL);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (ic_id != gt97xx->chip->id) {
+> +		dev_err(&client->dev, "chip id mismatch: 0x%x!=0x%llx",
+> +			gt97xx->chip->id, ic_id);
+> +		return -1;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int gt97xx_init(struct gt97xx *gt97xx)
+> +{
+> +	int ret, val;
+> +
+> +	ret = gt97xx_identify_module(gt97xx);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Reset PD_CONTROL */
+> +	ret = cci_write(gt97xx->regmap,
+> +			gt97xx->chip->regs[GT_RING_PD_CONTROL_REG],
+> +			GT97XX_PD_MODE_OFF, NULL);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Need waiting delay time after PD reset */
+> +	fsleep(GT97XX_SLEEP_US);
+> +
+> +	/* Enable ACC mode */
+> +	ret = cci_write(gt97xx->regmap,
+> +			gt97xx->chip->regs[GT_RING_PD_CONTROL_REG],
+> +			GT97XX_AAC_MODE_EN, NULL);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	for (val = gt97xx->focus->val % GT97XX_MOVE_STEPS;
+> +	     val <= gt97xx->focus->val; val += GT97XX_MOVE_STEPS) {
+> +		ret = gt97xx_set_dac(gt97xx, val);
+> +		if (ret)
+> +			return ret;
+> +
+> +		fsleep(GT97XX_SLEEP_US);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int gt97xx_release(struct gt97xx *gt97xx)
+> +{
+> +	int ret, val;
+> +
+> +	val = round_down(gt97xx->focus->val, GT97XX_MOVE_STEPS);
+> +	for (; val >= 0; val -= GT97XX_MOVE_STEPS) {
+> +		ret = gt97xx_set_dac(gt97xx, val);
+> +		if (ret)
+> +			return ret;
+> +
+> +		fsleep(GT97XX_SLEEP_US);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int gt97xx_power_on(struct device *dev)
+> +{
+> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+> +	struct gt97xx *gt97xx = sd_to_gt97xx(sd);
+> +	int ret;
+> +
+> +	ret = regulator_bulk_enable(ARRAY_SIZE(gt97xx_supply_names),
+> +				    gt97xx->supplies);
+> +	if (ret < 0)
+> +		dev_err(dev, "failed to enable regulators\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static int gt97xx_power_off(struct device *dev)
+> +{
+> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+> +	struct gt97xx *gt97xx = sd_to_gt97xx(sd);
+> +	int ret;
+> +
+> +	ret = regulator_bulk_disable(ARRAY_SIZE(gt97xx_supply_names),
+> +				     gt97xx->supplies);
+> +	if (ret < 0)
+> +		dev_err(dev, "failed to disable regulators\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static int gt97xx_runtime_suspend(struct device *dev)
+> +{
+> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+> +	struct gt97xx *gt97xx = sd_to_gt97xx(sd);
+> +
+> +	gt97xx_release(gt97xx);
+> +	gt97xx_power_off(dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static int gt97xx_runtime_resume(struct device *dev)
+> +{
+> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+> +	struct gt97xx *gt97xx = sd_to_gt97xx(sd);
+> +	int ret;
+> +
+> +	ret = gt97xx_power_on(dev);
+> +	if (ret < 0) {
+> +		dev_err(dev, "failed to power_on\n");
+> +		return ret;
+> +	}
+> +
+> +	/* Need waited before sending I2C commands after power-up */
+> +	fsleep(GT97XX_SLEEP_US);
+> +
+> +	ret = gt97xx_init(gt97xx);
+> +	if (ret < 0)
+> +		goto disable_power;
+> +
+> +	return 0;
+> +
+> +disable_power:
+> +	gt97xx_power_off(dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static int gt97xx_set_ctrl(struct v4l2_ctrl *ctrl)
+> +{
+> +	struct gt97xx *gt97xx =
+> +		container_of(ctrl->handler, struct gt97xx, ctrls);
+> +
+> +	if (ctrl->id == V4L2_CID_FOCUS_ABSOLUTE)
+> +		return gt97xx_set_dac(gt97xx, ctrl->val);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct v4l2_ctrl_ops gt97xx_ctrl_ops = {
+> +	.s_ctrl = gt97xx_set_ctrl,
+> +};
+> +
+> +static int gt97xx_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
+> +{
+> +	return pm_runtime_resume_and_get(sd->dev);
+> +}
+> +
+> +static int gt97xx_close(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
+> +{
+> +	return pm_runtime_put(sd->dev);
+> +}
+> +
+> +static const struct v4l2_subdev_internal_ops gt97xx_int_ops = {
+> +	.open = gt97xx_open,
+> +	.close = gt97xx_close,
+> +};
+> +
+> +static const struct v4l2_subdev_core_ops gt97xx_core_ops = {
+> +	.subscribe_event = v4l2_ctrl_subdev_subscribe_event,
+> +	.unsubscribe_event = v4l2_event_subdev_unsubscribe,
+> +};
+> +
+> +static const struct v4l2_subdev_ops gt97xx_ops = {
+> +	.core = &gt97xx_core_ops,
+> +};
+> +
+> +static int gt97xx_init_controls(struct gt97xx *gt97xx)
+> +{
+> +	struct v4l2_ctrl_handler *hdl = &gt97xx->ctrls;
+> +	const struct v4l2_ctrl_ops *ops = &gt97xx_ctrl_ops;
+> +
+> +	v4l2_ctrl_handler_init(hdl, 1);
+> +
+> +	gt97xx->focus = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_FOCUS_ABSOLUTE, 0,
+> +					  GT97XX_MAX_FOCUS_POS,
+> +					  1, 0);
+> +
+> +	if (hdl->error)
+> +		return hdl->error;
+> +
+> +	gt97xx->sd.ctrl_handler = hdl;
+> +
+> +	return 0;
+> +}
+> +
+> +static int gt97xx_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct gt97xx *gt97xx;
+> +	unsigned int i;
+> +	int ret;
+> +
+> +	gt97xx = devm_kzalloc(dev, sizeof(*gt97xx), GFP_KERNEL);
+> +	if (!gt97xx)
+> +		return -ENOMEM;
+> +
+> +	gt97xx->regmap = devm_cci_regmap_init_i2c(client, 8);
+> +	if (IS_ERR(gt97xx->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(gt97xx->regmap),
+> +				     "failed to init CCI\n");
+> +
+> +	/* Initialize subdev */
+> +	v4l2_i2c_subdev_init(&gt97xx->sd, client, &gt97xx_ops);
+> +
+> +	gt97xx->chip = device_get_match_data(dev);
+> +
+> +	for (i = 0; i < ARRAY_SIZE(gt97xx_supply_names); i++)
+> +		gt97xx->supplies[i].supply = gt97xx_supply_names[i];
+> +
+> +	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(gt97xx_supply_names),
+> +				      gt97xx->supplies);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret,
+> +				     "failed to get regulators\n");
+> +
+> +	/* Initialize controls */
+> +	ret = gt97xx_init_controls(gt97xx);
+> +	if (ret)
+> +		goto err_free_handler;
+> +
+> +	/* Initialize subdev */
+> +	gt97xx->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+> +	gt97xx->sd.internal_ops = &gt97xx_int_ops;
+> +	gt97xx->sd.entity.function = MEDIA_ENT_F_LENS;
+> +
+> +	ret = media_entity_pads_init(&gt97xx->sd.entity, 0, NULL);
+> +	if (ret < 0)
+> +		goto err_free_handler;
+> +
+> +	/* Power on and initialize hardware */
+> +	ret = gt97xx_runtime_resume(dev);
+> +	if (ret < 0) {
+> +		dev_err_probe(dev, ret, "failed to power on\n");
+> +		goto err_clean_entity;
+> +	}
+> +
+> +	pm_runtime_set_active(dev);
+> +	pm_runtime_enable(dev);
+> +	pm_runtime_set_autosuspend_delay(dev, 1000);
+> +	pm_runtime_use_autosuspend(dev);
+> +	pm_runtime_idle(dev);
+> +
+> +	ret = v4l2_async_register_subdev(&gt97xx->sd);
+> +	if (ret < 0) {
+> +		dev_err_probe(dev, ret, "failed to register V4L2 subdev\n");
+> +		goto err_power_off;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_power_off:
+> +	pm_runtime_disable(dev);
+> +err_clean_entity:
+> +	media_entity_cleanup(&gt97xx->sd.entity);
+> +err_free_handler:
+> +	v4l2_ctrl_handler_free(&gt97xx->ctrls);
+> +
+> +	return ret;
+> +}
+> +
+> +static void gt97xx_remove(struct i2c_client *client)
+> +{
+> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> +	struct gt97xx *gt97xx = sd_to_gt97xx(sd);
+> +
+> +	v4l2_async_unregister_subdev(&gt97xx->sd);
+> +	v4l2_ctrl_handler_free(&gt97xx->ctrls);
+> +	media_entity_cleanup(&gt97xx->sd.entity);
+> +	pm_runtime_disable(&client->dev);
+> +	if (!pm_runtime_status_suspended(&client->dev))
+> +		gt97xx_runtime_suspend(&client->dev);
+> +	pm_runtime_set_suspended(&client->dev);
+> +}
+> +
+> +static DEFINE_RUNTIME_DEV_PM_OPS(gt97xx_pm_ops,
+> +				 gt97xx_runtime_suspend,
+> +				 gt97xx_runtime_resume,
+> +				 NULL);
+> +
+> +static const struct vcm_giantec_of_data gt9768_data = {
+> +	.id = GT9768_ID,
+> +	.regs[GT_IC_INFO_REG] = GT97XX_IC_INFO_REG,
+> +	.regs[GT_RING_PD_CONTROL_REG] = GT97XX_RING_PD_CONTROL_REG,
+> +	.regs[GT_DAC_ADDR_REG] = GT97XX_DAC_ADDR_REG,
+> +};
+> +
+> +static const struct vcm_giantec_of_data gt9769_data = {
+> +	.id = GT9769_ID,
+> +	.regs[GT_IC_INFO_REG] = GT97XX_IC_INFO_REG,
+> +	.regs[GT_RING_PD_CONTROL_REG] = GT97XX_RING_PD_CONTROL_REG,
+> +	.regs[GT_DAC_ADDR_REG] = GT97XX_DAC_ADDR_REG,
+> +};
+> +
+> +static const struct of_device_id gt97xx_of_table[] = {
+> +	{ .compatible = "giantec,gt9768", .data = &gt9768_data },
+> +	{ .compatible = "giantec,gt9769", .data = &gt9769_data },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, gt97xx_of_table);
+> +
+> +static struct i2c_driver gt97xx_i2c_driver = {
+> +	.driver = {
+> +		.name = GT97XX_NAME,
+> +		.pm = pm_ptr(&gt97xx_pm_ops),
+> +		.of_match_table = gt97xx_of_table,
+> +	},
+> +	.probe = gt97xx_probe,
+> +	.remove = gt97xx_remove,
+> +};
+> +module_i2c_driver(gt97xx_i2c_driver);
+> +
+> +MODULE_AUTHOR("Zhi Mao <zhi.mao@mediatek.com>");
+> +MODULE_DESCRIPTION("GT97xx VCM driver");
+> +MODULE_LICENSE("GPL");
 
 
 
-On 6/5/2024 8:00 PM, Caleb Connolly wrote:
-> Hi,
-> 
-> On 05/06/2024 06:51, Aiqun Yu (Maria) wrote:
->>
->>
->> On 6/4/2024 7:20 PM, Caleb Connolly wrote:
->>>
->>>
->>> On 04/06/2024 12:51, Aiqun Yu (Maria) wrote:
->>>>
->>>>
->>>> On 6/3/2024 5:20 PM, Caleb Connolly wrote:
->>>>> Hi Tengfei,
->>>>>
->>>>> On 29/05/2024 12:09, Tengfei Fan wrote:
->>>>>> QCS8550 is derived from SM8550. The difference between SM8550 and
->>>>>> QCS8550 is QCS8550 doesn't have modem RF system. QCS8550 is mainly
->>>>>> used
->>>>>> in IoT products.
->>>>>> QCS8550 firmware has different memory map compared to SM8550.
->>>>>> The memory map will be runtime added through bootloader.
->>>>>> There are 3 types of reserved memory regions here:
->>>>>> 1. Firmware related regions which aren't shared with kernel.
->>>>>>        The device tree source in kernel doesn't need to have node to
->>>>>> indicate
->>>>>> the firmware related reserved information. Bootloader converys the
->>>>>> information by updating devicetree at runtime.
->>>>>>        This will be described as: UEFI saves the physical address
->>>>>> of the
->>>>>> UEFI System Table to dts file's chosen node. Kernel read this
->>>>>> table and
->>>>>> add reserved memory regions to efi config table. Current reserved
->>>>>> memory
->>>>>> region may have reserved region which was not yet used, release
->>>>>> note of
->>>>>> the firmware have such kind of information.
->>>>>
->>>>> Are you describing some particular quirk of the platform here, or just
->>>>> standard UEFI booting?
->>>>
->>>> It's standard UEFI booting efi config table.
->>>
->>> Ok, thanks for confirming.
->>>>>
->>>>> When booting with UEFI, the memory map is passed via the ESRT, so
->>>>> having
->>>>> memory that the kernel shouldn't use it pretty simple (and typical).
->>>
->>> woo! \o/
->>>>
->>>> yes. It is very simple. And the bootloader firmware config the
->>>> "reserved" region in the efi config table from the uefi firmware.
->>>>>> 2. Firmware related memory regions which are shared with Kernel
->>>>>>        The device tree source in the kernel needs to include nodes
->>>>>> that
->>>>>> indicate fimware-related shared information. A label name is
->>>>>> suggested
->>>>>> because this type of shared information needs to be referenced by
->>>>>> specific drivers for handling purposes.
->>>>>
->>>>> Again, is there something non-standard here? If not I would suggest
->>>>> dropping these detail comments as they might be misleading.
->>>>
->>>> Detailed comments is used to describe current device tree reserved
->>>> memory regions.
->>>>
->>>> Current patch is not creating a new mechanism to have memory map
->>>> described. But it is the first time qcom device trees use this design,
->>>> and have a simplified(also more compatible) device tree reserved memory
->>>> region(memory map). Previously, bootloader(apps bootloader) only pass
->>>> the whole physical memory base and size, and use reserved memory nodes
->>>> only in device tree(which is also a standard choose).
->>>>
->>>> So that's why it is detailed comments for other qcom platform
->>>> reference.
->>>
->>> Doesn't the rb3gen2 also use this design?
->>
->> Checked current qcs6490-rb3gen2.dts still use the device tree to have
->> all the reserved regions, even have detailed regions like "Firmware
->> related regions which aren't shared with kernel."
-> 
-> Right,
->>
->> Not sure current qcs6490 firmware efi config table looks like, if it
->> have all the reserved region marked carefully on efi config table, then
->> device tree don't need to mention the reserved regions which is not
->> shared to kernel.
-> 
-> That makes sense.
->>
->> The qcom memory map in device tree discussion was happened after qcs6490
->> rb3gen2 time frame. efi config table is standard. But we still need to
->> check what's the final config placed in the table for different
->> platforms. I will suggest to have current qcs8550 as an example to
->> config the current memory non-kernel needed to know region inside the
->> efi config table in bootloader, and have kernel shared reserved region
->> marked in the device tree.
-> 
-> Ok, thanks for explaining the context here. Using the ESRT for this
-> certainly makes more sense to me.
-> 
-> So regarding the comment in the reserved-memory node below, I think this
-> could be simplified to just a sentence or two explaining how this
-> platform is different. Maybe something like:
-> 
-> /* Unlike previous platforms, QCS8550 boots using EFI and describes most
-> reserved regions in the ESRT memory map. As a result, reserved memory
-> regions which aren't relevant to the kernel (like the hypervisor region)
-> don't need to be described in DT. */
-
-The previous message still accounts per my understanding since it can be
-referenced to others who are not familiar with the memory map change or
-ESRT memory map solution.
-
-I think we can add your above message into the commit message to have
-more information. Appreciate the comments if others have similar doubts
-as you have.
-> 
-> A few more comments in-line.
->>
->>>>
->>>>>
->>>>> Thanks and regards,
->>>>>> 3. Remoteproc regions.
->>>>>>        Remoteproc regions will be reserved and then assigned to
->>>>>> subsystem
->>>>>> firmware later.
->>>>>> Here is a reserved memory map for this platform:
->>>>>> 0x100000000 +-------------------+
->>>>>>                |                   |
->>>>>>                | Firmware Related  |
->>>>>>                |                   |
->>>>>>     0xd4d00000 +-------------------+
->>>>>>                |                   |
->>>>>>                | Kernel Available  |
->>>>>>                |                   |
->>>>>>     0xa7000000 +-------------------+
->>>>>>                |                   |
->>>>>>                | Remoteproc Region |
->>>>>>                |                   |
->>>>>>     0x8a800000 +-------------------+
->>>>>>                |                   |
->>>>>>                | Firmware Related  |
->>>>>>                |                   |
->>>>>>     0x80000000 +-------------------+
->>>>>>
->>>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->>>>>> ---
->>>>>>     arch/arm64/boot/dts/qcom/qcs8550.dtsi | 167
->>>>>> ++++++++++++++++++++++++++
->>>>>>     1 file changed, 167 insertions(+)
->>>>>>     create mode 100644 arch/arm64/boot/dts/qcom/qcs8550.dtsi
->>>>>>
->>>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs8550.dtsi
->>>>>> b/arch/arm64/boot/dts/qcom/qcs8550.dtsi
->>>>>> new file mode 100644
->>>>>> index 000000000000..685668c6ad14
->>>>>> --- /dev/null
->>>>>> +++ b/arch/arm64/boot/dts/qcom/qcs8550.dtsi
->>>>>> @@ -0,0 +1,167 @@
->>>>>> +// SPDX-License-Identifier: BSD-3-Clause
->>>>>> +/*
->>>>>> + * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All
->>>>>> rights reserved.
->>>>>> + */
->>>>>> +
->>>>>> +#include "sm8550.dtsi"
->>>>>> +
->>>>>> +/delete-node/ &reserved_memory;
->>>>>> +
->>>>>> +/ {
->>>>>> +    reserved_memory: reserved-memory {
->>>>>> +        #address-cells = <2>;
->>>>>> +        #size-cells = <2>;
->>>>>> +        ranges;
->>>>>> +
->>>>>> +
->>>>>> +        /* These are 3 types of reserved memory regions here:
->>>>>> +         * 1. Firmware related regions which aren't shared with
->>>>>> kernel.
->>>>>> +         *     The device tree source in kernel doesn't need to have
->>>>>> node to
->>>>>> +         * indicate the firmware related reserved information.
->>>>>> Bootloader
->>>>>> +         * conveys the information by updating devicetree at
->>>>>> runtime.
->>>>>> +         *     This will be described as: UEFI saves the physical
->>>>>> address of
->>>>>> +         * the UEFI System Table to dts file's chosen node. Kernel
->>>>>> read this
->>>>>> +         * table and add reserved memory regions to efi config
->>>>>> table.
->>>>>> Current
->>>>>> +         * reserved memory region may have reserved region which was
->>>>>> not yet
->>>>>> +         * used, release note of the firmware have such kind of
->>>>>> information.
->>>>>> +         * 2. Firmware related memory regions which are shared with
->>>>>> Kernel
->>>>>> +         *     The device tree source in the kernel needs to include
->>>>>> nodes
->>>>>> +         * that indicate fimware-related shared information. A label
->>>>>> name
->>>>>> +         * is suggested because this type of shared information
->>>>>> needs to
->>>>>> +         * be referenced by specific drivers for handling purposes.
->>>>>> +         * 3. Remoteproc regions.
->>>>>> +         *     Remoteproc regions will be reserved and then
->>>>>> assigned to
->>>>>> +         * subsystem firmware later.
->>>>>> +         * Here is a reserved memory map for this platform:
->>>>>> +         * 0x100000000 +-------------------+
->>>>>> +         *             |                   |
->>>>>> +         *             | Firmware Related  |
->>>>>> +         *             |                   |
->>>>>> +         *  0xd4d00000 +-------------------+
->>>>>> +         *             |                   |
->>>>>> +         *             | Kernel Available  |
->>>>>> +         *             |                   |
->>>>>> +         *  0xa7000000 +-------------------+
->>>>>> +         *             |                   |
->>>>>> +         *             | Remoteproc Region |
->>>>>> +         *             |                   |
->>>>>> +         *  0x8a800000 +-------------------+
->>>>>> +         *             |                   |
->>>>>> +         *             | Firmware Related  |
->>>>>> +         *             |                   |
->>>>>> +         *  0x80000000 +-------------------+
-> 
-> I guess this is quite subjective, but this diagram looks "upside down"
-> to me. I think it's generally more popular to have the lower addresses
-> at the top.
-
-ack.
-> 
->>>>>> +         */
->>>>>> +
->>>>>> +        /*
->>>>>> +         * Firmware related regions, bootloader will possible
->>>>>> reserve
->>>>>> parts of
->>>>>> +         * region from 0x80000000..0x8a800000.
-> 
-> This is just duplicating info from the table, please drop this comment
-> (it should be obvious from the above explanation).
-
-ack.
->>>>>> +         */
->>>>>> +        aop_image_mem: aop-image-region@81c00000 {
->>>>>> +            reg = <0x0 0x81c00000 0x0 0x60000>;
->>>>>> +            no-map;
->>>>>> +        };
->>>>>> +
->>>>>> +        aop_cmd_db_mem: aop-cmd-db-region@81c60000 {
->>>>>> +            compatible = "qcom,cmd-db";
->>>>>> +            reg = <0x0 0x81c60000 0x0 0x20000>;
->>>>>> +            no-map;
->>>>>> +        };
->>>>>> +
->>>>>> +        aop_config_mem: aop-config-region@81c80000 {
->>>>>> +            no-map;
->>>>>> +            reg = <0x0 0x81c80000 0x0 0x20000>;
->>>>>> +        };
->>>>>> +
->>>>>> +        smem_mem: smem-region@81d00000 {
->>>>>> +            compatible = "qcom,smem";
->>>>>> +            reg = <0x0 0x81d00000 0x0 0x200000>;
->>>>>> +            hwlocks = <&tcsr_mutex 3>;
->>>>>> +            no-map;
->>>>>> +        };
->>>>>> +
->>>>>> +        adsp_mhi_mem: adsp-mhi-region@81f00000 {
->>>>>> +            reg = <0x0 0x81f00000 0x0 0x20000>;
->>>>>> +            no-map;
->>>>>> +        };
->>>>>> +
->>>>>> +        /* PIL region */
-> 
-> Drop this comment
-
-ack.
->>>>>> +        mpss_mem: mpss-region@8a800000 {
->>>>>> +            reg = <0x0 0x8a800000 0x0 0x10800000>;
->>>>>> +            no-map;
->>>>>> +        };
->>>>>> +
->>>>>> +        q6_mpss_dtb_mem: q6-mpss-dtb-region@9b000000 {
->>>>>> +            reg = <0x0 0x9b000000 0x0 0x80000>;
->>>>>> +            no-map;
->>>>>> +        };
->>>>>> +
->>>>>> +        ipa_fw_mem: ipa-fw-region@9b080000 {
->>>>>> +            reg = <0x0 0x9b080000 0x0 0x10000>;
->>>>>> +            no-map;
->>>>>> +        };
->>>>>> +
->>>>>> +        ipa_gsi_mem: ipa-gsi-region@9b090000 {
->>>>>> +            reg = <0x0 0x9b090000 0x0 0xa000>;
->>>>>> +            no-map;
->>>>>> +        };
->>>>>> +
->>>>>> +        gpu_micro_code_mem: gpu-micro-code-region@9b09a000 {
->>>>>> +            reg = <0x0 0x9b09a000 0x0 0x2000>;
->>>>>> +            no-map;
->>>>>> +        };
->>>>>> +
->>>>>> +        spss_region_mem: spss-region@9b100000 {
->>>>>> +            reg = <0x0 0x9b100000 0x0 0x180000>;
->>>>>> +            no-map;
->>>>>> +        };
->>>>>> +
->>>>>> +        spu_secure_shared_memory_mem:
->>>>>> spu-secure-shared-memory-region@9b280000 {
->>>>>> +            reg = <0x0 0x9b280000 0x0 0x80000>;
->>>>>> +            no-map;
->>>>>> +        };
->>>>>> +
->>>>>> +        camera_mem: camera-region@9b300000 {
->>>>>> +            reg = <0x0 0x9b300000 0x0 0x800000>;
->>>>>> +            no-map;
->>>>>> +        };
->>>>>> +
->>>>>> +        video_mem: video-region@9bb00000 {
->>>>>> +            reg = <0x0 0x9bb00000 0x0 0x700000>;
->>>>>> +            no-map;
->>>>>> +        };
->>>>>> +
->>>>>> +        cvp_mem: cvp-region@9c200000 {
->>>>>> +            reg = <0x0 0x9c200000 0x0 0x700000>;
->>>>>> +            no-map;
->>>>>> +        };
->>>>>> +
->>>>>> +        cdsp_mem: cdsp-region@9c900000 {
->>>>>> +            reg = <0x0 0x9c900000 0x0 0x2000000>;
->>>>>> +            no-map;
->>>>>> +        };
->>>>>> +
->>>>>> +        q6_cdsp_dtb_mem: q6-cdsp-dtb-region@9e900000 {
->>>>>> +            reg = <0x0 0x9e900000 0x0 0x80000>;
->>>>>> +            no-map;
->>>>>> +        };
->>>>>> +
->>>>>> +        q6_adsp_dtb_mem: q6-adsp-dtb-region@9e980000 {
->>>>>> +            reg = <0x0 0x9e980000 0x0 0x80000>;
->>>>>> +            no-map;
->>>>>> +        };
->>>>>> +
->>>>>> +        adspslpi_mem: adspslpi-region@9ea00000 {
->>>>>> +            reg = <0x0 0x9ea00000 0x0 0x4080000>;
->>>>>> +            no-map;
->>>>>> +        };
->>>>>> +
->>>>>> +        /*
->>>>>> +         * Firmware related regions, bootloader will possible
->>>>>> reserve
->>>>>> parts of
->>>>>> +         * region from 0xd8000000..0x100000000.
->>>>>> +         */
-> 
-> The address specified in this comment (0xd8000000) doesn't match the
-> mpss_dsm_mem region OR the diagram above. I would suggest dropping this
-> comment too.
-
-ack.
->>>>>> +        mpss_dsm_mem: mpss_dsm_region@d4d00000 {
->>>>>> +            reg = <0x0 0xd4d00000 0x0 0x3300000>;
->>>>>> +            no-map;
->>>>>> +        };
->>>>>> +    };
->>>>>> +};
->>>>>
->>>>
->>>
->>
-> 
-> Kind regards,
-
--- 
-Thx and BRs,
-Aiqun(Maria) Yu
 
