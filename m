@@ -1,161 +1,149 @@
-Return-Path: <devicetree+bounces-74939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EF16905088
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 12:38:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B4C290507B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 12:35:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDF8A1F239B7
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:38:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA032B22768
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:35:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA3A316EBE6;
-	Wed, 12 Jun 2024 10:38:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C53D716E86E;
+	Wed, 12 Jun 2024 10:35:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="Z2gWX/CZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lbM0EJXI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01olkn2027.outbound.protection.outlook.com [40.92.99.27])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B607216EBE8;
-	Wed, 12 Jun 2024 10:38:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.99.27
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718188702; cv=fail; b=efqqVBInmC8WlnbNXgs1uSe/jQ5WHsVhMgUkimg9T923UhHyVJgqAfXmZ2aXd5ZwOThC/b/87yQ6S6Pfg9dXwpBOTdBKjekN8uH1lTN8LYmgoD9d/zjv6kioA54ZMt1Bm6/zmYY3baAhX9JkcIXuBUZSdgIliCmFbLeU9zQ7AWI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718188702; c=relaxed/simple;
-	bh=+XUVXU+GnYeMP9gQXZx51MfXjzuOQ9IMDc1KSz2WNnk=;
-	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=HPkpozhXbhE73jyfWliUfA8N+5+1zMJDgg4mHC/icVfz6c2uDy09uqoDZbO749V5ysEfrwG8d2v1WK7NLnN3CAQ3MdxuiQS8mcJrexw02uJg5VdVtrLkQNrkYiziSMN9XUdYJKBs2rkP8llZa4X2qg3Bcqust1D4KCFLzPdkaS8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=Z2gWX/CZ; arc=fail smtp.client-ip=40.92.99.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XOMPYWp7M+OYAacCHnyNiDynkKzsCkAyEuvXR1rU2fLdSmEulD5m4VFRRs6kDNyRqzE0gwVInQwaR/KvPKMlhkjSBI6EKkKN+yiRajyCBxoglFHQXuQ4xp6PoJYtZlTinGAqoJ0Cu7M4AGzh5xY7Ra868EvgIRFHXXQrc68i6kq1qcNX8NVYyYJPz12FXfVqP5acglR4m5ll+guxiuKCJncbfdCXTD8Aa05aPRR3awOss/jgjajB0r5YlXaEzIUIwcHTGOll0PnroOQMYeLCdBr2aSkWMtk2ayluRIWZEHYkhwMcGOe9FyVLdljEerT+lLBKb68XD6+rP48FY17L/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BGVrSRCvjD5dJcnAsvpt9t9djgnirPYJ6kPJLhgjknY=;
- b=IpIVKS21UkGSZVTlkSlf8+E4s1MFGG5WEOF5Xaf0/S/EiM/lflTW/IeIehUxibD/larcEH5DV3Af5xkJSmMuziLaO02X4jLwZKJILEkjpZqJLSMdTaY8TAX78osFaG7tjFqlJDsyiijhdTujgfFQ5F9RZ2RUQs1gBK9aWUVxfuCZzL2EjRbWZkjIAuxFcW8ciEZmMdohtkgEggGozRROq8CIYvqMrrBfXFnEY4QKNtBtLQP+Ij+msE2lYH1RUJ756HRy+wMYovzz7YCOGGbaVuo0ZAW2Fus6/3qdoqka3GpWcKdRqvGjocYNPbxdqfqN4FutS/3xbJLZ57eapgIAUQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BGVrSRCvjD5dJcnAsvpt9t9djgnirPYJ6kPJLhgjknY=;
- b=Z2gWX/CZv/Db8yhzIGwnMs/qGtksnyoAYCxRjsMESJIcS7dX07qeNiyesZwVIgcaJUCMjZHwtlKpZF07iXsBg7QlrvQMp2c4JHmxNQRRCaVwwiMkY75u6KxSIyt4wXsoH1hbXWBvrw7z1kJHT6EYVjExBwaudfniLS6fD6zY3tBlUtZpEQVbJ3hGfXVQN/GS2o8R49hLbF6WUjbJxRHnWVNrhxfNf8BciSH5jAGZoy5e3rMKaNuEb5QyTNXLv1pe8/BaZgiPA3yLqiWhbxPoNtCvNlpqGyF6puqfY4EIKawKgcrVMxXnyT8Rl4mP8fM7e2XARTj3HN+NcsQobF1ctQ==
-Received: from TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:23e::10)
- by TYWP286MB3208.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:2d7::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.36; Wed, 12 Jun
- 2024 10:38:16 +0000
-Received: from TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
- ([fe80::85b8:3d49:3d3e:2b3]) by TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
- ([fe80::85b8:3d49:3d3e:2b3%5]) with mapi id 15.20.7677.019; Wed, 12 Jun 2024
- 10:38:16 +0000
-From: Shengyu Qu <wiagn233@outlook.com>
-To: kernel@esmil.dk,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	william.qiu@starfivetech.com,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Cc: Shengyu Qu <wiagn233@outlook.com>,
-	stable@vger.kernel.org
-Subject: [PATCH v2] riscv: dts: starfive: Set EMMC vqmmc maximum voltage to 3.3V on JH7110 boards
-Date: Wed, 12 Jun 2024 18:33:31 +0800
-Message-ID:
- <TY3P286MB261189B5D946BDE69398EE3A98C02@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
-X-Mailer: git-send-email 2.39.2
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [G87vWAOj5j+EnV6LHJTQcIMi3nWtEb0LNSHZCwZ0pFM=]
-X-ClientProxiedBy: SG2PR01CA0135.apcprd01.prod.exchangelabs.com
- (2603:1096:4:8f::15) To TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:23e::10)
-X-Microsoft-Original-Message-ID: <20240612103331.1475-1-wiagn233@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96E4D763E6;
+	Wed, 12 Jun 2024 10:35:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718188548; cv=none; b=j1mvIGO1fZXqiefr+bR1Kuo6zFgPAXoNQjpZIeRgFBOdG2drV0Xvg7jqZlnryJqIrPEEW/ROxX4b5gCtuzqDqkTNy8X5+LN20gRWRQuSqixwyxIdzXerjTWfsKc56pSJ6+2kL1rhIBOA6SNFyM3xNC6GVleckCcZgDztPc4iNK4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718188548; c=relaxed/simple;
+	bh=X0Zk+SveV+gEb4psqpLSCPha/o7toshYco8L5g3SX8s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Yp0I7NYd1e4GEJCjnrMMN3Yw54ScNFKKYdxYxUTH0wZrLpn5tp8//ACufk+L6UJ7Z6C67bgxiIZMjslI2GRGN3/FfnnLktJ6afSTtHCwgaNQbOIHMuP/UpT189Yoo9jojCDVAcjAIKsc3CxAsR8LPG8aaPSxR87bR1b/1OU8jsI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lbM0EJXI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C992FC3277B;
+	Wed, 12 Jun 2024 10:35:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718188548;
+	bh=X0Zk+SveV+gEb4psqpLSCPha/o7toshYco8L5g3SX8s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lbM0EJXIp8oIL6cno3WwmEwiq1kultN4QLcaOQ9OXrUT2f6sk1ZW0HghpbfJ8xFoF
+	 hsaMCMYWOgf2zDzlEiUK2QFfdsBYHS+mLP9J/+HrQLroBaVq2dGf07b65tlk69B2dO
+	 EHcwSW/dIEmR6rdgIXDUhxnKPymcWhI8PEhQS0S3ePiBdZgV6kd2qMso4QovTgPHzu
+	 P05JA3NGReqXIjkYSazArVNLmhVJ/MNxS2ljy9b2AgPXiAaxW69keu1E3MWSMvVFnj
+	 Pke1427BstaY1P3vcdsJiKeGJysiOpEwuCaXoUC1z1MoohwJXS7S87XaXJzuUkWLJ0
+	 d5c7+z48ddCZQ==
+Date: Wed, 12 Jun 2024 11:35:45 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Witold Sadowski <wsadowski@marvell.com>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"pthombar@cadence.com" <pthombar@cadence.com>,
+	Piyush Malgujar <pmalgujar@marvell.com>
+Subject: Re: [EXTERNAL] Re: [PATCH v8 3/4] spi: cadence: Allow to read basic
+ xSPI configuration from ACPI
+Message-ID: <Zml6ARdI3ek6sVF1@finisterre.sirena.org.uk>
+References: <20240607151831.3858304-1-wsadowski@marvell.com>
+ <20240607151831.3858304-4-wsadowski@marvell.com>
+ <ZmclB2CMhhkasiBw@finisterre.sirena.org.uk>
+ <CO6PR18MB4098CD7676AA96B680FBC068B0C72@CO6PR18MB4098.namprd18.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TY3P286MB2611:EE_|TYWP286MB3208:EE_
-X-MS-Office365-Filtering-Correlation-Id: 93b217a6-a3dd-4ca0-2101-08dc8acbc4a6
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|461199020|440099020|3412199017|1710799020;
-X-Microsoft-Antispam-Message-Info:
-	IOFDULolZfQjmEf6+rPOAZzBo5mx0jqHG0mOQ2pyo6QLORaO+A+tc2CHruNrxe1bDQMpGuS89bMmx4Wn3rHW85g5eBbeJaCbTDLwcgfbzNMBwqDNW8cefXXFsQHH0sB0hMUVaYW0/XuOxPQHg65HMFktPbFmRl/46TFRDvYxZRu4tAiJxsypN4dOkY1g1IrZ1+fkaIz9Z8EN3iJXa/grIyJh6EA+k5v34uNir1AaV+b0c1ZF7mJ6bqtHR3uubhF3phwB/uop0rORnuFVz0Lo8Tg/ELQQROgAee4ia9YOfOqJw+K3QZkfj+dvNhY5elkD7R5zeqK9jLQZJbhiy2FzJHWz8DpF6hSn0L6TZBJO+0gGeRBkthKz81Ga9ak4nBqJBS4ytwQCgqg7hOmk30e1a8Usfo8l69wNF2gCf6+/n6P+6DErdI+heU9ubWrpJXXMQ0vG6fI8jYfz8wfrh1q2r+w8MnggYAmwm+cQi7Y10ZsHgWgUOovXWeiJOBH84Ou4+lEQ6e6KJKmfrzBZH2P5m2iFPcfn4E0MnBStgfA8mDHCX+ImkdKvWJna0ZztOFeJvgAeY1emnYhca4+kPe+Wvm01Dk4r6wB4VQtrVIzErXSpyxQoxr8bDAd9/e++wBrp
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?CM7Li2Z+dk+l04R4/ZCW+vHrsuJpcqOdL6EENMZslva7cFGxVR7xDpS+uy7A?=
- =?us-ascii?Q?N/N/OdLuC768uYf0fIjXfLyX+vPEmQAUk+j9EOkqJW7cTUMgYeOa7jX/Il3J?=
- =?us-ascii?Q?vEGCd9nFkiZs7IzGFHcqxxQmcmRcCAmItfkZzG/gbckH51aAFC51ViEPADP2?=
- =?us-ascii?Q?nRhlPD3LfQHqVzWvaB65zCmk2YpmTf0+gbTG76n5faGeuOggWA4I+XXqsN4B?=
- =?us-ascii?Q?ylZ5UyZUlN7N6gjkFe2GIHx6rHI4/5H/X9g4RIS9zw2XG3cAC/s4QKriS+DP?=
- =?us-ascii?Q?DfqQrw8gR9lqYokDiiTpAi/6EtO3FOIyE6POjrpv9u/+gUCC81RtDCkBOWZg?=
- =?us-ascii?Q?GnM5U0FzgTH0qwW+sHKukoU/B3NK55itHFSVcAucBYSRIN9q1nCe5HdK7KCd?=
- =?us-ascii?Q?L9GC0s/x9jl4JXe50bQ9d7rp94bsbDFU7ixvCWLl8sWRpjSRJ+WR6EfGhjhI?=
- =?us-ascii?Q?zodoV5lIPvNj7kRDYjgOUvlKD6NTydbnmAWB+R7xBTDmFa+X39xD6TWOGltz?=
- =?us-ascii?Q?fg3HYKLuEbJYQ3JhbhYmL/kyCRJrMWdtkSxpRXiX0zw+1/RwDXENwiWY+Y+n?=
- =?us-ascii?Q?0bgv1hKKB7YYa/d5w+OajaT4XLpQ7OfdycSEd/p+ScsYqVEeP5TEkqIc1G0O?=
- =?us-ascii?Q?2H58ltv7JkKFoa/GiCbfsqQWuwwAkBdgM5E3WbVsB8BzlotSJxMRdLlT+yc5?=
- =?us-ascii?Q?l0yySN88TfOsB+a199M4zKdh8F9ToHiel1ihAzrbolOWRg1fV0DUKDSl1ayo?=
- =?us-ascii?Q?Na3VQ9Ii8oFYD8L+TR0iF9J/w+6pcV0UQbVRbGCICV9bDoiKutvlH0UL9jEd?=
- =?us-ascii?Q?KpAc2wzEnIi5QvtQcB1vwBp+2DdUM+YwElkTgXZ5yoUqOLYDo8Jj2KkkUet6?=
- =?us-ascii?Q?EuQuA6LbR8ezaPdFtDEOkOZZkfzvg53eD4wsGE2m3cLIBRSFwxJCkLMTX1To?=
- =?us-ascii?Q?Wb3OfMxEy2xIcg7LPpWSOnHfH4hZ8uuMiZg218QlXkL9Ag/r+OHJKYgAqcqw?=
- =?us-ascii?Q?8rl29l8Jh/bpoOmM6RNDnzNAb/DEv8poIEsOE5VnJGkaFQ2PArQhvhVscZDG?=
- =?us-ascii?Q?8zEFyD/hQnsPwk2BOvTR2zvFAHIvbpEyOhfxRqr/Z1y81oRShc568jCYLjJq?=
- =?us-ascii?Q?XrYce0aSzaE+Fek2EPNb1LwFskMu6WP1zPjwLbYcMqMEfI2dIFR7kPGScYI+?=
- =?us-ascii?Q?wXR23d0cAAM4R8skezQWjlhYokHsuKV5yMXvcZdnWqMSrx5lWT7xrU4wv1A?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 93b217a6-a3dd-4ca0-2101-08dc8acbc4a6
-X-MS-Exchange-CrossTenant-AuthSource: TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2024 10:38:16.6270
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWP286MB3208
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Llmhg3KkfjprADEB"
+Content-Disposition: inline
+In-Reply-To: <CO6PR18MB4098CD7676AA96B680FBC068B0C72@CO6PR18MB4098.namprd18.prod.outlook.com>
+X-Cookie: Your love life will be... interesting.
 
-Currently, for JH7110 boards with EMMC slot, vqmmc voltage for EMMC is
-fixed to 1.8V, while the spec needs it to be 3.3V on low speed mode and
-should support switching to 1.8V when using higher speed mode. Since
-there are no other peripherals using the same voltage source of EMMC's
-vqmmc(ALDO4) on every board currently supported by mainline kernel,
-regulator-max-microvolt of ALDO4 should be set to 3.3V.
 
-Cc: stable@vger.kernel.org
-Signed-off-by: Shengyu Qu <wiagn233@outlook.com>
-Fixes: 7dafcfa79cc9 ("riscv: dts: starfive: enable DCDC1&ALDO4 node in axp15060")
----
- arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--Llmhg3KkfjprADEB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-index 37b4c294ffcc..c7a549ec7452 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-@@ -244,7 +244,7 @@ emmc_vdd: aldo4 {
- 				regulator-boot-on;
- 				regulator-always-on;
- 				regulator-min-microvolt = <1800000>;
--				regulator-max-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
- 				regulator-name = "emmc_vdd";
- 			};
- 		};
--- 
-2.39.2
+On Tue, Jun 11, 2024 at 09:57:09PM +0000, Witold Sadowski wrote:
+> > > These changes enable reading the configurations from ACPI tables as
+> > > required for successful probing in an ACPI UEFI environment. In the
+> > > case of an ACPI-disabled or DTS-based environment, it will continue to
+> > > read configurations from DTS as before.
 
+> > This doesn't describe what the ACPI tables are supposed to look like or
+> > anything, it's hard to review this...
+
+> There should be an example of ACPI table in commit message?
+
+No sign of one in the patch that got sent, nor in the cover letter.
+
+> > > +#ifdef CONFIG_ACPI
+> > > +static bool cdns_xspi_supports_op(struct spi_mem *mem,
+> > > +				  const struct spi_mem_op *op)
+> > > +{
+
+> > > +	if (!acpi_dev_get_property(adev, "spi-tx-bus-width",
+> > ACPI_TYPE_INTEGER,
+> > > +				   &obj)) {
+
+> > > +	if (!acpi_dev_get_property(adev, "spi-rx-bus-width",
+> > ACPI_TYPE_INTEGER,
+> > > +				   &obj)) {
+
+> > Why is this Cadence specific?
+
+> So that part should do to generic spi? I think right now it is not
+> Supported to read tx/rx bus width from acpi.
+
+I think I meant to say Marvell there rather than Cadence.
+
+> > > -	cdns_xspi->iobase =3D devm_platform_ioremap_resource_byname(pdev,
+> > "io");
+> > > +	cdns_xspi->iobase =3D devm_platform_ioremap_resource(pdev, 0);
+> >=20
+> > > -	res =3D platform_get_resource_byname(pdev, IORESOURCE_MEM, "sdma");
+> > > +	res =3D platform_get_resource(pdev, IORESOURCE_MEM, 1);
+> >=20
+> > > -	cdns_xspi->auxbase =3D devm_platform_ioremap_resource_byname(pdev,
+> > "aux");
+> > > +	cdns_xspi->auxbase =3D devm_platform_ioremap_resource(pdev, 2);
+
+> > This causes us to ignore naming on resources, that's an ABI break for
+> > other systems.
+
+> In that case acpi tables are not able to find resource by name. Or at
+> least I wasn't able to find a way to handle that in different way.
+> Is there better solution for that part?
+
+Try by name and then fall back on numbers?
+
+--Llmhg3KkfjprADEB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZpegAACgkQJNaLcl1U
+h9Dhsgf+JGMmyMkLPPtsh9gB5SjSbo5EYx+U4yVYqbC/tIANoDeej74YxpaOYQvv
+zmzu9dPxmcKMKlg4cqmonr0YGSt5HK1EnraoQlPTxKdW9ASi0MOweH3hhJZAv0HE
+Jy8kPOTbN2FRtKicXyJVU3iaFIRNukZdgBSnqprHd+Ccm+BjMbCJHaewEAPGbr+l
+jP+GqH81ZUu4oV2Fl/vWsSjJC4Pcc8YPyeYTKr2UZUf8KxiguTnmZJ2JxB24JDpe
+IeedhN7NsbE+kwnCKMYdZc2NGY4SuDBpw2XbcBmSMrgma9rxqZ1nYVr9tktvPzIi
+cNdxhE//NCF2xH2gON2twMd5jRQPXw==
+=Z3zK
+-----END PGP SIGNATURE-----
+
+--Llmhg3KkfjprADEB--
 
