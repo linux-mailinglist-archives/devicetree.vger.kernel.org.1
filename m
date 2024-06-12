@@ -1,268 +1,151 @@
-Return-Path: <devicetree+bounces-75107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72EAA90581B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 18:06:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D527E90588D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 18:21:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BB971C21585
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:06:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 05995B214AA
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:13:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71EAF181325;
-	Wed, 12 Jun 2024 16:04:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MpTrPoiP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD8E7180A88;
+	Wed, 12 Jun 2024 16:13:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEB3D181321;
-	Wed, 12 Jun 2024 16:04:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7795C17B516;
+	Wed, 12 Jun 2024 16:13:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718208254; cv=none; b=iLUQux/YrN8RAM0GKKLSldAVQ/0WvPTtx8KxkQFPOXvpb01LhORGiKu5HNtV/OeOnmIbBiv7ku/NvJAOhU+GVC/9ZwX8EFkx+bs/3f8tCYG7VkXsdopRnhTVoEYyDJRqpQCYpngivo7M6lcB6ZZcIFB15/VIxJPVAYd00EdjOZ0=
+	t=1718208788; cv=none; b=NDzsKsB38T0QrdqwQwJMyW2/7ka0iteQrYkywM64PoBtqjR3G2m1Tu9tWAB+qNBXyvNFSnLsBBjqTAKnCRZ6HK1ce0MkRk00AGIjR2tEuAqNMr9HP74+Y2f+PlH3VkQhhJqahsxdzfYb8ddUYJCKyHKFmvsPE7zMZdjbVQdYCCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718208254; c=relaxed/simple;
-	bh=KDemYi20FzCyN4R11poSytu7smnSLYTz4hF35CJ5RWA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jMRHsg6ir+ZX1cA0yAiYFFUiMTXrLTdy7cetBSV5c2cmY5G4alsLb1LVg2gOVrkgwfUD2yqo2eYDWZ6pHyeYbtQ6Cktn6c/RaNFhSxygVQOA4+pPjWGAGSZAIV1RIqVpEgdFk2LPhgMXx4z1GT3cQnlBnSSFUBFkAmYnSzcIVTc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MpTrPoiP; arc=none smtp.client-ip=209.85.210.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-7042cb2abc8so3211052b3a.0;
-        Wed, 12 Jun 2024 09:04:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718208252; x=1718813052; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=AH50orR5FyIlpjugYepr6bfFOHdgPbrZzYYt/ypEgjU=;
-        b=MpTrPoiPiep5+rNGz7sXxHtnjGPxP90pTPDu9O4jHdmGnXy5K459y9k+p5e1WKYaep
-         BAQNVECQiUMmw1nIzRNo7+wl0rr61AR7QwxjNW8br8LlMxT+XLuJgv9aF5YO6W6NsMTJ
-         4H9poZUzTk1AZ4iqSAj1VklhSNRbH0qzgGnYuHHnAF2MG1uX+hUvmz5vcvHMtvxnpLxL
-         hrUgxshFNSEh60bWwEG3VxdimuVlq35YX7ew9TINgAtNM43GJfANNRG9ZqsfmRkRXWNQ
-         zYHNQVy65i+TSREfuJjkneHa+TE6FqEJcT16VWPDLYR6AzLMBxSGpWfw0iXBqnA8hQSX
-         aw4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718208252; x=1718813052;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AH50orR5FyIlpjugYepr6bfFOHdgPbrZzYYt/ypEgjU=;
-        b=CzBOwr2PdNV768WYRligvvSuVqyxHb1YgI9lV7a2lXlBJkG4rnyzsSfFpB9ZHBNags
-         mKmhabNLoKpqwsCOixjz6gdady/JjoGt4V1mCZESGYrgjrZWrwHqpJczw8DQ/lDJ07MY
-         lXd5NyA8Wmpn+dVQfZNtfinSbbhtw3ndjppm/E8kcDcr/owz0N6PBgj7EssTpTRBU+lX
-         +vuqbBiuOjcvRrFnRYmi+9qNP3ZIKN3IIHgcWjl+3MIfXYvYdnaH/WB9Q3xisQuGWdyh
-         xJXLR+4PVAl4STs0AiA4ZSvakwfezwK/+QBcdkYtnLixB1kdKF+FXxFqXmIC36EoPq4h
-         0Wbw==
-X-Forwarded-Encrypted: i=1; AJvYcCXi6jDgBp439BGPAiohbzz1BnDs+QraMe69XZvJjqBeJo585ceiveQnrdqM3AeNSwfmtBO4Z4mx5MdrUZjZDhpTQcswBuBcyG6qnqRZZnID/kSqmQZRd6SBAm2GPzywieKqE6ryJOn1NA==
-X-Gm-Message-State: AOJu0YwNUe9zJxMqdlU9QeOYLFDr5lrBF0x8KqdVpiEnoa2sKRPkVlKA
-	chgnMOBy/FAUv9wg3K8q5y6WiMIHOIBS8Yb8DeosSdTMBGaJbQdD
-X-Google-Smtp-Source: AGHT+IHc7rN5RhTKgGX+U2xnByt7BB6V+V8NYKfp2g4qSX34Lk1wtCxbkckFHtg4nNii+mCRqOfJPg==
-X-Received: by 2002:a05:6a00:a14:b0:6fc:fcc8:cb38 with SMTP id d2e1a72fcca58-705bcf1accamr2931743b3a.33.1718208251825;
-        Wed, 12 Jun 2024 09:04:11 -0700 (PDT)
-Received: from shresth-aspirea71576g.abesec.ac.in ([139.5.197.147])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-705382784b9sm5911884b3a.48.2024.06.12.09.04.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jun 2024 09:04:11 -0700 (PDT)
-From: Shresth Prasad <shresthprasad7@gmail.com>
-To: vkoul@kernel.org,
-	kishon@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	sebastian.reichel@collabora.com,
-	s.hauer@pengutronix.de,
-	cristian.ciocaltea@collabora.com,
-	andy.yan@rock-chips.com
-Cc: linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	skhan@linuxfoundation.org,
-	javier.carrasco.cruz@gmail.com,
-	Shresth Prasad <shresthprasad7@gmail.com>
-Subject: [PATCH v2] dt-bindings: phy: rockchip-emmc-phy: Convert to dtschema
-Date: Wed, 12 Jun 2024 21:33:37 +0530
-Message-ID: <20240612160336.5132-2-shresthprasad7@gmail.com>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1718208788; c=relaxed/simple;
+	bh=TqdikSL4T/F8T6RVHBxSBxob3KUr7m3yyjdVJKKjxEk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Je5XNbSZWJWWwo29ArSZN2PE0A1gZnqwobNYVKaxG21bbbRWVKSI6Oyl/xj1S7VylUgqv8TFkhf3KA7XBf5p+fv7RKuAUhMLiboSSrzp1Q6/CePdNDc0coEH8ImXca45HH7ROe3gR9W/fvwh974przTzlTRWL1+CrdBP/ahJKuE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 33ACD1042;
+	Wed, 12 Jun 2024 09:13:30 -0700 (PDT)
+Received: from [192.168.20.22] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E7B443F73B;
+	Wed, 12 Jun 2024 09:13:04 -0700 (PDT)
+Message-ID: <a1dd1847-5e77-41dc-a4ad-d44984c3cf98@arm.com>
+Date: Wed, 12 Jun 2024 11:10:14 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: Raspberry Pi5 - RP1 driver - RFC
+Content-Language: en-US
+To: Stefan Wahren <wahrenst@gmx.net>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+ linux-pci@vger.kernel.org, Dave Ertman <david.m.ertman@intel.com>,
+ Lizhi Hou <lizhi.hou@amd.com>, clement.leger@bootlin.com
+References: <ZmhvqwnOIdpi7EhA@apocalypse>
+ <ba8cdf39-3ba3-4abc-98f5-d394d6867f95@gmx.net>
+From: Jeremy Linton <jeremy.linton@arm.com>
+In-Reply-To: <ba8cdf39-3ba3-4abc-98f5-d394d6867f95@gmx.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Convert txt bindings of Rockchip EMMC PHY to dtschema to allow
-for validation.
+Hi,
 
-Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
----
-Changes in v2:
-    - Fixed example
-    - Changed file referenced in grf.yaml
+On 6/11/24 14:05, Stefan Wahren wrote:
+> Hi Andrea,
+> 
+> i added Jeremy, because AFAIK he was deeply involved in ACPI
+> implementation of the RPi 4.
 
-Tested against `rockchip/rk3399-firefly.dtb`, `rockchip/rk3399-orangepi.dtb`
-and `rockchip/rk3399-pinebook-pro.dtb`.
+I'm not sure what to add here, the RPi4 work was done as an example of 
+using firmware standards to boot multiple OSs with a single 
+boot/firmware interface. Which means ACPI.
 
- .../bindings/phy/rockchip,emmc-phy.yaml       | 79 +++++++++++++++++++
- .../bindings/phy/rockchip-emmc-phy.txt        | 43 ----------
- .../devicetree/bindings/soc/rockchip/grf.yaml |  2 +-
- 3 files changed, 80 insertions(+), 44 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
- delete mode 100644 Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+Alternatively, the PCIe/SMCCC might be able to make this device look 
+more regular, by putting everything on separate PCIe functions.
 
-diff --git a/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
-new file mode 100644
-index 000000000000..f42045389383
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
-@@ -0,0 +1,79 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/rockchip,emmc-phy.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Rockchip EMMC PHY
-+
-+maintainers:
-+  - Shresth Prasad <shresthprasad7@gmail.com>
-+
-+properties:
-+  "#phy-cells":
-+    const: 0
-+
-+  compatible:
-+    const: rockchip,rk3399-emmc-phy
-+
-+  reg:
-+    description:
-+      PHY register address offset and length in "general register files"
-+    maxItems: 1
-+
-+  clock-names:
-+    description: |
-+      Although this is not a required property (because most boards can get
-+      basic functionality without having access to it), it is strongly
-+      suggested.
-+    const: emmcclk
-+
-+  clocks:
-+    description:
-+      Should have a phandle to the card clock exported by the SDHCI driver.
-+    maxItems: 1
-+
-+  drive-impedance-ohm:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Specifies the drive impedance in Ohm.
-+    enum: [33, 40, 50, 66, 100]
-+    default: 50
-+
-+  rockchip,enable-strobe-pulldown:
-+    type: boolean
-+    description: |
-+      Enable internal pull-down for the strobe
-+      line.  If not set, pull-down is not used.
-+
-+  rockchip,output-tapdelay-select:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Specifies the phyctrl_otapdlysec register.
-+    default: 0x4
-+    maximum: 0xf
-+
-+required:
-+  - "#phy-cells"
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    grf: syscon@ff770000 {
-+      compatible = "rockchip,rk3399-grf", "syscon", "simple-mfd";
-+      reg = <0x0 0xff770000 0x0 0x10000>;
-+      #address-cells = <1>;
-+      #size-cells = <1>;
-+
-+      emmcphy: phy@f780 {
-+        #phy-cells = <0>;
-+        compatible = "rockchip,rk3399-emmc-phy";
-+        reg = <0xf780 0x20>;
-+        clocks = <&sdhci>;
-+        clock-names = "emmcclk";
-+        drive-impedance-ohm = <50>;
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt b/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
-deleted file mode 100644
-index 57d28c0d5696..000000000000
---- a/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
-+++ /dev/null
-@@ -1,43 +0,0 @@
--Rockchip EMMC PHY
-------------------------
--
--Required properties:
-- - compatible: rockchip,rk3399-emmc-phy
-- - #phy-cells: must be 0
-- - reg: PHY register address offset and length in "general
--   register files"
--
--Optional properties:
-- - clock-names: Should contain "emmcclk".  Although this is listed as optional
--		(because most boards can get basic functionality without having
--		access to it), it is strongly suggested.
--		See ../clock/clock-bindings.txt for details.
-- - clocks: Should have a phandle to the card clock exported by the SDHCI driver.
-- - drive-impedance-ohm: Specifies the drive impedance in Ohm.
--                        Possible values are 33, 40, 50, 66 and 100.
--                        If not set, the default value of 50 will be applied.
-- - rockchip,enable-strobe-pulldown: Enable internal pull-down for the strobe
--                                    line.  If not set, pull-down is not used.
-- - rockchip,output-tapdelay-select: Specifies the phyctrl_otapdlysec register.
--                                    If not set, the register defaults to 0x4.
--                                    Maximum value 0xf.
--
--Example:
--
--
--grf: syscon@ff770000 {
--	compatible = "rockchip,rk3399-grf", "syscon", "simple-mfd";
--	#address-cells = <1>;
--	#size-cells = <1>;
--
--...
--
--	emmcphy: phy@f780 {
--		compatible = "rockchip,rk3399-emmc-phy";
--		reg = <0xf780 0x20>;
--		clocks = <&sdhci>;
--		clock-names = "emmcclk";
--		drive-impedance-ohm = <50>;
--		#phy-cells = <0>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-index 79798c747476..1f88416657cc 100644
---- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-+++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-@@ -178,7 +178,7 @@ allOf:
-       patternProperties:
-         "phy@[0-9a-f]+$":
-           description:
--            Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
-+            Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
- 
-   - if:
-       properties:
--- 
-2.45.2
+OTOH, I don't think this device is particularly special, except maybe to 
+the extent that it doubles down on ideas regarded as best left in the 
+1990's. The kernel documents how to handle these cases with ACPI _ADR(). 
+A PCI device can create the _ADR nodes by injecting an SSDT into the 
+ACPI namespace via the PCI option ROMs if the platform firmware doesn't 
+provide them. Should it though? If I were doing it I might be tempted to 
+configure the root port in early firmware and hide it from the OS, 
+claiming instead a bunch of platform devices.
+
+IMHO, DT/Linux platforms should probably do something similar to _ADR() 
+for consistency rather than requiring the EP driver to get involved. 
+Further, mixing DT's into a possible ACPI platform is really the worst 
+of both.  Even worse if it requires further distro 
+dracut/initrd/grub/etc one off hacking or polluting the initrd or ESP of 
+non RPi platforms to handle the overlay.
+
+So, a custom EP/bus driver option solves the problem on linux for both 
+DT and ACPI implementations if the device type/offsets are hard coded 
+into it. And presumably if there is a follow on device, it would use 
+multiple PCIe functions to avoid all these problems, the ones around 
+securing the platform with an IOMMU, enabling VFIO, and everything else 
+one gets for "free" with a proper PCIe EP.
+
+
+PS:
+The PCIe/SMCC API could probably make all these devices appear as PCIe 
+functions avoiding the need for a monolithic bus or DT/ACPI description 
+to handle it. But that will likely break the second this device is 
+plugged into something with an SMMU (this platform doesn't have one, 
+correct?), and of course if would require all the firmware configured 
+BAR mappings to remain static, which isn't a problem if its presented as 
+an integrated endpoint. If someone is interested in doing it that way 
+then we should talk.
+
+
+> 
+> Am 11.06.24 um 17:39 schrieb Andrea della Porta:
+>> Hi,
+>> I'm on the verge of reworking the RP1 driver from downstream in order 
+>> for it to be
+>> in good shape for upstream inclusion.
+>> RP1 is an MFD chipset that acts as a south-bridge PCIe endpoint 
+>> sporting a pletora
+>> of subdevices (i.e.  Ethernet, USB host controller, I2C, PWM, etc.) 
+>> whose registers
+>> are all reachable starting from an offset from the BAR address.
+>> The main point here is that while the RP1 as an endpoint itself is 
+>> discoverable via
+>> usual PCI enumeraiton, the devices it contains are not discoverable 
+>> and must be
+>> declared e.g. via the devicetree. This is an RFC about the correct 
+>> approach to use
+>> in integrating the driver and registering the subdevices.
+>>
+> I cannot provide much input into the technical discussion, but i would
+> prefer an approach which works good with DT and ACPI.
+> 
+> Best regards
+> Stefan
+>>
+>> Link:
+>> - [1]: 
+>> https://github.com/raspberrypi/linux/blob/rpi-6.6.y/arch/arm/boot/dts/broadcom/rp1.dtsi
+>> - [2]: 
+>> https://github.com/raspberrypi/linux/blob/rpi-6.6.y/drivers/mfd/rp1.c
+>> - [3]: 
+>> https://lpc.events/event/17/contributions/1421/attachments/1337/2680/LPC2023%20Non-discoverable%20devices%20in%20PCI.pdf
+>> - [4]: 
+>> https://lore.kernel.org/lkml/20230419231155.GA899497-robh@kernel.org/t/
+>> - [5]: https://lore.kernel.org/lkml/Y862WTT03%2FJxXUG8@kroah.com/
+> 
 
 
