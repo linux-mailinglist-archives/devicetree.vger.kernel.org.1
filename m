@@ -1,147 +1,116 @@
-Return-Path: <devicetree+bounces-75197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED74E905D58
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 23:03:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1613905D83
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 23:15:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8AC55B21E1B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 21:03:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59B37284026
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 21:15:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CA351272A3;
-	Wed, 12 Jun 2024 21:02:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23CCF537F5;
+	Wed, 12 Jun 2024 21:15:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b6KJOXj4"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="nAOVUINu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4312684FCC;
-	Wed, 12 Jun 2024 21:02:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E2E4175A5
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 21:15:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718226169; cv=none; b=ta+9Cbfm1pytyEfI2wrYhc0NJhqoHYDyCb4Qj/P0RYqTcOhiX8NEnE+5dnx9rv2jwD/fwyuetN6u9W5tmYpLghKgCsJx2gVr/aV/soK/KNI0muwS1kq1dqlEvZ/kzlYpheJUd2vKSXPVMX+ZhGQdu24ZyQNjEwh/LH5XvWshxRo=
+	t=1718226949; cv=none; b=ovrjhlv7/jTSnKcqwzGS+uoyYqE8OT06QiIkcx0IVsM91vOMjagDXCSjAS/rSgbR03bA2wdULOij4c+BzBH+KcK1j2nR7/s5MXQwmgH8/jQtUu3bzonkNmKikT3eVQgSUCxsQUW85nUDIL+eAdUfiSQ5wLXaakq4tFxv0PSXCMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718226169; c=relaxed/simple;
-	bh=2/D3y84MWExMUe/+ohdAcL5JtZ0TFzz2ZC4d4ub2oGU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=j+f5QRnxkaMMnyUD6Wc4jyI4f4NEdGmfLvDWoaJ4sruU7bEsWBpkhZ+gdvGtz2ZnuTWhW5r/NuSMxX/KPnh9Kfg9qvXUP/6040TM2HZygdndmo5ORPY05QhoaC1s4BwaI9YsE6ia7DEepQUetISwUM/kAV6VZ1oIDl6+mu71XkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b6KJOXj4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id AA3F4C4AF51;
-	Wed, 12 Jun 2024 21:02:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718226168;
-	bh=2/D3y84MWExMUe/+ohdAcL5JtZ0TFzz2ZC4d4ub2oGU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=b6KJOXj44xtQmKnjosF7WiA8Mx0I6uSl5rGZ96gvgVk3wW8IHBH5ywNNh20vRmu7k
-	 pZ5c3FuyB9I/Fp/gxSYtB9qfI2RqwhXR5gnf6ZaxIzzZGjEws/VH2ijmYCxFLNA+F7
-	 iR7ZcVsoDSRhCsPXEsBCvohhbIlScl/eYSxpxjQxrjUknRL+HhO/CVuBUAqRvlYO72
-	 cnweTXjpJFq0mZPH6OGMOf5O+Iw+BfegwIwITzdyU+NIPLW4Fsiavxy5LPrd64Evh3
-	 bVg+pqbJ9VqHZl6ZNuhZrrdDm3BkBV1FZhnNLY/abq9FAVsfqATaSblAK6GLX+Djc3
-	 g2EYppCk+FylQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9A4FCC27C53;
-	Wed, 12 Jun 2024 21:02:48 +0000 (UTC)
-From: =?utf-8?q?Andr=C3=A9_Apitzsch_via_B4_Relay?= <devnull+git.apitzsch.eu@kernel.org>
-Date: Wed, 12 Jun 2024 23:01:34 +0200
-Subject: [PATCH v3 3/3] arm64: dts: qcom: msm8939-longcheer-l9100: Add rear
- flash
+	s=arc-20240116; t=1718226949; c=relaxed/simple;
+	bh=q5Bc33cCe1NG1zR7xbVQUt/1VsUNuSgQXpNdRk53CuA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NKW2JYWOQ1Yl79cPkTQOdlYe+uP0/+jMT5NxIQwM0tPaXV/ephxKfFdW5FbEGdBZOOemTaPi/FFoteW1jzSEfDVUDbTqHv+GjzsfogC1O6JevxMOPcdYvj9ml4xCtLEQqRAj8Hv62Kkxl4gnVwk/TEUFHFxtXsYpFzKXzdg3ELA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=nAOVUINu; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 14D77E4;
+	Wed, 12 Jun 2024 23:15:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1718226926;
+	bh=q5Bc33cCe1NG1zR7xbVQUt/1VsUNuSgQXpNdRk53CuA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nAOVUINuBJOSyqtM72Qq3J7pu6bLK88dFGFVyVtA67M4oFkBWp3ewD8LspwoJtPfN
+	 YKNYZHkmkJsvx9V0E6tnrn8rLACd4pWrBarQWidfOi02i8uaXulBFJbrfPlyzlp9o/
+	 4Wjk0uP7OUcnh7kS3EZTZtAKReWGrXZuVb/YvSvA=
+Date: Thu, 13 Jun 2024 00:15:19 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>, Marek Vasut <marex@denx.de>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	patchwork-lst@pengutronix.de, kernel@pengutronix.de,
+	Adam Ford <aford173@gmail.com>
+Subject: Re: [PATCH 4/4] arm64: dts: imx8mp-evk: enable HDMI
+Message-ID: <20240612211519.GW28989@pendragon.ideasonboard.com>
+References: <20220826192932.3217260-1-l.stach@pengutronix.de>
+ <20220826192932.3217260-4-l.stach@pengutronix.de>
+ <20230302163525.007503e4@booty>
+ <20230525122628.13b0f28b@booty>
+ <20240608150613.GA13225@pendragon.ideasonboard.com>
+ <20240610103136.74ec91fd@booty>
+ <20240612122502.38a9a2eb@booty>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240612-sy7802-v3-3-1e9cc1c79b79@apitzsch.eu>
-References: <20240612-sy7802-v3-0-1e9cc1c79b79@apitzsch.eu>
-In-Reply-To: <20240612-sy7802-v3-0-1e9cc1c79b79@apitzsch.eu>
-To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>, 
- Trilok Soni <quic_tsoni@quicinc.com>, Kees Cook <kees@kernel.org>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- phone-devel@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1718226168; l=1408;
- i=git@apitzsch.eu; s=20240325; h=from:subject:message-id;
- bh=5PZFGehTShxKe3OFkYq1lO6OPdXhGy4wNq5owjXoJG0=;
- b=U4zL09R/h6bvbX1wqNtjXFrsRAogqI/mEldeu7GYtmhwqNQ0lSLQI9IJwXLRIg/1sidABnw3A
- S7qNrUqcDqQAyHwDaPa2lZ4ksDuzggAlN+sL4Ot0Dts7pLb/UZRs02z
-X-Developer-Key: i=git@apitzsch.eu; a=ed25519;
- pk=wxovcZRfvNYBMcTw4QFFtNEP4qv39gnBfnfyImXZxiU=
-X-Endpoint-Received: by B4 Relay for git@apitzsch.eu/20240325 with
- auth_id=142
-X-Original-From: =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-Reply-To: git@apitzsch.eu
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240612122502.38a9a2eb@booty>
 
-From: André Apitzsch <git@apitzsch.eu>
+On Wed, Jun 12, 2024 at 12:25:02PM +0200, Luca Ceresoli wrote:
+> On Mon, 10 Jun 2024 10:31:36 +0200 Luca Ceresoli wrote:
+> > On Sat, 8 Jun 2024 18:06:13 +0300 Laurent Pinchart wrote:
+> > > On Thu, May 25, 2023 at 12:26:28PM +0200, Luca Ceresoli wrote:  
+> > > > On Thu, 2 Mar 2023 16:35:25 +0100 Luca Ceresoli wrote:    
+> > > > > On Fri, 26 Aug 2022 21:29:32 +0200 Lucas Stach wrote:
+> > > > >     
+> > > > > > Enable the DT nodes for HDMI TX and PHY and add the pinctrl for the few
+> > > > > > involved pins that are configurable.
+> > > > > > 
+> > > > > > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>      
+> > > > 
+> > > > Any updates to these patches? I haven't found any v2 on the list.    
+> > > 
+> > > This is the last patch in the series that hasn't made it upstream It
+> > > would be really nice to get a new version that could be merged in v6.11.
+> > > Pretty please :-)  
+> > 
+> > It will be my pleasure to rebase, test and resend this week! :)
+> 
+> Oops, I clearly had misread your e-mail! :)
+> 
+> You was of course referring to Lucas' patch for the imx8mp-evk and not
+> mine for the imx8mp-msc-sm2s, which I thought I had sent previously.
 
-The phone has a Silergy SY7802 flash LED controller.
+That's right, I was referring to the EVK patch. Luca*s*, would you
+consider resubmitting it in time for v6.11 ?
 
-Signed-off-by: André Apitzsch <git@apitzsch.eu>
----
- .../boot/dts/qcom/msm8939-longcheer-l9100.dts      | 26 ++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+> It must have been the similarity between 'Luca' and 'Lucas' along with
+> the 'To:' header, the board names being somewhat similar and the actual
+> patch content being almost identical...
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-index e3404c4455cf..528737929274 100644
---- a/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-@@ -159,6 +159,25 @@ led@2 {
- 			};
- 		};
- 	};
-+
-+	flash-led-controller@53 {
-+		compatible = "silergy,sy7802";
-+		reg = <0x53>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		enable-gpios = <&tlmm 16 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&camera_rear_flash_default>;
-+		pinctrl-names = "default";
-+
-+		led@0 {
-+			reg = <0>;
-+			function = LED_FUNCTION_FLASH;
-+			color = <LED_COLOR_ID_WHITE>;
-+			led-sources = <0>, <1>;
-+		};
-+	};
- };
- 
- &blsp_i2c3 {
-@@ -318,6 +337,13 @@ camera_front_flash_default: camera-front-flash-default-state {
- 		bias-disable;
- 	};
- 
-+	camera_rear_flash_default: camera-rear-flash-default-state {
-+		pins = "gpio9", "gpio16", "gpio51";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
- 	gpio_hall_sensor_default: gpio-hall-sensor-default-state {
- 		pins = "gpio20";
- 		function = "gpio";
+So which of you will change his name ? :-)
+
+> But turns out I hadn't sent that patch yet. Sent it right now:
+> https://lore.kernel.org/linux-devicetree/20240612-imx8mp-msc-sm2s-hdmi-v1-1-6c808df5205d@bootlin.com/T/#u
 
 -- 
-2.45.2
+Regards,
 
-
+Laurent Pinchart
 
