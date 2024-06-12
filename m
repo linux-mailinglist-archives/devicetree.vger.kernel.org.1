@@ -1,108 +1,103 @@
-Return-Path: <devicetree+bounces-75096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5090B9056F7
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:34:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EF0E905715
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:37:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68D191C20FF6
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:34:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3122E1F27CA3
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:37:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3D7C1802CE;
-	Wed, 12 Jun 2024 15:34:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B58C0180A62;
+	Wed, 12 Jun 2024 15:37:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K2l0gBlR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BECB21802CF;
-	Wed, 12 Jun 2024 15:34:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AA6C1802A5;
+	Wed, 12 Jun 2024 15:37:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718206461; cv=none; b=IrREZPlBvPqlqJ9wd3VqRLGa0Ty0/S+LhBqYzgwa/rEh/yBFgbMEpYnt3CGpmiJvuHeHygS2A0gZyUirT5q5+Nh5xIUUAOLgK6RgXODJYkzZ0NkIUT8tmGoXhJPTPzYHw2j9WY8IIX3XbszeJ1cBikt3X/H1NEjCx10tdl83edg=
+	t=1718206663; cv=none; b=FlGUmokOagqA+UNxRFfR7odYQsNlfmigQh8zHt6imkiKpbYKI7orbbOoDwUydxaJ7hmswf01q3819wzM3HzNgmurQAwFl9t8ON+7YYuTxbATnwxlTJNPGQuXf4jWdbgN00a4rPMh7CPXPepWT1PFCUrpecMYoLtg3DeON8D4Ghw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718206461; c=relaxed/simple;
-	bh=AEH1PF2oiR9AWSog4ZyajYHOgBRYvq3XpSnXr5FyMaE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=thILJJkTXVYOghb/Wn9M2OCKWKL0bWqMqXUG4YNvGuqbipPrxZPyGJiQ6J0hKrBPGPhFAOE7vDwCx5jAnxqU2akSAv6X8sn/7zE+RZW1GycGDB58G8bYP914TcPkC4/l6uooX/TmtOlCKWMNsbEYk4mac1PJe4cnpY8f3A3v5WM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8FA481042;
-	Wed, 12 Jun 2024 08:34:42 -0700 (PDT)
-Received: from [10.1.29.46] (e110479.arm.com [10.1.29.46])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E861B3F73B;
-	Wed, 12 Jun 2024 08:34:14 -0700 (PDT)
-Message-ID: <7fdc23ff-fd55-4347-ac61-dd115eff6ff1@arm.com>
-Date: Wed, 12 Jun 2024 16:34:12 +0100
+	s=arc-20240116; t=1718206663; c=relaxed/simple;
+	bh=zEoSv7xC3KbRRieI1G1loz6QJ3w9qP5EAl0oJ/gqkz4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tOC8boMPyfVMf7Fut6fywwRLkABxdFVfw9M8BMMnDDXUCBKQ1E2A6UPw+gtEolmp0UkmMiNmm7zTV6Qvf4w9jdF54vZ2nX4OBsjvxhx8+VGYd9R6a7qx2y3xiYJnYszhVmaHTBQ6QvzjZEEbTj5SsRUplJv0DdfcXQzqK2G61WI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K2l0gBlR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24939C4AF49;
+	Wed, 12 Jun 2024 15:37:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718206663;
+	bh=zEoSv7xC3KbRRieI1G1loz6QJ3w9qP5EAl0oJ/gqkz4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=K2l0gBlRlMxzfHPPadUb5MC23rfAfH7rZy/fErcGjf8ESoZfKwg3dLhrzJPlknrQ1
+	 gfPwTQ//4krhGXfnAnzb9EaN1pxIlMsF5Mtwjgf6io5jM/PVsZRPTsjDRMbm66RgAW
+	 95U8B74tnEvlGvNdeMSF9Xj0Mkk/iOroBrK7pwuFK2R+GyNaJ5YSb9D+pkkZ/fwYnM
+	 hTX2gQ3W1KTCe+2zyqIX1FY4fj9WoKRq0Ivazc0yDHCrQBI+EwB61EeX8eKjU2iQlk
+	 0Aso9umyxDPdagefihfHHiMftCRbfgDEpvuYx7lSkgJhUVaiDhSgCflEa/GaNMbEVy
+	 uUTbJeMqbNy9A==
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2ead2c6b50bso75478861fa.0;
+        Wed, 12 Jun 2024 08:37:43 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWxypYS8aoTEmHRWs1SrCoBaH7MnbJAOjwzcKu1IYbAu5QzgXl8d88U8Q5Q1TRrqQL9c661qmeH5eamxmiIM6dYfeq38VWJBk4PhjeJ/HOfH7JEdithJ5pQvO5FvXb5TydGIB7+zBzfQJo2xoVWI+ONfyd+rA5z3fQrFo9jUWPCVncUtUuaV7mH6s18
+X-Gm-Message-State: AOJu0YzMi176uO6u+/suC6XA+rQWXhgVLXP9Srv/aOWWCbMgbW9i08WZ
+	mGlpTgPvRhu/cWLyriFZHCvgWih2/q1rI+TgmlUp+pIQozkCgJobsmlYIly4rE+qd3ktvdAbyvI
+	fwJnS8ML4PrS1gmeBV4k8G3r/uw==
+X-Google-Smtp-Source: AGHT+IGl+ogyE6sHWGUc90Hvb7mC4rBJ+Ta5I1YQRQJ5YW4/fVcbcLzryqnOqMTHma3GIk0PNss8ABXfmtsFVV4O4fs=
+X-Received: by 2002:a2e:8ed8:0:b0:2eb:e840:4a2e with SMTP id
+ 38308e7fff4ca-2ebfc94de68mr12672271fa.38.1718206661498; Wed, 12 Jun 2024
+ 08:37:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] mfd: axp20x: AXP717: Fix missing IRQ status
- registers range
-To: Lee Jones <lee@kernel.org>
-Cc: Chen-Yu Tsai <wens@csie.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Ryan Walklin <ryan@testtoast.com>,
- Chris Morgan <macroalpha82@gmail.com>
-References: <20240418000736.24338-1-andre.przywara@arm.com>
- <20240418000736.24338-2-andre.przywara@arm.com>
- <20240502093907.GM5338@google.com>
- <56aef347-7582-497e-be02-d82eda7b3528@arm.com>
- <20240612152510.GE1504919@google.com>
-Content-Language: en-US
-From: Andre Przywara <andre.przywara@arm.com>
-In-Reply-To: <20240612152510.GE1504919@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240501-usb-phy-gs101-v2-0-ed9f14a1bd6d@linaro.org> <20240501-usb-phy-gs101-v2-1-ed9f14a1bd6d@linaro.org>
+In-Reply-To: <20240501-usb-phy-gs101-v2-1-ed9f14a1bd6d@linaro.org>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 12 Jun 2024 09:37:28 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKDyrYBTTcpmoM-LbQUWch_qd3t47WC0yafVJcz+Se4yA@mail.gmail.com>
+Message-ID: <CAL_JsqKDyrYBTTcpmoM-LbQUWch_qd3t47WC0yafVJcz+Se4yA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: phy: samsung,usb3-drd-phy: add gs101 compatible
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Sylwester Nawrocki <s.nawrocki@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Sam Protsenko <semen.protsenko@linaro.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Will McVicker <willmcvicker@google.com>, 
+	Roy Luo <royluo@google.com>, kernel-team@android.com, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Arnd Bergmann <arnd@arndb.de>, lee@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Wed, May 1, 2024 at 3:19=E2=80=AFAM Andr=C3=A9 Draszik <andre.draszik@li=
+naro.org> wrote:
+>
+> Add a dedicated google,gs101-usb31drd-phy compatible for Google Tensor
+> gs101 SoC.
+>
+> It needs additional clocks enabled for register access, and additional
+> memory regions (PCS & PMA) are required for successful configuration.
+>
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+>
+> ---
+> v2: avoid having nested else/if, and instead change the existing 'else'
+>     to explicitly state the platforms using 'if'
+> ---
+>  .../bindings/phy/samsung,usb3-drd-phy.yaml         | 61 ++++++++++++++++=
++++++-
+>  1 file changed, 59 insertions(+), 2 deletions(-)
 
-On 12/06/2024 16:25, Lee Jones wrote:
-> On Wed, 12 Jun 2024, Andre Przywara wrote:
-> 
->> Hi Lee,
->>
->> On 02/05/2024 10:39, Lee Jones wrote:
->>> On Thu, 18 Apr 2024, Andre Przywara wrote:
->>>
->>>> While we list the "IRQ status *and acknowledge*" registers as volatile,
->>>> they are missing from the writable range array, so acknowledging any
->>>> interrupts was met with an -EIO error.
->>>>
->>>> Add the five registers that hold those bits to the writable array.
->>>>
->>>> Fixes: b5bfc8ab2484 ("mfd: axp20x: Add support for AXP717 PMIC")
->>>> Reported-by: Chris Morgan <macromorgan@hotmail.com>
->>>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
->>>> ---
->>>>    drivers/mfd/axp20x.c | 1 +
->>>>    1 file changed, 1 insertion(+)
->>>
->>> Acked-by: Lee Jones <lee@kernel.org>
->>
->> Can you please take just this patch as a fix for 6.10? This fixes the power
->> key operation.
->> This applies cleanly on top of v6.10-rc3, so there is no need for any extra
->> immutable branch or coordination with regulator.
->> (The same is true independently for patch 2/5, on the regulator side).
-> 
-> What does the Fixes: commit break?
-> 
-> Or is it the case that it never worked properly?
+Going to respin this? Because it is in use now and undocumented.
 
-The interrupt part never worked properly, but so far that's only needed 
-for the power key operation. Unfortunately that part wasn't tested 
-properly initially, so the patches were merged into your tree before that.
-
-Cheers,
-Andre
+Rob
 
