@@ -1,175 +1,123 @@
-Return-Path: <devicetree+bounces-75199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84434905D95
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 23:23:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2289905DFC
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 23:48:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FDC9283DCF
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 21:23:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 60867B217F3
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 21:48:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B89D885C52;
-	Wed, 12 Jun 2024 21:23:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4899283CCC;
+	Wed, 12 Jun 2024 21:48:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ACnKSU4q"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y+Z9KsJ/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com [209.85.167.67])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE00284E0A
-	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 21:23:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 815D784E07
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 21:48:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718227392; cv=none; b=nPGzqMRU7MXcXvNWdfR+cF8/0GFmOoKVH0D6rfSIWv5fafPs/0vngxmGridwB9SQERmMn/GCh+b3wbopyYGG+mSvksN1O9asXi0w+/64BxSc6UxbQ2UIVqD9+Z5bdK+cY8IN2CB2PTbqb8VVwsif8r9Wrntfr2p7e0qab4waFT0=
+	t=1718228901; cv=none; b=CB2ixknsIAZEaKq25oH2TtFnfD240iNPwbUA1n/Lmnqi2PwerMFrL6+fEtVl0Gg5pikiwJaCEK2IXxBPP0h+xKT7fYRZGuIkasDgfm4YGcmOYqQ8YIDEumtFeGvBBQRCTrjyb9DREDnF9/pal1mSefrPzK8Zh2Rd6PhhrY5PNq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718227392; c=relaxed/simple;
-	bh=2T6gZ7EEse7y1Sv1WZ9KMDR0fG0OjHjw17gxaTFfib0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bFz3DfRseu95my5YBiFbawV4I64vyaN9Zj1l8tIaOeH/sMoZo3pUOIosWCq0S9L1vdvJ9A6apeLjpbgLdJv+/Dp3uASDg76apRLYV3wlx3gEiqIItOZV940x05PqSuOxDDrQaUqW+VWKc5CqGSSAx6/nW6JEyAqGlZB9SM2wjcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ACnKSU4q; arc=none smtp.client-ip=209.85.167.67
+	s=arc-20240116; t=1718228901; c=relaxed/simple;
+	bh=52Tt3NW+ANKZQb7cZcBFFzPLEvp/e4YDY2iQa91g6pA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=KTSqSrtm/rdNq1t6G8Vg6873wUV6YfMix+1js25VIMloW+Cljlcrb6wpD9oMWZM4Vf+qU8+frPvgB7iQUlark8s73NaqljbpSCq4QJ2btg9OuEvXZy+dr2KWCYRiVb6VEUHHo1oumtFjOYGWoqK9BOYl2+9amABx5q2QvzenrYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=y+Z9KsJ/; arc=none smtp.client-ip=209.85.167.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f67.google.com with SMTP id 2adb3069b0e04-52c8260a9a9so56551e87.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 14:23:10 -0700 (PDT)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-52bc0236f04so49645e87.3
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 14:48:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718227389; x=1718832189; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jowrInf5O80KtTvVyPQmOW7J8r+ZDPgzfIXrxnvdHXo=;
-        b=ACnKSU4q0Bk1sEugeLy4W8opJ/VxcqkOXnoCLdF8Yi3lKfLUhv/gxp+Ilvx6yBegsd
-         1Ek2fOcqB0B0Nd+aQi1Tm/mhQTCO0HEtjjaHo+BmRFRj7xJmfjyj8VbvjQ6TC9FvPUl9
-         wcpzxkMqzxEGKQkR267YK6SJ0eyBJbsVVmfq4GK7cBICMKxuGrkk4lFHfPC39t4TLAaM
-         otjV8PUQHLpB1+BIMTOY7coszja6qiJY72zr23uE2yeyKrRPe9HvOqMie3+l8EG8P4KP
-         BIYlUx8ci1T2blQNc58PervEBlXrj2fg3t2RUQvqRy/wrFaP2Tkf9edkGLU9lq8sEh+Y
-         wKOA==
+        d=linaro.org; s=google; t=1718228898; x=1718833698; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cFE+Zn1tmEAauc9dII1QLXSVzsx3AjtBMpF3fJlb5C8=;
+        b=y+Z9KsJ/AbUX9edUq/zJn5+RgW5TVpCmA5gt/0AND3cdsBUNrjPIvTvjwiaPb7yArA
+         TeKKfszIp5QmF1eZd4IuZQp7gzHLHofyyZAQLxJejy5PMZc44nrIieQf2VAEW4BE8hPD
+         Twv27EToG7kiMDAc7nDp9/ONwf+aFaVj+mORKsu6bbTQQcVeKBI2zAz9+MidV6nkvZgA
+         gQlx3VKD3btMK23K0qw3fYsyANlUfejMDgeYJnx+vUkLPU8rNLFdtad1MKkNGfpIIQiC
+         +5fMhxJQA9A9DF+XJ3JopK+2GyEcg1C4g7j1NV79Rs7iOrJy+rQeK8gfaewFGHyss9ou
+         NRxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718227389; x=1718832189;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jowrInf5O80KtTvVyPQmOW7J8r+ZDPgzfIXrxnvdHXo=;
-        b=tnUP0ApEMBTIlJsTcKPApVgcK49TAW7EChtIkbXLGXJQfILQ+eBCyrohSLe1uXrsj7
-         nVy5zn9LwpLUrzvwhDJusYBFbmnLUl8jC0wE3uBLINTmvG96WoCMdxz4afWneJg0bgKs
-         wUS+Gini4UC1a/JRmpReaYytA0yA8UJI0gGS5aZHfWfTELljgsmzQlhHD0orJELcHdiz
-         soaHJmxxqEVpXPz3qFooefrUNzQHWco6TCMtWno7n8YdyxT5WBi9vDR2bXa7UADxdnNF
-         lKBmz4fUMU2m7L0dDWrATTYtVspsL8FyPEUARbuPsuIYAo1u19qC95Y3Y9jYw6mwqzRk
-         wYjw==
-X-Forwarded-Encrypted: i=1; AJvYcCV5gD+rg0yk7zqMwFEG/iS2lT6op0f75QliAS5vWlbW6R6/LqpElNJNIlzhAoFKeSNQ2Wbvn4BhnNwpjcUd2pbIw1RQj0ycKUXVOg==
-X-Gm-Message-State: AOJu0YyijYxGExN/wigxcPp+KxZdmvTRtLjdgcyRrBQ2fKi72YRHQfeN
-	CykxhxXOLuc3p66BOx9N8M5t378lNTIjsZHaNw+/ik3IHLgsJ3A9IC01IXjPvuw=
-X-Google-Smtp-Source: AGHT+IHkk2lAXNm9+BSIbdQPTDnRwExlmJx8FGNX6T88IDk+5uIBJ09Vd4kpOGd505sPIGXbtc1bfA==
-X-Received: by 2002:a05:6512:3288:b0:52b:bde6:2dba with SMTP id 2adb3069b0e04-52c9a42b427mr1788782e87.6.1718227389131;
-        Wed, 12 Jun 2024 14:23:09 -0700 (PDT)
-Received: from [192.168.1.3] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52c9daaf31fsm349089e87.104.2024.06.12.14.23.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jun 2024 14:23:08 -0700 (PDT)
-Message-ID: <0f13ab6b-dff1-4b26-9707-704ae2e2b535@linaro.org>
-Date: Thu, 13 Jun 2024 00:22:42 +0300
+        d=1e100.net; s=20230601; t=1718228898; x=1718833698;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cFE+Zn1tmEAauc9dII1QLXSVzsx3AjtBMpF3fJlb5C8=;
+        b=qLcvhP7EI2stmq/BWeTvw7SCgxdzDIlzCAAoDMc65Dafp1n5T1hU+Ho4SzsZtvBxNr
+         N/WSZGrmlrrUsU6JUzh3ANoG+saKMM6xLlrtAq9nEdJJunOw//IecL0+lnvYZG39TBnc
+         GMBjw8KfGBDoKFNuI/z1g3jcrgKTkmWZgETfGLUedMt6Xnm/hs7krvUh135gM29D94YF
+         8YeO7xSIIlrE0M+3D5ZtfcaJG8BED7giFCQTTHpyKfiTo5dCl1/i8LI/4EuDOuW5FeO5
+         uhADGGo2hY1/UEtXqcCBwZLcSpTbYW1PZHgk9W5Mypsr+HZTTtNG6VO0wZX3+41euvon
+         1CWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU7jWvjZeJ9Mhqpvbf0B14gXh9md4mLiWUlF4iiSuY5p++lXl2X6+Z05LSpyJaRDnrtpbzhXpOoySozKQIS4fitHiA27UvFKdSuog==
+X-Gm-Message-State: AOJu0YxDoFDLuchH3yVDn+qKIxKvnIIwhXDyU7O8nSjBlXGeviFQBttH
+	2XmqJMHjn5xO//fMrxh5oRSu/zxjZE+df7DbLxbS08P615Ll3L9V0/g/rcCg0AQ=
+X-Google-Smtp-Source: AGHT+IHBkY1T5rNg6UcaRlgOULtgIQE89IiT4QIFhldMkA5FIlJk2StjrJMJgXHuM9swnpPJsa33cw==
+X-Received: by 2002:ac2:504d:0:b0:52b:b349:c224 with SMTP id 2adb3069b0e04-52c9a342daamr1496377e87.0.1718228897641;
+        Wed, 12 Jun 2024 14:48:17 -0700 (PDT)
+Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52c912a84d4sm940264e87.185.2024.06.12.14.48.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jun 2024 14:48:17 -0700 (PDT)
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Jagadeesh Kona <quic_jkona@quicinc.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH][RFT] arm64: dts: qcom: sm8550: Change camcc power domain from MMCX to MXC
+Date: Thu, 13 Jun 2024 00:48:12 +0300
+Message-Id: <20240612214812.1149019-1-vladimir.zapolskiy@linaro.org>
+X-Mailer: git-send-email 2.33.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 8/8] arm64: dts: qcom: sm8650: Add video and camera
- clock controllers
-Content-Language: en-US
-To: Jagadeesh Kona <quic_jkona@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Taniya Das <quic_tdas@quicinc.com>,
- Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>
-References: <20240602114439.1611-1-quic_jkona@quicinc.com>
- <20240602114439.1611-9-quic_jkona@quicinc.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20240602114439.1611-9-quic_jkona@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Hi Jagadeesh.
+Any attempt to enable titan_top_gdsc on SM8550-QRD fails and produces
+an error message that the gdsc is stuck at 'off' state.
 
-On 6/2/24 14:44, Jagadeesh Kona wrote:
-> Add device nodes for video and camera clock controllers on Qualcomm
-> SM8650 platform.
-> 
-> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
-> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8650.dtsi | 26 ++++++++++++++++++++++++++
->   1 file changed, 26 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> index 336c54242778..d964762b0532 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> @@ -4,10 +4,12 @@
->    */
->   
->   #include <dt-bindings/clock/qcom,rpmh.h>
-> +#include <dt-bindings/clock/qcom,sm8650-camcc.h>
->   #include <dt-bindings/clock/qcom,sm8650-dispcc.h>
->   #include <dt-bindings/clock/qcom,sm8650-gcc.h>
->   #include <dt-bindings/clock/qcom,sm8650-gpucc.h>
->   #include <dt-bindings/clock/qcom,sm8650-tcsr.h>
-> +#include <dt-bindings/clock/qcom,sm8650-videocc.h>
->   #include <dt-bindings/dma/qcom-gpi.h>
->   #include <dt-bindings/firmware/qcom,scm.h>
->   #include <dt-bindings/gpio/gpio.h>
-> @@ -3315,6 +3317,30 @@ opp-202000000 {
->   			};
->   		};
->   
-> +		videocc: clock-controller@aaf0000 {
-> +			compatible = "qcom,sm8650-videocc";
-> +			reg = <0 0x0aaf0000 0 0x10000>;
-> +			clocks = <&bi_tcxo_div2>,
-> +				 <&gcc GCC_VIDEO_AHB_CLK>;
-> +			power-domains = <&rpmhpd RPMHPD_MMCX>;
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +			#power-domain-cells = <1>;
-> +		};
-> +
-> +		camcc: clock-controller@ade0000 {
-> +			compatible = "qcom,sm8650-camcc";
-> +			reg = <0 0x0ade0000 0 0x20000>;
-> +			clocks = <&gcc GCC_CAMERA_AHB_CLK>,
-> +				 <&bi_tcxo_div2>,
-> +				 <&bi_tcxo_ao_div2>,
-> +				 <&sleep_clk>;
-> +			power-domains = <&rpmhpd RPMHPD_MMCX>;
+However if MMCX power domain is simply replaced to MXC one, it allows
+to turn titan_top_gdsc on successfully, even if MMCX is remained off
+according to /sys/kernel/debug/pm_genpd/pm_genpd_summary report.
 
-When you test the change on a particular board, do you get here any build
-time warning messages like this one?
+Note that at the moment qcom,sm8450-camcc.yaml gives a definite comment
+that the supply power domain should be MMCX, and it may be needed in
+some certain cases, but at the moment they are not unveiled on SM8550
+platform.
 
-   clock-controller@ade0000: 'required-opps' is a required property
-	  from schema $id: http://devicetree.org/schemas/clock/qcom,sm8450-camcc.yaml#
+Fixes: e271b59e39a6 ("arm64: dts: qcom: sm8550: Add camera clock controller")
+Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I believe it's a valid warning, which has to be fixes, and as it says it
-corresponds to the required property exactly.
+diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+index 4234c92aafe3..a429115524a6 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+@@ -2754,7 +2754,7 @@ camcc: clock-controller@ade0000 {
+ 				 <&bi_tcxo_div2>,
+ 				 <&bi_tcxo_ao_div2>,
+ 				 <&sleep_clk>;
+-			power-domains = <&rpmhpd SM8550_MMCX>;
++			power-domains = <&rpmhpd SM8550_MXC>;
+ 			required-opps = <&rpmhpd_opp_low_svs>;
+ 			#clock-cells = <1>;
+ 			#reset-cells = <1>;
+-- 
+2.33.0
 
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +			#power-domain-cells = <1>;
-> +		};
-> +
->   		mdss: display-subsystem@ae00000 {
->   			compatible = "qcom,sm8650-mdss";
->   			reg = <0 0x0ae00000 0 0x1000>;
-
---
-Best wishes,
-Vladimir
 
