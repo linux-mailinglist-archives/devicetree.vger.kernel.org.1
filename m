@@ -1,138 +1,110 @@
-Return-Path: <devicetree+bounces-74892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A62D904E88
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:54:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 008ED904EB7
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 11:02:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBDFF1F22EA5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 08:54:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B19E289F07
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 09:02:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B45F716D9B4;
-	Wed, 12 Jun 2024 08:54:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 374E116D4C3;
+	Wed, 12 Jun 2024 09:02:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="KYdqvY1m"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Cm03KOGy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02A4716D4C6;
-	Wed, 12 Jun 2024 08:54:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8217E167DA4;
+	Wed, 12 Jun 2024 09:02:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718182463; cv=none; b=FuNFJARPrVqnfuRyF+btbLWVfLEdz50ydih4NH7Pk4l1cizBBDQrLzmKAQvM08vhrv79adMZ85L6mawqS42dEipsjsG/zyd3Z3UhykLCBQsiZoV90EnuTCC2LWJMSao6dkHdHFJDq19sAtdSSxpSwJGu6N6v4ve48bX+ViPDuY8=
+	t=1718182935; cv=none; b=g3FQAyui855gLGBWViUAcNCgZK4FBGDUTJ8pBD3yRkzF+xVq/DRZChP2ZI/DO/JaRTJ10FoiGgnZ5vvUTwRr6zFzcKXEeGEXIgA6+RWq4XV6iACN0JJsknm+cy8jbUlOQGVNRmm5u4J20D5Jwp9Gu9dDls3yvOdiy0ylRKgs12s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718182463; c=relaxed/simple;
-	bh=hP63E4TASV1+Uv/0PkxYrK3fzyfWbtsZWpz+GbZTLVA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=b1jQbLd78lObgFEG9OlRQQHDgTFPOLvY0R6ZyAm+bwWwZjjOzGIFzYBSeGAOk/6Ul2DBAQhspwwE9d4YkrpD000Y/8CLnpT1COET/jCayzpexMBRN+2v699VjKT9krBnHKUxisYnLQe/B9KqVhzskBcnTOFk7ztxbmBqq2YENqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=KYdqvY1m; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45C8s6Rl002895;
-	Wed, 12 Jun 2024 03:54:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1718182446;
-	bh=vJNYdR2j//KbQKq4HcwL6NVVly03pg9r2h7GvCgB6fI=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=KYdqvY1mM7hnuY+7UDDzw4wf2bUqbSZJhMYOPw8vbeBrTN5vasubggkcNp/WbPfzt
-	 pqIB5ep8xa0v06ucSSMCRyqM9x55W1SqADpea1Z2o3lwycWmyhRKQDrC+kle9dUXnY
-	 yxVGh8reuQKJdiKsbHYbm7+7TtYzaipzse9BDaTQ=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45C8s6RL068119
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 12 Jun 2024 03:54:06 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 12
- Jun 2024 03:54:05 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 12 Jun 2024 03:54:05 -0500
-Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45C8rxD3020355;
-	Wed, 12 Jun 2024 03:54:00 -0500
-Message-ID: <b82f7f1f-1180-406f-87a7-da46b3778bf7@ti.com>
-Date: Wed, 12 Jun 2024 14:23:55 +0530
+	s=arc-20240116; t=1718182935; c=relaxed/simple;
+	bh=By4U6oI5iE3KlrH6uUwBTU+MUsELXOgNmHJUvOqfuGo=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qxeN9DkBGXLU0kURCPQqLLCf7AKfHdAk7X3k/n/LboqFVN6vW5hDlkW4vl+eRH6LKT1JjW4NMKdjklCbYtsVGIAXKnuszfqVg2YPd1ZH6Ul7UBEswWbaxwEiKnZ0yQlsYqcHHoVal+fmUtQdX3fjowQtcFm0mMYKEKTKaIjh+ng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Cm03KOGy; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45BMLxfm005154;
+	Wed, 12 Jun 2024 09:02:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=rAbIaxLTS1iKWSpxhIV7XTew
+	nJIEqvXl8VDxjd0/DZ0=; b=Cm03KOGyrogmpngVXlnwHzDsu24ZRfl7A1OxpOj1
+	IHzwfBlUpmvliA2OcfBDKGMtVi4wAZDVNUkHY8/EQIhf9/v2CSUzWuTBWV6GN+S9
+	Spy2+IvpQIYbhWFjecmbdek/jjJYLSEwV5r6C7OmdsLlAFWTs9LWqrK99/2CBC6o
+	MKs864HfOqfsXlRNdw0JjFxG+IQuIsSvAcRwiEamv6kcDsg2fn+N08bt1ZnYAiTf
+	sy0aqPkTj2dHhBc0EFru7SBImhjj2U2mPfi8/mnLI9WqToO4IJT6GPa8zQNy4fq+
+	Ace/oZM9fMGABhkaqY65XsLji5jPGuhCPBNyvhTempsS0Q==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ypm45axyg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Jun 2024 09:02:09 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45C927lB032528
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Jun 2024 09:02:07 GMT
+Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 12 Jun 2024 02:02:04 -0700
+Date: Wed, 12 Jun 2024 14:32:01 +0530
+From: Mukesh Ojha <quic_mojha@quicinc.com>
+To: Komal Bajaj <quic_kbajaj@quicinc.com>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: qdu1000: Fix LLCC reg property
+Message-ID: <ZmlkCfvqpjSmKd+S@hu-mojha-hyd.qualcomm.com>
+References: <20240612062719.31724-1-quic_kbajaj@quicinc.com>
+ <20240612062719.31724-2-quic_kbajaj@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v3 4/4] arm64: dts: ti: iot2050: Add IEP
- interrupts for SR1.0 devices
-To: Diogo Ivo <diogo.ivo@siemens.com>, MD Danish Anwar <danishanwar@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo
- Abeni <pabeni@redhat.com>,
-        Richard Cochran <richardcochran@gmail.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        Jacob Keller
-	<jacob.e.keller@intel.com>,
-        Simon Horman <horms@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20240607-iep-v3-0-4824224105bc@siemens.com>
- <20240607-iep-v3-4-4824224105bc@siemens.com>
-From: Vignesh Raghavendra <vigneshr@ti.com>
-Content-Language: en-US
-In-Reply-To: <20240607-iep-v3-4-4824224105bc@siemens.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240612062719.31724-2-quic_kbajaj@quicinc.com>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: -NrGtWmiZQp5yK75CW8Ne6w2g327-eou
+X-Proofpoint-ORIG-GUID: -NrGtWmiZQp5yK75CW8Ne6w2g327-eou
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-12_04,2024-06-11_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ impostorscore=0 mlxlogscore=554 phishscore=0 malwarescore=0 suspectscore=0
+ bulkscore=0 spamscore=0 clxscore=1015 priorityscore=1501 adultscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406120063
 
-
-
-On 07/06/24 18:32, Diogo Ivo wrote:
-> Add the interrupts needed for PTP Hardware Clock support via IEP
-> in SR1.0 devices.
+On Wed, Jun 12, 2024 at 11:57:18AM +0530, Komal Bajaj wrote:
+> The LLCC binding and driver was corrected to handle the stride
+> varying between platforms. Switch to the new format to ensure
+> accesses are done in the right place.
 > 
-> Reviewed-by: Jacob Keller <jacob.e.keller@intel.com>
-> Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
-> index ef7897763ef8..0a29ed172215 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
-> @@ -73,3 +73,15 @@ &icssg0_eth {
->  		    "rx0", "rx1",
->  		    "rxmgm0", "rxmgm1";
->  };
-> +
-> +&icssg0_iep0 {
-> +	interrupt-parent = <&icssg0_intc>;
-> +	interrupts = <7 7 7>;
-> +	interrupt-names = "iep_cap_cmp";
+> Fixes: b0e0290bc47d ("arm64: dts: qcom: qdu1000: correct LLCC reg entries")
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
 
-I dont see these documented in the binding:
-Documentation/devicetree/bindings/net/ti,icss-iep.yaml
+Looks good to me.
 
-> +};
-> +
-> +&icssg0_iep1 {
-> +	interrupt-parent = <&icssg0_intc>;
-> +	interrupts = <56 8 8>;
-> +	interrupt-names = "iep_cap_cmp";
-> +};
-> 
+Reviewed-by: Mukesh Ojha <quic_mojha@quicinc.com>
 
--- 
-Regards
-Vignesh
+-Mukesh
 
