@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-74869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EB3C904D7E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:04:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6642904D87
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:05:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E972E28800B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 08:04:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 207A8B25C86
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 08:05:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9E9716D4CD;
-	Wed, 12 Jun 2024 08:03:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3538F16D336;
+	Wed, 12 Jun 2024 08:03:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ALd8oroY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="snnBI0fq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB6A616D4C3
-	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 08:03:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8335816C868
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 08:03:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718179392; cv=none; b=jPWP/eAh6QiQJ83tTRNtfgAJI5WLb8oLhWUf5UyPFK1eSq1Ml5akeLjFl8WauKe4dPvDnEFQ67EcQcgCAsuLPO7PUCZZPylDENPNHscJh/oUDKcxerJ1ECcYI4bQbjJMTqbvJXnjcLryIeiRSSzhJ0BTlBKvXNJqDN+w24ePT1c=
+	t=1718179439; cv=none; b=lyhbEMt2EZDMBJ4QBBvQgATmiYVMVzntXwLHxX1q94kyQQrajOmuo8c8emCPMuYsQwe9FQ2IebsE+N/e2OP0UesRDRPGZj8TE+ehaNkOkn5bYEoUmWQk537ZmXELpCclbkSvV1AFzqbvJNVDGXIj1Ync3/Gx27kNM1PKOtdfNMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718179392; c=relaxed/simple;
-	bh=BCyDycZDFGsCPLW3LT7aTXi2lBSpeO3/z21P3m5C4y4=;
+	s=arc-20240116; t=1718179439; c=relaxed/simple;
+	bh=miU6xLH9WgvvFJePZYX1TYDDFtay5O2Y4hrEKw4Jjkw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cdoPoylKHsSMMNYMivbILOk+E9mZo+O+RbBOhKCmkqHNYviu7vBFpO1divrHgkubBzAXUa0DHhTNVfzHaEolfcjfrTXP5q0Yhxh6EW1S7fifSZ0CZwJ2a9gbIfoUlTgVnxguSX1NHvE/lcEEvSHr5r1Vy0c0Ma2PDZJIvzQYlUE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ALd8oroY; arc=none smtp.client-ip=209.85.208.169
+	 In-Reply-To:Content-Type; b=JHsGfmnFfqey5t1qj4A07yA1k7pTpN1XSjLq9JS/DhzhYmVS1q9sFiEDAPIsfsLFliUwQfb5jmSioB4SJ8t647irbTMinK6yVhrtywbxgYg8ftrlWPk/H5BjpV4cCabQSz035HrGUArP8wXHyRitzQ0DFgl5fo/aLOxdCCKJtws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=snnBI0fq; arc=none smtp.client-ip=209.85.218.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2eaafda3b5cso83128511fa.3
-        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 01:03:10 -0700 (PDT)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a6f176c5c10so227125566b.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 01:03:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718179389; x=1718784189; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1718179436; x=1718784236; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=UEfh8o/mxRGcDDlLCZYzRIr4dGTXPTfh9g32u4YpLRM=;
-        b=ALd8oroY3wMBl45O3BaWBiubKxE5zPkWo64Zi6ue9QRhr4s1hfi0IWKW4fvSF1m98N
-         ppmnl4OYQT//U2bb6I74KaFlNq9DQsuuk2wiBo4fXnGKUbjo2I4DpneOTsjDZ0ajxTh8
-         BDUUc0gGjiPvmb59lJB7EhbuTywcnTQlWnXD1WJQFL5SY9xqbYRLz5mU1WcenElhBBnk
-         65R0u/pmL8gkGAJq9qm7Y1lTWT/uCr4VV8aPYiOwJQgrUADVJjNyHOJTkhp/nM2pb3CZ
-         8RPxHHIozGKvRBY1nWEVHio3LdX2kUYmjz6490y+zj9+7TIKVvuW/ZCyhXXSZQXze2f7
-         XuwQ==
+        bh=TXzg+fdrVbFQOuN+HCUNAkTpjxuEQIMLRvuvbmDikrU=;
+        b=snnBI0fqM8hNdsjhIQqxRuOHe57NUHOJNDPa2YmzjC5lBm7TZVZPJbdmDdvpjkJwsm
+         4gGp+9l6G/c2m10IFixkeSEg+FfBsagHAM1WKe2lTerT7F2Jk+Vp0/hE3HrKKaTntznl
+         AegEpJObGW1l656Nc4T8USlTGYbSqxadzf3Kr7KV9XAWS1pai1G/FgE90UooCXO0d/8G
+         +eM+HA6ZEwGW83fKBoRuctZwG0XVdtlmaIxUcpDvOQvnSgqesnOmuQInSnpt2NYA5z1x
+         UWgSzLEyfNPrrhMt74dn7AxXZwnEqOlYv+KOh2nHpMusMLiqcVoiOn8JZ0M/50qGhb7h
+         tgMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718179389; x=1718784189;
+        d=1e100.net; s=20230601; t=1718179436; x=1718784236;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=UEfh8o/mxRGcDDlLCZYzRIr4dGTXPTfh9g32u4YpLRM=;
-        b=dFXXdisPJx/QZh6eml38D0m0QtMTuqnvdebpKCNcZUCz03kOAhAA9/2O5yaJPagyiy
-         uiiXIJM4mJ/7svd3J4luvbm3g8XYplXI1NOnPV1/2GW1Thu0IG1Lnz7ALnj2G77F/hbU
-         nirTvQ0OTYVWvxxraXcrrD4bdxyOEGRmULgqujTauyJCnsptDqUS6PTf/HX9YososCBI
-         3OY1H9+h184EuSi3eYG2snLsTlPUvyn/6KC22QoXW4Yig2tzBrh4qwaDifN8TQMnUgv5
-         +Y8H2Xfm+JlbX++5XhaxiyIZNamxI51pGPVmu0LqsAyqXEXdg8O8LlNkiw8SS6Wy86bX
-         3bvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWGIZ/4y2zcKrZP+cnZi9jH8i63IPKyu7MTq/ldETz2DEz53StDqET/bhUjua2DX1v6KYiMnEqrzin4FVtKE/b01h+FoA5idkHc1A==
-X-Gm-Message-State: AOJu0YxyDpWqrzM9i7iDWp31CCGbo5q4gN19KcMzlcCxuSw83D9b7dpe
-	ZZr8aDgs3Jd8owaP/Waud37dOT0yPjGtrecAySHAzbB1JkKSZMB/yrh7gclFiTA=
-X-Google-Smtp-Source: AGHT+IHlUR6tr4AkZIxnNVCmVJyL1+GTcAxpr6BEK7+/ok+vXPpzjma1XIjGPVoAIQtdu4oBvOLnKg==
-X-Received: by 2002:a05:651c:19aa:b0:2ea:ea1c:3872 with SMTP id 38308e7fff4ca-2ebfc99867fmr7714501fa.37.1718179388737;
-        Wed, 12 Jun 2024 01:03:08 -0700 (PDT)
+        bh=TXzg+fdrVbFQOuN+HCUNAkTpjxuEQIMLRvuvbmDikrU=;
+        b=tqqIPR64yTLDreQ8+zcuD/wbNF2s7EYpApj+5ewtl6+ryNWM1hPOl+goIRVz2FoRML
+         BPnFZKb6TaCK/sRZUBO9UxL1of904bJYPoSJoaA1l3yrqjf1lV8YpJhhDixnq/ltZ7NP
+         tWkFiEu3MorJ0XHfMUFOHsG5FBczAD9xUfOtw1oHm1O8s8YuLr0C0fIA/BSDsh5cvvJF
+         Z3QU5Zzrid8L5lypIE0O0tGqQfGcLYcnFlRADQypQnQjx65/M82GIQS/5yT2zBlUgNVa
+         YvtDTsGnZOhCWjfhaCWYI6zNX9cva3lQ2gaIvMda6RE0KBrRtU7ngmpfUp1HVCvJ4+c/
+         W1Tw==
+X-Forwarded-Encrypted: i=1; AJvYcCUCsoJOA1ynz4iAmdQSNhd+uaurzyJw/mFD/q3rBr5lwumhYz8w/dwSYtTFGKChym3JuLcAFixPH0Im3cvUzEm4tFjEK6cvwhD5Ww==
+X-Gm-Message-State: AOJu0YwYqEuVMaWX0efzO0P/GDmsljitjFCMKZZpBK0Lz3dkkcrMteH7
+	xl8qxLLUY6leO+DzC4y5j6sy2v/mV5u3zKzIxF08An/TL+44AlwZSzXPSydE0jN81mENZVG7dTM
+	1
+X-Google-Smtp-Source: AGHT+IGTIJ1QYmTS9L1R7y/6y1Xrs1RxvCRihf75QgCLe7/eA7Mm8HF8S7UsWutWliGYiDN/FWzfcw==
+X-Received: by 2002:a5d:6a90:0:b0:354:e729:c0f0 with SMTP id ffacd0b85a97d-35fdf79cf45mr719801f8f.2.1718179415223;
+        Wed, 12 Jun 2024 01:03:35 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42286fe76easm15489865e9.2.2024.06.12.01.03.05
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5d484absm15780193f8f.30.2024.06.12.01.03.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jun 2024 01:03:08 -0700 (PDT)
-Message-ID: <769ad0d7-57d6-4f1b-a276-5b284380a998@linaro.org>
-Date: Wed, 12 Jun 2024 10:03:03 +0200
+        Wed, 12 Jun 2024 01:03:34 -0700 (PDT)
+Message-ID: <3a227b28-dd0d-43a2-bd9c-1a3440d64435@linaro.org>
+Date: Wed, 12 Jun 2024 10:03:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +78,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] input/touchscreen: imagis: Add supports for Imagis
- IST3038
+Subject: Re: [PATCH 3/3] dt-bindings: input/touchscreen: imagis: Document
+ ist3038
 To: Raymond Hackley <raymondhackley@protonmail.com>,
  linux-kernel@vger.kernel.org
 Cc: Markuss Broks <markuss.broks@gmail.com>,
@@ -89,7 +90,7 @@ Cc: Markuss Broks <markuss.broks@gmail.com>,
  linux-input@vger.kernel.org, devicetree@vger.kernel.org,
  ~postmarketos/upstreaming@lists.sr.ht
 References: <20240612032036.33103-1-raymondhackley@protonmail.com>
- <20240612032036.33103-3-raymondhackley@protonmail.com>
+ <20240612032036.33103-4-raymondhackley@protonmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -136,27 +137,31 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240612032036.33103-3-raymondhackley@protonmail.com>
+In-Reply-To: <20240612032036.33103-4-raymondhackley@protonmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 12/06/2024 05:21, Raymond Hackley wrote:
-> +
->  static const struct imagis_properties imagis_3038b_data = {
-> -	.interrupt_msg_cmd = IST3038B_REG_STATUS,
-> -	.touch_coord_cmd = IST3038B_REG_STATUS,
-> +	.interrupt_msg_cmd = IST30XX_REG_STATUS,
-> +	.touch_coord_cmd = IST30XX_REG_STATUS,
->  	.whoami_cmd = IST3038B_REG_CHIPID,
->  	.whoami_val = IST3038B_WHOAMI,
->  };
-> @@ -415,6 +429,7 @@ static const struct imagis_properties imagis_3038c_data = {
->  #ifdef CONFIG_OF
->  static const struct of_device_id imagis_of_match[] = {
->  	{ .compatible = "imagis,ist3032c", .data = &imagis_3032c_data },
-> +	{ .compatible = "imagis,ist3038", .data = &imagis_3038_data },
+> Imagis IST3038 is a variant of Imagis touchscreen IC. Document it in
+> imagis,ist3038c bindings.
+> 
+> Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
+> ---
+>  .../devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml   | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
+> index 77ba280b3bdc..2aea21bfe6ac 100644
+> --- a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
+> @@ -15,6 +15,7 @@ properties:
+>  
+>    compatible:
+>      enum:
+> +      - imagis,ist3038
+>        - imagis,ist3032c
 
-Where is the binding? Compatibles must be documented BEFORE they are used.
+Don't add entries in random order. Keep alphabetical order.
 
 Best regards,
 Krzysztof
