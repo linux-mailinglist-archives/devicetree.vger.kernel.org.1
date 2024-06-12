@@ -1,139 +1,163 @@
-Return-Path: <devicetree+bounces-74894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90FA5904ED2
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 11:11:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 872DC904EE1
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 11:13:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 13B75B21C74
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 09:11:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F5921C21B15
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 09:13:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AB2516D4E3;
-	Wed, 12 Jun 2024 09:11:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 322B816D9A0;
+	Wed, 12 Jun 2024 09:13:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gYKIzj0t"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OyVWd1Cm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0144816C440;
-	Wed, 12 Jun 2024 09:11:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74EBC16D4E3
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 09:13:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718183498; cv=none; b=gm3/phiMoR4e4DjjhDAiokIzPHn6mlIfYRJVsVABJBJypudqvdqtTeRrOEcoJcIoW6d8vHopsfQ7v++uHYDqheLzOhrw5Sbr7BbezvJvbY+WHdmaqK/tvA32LXkvLQNU/qrift58G34RW+ZybMApHITtAvFnC/13LAWwUnTRPuk=
+	t=1718183618; cv=none; b=JVZiRtqGv400WDCYN41ylsqWlvA5XlR1OHd9GC45XSgq4Er3HJafXVsHP8RYrdoMXwypD2zv1i1Zyxc1OfegGZLkzygO6qu2jCTBtdKk5AZnGXDPYeJBOFh9eNUqZzKMfbwzVmVmRsTX0K5cAcg3hmGnaks0m5a9XydMb7oHkhE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718183498; c=relaxed/simple;
-	bh=NrQbjJLU21e6GXf/NiG18RADNv5NRWSmGn1C1T60kto=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TC3G0UubjDTdH7qLbtNthpEuBkKuHomEBs8VW/Uom1Utb2078B9kaH9q31yI4fXXAhhkCq9nM7UB5+XjE1qYSSV3SJ3Ywx+MYnSryQr0L247WlU2HkFg/AmUCrfgPGXSlRB6mL1t3zsWMrrL48UMekw85/P+AmX1SR57IxscTfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gYKIzj0t; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45C9BTKl125620;
-	Wed, 12 Jun 2024 04:11:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1718183489;
-	bh=bq4wdMSaN4e+DblCXL5gIeFx8/S7d1V58QJzFk+BJGA=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=gYKIzj0tmQ+xJPNwJ/xbmwyIcBvrGWrkugvvsp16f2EDDsL02v56Dhk9hp5V9BSWF
-	 by+xgdTZUBh1VZaB8tqHAAZ5eVK40OsNWWxi+G3pdrWlSrF52cmzqjrkKVMo756XXo
-	 G176ClMsVCw7oLp69QwCzBfH1BhLuY7G/25mKlWc=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45C9BTxb054174
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 12 Jun 2024 04:11:29 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 12
- Jun 2024 04:11:28 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 12 Jun 2024 04:11:28 -0500
-Received: from localhost (uda0492258.dhcp.ti.com [172.24.227.9])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45C9BSUl048466;
-	Wed, 12 Jun 2024 04:11:28 -0500
-Date: Wed, 12 Jun 2024 14:41:27 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: Roger Quadros <rogerq@kernel.org>
-CC: Vignesh Raghavendra <vigneshr@ti.com>,
-        Siddharth Vadapalli
-	<s-vadapalli@ti.com>, <nm@ti.com>, <afd@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <u-kumar1@ti.com>, <danishanwar@ti.com>, <srk@ti.com>
-Subject: Re: [PATCH v5 1/7] arm64: dts: ti: am62p: Rename am62p-{}.dtsi to
- am62p-j722s-common-{}.dtsi
-Message-ID: <2f1aa07a-5a51-49aa-8829-c616cb9431bc@ti.com>
-References: <20240604085252.3686037-1-s-vadapalli@ti.com>
- <20240604085252.3686037-2-s-vadapalli@ti.com>
- <92af5f36-0c21-4b6e-adde-fcf21b540291@kernel.org>
- <902f024a-b0a1-4a0a-94e2-7cec064a91c6@ti.com>
- <6959494a-98ba-4ccf-973c-14d079b76f27@kernel.org>
- <975c90b1-6657-40c6-a336-7f1f58acf531@ti.com>
- <9e7d3f9b-c762-40cd-9d0d-2f071aa3c371@ti.com>
- <efcb16cd-83de-403c-885d-cf9d819e5da7@kernel.org>
+	s=arc-20240116; t=1718183618; c=relaxed/simple;
+	bh=j8FlzZswyZrdWHuPm4vDFTQ0SQ+sH3WR6PptS3UTEGg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UDHEw718zpY+sXpQluaqjZEFtmdqo5NKasUHcIxO8/c83896RctFHZLzVZcYS5LxdpZv6SMG5dKGFJ0Fgwz5aMvUoOHUbeC68Om4fzL4TpFdYMVnVbw2yhRb2LzVPs0gRj+U2+PsqyebF2wITFsk0SIkU7CsRODzds80Vc+BTmM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OyVWd1Cm; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-57c60b13a56so5848697a12.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 02:13:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718183615; x=1718788415; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=2RaRwZY/TeqpJK2AA/6tfR5bEggSmTNICLDhm6oAAGY=;
+        b=OyVWd1Cmmmxw96C54WnpScAn5EzrEyrveCZdgcq+HvjlmkbKhhAb9Zi7MttsYvkyMD
+         pAJfb5kAyVcLfMAC9R+HYH2DiH2mASNu5wELPstfrUnJa2DvlTVOcPMXrpe6Vt+6aqEj
+         vxkKcofl+9FgsrYUc9vZKh+FMvSJsMXl/1O8L5oHz5n143hIOk89fAmFYODyTBC8eTeJ
+         cvVocoQfVdIARPc6dm43D4/BZsUbPubrLfKPN0Z+gQBjY7er/zHlqAi1l7AZMAxrDT1c
+         zX7opef87xLSL647qSj8ikmatesBkE3G4gsBwuDEAH/5aPXID8DZxZj4xEJ+Lv5yID3Q
+         MB+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718183615; x=1718788415;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2RaRwZY/TeqpJK2AA/6tfR5bEggSmTNICLDhm6oAAGY=;
+        b=BPxQW3QJL/CXgQxQP+lNU+9R9wZ5OztkH+GmpGEg+TUU0VDsqJ0V+5dUDbCBkQSeh/
+         wqOZcfe2dXycrgNwL6p4Pl/rph09twXJvMc46AUTS6w7Zu+Uc2YvIl6tEelH+FqEfrP8
+         IpTY/5E4pU237kdTmPbcFGbBQ9hTTKJGHTZKIqGyr1njenWuOs1ayv88UTzAC/9l/ZVL
+         JRfnE9nrg7cKrpdQxKKN13g8bYc/hnNoxwUZ5b32dTQMO60oQevT2VLFPfM2/o8hTRTx
+         jRWq3z6N/tqSnEVdRyYm7d1O6msUEvEldIqPdfWe6n+Z/pUt5qVT3PmxY7qkwFm3Yqd2
+         O+RA==
+X-Forwarded-Encrypted: i=1; AJvYcCVLGXGShgWJdDCGL44nWwMz/Dvd9kUcZ2GlHdnDVBAYN6Av5M2A/p5rDUqUYa50GdO/HpNSfxnBr550mxVU6gBWn4ZBfmz6WYTKZg==
+X-Gm-Message-State: AOJu0Ywu3Q7iymqNoQdkFPhmyuKqrWD+8ICj/FIcD8WsVahmrcXuzRdw
+	wGAQjCtzvOgcr2GzzS3Xgq9V0Mw6Jd1/umT+hb/woA0hQvv9EIJuoAZowuMAUec=
+X-Google-Smtp-Source: AGHT+IHLw5sP1+Su4LuW1t4YjjnNqCfmuAZ6LUlmL9sCtLZoSuUFnNPVMoQI48zPX496swrW4hoDLw==
+X-Received: by 2002:a50:9f45:0:b0:57c:8049:a9a with SMTP id 4fb4d7f45d1cf-57ca97495a3mr817656a12.2.1718183614654;
+        Wed, 12 Jun 2024 02:13:34 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57ca472956bsm1393045a12.29.2024.06.12.02.13.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Jun 2024 02:13:34 -0700 (PDT)
+Message-ID: <47ddbc43-889a-4def-8e39-e4f166eae667@linaro.org>
+Date: Wed, 12 Jun 2024 11:13:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <efcb16cd-83de-403c-885d-cf9d819e5da7@kernel.org>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: arm: arm,juno-fpga-apb-regs: document
+ FPGA syscon
+To: Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: Jiaxun Yang <jiaxun.yang@flygoat.com>
+References: <20240518203903.119608-1-krzysztof.kozlowski@linaro.org>
+ <171741897752.2195655.18414699008765504203.b4-ty@arm.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <171741897752.2195655.18414699008765504203.b4-ty@arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jun 11, 2024 at 08:18:34PM +0300, Roger Quadros wrote:
+On 03/06/2024 14:51, Sudeep Holla wrote:
+> On Sat, 18 May 2024 22:39:02 +0200, Krzysztof Kozlowski wrote:
+>> Add dedicated bindings for the FPGA syscon registers on ARM Juno board,
+>> to fully document the block and also fix dtbs_check warning:
+>>
+>>   juno.dtb: apbregs@10000: compatible: ['syscon', 'simple-mfd'] is too short
 > 
+> Applied to sudeep.holla/linux (for-next/vexpress/updates), thanks!
 > 
-> On 11/06/2024 12:10, Vignesh Raghavendra wrote:
-> > 
-> > 
-> > On 11/06/24 14:24, Siddharth Vadapalli wrote:
-> >> On Mon, Jun 10, 2024 at 10:31:07PM +0300, Roger Quadros wrote:
+> [1/2] dt-bindings: arm: arm,juno-fpga-apb-regs: document FPGA syscon
+>       https://git.kernel.org/sudeep.holla/c/3e295d8b4731
+> [2/2] arm64: dts: juno: add dedicated FPGA syscon compatible
+>       https://git.kernel.org/sudeep.holla/c/2e84e7ed7b02
 
-[...]
+Thanks. It seems your tree is not in the linux-next or this branch is
+not in next, because these patches are not available in next after a
+week. Maybe you need to update the branches being fed to next (including
+pending-fixes etc.).
 
-> >>>
-> >>> What is the equivalent of k3-am62p5.dtsi here?
-> >>> That should contain k3-j722s.dtsi + CPU and OPP stuff.
-> >>>
-> >>> I suppose it should be named specific to the SoC variant part number?
-> >>
-> >> AM62P (https://www.ti.com/product/AM62P) has two variants:
-> >> 1. 2 Arm Cortex-A53 => AM62P3
-> >> 2. 4 Arm Cortex-A53 => AM62P5
-> >> Both variants will share the common k3-am62p.dtsi
-> >>
-> >> J722S (https://www.ti.com/product/TDA4VEN-Q1) has only one variant:
-> >> 4 Arm Cortex-A53 => J722S
-> >> Which is currently identical to AM62P5 w.r.t. the number of A53s.
-> >>
-> >> So there isn't an equivalent of AM62P5/k3-am62p5.dtsi for J722S.
-> >> k3-j722s.dtsi is a combination of k3-am62p.dtsi and k3-am62p5.dtsi.
-> >>
-> > 
-> > 
-> > Historically AM6xx devices have had CPUs in separte file as there are OPNs with different number of CPU cores Hence, how about
-> > k3-am62p5.dtsi => k3-am62p.dtsi + k3-am62p-j722s-common-{main,mcu,wakeup}.dtsi + k3-am62p-main.dtsi (USB2 and other deltas specific to AM62P)
-> > 
-> > and since J722s has no variants with less than 4 cores (and along the lines of rest of J7xx devices):
-> > 
-> > k3-j722s.dtsi => k3-am62p-j722s-common-{main,mcu,wakeup}.dtsi + k3-j722s-main.dtsi (USB3, C7x and other deltas specific to J722s;
-> > 
-> > 
-> 
-> Seems OK to me.
+Best regards,
+Krzysztof
 
-Vignesh, Roger,
-
-I will implement the above in the v6 series.
-
-Regards,
-Siddharth.
 
