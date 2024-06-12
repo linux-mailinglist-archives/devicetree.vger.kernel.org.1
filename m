@@ -1,87 +1,99 @@
-Return-Path: <devicetree+bounces-75151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FCB8905A1F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 19:45:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73676905A38
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 19:52:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C78B4285A64
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:45:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0FA6EB2307A
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:52:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF9361822E6;
-	Wed, 12 Jun 2024 17:44:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23BA3183068;
+	Wed, 12 Jun 2024 17:51:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c1vrovK9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GnHzZj9u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87AE61822DE;
-	Wed, 12 Jun 2024 17:44:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5D1D20DF7;
+	Wed, 12 Jun 2024 17:51:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718214290; cv=none; b=lnm5f4d2iBgERAAC/FLoVLxSKu84d5SDSPEDFWPX8cIbY7caeEiyMa73QabtgqAJm191y7qb98OuizivvOX5i+Ow0+3qd8Pn6O+QbtzSse5pz3B3dWe2qEC1AFkgOMqJCRvv9GjOl+KE0a7x3aAnMsgfxhXK6mCXl2RPYhQN8yY=
+	t=1718214718; cv=none; b=VpHCvTsh779++70fzHpa6ShFitKTACY1hDe06AR9qmTqscfpZe0MnOQWaZ9Lv91o5ieQ4XIwI/XVYz7t8kDiPQsJS/ZOs+YLGT/9HkXsJm6+TzgSye00Zyv0nciWdTE5MjT6QuSvfYtP6gaV4zT+6i3B+aKTXRptbKWnCpqM29E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718214290; c=relaxed/simple;
-	bh=S5pPQlYqkbKDLcynx5VnNb+C8Z5Qrs/To+KuhbkFjbI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BUldvGIP99yZQKNQubkezmxO0NM5YRYKyNcTIukcmChTvIvYSEw02ZQvOowSgwfByxZO2Fhp2yIOQe7wc1+JbrGKHnvDTyh2fS77G0FVODHDlz2cb8RpaQVSKmPfOd3AQ009xPkjj+G7hLLt8xsbxvLHNa2Yqt+S8183ocOqows=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c1vrovK9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4255FC116B1;
-	Wed, 12 Jun 2024 17:44:49 +0000 (UTC)
+	s=arc-20240116; t=1718214718; c=relaxed/simple;
+	bh=GXMOHq2P2oehyEINCQ6sMop0V6CFw7xgPbg6IOfzRRg=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=I++skB99aqKSjkyoQlvr8gMztZa5VWTLgRlbhwswmS8/AjAQSolvPyn9tZULLIqkYnKEqJiGU0utNc4L0C2YUD4QAtqIB3SJp6MCpWU2BPvmFD/EPJxfZjCL/N3jFPg/ssN0RmBmNCBxt/ml0OSIHI2Rw7XE1BabcP1WlbKkcso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GnHzZj9u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFBB6C32786;
+	Wed, 12 Jun 2024 17:51:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718214290;
-	bh=S5pPQlYqkbKDLcynx5VnNb+C8Z5Qrs/To+KuhbkFjbI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c1vrovK9foKbDhjD65lGc4PoEWhjUJcoEOsVg0XkgjErc0SRNTBN/FzjoIUOEDe35
-	 VM5o4m4uALf16m/ToFFp792Xr4s+axmjxMzKg/SQ431cYtsf5KfLNA7x0E1JPPgnHd
-	 fhuBo9pEIgUtZpTliY+4Pztop1zb6WSy1FiKm4j7Ggoz3AbF/QPh+klWSRYh5DmF1t
-	 LEBPLC53wR2iNVw2kpC/R/l4kgjsqSlAbYUp5jHQaVu0OdpuqQcLKBRflCNf80/uvm
-	 3QNscn2A1Xc/+Zbc3PhaDD+9MjyAkFVUVBv9IPInViggK/SmFkb0i6/6RPZsrClhtd
-	 +9O7lffYFr2jw==
-Date: Wed, 12 Jun 2024 23:14:46 +0530
+	s=k20201202; t=1718214717;
+	bh=GXMOHq2P2oehyEINCQ6sMop0V6CFw7xgPbg6IOfzRRg=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=GnHzZj9uYQh4LIbCVKnnC+cLgooqzhp2ghSUtsFCGYeUWpdylbDClZW+qP5iB4jhZ
+	 yD6U9tzL89AqY8y8niCXVtIpu1IWFtKVdGkkjgGmO68OBpaVlrXv38TSbOJYzHT+Mo
+	 RyArX9rfJrsyXWY7DFr4C3LturjCXYWM0YRcE80GJv630A4NsrlE6DamyGczwzHJQ0
+	 g2IwTPmpHfwQkaJxpSd5kpi8KYCnGpda0ULMjmXt5IaQkzK50uqORj0sVQVuM+CpOq
+	 jRXpKyoUfPat8zHdDvTVlWFufyCMjdj6CGFrkINfUSNoq9OBaRjSNUvj8pA7kDHanj
+	 JdNNgnoUeF32Q==
 From: Vinod Koul <vkoul@kernel.org>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rob Clark <robdclark@gmail.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org, Arnaud Vrac <avrac@freebox.fr>,
-	Pierre-Hugues Husson <phhusson@freebox.fr>
-Subject: Re: [PATCH v3 2/4] dt-bindings: display/msm: hdmi: add
- qcom,hdmi-tx-8998
-Message-ID: <Zmnejlkb869mN3eS@matsya>
-References: <20240606-hdmi-tx-v3-0-9d7feb6d3647@freebox.fr>
- <20240606-hdmi-tx-v3-2-9d7feb6d3647@freebox.fr>
+To: Andrew Lunn <andrew@lunn.ch>, 
+ Gregory Clement <gregory.clement@bootlin.com>, 
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+ Daniel Baluta <daniel.baluta@nxp.com>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Konstantin Porotchkin <kostap@marvell.com>, 
+ Richard Cochran <richardcochran@gmail.com>, 
+ Josua Mayer <josua@solid-run.com>
+Cc: Yazan Shhady <yazan.shhady@solid-run.com>, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+ linux-phy@lists.infradead.org, netdev@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240602-cn9130-som-v6-0-89393e86d4c7@solid-run.com>
+References: <20240602-cn9130-som-v6-0-89393e86d4c7@solid-run.com>
+Subject: Re: (subset) [PATCH v6 0/7] arm64: dts: add description for
+ solidrun cn9130 som and clearfog boards
+Message-Id: <171821471028.586907.10718051314971795937.b4-ty@kernel.org>
+Date: Wed, 12 Jun 2024 23:21:50 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240606-hdmi-tx-v3-2-9d7feb6d3647@freebox.fr>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
-On 06-06-24, 18:07, Marc Gonzalez wrote:
-> HDMI TX block embedded in the APQ8098.
 
-This one too
+On Sun, 02 Jun 2024 17:49:35 +0200, Josua Mayer wrote:
+> SolidRun CN9130 SoM is a mostly pin-comptible replacement for Armada 388
+> SoM used in Clearfog and Clearfog Pro boards.
+> 
+> 1. Add new binding for compatible strings closely matching the original.
+> 
+> 2. Add device-tree includes for SoM and carrier shared design.
+> 
+> [...]
 
+Applied, thanks!
+
+[4/7] dt-bindings: phy: armada-cp110-utmi: add optional swap-dx-lanes property
+      commit: 4de480264948cbf2b08a72c39ee122a9f9761e03
+
+Best regards,
 -- 
-~Vinod
+Vinod Koul <vkoul@kernel.org>
+
 
