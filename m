@@ -1,118 +1,113 @@
-Return-Path: <devicetree+bounces-75143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB6269059DA
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 19:26:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 321AD905A16
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 19:44:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 70EC51F23E59
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:26:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C71D7285854
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:44:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEA0D181D15;
-	Wed, 12 Jun 2024 17:26:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E2411802BE;
+	Wed, 12 Jun 2024 17:44:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LypDdc56"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rsEIbaL3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B54513209;
-	Wed, 12 Jun 2024 17:26:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6925170824;
+	Wed, 12 Jun 2024 17:44:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718213179; cv=none; b=oZaMeQtH1ObpckbJSkEmG1ylWMkrxFirB9CEa5Otk3ad12i20jLJkQj0rrgFIAnwcXBoIeMCIWpYVFEYulGusjdV5AWtP7+mNb5Q4HWyPvZFmlidNQ9C+bYZhSZpGz3r3hsXwwCxFzbJlOc1BGxsKP7jdqCBXsxXkJsbdYoGcbk=
+	t=1718214262; cv=none; b=chlZvwEG0WDbdspjmYZUq65xHgtXtDYuwLfinm2qn6E8Ia/m4tnGV1UBfDxq0mSl5UDt8DqZo139I5PKMHYCdyiXayPaSQNprgGqN18/P8YwxfSBYxPiZe+9wp3IH/cGnM9S4WGPaAu8z6Nx1fUXE9rmrdXWFTpKG5dQ7fjmfds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718213179; c=relaxed/simple;
-	bh=8mAINEWgGiadV1kEJND+F9WvJE3WuJIALswoL9FapSI=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=sLFLsAUD3jkw6ri8Yt0YKT6vqVJJIR5M6zslCc9qmcwqPwPbkCIeaI+b31YjK1jZH/LRFa0qfoM2IuYIm8KPcD0KHTEp4V3wTeUT/kTV8CChdsAsIkV3MmJHUt6gDK4lr3bGs5WLpfLJuEZaiOUxgsoWxL9cVKtEJM+WNe51WEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LypDdc56; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58848C116B1;
-	Wed, 12 Jun 2024 17:26:19 +0000 (UTC)
+	s=arc-20240116; t=1718214262; c=relaxed/simple;
+	bh=X/W4+RBIDg73ZY+dLTQoYPcN2GOZNe5RdPBV8OPN5i0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eHipL20Q8yb7nEWqXuVpjw5aqmOClmY6dc1A5/ZqNixpvS/FwR2fI6tqmcSh8Zvq/+So3ghsTljLzFXJMB/5C0JG1qII4mraevOptpEDbN2DqjRnlv9Z2+OTl5c3YXtv9GeF0QI/O8JKnvPSooEbDC0KtMvD9hy/LQofLWo02dc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rsEIbaL3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9837C116B1;
+	Wed, 12 Jun 2024 17:44:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718213179;
-	bh=8mAINEWgGiadV1kEJND+F9WvJE3WuJIALswoL9FapSI=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=LypDdc56kiZi2JjvRRlVxTTMRS9WLepzejGCDmQSSqGvE8U5TsAtu5H7PCR7GWD2R
-	 +V0vb9dzRZdgXA/g8wDH85Ykf4fzHukdkp1eeNKP+zPvnocP0m15T1hyy8vIZjm+sI
-	 hZWYo5G91IrrSKFHkF6uATS6vQeP8wnNmRkjmDh1QI4l330XPyLK7vX1UUO4xEOzSd
-	 lSz0C1gpZyZLJ6XEs/TI3I55reyrrvf5ZZS+SB5ArmB+yErQn/fGulgKkQAYUGc0g4
-	 RXvFduL9Y9KlCeTYEfQZC/uvOb5lB2e3ERkH+SJHxK8V78Xu8YwttIPlA334EtlbOe
-	 AzBB30DTa/aiA==
-Date: Wed, 12 Jun 2024 11:26:18 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1718214262;
+	bh=X/W4+RBIDg73ZY+dLTQoYPcN2GOZNe5RdPBV8OPN5i0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rsEIbaL3TaGu65Vzwpc66Y55Cq6oFPsp5UqG5dLb/0hshXQYvgusTLkQ7B6NSvpIg
+	 nYSv7fo28HcBka3HtEql7X9qdOPUeFx0zCaNSBux12UwWGJ2JFIMA82+y/c92vxHwt
+	 /v6gnBr3KgFXofosdzL7jADZP7qsOfjTUKiOx/J0sg8PgrkrMzn0kLuYz0qV5sOFOw
+	 QJxkIPIwYg5HWFc9l8kghshlwxcspdZIaG17nWh6fuYjSjP3wiaGV36AaZLCseFylY
+	 Jv0oQfJUxUVfFipFXezBeuBnrHKSe7wUkK4XYqvcEHAHaHigFoIKymKxuSsMXIvsF3
+	 yq7YDwZg+vs5A==
+Date: Wed, 12 Jun 2024 23:14:18 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Rob Clark <robdclark@gmail.com>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Sean Paul <sean@poorly.run>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	freedreno@lists.freedesktop.org, Arnaud Vrac <avrac@freebox.fr>,
+	Pierre-Hugues Husson <phhusson@freebox.fr>
+Subject: Re: [PATCH v3 1/4] dt-bindings: display/msm: hdmi: add
+ qcom,hdmi-phy-8998
+Message-ID: <ZmnecsZrtNoggI3X@matsya>
+References: <20240606-hdmi-tx-v3-0-9d7feb6d3647@freebox.fr>
+ <20240606-hdmi-tx-v3-1-9d7feb6d3647@freebox.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Shresth Prasad <shresthprasad7@gmail.com>
-Cc: skhan@linuxfoundation.org, linux-phy@lists.infradead.org, 
- linux-kernel@vger.kernel.org, cristian.ciocaltea@collabora.com, 
- javier.carrasco.cruz@gmail.com, krzk+dt@kernel.org, 
- sebastian.reichel@collabora.com, heiko@sntech.de, 
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org, 
- s.hauer@pengutronix.de, vkoul@kernel.org, andy.yan@rock-chips.com, 
- kishon@kernel.org
-In-Reply-To: <20240612160336.5132-2-shresthprasad7@gmail.com>
-References: <20240612160336.5132-2-shresthprasad7@gmail.com>
-Message-Id: <171821317822.3213383.11527359300023322395.robh@kernel.org>
-Subject: Re: [PATCH v2] dt-bindings: phy: rockchip-emmc-phy: Convert to
- dtschema
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240606-hdmi-tx-v3-1-9d7feb6d3647@freebox.fr>
 
+On 06-06-24, 18:07, Marc Gonzalez wrote:
+> HDMI PHY block embedded in the APQ8098.
 
-On Wed, 12 Jun 2024 21:33:37 +0530, Shresth Prasad wrote:
-> Convert txt bindings of Rockchip EMMC PHY to dtschema to allow
-> for validation.
+Why is the patch titled display/msm, this is phy patch and it should be
+tagged as such..
+
+Pls update
+
 > 
-> Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
 > ---
-> Changes in v2:
->     - Fixed example
->     - Changed file referenced in grf.yaml
+>  Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> Tested against `rockchip/rk3399-firefly.dtb`, `rockchip/rk3399-orangepi.dtb`
-> and `rockchip/rk3399-pinebook-pro.dtb`.
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml b/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml
+> index 83fe4b39b56f4..78607ee3e2e84 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml
+> @@ -14,6 +14,7 @@ properties:
+>    compatible:
+>      enum:
+>        - qcom,hdmi-phy-8996
+> +      - qcom,hdmi-phy-8998
+>  
+>    reg:
+>      maxItems: 6
 > 
->  .../bindings/phy/rockchip,emmc-phy.yaml       | 79 +++++++++++++++++++
->  .../bindings/phy/rockchip-emmc-phy.txt        | 43 ----------
->  .../devicetree/bindings/soc/rockchip/grf.yaml |  2 +-
->  3 files changed, 80 insertions(+), 44 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
->  delete mode 100644 Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
-> 
+> -- 
+> 2.34.1
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.example.dtb: syscon@ff770000: reg: [[0, 4285988864], [0, 65536]] is too long
-	from schema $id: http://devicetree.org/schemas/soc/rockchip/grf.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.example.dtb: syscon@ff770000: reg: [[0, 4285988864], [0, 65536]] is too long
-	from schema $id: http://devicetree.org/schemas/mfd/syscon.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240612160336.5132-2-shresthprasad7@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+~Vinod
 
