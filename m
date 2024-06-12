@@ -1,189 +1,99 @@
-Return-Path: <devicetree+bounces-75120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D589D9058EC
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 18:37:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B28079058EA
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 18:37:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D2B01F2342B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:37:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 582BE1F2315A
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:37:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D83B181321;
-	Wed, 12 Jun 2024 16:37:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E670A18130E;
+	Wed, 12 Jun 2024 16:37:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gXbrMDLs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ke2j0YT/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C23522094;
-	Wed, 12 Jun 2024 16:37:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF1EE16F295;
+	Wed, 12 Jun 2024 16:37:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718210255; cv=none; b=M+UCSquaWmRl7Wt05J5xiP2iCsliE6UiaP9/qu9GKp7HkswP1haJinwIZWiXSg9vHCMoxboOUqH6MwXgRp3z+Q6CmoYcsERe9Xh8qeALuMVhzn3PnF04kcf6KvYg9K+imO/FH/oBn4Zy4BiM8eUwBasVLBASZc8GFBrPpw4eF9A=
+	t=1718210255; cv=none; b=FpisefgWlqxCAITB52eI5B9NbgR/hRX2d/SRBPm5toCdsqMiv+o6S90MS6g++LeWDjYh/PaoLQmthGYg7Vs/9CkTbDTP+J4G/0L1TUepubPE4zpyCGSQ32lWg4aPbqJkuSVJZpvrGF4NqO5+ewBLLqAKOWfgGGi6wfza2phMFkU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1718210255; c=relaxed/simple;
-	bh=obA7dlhSLgFk6GyFI/xPqD4492ZshW5iL6G2Dk15AU8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=e7znp07iVB30muBIKM1JMqeL8xsx7hfXq6ZAAChldGswa2uwIKIoc5+mRtnRyt0KVT7SDm811AOgqnrb6kjwh4HJb5kKI5A76BVhFHNHeEgTdxgO7f9BfZy1mTD0CrX44nNvkN7AvcU5vcmwTiler1C5VHElkPUIimDO3mQ93Pg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gXbrMDLs; arc=none smtp.client-ip=209.85.222.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-797dcb558ebso113156585a.2;
-        Wed, 12 Jun 2024 09:37:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718210253; x=1718815053; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=12/jhHkXdDAL+9rJ1s3aaCTv3iaFjJjz+V4lIsM94NY=;
-        b=gXbrMDLsJeDgN+yYQfnB+ktxcDeGMxgvndNFeEIkziVcufztCyPMmiQfUt4QgFy/SH
-         tfddgE8EQsL2OnAznGP3pf1w0UhGkaJe59izCnffSqzvszW8kB7b54Jrl065KBP9F2f8
-         F/73FMHVHrjUOAPLM/L6VsYFYSqrGJNhsSMKaubF1FmFGoqSuFw3fy94ta7hZ2VCS6BY
-         vBIT11iIMTkxwUPlIDFwstlMIFZXtruTs1PS9oK3sIleHBFQhZNxG9M0AU+DuTA1YRPp
-         2bgI1al/7liC6ec0q3fQXSp9qDhvbu/8WnB3AqsKO8PYcd3tAqpQMu6J0iwPDIvUNIwh
-         q6Gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718210253; x=1718815053;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=12/jhHkXdDAL+9rJ1s3aaCTv3iaFjJjz+V4lIsM94NY=;
-        b=I4opOWoxW0L/kmYeA5ZrAwQWfxbwqdLF3imLbMBAfZ5CdruXIOsvnVzs++/559pO3/
-         qdJmrwJdGI3N1IinqnPsufPUma08svqAZK8hSjjB0YCTFJwsAFwvb4pkYsZdDhhIc4Xb
-         phCqU56L+wZEjdKufOcO7Y3a0+JZsx5aAZLhTmo4FtfqBQorQA+vJD2wfTMy9ccqg7KI
-         gYSkSnpJpEIRz2PyfOfanZL3B5Vbk6+4U9TDUBjCdWykh5AvZCFBAviklLchQyhgvZ71
-         s1Sz1ZOk7rCsmNJYGj7EqlVyv77RYfHiOYTMoxkWwzy2jZuxfE6GwuOCqsSm/m7HA9Xi
-         BGNg==
-X-Forwarded-Encrypted: i=1; AJvYcCXLVCYdC6/BBQiuevhjYudCgfM0Mbglaii3KHiUjKze5wUm931a807UaapHfRRJ2uawQuZQWw6v6Aj5ZDBowPc4kALWBVK3BphoVY6EvczkrOkEqIcrXmCv6MtL7zhKllcjJRlSeri6q97gtcQKS19uAbFmc6EN78XFvLurb7g3M7OPEoWG
-X-Gm-Message-State: AOJu0Yw+K+5r5jbBk/ZyR8j3USCmPSH2O2E16G+UMRDpuVanNQL2KA9k
-	JKbuz+qwtfXe/p9x2brePZYZznqVD7szVTHs4EhdYo5IMeNCSeyB
-X-Google-Smtp-Source: AGHT+IFT8k3qNR332tNPZA9c0rkrNYavg+MmrQQZneJutNHAF0if1JXV2r+bKb3HjpJA8HF6Xh0RVg==
-X-Received: by 2002:a05:620a:1a1e:b0:795:1e16:b22f with SMTP id af79cd13be357-797f604746dmr274415385a.33.1718210253302;
-        Wed, 12 Jun 2024 09:37:33 -0700 (PDT)
-Received: from sheun-Legion-5-15IAH7H.phub.net.cable.rogers.com ([2607:fea8:bad7:5400:f2b7:e8f6:98dd:a423])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-79532813a2dsm615143685a.20.2024.06.12.09.37.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jun 2024 09:37:32 -0700 (PDT)
-From: Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	lgirdwood@gmail.com,
-	broonie@kernel.org
-Cc: Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>,
-	skhan@linuxfoundation.org,
-	javier.carrasco.cruz@gmail.com,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: sound: Convert max98088 to dtschema
-Date: Wed, 12 Jun 2024 12:36:50 -0400
-Message-ID: <20240612163730.515819-1-abdulrasaqolawani@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	bh=0MjRZokEqRkCUo1uCDr0yndQXFK5Z6Trx87QYmEtkYg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mw5euDgo+VHSTOjNU4ekFTFDaab4bH0x0JcKCxcknuorybGzzhIq4dXWgtybQplmLKC8OxoOTX8ZMT/buTT2PIbk/Ik0QX2NXTEGctw4D4Cx0ha/Mwzb+9eAzlL3p/+x9q4yzETqbXMiQNGyU14tLwmgqvvU3guxFnY/ZgECuEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ke2j0YT/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBCE4C116B1;
+	Wed, 12 Jun 2024 16:37:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718210255;
+	bh=0MjRZokEqRkCUo1uCDr0yndQXFK5Z6Trx87QYmEtkYg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ke2j0YT/M5eYWhTgZtuc+Q+NshqvsYf1f2bie4rNePcwRiyMQWCpjNcmqG8+1VTpk
+	 /9USqxGBCrdcLf/JWCRw9HAEqe9V++vfSUNCk9Q9HXpgvSZACjT0hrKnH9S8IxL2gF
+	 C225wQvPK+zVEiZvZKzGM59fJoSc0RgZf9X+M7oDoQL4rN3kcUgTJx4qFDEhfib9DH
+	 q7WHL49i1fmhVa0z0us4CSEOEUTOkG2AULSPc2/QTh9bj7IQeT2BeMLmubDL64BuNg
+	 KkJHG5yMtgmO9RY9crWcP8eksRuc6dVuKX6bF1U8lUfNOxD2DNYO8R1KBfCX/8VLZ4
+	 r+SNPQ2LLHl9g==
+Date: Wed, 12 Jun 2024 17:37:30 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Hui Wang <hui.wang@canonical.com>
+Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+	gregkh@linuxfoundation.org, jirislaby@kernel.org,
+	hvilleneuve@dimonoff.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, andy@kernel.org, lech.perczak@camlingroup.com,
+	Maarten.Brock@sttls.nl
+Subject: Re: [PATCH v3 1/2] dt-bindings: serial: sc16is7xx: add reset-gpios
+Message-ID: <20240612-skeleton-bullseye-71067b2244b4@spud>
+References: <20240612131454.49671-1-hui.wang@canonical.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="KgN7Km3/jYhonulv"
+Content-Disposition: inline
+In-Reply-To: <20240612131454.49671-1-hui.wang@canonical.com>
 
-Convert the max98088 audio codec txt bindings to DT schema.
 
-Signed-off-by: Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
----
-Validated with dtschema and tested against `nvidia/tegra30-lg-p895.dts`.
+--KgN7Km3/jYhonulv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- .../bindings/sound/maxim,max98088.txt         | 23 ---------
- .../bindings/sound/maxim,max98088.yaml        | 47 +++++++++++++++++++
- 2 files changed, 47 insertions(+), 23 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/maxim,max98088.txt
- create mode 100644 Documentation/devicetree/bindings/sound/maxim,max98088.yaml
+On Wed, Jun 12, 2024 at 09:14:53PM +0800, Hui Wang wrote:
+> In some designs, the chip reset pin is connected to a GPIO, and this
+> GPIO needs to be set correctly before probing the driver, so add a
+> reset-gpios in the device tree.
+>=20
+> Signed-off-by: Hui Wang <hui.wang@canonical.com>
+> ---
+> In the v3:
+>  - drop the Reviewed-by
+>  - change gpio to GPIO
+>  - change "this GPIO" to "and this GPIO"
+>  - change "so adding" to "so add"
 
-diff --git a/Documentation/devicetree/bindings/sound/maxim,max98088.txt b/Documentation/devicetree/bindings/sound/maxim,max98088.txt
-deleted file mode 100644
-index da764d913319..000000000000
---- a/Documentation/devicetree/bindings/sound/maxim,max98088.txt
-+++ /dev/null
-@@ -1,23 +0,0 @@
--MAX98088 audio CODEC
--
--This device supports I2C only.
--
--Required properties:
--
--- compatible: "maxim,max98088" or "maxim,max98089".
--- reg: The I2C address of the device.
--
--Optional properties:
--
--- clocks: the clock provider of MCLK, see ../clock/clock-bindings.txt section
--  "consumer" for more information.
--- clock-names: must be set to "mclk"
--
--Example:
--
--max98089: codec@10 {
--	compatible = "maxim,max98089";
--	reg = <0x10>;
--	clocks = <&clks IMX6QDL_CLK_CKO2>;
--	clock-names = "mclk";
--};
-diff --git a/Documentation/devicetree/bindings/sound/maxim,max98088.yaml b/Documentation/devicetree/bindings/sound/maxim,max98088.yaml
-new file mode 100644
-index 000000000000..e4a2967e1e81
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/maxim,max98088.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/maxim,max98088.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MAX98088 audio CODEC
-+
-+maintainers:
-+  - Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - maxim,max98088
-+      - maxim,max98089
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: master clock
-+
-+  clock-names:
-+    items:
-+      - const: mclk
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        audio-codec@10 {
-+            compatible = "maxim,max98089";
-+            reg = <0x10>;
-+            clocks = <&clks 0>;
-+            clock-names = "mclk";
-+        };
-+    };
--- 
-2.43.0
+There's no need to drop an R-b for grammar changes in a commit message.
 
+--KgN7Km3/jYhonulv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmnOygAKCRB4tDGHoIJi
+0pQYAP4toJo1nVgYG+9CIhfSh7IJg2hsD7vxNOXHtHvI2e7+rgEAhHVNt7Pz0iqG
+TWeXllr4TJRAqSWFaqd37wgY3NMeXAw=
+=fBuM
+-----END PGP SIGNATURE-----
+
+--KgN7Km3/jYhonulv--
 
