@@ -1,129 +1,129 @@
-Return-Path: <devicetree+bounces-74897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73545904F0F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 11:21:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65C51904F23
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 11:23:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 825371C21C2A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 09:21:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F3F0CB24184
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 09:23:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC15516D9B6;
-	Wed, 12 Jun 2024 09:21:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DC0516DEA3;
+	Wed, 12 Jun 2024 09:23:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oR9ID2QC"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="elVGqmvH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A0C016B72E;
-	Wed, 12 Jun 2024 09:21:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CCCF16D9CA
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 09:23:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718184082; cv=none; b=upCour+BONAoD78oS7IVzfo22DpiAPv0Mse5iOpfI4I3lepD8IRKnsgJfuMWosN8oMJUnfe4X6XoElXTretahgRDOt/8kk7JTkNwkH9Y2/vGWZ2gEdcrWw6XODmzS8dKz3FtoVEryPN1767nJ+BzcMn6r6U5f0dTcx0YTPXA39g=
+	t=1718184194; cv=none; b=qaVnu0Ng8HVRpz1L52fPeOuxEXUk/a4PNexg0DK8WigGVUL6rHDEm/AHcGuOzHmkNiwq9GLgH1hA9sDui1fCrQBYFp2y1lRW/3xBjMw1fVNW8k1lf69RCSg6qBmpYz4JpKf1csEuIY3ccW8zZsuBV51v3m4fEAqoG/DwQrGWxlM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718184082; c=relaxed/simple;
-	bh=EsJGTO6GTs/SJhhsrjmi78vqJQP8kwuegjOox6ZFSPQ=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GnWe0Gx49R3nBMJdrIOh8siIAv1XMuPNAWy4T7lX4F2cYX0iHJdPyzvaV9wQh9jUxXYgGwvPTG7I6ba4oL79jjwJoUK0ZSkIxUOA7kYLZut0lB997X0RqnlVKyQClTjc3aTYTbXc0LfDwc3iVqbWrhbqdwQeDv+e2cdt+I0hgxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=oR9ID2QC; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45C8DqqC018413;
-	Wed, 12 Jun 2024 09:21:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=xRrvXtowPvfK9lgsi7WMphP5
-	miUwkL2U7ntiBaCwewY=; b=oR9ID2QCdZIzQD3/QaEFhZ+8DABB/ZG7/gGgA+8e
-	CXr5TCSFGAvjYLCcq1RgcKVQhatCBr488V2aJ5ssGIEahH0snBcZnWWyzogFgY+6
-	rGZaHonvgvY75LYvohargShjrHu6Qq7idQWLvOAbl6b5CkwNMCBQhclWdKjAqUkC
-	w3DJTCcNGEKSSexDDBGAs7UgKWpO/WZO7OQefOswiOtHXcMJ+ejowgRZN9SgenFl
-	+6OxprqVVqzuO3BesqeKKuFP/I06FJ+QbKmzQse9BXIF396IAHQiP0af4ecAAVnR
-	OExWsLUsBjSHwHl31dlYUA6cNmg9aFSi8vDbaQEKocH6Qw==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ypm6bb0up-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 12 Jun 2024 09:21:17 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45C9LGRf016236
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 12 Jun 2024 09:21:16 GMT
-Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 12 Jun 2024 02:21:13 -0700
-Date: Wed, 12 Jun 2024 14:51:09 +0530
-From: Mukesh Ojha <quic_mojha@quicinc.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Komal Bajaj <quic_kbajaj@quicinc.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] dt-bindings: cache: qcom,llcc: Fix QDU1000
- description
-Message-ID: <ZmlohTUi6Ppl4k6f@hu-mojha-hyd.qualcomm.com>
-References: <20240612062719.31724-1-quic_kbajaj@quicinc.com>
- <20240612062719.31724-3-quic_kbajaj@quicinc.com>
- <175bd8b0-83b8-45d0-99bd-1e9384fed3f7@kernel.org>
+	s=arc-20240116; t=1718184194; c=relaxed/simple;
+	bh=cqAjv0ciTbfG79N6f0Qszpdg9coI8cetf/zimRgZldg=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PwnsFfuEIveZTZ6o5f8LOiFEJn1pPTYOxmrmd3QXMj5Jo8QnhZyvHPQ1lTCwWGBUkGxO2z9o2aCItY2fSXvaHnzIKXC/xr8IdqGDqek2m0DndFc7SixC0ObV+QhktiF7OElBa+ECkwq50iXdFlyX5M3VTYP75Oa0/XsBQVGNU8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=elVGqmvH; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id E8BDA3F71E
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 09:23:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1718184190;
+	bh=kYhK3L+yW69WKhHxmlqNiCnuIy+fGgbMi5wRMPzQXug=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=elVGqmvHskX59F4vCEfo/vWB/kt2PNwUMVA6OCMMeV0Dg0j9xWvWwX5/Ctu7rnpRN
+	 GeKqyLE5vmz2szoAV3yLwY8IlkqYiUk0Ut54Gt4jr8e7ZvgO84/+3q4RPEszY+QyU8
+	 AtGVkbPTGVZDhGwJdbs6JSV2W9xIsmhQjpUCSX5RZPtNNe0RrA4cloT9WUVpmcXYHo
+	 +55f6e+r2VM7JHi+ZJh5aZIz/8JgLGFWamtTiNQohnmea71nuIbbeRO8ERsTLKfgS5
+	 toLDO8f125YnaKgBLkqoXIKAqjynqnZkQK/euP/Caz0vEZmALwIMlPHi+yhAQ2FaIg
+	 AIGykBD1tAn3g==
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4405830b0a3so20585581cf.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 02:23:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718184190; x=1718788990;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kYhK3L+yW69WKhHxmlqNiCnuIy+fGgbMi5wRMPzQXug=;
+        b=vNfKxPU58p9XrHKn445jO0Jz2kTwge3rPPAXA0nSnUy0Gp8GfESQ39+mSJYdO/JqFT
+         Yxll48dLE+EgovdOMicHCvZGmDeNnXuLhEg2X/xB9KIer4sGG/coKf4PIKpUeawN6wLL
+         6Mi7M2miapKSTLg+E0YuvlK0+1QWCCI3PZ4PfWejtgMpdwBUWPC+0VfvirIPj6gzQm5I
+         OM86Bx/ZrHCMN7le99OaWgy8h4kiu4sX78Wfiq+TA0IuICCuVYPTCtcVXKNo+c9iXluj
+         WE1grlkPRL4XZE8x8msxsCEkvoGucfjXl1F0E1AeS/qdyBCJQbZftBVrsEP7xFosnWVx
+         s+3A==
+X-Forwarded-Encrypted: i=1; AJvYcCUeVNGImm/keFqvZhealvn7rpEjO1DApgJme9LJkqQKdpcfTEbFs0EHv6/kMcrpPnrqcyCcLt4o5iZCEhcRRw1ce7OghpItfp8Jow==
+X-Gm-Message-State: AOJu0YzGev1MMlT0P21ITR2UK6a8pM5vNTd+VppkXmKKVOQuWFNatSrJ
+	EjWmfZ935rK5qrKep1/+MUw4/vOa98AR/8obLKGkkEGjBePDymP/Ydb93gKsq4togEYNXrBjnqT
+	+HOm1cs0uKzPXG37qhqI/z8fr7FZKa2+zUOGxk8n1UNV+HBZlCQJ1V2SwQ+w2x1rte7yNbh15h3
+	I3TOIma8xkebsuS8Bf4eeAIIR+cB36rnjYhZHaDRxDbdtYBI6gdA==
+X-Received: by 2002:a05:622a:1815:b0:43f:f238:f7c7 with SMTP id d75a77b69052e-4415abace3cmr11487541cf.12.1718184189684;
+        Wed, 12 Jun 2024 02:23:09 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF5MG8uXfoyZDoO/xNYxFjzdF/0nSHHKgK9WtkhZcuD36BVQY5EY7BluQvhT1S9z0w+/882J6EZF0XWnjMUN8A=
+X-Received: by 2002:a05:622a:1815:b0:43f:f238:f7c7 with SMTP id
+ d75a77b69052e-4415abace3cmr11487481cf.12.1718184189384; Wed, 12 Jun 2024
+ 02:23:09 -0700 (PDT)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 12 Jun 2024 04:23:08 -0500
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20240610-mocker-ankle-d3ee407bb352@wendy>
+References: <20240610-vertical-frugally-a92a55427dd9@wendy> <20240610-mocker-ankle-d3ee407bb352@wendy>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <175bd8b0-83b8-45d0-99bd-1e9384fed3f7@kernel.org>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: -FPgc8fuaJdhcs7nza0EowJ3NumJrYYq
-X-Proofpoint-GUID: -FPgc8fuaJdhcs7nza0EowJ3NumJrYYq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-12_05,2024-06-11_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 suspectscore=0
- mlxlogscore=999 impostorscore=0 spamscore=0 priorityscore=1501
- lowpriorityscore=0 adultscore=0 bulkscore=0 phishscore=0 mlxscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406120067
+Mime-Version: 1.0
+Date: Wed, 12 Jun 2024 04:23:08 -0500
+Message-ID: <CAJM55Z8YWBedhXVgJpGF0LrifXGEjJubPvnxqdboAeW8DCLs3w@mail.gmail.com>
+Subject: Re: [PATCH v1 1/5] cache: ccache: allow building for PolarFire
+To: Conor Dooley <conor.dooley@microchip.com>, linux-riscv@lists.infradead.org
+Cc: conor@kernel.org, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Daire McNamara <daire.mcnamara@microchip.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Samuel Holland <samuel.holland@sifive.com>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Jun 12, 2024 at 09:58:50AM +0200, Krzysztof Kozlowski wrote:
-> On 12/06/2024 08:27, Komal Bajaj wrote:
-> > QDU1000 DTSI comes with one LLCC0-7 base addresses. Updating
-> > dt-bindings accordingly.
-> > 
-> > Fixes: f0f99f371822 ("dt-bindings: cache: qcom,llcc: correct QDU1000 reg entries")
-> 
-> You are basically reverting without saying this is a revert and without
-> explanation.
-> 
-> What's happening with QDU1000? Why it is such a mess that DTS was
-> totally not matching bindings drivers and now suddenly we need to revert
-> commits?
+Conor Dooley wrote:
+> There's a ccache on PolarFire SoC, so don't limit it to SIFIVE/STARFIVE
+> SoCs only.
+>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 
-I think, this happened because of the refactoring happened in LLCC driver
-and at the same time QDU1000 device tree change picked while other SoCs
-change was made like 
+Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 
-e.g
-https://lore.kernel.org/r/20230314080443.64635-11-manivannan.sadhasivam@linaro.org
-https://lore.kernel.org/r/20230517-topic-kailua-llcc-v1-2-d57bd860c43e@linaro.org
-
-
-However, this change missed for QDU1000, later f0f99f371822 ("dt-bindings: cache: qcom,llcc: correct QDU1000 reg entries")
-happened and now realized the driver does not work anymore with current
-binding and hence fixing was required.
-
--Mukesh
+> ---
+>  drivers/cache/Kconfig | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/cache/Kconfig b/drivers/cache/Kconfig
+> index 9345ce4976d76..b2d525e540212 100644
+> --- a/drivers/cache/Kconfig
+> +++ b/drivers/cache/Kconfig
+> @@ -10,7 +10,7 @@ config AX45MP_L2_CACHE
+>
+>  config SIFIVE_CCACHE
+>  	bool "Sifive Composable Cache controller"
+> -	depends on ARCH_SIFIVE || ARCH_STARFIVE
+> +	depends on ARCH_MICROCHIP || ARCH_SIFIVE || ARCH_STARFIVE
+>  	help
+>  	  Support for the composable cache controller on SiFive platforms.
+>
+> --
+> 2.43.2
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
