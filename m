@@ -1,95 +1,108 @@
-Return-Path: <devicetree+bounces-75095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E707D9056EE
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:33:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5090B9056F7
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:34:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69C3AB25077
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:33:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68D191C20FF6
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:34:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDCEE1802DF;
-	Wed, 12 Jun 2024 15:32:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NS2Q5BtM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3D7C1802CE;
+	Wed, 12 Jun 2024 15:34:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3344B1802D9;
-	Wed, 12 Jun 2024 15:32:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BECB21802CF;
+	Wed, 12 Jun 2024 15:34:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718206363; cv=none; b=b7wphDWFJUCnqGFAfD3wFwYHiNyoaxHQPMH15HwE5+cf+emXaprgPneen2Xn5XYtxZjIfUT9pxj0DjSKPFj77OGeWrDULbWA/70iwSoq0UkTkPh9gb9jtHB6Oi8tnh3cltQhlbmpHS2nde+xtetP04NBOepcwEVLRhaS35jc/20=
+	t=1718206461; cv=none; b=IrREZPlBvPqlqJ9wd3VqRLGa0Ty0/S+LhBqYzgwa/rEh/yBFgbMEpYnt3CGpmiJvuHeHygS2A0gZyUirT5q5+Nh5xIUUAOLgK6RgXODJYkzZ0NkIUT8tmGoXhJPTPzYHw2j9WY8IIX3XbszeJ1cBikt3X/H1NEjCx10tdl83edg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718206363; c=relaxed/simple;
-	bh=ifRzRxf1rrmcvnfimIiSxsCywCmMXk1id3TTD2HQxtg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=K9vH3ad7FGunF4V/1mC1ksZErLEyQnDZlXOUzq8AiQ3dQjeSpFrVFfXgXp1Gpu9wb6kqUBWHDVPJ2BdiqWg59VjqwN+EO0S01EEo+Lz4SMwz2jFGwFW/Sh4G2uAxENfIiNP0ZsOYrGHX0HxiERx1u1jIZfMeYOgAE6jhaf3kmRI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NS2Q5BtM; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-57c61165af6so6617408a12.2;
-        Wed, 12 Jun 2024 08:32:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718206359; x=1718811159; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ifRzRxf1rrmcvnfimIiSxsCywCmMXk1id3TTD2HQxtg=;
-        b=NS2Q5BtMEFGhSJS2+CKp51OxRpnwWFWfkY5AYgZNtbtkYO/ND2KMEzXkGSnCp7/6hu
-         iOpe6wZ0XEyin0bB2I9MbYncNWAcPiDp4zCmWRN6y/XfZ65SwZZs226OBmSBqwbkhCX7
-         LRmlFMmMtiyqummQ06O3A477qRfeX/300geqd2tBvuZCsSMniycuCF5YQIHzTZRhCJ0A
-         Quqzl5JtuMI4Gh40YnWPuDcbOaguSXPshR7JRJI1ial7oij5ZWbdNJ0aJwHiw51AiOoO
-         Bdyf74lqvsStlKEtMg/Kwus2TsiLTsmAs7wpYWdoh4LlHtySpKDxDkBWoITF7KnbSPIe
-         gcfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718206359; x=1718811159;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ifRzRxf1rrmcvnfimIiSxsCywCmMXk1id3TTD2HQxtg=;
-        b=cN5ZNnxZNI+QdoJKiLHk2LamuW2u7gALLwS9ru4EyiyJTwNxzxVLYvGrkz75z7YF2L
-         WxE45I6GXaO72cKeQGkriyYaBVTDz58jiYGLSznavle/jEiR8tcQ0GUnqIdrBjaJNv7O
-         2pgPSk81Q/LR7DyUoLOVV0DTgGC+TaETg4DAc/y+w3ndXAmNP7iv25LGjApTmp8gI3VV
-         xZJTg5dj4/p28vTP0v1fOy7HSNNyqhJqNRaRF7uZDSKeIe8UeeQfJD79cnBS7QRQSjb3
-         ueelupmJ22bwbjEjNzrIuImx1wXI2jOv4ySMB3y9BaDRcvFjdzvmnvzI/72zw8O8Vvu+
-         rn3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCX07ZClAUDVAmgyeAAs7o10CX3E7b2Gswq/jQc8Hd4iWwN5x7WLIzvfDHQ0/swaRAz4yqIoNhy/GG6x6hSHh/HJKeYZ+9bht8ts5rmRJEnF/BlZmgAC+uSlNU9EGNzaUDKVij8uuORS0zFVUPkQp58jgWPWmqDrB0aOB8PEcUi81h8LS6YrHA==
-X-Gm-Message-State: AOJu0YwzvqgHy6d+E69nR0ykPkXAGtvx/F+7HsQqoXZMlOIUyCP//4+g
-	+o67A6/9mQv/PIbuTKUsARl2Om3qw22DrdTTvP4cprRygM8P/1oC7Yr/F/Ise3Pkoo4C9zcroEX
-	UUEOsiAH4KGyq84w+yvA3YSTKOEc=
-X-Google-Smtp-Source: AGHT+IElaL2Bh5AGgHhl64jF1fLtnm4lTPWXn5/I3eAW+jWB96be+8eLrTB1DmW3qgp3ngxWnHbaPGIZmacUz33mK8U=
-X-Received: by 2002:a50:8d54:0:b0:57c:60f0:98bc with SMTP id
- 4fb4d7f45d1cf-57ca9754f1amr1507418a12.11.1718206359224; Wed, 12 Jun 2024
- 08:32:39 -0700 (PDT)
+	s=arc-20240116; t=1718206461; c=relaxed/simple;
+	bh=AEH1PF2oiR9AWSog4ZyajYHOgBRYvq3XpSnXr5FyMaE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=thILJJkTXVYOghb/Wn9M2OCKWKL0bWqMqXUG4YNvGuqbipPrxZPyGJiQ6J0hKrBPGPhFAOE7vDwCx5jAnxqU2akSAv6X8sn/7zE+RZW1GycGDB58G8bYP914TcPkC4/l6uooX/TmtOlCKWMNsbEYk4mac1PJe4cnpY8f3A3v5WM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8FA481042;
+	Wed, 12 Jun 2024 08:34:42 -0700 (PDT)
+Received: from [10.1.29.46] (e110479.arm.com [10.1.29.46])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E861B3F73B;
+	Wed, 12 Jun 2024 08:34:14 -0700 (PDT)
+Message-ID: <7fdc23ff-fd55-4347-ac61-dd115eff6ff1@arm.com>
+Date: Wed, 12 Jun 2024 16:34:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240612142951.37259-1-kanakshilledar@gmail.com> <dd529de8-07b0-444d-83c3-4b8c3424a7ef@kernel.org>
-In-Reply-To: <dd529de8-07b0-444d-83c3-4b8c3424a7ef@kernel.org>
-From: Kanak Shilledar <kanakshilledar@gmail.com>
-Date: Wed, 12 Jun 2024 21:02:27 +0530
-Message-ID: <CAGLn_=s=LtCJsP-BWFG9vJp_hQfQ_hnAtB6oKdTW68YxLLE_mg@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: serial: vt8500-uart: convert to json-schema
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kanak Shilledar <kanakshilledar111@protonmail.com>, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] mfd: axp20x: AXP717: Fix missing IRQ status
+ registers range
+To: Lee Jones <lee@kernel.org>
+Cc: Chen-Yu Tsai <wens@csie.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Ryan Walklin <ryan@testtoast.com>,
+ Chris Morgan <macroalpha82@gmail.com>
+References: <20240418000736.24338-1-andre.przywara@arm.com>
+ <20240418000736.24338-2-andre.przywara@arm.com>
+ <20240502093907.GM5338@google.com>
+ <56aef347-7582-497e-be02-d82eda7b3528@arm.com>
+ <20240612152510.GE1504919@google.com>
+Content-Language: en-US
+From: Andre Przywara <andre.przywara@arm.com>
+In-Reply-To: <20240612152510.GE1504919@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Sorry for the confusion. I will fix the maintainers part quickly.
-I have one question that if I find any area for the SoC is not
-maintained or orphaned,
-how can I find out who is the maintainer for that area, or the one who
-last contributed
-for that specific area?
+Hi,
 
-Thanks and Regards,
-Kanak Shilledar
+On 12/06/2024 16:25, Lee Jones wrote:
+> On Wed, 12 Jun 2024, Andre Przywara wrote:
+> 
+>> Hi Lee,
+>>
+>> On 02/05/2024 10:39, Lee Jones wrote:
+>>> On Thu, 18 Apr 2024, Andre Przywara wrote:
+>>>
+>>>> While we list the "IRQ status *and acknowledge*" registers as volatile,
+>>>> they are missing from the writable range array, so acknowledging any
+>>>> interrupts was met with an -EIO error.
+>>>>
+>>>> Add the five registers that hold those bits to the writable array.
+>>>>
+>>>> Fixes: b5bfc8ab2484 ("mfd: axp20x: Add support for AXP717 PMIC")
+>>>> Reported-by: Chris Morgan <macromorgan@hotmail.com>
+>>>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+>>>> ---
+>>>>    drivers/mfd/axp20x.c | 1 +
+>>>>    1 file changed, 1 insertion(+)
+>>>
+>>> Acked-by: Lee Jones <lee@kernel.org>
+>>
+>> Can you please take just this patch as a fix for 6.10? This fixes the power
+>> key operation.
+>> This applies cleanly on top of v6.10-rc3, so there is no need for any extra
+>> immutable branch or coordination with regulator.
+>> (The same is true independently for patch 2/5, on the regulator side).
+> 
+> What does the Fixes: commit break?
+> 
+> Or is it the case that it never worked properly?
+
+The interrupt part never worked properly, but so far that's only needed 
+for the power key operation. Unfortunately that part wasn't tested 
+properly initially, so the patches were merged into your tree before that.
+
+Cheers,
+Andre
 
