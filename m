@@ -1,139 +1,204 @@
-Return-Path: <devicetree+bounces-75060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F42590551C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:28:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CB63905529
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:30:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3588E1F23252
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 14:28:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9792B1F2355A
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 14:30:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9603017E452;
-	Wed, 12 Jun 2024 14:28:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9A2817E8E8;
+	Wed, 12 Jun 2024 14:30:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eb/TW/q5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Zw8AYd9c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D28297FB;
-	Wed, 12 Jun 2024 14:28:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BF8617DE0F;
+	Wed, 12 Jun 2024 14:30:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718202501; cv=none; b=rXufMtK0yu8S5lLLdZ/odRG3IhaUc4yMvKowv4tsufv/lY1xOOGfCvy/EgTh11154AVWikvbhXuR/WHbkHQFh2a7oXDiiBgptfjXGOPck3TDhZM9gaktsfnwt6VVFOz2UTlseH2j+uJszW73hjNhiUJFDkBRmLG5xHRK5M2JIVU=
+	t=1718202601; cv=none; b=nYJpFDTluSU70YTBmn5dTL22DbjZXglmvejVS6OuhtA7+YpQW89aRvKHbFCtx7AAu5XruG5jaoyCYOhYq3htdNJPyjuUQMl6zjFh3oa4fASrSPylOSJuZGQKk6wU7K17C0RjKbnSnyBZsF91nVVVMX3eG07a3TtHrfiLcYQGrQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718202501; c=relaxed/simple;
-	bh=M5Wq5PkW+j5WBpUWNaxe35+bKituzA8SiWZVorHnflI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aChqzn+kkN2cYsueCYD4hk0wfe8zXNGel3X7swibSHAE5ZELmoSTaOZEN0WzKoJzKewxWbL4n+Qh5P9969kPrJ9ORex998ciSNvgyG5A9FAHIwjNjJESQCuqgmU1fxxh040REg3PYYNBFTJxLptU7CZfkPFbs/mFrjshl5YI0EY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eb/TW/q5; arc=none smtp.client-ip=209.85.208.170
+	s=arc-20240116; t=1718202601; c=relaxed/simple;
+	bh=H+ew+u/dB7Kx3Fw8NBEn1vS4GH1kfq8mbPSxHE5xOsg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=s/tMnLApAqWE0RfjRnJXC2SbsAOamzW2Au6x8ZGna5i3KCBcjvPqynyEDQHy81TKIrECzhgRjqefKCvkxAXnpI14Qj9bB6x+U3l+eAXAI1jh8IKckOaF4om7Ik6boUb2ZF8Gc4CJ9VflpgvDrP17O9zjyz/funh/2W0yMOzbfsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Zw8AYd9c; arc=none smtp.client-ip=209.85.214.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2ebeefb9a6eso22171461fa.1;
-        Wed, 12 Jun 2024 07:28:19 -0700 (PDT)
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1f7028196f2so29147305ad.2;
+        Wed, 12 Jun 2024 07:30:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718202498; x=1718807298; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZBGRs/yfS5hfu0UJmUEEloYokRcE9KOZ/5P6i9N80po=;
-        b=eb/TW/q5oO48KNt+Af+wQUVUoayNH3z49p2H8HIXHzUArNvBEDW7LTqdOFlZIr96Qt
-         0UUr5huK4UbmmzOs7cQgm6uhtFugC7x5pspeRSJkLUSHt1Fwhpq3WiY/blgSmCtc85OX
-         +eiB1O5GJ/rXpd59J2VQJKtF7KnwznQqoYbuQwZcp001wMpICGNO1xjUF7pYP12Zsa1U
-         HhocjK7izQ/nKeYBGJAXqwzl3wiYmheU+ua6DhZ7D6aR0grGmObiRnwhWhv45uyTu+3k
-         nAZty1x9Y8FnLRviUvMqRyuFJ2X/oG7Z8tkaq5bbvwACtafw24APSAjlrOm1MRD+IYBm
-         OkrA==
+        d=gmail.com; s=20230601; t=1718202599; x=1718807399; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6Ekb5/oQl3Ab1gkHrfS5Ggmy6kBO6TAnXhkcaRjBbj4=;
+        b=Zw8AYd9cOOh9qQ7QC0r6W5Ta3ll3e1FR63LXAF87b7DgqOkwdIZXOqSeAYDMvWV2Jg
+         pBHBa1PikwGEtdIMH/7x9NKUHFrBeFeQA3izJ5d5sgalCL8k7UdvdHuC4xv+ZgutfD2p
+         K+dPT3d7PwiHe/RORwJ729bOKPZNp0wCGIWojDrmsOmkJ/qUiBLwU3QIIUuiC3FV3Qw3
+         N6VEOpfP033gJu49aOA4xpx0bnstNZc2IaTCfRVqqHqpAc9Ibhqe7WIMhm7Ten2FABwq
+         iDupsQad2/7aSxQAZfa7O9IoVCan8vgxVAfac5jFElDYfju1/mCp25LB9kbQQDxZ0xaF
+         oVbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718202498; x=1718807298;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZBGRs/yfS5hfu0UJmUEEloYokRcE9KOZ/5P6i9N80po=;
-        b=uXn/xDOIGO5Kbecd4eTtVEXHfD/9T0POVI23Gb1JO04MBJLGzWfhVIgi+rxVQBz2hm
-         Mm+3tcZwyKz06+I5AreYBbzK2uv2hb+gVE3n9tbOiL5J8m2N5i1FJMoEnxhe0tzZkRJL
-         8hlfW8zL4bGQmIVL1u4B2WR2JtVa5AL9oXHvj1/6TEPQBjJjOmXVF05XaXHdRsAzrktO
-         z53qpWp3EGnVXqV1gDT1E3N1C6H8WaMi+wFY+WxwaE09IsQmXANn8dgtL0WaAlKjAyRe
-         4Ef/xppbMcqi8zxQH6EHfGeu2oUH3qlkjZBBc7BiWFGFeBMEGXKKc+Fx5CgScOHWjhh+
-         r1IQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU+rZgMlsu5w1wHhcuhYPlpC4eav/gizoTRANgwhKN31O9IOtYZvIKh/Hac7FUhP5QtISsVKnxskYW4b3uEcY/Nofk0syrutEUhO5dqq4IP9lvEg5JBfjB5kDdejT4+pgFwtYTiZo8CihpJebrlZhiGsHJTi5Q/xUA6kicmwdlztYuBng==
-X-Gm-Message-State: AOJu0Yy4eQonk6i3bE1x1ToeQozIxj0tzsVWkZydjvurdbT63NHm+5TZ
-	wN53WAh0d/hxDTg1oSY68GPqcuVWLzLFBgE1nn+FF1ctj5s7NIiFaKNaYBDxcvmFayfZTEIEMQp
-	lDqwyWD/ovGuU71xzIv1k/mnpuDPJIuCOB/oju9Rh
-X-Google-Smtp-Source: AGHT+IHOs3ciOviU8J52fVK6ZywQ5lGQdMISCOwO4tHH7On+5Hsi54kgd/FP+vf2ZrTO8jNLdDjnz/KhkhEElQXnm7M=
-X-Received: by 2002:a2e:a0cc:0:b0:2ea:e4e9:8776 with SMTP id
- 38308e7fff4ca-2ebfc9ab259mr12598771fa.46.1718202497821; Wed, 12 Jun 2024
- 07:28:17 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1718202599; x=1718807399;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6Ekb5/oQl3Ab1gkHrfS5Ggmy6kBO6TAnXhkcaRjBbj4=;
+        b=Yc6ydWRVFAezXAYDjSrvOAxYjmN8IsJgj3kaBYFacWZaEJWxzCoba/w+1/dtDO/3M9
+         kypLOIbNxBXWpkEJGOLwR5WoqDh++z/c9rzeiNZ4XA7RO2jC039sxAyJ+FI5AxNd59PY
+         +RBmfCZWn6Ejl3fqFv++1E65Zy8h3ei8oB0J9Gz4DlEaB9tjPCql4gBFk0BdbzTsDWRQ
+         wV4nQHlHmG13CFtE3C14Fo4HW6PA19sfeFcjwSqS3h49meNx4TW3qHi/lpSur5zw8u6m
+         SLKvxjkD0bf7fqxESFD63gfypGwMwePcHHnQ5P11U7j/WBlyrHqFJT0vghSauJoKEzAT
+         OZqA==
+X-Forwarded-Encrypted: i=1; AJvYcCWMQiIhwayYxToO2XKpejVc/7xXiCz9deD333DjKO2YgLavZpANY0BftP1/Y2pyTJmB1MHwFeFDjzIACPscfKBP5pUQ+5E6Ky8DF1w9v2jEB6TrPdo5Sa1nLep0xMqmCAxPt8+LIwfWZ3APEXkArETeQArKPbVZEY1BfLn5Trri+erHmxPU4g==
+X-Gm-Message-State: AOJu0YwSk0rfzgX/a3WPBTepKx4FkL9Nesyp53k2e/GkPsb7x+uTTwH3
+	eP5G+Alm97jpNtyH80Z8XIfN3HfvmWSzTUw/pj0iav+IClQrfVfR
+X-Google-Smtp-Source: AGHT+IGFsO2i9lFjUGahQzb301ylC7d2HFLMLcSGx/BMvp521Gppx/mUmV/nsp8erw2DazBrW/NQ6w==
+X-Received: by 2002:a17:902:c105:b0:1f6:f5bc:51c5 with SMTP id d9443c01a7336-1f83b7a16c5mr17432425ad.47.1718202599377;
+        Wed, 12 Jun 2024 07:29:59 -0700 (PDT)
+Received: from ga401ii.. ([2401:4900:1c29:22a5:7130:4b49:9907:6f99])
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-1f6f298102bsm84937165ad.73.2024.06.12.07.29.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jun 2024 07:29:58 -0700 (PDT)
+From: Kanak Shilledar <kanakshilledar@gmail.com>
+To: 
+Cc: Kanak Shilledar <kanakshilledar@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kanak Shilledar <kanakshilledar111@protonmail.com>,
+	linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: serial: vt8500-uart: convert to json-schema
+Date: Wed, 12 Jun 2024 19:59:45 +0530
+Message-ID: <20240612142951.37259-1-kanakshilledar@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240601092646.52139-1-joswang1221@gmail.com> <20240603130004.25662-1-joswang1221@gmail.com>
- <9c665afe-16d7-469e-ac3e-d0d7388a31b7@kernel.org>
-In-Reply-To: <9c665afe-16d7-469e-ac3e-d0d7388a31b7@kernel.org>
-From: joswang <joswang1221@gmail.com>
-Date: Wed, 12 Jun 2024 22:28:06 +0800
-Message-ID: <CAMtoTm1ojhCSRb4c+MPjuJB+JaeD2ex6B7FpCaJtLvrTj0Q8Cg@mail.gmail.com>
-Subject: Re: [PATCH v2, 1/3] dt-bindings: usb: dwc3: Add snps,p2p3tranok quirk
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Thinh.Nguyen@synopsys.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, balbi@kernel.org, devicetree@vger.kernel.org, 
-	joswang <joswang@lenovo.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jun 4, 2024 at 2:33=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On 03/06/2024 15:00, joswang wrote:
-> > From: joswang <joswang@lenovo.com>
->
-> Is this your full name or known identity you want to use for all kernel
-> contributions? Looks like login...
->
-> >
-> > There is an issue with the DWC31 2.00a and earlier versions
-> > where the controller link power state transition from
-> > P3/P3CPM/P4 to P2 may take longer than expected, ultimately
-> > resulting in the hibernation D3 entering time exceeding the
-> > expected 10ms.
-> >
-> > Add a new 'snps,p2p3tranok-quirk' DT quirk to dwc3 core
-> > for enable the controller transitions directly from phy
-> > power state P2 to P3 or from state P3 to P2.
-> >
-> > Note that this can only be set if the USB3 PHY supports
-> > direct p3 to p2 or p2 to p3 conversion.
-> >
-> > Signed-off-by: joswang <joswang@lenovo.com>
-> > ---
-> >  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Doc=
-umentation/devicetree/bindings/usb/snps,dwc3.yaml
-> > index 1cd0ca90127d..721927495887 100644
-> > --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> > @@ -242,6 +242,13 @@ properties:
-> >        When set, all HighSpeed bus instances in park mode are disabled.
-> >      type: boolean
-> >
-> > +  snps,p2p3tranok-quirk:
->
-> Why this cannot be deduced from compatible? Which upstream SoCs are
-> affected?
->
->
->
-> Best regards,
-> Krzysztof
->
+Convert the VIA VT8500 and WonderMedia WM8xxx UART Controller to
+newer DT schema. Created DT schema based on the .txt file which had
+`compatible`, `reg`, `interrupts` and `clocks` as required properties.
 
-Thanks for your help in reviewing the code
-DWC31_USB 2.00a and earlier versions IP bug, regardless of platform.
+Additions to the original binding
+- changed the file name from vt8500-uart to via,vt8500-uart.yaml
+- removed unnecessary alias from the example.
+- added Greg and Jiri as maintainers (referred MAINTAINERS file).
+
+Signed-off-by: Kanak Shilledar <kanakshilledar@gmail.com>
+---
+Changes in v2:
+- Rebased changes
+- Changed maintainers to have Rob. VT8500 is orphaned according
+to the maintainers file.
+- Replaced `compatible` property description with comments.
+---
+ .../bindings/serial/via,vt8500-uart.yaml      | 47 +++++++++++++++++++
+ .../bindings/serial/vt8500-uart.txt           | 27 -----------
+ 2 files changed, 47 insertions(+), 27 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/serial/via,vt8500-uart.yaml
+ delete mode 100644 Documentation/devicetree/bindings/serial/vt8500-uart.txt
+
+diff --git a/Documentation/devicetree/bindings/serial/via,vt8500-uart.yaml b/Documentation/devicetree/bindings/serial/via,vt8500-uart.yaml
+new file mode 100644
+index 000000000000..a81bdfaec2e9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/serial/via,vt8500-uart.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/serial/via,vt8500-uart.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: VIA VT8500 and WonderMedia WM8xxx UART Controller
++
++maintainers:
++  - Rob Herring <robh@kernel.org>
++  - Kanak Shilledar <kanakshilledar111@protonmail.com>
++
++allOf:
++  - $ref: serial.yaml
++
++properties:
++  compatible:
++    enum:
++      - via,vt8500-uart # up to WM8850/WM8950
++      - wm,wm8880-uart  # for WM8880 and later
++
++  clocks:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - clocks
++  - interrupts
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    serial@d8200000 {
++        compatible = "via,vt8500-uart";
++        reg = <0xd8200000 0x1040>;
++        interrupts = <32>;
++        clocks = <&clkuart0>;
++    };
+diff --git a/Documentation/devicetree/bindings/serial/vt8500-uart.txt b/Documentation/devicetree/bindings/serial/vt8500-uart.txt
+deleted file mode 100644
+index 2b64e6107fb3..000000000000
+--- a/Documentation/devicetree/bindings/serial/vt8500-uart.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-* VIA VT8500 and WonderMedia WM8xxx UART Controller
+-
+-Required properties:
+-- compatible: should be "via,vt8500-uart" (for VIA/WonderMedia chips up to and
+-	including WM8850/WM8950), or "wm,wm8880-uart" (for WM8880 and later)
+-
+-- reg: base physical address of the controller and length of memory mapped
+-	region.
+-
+-- interrupts: hardware interrupt number
+-
+-- clocks: shall be the input parent clock phandle for the clock. This should
+-	be the 24Mhz reference clock.
+-
+-Aliases may be defined to ensure the correct ordering of the uarts.
+-
+-Example:
+-	aliases {
+-		serial0 = &uart0;
+-	};
+-
+-	uart0: serial@d8200000 {
+-		compatible = "via,vt8500-uart";
+-		reg = <0xd8200000 0x1040>;
+-		interrupts = <32>;
+-		clocks = <&clkuart0>;
+-	};
+-- 
+2.45.2
+
 
