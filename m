@@ -1,129 +1,144 @@
-Return-Path: <devicetree+bounces-75051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C87229054CB
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:10:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9AC09054D5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 16:14:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 778F31F214F9
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 14:10:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 752131F21B21
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 14:14:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0669917D8BC;
-	Wed, 12 Jun 2024 14:10:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C911D17DE04;
+	Wed, 12 Jun 2024 14:14:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fe5lvo2j"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OHWXG39v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DBB95336D
-	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 14:10:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 228F817BB23;
+	Wed, 12 Jun 2024 14:14:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718201446; cv=none; b=fnBfz21as4bmD3AxjsZ+Zad0hdbtY8CH+6ft26QEIhHRPjirEZjjX8PmZAT1m6W5t5If+JJaE3n5CtZVxkV4DErDp1+ItaINFCc6MCi99YHgHgzzz+mplFKO/eX5RRSn+kjoBNgiqewsuqMf9LNgxI0y4Pp6lYWMjDsueN4YiHk=
+	t=1718201684; cv=none; b=gUa2J2fWgx8hoCF00SDfPrBkVO+sBjWlbcL29k4kVzvZiNapUsYWZurlKwhj6qJO8zTLaV5DNkrVSzYZs8Oq9jajBEjw0fz6ei6ofyIdIDfiNviS+2xW1t3y+Gicn4Ra6Y7rt5XqG56I2UseUDc/eJczYfPnBpKzvTM6ESVf1cQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718201446; c=relaxed/simple;
-	bh=a0/DHXF2SUZ9T62+RNnFm7pTHl4jfZzPu4UlkE1hp4Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=p9GVlSRETmaMJ9yOSxUQH471KKtLVU3T/w0/SUDo5vfucV1u4DJiYrwJk0ujAOsiP5yx2ON1ZezlaG3beaxWNu9fVAwDxmnflGrjiqS5E3UfYNYMRxKAbPfsySWg45Gd2sy75Y26X3xpL8NVSqx72NjG3wY+vLwgNdSijgPoR0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Fe5lvo2j; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2ebe40673d8so22685191fa.3
-        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 07:10:44 -0700 (PDT)
+	s=arc-20240116; t=1718201684; c=relaxed/simple;
+	bh=Wx/8/Myl4DsLtzdvgYRN+HtlVbAaQQR3l/UprCAbXt0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qChyF72rLCSQV7VEoJh1Px6kJyhWs23zJux12n4mq5Hm42u3OVnU6hxl5jErwy3iV4SmiCeGQiKDwkT3k4zMfs+yZTnqpn/NoqG8OGUbRBJdbGXcdLyKR0C/DPrYHWd6DTdcUVprwBFnaPCXcVCXWR59Fs8v+JX1AK8c5n/E+wE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OHWXG39v; arc=none smtp.client-ip=209.85.161.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-5ba090b0336so1076760eaf.1;
+        Wed, 12 Jun 2024 07:14:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718201443; x=1718806243; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=fDZBDbUR/Osz8PKcQ2HcjsVNrayHLES+DrpHvD2F5Pk=;
-        b=Fe5lvo2jFCMPLmfuLZ4l0vLQpjx3qF+RW7XPQcOd8xAGaRx1CmdX8ktLxgRsHoPxDN
-         zHz8V1NXknemc7w7DSIiCSOPzifVeWcZ83xImDBZynFDUa5Y4OaRVbq5z8ubsRUHZZCs
-         MR2fx4WfIbZ1jOcxTv7O4vc+44rsIWlE46a4b9NUGKGEtdK2DvEZJ70nyWLjj9o0fTAV
-         fG76egoThXupZnsZrStmY5yJ6NFZMdEkOwEkrvLbqNs9l3yyQaDT+lR+0Hu2/5NR1QEd
-         Bm0ZTCo9rJ3pf/PvGmBhxTvTU2RaCrMy4EchzEMGuDWj+/Ci6Rr+r7VJCtnaD/LBbZvo
-         lOig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718201443; x=1718806243;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=gmail.com; s=20230601; t=1718201682; x=1718806482; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=fDZBDbUR/Osz8PKcQ2HcjsVNrayHLES+DrpHvD2F5Pk=;
-        b=sWC1uZhaDCy0E4MC0qL/dT5y2ZgwQfJ+F2xWSp2IIAfVKwjGy0bdy0ZHdRXgEDfPtM
-         AsKokG8lY1keWiryIoi0pM2JwTqh5eH8Q2Y6OOwvu/aS+rbTKfcHcvvKi5II6uac0RkJ
-         IyFNK661PmWcI5FeZrcR90sQcLmlmiFyS7IO26q9Fs7E2Qgq7oZ9tusxXfuuH4o3xLn1
-         GzawF9D4csCFWrEkVAd9iAt/a/cn2q04xY2+5nm+2k6pBvTWL/0x2ghUp9Qz057ouGjU
-         4syHggupI1DoL8uJp3l3v13RGUl8DuqJ8Z5OhlYDz6fYLUDHfgNJT/gowwiRkHWGsJb5
-         npBw==
-X-Forwarded-Encrypted: i=1; AJvYcCXwVwFAVqXZR/qJB0BgkCh4Ts9ORBrcQqYTsJFOmVmABUgI0qQFApdpRgNLaGZlzfe9DlRQvfgOt91GgJ82VYgYzqJzrDzraFhTZQ==
-X-Gm-Message-State: AOJu0Yz0dDy6Rp7561XThvwGj0ruEIVNgSZRLOjsxJ5jG1NQSA/aflRd
-	8xHd/oqx9LL05Q/2qaksfvtQSlhq5hNOvPLOv7XkSAXPWo8zRQY/7geqJ2P4zPk=
-X-Google-Smtp-Source: AGHT+IFjLR7yr1vu07suK4U8uhG1T2SNjOgZASn+EN8VRdq7sFOEyjV5ivQ5D5ogr5TWg7tHypOgaw==
-X-Received: by 2002:a2e:9b88:0:b0:2eb:120c:1a59 with SMTP id 38308e7fff4ca-2ebfc9d0865mr11492691fa.16.1718201443353;
-        Wed, 12 Jun 2024 07:10:43 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42286fe7670sm29304585e9.6.2024.06.12.07.10.42
+        bh=n3gvyllWWIRnYeJ4DjIIbMhoNnKxuOATp9pxj4Zd4Gc=;
+        b=OHWXG39vBUWcxymMj17KNiJJ+F6B0jugF7STSxQTcUjFvUZQ69uIJCIMAUp3uj1r+/
+         NeBVvgH/rONSIJmictvhHvBUgqMa+q751Y6Jz7DR7NXj+xfHCbzMqqn1J7NZ21mkMtn2
+         Mqg66UmfjzcTddFZgLaMsdxByvNNTs+gJhrk6PKu4SCwJFumwDzFp9EJARzyRlI+k5xE
+         E66aps+/0iTuurBYmsHg1bCVY2FbkwMimd84Klu4pb/bXgULevnc/uJ4SkYDMqzuzLxB
+         1zK8ndvYU5bOYdQev4oU6kQcp6tTgt0VQZgSjWwL9wjgU08gFAR0Tji0DNLczIyzD+Q5
+         jGbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718201682; x=1718806482;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=n3gvyllWWIRnYeJ4DjIIbMhoNnKxuOATp9pxj4Zd4Gc=;
+        b=iXQ1DMt6MCcUFtU8DHtbH9dTiQGqf9m/92XcN9t2EzdwyKRdK5Eizdr7EkMLlhATZe
+         mOCM/ib+BWgZflGxRUcjNOR8x2N0w/bEG9ifWZQaZgiTNlVejSRFa4lsz2u7oGlrfi+u
+         hw+5g4YHKlYc18Fpk6eHAdHz8kaNS4fipiCgaSPd68wOxtdK1rU9Vw0iy4YPgDT+YT7r
+         /RmhJq7xTtmNbq+jyTZrs9yU2kYGnBdqiw2fmp3bMN9n+R0EcW4pBfVeKLu8SwzRix+f
+         fK0FlFI/dG+3NUr2ZCm0ek2aRbrWSgHGgIBvIvOOrsQT4yHcmKXY5XOk3KEm5qa0y3I4
+         QDWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVBUQZW5z/kwGMlpy9asDXVvWqzvNM2VO61NkgcYsFW2WNB7csnYRyG+fsl7Ibu0NVBTKpwRJkvlvx/o4TywSSieg/X6VrtJHYtw7kMZ29CLa7srygQP6Tw4YMxyllxhktzv23/98ImK3PY3AizTD5G5YcdRvc412QY4w4FoDMb5Mw1mm4z
+X-Gm-Message-State: AOJu0Yzi97YxA/pHd36mtTRbwxMdzc3HLN/LJbVS/tSYoG5XTxUMWyDm
+	jbu7vhbFga95Z9W255D8b/9KaTsoUnd63/uTUC7Ljw4DOHR+p+sn
+X-Google-Smtp-Source: AGHT+IF8CtqpWGiINl3F7vHplq9qsdpwtyxs1QhLloQcjIXSAU91XSon8YqOspasNQsi7Nyhp4WKDw==
+X-Received: by 2002:a05:6358:e4a6:b0:19f:4a60:e6f4 with SMTP id e5c5f4694b2df-19f69d54bb3mr242855355d.17.1718201681857;
+        Wed, 12 Jun 2024 07:14:41 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-6f7c4580888sm2268804a12.61.2024.06.12.07.14.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jun 2024 07:10:42 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	arm@kernel.org,
-	soc@kernel.org,
-	Arnd Bergmann <arnd@arndb.de>,
-	Olof Johansson <olof@lixom.net>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Oleksij Rempel <linux@rempel-privat.de>
-Subject: [PATCH] MAINTAINERS: ARM: alphascale: add Krzysztof Kozlowski as maintainer
-Date: Wed, 12 Jun 2024 16:10:18 +0200
-Message-ID: <20240612141018.7348-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
+        Wed, 12 Jun 2024 07:14:40 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Wed, 12 Jun 2024 07:14:39 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Amna Waseem <Amna.Waseem@axis.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	kernel@axis.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: ti,ina2xx: Add
+ ti,alert-polarity-active-high property
+Message-ID: <f960ba3e-6673-41ae-b58e-5b6b2e700082@roeck-us.net>
+References: <20240603-apol-ina2xx-fix-v3-0-b9eff3158e4e@axis.com>
+ <20240603-apol-ina2xx-fix-v3-1-b9eff3158e4e@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240603-apol-ina2xx-fix-v3-1-b9eff3158e4e@axis.com>
 
-Apparently there was never a maintainers entry for the ARM Alphascale
-ASM9260 SoC, thus patches end up nowhere.  Add such entry, because even
-if platform is orphaned and on its way out of the kernel, it is nice to
-take patches if someone sends something.
+On Mon, Jun 03, 2024 at 12:08:34PM +0200, Amna Waseem wrote:
+> Add a property to the binding to configure the Alert Polarity.
+> Alert pin is asserted based on the value of Alert Polarity bit of
+> Mask/Enable register. It is by default 0 which means Alert pin is
+> configured to be active low open collector. Value of 1 maps to
+> Inverted (active high open collector).
+> 
+> Signed-off-by: Amna Waseem <Amna.Waseem@axis.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-I do not plan to actively support/maintain ARM Alphascale but I can take
-odd fixes now and then.
+Applied.
 
-Cc: Oleksij Rempel <linux@rempel-privat.de>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Note this is v3 which includes the Reviewed-by: tag since v4
+does not have any other changes.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c7a13170b697..647233a62f50 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1946,6 +1946,16 @@ N:	allwinner
- N:	sun[x456789]i
- N:	sun[25]0i
- 
-+ARM/ALPHASCALE ARCHITECTURE
-+M:	Krzysztof Kozlowski <krzk@kernel.org>
-+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-+S:	Odd Fixes
-+F:	arch/arm/boot/dts/alphascale/
-+F:	drivers/clk/clk-asm9260.c
-+F:	drivers/clocksource/asm9260_timer.c
-+F:	drivers/rtc/rtc-asm9260.c
-+F:	drivers/watchdog/asm9260_wdt.c
-+
- ARM/AMD PENSANDO ARM64 ARCHITECTURE
- M:	Brad Larson <blarson@amd.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
--- 
-2.43.0
+I removed the trailing whitespace while applying the patch.
 
+Guenter
+
+> ---
+>  Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+> index df86c2c92037..9190ef0bda54 100644
+> --- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+> @@ -66,6 +66,14 @@ properties:
+>      description: phandle to the regulator that provides the VS supply typically
+>        in range from 2.7 V to 5.5 V.
+>  
+> +  ti,alert-polarity-active-high:
+> +    description: Alert pin is asserted based on the value of Alert polarity Bit
+> +      of Mask/Enable register. Default value is Normal (0 which maps to
+> +      active-low open collector). The other value is Inverted
+> +      (1 which maps to active-high open collector). Specify this property to set
+> +      the alert polarity to active-high. 
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -88,5 +96,6 @@ examples:
+>              label = "vdd_3v0";
+>              shunt-resistor = <1000>;
+>              vs-supply = <&vdd_3v0>;
+> +            ti,alert-polarity-active-high;
+>          };
+>      };
 
