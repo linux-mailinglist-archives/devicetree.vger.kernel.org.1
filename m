@@ -1,153 +1,119 @@
-Return-Path: <devicetree+bounces-75085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5C4290568D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:13:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 522CB905697
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:14:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59D3D1F21691
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:13:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC9AB1F24BE2
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:14:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6C5E17F396;
-	Wed, 12 Jun 2024 15:12:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D610C17FAC3;
+	Wed, 12 Jun 2024 15:13:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="U9xbURPo"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="AAn8KeD6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1FAD15444E;
-	Wed, 12 Jun 2024 15:12:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F72217FAAF;
+	Wed, 12 Jun 2024 15:13:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718205136; cv=none; b=kNRQY+avigFzvelUyFj/V3GJAyYGhEU+F+Q9/aznje9SeIL8eIOxhBBcvCn4R+9MoQtmkB1D4j9Lh1l6MzdRBP18JPusDoNqZfebfHEJHpzpjLQ6D/0Ze+upUEtP/cZ0J+/xaS5uJQcT8PS7mIeQjXF4s8pI+sMd1ps2hkvXkPg=
+	t=1718205206; cv=none; b=cAgzokO2ZANe6+EcR4B8vNTTZObvop4vGuxN2386jq+Nsbwqjxi6V+RpgE2omYiLnkTl8izhGYCNPANnvp4bfGXoVAvZouRprtF8kreciTJN88AE5nqtKF/0piOSFrQX03F00p/gvgoflXU1SZSKWsG6Egxl1PG80jCA7jraBmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718205136; c=relaxed/simple;
-	bh=WjhyEVrS4YOsT148Yx89pL+UkzPas9bEKkZhjJS5Oho=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=kIzghlzF12PdQ41E0muJiE9yYbpNXwAQc051GDxHa8/1qq5ZBfvJopaLANWLbArl687rr+V5Iue6LiO0b7QHHW35NHEiJ1D5p9ieCldPMBqEHP43gNi0to43u5ei7BomTEe0nSBSm9IQ1M+HN2tLE4wZ22l1MwZ8CImVtNmmLCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=U9xbURPo; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718205135; x=1749741135;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=WjhyEVrS4YOsT148Yx89pL+UkzPas9bEKkZhjJS5Oho=;
-  b=U9xbURPov/qbSTaDL2rVhzPlBZA1eEKoNe7JYU7QJAoHllyDOH8Ni/D1
-   D0AV/v8d4itHREp6ExyoIrt37Yg291TG6mPWCmrysitaLOXjSLkZsWwJf
-   e6YX9nTzv+1qSYTnwAfeliLx+jAkxIVzxrzLKDRMhCcanP3IUSHLUb+8u
-   OZX1Dk41J8pweO3SjM08znDaGmGpjLF3MI6w3HqxCwfMCENdQYa6hC1RJ
-   5vQssUnn8OQGiEXYeMZp9IgV/HekZkbhGc1D0OzGn0rdcIM06bA1/L+gu
-   gB1dvkx2TdnjDAt0lbfKyFx1g5UTxk2R+OXSXOkYEFZhFtSfLAE/Ar/+X
-   g==;
-X-CSE-ConnectionGUID: Ltfxjm6yRc+LAV03ZV4Scw==
-X-CSE-MsgGUID: /TS8zCxARyeE/2h67+oLvQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="26394319"
-X-IronPort-AV: E=Sophos;i="6.08,233,1712646000"; 
-   d="scan'208";a="26394319"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2024 08:12:14 -0700
-X-CSE-ConnectionGUID: kwDaRzc1TQiY9jarYnCxdg==
-X-CSE-MsgGUID: 5Rrxm+96Skqw7TKKe3UrOQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,233,1712646000"; 
-   d="scan'208";a="40295494"
-Received: from sj-4150-psse-sw-opae-dev2.sj.intel.com ([10.233.115.162])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2024 08:12:14 -0700
-Date: Wed, 12 Jun 2024 08:12:05 -0700 (PDT)
-From: matthew.gerlach@linux.intel.com
-X-X-Sender: mgerlach@sj-4150-psse-sw-opae-dev2
-To: Bjorn Helgaas <helgaas@kernel.org>
-cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, bhelgaas@google.com, 
-    krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-    joyce.ooi@intel.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-    linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] PCI: altera: support dt binding update
-In-Reply-To: <20240611170410.GA989554@bhelgaas>
-Message-ID: <alpine.DEB.2.22.394.2406120744350.662691@sj-4150-psse-sw-opae-dev2>
-References: <20240611170410.GA989554@bhelgaas>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+	s=arc-20240116; t=1718205206; c=relaxed/simple;
+	bh=SOZHiLM+G/7L5afY6e4at6d44fRoz61klXhfjWczShs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=AdXmBSFHGLMY8T4aJZX7gejW85K6uq296PIDVDhYG0ERa/mM1BBgC54q4L+huw6sZ2kRWp3XOUSwm0G/nOBS5amd0IbvNo6cYUCiZLv+u3slhAzUwl1ekYv5sEk06GfWqsTUz6TsyDS/+l3jvhje5LPA6r4O2lZEg4B2ewF8SOI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=AAn8KeD6; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45CFDLEG011645;
+	Wed, 12 Jun 2024 10:13:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718205201;
+	bh=N6MlggpYNt5xaAVX8rDqE37RzNBe2/Ag9CB9y6lQOW4=;
+	h=From:To:CC:Subject:Date;
+	b=AAn8KeD67lrBHjY+v3v8ex+dYP31mREioBLO8tqTAs7lS2Og/Nag1Ez2RjV4V484n
+	 zKnSfOwh+95javow70mSrAKngyZLrsv+WRa6nRmsyTf0EtMiHUi60UH6cE5HEoWZJm
+	 gjS8GE1fADdM+Ltpcenh+LBV0ryCU+YKJZqbsUz4=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45CFDLWx013547
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 12 Jun 2024 10:13:21 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 12
+ Jun 2024 10:13:20 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 12 Jun 2024 10:13:20 -0500
+Received: from lelvsmtp5.itg.ti.com ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45CFDKD3104005;
+	Wed, 12 Jun 2024 10:13:20 -0500
+From: Andrew Davis <afd@ti.com>
+To: Daniel Tang <dt.tangr@gmail.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Andrew Davis
+	<afd@ti.com>
+Subject: [PATCH 1/2] ARM: dts: nspire: Add unit name addresses to memory nodes
+Date: Wed, 12 Jun 2024 10:13:13 -0500
+Message-ID: <20240612151314.27967-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+Fixes the following DTB check warning:
 
+> node has a reg or ranges property, but no unit name
 
-On Tue, 11 Jun 2024, Bjorn Helgaas wrote:
+Signed-off-by: Andrew Davis <afd@ti.com>
+---
+ arch/arm/boot/dts/nspire/nspire-classic.dtsi | 2 +-
+ arch/arm/boot/dts/nspire/nspire-cx.dts       | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-> On Tue, Jun 11, 2024 at 11:35:25AM -0500, matthew.gerlach@linux.intel.com wrote:
->> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->>
->> Add support for the device tree binding update. As part of
->> converting the binding document from text to yaml, with schema
->> validation, a device tree subnode was added to properly map
->> legacy interrupts. Maintain backward compatibility with previous binding.
->
-> If something was *added* to the binding, I think it would be helpful
-> to split that into two patches: (1) convert to YAML with zero
-> functional changes, (2) add the new stuff.  Adding something at the
-> same time as changing the format makes it hard to review.
+diff --git a/arch/arm/boot/dts/nspire/nspire-classic.dtsi b/arch/arm/boot/dts/nspire/nspire-classic.dtsi
+index a6e9cbf51524d..0ee53d3ecd542 100644
+--- a/arch/arm/boot/dts/nspire/nspire-classic.dtsi
++++ b/arch/arm/boot/dts/nspire/nspire-classic.dtsi
+@@ -55,7 +55,7 @@ &vbus_reg {
+ };
+ 
+ / {
+-	memory {
++	memory@10000000 {
+ 		device_type = "memory";
+ 		reg = <0x10000000 0x2000000>; /* 32 MB */
+ 	};
+diff --git a/arch/arm/boot/dts/nspire/nspire-cx.dts b/arch/arm/boot/dts/nspire/nspire-cx.dts
+index 29f0181e5b385..debeff0ec010f 100644
+--- a/arch/arm/boot/dts/nspire/nspire-cx.dts
++++ b/arch/arm/boot/dts/nspire/nspire-cx.dts
+@@ -122,7 +122,7 @@ / {
+ 	model = "TI-NSPIRE CX";
+ 	compatible = "ti,nspire-cx";
+ 
+-	memory {
++	memory@10000000 {
+ 		device_type = "memory";
+ 		reg = <0x10000000 0x4000000>; /* 64 MB */
+ 	};
+-- 
+2.39.2
 
-Thanks for feedback. It was during the conversion to YAML that a problem 
-with the original binding was discovered. As Rob Herring pointed out in
-https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240513205913.313592-1-matthew.gerlach@linux.intel.com/
-
-"Making the PCI host the interrupt parent didn't even work in the kernel
-  until somewhat recently (maybe a few years now). That's why a bunch of PCI
-  hosts have an interrupt-controller child node."
-
-This was an attempt to fix the problem. I can resubmit a conversion to YAML 
-with zero functional changes.
-
-Matthew Gerlach
-
-
->
-> Then we could have a more specific subject and commit log for *this*
-> patch.
->
->> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->> ---
->>  drivers/pci/controller/pcie-altera.c | 13 +++++++++++--
->>  1 file changed, 11 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/pci/controller/pcie-altera.c b/drivers/pci/controller/pcie-altera.c
->> index a9536dc4bf96..88511fa2f078 100644
->> --- a/drivers/pci/controller/pcie-altera.c
->> +++ b/drivers/pci/controller/pcie-altera.c
->> @@ -667,11 +667,20 @@ static void altera_pcie_isr(struct irq_desc *desc)
->>  static int altera_pcie_init_irq_domain(struct altera_pcie *pcie)
->>  {
->>  	struct device *dev = &pcie->pdev->dev;
->> -	struct device_node *node = dev->of_node;
->> +	struct device_node *node, *child;
->>
->>  	/* Setup INTx */
->> +	child = of_get_next_child(dev->of_node, NULL);
->> +	if (child)
->> +		node = child;
->> +	else
->> +		node = dev->of_node;
->> +
->>  	pcie->irq_domain = irq_domain_add_linear(node, PCI_NUM_INTX,
->> -					&intx_domain_ops, pcie);
->> +						 &intx_domain_ops, pcie);
->> +	if (child)
->> +		of_node_put(child);
->> +
->>  	if (!pcie->irq_domain) {
->>  		dev_err(dev, "Failed to get a INTx IRQ domain\n");
->>  		return -ENOMEM;
->> --
->> 2.34.1
->>
->
 
