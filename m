@@ -1,128 +1,205 @@
-Return-Path: <devicetree+bounces-74976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92C29905185
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 13:43:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A997905199
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 13:50:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31C272883AE
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 11:43:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B25BF1F21D8D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 11:50:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D048C16EBFB;
-	Wed, 12 Jun 2024 11:43:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C6BC16F0E9;
+	Wed, 12 Jun 2024 11:50:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="zmYIGgMv";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="YKbLgGX2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JXTTvfkn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh5-smtp.messagingengine.com (fhigh5-smtp.messagingengine.com [103.168.172.156])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5508155CA3;
-	Wed, 12 Jun 2024 11:43:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.156
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 939FD16D4D3;
+	Wed, 12 Jun 2024 11:50:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718192633; cv=none; b=WhBAACLMUw8tTmsvzOmav9qcpVtCVYCPCbA6SbEImI+q1MReKaDMybNXtEiE8X+8Gjd7w1805NTFjfZ2lknJP2KpxtcjnQz4ds61r2XuSOmaq8gvgjf7kWV0qW3W+iInqgDfwI7YJgNEHwTyC58gyo+drTFl2reTj2mlNSckCwY=
+	t=1718193024; cv=none; b=uuWkpgkVr7SVCrxsZDDpqsVv2RbkyrOuqqdbMAJJf6mPKzCS48/jCszclse3a+XxMdGdi1UQmSKCHd8RiPXQUkjQpv3Q0mAoFICY651xH2Fiy1+lLvpeG4Cpylhcs1jyoCXyv4w5RLNdMsVZelXbMteM3Bo2n7NgWIS7dCt6m4k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718192633; c=relaxed/simple;
-	bh=nCtIDla2vBKbLEZMvPSe0QMcswsg3yHehdUB5TE1HEM=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=Keu5kh4Svq6KCKldgIsthdyr/7I8s65WKh6vr216y3UtOOCSRhD7uQ5NiF4qv6Uko1HuMMj34eouJShnzQErMHnYFh0EmpPzf2JQ4yRjfrVp6J80S7kiYlkwR1mT58j6SlNqDsa7uTi3SJH+ALJFVPsX7pUsAkG+I27WxhwwRxM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=zmYIGgMv; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=YKbLgGX2; arc=none smtp.client-ip=103.168.172.156
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfhigh.nyi.internal (Postfix) with ESMTP id D5B34114019A;
-	Wed, 12 Jun 2024 07:43:50 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute5.internal (MEProxy); Wed, 12 Jun 2024 07:43:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:subject
-	:subject:to:to; s=fm1; t=1718192630; x=1718279030; bh=krNZLEp7cq
-	ZwIns8e5yE6jzZ1M457FUiTW7BASFmO3A=; b=zmYIGgMvOgqwjLBi7vzLqfem23
-	QuI6uTd3xZ7SBm0skCPzlxtvHJHQFRbj2FPwXzwpB213o+Z1WNj2PiLMMXgNu+VG
-	f1R8rofWNgD6awtR3Z8udKFLk0uJ5d4q1sePqK31a8hpp/KZUxzUYICaC5gs8SOU
-	Pk8at5ckLsxlw6INuSWxit04YKXiDbhrLBoOXOHKBVKABXpAz4dmk3ZmDA/zM8pt
-	nXQlz16BycUFVg0JDfy38ST7/7KMHEJC9MGhmxjpaGkuXYFj3wX7oDP1PQYTlm81
-	mpls5R7JT27kq78OgKDOiCEquFfwZFRW6jF9EuFIa48oVNS1cUjXeGZfFSkQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm1; t=1718192630; x=1718279030; bh=krNZLEp7cqZwIns8e5yE6jzZ1M45
-	7FUiTW7BASFmO3A=; b=YKbLgGX2FcFi0csgvHUoy7fKMn4dDaee9NiyijHYLCIA
-	ZAHoST+l+ZUzsm1wGAfOpUWud2gPQaiiTuieYWG07phHJBODhqhwoV6jnv5VSgDX
-	crxvVyKL0tB0NXyeqcDLVxr2Tc4oB0XnTUHEr5TliayfBs5947b7y2VscbNDD6H2
-	hKbkiELuGPDw7t8tisiPDtmCBUB+Ya1VlS1QrWC6reBpAqmzDDkFgFu3humfPqLa
-	9uKey3ImS4+VJ/z224MGQQGWhanHnZrUd4HSAs3GtXLBPF1WtmGjNEDmoA0arbwM
-	JhRuWdK80G3ev9c+FhFVfQ6fqU3rFs+vNQW01idaMw==
-X-ME-Sender: <xms:9olpZhfziGgjqzQ__-aIzTkHDK4uIKAF_rcpvKczSp9SAFMO1WCr3w>
-    <xme:9olpZvNG4N_4n3XK9hVbgN8EfHjHzHTDie0PhtJXIIxeeWcvpWthI5GyLdvG_K3MP
-    jP62K38pFQXAw2KvBs>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfedugedggedvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:9olpZqjfoOt2B-mIRnJ9SeS_TFWCdvtqWTnTMlrDoTwABrh2Qjv6-Q>
-    <xmx:9olpZq-WMwCmIav8X8NE0yWCqQkpyDi83D__KKH4DkuMT6TiP7WZ6Q>
-    <xmx:9olpZtsm8FaueHpRI7mldedcOxrJdr6jvHTWbF5S71QQNox4iKXvRw>
-    <xmx:9olpZpHp8wO9jMh0Nf3W6QuElkAl03dliWyLAOrmsLir-i7a13OuOg>
-    <xmx:9olpZjACZ6VNYk3M3vrWAkCp3F-5kZJGxddWhxzlBQExVqr9sr0pMO5d>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 252B5B6008D; Wed, 12 Jun 2024 07:43:50 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-515-g87b2bad5a-fm-20240604.001-g87b2bad5
+	s=arc-20240116; t=1718193024; c=relaxed/simple;
+	bh=3eKOWjrVJava8YNnTU7U4+iYN/4hSdOslNxJluc1cYs=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ryomiZ7/HZ4q1IaDKSZLCZGLqUSLcQ3l0we08s6huCC1fyjBxa8NihFwT5fC88d/5j385RJNGwbL6GKkgCj73CELhVWfUGHyBh1E0OlQIqT1TZcQi68SexJzSQvWI6zEJgGu5ql1nAd68rK0IkA8xUkD9acEIHc97vquoBmRCTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JXTTvfkn; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a6efae34c83so518055666b.0;
+        Wed, 12 Jun 2024 04:50:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718193021; x=1718797821; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6FTZ1hyJcf6QF0wQ81I5HTj1gs6efTfWrUVdJjnNkCg=;
+        b=JXTTvfkn/ZThcfO6yUefOvkPwjsFwZjcpZiHPGt2kpy//lZp8a1FYIM3SZVjpQUjDU
+         DcougL/BW2aNOFALmbHZ/ClA758OYxcoDPlVC1mg1gm4hdhQ/NKGKrv9eMObrD2T7LTP
+         /8VHabwzSR2dDShi6iTj43senAVt3x2RfkS9MNOFYK7F58pW/teY8enSxC4oo+g9hmeV
+         5qXSuWXR1lWTbrJVXEoP7nrADrEALK5oELW+MTdAljrt7MGP7D39c9kTV/kCDiD5iJum
+         3jp8Wq+pO/hqoWMsOHwBIOxWQweK6igeT6z3hQ2v0srURsstv4zay5OqfR3I2xD14Prv
+         RYFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718193021; x=1718797821;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=6FTZ1hyJcf6QF0wQ81I5HTj1gs6efTfWrUVdJjnNkCg=;
+        b=h/SIv3XO+Z8uaxcl7ZeKhxwXefpiCYgt3eKcbhSS6o7icFn34PYdhKYt4ec5HAfhbf
+         CFQnRqVDAf7CmEtSUXQ1I0t9SLkf/Vhbj0auWh4iZRBTrvA6JAqvL3IW/c4WQlyGvPJ2
+         hxLij/Ax6RQORde2OHkUgbAavH2n/fKZM/W09h/RXkWRnrK0yk4bOz3uqBoSCkGw34Vu
+         IrO3/5e2kRnfl8Zars2xtsaj/6W/BUMtEwlvgrbJwznYRb9o1O3rrH2MRXLQ3HILVkw7
+         3vRZUCVtaHD0h20pkzuzBhDDTqF+lLLTGf4PuZBIJ7fTpbv/kSJys+0VeyXmEmZzGp9H
+         kuNw==
+X-Forwarded-Encrypted: i=1; AJvYcCU3gmsOBLPV9R+WFpFDJko0VHMyVWdzt09asGgXbcynG0XW4+WpAcp6jCBPYe8i6ov1vWiDdYwpn/K83kvtgBgp46pVRjHkiecQCf/Qo+QQu6sS78kqdECd3LLxHyBOOb1fsyuzOQaERwKW4hUiOIY513JA1milBO3NtO6C42S94i6qwg==
+X-Gm-Message-State: AOJu0YzwWSsO2gkJmdy3KmncCXnUBIc0d/aOc/Fosn/N71KY3noleuva
+	KuKiOH7Wfk2Ud3FaNRQLGtfpUgG0h8doLR8r+tbsZJuT0vs73JHr
+X-Google-Smtp-Source: AGHT+IHaFPqZF682IyxegQxDj1aKjCaUc+FExsq1xSH8oq6DTf27dquNCAbDGoQHjmPS7nuxLnzYRw==
+X-Received: by 2002:a17:906:9a9:b0:a6e:372c:cc5e with SMTP id a640c23a62f3a-a6f47fd6f28mr82582966b.61.1718193020451;
+        Wed, 12 Jun 2024 04:50:20 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef1c:c500:994e:fbde:478:1ce1? (p200300f6ef1cc500994efbde04781ce1.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:994e:fbde:478:1ce1])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f0c410d31sm553091566b.73.2024.06.12.04.50.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jun 2024 04:50:20 -0700 (PDT)
+Message-ID: <b9c974265111887e7a944cb9e854e86cc8bcd47c.camel@gmail.com>
+Subject: Re: [PATCH v3 2/2] iio: frequency: adf4350: add clk provider
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>, Lars-Peter Clausen
+	 <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron
+	 <jic23@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Date: Wed, 12 Jun 2024 13:54:07 +0200
+In-Reply-To: <20240612104554.66851-2-antoniu.miclaus@analog.com>
+References: <20240612104554.66851-1-antoniu.miclaus@analog.com>
+	 <20240612104554.66851-2-antoniu.miclaus@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <b1f14e92-4491-45f5-90ca-cc3d5ceea81f@app.fastmail.com>
-In-Reply-To: <20240612111623.102868-1-krzysztof.kozlowski@linaro.org>
-References: <20240612111623.102868-1-krzysztof.kozlowski@linaro.org>
-Date: Wed, 12 Jun 2024 13:43:28 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
- "Krzysztof Kozlowski" <krzk@kernel.org>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, arm <arm@kernel.org>, soc@kernel.org,
- "Olof Johansson" <olof@lixom.net>
-Cc: "Alexey Charkov" <alchark@gmail.com>
-Subject: Re: [PATCH] MAINTAINERS: ARM: vt8500: add Krzysztof Kozlowski as maintainer
-Content-Type: text/plain
 
-On Wed, Jun 12, 2024, at 13:16, Krzysztof Kozlowski wrote:
-> The ARM VIA/WonderMedia VT8500 platform became orphaned in
-> commit 8f1b7ba55c61 ("MAINTAINERS: ARM/VT8500, remove defunct e-mail")
-> and clearly it is on the way out of the kernel.  However few folks send
-> patches to it and it is nice to actually take them, till the platform is
-> in the kernel.
->
-> I do not plan to actively support/maintain ARM VT8500 but I can take odd
-> fixes now and then.
->
-> Extend the maintainer entry to cover also VT8500 DTS.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi Antonium
 
-Cc: Alexey Charkov
+On Wed, 2024-06-12 at 13:45 +0300, Antoniu Miclaus wrote:
+> Add clk provider feature for the adf4350.
+>=20
+> Even though the driver was sent as an IIO driver in most cases the
+> device is actually seen as a clock provider.
+>=20
+> This patch aims to cover actual usecases requested by users in order to
+> completely control the output frequencies from userspace.
+>=20
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+> changes in v3:
+> =C2=A0- use container_of to directly access the adf4350_state structure.
+> =C2=A0drivers/iio/frequency/adf4350.c | 118 +++++++++++++++++++++++++++++=
++++
+> =C2=A01 file changed, 118 insertions(+)
+>=20
+> diff --git a/drivers/iio/frequency/adf4350.c b/drivers/iio/frequency/adf4=
+350.c
+> index 4abf80f75ef5..f716f744baa9 100644
+> --- a/drivers/iio/frequency/adf4350.c
+> +++ b/drivers/iio/frequency/adf4350.c
+> @@ -19,6 +19,7 @@
+> =C2=A0#include <linux/gpio/consumer.h>
+> =C2=A0#include <asm/div64.h>
+> =C2=A0#include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+> =C2=A0
+> =C2=A0#include <linux/iio/iio.h>
+> =C2=A0#include <linux/iio/sysfs.h>
+> @@ -36,6 +37,9 @@ struct adf4350_state {
+> =C2=A0	struct gpio_desc		*lock_detect_gpiod;
+> =C2=A0	struct adf4350_platform_data	*pdata;
+> =C2=A0	struct clk			*clk;
+> +	struct clk			*clkout;
+> +	const char			*clk_out_name;
+> +	struct clk_hw			hw;
+> =C2=A0	unsigned long			clkin;
+> =C2=A0	unsigned long			chspc; /* Channel Spacing */
+> =C2=A0	unsigned long			fpfd; /* Phase Frequency Detector */
+> @@ -61,6 +65,8 @@ struct adf4350_state {
+> =C2=A0	__be32				val __aligned(IIO_DMA_MINALIGN);
+> =C2=A0};
+> =C2=A0
+> +#define to_state(_hw) container_of(_hw, struct adf4350_state, hw)
+> +
 
-Thanks for stepping up. A few years ago, Alexey also had
-some interest in this platform and knew some other remaining
-users.
+nit: to_adf4350_state() would be neater...
 
-Do you have any hardware to test on for the platform?
-I still have an old vt8505 (I think) TV box but never
-did anything with it.
+> =C2=A0static struct adf4350_platform_data default_pdata =3D {
+> =C2=A0	.channel_spacing =3D 10000,
+> =C2=A0	.r2_user_settings =3D ADF4350_REG2_PD_POLARITY_POS |
+> @@ -264,6 +270,10 @@ static ssize_t adf4350_write(struct iio_dev *indio_d=
+ev,
+> =C2=A0	mutex_lock(&st->lock);
+> =C2=A0	switch ((u32)private) {
+> =C2=A0	case ADF4350_FREQ:
+> +		if (st->clkout) {
+> +			ret =3D clk_set_rate(st->clkout, readin);
+> +			break;
+> +		}
 
-     Arnd
+So, apparently you forgot or decided otherwise to not go with the suggestio=
+n of
+not including the IIO interface (at least he channel one - debugfs could be
+maintained I guess) or with the more in the middle approach Michael suggest=
+ed.
+Just not allowing ADF4350_FREQ and ADF4350_FREQ_REFIN.
+
+Hence, I would expect at least some justification to keep the above in your=
+ v3
+changelog. Also note that keeping ADF4350_FREQ_REFIN while being a clock
+provider seems pointless and maybe even be wrong (as the clock framework sh=
+ould
+take care of the parent clock). This also brings another question... see be=
+low
+
+...
+
+>=20
+> +static int adf4350_clk_register(struct adf4350_state *st)
+> +{
+> +	struct spi_device *spi =3D st->spi;
+> +	struct clk_init_data init;
+> +	struct clk *clk;
+> +	const char *parent_name;
+> +	int ret;
+> +
+> +	if (!device_property_present(&spi->dev, "#clock-cells"))
+> +		return 0;
+> +
+> +	init.name =3D devm_kasprintf(&spi->dev, GFP_KERNEL, "%s-clk",
+> +				=C2=A0=C2=A0 fwnode_get_name(dev_fwnode(&spi->dev)));
+> +	device_property_read_string(&spi->dev, "clock-output-names",
+> +				=C2=A0=C2=A0=C2=A0 &init.name);
+> +
+> +	parent_name =3D of_clk_get_parent_name(spi->dev.of_node, 0);
+> +	if (!parent_name)
+> +		return -EINVAL;
+> +
+> +	init.ops =3D &adf4350_clk_ops;
+> +	init.parent_names =3D &parent_name;
+> +	init.num_parents =3D 1;
+
+Shouldn't we set CLK_SET_RATE_PARENT in init.flags?
+
+- Nuno S=C3=A1
+
+
 
