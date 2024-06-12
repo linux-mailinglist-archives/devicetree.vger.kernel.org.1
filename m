@@ -1,121 +1,129 @@
-Return-Path: <devicetree+bounces-75099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22E1B905755
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:48:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A925905764
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:50:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C15541F2427F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:48:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0F871F2832E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:50:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64E2C17FAC0;
-	Wed, 12 Jun 2024 15:48:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CECB1802A3;
+	Wed, 12 Jun 2024 15:50:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lUoEHlHK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o5Y3MI/H"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39D8717C7C8;
-	Wed, 12 Jun 2024 15:48:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31FD71EB2A;
+	Wed, 12 Jun 2024 15:50:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718207303; cv=none; b=bnuOSKhKFDCemBXUCMllHnyj6oIuzqn/ix0PUR0xERqMjcyEYMf5uO+nC7pvdAi0g2DB3AqVn8DDkmAa+8pm60XVVMJuynFVdT/F7CMUWUbhE1BKWPl7/xVeQsaYukL6qmycPAFNTEKrpX1YtvR0Na/ouC6WZ8PhqFSQh5Isdpc=
+	t=1718207435; cv=none; b=XOHE2FnEBA/Y64Ezl26t45/hkMcLIlM4JN8tvAn/XA+gEWiiSB4GgFhRjrBkq+M7lzeEjS0D9JfYXIrcVmbp90QgjwmnppGn855EhrmVanW+tRNonJjK/ZcxLhQ7tsS2en+htIo4vtmOPQhfVBeU3nCblmSdq7FvEv4u8GqY5G8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718207303; c=relaxed/simple;
-	bh=+7dgCMAE8xXP+L3ANBWO9tjojn+ydsIoH8bkB9Y/hl0=;
+	s=arc-20240116; t=1718207435; c=relaxed/simple;
+	bh=cKWhkSC1x8cZV8isG/jgbKgy/ctUabseIFqwF1XkN8w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f2eeqcuRL1L17jiBrCpNp5g8HIho98O/p99fGZP8+RK/yybjofOVwcvRY89QBUZnrWQPbN5dG6KdsZb54lyUFpdlzjyFoUKx0We0yosaad49CPERkIaPIsfEhu4XXSjo9Il4LyFTRLFReBSdBFmRo5suo/ltGWHDTz+Oy7kLraM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lUoEHlHK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14137C116B1;
-	Wed, 12 Jun 2024 15:48:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fEJFpyhm9X+T4/mK/A38PRJY7CwPA5KQ8dcIOA8a77Df1Ze0FWOg91Tew4UdnlGUoPdRJ1X8R7zdUUGjjHj67gigByerxldREGRqI6wghxIKxRYldk6DWb22enid7HxMYVjGb03ogdMCmRmYCPMGkoulEpril5SauBU22KjDVUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o5Y3MI/H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 411AAC116B1;
+	Wed, 12 Jun 2024 15:50:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718207302;
-	bh=+7dgCMAE8xXP+L3ANBWO9tjojn+ydsIoH8bkB9Y/hl0=;
+	s=k20201202; t=1718207434;
+	bh=cKWhkSC1x8cZV8isG/jgbKgy/ctUabseIFqwF1XkN8w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lUoEHlHKTw5SY/PsFRy8BXdFLVNotLH7+Y0aYLHpuXxwKr8kdciwjPmVIP6d+k5wP
-	 hYFaetN8ddefpaQIiEdi8hNpYWMRSZkCQX3rZa7/sA/WYbeoKDiBtHbQusF4I8mbm+
-	 385Gqc0wc9u1/RmHSyf+fvac0YfcmoGz8tVW3zwmJnYcFxJYhzBpK70FeYe4sA9ONN
-	 8k8RcPuApOOZNBas84sRHCZ5UOYna7nLs0BPv1zNOowrOTSQ0Z4H9+bCKstTfPAM6p
-	 pOGg/SlEVU+/YiBhKeg2is8TWNY9RQiZLfmAlQn7ZDvgM7xdXnUpg0HBpa/Mi05HKr
-	 c6aYUD9b6Dmpg==
-Date: Wed, 12 Jun 2024 16:48:17 +0100
-From: Lee Jones <lee@kernel.org>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Chen-Yu Tsai <wens@csie.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Ryan Walklin <ryan@testtoast.com>,
-	Chris Morgan <macroalpha82@gmail.com>
-Subject: Re: [PATCH v2 1/5] mfd: axp20x: AXP717: Fix missing IRQ status
- registers range
-Message-ID: <20240612154817.GH1504919@google.com>
-References: <20240418000736.24338-1-andre.przywara@arm.com>
- <20240418000736.24338-2-andre.przywara@arm.com>
- <20240502093907.GM5338@google.com>
- <56aef347-7582-497e-be02-d82eda7b3528@arm.com>
- <20240612152510.GE1504919@google.com>
- <7fdc23ff-fd55-4347-ac61-dd115eff6ff1@arm.com>
+	b=o5Y3MI/HC7SzVrtHukUtWRDtUxhnHG8HARTOcOJiu2NtZA+/LoS+RnWQFs35D60zg
+	 KEUvBb49BscZODsl0eelcYB+Di1EN9ZwwEglhlYPhwmcJXxKl3UQO/mKp+5DMI/hPQ
+	 hVauIyHIg/irkZE92LiEutqknF/A3pbwxfdnT8w19cTYB6KZELFIRcV6+xy2ZykPO+
+	 /ur0JSfTto17hiKaYAT98XOf0ff/9FsdPUucMR8zfAgWojhyZYOJJeAzitSzAodaJW
+	 Nf7qI4c7Nhwj0JCi8eYatBXCRTI7tqgHCj1NL1NHuhOTJK+gtFUqKCokG2MTT9np+/
+	 LViHhlsErOKwA==
+Date: Wed, 12 Jun 2024 16:50:24 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Len Brown <len.brown@intel.com>, Pavel Machek <pavel@ucw.cz>,
+	"linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	"biju.das.au" <biju.das.au@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v3 3/6] regulator: core: Add helper for allow access to
+ enable register
+Message-ID: <ZmnDwKUlXCWFJ8W0@finisterre.sirena.org.uk>
+References: <20240611110402.58104-1-biju.das.jz@bp.renesas.com>
+ <20240611110402.58104-4-biju.das.jz@bp.renesas.com>
+ <ZmhmWrvyQiCzzeYi@finisterre.sirena.org.uk>
+ <TY3PR01MB11346B807820F681E7EEF7A6786C72@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="cQUPfIPcfzsmHwJv"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7fdc23ff-fd55-4347-ac61-dd115eff6ff1@arm.com>
+In-Reply-To: <TY3PR01MB11346B807820F681E7EEF7A6786C72@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+X-Cookie: Your love life will be... interesting.
 
-On Wed, 12 Jun 2024, Andre Przywara wrote:
 
-> Hi,
-> 
-> On 12/06/2024 16:25, Lee Jones wrote:
-> > On Wed, 12 Jun 2024, Andre Przywara wrote:
-> > 
-> > > Hi Lee,
-> > > 
-> > > On 02/05/2024 10:39, Lee Jones wrote:
-> > > > On Thu, 18 Apr 2024, Andre Przywara wrote:
-> > > > 
-> > > > > While we list the "IRQ status *and acknowledge*" registers as volatile,
-> > > > > they are missing from the writable range array, so acknowledging any
-> > > > > interrupts was met with an -EIO error.
-> > > > > 
-> > > > > Add the five registers that hold those bits to the writable array.
-> > > > > 
-> > > > > Fixes: b5bfc8ab2484 ("mfd: axp20x: Add support for AXP717 PMIC")
-> > > > > Reported-by: Chris Morgan <macromorgan@hotmail.com>
-> > > > > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > > > > ---
-> > > > >    drivers/mfd/axp20x.c | 1 +
-> > > > >    1 file changed, 1 insertion(+)
-> > > > 
-> > > > Acked-by: Lee Jones <lee@kernel.org>
-> > > 
-> > > Can you please take just this patch as a fix for 6.10? This fixes the power
-> > > key operation.
-> > > This applies cleanly on top of v6.10-rc3, so there is no need for any extra
-> > > immutable branch or coordination with regulator.
-> > > (The same is true independently for patch 2/5, on the regulator side).
-> > 
-> > What does the Fixes: commit break?
-> > 
-> > Or is it the case that it never worked properly?
-> 
-> The interrupt part never worked properly, but so far that's only needed for
-> the power key operation. Unfortunately that part wasn't tested properly
-> initially, so the patches were merged into your tree before that.
+--cQUPfIPcfzsmHwJv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-This doesn't sounds like a -fixes candidate.  I'll mark the set for v6.11.
+On Tue, Jun 11, 2024 at 04:28:37PM +0000, Biju Das wrote:
 
--- 
-Lee Jones [李琼斯]
+> > So, it'll doubtless not be a surprise that I'm not thrilled with this - it's basically just
+> > punching a hole straight through all the locking and reference counting in a way that's just
+> > begging for abuse.  At the very least we should have a check for exclusive access in there.
+
+> Do you mean exclusive access by means of spinlock to avoid race between enable/disable()?
+> If that is the case
+
+No, I mean regulator_get_exclusive(), this clearly can't work if there's
+more than one consumer.
+
+> > Also it's not sure about that name, if we were doing this it should be more describing the effect
+
+> What about the name regulator_hardware_enable() to make it generic??
+
+Possibly.
+
+> > on the regulator rather than this happening to be done via a register write (this should also work
+> > for GPIOs...).
+
+> Do you mean to make it generic, so that it works for both regmap based enable/disable() as well as
+> gpio based enable()/disable()??
+
+That too, I was mainly thinking about the name here though.
+
+--cQUPfIPcfzsmHwJv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZpw78ACgkQJNaLcl1U
+h9BgqAf/VRo1z8HnprjKJzamhqdpLugyr1xSf2Gw8i7hZJlRo+UcEZBJ0FA9qwY6
+n1bmhPT7OL1n3j+NI8eEoQVnIRlz4yucjUrwSgqIfl8bIFrMrxFKSS+/eV2J0CxD
+SzY4u6DqQF4jLgZ1TURMz3GyiCZaOeL0o7bYbPLo75uGAPD5n23gfw5b+0akgMaN
+kQ8s9Udu6fXsn3bUrbEKn7ekxv7cyRSvfJp2/GsNXMi3jfWwwS5bwhJSBrU0p2N7
+0Rv+9m3KzZoq0SKRrQEQTWKMTm9jpGnILdPhEv4bpFeikEjvGEKL3hMNu7HaHy+j
+M4S6xFkbfUygjcUPcJg+LQJ0s0rcgA==
+=Fwf/
+-----END PGP SIGNATURE-----
+
+--cQUPfIPcfzsmHwJv--
 
