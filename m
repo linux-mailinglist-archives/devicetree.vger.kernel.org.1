@@ -1,116 +1,175 @@
-Return-Path: <devicetree+bounces-75198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1613905D83
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 23:15:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84434905D95
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 23:23:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59B37284026
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 21:15:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FDC9283DCF
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 21:23:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23CCF537F5;
-	Wed, 12 Jun 2024 21:15:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B89D885C52;
+	Wed, 12 Jun 2024 21:23:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="nAOVUINu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ACnKSU4q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com [209.85.167.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E2E4175A5
-	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 21:15:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE00284E0A
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 21:23:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718226949; cv=none; b=ovrjhlv7/jTSnKcqwzGS+uoyYqE8OT06QiIkcx0IVsM91vOMjagDXCSjAS/rSgbR03bA2wdULOij4c+BzBH+KcK1j2nR7/s5MXQwmgH8/jQtUu3bzonkNmKikT3eVQgSUCxsQUW85nUDIL+eAdUfiSQ5wLXaakq4tFxv0PSXCMg=
+	t=1718227392; cv=none; b=nPGzqMRU7MXcXvNWdfR+cF8/0GFmOoKVH0D6rfSIWv5fafPs/0vngxmGridwB9SQERmMn/GCh+b3wbopyYGG+mSvksN1O9asXi0w+/64BxSc6UxbQ2UIVqD9+Z5bdK+cY8IN2CB2PTbqb8VVwsif8r9Wrntfr2p7e0qab4waFT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718226949; c=relaxed/simple;
-	bh=q5Bc33cCe1NG1zR7xbVQUt/1VsUNuSgQXpNdRk53CuA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NKW2JYWOQ1Yl79cPkTQOdlYe+uP0/+jMT5NxIQwM0tPaXV/ephxKfFdW5FbEGdBZOOemTaPi/FFoteW1jzSEfDVUDbTqHv+GjzsfogC1O6JevxMOPcdYvj9ml4xCtLEQqRAj8Hv62Kkxl4gnVwk/TEUFHFxtXsYpFzKXzdg3ELA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=nAOVUINu; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 14D77E4;
-	Wed, 12 Jun 2024 23:15:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1718226926;
-	bh=q5Bc33cCe1NG1zR7xbVQUt/1VsUNuSgQXpNdRk53CuA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nAOVUINuBJOSyqtM72Qq3J7pu6bLK88dFGFVyVtA67M4oFkBWp3ewD8LspwoJtPfN
-	 YKNYZHkmkJsvx9V0E6tnrn8rLACd4pWrBarQWidfOi02i8uaXulBFJbrfPlyzlp9o/
-	 4Wjk0uP7OUcnh7kS3EZTZtAKReWGrXZuVb/YvSvA=
-Date: Thu, 13 Jun 2024 00:15:19 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>, Marek Vasut <marex@denx.de>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	patchwork-lst@pengutronix.de, kernel@pengutronix.de,
-	Adam Ford <aford173@gmail.com>
-Subject: Re: [PATCH 4/4] arm64: dts: imx8mp-evk: enable HDMI
-Message-ID: <20240612211519.GW28989@pendragon.ideasonboard.com>
-References: <20220826192932.3217260-1-l.stach@pengutronix.de>
- <20220826192932.3217260-4-l.stach@pengutronix.de>
- <20230302163525.007503e4@booty>
- <20230525122628.13b0f28b@booty>
- <20240608150613.GA13225@pendragon.ideasonboard.com>
- <20240610103136.74ec91fd@booty>
- <20240612122502.38a9a2eb@booty>
+	s=arc-20240116; t=1718227392; c=relaxed/simple;
+	bh=2T6gZ7EEse7y1Sv1WZ9KMDR0fG0OjHjw17gxaTFfib0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bFz3DfRseu95my5YBiFbawV4I64vyaN9Zj1l8tIaOeH/sMoZo3pUOIosWCq0S9L1vdvJ9A6apeLjpbgLdJv+/Dp3uASDg76apRLYV3wlx3gEiqIItOZV940x05PqSuOxDDrQaUqW+VWKc5CqGSSAx6/nW6JEyAqGlZB9SM2wjcI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ACnKSU4q; arc=none smtp.client-ip=209.85.167.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f67.google.com with SMTP id 2adb3069b0e04-52c8260a9a9so56551e87.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 14:23:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718227389; x=1718832189; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jowrInf5O80KtTvVyPQmOW7J8r+ZDPgzfIXrxnvdHXo=;
+        b=ACnKSU4q0Bk1sEugeLy4W8opJ/VxcqkOXnoCLdF8Yi3lKfLUhv/gxp+Ilvx6yBegsd
+         1Ek2fOcqB0B0Nd+aQi1Tm/mhQTCO0HEtjjaHo+BmRFRj7xJmfjyj8VbvjQ6TC9FvPUl9
+         wcpzxkMqzxEGKQkR267YK6SJ0eyBJbsVVmfq4GK7cBICMKxuGrkk4lFHfPC39t4TLAaM
+         otjV8PUQHLpB1+BIMTOY7coszja6qiJY72zr23uE2yeyKrRPe9HvOqMie3+l8EG8P4KP
+         BIYlUx8ci1T2blQNc58PervEBlXrj2fg3t2RUQvqRy/wrFaP2Tkf9edkGLU9lq8sEh+Y
+         wKOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718227389; x=1718832189;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jowrInf5O80KtTvVyPQmOW7J8r+ZDPgzfIXrxnvdHXo=;
+        b=tnUP0ApEMBTIlJsTcKPApVgcK49TAW7EChtIkbXLGXJQfILQ+eBCyrohSLe1uXrsj7
+         nVy5zn9LwpLUrzvwhDJusYBFbmnLUl8jC0wE3uBLINTmvG96WoCMdxz4afWneJg0bgKs
+         wUS+Gini4UC1a/JRmpReaYytA0yA8UJI0gGS5aZHfWfTELljgsmzQlhHD0orJELcHdiz
+         soaHJmxxqEVpXPz3qFooefrUNzQHWco6TCMtWno7n8YdyxT5WBi9vDR2bXa7UADxdnNF
+         lKBmz4fUMU2m7L0dDWrATTYtVspsL8FyPEUARbuPsuIYAo1u19qC95Y3Y9jYw6mwqzRk
+         wYjw==
+X-Forwarded-Encrypted: i=1; AJvYcCV5gD+rg0yk7zqMwFEG/iS2lT6op0f75QliAS5vWlbW6R6/LqpElNJNIlzhAoFKeSNQ2Wbvn4BhnNwpjcUd2pbIw1RQj0ycKUXVOg==
+X-Gm-Message-State: AOJu0YyijYxGExN/wigxcPp+KxZdmvTRtLjdgcyRrBQ2fKi72YRHQfeN
+	CykxhxXOLuc3p66BOx9N8M5t378lNTIjsZHaNw+/ik3IHLgsJ3A9IC01IXjPvuw=
+X-Google-Smtp-Source: AGHT+IHkk2lAXNm9+BSIbdQPTDnRwExlmJx8FGNX6T88IDk+5uIBJ09Vd4kpOGd505sPIGXbtc1bfA==
+X-Received: by 2002:a05:6512:3288:b0:52b:bde6:2dba with SMTP id 2adb3069b0e04-52c9a42b427mr1788782e87.6.1718227389131;
+        Wed, 12 Jun 2024 14:23:09 -0700 (PDT)
+Received: from [192.168.1.3] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52c9daaf31fsm349089e87.104.2024.06.12.14.23.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Jun 2024 14:23:08 -0700 (PDT)
+Message-ID: <0f13ab6b-dff1-4b26-9707-704ae2e2b535@linaro.org>
+Date: Thu, 13 Jun 2024 00:22:42 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240612122502.38a9a2eb@booty>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V4 8/8] arm64: dts: qcom: sm8650: Add video and camera
+ clock controllers
+Content-Language: en-US
+To: Jagadeesh Kona <quic_jkona@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Taniya Das <quic_tdas@quicinc.com>,
+ Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+ Ajit Pandey <quic_ajipan@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>
+References: <20240602114439.1611-1-quic_jkona@quicinc.com>
+ <20240602114439.1611-9-quic_jkona@quicinc.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20240602114439.1611-9-quic_jkona@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jun 12, 2024 at 12:25:02PM +0200, Luca Ceresoli wrote:
-> On Mon, 10 Jun 2024 10:31:36 +0200 Luca Ceresoli wrote:
-> > On Sat, 8 Jun 2024 18:06:13 +0300 Laurent Pinchart wrote:
-> > > On Thu, May 25, 2023 at 12:26:28PM +0200, Luca Ceresoli wrote:  
-> > > > On Thu, 2 Mar 2023 16:35:25 +0100 Luca Ceresoli wrote:    
-> > > > > On Fri, 26 Aug 2022 21:29:32 +0200 Lucas Stach wrote:
-> > > > >     
-> > > > > > Enable the DT nodes for HDMI TX and PHY and add the pinctrl for the few
-> > > > > > involved pins that are configurable.
-> > > > > > 
-> > > > > > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>      
-> > > > 
-> > > > Any updates to these patches? I haven't found any v2 on the list.    
-> > > 
-> > > This is the last patch in the series that hasn't made it upstream It
-> > > would be really nice to get a new version that could be merged in v6.11.
-> > > Pretty please :-)  
-> > 
-> > It will be my pleasure to rebase, test and resend this week! :)
+Hi Jagadeesh.
+
+On 6/2/24 14:44, Jagadeesh Kona wrote:
+> Add device nodes for video and camera clock controllers on Qualcomm
+> SM8650 platform.
 > 
-> Oops, I clearly had misread your e-mail! :)
+> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sm8650.dtsi | 26 ++++++++++++++++++++++++++
+>   1 file changed, 26 insertions(+)
 > 
-> You was of course referring to Lucas' patch for the imx8mp-evk and not
-> mine for the imx8mp-msc-sm2s, which I thought I had sent previously.
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> index 336c54242778..d964762b0532 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> @@ -4,10 +4,12 @@
+>    */
+>   
+>   #include <dt-bindings/clock/qcom,rpmh.h>
+> +#include <dt-bindings/clock/qcom,sm8650-camcc.h>
+>   #include <dt-bindings/clock/qcom,sm8650-dispcc.h>
+>   #include <dt-bindings/clock/qcom,sm8650-gcc.h>
+>   #include <dt-bindings/clock/qcom,sm8650-gpucc.h>
+>   #include <dt-bindings/clock/qcom,sm8650-tcsr.h>
+> +#include <dt-bindings/clock/qcom,sm8650-videocc.h>
+>   #include <dt-bindings/dma/qcom-gpi.h>
+>   #include <dt-bindings/firmware/qcom,scm.h>
+>   #include <dt-bindings/gpio/gpio.h>
+> @@ -3315,6 +3317,30 @@ opp-202000000 {
+>   			};
+>   		};
+>   
+> +		videocc: clock-controller@aaf0000 {
+> +			compatible = "qcom,sm8650-videocc";
+> +			reg = <0 0x0aaf0000 0 0x10000>;
+> +			clocks = <&bi_tcxo_div2>,
+> +				 <&gcc GCC_VIDEO_AHB_CLK>;
+> +			power-domains = <&rpmhpd RPMHPD_MMCX>;
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +			#power-domain-cells = <1>;
+> +		};
+> +
+> +		camcc: clock-controller@ade0000 {
+> +			compatible = "qcom,sm8650-camcc";
+> +			reg = <0 0x0ade0000 0 0x20000>;
+> +			clocks = <&gcc GCC_CAMERA_AHB_CLK>,
+> +				 <&bi_tcxo_div2>,
+> +				 <&bi_tcxo_ao_div2>,
+> +				 <&sleep_clk>;
+> +			power-domains = <&rpmhpd RPMHPD_MMCX>;
 
-That's right, I was referring to the EVK patch. Luca*s*, would you
-consider resubmitting it in time for v6.11 ?
+When you test the change on a particular board, do you get here any build
+time warning messages like this one?
 
-> It must have been the similarity between 'Luca' and 'Lucas' along with
-> the 'To:' header, the board names being somewhat similar and the actual
-> patch content being almost identical...
+   clock-controller@ade0000: 'required-opps' is a required property
+	  from schema $id: http://devicetree.org/schemas/clock/qcom,sm8450-camcc.yaml#
 
-So which of you will change his name ? :-)
+I believe it's a valid warning, which has to be fixes, and as it says it
+corresponds to the required property exactly.
 
-> But turns out I hadn't sent that patch yet. Sent it right now:
-> https://lore.kernel.org/linux-devicetree/20240612-imx8mp-msc-sm2s-hdmi-v1-1-6c808df5205d@bootlin.com/T/#u
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +			#power-domain-cells = <1>;
+> +		};
+> +
+>   		mdss: display-subsystem@ae00000 {
+>   			compatible = "qcom,sm8650-mdss";
+>   			reg = <0 0x0ae00000 0 0x1000>;
 
--- 
-Regards,
-
-Laurent Pinchart
+--
+Best wishes,
+Vladimir
 
