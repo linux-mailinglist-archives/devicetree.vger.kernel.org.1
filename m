@@ -1,200 +1,123 @@
-Return-Path: <devicetree+bounces-75187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10D54905CAD
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 22:21:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01E29905D2F
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 22:54:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6CC20B2192D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 20:21:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A92701F223D6
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 20:54:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1148A84A56;
-	Wed, 12 Jun 2024 20:21:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E150D84E16;
+	Wed, 12 Jun 2024 20:54:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="IWbVAQlh"
+	dkim=pass (2048-bit key) header.d=mail.de header.i=@mail.de header.b="6QIKw9Rs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from shout12.mail.de (shout12.mail.de [62.201.172.58])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4DD484A50;
-	Wed, 12 Jun 2024 20:21:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E78D84D0B;
+	Wed, 12 Jun 2024 20:54:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.201.172.58
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718223666; cv=none; b=GyPk6/hdoMySI975yreUIXTU8IOn4YYqtGy9mVIfraCNJEhmNPmBAU7DPqkwhl/NH/gn/fCK7KcOGtC5XdxLbb30S5M47J4ZkL5sgzyCi59OkHiynkh7FRGSjgBOTqYkC/8KZzQ2UC3P6s4IkfoL/yCzWgTjzz11DvT98enygn0=
+	t=1718225666; cv=none; b=dTUfIhxC2VdnzzwYhKbfAjXlBLzMw+9rWiH7UW8EF9UTVTG21lmyHO6CJhfEV3GXC+8M7a9igPVJhMz7iNEKsvnaHdFckaQEOW2a/Hla09Oo1ACdjPofzch7EbFtq98WNEmI/BdYgnyErUgJRRh+LGUl83P2xe4aXSJq5bhSB78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718223666; c=relaxed/simple;
-	bh=PHlVC2D76puZdSZINuqZtuUlXaqfJ96wvZFNLjvHtfc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=rOhStKHVwmI3O1FzpxPZI4nA3z57vf4RH3jiWetMSAMau8bjP9BrjUQDcC8wzSiQZXCHFOQREvZ91OSI2UGuyh6SJKUdsdrUP/Ae60GZfImd2uFOsIeQcVLwOw/VpPdCftwlfObpTEvPpFRNYx1HTGL+85D9mvJTDrdNvKfZoDI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=IWbVAQlh; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718223661;
-	bh=PHlVC2D76puZdSZINuqZtuUlXaqfJ96wvZFNLjvHtfc=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=IWbVAQlhH95bx5fqaubBcoIIS0eDvUAbqa+C4wjuNtjD7IQdVD6HTT0fdSMesayjk
-	 IwYl7CC8Pn6XIh+NtQB82xCNCazbeEnYAHE1fxMYinG2Ww6u4DUrimbf4x84l/du7m
-	 30R4M3bN3R/n24geqRNthBfVLdFJI0fSW5eKGPyUiLpsYmp7oJ90aOI03ZezUB26YA
-	 /a3VZP/zhCR0wFnBJqmKVxKA2Z55VQmtuB+e3uzBd30iWAr0M05aq9eFoQbsVnDibt
-	 0ckK7keaAroSCMHFV7Pk4mliY1MPvcWqSA2wJHGalbKlrfBnyRntsYLPXpkinx5Bwn
-	 bKFmxetDKvvpQ==
-Received: from nicolas-tpx395.localdomain (cola.collaboradmins.com [195.201.22.229])
+	s=arc-20240116; t=1718225666; c=relaxed/simple;
+	bh=6m8xzsYHtwC9JE0M/yKVz8jVu/Kt+2HzHaIfh10Nz0E=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=WOc1w+S0L61+FPI3bU2Ji/GgNSc1yIKzg5EtSkmT1bmliPhBlY8oze0ZDVE6ztcnUERBVDSrQ0Vi5vi+1TlEpdX9wSN1LtueTE5lZBqmO1x8JmHuMeIetBDL+eB6FHlxUuq1P+TWMMJVoXT3M0x+mJbzDj7ivSf1APHAVLIn/mE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mail.de; spf=pass smtp.mailfrom=mail.de; dkim=pass (2048-bit key) header.d=mail.de header.i=@mail.de header.b=6QIKw9Rs; arc=none smtp.client-ip=62.201.172.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mail.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mail.de
+Received: from shout02.mail.de (unknown [10.0.120.222])
+	by shout12.mail.de (Postfix) with ESMTPS id B4E4E24193D;
+	Wed, 12 Jun 2024 22:54:17 +0200 (CEST)
+Received: from postfix02.mail.de (postfix02.bt.mail.de [10.0.121.126])
+	by shout02.mail.de (Postfix) with ESMTP id 9BFA92409FE;
+	Wed, 12 Jun 2024 22:54:17 +0200 (CEST)
+Received: from smtp01.mail.de (smtp01.bt.mail.de [10.0.121.211])
+	by postfix02.mail.de (Postfix) with ESMTP id 79143A00E2;
+	Wed, 12 Jun 2024 22:54:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mail.de;
+	s=mailde202009; t=1718225657;
+	bh=6m8xzsYHtwC9JE0M/yKVz8jVu/Kt+2HzHaIfh10Nz0E=;
+	h=From:To:Cc:Subject:Date:Message-ID:From:To:CC:Subject:Reply-To;
+	b=6QIKw9Rsu7n7mugdZdPgsZCP5RoN1d8UdXFDSM2jJN16MDT6GPwUNfogw9SsRqD3C
+	 FMoNtk9N9LUzoPE69SQ4DhwdQgORjCf2UqFdQUUP6C7TJ8uhZ6g9v0LYozBfsdj99F
+	 RMnjD8TrGIJTWH8TB9KiakYMGvLUfX9/sBkwO0QEtB9BuFc56TWP0e0KsXV5Nbb1SJ
+	 wkqhlrNrxC2XZsSaOAraoSRwScaR0CxjUKUKuRSQ1NUvzXlv4uSUPOvhFBWsdwAoQG
+	 khVbU4997HK6yoWuYcUU0sQnRsWhhej1cUSav/eyNrUJ+fzu4LJ857VogZRU38foyN
+	 GMHuRYEkXjFmQ==
+Received: from [127.0.0.1] (localhost [127.0.0.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id F0517378020D;
-	Wed, 12 Jun 2024 20:20:59 +0000 (UTC)
-Message-ID: <8705ad6ba987334f8941938bef19752942a08ace.camel@collabora.com>
-Subject: Re: [PATCH v5 4/5] arm64: dts: rockchip: Add VEPU121 to RK3588
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>, Ezequiel Garcia
- <ezequiel@vanguardiasur.com.ar>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Nicolas Frattaroli <frattaroli.nicolas@gmail.com>, Heiko Stuebner
- <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Jianfeng Liu
- <liujianfeng1994@gmail.com>, Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
- linux-media@vger.kernel.org,  linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
- kernel@collabora.com
-Date: Wed, 12 Jun 2024 16:20:57 -0400
-In-Reply-To: <20240612173213.42827-5-sebastian.reichel@collabora.com>
-References: <20240612173213.42827-1-sebastian.reichel@collabora.com>
-	 <20240612173213.42827-5-sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.2 (3.52.2-1.fc40) 
+	by smtp01.mail.de (Postfix) with ESMTPSA id 30B682400C1;
+	Wed, 12 Jun 2024 22:54:15 +0200 (CEST)
+From: Sebastian Kropatsch <seb-dev@mail.de>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: linux-rockchip@lists.infradead.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/5] Refactor, fix and improve NanoPi R6 series
+Date: Wed, 12 Jun 2024 22:48:09 +0200
+Message-ID: <20240612205056.397204-1-seb-dev@mail.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-purgate: clean
+X-purgate: This mail is considered clean (visit http://www.eleven.de for further information)
+X-purgate-type: clean
+X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
+X-purgate: This mail is considered clean (visit http://www.eleven.de for further information)
+X-purgate: clean
+X-purgate-size: 1402
+X-purgate-ID: 154282::1718225657-FE5BF670-6DE0309F/0/0
 
-Hi Sebastian,
+Hello,
 
-Le mercredi 12 juin 2024 =C3=A0 19:15 +0200, Sebastian Reichel a =C3=A9crit=
-=C2=A0:
-> From: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
->=20
-> RK3588 has 4 Hantro G1 encoder-only cores. They are all independent IP,
-> but can be used as a cluster (i.e. sharing work between the cores).
-> These cores are called VEPU121 in the TRM. The TRM describes one more
-> VEPU121, but that is combined with a Hantro H1. That one will be handled
-> using the VPU binding instead.
->=20
-> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 80 +++++++++++++++++++++++
->  1 file changed, 80 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/=
-dts/rockchip/rk3588s.dtsi
-> index 6ac5ac8b48ab..9edbcfe778ca 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> @@ -1159,6 +1159,86 @@ power-domain@RK3588_PD_SDMMC {
->  		};
->  	};
-> =20
-> +	jpeg_enc0: video-codec@fdba0000 {
-> +		compatible =3D "rockchip,rk3588-vepu121";
+This patch series fixes a lot of minor issues in the current devicetree
+for the FriendlyElec NanoPi R6 series (R6C and R6S), as well as adding
+support for the GPU and one USB3 port which was previously disabled.
 
-As discussed earlier, VEPU121 is an modifier Hantro H1 encoder core that al=
-so
-supports VP8 and H.264 encoding (even though RK vendor kernel only expose t=
-hem
-for jpeg encoding). The compatible follow this idea, shall we change the al=
-ias
-now ?
+To aid with these patches, I have refactored the devicetrees in such a
+way that they will now share a common dtsi source file in a similar
+fashion than what the NanoPi R5C and R5S are already doing.
+This makes changes which only affect one of the boards easier, less
+error-prone and more maintainable. Also we don't need to work with
+/delete-node/ and /delete-property/ this way :)
 
-Nicolas
+Cheers,
+Sebastian
 
-> +		reg =3D <0x0 0xfdba0000 0x0 0x800>;
-> +		interrupts =3D <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		clocks =3D <&cru ACLK_JPEG_ENCODER0>, <&cru HCLK_JPEG_ENCODER0>;
-> +		clock-names =3D "aclk", "hclk";
-> +		iommus =3D <&jpeg_enc0_mmu>;
-> +		power-domains =3D <&power RK3588_PD_VDPU>;
-> +	};
-> +
-> +	jpeg_enc0_mmu: iommu@fdba0800 {
-> +		compatible =3D "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-> +		reg =3D <0x0 0xfdba0800 0x0 0x40>;
-> +		interrupts =3D <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		clocks =3D <&cru ACLK_JPEG_ENCODER0>, <&cru HCLK_JPEG_ENCODER0>;
-> +		clock-names =3D "aclk", "iface";
-> +		power-domains =3D <&power RK3588_PD_VDPU>;
-> +		#iommu-cells =3D <0>;
-> +	};
-> +
-> +	jpeg_enc1: video-codec@fdba4000 {
-> +		compatible =3D "rockchip,rk3588-vepu121";
-> +		reg =3D <0x0 0xfdba4000 0x0 0x800>;
-> +		interrupts =3D <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		clocks =3D <&cru ACLK_JPEG_ENCODER1>, <&cru HCLK_JPEG_ENCODER1>;
-> +		clock-names =3D "aclk", "hclk";
-> +		iommus =3D <&jpeg_enc1_mmu>;
-> +		power-domains =3D <&power RK3588_PD_VDPU>;
-> +	};
-> +
-> +	jpeg_enc1_mmu: iommu@fdba4800 {
-> +		compatible =3D "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-> +		reg =3D <0x0 0xfdba4800 0x0 0x40>;
-> +		interrupts =3D <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		clocks =3D <&cru ACLK_JPEG_ENCODER1>, <&cru HCLK_JPEG_ENCODER1>;
-> +		clock-names =3D "aclk", "iface";
-> +		power-domains =3D <&power RK3588_PD_VDPU>;
-> +		#iommu-cells =3D <0>;
-> +	};
-> +
-> +	jpeg_enc2: video-codec@fdba8000 {
-> +		compatible =3D "rockchip,rk3588-vepu121";
-> +		reg =3D <0x0 0xfdba8000 0x0 0x800>;
-> +		interrupts =3D <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		clocks =3D <&cru ACLK_JPEG_ENCODER2>, <&cru HCLK_JPEG_ENCODER2>;
-> +		clock-names =3D "aclk", "hclk";
-> +		iommus =3D <&jpeg_enc2_mmu>;
-> +		power-domains =3D <&power RK3588_PD_VDPU>;
-> +	};
-> +
-> +	jpeg_enc2_mmu: iommu@fdba8800 {
-> +		compatible =3D "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-> +		reg =3D <0x0 0xfdba8800 0x0 0x40>;
-> +		interrupts =3D <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		clocks =3D <&cru ACLK_JPEG_ENCODER2>, <&cru HCLK_JPEG_ENCODER2>;
-> +		clock-names =3D "aclk", "iface";
-> +		power-domains =3D <&power RK3588_PD_VDPU>;
-> +		#iommu-cells =3D <0>;
-> +	};
-> +
-> +	jpeg_enc3: video-codec@fdbac000 {
-> +		compatible =3D "rockchip,rk3588-vepu121";
-> +		reg =3D <0x0 0xfdbac000 0x0 0x800>;
-> +		interrupts =3D <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		clocks =3D <&cru ACLK_JPEG_ENCODER3>, <&cru HCLK_JPEG_ENCODER3>;
-> +		clock-names =3D "aclk", "hclk";
-> +		iommus =3D <&jpeg_enc3_mmu>;
-> +		power-domains =3D <&power RK3588_PD_VDPU>;
-> +	};
-> +
-> +	jpeg_enc3_mmu: iommu@fdbac800 {
-> +		compatible =3D "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-> +		reg =3D <0x0 0xfdbac800 0x0 0x40>;
-> +		interrupts =3D <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		clocks =3D <&cru ACLK_JPEG_ENCODER3>, <&cru HCLK_JPEG_ENCODER3>;
-> +		clock-names =3D "aclk", "iface";
-> +		power-domains =3D <&power RK3588_PD_VDPU>;
-> +		#iommu-cells =3D <0>;
-> +	};
-> +
->  	av1d: video-codec@fdc70000 {
->  		compatible =3D "rockchip,rk3588-av1-vpu";
->  		reg =3D <0x0 0xfdc70000 0x0 0x800>;
+PS: Additional comments in patch 2 and 3.
+
+---
+
+Sebastian Kropatsch (5):
+  arm64: dts: rockchip: Add common definitions for NanoPi R6C and R6S
+  arm64: dts: rockchip: Fix regulators, gmac and naming on NanoPi
+    R6C/R6S
+  arm64: dts: rockchip: Improve LEDs on NanoPi R6C/R6S
+  arm64: dts: rockchip: Enable lower USB3 port on NanoPi R6C/R6S
+  arm64: dts: rockchip: Enable GPU on NanoPi R6C/R6S
+
+ ...-nanopi-r6s.dts => rk3588s-nanopi-r6.dtsi} | 242 +++---
+ .../boot/dts/rockchip/rk3588s-nanopi-r6c.dts  |  48 +-
+ .../boot/dts/rockchip/rk3588s-nanopi-r6s.dts  | 743 +-----------------
+ 3 files changed, 193 insertions(+), 840 deletions(-)
+ copy arch/arm64/boot/dts/rockchip/{rk3588s-nanopi-r6s.dts => rk3588s-nanopi-r6.dtsi} (81%)
+
+-- 
+2.43.0
 
 
