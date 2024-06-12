@@ -1,138 +1,114 @@
-Return-Path: <devicetree+bounces-75090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 886029056BB
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:24:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8E699056C0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 17:25:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 30D9AB21CE1
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:24:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44C271F22EC2
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 15:25:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35E6D17C7C8;
-	Wed, 12 Jun 2024 15:23:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B49517E90D;
+	Wed, 12 Jun 2024 15:24:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bAj0nTFe"
+	dkim=pass (2048-bit key) header.d=jrtc27.com header.i=@jrtc27.com header.b="XWT290kS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD2B93D388;
-	Wed, 12 Jun 2024 15:23:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 883BF17C7C8
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 15:24:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718205839; cv=none; b=VRzKHCXAlueIbGxo0bgfQqbmQfFXW+WfMVP1L+umt9zsUihcfOoNa1aALK6mdo7LifgJjPOa6o4yipkS3NbtdgAsz03g+/bpt32EsNWulnp8zbplPN7DsVWAs2srCet7Ih8xDJnwV1UzRcVPr045+P1UxPEaVrQghjrZ15CG2Gg=
+	t=1718205899; cv=none; b=A0DKaXBLGFuw+o9WO0+OvdbRQjtfDgCqspwAXEvMFd2MOcjywXbnSO783vSwbAEzaBdq6Vw806RKo4IFikZj8Qra+XEUEzo3VmeyErC9KHcBFLVweFKTWG4j3mi5MTHaivIJLZ8+fsW52Nkz1XhevK+ea2iMkR9d8Z/AokwlgQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718205839; c=relaxed/simple;
-	bh=L0TPxO2068yX+MTAtGA10ZqJ9vRLIVvBQVLw5Xen/7o=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=OQLpAMtfHPs9tW7lrGaQHuZjTqgy2MkIOqo+ghUScDIKRQ90cRNbAKJeDpKHFgUvUjFQPCRhBK5GdE5SI6tZKhWPiIpcG/djQHEBm8Cc/fYdnTCjxOXsVznx2f30IKZ7MrkPU5qpQRpBBPXrJDS3032C/MZrfNkZJKzyi+stPpU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bAj0nTFe; arc=none smtp.client-ip=209.85.215.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-6e40ee57f45so1993070a12.0;
-        Wed, 12 Jun 2024 08:23:57 -0700 (PDT)
+	s=arc-20240116; t=1718205899; c=relaxed/simple;
+	bh=8pixPtYD7EDO7nYBMOz6fC5qpHZbTKS1XI1/tr5+VE0=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=eS/8Yw3jerK2pwXIjyowYbcVS9LfIonHW7acuLZyh57teWVYdCNXYF/onTPUBOtc5ZFvDRFtE+Th+cbXOuZRCll9KzPbIW0yel+NeP3fbflVzxuuFshTh5mZFU4fzADzydVoSLe3GXPsNbLfJvbpTF1DJbXA1njmAt5kn/1Qo10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jrtc27.com; spf=pass smtp.mailfrom=jrtc27.com; dkim=pass (2048-bit key) header.d=jrtc27.com header.i=@jrtc27.com header.b=XWT290kS; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jrtc27.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jrtc27.com
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2eabd22d441so111607411fa.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 08:24:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718205837; x=1718810637; darn=vger.kernel.org;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=O4jqrH4dgrb+nT1o6H+kGr8hXgJ85CBLLo3LyaQhqJs=;
-        b=bAj0nTFe/1moXXhh8E4KoeFJeELetH8jqwwMDVL7rgvDOMa/ADBpezXoOAjNjiYrWa
-         1oL6xHySUSrS1uunFN7XYrukg835uHiVGRx23btR0YJVny6STt2KMf26hr3fQ+ISlExd
-         zrGOkYuE3hUsrkZWq/YfdA2aN4PMTV97jnRob9pxBU8yKUUTOyxghLpKHP5eVCuGFuwL
-         R+4Frte+8/8xO7JzpyEF+NJ4Djgdr45SI5uDGUpPC+giN0F6hAgtfLw30MXkhV5qsrBI
-         /R/d1MGvfnQYuJwb+ZMNdr+fXgoUYbef2l8Rd01tZkYO+9oXi7EQGrCm2cuUBf3KHyI0
-         +7vg==
+        d=jrtc27.com; s=gmail.jrtc27.user; t=1718205896; x=1718810696; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cfHSD2ohGFo1bJLqaYnJWptznLHGgS8ba5sojTCQFak=;
+        b=XWT290kS5WE8l1ZSxF9F0bGicx5ZaPQH79t5W2gH76OEL+2Rd4odfcYy54hjhktQjC
+         iVwCo/+yk/YL0JKNYwiSgtW3AG/uCs2ulMqUUAdfFWAPXluQOHN/bUrB1I5DmCL6+plQ
+         APQ+mGUXTUKRXc00dE1FCDp0r43MQOHsx9ETDhY7sOrO5aKcpXFvbrVbLIk+yIwQp/bU
+         slfxtkQCNz4gsVuR0rQwVm/QEH4VhVuAPPstJLXvBb/XH9iqAOeFG1xw+CJtwe742dWz
+         k1s8j0x4ysqbLy1Ai5jc7hW3Ol0HeCFUAe1nmjSrCSu+00fX6V+KlF0Jnf1JEP3Tcr/3
+         dQaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718205837; x=1718810637;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=O4jqrH4dgrb+nT1o6H+kGr8hXgJ85CBLLo3LyaQhqJs=;
-        b=P3wYBm6Hwmz49rQc0uuoa50Gk0+DHL7bfeTHJbImzQWUhx4LXzuprzX9up0nFcZ0e+
-         RqoQwLijjIhAiGEwpjKr6ll44/IAPH2AOgAQX/e2cK+fT00NcCzAi1yBUI6gMNTVvNP3
-         B3N04VmUkY2Zsem12vrCnXyPp6VgeOQvZ1WqDt4br66OKCVLEwSiuj82tcqWnzndkthZ
-         h8wF6S87Bqo9WyOeqaPitqncECJWPlblRbEdvMAYlWHrDNQp0iud3D/KN2MPsM5dT1QP
-         uooZSY9pN1+9GeQxiuwS66SA4VOrN6WIjI9nZ7dUH90c0GyFeHlaY/+nxy3jwUYScQvr
-         3rEA==
-X-Forwarded-Encrypted: i=1; AJvYcCXs28otatZ34LudmKhuejpv+wz/KuPg0yPggueEaz5lJnBrEyMFVDk8H5n6JoGzZq99lpVfrlieITVRdYZ7mYp99oCUbr1kjfF6+SIoEKOsuzEyacPW4MYyl5WxCWkE6MGB7yIwXsg0MLg/49nC6bC8vTjYCRa+zzIywYMvTKtS83uCMw==
-X-Gm-Message-State: AOJu0Yy4euyVvQkE2wUZZwzcfGszKQarexDj4fpNKsTdHFO5TGMrkClL
-	WXB0DuEDwDN7Il1JchGPCufCbKUwshLREm6CuPLRq0wmjEKyS/Bk
-X-Google-Smtp-Source: AGHT+IEDmRDRXVDRwArnOlnUYRAAl2gSBdmBtEXCzIi+zGbzqhAF9o5Q24n24snscZYNdnrxP6ZWhg==
-X-Received: by 2002:a17:902:ce90:b0:1f6:a96f:225c with SMTP id d9443c01a7336-1f83b60eea6mr25692545ad.28.1718205837039;
-        Wed, 12 Jun 2024 08:23:57 -0700 (PDT)
-Received: from localhost ([113.143.197.225])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f71790b089sm57540515ad.106.2024.06.12.08.23.56
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 12 Jun 2024 08:23:56 -0700 (PDT)
-From: joswang <joswang1221@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: Thinh.Nguyen@synopsys.com,
-	gregkh@linuxfoundation.org,
-	balbi@kernel.org,
-	linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Jos Wang <joswang@lenovo.com>
-Subject: [PATCH v4, 1/3] dt-bindings: usb: dwc3: Add snps,p2p3tranok quirk
-Date: Wed, 12 Jun 2024 23:23:47 +0800
-Message-Id: <20240612152347.3192-1-joswang1221@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240601092646.52139-1-joswang1221@gmail.com>
-References: <20240601092646.52139-1-joswang1221@gmail.com>
+        d=1e100.net; s=20230601; t=1718205896; x=1718810696;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cfHSD2ohGFo1bJLqaYnJWptznLHGgS8ba5sojTCQFak=;
+        b=HeI/J2cLZX0iZNpqsFux5wG+yNrdXokbJ3y9mEbISu52DsR7fXvvPjVZL1Fc3H5N7p
+         qIbWRvTjdeIpC1kNyrNOFvZnv4cd4m1URr0LfYUcpPTlUPzJSFivjA5LxXD+dd5aI15E
+         k6t8olB9z5kb6liHLJiBhTZFjJGjD+sshY6l9QHRutF3cHDkDtY/vz/rhYwq8YTBhPyy
+         F7gKFHy37emCeGtGulsdyHRTG6SQWOU8OHym6Ac8xD/lc+4MiIHOdfwPMNUgihx8FQ/B
+         tG0l8I2B7I36YHi6oIFpGjO80cvZKr7VamIPjwRlCGG9202itJHPI7HWjH69RxSVEcOI
+         tGQA==
+X-Forwarded-Encrypted: i=1; AJvYcCWolrIjvwlIjcZ72aC5t6gITl7IVqiM4w6jdTho4L4Yoi9ivE3s8vErYAtzDfUz4gxJfSmYanVqCPzr9+kb7FtejPAb/5olzkqvMw==
+X-Gm-Message-State: AOJu0YwIMtZqqjcV7CTlK16k7uiMierB74qzu7id5oObRW6RC1GVihup
+	jU5rL54drVUkI6n5xfJpgk/y8cOkdVRM8adPuUT84yN5G5qFYt7pZg/s2qUFZ24=
+X-Google-Smtp-Source: AGHT+IH4zw3EWMR8z6Xw4xToTAnfHYkARCSUOo+5ApT7OA4n06T70RJ8V+bqVpKPZ0cStqBJHw7VNA==
+X-Received: by 2002:a2e:7d04:0:b0:2eb:d963:d8cc with SMTP id 38308e7fff4ca-2ebfca4766cmr16758761fa.49.1718205895563;
+        Wed, 12 Jun 2024 08:24:55 -0700 (PDT)
+Received: from smtpclient.apple ([131.111.5.201])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422899b0cdbsm16835855e9.0.2024.06.12.08.24.54
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 12 Jun 2024 08:24:55 -0700 (PDT)
+Content-Type: text/plain;
+	charset=us-ascii
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.500.171.1.1\))
+Subject: Re: [PATCH v1] riscv: dts: starfive: add PCIe dts configuration for
+ JH7110
+From: Jessica Clarke <jrtc27@jrtc27.com>
+In-Reply-To: <20240611015200.40996-1-minda.chen@starfivetech.com>
+Date: Wed, 12 Jun 2024 16:24:44 +0100
+Cc: Conor Dooley <conor@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ linux-riscv <linux-riscv@lists.infradead.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>
+Content-Transfer-Encoding: 7bit
+Message-Id: <98031697-93AE-43AC-B192-44B12CB43EC5@jrtc27.com>
+References: <20240611015200.40996-1-minda.chen@starfivetech.com>
+To: Minda Chen <minda.chen@starfivetech.com>
+X-Mailer: Apple Mail (2.3774.500.171.1.1)
 
-From: Jos Wang <joswang@lenovo.com>
+On 11 Jun 2024, at 02:52, Minda Chen <minda.chen@starfivetech.com> wrote:
+> 
+> Add PCIe dts configuraion for JH7110 SoC platform.
+> 
+> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+> ---
+> .../boot/dts/starfive/jh7110-common.dtsi      | 64 ++++++++++++++
+> arch/riscv/boot/dts/starfive/jh7110.dtsi      | 86 +++++++++++++++++++
+> 2 files changed, 150 insertions(+)
 
-There is an issue with the DWC31 2.00a and earlier versions
-where the controller link power state transition from
-P3/P3CPM/P4 to P2 may take longer than expected, ultimately
-resulting in the hibernation D3 entering time exceeding the
-expected 10ms.
+Is there a corresponding YAML schema?
 
-Add a new 'snps,p2p3tranok-quirk' DT quirk to dwc3 core
-for enable the controller transitions directly from phy
-power state P2 to P3 or from state P3 to P2.
-
-Note that this can only be set if the USB3 PHY supports
-direct p3 to p2 or p2 to p3 conversion.
-
-Signed-off-by: Jos Wang <joswang@lenovo.com>
----
-v1 -> v2:
-- v1 did not add this PATCH
-v2 -> v3:
-- modify Author Jos Wang
-v3 -> v4:
-- no change
----
- Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-index 1cd0ca90127d..721927495887 100644
---- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-@@ -242,6 +242,13 @@ properties:
-       When set, all HighSpeed bus instances in park mode are disabled.
-     type: boolean
- 
-+  snps,p2p3tranok-quirk:
-+    description:
-+      When set, the controller transitions directly from phy power state
-+      P2 to P3 or from state P3 to P2. Note that this can only be set
-+      if the USB3 PHY supports direct p3 to p2 or p2 to p3 conversion.
-+    type: boolean
-+
-   snps,dis_metastability_quirk:
-     description:
-       When set, disable metastability workaround. CAUTION! Use only if you are
--- 
-2.17.1
+Jess
 
 
