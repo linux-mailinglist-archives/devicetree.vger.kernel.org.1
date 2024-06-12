@@ -1,238 +1,159 @@
-Return-Path: <devicetree+bounces-75216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DCCD905F08
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 01:18:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78FCD905F4B
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 01:37:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 13655284704
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 23:18:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1BA5B1F21D31
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 23:37:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4281C12D767;
-	Wed, 12 Jun 2024 23:17:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79B6612C484;
+	Wed, 12 Jun 2024 23:37:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="bN3Y4QyU"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="NnrvBYH4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9165E12CDA8;
-	Wed, 12 Jun 2024 23:17:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBBF012D205;
+	Wed, 12 Jun 2024 23:37:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718234275; cv=none; b=NtDBoBgT82mCoBlPsE0VBgsTRNbN1izqIgoZYLT3WGyn3Y9mwLFhDhiYQ9mpDObkyABs1VxPitwhnsnp9riVGXZILtRx5LMdrJDL9+lO+X+FACwsHEz5+kxdEEe3Ns4pjcTdRPeUdAkaoYszRatTec/69E0VgsAloEVUkmG2RQE=
+	t=1718235444; cv=none; b=sI9jK5dXg0dpXHqfS9vFS0qgwuQrHeAEBsnbiq443anHEPKGmbK62GBhPkp21iWNJHCAg//tplxLApLivYyXwU8b7/CR3B6mwgiEbT/dnMwAOtpFOz0Fszww7ipefa/TBq51HWhlXDqdbogdJ2XDUJmk3MBTpsZ3Jq/DpSS5Iak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718234275; c=relaxed/simple;
-	bh=FZHOMpGaEYP5IB+9r4ZvFHZhBO9oepJfS8PBFrnej8M=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=LiaN0oH0aT8ZBFfUeNW59V3d/NOeBHtmbV6ZTGI0a3f55U5ccYXrwsIXS6FvH+gTF8q4yr5SJjfAvlyaao3OS8FB2YFch8SEbghUIze6vZWIrppgYiUGNJow6RjVlxSa7tRYJdsB4BVgI9WI2YSWe9ngOnNno7t+gHl5XLd+RYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=bN3Y4QyU; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45CNHfsO128870;
-	Wed, 12 Jun 2024 18:17:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1718234261;
-	bh=pIKhvca1G0LsgNQvLd70jtD8/EP9eisPHDT+bocufdE=;
-	h=From:Date:Subject:References:In-Reply-To:To:CC;
-	b=bN3Y4QyUcx9TDpIi7+u3gxXna3UIG0WWYuZl/CwQmP8R7nv93lOxG5cMDFZdOzq8v
-	 j7mPhJAkfYch2vu9hNFxZGQIPVRsw3vgxI2pnlr5WCuufxIRhTZVgMqynyWTdqhiN2
-	 MxErtEzX2WqiwFLzi0Iv2IUzk0JMw5Yy8p+HmK+0=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45CNHe90017773
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 12 Jun 2024 18:17:41 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 12
- Jun 2024 18:17:40 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 12 Jun 2024 18:17:40 -0500
-Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45CNHehH019518;
-	Wed, 12 Jun 2024 18:17:40 -0500
-From: Bryan Brattlof <bb@ti.com>
-Date: Wed, 12 Jun 2024 18:17:38 -0500
-Subject: [PATCH v2 5/5] DONOTMERGE: arm64: dts: ti: k3-am62a: add in opp
- table
+	s=arc-20240116; t=1718235444; c=relaxed/simple;
+	bh=p0StulPiskZvXiAXXy2XqSB+UCYvZvpYVdWBgttD7Nk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BpvPZBudRB1F42MdMAZ3e/a9SKyud/IP5FYMDFxYUfGZ/KavGfE/yCP6S7Sl4ur+QeDgPyz9dEaYIMziaNx14dmD2DrOsllY+jQunVgGCYSvK9lTYhhPufsxMIKUcrkt1hDYQDwfrXmbmOCoqbyvo0uwzbs2p1kmDgxsSkuE8KI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=NnrvBYH4; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718235440;
+	bh=p0StulPiskZvXiAXXy2XqSB+UCYvZvpYVdWBgttD7Nk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NnrvBYH4gcX8jVX7MkBBhnFfP9qpqrsQxMTSYlOMraNkSxwFH0Li6QJtGdX/78m2a
+	 RBMRctyynP+nNr+yZoE+4fC+VvoXN8Nbv4dLqsD6fZK5ThvBv6j2Hpu4muLIDOaJz+
+	 4wxHZvfTbFt7oIcP50Jnd0epTTJgfM5nCKa1co+Z0PiHSF/DE04YPabQ4nm7r5F8v+
+	 gp994IEVMcFT4C/J6yPzIUzYcprN/wOTjjXl/T9UaIikSo3qmQJaAuiX+aKhBFPmly
+	 h0QusGDacO2lBOzdUVzeiiEkPpL+Uy41i4MOiL7W5nQaIB1Kghz0k60NTs/O6YILD1
+	 UWY1DJk6t4wWg==
+Received: from mercury (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D9AFF3781022;
+	Wed, 12 Jun 2024 23:37:20 +0000 (UTC)
+Received: by mercury (Postfix, from userid 1000)
+	id 56CFD10608F7; Thu, 13 Jun 2024 01:37:20 +0200 (CEST)
+Date: Thu, 13 Jun 2024 01:37:20 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Oded Gabbay <ogabbay@kernel.org>, Tomeu Vizoso <tomeu.vizoso@tomeuvizoso.net>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
+	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH 1/9] iommu/rockchip: Add compatible for
+ rockchip,rk3588-iommu
+Message-ID: <75xclodzhu2slf6jntwxzx5gvthgl62g2jcmgeukbafkzkisbf@okedx7ic6aij>
+References: <20240612-6-10-rocket-v1-0-060e48eea250@tomeuvizoso.net>
+ <20240612-6-10-rocket-v1-1-060e48eea250@tomeuvizoso.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240612-ti-opp-updates-v2-5-422b6747a254@ti.com>
-References: <20240612-ti-opp-updates-v2-0-422b6747a254@ti.com>
-In-Reply-To: <20240612-ti-opp-updates-v2-0-422b6747a254@ti.com>
-To: "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar
-	<viresh.kumar@linaro.org>, Lee Jones <lee@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>
-CC: Vibhore Vardhan <vibhore@ti.com>, <linux-pm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Bryan Brattlof <bb@ti.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3800; i=bb@ti.com;
- h=from:subject:message-id; bh=FZHOMpGaEYP5IB+9r4ZvFHZhBO9oepJfS8PBFrnej8M=;
- b=owNCWmg5MUFZJlNZD7ydNQAAbH///7/ffz83//+/3/5/+9+br5X7f/xi+2qf9Y7/z1Hq7nYwA
- RsbCDRoGhkBo00yAADINMRiDQABkZBk0yZNAANDEBppo0aZDQaAaNGIaBppkyMgGUA00AAAPUPU
- AAANDQ9QAaAGgGmh6gD1NAGjQaaNNBpoHqZoTQ2p6QNA0NAAaIfqh6mhoDTTagAaaaANAZAGmga
- AyGgaAAAAAaGQA0AAGgAaA0AaNqeSZ6oIIkJ0jJf3wjY0ICkKoXGGU4ok/JpGLFGBEqAlqczVTl
- MAJdCXkvkClCbU09aoDPFBl70PLrudeiHcFbIZ5A80B4ShsdLJubf7RRnQrS3WkLndIx7oEZok4
- tFGOCsN3oFdER9YhIKIwhL1hvZhtBLC/iV8UqhB/pQnN4Z8EG339vVZTxXwJVEK6pMhGy06FaAT
- gVM7n2qCJadwsAs5gdhNxiBNWvDUh1c22PapNGCNYqkC4i1cs5lmg34l19S9MhytNV1dd44ZTbt
- vzu12tXutEnYGzfmNo29QMJErO/vBK7XZr0AtUEC0JAxJEVH7zSpwZi38qNu+05rzg6OB+D4sQk
- SJtJLXtRnCUhNePseisccCwKuaym8CK6DevqsnbQCMIB93YGMSqzrTkUx0yIQVPwS5auFfl4Hg8
- dJBUBCmCh/xdyRThQkA+8nTUA==
-X-Developer-Key: i=bb@ti.com; a=openpgp;
- fpr=D3D177E40A38DF4D1853FEEF41B90D5D71D56CE0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="lszhpdxqfwkdo2zm"
+Content-Disposition: inline
+In-Reply-To: <20240612-6-10-rocket-v1-1-060e48eea250@tomeuvizoso.net>
 
-To help reduce power consumption, reduce the frequency of the CPU cores
-when they sit idle by specifying their supported OPP entries.
 
-Signed-off-by: Bryan Brattlof <bb@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi |  5 +++
- arch/arm64/boot/dts/ti/k3-am62a7-sk.dts     |  9 +++++
- arch/arm64/boot/dts/ti/k3-am62a7.dtsi       | 51 +++++++++++++++++++++++++++++
- 3 files changed, 65 insertions(+)
+--lszhpdxqfwkdo2zm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
-index 98043e9aa316b..bf16b29c3953b 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
-@@ -13,6 +13,11 @@ wkup_conf: syscon@43000000 {
- 		#size-cells = <1>;
- 		ranges = <0x00 0x00 0x43000000 0x20000>;
- 
-+		opp_efuse_table: syscon@18 {
-+			compatible = "ti,am62-opp-efuse-table", "syscon";
-+			reg = <0x18 0x4>;
-+		};
-+
- 		chipid: chipid@14 {
- 			compatible = "ti,am654-chipid";
- 			reg = <0x14 0x4>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-index f241637a5642a..852a066585d6d 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-@@ -59,6 +59,15 @@ wkup_r5fss0_core0_memory_region: r5f-dma-memory@9c900000 {
- 		};
- 	};
- 
-+	opp-table {
-+		/* Add 1.4GHz OPP for am62p5-sk board. Requires VDD_CORE at 0v85 */
-+		opp-1400000000 {
-+			opp-hz = /bits/ 64 <1400000000>;
-+			opp-supported-hw = <0x01 0x0004>;
-+			clock-latency-ns = <6000000>;
-+		};
-+	};
-+
- 	vmain_pd: regulator-0 {
- 		/* TPS25750 PD CONTROLLER OUTPUT */
- 		compatible = "regulator-fixed";
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7.dtsi b/arch/arm64/boot/dts/ti/k3-am62a7.dtsi
-index f86a23404e6dd..b77390b66efa5 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a7.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7.dtsi
-@@ -48,6 +48,8 @@ cpu0: cpu@0 {
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
- 			next-level-cache = <&L2_0>;
-+			operating-points-v2 = <&a53_opp_table>;
-+			clocks = <&k3_clks 135 0>;
- 		};
- 
- 		cpu1: cpu@1 {
-@@ -62,6 +64,8 @@ cpu1: cpu@1 {
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
- 			next-level-cache = <&L2_0>;
-+			operating-points-v2 = <&a53_opp_table>;
-+			clocks = <&k3_clks 136 0>;
- 		};
- 
- 		cpu2: cpu@2 {
-@@ -76,6 +80,8 @@ cpu2: cpu@2 {
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
- 			next-level-cache = <&L2_0>;
-+			operating-points-v2 = <&a53_opp_table>;
-+			clocks = <&k3_clks 137 0>;
- 		};
- 
- 		cpu3: cpu@3 {
-@@ -90,6 +96,51 @@ cpu3: cpu@3 {
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
- 			next-level-cache = <&L2_0>;
-+			operating-points-v2 = <&a53_opp_table>;
-+			clocks = <&k3_clks 138 0>;
-+		};
-+	};
-+
-+	a53_opp_table: opp-table {
-+		compatible = "operating-points-v2-ti-cpu";
-+		opp-shared;
-+		syscon = <&wkup_conf>;
-+
-+		opp-200000000 {
-+			opp-hz = /bits/ 64 <200000000>;
-+			opp-supported-hw = <0x01 0x0007>;
-+			clock-latency-ns = <6000000>;
-+		};
-+
-+		opp-400000000 {
-+			opp-hz = /bits/ 64 <400000000>;
-+			opp-supported-hw = <0x01 0x0007>;
-+			clock-latency-ns = <6000000>;
-+		};
-+
-+		opp-600000000 {
-+			opp-hz = /bits/ 64 <600000000>;
-+			opp-supported-hw = <0x01 0x0007>;
-+			clock-latency-ns = <6000000>;
-+		};
-+
-+		opp-800000000 {
-+			opp-hz = /bits/ 64 <800000000>;
-+			opp-supported-hw = <0x01 0x0007>;
-+			clock-latency-ns = <6000000>;
-+		};
-+
-+		opp-1000000000 {
-+			opp-hz = /bits/ 64 <1000000000>;
-+			opp-supported-hw = <0x01 0x0006>;
-+			clock-latency-ns = <6000000>;
-+		};
-+
-+		opp-1250000000 {
-+			opp-hz = /bits/ 64 <1250000000>;
-+			opp-supported-hw = <0x01 0x0004>;
-+			clock-latency-ns = <6000000>;
-+			opp-suspend;
- 		};
- 	};
- 
+Hello Tomeu,
 
--- 
-2.45.2
+On Wed, Jun 12, 2024 at 03:52:54PM GMT, Tomeu Vizoso wrote:
+> So far, seems to be fully compatible with the one in the RK3568.
+>=20
+> The bindings already had this compatible, but the driver didn't
+> advertise it.
+>=20
+> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> ---
 
+The driver does not need to advise it, since it already handles
+"rockchip,rk3568-iommu" and the correct compatible for the RK3588
+IOMMU is:
+
+compatible =3D "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
+
+i.e. with the RK3568 compatible as fallback. So the kernel will
+just bind to the fallback compatible. Iff differences are found
+in the future, the kernel can start to make use of the more
+specific compatible.
+
+-- Sebastian
+
+>  drivers/iommu/rockchip-iommu.c | 3 +++
+>  1 file changed, 3 insertions(+)
+>=20
+> diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iomm=
+u.c
+> index 4b369419b32c..f5629515bd78 100644
+> --- a/drivers/iommu/rockchip-iommu.c
+> +++ b/drivers/iommu/rockchip-iommu.c
+> @@ -1363,6 +1363,9 @@ static const struct of_device_id rk_iommu_dt_ids[] =
+=3D {
+>  	{	.compatible =3D "rockchip,rk3568-iommu",
+>  		.data =3D &iommu_data_ops_v2,
+>  	},
+> +	{	.compatible =3D "rockchip,rk3588-iommu",
+> +		.data =3D &iommu_data_ops_v2,
+> +	},
+>  	{ /* sentinel */ }
+>  };
+> =20
+>=20
+> --=20
+> 2.45.2
+>=20
+>=20
+
+--lszhpdxqfwkdo2zm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmZqMSwACgkQ2O7X88g7
++poM9w//Quf+iUHT1ho9F5H0znbElz82rmJuzS/FCgjZREXsvOOlDdO9WHuR42rU
+l7MZhQDNTSYuQ5ok+BbED5k26VuJf3KXdAU2k0guFceqY5kZiwJwq4HVEtUFeUqV
+ShNoJYdOKvLtlpQKgVPj9SBTNz63dazB0XigVFEwP6U4fSM5n8OoE/JtBWcGZBsp
+I22H5BHefpX7xVoG5d04lMM9EyOxeQToJ2Vveu7D7xMye8rEljBN+RHAnpUZ00dK
+svok25DuJKwkWEiIEmPHqJah6avsRr7/vzUz0494Ybz5MkFOFrPVwPfPp9Ge3DK6
+LIJ4YZtarT99Jz1kUWzzMS8Tls61CAp3CTxq8TrlFsUvRzqmdKMwy9r+TFaXaRHb
+klyFZh+s+qZmMyGnYyWlnKY4RWKbP8EvyPAdGh73rvgjvAaciy8ozDfp8wdEPp0W
+WgQ9hIFHPgqpvV+C3dYQv+QBe/ozOzZASrJtIec8PMozNXQcj8+xMfDhzM/k0sXi
+azp/EFcbg8AEuoNiXhJmfQBX3lr5Mgf+z3vLvTyST+MTPD9ebqp1CkaBdrHT66jI
+Agcf6OBhf8/BYIHTv5e7uFho09S/frrYXqskHJnazd/tckysU+jf//EryBDLOF77
+DCJbslCIkJ/jIfrX9BAKU+U+At3JN68xbB+Z1WOu5OoExUtLhO8=
+=mDX6
+-----END PGP SIGNATURE-----
+
+--lszhpdxqfwkdo2zm--
 
