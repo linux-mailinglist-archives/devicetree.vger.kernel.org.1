@@ -1,112 +1,85 @@
-Return-Path: <devicetree+bounces-74779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF3E7904809
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 02:34:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D60390482E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 03:14:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55E0A284AFB
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 00:34:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A989FB20EB7
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 01:13:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAAC3EBB;
-	Wed, 12 Jun 2024 00:34:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vONq4abH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D37A0A21;
+	Wed, 12 Jun 2024 01:13:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74CC6394;
-	Wed, 12 Jun 2024 00:34:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A79A4411
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 01:13:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718152446; cv=none; b=rtzf38vra4osJNruhXvKuaq2smXz7IVUJ47/Jz04BTw+rFoiWOIAMQ6Ixa5lvWo4nNyHQN0iM/nwHeCeSYMfZ/ImiWZqmkhI9yH4mA/RsRnIqrk/QOxotWyr9LA4MmCWTpdRc6ygkUTxoeKUu4aL0i0IXbkjraMMv51rEDz0FpY=
+	t=1718154835; cv=none; b=KWKSQOtvh+RXKkhUUEVuaRtrcA+GT+6UokUY7lQPhrRlLUUJRPwKomgHmqaInmVg6l/bbzDE24O1dxC9foa7cckUateCKZ4fO+646pRIiZ+e56IIiZmtKIOFZipcnspQmBA005gcW5oZ1zlrSHaKkqw9VsE+mLrzXTddnOg+9SQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718152446; c=relaxed/simple;
-	bh=5fRGuvJp6cBf5p4D5mJF23NkzpveK8jJGPPtUPoL47Y=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=qNMgf9HaGNJiNlJkxtmAYmAesmcbb9cADd52eDAyCSCuZDFqUYakrDs6ybvQQ2r0QsL96weFfjQ4YE7NJO0497xmTw3+hHKi8tQl3roZfg8to4fOepZBTNWvLV4vnW72Ofdh7hZ/y3wnzYiczlRryl/PdOkzV2AgOK9PD4z2EGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vONq4abH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92413C2BD10;
-	Wed, 12 Jun 2024 00:34:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718152446;
-	bh=5fRGuvJp6cBf5p4D5mJF23NkzpveK8jJGPPtUPoL47Y=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=vONq4abHtLrO1CV8n8jkL2JI7V/e8C71ZawuNB8izsThmZ7zeuBNf6L9pjUeYOb0L
-	 ABkkhSjNK1tGGBdcEQHF+QGGr0Boc3xPaNH4pwF0gf7uFwWoYnPcQEaTuwdROGl5lG
-	 76cXGQwCz2LHb0c4UDqX5k19r2FM7x0cdHoA/bq8tmU00FBoLSECTlNLrlhnxDsY9T
-	 r3d6Cg7iQfrVsoDV0MeUpKPiEDPvkcurn31SYc7xAQeHoTGMoMgkG7JqfFzjBE13c9
-	 4rM354UbjF2TpJsCOG0dG8Lou2GbSuhMEhWK4+EDi6nZHNJl1E9hEOfld92kQKqESx
-	 eMMDN65Z+ALkg==
-Date: Tue, 11 Jun 2024 18:34:04 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1718154835; c=relaxed/simple;
+	bh=ub1/fXsMjTFX2Ovapo7mFavi4RgXz6/VHnuW30sJjgA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=ayCpKUgIjlkVhZKiRkdKiJuKyDcvit+WriyArPXKJ3GIGHZmpr0KC6aBuKJp7ymEkR/HzVTqDvNm5o0te9PgGBJrs1A5g33bA3nAUHfuDQvQPhIv1CweC032jPh+dadubj0z0xpUw0mFhJxyWpTorEBOO4Ew+ltgU9OQSP0pmW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
+Received: from secure.fukaumi.org ([10.0.0.2])
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 45C1CUMf030131;
+	Wed, 12 Jun 2024 10:12:30 +0900
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>
+Subject: [PATCH v2] arm64: dts: rockchip: make poweroff(8) work on Radxa ROCK 5A
+Date: Wed, 12 Jun 2024 10:12:21 +0900
+Message-ID: <20240612011221.822-1-naoki@radxa.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240611122746.751-1-naoki@radxa.com>
+References: <20240611122746.751-1-naoki@radxa.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Danila Tikhonov <danila@jiaxyga.com>
-Cc: jonathan@marek.ca, krzk+dt@kernel.org, quic_khsieh@quicinc.com, 
- linux-arm-msm@vger.kernel.org, quic_rmccann@quicinc.com, sean@poorly.run, 
- dmitry.baryshkov@linaro.org, tzimmermann@suse.de, mripard@kernel.org, 
- linux-kernel@vger.kernel.org, konrad.dybcio@linaro.org, 
- dri-devel@lists.freedesktop.org, maarten.lankhorst@linux.intel.com, 
- daniel@ffwll.ch, freedreno@lists.freedesktop.org, 
- marijn.suijten@somainline.org, robdclark@gmail.com, conor+dt@kernel.org, 
- swboyd@chromium.org, quic_abhinavk@quicinc.com, devicetree@vger.kernel.org, 
- airlied@gmail.com, quic_jesszhan@quicinc.com, neil.armstrong@linaro.org
-In-Reply-To: <20240611223743.113223-2-danila@jiaxyga.com>
-References: <20240611223743.113223-1-danila@jiaxyga.com>
- <20240611223743.113223-2-danila@jiaxyga.com>
-Message-Id: <171815244421.3448243.12009673117592867975.robh@kernel.org>
-Subject: Re: [PATCH 1/4] dt-bindings: display/msm: Add SM7150 MDSS
+Content-Transfer-Encoding: 8bit
 
+Designate the RK806 PMIC on the Radxa ROCK 5A as the system power
+controller, so the board shuts down properly on poweroff(8).
 
-On Wed, 12 Jun 2024 01:37:40 +0300, Danila Tikhonov wrote:
-> Document the MDSS hardware found on the Qualcomm SM7150 platform.
-> 
-> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
-> ---
->  .../display/msm/qcom,sm7150-mdss.yaml         | 460 ++++++++++++++++++
->  1 file changed, 460 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm7150-mdss.yaml
-> 
+Fixes: 75fdcbc8f4c1 ("arm64: dts: rockchip: add PMIC to rock-5a")
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+Reviewed-by: Dragan Simic <dsimic@manjaro.org>
 
-yamllint warnings/errors:
+Changes in v2:
+- remove an empty line above "system-power-controller;"
+- reword commit message
+- add R-b tag
+---
+ arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/display/msm/qcom,sm7150-mdss.example.dts:25:18: fatal error: dt-bindings/clock/qcom,sm7150-dispcc.h: No such file or directory
-   25 |         #include <dt-bindings/clock/qcom,sm7150-dispcc.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.lib:427: Documentation/devicetree/bindings/display/msm/qcom,sm7150-mdss.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240611223743.113223-2-danila@jiaxyga.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+index b070955627be..3b9a349362db 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+@@ -394,6 +394,7 @@ pmic@0 {
+ 		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
+ 			    <&rk806_dvs2_null>, <&rk806_dvs3_null>;
+ 		spi-max-frequency = <1000000>;
++		system-power-controller;
+ 
+ 		vcc1-supply = <&vcc5v0_sys>;
+ 		vcc2-supply = <&vcc5v0_sys>;
+-- 
+2.43.0
 
 
