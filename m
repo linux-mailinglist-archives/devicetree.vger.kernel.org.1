@@ -1,130 +1,119 @@
-Return-Path: <devicetree+bounces-74899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59F62904F25
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 11:23:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4D8F904F29
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 11:24:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA805B2267B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 09:23:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 225011F22265
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 09:24:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84F0C16D9DF;
-	Wed, 12 Jun 2024 09:23:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B49EB16D9D0;
+	Wed, 12 Jun 2024 09:24:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="v6yfOjTO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qQRPbVTt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B825116D9CA
-	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 09:23:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F24B416D9CA
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 09:24:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718184215; cv=none; b=Br8mc5w5dAmxiCmNwTwiZmEXSkuhIeExg+izR8ufOR0/b6i1Y3eGRppUb5ssSNz3btGZHnkcIABIIXsKxOl5FbpUOzF99xxDpyKE1sfwEqPm/T2PoU908zI2SDs+5/16OYdF3+QvIXQUytzChdSV2GjgRPbf9xH1b8jw/ZwsYY0=
+	t=1718184269; cv=none; b=I1g8G0wMote27LqNP+OR4DcG37H6oWD2t7DgXR5/zlWEB3fJE6dosP+UOWU75cs0ZK4o59gVfv/JY19F8xrGt6DRf2H9BP7cgxedYq3kXIlSV0sWAvQo7S/I8ymta1AI+O9bmgCJ2ziSsNKt5gaT3AH/D22aV9qAeH8J3brhdkw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718184215; c=relaxed/simple;
-	bh=4yUd5bA1LWBRsOQX5++CUH943N4DPgrhrF/pWRTkR9I=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=csvYMOmWXf5C/F7EE5D1DUdclFrkXB9reyEKjeUkTD6sS5sKdF4PMchItXCVv5HMvvo7ypq8WsYdUfGu7yEVIZHYBaxvMBDslHShn67UEk6ux02x5Sp7Ucc6tB1XuCztc27rnccUpkuLTzgWwj26Vn4sx0/WMDjejTVaIjSDgwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=v6yfOjTO; arc=none smtp.client-ip=185.125.188.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id ECC7B41332
-	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 09:23:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1718184208;
-	bh=JIxr/ZZpdBfgox5qV/eIJHMIZ1MJnFcIJgd5fVOn7fw=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=v6yfOjTOz4fRmXsZt8G4wNxPSN65zpYtU8RLoq6obIPtr9nKAXGkjDA5HCDjg0adF
-	 jcS3myoZ+fbfj+XPDheDlprt+kM0Jv9qPm0E3BJRhqzLjD99XQmkkjnwgY1jY2n/DP
-	 E9ROanTZMVS9edHxZDbLhVuypdskl7giPzP6yTAVOa5z/Kg6WvKkIOt79O2et9TVcC
-	 PKkiMvAebyaf/Dcw0hbBQysInjDPL6PAHcmM7tpW+awQDpTXyACzJVpuzqrnmf86q6
-	 HtG9tOw6rQmkJ1gexfWfK9DwJztLVSYLQftc5S02P0dYxhZr0nSBwtO5t9dlv/KTkG
-	 UEHPWrjObmsEg==
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4406476507cso18671841cf.3
-        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 02:23:28 -0700 (PDT)
+	s=arc-20240116; t=1718184269; c=relaxed/simple;
+	bh=F5iIiWNQaxmakp3x8MsUA88qNRzfzIm/B4zfOmd6TmI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Jh5hBkCgQzeSBRXH8B2HeSFMkqLpYjmT9fomAhrrV90yro+QtucgJI/GcXZZF3lyfBDAdso0e6Sg1stua9fkWKjmGx6qnqlHXdJ6+n9V1WeADmvoPrbapJw+eJxGznkeNWQpp+5YDRQ5ee5thNdE1k4blxmygurpkf6D2+Aqlkc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qQRPbVTt; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-52bc335e49aso2702571e87.3
+        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 02:24:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718184266; x=1718789066; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gTijVW/c0PheiETrLzEjcgWKlXvandGPfKwnTsYZzSY=;
+        b=qQRPbVTtutMDZqpgZ0Cvtw1XfDbR6n++7JyJH55s9FSNFM/K+64HrOtR9YD5XSnG3H
+         c3wvWBaqPgSqe8Ib27+toobXDPm9WBybUtH9Jg61QOh7BfQ4sXWWhbanaGLkXjs+FJX/
+         i5NYOouA6ZSc4zKothaK3ex9WtvkuH4EkAsO5vC7WddxYVNue78IY8Vg7Ipsw0RBn7t8
+         HQwKW1gh6Tzk5Lq7U5cZClJR/yJiUvV2PBEtH8oO0Pc9wDFd2Nk5GvyTsnIcshFgNlUk
+         /r+VzyFt3Iretm3lscAxgBho+a9dHpLB5M0EOa5hWAwN3sSIOmXbtEyp/wiAGc3vhMNr
+         7BbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718184206; x=1718789006;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JIxr/ZZpdBfgox5qV/eIJHMIZ1MJnFcIJgd5fVOn7fw=;
-        b=huPpcKgxf/+RfQv+rpIwfbpcRMN5PWZ/4iOY2gLRzblH7e2CU4DoacdjaoaabWGf2f
-         LH/UKEMKmBWefnThRfPFr4yQdcFzQsDQxqN3Kg3tu67x8PskAs4U6NpC55FMOGyE2+Lu
-         74k9KcCZAM4HPnwzPXgl/426wiQJOS0yrBMR0FvzxUPK6pYAiTTvB+HU3n+ES0dyjPvX
-         PQxHtFyfC6DIr3a40AjnhVo/Pm/rJlHc4Jz0Pua9u1Cf1kFcBRIGo3hORw6N7xjmM/o0
-         oMIdoCOpxaEwWI1PWbp9TGcdY70LsWcYl6bO8JyObH/iSEhBqPLEsXziuWa3jowvVzRt
-         2VhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXg62yMBgXg2I43ctXp8+MXBolKX2oqUeM2usa52BwLGw8QiYXeuVUsA/A99dZuzxxdYTj4IpOjsJ5Y+G3scdQsSk2KqxZf74DXBQ==
-X-Gm-Message-State: AOJu0Yy2mup8dm0Cs5Eq0xjiyDnFRUGewc1o/2HSx9CG6V/izQzPy2KX
-	NxfSSG8daYSWVb/PEN6HxkcuCGxtkOX2PVYZa/JfQZTrxkaHHrHzDFVxS8I83YgJjEuAPsuBrpC
-	a2hLSYD9UcIDQuMHy/V7uXOSlRgfKwh43FS1NHhpcjKPmC8bCwfOfFRXETWmcl1HAI8mZtt82r9
-	vS/+rkletnrtx9Gjya5DKnyjHJg1sq4+jhkq00j/ZcHXuPThg6lw==
-X-Received: by 2002:ac8:5981:0:b0:441:4a7d:4b9 with SMTP id d75a77b69052e-4415abd77e5mr18363171cf.15.1718184206034;
-        Wed, 12 Jun 2024 02:23:26 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGJjys1SrlEEOXzrogJ4mBiejM8H3xGLEYRak+OtJId/AecySqXJCViAxtmj2YQLsOj6rhO/lEl1VrhIpEHybc=
-X-Received: by 2002:ac8:5981:0:b0:441:4a7d:4b9 with SMTP id
- d75a77b69052e-4415abd77e5mr18362891cf.15.1718184205625; Wed, 12 Jun 2024
- 02:23:25 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 12 Jun 2024 04:23:25 -0500
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20240610-reenact-amicably-bd088724b3cb@wendy>
-References: <20240610-vertical-frugally-a92a55427dd9@wendy> <20240610-reenact-amicably-bd088724b3cb@wendy>
+        d=1e100.net; s=20230601; t=1718184266; x=1718789066;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gTijVW/c0PheiETrLzEjcgWKlXvandGPfKwnTsYZzSY=;
+        b=A5dn+TyPV3XwjG8r7Q/4YTI9j7cki7U4MXBvUDPJYPyjnL3luNjaFrFu9qxaC68Uhw
+         yCvAyq9LPhXhVB5ceO/DtTiM9oJ1JlMieOOR0o7JQ/5SDXAAc7Nm7RJiarRoopCvNmkz
+         3HA89sFf68CAIvRO4kL9FRoRGfc1tn4X3KQ3Nlo1jOuP1zkRWqPAlby4UE3jho2rXsbi
+         LB7eocOw5/Uu/XedbTdk34tywRem3G1mv/0rlQ2duFh6XPstVCvI1g5ZMr4fBvUrfUYv
+         nbdnO9EeAbQydxPUVv7N5VNUh/zlWhkc8jNACR+IupkjGKtS1UB0QPvTeRidTgBY9H0h
+         tKmg==
+X-Forwarded-Encrypted: i=1; AJvYcCVbIpUPZbf6LG894JxIPHksS4e8raW0tNxyyUkN2zihcVHgm9Sb9S90Thc+k1OTqrlPyRg5a9KFcjlg9Q8odJiIX3YZa+Qu5oisYQ==
+X-Gm-Message-State: AOJu0YwPuNHx+JRemW1dXAx3Fh6HGfkjCCC3tGSyENsyQu4hxzYKDvTY
+	j9a/nuzUGu4xKkygaPIuxM7p6TeGDxnHc4laxzX44JiGGr3hUAbjJsJfAUzBoeU=
+X-Google-Smtp-Source: AGHT+IFqaCEnIiWKhTWBfjOSEjjiN9fP7XZI9ln5o7b24/sAj4EADCaVdyrAYctm8l1H4IcbPLFHgg==
+X-Received: by 2002:a05:6512:1245:b0:52c:95d1:87ae with SMTP id 2adb3069b0e04-52c9a3b7bffmr1099334e87.12.1718184265932;
+        Wed, 12 Jun 2024 02:24:25 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52c82faf1b7sm1623806e87.130.2024.06.12.02.24.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jun 2024 02:24:25 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 1/3] arm64: dts: mediatek: mt8365: drop incorrect power-domain-cells
+Date: Wed, 12 Jun 2024 11:24:19 +0200
+Message-ID: <20240612092421.52917-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Wed, 12 Jun 2024 04:23:25 -0500
-Message-ID: <CAJM55Z8UH+pfOoObDvr40RAB-4th=n6Ma9de=Q6ghRw0GvhtFA@mail.gmail.com>
-Subject: Re: [PATCH v1 2/5] cache: ccache: add mpfs to nonstandard cache ops list
-To: Conor Dooley <conor.dooley@microchip.com>, linux-riscv@lists.infradead.org
-Cc: conor@kernel.org, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Daire McNamara <daire.mcnamara@microchip.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Samuel Holland <samuel.holland@sifive.com>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Conor Dooley wrote:
-> On PolarFire SoC, for performance reasons, we want to use non-coherent
-> DMA. Add it to the match table with the non-standard non-coherent
-> cache ops requirement.
->
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+The top SCPSYS node is not a power domain provider.  It's child
+"power-controller" is instead.
 
-Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> ---
->  drivers/cache/sifive_ccache.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/cache/sifive_ccache.c b/drivers/cache/sifive_ccache.c
-> index 6874b72ec59d8..277e66a61efdc 100644
-> --- a/drivers/cache/sifive_ccache.c
-> +++ b/drivers/cache/sifive_ccache.c
-> @@ -122,6 +122,8 @@ static const struct of_device_id sifive_ccache_ids[] = {
->  	{ .compatible = "sifive,fu740-c000-ccache" },
->  	{ .compatible = "starfive,jh7100-ccache",
->  	  .data = (void *)(QUIRK_NONSTANDARD_CACHE_OPS | QUIRK_BROKEN_DATA_UNCORR) },
-> +	{ .compatible = "microchip,mpfs-ccache",
-> +	  .data = (void *)(QUIRK_NONSTANDARD_CACHE_OPS) },
->  	{ .compatible = "sifive,ccache0" },
->  	{ /* end of table */ }
->  };
-> --
-> 2.43.2
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+---
+
+Changes in v2:
+1. Reverse patches.
+---
+ arch/arm64/boot/dts/mediatek/mt8365.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt8365.dtsi b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
+index 24581f7410aa..455c2ae3b30a 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8365.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
+@@ -302,7 +302,6 @@ syscfg_pctl: syscfg-pctl@10005000 {
+ 		scpsys: syscon@10006000 {
+ 			compatible = "mediatek,mt8365-syscfg", "syscon", "simple-mfd";
+ 			reg = <0 0x10006000 0 0x1000>;
+-			#power-domain-cells = <1>;
+ 
+ 			/* System Power Manager */
+ 			spm: power-controller {
+-- 
+2.43.0
+
 
