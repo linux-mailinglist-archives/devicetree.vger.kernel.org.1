@@ -1,153 +1,273 @@
-Return-Path: <devicetree+bounces-74804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A577904A89
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 07:03:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFE72904AAC
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 07:13:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 234852844C9
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 05:03:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6B9C1C23812
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 05:13:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E87CB2BAE3;
-	Wed, 12 Jun 2024 05:03:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB8E82D057;
+	Wed, 12 Jun 2024 05:13:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="IfXUYS1f"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Mh25kMJ9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11olkn2017.outbound.protection.outlook.com [40.92.19.17])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 107D22232B;
-	Wed, 12 Jun 2024 05:03:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.19.17
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718168583; cv=fail; b=egF/1ykbppYiezBE6oUzAiSqvkKFfr1716G/zf4ouX3Cf7bQtgqSShy53+e7urB2F5jjuDFcsc/z0kzpXm2qAy3VuEVGPHRGnH6Rrc1vyV2a6qf/YXwgp3rSZsKqLPTqKGCUX1iwewbB2Kskohm9wFKwySFDTWmCXgXjXH9J3qM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718168583; c=relaxed/simple;
-	bh=u9Uo6Cu2N/DDSFFN/1DvIYDSAcAtNrjvCiqYkt80HCU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=I6PUzIQyvcFMwEhGBMKr/NhHRf2kZPJtdEVIST2WT0hRIT4rUhL3DNmu2T+NiK/cY/HygM6d8FkAEeNwhPiQ3Ma/E3eMEJVoVNIywOHMFFSgvou33y5xLzrSFGea6t7XXjRQ6QensWN/NIB+bs6q3+dwg0rHQvBeetMcIKlvSTk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=IfXUYS1f; arc=fail smtp.client-ip=40.92.19.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZLnGJSefuzrgTlfkjvRMhIPM/vRf5qES2BV7dAo4679D7W8ql1p1c8CNdj2Z0wboMTc0blyUiDSZOxGxNyIfoCqkZVFs7Unuf3M/pyCgECoPSt9nucB4aV4bhraLewqVy8daLcOLSH4SSSYWQPSaj1ZpPpFenHfaJfsIZG/ujEsLTAwEMwXoGoy6VwgjR7bH6eDtBbD6NORpORwwSqpT7ly4/6PZ9Mn5xDCrfRWyQ/ROrhynuKnWatdEJ/krjVghx4S5QRnYd43WPvrm9vl8qBf8/FtZecFCbbghwpQw+xyQn13THRf/MfqA+eYjT424fvxVsqc84o9FzTtLQlNiRA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GFKv6QnuP10CTCd02udQUEEL9HKsaIiLGoiRE/5xQLY=;
- b=leEQFnJiemsYuHvsfV5jm8p44iev88PxhrVqwMGB1UQ1RUHmpshR0ci5uWnXkyzp6luuUCuAfnocsoQvS9BmOTKAgqFoc1CUijOy+YTvdaGit7FmhnZt9mcHs/kLVZBnEHWAGatqa7R4J7pnH3W2gxdf/NU1tXOkCaW5rtvTY6exLGDDLKYQMQ2Yg1P67KvSPqRZNfFCDZ5G0iJbd/+93iFhy82RMUhx9UP33Wqw+673j+46FEGPSIXC/qFB8Dsiq0/ZnlLmkE66XfaIhjvCnGsxa9Tmcw5MZuqyyhdUwwwqaRHwr5ucNKjaoyNIVTx8QCyIVWGB0jGB9LaLYFwGnA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GFKv6QnuP10CTCd02udQUEEL9HKsaIiLGoiRE/5xQLY=;
- b=IfXUYS1f2WZk+/r7PHBMw/UP7e5xkA1BIyufpGRmZkLoUEC6JKhjMYlbjOW/kiUa+L4hX22rKFAabDJdKtMg6zL71mk1UPzUQGOQklcWfU70/AX1Q7OmlsrRSNxDJsoGDQXCvp2rWEi7+vsYeXEi0Q+9ypQOPOr0UwM26Q8G2LTa/H4I2uYT9Y9QBkwLNGMaQ6oV61ATutgCSauMCZtS4Sm585IkmFA26AM9ikF0CYcTYCqf/5kBkAgDG6CtmhI5p39enO2PrPk0HzjfLKb6DjeRK8g7HBBLNcE7dIdGjUhBxrz1igdzUUTc7XkhC9A4lYQHd+fAypeE2WEwxsYjvw==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by DM6PR20MB3347.namprd20.prod.outlook.com (2603:10b6:5:2ad::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.37; Wed, 12 Jun
- 2024 05:03:00 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149%6]) with mapi id 15.20.7633.036; Wed, 12 Jun 2024
- 05:03:00 +0000
-Date: Wed, 12 Jun 2024 13:02:31 +0800
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Jisheng Zhang <jszhang@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Chao Wei <chao.wei@sophgo.com>, 
-	Chen Wang <unicorn_wang@outlook.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, Inochi Amaoto <inochiama@outlook.com>
-Subject: Re: [PATCH 0/2] riscv: sophgo: add pinctrl support for cv1800b
-Message-ID:
- <IA1PR20MB49530084D4517A42CE0556F6BBC02@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <20231113005702.2467-1-jszhang@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231113005702.2467-1-jszhang@kernel.org>
-X-TMN: [TqeGbXL6tm4W0h2yUT2cDn7PKlfwU05QN4WwpEP0mgo=]
-X-ClientProxiedBy: PS2PR06CA0005.apcprd06.prod.outlook.com
- (2603:1096:300:56::17) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <sbxcazj7ymzvzrwrsmfnq3vhasrpsrkqpvkitarxld56uu67o3@bsva6u5ctyih>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 825E928DD1;
+	Wed, 12 Jun 2024 05:13:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718169183; cv=none; b=IFyiYwa6ADj98cH+fn5a4FCBYfUvSw6hl32W9IPknTL5AnB1oe+GscJKzJZVf9+44Jqzoa4pntozkIjW8z+XBO+6xfjs6iSK2t6H47ewNG6T23JVmZHbcCNCP+2i9mz1aTamR77tCsBefqKhWjr2mHCydwu7vujr92AqaepX2IY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718169183; c=relaxed/simple;
+	bh=QuKgoKhkRC9lkLuEWouInKhzEjvQYEbbMHXsX9D/WKw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=HsEj1cpo7poB+OHT06jEssmpFBFG6q3/HMtgrfNkkL/sn9Zvtc8oZCFA1FCNXl3uQ5IlR8UMf6VPTGJqjZNgtvd2is6YeYXm1x2/X7PaB8PNdDqSM8msfgbZFC1k9VMNmGV4qj0Ri9RLg5a+BZH9Ih6Y9UF5+Tb6O5kywQgRkss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Mh25kMJ9; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45C5Cm6n113921;
+	Wed, 12 Jun 2024 00:12:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718169168;
+	bh=xVJ3m/Bj+QeP46W8FNEFQooN15bLt4kkNLLkhHLR5og=;
+	h=From:To:CC:Subject:Date;
+	b=Mh25kMJ91tnTdBFSIr6+9OWYsFlFSTizQbkAaIfXZXJbTKofRuJi7t580JWk6yi+1
+	 3tKi8iDIBE47sS9yuBU2l04bolVFPSKHqaX+G/MOZwmXjG8U7/IKQOetrZFK4StwVL
+	 msyAFNyQaHK/O8KX64kuzY1Bc6XWYlQGTPvHpAZ0=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45C5CmnR046932
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 12 Jun 2024 00:12:48 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 12
+ Jun 2024 00:12:47 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 12 Jun 2024 00:12:48 -0500
+Received: from localhost (jayesh-hp-probook-440-g8-notebook-pc.dhcp.ti.com [172.24.227.55])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45C5Cldo072964;
+	Wed, 12 Jun 2024 00:12:47 -0500
+From: Jayesh Choudhary <j-choudhary@ti.com>
+To: <linux-kernel@vger.kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
+        <robh@kernel.org>, <j-luthra@ti.com>, <u-kumar1@ti.com>,
+        <j-choudhary@ti.com>
+CC: <kristo@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v2] arm64: dts: ti: k3-j722s-evm: Enable analog audio support
+Date: Wed, 12 Jun 2024 10:42:46 +0530
+Message-ID: <20240612051246.41117-1-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|DM6PR20MB3347:EE_
-X-MS-Office365-Filtering-Correlation-Id: 16d8bc40-7f13-47de-81ee-08dc8a9cee32
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|461199020|440099020|3412199017|1710799020;
-X-Microsoft-Antispam-Message-Info:
-	9EHfD1X1xfAWbe2AsulPaqyY87rXtTOizmyqIS5mAL76E5X5VD6ORIrgW2z8eyUON5bEIVTkSMOxTn4hCIQkO5OTnzIu0h1JD8W9oAuOMOaVIhMYOQ5HnrVbuQR5oCbbyeTXKWT32ycnzGRIrDveHTqYbZL1uFuyZAF7PrXBgPnOFns03lf7QgrRPyP8a+GzBd4NaWXLXo5eOvuiOhtDhOyWY+KOJMawcLo8RqtPxIW1J/KvTaAlv9zfkmxnGsOR7YxzQvLuXJ1Lvq9mn7zF7hIK8Dwx3lkD6ylkbXEY4HlsFHxpKj+wIcliaCakyKtkkceblsbS+8YoZ/ORjV7Mli0J7p2sxJAWSl0ipKXEAZ0FQn1qbGS23P4fMQL9b2ogATZicBfw8dtTF2SAEQiRHOtI46iVUhrQfmWnWPaEbvQ/O7pndkVddjlF44t+oeul7GFNuR5pEuoO5gwQi9/113GyTOj1KCM3LVQx9/XfMkEnzBOX0mNdmLJh36otPvxauKQsv1rgUP40BZquKqMPoepgzGBwxcnG/jqVDSIMc22QDMjguJInC2B503fLM2MWs9Fu9IkoZS0+8Y0RobL6M6FTUMWRleClbFHOXOYdUEiX9oLJT8N1fhlxPKzgQsDx
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?y6Fx9icOfE0HBrO3lVB6yTxHcBcE6iVyRDcuG7bzgITNTVszNZBfmG/RfJPJ?=
- =?us-ascii?Q?xVfznfZJWU6D74iH26zIiFaaeM9q+J0pq7Miws8mzb4o3ct2ekvgwhIoX5kv?=
- =?us-ascii?Q?CJkZUIWnrFLb5d/ze0jUldVDo+pAhLdq0Aac2a66SgN79B3chXSSyKFUwZEr?=
- =?us-ascii?Q?GGqvueKQmQB2wKjlws/98oes1KrApCJGQ+oH2mE4C0ix/X9PmB8eWRpLBl6i?=
- =?us-ascii?Q?LB0GCpG1vZ8cBnOdBqYrnTHI3sAW0TUK+qn5wN9eY2Fjqnrr8p6YFioP2bQ2?=
- =?us-ascii?Q?4u90KMSNpSw55+WQ5vrEo3wvai94Bp89ydoy3RZyflrfxdEQNad64iplMRik?=
- =?us-ascii?Q?Jf9AHbuAk4y7XlLwBqjcZ9tBSeFhmImyZvouEwV/XEtmm8gziBZHZ9q2+OFX?=
- =?us-ascii?Q?u+T31DCtFlVtjU/5DLvuG9qu3SvTI8oga7Akhec4V6jpoB27KCmy2fODRyIJ?=
- =?us-ascii?Q?lzhpDLB0dH0otZQ/StNLV64BnZy+xU4Lt9nGkDsJvdaaNrxyro/OYxGYDva6?=
- =?us-ascii?Q?3QN6+bzHCb6CwsFRAx6deiuxUOxLfVLKnk15AQEwzfSQqeBJQrvfpHrgTyBs?=
- =?us-ascii?Q?kDO6ta64uxstgFXJFElOP1hmQ2S7GXe9KDef2rax99Kq5N6Beep3Y+N/o3kh?=
- =?us-ascii?Q?J39Ik07YR0fSpG3WrjGvFR6dLrTMMZlmxB9wbXIEEOZwtnk8D4nuq3eENgbu?=
- =?us-ascii?Q?bwScZdjBKrDIX52UFFoch4rmuz93WrRysE56+QbeF2+YQk+2QT6pmyvcMrxB?=
- =?us-ascii?Q?7q7W5nfJB3/cdZOyAkCfi40vGFg8Wad3VskdOnc0oSXPqFi1UUGVn+uNv1Qk?=
- =?us-ascii?Q?o9HwQuIgXihvOA1y/73SLLUzA29JIt0S6/I4YNDQXmtt1/L5CXH4yhks3fPH?=
- =?us-ascii?Q?851jqlySwgnzEbsFvcGiptoc168DlQvgkuXiDT13M1IivDgtr8TegIv/uleh?=
- =?us-ascii?Q?AeCHAccv2S4PxlEe0IwVZxS/3pdZoL/8UW0ALTqCbAaGKgaJaDNBfUbR6Otv?=
- =?us-ascii?Q?whSAYODyU1Qbtdx+AESKOtLWnKk7h6OQc57ExZfLyHoc9buFNhZiML56Grcu?=
- =?us-ascii?Q?A8fjWjsHfMPEjt8EHH66f3U3YqopB9Q46edhZTSc2y5eYqlYKzmZfjWI3RVd?=
- =?us-ascii?Q?TVhGTJ5GvtqDFdLuqbJNnqYopDYdVqhgHPxF9Rcc6MkjxXxZXf2vCpXXWXAY?=
- =?us-ascii?Q?WRIf8u1+uxwIKlgkXIgB3peLq2pqb2x8ziRZ0EWst6OcD3bypzUZKs3LEiJc?=
- =?us-ascii?Q?9vEYAyvi8+SANxYEILUP?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 16d8bc40-7f13-47de-81ee-08dc8a9cee32
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2024 05:02:59.8716
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR20MB3347
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Mon, Nov 13, 2023 at 08:57:00AM GMT, Jisheng Zhang wrote:
-> This series adds pinctrl support for cv1800b reusing the
-> pinctrl-single driver.
-> 
-> Jisheng Zhang (2):
->   riscv: dts: cv1800b: add pinctrl node for cv1800b
->   riscv: dts: sophgo: set pinctrl for uart0
-> 
->  arch/riscv/boot/dts/sophgo/cv-pinctrl.h       | 19 +++++++++++++++++++
->  .../boot/dts/sophgo/cv1800b-milkv-duo.dts     | 11 +++++++++++
->  arch/riscv/boot/dts/sophgo/cv1800b.dtsi       | 10 ++++++++++
->  3 files changed, 40 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/sophgo/cv-pinctrl.h
-> 
-> -- 
-> 2.42.0
-> 
+The audio support on J722S-EVM is using TLV320AIC3106[0] codec
+connected to McASP1 serializers.
 
-Hi, Jisheng,
+- Add the nodes for sound-card, audio codec and McASP1.
+- Add hog for TRC_MUX_SEL to select between McASP and TRACE signals
+- Add hogs for GPIO_AUD_RSTn and MCASP1_FET_SEL which is used to
+  switch between HDMI audio and codec audio.
+- Add pinmux for MCASP1 and AUDIO_EXT_REFCLK1.
+- Add syscon node for audio_refclk1 to set the enable bit in
+  CTRL_MMR reg and select the parent clock for the external clock.
 
-Could you rebase this patch for the latest kernel?
+[0]: <https://www.ti.com/lit/gpn/TLV320AIC3106>
 
-Regards,
-Inochi
+Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+---
+
+This patch depends upon the bcdma driver fix posted upstream:
+<https://lore.kernel.org/all/20240607-bcdma_chan_cnt-v2-1-bf1a55529d91@ti.com/>
+
+v1 patch:
+<https://lore.kernel.org/all/20240611082820.17442-1-j-choudhary@ti.com/>
+
+Changelog v1->v2:
+- Fix dtb warning for pin-muxing
+
+ arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 121 ++++++++++++++++++++++++
+ 1 file changed, 121 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+index bf3c246d13d1..426ae3e8a839 100644
+--- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
++++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+@@ -105,6 +105,16 @@ vdd_sd_dv: regulator-TLV71033 {
+ 			 <3300000 0x1>;
+ 	};
+ 
++	vcc_3v3_aud: regulator-vcc3v3 {
++		/* Output of LM5140 */
++		compatible = "regulator-fixed";
++		regulator-name = "vcc_3v3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-always-on;
++		regulator-boot-on;
++	};
++
+ 	vsys_io_1v8: regulator-vsys-io-1v8 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vsys_io_1v8";
+@@ -122,6 +132,35 @@ vsys_io_1v2: regulator-vsys-io-1v2 {
+ 		regulator-always-on;
+ 		regulator-boot-on;
+ 	};
++
++	codec_audio: sound {
++		compatible = "simple-audio-card";
++		simple-audio-card,name = "J722S-EVM";
++		simple-audio-card,widgets =
++			"Headphone",	"Headphone Jack",
++			"Line",		"Line In",
++			"Microphone",	"Microphone Jack";
++		simple-audio-card,routing =
++			"Headphone Jack",	"HPLOUT",
++			"Headphone Jack",	"HPROUT",
++			"LINE1L",		"Line In",
++			"LINE1R",		"Line In",
++			"MIC3R",		"Microphone Jack",
++			"Microphone Jack",	"Mic Bias";
++		simple-audio-card,format = "dsp_b";
++		simple-audio-card,bitclock-master = <&sound_master>;
++		simple-audio-card,frame-master = <&sound_master>;
++		simple-audio-card,bitclock-inversion;
++
++		simple-audio-card,cpu {
++			sound-dai = <&mcasp1>;
++		};
++
++		sound_master: simple-audio-card,codec {
++			sound-dai = <&tlv320aic3106>;
++			clocks = <&audio_refclk1>;
++		};
++	};
+ };
+ 
+ &main_pmx0 {
+@@ -202,6 +241,21 @@ J722S_IOPAD(0x0130, PIN_OUTPUT, 0) /* (AG26) RGMII1_TXC */
+ 			J722S_IOPAD(0x012c, PIN_OUTPUT, 0) /* (AF25) RGMII1_TX_CTL */
+ 		>;
+ 	};
++
++	main_mcasp1_pins_default: main-mcasp1-default-pins {
++		pinctrl-single,pins = <
++			J722S_IOPAD(0x0090, PIN_INPUT, 2) /* (U24) GPMC0_BE0n_CLE.MCASP1_ACLKX */
++			J722S_IOPAD(0x0098, PIN_INPUT, 2) /* (AA24) GPMC0_WAIT0.MCASP1_AFSX */
++			J722S_IOPAD(0x008c, PIN_OUTPUT, 2) /* (T25) GPMC0_WEn.MCASP1_AXR0 */
++			J722S_IOPAD(0x0084, PIN_INPUT, 2) /* (R25) GPMC0_ADVn_ALE.MCASP1_AXR2 */
++		>;
++	};
++
++	audio_ext_refclk1_pins_default: audio-ext-refclk1-default-pins {
++		pinctrl-single,pins = <
++			J722S_IOPAD(0x0a0, PIN_OUTPUT, 1) /* (N24) GPMC0_WPn.AUDIO_EXT_REFCLK1 */
++		>;
++	};
+ };
+ 
+ &cpsw3g {
+@@ -277,6 +331,12 @@ &wkup_i2c0 {
+ 	bootph-all;
+ };
+ 
++&k3_clks {
++	/* Configure AUDIO_EXT_REFCLK1 pin as output */
++	pinctrl-names = "default";
++	pinctrl-0 = <&audio_ext_refclk1_pins_default>;
++};
++
+ &main_i2c0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&main_i2c0_pins_default>;
+@@ -301,6 +361,41 @@ exp1: gpio@23 {
+ 				  "PCIe0_1L_RC_RSTz", "PCIe0_1L_PRSNT#",
+ 				  "ENET1_EXP_SPARE2", "ENET1_EXP_PWRDN",
+ 				  "PD_I2ENET1_I2CMUX_SELC_IRQ", "ENET1_EXP_RESETZ";
++
++		p01_hog: p01-hog {
++			/* P01 - TRC_MUX_SEL */
++			gpio-hog;
++			gpios = <0 GPIO_ACTIVE_HIGH>;
++			output-low;
++			line-name = "TRC_MUX_SEL";
++		};
++
++		p02_hog: p02-hog {
++			/* P02 - MCASP1_FET_SEL */
++			gpio-hog;
++			gpios = <2 GPIO_ACTIVE_HIGH>;
++			output-high;
++			line-name = "MCASP1_FET_SEL";
++		};
++
++		p13_hog: p13-hog {
++			/* P13 - GPIO_AUD_RSTn */
++			gpio-hog;
++			gpios = <13 GPIO_ACTIVE_HIGH>;
++			output-high;
++			line-name = "GPIO_AUD_RSTn";
++		};
++	};
++
++	tlv320aic3106: audio-codec@1b {
++		#sound-dai-cells = <0>;
++		compatible = "ti,tlv320aic3106";
++		reg = <0x1b>;
++		ai3x-micbias-vg = <1>;  /* 2.0V */
++		AVDD-supply = <&vcc_3v3_aud>;
++		IOVDD-supply = <&vcc_3v3_aud>;
++		DRVDD-supply = <&vcc_3v3_aud>;
++		DVDD-supply = <&vsys_io_1v8>;
+ 	};
+ };
+ 
+@@ -384,3 +479,29 @@ &sdhci1 {
+ 	status = "okay";
+ 	bootph-all;
+ };
++
++&mcasp1 {
++	status = "okay";
++	#sound-dai-cells = <0>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_mcasp1_pins_default>;
++	op-mode = <0>; /* MCASP_IIS_MODE */
++	tdm-slots = <2>;
++	serial-dir = < /* 0: INACTIVE, 1: TX, 2: RX */
++	       1 0 2 0
++	       0 0 0 0
++	       0 0 0 0
++	       0 0 0 0
++	>;
++};
++
++&main_conf {
++	audio_refclk1: clock@82e4 {
++		compatible = "ti,am62-audio-refclk";
++		reg = <0x82e4 0x4>;
++		clocks = <&k3_clks 157 18>;
++		assigned-clocks = <&k3_clks 157 18>;
++		assigned-clock-parents = <&k3_clks 157 33>;
++		#clock-cells = <0>;
++	};
++};
+-- 
+2.25.1
+
 
