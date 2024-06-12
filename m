@@ -1,171 +1,153 @@
-Return-Path: <devicetree+bounces-74803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33198904A0D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 06:35:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A577904A89
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 07:03:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9400AB234C8
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 04:35:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 234852844C9
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 05:03:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EE17374CB;
-	Wed, 12 Jun 2024 04:35:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E87CB2BAE3;
+	Wed, 12 Jun 2024 05:03:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Af+vj6BW"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="IfXUYS1f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11olkn2017.outbound.protection.outlook.com [40.92.19.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7EE22C697;
-	Wed, 12 Jun 2024 04:35:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718166913; cv=none; b=ZuwWALIrAIsHZMQdSbFc4H70G5ios1zVr1/e6ClLwMOaT71xxA4cU66ftmys1/wE93Phme7apqqM+nyJ0jshiY9vbuyWi8pylwKdHkZeCAsKg//2U1b5mVf/a9YWERamyw+l/yeph92BEOqs03WYM0xyvQh2Hps0eqZYxR27P5k=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718166913; c=relaxed/simple;
-	bh=ue26OFhLv6t999/EBCasyGcLCXckFy5Jpdpv06rKJCA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oGTQBr6plde5noO278VwJ0J3m7P2Lobgz1VfnBj2OgtBI6qMfhkiX5iKTwdHxGWFRGKNBBYeyGXC2piTDOBAazMhtKw6U0F/1AGUumdW6PSMX6ufStTm5Ov9lS/0pfuDWX2+qg0VX+Z8ll1O/P06PLO0SXXGA4V0u1+xNk7MibM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Af+vj6BW; arc=none smtp.client-ip=209.85.210.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-6f980c89db8so2054358a34.1;
-        Tue, 11 Jun 2024 21:35:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718166911; x=1718771711; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EBAtrRw3IsjVN4466JhOY7FCejNziv5PE0AxDPMJel4=;
-        b=Af+vj6BWjOTqzrDpE6qVJXrdXZhuZcjIzne4gCIc4cQmzrbF14Cd34wkbqlyFDz6+V
-         QFaGAu+p6OOJGzJTLX8huPjh2UJNpUYrZs8TzW7twU3QkgBy1swAa/DQFJeVBmI3uH9X
-         Ndossblgcij+D6hnm+WGuTzqQ81L9xFdJsaY9JTKEEOS5P7TWgZBXoiHsHpecv9/XrdL
-         gDGCO2KEWM3nH6zvPpihUlo4uN0sENlkFs2o0TxdarRcTH9Lj35QGdhkrMQ9spae9g+q
-         XAaTI8mAPtvW4lCvJioDAso+ddR8j7QezIV72eDC8ozq/JpMHDZQEjC2xCDj6RW+nwa1
-         JkxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718166911; x=1718771711;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EBAtrRw3IsjVN4466JhOY7FCejNziv5PE0AxDPMJel4=;
-        b=VBTHjGTc103+r/dNQ0d/UmTkFoUvaWyKFbVlR5Ba+4iyYqc4hfiD10UOjn+1AL/7dA
-         azq7/V0UfXPz86qq/GquhVB1lmO9XmnvuGtSV0ipjaH5VAbMKRFjusnSuoSokSBkQkpB
-         zJT4AMQNNhxmou8yCgDFi6iAVZb1KNGz5sAXugg+Xh48rU3UTStNqQxBmM/0NEVGMo5/
-         4yIFjyr3qsifhRdppNRIz4TvPJGntgkWP1aCYuK34wk2vEJThfvQcl66NJRxF32VlP24
-         1oIoQSTSBvROLz+tvvc1H2PJaCDeZ0sSDql+d1Tk2yCqaTdkw+71zlT5Pd07fiNRP75q
-         tguA==
-X-Forwarded-Encrypted: i=1; AJvYcCWhAujZ6D+vDltTpl821Azxf+M7yE1phUQubsrrCnS9XJuuTukrfX03RcoCl2/1/iutMpUh1x/ToYwCAzvoNyRfpF63URW44pqI//7OU5siuTZ+ROuzlHIlWYbROmSlltY9DN37iNvtUw==
-X-Gm-Message-State: AOJu0YzK4HMZQl7gnXO/2ftS1Gju4Jj2bQZsId2sPTuWfFq3SvAI0HkT
-	4iqD3YYy3JQUxYj5XFRkQ9J/QjSFc2IDsoJT8akSq4PtDwl/q6CU
-X-Google-Smtp-Source: AGHT+IEkBZAViksldFhdGgOs9b8r6qLPy8cm7BY0Le7mrdkX1xXzmFBIocpy1+EtnriZdKxr01utIg==
-X-Received: by 2002:a9d:64cd:0:b0:6f9:60e4:5312 with SMTP id 46e09a7af769-6fa1bf86359mr721799a34.21.1718166910686;
-        Tue, 11 Jun 2024 21:35:10 -0700 (PDT)
-Received: from localhost.localdomain (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-6de276061e3sm9021275a12.80.2024.06.11.21.35.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jun 2024 21:35:10 -0700 (PDT)
-From: Potin Lai <potin.lai.pt@gmail.com>
-To: Corey Minyard <minyard@acm.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Quan Nguyen <quan@os.amperecomputing.com>
-Cc: openipmi-developer@lists.sourceforge.net,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Patrick Williams <patrick@stwcx.xyz>,
-	Cosmo Chou <cosmo.chou@quantatw.com>,
-	Potin Lai <potin.lai@quantatw.com>,
-	Potin Lai <potin.lai.pt@gmail.com>
-Subject: [PATCH 2/2] ipmi: ssif_bmc: support skipping ARM SBMR bootprogress response
-Date: Wed, 12 Jun 2024 12:32:55 +0800
-Message-Id: <20240612043255.1849007-3-potin.lai.pt@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20240612043255.1849007-1-potin.lai.pt@gmail.com>
-References: <20240612043255.1849007-1-potin.lai.pt@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 107D22232B;
+	Wed, 12 Jun 2024 05:03:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.19.17
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718168583; cv=fail; b=egF/1ykbppYiezBE6oUzAiSqvkKFfr1716G/zf4ouX3Cf7bQtgqSShy53+e7urB2F5jjuDFcsc/z0kzpXm2qAy3VuEVGPHRGnH6Rrc1vyV2a6qf/YXwgp3rSZsKqLPTqKGCUX1iwewbB2Kskohm9wFKwySFDTWmCXgXjXH9J3qM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718168583; c=relaxed/simple;
+	bh=u9Uo6Cu2N/DDSFFN/1DvIYDSAcAtNrjvCiqYkt80HCU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=I6PUzIQyvcFMwEhGBMKr/NhHRf2kZPJtdEVIST2WT0hRIT4rUhL3DNmu2T+NiK/cY/HygM6d8FkAEeNwhPiQ3Ma/E3eMEJVoVNIywOHMFFSgvou33y5xLzrSFGea6t7XXjRQ6QensWN/NIB+bs6q3+dwg0rHQvBeetMcIKlvSTk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=IfXUYS1f; arc=fail smtp.client-ip=40.92.19.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZLnGJSefuzrgTlfkjvRMhIPM/vRf5qES2BV7dAo4679D7W8ql1p1c8CNdj2Z0wboMTc0blyUiDSZOxGxNyIfoCqkZVFs7Unuf3M/pyCgECoPSt9nucB4aV4bhraLewqVy8daLcOLSH4SSSYWQPSaj1ZpPpFenHfaJfsIZG/ujEsLTAwEMwXoGoy6VwgjR7bH6eDtBbD6NORpORwwSqpT7ly4/6PZ9Mn5xDCrfRWyQ/ROrhynuKnWatdEJ/krjVghx4S5QRnYd43WPvrm9vl8qBf8/FtZecFCbbghwpQw+xyQn13THRf/MfqA+eYjT424fvxVsqc84o9FzTtLQlNiRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GFKv6QnuP10CTCd02udQUEEL9HKsaIiLGoiRE/5xQLY=;
+ b=leEQFnJiemsYuHvsfV5jm8p44iev88PxhrVqwMGB1UQ1RUHmpshR0ci5uWnXkyzp6luuUCuAfnocsoQvS9BmOTKAgqFoc1CUijOy+YTvdaGit7FmhnZt9mcHs/kLVZBnEHWAGatqa7R4J7pnH3W2gxdf/NU1tXOkCaW5rtvTY6exLGDDLKYQMQ2Yg1P67KvSPqRZNfFCDZ5G0iJbd/+93iFhy82RMUhx9UP33Wqw+673j+46FEGPSIXC/qFB8Dsiq0/ZnlLmkE66XfaIhjvCnGsxa9Tmcw5MZuqyyhdUwwwqaRHwr5ucNKjaoyNIVTx8QCyIVWGB0jGB9LaLYFwGnA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GFKv6QnuP10CTCd02udQUEEL9HKsaIiLGoiRE/5xQLY=;
+ b=IfXUYS1f2WZk+/r7PHBMw/UP7e5xkA1BIyufpGRmZkLoUEC6JKhjMYlbjOW/kiUa+L4hX22rKFAabDJdKtMg6zL71mk1UPzUQGOQklcWfU70/AX1Q7OmlsrRSNxDJsoGDQXCvp2rWEi7+vsYeXEi0Q+9ypQOPOr0UwM26Q8G2LTa/H4I2uYT9Y9QBkwLNGMaQ6oV61ATutgCSauMCZtS4Sm585IkmFA26AM9ikF0CYcTYCqf/5kBkAgDG6CtmhI5p39enO2PrPk0HzjfLKb6DjeRK8g7HBBLNcE7dIdGjUhBxrz1igdzUUTc7XkhC9A4lYQHd+fAypeE2WEwxsYjvw==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by DM6PR20MB3347.namprd20.prod.outlook.com (2603:10b6:5:2ad::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.37; Wed, 12 Jun
+ 2024 05:03:00 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149%6]) with mapi id 15.20.7633.036; Wed, 12 Jun 2024
+ 05:03:00 +0000
+Date: Wed, 12 Jun 2024 13:02:31 +0800
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Jisheng Zhang <jszhang@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Chao Wei <chao.wei@sophgo.com>, 
+	Chen Wang <unicorn_wang@outlook.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, Inochi Amaoto <inochiama@outlook.com>
+Subject: Re: [PATCH 0/2] riscv: sophgo: add pinctrl support for cv1800b
+Message-ID:
+ <IA1PR20MB49530084D4517A42CE0556F6BBC02@IA1PR20MB4953.namprd20.prod.outlook.com>
+References: <20231113005702.2467-1-jszhang@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231113005702.2467-1-jszhang@kernel.org>
+X-TMN: [TqeGbXL6tm4W0h2yUT2cDn7PKlfwU05QN4WwpEP0mgo=]
+X-ClientProxiedBy: PS2PR06CA0005.apcprd06.prod.outlook.com
+ (2603:1096:300:56::17) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <sbxcazj7ymzvzrwrsmfnq3vhasrpsrkqpvkitarxld56uu67o3@bsva6u5ctyih>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|DM6PR20MB3347:EE_
+X-MS-Office365-Filtering-Correlation-Id: 16d8bc40-7f13-47de-81ee-08dc8a9cee32
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|461199020|440099020|3412199017|1710799020;
+X-Microsoft-Antispam-Message-Info:
+	9EHfD1X1xfAWbe2AsulPaqyY87rXtTOizmyqIS5mAL76E5X5VD6ORIrgW2z8eyUON5bEIVTkSMOxTn4hCIQkO5OTnzIu0h1JD8W9oAuOMOaVIhMYOQ5HnrVbuQR5oCbbyeTXKWT32ycnzGRIrDveHTqYbZL1uFuyZAF7PrXBgPnOFns03lf7QgrRPyP8a+GzBd4NaWXLXo5eOvuiOhtDhOyWY+KOJMawcLo8RqtPxIW1J/KvTaAlv9zfkmxnGsOR7YxzQvLuXJ1Lvq9mn7zF7hIK8Dwx3lkD6ylkbXEY4HlsFHxpKj+wIcliaCakyKtkkceblsbS+8YoZ/ORjV7Mli0J7p2sxJAWSl0ipKXEAZ0FQn1qbGS23P4fMQL9b2ogATZicBfw8dtTF2SAEQiRHOtI46iVUhrQfmWnWPaEbvQ/O7pndkVddjlF44t+oeul7GFNuR5pEuoO5gwQi9/113GyTOj1KCM3LVQx9/XfMkEnzBOX0mNdmLJh36otPvxauKQsv1rgUP40BZquKqMPoepgzGBwxcnG/jqVDSIMc22QDMjguJInC2B503fLM2MWs9Fu9IkoZS0+8Y0RobL6M6FTUMWRleClbFHOXOYdUEiX9oLJT8N1fhlxPKzgQsDx
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?y6Fx9icOfE0HBrO3lVB6yTxHcBcE6iVyRDcuG7bzgITNTVszNZBfmG/RfJPJ?=
+ =?us-ascii?Q?xVfznfZJWU6D74iH26zIiFaaeM9q+J0pq7Miws8mzb4o3ct2ekvgwhIoX5kv?=
+ =?us-ascii?Q?CJkZUIWnrFLb5d/ze0jUldVDo+pAhLdq0Aac2a66SgN79B3chXSSyKFUwZEr?=
+ =?us-ascii?Q?GGqvueKQmQB2wKjlws/98oes1KrApCJGQ+oH2mE4C0ix/X9PmB8eWRpLBl6i?=
+ =?us-ascii?Q?LB0GCpG1vZ8cBnOdBqYrnTHI3sAW0TUK+qn5wN9eY2Fjqnrr8p6YFioP2bQ2?=
+ =?us-ascii?Q?4u90KMSNpSw55+WQ5vrEo3wvai94Bp89ydoy3RZyflrfxdEQNad64iplMRik?=
+ =?us-ascii?Q?Jf9AHbuAk4y7XlLwBqjcZ9tBSeFhmImyZvouEwV/XEtmm8gziBZHZ9q2+OFX?=
+ =?us-ascii?Q?u+T31DCtFlVtjU/5DLvuG9qu3SvTI8oga7Akhec4V6jpoB27KCmy2fODRyIJ?=
+ =?us-ascii?Q?lzhpDLB0dH0otZQ/StNLV64BnZy+xU4Lt9nGkDsJvdaaNrxyro/OYxGYDva6?=
+ =?us-ascii?Q?3QN6+bzHCb6CwsFRAx6deiuxUOxLfVLKnk15AQEwzfSQqeBJQrvfpHrgTyBs?=
+ =?us-ascii?Q?kDO6ta64uxstgFXJFElOP1hmQ2S7GXe9KDef2rax99Kq5N6Beep3Y+N/o3kh?=
+ =?us-ascii?Q?J39Ik07YR0fSpG3WrjGvFR6dLrTMMZlmxB9wbXIEEOZwtnk8D4nuq3eENgbu?=
+ =?us-ascii?Q?bwScZdjBKrDIX52UFFoch4rmuz93WrRysE56+QbeF2+YQk+2QT6pmyvcMrxB?=
+ =?us-ascii?Q?7q7W5nfJB3/cdZOyAkCfi40vGFg8Wad3VskdOnc0oSXPqFi1UUGVn+uNv1Qk?=
+ =?us-ascii?Q?o9HwQuIgXihvOA1y/73SLLUzA29JIt0S6/I4YNDQXmtt1/L5CXH4yhks3fPH?=
+ =?us-ascii?Q?851jqlySwgnzEbsFvcGiptoc168DlQvgkuXiDT13M1IivDgtr8TegIv/uleh?=
+ =?us-ascii?Q?AeCHAccv2S4PxlEe0IwVZxS/3pdZoL/8UW0ALTqCbAaGKgaJaDNBfUbR6Otv?=
+ =?us-ascii?Q?whSAYODyU1Qbtdx+AESKOtLWnKk7h6OQc57ExZfLyHoc9buFNhZiML56Grcu?=
+ =?us-ascii?Q?A8fjWjsHfMPEjt8EHH66f3U3YqopB9Q46edhZTSc2y5eYqlYKzmZfjWI3RVd?=
+ =?us-ascii?Q?TVhGTJ5GvtqDFdLuqbJNnqYopDYdVqhgHPxF9Rcc6MkjxXxZXf2vCpXXWXAY?=
+ =?us-ascii?Q?WRIf8u1+uxwIKlgkXIgB3peLq2pqb2x8ziRZ0EWst6OcD3bypzUZKs3LEiJc?=
+ =?us-ascii?Q?9vEYAyvi8+SANxYEILUP?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 16d8bc40-7f13-47de-81ee-08dc8a9cee32
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2024 05:02:59.8716
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR20MB3347
 
-In ARM SBMR document, the host can chosse to not read back the response of
-“Send Boot Progress Code” command.
+On Mon, Nov 13, 2023 at 08:57:00AM GMT, Jisheng Zhang wrote:
+> This series adds pinctrl support for cv1800b reusing the
+> pinctrl-single driver.
+> 
+> Jisheng Zhang (2):
+>   riscv: dts: cv1800b: add pinctrl node for cv1800b
+>   riscv: dts: sophgo: set pinctrl for uart0
+> 
+>  arch/riscv/boot/dts/sophgo/cv-pinctrl.h       | 19 +++++++++++++++++++
+>  .../boot/dts/sophgo/cv1800b-milkv-duo.dts     | 11 +++++++++++
+>  arch/riscv/boot/dts/sophgo/cv1800b.dtsi       | 10 ++++++++++
+>  3 files changed, 40 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/sophgo/cv-pinctrl.h
+> 
+> -- 
+> 2.42.0
+> 
 
-To avoid SSIF being in a wrong state due to host not read back the
-response, add the implementation of "arm-sbmr,skip-bootprogress-response"
-property for skipping the response of "Send Boot Progress Code" command
-from userspace.
+Hi, Jisheng,
 
-Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
----
- drivers/char/ipmi/ssif_bmc.c | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+Could you rebase this patch for the latest kernel?
 
-diff --git a/drivers/char/ipmi/ssif_bmc.c b/drivers/char/ipmi/ssif_bmc.c
-index 56346fb328727..3386a8bd18afd 100644
---- a/drivers/char/ipmi/ssif_bmc.c
-+++ b/drivers/char/ipmi/ssif_bmc.c
-@@ -39,6 +39,11 @@
- #define SSIF_IPMI_MULTIPART_READ_START          0x3
- #define SSIF_IPMI_MULTIPART_READ_MIDDLE         0x9
- 
-+#define GET_NETFN(netfn_lun)                    ((netfn_lun >> 2) & 0xfe)
-+#define IPMI_GROUP_EXT_NETFN                    0x2C
-+#define IPMI_SBMR_GROUP                         0xAE
-+#define IPMI_SBMR_BOOTPROGRESS_CMD              0x02
-+
- /*
-  * IPMI 2.0 Spec, section 12.7 SSIF Timing,
-  * Request-to-Response Time is T6max(250ms) - T1max(20ms) - 3ms = 227ms
-@@ -102,6 +107,8 @@ struct ssif_bmc_ctx {
- 	struct ssif_part_buffer part_buf;
- 	struct ipmi_ssif_msg    response;
- 	struct ipmi_ssif_msg    request;
-+	/* Flag to skip response of Send Boot Progress Code */
-+	bool                    skip_bootprogress_resp;
- };
- 
- static inline struct ssif_bmc_ctx *to_ssif_bmc(struct file *file)
-@@ -187,6 +194,20 @@ static ssize_t ssif_bmc_write(struct file *file, const char __user *buf, size_t
- 		return -EINVAL;
- 
- 	spin_lock_irqsave(&ssif_bmc->lock, flags);
-+	if (ssif_bmc->skip_bootprogress_resp &&
-+	    GET_NETFN(msg.payload[0]) == IPMI_GROUP_EXT_NETFN &&
-+	    msg.payload[1] == IPMI_SBMR_BOOTPROGRESS_CMD &&
-+	    msg.payload[3] == IPMI_SBMR_GROUP) {
-+		if (ssif_bmc->response_timer_inited) {
-+			del_timer(&ssif_bmc->response_timer);
-+			ssif_bmc->response_timer_inited = false;
-+		}
-+		ssif_bmc->busy = false;
-+		memset(&ssif_bmc->request, 0, sizeof(struct ipmi_ssif_msg));
-+		spin_unlock_irqrestore(&ssif_bmc->lock, flags);
-+		return count;
-+	}
-+
- 	while (ssif_bmc->response_in_progress) {
- 		spin_unlock_irqrestore(&ssif_bmc->lock, flags);
- 		if (file->f_flags & O_NONBLOCK)
-@@ -806,6 +827,10 @@ static int ssif_bmc_probe(struct i2c_client *client)
- 	if (!ssif_bmc)
- 		return -ENOMEM;
- 
-+	if (of_property_read_bool(client->dev.of_node,
-+				  "arm-sbmr,skip-bootprogress-response"))
-+		ssif_bmc->skip_bootprogress_resp = true;
-+
- 	spin_lock_init(&ssif_bmc->lock);
- 
- 	init_waitqueue_head(&ssif_bmc->wait_queue);
--- 
-2.31.1
-
+Regards,
+Inochi
 
