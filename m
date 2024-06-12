@@ -1,136 +1,107 @@
-Return-Path: <devicetree+bounces-74902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C146904F2E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 11:24:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 135CE904F46
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 11:29:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00F651F27111
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 09:24:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC8371F2818D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 09:29:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61A7916DED4;
-	Wed, 12 Jun 2024 09:24:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JYeHG7YJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 275FE16DEA4;
+	Wed, 12 Jun 2024 09:29:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99EFB16DEB8
-	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 09:24:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 537F21CFB5;
+	Wed, 12 Jun 2024 09:29:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718184273; cv=none; b=ZijvXWyzr8DKSeqr5ol8Z/EbcU/X1Hfbh/ky9IPK5FNb//SP/kniPTps1eI77gEMnMqX15gAfYftR5sH7+kGtY90DrHPNufYcHqyGPc41urkQ6asrDv++DnwXWE5UH6wqcEAsT/ff1qM7R3etMMLUsbOzvDtUBz84DPZWr7M3EQ=
+	t=1718184546; cv=none; b=QRJ1pzMbjVA/sUxeBwyQ45OHpPdKZdInXRtzdBa1KKxlSQyg3NGDtputkD0F16K9f3NoYQltxeeionuNSXSJdoBCOIIDKkejZdqPtoOPpj9UgOfZNI0NeY+rSrpv876lCERd0FJAGWga7EGPJ8WmJmKjmSXOz+nSLFlutA6VRl4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718184273; c=relaxed/simple;
-	bh=/YmAORbO3+x2lQ89cPlqc8Ys60h2WO17kQvYvC6EUd0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=IDkU0/tRshpnaRMzsuEM7/toEmXxhOvSzbGSaTuuZBA0e2MB+4HOn4yUdCSQq1brv1uoV6m33HJn0y3wNS5yqvXFooQ6/1s99YOqkT6fPpB26av8PwuFglrOakmulE0TopXuYLF68DbCdLLq1EvZVfWeJu9E7QH5bzqcnAnE0JI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JYeHG7YJ; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-52c8ddc2b29so2529971e87.3
-        for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 02:24:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718184270; x=1718789070; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DfH51kBtOmvN/SbHgLsWaCNr0Bu/Fg6um6oRQlR7oHY=;
-        b=JYeHG7YJjxA9XXiVI5+d7Dgip5bHXF+8A3Lt4FtmfAHSyltDKSkvOFmXmAAKBcUE4Y
-         EKUPCYAAEPPlnX6SRr0wAJKL7YVPeeQs2/Z2fCm6FEyug85WFBKC6a84OGoT9nLRxxoy
-         90IDi3G7tUSN3PgVXpAVQMOEEtM73HgE+qGkHxx2xRjHS4yfUSTamz8cCiPuOvQPxJSS
-         s0GqhLbZa4WD9B7PVBuSAPGsKuTJYHjrph74YuE/y9zdf7q4gcGcdpO7k3yYtXEsdA1z
-         HLTtxx11Y6S5OG3SwuYIDFYSoi3hazp2/rfzEk402EiOwb038bMPKMQSye+azsb2VUVN
-         0NmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718184270; x=1718789070;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DfH51kBtOmvN/SbHgLsWaCNr0Bu/Fg6um6oRQlR7oHY=;
-        b=KWVdUibG4fGShT8uzaRwSb1lF7b6rWzAbkXc9DXDCvfPgp8YwadBeF08BeEbKMkGNn
-         Vub8Tv71C4DoSMBHSwpQj69jGCt8C1UBR4rt+B1trBpSg+D8Qb+S40c4HYJJnweNGBNp
-         6Z20Rtj95uxh5mu/SE+zQslfC4f2N8IAZU80vb3IUQWMqPku4vWuq8+XrrqmgBbYyVXs
-         LfEIaJr+k/JtLQzr5aYTw6qV/RRtOjl6kAHd7p6KQdfYWbE4HAtxWqgRzurX0rvmnX/y
-         9aYW1qxlvGD+pC0XF2qARrsUG9mtGvF2A6WQGECP0kC6p5mqHx5YlMpTr1FlF/ZwUhqs
-         n2ZA==
-X-Forwarded-Encrypted: i=1; AJvYcCXl2HeQwF9kgkQztbuP5zmng8dWO0Yt69ArmmMae+0k32376bxJOhXYR++XXdqjPCB3mSlL7VBTr6n7yiDSOkKGD8V6skYV4AA80g==
-X-Gm-Message-State: AOJu0Yyn+s3GvtIjcZj5bKn/ubWh9mT395yCiZrDNHxkPFWe2A5vMwOW
-	65wlAjdDlVTq/oSXkQcy0v133lkC5B+wc/BytgPpHT18Wi3d/vwsu85A21k1wq+qRtc4Z+nDbUD
-	q
-X-Google-Smtp-Source: AGHT+IEF/QjW1JAYelI47//kT/YeUyUvmkw2ZBd8t575ZCaGqY/UKt62km1JBl3qUL4DuZNV4IphVA==
-X-Received: by 2002:ac2:4341:0:b0:52c:8a15:3c01 with SMTP id 2adb3069b0e04-52c9a3dfab4mr923248e87.40.1718184269730;
-        Wed, 12 Jun 2024 02:24:29 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52c82faf1b7sm1623806e87.130.2024.06.12.02.24.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jun 2024 02:24:29 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 3/3] arm64: dts: mediatek: mt8173-elm: drop PMIC's syscon node
-Date: Wed, 12 Jun 2024 11:24:21 +0200
-Message-ID: <20240612092421.52917-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240612092421.52917-1-krzysztof.kozlowski@linaro.org>
-References: <20240612092421.52917-1-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1718184546; c=relaxed/simple;
+	bh=DsxnX5L2k3IkFgc1OU5UIunCZy/+2T26BRmIyb3T3R4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jPtHjq4uTrDF4Kb7q80MLHGm0gVkn9oM2McXyNhdCQBNFRLSnGbFxSzUARg4Ih/WPrZTg/gpseR4ZwBdYJzZJMvGaTO31XmHxIZT+hl640GCdcBUSZoEnvwJ/zvP7XKqYk03IyjtVNs9UvLzcjO4zswcBB6pGbUWS1koW3PpGGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 49AAE1595;
+	Wed, 12 Jun 2024 02:29:27 -0700 (PDT)
+Received: from [10.57.42.88] (unknown [10.57.42.88])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E497B3F64C;
+	Wed, 12 Jun 2024 02:28:58 -0700 (PDT)
+Message-ID: <6304a5a2-1ca0-4e6c-8c0a-e7b320f64c7d@arm.com>
+Date: Wed, 12 Jun 2024 10:28:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] drm/panfrost: Add support for Mali on the MT8188
+ SoC
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ boris.brezillon@collabora.com
+Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, Chen-Yu Tsai <wenst@chromium.org>
+References: <20240611085602.491324-1-angelogioacchino.delregno@collabora.com>
+ <20240611085602.491324-3-angelogioacchino.delregno@collabora.com>
+From: Steven Price <steven.price@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20240611085602.491324-3-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-According to AngeloGioacchino Del Regno, the syscon node in PMIC is
-neither needed nor used.  It looks like a solution to expose some of the
-registers of PMIC.
+On 11/06/2024 09:56, AngeloGioacchino Del Regno wrote:
+> MediaTek MT8188 has a Mali-G57 MC3 (Valhall-JM): add a new
+> compatible and platform data using the same supplies and the
+> same power domain lists as MT8183 (one regulator, three power
+> domains).
+> 
+> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Drop it to solve also incorrect number of entries in the "reg" property
-and fix dtbs_check warning:
+Reviewed-by: Steven Price <steven.price@arm.com>
 
-  mt8173-elm.dtb: syscon@c000: reg: [[0, 49152], [0, 264]] is too long
-
-Link: https://lore.kernel.org/all/671a4b1e-3d95-438c-beae-d967e0ad1c77@collabora.com/
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
----
-
-Changes in v2:
-1. Drop the node as suggested.
----
- arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 6 ------
- 1 file changed, 6 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-index 6d962d437e02..b4d85147b77b 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-@@ -1134,12 +1134,6 @@ mt6397_vibr_reg: ldo_vibr {
- 		rtc: mt6397rtc {
- 			compatible = "mediatek,mt6397-rtc";
- 		};
--
--		syscfg_pctl_pmic: syscon@c000 {
--			compatible = "mediatek,mt6397-pctl-pmic-syscfg",
--				     "syscon";
--			reg = <0 0x0000c000 0 0x0108>;
--		};
- 	};
- };
- 
--- 
-2.43.0
+> ---
+>  drivers/gpu/drm/panfrost/panfrost_drv.c | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c b/drivers/gpu/drm/panfrost/panfrost_drv.c
+> index ef9f6c0716d5..b43557b10ae3 100644
+> --- a/drivers/gpu/drm/panfrost/panfrost_drv.c
+> +++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
+> @@ -777,6 +777,15 @@ static const struct panfrost_compatible mediatek_mt8186_data = {
+>  	.pm_features = BIT(GPU_PM_CLK_DIS) | BIT(GPU_PM_VREG_OFF),
+>  };
+>  
+> +/* MT8188 uses the same power domains and power supplies as MT8183 */
+> +static const struct panfrost_compatible mediatek_mt8188_data = {
+> +	.num_supplies = ARRAY_SIZE(mediatek_mt8183_b_supplies) - 1,
+> +	.supply_names = mediatek_mt8183_b_supplies,
+> +	.num_pm_domains = ARRAY_SIZE(mediatek_mt8183_pm_domains),
+> +	.pm_domain_names = mediatek_mt8183_pm_domains,
+> +	.pm_features = BIT(GPU_PM_CLK_DIS) | BIT(GPU_PM_VREG_OFF),
+> +};
+> +
+>  static const char * const mediatek_mt8192_supplies[] = { "mali", NULL };
+>  static const char * const mediatek_mt8192_pm_domains[] = { "core0", "core1", "core2",
+>  							   "core3", "core4" };
+> @@ -808,6 +817,7 @@ static const struct of_device_id dt_match[] = {
+>  	{ .compatible = "mediatek,mt8183-mali", .data = &mediatek_mt8183_data },
+>  	{ .compatible = "mediatek,mt8183b-mali", .data = &mediatek_mt8183_b_data },
+>  	{ .compatible = "mediatek,mt8186-mali", .data = &mediatek_mt8186_data },
+> +	{ .compatible = "mediatek,mt8188-mali", .data = &mediatek_mt8188_data },
+>  	{ .compatible = "mediatek,mt8192-mali", .data = &mediatek_mt8192_data },
+>  	{}
+>  };
 
 
