@@ -1,545 +1,184 @@
-Return-Path: <devicetree+bounces-74807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE61C904B16
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 07:53:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3056C904B20
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 08:02:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5ABBB20D90
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 05:53:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B76901F24582
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 06:02:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BCB9376EC;
-	Wed, 12 Jun 2024 05:53:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C259E12C477;
+	Wed, 12 Jun 2024 06:02:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="L3UBWN9+"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="Pkuxu5JA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2042.outbound.protection.outlook.com [40.107.113.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D36B436AF8;
-	Wed, 12 Jun 2024 05:53:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718171620; cv=none; b=AP5IWDKVGW+abb/fwGY89Fk1b6LkwGq7SRFLD69z6x4KN7EG752DA7mhbAsxlpZRzMayGdLBu/Gq1QuwHe1UAyRL5tRpaI4BCUcWUYQ7uJo/U9ZGcpQphVEHf1rXjYW4bcsICHF2ggJ+Hm1oA9FIaWzo3XXQtrx5eqF4SnaufJg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718171620; c=relaxed/simple;
-	bh=8EOQg9fQszyqBPY1SqPjlEW2wu5FnNbiEyDuGU169To=;
-	h=Date:From:To:Cc:Subject:Message-ID; b=A87EJhRGDKXzrOkW+jtUV/DFNmspV4/uBqgEkQygubQ2SAqtWEFKOfg8CqtoU6cA2hWvQLnHRi656BTGScq8eGS+tHMoLBRSirv2pm45PlfnY9xU0OM4n/aJ/3Rlug3zs9Og7FEj9+x0jZeZkr6cXGfcqIZaikq9G1YphJ8Gz9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=L3UBWN9+; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718171617; x=1749707617;
-  h=date:from:to:cc:subject:message-id;
-  bh=8EOQg9fQszyqBPY1SqPjlEW2wu5FnNbiEyDuGU169To=;
-  b=L3UBWN9+caqWAXmg71tKX673hh4QQAgalRMQyesef3KS69zMu+U9AZ5u
-   eJfYLiTnRRgmB28GkGTwoKoc3Gae+ueyKeNRNBIJoAtLdkL0QRL6ptILo
-   mKAQFMCPycggErIiI/gxGZpg5AOAaPKIZp27GKTBU9rT+yL6cSMrIOUwi
-   F+FZoF2PDjSJTZ9wjZGjptPCBOnBGSHsPfY1SqVKykZB+d+eVtD9CY3hZ
-   TGHrmChyzNr2KD/8UMvl9Fhb7DYC8TDxkHIgdjKCWnSV5M+FJdc38P44C
-   RZV/1rChwsB01laQkvci7BYaEi+vwJ9h9KQG8QD4q0vbP3i3FAL8f0dOj
-   A==;
-X-CSE-ConnectionGUID: TwfEn2RfSdOKi+LJ2fgPEg==
-X-CSE-MsgGUID: hC9ojyx7R2Cpdz9Yy79i8g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="14641135"
-X-IronPort-AV: E=Sophos;i="6.08,232,1712646000"; 
-   d="scan'208";a="14641135"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2024 22:53:36 -0700
-X-CSE-ConnectionGUID: dZ7joJbtQ9yTHGHcYb3Nhw==
-X-CSE-MsgGUID: PFR5GHUAQH6Ig9vCIP+cEQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,232,1712646000"; 
-   d="scan'208";a="77131767"
-Received: from lkp-server01.sh.intel.com (HELO 628d7d8b9fc6) ([10.239.97.150])
-  by orviesa001.jf.intel.com with ESMTP; 11 Jun 2024 22:53:32 -0700
-Received: from kbuild by 628d7d8b9fc6 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sHGvJ-0001Fm-2e;
-	Wed, 12 Jun 2024 05:53:29 +0000
-Date: Wed, 12 Jun 2024 13:52:57 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Cc: Linux Memory Management List <linux-mm@kvack.org>,
- amd-gfx@lists.freedesktop.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-gpio@vger.kernel.org, linux-mtd@lists.infradead.org,
- linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-tegra@vger.kernel.org, linux-trace-kernel@vger.kernel.org
-Subject: [linux-next:master] BUILD REGRESSION
- a957267fa7e9159d3d2ee1421359ebf228570c68
-Message-ID: <202406121353.QfMToZQo-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2EA2129A74
+	for <devicetree@vger.kernel.org>; Wed, 12 Jun 2024 06:02:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.113.42
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718172129; cv=fail; b=sCumvfBwgPexoJWCih7d/PASo+aLtT0DLeJtiLGawNWFdYBLAE4lctS8ineDFPpNgz7KR8qcq0D35xH8nmtIchb4LhRfClAVNYNsPcsNujr+xCSBhAiq2bvNay1R9hwroy/3/SlvNMU3jL767J163r8kUFnhPFDaKHefJVPHY0M=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718172129; c=relaxed/simple;
+	bh=xlc2jJQuKrBOEUfIvzMB4f9Wo1wGzSpXSq+ZQJATe+4=;
+	h=Message-ID:To:Cc:From:Subject:Content-Type:Date:MIME-Version; b=ASQJMHEPEWwTu1NYXbx5WU+22x7sal+6eUaT0eNUeKuc/j1yzwhk5BacS8DBO3lPKNIw2pywb71E0HduWr8seTWDrqWKlec5nfIZz9JANT0E+9YYG3gLL/EV+LTGYZrH7ty2xYB1yGWwLaEJMfNVJEtSxbovuBedDpNsUcjhe/Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=Pkuxu5JA; arc=fail smtp.client-ip=40.107.113.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DcmiIygbw1+eOwWknozRQ5+GlSDgXNAq5JawjE2JHCQlB9X+++O+Zp/8t9YfT3bGeBNWOAA0vlRved/+3xfzspGzacscTdMQVaI/PKO2FN1YkoyojoF4CVwZI55WMkh9SiqkJBInTUJOyB/mHcspfwIkoXmEKmXIKiv9spQhrPWEymsxCnInda9oaXm2poLre2VNb/S7wzrDDzn05YxBoZ7xyteSz7MSOCgjfUhfS0QUqOLZC6ZrWf9kt1UMavtBAo+hq6Hb3X8MGu71ONE8JUMo8EfQy5wLoXYHDXEywm2pNB13PB92OsH37cf7kgDbrvo8csAQtxfHs0TbOsxXWw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bQQ9KSvfh/ENITCOFOxoF9XwgBfsZS0/kSo60/asNdw=;
+ b=S/aoHKi8MELnyCk6mAhgMxzK7+dDAyrb+EQxWUFdXuL5ohB+AWkVD25bWuoajXrBDwXb9uIbSXRgy0uNyXZ0vnuFOtDG6Dzsg/gqoQ/AGfOX1vAYBqx/NNBWhgJQGyuMG/JVacSywU9Z7WQBapvFMrlXcSpEBOo5sCCJ967JWf8Hl7P+kohZSFwTGkEyGJ24DjDQJXQvGfWTTALCQTUvxeRn5Qe1pznPYa601WwJSVoQ63SR8bT+NIyD3lwicweDNEAfkcqA+5Jg8/HdRR+G5+KJeL3tvaERn9BrcrjnkrUiM7ep1m4p7JrlQmgmJZoGAhnx6Po6+IrVhvFIQ4ez8A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bQQ9KSvfh/ENITCOFOxoF9XwgBfsZS0/kSo60/asNdw=;
+ b=Pkuxu5JAFs95t3i7lIA9mdkROHYUspHnkosYNWJml/iJZTJfUNdFYp0Mvo23XDuBqkVuZgaFrlq+Akhl9YKN9ESgbaOYOCTXk9A0ZsSG7X3P7zvoW1LELLL0oOXThus3QpXy+/ZDpCHfml/o4M9Qs4tNHbq5H8/LPPuI4xrzA18=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by TYWPR01MB8904.jpnprd01.prod.outlook.com
+ (2603:1096:400:16c::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.39; Wed, 12 Jun
+ 2024 06:02:04 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11%4]) with mapi id 15.20.7677.019; Wed, 12 Jun 2024
+ 06:02:04 +0000
+Message-ID: <87tthyzokk.wl-kuninori.morimoto.gx@renesas.com>
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Linux-ALSA <alsa-devel@alsa-project.org>, devicetree@vger.kernel.org, Maxim Kochetkov <fido_max@inbox.ru>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Subject: [PATCH v2 0/5] ASoC: simple-card / audio-graph: 
+Content-Type: text/plain; charset=US-ASCII
+Date: Wed, 12 Jun 2024 06:02:04 +0000
+X-ClientProxiedBy: TYWPR01CA0019.jpnprd01.prod.outlook.com
+ (2603:1096:400:aa::6) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYWPR01MB8904:EE_
+X-MS-Office365-Filtering-Correlation-Id: ed7c96e5-6b6f-43ab-c5c5-08dc8aa52efd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230032|1800799016|52116006|376006|366008|38350700006;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?5tzrg2qrUvpNrOyfkhI5WfUHcuLNNCaeF8NAiEWehQEenBW59ypKCXetRgns?=
+ =?us-ascii?Q?S0CaDVBcqgH5Ws5sZtGn2yYpwuZ2mzCmqJPlwxWrT5GGWm7GFjqWWvGm7MUs?=
+ =?us-ascii?Q?NLTyZGSgnvWHgz9KLlxhHL96uoH2h/LY3Fd87jZfP7Inbcu2cBU7qW/geeXs?=
+ =?us-ascii?Q?MQis74UX0/18JMfkNffnHvxo7T7qX5//OH+QKenVo4GsX9zGkinCnAOPo7m0?=
+ =?us-ascii?Q?REdgHCI3rh4V80WeZlML7MGVpL3VxN/fXV3VSYVLsjCx2/SI39Bk8FOFMucM?=
+ =?us-ascii?Q?XosckNy4YH88/9KJXAHolApejPBX8fmMYlNMQ6tkCqXJ1Ns+cYj1qOhnOUXq?=
+ =?us-ascii?Q?A/Y7BCD4ubOwdvP3/U816BRvAsymA+8dDxcTOVhMgo26s9oiVbkAbINYedrn?=
+ =?us-ascii?Q?aa2m1IUIROmKBPPPsZfEYzVr+j9rox0+ubfdwE3D7t2EAq4fSbD5HaFjC/bx?=
+ =?us-ascii?Q?fCD99X1EZqlA2YvStEbZIB0hs6D456gns08quvYzGve7lcslr1X5irW/DTQC?=
+ =?us-ascii?Q?Bbu9W+T+fAwFCJ9S1KjxDCW877xre2YG1nxF5dj7qwMTLeVf6tb8SzyMNqxz?=
+ =?us-ascii?Q?lIBUiuRkbSUucwqYFccXSdLn0n6WxjShyApJsSc+mEEh09gkoV/MBEzzPA2B?=
+ =?us-ascii?Q?qZLDpec3nMRiMVPnlo54mS22/U4/qQN99ISgP2YGcy2WsrUOt1aCdfaIQMT/?=
+ =?us-ascii?Q?dRG2/CtiM5krueI/I1BCiPmlpjcPoDbA/ICrfFOGIXgKymlOIM8C9a5I65vA?=
+ =?us-ascii?Q?v+SBpdaEAg32p6oKw5TIrIaltiFNDf23RS6fF2wE8xzaoEHtJITvlJMB8YtL?=
+ =?us-ascii?Q?tyg6MjNr2EyjO1RHIa5h1BQEyxDolDTWF6N58+F8LZa4Ivr3frgN+cJZbQKe?=
+ =?us-ascii?Q?PHPTeZCZfd4mLkJdfjQ/Wx6K2OgwYUwPpwkDjWmjhdbwufaz1WpZO/yqrlZa?=
+ =?us-ascii?Q?1z8ckq51gS8FzOVOkzFi6XL6GZnTvPLc9fSXegf4i6B5lX7r94HAY9bxezsj?=
+ =?us-ascii?Q?Gl5hKuSszXdzzXvheTskpV8WfSbyU+D9Im+9F0BqrHK5cJ6OOppdyhsTnQYH?=
+ =?us-ascii?Q?kovPTh9QGH6jAONviWjjDuyTw70o+/QwAvL0PqOcifPifIOWJd+VFPkfvy8/?=
+ =?us-ascii?Q?iJHrm70tu6Ry8LUlgGlwBVYo3s6DyhweCUSA4PlhMg+Uo4cttui/IQWoNnRY?=
+ =?us-ascii?Q?qP7NDDReej8DSZL4trhsmvagIAoGfQJBHFTVDDmVJ98WbrNzPlSyFazDhhRs?=
+ =?us-ascii?Q?bGNULAzN8laA25zP6P3mB8TOg+8NLlVjuUYpCq2OwAE6llCl4A9i9+Y2MSFz?=
+ =?us-ascii?Q?JgPfW8aJjRbMzOadDupOZoErRzH/oAimmwQy7Y48r7kAJUuJXkAc2OCW2yma?=
+ =?us-ascii?Q?ZFe2XEw=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230032)(1800799016)(52116006)(376006)(366008)(38350700006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?IiWUtPCnNKDKHt42ZyBLPrO+7S5i3awppqRas8Wlvbz+OxIuhTge9wn9Quhv?=
+ =?us-ascii?Q?RYBOh350CCXUvLYWQ/DCexkdiztNFaXS+wwVh1ydUNH4P5ZjdHTQG7zbmASa?=
+ =?us-ascii?Q?DCHO2j/SW//oY3+MP4xk6PJQJ6kPwy2aPjmSKfyrtKF0+I4U0l4MjHnef7Xq?=
+ =?us-ascii?Q?osuKCi4eEMM/lADrRHXwOY5E4lpH3aLrmDFJVx/sNnEhHZfUf5Adn0FbJLwM?=
+ =?us-ascii?Q?Pp2FqmqI5VWyQ+zThL24opl6bUg41RyVDf+fdqwvGTjjAPYYiRqT24QRNtWq?=
+ =?us-ascii?Q?4+uqtxQ9IJmiK6rym1+cf/XH92D0ooW3K2YJhzp7gZ69Ahl0AfeChGEHxvj3?=
+ =?us-ascii?Q?/pQt2e73pBnXtDka1SnZQAMpLsI4e3dbewst9IslEAuOug1LhW46qY0DDwHr?=
+ =?us-ascii?Q?VcTiv12ExtsIu/1sNPOax3D4NZ/0JFBExHBn1GjFwXr9kF3RUxYRqTtEFxed?=
+ =?us-ascii?Q?9XuAiiAkIJfo/Tra7FeSDX/BH1R7wIceE3T7RNO++yOA/6qUpeZ2mOyvcIMp?=
+ =?us-ascii?Q?yoaUMERWxYeeQFxIhO5p/Fo0uwstDjmlGbNvdioG8/y6IcNu8aUZqf4BQGgU?=
+ =?us-ascii?Q?Q2d7+r657Q0NO3M8UDSuECEHPWjSnYkbPKVmlNkzRUhcww3/EmtA7gSkktFf?=
+ =?us-ascii?Q?iZk6BRGNhLM5wvzcI5XrJ7/9hXGDZ6/+BkFzI14gMkVkea67XILwY6XnB8UF?=
+ =?us-ascii?Q?6zVZoTFD4VRigYa73vBWK3EeYhdJ50rFmCCp3lSeNp1XeXT7zj7KrK1GVyJd?=
+ =?us-ascii?Q?ne9gV4Pe7Rs7ld3+q9qN0v/Pg+MmXCRkcY7wdvCtVANxkgoFmRpKhdg119ds?=
+ =?us-ascii?Q?yicKBx/qiJiLGKdaBOxPdzIEh8xjgWNgMwhFRDeOdFO3cPacoHM7OLg0s81m?=
+ =?us-ascii?Q?9P0KRl/Yp5jULpjgD9/ycG5+WsS0x/d0lDwHmVaRB8JnY4812rQUopzjJMTz?=
+ =?us-ascii?Q?CdUr+xklFZqgqKOxGNQK/X1gX32flk6IMRbQAeFH6ICsBSrL3eMubJNmtf7D?=
+ =?us-ascii?Q?MLTiEYgIgLYCFCIYbs4Bb76+uVLmushK8gWDTJSBf4UNeh3ympkUwpPS5Ld0?=
+ =?us-ascii?Q?OTDTfAGlYVpCT8JHJjOoBwkUjnagFEIdOvaAgIpa54mksL7mRKGqp4fHmW7v?=
+ =?us-ascii?Q?WLe8rU2jyRZHxOqKWOQ1L908Zr+GAXmDzDIoTi4qYsj3OfTlnrY5seQcvEEp?=
+ =?us-ascii?Q?FsUFU4RH0vufCLoTCLlIAqhOC5O5xAISrHWvnKFVbtCJUbiYmSZCU4/JNeIv?=
+ =?us-ascii?Q?LbkHotRijvmgTVWAODTOoYfdWZDu3PE13qW46lKbFNbKAKk2gR92C7xq0cFP?=
+ =?us-ascii?Q?Q6VIH+9tk6ik5Q2t/6cFipSRHQpBZ8rIjTVndjEsIeZ/Gu4+/itItBZmX+5n?=
+ =?us-ascii?Q?v/wGzEbHQ74wDDRcSa0ow/qYyzsHVabU6p/T+Dzok3oto76yz3CFzpoi7wnD?=
+ =?us-ascii?Q?KnNBSQRM74hu1OfvxuI50+KUQuUwrUrgxeBDJ9izoWWxVLh3Vp8waubo4EVI?=
+ =?us-ascii?Q?SGkKLHwbyXXoEqQ10DT5fBa4pEEnjtUaovkXI19/xfJlah7GQ7TzgaGwgZjv?=
+ =?us-ascii?Q?7VMMyx8CuahURS0s6YfWCkxNWxT773thUYWVwh3uR/YOm2yVS1pwJHEAmCMP?=
+ =?us-ascii?Q?MMVwcS5wStOOpoBuovUR/VI=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed7c96e5-6b6f-43ab-c5c5-08dc8aa52efd
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2024 06:02:04.3158
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0r8BYj6WWAqg61fDvD2R36iB271mE3OXHxzooqZYfdyRFRbueWHCVHOK4jfcFCpWzlOgxs5frjzunEtK29sZYdWdIFvCMON3420g/C4sfCju38ZQBXIlIBnj58CsxuoX
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB8904
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-branch HEAD: a957267fa7e9159d3d2ee1421359ebf228570c68  Add linux-next specific files for 20240611
 
-Error/Warning reports:
+Hi Mark, Rob, Krzysztof
+Cc Kochetkov
 
-https://lore.kernel.org/oe-kbuild-all/202406111949.9WfZTbkM-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202406121201.YnEA7WOO-lkp@intel.com
+This is v2 patch-set which adds link-trigger-order to
+Simple-Card / Audio-Graph-Card.
 
-Error/Warning: (recently discovered and may have been fixed)
+Link: https://lore.kernel.org/r/87v82ls82e.wl-kuninori.morimoto.gx@renesas.com
 
-drivers/pinctrl/pinctrl-keembay.c:1630:35: error: 'struct function_desc' has no member named 'name'
-or1k-linux-ld: sound/soc/tegra/tegra210_i2s.c:932:(.text+0x668): undefined reference to `simple_util_get_sample_fmt'
-powerpc-linux-ld: tegra210_i2s.c:(.text+0x56c): undefined reference to `simple_util_get_sample_fmt'
-sound/soc/tegra/tegra210_i2s.c:922:(.text+0x62c): relocation truncated to fit: R_OR1K_INSN_REL_26 against undefined symbol `simple_util_parse_convert'
-sound/soc/tegra/tegra210_i2s.c:922:(.text+0x62c): undefined reference to `simple_util_parse_convert'
-sound/soc/tegra/tegra210_i2s.c:932:(.text+0x668): relocation truncated to fit: R_OR1K_INSN_REL_26 against undefined symbol `simple_util_get_sample_fmt'
-tegra210_i2s.c:(.text+0x538): undefined reference to `simple_util_parse_convert'
+v1 -> v2
+	- update git-log to indicate what does new property do
+	- include new definition/header included into Doc patch
 
-Error/Warning ids grouped by kconfigs:
+Kuninori Morimoto (5):
+  ASoC: audio-graph-port: add link-trigger-order
+  ASoC: simple-card-utils: add link-trigger-order support
+  ASoC: simple-audio-card: add link-trigger-order support
+  ASoC: audio-graph-card: add link-trigger-order support
+  ASoC: audio-graph-card2: add link-trigger-order support
 
-gcc_recent_errors
-|-- arc-randconfig-r131-20240611
-|   |-- drivers-mtd-nand-raw-mxc_nand.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-buf-got-void-noderef-__iomem
-|   `-- drivers-mtd-nand-raw-mxc_nand.c:sparse:sparse:incorrect-type-in-initializer-(different-address-spaces)-expected-unsigned-short-noderef-usertype-__iomem-t-got-void-buf
-|-- arm-randconfig-051-20240611
-|   |-- arch-arm-boot-dts-rockchip-rk3128-evb.dtb:dsi:failed-to-match-any-schema-with-compatible:rockchip-rk3128-mipi-dsi-snps-dw-mipi-dsi
-|   `-- arch-arm-boot-dts-rockchip-rk3128-xpi-.dtb:dsi:failed-to-match-any-schema-with-compatible:rockchip-rk3128-mipi-dsi-snps-dw-mipi-dsi
-|-- arm64-randconfig-001-20240612
-|   `-- drivers-pinctrl-pinctrl-keembay.c:error:struct-function_desc-has-no-member-named-name
-|-- i386-randconfig-061-20240611
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash1-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-orig_hash-got-struct-ftrace_hash-noderef-__rcu
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-assigned-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-save_filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-assigned-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-save_notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_filter_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   `-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|-- i386-randconfig-062-20240611
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash1-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-orig_hash-got-struct-ftrace_hash-noderef-__rcu
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-assigned-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-save_filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-assigned-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-save_notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_filter_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   `-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|-- i386-randconfig-r132-20240611
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash1-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-orig_hash-got-struct-ftrace_hash-noderef-__rcu
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-assigned-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-save_filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-assigned-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-save_notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_filter_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   `-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|-- loongarch-defconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-hubbub-dcn401-dcn401_hubbub.o:warning:objtool:unexpected-relocation-symbol-type-in-.rela.discard.reachable
-|   `-- drivers-thermal-thermal_trip.o:warning:objtool:unexpected-relocation-symbol-type-in-.rela.discard.reachable
-|-- microblaze-allmodconfig
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(simple_bus_reg):amba_pl-gpio-restart:missing-or-empty-reg-ranges-property
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_format):amba_pl-flash-partition:unit-name-should-not-have-leading
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_format):amba_pl-flash-partition:unit-name-should-not-have-leading-0s
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_vs_reg):memory:node-has-a-reg-or-ranges-property-but-no-unit-name
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-dma-41e00000:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-i2c:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-serial-44a00000:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-timer-41c00000:clocks:cell-is-not-a-phandle-reference
-|   `-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):cpus-cpu:clocks:cell-is-not-a-phandle-reference
-|-- microblaze-allnoconfig
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(simple_bus_reg):amba_pl-gpio-restart:missing-or-empty-reg-ranges-property
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_format):amba_pl-flash-partition:unit-name-should-not-have-leading
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_format):amba_pl-flash-partition:unit-name-should-not-have-leading-0s
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_vs_reg):memory:node-has-a-reg-or-ranges-property-but-no-unit-name
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-dma-41e00000:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-i2c:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-serial-44a00000:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-timer-41c00000:clocks:cell-is-not-a-phandle-reference
-|   `-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):cpus-cpu:clocks:cell-is-not-a-phandle-reference
-|-- microblaze-allyesconfig
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(simple_bus_reg):amba_pl-gpio-restart:missing-or-empty-reg-ranges-property
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_format):amba_pl-flash-partition:unit-name-should-not-have-leading
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_format):amba_pl-flash-partition:unit-name-should-not-have-leading-0s
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_vs_reg):memory:node-has-a-reg-or-ranges-property-but-no-unit-name
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-dma-41e00000:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-i2c:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-serial-44a00000:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-timer-41c00000:clocks:cell-is-not-a-phandle-reference
-|   `-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):cpus-cpu:clocks:cell-is-not-a-phandle-reference
-|-- microblaze-defconfig
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(simple_bus_reg):amba_pl-gpio-restart:missing-or-empty-reg-ranges-property
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_format):amba_pl-flash-partition:unit-name-should-not-have-leading
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_format):amba_pl-flash-partition:unit-name-should-not-have-leading-0s
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_vs_reg):memory:node-has-a-reg-or-ranges-property-but-no-unit-name
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-dma-41e00000:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-i2c:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-serial-44a00000:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-timer-41c00000:clocks:cell-is-not-a-phandle-reference
-|   `-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):cpus-cpu:clocks:cell-is-not-a-phandle-reference
-|-- microblaze-randconfig-051-20240611
-|   |-- arch-microblaze-boot-dts-system.dtb::memory:False-schema-does-not-allow-device_type:memory-reg:
-|   |-- arch-microblaze-boot-dts-system.dtb:amba_pl-dma-41e00000:failed-to-match-any-schema-with-compatible:xlnx-eth-dma
-|   |-- arch-microblaze-boot-dts-system.dtb:amba_pl-i2c-i2cswitch-i2c-clock-generator-5d:failed-to-match-any-schema-with-compatible:silabs-si570
-|   |-- arch-microblaze-boot-dts-system.dtb:amba_pl-serial-44a00000:failed-to-match-any-schema-with-compatible:xlnx-xps-uart16550-..a-ns16550a
-|   |-- arch-microblaze-boot-dts-system.dtb:amba_pl:gpio-restart:ranges-is-a-required-property
-|   |-- arch-microblaze-boot-dts-system.dtb:amba_pl:nodename:amba_pl-does-not-match-(-a-z-a-z0-bus-bus-localbus-soc-axi-ahb-apb)(-.-)
-|   |-- arch-microblaze-boot-dts-system.dtb:clk_bus_0:linux-phandle-reg-do-not-match-any-of-the-regexes:pinctrl
-|   |-- arch-microblaze-boot-dts-system.dtb:clk_cpu:linux-phandle-reg-do-not-match-any-of-the-regexes:pinctrl
-|   |-- arch-microblaze-boot-dts-system.dtb:cpus-cpu:failed-to-match-any-schema-with-compatible:xlnx-microblaze-.
-|   |-- arch-microblaze-boot-dts-system.dtb:ethernet-40c00000:axistream-control-connected-clock-frequency-device_type-linux-phandle-local-mac-address-xlnx-xlnx-axiliteclkrate-xlnx-axisclkrate-xlnx-clockselect
-|   |-- arch-microblaze-boot-dts-system.dtb:ethernet-40c00000:reg:is-too-short
-|   |-- arch-microblaze-boot-dts-system.dtb:flash:partition-partition-partition-partition-partition-do-not-match-any-of-the-regexes:.-names-.-supply-.-cells-a-zA-Z0-._-a-zA-Z0-a-zA-Z0-._-a-zA-Z0-a-zA-Z0-._-9a
-|   |-- arch-microblaze-boot-dts-system.dtb:i2c:Unevaluated-properties-are-not-allowed-(-address-cells-size-cells-clock-frequency-i2cswitch-were-unexpected)
-|   |-- arch-microblaze-boot-dts-system.dtb:i2c:clock-frequency:is-greater-than-the-maximum-of
-|   |-- arch-microblaze-boot-dts-system.dtb:i2c:clock-frequency:is-not-one-of
-|   |-- arch-microblaze-boot-dts-system.dtb:i2cswitch:Unevaluated-properties-are-not-allowed-(-address-cells-size-cells-i2c-i2c-were-unexpected)
-|   |-- arch-microblaze-boot-dts-system.dtb:i2cswitch:nodename:i2cswitch-does-not-match-(i2c-)-mux
-|   |-- arch-microblaze-boot-dts-system.dtb:timer-41c00000:clock-frequency-xlnx-gen0-assert-xlnx-gen1-assert-xlnx-trig0-assert-xlnx-trig1-assert-do-not-match-any-of-the-regexes:pinctrl
-|   |-- arch-microblaze-boot-dts-system.dtb:timer-41c00000:clock-names-is-a-required-property
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(simple_bus_reg):amba_pl-gpio-restart:missing-or-empty-reg-ranges-property
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_format):amba_pl-flash-partition:unit-name-should-not-have-leading
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_format):amba_pl-flash-partition:unit-name-should-not-have-leading-0s
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_vs_reg):memory:node-has-a-reg-or-ranges-property-but-no-unit-name
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-dma-41e00000:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-i2c:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-serial-44a00000:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-timer-41c00000:clocks:cell-is-not-a-phandle-reference
-|   `-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):cpus-cpu:clocks:cell-is-not-a-phandle-reference
-|-- microblaze-randconfig-r051-20240611
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(simple_bus_reg):amba_pl-gpio-restart:missing-or-empty-reg-ranges-property
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_format):amba_pl-flash-partition:unit-name-should-not-have-leading
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_format):amba_pl-flash-partition:unit-name-should-not-have-leading-0s
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_vs_reg):memory:node-has-a-reg-or-ranges-property-but-no-unit-name
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-dma-41e00000:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-i2c:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-serial-44a00000:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-timer-41c00000:clocks:cell-is-not-a-phandle-reference
-|   `-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):cpus-cpu:clocks:cell-is-not-a-phandle-reference
-|-- nios2-randconfig-r113-20240611
-|   |-- drivers-mtd-nand-raw-mxc_nand.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-buf-got-void-noderef-__iomem
-|   `-- drivers-mtd-nand-raw-mxc_nand.c:sparse:sparse:incorrect-type-in-initializer-(different-address-spaces)-expected-unsigned-short-noderef-usertype-__iomem-t-got-void-buf
-|-- openrisc-randconfig-r036-20220522
-|   |-- or1k-linux-ld:sound-soc-tegra-tegra210_i2s.c:(.text):undefined-reference-to-simple_util_get_sample_fmt
-|   |-- sound-soc-tegra-tegra210_i2s.c:(.text):relocation-truncated-to-fit:R_OR1K_INSN_REL_26-against-undefined-symbol-simple_util_get_sample_fmt
-|   |-- sound-soc-tegra-tegra210_i2s.c:(.text):relocation-truncated-to-fit:R_OR1K_INSN_REL_26-against-undefined-symbol-simple_util_parse_convert
-|   `-- sound-soc-tegra-tegra210_i2s.c:(.text):undefined-reference-to-simple_util_parse_convert
-|-- parisc-randconfig-001-20240611
-|   |-- kernel-trace-fgraph.c:warning:fgraph_pid_func-defined-but-not-used
-|   |-- kernel-trace-fgraph.c:warning:unused-variable-gops
-|   `-- kernel-trace-fgraph.c:warning:unused-variable-op
-|-- parisc-randconfig-r123-20240611
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash1-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-orig_hash-got-struct-ftrace_hash-noderef-__rcu
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-assigned-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-save_filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-assigned-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-save_notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_filter_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   `-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|-- powerpc-randconfig-c003-20220322
-|   |-- powerpc-linux-ld:tegra210_i2s.c:(.text):undefined-reference-to-simple_util_get_sample_fmt
-|   `-- tegra210_i2s.c:(.text):undefined-reference-to-simple_util_parse_convert
-`-- sparc64-randconfig-001-20240611
-    |-- kernel-trace-fgraph.c:warning:fgraph_pid_func-defined-but-not-used
-    |-- kernel-trace-fgraph.c:warning:unused-variable-gops
-    `-- kernel-trace-fgraph.c:warning:unused-variable-op
-clang_recent_errors
-|-- arm-randconfig-003-20240611
-|   |-- kernel-trace-fgraph.c:warning:unused-variable-gops
-|   `-- kernel-trace-fgraph.c:warning:unused-variable-op
-|-- arm64-randconfig-r112-20240611
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash1-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-orig_hash-got-struct-ftrace_hash-noderef-__rcu
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-assigned-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-save_filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-assigned-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-save_notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_filter_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   `-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|-- i386-randconfig-052-20240611
-|   `-- drivers-gpu-drm-drm_mm.c:error:function-drm_mm_node_scanned_block-is-not-needed-and-will-not-be-emitted-Werror-Wunneeded-internal-declaration
-|-- i386-randconfig-063-20240611
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash1-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-orig_hash-got-struct-ftrace_hash-noderef-__rcu
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-assigned-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-save_filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-assigned-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-save_notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_filter_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   `-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|-- i386-randconfig-141-20240611
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_vm.c-amdgpu_vm_bo_update()-error:we-previously-assumed-bo-could-be-null-(see-line-)
-|   |-- drivers-gpu-drm-i915-display-intel_dpt.c-intel_dpt_pin_to_ggtt()-error:uninitialized-symbol-vma-.
-|   |-- drivers-gpu-drm-i915-display-intel_fb_pin.c-intel_fb_pin_to_dpt()-error:uninitialized-symbol-vma-.
-|   |-- drivers-gpu-drm-i915-display-intel_fb_pin.c-intel_fb_pin_to_dpt()-error:vma-dereferencing-possible-ERR_PTR()
-|   |-- drivers-gpu-drm-xe-xe_drm_client.c-show_run_ticks()-error:uninitialized-symbol-gpu_timestamp-.
-|   |-- drivers-gpu-drm-xe-xe_drm_client.c-show_run_ticks()-error:uninitialized-symbol-hwe-.
-|   `-- drivers-gpu-drm-xe-xe_sched_job.c-xe_sched_job_arm()-error:uninitialized-symbol-fence-.
-`-- x86_64-randconfig-122-20240611
-    |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-    |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-    |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-    |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash1-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-    |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-    |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-    |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-orig_hash-got-struct-ftrace_hash-noderef-__rcu
-    |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-    |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-    |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash
-    |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-assigned-filter_hash
-    |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-save_filter_hash
-    |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash
-    |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-assigned-notrace_hash
-    |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-save_notrace_hash
-    |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-    |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_filter_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-    `-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-
-elapsed time: 1344m
-
-configs tested: 174
-configs skipped: 9
-
-tested configs:
-alpha                             allnoconfig   gcc-13.2.0
-alpha                            allyesconfig   gcc-13.2.0
-alpha                               defconfig   gcc-13.2.0
-arc                               allnoconfig   gcc-13.2.0
-arc                                 defconfig   gcc-13.2.0
-arc                   randconfig-001-20240611   gcc-13.2.0
-arc                   randconfig-002-20240611   gcc-13.2.0
-arm                               allnoconfig   clang-19
-arm                       aspeed_g4_defconfig   clang-19
-arm                         bcm2835_defconfig   clang-19
-arm                                 defconfig   clang-14
-arm                        keystone_defconfig   gcc-13.2.0
-arm                        mvebu_v5_defconfig   gcc-13.2.0
-arm                             mxs_defconfig   clang-19
-arm                   randconfig-001-20240611   gcc-13.2.0
-arm                   randconfig-002-20240611   clang-19
-arm                   randconfig-003-20240611   clang-15
-arm                   randconfig-004-20240611   clang-19
-arm                         wpcm450_defconfig   gcc-13.2.0
-arm64                             allnoconfig   gcc-13.2.0
-arm64                               defconfig   gcc-13.2.0
-arm64                 randconfig-001-20240611   clang-19
-arm64                 randconfig-002-20240611   clang-17
-arm64                 randconfig-003-20240611   clang-19
-arm64                 randconfig-004-20240611   gcc-13.2.0
-csky                             allmodconfig   gcc-13.2.0
-csky                              allnoconfig   gcc-13.2.0
-csky                             allyesconfig   gcc-13.2.0
-csky                                defconfig   gcc-13.2.0
-csky                  randconfig-001-20240611   gcc-13.2.0
-csky                  randconfig-002-20240611   gcc-13.2.0
-hexagon                          allmodconfig   clang-19
-hexagon                           allnoconfig   clang-19
-hexagon                          allyesconfig   clang-19
-hexagon                             defconfig   clang-19
-hexagon               randconfig-001-20240611   clang-19
-hexagon               randconfig-002-20240611   clang-14
-i386                              allnoconfig   gcc-13
-i386                             allyesconfig   gcc-13
-i386         buildonly-randconfig-001-20240611   gcc-13
-i386         buildonly-randconfig-002-20240611   gcc-11
-i386         buildonly-randconfig-003-20240611   clang-18
-i386         buildonly-randconfig-004-20240611   gcc-7
-i386         buildonly-randconfig-005-20240611   gcc-11
-i386         buildonly-randconfig-006-20240611   gcc-13
-i386                                defconfig   clang-18
-i386                  randconfig-001-20240611   clang-18
-i386                  randconfig-002-20240611   gcc-7
-i386                  randconfig-003-20240611   gcc-13
-i386                  randconfig-004-20240611   clang-18
-i386                  randconfig-005-20240611   gcc-9
-i386                  randconfig-006-20240611   clang-18
-i386                  randconfig-011-20240611   clang-18
-i386                  randconfig-012-20240611   gcc-10
-i386                  randconfig-013-20240611   clang-18
-i386                  randconfig-014-20240611   gcc-13
-i386                  randconfig-015-20240611   clang-18
-i386                  randconfig-016-20240611   clang-18
-loongarch                        allmodconfig   gcc-13.2.0
-loongarch                         allnoconfig   gcc-13.2.0
-loongarch                           defconfig   gcc-13.2.0
-loongarch             randconfig-001-20240611   gcc-13.2.0
-loongarch             randconfig-002-20240611   gcc-13.2.0
-m68k                             allmodconfig   gcc-13.2.0
-m68k                              allnoconfig   gcc-13.2.0
-m68k                             allyesconfig   gcc-13.2.0
-m68k                                defconfig   gcc-13.2.0
-microblaze                       allmodconfig   gcc-13.2.0
-microblaze                        allnoconfig   gcc-13.2.0
-microblaze                       allyesconfig   gcc-13.2.0
-microblaze                          defconfig   gcc-13.2.0
-mips                              allnoconfig   gcc-13.2.0
-mips                             allyesconfig   gcc-13.2.0
-mips                        maltaup_defconfig   clang-19
-mips                        vocore2_defconfig   clang-15
-nios2                            allmodconfig   gcc-13.2.0
-nios2                             allnoconfig   gcc-13.2.0
-nios2                            allyesconfig   gcc-13.2.0
-nios2                               defconfig   gcc-13.2.0
-nios2                 randconfig-001-20240611   gcc-13.2.0
-nios2                 randconfig-002-20240611   gcc-13.2.0
-openrisc                          allnoconfig   gcc  
-openrisc                         allyesconfig   gcc-13.2.0
-openrisc                            defconfig   gcc  
-parisc                           allmodconfig   gcc-13.2.0
-parisc                            allnoconfig   gcc  
-parisc                           allyesconfig   gcc-13.2.0
-parisc                              defconfig   gcc  
-parisc                generic-32bit_defconfig   gcc-13.2.0
-parisc                randconfig-001-20240611   gcc-13.2.0
-parisc                randconfig-002-20240611   gcc-13.2.0
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc-13.2.0
-powerpc                           allnoconfig   gcc  
-powerpc                          allyesconfig   clang-19
-powerpc                       holly_defconfig   clang-19
-powerpc                     ppa8548_defconfig   gcc-13.2.0
-powerpc                         ps3_defconfig   gcc-13.2.0
-powerpc               randconfig-001-20240611   gcc-13.2.0
-powerpc               randconfig-002-20240611   clang-19
-powerpc               randconfig-003-20240611   clang-19
-powerpc                     stx_gp3_defconfig   clang-19
-powerpc                        warp_defconfig   gcc-13.2.0
-powerpc64             randconfig-001-20240611   gcc-13.2.0
-powerpc64             randconfig-002-20240611   clang-19
-powerpc64             randconfig-003-20240611   clang-19
-riscv                            allmodconfig   clang-19
-riscv                             allnoconfig   gcc  
-riscv                            allyesconfig   clang-19
-riscv                               defconfig   clang
-riscv                 randconfig-001-20240611   gcc-13.2.0
-riscv                 randconfig-002-20240611   clang-19
-s390                             allmodconfig   clang-19
-s390                              allnoconfig   clang
-s390                             allyesconfig   gcc-13.2.0
-s390                                defconfig   clang
-s390                  randconfig-001-20240611   gcc-13.2.0
-s390                  randconfig-002-20240611   gcc-13.2.0
-sh                               allmodconfig   gcc-13.2.0
-sh                                allnoconfig   gcc  
-sh                               allyesconfig   gcc-13.2.0
-sh                                  defconfig   gcc  
-sh                          lboxre2_defconfig   gcc-13.2.0
-sh                    randconfig-001-20240611   gcc-13.2.0
-sh                    randconfig-002-20240611   gcc-13.2.0
-sh                           se7722_defconfig   gcc-13.2.0
-sparc                            allmodconfig   gcc-13.2.0
-sparc                             allnoconfig   gcc  
-sparc                               defconfig   gcc  
-sparc64                          allmodconfig   gcc-13.2.0
-sparc64                          allyesconfig   gcc-13.2.0
-sparc64                             defconfig   gcc  
-sparc64               randconfig-001-20240611   gcc-13.2.0
-sparc64               randconfig-002-20240611   gcc-13.2.0
-um                               allmodconfig   clang-19
-um                                allnoconfig   clang
-um                               allyesconfig   gcc-13
-um                                  defconfig   clang
-um                             i386_defconfig   gcc  
-um                    randconfig-001-20240611   gcc-11
-um                    randconfig-002-20240611   gcc-13
-um                           x86_64_defconfig   clang
-x86_64                            allnoconfig   clang-18
-x86_64                           allyesconfig   clang-18
-x86_64       buildonly-randconfig-001-20240611   gcc-13
-x86_64       buildonly-randconfig-002-20240611   gcc-9
-x86_64       buildonly-randconfig-003-20240611   gcc-13
-x86_64       buildonly-randconfig-004-20240611   clang-18
-x86_64       buildonly-randconfig-005-20240611   gcc-9
-x86_64       buildonly-randconfig-006-20240611   gcc-13
-x86_64                              defconfig   gcc-13
-x86_64                randconfig-001-20240611   clang-18
-x86_64                randconfig-002-20240611   gcc-12
-x86_64                randconfig-003-20240611   gcc-8
-x86_64                randconfig-004-20240611   clang-18
-x86_64                randconfig-005-20240611   gcc-10
-x86_64                randconfig-006-20240611   clang-18
-x86_64                randconfig-011-20240611   clang-18
-x86_64                randconfig-012-20240611   gcc-13
-x86_64                randconfig-013-20240611   clang-18
-x86_64                randconfig-014-20240611   clang-18
-x86_64                randconfig-015-20240611   clang-18
-x86_64                randconfig-016-20240611   gcc-11
-x86_64                randconfig-071-20240611   clang-18
-x86_64                randconfig-072-20240611   gcc-9
-x86_64                randconfig-073-20240611   clang-18
-x86_64                randconfig-074-20240611   gcc-11
-x86_64                randconfig-075-20240611   gcc-13
-x86_64                randconfig-076-20240611   gcc-13
-x86_64                          rhel-8.3-rust   clang-18
-xtensa                            allnoconfig   gcc  
-xtensa                randconfig-001-20240611   gcc-13.2.0
-xtensa                randconfig-002-20240611   gcc-13.2.0
-xtensa                    smp_lx200_defconfig   gcc-13.2.0
+ .../bindings/sound/audio-graph-port.yaml      |  9 +++
+ include/dt-bindings/sound/audio-graph.h       | 26 +++++++
+ include/sound/simple_card_utils.h             |  4 ++
+ sound/soc/generic/audio-graph-card.c          | 13 ++++
+ sound/soc/generic/audio-graph-card2.c         | 13 ++++
+ sound/soc/generic/simple-card-utils.c         | 71 +++++++++++++++++++
+ sound/soc/generic/simple-card.c               | 10 +++
+ 7 files changed, 146 insertions(+)
+ create mode 100644 include/dt-bindings/sound/audio-graph.h
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.43.0
+
 
