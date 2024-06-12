@@ -1,89 +1,51 @@
-Return-Path: <devicetree+bounces-74929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-74930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67DDF905027
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 12:10:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22B8C905040
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 12:17:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 112922818B6
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:10:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B0301C20E05
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jun 2024 10:17:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E81716F901;
-	Wed, 12 Jun 2024 10:09:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E861315250F;
+	Wed, 12 Jun 2024 10:17:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="RwqP4uio";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Sw6eC1NS"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="baylP864"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout6-smtp.messagingengine.com (fout6-smtp.messagingengine.com [103.168.172.149])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF88C16F27B;
-	Wed, 12 Jun 2024 10:09:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 590AE16E893;
+	Wed, 12 Jun 2024 10:17:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718186948; cv=none; b=W63RWupehb5BumBfyP57OQQMKYqQ/o918LiNAy5Vl64N0LPwQpTKr45RodKuElCGUpUdqWa60VZHsNDKRHooh9Nh8xKgkx9kdB0Hz0bQ78xWrK4YV1pCSqGpUeu6Xdhx+bBvBgYoAa5pAoZVAgcGMOU4IXEvivrsmchInQASlU4=
+	t=1718187454; cv=none; b=MFE5m8oJMuNbSY4UuqtrlOqP2sWM2us6vsFKxPdl4u2e4U0pYtBsLiwBB/gBILe2+r3AFZx5C2nIXFXCrTfyySVN13ALIyFqLHFY33sNa98CG0LxB1/gNM869w5Dn7/AojuvrDfUpD6kpV7lO9Rw9mxPrK+YvkqgwW4Pzv0KNfE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718186948; c=relaxed/simple;
-	bh=L0sI9SNX8Fl8dWHCmZcs43fJIyWpWY+8oHGPiv/o1WY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=HEaC+MkiJZgDwEleSUSDtxqD88ovo0mGsEHQij9ADMNi2bXibOgL9XTZyVQUKDn72ax1k4TjHXCG6Oj9zmNKCEEtpPV7sdl+Xw/HWQ1pfhMpM/1stoW/at811n6+nY/TMQUl0uCtXHIRDKgnJPNeXafJhtYXFa9dg0Rm+Zm2vOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=RwqP4uio; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Sw6eC1NS; arc=none smtp.client-ip=103.168.172.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-	by mailfout.nyi.internal (Postfix) with ESMTP id CAEC91380083;
-	Wed, 12 Jun 2024 06:09:05 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Wed, 12 Jun 2024 06:09:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1718186945;
-	 x=1718273345; bh=iPbRKS8KTP23XarmKKdaRK6HQu116D/aznYejgpVkTM=; b=
-	RwqP4uioREdG08LA9b6XESYE9EIuxp+Ic3pCMPDeZnfG8gkmC3IgdS+E+xxw4ztw
-	d1M3Mkxfjy96GpIfw3QjnW8Xy8gns19TssM+5vUsV+osCbZ1KZtktDtaa71i5tEd
-	7QB4mePpKeHn9dT4Kbr6FcgppTuevc25LgdVEdIpvRNCF5e9xP0FDUX3GNQ4xumC
-	6VAlRtw0HqweGxN9KETrmoos9om9fUHzH8ADSXC/tCoJoZ3hBPsoZgyy9t5KEXEk
-	MG+VgNPZ78ILLZ3fgDLyfs1JQoHon69i4fHJT1VunQvoZLcNulPNtqRohfZp543m
-	nMmIfqHe1OV7fCFf6vQc5g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1718186945; x=
-	1718273345; bh=iPbRKS8KTP23XarmKKdaRK6HQu116D/aznYejgpVkTM=; b=S
-	w6eC1NSnubDJJ2ZGOR729+Q3fXYdkn1bgC6Ui2ftwTjRRdeG7hY7W3M3OT+Ghmhp
-	svr2Xu861cHpZYSVANF7SeJPei+nbVwnGpxR61usIk8vP9jOxiGpMFlje987L+qA
-	GkzkO2neWbeI4LHmn0zEQtpQ6YukvDyGXEHMbkSf5oC3qAcj51VIRYJRSGdUxn7X
-	rZgkLF+AtASS7Q7OLV6oHCyi7cUM0yDz0WYwC832oLCa75QZyLy61zGYHovBT9Yo
-	CZy33v5IH2zmPRmywTVOWjDBv+xMdost79599RxSADkhjBZVkSFb0u4fvani/cuo
-	bvK6WhvNJBO2wRdZPghJA==
-X-ME-Sender: <xms:wXNpZq5jscxXipYlQhg0L7b5izblmXZnD16HEVqamYBdy8S_TTRyuw>
-    <xme:wXNpZj7hc5c_ag93goytpqAyVVKUJ3StmWs8zgqG59jEQcaLO0AN8jbxiSw_Wv-T_
-    EVGq3z1vHLkwnS7x5E>
-X-ME-Received: <xmr:wXNpZpfzPPnQxhAC9kyYauY_mG9-7Q8d-OpzZKIJezxu4xPA3V1ru7w>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfedugedgvdefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephfffufggtgfgkfhfjgfvvefosehtjeertdertdejnecuhfhrohhmpeflihgr
-    gihunhcujggrnhhguceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomheqne
-    cuggftrfgrthhtvghrnhepvdekiefhfeevkeeuveetfeelffekgedugefhtdduudeghfeu
-    veegffegudekjeelnecuvehluhhsthgvrhfuihiivgepudenucfrrghrrghmpehmrghilh
-    hfrhhomhepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
-X-ME-Proxy: <xmx:wXNpZnLN5Kcoao3oDd-IB2jB0Qz4kCieqxT2xIxRGVwFttLDT8yYTA>
-    <xmx:wXNpZuKpW4pLRHm_0OrBRsfbHMaKmP3FHG98sIM7y-oT3Wqd83o5vA>
-    <xmx:wXNpZoz95lwrFLlnBViDv4gG0EFsA9GfI39wptIN9H7jKMblQKnLug>
-    <xmx:wXNpZiJO062dWsyroOuyCYD-hKpHD0UJtYU_mqdIvRVkehQPgl-wsA>
-    <xmx:wXNpZrB4aCOywsjhk0TC23QjIaVM8mwdWxHumcai0clQxoAr71_k88nN>
-Feedback-ID: ifd894703:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 12 Jun 2024 06:09:04 -0400 (EDT)
-From: Jiaxun Yang <jiaxun.yang@flygoat.com>
-Date: Wed, 12 Jun 2024 11:08:58 +0100
-Subject: [PATCH v2 6/6] MIPS: cm: Probe GCR address from DeviceTree
+	s=arc-20240116; t=1718187454; c=relaxed/simple;
+	bh=uEVXytN0su4uO31CCDzPwmBSkgNmoh/AYGceJbx2wJg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=gTVqLW3LFd0mOVEbVmwLU8sf4oLUGq6h2cZkyIAgknyEzHKmqmx14XTXgIstD063/qM2gqIubqd9MffW0VAaHpqbRNaflAvxmLVO4bddjngMxthxYjwfdETIvDVz+1vPV6p4/BWALO9OI0nmX/kJ+Io2gADcGGsywn18bUCo0kc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=baylP864; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 57D021BF203;
+	Wed, 12 Jun 2024 10:17:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1718187450;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=CfBySjCLhdPg25qelMt2+tvslyXTXvLTckrLcGn3QEc=;
+	b=baylP864iq/ua2yedrZZPQeSvLYCrueoxX0C0+8cwhMaJ5bbdxW2zob4gCWTUIeOko2y7h
+	jy8zAKnY0McE6ftj+OdlOAWvUq5duntD/Z118FHUixiOI+7sannftpGC7nRkYuXNlIT1tD
+	DKlycYfJ3M4p6f45rC9qHonot5c7nL/IYpyjdsjqMxAsCCHgHQ7sIFts5YjBhS29/ZT8l3
+	qatd9SrA2oFAwNvY2B0XtdTlHf4BAwLRL8FNwOpeStplSiCKm+5Z4TEL4IW3Vr25MtoYDo
+	YEaeF8nBxsLBvVbHHdh20V3GKRz+ClaC+yXyOPyTEDX3bEcdSZBSoqe2NY9bgw==
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Date: Wed, 12 Jun 2024 12:17:27 +0200
+Subject: [PATCH] arm64: dts: imx8mp-msc-sm2s: Add HDMI output
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,137 +54,82 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240612-cm_probe-v2-6-a5b55440563c@flygoat.com>
-References: <20240612-cm_probe-v2-0-a5b55440563c@flygoat.com>
-In-Reply-To: <20240612-cm_probe-v2-0-a5b55440563c@flygoat.com>
-To: Paul Burton <paulburton@kernel.org>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Serge Semin <fancer.lancer@gmail.com>, linux-mips@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Jiaxun Yang <jiaxun.yang@flygoat.com>
+Message-Id: <20240612-imx8mp-msc-sm2s-hdmi-v1-1-6c808df5205d@bootlin.com>
+X-B4-Tracking: v=1; b=H4sIALZ1aWYC/x3MPQqAMAxA4atIZgM1/iBeRRxsGzVDVBoQQby7x
+ fEb3nvAOAkbDMUDiS8xOfaMqiwgbPO+MkrMBnLUuK4iFL17PVEtoCkZblEFm7g43/vW1xQgp2f
+ iRe5/O07v+wFF1HH2ZgAAAA==
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>, Adam Ford <aford173@gmail.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, devicetree@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3047;
- i=jiaxun.yang@flygoat.com; h=from:subject:message-id;
- bh=L0sI9SNX8Fl8dWHCmZcs43fJIyWpWY+8oHGPiv/o1WY=;
- b=owGbwMvMwCXmXMhTe71c8zDjabUkhrTM4m3tk30Z190JfPNlzmuVmrNfz70x/v/9Rleah8Xmx
- MRvLU0POkpZGMS4GGTFFFlCBJT6NjReXHD9QdYfmDmsTCBDGLg4BWAisQIM/3TCUti9+J5dmVbr
- tGDFdklpwd6V8e2+X4IvKsgu+qjQUcPIcOTo5ZffGWMu7zi1x1Nu0pqr62cfEQ086TFTJGru14X
- vbPgB
-X-Developer-Key: i=jiaxun.yang@flygoat.com; a=openpgp;
- fpr=980379BEFEBFBF477EA04EF9C111949073FC0F67
+X-GND-Sasl: luca.ceresoli@bootlin.com
 
-Traditionally, CM GCR address can be probed from CP0_CMGCRBase.
+Enable the HDMI output of the MSC SM2-MB-EP1 carrier board based the
+SM2S-IMX8PLUS SMARC module.
 
-However there are chips in wild that do have CM GCR but CP0_CMGCRBase
-is not available from CPU point of view. Thus we need to be able to
-probe GCR address from DeviceTree.
-
-It is implemented as:
-- If only CP0_CMGCRBase present, trust CP0_CMGCRBase
-- If only mti,mips-cm node present, trust mti,mips-cm reg prop
-- If both present, remap address space to address specified in dt
-
-Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 ---
-v2: Fix build warning (test bot)
+ .../boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts     | 27 ++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
+index da4b1807c275..83194ea7cb81 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
+@@ -46,6 +46,24 @@ codec_dai: simple-audio-card,codec {
+ 	};
+ };
+ 
++&hdmi_pvi {
++	status = "okay";
++};
++
++&hdmi_tx {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_hdmi>;
++	status = "okay";
++};
++
++&hdmi_tx_phy {
++	status = "okay";
++};
++
++&lcdif3 {
++	status = "okay";
++};
++
+ &i2c1 {
+ 	sgtl5000: audio-codec@a {
+ 		compatible = "fsl,sgtl5000";
+@@ -92,6 +110,15 @@ &iomuxc {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_smarc_gpio>;
+ 
++	pinctrl_hdmi: hdmigrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL	0x1c2
++			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA	0x1c2
++			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC		0x10
++			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD		0x10
++		>;
++	};
++
+ 	pinctrl_sai2: sai2grp {
+ 		fsl,pins = <
+ 			MX8MP_IOMUXC_SAI2_TXFS__AUDIOMIX_SAI2_TX_SYNC   0xd6
+
 ---
- arch/mips/kernel/mips-cm.c | 61 +++++++++++++++++++++++++++++++++++++++++-----
- 1 file changed, 55 insertions(+), 6 deletions(-)
+base-commit: 2ef5971ff345d3c000873725db555085e0131961
+change-id: 20240612-imx8mp-msc-sm2s-hdmi-4df0b8b5b32c
 
-diff --git a/arch/mips/kernel/mips-cm.c b/arch/mips/kernel/mips-cm.c
-index dddc9428fe58..02afc795ba8a 100644
---- a/arch/mips/kernel/mips-cm.c
-+++ b/arch/mips/kernel/mips-cm.c
-@@ -5,6 +5,8 @@
-  */
- 
- #include <linux/errno.h>
-+#include <linux/of_address.h>
-+#include <linux/of_fdt.h>
- #include <linux/percpu.h>
- #include <linux/spinlock.h>
- 
-@@ -179,23 +181,70 @@ static char *cm3_causes[32] = {
- static DEFINE_PER_CPU_ALIGNED(spinlock_t, cm_core_lock);
- static DEFINE_PER_CPU_ALIGNED(unsigned long, cm_core_lock_flags);
- 
-+static int __init mips_cm_fdt_scan(unsigned long node, const char *uname,
-+		int depth, void *data)
-+{
-+	u64 addr;
-+	unsigned long *cmgcr = data;
-+
-+	if (!of_flat_dt_is_compatible(node, "mti,mips-cm"))
-+		return 0;
-+
-+	addr = of_flat_dt_translate_address(node);
-+	if (addr == OF_BAD_ADDR || addr >= ULONG_MAX)
-+		*cmgcr = 0;
-+	else
-+		*cmgcr = addr;
-+
-+	return 0;
-+}
-+
- phys_addr_t __init __weak mips_cm_phys_base(void)
- {
--	unsigned long cmgcr;
-+	unsigned long gcr_reg = 0, gcr_dt = 0;
-+
-+	if (of_have_populated_dt()) {
-+		int err;
-+		struct resource res;
-+		struct device_node *cm_node;
-+
-+		cm_node = of_find_compatible_node(of_root, NULL, "mti,mips-cm");
-+		if (cm_node) {
-+			err = of_address_to_resource(cm_node, 0, &res);
-+			of_node_put(cm_node);
-+			if (!err)
-+				gcr_dt = res.start;
-+		}
-+	} else {
-+		of_scan_flat_dt(mips_cm_fdt_scan, &gcr_dt);
-+	}
- 
- 	/* Check the CMGCRBase register is implemented */
- 	if (!(read_c0_config() & MIPS_CONF_M))
--		return 0;
-+		return gcr_dt;
- 
- 	if (!(read_c0_config2() & MIPS_CONF_M))
--		return 0;
-+		return gcr_dt;
- 
- 	if (!(read_c0_config3() & MIPS_CONF3_CMGCR))
--		return 0;
-+		return gcr_dt;
- 
- 	/* Read the address from CMGCRBase */
--	cmgcr = read_c0_cmgcrbase();
--	return (cmgcr & MIPS_CMGCRF_BASE) << (36 - 32);
-+	gcr_reg = read_c0_cmgcrbase();
-+	gcr_reg = (gcr_reg & MIPS_CMGCRF_BASE) << (36 - 32);
-+
-+	/* If no of node, return straight away */
-+	if (!gcr_dt)
-+		return gcr_reg;
-+
-+	/* If the CMGCRBase mismatches with dt, remap it */
-+	if (gcr_reg != gcr_dt) {
-+		pr_info("Remapping CMGCRBase from 0x%08lx to 0x%08lx\n",
-+			gcr_reg, gcr_dt);
-+		change_gcr_base(CM_GCR_BASE_GCRBASE, gcr_dt);
-+	}
-+
-+	return gcr_dt;
- }
- 
- phys_addr_t __init __weak mips_cm_l2sync_phys_base(void)
-
+Best regards,
 -- 
-2.43.0
+Luca Ceresoli <luca.ceresoli@bootlin.com>
 
 
