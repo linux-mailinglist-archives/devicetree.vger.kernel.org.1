@@ -1,128 +1,135 @@
-Return-Path: <devicetree+bounces-75358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABFAB9069A3
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 12:08:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 515479069A4
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 12:08:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67E581C24031
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 10:08:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 003251F21E80
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 10:08:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52F121411D3;
-	Thu, 13 Jun 2024 10:08:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA9C71411F8;
+	Thu, 13 Jun 2024 10:08:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qUfUnCeU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YilLq+tN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A7E91411C7
-	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 10:07:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A8D613CA95;
+	Thu, 13 Jun 2024 10:08:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718273281; cv=none; b=JYXxOKvnQvv24V1+7z+i6qXobwJccG9fX5tL9Dop7GnK/+XzxslJOCJMZT4l3mxwy7hTCtp8+G83RmpMZ6nCo78YoCyv1Rb70qaRY19HeJ47TF6XBv0IZZl4nxm111ZdBrawGjZiRB13nNIiTnUVetAhVAZxWIW0NGl/Lo5zJVk=
+	t=1718273312; cv=none; b=VllMqcqOzoAW1e8HGwzPyimOJiqKI/JvI9+qBraLmdnqoE03g+DAi8RUQqhBLdxHQuu6z5GMj5HRHPFpnpu+PaNN9Gu4ILLurfNAlnJuhWvVLq4a1F+l5wEvXaNVfFokIg2wUexYDGlMa2MOoLeyRNuU+9Pw1Dge08s7h64ayAE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718273281; c=relaxed/simple;
-	bh=oDpsC86xnQTDxHdbvxBVXExSH9BkhxRWqhOh4TQqauI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H0n9ZbG6N4gwAwygcKSsbWnLB+fXpdZxxLNY89Ywy2AGU6Q+wQVueVXZx5b5OPoMlM9pmV7QKX5/xE/f1q1kfcDARNtfCPx21ok3IVcNJa39VnMB2ZyZZgwJ3jGntlAqCN5bCD+onPDJB3LvxZaSCpYAl2TOSbPx3Q1Tqd4ngoQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qUfUnCeU; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5295e488248so984590e87.2
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 03:07:59 -0700 (PDT)
+	s=arc-20240116; t=1718273312; c=relaxed/simple;
+	bh=ObRqJNFNu8w7qH3ulB9YHO70KAhJwOZLbI2CBDoy83Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ElWI/OqfL0NqmZjxec0/wETGUlzLdk14Id7v56+CflT66IPKEqX1iE6duXx1mVpIzjJiWbOsmQoUDZvbKX9RBNBc1YqvtrT1JQM9ad5oev75I9dDWK9mJnGy+ZugUW5SDJln43FyAUhxt6ffURsQJIW5R1L7tZszlpd++KN7kMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YilLq+tN; arc=none smtp.client-ip=209.85.221.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-4ecfbf16c77so256674e0c.3;
+        Thu, 13 Jun 2024 03:08:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718273278; x=1718878078; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=RYvXhUR4MqvdO8CyI6lyGFQa8ObvUY9+LLJIm6+1jFA=;
-        b=qUfUnCeU186J4CoMxjdATurELfr4JGVWKXBXjLhcYVs7dDnTEwpQ80Cm0Ii2UykXtt
-         ZA97QZUNvpKyxB8QmMEPUc9UeD19H8SNZHVc+0iYyq/gZ+mqTeQA8EtZd7AQnIqPihR5
-         NJwgO1tYipHgGoAKk6xnn2fruJ7T09zgjyo9fbZc+1EZU5Y+22MWzFIyvkHWPuFk8O/O
-         Z70PsYqpDIiryxIeUlqA2mpeH5Eqhxb7os6Fl5zZvVUhhHVB7IrqXH4X9/CpsI9ZEfd5
-         woELrfwLK+0vE1h8KLL2dwpZJr/Rk9wEiMbE3EqjeJc4nIcARghQ/DhscA1hUO0bIKAF
-         L4UA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718273278; x=1718878078;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1718273310; x=1718878110; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RYvXhUR4MqvdO8CyI6lyGFQa8ObvUY9+LLJIm6+1jFA=;
-        b=YU858V0olYKMRVhwI8c271kD+WQIYXYVSiDDFFbIKYqfGepthRGKMdSxr5Pbdudcx3
-         7l/gCgPXj3JIltPUNAEIdWiBdCDQMhXggAlcHV4ju2fEfrEB+DEOtRmlb180fLfZHr1N
-         pWXvt2R/JvvJoIKPs4ymL+e5ka0fAtb1JhLv5xo8oCIT/+7OofW65VJskBg1U2qk751i
-         ZsUoAZjlqHjNMr8eGr5o3X39FURgnapo1HSD1m25jSUO+KEd22jQ2bi3reBQDKpRAVj2
-         9OGsKGhFadoY+1iutslqDX3K80eFwYmLX+WvgftyDZLt4LPDN6X3eEPoTvJZjwowrsdG
-         /pag==
-X-Forwarded-Encrypted: i=1; AJvYcCWbPVl365ZW+7eyQeTPecfGCpqoFPzW9Zp2+DFLsordxUDPn3Tfx8/3EIUoCOepjR/fChmJLZF8OXiTXw+AtH3xvlkG5mbxoywVow==
-X-Gm-Message-State: AOJu0YxutUQkqHQ9QuTsP/hqM04PK0F13S4XcGYPlkk60m5+tZ7OFvAC
-	iSn6M8Piw4i/slxOj+FAMBV44EhTKX0SLbd5QmY/WnvZx5BE4dZR6HpAAqkhADg=
-X-Google-Smtp-Source: AGHT+IEIfjbzuR+TJYfn0WkM5bFWWQE5UXg72/ta38D4UK601aQPCRVEmPoKXYW21UYlolSVF5CCJQ==
-X-Received: by 2002:a05:6512:3096:b0:52c:893c:6c2c with SMTP id 2adb3069b0e04-52c9a3dfaeemr3306688e87.40.1718273277753;
-        Thu, 13 Jun 2024 03:07:57 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca282f2aasm148599e87.85.2024.06.13.03.07.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jun 2024 03:07:57 -0700 (PDT)
-Date: Thu, 13 Jun 2024 13:07:55 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	Arnaud Vrac <avrac@freebox.fr>, Pierre-Hugues Husson <phhusson@freebox.fr>
-Subject: Re: [PATCH v3 2/4] dt-bindings: display/msm: hdmi: add
- qcom,hdmi-tx-8998
-Message-ID: <qf3erx5x7cigdsel6eh4nb4cl7733ag6qxxeblcdjzys6dnrul@nl7mzrm4ljji>
-References: <20240606-hdmi-tx-v3-0-9d7feb6d3647@freebox.fr>
- <20240606-hdmi-tx-v3-2-9d7feb6d3647@freebox.fr>
- <Zmnejlkb869mN3eS@matsya>
- <af3f71e5-6864-475d-aa90-74986d516bae@freebox.fr>
+        bh=ObRqJNFNu8w7qH3ulB9YHO70KAhJwOZLbI2CBDoy83Q=;
+        b=YilLq+tNez/QZzYLMk2D+btQtp4GkBihrOh62hK5bugbm3EtWCoS3/PFX+s+qEBAnw
+         x+cwNlO40INLFhLzV6n0+rmnt6013VEN4QFV+Qy1p3hMPTV+M78yK93LHSf2OuNzgBeZ
+         szPEBXmqF7mUAF+j+HTN1rjEC3ytNijrTShn0HOTsjFiZ7p0lOsQ9L67MeRyskNM68Uw
+         YbJTHUz9zwvDyw77ShzBo26S7ptTlNOmjJzxSFh8BweWCo16qivDsB74PeNL9cSIl1UX
+         237K4StfjoISfTe3hkQHeJOtHPHxNE/GY3e50Gup+qas2PltNt39trTu2MSJR03/S/FX
+         66fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718273310; x=1718878110;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ObRqJNFNu8w7qH3ulB9YHO70KAhJwOZLbI2CBDoy83Q=;
+        b=jV87KM4s70ODfEjzAM98hu5OZHRSm6EOChfolYW4a8j1f6mSaGBUoT76L2jUrT4Rqv
+         NnIM8tYBVKFhzA7PQMRBVlDol2f0/NamyZcZjYQDa7s+bB0YCiT+T8+egI1wqjQurPg2
+         QVmp1Yi0PX5hN4NF1jjY4TKvcdNrrYXgeEmpgc4kiU6pf8ejIp07+WNFJ7QBbmQS7ode
+         98exT39G+48XejELvxjnwZdZrsQe6Y6c0pQrKq8xRP8/1bkNYwwggJmp1hkTkII5hHm3
+         piec8iVRT6nteu18tqfnJi2G/W5k3cq3ZMX5QP7oB2eJDAiS+Dh9DetovBMNUIC/ZEys
+         5gEA==
+X-Forwarded-Encrypted: i=1; AJvYcCVV2FXSKUF3Xbh1tDYze0nXqE7WgvRVcO25mACj7CjN2jAPVvxAFfyVD3AZOETfylZv7UUzdLjc86jW6WRRyUlNDxDiajPVKkvLd3olgtZRJ30X4+Md70a/rM7mZWL/P79nlMTd1Gi3o21wmGVvFZJxcLIt8qck9dyngb2ExEDHasvCAA==
+X-Gm-Message-State: AOJu0YwUE/jvK80IZgGmY6C8TcHJtuTNC7AVGJkX74xfTdWU8b5AEpgu
+	DeiG8Pq+saJXkmHSnL1FmgU4aHHR2YG6BthKnpQQts8HehM0Vq1x8d6rm9/buuNHeDXTeMV2GG+
+	SasSR3uccPlEq/ngqWmy6PPUWvYg=
+X-Google-Smtp-Source: AGHT+IHHUrT8cM8NRUzlD8w2UUROuSFBv8qmbu9U83T6lqi7xzxG0bEAW5OvH9OvfJFV+GBhK2eT+6W+DvlRRZQqYBw=
+X-Received: by 2002:a05:6122:311e:b0:4ec:f89d:1ae5 with SMTP id
+ 71dfb90a1353d-4ed07bc256emr5216048e0c.12.1718273310117; Thu, 13 Jun 2024
+ 03:08:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <af3f71e5-6864-475d-aa90-74986d516bae@freebox.fr>
+References: <20240610233221.242749-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240610233221.242749-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240610233221.242749-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Thu, 13 Jun 2024 11:07:59 +0100
+Message-ID: <CA+V-a8syniZZr9ayxzCBumrkXkNjwUtrZLqzT5amdqCJH6c93w@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 1/4] dt-bindings: clock: renesas: Document
+ RZ/V2H(P) SoC CPG
+To: Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jun 13, 2024 at 04:02:24AM +0200, Marc Gonzalez wrote:
-> On 12/06/2024 19:44, Vinod Koul wrote:
-> 
-> > On 06-06-24, 18:07, Marc Gonzalez wrote:
-> >
-> >> HDMI TX block embedded in the APQ8098.
-> > 
-> > This one too
-> 
-> I assume this refers to:
-> "Why is the patch titled display/msm, this is phy patch and it should be
-> tagged as such."
-> 
-> I always copy what others have done before me:
-> 
-> $ git log --oneline Documentation/devicetree/bindings/display/msm/hdmi.yaml
-> 27339d689d2f9 dt-bindings: display/msm: hdmi: add qcom,hdmi-tx-8998
-> 6c04d89a6138a dt-bindings: display/msm: hdmi: mark hdmi-mux-supply as deprecated
-> e3c5ce88e8f93 dt-bindings: display/msm: hdmi: mark old GPIO properties as deprecated
-> 2f14bc38d88a4 dt-bindings: display/msm: hdmi: split and convert to yaml
-> 
-> Are you saying we should diverge from the previous nomenclature?
+Hi Geert,
 
-This one is fine. For the phy bindings please use phy: prefix.
+On Tue, Jun 11, 2024 at 12:32=E2=80=AFAM Prabhakar <prabhakar.csengg@gmail.=
+com> wrote:
+>
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Document the device tree bindings for the Renesas RZ/V2H(P) SoC
+> Clock Pulse Generator (CPG).
+>
+> CPG block handles the below operations:
+> - Generation and control of clock signals for the IP modules
+> - Generation and control of resets
+> - Control over booting
+> - Low power consumption and power supply domains
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> Hi Geert,
+>
+> WRT XIN_{RTCCLK/AUDCLK/MAINCLK)clks going to CPG I have created an
+> internal request for clarification if the clocks are inputs to CPG
+> or to respective clocks. As the board schematic doesnt have any of
+> these. For now I have just kept qextal clk as input to CPG.
+>
+I have got the feedback from the manual team.
 
--- 
-With best wishes
-Dmitry
+The XIN_* clocks will be renamed as below (and the block diagram will
+be updated),
+XIN_MAINCLK -> QXCLK
+XIN_RTCCLK -> RTX_XCLK
+XIN_AUDCLK -> AUDIO_XCLK
+
+From section 4.2.1.7 Functional Block diagram (page 359) we have the below,
+
+RTXIN ----------------> PFC ------> RTX_XCLK --------> CPG
+QEXTAL--------------> PFC ------> QXCLK -------------> CPG
+AUDIO_EXTAL-----> PFC ------> AUDIO_XCLK ----> CPG
+
+How should we model this now, please provide your feedback?
+
+Cheers,
+Prabhakar
 
