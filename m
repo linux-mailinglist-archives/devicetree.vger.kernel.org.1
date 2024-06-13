@@ -1,239 +1,218 @@
-Return-Path: <devicetree+bounces-75612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2F72907F3C
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 01:10:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCF26907FA9
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 01:43:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2C346B23C26
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 23:10:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47D9928485C
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 23:43:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4324E15623D;
-	Thu, 13 Jun 2024 23:09:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B11E1152DE0;
+	Thu, 13 Jun 2024 23:43:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b="CvMvjDLr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xlgXfjm5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2100.outbound.protection.outlook.com [40.107.94.100])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F48155A53;
-	Thu, 13 Jun 2024 23:09:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.100
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718320175; cv=fail; b=tAM6m6EwJaSY84UE36du/oCAQ49agKOPysqxam1W19pgns8xuoWu3LIV09wS+yZYeeBeeMe2mFZr2qdZlrEOyhOgu367JA9Njg+VNjP95wG7CoBkOE/RXxP8CSSJtSYqvwhjlsLjMIeDJ9tpq+LTOWj8CTWAkcbJCmPfNkQEhzw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718320175; c=relaxed/simple;
-	bh=4oZXwEDiVyLO+9N0qDy5i+1bfow2trWq/3Vq/dBY5eA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=KHuUsw+ivMR1K7TK/DIJ7cdFQKvl1N9iixnTa1IkgrMg4PowqQU6/8INRS0uro+HbIKXDa2sPGRrNsA+6LPUyKZoWkJM0ZMT9BTxaVGTLbO/rD/WolYAhc1qiYKhtzIUwpLBhPvFPb+6vlj0rAkQx6bQzNnhEbPrLiBN/LGGO6g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=phytec.com; spf=pass smtp.mailfrom=phytec.com; dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b=CvMvjDLr; arc=fail smtp.client-ip=40.107.94.100
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=phytec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Mv7Aq7WrimvncS8bOurHREOCxsc965IniHUuSiUPWXj4Ok8Bky7AElR5qEpWU60UnNwo3vXeAzgFbNyuT1d82z3isdvq10e6IZ1ZDKC10cHq9IJvFSsksfDxvY6o2yDCRVXjHMu8vDlqoLj2X8dWf11sQ2RGvQmDPmmmlI5jxqBqMvHuN57/TIClEzJiFJNbl1jJJYDbaUPnT7Py5HBydQtEG+UHumzwDiDu/VlDcwEBGWPqIbyi1fWa92NwSPPZsBKK4GlCav/Qb7w+YAHjXJ9kZx8ZgzlNUmU59LYO/Pp4kvs7p/BqJMIKXd3M2ypQ7cqALEI0HXKLzt+SfSsyYA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MVV2UPhrcZq6BZwNL3cLfOxS7NTppWhGYN1Qfj7Bl5U=;
- b=mKP8YD5HtQwH3Em8iyQ2zpMmkaZcz64udNPsX/RHRnB/vUbqJxRHfRoekeFUsZrFT76zw6T/YMgyj9KH+rFCapqg8fcaZNvwe/C18cM/1WOPwXUAIc1QkxPtSHw7+LPF+EaT88x4nFxybDYyAfzr8rWsi30dF06ohokkKNVWZv8KzpOHbpiVIVys2C0eGRuYScKqO96gFdOGGpARDcvUN7ncoQJpBxZiHBoRwF5hQgRu1SifPut2M9bdKZDg+y4x8iZ7B4asiiuvHPosyUYxhBrGiMaQUHcBVZjt6J+4Ws0uY/tEgoAJnxmY6YbR4uaGXWIvRE37sBRiUWPCLfW55Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=phytec.com; dmarc=pass action=none header.from=phytec.com;
- dkim=pass header.d=phytec.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MVV2UPhrcZq6BZwNL3cLfOxS7NTppWhGYN1Qfj7Bl5U=;
- b=CvMvjDLrztFDQP82BVz9+ujzBi5IQJ9v+5NlC0IPHk1lSazyMA7XhvUbk9kZ8u5Lt8YcLkqEVgZ8K2AwtP/CnB3c5YT2Os+iVYmOkrzisj4+bgPM/tz08InFgfGV48Wnf9ILVw5YsaPlX4111/fkXVeGjoQucGfPoUtqHmv8sbI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=phytec.com;
-Received: from SA1PR22MB5636.namprd22.prod.outlook.com (2603:10b6:806:3e2::15)
- by DM4PR22MB3423.namprd22.prod.outlook.com (2603:10b6:8:46::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.37; Thu, 13 Jun
- 2024 23:09:29 +0000
-Received: from SA1PR22MB5636.namprd22.prod.outlook.com
- ([fe80::aaeb:2d53:9f16:db45]) by SA1PR22MB5636.namprd22.prod.outlook.com
- ([fe80::aaeb:2d53:9f16:db45%4]) with mapi id 15.20.7677.024; Thu, 13 Jun 2024
- 23:09:29 +0000
-From: Nathan Morrisson <nmorrisson@phytec.com>
-To: nm@ti.com,
-	vigneshr@ti.com,
-	kristo@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	upstream@lists.phytec.de,
-	w.egorov@phytec.de
-Subject: [PATCH v3 4/4] arm64: dts: ti: k3-am6xx-phycore-som: Add overlay to disable spi nor
-Date: Thu, 13 Jun 2024 16:07:59 -0700
-Message-Id: <20240613230759.1984966-5-nmorrisson@phytec.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240613230759.1984966-1-nmorrisson@phytec.com>
-References: <20240613230759.1984966-1-nmorrisson@phytec.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: CH0PR03CA0234.namprd03.prod.outlook.com
- (2603:10b6:610:e7::29) To SA1PR22MB5636.namprd22.prod.outlook.com
- (2603:10b6:806:3e2::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 872A214BF91
+	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 23:43:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718322226; cv=none; b=HfEnWEAx7/eNZtOorKhCKl/jiZVtRx+mwjpU9qulJ/e7f0jiUz2AxPB6oH3LB6nDwU4xdC5BtMod2RD08pnERVIoamnON41MXrt3zFB6ijPK0UHCwUwguaw0Siiwhtz/fvSRoOhZtxTXMQ0IHNY+imQxpxJR0uNQcjylkN+Qy0M=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718322226; c=relaxed/simple;
+	bh=bvkmdVPRbAEAAQvqUF2QXsmCf2b50cjIdy/XyZ0RKyM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZADl+SdDF2RF8UshF1eUhTnJvlrUDmzBBz9UgT9SYrAaoAk+uhtbM2pdPNpR/cvblPuhptIztcZUgLQCd8b0ZyZ9R6P9y8HGVnxIXUuCUtCbRXPo28WSr2KkQku/CyAdpto58VTjmdAcY/My6d6Y7ItDnVfyPjrpp2vYD5/J8DQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xlgXfjm5; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-52c4b92c09bso2446611e87.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 16:43:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718322223; x=1718927023; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jBGMHq9Wh3giz27rRFHu5Pt0hN+wKFfawhzCs9P8HwA=;
+        b=xlgXfjm5+8Agh/4ZocDUXDPT/hmAUNVUbFvp1ayLhY376KBVnSbjb/tYR/HAHWRy6P
+         uNwP4Hrn6j7LQFQ8UtzRYYYmhGffNuheQL1ytWyBXTr0EYW/GmHeYcs/5AQGvozKpAYT
+         +BHew7QqLn4qeGVk9h9BEI3ltZH2OIL/Ug8CoCV5lhSPcV8c1/MtIk57nrDXpeZQpkbO
+         9EOzPcNL8haUjO+Jtw3jGd3GdHaS+xuXMk88ClcuocZ2rRKf2rEjxD9bWziIHVNY7mKo
+         bY59lreCwD+FraEnN6Xymp3ehF3QxVPGkAjFqkQcwazWnwKy5V6RbOn8nR8gaglskz0g
+         5b/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718322223; x=1718927023;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jBGMHq9Wh3giz27rRFHu5Pt0hN+wKFfawhzCs9P8HwA=;
+        b=slplf4aeLgiWAV/vwTwFn9KG0X7k/T0uZqpGdNSlOYOH1Fa7Q7m9va0tKJh2KEZN+E
+         JM4lGqK4wYoJUvOHI3M/35xJxpxbOxJlObQwk0TMBtHZ3VFSfu7OM6nUR+4BvPyqO3J9
+         20KDjLK6z0XRnkBuIHBAN+CQn0dlz6CkPYC1AGXBFu/K3xdi6jXgeRVyFGJxWMyhhOyo
+         xxJM38wezHlBtJ61aKYYXHlp2/gN71JWkoSCey0858zJDhRrSrrNWxhXav4H6OQgT+IL
+         PID8hDHd39FoQ+DwM9N3VaVYiy6FOa1vtCyOe0RxcC5sNb91Q/vzzPmZH2TdNvumXsRr
+         1DyA==
+X-Forwarded-Encrypted: i=1; AJvYcCWuhGk10Y2gb8Wk2VVzYXg6e8+0wDBpA34xI83IFC6k0oK0R5uZxzyNm9JrTVb1XX5w4RzldAEM9d5GuuYboPheL4C6TylyAurxqg==
+X-Gm-Message-State: AOJu0YyE4b8BDRwAI5qLHF5MUN/OEuXNs+iio18pdvzZIZ7pZ2aX3v2v
+	JsR047MFMuFRqVpg+c4Mx/gHafMTUJua0uinsewjumPp/W6WOUYN/8Ur/659fmw=
+X-Google-Smtp-Source: AGHT+IGDvZfiJ/4XvoDygCDHe+Yp8Wm6B3ueQaKPdSs47eimYuDVJK0r8MCo6ySHPBOaf2w9OYtiSw==
+X-Received: by 2002:a05:6512:2255:b0:52b:9c8a:734f with SMTP id 2adb3069b0e04-52ca6e91af8mr1010269e87.50.1718322222596;
+        Thu, 13 Jun 2024 16:43:42 -0700 (PDT)
+Received: from umbar.lan ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca2872260sm359298e87.142.2024.06.13.16.43.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Jun 2024 16:43:42 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH v7 0/6] power: supply: Lenovo Yoga C630 EC
+Date: Fri, 14 Jun 2024 02:43:37 +0300
+Message-Id: <20240614-yoga-ec-driver-v7-0-9f0b9b40ae76@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA1PR22MB5636:EE_|DM4PR22MB3423:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0ebdadaf-841a-40ad-4932-08dc8bfde0d7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230035|1800799019|366011|7416009|376009|52116009|38350700009;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?TgOccfOsAvsW/1cy+NaCUIRfDwrEfg28i405W3Zc/YvsSyXAxXQHr0I59a1i?=
- =?us-ascii?Q?Cm5ZmAyEGHmuUZJKytuxZyCsrPXlIktxNgiRliPju+wOaoY1NB5sbqKvpybc?=
- =?us-ascii?Q?6nqy6CMGTQbD2L2VLd1aWMRKappkdLJs+QqO5MjVEj/b4tK1x9Sih8DCbAF1?=
- =?us-ascii?Q?6hhyZ7vJr4LBcx/FUnRnmb1EljMLaR7R3SmAPOJ1RLLttGduCvIlKsfAsZ7C?=
- =?us-ascii?Q?YOnEUvygg5O9UZ1d9Jd1U2YIjfMAvBMHuXpX++iddtC9HAbNf0owZimOWsFN?=
- =?us-ascii?Q?PhY65dEMA4S3pEGMoyF9fqofTEnHVfObqwO1HCcJcIMFWC+DgCDCfxZMjru7?=
- =?us-ascii?Q?qhftqz2hq/zLchyI837mgqrctwCdmP4HosQ+5dHO5fogz9+hGBlyRvtwiWdz?=
- =?us-ascii?Q?3YOkmgvkd+0uPiWC06if0qY+z0s6E5TY6sBmzKQep9+i6zKul0FIHowOFb4w?=
- =?us-ascii?Q?8YhVeI3jvA+lTyRQisM1rD4QeDuZJaxUTuR0vNb3+NcNI+lMwiKHJvtU6HBZ?=
- =?us-ascii?Q?p3DmiGvYXtguT2t2fnmqut+cUJI/dyxDwf/WtHEs7MQQdnPSoUdVdsF2Pa9k?=
- =?us-ascii?Q?3aDA1zzilY88tfYC/8zkGgZypKiUmdCVEptH5e/TJsqStGEgwXbcklDQqxKM?=
- =?us-ascii?Q?qOmn1GLbh7hXPCn4wnVj/oSwWUMsCSEsIG3iJW4kuwtZMEwU3kehpmAOoF9E?=
- =?us-ascii?Q?yJ2JTk9WCoqi1B1wwJtTTGKa3ojOC3zfQyeJoDj58Xqs4YCm85VH6Iyo0dhp?=
- =?us-ascii?Q?JxuHv2VboqpDVRi4ZctzSwsejdqVi7LPcZJsrBk0VlPaxwasFJKjECFktxDa?=
- =?us-ascii?Q?th/Ak1ShRQyGUQ7nNNnKY1oAxcKO4SHeYP3h2xapAnUApJcihyuwNrp8Yde2?=
- =?us-ascii?Q?Q9eYgm4FJ4nye5SoVaaC3+neac79UsidqYPDa7fKEOCI5uvzNssd6MjdPpM/?=
- =?us-ascii?Q?MN+QzofifjlS6S2mw+js/EaE10Lvqb4vABhUVa+KXBL2tJhpDDFs6bVJaHtc?=
- =?us-ascii?Q?ci951wNUiduXGpDIN/HcWkq1PnhBW8yytcWtoTHwjMJvR1duL1nYrwVVjetq?=
- =?us-ascii?Q?mGwuTNYAcBHjur9mKVAaz3K16w4TWEmEKuN4NjaP1oNR3ABQTplpu6sgHDIG?=
- =?us-ascii?Q?I5B4EEffesh1z1HGYZocbrdrUyEFcVB4aoHGxSQz+retLj5bhGXG+7/t/mtR?=
- =?us-ascii?Q?JZLnH2EnMeWiIhNQyqvTF1VTkxACGJV5m3s8uScMx1uZ+lKs2ynYkEm9NK8y?=
- =?us-ascii?Q?QlTvnuPBlIEON3n/K/rgnOytk4nOp4Qk0ZU+ijXThD2EMm39tewK+3iidxsu?=
- =?us-ascii?Q?+mdD+gvjYlh7PG8WyLXNIhItgutsqqb0S6l97BCGRwkZbFsm1C4leIwUmTyl?=
- =?us-ascii?Q?jaDpSUo=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR22MB5636.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230035)(1800799019)(366011)(7416009)(376009)(52116009)(38350700009);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?/xwsrjmEcMGu07GSbpVeA6u2YDtbCZ7ohHCJ/Nwl4XYqaqnUH8vlfaEPebcZ?=
- =?us-ascii?Q?d5rApZsqp77f5q9Pqj9KKDppZQOA9g2+nov6zjAVs/fyRuPBpQsytADlRo+J?=
- =?us-ascii?Q?JydwT93SFtJpm1t0rQTdsWuiBxpyToiaH2Zlg7Sa1Fu2UG3N4T6DB9wPtY6U?=
- =?us-ascii?Q?UiAgcs9ojVG3AGFcIcv/mTWFW2hQUrOW2MyVlfN8NfYf/7FE8Qd4Fnd34VDa?=
- =?us-ascii?Q?MuN6cb67cLsUNVBVMTFez93PH230gjdT01iAKatVk24X/e1vks/y3g7iN9vn?=
- =?us-ascii?Q?nG/7tiUuGAraUBr/RIuM8ugiQQCbdOss5KqgZsDXBkuvXd7PqeYCFdnX7zm3?=
- =?us-ascii?Q?DMjQQqgsSw2nNPyTsrzgN1IEn9zTxiBEHFHKpMA/LxRmFD62pjCuduhYoTx5?=
- =?us-ascii?Q?XQMmgKe6Y98+JmGKzhGTDLKtvdHUUxJ9XWh+dPOJ41L7gTPh3exYhbLTn3Fb?=
- =?us-ascii?Q?QGGnp0thJ83R0hMDsrQOdcNSJ3+iHJW+tK+iHXnxhphcB+RRuiCOmTVqbmzN?=
- =?us-ascii?Q?q//t0Cn+VWWKI9iUe9Wkwx5zgN0kuM53NFOy2A8arRVrCc6bgK+gMyli3jqx?=
- =?us-ascii?Q?UwA9SCUoioneZrWh/gkzhZKKaFFZq03j9b+NULDgGSegAjxB1tUASz9VZILK?=
- =?us-ascii?Q?Dv73seVlzhaWBu6QpaGetAG6p5WS1QGMtHHbvBSHahFWUDXTfHSWVsOhkuoA?=
- =?us-ascii?Q?SEYk4Ml8rgqN5wMkvwCZpo2S/5ucX5HcKgNCGfLBqeXkZeaqePM7KmIsoqJV?=
- =?us-ascii?Q?6+ZTV58elWmafdgA7LyyQwqXR70+ApS8kNFuwm4hYNzsvTNPBFSjSYU/p32C?=
- =?us-ascii?Q?EFyfl9Slyl6N/TLc7b+OLjefWC90R9mbwuQPsriEvJPDL5KwHPLikhP+BZSt?=
- =?us-ascii?Q?zNuYj78+eooeE2LsmDfbC3KtEbnoaQGZsIyqDuMwp6q9xxKaqE2Yi/kf0BGM?=
- =?us-ascii?Q?gD3g7WB8Qy4WZVoNlIR5Jsf8Fp53SZWoVx3G7JfPK2V5m2YTfvvFd8cdWIYG?=
- =?us-ascii?Q?7F5APbOJUTEKbMJF7qHIJCQvsgzcpxoqttCxMaWXCwc0f8Sk4BMCxEnJfVfq?=
- =?us-ascii?Q?D+N3HSGArYtT+bjo6paJzFRveSF3dAeZVuPEKbjg4c7NLSIoWRndWlAbVs94?=
- =?us-ascii?Q?GQQy+E030h9VwyeBZc6rLUSimFuTnRp9Bx4z3gvxmzjQ4BwcCURvR8nTvkNC?=
- =?us-ascii?Q?9Xq6TmvLBL7Gv3CkcgxFI1bCAX1WMoNzjqa8823Y0FoI1Xx8c3tyEuJjq5cx?=
- =?us-ascii?Q?yH97muRNEtD31zfdBhz5T8Js3nTai7Isbsqte7VeLEcsb29nONDJ46vegFAo?=
- =?us-ascii?Q?1UG0JzE5rB3/zIVvLnh66liUH84Ci0bXeTSfAHIFrPTcsfmDd1pB3dMup0d8?=
- =?us-ascii?Q?exbaOSZ1aBZ+Yo1HTPcLLs4IN9LijQZnVEvIRBeSx9DCYxdwm9UQxPlWrp3Z?=
- =?us-ascii?Q?kpCG/hRpGbE8Jaku80F4xmjpSTfL3mTILODBy2VMvD/RORAFQFvT9g3OuOlN?=
- =?us-ascii?Q?iRhH73E711crP0L7q5pQLydc180A/CPfW7PPvVQSOkNXPfm/cyjke/p1Tdu1?=
- =?us-ascii?Q?4jqmVPbI8DylSALMScmE1MV1bHatZnIAz6Xyj7OI?=
-X-OriginatorOrg: phytec.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0ebdadaf-841a-40ad-4932-08dc8bfde0d7
-X-MS-Exchange-CrossTenant-AuthSource: SA1PR22MB5636.namprd22.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jun 2024 23:09:29.5991
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 67bcab1a-5db0-4ee8-86f4-1533d0b4b5c7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BU+3A9DJumzNZyJN04w7fkb6iO659o2n1fmBvAcOML/22m6RYnnEe3uHsUEKMCTVA/Z/fKqaqlNVR+vf+R43kw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR22MB3423
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACmEa2YC/3XOzWqEMBSG4VsZsm4k/4ld9T7KLI4m0dCOKUcJI
+ 4P33jhQapEuv8XznvMgc8AUZvJ6eRAMJc0pT3XYlwvpR5iGQJOvmwgmFNPC0jUPQENPPaYSkFo
+ TvY3aewiOVPSFIab7M/h+rTtivtFlxAA/GckE01wLx9pGCCmVNJRTf0sLrk0HuM7jRy5vn2kCz
+ E3GYc+OaV4yrs83i9zj/35UJGVUCgut09yD18fU/lJRR+9OXlWvIjgfAYLtzMnrX2/Y+b6unkP
+ fcmCdkuLszcFzcfKmehes6aDmlWz/+G3bvgFVTT2YtAEAAA==
+To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Hans de Goede <hdegoede@redhat.com>, 
+ =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
+ linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Nikita Travkin <nikita@trvn.ru>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4957;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=bvkmdVPRbAEAAQvqUF2QXsmCf2b50cjIdy/XyZ0RKyM=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBma4Qs5RMbLITSC+O7xOl953wV9GKtwwGeXPgL1
+ 9RzOwrUbheJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZmuELAAKCRCLPIo+Aiko
+ 1YJZB/4zXnq2+gUrpjMfLIv/0/TE1pv6cZzRt1WwPnySn+PC9r/CpDKFW5vsGvwZ+q4xjJAzjzo
+ bjuOiPemSMhWeupbFRnn3+0ECY4IeggWZP8iVdD73KGKh2aY0sN+cwxEC8Wrg+/CoakBBV+0DwZ
+ KmOm9b/W3qDqkt0SXBpGnlVuDU+/7OyeSPbfItAemtCkdJB62wRHX0nJO/vhyjLOePtmlvekEXm
+ IflaWi0uXWUSs2HVkxqGmZTMdTLgj7FjPbAlq5jtpxrc7fbEBgvazx5PV2jc98vU0Du9MOAPtz7
+ NczEesbhCFsTWcvqNRIqx5lBrJbEva5mEFyueKW814jZnNbo
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-Add an overlay to disable the spi nor for all am6xx-phycore-som
-boards.
-The EEPROM on am6xx-phycore-soms contains information about the
-configuration of the SOM. The standard configuration of the SOM
-has an ospi nor, but if no nor is populated, the EEPROM will indicate
-that change and we can use this overlay to cleanly disable the
-spi nor.
+This adds binding, driver and the DT support for the Lenovo Yoga C630
+Embedded Controller, to provide battery information.
 
-Signed-off-by: Nathan Morrisson <nmorrisson@phytec.com>
+Support for this EC was implemented by Bjorn, who later could not work
+on this driver. I've picked this patchset up and updated it following
+the pending review comments.
+
+DisplayPort support is still not a part of this patchset. It uses EC
+messages to provide AltMode information rather than implementing
+corresponding UCSI commands. However to have a cleaner uAPI story, the
+AltMode should be handled via the same Type-C port.
+
+Merge strategy: the driver bits depend on the platform/arm64 patch,
+which adds interface for the subdrivers. I'd either ask to get that
+patch merged to the immutable branch, which then can be picked up by
+power/supply and USB trees or, to make life simpler, ack merging all
+driver bits e.g. through USB subsystem (I'm biased here since I plan to
+send more cleanups for the UCSI subsystem, which would otherwise result
+in cross-subsystem conflicts).
+
 ---
-v3:
-  - Explain why we are adding the overlay in the commit message
+Changes in v7:
+- In PSY driver use guard() instead of scoped_guard() (Ilpo)
+- Use switch/case rather than ifs in yoga_c630_ucsi_read() (Ilpo)
+- Link to v6: https://lore.kernel.org/r/20240612-yoga-ec-driver-v6-0-8e76ba060439@linaro.org
 
-v2:
-  - Add build time tests in makefile
+Changes in v6:
+- Use guard() instead of scoped_guard() (Ilpo)
+- Add a define for UCSI version register (Ilpo)
+- Added a check to prevent overflowing the address in reg16 read (Ilpo)
+- Link to v5: https://lore.kernel.org/r/20240607-yoga-ec-driver-v5-0-1ac91a0b4326@linaro.org
 
- arch/arm64/boot/dts/ti/Makefile                   |  5 +++++
- .../dts/ti/k3-am6xx-phycore-disable-spi-nor.dtso  | 15 +++++++++++++++
- 2 files changed, 20 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am6xx-phycore-disable-spi-nor.dtso
+Changes in v5:
+- Added missing article in the commit message (Bryan)
+- Changed yoga_c630_ec_ucsi_get_version() to explicitly set the register
+  instead of just incrementing it (Bryan)
+- Dropped spurious debugging pr_info (Bryan)
+- Added missing includes all over the place (Ilpo)
+- Switched to scoped_guard() where it's suitable (Ilpo)
+- Defined register bits (Ilpo, Bryan)
+- Whitespace cleanup (Ilpo, Bryan)
+- Reworked yoga_c630_ucsi_notify() to use switch-case (Bryan)
+- Use ternary operators instead of if()s (Ilpo)
+- Switched power supply driver to use fwnode (Sebastian)
+- Fixed handling of the adapter's type vs usb_type (Sebastian)
+- Added SCOPE property to the battery (Sebastian)
+- Link to v4: https://lore.kernel.org/r/20240528-yoga-ec-driver-v4-0-4fa8dfaae7b6@linaro.org
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 3d0e87a78e09..8d8fc8bfaf7e 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -57,6 +57,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am64-tqma64xxl-mbax4xxl-wlan.dtbo
- # Common overlays for the phyCORE-AM6* family of boards
- dtb-$(CONFIG_ARCH_K3) += k3-am6xx-phycore-disable-eth-phy.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am6xx-phycore-disable-rtc.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-am6xx-phycore-disable-spi-nor.dtbo
- 
- # Boards with AM65x SoC
- k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb \
-@@ -115,6 +116,8 @@ k3-am625-phyboard-lyra-disable-eth-phy-dtbs := k3-am625-phyboard-lyra-rdk.dtb \
- 	k3-am6xx-phycore-disable-eth-phy.dtbo
- k3-am625-phyboard-lyra-disable-rtc-dtbs := k3-am625-phyboard-lyra-rdk.dtb \
- 	k3-am6xx-phycore-disable-rtc.dtbo
-+k3-am625-phyboard-lyra-disable-spi-nor-dtbs := k3-am625-phyboard-lyra-rdk.dtb \
-+	k3-am6xx-phycore-disable-spi-nor.dtbo
- k3-am625-phyboard-lyra-gpio-fan-dtbs := k3-am625-phyboard-lyra-rdk.dtb \
- 	k3-am62x-phyboard-lyra-gpio-fan.dtbo
- k3-am625-sk-csi2-imx219-dtbs := k3-am625-sk.dtb \
-@@ -144,6 +147,8 @@ k3-am642-phyboard-electra-disable-eth-phy-dtbs := \
- 	k3-am642-phyboard-electra-rdk.dtb k3-am6xx-phycore-disable-eth-phy.dtbo
- k3-am642-phyboard-electra-disable-rtc-dtbs := \
- 	k3-am642-phyboard-electra-rdk.dtb k3-am6xx-phycore-disable-rtc.dtbo
-+k3-am642-phyboard-electra-disable-spi-nor-dtbs := \
-+	k3-am642-phyboard-electra-rdk.dtb k3-am6xx-phycore-disable-spi-nor.dtbo
- k3-am642-phyboard-electra-gpio-fan-dtbs := \
- 	k3-am642-phyboard-electra-rdk.dtb k3-am642-phyboard-electra-gpio-fan.dtbo
- k3-am642-tqma64xxl-mbax4xxl-sdcard-dtbs := \
-diff --git a/arch/arm64/boot/dts/ti/k3-am6xx-phycore-disable-spi-nor.dtso b/arch/arm64/boot/dts/ti/k3-am6xx-phycore-disable-spi-nor.dtso
-new file mode 100644
-index 000000000000..cc0cf269b6e4
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am6xx-phycore-disable-spi-nor.dtso
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * Copyright (C) 2023 PHYTEC America, LLC
-+ * Author: Garrett Giordano <ggiordano@phytec.com>
-+ *
-+ * Copyright (C) 2024 PHYTEC America, LLC
-+ * Author: Nathan Morrisson <nmorrisson@phytec.com>
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&serial_flash {
-+	status = "disabled";
-+};
+Changes in v4:
+- Moved bindings to platform/ to follow example of other Acer Aspire1 EC
+  (Nikita Travkin)
+- Fixed dt validation for EC interrupt pin (Rob Herring)
+- Dropped separate 'scale' property (Oliver Neukum)
+- Link to v3: https://lore.kernel.org/r/20240527-yoga-ec-driver-v3-0-327a9851dad5@linaro.org
+
+Changes in v3:
+- Split the driver into core and power supply drivers,
+- Added UCSI driver part, handling USB connections,
+- Fixed Bjorn's address in DT bindings (Brian Masney)
+- Changed power-role for both ports to be "dual" per UCSI
+- Link to v2: https://lore.kernel.org/linux-arm-msm/20230205152809.2233436-1-dmitry.baryshkov@linaro.org/
+
+Changes in v2:
+- Dropped DP support for now, as the bindings are in process of being
+  discussed separately,
+- Merged dt patch into the same patchseries,
+- Removed the fixed serial number battery property,
+- Fixed indentation of dt bindings example,
+- Added property: reg and unevaluatedProperties to the connector
+  bindings.
+- Link to v1: https://lore.kernel.org/linux-arm-msm/20220810035424.2796777-1-bjorn.andersson@linaro.org/
+
+---
+Bjorn Andersson (2):
+      dt-bindings: platform: Add Lenovo Yoga C630 EC
+      arm64: dts: qcom: c630: Add Embedded Controller node
+
+Dmitry Baryshkov (4):
+      platform: arm64: add Lenovo Yoga C630 WOS EC driver
+      usb: typec: ucsi: add Lenovo Yoga C630 glue driver
+      power: supply: lenovo_yoga_c630_battery: add Lenovo C630 driver
+      arm64: dts: qcom: sdm845: describe connections of USB/DP port
+
+ .../bindings/platform/lenovo,yoga-c630-ec.yaml     |  83 ++++
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               |  53 ++-
+ .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts      |  75 ++++
+ drivers/platform/arm64/Kconfig                     |  14 +
+ drivers/platform/arm64/Makefile                    |   1 +
+ drivers/platform/arm64/lenovo-yoga-c630.c          | 290 ++++++++++++
+ drivers/power/supply/Kconfig                       |   9 +
+ drivers/power/supply/Makefile                      |   1 +
+ drivers/power/supply/lenovo_yoga_c630_battery.c    | 500 +++++++++++++++++++++
+ drivers/usb/typec/ucsi/Kconfig                     |   9 +
+ drivers/usb/typec/ucsi/Makefile                    |   1 +
+ drivers/usb/typec/ucsi/ucsi_yoga_c630.c            | 204 +++++++++
+ include/linux/platform_data/lenovo-yoga-c630.h     |  44 ++
+ 13 files changed, 1283 insertions(+), 1 deletion(-)
+---
+base-commit: 6906a84c482f098d31486df8dc98cead21cce2d0
+change-id: 20240527-yoga-ec-driver-76fd7f5ddae8
+
+Best regards,
 -- 
-2.25.1
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
