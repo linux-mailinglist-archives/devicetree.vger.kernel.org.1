@@ -1,48 +1,55 @@
-Return-Path: <devicetree+bounces-75266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 088E590645C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 08:48:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C47D906493
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:07:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2CE61F22722
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 06:48:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21CA11C22AD0
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 07:07:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62A0F137746;
-	Thu, 13 Jun 2024 06:48:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A956135A6F;
+	Thu, 13 Jun 2024 07:07:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iYTRBpaf"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="s8CKTaLY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33D1B2119;
-	Thu, 13 Jun 2024 06:48:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6859622;
+	Thu, 13 Jun 2024 07:07:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718261303; cv=none; b=EOFyFrw4um8WUjGLqJr89Oa0JqsqRe8OviXCO/vql3TaabVQgQtC8db7vf05xMMfcmIyU29FlWVA6G7etJxIhf9pOFYfm/NDvMVUQ6nglOTd6iuyV+kgBeGQiWIq6G0NNTafCLeojP8BdgRnwqyER/uNNRTiLy1EcxHj/mdr7Wo=
+	t=1718262429; cv=none; b=n83G82Z7Dwrwjt2T88AQ0F//UrQQOxYWnTyDHuNim7dTkznypQKJdYXQKZ+j/2ZTZH9LiBKkC9UhFT6cdgjD0Htw/Dj+YjhlIOpvKPjCJYZYs0WrbMVWRVTkVee8qPsYlLPsLHoxe4OBFog7ymfxpmfYrEEdItMiYn9XVwgloJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718261303; c=relaxed/simple;
-	bh=Dq1r15iOk7uYwsMnCJ4RUoQv/vBE/4LZKzdnFx3hdC8=;
+	s=arc-20240116; t=1718262429; c=relaxed/simple;
+	bh=LWRFNapN+wyTQNvWofeQWCa3j7JgLf2cUA8hrrwkD5A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Po1yJGqdwZN2GlgaGdp35vbw12bad8NilmzatkjA2RgShma5ZgvRNdKp8O4SiX1lZG6HiRMyMKA2s9PA2L+ojmqqCELqIEdNtPFfkePcy2D7mBKVM10ZljF8QPmbakwyRF0qLfPhOHnkM4yiavfC6WlnNGL1Xbz7hMy4gACUpYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iYTRBpaf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1338C2BBFC;
-	Thu, 13 Jun 2024 06:48:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718261302;
-	bh=Dq1r15iOk7uYwsMnCJ4RUoQv/vBE/4LZKzdnFx3hdC8=;
+	 In-Reply-To:Content-Type; b=LBAcrxde2WNHh8Ksh3TlYi3X2udBnqp9yLiMYspPvd3qczNFpS9V/2bri/HiEtRfwpVD5ABo5wjWpWbTDU1GLHFRxHsNdcuUrc0xckUL2qG3F7mNnnShSIo4YF4VqT98aOMhlQ89XtryxH6YaIkBEwzRzURw1FqMqUnVh5b95OM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=s8CKTaLY; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718262420;
+	bh=LWRFNapN+wyTQNvWofeQWCa3j7JgLf2cUA8hrrwkD5A=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iYTRBpafk8r5BqKdwmEpJ+ERwdhhJzL4/v34uMtV1TW6gP73qUYv8T+t1IV3dkLID
-	 ayTa0rOohGozU+FF92MyIj/4cY3leAYlV0WjSRdRO0G+ZKlM84YkHn6c6pwnm3Hayn
-	 y7wcQcm0TVk2MFqaiT780rE8rEGVuXTw2Vtknc4O9/xKWuPt2AX1+SCh72IskYPGLE
-	 BVPVS/TUHygQ1+whw6FyO164wM09pmD0XoG/RAijwlNVzAMFxTnCMQtrk9U4Br1zdq
-	 twAZwJ2dRLf3DR3C+VlsTsG71sZzouiMEfb7X+JIg7VkX7VDaHlBaMXnTyCIYWBw06
-	 qGMw2RtuWl4Iw==
-Message-ID: <00291739-7b2c-4e4d-ada8-dc8ed88a8c91@kernel.org>
-Date: Thu, 13 Jun 2024 08:48:18 +0200
+	b=s8CKTaLYhTF7um/sKo5IvJYMtqaSw3zTlF3L0BvrgEvaJkN5o6lrXpzBsomCKOUFC
+	 MeNTeggOihYDgpBHnJyTHpK97tzM+KyAqqHly23tjVpK5WjjRhl+Efw6OZiZzfYQkt
+	 ko19+oDsiWUbJj1srwsje4hqe6Qnn+2NsXu17sdAswEWwiGlCFgHjCPrnHV/7BgCVY
+	 4dpDcfMnKEk/4xUFs0gRDFP0D9JE3guGmQnnoHAGe7wHhf7VJrmeG6tYBW4d3bsbGs
+	 2/3DW0Z+c9boXXN3UpZURtNhy5Ohbew0/+T4QWcg3PM2jK4aruMaPsXKAiDTV79YuN
+	 C1ySXo9uPU4ag==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 3198537821A3;
+	Thu, 13 Jun 2024 07:06:59 +0000 (UTC)
+Message-ID: <030a538b-bf28-4418-92fd-14225260eb85@collabora.com>
+Date: Thu, 13 Jun 2024 09:06:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,78 +57,76 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: i2c: qcom-cci: Document sm8650
- compatible
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jagadeesh Kona <quic_jkona@quicinc.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Andi Shyti <andi.shyti@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-i2c@vger.kernel.org
-References: <20240612215835.1149199-1-vladimir.zapolskiy@linaro.org>
- <20240612215835.1149199-3-vladimir.zapolskiy@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH RESEND v2 1/2] clk: mediatek: mt8173-infracfg: Handle
+ unallocated infracfg when module
+To: Alper Nebi Yasak <alpernebiyasak@gmail.com>,
+ linux-mediatek@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ Michael Turquette <mturquette@baylibre.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ Chen-Yu Tsai <wenst@chromium.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, linux-clk@vger.kernel.org
+References: <20240612201211.91683-1-alpernebiyasak@gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240612215835.1149199-3-vladimir.zapolskiy@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20240612201211.91683-1-alpernebiyasak@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12/06/2024 23:58, Vladimir Zapolskiy wrote:
-> Add sm8650 compatible consistent with CAMSS CCI interfaces.
+Il 12/06/24 22:11, Alper Nebi Yasak ha scritto:
+> The MT8173 infracfg clock driver does initialization in two steps, via a
+> CLK_OF_DECLARE_DRIVER declaration. However its early init function
+> doesn't get to run when it's built as a module, presumably since it's
+> not loaded by the time it would have been called by of_clk_init(). This
+> causes its second-step probe() to return -ENOMEM when trying to register
+> clocks, as the necessary clock_data struct isn't initialized by the
+> first step.
 > 
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> MT2701 and MT6797 clock drivers also use this mechanism, but they try to
+> allocate the necessary clock_data structure if missing in the second
+> step. Mimic that for the MT8173 infracfg clock as well to make it work
+> as a module.
+> 
+> Signed-off-by: Alper Nebi Yasak <alpernebiyasak@gmail.com>
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
 > ---
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+> 
+> Changes in v2:
+> - Rewrite patch subject for consistency
+> 
+> v1: https://lore.kernel.org/lkml/20231108213734.140707-1-alpernebiyasak@gmail.com/
+> 
+>   drivers/clk/mediatek/clk-mt8173-infracfg.c | 12 +++++++++++-
+>   1 file changed, 11 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/clk/mediatek/clk-mt8173-infracfg.c b/drivers/clk/mediatek/clk-mt8173-infracfg.c
+> index 2f2f074e231a..ecc8b0063ea5 100644
+> --- a/drivers/clk/mediatek/clk-mt8173-infracfg.c
+> +++ b/drivers/clk/mediatek/clk-mt8173-infracfg.c
+> @@ -98,7 +98,17 @@ CLK_OF_DECLARE_DRIVER(mtk_infrasys, "mediatek,mt8173-infracfg",
+>   static int clk_mt8173_infracfg_probe(struct platform_device *pdev)
+>   {
+>   	struct device_node *node = pdev->dev.of_node;
+> -	int r;
+> +	int r, i;
+> +
+> +	if (!infra_clk_data) {
+> +		infra_clk_data = mtk_alloc_clk_data(CLK_INFRA_NR_CLK);
+> +		if (!infra_clk_data)
+> +			return -ENOMEM;
+> +	} else {
+> +		for (i = 0; i < CLK_INFRA_NR_CLK; i++)
+> +			if (infra_clk_data->hws[i] == ERR_PTR(-EPROBE_DEFER))
+> +				infra_clk_data->hws[i] = ERR_PTR(-ENOENT);
+> +	}
+>   
+>   	r = mtk_clk_register_gates(&pdev->dev, node, infra_gates,
+>   				   ARRAY_SIZE(infra_gates), infra_clk_data);
+> 
+> base-commit: 03d44168cbd7fc57d5de56a3730427db758fc7f6
 
 
