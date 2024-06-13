@@ -1,172 +1,130 @@
-Return-Path: <devicetree+bounces-75540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 506B59079CD
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:27:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DD339079D1
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:28:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C67C22879E7
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 17:27:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0590B1F21DCD
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 17:28:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CAEA14A60D;
-	Thu, 13 Jun 2024 17:27:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6107214A093;
+	Thu, 13 Jun 2024 17:28:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y+Bsy4LV"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IW7+bqMx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E27D14A602;
-	Thu, 13 Jun 2024 17:27:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAD26149E06;
+	Thu, 13 Jun 2024 17:28:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718299638; cv=none; b=f7fQHaAmfD2jK60+eXPCKQbHepFjvb6E4C10TZRY6odNbAQxUNZ89ItnfBXTKy18LtiY7DgrkTrr74Cv8Z+CYx1UKP9q0t/D1q8F+nn3YoTuYzKRCNFy2el94ybatyK/KGq/8FEdLr1KoLFgc286Y2FKnXrKD4/DmX1EZV8n+9M=
+	t=1718299694; cv=none; b=k6tuOgpc0EpM8NUMuxnf/fqTRER3dE/QPzMDgh2nfgBcgnUKUcxJA76KzIuIDKGceurU2BgXm7SqXveCDtLSHQ9ZlQEdb7bycdPlL8F9rnoVosV/cuYSYN5Xz+Bt9nG/57DL4vjx6s6rweDhbrin0l/GikHqRSL2UgYG8dp04Zw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718299638; c=relaxed/simple;
-	bh=opDT7KR3b/7zSgo/k+eb6uhV3+Agy5mHhqWVAV0NPaE=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=doMdIiQMu6LazTSC+s50zLLrCOPoiLw8lw5RunbMSkt/KykO4tdsCR4quLwRC03MpmQw88u9SNVuDKrXI5azCv1i8LjPnyiHj0iszDXMUxF8+NcvPEdzwW76JNTnwaekfTVDp8WaDpaL4WwJeZcg0TLWBfAZDHWp/r1U51Apscs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y+Bsy4LV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2747AC2BBFC;
-	Thu, 13 Jun 2024 17:27:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718299637;
-	bh=opDT7KR3b/7zSgo/k+eb6uhV3+Agy5mHhqWVAV0NPaE=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=Y+Bsy4LVeheYOVXZrOYJG5COt6xXLdymsCT0DX3EfwzBbiMh5HmUPu6UEHQQ/d9cb
-	 HWzh7yHQZBMwuOm6r0eYA7B/EpAwZkePtqoqInyKSHyoQzpGElhBZFQHBaGXK6UxXO
-	 auYJL3sL6o5d+cyPhTHz77sVqZjWl/LDbb7fPurAjAqOC07EdG5PrhjuTh47GUtDD8
-	 Gi1RhWgovtVdG39zJZX1X5KY3fGAjwb5ybaCQjNMHWSDswavq56ETkw2msQsItJI3K
-	 jaUiRIPeo8L1jONLDopd5pT0Gtg7CmvvDmQq6oSJIurYIUIb5JsWNn39LgDnneESAH
-	 6yfZypumrPUFQ==
-Date: Thu, 13 Jun 2024 11:27:15 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1718299694; c=relaxed/simple;
+	bh=CNrPcqc8022Bt4QwcjS0SE8OmQ9gGgaggZXF2mwS7Sk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=aQ1yv/IzvVTTCNHlWFiCTrkkylP0dI/Qg/JXyzCRi7J5SE0s1CIMp5QQqOgyc9lB/zGbEz3mflK1zhcPAIXdvabGK19Da7v8SGzYIe3McnZdD0xKp31Ut18qgvnzslPJZuTVc4z9/MxM0P9fUYyp9/xvx6ztdXwiP+uwLQSXNV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IW7+bqMx; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45DDhZB5018436;
+	Thu, 13 Jun 2024 17:28:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	aA7Z5zxsmTlozGn3Npa3uDeUxg+iQykh1R92quahMZ4=; b=IW7+bqMxXd9aIbTL
+	YszADtwGo7MbJN/pvNr+9ATdgZDipa6o+10/aKhV2y1/U6pFFuFVwWiaSrj+cmCH
+	d2Qx9mAiXj0nbXxvNy0w2jBbot99WWaJ4EAb3Xubk8DrRevyd5COVrG6AypYrhnq
+	zKz5oZfQCSgw4QV8earayidPNPyQMFHMe6xI9llsyuoxKl1mFgyZ9R4WWAufuzFB
+	qivFodtPq//GhBfGoq6wcxX3Nha2r2ZRpomxhMPf4RrkTGVCf5LNDEyvKX/xiKh8
+	EzyuvOPS/xLpMjf4aoHQ4u2s3EG7f3vxERLzkIEwUdA0fe1IBadJXeheTa4xPnbt
+	a49wvQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yr1wfgp7c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 13 Jun 2024 17:28:09 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45DHS7vb017418
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 13 Jun 2024 17:28:07 GMT
+Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 13 Jun
+ 2024 10:28:02 -0700
+Message-ID: <24d2d3b3-d676-8e86-bae4-c3538b7b9981@quicinc.com>
+Date: Thu, 13 Jun 2024 22:57:59 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Tomeu Vizoso <tomeu.vizoso@tomeuvizoso.net>, iommu@lists.linux.dev, 
- David Airlie <airlied@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Conor Dooley <conor+dt@kernel.org>, 
- Oded Gabbay <ogabbay@kernel.org>, Daniel Vetter <daniel@ffwll.ch>, 
- linux-arm-kernel@lists.infradead.org, Maxime Ripard <mripard@kernel.org>, 
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linux-rockchip@lists.infradead.org, Robin Murphy <robin.murphy@arm.com>, 
- linux-media@vger.kernel.org, Joerg Roedel <joro@8bytes.org>, 
- Sumit Semwal <sumit.semwal@linaro.org>, linaro-mm-sig@lists.linaro.org, 
- Will Deacon <will@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20240612-6-10-rocket-v1-0-060e48eea250@tomeuvizoso.net>
-References: <20240612-6-10-rocket-v1-0-060e48eea250@tomeuvizoso.net>
-Message-Id: <171829929988.2050064.4076911589675234408.robh@kernel.org>
-Subject: Re: [PATCH 0/9] New DRM accel driver for Rockchip's RKNN NPU
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 0/4] arm64: dts: qcom: x1e80100: Enable bwmon and fastrpc
+ support
+Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, <andersson@kernel.org>,
+        <djakov@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <srinivas.kandagatla@linaro.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <quic_rgottimu@quicinc.com>, <quic_kshivnan@quicinc.com>,
+        <conor+dt@kernel.org>, <dmitry.baryshkov@linaro.org>,
+        <abel.vesa@linaro.org>
+References: <20240604011157.2358019-1-quic_sibis@quicinc.com>
+ <be2dc908-c8d3-4739-9f46-8f8daf0f328e@linaro.org>
+From: Sibi Sankar <quic_sibis@quicinc.com>
+In-Reply-To: <be2dc908-c8d3-4739-9f46-8f8daf0f328e@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: NyH2GTLbNEYNrJDtmz0cvT1ZdMXWEzf_
+X-Proofpoint-GUID: NyH2GTLbNEYNrJDtmz0cvT1ZdMXWEzf_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-13_11,2024-06-13_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
+ priorityscore=1501 malwarescore=0 lowpriorityscore=0 adultscore=0
+ bulkscore=0 mlxscore=0 mlxlogscore=797 spamscore=0 clxscore=1015
+ impostorscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2405170001 definitions=main-2406130125
 
 
-On Wed, 12 Jun 2024 15:52:53 +0200, Tomeu Vizoso wrote:
-> This series adds a new driver for the NPU that Rockchip includes in its
-> newer SoCs, developed by them on the NVDLA base.
+
+On 6/6/24 16:00, Konrad Dybcio wrote:
+> On 4.06.2024 3:11 AM, Sibi Sankar wrote:
+>> This patch series enables bwmon and fastrpc support on X1E80100 SoCs.
+>>
+>> This series applies on:
+>> next-20240603 + https://lore.kernel.org/lkml/20240603205859.2212225-1-quic_sibis@quicinc.com/
+>>
 > 
-> In its current form, it supports the specific NPU in the RK3588 SoC.
+> Going back to [1], is memlat-over-scmi not enough to give us good numbers
+> without OS intervention? Does probing bwmon and making some decisions in
+> Linux actually help here?
+
+Memlat and bwmon are meant to cover to different use cases. Though
+they have a big overlap on when they get triggered bwmon is specifically
+meant to address cases where band-width aggregation is required (meaning
+if other peripherals already have a avg bw vote on active LLCC/DDR, the
+vote from bwmon would be an additional request on top of that). However
+to make use of this we should vote for avg-kbps in addition to peak from
+icc-bwmon driver which we don't currently do (Shiv was planning on
+sending a fix for it).
+
+-Sibi
+
 > 
-> The userspace driver is part of Mesa and an initial draft can be found at:
+> Konrad
 > 
-> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29698
-> 
-> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-> ---
-> Tomeu Vizoso (9):
->       iommu/rockchip: Add compatible for rockchip,rk3588-iommu
->       iommu/rockchip: Attach multiple power domains
->       dt-bindings: mailbox: rockchip,rknn: Add bindings
->       arm64: dts: rockchip: Add nodes for NPU and its MMU to rk3588s
->       arm64: dts: rockchip: Enable the NPU on quartzpro64
->       accel/rocket: Add a new driver for Rockchip's NPU
->       accel/rocket: Add IOCTL for BO creation
->       accel/rocket: Add job submission IOCTL
->       accel/rocket: Add IOCTLs for synchronizing memory accesses
-> 
->  .../devicetree/bindings/npu/rockchip,rknn.yaml     |  123 +
->  MAINTAINERS                                        |    8 +
->  .../arm64/boot/dts/rockchip/rk3588-quartzpro64.dts |    8 +
->  arch/arm64/boot/dts/rockchip/rk3588s.dtsi          |   53 +
->  drivers/accel/Kconfig                              |    1 +
->  drivers/accel/Makefile                             |    1 +
->  drivers/accel/rocket/Kconfig                       |   13 +
->  drivers/accel/rocket/Makefile                      |   10 +
->  drivers/accel/rocket/rocket_core.c                 |  155 +
->  drivers/accel/rocket/rocket_core.h                 |   48 +
->  drivers/accel/rocket/rocket_device.c               |   39 +
->  drivers/accel/rocket/rocket_device.h               |   40 +
->  drivers/accel/rocket/rocket_drv.c                  |  243 ++
->  drivers/accel/rocket/rocket_drv.h                  |   16 +
->  drivers/accel/rocket/rocket_gem.c                  |  136 +
->  drivers/accel/rocket/rocket_gem.h                  |   33 +
->  drivers/accel/rocket/rocket_job.c                  |  708 ++++
->  drivers/accel/rocket/rocket_job.h                  |   49 +
->  drivers/accel/rocket/rocket_registers.h            | 4449 ++++++++++++++++++++
->  drivers/iommu/rockchip-iommu.c                     |   39 +
->  include/uapi/drm/rocket_accel.h                    |  116 +
->  21 files changed, 6288 insertions(+)
-> ---
-> base-commit: 83a7eefedc9b56fe7bfeff13b6c7356688ffa670
-> change-id: 20240612-6-10-rocket-9316defc14c7
-> 
-> Best regards,
-> --
-> Tomeu Vizoso <tomeu@tomeuvizoso.net>
-> 
-> 
-> 
-
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y rockchip/rk3588-quartzpro64.dtb' for 20240612-6-10-rocket-v1-0-060e48eea250@tomeuvizoso.net:
-
-arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dtb: iommu@fdab9000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['rockchip,rk3588-iommu'] is too short
-	'rockchip,rk3588-iommu' is not one of ['rockchip,iommu', 'rockchip,rk3568-iommu']
-	from schema $id: http://devicetree.org/schemas/iommu/rockchip,iommu.yaml#
-arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dtb: iommu@fdab9000: reg: [[0, 4255879168, 0, 256], [0, 4255883264, 0, 256], [0, 4255948800, 0, 256], [0, 4256014336, 0, 256]] is too long
-	from schema $id: http://devicetree.org/schemas/iommu/rockchip,iommu.yaml#
-arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dtb: iommu@fdab9000: interrupts: [[0, 110, 4, 0], [0, 111, 4, 0], [0, 112, 4, 0]] is too long
-	from schema $id: http://devicetree.org/schemas/iommu/rockchip,iommu.yaml#
-arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dtb: iommu@fdab9000: clocks: [[28, 287], [28, 276], [28, 278], [28, 288], [28, 277], [28, 279]] is too long
-	from schema $id: http://devicetree.org/schemas/iommu/rockchip,iommu.yaml#
-arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dtb: iommu@fdab9000: clock-names:0: 'aclk' was expected
-	from schema $id: http://devicetree.org/schemas/iommu/rockchip,iommu.yaml#
-arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dtb: iommu@fdab9000: clock-names:1: 'iface' was expected
-	from schema $id: http://devicetree.org/schemas/iommu/rockchip,iommu.yaml#
-arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dtb: iommu@fdab9000: clock-names: ['aclk0', 'aclk1', 'aclk2', 'iface0', 'iface1', 'iface2'] is too long
-	from schema $id: http://devicetree.org/schemas/iommu/rockchip,iommu.yaml#
-arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dtb: iommu@fdab9000: power-domains: [[30, 9], [30, 10], [30, 11]] is too long
-	from schema $id: http://devicetree.org/schemas/iommu/rockchip,iommu.yaml#
-arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dtb: iommu@fdab9000: 'interrupt-names', 'power-domain-names' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/iommu/rockchip,iommu.yaml#
-
-
-
-
-
+> [1] https://lore.kernel.org/all/20240117173458.2312669-1-quic_sibis@quicinc.com/
 
