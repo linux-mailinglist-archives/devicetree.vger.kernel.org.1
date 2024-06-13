@@ -1,206 +1,401 @@
-Return-Path: <devicetree+bounces-75603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86B62907EB2
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 00:16:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E5E3907ECF
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 00:24:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18547281FFC
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 22:16:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88AB51F21C0D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 22:24:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4DAA14036A;
-	Thu, 13 Jun 2024 22:16:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A06F71474B6;
+	Thu, 13 Jun 2024 22:24:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BosEc/lA"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="E6j+rrmn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2067.outbound.protection.outlook.com [40.107.241.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 864B51369BE;
-	Thu, 13 Jun 2024 22:16:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718317007; cv=none; b=WRnl9sL0LzqsvM6zYtZ2uYyfKpVqmP5Daayoe8Wx2Uh3PJWn+uFsHvE07lRrFfpPmFRAg2lRcYlS1hUfbvbTk0MdSE5ssUmoXhntt2zDA+LlV648F7d9wbZY7V4j1l45RvpM00l9auaHLJiKMP/TNk2vDfxBmYro6boF430SXl4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718317007; c=relaxed/simple;
-	bh=H6GHq9+Uf+rJk6Vo53ar+G44bfZAHGauc8k+5SO/pc0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nx/HyTlVxpHB4qhu1SlYlq21nJNue3jYAauwLk7qfHjR1qghO1D6PNe+84sT9RmfRrUOc8cfmI5+qBrGb1hI+OSJORN0Efd5uVbRBNUsml4V+kysN/XCOc0tGyIfHigV6sek+C3nXS3KPD0IJ2mWReohd7BHV3KWLWfAtESLg1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BosEc/lA; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718317003;
-	bh=H6GHq9+Uf+rJk6Vo53ar+G44bfZAHGauc8k+5SO/pc0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BosEc/lA4iOVOZeUH8LC9DYkCcCkQNqnMw22HxRF4RUTLJQ2/W8SHsV1Yc2ZjJcXR
-	 sJLzizZghM2BMJtCs9RwbfbTNU46OzUfxDeUFbbCf4tVGalKPC9zEatLs2S7u6bUR6
-	 xlVS2zemYr7sRArDKxIIIch6K80PCQa8AYck3wiKwAzMKG9H60SM99GhAPVbRjHtm0
-	 sZedgkDlwObcy9bYI9kJCal+xvYBPgmSi2R49nlDqRZKAsRIN5ZMTLW2LTroqyjjck
-	 GEMZD+4pVLKsjD/UDViYb1YHSU24df/ijWRkTrqeEiuriUyXTY0gv2InhK/SV04MEY
-	 hMAILiQXMpCmg==
-Received: from mercury (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 6FCB73780C6C;
-	Thu, 13 Jun 2024 22:16:43 +0000 (UTC)
-Received: by mercury (Postfix, from userid 1000)
-	id DDF9910608F7; Fri, 14 Jun 2024 00:16:42 +0200 (CEST)
-Date: Fri, 14 Jun 2024 00:16:42 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Oded Gabbay <ogabbay@kernel.org>, Tomeu Vizoso <tomeu.vizoso@tomeuvizoso.net>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
-	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-Subject: Re: [PATCH 4/9] arm64: dts: rockchip: Add nodes for NPU and its MMU
- to rk3588s
-Message-ID: <rrmiv7lwj2refsmmdijwpccniw5chnyoma2gxcueeemxypbodx@mjpdrbqs37ce>
-References: <20240612-6-10-rocket-v1-0-060e48eea250@tomeuvizoso.net>
- <20240612-6-10-rocket-v1-4-060e48eea250@tomeuvizoso.net>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC76E81AB5;
+	Thu, 13 Jun 2024 22:24:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.67
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718317477; cv=fail; b=FZQNvOAnRUPSoXik1eKFRHDPljQpMKzQ1KD6mf0O5gJHNuEhL0FbegULZ0x6tbMrTTC6/nsO78cskwJYZ7GszBA+aov31LeRVpDcPXPAmyT874Q6mc1PsIqMPfPSc26OAEQzhen8jO/wY1uRtCLKXmzZesUZSMUagmIgByfOZZs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718317477; c=relaxed/simple;
+	bh=0FqgNoG3LmU4JEYGTvICQGjwW4rAj0XO6Xd72n2/3Bs=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=jaG3syqI8MYeL7d5/61K5ZQExNmOzdwHLHU7K0fc1rniSNC8xf1+YPtYYIH+AQokzfqwJnqOgHTsnuu95w8eL7l5EZFuJLg8JzS9NhrVvnhZ8tjYBPFGr1uSli0cbOCHli1trJ9Kl3xuu+v/GSBLaaLIsCRTNM0taJ7tIhFBL1c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=E6j+rrmn; arc=fail smtp.client-ip=40.107.241.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TBKHORgxLzZLREVoIQQtyOuiGYb6DIDQADNPrj3YDEJEaYtKgw5QIVW8EDTEHlazkkYu0wO0/B0bc/feNG616BJvYscXS7Pl73WOTo8OumEp4U/MFWOwRQ7XxvP0G8Cbn21IYxHbhOWBN2iiZDvUr5TtcsA7cTTYubeixoVgicU+4dAJVw+sG+OMAXr+z6gePzpgNanCsdS7+ti6/cbFiFFxbLSduwvP/hkfwWlussvJCyWFsl0Uro6etvs3cot18GnzKz3uEYpP+FbJYqc/r9OBDT3n3ppVykeLTX/e1i6T55VEYR43hU1+88sGNdRayUSqEzUjDcPjev+Bccd3tQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NQZyoxA0S5WV21DZGG3x2m1hs/SSIRhX3vk2dIedibg=;
+ b=WiT9TQbbCo9CCfH7EXfTydXZoaMgwgLi1r8beCfXKv5lIEjIotGARDe+0CY2trYIKPpqQUnvbWnqdT2zlSMqewRRzJ4VXxiJdxgIn0sZ/0VgaFpox2nv7gBn4YtKN8pXXMq7KMqweRAbleBya6QZRwCR1pqqJpYxJCZ5h6YsAfpmiuQL+2O7v7RL96pjbpRAHJmcEsG7vltOnMOvJmwB8QSFCXaTgMUZbt+DxQgpqLXR+sl/F+iKiflIVx82LkfBqdKKEYUdYWdXTZzKvT5dfpUiQunbDzYd8UcdrtNwX+C51XwF/y/jd+X+K16XptTvtcsj4eoqjqlRgkFLTWRHDA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NQZyoxA0S5WV21DZGG3x2m1hs/SSIRhX3vk2dIedibg=;
+ b=E6j+rrmnlCQrMOtPS/1YOwVECycw81gqtbzyNVpyD/08RBHOSmBBfkoN2XP7hF15GxXzB/R+Po6e1OTz6GDfMHl7Xl+ojt0JGIzCd4UKqdCrgZiYiT7GYop6n0UL6WZFqti+G001GALBsgE0Ir9WgqvY1mpyVk3hHtQKy7qXlMY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DU4PR04MB10911.eurprd04.prod.outlook.com (2603:10a6:10:58c::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.37; Thu, 13 Jun
+ 2024 22:24:31 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7677.024; Thu, 13 Jun 2024
+ 22:24:30 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE LAYERSCAPE ARM ARCHITECTURE),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH 1/1] arm64: dts: layerscape: change thermal node name
+Date: Thu, 13 Jun 2024 18:24:12 -0400
+Message-Id: <20240613222413.182662-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BY5PR20CA0017.namprd20.prod.outlook.com
+ (2603:10b6:a03:1f4::30) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="zspmvcykvofgqjiu"
-Content-Disposition: inline
-In-Reply-To: <20240612-6-10-rocket-v1-4-060e48eea250@tomeuvizoso.net>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU4PR04MB10911:EE_
+X-MS-Office365-Filtering-Correlation-Id: a697ea37-8cd7-4b57-5d2d-08dc8bf79837
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230035|52116009|376009|1800799019|366011|38350700009;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?6fE4J7sU0swTrpetcpckukUdmNUM36An2IRJS3aycm5OTc2UD16ao4k4hUsy?=
+ =?us-ascii?Q?+q7vefSB16wBuqG14MFQ6HkKisIv+BYfGM017154oAc9JRNxyKNYKm9RaYe8?=
+ =?us-ascii?Q?c4/b8iPdT2BPiKD4pf2MBLsh7nmcoxr3VwWqfPGEIEx3nQ12tI+b3I7xRs/0?=
+ =?us-ascii?Q?g/W+iKZ7u1oaIPKK0/6biXuAJhB+bILvBjsOvWPB09pubs1g4+T5ovWXLEu4?=
+ =?us-ascii?Q?0buHQTcQ0oNtXdy9aUvRRJItdal4NDHrsH90G6RXNHCdfzFtXAEhZpkPZA4U?=
+ =?us-ascii?Q?7WxzBYz6m963RXXCTZ/QH3Me4MlXeCWickqgY3VyRw2wkuNCpsMVpNj6Aufk?=
+ =?us-ascii?Q?B15A3y1doSSmd8qyoWMXSLirhtRNreXkWHIL37eLgRZKpfzsClOU+bXHpMBF?=
+ =?us-ascii?Q?m+3jyKMatc4iOkoSDRiuSJ9hwhXsbUUTTIssM5NQDh80XLwDCcofPSp4xuSq?=
+ =?us-ascii?Q?ORDE2ZER6xGKfqyZVdmvEUbCsGy1+ohU23ocA4pNgnZWE2FjSzTj4Lx47ypm?=
+ =?us-ascii?Q?K9Cxy4ivhVLR9kE0N8nZPpDSJE/zfkw3jvhrA44DsPLI0UB3vEW2uoX9zNrd?=
+ =?us-ascii?Q?JIs7a0G+B/Zv2UmKDB7DL7GRSuLnasbFBtPF7DtL1QrsD8Gyv+JuARz2YmM9?=
+ =?us-ascii?Q?zkTx/8YZqrMnDRidVIF1HDiDz3ezvJa3cklK0FrNsLeoNGAnIWFDzT0+p/pB?=
+ =?us-ascii?Q?zzzLmKULfViKmwN7wB63lZL5Xs+pwYe9KmGPtERhYipIM/KCPawqw74cC0ig?=
+ =?us-ascii?Q?NazaRawj83LryRPoQ/QYZ3l80+UcDKz1jVj2LDFaj0IW42gGZryxwBrl9jZi?=
+ =?us-ascii?Q?xN+8hRdctFr8QxNaRa5D5Eqf0Ymx7PGh97mXjnqlko41V4jjzSBid5fDlxp1?=
+ =?us-ascii?Q?/ZFNM9n8dma/z400I0M+H9qXUUASNItbQqxBCnnHwD0p9IVCtn83mrHLZtFK?=
+ =?us-ascii?Q?b1SrMm9hQIsmVhgzr65y0D+XMIQD2DHxV+otMSnWAsiegVmFMayNXihbZAr3?=
+ =?us-ascii?Q?oZntZ80WGqtG7qnS7CqDp/gEQe/j7pxCFXMJieNIfE/jD2bkHqnrdA1bbe9/?=
+ =?us-ascii?Q?uhnczrgyKQx68Peco54QNtJevyIASDKMTBwI9Gh0JAqxyu6tF61Kvy+b5lk7?=
+ =?us-ascii?Q?2/gVPZyPyMcdq03pgcpB2KQtZQLr+UE0B1sk6pgxmSH/G6EhdxIzB/3VNo5l?=
+ =?us-ascii?Q?mhQ0DcaJmhJBskhoOlmoX6FXPHaUAu2NUPWXORR9RRvCYZUBoJEfUnJiZdSN?=
+ =?us-ascii?Q?lrrw1J6oRcwin/8hTKg3dHUAI6sETTvNUWeCGsCnjbx/dJzhG0vGxQxnRmGf?=
+ =?us-ascii?Q?DQfhSBWEl1tIh6jII78w1Ej0CCyQ3dp5NJAsz49Mmn2PzpzvkJeoPbDgUDn3?=
+ =?us-ascii?Q?NuFlcT0=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230035)(52116009)(376009)(1800799019)(366011)(38350700009);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?X6LXBfX7YPqEZEwLUJJt2K9x/a1MDdz2ndkUqKnPAEM7SCBHh4aOa2qw12Qi?=
+ =?us-ascii?Q?Yu0Qm3Qs9fOtyH4L+bZB2az4x01DqvOKklV8cnsi1vxrKPOxuBGN5F4u6w9o?=
+ =?us-ascii?Q?U0OULkQbbOVem0QoXFBwndUXlHP7RkxFJqXDizguT4qjifmZ86+atpqboYfT?=
+ =?us-ascii?Q?1bWQ+aRWNnKDEx8Gur1u1ivHFbdcntRI2vh0gn02hYM6Zf5B+vQVfZS/d4f7?=
+ =?us-ascii?Q?d62RWI3hhGANsdvIjipni/zP3t/+mN/UwAmgoAB6qbswcVdCJnnAEP2Uhcvy?=
+ =?us-ascii?Q?ICU6FCQGlbynbUNaYv4vitRUa3aRIBZ8s9QhQkVLGnlUQOLP+Wy8xSuR2ZmQ?=
+ =?us-ascii?Q?AMAMvwxY6EplR8TbJ0FHWaPeFBkd/xdPW4YVUHEZmsI4Ltjl8O2N4kYUdWE7?=
+ =?us-ascii?Q?dyEa3hj8SHNXhdtyZBggNceJjBKxd3cLfqdqpuoiksLodfU2NI6zSn5MlgQF?=
+ =?us-ascii?Q?cIav/OlA+TF9MmCUG4s6cIrNgoKYp09SKSq6HeEl/O1YPxp+8ifRSY03BI29?=
+ =?us-ascii?Q?h39JbJk3/lQuoYDCbfw30pJshlRhO7sySVUwV1vGRGTzG8S0Z3GC5ddnTXy7?=
+ =?us-ascii?Q?qKgtsfgU3WD2VYQBsfC564wjYJakSjJ9Hf/AvgKiF3eqOW2RLa6joOYszBNh?=
+ =?us-ascii?Q?iR/UWBItAuPBZDVXzXO2caqH7pL+oCked/B3NPAHkhqmjr2ZHhYo6qhWpPV/?=
+ =?us-ascii?Q?ied8fS7Oyt+HYDVJC915ZGuqW2Yx7HL7+cKzjfxN0e1I+mK8LFx/2mwRIeKk?=
+ =?us-ascii?Q?DY2XyEnob8lEcqyTCzO7fQvuX93B+01EHYOzcxGTYsYx28tND802ijJePaUF?=
+ =?us-ascii?Q?Oapgm0ZSA2nZ8udqPSfbhqvxsszo5CB3/G0CTvlkax6SyW0IDIWyVshH2hZJ?=
+ =?us-ascii?Q?YGGV00zyRhdNrJoX7J1zYM/hFtunmNL7whiz1zhEWk/XCaYLjyhuuV/s5Fmx?=
+ =?us-ascii?Q?F2qB3/HHOeAnpuFdK+DF5S7B2fF4I29vu/k9MBM9/6anxMMVZ8Q67wbnpCc0?=
+ =?us-ascii?Q?FySecZkP39dKjTXKolcF8gUqbYJEoZ8TrinCJahPs+zXG1FC3hutaTDWFWSd?=
+ =?us-ascii?Q?YyFMepx5Ubw33JblKOXHaQ57jRxUrmBdw96DRjliZNMX61bb54+9hp0Eb7/O?=
+ =?us-ascii?Q?zfYfhqhTTTZbfbRiMbhcuBf7fov4SFemiDcRTO8xEoPs6e7QlTdYHcxPdKsS?=
+ =?us-ascii?Q?OynSRcaliXYyR/A0FN+HMvLfwtfc70yiVTZVL+ih4KGx9E08o6D8EuESzJl2?=
+ =?us-ascii?Q?nJY2q7kdpRIbuAUJAlg+6q0AcqOqnwwbGfGxQD1jLnXi/Tt9RZ1P3uXldq+k?=
+ =?us-ascii?Q?p1NuVT8ofNmazgzCbfmIjYwEM29rUR4Na3aluW5VR4ybYkcoWrsLYpZpmh9p?=
+ =?us-ascii?Q?S3K+PqqWXphnE/OT/LXy8hXsGPQqRYlUrTjdSOyQ2sRsLPaeVdaLW48IeHoG?=
+ =?us-ascii?Q?qdE0P/KlQX8HNRnYJQg7gZdiLYSz4qiYMlEWj0w/xl98FwcL7vmomgUaAynX?=
+ =?us-ascii?Q?FXszugElgByy/p6+ZMoaCg3qwoMjGwN2ccSpD1sepon1eOP6oc54w1u7psAV?=
+ =?us-ascii?Q?Z+3PDwXQEi8rZ+YKSwoZkcXEOjYf90rTzBmlsjQT?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a697ea37-8cd7-4b57-5d2d-08dc8bf79837
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jun 2024 22:24:30.8329
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qoOCQJqIh90c09ASFtJzYhsqWo9QYChSqGbE4G+qyAZF+1UrN0pWPCGu3wKc6rhmIyU9uUcoGzHXmGOV9e0O3g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB10911
 
+Add thermal subfix for thermal node name to fix DTB_CHECK warning:
 
---zspmvcykvofgqjiu
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+    thermal-zones: '...' do not match any of the regexes:
+    '^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-thermal$'
 
-Hi,
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi |  4 ++--
+ arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi | 10 +++++-----
+ arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi |  4 ++--
+ arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 14 +++++++-------
+ arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 14 +++++++-------
+ 5 files changed, 23 insertions(+), 23 deletions(-)
 
-On Wed, Jun 12, 2024 at 03:52:57PM GMT, Tomeu Vizoso wrote:
-> See Chapter 36 "RKNN" from the RK3588 TRM (Part 1).
->=20
-> This is a derivative of NVIDIA's NVDLA, but with its own front-end
-> processor.
->=20
-> Mostly taken from downstream.
->=20
-> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-> ---
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+index 6552d404d1310..4685f1cb5d5ff 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+@@ -155,7 +155,7 @@ its: msi-controller@6020000 {
+ 	};
+ 
+ 	thermal-zones {
+-		ddr-controller {
++		ddr-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 0>;
+@@ -175,7 +175,7 @@ ddr-ctrler-crit {
+ 			};
+ 		};
+ 
+-		core-cluster {
++		core-cluster-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 1>;
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
+index a4a476b04ebe3..45b5d1b16e34e 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
+@@ -154,7 +154,7 @@ reboot {
+ 	};
+ 
+ 	thermal-zones {
+-		ddr-controller {
++		ddr-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 0>;
+@@ -174,7 +174,7 @@ ddr-ctrler-crit {
+ 			};
+ 		};
+ 
+-		serdes {
++		serdes-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 1>;
+@@ -194,7 +194,7 @@ serdes-crit {
+ 			};
+ 		};
+ 
+-		fman {
++		fman-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 2>;
+@@ -214,7 +214,7 @@ fman-crit {
+ 			};
+ 		};
+ 
+-		core-cluster {
++		core-cluster-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 3>;
+@@ -245,7 +245,7 @@ map0 {
+ 			};
+ 		};
+ 
+-		sec {
++		sec-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 4>;
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+index 604bf88d70b3a..a16590032a72c 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+@@ -131,7 +131,7 @@ its: msi-controller@6020000 {
+ 	};
+ 
+ 	thermal-zones {
+-		core-cluster {
++		core-cluster-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 0>;
+@@ -166,7 +166,7 @@ map0 {
+ 			};
+ 		};
+ 
+-		soc {
++		soc-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 1>;
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+index 9064e6de7d107..0164cc646904a 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+@@ -80,7 +80,7 @@ reboot {
+ 	};
+ 
+ 	thermal-zones {
+-		ddr-controller1 {
++		ddr-ctrl1-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 1>;
+@@ -94,7 +94,7 @@ ddr-ctrler1-crit {
+ 			};
+ 		};
+ 
+-		ddr-controller2 {
++		ddr-ctrl2-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 2>;
+@@ -108,7 +108,7 @@ ddr-ctrler2-crit {
+ 			};
+ 		};
+ 
+-		ddr-controller3 {
++		ddr-ctrl3-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 3>;
+@@ -122,7 +122,7 @@ ddr-ctrler3-crit {
+ 			};
+ 		};
+ 
+-		core-cluster1 {
++		core-cluster1-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 4>;
+@@ -151,7 +151,7 @@ map0 {
+ 			};
+ 		};
+ 
+-		core-cluster2 {
++		core-cluster2-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 5>;
+@@ -180,7 +180,7 @@ map0 {
+ 			};
+ 		};
+ 
+-		core-cluster3 {
++		core-cluster3-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 6>;
+@@ -209,7 +209,7 @@ map0 {
+ 			};
+ 		};
+ 
+-		core-cluster4 {
++		core-cluster4-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 7>;
+diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+index 7dc98cb0ffc93..bb4e4f7803ce7 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+@@ -449,7 +449,7 @@ sysclk: sysclk {
+ 	};
+ 
+ 	thermal-zones {
+-		cluster6-7 {
++		cluster6-7-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 0>;
+@@ -492,7 +492,7 @@ map0 {
+ 			};
+ 		};
+ 
+-		ddr-cluster5 {
++		ddr-cluster5-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 1>;
+@@ -512,7 +512,7 @@ ddr-cluster5-crit {
+ 			};
+ 		};
+ 
+-		wriop {
++		wriop-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 2>;
+@@ -532,7 +532,7 @@ wriop-crit {
+ 			};
+ 		};
+ 
+-		dce-qbman-hsio2 {
++		dce-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 3>;
+@@ -552,7 +552,7 @@ dce-qbman-crit {
+ 			};
+ 		};
+ 
+-		ccn-dpaa-tbu {
++		ccn-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 4>;
+@@ -572,7 +572,7 @@ ccn-dpaa-crit {
+ 			};
+ 		};
+ 
+-		cluster4-hsio3 {
++		cluster4-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 5>;
+@@ -592,7 +592,7 @@ clust4-hsio3-crit {
+ 			};
+ 		};
+ 
+-		cluster2-3 {
++		cluster2-3-thermal {
+ 			polling-delay-passive = <1000>;
+ 			polling-delay = <5000>;
+ 			thermal-sensors = <&tmu 6>;
+-- 
+2.34.1
 
-Looking at the TRM I noticed, that this register is not mapped:
-
-RKNN_global_operation_enable
-Address: Operational Base + offset (0xF008)
-
--- Sebastian
-
->  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 53 +++++++++++++++++++++++++=
-++++++
->  1 file changed, 53 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/=
-dts/rockchip/rk3588s.dtsi
-> index 6ac5ac8b48ab..a5d53578c8f6 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> @@ -2665,6 +2665,59 @@ gpio4: gpio@fec50000 {
->  			#interrupt-cells =3D <2>;
->  		};
->  	};
-> +
-> +	rknn: npu@fdab0000 {
-> +		compatible =3D "rockchip,rk3588-rknn", "rockchip,rknn";
-> +		reg =3D <0x0 0xfdab0000 0x0 0x9000>,
-> +		      <0x0 0xfdac0000 0x0 0x9000>,
-> +		      <0x0 0xfdad0000 0x0 0x9000>;
-> +		interrupts =3D <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH 0>,
-> +			     <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH 0>,
-> +			     <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		interrupt-names =3D "npu0_irq", "npu1_irq", "npu2_irq";
-> +		clocks =3D <&scmi_clk SCMI_CLK_NPU>, <&cru ACLK_NPU0>,
-> +			 <&cru ACLK_NPU1>, <&cru ACLK_NPU2>,
-> +			 <&cru HCLK_NPU0>, <&cru HCLK_NPU1>,
-> +			 <&cru HCLK_NPU2>, <&cru PCLK_NPU_ROOT>;
-> +		clock-names =3D "clk_npu",
-> +			      "aclk0", "aclk1", "aclk2",
-> +			      "hclk0", "hclk1", "hclk2",
-> +			      "pclk";
-> +		assigned-clocks =3D <&scmi_clk SCMI_CLK_NPU>;
-> +		assigned-clock-rates =3D <200000000>;
-> +		resets =3D <&cru SRST_A_RKNN0>, <&cru SRST_A_RKNN1>, <&cru SRST_A_RKNN=
-2>,
-> +			 <&cru SRST_H_RKNN0>, <&cru SRST_H_RKNN1>, <&cru SRST_H_RKNN2>;
-> +		reset-names =3D "srst_a0", "srst_a1", "srst_a2",
-> +			      "srst_h0", "srst_h1", "srst_h2";
-> +		power-domains =3D <&power RK3588_PD_NPUTOP>,
-> +				<&power RK3588_PD_NPU1>,
-> +				<&power RK3588_PD_NPU2>;
-> +		power-domain-names =3D "npu0", "npu1", "npu2";
-> +		iommus =3D <&rknn_mmu>;
-> +		status =3D "disabled";
-> +	};
-> +
-> +	rknn_mmu: iommu@fdab9000 {
-> +		compatible =3D "rockchip,rk3588-iommu";
-> +		reg =3D <0x0 0xfdab9000 0x0 0x100>,
-> +		      <0x0 0xfdaba000 0x0 0x100>,
-> +		      <0x0 0xfdaca000 0x0 0x100>,
-> +		      <0x0 0xfdada000 0x0 0x100>;
-> +		interrupts =3D <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH 0>,
-> +			     <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH 0>,
-> +			     <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		interrupt-names =3D "npu0_mmu", "npu1_mmu", "npu2_mmu";
-> +		clocks =3D <&cru ACLK_NPU0>, <&cru ACLK_NPU1>, <&cru ACLK_NPU2>,
-> +			 <&cru HCLK_NPU0>, <&cru HCLK_NPU1>, <&cru HCLK_NPU2>;
-> +		clock-names =3D "aclk0", "aclk1", "aclk2",
-> +			      "iface0", "iface1", "iface2";
-> +		#iommu-cells =3D <0>;
-> +		power-domains =3D <&power RK3588_PD_NPUTOP>,
-> +				<&power RK3588_PD_NPU1>,
-> +				<&power RK3588_PD_NPU2>;
-> +		power-domain-names =3D "npu0", "npu1", "npu2";
-> +		status =3D "disabled";
-> +	};
->  };
-> =20
->  #include "rk3588s-pinctrl.dtsi"
->=20
-> --=20
-> 2.45.2
->=20
->=20
-
---zspmvcykvofgqjiu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmZrb8cACgkQ2O7X88g7
-+pp7Cg/+NCeY7EqR6sVyOOVSi/PrBFnVjcHw6BjQgMwiP8UMdW034jc+YCDpUOtM
-GLyYAe491EldwputLm6HNquT4/ad0/28h0HVzXHKeu6ulTga/j5rNV79GYyDhwTJ
-h+ror+9q3BquIkAjiKc9wPEQyL32hr0eBom8Q1yzPwEcF140VO/StE/YRC+aeZca
-UZ8f4lfJnR8M8TIb7uV4KWIkPDSbJtqxoYWseX5+Z0xDdnkIScgP0MgleLcsJIr5
-m+3OC/Ln+jjRZq5uEaN19gHWeMZS2YJX4q79TYCc/qbztzXQWpahLoMnx7ZahUDN
-Nwb/wQF12rOO4Pxiveex6Z9rkf1PQz/Vy6G1AQM7XQSpZcTt7Qi+bqcuSzKDiBXB
-KDFKOyvbRbRshWrTUTep6IkrL4Y+RIezL9k06JTA6iRX8jcininTf4ZZ8EDpKgJl
-+houmNpaxasXiknJfcFltFDKYT09WTLUNaTi7MszTCSt0Spk/dXhHXmcczOWK/Q1
-3aVL56LpdzKZIby//ncK2VZxTZv1eLhEMdTeU5FlvzfyFBU7HwqTfAzyrKOUvu1j
-q0UmDYg7x0w9y/eeBY8BSGF81h223yUb2hg2BDIXJw8fLZQQrnjSnemyBgjtJ0Cn
-Smr9JW2zV38Lq64iR5WiETtr/hrVZe0PiVhyqWGsxS1PRPIGpZ4=
-=qyNK
------END PGP SIGNATURE-----
-
---zspmvcykvofgqjiu--
 
