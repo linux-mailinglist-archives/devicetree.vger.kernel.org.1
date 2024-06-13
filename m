@@ -1,110 +1,110 @@
-Return-Path: <devicetree+bounces-75508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D5DB90787D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:42:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27E1D90787F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:43:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6C00282A38
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 16:42:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 392821C22643
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 16:43:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC44E149DFA;
-	Thu, 13 Jun 2024 16:42:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5529B149C52;
+	Thu, 13 Jun 2024 16:42:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="z3Pr1YCE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kncp641X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA09212F386
-	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 16:42:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C0261369B0;
+	Thu, 13 Jun 2024 16:42:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718296937; cv=none; b=O+oG9DRgoHJWk5sfBcwf7TrIWbGYPr7Cmd6J1WABYMYa6gcdaid8dq6XO1kxujGhVPTclXbUuw2KAAyBMMmdku8UHwVM3g2G0ewI0mjvdKdbxe4KZSVn2pKAcm3v+t2QpFsiqm+5y0ztvsHCMxkfAosA3kQX8peYFgNnz8UNe68=
+	t=1718296966; cv=none; b=r96Bmg1QrWH+Zm60bI5NHivV3p5QawgMoUa4KXsWl0INhMdV3D6WOte9zM2YCyqHNEfCgwQ/u2JJXn67tez+JhYaWbybF+xN65QFm/hgf4zmMXfdn9sY9PBsiOHdKjY2k46EnqJ6x+gg3EWGgH5zvJayZR6FMwAW0Y9Inc4pH9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718296937; c=relaxed/simple;
-	bh=d4Zivpa+Kr91lXBluwGJv6NkuP5Fp/Zrezb2fbHpfBU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tIUn2D2MYqP7v4F3D6Y8UjKf8YSrnWA47G/La/3gqGZ2bnbHdHCMa4gnBWBvhMubMqQ8ht6Of8IfuzOGoDsdz9oLlSbopDBHD6ON5oAUML6xVwcq7yb6NfPrUNitSZ+JRQ43e4D1srFg0lqU8A45Oxnpo0lpE+XQskQSeqqSluc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=z3Pr1YCE; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-52bc29c79fdso1791549e87.1
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 09:42:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718296933; x=1718901733; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KxumJDVbsP4QVPvesFB523q6d4QgJEn6x6IfBmiyMhg=;
-        b=z3Pr1YCEhkXBwJrTn7gf9IZ2MzkV5tT+9bpEIjRhcz1ALhzp6dnKrXQvys9HQRX+Hl
-         GN3V9Ozdz7xvT/o1XqnMwsYJK/yXGuJlZTlsByCjAdfbhwlrV75cVKzEMcs8H/nz8cG5
-         H+ttvmSW0AP7FB7IQ/1CQ/6cwTl/Ury2zsOi4+KE9hzEVbjjYHW4B1C8q0/vCUj0hdfw
-         WurKyAElCEWu6s+RiUUMWJWGft4ILwiH+GmQl9yo1SDszcYXEdScQTGuLKNBUy9RkgBg
-         d/kU+CLg0KmNIe3Ny0Va5CYo0jKqCcdgrYGpw2VABqZ7mQStiJX9YTCL+1iQ5tgy/3ia
-         OvWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718296933; x=1718901733;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KxumJDVbsP4QVPvesFB523q6d4QgJEn6x6IfBmiyMhg=;
-        b=khId/WIaMjzLOi+4Zl6YBwHxDW/XtzrsnCgGouBNMN1m6bOM3zladEyaGTHS6Tn4ww
-         AXipjjh1i3iN5D0rXGY4Pnhuv6itj0x4/IRNV0FnxpJ7fljhrOKq8oK2RpqaMDBa8+23
-         LSwM0P5yN2VFcByJPCXEBgO8kHiYRfT2pmADiANs9/3SZdGqf7Qj5E7FlrS1ME7DbTPh
-         4DOUfDglcimmLLAU195gwJK9GOSQiG/UQEQ5NtYeZl3KvWAxJZO8qxRvSwcLtr9gnwe4
-         kTK2oWIFvV3RfTwYHJKS9IDaVOJGXJvhIZfcz8Xg9OKReyXK8uOvwqDToDlC+8I3ALKI
-         bGUg==
-X-Forwarded-Encrypted: i=1; AJvYcCUIwVy8xRk520yBYDi/OdnsB+G1SEWU8bA5Ym1KUpQMe7jFLjzu0k4dXetAUl3wDjFLCWLfRwBCoI2HTMR3Y4JS3AF3eK9Y+yGv1A==
-X-Gm-Message-State: AOJu0YwS9gkEj1TV8mXaNf1CzXFzcgaud9bS4qpnIu1ZY4tGZQfzYI1S
-	44CMs/6396CuxfT9R4eZM1mBCTmTpcXORcI8lO6aEW11mkkzswk2DsaBkAwfNLw=
-X-Google-Smtp-Source: AGHT+IGSM9D0UjKqMRrpwUBDckCv+L+W8oy5sZf9E5Weqo0lZ3R41sisP7y2M9mjYoz1A9XbBfJtww==
-X-Received: by 2002:ac2:57c3:0:b0:52b:bfa7:66a1 with SMTP id 2adb3069b0e04-52ca6e56ed4mr226505e87.5.1718296933016;
-        Thu, 13 Jun 2024 09:42:13 -0700 (PDT)
-Received: from ?IPV6:2a00:f41:900a:a4b1:9ab2:4d92:821a:bb76? ([2a00:f41:900a:a4b1:9ab2:4d92:821a:bb76])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca282564dsm282363e87.9.2024.06.13.09.42.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jun 2024 09:42:12 -0700 (PDT)
-Message-ID: <1cfd671b-a4d1-4edb-a2f6-b91b6edd7b22@linaro.org>
-Date: Thu, 13 Jun 2024 18:42:09 +0200
+	s=arc-20240116; t=1718296966; c=relaxed/simple;
+	bh=k6RZFuL5RbQMXBfC1QGbjlIe42D9eii5Ww819cD7sCA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZZkiwHwpjkQxfCP3ZCVo169M1G08W7ohH5o9sWfjMJQCMLKgg4DzRNhnFAIWiGaZ13jeZLRQk340ym7YtVEM4fMKPU3Bl3SzD2JRa3LqeSGz4JrtNSYvLMqflNvIUljoeiQ3IEQ3tKFSrXuospUeSSd8VoKR3juG6+dJjjkTNLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kncp641X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95BE0C2BBFC;
+	Thu, 13 Jun 2024 16:42:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718296965;
+	bh=k6RZFuL5RbQMXBfC1QGbjlIe42D9eii5Ww819cD7sCA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Kncp641X+UbghLKCtc6JUOvH5mOgzmtoEz/z4YK0RdIZ59bV2tVcBnppQgJB7g00v
+	 i4Qt+uGMjBwLFzx7fAkeb157E4AROuJI7qDYEjm5YCRB/qqM7NM4gFCBJj7BA5VnjP
+	 E2tFErP3LenNAcCr5q0F7sW641LObjwlB617yjTOuM1nNokJcs4HhsJBamqM7EyxKY
+	 WcfEHR3bIWoFqAOg7nDg4s9M4b11HZ77dTcXzFF+1gE4aY2onT15YV/Rcp8P6tQ4yo
+	 KjN8x5hP+GNpgpY9YCN2taV1QCRnSLox7fcvKDApOMcG8tvy+4Lz6u0t59RFrYeUCY
+	 czqPkuBZpIaWg==
+Date: Thu, 13 Jun 2024 10:42:44 -0600
+From: Rob Herring <robh@kernel.org>
+To: Conor Dooley <conor@kernel.org>, Viacheslav <adeep@lexina.in>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 3/4] dt-bindings: arm: amlogic:
+ amlogic,meson-gx-ao-secure: add secure-monitor property
+Message-ID: <20240613164244.GA1999034-robh@kernel.org>
+References: <20240610084032.3096614-1-adeep@lexina.in>
+ <20240610084032.3096614-4-adeep@lexina.in>
+ <20240610-dropout-compress-6d6a9b749524@spud>
+ <4866f6d4-2e3c-40c7-a8cb-ba4e422ffef6@lexina.in>
+ <20240611-undying-earthy-00236ac251aa@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/8] arm64: dts: qcom: Update sleep_clk frequency to 32000
- on SA8775P
-To: Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_jkona@quicinc.com, quic_imrashai@quicinc.com
-References: <20240612-sa8775p-mm-clock-controllers-v1-0-db295a846ee7@quicinc.com>
- <20240612-sa8775p-mm-clock-controllers-v1-8-db295a846ee7@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240612-sa8775p-mm-clock-controllers-v1-8-db295a846ee7@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240611-undying-earthy-00236ac251aa@spud>
 
-
-
-On 6/12/24 12:47, Taniya Das wrote:
-> The HW supported sleep_clk frequency on SA8775P is 32000, hence
-> update the sleep_clk frequency with the correct value on SA8775P.
+On Tue, Jun 11, 2024 at 07:07:28PM +0100, Conor Dooley wrote:
+> On Tue, Jun 11, 2024 at 01:25:11PM +0300, Viacheslav wrote:
+> > Hi!
+> > 
+> > 10/06/2024 19.08, Conor Dooley wrote:
+> > > On Mon, Jun 10, 2024 at 11:39:49AM +0300, Viacheslav Bocharov wrote:
+> > > > Add secure-monitor property to schema for meson-gx-socinfo-sm driver.
+> > > 
+> > > "bindings are for hardware, not drivers". Why purpose does the "secure
+> > > monitor" serve that the secure firmware needs a reference to it?
+> > 
+> > This driver is an extension to the meson-gx-socinfo driver: it supplements
+> > information obtained from the register with information from the
+> > SM_GET_CHIP_ID secure monitor call. Due to the specifics of the module
+> > loading order, we cannot do away with meson-gx-socinfo, as it is used for
+> > platform identification in some drivers. Therefore, the extended information
+> > is formatted as a separate driver, which is loaded after the secure-monitor
+> > driver.
 > 
-> Fixes: 603f96d4c9d0 ("arm64: dts: qcom: add initial support for qcom sa8775p-ride")
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
+> Please stop talking about drivers, this is a binding which is about
+> hardware. Please provide, in your next version, a commit message that
+> justifies adding this property without talking about driver probing
+> order etc, and instead focuses on what service the "secure monitor"
+> provides etc.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+To put it another way, how many secure monitors does 1 system have? 
 
-Konrad
+What do you do if the property is not present? You didn't make it 
+required which is good because that would be an ABI break.
+
+You only need a link in DT if there are different possible providers or 
+some per consumer information to describe (e.g. an interrupt number or 
+clock ID). You don't have the latter and likely there is only 1 possible 
+provider. 
+
+Rob
+
 
