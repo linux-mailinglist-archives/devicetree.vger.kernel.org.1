@@ -1,158 +1,134 @@
-Return-Path: <devicetree+bounces-75363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 972C29069C5
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 12:15:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 714699069D7
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 12:20:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E69D5B22980
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 10:15:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22C691F26FDA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 10:20:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6578D1420B7;
-	Thu, 13 Jun 2024 10:15:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 008061422CC;
+	Thu, 13 Jun 2024 10:20:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JEEc3b4R"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="HsnLA2G5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 351071419B1;
-	Thu, 13 Jun 2024 10:15:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C9EC141999
+	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 10:20:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718273713; cv=none; b=PJqLa78CkEKIdIF6UUN/6EX2nKAGjlOHrLyDDSNPyLB2+Uei8ec6P8sIvVgRML3Hpm0oA8skHUTwNFGbHxRVdXngw0ZlN/GJD714dDMHLApMaamcggFAjgPglz5YEkDffMi+Ep9qrtW/grfuSGpq37KNzY2mARAzCNIsSJzIUoo=
+	t=1718274005; cv=none; b=c5kmx1YymkiF3nqvbiHk6oQkDgpKe26YLKWjWUol6oiZxokOFmqebI5UkVu2ifgsIr9YWeiJdRA6n0hgBjiMnxkO8t6LmjTgAH7f42lWZ+MVQHg7ypZRaCgqIh956gI1ufW4of7cyyLcNz2yEAdsUYcJJhYHwOcL/ASqfzkQdng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718273713; c=relaxed/simple;
-	bh=r2cm43AgLQ2yKiamt7FvGWb3+PXn+YHNEap/3gysXyg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fk9FDjgBMAcTa2tWZ4TNWj9RPlpq007EQAKutAOrvS65NbRps/O6Xqw7+YW9ka20DkG1QA8jE0V0KXZ4+vMmcvNSLLKoBf90eU+zd1rZ8ytyWr0+98fAt0JgAaYR8Pq76BWs8H1i/+aAy0nzgUjypdmBYxxIX9HVubRQhi46LFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JEEc3b4R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5708EC4AF1A;
-	Thu, 13 Jun 2024 10:15:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718273713;
-	bh=r2cm43AgLQ2yKiamt7FvGWb3+PXn+YHNEap/3gysXyg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JEEc3b4ROFtvvtkrHsp9EDLXYzpCnbIPqPuV8ftYU8F8h2QUNorwMTSb7NjRp5NAl
-	 aJu+FWPejgLrKx4cR28QqcNUgNAPinXNlXi7GnIJf13KhDoJuvf7oLddGTVxp6JZVM
-	 azxag9RwVMSFocDeOLuRLV12SoEBUNOpiZNAfOVzww34HiITjc/rJ5UUgzYYt33TjG
-	 4rlOyeHkA+kg5VHFuGyGW2u3g/08snUf171mrAr0grkSD6mLrbRo7XU8KYCiDK+7BH
-	 69PgLZAbtzy4OzC1KWRXDb6z6m3ZRBr/nhAVFlea678l4FipkNQU9opgcpfDTOgyOk
-	 FDjtUvxpT3x8g==
-Message-ID: <e62a723c-30dc-4667-bbd5-85cb8c583432@kernel.org>
-Date: Thu, 13 Jun 2024 12:15:05 +0200
+	s=arc-20240116; t=1718274005; c=relaxed/simple;
+	bh=yJHUAkGXRUAqSw3kT67351NRbqCbUNjFaRw8L2R5mZg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=URMUeEQuOaEuh/AmR7EsTd3BBbBRMIlya2Ni4hYZdG/7P1Dp4vmQE0rAagqr4pY7Xo3da+aql4GBw4MJbhYw1C7S9RunLd1wEtQKSsaG+5m/IXB6tAPmZbdU+wju0MyX9xUiQMJBB6sUJI6sG0PTWph5DR0KHJ01L94/uJSHcHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=HsnLA2G5; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-705c739b878so1009732b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 03:20:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1718274004; x=1718878804; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=j6xMy0PSx7RAK5KyLRoFGIY2S4TSiOFCk9JAjN+55oY=;
+        b=HsnLA2G5q03Ycvz9VqoDO76Hlev3e3ORu1caXOTyCgx1cASqmfRHr1JBK8WMYavsw3
+         3N7CseAwqljfUVsysEcD9RbcIw1YWzJhPJAxQI8FTSW1dVRUjDCe6BHaHdslSkm7COSP
+         S8/7jchhnGi3DvkobT3RWJTh4apqVl8EqgQ5w=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718274004; x=1718878804;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=j6xMy0PSx7RAK5KyLRoFGIY2S4TSiOFCk9JAjN+55oY=;
+        b=IiawS+3EUn0x97+yYScuwhR6s8bcCAx6FwEHt/X3GHyi+A1ybPKNXHpump1gKX10Wb
+         SZLFlfBOVjrmnS0txT06zwakmu96JSaaddeKPUfN9/ylp+R5gMTu7A8gQwxvzy+y9C7r
+         bctwfkku30KHtmaoDXnkjhHhbyX57RtA7Xg2MuT3YbfnRiX3waCQkoJxYTu2QDjmb9LM
+         1AbLli2i974ScdcA3TAkY6iHz/Q1FBkt88+OiP3UpoAT/emj8SfcCpTD5DwwEBk9ujsb
+         5vzeI/9eDEZgHyfDXHF3T8/XJ8/Gf+FF4BrfrS2tWKaKa23eltTVMMXZww6GWLVDE53h
+         wwNA==
+X-Gm-Message-State: AOJu0YzK0gvmU5wnJ9feg67OicJjDluWD+RALGea76VvJ53JtvcLbQAW
+	it5zWpq5VU4yObaTwE/Uhb/cIYPIoZ8Bw7o8hxlI8Mo9EUKvqGQdAAp802Nwuw==
+X-Google-Smtp-Source: AGHT+IGvGm28fk+okkNWjfFgYvPyFLTuWgmuTCIzXUdUG0qAQ/FS0ndUR84hPXLwOSrKkTwZkSzbEg==
+X-Received: by 2002:a05:6a20:daa8:b0:1a9:d27c:3151 with SMTP id adf61e73a8af0-1b8bf0c4483mr3508458637.23.1718274003916;
+        Thu, 13 Jun 2024 03:20:03 -0700 (PDT)
+Received: from yuanhsinte.c.googlers.com (60.252.199.104.bc.googleusercontent.com. [104.199.252.60])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-6fedcf36b9esm817047a12.19.2024.06.13.03.20.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Jun 2024 03:20:03 -0700 (PDT)
+From: Hsin-Te Yuan <yuanhsinte@chromium.org>
+Date: Thu, 13 Jun 2024 10:19:58 +0000
+Subject: [PATCH] arm64: dts: Fix the value of `dlg,jack-det-rate` mismatch
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: phy: rockchip-emmc-phy: Convert to
- dtschema
-To: Shresth Prasad <shresthprasad7@gmail.com>, vkoul@kernel.org,
- kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- heiko@sntech.de, sebastian.reichel@collabora.com, s.hauer@pengutronix.de,
- cristian.ciocaltea@collabora.com, andy.yan@rock-chips.com
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, skhan@linuxfoundation.org,
- javier.carrasco.cruz@gmail.com
-References: <20240613085812.4020-2-shresthprasad7@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240613085812.4020-2-shresthprasad7@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20240613-jack-rate-v1-1-62ee0259e204@chromium.org>
+X-B4-Tracking: v=1; b=H4sIAM3HamYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDM0Nj3azE5GzdosSSVN1kE3OLtERzs+RUQ0sloPqCotS0zAqwWdGxtbU
+ An6aP6lsAAAA=
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, Hsin-Te Yuan <yuanhsinte@chromium.org>
+X-Mailer: b4 0.13.0
 
-On 13/06/2024 10:58, Shresth Prasad wrote:
-> Convert txt bindings of Rockchip EMMC PHY to dtschema to allow
-> for validation.
-> 
-> Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
-> ---
-> Changes in v3:
->     - fix `reg` in example being too long
-> 
-> Tested against `rockchip/rk3399-firefly.dtb`, `rockchip/rk3399-orangepi.dtb`
-> and `rockchip/rk3399-pinebook-pro.dtb`.
+According to Documentation/devicetree/bindings/sound/dialog,da7219.yaml,
+the value of `dlg,jack-det-rate` property should be '32_64' instead of
+'32ms_64ms'.
 
+Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
+---
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-audio-da7219.dtsi | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi                | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-audio-da7219.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-audio-da7219.dtsi
+index 8b57706ac814..586eee79c73c 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-audio-da7219.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-audio-da7219.dtsi
+@@ -27,7 +27,7 @@ da7219_aad {
+ 			dlg,btn-cfg = <50>;
+ 			dlg,mic-det-thr = <500>;
+ 			dlg,jack-ins-deb = <20>;
+-			dlg,jack-det-rate = "32ms_64ms";
++			dlg,jack-det-rate = "32_64";
+ 			dlg,jack-rem-deb = <1>;
+ 
+ 			dlg,a-d-btn-thr = <0xa>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
+index 789fd0dcc88b..3cd63d1e8f15 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
+@@ -450,7 +450,7 @@ da7219_aad {
+ 			dlg,btn-cfg = <50>;
+ 			dlg,mic-det-thr = <500>;
+ 			dlg,jack-ins-deb = <20>;
+-			dlg,jack-det-rate = "32ms_64ms";
++			dlg,jack-det-rate = "32_64";
+ 			dlg,jack-rem-deb = <1>;
+ 
+ 			dlg,a-d-btn-thr = <0xa>;
 
-> 
->  .../bindings/phy/rockchip,emmc-phy.yaml       | 79 +++++++++++++++++++
->  .../bindings/phy/rockchip-emmc-phy.txt        | 43 ----------
->  .../devicetree/bindings/soc/rockchip/grf.yaml |  2 +-
->  3 files changed, 80 insertions(+), 44 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
-
-Filename matching compatible.
-
-...
-
-Please look at other bindings how the conversion works and get it
-reviewed/acked through your mentors before you post.
-
-> -};
-> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> index 79798c747476..1f88416657cc 100644
-> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> @@ -178,7 +178,7 @@ allOf:
->        patternProperties:
->          "phy@[0-9a-f]+$":
->            description:
-> -            Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
-> +            Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
-
-Nope, look at the rest of the file and do not implement things differently.
+---
+base-commit: cea2a26553ace13ee36b56dc09ad548b5e6907df
+change-id: 20240613-jack-rate-c478fa76ce19
 
 Best regards,
-Krzysztof
+-- 
+Hsin-Te Yuan <yuanhsinte@chromium.org>
 
 
