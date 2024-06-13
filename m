@@ -1,138 +1,164 @@
-Return-Path: <devicetree+bounces-75506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5706390786B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:38:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39365907878
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:42:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F318E1F2345E
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 16:38:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC8A31C2291E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 16:42:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C27A41487E2;
-	Thu, 13 Jun 2024 16:38:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F3101494D1;
+	Thu, 13 Jun 2024 16:41:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kamjskX+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C85A12D757;
-	Thu, 13 Jun 2024 16:38:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 013DE1494C2;
+	Thu, 13 Jun 2024 16:41:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718296707; cv=none; b=lhtRYlkcIZcPjpKtUTZkT12vOLNyhDn4BWA6zVXv8vJA5pP6j3ML7Oa9w4BWzf/iUeME48ukqSZhHXczhUGgPB88DYcvKYA+SsdzURbb4Ou0p53Oy3k853ig+W6wozVOtnoE021nyj9OVlHMHDSruWG8mZUXkJFK8TMGuWpg7xk=
+	t=1718296919; cv=none; b=luflvezkm7IyY4yohq/SlTXOHQHpjeybyGyPIOWmQlwav1GSoT+g+nGbVUvP/YvDjiEWsbWbAQ7HR8deg11Wgf9oLtZurIHWJgYvoJWAjTCCwAqsThGbIorGIK1fZUhTbZ0ge5U/GsNOLyCi/luI7ZxzWpj6dshkgHaKIWxOguA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718296707; c=relaxed/simple;
-	bh=aKOhNOdB7ccnzq+ofFI1uzD4Kj+zLwM5PbYdAt6B0RE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sLC+0GJyMO0S8//xNn0ih0i57pxGQRe02D40h3MhIPF+kMu3BDTKXIv8mlUOjSHO6SO8yRtrcRnwCZVU9DZ4XyEkwMGVYDPJZog1JCrU5hzOlrM/ifndMUjxL71yGnnjJ8oPPzsXUOKyqk59a0h06DJ08R1NhdAa30SaHFUuK2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2F821FEC;
-	Thu, 13 Jun 2024 09:38:48 -0700 (PDT)
-Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 012363F73B;
-	Thu, 13 Jun 2024 09:38:21 -0700 (PDT)
-Message-ID: <002b6176-41b3-4888-abb1-978399d108b8@arm.com>
-Date: Thu, 13 Jun 2024 17:38:20 +0100
+	s=arc-20240116; t=1718296919; c=relaxed/simple;
+	bh=vsXFKBT+cSrkgehHrImlatR7bWrZFbEWVqJGyHEVB8g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NI6ahHgD5e3QmkE6/6BxGzRWooGxUiJ7oPp1FRJyeeecMNYkySoh6oKYwGcMtURjZljV6xl/0ModwxiH0esp0y40+NaJmNqNQBiHKxtSs87idlorio6JCNx28anMiw+RbxDlGEA7XUj6w/vHXA2UT7zc5MfFXRDWl72CdqZjbi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kamjskX+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F41B8C32786;
+	Thu, 13 Jun 2024 16:41:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718296918;
+	bh=vsXFKBT+cSrkgehHrImlatR7bWrZFbEWVqJGyHEVB8g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kamjskX+1DHnEM5Qq8CuMsKFatQSlkozsBYZC9ATYruNzKLVszlk+scp82PsvBcCb
+	 P+UdGu/2EtHqz0I/nJ4wtUwJT5ywO/vPfpDzP5X+gZEbjQfsFmQF3B8C+1q7z9GhmE
+	 gKodOoGMIEHLjmk+fyBqucpN/I3oYLbV8LiCvfgtgqhjDIhyS6hpcK0z3eAQ+qypqr
+	 ZwdvYxFSheCWa/ZYq5WxtwLYtNRvqQe7MMO0vVNIQikg8ZpC1X5vikLlqWCbkiYAAn
+	 B7798lI3ncnzys9kxPNaK4VP43FBIVbbR46FrG0d69snNIRC3JvU+OhSH3zh2bHFEb
+	 xP+fFuyuSz6Fw==
+Date: Thu, 13 Jun 2024 17:41:52 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Alisa-Dariana Roman <alisadariana@gmail.com>
+Cc: Alisa-Dariana Roman <alisa.roman@analog.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Alexandru Tachici <alexandru.tachici@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v4 2/5] dt-bindings: iio: adc: ad7192: Update clock config
+Message-ID: <20240613-vineyard-doing-87ada1b7a8ed@spud>
+References: <20240613114001.270233-1-alisa.roman@analog.com>
+ <20240613114001.270233-3-alisa.roman@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/4] of: reserved_mem: Restruture how the reserved
- memory regions are processed
-To: Conor Dooley <conor@kernel.org>,
- Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-Cc: Mark Brown <broonie@kernel.org>, Nathan Chancellor <nathan@kernel.org>,
- robh@kernel.org, saravanak@google.com, hch@lst.de, m.szyprowski@samsung.com,
- will@kernel.org, catalin.marinas@arm.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, iommu@lists.linux.dev, kernel@quicinc.com
-References: <20240528223650.619532-1-quic_obabatun@quicinc.com>
- <20240528223650.619532-2-quic_obabatun@quicinc.com>
- <20240610213403.GA1697364@thelio-3990X>
- <Zmd0Zg7oMneJLyHd@finisterre.sirena.org.uk>
- <cc180d94-6890-4e92-8080-ffd6c1269e6e@quicinc.com>
- <20240613-goldfish-unpicked-1bc9f786aaed@spud>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20240613-goldfish-unpicked-1bc9f786aaed@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="m9XQa0OBbOvIhW8/"
+Content-Disposition: inline
+In-Reply-To: <20240613114001.270233-3-alisa.roman@analog.com>
 
-On 13/06/2024 5:17 pm, Conor Dooley wrote:
-> On Thu, Jun 13, 2024 at 09:05:18AM -0700, Oreoluwa Babatunde wrote:
->>
->> On 6/10/2024 2:47 PM, Mark Brown wrote:
->>> On Mon, Jun 10, 2024 at 02:34:03PM -0700, Nathan Chancellor wrote:
->>>> On Tue, May 28, 2024 at 03:36:47PM -0700, Oreoluwa Babatunde wrote:
->>>>> fdt_init_reserved_mem() is also now called from within the
->>>>> unflatten_device_tree() function so that this step happens after the
->>>>> page tables have been setup.
->>>>> Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
->>>> I am seeing a warning when booting aspeed_g5_defconfig in QEMU that I
->>>> bisected to this change in -next as commit a46cccb0ee2d ("of:
->>>> reserved_mem: Restruture how the reserved memory regions are
->>>> processed").
->>> I'm also seeing issues in -next which I bisected to this commit, on the
->>> original Raspberry Pi the cpufreq driver fails to come up and I see
->>> (potentially separate?) backtraces:
->>>
->>> [    0.100390] ------------[ cut here ]------------
->>> [    0.100476] WARNING: CPU: 0 PID: 1 at mm/memory.c:2835 __apply_to_page_range+0xd4/0x2c8
->>> [    0.100637] Modules linked in:
->>> [    0.100665] CPU: 0 PID: 1 Comm: swapper Not tainted 6.10.0-rc2-next-20240607 #1
->>> [    0.100692] Hardware name: BCM2835
->>> [    0.100705] Call trace:
->>> [    0.100727]  unwind_backtrace from show_stack+0x18/0x1c
->>> [    0.100790]  show_stack from dump_stack_lvl+0x38/0x48
->>> [    0.100833]  dump_stack_lvl from __warn+0x8c/0xf4
->>> [    0.100888]  __warn from warn_slowpath_fmt+0x80/0xbc
->>> [    0.100933]  warn_slowpath_fmt from __apply_to_page_range+0xd4/0x2c8
->>> [    0.100983]  __apply_to_page_range from apply_to_page_range+0x20/0x28
->>> [    0.101027]  apply_to_page_range from __dma_remap+0x58/0x88
->>> [    0.101071]  __dma_remap from __alloc_from_contiguous+0x6c/0xa8
->>> [    0.101106]  __alloc_from_contiguous from atomic_pool_init+0x9c/0x1c4
->>> [    0.101169]  atomic_pool_init from do_one_initcall+0x68/0x158
->>> [    0.101223]  do_one_initcall from kernel_init_freeable+0x1ac/0x1f0
->>> [    0.101267]  kernel_init_freeable from kernel_init+0x1c/0x140
->>> [    0.101309]  kernel_init from ret_from_fork+0x14/0x28
->>> [    0.101344] Exception stack(0xdc80dfb0 to 0xdc80dff8)
->>> [    0.101369] dfa0:                                     00000000 00000000 00000000 00000000
->>> [    0.101393] dfc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
->>> [    0.101414] dfe0: 00000000 00000000 00000000 00000000 00000013 00000000
->>> [    0.101428] ---[ end trace 0000000000000000 ]---
->>>
->>> Full boot log at:
->>>
->>>     https://lava.sirena.org.uk/scheduler/job/374962
->>>
->>> You can see the report of cpufreq not being loaded in the log.
->>>
->>> NFS boots also fail, apparently due to slowness bringing up a Debian
->>> userspace which may well be due to cpufreq isues:
->> Hi Mark & Nathan,
->>
->> Taking a look at this now and will provide a fix soon if
->> needed.
->>
->> At first glance, it looks like there are a couple of WARN_ON*
->> function calls in __apply_to_page_range(). Please could
->> you run faddr2line and tell me which of the WARN_ON*
->> cases we are hitting?
-> 
-> That shouldn't be needed, right? The line is in the WARNING: mm/memory.c:2835
-> which, in next-20240607, is: if (WARN_ON_ONCE(pmd_leaf(*pmd))).
 
-Indeed, and the overall implication there would seem to be that, because 
-the dynamic CMA region wasn't allocated and reserved before we created 
-the pagetables, we thus haven't created the pagetables in a shape which 
-can accommodate chopping it out again later. Note that on arm64 at 
-least, this is liable to be hidden by other options like rodata_full and 
-debug_pagealloc - see can_set_direct_map().
+--m9XQa0OBbOvIhW8/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
-Robin.
+On Thu, Jun 13, 2024 at 02:39:58PM +0300, Alisa-Dariana Roman wrote:
+> There are actually 4 configuration modes of clock source for AD719X
+> devices. Either a crystal can be attached externally between MCLK1 and
+> MCLK2 pins, or an external CMOS-compatible clock can drive the MCLK2
+> pin. The other 2 modes make use of the 4.92MHz internal clock.
+>=20
+> Add clock name xtal alongside mclk. When an external crystal is
+> attached, xtal should be chosen. When an external clock is used, mclk
+> should be chosen.
+
+This is still missing an explanation of why a new name is needed.
+Hint: do you need to change register settings to use one versus the
+other?
+
+>=20
+> The presence of an external clock source is optional, not required. When
+> absent, internal clock is used. Modify required property accordingly and
+> modify second example to showcase this.
+>=20
+> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
+> ---
+>  .../devicetree/bindings/iio/adc/adi,ad7192.yaml    | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> index a03da9489ed9..3ae2f860d24c 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> @@ -39,11 +39,15 @@ properties:
+> =20
+>    clocks:
+>      maxItems: 1
+> -    description: phandle to the master clock (mclk)
+> +    description: |
+> +      Optionally, either a crystal can be attached externally between MC=
+LK1 and
+> +      MCLK2 pins, or an external CMOS-compatible clock can drive the MCL=
+K2
+> +      pin. If absent, internal 4.92MHz clock is used.
+> =20
+>    clock-names:
+> -    items:
+> -      - const: mclk
+> +    enum:
+> +      - xtal
+> +      - mclk
+> =20
+>    interrupts:
+>      maxItems: 1
+> @@ -135,8 +139,6 @@ patternProperties:
+>  required:
+>    - compatible
+>    - reg
+> -  - clocks
+> -  - clock-names
+>    - interrupts
+>    - dvdd-supply
+>    - avdd-supply
+> @@ -202,8 +204,6 @@ examples:
+>              spi-max-frequency =3D <1000000>;
+>              spi-cpol;
+>              spi-cpha;
+> -            clocks =3D <&ad7192_mclk>;
+> -            clock-names =3D "mclk";
+>              interrupts =3D <25 0x2>;
+>              interrupt-parent =3D <&gpio>;
+>              aincom-supply =3D <&aincom>;
+> --=20
+> 2.34.1
+>=20
+
+--m9XQa0OBbOvIhW8/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmshUAAKCRB4tDGHoIJi
+0j40AQC/5ubIJbIF44JX0Xp18MLiKZANhOQVvlyxU5cJNPT6FwD/clq35TXv6JWP
+NmWCp4wPP5eoWvB4SVNvRsbXOAGxAgs=
+=/uC6
+-----END PGP SIGNATURE-----
+
+--m9XQa0OBbOvIhW8/--
 
