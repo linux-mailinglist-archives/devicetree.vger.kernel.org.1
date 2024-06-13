@@ -1,424 +1,161 @@
-Return-Path: <devicetree+bounces-75580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A01C907CB6
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 21:36:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 772C5907CC9
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 21:40:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 216F81C2256C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:36:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A8101C23AA7
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:40:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 424D514A4C1;
-	Thu, 13 Jun 2024 19:36:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECBE6149E0A;
+	Thu, 13 Jun 2024 19:40:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k1jORBDr"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="50ngkzPY";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="nBQvVgh6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fout2-smtp.messagingengine.com (fout2-smtp.messagingengine.com [103.168.172.145])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 150E112C7E3;
-	Thu, 13 Jun 2024 19:36:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52636134407;
+	Thu, 13 Jun 2024 19:40:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.145
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718307387; cv=none; b=oQZURZ7qC3xYo5Ii6LS/+rICfMGJBQsy5FOlOFOetDzI8YibW8AhgEcAGIasRU91xR9P6VZoUmFGUqjDpZPpXneMn+RUCbpWxlm2bFy3QfzrntyN9Zh+7KBYhPPNI4t6CYAh0N3C+usXS1m8D9fL/Vx92fd1S6z0WXwc2fhTBM4=
+	t=1718307640; cv=none; b=QTpvk1GCTg98nSdkTRRPNYnCNK2JaH6bK9pDPctekFvHt/DxaaN3n1Ajc/XxmhGFDjuhIaqA267TzdNaSpFspE7HrhR/xKLJb5oNZzfcopEvqRBoi4IzbYKNf16+ckY9Qq8gVhwLiJSkQP+7/EN8SiHMswBJFxzdQ57jaXcYuQk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718307387; c=relaxed/simple;
-	bh=hoj7+mJl2v8L0w+cxKSigp1VZHa6dw8bBqGYa12pXUw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=slsP/NREEDPvF+yx6b+VIgEKJvuXzA4HXWjk+7IBGOAFw4MCbeQ2uygnk9fA3uNBDwqK7cTfzJpYU2YigO0wYn7qWJ63ZVnsdzGRiG24Y+hGneXkx9z2IqKSm8Ofn/2Pvsh9YX6OQdK+YTd7zcvAeORxLd2BmVI1bVcOExebuWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k1jORBDr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51D19C2BBFC;
-	Thu, 13 Jun 2024 19:36:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718307386;
-	bh=hoj7+mJl2v8L0w+cxKSigp1VZHa6dw8bBqGYa12pXUw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k1jORBDrBIqdH7GVXqzbhn0HdZtnUoYs2B6pDvKF5dvUURSItSBpKNureIbhv+/LP
-	 oxXstJpNUtCSu2izRXfM2kpKMG1zvsVDX0ZM531F/8hJWNztYYkOnNc8yx5qR4nj6O
-	 Eh6SsQxsLaZ90x0hSywMHSDBAaBINLzgpQrNADmrw8Li/6jTxojibxTnKmsJS9Tn3K
-	 110x+acMk972B5piy5krf4CFA3joDEaqHBYEbdzLsDDPDkRZtAuN13TviQhMMbz/MQ
-	 v9CW3x+p6e0Y+wNRJnE9qhzuIYbUKmze09/QX71dKU8MBPfrEMD71TmtEsXJiNajVE
-	 vqi5FCivOMIpg==
-Date: Thu, 13 Jun 2024 13:36:25 -0600
-From: Rob Herring <robh@kernel.org>
-To: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: sudeep.holla@arm.com, cristian.marussi@arm.com, andersson@kernel.org,
-	konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com,
-	conor+dt@kernel.org
-Subject: Re: [RFC V2 1/4] dt-bindings: firmware: Add support for QCOM Vendor
- Protocol
-Message-ID: <20240613193625.GA2338851-robh@kernel.org>
-References: <20240612183031.219906-1-quic_sibis@quicinc.com>
- <20240612183031.219906-2-quic_sibis@quicinc.com>
+	s=arc-20240116; t=1718307640; c=relaxed/simple;
+	bh=7llpCOFgvcUxbS2cWK7Y5Znfoz9knmpfrFVXwGUPPzE=;
+	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
+	 Subject:Content-Type; b=jC/p5a5JSpApDwB3QdNkDK31D1fgGfMcPnbWBC8gl6fSEsTg/WZt/duf6nU34Xto+/ctWsM77UtcUUgl+CzWlgmoDMwpTf/PyNHSCViDzfV88VjXQ0b2nc0GAu/O+vO9Jhgp2pzRSjNovYP/PzXy4uGYPT/KVbMsv3Ke3rVVJcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=50ngkzPY; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=nBQvVgh6; arc=none smtp.client-ip=103.168.172.145
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailfout.nyi.internal (Postfix) with ESMTP id 6DFA41380117;
+	Thu, 13 Jun 2024 15:40:38 -0400 (EDT)
+Received: from imap44 ([10.202.2.94])
+  by compute3.internal (MEProxy); Thu, 13 Jun 2024 15:40:38 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1718307638;
+	 x=1718394038; bh=oqDoiw11ZfKTk6wjqM+5gp30nptU4jTafY6bPs+rNiQ=; b=
+	50ngkzPYg9dGn8qrvRm3e0z7cizqf7hqRoWfcVKtIKXzw5sERNQ9qXAj4jPIuTjA
+	fYl5mpJ852dDx7HOfUnnRm9pDehlafCLWABp1UZuPJ4jLU6AEEEfU1Hgd9Lgzwa2
+	avYvjWxQfiHJzCOjUb1ZvDVOGBgOVM7TXQooHsgK9njIVQ9KNobdqdwZprRXXCl3
+	hv3uQWQOUB8hzbYtFcwXSxTnnhdN5nQ7ndi76iCS7Z0dZWqFt2OQzk3HQxldixzv
+	iDTzrytSas//9gJ6CWMZHSM5iJSxjV6BvD7VEgUQQhDmOI0svR5BEhpgUJ4nUjh4
+	+YxE3a7nbywKCqy2Q9BYYQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1718307638; x=
+	1718394038; bh=oqDoiw11ZfKTk6wjqM+5gp30nptU4jTafY6bPs+rNiQ=; b=n
+	BQvVgh6xgHey1y+NaXXiINyRF2PFaX8TWQ2Nkse8RfCEIHZsgcnNJ1qEp5hQmEXx
+	qUI2hK3r/smoPOoOxobPdTk/JlBMk153QCCWyXOJ3qb8IbcKm5gCzwQRxZ8kIJgK
+	8UbHYiL36T/HiSLTA13A+3WEvh+k2X3Af1p/3OZMDfaT4f3+L8TeRmxZZC3/r29c
+	T+Q6reUKgYRqWEVMhZs0kNOV7h4ZhTBHwTwPos2UggSW/Q2tFOuoZBYTGbQsOaiZ
+	4JqgUvsnvaHk9BAEWkwWKSe5ylQ/WsTduPOunZwieuFjPRDV7LdkKTRmFAbPLE84
+	AJ7PggshK82cufoXOwbOA==
+X-ME-Sender: <xms:NktrZlMmP2hDaaJYOys3ZPRvDqwDGPnTE4Oi6NCEeN-mXnQ_BaIv3w>
+    <xme:NktrZn__y7Vp4MwAtuCyXJ3XapW_GmMaJ2NieYqWldcqDj6YFMZYxT5WLz8D6KbT3
+    cE2yrhucCoyrimr0Zc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfedujedgudefjecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedf
+    lfhirgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtg
+    homheqnecuggftrfgrthhtvghrnhepudefgeeftedugeehffdtheefgfevffelfefghefh
+    jeeugeevtefhudduvdeihefgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpe
+    hmrghilhhfrhhomhepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
+X-ME-Proxy: <xmx:NktrZkQ73FG37jYU2gMIz8Q3KODzqfJ2rDG8aDp0nOpJHIK08DgSlg>
+    <xmx:NktrZhvAl5flnedrEm7bMKTIg0uIHYseL1G1mkrWnpkaM5Pk9vIlvw>
+    <xmx:NktrZtfRXKH8UerUl9l96hd0X9WLtmrGVQZtKcoslkE-wnrqUu-Dkg>
+    <xmx:NktrZt0eJ34O60I1qAELCKVd8SgwlVJ_7gA2ItJDNnWVqpzzhC0MoQ>
+    <xmx:NktrZp4dWfb1mVfXD8boMiCJJxFfcx_w-4REuCm4risjKayROIAXHH2F>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 1440136A0074; Thu, 13 Jun 2024 15:40:37 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-515-g87b2bad5a-fm-20240604.001-g87b2bad5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240612183031.219906-2-quic_sibis@quicinc.com>
-
-On Thu, Jun 13, 2024 at 12:00:28AM +0530, Sibi Sankar wrote:
-> Document the SCMI QCOM Vendor protocol v1.0 bindings and the various memory
-> buses that can be monitored and scaled by memory latency governor hosted
-> on it.
-> 
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> ---
-> 
-> v1:
-> * Add missing bindings for the protocol. [Konrad/Dmitry]
-> * Use alternate bindings. [Dmitry/Konrad]
-> 
->  .../bindings/firmware/arm,scmi.yaml           |  21 ++
->  .../bindings/soc/qcom/qcom,scmi-memlat.yaml   | 243 ++++++++++++++++++
->  include/dt-bindings/soc/qcom,scmi-vendor.h    |  22 ++
->  3 files changed, 286 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,scmi-memlat.yaml
->  create mode 100644 include/dt-bindings/soc/qcom,scmi-vendor.h
-> 
-> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> index 7de2c29606e5..21e4da53d02c 100644
-> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> @@ -278,6 +278,27 @@ properties:
->      required:
->        - reg
->  
-> +  protocol@80:
-> +    $ref: '#/$defs/protocol-node'
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        const: 0x80
-> +
-> +      memlat-dvfs:
-
-I don't see the purpose of this container node.
-
-> +        type: object
-> +        additionalProperties: false
-> +        description:
-> +          The list of all memory buses that can be monitored and scaled by the
-> +          memory latency governor running on the SCMI controller.
-> +
-> +        patternProperties:
-> +          '^memory-[0-9]$':
-> +            type: object
-> +            $ref: /schemas/soc/qcom/qcom,scmi-memlat.yaml#
-
-This schema needs to be at the level of the protocol node. See the i.MX 
-SCMI pinctrl patches for more details on what it should look like.
-
-> +            unevaluatedProperties: false
-> +
->  additionalProperties: false
->  
->  $defs:
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,scmi-memlat.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,scmi-memlat.yaml
-> new file mode 100644
-> index 000000000000..c6e3d163c4a3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,scmi-memlat.yaml
-> @@ -0,0 +1,243 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/qcom/qcom,scmi-memlat.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm SCMI Memory Bus nodes
-> +
-> +maintainers:
-> +  - Sibi Sankar <quic_sibis@quicinc.com>
-> +
-> +description: |
-
-Doesn't need '|' if no formatting.
-
-> +  This binding describes the various memory buses that can be monitored and scaled
-> +  by memory latency governor running on the CPU Control Processor (SCMI controller).
-> +
-> +properties:
-> +  qcom,memory-type:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1, 2]
-> +    description:
-
-Needs a '|' if you want your formatting preserved.
-
-> +      Memory Bus Identifier
-> +        0 = QCOM_MEM_TYPE_DDR
-> +        1 = QCOM_MEM_TYPE_LLCC
-> +        2 = QCOM_MEM_TYPE_DDR_QOS
-> +
-> +  freq-table-hz:
-> +    items:
-> +      items:
-> +        - description: Minimum frequency of the memory bus in Hz
-> +        - description: Maximum frequency of the memory bus in Hz
-> +
-> +patternProperties:
-> +  '^monitor-[0-9]$':
-> +    type: object
-> +    unevaluatedProperties: false
-> +    description:
-> +      The list of all monitors detecting the memory latency bound workloads using
-> +      various counters.
-> +
-> +    properties:
-> +      qcom,compute-type:
-> +        description:
-> +          Monitors of type compute perform bus dvfs based on a rudimentary CPU
-> +          frequency to memory frequency map.
-> +        type: boolean
-> +
-> +      qcom,ipm-ceil:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          Monitors having this property perform bus dvfs based on the same
-> +          rudimentary table but the scaling is performed only if the calculated
-> +          IPM (Instruction Per Misses) exceeds the given ceiling.
-> +
-> +      qcom,cpulist:
-> +        $ref: /schemas/types.yaml#/definitions/phandle-array
-> +        description:
-> +          List of phandles to the CPUs nodes whose frequency and IPM are to be
-> +          monitored.
-
-We have a standard property for this: cpus
-
-> +
-> +      operating-points-v2: true
-> +      opp-table:
-> +        type: object
-> +
-> +    required:
-> +      - qcom,cpulist
-> +      - operating-points-v2
-> +      - opp-table
-> +
-
-> +    allOf:
-> +      - if:
-> +          properties:
-> +            qcom,compute-type: false
-> +        then:
-> +          required:
-> +            - qcom,ipm-ceil
-> +
-> +      - if:
-> +          properties:
-> +            qcom,ipm-ceil: false
-> +        then:
-> +          required:
-> +            - qcom,compute-type
-
-Isn't all this just:
-
-oneOf:
-  - required: [ qcom,compute-type ]
-  - required: [ qcom,ipm-ceil ]
+Message-Id: <dfb545a6-b8c2-4498-aa01-3e851fe0877f@app.fastmail.com>
+In-Reply-To: <20240613185902.GB2286020-robh@kernel.org>
+References: <20240612-boston-syscon-v2-0-9f8e1a07fa63@flygoat.com>
+ <20240612-boston-syscon-v2-7-9f8e1a07fa63@flygoat.com>
+ <20240612-unstuffed-figure-966c90af52bc@spud>
+ <ddb36d6c-b54f-4982-b9ca-48c022ce6eb8@app.fastmail.com>
+ <20240613185902.GB2286020-robh@kernel.org>
+Date: Thu, 13 Jun 2024 20:40:18 +0100
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "Rob Herring" <robh@kernel.org>
+Cc: "Conor Dooley" <conor@kernel.org>, "Lee Jones" <lee@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "paulburton@kernel.org" <paulburton@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
+Subject: Re: [PATCH v2 7/8] du-bindings: mips: cpu: Add img,mips compatible
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
 
-> +
-> +required:
-> +  - qcom,memory-type
-> +  - freq-table-hz
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/soc/qcom,scmi-vendor.h>
-> +
-> +    firmware {
-> +        scmi {
-> +            compatible = "arm,scmi";
-> +            mboxes = <&cpucp_mbox 0>, <&cpucp_mbox 2>;
-> +            mbox-names = "tx", "rx";
-> +            shmem = <&cpu_scp_lpri0>, <&cpu_scp_lpri1>;
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            protocol@80 {
-> +                reg = <0x80>;
-> +
-> +                memlat-dvfs {
-> +                    memory-0 {
-> +                        qcom,memory-type = <QCOM_MEM_TYPE_DDR>;
-> +                        freq-table-hz = /bits/ 64 <200000000 4224000000>;
-> +
-> +                        monitor-0 {
-> +                            qcom,ipm-ceil = <20000000>;
-> +                            qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7
-> +                                            &CPU8 &CPU9 &CPU10 &CPU11>;
-> +                            operating-points-v2 = <&memory0_monitor0_opp_table>;
-> +
-> +                            memory0_monitor0_opp_table: opp-table {
-> +                                compatible = "operating-points-v2";
-> +
-> +                                opp-999000000 {
-> +                                    opp-hz = /bits/ 64 <999000000 547000000>;
-> +                                };
-> +
-> +                                opp-1440000000 {
-> +                                    opp-hz = /bits/ 64 <1440000000 768000000>;
-> +                                };
-> +
-> +                                opp-1671000000 {
-> +                                    opp-hz = /bits/ 64 <1671000000 1555000000>;
-> +                                };
-> +
-> +                                opp-2189000000 {
-> +                                    opp-hz = /bits/ 64 <2189000000 2092000000>;
-> +                                };
-> +
-> +                                opp-2516000000 {
-> +                                    opp-hz = /bits/ 64 <2516000000 3187000000>;
-> +                                };
-> +
-> +                                opp-3860000000 {
-> +                                    opp-hz = /bits/ 64 <3860000000 4224000000>;
-> +                                };
-> +                            };
-> +                        };
-> +
-> +                        monitor-1 {
-> +                            qcom,compute-type;
-> +                            qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7
-> +                                            &CPU8 &CPU9 &CPU10 &CPU11>;
-> +                            operating-points-v2 = <&memory0_monitor1_opp_table>;
-> +
-> +                            memory0_monitor1_opp_table: opp-table {
-> +                                compatible = "operating-points-v2";
-> +
-> +                                opp-1440000000 {
-> +                                        opp-hz = /bits/ 64 <1440000000 200000000>;
-> +                                };
-> +
-> +                                opp-2189000000 {
-> +                                        opp-hz = /bits/ 64 <2189000000 768000000>;
-> +                                };
-> +
-> +                                opp-2516000000 {
-> +                                        opp-hz = /bits/ 64 <2516000000 1555000000>;
-> +                                };
-> +
-> +                                opp-3860000000 {
-> +                                        opp-hz = /bits/ 64 <3860000000 4224000000>;
-> +                                };
-> +                            };
-> +                        };
-> +                    };
-> +
-> +                    memory-1 {
-> +                        qcom,memory-type = <QCOM_MEM_TYPE_LLCC>;
-> +                        freq-table-hz = /bits/ 64 <300000000 1067000000>;
-> +
-> +                        monitor-0 {
-> +                            qcom,ipm-ceil = <20000000>;
-> +                            qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7
-> +                                            &CPU8 &CPU9 &CPU10 &CPU11>;
-> +                            operating-points-v2 = <&memory1_monitor0_opp_table>;
-> +
-> +                            memory1_monitor0_opp_table: opp-table {
-> +                                compatible = "operating-points-v2";
-> +
-> +                                opp-999000000 {
-> +                                    opp-hz = /bits/ 64 <999000000 300000000>;
-> +                                };
-> +
-> +                                opp-1440000000 {
-> +                                    opp-hz = /bits/ 64 <1440000000 466000000>;
-> +                                };
-> +
-> +                                opp-1671000000 {
-> +                                    opp-hz = /bits/ 64 <1671000000 600000000>;
-> +                                };
-> +
-> +                                opp-2189000000 {
-> +                                    opp-hz = /bits/ 64 <2189000000 806000000>;
-> +                                };
-> +
-> +                                opp-2516000000 {
-> +                                    opp-hz = /bits/ 64 <2516000000 933000000>;
-> +                                };
-> +
-> +                                opp-3860000000 {
-> +                                    opp-hz = /bits/ 64 <3860000000 1066000000>;
-> +                                };
-> +                            };
-> +                        };
-> +                    };
-> +
-> +                    memory-2 {
-> +                        qcom,memory-type = <QCOM_MEM_TYPE_DDR_QOS>;
-> +                        freq-table-hz = /bits/ 64 <QCOM_DDR_LEVEL_AUTO QCOM_DDR_LEVEL_PERF>;
-> +
-> +                        monitor-0 {
-> +                            qcom,ipm-ceil = <20000000>;
-> +                            qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7
-> +                                            &CPU8 &CPU9 &CPU10 &CPU11>;
-> +                            operating-points-v2 = <&memory2_monitor0_opp_table>;
-> +
-> +                            memory2_monitor0_opp_table: opp-table {
-> +                                compatible = "operating-points-v2";
-> +
-> +                                opp-2189000000 {
-> +                                    opp-hz = /bits/ 64 <2189000000>;
-> +                                    opp-level = <QCOM_DDR_LEVEL_AUTO>;
-> +                                };
-> +
-> +                                opp-3860000000 {
-> +                                    opp-hz = /bits/ 64 <3860000000>;
-> +                                    opp-level = <QCOM_DDR_LEVEL_PERF>;
-> +                                };
-> +                            };
-> +                        };
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> diff --git a/include/dt-bindings/soc/qcom,scmi-vendor.h b/include/dt-bindings/soc/qcom,scmi-vendor.h
-> new file mode 100644
-> index 000000000000..7ae8d8d5623b
-> --- /dev/null
-> +++ b/include/dt-bindings/soc/qcom,scmi-vendor.h
-> @@ -0,0 +1,22 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +#ifndef __DT_BINDINGS_QCOM_SCMI_VENDOR_H
-> +#define __DT_BINDINGS_QCOM_SCMI_VENDOR
-> +
-> +/* Memory IDs */
-> +#define QCOM_MEM_TYPE_DDR	0x0
-> +#define QCOM_MEM_TYPE_LLCC	0x1
-> +#define QCOM_MEM_TYPE_DDR_QOS	0x2
-> +
-> +/*
-> + * QCOM_MEM_TYPE_DDR_QOS supports the following states.
-> + *
-> + * %QCOM_DDR_LEVEL_AUTO:	DDR operates with LPM enabled
-> + * %QCOM_DDR_LEVEL_PERF:	DDR operates with LPM disabled
-> + */
-> +#define QCOM_DDR_LEVEL_AUTO	0x0
-> +#define QCOM_DDR_LEVEL_PERF	0x1
-> +
-> +#endif /* __DT_BINDINGS_QCOM_SCMI_VENDOR_H */
-> -- 
-> 2.34.1
-> 
+
+=E5=9C=A82024=E5=B9=B46=E6=9C=8813=E6=97=A5=E5=85=AD=E6=9C=88 =E4=B8=8B=E5=
+=8D=887:59=EF=BC=8CRob Herring=E5=86=99=E9=81=93=EF=BC=9A
+> On Wed, Jun 12, 2024 at 05:59:24PM +0100, Jiaxun Yang wrote:
+>>=20
+>>=20
+>> =E5=9C=A82024=E5=B9=B46=E6=9C=8812=E6=97=A5=E5=85=AD=E6=9C=88 =E4=B8=8B=
+=E5=8D=885:39=EF=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
+>> > On Wed, Jun 12, 2024 at 12:56:26PM +0100, Jiaxun Yang wrote:
+>> >> This compatible is used by boston.dts.
+>> >>=20
+>> >> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+>> >> ---
+>> >> note: This is a wildcard compatible for all MIPS CPUs,
+>> >>       I think we should use something like "riscv" for riscv.
+>> >
+>> > riscv systems, other than simulators etc are not meant to use the
+>> > "riscv" compatible. All of the real CPUs use "vendor,cpu", "riscv".
+>> > I'd suggest you add specific compatibles for your CPUs.
+>>=20
+>> Boston can be combined with many different CPUs, thus we need to have
+>> such compatibles.
+>
+> Then you'll need different DTs. Different h/w, different DT.
+
+The board have 9 CPU types in total, with hundreds of different possible
+CPU topologies. Maintaining separate DT for them seems impossible in ker=
+nel.
+
+We can potentially patch this in bootloader, but for existing firmware i=
+t's
+being doing like this for years. I can see for RISC-V QEMU generated DTB=
+ is
+using a single "riscv" compatible and I do think it's a similar problem.
+
+I think it's better to document it and warn people only to use it in lim=
+ited
+circumstances, instead of keeping such usage in grey area.
+
+Thanks
+
+>
+> No way we're taking a generic compatible like this.
+>
+> Rob
+
+--=20
+- Jiaxun
 
