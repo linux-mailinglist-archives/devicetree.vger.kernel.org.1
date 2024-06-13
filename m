@@ -1,135 +1,157 @@
-Return-Path: <devicetree+bounces-75453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B4B890747B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 16:00:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F073790748B
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 16:04:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07C3028247E
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 14:00:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11DBF1C24135
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 14:04:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABE2F13CFA4;
-	Thu, 13 Jun 2024 14:00:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 646A41459E8;
+	Thu, 13 Jun 2024 14:04:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QVKYbjMH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d8D84jqD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0804AECC
-	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 14:00:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36D199476;
+	Thu, 13 Jun 2024 14:03:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718287208; cv=none; b=YF75KW8Xsu6fbJ8hAz3c7bsshu4ZWdiXwM7og32IdmnZSW09u4Qfrd+77Je1/TUYVJHEbWspc2UnV6X10nBWMm0lXjUW2IEf8yvbZ7qlMOo9RBps08IMr1Ra14+NX0xd9SiwwE3TMbu6Crha9p99n/bwU9kgM0u9o/O7m1NSNN0=
+	t=1718287440; cv=none; b=ULV9J5qslhr8FZA8bPSwgRb+k68v7l1E32OUOhSRMMbmoEwqEKG0M0aU2+WUwqqDgH1zLzLChS1ZYviNnPl3uhpKjw8cnLDBZPcbHxwvjtYs9coZ5+j8GNFY/YH+OwpgA2wV4JduWIurh8TZjwRjB/6x/YvhjhIvnHW7H4tQ4mM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718287208; c=relaxed/simple;
-	bh=iebgPsxTODLUA0ZXcTqHjXyMBp8XIPW3O3ru3tyh/5w=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Cx4qVSqqcCPzRMzb/OLxFactUYIdmJmc80V/WjikYFOhTaB0mBjRKetsGeBBf0AoYflzrZR1Xz9QNZBuy9DlSzet0EbkSg99Y3cSFBfR4DhvBV533HbgFl/si+NKCcknFgvrXJyLFuMo0p3szPxZWV7OuybA2VNXHtRhfABuhlE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QVKYbjMH; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52962423ed8so1319427e87.2
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 07:00:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718287205; x=1718892005; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=F2RDidzm7GpI6kx4jm5uYVlPtBVF5KxxK5vmQkl3iB0=;
-        b=QVKYbjMHsFoc8i5pRKI6g14+cjhcFO3VcBYwQYnB8/hKL9XVnnqtOmyli9ny8wbOaw
-         hY0w9sQZUOxB8LmK3C0OMHY0y6tqqN7v+5dorSKJCUVuVyE98Zs9caygFJJbCqhAspmt
-         ItCeUDfPS+jbeaWsdoxVX6iGcwAuTybmBth6Ypj+KBApNxtzVBEt1xTktSOLLh69JSjT
-         3Qqho2nCFRU1Tz8XMMACynn5bCfTyss5JQGGWJLQroaYSKqYgXMsGDPIplJkZV7HxjHj
-         CF5oNAEFvUlaBzv4ksFY1cJxeNC/dApOSq5PNCwbJmDqgTiNpdrT2AtAyJhxFClBm1js
-         dnoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718287205; x=1718892005;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=F2RDidzm7GpI6kx4jm5uYVlPtBVF5KxxK5vmQkl3iB0=;
-        b=I7TXgIJDsNB+oT0fngt8UQgf72qIhMqqYyKHNUNy8uDZtM16Di8KSzl8EA3vNaJ2/1
-         9mHi5s8VEAZ3U4wRqnoZ4fbG8dDE23wL5TDwoMo3RBY/2xpXP+YC2YjyxqNQokuIzrK4
-         uaVIorkKbJhZgclPHsMiOmDfxSIVhxwTdY1EfovhQ6nnzn8v48Z/m0YKUad+Omg/5p1p
-         6b14x3ysiGr10R2HoRQNh7vBnSqjLKpyJ7diWALLpULzhtZHEozKg6jnGxAOEvJ5G9uD
-         /DNrgloT83i9xFhjWlwJITA0UHZxDmLcs1zOcctnVPpAp1HKDTO3Vf32xjyMsI/6xRqd
-         TYAw==
-X-Forwarded-Encrypted: i=1; AJvYcCWewC9GIRf4XF6M6edJ7qwsFYVyJApSyleU54AFKkibb4hTj2ahcuRbZSMLPN86ILe+Ir8C/N2VrVUkz1LlpMnRNoa8SNOTeKQmdQ==
-X-Gm-Message-State: AOJu0YzvfU8i1BUConzjwzJfzthbOQLAzY30t0T8yAmEyG9PhiqpEouz
-	P+z8IVRcMouW541HVj9ehJ7jg/0IR7QHqjjC607piuaziWQFVjLB/r7Bo/slHRUm/SLLwA87Jc9
-	U
-X-Google-Smtp-Source: AGHT+IG3A84sUkMMQsZJo4N+iSVC0jvNEqXBxVLO3aeIjcOTK4qYHH0z+w7CeXo0QEtY4uBZFdeLyw==
-X-Received: by 2002:a05:6512:108e:b0:52c:7f12:61d1 with SMTP id 2adb3069b0e04-52c9a3b972dmr4185902e87.1.1718287205201;
-        Thu, 13 Jun 2024 07:00:05 -0700 (PDT)
-Received: from krzk-bin.monzoon.net (46-253-189-43.dynamic.monzoon.net. [46.253.189.43])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422f5f33ccesm25578295e9.3.2024.06.13.07.00.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jun 2024 07:00:04 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: arm@kernel.org,
-	soc@kernel.org,
-	Arnd Bergmann <arnd@arndb.de>,
-	Olof Johansson <olof@lixom.net>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Jonas Jensen <jonas.jensen@gmail.com>
-Subject: [PATCH] MAINTAINERS: ARM: moxa: add Krzysztof Kozlowski as maintainer
-Date: Thu, 13 Jun 2024 15:59:56 +0200
-Message-ID: <20240613135956.8899-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1718287440; c=relaxed/simple;
+	bh=tA+ZFQAqpvg+G+t2qduevu+kebIw5Dh4TdqA0ZnOYfI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ejZ5Ny8NrosG/FJ/uZBubJeasL7pBASO80w7mqP9E8P3+CVxvIjjjF0fEcAw8PA69OghmRTEuHTNBKYEw0ITERLOC5Ex8UttJgwWIgqfQvF+j+0qDW5ok2YHi+UGy5/iDgv8vHFMIIdPcBJ07LGeSR5Q98fXjViZRvkD+GAKUXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d8D84jqD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7741C2BBFC;
+	Thu, 13 Jun 2024 14:03:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718287439;
+	bh=tA+ZFQAqpvg+G+t2qduevu+kebIw5Dh4TdqA0ZnOYfI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=d8D84jqDn1VqJ6IDMYy/UYaGCkftPCPWErfo7X6iFrw4IXqZQkVFwkyLaWEL1vk6A
+	 sIO6xAACuSNLtotedW0ZcqQqylA6gGZH0+HkvDDunK58ixQxEm9FvyAys3DiCHRftf
+	 DpUuHaMGGOGKZ9FZag/bXZPLt15PmT/nL2mV1gZ42y0Q7oe3LPLEmMRiSAUhJ7jFuf
+	 9w2ofJmwB/p7ld+ph0bo9G+TLCWF984gEvEwlc3XGtaCdnWYMCRtfFV8H3nppSehXV
+	 Gn7Dx7OkRLGfZAGo9/m6cezAIp8PC+wkAoMiAFmSsiqy4xrZUqjs6Nbd/FeF6IXlpI
+	 sdmjtt6kbfjbQ==
+Message-ID: <07e242d9-86d5-487d-9d23-8f765219fa59@kernel.org>
+Date: Thu, 13 Jun 2024 16:03:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4, 1/3] dt-bindings: usb: dwc3: Add snps,p2p3tranok quirk
+To: joswang <joswang1221@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ Thinh.Nguyen@synopsys.com, gregkh@linuxfoundation.org, balbi@kernel.org,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Jos Wang <joswang@lenovo.com>
+References: <20240601092646.52139-1-joswang1221@gmail.com>
+ <20240612152347.3192-1-joswang1221@gmail.com>
+ <21cfeb4c-4ce2-487a-bdd5-45c3ed71bf6f@kernel.org>
+ <CAMtoTm1ORiZHhMZRZ9NCq4qD7RB-ZCzAnusdN3PvRUff5zSh3A@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CAMtoTm1ORiZHhMZRZ9NCq4qD7RB-ZCzAnusdN3PvRUff5zSh3A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-There is no maintainers entry for the ARM MOXA ART SoC, thus patches end
-up nowhere.  Add such entry, because even if platform is orphaned and on
-its way out of the kernel, it is nice to take patches if someone sends
-something.
+On 13/06/2024 15:19, joswang wrote:
+> On Thu, Jun 13, 2024 at 2:17 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 12/06/2024 17:23, joswang wrote:
+>>>
+>>> +  snps,p2p3tranok-quirk:
+>>> +    description:
+>>> +      When set, the controller transitions directly from phy power state
+>>> +      P2 to P3 or from state P3 to P2. Note that this can only be set
+>>> +      if the USB3 PHY supports direct p3 to p2 or p2 to p3 conversion.
+>>> +    type: boolean
+>>
+>> Hm? You respond to feedback and, without waiting for my answer,
+>> immediately send new version?
+>>
+>> No. Read feedback on your previous version. Drop the quirk.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
+> Thank you for your help in reviewing the code.
+> Sorry, I submitted three patches in total. Patch1 (the current patch)
+> and patch2 solve one case, and patch3 solves another case. Because
+> patch3 needs to submit a new version, I resubmitted v3 and v4
+> versions.
+> Patch2 is under review, and there is no clear conclusion. For now,
+> patch1 does not need to be paid attention to. I will notify you when
+> patch2 has a clear conclusion.
 
-I do not plan to actively support/maintain MOXA but I can take odd fixes
-now and then.
+This does no work like this.
 
-Cc: Jonas Jensen <jonas.jensen@gmail.com>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Implement feedback and send new version of entire patchset *ONCE* there
+is conclusion. Sending new version of some parts ignoring feedback or
+skipping conclusion is not the way.
 
----
+Sorry.
 
-Jonas,
-If you want to maintain it instead, please go ahead. I send this patch
-only because it looks abandoned.
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Still drop.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 60f2815f0453..fde9ef6f3f0f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2555,6 +2555,15 @@ F:	arch/arm/boot/dts/socionext/milbeaut*
- F:	arch/arm/mach-milbeaut/
- N:	milbeaut
- 
-+ARM/MOXA ART SOC
-+M:	Krzysztof Kozlowski <krzk@kernel.org>
-+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-+S:	Odd Fixes
-+F:	Documentation/devicetree/bindings/arm/moxart.yaml
-+F:	Documentation/devicetree/bindings/clock/moxa,moxart-clock.txt
-+F:	arch/arm/boot/dts/moxa/
-+F:	drivers/clk/clk-moxart.c
-+
- ARM/MStar/Sigmastar Armv7 SoC support
- M:	Daniel Palmer <daniel@thingy.jp>
- M:	Romain Perier <romain.perier@gmail.com>
--- 
-2.43.0
+Or in case we still have here misunderstanding - so far it looks like: NAK
+
+Best regards,
+Krzysztof
 
 
