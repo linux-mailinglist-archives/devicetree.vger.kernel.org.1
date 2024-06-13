@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-75428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A677C907338
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 15:13:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 864E6907364
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 15:17:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5977F1F217EF
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 13:13:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26683284D14
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 13:17:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8696143C5D;
-	Thu, 13 Jun 2024 13:13:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13D1014374F;
+	Thu, 13 Jun 2024 13:17:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oQ4PFJSR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PrJNonci"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9EF5143C46;
-	Thu, 13 Jun 2024 13:13:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2BB11428E2;
+	Thu, 13 Jun 2024 13:17:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718284415; cv=none; b=TCd9AxtnXUwoe7KrLDMWFwzpUqqz0bLHAR9k3z2TAGhFaGhM/HNhyGoUpf6k2cjv81vitTe8vt+zYoWsHxHgR3U5U3ZwsOGskmbr6Oi7R6ja2GRyah/kmWmwPX4ZZeGM94sxyMgPYLxUjWLTl6g5ULH0VxVfa3C/7NNmTuGQhRY=
+	t=1718284660; cv=none; b=sVV65y4vKcS+OpE7ajyEbObCyIfQvn/9TJTTBgp0IYQedPMI0T2M2dFDwF+PciC8Rmo7F67ZohG42FSpHTVl2Cfk18ODg93oU7fI9R8poWEOos3BAbjj849QKq5gX+3vVDmd/2VYWaG82mgJL6gx9E9yUquHrA3RH+vuDdmiodw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718284415; c=relaxed/simple;
-	bh=KsGR0s1bpnrhR66Qenc48T6r5LcBDO7RJCcU7p0OA2E=;
+	s=arc-20240116; t=1718284660; c=relaxed/simple;
+	bh=MNEPDLoK2PpSr3mXs73h/X1IsDVoNn91Thnl+e7QMOk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ppd9HANk2nzxIi46S/hCCt7eqaK784fJPx47NyXDNQa9AYDEofIVovjC3KV1n+ZbgEdnZ19uqF0gS4vLsxiy9XUT7XD26cTbei1a3GUufSTJJhlYwRr+EGSSds9Z1uYhiuHnMtCS0HSZ+JytAeAJX4PyXfXpms+/RLInVX3WhI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oQ4PFJSR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57620C2BBFC;
-	Thu, 13 Jun 2024 13:13:31 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=XUF+VKx672bniCJ80BRvr8A9FuHycsvIfAXvC7Vc4n7w8jbaahH4uvSuKUGZB/ryAzDpNn2gw6TlOv1NoyD7RKVBi1dcydpjYHRijWLAFe1FRxGQKK9wQUyx8Z0EuKDWWbNpnybmH3BH3UGMyTIBBsGkCVQSDxwxtlhGG5PPmZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PrJNonci; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9840FC2BBFC;
+	Thu, 13 Jun 2024 13:17:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718284415;
-	bh=KsGR0s1bpnrhR66Qenc48T6r5LcBDO7RJCcU7p0OA2E=;
+	s=k20201202; t=1718284659;
+	bh=MNEPDLoK2PpSr3mXs73h/X1IsDVoNn91Thnl+e7QMOk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oQ4PFJSRHuxn/ZDSHWVjnzONEXtNVkkzNRrB5Wc2+o5d4lBxjpfXLVPFi7j1x1+EO
-	 I4bqQcTsNYdE30mEGdkUMUOBWg/gggmXK8L7Y0IebpguhEcNrSeFnHH20yM4OG/NR+
-	 iN5EWx8AavHOmcHcOkQXc98QkVTeLtFTZIJqBRmjf8MAqW+nZH+it6c7nRkSZRMoLs
-	 Q/Uela0+whEM7mv5S11tfslYPsz2cox2dln2xiy8GLuD4w+lOnRxJzd5pIDdmXVncK
-	 FqL+Tetv44+hU4o+mAskS+kgAdCummJwzOnVAg/shSeGCB+Y1IvfYU9PlqhgnkLtW4
-	 ovVW8C3/+yBlg==
-Message-ID: <56030532-fe5d-414c-b254-f6b39f58cde1@kernel.org>
-Date: Thu, 13 Jun 2024 15:13:29 +0200
+	b=PrJNoncip6Fskk6khSzwVkZcP4VV4lL66FNijKu7vU7Sa2sDJxXcnY6X8XmLSQiA2
+	 4cB4hS1wXzFghXFB3J5yFAKY+IKpZgNy8qW0HPZhuZmz5DjP3vXmvgxzO4aWxQ43wP
+	 taLyw7OM6XqoXVoZdLh1xaql+VFaOhDe83nvyqml33dQwUsZNR5W8SNp+SZsHj+V0E
+	 ZevF626b65m9P7cUAMT3nA2qCvZnSTH1IIFeUSRQBfSEFqmhuFsLDjo/xbGSfh5iza
+	 OrbJgcAnTw7Yn4fFtj9AXgzmZt0aGT5SoaVsRV5proKczNLZZS+fl8ca4Uw1+Mr13q
+	 G7DB+bZAFs3cA==
+Message-ID: <c108719b-992f-4aa6-aa9d-c0276a0ec646@kernel.org>
+Date: Thu, 13 Jun 2024 15:17:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] DONOTMERGE: dt-bindings: mfd: syscon: add TI's opp
- table compatible
-To: Conor Dooley <conor.dooley@microchip.com>, Lee Jones <lee@kernel.org>
-Cc: Bryan Brattlof <bb@ti.com>, Conor Dooley <conor@kernel.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1e80100-crd: fix DAI used for
+ headset recording
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- Vibhore Vardhan <vibhore@ti.com>, linux-pm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240612-ti-opp-updates-v1-0-3551c31d9872@ti.com>
- <20240612-ti-opp-updates-v1-3-3551c31d9872@ti.com>
- <20240612-unranked-unsalted-b32674a98d4a@spud>
- <20240612175457.b6q37nm6x4vsdnks@bryanbrattlof.com>
- <20240613120923.GP1504919@google.com>
- <20240613-suspend-synapse-4c7596888198@wendy>
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+References: <20240611142555.994675-1-krzysztof.kozlowski@linaro.org>
+ <20240611142555.994675-2-krzysztof.kozlowski@linaro.org>
+ <90f5ad41-7192-4c01-90c0-ad9c54094917@linaro.org>
+ <9e9cbc0b-f9fd-439c-93d1-054179f7b07f@linaro.org>
+ <7rfoogp7w3gmtyawmil5lilx4blbpnb3nzl5tv2onydmzblcqw@qooqesspnrp4>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,43 +110,38 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240613-suspend-synapse-4c7596888198@wendy>
+In-Reply-To: <7rfoogp7w3gmtyawmil5lilx4blbpnb3nzl5tv2onydmzblcqw@qooqesspnrp4>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/06/2024 14:20, Conor Dooley wrote:
-> On Thu, Jun 13, 2024 at 01:09:23PM +0100, Lee Jones wrote:
->> On Wed, 12 Jun 2024, Bryan Brattlof wrote:
->>
->>> On June 12, 2024 thus sayeth Conor Dooley:
->>>> On Wed, Jun 12, 2024 at 11:41:52AM -0500, Bryan Brattlof wrote:
->>>>> The JTAG_USER_ID_USERCODE efuse address, which is located inside the
->>>>> WKUP_CTRL_MMR0 range holds information to identify the speed grades of
->>>>> various components on TI's K3 SoCs. Add a compatible to allow the
->>>>> cpufreq driver to obtain the data to limit the maximum frequency for the
->>>>> CPUs under Linux control.
->>>>>
->>>>> Signed-off-by: Bryan Brattlof <bb@ti.com>
->>>>
->>>> $subject: DONOTMERGE: dt-bindings: mfd: syscon: add TI's opp table compatible
->>>>
->>>> Okay, if this isn't for merging then I won't Ack it.
+On 13/06/2024 12:10, Dmitry Baryshkov wrote:
+> On Thu, Jun 13, 2024 at 11:11:05AM +0200, Krzysztof Kozlowski wrote:
+>> On 13/06/2024 09:45, Konrad Dybcio wrote:
 >>>
->>> Ha! Nice. If I don't hear anything from anyone else I'll send a v2 in a 
->>> few hours.
+>>>
+>>> On 6/11/24 16:25, Krzysztof Kozlowski wrote:
+>>>> The SWR2 Soundwire instance has 1 output and 4 input ports, so for the
+>>>> headset recording (via the WCD9385 codec and the TX macro codec) we want
+>>>> to use the next DAI, not the first one (see qcom,dout-ports and
+>>>> qcom,din-ports for soundwire@6d30000 node).
+>>>>
+>>>> Original code was copied from other devices like SM8450 and SM8550.  On
+>>>> the SM8450 this was a correct setting, however on the SM8550 this worked
+>>>> probably only by coincidence, because the DTS defined no output ports on
+>>>> SWR2 Soundwire.
+>>>
+>>> Planning to send a fix for that?
+>>>
+>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 >>
->> What's the point of all the DONOTMERGE nonsense?
+>> Not really, because microphone works on these targets and changing it
+>> would require testing. I don't have boards suitable for testing, so
+>> let's just leave it.
 > 
-> AFAICT, TI live in fear of subsystem maintainers merging the dts patches,
-> so they do this.
+> If you provide instructions, I can test microphones on SM8450 HDK.
+> 
 
-And want some strict timeframe of merging bindings (via subsystem) and
-DTS (via SoC tree), which causes all weird submissions like this above
-or sending bindings without users.
-
-So far I can live with it but if more such peculiarities come up, then
-sorry, fix your process/tools instead of putting burden on maintainers
-and community.
+SM8550 and SM8650
 
 Best regards,
 Krzysztof
