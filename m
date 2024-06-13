@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-75423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01E88907302
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 14:57:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D73E8907309
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 14:59:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 26F36B21EFF
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 12:53:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89F03B214CE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 12:54:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83C682F55;
-	Thu, 13 Jun 2024 12:53:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E9B87F47B;
+	Thu, 13 Jun 2024 12:54:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LfDLoKMw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TurZugmn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B82417FD;
-	Thu, 13 Jun 2024 12:53:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D683717FD;
+	Thu, 13 Jun 2024 12:54:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718283230; cv=none; b=DKdqnAg5V8Obgx879+E+UZBaiV/cgG8Ta4f/09YB3w3WAxgALgMMmE9Kf2VGvTpcmZvo1MLMRWainzfDCwBBFhOIqfuPkH4TkE2D5n1V4ZTcfFnjA0wWPvB+yE3Qp5KEBALXqLZVNt91jEvCeGFxN/8XtNinObMmOU39OOKnw6c=
+	t=1718283283; cv=none; b=adSl5JIcBBzS28jtTjsTegvmnvHtbXL8O0g10wj2IpeTAXThSPi5QOjLOiJfiMiEnutcmAnxtYnnqrBxOl3eui9dRkKTV0qoRVkuGtxDOdT6s04AsGp5UiYQn2we2U3bhNsFtIMERIBaMAA/V+eMwn3Hd8jdIYtrI6LbcnCxDag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718283230; c=relaxed/simple;
-	bh=/R0ckbW+D1ZBjAcezy02qIHtjZvGa6ZZOI4pz63vCb0=;
+	s=arc-20240116; t=1718283283; c=relaxed/simple;
+	bh=dJYtdzaJMyEffYCt+yuyBL1OIf+l4LABJMoAMK9HJvw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DQCe814HdgJbjkSodL7YXzOP5xgyyU4ig/e+UTUrqZ2MQd0yehflxDW0lvfbVVhVH9xZry/FoazA9bZo33XcTfiVmI9QZPYEbSMwHylQr7TWeYuehLaxgVb1trGXrAT6yjpCLU3IJEqMfFtw1rnVAeHlKf+YBHZr8JBhN+bIfNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LfDLoKMw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3397DC2BBFC;
-	Thu, 13 Jun 2024 12:53:45 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=t046PB7mNQwNhEftNQ7J+nQro5ktAJyb/y6H1vwkXpVaPyoWh9yLzX4f8Fd7os9UsHqkfvdjeSV0sTzrGMOF5+yas+uti08FxcsD5D/Lx9F2aJ5yszvbTCw7/AEpkNuqCu2i87KNqHPpV/6a/DDvtN3PZ5t13/x86UbP/F5jR4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TurZugmn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60E25C2BBFC;
+	Thu, 13 Jun 2024 12:54:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718283229;
-	bh=/R0ckbW+D1ZBjAcezy02qIHtjZvGa6ZZOI4pz63vCb0=;
+	s=k20201202; t=1718283283;
+	bh=dJYtdzaJMyEffYCt+yuyBL1OIf+l4LABJMoAMK9HJvw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LfDLoKMwvwhROwgzDQTMFZzDK3I2cc8Q2HNOeMzOfXaPgiOvrOmbmGNwijTeqmXoD
-	 HW+lkQikqNhMtYPpqR1ruGBxiMkSFTvKL8DEtaTVYCduTuWrRyWLZInIa/dJxINAj6
-	 4kBRCbfhjn1fLQfusmvIw3TF3JKRnsjXZNsUHiemcWTlP+3OJWlaN1QwQwYmdc/Hrg
-	 JBTM4pA7A5pH3sQ6sXduITKd+XtwvfDMST55LKZ7SD889piJkuvpoXFnJRUdqiwgwt
-	 r5gq+LXXhP7rnFmTk3ul09NSTmELmdDRdjA83YCg3rMMvyXgWTwi5Vc/eKtbQBDFkJ
-	 G4KyPH020ccSg==
-Message-ID: <3858cc71-a43e-40ed-83fe-1ab50859a6fc@kernel.org>
-Date: Thu, 13 Jun 2024 14:53:43 +0200
+	b=TurZugmnIzofQ9eTCeBoNGSHYURq0axCq2cHg1MXb8+tWNU1BzPWdDics6Wyn9Oyw
+	 HESzGIwcYc8KUlKxUe9SFxPHUCrPbf/KCzxTEwhzA9f1kqayzXduQ7/GDYqo7D49xj
+	 YViBSHOuj86MOoYIgHRJakw2sAH6lObgLxf8nHcGNr6tr2TsTcC7SulFZR44xLu+T9
+	 mjPKOlUvdxoTt0qL004WS8eIUZe2Po08B6QtvXq9h70HQGULDMiR3nV3gCMZGah3hJ
+	 ijYxoEoi/R1EZ8cfrqMHBhif5YOdYXI7+hHFMTxWPDpswvXlM9uxzVr9c4saMue24b
+	 JPRa+BQ2v67rA==
+Message-ID: <b6713018-73d2-44a8-8f2c-f6a7c73308d1@kernel.org>
+Date: Thu, 13 Jun 2024 14:54:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: serial: sc16is7xx: add reset-gpios
-To: Hui Wang <hui.wang@canonical.com>, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, gregkh@linuxfoundation.org
-Cc: jirislaby@kernel.org, hvilleneuve@dimonoff.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org,
- lech.perczak@camlingroup.com, Maarten.Brock@sttls.nl
-References: <20240613082528.22591-1-hui.wang@canonical.com>
- <609a4713-2bd0-4ebd-aa75-c4ee1a2fabde@kernel.org>
- <95b28282-c067-4f34-8ddc-1b2b2f0be2a9@canonical.com>
+Subject: Re: [PATCH v2 3/4] dt-bindings: display/msm: Add SM7150 DPU
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Danila Tikhonov <danila@jiaxyga.com>, robdclark@gmail.com,
+ quic_abhinavk@quicinc.com, sean@poorly.run, marijn.suijten@somainline.org,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, daniel@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, quic_rmccann@quicinc.com, konrad.dybcio@linaro.org,
+ neil.armstrong@linaro.org, jonathan@marek.ca, swboyd@chromium.org,
+ quic_khsieh@quicinc.com, quic_jesszhan@quicinc.com,
+ linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240612184336.11794-1-danila@jiaxyga.com>
+ <20240612184336.11794-4-danila@jiaxyga.com>
+ <0e7bd7f2-b445-4a59-b456-8d03af121a8e@kernel.org>
+ <4xqa6u3jh6z7zdfaamxl3jpucfymznxmd3ezhihgfky62iifkc@bdslrxujahxc>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,46 +111,48 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <95b28282-c067-4f34-8ddc-1b2b2f0be2a9@canonical.com>
+In-Reply-To: <4xqa6u3jh6z7zdfaamxl3jpucfymznxmd3ezhihgfky62iifkc@bdslrxujahxc>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/06/2024 12:22, Hui Wang wrote:
-> 
-> On 6/13/24 17:08, Krzysztof Kozlowski wrote:
->> On 13/06/2024 10:25, Hui Wang wrote:
->>> In some designs, the chip reset pin is connected to a GPIO, and this
->>> GPIO needs to be set correctly before probing the driver, so add a
->>> reset-gpios in the device tree.
+On 13/06/2024 12:13, Dmitry Baryshkov wrote:
+> On Thu, Jun 13, 2024 at 11:23:50AM +0200, Krzysztof Kozlowski wrote:
+>> On 12/06/2024 20:43, Danila Tikhonov wrote:
+>>> Document the DPU hardware found on the Qualcomm SM7150 platform.
+>>
+>> In general, this should be before MDSS, because it defines fully the
+>> compatibles already used in the MDSS schema. For multi-binding devices
+>> it always starts with children and ends with parent/top schema.
+>>
 >>>
->>> Signed-off-by: Hui Wang <hui.wang@canonical.com>
->> <form letter>
->> This is a friendly reminder during the review process.
+>>> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+>>> ---
+>>>  .../bindings/display/msm/qcom,sm7150-dpu.yaml | 143 ++++++++++++++++++
+>>>  1 file changed, 143 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm7150-dpu.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm7150-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm7150-dpu.yaml
+>>> new file mode 100644
+>>> index 0000000000000..1a44cad131a72
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm7150-dpu.yaml
+>>> @@ -0,0 +1,143 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/display/msm/qcom,sm7150-dpu.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Qualcomm SM7150 Display DPU
 >>
->> It looks like you received a tag and forgot to add it.
->>
->> If you do not know the process, here is a short explanation:
->> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
->> versions, under or above your Signed-off-by tag. Tag is "received", when
->> provided in a message replied to you on the mailing list. Tools like b4
->> can help here. However, there's no need to repost patches *only* to add
->> the tags. The upstream maintainer will do that for tags received on the
->> version they apply.
->>
->> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
->>
->> If a tag was not added on purpose, please state why and what changed.
->> </form letter>
+>> What is DPU? Such acronyms should be explained in description or
+>> expanded here, if there is space.
 > 
-> Got it. Will add that tag if I need to change sth in the v4 and need to 
-> send the v5. :-) I thought the Ack is for Hugo's explanation rather than 
-> for my 1st patch, I mis-understood it. And I plan to study b4 in the 
-> near future.
-> 
+> Other bindings here use 'DPU', so probably we need to fix all of them at
+> the same time.
 
-Please start using b4. There would be no such ambiguity from your side,
-because maintainers know what they do and tool handles it correctly.
-
+Well, we can also start it for new bindings but that's not a reason for
+resend itself.
 
 Best regards,
 Krzysztof
