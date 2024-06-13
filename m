@@ -1,240 +1,296 @@
-Return-Path: <devicetree+bounces-75351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F85C906917
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 11:39:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BADA6906943
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 11:50:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E1341F23BDB
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:39:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C62D41C224C8
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:50:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A712F13F452;
-	Thu, 13 Jun 2024 09:39:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87D8D13F45E;
+	Thu, 13 Jun 2024 09:50:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.b="Lz7ebCIu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from forward501b.mail.yandex.net (forward501b.mail.yandex.net [178.154.239.145])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB0B813D608
-	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 09:39:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73B0713E024;
+	Thu, 13 Jun 2024 09:50:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.145
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718271577; cv=none; b=YNO40Xl1dF8rklHl0sr3piG4lX4TVrprlbVW9pav+N/u/PCfP6KqIAT4bcUMz2J3uXHlSxXCm54AXSFY+wosakuClNQhYWzwMvXbLvc1LlW1ybrWfzttJCk/H0wCVnwa6t7/vKxZ0FY2VAclunuXaPN9uaQP0VzH0ZgFj35YyhE=
+	t=1718272223; cv=none; b=Kt5bMobxVPTcwNvU8/HEI0LuMrzEKtq6/oGjp67bCDs5yYwYH08cvqUtbwcgxpiN9ddwJ3V3yOURQwAjKfh/wLii5MPfAibJINNai2RnodeMqOyBPNfJyvf6/pzdtPhCO3d2yGa8bjU/4rg/SwEJiUs2TholFDyRzCTg+9nedlk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718271577; c=relaxed/simple;
-	bh=iLQX6wuI1C08F/UQlPVe2qnRK6e+oxmbatREJ02+xTQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FYGK7U/d+5YgKqfGrQ0euDuw0dJR2MkIxjyvkM+/GHsdCq8JT3s3JZnNGI5PEhV4jLnmSD+SChlYzE+yXEDnVd+B8C9kEj3pkoMK1xaX6BB/8au4W1GqxXtmdbVeDHdMg+iyVgCExEUaBvrStSWS8P4DPswpuM9poxnwgKUCJUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1sHgvD-0002DT-Gy; Thu, 13 Jun 2024 11:39:07 +0200
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1sHgvC-001zsF-Uc; Thu, 13 Jun 2024 11:39:06 +0200
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1sHgvC-008SNC-2h;
-	Thu, 13 Jun 2024 11:39:06 +0200
-Date: Thu, 13 Jun 2024 11:39:06 +0200
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Shengjiu Wang <shengjiu.wang@gmail.com>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, p.zabel@pengutronix.de,
-	abelvesa@kernel.org, peng.fan@nxp.com, mturquette@baylibre.com,
-	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	kernel@pengutronix.de, festevam@gmail.com, marex@denx.de,
-	linux-clk@vger.kernel.org, imx@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 2/5] clk: imx: clk-audiomix: Add reset controller
-Message-ID: <20240613093906.trc2rahodmhqd4lt@pengutronix.de>
-References: <1718243482-18552-1-git-send-email-shengjiu.wang@nxp.com>
- <1718243482-18552-3-git-send-email-shengjiu.wang@nxp.com>
- <20240613081949.yty3hznopp3u2qwq@pengutronix.de>
- <CAA+D8AMc9=bzHKNXyMH5LLerr2kgmKTxacP=1LhocTHgP9Thfw@mail.gmail.com>
+	s=arc-20240116; t=1718272223; c=relaxed/simple;
+	bh=CiS/vwgvhI96k1n3BHULEcR1iEwkD4iIpW9CfsgBXrc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tL0kU7foUjd1EkYK0Hdj7AuqeExguI2nElb5jpRmk4G5uLH8cJji3cz0R6lbRfdCL+QZHpFf4MjsHIbqIbZ0tmbahzLXqqfdMHh8Qgxls8LtVxGxf1iSaHwfrpPkDiB4EcG2G0TnMZV1a5w4CgVGtwufRdM1L3Mjn2hyR0dvODw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.com; spf=pass smtp.mailfrom=yandex.com; dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.b=Lz7ebCIu; arc=none smtp.client-ip=178.154.239.145
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yandex.com
+Received: from mail-nwsmtp-smtp-production-main-37.myt.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-37.myt.yp-c.yandex.net [IPv6:2a02:6b8:c12:298c:0:640:7729:0])
+	by forward501b.mail.yandex.net (Yandex) with ESMTPS id 326E861317;
+	Thu, 13 Jun 2024 12:44:35 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-37.myt.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id Vicprp1Oca60-NKeaeh3H;
+	Thu, 13 Jun 2024 12:44:33 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.com; s=mail;
+	t=1718271874; bh=rXDnmJ5ZQOUO+9FQYV87xXfZpc46R3cPAarAmqFfOiA=;
+	h=From:In-Reply-To:Cc:Date:References:To:Subject:Message-ID;
+	b=Lz7ebCIu5oUOLBGf+eWcXQ5AFXnNvRxLl6ZQnVz9AUfKAP28kEEi1tE1S0i5AaWFc
+	 m5ri4Y5j79nsndV76J15Y4Gs6PE76abROtAXGJ222vO+PVUzo3htJ30mH7XXqPVxRe
+	 Z9JQvUcYgzr5EQ1sfY95eHQX5PhyroLRur5AFFQo=
+Authentication-Results: mail-nwsmtp-smtp-production-main-37.myt.yp-c.yandex.net; dkim=pass header.i=@yandex.com
+Message-ID: <cc66cca1-33db-4f30-afcf-d256a959896b@yandex.com>
+Date: Thu, 13 Jun 2024 11:44:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAA+D8AMc9=bzHKNXyMH5LLerr2kgmKTxacP=1LhocTHgP9Thfw@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] dt-bindings: phy: rockchip-emmc-phy: Convert to
+ dtschema
+To: Shresth Prasad <shresthprasad7@gmail.com>, vkoul@kernel.org,
+ kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ heiko@sntech.de, sebastian.reichel@collabora.com, s.hauer@pengutronix.de,
+ cristian.ciocaltea@collabora.com, andy.yan@rock-chips.com
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, skhan@linuxfoundation.org,
+ javier.carrasco.cruz@gmail.com
+References: <20240613085812.4020-2-shresthprasad7@gmail.com>
+Content-Language: en-US
+From: Johan Jonker <jbx6244@yandex.com>
+In-Reply-To: <20240613085812.4020-2-shresthprasad7@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 24-06-13, Shengjiu Wang wrote:
-> On Thu, Jun 13, 2024 at 4:20 PM Marco Felsch <m.felsch@pengutronix.de> wrote:
-> >
-> > On 24-06-13, Shengjiu Wang wrote:
-> > > Audiomix block control can be a reset controller for
-> > > Enhanced Audio Return Channel (EARC), which is one of
-> > > modules in this audiomix subsystem.
-> > >
-> > > The reset controller is supported by the auxiliary device
-> > > framework.
-> > >
-> > > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > >  drivers/clk/imx/Kconfig               |  1 +
-> > >  drivers/clk/imx/clk-imx8mp-audiomix.c | 63 +++++++++++++++++++++++++++
-> > >  2 files changed, 64 insertions(+)
-> > >
-> > > diff --git a/drivers/clk/imx/Kconfig b/drivers/clk/imx/Kconfig
-> > > index 6da0fba68225..9edfb030bea9 100644
-> > > --- a/drivers/clk/imx/Kconfig
-> > > +++ b/drivers/clk/imx/Kconfig
-> > > @@ -81,6 +81,7 @@ config CLK_IMX8MP
-> > >       tristate "IMX8MP CCM Clock Driver"
-> > >       depends on ARCH_MXC || COMPILE_TEST
-> > >       select MXC_CLK
-> > > +     select AUXILIARY_BUS
-> >
-> >         select AUXILIARY_BUS if RESET_CONTROLLER
-> 
-> Do we really need this change?
-> 
-> I checked other drivers like MCHP_CLK_MPFS, but they don't have
-> this condition also.
 
-Since you made the whole reset optional I would like to pull reset
-dependency optional as well e.g. pulling it only if you really use it.
-In the end the RESET_CONTROLLER is enabled most the time.
 
-> > >       help
-> > >           Build the driver for i.MX8MP CCM Clock Driver
-> > >
-> > > diff --git a/drivers/clk/imx/clk-imx8mp-audiomix.c b/drivers/clk/imx/clk-imx8mp-audiomix.c
-> > > index b381d6f784c8..517b1f88661b 100644
-> > > --- a/drivers/clk/imx/clk-imx8mp-audiomix.c
-> > > +++ b/drivers/clk/imx/clk-imx8mp-audiomix.c
-> > > @@ -5,6 +5,7 @@
-> > >   * Copyright (C) 2022 Marek Vasut <marex@denx.de>
-> > >   */
-> > >
-> > > +#include <linux/auxiliary_bus.h>
-> > >  #include <linux/clk-provider.h>
-> > >  #include <linux/device.h>
-> > >  #include <linux/io.h>
-> > > @@ -13,6 +14,7 @@
-> > >  #include <linux/of.h>
-> > >  #include <linux/platform_device.h>
-> > >  #include <linux/pm_runtime.h>
-> > > +#include <linux/slab.h>
-> >                 ^
-> > This is an unrelated change.
+On 6/13/24 10:58, Shresth Prasad wrote:
+> Convert txt bindings of Rockchip EMMC PHY to dtschema to allow
+> for validation.
 > 
-> This is for the fix of this issue
-> 
-> https://lore.kernel.org/oe-kbuild-all/202405201844.zf7UkDmq-lkp@intel.com/
+> Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
+> ---
 
-Thanks for the link.
+Add ack request from phy maintainer here.
 
-Regards,
-  Marco
+> Changes in v3:
+>     - fix `reg` in example being too long
+> 
+> Tested against `rockchip/rk3399-firefly.dtb`, `rockchip/rk3399-orangepi.dtb`
+> and `rockchip/rk3399-pinebook-pro.dtb`.
+> 
+>  .../bindings/phy/rockchip,emmc-phy.yaml       | 79 +++++++++++++++++++
+>  .../bindings/phy/rockchip-emmc-phy.txt        | 43 ----------
+>  .../devicetree/bindings/soc/rockchip/grf.yaml |  2 +-
+>  3 files changed, 80 insertions(+), 44 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
+> new file mode 100644
+> index 000000000000..85d74b343991
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
+> @@ -0,0 +1,79 @@
 
-> Best regards
-> Shengjiu wang
-> 
-> >
-> > Regards,
-> >   Marco
-> >
-> > >
-> > >  #include <dt-bindings/clock/imx8mp-clock.h>
-> > >
-> > > @@ -217,6 +219,63 @@ struct clk_imx8mp_audiomix_priv {
-> > >       struct clk_hw_onecell_data clk_data;
-> > >  };
-> > >
-> > > +#if IS_ENABLED(CONFIG_RESET_CONTROLLER)
-> > > +
-> > > +static void clk_imx8mp_audiomix_reset_unregister_adev(void *_adev)
-> > > +{
-> > > +     struct auxiliary_device *adev = _adev;
-> > > +
-> > > +     auxiliary_device_delete(adev);
-> > > +     auxiliary_device_uninit(adev);
-> > > +}
-> > > +
-> > > +static void clk_imx8mp_audiomix_reset_adev_release(struct device *dev)
-> > > +{
-> > > +     struct auxiliary_device *adev = to_auxiliary_dev(dev);
-> > > +
-> > > +     kfree(adev);
-> > > +}
-> > > +
-> > > +static int clk_imx8mp_audiomix_reset_controller_register(struct device *dev,
-> > > +                                                      struct clk_imx8mp_audiomix_priv *priv)
-> > > +{
-> > > +     struct auxiliary_device *adev __free(kfree) = NULL;
-> > > +     int ret;
-> > > +
-> > > +     if (!of_property_present(dev->of_node, "#reset-cells"))
-> > > +             return 0;
-> > > +
-> > > +     adev = kzalloc(sizeof(*adev), GFP_KERNEL);
-> > > +     if (!adev)
-> > > +             return -ENOMEM;
-> > > +
-> > > +     adev->name = "reset";
-> > > +     adev->dev.parent = dev;
-> > > +     adev->dev.release = clk_imx8mp_audiomix_reset_adev_release;
-> > > +
-> > > +     ret = auxiliary_device_init(adev);
-> > > +     if (ret)
-> > > +             return ret;
-> > > +
-> > > +     ret = auxiliary_device_add(adev);
-> > > +     if (ret) {
-> > > +             auxiliary_device_uninit(adev);
-> > > +             return ret;
-> > > +     }
-> > > +
-> > > +     return devm_add_action_or_reset(dev, clk_imx8mp_audiomix_reset_unregister_adev,
-> > > +                                     no_free_ptr(adev));
-> > > +}
-> > > +
-> > > +#else /* !CONFIG_RESET_CONTROLLER */
-> > > +
-> > > +static int clk_imx8mp_audiomix_reset_controller_register(struct clk_imx8mp_audiomix_priv *priv)
-> > > +{
-> > > +     return 0;
-> > > +}
-> > > +
-> > > +#endif /* !CONFIG_RESET_CONTROLLER */
-> > > +
-> > >  static void clk_imx8mp_audiomix_save_restore(struct device *dev, bool save)
-> > >  {
-> > >       struct clk_imx8mp_audiomix_priv *priv = dev_get_drvdata(dev);
-> > > @@ -337,6 +396,10 @@ static int clk_imx8mp_audiomix_probe(struct platform_device *pdev)
-> > >       if (ret)
-> > >               goto err_clk_register;
-> > >
-> > > +     ret = clk_imx8mp_audiomix_reset_controller_register(dev, priv);
-> > > +     if (ret)
-> > > +             goto err_clk_register;
-> > > +
-> > >       pm_runtime_put_sync(dev);
-> > >       return 0;
-> > >
-> > > --
-> > > 2.34.1
-> > >
-> > >
-> > >
-> 
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+
+You are converting an existing document, so GPL 2 only.
+
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/rockchip,emmc-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip EMMC PHY
+> +
+> +maintainers:
+
+> +  - Shresth Prasad <shresthprasad7@gmail.com>
+
+Prefer to add someone that can immediately respond if Rob H. wants to delete something.
+Use the Rockchip DT maintainer here:
+  - Heiko Stuebner <heiko@sntech.de>
+
+> +
+> +properties:
+
+> +  "#phy-cells":
+> +    const: 0
+
+Move this to the bottom of this list.
+
+> +
+> +  compatible:
+> +    const: rockchip,rk3399-emmc-phy
+> +
+> +  reg:
+
+> +    description:
+> +      PHY register address offset and length in "general register files"
+
+remove
+
+> +    maxItems: 1
+> +
+> +  clock-names:
+
+> +    description: |
+> +      Although this is not a required property (because most boards can get
+> +      basic functionality without having access to it), it is strongly
+> +      suggested.
+
+remove
+No need for descriptions if there's just 1 clock.
+
+> +    const: emmcclk
+> +
+> +  clocks:
+
+> +    description:
+> +      Should have a phandle to the card clock exported by the SDHCI driver.
+
+remove 
+
+> +    maxItems: 1
+> +
+> +  drive-impedance-ohm:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Specifies the drive impedance in Ohm.
+> +    enum: [33, 40, 50, 66, 100]
+> +    default: 50
+> +
+> +  rockchip,enable-strobe-pulldown:
+> +    type: boolean
+> +    description: |
+> +      Enable internal pull-down for the strobe
+> +      line.  If not set, pull-down is not used.
+> +
+> +  rockchip,output-tapdelay-select:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Specifies the phyctrl_otapdlysec register.
+> +    default: 0x4
+> +    maximum: 0xf
+> +
+> +required:
+
+> +  - "#phy-cells"
+
+Move at the bottom of this list.
+
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    grf: syscon@ff770000 {
+> +      compatible = "rockchip,rk3399-grf", "syscon", "simple-mfd";
+> +      reg = <0xff770000 0x10000>;
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+> +
+> +      emmcphy: phy@f780 {
+
+> +        #phy-cells = <0>;
+
+Move at the bottom of this list.
+Order of Properties in Device Node:
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n112
+
+> +        compatible = "rockchip,rk3399-emmc-phy";
+> +        reg = <0xf780 0x20>;
+> +        clocks = <&sdhci>;
+> +        clock-names = "emmcclk";
+> +        drive-impedance-ohm = <50>;
+> +      };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt b/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+> deleted file mode 100644
+> index 57d28c0d5696..000000000000
+> --- a/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+> +++ /dev/null
+> @@ -1,43 +0,0 @@
+> -Rockchip EMMC PHY
+> ------------------------
+> -
+> -Required properties:
+> - - compatible: rockchip,rk3399-emmc-phy
+> - - #phy-cells: must be 0
+> - - reg: PHY register address offset and length in "general
+> -   register files"
+> -
+> -Optional properties:
+> - - clock-names: Should contain "emmcclk".  Although this is listed as optional
+> -		(because most boards can get basic functionality without having
+> -		access to it), it is strongly suggested.
+> -		See ../clock/clock-bindings.txt for details.
+> - - clocks: Should have a phandle to the card clock exported by the SDHCI driver.
+> - - drive-impedance-ohm: Specifies the drive impedance in Ohm.
+> -                        Possible values are 33, 40, 50, 66 and 100.
+> -                        If not set, the default value of 50 will be applied.
+> - - rockchip,enable-strobe-pulldown: Enable internal pull-down for the strobe
+> -                                    line.  If not set, pull-down is not used.
+> - - rockchip,output-tapdelay-select: Specifies the phyctrl_otapdlysec register.
+> -                                    If not set, the register defaults to 0x4.
+> -                                    Maximum value 0xf.
+> -
+> -Example:
+> -
+> -
+> -grf: syscon@ff770000 {
+> -	compatible = "rockchip,rk3399-grf", "syscon", "simple-mfd";
+> -	#address-cells = <1>;
+> -	#size-cells = <1>;
+> -
+> -...
+> -
+> -	emmcphy: phy@f780 {
+> -		compatible = "rockchip,rk3399-emmc-phy";
+> -		reg = <0xf780 0x20>;
+> -		clocks = <&sdhci>;
+> -		clock-names = "emmcclk";
+> -		drive-impedance-ohm = <50>;
+> -		#phy-cells = <0>;
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+> index 79798c747476..1f88416657cc 100644
+
+> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+
+grf.yaml can be busy at times. Let Heiko take care of the merge order.
+Ask for an ack from the phy maintainers in your commit message below a "---"
+
+> @@ -178,7 +178,7 @@ allOf:
+>        patternProperties:
+>          "phy@[0-9a-f]+$":
+
+>            description:
+> -            Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+> +            Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
+
+Integrate rockchip,emmc-phy.yaml with grf.yaml with $ref.
+Remove above, use/test below:
+
+          $ref: /schemas/phy/rockchip,emmc-phy.yaml#
+
+          unevaluatedProperties: false
+
+
+>  
+>    - if:
+>        properties:
 
