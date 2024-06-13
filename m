@@ -1,75 +1,63 @@
-Return-Path: <devicetree+bounces-75275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C705C906527
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:32:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96D7A90655B
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:39:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DDC21F24B2B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 07:32:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A49F31C22FB4
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 07:39:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 337F313BC1E;
-	Thu, 13 Jun 2024 07:32:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8B48139CFF;
+	Thu, 13 Jun 2024 07:39:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TZDamMbx"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HZLfaw0P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 734EE57CBC
-	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 07:32:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CA9B13C3D8;
+	Thu, 13 Jun 2024 07:39:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718263959; cv=none; b=u7q8kj0JUUS39z537rntvtFNe9xP5gAVgl9DHewwT5iC5WrSp7xoLr7GcJGlln7/xHkbE4dj6l3ZKMlXduPY81ea5r1w5TDE4Ayuq2OrOs7Uo5lhTW12j94uyUjHzgWx7vwsuYeNotWBvTijdDcxX6K0K3WPEgmjHwVkaARXYLU=
+	t=1718264391; cv=none; b=gBMZjwfIsB2OSrMPX+DqfEl8rtfwDNhJkSw2hkiXilwqQVIn+zSIatLQznUaqONYAbALtCgbbilkJDHUm6GNAznRpUL7oUVvXjC5tQMQrGO2rQNGHjQrqqV5QrATpOhzSxS+t20lPuLh3Ysm5CvQIcDZKh/FlQZ4bUVCh7lMsBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718263959; c=relaxed/simple;
-	bh=u8dFHsOb+n5tt3CZFYcAB/jVglAgN731zurewAVdx0s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Gh2nYxtl2ii35FOJ1uwezf2/J67vBl5CY3eob5P4Xq8G29iwgn1KjSdnXfs2HVYcc17T3x6m/I1KF7K+JESrn/TJ7UAzSwyPBNn+IOkauxFBroaEehjJMfuzg9qgfJq3QAR+/CLFHehBN0k4zVmfaJy9eRSJyVdegn7dXj/N69k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TZDamMbx; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-52c89d6b4adso687142e87.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 00:32:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718263955; x=1718868755; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=G9lYXzPXZMaAW7Pzfh7pF2iRlL0MchImodSzO6gxB6g=;
-        b=TZDamMbxIjFXKLcjEdKha0ZrboAhVh36R4jn1R/qW3GB8ZbzpG972/jzi8waT95CK3
-         UKQAfpG+pxZrKMtbdKadgzYyAf/RDkeEfDn+JNhZUr20am2YRokToY83usgy3VLIGJCG
-         q6+mNU14TalgVm1FBhNF5DDgGnntoRQfiFeXw0B3kMFXex28LpKCfvb5sOSLEdwSHpMm
-         hmpFT1FI5RAhPTWPJketRcZS0RD4eVPThCYnjGIJfjcMuKJ9gorOK6HsEMDBeiF+ZOqC
-         K21F/5GGlVUSndWIaW+Y94J+vXZylb+LWnKWzQn1lXxJG3SsVp9c8qm5J6DMizvfA+X5
-         ifkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718263955; x=1718868755;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G9lYXzPXZMaAW7Pzfh7pF2iRlL0MchImodSzO6gxB6g=;
-        b=L7t1Q3kTgcBFGB9BaGlq0D1axX9kqUAQgH2pEJrhNU4Ql0s8CwzEXYsEaDQEVEhph3
-         HuYGZpu5cV7MWIFgTTk8WMyRTQm2XckjQGMcPbvIvboAJxQNrEHM6s8+OwVm17BNWXtY
-         dSXGPDcwCi74mjUiGDoLi8XR/tZme6ANA7hupEotiNrfo6k68droLU+T9o66jCD+a5pY
-         kaOgVi04nGFr8Dnqx68XjirChbdDnGMb9+Vacz/DXXlQEK9l8HXez9SvQTKzpHxpYFTa
-         09a7AUtQ8B6lBeHibsVnF2G1LrKd1Ga01ZKahhsk2p7iR+beeQfQeSAGxKNa5Dzri9NU
-         RErQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUGUCR2FwOKq0OpNr17/oyTjzCDKGt3Zz7SIum9/e8kDYJ7SkHsoIgM8p/PrzAY1vZw9Fa4e8aGVmC6Eu8rcTpavadt9flAiPkjBw==
-X-Gm-Message-State: AOJu0Yxb8G9fF3ASfb3suYa4ee5iDQ/lEj47bEVs6Mqpc9Jgbn+t47J7
-	VZoVTeWVe3mNeW3x+jQTECgTbT4iMVyPmvUeRHLURG9/7elNr/3EsylMMmLDRdgn51P71JikYYY
-	f
-X-Google-Smtp-Source: AGHT+IHFKgHKnJZHv1pARs3XIGRKYF142lQVvfMXrHkeRbdBvkvw16ECYK5x8Pv7YBBp4PaLU0bCEw==
-X-Received: by 2002:a05:6512:485b:b0:52b:81de:1127 with SMTP id 2adb3069b0e04-52c9a400d40mr2092266e87.50.1718263955555;
-        Thu, 13 Jun 2024 00:32:35 -0700 (PDT)
-Received: from ?IPV6:2a00:f41:900a:a4b1:c71b:4253:8a9f:c478? ([2a00:f41:900a:a4b1:c71b:4253:8a9f:c478])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca282567bsm114153e87.54.2024.06.13.00.32.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jun 2024 00:32:35 -0700 (PDT)
-Message-ID: <1a533ec4-46bb-4e52-b552-69eaad0a2ac1@linaro.org>
-Date: Thu, 13 Jun 2024 09:32:32 +0200
+	s=arc-20240116; t=1718264391; c=relaxed/simple;
+	bh=TDG1hAEvKTqi8x6dK8QwzoYkuCJJOfpG15LJ6vNyGJM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=F2SM39Yx6gBwuOHU8ogSYaX9ea81CqA+72apZIRsLIxOV9gMdBKQP3vus0xeI3CNrNJfgvIpMOxFawe98c8x6LK3IAiis9xvbP8C72b7EORPAsCAPg1LvRw0A9ewdYI0MDS77wx8M7DUaHClBjpDJOAnXsNZA9cLyMGdCsiQE30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HZLfaw0P; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45D7degi088676;
+	Thu, 13 Jun 2024 02:39:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718264380;
+	bh=2okusDhLwSssKtYayuSI+ewFdBOg2dmNj/EzRz6J07A=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=HZLfaw0PrJDyZqDUmqmX8ctVk1V2Mh2Z2udJ+5X+gEGhoW8rZBq4la2Png1DAa31D
+	 MoBCz+HJFDX7U90ygPInUHBP3eERu8T8S+cJ+i/VukI/DSpexCojohblTW8Wunh4dW
+	 JKuLbI4ECOeA3tws/DgvZxH7/CqQ+IYuTDqJ5UJE=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45D7deOA055024
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 13 Jun 2024 02:39:40 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 13
+ Jun 2024 02:39:39 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 13 Jun 2024 02:39:39 -0500
+Received: from [10.250.214.9] ([10.250.214.9])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45D7dZ9a102427;
+	Thu, 13 Jun 2024 02:39:36 -0500
+Message-ID: <1c655f3d-7198-4f7b-be14-407345f6a204@ti.com>
+Date: Thu, 13 Jun 2024 10:39:35 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,50 +65,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: qdu1000: Add secure qfprom node
-To: Komal Bajaj <quic_kbajaj@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- inux-kernel@vger.kernel.org
-References: <20240612063424.2494-1-quic_kbajaj@quicinc.com>
+Subject: Re: [PATCH v2 17/17] dt-bindings: net: wireless: cc33xx: Add
+ ti,cc33xx.yaml
+To: Krzysztof Kozlowski <krzk@kernel.org>, Sabeeh Khan <sabeeh-khan@ti.com>,
+        Kalle Valo <kvalo@kernel.org>, Johannes Berg <johannes.berg@intel.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>
+CC: <linux-wireless@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20240609182102.2950457-1-michael.nemanov@ti.com>
+ <20240609182102.2950457-18-michael.nemanov@ti.com>
+ <e7444ff4-763a-44c6-9a73-0c5f590ceaad@kernel.org>
+ <0d4fc078-52a7-4d3b-a95e-fd64e0702a99@kernel.org>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240612063424.2494-1-quic_kbajaj@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: "Nemanov, Michael" <michael.nemanov@ti.com>
+In-Reply-To: <0d4fc078-52a7-4d3b-a95e-fd64e0702a99@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-
-
-On 6/12/24 08:34, Komal Bajaj wrote:
-> Add secure qfprom node and also add properties for multi channel
-> DDR. This is required for LLCC driver to pick the correct LLCC
-> configuration.
+On 10/6/2024 11:17 AM, Krzysztof Kozlowski wrote:
+>> On 09/06/2024 20:21, michael.nemanov@ti.com wrote:
+>>> From: Michael Nemanov <michael.nemanov@ti.com>
+>>>
+>> 
+>> Missing commit msg (explain the hardware), missing SoB.
 > 
-> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
-> ---
-> Changes in v2:
-> * Minor correction in commit message
-> * Link to v1: https://lore.kernel.org/linux-arm-msm/20240607113445.2909-1-quic_kbajaj@quicinc.com/
-> ---
+> And now I found that you actually received such feedback and you just
+> ignored it.
 > 
->   arch/arm64/boot/dts/qcom/qdu1000.dtsi | 15 +++++++++++++++
->   1 file changed, 15 insertions(+)
+> Go back to v1 and respond to each feedback you got.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-> index 7a77f7a55498..d8df1bab63d5 100644
-> --- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-> @@ -1584,6 +1584,21 @@ system-cache-controller@19200000 {
->   			reg-names = "llcc0_base",
->   				    "llcc_broadcast_base";
->   			interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +			nvmem-cell-names = "multi-chan-ddr";
-> +			nvmem-cells = <&multi_chan_ddr>;
+> Best regards,
+> Krzysztof
+> 
 
-property
-property-names
-
-Konrad
+Oversight on my part, will fix.
 
