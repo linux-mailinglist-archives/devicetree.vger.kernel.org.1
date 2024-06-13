@@ -1,51 +1,55 @@
-Return-Path: <devicetree+bounces-75368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83353906A31
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 12:40:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B014906A49
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 12:45:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A9C3D1C22609
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 10:40:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC5331C21BE3
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 10:45:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FD981411E1;
-	Thu, 13 Jun 2024 10:40:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 947E01428FF;
+	Thu, 13 Jun 2024 10:44:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.b="uyLS1+TX"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="SFFaswTd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from forward502b.mail.yandex.net (forward502b.mail.yandex.net [178.154.239.146])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08B6B13D8B5;
-	Thu, 13 Jun 2024 10:40:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.146
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F33ED1428F0;
+	Thu, 13 Jun 2024 10:44:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718275253; cv=none; b=gkMgO2iG++Ev2EMtNaqdUwQqbdVoRgH2nZBXZIzyPzeuz0v24N+NAh+qIio9Hl7fokfQWNQU9l/VjuehTVaUCVpJLC3xR7kf+hCIB6zwon1+e1yaHDmYJQOxOZjrmWewvY2K/r4hUP/UCKFM5SXKTmRyDM7MsrRdDPoVcW6V0ng=
+	t=1718275478; cv=none; b=FdAfWO1ljxmzRt9R34fMuXfZU47jppvF/3Jmt2XcLWwnQVQaWeFN3Wc80J5fuoUtNhSEaZBOA9TP2jIl0qqLKDKbtn1UCEJ/g1z43JErFBG2R3phSMp11TrU/QzyKwgXOXbb9ohG1QVzfY41pjO8NrXmy0vUFEQYLMrcOSsEORo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718275253; c=relaxed/simple;
-	bh=3OWlZ0HHdHz0zJ3iWyJmfmYpc2zC4ZmLwyCFp2i+7yU=;
+	s=arc-20240116; t=1718275478; c=relaxed/simple;
+	bh=KETQz0HyeS4By8DZMxlCIfM4b04lhUdibaoc0Fm4HuU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Gvo6F+q+egvcYGr74vzj3okTD6Zsp5WbjgsQGUVcgzzUuxUuvTPO0+zHE8+WsuIU962WiHI/QnhppOncLBT4qkDY3lhU8EAgapGKis4kS+jNCYkhz7P38d60jOPat2eAieNYitA2/N/oVw1q58Typ+Dg3gPfNm6gF3YUNydQJWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.com; spf=pass smtp.mailfrom=yandex.com; dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.b=uyLS1+TX; arc=none smtp.client-ip=178.154.239.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yandex.com
-Received: from mail-nwsmtp-smtp-production-main-44.sas.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-44.sas.yp-c.yandex.net [IPv6:2a02:6b8:c24:a33:0:640:d837:0])
-	by forward502b.mail.yandex.net (Yandex) with ESMTPS id 9FC675EF21;
-	Thu, 13 Jun 2024 13:33:56 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-44.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id qXdo9x30J0U0-d6heW2Be;
-	Thu, 13 Jun 2024 13:33:55 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.com; s=mail;
-	t=1718274835; bh=EQQoH5X23jTA0B4DCR21/ZfmNUL5R4vDKFEbtMz2jjE=;
-	h=From:In-Reply-To:Cc:Date:References:To:Subject:Message-ID;
-	b=uyLS1+TXRkc3ujEdmjdXeJG76Em9/saX2bpREIfYTjtGKBuxNZTvBhY0V4clc60wC
-	 tXFfDZy4DlqPgowBw7uImpFuPyrLpKN05Cn6d0/TgRiq5mvPIfpGbR/u2DdFjMGqPB
-	 e82nXzdoG+FSyEu09/NOTJrxMoy+YK0Qc3KEabcg=
-Authentication-Results: mail-nwsmtp-smtp-production-main-44.sas.yp-c.yandex.net; dkim=pass header.i=@yandex.com
-Message-ID: <495e50aa-6819-457d-8503-00440abc97e3@yandex.com>
-Date: Thu, 13 Jun 2024 12:33:52 +0200
+	 In-Reply-To:Content-Type; b=AUCp4Njd3kvN9oVER+1QBDH8xMMcEkOhT7Cjfxwls5C3CCO97/vQkqBv7KxiGjR3u97k/o6WNLINP78ji9/jaUSuTlJXXwiwS1KBNAgegJaE2mKtGSl1yEKSyzdr3JGy7NYm+2vBvyItXgWkHvrta4262/HyHB/0bdW3/SPZSOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=SFFaswTd; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718275474;
+	bh=KETQz0HyeS4By8DZMxlCIfM4b04lhUdibaoc0Fm4HuU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=SFFaswTd6pHuemvGJL2EMC7gN1m4bgZ6247ZOJCTYL7SSdejhqNu9hkISJ8wOkRdY
+	 3P1cqfz7RRFl6SGjl2uRL3+4inlL3w5xkBDdI7v1EmaReycafsi44LfDqEmKN8H3Y6
+	 tAdJCLeK3H93AQyZsXVHDGOK+M3MxCmykkpn+zzdmL1isQF6gxx0vlmbU5Pp+0u+Gb
+	 71sJyEoZIrzvkTZGMqrJ9q0D54STIqGhsqsSxNmNlITL2R84kBBxLSYuMXlZQd9Dea
+	 puwhFTnIumsJuLnfDvBWbYkyLGsIcXmJg/AI+vq4zUiUYjI/oqpzgDC0w3Q85cDsO0
+	 iRmkrw2BNywsA==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 38883378216D;
+	Thu, 13 Jun 2024 10:44:34 +0000 (UTC)
+Message-ID: <b6f22891-4e5f-4df0-8234-eadab9619cb2@collabora.com>
+Date: Thu, 13 Jun 2024 12:44:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,84 +57,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: phy: rockchip-emmc-phy: Convert to
- dtschema
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Shresth Prasad <shresthprasad7@gmail.com>, vkoul@kernel.org,
- kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- heiko@sntech.de, sebastian.reichel@collabora.com, s.hauer@pengutronix.de,
- cristian.ciocaltea@collabora.com, andy.yan@rock-chips.com
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, skhan@linuxfoundation.org,
- javier.carrasco.cruz@gmail.com
-References: <20240613085812.4020-2-shresthprasad7@gmail.com>
- <cc66cca1-33db-4f30-afcf-d256a959896b@yandex.com>
- <9ce15b81-a8bd-4833-b15e-3e6f240dcf03@kernel.org>
+Subject: Re: [PATCH] arm64: dts: Fix the value of `dlg,jack-det-rate` mismatch
+To: Hsin-Te Yuan <yuanhsinte@chromium.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+References: <20240613-jack-rate-v1-1-62ee0259e204@chromium.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Johan Jonker <jbx6244@yandex.com>
-In-Reply-To: <9ce15b81-a8bd-4833-b15e-3e6f240dcf03@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20240613-jack-rate-v1-1-62ee0259e204@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-
-
-On 6/13/24 12:12, Krzysztof Kozlowski wrote:
-> On 13/06/2024 11:44, Johan Jonker wrote:
->>> ---
->>
->> Add ack request from phy maintainer here.
+Il 13/06/24 12:19, Hsin-Te Yuan ha scritto:
+> According to Documentation/devicetree/bindings/sound/dialog,da7219.yaml,
+> the value of `dlg,jack-det-rate` property should be '32_64' instead of
+> '32ms_64ms'.
 > 
+> Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
 
-> Why? What do you mean for that? Why phy maintainer needs to ack patches
-> he is going to take?
+Please, two separated commits, one for RockChip, one for MediaTek and
+also please add the relevant Fixes tags, so that this can be backported.
 
-See my text below:
-From my past converting phy documents experience asking was needed to smooths things up ...
-Let me know if things have improved.
+arm64: dts: rockchip: rk3399-gru: .....
+arm64: dts: mediatek: mt8183-kukui: ....
 
-grf.yaml can be busy at times. Let Heiko take care of the merge order.
-Ask for an ack from the phy maintainers in your commit message below a "---"
+Thanks,
+Angelo
 
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8183-kukui-audio-da7219.dtsi | 2 +-
+>   arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi                | 2 +-
+>   2 files changed, 2 insertions(+), 2 deletions(-)
 > 
->>
->>> Changes in v3:
->>>     - fix `reg` in example being too long
->>>
->>> Tested against `rockchip/rk3399-firefly.dtb`, `rockchip/rk3399-orangepi.dtb`
->>> and `rockchip/rk3399-pinebook-pro.dtb`.
->>>
->>>  .../bindings/phy/rockchip,emmc-phy.yaml       | 79 +++++++++++++++++++
->>>  .../bindings/phy/rockchip-emmc-phy.txt        | 43 ----------
->>>  .../devicetree/bindings/soc/rockchip/grf.yaml |  2 +-
->>>  3 files changed, 80 insertions(+), 44 deletions(-)
->>>  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
->>>  delete mode 100644 Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
->>>
->>> diff --git a/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
->>> new file mode 100644
->>> index 000000000000..85d74b343991
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
->>> @@ -0,0 +1,79 @@
->>
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>
->> You are converting an existing document, so GPL 2 only.
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-audio-da7219.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-audio-da7219.dtsi
+> index 8b57706ac814..586eee79c73c 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-audio-da7219.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-audio-da7219.dtsi
+> @@ -27,7 +27,7 @@ da7219_aad {
+>   			dlg,btn-cfg = <50>;
+>   			dlg,mic-det-thr = <500>;
+>   			dlg,jack-ins-deb = <20>;
+> -			dlg,jack-det-rate = "32ms_64ms";
+> +			dlg,jack-det-rate = "32_64";
+>   			dlg,jack-rem-deb = <1>;
+>   
+>   			dlg,a-d-btn-thr = <0xa>;
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
+> index 789fd0dcc88b..3cd63d1e8f15 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
+> @@ -450,7 +450,7 @@ da7219_aad {
+>   			dlg,btn-cfg = <50>;
+>   			dlg,mic-det-thr = <500>;
+>   			dlg,jack-ins-deb = <20>;
+> -			dlg,jack-det-rate = "32ms_64ms";
+> +			dlg,jack-det-rate = "32_64";
+>   			dlg,jack-rem-deb = <1>;
+>   
+>   			dlg,a-d-btn-thr = <0xa>;
 > 
-
-> Which copyrightable part was copied? This comment is not correct in
-> general, because conversions are dual-licensed (there are exceptions,
-> but that's the generic rule).
-
-Was told to do so in the past by the maintainers(Rob??) for text documents conversions.(Can't find exactly were in lore, must be in one my first conversion patches)
-If someone was submitting as GPL2 long time ago then the derived/converted work still hold the same license.
-Let me know if the consensus has changed.
-
-Johan
-
+> ---
+> base-commit: cea2a26553ace13ee36b56dc09ad548b5e6907df
+> change-id: 20240613-jack-rate-c478fa76ce19
 > 
 > Best regards,
-> Krzysztof
-> 
+
 
