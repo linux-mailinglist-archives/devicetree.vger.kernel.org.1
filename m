@@ -1,140 +1,248 @@
-Return-Path: <devicetree+bounces-75520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB1779078FA
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:59:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3CE7907903
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:00:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54CA41F2194F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 16:59:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E784286EA2
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 17:00:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE43914A0AD;
-	Thu, 13 Jun 2024 16:58:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OBmPKlo2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA9A145A12;
+	Thu, 13 Jun 2024 17:00:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8110F149E06
-	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 16:58:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D474512EBC7;
+	Thu, 13 Jun 2024 17:00:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718297920; cv=none; b=tptjAG6FBhctLx4tGyd9zE5QwadW/6EJFQ0TJvq82K9VyvRidIb8/7eqN6RsRp+oTAa5q41VMEmE+FzlB6S5AUATZx9DW+AE5jGKhmOW8JVquM6sAk5SFhYyrPS9oVnw62IWTkmgvmMapM883qcbiLNIyTYS+J8nvZzdvffTqW8=
+	t=1718298012; cv=none; b=fBkEORougChd1PHdCd2NF1cf3nnytWdAldi/hR89foDM6tqsIabZ4zHCbU+kJlquGB5VJFrriQ08wxHqHCpArFgnDIijoNSAf7+KLvaHphLcAhlYc0PwSeeu6QC7x/KNQKIECFIZtN6ZEiEA0AqDMddW2rTTDpF9aM7t6CcgaHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718297920; c=relaxed/simple;
-	bh=Ko2U0XciqYiZd+52ExiI+tllpyZWj8YuZw6B1gktbbo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qlHiPgTWMwErOE9k7MDi0s3DlRrkz9MHm1HQJLv1EfTMwaDzfYtFtkmH+1AZpZiz2J+Ym3LdqfQUQuDOALsGRZnWw+I/IllG2/HtI0YZcvw31jR2b1YTiRdCgvKGOuMZk1bmx8gLx1nkIOiZf8b5jxu5hXSm7uJXoqgy7owuKYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OBmPKlo2; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-52c4b92c09bso1949514e87.1
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 09:58:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718297917; x=1718902717; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=94cRgmNIJScPtZdK94CW4LdsaQMvPLRaBspPuDEVpOs=;
-        b=OBmPKlo29u+ky8APFdx9lrkw5zGFLOCnSEHWcoyLHBQX4iZ5RfnYXsM6jPjN8ZS5IL
-         mYUY5y6TPYU3fmW0ph3Xxi9dUZ6NiHeyGH0wCqkv4l/FWGeeZjm40wI5AJ34SawJBby5
-         d8xWyiRqDHS9xjOxL2k6QQiYgNBWn+vKRGJ8DdWVMBgv6B8hrvhayqIKuFidSOwM/hv+
-         kHBDuDPbDzsF3mmJs4Ih2hdAT3YqWb98Y5YSpMcllJ8itvO0cx6IG/mUgOTVd5cTb8jH
-         Wh0XDjjKkU5HPvt6ntMe5On5Qe8jncwdbRNibPLTVAJ952fJTGrTNVRcBbOrH2PdUDqS
-         1gNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718297917; x=1718902717;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=94cRgmNIJScPtZdK94CW4LdsaQMvPLRaBspPuDEVpOs=;
-        b=U8D5ohPXwf9z9kHblyvGJnbok6lTkg5VUMAEz39j9Fihl7osXKTs3JVg1MO10Moljo
-         XJCCF4yWAebogumIbxX16lrrGH/i3DKSauUFlYVh/bphgpEnlnNcfj7hps97FTrj4WJx
-         JEdi6uUAYy9yZfVirUK9NXwcgZ53td/09z15xSvWAjUsQYnyisQWmS4gzF7UoXaOZgWq
-         ZdqjzdIbKoSBarFjkkMADO9VfKwoyi0SJ9VK7csNF5XOoXZtu5cMe/+NT4/5flvtGPG9
-         EKrqiiRtspW3K/G2KHBSpkJSeyoeqXeGIg4uMRv8bW/NmczDO7t49UjNVQOzn6BV9w4I
-         57lQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWHkuisuO5fXgpFhu+SWLDBKy41JKcjhb+Ug84A67VQxC+4oHC6YOYIXYNK5vKVQ1Vg3D8bN4PTMHlZ195GLnG1BkxjiBAnVIj3tg==
-X-Gm-Message-State: AOJu0YxlOJq9oeTYCzc+0mM5q3VnadfNbGtz0Cj9goqgsDPYzeKWG8Is
-	Rz13O5EUU5Nd1288c0T9fPDL4x3IyMIeoXuVybfg+mGxZWAdCOOBK5YmzUK9H/fkCV9zHPwxcWa
-	YbPc=
-X-Google-Smtp-Source: AGHT+IEyF4qoR9IYhKLhBMALpMTojh7HHUHgZZVfxWEoUECZp0xgvGWJZgNHhC77wpiXn4vOxAsA1Q==
-X-Received: by 2002:a05:6512:44c:b0:51a:f689:b4df with SMTP id 2adb3069b0e04-52ca6e91b34mr221587e87.44.1718297916719;
-        Thu, 13 Jun 2024 09:58:36 -0700 (PDT)
-Received: from ?IPV6:2a00:f41:900a:a4b1:9ab2:4d92:821a:bb76? ([2a00:f41:900a:a4b1:9ab2:4d92:821a:bb76])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca2872466sm284108e87.143.2024.06.13.09.58.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jun 2024 09:58:36 -0700 (PDT)
-Message-ID: <d1062fb2-860a-41fe-887f-14977181f5f3@linaro.org>
-Date: Thu, 13 Jun 2024 18:58:33 +0200
+	s=arc-20240116; t=1718298012; c=relaxed/simple;
+	bh=r2FXAgMa0jD+t3ToDPQWNEY6z4v9oqO4oDHY5ah3aU8=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CyMDX/pSYOwNaC+ycEe1h7osCl1xGdgMfmsWDGmFZh2ti1EcJ8iTWHawXLWb4TuOivI0osj2hrVtCk8uxABKo20v7KY2dMgxg+RccGtLUifrpI1ChWSIRAdK817/lkyfGGnIBIRNFB4fh4Z+QIbTfZUG/MLhDSF/DCpIV2qz4u4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.31])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4W0TDP2ZPMz6K6VF;
+	Fri, 14 Jun 2024 01:00:05 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id 5405C140A87;
+	Fri, 14 Jun 2024 01:00:07 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Thu, 13 Jun
+ 2024 18:00:06 +0100
+Date: Thu, 13 Jun 2024 18:00:05 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: "Paller, Kim Seer" <KimSeer.Paller@analog.com>
+CC: Jonathan Cameron <jic23@kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-iio@vger.kernel.org"
+	<linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, David Lechner <dlechner@baylibre.com>,
+	Lars-Peter Clausen <lars@metafoo.de>, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, "Hennerich, Michael"
+	<Michael.Hennerich@analog.com>, Nuno =?ISO-8859-1?Q?S=E1?=
+	<noname.nuno@gmail.com>
+Subject: Re: [PATCH v3 1/5] iio: ABI: Generalize ABI documentation for DAC
+Message-ID: <20240613180005.0000480e@Huawei.com>
+In-Reply-To: <PH0PR03MB71416493AB2788638599CAE4F9C02@PH0PR03MB7141.namprd03.prod.outlook.com>
+References: <20240603012200.16589-1-kimseer.paller@analog.com>
+	<20240603012200.16589-2-kimseer.paller@analog.com>
+	<20240608154053.1cf1097e@jic23-huawei>
+	<PH0PR03MB71416493AB2788638599CAE4F9C02@PH0PR03MB7141.namprd03.prod.outlook.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 1/8] clk: qcom: clk-alpha-pll: Fix CAL_L_VAL override
- for LUCID EVO PLL
-To: Ajit Pandey <quic_ajipan@quicinc.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Vinod Koul <vkoul@kernel.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Taniya Das <quic_tdas@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>,
- Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, stable@vger.kernel.org,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <20240611133752.2192401-1-quic_ajipan@quicinc.com>
- <20240611133752.2192401-2-quic_ajipan@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240611133752.2192401-2-quic_ajipan@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+
+On Wed, 12 Jun 2024 10:57:42 +0000
+"Paller, Kim Seer" <KimSeer.Paller@analog.com> wrote:
+
+> > -----Original Message-----
+> > From: Jonathan Cameron <jic23@kernel.org>
+> > Sent: Saturday, June 8, 2024 10:41 PM
+> > To: Paller, Kim Seer <KimSeer.Paller@analog.com>
+> > Cc: linux-kernel@vger.kernel.org; linux-iio@vger.kernel.org;
+> > devicetree@vger.kernel.org; David Lechner <dlechner@baylibre.com>; Lars-
+> > Peter Clausen <lars@metafoo.de>; Liam Girdwood <lgirdwood@gmail.com>;
+> > Mark Brown <broonie@kernel.org>; Dimitri Fedrau <dima.fedrau@gmail.com>;
+> > Krzysztof Kozlowski <krzk+dt@kernel.org>; Rob Herring <robh@kernel.org>;
+> > Conor Dooley <conor+dt@kernel.org>; Hennerich, Michael
+> > <Michael.Hennerich@analog.com>; Nuno S=E1 <noname.nuno@gmail.com>
+> > Subject: Re: [PATCH v3 1/5] iio: ABI: Generalize ABI documentation for =
+DAC
+> >=20
+> > [External]
+> >=20
+> > On Mon, 3 Jun 2024 09:21:56 +0800
+> > Kim Seer Paller <kimseer.paller@analog.com> wrote:
+> >  =20
+> > > Introduces a more generalized ABI documentation for DAC. Instead of
+> > > having separate ABI files for each DAC, we now have a single ABI file
+> > > that covers the common sysfs interface for all DAC.
+> > >
+> > > Co-developed-by: Michael Hennerich <michael.hennerich@analog.com>
+> > > Signed-off-by: Michael Hennerich <michael.hennerich@analog.com>
+> > > Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com> =20
+> >=20
+> > A few comments inline.
+> >=20
+> > I wondered if it made sense to combine voltage and current entries of e=
+ach
+> > type
+> > in single block, but I think the docs would become too complicated with=
+ lots
+> > of wild cards etc.  Hence I think the duplication is fine.
+> >=20
+> > Jonathan
+> >  =20
+> > > ---
+> > >  Documentation/ABI/testing/sysfs-bus-iio-dac   | 61 +++++++++++++++++=
+++
+> > >  .../ABI/testing/sysfs-bus-iio-dac-ltc2688     | 31 ----------
+> > >  2 files changed, 61 insertions(+), 31 deletions(-)
+> > >  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-dac
+> > >
+> > > diff --git a/Documentation/ABI/testing/sysfs-bus-iio-dac =20
+> > b/Documentation/ABI/testing/sysfs-bus-iio-dac =20
+> > > new file mode 100644
+> > > index 000000000000..36d316bb75f6
+> > > --- /dev/null
+> > > +++ b/Documentation/ABI/testing/sysfs-bus-iio-dac
+> > > @@ -0,0 +1,61 @@
+> > > +What: =20
+> > 	/sys/bus/iio/devices/iio:deviceX/out_currentY_toggle_en =20
+> > > +KernelVersion:	5.18
+> > > +Contact:	linux-iio@vger.kernel.org
+> > > +Description:
+> > > +       		Toggle enable. Write 1 to enable toggle or 0 to disable it.=
+ This =20
+> > Tab vs space issue - see below.
+> >  =20
+> > > +		is useful when one wants to change the DAC output codes. The =20
+> > way =20
+> > > +		it should be done is:
+> > > +
+> > > +        	- disable toggle operation;
+> > > +        	- change out_currentY_rawN, where N is the integer value of=
+ the =20
+> > symbol; =20
+> > > +        	- enable toggle operation. =20
+> > Same question as below on whether this is accurate - Maybe it just need=
+s to
+> > mention
+> > this scheme needs to be used for autonomous toggling (out of software
+> > control).
+> > It works for software toggling but may be overkill!
+> >  =20
+> > > +
+> > > +What:		/sys/bus/iio/devices/iio:deviceX/out_currentY_rawN
+> > > +KernelVersion:	5.18
+> > > +Contact:	linux-iio@vger.kernel.org
+> > > +Description:
+> > > +		This attribute has the same meaning as out_currentY_raw. It is
+> > > +		specific to toggle enabled channels and refers to the DAC =20
+> > output =20
+> > > +		code in INPUT_N (_rawN), where N is the integer value of the =20
+> > symbol. =20
+> > > +		The same scale and offset as in out_currentY_raw applies.
+> > > +
+> > > +What:		/sys/bus/iio/devices/iio:deviceX/out_currentY_symbol
+> > > +KernelVersion:	5.18
+> > > +Contact:	linux-iio@vger.kernel.org
+> > > +Description:
+> > > +		Performs a SW switch to a predefined output symbol. This =20
+> > attribute =20
+> > > +		is specific to toggle enabled channels and allows switching =20
+> > between =20
+> > > +		multiple predefined symbols. Each symbol corresponds to a =20
+> > different =20
+> > > +		output, denoted as out_currentY_rawN, where N is the integer =20
+> > value =20
+> > > +		of the symbol. Writing an integer value N will select =20
+> > out_currentY_rawN. =20
+> > > +
+> > > +What: =20
+> > 	/sys/bus/iio/devices/iio:deviceX/out_voltageY_toggle_en =20
+> > > +KernelVersion:	5.18
+> > > +Contact:	linux-iio@vger.kernel.org
+> > > +Description:
+> > > +       		Toggle enable. Write 1 to enable toggle or 0 to disable it.=
+ This =20
+> >=20
+> > Mix of spacing and tabs is inconsistent. Hence the odd indent in this r=
+eply
+> > version.
+> >  =20
+> > > +		is useful when one wants to change the DAC output codes. The =20
+> > way =20
+> > > +		it should be done is: =20
+> >=20
+> > Hmm. Is this true?  If we are doing autonomous toggling on a clock or s=
+imilar
+> > than agreed.
+> > If we are using the out_current_symbol software control it would be com=
+mon
+> > to switch
+> > to A, modify B, switch to B, modify A etc.
+> >=20
+> > I think our interface has probably evolved and so this might need an up=
+date. =20
+>=20
+> I agree that the description could be clear about the differences between=
+=20
+> autonomous and software toggling. If we were to change the description, w=
+ould=20
+> this suffice?
+>=20
+> Description:
+>         Toggle enable. Write 1 to enable toggle or 0 to disable it. This
+>         is useful when one wants to change the DAC output codes. For auto=
+nomous toggling, the way
+>         it should be done is:
+>=20
+>         - disable toggle operation;
+>         - change out_currentY_rawN, where N is the integer value of the s=
+ymbol;
+>         - enable toggle operation.
+
+To here is good as focuses on the use case.
+
+>=20
+> For software toggling, one can switch to A, modify B, switch to B, modify=
+ A, etc.
+
+I'd not mention this part (not sure if you were intending to though given t=
+he formatting!)
+
+Jonathan
 
 
+> >  =20
+> > > +
+> > > +        	- disable toggle operation;
+> > > +        	- change out_voltageY_rawN, where N is the integer value of=
+ the =20
+> > symbol; =20
+> > > +        	- enable toggle operation. =20
+>=20
+>=20
 
-On 6/11/24 15:37, Ajit Pandey wrote:
-> In LUCID EVO PLL CAL_L_VAL and L_VAL bitfields are part of single
-> PLL_L_VAL register. Update for L_VAL bitfield values in PLL_L_VAL
-> register using regmap_write() API in __alpha_pll_trion_set_rate
-> callback will override LUCID EVO PLL initial configuration related
-> to PLL_CAL_L_VAL bit fields in PLL_L_VAL register.
-> 
-> Observed random PLL lock failures during PLL enable due to such
-> override in PLL calibration value. Use regmap_update_bits() with
-> L_VAL bitfield mask instead of regmap_write() API to update only
-> PLL_L_VAL bitfields in __alpha_pll_trion_set_rate callback.
-> 
-> Fixes: 260e36606a03 ("clk: qcom: clk-alpha-pll: add Lucid EVO PLL configuration interfaces")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->   drivers/clk/qcom/clk-alpha-pll.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
-> index c51647e37df8..a538559caaa0 100644
-> --- a/drivers/clk/qcom/clk-alpha-pll.c
-> +++ b/drivers/clk/qcom/clk-alpha-pll.c
-> @@ -1665,7 +1665,7 @@ static int __alpha_pll_trion_set_rate(struct clk_hw *hw, unsigned long rate,
->   	if (ret < 0)
->   		return ret;
->   
-> -	regmap_write(pll->clkr.regmap, PLL_L_VAL(pll), l);
-> +	regmap_update_bits(pll->clkr.regmap, PLL_L_VAL(pll), LUCID_EVO_PLL_L_VAL_MASK,  l);
-
-Since you're altering a function used by LUCID and TRION PLLs.. how will
-that affect non-LUCID_EVO/OLE ones?
-
-Konrad
 
