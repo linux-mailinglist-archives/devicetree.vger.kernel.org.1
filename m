@@ -1,94 +1,83 @@
-Return-Path: <devicetree+bounces-75243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF4A2906223
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 04:49:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A669290622B
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 04:56:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89571B21C84
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 02:49:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C65C28231E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 02:56:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3F6512C466;
-	Thu, 13 Jun 2024 02:49:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA5F712AAE0;
+	Thu, 13 Jun 2024 02:56:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="mAcO7s4G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
+Received: from mail-43166.protonmail.ch (mail-43166.protonmail.ch [185.70.43.166])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11AEE33062
-	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 02:49:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1388779C0;
+	Thu, 13 Jun 2024 02:56:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.166
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718246985; cv=none; b=JD3sZiAbRB3RoTF2iKyXKLyIvG49TKk7rObSON083z+5fukoFcr39W7fElqNP8wSaNpNToXiTOEupCr+xWbWA68OpDU0PZTa2caY+og0nuRXl8O/E74KauHwpnYzX2wE0gu6qZ+2IA4H+k38RIjsNKUgOjajF+vppzr72QtMl1o=
+	t=1718247413; cv=none; b=Fr2F62uwU6NTyAATlrIkqtDvk0CF+1hB4/iEvDHfLzraQ6ta/WRuIjEDbm0u5OnOybumhmTtPuUQBvwDu0cQZ7Wm2tutEpSWDlmzivIotbmGO8o6luVHdEC1lBMtYmD5HyCTECKSOybg3B8u/PVgX8/4fAINToPOdlW0Zz66Ww0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718246985; c=relaxed/simple;
-	bh=Hc283nIw5wAu+AHaKP5vQDPcmxgPA0tgWOImZWbryN4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hXud+v5DXCwuBzn9ZQ5/vC5Z0O+NqBJ+BLoKxUiUqiNl7LlibLENfdUATZXGkXSHdk+lO0e3ujjaph14LBdoyIIkQCCidFKTS4zh/VXp86VI0qIN7EAPYM5Clxd5pWxnCHKFdHKFvXyKWszE+e1XXvTrwN1ZE2klIoy6QRygVWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=milkv.io; spf=none smtp.mailfrom=milkv.io; arc=none smtp.client-ip=160.16.200.221
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=milkv.io
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=milkv.io
-Received: from secure.fukaumi.org ([10.0.0.2])
-	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 45D2n0mp000957;
-	Thu, 13 Jun 2024 11:49:01 +0900
-From: FUKAUMI Naoki <naoki@milkv.io>
-To: kernel@esmil.dk
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        FUKAUMI Naoki <naoki@milkv.io>
-Subject: [PATCH 2/2] riscv: dts: starfive: enable heartbeat LED for Milk-V Mars
-Date: Thu, 13 Jun 2024 11:48:26 +0900
-Message-ID: <20240613024827.36512-2-naoki@milkv.io>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240613024827.36512-1-naoki@milkv.io>
-References: <20240613024827.36512-1-naoki@milkv.io>
+	s=arc-20240116; t=1718247413; c=relaxed/simple;
+	bh=v6EHWvK61kiveLsS+vOvVRR1JYgbPNmon5wekWK080M=;
+	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=IgW/CVh07ZbFT/sHSWDziLB9z30/jfIbiXCn0IRwkpxDkoLl3V16qs7mC8xzAY9oQJKF8aXYhPUOudOeQViV7YWsjamPhkOXy7BnS3h68Svnhd0ayusQ45uSVF0dfrvfjTukEjEh9J8/sidbdnlNMewLVKy//Qan359Ix5GbnSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=mAcO7s4G; arc=none smtp.client-ip=185.70.43.166
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1718247410; x=1718506610;
+	bh=/WF9YMVVkLWBKK5C0uFSZxjSXeVeRPdRrY1i4Gk6e8s=;
+	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=mAcO7s4GJqRKPZfRU7za40B6etNmBxqHs0GSDJQlrXG9LFbjCBIm6X1cZUElmKx+p
+	 CjCKqORxTDz3+xb0Oq8zCWINyVIeq+GZoGk/s/lDVAOhtH99uDLrDV6+4ratdijE36
+	 yc+zwCqgErcyLErTapoc4lG0JLswsNCPPyctLi04PPjcmtN7Ihn6Hm6JyzmNkYr2E3
+	 zOJw87/ktTscHh9TU7j+dU1sBluMzI/YM8dh7YKctCsVocK8/MXj5BGBxQ9h3s8ZQM
+	 iY/VNRe1jfLskJYTQMkQMXWrhjBsBfT9oeXkEwe514mPJ0yWF4Q1rfnWwzAXGbisS1
+	 GBTidlnPmqKBg==
+Date: Thu, 13 Jun 2024 02:56:46 +0000
+To: linux-kernel@vger.kernel.org
+From: Raymond Hackley <raymondhackley@protonmail.com>
+Cc: Markuss Broks <markuss.broks@gmail.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>, Nikita Travkin <nikita@trvn.ru>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: [PATCH v2 0/3] Add support for Imagis IST3038 and clarify the usage of protocol_b
+Message-ID: <20240613025631.5425-1-raymondhackley@protonmail.com>
+Feedback-ID: 49437091:user:proton
+X-Pm-Message-ID: 29b1f6575173bd119d3055ab5b1e3baec68ba92b
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Milk-V Mars has a green LED to show system load. This patch enables
-a green LED as a heartbeat LED.
+Imagis IST3038 is another variant of Imagis IST3038 IC, which has
+a different register interface from IST3038C (possibly firmware defined).
 
-Signed-off-by: FUKAUMI Naoki <naoki@milkv.io>
+Unlike IST3038C/IST3032C, IST3038 has different registers for commands,
+which means IST3038 doesn't use protocol B.
+Similar to IST3032C and maybe the other variants, IST3038 has touch keys
+support, which provides KEY_APPSELECT and KEY_BACK.
+
+Add support for IST3038 with touch keys.
+
+protocol_b is a property, which tells Imagis panel to use a different
+format for coordinates.
+
+IST30XXC series is known for using protocol B, while the other series
+aren't. Note this could be confusing, unlike the model name implies.
+
+Adjust the usage of protocol_b to avoid confusion.
+
 ---
- arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts b/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
-index fa0eac78e0ba..4f4bbf64dbe4 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
-+++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
-@@ -4,11 +4,24 @@
-  */
- 
- /dts-v1/;
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
- #include "jh7110-common.dtsi"
- 
- / {
- 	model = "Milk-V Mars";
- 	compatible = "milkv,mars", "starfive,jh7110";
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			gpios = <&aongpio 3 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_GREEN>;
-+			linux,default-trigger = "heartbeat";
-+			function = LED_FUNCTION_HEARTBEAT;
-+		};
-+	};
- };
- 
- &gmac0 {
--- 
-2.43.0
+v2: Sort the compatible enties in alphabetical order.
+    Document the binding before using in the driver.
 
 
