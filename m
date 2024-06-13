@@ -1,51 +1,40 @@
-Return-Path: <devicetree+bounces-75353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BADA6906943
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 11:50:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2E4D90693B
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 11:48:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C62D41C224C8
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:50:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2D346B23746
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:48:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87D8D13F45E;
-	Thu, 13 Jun 2024 09:50:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.b="Lz7ebCIu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52E2313E038;
+	Thu, 13 Jun 2024 09:48:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from forward501b.mail.yandex.net (forward501b.mail.yandex.net [178.154.239.145])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73B0713E024;
-	Thu, 13 Jun 2024 09:50:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.145
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C998117BBB;
+	Thu, 13 Jun 2024 09:48:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718272223; cv=none; b=Kt5bMobxVPTcwNvU8/HEI0LuMrzEKtq6/oGjp67bCDs5yYwYH08cvqUtbwcgxpiN9ddwJ3V3yOURQwAjKfh/wLii5MPfAibJINNai2RnodeMqOyBPNfJyvf6/pzdtPhCO3d2yGa8bjU/4rg/SwEJiUs2TholFDyRzCTg+9nedlk=
+	t=1718272121; cv=none; b=cU8axJb1yHGaEMenj2l49fM3xcFpc2RwvjkqlfZZRdRkG3JJ5ZdOitfNJIJQdIGiVDerwR+82cMtDZOG9c0PqeYHQapRNeC/dY5PfrutJ0rF5lszYj3uWfX8FSjGW8Ws25RVlr4rKRI1nSgg/nTw358g03wiUA4tPrJPFCdArXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718272223; c=relaxed/simple;
-	bh=CiS/vwgvhI96k1n3BHULEcR1iEwkD4iIpW9CfsgBXrc=;
+	s=arc-20240116; t=1718272121; c=relaxed/simple;
+	bh=I3QfX5AzcoxITFq10mDDyKgE81ar3tDQVq/zo/Uz9hg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tL0kU7foUjd1EkYK0Hdj7AuqeExguI2nElb5jpRmk4G5uLH8cJji3cz0R6lbRfdCL+QZHpFf4MjsHIbqIbZ0tmbahzLXqqfdMHh8Qgxls8LtVxGxf1iSaHwfrpPkDiB4EcG2G0TnMZV1a5w4CgVGtwufRdM1L3Mjn2hyR0dvODw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.com; spf=pass smtp.mailfrom=yandex.com; dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.b=Lz7ebCIu; arc=none smtp.client-ip=178.154.239.145
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yandex.com
-Received: from mail-nwsmtp-smtp-production-main-37.myt.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-37.myt.yp-c.yandex.net [IPv6:2a02:6b8:c12:298c:0:640:7729:0])
-	by forward501b.mail.yandex.net (Yandex) with ESMTPS id 326E861317;
-	Thu, 13 Jun 2024 12:44:35 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-37.myt.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id Vicprp1Oca60-NKeaeh3H;
-	Thu, 13 Jun 2024 12:44:33 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.com; s=mail;
-	t=1718271874; bh=rXDnmJ5ZQOUO+9FQYV87xXfZpc46R3cPAarAmqFfOiA=;
-	h=From:In-Reply-To:Cc:Date:References:To:Subject:Message-ID;
-	b=Lz7ebCIu5oUOLBGf+eWcXQ5AFXnNvRxLl6ZQnVz9AUfKAP28kEEi1tE1S0i5AaWFc
-	 m5ri4Y5j79nsndV76J15Y4Gs6PE76abROtAXGJ222vO+PVUzo3htJ30mH7XXqPVxRe
-	 Z9JQvUcYgzr5EQ1sfY95eHQX5PhyroLRur5AFFQo=
-Authentication-Results: mail-nwsmtp-smtp-production-main-37.myt.yp-c.yandex.net; dkim=pass header.i=@yandex.com
-Message-ID: <cc66cca1-33db-4f30-afcf-d256a959896b@yandex.com>
-Date: Thu, 13 Jun 2024 11:44:30 +0200
+	 In-Reply-To:Content-Type; b=SqhkuRrnov/+cXWJN85GySzxD2skBUMv3bnvYOQkYkX7WqdKmITjh4Nce7trRkGg7Uo3iVwKNLQskK4k4/M0eTLt342mg9TAUJqOJNMT+cCz7fe73JzyMB/0V62YF0k+0dLwOE4QiV/VUTwfsaF3PFqO7WdAEyqeNbvAPckIOI0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DCC0D1063;
+	Thu, 13 Jun 2024 02:49:02 -0700 (PDT)
+Received: from [10.1.36.41] (e110479.arm.com [10.1.36.41])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5A4DD3F5A1;
+	Thu, 13 Jun 2024 02:48:35 -0700 (PDT)
+Message-ID: <8a968327-131d-40f1-b6e2-effe1390ef70@arm.com>
+Date: Thu, 13 Jun 2024 10:48:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,244 +42,98 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: phy: rockchip-emmc-phy: Convert to
- dtschema
-To: Shresth Prasad <shresthprasad7@gmail.com>, vkoul@kernel.org,
- kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- heiko@sntech.de, sebastian.reichel@collabora.com, s.hauer@pengutronix.de,
- cristian.ciocaltea@collabora.com, andy.yan@rock-chips.com
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, skhan@linuxfoundation.org,
- javier.carrasco.cruz@gmail.com
-References: <20240613085812.4020-2-shresthprasad7@gmail.com>
+Subject: Re: [PATCH v2 1/5] mfd: axp20x: AXP717: Fix missing IRQ status
+ registers range
+To: Lee Jones <lee@kernel.org>
+Cc: Chen-Yu Tsai <wens@csie.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Ryan Walklin <ryan@testtoast.com>,
+ Chris Morgan <macroalpha82@gmail.com>,
+ Philippe Simons <simons.philippe@gmail.com>
+References: <20240418000736.24338-1-andre.przywara@arm.com>
+ <20240418000736.24338-2-andre.przywara@arm.com>
+ <20240502093907.GM5338@google.com>
+ <56aef347-7582-497e-be02-d82eda7b3528@arm.com>
+ <20240612152510.GE1504919@google.com>
+ <7fdc23ff-fd55-4347-ac61-dd115eff6ff1@arm.com>
+ <20240612154817.GH1504919@google.com>
 Content-Language: en-US
-From: Johan Jonker <jbx6244@yandex.com>
-In-Reply-To: <20240613085812.4020-2-shresthprasad7@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Andre Przywara <andre.przywara@arm.com>
+In-Reply-To: <20240612154817.GH1504919@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
+Hi Lee,
 
-
-On 6/13/24 10:58, Shresth Prasad wrote:
-> Convert txt bindings of Rockchip EMMC PHY to dtschema to allow
-> for validation.
+On 12/06/2024 16:48, Lee Jones wrote:
+> On Wed, 12 Jun 2024, Andre Przywara wrote:
 > 
-> Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
-> ---
-
-Add ack request from phy maintainer here.
-
-> Changes in v3:
->     - fix `reg` in example being too long
+>> Hi,
+>>
+>> On 12/06/2024 16:25, Lee Jones wrote:
+>>> On Wed, 12 Jun 2024, Andre Przywara wrote:
+>>>
+>>>> Hi Lee,
+>>>>
+>>>> On 02/05/2024 10:39, Lee Jones wrote:
+>>>>> On Thu, 18 Apr 2024, Andre Przywara wrote:
+>>>>>
+>>>>>> While we list the "IRQ status *and acknowledge*" registers as volatile,
+>>>>>> they are missing from the writable range array, so acknowledging any
+>>>>>> interrupts was met with an -EIO error.
+>>>>>>
+>>>>>> Add the five registers that hold those bits to the writable array.
+>>>>>>
+>>>>>> Fixes: b5bfc8ab2484 ("mfd: axp20x: Add support for AXP717 PMIC")
+>>>>>> Reported-by: Chris Morgan <macromorgan@hotmail.com>
+>>>>>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+>>>>>> ---
+>>>>>>     drivers/mfd/axp20x.c | 1 +
+>>>>>>     1 file changed, 1 insertion(+)
+>>>>>
+>>>>> Acked-by: Lee Jones <lee@kernel.org>
+>>>>
+>>>> Can you please take just this patch as a fix for 6.10? This fixes the power
+>>>> key operation.
+>>>> This applies cleanly on top of v6.10-rc3, so there is no need for any extra
+>>>> immutable branch or coordination with regulator.
+>>>> (The same is true independently for patch 2/5, on the regulator side).
+>>>
+>>> What does the Fixes: commit break?
+>>>
+>>> Or is it the case that it never worked properly?
+>>
+>> The interrupt part never worked properly, but so far that's only needed for
+>> the power key operation. Unfortunately that part wasn't tested properly
+>> initially, so the patches were merged into your tree before that.
 > 
-> Tested against `rockchip/rk3399-firefly.dtb`, `rockchip/rk3399-orangepi.dtb`
-> and `rockchip/rk3399-pinebook-pro.dtb`.
-> 
->  .../bindings/phy/rockchip,emmc-phy.yaml       | 79 +++++++++++++++++++
->  .../bindings/phy/rockchip-emmc-phy.txt        | 43 ----------
->  .../devicetree/bindings/soc/rockchip/grf.yaml |  2 +-
->  3 files changed, 80 insertions(+), 44 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
->  delete mode 100644 Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
-> new file mode 100644
-> index 000000000000..85d74b343991
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
-> @@ -0,0 +1,79 @@
+> This doesn't sounds like a -fixes candidate.  I'll mark the set for v6.11.
 
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+Sorry, correction, this patch missing is actually fatal now, since we 
+have an interrupt connected in the DT (which wasn't there initially). 
+The code tries to clear all IRQs upon driver probe, which fails due to 
+regmap error-ing out. This makes the whole driver fail probing, and 
+since the AXP supplies basically every peripheral, the system is dead in 
+the water:
 
-You are converting an existing document, so GPL 2 only.
+[    1.173014] sunxi-rsb 7083000.rsb: RSB running at 3000000 Hz
+[    1.174996] axp20x-rsb sunxi-rsb-3a3: AXP20x variant AXP717 found
+[    1.198931] axp20x-rsb sunxi-rsb-3a3: Failed to ack 0x49: -5
+[    1.220878] axp20x-rsb sunxi-rsb-3a3: failed to add irq chip: -5
+[    1.235760] axp20x-rsb sunxi-rsb-3a3:
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/rockchip,emmc-phy.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip EMMC PHY
-> +
-> +maintainers:
+(Thanks to loki666@IRC for providing the log!)
 
-> +  - Shresth Prasad <shresthprasad7@gmail.com>
+This was discovered early, long before the merge window, and I was 
+actually hoping to have this patch squashed into the original series 
+still, but there was this immutable branch already.
 
-Prefer to add someone that can immediately respond if Rob H. wants to delete something.
-Use the Rockchip DT maintainer here:
-  - Heiko Stuebner <heiko@sntech.de>
+So can you please take this as a fix for 6.10?
 
-> +
-> +properties:
-
-> +  "#phy-cells":
-> +    const: 0
-
-Move this to the bottom of this list.
-
-> +
-> +  compatible:
-> +    const: rockchip,rk3399-emmc-phy
-> +
-> +  reg:
-
-> +    description:
-> +      PHY register address offset and length in "general register files"
-
-remove
-
-> +    maxItems: 1
-> +
-> +  clock-names:
-
-> +    description: |
-> +      Although this is not a required property (because most boards can get
-> +      basic functionality without having access to it), it is strongly
-> +      suggested.
-
-remove
-No need for descriptions if there's just 1 clock.
-
-> +    const: emmcclk
-> +
-> +  clocks:
-
-> +    description:
-> +      Should have a phandle to the card clock exported by the SDHCI driver.
-
-remove 
-
-> +    maxItems: 1
-> +
-> +  drive-impedance-ohm:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Specifies the drive impedance in Ohm.
-> +    enum: [33, 40, 50, 66, 100]
-> +    default: 50
-> +
-> +  rockchip,enable-strobe-pulldown:
-> +    type: boolean
-> +    description: |
-> +      Enable internal pull-down for the strobe
-> +      line.  If not set, pull-down is not used.
-> +
-> +  rockchip,output-tapdelay-select:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Specifies the phyctrl_otapdlysec register.
-> +    default: 0x4
-> +    maximum: 0xf
-> +
-> +required:
-
-> +  - "#phy-cells"
-
-Move at the bottom of this list.
-
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    grf: syscon@ff770000 {
-> +      compatible = "rockchip,rk3399-grf", "syscon", "simple-mfd";
-> +      reg = <0xff770000 0x10000>;
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +
-> +      emmcphy: phy@f780 {
-
-> +        #phy-cells = <0>;
-
-Move at the bottom of this list.
-Order of Properties in Device Node:
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n112
-
-> +        compatible = "rockchip,rk3399-emmc-phy";
-> +        reg = <0xf780 0x20>;
-> +        clocks = <&sdhci>;
-> +        clock-names = "emmcclk";
-> +        drive-impedance-ohm = <50>;
-> +      };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt b/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
-> deleted file mode 100644
-> index 57d28c0d5696..000000000000
-> --- a/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
-> +++ /dev/null
-> @@ -1,43 +0,0 @@
-> -Rockchip EMMC PHY
-> ------------------------
-> -
-> -Required properties:
-> - - compatible: rockchip,rk3399-emmc-phy
-> - - #phy-cells: must be 0
-> - - reg: PHY register address offset and length in "general
-> -   register files"
-> -
-> -Optional properties:
-> - - clock-names: Should contain "emmcclk".  Although this is listed as optional
-> -		(because most boards can get basic functionality without having
-> -		access to it), it is strongly suggested.
-> -		See ../clock/clock-bindings.txt for details.
-> - - clocks: Should have a phandle to the card clock exported by the SDHCI driver.
-> - - drive-impedance-ohm: Specifies the drive impedance in Ohm.
-> -                        Possible values are 33, 40, 50, 66 and 100.
-> -                        If not set, the default value of 50 will be applied.
-> - - rockchip,enable-strobe-pulldown: Enable internal pull-down for the strobe
-> -                                    line.  If not set, pull-down is not used.
-> - - rockchip,output-tapdelay-select: Specifies the phyctrl_otapdlysec register.
-> -                                    If not set, the register defaults to 0x4.
-> -                                    Maximum value 0xf.
-> -
-> -Example:
-> -
-> -
-> -grf: syscon@ff770000 {
-> -	compatible = "rockchip,rk3399-grf", "syscon", "simple-mfd";
-> -	#address-cells = <1>;
-> -	#size-cells = <1>;
-> -
-> -...
-> -
-> -	emmcphy: phy@f780 {
-> -		compatible = "rockchip,rk3399-emmc-phy";
-> -		reg = <0xf780 0x20>;
-> -		clocks = <&sdhci>;
-> -		clock-names = "emmcclk";
-> -		drive-impedance-ohm = <50>;
-> -		#phy-cells = <0>;
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> index 79798c747476..1f88416657cc 100644
-
-> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-
-grf.yaml can be busy at times. Let Heiko take care of the merge order.
-Ask for an ack from the phy maintainers in your commit message below a "---"
-
-> @@ -178,7 +178,7 @@ allOf:
->        patternProperties:
->          "phy@[0-9a-f]+$":
-
->            description:
-> -            Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
-> +            Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
-
-Integrate rockchip,emmc-phy.yaml with grf.yaml with $ref.
-Remove above, use/test below:
-
-          $ref: /schemas/phy/rockchip,emmc-phy.yaml#
-
-          unevaluatedProperties: false
-
-
->  
->    - if:
->        properties:
+Cheers,
+Andre
 
