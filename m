@@ -1,113 +1,122 @@
-Return-Path: <devicetree+bounces-75281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A55A390657C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:45:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C322906582
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:46:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 752D91C2086A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 07:45:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8EA9281348
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 07:46:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 305D413C669;
-	Thu, 13 Jun 2024 07:45:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C125184A35;
+	Thu, 13 Jun 2024 07:45:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xY/vec3c"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="jSA6HefQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7321913C902
-	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 07:45:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0588561674;
+	Thu, 13 Jun 2024 07:45:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718264713; cv=none; b=kg5ao23zNfkgQsU/NhK1qle1au7dYLPIa8RI6BTS0gZB6zsdYaFcKWqILxoPT4jnc7+vex+NPy0jAb4Plp8q6Iu2TgBJY+f/9l7oeZHKJoZD9BOQ9Q4cf5QG3iha+HFKZkeZWmzadqMLI1gmrZ3gcylsSTJ0H7lWmaHSKqmvNC4=
+	t=1718264755; cv=none; b=ArVi531kMdJu6/mLFXNoHo2YjQx8SxGLOv9lSzELpQD0FB7VZqrJUpIuMVHNjmyifYY0bYVrOlp/YKEJICZXji8HOXK/WKmtAhHjf+DPX9ue+nd/AN06UXKtttQw7Zw0IquwFGiwPp43dl7wXbfY8u41isKkTHT2uF6ZLIZwKuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718264713; c=relaxed/simple;
-	bh=kruOkB0C5mtg+qRidPLwNLCl0wybSGrd8TELQRoYoxY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bsuZcJv9yxUupIHyNaVQiBoELJMhVkRVSnUR6VeTgoFvAJOF0v3vCb1g7YnlZ+T3BCi2EncTFtkPIV31dudThVMTMhO+EhrgOjdgY55LluECcSDwiNymxSYD7ngSEeY8EfbCN98uFMnWBjYLkiZkREYQYZQBlfRDoFNrODiunBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xY/vec3c; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52c32d934c2so750521e87.2
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 00:45:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718264710; x=1718869510; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cdVtOlMNp03m2x6MWFcqw0pftt+PVX8U/mJ39Asz150=;
-        b=xY/vec3cEa0SpuS4oP8h7nXg8znqm75jiR/SUmwA5+N3td2jTcvyOG7OLgXT6skQgy
-         q1Zj/o/g40amMdqdhaXcSInA45omv2LDf1MCRgBaeeLJFzrIJP6dcRxE07BwWMaNFa97
-         POzIgjJrDFccp6SSfVBSGqeb9PvM61JCl4ikJn3iKEPg51ttiehDtcmtScdhYYit4KZ2
-         AY3rS39oE4x0ctQYKXgXqMWrTnmfpRxqFjweZL9hhPICJcT+DYWwG7Z/7Y5TlFad3bhe
-         kY14cz12O68kN4jXB84wwC2Dicdxv7o7Mi4fdFRVyGqiITGUqdnXU24V55YvvOJ3vwIy
-         O6pA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718264710; x=1718869510;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cdVtOlMNp03m2x6MWFcqw0pftt+PVX8U/mJ39Asz150=;
-        b=ucwMsLkejv0BHzYTQHwU1fuQ6pahnWdR2u6btM53IxCLRrG+nZRxgU7+YlM/Zzm+zX
-         Z64egQUkgfgjq0qIkaRvNWkUvv8XpoKkZytbYASyE16jwSa+MOTPmcEE/QQl2jgOsmuJ
-         BLDEJf7VNhdFe68TmfjBx5bPf8kJ+AKuaMohsILJIHp9Fg+0QTopBZ4gbA7dB8XDMcZn
-         TF+lRq1NZFZftfn0EDlAg3W2lwh+GhL65Yt/DnVfGYd9EiBt/PapzLfwmxWSGp040rnX
-         ZCCn07OMKdPdFxiaY7JIUSygE4XOLyXpW89L+l6/JeeL6YjvQXHp5MxtQRnyUgVM0zc2
-         rd6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUXYzZ5hCyH2HLTlleGfzKDXdvB7yx130GVCsbntRz0nzbFgDcO/xl/yhORwsOPE2Tl8nO/YERbZ6pL8XkysA8VMBXmK3cpgPDokQ==
-X-Gm-Message-State: AOJu0Yzu4Gcj8e+Q9obGfDDMBtVmPaPDR2xso/a+E6BhEQOa0m/ZB4ST
-	iaX+vXolht39M6Ka6J77mBGA1fLtzRKGF3FF56vYtodCavjBEWfweurqIQxUJ7s=
-X-Google-Smtp-Source: AGHT+IEPJte/WZ9LVogMrND6fyInO1gJkzDc8M6RNxoglEUrvh5jJ2evyEf+/qAVoLW+M/bkgEzy0Q==
-X-Received: by 2002:a05:6512:2391:b0:52c:820e:a7e7 with SMTP id 2adb3069b0e04-52c9a3fe5f1mr3123521e87.50.1718264709652;
-        Thu, 13 Jun 2024 00:45:09 -0700 (PDT)
-Received: from ?IPV6:2a00:f41:900a:a4b1:c71b:4253:8a9f:c478? ([2a00:f41:900a:a4b1:c71b:4253:8a9f:c478])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca282f79dsm116007e87.118.2024.06.13.00.45.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jun 2024 00:45:09 -0700 (PDT)
-Message-ID: <90f5ad41-7192-4c01-90c0-ad9c54094917@linaro.org>
-Date: Thu, 13 Jun 2024 09:45:06 +0200
+	s=arc-20240116; t=1718264755; c=relaxed/simple;
+	bh=b0nwDmk85Th+Ea9Hzl6X6r7Ux7VNBJoTY2env1nbsvs=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=s03IzYo9pVYfkOLlcTxe0l7jYZxXZV/P9+dV+3vGJ4d5SHXpWYiRUivfvfLGbCgfhZz7o10lUrXCftx5Xv5M1SGiMSTXMhDid5DUk6hmTD5BfHXOhLo2LoB7FG5eZkmB7C4F3wOloqqgkyH8G0caX5H3VvgLuVbBaEEgHOW6si4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=jSA6HefQ; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45D7jhNG087821;
+	Thu, 13 Jun 2024 02:45:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718264743;
+	bh=HcCz8yqlqo54hv8N+FW7nqgKgZ+aOt5M+8+4ovoUPuY=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=jSA6HefQyTEiY9V30j6DS1KzUK1tiB3zIR4wVgRpD7+Cb1E2bYxHpvn4WcHtYBLrM
+	 mYiGt37wmhT2+N1yekvJv2nSuVXOzeWxgxk+tu8YFfRRmqeT8YuKH49q2PIcJluCmu
+	 TVXfKsQOLh1J0cGZyUcBFD9mpz0QjyGdwOierIRI=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45D7jht8013059
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 13 Jun 2024 02:45:43 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 13
+ Jun 2024 02:45:43 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 13 Jun 2024 02:45:43 -0500
+Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45D7jdHI111881;
+	Thu, 13 Jun 2024 02:45:40 -0500
+From: Vignesh Raghavendra <vigneshr@ti.com>
+To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Josua Mayer <josua@solid-run.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am642-hummingboard-t: correct rs485 rts polarity
+Date: Thu, 13 Jun 2024 13:15:36 +0530
+Message-ID: <171826022271.240984.15893653753162141926.b4-ty@ti.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240504-ti-rs485-rts-v1-1-e88ef1c96f34@solid-run.com>
+References: <20240504-ti-rs485-rts-v1-1-e88ef1c96f34@solid-run.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1e80100-crd: fix DAI used for
- headset recording
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: stable@vger.kernel.org
-References: <20240611142555.994675-1-krzysztof.kozlowski@linaro.org>
- <20240611142555.994675-2-krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240611142555.994675-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+Hi Josua Mayer,
 
-
-On 6/11/24 16:25, Krzysztof Kozlowski wrote:
-> The SWR2 Soundwire instance has 1 output and 4 input ports, so for the
-> headset recording (via the WCD9385 codec and the TX macro codec) we want
-> to use the next DAI, not the first one (see qcom,dout-ports and
-> qcom,din-ports for soundwire@6d30000 node).
+On Sat, 04 May 2024 13:35:54 +0200, Josua Mayer wrote:
+> The RS485 transceiver RE (Receiver enable) and DE (Driver enable) are
+> shorted and connected to both RTS/CTS of the SoC UART.
+> RE is active-low, DE is active-high.
 > 
-> Original code was copied from other devices like SM8450 and SM8550.  On
-> the SM8450 this was a correct setting, however on the SM8550 this worked
-> probably only by coincidence, because the DTS defined no output ports on
-> SWR2 Soundwire.
+> Remove the "rs485-rts-active-low" flag to match RTS polarity with DE,
+> and fix communication in both transmit and receive directions.
+> 
+> [...]
 
-Planning to send a fix for that?
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+[1/1] arm64: dts: ti: k3-am642-hummingboard-t: correct rs485 rts polarity
+      commit: 9dcc0e1065f3c40d0b2ad79a858bb4ebaba33167
 
-Konrad
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
+
 
