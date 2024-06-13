@@ -1,111 +1,190 @@
-Return-Path: <devicetree+bounces-75473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AEE09075E6
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 17:02:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDF4B9075F6
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 17:03:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFBF52877C5
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 15:02:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 14DC7B2304E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 15:03:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 273B81428EF;
-	Thu, 13 Jun 2024 15:02:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 980CA14900F;
+	Thu, 13 Jun 2024 15:03:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fxySFIUL"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="JPfDaIow"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f68.google.com (mail-pj1-f68.google.com [209.85.216.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1DFE84A41;
-	Thu, 13 Jun 2024 15:02:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EF911494AC;
+	Thu, 13 Jun 2024 15:03:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718290930; cv=none; b=QtaCQUMuMsF6gb4gdKNg1Z4JYl3qTAiK+HSFV22SJjZ94XnIUf2oi4Cy/OeGY1oYq4rb0TOxdL0xVqhbLb7J6XEIGxFglxER4KCXewH57Toh9gUUcYbkAHHf/h4v8GOEMqlFZQ7KYkjX17x5sRsX34XZT6G4+YVZjm7iLR816X8=
+	t=1718290993; cv=none; b=QMEz3oBe4XTLG9hRE/P7W6RRJ6y0KJDnn01b+hemDNMTfvjdMwNTtXBkQ4VCDlEdq2FFIGaOTNFtkA2olpI0ZqlAqQNuF3ip82xzD1LvAbZIEu4VvIdub+aU10OF+LJhLRpz0rljrWVwtIdRY8EqR9aC5oYBdBzFYETeUQvO2PQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718290930; c=relaxed/simple;
-	bh=0vwy+oNU5J1EjAO5qZ9rH2UnBq8fpSIO7ukwd4fnDiY=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ANnE6Eyfchk1v/RJNB+tVatFjtDZ7M5a0/u2fQrxOJ9mATIwtZAzzutnrODb2UW0nXVS3xQxh7B50TTxZkXk+9IuhZXo+iRVyDhybY4JVmBdsxlNf068GbQaF0X1qFbVx5pkHjoO2Zbkizu3kKZje1b81VmL/rFiOVcE3PoTxzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fxySFIUL; arc=none smtp.client-ip=209.85.216.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f68.google.com with SMTP id 98e67ed59e1d1-2c2c6b27428so883025a91.3;
-        Thu, 13 Jun 2024 08:02:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718290928; x=1718895728; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=U8DQ5VScKhFQSJasWhNy88C3p44N18/s2PVWHrzDJ1M=;
-        b=fxySFIULOcSiU0j8shdFXj0olcsY+r+SysYmEGW/WSrpyngMxwkClo2R3hDh/66jv7
-         Vz6atNia+R0FBl1KpQdniQjZ0Q6T9kzY/W1nCpGJr3+hf75tKezHT0gOsw6a42SqRv17
-         +IbTq0/56LEjj9oAsQVv9snCrcBiT6G2eXPy7uXts9ztF1XV6sKEEY9uJWtYaHsRyYdV
-         ng7MYh0ZfsQ+nVnxtDrMLRYSMLpAVkR0K+cNlGdudrZQuP73jD53RhSlOLHh451RDj27
-         RhdAdLi/FJW2MO1YraGJgfNqlrf/dOViVtxFXiJhcKmIEGzXHNTzGBJ0yEOWEjqqfXgQ
-         Z98w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718290928; x=1718895728;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=U8DQ5VScKhFQSJasWhNy88C3p44N18/s2PVWHrzDJ1M=;
-        b=psUZgNkoirgXmEE+P5G+nRhWFBupfeAFNRYLgjURP3SCN2S3SKFyClMR/UOiXvlwRg
-         CUrtASxMioLTleGNCc7vcawbQhOlK+fi7IOPvcN9V/v+u5KhGffJ+diDuhIVk3t3F8ts
-         T1clQCwbBWZJDniHbXGQToNkV44jBf4xz2KN72F4fu00jS83ZiNYfONm4McXeBvdaRXy
-         p7w2/PR2TdIOp400HlnbadFOnI8l+ATuuWV8KHSpj+jJeWDYxWjh31gU3mus3QlcSXLC
-         sDwbc2AJ/tYrDglPrYUJPmOPfvDxEKQdB+B6NK8puI3DoLlBM72MmoBTEh6VuDPKqDr1
-         RdQA==
-X-Forwarded-Encrypted: i=1; AJvYcCWhwpK1889lJfTwBqv3a0NIEtX7b2NkiWzqGSUM3tBGjS8cTdCgnjZlSfS0AeEFfz/IDXBRk0Ot+9jrQ8lTrLY+/1BjCcON/tykqXX8
-X-Gm-Message-State: AOJu0YzBcvsjGYY7tIj2zYlUZQ6mV4l2LLJZvBv4PNpb25L58zYQ5jxo
-	tAbSKfdSM1SfQ1feFLuND/6I92seEk5PmN5bh2ALM2KAIHvYjoSC
-X-Google-Smtp-Source: AGHT+IGUL6iL63738dYA+yvB1xagrNO9EYkLDn2Qr1lQX9lVpSnql/KaQWLtv98XU96vTEwwOs3YfQ==
-X-Received: by 2002:a17:90b:3c1:b0:2c4:b2d3:6c8d with SMTP id 98e67ed59e1d1-2c4db129158mr13502a91.10.1718290927718;
-        Thu, 13 Jun 2024 08:02:07 -0700 (PDT)
-Received: from localhost.localdomain ([121.139.28.121])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c4c45ad12bsm1841234a91.7.2024.06.13.08.02.05
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Thu, 13 Jun 2024 08:02:07 -0700 (PDT)
-From: Gyeonggeon Choi <gychoi.dev@gmail.com>
-To: robh@kernel.org,
-	saravanak@google.com
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Gyeonggeon Choi <gychoi.dev@gmail.com>
-Subject: [PATCH] drivers:of: Add null check for bus in of_match_bus
-Date: Fri, 14 Jun 2024 00:01:34 +0900
-Message-Id: <20240613150134.66329-1-gychoi.dev@gmail.com>
-X-Mailer: git-send-email 2.39.3 (Apple Git-146)
+	s=arc-20240116; t=1718290993; c=relaxed/simple;
+	bh=eDRUosPcVn8FXq3BOkao9YxZoLEVPNhNTeJ3UYuka3g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=awHNaEv/lw2a7/okZC1M09Ti2u4k4ec/V+n2y8+prH7mN08TK9tL6JlC8QKRTH5NWMWvACfUxZzG4A2NaAvvmjHbPJTVuEFdtP2zDR6RFMMjdYMzN2HSVrEIufEZPRtl5nxB8coqz76sYzodDtw2blsRpnCp+r5KocsUUzkzAbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=JPfDaIow; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id D44E6120005;
+	Thu, 13 Jun 2024 18:03:04 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru D44E6120005
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1718290984;
+	bh=TZO5FKnfdLf3+BDNI9OpSudEvUr/3a4vwS8jvLm/wHw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=JPfDaIowoydrSjpWIZUsYTBJZoD+H3UC63kb9INCtqFCwLD/2fG8vKCv4Ul8n5+TZ
+	 w+oyneTsRRJrF64wB1yPgXVV9Py+X6jXDOyttM6XykIkqzGMUW3RSPu7wTctb+FNDF
+	 /wkQMowWVBx693zPZ83h8qnRaOwxMcWph3fwgIWVgjdOCvjA8KYWYqvy/bEO4KZJWr
+	 KlKDNwLg/umhIVnPedtPufM618gRgaNd1OAbH36EaM+nFTL81ngggGarc18YuocV94
+	 PdkXyyngwpjYYEZnASF2FakZFmRh2ARmdYg8e6fKWE5i6rFHqMArwwTwqX1/ZLcjbU
+	 jH6I57gRtsJMA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Thu, 13 Jun 2024 18:03:04 +0300 (MSK)
+Received: from [192.168.1.143] (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 13 Jun 2024 18:03:04 +0300
+Message-ID: <ddc470fe-6d7d-4c5c-8de6-15cfd35d74cb@salutedevices.com>
+Date: Thu, 13 Jun 2024 18:03:03 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [DMARC error][DKIM error] [PATCH v8 1/2] pwm: meson: Add support
+ for Amlogic S4 PWM
+To: <kelvin.zhang@amlogic.com>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	=?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, Jerome
+ Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Conor
+ Dooley <conor+dt@kernel.org>, <linux-pwm@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Junyi Zhao
+	<junyi.zhao@amlogic.com>, Rob Herring <robh@kernel.org>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>
+References: <20240613-s4-pwm-v8-0-b5bd0a768282@amlogic.com>
+ <20240613-s4-pwm-v8-1-b5bd0a768282@amlogic.com>
+Content-Language: en-US
+From: George Stark <gnstark@salutedevices.com>
+In-Reply-To: <20240613-s4-pwm-v8-1-b5bd0a768282@amlogic.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185904 [Jun 13 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/06/13 10:31:00 #25588438
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Added a null check for the bus variable after calling of_match_bus.
-This prevents potential null pointer dereference errors in subsequent
-code, where bus->count_cells could cause a crash if bus is NULL.
+If there's another series you can fix log messages and start it from 
+low-case letter as in the rest of the file.
 
-Signed-off-by: Gyeonggeon Choi <gychoi.dev@gmail.com>
----
- drivers/of/address.c | 2 ++
- 1 file changed, 2 insertions(+)
+Either way
+Reviewed-by: George Stark <gnstark@salutedevices.com>
 
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index d669ce25b5f9..85f986d25870 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -504,6 +504,8 @@ static u64 __of_translate_address(struct device_node *node,
- 	if (parent == NULL)
- 		return OF_BAD_ADDR;
- 	bus = of_match_bus(parent);
-+	if (bus == NULL)
-+		return OF_BAD_ADDR;
- 
- 	/* Count address cells & copy address locally */
- 	bus->count_cells(dev, &na, &ns);
+On 6/13/24 14:46, Kelvin Zhang via B4 Relay wrote:
+> From: Junyi Zhao <junyi.zhao@amlogic.com>
+> 
+> Add support for Amlogic S4 PWM.
+> 
+> Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
+> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
+> ---
+>   drivers/pwm/pwm-meson.c | 39 +++++++++++++++++++++++++++++++++++++++
+>   1 file changed, 39 insertions(+)
+> 
+> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+> index b2f97dfb01bb..98e6c1533312 100644
+> --- a/drivers/pwm/pwm-meson.c
+> +++ b/drivers/pwm/pwm-meson.c
+> @@ -460,6 +460,37 @@ static int meson_pwm_init_channels_meson8b_v2(struct pwm_chip *chip)
+>   	return meson_pwm_init_clocks_meson8b(chip, mux_parent_data);
+>   }
+>   
+> +static void meson_pwm_s4_put_clk(void *data)
+> +{
+> +	struct clk *clk = data;
+> +
+> +	clk_put(clk);
+> +}
+> +
+> +static int meson_pwm_init_channels_s4(struct pwm_chip *chip)
+> +{
+> +	struct device *dev = pwmchip_parent(chip);
+> +	struct device_node *np = dev->of_node;
+> +	struct meson_pwm *meson = to_meson_pwm(chip);
+> +	int i, ret;
+> +
+> +	for (i = 0; i < MESON_NUM_PWMS; i++) {
+> +		meson->channels[i].clk = of_clk_get(np, i);
+> +		if (IS_ERR(meson->channels[i].clk))
+> +			return dev_err_probe(dev,
+> +					     PTR_ERR(meson->channels[i].clk),
+> +					     "Failed to get clk\n");
+> +
+> +		ret = devm_add_action_or_reset(dev, meson_pwm_s4_put_clk,
+> +					       meson->channels[i].clk);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret,
+> +					     "Failed to add clk_put action\n");
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>   static const struct meson_pwm_data pwm_meson8b_data = {
+>   	.parent_names = { "xtal", NULL, "fclk_div4", "fclk_div3" },
+>   	.channels_init = meson_pwm_init_channels_meson8b_legacy,
+> @@ -498,6 +529,10 @@ static const struct meson_pwm_data pwm_meson8_v2_data = {
+>   	.channels_init = meson_pwm_init_channels_meson8b_v2,
+>   };
+>   
+> +static const struct meson_pwm_data pwm_s4_data = {
+> +	.channels_init = meson_pwm_init_channels_s4,
+> +};
+> +
+>   static const struct of_device_id meson_pwm_matches[] = {
+>   	{
+>   		.compatible = "amlogic,meson8-pwm-v2",
+> @@ -536,6 +571,10 @@ static const struct of_device_id meson_pwm_matches[] = {
+>   		.compatible = "amlogic,meson-g12a-ao-pwm-cd",
+>   		.data = &pwm_g12a_ao_cd_data
+>   	},
+> +	{
+> +		.compatible = "amlogic,meson-s4-pwm",
+> +		.data = &pwm_s4_data
+> +	},
+>   	{},
+>   };
+>   MODULE_DEVICE_TABLE(of, meson_pwm_matches);
+> 
+
 -- 
-2.39.3 (Apple Git-146)
-
+Best regards
+George
 
