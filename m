@@ -1,129 +1,114 @@
-Return-Path: <devicetree+bounces-75510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DEB2907881
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:43:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AD5890788E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:45:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7E701F21C93
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 16:43:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A951B1C21F40
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 16:45:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 395F2149C5A;
-	Thu, 13 Jun 2024 16:43:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAADF149C4E;
+	Thu, 13 Jun 2024 16:44:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MeCNc+eZ"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="nOgtUPa8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B11C149C4E;
-	Thu, 13 Jun 2024 16:43:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 777B61494AB
+	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 16:44:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718296989; cv=none; b=Aa4F5daOqbO7VrbOrwT7ifkEb4sU+ovS5QMdF7CoZXJzYCAM+8B361l4MEa5qrh5DnHJ8cuw+OHk3pfl3SgR+GRpdU6Q+knMFgOht/Ig38v90S23W702kZgLjzLvwHHHXsf0CP91aDNGyzuWwqQSAXh98GQWaoowwRiVukMOvFc=
+	t=1718297072; cv=none; b=mh586wWE8jvMfsqLIlvAKU6wNRmdXidOXyWWVhAGvEltzBnocWrTCKd8q2KtC79Ilt0cc+l+1sRzaFi7b/WzWkHeSgPX30Y42sPLUnlyTnRd2ygh/BL0PPmaiNdXQB1QNIKW8Vo3NimX+GIf/j2igHbZJJNi9pSJEe9A+Rr6tKA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718296989; c=relaxed/simple;
-	bh=5N86/34S9SsY993i4OkYsoiBIKBqPyqnwe4IRziKYTs=;
+	s=arc-20240116; t=1718297072; c=relaxed/simple;
+	bh=OYE/Xcvy7p3lJfgQxzABES7ztNGSQ3aAbGFD5fnWbL0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fxfRBSMaclnoUV6hKAbaVBRl4l0p5i6ZXd+P3X8z+DKFDRJmnDGFP+8b1XGDfIH+attj1hirgIkAWDYagJRmiWCpv0KfpV58pXbVz37Chw/pqiBwax6IF11xJuAu1rbWlz9IyM3dXzvx3OsCrCgb9uok6kQsb3GtfQqh7GMjYTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MeCNc+eZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A67BFC32786;
-	Thu, 13 Jun 2024 16:43:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718296988;
-	bh=5N86/34S9SsY993i4OkYsoiBIKBqPyqnwe4IRziKYTs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MeCNc+eZYG9ORTjLRsHrCVE8nxJrUu5YEgZ+GmPJIdJL17zuVlPmMEw5NRZ+Hee2u
-	 iyEdpY+bLyH0yoWJj2S0bdZgMpCshE/5SQC78dHWgtcNGWqNVqzCSDVxzufAmc95Up
-	 J92LVZmVkSXO5sy1DSlArRFK2tRL2FDVBwXeJr2tpe/f5lwCLGm2Z16WL3Vy/UQCMp
-	 M/EJYLLqfSi9Qgr4gB6qQtHEckyPmNMcvn4wMBNCyKHWZX4Mtjd0o3rhpx35Y/PC+K
-	 hekuJ2Ab5ob1sqFUtPxx+i2bm14JZPbOzQRXav2bdG/XtZGV37bgqnUy/nPCWJx3AD
-	 6KBcbZ0PteVKA==
-Date: Thu, 13 Jun 2024 17:43:03 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Alisa-Dariana Roman <alisadariana@gmail.com>
-Cc: Alisa-Dariana Roman <alisa.roman@analog.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Alexandru Tachici <alexandru.tachici@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v4 4/5] dt-bindings: iio: adc: ad7192: Add clock provider
-Message-ID: <20240613-porthole-hedging-6655d32072a8@spud>
-References: <20240613114001.270233-1-alisa.roman@analog.com>
- <20240613114001.270233-5-alisa.roman@analog.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=o+xYUBK/F0OONgYALn6RWdsiwoWG4iUa7MYctca0pJs+EFWRXCE/EBtKCH0I3mfPIKx+x/CSZj+1JMQwbXcZ19IlhZXFKc8F6RIQnzvSdm2OkZfZS05vULjvo0yAHeT9xJolyj36P1zPAeGTLbZe2rKECcW9wDCVUCTOLNXTEzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=nOgtUPa8; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-422954bbe29so86275e9.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 09:44:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1718297066; x=1718901866; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=60AjIXfo58T+HENYCNF845hVhoQVriIsm7V/ZBwIR6A=;
+        b=nOgtUPa8wDb/AzrfxrpzyL4rlLy3Jl4jn7YGI3UNW7ED5tqZXFT9+bS/3b9Mo8VHwS
+         XA6Gm+E12H7kIFX5vGD6xG2N3gyQB7z6t9m08Jo302b3PbhTVVoPzA/7zgSGqKOhOgAp
+         kHXiDQTMuMC1EgLEHZnTU7znwzRc9CW+bJdTFXKR5/KiBXzEO/TmU1nOz69MJFT7/s3a
+         5BK08WbeGA/++IjZcmhJItcmTYbVJwf5+8sH2vqjsw7Svx3tivFIcqPTclAfYyD9UR5N
+         I3VkJ2wA1VFRuWkfW61DwV4J5PWyvj4MB6fENn5KVaj0agGspXeCwtA4dgp8w/sHqWl7
+         KdcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718297066; x=1718901866;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=60AjIXfo58T+HENYCNF845hVhoQVriIsm7V/ZBwIR6A=;
+        b=FLztihu3UxQAQ61oEfLtNp1v4XQkfcx56gxnaoecLTvKkqjJIYrOrWYPkly4kYjziu
+         7VhgfUTt6xlEcN3Yv0kVoBp1wTGWG99v6mZi44vsXQnyDChv9+wv7HxHnZZg2KFNVQPy
+         VBqpevC+F5W4NqrHrB6sDp0fGBxXviqsaa/FvhxscYVJpES/E6BOwd7ldZ7ObXH0NjMC
+         9Q7L6/KqkFwYVCJcWfPtlPLWXJQfQcZ4yUA8IHtHXBWFA5AZYNAmE9kIDqDkIRo/m+Jw
+         h8VY/8wIGjbp6+iQPJ8pyft1s6BRp6KxZopRrCUKevz1vLfiBVhJ5SEAFmiJL3ANrv5S
+         kzmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXGHTkY6yINtI5W10icp97dm49rqj/yWDWpTz/CoOmBzbQepoc9dKQWIoW9Mw0BoCcd9+n9C9QQ7cjNFhTQsH+CPOaNlTPgpVKqFA==
+X-Gm-Message-State: AOJu0YzJS4njr2tB+9JKsBSheJPDQtT2z4TMqS+aw5fnnVPtYZTY6Kvw
+	skdRfppeWVvYnGuQ+2eOhlCj8m/abaQXLNHUi+YDGIY2lm6lB3C7A0Jp2G/WmhvnBe4I0mHqUuv
+	rKhMS
+X-Google-Smtp-Source: AGHT+IEKkUD3gscpagWRaWkiDGBIKwrinPH2oqVCfI52M6kqKGwJfJ4Fjefhxe6CptSIa/dUoU0i4g==
+X-Received: by 2002:a05:600c:c1a:b0:421:75af:e66f with SMTP id 5b1f17b1804b1-422d474b264mr2382325e9.2.1718297065579;
+        Thu, 13 Jun 2024 09:44:25 -0700 (PDT)
+Received: from google.com (216.131.76.34.bc.googleusercontent.com. [34.76.131.216])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36075104a26sm2176227f8f.97.2024.06.13.09.44.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Jun 2024 09:44:25 -0700 (PDT)
+Date: Thu, 13 Jun 2024 16:44:23 +0000
+From: Sebastian Ene <sebastianene@google.com>
+To: Marc Zyngier <maz@kernel.org>
+Cc: arnd@arndb.de, gregkh@linuxfoundation.org, will@kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Dragan Cvetic <dragan.cvetic@xilinx.com>,
+	Guenter Roeck <linux@roeck-us.net>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, kernel-team@android.com
+Subject: Re: [PATCH v2 0/2] misc: vcpu_stall_detector: Add a PPI interrupt
+Message-ID: <Zmsh53PnONKG23MC@google.com>
+References: <20240613141335.1134341-1-sebastianene@google.com>
+ <86tthwki93.wl-maz@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ZG98mhyg/OXpjdLh"
-Content-Disposition: inline
-In-Reply-To: <20240613114001.270233-5-alisa.roman@analog.com>
-
-
---ZG98mhyg/OXpjdLh
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <86tthwki93.wl-maz@kernel.org>
 
-On Thu, Jun 13, 2024 at 02:40:00PM +0300, Alisa-Dariana Roman wrote:
-> Internal clock of AD719X devices can be made available on MCLK2 pin. Add
-> clock provider to support this functionality.
->=20
-> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
-> ---
->  .../devicetree/bindings/iio/adc/adi,ad7192.yaml       | 11 ++++++++++-
->  1 file changed, 10 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml b/=
-Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
-> index 3ae2f860d24c..1434d89c2880 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
-> @@ -42,13 +42,20 @@ properties:
->      description: |
->        Optionally, either a crystal can be attached externally between MC=
-LK1 and
->        MCLK2 pins, or an external CMOS-compatible clock can drive the MCL=
-K2
-> -      pin. If absent, internal 4.92MHz clock is used.
-> +      pin. If absent, internal 4.92MHz clock is used, which can be made
-> +      available on MCLK2 pin.
-> =20
->    clock-names:
->      enum:
->        - xtal
->        - mclk
-> =20
-> +  "#clock-cells":
-> +    const: 0
-> +
-> +  clock-output-names:
-> +    maxItems: 1
+On Thu, Jun 13, 2024 at 03:52:08PM +0100, Marc Zyngier wrote:
+> On Thu, 13 Jun 2024 15:13:33 +0100,
+> Sebastian Ene <sebastianene@google.com> wrote:
+> > 
+> > Hello,
+> > 
+> > I respined the v2 version to address an issue previously found here:
+> > https://lore.kernel.org/all/202406132132.FBKSWFav-lkp@intel.com/
+> 
+> So is this v2 or v3? Having two v2s on the list is... confusing.
+> 
+> 	M.
+> 
 
-Why do you need an output name when you have exactly one clock?
+There is a small change in the patch 2/2 so you are right it should be v3,
+sorry for the confusion.
 
---ZG98mhyg/OXpjdLh
-Content-Type: application/pgp-signature; name="signature.asc"
+> -- 
+> Without deviation from the norm, progress is not possible.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmshlwAKCRB4tDGHoIJi
-0rN5AQDwx3OuFGaIq92gAW9SP4SawMqQkqEvdf2NqApMoU8puQD9E/24Paa8Ot5p
-Yw14vSKM8xuL+pvJgvu9QbMx9HMcywE=
-=1M/8
------END PGP SIGNATURE-----
-
---ZG98mhyg/OXpjdLh--
+Thanks,
+Seb
 
