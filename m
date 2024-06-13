@@ -1,117 +1,177 @@
-Return-Path: <devicetree+bounces-75599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00F5D907DA8
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 22:48:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B607B907DD5
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 23:10:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C4981C20E20
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 20:48:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C18EA1C224CC
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 21:10:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F51B13B5AC;
-	Thu, 13 Jun 2024 20:48:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8A3413BAC8;
+	Thu, 13 Jun 2024 21:10:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NoVlJBcz"
+	dkim=pass (2048-bit key) header.d=hauke-m.de header.i=@hauke-m.de header.b="sivM0bTx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0F3F13B588;
-	Thu, 13 Jun 2024 20:48:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35A1D139CE2;
+	Thu, 13 Jun 2024 21:10:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718311715; cv=none; b=BDyHQ4yDBaHbwi4/WMDq/+z/yWdR6STfMIRNEzQnjMc6dDWFfOBdMSXHrIpATJSRmXFuZAhkDM/m+e0bVxddkcFNoZ976LXfz+id3B0vXXbRvdmeuOt8gmRHU17cWNAHSDWSzof0ShSFBj81ys8s3YFkTh8OrXjccRTRAz+DJRE=
+	t=1718313016; cv=none; b=R+LgeZeAZeRwqKc6K+P6kZsu/LOY36KsD+hNyJXpcbOhe84sNAIiUz/MrOsrmX8NO3jgY53kBrlLgQhSI6aql9aEghcSlvrLM0aAz43GItNz7X7Y0JvH26qlzstBIZCPeo/6Qa+kjeDOgQrNhvHB9D5M6eavHfWzTZQ6127voO4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718311715; c=relaxed/simple;
-	bh=L0KOOhVuxd60mrMOguSYJIgTVodk+yK+4lWwef/NX5E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OGQWx9L31D4K0duYqH9E4eCyoBL0ecAXtmCPWYNgYrz4DvtFz81JDJmVwks+tlH4A3CKNMWzvUJpUyiCDm5HX75jCBC85ocme7nm3A6fMTlixkZGcgxtFLZ8FiZ7Kpzr3+dxLdqc0YBsVmjYVaRw2PzB1xbKRgkJNnFg09nnEtg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NoVlJBcz; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a6efae34c83so195519566b.0;
-        Thu, 13 Jun 2024 13:48:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718311712; x=1718916512; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rvk0v4yG3/t6YZyQfeNudt0AkpCPJ7jKM98d8gPFSTI=;
-        b=NoVlJBczu7ICMMcpQpoCPqmlg6HFtFBhoyVAIZyazmBMbqRWrQoYxSWRQssJb4ScQ9
-         37+r8w3aw2n3OO43CiUkoaTbS6aKwFoBPEHqcV8u+1mLU34Zo0vRe8gK8BK2vr1zZV/P
-         DABQgnxR6WxQYlUEc8nmkFK/f6dN/wi5faVP6PnfPfamAkJCkOB3xHgZZIHDK3m32Kdw
-         S9iBtOozdlIGsp9y/pVx5qn64Nwa/oBQz7i8ZASCr2v5xiOiCHpMDMb43s2Xpl/jeLhY
-         GhqHkG1JThZjt3MX1GNb7bLcOhshW5rI2JFZ9GCXzuJTNjv3m1PR2T5WtyE3/iN6D6oD
-         ocCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718311712; x=1718916512;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rvk0v4yG3/t6YZyQfeNudt0AkpCPJ7jKM98d8gPFSTI=;
-        b=bD5b98OUsrj29SJJlNdSDtQFHFr+DaUxhvUe69g4rsZ5ux/m8npdIxTUkJA5OPW6dV
-         bqkiMH1iz1pGZDHCoHoe1UJUQp+TDvZDr5dKJHdahSJJxbAdFW/IgoOo7K7acfggRqjE
-         A4UEzTU3SV2qDTZYXpHh/+h/WBVRo6yuy+HXuh6tLCUDtjgTh+2jz+wq3wGs4gLNBeo2
-         bWLsqoe52RQmH/XG4+aTyGJG9RBApkV7GBspfgpyZIC87juCe8ZjZ1wrDHh6iZexu3nk
-         /ylh6s+HZnYyfIiglmn6Nf2JLNw3qoJ0fqVv1HWx8gkkT9DFcUJLrulwlZYmpaP5KpuA
-         PFrg==
-X-Forwarded-Encrypted: i=1; AJvYcCWAiArLu2mLsRghvp2EOBIe++51/tLL5cKDy2bib013jL89aFPwUA2GfqXNucN+hhLPwbUvLtqlmwUPINJrE85OfXCN3vCayTIRLw==
-X-Gm-Message-State: AOJu0Yy4I1FaKgqCGAWUvON0iDYXFn1cCzhgiKe6OYI1mwvViDxiMzbu
-	YvUIbz5kOwabi1d6C8PYeLg3FLASiBbZof9oPZhPwKhcJU6SxZl70QUdxTE7nETN8K0Hv1BiRN9
-	k9MBxBB9eXqa9IlP5wo2id8gSpefXGGN9fm+62g==
-X-Google-Smtp-Source: AGHT+IHyDh4OwJuVVLPRPUIEuzM7hBD6hlZs2pDuXDTrOXcX6l7ZkjvT/zo0+umsZaIkXSyToKl3k1BnsORmyrYmlVs=
-X-Received: by 2002:a17:906:f901:b0:a6f:309d:ec23 with SMTP id
- a640c23a62f3a-a6f60de68bdmr45626766b.72.1718311711947; Thu, 13 Jun 2024
- 13:48:31 -0700 (PDT)
+	s=arc-20240116; t=1718313016; c=relaxed/simple;
+	bh=1J4WLBtZ95L8XtXYwCU1lBJTRVbRe4D591TuQlCYEHM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=HnrjlAuleO0nRK4dPAt1Y3F5lKR8qMtYWsNK2Q6HRogDTwDnJay4YN8Lwg9hTlt8xthdTgv9i2nA4eoArFTntde5zGGiFi4o/hf2MuA7Dg6LVCIbNuLLFT7b37xsHs1Uy4iiyXXc+dmqupQlDjEhDQGYAOOthEkzMaZ5c18amuM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hauke-m.de; spf=pass smtp.mailfrom=hauke-m.de; dkim=pass (2048-bit key) header.d=hauke-m.de header.i=@hauke-m.de header.b=sivM0bTx; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hauke-m.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hauke-m.de
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4W0Zmy33WLz9sPq;
+	Thu, 13 Jun 2024 23:10:10 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hauke-m.de; s=MBO0001;
+	t=1718313010;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Zf/D0AMDmsG7+mRQtcpHFjZ6BvLst9hXH1WNYtGV8o0=;
+	b=sivM0bTxsqdxmFANQaTA5jst3UhQRRoBhxKaU4DCdHIjOp5u+0tVO/l4/8oPPdfXBuy0su
+	q+0bDukQL6xZ7573zc92yW924ivLssKZ/Q8gC3PFvj28t3GYmeC8IMJGYwB4MoH4LEUsNL
+	l9OC6FT83P2hXD0KbUyBkf3gETKgGWi2HWrwOtOII/lpj250pXPiKG+4xjzlaZ4xTwPSQI
+	0paINADGZDr8vTYHVc6eFPgXFa8L5N1mNNeL8MI7oBI9UE2negABMB8ecTyrhtuM2UYUX3
+	DnxZvp8BhZvWQCqLDhPup9ze6paM7fLaxfvKXM+6k7zHTas63jgmI63sCx6XiA==
+Message-ID: <93428cdd-301a-46d7-84ef-e5c8ad42f495@hauke-m.de>
+Date: Thu, 13 Jun 2024 23:09:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240613082528.22591-1-hui.wang@canonical.com> <20240613082528.22591-2-hui.wang@canonical.com>
-In-Reply-To: <20240613082528.22591-2-hui.wang@canonical.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 13 Jun 2024 22:47:55 +0200
-Message-ID: <CAHp75VcuobPDHX8eAskc-=SL5_527PqRiNCSfq09=RpP9EH0cA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] serial: sc16is7xx: hardware reset chip if
- reset-gpios is defined in DT
-To: Hui Wang <hui.wang@canonical.com>
-Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
-	gregkh@linuxfoundation.org, jirislaby@kernel.org, hvilleneuve@dimonoff.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org, 
-	lech.perczak@camlingroup.com, Maarten.Brock@sttls.nl
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 2/9] block: partitions: populate fwnode
+To: Daniel Golle <daniel@makrotopia.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Jens Axboe <axboe@kernel.dk>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
+ Christian Brauner <brauner@kernel.org>,
+ =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+ Al Viro <viro@zeniv.linux.org.uk>, Li Lingfeng <lilingfeng3@huawei.com>,
+ Christian Heusel <christian@heusel.eu>, Min Li <min15.li@samsung.com>,
+ Avri Altman <avri.altman@wdc.com>, Adrian Hunter <adrian.hunter@intel.com>,
+ Hannes Reinecke <hare@suse.de>, Mikko Rapeli <mikko.rapeli@linaro.org>,
+ Yeqi Fu <asuk4.q@gmail.com>, Victor Shih <victor.shih@genesyslogic.com.tw>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Li Zhijian <lizhijian@fujitsu.com>,
+ "Ricardo B. Marliere" <ricardo@marliere.net>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+ linux-block@vger.kernel.org
+References: <cover.1717031992.git.daniel@makrotopia.org>
+ <3329bf2fa25695934b392944ff977ae95dc8c02d.1717031992.git.daniel@makrotopia.org>
+Content-Language: en-US
+From: Hauke Mehrtens <hauke@hauke-m.de>
+In-Reply-To: <3329bf2fa25695934b392944ff977ae95dc8c02d.1717031992.git.daniel@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 4W0Zmy33WLz9sPq
 
-On Thu, Jun 13, 2024 at 10:26=E2=80=AFAM Hui Wang <hui.wang@canonical.com> =
-wrote:
+Hi Daniel,
 
-> Some boards connect a GPIO to the reset pin, and the reset pin needs
-> to be setup correctly before accessing the chip.
+On 5/30/24 04:13, Daniel Golle wrote:
+> Let block partitions to be represented by a firmware node and hence
+> allow them to being referenced e.g. for use with blk-nvmem.
+> 
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+>   block/partitions/core.c | 41 +++++++++++++++++++++++++++++++++++++++++
+>   1 file changed, 41 insertions(+)
+> 
+> diff --git a/block/partitions/core.c b/block/partitions/core.c
+> index ab76e64f0f6c..93d109409905 100644
+> --- a/block/partitions/core.c
+> +++ b/block/partitions/core.c
+> @@ -10,6 +10,8 @@
+>   #include <linux/ctype.h>
+>   #include <linux/vmalloc.h>
+>   #include <linux/raid/detect.h>
+> +#include <linux/property.h>
+> +
+>   #include "check.h"
+>   
+>   static int (*const check_part[])(struct parsed_partitions *) = {
+> @@ -281,6 +283,43 @@ static ssize_t whole_disk_show(struct device *dev,
+>   }
+>   static const DEVICE_ATTR(whole_disk, 0444, whole_disk_show, NULL);
+>   
+> +static struct fwnode_handle *find_partition_fwnode(struct block_device *bdev)
+> +{
+> +	struct fwnode_handle *fw_parts, *fw_part;
+> +	struct device *ddev = disk_to_dev(bdev->bd_disk);
+> +	const char *partname, *uuid;
+> +	u32 partno;
+> +
+> +	fw_parts = device_get_named_child_node(ddev, "partitions");
+> +	if (!fw_parts)
+> +		fw_parts = device_get_named_child_node(ddev->parent, "partitions");
 
-set up
+Could you please explain why you try to get the node from the device and 
+the parent when it is not available? I think this should go into the 
+commit description.
 
-> Add a function to handle the chip reset. If the reset-gpios is defined
-> in the DT, do hardware reset through this GPIO, othwerwise do software
+> +
+> +	if (!fw_parts)
+> +		return NULL;
+> +
+> +	fwnode_for_each_child_node(fw_parts, fw_part) {
+> +		if (!fwnode_property_read_string(fw_part, "uuid", &uuid) &&
+> +		    (!bdev->bd_meta_info || strncmp(uuid,
+> +						    bdev->bd_meta_info->uuid,
+> +						    PARTITION_META_INFO_UUIDLTH)))
 
-otherwise
+I think you should check that the uuid provided in the device tree is 
+not longer than PARTITION_META_INFO_UUIDLTH. Same for the volume name.
 
-> reset as before.
+> +			continue;
+> +
+> +		if (!fwnode_property_read_string(fw_part, "partname", &partname) &&
+> +		    (!bdev->bd_meta_info || strncmp(partname,
+> +						    bdev->bd_meta_info->volname,
+> +						    PARTITION_META_INFO_VOLNAMELTH)))
+> +			continue;
+> +
+> +		if (!fwnode_property_read_u32(fw_part, "partno", &partno) &&
+> +		    bdev_partno(bdev) != partno)
+> +			continue;
+> +
+> +		return fw_part;
+> +	}
+> +
+> +	return NULL;
+> +}
+> +
+>   /*
+>    * Must be called either with open_mutex held, before a disk can be opened or
+>    * after all disk users are gone.
+> @@ -355,6 +394,8 @@ static struct block_device *add_partition(struct gendisk *disk, int partno,
+>   			goto out_put;
+>   	}
+>   
+> +	device_set_node(pdev, find_partition_fwnode(bdev));
+> +
+>   	/* delay uevent until 'holders' subdir is created */
+>   	dev_set_uevent_suppress(pdev, 1);
+>   	err = device_add(pdev);
 
-...
+Hauke
 
-> +               /* The minimum reset pulse width is 3 us. */
-> +               usleep_range(5, 10);
-
-Simply use fsleep() and it will take care of the sane API to be called.
-
-> +               gpiod_set_value_cansleep(reset_gpio, 0); /* Deassert GPIO=
- */
-
---=20
-With Best Regards,
-Andy Shevchenko
 
