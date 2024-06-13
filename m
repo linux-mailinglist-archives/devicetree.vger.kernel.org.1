@@ -1,153 +1,114 @@
-Return-Path: <devicetree+bounces-75374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 608F8906B07
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 13:33:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33A85906B64
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 13:40:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 16DE91F2437B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 11:33:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4FB3284956
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 11:40:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E40514265A;
-	Thu, 13 Jun 2024 11:33:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7405B143753;
+	Thu, 13 Jun 2024 11:40:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="TBdd6o8I"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NlTZQzOE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2111F13791B;
-	Thu, 13 Jun 2024 11:33:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0D1ADDB1;
+	Thu, 13 Jun 2024 11:40:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718278416; cv=none; b=a3Clj1j2wIEV0kbMgetXjfDaR7gxtoQfTlM056d18Y0rT9Qkofh671F1DIFlsV1Vx1ToPXah2qQZj36armym0wh+hGTPLCo9N16JLQNmi+CZpR4xPJD9b4swS2hHOIOFZx6h9uRVxLlORFTO1szaoWK2OpFSlV5t5dl3yA3D1dg=
+	t=1718278819; cv=none; b=Qgro3ptOd7mVnYSUp1ZXFK+NHnlq6PkGAOlX+J6MeJo7r3vd0tZnq+MKPzY5lnBfXzgXXu3y9JVKMuaThGAzTS2nURFC/30m1Re9wP74wArUnRtnjkVMtvUAPwLZpYANd0ldwV9HGM0oIYfhuAo4xiaTJOUffniZvu+QXZjggvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718278416; c=relaxed/simple;
-	bh=ucfrA2j0rBj3YvmedfvAcA3pDUmA+c5bWw/5+PdY7O0=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BOuvlsYgFBDZEknCd9GaBm+8UxmoEpuFGZqSLQytea9hmf0noRqk7sUeR9w3eiX3B9oA1r3NIBzl3iMHX42azh01Acq2T0Vo9zl6yCf9X2V9B1KptH4qzhWN+cZihyzFwyK78Xobhay4W4NR6sHBdQccFUX0Iq4eI2u7haX6Bdo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=TBdd6o8I; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45DBXLb2070819;
-	Thu, 13 Jun 2024 06:33:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1718278401;
-	bh=2C5M7WDgX8YUaJV0vHBdSVcnWLy+EfLkxH20fNG3az0=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=TBdd6o8INGJ4EqwaZeHWhJ0pZ/V98bmH+TWnzZWRyDUK32uIGxXwafBhjXrCm/6Lc
-	 r3UW9AtBIBuzc5Ufy8RP+YrM7qc+KXiAzvY267WTRBcvyTWcjupneyJXnBkzHTcoHj
-	 WpyK6p05wzrMkAJWGYtcjVZ1+zI6PeuJxz3mezmA=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45DBXL3U003734
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 13 Jun 2024 06:33:21 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 13
- Jun 2024 06:33:20 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 13 Jun 2024 06:33:20 -0500
-Received: from localhost (dhruva.dhcp.ti.com [172.24.227.68])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45DBXKHf080886;
-	Thu, 13 Jun 2024 06:33:20 -0500
-Date: Thu, 13 Jun 2024 17:03:19 +0530
-From: Dhruva Gole <d-gole@ti.com>
-To: Bryan Brattlof <bb@ti.com>
-CC: "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar
-	<viresh.kumar@linaro.org>, Lee Jones <lee@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Vibhore Vardhan
-	<vibhore@ti.com>,
-        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 2/5] cpufreq: ti: update OPP table for AM62Px SoCs
-Message-ID: <20240613113319.kryllyhrqzcnjqgk@dhruva>
-References: <20240612-ti-opp-updates-v2-0-422b6747a254@ti.com>
- <20240612-ti-opp-updates-v2-2-422b6747a254@ti.com>
+	s=arc-20240116; t=1718278819; c=relaxed/simple;
+	bh=tMqC65DltYXqTua3E1Oqfssw69H28h3Q1GUd7L+b/uU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=f2eTLnmf4EgwF9WkTCppNckd3uz47GRxn0+R/xUHVyB/GWrmduV3Vp4P5/oJ8meMB4qPg9M/sMlIf/o695YJucSjwwL0Cp3Vwvjab0RKDJNlQWZRUjBDFe6BS0e0nE8OjaVnZA38Rt1qLiuNk3i9mCoqr/zZd0PiO0T6SWFW1NY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NlTZQzOE; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-572c65cea55so1660831a12.0;
+        Thu, 13 Jun 2024 04:40:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718278816; x=1718883616; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nNn2uoAeoafl6/c7U62h8fnbOC0ll8teuTuelcjzxW4=;
+        b=NlTZQzOEvx2W0dQ7ncdBueN3P489rm88Uzo/I9MB+eHDcZHFdjb9RUT8d3aAcd3o2A
+         W45KaIPxP4VD6Bhaxr60peGDyBTAYwUGBUU55iXgUbtfDaoFaz4c4Ogno2HAh1VR994u
+         FJ74qlFC4ZxddxjJYx1YrAQwTUdMmp7aeJZPkC2/r7X2FtPo2Yy1dXTi3ColY4ZeuSmc
+         UnJ45U7ujBKvHEhH8LhMSbGCkHDyP2Xy5uyEnnCmAEcz3W1sJ1u5xnEL+ZkDTj0J61QM
+         Ievn9pVNXtsQyfzjqWtJi2LEZ9/+hjRVUawkZTQwihTdewNYqdZ1sloK0Nj0FyGvc62f
+         HPjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718278816; x=1718883616;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nNn2uoAeoafl6/c7U62h8fnbOC0ll8teuTuelcjzxW4=;
+        b=h591GnykSdX/Cgwy2HCn+9oTvSJnWkreG+4iKnX923GpoS+IJ1kpd7vVjPFEAyQfxI
+         PASAPx1sqhnTK9isgez7Y7yuny49d79bEv8B44dnpr6jgnL1FoJqlfaTDuiuAXkrp9GJ
+         tjG3WiGPK4oo0ivSxc0KkkL/kHzAcOF2BFow2//4aGeYUMu6nxr+LIAnhWYKBG6tlhny
+         TqbzbfqIoCKTUqoSOKEBaHkR/InjcW/NXfAgUA7ct0h8E6MWyMjGBUMyn4HNT5iLTlyU
+         g9b8eQDw0DPsDRA45GsiW3uYOzRGkjIW418d7J71AVsQOaFC8lkBSCrbtYY8EIyPfLSV
+         oLbw==
+X-Forwarded-Encrypted: i=1; AJvYcCWy4EslP5qtAUx8ceREclZ2ZBrM4Moqpqzs2ZLtzDcIhjZ0cnwpFB4b9O8oauVnlB5yx5v3d9tfO8KPGwfsHbHcL57skYchetmDfMxaSjFpXv2DQqVJX1xuQTmQHexnonyMVt0N5zEOWTitve7/PZFQ3nH2Zp8gcZvL9Q+hulJUvLbWDQ==
+X-Gm-Message-State: AOJu0Yw7upIyziP6IANs5ia4JLr2uCq0/KVJ0kh2kBgcAxU4/BGnr+e5
+	DAUV4sJxrTIjNabrSzaf4Q/2rRuCqd66L6DE/8Glj3LoVBGdPsVB
+X-Google-Smtp-Source: AGHT+IHqSWzrnI7xEm9xaq1aR9WjLlzno5cYsJXTpX348dURf7JwqtRAKGtFUhlhjsz9WjDmmgfRcQ==
+X-Received: by 2002:a50:cd01:0:b0:57a:27e8:deb with SMTP id 4fb4d7f45d1cf-57cb4bce4f5mr2038308a12.12.1718278815866;
+        Thu, 13 Jun 2024 04:40:15 -0700 (PDT)
+Received: from spiri.. ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57cbb05b465sm308861a12.18.2024.06.13.04.40.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Jun 2024 04:40:15 -0700 (PDT)
+From: Alisa-Dariana Roman <alisadariana@gmail.com>
+X-Google-Original-From: Alisa-Dariana Roman <alisa.roman@analog.com>
+To: Alisa-Dariana Roman <alisa.roman@analog.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Alexandru Tachici <alexandru.tachici@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Subject: [PATCH v4 0/5] iio: adc: ad7192: Improvements
+Date: Thu, 13 Jun 2024 14:39:56 +0300
+Message-Id: <20240613114001.270233-1-alisa.roman@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240612-ti-opp-updates-v2-2-422b6747a254@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 
-On Jun 12, 2024 at 18:17:35 -0500, Bryan Brattlof wrote:
-> More speed grades for the AM62Px SoC family have been defined which
-> unfortunately no longer align with the AM62x table. So create a new
-> table with these new speed grades defined for the AM62Px
-> 
-> Signed-off-by: Bryan Brattlof <bb@ti.com>
-> ---
->  drivers/cpufreq/ti-cpufreq.c | 35 ++++++++++++++++++++++++++++++++++-
->  1 file changed, 34 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/cpufreq/ti-cpufreq.c b/drivers/cpufreq/ti-cpufreq.c
-> index a80698f3cfe65..6c84562de5c6b 100644
-> --- a/drivers/cpufreq/ti-cpufreq.c
-> +++ b/drivers/cpufreq/ti-cpufreq.c
-> @@ -69,6 +69,13 @@ enum {
->  #define AM62A7_SUPPORT_R_MPU_OPP		BIT(1)
->  #define AM62A7_SUPPORT_V_MPU_OPP		BIT(2)
->  
-> +#define AM62P5_EFUSE_O_MPU_OPP			15
-> +#define AM62P5_EFUSE_S_MPU_OPP			19
-> +#define AM62P5_EFUSE_U_MPU_OPP			21
-> +
-> +#define AM62P5_SUPPORT_O_MPU_OPP		BIT(0)
-> +#define AM62P5_SUPPORT_U_MPU_OPP		BIT(2)
-> +
->  #define VERSION_COUNT				2
->  
->  struct ti_cpufreq_data;
-> @@ -134,6 +141,23 @@ static unsigned long omap3_efuse_xlate(struct ti_cpufreq_data *opp_data,
->  	return BIT(efuse);
->  }
->  
-> +static unsigned long am62p5_efuse_xlate(struct ti_cpufreq_data *opp_data,
-> +					unsigned long efuse)
-> +{
-> +	unsigned long calc_efuse = AM62P5_SUPPORT_O_MPU_OPP;
+Dear everyone,
 
-This and he earlier patch, why not continue using the name convention
-calculated_efuse like in am625 and dra ?
+Thank you very much for your feedback!
 
-> +
-> +	switch (efuse) {
-> +	case AM62P5_EFUSE_U_MPU_OPP:
-> +	case AM62P5_EFUSE_S_MPU_OPP:
-> +		calc_efuse |= AM62P5_SUPPORT_U_MPU_OPP;
-> +		fallthrough;
-> +	case AM62P5_EFUSE_O_MPU_OPP:
-> +		calc_efuse |= AM62P5_SUPPORT_O_MPU_OPP;
-> +	}
-> +
-> +	return calc_efuse;
-> +}
-> +
->  static unsigned long am62a7_efuse_xlate(struct ti_cpufreq_data *opp_data,
->  					unsigned long efuse)
+Here is the updated series. Please consider applying the commits in
+order!
 
-Otherwise, Looks good.
-Reviewed-by: Dhruva Gole <d-gole@ti.com>
+Kind regards,
+Alisa-Dariana Roman.
 
--- 
-Best regards,
-Dhruva
+v3 -> v4
+  add clock provider patches
+  add clean up dev patch
+  as Nuno Sa pointed out, the old implementation of clock config was not
+buggy, so the update clock config patches are no longer fixes
+
+
 
