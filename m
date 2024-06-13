@@ -1,211 +1,122 @@
-Return-Path: <devicetree+bounces-75483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFCE890765A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 17:16:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0015490768D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 17:26:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6433B1F274D0
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 15:16:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9DFF91F2178D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 15:26:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C62E1494D1;
-	Thu, 13 Jun 2024 15:16:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31B621494D6;
+	Thu, 13 Jun 2024 15:26:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nx9ykxZz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ns.iliad.fr (ns.iliad.fr [212.27.33.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 921AB1474CE;
-	Thu, 13 Jun 2024 15:16:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.27.33.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D035F14883C;
+	Thu, 13 Jun 2024 15:26:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718291808; cv=none; b=RPH+fJXAgKZmbp6lJQfLe3HeQ3y/lfoetOH/E8HxwXN/XEpLZwKfebqAOl+G+PopH5B567fI1RyL6zz4AEGak4egY3hke4OrX0NCu0QG2fOoDyNXRsaFPuRGho49c7vTnxZAirBICiTYOYXzG9bGaSL8Rssg/1O4mUcIYYMulTk=
+	t=1718292392; cv=none; b=fdWDeWB9+cPc6XPsIen+CMt0n6BQXQyMG2i7UJcTjaLzgUG/vFfdr/fQYf4qHhe2W7sLZ/528YWDzw9MgblXRKHo4975l6rWOEhbijBW5RinO3lbYNimslN1FJu+dbKvYTCIiIwhYzFNbJgBDfHWns6TaXMKUWzmPyWprO1WYNc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718291808; c=relaxed/simple;
-	bh=wntyBBNtb+Kk/4tGJA4KVgZYDk62XkaESCIOagS9K9g=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=btyqVMz2v8BnhhUcqQXnTqaSxumeTXaeD+1g2+P5tbdffFbFkCRNz4pnHK59askJMuXaWRZLtSHprFA3r9/lf/NaIoqnb0XXyCzEN6OONKQAuEGxwA9Ra/rLwYJFAFMbmcuqRZ9xgF4EnBhZq62LWyil9Pc+yRPFzDQ4v1n4OfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=srs.iliad.fr; arc=none smtp.client-ip=212.27.33.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=srs.iliad.fr
-Received: from ns.iliad.fr (localhost [127.0.0.1])
-	by ns.iliad.fr (Postfix) with ESMTP id 1D9F520FC7;
-	Thu, 13 Jun 2024 17:16:37 +0200 (CEST)
-Received: from [127.0.1.1] (freebox.vlq16.iliad.fr [213.36.7.13])
-	by ns.iliad.fr (Postfix) with ESMTP id 0502920CF1;
-	Thu, 13 Jun 2024 17:16:37 +0200 (CEST)
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-Date: Thu, 13 Jun 2024 17:15:53 +0200
-Subject: [PATCH v4 4/4] arm64: dts: qcom: add HDMI nodes for msm8998
+	s=arc-20240116; t=1718292392; c=relaxed/simple;
+	bh=YZ/wqfvO/lskIg9NtcF7V1IpEnsIkDRfYMvzkpIFrFA=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=QrmfWbv5Qur/iwHjr5DD+E8bXNLRubrHnvzZ3pG1i9DO96Mazl2ii5DNiDNuk0XHLH2Gv4zEifnRiWjL9oDi0Xi3sHw+GdqHNg2a4ipwzI52ToJD5UEVk/69HoIzs7lwDM8T5CrF6TiZIRTjeBHTQIgH7AxjWCblS3cGeN7VUXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nx9ykxZz; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-70599522368so893560b3a.2;
+        Thu, 13 Jun 2024 08:26:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718292390; x=1718897190; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=XksUZgqg8NfeHhI39cm8pxdIZtUDqwJpq3PLGmvWKlA=;
+        b=Nx9ykxZzln1oVvUyUa0G7azYEbX1sXyqcpj3TyPO+JFSko3g5wCjYDgcSz6UX4p0S5
+         i6Rd6KpO3qBJiyScC3s7wnKZE55uZIPrnAO8NLX3iP7DZBSmUVSasEFaI57OUM6GRzfK
+         3a0gf+aFif9heAi6y//FI6eah8nOO85g/DlQnZFZzAIL1P5W9mulkpGdmX5EmEHS2RtS
+         O3jvzSe0D9KPyfBcrSB6LZGR5SV3xc8d24VtcCmExUzbqz2N8O5Sl6g7I4LcnRNWqA82
+         D7elOWDSB1kAEXM5R8T8xOlY8QPukC0pHz82+bg+2jKos8a4OeYG3IfAfKuvSmqWL165
+         zyeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718292390; x=1718897190;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XksUZgqg8NfeHhI39cm8pxdIZtUDqwJpq3PLGmvWKlA=;
+        b=aDgBhHes5cCA5Fl45Gl8dLp6tP58GO+rXIaVBMzrN+9KLC/XXXp8L8OQ9uUoIW6PNy
+         r/aJf9B48RKELTqBOPaK7Umsx2igBrvVNjFIlta8Wy9KF5AP7eOh1aYX/MrgplYukJrQ
+         3L5RDXokXM+0k/viwrT/rSNgOwUsAHCpR+d6CyoVTy4cgVD+yXFj3GUv8oUygkfFgW6y
+         86GEKGa3XUETCbzaUFDIUoOJp1nrEHd7aDpwHJv7NNgl+HBqtycS6tdk05x32/3HvlB7
+         aIEB5NurhIBMTriZhii4v9StYO8/qX+Kk7fMhfPbdVkaZ9tb6cgFo+fJieAHhp4ZDGkA
+         LqEw==
+X-Forwarded-Encrypted: i=1; AJvYcCW/mPwZ4ExaWNKMfb19+YtTPni5NAPzIbEGZPWrphZkghtiRkY5A7XeueNgP94lZpyWRvFGiM8W9RBhPRCKFNCkscygFmfulQztKbEZ1vbxQ7brh3j4NskY9EeGAfuuv6JD7U3+/GGtsQ==
+X-Gm-Message-State: AOJu0YwfLjVY+1OiIyrkCsexn2RtGkL6mOTZm3qMM11Ubzxw3sNLREWf
+	bDrMwrKPMByRFRaDZ7O/iX38hLbbys9no1Jz4FkUngFWyfaiiIiyMgk8MQ==
+X-Google-Smtp-Source: AGHT+IE5EGv/LZQSRF88ln1cUwqt+xnBZ3RL9ku+PGn1tJNTrwmyidsoS6sanfiqW8DZpU05wSZdxw==
+X-Received: by 2002:a05:6a20:7fa9:b0:1b6:dd01:ad2c with SMTP id adf61e73a8af0-1bae8214321mr190662637.44.1718292389931;
+        Thu, 13 Jun 2024 08:26:29 -0700 (PDT)
+Received: from peter-bmc.dhcpserver.bu9bmc.local (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-6fee41663d2sm1198183a12.92.2024.06.13.08.26.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Jun 2024 08:26:29 -0700 (PDT)
+From: Peter Yin <peteryin.openbmc@gmail.com>
+To: patrick@stwcx.xyz,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/7] Revise Meta(Facebook) Harma BMC(AST2600)
+Date: Thu, 13 Jun 2024 23:24:18 +0800
+Message-Id: <20240613152425.1582059-1-peteryin.openbmc@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240613-hdmi-tx-v4-4-4af17e468699@freebox.fr>
-References: <20240613-hdmi-tx-v4-0-4af17e468699@freebox.fr>
-In-Reply-To: <20240613-hdmi-tx-v4-0-4af17e468699@freebox.fr>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Rob Clark <robdclark@gmail.com>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, Arnaud Vrac <avrac@freebox.fr>, 
- Pierre-Hugues Husson <phhusson@freebox.fr>, 
- Marc Gonzalez <mgonzalez@freebox.fr>
-X-Mailer: b4 0.13.0
+Content-Transfer-Encoding: 8bit
 
-From: Arnaud Vrac <avrac@freebox.fr>
+Summary:
+Revise linux device tree entry related to Meta(Facebook) Harma
+specific devices connected to BMC(AST2600) SoC.
 
-Port device nodes from vendor code.
+Base on: https://lore.kernel.org/all/CAPSyxFRj0twCJG6Lr5UZpznrUHyd_L0Reo=kZSFwCw3FNQ+x+A@mail.gmail.com/
 
-Signed-off-by: Arnaud Vrac <avrac@freebox.fr>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
----
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 100 +++++++++++++++++++++++++++++++++-
- 1 file changed, 99 insertions(+), 1 deletion(-)
+Change log:
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index ba5e873f0f35f..5c53957da61c5 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -2785,7 +2785,7 @@ mmcc: clock-controller@c8c0000 {
- 				 <&mdss_dsi0_phy 0>,
- 				 <&mdss_dsi1_phy 1>,
- 				 <&mdss_dsi1_phy 0>,
--				 <0>,
-+				 <&hdmi_phy 0>,
- 				 <0>,
- 				 <0>,
- 				 <&gcc GCC_MMSS_GPLL0_DIV_CLK>;
-@@ -2890,6 +2890,14 @@ dpu_intf2_out: endpoint {
- 							remote-endpoint = <&mdss_dsi1_in>;
- 						};
- 					};
-+
-+					port@2 {
-+						reg = <2>;
-+
-+						dpu_intf3_out: endpoint {
-+							remote-endpoint = <&hdmi_in>;
-+						};
-+					};
- 				};
- 			};
- 
-@@ -3045,6 +3053,96 @@ mdss_dsi1_phy: phy@c996400 {
- 
- 				status = "disabled";
- 			};
-+
-+			hdmi: hdmi-tx@c9a0000 {
-+				compatible = "qcom,hdmi-tx-8998";
-+				reg =	<0x0c9a0000 0x50c>,
-+					<0x00780000 0x6220>,
-+					<0x0c9e0000 0x2c>;
-+				reg-names = "core_physical",
-+					    "qfprom_physical",
-+					    "hdcp_physical";
-+
-+				interrupt-parent = <&mdss>;
-+				interrupts = <8>;
-+
-+				clocks = <&mmcc MDSS_MDP_CLK>,
-+					 <&mmcc MDSS_AHB_CLK>,
-+					 <&mmcc MDSS_HDMI_CLK>,
-+					 <&mmcc MDSS_HDMI_DP_AHB_CLK>,
-+					 <&mmcc MDSS_EXTPCLK_CLK>,
-+					 <&mmcc MDSS_AXI_CLK>,
-+					 <&mmcc MNOC_AHB_CLK>,
-+					 <&mmcc MISC_AHB_CLK>;
-+				clock-names =
-+					"mdp_core",
-+					"iface",
-+					"core",
-+					"alt_iface",
-+					"extp",
-+					"bus",
-+					"mnoc",
-+					"iface_mmss";
-+
-+				phys = <&hdmi_phy>;
-+				#sound-dai-cells = <1>;
-+
-+				pinctrl-names = "default", "sleep";
-+				pinctrl-0 = <&hdmi_hpd_default
-+					     &hdmi_ddc_default
-+					     &hdmi_cec_default>;
-+				pinctrl-1 = <&hdmi_hpd_sleep
-+					     &hdmi_ddc_default
-+					     &hdmi_cec_default>;
-+
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+						hdmi_in: endpoint {
-+							remote-endpoint = <&dpu_intf3_out>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+						hdmi_out: endpoint {
-+						};
-+					};
-+				};
-+			};
-+
-+			hdmi_phy: hdmi-phy@c9a0600 {
-+				compatible = "qcom,hdmi-phy-8998";
-+				reg = <0x0c9a0600 0x18b>,
-+				      <0x0c9a0a00 0x38>,
-+				      <0x0c9a0c00 0x38>,
-+				      <0x0c9a0e00 0x38>,
-+				      <0x0c9a1000 0x38>,
-+				      <0x0c9a1200 0x0e8>;
-+				reg-names = "hdmi_pll",
-+					    "hdmi_tx_l0",
-+					    "hdmi_tx_l1",
-+					    "hdmi_tx_l2",
-+					    "hdmi_tx_l3",
-+					    "hdmi_phy";
-+
-+				#clock-cells = <0>;
-+				#phy-cells = <0>;
-+
-+				clocks = <&mmcc MDSS_AHB_CLK>,
-+					 <&gcc GCC_HDMI_CLKREF_CLK>,
-+					 <&rpmcc RPM_SMD_XO_CLK_SRC>;
-+				clock-names = "iface",
-+					      "ref",
-+					      "xo";
-+
-+				status = "disabled";
-+			};
- 		};
- 
- 		venus: video-codec@cc00000 {
+v1
+  - Patch 0001 - revise hsc chip
+  - Patch 0002 - add VR device
+  - Patch 0003 - add sgpio name
+  - Patch 0004 - add ina238
+  - Patch 0005 - add power monitor xdp710
+  - Patch 0006 - remove multi-host property
+  - Patch 0007 - remove pca9546
+
+Peter Yin (7):
+  ARM: dts: aspeed: Harma: revise hsc chip
+  ARM: dts: aspeed: Harma: add VR device
+  ARM: dts: aspeed: Harma: add sgpio name
+  ARM: dts: aspeed: Harma: add ina238
+  ARM: dts: aspeed: Harma: add power monitor xdp710
+  ARM: dts: aspeed: Harma: remove multi-host property
+  ARM: dts: aspeed: Harma: remove pca9546
+
+ .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 148 +++++++++++++-----
+ 1 file changed, 109 insertions(+), 39 deletions(-)
 
 -- 
-2.34.1
+2.25.1
 
 
