@@ -1,113 +1,149 @@
-Return-Path: <devicetree+bounces-75548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C28F907A9C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 20:08:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEEEE907B85
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 20:36:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 801F0285D48
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:08:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79B91B23FAF
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:36:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ED0914A601;
-	Thu, 13 Jun 2024 18:08:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fjhf9Gjc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F2BE14D294;
+	Thu, 13 Jun 2024 18:33:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [5.144.164.168])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE2B51448ED;
-	Thu, 13 Jun 2024 18:08:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C62681474A8
+	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 18:33:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.144.164.168
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718302095; cv=none; b=JyCZFlhqRkDHNPmhpGq42N3utlOwSTKZF7AujC7hLB3tMkNdz8Yd3YwcpKgC2IwZg93CgIkMGLVG4g4/8zsJbYEzMOa7Vvh0EBCYC6WkYp00aYMkJYMosKb5t+KLjP1+aqnM1XTUin1YyfrPY10GM5fOnSQDMt4alfpWZWxHWjE=
+	t=1718303613; cv=none; b=ChbutHY7B3UKgJFPjXDb7DEHqMNuNnosQr0NMpTgrmPLi9UUMScjWcj1zZFybXamkEvJ/QZ4fV/XmCwrMg+CXLeR4Lt08kVzj/RIoxv7YmvXBbpojORcFHvSz7QJ/hvFit8UT38cqGqsqCb6Kbe0aUvVrdyNZwmebegZfZqPx5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718302095; c=relaxed/simple;
-	bh=uYStk50JjyKynerLaGefB4sb4G9+Y0ANSK/4qYLoRi4=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=u5CAPpWPkjmPXeC4izMrDE/RweMSDhwzLc/MxcNDL5jc9GF7px/ykBaSD/HVPWfcjJIf6Pn1vbc7yjCZGCxmnm9r+Bp2TUjAhk0qdg+aqJVozB5Mniw/5x/nOHJBQsvfmYqEJQ5/JLX8DdNhj9mo/pHz6vvNK79zJ6i/nXL4nSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fjhf9Gjc; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a6267778b3aso133433166b.3;
-        Thu, 13 Jun 2024 11:08:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718302092; x=1718906892; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/gw4HbQqanrMYHqUcy6MXoBus6RlMuEHtMxxTOpqIgc=;
-        b=fjhf9GjcQsvu4CAsORLuYGdKODA+D6cJz5BbKdSA1obFUg1qGe4ggt29UHKWVPUJbw
-         L9d9aeGRliSi92N96xLSYIVXVw1oCZmKfcfStbmec/BEedcDmgOnSBbBNRmeIEUxPNqh
-         oPN4RRuonqqNNaSs2+IBAWghIYTAvF4gpgg2seZ480JWbubmahq8bdhFNazt5IL9iD+k
-         a1Icd07ceDaNk9x1+d3FC75bzJdCRdCVRkM06b2Jx2T372Tv6HLm7FbIbkcSMnqI6dns
-         obxQLw32ZRQ3Vz4K4jkZwmvSpBHHmm+xuKUEjNsBNN6G6SVo3dY5TSYnWFoySnAHNmCO
-         EyOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718302092; x=1718906892;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=/gw4HbQqanrMYHqUcy6MXoBus6RlMuEHtMxxTOpqIgc=;
-        b=Abb0oKePm9Es9YlxXOCvDjkMkriW2OhYOOY6AYBtL43rn5dFFrl4vvzeyQdd9ZukQ4
-         Uwp8VdxWhiu9WcZqUCS6O170S6BZkhfWiE0tprCrE9oGmVQbzQfTpqOd9/3tosgv1qbM
-         JkQV0lyA7EIO+k4cbyfJOLbAY13U5+eH6mlhLJdzDnyAqLqFxOpg1MiIaF5FslynqfDd
-         1BCDigi1BLVh3nfsiF4jlEXoZJs92X2/nlG5PJGzQT9vX+WnshlY7kFqERYHYWHDyAhe
-         Fty9RpXYTHxEaRXnjd6QToIHIp9NMBGg7vHfWlMpr7osrr/bf/CH+cNfEGa5ZrrxiA8I
-         w3yA==
-X-Forwarded-Encrypted: i=1; AJvYcCWMqfRB/uXe9qVcEKQOqNNhz7DOavUvzbP903GydS9zBAxdL+JzlwxpEHh6uJKskt0UpGLMVWtVkROsluwfI9CdB7aQCcIcO3TRuBEdvHm+R8Y8Gh4FSKxnTVAe+W7yxjJ2kb5RjdcNWg==
-X-Gm-Message-State: AOJu0YyljUhtmA+iXgHTES1llPKMJ7GYTFszwkLQ4FR5ZW14Y05k6YDW
-	g9k7gO+s1kApR/hpi+krhsKt17BWCGKk5IVn1/0ozut8GhxABkgkRJbtzA==
-X-Google-Smtp-Source: AGHT+IEvunQmyXvYIiGNYWK0NZ+Ni4qDh+QbUz7eebrHHd/Em6fFl6x6N5uU1JUQd83Vytuvl1621A==
-X-Received: by 2002:a17:906:16ca:b0:a6f:1b5b:2acb with SMTP id a640c23a62f3a-a6f60dc1f3bmr31784866b.59.1718302091633;
-        Thu, 13 Jun 2024 11:08:11 -0700 (PDT)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f56db6182sm96247466b.51.2024.06.13.11.08.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jun 2024 11:08:11 -0700 (PDT)
-Message-ID: <8b229dcc-94e4-4bbc-9efc-9d5ddd694532@gmail.com>
-Date: Thu, 13 Jun 2024 20:08:10 +0200
+	s=arc-20240116; t=1718303613; c=relaxed/simple;
+	bh=CpdX3pu56PQzLUvbCx0DROlJfZb5I7MJFbTQSg5roJ0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Aiz2+YdtVSPRDxJJhLfOJykJgonqPLP3CTXiH/FYy4bJzZl3eSs3ri+kF3dH9kHLtXFp363LjcjhJY3rqCCtDjmurEOMwzz+bxC9q4L9ChYJ1xyqlK2JWoyB52HitpnxX+u35Sja+bI1XgqWQgeyDLTotXiShGfHiFqHBrszUN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org; spf=pass smtp.mailfrom=somainline.org; arc=none smtp.client-ip=5.144.164.168
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=somainline.org
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by m-r2.th.seeweb.it (Postfix) with ESMTPSA id ACE683EBA4;
+	Thu, 13 Jun 2024 20:14:08 +0200 (CEST)
+Date: Thu, 13 Jun 2024 20:14:07 +0200
+From: Marijn Suijten <marijn.suijten@somainline.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Rob Clark <robdclark@gmail.com>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Krishna Manikandan <quic_mkrishn@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 7/8] drm/msm/dpu: support setting the TE source
+Message-ID: <cu3iicchkdmpkm6fttqv42hw2zfa2bs4wk6xsbeu5m4poav4s5@l7kbg43sfzrb>
+References: <20240613-dpu-handle-te-signal-v2-0-67a0116b5366@linaro.org>
+ <20240613-dpu-handle-te-signal-v2-7-67a0116b5366@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Johan Jonker <jbx6244@gmail.com>
-Subject: [PATCH v1] ARM: dts: rockchip: rk3066a: add #sound-dai-cells to hdmi
- node
-To: heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240613-dpu-handle-te-signal-v2-7-67a0116b5366@linaro.org>
 
-'#sound-dai-cells' is required to properly interpret
-the list of DAI specified in the 'sound-dai' property,
-so add them to the 'hdmi' node for 'rk3066a.dtsi'.
+On 2024-06-13 20:05:10, Dmitry Baryshkov wrote:
+> Make the DPU driver use the TE source specified in the DT. If none is
+> specified, the driver defaults to the first GPIO (mdp_vsync0).
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm/boot/dts/rockchip/rk3066a.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+mdp_vsync_p?
 
-diff --git a/arch/arm/boot/dts/rockchip/rk3066a.dtsi b/arch/arm/boot/dts/rockchip/rk3066a.dtsi
-index 30139f21de64..15cbd94d7ec0 100644
---- a/arch/arm/boot/dts/rockchip/rk3066a.dtsi
-+++ b/arch/arm/boot/dts/rockchip/rk3066a.dtsi
-@@ -128,6 +128,7 @@ hdmi: hdmi@10116000 {
- 		pinctrl-0 = <&hdmii2c_xfer>, <&hdmi_hpd>;
- 		power-domains = <&power RK3066_PD_VIO>;
- 		rockchip,grf = <&grf>;
-+		#sound-dai-cells = <0>;
- 		status = "disabled";
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 44 ++++++++++++++++++++++++++++++++-
+>  1 file changed, 43 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> index e9991f3756d4..6fcb3cf4a382 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> @@ -505,6 +505,44 @@ static void dpu_kms_wait_flush(struct msm_kms *kms, unsigned crtc_mask)
+>  		dpu_kms_wait_for_commit_done(kms, crtc);
+>  }
+>  
+> +static const char *dpu_vsync_sources[] = {
+> +	[DPU_VSYNC_SOURCE_GPIO_0] = "mdp_vsync_p",
+> +	[DPU_VSYNC_SOURCE_GPIO_1] = "mdp_vsync_s",
+> +	[DPU_VSYNC_SOURCE_GPIO_2] = "mdp_vsync_e",
+> +	[DPU_VSYNC_SOURCE_INTF_0] = "mdp_intf0",
+> +	[DPU_VSYNC_SOURCE_INTF_1] = "mdp_intf1",
+> +	[DPU_VSYNC_SOURCE_INTF_2] = "mdp_intf2",
+> +	[DPU_VSYNC_SOURCE_INTF_3] = "mdp_intf3",
+> +	[DPU_VSYNC_SOURCE_WD_TIMER_0] = "timer0",
+> +	[DPU_VSYNC_SOURCE_WD_TIMER_1] = "timer1",
+> +	[DPU_VSYNC_SOURCE_WD_TIMER_2] = "timer2",
+> +	[DPU_VSYNC_SOURCE_WD_TIMER_3] = "timer3",
+> +	[DPU_VSYNC_SOURCE_WD_TIMER_4] = "timer4",
+> +};
+> +
+> +static int dpu_kms_dsi_set_te_source(struct msm_display_info *info,
+> +				     struct msm_dsi *dsi)
+> +{
+> +	const char *te_source = msm_dsi_get_te_source(dsi);
 
- 		ports {
---
-2.39.2
+Just checking: if the TE source is different and one has dual-DSI, it must be
+set on both controllers?
 
+> +	int i;
+> +
+> +	if (!te_source) {
+> +		info->vsync_source = DPU_VSYNC_SOURCE_GPIO_0;
+> +		return 0;
+> +	}
+> +
+> +	/* we can not use match_string since dpu_vsync_sources is a sparse array */
+
+Instead of having gaps in the array, you could also store both the vsync_source
+and name as the array elements?
+
+> +	for (i = 0; i < ARRAY_SIZE(dpu_vsync_sources); i++) {
+> +		if (dpu_vsync_sources[i] &&
+> +		    !strcmp(dpu_vsync_sources[i], te_source)) {
+> +			info->vsync_source = i;
+> +			return 0;
+> +		}
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+>  static int _dpu_kms_initialize_dsi(struct drm_device *dev,
+>  				    struct msm_drm_private *priv,
+>  				    struct dpu_kms *dpu_kms)
+> @@ -543,7 +581,11 @@ static int _dpu_kms_initialize_dsi(struct drm_device *dev,
+>  
+>  		info.is_cmd_mode = msm_dsi_is_cmd_mode(priv->dsi[i]);
+>  
+> -		info.vsync_source = DPU_VSYNC_SOURCE_GPIO_0;
+> +		rc = dpu_kms_dsi_set_te_source(&info, priv->dsi[i]);
+> +		if (rc) {
+> +			DPU_ERROR("failed to identify TE source for dsi display\n");
+> +			return rc;
+> +		}
+>  
+>  		encoder = dpu_encoder_init(dev, DRM_MODE_ENCODER_DSI, &info);
+>  		if (IS_ERR(encoder)) {
+> 
+> -- 
+> 2.39.2
+> 
 
