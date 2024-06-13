@@ -1,119 +1,149 @@
-Return-Path: <devicetree+bounces-75442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C94C3907422
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 15:45:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37A75907447
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 15:50:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7AFBA1F22DD5
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 13:45:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8175284FC5
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 13:50:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47C9B4A07;
-	Thu, 13 Jun 2024 13:45:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 918E91459F3;
+	Thu, 13 Jun 2024 13:50:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TDb7IeDh"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="1gl4hKxy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13FF610FF;
-	Thu, 13 Jun 2024 13:45:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3D6C144D22;
+	Thu, 13 Jun 2024 13:50:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718286340; cv=none; b=rtxTqUYm6teLS24zxJZbgyn/uvyk5H5G+Nc6h8+mVmc/6gFUSKf9YxeIisgjeS4ZgRwisYnm71k0/FWrA/PLZERPdU1Nwf00Jc7Ahp2P4N4DcFlCdJYd/0yeFh3arHdFnBDxt/XknRKOzrQNGAKEscRqc+nfoKpDY7VVVlPdgHI=
+	t=1718286640; cv=none; b=ZWmt33K3xiatKlhCF9mFviRHujkoUTy3f02HrjOSOVIYvGjb5ezVurLV6b8qTatyc+ES8BUfCohZG2MjLSNsyEs48/9eWT9OpJ+NeomgBHZ65jqiJEQ+eUHaq1lx2ms+Rf2GkXYUt0feaitmskCG51DiCELuN78eoac4+nxptLc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718286340; c=relaxed/simple;
-	bh=BADMAGvyZtj+GsRfT/NDr2Jvk9KXxvpLyvmYPtJjSAY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TLc8Tl0z7sAtagPGdQ6ky9qIItxhmKIXJ0e+tT2/T4N1xYi/L8SwEbinSKbc3De1YxFZA7QF9kSbtNbz7C6mam9kctjUNr4m6lcGWaPahLdDUBnG/dLdgVGrPkciB+BR4IlFrdS90WdKxNI6SfZWMv+dzodK/72pssjuGf3BwbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TDb7IeDh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 158F1C2BBFC;
-	Thu, 13 Jun 2024 13:45:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718286339;
-	bh=BADMAGvyZtj+GsRfT/NDr2Jvk9KXxvpLyvmYPtJjSAY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TDb7IeDhIRZlRAwjN4O9eeUdvNarZGkmUanL2dReujN3n4jgUgZrFfff+4cgjhhb4
-	 h6BiHUHjvOGNs/5l0eGs54fVRaWmPL08N5/eCrNtIYSOI0hZPwv6jzwcrVnbvKYK6g
-	 4TCeZZZHpJHOJZ9RK+eMYj9B+3TR/tHdGwfpHdWsOyhqKZ2KRHn8QvtJHRt1YN8wj9
-	 N/swWlg2lAoJ8ZnQM9JDvGW7OyZsYAPH1C7e2Pcdf+MVLzU7x1cJDt7ZfKYNzta8Wy
-	 7LhBi++W/G/igZ1SNghloo1y/OOW4mfAVa1pK1tX10cXV1x48oJ44GW9KeuwDtIzvY
-	 8D2gty4PyMrkg==
-Date: Thu, 13 Jun 2024 14:45:34 +0100
-From: Lee Jones <lee@kernel.org>
-To: Karel Balej <balejk@matfyz.cz>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1718286640; c=relaxed/simple;
+	bh=gahnmtXY+zlBl4ev0Wc+OJzKxQtX8DSNfxJrjle/iyw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=uwRGSuAkx6e20K+5kWudFp5iKvpsc/96CcXYgRM/5O4/amq4xcE8lBAV45AeC50b0ADVFDWYYl3tgL561Ej4dL3OWzjZmpbtn9c7kKJzPs1R659UWJ3LFTH5+2zTEmLkWBjnhAlqfePTkmt/8xgnXCG6s/7gJVtGFuk/TuJF/5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=1gl4hKxy; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718286636;
+	bh=gahnmtXY+zlBl4ev0Wc+OJzKxQtX8DSNfxJrjle/iyw=;
+	h=From:To:Cc:Subject:Date:From;
+	b=1gl4hKxybprAASehCtu+n1xDMC4D7Wfz0F4y5sxU/RANRB3f+Q+lZAkb0ikLMa6ag
+	 pQEuD5/EnU79DTq3StP7xQJGIaizx45KHUQ9Oarip3+uEr9DLjC4cRA7h3pPQd09yJ
+	 CGJFsZLe0WbbXFMse4tK8QcgawNfmhQ8SYGsBQUwMrn5JBs3ll6fJ2RDqoYIwtrrT1
+	 IwA6iFQgcYCCOwtAI9baXI9tunkfN5blwNocyw/aJOvLE+SolC7/Oute1FsnOGMh22
+	 Zq3aE01U6D60dQ7XkyHVZgTLJ10FGsd6YOAHzWKiHCIV3O04rQsd7iIviGD89YDY06
+	 WpVghbBADZOtA==
+Received: from jupiter.universe (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 8F3ED37821B2;
+	Thu, 13 Jun 2024 13:50:36 +0000 (UTC)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id 31A134800C9; Thu, 13 Jun 2024 15:50:36 +0200 (CEST)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v7 3/5] regulator: add regulators driver for Marvell
- 88PM886 PMIC
-Message-ID: <20240613134534.GB2561462@google.com>
-References: <20240531175109.15599-1-balejk@matfyz.cz>
- <20240531175109.15599-4-balejk@matfyz.cz>
+	Jianfeng Liu <liujianfeng1994@gmail.com>,
+	Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	linux-media@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	kernel@collabora.com
+Subject: [PATCH v6 0/6] RK3588 VEPU121/VPU121 support
+Date: Thu, 13 Jun 2024 15:48:41 +0200
+Message-ID: <20240613135034.31684-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240531175109.15599-4-balejk@matfyz.cz>
 
-On Fri, 31 May 2024, Karel Balej wrote:
+Hi,
 
-> Support the LDO and buck regulators of the Marvell 88PM886 PMIC.
-> 
-> Signed-off-by: Karel Balej <balejk@matfyz.cz>
-> ---
-> 
-> Notes:
->     v7:
->     - Address Mark's feedback:
->       - Drop get_current_limit op, max_uA values and thus unneeded struct
->         pm886_regulator and adapt the code accordingly.
->     v6:
->     - Remove all definitions (now present in the header).
->     v5:
->     - Add remaining regulators.
->     - Clean up includes.
->     - Address Mark's feedback:
->       - Use dedicated regmap config.
->     RFC v4:
->     - Initialize regulators regmap in the regulators driver.
->     - Register all regulators at once.
->     - Drop regulator IDs.
->     - Add missing '\n' to dev_err_probe message.
->     - Fix includes.
->     - Add ID table.
->     RFC v3:
->     - Do not have a variable for each regulator -- define them all in the
->       pm886_regulators array.
->     - Use new regulators regmap index name.
->     - Use dev_err_probe.
->     RFC v2:
->     - Drop of_compatible and related code.
->     - Drop unused include.
->     - Remove some abstraction: use only one regmap for all regulators and
->       only mention 88PM886 in Kconfig description.
->     - Reword commit message.
-> 
->  drivers/regulator/88pm886-regulator.c | 392 ++++++++++++++++++++++++++
->  drivers/regulator/Kconfig             |   6 +
->  drivers/regulator/Makefile            |   1 +
->  3 files changed, 399 insertions(+)
->  create mode 100644 drivers/regulator/88pm886-regulator.c
+This series enables Hantro support for RK3588. It is based on these two
+previous series from Emmanuel Gil Peyrot and Jianfeng Liu, which looked
+stall to me. Considering the full driver is already upstream, I think
+this low hanging fruit should be enabled in 6.11:
 
-I'm fine with this set - just waiting for Mark to review.
+ * https://lore.kernel.org/all/20240316071100.2419369-1-liujianfeng1994@gmail.com/
+ * https://lore.kernel.org/linux-rockchip/20240412151515.837824-1-linkmauve@linkmauve.fr/
+
+Their series got some feedback from Nicolas Dufresne, that there should be a
+plan how multi-core processing will be handled once it is supported in the
+kernel. I had a look (and internal discussion with Nicolas) and came up with a
+patch, which allows describing all the Hantro IP in DT. The driver will only
+probe for the first instance. This involves dropping the RK3568 compatible
+for the VEPU121, so that only kernels with the driver change will try to
+handle these IP. Once the kernel is capable of multi-core support, the same
+technique to disable cores 1-3 can be used to combine them all into one
+cluster.
+
+We also discussed, if they should be described as a cluster (e.g. by creating
+some kind of virtual bus for the 4 encoders in DT). Apparently the VSI doc
+describes the grouping of up to 4 instances. But there is no obvious reason
+why only these groups can be used as a cluster. It seems that even the 5th
+encoder from the combo VPU121 could be used together with the other clustered
+cores in theory. In practice this is probably a bad idea because of the shared
+cache of that encoder. Since that is handled with a different compatible, this
+can be thought about at a later point of time and handled in the kernel. Thus
+no special cluster description is needed in DT.
+
+Changes since PATCHv5:
+ * Fix binding for vepu121 (use enum)
+ * split hantro driver patch (multicore / vepu121 compatible)
+ * move video-codec@fdb50000 node to correct position
+ * change "jpeg_enc*" alias to "vepu121_*"
+ * change "vpu_*" alias to "vpu121_*" (to be consistent)
+
+Changes since PATCHv3 (VEPU121) / PATCHv4 (VPU121)
+ * combine both patchsets, since there is some overleap
+ * add patch to disable multi-core handling in the hantro driver
+ * drop the RK3568 fallback compatible for VEPU (see above for the reason)
+ * describe all RK3588 VEPU cores (possible because of driver change)
+
+Greetings,
+
+-- Sebastian
+
+Emmanuel Gil Peyrot (2):
+  media: dt-bindings: rk3568-vepu: Add RK3588 VEPU121
+  arm64: dts: rockchip: Add VEPU121 to RK3588
+
+Jianfeng Liu (2):
+  media: dt-bindings: rockchip-vpu: Add RK3588 VPU121
+  arm64: dts: rockchip: Add VPU121 support for RK3588
+
+Sebastian Reichel (2):
+  media: hantro: Disable multicore support
+  media: hantro: Add RK3588 VEPU121
+
+ .../bindings/media/rockchip,rk3568-vepu.yaml  |   1 +
+ .../bindings/media/rockchip-vpu.yaml          |   3 +
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 101 ++++++++++++++++++
+ .../media/platform/verisilicon/hantro_drv.c   |  38 +++++++
+ 4 files changed, 143 insertions(+)
 
 -- 
-Lee Jones [李琼斯]
+2.43.0
+
 
