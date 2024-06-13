@@ -1,109 +1,143 @@
-Return-Path: <devicetree+bounces-75249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0615E906353
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 07:14:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C0E6906360
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 07:17:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF5BB1F235C4
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 05:13:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 274CFB23084
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 05:17:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6C8E13210A;
-	Thu, 13 Jun 2024 05:13:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1945313210A;
+	Thu, 13 Jun 2024 05:17:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YU9mD4LL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WfP8jxB6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44AEC65F;
-	Thu, 13 Jun 2024 05:13:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88ACA4C6B;
+	Thu, 13 Jun 2024 05:17:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718255634; cv=none; b=BNGEhOOBRPH00d/YN3ABA9Ajw3EA6FmR4KNMkfvplSSRvwQ+SJEGuIcDSW9R9FRhts5UWIB8OrXq1s9fSYa+9XgB9YfV/W3aC2NP3FSKqhYwZw0M6nuai6TTXGv+SGZ7yzB7qCE2NzoXYBawA/uSbVm8HFJyamniUq/hVQX+124=
+	t=1718255844; cv=none; b=R0NoTu6XJ+kWpLj3NnyqumRBwQho4E2QmPUHpJjPc6mb8nO64JRV0fOpSuYp20elipR6PhOnC/WqsXgghntRTwCebNOuyxpA6AhGnTAyK+rpQuBKLpUZ0CCX4xZT4lC9yWpuekH1T8Li9ajzOa0ytObyHKV5+rNZZcvisyzu9/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718255634; c=relaxed/simple;
-	bh=Yz59tQWkv01hPFKbE+8vks+JGjl0tcpj9w+w7TTxogs=;
+	s=arc-20240116; t=1718255844; c=relaxed/simple;
+	bh=mPTXJ9FIYMF7P8QQ2HGfywQBtmmSfyVAMi+4/1zV9Zk=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Z0TcoLay26tiXVqAyiwTld09JeLR8Qzd65WFMXH3ymTCk3/vuR6yfjSVJhDJFKaouVMrPc/OJOMJclHyGW5QwDrcPdKH70dw5R3yJ5CiVctX48JflHPu1pVq6yqHzr4dnGZYPg2kj5Oc473miB/OQj6AWpKXCcRTwFTb2CLSrZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YU9mD4LL; arc=none smtp.client-ip=209.85.219.45
+	 To:Cc:Content-Type; b=lFpMm25GoIQD6M6mJPzEn7RcQubwZ9LAV2G6MjIq1EywkEO7rGaE0RwkDlE+3DsdvqFLCoZjVSqa19g+QyM/V3njM94jzqc35F9Badt5Qkb+si1wS5KP72QKhH6XluBduuYGK65Uae4YwFeyjUNaqFdqn/HpwVXS0ZzhWE3CtSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WfP8jxB6; arc=none smtp.client-ip=209.85.222.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-6b060f0f48aso3197876d6.1;
-        Wed, 12 Jun 2024 22:13:53 -0700 (PDT)
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7955ddc6516so39487085a.1;
+        Wed, 12 Jun 2024 22:17:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718255632; x=1718860432; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1718255841; x=1718860641; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Yz59tQWkv01hPFKbE+8vks+JGjl0tcpj9w+w7TTxogs=;
-        b=YU9mD4LLt6UIUM1lxf5T6eYhLWuIZBFi0MG5HODfbmCFB2Ts5UbJdT6OxhN1uoLaZA
-         DXhvMhH01ST5YS0UWlCRyuBymgvNfInBBdyGkSKaqgGeNaNFA0locz0blJ7v8ChUmwjd
-         5d+3pn4n1iIAYIeRwqGASXUzj0r6iTRXbHgf7+urTc+q6197wun0ak2rzO5i8UV1LZFu
-         vjYAIGqs5oFqldbKUXsSTFwgxzCuQdp8a8jb3ldVGOxH+4Qq3sDUOQVjrKYCPSYrPaUs
-         QbJrhJbyQSg4JmsVQfOnhNwX4Yq+4LAe480gMQF9GgdcXVPg3fYDygvFBpWpw1zgCRPn
-         RVbA==
+        bh=bZbJPHVns/walNPI9hYI9ziWHW23YvfpYoKJOsHQuS8=;
+        b=WfP8jxB6tuPphqG3ux5+rliKP4pAp4LWnTonZWOVJX5yrvk3ZdlbWrj2zLYComHVUV
+         TDWKR4vaTiH4Bb+v5mkNDcYPWYBpdHHPiaTjb/tVSfoIlNgLRhQl8KH7kYUN4nf+NjeT
+         7LIAEYDZwcmKm9GAbP55dsm3yiQuLtj/EhUE0dP3uLIaDHwh1M5XOHgBOwAg+zcweNLf
+         uu+tUeh56HHNXFxLu5SeZaTygKRhRqo10Kk1aU3O7HebTlXEcdn8wr0t38e0c6BpIZoJ
+         xyJflxmbSA5gDLuFa2FFXOAk8DBGW8SqqPIACEmgRuhcKH0/YUYp+RNtuXdJy0cSyd42
+         WpHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718255632; x=1718860432;
+        d=1e100.net; s=20230601; t=1718255841; x=1718860641;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Yz59tQWkv01hPFKbE+8vks+JGjl0tcpj9w+w7TTxogs=;
-        b=NZlZsvF8vtVGcAXrgzh5B1Mao6DyDTLsgWmYGt2Wprgx9HdwFjKBTqp9hs1/I52+sD
-         OKmFnAIyd70vXS9rKTaWyUsjBDl9CC+mpd9/YzklPRI7eJcniEOL4tgubJaXuSleGrHb
-         sjzjDCotTfOpOT36GM9GDMQ5krFaFyw3j9P79MObZKPWXD+Q/dfnTbuJg+YMzTML4ZH3
-         gCOySu/AShraJJyPiUYoMrOxxF/Epw0mG1A7i5VyTke30QSizs4nRE+3DOruSmdBmo22
-         vnKaQad1PSNsFgwQBrSg1xUzfaGRB1d04suhhFLXidz5/PLoSwmbyYF/RH2TltmpwXJD
-         GrDg==
-X-Forwarded-Encrypted: i=1; AJvYcCX2s0jOtA6WSLpfdKedPEtPSCPFVP/l4pK0u+AlwamaxujizCFWl1kKFr/uljGx8WSnSMtsuTjoww73el6QK9SsJ+vHjWeIgH3wYEi8UYGdYiHae69rarZ/U63WGlIHirL+1tZU2E2VjsHpTJqYdSFNUftzWnBKvTKlcGqRGgxuqZocGSGQiw==
-X-Gm-Message-State: AOJu0YwfwviU4GBlyrs4nQ1huUjNgtQ4zsgxIFldbOhvJWbQv/MXbxq1
-	SMqhqDSDHt81bxXCEJGnhNG411pqLmmEzrpLdV56KQcH3YngF3Ecsx6fD+zEq9Iu4DsCLjcX4vP
-	SakbedZ/a1OATORBBPbpkoYLa/uGz+KNA87Yimg==
-X-Google-Smtp-Source: AGHT+IGA/60BeVBcSGOZs2ZPs2s0isSjEHC6dloesC4nDItXtIqTS5fn0q30oP5yguqs2uRGIDtioTO6gpNUkOcindI=
-X-Received: by 2002:a05:6214:4688:b0:6b0:6d9c:8eb6 with SMTP id
- 6a1803df08f44-6b1b5c0afedmr48758286d6.58.1718255632046; Wed, 12 Jun 2024
- 22:13:52 -0700 (PDT)
+        bh=bZbJPHVns/walNPI9hYI9ziWHW23YvfpYoKJOsHQuS8=;
+        b=RN2zzxbdVjODo6W1VNWvSkHFnVjVGpXb93bXfiVciVgR1h0JosiPdLzIbEYscPn0f9
+         w3Q6fbw5EFoh1fuS5mXB8ZSDD2l42pxFOWrDxdc9vGSNq3STUtfLg4pByXG8E3fgQm96
+         j8hEN5JPJ45fHm7gq9SVB1Xzf7eKQuXViA5DgCWwATZ+qrqLa3ozm7VPfCxYaLtP2uNl
+         sHirq2a8utAZ6+24SvbPJ7Ihmy/H8to7l4VhfMCwGTnPDmzvKKNeDA2qI0gH0WFACxsS
+         ItWkVJnVtUPp0C4JBP8VAvtIuzJmIilZ9wMwIiUyg4cUfKaT31/0Y1qE1fvgf30QFqMY
+         mfrg==
+X-Forwarded-Encrypted: i=1; AJvYcCWQKig/hXJMgY27pd1kcdwXaLxuT07ZPDwM3PiSjF6TCEaZGRj0uy7fDgeY6f9mXHQCyUgPaMLgCVETQ310l93ojxFdNJ/t4rqdhIiX9onLXu3gIZub6ia3ePcpy2/qebA+Tn2IXb3fCw==
+X-Gm-Message-State: AOJu0Yyq8SWbL/gc70BQBQ/0GsK6GDpp0/vjd8Fhs7o30ZSXM9TCUgkS
+	uhlT+9luIsv5i4vnwl3gWtq9rrM4Uc/8RRg0Vj1cezBk1CCSf+dCfo8ifJGrAr4qgVJW66DWUE1
+	d/3O5gJwN3YcpCRKFPt/F674GBh8F0rLNu3r6KA==
+X-Google-Smtp-Source: AGHT+IG2kpOTJxIRJFMaxclBLOzuPjHJPnxPPu+pdtXe1mBL7ZyyIZr5Ve2KlxlCXNxF6aC9zqFIQbDPwAYTOUYRfWA=
+X-Received: by 2002:a05:620a:1a2a:b0:795:512e:4ae1 with SMTP id
+ af79cd13be357-797f605a114mr383589385a.35.1718255841222; Wed, 12 Jun 2024
+ 22:17:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240612153847.52647-2-kanakshilledar@gmail.com>
-In-Reply-To: <20240612153847.52647-2-kanakshilledar@gmail.com>
+References: <20240612111623.102868-1-krzysztof.kozlowski@linaro.org>
+ <b1f14e92-4491-45f5-90ca-cc3d5ceea81f@app.fastmail.com> <CABjd4YxxmNqDXe7SSzTpr4gsf4-Rp4sgB8x2sYSGzDDx5CWo2A@mail.gmail.com>
+ <82482ddc-9f0f-45b6-b1a1-6de2617b6980@linaro.org>
+In-Reply-To: <82482ddc-9f0f-45b6-b1a1-6de2617b6980@linaro.org>
 From: Alexey Charkov <alchark@gmail.com>
-Date: Thu, 13 Jun 2024 09:13:40 +0400
-Message-ID: <CABjd4YxqDkrcZw2_mp6sXkhXndRcODHoA2tCLLqP0ernojV6GQ@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: serial: vt8500-uart: convert to json-schema
-To: Kanak Shilledar <kanakshilledar@gmail.com>
-Cc: kanakshilledar111@protonmail.com, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
-	devicetree@vger.kernel.org
+Date: Thu, 13 Jun 2024 09:17:09 +0400
+Message-ID: <CABjd4Yz=DmqvSCQvFFbv+WiwxJWM2uJVw=U6zVAND0xHULxRqw@mail.gmail.com>
+Subject: Re: [PATCH] MAINTAINERS: ARM: vt8500: add Krzysztof Kozlowski as maintainer
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, Krzysztof Kozlowski <krzk@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	arm <arm@kernel.org>, soc@kernel.org, Olof Johansson <olof@lixom.net>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Kanak,
-
-Thank you for reworking this one.
-
-On Wed, Jun 12, 2024 at 7:39=E2=80=AFPM Kanak Shilledar
-<kanakshilledar@gmail.com> wrote:
+On Wed, Jun 12, 2024 at 5:43=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> Convert the VIA VT8500 and WonderMedia WM8xxx UART Controller to
-> newer DT schema. Created DT schema based on the .txt file which had
-> `compatible`, `reg`, `interrupts` and `clocks` as required properties.
+> On 12/06/2024 14:57, Alexey Charkov wrote:
+> > Hi Arnd, Krzystof,
+> >
+> > On Wed, Jun 12, 2024 at 3:43=E2=80=AFPM Arnd Bergmann <arnd@arndb.de> w=
+rote:
+> >>
+> >> On Wed, Jun 12, 2024, at 13:16, Krzysztof Kozlowski wrote:
+> >>> The ARM VIA/WonderMedia VT8500 platform became orphaned in
+> >>> commit 8f1b7ba55c61 ("MAINTAINERS: ARM/VT8500, remove defunct e-mail"=
+)
+> >>> and clearly it is on the way out of the kernel.  However few folks se=
+nd
+> >>> patches to it and it is nice to actually take them, till the platform=
+ is
+> >>> in the kernel.
+> >>>
+> >>> I do not plan to actively support/maintain ARM VT8500 but I can take =
+odd
+> >>> fixes now and then.
+> >>>
+> >>> Extend the maintainer entry to cover also VT8500 DTS.
+> >>>
+> >>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>
+> >> Cc: Alexey Charkov
+> >>
+> >> Thanks for stepping up. A few years ago, Alexey also had
+> >> some interest in this platform and knew some other remaining
+> >> users.
+> >
+> > Indeed, I'm still interested in getting it up and running, and even
+> > got my good old WM8950-based APC Rock board out of storage for it
+> > recently. I also have a WM8880-based laptop and another WM8850-based
+> > one at hand, but need to bring them up to speed. Should also have a
+> > number of older WM8750, WM8650 and VT8500 (but not WM8505) devices
+> > somewhere deeper in storage.
+> >
+> > I haven't touched the related code in a while, but as the original
+> > author of VT8500 and WM8505 support code from over a decade back I'd
+> > love to keep it all alive and functional, including reviewing and
+> > testing stuff as well as (hopefully) adding extra functionality that's
+> > been on my backlog for years. Does that count as support/maintain?
+> > Happy to be listed in maintainers and be in the loop if I qualify.
 >
-> Additions to the original binding
-> - changed the file name from vt8500-uart to via,vt8500-uart.yaml
-> - removed unnecessary alias from the example.
->
-> Signed-off-by: Kanak Shilledar <kanakshilledar@gmail.com>
+> You can take the sole maintainership thus handle patches/pull requests,
+> or become added as a co-maintainer.
 
-Acked-by: Alexey Charkov <alchark@gmail.com>
+Co-maintainer sounds great. Shall I submit a separate patch to add
+myself next to your name?
 
 Best regards,
 Alexey
