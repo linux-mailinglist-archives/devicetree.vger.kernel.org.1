@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-75270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84D149064FE
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:27:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0CB990650B
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:28:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E498284F35
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 07:27:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86E991F22ADE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 07:28:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9646013C83A;
-	Thu, 13 Jun 2024 07:26:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 682CF13AA3B;
+	Thu, 13 Jun 2024 07:28:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RoBXj02m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qp7y6kVU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66E0E13C827;
-	Thu, 13 Jun 2024 07:26:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 378EA7F47B;
+	Thu, 13 Jun 2024 07:28:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718263568; cv=none; b=owAE6kzcAS24slyF4Wx/ptlBCSU6r/G2GNBiTJq/UJlBawW8rj1QBLHG+tK6twsp/EWTunfVfbKGuSc/YKKmEhP2LAfMMe0KpWS2HZ9gPTHle1QzOGQOfgFhiiKDy3okuOa5Uu8j8Aqbm+ECoBA6vwvKp9TijBJgim3n9P0JtNg=
+	t=1718263708; cv=none; b=Z+gAX9bSZQKMsUa60JTvLfQ9Q2xd3KmnULL1bD1OEFcjPOabQU446Wco5oLKWT98xgqmJu+OYXsA0a3rsF9zRFGTzD7tTmbKDEFFJfM+Jczm1gDierMz5WsTM47lpIkUowJG89oJD7CcKC4sMHK7jtkZYUcas6sl76VTAaJWc60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718263568; c=relaxed/simple;
-	bh=gV/qdXbaOqf2PQPwvCYczv35Ojx7UrKDymt28a6nXJo=;
+	s=arc-20240116; t=1718263708; c=relaxed/simple;
+	bh=FD0IGfhk4hcLON28WCjwNZj1PYjYa3M6lZFgLxz5/6Q=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Kwnk9PZTAYLf7Ecxt10okRUXkD9KybM9U3FmysV2UDyUIM1E+xvOmVjoA/FWGI+JgiouYDFFPoy5DHHxn4ORO0M1likYFzZvp4+mYtHVnehpfJ/C0F4YurvBQjIQ7oOzJHdoBlxWIcOxAVActwm3kwtffBZLnYV0LWSEa9G3EDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RoBXj02m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FEF4C4AF4D;
-	Thu, 13 Jun 2024 07:26:03 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=GO6xYRhR2F8XgqI4p6bEnE+jg2SdmpqzP3wG8/8jP6cqdXEsyzrRLTgOMIVYdXYaLED+lksXo6m015/bcflCabxl+ycPNc3V+24NmeUuOskHSnJHgqruEayWumCucDnRjNJYOdCrYQ0091nkVSpCOKRnW3IvMjNfWLVSX3DgYRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qp7y6kVU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9182C2BBFC;
+	Thu, 13 Jun 2024 07:28:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718263567;
-	bh=gV/qdXbaOqf2PQPwvCYczv35Ojx7UrKDymt28a6nXJo=;
+	s=k20201202; t=1718263708;
+	bh=FD0IGfhk4hcLON28WCjwNZj1PYjYa3M6lZFgLxz5/6Q=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RoBXj02m4dhJ2PDnunF0yRJxwWfrgqTvzqHm8CiKYGaGZhWJLN+XcJeI+xo8gRdWm
-	 Vl1izOSNDigeTYPR13ETLChcwJH7Qbs8dbOPSUQyxFcvSWYPAovelEBx5b2qhAl2Yc
-	 zJZHR0KpBAcke+qhEDaagpngApysK+XvMhBbFO0TbIwF3SAvBdWGjGAhUKeWxgCbRg
-	 YdOKW46XGMCaFCeOkL7zrBNwL15qBOZUTGjp3H+RtBnAegdiEqt1NmugpX/cV4MFaF
-	 d08gpagkN29VCKLDLZmBqyMGBGwfYGvq5059htu3RBpKhzL2VR0rfiuk22Oy41ABOE
-	 v9GhQ86K2NIog==
-Message-ID: <60b833ce-730f-466e-8d99-3941d85232ce@kernel.org>
-Date: Thu, 13 Jun 2024 09:26:01 +0200
+	b=qp7y6kVUcUqlLm8ApuEzXIfuGVaQjYosmNK/5zX7hfn4LD7eTkgP9AFLUffHMwOLr
+	 xEJ5B1hBsHWmfc5tYk37z3lclgxGdhrmI3B7AtQz41f4bObG6FE4+hlBTy0AAZ9rkJ
+	 sWKxVphF8fD2fbGiRiCZ2+j5RJjHX1/aekk9+mBtjJsvYuhQBtWxYqixjZHwSMbmyU
+	 ogc9zfs60L5Wqyb8iLnNRaVKP/chFJHokcnmDy4lNIP5yExoL2HnR9CIWSlGFM1uUe
+	 yPLFTohssHvnp+PXt7HBS1RW7OPzm/QTCCxLGy6Dv5Hi3pA3jc5pNRKo3zpwnEZC3c
+	 CYBqa+4rR5LGg==
+Message-ID: <e1424d12-4dd8-4a8a-a8b5-ac94476fa3d3@kernel.org>
+Date: Thu, 13 Jun 2024 09:28:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] dt-bindings: PCI: microchip,pcie-host: allow
- dma-noncoherent
-To: daire.mcnamara@microchip.com, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: conor.dooley@microchip.com, lpieralisi@kernel.org, kw@linux.com,
- robh@kernel.org, bhelgaas@google.com, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, krzk+dt@kernel.org, conor+dt@kernel.org
-References: <20240612112213.2734748-1-daire.mcnamara@microchip.com>
- <20240612112213.2734748-4-daire.mcnamara@microchip.com>
+Subject: Re: [PATCH 1/8] dt-bindings: clock: qcom: Add SA8775P video clock
+ controller
+To: Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson
+ <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ quic_jkona@quicinc.com, quic_imrashai@quicinc.com
+References: <20240612-sa8775p-mm-clock-controllers-v1-0-db295a846ee7@quicinc.com>
+ <20240612-sa8775p-mm-clock-controllers-v1-1-db295a846ee7@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,22 +108,20 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240612112213.2734748-4-daire.mcnamara@microchip.com>
+In-Reply-To: <20240612-sa8775p-mm-clock-controllers-v1-1-db295a846ee7@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/06/2024 13:22, daire.mcnamara@microchip.com wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> PolarFire SoC may be configured in a way that requires non-coherent DMA
-> handling. On RISC-V, buses are coherent by default & the dma-noncoherent
-> property is required to denote buses or devices that are non-coherent.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
-> ---
+On 12/06/2024 12:47, Taniya Das wrote:
+> Add device tree bindings for the video clock controller on Qualcomm
+> SA8775P platform.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You claim it is a v1, but I saw it and already commented on this. No
+changelog, no versioning, so my comments were ignored?
+
+Please go back to previous comments, implement then, respond and then
+send v3 with all comments addressed.
+
 
 Best regards,
 Krzysztof
