@@ -1,132 +1,94 @@
-Return-Path: <devicetree+bounces-75593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FEE9907D32
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 22:13:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57CD6907D4D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 22:18:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF7431F239F8
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 20:13:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EFBB81F21F25
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 20:18:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE9AD136E1C;
-	Thu, 13 Jun 2024 20:13:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C5BE12F37B;
+	Thu, 13 Jun 2024 20:18:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="F+NGYBMf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sM4I4ZHm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BACD078C80;
-	Thu, 13 Jun 2024 20:13:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBAEF824A4;
+	Thu, 13 Jun 2024 20:17:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718309609; cv=none; b=QkmiTzfx0pnKvCycg2lM8UWIUcdITLInB8liTcfxgSt5QGYi4EKfDdYaYuliy0zN51zosqvo6KOT4o9jtcuYt7jM5VrGbvJvsyB7m0d2M1m/FrUSDCY0AVAt24+JKzZA9xJYwmuStWLRH+yn2dLCyG/gK/zRGV5fe6PlnXuvlTg=
+	t=1718309880; cv=none; b=NfMYfN3rdNacRJBMhTTdatMZWaNMwsBEvKwcMTtca3L6jK9njH1hpH7UxiYzZdofKq9RZ7wJwI9df3k9IhzeUK8b5ZiNnN3n6CGGLTaBQ7o8iE0FNk9I+84CUqOR8CPf74+4TwSeToPqDkvXFLKvWDSQEf1aFOtLrtMZewRDrGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718309609; c=relaxed/simple;
-	bh=G6I+tiBGGMSLsR0tz+OV9tBUoiDJ7Ijy7tbjP5zhCsY=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=FP9S9o87jpRG3gkmEbkjI4Jy3PI46k0mCGPy5/b9+6OTIiIJLoMpk1GEutqJp8irwaRgPKZ1rbgUm182Ti3oirIMfC4s43uF32oG7KdJgPwaBQVS5qACPoyrRDXYTWElFpKksmDi3WwyMIGq5GIhdkJuchxyA5rItdb47oleBvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=F+NGYBMf; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718309608; x=1749845608;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=G6I+tiBGGMSLsR0tz+OV9tBUoiDJ7Ijy7tbjP5zhCsY=;
-  b=F+NGYBMfZwS6M5uttcSQdQxppDHsC0iUrL98nGewldXlFp6gUMoEI6Sz
-   N//OKKDUG2roFeL7bTV5P7ZEwL1BRVdjNKzvbRKXYrwWaIsAe2kS6UrzH
-   8zj2YNpL6/NQywvFGInHfnAsd9/wmEODnJZ3AZCkZaGx0+P9BKsFTuTIT
-   jaT5sup9ab1hU2cTba3T3qRcnUq2Zb37fS+33AkBr1h8XbAoxU2/+FB+K
-   TSwDKTRMBoJ81jrqDJI8zt5s5UjPR/KMaXIOaOlNRCVh3hIhfgK3MxTjq
-   Mu0vq+/Ie/OBsLzt7OxwoL9x7N6QXSAnRc9Jwhe1jq/KXVzgNzrHURd0B
-   g==;
-X-CSE-ConnectionGUID: atiIDKjMTfSUWIZ5FqsJLA==
-X-CSE-MsgGUID: Gfq791A4QK6E8nSrMxNkpA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="25841053"
-X-IronPort-AV: E=Sophos;i="6.08,236,1712646000"; 
-   d="scan'208";a="25841053"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jun 2024 13:13:27 -0700
-X-CSE-ConnectionGUID: aP4YqvWsSXCVaXYJEkhp+w==
-X-CSE-MsgGUID: EkxNsMyxQXSHzqF/O/96+A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,236,1712646000"; 
-   d="scan'208";a="40926394"
-Received: from sj-4150-psse-sw-opae-dev2.sj.intel.com ([10.233.115.162])
-  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jun 2024 13:13:26 -0700
-Date: Thu, 13 Jun 2024 13:13:26 -0700 (PDT)
-From: matthew.gerlach@linux.intel.com
-X-X-Sender: mgerlach@sj-4150-psse-sw-opae-dev2
-To: Rob Herring <robh@kernel.org>
-cc: Bjorn Helgaas <helgaas@kernel.org>, lpieralisi@kernel.org, kw@linux.com, 
-    bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org, 
-    conor+dt@kernel.org, joyce.ooi@intel.com, linux-pci@vger.kernel.org, 
-    devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] PCI: altera: support dt binding update
-In-Reply-To: <20240613175131.GA2070202-robh@kernel.org>
-Message-ID: <alpine.DEB.2.22.394.2406131301550.662691@sj-4150-psse-sw-opae-dev2>
-References: <20240611170410.GA989554@bhelgaas> <alpine.DEB.2.22.394.2406120744350.662691@sj-4150-psse-sw-opae-dev2> <20240613175131.GA2070202-robh@kernel.org>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+	s=arc-20240116; t=1718309880; c=relaxed/simple;
+	bh=SeoW3pQUv+7r5hH9UutJVNk3geg6YNYfWR6URRa1t0w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nTcSgxs1o6g2o2/M+2LUDCnKJ7RCxsR7ZMcdDzdx3ZzOINSxaRo2wdPZOMkMxe96PaXHpQByyNOb/WRDU7mj8+WIRtezt/9cHMlmtydTaakAKRh/ZK9YjnaJdj+ZT7Idtkn4H0b6P/lObKHTMDUVDgxcY/8aHr7ZOojSZTZ714o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sM4I4ZHm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BA8AC2BBFC;
+	Thu, 13 Jun 2024 20:17:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718309879;
+	bh=SeoW3pQUv+7r5hH9UutJVNk3geg6YNYfWR6URRa1t0w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sM4I4ZHmFl9zudcj8FKpOoM2BO2TXzDlCjiGjrvsIB/y3HVPD3QA5qFQ2X+hnc95u
+	 uxXuKHimDuNs6MAzDAGgA76gZQDldLo7Io2NUxrsana47vNYbWKLxunAQJkE/v2mTa
+	 qEQhNRVHH+rxGhWWsyQX53FgZtIPkKH9jkNNlLuPu1bTJqitdtMvndVJW48q765bUk
+	 NVJhEkUjlmSFkf5skF7sl36kVWMgI2EOA8kKEsM+bQ/Ohth+qVT0AQkhsIpdasJVcG
+	 KNqMBu3nYvly1LKtLOy6tLmprpoFwhwk9OKRJ0wCghMGWbLYAnsSyP7BQQhg+oZonn
+	 VZKRqAERGg72Q==
+Date: Thu, 13 Jun 2024 14:17:58 -0600
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Vladimir Oltean <olteanv@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev
+Subject: Re: [PATCH v2 2/3] spi: dt-bindings: fsl-dspi: Convert to yaml format
+Message-ID: <20240613201758.GA2396297-robh@kernel.org>
+References: <20240613-ls_qspi-v2-0-b288f6f5b736@nxp.com>
+ <20240613-ls_qspi-v2-2-b288f6f5b736@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240613-ls_qspi-v2-2-b288f6f5b736@nxp.com>
 
+On Thu, Jun 13, 2024 at 03:00:38PM -0400, Frank Li wrote:
+> Convert dt-binding spi-fsl-dspi.txt to yaml format.
+> 
+> Addtional changes during convert:
+> - compatible string "fsl,ls1028a-dspi" can be followed by
+> fsl,ls1021a-v1.0-dspi.
+> - Change "dspi0@4002c000" to "spi@4002c000" in example.
+> - Reorder properties in example.
+> - Use GIC include in example.
+> - Remove fsl,spi-cs-sck-delay and fsl,spi-sck-cs-delay by use common SPI
+> property.
 
+You can't just remove them. These are mature platforms using them and 
+replacing the properties would break kernels without your driver change. 
+The only compatible change would be put both properties in the DT.
 
-On Thu, 13 Jun 2024, Rob Herring wrote:
+You need to pick up what Vladimir did:
 
-> On Wed, Jun 12, 2024 at 08:12:05AM -0700, matthew.gerlach@linux.intel.com wrote:
->>
->>
->> On Tue, 11 Jun 2024, Bjorn Helgaas wrote:
->>
->>> On Tue, Jun 11, 2024 at 11:35:25AM -0500, matthew.gerlach@linux.intel.com wrote:
->>>> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->>>>
->>>> Add support for the device tree binding update. As part of
->>>> converting the binding document from text to yaml, with schema
->>>> validation, a device tree subnode was added to properly map
->>>> legacy interrupts. Maintain backward compatibility with previous binding.
->>>
->>> If something was *added* to the binding, I think it would be helpful
->>> to split that into two patches: (1) convert to YAML with zero
->>> functional changes, (2) add the new stuff.  Adding something at the
->>> same time as changing the format makes it hard to review.
->
-> The policy for conversions is changes to match reality are fine, just
-> need to be noted in the commit message. That generally implies no driver
-> or dts changes which is not the case here.
->
->> Thanks for feedback. It was during the conversion to YAML that a problem
->> with the original binding was discovered. As Rob Herring pointed out in
->> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240513205913.313592-1-matthew.gerlach@linux.intel.com/
->>
->> "Making the PCI host the interrupt parent didn't even work in the kernel
->>  until somewhat recently (maybe a few years now). That's why a bunch of PCI
->>  hosts have an interrupt-controller child node."
->>
->> This was an attempt to fix the problem. I can resubmit a conversion to YAML
->> with zero functional changes.
->
-> I wasn't suggesting you fix it. Just something I noticed looking at
-> the other issue. If no one noticed or cared, why bother? It should work
-> fine for recent kernels.
+https://lore.kernel.org/linux-spi/20221111224651.577729-1-vladimir.oltean@nxp.com/
 
-Thanks for the feedback. I can resubmit a single conversion commit that 
-passes the schema check by adding 3 address fields as you suggested. I 
-will also mention this slight modification in the commit message.
-
-Matthew
-
->
-> Rob
->
+> - Use compatible string 'jedec,spi-nor' in example.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  .../devicetree/bindings/spi/fsl,dspi.yaml          | 115 +++++++++++++++++++++
+>  .../devicetree/bindings/spi/spi-fsl-dspi.txt       |  65 ------------
+>  2 files changed, 115 insertions(+), 65 deletions(-)
 
