@@ -1,124 +1,130 @@
-Return-Path: <devicetree+bounces-75221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33338905F86
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 02:06:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0538905FAB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 02:23:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB4291F225B9
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 00:06:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF9781C20972
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 00:23:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 376B7384;
-	Thu, 13 Jun 2024 00:05:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="FwXPUSvW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B63A2913;
+	Thu, 13 Jun 2024 00:23:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EB2237C;
-	Thu, 13 Jun 2024 00:05:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C37274404
+	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 00:23:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718237156; cv=none; b=WrOPFcnAda4GisamcWVZvgb5MpuuZ3t5Kjjpziz+rlmrb0mM4eUy1tWLljvNHiXuJgyUZYW20mSzmYrarV8LykmZHAlShQPvFqn2geWZ47acwsIdG9xNSe2QwJ6qsQNkyJMrTbgJDCNNwJ/Eqar0NEN91df67wxo/bK28T1/XuE=
+	t=1718238230; cv=none; b=J2VrpucNH/kaok3G9qGtgcXG9WIqkSVt101mPQZ+bZFJgQAYKeD9vErcJBNtKofDSZw0tXYSIhhrnotL6PiroZrIc174jDYyWnvGFtQtZcrehJKSsvRT9+PkJrcbEE29abTQadAfu9vHjn+1FPRM5csn7NXkKvM9sfTWEPx2Oak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718237156; c=relaxed/simple;
-	bh=LyIhlSiU9zms9Jq6SWfnbAsKlxdZw4+/KwF9352sHTY=;
-	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=IEMzkdS6sy5XtcRJlE7hSDgI1O/WEl4Z3PMLqvvm86zkJ9/7omBBaNpLRQkricDMs8O5tiFf6QBbsjdlDExoYpANyezHR3gPkHPJqDyCYuqwdUs2Mr1flZCJFrXGIuu8yzbz72mt/9SxfInrkZIAhFnarsEoTesIDm7rReKaKf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=FwXPUSvW; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust6594.18-1.cable.virginm.net [86.31.185.195])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B34084CF;
-	Thu, 13 Jun 2024 02:05:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1718237137;
-	bh=LyIhlSiU9zms9Jq6SWfnbAsKlxdZw4+/KwF9352sHTY=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=FwXPUSvWiXUazK7DEGkvRf0HY5wqzfYeiI6bYiS+dLfNMyQKK8famyXXoP5livdzX
-	 T7TVgbrIuiF2lfjP4FATiND5v8os2zxuoMu5xzp4qmE82HYFr06p/tiwX2JgkjNF1k
-	 X7Z3sH2Tdyx8GB/P2JxWv+XFdtOkXfS0WTQgDDJs=
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1718238230; c=relaxed/simple;
+	bh=X/1AbVy7betc8z1viETSYn2O0oNU5/ls9yhP2khjL8o=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=kuPZPPySPQKFAFPrTeEWykjrUnFNB92aUSGVzltiPSABVgHBgALxB9FQFq/Q7mqbmK4w6MAGsfvKPX8ZqViiByiyfpJxpL5e7SzqrocG1YBh3+RCVrRjmAzE9c8BcTRYkUA0XCIJdOy2Yt/iOFl9zvFm/+IdSqJZ/aNUQbZNwbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
+Received: from secure.fukaumi.org ([10.0.0.2])
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 45D0I7kB000643;
+	Thu, 13 Jun 2024 09:18:08 +0900
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        FUKAUMI Naoki <naoki@radxa.com>
+Subject: [PATCH v2] Revert "arm64: dts: rockchip: remove redundant cd-gpios from rk3588 sdmmc nodes"
+Date: Thu, 13 Jun 2024 09:17:57 +0900
+Message-ID: <20240613001757.1350-1-naoki@radxa.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240611120645.457-1-naoki@radxa.com>
+References: <20240611120645.457-1-naoki@radxa.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <18d2c28fc8b47889689a1506957ea2a308c80fa2.camel@mediatek.com>
-References: <20240612012019.19078-1-zhi.mao@mediatek.com> <20240612012019.19078-3-zhi.mao@mediatek.com> <7c71534f-9815-4ea3-969f-c04d249d35d2@collabora.com> <18d2c28fc8b47889689a1506957ea2a308c80fa2.camel@mediatek.com>
-Subject: Re: [PATCH v3 2/3] media: i2c: Add GT97xx VCM driver
-From: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: heiko@sntech.de <heiko@sntech.de>, linux-kernel@vger.kernel.org <linux-kernel@vger.kernel.org>, laurent.pinchart+renesas@ideasonboard.com <laurent.pinchart+renesas@ideasonboard.com>, yunkec@chromium.org <yunkec@chromium.org>, linux-mediatek@lists.infradead.org <linux-mediatek@lists.infradead.org>, linux-media@vger.kernel.org <linux-media@vger.kernel.org>, hdegoede@redhat.com <hdegoede@redhat.com>, bingbu.cao@intel.com <bingbu.cao@intel.com>, paul.elder@ideasonboard.com <paul.elder@ideasonboard.com>, devicetree@vger.kernel.org <devicetree@vger.kernel.org>, andy.shevchenko@gmail.com <andy.shevchenko@gmail.com>, Yaya Chang =?utf-8?b?5by16ZuF5riF?= <Yaya.Chang@mediatek.com>, Shengnan Wang =?utf-8?b?546L5Zyj55S3?= <shengnan.wang@mediatek.com>, p.zabel@pengutronix.de <p.zabel@pengutronix.de>, alain.volmat@foss.st.com <alain.volmat@foss.st.com>, sakari.ailus@linux.intel.com <sakari.ailus@linux.intel.com>, tomi.valkeinen@ideasonboard.com <tomi.valkeinen@ideasonboard.com>, 10572168@qq.com
-  <10572168@qq.com>, hverkuil-cisco@xs4all.nl <hverkuil-cisco@xs4all.nl>, linux-arm-kernel@lists.infradead.org <linux-arm-kernel@lists.infradead.org>, matthias.bgg@gmail.com <matthias.bgg@gmail.com>, mehdi.djait@bootlin.com <mehdi.djait@bootlin.com>
-To: Zhi Mao =?utf-8?b?5q+b5pm6?= <zhi.mao@mediatek.com>, angelogioacchino.delregno@collabora.com, conor+dt@kernel.org, krzk+dt@kernel.org, mchehab@kernel.org, robh@kernel.org, dongchun.zhu@mediatek.com
-Date: Thu, 13 Jun 2024 01:05:49 +0100
-Message-ID: <171823714905.1550852.13442340621133903705@ping.linuxembedded.co.uk>
-User-Agent: alot/0.10
+Content-Transfer-Encoding: 8bit
 
-Hi Zhi,
+This reverts commit d859ad305ed19d9a77d8c8ecd22459b73da36ba6.
 
-Also - Cc: Dongchun Zhu <dongchun.zhu@mediatek.com> who is listed as the
-DW9768 VCM driver author...
+Inserting and removing microSD card is not detected since above commit.
+Reverting it fixes this problem.
 
-Quoting Zhi Mao (=E6=AF=9B=E6=99=BA) (2024-06-12 12:13:40)
-> Hi Angelo,
->=20
-> Thanks for your review.
->=20
-> On Wed, 2024-06-12 at 09:07 +0200, AngeloGioacchino Del Regno wrote:
-> > Il 12/06/24 03:20, Zhi Mao ha scritto:
-> > > Add a V4L2 sub-device driver for Giantec GT97xx VCM.
-> > >=20
-> > > Signed-off-by: Zhi Mao <zhi.mao@mediatek.com>
-> >=20
-> > Hello Zhi,
-> >=20
-> > I fail to see why would you need to upstream this new driver instead
-> > of
-> > simply adding the IC_INFO_REG to the already existing (and more
-> > featureful)
-> > dw9768 driver, which also seems to support the Giantec GT9769 VCM.
+This is probably the same thing as 5 years ago on rk3399
+https://lore.kernel.org/all/0608599d485117a9d99f5fb274fbb1b55f6ba9f7.1547466003.git.robin.murphy@arm.com/
 
-Even more so especially as
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/dri=
-vers/media/i2c/dw9768.c
-already directly supports the compatible strings added by this driver -
-surely we don't want multiple (near identical) drivers matching the same
-compatible string?
+So we'll go back to cd-gpios for now.
 
-> >=20
->=20
-> Our project uses Giantec VCM hardware.=20
-> For detailed vendor information, please visit: (
-> https://en.giantec-semi.com/yqmd/164).=20
-> The VCM datasheet we are referencing is provided by Giantec.=20
-> Currently, the relationship between Giantec VCM and Dongwoon VCM is
-> unclear, but Dongwoon seems to be another manufacturer of VCM
-> hardware.=20
->=20
-> From the perspective of software driver development and maintenance, it
-> makes sense for each vendor's hardware should have its own software
-> driver.
+this patch is tested on Radxa ROCK 5A and 5B.
 
-Personally, I don't think so. If two vendors make identical parts, we
-shouldn't have two identical drivers.
+Fixes: d859ad305ed1 ("arm64: dts: rockchip: remove redundant cd-gpios from rk3588 sdmmc nodes")
+Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
 
-I still have plans to refactor VCM drivers if I get some spare-time(tm)
-as almost each driver does the same identical task. They're all just
-copies of the boilerplate.  That seems like something we should reduce,
-not increase.
+Changes in v2:
+- reword commit message
+- remove empty line
+---
+ arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts | 1 +
+ arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts     | 1 +
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts         | 1 +
+ arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts        | 1 +
+ 4 files changed, 4 insertions(+)
 
---
-Kieran
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+index 1a604429fb26..e74871491ef5 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+@@ -444,6 +444,7 @@ &sdhci {
+ &sdmmc {
+ 	bus-width = <4>;
+ 	cap-sd-highspeed;
++	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+ 	disable-wp;
+ 	max-frequency = <150000000>;
+ 	no-sdio;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
+index b4f22d95ac0e..e80caa36f8e4 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
+@@ -435,6 +435,7 @@ &sdhci {
+ &sdmmc {
+ 	bus-width = <4>;
+ 	cap-sd-highspeed;
++	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+ 	disable-wp;
+ 	max-frequency = <150000000>;
+ 	no-sdio;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+index 4e2bf4eaef2b..df845929b084 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+@@ -390,6 +390,7 @@ &sdmmc {
+ 	bus-width = <4>;
+ 	cap-mmc-highspeed;
+ 	cap-sd-highspeed;
++	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+ 	disable-wp;
+ 	sd-uhs-sdr104;
+ 	vmmc-supply = <&vcc_3v3_s3>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+index 8e2a07612d17..b070955627be 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+@@ -366,6 +366,7 @@ &sdmmc {
+ 	bus-width = <4>;
+ 	cap-mmc-highspeed;
+ 	cap-sd-highspeed;
++	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+ 	disable-wp;
+ 	max-frequency = <150000000>;
+ 	no-sdio;
+-- 
+2.43.0
 
-
-> So, I upstream a new VCM driver for Giantec.
->=20
-> > Cheers,
-> > Angelo
 
