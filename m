@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-75333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BA1D906841
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 11:13:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 954C0906844
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 11:14:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A61CB263C5
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:13:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8E691C21A48
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:14:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BACE213DDA5;
-	Thu, 13 Jun 2024 09:13:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A51DE13DBA4;
+	Thu, 13 Jun 2024 09:14:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vt19qWGJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="byymRTa2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 082F713D63A
-	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 09:13:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0576113D8A4
+	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 09:14:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718269990; cv=none; b=Brk09xaUMYD0VDDxMkSsIIxPQeFx2aHVmESEf/a4AXfZgwD5y/pJaawWpQkX9mIF1K700JSWKh4FafhhC9J+ACYRA7aWVsfUEIZToxV9ylGmPN1FYEWi7OLRqnUtR5DBnawL44JiPBMs7WBoiatAZL4rVY7MAwt0A/CepWXaXD0=
+	t=1718270060; cv=none; b=jIbFkhzwSt3/us1xhu7tfXuZJhooR58DDkGNw0CebYUigNguz2Dfi/MB0mZfoMoxi0Ivm9kusWvOq9+JLw4CbwoI/l/vUNLVjb6tNmqcQNHTyKiE5oCRPeYLnx9+tQoeNd3G2MAu4mHwBznUfySASwdDJBxSlaLGazgMtd+H/qw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718269990; c=relaxed/simple;
-	bh=chBCFZsoyeYNNgwF3trl0wRLM6NJk5eql0o4EWrZIqo=;
+	s=arc-20240116; t=1718270060; c=relaxed/simple;
+	bh=koX52UfUZjsi8F+8iJN8MxYBWicNTf2sbug6WKDFNYo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=P7FMLX3LeMxo4u/IbenQLM74mkwySndYTB5Qy7d5s2Q8IcXqd+uDMPSvqkEuHI8HI8zHC1wbNLwFEC4txaAhZMbTs2VHE10B8rMZJVB03Xg68Ne/EegxWer06xR5vwNa3I6rSE00c7tlqXLhfDZxrQTP0jsZqnpriz5C1TGdl4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vt19qWGJ; arc=none smtp.client-ip=209.85.167.51
+	 In-Reply-To:Content-Type; b=exYXMuER86zbO15cFnoOO1JUbroDfQnJt9NFaTP2EINB4DdFBhLojVdRoHxYGjBC7hRx9VfSXtupAEbM3TPz+eq+SUPCIJ3+viAe/2n2H2QZjpdKud/WoZ79CZvaFiLoqiRc6xFHoO4OowZwKeziDrEAdFhfE6zjOGmWcIScymo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=byymRTa2; arc=none smtp.client-ip=209.85.208.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-52b7ffd9f6eso874791e87.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 02:13:08 -0700 (PDT)
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-57ca578ce8dso713054a12.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 02:14:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718269987; x=1718874787; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1718270057; x=1718874857; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=tC/xjcrjFJo0No2NJtBl1Trd5UcmBwU7b4n6sOTwHQk=;
-        b=vt19qWGJ6eSBhxZzIOP4sldb2qphOHO5TKd7P3YI8ytgq69Hyw7gQYwh8SXtCLui8L
-         1d4l2gDl/Vbp5OPIlpLWtqPJS9Gqi+0drqS3pcWSMwsoFG2Wng4H73IShu2wNFifTh7b
-         D8Wv6zkJ4ByWS0ugRjbxUpZuPTWJsrNIWAKvzl0cEW1c19lXzkZ818iovNsU5COmwai5
-         QNNjV6fmw/2su+/Mqpm1xEr94HSdscjWM0D6aBD6WWxEVmMgUUpd8UBNF4YYyn2Pllg6
-         x1QqTf/P1OlASA1/5IRWml5bG+i9G98GwUfWdk46pLOzH1jEDQ6l0eJwSqvisUxKJcQh
-         fOwg==
+        bh=qkh12gu8Y41kP9toxt391VtpQoWW2LdgXSMredIy/TA=;
+        b=byymRTa2cqhrVXo7cEUpp/RmzYm14IeJ8GeLCS4yL6SW/AvsRYMODChTAzi8tiOtl5
+         Wa2pnKmQ5KglqQE5Pv3wtoiitNbDL2OpTYAhySsOD/jDMWZkJ9eB8F4wwECFs2rW14ju
+         wYE8iJmsKFLja5FNfeRj6+336jnwovSB891d6+4YEtX2OLDSo+hYuGK+iCDBmXR61NVE
+         QqMd93mrYo107zG8kDyzs9TyEI+bxR90DJ7p+0+3ygN8EOgTg92DXIJsGm0WIWEoz2rk
+         QkQz3B1DuA+fFUYf3AyKSXKVj4sULt1SFMuWdVYyrfTDGWn7y8ICOoiVG8m3jvVQ6tFN
+         CKIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718269987; x=1718874787;
+        d=1e100.net; s=20230601; t=1718270057; x=1718874857;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=tC/xjcrjFJo0No2NJtBl1Trd5UcmBwU7b4n6sOTwHQk=;
-        b=w5qon3nv8tBK16FamkG1svlTfEea63MV5HyNxP6XrIasSYZJQ9UQ696SpdFXglbK7C
-         5YH/ZQQHA85271qsKyah6PHsljv7fop4EfAYTz3p2eZ9N0DU6M+ewuyECIOE8fNwE6ke
-         aA9DCfY9tt0LfbzENAg6uAlFI1gQIH+rLdpUJbqPLZb0pO/yHsEPlUAa5sjJrgI/54sN
-         unDF7ncgLeKOLBUh+JcPbUaVi6X0EgS5hJFHTlt2HfplNCRQpyuBbinDshuGxBwF0ieS
-         7+BAtr72i7dKeSL+uPYZktkezGK4flGm4e4P3Zy6D3fVz0uTLDgzpKAAz1WqfxzkbfZr
-         d5Ug==
-X-Forwarded-Encrypted: i=1; AJvYcCXxVwNMnTkZivpFbGzQ9M7Je6Ns7T2i4jx43xu8EmJGfFD/hxF4hcwuZoH/fOwR6Dy74YlhDDuBI2RHE0+tlZxQSeEwDAiocNrypA==
-X-Gm-Message-State: AOJu0YxgVtHrdbUUNgz3NnkXhcvVcZb2Q0D20fZB2Xie2rh0s11DPqX6
-	NDus4zkpJnSJxlNZPwWMmgIkOaN8yZVtcyNAq8cNIODOOYwuMGJxpGZCh72hlSDEI8P2htqwaZR
-	W
-X-Google-Smtp-Source: AGHT+IHjySitS/JVozozvQQru+fBOOLFkwqD3nOCSx9EabUL6DrL8FoHu8mrXfKNms6T1KaySaF0vw==
-X-Received: by 2002:ac2:4c4a:0:b0:52c:8a12:3d3b with SMTP id 2adb3069b0e04-52c9a4053ccmr3147259e87.56.1718269987115;
-        Thu, 13 Jun 2024 02:13:07 -0700 (PDT)
+        bh=qkh12gu8Y41kP9toxt391VtpQoWW2LdgXSMredIy/TA=;
+        b=JJ0EPQihvkrzFmejc6VJPNxFnRUtyWdrCyFVa28B6ueIk/VpPq04RSc14IL1JIyeN1
+         Tvb+jJf1Pq5gg6PKN5K1/FM8RpNWM0s6ifj20GGqCNZ/JGd5Z7SpBcT8hYfVztFkoWB2
+         nANO6NbJ/ckoWl7HzvGOv6YCKXbPTd8ZO3G2pieh9rb8RpaNJlOOUhoEe1q1osmRgKP8
+         8E/3BiPyusUV9Jdu/aUAORFPRAH3FaPcrUsVnnZ/AF3GmkfxGVxavCofPmb+hxSjm0uF
+         tkYtoo+xIfDaDSj5HEmCJy1n1l+P+6Efi1S9wVVlEKmVzDW7fCnlY8uQmw8uIwHRejvt
+         ALKw==
+X-Forwarded-Encrypted: i=1; AJvYcCUWJ9ZN3MdUCdoPUzQBbGq6Kc9J6AaEXa6n5vAHBo5/zNHCmA6FhJeNbBsdll7pNTVgYA9LUzsKwTLYU/4523bl6V/UWx+DUU1DGA==
+X-Gm-Message-State: AOJu0Yx/gw/W5gEa8T3UAKH2yWw32avEMxFAlrYrii1z2Csd0VEumYPR
+	z9zX+3hKJR5D3sykutwtTchCzgeEwxoNz4r2TbvSEC/CF77F1yRKp5gK9k7H/EI=
+X-Google-Smtp-Source: AGHT+IFU4RKXHaCaUsH4qcj2Nq9fJm9LJpMfzoBg0DJvhu+sP6wByh+Y9Ndy4HkFr6HZO/9Hm8liKA==
+X-Received: by 2002:a50:cd09:0:b0:56e:99e:1fac with SMTP id 4fb4d7f45d1cf-57caaae5221mr3184039a12.39.1718270057321;
+        Thu, 13 Jun 2024 02:14:17 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422870e9681sm54021205e9.28.2024.06.13.02.13.05
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57cb72e9c12sm662908a12.58.2024.06.13.02.14.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jun 2024 02:13:06 -0700 (PDT)
-Message-ID: <6a54ea62-05b9-4e8e-876f-285fbe213310@linaro.org>
-Date: Thu, 13 Jun 2024 11:13:05 +0200
+        Thu, 13 Jun 2024 02:14:16 -0700 (PDT)
+Message-ID: <7c458bb1-d49f-4795-ae9a-54a8c47e5e23@linaro.org>
+Date: Thu, 13 Jun 2024 11:14:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,19 +77,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: input/touchscreen: imagis: Document
- ist3038
-To: Raymond Hackley <raymondhackley@protonmail.com>,
- linux-kernel@vger.kernel.org
-Cc: Markuss Broks <markuss.broks@gmail.com>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Stephan Gerhold <stephan@gerhold.net>, Nikita Travkin <nikita@trvn.ru>,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht
-References: <20240613025631.5425-1-raymondhackley@protonmail.com>
- <20240613025631.5425-3-raymondhackley@protonmail.com>
+Subject: Re: [PATCH v3 2/7] dt-bindings: i2c: mux: mule: add dt-bindings for
+ mule i2c multiplexer
+To: Farouk Bouabid <farouk.bouabid@cherry.de>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Peter Rosin <peda@axentia.se>, Andi Shyti <andi.shyti@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Quentin Schulz
+ <quentin.schulz@cherry.de>, Heiko Stuebner <heiko@sntech.de>
+Cc: linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+References: <20240611-dev-mule-i2c-mux-v3-0-08d26a28e001@cherry.de>
+ <20240611-dev-mule-i2c-mux-v3-2-08d26a28e001@cherry.de>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -137,21 +137,33 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240613025631.5425-3-raymondhackley@protonmail.com>
+In-Reply-To: <20240611-dev-mule-i2c-mux-v3-2-08d26a28e001@cherry.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/06/2024 04:57, Raymond Hackley wrote:
-> Imagis IST3038 is a variant of Imagis touchscreen IC. Document it in
-> imagis,ist3038c bindings.
+On 11/06/2024 13:43, Farouk Bouabid wrote:
+> Mule is an MCU that emulates a set of I2C devices which are reachable
+> through an I2C-mux.
 > 
-> Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
-> ---
->  .../devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml   | 1 +
->  1 file changed, 1 insertion(+)
-> 
+A nit, subject: drop second/last, redundant "dt-bindings for". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+...
+
+> +
+> +            i2c@0 {
+> +                reg = <0x0>;
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                fan: fan@18 {
+> +                  compatible = "ti,amc6821";
+> +                  reg = <0x18>;
+> +                  #cooling-cells = <2>;
+
+Please keep consistent indentation.
 
 Best regards,
 Krzysztof
