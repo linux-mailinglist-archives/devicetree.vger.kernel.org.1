@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-75269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F9D99064B5
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:15:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84D149064FE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:27:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C8073B2427D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 07:15:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E498284F35
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 07:27:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A22A74D10A;
-	Thu, 13 Jun 2024 07:15:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9646013C83A;
+	Thu, 13 Jun 2024 07:26:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YEUb6Lxt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RoBXj02m"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 704F37FB;
-	Thu, 13 Jun 2024 07:15:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66E0E13C827;
+	Thu, 13 Jun 2024 07:26:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718262932; cv=none; b=sMtzO2OLpShFMswgOcPh5Az5F/61HS0p90UlmKUQKXv8G2lBA+Eeojo9VwbO6NMMfOE8ofBzR3CWKiloZPUk7Ii+VhU+pa22wlJBTBvl/w8eKUSj5gICLZBs3kIEZkbf+jw7cFtvpevjTQE4DQp44CO4ndVInzp0G1/0qPVtXyU=
+	t=1718263568; cv=none; b=owAE6kzcAS24slyF4Wx/ptlBCSU6r/G2GNBiTJq/UJlBawW8rj1QBLHG+tK6twsp/EWTunfVfbKGuSc/YKKmEhP2LAfMMe0KpWS2HZ9gPTHle1QzOGQOfgFhiiKDy3okuOa5Uu8j8Aqbm+ECoBA6vwvKp9TijBJgim3n9P0JtNg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718262932; c=relaxed/simple;
-	bh=Tmo/BuogahgR5M93Y4MvIAIRnQBajprod5rkLlc7vm4=;
+	s=arc-20240116; t=1718263568; c=relaxed/simple;
+	bh=gV/qdXbaOqf2PQPwvCYczv35Ojx7UrKDymt28a6nXJo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aTZS62a/Tq6BIxTcS5ufw156HJPfXrtLiOyd3W5NHc+f+ncgp2o9p4dFGblqWhKyfIbjyj8prB3Izjrfb/HIoSSou/sMpNPD9HoABlc0G9MWIygXVz2DRPL1dvVzyI8YpTmYSktQMZe48jdXmpV1K/VonoIvV7EJ2qq8cpenTck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YEUb6Lxt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 125A3C32789;
-	Thu, 13 Jun 2024 07:15:28 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Kwnk9PZTAYLf7Ecxt10okRUXkD9KybM9U3FmysV2UDyUIM1E+xvOmVjoA/FWGI+JgiouYDFFPoy5DHHxn4ORO0M1likYFzZvp4+mYtHVnehpfJ/C0F4YurvBQjIQ7oOzJHdoBlxWIcOxAVActwm3kwtffBZLnYV0LWSEa9G3EDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RoBXj02m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FEF4C4AF4D;
+	Thu, 13 Jun 2024 07:26:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718262932;
-	bh=Tmo/BuogahgR5M93Y4MvIAIRnQBajprod5rkLlc7vm4=;
+	s=k20201202; t=1718263567;
+	bh=gV/qdXbaOqf2PQPwvCYczv35Ojx7UrKDymt28a6nXJo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YEUb6LxtH77IDUSV5/8g5JA73JmVYjf5AH9ec4P/xY1ZJFv4k1n0y3CRuzYpmskMS
-	 /BSPVBqQfdiyc0DTpZo8uP3cxQHFGHt3RmPcWxwzlYjTCN6hXnXQJZDyt+HulROKDR
-	 poDhM7eg867xaITURqO0eIrPiAmqRjHqUoKm+wsJtbRPxjcqLErXLZV8eq0KFPSIvO
-	 wZViSBss9HKV6iJmkyIKhvw3QbL0vuMRkxVtKaPFeugJG7FD5AL0C+AI5lTlVN+pPO
-	 Q8t3mHkj6y5FRtgNd+Kf1KK1pYxpYVK5M27SxqctUpM2SvsSNZwykrYkCNjtS48+JC
-	 kmVb+hn0hmGew==
-Message-ID: <e10eda85-68cf-4f66-ba34-3e746d286fa2@kernel.org>
-Date: Thu, 13 Jun 2024 09:15:26 +0200
+	b=RoBXj02m4dhJ2PDnunF0yRJxwWfrgqTvzqHm8CiKYGaGZhWJLN+XcJeI+xo8gRdWm
+	 Vl1izOSNDigeTYPR13ETLChcwJH7Qbs8dbOPSUQyxFcvSWYPAovelEBx5b2qhAl2Yc
+	 zJZHR0KpBAcke+qhEDaagpngApysK+XvMhBbFO0TbIwF3SAvBdWGjGAhUKeWxgCbRg
+	 YdOKW46XGMCaFCeOkL7zrBNwL15qBOZUTGjp3H+RtBnAegdiEqt1NmugpX/cV4MFaF
+	 d08gpagkN29VCKLDLZmBqyMGBGwfYGvq5059htu3RBpKhzL2VR0rfiuk22Oy41ABOE
+	 v9GhQ86K2NIog==
+Message-ID: <60b833ce-730f-466e-8d99-3941d85232ce@kernel.org>
+Date: Thu, 13 Jun 2024 09:26:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: qcom: Add SM4250 pinctrl
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240612-sm4250-lpi-v1-0-f19c33e1cc6e@linaro.org>
- <20240612-sm4250-lpi-v1-1-f19c33e1cc6e@linaro.org>
-Content-Language: en-US
+Subject: Re: [PATCH v3 3/3] dt-bindings: PCI: microchip,pcie-host: allow
+ dma-noncoherent
+To: daire.mcnamara@microchip.com, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: conor.dooley@microchip.com, lpieralisi@kernel.org, kw@linux.com,
+ robh@kernel.org, bhelgaas@google.com, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, krzk+dt@kernel.org, conor+dt@kernel.org
+References: <20240612112213.2734748-1-daire.mcnamara@microchip.com>
+ <20240612112213.2734748-4-daire.mcnamara@microchip.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -104,24 +104,22 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240612-sm4250-lpi-v1-1-f19c33e1cc6e@linaro.org>
+In-Reply-To: <20240612112213.2734748-4-daire.mcnamara@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/06/2024 13:55, Srinivas Kandagatla wrote:
-> +
-> +description:
-> +  Top Level Mode Multiplexer pin controller in the Low Power Audio SubSystem
-> +  (LPASS) Low Power Island (LPI) of Qualcomm SM4250 SoC.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sm4250-lpass-lpi-pinctrl
-> +
-> +  reg:
-> +    maxItems: 2
+On 12/06/2024 13:22, daire.mcnamara@microchip.com wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> PolarFire SoC may be configured in a way that requires non-coherent DMA
+> handling. On RISC-V, buses are coherent by default & the dma-noncoherent
+> property is required to denote buses or devices that are non-coherent.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> ---
 
-Nothing changed.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
