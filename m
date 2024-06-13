@@ -1,41 +1,41 @@
-Return-Path: <devicetree+bounces-75559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEEEE907B85
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 20:36:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A446907ADA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 20:17:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79B91B23FAF
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:36:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 443DD1F23559
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:17:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F2BE14D294;
-	Thu, 13 Jun 2024 18:33:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14D5414B08E;
+	Thu, 13 Jun 2024 18:16:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [5.144.164.168])
+Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [5.144.164.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C62681474A8
-	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 18:33:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.144.164.168
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B9101304BA;
+	Thu, 13 Jun 2024 18:16:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.144.164.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718303613; cv=none; b=ChbutHY7B3UKgJFPjXDb7DEHqMNuNnosQr0NMpTgrmPLi9UUMScjWcj1zZFybXamkEvJ/QZ4fV/XmCwrMg+CXLeR4Lt08kVzj/RIoxv7YmvXBbpojORcFHvSz7QJ/hvFit8UT38cqGqsqCb6Kbe0aUvVrdyNZwmebegZfZqPx5M=
+	t=1718302593; cv=none; b=MZNESPVi6bN1INRy8V8md6sIg/so8s8gxANviaT1XOdX/0YLCdy3of1fEDSPoKkuzGR+Ujx+T9XTxIqfqQHreDVX+yo+r395bi7qIL1LJPyK0YYLhRZ8hLbvPWN+D0g/rAgUil7BcHokDUKzc1Am3dBpjrZMOYD+yJmA6hEimZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718303613; c=relaxed/simple;
-	bh=CpdX3pu56PQzLUvbCx0DROlJfZb5I7MJFbTQSg5roJ0=;
+	s=arc-20240116; t=1718302593; c=relaxed/simple;
+	bh=Bud6/tN96FwTVDQ/6rcS6twlXO8rDH9+F12q1VbDBOk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Aiz2+YdtVSPRDxJJhLfOJykJgonqPLP3CTXiH/FYy4bJzZl3eSs3ri+kF3dH9kHLtXFp363LjcjhJY3rqCCtDjmurEOMwzz+bxC9q4L9ChYJ1xyqlK2JWoyB52HitpnxX+u35Sja+bI1XgqWQgeyDLTotXiShGfHiFqHBrszUN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org; spf=pass smtp.mailfrom=somainline.org; arc=none smtp.client-ip=5.144.164.168
+	 Content-Type:Content-Disposition:In-Reply-To; b=rsFNeq0TPVXGyS5kJsRX7hwa/0SWtIGTDdoyXJaszQ4KIXJ/XKm9TXtTTNCgzI4SreNUgTMCyuz6nSSJLRRHhN1TZW0zrp8njhZJsovhNYCq5d+uEI92zXFV5I1TCNlmeIIhJ8/rbJx8oewwfCebRa6uXRKRbaq0lZn4SL1j4yM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org; spf=pass smtp.mailfrom=somainline.org; arc=none smtp.client-ip=5.144.164.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=somainline.org
 Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by m-r2.th.seeweb.it (Postfix) with ESMTPSA id ACE683EBA4;
-	Thu, 13 Jun 2024 20:14:08 +0200 (CEST)
-Date: Thu, 13 Jun 2024 20:14:07 +0200
+	by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 7C4593EF1E;
+	Thu, 13 Jun 2024 20:16:28 +0200 (CEST)
+Date: Thu, 13 Jun 2024 20:16:27 +0200
 From: Marijn Suijten <marijn.suijten@somainline.org>
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc: Rob Clark <robdclark@gmail.com>, 
@@ -45,11 +45,12 @@ Cc: Rob Clark <robdclark@gmail.com>,
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
 	Conor Dooley <conor+dt@kernel.org>, Krishna Manikandan <quic_mkrishn@quicinc.com>, 
 	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 7/8] drm/msm/dpu: support setting the TE source
-Message-ID: <cu3iicchkdmpkm6fttqv42hw2zfa2bs4wk6xsbeu5m4poav4s5@l7kbg43sfzrb>
+	devicetree@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 1/8] dt-bindings: display/msm/dsi: allow specifying TE
+ source
+Message-ID: <y2zzgi4m377rziplwtycijbbdqaaqgyenlrv6v43bpkkt6247y@2uen44jhbv5v>
 References: <20240613-dpu-handle-te-signal-v2-0-67a0116b5366@linaro.org>
- <20240613-dpu-handle-te-signal-v2-7-67a0116b5366@linaro.org>
+ <20240613-dpu-handle-te-signal-v2-1-67a0116b5366@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,90 +59,63 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240613-dpu-handle-te-signal-v2-7-67a0116b5366@linaro.org>
+In-Reply-To: <20240613-dpu-handle-te-signal-v2-1-67a0116b5366@linaro.org>
 
-On 2024-06-13 20:05:10, Dmitry Baryshkov wrote:
-> Make the DPU driver use the TE source specified in the DT. If none is
-> specified, the driver defaults to the first GPIO (mdp_vsync0).
-
-mdp_vsync_p?
-
+On 2024-06-13 20:05:04, Dmitry Baryshkov wrote:
+> Command mode panels provide TE signal back to the DSI host to signal
+> that the frame display has completed and update of the image will not
+> cause tearing. Usually it is connected to the first GPIO with the
+> mdp_vsync function, which is the default. In such case the property can
+> be skipped.
 > 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 44 ++++++++++++++++++++++++++++++++-
->  1 file changed, 43 insertions(+), 1 deletion(-)
+>  .../bindings/display/msm/dsi-controller-main.yaml       | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> index e9991f3756d4..6fcb3cf4a382 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> @@ -505,6 +505,44 @@ static void dpu_kms_wait_flush(struct msm_kms *kms, unsigned crtc_mask)
->  		dpu_kms_wait_for_commit_done(kms, crtc);
->  }
+> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> index 1fa28e976559..e1cb3a1fee81 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> @@ -162,6 +162,22 @@ properties:
+>                  items:
+>                    enum: [ 0, 1, 2, 3 ]
 >  
-> +static const char *dpu_vsync_sources[] = {
-> +	[DPU_VSYNC_SOURCE_GPIO_0] = "mdp_vsync_p",
-> +	[DPU_VSYNC_SOURCE_GPIO_1] = "mdp_vsync_s",
-> +	[DPU_VSYNC_SOURCE_GPIO_2] = "mdp_vsync_e",
-> +	[DPU_VSYNC_SOURCE_INTF_0] = "mdp_intf0",
-> +	[DPU_VSYNC_SOURCE_INTF_1] = "mdp_intf1",
-> +	[DPU_VSYNC_SOURCE_INTF_2] = "mdp_intf2",
-> +	[DPU_VSYNC_SOURCE_INTF_3] = "mdp_intf3",
-> +	[DPU_VSYNC_SOURCE_WD_TIMER_0] = "timer0",
-> +	[DPU_VSYNC_SOURCE_WD_TIMER_1] = "timer1",
-> +	[DPU_VSYNC_SOURCE_WD_TIMER_2] = "timer2",
-> +	[DPU_VSYNC_SOURCE_WD_TIMER_3] = "timer3",
-> +	[DPU_VSYNC_SOURCE_WD_TIMER_4] = "timer4",
-> +};
-> +
-> +static int dpu_kms_dsi_set_te_source(struct msm_display_info *info,
-> +				     struct msm_dsi *dsi)
-> +{
-> +	const char *te_source = msm_dsi_get_te_source(dsi);
+> +              qcom,te-source:
+> +                $ref: /schemas/types.yaml#/definitions/string
+> +                description:
+> +                  Specifies the source of vsync signal from the panel used for
+> +                  tearing elimination.
+> +                default: mdp_vsync_p
+> +                enum:
+> +                  - mdp_vsync_p
+> +                  - mdp_vsync_s
+> +                  - mdp_vsync_e
 
-Just checking: if the TE source is different and one has dual-DSI, it must be
-set on both controllers?
+When discussing that these should be renamed, was it also documented what the
+suffix means?  I can only guess something like primary/secondary/e...?
 
-> +	int i;
-> +
-> +	if (!te_source) {
-> +		info->vsync_source = DPU_VSYNC_SOURCE_GPIO_0;
-> +		return 0;
-> +	}
-> +
-> +	/* we can not use match_string since dpu_vsync_sources is a sparse array */
+Are the mdp_intfX variants missing here that you're handling in patch 7/8?
 
-Instead of having gaps in the array, you could also store both the vsync_source
-and name as the array elements?
-
-> +	for (i = 0; i < ARRAY_SIZE(dpu_vsync_sources); i++) {
-> +		if (dpu_vsync_sources[i] &&
-> +		    !strcmp(dpu_vsync_sources[i], te_source)) {
-> +			info->vsync_source = i;
-> +			return 0;
-> +		}
-> +	}
+> +                  - timer0
+> +                  - timer1
+> +                  - timer2
+> +                  - timer3
+> +                  - timer4
 > +
-> +	return -EINVAL;
-> +}
-> +
->  static int _dpu_kms_initialize_dsi(struct drm_device *dev,
->  				    struct msm_drm_private *priv,
->  				    struct dpu_kms *dpu_kms)
-> @@ -543,7 +581,11 @@ static int _dpu_kms_initialize_dsi(struct drm_device *dev,
->  
->  		info.is_cmd_mode = msm_dsi_is_cmd_mode(priv->dsi[i]);
->  
-> -		info.vsync_source = DPU_VSYNC_SOURCE_GPIO_0;
-> +		rc = dpu_kms_dsi_set_te_source(&info, priv->dsi[i]);
-> +		if (rc) {
-> +			DPU_ERROR("failed to identify TE source for dsi display\n");
-> +			return rc;
-> +		}
->  
->  		encoder = dpu_encoder_init(dev, DRM_MODE_ENCODER_DSI, &info);
->  		if (IS_ERR(encoder)) {
+>      required:
+>        - port@0
+>        - port@1
+> @@ -452,6 +468,7 @@ examples:
+>                            dsi0_out: endpoint {
+>                                     remote-endpoint = <&sn65dsi86_in>;
+>                                     data-lanes = <0 1 2 3>;
+> +                                   qcom,te-source = "mdp_vsync_e";
+>                            };
+>                    };
+>             };
 > 
 > -- 
 > 2.39.2
