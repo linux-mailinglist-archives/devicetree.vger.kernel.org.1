@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-75398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D2CA906DB4
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 14:03:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EC95906DB8
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 14:03:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FDC81C22BF9
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 12:03:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87E851F254FE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 12:03:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E69C8149006;
-	Thu, 13 Jun 2024 11:59:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4E5E1494C2;
+	Thu, 13 Jun 2024 11:59:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="HL+k0z4+"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="VhM/Gqmj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 871F71465BA
-	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 11:59:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 411DA1494B4
+	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 11:59:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718279946; cv=none; b=CYq4Ui+yTnClAVK4NAuRqmtHYaaVJV9Q2NDaNvMSR89uyuqHjRrv6T4xVRnQ1wujKnkhDTsNtlSn3ih2vnctHA9/ahd5U1CZ/L+29PrVyoDyicVzqygx0qXPPfRltupabgFP0sJbCtdahSzGuo1E00Y8+ejx8RuNCI2B8W5YD7U=
+	t=1718279950; cv=none; b=o7J64/5Secp5u0YWDyUch1Sqq1MNLgEktxlBSYl/vHcNAA+vyeWexPrTx4NIrN7a0zFJSAseexTNHBi7FnE4P5gnCdg+UrtTBAXVg8xod/JNnzTo5xg/uPV7sLTzjzlXq3bUWDEQmqp6iyJ+bUn2/SNzEIQkY8cRCmx7HV8+hJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718279946; c=relaxed/simple;
-	bh=QoeL0Uj0afYO2p7SCp2cSVT0H+JsGuapBhibEmka1qA=;
+	s=arc-20240116; t=1718279950; c=relaxed/simple;
+	bh=XA3LxLv++dOYbRHQaJqJk1tOLTd7fkkXOPEi1MhFA5M=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=G/2Y3R7LRuMlgedYIrEdMdmtbD6RZuewMcIeROsfy4S06xnfpbw7oEgc0WbieeXC3ZSgf3OE3ordUHW48I6rbp25GXlDHXn5zT649BCVcyDeGE8AjOmO/1kQm3qaU979j0sr3qTrTXL2gII2aGODuFmXfkoaPftMV/6inEsuoP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=HL+k0z4+; arc=none smtp.client-ip=209.85.216.54
+	 In-Reply-To:To:Cc; b=phMj57pcZKtt3w54j05GU/VC8/bxyEVM8JqLJBkG3A06fHkGjgFpHdHnGNxBhl9gp4Tomv4dvaGqUm70H1Imw3jqOKywURh1GJoeqSlcL5J25Mhigxsek+ykVj1nRMCFeybQJz3AapiwHMO8d47gzObYMDg8mnsMDXkdKWVDavQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=VhM/Gqmj; arc=none smtp.client-ip=209.85.216.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2c19bba897bso763260a91.2
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 04:59:05 -0700 (PDT)
+Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-2bfff08fc29so755467a91.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 04:59:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1718279945; x=1718884745; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1718279948; x=1718884748; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=lFWI3DDItyQVutRiXO8RX6hmLD8qSv3rrOP6UnExo6o=;
-        b=HL+k0z4+2vvV3+p1QKwaAtNp+r0tnSr5ZQlwD5xUmH3gxNbF//Ve4GuMfIYjHzS7pA
-         JoAGXpjc++q5gumaAH350u5CLPUiMXToSRHXtu+HA+142FXtfTNiyp/Z7IKNsmHSI80B
-         WQ2sXoP9AjD6L2Zc7Ovie++dhlzaOW3x7WpwU=
+        bh=6xHqGzbGEnyXYOufhYAT+1jOvdAL9AF1EdfNf7hRahk=;
+        b=VhM/Gqmj5Sk+iKoMxUn182nhiKnlhswED2r/JucIutDDU+0o1DOvyhpfuY5vOCc5P7
+         ZXa1EpODmbECGpa9bkJRZdqF5XyW3ooQsbKYUlvM8+j3h3K9o69ff3cPldq65vz4Fkzr
+         mYba7ydIURhr8utka/7uLIGxJVfRGgR+2QSWM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718279945; x=1718884745;
+        d=1e100.net; s=20230601; t=1718279948; x=1718884748;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=lFWI3DDItyQVutRiXO8RX6hmLD8qSv3rrOP6UnExo6o=;
-        b=EBzx3giUFkvGXdtZi4pC3Z73SN43LqnmH7fPiWVjQyk0ddmMc/tB8zZR1pptCq2lRt
-         Xrz6wrrxRyNXAR6r2G2YLJSOY3WS+MqXB1lqeJhRxfxbTP6yJXwBk8omnNmGV0o0w2Us
-         CrUuCueH5mgnASPD+63FBSdt5x4duPE0NBs7uL85ZMwii2OXxBnyKCsgfGpo5HFWf81O
-         2+hTJAJjhNcPLV4/a+sQRFfobnZ7daEApIyIGVg/BCIsb39JQ+r7/S6rYbPhKRGhZjpt
-         OnEASHzgHufSYOZw2v2z9Bp5+2NU0z13i1V+vyZURfCV4b0qoaYH7Vd8n9w2BrQJQ5Z3
-         NY3Q==
-X-Gm-Message-State: AOJu0Yx4QB3zIUEtMu6t2ZpEmboFQhvuRFnksWVon5RGAolwiIxk+flG
-	OI+RVs4VK/9Z6w/gectL8anYewy9ALWx55f0liE3Y50S9cxBicQsos/qskdfuw==
-X-Google-Smtp-Source: AGHT+IHD/wwLAZVG66P7MmZbAQ5abkZDMU6aSnV1YmSQrBqnGyhFTlyZLbFUkzCum+77t6hfBH2SyA==
-X-Received: by 2002:a17:90b:391:b0:2c1:9892:8fb with SMTP id 98e67ed59e1d1-2c4a760a325mr4845537a91.5.1718279944696;
-        Thu, 13 Jun 2024 04:59:04 -0700 (PDT)
+        bh=6xHqGzbGEnyXYOufhYAT+1jOvdAL9AF1EdfNf7hRahk=;
+        b=dPguhc1imHAiSXqTHAkWP6iVu/qAsWxz9f954ApWleTaTmwm2y3HW6I8OQf4td6QBM
+         fXbOvscI9qajXrW7IM16Qc8Ob7f8mZ9FOWcP3PNaF4MAUW9EmeB133flXriBKvKf4GH1
+         B7ROuHf03uEDNRZcdchYRPR47NBQhFbSB14yJnAH9VcnSHneeTL9w6fUB8FfJUNPtIme
+         hfoWlJ7vX9OJUZgd2VQiQdyhWQcNGV6KIghO0NTp3usTt+JudwKmsPJbVydnLqY/VGj2
+         J29NYn87h6nu6ZM1TO2UXoA9mhysWwSOcrD0sI2vTLSxGjdwbGzYzLmGcSRoQrffTO6t
+         XOXg==
+X-Gm-Message-State: AOJu0YzMURkOTrsIRUiAm35fCIZF9JiQ9Yt/1H1WFXuLOSF+i76A7xcc
+	a3dGEcqN9wj9Q4s0LZ6SPnV8v0R9Tr7u56/TJ5ld6OLVRcDVyV5/Xhsn/xZ4hw==
+X-Google-Smtp-Source: AGHT+IEUzLyoz7lt27fPBDlUwSbmLIUoS+0m0haC8TQCTmDUAzTepAUQd32xctUWuwr+KsV5RI+pwg==
+X-Received: by 2002:a17:90a:5d98:b0:2c2:4107:1fc3 with SMTP id 98e67ed59e1d1-2c4a76d3777mr4729921a91.38.1718279948594;
+        Thu, 13 Jun 2024 04:59:08 -0700 (PDT)
 Received: from yuanhsinte.c.googlers.com (60.252.199.104.bc.googleusercontent.com. [104.199.252.60])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c4c466c3desm1453505a91.46.2024.06.13.04.59.01
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c4c466c3desm1453505a91.46.2024.06.13.04.59.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jun 2024 04:59:04 -0700 (PDT)
+        Thu, 13 Jun 2024 04:59:08 -0700 (PDT)
 From: Hsin-Te Yuan <yuanhsinte@chromium.org>
-Date: Thu, 13 Jun 2024 11:58:54 +0000
-Subject: [PATCH v2 1/2] arm64: dts: mediatek: mt8183-kukui: Fix the value
- of `dlg,jack-det-rate` mismatch
+Date: Thu, 13 Jun 2024 11:58:55 +0000
+Subject: [PATCH v2 2/2] arm64: dts: rockchip: rk3399-gru: Fix the value of
+ `dlg,jack-det-rate` mismatch
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,7 +75,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240613-jack-rate-v2-1-ebc5f9f37931@chromium.org>
+Message-Id: <20240613-jack-rate-v2-2-ebc5f9f37931@chromium.org>
 References: <20240613-jack-rate-v2-0-ebc5f9f37931@chromium.org>
 In-Reply-To: <20240613-jack-rate-v2-0-ebc5f9f37931@chromium.org>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -95,14 +95,14 @@ the value of `dlg,jack-det-rate` property should be "32_64" instead of
 Fixes: dc0ff0fa3a9b ("ASoC: da7219: Add Jack insertion detection polarity")
 Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
 ---
- arch/arm64/boot/dts/mediatek/mt8183-kukui-audio-da7219.dtsi | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-audio-da7219.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-audio-da7219.dtsi
-index 8b57706ac814..586eee79c73c 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-audio-da7219.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-audio-da7219.dtsi
-@@ -27,7 +27,7 @@ da7219_aad {
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
+index 789fd0dcc88b..3cd63d1e8f15 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
+@@ -450,7 +450,7 @@ da7219_aad {
  			dlg,btn-cfg = <50>;
  			dlg,mic-det-thr = <500>;
  			dlg,jack-ins-deb = <20>;
