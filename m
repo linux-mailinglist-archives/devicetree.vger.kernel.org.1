@@ -1,129 +1,123 @@
-Return-Path: <devicetree+bounces-75535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 366E390798D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:18:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9022F9079AC
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:21:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2ED761C236F3
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 17:18:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D4EE287991
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 17:21:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9972E144303;
-	Thu, 13 Jun 2024 17:18:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BA3C14A4FB;
+	Thu, 13 Jun 2024 17:20:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YmWy2cfD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e3iiQebH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDC3013CF85;
-	Thu, 13 Jun 2024 17:18:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A74514A0AD
+	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 17:20:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718299128; cv=none; b=a21j1Y0Un0mwEEiKfD4wBslbN56/PKf9BKDD5/fbY0Zos6Ks+1UzmTSJfT29fXynonV74rCaMdhsl3at2i3EJm0e7rygm0zQMVaeh3hGq9B6lnYrREp2kcou/3h+hGEnw/gMknRE6DWCuJzX1O4sVtNuVgIGeOgEJVfAjXvck4Y=
+	t=1718299239; cv=none; b=LzB20GGXq6cMd3RLTeh565yNJRtSpGv1/06cSV7dlzpR1yao3chkyFwsiOBMWjGXzh/g+ybyrXo+v4zd0TjL5OMBhYZsdkZ4u2dMMy3SmIuF3v7wfbtGMS0eYp+qQrr3Ow89mmAp1QWkhKeR3/X8Etl3a+4AQhS4Rkm3MuKZoJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718299128; c=relaxed/simple;
-	bh=NzeNxgZX0C2quUpUoW26DoTjgXYHI3/jLgEVyVXZHik=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZcCTRn50TraI2FURXwW7Efayfk7np3/5+cVaTUz06DqtZ+mvbzTPysLJTrvladC0E9PHWSGCfhHiifar/Mz/FtkMp5ly+ECqgw43IwZTBUFkjWXgLvFP/ED9Do2fckahUHdMQNAFBxyfMuaE4mKjEx5Zzo/98sVG9KGna0TFmHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YmWy2cfD; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-57a30dbdb7fso1828804a12.3;
-        Thu, 13 Jun 2024 10:18:46 -0700 (PDT)
+	s=arc-20240116; t=1718299239; c=relaxed/simple;
+	bh=vX4tZlfdMiDbAOqyzjLKdId0wIu+miOZ29FnR8jsohU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RNTaERuFQB7gLp1NIOoiTYMJCilcHCsQvgt9q3haPO/Haz7ec3ZSZbm/VG+zB4vOsj+2T3DpLqOALzf+xKOUAWvdcAp5VE4EcKs/LSvZglkR9JzQHI7j+woyD+IsZDx/EtkVwi3u1Graip9MXtxFLPi4MhG4ZsNQITbESmNmmtM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e3iiQebH; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2ebf5b259ffso22044341fa.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 10:20:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718299125; x=1718903925; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=cwcCGDwb60DzgqVPFb1/1oCx//cSi4Srw7sRj+1jaLY=;
-        b=YmWy2cfDrWvGbG39HT/AvfE2BBqW/X05HQ84DgElPv9DyHomx7Uba4EQjTXNAU6Nnn
-         pj89kAiJE5n10o3AejfJexgIBeZnG+rNN5rjNJ84Nnd+xCDRZyR5rUcl+QE47xQvgxPy
-         3C3egfmdNdrxoiJWZvm8TbZe92C6kN2TqN90ZKmxedXiw2VRTsvb/tuDcX9+TO0HaIuH
-         w9ow1SRBdS9iov2pPXYT5Yxjz5nB61Ji+HFnnQ+UvD3umw7Mm4S2DiyvUEAgpeLyrqtO
-         gCjaZBO1VomvgNqmP2/V1rGZdbho+laiTf6AhyoLDr4VILAZmP6soguvAIYAwfabZ3uE
-         gsKA==
+        d=linaro.org; s=google; t=1718299232; x=1718904032; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lmCat4yFzakLoPqsICLGJKZ86qrL9CrdVXXkrAz9XWA=;
+        b=e3iiQebHT4EK0OwiMj4owv5tcaaj3m5nUDjIFNNYwjZQcwWx/r0Y9RbNgeqjRkC/U/
+         nv1RMkUDeQ6jaCeIWvWS3bKpN87vLZo5G0cBOChYrBGfCDCiYpXJBU2V3qucfEaFLPks
+         /Bla1sMan0J5Hnt5sq+FDbh3VIiFQC6jXBhg326Fn6iuulw4GQh4cCrHk+T8MUQQDZcb
+         D4+2Mvpg+c9wZlqdFii4EwNTYk4J67fqZyCi5T4/Lq95CTzGVt3nuXbqAAc2NA8AqVDE
+         rwI0Jv4CnqzFRB13olKxgFGoNlh8lfK/xqIaJGssOdDLPRrCrCZ/JJqxLu9gJMJG2EKo
+         s2wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718299125; x=1718903925;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1718299232; x=1718904032;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cwcCGDwb60DzgqVPFb1/1oCx//cSi4Srw7sRj+1jaLY=;
-        b=vga9/COw24xLx/fJF3GOuGAQD2DUiQse0ZpOzcaKOS/JQ4oCkurmb0Nr6DZn0CDdr9
-         N/r/7RXUJ3RCeBMC9MsrWq9/I2jzWK1gmPvCr++7pVjLy5QY5HuC72UX+Salkn8HbDHG
-         qMtvhl0qQta9gjIT1OQrfNY4uj4roRqj3CyC3rh1yKzB1EE30GRC/qTC7grWSdw+mliB
-         GrJrMcDtYC/Dwb22zckDssTjL2tC6NvXQ9o5ZskI6b7FZiObbL8MGSex2OLD9yQ8LHp3
-         aDcmpB28bfEDB0qtfb8nf/3EKwFwFHXfimwBYumtYkIdWhqcTq+9b5uy7P9lofHccpnb
-         3YNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV1kJhHsmGpA0+Xnx6UUliIkdXjcJK3N8aOHW2AaXwCi+FHxGpD1CX2/rLjjjArboUPP7/mm6qavTqydRTJGg8CoCKHX70mDVArXG8ikFlvlbNthomV2OvrCxqVUuKooeixcIBIBC8Z0bRMHXREGVI9h4i8eSNP6oLuQrWs7wRP78azEIZAiEs+/eiHn4konOaZ4xgcqZPgHD+YqXRfqEzq6gFFOg==
-X-Gm-Message-State: AOJu0YxGE/xZIzuZNA6nSlpeLezvWQvi3/mk/LgKLhs/y/UwZLWQNvXY
-	9LxcFGTPB6PGis4hSnnoY4+ZYgq+Y/82whbPl17szLIIAPofMgvH
-X-Google-Smtp-Source: AGHT+IGdIR8K+VU7ZoWeYaXJouZP25nKSmNr2Ci+hRTo46h3PKiZ1ed05PMzYhGyYbF+2HCHDXPaJw==
-X-Received: by 2002:a50:8e18:0:b0:57a:2fe7:6699 with SMTP id 4fb4d7f45d1cf-57cbd66272cmr286625a12.14.1718299125009;
-        Thu, 13 Jun 2024 10:18:45 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57cb741e7a5sm1139124a12.75.2024.06.13.10.18.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jun 2024 10:18:44 -0700 (PDT)
-Date: Thu, 13 Jun 2024 19:18:42 +0200
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: qcom: motorola-falcon: add accelerometer,
- magnetometer
-Message-ID: <Zmsp8kPRCE/fIPQk@standask-GA-A55M-S2HP>
-References: <ZmWMh6fuLasvGkR/@standask-GA-A55M-S2HP>
- <2b39d763-5b79-4b21-85f9-22fee9f87468@linaro.org>
+        bh=lmCat4yFzakLoPqsICLGJKZ86qrL9CrdVXXkrAz9XWA=;
+        b=PglJZEn0vwAFTyt2FRIHZVcHCBPM8v8T9v+iW0uZursvH8EbEtinSbbq24V5vN9Jm7
+         AI0cZKTdW3c0dY4pAOSRreqAIML66E6EjbRmRJ4eoiXDFL9/XJRbhjYQ9FkwI+GgRYCF
+         DeGjSvMlPm1oRgX47povwC7A+/uuJxgOVfqybvuDWRowvol1MTiuRV3drjR9wzZediFQ
+         YirTfg3u9BB9qoEejKDTSaoMl3cHEixyJddfV1kxiaumiNExCdmVWjg1wE30XXYOfbYt
+         f/Zn/Z58Pvc/sMjPMWOVqodB6VzGxXS7EGlSuWeagfDf07tWUs/ZxtQOStO5qjMJD09U
+         3CVg==
+X-Forwarded-Encrypted: i=1; AJvYcCUyb20cRff7AZlY38X05Ln9ri7VaqCxAXcyr/LNxEiwdWTbsUJmLV0g86WHaqb+4cZzkedZx9fHgVVX4HB2QSJoIPM8iMBNMp5GIw==
+X-Gm-Message-State: AOJu0YwJczHAZn8ViFnexCNyr+IsOEwsa8Z9ZewznUILBdLdIOeKK0tA
+	dYHxJ6jh8Pf7nTflPrlOZ3n7dqrKr+jnOWSczHGsSWdG43qlnqTh8sL9Cc44E7Q=
+X-Google-Smtp-Source: AGHT+IE4j3HMxhLWYVU29TQZzIBVMZHRaQ5xZ54nQ/SRi+BohkpWnbIsKLlp0bKYqGHndxwko/uGhQ==
+X-Received: by 2002:ac2:5183:0:b0:52c:8daf:da1c with SMTP id 2adb3069b0e04-52ca6cb877emr133289e87.20.1718299232137;
+        Thu, 13 Jun 2024 10:20:32 -0700 (PDT)
+Received: from ?IPV6:2a00:f41:900a:a4b1:9ab2:4d92:821a:bb76? ([2a00:f41:900a:a4b1:9ab2:4d92:821a:bb76])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca2887effsm295391e87.257.2024.06.13.10.20.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Jun 2024 10:20:31 -0700 (PDT)
+Message-ID: <5e916d38-7dce-43d7-bee0-a10842faabfe@linaro.org>
+Date: Thu, 13 Jun 2024 19:20:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2b39d763-5b79-4b21-85f9-22fee9f87468@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: qcom: motorola-falcon: add accelerometer,
+ magnetometer
+To: Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <ZmWMh6fuLasvGkR/@standask-GA-A55M-S2HP>
+ <2b39d763-5b79-4b21-85f9-22fee9f87468@linaro.org>
+ <Zmsp8kPRCE/fIPQk@standask-GA-A55M-S2HP>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <Zmsp8kPRCE/fIPQk@standask-GA-A55M-S2HP>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jun 13, 2024 at 09:48:26AM +0200, Konrad Dybcio wrote:
-> 
-> 
-> On 6/9/24 13:05, Stanislav Jakubek wrote:
-> > Add the accelerometer and magnetometer that are present on the Motorola
-> > Moto G (2013) device.
-> > 
-> > Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
-> > ---
-> 
-> [...]
-> 
-> > +&blsp1_i2c2 {
-> 
-> Consider setting a clock-frequency = <>
 
-Hi Konrad,
 
-checking downstream [1], qcom,i2c-bus-freq for I2C2 is 100000, which seems
-to be the default. Should I specify it anyway?
-
-Though, now that I've checked, it seems that I missed the clock-frequency
-for I2C3, for which qcom,i2c-bus-freq is 400000...
-The currently supported HW on it seems to work fine though ¯\_(ツ)_/¯
-
-[1] https://github.com/LineageOS/android_kernel_motorola_msm8226/blob/cm-14.1/arch/arm/boot/dts/msm8226.dtsi#L983
-
-Stanislav
-
+On 6/13/24 19:18, Stanislav Jakubek wrote:
+> On Thu, Jun 13, 2024 at 09:48:26AM +0200, Konrad Dybcio wrote:
+>>
+>>
+>> On 6/9/24 13:05, Stanislav Jakubek wrote:
+>>> Add the accelerometer and magnetometer that are present on the Motorola
+>>> Moto G (2013) device.
+>>>
+>>> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+>>> ---
+>>
+>> [...]
+>>
+>>> +&blsp1_i2c2 {
+>>
+>> Consider setting a clock-frequency = <>
 > 
-> With that:
+> Hi Konrad,
 > 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> 
-> Konrad
+> checking downstream [1], qcom,i2c-bus-freq for I2C2 is 100000, which seems
+> to be the default. Should I specify it anyway?
+
+Yes, at the very least to silence the dmesg warning ;)
+
+Konrad
 
