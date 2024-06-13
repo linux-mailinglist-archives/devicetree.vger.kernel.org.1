@@ -1,148 +1,143 @@
-Return-Path: <devicetree+bounces-75586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D120907CF3
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 21:51:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74B97907D00
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 21:56:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 333B21F24C78
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:51:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10BEC283F12
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:56:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DE557829C;
-	Thu, 13 Jun 2024 19:51:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2768D78C90;
+	Thu, 13 Jun 2024 19:56:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a7QG8eqQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CxPKWcuz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2482F6F073;
-	Thu, 13 Jun 2024 19:51:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED2A76F073;
+	Thu, 13 Jun 2024 19:56:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718308303; cv=none; b=S/1CL+71eOiUkvBx6ILNc5wLXkJFj+Q6iiQei/umNpAW8eunxz3oeaXBprPzSo/mW9lLlue4F0dbAzwxXKWiEVg6aMqwk1M+TZIXoObmZ4X+rXmnYRTzx3EAGBi6RsIIabh/zPlUPNiCfCCo6wOJYgE6lx+YJnPsdIdIbR1hoAA=
+	t=1718308591; cv=none; b=HQW8s8GthebJ+NDkaZhwd3PRSCaO7sBWeZuKzRn3vl/XEIpvzyKpmN3XzPzkoO6lpZEpdThopRt4lIAMRr4VNZIzdcrC8KYzcXMu6fP2sW/MwGPs7Uf+mjxt2yOnF1Ivj1ABXHnLOJ7Pkvk+YhFhPLjunxfR7dnHQgaZZcYCkbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718308303; c=relaxed/simple;
-	bh=2FR65H6oQRmxvXkcwUoWkYMkK7DPPvgBTT5D29nbwpU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XlDf+uH7DzQ23k/IT/h6FDj/G7Sh5Pt8Sua0D0VaSyYPz0cK9RQhL4P/3it+YZMUqNCO7WJXVzO7ZUQu3AnMK4I2Ue+aSkdSKqS1/Eas5R1AF8eIU+wR3o92NQJv+pOyrT8KkC/GV2zQQFCLVSDY844X3I5obQy5RfnAvIfuQxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a7QG8eqQ; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a6f1cf00b3aso230421066b.0;
-        Thu, 13 Jun 2024 12:51:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718308299; x=1718913099; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wd49EutyMLwKOtVYeW3XG9F3kbsUtYIJI3CsIowTYE4=;
-        b=a7QG8eqQl2v8SbteBTK4ct/C5pVfvek6y+L/QYaEoNc1QMvr/UbyYVA8Nj8/p7Qjfx
-         u1AxwmEIyF8jVuG221mDrrrBAaSJ+OXOOdTc7KbDwpRDGdWkUcLr1AY9ZLU4y1rTDTmc
-         BOkZ/WLp5ON35EXgZTYY+B8lkYmYG5UzcQAldEUmDlSAD1ysdC+m1F1tORw2yqnR+DrJ
-         79Yk6TBzr5INsPbQ78ZO6+A4cD7Myvmvpjm4jGZH5eopaG5/slW+AKKi/vkROKvm/Kra
-         fWtd2lhq61eYlHScJgF8bgql3lWbky0MtFboRAyDmmQpJsahhQI1mfwR1Y8YOz2OMPm0
-         5mSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718308299; x=1718913099;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wd49EutyMLwKOtVYeW3XG9F3kbsUtYIJI3CsIowTYE4=;
-        b=bWr9yLTtjy7xZfm0tjPrRki+F4OjBDg2N7FpgUEz+7PeeUCaNuW2cG/KfSV2GLQXKY
-         29B0m0NnCPNysipvHqooHYkKZyc0qsX1OLphQWsd7Jhn1+jLNlrL9tEBRElHwY5VoLiF
-         m7dZlZN5TTtF5v5l+Lvbn7LTO3Mv6idXVVEd+bSholBre7Wen+uwuipqyrRZ/chmkyFg
-         9XQnJRTZvdl2ENNIkVN+aMZAzJhna9tvTzQlVrYyWaZaEb3lJZ4eKJmerenP5JwcF/B3
-         rg4M8X/l+F+BUgXAmc0vNtddRYTK0E1Q7CKSRSsBMKNurF70LarHjCJx3aKMTm9QT6Fh
-         LV9g==
-X-Forwarded-Encrypted: i=1; AJvYcCWeGw1N2wGZDvdgKRpSzJnkGMdqSiHqdLk/kX4WaGdmIibk+zSEk3T2/mTJ2Q7nWXpHmGy8R9eAWT78TwnJGLid0gTe53JbXeM8yOf59J07S9rjWlj7ZWoHGTdGf3VrE6M4EXfp7RQcmXjfi4+cM7Aub21mjdCn6E5s6z+cqBxl71QUwF/p
-X-Gm-Message-State: AOJu0Yzl2rGDuKVnj+lcScOMFAM4lKI7+ChSrjkRlqj5IsfdtpGpiyyY
-	noQRCG1AQ3RXX6gBqWd1xbVZ9cTVD2IEVZfqWCVU9TS9LKSrLmaVpLHBn3ksmlBHYAALfa8StrH
-	XRCr49HmbAX5KICaDORiI6NxMjRY=
-X-Google-Smtp-Source: AGHT+IErRieTi+saRfAiHY1ySQX0ddVIoYhrdonTqyNzBa1+IpOMd/MmGEDmPaGqQkjrTu7v+AA2L9lTIH5K61Z97aQ=
-X-Received: by 2002:a17:906:7629:b0:a6f:1285:5799 with SMTP id
- a640c23a62f3a-a6f52474235mr242477566b.36.1718308299119; Thu, 13 Jun 2024
- 12:51:39 -0700 (PDT)
+	s=arc-20240116; t=1718308591; c=relaxed/simple;
+	bh=2CIXLJ7qsPS8dd8m3DCzcakUf78MBjuyDU5bR//RUC8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kfASEtfvUaHz3E2/RQhFi3DZ4uVFOsq33p7SH79QqzBtt4cbR2zYE5FoT5rMGUNWMEhWdpjh173hipO/ZIne3khrq1/QVJq8iWByRPC5ujwlHntk5mVPrmuA+ZSGUCQhCMRTNbI5Fza9jYfdjuAZQIXuRgmKg9Wve8+iMqjlIlI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CxPKWcuz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B51AC2BBFC;
+	Thu, 13 Jun 2024 19:56:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718308590;
+	bh=2CIXLJ7qsPS8dd8m3DCzcakUf78MBjuyDU5bR//RUC8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CxPKWcuzwRPjJYc2rwTtmY2L71hz8x9jYNOMTX0r/OhGv2iRbMohECPUsF3o/U7Yz
+	 BTF0PlBqx9mWImPoss+TwiIvob2I0pryGGxO4faeAu6bqGMlpuFVTPJd/+gMVjgDY5
+	 eQFzm/PZ8WjoREBuhg4XfjWkByJDBxa2wzAH/KYz8yQ883jm8d1gz4Zv6pvlzPKxL7
+	 Zmq3Cmas/uaWJYIXl0jr6Dd4aHoBpJOPtgytUU9/4dTCiHn866Rcj1UtPoPwZrL7RN
+	 JebrM8S8tw/dn8wBfSsaskVwFj4iZveY/GVYLzSvn6DtPhnThQkamaPgdbgUw1M8NK
+	 IRz32tDc//pGQ==
+Date: Thu, 13 Jun 2024 13:56:29 -0600
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Johan Jonker <jbx6244@yandex.com>,
+	Shresth Prasad <shresthprasad7@gmail.com>, vkoul@kernel.org,
+	kishon@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	heiko@sntech.de, sebastian.reichel@collabora.com,
+	s.hauer@pengutronix.de, cristian.ciocaltea@collabora.com,
+	andy.yan@rock-chips.com, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	skhan@linuxfoundation.org, javier.carrasco.cruz@gmail.com
+Subject: Re: [PATCH v3] dt-bindings: phy: rockchip-emmc-phy: Convert to
+ dtschema
+Message-ID: <20240613195629.GA2359753-robh@kernel.org>
+References: <20240613085812.4020-2-shresthprasad7@gmail.com>
+ <cc66cca1-33db-4f30-afcf-d256a959896b@yandex.com>
+ <9ce15b81-a8bd-4833-b15e-3e6f240dcf03@kernel.org>
+ <495e50aa-6819-457d-8503-00440abc97e3@yandex.com>
+ <58e85008-a268-4555-bafb-f948ade16a63@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240612012019.19078-1-zhi.mao@mediatek.com> <20240612012019.19078-3-zhi.mao@mediatek.com>
- <7c71534f-9815-4ea3-969f-c04d249d35d2@collabora.com> <18d2c28fc8b47889689a1506957ea2a308c80fa2.camel@mediatek.com>
- <171823714905.1550852.13442340621133903705@ping.linuxembedded.co.uk>
-In-Reply-To: <171823714905.1550852.13442340621133903705@ping.linuxembedded.co.uk>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 13 Jun 2024 21:51:03 +0200
-Message-ID: <CAHp75VcA9yZ6bVt+10FrzB3L3wPj8fW5UBB9D7p0iHjLaxWCpA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] media: i2c: Add GT97xx VCM driver
-To: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: =?UTF-8?B?WmhpIE1hbyDmr5vmmbo=?= <zhi.mao@mediatek.com>, 
-	angelogioacchino.delregno@collabora.com, conor+dt@kernel.org, 
-	krzk+dt@kernel.org, mchehab@kernel.org, robh@kernel.org, 
-	dongchun.zhu@mediatek.com, "heiko@sntech.de" <heiko@sntech.de>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"laurent.pinchart+renesas@ideasonboard.com" <laurent.pinchart+renesas@ideasonboard.com>, 
-	"yunkec@chromium.org" <yunkec@chromium.org>, 
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, "hdegoede@redhat.com" <hdegoede@redhat.com>, 
-	"bingbu.cao@intel.com" <bingbu.cao@intel.com>, 
-	"paul.elder@ideasonboard.com" <paul.elder@ideasonboard.com>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	=?UTF-8?B?WWF5YSBDaGFuZyDlvLXpm4XmuIU=?= <Yaya.Chang@mediatek.com>, 
-	=?UTF-8?B?U2hlbmduYW4gV2FuZyDnjovlnKPnlLc=?= <shengnan.wang@mediatek.com>, 
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, 
-	"alain.volmat@foss.st.com" <alain.volmat@foss.st.com>, 
-	"sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>, 
-	"tomi.valkeinen@ideasonboard.com" <tomi.valkeinen@ideasonboard.com>, "10572168@qq.com" <10572168@qq.com>, 
-	"hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, 
-	"mehdi.djait@bootlin.com" <mehdi.djait@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <58e85008-a268-4555-bafb-f948ade16a63@kernel.org>
 
-On Thu, Jun 13, 2024 at 2:05=E2=80=AFAM Kieran Bingham
-<kieran.bingham@ideasonboard.com> wrote:
-> Also - Cc: Dongchun Zhu <dongchun.zhu@mediatek.com> who is listed as the
-> DW9768 VCM driver author...
-> Quoting Zhi Mao (=E6=AF=9B=E6=99=BA) (2024-06-12 12:13:40)
-> > On Wed, 2024-06-12 at 09:07 +0200, AngeloGioacchino Del Regno wrote:
+On Thu, Jun 13, 2024 at 02:52:46PM +0200, Krzysztof Kozlowski wrote:
+> On 13/06/2024 12:33, Johan Jonker wrote:
+> > 
+> > 
+> > On 6/13/24 12:12, Krzysztof Kozlowski wrote:
+> >> On 13/06/2024 11:44, Johan Jonker wrote:
+> >>>> ---
+> >>>
+> >>> Add ack request from phy maintainer here.
+> >>
+> > 
+> >> Why? What do you mean for that? Why phy maintainer needs to ack patches
+> >> he is going to take?
+> > 
+> > See my text below:
+> > From my past converting phy documents experience asking was needed to smooths things up ...
+> > Let me know if things have improved.
+> > 
+> > grf.yaml can be busy at times. Let Heiko take care of the merge order.
+> > Ask for an ack from the phy maintainers in your commit message below a "---"
+> > 
+> >>
+> >>>
+> >>>> Changes in v3:
+> >>>>     - fix `reg` in example being too long
+> >>>>
+> >>>> Tested against `rockchip/rk3399-firefly.dtb`, `rockchip/rk3399-orangepi.dtb`
+> >>>> and `rockchip/rk3399-pinebook-pro.dtb`.
+> >>>>
+> >>>>  .../bindings/phy/rockchip,emmc-phy.yaml       | 79 +++++++++++++++++++
+> >>>>  .../bindings/phy/rockchip-emmc-phy.txt        | 43 ----------
+> >>>>  .../devicetree/bindings/soc/rockchip/grf.yaml |  2 +-
+> >>>>  3 files changed, 80 insertions(+), 44 deletions(-)
+> >>>>  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
+> >>>>  delete mode 100644 Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+> >>>>
+> >>>> diff --git a/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
+> >>>> new file mode 100644
+> >>>> index 000000000000..85d74b343991
+> >>>> --- /dev/null
+> >>>> +++ b/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
+> >>>> @@ -0,0 +1,79 @@
+> >>>
+> >>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >>>
+> >>> You are converting an existing document, so GPL 2 only.
+> >>
+> > 
+> >> Which copyrightable part was copied? This comment is not correct in
+> >> general, because conversions are dual-licensed (there are exceptions,
+> >> but that's the generic rule).
+> > 
+> > Was told to do so in the past by the maintainers(Rob??) for text 
+> > documents conversions.(Can't find exactly were in lore, must be in one my first conversion patches)
+> > If someone was submitting as GPL2 long time ago then the derived/converted work still hold the same license.
+> > Let me know if the consensus has changed.
+> 
+> Consensus did not change but I am no sure if you got it right. It was
+> about copied copyrightable text. Which part was copied here?
 
-...
+It is derived from the text binding, so strictly speaking that's derived 
+work. Are descriptions (because that's really all we take) enough to be 
+copyrightable? That's another question...
 
-> > Our project uses Giantec VCM hardware.
-> > For detailed vendor information, please visit: (
-> > https://en.giantec-semi.com/yqmd/164).
-> > The VCM datasheet we are referencing is provided by Giantec.
-> > Currently, the relationship between Giantec VCM and Dongwoon VCM is
-> > unclear, but Dongwoon seems to be another manufacturer of VCM
-> > hardware.
+I don't know so I err on the side of keep GPL-2.0-only *only*.
 
-There may be plenty of manufacturers of the same/similar IPs, but it's
-not an excuse to have a duplication like this.
+Will anyone ever care? Not likely.
 
-> > From the perspective of software driver development and maintenance, it
-> > makes sense for each vendor's hardware should have its own software
-> > driver.
->
-> Personally, I don't think so. If two vendors make identical parts, we
-> shouldn't have two identical drivers.
-
-Exactly! That's why we have compatible strings or other means of
-reusing the same code base as much as possible. This in particular
-reduces maintenance costs (of all means!) _a lot_.
-
-> I still have plans to refactor VCM drivers if I get some spare-time(tm)
-> as almost each driver does the same identical task. They're all just
-> copies of the boilerplate.  That seems like something we should reduce,
-> not increase.
-
-
---=20
-With Best Regards,
-Andy Shevchenko
+Rob
 
