@@ -1,128 +1,91 @@
-Return-Path: <devicetree+bounces-75464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEB30907547
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 16:36:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB14290754D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 16:38:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB3161C22689
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 14:36:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF3481C221BA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 14:38:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C287145A12;
-	Thu, 13 Jun 2024 14:36:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5162145B10;
+	Thu, 13 Jun 2024 14:38:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ltyFxSs0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fhIpNOlH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D012D1DFFC;
-	Thu, 13 Jun 2024 14:36:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C82114430A;
+	Thu, 13 Jun 2024 14:38:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718289367; cv=none; b=ZWB8b9tYpN3U27SsD1K0L1DqNII+inhfgXkxV5dOU1JGXnKq9mcJ63ibORM07s4W7WBkiYNMsowbFxEOQL83rVIS1yI4QOVzkjyLS33jcN6Rhx1QLkxo3XZF31C3f9PahI0D7W47tcO0eoy4BPDWD0lfqTLSRRqQpgAAK7E4zDM=
+	t=1718289505; cv=none; b=f/SZPuqirTNL3Pd5gN4uqKcNG0RtjZSYgKkkgDH7fVRJvxiCG3IY4/TgmXlXsWyylK6ekIOJffaWYb7FOgzmVLptsiB7FtEk/B8V7segrTRUK4PiQloSnmkM4whQ4Ub+GBw2kAsVq+i8wat5u6CQrCaBgBEZ/o/1LeTifM1nB3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718289367; c=relaxed/simple;
-	bh=7wnmI7TeP0WeiVAAxGMFZ1X0/xHdMvNM5Is10JfsQQ4=;
+	s=arc-20240116; t=1718289505; c=relaxed/simple;
+	bh=YCyWvXs7ccGLcK7Bb9cOb1o2iNUCARltormWAwDzO3o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e3F9J8kGAQs3nPKSTiyXY/uzB8bXhC506NqOHLnML/kr5UeBUtw+NwtxpafUU+XOhr1/iyYq3YnkMRFCxnB8hFQEcNMJ86PsuR11kmmLLDcmBN0qFGdCEzXPq6aFXZQWuDyVRKBZUS4S+iEUdt2BWFLtFAd1mDDliEOS6wRF1u0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ltyFxSs0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4141FC32786;
-	Thu, 13 Jun 2024 14:36:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=pF51sxMdKsbUOza700Fwten3cMYQJMEmBWQ/L8A5uWkV2Jous1dBJ6EZ2kIqQFDTqyNfCpsevEZN4Ia42BVjLXy4h7Kv9RdREqeNI7agTNc62BOfad1H1IrMrAOymFI6h/ubmdq3CJyC2O+pTuaX6MhVOp1vFyjxMFkUNuvipwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fhIpNOlH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1A1EC2BBFC;
+	Thu, 13 Jun 2024 14:38:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718289367;
-	bh=7wnmI7TeP0WeiVAAxGMFZ1X0/xHdMvNM5Is10JfsQQ4=;
+	s=k20201202; t=1718289505;
+	bh=YCyWvXs7ccGLcK7Bb9cOb1o2iNUCARltormWAwDzO3o=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ltyFxSs01wKpY81IY1J3YZdqf+5LLaFA/jSLklfqk4FtGIgkp1xEd95Fg5ULZhSt/
-	 VyrfeCXcKW2m/KsS8kUcgsniM3BH5EjUYh8eWdNjBgL9vhV/+98aREYEmXdc33CXvb
-	 wUmPmg0w3dZFZw4bERwHHbmafeZx9eonN6Ksj0X0T0zAp6fYa1ikpokzQjtCFg9uLM
-	 bpAMm2RJK3UAc4aZRL2HuZsFi/BdBepXZVdC1FH69KNy8Wl5XEKPKDudrdhda5zhy1
-	 3H1cCYksPlDDT4RSNpY/25yepKhyyY3hv8ed/Iv610517KkqLA8KFGKhbpnS06hARH
-	 Xt2xTho9jQwDA==
-Date: Thu, 13 Jun 2024 15:36:01 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	Guo Ren <guoren@kernel.org>, Evan Green <evan@rivosinc.com>,
-	Andy Chiu <andy.chiu@sifive.com>,
-	Jessica Clarke <jrtc27@jrtc27.com>, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-sunxi@lists.linux.dev, linux-doc@vger.kernel.org,
-	linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v2 03/13] riscv: dts: allwinner: Add xtheadvector to the
- D1/D1s devicetree
-Message-ID: <20240613-luxury-marigold-d1c7099ab944@spud>
-References: <20240610-xtheadvector-v2-0-97a48613ad64@rivosinc.com>
- <20240610-xtheadvector-v2-3-97a48613ad64@rivosinc.com>
+	b=fhIpNOlH9gZP1QbHOCGOF9z/cnp5aJn36mwQjFK35+/iMus4YgxB5rfIpCA1Lvuns
+	 AhUK7l9X7/H/vOA3JlpZaouOcMctQkQvPOru4uZWRw+fag9SASVkiY/gZ3kKQHnWJ0
+	 ZOIiKBrowT7808QpX+UUbNM/70PZp/wrehvmr85awAOdFi/I/YGVCfxaC8fU1CA/K/
+	 pEoM+88rwjxYGJIBC3tVrFLoVPYZCFaHNw+DR4t0xU5RGZcXG78csLg1mNze9cf2Xj
+	 W2r5y933KUwlM7fb/dAyRv7Eyh5jH5Auzfv+x/uoSZm426Hpthec5tTS/AAp8RUKKR
+	 YYV69gFd5WkdQ==
+Date: Thu, 13 Jun 2024 08:38:23 -0600
+From: Rob Herring <robh@kernel.org>
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: lee@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	broonie@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH -next] dt-bindings: mfd: twl: Fix example
+Message-ID: <20240613143823.GA1612105-robh@kernel.org>
+References: <20240612134039.1089839-1-andreas@kemnade.info>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="P927rlnZ+YfGx1Bx"
-Content-Disposition: inline
-In-Reply-To: <20240610-xtheadvector-v2-3-97a48613ad64@rivosinc.com>
-
-
---P927rlnZ+YfGx1Bx
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240612134039.1089839-1-andreas@kemnade.info>
 
-On Mon, Jun 10, 2024 at 03:56:40PM -0700, Charlie Jenkins wrote:
-> The D1/D1s SoCs support xtheadvector so it can be included in the
-> devicetree. Also include vlenb for the cpu.
->=20
-> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+On Wed, Jun 12, 2024 at 03:40:39PM +0200, Andreas Kemnade wrote:
+> Fix example to also conform to rules specified in the separate
+> not-included gpadc binding.
+> 
+> Fixes: 62e4f3396197 ("dt-bindings: regulator: twl-regulator: convert to yaml")
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Reported-by: Rob Herring (Arm) <robh@kernel.org>
 
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 > ---
->  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->=20
-> diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv/b=
-oot/dts/allwinner/sun20i-d1s.dtsi
-> index 64c3c2e6cbe0..6367112e614a 100644
-> --- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> +++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> @@ -27,7 +27,8 @@ cpu0: cpu@0 {
->  			riscv,isa =3D "rv64imafdc";
->  			riscv,isa-base =3D "rv64i";
->  			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "zicntr", "zic=
-sr",
-> -					       "zifencei", "zihpm";
-> +					       "zifencei", "zihpm", "xtheadvector";
-> +			thead,vlenb =3D <128>;
->  			#cooling-cells =3D <2>;
-> =20
->  			cpu0_intc: interrupt-controller {
->=20
-> --=20
-> 2.44.0
->=20
-
---P927rlnZ+YfGx1Bx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmsD0QAKCRB4tDGHoIJi
-0savAP4lXMAN/lrY71frvXJaVaDKC7qZVjR7y/fNATh/HEaRnQEAr04KLzlaDWhh
-9w9mRAzQd3WkOuRXmnk+DeCQb9Ll2Qo=
-=Q6OS
------END PGP SIGNATURE-----
-
---P927rlnZ+YfGx1Bx--
+>  Documentation/devicetree/bindings/mfd/ti,twl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+> index 2cbdd238f48f..e94b0fd7af0f 100644
+> --- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+> @@ -225,6 +225,7 @@ examples:
+>          gpadc {
+>            compatible = "ti,twl6030-gpadc";
+>            interrupts = <6>;
+> +          #io-channel-cells = <1>;
+>          };
+>  
+>          rtc {
+> -- 
+> 2.39.2
+> 
 
