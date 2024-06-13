@@ -1,337 +1,191 @@
-Return-Path: <devicetree+bounces-75301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C85D4906606
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 10:00:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62C28906615
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 10:01:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 526A9286097
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 07:59:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D3F481F2536B
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 08:01:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8289713D24E;
-	Thu, 13 Jun 2024 07:57:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gTjnPvBA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24B1913CFB1;
+	Thu, 13 Jun 2024 08:01:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFAB413CFBB;
-	Thu, 13 Jun 2024 07:57:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC13113CA8D;
+	Thu, 13 Jun 2024 08:01:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718265472; cv=none; b=dH1hK6xTUc1ZBoupIAoGJos8LEYkCN5AqDoe/EoJDexl68EFgDbrIA0rehH8QHl/7Tj7phV02qtnl9W20At2mAXvvYg7yCsEjRzGIKX/ECljWfJpSuMoD9qVr2WMC9wK7KNkXgx+etJcujsdP37lxswiftt4NFh4lOZP8P9rM6w=
+	t=1718265683; cv=none; b=Apo05thg5jzCqd/sH2oqy0/ocJWw30fz4+zmY19Heyyfk332wX6iTxR6ueiHkQei4qsCFS/+b1R1Q6DCh+xyg4DtzSLXvHKWII3VwyOEBtCNy8HMWFx41t3ow7PLuoIX8uzt6+EyeFlOrdAUEtqNF95cUn+oN3Ab6sbp1LgMELA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718265472; c=relaxed/simple;
-	bh=e0NxTlF2iD4qbRcwJ7BIXq/PGgNblesDkARtB5e6oSo=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=rc5Cer/Y7uv0GM0A6z1Sb2JNVC26YT28FPnq2oxzOtKoJ6GZt+6ZL9HoIUOj6NMKo0eJ0beFsMOrpf1d4MFh81VkYcOK3jiQy2XJ3limqrd0eTAjyM6+27nfC3dQm/bTYnLLPX8wOX5DhtXxb1BtJbDwGCmti3ak+BdXx3zuypw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gTjnPvBA; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718265470; x=1749801470;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=e0NxTlF2iD4qbRcwJ7BIXq/PGgNblesDkARtB5e6oSo=;
-  b=gTjnPvBAMx+GTdq5rnCfJIBJ7Hnac9JXGQVe2251qErTg9NvzrNdNl2T
-   StVworITY3MNq0Wx/2EXjaSfOLbJsoF2pZrpiEj8ErQ41JpczasLrrLyR
-   +cZy9no2MEOaZiXkdrRZuBTXb3noE6j8sDvmDa3JlcTMEJNTet8/BfoDP
-   OO9ivdMeNsLP5reVwDFnsaHHsFYE0w8QpkkZTbVo0Qi5Ao1iNVfm3YZ5p
-   puqshw7RHY57YynkWYFsyRhyBAlwWp4cIQQXLKZcYJKiaMIUv2N+q7WYI
-   aSxeLhcJvVBM27aikmKpc60hVPCE2qaPTjId0U/mVuMjMa3t1niHuWlmb
-   w==;
-X-CSE-ConnectionGUID: 1jVAoXHWT2aVyDodDj5Rjg==
-X-CSE-MsgGUID: xrp2OwTiT8688un+pEz+vw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="26182325"
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; 
-   d="scan'208";a="26182325"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jun 2024 00:57:50 -0700
-X-CSE-ConnectionGUID: M8wZ9vsRT3enWARScp26kw==
-X-CSE-MsgGUID: d2kYW95NT4uLxwd8VzG9/Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; 
-   d="scan'208";a="40022628"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.247.209])
-  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jun 2024 00:57:45 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Thu, 13 Jun 2024 10:57:41 +0300 (EEST)
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-    Sebastian Reichel <sre@kernel.org>, linux-pm@vger.kernel.org
-cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-    Hans de Goede <hdegoede@redhat.com>, 
-    Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-    Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-    Konrad Dybcio <konrad.dybcio@linaro.org>, devicetree@vger.kernel.org, 
-    LKML <linux-kernel@vger.kernel.org>, platform-driver-x86@vger.kernel.org, 
-    linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-    Nikita Travkin <nikita@trvn.ru>
-Subject: Re: [PATCH v6 4/6] power: supply: lenovo_yoga_c630_battery: add
- Lenovo C630 driver
-In-Reply-To: <20240612-yoga-ec-driver-v6-4-8e76ba060439@linaro.org>
-Message-ID: <4fc43c56-f801-909a-9178-166d275a5fee@linux.intel.com>
-References: <20240612-yoga-ec-driver-v6-0-8e76ba060439@linaro.org> <20240612-yoga-ec-driver-v6-4-8e76ba060439@linaro.org>
+	s=arc-20240116; t=1718265683; c=relaxed/simple;
+	bh=ijIgL4trQAoJvWli1jZxpI3we8f18cgQdunh1oh+b3w=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JFn7AqD7Ebo6+yHfeCEpdRkQmPZ65obgubisJClry1tiO9TQTtqtJqCSIzF6q4nJI185uTmWcPOa8K+3Rbz2m2W2oxoR1TXfzrOtZA8PREYTVj3KW6qTK/mc96YGmqt0ybw9p0V32SQz9+OBEmE0jf0yFKWYHKvM6hmFsUDXJ9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875be5.versanet.de ([83.135.91.229] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sHfOQ-0007fB-G8; Thu, 13 Jun 2024 10:01:10 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jianfeng Liu <liujianfeng1994@gmail.com>,
+ Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel@collabora.com
+Subject: Re: [PATCH v5 3/5] media: hantro: Add RK3588 VEPU121 support
+Date: Thu, 13 Jun 2024 10:01:09 +0200
+Message-ID: <14943967.O6BkTfRZtg@diego>
+In-Reply-To: <g3zzuwv2pti6oudc5xlab3cdjpqbhjsdxdsphzch4mtcaisqxl@iwkxgillwi2f>
+References:
+ <20240612173213.42827-1-sebastian.reichel@collabora.com>
+ <1739853.izSxrag8PF@diego>
+ <g3zzuwv2pti6oudc5xlab3cdjpqbhjsdxdsphzch4mtcaisqxl@iwkxgillwi2f>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On Wed, 12 Jun 2024, Dmitry Baryshkov wrote:
+Am Donnerstag, 13. Juni 2024, 00:44:38 CEST schrieb Sebastian Reichel:
+> Hi,
+>=20
+> On Wed, Jun 12, 2024 at 08:08:51PM GMT, Heiko St=FCbner wrote:
+> > Am Mittwoch, 12. Juni 2024, 19:15:43 CEST schrieb Sebastian Reichel:
+> > > Avoid exposing each of the 4 Hantro H1 cores separately to userspace.
+> > > For now just expose the first one.
+> > >=20
+> > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > > ---
+> > >  .../media/platform/verisilicon/hantro_drv.c   | 38 +++++++++++++++++=
+++
+> > >  1 file changed, 38 insertions(+)
+> > >=20
+> > > diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/driver=
+s/media/platform/verisilicon/hantro_drv.c
+> > > index 34b123dafd89..b722a20c5fe3 100644
+> > > --- a/drivers/media/platform/verisilicon/hantro_drv.c
+> > > +++ b/drivers/media/platform/verisilicon/hantro_drv.c
+> > > @@ -722,6 +722,7 @@ static const struct of_device_id of_hantro_match[=
+] =3D {
+> > >  	{ .compatible =3D "rockchip,rk3399-vpu", .data =3D &rk3399_vpu_vari=
+ant, },
+> > >  	{ .compatible =3D "rockchip,rk3568-vepu", .data =3D &rk3568_vepu_va=
+riant, },
+> > >  	{ .compatible =3D "rockchip,rk3568-vpu", .data =3D &rk3568_vpu_vari=
+ant, },
+> > > +	{ .compatible =3D "rockchip,rk3588-vepu121", .data =3D &rk3568_vpu_=
+variant, },
+> > >  	{ .compatible =3D "rockchip,rk3588-av1-vpu", .data =3D &rk3588_vpu9=
+81_variant, },
+> > >  #endif
+> > >  #ifdef CONFIG_VIDEO_HANTRO_IMX8M
+> > > @@ -992,6 +993,39 @@ static const struct media_device_ops hantro_m2m_=
+media_ops =3D {
+> > >  	.req_queue =3D v4l2_m2m_request_queue,
+> > >  };
+> > > =20
+> > > +/*
+> > > + * Some SoCs, like RK3588 have multiple identical Hantro cores, but =
+the
+> > > + * kernel is currently missing support for multi-core handling. Expo=
+sing
+> > > + * separate devices for each core to userspace is bad, since that do=
+es
+> > > + * not allow scheduling tasks properly (and creates ABI). With this =
+workaround
+> > > + * the driver will only probe for the first core and early exit for =
+the other
+> > > + * cores. Once the driver gains multi-core support, the same techniq=
+ue
+> > > + * for detecting the main core can be used to cluster all cores toge=
+ther.
+> > > + */
+> > > +static int hantro_disable_multicore(struct hantro_dev *vpu)
+> > > +{
+> > > +	const char *compatible;
+> > > +	struct device_node *node;
+> > > +	int ret;
+> > > +
+> > > +	/* Intentionally ignores the fallback strings */
+> > > +	ret =3D of_property_read_string(vpu->dev->of_node, "compatible", &c=
+ompatible);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	/* first compatible node found from the root node is considered the=
+ main core */
+> > > +	node =3D of_find_compatible_node(NULL, NULL, compatible);
+> > > +	if (!node)
+> > > +		return -EINVAL; /* broken DT? */
+> > > +
+> > > +	if (vpu->dev->of_node !=3D node) {
+> > > +		dev_info(vpu->dev, "missing multi-core support, ignoring this inst=
+ance\n");
+> > > +		return -ENODEV;
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > >  static int hantro_probe(struct platform_device *pdev)
+> > >  {
+> > >  	const struct of_device_id *match;
+> > > @@ -1011,6 +1045,10 @@ static int hantro_probe(struct platform_device=
+ *pdev)
+> > >  	match =3D of_match_node(of_hantro_match, pdev->dev.of_node);
+> > >  	vpu->variant =3D match->data;
+> > > =20
+> > > +	ret =3D hantro_disable_multicore(vpu);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> >=20
+> > I think this might be better as two patches?
+> >=20
+> > As this patch stands, the disable-multicore handling is done for _all_
+> > hantro variants, so part of me wants this to be labeled as such.
+> >=20
+> > The whole reasoning is completely ok, but somehow having this under
+> > the "add rk3588" umbrella feels strange ;-)
+>=20
+> I can do that, but the 'rockchip,rk3588-vepu121' part is only needed
+> because of the multicore handling. If the kernel already had this bit
+> in the past, the RK3568 compatible could be used for RK3588 (as a
+> fallback compatible), just like for VPU121.
 
-> On the Lenovo Yoga C630 WOS laptop the EC provides access to the adapter
-> and battery status. Add the driver to read power supply status on the
-> laptop.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+I meant, you're doing hantro_disable_multicore() here also for everyone
+else (i.MX etc), hence I'd like that to be a separate commit in this
+series like:
 
-> +/* the mutex should already be locked */
+=2D---- 8< ------
+media: hantro: Disable multi-core handling for the time being
 
-Enforce this with lockdep_assert_held() (and remove the comment).
+The VSI doc for the Hantro codec describes the grouping of up to 4 instance=
+s.
+The kernel currently doesn't handle multi-core processing .... foo bar ....
+=2D---- 8< ------
 
-> +static int yoga_c630_psy_update_bat_info(struct yoga_c630_psy *ecbat)
-> +{
-> +	struct yoga_c630_ec *ec = ecbat->ec;
-> +	int val;
-> +
-> +	val = yoga_c630_ec_read8(ec, LENOVO_EC_BAT_PRESENT);
-> +	if (val < 0)
-> +		return val;
-> +	ecbat->bat_present = !!(val & LENOVO_EC_BAT_PRESENT_IS_PRESENT);
-> +	if (!ecbat->bat_present)
-> +		return val;
-> +
-> +	val = yoga_c630_ec_read8(ec, LENOVO_EC_BAT_ATTRIBUTES);
-> +	if (val < 0)
-> +		return val;
-> +	ecbat->unit_mA = val & LENOVO_EC_BAT_ATTRIBUTES_UNIT_IS_MA;
-> +
-> +	val = yoga_c630_ec_read16(ec, LENOVO_EC_BAT_DESIGN_CAPACITY);
-> +	if (val < 0)
-> +		return val;
-> +	ecbat->design_capacity = val * 1000;
-> +
-> +	/*
-> +	 * DSDT has delays after most of EC reads in these methods.
-> +	 * Having no documentation for the EC we have to follow and sleep here.
-> +	 */
-> +	msleep(50);
-> +
-> +	val = yoga_c630_ec_read16(ec, LENOVO_EC_BAT_DESIGN_VOLTAGE);
-> +	if (val < 0)
-> +		return val;
-> +	ecbat->design_voltage = val;
-> +
-> +	msleep(50);
-> +
-> +	val = yoga_c630_ec_read8(ec, LENOVO_EC_BAT_FULL_REGISTER);
-> +	if (val < 0)
-> +		return val;
-> +	val = yoga_c630_ec_read16(ec,
-> +				  val & LENOVO_EC_BAT_FULL_REGISTER_IS_FACTORY ?
-> +				  LENOVO_EC_BAT_FULL_FACTORY :
-> +				  LENOVO_EC_BAT_FULL_CAPACITY);
-> +	if (val < 0)
-> +		return val;
-> +
-> +	ecbat->full_charge_capacity = val * 1000;
-> +
-> +	if (!ecbat->unit_mA) {
-> +		ecbat->design_capacity *= 10;
-> +		ecbat->full_charge_capacity *= 10;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int yoga_c630_psy_maybe_update_bat_status(struct yoga_c630_psy *ecbat)
-> +{
-> +	struct yoga_c630_ec *ec = ecbat->ec;
-> +	int current_mA;
-> +	int val;
-> +
-> +	scoped_guard(mutex, &ecbat->lock) {
-
-This too could be simply guard() to bring down the indentation level.
-
-> +		if (time_before(jiffies, ecbat->last_status_update + LENOVO_EC_CACHE_TIME))
-> +			return 0;
-> +
-> +		val = yoga_c630_ec_read8(ec, LENOVO_EC_BAT_STATUS);
-> +		if (val < 0)
-> +			return val;
-> +		ecbat->bat_status = val;
-> +
-> +		msleep(50);
-> +
-> +		val = yoga_c630_ec_read16(ec, LENOVO_EC_BAT_REMAIN_CAPACITY);
-> +		if (val < 0)
-> +			return val;
-> +		ecbat->capacity_now = val * 1000;
-> +
-> +		msleep(50);
-> +
-> +		val = yoga_c630_ec_read16(ec, LENOVO_EC_BAT_VOLTAGE);
-> +		if (val < 0)
-> +			return val;
-> +		ecbat->voltage_now = val * 1000;
-> +
-> +		msleep(50);
-> +
-> +		val = yoga_c630_ec_read16(ec, LENOVO_EC_BAT_CURRENT);
-> +		if (val < 0)
-> +			return val;
-> +		current_mA = sign_extend32(val, 15);
-> +		ecbat->current_now = current_mA * 1000;
-> +		ecbat->rate_now = current_mA * (ecbat->voltage_now / 1000);
-> +
-> +		msleep(50);
-> +
-> +		if (!ecbat->unit_mA)
-> +			ecbat->capacity_now *= 10;
-> +
-> +		ecbat->last_status_update = jiffies;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int yoga_c630_psy_update_adapter_status(struct yoga_c630_psy *ecbat)
-> +{
-> +	struct yoga_c630_ec *ec = ecbat->ec;
-> +	int val;
-> +
-> +	scoped_guard(mutex, &ecbat->lock) {
-
-Ditto.
-
-> +		val = yoga_c630_ec_read8(ec, LENOVO_EC_ADPT_STATUS);
-> +		if (val < 0)
-> +			return val;
-> +
-> +		ecbat->adapter_online = !!(val & LENOVO_EC_ADPT_STATUS_PRESENT);
-> +	}
-> +
-> +	return 0;
-> +}
+And then add rk3588 support on top of that.
 
 
-> +static const struct power_supply_desc yoga_c630_psy_bat_psy_desc_mA = {
-> +	.name = "yoga-c630-battery",
-> +	.type = POWER_SUPPLY_TYPE_BATTERY,
-> +	.properties = yoga_c630_psy_bat_mA_properties,
-> +	.num_properties = ARRAY_SIZE(yoga_c630_psy_bat_mA_properties),
-> +	.get_property = yoga_c630_psy_bat_get_property,
-> +};
-> +
-> +static const struct power_supply_desc yoga_c630_psy_bat_psy_desc_mWh = {
-> +	.name = "yoga-c630-battery",
-> +	.type = POWER_SUPPLY_TYPE_BATTERY,
-> +	.properties = yoga_c630_psy_bat_mWh_properties,
-> +	.num_properties = ARRAY_SIZE(yoga_c630_psy_bat_mWh_properties),
-> +	.get_property = yoga_c630_psy_bat_get_property,
-> +};
-> +
-> +static int yoga_c630_psy_adpt_get_property(struct power_supply *psy,
-> +					  enum power_supply_property psp,
-> +					  union power_supply_propval *val)
-> +{
-> +	struct yoga_c630_psy *ecbat = power_supply_get_drvdata(psy);
-> +	int ret = 0;
-> +
-> +	ret = yoga_c630_psy_update_adapter_status(ecbat);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	switch (psp) {
-> +	case POWER_SUPPLY_PROP_ONLINE:
-> +		val->intval = ecbat->adapter_online;
-> +		break;
-> +	case POWER_SUPPLY_PROP_USB_TYPE:
-> +		val->intval = POWER_SUPPLY_USB_TYPE_C;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static enum power_supply_property yoga_c630_psy_adpt_properties[] = {
-> +	POWER_SUPPLY_PROP_ONLINE,
-> +	POWER_SUPPLY_PROP_USB_TYPE,
-> +};
-> +
-> +static const enum power_supply_usb_type yoga_c630_psy_adpt_usb_type[] = {
-> +	POWER_SUPPLY_USB_TYPE_C,
-> +};
-> +
-> +static const struct power_supply_desc yoga_c630_psy_adpt_psy_desc = {
-> +	.name = "yoga-c630-adapter",
-> +	.type = POWER_SUPPLY_TYPE_USB,
-> +	.usb_types = yoga_c630_psy_adpt_usb_type,
-> +	.num_usb_types = ARRAY_SIZE(yoga_c630_psy_adpt_usb_type),
-> +	.properties = yoga_c630_psy_adpt_properties,
-> +	.num_properties = ARRAY_SIZE(yoga_c630_psy_adpt_properties),
-> +	.get_property = yoga_c630_psy_adpt_get_property,
-> +};
-> +
-> +static int yoga_c630_psy_register_bat_psy(struct yoga_c630_psy *ecbat)
-> +{
-> +	struct power_supply_config bat_cfg = {};
-> +
-> +	bat_cfg.drv_data = ecbat;
-> +	bat_cfg.fwnode = ecbat->fwnode;
-> +	ecbat->bat_psy = power_supply_register_no_ws(ecbat->dev,
-> +						     ecbat->unit_mA ?
-> +						     &yoga_c630_psy_bat_psy_desc_mA :
-> +						     &yoga_c630_psy_bat_psy_desc_mWh,
-> +						     &bat_cfg);
-> +	if (IS_ERR(ecbat->bat_psy)) {
-> +		dev_err(ecbat->dev, "failed to register battery supply\n");
-> +		return PTR_ERR(ecbat->bat_psy);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void yoga_c630_ec_refresh_bat_info(struct yoga_c630_psy *ecbat)
-> +{
-> +	bool current_unit;
-> +
-> +	scoped_guard(mutex, &ecbat->lock) {
+Heiko
 
-guard()
-
-> +		current_unit = ecbat->unit_mA;
-> +
-> +		yoga_c630_psy_update_bat_info(ecbat);
-> +
-> +		if (current_unit != ecbat->unit_mA) {
-> +			power_supply_unregister(ecbat->bat_psy);
-> +			yoga_c630_psy_register_bat_psy(ecbat);
-> +		}
-> +	}
-> +}
-
-
-> +	adp_cfg.supplied_to = (char **)&yoga_c630_psy_bat_psy_desc_mA.name;
-
-This is not problem with your patch but I'm wondering why supplied_to 
-needs to be non-const char *. Are those strings expected to be altered by 
-something, I couldn't find anything to that effect (the pointer itself 
-does not become const if supplied_to is changed to const char **)?
-
---
- i.
 
 
