@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-75332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FA5F906836
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 11:11:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BA1D906841
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 11:13:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DEBCB1F2356A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:11:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A61CB263C5
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:13:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE94F13DBBD;
-	Thu, 13 Jun 2024 09:11:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BACE213DDA5;
+	Thu, 13 Jun 2024 09:13:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kQumoIDA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vt19qWGJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41FB63209
-	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 09:11:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 082F713D63A
+	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 09:13:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718269871; cv=none; b=g2VzHzttA5tvSkZW2pgTQUBbLOlEqFS07czwwBNQ8OSAdxzl5bK/96Acv58P2NF52oStYl0bhrgEIN/YVDHxbieBYNLLJ3P+6Zy0Mf5oGckxY4yQd46Q8+pBvsCF8iQEa1nsIAhHwaWtEo9nDeq4NeJR527o1tyhZCzP7W4HeAQ=
+	t=1718269990; cv=none; b=Brk09xaUMYD0VDDxMkSsIIxPQeFx2aHVmESEf/a4AXfZgwD5y/pJaawWpQkX9mIF1K700JSWKh4FafhhC9J+ACYRA7aWVsfUEIZToxV9ylGmPN1FYEWi7OLRqnUtR5DBnawL44JiPBMs7WBoiatAZL4rVY7MAwt0A/CepWXaXD0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718269871; c=relaxed/simple;
-	bh=XbkxxAE0o+n8aBNZeIkGPbKXffCFUoK/zqH/o0Uwb4Q=;
+	s=arc-20240116; t=1718269990; c=relaxed/simple;
+	bh=chBCFZsoyeYNNgwF3trl0wRLM6NJk5eql0o4EWrZIqo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y2T6h28vMAzv9kv3Ujq/IasJrkYkI8hwvfDiQPcO7alaxkJlnAdVEk5aMapXr8mf36RP8yFrX1Z4vM8tHfddYGk4mhdbigM18b63vaYCw+2MYo2pYyMGFq4Rpji4m7titXiUyVZm4CwYMpvFKhenk4WIB/01matL2Jrehw+rG/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kQumoIDA; arc=none smtp.client-ip=209.85.167.50
+	 In-Reply-To:Content-Type; b=P7FMLX3LeMxo4u/IbenQLM74mkwySndYTB5Qy7d5s2Q8IcXqd+uDMPSvqkEuHI8HI8zHC1wbNLwFEC4txaAhZMbTs2VHE10B8rMZJVB03Xg68Ne/EegxWer06xR5vwNa3I6rSE00c7tlqXLhfDZxrQTP0jsZqnpriz5C1TGdl4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vt19qWGJ; arc=none smtp.client-ip=209.85.167.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5295eb47b48so1009078e87.1
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 02:11:08 -0700 (PDT)
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-52b7ffd9f6eso874791e87.3
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 02:13:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718269867; x=1718874667; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1718269987; x=1718874787; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ssbYSRQgHiqW8KXtbPaweqL5MRA5/R+69ZodellWjGg=;
-        b=kQumoIDAp4N9txyjFS0rq8Ioa0g/ZpizZgqoMMQA4TT17vXUGczTmGgwILs3+nemoG
-         3yt1zByjh1ut9WYXGAYPcCMSEz+uFf8i2uXC7CowSt7cAx6WZmSzPaAU4MfGzTe1Sbcs
-         j6ceWB6+fXR3JfQljb5NqZ/oTf9IjEx03iSPABwfvM+XA4+DDOtLq5lwtWiizQskZFdu
-         jAP89s9THoBxCDKV9PtmeIwaFP2WXbHNNz259YyWQUi3Nr3XsNScrV9SAhwaFCim1ylR
-         gQTc/TmGnM2D4ehw5JUjjIgBCSNte1K2H/fphLS0dtBO1nvUPehJOzLTLWDOTbe1RyWF
-         IoMA==
+        bh=tC/xjcrjFJo0No2NJtBl1Trd5UcmBwU7b4n6sOTwHQk=;
+        b=vt19qWGJ6eSBhxZzIOP4sldb2qphOHO5TKd7P3YI8ytgq69Hyw7gQYwh8SXtCLui8L
+         1d4l2gDl/Vbp5OPIlpLWtqPJS9Gqi+0drqS3pcWSMwsoFG2Wng4H73IShu2wNFifTh7b
+         D8Wv6zkJ4ByWS0ugRjbxUpZuPTWJsrNIWAKvzl0cEW1c19lXzkZ818iovNsU5COmwai5
+         QNNjV6fmw/2su+/Mqpm1xEr94HSdscjWM0D6aBD6WWxEVmMgUUpd8UBNF4YYyn2Pllg6
+         x1QqTf/P1OlASA1/5IRWml5bG+i9G98GwUfWdk46pLOzH1jEDQ6l0eJwSqvisUxKJcQh
+         fOwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718269867; x=1718874667;
+        d=1e100.net; s=20230601; t=1718269987; x=1718874787;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ssbYSRQgHiqW8KXtbPaweqL5MRA5/R+69ZodellWjGg=;
-        b=uoqPwcZxqF+yNoDLy8xW6gAPiQ2mqdWNiMOXNISaLxWMQSHacdp51vCytKKnZjr0lD
-         N2rUUxYSoo1wBYlREZyfZGvb37vNcyWjkG8PBeY5uJ696RgJh6xPLa2EzeVLTOkXih47
-         JmcIBY2uvlj7mh8VF02Wn/IMYDkhTnWhd1JwwaCRNR7eB1i4jmfiLae0KweV7jPEx3e4
-         JuT5rHo0duYd9ytqjALI5UsXvxSE4pq7j67ny48s6wsi2K5k5F/akvzeuSwquIMHyCXN
-         2Z0Z3YB17R+osdm3UBTOoO0R8pc+bid9CVuuXLr8NH7VnQnInSrSfPRfLLFRDL4DgKG2
-         Rtbg==
-X-Forwarded-Encrypted: i=1; AJvYcCUiP1qlr6S50bsU1/38L6LfCXsDRlskj0ZNAlCCvAui7OYWjAC97MZ//CtmJuA5zMX4OWI2h1OcfmmEH9mkc1yxaG0CRd2SwYmvzA==
-X-Gm-Message-State: AOJu0YxXQlu7uOxnim/JDNSiMb4zZ8bcVgLaW/WXnLiYBj78DtVhV2wP
-	EEAsq79X6GQbDOy5LTt2m+vIBglz2GAeu+uisSvQib3u5oRZupJi7zKj/L4FwVs=
-X-Google-Smtp-Source: AGHT+IGZckTwTpPwJpRSZbj+Ai6kyEIH4Kh4Mxy/9XGztt/MuSZp3E6p1vdUrofR1qJZ34Tm1k6n9A==
-X-Received: by 2002:a05:6512:2349:b0:52c:898b:d6cd with SMTP id 2adb3069b0e04-52c9a3b8f30mr3546072e87.12.1718269867352;
-        Thu, 13 Jun 2024 02:11:07 -0700 (PDT)
+        bh=tC/xjcrjFJo0No2NJtBl1Trd5UcmBwU7b4n6sOTwHQk=;
+        b=w5qon3nv8tBK16FamkG1svlTfEea63MV5HyNxP6XrIasSYZJQ9UQ696SpdFXglbK7C
+         5YH/ZQQHA85271qsKyah6PHsljv7fop4EfAYTz3p2eZ9N0DU6M+ewuyECIOE8fNwE6ke
+         aA9DCfY9tt0LfbzENAg6uAlFI1gQIH+rLdpUJbqPLZb0pO/yHsEPlUAa5sjJrgI/54sN
+         unDF7ncgLeKOLBUh+JcPbUaVi6X0EgS5hJFHTlt2HfplNCRQpyuBbinDshuGxBwF0ieS
+         7+BAtr72i7dKeSL+uPYZktkezGK4flGm4e4P3Zy6D3fVz0uTLDgzpKAAz1WqfxzkbfZr
+         d5Ug==
+X-Forwarded-Encrypted: i=1; AJvYcCXxVwNMnTkZivpFbGzQ9M7Je6Ns7T2i4jx43xu8EmJGfFD/hxF4hcwuZoH/fOwR6Dy74YlhDDuBI2RHE0+tlZxQSeEwDAiocNrypA==
+X-Gm-Message-State: AOJu0YxgVtHrdbUUNgz3NnkXhcvVcZb2Q0D20fZB2Xie2rh0s11DPqX6
+	NDus4zkpJnSJxlNZPwWMmgIkOaN8yZVtcyNAq8cNIODOOYwuMGJxpGZCh72hlSDEI8P2htqwaZR
+	W
+X-Google-Smtp-Source: AGHT+IHjySitS/JVozozvQQru+fBOOLFkwqD3nOCSx9EabUL6DrL8FoHu8mrXfKNms6T1KaySaF0vw==
+X-Received: by 2002:ac2:4c4a:0:b0:52c:8a12:3d3b with SMTP id 2adb3069b0e04-52c9a4053ccmr3147259e87.56.1718269987115;
+        Thu, 13 Jun 2024 02:13:07 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422f6320c16sm16121435e9.38.2024.06.13.02.11.06
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422870e9681sm54021205e9.28.2024.06.13.02.13.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jun 2024 02:11:06 -0700 (PDT)
-Message-ID: <9e9cbc0b-f9fd-439c-93d1-054179f7b07f@linaro.org>
-Date: Thu, 13 Jun 2024 11:11:05 +0200
+        Thu, 13 Jun 2024 02:13:06 -0700 (PDT)
+Message-ID: <6a54ea62-05b9-4e8e-876f-285fbe213310@linaro.org>
+Date: Thu, 13 Jun 2024 11:13:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,17 +78,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1e80100-crd: fix DAI used for
- headset recording
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: stable@vger.kernel.org
-References: <20240611142555.994675-1-krzysztof.kozlowski@linaro.org>
- <20240611142555.994675-2-krzysztof.kozlowski@linaro.org>
- <90f5ad41-7192-4c01-90c0-ad9c54094917@linaro.org>
+Subject: Re: [PATCH v2 2/3] dt-bindings: input/touchscreen: imagis: Document
+ ist3038
+To: Raymond Hackley <raymondhackley@protonmail.com>,
+ linux-kernel@vger.kernel.org
+Cc: Markuss Broks <markuss.broks@gmail.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Stephan Gerhold <stephan@gerhold.net>, Nikita Travkin <nikita@trvn.ru>,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <20240613025631.5425-1-raymondhackley@protonmail.com>
+ <20240613025631.5425-3-raymondhackley@protonmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -134,31 +137,21 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <90f5ad41-7192-4c01-90c0-ad9c54094917@linaro.org>
+In-Reply-To: <20240613025631.5425-3-raymondhackley@protonmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/06/2024 09:45, Konrad Dybcio wrote:
+On 13/06/2024 04:57, Raymond Hackley wrote:
+> Imagis IST3038 is a variant of Imagis touchscreen IC. Document it in
+> imagis,ist3038c bindings.
 > 
+> Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
+> ---
+>  .../devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml   | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> On 6/11/24 16:25, Krzysztof Kozlowski wrote:
->> The SWR2 Soundwire instance has 1 output and 4 input ports, so for the
->> headset recording (via the WCD9385 codec and the TX macro codec) we want
->> to use the next DAI, not the first one (see qcom,dout-ports and
->> qcom,din-ports for soundwire@6d30000 node).
->>
->> Original code was copied from other devices like SM8450 and SM8550.  On
->> the SM8450 this was a correct setting, however on the SM8550 this worked
->> probably only by coincidence, because the DTS defined no output ports on
->> SWR2 Soundwire.
-> 
-> Planning to send a fix for that?
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Not really, because microphone works on these targets and changing it
-would require testing. I don't have boards suitable for testing, so
-let's just leave it.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
