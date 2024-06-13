@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-75255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77E859063E5
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 08:17:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFE8B9063FA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 08:23:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 115DBB2262D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 06:17:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBC781C225BA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 06:23:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58ACC13666E;
-	Thu, 13 Jun 2024 06:17:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA1641369A7;
+	Thu, 13 Jun 2024 06:22:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XZ5w158l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O5gAEH9d"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C4A4EEC8;
-	Thu, 13 Jun 2024 06:17:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC83213698D;
+	Thu, 13 Jun 2024 06:22:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718259456; cv=none; b=TexsEQQQ+ZndRkg2RO1T6S+IkRpzOonBMAw1Auxl6vxW/aF11jOq4Lz2toCJVOGPw+MNLjj2+DwXK+RVj692XmKMJAcsQ8R+6ACvdCeMEaCYeGekXIqRbGBGUsK8FD7RE8LfDq8ySJqkTcSvrBWM4H+icFQSmwjZtuPSquiEZxk=
+	t=1718259779; cv=none; b=dqH6wwfkUhlapjfBVY4WZBEa7ExJ8NSZFMEokT4NDYbADexMNy0MZpPtKIN0o1R7P3oYYGCU3aQyRpA4mJt4M4v2/KZOnOJMyOJ7WEJ9KJhye2fCknjmqsfczhyPya0HyoJUDFxhaSgZVjJGItW9VI2T2jWLOj9BuE+4+vtiIDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718259456; c=relaxed/simple;
-	bh=uihNMKDFDeq6DZWQuossSskGGT4qt/lQSs9ST43sm58=;
+	s=arc-20240116; t=1718259779; c=relaxed/simple;
+	bh=JkGe8kZMmca5h+FBcgBRtWTsFqXGZJhTPSR79h5pJsA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kmXJdMIIMNQuoHtsJlWElIjHp9f/mCMuuugnQMoC0eZNOlV1Zp180zUX9k8TNTS1ozaw+iyNOW1qv7O7ZdHh3LSpTEpvZy6Ok8CdCD1nr7rjDeMFA901pzT5NtwfppHswoJzlVebDoL9jwKZV869t+Bsg3PLG/pI4E+EW3s0q0Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XZ5w158l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF2C2C2BBFC;
-	Thu, 13 Jun 2024 06:17:31 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=uYbutvDnwo+AF05lQKiLrq3pCQNz3W0SLOU291MqlYC0pKuTw8SdO0WIaGJPYnGGbS3KBTjDXutnyijRPfDJTy2O8CBSzPnEOUsoSIKHCyDfO//ayLdT1b9HMHglDY6slseHb5cWZm8gwWgx4dJTeI52KlT2LfFyQKFgghZwOXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O5gAEH9d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36956C2BBFC;
+	Thu, 13 Jun 2024 06:22:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718259455;
-	bh=uihNMKDFDeq6DZWQuossSskGGT4qt/lQSs9ST43sm58=;
+	s=k20201202; t=1718259779;
+	bh=JkGe8kZMmca5h+FBcgBRtWTsFqXGZJhTPSR79h5pJsA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XZ5w158lqgz67H8DBY2CPvY575GUl30o1VHIsZCxgg1USkXbjgrkdUciO6bt9EnNx
-	 mPZn/4eeu0OQ3MZiyZJbT0WSlg6E3eGsAZWKb7fX+h0MAO+WT3pC6MNtwcHLmf0ZPu
-	 ApT5f34799TVvKHRmo7YMLwFROW8hW0xqiS0kbJEh/woUIfJYe40XFzm0nNwhCvLgD
-	 fAY8/HhSqOxIYt/r/kqpeQLHJXtNg7cL3cSJ85mFjVXzOhODuREoW6pdWhRzUSRxa0
-	 RSr7U2jBag31Q1ADiKOE9c5NxdN9evSllnIzcHdmRJtTLho3OZxjGMEf3VYVpqJZH8
-	 uIzRV7k+rC7+g==
-Message-ID: <21cfeb4c-4ce2-487a-bdd5-45c3ed71bf6f@kernel.org>
-Date: Thu, 13 Jun 2024 08:17:29 +0200
+	b=O5gAEH9d4YQHQtj8MTsMhG55SLGcOHhiMMlRiG7N3lATpZHbErMWj3swp1khWjOtY
+	 phaEEbdt/MkCcVcOV7hDo/yYGgJY48Vq5f7plHDw+kiTQt2Ce56HVQ/ThSNydy09cK
+	 rujyxGfyHqtzQGWGBYmPHhlU6BZkqsekj5Db6aGQ3O8f8TBalQCYBeVxyRoj9ytBOQ
+	 QZMqFHOZm+OzE/zzTEafd7V6X5Ouwcnznv3jLWK2dN8uRpFWUpcIGT3l3zK5N0MlCa
+	 xvl7BE7N7KDMWUC7zghN4JcW7BHL6NLh19HeB8eg5Y0L6OSVxMz0g1Rbi5jeKasnn1
+	 Tx7yDfwxCWH4w==
+Message-ID: <faf04961-f8ac-446c-a558-42ef6e98b3ac@kernel.org>
+Date: Thu, 13 Jun 2024 08:22:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4, 1/3] dt-bindings: usb: dwc3: Add snps,p2p3tranok quirk
-To: joswang <joswang1221@gmail.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: Thinh.Nguyen@synopsys.com, gregkh@linuxfoundation.org, balbi@kernel.org,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Jos Wang <joswang@lenovo.com>
-References: <20240601092646.52139-1-joswang1221@gmail.com>
- <20240612152347.3192-1-joswang1221@gmail.com>
+Subject: Re: [PATCH v2 3/5] dt-bindings: mfd: syscon: add TI's opp table
+ compatible
+To: Bryan Brattlof <bb@ti.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>
+Cc: Vibhore Vardhan <vibhore@ti.com>, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240612-ti-opp-updates-v2-0-422b6747a254@ti.com>
+ <20240612-ti-opp-updates-v2-3-422b6747a254@ti.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,23 +107,33 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240612152347.3192-1-joswang1221@gmail.com>
+In-Reply-To: <20240612-ti-opp-updates-v2-3-422b6747a254@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/06/2024 17:23, joswang wrote:
->  
-> +  snps,p2p3tranok-quirk:
-> +    description:
-> +      When set, the controller transitions directly from phy power state
-> +      P2 to P3 or from state P3 to P2. Note that this can only be set
-> +      if the USB3 PHY supports direct p3 to p2 or p2 to p3 conversion.
-> +    type: boolean
+On 13/06/2024 01:17, Bryan Brattlof wrote:
+> The JTAG_USER_ID_USERCODE efuse address, which is located inside the
+> WKUP_CTRL_MMR0 range holds information to identify the speed grades of
+> various components on TI's K3 SoCs. Add a compatible to allow the
+> cpufreq driver to obtain the data to limit the maximum frequency for the
+> CPUs under Linux control.
+> 
+> Signed-off-by: Bryan Brattlof <bb@ti.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> index 7ed12a938baa3..ab1fcbe2148f7 100644
+> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> @@ -88,6 +88,7 @@ properties:
+>                - rockchip,rv1126-qos
+>                - starfive,jh7100-sysmain
+>                - ti,am62-usb-phy-ctrl
+> +              - ti,am62-opp-efuse-table
 
-Hm? You respond to feedback and, without waiting for my answer,
-immediately send new version?
-
-No. Read feedback on your previous version. Drop the quirk.
+These are ordered alphabetically.
 
 Best regards,
 Krzysztof
